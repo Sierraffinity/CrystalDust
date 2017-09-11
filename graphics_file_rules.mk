@@ -283,6 +283,3 @@ $(fontdir)/keypad_icons.4bpp: $(fontdir)/keypad_icons.png
 
 graphics/title_screen/pokemon_logo.gbapal: graphics/title_screen/pokemon_logo.pal
 	$(GFX) $< $@ -num_colors 224
-
-$(INTROGFXDIR)/copyright.4bpp: $(INTROGFXDIR)/copyright.png
-	$(GFX) $< $@ -num_tiles 39

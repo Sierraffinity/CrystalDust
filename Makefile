@@ -10,7 +10,7 @@ CPP      := $(DEVKITARM)/bin/arm-none-eabi-cpp
 CPPFLAGS := -I tools/agbcc/include -iquote include -nostdinc -undef
 
 LD      := $(DEVKITARM)/bin/arm-none-eabi-ld
-LDFLAGS := -T ld_script.ld -Map pokeemerald.map
+LDFLAGS := -T ld_script.ld -Map CrystalDust.map
 
 OBJCOPY := $(DEVKITARM)/bin/arm-none-eabi-objcopy
 
@@ -46,7 +46,7 @@ DATA_ASM_OBJS := $(DATA_ASM_SRCS:%.s=%.o)
 
 OBJS := $(C_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS)
 
-ROM := pokeemerald.gba
+ROM := CrystalDust.gba
 ELF := $(ROM:.gba=.elf)
 
 rom: $(ROM)
@@ -60,7 +60,7 @@ clean: tidy
 
 tidy:
 	rm -f ld_script.ld sym_bss.ld sym_common.ld sym_ewram.ld
-	rm -f $(ROM) $(ELF) $(OBJS) $(C_SRCS:%.c=%.i) pokeemerald.map
+	rm -f $(ROM) $(ELF) $(OBJS) $(C_SRCS:%.c=%.i) CrystalDust.map
 
 include graphics_file_rules.mk
 
