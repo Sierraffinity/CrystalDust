@@ -75,7 +75,7 @@ task_add_01_battle_start: @ 80B065C
 	adds r1, r2
 	strh r4, [r1, 0xA]
 	adds r0, r5, 0
-	bl PlayNewMapMusic__default_for_battle
+	bl PlayMapChosenOrBattleBGM
 	pop {r4,r5}
 	pop {r0}
 	bx r0
@@ -108,7 +108,7 @@ sub_80B06B0: @ 80B06B0
 	thumb_func_start sub_80B06BC
 sub_80B06BC: @ 80B06BC
 	push {r4,lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
 	bl sub_808BCF4
 	ldr r1, =gMain
@@ -150,7 +150,7 @@ _080B06F2:
 	thumb_func_start sub_80B072C
 sub_80B072C: @ 80B072C
 	push {lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
 	bl sub_808BCF4
 	ldr r1, =gMain
@@ -179,7 +179,7 @@ sub_80B072C: @ 80B072C
 	thumb_func_start sub_80B077C
 sub_80B077C: @ 80B077C
 	push {lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
 	bl sub_808BCF4
 	ldr r1, =gMain
@@ -201,7 +201,7 @@ sub_80B077C: @ 80B077C
 	thumb_func_start sub_80B07B4
 sub_80B07B4: @ 80B07B4
 	push {lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
 	bl sub_808BCF4
 	ldr r1, =gMain
@@ -283,7 +283,7 @@ sub_80B086C: @ 80B086C
 	lsls r1, 1
 	movs r2, 0x5
 	bl CreateMaleMon
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r1, =gMain
 	ldr r0, =c2_exit_to_overworld_1_continue_scripts_restart_music
 	str r0, [r1, 0x8]
@@ -302,7 +302,7 @@ sub_80B086C: @ 80B086C
 	thumb_func_start sub_80B08A8
 sub_80B08A8: @ 80B08A8
 	push {lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r1, =gMain
 	ldr r0, =sub_80B0B6C
 	str r0, [r1, 0x8]
@@ -328,7 +328,7 @@ sub_80B08A8: @ 80B08A8
 	thumb_func_start sub_80B08EC
 sub_80B08EC: @ 80B08EC
 	push {lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r1, =gMain
 	ldr r0, =sub_80B0B6C
 	str r0, [r1, 0x8]
@@ -355,7 +355,7 @@ sub_80B08EC: @ 80B08EC
 	thumb_func_start sub_80B0934
 sub_80B0934: @ 80B0934
 	push {r4,lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r1, =gMain
 	ldr r0, =sub_80B0B6C
 	str r0, [r1, 0x8]
@@ -457,7 +457,7 @@ _080B09FE:
 	thumb_func_start sub_80B0A18
 sub_80B0A18: @ 80B0A18
 	push {lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r1, =gMain
 	ldr r0, =sub_80B0B6C
 	str r0, [r1, 0x8]
@@ -494,7 +494,7 @@ _080B0A5A:
 	thumb_func_start sub_80B0A74
 sub_80B0A74: @ 80B0A74
 	push {lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r1, =gMain
 	ldr r0, =sub_80B0B6C
 	str r0, [r1, 0x8]
@@ -585,7 +585,7 @@ sub_80B0AF8: @ 80B0AF8
 _080B0B4C:
 	ldr r0, =c2_exit_to_overworld_2_switch
 	bl SetMainCallback2
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80AF6F0
 	str r0, [r1]
 _080B0B58:
@@ -704,7 +704,7 @@ _080B0C64:
 	lsls r0, r5, 24
 	lsrs r4, r0, 24
 	adds r0, r4, 0
-	bl sub_8089588
+	bl MetatileBehavior_IsMB_0B
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B0C78
@@ -734,7 +734,7 @@ _080B0C9C:
 	lsls r0, r5, 24
 	lsrs r4, r0, 24
 	adds r0, r4, 0
-	bl sub_808962C
+	bl MetatileBehavior_IsDeepOrOceanWater
 	lsls r0, 24
 	cmp r0, 0
 	bne _080B0CF2
@@ -744,7 +744,7 @@ _080B0C9C:
 	cmp r0, 0
 	bne _080B0CE0
 	adds r0, r4, 0
-	bl sub_808959C
+	bl MetatileBehavior_IsMountain
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B0CC8
@@ -757,7 +757,7 @@ _080B0CC8:
 	cmp r0, 0
 	beq _080B0CF6
 	adds r0, r4, 0
-	bl sub_80894D4
+	bl MetatileBehavior_GetBridgeSth
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B0CE4
@@ -766,7 +766,7 @@ _080B0CE0:
 	b _080B0D1A
 _080B0CE4:
 	adds r0, r4, 0
-	bl sub_80894AC
+	bl MetatileBehavior_IsBridge
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -1359,7 +1359,7 @@ sub_80B1158: @ 80B1158
 	movs r3, 0
 	bl sub_80F9244
 	bl ResetTasks
-	bl sub_806E64C
+	bl PlayBattleBGM
 	ldr r0, =sub_80B11A8
 	bl SetMainCallback2
 	movs r0, 0
@@ -1678,7 +1678,7 @@ battle_80801F0: @ 80B13F8
 	ldrb r1, [r2, 0x5]
 	ldrb r2, [r2, 0x4]
 	bl GetFieldObjectIdByLocalIdAndMap
-	ldr r1, =gUnknown_03005DF0
+	ldr r1, =gSelectedMapObject
 	strb r0, [r1]
 _080B141A:
 	pop {r0}
@@ -1880,10 +1880,10 @@ SingleTrainerWantsBattle: @ 80B162C
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r0, 24
-	ldr r2, =gUnknown_03005DF0
+	ldr r2, =gSelectedMapObject
 	strb r0, [r2]
 	ldr r4, =gScriptLastTalked
-	ldr r3, =gUnknown_02037350
+	ldr r3, =gMapObjects
 	lsls r2, r0, 3
 	adds r2, r0
 	lsls r2, 2
@@ -1895,7 +1895,7 @@ SingleTrainerWantsBattle: @ 80B162C
 	bl TrainerBattleConfigure
 	ldr r0, =gUnknown_08271354
 	bl ScriptContext1_SetupScript
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -1908,10 +1908,10 @@ TwoTrainersWantBattle: @ 80B1670
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r0, 24
-	ldr r2, =gUnknown_03005DF0
+	ldr r2, =gSelectedMapObject
 	strb r0, [r2]
 	ldr r4, =gScriptLastTalked
-	ldr r3, =gUnknown_02037350
+	ldr r3, =gMapObjects
 	lsls r2, r0, 3
 	adds r2, r0
 	lsls r2, 2
@@ -1933,7 +1933,7 @@ TwoTrainersWantBattleExecuteScript: @ 80B16A4
 	push {lr}
 	ldr r0, =gUnknown_08271354
 	bl ScriptContext1_SetupScript
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r0}
 	bx r0
 	.pool
@@ -1960,12 +1960,12 @@ GetTrainerFlagFromScriptPointer: @ 80B16B8
 	thumb_func_start sub_80B16D8
 sub_80B16D8: @ 80B16D8
 	push {r4,lr}
-	ldr r0, =gUnknown_03005DF0
+	ldr r0, =gSelectedMapObject
 	ldrb r0, [r0]
 	lsls r4, r0, 3
 	adds r4, r0
 	lsls r4, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r4, r0
 	ldrb r0, [r4, 0x18]
 	lsls r0, 28
@@ -1998,7 +1998,7 @@ check_trainer_flag: @ 80B1718
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B1734
-	ldr r0, =gUnknown_03005DF0
+	ldr r0, =gSelectedMapObject
 	ldrb r0, [r0]
 	bl GetBattlePyramidTrainerFlag
 	b _080B1752
@@ -2013,7 +2013,7 @@ _080B1734:
 	bl FlagGet
 	b _080B1752
 _080B174A:
-	ldr r0, =gUnknown_03005DF0
+	ldr r0, =gSelectedMapObject
 	ldrb r0, [r0]
 	bl GetTrainerHillTrainerFlag
 _080B1752:
@@ -2213,7 +2213,7 @@ _080B18E8:
 _080B1908:
 	bl task_add_01_battle_start_with_music_and_stats
 _080B190C:
-	bl script_env_2_set_ctx_paused
+	bl ScriptContext1_Stop
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -2315,7 +2315,7 @@ sub_80B19EC: @ 80B19EC
 	ldr r0, =sub_80B1994
 	str r0, [r1, 0x8]
 	bl task_add_01_battle_start_with_music_and_stats
-	bl script_env_2_set_ctx_paused
+	bl ScriptContext1_Stop
 	pop {r0}
 	bx r0
 	.pool
@@ -2341,7 +2341,7 @@ sub_80B1A14: @ 80B1A14
 	b _080B1AD8
 	.pool
 _080B1A44:
-	ldr r3, =gUnknown_02037350
+	ldr r3, =gMapObjects
 	ldr r2, =gUnknown_03006090
 	ldr r0, =gUnknown_02038BFC
 	ldrb r1, [r0]
@@ -2381,7 +2381,7 @@ _080B1A7C:
 	b _080B1AD8
 	.pool
 _080B1AAC:
-	ldr r3, =gUnknown_02037350
+	ldr r3, =gMapObjects
 	ldr r2, =gUnknown_03006090
 	ldr r0, =gUnknown_02038BFC
 	ldrb r1, [r0]
@@ -2590,7 +2590,7 @@ ReturnEmptyStringIfNull: @ 80B1C6C
 	push {lr}
 	cmp r0, 0
 	bne _080B1C74
-	ldr r0, =gUnknown_085E8D03
+	ldr r0, =gText_EmptyString2
 _080B1C74:
 	pop {r1}
 	bx r1

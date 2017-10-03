@@ -1190,7 +1190,7 @@ _080801F8:
 	movs r5, 0xAC
 	lsls r5, 1
 	adds r0, r5
-	ldr r1, =gUnknown_0203CE7C
+	ldr r1, =gScriptItemId
 	ldrh r1, [r1]
 	bl sub_807FE14
 	ldr r0, =gUnknown_020228C4
@@ -2043,7 +2043,7 @@ _080808F8:
 _08080950:
 	bl sub_800B4C0
 	bl sub_8080588
-	ldr r4, =gUnknown_0203CE7C
+	ldr r4, =gScriptItemId
 	ldrh r1, [r4]
 	movs r0, 0
 	bl sub_8082FDC
@@ -5627,7 +5627,7 @@ _080827AA:
 	ldr r0, [r6]
 	ldr r1, =0x000011b8
 	adds r0, r1
-	ldr r1, =gUnknown_085EE42D
+	ldr r1, =gText_SavingDontTurnOff2
 	movs r2, 0
 	bl sub_808417C
 	bl sub_800ADF8
@@ -7333,7 +7333,7 @@ _08083564:
 	bl StringAppend
 	ldr r0, [r7]
 	adds r0, 0x9F
-	ldr r1, =gUnknown_085E8D5E
+	ldr r1, =gText_Space
 	bl StringAppend
 	ldr r0, [r7]
 	adds r0, 0x9F
@@ -7619,7 +7619,7 @@ _080837EA:
 	movs r1, 0x6
 	bl CreateTask
 	bl sub_80EECEC
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	movs r1, 0x1
 	bl RemoveBagItem
@@ -8165,7 +8165,7 @@ _08083C84:
 	bl StringAppend
 	ldr r0, [r7]
 	adds r0, 0x9F
-	ldr r1, =gUnknown_085E8D5E
+	ldr r1, =gText_Space
 	bl StringAppend
 	ldr r0, [r7]
 	adds r0, 0x9F
@@ -8350,7 +8350,7 @@ ShowBerryBlenderRecordWindow: @ 8083E24
 	ldrb r0, [r5]
 	movs r1, 0x11
 	bl FillWindowPixelBuffer
-	ldr r6, =gUnknown_085EE44F
+	ldr r6, =gText_BlenderMaxSpeedRecord
 	movs r0, 0x1
 	adds r1, r6, 0
 	movs r2, 0x90
@@ -8367,7 +8367,7 @@ ShowBerryBlenderRecordWindow: @ 8083E24
 	adds r2, r6, 0
 	bl PrintTextOnWindow
 	ldrb r0, [r5]
-	ldr r2, =gUnknown_085EE473
+	ldr r2, =gText_234Players
 	movs r1, 0x29
 	str r1, [sp]
 	str r4, [sp, 0x4]

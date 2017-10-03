@@ -236,8 +236,8 @@ _08184FA0:
 	.pool
 	thumb_func_end sub_8184E58
 
-	thumb_func_start sub_8184FBC
-sub_8184FBC: @ 8184FBC
+	thumb_func_start RecordedBattle_SetBankAction
+RecordedBattle_SetBankAction: @ 8184FBC
 	push {r4-r6,lr}
 	lsls r0, 24
 	lsrs r5, r0, 24
@@ -269,7 +269,7 @@ _08184FF0:
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_8184FBC
+	thumb_func_end RecordedBattle_SetBankAction
 
 	thumb_func_start sub_8185008
 sub_8185008: @ 8185008
@@ -883,7 +883,7 @@ _081854E2:
 	ldr r2, =0x000004f6
 	adds r0, r7, r2
 	strh r1, [r0]
-	ldr r3, =gUnknown_02038BCE
+	ldr r3, =gPartnerTrainerId
 	ldrh r1, [r3]
 	movs r4, 0x9F
 	lsls r4, 3
@@ -1196,7 +1196,7 @@ _081857B6:
 	b _08185856
 	.pool
 _081857E4:
-	ldr r3, =gUnknown_02038BCE
+	ldr r3, =gPartnerTrainerId
 	ldrh r3, [r3]
 	adds r0, r1, r3
 	lsls r0, 16
@@ -1207,7 +1207,7 @@ _081857E4:
 	ldr r4, =0x00000504
 	adds r3, r7, r4
 	mov r10, r9
-	ldr r5, =gUnknown_02038BCE
+	ldr r5, =gPartnerTrainerId
 	mov r12, r5
 	ldr r0, =0xfffffed4
 	mov r8, r0
@@ -1231,7 +1231,7 @@ _08185804:
 	ble _08185804
 	mov r0, r9
 	ldr r1, [r0]
-	ldr r2, =gUnknown_02038BCE
+	ldr r2, =gPartnerTrainerId
 	ldrh r0, [r2]
 	ldr r3, =0xfffffed4
 	adds r0, r3
@@ -1246,7 +1246,7 @@ _08185804:
 	strb r1, [r0]
 	mov r0, r9
 	ldr r1, [r0]
-	ldr r4, =gUnknown_02038BCE
+	ldr r4, =gPartnerTrainerId
 	ldrh r0, [r4]
 	adds r0, r3
 	muls r0, r2
@@ -1374,7 +1374,7 @@ _08185936:
 	b _081859AC
 	.pool
 _0818597C:
-	ldr r3, =gUnknown_02038BCE
+	ldr r3, =gPartnerTrainerId
 	ldrh r0, [r3]
 	cmp r0, r1
 	bls _081859C0
@@ -1395,7 +1395,7 @@ _0818597C:
 	adds r1, r7, r5
 	strb r0, [r1]
 	ldr r2, [r4]
-	ldr r0, =gUnknown_02038BCE
+	ldr r0, =gPartnerTrainerId
 	ldrh r1, [r0]
 	adds r1, r3
 _081859AC:
@@ -1546,7 +1546,7 @@ sub_8185AB0: @ 8185AB0
 	strh r1, [r0]
 	ldr r0, =gTrainerBattleOpponent_B
 	strh r1, [r0]
-	ldr r0, =gUnknown_02038BCE
+	ldr r0, =gPartnerTrainerId
 	strh r1, [r0]
 	bl sub_8185EFC
 	ldr r0, =gUnknown_0203C7B0
@@ -1725,7 +1725,7 @@ _08185C2A:
 	adds r0, r7, r3
 	ldrh r0, [r0]
 	strh r0, [r1]
-	ldr r1, =gUnknown_02038BCE
+	ldr r1, =gPartnerTrainerId
 	adds r2, 0x4
 	adds r0, r7, r2
 	ldrh r0, [r0]
@@ -1905,7 +1905,7 @@ sub_8185E24: @ 8185E24
 	ldr r0, =gUnknown_0203C7B0
 	str r5, [r0]
 	movs r0, 0
-	bl PlayNewMapMusic__default_for_battle
+	bl PlayMapChosenOrBattleBGM
 	ldr r0, =sub_8185E8C
 	bl SetMainCallback2
 _08185E6E:
@@ -2212,7 +2212,7 @@ _081860C2:
 	ldr r1, [sp, 0x4C]
 	lsrs r0, r1, 24
 	movs r1, 0x6
-	bl sub_8184FBC
+	bl RecordedBattle_SetBankAction
 	movs r5, 0
 	ldr r2, =gUnknown_0203CC70
 	mov r8, r2
@@ -2241,7 +2241,7 @@ _081860F0:
 	lsrs r1, 24
 	ldr r2, [sp, 0x4C]
 	lsrs r0, r2, 24
-	bl sub_8184FBC
+	bl RecordedBattle_SetBankAction
 	b _08186118
 	.pool
 _08186110:
@@ -2599,7 +2599,7 @@ _081863A2:
 	ldr r2, [sp, 0x40]
 	bl SetMonData
 _081863CA:
-	ldr r2, =gUnknown_02024274
+	ldr r2, =gChosenMovesByBanks
 	ldr r3, [sp, 0x44]
 	adds r2, r3, r2
 	ldr r0, =gBattleStruct

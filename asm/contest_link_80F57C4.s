@@ -97,15 +97,15 @@ _080F57E0:
 	strh r1, [r0]
 	ldr r0, =gUnknown_02022E16
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E18
+	ldr r0, =gBattle_BG1_X
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E1A
+	ldr r0, =gBattle_BG1_Y
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E1C
+	ldr r0, =gBattle_BG2_X
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E1E
+	ldr r0, =gBattle_BG2_Y
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E20
+	ldr r0, =gBattle_BG3_X
 	strh r1, [r0]
 	ldr r0, =gUnknown_02022E22
 	strh r1, [r0]
@@ -283,7 +283,7 @@ sub_80F5A74: @ 80F5A74
 	ldrb r0, [r0]
 	cmp r5, r0
 	bne _080F5A96
-	ldr r1, =gUnknown_085ED21E
+	ldr r1, =gText_ColorDarkGrey
 	adds r0, r6, 0
 	bl StringCopy
 	adds r6, r0, 0
@@ -296,7 +296,7 @@ _080F5A96:
 	adds r1, r4, 0
 	movs r2, 0
 	bl sub_80F7ED0
-	ldr r1, =gUnknown_085E8D3E
+	ldr r1, =gText_Slash
 	adds r0, r6, 0
 	bl StringCopy
 	adds r1, r7, 0
@@ -449,23 +449,23 @@ sub_80F5C24: @ 80F5C24
 	ldrh r1, [r0]
 	movs r0, 0x12
 	bl SetGpuReg
-	ldr r0, =gUnknown_02022E18
+	ldr r0, =gBattle_BG1_X
 	ldrh r1, [r0]
 	movs r0, 0x14
 	bl SetGpuReg
-	ldr r0, =gUnknown_02022E1A
+	ldr r0, =gBattle_BG1_Y
 	ldrh r1, [r0]
 	movs r0, 0x16
 	bl SetGpuReg
-	ldr r0, =gUnknown_02022E1C
+	ldr r0, =gBattle_BG2_X
 	ldrh r1, [r0]
 	movs r0, 0x18
 	bl SetGpuReg
-	ldr r0, =gUnknown_02022E1E
+	ldr r0, =gBattle_BG2_Y
 	ldrh r1, [r0]
 	movs r0, 0x1A
 	bl SetGpuReg
-	ldr r0, =gUnknown_02022E20
+	ldr r0, =gBattle_BG3_X
 	ldrh r1, [r0]
 	movs r0, 0x1C
 	bl SetGpuReg
@@ -655,7 +655,7 @@ _080F5E2E:
 	ands r0, r1
 	cmp r0, 0
 	beq _080F5E78
-	ldr r0, =gUnknown_085ED207
+	ldr r0, =gText_CommunicationStandby
 	bl sub_80F707C
 	ldr r0, =sub_80F5ED8
 	b _080F5EB8
@@ -784,7 +784,7 @@ sub_80F5F74: @ 80F5F74
 	ldr r0, =sub_80F68F0
 	movs r1, 0x14
 	bl CreateTask
-	ldr r0, =gUnknown_085ED1B8
+	ldr r0, =gText_AnnouncingResults
 	ldr r1, =gUnknown_0203A034
 	ldr r1, [r1]
 	ldr r1, [r1]
@@ -828,7 +828,7 @@ _080F5FF0:
 _080F5FF8:
 	cmp r0, 0x3
 	bne _080F6030
-	ldr r0, =gUnknown_085ED1D0
+	ldr r0, =gText_PreliminaryResults
 	ldr r1, =gUnknown_0203A034
 	ldr r1, [r1]
 	ldr r1, [r1]
@@ -970,7 +970,7 @@ sub_80F60F0: @ 80F60F0
 	cmp r0, 0x15
 	bne _080F615E
 	strh r3, [r1, 0xA]
-	ldr r0, =gUnknown_085ED1E9
+	ldr r0, =gText_Round2Results
 	ldr r1, [r5]
 	ldrb r1, [r1]
 	bl sub_80F6B78
@@ -1265,7 +1265,7 @@ _080F636E:
 	adds r4, r1
 	adds r1, r4, 0
 	bl StringCopy
-	ldr r1, =gUnknown_085ED1FA
+	ldr r1, =gText_Var1sVar2Won
 	mov r0, sp
 	bl StringExpandPlaceholders
 	ldr r0, =gUnknown_0203A034
@@ -1364,7 +1364,7 @@ _080F6454:
 	mov r9, r4
 	ldr r4, =gMonFrontPicTable
 	mov r12, r4
-	ldr r4, =gUnknown_020244D4
+	ldr r4, =gBattleSpritesGfx
 	mov r8, r4
 	cmp r0, 0
 	beq _080F648C
@@ -1638,7 +1638,7 @@ _080F66DA:
 	lsls r0, 16
 	lsrs r0, 16
 	movs r1, 0x2
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	adds r5, 0x40
 	subs r4, 0x1
 	cmp r4, 0
@@ -1679,7 +1679,7 @@ sub_80F671C: @ 80F671C
 	ldrsh r0, [r4, r1]
 	cmp r0, 0
 	bne _080F676E
-	ldr r0, =gUnknown_085ED207
+	ldr r0, =gText_CommunicationStandby
 	bl sub_80F707C
 	bl sub_800AC34
 	ldr r0, =sub_80F677C
@@ -1838,7 +1838,7 @@ _080F68A8:
 	thumb_func_start sub_80F68B4
 sub_80F68B4: @ 80F68B4
 	push {r4,r5,lr}
-	ldr r2, =gUnknown_02022E20
+	ldr r2, =gBattle_BG3_X
 	ldrh r3, [r2]
 	adds r0, r3, 0x2
 	strh r0, [r2]
@@ -1989,7 +1989,7 @@ sub_80F69B8: @ 80F69B8
 _080F69DE:
 	adds r0, r7, 0
 	ldr r1, [sp, 0x28]
-	bl sub_80D2EDC
+	bl GetMonIconPtr
 	adds r3, r0, 0
 	lsls r0, r5, 9
 	adds r0, 0x80
@@ -5196,7 +5196,7 @@ _080F83FE:
 sub_80F840C: @ 80F840C
 	push {lr}
 	sub sp, 0x4
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r0, =sub_80F83E0
 	movs r1, 0xA
 	bl CreateTask
@@ -5252,7 +5252,7 @@ _080F8476:
 sub_80F8484: @ 80F8484
 	push {lr}
 	sub sp, 0x4
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r0, =sub_80F8458
 	movs r1, 0xA
 	bl CreateTask
@@ -5285,7 +5285,7 @@ sub_80F84C4: @ 80F84C4
 	adds r5, r0, 0
 	lsls r5, 24
 	lsrs r5, 24
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r6, =sub_80FC580
 	adds r0, r6, 0
 	movs r1, 0
@@ -5599,8 +5599,8 @@ _080F874C:
 	negs r3, r3
 	movs r0, 0
 	bl saved_warp2_set
-	bl script_env_2_disable
-	bl script_env_2_enable_and_set_ctx_running
+	bl ScriptContext2_Disable
+	bl EnableBothScriptContexts
 _080F877E:
 	pop {r4-r6}
 	pop {r0}
@@ -5639,8 +5639,8 @@ sub_80F87B4: @ 80F87B4
 	bne _080F87D0
 	adds r0, r1, 0
 	bl DestroyTask
-	bl script_env_2_disable
-	bl script_env_2_enable_and_set_ctx_running
+	bl ScriptContext2_Disable
+	bl EnableBothScriptContexts
 _080F87D0:
 	pop {r0}
 	bx r0

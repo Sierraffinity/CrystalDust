@@ -3,6 +3,7 @@ monbackdir := graphics/pokemon/back_pics
 monfrontdir := graphics/pokemon/anim_front_pics
 monpaldir := graphics/pokemon/palettes
 INTROGFXDIR := graphics/intro
+interfacedir := graphics/interface
 
 $(monstillfrontdir)/castform_still_front_pic.4bpp: $(monstillfrontdir)/castform_normal_form_still_front_pic.4bpp \
                                                    $(monstillfrontdir)/castform_sunny_form_still_front_pic.4bpp \
@@ -283,3 +284,6 @@ $(fontdir)/keypad_icons.4bpp: $(fontdir)/keypad_icons.png
 
 graphics/title_screen/pokemon_logo.gbapal: graphics/title_screen/pokemon_logo.pal
 	$(GFX) $< $@ -num_colors 224
+
+$(interfacedir)/pkmnjump_bg.4bpp: $(interfacedir)/pkmnjump_bg.png
+	$(GFX) $< $@ -num_tiles 63

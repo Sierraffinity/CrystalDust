@@ -1324,7 +1324,7 @@ bx_803AEDC: @ 805FC80
 	ldr r0, =SpriteCallbackDummy
 	cmp r1, r0
 	beq _0805FCCA
-	ldr r0, =nullsub_18
+	ldr r0, =SpriteCallbackDummy_2
 	cmp r1, r0
 	bne _0805FCDA
 _0805FCCA:
@@ -3811,7 +3811,7 @@ sub_8061224: @ 8061224
 	adds r0, r1
 	lsls r0, 2
 	adds r0, r5
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r2, r1
 	ldrb r1, [r2]
 	bl StartSpriteAnim
@@ -4012,7 +4012,7 @@ sub_80613DC: @ 80613DC
 	adds r0, r1
 	lsls r0, 2
 	adds r0, r5
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r6, r1
 	ldrb r1, [r6]
 	bl StartSpriteAnim
@@ -4336,7 +4336,7 @@ _080617CA:
 	lsls r1, 24
 	lsrs r1, 24
 	mov r0, r8
-	bl template_build_for_pokemon_or_trainer
+	bl sub_806A12C
 	ldr r6, =gUnknown_0202499C
 	mov r9, r7
 	ldr r1, =gUnknown_083054E0
@@ -4562,7 +4562,7 @@ _080619DE:
 	lsls r1, 24
 	lsrs r1, 24
 	mov r0, r8
-	bl template_build_for_pokemon_or_trainer
+	bl sub_806A12C
 	ldr r0, =gUnknown_0202499C
 	ldr r2, =gUnknown_083054E0
 	mov r3, r8
@@ -5185,7 +5185,7 @@ sub_8061F34: @ 8061F34
 	bl BufferStringBattle
 	ldr r0, =gDisplayedStringBattle
 	movs r1, 0
-	bl battle_show_message_maybe
+	bl sub_814F9EC
 	ldr r1, =gBattleBankFunc
 	ldrb r0, [r5]
 	lsls r0, 2
@@ -5323,7 +5323,7 @@ _08062062:
 	cmp r0, 0
 	beq _0806209C
 	movs r0, 0
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	ldr r5, =gBankTarget
 	strb r0, [r5]
 	ldr r0, =gAbsentBankFlags
@@ -5337,7 +5337,7 @@ _08062062:
 	cmp r1, 0
 	beq _0806209C
 	movs r0, 0x2
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	strb r0, [r5]
 _0806209C:
 	ldr r0, =gBankTarget
@@ -5394,7 +5394,7 @@ _08062108:
 	lsls r1, 24
 	lsrs r1, 24
 	adds r0, r1, 0
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	adds r2, r0, 0
 	lsls r2, 24
 	lsrs r2, 16
@@ -5406,7 +5406,7 @@ _08062108:
 	.pool
 _0806213C:
 	movs r0, 0
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	adds r2, r0, 0
 	lsls r2, 24
 	lsrs r2, 16
@@ -5468,7 +5468,7 @@ sub_8062188: @ 8062188
 	cmp r0, 0
 	bne _080621D4
 	movs r0, 0x1
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r5, r0, 24
 	adds r7, r5, 0
@@ -5476,11 +5476,11 @@ sub_8062188: @ 8062188
 	.pool
 _080621D4:
 	movs r0, 0x1
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r7, r0, 24
 	movs r0, 0x3
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r5, r0, 24
 _080621E8:
@@ -6015,7 +6015,7 @@ sub_8062630: @ 8062630
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _0806266C
-	bl sub_805EA60
+	bl BattleMusicStop
 	ldrb r1, [r5]
 	lsls r1, 9
 	adds r0, r4, 0x1

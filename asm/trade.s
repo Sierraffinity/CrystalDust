@@ -288,7 +288,7 @@ sub_80773AC: @ 80773AC
 	ldr r0, =gMain
 	movs r1, 0
 	str r1, [r0]
-	ldr r0, =gUnknown_020244EA
+	ldr r0, =gEnemyPartyCount
 	strb r1, [r0]
 	pop {r0}
 	bx r0
@@ -600,7 +600,7 @@ _080776A8:
 	adds r0, 0x36
 	strb r1, [r0]
 	ldr r0, [r2]
-	ldr r1, =gUnknown_020244EA
+	ldr r1, =gEnemyPartyCount
 	ldrb r1, [r1]
 	adds r0, 0x37
 	strb r1, [r0]
@@ -1211,7 +1211,7 @@ _08077C6C:
 	adds r0, 0x36
 	strb r1, [r0]
 	ldr r0, [r4]
-	ldr r1, =gUnknown_020244EA
+	ldr r1, =gEnemyPartyCount
 	ldrb r1, [r1]
 	adds r0, 0x37
 	strb r1, [r0]
@@ -7128,7 +7128,7 @@ _0807AD58:
 	lsls r0, r5, 3
 	ldr r1, =gMonFrontPicTable
 	adds r0, r1
-	ldr r1, =gUnknown_020244D4
+	ldr r1, =gBattleSpritesGfx
 	ldr r1, [r1]
 	ldr r1, [r1, 0x8]
 	adds r2, r5, 0
@@ -7141,7 +7141,7 @@ _0807AD94:
 	lsls r0, r5, 3
 	ldr r1, =gMonFrontPicTable
 	adds r0, r1
-	ldr r1, =gUnknown_020244D4
+	ldr r1, =gBattleSpritesGfx
 	ldr r2, [r1]
 	lsls r4, r6, 1
 	adds r1, r4, 0x1
@@ -7885,11 +7885,11 @@ sub_807B464: @ 807B464
 	lsrs r4, 16
 	adds r0, r4, 0
 	movs r1, 0x2
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	adds r0, r4, 0
 	movs r1, 0x3
 	adds r2, r5, 0
-	bl SetPokedexFlag
+	bl HandleSetPokedexFlag
 _0807B4B8:
 	pop {r4,r5}
 	pop {r0}
@@ -9004,7 +9004,7 @@ _0807C0F8:
 	.pool
 _0807C120:
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EE942
+	ldr r1, =gText_XWillBeSentToY
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	movs r0, 0
@@ -9070,7 +9070,7 @@ _0807C178:
 	adds r0, 0x1
 	strh r0, [r1]
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EE959
+	ldr r1, =gText_ByeByeVar1
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	movs r0, 0
@@ -9588,7 +9588,7 @@ _0807C66C:
 	ldr r0, [r5]
 	adds r0, 0xF0
 	ldrh r0, [r0]
-	bl sub_806E840
+	bl IsPokeSpriteNotFlipped
 	lsls r0, 24
 	cmp r0, 0
 	bne _0807C6E4
@@ -10369,7 +10369,7 @@ _0807CCEE:
 	lsls r0, r2, 3
 	ldr r1, =gMonFrontPicTable
 	adds r0, r1
-	ldr r1, =gUnknown_020244D4
+	ldr r1, =gBattleSpritesGfx
 	ldr r1, [r1]
 	ldr r1, [r1, 0x10]
 	ldr r3, [r3, 0x6C]
@@ -10471,7 +10471,7 @@ _0807CDDC:
 	movs r0, 0
 	bl SetGpuReg
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EE966
+	ldr r1, =gText_XSentOverY
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	movs r0, 0
@@ -10542,7 +10542,7 @@ _0807CE70:
 	movs r5, 0
 	strh r0, [r1]
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EE977
+	ldr r1, =gText_TakeGoodCareOfX
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	movs r0, 0
@@ -11066,7 +11066,7 @@ _0807D4D4:
 	.pool
 _0807D4FC:
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EE942
+	ldr r1, =gText_XWillBeSentToY
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	movs r0, 0
@@ -11132,7 +11132,7 @@ _0807D554:
 	adds r0, 0x1
 	strh r0, [r1]
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EE959
+	ldr r1, =gText_ByeByeVar1
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	movs r0, 0
@@ -11662,7 +11662,7 @@ _0807DA74:
 	ldr r0, [r5]
 	adds r0, 0xF0
 	ldrh r0, [r0]
-	bl sub_806E840
+	bl IsPokeSpriteNotFlipped
 	lsls r0, 24
 	cmp r0, 0
 	bne _0807DAEC
@@ -12474,7 +12474,7 @@ _0807E13A:
 	lsls r0, r2, 3
 	ldr r1, =gMonFrontPicTable
 	adds r0, r1
-	ldr r1, =gUnknown_020244D4
+	ldr r1, =gBattleSpritesGfx
 	ldr r1, [r1]
 	ldr r1, [r1, 0x10]
 	ldr r3, [r3, 0x6C]
@@ -12576,7 +12576,7 @@ _0807E228:
 	movs r0, 0
 	bl SetGpuReg
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EE966
+	ldr r1, =gText_XSentOverY
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	movs r0, 0
@@ -12647,7 +12647,7 @@ _0807E2BC:
 	movs r5, 0
 	strh r0, [r1]
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EE977
+	ldr r1, =gText_TakeGoodCareOfX
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	movs r0, 0
@@ -13751,7 +13751,7 @@ _0807ED10:
 	adds r0, 0x1
 	strb r0, [r1]
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EF6D2
+	ldr r1, =gText_CommunicationStandby5
 	b _0807EDA6
 	.pool
 _0807ED2C:
@@ -14165,7 +14165,7 @@ _0807F0BE:
 sub_807F0E4: @ 807F0E4
 	push {lr}
 	sub sp, 0x4
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r0, =sub_807F110
 	movs r1, 0xA
 	bl CreateTask
@@ -14195,7 +14195,7 @@ sub_807F110: @ 807F110
 	bne _0807F134
 	ldr r0, =sub_807B270
 	bl SetMainCallback2
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80AF168
 	str r0, [r1]
 	adds r0, r4, 0
@@ -14634,7 +14634,7 @@ _0807F4C0:
 	movs r0, 0x1
 	strb r0, [r1]
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EF6D2
+	ldr r1, =gText_CommunicationStandby5
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	movs r0, 0

@@ -115,7 +115,7 @@ sub_80B46D8: @ 80B46D8
 	orrs r3, r4
 	mov r4, r12
 	strb r3, [r4]
-	ldr r4, =gUnknown_02038C08
+	ldr r4, =gFieldEffectSpawnParams
 	ldr r3, [r4]
 	strh r3, [r0, 0x2E]
 	ldr r3, [r4, 0x4]
@@ -167,7 +167,7 @@ _080B4756:
 	bl FieldEffectStop
 	b _080B47B2
 _080B4764:
-	ldr r2, =gUnknown_02037350
+	ldr r2, =gMapObjects
 	mov r0, sp
 	ldrb r1, [r0]
 	lsls r0, r1, 3
@@ -274,7 +274,7 @@ sub_80B4808: @ 80B4808
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	ldrb r0, [r0, 0x18]
 	lsls r0, 28
@@ -296,12 +296,12 @@ sub_80B4808: @ 80B4808
 	b _080B489E
 	.pool
 _080B4870:
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	ldrb r0, [r0, 0x18]
 	lsls r0, 28

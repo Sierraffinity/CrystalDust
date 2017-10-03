@@ -11,6 +11,12 @@ enum
     BERRY_FIRMNESS_SUPER_HARD,
 };
 
+#define NUM_BERRIES 44
+
+extern const u8 *const gBerryTreeFieldObjectGraphicsIdTablePointers[NUM_BERRIES];
+extern const struct SpriteFrameImage *const gBerryTreePicTablePointers[NUM_BERRIES];
+extern const u8 *const gBerryTreePaletteSlotTablePointers[NUM_BERRIES];
+
 void ClearEnigmaBerries(void);
 void SetEnigmaBerry(u8 *src);
 u32 GetEnigmaBerryChecksum(struct EnigmaBerry *enigmaBerry);
@@ -37,12 +43,21 @@ u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water);
 u8 CalcBerryYield(struct BerryTree *tree);
 u8 GetBerryCountByBerryTreeId(u8 id);
 u16 GetStageDurationByBerryType(u8);
+void Bag_ChooseBerry(void);
 void FieldObjectInteractionGetBerryTreeData(void);
-void sub_80B4EE4(void);
 void FieldObjectInteractionPlantBerryTree(void);
 void FieldObjectInteractionPickBerryTree(void);
 void FieldObjectInteractionRemoveBerryTree(void);
 u8 PlayerHasBerries(void);
 void ResetBerryTreeSparkleFlags(void);
+
+extern const struct Berry gBerries[];
+
+struct UnkStruct_0858AB24 {
+    u8 unk0;
+    u16 unk1;
+};
+
+extern const struct UnkStruct_0858AB24 gUnknown_0858AB24[];
 
 #endif // GUARD_BERRY_H

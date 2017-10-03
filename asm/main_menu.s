@@ -312,7 +312,7 @@ _0802F982:
 	b _0802F9FC
 	.pool
 _0802F990:
-	ldr r0, =gUnknown_085E8405
+	ldr r0, =gText_SaveFileErased
 	bl CreateMainMenuErrorWindow
 	strh r5, [r4]
 	mov r0, r8
@@ -321,7 +321,7 @@ _0802F990:
 	b _0802F9FA
 	.pool
 _0802F9A4:
-	ldr r0, =gUnknown_085E83C2
+	ldr r0, =gText_SaveFileCorrupted
 	bl CreateMainMenuErrorWindow
 	mov r0, r8
 	subs r0, 0x8
@@ -350,7 +350,7 @@ _0802F9D0:
 	b _0802F9FC
 	.pool
 _0802F9EC:
-	ldr r0, =gUnknown_085E8440
+	ldr r0, =gJPText_No1MSubCircuit
 	bl CreateMainMenuErrorWindow
 	mov r0, r8
 	subs r0, 0x8
@@ -495,7 +495,7 @@ Task_MainMenuCheckBattery: @ 802FAB0
 	b _0802FB3C
 	.pool
 _0802FB28:
-	ldr r0, =gUnknown_085E8453
+	ldr r0, =gText_BatteryRunDry
 	bl CreateMainMenuErrorWindow
 	ldr r1, =gTasks
 	lsls r0, r5, 2
@@ -679,7 +679,7 @@ _0802FCBC:
 	movs r4, 0x1
 	negs r4, r4
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E827C
+	ldr r0, =gText_MainMenuNewGame
 	str r0, [sp, 0x8]
 	movs r0, 0
 	movs r1, 0x1
@@ -688,7 +688,7 @@ _0802FCBC:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E828E
+	ldr r0, =gText_MainMenuOption
 	str r0, [sp, 0x8]
 	movs r0, 0x1
 	movs r1, 0x1
@@ -728,7 +728,7 @@ _0802FD44:
 	movs r4, 0x1
 	negs r4, r4
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E8285
+	ldr r0, =gText_MainMenuContinue
 	str r0, [sp, 0x8]
 	movs r0, 0x2
 	movs r1, 0x1
@@ -737,7 +737,7 @@ _0802FD44:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E827C
+	ldr r0, =gText_MainMenuNewGame
 	str r0, [sp, 0x8]
 	movs r0, 0x3
 	movs r1, 0x1
@@ -746,7 +746,7 @@ _0802FD44:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E828E
+	ldr r0, =gText_MainMenuOption
 	str r0, [sp, 0x8]
 	movs r0, 0x4
 	movs r1, 0x1
@@ -799,7 +799,7 @@ _0802FE00:
 	movs r4, 0x1
 	negs r4, r4
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E8285
+	ldr r0, =gText_MainMenuContinue
 	str r0, [sp, 0x8]
 	movs r0, 0x2
 	movs r1, 0x1
@@ -808,7 +808,7 @@ _0802FE00:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E827C
+	ldr r0, =gText_MainMenuNewGame
 	str r0, [sp, 0x8]
 	movs r0, 0x3
 	movs r1, 0x1
@@ -817,7 +817,7 @@ _0802FE00:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E8295
+	ldr r0, =gText_MainMenuMysteryGift
 	str r0, [sp, 0x8]
 	movs r0, 0x4
 	movs r1, 0x1
@@ -826,7 +826,7 @@ _0802FE00:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E828E
+	ldr r0, =gText_MainMenuOption
 	str r0, [sp, 0x8]
 	movs r0, 0x5
 	movs r1, 0x1
@@ -895,7 +895,7 @@ _0802FEFC:
 	movs r4, 0x1
 	negs r4, r4
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E8285
+	ldr r0, =gText_MainMenuContinue
 	str r0, [sp, 0x8]
 	movs r0, 0x2
 	movs r1, 0x1
@@ -904,7 +904,7 @@ _0802FEFC:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E827C
+	ldr r0, =gText_MainMenuNewGame
 	str r0, [sp, 0x8]
 	movs r0, 0x3
 	movs r1, 0x1
@@ -913,7 +913,7 @@ _0802FEFC:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E82A2
+	ldr r0, =gText_MainMenuMysteryGift2
 	str r0, [sp, 0x8]
 	movs r0, 0x4
 	movs r1, 0x1
@@ -922,7 +922,7 @@ _0802FEFC:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E82AF
+	ldr r0, =gText_MainMenuMysteryEvents
 	str r0, [sp, 0x8]
 	movs r0, 0x5
 	movs r1, 0x1
@@ -931,7 +931,7 @@ _0802FEFC:
 	bl box_print
 	str r5, [sp]
 	str r4, [sp, 0x4]
-	ldr r0, =gUnknown_085E828E
+	ldr r0, =gText_MainMenuOption
 	str r0, [sp, 0x8]
 	movs r0, 0x6
 	movs r1, 0x1
@@ -1671,17 +1671,17 @@ _080305FC:
 	beq _0803061C
 	b _08030622
 _08030602:
-	ldr r0, =gUnknown_085E82BE
+	ldr r0, =gText_WirelessNotConnected
 	bl CreateMainMenuErrorWindow
 	b _08030622
 	.pool
 _08030610:
-	ldr r0, =gUnknown_085E82E5
+	ldr r0, =gText_MysteryGiftCantUse
 	bl CreateMainMenuErrorWindow
 	b _08030622
 	.pool
 _0803061C:
-	ldr r0, =gUnknown_085E8328
+	ldr r0, =gText_MysteryEventsCantUse
 	bl CreateMainMenuErrorWindow
 _08030622:
 	ldr r0, =gTasks
@@ -2123,7 +2123,7 @@ task_new_game_prof_birch_speech_4: @ 80309CC
 	ldr r1, =task_new_game_prof_birch_speech_5
 	str r1, [r0]
 	ldr r0, =gStringVar4
-	ldr r1, =gUnknown_085E8692
+	ldr r1, =gText_ThisIsAPokemon
 	bl StringExpandPlaceholders
 	ldr r1, =sub_80323A0
 	movs r0, 0x1
@@ -2951,7 +2951,7 @@ task_new_game_prof_birch_speech_17: @ 8031090
 	str r0, [sp, 0x4]
 	movs r0, 0
 	movs r3, 0
-	bl do_choose_name_or_words_screen
+	bl DoNamingScreen
 _080310EC:
 	add sp, 0x8
 	pop {r4,r5}
@@ -3940,7 +3940,7 @@ AddBirchSpeechObjects: @ 803192C
 	strb r1, [r2]
 	strh r0, [r5, 0x1A]
 	movs r0, 0x3C
-	bl TrainerClassToTrainerPic
+	bl sub_806EFF0
 	lsls r0, 24
 	lsrs r0, 24
 	ldr r4, =0x0201c000
@@ -3970,7 +3970,7 @@ AddBirchSpeechObjects: @ 803192C
 	strb r1, [r2, 0x5]
 	strh r0, [r5, 0x1C]
 	movs r0, 0x3F
-	bl TrainerClassToTrainerPic
+	bl sub_806EFF0
 	lsls r0, 24
 	lsrs r0, 24
 	ldr r1, =0x0201c000
@@ -4547,7 +4547,7 @@ fmt_time: @ 8031E94
 	push {r4-r6,lr}
 	sub sp, 0xC
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EDCC3
+	ldr r1, =gText_ContinueMenuPlayer
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	ldr r6, =gUnknown_082FF0E3
@@ -4589,7 +4589,7 @@ fmt_player: @ 8031EF8
 	push {r4-r6,lr}
 	sub sp, 0x2C
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EDCCA
+	ldr r1, =gText_ContinueMenuTime
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	ldr r6, =gUnknown_082FF0E3
@@ -4664,7 +4664,7 @@ _08031FAA:
 	lsls r0, 16
 	lsrs r7, r0, 16
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EDCCF
+	ldr r1, =gText_ContinueMenuPokedex
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	ldr r6, =gUnknown_082FF0E3
@@ -4728,7 +4728,7 @@ _08032030:
 	cmp r4, r0
 	bls _0803201C
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EDCD7
+	ldr r1, =gText_ContinueMenuBadges
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	ldr r6, =gUnknown_082FF0E3

@@ -113,8 +113,9 @@ gUnknown_03000DD8: @ 3000DD8
 gUnknown_03000DDC: @ 3000DDC
 	.space 0x4
 
-gUnknown_03000DE0: @ 3000DE0
-	.space 0x8
+    .include "src/egg_hatch.o"
+    
+.space 0x4 @ why the gap?
 
 gUnknown_03000DE8: @ 3000DE8
 	.space 0x10
@@ -129,7 +130,7 @@ gUnknown_03000E06: @ 3000E06
 	.space 0x2
 
     .include "src/play_time.o"
-    
+
 .align 2
 
 gUnknown_03000E0C: @ 3000E0C
@@ -162,18 +163,9 @@ gUnknown_03000E2C: @ 3000E2C
 gUnknown_03000E30: @ 3000E30
 	.space 0x8
 
-gUnknown_03000E38: @ 3000E38
-	.space 0x8
+.include "src/script.o"
 
-gUnknown_03000E40: @ 3000E40
-	.space 0x78
-
-gUnknown_03000EB8: @ 3000EB8
-	.space 0x74
-
-gUnknown_03000F2C: @ 3000F2C
-	.space 0x4
-
+.align 2
 gUnknown_03000F30: @ 3000F30
 	.space 0x4
 
@@ -385,8 +377,7 @@ gUnknown_03001298: @ 3001298
 gUnknown_030012A8: @ 30012A8
 	.space 0x10
 
-gUnknown_030012B8: @ 30012B8
-	.space 0x4
+    .include "src/berry_fix_program.o"
 
 gUnknown_030012BC: @ 30012BC
 	.space 0x4

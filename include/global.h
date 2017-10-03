@@ -9,8 +9,22 @@
 
 // to help in decompiling
 #define asm_comment(x) asm volatile("@ -- " x " -- ")
+#define asm_unified(x) asm(".syntax unified\n" x "\n.syntax divided")
+
+#if defined (__APPLE__) || defined (__CYGWIN__)
+void memset(void *, int, size_t);
+void memcpy(void *, const void *, size_t);
+#endif // __APPLE__
 
 #define ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
+
+// useful math macros
+
+// Converts a number to Q8.8 fixed-point format
+#define Q_8_8(n) ((s16)((n) * 256))
+
+// Converts a number to Q4.12 fixed-point format
+#define Q_4_12(n)  ((s16)((n) * 4096))
 
 #define POKEMON_NAME_LENGTH 10
 #define OT_NAME_LENGTH 7
@@ -184,7 +198,8 @@ struct SaveBlock2
         // All below could be a one giant struct
 
     /*0x64C*/ u8 field_64C[1629];
-    /*0xCA9*/ u8 frontierChosenLvl;
+    /*0xCA9*/ u8 frontierChosenLvl : 2;
+    /*0xCA9*/ u8 field_CA9_a : 6;
     /*0xCAA*/ u8 field_CAA[368];
     /*0xE1A*/ u16 battlePyramidFloor; // possibly?
     /*0xE1C*/ u8 field_E1C[16];
@@ -638,7 +653,8 @@ struct DaycareMon
     struct MailStruct mail;
     u8 OT_name[OT_NAME_LENGTH + 1];
     u8 monName[11];
-    u8 language;
+    u8 language_maybe : 4;
+    u8 unknown : 4;
     u32 stepsTaken;
 };
 
@@ -649,8 +665,65 @@ struct DaycareData
     u8 stepCounter;
 };
 
-#define FLAGS_NUMBER    300
-#define VARS_NUMBER     256
+#define MAP_OBJECTS_COUNT  16
+#define BERRY_TREES_COUNT  128
+#define FLAGS_COUNT        300
+#define VARS_COUNT         256
+
+enum {
+    LILYCOVE_LADY_QUIZ,
+    LILYCOVE_LADY_FAVOUR,
+    LILYCOVE_LADY_CONTEST
+};
+
+struct LilycoveLadyQuiz
+{
+    /*0x000*/ u8 id;
+    /*0x001*/ u8 phase;
+    /*0x002*/ u16 unk_002[9];
+    /*0x014*/ u16 unk_014;
+    /*0x016*/ u16 unk_016;
+    /*0x018*/ u8 playerName[8];
+    /*0x020*/ u16 playerTrainerId[4];
+    /*0x028*/ u16 itemId;
+    /*0x02a*/ u8 unk_02a;
+    /*0x02b*/ u8 unk_02b;
+    /*0x02c*/ u8 unk_02c;
+    /*0x02d*/ u8 language;
+};
+
+struct LilycoveLadyFavour
+{
+    /*0x000*/ u8 id;
+    /*0x001*/ u8 phase;
+    /*0x002*/ u8 unk_002;
+    /*0x003*/ u8 unk_003;
+    /*0x004*/ u8 playerName[8];
+    /*0x00c*/ u8 unk_00c;
+    /*0x00e*/ u16 itemId;
+    /*0x010*/ u16 unk_010;
+    /*0x012*/ u8 language;
+};
+
+struct LilycoveLadyContest
+{
+    /*0x000*/ u8 id;
+    /*0x001*/ u8 phase;
+    /*0x002*/ u8 fave_pkblk;
+    /*0x003*/ u8 other_pkblk;
+    /*0x004*/ u8 playerName[8];
+    /*0x00c*/ u8 max_sheen;
+    /*0x00d*/ u8 category;
+    /*0x00e*/ u8 language;
+};
+
+typedef union // TODO
+{
+    struct LilycoveLadyQuiz quiz;
+    struct LilycoveLadyFavour favour;
+    struct LilycoveLadyContest contest;
+    u8 id;
+} LilycoveLady;
 
 struct SaveBlock1
 {
@@ -683,12 +756,12 @@ struct SaveBlock1
     /*0x9C2*/ u8 field_9C2[6];
     /*0x9C8*/ u16 trainerRematchStepCounter;
     /*0x9CA*/ u8 trainerRematches[100];
-    /*0xA30*/ struct MapObject mapObjects[16];
+    /*0xA30*/ struct MapObject mapObjects[MAP_OBJECTS_COUNT];
     /*0xC70*/ struct MapObjectTemplate mapObjectTemplates[64];
-    /*0x1270*/ u8 flags[FLAGS_NUMBER];
-    /*0x139C*/ u16 vars[VARS_NUMBER];
+    /*0x1270*/ u8 flags[FLAGS_COUNT];
+    /*0x139C*/ u16 vars[VARS_COUNT];
     /*0x159C*/ u32 gameStats[NUM_GAME_STATS];
-    /*0x169C*/ struct BerryTree berryTrees[128];
+    /*0x169C*/ struct BerryTree berryTrees[BERRY_TREES_COUNT];
     /*0x1A9C*/ struct SecretBaseRecord secretBases[20];
     /*0x271C*/ u8 playerRoomDecor[12];
     /*0x2728*/ u8 playerRoomDecorPos[12];
@@ -731,10 +804,12 @@ struct SaveBlock1
     /*0x31A8*/ u8 giftRibbons[52];
     /*0x31DC*/ struct Roamer roamer;
     /*0x31F8*/ struct EnigmaBerry enigmaBerry;
+    /*0x322C*/ u8 field_322C[1276];
     /*0x3728*/ struct RamScript ramScript;
     /*0x3B14*/ struct RecordMixingGift recordMixingGift;
     /*0x3B24*/ u8 seen2[52];
-    /*0x3B58*/ u8 lilycoveLady[536]; // TODO: convert to a union
+    /*0x3B58*/ LilycoveLady lilycoveLady;
+    /*0x3B88*/ u8 filler_3B88[0x1E8];
     /*0x3D70*/ u8 babyPhrase[24]; // TODO: convert to a struct
     // sizeof: 0x3D88
 };
@@ -747,5 +822,7 @@ struct Bitmap           // TODO: Find a better spot for this
     u32 width:16;
     u32 height:16;
 };
+
+extern u8 gReservedSpritePaletteCount;
 
 #endif // GUARD_GLOBAL_H

@@ -1699,19 +1699,19 @@ _080853AC:
 	lsls r4, 24
 	lsrs r5, r4, 24
 	adds r0, r5, 0
-	bl sub_8088F74
+	bl MetatileBehavior_IsDeepSouthWarp
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _080853E8
 	adds r0, r5, 0
-	bl sub_8088F58
+	bl MetatileBehavior_IsNonAnimDoor
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _08085442
 	adds r0, r5, 0
-	bl sub_8088EFC
+	bl MetatileBehavior_IsDoor
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -3015,7 +3015,7 @@ c1_overworld_normal: @ 8085DAC
 	adds r1, r5, 0
 	adds r2, r4, 0
 	bl process_overworld_input
-	bl script_env_2_is_enabled
+	bl ScriptContext2_IsEnabled
 	lsls r0, 24
 	cmp r0, 0
 	bne _08085DFA
@@ -3023,7 +3023,7 @@ c1_overworld_normal: @ 8085DAC
 	bl sub_809C014
 	cmp r0, 0x1
 	bne _08085DF0
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl HideMapNamePopUpWindow
 	b _08085DFA
 _08085DF0:
@@ -3059,7 +3059,7 @@ _08085E18:
 @ void c2_overworld_basic()
 c2_overworld_basic: @ 8085E24
 	push {lr}
-	bl script_env_2_run_current_script
+	bl ScriptContext2_RunScript
 	bl RunTasks
 	bl AnimateSprites
 	bl CameraUpdate
@@ -3136,12 +3136,12 @@ map_post_load_hook_exec: @ 8085EA0
 _08085EBC:
 	movs r1, 0
 	str r1, [r4]
-	ldr r0, =gUnknown_03005DAC
+	ldr r0, =gFieldCallback
 	str r1, [r0]
 	b _08085EEA
 	.pool
 _08085ECC:
-	ldr r0, =gUnknown_03005DAC
+	ldr r0, =gFieldCallback
 	ldr r0, [r0]
 	cmp r0, 0
 	beq _08085EE0
@@ -3151,7 +3151,7 @@ _08085ECC:
 _08085EE0:
 	bl mapldr_default
 _08085EE4:
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
 _08085EEA:
@@ -3172,10 +3172,10 @@ CB2_NewGame: @ 8085EF8
 	bl NewGameInitData
 	bl player_avatar_init_params_reset
 	bl PlayTimeCounter_Start
-	bl script_env_1_init
-	bl script_env_2_disable
-	ldr r1, =gUnknown_03005DAC
-	ldr r0, =sub_80FB4E0
+	bl ScriptContext1_Init
+	bl ScriptContext2_Disable
+	ldr r1, =gFieldCallback
+	ldr r0, =ExecuteTruckSequence
 	str r0, [r1]
 	ldr r1, =gUnknown_03005DB0
 	movs r0, 0
@@ -3212,9 +3212,9 @@ c2_whiteout: @ 8085F58
 	bl ResetSafariZoneFlag_
 	bl sub_8084620
 	bl player_avatar_init_params_reset
-	bl script_env_1_init
-	bl script_env_2_disable
-	ldr r1, =gUnknown_03005DAC
+	bl ScriptContext1_Init
+	bl ScriptContext2_Disable
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80AF3C8
 	str r0, [r1]
 	mov r1, sp
@@ -3238,8 +3238,8 @@ _08085FB0:
 c2_load_new_map: @ 8085FCC
 	push {lr}
 	bl sub_808631C
-	bl script_env_1_init
-	bl script_env_2_disable
+	bl ScriptContext1_Init
+	bl ScriptContext2_Disable
 	movs r0, 0
 	bl set_callback1
 	ldr r0, =c2_change_map
@@ -3278,8 +3278,8 @@ sub_8086024: @ 8086024
 	cmp r0, 0
 	bne _08086046
 	bl sub_808631C
-	bl script_env_1_init
-	bl script_env_2_disable
+	bl ScriptContext1_Init
+	bl ScriptContext2_Disable
 	movs r0, 0
 	bl set_callback1
 _08086046:
@@ -3304,7 +3304,7 @@ _08086062:
 sub_8086074: @ 8086074
 	push {lr}
 	bl sub_808631C
-	ldr r0, =gUnknown_03005DAC
+	ldr r0, =gFieldCallback
 	ldr r1, =sub_80AF314
 	str r1, [r0]
 	ldr r0, =c2_80567AC
@@ -3399,17 +3399,17 @@ c2_8056854: @ 8086140
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _08086174
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80AF314
 	b _08086178
 	.pool
 _08086174:
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80AF214
 _08086178:
 	str r0, [r1]
-	bl script_env_1_init
-	bl script_env_2_disable
+	bl ScriptContext1_Init
+	bl ScriptContext2_Disable
 	bl c2_exit_to_overworld_2_switch
 	pop {r0}
 	bx r0
@@ -3433,7 +3433,7 @@ sub_8086194: @ 8086194
 sub_80861B0: @ 80861B0
 	push {lr}
 	bl sub_808631C
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80AF188
 	str r0, [r1]
 	bl c2_exit_to_overworld_2_switch
@@ -3446,7 +3446,7 @@ sub_80861B0: @ 80861B0
 c2_exit_to_overworld_1_continue_scripts_restart_music: @ 80861CC
 	push {lr}
 	bl sub_808631C
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80AF168
 	str r0, [r1]
 	bl c2_exit_to_overworld_2_switch
@@ -3459,7 +3459,7 @@ c2_exit_to_overworld_1_continue_scripts_restart_music: @ 80861CC
 sub_80861E8: @ 80861E8
 	push {lr}
 	bl sub_808631C
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80AF3C8
 	str r0, [r1]
 	bl c2_exit_to_overworld_2_switch
@@ -3546,8 +3546,8 @@ _080862BA:
 	bl sub_8087D74
 _080862BE:
 	bl PlayTimeCounter_Start
-	bl script_env_1_init
-	bl script_env_2_disable
+	bl ScriptContext1_Init
+	bl ScriptContext2_Disable
 	bl sub_8195E10
 	bl sav2_x1_query_bit1
 	cmp r0, 0x1
@@ -3562,7 +3562,7 @@ _080862BE:
 	.pool
 _080862F4:
 	bl sub_80EDB44
-	ldr r0, =gUnknown_03005DAC
+	ldr r0, =gFieldCallback
 	ldr r1, =sub_8086204
 	str r1, [r0]
 	ldr r0, =c1_overworld
@@ -3711,8 +3711,8 @@ _08086414:
 	.4byte _0808650E
 _0808644C:
 	bl overworld_bg_setup
-	bl script_env_1_init
-	bl script_env_2_disable
+	bl ScriptContext1_Init
+	bl ScriptContext2_Disable
 	bl MoveSaveBlocks_ResetHeap_
 	bl sub_80867D8
 	b _08086506
@@ -4395,8 +4395,8 @@ sub_8086A68: @ 8086A68
 	thumb_func_start sub_8086A80
 sub_8086A80: @ 8086A80
 	push {lr}
-	ldr r2, =gUnknown_02037350
-	ldr r3, =gUnknown_02037590
+	ldr r2, =gMapObjects
+	ldr r3, =gPlayerAvatar
 	ldrb r1, [r3, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
@@ -5170,7 +5170,7 @@ _080870A2:
 sub_80870B0: @ 80870B0
 	push {r4,lr}
 	adds r4, r0, 0
-	bl script_env_2_is_enabled
+	bl ScriptContext2_IsEnabled
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -5212,7 +5212,7 @@ sub_80870EC: @ 80870EC
 	thumb_func_start sub_80870F8
 sub_80870F8: @ 80870F8
 	push {r4,lr}
-	bl script_env_2_is_enabled
+	bl ScriptContext2_IsEnabled
 	lsls r0, 24
 	lsrs r0, 24
 	movs r4, 0x11
@@ -5237,7 +5237,7 @@ sub_808711C: @ 808711C
 	cmp r0, 0x2
 	bhi _08087134
 	movs r4, 0x1A
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	ldr r0, =sub_80870EC
 	bl c1_link_related_func_set
 _08087134:
@@ -5256,7 +5256,7 @@ sub_8087140: @ 8087140
 	cmp r0, 0x2
 	bhi _08087158
 	movs r4, 0x1A
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	ldr r0, =sub_80870EC
 	bl c1_link_related_func_set
 _08087158:
@@ -5480,7 +5480,7 @@ sub_80872D8: @ 80872D8
 	movs r0, 0x1
 _080872EA:
 	strb r0, [r6, 0x1]
-	ldr r1, =gUnknown_02032308
+	ldr r1, =gLinkPlayerMapObjects
 	lsls r0, r4, 2
 	adds r0, r1
 	ldrb r0, [r0, 0x3]
@@ -5751,7 +5751,7 @@ _0808750A:
 	thumb_func_start sub_8087510
 sub_8087510: @ 8087510
 	push {lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r0}
 	bx r0
 	thumb_func_end sub_8087510
@@ -5762,7 +5762,7 @@ sub_808751C: @ 808751C
 	movs r0, 0x6
 	bl PlaySE
 	bl sub_809FA9C
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r0}
 	bx r0
 	thumb_func_end sub_808751C
@@ -5775,7 +5775,7 @@ sub_8087530: @ 8087530
 	bl PlaySE
 	adds r0, r4, 0
 	bl ScriptContext1_SetupScript
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -5788,7 +5788,7 @@ sub_808754C: @ 808754C
 	bl PlaySE
 	ldr r0, =gUnknown_082774EF
 	bl ScriptContext1_SetupScript
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r0}
 	bx r0
 	.pool
@@ -5802,7 +5802,7 @@ sub_8087568: @ 8087568
 	bl PlaySE
 	adds r0, r4, 0
 	bl ScriptContext1_SetupScript
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -5813,7 +5813,7 @@ sub_8087584: @ 8087584
 	push {lr}
 	ldr r0, =gUnknown_08277509
 	bl ScriptContext1_SetupScript
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r0}
 	bx r0
 	.pool
@@ -5977,7 +5977,7 @@ sub_80876C4: @ 80876C4
 	thumb_func_start strange_npc_table_clear
 strange_npc_table_clear: @ 80876CC
 	push {lr}
-	ldr r0, =gUnknown_02032308
+	ldr r0, =gLinkPlayerMapObjects
 	movs r1, 0
 	movs r2, 0x10
 	bl memset
@@ -6025,12 +6025,12 @@ sub_80876F0: @ 80876F0
 	lsls r6, 24
 	lsrs r6, 24
 	lsls r4, r7, 2
-	ldr r0, =gUnknown_02032308
+	ldr r0, =gLinkPlayerMapObjects
 	adds r4, r0
 	lsls r5, r6, 3
 	adds r5, r6
 	lsls r5, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r5, r0
 	adds r0, r4, 0
 	bl sub_80876C4
@@ -6118,7 +6118,7 @@ sub_80877DC: @ 80877DC
 	lsls r0, 24
 	lsls r1, 24
 	lsrs r2, r1, 24
-	ldr r1, =gUnknown_02032308
+	ldr r1, =gLinkPlayerMapObjects
 	lsrs r0, 22
 	adds r1, r0, r1
 	ldrb r0, [r1]
@@ -6128,7 +6128,7 @@ sub_80877DC: @ 80877DC
 	lsls r1, r0, 3
 	adds r1, r0
 	lsls r1, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r1, r0
 	strb r2, [r1, 0x19]
 _080877FE:
@@ -6142,13 +6142,13 @@ sub_808780C: @ 808780C
 	push {r4,r5,lr}
 	lsls r0, 24
 	lsrs r0, 22
-	ldr r1, =gUnknown_02032308
+	ldr r1, =gLinkPlayerMapObjects
 	adds r5, r0, r1
 	ldrb r1, [r5, 0x2]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	ldrb r0, [r4, 0x4]
 	cmp r0, 0x40
@@ -6176,14 +6176,14 @@ _08087838:
 	thumb_func_start sub_8087858
 sub_8087858: @ 8087858
 	lsls r0, 24
-	ldr r1, =gUnknown_02032308
+	ldr r1, =gLinkPlayerMapObjects
 	lsrs r0, 22
 	adds r0, r1
 	ldrb r1, [r0, 0x2]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	ldrb r0, [r0, 0x4]
 	bx lr
@@ -6193,14 +6193,14 @@ sub_8087858: @ 8087858
 	thumb_func_start sub_8087878
 sub_8087878: @ 8087878
 	lsls r0, 24
-	ldr r3, =gUnknown_02032308
+	ldr r3, =gLinkPlayerMapObjects
 	lsrs r0, 22
 	adds r0, r3
 	ldrb r3, [r0, 0x2]
 	lsls r0, r3, 3
 	adds r0, r3
 	lsls r0, 2
-	ldr r3, =gUnknown_02037350
+	ldr r3, =gMapObjects
 	adds r0, r3
 	ldrh r3, [r0, 0x10]
 	strh r3, [r1]
@@ -6213,14 +6213,14 @@ sub_8087878: @ 8087878
 	thumb_func_start sub_80878A0
 sub_80878A0: @ 80878A0
 	lsls r0, 24
-	ldr r1, =gUnknown_02032308
+	ldr r1, =gLinkPlayerMapObjects
 	lsrs r0, 22
 	adds r0, r1
 	ldrb r1, [r0, 0x2]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	ldrb r0, [r0, 0x19]
 	bx lr
@@ -6230,14 +6230,14 @@ sub_80878A0: @ 80878A0
 	thumb_func_start sub_80878C0
 sub_80878C0: @ 80878C0
 	lsls r0, 24
-	ldr r1, =gUnknown_02032308
+	ldr r1, =gLinkPlayerMapObjects
 	lsrs r0, 22
 	adds r0, r1
 	ldrb r1, [r0, 0x2]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	ldrb r0, [r0, 0xB]
 	lsls r0, 28
@@ -6249,14 +6249,14 @@ sub_80878C0: @ 80878C0
 	thumb_func_start sub_80878E4
 sub_80878E4: @ 80878E4
 	lsls r0, 24
-	ldr r1, =gUnknown_02032308
+	ldr r1, =gLinkPlayerMapObjects
 	lsrs r0, 22
 	adds r0, r1
 	ldrb r1, [r0, 0x2]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	adds r0, 0x21
 	movs r1, 0
@@ -6271,7 +6271,7 @@ sub_80878E4: @ 80878E4
 sub_808790C: @ 808790C
 	push {r4-r6,lr}
 	movs r2, 0
-	ldr r5, =gUnknown_02032308
+	ldr r5, =gLinkPlayerMapObjects
 	lsls r0, 16
 	asrs r4, r0, 16
 	lsls r1, 16
@@ -6292,7 +6292,7 @@ _0808792E:
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r1, r0, r1
 	movs r6, 0x10
 	ldrsh r0, [r1, r6]
@@ -6326,13 +6326,13 @@ sub_808796C: @ 808796C
 	lsrs r3, r1, 24
 	adds r2, r3, 0
 	lsrs r0, 22
-	ldr r1, =gUnknown_02032308
+	ldr r1, =gLinkPlayerMapObjects
 	adds r5, r0, r1
 	ldrb r1, [r5, 0x2]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r6, r0, r1
 	ldrb r0, [r5]
 	cmp r0, 0
@@ -6584,7 +6584,7 @@ npc_080587EC: @ 8087B40
 	mov r12, r2
 	lsls r3, 16
 	movs r4, 0
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	mov r9, r0
 	lsrs r2, r3, 16
 	mov r10, r2
@@ -6654,13 +6654,13 @@ sub_8087BCC: @ 8087BCC
 	lsls r1, 24
 	lsrs r3, r1, 24
 	lsls r2, r5, 2
-	ldr r0, =gUnknown_02032308
+	ldr r0, =gLinkPlayerMapObjects
 	adds r2, r0
 	ldrb r1, [r2, 0x2]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	ldrb r0, [r2]
 	cmp r0, 0
@@ -6742,13 +6742,13 @@ sub_8087C8C: @ 8087C8C
 	movs r0, 0x2E
 	ldrsh r4, [r5, r0]
 	lsls r4, 2
-	ldr r0, =gUnknown_02032308
+	ldr r0, =gLinkPlayerMapObjects
 	adds r4, r0
 	ldrb r1, [r4, 0x2]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r6, r0, r1
 	ldrh r0, [r6, 0xC]
 	strh r0, [r5, 0x20]

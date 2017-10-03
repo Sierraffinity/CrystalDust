@@ -12,6 +12,8 @@
 #define VAR_0x4008                 0x4008
 #define VAR_0x4009                 0x4009
 #define VAR_0x400A                 0x400A
+#define VAR_0x4010                 0x4010
+#define VAR_0x4011                 0x4011
 #define VAR_0x401F                 0x401F
 #define VAR_RECYCLE_GOODS          0x4020
 #define VAR_REPEL_STEP_COUNT       0x4021
@@ -28,6 +30,7 @@
 #define VAR_DAYS                   0x4040
 
 #define VAR_DEPT_STORE_FLOOR       0x4043
+#define VAR_STORAGE_UNKNOWN        0x4036
 #define VAR_POKELOT_PRIZE          0x4045
 #define VAR_NATIONAL_DEX           0x4046
 #define VAR_SEEDOT_SIZE_RECORD  0x4047

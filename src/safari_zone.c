@@ -18,7 +18,7 @@ struct PokeblockFeeder
 #define NUM_POKEBLOCK_FEEDERS 10
 
 extern u8 gBattleOutcome;
-extern void* gUnknown_03005DAC;
+extern void* gFieldCallback;
 
 extern u8 gUnknown_082A4B8A[];
 extern u8 gUnknown_082A4B6F[];
@@ -34,7 +34,7 @@ extern void c2_exit_to_overworld_2_switch(void);
 extern void c2_exit_to_overworld_1_continue_scripts_restart_music(void);
 extern void c2_load_new_map(void);
 extern void sub_80AF6F0(void);
-extern void script_env_2_set_ctx_paused(void);
+extern void ScriptContext1_Stop(void);
 extern void warp_in(void);
 extern void GetXYCoordsOneStepInFrontOfPlayer(s16* x, s16* y);
 extern void PlayerGetDestCoords(s16* x, s16* y);
@@ -118,13 +118,13 @@ void sub_80FC190(void)
     {
         ScriptContext2_RunNewScript(gUnknown_082A4B4C);
         warp_in();
-        gUnknown_03005DAC = sub_80AF6F0;
+        gFieldCallback = sub_80AF6F0;
         SetMainCallback2(c2_load_new_map);
     }
     else if (gBattleOutcome == BATTLE_CAUGHT)
     {
         ScriptContext1_SetupScript(gUnknown_082A4B9B);
-        script_env_2_set_ctx_paused();
+        ScriptContext1_Stop();
         SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
     }
 }

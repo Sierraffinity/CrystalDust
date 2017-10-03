@@ -383,7 +383,7 @@ sub_813010C: @ 813010C
 	adds r0, r4, 0
 	adds r1, r5, 0
 	bl sub_818E868
-	ldr r1, =gUnknown_085E8D5E
+	ldr r1, =gText_Space
 	adds r0, r4, 0
 	bl StringAppend
 	ldr r1, =gUnknown_085B07D4
@@ -581,7 +581,7 @@ sub_81302E8: @ 81302E8
 	lsls r0, r5, 3
 	ldr r1, =gMonFrontPicTable
 	adds r0, r1
-	ldr r4, =gUnknown_020244D4
+	ldr r4, =gBattleSpritesGfx
 	ldr r1, [r4]
 	ldr r1, [r1, 0x8]
 	ldr r2, [r6]
@@ -600,7 +600,7 @@ _08130348:
 	lsls r0, r5, 3
 	ldr r1, =gMonBackPicTable
 	adds r0, r1
-	ldr r4, =gUnknown_020244D4
+	ldr r4, =gBattleSpritesGfx
 	ldr r1, [r4]
 	ldr r1, [r1, 0x4]
 	ldr r2, [r6]

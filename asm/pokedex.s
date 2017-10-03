@@ -2450,7 +2450,7 @@ _080BC976:
 	strh r0, [r1]
 	ldrh r0, [r5, 0x4]
 	movs r1, 0
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	mov r3, r8
 	ldr r2, [r3]
 	adds r2, r4
@@ -2465,7 +2465,7 @@ _080BC976:
 	strb r0, [r2, 0x2]
 	ldrh r0, [r5, 0x4]
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	mov r1, r8
 	ldr r3, [r1]
 	adds r3, r4
@@ -2520,7 +2520,7 @@ _080BCA1A:
 	strh r0, [r6, 0x4]
 	ldrh r0, [r6, 0x4]
 	movs r1, 0
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	adds r7, r4, 0
 	cmp r0, 0
@@ -2541,7 +2541,7 @@ _080BCA36:
 	strh r0, [r1]
 	ldrh r0, [r6, 0x4]
 	movs r1, 0
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	mov r1, r8
 	ldr r2, [r1]
 	adds r2, r4
@@ -2558,7 +2558,7 @@ _080BCA36:
 	strb r0, [r2, 0x2]
 	ldrh r0, [r6, 0x4]
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	mov r2, r8
 	ldr r3, [r2]
 	adds r3, r4
@@ -2625,7 +2625,7 @@ _080BCADA:
 	bhi _080BCB58
 	ldrh r0, [r5, 0x4]
 	movs r1, 0
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080BCB58
@@ -2646,7 +2646,7 @@ _080BCADA:
 	strb r0, [r2, 0x2]
 	ldrh r0, [r5, 0x4]
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	mov r1, r8
 	ldr r3, [r1]
 	adds r1, r3, r6
@@ -2701,7 +2701,7 @@ _080BCB82:
 	bhi _080BCBE2
 	ldrh r0, [r5, 0x4]
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080BCBE2
@@ -2768,7 +2768,7 @@ _080BCC16:
 	bhi _080BCC7E
 	ldrh r0, [r5, 0x4]
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080BCC7E
@@ -2833,7 +2833,7 @@ _080BCCAA:
 	bhi _080BCD0A
 	ldrh r0, [r5, 0x4]
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080BCD0A
@@ -2900,7 +2900,7 @@ _080BCD3E:
 	bhi _080BCDA6
 	ldrh r0, [r5, 0x4]
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080BCDA6
@@ -7310,7 +7310,7 @@ _080BF38C:
 	b _080BF582
 	.pool
 _080BF3A0:
-	ldr r0, =gUnknown_085E871B
+	ldr r0, =gText_CryOf
 	movs r1, 0x52
 	movs r2, 0x21
 	bl sub_80BE8DC
@@ -7893,7 +7893,7 @@ _080BF910:
 	b _080BFB4E
 	.pool
 _080BF93C:
-	ldr r1, =gUnknown_085E8723
+	ldr r1, =gText_SizeComparedTo
 	add r0, sp, 0x4
 	bl StringCopy
 	ldr r0, =gSaveBlock2Ptr
@@ -8429,8 +8429,8 @@ _080BFDB4:
 	.pool
 	thumb_func_end sub_80BFD7C
 
-	thumb_func_start sub_80BFDF4
-sub_80BFDF4: @ 80BFDF4
+	thumb_func_start CreateDexDisplayMonDataTask
+CreateDexDisplayMonDataTask: @ 80BFDF4
 	push {r4-r6,lr}
 	adds r4, r0, 0
 	adds r5, r1, 0
@@ -8460,7 +8460,7 @@ sub_80BFDF4: @ 80BFDF4
 	pop {r1}
 	bx r1
 	.pool
-	thumb_func_end sub_80BFDF4
+	thumb_func_end CreateDexDisplayMonDataTask
 
 	thumb_func_start sub_80BFE38
 sub_80BFE38: @ 80BFE38
@@ -8891,7 +8891,7 @@ sub_80C020C: @ 80C020C
 	adds r7, r2, 0
 	cmp r3, 0
 	beq _080C0234
-	ldr r4, =gUnknown_085E8735
+	ldr r4, =gText_PokedexRegistration
 	movs r0, 0x1
 	adds r1, r4, 0
 	movs r2, 0xF0
@@ -8916,7 +8916,7 @@ _080C024C:
 	adds r5, r6, 0
 	lsls r4, r6, 16
 _080C0250:
-	ldr r1, =gUnknown_085E8D4F
+	ldr r1, =gText_UnkCtrlF908Clear01
 	mov r0, sp
 	bl StringCopy
 	adds r1, r5, 0
@@ -8955,16 +8955,16 @@ _080C028E:
 	b _080C02AE
 	.pool
 _080C02AC:
-	ldr r0, =gUnknown_085E86B8
+	ldr r0, =gText_5MarksPokemon
 _080C02AE:
 	movs r1, 0x64
 	movs r2, 0x29
 	bl sub_80BE8DC
-	ldr r0, =gUnknown_085E8755
+	ldr r0, =gText_HTHeight
 	movs r1, 0x60
 	movs r2, 0x39
 	bl sub_80BE8DC
-	ldr r0, =gUnknown_085E8758
+	ldr r0, =gText_WTWeight
 	movs r1, 0x60
 	movs r2, 0x49
 	bl sub_80BE8DC
@@ -8984,11 +8984,11 @@ _080C02AE:
 	b _080C0310
 	.pool
 _080C02FC:
-	ldr r0, =gUnknown_085E86C6
+	ldr r0, =gText_UnkHeight
 	movs r1, 0x81
 	movs r2, 0x39
 	bl sub_80BE8DC
-	ldr r0, =gUnknown_085E86D0
+	ldr r0, =gText_UnkWeight
 	movs r1, 0x81
 	movs r2, 0x49
 	bl sub_80BE8DC
@@ -9408,9 +9408,9 @@ _080C065C:
 	.pool
 	thumb_func_end GetPokedexHeightWeight
 
-	thumb_func_start pokedex_flag_operation
-@ u8 pokedex_flag_operation(u16 nationalPokedexNum, u8 op)
-pokedex_flag_operation: @ 80C0664
+	thumb_func_start GetSetPokedexFlag
+@ u8 GetSetPokedexFlag(u16 nationalPokedexNum, u8 op)
+GetSetPokedexFlag: @ 80C0664
 	push {r4-r7,lr}
 	lsls r0, 16
 	lsls r1, 24
@@ -9595,7 +9595,7 @@ _080C07E8:
 	pop {r1}
 	bx r1
 	.pool
-	thumb_func_end pokedex_flag_operation
+	thumb_func_end GetSetPokedexFlag
 
 	thumb_func_start pokedex_count
 pokedex_count: @ 80C07F4
@@ -9625,7 +9625,7 @@ _080C081A:
 	lsrs r0, 16
 	movs r1, 0x1
 _080C0822:
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080C0832
@@ -9675,7 +9675,7 @@ _080C086C:
 	lsrs r0, 16
 	movs r1, 0x1
 _080C087C:
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080C088C
@@ -9719,7 +9719,7 @@ _080C08BC:
 	lsrs r0, 16
 	movs r1, 0x1
 _080C08C4:
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080C08D4
@@ -9750,7 +9750,7 @@ _080C08E8:
 	lsls r0, 16
 	lsrs r0, 16
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	bne _080C0908
@@ -9777,7 +9777,7 @@ _080C091C:
 	lsrs r4, r0, 16
 	adds r0, r4, 0
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	bne _080C0934
@@ -9804,7 +9804,7 @@ _080C0948:
 	lsrs r4, r0, 16
 	adds r0, r4, 0
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080C0996
@@ -9818,7 +9818,7 @@ _080C0964:
 	lsrs r4, r0, 16
 	adds r0, r4, 0
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _080C0996
@@ -9833,7 +9833,7 @@ _080C0982:
 	lsrs r4, r0, 16
 	adds r0, r4, 0
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	bne _080C09A0
@@ -11626,7 +11626,7 @@ _080C17E8:
 	b _080C1994
 	.pool
 _080C183C:
-	ldr r0, =gUnknown_085E875B
+	ldr r0, =gText_SearchingPleaseWait
 	bl sub_80C2618
 	ldr r0, =sub_80C19A4
 	str r0, [r6]
@@ -11880,7 +11880,7 @@ sub_80C1A4C: @ 80C1A4C
 	beq _080C1A84
 	movs r0, 0x1F
 	bl PlaySE
-	ldr r0, =gUnknown_085E8773
+	ldr r0, =gText_SearchCompleted
 	bl sub_80C2618
 	b _080C1A90
 	.pool
@@ -13334,7 +13334,7 @@ sub_80C2638: @ 80C2638
 sub_80C2650: @ 80C2650
 	push {lr}
 	adds r2, r0, 0
-	ldr r0, =gUnknown_085E8B3A
+	ldr r0, =gText_SelectorArrow
 	lsls r2, 4
 	adds r2, 0x9
 	movs r1, 0x90

@@ -1945,7 +1945,7 @@ sub_80B69DC: @ 80B69DC
 	push {lr}
 	ldr r0, =c2_exit_to_overworld_2_switch
 	bl SetMainCallback2
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =mapldr_080842E8
 	str r0, [r1]
 	pop {r0}
@@ -1960,9 +1960,9 @@ mapldr_080842E8: @ 80B69FC
 	ldr r0, =task00_8084310
 	movs r1, 0
 	bl CreateTask
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
 	pop {r0}
@@ -1989,7 +1989,7 @@ task00_8084310: @ 80B6A24
 	cmp r0, 0
 	beq _080B6A8A
 	bl brm_get_pokemon_selection
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	lsls r0, 24
 	lsrs r0, 24
 	str r0, [r1]
@@ -2012,7 +2012,7 @@ _080B6A64:
 	bl warp_in
 	ldr r0, =c2_load_new_map
 	bl SetMainCallback2
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =mapldr_08084390
 	str r0, [r1]
 	adds r0, r5, 0
@@ -2032,8 +2032,8 @@ mapldr_08084390: @ 80B6AA4
 	ldr r0, =c3_080843F8
 	movs r1, 0
 	bl CreateTask
-	ldr r4, =gUnknown_02037350
-	ldr r3, =gUnknown_02037590
+	ldr r4, =gMapObjects
+	ldr r3, =gPlayerAvatar
 	ldrb r1, [r3, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
@@ -2056,9 +2056,9 @@ mapldr_08084390: @ 80B6AA4
 	movs r1, 0x3
 	bl FieldObjectTurn
 _080B6AE6:
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
 	pop {r4}
@@ -2099,7 +2099,7 @@ _080B6B3E:
 	lsls r0, 24
 	cmp r0, 0
 	bne _080B6B58
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	bl sub_809757C
 	adds r0, r5, 0
 	bl DestroyTask
@@ -2115,12 +2115,12 @@ sub_80B6B68: @ 80B6B68
 	push {lr}
 	bl sub_8085784
 	bl pal_fill_for_maplights
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
 	ldr r0, =sub_80B6B94
 	movs r1, 0
 	bl CreateTask
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
 	pop {r0}
@@ -2163,12 +2163,12 @@ sub_80B6BCC: @ 80B6BCC
 	mov r5, r8
 	push {r5,r6}
 	mov r9, r0
-	ldr r6, =gUnknown_02037590
+	ldr r6, =gPlayerAvatar
 	ldrb r0, [r6, 0x5]
 	lsls r5, r0, 3
 	adds r5, r0
 	lsls r5, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	mov r8, r0
 	add r5, r8
 	ldrb r0, [r6, 0x4]
@@ -2256,7 +2256,7 @@ _080B6C88:
 sub_80B6C90: @ 80B6C90
 	push {r4-r6,lr}
 	adds r5, r0, 0
-	ldr r6, =gUnknown_02037590
+	ldr r6, =gPlayerAvatar
 	ldrb r0, [r6, 0x4]
 	lsls r2, r0, 4
 	adds r2, r0
@@ -2282,7 +2282,7 @@ sub_80B6C90: @ 80B6C90
 	movs r0, 0x1
 	strh r0, [r5, 0xA]
 	strh r1, [r5, 0xC]
-	ldr r2, =gUnknown_02037350
+	ldr r2, =gMapObjects
 	ldrb r0, [r6, 0x5]
 	lsls r1, r0, 3
 	adds r1, r0
@@ -2309,12 +2309,12 @@ sub_80B6C90: @ 80B6C90
 sub_80B6D04: @ 80B6D04
 	push {r4-r6,lr}
 	adds r4, r0, 0
-	ldr r2, =gUnknown_02037590
+	ldr r2, =gPlayerAvatar
 	ldrb r1, [r2, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r6, r0, r1
 	ldrb r1, [r2, 0x4]
 	lsls r0, r1, 4
@@ -2454,10 +2454,10 @@ _080B6E0E:
 	thumb_func_start sub_80B6E18
 sub_80B6E18: @ 80B6E18
 	push {lr}
-	ldr r1, =gUnknown_02037590
+	ldr r1, =gPlayerAvatar
 	movs r0, 0
 	strb r0, [r1, 0x6]
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	bl CameraObjectReset1
 	bl sub_809757C
 	bl InstallCameraPanAheadCallback
@@ -2551,12 +2551,12 @@ sub_80B6EC0: @ 80B6EC0
 sub_80B6EE0: @ 80B6EE0
 	push {r4,r5,lr}
 	adds r5, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	adds r0, r4, 0
 	bl FieldObjectIsSpecialAnimOrDirectionSequenceAnimActive
@@ -2664,7 +2664,7 @@ sub_80B6FA8: @ 80B6FA8
 sub_80B6FB8: @ 80B6FB8
 	push {r4,r5,lr}
 	adds r5, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x4]
 	lsls r4, r0, 4
 	adds r4, r0
@@ -2702,7 +2702,7 @@ _080B6FF6:
 sub_80B7004: @ 80B7004
 	push {r4,r5,lr}
 	adds r5, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x4]
 	lsls r4, r0, 4
 	adds r4, r0
@@ -2761,7 +2761,7 @@ sub_80B7060: @ 80B7060
 	bne _080B709C
 	bl sub_80E1570
 	bl warp_in
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80B70B4
 	str r0, [r1]
 	ldr r0, =c2_load_new_map
@@ -2782,11 +2782,11 @@ sub_80B70B4: @ 80B70B4
 	push {lr}
 	bl sub_8085784
 	bl pal_fill_for_maplights
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r0, =sub_80B70DC
 	movs r1, 0
 	bl CreateTask
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
 	pop {r0}
@@ -2828,12 +2828,12 @@ sub_80B7114: @ 80B7114
 	sub sp, 0x4
 	adds r5, r0, 0
 	bl CameraObjectReset2
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x5]
 	lsls r4, r0, 3
 	adds r4, r0
 	lsls r4, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r4, r0
 	movs r0, 0x4
 	bl GetFaceDirectionAnimId
@@ -2883,7 +2883,7 @@ _080B717E:
 sub_80B7190: @ 80B7190
 	push {r4,r5,lr}
 	adds r5, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x4]
 	lsls r4, r0, 4
 	adds r4, r0
@@ -2914,7 +2914,7 @@ sub_80B7190: @ 80B7190
 sub_80B71D0: @ 80B71D0
 	push {r4,r5,lr}
 	adds r4, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x4]
 	lsls r0, r1, 4
 	adds r0, r1
@@ -2962,7 +2962,7 @@ _080B721E:
 sub_80B7230: @ 80B7230
 	push {r4,r5,lr}
 	adds r5, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x4]
 	lsls r4, r0, 4
 	adds r4, r0
@@ -2993,7 +2993,7 @@ sub_80B7230: @ 80B7230
 sub_80B7270: @ 80B7270
 	push {r4,r5,lr}
 	adds r4, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x4]
 	lsls r0, r1, 4
 	adds r0, r1
@@ -3063,12 +3063,12 @@ _080B72EE:
 	thumb_func_start sub_80B72F4
 sub_80B72F4: @ 80B72F4
 	push {r4,lr}
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	adds r0, r4, 0
 	bl FieldObjectClearAnimIfSpecialAnimFinished
@@ -3076,7 +3076,7 @@ sub_80B72F4: @ 80B72F4
 	cmp r0, 0
 	beq _080B7338
 	bl CameraObjectReset1
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	movs r0, 0x4
 	bl GetGoSpeed0AnimId
 	adds r1, r0, 0
@@ -3111,7 +3111,7 @@ oei_waterfall: @ 80B734C
 	adds r1, r0
 	lsls r1, 3
 	adds r1, r2
-	ldr r2, =gUnknown_02038C08
+	ldr r2, =gFieldEffectSpawnParams
 	ldr r2, [r2]
 	strh r2, [r1, 0xA]
 	bl _call_via_r4
@@ -3138,12 +3138,12 @@ _080B7396:
 	ldrsh r2, [r4, r0]
 	lsls r2, 2
 	adds r2, r5
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x5]
 	lsls r1, r0, 3
 	adds r1, r0
 	lsls r1, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r1, r0
 	ldr r2, [r2]
 	adds r0, r4, 0
@@ -3161,8 +3161,8 @@ _080B7396:
 sub_80B73D0: @ 80B73D0
 	push {r4,lr}
 	adds r4, r0, 0
-	bl script_env_2_enable
-	ldr r1, =gUnknown_02037590
+	bl ScriptContext2_Enable
+	ldr r1, =gPlayerAvatar
 	movs r0, 0x1
 	strb r0, [r1, 0x6]
 	ldrh r0, [r4, 0x8]
@@ -3180,7 +3180,7 @@ waterfall_1_do_anim_probably: @ 80B73F0
 	push {r4,r5,lr}
 	adds r4, r0, 0
 	adds r5, r1, 0
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	adds r0, r5, 0
 	bl FieldObjectIsSpecialAnimOrDirectionSequenceAnimActive
 	lsls r0, 24
@@ -3188,7 +3188,7 @@ waterfall_1_do_anim_probably: @ 80B73F0
 	bne _080B7420
 	adds r0, r5, 0
 	bl FieldObjectClearAnimIfSpecialAnimFinished
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	movs r2, 0xA
 	ldrsh r0, [r4, r2]
 	str r0, [r1]
@@ -3267,8 +3267,8 @@ _080B748E:
 	lsrs r4, r0, 24
 	cmp r4, 0
 	bne _080B74C4
-	bl script_env_2_disable
-	ldr r0, =gUnknown_02037590
+	bl ScriptContext2_Disable
+	ldr r0, =gPlayerAvatar
 	strb r4, [r0, 0x6]
 	ldr r0, =sub_80B7384
 	bl FindTaskIdByFunc
@@ -3304,7 +3304,7 @@ sub_80B74D0: @ 80B74D0
 	adds r1, r0
 	lsls r1, 3
 	adds r1, r2
-	ldr r3, =gUnknown_02038C08
+	ldr r3, =gFieldEffectSpawnParams
 	ldr r2, [r3]
 	strh r2, [r1, 0x26]
 	ldr r2, [r3, 0x4]
@@ -3347,7 +3347,7 @@ _080B751E:
 
 	thumb_func_start dive_1_lock
 dive_1_lock: @ 80B7544
-	ldr r2, =gUnknown_02037590
+	ldr r2, =gPlayerAvatar
 	movs r1, 0x1
 	strb r1, [r2, 0x6]
 	ldrh r1, [r0, 0x8]
@@ -3362,8 +3362,8 @@ dive_1_lock: @ 80B7544
 dive_2_unknown: @ 80B7558
 	push {r4,lr}
 	adds r4, r0, 0
-	bl script_env_2_enable
-	ldr r1, =gUnknown_02038C08
+	bl ScriptContext2_Enable
+	ldr r1, =gFieldEffectSpawnParams
 	movs r2, 0x26
 	ldrsh r0, [r4, r2]
 	str r0, [r1]
@@ -3392,8 +3392,8 @@ dive_3_unknown: @ 80B7580
 	lsls r0, 24
 	cmp r0, 0
 	bne _080B75C4
-	ldr r2, =gUnknown_02037350
-	ldr r0, =gUnknown_02037590
+	ldr r2, =gMapObjects
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
@@ -3437,7 +3437,7 @@ sub_80B75F0: @ 80B75F0
 	lsrs r0, 24
 	ldr r6, =gUnknown_0855C438
 	ldr r2, =gTasks
-	ldr r5, =gUnknown_02037590
+	ldr r5, =gPlayerAvatar
 	lsls r1, r0, 2
 	adds r1, r0
 	lsls r1, 3
@@ -3451,7 +3451,7 @@ _080B7604:
 	lsls r1, r0, 3
 	adds r1, r0
 	lsls r1, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r1, r0
 	ldrb r0, [r5, 0x4]
 	lsls r2, r0, 4
@@ -3480,7 +3480,7 @@ sub_80B764C: @ 80B764C
 	bl CameraObjectReset2
 	movs r0, 0
 	bl SetCameraPanningCallback
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	movs r2, 0x1
 	strb r2, [r0, 0x6]
 	ldrb r0, [r5, 0x3]
@@ -3536,7 +3536,7 @@ sub_80B76B8: @ 80B76B8
 	strh r0, [r2, 0x26]
 	movs r0, 0x1
 	strh r0, [r4, 0xE]
-	ldr r3, =gUnknown_02038C08
+	ldr r3, =gFieldEffectSpawnParams
 	movs r5, 0x10
 	ldrsh r0, [r1, r5]
 	str r0, [r3]
@@ -3727,7 +3727,7 @@ sub_80B7814: @ 80B7814
 	cmp r0, 0x1
 	bne _080B784C
 	bl warp_in
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =mapldr_080851BC
 	str r0, [r1]
 	ldr r0, =c2_load_new_map
@@ -3749,8 +3749,8 @@ mapldr_080851BC: @ 80B7868
 	push {lr}
 	bl sub_8085784
 	bl pal_fill_for_maplights
-	bl script_env_2_enable
-	ldr r0, =gUnknown_03005DAC
+	bl ScriptContext2_Enable
+	ldr r0, =gFieldCallback
 	movs r1, 0
 	str r1, [r0]
 	ldr r0, =sub_80B7890
@@ -3767,7 +3767,7 @@ sub_80B7890: @ 80B7890
 	lsrs r0, 24
 	ldr r6, =gUnknown_0855C450
 	ldr r2, =gTasks
-	ldr r5, =gUnknown_02037590
+	ldr r5, =gPlayerAvatar
 	lsls r1, r0, 2
 	adds r1, r0
 	lsls r1, 3
@@ -3781,7 +3781,7 @@ _080B78A4:
 	lsls r1, r0, 3
 	adds r1, r0
 	lsls r1, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r1, r0
 	ldrb r0, [r5, 0x4]
 	lsls r2, r0, 4
@@ -3808,7 +3808,7 @@ sub_80B78EC: @ 80B78EC
 	adds r4, r1, 0
 	bl CameraObjectReset2
 	bl player_bitmagic
-	ldr r1, =gUnknown_02037590
+	ldr r1, =gPlayerAvatar
 	movs r0, 0x1
 	strb r0, [r1, 0x6]
 	ldrb r0, [r4, 0x1]
@@ -3835,7 +3835,7 @@ sub_80B791C: @ 80B791C
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B795C
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	movs r2, 0x10
 	ldrsh r0, [r5, r2]
 	str r0, [r1]
@@ -3915,10 +3915,10 @@ sub_80B79BC: @ 80B79BC
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B79E6
-	ldr r1, =gUnknown_02037590
+	ldr r1, =gPlayerAvatar
 	movs r0, 0
 	strb r0, [r1, 0x6]
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	bl sub_809757C
 	ldr r0, =sub_80B7890
 	bl FindTaskIdByFunc
@@ -3935,7 +3935,7 @@ _080B79E6:
 	thumb_func_start sub_80B79F4
 sub_80B79F4: @ 80B79F4
 	push {r4,lr}
-	ldr r4, =gUnknown_02038C08
+	ldr r4, =gFieldEffectSpawnParams
 	adds r1, r4, 0x4
 	adds r0, r4, 0
 	movs r2, 0x8
@@ -4016,7 +4016,7 @@ sub_80B7A8C: @ 80B7A8C
 	lsrs r0, 24
 	ldr r6, =gUnknown_0855C460
 	ldr r2, =gTasks
-	ldr r5, =gUnknown_02037590
+	ldr r5, =gPlayerAvatar
 	lsls r1, r0, 2
 	adds r1, r0
 	lsls r1, 3
@@ -4030,7 +4030,7 @@ _080B7AA0:
 	lsls r1, r0, 3
 	adds r1, r0
 	lsls r1, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r1, r0
 	ldrb r0, [r5, 0x4]
 	lsls r2, r0, 4
@@ -4057,7 +4057,7 @@ sub_80B7AE8: @ 80B7AE8
 	adds r4, r1, 0
 	bl player_bitmagic
 	bl CameraObjectReset2
-	ldr r1, =gUnknown_02037590
+	ldr r1, =gPlayerAvatar
 	movs r0, 0x1
 	strb r0, [r1, 0x6]
 	ldrb r0, [r4, 0x3]
@@ -4090,7 +4090,7 @@ sub_80B7B18: @ 80B7B18
 	ldrsh r0, [r5, r2]
 	cmp r0, 0x3
 	ble _080B7B6C
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	movs r2, 0x10
 	ldrsh r0, [r4, r2]
 	str r0, [r1]
@@ -4202,7 +4202,7 @@ sub_80B7BF4: @ 80B7BF4
 	cmp r0, 0x1
 	bne _080B7C2C
 	bl warp_in
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80B6B68
 	str r0, [r1]
 	ldr r0, =c2_load_new_map
@@ -4222,7 +4222,7 @@ _080B7C2C:
 	thumb_func_start sub_80B7C48
 sub_80B7C48: @ 80B7C48
 	push {r4,lr}
-	ldr r4, =gUnknown_02038C08
+	ldr r4, =gFieldEffectSpawnParams
 	adds r1, r4, 0x4
 	adds r0, r4, 0
 	movs r2, 0x8
@@ -4286,7 +4286,7 @@ _080B7CC4:
 	thumb_func_start sub_80B7CC8
 sub_80B7CC8: @ 80B7CC8
 	push {lr}
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
 	ldr r0, =sub_80B7CE4
 	movs r1, 0x50
@@ -4359,12 +4359,12 @@ sub_80B7D34: @ 80B7D34
 	bl music_something
 	bl sub_80AF0B4
 _080B7D60:
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r5, r0, r1
 	adds r0, r5, 0
 	bl FieldObjectIsSpecialAnimOrDirectionSequenceAnimActive
@@ -4399,7 +4399,7 @@ _080B7D86:
 	bl FieldObjectSetDirection
 	bl sub_8084E14
 	bl warp_in
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =mapldr_080859D4
 	str r0, [r1]
 	ldr r0, =c2_load_new_map
@@ -4460,13 +4460,13 @@ mapldr_080859D4: @ 80B7E48
 	push {lr}
 	bl sub_8085784
 	bl pal_fill_for_maplights
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
-	ldr r2, =gUnknown_02037350
-	ldr r0, =gUnknown_02037590
+	ldr r2, =gMapObjects
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
@@ -4537,12 +4537,12 @@ sub_80B7EE8: @ 80B7EE8
 	mov r0, sp
 	movs r2, 0x5
 	bl memcpy
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r6, r0, r1
 	ldrh r1, [r5, 0xA]
 	movs r2, 0xA
@@ -4582,7 +4582,7 @@ _080B7F32:
 	negs r0, r0
 	ands r0, r1
 	strb r0, [r6, 0x1]
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	bl sub_809757C
 	ldr r0, =sub_80B7E94
 	bl FindTaskIdByFunc
@@ -4671,7 +4671,7 @@ sub_80B7FDC: @ 80B7FDC
 sub_80B800C: @ 80B800C
 	push {r4,lr}
 	adds r4, r0, 0
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
 	bl CameraObjectReset2
 	bl player_get_direction_lower_nybble
@@ -4695,12 +4695,12 @@ sub_80B8034: @ 80B8034
 	mov r0, sp
 	movs r2, 0x5
 	bl memcpy
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r5, r0, r1
 	ldrh r1, [r4, 0xA]
 	movs r2, 0xA
@@ -4765,12 +4765,12 @@ sub_80B80C4: @ 80B80C4
 	mov r0, sp
 	movs r2, 0x5
 	bl memcpy
-	ldr r2, =gUnknown_02037590
+	ldr r2, =gPlayerAvatar
 	ldrb r1, [r2, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r3, r0, r1
 	ldrb r1, [r2, 0x4]
 	lsls r0, r1, 4
@@ -4885,7 +4885,7 @@ _080B81B8:
 	bl warp_in
 	ldr r0, =c2_load_new_map
 	bl SetMainCallback2
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =mapldr_08085D88
 	str r0, [r1]
 	ldr r0, =sub_80B7FDC
@@ -4905,13 +4905,13 @@ mapldr_08085D88: @ 80B8200
 	push {lr}
 	bl sub_8085784
 	bl pal_fill_for_maplights
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
-	ldr r2, =gUnknown_02037350
-	ldr r0, =gUnknown_02037590
+	ldr r2, =gMapObjects
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
@@ -4961,7 +4961,7 @@ sub_80B8280: @ 80B8280
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B82F6
-	ldr r5, =gUnknown_02037590
+	ldr r5, =gPlayerAvatar
 	ldrb r0, [r5, 0x4]
 	lsls r2, r0, 4
 	adds r2, r0
@@ -4983,7 +4983,7 @@ sub_80B8280: @ 80B8280
 	adds r0, r1
 	negs r0, r0
 	strh r0, [r2, 0x26]
-	ldr r3, =gUnknown_02037350
+	ldr r3, =gMapObjects
 	ldrb r0, [r5, 0x5]
 	lsls r1, r0, 3
 	adds r1, r0
@@ -5027,12 +5027,12 @@ sub_80B830C: @ 80B830C
 	mov r0, sp
 	movs r2, 0x5
 	bl memcpy
-	ldr r2, =gUnknown_02037590
+	ldr r2, =gPlayerAvatar
 	ldrb r1, [r2, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r6, r0, r1
 	ldrb r1, [r2, 0x4]
 	lsls r0, r1, 4
@@ -5156,12 +5156,12 @@ sub_80B8410: @ 80B8410
 	mov r0, sp
 	movs r2, 0x5
 	bl memcpy
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r5, r0, r1
 	ldrh r0, [r4, 0xA]
 	subs r0, 0x1
@@ -5192,7 +5192,7 @@ sub_80B8410: @ 80B8410
 	lsrs r0, 28
 	cmp r1, r0
 	bne _080B8484
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	bl CameraObjectReset1
 	bl sub_809757C
 	ldr r0, =sub_80B8250
@@ -5229,7 +5229,7 @@ _080B84BE:
 	bl CreateTask
 	lsls r0, 24
 	lsrs r4, r0, 24
-	ldr r2, =gUnknown_02038C08
+	ldr r2, =gFieldEffectSpawnParams
 	ldr r0, [r2]
 	ldr r1, [r2, 0x4]
 	ldr r2, [r2, 0x8]
@@ -5252,7 +5252,7 @@ _080B84BE:
 	thumb_func_start sub_80B84F8
 sub_80B84F8: @ 80B84F8
 	push {r4-r6,lr}
-	ldr r5, =gUnknown_02038C08
+	ldr r5, =gFieldEffectSpawnParams
 	ldr r0, [r5]
 	movs r6, 0x80
 	lsls r6, 24
@@ -6292,7 +6292,7 @@ sub_80B8D44: @ 80B8D44
 	adds r1, r0
 	lsls r1, 3
 	adds r1, r2
-	ldr r0, =gUnknown_02038C08
+	ldr r0, =gFieldEffectSpawnParams
 	ldr r0, [r0]
 	strh r0, [r1, 0x26]
 	bl sav1_reset_battle_music_maybe
@@ -6333,9 +6333,9 @@ sub_80B8DB4: @ 80B8DB4
 	mov r6, r8
 	push {r6}
 	adds r4, r0, 0
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl player_bitmagic
-	ldr r5, =gUnknown_02037590
+	ldr r5, =gPlayerAvatar
 	movs r0, 0x1
 	strb r0, [r5, 0x6]
 	movs r0, 0x8
@@ -6348,7 +6348,7 @@ sub_80B8DB4: @ 80B8DB4
 	adds r0, r6, 0
 	mov r1, r8
 	bl PlayerGetDestCoords
-	ldr r2, =gUnknown_02037350
+	ldr r2, =gMapObjects
 	ldrb r1, [r5, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
@@ -6374,12 +6374,12 @@ sub_80B8DB4: @ 80B8DB4
 sub_80B8E14: @ 80B8E14
 	push {r4,r5,lr}
 	adds r5, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	adds r0, r4, 0
 	bl FieldObjectIsSpecialAnimOrDirectionSequenceAnimActive
@@ -6410,18 +6410,18 @@ _080B8E50:
 sub_80B8E60: @ 80B8E60
 	push {r4,lr}
 	adds r4, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	bl FieldObjectCheckIfSpecialAnimFinishedOrInactive
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B8E96
-	ldr r2, =gUnknown_02038C08
+	ldr r2, =gFieldEffectSpawnParams
 	movs r1, 0x26
 	ldrsh r0, [r4, r1]
 	movs r1, 0x80
@@ -6449,12 +6449,12 @@ sub_80B8EA8: @ 80B8EA8
 	lsls r0, 24
 	cmp r0, 0
 	bne _080B8F12
-	ldr r5, =gUnknown_02037590
+	ldr r5, =gPlayerAvatar
 	ldrb r0, [r5, 0x5]
 	lsls r4, r0, 3
 	adds r4, r0
 	lsls r4, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r4, r0
 	movs r0, 0x3
 	bl GetPlayerAvatarGraphicsIdByStateId
@@ -6473,7 +6473,7 @@ sub_80B8EA8: @ 80B8EA8
 	lsrs r1, 24
 	adds r0, r4, 0
 	bl FieldObjectSetSpecialAnim
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	movs r2, 0xA
 	ldrsh r0, [r6, r2]
 	str r0, [r1]
@@ -6498,12 +6498,12 @@ _080B8F12:
 	thumb_func_start sub_80B8F24
 sub_80B8F24: @ 80B8F24
 	push {r4,r5,lr}
-	ldr r5, =gUnknown_02037590
+	ldr r5, =gPlayerAvatar
 	ldrb r1, [r5, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	adds r0, r4, 0
 	bl FieldObjectClearAnimIfSpecialAnimFinished
@@ -6528,7 +6528,7 @@ sub_80B8F24: @ 80B8F24
 	movs r1, 0x1
 	bl sub_81555AC
 	bl sub_809757C
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	movs r0, 0x9
 	bl FieldEffectActiveListRemove
 	ldr r0, =sub_80B8D84
@@ -6704,7 +6704,7 @@ sub_80B90CC: @ 80B90CC
 	strb r0, [r2, 0x5]
 	ldr r0, =sub_80B9128
 	str r0, [r2, 0x1C]
-	ldr r0, =gUnknown_02038C08
+	ldr r0, =gFieldEffectSpawnParams
 	ldr r0, [r0]
 	strh r0, [r2, 0x30]
 	movs r0, 0x9E
@@ -6793,7 +6793,7 @@ sub_80B91A4: @ 80B91A4
 	adds r1, r0
 	lsls r1, 3
 	adds r1, r2
-	ldr r0, =gUnknown_02038C08
+	ldr r0, =gFieldEffectSpawnParams
 	ldr r0, [r0]
 	strh r0, [r1, 0xA]
 	movs r0, 0
@@ -6829,12 +6829,12 @@ sub_80B91D4: @ 80B91D4
 sub_80B9204: @ 80B9204
 	push {r4-r6,lr}
 	adds r5, r0, 0
-	ldr r6, =gUnknown_02037590
+	ldr r6, =gPlayerAvatar
 	ldrb r1, [r6, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	adds r0, r4, 0
 	bl FieldObjectIsSpecialAnimOrDirectionSequenceAnimActive
@@ -6870,12 +6870,12 @@ _080B924C:
 sub_80B925C: @ 80B925C
 	push {r4,lr}
 	adds r4, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	bl FieldObjectClearAnimIfSpecialAnimFinished
 	lsls r0, 24
@@ -6884,7 +6884,7 @@ sub_80B925C: @ 80B925C
 	ldrh r0, [r4, 0x8]
 	adds r0, 0x1
 	strh r0, [r4, 0x8]
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	movs r2, 0xA
 	ldrsh r0, [r4, r2]
 	str r0, [r1]
@@ -6906,12 +6906,12 @@ sub_80B92A0: @ 80B92A0
 	lsls r0, 24
 	cmp r0, 0
 	bne _080B92E8
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r5, r0, r1
 	ldrh r1, [r4, 0x26]
 	movs r0, 0x8
@@ -6955,12 +6955,12 @@ sub_80B92F8: @ 80B92F8
 	strh r0, [r4, 0xC]
 	movs r0, 0x1
 	bl SetPlayerAvatarTransitionFlags
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	movs r1, 0x2
 	bl FieldObjectSetSpecialAnim
@@ -6975,12 +6975,12 @@ _080B932C:
 sub_80B933C: @ 80B933C
 	push {r4,lr}
 	adds r4, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r2, r0, r1
 	ldrh r1, [r4, 0xC]
 	movs r3, 0xC
@@ -7023,12 +7023,12 @@ sub_80B9390: @ 80B9390
 	asrs r0, 16
 	cmp r0, 0x7
 	ble _080B9406
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	movs r0, 0x3
 	bl GetPlayerAvatarGraphicsIdByStateId
@@ -7087,12 +7087,12 @@ sub_80B9418: @ 80B9418
 	asrs r0, 16
 	cmp r0, 0x9
 	ble _080B9464
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x5]
 	lsls r4, r0, 3
 	adds r4, r0
 	lsls r4, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r4, r0
 	adds r0, r4, 0
 	bl FieldObjectClearAnimIfSpecialAnimActive
@@ -7582,12 +7582,12 @@ sub_80B97D4: @ 80B97D4
 sub_80B9804: @ 80B9804
 	push {r4-r6,lr}
 	adds r5, r0, 0
-	ldr r6, =gUnknown_02037590
+	ldr r6, =gPlayerAvatar
 	ldrb r1, [r6, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	adds r0, r4, 0
 	bl FieldObjectIsSpecialAnimOrDirectionSequenceAnimActive
@@ -7673,12 +7673,12 @@ sub_80B98B8: @ 80B98B8
 	cmp r0, 0
 	bne _080B9910
 _080B98D0:
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	ldrb r0, [r0, 0x4]
 	lsls r4, r0, 4
@@ -7720,7 +7720,7 @@ sub_80B9924: @ 80B9924
 	mov r0, sp
 	movs r2, 0x24
 	bl memcpy
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x4]
 	lsls r1, r0, 4
 	adds r1, r0
@@ -7760,12 +7760,12 @@ sub_80B9978: @ 80B9978
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B99DC
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x5]
 	lsls r5, r0, 3
 	adds r5, r0
 	lsls r5, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r5, r0
 	ldrb r0, [r5, 0x4]
 	lsls r4, r0, 4
@@ -7810,12 +7810,12 @@ _080B99DC:
 sub_80B99F0: @ 80B99F0
 	push {r4,lr}
 	adds r4, r0, 0
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	bl FieldObjectClearAnimIfSpecialAnimFinished
 	lsls r0, 24
@@ -7872,12 +7872,12 @@ sub_80B9A60: @ 80B9A60
 	lsls r0, 16
 	cmp r0, 0
 	bne _080B9ACA
-	ldr r6, =gUnknown_02037590
+	ldr r6, =gPlayerAvatar
 	ldrb r1, [r6, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	movs r7, 0
 	ldrh r1, [r5, 0x26]
@@ -7922,7 +7922,7 @@ _080B9ACA:
 sub_80B9ADC: @ 80B9ADC
 	push {r4,lr}
 	sub sp, 0x4
-	ldr r4, =gUnknown_02038C08
+	ldr r4, =gFieldEffectSpawnParams
 	ldrb r0, [r4]
 	ldrb r1, [r4, 0x4]
 	ldrb r2, [r4, 0x8]
@@ -8119,7 +8119,7 @@ sub_80B9C54: @ 80B9C54
 	asrs r0, 16
 	cmp r0, 0x78
 	ble _080B9CC2
-	ldr r2, =gUnknown_02037350
+	ldr r2, =gMapObjects
 	movs r1, 0x4
 	ldrsh r0, [r7, r1]
 	lsls r1, r0, 3
@@ -8343,7 +8343,7 @@ _080B9E24:
 sub_80B9E28: @ 80B9E28
 	push {r4-r7,lr}
 	sub sp, 0x4
-	ldr r7, =gUnknown_02038C08
+	ldr r7, =gFieldEffectSpawnParams
 	ldrb r0, [r7]
 	ldrb r1, [r7, 0x4]
 	ldrb r2, [r7, 0x8]
@@ -8357,7 +8357,7 @@ sub_80B9E28: @ 80B9E28
 	lsls r4, r0, 3
 	adds r4, r0
 	lsls r4, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r4, r0
 	movs r0, 0x10
 	ldrsh r5, [r4, r0]
@@ -8507,7 +8507,7 @@ _080B9F7C:
 	lsls r4, r0, 3
 	adds r4, r0
 	lsls r4, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r4, r0
 	ldrh r0, [r5, 0x4]
 	strh r0, [r6, 0x20]

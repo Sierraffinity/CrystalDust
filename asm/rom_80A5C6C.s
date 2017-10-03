@@ -263,7 +263,7 @@ _080A5E90:
 	cmp r5, r0
 	bne _080A5EB0
 	ldr r0, =gUnknown_08525F8C
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r1, r4, r1
 	ldrb r1, [r1]
 	adds r1, r0
@@ -353,7 +353,7 @@ _080A5F58:
 	cmp r5, r0
 	bne _080A5F7C
 	ldr r0, =gUnknown_08525F78
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r1, r4, r1
 	ldrb r1, [r1]
 	lsls r1, 2
@@ -407,7 +407,7 @@ sub_80A5FA0: @ 80A5FA0
 	cmp r4, r0
 	bne _080A5FE8
 	ldr r0, =gUnknown_08525F88
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r1, r6, r1
 	ldrb r1, [r1]
 	adds r1, r0
@@ -1830,8 +1830,8 @@ GetBankIdentity: @ 80A6A44
 	.pool
 	thumb_func_end GetBankIdentity
 
-	thumb_func_start GetBankByPlayerAI
-GetBankByPlayerAI: @ 80A6A54
+	thumb_func_start GetBankByIdentity
+GetBankByIdentity: @ 80A6A54
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r3, r0, 24
@@ -1860,7 +1860,7 @@ _080A6A7E:
 	pop {r1}
 	bx r1
 	.pool
-	thumb_func_end GetBankByPlayerAI
+	thumb_func_end GetBankByIdentity
 
 	thumb_func_start sub_80A6A90
 sub_80A6A90: @ 80A6A90
@@ -3496,7 +3496,7 @@ _080A76F2:
 	cmp r5, 0
 	beq _080A771A
 	movs r0, 0
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r0, 24
 	bl b_side_obj__get_some_boolean
@@ -3504,7 +3504,7 @@ _080A76F2:
 	cmp r0, 0
 	beq _080A771A
 	movs r0, 0
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r0, 24
 	adds r0, 0x10
@@ -3514,7 +3514,7 @@ _080A771A:
 	cmp r6, 0
 	beq _080A7746
 	movs r0, 0x2
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r0, 24
 	bl b_side_obj__get_some_boolean
@@ -3522,7 +3522,7 @@ _080A771A:
 	cmp r0, 0
 	beq _080A7746
 	movs r0, 0x2
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r0, 24
 	adds r1, r0, 0
@@ -3534,7 +3534,7 @@ _080A7746:
 	cmp r7, 0
 	beq _080A7772
 	movs r0, 0x1
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r0, 24
 	bl b_side_obj__get_some_boolean
@@ -3542,7 +3542,7 @@ _080A7746:
 	cmp r0, 0
 	beq _080A7772
 	movs r0, 0x1
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r0, 24
 	adds r1, r0, 0
@@ -3555,7 +3555,7 @@ _080A7772:
 	cmp r0, 0
 	beq _080A77A0
 	movs r0, 0x3
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r0, 24
 	bl b_side_obj__get_some_boolean
@@ -3563,7 +3563,7 @@ _080A7772:
 	cmp r0, 0
 	beq _080A77A0
 	movs r0, 0x3
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r0, 24
 	adds r1, r0, 0
@@ -3592,7 +3592,7 @@ sub_80A77B4: @ 80A77B4
 	push {lr}
 	lsls r0, 24
 	lsrs r0, 24
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	lsls r0, 24
 	lsrs r0, 24
 	pop {r1}
@@ -4541,7 +4541,7 @@ sub_80A7F18: @ 80A7F18
 	movs r4, 0
 	ldr r1, =gBankSpriteIds
 	ldr r7, =0x00000181
-	ldr r0, =gUnknown_020244E4
+	ldr r0, =gBattleMonForms
 	adds r6, r5, r0
 _080A7F38:
 	adds r0, r4, r1
@@ -5155,7 +5155,7 @@ sub_80A8394: @ 80A8394
 	bl AllocSpritePalette
 	lsls r0, 24
 	lsrs r5, r0, 24
-	ldr r4, =gUnknown_020244D4
+	ldr r4, =gBattleSpritesGfx
 	ldr r0, [r4]
 	cmp r0, 0
 	beq _080A8412
@@ -5213,7 +5213,7 @@ _080A845E:
 	lsls r0, r6, 3
 	ldr r1, =gMonFrontPicTable
 	adds r0, r1
-	ldr r1, =gUnknown_020244D4
+	ldr r1, =gBattleSpritesGfx
 	ldr r1, [r1]
 	movs r3, 0xBE
 	lsls r3, 1
@@ -5226,7 +5226,7 @@ _080A8488:
 	lsls r0, r6, 3
 	ldr r1, =gMonFrontPicTable
 	adds r0, r1
-	ldr r1, =gUnknown_020244D4
+	ldr r1, =gBattleSpritesGfx
 	ldr r1, [r1]
 	movs r2, 0xBE
 	lsls r2, 1
@@ -5276,7 +5276,7 @@ _080A84F6:
 	lsls r0, r6, 3
 	ldr r1, =gMonBackPicTable
 	adds r0, r1
-	ldr r1, =gUnknown_020244D4
+	ldr r1, =gBattleSpritesGfx
 	ldr r1, [r1]
 	movs r2, 0xBE
 	lsls r2, 1
@@ -5294,7 +5294,7 @@ _080A8524:
 	lsls r0, r6, 3
 	ldr r1, =gMonBackPicTable
 	adds r0, r1
-	ldr r1, =gUnknown_020244D4
+	ldr r1, =gBattleSpritesGfx
 	ldr r1, [r1]
 	movs r3, 0xBE
 	lsls r3, 1
@@ -5305,7 +5305,7 @@ _080A8524:
 	mov r3, r8
 	bl LoadSpecialPokePic_2
 _080A8540:
-	ldr r5, =gUnknown_020244D4
+	ldr r5, =gBattleSpritesGfx
 	ldr r0, [r5]
 	movs r4, 0xBE
 	lsls r4, 1
@@ -5658,7 +5658,7 @@ _080A882E:
 	cmp r7, r0
 	bne _080A8850
 _080A8834:
-	ldr r0, =gUnknown_020244E4
+	ldr r0, =gBattleMonForms
 	add r0, r8
 	ldrb r0, [r0]
 	lsls r0, 2

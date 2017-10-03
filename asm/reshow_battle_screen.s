@@ -10,8 +10,8 @@ nullsub_35: @ 80A92F4
 	bx lr
 	thumb_func_end nullsub_35
 
-	thumb_func_start sub_80A92F8
-sub_80A92F8: @ 80A92F8
+	thumb_func_start ReshowBattleScreenAfterMenu
+ReshowBattleScreenAfterMenu: @ 80A92F8
 	push {lr}
 	ldr r2, =gPaletteFade
 	ldrb r0, [r2, 0x8]
@@ -37,7 +37,7 @@ sub_80A92F8: @ 80A92F8
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_80A92F8
+	thumb_func_end ReshowBattleScreenAfterMenu
 
 	thumb_func_start c2_80777E8
 c2_80777E8: @ 80A933C
@@ -103,15 +103,15 @@ _080A93B0:
 	strh r1, [r0]
 	ldr r0, =gUnknown_02022E16
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E18
+	ldr r0, =gBattle_BG1_X
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E1A
+	ldr r0, =gBattle_BG1_Y
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E1C
+	ldr r0, =gBattle_BG2_X
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E1E
+	ldr r0, =gBattle_BG2_Y
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E20
+	ldr r0, =gBattle_BG3_X
 	strh r1, [r0]
 	ldr r0, =gUnknown_02022E22
 	strh r1, [r0]
@@ -223,7 +223,7 @@ _080A94F0:
 _080A94F8:
 	bl sub_805EC84
 	movs r0, 0x1
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
@@ -247,7 +247,7 @@ _080A94F8:
 	cmp r0, 0
 	beq _080A955C
 	movs r0, 0x3
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
@@ -265,7 +265,7 @@ _080A94F8:
 	bl sub_805EE54
 _080A955C:
 	ldr r1, =gUnknown_020244AC
-	ldr r0, =gUnknown_020244B8
+	ldr r0, =gBankInMenu
 	ldrb r0, [r0]
 	adds r0, r1
 	ldrb r0, [r0]
@@ -286,7 +286,7 @@ _080A955C:
 	b _080A95D2
 	.pool
 _080A95A4:
-	ldr r0, =vblank_cb_08078BB4
+	ldr r0, =VBlankCB_Battle
 	bl SetVBlankCallback
 	bl sub_80A95F4
 	movs r0, 0x1
@@ -301,7 +301,7 @@ _080A95A4:
 	movs r0, 0x7F
 	ands r0, r1
 	strb r0, [r2, 0x8]
-	ldr r0, =sub_8038420
+	ldr r0, =BattleMainCB2
 	bl SetMainCallback2
 	bl sub_805EF14
 _080A95D2:
@@ -587,7 +587,7 @@ _080A9786:
 	adds r0, r1
 	lsls r0, 2
 	adds r0, r5
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r1, r7, r1
 	ldrb r1, [r1]
 	bl StartSpriteAnim
@@ -616,7 +616,7 @@ _080A986C:
 	lsls r1, 24
 	lsrs r1, 24
 	adds r0, r4, 0
-	bl template_build_for_pokemon_or_trainer
+	bl sub_806A12C
 	ldr r6, =gUnknown_0202499C
 	ldr r1, =gUnknown_08305D2C
 	ldr r0, [r5]
@@ -654,7 +654,7 @@ _080A98D0:
 	lsls r1, 24
 	lsrs r1, 24
 	movs r0, 0x6
-	bl template_build_for_pokemon_or_trainer
+	bl sub_806A12C
 	ldr r5, =gUnknown_0202499C
 	ldr r0, =gUnknown_08305D2C
 	ldrb r0, [r0, 0x18]
@@ -804,7 +804,7 @@ _080A998C:
 	adds r0, r1
 	lsls r0, 2
 	adds r0, r5
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r1, r7, r1
 	ldrb r1, [r1]
 	bl StartSpriteAnim

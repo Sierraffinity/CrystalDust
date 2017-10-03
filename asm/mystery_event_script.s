@@ -59,10 +59,10 @@ sub_8153820: @ 8153820
 	adds r5, r1, 0
 	ldr r1, =gUnknown_082DED2C
 	ldr r2, =gUnknown_082DED2C + 0x44
-	bl script_env_init
+	bl InitScriptContext
 	adds r0, r4, 0
 	adds r1, r5, 0
-	bl script_setup_bytecode_script
+	bl SetupBytecodeScript
 	str r5, [r4, 0x64]
 	movs r0, 0
 	str r0, [r4, 0x68]
@@ -78,7 +78,7 @@ sub_8153820: @ 8153820
 sub_8153850: @ 8153850
 	push {r4,lr}
 	adds r4, r0, 0
-	bl script_main_handler
+	bl RunScriptCommand
 	lsls r0, 24
 	cmp r0, 0
 	beq _08153868
@@ -317,7 +317,7 @@ _08153A1A:
 	thumb_func_start script_status_stop_and_ret_1
 script_status_stop_and_ret_1: @ 8153A24
 	push {lr}
-	bl script_stop
+	bl StopScript
 	movs r0, 0x1
 	pop {r1}
 	bx r1
@@ -327,23 +327,23 @@ script_status_stop_and_ret_1: @ 8153A24
 sub_8153A30: @ 8153A30
 	push {r4-r7,lr}
 	adds r7, r0, 0
-	bl script_read_word
+	bl ScriptReadWord
 	str r0, [r7, 0x68]
 	adds r0, r7, 0
-	bl script_read_halfword
+	bl ScriptReadHalfword
 	adds r5, r0, 0
 	lsls r5, 16
 	lsrs r5, 16
 	adds r0, r7, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r6, r0, 0
 	adds r0, r7, 0
-	bl script_read_halfword
+	bl ScriptReadHalfword
 	adds r4, r0, 0
 	lsls r4, 16
 	lsrs r4, 16
 	adds r0, r7, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r3, r0, 0
 	adds r0, r5, 0
 	adds r1, r6, 0
@@ -388,7 +388,7 @@ sub_8153A94: @ 8153A94
 	adds r0, 0x1
 	str r0, [r4, 0x8]
 	adds r0, r4, 0
-	bl script_read_word
+	bl ScriptReadWord
 	ldr r1, [r4, 0x68]
 	subs r0, r1
 	ldr r1, [r4, 0x64]
@@ -413,7 +413,7 @@ _08153ABE:
 sub_8153ACC: @ 8153ACC
 	push {r4,lr}
 	adds r4, r0, 0
-	bl script_read_word
+	bl ScriptReadWord
 	ldr r1, [r4, 0x68]
 	subs r0, r1
 	ldr r1, [r4, 0x64]
@@ -432,10 +432,10 @@ sub_8153AE8: @ 8153AE8
 	mov r6, r8
 	push {r6,r7}
 	adds r7, r0, 0
-	bl sub_80E162C
+	bl IsEnigmaBerryValid
 	mov r8, r0
 	adds r0, r7, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r4, r0, 0
 	ldr r0, [r7, 0x68]
 	subs r4, r0
@@ -450,7 +450,7 @@ sub_8153AE8: @ 8153AE8
 	movs r2, 0x7
 	bl StringCopyN
 	adds r0, r4, 0
-	bl sub_80E15E4
+	bl SetEnigmaBerry
 	ldr r4, =gStringVar2
 	ldr r1, [r6]
 	adds r1, r5
@@ -481,7 +481,7 @@ _08153B74:
 	bl StringExpandPlaceholders
 	movs r0, 0x2
 	str r0, [r7, 0x6C]
-	bl sub_80E162C
+	bl IsEnigmaBerryValid
 	cmp r0, 0x1
 	bne _08153B9C
 	ldr r0, =0x0000402d
@@ -547,14 +547,14 @@ sub_8153BE4: @ 8153BE4
 	adds r1, 0x1
 	str r1, [r4, 0x8]
 	adds r0, r4, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r5, r0, 0
 	ldr r0, [r4, 0x68]
 	subs r5, r0
 	ldr r0, [r4, 0x64]
 	adds r5, r0
 	adds r0, r4, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r1, r0, 0
 	ldr r0, [r4, 0x68]
 	subs r1, r0
@@ -567,7 +567,7 @@ sub_8153BE4: @ 8153BE4
 	adds r0, r5, 0
 	mov r2, r9
 	mov r3, r8
-	bl sub_80990FC
+	bl InitRamScript
 	movs r0, 0
 	add sp, 0x4
 	pop {r3,r4}
@@ -626,7 +626,7 @@ sub_8153C9C: @ 8153C9C
 	ldrb r4, [r1]
 	adds r1, 0x1
 	str r1, [r0, 0x8]
-	bl script_read_halfword
+	bl ScriptReadHalfword
 	adds r2, r0, 0
 	lsls r2, 16
 	lsrs r2, 16
@@ -646,7 +646,7 @@ sub_8153CC8: @ 8153CC8
 	push {r7}
 	sub sp, 0x88
 	adds r6, r0, 0
-	bl script_read_word
+	bl ScriptReadWord
 	ldr r1, [r6, 0x68]
 	subs r0, r1
 	ldr r1, [r6, 0x64]
@@ -669,14 +669,14 @@ sub_8153CC8: @ 8153CC8
 	cmp r4, r0
 	bne _08153D18
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085E8264
+	ldr r1, =gText_EggNickname
 	movs r2, 0xB
 	bl StringCopyN
 	b _08153D22
 	.pool
 _08153D18:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085E8268
+	ldr r1, =gText_Pokemon
 	movs r2, 0xB
 	bl StringCopyN
 _08153D22:
@@ -711,10 +711,10 @@ _08153D4C:
 	lsrs r4, 16
 	adds r0, r4, 0
 	movs r1, 0x2
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	adds r0, r4, 0
 	movs r1, 0x3
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 _08153D86:
 	adds r0, r7, 0
 	movs r1, 0xC
@@ -751,7 +751,7 @@ _08153DB6:
 sub_8153DD4: @ 8153DD4
 	push {r4,lr}
 	adds r4, r0, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r1, r0, 0
 	ldr r0, [r4, 0x68]
 	subs r1, r0
@@ -782,7 +782,7 @@ sub_8153E1C: @ 8153E1C
 	adds r4, r0, 0
 	bl EnableResetRTC
 	ldr r0, =gStringVar4
-	ldr r1, =gUnknown_085ECAD8
+	ldr r1, =gText_InGameClockUsable
 	bl StringExpandPlaceholders
 	movs r0, 0x2
 	str r0, [r4, 0x6C]
@@ -797,17 +797,17 @@ sub_8153E1C: @ 8153E1C
 sub_8153E40: @ 8153E40
 	push {r4-r6,lr}
 	adds r6, r0, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r5, r0, 0
 	adds r0, r6, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r4, r0, 0
 	ldr r0, [r6, 0x68]
 	subs r4, r0
 	ldr r0, [r6, 0x64]
 	adds r4, r0
 	adds r0, r6, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r1, r0, 0
 	ldr r0, [r6, 0x68]
 	subs r1, r0
@@ -833,17 +833,17 @@ _08153E7E:
 sub_8153E88: @ 8153E88
 	push {r4-r6,lr}
 	adds r6, r0, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r5, r0, 0
 	adds r0, r6, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r4, r0, 0
 	ldr r0, [r6, 0x68]
 	subs r4, r0
 	ldr r0, [r6, 0x64]
 	adds r4, r0
 	adds r0, r6, 0
-	bl script_read_word
+	bl ScriptReadWord
 	adds r1, r0, 0
 	ldr r0, [r6, 0x68]
 	subs r1, r0

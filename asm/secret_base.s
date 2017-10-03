@@ -686,7 +686,7 @@ _080E900C:
 _080E9030:
 	bl sub_80E8F9C
 	bl warp_in
-	ldr r0, =gUnknown_03005DAC
+	ldr r0, =gFieldCallback
 	ldr r1, =sub_80AF168
 	str r1, [r0]
 	ldr r0, =c2_load_new_map
@@ -751,12 +751,12 @@ sub_80E90C8: @ 80E90C8
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	movs r1, 0x2
 	bl FieldObjectTurn
@@ -765,7 +765,7 @@ sub_80E90C8: @ 80E90C8
 	lsrs r0, 24
 	cmp r0, 0x1
 	bne _080E90F8
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	adds r0, r4, 0
 	bl DestroyTask
 _080E90F8:
@@ -779,7 +779,7 @@ _080E90F8:
 sub_80E9108: @ 80E9108
 	push {r4,lr}
 	sub sp, 0x4
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl HideMapNamePopUpWindow
 	mov r4, sp
 	adds r4, 0x2
@@ -863,7 +863,7 @@ sub_80E916C: @ 80E916C
 	adds r0, r5, 0
 	bl warp1_set
 	bl warp_in
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80E9108
 	str r0, [r1]
 	ldr r0, =c2_load_new_map
@@ -1163,13 +1163,13 @@ _080E941E:
 	lsls r0, 24
 	lsrs r4, r0, 24
 	adds r0, r4, 0
-	bl sub_8089350
+	bl MetatileBehavior_IsMB_B5
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _080E9462
 	adds r0, r4, 0
-	bl sub_8089364
+	bl MetatileBehavior_IsMB_C3
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -1467,7 +1467,7 @@ _080E96CC:
 	beq _080E96F4
 	b _080E9714
 _080E96D2:
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	movs r0, 0x1
 	strh r0, [r4, 0x8]
 	b _080E9714
@@ -1486,12 +1486,12 @@ _080E96F4:
 	movs r0, 0x7E
 	bl copy_saved_warp2_bank_and_enter_x_to_warp1
 	bl warp_in
-	ldr r0, =gUnknown_03005DAC
+	ldr r0, =gFieldCallback
 	ldr r1, =mapldr_default
 	str r1, [r0]
 	ldr r0, =c2_load_new_map
 	bl SetMainCallback2
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	adds r0, r5, 0
 	bl DestroyTask
 _080E9714:
@@ -1576,7 +1576,7 @@ sub_80E9780: @ 80E9780
 	ldrb r1, [r0]
 	adds r0, r6, 0
 	bl ConvertInternationalString
-	ldr r1, =gUnknown_085EA72F
+	ldr r1, =gText_ApostropheSBase
 	adds r0, r6, 0
 	bl StringAppend
 	pop {r3}
@@ -2171,7 +2171,7 @@ sub_80E9C9C: @ 80E9C9C
 	ldr r0, =gTasks + 0x8
 	mov r8, r0
 	adds r5, r7, r0
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl sub_80E9BA8
 	lsls r0, 24
 	lsrs r0, 24
@@ -2204,7 +2204,7 @@ sub_80E9C9C: @ 80E9C9C
 	b _080E9D1A
 	.pool
 _080E9D10:
-	ldr r1, =gUnknown_085EA785
+	ldr r1, =gText_NoRegistry
 	ldr r2, =task_pc_turn_off
 	adds r0, r6, 0
 	bl DisplayItemMessageOnField
@@ -2268,7 +2268,7 @@ _080E9D7C:
 	ldr r1, [r4]
 	lsls r3, r6, 3
 	adds r2, r1, r3
-	ldr r0, =gUnknown_085E8CF0
+	ldr r0, =gText_Cancel
 	str r0, [r2]
 	adds r1, 0x4
 	adds r1, r3
@@ -2583,7 +2583,7 @@ sub_80E9FFC: @ 80E9FFC
 	ldrb r1, [r4, 0x8]
 	bl sub_80E9780
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085EA737
+	ldr r1, =gText_OkayToDeleteFromRegistry
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	ldr r2, =sub_80EA06C
@@ -2683,7 +2683,7 @@ sub_80EA120: @ 80EA120
 	push {lr}
 	lsls r0, 24
 	lsrs r0, 24
-	ldr r1, =gUnknown_085EA762
+	ldr r1, =gText_RegisteredDataDeleted
 	ldr r2, =sub_80EA08C
 	bl DisplayItemMessageOnField
 	pop {r0}
@@ -3288,7 +3288,7 @@ _080EA62C:
 	.pool
 _080EA668:
 	adds r0, r5, 0
-	bl sub_80893C8
+	bl MetatileBehavior_IsSecretBaseGlitterMat
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -3308,7 +3308,7 @@ _080EA680:
 	.pool
 _080EA698:
 	adds r0, r5, 0
-	bl sub_808938C
+	bl MetatileBehavior_IsSecretBaseBalloon
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -3377,7 +3377,7 @@ _080EA714:
 	.pool
 _080EA72C:
 	adds r0, r5, 0
-	bl sub_80893A0
+	bl MetatileBehavior_IsMB_BE
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -3409,7 +3409,7 @@ _080EA75E:
 	.pool
 _080EA778:
 	adds r0, r5, 0
-	bl sub_80893B4
+	bl MetatileBehavior_IsSecretBaseSoundMat
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -3429,7 +3429,7 @@ _080EA778:
 	.pool
 _080EA7A8:
 	adds r0, r5, 0
-	bl MetatileBehavior_0xBB
+	bl MetatileBehavior_IsSecretBaseJumpMat
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -3449,7 +3449,7 @@ _080EA7A8:
 	.pool
 _080EA7D8:
 	adds r0, r5, 0
-	bl MetatileBehavior_0xBC
+	bl MetatileBehavior_IsSecretBaseSpinMat
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1

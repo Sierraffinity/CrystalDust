@@ -216,7 +216,7 @@ _080F96F0:
 _080F96FC:
 	ldrb r0, [r4, 0x2]
 	bl sub_80F95C0
-	ldr r0, =gUnknown_085ECF5D
+	ldr r0, =gText_PkmnFainted3
 	bl box_related_two__2
 	ldrh r0, [r4]
 	adds r0, 0x1
@@ -227,7 +227,7 @@ _080F9714:
 	ldr r0, =gScriptResult
 	strh r1, [r0]
 _080F9718:
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	adds r0, r6, 0
 	bl DestroyTask
 _080F9722:
@@ -243,7 +243,7 @@ sub_80F972C: @ 80F972C
 	ldr r0, =sub_80F9654
 	movs r1, 0x50
 	bl CreateTask
-	bl script_env_2_set_ctx_paused
+	bl ScriptContext1_Stop
 	pop {r0}
 	bx r0
 	.pool

@@ -237,9 +237,13 @@ struct OamMatrix
     s16 d;
 };
 
-extern struct Sprite gSprites[];
-
 extern const struct OamData gDummyOamData;
+extern const union AnimCmd *const gDummySpriteAnimTable[];
+extern const union AffineAnimCmd *const gDummySpriteAffineAnimTable[];
+extern s16 gSpriteCoordOffsetX;
+extern s16 gSpriteCoordOffsetY;
+
+extern struct Sprite gSprites[];
 
 void ResetSpriteData(void);
 void AnimateSprites(void);

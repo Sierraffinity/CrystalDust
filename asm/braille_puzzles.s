@@ -73,7 +73,7 @@ sub_817963C: @ 817963C
 	bl PlaySE
 	ldr r0, =0x000008af
 	bl FlagSet
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	pop {r0}
 	bx r0
 	.pool
@@ -218,7 +218,7 @@ sub_8179778: @ 8179778
 	bne _081797D0
 	adds r0, r5, 0
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	bl InstallCameraPanAheadCallback
 _081797D0:
 	pop {r4,r5}
@@ -271,7 +271,7 @@ _0817982E:
 sub_8179834: @ 8179834
 	push {lr}
 	bl brm_get_pokemon_selection
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	lsls r0, 24
 	lsrs r0, 24
 	str r0, [r1]
@@ -326,7 +326,7 @@ sub_8179860: @ 8179860
 	movs r0, 0x8B
 	lsls r0, 4
 	bl FlagSet
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	pop {r0}
 	bx r0
 	.pool
@@ -367,7 +367,7 @@ _08179912:
 sub_8179918: @ 8179918
 	push {lr}
 	bl brm_get_pokemon_selection
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	lsls r0, 24
 	lsrs r0, 24
 	str r0, [r1]
@@ -421,7 +421,7 @@ sub_8179944: @ 8179944
 	bl PlaySE
 	ldr r0, =0x000008b2
 	bl FlagSet
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	pop {r0}
 	bx r0
 	.pool

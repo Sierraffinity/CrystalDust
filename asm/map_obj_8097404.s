@@ -87,7 +87,7 @@ _0809748E:
 player_bitmagic: @ 8097494
 	push {r4,r5,lr}
 	movs r4, 0
-	ldr r5, =gUnknown_02037350
+	ldr r5, =gMapObjects
 _0809749A:
 	lsls r0, r4, 3
 	adds r0, r4
@@ -97,7 +97,7 @@ _0809749A:
 	lsls r0, 31
 	cmp r0, 0
 	beq _080974B8
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x5]
 	cmp r4, r0
 	beq _080974B8
@@ -121,7 +121,7 @@ sub_80974D0: @ 80974D0
 	lsls r0, 24
 	lsrs r5, r0, 24
 	movs r4, 0
-	ldr r6, =gUnknown_02037350
+	ldr r6, =gMapObjects
 _080974DA:
 	cmp r4, r5
 	beq _080974FC
@@ -133,7 +133,7 @@ _080974DA:
 	lsls r0, 31
 	cmp r0, 0
 	beq _080974FC
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x5]
 	cmp r4, r0
 	beq _080974FC
@@ -209,7 +209,7 @@ _0809756C:
 sub_809757C: @ 809757C
 	push {r4,r5,lr}
 	movs r4, 0
-	ldr r5, =gUnknown_02037350
+	ldr r5, =gMapObjects
 _08097582:
 	lsls r0, r4, 3
 	adds r0, r4
@@ -769,16 +769,16 @@ _08097964:
 	.pool
 	thumb_func_end sub_80978E4
 
-	thumb_func_start sub_8097978
-@ void sub_8097978(struct obj *object, u16 a2)
-sub_8097978: @ 8097978
+	thumb_func_start SetFieldObjectStepTimer
+@ void SetFieldObjectStepTimer(struct obj *object, u16 a2)
+SetFieldObjectStepTimer: @ 8097978
 	strh r1, [r0, 0x34]
 	bx lr
-	thumb_func_end sub_8097978
+	thumb_func_end SetFieldObjectStepTimer
 
-	thumb_func_start sub_809797C
-@ bool8 sub_809797C(struct obj *object)
-sub_809797C: @ 809797C
+	thumb_func_start RunFieldObjectStepTimer
+@ bool8 RunFieldObjectStepTimer(struct obj *object)
+RunFieldObjectStepTimer: @ 809797C
 	push {lr}
 	ldrh r1, [r0, 0x34]
 	subs r1, 0x1
@@ -793,7 +793,7 @@ _0809798E:
 _08097990:
 	pop {r1}
 	bx r1
-	thumb_func_end sub_809797C
+	thumb_func_end RunFieldObjectStepTimer
 
 	thumb_func_start obj_anim_image_set_and_seek
 obj_anim_image_set_and_seek: @ 8097994
@@ -1396,7 +1396,7 @@ oe_exec_and_other_stuff: @ 8097DD0
 	adds r0, r1, 0
 	lsls r4, 24
 	lsrs r4, 24
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	adds r2, r1, 0x4
 	adds r3, r1, 0
 	adds r3, 0x8
@@ -1434,7 +1434,7 @@ DoRippleFieldEffect: @ 8097E14
 	adds r4, r1, 0
 	ldrb r0, [r0, 0x5]
 	bl GetFieldObjectGraphicsInfo
-	ldr r2, =gUnknown_02038C08
+	ldr r2, =gFieldEffectSpawnParams
 	movs r3, 0x20
 	ldrsh r1, [r4, r3]
 	str r1, [r2]
@@ -1757,7 +1757,7 @@ sub_8098074: @ 8098074
 	lsls r1, 24
 	lsrs r5, r1, 24
 	movs r4, 0
-	ldr r7, =gUnknown_02037350
+	ldr r7, =gMapObjects
 _08098082:
 	cmp r4, r6
 	beq _080980A8
@@ -1771,7 +1771,7 @@ _08098082:
 	lsls r0, 31
 	cmp r0, 0
 	beq _080980A8
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r0, [r0, 0x5]
 	cmp r4, r0
 	beq _080980A8

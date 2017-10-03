@@ -23,7 +23,7 @@ npc_before_player_of_type: @ 8135424
 	bl GetFieldObjectIdByXYZ
 	lsls r0, 24
 	lsrs r0, 24
-	ldr r2, =gUnknown_02037350
+	ldr r2, =gMapObjects
 	lsls r1, r0, 3
 	adds r1, r0
 	lsls r1, 2
@@ -67,15 +67,15 @@ task08_080C9820: @ 813549C
 	lsls r0, 24
 	lsrs r5, r0, 24
 	adds r6, r5, 0
-	bl script_env_2_enable
-	ldr r1, =gUnknown_02037590
+	bl ScriptContext2_Enable
+	ldr r1, =gPlayerAvatar
 	movs r0, 0x1
 	strb r0, [r1, 0x6]
 	ldrb r1, [r1, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r4, r0, r1
 	adds r0, r4, 0
 	bl FieldObjectIsSpecialAnimOrDirectionSequenceAnimActive
@@ -127,12 +127,12 @@ sub_813552C: @ 813552C
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	ldr r0, =gUnknown_02037590
+	ldr r0, =gPlayerAvatar
 	ldrb r1, [r0, 0x5]
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	bl FieldObjectCheckIfSpecialAnimFinishedOrInactive
 	lsls r0, 24
@@ -167,7 +167,7 @@ sub_8135578: @ 8135578
 	cmp r4, 0
 	bne _081355FC
 	bl player_get_direction_lower_nybble
-	ldr r6, =gUnknown_02038C08
+	ldr r6, =gFieldEffectSpawnParams
 	lsls r0, 24
 	lsrs r0, 24
 	str r0, [r6, 0x4]
@@ -191,12 +191,12 @@ _081355B0:
 	movs r0, 0x3
 	str r0, [r6, 0x8]
 _081355B8:
-	ldr r5, =gUnknown_02037590
+	ldr r5, =gPlayerAvatar
 	ldrb r0, [r5, 0x5]
 	lsls r4, r0, 3
 	adds r4, r0
 	lsls r4, 2
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	adds r4, r0
 	bl GetPlayerAvatarGraphicsIdByCurrentState
 	adds r1, r0, 0
@@ -244,7 +244,7 @@ sub_813561C: @ 813561C
 	ldrh r0, [r0, 0x1A]
 	orrs r1, r0
 	bl _call_via_r1
-	ldr r1, =gUnknown_02037590
+	ldr r1, =gPlayerAvatar
 	movs r0, 0
 	strb r0, [r1, 0x6]
 	adds r0, r4, 0
@@ -303,7 +303,7 @@ _081356AC:
 sub_81356C4: @ 81356C4
 	push {lr}
 	bl brm_get_pokemon_selection
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	lsls r0, 24
 	lsrs r0, 24
 	str r0, [r1]
@@ -344,7 +344,7 @@ sub_8135714: @ 8135714
 	bl PlaySE
 	movs r0, 0x25
 	bl FieldEffectActiveListRemove
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	pop {r0}
 	bx r0
 	thumb_func_end sub_8135714
@@ -380,7 +380,7 @@ hm2_dig: @ 8135760
 	movs r0, 0x26
 	bl FieldEffectStart
 	bl brm_get_pokemon_selection
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	lsls r0, 24
 	lsrs r0, 24
 	str r0, [r1]
@@ -1064,23 +1064,23 @@ sub_8135DAC: @ 8135DAC
 	movs r0, 0
 	adds r1, r4, 0
 	bl sub_8135D7C
-	ldr r1, =gUnknown_085E931D
+	ldr r1, =gText_Spicy
 	movs r0, 0x2
 	movs r2, 0
 	bl sub_8135D7C
-	ldr r1, =gUnknown_085E9323
+	ldr r1, =gText_Dry
 	movs r0, 0x3
 	movs r2, 0
 	bl sub_8135D7C
-	ldr r1, =gUnknown_085E9327
+	ldr r1, =gText_Sweet
 	movs r0, 0x4
 	movs r2, 0
 	bl sub_8135D7C
-	ldr r1, =gUnknown_085E932D
+	ldr r1, =gText_Bitter
 	movs r0, 0x5
 	movs r2, 0
 	bl sub_8135D7C
-	ldr r1, =gUnknown_085E9334
+	ldr r1, =gText_Sour
 	movs r0, 0x6
 	movs r2, 0
 	bl sub_8135D7C
@@ -1148,7 +1148,7 @@ _08135E7C:
 	adds r4, r7
 	ldr r0, [r5]
 	adds r0, r4
-	ldr r1, =gUnknown_085E9344
+	ldr r1, =gText_StowCase
 	bl StringCopy
 	ldr r1, [r5]
 	lsls r2, r6, 3
@@ -1231,7 +1231,7 @@ sub_8135F04: @ 8135F04
 	movs r2, 0
 	movs r3, 0x3
 	bl ConvertIntToDecimalStringN
-	ldr r1, =gUnknown_085E934F
+	ldr r1, =gText_LvVar1
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	pop {r4-r6}
@@ -1984,7 +1984,7 @@ sub_8136524: @ 8136524
 	lsrs r0, 24
 	cmp r0, 0x1
 	bhi _0813655A
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =sub_80AF168
 	str r0, [r1]
 _0813655A:
@@ -2140,7 +2140,7 @@ _081366D0:
 	ldr r2, =0x0000ffff
 	adds r1, r2, 0
 	strh r1, [r0]
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	mov r1, r9
 	strh r1, [r0]
 	adds r0, r7, 0
@@ -2150,7 +2150,7 @@ _081366D0:
 _081366F8:
 	movs r0, 0x5
 	bl PlaySE
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	strh r4, [r0]
 	adds r0, r7, 0
 	bl sub_8136938
@@ -2541,7 +2541,7 @@ sub_8136A50: @ 8136A50
 sub_8136A74: @ 8136A74
 	push {lr}
 	ldr r2, =gSaveBlock1Ptr
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r1, [r0]
 	lsls r1, 3
 	ldr r0, =0x00000848
@@ -2586,7 +2586,7 @@ sub_8136AB4: @ 8136AB4
 	ldr r3, =gPokeblockNames
 	ldr r1, =gSaveBlock1Ptr
 	ldr r2, [r1]
-	ldr r1, =gUnknown_0203CE7C
+	ldr r1, =gScriptItemId
 	ldrh r1, [r1]
 	lsls r1, 3
 	adds r2, r1
@@ -2598,7 +2598,7 @@ sub_8136AB4: @ 8136AB4
 	ldr r1, [r1]
 	bl StringCopy
 	ldr r5, =gStringVar4
-	ldr r1, =gUnknown_085E9353
+	ldr r1, =gText_ThrowAwayVar1
 	adds r0, r5, 0
 	bl StringExpandPlaceholders
 	bl sav2_get_text_speed
@@ -2654,7 +2654,7 @@ sub_8136B78: @ 8136B78
 	lsls r4, 24
 	lsrs r4, 24
 	ldr r5, =gStringVar4
-	ldr r1, =gUnknown_085E9367
+	ldr r1, =gText_Var1ThrownAway
 	adds r0, r5, 0
 	bl StringExpandPlaceholders
 	bl sav2_get_text_speed
@@ -2689,7 +2689,7 @@ sub_8136BC0: @ 8136BC0
 	ands r0, r1
 	cmp r0, 0
 	beq _08136C36
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrb r0, [r0]
 	bl sub_8136F68
 	movs r0, 0x5
@@ -2772,7 +2772,7 @@ sub_8136C8C: @ 8136C8C
 	lsls r0, 24
 	lsrs r0, 24
 	ldr r5, =gSaveBlock1Ptr
-	ldr r7, =gUnknown_0203CE7C
+	ldr r7, =gScriptItemId
 	ldrh r2, [r7]
 	lsls r2, 3
 	ldr r6, =0x00000848
@@ -2836,7 +2836,7 @@ sub_8136D2C: @ 8136D2C
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
-	ldr r5, =gUnknown_0203CE7C
+	ldr r5, =gScriptItemId
 	ldrb r0, [r5]
 	bl SafariZoneActivatePokeblockFeeder
 	ldr r0, =gStringVar1
@@ -2877,7 +2877,7 @@ sub_8136D90: @ 8136D90
 	lsrs r4, 24
 	ldr r6, =gSpecialVar_0x8004
 	ldr r0, =gSaveBlock1Ptr
-	ldr r5, =gUnknown_0203CE7C
+	ldr r5, =gScriptItemId
 	ldrh r1, [r5]
 	lsls r1, 3
 	ldr r2, =0x00000848
@@ -3381,7 +3381,7 @@ hm2_flash: @ 8137178
 	lsls r4, 24
 	lsrs r4, 24
 	bl brm_get_pokemon_selection
-	ldr r1, =gUnknown_02038C08
+	ldr r1, =gFieldEffectSpawnParams
 	lsls r0, 24
 	lsrs r0, 24
 	str r0, [r1]
@@ -4353,7 +4353,7 @@ sub_81379D8: @ 81379D8
 	lsls r0, 24
 	cmp r0, 0
 	beq _081379F2
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	adds r0, r4, 0
 	bl DestroyTask
 _081379F2:
@@ -4566,7 +4566,7 @@ _08137B7C:
 	lsls r0, 16
 	lsrs r0, 16
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	bne _08137BEA
@@ -4576,7 +4576,7 @@ _08137B7C:
 	lsls r0, 16
 	lsrs r0, 16
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	bne _08137BEA
@@ -4590,7 +4590,7 @@ _08137BB8:
 	lsls r0, 16
 	lsrs r0, 16
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _08137C04
@@ -4600,7 +4600,7 @@ _08137BB8:
 	lsls r0, 16
 	lsrs r0, 16
 	movs r1, 0x1
-	bl pokedex_flag_operation
+	bl GetSetPokedexFlag
 	lsls r0, 24
 	cmp r0, 0
 	beq _08137C04
@@ -4640,7 +4640,7 @@ sub_8137C28: @ 8137C28
 	push {lr}
 	ldr r0, =sub_8174194
 	bl SetMainCallback2
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r0}
 	bx r0
 	.pool
@@ -4651,7 +4651,7 @@ sub_8137C3C: @ 8137C3C
 	push {lr}
 	ldr r0, =c2_exit_to_overworld_2_switch
 	bl SetMainCallback2
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =mapldr_080CA5C0
 	str r0, [r1]
 	pop {r0}
@@ -4663,7 +4663,7 @@ sub_8137C3C: @ 8137C3C
 mapldr_080CA5C0: @ 8137C5C
 	push {lr}
 	sub sp, 0x4
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	bl sub_8085784
 	bl sp109_CreatePCMenu
 	bl sub_80E2514
@@ -4707,7 +4707,7 @@ sub_8137CB4: @ 8137CB4
 	push {lr}
 	ldr r0, =sub_8177888
 	bl SetMainCallback2
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r0}
 	bx r0
 	.pool
@@ -4721,7 +4721,7 @@ Special_ViewWallClock: @ 8137CC8
 	str r1, [r0, 0x8]
 	ldr r0, =Cb2_ViewWallClock
 	bl SetMainCallback2
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	pop {r0}
 	bx r0
 	.pool
@@ -4796,14 +4796,14 @@ sub_8137D5C: @ 8137D5C
 	movs r2, 0
 	movs r3, 0x2
 	bl ConvertIntToDecimalStringN
-	ldr r1, =gUnknown_085EB5EE
+	ldr r1, =gText_SpaceTimes
 	adds r0, r4, 0
 	bl StringAppend
 	b _08137D90
 	.pool
 _08137D88:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EB5CF
+	ldr r1, =gText_99TimesPlus
 	bl StringCopy
 _08137D90:
 	ldr r0, =0x00000e0f
@@ -4833,14 +4833,14 @@ _08137D90:
 	movs r2, 0x2
 	movs r3, 0x2
 	bl ConvertIntToDecimalStringN
-	ldr r1, =gUnknown_085EB5E5
+	ldr r1, =gText_SpaceSeconds
 	adds r0, r4, 0
 	bl StringAppend
 	b _08137DF8
 	.pool
 _08137DF0:
 	ldr r0, =gStringVar2
-	ldr r1, =gUnknown_085EB5DA
+	ldr r1, =gText_1MinutePlus
 	bl StringCopy
 _08137DF8:
 	movs r4, 0
@@ -5062,8 +5062,8 @@ sub_8137FB0: @ 8137FB0
 	.pool
 	thumb_func_end sub_8137FB0
 
-	thumb_func_start sub_8137FC0
-sub_8137FC0: @ 8137FC0
+	thumb_func_start CountSSTidalStep
+CountSSTidalStep: @ 8137FC0
 	push {r4,lr}
 	lsls r0, 16
 	lsrs r4, r0, 16
@@ -5091,10 +5091,10 @@ _08137FF6:
 	pop {r4}
 	pop {r1}
 	bx r1
-	thumb_func_end sub_8137FC0
+	thumb_func_end CountSSTidalStep
 
-	thumb_func_start sub_8137FFC
-sub_8137FFC: @ 8137FFC
+	thumb_func_start GetSSTidalLocation
+GetSSTidalLocation: @ 8137FFC
 	push {r4-r7,lr}
 	mov r7, r8
 	push {r7}
@@ -5203,7 +5203,7 @@ _081380CE:
 	pop {r4-r7}
 	pop {r1}
 	bx r1
-	thumb_func_end sub_8137FFC
+	thumb_func_end GetSSTidalLocation
 
 	thumb_func_start is_tile_that_overrides_player_control
 is_tile_that_overrides_player_control: @ 81380D8
@@ -5673,7 +5673,7 @@ _08138454:
 	lsrs r2, r0, 24
 	cmp r2, 0x10
 	beq _081384E6
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	lsls r0, r2, 3
 	adds r0, r2
 	lsls r0, 2
@@ -6192,7 +6192,7 @@ sub_8138910: @ 8138910
 	bne _08138970
 	adds r0, r6, 0
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	b _08138970
 	.pool
 _0813896C:
@@ -6425,13 +6425,13 @@ sub_8138B10: @ 8138B10
 	cmp r0, 0
 	bne _08138B34
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EB5F9
+	ldr r1, =gText_BigGuy
 	bl StringCopy
 	b _08138B3C
 	.pool
 _08138B34:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EB601
+	ldr r1, =gText_BigGirl
 	bl StringCopy
 _08138B3C:
 	pop {r0}
@@ -6448,13 +6448,13 @@ sub_8138B48: @ 8138B48
 	cmp r0, 0
 	bne _08138B6C
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EB60E
+	ldr r1, =gText_Daughter
 	bl StringCopy
 	b _08138B74
 	.pool
 _08138B6C:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EB60A
+	ldr r1, =gText_Son
 	bl StringCopy
 _08138B74:
 	pop {r0}
@@ -7257,7 +7257,7 @@ SpawnScriptFieldObject: @ 8139158
 	bl SpawnSpecialFieldObjectParametrized
 	lsls r0, 24
 	lsrs r0, 24
-	ldr r2, =gUnknown_02037350
+	ldr r2, =gMapObjects
 	lsls r1, r0, 3
 	adds r1, r0
 	lsls r1, 2
@@ -7829,7 +7829,7 @@ sub_8139620: @ 8139620
 	lsls r0, 24
 	lsrs r0, 24
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	pop {r0}
 	bx r0
 	thumb_func_end sub_8139620
@@ -8488,7 +8488,7 @@ sub_8139AF4: @ 8139AF4
 	bl PlaySE
 	adds r0, r5, 0
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	bl InstallCameraPanAheadCallback
 _08139B54:
 	pop {r4,r5}
@@ -8511,7 +8511,7 @@ sub_8139B60: @ 8139B60
 	ldrb r0, [r5]
 	movs r1, 0
 	bl SetStandardWindowBorderStyle
-	ldr r4, =gUnknown_085EB6A5
+	ldr r4, =gText_ElevatorNowOn
 	movs r0, 0x1
 	adds r1, r4, 0
 	movs r2, 0x40
@@ -9406,7 +9406,7 @@ sub_813A2DC: @ 813A2DC
 	lsls r0, 3
 	ldr r1, =gTasks
 	adds r6, r0, r1
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r0, =gUnknown_0203AB68
 	movs r5, 0
 	strh r5, [r0]
@@ -9680,7 +9680,7 @@ _0813A558:
 	bl sub_813A738
 	ldr r0, =sub_813A600
 	str r0, [r6]
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 _0813A566:
 	pop {r4-r6}
 	pop {r0}
@@ -9741,7 +9741,7 @@ sub_813A570: @ 813A570
 	bl RemoveWindow
 	adds r0, r5, 0
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	add sp, 0x4
 	pop {r4,r5}
 	pop {r0}
@@ -9784,7 +9784,7 @@ sub_813A630: @ 813A630
 	lsrs r2, r0, 24
 	cmp r2, 0xFF
 	bne _0813A64C
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	b _0813A65C
 	.pool
 _0813A64C:
@@ -9808,7 +9808,7 @@ sub_813A664: @ 813A664
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	adds r0, r4, 0
 	bl sub_813A694
 	ldr r1, =gTasks
@@ -10131,7 +10131,7 @@ sub_813A8FC: @ 813A8FC
 	movs r2, 0x1
 	movs r3, 0x4
 	bl ConvertIntToDecimalStringN
-	ldr r1, =gUnknown_085EB6AD
+	ldr r1, =gText_BP
 	bl StringCopy
 	movs r0, 0x1
 	add r1, sp, 0xC
@@ -10753,7 +10753,7 @@ _0813AE1E:
 	ldrh r0, [r6, 0x22]
 	lsls r0, 24
 	lsrs r0, 24
-	ldr r2, =gUnknown_085E8B3A
+	ldr r2, =gText_SelectorArrow
 	mov r3, r9
 	ldrh r1, [r3]
 	lsls r1, 28
@@ -10975,7 +10975,7 @@ _0813B05C:
 	movs r0, 0x2
 _0813B06A:
 	strh r0, [r1]
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 _0813B070:
 	adds r0, r7, 0
 	bl DestroyTask
@@ -11039,7 +11039,7 @@ _0813B0F8:
 	ldr r0, =sub_813B160
 	movs r1, 0x8
 	bl CreateTask
-	ldr r3, =gUnknown_02038C08
+	ldr r3, =gFieldEffectSpawnParams
 	movs r0, 0x1
 	str r0, [r3]
 	movs r0, 0x3A
@@ -11092,7 +11092,7 @@ sub_813B160: @ 813B160
 	lsls r0, 24
 	cmp r0, 0
 	bne _0813B17C
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	adds r0, r4, 0
 	bl DestroyTask
 _0813B17C:
@@ -11184,7 +11184,7 @@ sub_813B21C: @ 813B21C
 	lsls r0, 24
 	cmp r0, 0
 	bne _0813B258
-	bl get_preferred_box
+	bl StorageGetCurrentBox
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
@@ -11215,7 +11215,7 @@ sub_813B260: @ 813B260
 	lsls r0, 24
 	lsrs r0, 24
 	bl set_unknown_box_id
-	bl get_preferred_box
+	bl StorageGetCurrentBox
 	lsls r0, 24
 	lsrs r4, r0, 24
 _0813B278:
@@ -11226,7 +11226,7 @@ _0813B27E:
 	lsls r1, r5, 24
 	lsrs r1, 24
 	lsrs r0, r6, 24
-	bl get_pokemon_by_box_and_pos
+	bl GetBoxedMonPtr
 	movs r1, 0xB
 	movs r2, 0
 	bl GetBoxMonData
@@ -11257,7 +11257,7 @@ _0813B2C0:
 	bne _0813B2CE
 	movs r4, 0
 _0813B2CE:
-	bl get_preferred_box
+	bl StorageGetCurrentBox
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r4, r0
@@ -11833,7 +11833,7 @@ _0813B7B4:
 	ldr r1, =gUnknown_0203AB70
 	ldr r1, [r1]
 	str r1, [r0]
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	adds r0, r4, 0
 	bl DestroyTask
 _0813B7C6:
@@ -12026,7 +12026,7 @@ _0813B8F4:
 	bne _0813B94E
 	mov r0, r9
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 _0813B94E:
 	pop {r3-r5}
 	mov r8, r3
@@ -12650,37 +12650,37 @@ _0813BE58:
 	.4byte _0813BEC0
 _0813BE70:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EAD14
+	ldr r1, =gText_Steven
 	bl StringCopy
 	b _0813BF04
 	.pool
 _0813BE84:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EAD1B
+	ldr r1, =gText_Brawly
 	bl StringCopy
 	b _0813BF04
 	.pool
 _0813BE98:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EAD22
+	ldr r1, =gText_Winona
 	bl StringCopy
 	b _0813BF04
 	.pool
 _0813BEAC:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EAD29
+	ldr r1, =gText_Phoebe
 	bl StringCopy
 	b _0813BF04
 	.pool
 _0813BEC0:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EAD30
+	ldr r1, =gText_Glacia
 	bl StringCopy
 	b _0813BF04
 	.pool
 _0813BED4:
 	ldr r0, =gStringVar1
-	ldr r1, =gUnknown_085EAD0C
+	ldr r1, =gText_Wallace
 	bl StringCopy
 	b _0813BF04
 	.pool

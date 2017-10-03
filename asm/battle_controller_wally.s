@@ -299,7 +299,7 @@ sub_8168610: @ 8168610
 	push {lr}
 	ldr r0, =gMain
 	ldr r1, [r0, 0x4]
-	ldr r0, =sub_8038420
+	ldr r0, =BattleMainCB2
 	cmp r1, r0
 	bne _08168636
 	ldr r0, =gPaletteFade
@@ -308,7 +308,7 @@ sub_8168610: @ 8168610
 	ands r0, r1
 	cmp r0, 0
 	bne _08168636
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r1, [r0]
 	movs r0, 0x1
 	bl dp01_build_cmdbuf_x23_aa_0
@@ -3037,7 +3037,7 @@ sub_8169EC8: @ 8169EC8
 	lsls r1, 24
 	lsrs r1, 24
 	movs r0, 0x6
-	bl template_build_for_pokemon_or_trainer
+	bl sub_806A12C
 	ldr r0, =gUnknown_0202499C
 	ldr r1, =gUnknown_08305D2C
 	ldrb r1, [r1, 0x18]
@@ -3122,7 +3122,7 @@ dp01t_07_6_: @ 8169F94
 	lsls r1, 24
 	lsrs r1, 24
 	movs r0, 0x6
-	bl template_build_for_pokemon_or_trainer
+	bl sub_806A12C
 	ldr r0, =gUnknown_0202499C
 	ldr r1, =gUnknown_08305D2C
 	ldrb r1, [r1, 0x18]
@@ -3232,7 +3232,7 @@ sub_816A084: @ 816A084
 	ldr r5, =gActiveBank
 	ldrb r4, [r5]
 	movs r0, 0x1
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	adds r2, r0, 0
 	lsls r2, 24
 	lsrs r2, 24
@@ -3271,7 +3271,7 @@ sub_816A0D8: @ 816A0D8
 	strb r0, [r1]
 	ldrb r4, [r5]
 	movs r0, 0x1
-	bl GetBankByPlayerAI
+	bl GetBankByIdentity
 	adds r2, r0, 0
 	lsls r2, 24
 	lsrs r2, 24
@@ -3606,7 +3606,7 @@ sub_816A3B8: @ 816A3B8
 	bl BufferStringBattle
 	ldr r0, =gDisplayedStringBattle
 	movs r1, 0
-	bl battle_show_message_maybe
+	bl sub_814F9EC
 	ldr r1, =gBattleBankFunc
 	ldrb r0, [r4]
 	lsls r0, 2
@@ -3674,9 +3674,9 @@ dp01t_12_1_battle_menu: @ 816A470
 	adds r0, r1
 	ldr r1, =sub_816A430
 	str r1, [r0]
-	ldr r0, =gUnknown_085CCA3A
+	ldr r0, =gText_BattleMenu
 	movs r1, 0x2
-	bl battle_show_message_maybe
+	bl sub_814F9EC
 	movs r4, 0
 _0816A48A:
 	lsls r0, r4, 24
@@ -3692,11 +3692,11 @@ _0816A48A:
 	ldrb r0, [r0]
 	movs r1, 0
 	bl sub_8059CB4
-	ldr r0, =gUnknown_085CCA15
-	bl StrCpyDecodeToDisplayedStringBattle
+	ldr r0, =gText_WhatWillWallyDo
+	bl BattleStringExpandPlaceholdersToDisplayedString
 	ldr r0, =gDisplayedStringBattle
 	movs r1, 0x1
-	bl battle_show_message_maybe
+	bl sub_814F9EC
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -3803,7 +3803,7 @@ sub_816A57C: @ 816A57C
 	adds r0, r1
 	ldr r1, =sub_81685D4
 	str r1, [r0]
-	ldr r1, =gUnknown_020244B8
+	ldr r1, =gBankInMenu
 	ldrb r0, [r2]
 	strb r0, [r1]
 	add sp, 0x4
@@ -4150,7 +4150,7 @@ sub_816A840: @ 816A840
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _0816A87C
-	bl sub_805EA60
+	bl BattleMusicStop
 	ldrb r1, [r5]
 	lsls r1, 9
 	adds r0, r4, 0x1
@@ -4504,7 +4504,7 @@ sub_816AA80: @ 816AA80
 	adds r0, r1
 	lsls r0, 2
 	adds r0, r5
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r6, r1
 	ldrb r1, [r6]
 	bl StartSpriteAnim

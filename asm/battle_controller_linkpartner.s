@@ -3237,7 +3237,7 @@ sub_814CB0C: @ 814CB0C
 	adds r0, r1
 	lsls r0, 2
 	adds r0, r5
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r2, r1
 	ldrb r1, [r2]
 	bl StartSpriteAnim
@@ -3419,7 +3419,7 @@ sub_814CC98: @ 814CC98
 	adds r0, r1
 	lsls r0, 2
 	adds r0, r5
-	ldr r1, =gUnknown_020244E4
+	ldr r1, =gBattleMonForms
 	adds r6, r1
 	ldrb r1, [r6]
 	bl StartSpriteAnim
@@ -3703,7 +3703,7 @@ _0814D002:
 	lsls r1, 24
 	lsrs r1, 24
 	adds r0, r4, 0
-	bl template_build_for_pokemon_or_trainer
+	bl sub_806A12C
 	ldr r6, =gUnknown_0202499C
 	mov r8, r7
 	ldr r0, =gUnknown_08305D2C
@@ -4354,7 +4354,7 @@ sub_814D590: @ 814D590
 	bl BufferStringBattle
 	ldr r0, =gDisplayedStringBattle
 	movs r1, 0
-	bl battle_show_message_maybe
+	bl sub_814F9EC
 	ldr r1, =gBattleBankFunc
 	ldrb r0, [r5]
 	lsls r0, 2
@@ -4874,7 +4874,7 @@ sub_814D9D8: @ 814D9D8
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _0814DA14
-	bl sub_805EA60
+	bl BattleMusicStop
 	ldrb r1, [r5]
 	lsls r1, 9
 	adds r0, r4, 0x1

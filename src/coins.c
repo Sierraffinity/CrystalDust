@@ -4,24 +4,23 @@
 #include "window.h"
 #include "text_window.h"
 #include "string_util.h"
+#include "menu.h"
 
 #define MAX_COINS 9999
 
 EWRAM_DATA u8 sCoinsWindowId = 0;
 
 extern s32 GetStringRightAlignXOffset(u8 fontId, u8 *str, s32 totalWidth);
-extern void SetWindowTemplateFields(struct WindowTemplate* template, u8 priority, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 palNum, u16 baseBlock);
-extern void SetWindowBorderStyle(u8 windowId, bool8 copyToVram, s16 tileStart, s8 palette);
 extern void sub_819746C(u8 windowId, bool8 copyToVram);
 
-extern const u8 gOtherText_Coins2[];
+extern const u8 gText_Coins[];
 
 void PrintCoinsString(u32 coinAmount)
 {
     u32 xAlign;
 
     ConvertIntToDecimalStringN(gStringVar1, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, 4);
-    StringExpandPlaceholders(gStringVar4, gOtherText_Coins2);
+    StringExpandPlaceholders(gStringVar4, gText_Coins);
 
     xAlign = GetStringRightAlignXOffset(1, gStringVar4, 0x40);
     PrintTextOnWindow(sCoinsWindowId, 1, gStringVar4, xAlign, 1, 0, NULL);

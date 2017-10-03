@@ -65,35 +65,46 @@
 #define CHAR_x              0xEC
 #define CHAR_y              0xED
 #define CHAR_z              0xEE
+#define CHAR_SPECIAL_F9     0xF9
 #define CHAR_COLON          0xF0
 #define CHAR_PROMPT_SCROLL  0xFA // waits for button press and scrolls dialog
 #define CHAR_PROMPT_CLEAR   0xFB // waits for button press and clears dialog
 #define EXT_CTRL_CODE_BEGIN 0xFC // extended control code
 #define PLACEHOLDER_BEGIN   0xFD // string placeholder
 #define CHAR_NEWLINE        0xFE
-#define EOS 0xFF // end of string
+#define EOS                 0xFF // end of string
+
+#define TEXT_COLOR_TRANSPARENT  0x0
+#define TEXT_COLOR_WHITE        0x1
+#define TEXT_COLOR_DARK_GREY    0x2
+
+// battle placeholders are located in battle_message.h
 
 #define EXT_CTRL_CODE_JPN   0x15
+#define EXT_CTRL_CODE_ENG   0x16
 
 #define NUM_TEXT_PRINTERS 32
 
+struct TextSubPrinter // TODO: Better name
+{
+    u8* current_text_offset;
+    u8 windowId;
+    u8 fontId;
+    u8 x;
+    u8 y;
+    u8 currentX;        // 0x8
+    u8 currentY;
+    u8 letterSpacing;
+    u8 lineSpacing;
+    u8 fontColor_l:4;   // 0xC
+    u8 fontColor_h:4;
+    u8 bgColor:4;
+    u8 shadowColor:4;
+};
+
 struct TextPrinter
 {
-    struct TextSubPrinter {     // TODO: Better name
-        u8* current_text_offset;
-        u8 windowId;
-        u8 fontId;
-        u8 x;
-        u8 y;
-        u8 currentX;        // 0x8
-        u8 currentY;
-        u8 letterSpacing;
-        u8 lineSpacing;
-        u8 fontColor_l:4;   // 0xC
-        u8 fontColor_h:4;
-        u8 bgColor:4;
-        u8 shadowColor:4;
-    } subPrinter;
+    struct TextSubPrinter subPrinter;
 
     void (*callback)(struct TextSubPrinter *, u16); // 0x10
 
@@ -137,15 +148,24 @@ struct FontInfo
     u8 shadowColor:4;
 };
 
-struct GlyphWidthFunc{
+struct GlyphWidthFunc
+{
     u32 font_id;
     u32 (*func)(u16 glyphId, bool32 isJapanese);
 };
 
-struct KeypadIcon {
+struct KeypadIcon
+{
     u16 tile_offset;
     u8 width;
     u8 height;
+};
+
+struct __attribute__((packed)) TextColor
+{
+    u8 fgColor;
+    u8 bgColor;
+    u8 shadowColor;
 };
 
 extern u8 gStringVar1[];
@@ -154,11 +174,11 @@ extern u8 gStringVar3[];
 extern u8 gStringVar4[];
 
 void SetFontsPointer(const struct FontInfo *fonts);
-void DeactivateAllTextPrinters (void);
+void DeactivateAllTextPrinters(void);
 u16 PrintTextOnWindow(u8 windowId, u8 fontId, u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextSubPrinter *, u16));
 bool16 AddTextPrinter(struct TextSubPrinter *textSubPrinter, u8 speed, void (*callback)(struct TextSubPrinter *, u16));
 void RunTextPrinters(void);
-bool8 IsTextPrinterActive(u8 id);
+bool16 IsTextPrinterActive(u8 id);
 u32 RenderFont(struct TextPrinter *textPrinter);
 void GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor);
 void SaveTextColors(u8 *fgColor, u8 *bgColor, u8 *shadowColor);
@@ -185,9 +205,9 @@ bool8 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter);
 bool8 TextPrinterWait(struct TextPrinter *textPrinter);
 void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *counter, u8 *yCoordIndex);
 u16 RenderText(struct TextPrinter *textPrinter);
-u32 GetStringWidthFixedWidthFont(u8 *str, u8 fontId, u8 letterSpacing);
+u32 GetStringWidthFixedWidthFont(const u8 *str, u8 fontId, u8 letterSpacing);
 u32 (*GetFontWidthFunc(u8 glyphId))(u16, bool32);
-s32 GetStringWidth(u8 fontId, u8 *str, s16 letterSpacing);
+u32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing);
 u8 RenderTextFont9(u8 *pixels, u8 fontId, u8 *str);
 u8 DrawKeypadIcon(u8 windowId, u8 keypadIconId, u16 x, u16 y);
 u8 GetKeypadIconTileOffset(u8 keypadIconId);

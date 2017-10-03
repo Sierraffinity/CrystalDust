@@ -11,7 +11,7 @@ SetUpItemUseCallback: @ 80FD060
 	push {r4,r5,lr}
 	lsls r0, 24
 	lsrs r5, r0, 24
-	ldr r1, =gUnknown_0203CE7C
+	ldr r1, =gScriptItemId
 	ldrh r0, [r1]
 	cmp r0, 0xAF
 	bne _080FD084
@@ -77,7 +77,7 @@ SetUpItemUseOnFieldCallback: @ 80FD0DC
 	ldrsh r0, [r0, r1]
 	cmp r0, 0x1
 	beq _080FD110
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =MapPostLoadHook_UseItem
 	str r0, [r1]
 	adds r0, r2, 0
@@ -157,7 +157,7 @@ DisplayCannotUseItemMessage: @ 80FD164
 	b _080FD1BE
 	.pool
 _080FD1A0:
-	ldr r1, =gUnknown_085E8F31
+	ldr r1, =gText_DadsAdvice
 	ldr r2, =sub_81C6714
 	adds r0, r5, 0
 	bl DisplayItemMessageInBattlePyramid
@@ -183,7 +183,7 @@ DisplayDadsAdviceCannotUseItemMessage: @ 80FD1C8
 	lsrs r0, 24
 	lsls r1, 24
 	lsrs r1, 24
-	ldr r2, =gUnknown_085E8F31
+	ldr r2, =gText_DadsAdvice
 	bl DisplayCannotUseItemMessage
 	pop {r0}
 	bx r0
@@ -198,7 +198,7 @@ DisplayCannotDismountBikeMessage: @ 80FD1E0
 	lsrs r0, 24
 	lsls r1, 24
 	lsrs r1, 24
-	ldr r2, =gUnknown_085E8F6E
+	ldr r2, =gText_CantDismountBike
 	bl DisplayCannotUseItemMessage
 	pop {r0}
 	bx r0
@@ -218,7 +218,7 @@ CleanUpAfterFailingToUseRegisteredKeyItemOnField: @ 80FD1F8
 	adds r0, r4, 0
 	bl DestroyTask
 	bl sub_80984F4
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -260,7 +260,7 @@ sub_80FD254: @ 80FD254
 	push {lr}
 	sub sp, 0x24
 	mov r1, sp
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	strh r0, [r1, 0x20]
 	ldr r1, =bag_menu_mail_related
@@ -381,7 +381,7 @@ ItemUseOnFieldCB_Bike: @ 80FD358
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	bl ItemId_GetSecondaryId
 	lsls r0, 24
@@ -396,7 +396,7 @@ _080FD378:
 	bl GetOnOffBike
 _080FD37E:
 	bl sub_80984F4
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	adds r0, r4, 0
 	bl DestroyTask
 	pop {r4}
@@ -464,7 +464,7 @@ _080FD3EC:
 _080FD40C:
 	lsls r0, r6, 24
 	lsrs r0, 24
-	bl sub_8089510
+	bl MetatileBehavior_8089510
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -515,7 +515,7 @@ ItemUseOnFieldCB_Rod: @ 80FD468
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	bl ItemId_GetSecondaryId
 	lsls r0, 24
@@ -571,7 +571,7 @@ ItemUseOnFieldCB_Itemfinder: @ 80FD4B8
 	b _080FD4F6
 	.pool
 _080FD4EC:
-	ldr r1, =gUnknown_085E9002
+	ldr r1, =gText_ItemFinderNothing
 	ldr r2, =sub_80FD5CC
 	adds r0, r4, 0
 	bl DisplayItemMessageOnField
@@ -687,7 +687,7 @@ sub_80FD5CC: @ 80FD5CC
 	movs r1, 0x1
 	bl sub_8197434
 	bl sub_80984F4
-	bl script_env_2_disable
+	bl ScriptContext2_Disable
 	adds r0, r4, 0
 	bl DestroyTask
 	pop {r4}
@@ -1306,7 +1306,7 @@ sub_80FDA24: @ 80FDA24
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r4, =gUnknown_02037350
+	ldr r4, =gMapObjects
 	adds r0, r4
 	bl FieldObjectClearAnimIfSpecialAnimFinished
 	movs r0, 0xFF
@@ -1356,14 +1356,14 @@ sub_80FDA94: @ 80FDA94
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	bl FieldObjectCheckIfSpecialAnimFinishedOrInactive
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
 	bne _080FDACA
-	ldr r1, =gUnknown_085E8F93
+	ldr r1, =gText_ItemFinderNearby
 	ldr r2, =sub_80FD5CC
 	adds r0, r4, 0
 	bl DisplayItemMessageOnField
@@ -1395,7 +1395,7 @@ sub_80FDADC: @ 80FDADC
 	lsls r0, r1, 3
 	adds r0, r1
 	lsls r0, 2
-	ldr r1, =gUnknown_02037350
+	ldr r1, =gMapObjects
 	adds r0, r1
 	bl FieldObjectCheckIfSpecialAnimFinishedOrInactive
 	lsls r0, 24
@@ -1427,7 +1427,7 @@ _080FDB1C:
 	asrs r0, 16
 	cmp r0, 0x4
 	bne _080FDB50
-	ldr r1, =gUnknown_085E8FDB
+	ldr r1, =gText_ItemFinderOnTop
 	ldr r2, =sub_80FD5CC
 	adds r0, r5, 0
 	bl DisplayItemMessageOnField
@@ -1477,7 +1477,7 @@ _080FDB98:
 	b _080FDBDA
 	.pool
 _080FDBC8:
-	ldr r0, =gUnknown_03005DAC
+	ldr r0, =gFieldCallback
 	ldr r1, =sub_80AF6D4
 	str r1, [r0]
 	movs r0, 0x1
@@ -1542,7 +1542,7 @@ ItemUseOutOfBattle_CoinCase: @ 80FDC34
 	movs r3, 0x4
 	bl ConvertIntToDecimalStringN
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085E9026
+	ldr r1, =gText_CoinCase
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	ldr r1, =gTasks
@@ -1586,7 +1586,7 @@ ItemUseOutOfBattle_PowderJar: @ 80FDCA4
 	movs r3, 0x5
 	bl ConvertIntToDecimalStringN
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085E9138
+	ldr r1, =gText_PowderQty
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	ldr r1, =gTasks
@@ -1630,7 +1630,7 @@ sub_80FDD10: @ 80FDD10
 	ldr r1, =gUnknown_0203A0F4
 	ldr r0, =sub_80FDD74
 	str r0, [r1]
-	ldr r1, =gUnknown_03005DAC
+	ldr r1, =gFieldCallback
 	ldr r0, =MapPostLoadHook_UseItem
 	str r0, [r1]
 	ldr r0, =gUnknown_0203CE54
@@ -1642,7 +1642,7 @@ sub_80FDD10: @ 80FDD10
 	b _080FDD68
 	.pool
 _080FDD58:
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	bl ItemId_GetFieldFunc
 	adds r1, r0, 0
@@ -1661,11 +1661,11 @@ sub_80FDD74: @ 80FDD74
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	movs r1, 0x1
 	bl RemoveBagItem
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r0, =gUnknown_08274482
 	bl ScriptContext1_SetupScript
 	adds r0, r4, 0
@@ -1692,7 +1692,7 @@ ItemUseOutOfBattle_WailmerPail: @ 80FDDA4
 	b _080FDDD8
 	.pool
 _080FDDC8:
-	bl WaterBerryTree
+	bl TryToWaterBerryTree
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -1727,7 +1727,7 @@ sub_80FDE08: @ 80FDE08
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r0, =gUnknown_082744C0
 	bl ScriptContext1_SetupScript
 	adds r0, r4, 0
@@ -1759,7 +1759,7 @@ sub_80FDE2C: @ 80FDE2C
 	lsrs r2, r0, 24
 	cmp r2, 0x10
 	beq _080FDE68
-	ldr r0, =gUnknown_02037350
+	ldr r0, =gMapObjects
 	lsls r1, r2, 3
 	adds r1, r2
 	lsls r1, 2
@@ -1786,7 +1786,7 @@ sub_80FDE7C: @ 80FDE7C
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
-	bl script_env_2_enable
+	bl ScriptContext2_Enable
 	ldr r0, =gUnknown_08242CFC
 	bl ScriptContext1_SetupScript
 	adds r0, r4, 0
@@ -1886,13 +1886,13 @@ ItemUseOutOfBattle_TMHM: @ 80FDF48
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r1, [r0]
 	movs r0, 0xA9
 	lsls r0, 1
 	cmp r1, r0
 	bls _080FDF74
-	ldr r2, =gUnknown_085E9047
+	ldr r2, =gText_BootedUpHM
 	ldr r3, =sub_80FDF90
 	adds r0, r4, 0
 	movs r1, 0x1
@@ -1900,7 +1900,7 @@ ItemUseOutOfBattle_TMHM: @ 80FDF48
 	b _080FDF80
 	.pool
 _080FDF74:
-	ldr r2, =gUnknown_085E9037
+	ldr r2, =gText_BootedUpTM
 	ldr r3, =sub_80FDF90
 	adds r0, r4, 0
 	movs r1, 0x1
@@ -1945,7 +1945,7 @@ task08_0809AD8C: @ 80FDFBC
 	cmp r0, 0
 	beq _080FE000
 	ldr r4, =gStringVar1
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	bl ItemIdToBattleMoveId
 	lsls r0, 16
@@ -1957,7 +1957,7 @@ task08_0809AD8C: @ 80FDFBC
 	adds r0, r4, 0
 	bl StringCopy
 	ldr r4, =gStringVar4
-	ldr r1, =gUnknown_085E9058
+	ldr r1, =gText_TMHMContainedVar1
 	adds r0, r4, 0
 	bl StringExpandPlaceholders
 	ldr r3, =sub_80FE024
@@ -2002,7 +2002,7 @@ sub_80FE03C: @ 80FE03C
 	thumb_func_start sub_80FE058
 sub_80FE058: @ 80FE058
 	push {r4,lr}
-	ldr r4, =gUnknown_0203CE7C
+	ldr r4, =gScriptItemId
 	ldrh r0, [r4]
 	movs r1, 0x1
 	bl RemoveBagItem
@@ -2010,7 +2010,7 @@ sub_80FE058: @ 80FE058
 	ldr r1, =gStringVar2
 	bl CopyItemName
 	ldr r0, =gStringVar4
-	ldr r1, =gUnknown_085E9080
+	ldr r1, =gText_PlayerUsedVar2
 	bl StringExpandPlaceholders
 	bl InBattlePyramid
 	lsls r0, 24
@@ -2062,7 +2062,7 @@ _080FE0EC:
 	lsls r0, 24
 	cmp r0, 0
 	bne _080FE10C
-	ldr r2, =gUnknown_085E9092
+	ldr r2, =gText_RepelEffectsLingered
 	ldr r3, =bag_menu_inits_lists_menu
 	adds r0, r4, 0
 	movs r1, 0x1
@@ -2070,7 +2070,7 @@ _080FE0EC:
 	b _080FE116
 	.pool
 _080FE10C:
-	ldr r1, =gUnknown_085E9092
+	ldr r1, =gText_RepelEffectsLingered
 	ldr r2, =sub_81C6714
 	adds r0, r5, 0
 	bl DisplayItemMessageInBattlePyramid
@@ -2125,7 +2125,7 @@ sub_80FE164: @ 80FE164
 	cmp r0, 0
 	bne _080FE1C2
 	ldr r4, =0x00004021
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	bl ItemId_GetHoldEffectParam
 	adds r1, r0, 0
@@ -2205,7 +2205,7 @@ ItemUseOutOfBattle_BlackWhiteFlute: @ 80FE234
 	push {r4,r5,lr}
 	lsls r0, 24
 	lsrs r5, r0, 24
-	ldr r4, =gUnknown_0203CE7C
+	ldr r4, =gScriptItemId
 	ldrh r0, [r4]
 	ldr r1, =gStringVar2
 	bl CopyItemName
@@ -2217,7 +2217,7 @@ ItemUseOutOfBattle_BlackWhiteFlute: @ 80FE234
 	ldr r0, =0x000008ae
 	bl FlagReset
 	ldr r0, =gStringVar4
-	ldr r1, =gUnknown_085E90C6
+	ldr r1, =gText_UsedVar2WildLured
 	bl StringExpandPlaceholders
 	b _080FE28C
 	.pool
@@ -2227,7 +2227,7 @@ _080FE278:
 	ldr r0, =0x000008ad
 	bl FlagReset
 	ldr r0, =gStringVar4
-	ldr r1, =gUnknown_085E90F4
+	ldr r1, =gText_UsedVar2WildRepelled
 	bl StringExpandPlaceholders
 _080FE28C:
 	ldr r1, =gTasks
@@ -2357,11 +2357,11 @@ ItemUseInBattle_PokeBall: @ 80FE394
 	lsls r0, 24
 	lsrs r4, r0, 24
 	adds r5, r4, 0
-	bl PlayerPartyAndPokemonStorageFull
+	bl IsPlayerPartyAndPokemonStorageFull
 	lsls r0, 24
 	cmp r0, 0
 	bne _080FE3D0
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	movs r1, 0x1
 	bl RemoveBagItem
@@ -2382,7 +2382,7 @@ _080FE3D0:
 	lsls r0, 24
 	cmp r0, 0
 	bne _080FE3F0
-	ldr r2, =gUnknown_085E9125
+	ldr r2, =gText_BoxFull
 	ldr r3, =bag_menu_inits_lists_menu
 	adds r0, r4, 0
 	movs r1, 0x1
@@ -2390,7 +2390,7 @@ _080FE3D0:
 	b _080FE3FA
 	.pool
 _080FE3F0:
-	ldr r1, =gUnknown_085E9125
+	ldr r1, =gText_BoxFull
 	ldr r2, =sub_81C6714
 	adds r0, r5, 0
 	bl DisplayItemMessageInBattlePyramid
@@ -2450,7 +2450,7 @@ sub_80FE440: @ 80FE440
 	ble _080FE4AC
 	movs r0, 0x1
 	bl PlaySE
-	ldr r4, =gUnknown_0203CE7C
+	ldr r4, =gScriptItemId
 	ldrh r0, [r4]
 	movs r1, 0x1
 	bl RemoveBagItem
@@ -2487,7 +2487,7 @@ ItemUseInBattle_StatIncrease: @ 80FE4B8
 	lsls r0, 24
 	lsrs r4, r0, 24
 	ldr r1, =gBattlePartyID
-	ldr r0, =gUnknown_020244B8
+	ldr r0, =gBankInMenu
 	ldrb r0, [r0]
 	lsls r0, 1
 	adds r0, r1
@@ -2496,7 +2496,7 @@ ItemUseInBattle_StatIncrease: @ 80FE4B8
 	muls r0, r2
 	ldr r1, =gPlayerParty
 	adds r0, r1
-	ldr r1, =gUnknown_0203CE7C
+	ldr r1, =gScriptItemId
 	ldrh r1, [r1]
 	lsls r2, 24
 	lsrs r2, 24
@@ -2510,7 +2510,7 @@ ItemUseInBattle_StatIncrease: @ 80FE4B8
 	lsls r0, 24
 	cmp r0, 0
 	bne _080FE518
-	ldr r2, =gUnknown_085E96F6
+	ldr r2, =gText_WontHaveEffect
 	ldr r3, =bag_menu_inits_lists_menu
 	adds r0, r4, 0
 	movs r1, 0x1
@@ -2518,7 +2518,7 @@ ItemUseInBattle_StatIncrease: @ 80FE4B8
 	b _080FE53C
 	.pool
 _080FE518:
-	ldr r1, =gUnknown_085E96F6
+	ldr r1, =gText_WontHaveEffect
 	ldr r2, =sub_81C6714
 	adds r0, r4, 0
 	bl DisplayItemMessageInBattlePyramid
@@ -2664,7 +2664,7 @@ ItemUseOutOfBattle_EnigmaBerry: @ 80FE650
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	bl GetItemEffectType
 	lsls r0, 24
@@ -2785,7 +2785,7 @@ ItemUseInBattle_EnigmaBerry: @ 80FE77C
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	ldr r0, =gUnknown_0203CE7C
+	ldr r0, =gScriptItemId
 	ldrh r0, [r0]
 	bl GetItemEffectType
 	lsls r0, 24

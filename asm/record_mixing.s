@@ -630,7 +630,7 @@ _080E726C:
 	lsrs r0, 24
 	strh r0, [r5, 0x14]
 _080E7296:
-	ldr r0, =gUnknown_085EEA8E
+	ldr r0, =gText_RecordMixingComplete
 	bl sub_80E70F4
 	strh r4, [r5, 0x10]
 	b _080E730A
@@ -677,7 +677,7 @@ _080E72F8:
 	bl sub_8197434
 	adds r0, r4, 0
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 _080E730A:
 	pop {r4,r5}
 	pop {r0}
@@ -739,7 +739,7 @@ _080E7370:
 	b _080E7566
 	.pool
 _080E7384:
-	ldr r0, =gUnknown_085EEA7E
+	ldr r0, =gText_MixingRecords
 	bl sub_80E70F4
 	movs r0, 0xE1
 	lsls r0, 3

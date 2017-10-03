@@ -4,6 +4,8 @@
 *.elf
 *.gba
 *.sgm
+*.sa1
+*.sg1
 *.1bpp
 *.4bpp
 *.8bpp
@@ -22,3 +24,4 @@ tools/*
 *.sa*
 Thumbs.db
 .DS_Store
+*.ddump

@@ -339,7 +339,7 @@ sub_8120340: @ 8120340
 	ldr r0, =gSpecialVar_0x8004
 	ldrb r0, [r0]
 	bl sub_81206C0
-	bl script_env_2_set_ctx_paused
+	bl ScriptContext1_Stop
 	pop {r0}
 	bx r0
 	.pool
@@ -1231,7 +1231,7 @@ _08120A7E:
 	ldr r0, =gMPlay_SE2
 	movs r1, 0x2
 	bl m4aMPlayFadeOutTemporarily
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	adds r0, r6, 0
 	bl DestroyTask
 	b _08120B50
@@ -1400,7 +1400,7 @@ _08120BB0:
 	movs r2, 0x8
 	bl memset
 	mov r0, sp
-	ldr r1, =gUnknown_085EDFB0
+	ldr r1, =gText_Friend
 	bl StringCopy
 	adds r0, r5, 0
 	mov r1, sp
@@ -2218,7 +2218,7 @@ sub_8121178: @ 8121178
 sub_81211EC: @ 81211EC
 	push {r4,r5,lr}
 	sub sp, 0xC
-	ldr r1, =gUnknown_085EB7EA
+	ldr r1, =gText_Exit
 	movs r0, 0x1
 	movs r2, 0
 	bl GetStringWidth
@@ -2309,7 +2309,7 @@ _08121272:
 _081212AA:
 	ldr r5, =gUnknown_0203A130
 	ldrb r0, [r5]
-	ldr r2, =gUnknown_085EB7EA
+	ldr r2, =gText_Exit
 	lsls r1, r4, 4
 	adds r1, 0x1
 	lsls r1, 24
@@ -2398,7 +2398,7 @@ _08121364:
 	bl sub_80E2A78
 	adds r0, r6, 0
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 _08121376:
 	pop {r4-r6}
 	pop {r0}

@@ -87,12 +87,12 @@ sub_8133A78: @ 8133A78
 	ldr r0, [r0]
 	str r0, [sp, 0xC]
 	str r1, [sp, 0x10]
-	ldr r1, =gUnknown_085EB7EA
+	ldr r1, =gText_Exit
 	movs r0, 0x1
 	movs r2, 0
 	bl GetStringWidth
 	adds r6, r0, 0
-	ldr r1, =gUnknown_085E8D38
+	ldr r1, =gText_FiveMarks
 	movs r0, 0x1
 	movs r2, 0
 	bl GetStringWidth
@@ -113,7 +113,7 @@ _08133AC2:
 _08133AF0:
 	ldrb r1, [r1]
 	lsls r1, 5
-	ldr r0, =gUnknown_085A5C09
+	ldr r0, =gDecorations + 1
 	adds r1, r0
 	movs r0, 0x1
 	movs r2, 0
@@ -163,7 +163,7 @@ _08133B3C:
 	movs r1, 0
 	str r1, [sp, 0x8]
 	movs r1, 0x1
-	ldr r2, =gUnknown_085E8D38
+	ldr r2, =gText_FiveMarks
 	movs r3, 0x8
 	bl PrintTextOnWindow
 	b _08133B94
@@ -172,7 +172,7 @@ _08133B70:
 	ldrb r0, [r7, 0x6]
 	ldrb r2, [r1]
 	lsls r2, 5
-	ldr r1, =gUnknown_085A5C09
+	ldr r1, =gDecorations + 1
 	adds r2, r1
 	lsls r1, r5, 4
 	adds r1, 0x1
@@ -193,7 +193,7 @@ _08133B94:
 	cmp r5, 0x3
 	bls _08133B3C
 	ldrb r0, [r7, 0x6]
-	ldr r2, =gUnknown_085EB7EA
+	ldr r2, =gText_Exit
 	lsls r1, r5, 4
 	adds r1, 0x1
 	lsls r1, 24
@@ -257,7 +257,7 @@ _08133C18:
 	bl schedule_bg_copy_tilemap_to_vram
 	adds r0, r5, 0
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	pop {r4,r5}
 	pop {r0}
 	bx r0
@@ -450,7 +450,7 @@ sub_8133DA0: @ 8133DA0
 	ldr r1, =gSpecialVar_0x8004
 	ldrh r1, [r1]
 	lsls r1, 5
-	ldr r4, =gUnknown_085A5C09
+	ldr r4, =gDecorations + 1
 	adds r1, r4
 	bl StringCopy
 	ldr r0, =gStringVar2
@@ -468,7 +468,7 @@ _08133DFC:
 _08133E04:
 	adds r0, r6, 0
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	pop {r4-r6}
 	pop {r0}
 	bx r0
@@ -484,7 +484,7 @@ sub_8133E1C: @ 8133E1C
 	movs r1, 0
 	strh r1, [r2]
 	bl DestroyTask
-	bl script_env_2_enable_and_set_ctx_running
+	bl EnableBothScriptContexts
 	pop {r0}
 	bx r0
 	.pool
