@@ -15,13 +15,14 @@
 *.latfont
 *.hwjpnfont
 *.fwjpnfont
-src/*.s
-tools/*
+sound/**/*.bin
+tools/agbcc
 *.map
 *.ld
 *.bat
 *.dump
 *.sa*
 Thumbs.db
+build/
 .DS_Store
 *.ddump

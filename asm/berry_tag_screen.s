@@ -12,7 +12,7 @@ sub_8177C14: @ 8177C14
 	ldr r0, =0x0000180c
 	bl AllocZeroed
 	str r0, [r4]
-	ldr r0, =gScriptItemId
+	ldr r0, =gSpecialVar_ItemId
 	ldrh r0, [r0]
 	bl ItemIdToBerryType
 	ldr r1, [r4]
@@ -115,7 +115,7 @@ _08177CD8:
 	.4byte _08177DC2
 _08177D18:
 	bl SetVBlankHBlankCallbacksToNull
-	bl sub_8121DA0
+	bl ResetVramOamAndBgCntRegs
 	bl clear_scheduled_bg_copies_to_vram
 	b _08177DDC
 _08177D26:
@@ -246,7 +246,7 @@ sub_8177E14: @ 8177E14
 	adds r1, r0
 	movs r0, 0x3
 	bl SetBgTilemapBuffer
-	bl sub_8121E10
+	bl ResetAllBgsCoordinates
 	movs r0, 0x2
 	bl schedule_bg_copy_tilemap_to_vram
 	movs r0, 0x3

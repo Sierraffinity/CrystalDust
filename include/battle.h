@@ -1,6 +1,15 @@
 #ifndef GUARD_BATTLE_H
 #define GUARD_BATTLE_H
 
+// should they be included here or included individually by every file?
+#include "battle_util.h"
+#include "battle_script_commands.h"
+#include "battle_2.h"
+#include "battle_ai_switch_items.h"
+#include "battle_gfx_sfx_util.h"
+#include "battle_util2.h"
+#include "battle_bg.h"
+
 /*
     Banks are a name given to what could be called a 'battlerId' or 'monControllerId'.
     Each bank has a value consisting of two bits.
@@ -21,7 +30,9 @@
 #define BIT_SIDE        0x1
 #define BIT_MON         0x2
 
+#define GET_BANK_IDENTITY(bank)((gBanksByIdentity[bank]))
 #define GET_BANK_SIDE(bank)((GetBankIdentity(bank) & BIT_SIDE))
+#define GET_BANK_SIDE2(bank)((GET_BANK_IDENTITY(bank) & BIT_SIDE))
 
 #define BATTLE_TYPE_DOUBLE          0x0001
 #define BATTLE_TYPE_LINK            0x0002
@@ -43,7 +54,7 @@
 #define BATTLE_TYPE_PALACE          0x20000
 #define BATTLE_TYPE_ARENA           0x40000
 #define BATTLE_TYPE_FACTORY         0x80000
-#define BATTLE_TYPE_x100000         0x100000
+#define BATTLE_TYPE_PIKE            0x100000
 #define BATTLE_TYPE_PYRAMID         0x200000
 #define BATTLE_TYPE_INGAME_PARTNER  0x400000
 #define BATTLE_TYPE_x800000         0x800000
@@ -52,13 +63,18 @@
 #define BATTLE_TYPE_x4000000        0x4000000
 #define BATTLE_TYPE_SECRET_BASE     0x8000000
 #define BATTLE_TYPE_GROUDON         0x10000000
-#define BATTLE_TYPE_KYORGE          0x20000000
+#define BATTLE_TYPE_KYOGRE          0x20000000
 #define BATTLE_TYPE_RAYQUAZA        0x40000000
+#define BATTLE_TYPE_x80000000       0x80000000
 
+#define TRAINER_OPPONENT_3FE        0x3FE
+#define TRAINER_OPPONENT_C00        0xC00
+#define TRAINER_OPPONENT_800        0x800
 #define STEVEN_PARTNER_ID           0xC03
 #define SECRET_BASE_OPPONENT        0x400
 
-#define BATTLE_TYPE_FRONTIER        (BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_DOME | BATTLE_TYPE_PALACE | BATTLE_TYPE_ARENA | BATTLE_TYPE_FACTORY | BATTLE_TYPE_x100000 | BATTLE_TYPE_PYRAMID)
+#define BATTLE_TYPE_FRONTIER                (BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_DOME | BATTLE_TYPE_PALACE | BATTLE_TYPE_ARENA | BATTLE_TYPE_FACTORY | BATTLE_TYPE_PIKE | BATTLE_TYPE_PYRAMID)
+#define BATTLE_TYPE_FRONTIER_NO_PYRAMID     (BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_DOME | BATTLE_TYPE_PALACE | BATTLE_TYPE_ARENA | BATTLE_TYPE_FACTORY | BATTLE_TYPE_PIKE)
 
 #define BATTLE_WON                  0x1
 #define BATTLE_LOST                 0x2
@@ -67,8 +83,13 @@
 #define BATTLE_PLAYER_TELEPORTED    0x5
 #define BATTLE_POKE_FLED            0x6
 #define BATTLE_CAUGHT               0x7
+#define BATTLE_SAFARI_OUT_OF_BALLS  0x8
+#define BATTLE_FORFEITED            0x9
 #define BATTLE_OPPONENT_TELEPORTED  0xA
 
+#define OUTCOME_LINK_BATTLE_RUN      0x80
+
+#define STATUS_NONE             0x0
 #define STATUS_SLEEP            0x7
 #define STATUS_POISON           0x8
 #define STATUS_BURN             0x10
@@ -111,8 +132,8 @@
 #define STATUS3_MINIMIZED               0x100
 #define STATUS3_ROOTED                  0x400
 #define STATUS3_CHARGED_UP              0x200
-#define STATUS3_YAWN                    0x1800  //two bits
-#define STATUS3_IMPRISONED_OTHERS      0x2000
+#define STATUS3_YAWN                    0x1800  // two bits
+#define STATUS3_IMPRISONED_OTHERS       0x2000
 #define STATUS3_GRUDGE                  0x4000
 #define STATUS3_CANT_SCORE_A_CRIT       0x8000
 #define STATUS3_MUDSPORT                0x10000
@@ -123,6 +144,7 @@
 
 #define STATUS3_SEMI_INVULNERABLE       ((STATUS3_UNDERGROUND | STATUS3_ON_AIR | STATUS3_UNDERWATER))
 
+#define HITMARKER_x10                   0x00000010
 #define HITMARKER_x20                   0x00000020
 #define HITMARKER_DESTINYBOND           0x00000040
 #define HITMARKER_NO_ANIMATIONS         0x00000080
@@ -133,6 +155,7 @@
 #define HITMARKER_PURSUIT_TRAP          0x00001000
 #define HITMARKER_IGNORE_SAFEGUARD      0x00002000
 #define HITMARKER_SYNCHRONISE_EFFECT    0x00004000
+#define HITMARKER_RUN                   0x00008000
 #define HITMARKER_IGNORE_ON_AIR         0x00010000
 #define HITMARKER_IGNORE_UNDERGROUND    0x00020000
 #define HITMARKER_IGNORE_UNDERWATER     0x00040000
@@ -143,6 +166,7 @@
 #define HITMARKER_x800000               0x00800000
 #define HITMARKER_GRUDGE                0x01000000
 #define HITMARKER_OBEYS                 0x02000000
+#define HITMARKER_x4000000              0x04000000
 #define HITMARKER_x8000000              0x08000000
 #define HITMARKER_FAINTED(bank)         ((gBitTable[bank] << 0x1C))
 #define HITMARKER_UNK(bank)             ((0x10000000 << bank))
@@ -156,28 +180,21 @@
 #define SIDE_STATUS_MIST             (1 << 8)
 #define SIDE_STATUS_SPIKES_DAMAGED   (1 << 9)
 
-#define ABILITYEFFECT_ON_SWITCHIN               0x0
-#define ABILITYEFFECT_ENDTURN                   0x1
-#define ABILITYEFFECT_MOVES_BLOCK               0x2
-#define ABILITYEFFECT_ABSORBING                 0x3
-#define ABILITYEFFECT_CONTACT                   0x4
-#define ABILITYEFFECT_IMMUNITY                  0x5
-#define ABILITYEFFECT_FORECAST                  0x6
-#define ABILITYEFFECT_SYNCHRONIZE               0x7
-#define ABILITYEFFECT_ATK_SYNCHRONIZE           0x8
-#define ABILITYEFFECT_INTIMIDATE1               0x9
-#define ABILITYEFFECT_INTIMIDATE2               0xA
-#define ABILITYEFFECT_TRACE                     0xB
-#define ABILITYEFFECT_CHECK_OTHER_SIDE          0xC
-#define ABILITYEFFECT_CHECK_BANK_SIDE           0xD
-#define ABILITYEFFECT_FIELD_SPORT               0xE
-#define ABILITYEFFECT_CHECK_FIELD_EXCEPT_BANK   0xF
-#define ABILITYEFFECT_COUNT_OTHER_SIDE          0x10
-#define ABILITYEFFECT_COUNT_BANK_SIDE           0x11
-#define ABILITYEFFECT_COUNT_ON_FIELD            0x12
-#define ABILITYEFFECT_CHECK_ON_FIELD            0x13
-
-#define WEATHER_HAS_EFFECT ((!AbilityBattleEffects(ABILITYEFFECT_CHECK_ON_FIELD, 0, ABILITY_CLOUD_NINE, 0, 0) && !AbilityBattleEffects(ABILITYEFFECT_CHECK_ON_FIELD, 0, ABILITY_AIR_LOCK, 0, 0)))
+#define ACTION_USE_MOVE             0
+#define ACTION_USE_ITEM             1
+#define ACTION_SWITCH               2
+#define ACTION_RUN                  3
+#define ACTION_WATCHES_CAREFULLY    4
+#define ACTION_SAFARI_ZONE_BALL     5
+#define ACTION_POKEBLOCK_CASE       6
+#define ACTION_GO_NEAR              7
+#define ACTION_SAFARI_ZONE_RUN      8
+#define ACTION_9                    9
+#define ACTION_RUN_BATTLESCRIPT     10 // when executing an action
+#define ACTION_CANCEL_PARTNER       12 // when choosing an action
+#define ACTION_FINISHED             12 // when executing an action
+#define ACTION_NOTHING_FAINTED      13 // when choosing an action
+#define ACTION_INIT_VALUE           0xFF
 
 #define MOVESTATUS_MISSED             (1 << 0)
 #define MOVESTATUS_SUPEREFFECTIVE     (1 << 1)
@@ -213,16 +230,22 @@
 #define BATTLE_TERRAIN_UNDERWATER   3
 #define BATTLE_TERRAIN_WATER        4
 #define BATTLE_TERRAIN_POND         5
-#define BATTLE_TERRAIN_ROCK         6
+#define BATTLE_TERRAIN_MOUNTAIN     6
 #define BATTLE_TERRAIN_CAVE         7
+#define BATTLE_TERRAIN_BUILDING     8
+#define BATTLE_TERRAIN_PLAIN        9
 
 // array entries for battle communication
-#define MULTIUSE_STATE      0x0
-#define CURSOR_POSITION     0x1
-#define TASK_ID             0x1 // task Id and cursor position share the same field
-#define MOVE_EFFECT_BYTE    0x3
-#define MULTISTRING_CHOOSER 0x5
-#define MSG_DISPLAY         0x7
+#define MULTIUSE_STATE          0x0
+#define CURSOR_POSITION         0x1
+#define TASK_ID                 0x1 // task Id and cursor position share the same field
+#define SPRITES_INIT_STATE1     0x1 // shares the Id as well
+#define SPRITES_INIT_STATE2     0x2
+#define MOVE_EFFECT_BYTE        0x3
+#define ACTIONS_CONFIRMED_COUNT 0x4
+#define MULTISTRING_CHOOSER     0x5
+#define MSG_DISPLAY             0x7
+#define BATTLE_COMMUNICATION_ENTRIES_COUNT  0x8
 
 #define MOVE_TARGET_SELECTED        0x0
 #define MOVE_TARGET_DEPENDS         0x1
@@ -233,14 +256,26 @@
 #define MOVE_TARGET_FOES_AND_ALLY   0x20
 #define MOVE_TARGET_OPPONENTS_FIELD 0x40
 
+// defines for the u8 array gTypeEffectiveness
+#define TYPE_EFFECT_ATK_TYPE(i)((gTypeEffectiveness[i + 0]))
+#define TYPE_EFFECT_DEF_TYPE(i)((gTypeEffectiveness[i + 1]))
+#define TYPE_EFFECT_MULTIPLIER(i)((gTypeEffectiveness[i + 2]))
+
+// defines for the gTypeEffectiveness multipliers
 #define TYPE_MUL_NO_EFFECT          0
 #define TYPE_MUL_NOT_EFFECTIVE      5
 #define TYPE_MUL_NORMAL             10
 #define TYPE_MUL_SUPER_EFFECTIVE    20
 
+// special type table Ids
+#define TYPE_FORESIGHT  0xFE
+#define TYPE_ENDTABLE   0xFF
+
 #define BS_GET_TARGET                   0
 #define BS_GET_ATTACKER                 1
 #define BS_GET_EFFECT_BANK              2
+#define BS_GET_gBank1   3
+#define BS_GET_BANK_0   7
 #define BS_ATTACKER_WITH_PARTNER        4 // for atk98_status_icon_update
 #define BS_GET_ATTACKER_SIDE            8 // for atk1E_jumpifability
 #define BS_GET_NOT_ATTACKER_SIDE        9 // for atk1E_jumpifability
@@ -259,42 +294,44 @@
 
 struct TrainerMonNoItemDefaultMoves
 {
-    u16 species;
+    u16 iv;
     u8 lvl;
-    u16 evsValue;
+    u16 species;
 };
+
+u8 GetBankSide(u8 bank);
 
 struct TrainerMonItemDefaultMoves
 {
-    u16 species;
+    u16 iv;
     u8 lvl;
-    u16 evsValue;
+    u16 species;
     u16 heldItem;
 };
 
 struct TrainerMonNoItemCustomMoves
 {
-    u16 species;
+    u16 iv;
     u8 lvl;
-    u16 evsValue;
+    u16 species;
     u16 moves[4];
 };
 
 struct TrainerMonItemCustomMoves
 {
-    u16 species;
+    u16 iv;
     u8 lvl;
-    u16 evsValue;
+    u16 species;
     u16 heldItem;
     u16 moves[4];
 };
 
 union TrainerMonPtr
 {
-    struct TrainerMonNoItemDefaultMoves* NoItemDefaultMoves;
-    struct TrainerMonNoItemCustomMoves* NoItemCustomMoves;
-    struct TrainerMonItemDefaultMoves* ItemDefaultMoves;
-    struct TrainerMonItemCustomMoves* ItemCustomMoves;
+    struct TrainerMonNoItemDefaultMoves *NoItemDefaultMoves;
+    struct TrainerMonNoItemCustomMoves *NoItemCustomMoves;
+    struct TrainerMonItemDefaultMoves *ItemDefaultMoves;
+    struct TrainerMonItemCustomMoves *ItemCustomMoves;
 };
 
 struct Trainer
@@ -311,9 +348,6 @@ struct Trainer
     /*0x24*/ union TrainerMonPtr party;
 };
 
-#define PARTY_FLAG_CUSTOM_MOVES     0x1
-#define PARTY_FLAG_HAS_ITEM         0x2
-
 extern const struct Trainer gTrainers[];
 
 #define TRAINER_ENCOUNTER_MUSIC(trainer)((gTrainers[trainer].encounterMusic_gender & 0x7F))
@@ -327,7 +361,7 @@ struct UnknownFlags
 
 struct DisableStruct
 {
-    /*0x00*/ u32 unk0;
+    /*0x00*/ u32 transformedMonPersonality;
     /*0x04*/ u16 disabledMove;
     /*0x06*/ u16 encoredMove;
     /*0x08*/ u8 protectUses;
@@ -339,11 +373,11 @@ struct DisableStruct
     /*0x0D*/ u8 unkD;
     /*0x0E*/ u8 encoreTimer1 : 4;
     /*0x0E*/ u8 encoreTimer2 : 4;
-    /*0x0F*/ u8 perishSong1 : 4;
-    /*0x0F*/ u8 perishSong2 : 4;
+    /*0x0F*/ u8 perishSongTimer1 : 4;
+    /*0x0F*/ u8 perishSongTimer2 : 4;
     /*0x10*/ u8 furyCutterCounter;
-    /*0x11*/ u8 rolloutTimer1 : 4;
-    /*0x11*/ u8 rolloutTimer2 : 4;
+    /*0x11*/ u8 rolloutCounter1 : 4;
+    /*0x11*/ u8 rolloutCounter2 : 4;
     /*0x12*/ u8 chargeTimer1 : 4;
     /*0x12*/ u8 chargeTimer2 : 4;
     /*0x13*/ u8 tauntTimer1:4;
@@ -375,7 +409,7 @@ struct ProtectStruct
     u32 prlzImmobility:1;
     /* field_1 */
     u32 confusionSelfDmg:1;
-    u32 notEffective:1;
+    u32 targetNotAffected:1;
     u32 chargingTurn:1;
     u32 fleeFlag:2; // for RunAway and Smoke Ball
     u32 usedImprisionedMove:1;
@@ -481,7 +515,7 @@ struct BattleHistory
     struct UsedMoves usedMoves[BATTLE_BANKS_COUNT];
     u8 abilities[BATTLE_BANKS_COUNT];
     u8 itemEffects[BATTLE_BANKS_COUNT];
-    u16 TrainerItems[BATTLE_BANKS_COUNT];
+    u16 trainerItems[BATTLE_BANKS_COUNT];
     u8 itemsNo;
 };
 
@@ -533,25 +567,23 @@ struct BattleResults
     u8 unk3;                  // 0x3
     u8 unk4;                  // 0x4
     u8 unk5_0:1;              // 0x5
-    u8 unk5_1:1;              // 0x5
+    u8 usedMasterBall:1;      // 0x5
     u8 caughtMonBall:4;       // 0x5
     u8 unk5_6:1;              // 0x5
     u8 unk5_7:1;              // 0x5
-    u16 poke1Species;         // 0x6
-    u8 pokeString1[10];       // 0x8
-    u8 unk12;
+    u16 playerMon1Species;    // 0x6
+    u8 playerMon1Name[11];    // 0x8
     u8 battleTurnCounter;     // 0x13
-    u8 pokeString2[10];       // 0x14
-    u8 field_1E;              // 0x1E
+    u8 playerMon2Name[11];    // 0x14
     u8 field_1F;              // 0x1F
     u16 lastOpponentSpecies;  // 0x20
-    u16 lastUsedMove;         // 0x22
-    u16 opponentMove;         // 0x24
-    u16 opponentSpecies;      // 0x26
+    u16 lastUsedMovePlayer;   // 0x22
+    u16 lastUsedMoveOpponent; // 0x24
+    u16 playerMon2Species;    // 0x26
     u16 caughtMonSpecies;     // 0x28
     u8 caughtMonNick[10];     // 0x2A
     u8 filler34[2];
-    u8 catchAttempts[10];     // 0x36
+    u8 catchAttempts[11];     // 0x36
 };
 
 extern struct BattleResults gBattleResults;
@@ -578,22 +610,22 @@ struct BattleStruct
     u8 field_45;
     u8 field_46;
     u8 field_47;
-    u8 field_48;
+    u8 focusPunchBank;
     u8 field_49;
     u8 moneyMultiplier;
-    u8 field_4B;
-    u8 field_4C;
-    u8 field_4D;
-    u8 field_4E;
+    u8 savedTurnActionNumber;
+    u8 switchInAbilitiesCounter;
+    u8 faintedActionsState;
+    u8 faintedActionsBank;
     u8 field_4F;
     u16 expValue;
     u8 field_52;
     u8 sentInPokes;
-    u8 field_54[4];
+    bool8 selectionScriptFinished[BATTLE_BANKS_COUNT];
     u8 field_58[4];
-    u8 field_5C[4];
+    u8 monToSwitchIntoId[BATTLE_BANKS_COUNT];
     u8 field_60[4][3];
-    u8 field_6C;
+    u8 runTries;
     u8 caughtMonNick[11];
     u8 field_78;
     u8 field_79;
@@ -603,27 +635,24 @@ struct BattleStruct
     u8 field_7D;
     u8 field_7E;
     u8 formToChangeInto;
-    u8 chosenMovesIds[4];
-    u8 field_84;
-    u8 field_85;
-    u8 field_86;
-    u8 field_87;
+    u8 chosenMovePositions[BATTLE_BANKS_COUNT];
+    u8 stateIdAfterSelScript[BATTLE_BANKS_COUNT];
     u8 field_88;
     u8 field_89;
     u8 field_8A;
     u8 field_8B;
     u8 field_8C;
     u8 field_8D;
-    u8 field_8E;
+    u8 stringMoveType;
     u8 expGetterBank;
     u8 field_90;
     u8 field_91;
     u8 field_92;
     u8 field_93;
-    u8 field_94;
-    u8 field_95;
-    u8 field_96;
-    u8 field_97;
+    u8 wallyBattleState;
+    u8 wallyMovesState;
+    u8 wallyWaitFrames;
+    u8 wallyMoveFrames;
     u8 mirrorMoves[8]; // ask gamefreak why they declared it that way
     u8 field_A0;
     u8 field_A1;
@@ -633,34 +662,40 @@ struct BattleStruct
     u8 field_A5;
     u8 field_A6;
     u8 field_A7;
-    u16 hpOnSwitchout[4];
+    u16 hpOnSwitchout[2];
+    u32 savedBattleTypeFlags;
     u8 field_B0;
     u8 hpScale;
     u8 synchronizeMoveEffect;
     u8 field_B3;
-    u8 field_B4;
-    u8 field_B5;
-    u8 field_B6;
-    u8 field_B7;
+    void (*savedCallback)(void);
     u16 usedHeldItems[BATTLE_BANKS_COUNT];
-    u8 field_C0[8];
+    u8 chosenItem[4]; // why is this an u8?
+    u8 AI_itemType[2];
+    u8 AI_itemFlags[2];
     u16 choicedMove[BATTLE_BANKS_COUNT];
     u16 changedItems[BATTLE_BANKS_COUNT];
     u8 intimidateBank;
-    u8 fillerD9[0xDA-0xD9];
+    u8 switchInItemsCounter;
     u8 field_DA;
     u8 turnSideTracker;
     u8 fillerDC[0xDF-0xDC];
     u8 field_DF;
     u8 mirrorMoveArrays[32];
-    u16 castformPalette[4][16];
-    u8 field_180[32];
-    u8 field_1A0;
-    u8 field_1A1;
-    u8 filler1A2;
+    u16 castformPalette[BATTLE_BANKS_COUNT][16];
+    u8 field_180;
+    u8 field_181;
+    u8 field_182;
+    u8 field_183;
+    struct BattleEnigmaBerry battleEnigmaBerry;
+    u8 wishPerishSongState;
+    u8 wishPerishSongBank;
+    bool8 overworldWeatherDone;
     u8 atkCancellerTracker;
-    u8 field_1A4[240];
-    u8 field_294[4];
+    u8 field_1A4[96];
+    u8 field_204[104];
+    u8 field_26C[40];
+    u8 AI_monToSwitchIntoId[BATTLE_BANKS_COUNT];
     u8 field_298[8];
     u8 field_2A0;
     u8 field_2A1;
@@ -668,13 +703,6 @@ struct BattleStruct
 };
 
 extern struct BattleStruct* gBattleStruct;
-
-#define MEME_ACCESS_U8(structName, structPtr, arrayId, offsetField, value)      \
-{                                                                               \
-    u8* var2 = (u8*)((u32)(arrayId));                                           \
-    var2 = (u32)(structPtr) + var2;                                             \
-    var2[offsetof(struct structName, offsetField)] = value;                     \
-}
 
 #define GET_MOVE_TYPE(move, typeArg)                        \
 {                                                           \
@@ -750,73 +778,13 @@ extern struct BattleStruct* gBattleStruct;
 #define MOVE_EFFECT_AFFECTS_USER        0x40
 #define MOVE_EFFECT_CERTAIN             0x80
 
-// battle animations ids
-
-#define B_ANIM_CASTFORM_CHANGE      0x0
-#define B_ANIM_STATS_CHANGE         0x1
-#define B_ANIM_SUBSTITUTE_FADE      0x2
-#define B_ANIM_SUBSTITUTE_APPEAR    0x3
-#define B_ANIM_x4                   0x4
-#define B_ANIM_ITEM_KNOCKOFF        0x5
-#define B_ANIM_TURN_TRAP            0x6
-#define B_ANIM_ITEM_EFFECT          0x7
-#define B_ANIM_SMOKEBALL_ESCAPE     0x8
-#define B_ANIM_HANGED_ON            0x9
-#define B_ANIM_RAIN_CONTINUES       0xA
-#define B_ANIM_SUN_CONTINUES        0xB
-#define B_ANIM_SANDSTORM_CONTINUES  0xC
-#define B_ANIM_HAIL_CONTINUES       0xD
-#define B_ANIM_LEECH_SEED_DRAIN     0xE
-#define B_ANIM_MON_HIT              0xF
-#define B_ANIM_ITEM_STEAL           0x10
-#define B_ANIM_SNATCH_MOVE          0x11
-#define B_ANIM_FUTURE_SIGHT_HIT     0x12
-#define B_ANIM_x13                  0x13
-#define B_ANIM_x14                  0x14
-#define B_ANIM_INGRAIN_HEAL         0x15
-#define B_ANIM_WISH_HEAL            0x16
-#define B_ANIM_x17                  0x17
-#define B_ANIM_x18                  0x18
-#define B_ANIM_x19                  0x19
-#define B_ANIM_x1A                  0x1A
-#define B_ANIM_x1B                  0x1B
-#define B_ANIM_x1C                  0x1C
-#define B_ANIM_x1D                  0x1D
-
-#define ATK48_STAT_NEGATIVE         0x1
-#define ATK48_STAT_BY_TWO           0x2
-#define ATK48_BIT_x4                0x4
-#define ATK48_LOWER_FAIL_CHECK      0x8
-
-#define ATK4F_DONT_CHECK_STATUSES   0x80
-
-#define VARIOUS_CANCEL_MULTI_TURN_MOVES         0
-#define VARIOUS_SET_MAGIC_COAT_TARGET           1
-#define VARIOUS_GET_MOVE_TARGET                 3
-#define VARIOUS_RESET_INTIMIDATE_TRACE_BITS     5
-#define VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP    6
-#define VARIOUS_WAIT_CRY                        18
-#define VARIOUS_RETURN_OPPONENT_MON1            19
-#define VARIOUS_RETURN_OPPONENT_MON2            20
-#define VARIOUS_SET_TELEPORT_OUTCOME            25
-#define VARIOUS_PLAY_TRAINER_DEFEATED_MUSIC     26
-
-#define ATK80_DMG_CHANGE_SIGN                               0
-#define ATK80_DMG_HALF_BY_TWO_NOT_MORE_THAN_HALF_MAX_HP     1
-#define ATK80_DMG_DOUBLED                                   2
-
 #define GET_STAT_BUFF_ID(n)((n & 0xF))              // first four bits 0x1, 0x2, 0x4, 0x8
 #define GET_STAT_BUFF_VALUE(n)(((n >> 4) & 7))      // 0x10, 0x20, 0x40
 #define STAT_BUFF_NEGATIVE 0x80                     // 0x80, the sign bit
 
-#define STAT_CHANGE_BS_PTR                  0x1
-#define STAT_CHANGE_NOT_PROTECT_AFFECTED    0x20
-
-#define STAT_CHANGE_WORKED      0
-#define STAT_CHANGE_DIDNT_WORK  1
-
-#define SET_STAT_BUFF_ID(n)((n & 0xF))
 #define SET_STAT_BUFF_VALUE(n)(((s8)(((s8)(n) << 4)) & 0xF0))
+
+#define SET_STATCHANGER(statId, stage, goesDown)(gBattleScripting.statChanger = (statId) + (stage << 4) + (goesDown << 7))
 
 struct BattleScripting
 {
@@ -824,120 +792,158 @@ struct BattleScripting
     s32 bideDmg;
     u8 multihitString[6];
     u8 dmgMultiplier;
-    u8 field_F;
+    u8 twoTurnsMoveStringId;
     u8 animArg1;
     u8 animArg2;
-    u8 field_12;
-    u8 field_13;
+    u16 tripleKickPower;
     u8 atk49_state;
-    u8 field_15;
-    u8 field_16;
+    u8 bankWithAbility;
+    u8 multihitMoveEffect;
     u8 bank;
     u8 animTurn;
     u8 animTargetsHit;
     u8 statChanger;
     u8 field_1B;
     u8 atk23_state;
-    u8 field_1D;
+    u8 battleStyle;
     u8 atk6C_state;
     u8 learnMoveState;
     u8 field_20;
+    u8 reshowMainState;
+    u8 reshowHelperState;
+    u8 field_23;
+    u8 field_24;
+    u8 multiplayerId;
 };
 
 extern struct BattleScripting gBattleScripting;
 
-// functions
-
-// battle_2
-void CancelMultiTurnMoves(u8 bank);
-void PressurePPLose(u8 bankAtk, u8 bankDef, u16 move);
-void PrepareStringBattle(u16 stringId, u8 bank);
-u8 GetBattleBank(u8 caseId);
-void UndoEffectsAfterFainting(void);
-bool8 HasMoveFailed(u8 bank);
-void SwitchInClearStructs(void);
-void sub_803BDA0(u8 bank);
-void sub_803FA70(u8 bank);
-void BattleMainCB2(void);
-void VBlankCB_Battle(void);
-void ResetSentPokesToOpponentValue(void);
-bool8 CanRunFromBattle(u8 bank);
-bool8 IsRunningFromBattleImpossible(void);
-void PressurePPLoseOnUsingPerishSong(u8 bankAtk);
-void PressurePPLoseOnUsingImprision(u8 bankAtk);
-
-// battle_3
-#define MOVE_LIMITATION_ZEROMOVE    (1 << 0)
-#define MOVE_LIMITATION_PP          (1 << 1)
-#define MOVE_LIMITATION_DISABLED    (1 << 2)
-#define MOVE_LIMITATION_TORMENTED   (1 << 3)
-#define MOVE_LIMITATION_TAUNT       (1 << 4)
-#define MOVE_LIMITATION_IMPRISION   (1 << 5)
-
-void BattleScriptPush(const u8* bsPtr);
-void BattleScriptPushCursor(void);
-void BattleScriptPop(void);
-u8 sub_803FB4C(void);  // msg, can't select a move
-u8 CheckMoveLimitations(u8 bank, u8 unusableMoves, u8 check);
-bool8 AreAllMovesUnusable(void);
-u8 GetImprisonedMovesCount(u8 bank, u16 move);
-u8 UpdateTurnCounters(void);
-u8 TurnBasedEffects(void);
-bool8 sub_8041364(void);
-bool8 sub_8041728(void);
-void b_clear_atk_up_if_hit_flag_unless_enraged(void);
-u8 AtkCanceller_UnableToUseMove(void);
-bool8 sub_80423F4(u8 bank, u8 r1, u8 r2);
-u8 CastformDataTypeChange(u8 bank);
-u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg);
-void BattleScriptExecute(const u8* BS_ptr);
-void BattleScriptPushCursorAndCallback(const u8* BS_ptr);
-u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn);
-void sub_8045868(u8 bank);
-void sub_80458B4(void);
-u8 GetMoveTarget(u16 move, u8 useMoveTarget);
-u8 IsPokeDisobedient(void);
-
-// battle_script_commands
-void AI_CalcDmg(u8 bankAtk, u8 bankDef);
-u8 TypeCalc(u16 move, u8 bankAtk, u8 bankDef);
-u8 AI_TypeCalc(u16 move, u16 species, u8 ability);
-u8 BankGetTurnOrder(u8 bank);
-void SetMoveEffect(bool8 primary, u8 certain);
-void BattleDestroyCursorAt(u8 cursorPosition);
-void BattleCreateCursorAt(u8 cursorPosition);
-void BufferMoveToLearnIntoBattleTextBuff2(void);
-void sub_8056A3C(u8 xStart, u8 yStart, u8 xEnd, u8 yEnd, u8 flags);
-bool8 UproarWakeUpCheck(u8 bank);
-
-extern void (* const gBattleScriptingCommandsTable[])(void);
-extern const u8 gUnknown_0831C494[];
-
-// battle_5
-void AdjustFriendshipOnBattleFaint(u8 bank);
-void sub_80571DC(u8 bank, u8 arg1);
-u32 sub_805725C(u8 bank);
-
-// battle 7
-void BattleMusicStop(void);
-void sub_805E990(struct Pokemon* mon, u8 bank);
+enum
+{
+    BACK_PIC_BRENDAN,
+    BACK_PIC_MAY,
+    BACK_PIC_RED,
+    BACK_PIC_LEAF,
+    BACK_PIC_RS_BRENDAN,
+    BACK_PIC_RS_MAY,
+    BACK_PIC_WALLY,
+    BACK_PIC_STEVEN
+};
 
 // rom_80A5C6C
 u8 GetBankSide(u8 bank);
 u8 GetBankIdentity(u8 bank);
 u8 GetBankByIdentity(u8 bank);
 
+struct BattleSpriteInfo
+{
+    u16 invisible : 1; // 0x1
+    u16 lowHpSong : 1; // 0x2
+    u16 behindSubstitute : 1; // 0x4
+    u16 flag_x8 : 1; // 0x8
+    u16 hpNumbersNoBars : 1; // 0x10
+    u16 transformSpecies;
+};
+
+struct BattleAnimationInfo
+{
+    u16 animArg; // to fill up later
+    u8 field_2;
+    u8 field_3;
+    u8 field_4;
+    u8 field_5;
+    u8 field_6;
+    u8 field_7;
+    u8 ballThrowCaseId;
+    u8 field_9_x1 : 1;
+    u8 field_9_x2 : 1;
+    u8 field_9_x1C : 3;
+    u8 field_9_x20 : 1;
+    u8 field_9_x40 : 1;
+    u8 field_9_x80 : 1;
+    u8 field_A;
+    u8 field_B;
+    u8 field_C;
+    u8 field_D;
+    u8 field_E;
+    u8 field_F;
+};
+
+struct BattleHealthboxInfo
+{
+    u8 flag_x1 : 1;
+    u8 flag_x2 : 1;
+    u8 flag_x4 : 1;
+    u8 ballAnimActive : 1; // 0x8
+    u8 statusAnimActive : 1; // x10
+    u8 animFromTableActive : 1; // x20
+    u8 specialAnimActive : 1; //x40
+    u8 flag_x80 : 1;
+    u8 field_1_x1 : 1;
+    u8 field_1_x1E : 4;
+    u8 field_1_x20 : 1;
+    u8 field_1_x40 : 1;
+    u8 field_1_x80 : 1;
+    u8 field_2;
+    u8 field_3;
+    u8 animationState;
+    u8 field_5;
+    u8 field_6;
+    u8 shadowSpriteId;
+    u8 field_8;
+    u8 field_9;
+    u8 field_A;
+    u8 field_B;
+};
+
+struct BattleBarInfo
+{
+    u8 healthboxSpriteId;
+    s32 maxValue;
+    s32 currentValue;
+    s32 receivedValue;
+    s32 field_10;
+};
+
+struct BattleSpriteData
+{
+    struct BattleSpriteInfo *bankData;
+    struct BattleHealthboxInfo *healthBoxesData;
+    struct BattleAnimationInfo *animationData;
+    struct BattleBarInfo *battleBars;
+};
+
+extern struct BattleSpriteData *gBattleSpritesDataPtr;
+
+#define BATTLE_BUFFER_LINK_SIZE 0x1000
+
+extern u8 *gLinkBattleSendBuffer;
+extern u8 *gLinkBattleRecvBuffer;
+
+extern u8 *gUnknown_0202305C;
+extern u8 *gUnknown_02023060;
+
 // Move this somewhere else
 
 #include "sprite.h"
 
-struct BattleSpritesGfx
+struct MonSpritesGfx
 {
     void* firstDecompressed; // ptr to the decompressed sprite of the first pokemon
     void* sprites[4];
     struct SpriteTemplate templates[4];
+    struct SpriteFrameImage field_74[4][4];
+    u8 field_F4[0x80];
+    u8 *barFontGfx;
+    void *field_178;
+    void *field_17C;
 };
 
-extern struct BattleSpritesGfx* gBattleSpritesGfx;
+extern struct BattleSpritesGfx* gMonSpritesGfx;
+extern u8 gBattleOutcome;
+extern u16 gLastUsedItem;
+extern u32 gBattleTypeFlags;
+extern struct MonSpritesGfx* gMonSpritesGfxPtr;
+extern u16 gTrainerBattleOpponent_A;
 
 #endif // GUARD_BATTLE_H

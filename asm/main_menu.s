@@ -119,11 +119,11 @@ InitMainMenu: @ 802F6F4
 	str r0, [r1, 0x8]
 	ldr r0, [r1, 0x8]
 	bl ResetPaletteFade
-	ldr r0, =gUnknown_082FF0A0
+	ldr r0, =gMainMenuBgPal
 	movs r1, 0
 	movs r2, 0x20
 	bl LoadPalette
-	ldr r0, =gUnknown_082FF0C0
+	ldr r0, =gMainMenuTextPal
 	movs r1, 0xF0
 	movs r2, 0x20
 	bl LoadPalette
@@ -1914,7 +1914,7 @@ task_new_game_prof_birch_speech_1: @ 80307B0
 	movs r0, 0x54
 	movs r1, 0
 	bl SetGpuReg
-	ldr r0, =gUnknown_082FED3C
+	ldr r0, =gBirchIntroShadowGfx
 	movs r1, 0xC0
 	lsls r1, 19
 	bl LZ77UnCompVram
@@ -2215,7 +2215,7 @@ sub_8030A70: @ 8030A70
 	str r2, [sp, 0x10]
 	movs r2, 0x70
 	movs r3, 0x3A
-	bl sub_8076438
+	bl CreatePokeballSpriteToReleaseMon
 	lsls r0, r4, 2
 	adds r0, r4
 	lsls r0, 3
@@ -3025,7 +3025,7 @@ task_new_game_prof_birch_speech_part2_4: @ 8031188
 	push {r4,r5,lr}
 	lsls r0, 24
 	lsrs r5, r0, 24
-	bl sub_8198C58
+	bl ProcessMenuInputNoWrap_
 	lsls r0, 24
 	asrs r1, r0, 24
 	cmp r1, 0
@@ -3679,7 +3679,7 @@ new_game_prof_birch_speech_part2_start: @ 8031678
 	str r0, [r1, 0x8]
 	ldr r0, [r1, 0x8]
 	bl ResetPaletteFade
-	ldr r0, =gUnknown_082FED3C
+	ldr r0, =gBirchIntroShadowGfx
 	adds r1, r4, 0
 	bl LZ77UnCompVram
 	ldr r0, =gUnknown_082FEEF0
@@ -3689,7 +3689,7 @@ new_game_prof_birch_speech_part2_start: @ 8031678
 	movs r1, 0
 	movs r2, 0x40
 	bl LoadPalette
-	ldr r0, =gUnknown_082FF01A
+	ldr r0, =gUnknown_082FF018+2
 	movs r1, 0x1
 	movs r2, 0x10
 	bl LoadPalette
@@ -3948,7 +3948,7 @@ AddBirchSpeechObjects: @ 803192C
 	movs r1, 0x78
 	movs r2, 0x3C
 	movs r3, 0
-	bl sub_80B5E6C
+	bl CreateTrainerSprite
 	lsls r0, 24
 	lsrs r0, 24
 	lsls r2, r0, 4
@@ -3981,7 +3981,7 @@ AddBirchSpeechObjects: @ 803192C
 	movs r1, 0x78
 	movs r2, 0x3C
 	movs r3, 0
-	bl sub_80B5E6C
+	bl CreateTrainerSprite
 	lsls r0, 24
 	lsrs r0, 24
 	lsls r2, r0, 4
@@ -4459,11 +4459,11 @@ set_default_player_name: @ 8031DC4
 	adds r5, r1, 0
 	cmp r0, 0
 	bne _08031DE4
-	ldr r1, =gUnknown_082FF128
+	ldr r1, =gMalePresetNames
 	b _08031DE6
 	.pool
 _08031DE4:
-	ldr r1, =gUnknown_082FF178
+	ldr r1, =gFemalePresetNames
 _08031DE6:
 	lsls r0, r2, 2
 	adds r0, r1

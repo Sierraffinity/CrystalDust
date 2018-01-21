@@ -1,6 +1,6 @@
 #include "global.h"
 #include "new_game.h"
-#include "rng.h"
+#include "random.h"
 #include "pokemon.h"
 #include "roamer.h"
 #include "pokemon_size_record.h"
@@ -17,6 +17,7 @@
 #include "easy_chat.h"
 #include "event_data.h"
 #include "money.h"
+#include "tv.h"
 #include "coins.h"
 #include "text.h"
 
@@ -28,15 +29,13 @@ extern u8 gUnknown_030060B0;
 // TODO: replace those declarations with file headers
 extern u16 GetGeneratedTrainerIdLower(void);
 extern void ClearContestWinnerPicsInContestHall(void);
-extern void warp1_set(s8 mapBank, s8 mapNo, s8 warpNo, s8 xPos, s8 yPos);
+extern void Overworld_SetWarpDestination(s8 mapBank, s8 mapNo, s8 warpNo, s8 xPos, s8 yPos);
 extern void warp_in(void);
 extern void sub_80BB358(void);
 extern void ResetBagScrollPositions(void);
-extern void sub_813624C(void); // clears something pokeblock related
 extern void ResetPokedex(void);
 extern void sub_8084400(void);
 extern void ClearMailData(void);
-extern void ClearTVShowData(void);
 extern void ResetGabbyAndTy(void);
 extern void ResetSecretBases(void);
 extern void ResetLinkContestBoolean(void);
@@ -59,7 +58,7 @@ extern void ResetContestLinkResults(void);
 extern void ResetPokeJumpResults(void);
 extern void SetBerryPowder(u32* powder, u32 newValue);
 
-extern u8 gUnknown_082715DE[];
+extern u8 EventScript_2715DE[];
 
 void WriteUnalignedWord(u32 var, u8 *dataPtr)
 {
@@ -131,7 +130,7 @@ void sub_8084400(void)
 
 void WarpToTruck(void)
 {
-    warp1_set(25, 40, -1, -1, -1); // inside of truck
+    Overworld_SetWarpDestination(25, 40, -1, -1, -1); // inside of truck
     warp_in();
 }
 
@@ -148,7 +147,7 @@ void sub_808447C(void)
     ZeroPlayerPartyMons();
     ZeroEnemyPartyMons();
     ResetBagScrollPositions();
-    sub_813624C();
+    ResetPokeblockScrollPositions();
 }
 
 void NewGameInitData(void)
@@ -198,7 +197,7 @@ void NewGameInitData(void)
     ResetFanClub();
     ResetLotteryCorner();
     WarpToTruck();
-    ScriptContext2_RunNewScript(gUnknown_082715DE);
+    ScriptContext2_RunNewScript(EventScript_2715DE);
     ResetMiniGamesResults();
     copy_strings_to_sav1();
 	SetLilycoveLady();

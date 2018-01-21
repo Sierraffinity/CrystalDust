@@ -120,10 +120,6 @@ union AffineAnimCmd
     {.jump = {.type = AFFINEANIMCMDTYPE_JUMP, .target = _target}}
 #define AFFINEANIMCMD_END \
     {.type = AFFINEANIMCMDTYPE_END}
-#define AFFINEANIMCMD_LOOP(_count) \
-    {.loop = {.type = AFFINEANIMCMDTYPE_LOOP, .count = _count}}
-#define AFFINEANIMCMD_JUMP(_target) \
-    {.jump = {.type = AFFINEANIMCMDTYPE_JUMP, .target = _target}}
 
 struct AffineAnimState
 {
@@ -195,14 +191,7 @@ struct Sprite
     /*0x2D*/ u8 animLoopCounter;
 
     // general purpose data fields
-    /*0x2E*/ s16 data0;
-    /*0x30*/ s16 data1;
-    /*0x32*/ s16 data2;
-    /*0x34*/ s16 data3;
-    /*0x36*/ s16 data4;
-    /*0x38*/ s16 data5;
-    /*0x3A*/ s16 data6;
-    /*0x3C*/ s16 data7;
+    /*0x2E*/ s16 data[8];
 
     /*0x3E*/ u16 inUse:1;               //1
              u16 coordOffsetEnabled:1;  //2
@@ -212,14 +201,14 @@ struct Sprite
              u16 flags_5:1;             //0x20
              u16 flags_6:1;             //0x40
              u16 flags_7:1;             //0x80
-    /*0x3F*/ u16 hFlip:1;
-             u16 vFlip:1;
-             u16 animBeginning:1;
-             u16 affineAnimBeginning:1;
-             u16 animEnded:1;
-             u16 affineAnimEnded:1;
-             u16 usingSheet:1;
-             u16 flags_f:1;
+    /*0x3F*/ u16 hFlip:1;               //1
+             u16 vFlip:1;               //2
+             u16 animBeginning:1;       //4
+             u16 affineAnimBeginning:1; //8
+             u16 animEnded:1;           //0x10
+             u16 affineAnimEnded:1;     //0x20
+             u16 usingSheet:1;          //0x40
+             u16 flags_f:1;             //0x80
 
     /*0x40*/ u16 sheetTileStart;
 
@@ -251,7 +240,7 @@ void BuildOamBuffer(void);
 u8 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 u8 CreateSpriteAtEnd(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 u8 CreateInvisibleSprite(void (*callback)(struct Sprite *));
-u8 CreateSpriteAndAnimate(struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
+u8 CreateSpriteAndAnimate(const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 void DestroySprite(struct Sprite *sprite);
 void ResetOamRange(u8 a, u8 b);
 void LoadOam(void);

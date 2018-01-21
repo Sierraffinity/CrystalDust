@@ -5,9 +5,9 @@
 
 	.text
 
-	thumb_func_start Multichoice
-@ bool8 Multichoice(u8 x, u8 y, u8 menuId, bool8 noCancelling)
-Multichoice: @ 80E1E08
+	thumb_func_start ScriptMenu_Multichoice
+@ bool8 ScriptMenu_Multichoice(u8 x, u8 y, u8 menuId, bool8 noCancelling)
+ScriptMenu_Multichoice: @ 80E1E08
 	push {r4-r7,lr}
 	sub sp, 0x4
 	lsls r0, 24
@@ -24,7 +24,7 @@ Multichoice: @ 80E1E08
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _080E1E4C
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	movs r1, 0xFF
 	strh r1, [r0]
 	movs r0, 0
@@ -44,10 +44,10 @@ _080E1E4E:
 	pop {r4-r7}
 	pop {r1}
 	bx r1
-	thumb_func_end Multichoice
+	thumb_func_end ScriptMenu_Multichoice
 
-	thumb_func_start sub_80E1E58
-sub_80E1E58: @ 80E1E58
+	thumb_func_start ScriptMenu_MultichoiceWithDefault
+ScriptMenu_MultichoiceWithDefault: @ 80E1E58
 	push {r4-r7,lr}
 	mov r7, r8
 	push {r7}
@@ -70,7 +70,7 @@ sub_80E1E58: @ 80E1E58
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _080E1EA8
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0xFF
 	strh r0, [r1]
 	str r4, [sp]
@@ -91,7 +91,7 @@ _080E1EAA:
 	pop {r4-r7}
 	pop {r1}
 	bx r1
-	thumb_func_end sub_80E1E58
+	thumb_func_end ScriptMenu_MultichoiceWithDefault
 
 	thumb_func_start sub_80E1EB8
 sub_80E1EB8: @ 80E1EB8
@@ -358,13 +358,13 @@ _080E20B8:
 	bne _080E20FC
 	movs r0, 0x5
 	bl PlaySE
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x7F
 	strh r0, [r1]
 	b _080E20EC
 	.pool
 _080E20E8:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r1, [r0]
 _080E20EC:
 	ldrb r0, [r5, 0xC]
@@ -379,8 +379,8 @@ _080E20FC:
 	.pool
 	thumb_func_end sub_80E2058
 
-	thumb_func_start yes_no_box
-yes_no_box: @ 80E2108
+	thumb_func_start ScriptMenu_YesNo
+ScriptMenu_YesNo: @ 80E2108
 	push {r4,lr}
 	ldr r4, =task_yes_no_maybe
 	adds r0, r4, 0
@@ -389,7 +389,7 @@ yes_no_box: @ 80E2108
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _080E2138
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0xFF
 	strh r0, [r1]
 	bl sub_8197930
@@ -405,12 +405,12 @@ _080E213A:
 	pop {r4}
 	pop {r1}
 	bx r1
-	thumb_func_end yes_no_box
+	thumb_func_end ScriptMenu_YesNo
 
 	thumb_func_start sub_80E2140
 sub_80E2140: @ 80E2140
 	push {lr}
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldrh r0, [r0]
 	cmp r0, 0xFF
 	beq _080E2154
@@ -444,7 +444,7 @@ task_yes_no_maybe: @ 80E215C
 	b _080E21C4
 	.pool
 _080E2180:
-	bl sub_8198C58
+	bl ProcessMenuInputNoWrap_
 	lsls r0, 24
 	asrs r1, r0, 24
 	movs r0, 0x1
@@ -465,12 +465,12 @@ _080E219C:
 _080E21A4:
 	movs r0, 0x5
 	bl PlaySE
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 	b _080E21B8
 	.pool
 _080E21B4:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 _080E21B8:
 	strh r0, [r1]
@@ -485,8 +485,8 @@ _080E21C4:
 	.pool
 	thumb_func_end task_yes_no_maybe
 
-	thumb_func_start sub_80E21D0
-sub_80E21D0: @ 80E21D0
+	thumb_func_start ScriptMenu_MultichoiceGrid
+ScriptMenu_MultichoiceGrid: @ 80E21D0
 	push {r4-r7,lr}
 	mov r7, r10
 	mov r6, r9
@@ -517,7 +517,7 @@ sub_80E21D0: @ 80E21D0
 	b _080E22E8
 	.pool
 _080E2210:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	movs r1, 0xFF
 	strh r1, [r0]
 	movs r2, 0
@@ -627,7 +627,7 @@ _080E22E8:
 	pop {r1}
 	bx r1
 	.pool
-	thumb_func_end sub_80E21D0
+	thumb_func_end ScriptMenu_MultichoiceGrid
 
 	thumb_func_start sub_80E2308
 sub_80E2308: @ 80E2308
@@ -655,13 +655,13 @@ sub_80E2308: @ 80E2308
 	bne _080E2360
 	movs r0, 0x5
 	bl PlaySE
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x7F
 	strh r0, [r1]
 	b _080E2350
 	.pool
 _080E234C:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r1, [r0]
 _080E2350:
 	ldrb r0, [r5, 0xC]
@@ -686,7 +686,7 @@ sp109_CreatePCMenu: @ 80E236C
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _080E2394
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0xFF
 	strh r0, [r1]
 	bl CreatePCMenu
@@ -893,7 +893,7 @@ sub_80E2548: @ 80E2548
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _080E2570
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0xFF
 	strh r0, [r1]
 	bl sub_80E2578
@@ -1266,7 +1266,7 @@ _080E2860:
 	thumb_func_start sub_80E2878
 sub_80E2878: @ 80E2878
 	push {lr}
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldrh r0, [r2]
 	cmp r0, 0x7F
 	beq _080E288C
@@ -1334,8 +1334,8 @@ _080E28F8:
 	bx r0
 	thumb_func_end task_picbox
 
-	thumb_func_start sub_80E2900
-sub_80E2900: @ 80E2900
+	thumb_func_start ScriptMenu_ShowPokemonPic
+ScriptMenu_ShowPokemonPic: @ 80E2900
 	push {r4-r7,lr}
 	mov r7, r8
 	push {r7}
@@ -1422,10 +1422,10 @@ _080E29BA:
 	pop {r4-r7}
 	pop {r1}
 	bx r1
-	thumb_func_end sub_80E2900
+	thumb_func_end ScriptMenu_ShowPokemonPic
 
-	thumb_func_start picbox_close
-picbox_close: @ 80E29C4
+	thumb_func_start ScriptMenu_GetPicboxWaitFunc
+ScriptMenu_GetPicboxWaitFunc: @ 80E29C4
 	push {lr}
 	ldr r0, =task_picbox
 	bl FindTaskIdByFunc
@@ -1449,7 +1449,7 @@ _080E29F4:
 _080E29F6:
 	pop {r1}
 	bx r1
-	thumb_func_end picbox_close
+	thumb_func_end ScriptMenu_GetPicboxWaitFunc
 
 	thumb_func_start sub_80E29FC
 sub_80E29FC: @ 80E29FC
@@ -1648,7 +1648,7 @@ sp106_CreateStartMenu: @ 80E2B7C
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _080E2BA4
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0xFF
 	strh r0, [r1]
 	bl CreateStartMenu

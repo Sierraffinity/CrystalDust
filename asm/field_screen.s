@@ -2725,13 +2725,13 @@ sub_80AC594: @ 80AC594
 	ldrb r0, [r0]
 	cmp r0, 0x1
 	beq _080AC650
-	ldr r0, =gUnknown_0854FB5C
+	ldr r0, =sCloudSpriteSheet
 	bl LoadSpriteSheet
 	ldr r0, =gUnknown_0854C290
 	bl sub_80ABF4C
 	movs r5, 0
 _080AC5B2:
-	ldr r0, =gUnknown_0854FB78
+	ldr r0, =sCloudSpriteTemplate
 	movs r1, 0
 	movs r2, 0
 	movs r3, 0xFF
@@ -3676,7 +3676,7 @@ sub_80ACD78: @ 80ACD78
 	b _080ACE98
 _080ACD92:
 	ldrb r7, [r2]
-	ldr r0, =gUnknown_0854FC2C
+	ldr r0, =gSpriteTemplate_854FC2C
 	ldr r2, =gUnknown_0854FB90
 	lsls r6, r7, 2
 	adds r2, r6, r2
@@ -5461,7 +5461,7 @@ sub_80ADCAC: @ 80ADCAC
 	bl LoadSpriteSheet
 	movs r5, 0
 _080ADCD0:
-	ldr r0, =gUnknown_0854FD18
+	ldr r0, =gSpriteTemplate_854FD18
 	movs r1, 0
 	movs r2, 0
 	movs r3, 0xFF
@@ -5792,7 +5792,7 @@ sub_80ADF6C: @ 80ADF6C
 	bne _080AE008
 	movs r5, 0
 _080ADF80:
-	ldr r0, =gUnknown_0854FD58
+	ldr r0, =gSpriteTemplate_854FD58
 	movs r1, 0
 	movs r2, 0
 	movs r3, 0x4E
@@ -6240,7 +6240,7 @@ _080AE314:
 	adds r5, r0, 0
 	lsls r2, r5, 22
 	asrs r2, 16
-	ldr r0, =gUnknown_0854FD8C
+	ldr r0, =gSpriteTemplate_854FD8C
 	movs r1, 0
 	movs r3, 0xFF
 	bl CreateSpriteAtEnd
@@ -6753,7 +6753,7 @@ _080AE758:
 	adds r6, r0, 0
 	lsls r2, r6, 22
 	asrs r2, 16
-	ldr r0, =gUnknown_0854FDC4
+	ldr r0, =gSpriteTemplate_854FDC4
 	movs r1, 0
 	movs r3, 0x1
 	bl CreateSpriteAtEnd
@@ -6840,7 +6840,7 @@ _080AE818:
 	adds r1, 0x18
 	lsls r1, 16
 	asrs r1, 16
-	ldr r0, =gUnknown_0854FDC4
+	ldr r0, =gSpriteTemplate_854FDC4
 	movs r2, 0xD0
 	movs r3, 0x1
 	bl CreateSpriteAtEnd
@@ -7239,7 +7239,7 @@ sub_80AEB48: @ 80AEB48
 	ldrh r2, [r0]
 	ldrh r0, [r1]
 	subs r2, r0
-	ldr r0, =gUnknown_0854FE44
+	ldr r0, =gSpriteTemplate_854FE44
 	movs r4, 0
 	ldrsh r1, [r3, r4]
 	lsls r2, 16
@@ -7306,7 +7306,7 @@ _080AEBE4:
 	adds r0, 0x14
 	adds r0, r2, r0
 	ldr r1, [r0]
-	ldr r0, =gUnknown_0854FE44
+	ldr r0, =gSpriteTemplate_854FE44
 	cmp r1, r0
 	bne _080AEBFE
 	adds r0, r2, r5
@@ -7332,8 +7332,8 @@ _080AEC1A:
 	.pool
 	thumb_func_end sub_80AEBD0
 
-	thumb_func_start unc_0807DAB4
-unc_0807DAB4: @ 80AEC34
+	thumb_func_start sub_80AEC34
+sub_80AEC34: @ 80AEC34
 	push {lr}
 	adds r1, r0, 0
 	ldrh r0, [r1, 0x2E]
@@ -7383,7 +7383,7 @@ _080AEC74:
 _080AEC8E:
 	pop {r0}
 	bx r0
-	thumb_func_end unc_0807DAB4
+	thumb_func_end sub_80AEC34
 
 	thumb_func_start sub_80AEC94
 sub_80AEC94: @ 80AEC94
@@ -7503,8 +7503,8 @@ _080AED78:
 	bx r0
 	thumb_func_end bag_add_task0_by_acit
 
-	thumb_func_start sub_80AED7C
-sub_80AED7C: @ 80AED7C
+	thumb_func_start SetSav1Weather
+SetSav1Weather: @ 80AED7C
 	push {r4,r5,lr}
 	ldr r4, =gSaveBlock1Ptr
 	ldr r1, [r4]
@@ -7525,17 +7525,17 @@ sub_80AED7C: @ 80AED7C
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_80AED7C
+	thumb_func_end SetSav1Weather
 
-	thumb_func_start sav1_get_weather_probably
-sav1_get_weather_probably: @ 80AEDAC
+	thumb_func_start GetSav1Weather
+GetSav1Weather: @ 80AEDAC
 	ldr r0, =gSaveBlock1Ptr
 	ldr r0, [r0]
 	adds r0, 0x2E
 	ldrb r0, [r0]
 	bx lr
 	.pool
-	thumb_func_end sav1_get_weather_probably
+	thumb_func_end GetSav1Weather
 
 	thumb_func_start sub_80AEDBC
 sub_80AEDBC: @ 80AEDBC
@@ -7564,8 +7564,8 @@ sub_80AEDBC: @ 80AEDBC
 	thumb_func_start sub_80AEDF0
 sub_80AEDF0: @ 80AEDF0
 	push {lr}
-	bl sub_80AED7C
-	bl sav1_get_weather_probably
+	bl SetSav1Weather
+	bl GetSav1Weather
 	lsls r0, 24
 	lsrs r0, 24
 	bl weather_set
@@ -7576,8 +7576,8 @@ sub_80AEDF0: @ 80AEDF0
 	thumb_func_start sub_80AEE08
 sub_80AEE08: @ 80AEE08
 	push {lr}
-	bl sub_80AED7C
-	bl sav1_get_weather_probably
+	bl SetSav1Weather
+	bl GetSav1Weather
 	lsls r0, 24
 	lsrs r0, 24
 	bl sub_80AB104
@@ -7585,10 +7585,10 @@ sub_80AEE08: @ 80AEE08
 	bx r0
 	thumb_func_end sub_80AEE08
 
-	thumb_func_start sub_80AEE20
-sub_80AEE20: @ 80AEE20
+	thumb_func_start DoCurrentWeather
+DoCurrentWeather: @ 80AEE20
 	push {r4,r5,lr}
-	bl sav1_get_weather_probably
+	bl GetSav1Weather
 	lsls r0, 24
 	lsrs r4, r0, 24
 	cmp r4, 0xF
@@ -7627,12 +7627,12 @@ _080AEE6E:
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_80AEE20
+	thumb_func_end DoCurrentWeather
 
 	thumb_func_start sub_80AEE84
 sub_80AEE84: @ 80AEE84
 	push {r4,r5,lr}
-	bl sav1_get_weather_probably
+	bl GetSav1Weather
 	lsls r0, 24
 	lsrs r4, r0, 24
 	cmp r4, 0xF
@@ -7777,8 +7777,8 @@ _080AEFB6:
 	bx r1
 	thumb_func_end sub_80AEEE8
 
-	thumb_func_start sub_80AEFBC
-sub_80AEFBC: @ 80AEFBC
+	thumb_func_start UpdateWeatherPerDay
+UpdateWeatherPerDay: @ 80AEFBC
 	lsls r0, 16
 	ldr r1, =gSaveBlock1Ptr
 	ldr r2, [r1]
@@ -7794,7 +7794,7 @@ sub_80AEFBC: @ 80AEFBC
 	strb r1, [r2]
 	bx lr
 	.pool
-	thumb_func_end sub_80AEFBC
+	thumb_func_end UpdateWeatherPerDay
 
 	thumb_func_start sub_80AEFDC
 sub_80AEFDC: @ 80AEFDC
@@ -7975,7 +7975,7 @@ _080AF120:
 sub_80AF128: @ 80AF128
 	push {lr}
 	bl ScriptContext2_Enable
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_black
 	ldr r0, =task0A_nop_for_a_while
 	movs r1, 0xA
@@ -8006,7 +8006,7 @@ _080AF160:
 sub_80AF168: @ 80AF168
 	push {lr}
 	bl ScriptContext2_Enable
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_black
 	ldr r0, =task0A_asap_script_env_2_enable_and_set_ctx_running
 	movs r1, 0xA
@@ -8092,7 +8092,7 @@ _080AF20E:
 sub_80AF214: @ 80AF214
 	push {lr}
 	bl ScriptContext2_Enable
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl palette_bg_faded_fill_black
 	ldr r0, =task_mpl_807DD60
 	movs r1, 0xA
@@ -8220,7 +8220,7 @@ _080AF30C:
 sub_80AF314: @ 80AF314
 	push {lr}
 	bl ScriptContext2_Enable
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl palette_bg_faded_fill_black
 	ldr r0, =sub_80AF234
 	movs r1, 0xA
@@ -8279,7 +8279,7 @@ _080AF37E:
 	thumb_func_start mapldr_default
 mapldr_default: @ 80AF398
 	push {lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_for_maplights
 	bl sub_80AF334
 	bl ScriptContext2_Enable
@@ -8290,7 +8290,7 @@ mapldr_default: @ 80AF398
 	thumb_func_start sub_80AF3B0
 sub_80AF3B0: @ 80AF3B0
 	push {lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl sub_80AF08C
 	bl sub_80AF334
 	bl ScriptContext2_Enable
@@ -8304,7 +8304,7 @@ sub_80AF3C8: @ 80AF3C8
 	bl sub_81D6534
 	cmp r0, 0
 	bne _080AF3D6
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 _080AF3D6:
 	bl pal_fill_black
 	bl sub_80AF334
@@ -8316,7 +8316,7 @@ _080AF3D6:
 	thumb_func_start sub_80AF3E8
 sub_80AF3E8: @ 80AF3E8
 	push {lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_for_maplights
 	movs r0, 0x2E
 	bl PlaySE
@@ -8332,7 +8332,7 @@ sub_80AF3E8: @ 80AF3E8
 	thumb_func_start sub_80AF40C
 sub_80AF40C: @ 80AF40C
 	push {lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_for_maplights
 	movs r0, 0x2E
 	bl PlaySE
@@ -8382,7 +8382,7 @@ _080AF46C:
 _080AF480:
 	movs r0, 0
 	bl sub_80AF0F4
-	bl player_bitmagic
+	bl FreezeMapObjects
 	adds r0, r6, 0
 	adds r1, r7, 0
 	bl PlayerGetDestCoords
@@ -8390,7 +8390,7 @@ _080AF480:
 	ldrsh r0, [r6, r1]
 	movs r2, 0
 	ldrsh r1, [r7, r2]
-	bl sub_808A854
+	bl FieldSetDoorOpened
 	movs r0, 0x1
 	strh r0, [r5, 0x8]
 	b _080AF54A
@@ -8427,7 +8427,7 @@ _080AF4DC:
 	ldrsh r0, [r6, r1]
 	movs r2, 0
 	ldrsh r1, [r7, r2]
-	bl sub_808A8AC
+	bl FieldAnimateDoorClose
 	lsls r0, 24
 	asrs r0, 24
 	strh r0, [r5, 0xA]
@@ -8461,7 +8461,7 @@ _080AF520:
 	cmp r0, 0x1
 	beq _080AF54A
 _080AF536:
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	movs r0, 0x4
 	strh r0, [r5, 0x8]
 	b _080AF54A
@@ -8508,7 +8508,7 @@ _080AF580:
 _080AF58A:
 	movs r0, 0
 	bl sub_80AF0F4
-	bl player_bitmagic
+	bl FreezeMapObjects
 	adds r0, r6, 0
 	adds r1, r7, 0
 	bl PlayerGetDestCoords
@@ -8550,7 +8550,7 @@ _080AF5EC:
 	lsls r0, 24
 	cmp r0, 0
 	beq _080AF60A
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	movs r0, 0x3
 	strh r0, [r5, 0x8]
 	b _080AF60A
@@ -8583,7 +8583,7 @@ task_map_chg_seq_0807E2CC: @ 80AF610
 	b _080AF65A
 	.pool
 _080AF634:
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl ScriptContext2_Enable
 	ldrh r0, [r4, 0x8]
 	adds r0, 0x1
@@ -8593,7 +8593,7 @@ _080AF644:
 	bl sub_80AF71C
 	cmp r0, 0
 	beq _080AF65A
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	bl ScriptContext2_Disable
 	adds r0, r5, 0
 	bl DestroyTask
@@ -8680,7 +8680,7 @@ sub_80AF6D4: @ 80AF6D4
 sub_80AF6F0: @ 80AF6F0
 	push {lr}
 	bl ScriptContext2_Enable
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_black
 	ldr r0, =task_mpl_807E3C8
 	movs r1, 0xA
@@ -9010,7 +9010,7 @@ _080AF9C8:
 	strh r0, [r4]
 	b _080AF9E8
 _080AF9D0:
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _080AF9E8
@@ -9062,7 +9062,7 @@ _080AFA34:
 	beq _080AFA6C
 	b _080AFA7C
 _080AFA3A:
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl ScriptContext2_Enable
 	b _080AFA64
 _080AFA44:
@@ -9133,7 +9133,7 @@ _080AFAC0:
 	.4byte _080AFBB8
 	.4byte _080AFBD4
 _080AFAD4:
-	bl player_bitmagic
+	bl FreezeMapObjects
 	adds r0, r4, 0
 	adds r1, r6, 0
 	bl PlayerGetDestCoords
@@ -9142,7 +9142,7 @@ _080AFAD4:
 	movs r2, 0
 	ldrsh r1, [r6, r2]
 	subs r1, 0x1
-	bl cur_mapdata_get_door_sound_at
+	bl GetDoorSoundEffect
 	lsls r0, 16
 	lsrs r0, 16
 	bl PlaySE
@@ -9151,7 +9151,7 @@ _080AFAD4:
 	movs r2, 0
 	ldrsh r1, [r6, r2]
 	subs r1, 0x1
-	bl task_overworld_door_add_if_role_69_for_opening_door_at
+	bl FieldAnimateDoorOpen
 	lsls r0, 24
 	asrs r0, 24
 	strh r0, [r5, 0xA]
@@ -9211,7 +9211,7 @@ _080AFB6C:
 	movs r2, 0
 	ldrsh r1, [r6, r2]
 	subs r1, 0x1
-	bl sub_808A8AC
+	bl FieldAnimateDoorClose
 	lsls r0, 24
 	asrs r0, 24
 	strh r0, [r5, 0xA]
@@ -9290,7 +9290,7 @@ _080AFC1C:
 	beq _080AFC46
 	b _080AFC56
 _080AFC22:
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl ScriptContext2_Enable
 	b _080AFC3E
 _080AFC2C:
@@ -9877,7 +9877,7 @@ sub_80B009C: @ 80B009C
 	lsls r0, 24
 	lsrs r0, 24
 	adds r4, r0, 0
-	bl sav1_get_flash_used_on_map
+	bl Overworld_GetFlashLevel
 	lsls r0, 24
 	lsrs r0, 24
 	movs r5, 0
@@ -9982,7 +9982,7 @@ task0A_mpl_807E31C: @ 80B0160
 	b _080B01B6
 	.pool
 _080B0184:
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl ScriptContext2_Enable
 	bl sub_808D194
 	ldrh r0, [r4, 0x8]
@@ -9996,7 +9996,7 @@ _080B0198:
 	bl sub_808D1B4
 	cmp r0, 0x1
 	beq _080B01B6
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	bl ScriptContext2_Disable
 	adds r0, r5, 0
 	bl DestroyTask
@@ -10033,7 +10033,7 @@ _080B01E4:
 	beq _080B022A
 	b _080B023A
 _080B01EE:
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl ScriptContext2_Enable
 	movs r0, 0x2D
 	bl PlaySE
@@ -10424,7 +10424,7 @@ sub_80B0534: @ 80B0534
 	lsls r1, 3
 	ldr r0, =gTasks + 0x8
 	adds r1, r0
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldrh r0, [r0]
 	cmp r0, 0
 	bne _080B0568

@@ -8,10 +8,13 @@
 #define gPaletteFade_delay            (gPaletteFade.multipurpose2) // normal and hardware fade
 #define gPaletteFade_submode          (gPaletteFade.multipurpose2) // fast fade
 
+#define PLTT_BUFFER_SIZE 0x200
+#define PLTT_DECOMP_BUFFER_SIZE (PLTT_BUFFER_SIZE * 2)
+
 enum
 {
     FAST_FADE_IN_FROM_WHITE,
-    FAST_FADE_OUT_TO_WHTIE,
+    FAST_FADE_OUT_TO_WHITE,
     FAST_FADE_IN_FROM_BLACK,
     FAST_FADE_OUT_TO_BLACK,
 };

@@ -17,11 +17,11 @@ EWRAM_DATA u16 gSpecialVar_0x8008 = 0;
 EWRAM_DATA u16 gSpecialVar_0x8009 = 0;
 EWRAM_DATA u16 gSpecialVar_0x800A = 0;
 EWRAM_DATA u16 gSpecialVar_0x800B = 0;
-EWRAM_DATA u16 gScriptResult = 0;
-EWRAM_DATA u16 gScriptLastTalked = 0;
-EWRAM_DATA u16 gScriptFacing = 0;
-EWRAM_DATA u16 gSpecialVar_0x8012 = 0;
-EWRAM_DATA u16 gSpecialVar_0x8013 = 0;
+EWRAM_DATA u16 gSpecialVar_Result = 0;
+EWRAM_DATA u16 gSpecialVar_LastTalked = 0;
+EWRAM_DATA u16 gSpecialVar_Facing = 0;
+EWRAM_DATA u16 gSpecialVar_MonBoxId = 0;
+EWRAM_DATA u16 gSpecialVar_MonBoxPos = 0;
 EWRAM_DATA u16 gSpecialVar_0x8014 = 0;
 EWRAM_DATA static u8 gUnknown_020375FC[16] = {0};
 
@@ -40,11 +40,11 @@ void ClearTempFieldEventData(void)
 {
     memset(gSaveBlock1Ptr->flags, 0, TEMP_FLAGS_SIZE);
     memset(gSaveBlock1Ptr->vars, 0, TEMP_VARS_SIZE);
-    FlagReset(SYS_ENC_UP_ITEM);
-    FlagReset(SYS_ENC_DOWN_ITEM);
-    FlagReset(SYS_USE_STRENGTH);
-    FlagReset(SYS_CTRL_OBJ_DELETE);
-    FlagReset(SYS_UNKNOWN_880);
+    FlagClear(FLAG_SYS_ENC_UP_ITEM);
+    FlagClear(FLAG_SYS_ENC_DOWN_ITEM);
+    FlagClear(FLAG_SYS_USE_STRENGTH);
+    FlagClear(FLAG_SYS_CTRL_OBJ_DELETE);
+    FlagClear(FLAG_0x880);
 }
 
 // probably had different flag splits at one point.
@@ -58,7 +58,7 @@ void DisableNationalPokedex(void)
     u16 *nationalDexVar = GetVarPointer(VAR_NATIONAL_DEX);
     gSaveBlock2Ptr->pokedex.nationalMagic = 0;
     *nationalDexVar = 0;
-    FlagReset(SYS_NATIONAL_DEX);
+    FlagClear(FLAG_SYS_NATIONAL_DEX);
 }
 
 void EnableNationalPokedex(void)
@@ -66,7 +66,7 @@ void EnableNationalPokedex(void)
     u16 *nationalDexVar = GetVarPointer(VAR_NATIONAL_DEX);
     gSaveBlock2Ptr->pokedex.nationalMagic = 0xDA;
     *nationalDexVar = 0x302;
-    FlagSet(SYS_NATIONAL_DEX);
+    FlagSet(FLAG_SYS_NATIONAL_DEX);
     gSaveBlock2Ptr->pokedex.unknown1 = 1;
     gSaveBlock2Ptr->pokedex.order = 0;
     sub_80BB358();
@@ -74,7 +74,7 @@ void EnableNationalPokedex(void)
 
 bool32 IsNationalPokedexEnabled(void)
 {
-    if (gSaveBlock2Ptr->pokedex.nationalMagic == 0xDA && VarGet(VAR_NATIONAL_DEX) == 0x302 && FlagGet(SYS_NATIONAL_DEX))
+    if (gSaveBlock2Ptr->pokedex.nationalMagic == 0xDA && VarGet(VAR_NATIONAL_DEX) == 0x302 && FlagGet(FLAG_SYS_NATIONAL_DEX))
         return TRUE;
     else
         return FALSE;
@@ -82,52 +82,52 @@ bool32 IsNationalPokedexEnabled(void)
 
 void DisableMysteryEvent(void)
 {
-    FlagReset(SYS_MYSTERY_EVENT_ENABLE);
+    FlagClear(FLAG_SYS_MYSTERY_EVENT_ENABLE);
 }
 
 void EnableMysteryEvent(void)
 {
-    FlagSet(SYS_MYSTERY_EVENT_ENABLE);
+    FlagSet(FLAG_SYS_MYSTERY_EVENT_ENABLE);
 }
 
 bool32 IsMysteryEventEnabled(void)
 {
-    return FlagGet(SYS_MYSTERY_EVENT_ENABLE);
+    return FlagGet(FLAG_SYS_MYSTERY_EVENT_ENABLE);
 }
 
 void DisableMysteryGift(void)
 {
-    FlagReset(SYS_MYSTERY_GIFT_ENABLE);
+    FlagClear(FLAG_SYS_MYSTERY_GIFT_ENABLE);
 }
 
 void EnableMysteryGift(void)
 {
-    FlagSet(SYS_MYSTERY_GIFT_ENABLE);
+    FlagSet(FLAG_SYS_MYSTERY_GIFT_ENABLE);
 }
 
 bool32 IsMysteryGiftEnabled(void)
 {
-    return FlagGet(SYS_MYSTERY_GIFT_ENABLE);
+    return FlagGet(FLAG_SYS_MYSTERY_GIFT_ENABLE);
 }
 
 void sub_809D4D8(void)
 {
-    FlagReset(0x1E4);
-    FlagReset(0x1E5);
-    FlagReset(0x1E6);
-    FlagReset(0x1E7);
-    FlagReset(0x1E8);
-    FlagReset(0x1E9);
-    FlagReset(0x1EA);
-    FlagReset(0x1EB);
-    FlagReset(0x1EC);
-    FlagReset(0x1ED);
-    FlagReset(0x1EE);
-    FlagReset(0x1EF);
-    FlagReset(0x1F0);
-    FlagReset(0x1F1);
-    FlagReset(0x1F2);
-    FlagReset(0x1F3);
+    FlagClear(0x1E4);
+    FlagClear(0x1E5);
+    FlagClear(0x1E6);
+    FlagClear(0x1E7);
+    FlagClear(0x1E8);
+    FlagClear(0x1E9);
+    FlagClear(0x1EA);
+    FlagClear(0x1EB);
+    FlagClear(0x1EC);
+    FlagClear(0x1ED);
+    FlagClear(0x1EE);
+    FlagClear(0x1EF);
+    FlagClear(0x1F0);
+    FlagClear(0x1F1);
+    FlagClear(0x1F2);
+    FlagClear(0x1F3);
 }
 
 void sub_809D570(void)
@@ -145,18 +145,18 @@ void sub_809D570(void)
 void DisableResetRTC(void)
 {
     VarSet(VAR_RESET_RTC_ENABLE, 0);
-    FlagReset(SYS_RESET_RTC_ENABLE);
+    FlagClear(FLAG_SYS_RESET_RTC_ENABLE);
 }
 
 void EnableResetRTC(void)
 {
     VarSet(VAR_RESET_RTC_ENABLE, 0x920);
-    FlagSet(SYS_RESET_RTC_ENABLE);
+    FlagSet(FLAG_SYS_RESET_RTC_ENABLE);
 }
 
 bool32 CanResetRTC(void)
 {
-    if (FlagGet(SYS_RESET_RTC_ENABLE) && VarGet(VAR_RESET_RTC_ENABLE) == 0x920)
+    if (FlagGet(FLAG_SYS_RESET_RTC_ENABLE) && VarGet(VAR_RESET_RTC_ENABLE) == 0x920)
         return TRUE;
     else
         return FALSE;
@@ -214,7 +214,7 @@ u8 FlagSet(u16 id)
     return 0;
 }
 
-u8 FlagReset(u16 id)
+u8 FlagClear(u16 id)
 {
     u8 *ptr = GetFlagPointer(id);
     if (ptr)

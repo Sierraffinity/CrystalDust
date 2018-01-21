@@ -5,7 +5,7 @@
 #include "load_save.h"
 #include "save.h"
 #include "new_game.h"
-#include "rom4.h"
+#include "overworld.h"
 #include "malloc.h"
 
 void sub_81700F8(void)
@@ -23,10 +23,8 @@ void sub_81700F8(void)
     ResetSaveCounters();
     sub_81534D0(0);
     if (gSaveFileStatus == 0 || gSaveFileStatus == 2)
-    {
         Sav2_ClearSetDefault();
-    }
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
-    InitHeap(gHeap, 0x1c000);
+    InitHeap(gHeap, HEAP_SIZE);
     SetMainCallback2(sub_8086230);
 }

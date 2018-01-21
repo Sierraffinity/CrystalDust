@@ -136,7 +136,7 @@ _0818EAC8:
 	.4byte _0818ECD0
 	.4byte _0818ECF4
 _0818EAF0:
-	ldr r3, =gScriptResult
+	ldr r3, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	lsls r1, r5, 1
@@ -150,7 +150,7 @@ _0818EAF0:
 	b _0818ED10
 	.pool
 _0818EB14:
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r2, [r0]
 	ldr r3, =0x00000cdc
@@ -170,7 +170,7 @@ _0818EB14:
 	b _0818ED10
 	.pool
 _0818EB48:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000d08
@@ -180,7 +180,7 @@ _0818EB48:
 	b _0818ECBE
 	.pool
 _0818EB64:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r3, =0x00000d08
@@ -190,7 +190,7 @@ _0818EB64:
 	b _0818ECBE
 	.pool
 _0818EB80:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000d08
@@ -198,7 +198,7 @@ _0818EB80:
 	b _0818ECBA
 	.pool
 _0818EB98:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r3, =0x00000d08
@@ -216,7 +216,7 @@ _0818EBB4:
 	bne _0818EC04
 	cmp r5, 0
 	beq _0818EBE8
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000d08
@@ -226,7 +226,7 @@ _0818EBB4:
 	b _0818ECBE
 	.pool
 _0818EBE8:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r3, =0x00000d08
@@ -238,7 +238,7 @@ _0818EBE8:
 _0818EC04:
 	cmp r5, 0
 	beq _0818EC24
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000d08
@@ -248,7 +248,7 @@ _0818EC04:
 	b _0818ECBE
 	.pool
 _0818EC24:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r3, =0x00000d08
@@ -266,7 +266,7 @@ _0818EC40:
 	bne _0818EC90
 	cmp r5, 0
 	beq _0818EC74
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000d08
@@ -277,7 +277,7 @@ _0818EC40:
 	b _0818ED10
 	.pool
 _0818EC74:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r3, =0x00000d08
@@ -289,7 +289,7 @@ _0818EC74:
 _0818EC90:
 	cmp r5, 0
 	beq _0818ECB0
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000d08
@@ -299,7 +299,7 @@ _0818EC90:
 	b _0818ECBE
 	.pool
 _0818ECB0:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r3, =0x00000d08
@@ -328,7 +328,7 @@ _0818ECD0:
 	b _0818ED10
 	.pool
 _0818ECF4:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r1, [r0]
 	ldr r3, =0x00000d0a
@@ -3161,9 +3161,9 @@ _0819044E:
 	ldr r0, =gUnknown_0860CEB4
 	bl InitWindows
 	bl DeactivateAllTextPrinters
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	strh r4, [r0]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r4, [r0]
 	ldr r0, =gBattle_BG1_X
 	strh r4, [r0]
@@ -3171,7 +3171,7 @@ _0819044E:
 	strh r4, [r0]
 	ldr r0, =gBattle_BG3_X
 	strh r4, [r0]
-	ldr r0, =gUnknown_02022E22
+	ldr r0, =gBattle_BG3_Y
 	strh r4, [r0]
 	mov r2, r9
 	cmp r2, 0x2
@@ -4366,10 +4366,10 @@ _08190E98:
 	ldrsh r2, [r0, r5]
 	cmp r2, 0
 	beq _08190ED4
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r1, [r0]
 	ldr r0, =gBattle_BG1_X
 	strh r1, [r0]
@@ -4379,9 +4379,9 @@ _08190E98:
 	b _08190EE6
 	.pool
 _08190ED4:
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	strh r2, [r0]
-	ldr r1, =gUnknown_02022E16
+	ldr r1, =gBattle_BG0_Y
 	movs r0, 0xA0
 	strh r0, [r1]
 	ldr r0, =gBattle_BG1_X
@@ -4765,10 +4765,10 @@ _08191234:
 	ldrsh r2, [r0, r5]
 	cmp r2, 0
 	beq _08191278
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r1, [r0]
 	ldr r0, =gBattle_BG1_X
 	strh r1, [r0]
@@ -4779,9 +4779,9 @@ _08191234:
 	b _0819128C
 	.pool
 _08191278:
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	strh r2, [r0]
-	ldr r1, =gUnknown_02022E16
+	ldr r1, =gBattle_BG0_Y
 	ldr r3, =0x0000ff60
 	adds r0, r3, 0
 	strh r0, [r1]
@@ -5157,10 +5157,10 @@ _081915CC:
 	ldrsh r2, [r0, r5]
 	cmp r2, 0
 	beq _0819160C
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r1, [r0]
 	ldr r2, =gBattle_BG1_X
 	movs r6, 0x80
@@ -5172,12 +5172,12 @@ _081915CC:
 	b _08191622
 	.pool
 _0819160C:
-	ldr r1, =gUnknown_02022E14
+	ldr r1, =gBattle_BG0_X
 	movs r3, 0x80
 	lsls r3, 1
 	adds r0, r3, 0
 	strh r0, [r1]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r2, [r0]
 	ldr r0, =gBattle_BG1_X
 	strh r2, [r0]
@@ -5457,10 +5457,10 @@ _0819187C:
 	ldrsh r2, [r0, r5]
 	cmp r2, 0
 	beq _081918BC
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r1, [r0]
 	ldr r2, =gBattle_BG1_X
 	movs r6, 0x80
@@ -5472,12 +5472,12 @@ _0819187C:
 	b _081918D2
 	.pool
 _081918BC:
-	ldr r1, =gUnknown_02022E14
+	ldr r1, =gBattle_BG0_X
 	movs r3, 0x80
 	lsls r3, 1
 	adds r0, r3, 0
 	strh r0, [r1]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r2, [r0]
 	ldr r0, =gBattle_BG1_X
 	strh r2, [r0]
@@ -5744,10 +5744,10 @@ _08191B08:
 	ldrsh r2, [r0, r5]
 	cmp r2, 0
 	beq _08191B48
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r1, [r0]
 	ldr r2, =gBattle_BG1_X
 	movs r6, 0xFF
@@ -5759,12 +5759,12 @@ _08191B08:
 	b _08191B5E
 	.pool
 _08191B48:
-	ldr r1, =gUnknown_02022E14
+	ldr r1, =gBattle_BG0_X
 	movs r3, 0xFF
 	lsls r3, 8
 	adds r0, r3, 0
 	strh r0, [r1]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r2, [r0]
 	ldr r0, =gBattle_BG1_X
 	strh r2, [r0]
@@ -6011,10 +6011,10 @@ _08191D68:
 	ldrsh r2, [r0, r5]
 	cmp r2, 0
 	beq _08191DA8
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r1, [r0]
 	ldr r2, =gBattle_BG1_X
 	movs r6, 0xFF
@@ -6026,12 +6026,12 @@ _08191D68:
 	b _08191DBE
 	.pool
 _08191DA8:
-	ldr r1, =gUnknown_02022E14
+	ldr r1, =gBattle_BG0_X
 	movs r3, 0xFF
 	lsls r3, 8
 	adds r0, r3, 0
 	strh r0, [r1]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r2, [r0]
 	ldr r0, =gBattle_BG1_X
 	strh r2, [r0]
@@ -6306,7 +6306,7 @@ _08191FF8:
 	asrs r0, 16
 	cmp r0, 0x29
 	beq _08192100
-	ldr r1, =gUnknown_02022E16
+	ldr r1, =gBattle_BG0_Y
 	ldrh r0, [r1]
 	subs r0, 0x4
 	strh r0, [r1]
@@ -6331,7 +6331,7 @@ _08192038:
 	asrs r0, 16
 	cmp r0, 0x29
 	beq _08192100
-	ldr r1, =gUnknown_02022E16
+	ldr r1, =gBattle_BG0_Y
 	ldrh r0, [r1]
 	adds r0, 0x4
 	strh r0, [r1]
@@ -6356,7 +6356,7 @@ _08192078:
 	asrs r0, 16
 	cmp r0, 0x41
 	beq _08192100
-	ldr r1, =gUnknown_02022E14
+	ldr r1, =gBattle_BG0_X
 	ldrh r0, [r1]
 	subs r0, 0x4
 	strh r0, [r1]
@@ -6385,7 +6385,7 @@ _081920BC:
 	asrs r0, 16
 	cmp r0, 0x41
 	beq _08192100
-	ldr r1, =gUnknown_02022E14
+	ldr r1, =gBattle_BG0_X
 	ldrh r0, [r1]
 	adds r0, 0x4
 	strh r0, [r1]
@@ -6956,7 +6956,7 @@ _08192574:
 	cmp r2, r0
 	bne _08192598
 	ldrb r0, [r1, 0x8]
-	bl sub_806F000
+	bl PlayerGenderToFrontTrainerPicId
 	lsls r0, 16
 	lsrs r0, 16
 	b _081925B6
@@ -6971,7 +6971,7 @@ _08192598:
 	.pool
 _081925AC:
 	ldr r0, [sp, 0x24]
-	bl sub_8162AA0
+	bl GetFrontierTrainerFrontSpriteId
 _081925B2:
 	lsls r0, 24
 	lsrs r0, 24
@@ -7383,12 +7383,12 @@ _08192932:
 	ldr r1, [sp, 0x24]
 	cmp r1, r0
 	bne _08192980
-	ldr r0, =gUnknown_0860D1D0
+	ldr r0, =gBattleDomePotentialPointers
 	ldr r0, [r0, 0x40]
 	b _0819298A
 	.pool
 _08192980:
-	ldr r0, =gUnknown_0860D1D0
+	ldr r0, =gBattleDomePotentialPointers
 	ldr r2, [sp, 0x20]
 	lsls r1, r2, 2
 	adds r1, r0
@@ -7503,7 +7503,7 @@ _08192A58:
 	cmp r7, 0x2
 	ble _081929AE
 	movs r7, 0
-	ldr r2, =gUnknown_0860D214
+	ldr r2, =gBattleDomeOpponentStylePointers
 	mov r9, r2
 	ldr r3, =gUnknown_0860C988
 	mov r10, r3
@@ -8071,7 +8071,7 @@ _08192ED0:
 	movs r7, 0x2A
 _08192ED2:
 	lsls r0, r7, 2
-	ldr r3, =gUnknown_0860D294
+	ldr r3, =gBattleDomeOpponentStatsPointers
 	adds r0, r3
 	ldr r0, [r0]
 	str r0, [sp, 0xC]
@@ -8535,7 +8535,7 @@ _081932A2:
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldrb r0, [r0, 0x8]
-	bl sub_806F000
+	bl PlayerGenderToFrontTrainerPicId
 	lsls r0, 16
 	lsrs r0, 16
 	mov r2, r8
@@ -8554,7 +8554,7 @@ _081932D4:
 _081932E4:
 	lsls r0, r1, 16
 	lsrs r0, 16
-	bl sub_8162AA0
+	bl GetFrontierTrainerFrontSpriteId
 _081932EC:
 	lsls r0, 24
 	lsrs r0, 24
@@ -8621,7 +8621,7 @@ _0819335A:
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldrb r0, [r0, 0x8]
-	bl sub_806F000
+	bl PlayerGenderToFrontTrainerPicId
 	lsls r0, 16
 	lsrs r0, 16
 	b _081933B0
@@ -8642,7 +8642,7 @@ _08193388:
 _081933A4:
 	lsls r0, r1, 16
 	lsrs r0, 16
-	bl sub_8162AA0
+	bl GetFrontierTrainerFrontSpriteId
 	lsls r0, 24
 	lsrs r0, 24
 _081933B0:
@@ -9029,7 +9029,7 @@ _081936A0:
 	movs r0, 0xD0
 	strb r0, [r1, 0xD]
 	ldr r4, =gStringVar4
-	ldr r0, =gUnknown_0860D38C
+	ldr r0, =gBattleDomeWinStringsPointers
 	ldr r7, [sp, 0x70]
 	adds r0, r7, r0
 	ldr r1, [r0]
@@ -9167,7 +9167,7 @@ _08193802:
 	bl AddTextPrinter
 	add r0, sp, 0xC
 	strb r6, [r0, 0xA]
-	ldr r0, =gUnknown_0860D350
+	ldr r0, =gBattleDomeMatchNumberPointers
 	ldr r1, [sp, 0x58]
 	adds r0, r1, r0
 	ldr r0, [r0]
@@ -10400,9 +10400,9 @@ _0819427C:
 	ldr r0, =gUnknown_0860CE94
 	bl InitWindows
 	bl DeactivateAllTextPrinters
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	strh r4, [r0]
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	strh r4, [r0]
 	ldr r0, =gBattle_BG1_X
 	strh r4, [r0]
@@ -11358,11 +11358,11 @@ sub_8194B70: @ 8194B70
 	movs r1, 0x80
 	movs r2, 0x2
 	bl ChangeBgY
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	ldrh r1, [r0]
 	movs r0, 0x10
 	bl SetGpuReg
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	ldrh r1, [r0]
 	movs r0, 0x12
 	bl SetGpuReg
@@ -11486,11 +11486,11 @@ _08194CD4:
 	thumb_func_start sub_8194CE4
 sub_8194CE4: @ 8194CE4
 	push {lr}
-	ldr r0, =gUnknown_02022E14
+	ldr r0, =gBattle_BG0_X
 	ldrh r1, [r0]
 	movs r0, 0x10
 	bl SetGpuReg
-	ldr r0, =gUnknown_02022E16
+	ldr r0, =gBattle_BG0_Y
 	ldrh r1, [r0]
 	movs r0, 0x12
 	bl SetGpuReg
@@ -11707,12 +11707,12 @@ sub_8194EC0: @ 8194EC0
 	bl sub_8195358
 	cmp r4, r0
 	ble _08194EE8
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	b _08194EEC
 	.pool
 _08194EE8:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x2
 _08194EEC:
 	strh r0, [r1]
@@ -13130,7 +13130,7 @@ _08195A74:
 	beq _08195AB0
 	b _08195AD0
 _08195A7A:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldr r1, [r5]
 	ldr r2, =0x00000dc6
 	adds r1, r2
@@ -13139,7 +13139,7 @@ _08195A7A:
 	b _08195AD0
 	.pool
 _08195A90:
-	ldr r3, =gScriptResult
+	ldr r3, =gSpecialVar_Result
 	ldr r0, [r5]
 	lsls r1, r7, 1
 	lsls r2, r6, 2
@@ -13152,7 +13152,7 @@ _08195A90:
 	b _08195AD0
 	.pool
 _08195AB0:
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	ldr r2, [r5]
 	ldr r0, =0x00000cdc
 	adds r2, r0
@@ -13285,7 +13285,7 @@ sub_8195BB0: @ 8195BB0
 	ldrh r0, [r2]
 	cmp r0, 0x31
 	bhi _08195C00
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	bl Random
 	lsls r0, 16
 	lsrs r0, 16
@@ -13297,12 +13297,12 @@ sub_8195BB0: @ 8195BB0
 _08195C00:
 	cmp r0, 0x62
 	bhi _08195C10
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x3
 	b _08195C14
 	.pool
 _08195C10:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x4
 _08195C14:
 	strh r0, [r1]
@@ -13517,12 +13517,12 @@ sub_8195DB8: @ 8195DB8
 	adds r0, r1
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r5, [r0]
 	b _08195E06
 	.pool
 _08195E00:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 	strh r0, [r1]
 _08195E06:
@@ -13641,7 +13641,7 @@ sub_8195ED8: @ 8195ED8
 	push {r4,lr}
 	ldr r4, =gMapHeader
 	ldrb r0, [r4, 0x17]
-	bl is_light_level_1_2_3_or_6
+	bl Overworld_MapTypeAllowsTeleportAndFly
 	lsls r0, 24
 	cmp r0, 0
 	beq _08195F30
@@ -13791,7 +13791,7 @@ sub_8195FF8: @ 8195FF8
 	push {r4-r6,lr}
 	adds r5, r0, 0
 	movs r4, 0
-	ldr r6, =gUnknown_085500A4
+	ldr r6, =gRematchTable
 _08196000:
 	movs r1, 0xAE
 	lsls r1, 1
@@ -13887,7 +13887,7 @@ task_prev_quest: @ 81960A8
 	cmp r0, 0
 	bne _081960C2
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl sub_808B864
 	bl sub_808BCF4
 _081960C2:
@@ -14097,7 +14097,7 @@ sub_8196274: @ 8196274
 _08196298:
 	movs r1, 0x4
 	ldrsh r0, [r4, r1]
-	ldr r1, =gUnknown_0860EF70
+	ldr r1, =gText_PokenavCallEllipsis
 	bl sub_81965D8
 	movs r0, 0x1
 _081962A4:
@@ -14296,7 +14296,7 @@ sub_81963F0: @ 81963F0
 	adds r0, r1
 	bl FieldObjectClearAnimIfSpecialAnimFinished
 	bl sub_80D338C
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	bl ScriptContext2_Disable
 _08196446:
 	movs r0, 0x1
@@ -14531,7 +14531,7 @@ sub_81965D8: @ 81965D8
 	negs r0, r0
 	ands r0, r1
 	strb r0, [r2]
-	bl sav2_get_text_speed
+	bl GetPlayerTextSpeed
 	adds r1, r0, 0
 	lsls r1, 24
 	lsrs r1, 24
@@ -14659,7 +14659,7 @@ sub_8196710: @ 8196710
 	thumb_func_start sub_819672C
 sub_819672C: @ 819672C
 	push {lr}
-	ldr r1, =gUnknown_085500A4
+	ldr r1, =gRematchTable
 	lsls r0, 4
 	adds r0, r1
 	ldrh r2, [r0, 0xA]
@@ -14677,10 +14677,10 @@ sub_8196748: @ 8196748
 	push {r4-r6,lr}
 	movs r5, 0
 	movs r6, 0
-	ldr r4, =gUnknown_085500A4
+	ldr r4, =gRematchTable
 _08196750:
 	ldrh r0, [r4]
-	bl trainer_flag_check
+	bl HasTrainerBeenFought
 	lsls r0, 24
 	cmp r0, 0
 	beq _0819675E
@@ -14703,10 +14703,10 @@ sub_8196774: @ 8196774
 	adds r7, r0, 0
 	movs r4, 0
 	movs r6, 0
-	ldr r5, =gUnknown_085500A4
+	ldr r5, =gRematchTable
 _0819677E:
 	ldrh r0, [r5]
-	bl trainer_flag_check
+	bl HasTrainerBeenFought
 	lsls r0, 24
 	cmp r0, 0
 	beq _0819679A
@@ -14766,7 +14766,7 @@ _081967EC:
 	adds r4, r0, 0
 	movs r7, 0x1
 	adds r0, r5, 0
-	bl sub_80B1E94
+	bl UpdateRematchIfDefeated
 	b _08196832
 _0819680A:
 	bl Random
@@ -15270,7 +15270,7 @@ sub_8196B98: @ 8196B98
 	adds r7, r0, 0
 	cmp r1, 0xFF
 	beq _08196C5C
-	ldr r1, =gUnknown_085500A4
+	ldr r1, =gRematchTable
 	lsls r0, r2, 4
 	adds r2, r0, r1
 	ldrh r4, [r2, 0xA]
@@ -15373,7 +15373,7 @@ sub_8196C70: @ 8196C70
 	lsls r1, 2
 	adds r1, r2
 	ldrh r0, [r1]
-	bl sub_80B2250
+	bl GetLastBeatenRematchTrainerId
 	lsls r0, 16
 	lsrs r0, 16
 	ldr r5, =gTrainers

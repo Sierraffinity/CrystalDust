@@ -2,7 +2,7 @@
 #include "main.h"
 #include "m4a.h"
 #include "rtc.h"
-#include "rng.h"
+#include "random.h"
 #include "dma3.h"
 #include "gba/flash_internal.h"
 #include "battle.h"
@@ -77,7 +77,7 @@ const IntrFunc gIntrTableTemplate[] =
 
 #define INTR_COUNT ((int)(sizeof(gIntrTableTemplate)/sizeof(IntrFunc)))
 
-extern u16 gUnknown_03000000;
+static u16 gUnknown_03000000;
 
 extern u16 gKeyRepeatStartDelay;
 extern u8 gUnknown_030022B4;
@@ -122,7 +122,7 @@ void AgbMain()
     ClearDma3Requests();
     ResetBgs();
     SetDefaultFontsPointer();
-    InitHeap(gHeap, 0x1C000);
+    InitHeap(gHeap, HEAP_SIZE);
 
     gSoftResetDisabled = FALSE;
 
@@ -332,7 +332,6 @@ void SetSerialCallback(IntrCallback callback)
 }
 
 extern void CopyBufferedValuesToGpuRegs(void);
-extern void ProcessDma3Requests(void);
 
 static void VBlankIntr(void)
 {

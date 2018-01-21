@@ -1,14 +1,14 @@
 #include "global.h"
-#include "abilities.h"
+#include "constants/abilities.h"
 #include "battle.h"
-#include "hold_effects.h"
+#include "constants/hold_effects.h"
 #include "event_data.h"
 #include "item.h"
-#include "items.h"
+#include "constants/items.h"
 #include "pokemon.h"
-#include "species.h"
-#include "moves.h"
-#include "battle_move_effects.h"
+#include "constants/species.h"
+#include "constants/moves.h"
+#include "constants/battle_move_effects.h"
 
 extern u32 gBattleTypeFlags;
 extern struct BattlePokemon gBattleMons[4];
@@ -84,13 +84,13 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (attacker->ability == ABILITY_HUGE_POWER || attacker->ability == ABILITY_PURE_POWER)
         attack *= 2;
 
-    if (ShouldGetStatBadgeBoost(BADGE01_GET, bankAtk))
+    if (ShouldGetStatBadgeBoost(FLAG_BADGE01_GET, bankAtk))
         attack = (110 * attack) / 100;
-    if (ShouldGetStatBadgeBoost(BADGE05_GET, bankDef))
+    if (ShouldGetStatBadgeBoost(FLAG_BADGE05_GET, bankDef))
         defense = (110 * defense) / 100;
-    if (ShouldGetStatBadgeBoost(BADGE07_GET, bankAtk))
+    if (ShouldGetStatBadgeBoost(FLAG_BADGE07_GET, bankAtk))
         spAttack = (110 * spAttack) / 100;
-    if (ShouldGetStatBadgeBoost(BADGE07_GET, bankDef))
+    if (ShouldGetStatBadgeBoost(FLAG_BADGE07_GET, bankDef))
         spDefense = (110 * spDefense) / 100;
 
     for (i = 0; i < 17; i++)

@@ -356,7 +356,7 @@ sub_809FA9C: @ 809FA9C
 	bl is_c1_link_related_active
 	cmp r0, 0
 	bne _0809FAB2
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl sub_808B864
 	bl sub_808BCF4
 _0809FAB2:
@@ -868,7 +868,7 @@ _0809FF00:
 	bl sub_8197DF8
 	bl sub_80984F4
 	bl ScriptContext2_Disable
-	ldr r0, =gUnknown_08252C88
+	ldr r0, =BattleFrontier_BattlePyramidEmptySquare_EventScript_252C88
 	bl ScriptContext1_SetupScript
 	movs r0, 0x1
 	b _0809FF22
@@ -974,13 +974,13 @@ task50_save_game: @ 809FFD0
 _0809FFEC:
 	cmp r1, 0x3
 	bgt _080A0000
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 	strh r0, [r1]
 	b _080A0000
 	.pool
 _0809FFFC:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r1, [r0]
 _080A0000:
 	adds r0, r4, 0
@@ -1089,7 +1089,7 @@ sub_80A00A0: @ 80A00A0
 	lsls r0, 24
 	cmp r0, 0
 	beq _080A00D4
-	ldr r0, =gUnknown_08252CA7
+	ldr r0, =BattleFrontier_BattlePyramidEmptySquare_Text_252CA7
 	ldr r1, =sub_80A00EC
 	bl sub_809FF98
 	b _080A00DC
@@ -1121,7 +1121,7 @@ sub_80A00EC: @ 80A00EC
 	thumb_func_start sub_80A0108
 sub_80A0108: @ 80A0108
 	push {lr}
-	bl sub_8198C58
+	bl ProcessMenuInputNoWrap_
 	lsls r0, 24
 	asrs r1, r0, 24
 	cmp r1, 0
@@ -1226,7 +1226,7 @@ sub_80A01D0: @ 80A01D0
 	thumb_func_start sub_80A01EC
 sub_80A01EC: @ 80A01EC
 	push {lr}
-	bl sub_8198C58
+	bl ProcessMenuInputNoWrap_
 	lsls r0, 24
 	asrs r1, r0, 24
 	cmp r1, 0
@@ -1415,7 +1415,7 @@ sub_80A035C: @ 80A035C
 	movs r1, 0
 	bl sub_819746C
 	bl remove_start_menu_window_maybe
-	ldr r0, =gUnknown_08252CFB
+	ldr r0, =BattleFrontier_BattlePyramidEmptySquare_Text_252CFB
 	ldr r1, =sub_80A0388
 	bl sub_809FF98
 	movs r0, 0
@@ -1441,7 +1441,7 @@ sub_80A0388: @ 80A0388
 	thumb_func_start sub_80A03A4
 sub_80A03A4: @ 80A03A4
 	push {lr}
-	bl sub_8198C58
+	bl ProcessMenuInputNoWrap_
 	lsls r0, 24
 	asrs r1, r0, 24
 	cmp r1, 0
@@ -1683,7 +1683,7 @@ _080A05AC:
 	movs r0, 0
 	movs r1, 0x11
 	bl FillWindowPixelBuffer
-	ldr r2, =gUnknown_082C8959
+	ldr r2, =gText_SavingDontTurnOffPower
 	movs r4, 0
 	str r4, [sp]
 	movs r0, 0x2

@@ -132,12 +132,12 @@ _08162094:
 	lsls r1, 24
 	lsrs r1, 24
 	bl sub_8164FCC
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	strh r0, [r1]
 	b _081620E8
 	.pool
 _081620A8:
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	ldr r2, [r5]
 	ldr r0, =0x00000cdc
 	adds r2, r0
@@ -294,7 +294,7 @@ _081621EE:
 	adds r0, 0x1
 	strh r0, [r1]
 	bl sub_8163E90
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, [r5]
 	adds r0, r4
 	ldrh r0, [r0]
@@ -1329,8 +1329,8 @@ _08162A8A:
 	.pool
 	thumb_func_end sub_81628A0
 
-	thumb_func_start sub_8162AA0
-sub_8162AA0: @ 8162AA0
+	thumb_func_start GetFrontierTrainerFrontSpriteId
+GetFrontierTrainerFrontSpriteId: @ 8162AA0
 	push {r4,r5,lr}
 	lsls r0, 16
 	lsrs r4, r0, 16
@@ -1454,7 +1454,7 @@ _08162BCA:
 	pop {r1}
 	bx r1
 	.pool
-	thumb_func_end sub_8162AA0
+	thumb_func_end GetFrontierTrainerFrontSpriteId
 
 	thumb_func_start GetFrontierOpponentClass
 GetFrontierOpponentClass: @ 8162BD8
@@ -1795,7 +1795,7 @@ _08162ED8:
 	adds r0, 0xE4
 	ldrb r2, [r0]
 	adds r0, r6, 0
-	bl sub_81DB5E8
+	bl TVShowConvertInternationalString
 	b _08162F62
 	.pool
 _08162F00:
@@ -1835,7 +1835,7 @@ _08162F3E:
 	adds r1, r0, 0
 	adds r0, r6, 0
 	adds r2, r4, 0
-	bl sub_81DB5E8
+	bl TVShowConvertInternationalString
 	b _08162F62
 	.pool
 _08162F5C:
@@ -3194,7 +3194,7 @@ sub_8163A8C: @ 8163A8C
 	ldr r0, =gMain
 	ldr r1, =sub_81639AC
 	str r1, [r0, 0x8]
-	ldr r0, =sub_8036760
+	ldr r0, =CB2_InitBattle
 	bl SetMainCallback2
 	adds r0, r4, 0
 	bl DestroyTask
@@ -3534,7 +3534,7 @@ _08163E10:
 	bl sub_80B100C
 	lsls r0, 24
 	lsrs r0, 24
-	bl sub_8145EF4
+	bl BattleTransition_StartOnField
 	b _08163E68
 	.pool
 _08163E2C:
@@ -3544,15 +3544,15 @@ _08163E2C:
 	ldr r5, =0x00000c03
 	adds r0, r5, 0
 	bl sub_8165404
-	ldr r4, =gUnknown_02038BFC
+	ldr r4, =gApproachingTrainerId
 	movs r0, 0
 	strb r0, [r4]
-	ldr r0, =gUnknown_08224158
-	bl TrainerBattleConfigure
+	ldr r0, =MossdeepCity_SpaceCenter_2F_EventScript_224157 + 1
+	bl BattleSetup_ConfigureTrainerBattle
 	movs r0, 0x1
 	strb r0, [r4]
-	ldr r0, =gUnknown_08224167
-	bl TrainerBattleConfigure
+	ldr r0, =MossdeepCity_SpaceCenter_2F_EventScript_224166 + 1
+	bl BattleSetup_ConfigureTrainerBattle
 	ldr r0, =gPartnerTrainerId
 	strh r5, [r0]
 	ldr r0, =sub_8163A8C
@@ -3561,7 +3561,7 @@ _08163E2C:
 	movs r0, 0
 	bl PlayMapChosenOrBattleBGM
 	movs r0, 0x12
-	bl sub_8145EF4
+	bl BattleTransition_StartOnField
 _08163E68:
 	add sp, 0x4
 	pop {r4-r6}
@@ -4364,7 +4364,7 @@ _081644E0:
 	strb r0, [r1, 0x1]
 	movs r0, 0xD8
 	lsls r0, 2
-	bl FlagReset
+	bl FlagClear
 	ldr r0, [r6]
 	adds r0, r5
 	ldrh r0, [r0]
@@ -4525,7 +4525,7 @@ _08164660:
 	adds r1, 0xC0
 	strb r0, [r1, 0x1]
 	ldr r0, =0x00000361
-	bl FlagReset
+	bl FlagClear
 	ldr r0, [r6]
 	adds r0, r5
 	ldrh r0, [r0]
@@ -4714,7 +4714,7 @@ sub_8164828: @ 8164828
 	lsls r0, 16
 	lsrs r0, 16
 	mov r8, r0
-	ldr r0, =gScriptLastTalked
+	ldr r0, =gSpecialVar_LastTalked
 	ldrh r0, [r0]
 	subs r5, r0, 0x2
 	ldr r0, =gSaveBlock2Ptr
@@ -5016,7 +5016,7 @@ _08164B04:
 	lsls r0, 2
 	adds r0, r1
 	ldr r0, [r0]
-	bl box_related_two__2
+	bl ShowFieldMessage
 	b _08164B54
 	.pool
 _08164B28:
@@ -5040,7 +5040,7 @@ _08164B28:
 	lsls r1, 2
 	adds r1, r0
 	ldr r0, [r1]
-	bl box_related_two__2
+	bl ShowFieldMessage
 _08164B54:
 	add sp, 0x8
 	pop {r3-r5}
@@ -5076,7 +5076,7 @@ sub_8164B74: @ 8164B74
 	adds r0, r2
 	ldrh r6, [r0]
 	bl GetMultiplayerId
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldrh r0, [r0]
 	cmp r0, 0x6
 	bls _08164BAC
@@ -5125,21 +5125,21 @@ _08164C18:
 	lsrs r0, 24
 	mov r1, sp
 	movs r2, 0x4
-	bl link_0800A448
-	ldr r1, =gScriptResult
+	bl SendBlock
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	b _08164DB4
 	.pool
 _08164C3C:
-	bl sub_800A550
+	bl GetBlockReceivedStatus
 	movs r1, 0x3
 	ands r1, r0
 	cmp r1, 0x3
 	beq _08164C4A
 	b _08164DB6
 _08164C4A:
-	bl sub_800A5B4
-	ldr r1, =gUnknown_020223C4
+	bl ResetBlockReceivedFlags
+	ldr r1, =gBlockRecvBuffer
 	movs r0, 0x80
 	lsls r0, 1
 	adds r2, r1, r0
@@ -5204,7 +5204,7 @@ _08164CB0:
 	mov r4, r8
 	cmp r4, 0xD
 	ble _08164C68
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x2
 	b _08164DB4
 	.pool
@@ -5221,23 +5221,23 @@ _08164CE0:
 	ldr r3, =0x00000cb4
 	adds r1, r3
 	movs r2, 0x28
-	bl link_0800A448
-	ldr r1, =gScriptResult
+	bl SendBlock
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x3
 	b _08164DB4
 	.pool
 _08164D14:
-	bl sub_800A550
+	bl GetBlockReceivedStatus
 	movs r1, 0x3
 	ands r1, r0
 	cmp r1, 0x3
 	bne _08164DB6
-	bl sub_800A5B4
+	bl ResetBlockReceivedFlags
 	ldr r4, =gSaveBlock2Ptr
 	ldr r0, [r4]
 	ldr r5, =0x00000cb4
 	adds r0, r5
-	ldr r1, =gUnknown_020223C4
+	ldr r1, =gBlockRecvBuffer
 	movs r2, 0x28
 	bl memcpy
 	ldr r2, =gTrainerBattleOpponent_A
@@ -5260,7 +5260,7 @@ _08164D14:
 	ldrh r0, [r4]
 	movs r1, 0x1
 	bl sub_8162614
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _08164DB0
@@ -5268,23 +5268,23 @@ _08164D14:
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _08164DB0
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x4
 	b _08164DB4
 	.pool
 _08164D98:
 	bl sub_800AC34
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x5
 	b _08164DB4
 	.pool
 _08164DA8:
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _08164DB6
 _08164DB0:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x6
 _08164DB4:
 	strh r0, [r1]
@@ -5625,7 +5625,7 @@ sub_816502C: @ 816502C
 	movs r0, 0x45
 	mov r10, r0
 _0816506A:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	mov r9, r1
 	movs r0, 0
 	strh r0, [r1]
@@ -5673,7 +5673,7 @@ _0816508C:
 	bl SetMonData
 	ldr r0, [r7]
 	adds r0, r4
-	bl sub_80EE5A4
+	bl GetRibbonCount
 	strb r0, [r5, 0x1]
 _081650D4:
 	adds r5, 0x4
@@ -5681,7 +5681,7 @@ _081650D4:
 	cmp r6, r8
 	blt _0816508C
 _081650DC:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldrh r0, [r0]
 	cmp r0, 0
 	beq _08165132
@@ -5843,8 +5843,8 @@ _08165206:
 	.pool
 	thumb_func_end sub_816515C
 
-	thumb_func_start sub_8165244
-sub_8165244: @ 8165244
+	thumb_func_start GetEreaderTrainerFrontSpriteId
+GetEreaderTrainerFrontSpriteId: @ 8165244
 	ldr r1, =gUnknown_0831F578
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
@@ -5855,10 +5855,10 @@ sub_8165244: @ 8165244
 	ldrb r0, [r0]
 	bx lr
 	.pool
-	thumb_func_end sub_8165244
+	thumb_func_end GetEreaderTrainerFrontSpriteId
 
-	thumb_func_start sub_8165264
-sub_8165264: @ 8165264
+	thumb_func_start GetEreaderTrainerClassId
+GetEreaderTrainerClassId: @ 8165264
 	ldr r1, =gTrainerClassToNameIndex
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
@@ -5869,10 +5869,10 @@ sub_8165264: @ 8165264
 	ldrb r0, [r0]
 	bx lr
 	.pool
-	thumb_func_end sub_8165264
+	thumb_func_end GetEreaderTrainerClassId
 
-	thumb_func_start sub_8165284
-sub_8165284: @ 8165284
+	thumb_func_start GetEreaderTrainerName
+GetEreaderTrainerName: @ 8165284
 	push {r4,lr}
 	adds r3, r0, 0
 	movs r2, 0
@@ -5896,12 +5896,12 @@ _08165294:
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_8165284
+	thumb_func_end GetEreaderTrainerName
 
 	thumb_func_start sub_81652B4
 sub_81652B4: @ 81652B4
 	push {r4-r6,lr}
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	movs r0, 0
 	strh r0, [r2]
 	ldr r1, =gSaveBlock2Ptr
@@ -5943,7 +5943,7 @@ _081652F2:
 	ldr r3, =0x00000bec
 	adds r0, r1, r3
 	bl sub_816534C
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	strh r0, [r1]
 _08165316:
@@ -6056,7 +6056,7 @@ _081653E0:
 	bne _081653F8
 	bl sub_80F01B8
 	movs r0, 0x77
-	bl FlagReset
+	bl FlagClear
 _081653F8:
 	pop {r0}
 	bx r0

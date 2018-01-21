@@ -1,17 +1,17 @@
 #include "global.h"
 #include "item.h"
-#include "items.h"
+#include "berry.h"
+#include "constants/items.h"
 #include "string_util.h"
 #include "text.h"
 #include "event_data.h"
 
-extern void ApplyNewEncyprtionKeyToHword(u16* hword, u32 newKey);
+extern void ApplyNewEncryptionKeyToHword(u16* hword, u32 newKey);
 extern bool8 InBattlePyramid(void);
 
 extern const u8 gText_PokeBalls[];
 extern const u8 gText_Berries[];
 extern const u8 gText_Berry[];
-extern const u8 gUnknown_085897E4[][28]; // not sure what this one is
 
 bool8 CheckPyramidBagHasItem(u16 itemId, u16 count);
 bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count);
@@ -45,19 +45,19 @@ void SetBagItemId(u16* slot, u16 newItemId)
     *slot = newItemId;
 }
 
-void ApplyNewEncyprtionKeyToBagItems(u32 newKey)
+void ApplyNewEncryptionKeyToBagItems(u32 newKey)
 {
     u32 pocket, item;
     for (pocket = 0; pocket < 5; pocket++)
     {
         for (item = 0; item < gBagPockets[pocket].capacity; item++)
-            ApplyNewEncyprtionKeyToHword(&(gBagPockets[pocket].itemSlots[item].quantity), newKey);
+            ApplyNewEncryptionKeyToHword(&(gBagPockets[pocket].itemSlots[item].quantity), newKey);
     }
 }
 
-void ApplyNewEncyprtionKeyToBagItems_(u32 newKey) // really GF?
+void ApplyNewEncryptionKeyToBagItems_(u32 newKey) // really GF?
 {
-    ApplyNewEncyprtionKeyToBagItems(newKey);
+    ApplyNewEncryptionKeyToBagItems(newKey);
 }
 
 // TODO: move those max values to defines
@@ -96,8 +96,8 @@ void CopyItemNameHandlePlural(u16 itemId, u8 *string, u32 quantity)
     }
     else
     {
-        if (itemId >= 0x85 && itemId <= 0xAF)
-            GetBerryCountString(string, gUnknown_085897E4[itemId], quantity);
+        if (itemId >= ITEM_CHERI_BERRY && itemId <= ITEM_ENIGMA_BERRY)
+            GetBerryCountString(string, gBerries[itemId - ITEM_CHERI_BERRY].name, quantity);
         else
             StringCopy(string, ItemId_GetItem(itemId)->name);
     }
@@ -165,11 +165,11 @@ bool8 HasAtLeastOneBerry(void)
     {
         if (CheckBagHasItem(i, 1) == TRUE)
         {
-            gScriptResult = 1;
+            gSpecialVar_Result = 1;
             return TRUE;
         }
     }
-    gScriptResult = 0;
+    gSpecialVar_Result = 0;
     return FALSE;
 }
 

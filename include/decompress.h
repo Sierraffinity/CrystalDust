@@ -3,12 +3,14 @@
 
 #include "sprite.h"
 
+extern u8 gDecompressionBuffer[0x4000];
+
 void LZDecompressWram(const void *src, void *dest);
 void LZDecompressVram(const void *src, void *dest);
 
 u16 LoadCompressedObjectPic(const struct CompressedSpriteSheet *src);
 void LoadCompressedObjectPicOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer);
-bool8 LoadCompressedObjectPicUsingHeap(struct CompressedSpriteSheet* src);
+bool8 LoadCompressedObjectPicUsingHeap(const struct CompressedSpriteSheet* src);
 
 void LoadCompressedObjectPalette(const struct CompressedSpritePalette *src);
 void LoadCompressedObjectPaletteOverrideBuffer(const struct CompressedSpritePalette *a, void *buffer);
@@ -25,5 +27,7 @@ void HandleLoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteShee
 void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic);
 void LoadSpecialPokePic_2(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic);
 void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic);
+
+u32 sub_8034974(const u8 *ptr);
 
 #endif // GUARD_DECOMPRESS_H

@@ -232,7 +232,7 @@ _08178B56:
 	ldrb r0, [r1]
 	adds r0, 0x1
 	strb r0, [r1]
-	ldr r1, =gUnknown_020229C6
+	ldr r1, =gLinkType
 	ldr r2, =0x00005501
 	adds r0, r2, 0
 	strh r0, [r1]
@@ -337,7 +337,7 @@ _08178C54:
 	lsls r0, 24
 	cmp r0, 0
 	beq _08178D00
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _08178C68
@@ -435,13 +435,13 @@ _08178D28:
 _08178D36:
 	b _08178E34
 _08178D38:
-	bl sub_800A550
+	bl GetBlockReceivedStatus
 	lsls r0, 24
 	cmp r0, 0
 	bne _08178D44
 	b _08178E58
 _08178D44:
-	bl sub_800A5B4
+	bl ResetBlockReceivedFlags
 	ldr r1, =gMain
 	movs r2, 0x87
 	lsls r2, 3
@@ -462,7 +462,7 @@ _08178D60:
 	b _08178E3C
 	.pool
 _08178D74:
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r6, [r0]
 	cmp r6, 0
 	bne _08178E58

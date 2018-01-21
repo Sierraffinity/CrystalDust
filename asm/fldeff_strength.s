@@ -17,13 +17,13 @@ hm_prepare_rocksmash: @ 8145DC4
 	movs r0, 0
 	b _08145DF2
 _08145DD8:
-	ldr r4, =gScriptResult
-	bl brm_get_pokemon_selection
+	ldr r4, =gSpecialVar_Result
+	bl GetCursorSelectionMonId
 	lsls r0, 24
 	lsrs r0, 24
 	strh r0, [r4]
 	ldr r1, =gUnknown_03005DB0
-	ldr r0, =hm_add_c3_launch_phase_2
+	ldr r0, =FieldCallback_Teleport
 	str r0, [r1]
 	ldr r1, =gUnknown_0203CEEC
 	ldr r0, =sub_8145E0C
@@ -39,12 +39,12 @@ _08145DF2:
 	thumb_func_start sub_8145E0C
 sub_8145E0C: @ 8145E0C
 	push {lr}
-	bl brm_get_pokemon_selection
-	ldr r1, =gFieldEffectSpawnParams
+	bl GetCursorSelectionMonId
+	ldr r1, =gFieldEffectArguments
 	lsls r0, 24
 	lsrs r0, 24
 	str r0, [r1]
-	ldr r0, =gUnknown_082908FD
+	ldr r0, =FieryPath_EventScript_2908FD
 	bl ScriptContext1_SetupScript
 	pop {r0}
 	bx r0
@@ -66,7 +66,7 @@ sub_8145E2C: @ 8145E2C
 	lsrs r0, r2, 16
 	strh r0, [r1, 0x18]
 	strh r2, [r1, 0x1A]
-	ldr r0, =gFieldEffectSpawnParams
+	ldr r0, =gFieldEffectArguments
 	ldr r1, [r0]
 	movs r0, 0x64
 	muls r0, r1

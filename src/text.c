@@ -1,9 +1,9 @@
 #include "global.h"
-#include "text.h"
 #include "main.h"
 #include "palette.h"
 #include "string_util.h"
 #include "window.h"
+#include "text.h"
 
 extern void FillBitmapRect4Bit(struct Bitmap *surface, u16 x, u16 y, u16 width, u16 height, u8 fillValue);
 extern void FillWindowPixelRect(u8 windowId, u8 fillValue, u16 x, u16 y, u16 width, u16 height);
@@ -13,7 +13,7 @@ extern void CopyWindowToVram(u8 windowId, u8 mode);
 extern u16 Font6Func(struct TextPrinter *textPrinter);
 extern u32 GetGlyphWidthFont6(u16 glyphId, bool32 isJapanese);
 extern void PlaySE(u16 songNum);
-extern u8* sub_81AFC74(u8 a1);
+extern u8* UnkTextUtil_GetPtrI(u8 a1);
 
 EWRAM_DATA struct TextPrinter gTempTextPrinter = {0};
 EWRAM_DATA struct TextPrinter gTextPrinters[NUM_TEXT_PRINTERS] = {0};
@@ -32,11 +32,7 @@ u8 gUnknown_03002FB0[0x20];
 u8 gUnknown_03002FD0[0x20];
 u8 gUnknown_03002FF0[0x20];
 u8 gGlyphDimensions[0x2];
-struct {
-    u8 flag_0:1;
-    u8 flag_1:1;
-    u8 flag_2:1;
-} gTextFlags;
+TextFlags gTextFlags;
 
 const u8 gFontHalfRowOffsets[] = {
 	0x00, 0x01, 0x02, 0x00, 0x03, 0x04, 0x05, 0x03, 0x06, 0x07, 0x08, 0x06, 0x00, 0x01, 0x02, 0x00,
@@ -149,7 +145,7 @@ void DeactivateAllTextPrinters (void)
         gTextPrinters[printer].sub_union.sub.active = 0;
 }
 
-u16 PrintTextOnWindow(u8 windowId, u8 fontId, u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextSubPrinter *, u16))
+u16 PrintTextOnWindow(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextSubPrinter *, u16))
 {
     struct TextSubPrinter subPrinter;
 
@@ -194,7 +190,7 @@ bool16 AddTextPrinter(struct TextSubPrinter *textSubPrinter, u8 speed, void (*ca
     gTempTextPrinter.japanese = 0;
 
     GenerateFontHalfRowLookupTable(textSubPrinter->fontColor_h, textSubPrinter->bgColor, textSubPrinter->shadowColor);
-    if (speed != 0xFF && speed != 0x0)
+    if (speed != TEXT_SPEED_FF && speed != 0x0)
     {
         --gTempTextPrinter.text_speed;
         gTextPrinters[textSubPrinter->windowId] = gTempTextPrinter;
@@ -208,7 +204,7 @@ bool16 AddTextPrinter(struct TextSubPrinter *textSubPrinter, u8 speed, void (*ca
                 break;
         }
 
-        if (speed != 0xFF)
+        if (speed != TEXT_SPEED_FF)
           CopyWindowToVram(gTempTextPrinter.subPrinter.windowId, 2);
         gTextPrinters[textSubPrinter->windowId].sub_union.sub.active = 0;
     }
@@ -1972,7 +1968,7 @@ bool8 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
     }
 }
 
-bool8 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
+bool16 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
 {
     bool8 result = FALSE;
     if (gTextFlags.flag_2 != 0)
@@ -1991,9 +1987,9 @@ bool8 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
     return result;
 }
 
-bool8 TextPrinterWait(struct TextPrinter *textPrinter)
+bool16 TextPrinterWait(struct TextPrinter *textPrinter)
 {
-    bool8 result = FALSE;
+    bool16 result = FALSE;
     if (gTextFlags.flag_2 != 0)
     {
         result = TextPrinterWaitAutoMode(textPrinter);
@@ -2422,12 +2418,12 @@ _08005ABA:\n\
 	strb r0, [r6, #0x9]\n\
 	b _08005A0A\n\
 _08005ABE:\n\
-	ldr r0, =gMPlay_BGM\n\
+	ldr r0, =gMPlayInfo_BGM\n\
 	bl m4aMPlayStop\n\
 	b _08005A0A\n\
 	.pool\n\
 _08005ACC:\n\
-	ldr r0, =gMPlay_BGM\n\
+	ldr r0, =gMPlayInfo_BGM\n\
 	bl m4aMPlayContinue\n\
 	b _08005A0A\n\
 	.pool\n\
@@ -2936,7 +2932,7 @@ u32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing)
                 }
             case 0xF7:
                 if (bufferPointer == NULL)
-                    bufferPointer = sub_81AFC74(*++str);
+                    bufferPointer = UnkTextUtil_GetPtrI(*++str);
                 while (*bufferPointer != 0xFF)
                 {
                     glyphWidth = func(*bufferPointer++, isJapanese);

@@ -2,7 +2,7 @@
 #define GUARD_POKEDEX_H
 
 void ResetPokedex(void);
-const u8 *GetPokemonCategory(u16);
+void CopyMonCategoryText(u16 species, u8 *dst);
 u16 GetPokedexHeightWeight(u16 dexNum, u8 data);
 u16 GetNationalPokedexCount(u8);
 u16 GetHoennPokedexCount(u8);
@@ -16,6 +16,8 @@ enum
     FLAG_SET_CAUGHT
 };
 
-u8 GetSetPokedexFlag(u16 nationalNum, u8 caseId);
+s8 GetSetPokedexFlag(u16 nationalNum, u8 caseId);
+u16 pokedex_count(u8);
+u16 sub_80C0844(u8);
 
 #endif // GUARD_POKEDEX_H

@@ -26,7 +26,7 @@ sub_81754DC: @ 81754DC
 	ands r0, r1
 	cmp r0, 0
 	beq _08175522
-	ldr r0, =gUnknown_0203BCE4
+	ldr r0, =gHasHallOfFameRecords
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _08175522
@@ -491,14 +491,14 @@ _08175906:
 	ldr r1, =gReservedSpritePaletteCount
 	movs r0, 0x8
 	strb r0, [r1]
-	ldr r0, =gUnknown_085B0E04
+	ldr r0, =gBirchHelpGfx
 	movs r1, 0xC0
 	lsls r1, 19
 	bl LZ77UnCompVram
-	ldr r0, =gUnknown_085B0C0C
+	ldr r0, =gBirchGrassTilemap
 	ldr r1, =0x06003800
 	bl LZ77UnCompVram
-	ldr r0, =gUnknown_085B0A02
+	ldr r0, =gBirchBagGrassPal + 0x2
 	movs r1, 0x1
 	movs r2, 0x3E
 	bl LoadPalette
@@ -3675,7 +3675,7 @@ sub_8177388: @ 8177388
 	bl VarGet
 	lsls r0, 16
 	lsrs r0, 16
-	bl sub_8133EDC
+	bl GetStarterPokemon
 	lsls r0, 16
 	lsrs r0, 16
 	bl SpeciesToNationalPokedexNum

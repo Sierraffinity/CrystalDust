@@ -904,7 +904,7 @@ _080E3586:
 	movs r1, 0x1
 	orrs r0, r1
 	strb r0, [r2]
-	bl sav2_get_text_speed
+	bl GetPlayerTextSpeed
 	adds r3, r0, 0
 	lsls r3, 24
 	lsrs r3, 24
@@ -3712,7 +3712,7 @@ _080E4C4A:
 	thumb_func_start choose_name_or_words_screen_load_bg_tile_patterns
 choose_name_or_words_screen_load_bg_tile_patterns: @ 80E4C54
 	push {r4-r6,lr}
-	ldr r0, =gUnknown_08DD3838
+	ldr r0, =gNamingScreenMenu_Gfx
 	ldr r6, =gUnknown_02039F94
 	ldr r1, [r6]
 	ldr r4, =0x00001810
@@ -3760,7 +3760,7 @@ sub_80E4CB8: @ 80E4CB8
 	thumb_func_start choose_name_or_words_screen_apply_bg_pals
 choose_name_or_words_screen_apply_bg_pals: @ 80E4CC8
 	push {lr}
-	ldr r0, =gUnknown_08DD3778
+	ldr r0, =gNamingScreenMenu_Pal
 	movs r1, 0
 	movs r2, 0xC0
 	bl LoadPalette

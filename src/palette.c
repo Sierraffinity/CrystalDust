@@ -1,5 +1,8 @@
 #include "global.h"
+#include "blend_palette.h"
 #include "palette.h"
+#include "decompress.h"
+#include "gpu_regs.h"
 #include "task.h"
 
 enum
@@ -28,7 +31,7 @@ struct PaletteStructTemplate
 
 struct PaletteStruct
 {
-    struct PaletteStructTemplate *base;
+    const struct PaletteStructTemplate *base;
     u32 ps_field_4_0:1;
     u16 ps_field_4_1:1;
     u32 baseDestOffset:9;
@@ -37,31 +40,6 @@ struct PaletteStruct
     u8 ps_field_8;
     u8 ps_field_9;
 };
-
-extern void LZDecompressWram(const void *src, void *dest);
-extern void SetGpuReg(u8 regOffset, u16 value);
-extern void sub_8149DFC(u8 a1);
-extern void sub_80A1670(u16 a1);
-extern void sub_80A2D54(u8 a1);
-extern void SetWordTaskArg(u8 taskId, u8 dataElem, u32 value);
-extern void _call_via_r1(u32 a1, void *a2);
-
-extern void BlendPalette(u16, u16, u8, u16);
-
-EWRAM_DATA u16 gPlttBufferUnfaded[0x200] = {0};
-EWRAM_DATA u16 gPlttBufferFaded[0x200] = {0};
-EWRAM_DATA struct PaletteStruct sPaletteStructs[0x10] = {0};
-EWRAM_DATA struct PaletteFadeControl gPaletteFade = {0};
-EWRAM_DATA u32 gFiller_2037FE0 = 0;
-EWRAM_DATA u32 sPlttBufferTransferPending = 0;
-EWRAM_DATA u8 gPaletteDecompressionBuffer[0x400] = {0};
-
-extern struct PaletteStructTemplate gDummyPaletteStructTemplate;
-extern void *gUnknown_0852487C;
-extern u8 gUnknown_0852489C[];
-
-extern u16 gUnknown_03000F3C;
-extern void *gUnknown_03000F44;
 
 static void unused_sub_80A1CDC(struct PaletteStruct *, u32 *);
 static void unused_sub_80A1E40(struct PaletteStruct *, u32 *);
@@ -73,32 +51,30 @@ static u8 UpdateFastPaletteFade(void);
 static u8 UpdateHardwarePaletteFade(void);
 static void UpdateBlendRegisters(void);
 static bool8 IsSoftwarePaletteFadeFinishing(void);
+static void sub_80A2D54(u8 taskId);
 
-void sub_80A1818(u16 a1)
-{
-  void **v1 = &gUnknown_0852487C;
-  CpuSet(v1[a1 & 0x3], gPlttBufferUnfaded + 0x80, 0x10);
-  BlendPalette(0x80, 0x10, gPaletteFade.y, gPaletteFade.blendColor & 0x7FFF);
-  if ((u8)FindTaskIdByFunc(sub_8149DFC) != 0xFF )
-  {
-    gUnknown_03000F44 = sub_80A1670;
-    gUnknown_03000F3C = 0x20;
-  }
-  return;
-}
+EWRAM_DATA u16 gPlttBufferUnfaded[PLTT_BUFFER_SIZE] = {0};
+EWRAM_DATA u16 gPlttBufferFaded[PLTT_BUFFER_SIZE] = {0};
+EWRAM_DATA struct PaletteStruct sPaletteStructs[0x10] = {0};
+EWRAM_DATA struct PaletteFadeControl gPaletteFade = {0};
+static EWRAM_DATA u32 gFiller_2037FE0 = 0;
+static EWRAM_DATA u32 sPlttBufferTransferPending = 0;
+EWRAM_DATA u8 gPaletteDecompressionBuffer[PLTT_DECOMP_BUFFER_SIZE] = {0};
 
-void sub_80A1884(u16 a1)
-{
-  void **v1 = &gUnknown_0852487C;
-  CpuSet(v1[a1 & 0x3], gPlttBufferUnfaded + 0x80, 0x10);
-  if ((u8)FindTaskIdByFunc(sub_8149DFC) == 0xFF )
-  {
-    BlendPalette(0x80, 0x10, gPaletteFade.y, gPaletteFade.blendColor & 0x7FFF);
-    if (!--gUnknown_03000F3C)
-        gUnknown_03000F44 = 0;
-  }
-  return;
-}
+static const struct PaletteStructTemplate gDummyPaletteStructTemplate = {
+    .uid = 0xFFFF,
+    .pst_field_B_5 = 1
+};
+
+static const u8 sRoundedDownGrayscaleMap[] = {
+     0,  0,  0,  0,  0,
+     5,  5,  5,  5,  5,
+    11, 11, 11, 11, 11,
+    16, 16, 16, 16, 16,
+    21, 21, 21, 21, 21,
+    27, 27, 27, 27, 27,
+    31, 31
+};
 
 void LoadCompressedPalette(const void *src, u16 offset, u16 size)
 {
@@ -645,7 +621,7 @@ static u8 UpdateFastPaletteFade(void)
             gPlttBufferFaded[i] = r | (g << 5) | (b << 10);
         }
         break;
-    case FAST_FADE_OUT_TO_WHTIE:
+    case FAST_FADE_OUT_TO_WHITE:
         for (i = paletteOffsetStart; i < paletteOffsetEnd; i++)
         {
             struct PlttData *data = (struct PlttData *)&gPlttBufferFaded[i];
@@ -726,7 +702,7 @@ static u8 UpdateFastPaletteFade(void)
         case FAST_FADE_IN_FROM_BLACK:
             CpuCopy32(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_SIZE);
             break;
-        case FAST_FADE_OUT_TO_WHTIE:
+        case FAST_FADE_OUT_TO_WHITE:
             CpuFill32(0xFFFFFFFF, gPlttBufferFaded, PLTT_SIZE);
             break;
         case FAST_FADE_OUT_TO_BLACK:
@@ -863,10 +839,10 @@ void BlendPalettesUnfaded(u32 selectedPalettes, u8 coeff, u16 color)
 
 void TintPalette_GrayScale(u16 *palette, u16 count)
 {
-    s32 r;
-    s32 g;
-    s32 b;
-    s32 gray;
+    int r;
+    int g;
+    int b;
+    u32 gray;
 
     int i;
     for (i = 0; i < count; i++)
@@ -874,24 +850,23 @@ void TintPalette_GrayScale(u16 *palette, u16 count)
         r = *palette & 0x1F;
         g = (*palette >> 5) & 0x1F;
         b = (*palette >> 10) & 0x1F;
-        
-        r *= 0x4C;
-        r += g * 0x97;
-        r += b * 0x1D;
-        
+
+        r = r * Q_8_8(0.2969);
+        r += g * Q_8_8(0.5899);
+        r += b * Q_8_8(0.1133);
+
         gray = r >> 8;
-        
+
         *palette++ = gray << 10 | gray << 5 | gray;
     }
-    return;
 }
 
 void TintPalette_GrayScale2(u16 *palette, u16 count)
 {
-    s32 r;
-    s32 g;
-    s32 b;
-    s32 gray;
+    int r;
+    int g;
+    int b;
+    u32 gray;
 
     int i;
     for (i = 0; i < count; i++)
@@ -899,62 +874,60 @@ void TintPalette_GrayScale2(u16 *palette, u16 count)
         r = *palette & 0x1F;
         g = (*palette >> 5) & 0x1F;
         b = (*palette >> 10) & 0x1F;
-        
-        r *= 0x4C;
-        r += g * 0x97;
-        r += b * 0x1D;
-        
+
+        r = r * Q_8_8(0.2969);
+        r += g * Q_8_8(0.5899);
+        r += b * Q_8_8(0.1133);
+
         gray = r >> 8;
-        
-        if ((u32)gray > 0x1F)
+
+        if (gray > 0x1F)
             gray = 0x1F;
-        
-        gray = gUnknown_0852489C[gray];
-        
+
+        gray = sRoundedDownGrayscaleMap[gray];
+
         *palette++ = gray << 10 | gray << 5 | gray;
     }
-    return;
 }
 
 #ifdef NONMATCHING
 void TintPalette_SepiaTone(u16 *palette, u16 count)
 {
-    s32 r;
-    s32 g;
-    s32 b;
+    int red;
+    int green;
+    int blue;
     u32 gray;
     u32 sepia;
     s8 r2;
     s8 g2;
     s8 b2;
-    
+
     int i;
     for (i = 0; i < count; i++)
     {
         r = *palette & 0x1F;
         g = (*palette >> 5) & 0x1F;
         b = (*palette >> 10) & 0x1F;
-        
+
         r *= 0x4C;
         r += g * 0x97;
         r += b * 0x1D;
-        
+
         gray = (s32)(r >> 8);
-        
+
         sepia = (gray * 0x133);
-        
+
         r2 = (u16)sepia >> 8;
-        
+
         g2 = gray;
-        
+
         b2 = (gray * 15);
-        
+
         if (r2 > 0x1F)
             r2 = 0x1F;
-        
+
         *palette++ = b2 << 10 | g2 << 5 | r2;
     }
-    return;
 }
 #else
 __attribute__((naked))
@@ -1020,7 +993,7 @@ _080A2BA2:\n\
 #endif // NONMATCHING
 
 #ifdef NONMATCHING
-void sub_80A2BAC(u16 *palette, u16 count, u16 a3, u16 a4, u16 a5)
+void TintPalette_CustomTone(u16 *palette, u16 count, u16 a3, u16 a4, u16 a5)
 {
     s32 r;
     s32 g;
@@ -1036,35 +1009,35 @@ void sub_80A2BAC(u16 *palette, u16 count, u16 a3, u16 a4, u16 a5)
         r = *palette & 0x1F;
         g = (*palette >> 5) & 0x1F;
         b = (*palette >> 10) & 0x1F;
-        
+
         r *= 0x4C;
         r += g * 0x97;
         r += b * 0x1D;
-        
+
         gray = r >> 8;
-        
+
         r2 = (u16)(gray * a3) >> 8;
-        
+
         g2 = (u16)(gray * a4) >> 8;
-        
+
         b2 = (u16)(gray * a5) >> 8;
-        
+
         if (r2 > 0x1F)
             r2 = 0x1F;
-        
+
         if (g2 > 0x1F)
             g2 = 0x1F;
-        
+
         if (b2 > 0x1F)
             b2 = 0x1F;
-        
+
         *palette++ = b2 << 10 | g2 << 5 | r2;
     }
     return;
 }
 #else
 __attribute__((naked))
-void sub_80A2BAC(u16 *palette, u16 count, u16 a3, u16 a4, u16 a5)
+void TintPalette_CustomTone(u16 *palette, u16 count, u16 a3, u16 a4, u16 a5)
 {
     asm("push {r4-r7,lr}\n\
     mov r7, r9\n\
@@ -1178,7 +1151,7 @@ void sub_80A2C44(u32 a1, s8 a2, u8 a3, u8 a4, u16 a5, u8 a6, u8 a7)
     gTasks[taskId].func(taskId);
 }
 
-u32 sub_80A2CF8(u8 var)
+bool32 sub_80A2CF8(u8 var)
 {
     int i;
 
@@ -1206,7 +1179,7 @@ void sub_80A2D54(u8 taskId)
 {
     u32 wordVar;
     s16 *data;
-    u16 temp;
+    s16 temp;
 
     data = gTasks[taskId].data;
     wordVar = GetWordTaskArg(taskId, 5);
@@ -1216,7 +1189,7 @@ void sub_80A2D54(u8 taskId)
         data[4] = 0;
         BlendPalettes(wordVar, data[0], data[7]);
         temp = data[1];
-        if (data[0] == (s16)temp)
+        if (data[0] == temp)
         {
             DestroyTask(taskId);
         }
@@ -1225,12 +1198,12 @@ void sub_80A2D54(u8 taskId)
             data[0] += data[2];
             if (data[2] >= 0)
             {
-                if (data[0] < (s16)temp)
+                if (data[0] < temp)
                 {
                     return;
                 }
             }
-            else if (data[0] > (s16)temp)
+            else if (data[0] > temp)
             {
                 return;
             }

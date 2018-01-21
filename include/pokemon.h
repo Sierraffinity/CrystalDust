@@ -30,7 +30,7 @@
 #define MON_DATA_HP_EV             26
 #define MON_DATA_ATK_EV            27
 #define MON_DATA_DEF_EV            28
-#define MON_DATA_SPD_EV            29
+#define MON_DATA_SPEED_EV          29
 #define MON_DATA_SPATK_EV          30
 #define MON_DATA_SPDEF_EV          31
 #define MON_DATA_FRIENDSHIP        32
@@ -43,7 +43,7 @@
 #define MON_DATA_HP_IV             39
 #define MON_DATA_ATK_IV            40
 #define MON_DATA_DEF_IV            41
-#define MON_DATA_SPD_IV            42
+#define MON_DATA_SPEED_IV          42
 #define MON_DATA_SPATK_IV          43
 #define MON_DATA_SPDEF_IV          44
 #define MON_DATA_IS_EGG            45
@@ -62,7 +62,7 @@
 #define MON_DATA_MAX_HP            58
 #define MON_DATA_ATK               59
 #define MON_DATA_DEF               60
-#define MON_DATA_SPD               61
+#define MON_DATA_SPEED             61
 #define MON_DATA_SPATK             62
 #define MON_DATA_SPDEF             63
 #define MON_DATA_MAIL              64
@@ -87,7 +87,7 @@
 #define MON_DATA_RIBBONS           83
 #define MON_DATA_ATK2              84
 #define MON_DATA_DEF2              85
-#define MON_DATA_SPD2              86
+#define MON_DATA_SPEED2            86
 #define MON_DATA_SPATK2            87
 #define MON_DATA_SPDEF2            88
 
@@ -439,7 +439,7 @@ struct BattleMove
     u8 pp;
     u8 secondaryEffectChance;
     u8 target;
-    u8 priority;
+    s8 priority;
     u8 flags;
 };
 
@@ -509,9 +509,11 @@ struct Evolution
     u16 targetSpecies;
 };
 
+#define EVOS_PER_MON 5
+
 struct EvolutionData
 {
-    struct Evolution evolutions[5];
+    struct Evolution evolutions[EVOS_PER_MON];
 };
 
 extern u8 gPlayerPartyCount;
@@ -612,15 +614,15 @@ u32 CanMonLearnTMHM(struct Pokemon *, u8);
 u32 CanSpeciesLearnTMHM(u16 species, u8 tm);
 u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves);
 void ClearBattleMonForms(void);
-const u8 *pokemon_get_pal(struct Pokemon *mon);
-const u8 *species_and_otid_get_pal(u16, u32, u32);
+const u8 *GetMonFrontSpritePal(struct Pokemon *mon);
+const u8 *GetFrontSpritePalFromSpeciesAndPersonality(u16, u32, u32);
 const struct CompressedSpritePalette *sub_80409C8(u16, u32, u32);
 bool8 IsOtherTrainer(u32, u8 *);
 void SetWildMonHeldItem(void);
 u16 GetMonEVCount(struct Pokemon *);
 
 const struct CompressedSpritePalette *sub_806E794(struct Pokemon *mon);
-const struct CompressedSpritePalette *sub_806E7CC(u16 species, u32 otId , u32 personality);
+const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, u32 otId , u32 personality);
 bool32 IsHMMove2(u16 move);
 bool8 IsPokeSpriteNotFlipped(u16 species);
 bool8 IsMonShiny(struct Pokemon *mon);
@@ -629,12 +631,34 @@ bool8 IsShinyOtIdPersonality(u32 otId, u32 personality);
 void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies);
 bool8 IsTradedMon(struct Pokemon *mon);
 void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality);
-s32 sub_806D864(u16 a1);
+s32 GetBankMultiplayerId(u16 a1);
 bool16 sub_806D82C(u8 id);
 u16 MonTryLearningNewMove(struct Pokemon* mon, bool8);
+void sub_8068AA4(void); // sets stats for deoxys
+bool8 HasTwoFramesAnimation(u16 species);
+u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem);
+void RandomlyGivePartyPokerus(struct Pokemon *party);
+u8 CheckPartyPokerus(struct Pokemon *party, u8 selection);
+u8 CheckPartyHasHadPokerus(struct Pokemon *party, u8 selection);
+void UpdatePartyPokerusTime(u16 days);
+void PartySpreadPokerus(struct Pokemon *party);
+s8 GetMonFlavorRelation(struct Pokemon *mon, u8 a2);
+s8 GetFlavorRelationByPersonality(u32 personality, u8 a2);
+u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit);
+u8 GetDefaultMoveTarget(u8 atkBank);
+u16 PlayerGenderToFrontTrainerPicId(u8 playerGender);
+void sub_806A1C0(u16 arg0, u8 bankIdentity);
+void sub_806A12C(u16 trainerSpriteId, u8 bankIdentity);
+u8 GetSecretBaseTrainerPicIndex(void);
+bool8 TryIncrementMonLevel(struct Pokemon *mon);
+void BoxMonToMon(struct BoxPokemon *srcMon, struct Pokemon *dstMon);
+u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves);
+u8 GetMonsStateToDoubles_2(void);
 
 #include "sprite.h"
 
 void DoMonFrontSpriteAnimation(struct Sprite* sprite, u16 species, bool8 noCry, u8 arg3);
+void BattleAnimateFrontSprite(struct Sprite* sprite, u16 species, bool8 noCry, u8 arg3);
+void BattleAnimateBackSprite(struct Sprite* sprite, u16 species);
 
 #endif // GUARD_POKEMON_H

@@ -2,6 +2,7 @@
 #define GUARD_LINK_H
 
 #define MAX_LINK_PLAYERS 4
+#define MAX_RFU_PLAYERS 5
 #define CMD_LENGTH 8
 #define QUEUE_CAPACITY 50
 #define BLOCK_BUFFER_SIZE 0x100
@@ -68,7 +69,7 @@ struct LinkPlayer
     /* 0x08 */ u8 name[11];
     /* 0x13 */ u8 gender;
     /* 0x14 */ u32 linkType;
-    /* 0x18 */ u16 lp_field_18;
+    /* 0x18 */ u16 lp_field_18; // battle bank in battles
     /* 0x1A */ u16 language;
 };
 
@@ -131,7 +132,7 @@ struct BlockRequest
 extern const struct BlockRequest sBlockRequestLookupTable[5];
 
 extern struct Link gLink;
-extern u16 gRecvCmds[CMD_LENGTH][MAX_LINK_PLAYERS];
+extern u16 gRecvCmds[MAX_RFU_PLAYERS][CMD_LENGTH];
 extern u8 gBlockSendBuffer[BLOCK_BUFFER_SIZE];
 extern u16 gLinkType;
 extern u32 gLinkStatus;
@@ -141,9 +142,9 @@ extern u8 gShouldAdvanceLinkState;
 extern struct LinkPlayer gLinkPlayers[];
 extern u16 word_3002910[];
 extern bool8 gReceivedRemoteLinkPlayers;
+extern bool8 gLinkVSyncDisabled;
 
 void Task_DestroySelf(u8);
-void sub_8007270(u8);
 void OpenLink(void);
 void CloseLink(void);
 u16 LinkMain2(u16 *);
@@ -162,24 +163,12 @@ void sub_8007E4C(void);
 u8 GetMultiplayerId(void);
 u8 bitmask_all_link_players_but_self(void);
 bool8 SendBlock(u8, void *, u16);
-bool8 sub_8007E9C(u8);
-bool8 sub_8007ECC(void);
 u8 GetBlockReceivedStatus(void);
 void ResetBlockReceivedFlags(void);
 void ResetBlockReceivedFlag(u8);
-void sub_8007F4C(void);
 void SetLinkDebugValues(u32, u32);
-u8 sub_8008198(void);
-void sub_80081C8(u8);
-u8 sub_800820C(void);
-u8 sub_8008218(void);
-void sub_800826C(void);
-void sub_80082EC(void);
 u8 GetLinkPlayerCount_2(void);
 bool8 IsLinkMaster(void);
-void sub_800832C(void);
-void sub_8008480(void);
-void sub_80084A4(void);
 void CB2_LinkError(void);
 u8 GetSioMultiSI(void);
 bool8 IsLinkConnectionEstablished(void);
@@ -190,5 +179,20 @@ u32 LinkMain1(u8 *, u16 *, u16[CMD_LENGTH][MAX_LINK_PLAYERS]);
 void LinkVSync(void);
 void Timer3Intr(void);
 void SerialCB(void);
+u8 GetLinkPlayerCount(void);
+bool32 InUnionRoom(void);
+
+void sub_800E0E8(void);
+bool8 sub_800A520(void);
+bool8 sub_8010500(void);
+void sub_800DFB4(u8, u8);
+void sub_800ADF8(void);
+void sub_800B488(void);
+void sub_8009734(void);
+void sub_800A620(void);
+void sub_8011BD0(void);
+u8 sub_800ABAC(void);
+u8 sub_800ABBC(void);
+void sub_800AC34(void);
 
 #endif // GUARD_LINK_H

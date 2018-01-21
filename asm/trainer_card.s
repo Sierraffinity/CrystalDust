@@ -191,7 +191,7 @@ _080C2836:
 	ldrb r0, [r0]
 	cmp r0, 0x1
 	bne _080C2852
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0x1
 	bne _080C2852
@@ -261,7 +261,7 @@ _080C28D8:
 	b _080C2ACA
 	.pool
 _080C28E4:
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r5, [r0]
 	cmp r5, 0
 	bne _080C290A
@@ -301,7 +301,7 @@ _080C293C:
 	bne _080C2946
 	b _080C2ACA
 _080C2946:
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080C2960
@@ -346,7 +346,7 @@ _080C299C:
 	ands r0, r1
 	cmp r0, 0
 	beq _080C29F4
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080C29DC
@@ -358,7 +358,7 @@ _080C299C:
 	cmp r0, 0x1
 	beq _080C2A14
 _080C29C0:
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080C29DC
@@ -382,7 +382,7 @@ _080C29F4:
 	ands r0, r1
 	cmp r0, 0
 	beq _080C2ACA
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080C2A20
@@ -430,7 +430,7 @@ _080C2A2C:
 	b _080C2ACA
 	.pool
 _080C2A68:
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _080C2ACA
@@ -601,12 +601,12 @@ _080C2C04:
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080C2C28
-	ldr r0, =gUnknown_08DD1AB8
+	ldr r0, =gEmeraldTrainerCard_Gfx
 	ldr r2, =0x000019a8
 	b _080C2C4A
 	.pool
 _080C2C28:
-	ldr r0, =gUnknown_08DD246C
+	ldr r0, =gFireRedTrainerCard_Gfx
 	ldr r2, =0x000019a8
 	b _080C2C4A
 	.pool
@@ -1403,7 +1403,7 @@ sub_80C3278: @ 80C3278
 	movs r0, 0x40
 	movs r1, 0xF0
 	bl SetGpuReg
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080C32E0
@@ -3082,7 +3082,7 @@ _080C4214:
 	movs r1, 0x60
 	movs r2, 0
 	movs r3, 0
-	bl sub_80A2BAC
+	bl TintPalette_CustomTone
 	b _080C424A
 _080C422A:
 	adds r0, r4, r5
@@ -3094,7 +3094,7 @@ _080C422A:
 	lsls r1, 1
 	str r1, [sp]
 	movs r1, 0x60
-	bl sub_80A2BAC
+	bl TintPalette_CustomTone
 	b _080C424A
 _080C4242:
 	adds r0, r4, r5
@@ -3317,7 +3317,7 @@ _080C4418:
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080C447C
-	ldr r1, =gUnknown_0856FAE4
+	ldr r1, =gEmeraldTrainerCardStarPals
 	ldr r3, =0x00000535
 	adds r0, r2, r3
 	ldrb r0, [r0]
@@ -3344,7 +3344,7 @@ _080C4418:
 	b _080C44B2
 	.pool
 _080C447C:
-	ldr r1, =gUnknown_0856FAF8
+	ldr r1, =gFireRedTrainerCardStarPals
 	ldr r3, =0x00000535
 	adds r0, r2, r3
 	ldrb r0, [r0]
@@ -4267,7 +4267,7 @@ _080C4BF6:
 	ldrb r0, [r1, 0x4]
 	adds r0, 0x1
 	strb r0, [r1, 0x4]
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080C4B20
@@ -4745,7 +4745,7 @@ sub_80C4FF0: @ 80C4FF0
 	bl InUnionRoom
 	cmp r0, 0x1
 	bne _080C5060
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0x1
 	bne _080C5060
@@ -5000,7 +5000,7 @@ _080C5240:
 	adds r0, r2
 	ldrh r0, [r0]
 	strh r0, [r1, 0x6]
-	bl sub_8185290
+	bl CanCopyRecordedBattleSaveData
 	ldr r3, [r5]
 	movs r1, 0x1
 	ands r0, r1
@@ -5766,7 +5766,7 @@ sub_80C58D4: @ 80C58D4
 	beq _080C5914
 	cmp r0, 0x2
 	beq _080C591C
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	b _080C5924
 	.pool
 _080C5914:
@@ -5825,7 +5825,7 @@ _080C5970:
 	strh r0, [r1, 0x6]
 	bl sub_80C52E4
 	ldr r0, =sub_80C58D4
-	bl sub_8185E24
+	bl PlayRecordedBattle
 	b _080C599A
 	.pool
 _080C5994:

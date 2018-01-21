@@ -189,7 +189,7 @@ _0819A69C:
 	bl ResetSpriteData
 	bl ResetTasks
 	bl FreeAllSpritePalettes
-	ldr r0, =gUnknown_08DC0754
+	ldr r0, =gFrontierFactorySelectMenu_Gfx
 	ldr r5, =gUnknown_0203CE2C
 	ldr r1, [r5]
 	movs r2, 0x88
@@ -211,7 +211,7 @@ _0819A69C:
 	movs r2, 0x60
 	movs r3, 0
 	bl LoadBgTiles
-	ldr r0, =gUnknown_08DC0B94
+	ldr r0, =gFrontierFactorySelectMenu_Tilemap
 	ldr r4, =gUnknown_0203CE34
 	ldr r1, [r4]
 	movs r2, 0x80
@@ -223,7 +223,7 @@ _0819A69C:
 	movs r0, 0x1
 	movs r3, 0
 	bl LoadBgTilemap
-	ldr r0, =gUnknown_08DC0714
+	ldr r0, =gFrontierFactorySelectMenu_Pal
 	movs r1, 0
 	movs r2, 0x40
 	bl LoadPalette
@@ -2801,7 +2801,7 @@ sub_819BCF8: @ 819BCF8
 	lsls r0, 16
 	lsrs r0, 16
 	add r1, sp, 0xC
-	bl sub_81DB468
+	bl CopyMonCategoryText
 	movs r0, 0x1
 	add r1, sp, 0xC
 	movs r2, 0x76
@@ -4361,14 +4361,14 @@ _0819CA4E:
 	ldrh r0, [r4, 0x8]
 	adds r0, 0x1
 	strh r0, [r4, 0x8]
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r1, [r0]
 	b _0819CAFE
 	.pool
 _0819CA68:
 	movs r0, 0x2
 	strh r0, [r4, 0x8]
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	strh r0, [r1]
 	b _0819CAFE
@@ -6646,7 +6646,7 @@ _0819DDA8:
 	bl ResetTasks
 	bl FreeAllSpritePalettes
 	bl dp13_810BB8C
-	ldr r0, =gUnknown_08DC0754
+	ldr r0, =gFrontierFactorySelectMenu_Gfx
 	ldr r5, =gUnknown_0203CE40
 	ldr r1, [r5]
 	movs r2, 0x88
@@ -6668,7 +6668,7 @@ _0819DDA8:
 	movs r2, 0x60
 	movs r3, 0
 	bl LoadBgTiles
-	ldr r0, =gUnknown_08DC0B94
+	ldr r0, =gFrontierFactorySelectMenu_Tilemap
 	ldr r4, =gUnknown_0203CE48
 	ldr r1, [r4]
 	movs r2, 0x80
@@ -6680,7 +6680,7 @@ _0819DDA8:
 	movs r0, 0x1
 	movs r3, 0
 	bl LoadBgTilemap
-	ldr r0, =gUnknown_08DC0714
+	ldr r0, =gFrontierFactorySelectMenu_Pal
 	movs r1, 0
 	movs r2, 0x40
 	bl LoadPalette
@@ -8831,7 +8831,7 @@ _0819EFF2:
 	lsls r0, 16
 	lsrs r0, 16
 	add r1, sp, 0xC
-	bl sub_81DB468
+	bl CopyMonCategoryText
 	movs r0, 0x1
 	add r1, sp, 0xC
 	movs r2, 0x76
@@ -11329,7 +11329,7 @@ _081A03E6:
 	bls _081A03E6
 	movs r5, 0
 	ldr r7, =gSaveBlock2Ptr
-	ldr r6, =gUnknown_086109A4
+	ldr r6, =gUnknown_08610970+0x34
 _081A0416:
 	ldr r0, [r7]
 	mov r12, r0
@@ -11490,7 +11490,7 @@ _081A0540:
 	mov r12, r1
 	adds r5, r3, 0
 	adds r5, 0xB0
-	ldr r0, =gUnknown_086109A4
+	ldr r0, =gUnknown_08610970+0x34
 	mov r8, r0
 _081A0560:
 	adds r0, r3, 0
@@ -11730,13 +11730,13 @@ _081A0734:
 	bne _081A0778
 	movs r0, 0x5
 	bl PlaySE
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x7F
 	strh r0, [r1]
 	b _081A0768
 	.pool
 _081A0764:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r1, [r0]
 _081A0768:
 	ldrb r0, [r4, 0xC]
@@ -11982,12 +11982,12 @@ sub_81A093C: @ 81A093C
 	lsrs r1, r0, 24
 	cmp r1, 0
 	bne _081A0954
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r1, [r0]
 	b _081A095A
 	.pool
 _081A0954:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	strh r0, [r1]
 _081A095A:
@@ -12046,7 +12046,7 @@ sub_81A0990: @ 81A0990
 
 	thumb_func_start sub_81A09B4
 sub_81A09B4: @ 81A09B4
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	adds r0, 0xB1
@@ -12070,13 +12070,13 @@ sub_81A09D0: @ 81A09D0
 	subs r1, r0, 0x3
 	cmp r1, 0
 	bge _081A09F4
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 	strh r0, [r1]
 	b _081A0A1C
 	.pool
 _081A09F4:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	cmp r1, 0x8
 	ble _081A09FE
 	movs r0, 0x1
@@ -12380,7 +12380,7 @@ _081A0C8E:
 sub_81A0C9C: @ 81A0C9C
 	push {lr}
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl sub_808B864
 	bl sub_808BCF4
 	movs r0, 0
@@ -12403,7 +12403,7 @@ sub_81A0CC0: @ 81A0CC0
 	lsrs r0, r1, 28
 	cmp r0, 0x2
 	bhi _081A0CE4
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x2
 	b _081A0D34
 	.pool
@@ -12431,22 +12431,22 @@ _081A0D08:
 	beq _081A0D24
 	b _081A0D30
 _081A0D0E:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x4
 	b _081A0D34
 	.pool
 _081A0D18:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x3
 	b _081A0D34
 	.pool
 _081A0D24:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	b _081A0D34
 	.pool
 _081A0D30:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x5
 _081A0D34:
 	strh r0, [r1]
@@ -12935,7 +12935,7 @@ _081A1118:
 	adds r1, r0, 0
 	mov r0, sp
 	movs r2, 0x2
-	bl sub_81DB5E8
+	bl TVShowConvertInternationalString
 	adds r0, r5, 0
 	mov r1, sp
 	bl StringCopy
@@ -13078,7 +13078,7 @@ _081A1242:
 	lsls r0, 30
 	ldr r1, =gSpecialVar_0x8005
 	mov r12, r1
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	mov r8, r1
 	cmp r0, 0
 	beq _081A127C
@@ -13855,7 +13855,7 @@ _081A186C:
 	.4byte _081A1918
 	.4byte _081A1938
 _081A188C:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000ca8
@@ -13865,7 +13865,7 @@ _081A188C:
 	b _081A1956
 	.pool
 _081A18A8:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000ca9
@@ -13877,7 +13877,7 @@ _081A18A8:
 	b _081A1956
 	.pool
 _081A18C8:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000cb2
@@ -13887,7 +13887,7 @@ _081A18C8:
 	b _081A1956
 	.pool
 _081A18E4:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000ca9
@@ -13897,7 +13897,7 @@ _081A18E4:
 	b _081A1926
 	.pool
 _081A1900:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r1, =gBattleOutcome
 	ldrb r0, [r1]
 	strh r0, [r2]
@@ -13906,7 +13906,7 @@ _081A1900:
 	b _081A1956
 	.pool
 _081A1918:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldr r2, =0x00000ca9
@@ -13919,7 +13919,7 @@ _081A1926:
 	b _081A1956
 	.pool
 _081A1938:
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r2, [r0]
 	movs r0, 0xD0
@@ -14280,7 +14280,7 @@ sub_81A1C4C: @ 81A1C4C
 	adds r3, r0, 0
 	lsls r0, r5, 3
 	adds r5, r0, 0x1
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	ldrb r0, [r0]
 	lsls r3, 24
 	lsrs r3, 24
@@ -14306,7 +14306,7 @@ sub_81A1C90: @ 81A1C90
 	push {r4,lr}
 	sub sp, 0x34
 	adds r2, r0, 0
-	ldr r3, =gUnknown_0203AB74
+	ldr r3, =gResultsWindowId
 	movs r1, 0xAE
 	mov r0, sp
 	adds r0, 0x2F
@@ -14361,7 +14361,7 @@ sub_81A1CD8: @ 81A1CD8
 	lsls r0, 24
 	lsrs r0, 24
 	adds r7, r0, 0
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	mov r10, r0
 	ldrb r0, [r0]
 	str r7, [sp]
@@ -14580,7 +14580,7 @@ sub_81A1EA8: @ 81A1EA8
 	sub sp, 0xC
 	lsls r0, 24
 	lsrs r7, r0, 24
-	ldr r4, =gUnknown_0203AB74
+	ldr r4, =gResultsWindowId
 	ldr r0, =gUnknown_08611C74
 	bl AddWindow
 	strb r0, [r4]
@@ -14621,7 +14621,7 @@ _081A1F28:
 	ldr r0, =gStringVar4
 	movs r1, 0x2
 	bl sub_81A1C4C
-	ldr r6, =gUnknown_0203AB74
+	ldr r6, =gResultsWindowId
 	ldrb r0, [r6]
 	ldr r2, =gText_Lv502
 	movs r1, 0x31
@@ -14734,7 +14734,7 @@ sub_81A2008: @ 81A2008
 	lsrs r6, 24
 	lsls r5, 24
 	lsrs r5, 24
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	mov r10, r0
 	ldrb r0, [r0]
 	str r5, [sp]
@@ -14868,7 +14868,7 @@ sub_81A2134: @ 81A2134
 	sub sp, 0xC
 	lsls r0, 24
 	lsrs r7, r0, 24
-	ldr r4, =gUnknown_0203AB74
+	ldr r4, =gResultsWindowId
 	ldr r0, =gUnknown_08611C74
 	bl AddWindow
 	strb r0, [r4]
@@ -14893,7 +14893,7 @@ _081A2184:
 	ldr r0, =gStringVar4
 	movs r1, 0
 	bl sub_81A1C4C
-	ldr r1, =gUnknown_0203AB74
+	ldr r1, =gResultsWindowId
 	ldrb r0, [r1]
 	ldr r2, =gText_Lv502
 	movs r6, 0x21
@@ -14905,7 +14905,7 @@ _081A2184:
 	movs r1, 0x1
 	movs r3, 0x8
 	bl PrintTextOnWindow
-	ldr r1, =gUnknown_0203AB74
+	ldr r1, =gResultsWindowId
 	ldrb r0, [r1]
 	ldr r2, =gText_OpenLv
 	movs r1, 0x61
@@ -14988,10 +14988,10 @@ _081A2184:
 	mov r1, r8
 	movs r3, 0x40
 	bl sub_81A2008
-	ldr r1, =gUnknown_0203AB74
+	ldr r1, =gResultsWindowId
 	ldrb r0, [r1]
 	bl PutWindowTilemap
-	ldr r1, =gUnknown_0203AB74
+	ldr r1, =gResultsWindowId
 	ldrb r0, [r1]
 	movs r1, 0x3
 	bl CopyWindowToVram
@@ -15027,7 +15027,7 @@ sub_81A22B8: @ 81A22B8
 	lsls r0, 24
 	lsrs r0, 24
 	adds r7, r0, 0
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	mov r10, r0
 	ldrb r0, [r0]
 	str r7, [sp]
@@ -15221,7 +15221,7 @@ sub_81A2460: @ 81A2460
 	sub sp, 0xC
 	lsls r0, 24
 	lsrs r7, r0, 24
-	ldr r4, =gUnknown_0203AB74
+	ldr r4, =gResultsWindowId
 	ldr r0, =gUnknown_08611C74
 	bl AddWindow
 	strb r0, [r4]
@@ -15246,7 +15246,7 @@ _081A24B0:
 	ldr r0, =gStringVar4
 	movs r1, 0x2
 	bl sub_81A1C4C
-	ldr r6, =gUnknown_0203AB74
+	ldr r6, =gResultsWindowId
 	ldrb r0, [r6]
 	ldr r2, =gText_Lv502
 	movs r1, 0x31
@@ -15356,7 +15356,7 @@ sub_81A258C: @ 81A258C
 	lsrs r6, 24
 	lsls r5, 24
 	lsrs r5, 24
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	mov r10, r0
 	ldrb r0, [r0]
 	str r5, [sp]
@@ -15469,7 +15469,7 @@ sub_81A2698: @ 81A2698
 	mov r5, r8
 	push {r5-r7}
 	sub sp, 0xC
-	ldr r6, =gUnknown_0203AB74
+	ldr r6, =gResultsWindowId
 	ldr r0, =gUnknown_08611C74
 	bl AddWindow
 	strb r0, [r6]
@@ -15608,7 +15608,7 @@ sub_81A27E8: @ 81A27E8
 	lsls r0, 24
 	lsrs r0, 24
 	adds r7, r0, 0
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	mov r10, r0
 	ldrb r0, [r0]
 	str r7, [sp]
@@ -15772,7 +15772,7 @@ _081A2956:
 sub_81A2968: @ 81A2968
 	push {r4-r6,lr}
 	sub sp, 0xC
-	ldr r5, =gUnknown_0203AB74
+	ldr r5, =gResultsWindowId
 	ldr r0, =gUnknown_08611C74
 	bl AddWindow
 	strb r0, [r5]
@@ -15871,7 +15871,7 @@ sub_81A2A28: @ 81A2A28
 	lsls r0, 24
 	lsrs r0, 24
 	adds r6, r0, 0
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	mov r10, r0
 	ldrb r0, [r0]
 	str r6, [sp]
@@ -16147,7 +16147,7 @@ sub_81A2C94: @ 81A2C94
 	sub sp, 0xC
 	lsls r0, 24
 	lsrs r7, r0, 24
-	ldr r4, =gUnknown_0203AB74
+	ldr r4, =gResultsWindowId
 	ldr r0, =gUnknown_08611C74
 	bl AddWindow
 	strb r0, [r4]
@@ -16172,7 +16172,7 @@ _081A2CE0:
 	ldr r0, =gStringVar4
 	movs r1, 0
 	bl sub_81A1C4C
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	mov r8, r0
 	ldrb r0, [r0]
 	ldr r2, =gText_Lv502
@@ -16276,7 +16276,7 @@ sub_81A2DB4: @ 81A2DB4
 	lsls r0, 24
 	lsrs r0, 24
 	adds r7, r0, 0
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	mov r10, r0
 	ldrb r0, [r0]
 	str r7, [sp]
@@ -16442,7 +16442,7 @@ _081A2F26:
 sub_81A2F38: @ 81A2F38
 	push {r4-r6,lr}
 	sub sp, 0xC
-	ldr r5, =gUnknown_0203AB74
+	ldr r5, =gResultsWindowId
 	ldr r0, =gUnknown_08611C74
 	bl AddWindow
 	strb r0, [r5]
@@ -16520,7 +16520,7 @@ sub_81A2FF8: @ 81A2FF8
 	mov r6, r8
 	push {r6,r7}
 	sub sp, 0xC
-	ldr r4, =gUnknown_0203AB74
+	ldr r4, =gResultsWindowId
 	ldr r0, =gUnknown_08611C7C
 	bl AddWindow
 	strb r0, [r4]
@@ -16686,7 +16686,7 @@ _081A315C:
 	movs r2, 0x1
 	movs r3, 0x4
 	bl ConvertIntToDecimalStringN
-	ldr r6, =gUnknown_0203AB74
+	ldr r6, =gResultsWindowId
 	ldrb r0, [r6]
 	movs r1, 0x26
 	adds r3, r5, 0
@@ -17183,7 +17183,7 @@ sub_81A35EC: @ 81A35EC
 	push {r4,lr}
 	ldr r0, =0x000040cf
 	bl VarGet
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	bl sub_81A3610
 	lsls r0, 24
 	lsrs r0, 24
@@ -17495,7 +17495,7 @@ _081A38A8:
 	lsrs r3, r0, 24
 	movs r0, 0x58
 	muls r0, r3
-	ldr r1, =gUnknown_086109BA
+	ldr r1, =gUnknown_08610970+0x4A
 _081A38C4:
 	adds r0, r1
 	bl ConvertBattleFrontierTrainerSpeechToString
@@ -17516,7 +17516,7 @@ _081A38D4:
 	lsrs r3, r0, 27
 	movs r0, 0x58
 	muls r0, r3
-	ldr r1, =gUnknown_086109BA
+	ldr r1, =gUnknown_08610970+0x4A
 	adds r0, r1
 	bl ConvertBattleFrontierTrainerSpeechToString
 _081A38F8:
@@ -17755,12 +17755,12 @@ sub_81A3B00: @ 81A3B00
 	ldr r0, =0x000003fe
 	cmp r1, r0
 	bne _081A3B20
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	b _081A3B24
 	.pool
 _081A3B20:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 _081A3B24:
 	strh r0, [r1]
@@ -17988,7 +17988,7 @@ sub_81A3D30: @ 81A3D30
 	push {r4,lr}
 	ldr r0, =0x000040cf
 	bl VarGet
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	lsls r0, 24
 	lsrs r0, 24
 	bl sub_81A3B30
@@ -18044,13 +18044,13 @@ sub_81A3DA0: @ 81A3DA0
 	ands r2, r1
 	cmp r2, 0
 	beq _081A3DC4
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	strh r0, [r1]
 	b _081A3DC8
 	.pool
 _081A3DC4:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r2, [r0]
 _081A3DC8:
 	pop {r0}
@@ -18390,7 +18390,7 @@ _081A404E:
 	bne _081A40C8
 	cmp r7, 0
 	bne _081A40E4
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldrb r3, [r0]
 	str r6, [sp]
 	add r1, sp, 0x10
@@ -18406,7 +18406,7 @@ _081A404E:
 	b _081A40E4
 	.pool
 _081A40C8:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldrb r3, [r0]
 	str r6, [sp]
 	add r1, sp, 0x10
@@ -18529,7 +18529,7 @@ _081A41E0:
 	strh r0, [r1]
 	ldr r0, =gSaveBlock2Ptr
 	ldr r2, [r0]
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldrb r0, [r0]
 	ldr r1, =0x00000ca9
 	adds r2, r1
@@ -18767,8 +18767,8 @@ _081A43EE:
 	thumb_func_start sub_81A4410
 sub_81A4410: @ 81A4410
 	push {r4,lr}
-	ldr r4, =gScriptResult
-	bl sub_8185338
+	ldr r4, =gSpecialVar_Result
+	bl MoveRecordedBattleToSaveData
 	strh r0, [r4]
 	ldr r0, =gSaveBlock2Ptr
 	ldr r1, [r0]
@@ -18962,7 +18962,7 @@ sub_81A4594: @ 81A4594
 	sub sp, 0x2C
 	mov r8, r1
 	adds r6, r3, 0
-	ldr r1, =gUnknown_0203AB74
+	ldr r1, =gResultsWindowId
 	ldrb r5, [r1]
 	lsls r4, r0, 1
 	adds r4, r0
@@ -18997,8 +18997,8 @@ sub_81A4594: @ 81A4594
 	adds r1, r6, 0x6
 	ldrb r2, [r6, 0xE]
 	add r0, sp, 0xC
-	bl sub_81DB5E8
-	ldr r1, =gUnknown_0203AB74
+	bl TVShowConvertInternationalString
+	ldr r1, =gResultsWindowId
 	ldrb r0, [r1]
 	mov r3, r8
 	adds r3, 0x2
@@ -19038,7 +19038,7 @@ _081A4618:
 	adds r3, r0, 0
 	lsls r3, 24
 	lsrs r3, 24
-	ldr r1, =gUnknown_0203AB74
+	ldr r1, =gResultsWindowId
 	ldrb r0, [r1]
 	str r7, [sp]
 	mov r1, r10
@@ -19072,7 +19072,7 @@ sub_81A4684: @ 81A4684
 	adds r7, r1, 0
 	mov r10, r2
 	adds r5, r3, 0
-	ldr r1, =gUnknown_0203AB74
+	ldr r1, =gResultsWindowId
 	ldrb r0, [r1]
 	lsls r2, r6, 1
 	adds r2, r6
@@ -19111,8 +19111,8 @@ sub_81A4684: @ 81A4684
 	adds r1, 0xA
 	ldrb r2, [r5, 0x1A]
 	add r0, sp, 0xC
-	bl sub_81DB5E8
-	ldr r1, =gUnknown_0203AB74
+	bl TVShowConvertInternationalString
+	ldr r1, =gResultsWindowId
 	ldrb r0, [r1]
 	adds r3, r7, 0x2
 	lsls r3, 27
@@ -19133,13 +19133,13 @@ sub_81A4684: @ 81A4684
 	adds r4, r5, 0
 	adds r4, 0x12
 	adds r0, r4, 0
-	bl sub_8009228
+	bl IsStringJapanese
 	cmp r0, 0
 	beq _081A4734
 	add r0, sp, 0xC
 	adds r1, r4, 0
 	movs r2, 0x1
-	bl sub_81DB5E8
+	bl TVShowConvertInternationalString
 	b _081A473C
 	.pool
 _081A4734:
@@ -19147,7 +19147,7 @@ _081A4734:
 	adds r1, r4, 0
 	bl StringCopy
 _081A473C:
-	ldr r2, =gUnknown_0203AB74
+	ldr r2, =gResultsWindowId
 	mov r9, r2
 	ldrb r0, [r2]
 	adds r3, r7, 0x4
@@ -19468,7 +19468,7 @@ sub_81A4998: @ 81A4998
 	ldr r1, [r5]
 	adds r0, r6, 0
 	bl StringExpandPlaceholders
-	ldr r0, =gUnknown_0203AB74
+	ldr r0, =gResultsWindowId
 	mov r8, r0
 	ldrb r0, [r0]
 	movs r1, 0x1
@@ -19567,7 +19567,7 @@ _081A4A90:
 	thumb_func_start sub_81A4AA0
 sub_81A4AA0: @ 81A4AA0
 	push {r4,lr}
-	ldr r4, =gUnknown_0203AB74
+	ldr r4, =gResultsWindowId
 	ldr r0, =gUnknown_08611C84
 	bl AddWindow
 	strb r0, [r4]
@@ -19595,7 +19595,7 @@ sub_81A4AA0: @ 81A4AA0
 	thumb_func_start sub_81A4AE8
 sub_81A4AE8: @ 81A4AE8
 	push {r4,lr}
-	ldr r4, =gUnknown_0203AB74
+	ldr r4, =gResultsWindowId
 	ldrb r0, [r4]
 	movs r1, 0x11
 	bl FillWindowPixelBuffer
@@ -20533,10 +20533,10 @@ _081A52A4:
 	lsls r1, 1
 	movs r2, 0x20
 	bl LoadCompressedPalette
-	ldr r1, =gUnknown_02022E24
+	ldr r1, =gBattle_WIN0H
 	movs r0, 0xFF
 	strh r0, [r1]
-	ldr r1, =gUnknown_02022E26
+	ldr r1, =gBattle_WIN0V
 	movs r0, 0x70
 	strh r0, [r1]
 	b _081A553E
@@ -20557,7 +20557,7 @@ _081A5306:
 	movs r1, 0
 	movs r2, 0x18
 	movs r3, 0xD
-	bl sub_8056A3C
+	bl HandleBattleWindow
 	b _081A553E
 	.pool
 _081A531C:
@@ -20577,34 +20577,34 @@ _081A5328:
 	movs r0, 0x1
 	negs r0, r0
 	strb r0, [r1, 0x1]
-	ldr r0, =gText_JapaneseHonorific
+	ldr r0, =gText_PlayerMon1Name
 	bl BattleStringExpandPlaceholdersToDisplayedString
 	ldr r4, =gDisplayedStringBattle
 	adds r0, r4, 0
 	movs r1, 0xF
-	bl sub_814F9EC
+	bl BattleHandleAddTextPrinter
 	ldr r0, =gText_Vs
 	movs r1, 0x10
-	bl sub_814F9EC
-	ldr r0, =gText_RivalBuffer
+	bl BattleHandleAddTextPrinter
+	ldr r0, =gText_OpponentMon1Name
 	bl BattleStringExpandPlaceholdersToDisplayedString
 	adds r0, r4, 0
 	movs r1, 0x11
-	bl sub_814F9EC
+	bl BattleHandleAddTextPrinter
 	ldr r0, =gText_Mind
 	movs r1, 0x12
-	bl sub_814F9EC
+	bl BattleHandleAddTextPrinter
 	ldr r0, =gText_Skill
 	movs r1, 0x13
-	bl sub_814F9EC
+	bl BattleHandleAddTextPrinter
 	ldr r0, =gText_Body
 	movs r1, 0x14
-	bl sub_814F9EC
+	bl BattleHandleAddTextPrinter
 	ldr r0, =gText_Judgement
 	bl BattleStringExpandPlaceholdersToDisplayedString
 	adds r0, r4, 0
 	movs r1, 0x15
-	bl sub_814F9EC
+	bl BattleHandleAddTextPrinter
 	b _081A553E
 	.pool
 _081A53B4:
@@ -20688,7 +20688,7 @@ _081A5464:
 	bl BattleStringExpandPlaceholdersToDisplayedString
 	ldr r0, =gDisplayedStringBattle
 	movs r1, 0x15
-	bl sub_814F9EC
+	bl BattleHandleAddTextPrinter
 	ldrb r0, [r5]
 	adds r0, 0x1
 	strb r0, [r5]
@@ -20733,10 +20733,10 @@ _081A54D4:
 	movs r1, 0
 	movs r2, 0x18
 	movs r3, 0xD
-	bl sub_8056A3C
+	bl HandleBattleWindow
 	movs r0, 0
 	bl CopyBgTilemapBufferToVram
-	ldr r0, =gMPlay_BGM
+	ldr r0, =gMPlayInfo_BGM
 	ldr r1, =0x0000ffff
 	movs r2, 0x80
 	lsls r2, 1
@@ -21309,7 +21309,7 @@ _081A5994:
 	beq _081A59C8
 	b _081A59EE
 _081A599A:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldr r2, =0x00000dd8
 	adds r1, r3, r2
 	ldrh r1, [r1]
@@ -21317,7 +21317,7 @@ _081A599A:
 	b _081A59EE
 	.pool
 _081A59B0:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	lsls r1, 1
 	ldr r4, =0x00000dda
 	adds r0, r3, r4
@@ -21328,7 +21328,7 @@ _081A59B0:
 _081A59C8:
 	cmp r1, 0
 	beq _081A59E0
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r1, =0x00000cdc
 	adds r0, r3, r1
 	ldr r0, [r0]
@@ -21336,7 +21336,7 @@ _081A59C8:
 	b _081A59EA
 	.pool
 _081A59E0:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r4, =0x00000cdc
 	adds r0, r3, r4
 	ldr r0, [r0]
@@ -21550,12 +21550,12 @@ sub_81A5B88: @ 81A5B88
 	adds r0, r1
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r5, [r0]
 	b _081A5BD6
 	.pool
 _081A5BD0:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 	strh r0, [r1]
 _081A5BD6:
@@ -22026,7 +22026,7 @@ _081A5FE4:
 	beq _081A6030
 	b _081A6044
 _081A5FEA:
-	ldr r3, =gScriptResult
+	ldr r3, =gSpecialVar_Result
 	ldr r0, [r7]
 	lsls r1, r6, 1
 	lsls r2, r5, 2
@@ -22035,7 +22035,7 @@ _081A5FEA:
 	b _081A603C
 	.pool
 _081A6000:
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	ldr r2, [r7]
 	ldr r0, =0x00000cdc
 	adds r2, r0
@@ -22054,7 +22054,7 @@ _081A6000:
 	b _081A6044
 	.pool
 _081A6030:
-	ldr r3, =gScriptResult
+	ldr r3, =gSpecialVar_Result
 	ldr r0, [r7]
 	lsls r1, r6, 1
 	lsls r2, r5, 2
@@ -23248,7 +23248,7 @@ sub_81A6A08: @ 81A6A08
 	str r0, [r1]
 	movs r4, 0
 	add r5, sp, 0x14
-	ldr r7, =gScriptResult
+	ldr r7, =gSpecialVar_Result
 	movs r1, 0
 _081A6A1E:
 	mov r2, sp
@@ -23407,7 +23407,7 @@ _081A6B18:
 	lsrs r4, r0, 24
 	cmp r4, 0x2
 	bls _081A6B0E
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 	strh r0, [r1]
 	movs r4, 0x1
@@ -24180,7 +24180,7 @@ _081A7174:
 	.4byte _081A71E8
 	.4byte _081A720C
 _081A7188:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldr r1, [r3]
 	ldr r3, =0x00000e02
 	adds r1, r3
@@ -24189,7 +24189,7 @@ _081A7188:
 	b _081A723A
 	.pool
 _081A71A0:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r1, [r3]
 	ldr r3, =0x00000ca9
 	adds r0, r1, r3
@@ -24203,7 +24203,7 @@ _081A71A0:
 	b _081A7238
 	.pool
 _081A71C4:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r1, [r3]
 	ldr r3, =0x00000ca9
 	adds r0, r1, r3
@@ -24217,7 +24217,7 @@ _081A71C4:
 	b _081A7238
 	.pool
 _081A71E8:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r1, [r3]
 	ldr r3, =0x00000ca9
 	adds r0, r1, r3
@@ -24233,7 +24233,7 @@ _081A71E8:
 _081A720C:
 	cmp r2, 0
 	beq _081A7228
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r0, [r3]
 	ldr r1, =0x00000cdc
 	adds r0, r1
@@ -24243,7 +24243,7 @@ _081A720C:
 	b _081A7236
 	.pool
 _081A7228:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r0, [r3]
 	ldr r3, =0x00000cdc
 	adds r0, r3
@@ -24424,12 +24424,12 @@ sub_81A73B8: @ 81A73B8
 	ldrh r0, [r0]
 	cmp r0, 0xE
 	bls _081A73DC
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	b _081A73E0
 	.pool
 _081A73DC:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 _081A73E0:
 	strh r0, [r1]
@@ -24440,7 +24440,7 @@ _081A73E0:
 
 	thumb_func_start sub_81A73EC
 sub_81A73EC: @ 81A73EC
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldr r1, =gUnknown_0300128C
 	ldrb r1, [r1]
 	strh r1, [r0]
@@ -24528,27 +24528,27 @@ _081A7484:
 	beq _081A74A4
 	b _081A74C2
 _081A748E:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 	b _081A74C0
 	.pool
 _081A7498:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	b _081A74C0
 	.pool
 _081A74A4:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x2
 	b _081A74C0
 	.pool
 _081A74B0:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x3
 	b _081A74C0
 	.pool
 _081A74BC:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x4
 _081A74C0:
 	strh r0, [r1]
@@ -24560,7 +24560,7 @@ _081A74C2:
 
 	thumb_func_start sub_81A74CC
 sub_81A74CC: @ 81A74CC
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldr r1, =gUnknown_0300128D
 	ldrb r1, [r1]
 	strh r1, [r0]
@@ -24580,7 +24580,7 @@ sub_81A74E0: @ 81A74E0
 	adds r4, 0x1
 	adds r0, r4, 0
 	bl sub_81A7F38
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r4, [r0]
 	pop {r4}
 	pop {r0}
@@ -25426,8 +25426,8 @@ sub_81A7B84: @ 81A7B84
 	.pool
 	thumb_func_end sub_81A7B84
 
-	thumb_func_start sub_81A7B90
-sub_81A7B90: @ 81A7B90
+	thumb_func_start TryGenerateBattlePikeWildMon
+TryGenerateBattlePikeWildMon: @ 81A7B90
 	push {r4-r7,lr}
 	mov r7, r10
 	mov r6, r9
@@ -25437,7 +25437,7 @@ sub_81A7B90: @ 81A7B90
 	lsls r0, 24
 	lsrs r0, 24
 	mov r8, r0
-	bl sub_81A7D00
+	bl GetBattlePikeWildMonHeaderId
 	lsls r0, 24
 	lsrs r6, r0, 24
 	ldr r7, =gSaveBlock2Ptr
@@ -25596,10 +25596,10 @@ _081A7CE2:
 	pop {r1}
 	bx r1
 	.pool
-	thumb_func_end sub_81A7B90
+	thumb_func_end TryGenerateBattlePikeWildMon
 
-	thumb_func_start sub_81A7D00
-sub_81A7D00: @ 81A7D00
+	thumb_func_start GetBattlePikeWildMonHeaderId
+GetBattlePikeWildMonHeaderId: @ 81A7D00
 	push {lr}
 	ldr r0, =gSaveBlock2Ptr
 	ldr r1, [r0]
@@ -25638,7 +25638,7 @@ _081A7D4C:
 	adds r0, r1, 0
 	pop {r1}
 	bx r1
-	thumb_func_end sub_81A7D00
+	thumb_func_end GetBattlePikeWildMonHeaderId
 
 	thumb_func_start sub_81A7D54
 sub_81A7D54: @ 81A7D54
@@ -26066,7 +26066,7 @@ _081A807A:
 	thumb_func_start sub_81A8090
 sub_81A8090: @ 81A8090
 	push {r4,lr}
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	bl InBattlePike
 	lsls r0, 24
 	lsrs r0, 24
@@ -26110,7 +26110,7 @@ sub_81A80DC: @ 81A80DC
 	push {r4-r7,lr}
 	mov r7, r8
 	push {r7}
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	movs r0, 0
 	strh r0, [r4]
 	movs r0, 0x1
@@ -26295,7 +26295,7 @@ _081A824C:
 
 	thumb_func_start sub_81A825C
 sub_81A825C: @ 81A825C
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	movs r2, 0xE1
@@ -26311,7 +26311,7 @@ sub_81A825C: @ 81A825C
 
 	thumb_func_start sub_81A827C
 sub_81A827C: @ 81A827C
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r1, =gUnknown_0861266C
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
@@ -26754,7 +26754,7 @@ _081A8634:
 	thumb_func_start sub_81A863C
 sub_81A863C: @ 81A863C
 	push {r4,lr}
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	movs r0, 0
 	bl sub_81A8590
 	lsls r0, 24
@@ -26787,7 +26787,7 @@ sub_81A8658: @ 81A8658
 	ldrb r4, [r0]
 	adds r0, r4, 0
 	bl sub_81A7F38
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r4, [r0]
 	pop {r4}
 	pop {r0}
@@ -26821,7 +26821,7 @@ sub_81A86C0: @ 81A86C0
 	mov r6, r9
 	mov r5, r8
 	push {r5-r7}
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	strh r0, [r1]
 	movs r0, 0
@@ -26895,7 +26895,7 @@ _081A8766:
 	mov r0, r9
 	cmp r0, 0x1
 	bne _081A8778
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 	strh r0, [r1]
 	b _081A8786
@@ -27306,7 +27306,7 @@ _081A8A74:
 	ldrb r1, [r2, 0x5]
 	ldrb r2, [r2, 0x4]
 	adds r3, r7, 0
-	bl exec_movement
+	bl ScriptMovement_StartObjectMovementScript
 	b _081A8AD4
 	.pool
 _081A8ACC:
@@ -27540,7 +27540,7 @@ _081A8C72:
 	ldr r2, [r1]
 	ldrb r1, [r2, 0x5]
 	ldrb r2, [r2, 0x4]
-	bl exec_movement
+	bl ScriptMovement_StartObjectMovementScript
 	b _081A8D32
 	.pool
 _081A8C9C:
@@ -27618,7 +27618,7 @@ _081A8D12:
 	ldr r2, [r1]
 	ldrb r1, [r2, 0x5]
 	ldrb r2, [r2, 0x4]
-	bl exec_movement
+	bl ScriptMovement_StartObjectMovementScript
 _081A8D32:
 	mov r0, r9
 	adds r0, 0x1
@@ -27919,13 +27919,13 @@ _081A8F70:
 	.4byte _081A9010
 	.4byte _081A9028
 _081A8F8C:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldr r1, [r3]
 	ldr r3, =0x00000e18
 	b _081A8FFE
 	.pool
 _081A8F9C:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r0, [r3]
 	lsls r1, r4, 1
 	ldr r3, =0x00000e1a
@@ -27937,14 +27937,14 @@ _081A8F9C:
 _081A8FB4:
 	cmp r4, 0
 	beq _081A8FCC
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r0, [r3]
 	ldr r1, =0x00000cdc
 	adds r0, r1
 	b _081A9030
 	.pool
 _081A8FCC:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r0, [r3]
 	ldr r3, =0x00000cdc
 	adds r0, r3
@@ -27954,14 +27954,14 @@ _081A8FCC:
 	b _081A9036
 	.pool
 _081A8FE4:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldr r1, [r3]
 	ldr r2, =0x00000e1a
 	adds r1, r2
 	b _081A9000
 	.pool
 _081A8FF8:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	ldr r1, [r3]
 	ldr r3, =0x00000e1c
 _081A8FFE:
@@ -27972,7 +27972,7 @@ _081A9000:
 	b _081A903A
 	.pool
 _081A9010:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r0, [r3]
 	ldr r1, =0x00000cdc
 	adds r0, r1
@@ -27982,7 +27982,7 @@ _081A9010:
 	b _081A9036
 	.pool
 _081A9028:
-	ldr r2, =gScriptResult
+	ldr r2, =gSpecialVar_Result
 	ldr r0, [r3]
 	ldr r3, =0x00000cdc
 	adds r0, r3
@@ -28211,12 +28211,12 @@ sub_81A91FC: @ 81A91FC
 	adds r0, r1
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r5, [r0]
 	b _081A924A
 	.pool
 _081A9244:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0
 	strh r0, [r1]
 _081A924A:
@@ -28296,7 +28296,7 @@ CalculateBattlePyramidItemBallItemId: @ 81A9290
 _081A92DE:
 	bl sub_81AA9E4
 	lsls r0, 24
-	ldr r1, =gScriptLastTalked
+	ldr r1, =gSpecialVar_LastTalked
 	ldrh r4, [r1]
 	ldr r1, =gUnknown_08613650
 	lsrs r0, 20
@@ -28401,7 +28401,7 @@ sub_81A93C8: @ 81A93C8
 	lsls r1, 4
 	adds r3, r0, r1
 	movs r2, 0
-	ldr r4, =gScriptLastTalked
+	ldr r4, =gSpecialVar_LastTalked
 	b _081A93F4
 	.pool
 _081A93E4:
@@ -28660,7 +28660,7 @@ _081A95EE:
 	lsls r0, r7, 2
 	adds r0, r1
 	ldr r0, [r0]
-	bl box_related_two__2
+	bl ShowFieldMessage
 	add sp, 0x8
 	pop {r3,r4}
 	mov r8, r3
@@ -28712,7 +28712,7 @@ _081A9650:
 	thumb_func_start sub_81A966C
 sub_81A966C: @ 81A966C
 	push {r4,lr}
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	bl InBattlePyramid
 	lsls r0, 24
 	lsrs r0, 24
@@ -28745,7 +28745,7 @@ _081A9698:
 	b _081A9754
 	.pool
 _081A96B4:
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	ldrh r0, [r4]
 	cmp r0, 0x1
 	beq _081A9710
@@ -28775,7 +28775,7 @@ _081A96F4:
 	ldrh r0, [r0]
 	bl PlaySE
 _081A96FC:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	ldrh r0, [r1]
 	adds r0, 0x1
 	strh r0, [r1]
@@ -29290,7 +29290,7 @@ sub_81A9B04: @ 81A9B04
 	cmp r0, 0
 	beq _081A9B2E
 	movs r0, 0x1
-	bl sub_80B47E0
+	bl GetChosenApproachingTrainerMapObjectId
 	ldr r1, =gSelectedMapObject
 	strb r0, [r1]
 	ldr r0, =gTrainerBattleOpponent_B
@@ -29352,7 +29352,7 @@ _081A9B86:
 	strb r3, [r0, 0x6]
 	mov r7, r10
 	ldr r2, [r7]
-	ldr r0, =gScriptLastTalked
+	ldr r0, =gSpecialVar_LastTalked
 	ldrh r1, [r0]
 	subs r1, 0x1
 	lsls r0, r1, 1
@@ -29386,8 +29386,8 @@ _081A9B86:
 	.pool
 	thumb_func_end sub_81A9B44
 
-	thumb_func_start sub_81A9C04
-sub_81A9C04: @ 81A9C04
+	thumb_func_start GenerateBattlePyramidWildMon
+GenerateBattlePyramidWildMon: @ 81A9C04
 	push {r4-r6,lr}
 	sub sp, 0x14
 	ldr r0, =gSaveBlock2Ptr
@@ -29627,7 +29627,7 @@ _081A9E0C:
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_81A9C04
+	thumb_func_end GenerateBattlePyramidWildMon
 
 	thumb_func_start sub_81A9E28
 sub_81A9E28: @ 81A9E28
@@ -29815,7 +29815,7 @@ _081A9F7A:
 	thumb_func_start sub_81A9F80
 sub_81A9F80: @ 81A9F80
 	push {lr}
-	ldr r0, =gUnknown_08252C88
+	ldr r0, =BattleFrontier_BattlePyramidEmptySquare_EventScript_252C88
 	bl ScriptContext1_SetupScript
 	pop {r0}
 	bx r0
@@ -29962,7 +29962,7 @@ _081AA0A6:
 	ldr r2, =0x00000169
 	adds r0, r2
 	lsls r0, 2
-	ldr r1, =gUnknown_08481DD4
+	ldr r1, =gMapAttributes
 	adds r0, r1
 	ldr r6, [r0]
 	ldr r2, [r6, 0xC]
@@ -30241,8 +30241,8 @@ sub_81AA2F8: @ 81AA2F8
 	push {r4,r5,lr}
 	ldr r0, =gSaveBlock1Ptr
 	ldr r0, [r0]
-	ldr r5, =gUnknown_08252C4F
-	ldr r4, =gUnknown_08252C6A
+	ldr r5, =BattleFrontier_BattlePyramidEmptySquare_EventScript_252C4F
+	ldr r4, =BattleFrontier_BattlePyramidEmptySquare_EventScript_252C6A
 	movs r2, 0xC8
 	lsls r2, 4
 	adds r1, r0, r2
@@ -31102,7 +31102,7 @@ sub_81AA96C: @ 81AA96C
 	lsls r0, 24
 	lsrs r5, r0, 24
 	movs r3, 0
-	ldr r2, =gUnknown_08613655
+	ldr r2, =gUnknown_08613650+0x5
 	mov r12, r2
 	movs r7, 0x7
 _081AA994:

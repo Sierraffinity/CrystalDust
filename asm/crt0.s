@@ -68,8 +68,8 @@ GPIOPortReadEnable: @ 80000C8
 	.4byte gAbilityDescriptionPointers
 	.4byte gItems
 	.4byte gBattleMoves
-	.4byte gUnknown_0832C400
-	.4byte gUnknown_0832C460
+	.4byte gBallSpriteSheets
+	.4byte gBallSpritePalettes
 
 	.4byte 0x000000a8, 0x00000864, 0x0000089b
 
@@ -163,7 +163,7 @@ IntrMain: @ 8000248
 IntrMain_FoundIntr:
 	strh r0, [r3, OFFSET_REG_IF - 0x200]
 	bic r2, r2, r0
-	ldr r0, =gUnknown_03007868
+	ldr r0, =gRfuState
 	ldr r0, [r0]
 	ldrb r0, [r0, 0xA]
 	mov r1, 0x8

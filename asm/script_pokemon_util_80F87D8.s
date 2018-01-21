@@ -83,7 +83,7 @@ sub_80F8850: @ 80F8850
 	thumb_func_start sub_80F8864
 sub_80F8864: @ 80F8864
 	push {lr}
-	ldr r0, =gUnknown_02039F2C
+	ldr r0, =gSpecialVar_ContestCategory
 	ldrh r0, [r0]
 	cmp r0, 0x4
 	bhi _080F88A4
@@ -157,7 +157,7 @@ sub_80F88E8: @ 80F88E8
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _080F8930
-	ldr r0, =gUnknown_02039F2E
+	ldr r0, =gSpecialVar_ContestRank
 	ldrh r0, [r0]
 	cmp r0, 0x3
 	bne _080F8930
@@ -222,7 +222,7 @@ sub_80F8970: @ 80F8970
 	mov r12, r0
 	ldr r1, =gSpecialVar_0x8006
 	mov r9, r1
-	ldr r2, =gUnknown_02039E02
+	ldr r2, =gUnknown_02039E00 + 2
 	mov r10, r2
 	mov r2, r12
 	mov r1, sp
@@ -397,8 +397,8 @@ sub_80F8ACC: @ 80F8ACC
 	.pool
 	thumb_func_end sub_80F8ACC
 
-	thumb_func_start sub_80F8ADC
-sub_80F8ADC: @ 80F8ADC
+	thumb_func_start ShowContestWinner
+ShowContestWinner: @ 80F8ADC
 	push {lr}
 	ldr r0, =sub_812FDEC
 	bl SetMainCallback2
@@ -408,7 +408,7 @@ sub_80F8ADC: @ 80F8ADC
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_80F8ADC
+	thumb_func_end ShowContestWinner
 
 	thumb_func_start sub_80F8AFC
 sub_80F8AFC: @ 80F8AFC
@@ -601,7 +601,7 @@ sub_80F8C7C: @ 80F8C7C
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _080F8D18
-	ldr r0, =gUnknown_02039F2E
+	ldr r0, =gSpecialVar_ContestRank
 	ldrh r0, [r0]
 	cmp r0, 0x3
 	bne _080F8D18
@@ -625,7 +625,7 @@ sub_80F8C7C: @ 80F8C7C
 	ldrb r0, [r6]
 	muls r0, r5
 	adds r0, r4
-	bl sub_80EE5A4
+	bl GetRibbonCount
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x4
@@ -670,7 +670,7 @@ sub_80F8D28: @ 80F8D28
 	beq _080F8D44
 	b _080F8E9C
 _080F8D44:
-	bl init_uns_table_pokemon_copy
+	bl AllocateMonSpritesGfx
 	movs r0, 0xA
 	mov r9, r0
 	movs r1, 0x3
@@ -710,7 +710,7 @@ _080F8D44:
 	lsls r0, r6, 3
 	ldr r1, =gMonFrontPicTable
 	adds r0, r1
-	ldr r1, =gBattleSpritesGfx
+	ldr r1, =gMonSpritesGfxPtr
 	ldr r1, [r1]
 	ldr r1, [r1, 0x8]
 	adds r2, r6, 0
@@ -722,7 +722,7 @@ _080F8DC4:
 	lsls r0, r6, 3
 	ldr r1, =gMonFrontPicTable
 	adds r0, r1
-	ldr r1, =gBattleSpritesGfx
+	ldr r1, =gMonSpritesGfxPtr
 	ldr r1, [r1]
 	ldr r1, [r1, 0x8]
 	adds r2, r6, 0
@@ -732,7 +732,7 @@ _080F8DD8:
 	adds r0, r6, 0
 	mov r1, r8
 	adds r2, r5, 0
-	bl sub_806E7CC
+	bl GetMonSpritePalStructFromOtIdPersonality
 	adds r4, r0, 0
 	bl LoadCompressedObjectPalette
 	adds r0, r6, 0
@@ -842,7 +842,7 @@ sub_80F8EB8: @ 80F8EB8
 	ldrh r0, [r1, 0x8]
 	adds r0, 0x1
 	strh r0, [r1, 0x8]
-	bl sub_805F094
+	bl FreeMonSpritesGfx
 _080F8EDC:
 	pop {r0}
 	bx r0
@@ -952,7 +952,7 @@ sub_80F8FA0: @ 80F8FA0
 	ands r0, r1
 	cmp r0, 0
 	bne _080F8FD8
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	bl GetMultiplayerId
 	lsls r0, 24
 	lsrs r0, 24
@@ -960,7 +960,7 @@ sub_80F8FA0: @ 80F8FA0
 	b _080F8FDE
 	.pool
 _080F8FD8:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x4
 	strh r0, [r1]
 _080F8FDE:
@@ -987,11 +987,11 @@ sub_80F8FE8: @ 80F8FE8
 	adds r0, r1
 	str r0, [r2]
 	lsrs r0, 16
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	b _080F902A
 	.pool
 _080F9020:
-	ldr r4, =gScriptResult
+	ldr r4, =gSpecialVar_Result
 	bl Random
 	lsls r0, 16
 	lsrs r0, 16
@@ -1093,7 +1093,7 @@ sub_80F90DC: @ 80F90DC
 	ands r0, r1
 	cmp r0, 0
 	beq _080F90FE
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080F90FE
@@ -1116,7 +1116,7 @@ sub_80F910C: @ 80F910C
 	ands r0, r1
 	cmp r0, 0
 	beq _080F9126
-	ldr r0, =gUnknown_03003124
+	ldr r0, =gReceivedRemoteLinkPlayers
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080F9126
@@ -1174,8 +1174,8 @@ _080F917A:
 	bx r1
 	thumb_func_end sub_80F9160
 
-	thumb_func_start sp000_heal_pokemon
-sp000_heal_pokemon: @ 80F9180
+	thumb_func_start HealPlayerParty
+HealPlayerParty: @ 80F9180
 	push {r4-r7,lr}
 	mov r7, r10
 	mov r6, r9
@@ -1267,11 +1267,11 @@ _080F922C:
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sp000_heal_pokemon
+	thumb_func_end HealPlayerParty
 
-	thumb_func_start sub_80F9244
-@ void sub_80F9244(s16 species_num, u8 level, int held_item)
-sub_80F9244: @ 80F9244
+	thumb_func_start ScriptGiveMon
+@ void ScriptGiveMon(s16 species_num, u8 level, int held_item)
+ScriptGiveMon: @ 80F9244
 	push {r4-r6,lr}
 	mov r6, r8
 	push {r6}
@@ -1332,10 +1332,10 @@ _080F92B8:
 	pop {r4-r6}
 	pop {r1}
 	bx r1
-	thumb_func_end sub_80F9244
+	thumb_func_end ScriptGiveMon
 
-	thumb_func_start sub_80F92C8
-sub_80F92C8: @ 80F92C8
+	thumb_func_start ScriptGiveEgg
+ScriptGiveEgg: @ 80F92C8
 	push {lr}
 	sub sp, 0x68
 	adds r1, r0, 0
@@ -1343,7 +1343,7 @@ sub_80F92C8: @ 80F92C8
 	lsrs r1, 16
 	mov r0, sp
 	movs r2, 0x1
-	bl sub_8070954
+	bl CreateEgg
 	add r2, sp, 0x64
 	movs r0, 0x1
 	strb r0, [r2]
@@ -1357,10 +1357,10 @@ sub_80F92C8: @ 80F92C8
 	add sp, 0x68
 	pop {r1}
 	bx r1
-	thumb_func_end sub_80F92C8
+	thumb_func_end ScriptGiveEgg
 
-	thumb_func_start sub_80F92F8
-sub_80F92F8: @ 80F92F8
+	thumb_func_start HasEnoughMonsForDoubleBattle
+HasEnoughMonsForDoubleBattle: @ 80F92F8
 	push {lr}
 	bl GetMonsStateToDoubles
 	lsls r0, 24
@@ -1376,13 +1376,13 @@ _080F9310:
 	cmp r1, 0x2
 	bne _080F9318
 _080F9314:
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r1, [r0]
 _080F9318:
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_80F92F8
+	thumb_func_end HasEnoughMonsForDoubleBattle
 
 	thumb_func_start sub_80F9320
 sub_80F9320: @ 80F9320
@@ -1450,8 +1450,8 @@ _080F9392:
 	.pool
 	thumb_func_end sub_80F9370
 
-	thumb_func_start sub_80F93A0
-sub_80F93A0: @ 80F93A0
+	thumb_func_start CreateScriptedWildMon
+CreateScriptedWildMon: @ 80F93A0
 	push {r4-r7,lr}
 	mov r7, r8
 	push {r7}
@@ -1496,10 +1496,10 @@ _080F93EE:
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_80F93A0
+	thumb_func_end CreateScriptedWildMon
 
-	thumb_func_start sub_80F9400
-sub_80F9400: @ 80F9400
+	thumb_func_start ScriptSetMonMoveSlot
+ScriptSetMonMoveSlot: @ 80F9400
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r3, r0, 24
@@ -1525,7 +1525,7 @@ _080F941C:
 	pop {r0}
 	bx r0
 	.pool
-	thumb_func_end sub_80F9400
+	thumb_func_end ScriptSetMonMoveSlot
 
 	thumb_func_start sub_80F9438
 sub_80F9438: @ 80F9438
@@ -1550,12 +1550,12 @@ sub_80F9460: @ 80F9460
 	ldrb r1, [r0]
 	cmp r1, 0
 	bne _080F9478
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r1, [r0]
 	b _080F947E
 	.pool
 _080F9478:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	strh r0, [r1]
 _080F947E:
@@ -1590,12 +1590,12 @@ sub_80F94B8: @ 80F94B8
 	ldrb r1, [r0]
 	cmp r1, 0
 	bne _080F94D0
-	ldr r0, =gScriptResult
+	ldr r0, =gSpecialVar_Result
 	strh r1, [r0]
 	b _080F94D6
 	.pool
 _080F94D0:
-	ldr r1, =gScriptResult
+	ldr r1, =gSpecialVar_Result
 	movs r0, 0x1
 	strh r0, [r1]
 _080F94D6:

@@ -498,8 +498,8 @@ _080B5E68:
 	bx r1
 	thumb_func_end FieldEffectActiveListContains
 
-	thumb_func_start sub_80B5E6C
-sub_80B5E6C: @ 80B5E6C
+	thumb_func_start CreateTrainerSprite
+CreateTrainerSprite: @ 80B5E6C
 	push {r4-r7,lr}
 	mov r7, r9
 	mov r6, r8
@@ -566,7 +566,7 @@ sub_80B5E6C: @ 80B5E6C
 	pop {r1}
 	bx r1
 	.pool
-	thumb_func_end sub_80B5E6C
+	thumb_func_end CreateTrainerSprite
 
 	thumb_func_start sub_80B5F0C
 sub_80B5F0C: @ 80B5F0C
@@ -694,7 +694,7 @@ sub_80B5FE8: @ 80B5FE8
 	lsls r5, 16
 	lsrs r5, 16
 	adds r0, r6, 0
-	bl sub_806E7CC
+	bl GetMonSpritePalStructFromOtIdPersonality
 	mov r8, r0
 	lsls r4, 16
 	asrs r4, 16
@@ -1961,7 +1961,7 @@ mapldr_080842E8: @ 80B69FC
 	movs r1, 0
 	bl CreateTask
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
@@ -1988,8 +1988,8 @@ task00_8084310: @ 80B6A24
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B6A8A
-	bl brm_get_pokemon_selection
-	ldr r1, =gFieldEffectSpawnParams
+	bl GetCursorSelectionMonId
+	ldr r1, =gFieldEffectArguments
 	lsls r0, 24
 	lsrs r0, 24
 	str r0, [r1]
@@ -2027,7 +2027,7 @@ _080B6A8A:
 	thumb_func_start mapldr_08084390
 mapldr_08084390: @ 80B6AA4
 	push {r4,lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_black
 	ldr r0, =c3_080843F8
 	movs r1, 0
@@ -2057,7 +2057,7 @@ mapldr_08084390: @ 80B6AA4
 	bl FieldObjectTurn
 _080B6AE6:
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
@@ -2100,7 +2100,7 @@ _080B6B3E:
 	cmp r0, 0
 	bne _080B6B58
 	bl ScriptContext2_Disable
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	adds r0, r5, 0
 	bl DestroyTask
 _080B6B58:
@@ -2113,10 +2113,10 @@ _080B6B58:
 	thumb_func_start sub_80B6B68
 sub_80B6B68: @ 80B6B68
 	push {lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_for_maplights
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	ldr r0, =sub_80B6B94
 	movs r1, 0
 	bl CreateTask
@@ -2459,7 +2459,7 @@ sub_80B6E18: @ 80B6E18
 	strb r0, [r1, 0x6]
 	bl ScriptContext2_Disable
 	bl CameraObjectReset1
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	bl InstallCameraPanAheadCallback
 	ldr r0, =sub_80B6B94
 	bl FindTaskIdByFunc
@@ -2534,7 +2534,7 @@ _080B6E9A:
 sub_80B6EC0: @ 80B6EC0
 	push {r4,lr}
 	adds r4, r0, 0
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl CameraObjectReset2
 	ldrb r0, [r4, 0xA]
 	bl sub_80E1558
@@ -2780,7 +2780,7 @@ _080B709C:
 	thumb_func_start sub_80B70B4
 sub_80B70B4: @ 80B70B4
 	push {lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_for_maplights
 	bl ScriptContext2_Enable
 	ldr r0, =sub_80B70DC
@@ -3111,7 +3111,7 @@ oei_waterfall: @ 80B734C
 	adds r1, r0
 	lsls r1, 3
 	adds r1, r2
-	ldr r2, =gFieldEffectSpawnParams
+	ldr r2, =gFieldEffectArguments
 	ldr r2, [r2]
 	strh r2, [r1, 0xA]
 	bl _call_via_r4
@@ -3188,7 +3188,7 @@ waterfall_1_do_anim_probably: @ 80B73F0
 	bne _080B7420
 	adds r0, r5, 0
 	bl FieldObjectClearAnimIfSpecialAnimFinished
-	ldr r1, =gFieldEffectSpawnParams
+	ldr r1, =gFieldEffectArguments
 	movs r2, 0xA
 	ldrsh r0, [r4, r2]
 	str r0, [r1]
@@ -3304,7 +3304,7 @@ sub_80B74D0: @ 80B74D0
 	adds r1, r0
 	lsls r1, 3
 	adds r1, r2
-	ldr r3, =gFieldEffectSpawnParams
+	ldr r3, =gFieldEffectArguments
 	ldr r2, [r3]
 	strh r2, [r1, 0x26]
 	ldr r2, [r3, 0x4]
@@ -3363,7 +3363,7 @@ dive_2_unknown: @ 80B7558
 	push {r4,lr}
 	adds r4, r0, 0
 	bl ScriptContext2_Enable
-	ldr r1, =gFieldEffectSpawnParams
+	ldr r1, =gFieldEffectArguments
 	movs r2, 0x26
 	ldrsh r0, [r4, r2]
 	str r0, [r1]
@@ -3476,7 +3476,7 @@ sub_80B764C: @ 80B764C
 	push {r4,r5,lr}
 	adds r4, r0, 0
 	adds r5, r1, 0
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl CameraObjectReset2
 	movs r0, 0
 	bl SetCameraPanningCallback
@@ -3536,7 +3536,7 @@ sub_80B76B8: @ 80B76B8
 	strh r0, [r2, 0x26]
 	movs r0, 0x1
 	strh r0, [r4, 0xE]
-	ldr r3, =gFieldEffectSpawnParams
+	ldr r3, =gFieldEffectArguments
 	movs r5, 0x10
 	ldrsh r0, [r1, r5]
 	str r0, [r3]
@@ -3747,7 +3747,7 @@ _080B784C:
 	thumb_func_start mapldr_080851BC
 mapldr_080851BC: @ 80B7868
 	push {lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_for_maplights
 	bl ScriptContext2_Enable
 	ldr r0, =gFieldCallback
@@ -3807,7 +3807,7 @@ sub_80B78EC: @ 80B78EC
 	adds r5, r0, 0
 	adds r4, r1, 0
 	bl CameraObjectReset2
-	bl player_bitmagic
+	bl FreezeMapObjects
 	ldr r1, =gPlayerAvatar
 	movs r0, 0x1
 	strb r0, [r1, 0x6]
@@ -3835,7 +3835,7 @@ sub_80B791C: @ 80B791C
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B795C
-	ldr r1, =gFieldEffectSpawnParams
+	ldr r1, =gFieldEffectArguments
 	movs r2, 0x10
 	ldrsh r0, [r5, r2]
 	str r0, [r1]
@@ -3919,7 +3919,7 @@ sub_80B79BC: @ 80B79BC
 	movs r0, 0
 	strb r0, [r1, 0x6]
 	bl ScriptContext2_Disable
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	ldr r0, =sub_80B7890
 	bl FindTaskIdByFunc
 	lsls r0, 24
@@ -3935,7 +3935,7 @@ _080B79E6:
 	thumb_func_start sub_80B79F4
 sub_80B79F4: @ 80B79F4
 	push {r4,lr}
-	ldr r4, =gFieldEffectSpawnParams
+	ldr r4, =gFieldEffectArguments
 	adds r1, r4, 0x4
 	adds r0, r4, 0
 	movs r2, 0x8
@@ -4055,7 +4055,7 @@ sub_80B7AE8: @ 80B7AE8
 	push {r4,r5,lr}
 	adds r5, r0, 0
 	adds r4, r1, 0
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl CameraObjectReset2
 	ldr r1, =gPlayerAvatar
 	movs r0, 0x1
@@ -4090,7 +4090,7 @@ sub_80B7B18: @ 80B7B18
 	ldrsh r0, [r5, r2]
 	cmp r0, 0x3
 	ble _080B7B6C
-	ldr r1, =gFieldEffectSpawnParams
+	ldr r1, =gFieldEffectArguments
 	movs r2, 0x10
 	ldrsh r0, [r4, r2]
 	str r0, [r1]
@@ -4222,7 +4222,7 @@ _080B7C2C:
 	thumb_func_start sub_80B7C48
 sub_80B7C48: @ 80B7C48
 	push {r4,lr}
-	ldr r4, =gFieldEffectSpawnParams
+	ldr r4, =gFieldEffectArguments
 	adds r1, r4, 0x4
 	adds r0, r4, 0
 	movs r2, 0x8
@@ -4287,7 +4287,7 @@ _080B7CC4:
 sub_80B7CC8: @ 80B7CC8
 	push {lr}
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	ldr r0, =sub_80B7CE4
 	movs r1, 0x50
 	bl CreateTask
@@ -4458,10 +4458,10 @@ _080B7E40:
 	thumb_func_start mapldr_080859D4
 mapldr_080859D4: @ 80B7E48
 	push {lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_for_maplights
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
@@ -4583,7 +4583,7 @@ _080B7F32:
 	ands r0, r1
 	strb r0, [r6, 0x1]
 	bl ScriptContext2_Disable
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	ldr r0, =sub_80B7E94
 	bl FindTaskIdByFunc
 	lsls r0, 24
@@ -4672,7 +4672,7 @@ sub_80B800C: @ 80B800C
 	push {r4,lr}
 	adds r4, r0, 0
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	bl CameraObjectReset2
 	bl player_get_direction_lower_nybble
 	lsls r0, 24
@@ -4903,10 +4903,10 @@ _080B81E6:
 	thumb_func_start mapldr_08085D88
 mapldr_08085D88: @ 80B8200
 	push {lr}
-	bl sub_8085784
+	bl Overworld_PlaySpecialMapMusic
 	bl pal_fill_for_maplights
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	ldr r1, =gFieldCallback
 	movs r0, 0
 	str r0, [r1]
@@ -5194,7 +5194,7 @@ sub_80B8410: @ 80B8410
 	bne _080B8484
 	bl ScriptContext2_Disable
 	bl CameraObjectReset1
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	ldr r0, =sub_80B8250
 	bl FindTaskIdByFunc
 	lsls r0, 24
@@ -5229,7 +5229,7 @@ _080B84BE:
 	bl CreateTask
 	lsls r0, 24
 	lsrs r4, r0, 24
-	ldr r2, =gFieldEffectSpawnParams
+	ldr r2, =gFieldEffectArguments
 	ldr r0, [r2]
 	ldr r1, [r2, 0x4]
 	ldr r2, [r2, 0x8]
@@ -5252,7 +5252,7 @@ _080B84BE:
 	thumb_func_start sub_80B84F8
 sub_80B84F8: @ 80B84F8
 	push {r4-r6,lr}
-	ldr r5, =gFieldEffectSpawnParams
+	ldr r5, =gFieldEffectArguments
 	ldr r0, [r5]
 	movs r6, 0x80
 	lsls r6, 24
@@ -6292,12 +6292,12 @@ sub_80B8D44: @ 80B8D44
 	adds r1, r0
 	lsls r1, 3
 	adds r1, r2
-	ldr r0, =gFieldEffectSpawnParams
+	ldr r0, =gFieldEffectArguments
 	ldr r0, [r0]
 	strh r0, [r1, 0x26]
-	bl sav1_reset_battle_music_maybe
+	bl Overworld_ClearSavedMusic
 	ldr r0, =0x0000016d
-	bl sub_80858C4
+	bl Overworld_ChangeMusicTo
 	movs r0, 0
 	pop {r1}
 	bx r1
@@ -6334,7 +6334,7 @@ sub_80B8DB4: @ 80B8DB4
 	push {r6}
 	adds r4, r0, 0
 	bl ScriptContext2_Enable
-	bl player_bitmagic
+	bl FreezeMapObjects
 	ldr r5, =gPlayerAvatar
 	movs r0, 0x1
 	strb r0, [r5, 0x6]
@@ -6421,7 +6421,7 @@ sub_80B8E60: @ 80B8E60
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B8E96
-	ldr r2, =gFieldEffectSpawnParams
+	ldr r2, =gFieldEffectArguments
 	movs r1, 0x26
 	ldrsh r0, [r4, r1]
 	movs r1, 0x80
@@ -6473,7 +6473,7 @@ sub_80B8EA8: @ 80B8EA8
 	lsrs r1, 24
 	adds r0, r4, 0
 	bl FieldObjectSetSpecialAnim
-	ldr r1, =gFieldEffectSpawnParams
+	ldr r1, =gFieldEffectArguments
 	movs r2, 0xA
 	ldrsh r0, [r6, r2]
 	str r0, [r1]
@@ -6527,7 +6527,7 @@ sub_80B8F24: @ 80B8F24
 	ldrb r0, [r4, 0x1A]
 	movs r1, 0x1
 	bl sub_81555AC
-	bl sub_809757C
+	bl UnfreezeMapObjects
 	bl ScriptContext2_Disable
 	movs r0, 0x9
 	bl FieldEffectActiveListRemove
@@ -6704,7 +6704,7 @@ sub_80B90CC: @ 80B90CC
 	strb r0, [r2, 0x5]
 	ldr r0, =sub_80B9128
 	str r0, [r2, 0x1C]
-	ldr r0, =gFieldEffectSpawnParams
+	ldr r0, =gFieldEffectArguments
 	ldr r0, [r0]
 	strh r0, [r2, 0x30]
 	movs r0, 0x9E
@@ -6793,7 +6793,7 @@ sub_80B91A4: @ 80B91A4
 	adds r1, r0
 	lsls r1, 3
 	adds r1, r2
-	ldr r0, =gFieldEffectSpawnParams
+	ldr r0, =gFieldEffectArguments
 	ldr r0, [r0]
 	strh r0, [r1, 0xA]
 	movs r0, 0
@@ -6884,7 +6884,7 @@ sub_80B925C: @ 80B925C
 	ldrh r0, [r4, 0x8]
 	adds r0, 0x1
 	strh r0, [r4, 0x8]
-	ldr r1, =gFieldEffectSpawnParams
+	ldr r1, =gFieldEffectArguments
 	movs r2, 0xA
 	ldrsh r0, [r4, r2]
 	str r0, [r1]
@@ -7922,7 +7922,7 @@ _080B9ACA:
 sub_80B9ADC: @ 80B9ADC
 	push {r4,lr}
 	sub sp, 0x4
-	ldr r4, =gFieldEffectSpawnParams
+	ldr r4, =gFieldEffectArguments
 	ldrb r0, [r4]
 	ldrb r1, [r4, 0x4]
 	ldrb r2, [r4, 0x8]
@@ -8343,7 +8343,7 @@ _080B9E24:
 sub_80B9E28: @ 80B9E28
 	push {r4-r7,lr}
 	sub sp, 0x4
-	ldr r7, =gFieldEffectSpawnParams
+	ldr r7, =gFieldEffectArguments
 	ldrb r0, [r7]
 	ldrb r1, [r7, 0x4]
 	ldrb r2, [r7, 0x8]

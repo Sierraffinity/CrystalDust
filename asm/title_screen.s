@@ -1169,7 +1169,7 @@ _080AAE30:
 _080AAE72:
 	ldrb r0, [r3, 0x8]
 	bl title_screen_update_rayquaza_ring_palette
-	ldr r0, =gMPlay_BGM
+	ldr r0, =gMPlayInfo_BGM
 	ldr r1, =0x0000ffff
 	ldrh r0, [r0, 0x4]
 	cmp r0, 0
@@ -1228,7 +1228,7 @@ c2_clear_save_data_screen_1: @ 80AAEF0
 	lsls r0, 24
 	cmp r0, 0
 	bne _080AAF02
-	ldr r0, =c2_clear_save_data_screen_2
+	ldr r0, =CB2_InitClearSaveDataScreen
 	bl SetMainCallback2
 _080AAF02:
 	pop {r0}
