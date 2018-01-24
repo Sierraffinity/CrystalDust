@@ -7096,7 +7096,7 @@ _081926B0:
 	movs r1, 0x1
 	str r1, [sp, 0x8]
 	ldr r1, =sub_8190938
-	bl sub_80D2CC4
+	bl CreateMonIcon
 	ldr r1, [r6]
 	adds r1, r4
 	strb r0, [r1]
@@ -8779,7 +8779,7 @@ _081934B0:
 	mov r1, r10
 	str r1, [sp, 0x8]
 	ldr r1, =sub_8190938
-	bl sub_80D2CC4
+	bl CreateMonIcon
 	ldr r1, [r6]
 	adds r1, r4
 	strb r0, [r1]
@@ -8927,7 +8927,7 @@ _081935FA:
 	movs r1, 0x1
 	str r1, [sp, 0x8]
 	ldr r1, =sub_8190938
-	bl sub_80D2CC4
+	bl CreateMonIcon
 	ldr r1, [r6]
 	adds r1, r4
 	strb r0, [r1]
@@ -9449,7 +9449,7 @@ _08193AA8:
 	b _08193BC2
 _08193ABA:
 	bl FreeAllWindowBuffers
-	bl remove_some_task
+	bl ScanlineEffect_Stop
 	ldr r4, =gUnknown_0203CD7C
 	ldr r0, [r4]
 	bl Free
@@ -9494,7 +9494,7 @@ _08193B20:
 	cmp r6, 0
 	bne _08193BC2
 	bl FreeAllWindowBuffers
-	bl remove_some_task
+	bl ScanlineEffect_Stop
 	ldr r4, =gUnknown_0203CD7C
 	ldr r0, [r4]
 	bl Free
@@ -9534,7 +9534,7 @@ _08193B84:
 	cmp r6, 0
 	bne _08193BC2
 	bl FreeAllWindowBuffers
-	bl remove_some_task
+	bl ScanlineEffect_Stop
 	ldr r4, =gUnknown_0203CD7C
 	ldr r0, [r4]
 	bl Free
