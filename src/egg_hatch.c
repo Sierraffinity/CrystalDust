@@ -41,10 +41,9 @@ struct EggHatchData
     u8 unused_9;
     u8 unused_A;
     u16 species;
-    struct TextColor textColor;
+    u8 textColor[3];
 };
 
-extern struct SpriteTemplate gUnknown_0202499C;
 extern void (*gFieldCallback)(void);
 
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];
@@ -58,20 +57,14 @@ extern const u8 gText_HatchedFromEgg[];
 extern const u8 gText_NickHatchPrompt[];
 
 extern u8 sav1_map_get_name(void);
-extern s8 ProcessMenuInputNoWrap_(void);
 extern void TVShowConvertInternationalString(u8* str1, u8* str2, u8);
 extern void sub_806A068(u16, u8);
-extern void fade_screen(u8, u8);
+extern void FadeScreen(u8, u8);
 extern void overworld_free_bg_tilemaps(void);
 extern void sub_80AF168(void);
-extern void AllocateMonSpritesGfx(void);
-extern void FreeMonSpritesGfx(void);
 extern void ScanlineEffect_Stop(void);
-extern void reset_temp_tile_data_buffers(void);
-extern void c2_exit_to_overworld_2_switch(void);
+extern void CB2_ReturnToField(void);
 extern void play_some_sound(void);
-extern void copy_decompressed_tile_data_to_vram_autofree(u8 bg_id, const void* src, u16 size, u16 offset, u8 mode);
-extern void CreateYesNoMenu(const struct WindowTemplate*, u16, u8, u8);
 extern void DoNamingScreen(u8, const u8*, u16, u8, u32, MainCallback);
 extern u16 sub_80D22D0(void);
 extern u8 CountPartyAliveNonEggMonsExcept(u8);
@@ -440,12 +433,12 @@ static u8 EggHatchCreateMonSprite(u8 a0, u8 switchID, u8 pokeID, u16* speciesLoc
             HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[species],
                                                       gMonSpritesGfxPtr->sprites[(a0 * 2) + 1],
                                                       species, pid);
-            LoadCompressedObjectPalette(sub_806E794(mon));
+            LoadCompressedObjectPalette(GetMonSpritePalStruct(mon));
             *speciesLoc = species;
         }
         break;
     case 1:
-        sub_806A068(sub_806E794(mon)->tag, r5);
+        sub_806A068(GetMonSpritePalStruct(mon)->tag, r5);
         spriteID = CreateSprite(&gUnknown_0202499C, 120, 75, 6);
         gSprites[spriteID].invisible = 1;
         gSprites[spriteID].callback = SpriteCallbackDummy;
@@ -465,7 +458,7 @@ void EggHatch(void)
 {
     ScriptContext2_Enable();
     CreateTask(Task_EggHatch, 10);
-    fade_screen(1, 0);
+    FadeScreen(1, 0);
 }
 
 static void Task_EggHatch(u8 taskID)
@@ -571,7 +564,7 @@ static void EggHatchSetMonNickname(void)
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar3);
     FreeMonSpritesGfx();
     Free(sEggHatchData);
-    SetMainCallback2(c2_exit_to_overworld_2_switch);
+    SetMainCallback2(CB2_ReturnToField);
 }
 
 static void Task_EggHatchPlayBGM(u8 taskID)
@@ -695,7 +688,7 @@ static void CB2_EggHatch_1(void)
             UnsetBgTilemapBuffer(0);
             UnsetBgTilemapBuffer(1);
             Free(sEggHatchData);
-            SetMainCallback2(c2_exit_to_overworld_2_switch);
+            SetMainCallback2(CB2_ReturnToField);
         }
         break;
     }
@@ -863,10 +856,10 @@ static void CreateEggShardSprite(u8 x, u8 y, s16 data1, s16 data2, s16 data3, u8
 static void EggHatchPrintMessage(u8 windowId, u8* string, u8 x, u8 y, u8 speed)
 {
     FillWindowPixelBuffer(windowId, 0xFF);
-    sEggHatchData->textColor.fgColor = 0;
-    sEggHatchData->textColor.bgColor = 5;
-    sEggHatchData->textColor.shadowColor = 6;
-    AddTextPrinterParameterized2(windowId, 1, x, y, 0, 0, &sEggHatchData->textColor, speed, string);
+    sEggHatchData->textColor[0] = 0;
+    sEggHatchData->textColor[1] = 5;
+    sEggHatchData->textColor[2] = 6;
+    AddTextPrinterParameterized2(windowId, 1, x, y, 0, 0, sEggHatchData->textColor, speed, string);
 }
 
 u8 GetEggStepsToSubtract(void)

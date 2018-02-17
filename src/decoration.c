@@ -20,7 +20,7 @@
 #include "field_map_obj.h"
 #include "list_menu.h"
 #include "menu_helpers.h"
-#include "new_menu_helpers.h"
+#include "menu.h"
 #include "menu_indicators.h"
 #include "sound.h"
 #include "event_scripts.h"
@@ -37,6 +37,8 @@
 #include "decoration_inventory.h"
 #include "decoration.h"
 #include "graphics.h"
+
+extern void (*gFieldCallback)(void);
 
 // Static type declarations
 
@@ -529,7 +531,7 @@ void SecretBasePC_PutAway(u8 taskId)
     {
         sub_8126A58(0);
         sub_8197434(0, 0);
-        fade_screen(1, 0);
+        FadeScreen(1, 0);
         gTasks[taskId].data[2] = 0;
         gTasks[taskId].func = sub_8129ABC;
     }
@@ -727,7 +729,7 @@ void sub_81271CC(u8 taskId)
 {
     sub_8126A58(1);
     sub_8126A88();
-    sub_81973C4(0, 0);
+    NewMenuHelpers_DrawDialogueFrame(0, 0);
     sub_8126C08();
     gTasks[taskId].func = sub_8126B80;
 }
@@ -1247,7 +1249,7 @@ void sub_8127F68(u8 taskId)
     {
         if (sub_8127F38() == TRUE)
         {
-            fade_screen(1, 0);
+            FadeScreen(1, 0);
             gTasks[taskId].data[2] = 0;
             gTasks[taskId].func = sub_8128060;
         }
@@ -1661,7 +1663,7 @@ void sub_8128BA0(u8 taskId)
 
 void sub_8128BBC(u8 taskId)
 {
-    fade_screen(1, 0);
+    FadeScreen(1, 0);
     gTasks[taskId].data[2] = 0;
     gTasks[taskId].func = c1_overworld_prev_quest;
 }
@@ -1682,7 +1684,7 @@ void c1_overworld_prev_quest(u8 taskId)
             sub_812A3C8();
             FreeSpritePaletteByTag(OVERWORLD_PLACE_DECOR_SELECTOR_PAL_TAG);
             gFieldCallback = sub_8128CD4;
-            SetMainCallback2(c2_exit_to_overworld_2_switch);
+            SetMainCallback2(CB2_ReturnToField);
             DestroyTask(taskId);
             break;
     }
@@ -2013,9 +2015,9 @@ u8 AddDecorationIconObjectFromIconTable(u16 tilesTag, u16 paletteTag, u8 decor)
     {
         return MAX_SPRITES;
     }
-    LZDecompressWram(GetDecorationIconPicOrPalette(decor, 0), gUnknown_0203CEBC);
-    CopyItemIconPicTo4x4Buffer(gUnknown_0203CEBC, gUnknown_0203CEC0);
-    sheet.data = gUnknown_0203CEC0;
+    LZDecompressWram(GetDecorationIconPicOrPalette(decor, 0), gItemIconDecompressionBuffer);
+    CopyItemIconPicTo4x4Buffer(gItemIconDecompressionBuffer, gItemIcon4x4Buffer);
+    sheet.data = gItemIcon4x4Buffer;
     sheet.size = 0x200;
     sheet.tag = tilesTag;
     LoadSpriteSheet(&sheet);
@@ -2023,7 +2025,7 @@ u8 AddDecorationIconObjectFromIconTable(u16 tilesTag, u16 paletteTag, u8 decor)
     palette.tag = paletteTag;
     LoadCompressedObjectPalette(&palette);
     template = malloc(sizeof(struct SpriteTemplate));
-    *template = gUnknown_08614FF4;
+    *template = gItemIconSpriteTemplate;
     template->tileTag = tilesTag;
     template->paletteTag = paletteTag;
     spriteId = CreateSprite(template, 0, 0, 0);
@@ -2542,7 +2544,7 @@ void sub_812A0E8(u8 taskId)
     }
 }
 #else
-__attribute__((naked)) void sub_812A0E8(u8 taskId)
+ASM_DIRECT void sub_812A0E8(u8 taskId)
 {
     asm_unified("\tpush {r4-r7,lr}\n"
                     "\tlsls r0, 24\n"
@@ -2635,7 +2637,7 @@ void sub_812A1A0(u8 taskId)
 
 void sub_812A1C0(u8 taskId)
 {
-    fade_screen(1, 0);
+    FadeScreen(1, 0);
     gTasks[taskId].data[2] = 0;
     gTasks[taskId].func = sub_81298EC;
 }
@@ -2654,7 +2656,7 @@ void sub_812A210(u8 taskId)
 
 void sub_812A22C(u8 taskId)
 {
-    fade_screen(1, 0);
+    FadeScreen(1, 0);
     gTasks[taskId].data[2] = 0;
     gTasks[taskId].func = sub_812A25C;
 }
@@ -2673,7 +2675,7 @@ void sub_812A25C(u8 taskId)
         case 1:
             sub_812A3C8();
             gFieldCallback = sub_812A334;
-            SetMainCallback2(c2_exit_to_overworld_2_switch);
+            SetMainCallback2(CB2_ReturnToField);
             DestroyTask(taskId);
             break;
     }
@@ -2712,7 +2714,7 @@ void sub_812A334(void)
     u8 taskId;
 
     pal_fill_black();
-    sub_81973C4(0, 1);
+    NewMenuHelpers_DrawDialogueFrame(0, 1);
     sub_8126ABC();
     taskId = CreateTask(sub_812A2C4, 8);
     gTasks[taskId].data[2] = 0;

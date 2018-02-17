@@ -15,16 +15,16 @@ void sub_81700F8(void)
     imeBackup = REG_IME;
     REG_IME = 0;
     RegisterRamReset(0x00000001);
-    ClearGpuRegBits(REG_OFFSET_DISPCNT, 0x80);
+    ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_FORCED_BLANK);
     REG_IME = imeBackup;
     gMain.inBattle = FALSE;
     SetSaveBlocksPointers(sub_815355C());
     sub_808447C();
-    ResetSaveCounters();
-    sub_81534D0(0);
+    Save_ResetSaveCounters();
+    Save_LoadGameData(0);
     if (gSaveFileStatus == 0 || gSaveFileStatus == 2)
         Sav2_ClearSetDefault();
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
     InitHeap(gHeap, HEAP_SIZE);
-    SetMainCallback2(sub_8086230);
+    SetMainCallback2(CB2_ContinueSavedGame);
 }

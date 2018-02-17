@@ -461,7 +461,7 @@ sub_80E70F4: @ 80E70F4
 	adds r4, r0, 0
 	movs r0, 0
 	movs r1, 0
-	bl sub_81973C4
+	bl NewMenuHelpers_DrawDialogueFrame
 	movs r0, 0x1
 	str r0, [sp]
 	movs r0, 0
@@ -621,7 +621,7 @@ _080E726C:
 	bne _080E730A
 	movs r0, 0x4
 	strh r0, [r5]
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _080E7296
@@ -664,7 +664,7 @@ _080E72C0:
 	ldr r0, [r0]
 	bl Free
 	bl sub_808729C
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080E72F8
@@ -747,7 +747,7 @@ _080E7384:
 	movs r0, 0xC8
 	lsls r0, 1
 	strh r0, [r5, 0x8]
-	bl sub_8009FAC
+	bl ClearLinkCallback_2
 	b _080E7566
 	.pool
 _080E73A0:
@@ -765,10 +765,10 @@ _080E73B0:
 	movs r0, 0x65
 	b _080E7564
 _080E73B8:
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r4, r0, 24
-	bl sub_800ABBC
+	bl IsLinkMaster
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -796,7 +796,7 @@ _080E73EA:
 _080E73F8:
 	bl sub_800AA48
 	adds r4, r0, 0
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r4, 24
 	lsls r0, 24
 	cmp r4, r0
@@ -808,7 +808,7 @@ _080E740C:
 	strh r4, [r5, 0x20]
 	lsls r4, 16
 	asrs r4, 16
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r0, 24
 	lsls r1, r0, 4
@@ -824,7 +824,7 @@ _080E742A:
 _080E7432:
 	bl sub_800AA48
 	adds r4, r0, 0
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r4, 24
 	lsls r0, 24
 	cmp r4, r0
@@ -868,7 +868,7 @@ _080E746E:
 	b _080E7564
 	.pool
 _080E7490:
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r0, 24
 	movs r1, 0
@@ -2393,7 +2393,7 @@ _080E80C0:
 	lsls r0, 24
 	cmp r0, 0
 	bne _080E810A
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080E80E8

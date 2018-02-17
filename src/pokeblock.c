@@ -6,7 +6,6 @@
 #include "menu.h"
 #include "task.h"
 #include "menu_helpers.h"
-#include "new_menu_helpers.h"
 #include "pokemon.h"
 #include "graphics.h"
 #include "malloc.h"
@@ -14,7 +13,7 @@
 #include "battle.h"
 #include "battle_controllers.h"
 #include "palette.h"
-#include "unknown_task.h"
+#include "scanline_effect.h"
 #include "list_menu.h"
 #include "gpu_regs.h"
 #include "decompress.h"
@@ -75,7 +74,7 @@ extern void (*gFieldCallback)(void);
 
 extern const u16 gUnknown_0860F074[];
 
-extern void c2_exit_to_overworld_2_switch(void);
+extern void CB2_ReturnToField(void);
 extern bool8 sub_81221EC(void);
 extern void sub_809882C(u8, u16, u8);
 extern void copy_textbox_border_tile_patterns_to_vram(u8, u16, u8);
@@ -284,7 +283,7 @@ static const struct SpriteTemplate sSpriteTemplate_PokeblockCase =
     SpriteCallbackDummy
 };
 
-static const struct TextColor sTextColorInPokeblockMenu = {0, 2, 3};
+static const u8 sTextColorInPokeblockMenu[3] = {0, 2, 3};
 
 static const struct Pokeblock sFavoritePokeblocksTable[] =
 {
@@ -375,7 +374,7 @@ void OpenPokeblockCaseInBattle(void)
 
 void OpenPokeblockCaseOnFeeder(void)
 {
-    OpenPokeblockCase(PBLOCK_CASE_FEEDER, c2_exit_to_overworld_2_switch);
+    OpenPokeblockCase(PBLOCK_CASE_FEEDER, CB2_ReturnToField);
 }
 
 static void CB2_PokeblockMenu(void)
@@ -583,7 +582,7 @@ static void HandleInitWindows(void)
 
 static void PrintOnPokeblockWindow(u8 windowId, const u8 *string, s32 x)
 {
-    AddTextPrinterParameterized2(windowId, 1, x, 1, 0, 0, &sTextColorInPokeblockMenu, 0, string);
+    AddTextPrinterParameterized2(windowId, 1, x, 1, 0, 0, sTextColorInPokeblockMenu, 0, string);
 }
 
 static void PutPokeblockInfoText(void)

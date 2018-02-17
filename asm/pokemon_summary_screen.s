@@ -1173,7 +1173,7 @@ sub_81C47B4: @ 81C47B4
 	ands r0, r1
 	strb r0, [r7, 0x5]
 	ldrh r0, [r6, 0x2]
-	bl IsPokeSpriteNotFlipped
+	bl IsMonSpriteNotFlipped
 	lsls r0, 24
 	cmp r0, 0
 	bne _081C4828
@@ -1221,7 +1221,7 @@ sub_81C4844: @ 81C4844
 	cmp r0, 0x1
 	beq _081C487E
 	ldrh r0, [r4, 0x2E]
-	bl IsPokeSpriteNotFlipped
+	bl IsMonSpriteNotFlipped
 	lsls r0, 24
 	lsrs r0, 24
 	strh r0, [r4, 0x30]
@@ -2024,7 +2024,7 @@ sub_81C4EEC: @ 81C4EEC
 	thumb_func_start sub_81C4EFC
 sub_81C4EFC: @ 81C4EFC
 	push {lr}
-	ldr r1, =sub_8086194
+	ldr r1, =CB2_ReturnToFieldWithOpenMenu
 	movs r0, 0
 	bl sub_81C4F98
 	pop {r0}
@@ -2049,7 +2049,7 @@ sub_81C4F24: @ 81C4F24
 	bl ScriptContext2_Enable
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	ldr r0, =sub_81C4F44
 	movs r1, 0xA
 	bl CreateTask
@@ -2073,7 +2073,7 @@ sub_81C4F44: @ 81C4F44
 	ldr r0, =gUnknown_03005DB0
 	ldr r1, =hm_add_c3_without_phase_2
 	str r1, [r0]
-	ldr r1, =c2_exit_to_overworld_2_switch
+	ldr r1, =CB2_ReturnToField
 	movs r0, 0x3
 	bl sub_81C4F98
 	adds r0, r4, 0
@@ -5756,7 +5756,7 @@ sub_81C6F90: @ 81C6F90
 	adds r0, r4, 0
 	adds r1, r4, 0
 	adds r2, r6, 0
-	bl AddItemIconObject
+	bl AddItemIconSprite
 	lsls r0, 24
 	lsrs r2, r0, 24
 	cmp r2, 0x40

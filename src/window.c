@@ -2,8 +2,11 @@
 #include "window.h"
 #include "malloc.h"
 
-extern u8 gUnknown_03002F60;
-extern void* gUnknown_03002F70[];
+u32 filler_03002F58;
+u32 filler_03002F5C;
+u8 gUnknown_03002F60;
+u32 filler_03002F64;
+void *gUnknown_03002F70[4];
 extern u32 gUnneededFireRedVariable;
 
 #define WINDOWS_MAX  32
@@ -403,7 +406,7 @@ void PutWindowRectTilemap(u8 windowId, u8 x, u8 y, u8 width, u8 height)
     }
 }
 
-void BlitBitmapToWindow(u8 windowId, u8 *pixels, u16 x, u16 y, u16 width, u16 height)
+void BlitBitmapToWindow(u8 windowId, const u8 *pixels, u16 x, u16 y, u16 width, u16 height)
 {
     BlitBitmapRectToWindow(windowId, pixels, 0, 0, width, height, x, y, width, height);
 }

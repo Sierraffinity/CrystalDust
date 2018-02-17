@@ -18,7 +18,7 @@ sub_80C2690: @ 80C2690
 	cmp r0, 0
 	beq _080C26C0
 	ldr r1, =0x040000d4
-	ldr r0, =gUnknown_02038C28
+	ldr r0, =gScanlineEffectRegBuffers
 	str r0, [r1]
 	movs r2, 0xF0
 	lsls r2, 3
@@ -40,7 +40,7 @@ sub_80C26D4: @ 80C26D4
 	ldrh r3, [r4]
 	movs r0, 0
 	strh r0, [r4]
-	ldr r1, =gUnknown_02038C28
+	ldr r1, =gScanlineEffectRegBuffers
 	ldr r0, =0x04000006
 	ldrh r2, [r0]
 	movs r0, 0xFF
@@ -187,7 +187,7 @@ _080C2830:
 	bl sub_80C4630
 	b _080C28D4
 _080C2836:
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0x1
 	bne _080C2852
@@ -198,7 +198,7 @@ _080C2836:
 	bl sub_800E0E8
 	movs r0, 0xE6
 	movs r1, 0x96
-	bl sub_800DFB4
+	bl CreateWirelessStatusIndicatorSprite
 _080C2852:
 	movs r6, 0x1
 	negs r6, r6
@@ -409,7 +409,7 @@ _080C2A2C:
 	bl sub_800AC34
 	movs r0, 0
 	movs r1, 0x1
-	bl sub_81973C4
+	bl NewMenuHelpers_DrawDialogueFrame
 	ldr r2, =gText_WaitingTrainerFinishReading
 	movs r0, 0x1
 	str r0, [sp]
@@ -1925,11 +1925,11 @@ sub_80C376C: @ 80C376C
 	cmp r0, 0
 	bne _080C377E
 	movs r0, 0x1
-	bl sub_80C0844
+	bl GetHoennPokedexCount
 	b _080C3784
 _080C377E:
 	movs r0, 0x1
-	bl pokedex_count
+	bl GetNationalPokedexCount
 _080C3784:
 	lsls r0, 16
 	lsrs r0, 16
@@ -3977,9 +3977,9 @@ sub_80C4998: @ 80C4998
 	movs r0, 0x3
 	bl HideBg
 	bl ScanlineEffect_Stop
-	bl dp12_8087EA4
+	bl ScanlineEffect_Clear
 	movs r1, 0
-	ldr r0, =gUnknown_02038C28
+	ldr r0, =gScanlineEffectRegBuffers
 	movs r2, 0
 	movs r3, 0xF0
 	lsls r3, 3
@@ -4066,7 +4066,7 @@ _080C4A0E:
 	movs r2, 0
 	cmp r2, r7
 	bcs _080C4A78
-	ldr r3, =gUnknown_02038C28
+	ldr r3, =gScanlineEffectRegBuffers
 _080C4A60:
 	lsls r0, r2, 16
 	asrs r0, 16
@@ -4091,7 +4091,7 @@ _080C4A78:
 	lsrs r7, r4, 16
 	cmp r1, r0
 	bge _080C4AB0
-	ldr r0, =gUnknown_02038C28
+	ldr r0, =gScanlineEffectRegBuffers
 	mov r12, r0
 	adds r4, r3, 0
 _080C4A92:
@@ -4116,7 +4116,7 @@ _080C4AB0:
 	asrs r0, r1, 16
 	cmp r0, 0x9F
 	bgt _080C4ACE
-	ldr r2, =gUnknown_02038C28
+	ldr r2, =gScanlineEffectRegBuffers
 _080C4ABC:
 	asrs r0, r1, 16
 	lsls r1, r0, 1
@@ -4392,7 +4392,7 @@ _080C4CB6:
 	movs r2, 0
 	cmp r2, r7
 	bcs _080C4D20
-	ldr r3, =gUnknown_02038C28
+	ldr r3, =gScanlineEffectRegBuffers
 _080C4D08:
 	lsls r0, r2, 16
 	asrs r0, 16
@@ -4417,7 +4417,7 @@ _080C4D20:
 	lsrs r7, r4, 16
 	cmp r1, r0
 	bge _080C4D56
-	ldr r0, =gUnknown_02038C28
+	ldr r0, =gScanlineEffectRegBuffers
 	mov r12, r0
 	adds r4, r3, 0
 _080C4D3A:
@@ -4441,7 +4441,7 @@ _080C4D56:
 	asrs r0, r1, 16
 	cmp r0, 0x9F
 	bgt _080C4D74
-	ldr r2, =gUnknown_02038C28
+	ldr r2, =gScanlineEffectRegBuffers
 _080C4D62:
 	asrs r0, r1, 16
 	lsls r1, r0, 1
@@ -4754,7 +4754,7 @@ sub_80C4FF0: @ 80C4FF0
 	ldr r1, =0x00000583
 	adds r0, r1
 	ldrb r0, [r0]
-	bl sub_806EFF0
+	bl FacilityClassToPicIndex
 	lsls r0, 16
 	lsrs r0, 16
 	ldr r4, =gUnknown_0856FB18
@@ -4795,7 +4795,7 @@ _080C5060:
 	adds r0, r1
 	adds r0, r2
 	ldrb r0, [r0]
-	bl sub_806EFF0
+	bl FacilityClassToPicIndex
 	lsls r0, 16
 	lsrs r0, 16
 	ldr r4, =gUnknown_0856FB18

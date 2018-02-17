@@ -40,7 +40,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B2E4C
 	def_special sub_80B2E74
 	def_special sub_80B2EA8
-	def_special sub_80097E8
+	def_special CloseLink
 	def_special sub_80B3968
 	def_special sub_80B3924
 	def_special nullsub_37
@@ -213,7 +213,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80F972C
 	def_special sp0C8_whiteout_maybe
 	def_special sub_80FBE90
-	def_special sub_80FBED0
+	def_special RotatingGate_InitPuzzleAndGraphics
 	def_special SetSSTidalFlag
 	def_special ResetSSTidalFlag
 	def_special EnterSafariMode
@@ -417,8 +417,8 @@ gSpecials:: @ 81DBA64
 	def_special sub_813B880
 	def_special sub_81A085C
 	def_special ShouldTryGetTrainerScript
-	def_special AddMapNamePopUpWindowTask
-	def_special AddMapNamePopUpWindowTask
+	def_special ShowMapNamePopup
+	def_special ShowMapNamePopup
 	def_special sub_81BE994
 	def_special sub_81BE79C
 	def_special sub_81BE7F4
@@ -490,7 +490,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_813AF48
 	def_special sub_813AFC8
 	def_special sub_813B1D0
-	def_special DoScriptedWildBattle
+	def_special CreateObedientEnemyMon
 	def_special sub_81BEB54
 	def_special sub_81BEB68
 	def_special sub_81BEB7C

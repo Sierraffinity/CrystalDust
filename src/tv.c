@@ -1208,7 +1208,7 @@ void PutPokemonTodayFailedOnTheAir(void)
         {
             ct = 0xFF;
         }
-        if (ct > 2 && (gBattleOutcome == BATTLE_POKE_FLED || gBattleOutcome == BATTLE_WON))
+        if (ct > 2 && (gBattleOutcome == B_OUTCOME_MON_FLED || gBattleOutcome == B_OUTCOME_WON))
         {
             sCurTVShowSlot = FindEmptyTVSlotBeyondFirstFiveShowsOfArray(gSaveBlock1Ptr->tvShows);
             if (sCurTVShowSlot != -1 && HasMixableShowAlreadyBeenSpawnedWithPlayerID(TVSHOW_POKEMON_TODAY_FAILED, FALSE) != TRUE)
@@ -1957,11 +1957,11 @@ void sub_80EDB44(void)
         show->rivalTrainer.badgeCount = nBadges;
         if (IsNationalPokedexEnabled())
         {
-            show->rivalTrainer.dexCount = pokedex_count(0x01);
+            show->rivalTrainer.dexCount = GetNationalPokedexCount(0x01);
         }
         else
         {
-            show->rivalTrainer.dexCount = sub_80C0844(0x01);
+            show->rivalTrainer.dexCount = GetHoennPokedexCount(0x01);
         }
         show->rivalTrainer.location = gMapHeader.regionMapSectionId;
         show->rivalTrainer.mapDataId = gMapHeader.mapDataId;
@@ -2154,7 +2154,7 @@ void sub_80EDE98(TVShow *show)
     }
 }
 #else
-__attribute__((naked))
+ASM_DIRECT
 void sub_80EDE98(TVShow *show)
 {
     asm_unified("\tpush {r4-r7,lr}\n"
@@ -2402,23 +2402,23 @@ void sub_80EE184(void)
         show->breakingNews.poke1Species = gBattleResults.playerMon1Species;
         switch (gBattleOutcome)
         {
-            case BATTLE_LOST:
-            case BATTLE_DREW:
+            case B_OUTCOME_LOST:
+            case B_OUTCOME_DREW:
                 show->breakingNews.kind = TVSHOW_OFF_AIR;
                 return;
-            case BATTLE_CAUGHT:
+            case B_OUTCOME_CAUGHT:
                 show->breakingNews.outcome = 0;
                 break;
-            case BATTLE_WON:
+            case B_OUTCOME_WON:
                 show->breakingNews.outcome = 1;
                 break;
-            case BATTLE_RAN:
-            case BATTLE_PLAYER_TELEPORTED:
-            case BATTLE_SAFARI_OUT_OF_BALLS:
+            case B_OUTCOME_RAN:
+            case B_OUTCOME_PLAYER_TELEPORTED:
+            case B_OUTCOME_NO_SAFARI_BALLS:
                 show->breakingNews.outcome = 2;
                 break;
-            case BATTLE_POKE_FLED:
-            case BATTLE_OPPONENT_TELEPORTED:
+            case B_OUTCOME_MON_FLED:
+            case B_OUTCOME_MON_TELEPORTED:
                 show->breakingNews.outcome = 3;
                 break;
         }
@@ -3633,7 +3633,7 @@ void ChangePokemonNickname(void)
 void ChangePokemonNickname_CB(void)
 {
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar2);
-    c2_exit_to_overworld_1_continue_scripts_restart_music();
+    CB2_ReturnToFieldContinueScript();
 }
 
 void ChangeBoxPokemonNickname(void)
@@ -3649,7 +3649,7 @@ void ChangeBoxPokemonNickname(void)
 void ChangeBoxPokemonNickname_CB(void)
 {
     SetBoxMonNickFromAnyBox(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos, gStringVar2);
-    c2_exit_to_overworld_1_continue_scripts_restart_music();
+    CB2_ReturnToFieldContinueScript();
 }
 
 void TV_CopyNicknameToStringVar1AndEnsureTerminated(void)
@@ -4110,7 +4110,7 @@ void sub_80F0708(void) // FIXME: register allocation shenanigans
     }
 }
 #else
-__attribute__((naked)) void sub_80F0708(void)
+ASM_DIRECT void sub_80F0708(void)
 {
     asm_unified("\tpush {r4-r7,lr}\n"
                     "\tmov r7, r9\n"

@@ -231,7 +231,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276C9D:: @ 8276C9D
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_276CB5:: @ 8276CB5
-	special sub_80097E8
+	special CloseLink
 	setvar VAR_0x4087, 0
 	compare VAR_0x8007, 0
 	goto_eq OldaleTown_PokemonCenter_2F_EventScript_276DD5
@@ -254,7 +254,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276CE7:: @ 8276CE7
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_276CFF:: @ 8276CFF
-	special sub_80097E8
+	special CloseLink
 	setvar VAR_0x4087, 0
 	compare VAR_0x8007, 0
 	goto_eq OldaleTown_PokemonCenter_2F_EventScript_276DD5
@@ -276,7 +276,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276D2C:: @ 8276D2C
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_276D44:: @ 8276D44
-	special sub_80097E8
+	special CloseLink
 	setvar VAR_0x4087, 0
 	applymovement 255, OldaleTown_PokemonCenter_2F_Movement_27734F
 	waitmovement 0
@@ -501,25 +501,25 @@ OldaleTown_PokemonCenter_2F_EventScript_277046:: @ 8277046
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_277072:: @ 8277072
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_27833D, 4
 	goto OldaleTown_PokemonCenter_2F_EventScript_2770A5
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_277083:: @ 8277083
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_278307, 4
 	goto OldaleTown_PokemonCenter_2F_EventScript_2770A5
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_277094:: @ 8277094
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_2782D1, 4
 	goto OldaleTown_PokemonCenter_2F_EventScript_2770A5
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_2770A5:: @ 82770A5
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_278372, 4
 	release
 	end
@@ -658,45 +658,45 @@ OldaleTown_PokemonCenter_2F_EventScript_27724C:: @ 827724C
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_2772AB:: @ 82772AB
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_278565, 4
 	release
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_2772B8:: @ 82772B8
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_2785C9, 4
 	release
 	end
 
 BattleFrontier_BattleTowerLobby_EventScript_2772C5:: @ 82772C5
 OldaleTown_PokemonCenter_2F_EventScript_2772C5:: @ 82772C5
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_27821C, 4
 	release
 	end
 
 BattleFrontier_BattleTowerLobby_EventScript_2772D2:: @ 82772D2
 OldaleTown_PokemonCenter_2F_EventScript_2772D2:: @ 82772D2
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_2781C7, 4
 	release
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_2772DF:: @ 82772DF
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_278255, 4
 	release
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_2772EC:: @ 82772EC
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_278291, 4
 	release
 	end
 
 MossdeepCity_GameCorner_1F_EventScript_2772F9:: @ 82772F9
-	special sub_80097E8
+	special CloseLink
 	msgbox MossdeepCity_GameCorner_1F_Text_278D51, 4
 	release
 	end
@@ -708,19 +708,19 @@ OldaleTown_PokemonCenter_2F_EventScript_277306:: @ 8277306
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_27730E:: @ 827730E
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_2782A8, 4
 	release
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_27731B:: @ 827731B
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_2785E9, 4
 	release
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_277328:: @ 8277328
-	special sub_80097E8
+	special CloseLink
 	msgbox OldaleTown_PokemonCenter_2F_Text_278651, 4
 	release
 	end
@@ -916,21 +916,21 @@ RecordCorner_EventScript_277471:: @ 8277471
 	releaseall
 	end
 
-gUnknown_0827747E:: @ 827747E
+EventScript_TradeRoom_ReadTrainerCard1:: @ 827747E
 	msgbox Text_278452, 4
 	fadescreen 1
 	special sp02A_crash_sound
 	waitstate
 	end
 
-gUnknown_0827748D:: @ 827748D
+EventScript_TradeRoom_ReadTrainerCard2:: @ 827748D
 	msgbox Text_27847B, 4
 	fadescreen 1
 	special sp02A_crash_sound
 	waitstate
 	end
 
-gUnknown_0827749C:: @ 827749C
+EventScript_TradeRoom_TooBusyToNotice:: @ 827749C
 	msgbox Text_27842E, 4
 	closemessage
 	end
@@ -983,7 +983,7 @@ gUnknown_08277509:: @ 8277509
 	special sub_80B371C
 	end
 
-gUnknown_08277513:: @ 8277513
+EventScript_277513:: @ 8277513
 	special sub_80B36EC
 	special sub_80AF9F8
 	waitstate

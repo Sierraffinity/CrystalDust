@@ -18,7 +18,6 @@
 #include "event_data.h"
 #include "main.h"
 #include "link.h"
-#include "new_menu_helpers.h"
 #include "item_menu_icons.h"
 #include "berry.h"
 #include "item.h"
@@ -161,8 +160,8 @@ extern void sub_809882C(u8, u16, u8);
 extern void copy_textbox_border_tile_patterns_to_vram(u8, u16, u8);
 extern void sub_81AABF0(void (*callback)(void));
 extern void sub_800B4C0(void);
-extern void sub_8009F8C(void);
-extern void c2_exit_to_overworld_1_continue_scripts_restart_music(void);
+extern void ClearLinkCallback(void);
+extern void CB2_ReturnToFieldContinueScript(void);
 extern void sub_8153430(void);
 extern bool8 sub_8153474(void);
 extern void sub_80EECEC(void);
@@ -953,10 +952,10 @@ static void sub_807FAC8(void)
                 sBerryBlenderData->syncArrowSpriteIds[i] = CreateSprite(&sBlenderSyncArrow_SpriteTemplate, sBlenderSyncArrowsPos[i][0], sBlenderSyncArrowsPos[i][1], 1);
                 StartSpriteAnim(&gSprites[sBerryBlenderData->syncArrowSpriteIds[i]], i + 8);
             }
-            if (gReceivedRemoteLinkPlayers != 0 && gLinkVSyncDisabled)
+            if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
             {
                 sub_800E0E8();
-                sub_800DFB4(0, 0);
+                CreateWirelessStatusIndicatorSprite(0, 0);
             }
             SetVBlankCallback(VBlankCB0_BerryBlender);
             sBerryBlenderData->mainState++;
@@ -1159,10 +1158,10 @@ static void sub_8080018(void)
             sBerryBlenderData->syncArrowSprite2Ids[i] = CreateSprite(&sBlenderSyncArrow_SpriteTemplate, sBlenderSyncArrowsPos[i][0], sBlenderSyncArrowsPos[i][1], 1);
             StartSpriteAnim(&gSprites[sBerryBlenderData->syncArrowSprite2Ids[i]], i + 8);
         }
-        if (gReceivedRemoteLinkPlayers != 0 && gLinkVSyncDisabled)
+        if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
         {
             sub_800E0E8();
-            sub_800DFB4(0, 0);
+            CreateWirelessStatusIndicatorSprite(0, 0);
         }
         sBerryBlenderData->mainState++;
         break;
@@ -1875,7 +1874,7 @@ static void sub_8081370(u16 a0)
 
 static bool32 sub_80814B0(u16 arg0, u16 arg1, u16 arg2)
 {
-    if (gReceivedRemoteLinkPlayers != 0 && gLinkVSyncDisabled)
+    if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
     {
         if ((arg0 & 0xFF00) == arg2)
             return TRUE;
@@ -2317,7 +2316,7 @@ static void sub_8081E20(void)
 
 static void sub_8081F94(u16 *a0)
 {
-    if (gReceivedRemoteLinkPlayers != 0 && gLinkVSyncDisabled)
+    if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
         *a0 = 0x2F00;
     else
         *a0 = 0x2FFF;
@@ -2346,7 +2345,7 @@ static void CB2_HandleBlenderEndGame(void)
         sBerryBlenderData->field_4C -= 32;
         if (sBerryBlenderData->field_4C <= 0)
         {
-            sub_8009F8C();
+            ClearLinkCallback();
             sBerryBlenderData->field_4C = 0;
 
             if (gReceivedRemoteLinkPlayers != 0)
@@ -2366,7 +2365,7 @@ static void CB2_HandleBlenderEndGame(void)
         }
         else if (sub_800A520())
         {
-            if (gReceivedRemoteLinkPlayers != 0 && gLinkVSyncDisabled)
+            if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
             {
                 sBerryBlenderData->gameBlock.timeRPM.time = sBerryBlenderData->gameFrameTime;
                 sBerryBlenderData->gameBlock.timeRPM.max_RPM = sBerryBlenderData->max_RPM;
@@ -2395,7 +2394,7 @@ static void CB2_HandleBlenderEndGame(void)
             ResetBlockReceivedFlags();
             sBerryBlenderData->gameEndState++;
 
-            if (gReceivedRemoteLinkPlayers != 0 && gLinkVSyncDisabled)
+            if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
             {
                 struct BlenderGameBlock *receivedBlock = (struct BlenderGameBlock*)(&gBlockRecvBuffer);
 
@@ -2693,7 +2692,7 @@ static void CB2_HandlePlayerLinkPlayAgainChoice(void)
         if (gReceivedRemoteLinkPlayers == 0)
         {
             FREE_AND_SET_NULL(sBerryBlenderData);
-            SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+            SetMainCallback2(CB2_ReturnToFieldContinueScript);
         }
         break;
     }
@@ -2743,7 +2742,7 @@ static void CB2_HandlePlayerPlayAgainChoice(void)
             if (sBerryBlenderData->playAgainState == PLAY_AGAIN_OK)
                 SetMainCallback2(DoBerryBlending);
             else
-                SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+                SetMainCallback2(CB2_ReturnToFieldContinueScript);
 
             FreeAllWindowBuffers();
             UnsetBgTilemapBuffer(2);
@@ -2872,7 +2871,7 @@ static void sub_8082D28(void)
     if (gReceivedRemoteLinkPlayers != 0)
         playerId = GetMultiplayerId();
 
-    if (gLinkVSyncDisabled && gReceivedRemoteLinkPlayers != 0)
+    if (gWirelessCommType && gReceivedRemoteLinkPlayers != 0)
     {
         if (playerId == 0)
         {
@@ -3489,7 +3488,7 @@ void ShowBerryBlenderRecordWindow(void)
 
     winTemplate = sBlenderRecordWindowTemplate;
     gResultsWindowId = AddWindow(&winTemplate);
-    sub_81973FC(gResultsWindowId, 0);
+    NewMenuHelpers_DrawStdWindowFrame(gResultsWindowId, 0);
     FillWindowPixelBuffer(gResultsWindowId, 0x11);
 
     xPos = GetStringCenterAlignXOffset(1, gText_BlenderMaxSpeedRecord, 0x90);
@@ -3574,35 +3573,35 @@ static bool32 TryAddContestLinkTvShow(struct Pokeblock *pokeblock, struct TvBlen
 
 static void Blender_AddTextPrinter(u8 windowId, const u8 *string, u8 x, u8 y, s32 speed, s32 caseId)
 {
-    struct TextColor txtColor;
+    u8 txtColor[3];
     u32 letterSpacing = 0;
 
     switch (caseId)
     {
     case 0:
     case 3:
-        txtColor.fgColor = 1;
-        txtColor.bgColor = 2;
-        txtColor.shadowColor = 3;
+        txtColor[0] = 1;
+        txtColor[1] = 2;
+        txtColor[2] = 3;
         break;
     case 1:
-        txtColor.fgColor = 0;
-        txtColor.bgColor = 2;
-        txtColor.shadowColor = 3;
+        txtColor[0] = 0;
+        txtColor[1] = 2;
+        txtColor[2] = 3;
         break;
     case 2:
-        txtColor.fgColor = 0;
-        txtColor.bgColor = 4;
-        txtColor.shadowColor = 5;
+        txtColor[0] = 0;
+        txtColor[1] = 4;
+        txtColor[2] = 5;
         break;
     }
 
     if (caseId != 3)
     {
-        FillWindowPixelBuffer(windowId, txtColor.fgColor | (txtColor.fgColor << 4));
+        FillWindowPixelBuffer(windowId, txtColor[0] | (txtColor[0] << 4));
     }
 
-    AddTextPrinterParameterized2(windowId, 1, x, y, letterSpacing, 1, &txtColor, speed, string);
+    AddTextPrinterParameterized2(windowId, 1, x, y, letterSpacing, 1, txtColor, speed, string);
 }
 
 static bool32 Blender_PrintText(s16 *textState, const u8 *string, s32 textSpeed)

@@ -344,7 +344,7 @@ sub_80F5B00: @ 80F5B00
 	bl SetVBlankCallback
 	bl sub_80F7DF4
 	bl sub_80F57C4
-	bl dp12_8087EA4
+	bl ScanlineEffect_Clear
 	bl ResetPaletteFade
 	bl ResetSpriteData
 	bl ResetTasks
@@ -492,7 +492,7 @@ sub_80F5C24: @ 80F5C24
 	bl LoadOam
 	bl ProcessSpriteCopyRequests
 	bl TransferPlttBuffer
-	bl sub_80BA0A8
+	bl ScanlineEffect_InitHBlankDmaTransfer
 	pop {r0}
 	bx r0
 	.pool
@@ -1825,7 +1825,7 @@ _080F6884:
 	adds r0, r5, 0
 	bl DestroyTask
 	bl FreeAllWindowBuffers
-	ldr r0, =c2_exit_to_overworld_1_continue_scripts_restart_music
+	ldr r0, =CB2_ReturnToFieldContinueScript
 	bl SetMainCallback2
 	bl sub_80F7E64
 _080F68A8:
@@ -2128,9 +2128,9 @@ sub_80F6AE8: @ 80F6AE8
 	bl sub_800E0E8
 	movs r0, 0x8
 	movs r1, 0x8
-	bl sub_800DFB4
+	bl CreateWirelessStatusIndicatorSprite
 	ldr r4, =gSprites
-	ldr r0, =gUnknown_02022B10
+	ldr r0, =gWirelessStatusIndicatorSpriteId
 	ldrb r1, [r0]
 	lsls r0, r1, 4
 	adds r0, r1

@@ -211,7 +211,7 @@ _080C72AC:
 	bl sub_81973A4
 	movs r0, 0
 	movs r1, 0
-	bl sub_81973C4
+	bl NewMenuHelpers_DrawDialogueFrame
 	movs r0, 0
 	movs r1, 0x11
 	bl FillWindowPixelBuffer
@@ -406,7 +406,7 @@ _080C7428:
 _080C745C:
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	movs r0, 0x4
 	strh r0, [r5, 0x8]
 	b _080C756A
@@ -627,7 +627,7 @@ sub_80C75FC: @ 80C75FC
 	lsrs r4, 24
 	adds r0, r4, 0
 	movs r1, 0
-	bl sub_81973FC
+	bl NewMenuHelpers_DrawStdWindowFrame
 	adds r0, r4, 0
 	movs r1, 0x5
 	mov r2, r8
@@ -657,7 +657,7 @@ sub_80C7678: @ 80C7678
 	ldr r1, =gFieldCallback
 	ldr r0, =mapldr_0808C6D8
 	str r0, [r1]
-	ldr r0, =c2_exit_to_overworld_2_switch
+	ldr r0, =CB2_ReturnToField
 	bl SetMainCallback2
 	pop {r0}
 	bx r0

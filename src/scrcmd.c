@@ -29,10 +29,8 @@
 #include "menu.h"
 #include "money.h"
 #include "mystery_event_script.h"
-#include "new_menu_helpers.h"
 #include "palette.h"
 #include "party_menu.h"
-#include "pokemon_3.h"
 #include "pokemon_storage_system.h"
 #include "random.h"
 #include "overworld.h"
@@ -63,13 +61,6 @@ static EWRAM_DATA u16 sMovingNpcId = 0;
 static EWRAM_DATA u16 sMovingNpcMapBank = 0;
 static EWRAM_DATA u16 sMovingNpcMapId = 0;
 static EWRAM_DATA u16 sFieldEffectScriptId = 0;
-
-extern u16 gSpecialVar_0x8000;
-extern u16 gSpecialVar_0x8001;
-extern u16 gSpecialVar_0x8002;
-extern u16 gSpecialVar_0x8004;
-
-extern u16 gSpecialVar_Result;
 
 extern u16 gSpecialVar_ContestCategory;
 
@@ -638,7 +629,7 @@ static bool8 IsPaletteNotActive(void)
 
 bool8 ScrCmd_fadescreen(struct ScriptContext *ctx)
 {
-    fade_screen(ScriptReadByte(ctx), 0);
+    FadeScreen(ScriptReadByte(ctx), 0);
     SetupNativeScript(ctx, IsPaletteNotActive);
     return TRUE;
 }
@@ -648,7 +639,7 @@ bool8 ScrCmd_fadescreenspeed(struct ScriptContext *ctx)
     u8 mode = ScriptReadByte(ctx);
     u8 speed = ScriptReadByte(ctx);
 
-    fade_screen(mode, speed);
+    FadeScreen(mode, speed);
     SetupNativeScript(ctx, IsPaletteNotActive);
     return TRUE;
 }
@@ -662,12 +653,12 @@ bool8 ScrCmd_fadescreenswapbuffers(struct ScriptContext *ctx)
         case 1:
         default:
             CpuCopy32(gPlttBufferUnfaded, gPaletteDecompressionBuffer, PLTT_DECOMP_BUFFER_SIZE);
-            fade_screen(mode, 0);
+            FadeScreen(mode, 0);
             break;
         case 0:
         case 2:
             CpuCopy32(gPaletteDecompressionBuffer, gPlttBufferUnfaded, PLTT_DECOMP_BUFFER_SIZE);
-            fade_screen(mode, 0);
+            FadeScreen(mode, 0);
             break;
     }
 
@@ -726,7 +717,7 @@ bool8 ScrCmd_setweather(struct ScriptContext *ctx)
 
 bool8 ScrCmd_resetweather(struct ScriptContext *ctx)
 {
-    sub_80AEDBC();
+    SetSav1WeatherFromCurrMapHeader();
     return FALSE;
 }
 
@@ -1313,7 +1304,7 @@ bool8 ScrCmd_cmdDB(struct ScriptContext *ctx)
     if (msg == NULL)
         msg = (const u8 *)ctx->data[0];
     sub_81973A4();
-    sub_81973C4(0, 1);
+    NewMenuHelpers_DrawDialogueFrame(0, 1);
     PrintTextOnWindow(0, 1, msg, 0, 1, 0, 0);
     return FALSE;
 }
@@ -1530,14 +1521,14 @@ bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
     template2 = template1;
     gUnknown_03000F30 = AddWindow(&template2);
     sub_809882C(gUnknown_03000F30, 0x214, 0xE0);
-    sub_81973FC(gUnknown_03000F30, 0);
+    NewMenuHelpers_DrawStdWindowFrame(gUnknown_03000F30, 0);
     PutWindowTilemap(gUnknown_03000F30);
     FillWindowPixelBuffer(gUnknown_03000F30, 0x11);
     PrintTextOnWindow(gUnknown_03000F30, 6, gStringVar4, temp1, temp2, 0xFF, 0x0);
     CopyWindowToVram(gUnknown_03000F30, 3);
     return FALSE;
 }*/
-__attribute__((naked))
+ASM_DIRECT
 bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
 {
     asm("push {r4-r7,lr}\n\
@@ -1651,7 +1642,7 @@ _0809AEC6:\n\
 	bl sub_809882C\n\
 	ldrb r0, [r5]\n\
 	mov r1, #0\n\
-	bl sub_81973FC\n\
+	bl NewMenuHelpers_DrawStdWindowFrame\n\
 	ldrb r0, [r5]\n\
 	bl PutWindowTilemap\n\
 	ldrb r0, [r5]\n\
@@ -2063,7 +2054,7 @@ bool8 ScrCmd_playslotmachine(struct ScriptContext *ctx)
 {
     u8 slotMachineIndex = VarGet(ScriptReadHalfword(ctx));
 
-    PlaySlotMachine(slotMachineIndex, c2_exit_to_overworld_1_continue_scripts_restart_music);
+    PlaySlotMachine(slotMachineIndex, CB2_ReturnToFieldContinueScript);
     ScriptContext1_Stop();
     return TRUE;
 }

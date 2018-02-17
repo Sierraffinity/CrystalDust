@@ -463,7 +463,7 @@ sub_816B21C: @ 816B21C
 	adds r4, r0, 0
 	movs r0, 0
 	movs r1, 0
-	bl sub_81973C4
+	bl NewMenuHelpers_DrawDialogueFrame
 	movs r0, 0x1
 	str r0, [sp]
 	movs r0, 0
@@ -552,7 +552,7 @@ sub_816B2C8: @ 816B2C8
 	str r0, [r1]
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	pop {r0}
 	bx r0
 	.pool
@@ -586,7 +586,7 @@ sub_816B31C: @ 816B31C
 	ldr r0, =gFieldCallback
 	ldr r1, =mapldr_080EBC0C
 	str r1, [r0]
-	ldr r0, =c2_exit_to_overworld_2_switch
+	ldr r0, =CB2_ReturnToField
 	bl SetMainCallback2
 	pop {r0}
 	bx r0
@@ -599,7 +599,7 @@ mapldr_080EBC0C: @ 816B33C
 	bl sub_81973A4
 	movs r0, 0
 	movs r1, 0x1
-	bl sub_81973C4
+	bl NewMenuHelpers_DrawDialogueFrame
 	ldr r0, =sub_816B368
 	movs r1, 0
 	bl CreateTask
@@ -1221,7 +1221,7 @@ sub_816B878: @ 816B878
 	lsrs r4, 24
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	ldr r1, =gTasks
 	lsls r0, r4, 2
 	adds r0, r4
@@ -1279,7 +1279,7 @@ sub_816B900: @ 816B900
 	ldr r0, =gFieldCallback
 	ldr r1, =pal_fill_for_maplights_or_black
 	str r1, [r0]
-	ldr r0, =c2_exit_to_overworld_2_switch
+	ldr r0, =CB2_ReturnToField
 	bl SetMainCallback2
 	pop {r0}
 	bx r0
@@ -1494,7 +1494,7 @@ sub_816BABC: @ 816BABC
 _0816BAD4:
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	ldr r0, =gTasks
 	lsls r1, r4, 2
 	adds r1, r4
@@ -1538,7 +1538,7 @@ sub_816BB28: @ 816BB28
 	ldr r0, =gFieldCallback
 	ldr r1, =sub_816BB48
 	str r1, [r0]
-	ldr r0, =c2_exit_to_overworld_2_switch
+	ldr r0, =CB2_ReturnToField
 	bl SetMainCallback2
 	pop {r0}
 	bx r0
@@ -2179,7 +2179,7 @@ sub_816C060: @ 816C060
 	adds r0, r4, 0
 	adds r1, r4, 0
 	adds r2, r6, 0
-	bl AddItemIconObject
+	bl AddItemIconSprite
 	lsls r0, 24
 	lsrs r2, r0, 24
 	cmp r2, 0x40
@@ -2540,7 +2540,7 @@ bx_battle_menu_t3: @ 816C3A4
 	bne _0816C3F2
 	movs r0, 0
 	movs r1, 0
-	bl sub_81973C4
+	bl NewMenuHelpers_DrawDialogueFrame
 	movs r1, 0x6
 	ldrsh r0, [r5, r1]
 	cmp r0, 0

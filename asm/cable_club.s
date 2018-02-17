@@ -143,7 +143,7 @@ sub_80B2478: @ 80B2478
 	lsrs r0, 24
 	lsls r1, 24
 	lsrs r1, 24
-	bl sub_800A0C8
+	bl GetLinkPlayerDataExchangeStatusTimed
 	lsls r0, 24
 	lsrs r0, 24
 	subs r0, 0x1
@@ -178,7 +178,7 @@ _080B24C8:
 	b _080B24F2
 _080B24CC:
 	ldr r4, =gStringVar1
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	adds r1, r0, 0
 	lsls r1, 24
 	lsrs r1, 24
@@ -205,7 +205,7 @@ sub_80B24F8: @ 80B24F8
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	bl sub_800B33C
+	bl HasLinkErrorOccurred
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -239,7 +239,7 @@ sub_80B252C: @ 80B252C
 	ands r0, r1
 	cmp r0, 0
 	beq _080B2570
-	bl sub_800B320
+	bl IsLinkConnectionEstablished
 	lsls r0, 24
 	lsrs r1, r0, 24
 	cmp r1, 0
@@ -269,12 +269,12 @@ sub_80B2578: @ 80B2578
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	bl sub_800B320
+	bl IsLinkConnectionEstablished
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B258E
 	movs r0, 0x1
-	bl sub_800B330
+	bl SetSuppressLinkErrorMessage
 _080B258E:
 	ldr r0, =gMain
 	ldrh r1, [r0, 0x2E]
@@ -309,7 +309,7 @@ sub_80B25CC: @ 80B25CC
 	push {r4,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	bl sub_800B2E8
+	bl GetSioMultiSI
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -374,9 +374,9 @@ sub_80B2634: @ 80B2634
 	ldrsh r2, [r4, r3]
 	cmp r2, 0
 	bne _080B266C
-	bl sub_800A0AC
+	bl OpenLinkTimed
 	bl sub_800AB98
-	bl sub_800A2BC
+	bl ResetLinkPlayers
 	ldr r0, =gUnknown_08550594
 	bl AddWindow
 	strh r0, [r4, 0xA]
@@ -404,7 +404,7 @@ sub_80B2688: @ 80B2688
 	push {r4,r5,lr}
 	lsls r0, 24
 	lsrs r4, r0, 24
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r5, r0, 24
 	adds r0, r4, 0
@@ -418,7 +418,7 @@ sub_80B2688: @ 80B2688
 	cmp r5, 0x1
 	bls _080B26FC
 	movs r0, 0x1
-	bl sub_800B330
+	bl SetSuppressLinkErrorMessage
 	ldr r1, =gTasks
 	lsls r0, r4, 2
 	adds r0, r4
@@ -426,7 +426,7 @@ sub_80B2688: @ 80B2688
 	adds r4, r0, r1
 	movs r0, 0
 	strh r0, [r4, 0xE]
-	bl sub_800ABBC
+	bl IsLinkMaster
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -506,7 +506,7 @@ sub_80B275C: @ 80B275C
 	mov r9, r0
 	mov r7, r8
 	add r7, r9
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r5, r0, 24
 	adds r0, r4, 0
@@ -585,7 +585,7 @@ sub_80B2804: @ 80B2804
 	bne _080B2898
 	bl sub_800AA48
 	adds r4, r0, 0
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r4, 24
 	lsls r0, 24
 	cmp r4, r0
@@ -652,7 +652,7 @@ sub_80B28A8: @ 80B28A8
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _080B290A
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	adds r4, r0, 0
 	bl sub_800AA48
 	lsls r4, 24
@@ -729,14 +729,14 @@ _080B297C:
 	cmp r2, 0x9
 	bne _080B2994
 _080B2984:
-	bl sub_80097E8
+	bl CloseLink
 	bl HideFieldMessageBox
 	ldr r0, =sub_80B2CB0
 	b _080B29E4
 	.pool
 _080B2994:
-	bl sub_800ABAC
-	ldr r4, =gUnknown_03005DB8
+	bl GetLinkPlayerCount_2
+	ldr r4, =gFieldLinkPlayerCount
 	strb r0, [r4]
 	bl GetMultiplayerId
 	ldr r1, =gUnknown_03005DB4
@@ -812,7 +812,7 @@ _080B2A42:
 	cmp r0, 0x9
 	bne _080B2A6C
 _080B2A4A:
-	bl sub_80097E8
+	bl CloseLink
 _080B2A4E:
 	bl HideFieldMessageBox
 	ldr r0, =gTasks
@@ -825,8 +825,8 @@ _080B2A4E:
 	b _080B2ACE
 	.pool
 _080B2A6C:
-	bl sub_800ABAC
-	ldr r4, =gUnknown_03005DB8
+	bl GetLinkPlayerCount_2
+	ldr r4, =gFieldLinkPlayerCount
 	strb r0, [r4]
 	bl GetMultiplayerId
 	ldr r1, =gUnknown_03005DB4
@@ -1065,7 +1065,7 @@ _080B2C7E:
 	cmp r4, r0
 	bcc _080B2C5C
 	movs r0, 0
-	bl sub_800B330
+	bl SetSuppressLinkErrorMessage
 	bl ResetBlockReceivedFlags
 	ldr r0, =gSpecialVar_Result
 	adds r1, r5, 0
@@ -1610,8 +1610,8 @@ sub_80B3144: @ 80B3144
 	ldrsh r2, [r4, r3]
 	cmp r2, 0
 	bne _080B3178
-	bl sub_8009734
-	bl sub_800A2BC
+	bl OpenLink
+	bl ResetLinkPlayers
 	ldr r0, =task00_08081A90
 	movs r1, 0x50
 	bl CreateTask
@@ -1640,12 +1640,12 @@ sub_80B3194: @ 80B3194
 	lsls r0, 24
 	lsrs r4, r0, 24
 	adds r5, r4, 0
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
 	bls _080B31DA
-	bl sub_800ABBC
+	bl IsLinkMaster
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -1681,7 +1681,7 @@ sub_80B31E8: @ 80B31E8
 	lsrs r5, r0, 24
 	bl sub_800AA48
 	adds r4, r0, 0
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r4, 24
 	lsls r0, 24
 	cmp r4, r0
@@ -1710,7 +1710,7 @@ sub_80B3220: @ 80B3220
 	ldrb r0, [r0]
 	cmp r0, 0x1
 	bne _080B3248
-	bl sub_800A23C
+	bl IsLinkPlayerDataExchangeComplete
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -1808,12 +1808,12 @@ _080B32E0:
 _080B32F8:
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	ldr r1, =gLinkType
 	ldr r2, =0x00002211
 	adds r0, r2, 0
 	strh r0, [r1]
-	bl sub_8009FAC
+	bl ClearLinkCallback_2
 	b _080B3346
 	.pool
 _080B3318:
@@ -1921,12 +1921,12 @@ _080B33E8:
 _080B3408:
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	ldr r0, =gLinkType
 	ldr r2, =0x00002211
 	adds r1, r2, 0
 	strh r1, [r0]
-	bl sub_8009FAC
+	bl ClearLinkCallback_2
 	movs r0, 0x1
 	strh r0, [r6]
 	b _080B3532
@@ -1945,7 +1945,7 @@ _080B343A:
 	b _080B3532
 	.pool
 _080B3444:
-	ldr r1, =gUnknown_020229CC
+	ldr r1, =gLocalLinkPlayer
 	movs r0, 0
 	movs r2, 0x1C
 	bl SendBlock
@@ -2132,12 +2132,12 @@ _080B35E0:
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _080B35FE
-	ldr r0, =c2_exit_to_overworld_2_switch
+	ldr r0, =CB2_ReturnToField
 	bl SetMainCallback2
 	b _080B35FE
 	.pool
 _080B35F8:
-	ldr r0, =c2_exit_to_overworld_2_switch
+	ldr r0, =CB2_ReturnToField
 	bl SetMainCallback2
 _080B35FE:
 	bl RunTasks
@@ -2156,7 +2156,7 @@ sub_80B360C: @ 80B360C
 	negs r1, r1
 	ands r0, r1
 	str r0, [r2]
-	bl call_ResetMapMusic
+	bl Overworld_ResetMapMusic
 	bl copy_player_party_from_sav1
 	bl copy_bags_and_unk_data_to_save_blocks
 	bl sub_813BF10
@@ -2172,7 +2172,7 @@ sub_80B360C: @ 80B360C
 	movs r5, 0x1
 	eors r0, r5
 	bl sub_813C2A0
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080B36B2
@@ -2399,8 +2399,8 @@ _080B382E:
 	bl ScriptContext2_Enable
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
-	bl sub_8009FAC
+	bl FadeScreen
+	bl ClearLinkCallback_2
 	b _080B3864
 _080B3840:
 	ldr r0, =gPaletteFade
@@ -2470,7 +2470,7 @@ _080B38C6:
 	bl ScriptContext2_Enable
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	bl Rfu_set_zero
 	b _080B38FC
 _080B38D8:
@@ -2512,7 +2512,7 @@ _080B391C:
 	thumb_func_start sub_80B3924
 sub_80B3924: @ 80B3924
 	push {lr}
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080B3940
@@ -2552,7 +2552,7 @@ sub_80B3968: @ 80B3968
 	ldr r2, =0x00002211
 	adds r0, r2, 0
 	strh r0, [r1]
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080B3994
@@ -2586,7 +2586,7 @@ sp02A_crash_sound: @ 80B39BC
 	push {lr}
 	ldr r0, =gSpecialVar_0x8006
 	ldrb r0, [r0]
-	ldr r1, =c2_exit_to_overworld_1_continue_scripts_restart_music
+	ldr r1, =CB2_ReturnToFieldContinueScript
 	bl sub_80C4E74
 	pop {r0}
 	bx r0
@@ -2651,8 +2651,8 @@ task00_08081A90: @ 80B3A30
 	lsls r0, 17
 	cmp r1, r0
 	ble _080B3A62
-	bl sub_80097E8
-	ldr r0, =c2_800ACD4
+	bl CloseLink
+	ldr r0, =CB2_LinkError
 	bl SetMainCallback2
 	adds r0, r4, 0
 	bl DestroyTask
@@ -2661,7 +2661,7 @@ _080B3A62:
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080B3AA6
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _080B3AA0
@@ -2669,8 +2669,8 @@ _080B3A62:
 	lsls r0, 24
 	cmp r0, 0
 	bne _080B3A86
-	bl sub_80097E8
-	ldr r0, =c2_800ACD4
+	bl CloseLink
+	ldr r0, =CB2_LinkError
 	bl SetMainCallback2
 _080B3A86:
 	adds r0, r4, 0
@@ -2752,7 +2752,7 @@ _080B3B20:
 	beq _080B3B9E
 	b _080B3BB8
 _080B3B2A:
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080B3B40
@@ -2761,7 +2761,7 @@ _080B3B2A:
 	b _080B3BB8
 	.pool
 _080B3B40:
-	bl sub_8009734
+	bl OpenLink
 	ldr r0, =task00_08081A90
 	movs r1, 0x1
 	bl CreateTask
@@ -2779,14 +2779,14 @@ _080B3B54:
 	strh r0, [r5, 0x2]
 	b _080B3B96
 _080B3B68:
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	adds r4, r0, 0
 	bl sub_800AA48
 	lsls r4, 24
 	lsls r0, 24
 	cmp r4, r0
 	bcc _080B3BB8
-	bl sub_800ABBC
+	bl IsLinkMaster
 	lsls r0, 24
 	cmp r0, 0
 	beq _080B3B96
@@ -2808,7 +2808,7 @@ _080B3B9E:
 	ldrb r0, [r0]
 	cmp r0, 0x1
 	bne _080B3BB8
-	bl sub_800A23C
+	bl IsLinkPlayerDataExchangeComplete
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -2825,7 +2825,7 @@ _080B3BB8:
 	thumb_func_start sub_80B3BC4
 sub_80B3BC4: @ 80B3BC4
 	push {lr}
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _080B3BD6

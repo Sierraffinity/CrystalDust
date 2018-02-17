@@ -14,7 +14,7 @@ CB2_PokeNav: @ 81C7250
 	str r0, [r4]
 	cmp r0, 0
 	bne _081C7270
-	ldr r0, =sub_8086194
+	ldr r0, =CB2_ReturnToFieldWithOpenMenu
 	bl SetMainCallback2
 	b _081C7292
 	.pool
@@ -44,7 +44,7 @@ sub_81C72A4: @ 81C72A4
 	bl SetMainCallback2
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	pop {r0}
 	bx r0
 	.pool
@@ -66,7 +66,7 @@ sub_81C72BC: @ 81C72BC
 	str r0, [r4]
 	cmp r0, 0
 	bne _081C72F0
-	ldr r0, =c2_exit_to_overworld_1_continue_scripts_restart_music
+	ldr r0, =CB2_ReturnToFieldContinueScript
 	bl SetMainCallback2
 	b _081C7320
 	.pool
@@ -351,12 +351,12 @@ _081C752C:
 	bl sub_81C7334
 	cmp r4, 0
 	beq _081C755C
-	ldr r0, =c2_exit_to_overworld_1_continue_scripts_restart_music
+	ldr r0, =CB2_ReturnToFieldContinueScript
 	bl SetMainCallback2
 	b _081C7562
 	.pool
 _081C755C:
-	ldr r0, =sub_8086194
+	ldr r0, =CB2_ReturnToFieldWithOpenMenu
 	bl SetMainCallback2
 _081C7562:
 	pop {r4-r7}
@@ -7068,7 +7068,7 @@ sub_81CA914: @ 81CA914
 	bl TransferPlttBuffer
 	bl LoadOam
 	bl ProcessSpriteCopyRequests
-	bl sub_80BA0A8
+	bl ScanlineEffect_InitHBlankDmaTransfer
 	pop {r0}
 	bx r0
 	thumb_func_end sub_81CA914
@@ -7101,7 +7101,7 @@ titlescreen_0: @ 81CA92C
 	ldr r0, [r2]
 	ldr r1, [r2, 0x4]
 	ldr r2, [r2, 0x8]
-	bl sub_80BA038
+	bl ScanlineEffect_SetParams
 	ldr r0, =sub_81CA914
 	bl c3args_set_0toR1_1to0
 	ldr r0, =sub_81CA9EC
@@ -7220,7 +7220,7 @@ sub_81CAA3C: @ 81CAA3C
 	mov r0, sp
 	movs r6, 0
 	strh r6, [r0]
-	ldr r5, =gUnknown_02038C28
+	ldr r5, =gScanlineEffectRegBuffers
 	ldr r0, =0x010000a0
 	mov r8, r0
 	mov r0, sp
@@ -7890,7 +7890,7 @@ _081CAF34:
 	adds r0, r5, 0
 	bl sub_81D1BD0
 	adds r4, r0, 0
-	ldr r0, =gUnknown_0831F578
+	ldr r0, =gFacilityClassToPicIndex
 	adds r0, r4, r0
 	ldrb r0, [r0]
 	b _081CAF6C
@@ -8095,7 +8095,7 @@ sub_81CB0C8: @ 81CB0C8
 	ldrh r2, [r0, 0xA]
 	ldrh r1, [r0, 0xC]
 	adds r0, r2, 0
-	bl get_mapheader_by_bank_and_number
+	bl Overworld_GetMapHeaderByGroupAndId
 	ldrb r0, [r0, 0x14]
 	pop {r1}
 	bx r1
@@ -15647,7 +15647,7 @@ sub_81CEE44: @ 81CEE44
 	bl TransferPlttBuffer
 	adds r0, r4, 0
 	bl sub_81D2108
-	bl sub_80BA0A8
+	bl ScanlineEffect_InitHBlankDmaTransfer
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -22318,7 +22318,7 @@ sub_81D20BC: @ 81D20BC
 	b _081D20FA
 	.pool
 _081D20D4:
-	bl dp12_8087EA4
+	bl ScanlineEffect_Clear
 	ldrb r0, [r4]
 	adds r0, 0x1
 	strb r0, [r4]
@@ -22332,7 +22332,7 @@ _081D20E2:
 	ldr r0, [sp]
 	ldr r1, [sp, 0x4]
 	ldr r2, [sp, 0x8]
-	bl sub_80BA038
+	bl ScanlineEffect_SetParams
 	ldrb r0, [r4]
 	adds r0, 0x1
 	strb r0, [r4]
@@ -22366,7 +22366,7 @@ sub_81D2108: @ 81D2108
 	adds r0, r6, 0
 	bl sub_81D2634
 	movs r7, 0
-	ldr r5, =gUnknown_02038C28
+	ldr r5, =gScanlineEffectRegBuffers
 	mov r12, r5
 	movs r0, 0xF0
 	lsls r0, 3
@@ -25789,7 +25789,7 @@ sub_81D3B54: @ 81D3B54
 	adds r5, r1, 0
 	bl sub_81D41A0
 	movs r7, 0x2
-	ldr r4, =gUnknown_03003144
+	ldr r4, =gShouldAdvanceLinkState
 _081D3B64:
 	bl sub_81D4170
 	ldr r0, =gUnknown_030012E2
@@ -25857,7 +25857,7 @@ sub_81D3BE8: @ 81D3BE8
 	adds r5, r0, 0
 	bl sub_81D41A0
 	movs r6, 0x2
-	ldr r4, =gUnknown_03003144
+	ldr r4, =gShouldAdvanceLinkState
 _081D3BF6:
 	bl sub_81D4170
 	ldr r0, =gUnknown_030012E2
@@ -26006,7 +26006,7 @@ sub_81D3D34: @ 81D3D34
 	movs r1, 0x8
 	orrs r0, r1
 	strh r0, [r2]
-	ldr r0, =gUnknown_03003144
+	ldr r0, =gShouldAdvanceLinkState
 	strb r3, [r0]
 	ldr r0, =gUnknown_030012E6
 	strh r3, [r0]
@@ -26062,7 +26062,7 @@ _081D3DC8:
 	beq _081D3DD8
 	bl sub_81D413C
 _081D3DD8:
-	ldr r0, =gUnknown_03003144
+	ldr r0, =gShouldAdvanceLinkState
 	ldrb r0, [r0]
 	cmp r0, 0x2
 	beq _081D3DE2
@@ -26080,7 +26080,7 @@ _081D3DE8:
 	movs r0, 0x3
 	strb r0, [r1, 0x1]
 _081D3DFC:
-	ldr r0, =gUnknown_03003144
+	ldr r0, =gShouldAdvanceLinkState
 	ldrb r0, [r0]
 	cmp r0, 0x2
 	bne _081D3E18
@@ -28050,7 +28050,7 @@ _081D4E12:
 	beq _081D4E1C
 	movs r5, 0x3
 _081D4E1C:
-	ldr r1, =gUnknown_03003144
+	ldr r1, =gShouldAdvanceLinkState
 	movs r0, 0
 	strb r0, [r1]
 	adds r0, r5, 0
@@ -28072,9 +28072,9 @@ sub_81D4E30: @ 81D4E30
 	ldr r2, =0x00005503
 	adds r0, r2, 0
 	strh r0, [r1]
-	bl sub_8009734
+	bl OpenLink
 	movs r0, 0x1
-	bl sub_800B330
+	bl SetSuppressLinkErrorMessage
 	pop {r0}
 	bx r0
 	.pool
@@ -28090,7 +28090,7 @@ sub_81D4E60: @ 81D4E60
 	strh r0, [r1]
 	movs r0, 0
 	strh r0, [r2]
-	ldr r0, =gUnknown_03003174
+	ldr r0, =gLink+0x4
 	ldr r1, [r0, 0x4]
 	ldr r0, [r0]
 	str r0, [sp, 0x4]
@@ -28128,11 +28128,11 @@ _081D4EBA:
 	thumb_func_start sub_81D4EC0
 sub_81D4EC0: @ 81D4EC0
 	push {lr}
-	bl sub_800ABBC
+	bl IsLinkMaster
 	lsls r0, 24
 	cmp r0, 0
 	beq _081D4EDC
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x2
@@ -28157,7 +28157,7 @@ sub_81D4EE4: @ 81D4EE4
 	lsrs r0, 24
 	cmp r0, 0x2
 	bhi _081D4F08
-	bl sub_800B33C
+	bl HasLinkErrorOccurred
 	lsls r0, 24
 	cmp r0, 0
 	beq _081D4F08
@@ -28186,11 +28186,11 @@ _081D4F20:
 	.4byte _081D4FEC
 	.4byte _081D4FF8
 _081D4F38:
-	bl sub_800ABBC
+	bl IsLinkMaster
 	lsls r0, 24
 	cmp r0, 0
 	beq _081D4F88
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -28212,7 +28212,7 @@ _081D4F54:
 	strb r0, [r4]
 	b _081D500C
 _081D4F6C:
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x2
@@ -28248,7 +28248,7 @@ _081D4FA0:
 	movs r0, 0x5
 	b _081D500E
 _081D4FB6:
-	bl sub_800B320
+	bl IsLinkConnectionEstablished
 	lsls r0, 24
 	cmp r0, 0
 	beq _081D500C
@@ -28256,7 +28256,7 @@ _081D4FB6:
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _081D4FE6
-	bl sub_800A23C
+	bl IsLinkPlayerDataExchangeComplete
 	lsls r0, 24
 	cmp r0, 0
 	beq _081D4FE0
@@ -28447,7 +28447,7 @@ _081D515C:
 	beq _081D5166
 	b _081D52FC
 _081D5166:
-	bl sub_80097E8
+	bl CloseLink
 	b _081D525C
 _081D516C:
 	adds r0, r4, 0
@@ -28500,20 +28500,20 @@ _081D51D0:
 	beq _081D51F4
 	movs r0, 0x5
 	bl PlaySE
-	bl sub_80097E8
+	bl CloseLink
 	adds r0, r4, 0
 	bl sub_81D505C
 	b _081D535A
 	.pool
 _081D51F4:
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
 	bls _081D5210
 	adds r0, r4, 0
 	bl sub_81D505C
-	bl sub_80097E8
+	bl CloseLink
 	movs r0, 0x7
 	strb r0, [r4, 0x8]
 	b _081D548A
@@ -28523,7 +28523,7 @@ _081D5210:
 	beq _081D522E
 	movs r0, 0x5
 	bl PlaySE
-	bl sub_80097E8
+	bl CloseLink
 	adds r0, r4, 0
 	bl sub_81D505C
 	movs r0, 0x8
@@ -28537,7 +28537,7 @@ _081D522E:
 	bne _081D523C
 	b _081D548A
 _081D523C:
-	bl sub_80097E8
+	bl CloseLink
 	bl sub_81D4E30
 	adds r0, r4, 0
 	bl sub_81D505C
@@ -28654,23 +28654,23 @@ _081D5340:
 _081D5350:
 	movs r0, 0x5
 	bl PlaySE
-	bl sub_80097E8
+	bl CloseLink
 _081D535A:
 	movs r0, 0x17
 	strb r0, [r4, 0x8]
 	b _081D548A
 _081D5360:
-	bl sub_80097E8
+	bl CloseLink
 	movs r0, 0x15
 	strb r0, [r4, 0x8]
 	b _081D548A
 _081D536A:
-	bl sub_800B33C
+	bl HasLinkErrorOccurred
 	lsls r0, 24
 	cmp r0, 0
 	beq _081D537A
 _081D5374:
-	bl sub_80097E8
+	bl CloseLink
 	b _081D53C0
 _081D537A:
 	bl GetBlockReceivedStatus
@@ -28880,7 +28880,7 @@ sub_81D5530: @ 81D5530
 	lsls r1, 24
 	adds r0, r1
 	lsrs r0, 24
-	ldr r2, =gTrainerClassToNameIndex
+	ldr r2, =gFacilityClassToTrainerClass
 	ldr r1, =gUnknown_0203CF58
 	ldr r1, [r1]
 	adds r1, 0x16
@@ -28947,7 +28947,7 @@ sub_81D5588: @ 81D5588
 	adds r3, r0
 	ldrb r4, [r3, 0x1B]
 	bl sub_81D5710
-	ldr r0, =gUnknown_0831F578
+	ldr r0, =gFacilityClassToPicIndex
 	adds r4, r0
 	ldrb r0, [r4]
 	pop {r4}
@@ -30295,7 +30295,7 @@ sub_81D6120: @ 81D6120
 	push {lr}
 	movs r0, 0x1A
 	movs r1, 0x40
-	bl get_mapheader_by_bank_and_number
+	bl Overworld_GetMapHeaderByGroupAndId
 	ldr r0, [r0, 0x4]
 	ldr r0, [r0, 0x8]
 	adds r0, 0x8
@@ -30334,7 +30334,7 @@ _081D6162:
 	adds r0, r1
 	ldrh r1, [r0]
 	movs r0, 0x1A
-	bl get_mapheader_by_bank_and_number
+	bl Overworld_GetMapHeaderByGroupAndId
 	ldr r0, [r0, 0x4]
 	ldr r0, [r0, 0x8]
 _081D6176:
@@ -30656,7 +30656,7 @@ sub_81D63C8: @ 81D63C8
 	ldrb r4, [r3, 0x1B]
 	bl sub_81D5710
 	movs r2, 0
-	ldr r0, =gTrainerClassToNameIndex
+	ldr r0, =gFacilityClassToTrainerClass
 	adds r4, r0
 	ldrb r3, [r4]
 	ldr r1, =gUnknown_0862A3B4

@@ -1,7 +1,6 @@
 	.include "asm/macros.inc"
 	.include "constants/gba_constants.inc"
 	.include "constants/misc_constants.inc"
-	.include "constants/species_constants.inc"
 
 	.syntax unified
 
@@ -137,7 +136,7 @@ _08077258:
 	thumb_func_start sub_8077260
 sub_8077260: @ 8077260
 	push {lr}
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _08077280
@@ -411,17 +410,17 @@ _080774B2:
 	ldr r0, [r0]
 	adds r0, 0xA8
 	strb r2, [r0]
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _08077528
 	bl sub_800B488
-	bl sub_8009734
+	bl OpenLink
 	bl sub_8011BA4
 	b _08077B46
 	.pool
 _08077528:
-	bl sub_8009734
+	bl OpenLink
 	ldr r0, =gMain
 	movs r7, 0x87
 	lsls r7, 3
@@ -466,7 +465,7 @@ _0807757A:
 	b _08077B22
 	.pool
 _0807758C:
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	adds r4, r0, 0
 	bl sub_800AA48
 	lsls r4, 24
@@ -475,7 +474,7 @@ _0807758C:
 	bcs _080775A0
 	b _08077B46
 _080775A0:
-	bl sub_800ABBC
+	bl IsLinkMaster
 	lsls r0, 24
 	cmp r0, 0
 	beq _080775D8
@@ -512,7 +511,7 @@ _080775E8:
 	beq _080775F2
 	b _08077B46
 _080775F2:
-	bl sub_800A23C
+	bl IsLinkPlayerDataExchangeComplete
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -533,7 +532,7 @@ _08077600:
 	ldr r0, [r0]
 	adds r0, 0xA8
 	strb r2, [r0]
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	bne _0807762A
@@ -545,7 +544,7 @@ _0807762A:
 	b _08077B46
 	.pool
 _08077648:
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _08077680
@@ -565,7 +564,7 @@ _0807765C:
 	bl sub_800E0E8
 	movs r0, 0
 	movs r1, 0
-	bl sub_800DFB4
+	bl CreateWirelessStatusIndicatorSprite
 	b _08077B46
 	.pool
 _08077680:
@@ -1184,14 +1183,14 @@ _08077C28:
 	b _080780D8
 	.pool
 _08077C3C:
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _08077C50
 	bl sub_800E0E8
 	movs r0, 0
 	movs r1, 0
-	bl sub_800DFB4
+	bl CreateWirelessStatusIndicatorSprite
 _08077C50:
 	ldr r1, =gMain
 	movs r3, 0x87
@@ -1782,7 +1781,7 @@ sub_807816C: @ 807816C
 	adds r0, 0x7E
 	ldrb r0, [r0]
 	strb r0, [r1, 0x1]
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080781B4
@@ -1811,7 +1810,7 @@ sub_80781C8: @ 80781C8
 	ldr r5, =gMain
 	ldr r0, =sub_80773AC
 	str r0, [r5, 0x8]
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _08078220
@@ -2400,7 +2399,7 @@ _08078726:
 	bne _08078766
 	adds r0, r4, 0
 	movs r1, 0x2
-	ldr r2, =gSpeciesNames + SPECIES_SHEDINJA * POKEMON_NAME_LENGTH
+	ldr r2, =gSpeciesNames + 303 * POKEMON_NAME_LENGTH @ SPECIES_SHEDINJA
 	bl SetMonData
 _08078766:
 	adds r4, 0x64
@@ -4006,7 +4005,7 @@ sub_8079490: @ 8079490
 	ands r0, r1
 	cmp r0, 0
 	bne _080794C4
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080794B4
@@ -4031,7 +4030,7 @@ _080794C4:
 	thumb_func_start sub_80794CC
 sub_80794CC: @ 80794CC
 	push {lr}
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _08079518
@@ -7026,8 +7025,8 @@ _0807AC92:
 	lsls r0, 1
 	cmp r1, r0
 	bls _0807ACC4
-	bl sub_80097E8
-	ldr r0, =c2_800ACD4
+	bl CloseLink
+	ldr r0, =CB2_LinkError
 	bl SetMainCallback2
 	ldr r1, [r4]
 	adds r3, r1, 0
@@ -7156,7 +7155,7 @@ _0807AD94:
 	bl HandleLoadSpecialPokePic_DontHandleDeoxys
 _0807ADB2:
 	mov r0, r8
-	bl sub_806E794
+	bl GetMonSpritePalStruct
 	bl LoadCompressedObjectPalette
 	ldr r0, =gUnknown_020322A0
 	ldr r1, [r0]
@@ -7172,7 +7171,7 @@ _0807ADB2:
 	.pool
 _0807ADE0:
 	mov r0, r8
-	bl sub_806E794
+	bl GetMonSpritePalStruct
 	ldrh r0, [r0, 0x4]
 	adds r1, r4, 0
 	bl sub_806A068
@@ -7264,7 +7263,7 @@ _0807AEAC:
 	ldr r2, =0x00001144
 	adds r0, r2, 0
 	strh r0, [r1]
-	bl sub_80097E8
+	bl CloseLink
 _0807AEC0:
 	ldr r4, =gUnknown_020322A0
 	movs r5, 0x80
@@ -7332,7 +7331,7 @@ _0807AF58:
 	adds r0, 0xFA
 	movs r1, 0x1
 	strb r1, [r0]
-	bl sub_8009734
+	bl OpenLink
 	ldr r1, =gMain
 	movs r2, 0x87
 	lsls r2, 3
@@ -7369,13 +7368,13 @@ _0807AFAC:
 	b _0807B0E4
 	.pool
 _0807AFBC:
-	bl sub_800ABBC
+	bl IsLinkMaster
 	lsls r0, 24
 	cmp r0, 0
 	bne _0807AFC8
 	b _0807B0DC
 _0807AFC8:
-	bl sub_800ABAC
+	bl GetLinkPlayerCount_2
 	adds r4, r0, 0
 	bl sub_800AA48
 	lsls r4, 24
@@ -7409,7 +7408,7 @@ _0807B006:
 	beq _0807B014
 	b _0807B116
 _0807B014:
-	bl sub_800A23C
+	bl IsLinkPlayerDataExchangeComplete
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -7509,14 +7508,14 @@ _0807B0F0:
 	ands r0, r1
 	cmp r0, 0
 	bne _0807B116
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _0807B110
 	bl sub_800E0E8
 	movs r0, 0
 	movs r1, 0
-	bl sub_800DFB4
+	bl CreateWirelessStatusIndicatorSprite
 _0807B110:
 	ldr r0, =sub_807EA2C
 	bl SetMainCallback2
@@ -9590,7 +9589,7 @@ _0807C66C:
 	ldr r0, [r5]
 	adds r0, 0xF0
 	ldrh r0, [r0]
-	bl IsPokeSpriteNotFlipped
+	bl IsMonSpriteNotFlipped
 	lsls r0, 24
 	cmp r0, 0
 	bne _0807C6E4
@@ -10670,7 +10669,7 @@ _0807CF5C:
 	bl Free
 	str r4, [r7]
 _0807CFAA:
-	ldr r0, =c2_exit_to_overworld_2_switch
+	ldr r0, =CB2_ReturnToField
 	bl SetMainCallback2
 	bl sub_807E784
 _0807CFB4:
@@ -11664,7 +11663,7 @@ _0807DA74:
 	ldr r0, [r5]
 	adds r0, 0xF0
 	ldrh r0, [r0]
-	bl IsPokeSpriteNotFlipped
+	bl IsMonSpriteNotFlipped
 	lsls r0, 24
 	cmp r0, 0
 	bne _0807DAEC
@@ -12775,7 +12774,7 @@ _0807E3A8:
 	bl Free
 	str r4, [r7]
 _0807E3F6:
-	ldr r0, =c2_exit_to_overworld_2_switch
+	ldr r0, =CB2_ReturnToField
 	bl SetMainCallback2
 	bl sub_807E784
 _0807E400:
@@ -12858,7 +12857,7 @@ _0807E4AE:
 _0807E4B2:
 	strb r0, [r1]
 _0807E4B4:
-	bl sub_800B33C
+	bl HasLinkErrorOccurred
 	lsls r0, 24
 	cmp r0, 0
 	bne _0807E4C2
@@ -13833,7 +13832,7 @@ _0807EDC0:
 	movs r0, 0x15
 	bl IncrementGameStat
 _0807EDCE:
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _0807EDF6
@@ -14046,7 +14045,7 @@ _0807EFA4:
 	lsrs r0, 24
 	cmp r0, 0x1
 	bne _0807F03A
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _0807EFD8
@@ -14073,7 +14072,7 @@ _0807EFE4:
 	b _0807F03A
 	.pool
 _0807EFF0:
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _0807F028
@@ -14101,7 +14100,7 @@ _0807F028:
 	ldr r0, =c2_080543C4
 	bl SetMainCallback2
 _0807F03A:
-	bl sub_800B33C
+	bl HasLinkErrorOccurred
 	lsls r0, 24
 	cmp r0, 0
 	bne _0807F048
@@ -14143,7 +14142,7 @@ c2_080543C4: @ 807F068
 	ldr r0, [r4]
 	bl Free
 	str r5, [r4]
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _0807F0B6
@@ -14885,7 +14884,7 @@ _0807F6F8:
 	ldr r0, =c2_080543C4
 	bl SetMainCallback2
 _0807F70C:
-	bl sub_800B33C
+	bl HasLinkErrorOccurred
 	lsls r0, 24
 	cmp r0, 0
 	bne _0807F71A

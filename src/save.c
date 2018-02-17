@@ -3,6 +3,12 @@
 #include "save.h"
 #include "constants/game_stat.h"
 #include "task.h"
+#include "decompress.h"
+
+// for the chunk declarations
+extern struct SaveBlock2 gSaveblock2;
+extern struct SaveBlock1 gSaveblock1;
+extern struct PokemonStorage gPokemonStorage;
 
 extern struct SaveSectionLocation gRamSaveSectionLocations[0xE];
 extern u8 gDecompressionBuffer[];
@@ -10,7 +16,57 @@ extern u32 gFlashMemoryPresent;
 extern u16 gUnknown_03006294;
 extern bool8 gSoftResetDisabled;
 
-extern const struct SaveSectionOffsets gSaveSectionOffsets[0xE];
+// Divide save blocks into individual chunks to be written to flash sectors
+
+// Each 4 KiB flash sector contains 3968 bytes of actual data followed by a 128 byte footer
+#define SECTOR_DATA_SIZE 3968
+#define SECTOR_FOOTER_SIZE 128
+
+/*
+ * Sector Layout:
+ * 
+ * Sectors 0 - 13:      Save Slot 1
+ * Sectors 14 - 27:     Save Slot 2
+ * Sectors 28 - 29:     Hall of Fame
+ * Sector 30:           e-Reader/Mystery Gift Stuff (note: e-Reader is deprecated in Emerald US)
+ * Sector 31:           Recorded Battle
+ * 
+ * There are two save slots for saving the player's game data. We alternate between
+ * them each time the game is saved, so that if the current save slot is corrupt,
+ * we can load the previous one. We also rotate the sectors in each save slot
+ * so that the same data is not always being written to the same sector. This
+ * might be done to reduce wear on the flash memory, but I'm not sure, since all
+ * 14 sectors get written anyway.
+ */
+
+// (u8 *)structure was removed from the first statement of the macro in Emerald.
+// This is because malloc is used to allocate addresses so storing the raw
+// addresses should not be done in the offsets information. 
+#define SAVEBLOCK_CHUNK(structure, chunkNum)                                \
+{                                                                           \
+    chunkNum * SECTOR_DATA_SIZE,                                            \
+    min(sizeof(structure) - chunkNum * SECTOR_DATA_SIZE, SECTOR_DATA_SIZE)  \
+}                                                                           \
+
+const struct SaveSectionOffsets gSaveSectionOffsets[] =
+{
+    SAVEBLOCK_CHUNK(gSaveblock2, 0),
+
+    SAVEBLOCK_CHUNK(gSaveblock1, 0),
+    SAVEBLOCK_CHUNK(gSaveblock1, 1),
+    SAVEBLOCK_CHUNK(gSaveblock1, 2),
+    SAVEBLOCK_CHUNK(gSaveblock1, 3),
+
+    SAVEBLOCK_CHUNK(gPokemonStorage, 0),
+    SAVEBLOCK_CHUNK(gPokemonStorage, 1),
+    SAVEBLOCK_CHUNK(gPokemonStorage, 2),
+    SAVEBLOCK_CHUNK(gPokemonStorage, 3),
+    SAVEBLOCK_CHUNK(gPokemonStorage, 4),
+    SAVEBLOCK_CHUNK(gPokemonStorage, 5),
+    SAVEBLOCK_CHUNK(gPokemonStorage, 6),
+    SAVEBLOCK_CHUNK(gPokemonStorage, 7),
+    SAVEBLOCK_CHUNK(gPokemonStorage, 8),
+};
 
 extern void DoSaveFailedScreen(u8); // save_failed_screen
 extern void LoadSerializedGame(void); // load_save
@@ -41,7 +97,7 @@ void ClearSaveData(void)
     }
 }
 
-void ResetSaveCounters(void)
+void Save_ResetSaveCounters(void)
 {
     gSaveCounter = 0;
     gLastWrittenSector = 0;
@@ -615,25 +671,25 @@ u8 HandleSavingData(u8 saveType)
     UpdateSaveAddresses();
     switch (saveType)
     {
-    case HOF_DELETE_SAVE: // deletes HOF before overwriting HOF completely. unused
+    case SAVE_HALL_OF_FAME_ERASE_BEFORE: // deletes HOF before overwriting HOF completely. unused
         for (i = 0xE * 2 + 0; i < 32; i++)
             EraseFlashSector(i);
-    case HOF_SAVE: // hall of fame.
+    case SAVE_HALL_OF_FAME: // hall of fame.
         if (GetGameStat(GAME_STAT_ENTERED_HOF) < 999)
             IncrementGameStat(GAME_STAT_ENTERED_HOF);
         SaveSerializedGame();
         save_write_to_flash(0xFFFF, gRamSaveSectionLocations);
-        tempAddr = (u8 *)0x201C000; // FIXME: make this a label.
+        tempAddr = gDecompressionBuffer;
         HandleWriteSectorNBytes(0x1C, tempAddr, 0xF80);
         HandleWriteSectorNBytes(0x1D, tempAddr + 0xF80, 0xF80);
         break;
-    case NORMAL_SAVE: // normal save. also called by overwriting your own save.
+    case SAVE_NORMAL: // normal save. also called by overwriting your own save.
     default:
         SaveSerializedGame();
         save_write_to_flash(0xFFFF, gRamSaveSectionLocations);
         break;
-    case LINK_SAVE: // _081532C4
-    case LINK2_SAVE:
+    case SAVE_LINK: // _081532C4
+    case SAVE_LINK2:
         SaveSerializedGame();
         for(i = 0; i < 5; i++)
             ClearSaveData_2(i, gRamSaveSectionLocations);
@@ -647,7 +703,7 @@ u8 HandleSavingData(u8 saveType)
         save_write_to_flash(0, gRamSaveSectionLocations);
         break;
     */
-    case DIFFERENT_FILE_SAVE:
+    case SAVE_OVERWRITE_DIFFERENT_FILE:
         for (i = (0xE * 2 + 0); i < 32; i++)
             EraseFlashSector(i); // erase HOF.
         SaveSerializedGame();
@@ -744,7 +800,7 @@ bool8 sub_8153474(void)
     return retVal;
 }
 
-u8 sub_81534D0(u8 a1)
+u8 Save_LoadGameData(u8 a1)
 {
     u8 result;
 

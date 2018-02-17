@@ -5,7 +5,6 @@
 #include "battle_transition.h"
 #include "main.h"
 #include "task.h"
-#include "pokemon_3.h"
 #include "safari_zone.h"
 #include "script.h"
 #include "constants/game_stat.h"
@@ -30,6 +29,8 @@
 #include "strings.h"
 #include "secret_base.h"
 #include "string_util.h"
+#include "overworld.h"
+#include "field_weather.h"
 
 enum
 {
@@ -48,6 +49,8 @@ struct TrainerBattleParameter
     u8 ptrType;
 };
 
+extern void (*gFieldCallback)(void);
+
 extern bool8 InBattlePyramid(void);
 extern bool8 InBattlePike(void);
 extern bool32 InTrainerHill(void);
@@ -59,14 +62,11 @@ extern void sub_81BE72C(void);
 extern void FreezeMapObjects(void);
 extern void sub_808BCF4(void);
 extern void sub_80EECC8(void);
-extern void c2_exit_to_overworld_1_continue_scripts_restart_music(void);
-extern void c2_exit_to_overworld_2_switch(void);
 extern void Overworld_ClearSavedMusic(void);
 extern void CB2_WhiteOut(void);
 extern void sub_80AF6F0(void);
 extern void PlayBattleBGM(void);
 extern void sub_81DA57C(void);
-extern u8 GetSav1Weather(void);
 extern u8 Overworld_GetFlashLevel(void);
 extern u16 sub_81A9AA8(u8 localId);
 extern u16 sub_81D6180(u8 localId);
@@ -82,12 +82,6 @@ extern void sub_81D61E8(void);
 extern void sub_80982B8(void);
 extern void sub_81A9EDC(u16 a0);
 extern void sub_81D572C(u8 a0, u16 arg1);
-extern void IncrementGameStat(u8 statId);
-extern u32 GetGameStat(u8 statId);
-
-extern u32 gBattleTypeFlags;
-extern u8 gBattleOutcome;
-extern void (*gFieldCallback)(void);
 
 // this file's functions
 static void DoBattlePikeWildBattle(void);
@@ -480,7 +474,7 @@ void StartWallyTutorialBattle(void)
 {
     CreateMaleMon(&gEnemyParty[0], SPECIES_RALTS, 5);
     ScriptContext2_Enable();
-    gMain.savedCallback = c2_exit_to_overworld_1_continue_scripts_restart_music;
+    gMain.savedCallback = CB2_ReturnToFieldContinueScript;
     gBattleTypeFlags = BATTLE_TYPE_WALLY_TUTORIAL;
     CreateBattleStartTask(B_TRANSITION_SLICE, 0);
 }
@@ -609,7 +603,7 @@ static void CB2_EndWildBattle(void)
     }
     else
     {
-        SetMainCallback2(c2_exit_to_overworld_2_switch);
+        SetMainCallback2(CB2_ReturnToField);
         gFieldCallback = sub_80AF6F0;
     }
 }
@@ -622,13 +616,13 @@ static void CB2_EndScriptedWildBattle(void)
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {
         if (InBattlePyramid())
-            SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+            SetMainCallback2(CB2_ReturnToFieldContinueScript);
         else
             SetMainCallback2(CB2_WhiteOut);
     }
     else
     {
-        SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+        SetMainCallback2(CB2_ReturnToFieldContinueScript);
     }
 }
 
@@ -945,7 +939,7 @@ static void CB2_StartFirstBattle(void)
 static void CB2_EndFirstBattle(void)
 {
     Overworld_ClearSavedMusic();
-    SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+    SetMainCallback2(CB2_ReturnToFieldContinueScript);
 }
 
 static void sub_80B1218(void)
@@ -990,14 +984,14 @@ static bool32 IsPlayerDefeated(u32 battleOutcome)
 {
     switch (battleOutcome)
     {
-    case BATTLE_LOST:
-    case BATTLE_DREW:
+    case B_OUTCOME_LOST:
+    case B_OUTCOME_DREW:
         return TRUE;
-    case BATTLE_WON:
-    case BATTLE_RAN:
-    case BATTLE_PLAYER_TELEPORTED:
-    case BATTLE_POKE_FLED:
-    case BATTLE_CAUGHT:
+    case B_OUTCOME_WON:
+    case B_OUTCOME_RAN:
+    case B_OUTCOME_PLAYER_TELEPORTED:
+    case B_OUTCOME_MON_FLED:
+    case B_OUTCOME_CAUGHT:
         return FALSE;
     default:
         return FALSE;
@@ -1321,18 +1315,18 @@ static void CB2_EndTrainerBattle(void)
 {
     if (gTrainerBattleOpponent_A == SECRET_BASE_OPPONENT)
     {
-        SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+        SetMainCallback2(CB2_ReturnToFieldContinueScript);
     }
     else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {
         if (InBattlePyramid() || sub_81D5C18())
-            SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+            SetMainCallback2(CB2_ReturnToFieldContinueScript);
         else
             SetMainCallback2(CB2_WhiteOut);
     }
     else
     {
-        SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+        SetMainCallback2(CB2_ReturnToFieldContinueScript);
         if (!InBattlePyramid() && !sub_81D5C18())
         {
             RegisterTrainerInMatchCall();
@@ -1345,7 +1339,7 @@ static void CB2_EndRematchBattle(void)
 {
     if (gTrainerBattleOpponent_A == SECRET_BASE_OPPONENT)
     {
-        SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+        SetMainCallback2(CB2_ReturnToFieldContinueScript);
     }
     else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {
@@ -1353,7 +1347,7 @@ static void CB2_EndRematchBattle(void)
     }
     else
     {
-        SetMainCallback2(c2_exit_to_overworld_1_continue_scripts_restart_music);
+        SetMainCallback2(CB2_ReturnToFieldContinueScript);
         RegisterTrainerInMatchCall();
         SetBattledTrainersFlags();
         HandleRematchVarsOnBattleEnd();

@@ -652,7 +652,7 @@ sub_811A7E4: @ 811A7E4
 _0811A804:
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	b _0811A840
 _0811A80E:
 	ldr r0, =gPaletteFade
@@ -9252,7 +9252,7 @@ start_menu_is_selected_item_valid: @ 811EA6C
 	cmp r0, 0
 	bne _0811EA84
 	movs r0, 0
-	bl pokedex_count
+	bl GetNationalPokedexCount
 	lsls r0, 16
 	lsrs r0, 16
 	b _0811EA9A
@@ -10369,7 +10369,7 @@ sub_811F2D4: @ 811F2D4
 	movs r5, 0
 	strh r5, [r0]
 	movs r0, 0
-	bl pokedex_count
+	bl GetNationalPokedexCount
 	lsls r0, 16
 	cmp r0, 0
 	beq _0811F2FC

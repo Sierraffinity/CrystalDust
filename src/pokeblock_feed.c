@@ -16,7 +16,6 @@
 #include "event_data.h"
 #include "strings.h"
 #include "string_util.h"
-#include "new_menu_helpers.h"
 #include "party_menu.h"
 #include "m4a.h"
 #include "sound.h"
@@ -51,7 +50,6 @@ struct PokeblockFeedStruct
 
 extern u16 gSpecialVar_ItemId;
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
-extern struct SpriteTemplate gUnknown_0202499C;
 
 extern const u8 gBattleTerrainPalette_Frontier[];
 extern const u8 gBattleTerrainTiles_Building[];
@@ -838,7 +836,7 @@ static u8 CreateMonSprite(struct Pokemon* mon)
     gSprites[spriteId].callback = SpriteCallbackDummy;
 
     sPokeblockFeed->noMonFlip = TRUE;
-    if (!IsPokeSpriteNotFlipped(species))
+    if (!IsMonSpriteNotFlipped(species))
     {
         gSprites[spriteId].affineAnims = sSpriteAffineAnimTable_MonNoFlip;
         gSprites[spriteId].oam.affineMode = 3;

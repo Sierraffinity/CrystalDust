@@ -11,6 +11,7 @@
 // to help in decompiling
 #define asm_comment(x) asm volatile("@ -- " x " -- ")
 #define asm_unified(x) asm(".syntax unified\n" x "\n.syntax divided")
+#define ASM_DIRECT __attribute__((naked))
 
 // IDE support
 #if defined (__APPLE__) || defined (__CYGWIN__)
@@ -24,7 +25,7 @@
 #define INCBIN_S32 {0}
 #endif // __APPLE__
 
-#define ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
+#define ARRAY_COUNT(array) (size_t)(sizeof(array) / sizeof((array)[0]))
 
 // useful math macros
 
@@ -34,8 +35,19 @@
 // Converts a number to Q4.12 fixed-point format
 #define Q_4_12(n)  ((s16)((n) * 4096))
 
+// Converts a Q8.8 fixed-point format number to a regular integer
+#define Q_8_8_TO_INT(n) ((int)((n) / 256))
+
+// Converts a Q4.12 fixed-point format number to a regular integer
+#define Q_4_12_TO_INT(n)  ((int)((n) / 4096))
+
+#define PARTY_SIZE 6
+
 #define POKEMON_NAME_LENGTH 10
 #define OT_NAME_LENGTH 7
+
+#define min(a, b) ((a) < (b) ? (a) : (b))
+#define max(a, b) ((a) >= (b) ? (a) : (b))
 
 #define HEAP_SIZE 0x1C000
 
@@ -82,6 +94,7 @@ enum LanguageId
     LANGUAGE_SPANISH = 7,
 };
 
+#define GAME_VERSION (VERSION_EMERALD)
 #define GAME_LANGUAGE (LANGUAGE_ENGLISH)
 
 enum
@@ -135,6 +148,18 @@ struct UCoords16
 {
     u16 x;
     u16 y;
+};
+
+struct Coords32
+{
+    s32 x;
+    s32 y;
+};
+
+struct UCoords32
+{
+    u32 x;
+    u32 y;
 };
 
 struct Time
@@ -292,6 +317,16 @@ struct SaveBlock2
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
 
+struct SecretBaseParty
+{
+    u32 personality[PARTY_SIZE];
+    u16 moves[PARTY_SIZE * 4];
+    u16 species[PARTY_SIZE];
+    u16 heldItems[PARTY_SIZE];
+    u8 levels[PARTY_SIZE];
+    u8 EVs[PARTY_SIZE];
+};
+
 struct SecretBaseRecord
 {
     /*0x1A9C*/ u8 secretBaseId;
@@ -307,12 +342,7 @@ struct SecretBaseRecord
     /*0x1AAD*/ u8 sbr_field_11;
     /*0x1AAE*/ u8 decorations[16];
     /*0x1ABE*/ u8 decorationPos[16];
-    /*0x1AD0*/ u32 partyPersonality[6];
-    /*0x1AE8*/ u16 partyMoves[6 * 4];
-    /*0x1B18*/ u16 partySpecies[6];
-    /*0x1B24*/ u16 partyHeldItems[6];
-    /*0x1B2E*/ u8 partyLevels[6];
-    /*0x1B34*/ u8 partyEVs[6];
+    /*0x1AD0*/ struct SecretBaseParty party;
 };
 
 #include "constants/game_stat.h"
@@ -595,18 +625,23 @@ struct WaldaPhrase
     bool8 patternUnlocked;
 };
 
+struct UnkSaveSubstruct_3b98 {
+    u32 trainerId;
+    u8 trainerName[8];
+};
+
 struct SaveBlock1
 {
     /*0x00*/ struct Coords16 pos;
     /*0x04*/ struct WarpData location;
     /*0x0C*/ struct WarpData warp1;
     /*0x14*/ struct WarpData warp2;
-    /*0x1C*/ struct WarpData warp3;
+    /*0x1C*/ struct WarpData lastHealLocation;
     /*0x24*/ struct WarpData warp4;
-    /*0x2C*/ u16 battleMusic;
+    /*0x2C*/ u16 savedMusic;
     /*0x2E*/ u8 weather;
     /*0x2F*/ u8 filler_2F;
-    /*0x30*/ u8 flashUsed;
+    /*0x30*/ u8 flashLevel;
     /*0x32*/ u16 mapDataId;
     /*0x34*/ u16 mapView[0x100];
     /*0x234*/ u8 playerPartyCount;
@@ -679,12 +714,31 @@ struct SaveBlock1
     /*0x3B14*/ struct RecordMixingGift recordMixingGift;
     /*0x3B24*/ u8 seen2[52];
     /*0x3B58*/ LilycoveLady lilycoveLady;
-    /*0x3B88*/ u8 filler_3B88[0x1E8];
+    /*0x3B88*/ u8 filler_3B88[0x10];
+    /*0x3B98*/ struct UnkSaveSubstruct_3b98 unk_3B98[20];
+    /*0x3C88*/ u8 filler_3C88[0xE8];
     /*0x3D70*/ struct WaldaPhrase waldaPhrase;
     // sizeof: 0x3D88
 };
 
 extern struct SaveBlock1* gSaveBlock1Ptr;
+
+struct MapPosition
+{
+    s16 x;
+    s16 y;
+    u8 height;
+};
+
+struct UnkStruct_8054FF8
+{
+    u8 a;
+    u8 b;
+    u8 c;
+    u8 d;
+    struct MapPosition sub;
+    u16 field_C;
+};
 
 struct Bitmap           // TODO: Find a better spot for this
 {

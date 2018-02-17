@@ -148,7 +148,7 @@ _0809F8E4:
 	lsls r0, 24
 	lsrs r0, 24
 	movs r1, 0
-	bl sub_81973FC
+	bl NewMenuHelpers_DrawStdWindowFrame
 	ldr r1, =gUnknown_02037619
 	movs r0, 0
 	strb r0, [r1, 0x1]
@@ -170,7 +170,7 @@ _0809F926:
 	b _0809F940
 	.pool
 _0809F930:
-	ldr r4, =gUnknown_0203761A
+	ldr r4, =gUnknown_02037619+1
 	adds r0, r4, 0
 	movs r1, 0x2
 	bl PrintStartMenuActions
@@ -418,7 +418,7 @@ _0809FAFE:
 	cmp r1, r0
 	bne _0809FB34
 	movs r0, 0
-	bl pokedex_count
+	bl GetNationalPokedexCount
 	lsls r0, 16
 	cmp r0, 0
 	beq _0809FBA0
@@ -449,7 +449,7 @@ _0809FB34:
 	beq _0809FBA0
 	movs r0, 0x1
 	movs r1, 0
-	bl fade_screen
+	bl FadeScreen
 	b _0809FBA0
 	.pool
 _0809FB98:
@@ -591,7 +591,7 @@ StartMenu_PlayerName: @ 809FC8C
 	cmp r0, 0
 	beq _0809FCC8
 _0809FCB6:
-	ldr r0, =sub_8086194
+	ldr r0, =CB2_ReturnToFieldWithOpenMenu
 	bl sub_80C4DDC
 	b _0809FCEA
 	.pool
@@ -601,12 +601,12 @@ _0809FCC8:
 	lsls r0, 24
 	cmp r0, 0
 	beq _0809FCE4
-	ldr r0, =sub_8086194
+	ldr r0, =CB2_ReturnToFieldWithOpenMenu
 	bl sub_80C51C4
 	b _0809FCEA
 	.pool
 _0809FCE4:
-	ldr r0, =sub_8086194
+	ldr r0, =CB2_ReturnToFieldWithOpenMenu
 	bl sub_80C4DDC
 _0809FCEA:
 	movs r0, 0x1
@@ -656,7 +656,7 @@ _0809FD38:
 	ldr r0, =CB2_InitOptionMenu
 	bl SetMainCallback2
 	ldr r1, =gMain
-	ldr r0, =sub_8086194
+	ldr r0, =CB2_ReturnToFieldWithOpenMenu
 	str r0, [r1, 0x8]
 	movs r0, 0x1
 _0809FD52:
@@ -703,7 +703,7 @@ _0809FDA0:
 	bl overworld_free_bg_tilemaps
 	ldr r0, =gUnknown_03005DB4
 	ldrb r0, [r0]
-	ldr r1, =sub_8086194
+	ldr r1, =CB2_ReturnToFieldWithOpenMenu
 	bl sub_80C4E74
 	movs r0, 0x1
 _0809FDB4:
@@ -1561,7 +1561,7 @@ _080A0490:
 	bl ResetSpriteData
 	bl ResetTasks
 	bl ResetPaletteFade
-	bl dp12_8087EA4
+	bl ScanlineEffect_Clear
 	b _080A04FC
 _080A04A2:
 	movs r0, 0
@@ -1615,7 +1615,7 @@ _080A0506:
 	thumb_func_start sub_80A0514
 sub_80A0514: @ 80A0514
 	push {lr}
-	ldr r0, =gUnknown_030026F8
+	ldr r0, =gMain+0x438
 	bl sub_80A03E4
 	cmp r0, 0
 	beq _080A052E
@@ -1712,7 +1712,7 @@ _080A05AC:
 	movs r2, 0x10
 	movs r3, 0
 	bl BeginNormalPaletteFade
-	ldr r0, =gLinkVSyncDisabled
+	ldr r0, =gWirelessCommType
 	ldrb r0, [r0]
 	cmp r0, 0
 	beq _080A0620
@@ -1832,7 +1832,7 @@ _080A06EC:
 	strb r0, [r6]
 	ldrb r0, [r6]
 	movs r1, 0
-	bl sub_81973FC
+	bl NewMenuHelpers_DrawStdWindowFrame
 	ldr r0, =gSaveBlock2Ptr
 	ldr r0, [r0]
 	ldrb r0, [r0, 0x8]

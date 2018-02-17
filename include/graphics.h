@@ -2654,6 +2654,12 @@ extern const u8 gBattleTerrainPalette_StadiumWallace[];
 extern const u8 gPokedexMenu2_Gfx[];
 extern const u8 gPokedexText_Pal[];
 
+// berry tag screen
+extern const u8 gUnknown_08D9BB44[];
+extern const u8 gUnknown_08D9BF98[];
+extern const u8 gUnknown_08D9C13C[];
+extern const u8 gUnknown_08D9BEF0[];
+
 // rayquaza scene gfx
 extern const u8 gRaySceneGroudon_Gfx[];
 extern const u8 gRaySceneGroudon2_Gfx[];
@@ -2673,10 +2679,95 @@ extern const u8 gRaySceneGroudonTail_Gfx[];
 extern const u8 gRaySceneKyogreRight_Gfx[];
 extern const u8 gRaySceneRayquazaHover_Gfx[];
 extern const u8 gRaySceneRayquazaFlyIn_Gfx[];
+extern const u8 gRaySceneOvercast_Gfx[];
+extern const u8 gRaySceneOvercast_Tilemap[];
+extern const u8 gRaySceneRayquaza_Gfx[];
+extern const u8 gRaySceneRayquaza_Tilemap[];
 extern const u8 gRaySceneSplash_Gfx[];
 extern const u8 gRaySceneGroudonLeft_Pal[];
 extern const u8 gRaySceneKyogreRight_Pal[];
 extern const u8 gRaySceneRayquazaHover_Pal[];
 extern const u8 gRaySceneSplash_Pal[];
+extern const u8 gRaySceneClouds_Gfx[];
+extern const u8 gRaySceneClouds_Pal[];
+extern const u8 gRaySceneClouds2_Tilemap[];
+extern const u8 gRaySceneClouds1_Tilemap[];
+extern const u8 gRaySceneClouds3_Tilemap[];
+extern const u8 gRaySceneRayquazaLight_Gfx[];
+extern const u8 gRaySceneRayquazaLight_Tilemap[];
+extern const u8 gRaySceneOvercast2_Gfx[];
+extern const u8 gRaySceneOvercast2_Tilemap[];
+extern const u8 gRaySceneOvercast2_Pal[];
+extern const u8 gRaySceneRayquazaChase_Gfx[];
+extern const u8 gRaySceneChaseStreaks_Gfx[];
+extern const u8 gRaySceneChaseBg_Gfx[];
+extern const u8 gRayChaseRayquazaChase2_Tilemap[];
+extern const u8 gRayChaseRayquazaChase_Tilemap[];
+extern const u8 gRaySceneChaseStreaks_Tilemap[];
+extern const u8 gRaySceneChaseBg_Tilemap[];
+extern const u8 gRaySceneChase_Pal[];
+extern const u8 gRaySceneHushRing_Tilemap[];
+extern const u8 gRaySceneHushBg_Tilemap[];
+extern const u8 gRaySceneHushRing_Map[];
+extern const u8 gRaySceneHushBg_Pal[];
+extern const u8 gRaySceneHushBg_Gfx[];
+extern const u8 gRaySceneHushRing_Gfx[];
+
+//menu graphics
+extern const u16 gFireRedMenuElements1_Pal[16];
+extern const u16 gFireRedMenuElements2_Pal[16];
+extern const u16 gFireRedMenuElements3_Pal[16];
+extern const u8 gFireRedMenuElements_Gfx[];
+
+//item menu graphics
+extern const u8 gBagScreen_Gfx[];
+extern const u16 gBagScreenFemale_Pal[];
+extern const u16 gBagScreenMale_Pal[];
+extern const u8 gBagMenuHMIcon_Gfx[];
+
+//intro graphics
+extern const u8 gIntro1SparkleGfx[];
+extern const u8 gIntro1FlygonGfx[];
+extern const u16 gIntro3LightningPal[];
+extern const u8 gIntroCopyright_Gfx[];
+extern const u8 gIntroCopyright_Tilemap[];
+extern const u16 gIntroCopyright_Pal[16];
+extern const u8 gIntro2VolbeatGfx[];
+extern const u8 gIntro2TorchicGfx[];
+extern const u8 gIntro2ManectricGfx[];
+extern const u16 gIntro2VolbeatPal[];
+extern const u16 gIntro2TorchicPal[];
+extern const u16 gIntro2ManectricPal[];
+extern const u8 gIntro2BubblesGfx[];
+extern const u16 gIntro2BubblesPal[];
+extern const u8 gIntro3LightningGfx[];
+extern const u8 gIntro3GroudonGfx[];
+extern const u8 gIntro3GroudonTilemap[];
+extern const u8 gIntro3LegendBgGfx[];
+extern const u8 gIntro3GroudonBgTilemap[];
+extern const u8 gIntro3GroudonBgTilemap[];
+extern const u8 gIntro3BgPal[0x200];
+extern const u8 gIntro3KyogreGfx[];
+extern const u8 gIntro3KyogreTilemap[];
+extern const u8 gIntro3KyogreBgTilemap[];
+extern const u8 gIntro3CloudsGfx[];
+extern const u8 gIntro3Clouds1Tilemap[];
+extern const u8 gIntro3Clouds2Tilemap[];
+extern const u8 gIntro3Clouds3Tilemap[];
+extern const u8 gIntro3Clouds4Tilemap[];
+extern const u8 gIntro3RayquazaTilemap[];
+extern const u8 gIntro3RayquazaGfx[];
+extern const u8 gIntro3Clouds2Gfx[];
+extern const u16 gIntro1GameFreakTextFadePal[];
+
+//intro/credits graphics
+extern const u8 gIntro2BrendanNoTurnGfx[];
+extern const u8 gIntro2MayNoTurnGfx[];
+extern const u16 gIntro2BrendanNoTurnPal[];
+extern const u16 gIntro2FlygonPal[];
+extern const u8 gIntro2FlygonGfx[];
+
+//credits
+extern const u8 gCreditsCopyrightEnd_Gfx[];
 
 #endif //GUARD_GRAPHICS_H
