@@ -1,6 +1,6 @@
 SHELL := /bin/bash -o pipefail
 
-ROM := pokeemerald.gba
+ROM := CrystalDust.gba
 OBJ_DIR := build/emerald
 
 ELF = $(ROM:.gba=.elf)
@@ -75,7 +75,7 @@ rom: $(ROM)
 
 # For contributors to make sure a change didn't affect the contents of the ROM.
 compare: $(ROM)
-	@$(SHA1) rom.sha1
+	@echo Silly you, this isn't pokeemerald!
 
 clean: tidy
 	rm -f sound/direct_sound_samples/*.bin

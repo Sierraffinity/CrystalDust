@@ -29,19 +29,19 @@ gFont7LatinGlyphWidths:: @ 8643EE4
 
 	.align 2
 gFont2LatinGlyphs:: @ 86440E4
-	.incbin "data/graphics/fonts/font2.latfont"
-
-	.align 2
-gFont2LatinGlyphWidths:: @ 864C0E4
-	.include "data/graphics/fonts/font2_latin_widths.inc"
-
-	.align 2
-gFont1LatinGlyphs:: @ 864C2E4
 	.incbin "data/graphics/fonts/font1.latfont"
 
 	.align 2
-gFont1LatinGlyphWidths:: @ 86542E4
+gFont2LatinGlyphWidths:: @ 864C0E4
 	.include "data/graphics/fonts/font1_latin_widths.inc"
+
+	.align 2
+gFont1LatinGlyphs:: @ 864C2E4
+	.incbin "data/graphics/fonts/font2.latfont"
+
+	.align 2
+gFont1LatinGlyphWidths:: @ 86542E4
+	.include "data/graphics/fonts/font2_latin_widths.inc"
 
 	.align 2
 gFont0JapaneseGlyphs:: @ 86544E4
