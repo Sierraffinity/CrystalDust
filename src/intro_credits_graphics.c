@@ -245,12 +245,12 @@ static const struct SpriteTemplate gUnknown_085F52A4 = {
 };
 
 const struct CompressedSpriteSheet gIntro2BrendanSpriteSheet[] = {
-    { gIntro2BrendanNoTurnGfx, 0x2000, 1002 },
+    { NULL, 0x2000, 1002 },
     { NULL }
 };
 
 const struct CompressedSpriteSheet gIntro2MaySpriteSheet[] = {
-    { gIntro2MayNoTurnGfx, 0x2000, 1003 },
+    { NULL, 0x2000, 1003 },
     { NULL }
 };
 
@@ -270,10 +270,10 @@ const struct CompressedSpriteSheet gIntro2FlygonSpriteSheet[] = {
 };
 
 const struct SpritePalette gUnknown_085F530C[] = {
-    { gIntro2BrendanNoTurnPal, 1002 },
-    { gIntro2BrendanNoTurnPal, 1003 },
-    { gIntro2FlygonPal,        1004 },
-    { gIntro2FlygonPal,        1005 },
+    { NULL, 1002 },
+    { NULL, 1003 },
+    { NULL,        1004 },
+    { NULL,        1005 },
     { NULL }
 };
 

@@ -20,6 +20,7 @@ PKNAVOPTIONSGFXDIR := graphics/pokenav/options
 PSSGFXDIR := graphics/pokemon_storage
 MAPOBJGFXDIR := graphics/map_objects
 MISCGFXDIR := graphics/misc
+INTROGFXDIR := graphics/intro
 
 types := normal fight flying poison ground rock bug ghost steel mystery fire water grass electric psychic ice dragon dark
 contest_types := cool beauty cute smart tough
@@ -668,4 +669,7 @@ $(INTERFACEGFXDIR)/region_map_affine.8bpp: %.8bpp: %.png
 	$(GFX) $< $@ -num_tiles 233
 
 $(MISCGFXDIR)/birch_help.4bpp: $(MISCGFXDIR)/birch_bag.4bpp $(MISCGFXDIR)/birch_grass.4bpp
+	@cat $^ >$@
+
+$(INTROGFXDIR)/intro2.4bpp: $(INTROGFXDIR)/intro2_bg3.4bpp $(INTROGFXDIR)/intro2_bg2.4bpp $(INTROGFXDIR)/intro2_bg1.4bpp
 	@cat $^ >$@

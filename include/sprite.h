@@ -114,6 +114,8 @@ union AffineAnimCmd
 
 #define AFFINEANIMCMD_FRAME(_xScale, _yScale, _rotation, _duration) \
     {.frame = {.xScale = _xScale, .yScale = _yScale, .rotation = _rotation, .duration = _duration}}
+#define AFFINEANIMCMD_SIZE(_xScale, _yScale, _rotation) \
+    {.frame = {.xScale = Q_8_8(_xScale), .yScale = Q_8_8(_yScale), .rotation = _rotation, .duration = 0}}
 #define AFFINEANIMCMD_LOOP(_count) \
     {.loop = {.type = AFFINEANIMCMDTYPE_LOOP, .count = _count}}
 #define AFFINEANIMCMD_JUMP(_target) \

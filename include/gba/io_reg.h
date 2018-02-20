@@ -569,6 +569,9 @@
 // BLDALPHA
 #define BLDALPHA_BLEND(target1, target2) (((target2) << 8) | (target1))
 
+// MOSAIC
+#define MOSAIC_SIZE(bgH, bgV, objH, objV) ((objV << 12) | (objH << 8) | (bgV << 4) | (bgH))
+
 // SOUNDCNT_H
 #define SOUND_CGB_MIX_QUARTER 0x0000
 #define SOUND_CGB_MIX_HALF    0x0001
