@@ -2584,6 +2584,10 @@ extern const u8 gUnknown_08D857A8[];
 extern const u8 gUnknown_08D85A1C[];
 extern const u8 gUnknown_08D85600[];
 
+extern const u8 gBattleAnimBackgroundImage_17[];
+extern const u16 gBattleAnimBackgroundPalette_17[16];
+extern const u8 gBattleAnimBackgroundTilemap_17[];
+
 // battle terrains
 extern const u8 gBattleTerrainTiles_TallGrass[];
 extern const u8 gBattleTerrainTilemap_TallGrass[];
