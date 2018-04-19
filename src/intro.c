@@ -69,8 +69,16 @@ static const u8 gIntro2UnownOthersTiles[] = INCBIN_U8("graphics/intro/intro2_tin
 static const u8 gIntro2SuicuneSilhouetteTiles[] = INCBIN_U8("graphics/intro/intro2_suicune_silhouette.4bpp.lz");
 static const u8 gIntro2WooperTiles[] = INCBIN_U8("graphics/intro/intro2_wooper.4bpp.lz");
 static const u8 gIntro2PichuTiles[] = INCBIN_U8("graphics/intro/intro2_pichu.4bpp.lz");
+static const u16 gIntro3BG3_Pals[][16] = {
+    INCBIN_U16("graphics/intro/intro3_suicune_mug.gbapal"),
+    INCBIN_U16("graphics/intro/intro3_fallingbg.gbapal"),
+};
 static const u16 gIntro3SuicunePalette[] = INCBIN_U16("graphics/intro/intro3_suicune.gbapal");
-static const u16 gIntro3UnownFPalette[] = INCBIN_U16("graphics/intro/intro3_unownF.gbapal");
+static const u16 gIntro3NamePalette[] = INCBIN_U16("graphics/intro/intro3_name.gbapal");
+static const u8 gIntro3BG3_Tiles[] = INCBIN_U8("graphics/intro/intro3_suicune_mug.4bpp.lz");
+static const u8 gIntro3BG3_Tilemap[] = INCBIN_U8("graphics/intro/intro3_suicune_mug.bin.lz");
+static const u8 gIntro3Name_Tiles[] = INCBIN_U8("graphics/intro/intro3_name.4bpp.lz");
+static const u8 gIntro3Name_Tilemap[] = INCBIN_U8("graphics/intro/intro3_name.bin.lz");
 static const u8 gIntro3SuicuneTiles[] = INCBIN_U8("graphics/intro/intro3_suicune.4bpp.lz");
 static const u8 gIntro3UnownFTiles[] = INCBIN_U8("graphics/intro/intro3_unownF.4bpp.lz");
 
@@ -387,10 +395,18 @@ static const union AffineAnimCmd gSpriteAffineAnim_UnownOthers2[] =
     AFFINEANIMCMD_FRAME(-8, -8, 0, 8),
     AFFINEANIMCMD_END,
 };
+static const union AffineAnimCmd gSpriteAffineAnim_UnownOthers3[] = 
+{
+    AFFINEANIMCMD_SIZE(0.1, 0.1, 0),
+    AFFINEANIMCMD_FRAME(64, 64, 0, 4),
+    AFFINEANIMCMD_SIZE(1, 1, 0),
+    AFFINEANIMCMD_END,
+};
 static const union AffineAnimCmd *const gSpriteAffineAnimTable_UnownOthers[] =
 {
     gSpriteAffineAnim_UnownOthers1,
     gSpriteAffineAnim_UnownOthers2,
+    gSpriteAffineAnim_UnownOthers3,
 };
 static const struct SpriteTemplate gSpriteTemplate_UnownOthers =
 {
@@ -533,13 +549,13 @@ static const struct CompressedSpriteSheet gIntro3SuicuneSpriteSheet[] =
 static const struct SpritePalette gIntro3SpritePalettes[] =
 {
     {gIntro3SuicunePalette, 2006},
-    {gIntro3UnownFPalette, 2007},
+    {gIntro2UnownPalette, 2002},
     {NULL},
 };
 static const struct OamData gOamData_Suicune =
 {
     .y = 0,
-    .affineMode = 0,
+    .affineMode = 3,
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
@@ -568,6 +584,22 @@ static const union AnimCmd *const gSpriteAnimTable_Suicune[] =
     gSpriteAnim_Suicune1,
     gSpriteAnim_Suicune2,
 };
+static const union AffineAnimCmd gSpriteAffineAnim_Suicune1[] = 
+{
+    AFFINEANIMCMD_SIZE(1, 1, 0),
+    AFFINEANIMCMD_END,
+};
+static const union AffineAnimCmd gSpriteAffineAnim_Suicune2[] = 
+{
+    AFFINEANIMCMD_SIZE(1, 1, 0),
+    AFFINEANIMCMD_FRAME(-1, -1, 0, 88),
+    AFFINEANIMCMD_END,
+};
+static const union AffineAnimCmd *const gSpriteAffineAnimTable_Suicune[] =
+{
+    gSpriteAffineAnim_Suicune1,
+    gSpriteAffineAnim_Suicune2,
+};
 static void SpriteCallback_Suicune(struct Sprite *sprite);
 static const struct SpriteTemplate gSpriteTemplate_Suicune =
 {
@@ -576,18 +608,18 @@ static const struct SpriteTemplate gSpriteTemplate_Suicune =
     .oam = &gOamData_Suicune,
     .anims = gSpriteAnimTable_Suicune,
     .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
+    .affineAnims = gSpriteAffineAnimTable_Suicune,
     .callback = SpriteCallback_Suicune,
 };
 static const struct CompressedSpriteSheet gIntro3UnownFSpriteSheet[] =
 {
-    {gIntro3UnownFTiles, 0x2800, 2009},
+    {gIntro3UnownFTiles, 0x1000, 2009},
     {NULL},
 };
 static const struct OamData gOamData_UnownF =
 {
     .y = 0,
-    .affineMode = 0,
+    .affineMode = 1,
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
@@ -602,26 +634,37 @@ static const struct OamData gOamData_UnownF =
 };
 static const union AnimCmd gSpriteAnim_UnownF1[] =
 {
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(64, 4),
-    ANIMCMD_FRAME(128, 6),
-    ANIMCMD_FRAME(192, 10),
-    ANIMCMD_FRAME(256, 8),
+    ANIMCMD_FRAME(0, 14),
+    ANIMCMD_FRAME(64, 8),
     ANIMCMD_END,
 };
 static const union AnimCmd *const gSpriteAnimTable_UnownF[] =
 {
     gSpriteAnim_UnownF1,
 };
+static const union AffineAnimCmd gSpriteAffineAnim_UnownF1[] = 
+{
+    AFFINEANIMCMD_SIZE(.5, .5, 0),
+    AFFINEANIMCMD_FRAME(32, 4, 0, 4),
+    AFFINEANIMCMD_FRAME(-40, 72, 0, 4),
+    AFFINEANIMCMD_FRAME(28, -28, 0, 6),
+    AFFINEANIMCMD_SIZE(1, 1, 0),
+    AFFINEANIMCMD_END,
+};
+static const union AffineAnimCmd *const gSpriteAffineAnimTable_UnownF[] =
+{
+    gSpriteAffineAnim_UnownF1,
+};
+static void SpriteCallback_UnownF(struct Sprite *sprite);
 static const struct SpriteTemplate gSpriteTemplate_UnownF =
 {
     .tileTag = 2009,
-    .paletteTag = 2007,
+    .paletteTag = 2002,
     .oam = &gOamData_UnownF,
     .anims = gSpriteAnimTable_UnownF,
     .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
+    .affineAnims = gSpriteAffineAnimTable_UnownF,
+    .callback = SpriteCallback_UnownF,
 };
 
 
@@ -647,6 +690,9 @@ static void Task_IntroWaitToSetupFallingSuicune(u8);
 static void Task_IntroLoadPart3Graphics1(u8);
 static void Task_IntroLoadPart3Graphics2(u8);
 static void Task_IntroSuicuneFlyUp(u8);
+static void Task_WaitToDoCrystalDustLogo(u8);
+static void Task_DoCrystalDustLogo(u8);
+static void Task_IntroFadeToTitle(u8);
 
 static void VBlankCB_Intro(void)
 {
@@ -697,7 +743,7 @@ static u8 SetUpCopyrightScreen(void)
         SetGpuReg(REG_OFFSET_BLDCNT, 0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         SetGpuReg(REG_OFFSET_BLDY, 0);
-        *(u16 *)PLTT = 0x7FFF;
+        *(u16 *)PLTT = RGB_WHITE;
         SetGpuReg(REG_OFFSET_DISPCNT, 0);
         SetGpuReg(REG_OFFSET_BG0HOFS, 0);
         SetGpuReg(REG_OFFSET_BG0VOFS, 0);
@@ -867,6 +913,7 @@ static void Task_IntroGameFreakStart(u8 taskId)
 static void Task_ShowGameFreakScreen(u8 taskId)
 {
     u8 newTaskId;
+    
     if (gIntroFrameCounter == 80)
         CreateTask(Task_MosaicToGameFreakLogo, 0);
     
@@ -882,7 +929,7 @@ static void Task_ShowGameFreakScreen(u8 taskId)
                                    | BLDCNT_TGT2_OBJ
                                    | BLDCNT_TGT2_BD);
         newTaskId = CreateTask(Task_FadeInOutGameFreakText, 0);
-        gTasks[newTaskId].data[2] = 0;
+        gTasks[newTaskId].data[1] = 0;
     }
     
     if (gIntroFrameCounter == 200)
@@ -898,7 +945,7 @@ static void Task_ShowGameFreakScreen(u8 taskId)
     {
         SetGpuRegBits(REG_OFFSET_BLDCNT, BLDCNT_TGT1_OBJ);
         newTaskId = CreateTask(Task_FadeInOutGameFreakText, 0);
-        gTasks[newTaskId].data[2] = 1;
+        gTasks[newTaskId].data[1] = 1;
     }
     
     if (gIntroFrameCounter == 350)
@@ -906,7 +953,7 @@ static void Task_ShowGameFreakScreen(u8 taskId)
         DestroySprite(&gSprites[gTasks[taskId].data[1]]);
         DestroySprite(&gSprites[gTasks[taskId].data[2]]);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-        gTasks[newTaskId].func = Task_WaitToStartUnownSequence;
+        gTasks[taskId].func = Task_WaitToStartUnownSequence;
     }
 }
 
@@ -948,33 +995,20 @@ static void Task_MosaicToGameFreakLogo(u8 taskId)
 
 static void Task_FadeInOutGameFreakText(u8 taskId)
 {
-    u16 temp;
-    if (gTasks[taskId].data[1]++ < 16)
-    {
-        if (gTasks[taskId].data[2] == 0)
-        {
-            temp = gTasks[taskId].data[1];
-            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(temp, 16 - temp));
-        }
-        else
-        {
-            temp = gTasks[taskId].data[1];
-            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16 - temp, temp));
-        }
-    }
+    u16 temp = gTasks[taskId].data[0]++;
+    
+    if (gTasks[taskId].data[1] == 0)
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(temp, 16 - temp));
     else
-    {
-        if (gTasks[taskId].data[2] == 0)
-            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
-        else
-            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16 - temp, temp));
+    
+    if (temp == 16)
         DestroyTask(taskId);
-    }
 }
 
 static void Task_WaitToStartUnownSequence(u8 taskId)
 {
-    if (gIntroFrameCounter == 430)
+    if (gIntroFrameCounter == 460)
     {
         gIntroFrameCounter = 0;
         gTasks[taskId].func = Task_IntroLoadPart2Graphics;
@@ -1246,7 +1280,7 @@ static void Task_ShakeGrass(u8 taskId)
 {
     gTasks[taskId].data[0]++;
     
-    if (gTasks[taskId].data[1]++ > 4)
+    if (gTasks[taskId].data[1]++ > 5)
     {
         gTasks[taskId].data[1] = 0;
         gTasks[taskId].data[2] ^= TRUE;
@@ -1285,11 +1319,11 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
         CreateTask(Task_ShakeGrass, 0);
     
     if (gIntroFrameCounter == 738)
-        data[2] = CreateSprite(&gSpriteTemplate_Wooper, 60, 140, 0);
+        data[2] = CreateSprite(&gSpriteTemplate_Wooper, 60, 135, 0);
     
     if (gIntroFrameCounter == 770)
     {
-        data[3] = CreateSprite(&gSpriteTemplate_Pichu, 160, 140, 0);
+        data[3] = CreateSprite(&gSpriteTemplate_Pichu, 170, 135, 0);
         gSprites[data[3]].data[2] = TRUE;
     }
     
@@ -1438,7 +1472,7 @@ static void SpriteCallback_PopUpPkmn(struct Sprite *sprite)
         sprite->data[1] = 10;
         sprite->data[0]++;
     case 1:
-        if (sprite->data[1] > 0 && sprite->pos1.y > 98)
+        if (sprite->data[1] > 4)
         {
             sprite->pos1.y -= (sprite->data[1]--);
             break;
@@ -1449,7 +1483,7 @@ static void SpriteCallback_PopUpPkmn(struct Sprite *sprite)
             sprite->data[0]++;
         }
     case 2:
-        if (sprite->data[1] > 0 && sprite->pos1.y < 104)
+        if (sprite->data[1] > 0)
         {
             sprite->pos1.y += (sprite->data[1]--) >> 1;
             break;
@@ -1552,11 +1586,16 @@ static void Task_IntroLoadPart3Graphics1(u8 taskId)
     ResetSpriteData();
     FreeAllSpritePalettes();
     LZ77UnCompVram(gBattleAnimBackgroundImage_17, (void *)VRAM);
+    LZ77UnCompVram(gIntro3BG3_Tiles, (void *)VRAM + 0x400);
     LZ77UnCompVram(gBattleAnimBackgroundTilemap_17, (void *)(VRAM + 0xF800));
+    LZ77UnCompVram(gIntro3BG3_Tilemap, (void *)(VRAM + 0xD800));
     LoadCompressedObjectPic(gIntro3SuicuneSpriteSheet);
     LoadCompressedObjectPic(gIntro3UnownFSpriteSheet);
-    LoadCompressedPalette(gBattleAnimBackgroundPalette_17, 0x20, sizeof(gBattleAnimBackgroundPalette_17));
+    LoadCompressedObjectPic(gIntro2UnownOthersSpriteSheet);
+    LoadPalette(gIntro3BG3_Pals, 0x10, sizeof(gIntro3BG3_Pals));
     LoadSpritePalettes(gIntro3SpritePalettes);
+    gTasks[taskId].data[1] = IndexOfSpritePaletteTag(gIntro3SpritePalettes[1].tag) + 16;
+    BlendPalette(gTasks[taskId].data[1] * 16, 16, 16, RGB(31, 31, 16));
     gTasks[taskId].func = Task_IntroLoadPart3Graphics2;
 }
 
@@ -1573,18 +1612,23 @@ static void Task_IntroLoadPart3Graphics2(u8 taskId)
     SetGpuReg(REG_OFFSET_WIN0V, 0x5050);
     SetGpuReg(REG_OFFSET_WININ, 0x3F);
     SetGpuReg(REG_OFFSET_WINOUT, 0);
-    SetGpuReg(REG_OFFSET_BG3CNT, BGCNT_PRIORITY(0)
+    SetGpuReg(REG_OFFSET_BG2HOFS, -240);
+    SetGpuReg(REG_OFFSET_BG3CNT, BGCNT_PRIORITY(3)
                                | BGCNT_CHARBASE(0)
                                | BGCNT_SCREENBASE(31)
                                | BGCNT_16COLOR
                                | BGCNT_TXT256x256);
+    SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2)
+                               | BGCNT_CHARBASE(0)
+                               | BGCNT_SCREENBASE(27)
+                               | BGCNT_16COLOR
+                               | BGCNT_TXT512x512);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0
                                 | DISPCNT_OBJ_1D_MAP
                                 | DISPCNT_BG3_ON
                                 | DISPCNT_OBJ_ON
                                 | DISPCNT_WIN0_ON);
     gTasks[taskId].data[0] = CreateTask(Task_ScrollFallingBG, 0);
-    gTasks[taskId].data[0] = 0x50;
     windowTaskId = CreateTask(Task_WindowOpen, 0);
     gTasks[windowTaskId].data[0] = 0x50;
     gTasks[windowTaskId].data[1] = 0x10;
@@ -1592,21 +1636,270 @@ static void Task_IntroLoadPart3Graphics2(u8 taskId)
     gTasks[taskId].func = Task_IntroSuicuneFlyUp;
 }
 
+static void Task_SlideSuicuneMugIn(u8 taskId)
+{
+    switch (gTasks[taskId].data[0])
+    {
+    case 0:
+        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
+        gTasks[taskId].data[1] = -240;
+        gTasks[taskId].data[0]++;
+    case 1:
+        if (gTasks[taskId].data[1] < -8)
+        {
+            gTasks[taskId].data[1] += 8;
+        }
+        else if (gTasks[taskId].data[3]++ > 7)
+        {
+            gTasks[taskId].data[3] = 0;
+            gTasks[taskId].data[1]++;
+        }
+        
+        if (gIntroFrameCounter == 500)
+            gTasks[taskId].data[0]++;
+        else
+            SetGpuReg(REG_OFFSET_BG2HOFS, gTasks[taskId].data[1]);
+        break;
+    case 2:
+        if (gTasks[taskId].data[2] > -160)
+        {
+            gTasks[taskId].data[2] -= 8;
+            SetGpuReg(REG_OFFSET_BG2VOFS, gTasks[taskId].data[2]);
+        }
+        else
+        {
+            ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
+            DestroyTask(taskId);
+            return;
+        }
+        break;
+    }
+    
+}
+
 static void Task_IntroSuicuneFlyUp(u8 taskId)
 {
+    u8 newTaskId;
+    u8 spriteId;
+    u8 index;
+    
     if (gIntroFrameCounter == 196)
-        CreateSprite(&gSpriteTemplate_Suicune, 160, 192, 0);
+        gTasks[taskId].data[2] = CreateSprite(&gSpriteTemplate_Suicune, 160, 192, 0);
     
     if (gIntroFrameCounter == 260)
-        CreateSprite(&gSpriteTemplate_UnownF, 70, 60, 0);
+        gTasks[taskId].data[3] = CreateSprite(&gSpriteTemplate_UnownF, 70, 60, 0);
+    
+    if (gIntroFrameCounter == 272)
+    {
+        BeginNormalPaletteFade(1 << gTasks[taskId].data[1], 0, 16, 0, RGB(31, 31, 16));
+        gSprites[gTasks[taskId].data[3]].data[0] = 1;
+    }
+    
+    if (gIntroFrameCounter == 343)
+    {
+        gSprites[gTasks[taskId].data[2]].data[0] = 2;
+        gSprites[gTasks[taskId].data[3]].data[0] = 2;
+    }
+    
+    if (gIntroFrameCounter == 390)
+        CreateTask(Task_SlideSuicuneMugIn, 0);
+    
+    if (gIntroFrameCounter == 400)
+    {
+        newTaskId = CreateTask(Task_WindowOpen, 0);
+        gTasks[newTaskId].data[0] = 0x10;
+        gTasks[newTaskId].data[1] = 0x20;
+        gTasks[newTaskId].data[2] = 1;
+    }
+    
+    if (gIntroFrameCounter == 500)
+    {
+        newTaskId = CreateTask(Task_WindowOpen, 0);
+        gTasks[newTaskId].data[0] = 0x20;
+        gTasks[newTaskId].data[1] = 0x10;
+        gTasks[newTaskId].data[2] = -1;
+    }
+    
+    if (gIntroFrameCounter == 560)
+    {
+        gSprites[gTasks[taskId].data[2]].data[0] = 4;
+        gSprites[gTasks[taskId].data[2]].pos1.x = 120;
+        gSprites[gTasks[taskId].data[2]].pos1.y = 192;
+        StartSpriteAnim(&gSprites[gTasks[taskId].data[2]], 1);
+    }
+    
+    if (gIntroFrameCounter == 638)
+    {
+        // U
+        spriteId = CreateSprite(&gSpriteTemplate_UnownOthers, 40, 80, 0);
+        StartSpriteAnim(&gSprites[spriteId], 2);
+        StartSpriteAffineAnim(&gSprites[spriteId], 2);
+    }
+    
+    if (gIntroFrameCounter == 642)
+    {
+        // E
+        spriteId = CreateSprite(&gSpriteTemplate_UnownOthers, 200, 86, 0);
+        StartSpriteAnim(&gSprites[spriteId], 7);
+        StartSpriteAffineAnim(&gSprites[spriteId], 2);
+    }
+    
+    if (gIntroFrameCounter == 646)
+    {
+        // B
+        spriteId = CreateSprite(&gSpriteTemplate_UnownOthers, 100, 30, 0);
+        StartSpriteAnim(&gSprites[spriteId], 6);
+        StartSpriteAffineAnim(&gSprites[spriteId], 2);
+    }
+    
+    if (gIntroFrameCounter == 650)
+    {
+        // H
+        spriteId = CreateSprite(&gSpriteTemplate_UnownOthers, 80, 124, 0);
+        StartSpriteAnim(&gSprites[spriteId], 1);
+        StartSpriteAffineAnim(&gSprites[spriteId], 2);
+    }
+    
+    if (gIntroFrameCounter == 654)
+    {
+        // T
+        spriteId = CreateSprite(&gSpriteTemplate_UnownOthers, 150, 30, 0);
+        StartSpriteAnim(&gSprites[spriteId], 5);
+        StartSpriteAffineAnim(&gSprites[spriteId], 2);
+        // S
+        spriteId = CreateSprite(&gSpriteTemplate_UnownOthers, 150, 120, 0);
+        StartSpriteAnim(&gSprites[spriteId], 8);
+        StartSpriteAffineAnim(&gSprites[spriteId], 2);
+    }
+    
+    if (gIntroFrameCounter == 658)
+    {
+        // G
+        spriteId = CreateSprite(&gSpriteTemplate_UnownOthers, 60, 44, 0);
+        StartSpriteAnim(&gSprites[spriteId], 4);
+        StartSpriteAffineAnim(&gSprites[spriteId], 2);
+        // W
+        spriteId = CreateSprite(&gSpriteTemplate_UnownOthers, 180, 60, 0);
+        StartSpriteAnim(&gSprites[spriteId], 3);
+        StartSpriteAffineAnim(&gSprites[spriteId], 2);
+    }
+    
+    if (gIntroFrameCounter == 710)
+    {
+        index = IndexOfSpritePaletteTag(gIntro3SpritePalettes[0].tag) + 16;
+        BeginNormalPaletteFade(1 << index, 1, 0, 16, RGB_BLACK);
+        StartSpriteAffineAnim(&gSprites[gTasks[taskId].data[2]], 1);
+    }
+    
+    if (gIntroFrameCounter == 740)
+    {
+        index = IndexOfSpritePaletteTag(gIntro3SpritePalettes[0].tag) + 16;
+        FillPalette(RGB_BLACK, index * 16, 32);
+        BeginNormalPaletteFade(0xFFFFFFFF, 2, 0, 16, RGB_WHITE);
+        gTasks[taskId].func = Task_WaitToDoCrystalDustLogo;
+    }
+}
+
+static void Task_WaitToDoCrystalDustLogo(u8 taskId)
+{
+    if (gIntroFrameCounter == 902)
+    {
+        intro_reset_and_hide_bgs();
+        ResetSpriteData();
+        FreeAllSpritePalettes();
+        FillPalette(RGB_WHITE, 0, 32);
+        LZ77UnCompVram(gIntro3Name_Tiles, (void *)VRAM);
+        LZ77UnCompVram(gIntro3Name_Tilemap, (void *)(VRAM + 0xF800));
+        CpuCopy16(gIntro3NamePalette, gPlttBufferUnfaded, 32);
+        CpuCopy16(gIntro3NamePalette, gPlttBufferUnfaded + 16, 32);
+        gPlttBufferUnfaded[0] = RGB_WHITE;
+        SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0)
+                                   | BGCNT_CHARBASE(0)
+                                   | BGCNT_SCREENBASE(31)
+                                   | BGCNT_16COLOR
+                                   | BGCNT_TXT256x256);
+        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON);
+        gTasks[taskId].func = Task_DoCrystalDustLogo;
+        gTasks[taskId].data[0] = 2;
+        gTasks[taskId].data[1] = 0;
+    }
+}
+
+static void Task_DoCrystalDustLogo(u8 taskId)
+{
+    if (gTasks[taskId].data[1] == 16)
+    {
+        gTasks[taskId].data[0] += 2;
+        gTasks[taskId].data[1] = 0;
+    }
+    else if (gTasks[taskId].data[0] < 26)
+    {
+        if (gTasks[taskId].data[0] == 16)
+            gTasks[taskId].data[0] += 2;
+        gTasks[taskId].data[1] += 2;
+        BlendPalette(gTasks[taskId].data[0], 2, 16 - gTasks[taskId].data[1], RGB_WHITE);
+    }
+    else if (gIntroFrameCounter == 1096)
+    {
+        BeginNormalPaletteFade(0xFFFFFFFF, 2, 0, 16, RGB_WHITE);
+        gTasks[taskId].func = Task_IntroFadeToTitle;
+    }
+}
+
+static void Task_IntroFadeToTitle(u8 taskId)
+{
+    if (gIntroFrameCounter == 1150)
+    {
+        DestroyTask(taskId);
+        SetMainCallback2(MainCB2_EndIntro);
+    }
 }
 
 static void SpriteCallback_Suicune(struct Sprite *sprite)
 {
-    if (sprite->pos1.y > 80)
-        sprite->pos1.y -= 8;
-    else
-        sprite->callback = SpriteCallbackDummy;
+    switch (sprite->data[0])
+    {
+    case 0:
+        if (sprite->pos1.y > 88)
+            sprite->pos1.y -= 8;
+        else
+            sprite->data[0]++;
+        break;
+    case 1:
+        if (sprite->data[1]++ > 15)
+        {
+            sprite->data[1] = 0;
+            sprite->pos1.y--;
+        }
+        break;
+    case 2:
+        if (sprite->pos1.x < 272)
+            sprite->pos1.x += 8;
+        else
+            sprite->data[0]++;
+        break;
+    case 4:
+        if (sprite->pos1.y > 80)
+            sprite->pos1.y -= 2;
+        break;
+    }
+}
+
+static void SpriteCallback_UnownF(struct Sprite *sprite)
+{
+    switch (sprite->data[0])
+    {
+    case 1:
+        sprite->data[1] = (sprite->data[1] + 1) & 0xFF;
+        sprite->pos1.y = Sin(sprite->data[1]++, 4) + 60;
+        break;
+    case 2:
+        if (sprite->pos1.x > -32)
+            sprite->pos1.x -= 8;
+        else
+            DestroySprite(sprite);
+        break;
+    }
 }
 
 static void intro_reset_and_hide_bgs(void)
