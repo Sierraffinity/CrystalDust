@@ -26,6 +26,7 @@
 #include "international_string_util.h"
 #include "scanline_effect.h"
 #include "menu_helpers.h"
+#include "daycare.h"
 
 struct ContestMove
 {
@@ -115,8 +116,6 @@ extern u8 gText_Appeal[];
 extern u8 gText_Jam[];
 extern u8 gText_OTSlash[];
 extern u8 gText_UnkCtrlF907F908[];
-extern u8 gAbilityNames[][13];
-extern u8 *gAbilityDescriptionPointers[];
 extern u8 gText_XNature[];
 extern u8 gText_XNatureHatchedAtYZ[];
 extern u8 gText_XNatureHatchedSomewhereAt[];
@@ -146,7 +145,6 @@ extern u8 gText_OneDash[];
 extern u8 gText_TwoDashes[];
 extern u8 gText_ThreeDashes[];
 extern u8 gUnknown_0861CE97[];
-extern struct BattleMove gBattleMoves[];
 
 extern void sub_8199C30(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f);
 extern bool8 sub_81A6BF4();
@@ -2539,7 +2537,7 @@ void sub_81C2554()
         gUnknown_0203CF1C->unk40CB[i] |= 0xFF;
 }
 
-void sub_81C25A4(u8 a, u8 *b, u8 c, u8 d, u8 e, u8 f)
+void sub_81C25A4(u8 a, const u8 *b, u8 c, u8 d, u8 e, u8 f)
 {
     AddTextPrinterParameterized2(a, 1, c, d, 0, e, gUnknown_0861CD2C[f], 0, b);
 }
@@ -2778,93 +2776,27 @@ void sub_81C2C38(u8 a)
     schedule_bg_copy_tilemap_to_vram(0);
 }
 
-
-
-#ifdef NONMATCHING
 u8 sub_81C2D2C(struct WindowTemplate *template, u8 a)
 {
-    u8 *r4 = gUnknown_0203CF1C->unk40CB;
-    if (r4[a] == 0xFF)
+    u8 *windowIdPtr = &(gUnknown_0203CF1C->unk40CB[a]);
+    if (*windowIdPtr == 0xFF)
     {
-        r4[a] = AddWindow(&template[a]);
-        FillWindowPixelBuffer(r4[a], 0);
+        *windowIdPtr = AddWindow(&template[a]);
+        FillWindowPixelBuffer(*windowIdPtr, 0);
     }
-    return r4[a];
+    return *windowIdPtr;
 }
-#else
-ASM_DIRECT
-u8 sub_81C2D2C(struct WindowTemplate *template, u8 a)
-{
-    asm(".syntax unified\n\
-    push {r4,lr}\n\
-	adds r3, r0, 0\n\
-	lsls r1, 24\n\
-	lsrs r2, r1, 24\n\
-	ldr r0, =gUnknown_0203CF1C\n\
-	ldr r4, =0x000040cb\n\
-	adds r1, r2, r4\n\
-	ldr r0, [r0]\n\
-	adds r4, r0, r1\n\
-	ldrb r0, [r4]\n\
-	cmp r0, 0xFF\n\
-	bne _081C2D56\n\
-	lsls r0, r2, 3\n\
-	adds r0, r3, r0\n\
-	bl AddWindow\n\
-	strb r0, [r4]\n\
-	ldrb r0, [r4]\n\
-	movs r1, 0\n\
-	bl FillWindowPixelBuffer\n\
-_081C2D56:\n\
-	ldrb r0, [r4]\n\
-	pop {r4}\n\
-	pop {r1}\n\
-	bx r1\n\
-	.pool\n\
-	.syntax divided\n");
-}
-#endif
 
-#ifdef NONMATCHING
 void sub_81C2D68(u8 a)
 {
-    u8 *r4 = gUnknown_0203CF1C->unk40CB;
-    if (r4[a] != 0xFF)
+    u8 *windowIdPtr = &(gUnknown_0203CF1C->unk40CB[a]);
+    if (*windowIdPtr != 0xFF)
     {
-        ClearWindowTilemap(r4[a]);
-        RemoveWindow(r4[a]);
-        r4[a] = 0xFF;
+        ClearWindowTilemap(*windowIdPtr);
+        RemoveWindow(*windowIdPtr);
+        *windowIdPtr = 0xFF;
     }
 }
-#else
-ASM_DIRECT
-void sub_81C2D68(u8 a)
-{
-    asm(".syntax unified\n\
-    push {r4,lr}\n\
-	lsls r0, 24\n\
-	lsrs r0, 24\n\
-	ldr r1, =gUnknown_0203CF1C\n\
-	ldr r2, =0x000040cb\n\
-	adds r0, r2\n\
-	ldr r1, [r1]\n\
-	adds r4, r1, r0\n\
-	ldrb r0, [r4]\n\
-	cmp r0, 0xFF\n\
-	beq _081C2D8C\n\
-	bl ClearWindowTilemap\n\
-	ldrb r0, [r4]\n\
-	bl RemoveWindow\n\
-	movs r0, 0xFF\n\
-	strb r0, [r4]\n\
-_081C2D8C:\n\
-	pop {r4}\n\
-	pop {r0}\n\
-	bx r0\n\
-	.pool\n\
-	.syntax divided\n");
-}
-#endif
 
 void sub_81C2D9C(u8 a)
 {
@@ -3027,7 +2959,7 @@ void sub_81C31F0(u8 *a)
 {
     u8 level = gUnknown_0203CF1C->summary.metLevel;
     if (level == 0)
-        level = 5;
+        level = EGG_HATCH_LEVEL;
     ConvertIntToDecimalStringN(a, level, 0, 3);
     UnkTextUtil_SetPtrI(3, a);
 }

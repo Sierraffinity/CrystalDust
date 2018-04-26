@@ -222,7 +222,7 @@ gCamera: @ 2037334
 gUnknown_02037340: @ 2037340
 	.space 0x8
 
-gUnknown_02037348: @ 2037348
+gUnusedBikeCameraAheadPanback: @ 2037348
 	.space 0x4
 
 gUnknown_0203734C: @ 203734C
@@ -408,14 +408,13 @@ gUnknown_02039D88: @ 2039D88
 gUnknown_02039D8C: @ 2039D8C
 	.space 0x4
 
-gUnknown_02039D90: @ 2039D90
-	.space 0x40
+	.include "src/script_movement.o"
 
 gUnknown_02039DD0: @ 2039DD0
 	.space 0x4
 
-gUnknown_02039DD4: @ 2039DD4
-	.space 0x4
+	.include "src/map_name_popup.o"
+	.space 0x3
 
 gBagPockets: @ 2039DD8
 	.space 0x28
@@ -523,15 +522,7 @@ gUnknown_0203A018: @ 203A018
 gUnknown_0203A034: @ 203A034
 	.space 0x4
 
-gUnknown_0203A038: @ 203A038
-	.space 0xC
-
-gUnknown_0203A044: @ 203A044
-	.space 0x4
-
-gUnknown_0203A048: @ 203A048
-	.space 0x4
-
+    .include "src/rotating_gate.o"
     .include "src/safari_zone.o"
 
 gUnknown_0203A0F4: @ 203A0F4
@@ -557,9 +548,7 @@ gUnknown_0203A11C: @ 203A11C
 
 gUnknown_0203A120: @ 203A120
 	.space 0x4
-
-gUnknown_0203A124: @ 203A124
-	.space 0x4
+	.include "src/mon_markings.o"
 
 gUnknown_0203A128: @ 203A128
 	.space 0x4
@@ -805,25 +794,7 @@ gUnknown_0203BC8C: @ 203BC8C
 	.space 0x4
 
 	.include "src/use_pokeblock.o"
-
-gUnknown_0203BCB0: @ 203BCB0
-	.space 0x4
-
-gUnknown_0203BCB4: @ 203BCB4
-	.space 0x4
-
-gUnknown_0203BCB8: @ 203BCB8
-	.space 0x2
-
-gUnknown_0203BCBA: @ 203BCBA
-	.space 0x2
-
-gUnknown_0203BCBC: @ 203BCBC
-	.space 0x8
-
-gUnknown_0203BCC4: @ 203BCC4
-	.space 0x4
-
+	.include "src/player_pc.o"
 	.include "src/intro.o"
 	.include "src/field_region_map.o"
 
@@ -954,23 +925,8 @@ gUnknown_0203CEFC: @ 203CEFC
 gUnknown_0203CF00: @ 203CF00
 	.space 0x4
 
-gUnknown_0203CF04: @ 203CF04
-	.space 0x4
-
-gUnknown_0203CF08: @ 203CF08
-	.space 0x4
-
-gUnknown_0203CF0C: @ 203CF0C
-	.space 0x4
-
-gUnknown_0203CF10: @ 203CF10
-	.space 0x4
-
-gUnknown_0203CF14: @ 203CF14
-	.space 0x4
-
-gUnknown_0203CF18: @ 203CF18
-	.space 0x4
+	.include "src/fossil_specials.o"
+	.include "src/fldeff_groundshake.o"
 
 gUnknown_0203CF1C: @ 203CF1C
 	.space 0x4

@@ -89,9 +89,6 @@ extern const u16 gUnknown_82EC7C4[];
 
 extern u16 gSaveFileStatus;
 extern u16 gUnknown_03005DA8;
-extern u8 *gUnknown_03005DA0;
-extern u8 *gUnknown_03005D9C;
-extern u8 *gUnknown_03005DA4;
 extern bool8 (*gUnknown_03005DB0)(void);
 extern u8 gUnknown_03005DB4;
 extern u8 gFieldLinkPlayerCount;
@@ -161,7 +158,7 @@ extern void FieldEffectActiveListClear(void);
 extern void SetUpFieldTasks(void);
 extern void sub_81BE6B8(void);
 extern void sub_80AAFA4(void);
-extern void sub_809FA9C(void);
+extern void ShowStartMenu(void);
 extern void sub_80AEE84(void);
 extern void mapldr_default(void);
 extern void npc_paltag_set_load(u8);
@@ -1422,12 +1419,12 @@ static void overworld_bg_setup(void)
     SetBgAttribute(1, BG_CTRL_ATTR_PALETTEMODE, 1);
     SetBgAttribute(2, BG_CTRL_ATTR_PALETTEMODE, 1);
     SetBgAttribute(3, BG_CTRL_ATTR_PALETTEMODE, 1);
-    gUnknown_03005DA0 = AllocZeroed(0x800);
-    gUnknown_03005D9C = AllocZeroed(0x800);
-    gUnknown_03005DA4 = AllocZeroed(0x800);
-    SetBgTilemapBuffer(1, gUnknown_03005DA0);
-    SetBgTilemapBuffer(2, gUnknown_03005D9C);
-    SetBgTilemapBuffer(3, gUnknown_03005DA4);
+    gBGTilemapBuffers2 = AllocZeroed(0x800);
+    gBGTilemapBuffers1 = AllocZeroed(0x800);
+    gBGTilemapBuffers3 = AllocZeroed(0x800);
+    SetBgTilemapBuffer(1, gBGTilemapBuffers2);
+    SetBgTilemapBuffer(2, gBGTilemapBuffers1);
+    SetBgTilemapBuffer(3, gBGTilemapBuffers3);
     sub_81971D0();
 }
 
@@ -1435,12 +1432,12 @@ void overworld_free_bg_tilemaps(void)
 {
     sub_81BE72C();
     sub_81971F4();
-    if (gUnknown_03005DA4 != NULL)
-        FREE_AND_SET_NULL(gUnknown_03005DA4);
-    if (gUnknown_03005D9C != NULL)
-        FREE_AND_SET_NULL(gUnknown_03005D9C);
-    if (gUnknown_03005DA0 != NULL)
-        FREE_AND_SET_NULL(gUnknown_03005DA0);
+    if (gBGTilemapBuffers3 != NULL)
+        FREE_AND_SET_NULL(gBGTilemapBuffers3);
+    if (gBGTilemapBuffers1 != NULL)
+        FREE_AND_SET_NULL(gBGTilemapBuffers1);
+    if (gBGTilemapBuffers2 != NULL)
+        FREE_AND_SET_NULL(gBGTilemapBuffers2);
 }
 
 static void ResetSafariZoneFlag_(void)
@@ -2795,7 +2792,7 @@ static void sub_8087510(void)
 static void sub_808751C(void)
 {
     PlaySE(SE_WIN_OPEN);
-    sub_809FA9C();
+    ShowStartMenu();
     ScriptContext2_Enable();
 }
 

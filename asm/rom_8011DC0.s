@@ -1192,7 +1192,7 @@ sub_8012F64: @ 8012F64
 	ldrb r0, [r4, 0x12]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	ldrb r0, [r4, 0x10]
 	bl ClearWindowTilemap
 	ldrb r0, [r4, 0xF]
@@ -2394,7 +2394,7 @@ _08013A8C:
 	ldrb r0, [r6, 0xE]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	ldrb r0, [r6, 0xC]
 	bl ClearWindowTilemap
 	ldrb r0, [r6, 0xB]
@@ -4511,7 +4511,7 @@ _08014E16:
 	ldrb r0, [r5, 0x12]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	movs r0, 0
 	bl CopyBgTilemapBufferToVram
 	ldrb r0, [r5, 0xF]
@@ -4567,7 +4567,7 @@ _08014EA8:
 	ldrb r0, [r5, 0x12]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	movs r0, 0
 	bl CopyBgTilemapBufferToVram
 	ldrb r0, [r5, 0xF]
@@ -4923,7 +4923,7 @@ _08015204:
 	ldrb r0, [r7, 0xE]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	movs r0, 0
 	bl CopyBgTilemapBufferToVram
 	ldrb r0, [r7, 0xD]
@@ -5292,7 +5292,7 @@ _08015564:
 	ldrb r0, [r5, 0xE]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	movs r0, 0
 	bl CopyBgTilemapBufferToVram
 	ldrb r0, [r5, 0xB]
@@ -8545,7 +8545,7 @@ _08017228:
 	ldrb r0, [r4]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	ldrb r0, [r5]
 	movs r1, 0x1
 	bl sub_819746C
@@ -8565,7 +8565,7 @@ _08017264:
 	ldrb r0, [r6]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	ldrb r0, [r5]
 	movs r1, 0x1
 	bl sub_819746C
@@ -8669,7 +8669,7 @@ _0801733E:
 	ldrb r0, [r4]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	ldrb r0, [r6]
 	bl RemoveWindow
 	mov r7, r9
@@ -8691,7 +8691,7 @@ _08017368:
 	ldrb r0, [r1]
 	movs r1, 0
 	movs r2, 0
-	bl sub_81AE6C8
+	bl DestroyListMenuTask
 	ldrb r0, [r6]
 	bl RemoveWindow
 	mov r3, r9
@@ -17828,7 +17828,7 @@ _0801BD1A:
 	bl CopyBgTilemapBufferToVram
 	b _0801BD86
 _0801BD34:
-	bl sub_80D2F04
+	bl LoadMonIconPalettes
 	b _0801BD86
 _0801BD3A:
 	movs r0, 0x1
@@ -17991,7 +17991,7 @@ _0801BE56:
 	.pool
 _0801BE94:
 	bl sub_801C61C
-	bl sub_80D2F9C
+	bl FreeMonIconPalettes
 	b _0801BEDA
 _0801BE9E:
 	ldr r0, =gUnknown_02022C60

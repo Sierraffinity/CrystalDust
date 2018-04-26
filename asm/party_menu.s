@@ -410,7 +410,7 @@ _081B03A6:
 	b _081B048C
 	.pool
 _081B03B8:
-	bl sub_80D2F04
+	bl LoadMonIconPalettes
 	b _081B0484
 _081B03BE:
 	bl party_menu_add_per_mon_objects
@@ -10793,7 +10793,7 @@ _081B5BD0:
 sub_81B5BDC: @ 81B5BDC
 	push {r4,lr}
 	adds r4, r0, 0
-	bl sub_80D30DC
+	bl UpdateMonIconFrame
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0
@@ -10817,7 +10817,7 @@ _081B5C02:
 	thumb_func_start sub_81B5C08
 sub_81B5C08: @ 81B5C08
 	push {lr}
-	bl sub_80D30DC
+	bl UpdateMonIconFrame
 	pop {r0}
 	bx r0
 	thumb_func_end sub_81B5C08
@@ -15413,7 +15413,7 @@ sub_81B8448: @ 81B8448
 	str r0, [sp]
 	ldr r0, =sub_81B1370
 	str r0, [sp, 0x4]
-	ldr r0, =sub_816BB28
+	ldr r0, =Mailbox_ReturnToMailListAfterDeposit
 	str r0, [sp, 0x8]
 	movs r0, 0
 	movs r1, 0
@@ -15442,7 +15442,7 @@ sub_81B8474: @ 81B8474
 	movs r0, 0
 	strb r0, [r1]
 	ldr r2, =gSaveBlock1Ptr
-	ldr r0, =gUnknown_0203BCB8
+	ldr r0, =playerPCItemPageInfo
 	ldrh r1, [r0]
 	adds r1, 0x6
 	ldrh r0, [r0, 0x2]

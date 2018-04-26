@@ -104,7 +104,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80F8D24
 	def_special sub_80F8C7C
 	def_special sub_80B3000
-	def_special sub_809FF80
+	def_special SaveGame
 	def_special sub_80FAFF8
 	def_special easy_chat_input_maybe
 	def_special sub_811EECC
@@ -137,10 +137,10 @@ gSpecials:: @ 81DBA64
 	def_special TV_PutNameRaterShowOnTheAirIfNicnkameChanged
 	def_special TV_CopyNicknameToStringVar1AndEnsureTerminated
 	def_special TV_CheckMonOTIDEqualsPlayerID
-	def_special sub_8122998
-	def_special sub_81229C8
+	def_special BufferTrendyPhraseString
+	def_special TrendyPhraseIsOld
 	def_special sub_811EF6C
-	def_special sub_8122A30
+	def_special GetDewfordHallPaintingNameIndex
 	def_special sub_80D6EDC
 	def_special CalculatePlayerPartyCount
 	def_special CountPartyNonEggMons
@@ -212,7 +212,7 @@ gSpecials:: @ 81DBA64
 	def_special SubtractMoneyFromVar0x8005
 	def_special sub_80F972C
 	def_special sp0C8_whiteout_maybe
-	def_special sub_80FBE90
+	def_special RotatingGate_InitPuzzle
 	def_special RotatingGate_InitPuzzleAndGraphics
 	def_special SetSSTidalFlag
 	def_special ResetSSTidalFlag
@@ -260,8 +260,8 @@ gSpecials:: @ 81DBA64
 	def_special ValidateEReaderTrainer
 	def_special sub_8139228
 	def_special sub_80F94E8
-	def_special sub_816AE58
-	def_special sub_816AE98
+	def_special BedroomPC
+	def_special PlayerPC
 	def_special FieldShowRegionMap
 	def_special sub_807E73C
 	def_special sub_807EA10
@@ -497,7 +497,7 @@ gSpecials:: @ 81DBA64
 	def_special ChangeBoxPokemonNickname
 	def_special get_unknown_box_id
 	def_special sub_813B21C
-	def_special sub_81D1C20
+	def_special SetMatchCallRegisteredFlag
 	def_special sub_8175280
 	def_special sub_813B2E4
 	def_special sub_813B374
