@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "global.h": "c",
+        "reset_rtc_screen.h": "c"
+    }
+}

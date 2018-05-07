@@ -5109,22 +5109,15 @@ gMonIconPalettes:: @ 8DDE1F8
 	.align 2
 gTitleScreenBgPalettes:: @ 8DDE258
 	.incbin "graphics/title_screen/pokemon_logo.gbapal"
-	.incbin "graphics/title_screen/rayquaza_and_clouds.gbapal"
+	.incbin "graphics/title_screen/emblem.gbapal"
+	.incbin "graphics/title_screen/press_start.gbapal"
 
 	.align 2
-gTitleScreenEmeraldVersionPal:: @ 8DDE438
-	.incbin "graphics/title_screen/emerald_version.gbapal"
-
-	.align 2
-gUnknown_08DDE458:: @ 8DDE458
-	.incbin "graphics/title_screen/title_screen1.bin.lz"
+sTitleScreenCloudsTilemap:: @ 8DDE458
+	.incbin "graphics/title_screen/press_start.bin.lz"
 
 gTitleScreenPokemonLogoGfx:: @ 8DDE690
 	.incbin "graphics/title_screen/pokemon_logo.8bpp.lz"
-
-	.align 2
-gTitleScreenEmeraldVersionGfx:: @ 8DDFD94
-	.incbin "graphics/title_screen/emerald_version.8bpp.lz"
 
 	.align 2
 gTitleScreenPressStartPal:: @ 8DE03C8
@@ -5135,7 +5128,7 @@ gTitleScreenPressStartGfx:: @ 8DE03E8
 	.incbin "graphics/title_screen/press_start.4bpp.lz"
 
 	.align 2
-gUnknown_08DE0644:: @ 8DE0644
+gTitleScreenPokemonLogoTilemap:: @ 8DE0644
 	.incbin "graphics/title_screen/title_screen2.bin.lz"
 
 	@ more trainer card stuff

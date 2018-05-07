@@ -906,7 +906,7 @@ static void Task_IntroGameFreakStart(u8 taskId)
     gTasks[windowTaskId].data[2] = -8;
     gTasks[taskId].func = Task_ShowGameFreakScreen;
     gIntroFrameCounter = 0;
-    //m4aSongNumStart(MUS_DEMO1);
+    m4aSongNumStart(MUS_DEMO1);
     ResetSerial();
 }
 

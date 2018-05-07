@@ -796,6 +796,7 @@ gUnknown_0203BC8C: @ 203BC8C
 	.include "src/use_pokeblock.o"
 	.include "src/player_pc.o"
 	.include "src/intro.o"
+	.include "src/title_screen.o"
 	.include "src/field_region_map.o"
 
 gUnknown_0203BCD4: @ 203BCD4

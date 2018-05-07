@@ -14,7 +14,7 @@
 #define ASM_DIRECT __attribute__((naked))
 
 // IDE support
-#if defined (__APPLE__) || defined (__CYGWIN__)
+#if defined (__APPLE__) || defined (__CYGWIN__) || defined (_MSC_VER)
 #define _(x) x
 #define __(x) x
 #define INCBIN_U8 {0}
@@ -23,7 +23,9 @@
 #define INCBIN_S8 {0}
 #define INCBIN_S16 {0}
 #define INCBIN_S32 {0}
-#endif // __APPLE__
+#define IWRAM_DATA
+#define EWRAM_DATA
+#endif // IDE support
 
 #define ARRAY_COUNT(array) (size_t)(sizeof(array) / sizeof((array)[0]))
 
