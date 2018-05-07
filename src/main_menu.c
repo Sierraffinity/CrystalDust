@@ -366,17 +366,18 @@ void Task_MainMenuCheckSaveFile(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
     
-    if ((gMPlayInfo_BGM.status & 0xFFFF) != 0)
-        return;
-    
-    if (data[0])
+    if (data[0])    // coming back from options screen
     {
         BeginNormalPaletteFade(-1, 0, 0x10, 0, 0x0000); // fade from black
     }
-    else
+    else if ((gMPlayInfo_BGM.status & 0xFFFF) == 0) // coming from title screen, waiting for music to fade
     {
         BeginNormalPaletteFade(-1, 0, 0x10, 0, 0xFFFF); // fade from white
         m4aSongNumStart(MUS_KAZANBAI);
+    }
+    else    // egads, music is not faded yet!
+    {
+        return;
     }
 
     //if (!gPaletteFade.active)
@@ -501,19 +502,7 @@ void Task_DisplayMainMenu(u8 taskId)
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_OBJ | BLDCNT_TGT1_BD);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         SetGpuReg(REG_OFFSET_BLDY, 7);
-        /* Fixes weird fading stuff thanks to having loaded early
-        palette = RGB_BLACK;
-        LoadPalette(&palette, 254, 2);
-
-        palette = RGB_WHITE;
-        LoadPalette(&palette, 250, 2);
-
-        palette = RGB(12, 12, 12);
-        LoadPalette(&palette, 251, 2);
-
-        palette = RGB(26, 26, 25);
-        LoadPalette(&palette, 252, 2);*/
-
+        
         gPlttBufferUnfaded[254] = RGB_BLACK;
         gPlttBufferUnfaded[250] = RGB_WHITE;
         gPlttBufferUnfaded[251] = RGB(12, 12, 12);
@@ -521,16 +510,16 @@ void Task_DisplayMainMenu(u8 taskId)
 
         if (gSaveBlock2Ptr->playerGender == MALE)
         {
-            /*palette = RGB(4, 16, 31);
-            LoadPalette(&palette, 241, 2);*/
             gPlttBufferUnfaded[241] = RGB(4, 16, 31);
         }
         else
         {
-            /*palette = RGB(31, 3, 21);
-            LoadPalette(&palette, 241, 2);*/
             gPlttBufferUnfaded[241] = RGB(31, 3, 21);
         }
+        
+        // Fixes weird fading stuff thanks to having loaded early (yes this is all quite hacky, why do you ask .-.)
+        if (!gPaletteFade.active)
+            UnfadePlttBuffer(0xFFFFFFFF);
 
         switch (gTasks[taskId].data[0])
         {
