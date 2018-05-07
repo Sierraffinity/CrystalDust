@@ -484,7 +484,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
     if ((gMain.newKeys & A_BUTTON) || (gMain.newKeys & START_BUTTON))
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(-1, 0, 0, 0x10, 0xFFFF);
+        BeginNormalPaletteFade(0xFFFFFFFF, 1, 0, 0x10, 0xFFFF);
         SetHBlankCallback(NULL);
         DisableInterrupts(INTR_FLAG_HBLANK);
         ClearGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
@@ -498,7 +498,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
       && CanResetRTC() == TRUE)
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(-1, 0, 0, 0x10, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
         SetMainCallback2(CB2_GoToResetRtcScreen);
     }
     else if ((gMain.heldKeys & BERRY_UPDATE_BUTTON_COMBO) == BERRY_UPDATE_BUTTON_COMBO)
@@ -530,7 +530,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
 
 static void CB2_GoToMainMenu(void)
 {
-    if (!UpdatePaletteFade() && (gMPlayInfo_BGM.status & 0xFFFF) == 0)
+    if (!UpdatePaletteFade()/* && gMPlayInfo_BGM.fadeOV < 0x40*/)
         SetMainCallback2(CB2_InitMainMenu);
 }
 

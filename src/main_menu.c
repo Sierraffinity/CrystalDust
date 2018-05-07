@@ -39,6 +39,9 @@
 #include "text_window.h"
 #include "title_screen.h"
 #include "window.h"
+#include "m4a.h"
+
+extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
 // Static type declarations
 
@@ -63,6 +66,7 @@ void fmt_savegame(void);
 void HighlightSelectedMainMenuItem(u8, u8, s16);
 void Task_HandleMainMenuInput(u8);
 void Task_HandleMainMenuAPressed(u8);
+void Task_HandleMainMenuAPressed_(u8);
 void Task_HandleMainMenuBPressed(u8);
 void task_new_game_prof_birch_speech_1(u8);
 void Task_DisplayMainMenuInvalidActionError(u8);
@@ -294,8 +298,13 @@ void CB2_ReinitMainMenu(void)
 
 u32 InitMainMenu(bool8 returningFromOptionsMenu)
 {
+    u8 taskId;
+    bool8 link;
     SetVBlankCallback(NULL);
 
+    if (sub_80093CC())
+        link = TRUE;
+    
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetGpuReg(REG_OFFSET_BG2CNT, 0);
     SetGpuReg(REG_OFFSET_BG1CNT, 0);
@@ -319,9 +328,9 @@ u32 InitMainMenu(bool8 returningFromOptionsMenu)
     ResetSpriteData();
     FreeAllSpritePalettes();
     if (returningFromOptionsMenu)
-        BeginNormalPaletteFade(-1, 0, 0x10, 0, 0x0000); // fade to black
+        gPlttBufferFaded[0] = RGB_BLACK;
     else
-        BeginNormalPaletteFade(-1, 0, 0x10, 0, 0xFFFF); // fade to white
+        gPlttBufferFaded[0] = RGB_WHITE;
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, gUnknown_082FF0E8, 2);
     ChangeBgX(0, 0, 0);
@@ -346,7 +355,9 @@ u32 InitMainMenu(bool8 returningFromOptionsMenu)
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
     ShowBg(0);
     HideBg(1);
-    CreateTask(Task_MainMenuCheckSaveFile, 0);
+    taskId = CreateTask(Task_MainMenuCheckSaveFile, 0);
+    gTasks[taskId].data[0] = returningFromOptionsMenu;
+    gTasks[taskId].data[15] = link;
 
     return 0;
 }
@@ -354,19 +365,30 @@ u32 InitMainMenu(bool8 returningFromOptionsMenu)
 void Task_MainMenuCheckSaveFile(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
+    
+    if ((gMPlayInfo_BGM.status & 0xFFFF) != 0)
+        return;
+    
+    if (data[0])
+    {
+        BeginNormalPaletteFade(-1, 0, 0x10, 0, 0x0000); // fade from black
+    }
+    else
+    {
+        BeginNormalPaletteFade(-1, 0, 0x10, 0, 0xFFFF); // fade from white
+        m4aSongNumStart(MUS_KAZANBAI);
+    }
 
-    if (!gPaletteFade.active)
+    //if (!gPaletteFade.active)
     {
         SetGpuReg(REG_OFFSET_WIN0H, 0);
         SetGpuReg(REG_OFFSET_WIN0V, 0);
         SetGpuReg(REG_OFFSET_WININ, 17);
         SetGpuReg(REG_OFFSET_WINOUT, 0x31);
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_OBJ | BLDCNT_TGT1_BD);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         SetGpuReg(REG_OFFSET_BLDY, 7);
 
-        if (sub_80093CC())
-            data[15] = 1;
         switch (gSaveFileStatus)
         {
             case 1:
@@ -433,16 +455,15 @@ void Task_WaitForSaveFileErrorWindow(u8 taskId)
 
 void Task_MainMenuCheckBattery(u8 taskId)
 {
-    if (!gPaletteFade.active)
+    //if (!gPaletteFade.active)
     {
         SetGpuReg(REG_OFFSET_WIN0H, 0);
         SetGpuReg(REG_OFFSET_WIN0V, 0);
         SetGpuReg(REG_OFFSET_WININ, 17);
         SetGpuReg(REG_OFFSET_WINOUT, 0x31);
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_OBJ | BLDCNT_TGT1_BD);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         SetGpuReg(REG_OFFSET_BLDY, 7);
-
         if (!(RtcGetErrorStatus() & RTC_ERR_FLAG_MASK))
         {
             gTasks[taskId].func = Task_DisplayMainMenu;
@@ -471,16 +492,16 @@ void Task_DisplayMainMenu(u8 taskId)
     s16* data = gTasks[taskId].data;
     u16 palette;
 
-    if (!gPaletteFade.active)
+    //if (!gPaletteFade.active)
     {
         SetGpuReg(REG_OFFSET_WIN0H, 0);
         SetGpuReg(REG_OFFSET_WIN0V, 0);
         SetGpuReg(REG_OFFSET_WININ, 17);
         SetGpuReg(REG_OFFSET_WINOUT, 0x31);
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_OBJ | BLDCNT_TGT1_BD);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         SetGpuReg(REG_OFFSET_BLDY, 7);
-
+        /* Fixes weird fading stuff thanks to having loaded early
         palette = RGB_BLACK;
         LoadPalette(&palette, 254, 2);
 
@@ -491,17 +512,24 @@ void Task_DisplayMainMenu(u8 taskId)
         LoadPalette(&palette, 251, 2);
 
         palette = RGB(26, 26, 25);
-        LoadPalette(&palette, 252, 2);
+        LoadPalette(&palette, 252, 2);*/
+
+        gPlttBufferUnfaded[254] = RGB_BLACK;
+        gPlttBufferUnfaded[250] = RGB_WHITE;
+        gPlttBufferUnfaded[251] = RGB(12, 12, 12);
+        gPlttBufferUnfaded[252] = RGB(26, 26, 25);
 
         if (gSaveBlock2Ptr->playerGender == MALE)
         {
-            palette = RGB(4, 16, 31);
-            LoadPalette(&palette, 241, 2);
+            /*palette = RGB(4, 16, 31);
+            LoadPalette(&palette, 241, 2);*/
+            gPlttBufferUnfaded[241] = RGB(4, 16, 31);
         }
         else
         {
-            palette = RGB(31, 3, 21);
-            LoadPalette(&palette, 241, 2);
+            /*palette = RGB(31, 3, 21);
+            LoadPalette(&palette, 241, 2);*/
+            gPlttBufferUnfaded[241] = RGB(31, 3, 21);
         }
 
         switch (gTasks[taskId].data[0])
@@ -612,44 +640,48 @@ bool8 HandleMainMenuInput(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (!gPaletteFade.active)
     {
-        PlaySE(SE_SELECT);
-        sub_80093CC();
-        BeginNormalPaletteFade(-1, 0, 0, 0x10, RGB_BLACK);
-        gTasks[taskId].func = Task_HandleMainMenuAPressed;
-    }
-    else if (gMain.newKeys & B_BUTTON)
-    {
-        PlaySE(SE_SELECT);
-        BeginNormalPaletteFade(-1, 0, 0, 0x10, RGB_WHITEALPHA);
-        SetGpuReg(REG_OFFSET_WIN0H, 0xF0);
-        SetGpuReg(REG_OFFSET_WIN0V, 0xA0);
-        gTasks[taskId].func = Task_HandleMainMenuBPressed;
-    }
-    else if ((gMain.newKeys & DPAD_UP) && data[1] > 0)
-    {
-        if (data[0] == 3 && data[14] == 1 && data[1] == 1)
+        if (gMain.newKeys & A_BUTTON)
         {
-            ChangeBgY(0, 0x2000, 2);
-            ChangeBgY(1, 0x2000, 2);
-            gTasks[data[13]].data[15] = data[14] = 0;
+            PlaySE(SE_SELECT);
+            //sub_80093CC();
+            BeginNormalPaletteFade(-1, 0, 0, 0x10, RGB_BLACK);
+            gTasks[taskId].func = Task_HandleMainMenuAPressed;
         }
-        data[1]--;
-        gUnknown_02022D06 = data[1];
-        return TRUE;
-    }
-    else if ((gMain.newKeys & DPAD_DOWN) && data[1] < data[12] - 1)
-    {
-        if (data[0] == 3 && data[1] == 3 && data[14] == 0)
+        else if (gMain.newKeys & B_BUTTON)
         {
-            ChangeBgY(0, 0x2000, 1);
-            ChangeBgY(1, 0x2000, 1);
-            gTasks[data[13]].data[15] = data[14] = 1;
+            PlaySE(SE_SELECT);
+            FadeOutBGM(2);
+            BeginNormalPaletteFade(-1, 0, 0, 0x10, RGB_WHITEALPHA);
+            SetGpuReg(REG_OFFSET_WIN0H, 0xF0);
+            SetGpuReg(REG_OFFSET_WIN0V, 0xA0);
+            gTasks[taskId].func = Task_HandleMainMenuBPressed;
         }
-        data[1]++;
-        gUnknown_02022D06 = data[1];
-        return TRUE;
+        else if ((gMain.newKeys & DPAD_UP) && data[1] > 0)
+        {
+            if (data[0] == 3 && data[14] == 1 && data[1] == 1)
+            {
+                ChangeBgY(0, 0x2000, 2);
+                ChangeBgY(1, 0x2000, 2);
+                gTasks[data[13]].data[15] = data[14] = 0;
+            }
+            data[1]--;
+            gUnknown_02022D06 = data[1];
+            return TRUE;
+        }
+        else if ((gMain.newKeys & DPAD_DOWN) && data[1] < data[12] - 1)
+        {
+            if (data[0] == 3 && data[1] == 3 && data[14] == 0)
+            {
+                ChangeBgY(0, 0x2000, 1);
+                ChangeBgY(1, 0x2000, 1);
+                gTasks[data[13]].data[15] = data[14] = 1;
+            }
+            data[1]++;
+            gUnknown_02022D06 = data[1];
+            return TRUE;
+        }
     }
     return FALSE;
 }
@@ -665,6 +697,116 @@ void Task_HandleMainMenuAPressed(u8 taskId)
     bool8 r2;
     u8 action;
 
+    r2 = sub_80093CC();
+    switch (gTasks[taskId].data[0])
+    {
+        case HAS_NO_SAVED_GAME:
+        default:
+            switch (gTasks[taskId].data[1])
+            {
+                case 0:
+                default:
+                    action = 0;
+                    break;
+                case 1:
+                    action = 2;
+                    break;
+            }
+            break;
+        case HAS_SAVED_GAME:
+            switch (gTasks[taskId].data[1])
+            {
+                case 0:
+                default:
+                    action = 1;
+                    break;
+                case 1:
+                    action = 0;
+                    break;
+                case 2:
+                    action = 2;
+                    break;
+            }
+            break;
+        case HAS_MYSTERY_GIFT:
+            switch (gTasks[taskId].data[1])
+            {
+                case 0:
+                default:
+                    action = 1;
+                    break;
+                case 1:
+                    action = 0;
+                    break;
+                case 2:
+                    action = 3;
+                    if (r2 == FALSE)
+                    {
+                        action = 6;
+                        gTasks[taskId].data[0] = 0;
+                    }
+                    break;
+                case 3:
+                    action = 2;
+                    break;
+            }
+            break;
+        case HAS_MYSTERY_EVENTS:
+            switch (gTasks[taskId].data[1])
+            {
+                case 0:
+                default:
+                    action = 1;
+                    break;
+                case 1:
+                    action = 0;
+                    break;
+                case 2:
+                    if (gTasks[taskId].data[15])
+                    {
+                        action = 3;
+                        if (r2 == FALSE)
+                        {
+                            action = 6;
+                            gTasks[taskId].data[0] = 0;
+                        }
+                    }
+                    else if (r2)
+                    {
+                        action = 6;
+                        gTasks[taskId].data[0] = 1;
+                    }
+                    else
+                    {
+                        action = 5;
+                    }
+                    break;
+                case 3:
+                    if (r2)
+                    {
+                        action = 6;
+                        gTasks[taskId].data[0] = 2;
+                    }
+                    else
+                    {
+                        action = 4;
+                    }
+                    break;
+                case 4:
+                    action = 2;
+                    break;
+            }
+            break;
+    }
+    if (action != 2 && action != 6)
+        FadeOutBGM(4);
+
+    gTasks[taskId].data[1] = action;
+    gTasks[taskId].func = Task_HandleMainMenuAPressed_;
+}
+
+void Task_HandleMainMenuAPressed_(u8 taskId)
+{
     if (!gPaletteFade.active)
     {
         if (gTasks[taskId].data[0] == 3)
@@ -677,110 +819,10 @@ void Task_HandleMainMenuAPressed(u8 taskId)
         sub_819746C(5, 1);
         sub_819746C(6, 1);
         sub_819746C(7, 1);
-        r2 = sub_80093CC();
-        switch (gTasks[taskId].data[0])
-        {
-            case HAS_NO_SAVED_GAME:
-            default:
-                switch (gTasks[taskId].data[1])
-                {
-                    case 0:
-                    default:
-                        action = 0;
-                        break;
-                    case 1:
-                        action = 2;
-                        break;
-                }
-                break;
-            case HAS_SAVED_GAME:
-                switch (gTasks[taskId].data[1])
-                {
-                    case 0:
-                    default:
-                        action = 1;
-                        break;
-                    case 1:
-                        action = 0;
-                        break;
-                    case 2:
-                        action = 2;
-                        break;
-                }
-                break;
-            case HAS_MYSTERY_GIFT:
-                switch (gTasks[taskId].data[1])
-                {
-                    case 0:
-                    default:
-                        action = 1;
-                        break;
-                    case 1:
-                        action = 0;
-                        break;
-                    case 2:
-                        action = 3;
-                        if (r2 == FALSE)
-                        {
-                            action = 6;
-                            gTasks[taskId].data[0] = 0;
-                        }
-                        break;
-                    case 3:
-                        action = 2;
-                        break;
-                }
-                break;
-            case HAS_MYSTERY_EVENTS:
-                switch (gTasks[taskId].data[1])
-                {
-                    case 0:
-                    default:
-                        action = 1;
-                        break;
-                    case 1:
-                        action = 0;
-                        break;
-                    case 2:
-                        if (gTasks[taskId].data[15])
-                        {
-                            action = 3;
-                            if (r2 == FALSE)
-                            {
-                                action = 6;
-                                gTasks[taskId].data[0] = 0;
-                            }
-                        }
-                        else if (r2)
-                        {
-                            action = 6;
-                            gTasks[taskId].data[0] = 1;
-                        }
-                        else
-                        {
-                            action = 5;
-                        }
-                        break;
-                    case 3:
-                        if (r2)
-                        {
-                            action = 6;
-                            gTasks[taskId].data[0] = 2;
-                        }
-                        else
-                        {
-                            action = 4;
-                        }
-                        break;
-                    case 4:
-                        action = 2;
-                        break;
-                }
-                break;
-        }
+        
         ChangeBgY(0, 0, 0);
         ChangeBgY(1, 0, 0);
-        switch (action)
+        switch (gTasks[taskId].data[1])
         {
             case 0:
             default:
@@ -826,7 +868,7 @@ void Task_HandleMainMenuAPressed(u8 taskId)
                 return;
         }
         FreeAllWindowBuffers();
-        if (action != 2)
+        if (gTasks[taskId].data[1] != 2)
             gUnknown_02022D06 = 0;
         else
             gUnknown_02022D06 |= 0x8000;
@@ -835,7 +877,7 @@ void Task_HandleMainMenuAPressed(u8 taskId)
 
 void Task_HandleMainMenuBPressed(u8 taskId)
 {
-    if (!gPaletteFade.active)
+    if (!gPaletteFade.active && (gMPlayInfo_BGM.status & 0xFFFF) == 0)
     {
         if (gTasks[taskId].data[0] == 3)
             RemoveScrollIndicatorArrowPair(gTasks[taskId].data[13]);
@@ -887,7 +929,7 @@ void Task_DisplayMainMenuInvalidActionError(u8 taskId)
 
 void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 a)
 {
-    SetGpuReg(REG_OFFSET_WIN0H, 0x9E7);
+    SetGpuReg(REG_OFFSET_WIN0H, 0xAE6);
 
     switch (menuType)
     {
@@ -897,10 +939,10 @@ void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 a)
             {
                 case 0:
                 default:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x11F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x21E);
                     break;
                 case 1:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x213F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x223E);
                     break;
             }
             break;
@@ -909,13 +951,13 @@ void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 a)
             {
                 case 0:
                 default:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x13F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x23E);
                     break;
                 case 1:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x415F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x425E);
                     break;
                 case 2:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x617F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x627E);
                     break;
             }
             break;
@@ -924,16 +966,16 @@ void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 a)
             {
                 case 0:
                 default:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x13F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x23E);
                     break;
                 case 1:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x415F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x425E);
                     break;
                 case 2:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x617F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x627E);
                     break;
                 case 3:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x819F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x829E);
                     break;
             }
             break;
@@ -942,28 +984,28 @@ void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 a)
             {
                 case 0:
                 default:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x13F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x23E);
                     break;
                 case 1:
                     if (a)
-                        SetGpuReg(REG_OFFSET_WIN0V, 0x213F);
+                        SetGpuReg(REG_OFFSET_WIN0V, 0x223E);
                     else
-                        SetGpuReg(REG_OFFSET_WIN0V, 0x415F);
+                        SetGpuReg(REG_OFFSET_WIN0V, 0x425E);
                     break;
                 case 2:
                     if (a)
-                        SetGpuReg(REG_OFFSET_WIN0V, 0x415F);
+                        SetGpuReg(REG_OFFSET_WIN0V, 0x425E);
                     else
-                        SetGpuReg(REG_OFFSET_WIN0V, 0x617F);
+                        SetGpuReg(REG_OFFSET_WIN0V, 0x627E);
                     break;
                 case 3:
                     if (a)
-                        SetGpuReg(REG_OFFSET_WIN0V, 0x617F);
+                        SetGpuReg(REG_OFFSET_WIN0V, 0x627E);
                     else
-                        SetGpuReg(REG_OFFSET_WIN0V, 0x819F);
+                        SetGpuReg(REG_OFFSET_WIN0V, 0x829E);
                     break;
                 case 4:
-                    SetGpuReg(REG_OFFSET_WIN0V, 0x819F);
+                    SetGpuReg(REG_OFFSET_WIN0V, 0x829E);
                     break;
             }
             break;
@@ -972,35 +1014,38 @@ void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 a)
 
 void task_new_game_prof_birch_speech_1(u8 taskId)
 {
-    SetGpuReg(REG_OFFSET_DISPCNT, 0);
-    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
-    InitBgFromTemplate(&gUnknown_082FF0F0);
-    SetGpuReg(REG_OFFSET_WIN0H, 0);
-    SetGpuReg(REG_OFFSET_WIN0V, 0);
-    SetGpuReg(REG_OFFSET_WININ, 0);
-    SetGpuReg(REG_OFFSET_WINOUT, 0);
-    SetGpuReg(REG_OFFSET_BLDCNT, 0);
-    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
-    SetGpuReg(REG_OFFSET_BLDY, 0);
+    if ((gMPlayInfo_BGM.status & 0xFFFF) == 0)
+    {
+        SetGpuReg(REG_OFFSET_DISPCNT, 0);
+        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
+        InitBgFromTemplate(&gUnknown_082FF0F0);
+        SetGpuReg(REG_OFFSET_WIN0H, 0);
+        SetGpuReg(REG_OFFSET_WIN0V, 0);
+        SetGpuReg(REG_OFFSET_WININ, 0);
+        SetGpuReg(REG_OFFSET_WINOUT, 0);
+        SetGpuReg(REG_OFFSET_BLDCNT, 0);
+        SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+        SetGpuReg(REG_OFFSET_BLDY, 0);
 
-    LZ77UnCompVram(gBirchIntroShadowGfx, (void*)VRAM);
-    LZ77UnCompVram(gUnknown_082FEEF0, (void*)(VRAM + 0x3800));
-    LoadPalette(gUnknown_082FECFC, 0, 64);
-    LoadPalette(gUnknown_082FF028, 1, 16);
-    ScanlineEffect_Stop();
-    ResetSpriteData();
-    FreeAllSpritePalettes();
-    dp13_810BB8C();
-    AddBirchSpeechObjects(taskId);
-    BeginNormalPaletteFade(-1, 0, 16, 0, 0);
-    gTasks[taskId].data[4] = 0;
-    gTasks[taskId].func = task_new_game_prof_birch_speech_2;
-    gTasks[taskId].data[2] = 0xFF;
-    gTasks[taskId].data[3] = 0xFF;
-    gTasks[taskId].data[7] = 0xD8;
-    PlayBGM(MUS_DOORO_X4);
-    ShowBg(0);
-    ShowBg(1);
+        LZ77UnCompVram(gBirchIntroShadowGfx, (void*)VRAM);
+        LZ77UnCompVram(gUnknown_082FEEF0, (void*)(VRAM + 0x3800));
+        LoadPalette(gUnknown_082FECFC, 0, 64);
+        LoadPalette(gUnknown_082FF028, 1, 16);
+        ScanlineEffect_Stop();
+        ResetSpriteData();
+        FreeAllSpritePalettes();
+        dp13_810BB8C();
+        AddBirchSpeechObjects(taskId);
+        BeginNormalPaletteFade(-1, 0, 16, 0, 0);
+        gTasks[taskId].data[4] = 0;
+        gTasks[taskId].func = task_new_game_prof_birch_speech_2;
+        gTasks[taskId].data[2] = 0xFF;
+        gTasks[taskId].data[3] = 0xFF;
+        gTasks[taskId].data[7] = 0xD8;
+        PlayBGM(MUS_DOORO_X4);
+        ShowBg(0);
+        ShowBg(1);
+    }
 }
 
 void task_new_game_prof_birch_speech_2(u8 taskId)
@@ -1798,8 +1843,8 @@ void CreateMainMenuErrorWindow(const u8* str)
     PutWindowTilemap(7);
     CopyWindowToVram(7, 2);
     DrawMainMenuWindowBorder(gUnknown_082FF070, MAIN_MENU_BORDER_TILE);
-    SetGpuReg(REG_OFFSET_WIN0H, 0x9E7);
-    SetGpuReg(REG_OFFSET_WIN0V, 0x719F);
+    SetGpuReg(REG_OFFSET_WIN0H, 0xAE6);
+    SetGpuReg(REG_OFFSET_WIN0V, 0x729E);
 }
 
 void fmt_savegame(void)
