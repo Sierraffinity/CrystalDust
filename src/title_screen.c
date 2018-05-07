@@ -469,48 +469,13 @@ static void Task_TitleScreenPhase1(u8 taskId)
 // Create "Press Start" and copyright banners, and slide Pokemon logo up
 static void Task_TitleScreenPhase2(u8 taskId)
 {
-    u32 yPos;
-
-    SetHBlankCallback(NULL);
-    // Skip to next phase when A, B, Start, or Select is pressed
-    if ((gMain.newKeys & A_B_START_SELECT) || gTasks[taskId].tSkipToNext)
+    if (GetGpuReg(REG_OFFSET_BG0HOFS) == 3)
     {
-        gTasks[taskId].tSkipToNext = TRUE;
-        gTasks[taskId].tCounter = 0;
-    }
-
-    if (gTasks[taskId].tCounter != 0)
-    {
-        gTasks[taskId].tCounter--;
-    }
-    else
-    {
-        gTasks[taskId].tSkipToNext = TRUE;
-        /*SetGpuReg(REG_OFFSET_BLDCNT, 0x2142);
-        SetGpuReg(REG_OFFSET_BLDALPHA, 0xF06);
-        SetGpuReg(REG_OFFSET_BLDY, 0);
-        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_1
-                                    | DISPCNT_OBJ_1D_MAP
-                                    | DISPCNT_BG0_ON
-                                    | DISPCNT_BG1_ON
-                                    | DISPCNT_BG2_ON
-                                    | DISPCNT_OBJ_ON);*/
-        gTasks[taskId].data[4] = 0;
+        SetHBlankCallback(NULL);
+        DisableInterrupts(INTR_FLAG_HBLANK);
+        ClearGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
         gTasks[taskId].func = Task_TitleScreenPhase3;
     }
-
-    if (!(gTasks[taskId].tCounter & 3) && gTasks[taskId].data[2] != 0)
-        gTasks[taskId].data[2]++;
-    if (!(gTasks[taskId].tCounter & 1) && gTasks[taskId].data[3] != 0)
-        gTasks[taskId].data[3]++;
-
-    // Slide Pokemon logo up
-    /*yPos = gTasks[taskId].data[3] * 256;
-    SetGpuReg(REG_OFFSET_BG2Y_L, yPos);
-    SetGpuReg(REG_OFFSET_BG2Y_H, yPos / 0x10000);*/
-
-    gTasks[taskId].data[5] = 15;
-    gTasks[taskId].data[6] = 6;
 }
 
 // Show Rayquaza silhouette and process main title screen input
@@ -520,6 +485,9 @@ static void Task_TitleScreenPhase3(u8 taskId)
     {
         FadeOutBGM(4);
         BeginNormalPaletteFade(-1, 0, 0, 0x10, 0xFFFF);
+        SetHBlankCallback(NULL);
+        DisableInterrupts(INTR_FLAG_HBLANK);
+        ClearGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
         SetMainCallback2(CB2_GoToMainMenu);
     }
     else if ((gMain.heldKeys & CLEAR_SAVE_BUTTON_COMBO) == CLEAR_SAVE_BUTTON_COMBO)
