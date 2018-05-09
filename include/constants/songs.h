@@ -298,7 +298,7 @@
 #define MUS_FANFA5 371          // Your Pokémon Just Evolved!
 #define MUS_ME_WAZA 372         // Obtained a TM/HM!
 #define MUS_BIJYUTU 373         // Lilycove Museum
-#define MUS_DOORO_X4 374        // Route 122/Intro
+#define MUS_ROUTE30 374        // Route 122/Intro
 #define MUS_FUNE_KAN 375        // Slateport Museum
 #define MUS_ME_SHINKA 376       // Evolution Intro
 #define MUS_SHINKA 377          // Evolution
@@ -342,7 +342,7 @@
 #define MUS_GIRL_SUP 415        // Encounter! May
 #define MUS_HAGESHII 416        // Encounter! Biker
 #define MUS_KAKKOII 417         // Encounter! Electric Trainer
-#define MUS_KAZANBAI 418        // Route 113
+#define MUS_MAINMENU 418        // Main Menu
 #define MUS_AQA_0 419           // Encounter! Team Aqua
 #define MUS_TSURETEK 420        // Follow Me!
 #define MUS_BOY_SUP 421         // Encounter! Brendan

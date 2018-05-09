@@ -378,7 +378,7 @@ gSongTable:: @ 86B49F0
 	song mus_fanfa5, 2, 2           @ Your Pokémon Just Evolved!
 	song mus_me_waza, 2, 2          @ Obtained a TM/HM!
 	song mus_bijyutu, 0, 0          @ Lilycove Museum
-	song mus_dooro_x4, 0, 0         @ Route 122/Intro
+	song mus_route30, 0, 0         @ Route 122/Intro
 	song mus_fune_kan, 0, 0         @ Slateport Museum
 	song mus_me_shinka, 2, 2        @ Evolution Intro
 	song mus_shinka, 0, 0           @ Evolution
@@ -422,7 +422,7 @@ gSongTable:: @ 86B49F0
 	song mus_girl_sup, 0, 0         @ Encounter! May
 	song mus_hageshii, 0, 0         @ Encounter! Biker
 	song mus_kakkoii, 0, 0          @ Encounter! Electric Trainer
-	song mus_kazanbai, 0, 0         @ Route 113
+	song mus_mainmenu, 0, 0         @ Main Menu
 	song mus_aqa_0, 0, 0            @ Encounter! Team Aqua
 	song mus_tsuretek, 0, 0         @ Follow Me!
 	song mus_boy_sup, 0, 0          @ Encounter! Brendan

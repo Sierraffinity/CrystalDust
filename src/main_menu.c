@@ -373,7 +373,7 @@ void Task_MainMenuCheckSaveFile(u8 taskId)
     else if ((gMPlayInfo_BGM.status & 0xFFFF) == 0) // coming from title screen, waiting for music to fade
     {
         BeginNormalPaletteFade(-1, 0, 0x10, 0, 0xFFFF); // fade from white
-        m4aSongNumStart(MUS_KAZANBAI);
+        m4aSongNumStart(MUS_MAINMENU);
     }
     else    // egads, music is not faded yet!
     {
@@ -509,13 +509,9 @@ void Task_DisplayMainMenu(u8 taskId)
         gPlttBufferUnfaded[252] = RGB(26, 26, 25);
 
         if (gSaveBlock2Ptr->playerGender == MALE)
-        {
             gPlttBufferUnfaded[241] = RGB(4, 16, 31);
-        }
         else
-        {
             gPlttBufferUnfaded[241] = RGB(31, 3, 21);
-        }
         
         // Fixes weird fading stuff thanks to having loaded early (yes this is all quite hacky, why do you ask .-.)
         if (!gPaletteFade.active)
@@ -866,7 +862,7 @@ void Task_HandleMainMenuAPressed_(u8 taskId)
 
 void Task_HandleMainMenuBPressed(u8 taskId)
 {
-    if (!gPaletteFade.active && (gMPlayInfo_BGM.status & 0xFFFF) == 0)
+    if (!gPaletteFade.active)
     {
         if (gTasks[taskId].data[0] == 3)
             RemoveScrollIndicatorArrowPair(gTasks[taskId].data[13]);
@@ -1031,7 +1027,7 @@ void task_new_game_prof_birch_speech_1(u8 taskId)
         gTasks[taskId].data[2] = 0xFF;
         gTasks[taskId].data[3] = 0xFF;
         gTasks[taskId].data[7] = 0xD8;
-        PlayBGM(MUS_DOORO_X4);
+        PlayBGM(MUS_ROUTE30);
         ShowBg(0);
         ShowBg(1);
     }
@@ -1828,7 +1824,7 @@ void set_default_player_name(u8 nameId)
 void CreateMainMenuErrorWindow(const u8* str)
 {
     FillWindowPixelBuffer(7, 17);
-    PrintTextOnWindow(7, 1, str, 0, 1, 2, 0);
+    PrintTextOnWindow(7, 1, str, 0, 1, 1, 0);
     PutWindowTilemap(7);
     CopyWindowToVram(7, 2);
     DrawMainMenuWindowBorder(gUnknown_082FF070, MAIN_MENU_BORDER_TILE);
