@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "global.h": "c",
-        "reset_rtc_screen.h": "c",
-        "m4a.h": "c",
-        "clear_save_data_menu.h": "c"
-    }
-}
