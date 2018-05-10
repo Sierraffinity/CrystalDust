@@ -5,6 +5,7 @@
 #include "berry.h"
 // #include "cable_club.h"
 #include "clock.h"
+#include "day_night.h"
 #include "event_data.h"
 #include "field_camera.h"
 #include "field_control_avatar.h"
@@ -1487,6 +1488,7 @@ static void OverworldBasic(void)
     CameraUpdate();
     UpdateCameraPanning();
     BuildOamBuffer();
+    TintForDayNight();
     UpdatePaletteFade();
     sub_80A0A38();
     do_scheduled_bg_tilemap_copies_to_vram();

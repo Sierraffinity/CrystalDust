@@ -23,6 +23,7 @@
 #include "trainer_see.h"
 #include "decoration.h"
 #include "field_map_obj.h"
+#include "day_night.h"
 
 #define NUM_FIELD_MAP_OBJECT_TEMPLATES 0x51
 
@@ -1268,7 +1269,7 @@ static u8 sub_808E8F4(const struct SpritePalette *spritePalette)
     {
         return 0xff;
     }
-    return LoadSpritePalette(spritePalette);
+    return LoadSpritePaletteDayNight(spritePalette);
 }
 
 void pal_patch_for_npc(u16 paletteTag, u8 paletteSlot)
@@ -1276,7 +1277,7 @@ void pal_patch_for_npc(u16 paletteTag, u8 paletteSlot)
     u16 paletteIdx;
 
     paletteIdx = FindFieldObjectPaletteIndexByTag(paletteTag);
-    LoadPalette(gUnknown_0850BBC8[paletteIdx].data, 16 * paletteSlot + 256, 0x20);
+    LoadPaletteDayNight(gUnknown_0850BBC8[paletteIdx].data, 16 * paletteSlot + 256, 0x20);
 }
 
 void pal_patch_for_npc_range(const u16 *paletteTags, u8 minSlot, u8 maxSlot)

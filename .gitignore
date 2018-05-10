@@ -22,6 +22,7 @@ tools/agbcc
 *.bat
 *.dump
 *.sa*
+*.ss*
 Thumbs.db
 build/
 .DS_Store
