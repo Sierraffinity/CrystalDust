@@ -21,6 +21,7 @@
 #include "battle_controllers.h"
 #include "text.h"
 #include "intro.h"
+#include "rtc.h"
 #include "main.h"
 
 extern void sub_800B9B8(void);
@@ -149,6 +150,7 @@ void AgbMain()
         }
 
         PlayTimeCounter_Update();
+        RtcCalcLocalTime();
         MapMusicMain();
         WaitForVBlank();
     }
@@ -387,10 +389,13 @@ static void IntrDummy(void)
 
 static void WaitForVBlank(void)
 {
+    // Emerald's loop is way less efficient than Ruby's, so why not replace it?
+    // TODO: Find out if this breaks something. It probably does.
     gMain.intrCheck &= ~INTR_FLAG_VBLANK;
 
-    while (!(gMain.intrCheck & INTR_FLAG_VBLANK))
-        ;
+    /*while (!(gMain.intrCheck & INTR_FLAG_VBLANK))
+        ;*/
+    VBlankIntrWait();
 }
 
 void sub_80008DC(u32 *var)

@@ -117,8 +117,6 @@ gUnknown_02022CFC: @ 2022CFC
 gUnknown_02022D00: @ 2022D00
 	.space 0x4
 
-@ src/main_menu.c
-gUnknown_02022D04: @ 2022D04
 	.include "src/main_menu.o"
 
 gUnknown_02022D08: @ 2022D08

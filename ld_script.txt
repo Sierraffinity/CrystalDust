@@ -57,6 +57,7 @@ SECTIONS {
         asm/link_rfu.o(.text);
         asm/rom_8011DC0.o(.text);
         src/rtc.o(.text);
+        src/day_night.o(.text);
         src/main_menu.o(.text);
         src/battle_controllers.o(.text);
         src/decompress.o(.text);

@@ -422,7 +422,7 @@ static void MainCB2(void)
     UpdatePaletteFade();
 }
 
-// Shine the Pokemon logo two more times, and fade in the version banner
+// TODO: Fix really bad tearing on scanline thing
 static void Task_TitleScreenPhase1(u8 taskId)
 {
     u16 i;
