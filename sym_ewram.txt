@@ -284,10 +284,7 @@ gUnknown_02038BC6: @ 2038BC6
 	.include "src/battle_setup.o"
 	.include "src/trainer_see.o"
     .include "src/wild_encounter.o"
-
-gFieldEffectArguments: @ 2038C08
-	.space 0x20
-
+    .include "src/field_effect.o"
     .include "src/scanline_effect.o"
     .include "src/option_menu.o"
 	
@@ -533,16 +530,7 @@ gUnknown_0203A11C: @ 203A11C
 gUnknown_0203A120: @ 203A120
 	.space 0x4
 	.include "src/mon_markings.o"
-
-gUnknown_0203A128: @ 203A128
-	.space 0x4
-
-gUnknown_0203A12C: @ 203A12C
-	.space 0x4
-
-gUnknown_0203A130: @ 203A130
-	.space 0x4
-
+	.include "src/mauville_old_man.o"
     .include "src/mail.o"
 
 gUnknown_0203A138: @ 203A138
