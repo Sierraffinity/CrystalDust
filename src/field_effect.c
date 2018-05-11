@@ -3,6 +3,7 @@
 #include "global.h"
 #include "field_effect.h"
 #include "battle_dome_cards.h"
+#include "day_night.h"
 #include "decompress.h"
 #include "field_camera.h"
 #include "field_effect_helpers.h"
@@ -424,7 +425,7 @@ void FieldEffectScript_LoadTiles(u8 **script)
 void FieldEffectScript_LoadFadedPalette(u8 **script)
 {
     struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
-    LoadSpritePalette(palette);
+    LoadSpritePaletteDayNight(palette);
     UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag));
     (*script) += 4;
 }
@@ -432,7 +433,7 @@ void FieldEffectScript_LoadFadedPalette(u8 **script)
 void FieldEffectScript_LoadPalette(u8 **script)
 {
     struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
-    LoadSpritePalette(palette);
+    LoadSpritePaletteDayNight(palette);
     (*script) += 4;
 }
 
