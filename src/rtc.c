@@ -7,6 +7,7 @@
 IWRAM_DATA static u16 sErrorStatus;
 IWRAM_DATA static struct SiiRtcInfo sRtc;
 IWRAM_DATA static u8 sProbeResult;
+IWRAM_DATA static u8 sVBlanksSinceLastRtc;
 IWRAM_DATA static u16 sSavedIme;
 
 // iwram common
@@ -97,6 +98,7 @@ u16 RtcGetDayCount(struct SiiRtcInfo *rtc)
 void RtcInit(void)
 {
     sErrorStatus = 0;
+    sVBlanksSinceLastRtc = 0;
 
     RtcDisableInterrupts();
     SiiRtcUnprotect();
@@ -321,6 +323,7 @@ void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2)
     result->minutes = t2->minutes - t1->minutes;
     result->hours = t2->hours - t1->hours;
     result->days = t2->days - t1->days;
+    result->dayOfWeek = t2->dayOfWeek - t1->dayOfWeek;
 
     if (result->seconds < 0)
     {
@@ -338,6 +341,12 @@ void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2)
     {
         result->hours += 24;
         --result->days;
+        --result->dayOfWeek;
+    }
+
+    if (result->dayOfWeek < 0)
+    {
+        result->dayOfWeek += 7;
     }
 }
 
@@ -352,3 +361,11 @@ u16 RtcGetLocalDayCount(void)
     return RtcGetDayCount(&sRtc);
 }
 
+void RtcSlowUpdate(void)
+{
+    if (++sVBlanksSinceLastRtc > 59)    //only update RTC once every 60 frames to avoid tear
+    {
+        RtcCalcLocalTime();
+        sVBlanksSinceLastRtc = 0;
+    }
+}

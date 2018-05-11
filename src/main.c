@@ -70,7 +70,6 @@ IntrFunc gIntrTable[INTR_COUNT];
 u8 gLinkVSyncDisabled;
 u32 IntrMain_Buffer[0x200];
 u8 gPcmDmaCounter;
-static u8 sVBlanksSinceLastRtc;
 
 static EWRAM_DATA u16 gTrainerId = 0;
 
@@ -151,12 +150,8 @@ void AgbMain()
         }
 
         PlayTimeCounter_Update();
-        if (sVBlanksSinceLastRtc > 9)
-        {
-            RtcCalcLocalTime();
-            sVBlanksSinceLastRtc = 0;
-        }
         MapMusicMain();
+        RtcSlowUpdate();
         WaitForVBlank();
     }
 }

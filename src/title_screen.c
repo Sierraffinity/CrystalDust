@@ -271,14 +271,13 @@ void CB2_InitTitleScreen(void)
         SetGpuReg(REG_OFFSET_BG2HOFS, 0);
         SetGpuReg(REG_OFFSET_BG2VOFS, 0);
         SetGpuReg(REG_OFFSET_BG1HOFS, 0);
-        SetGpuReg(REG_OFFSET_BG1VOFS, 0);
+        SetGpuReg(REG_OFFSET_BG1VOFS, 140);
         SetGpuReg(REG_OFFSET_BG0HOFS, 0);
         SetGpuReg(REG_OFFSET_BG0VOFS, 0);
         DmaFill16(3, 0, (void *)VRAM, VRAM_SIZE);
         DmaFill32(3, 0, (void *)OAM, OAM_SIZE);
         DmaFill16(3, 0, (void *)(PLTT + 2), PLTT_SIZE - 2);
         ResetPaletteFade();
-        ResetTasks();
         gMain.state = 1;
         break;
     case 1:
@@ -290,6 +289,7 @@ void CB2_InitTitleScreen(void)
         LZ77UnCompVram(sTitleScreenEmblemGfx, (void *)(VRAM + 0x4000));
         LZ77UnCompVram(sTitleScreenEmblemTilemap, (void *)(VRAM + 0xE800));
         ScanlineEffect_Stop();
+        ResetTasks();
         ResetSpriteData();
         FreeAllSpritePalettes();
         gReservedSpritePaletteCount = 9;
@@ -312,7 +312,6 @@ void CB2_InitTitleScreen(void)
         break;
     case 4:
         sub_816F2A8(0x78, 0x50, 0x100, 0);
-        SetGpuReg(REG_OFFSET_BG1VOFS, 140);
         SetGpuReg(REG_OFFSET_WIN0H, 0);
         SetGpuReg(REG_OFFSET_WIN0V, 160);
         SetGpuReg(REG_OFFSET_WININ, 0x3F);
@@ -332,14 +331,9 @@ void CB2_InitTitleScreen(void)
         gMain.state = 5;
         break;
     case 5:
-        if (!UpdatePaletteFade())
-        {
-            //StartPokemonLogoShine(0);
-            SetMainCallback2(MainCB2);
-        }
+        SetMainCallback2(MainCB2);
         break;
     }
-    MainCB2();
 }
 
 static void MainCB2(void)
