@@ -372,7 +372,7 @@ void GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor)
     *(current++) = (shadowColor << 12) | (shadowColor << 8) | (shadowColor << 4) | shadowColor;
 }
 #else
-ASM_DIRECT
+NAKED
 void GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor)
 {
     asm("push {r4-r7,lr}\n\
@@ -868,7 +868,7 @@ void DecompressGlyphTile(const u16 *src, u16 *dest)
     *(dest) = (gFontHalfRowLookupTable[gFontHalfRowOffsets[src[1] & 0xFF]] << 16) | gFontHalfRowLookupTable[gFontHalfRowOffsets[src[1] >> 8]];
 }
 #else
-ASM_DIRECT
+NAKED
 void DecompressGlyphTile(const u16 *src, u16 *dest)
 {
     asm("push {r4-r7,lr}\n\
@@ -1049,7 +1049,7 @@ u8 GetLastTextColor(u8 colorType)
     }
 }
 
-ASM_DIRECT
+NAKED
 void CopyGlyphToWindow(struct TextPrinter *x)
 {
     asm("push {r4-r7,lr}\n\
@@ -2338,7 +2338,7 @@ u16 RenderText(struct TextPrinter *textPrinter)
     return 1;
 }
 #else
-__attribute__((naked))
+NAKED
 u16 RenderText(struct TextPrinter *textPrinter)
 {
     asm("push {r4-r6,lr}\n\

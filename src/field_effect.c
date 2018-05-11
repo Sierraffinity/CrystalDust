@@ -567,7 +567,7 @@ u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y)
     return spriteId;
 }
 #else
-ASM_DIRECT
+NAKED
 u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y)
 {
     asm_unified("push {r4,r5,lr}\n\
@@ -670,7 +670,7 @@ void MultiplyPaletteRGBComponents(u16 i, u8 r, u8 g, u8 b)
     gPlttBufferFaded[i] = RGB(curRed, curGreen, curBlue);
 }
 #else
-ASM_DIRECT
+NAKED
 void MultiplyInvertedPaletteRGBComponents(u16 i, u8 r, u8 g, u8 b)
 {
     asm(".syntax unified\n"
@@ -745,7 +745,7 @@ void MultiplyInvertedPaletteRGBComponents(u16 i, u8 r, u8 g, u8 b)
     ".syntax divided");
 }
 
-ASM_DIRECT
+NAKED
 void MultiplyPaletteRGBComponents(u16 i, u8 r, u8 g, u8 b)
 {
     asm(".syntax unified\n"
@@ -2685,7 +2685,7 @@ bool8 sub_80B8B38(struct Task *task)
     return FALSE;
 }
 #else
-ASM_DIRECT
+NAKED
 bool8 sub_80B8B38(struct Task *task)
 {
     asm_unified("\tpush {r4-r7,lr}\n"
@@ -2998,7 +2998,7 @@ u8 sub_80B8F98(void)
     return spriteId;
 }
 #else
-ASM_DIRECT
+NAKED
 u8 sub_80B8F98(void)
 {
     asm_unified("push {r4-r7,lr}\n\
