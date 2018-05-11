@@ -46,9 +46,8 @@ extern const u16 gTitleScreenPressStartPal[];
 
 // this file's functions
 static void MainCB2(void);
-static void Task_TitleScreenPhase1(u8);
-static void Task_TitleScreenPhase2(u8);
-static void Task_TitleScreenPhase3(u8);
+static void Task_TitleScreenDoIntro(u8);
+static void Task_TitleScreenProcessInput(u8);
 static void CB2_GoToMainMenu(void);
 static void CB2_GoToClearSaveDataScreen(void);
 static void CB2_GoToResetRtcScreen(void);
@@ -167,23 +166,6 @@ static const struct CompressedSpriteSheet sPokemonLogoShineSpriteSheet[] =
 };
 
 // code
-static void SpriteCB_PressStartCopyrightBanner(struct Sprite *sprite)
-{
-    if (sprite->data[0] == 1)
-    {
-        sprite->data[1]++;
-        // Alternate between hidden and shown every 16th frame
-        if (sprite->data[1] & 0x10)
-            sprite->invisible = FALSE;
-        else
-            sprite->invisible = TRUE;
-    }
-    else
-    {
-        sprite->invisible = FALSE;
-    }
-}
-
 static void SpriteCB_PokemonLogoShine(struct Sprite *sprite)
 {
     if (sprite->pos1.x < 272)
@@ -266,15 +248,10 @@ static void StartPokemonLogoShine(u8 flashBg)
 
 static void VBlankCB(void)
 {
-    //ScanlineEffect_InitHBlankDmaTransfer();
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
-    //SetGpuReg(REG_OFFSET_BG1VOFS, gBattle_BG1_Y);
 }
-
-#define tState data[0]
-#define tSkipToNext data[1]
 
 void CB2_InitTitleScreen(void)
 {
@@ -323,9 +300,8 @@ void CB2_InitTitleScreen(void)
         break;
     case 2:
     {
-        u8 taskId = CreateTask(Task_TitleScreenPhase1, 0);
+        u8 taskId = CreateTask(Task_TitleScreenDoIntro, 0);
 
-        gTasks[taskId].tSkipToNext = FALSE;
         CreateSprite(&sSuicuneSpriteTemplate, 120, 118, 0);
         gMain.state = 3;
         break;
@@ -359,7 +335,6 @@ void CB2_InitTitleScreen(void)
         if (!UpdatePaletteFade())
         {
             //StartPokemonLogoShine(0);
-            //ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE);
             SetMainCallback2(MainCB2);
         }
         break;
@@ -401,7 +376,11 @@ static bool8 (*const sLogoCombFuncs[])(struct Task *task) =
     LogoComb_Func3
 };
 
-static void Task_TitleScreenPhase1(u8 taskId)
+#define tState data[0]
+#define tLogoPos data[1]
+#define tEmblemPos data[2]
+
+static void Task_TitleScreenDoIntro(u8 taskId)
 {
     while (sLogoCombFuncs[gTasks[taskId].tState](&gTasks[taskId]));
 }
@@ -412,8 +391,8 @@ static bool8 LogoComb_Func1(struct Task *task)
 
     ScanlineEffect_Clear();
 
-    task->data[2] = 240;
-    task->data[3] = 140;
+    task->tLogoPos = 240;
+    task->tEmblemPos = 140;
     sVBlank_DMA = FALSE;
 
     for (i = 0; i < 160; i++)
@@ -438,15 +417,15 @@ static bool8 LogoComb_Func2(struct Task *task)
 
     sVBlank_DMA = FALSE;
 
-    task->data[2] -= 8;
-    if (task->data[2] <= 0)
-        task->data[2] = 0;
+    task->tLogoPos -= 8;
+    if (task->tLogoPos <= 0)
+        task->tLogoPos = 0;
 
-    task->data[3] -= 4;
-    if (task->data[3] <= 20)
-        task->data[3] = 20;
+    task->tEmblemPos -= 4;
+    if (task->tEmblemPos <= 20)
+        task->tEmblemPos = 20;
 
-    SetGpuReg(REG_OFFSET_BG1VOFS, task->data[3]);
+    SetGpuReg(REG_OFFSET_BG1VOFS, task->tEmblemPos);
 
     for (i = 0; i < 160; i++)
     {
@@ -454,17 +433,17 @@ static bool8 LogoComb_Func2(struct Task *task)
         u16 *storeLoc2 = &gScanlineEffectRegBuffers[0][i + 160];
         if (i & 1)
         {
-            *storeLoc1 = task->data[2];
-            *storeLoc2 = 240 - task->data[2];
+            *storeLoc1 = task->tLogoPos;
+            *storeLoc2 = 240 - task->tLogoPos;
         }
         else
         {
-            *storeLoc1 = -task->data[2];
-            *storeLoc2 = (task->data[2] << 8) | (0xF1);
+            *storeLoc1 = -task->tLogoPos;
+            *storeLoc2 = (task->tLogoPos << 8) | (0xF1);
         }
     }
 
-    if (task->data[2] == 0 && task->data[3] == 20)
+    if (task->tLogoPos == 0 && task->tEmblemPos == 20)
         task->tState++;
 
     sVBlank_DMA++;
@@ -479,25 +458,12 @@ static bool8 LogoComb_Func3(struct Task *task)
     SetHBlankCallback(NULL);
     DisableInterrupts(INTR_FLAG_HBLANK);
     ClearGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
-    task->func = Task_TitleScreenPhase3;
+    task->func = Task_TitleScreenProcessInput;
     return FALSE;
 }
 
-// Create "Press Start" and copyright banners, and slide Pokemon logo up
-static void Task_TitleScreenPhase2(u8 taskId)
-{
-    //if (GetGpuReg(REG_OFFSET_BG0HOFS) == 3)
-    {
-        SetVBlankCallback(VBlankCB);
-        SetHBlankCallback(NULL);
-        DisableInterrupts(INTR_FLAG_HBLANK);
-        ClearGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
-        gTasks[taskId].func = Task_TitleScreenPhase3;
-    }
-}
-
-// Show Rayquaza silhouette and process main title screen input
-static void Task_TitleScreenPhase3(u8 taskId)
+// Process title screen input
+static void Task_TitleScreenProcessInput(u8 taskId)
 {
     if ((gMain.newKeys & A_BUTTON) || (gMain.newKeys & START_BUTTON))
     {
@@ -525,16 +491,6 @@ static void Task_TitleScreenPhase3(u8 taskId)
     }
     else
     {
-        /*SetGpuReg(REG_OFFSET_BG2Y_L, 0);
-        SetGpuReg(REG_OFFSET_BG2Y_H, 0);
-        gTasks[taskId].tCounter++;
-        if (gTasks[taskId].tCounter & 1)
-        {
-            gTasks[taskId].data[4]++;
-            //gBattle_BG1_Y = gTasks[taskId].data[4] / 2;
-            //gBattle_BG1_X = 0;
-        }
-        UpdateLegendaryMarkingColor(gTasks[taskId].tCounter);*/
         UpdatePressStartColor(taskId);
         if ((gMPlayInfo_BGM.status & 0xFFFF) == 0)
         {
@@ -546,7 +502,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
 
 static void CB2_GoToMainMenu(void)
 {
-    if (!UpdatePaletteFade()/* && gMPlayInfo_BGM.fadeOV < 0x40*/)
+    if (!UpdatePaletteFade())// && gMPlayInfo_BGM.fadeOV < 0x40)
         SetMainCallback2(CB2_InitMainMenu);
     AnimateSprites();   // does having Suicune pause or continue running look better?
     BuildOamBuffer();
