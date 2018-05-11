@@ -17,26 +17,12 @@
 #if defined (__APPLE__) || defined (__CYGWIN__) || defined (_MSC_VER)
 #define _(x) x
 #define __(x) x
-<<<<<<< HEAD
-#define INCBIN_U8() {0}
-#define INCBIN_U16() {0}
-#define INCBIN_U32() {0}
-#define INCBIN_S8() {0}
-#define INCBIN_S16() {0}
-#define INCBIN_S32() {0}
-#define IWRAM_DATA
-#define EWRAM_DATA
-#define ALIGNED()
-#define ASM_DIRECT
-#define asm()
-=======
 #define INCBIN_U8 {0}
 #define INCBIN_U16 {0}
 #define INCBIN_U32 {0}
 #define INCBIN_S8 {0}
 #define INCBIN_S16 {0}
 #define INCBIN_S32 {0}
->>>>>>> d1df98361f2144b286472e239b2f4bd1ada7dedd
 #endif // IDE support
 
 #define ARRAY_COUNT(array) (size_t)(sizeof(array) / sizeof((array)[0]))

@@ -16,6 +16,7 @@ EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 
 u8 GetTimeOfDay(void)
 {
+    RtcSlowUpdate();
     if (gLocalTime.hours < 6)
         return TIME_NIGHT;
     else if (gLocalTime.hours < 9)

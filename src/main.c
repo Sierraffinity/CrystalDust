@@ -151,7 +151,6 @@ void AgbMain()
 
         PlayTimeCounter_Update();
         MapMusicMain();
-        RtcSlowUpdate();
         WaitForVBlank();
     }
 }
