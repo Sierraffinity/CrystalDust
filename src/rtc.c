@@ -285,6 +285,7 @@ void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct T
     {
         result->hours += 24;
         --result->days;
+        --result->dayOfWeek;
     }
 
     if (result->dayOfWeek < 0)

@@ -1729,3 +1729,11 @@ gTilesetPalettes_UnionRoom:: @ 8395678
 	.align 2
 gTilesetTiles_UnionRoom:: @ 8395878
 	.incbin "data/tilesets/secondary/union_room/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalOverride_Petalburg06::
+	.incbin "data/tilesets/secondary/petalburg/palettes/06_over.gbapal"
+
+	.align 2
+gTilesetPalOverride_Petalburg08::
+	.incbin "data/tilesets/secondary/petalburg/palettes/08_over.gbapal"

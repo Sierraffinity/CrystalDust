@@ -12,6 +12,7 @@
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 static EWRAM_DATA u8 sOldTimeOfDay = TIME_NIGHT;
+EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 
 u8 GetTimeOfDay(void)
 {
@@ -35,6 +36,36 @@ u8 GetTimeOfDayWithModifiers(void)
     return GetTimeOfDay();
 }
 
+static void LoadPaletteOverrides(void)
+{
+    u8 i, j;
+    const u16* src;
+    u16* dest;
+    u8 timeOfDay = GetTimeOfDay();
+
+    for (i = 0; i < ARRAY_COUNT(gPaletteOverrides); i++)
+    {
+        const struct PaletteOverride *curr = gPaletteOverrides[i];
+        if (curr != NULL)
+        {
+            while (curr->slot != PALOVER_LIST_TERM && curr->palette != NULL)
+            {
+                if (curr->timeOfDay == timeOfDay)
+                {
+                    for (j = 0, src = curr->palette, dest = gPlttBufferUnfaded + (curr->slot * 16); j < 16; j++, src++, dest++)
+                    {
+                        if (*src == RGB_BLACK)
+                            continue;
+                        
+                        *dest = *src;
+                    }
+                }
+                curr++;
+            }
+        }
+    }
+}
+
 static void TintForDayNightOnLoad(u16 offset, u16 size)
 {
     switch (GetTimeOfDayWithModifiers())
@@ -52,6 +83,7 @@ static void TintForDayNightOnLoad(u16 offset, u16 size)
             CpuCopy16(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size);
             break;
     }
+    LoadPaletteOverrides();
 }
 
 void LoadCompressedPaletteDayNight(const void *src, u16 offset, u16 size)
@@ -100,6 +132,7 @@ void TintForDayNight(void)
                 }
                 break;
         }
+        LoadPaletteOverrides();
         if (!gPaletteFade.active && gPaletteFade.yDec)  // HACK
             CpuCopy16(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_BUFFER_SIZE * 2);
     }
