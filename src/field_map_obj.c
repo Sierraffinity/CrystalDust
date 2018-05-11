@@ -1263,13 +1263,14 @@ void sub_808E8C0(u16 *paletteTags)
     }
 }
 
+// NOTE: Does not use LoadSpritePaletteDayNight because of naming screen
 static u8 sub_808E8F4(const struct SpritePalette *spritePalette)
 {
     if (IndexOfSpritePaletteTag(spritePalette->tag) != 0xff)
     {
         return 0xff;
     }
-    return LoadSpritePaletteDayNight(spritePalette);
+    return LoadSpritePalette(spritePalette);
 }
 
 void pal_patch_for_npc(u16 paletteTag, u8 paletteSlot)
