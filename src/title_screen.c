@@ -35,7 +35,7 @@
 #define A_B_START_SELECT (A_BUTTON | B_BUTTON | START_BUTTON | SELECT_BUTTON)
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
-EWRAM_DATA vu16 sVBlank_DMA = 0;
+EWRAM_DATA vu8 sVBlank_DMA = 0;
 
 extern const u8 gTitleScreenPressStartGfx[];
 extern const u8 gTitleScreenPokemonLogoGfx[];
@@ -266,25 +266,14 @@ static void StartPokemonLogoShine(u8 flashBg)
 
 static void VBlankCB(void)
 {
-    DmaStop(0);
     //ScanlineEffect_InitHBlankDmaTransfer();
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
-    if (sVBlank_DMA)
-        DmaCopy16(3, gScanlineEffectRegBuffers[0], gScanlineEffectRegBuffers[1], 640);
-    DmaSet(0, &gScanlineEffectRegBuffers[1][160], &REG_WIN0H, 0xA2400001);
+    //SetGpuReg(REG_OFFSET_BG1VOFS, gBattle_BG1_Y);
 }
 
-static void HBlankCB(void)
-{
-    if (REG_VCOUNT < 160)
-    {
-        REG_BG0HOFS = gScanlineEffectRegBuffers[1][REG_VCOUNT] + 3;
-    }
-}
-
-#define tCounter data[0]
+#define tState data[0]
 #define tSkipToNext data[1]
 
 void CB2_InitTitleScreen(void)
@@ -308,10 +297,6 @@ void CB2_InitTitleScreen(void)
         SetGpuReg(REG_OFFSET_BG1VOFS, 0);
         SetGpuReg(REG_OFFSET_BG0HOFS, 0);
         SetGpuReg(REG_OFFSET_BG0VOFS, 0);
-        SetGpuReg(REG_OFFSET_WIN0H, 0);
-        SetGpuReg(REG_OFFSET_WIN0V, 160);
-        SetGpuReg(REG_OFFSET_WININ, 0x3F);
-        SetGpuReg(REG_OFFSET_WINOUT, 0x3E);
         DmaFill16(3, 0, (void *)VRAM, VRAM_SIZE);
         DmaFill32(3, 0, (void *)OAM, OAM_SIZE);
         DmaFill16(3, 0, (void *)(PLTT + 2), PLTT_SIZE - 2);
@@ -323,8 +308,6 @@ void CB2_InitTitleScreen(void)
         LZ77UnCompVram(gTitleScreenPokemonLogoGfx, (void *)VRAM);
         LZ77UnCompVram(gTitleScreenPokemonLogoTilemap, (void *)(VRAM + 0xF800));
         LoadPalette(gTitleScreenBgPalettes, 0, 0x200);
-        //LZ77UnCompVram(sTitleScreenRayquazaGfx, (void *)(VRAM + 0xC000));
-        //LZ77UnCompVram(sTitleScreenRayquazaTilemap, (void *)(VRAM + 0xE000));
         LZ77UnCompVram(sTitleScreenCloudsGfx, (void *)(VRAM + 0x8000));
         LZ77UnCompVram(sTitleScreenCloudsTilemap, (void *)(VRAM + 0xE000));
         LZ77UnCompVram(sTitleScreenEmblemGfx, (void *)(VRAM + 0x4000));
@@ -333,62 +316,35 @@ void CB2_InitTitleScreen(void)
         ResetSpriteData();
         FreeAllSpritePalettes();
         gReservedSpritePaletteCount = 9;
-        //LoadCompressedObjectPic(&sSpriteSheet_EmeraldVersion[0]);
         LoadCompressedObjectPic(&sSpriteSheet_Suicune[0]);
         LoadCompressedObjectPic(&sPokemonLogoShineSpriteSheet[0]);
-        //LoadPalette(gTitleScreenEmeraldVersionPal, 0x100, 0x20);
         LoadSpritePalette(&sSpritePalette_Suicune[0]);
         gMain.state = 2;
         break;
     case 2:
     {
-        int i;
         u8 taskId = CreateTask(Task_TitleScreenPhase1, 0);
 
-        ScanlineEffect_Clear();
-        gTasks[taskId].tCounter = 256;
         gTasks[taskId].tSkipToNext = FALSE;
-        gTasks[taskId].data[2] = 240;
-        gTasks[taskId].data[3] = 140;
-        sVBlank_DMA = FALSE;
-
-        for (i = 0; i < 160; i++)
-        {
-            gScanlineEffectRegBuffers[1][i] = 240;
-            gScanlineEffectRegBuffers[1][160 + i] = 0;
-        }
         CreateSprite(&sSuicuneSpriteTemplate, 120, 118, 0);
         gMain.state = 3;
         break;
     }
     case 3:
         BeginNormalPaletteFade(0xFFFFFFFF, 1, 0x10, 0, 0xFFFF);
-
-        SetHBlankCallback(HBlankCB);
-        SetVBlankCallback(VBlankCB);
         gMain.state = 4;
         break;
     case 4:
         sub_816F2A8(0x78, 0x50, 0x100, 0);
-        /*SetGpuReg(REG_OFFSET_BG2X_L, 0);
-        SetGpuReg(REG_OFFSET_BG2X_H, 0);
-        SetGpuReg(REG_OFFSET_BG2Y_L, 0);
-        SetGpuReg(REG_OFFSET_BG2Y_H, 0);
+        SetGpuReg(REG_OFFSET_BG1VOFS, 140);
         SetGpuReg(REG_OFFSET_WIN0H, 0);
         SetGpuReg(REG_OFFSET_WIN0V, 160);
-        SetGpuReg(REG_OFFSET_WIN1H, 0);
-        SetGpuReg(REG_OFFSET_WIN1V, 0);
         SetGpuReg(REG_OFFSET_WININ, 0x3F);
         SetGpuReg(REG_OFFSET_WINOUT, 0x3E);
-        SetGpuReg(REG_OFFSET_BLDCNT, 0x84);
-        SetGpuReg(REG_OFFSET_BLDALPHA, 0);
-        SetGpuReg(REG_OFFSET_BLDY, 0xC);*/
         SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(31) | BGCNT_256COLOR | BGCNT_TXT256x256);
         SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1) | BGCNT_CHARBASE(1) | BGCNT_SCREENBASE(29) | BGCNT_16COLOR | BGCNT_TXT256x512);
         SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2) | BGCNT_CHARBASE(2) | BGCNT_SCREENBASE(28) | BGCNT_16COLOR | BGCNT_TXT256x256);
-        //SetGpuReg(REG_OFFSET_BG3CNT, BGCNT_PRIORITY(3) | BGCNT_CHARBASE(3) | BGCNT_SCREENBASE(28) | BGCNT_16COLOR | BGCNT_TXT256x256);
-        EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_HBLANK);
-        SetGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
+        EnableInterrupts(INTR_FLAG_VBLANK);
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0
                                     | DISPCNT_OBJ_1D_MAP
                                     | DISPCNT_BG0_ON
@@ -408,10 +364,7 @@ void CB2_InitTitleScreen(void)
         }
         break;
     }
-    RunTasks();
-    AnimateSprites();
-    BuildOamBuffer();
-    UpdatePaletteFade();
+    MainCB2();
 }
 
 static void MainCB2(void)
@@ -422,55 +375,120 @@ static void MainCB2(void)
     UpdatePaletteFade();
 }
 
-// TODO: Fix really bad tearing on scanline thing
+static void VBlankCB_Comb(void)
+{
+    DmaStop(0);
+    VBlankCB();
+    if (sVBlank_DMA)
+        DmaCopy16(3, gScanlineEffectRegBuffers[0], gScanlineEffectRegBuffers[1], 640);
+    DmaSet(0, &gScanlineEffectRegBuffers[1][160], &REG_WIN0H, 0xA2400001);
+}
+
+static void HBlankCB_Comb(void)
+{
+    if (REG_VCOUNT < 160)
+        REG_BG0HOFS = gScanlineEffectRegBuffers[1][REG_VCOUNT] + 3;
+}
+
+static bool8 LogoComb_Func1(struct Task *task);
+static bool8 LogoComb_Func2(struct Task *task);
+static bool8 LogoComb_Func3(struct Task *task);
+
+static bool8 (*const sLogoCombFuncs[])(struct Task *task) =
+{
+    LogoComb_Func1,
+    LogoComb_Func2,
+    LogoComb_Func3
+};
+
 static void Task_TitleScreenPhase1(u8 taskId)
+{
+    while (sLogoCombFuncs[gTasks[taskId].tState](&gTasks[taskId]));
+}
+
+static bool8 LogoComb_Func1(struct Task *task)
 {
     u16 i;
 
-    // Skip to next phase when A, B, Start, or Select is pressed
-    /*if ((gMain.newKeys & A_B_START_SELECT) || gTasks[taskId].tSkipToNext != 0)
-    {
-        gTasks[taskId].tSkipToNext = TRUE;
-        gTasks[taskId].data[2] = 0;
-    }*/
+    ScanlineEffect_Clear();
 
+    task->data[2] = 240;
+    task->data[3] = 140;
     sVBlank_DMA = FALSE;
-
-    gTasks[taskId].data[2] -= 8;
-    if (gTasks[taskId].data[2] <= 0)
-        gTasks[taskId].data[2] = 0;
-
-    gTasks[taskId].data[3] -= 4;
-    if (gTasks[taskId].data[3] <= 20)
-        gTasks[taskId].data[3] = 20;
-
-    SetGpuReg(REG_OFFSET_BG1VOFS, gTasks[taskId].data[3]);
 
     for (i = 0; i < 160; i++)
     {
+        gScanlineEffectRegBuffers[1][i] = 240;
+        gScanlineEffectRegBuffers[1][160 + i] = 0;
+    }
+
+    EnableInterrupts(INTR_FLAG_HBLANK);
+    SetGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
+
+    SetVBlankCallback(VBlankCB_Comb);
+    SetHBlankCallback(HBlankCB_Comb);
+
+    task->tState++;
+    return TRUE;
+}
+
+static bool8 LogoComb_Func2(struct Task *task)
+{
+    u16 i;
+
+    sVBlank_DMA = FALSE;
+
+    task->data[2] -= 8;
+    if (task->data[2] <= 0)
+        task->data[2] = 0;
+
+    task->data[3] -= 4;
+    if (task->data[3] <= 20)
+        task->data[3] = 20;
+
+    SetGpuReg(REG_OFFSET_BG1VOFS, task->data[3]);
+
+    for (i = 0; i < 160; i++)
+    {
+        u16 *storeLoc1 = &gScanlineEffectRegBuffers[0][i];
+        u16 *storeLoc2 = &gScanlineEffectRegBuffers[0][i + 160];
         if (i & 1)
         {
-            gScanlineEffectRegBuffers[0][i] = gTasks[taskId].data[2];
-            gScanlineEffectRegBuffers[0][i + 160] = 240 - gTasks[taskId].data[2];
+            *storeLoc1 = task->data[2];
+            *storeLoc2 = 240 - task->data[2];
         }
         else
         {
-            gScanlineEffectRegBuffers[0][i] = -gTasks[taskId].data[2];
-            gScanlineEffectRegBuffers[0][i + 160] = (gTasks[taskId].data[2] << 8) | (0xF1);
+            *storeLoc1 = -task->data[2];
+            *storeLoc2 = (task->data[2] << 8) | (0xF1);
         }
     }
 
-    if (gTasks[taskId].data[2] == 0 && gTasks[taskId].data[3] == 20)
-        gTasks[taskId].func = Task_TitleScreenPhase3;
+    if (task->data[2] == 0 && task->data[3] == 20)
+        task->tState++;
 
     sVBlank_DMA++;
+    return FALSE;
+}
+
+static bool8 LogoComb_Func3(struct Task *task)
+{
+    DmaStop(0);
+    SetGpuReg(REG_OFFSET_BG0HOFS, 3);
+    SetVBlankCallback(VBlankCB);
+    SetHBlankCallback(NULL);
+    DisableInterrupts(INTR_FLAG_HBLANK);
+    ClearGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
+    task->func = Task_TitleScreenPhase3;
+    return FALSE;
 }
 
 // Create "Press Start" and copyright banners, and slide Pokemon logo up
 static void Task_TitleScreenPhase2(u8 taskId)
 {
-    if (GetGpuReg(REG_OFFSET_BG0HOFS) == 3)
+    //if (GetGpuReg(REG_OFFSET_BG0HOFS) == 3)
     {
+        SetVBlankCallback(VBlankCB);
         SetHBlankCallback(NULL);
         DisableInterrupts(INTR_FLAG_HBLANK);
         ClearGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
@@ -484,27 +502,25 @@ static void Task_TitleScreenPhase3(u8 taskId)
     if ((gMain.newKeys & A_BUTTON) || (gMain.newKeys & START_BUTTON))
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(0xFFFFFFFF, 1, 0, 0x10, 0xFFFF);
-        SetHBlankCallback(NULL);
-        DisableInterrupts(INTR_FLAG_HBLANK);
-        ClearGpuRegBits(REG_OFFSET_DISPSTAT, DISPSTAT_HBLANK_INTR);
+        BeginNormalPaletteFade(0xFFFFFFFF, 1, 0, 0x10, RGB_WHITEALPHA);
         SetMainCallback2(CB2_GoToMainMenu);
     }
     else if ((gMain.heldKeys & CLEAR_SAVE_BUTTON_COMBO) == CLEAR_SAVE_BUTTON_COMBO)
     {
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_WHITEALPHA);
         SetMainCallback2(CB2_GoToClearSaveDataScreen);
     }
     else if ((gMain.heldKeys & RESET_RTC_BUTTON_COMBO) == RESET_RTC_BUTTON_COMBO
       && CanResetRTC() == TRUE)
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_GoToResetRtcScreen);
     }
     else if ((gMain.heldKeys & BERRY_UPDATE_BUTTON_COMBO) == BERRY_UPDATE_BUTTON_COMBO)
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(-1, 0, 0, 0x10, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_GoToBerryFixScreen);
     }
     else
@@ -532,24 +548,32 @@ static void CB2_GoToMainMenu(void)
 {
     if (!UpdatePaletteFade()/* && gMPlayInfo_BGM.fadeOV < 0x40*/)
         SetMainCallback2(CB2_InitMainMenu);
+    AnimateSprites();   // does having Suicune pause or continue running look better?
+    BuildOamBuffer();
 }
 
 static void CB2_GoToCopyrightScreen(void)
 {
     if (!UpdatePaletteFade())
         SetMainCallback2(CB2_InitCopyrightScreenAfterTitleScreen);
+    AnimateSprites();
+    BuildOamBuffer();
 }
 
 static void CB2_GoToClearSaveDataScreen(void)
 {
     if (!UpdatePaletteFade())
         SetMainCallback2(CB2_InitClearSaveDataScreen);
+    AnimateSprites();
+    BuildOamBuffer();
 }
 
 static void CB2_GoToResetRtcScreen(void)
 {
     if (!UpdatePaletteFade())
         SetMainCallback2(CB2_InitResetRtcScreen);
+    AnimateSprites();
+    BuildOamBuffer();
 }
 
 static void CB2_GoToBerryFixScreen(void)
@@ -559,6 +583,8 @@ static void CB2_GoToBerryFixScreen(void)
         m4aMPlayAllStop();
         SetMainCallback2(CB2_InitBerryFixProgram);
     }
+    AnimateSprites();
+    BuildOamBuffer();
 }
 
 static void UpdatePressStartColor(u8 taskId)
