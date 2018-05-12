@@ -6,24 +6,46 @@
 #include "palette.h"
 #include "rtc.h"
 
-#define TINT_MORNING Q_8_8(0.8), Q_8_8(0.7), Q_8_8(1.0)
+#define TINT_MORNING Q_8_8(0.9), Q_8_8(0.8), Q_8_8(1.0)
 #define TINT_AFTERNOON Q_8_8(1.0), Q_8_8(0.6), Q_8_8(0.67)
 #define TINT_NIGHT Q_8_8(0.5), Q_8_8(0.5), Q_8_8(1.0)
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 static EWRAM_DATA u8 sOldTimeOfDay = TIME_NIGHT;
+//static EWRAM_DATA u8 sDemo = 0;
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 
 u8 GetTimeOfDay(void)
 {
-    RtcSlowUpdate();
-    if (gLocalTime.hours < 6)
+    /*if (++sDemo > 240)
+    {
+        sDemo = 0;
         return TIME_NIGHT;
-    else if (gLocalTime.hours < 9)
-        return TIME_MORNING;
-    else if (gLocalTime.hours < 18)
+    }
+    else if (sDemo > 180)
+    {
+        return TIME_AFTERNOON;
+    }
+    else if (sDemo > 120)
+    {
         return TIME_DAY;
-    else if (gLocalTime.hours < 20)
+    }
+    else if (sDemo > 60)
+    {
+        return TIME_MORNING;
+    }
+    else
+    {
+        return TIME_NIGHT;
+    }*/
+    RtcSlowUpdate();
+    if (gLocalTime.hours < 4)
+        return TIME_NIGHT;
+    else if (gLocalTime.hours < 10)
+        return TIME_MORNING;
+    else if (gLocalTime.hours < 17)
+        return TIME_DAY;
+    else if (gLocalTime.hours < 18)
         return TIME_AFTERNOON;
     else
         return TIME_NIGHT;
