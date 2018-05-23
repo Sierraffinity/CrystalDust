@@ -114,7 +114,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_29283F:: @ 829283F
 
 LittlerootTown_BrendansHouse_2F_EventScript_292849:: @ 8292849
 	fadescreen 1
-	special StartWallClock
+	special PokegearScriptHarness
 	waitstate
 	return
 

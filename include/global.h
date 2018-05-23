@@ -78,6 +78,7 @@ enum
     VERSION_EMERALD = 3,
     VERSION_FIRE_RED = 4,
     VERSION_LEAF_GREEN = 5,
+    VERSION_CRYSTAL_DUST = 6,
 };
 
 enum LanguageId
@@ -91,7 +92,7 @@ enum LanguageId
     LANGUAGE_SPANISH = 7,
 };
 
-#define GAME_VERSION (VERSION_EMERALD)
+#define GAME_VERSION (VERSION_CRYSTAL_DUST)
 #define GAME_LANGUAGE (LANGUAGE_ENGLISH)
 
 // capacities of various saveblock objects

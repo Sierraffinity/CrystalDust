@@ -33,9 +33,9 @@ static void VCountIntr(void);
 static void SerialIntr(void);
 static void IntrDummy(void);
 
-const u8 gGameVersion = VERSION_EMERALD;
+const u8 gGameVersion = GAME_VERSION;
 
-const u8 gGameLanguage = GAME_LANGUAGE; // English
+const u8 gGameLanguage = GAME_LANGUAGE;
 
 const char BuildDateTime[] = "2005 02 21 11:10";
 

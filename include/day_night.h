@@ -26,5 +26,6 @@ void LoadCompressedPaletteDayNight(const void *src, u16 offset, u16 size);
 void LoadPaletteDayNight(const void *src, u16 offset, u16 size);
 void TintForDayNight(void);
 void DoLoadSpritePaletteDayNight(const u16 *src, u16 paletteOffset);
+const u8 *GetDayOfWeekString(void);
 
 #endif // GUARD_DAY_NIGHT_H

@@ -5,6 +5,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "rtc.h"
+#include "strings.h"
 
 #define TINT_MORNING Q_8_8(0.9), Q_8_8(0.8), Q_8_8(1.0)
 #define TINT_AFTERNOON Q_8_8(1.0), Q_8_8(0.6), Q_8_8(0.67)
@@ -49,6 +50,11 @@ u8 GetTimeOfDay(void)
         return TIME_AFTERNOON;
     else
         return TIME_NIGHT;
+}
+
+const u8 *GetDayOfWeekString(void)
+{
+    return gDayOfWeekTable[gLocalTime.dayOfWeek];
 }
 
 u8 GetTimeOfDayWithModifiers(void)

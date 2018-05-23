@@ -945,6 +945,8 @@ gUnknown_0203CF54: @ 203CF54
 gUnknown_0203CF58: @ 203CF58
 	.space 0x4
 
+	.include "src/pokegear.o"
+
 gUnknown_0203CF5C: @ 203CF5C
 	.space 0x4
 

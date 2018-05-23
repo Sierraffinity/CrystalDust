@@ -5385,3 +5385,40 @@ gText_Berry:: @ 85EFCDF
 
 gText_Berries:: @ 85EFCE5
 	.string "BERRIES$"
+
+gText_PokegearInstructions::
+	.string "Press {UP_ARROW} or {DOWN_ARROW} to change cards.\nPress B to exit.$"
+
+gText_PokegearSelectToChangeMode::
+	.string "SELECT: Change mode$"
+
+gText_Sunday::
+	.string "SUNDAY$"
+
+gText_Monday::
+	.string "MONDAY$"
+
+gText_Tuesday::
+	.string "TUESDAY$"
+
+gText_Wednesday::
+	.string "WEDNESDAY$"
+
+gText_Thursday::
+	.string "THURSDAY$"
+
+gText_Friday::
+	.string "FRIDAY$"
+
+gText_Saturday::
+	.string "SATURDAY$"
+
+	.align 2
+gDayOfWeekTable::
+	.4byte gText_Sunday
+	.4byte gText_Monday
+	.4byte gText_Tuesday
+	.4byte gText_Wednesday
+	.4byte gText_Thursday
+	.4byte gText_Friday
+	.4byte gText_Saturday

@@ -165,7 +165,7 @@ gSpecials:: @ 81DBA64
 	def_special CableCarWarp
 	def_special sub_814FC9C
 	def_special Overworld_PlaySpecialMapMusic
-	def_special StartWallClock
+	def_special PokegearScriptHarness
 	def_special Special_ViewWallClock
 	def_special ChooseStarter
 	def_special StartWallyTutorialBattle
