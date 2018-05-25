@@ -231,6 +231,7 @@ struct OamMatrix
 extern const struct OamData gDummyOamData;
 extern const union AnimCmd *const gDummySpriteAnimTable[];
 extern const union AffineAnimCmd *const gDummySpriteAffineAnimTable[];
+extern const struct SpriteTemplate gDummySpriteTemplate;
 extern s16 gSpriteCoordOffsetX;
 extern s16 gSpriteCoordOffsetY;
 
