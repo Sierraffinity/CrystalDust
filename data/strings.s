@@ -5392,6 +5392,9 @@ gText_PokegearInstructions::
 gText_PokegearSelectToChangeMode::
 	.string "SELECT: Change mode$"
 
+gText_PokegearRadioTuning::
+	.string "{LEFT_ARROW} TUNING {RIGHT_ARROW}$"
+
 gText_Sunday::
 	.string "SUNDAY$"
 

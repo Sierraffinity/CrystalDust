@@ -107,7 +107,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_29280F:: @ 829280F
 LittlerootTown_BrendansHouse_2F_EventScript_29283F:: @ 829283F
 	incrementgamestat 45
 	fadescreen 1
-	special Special_ViewWallClock
+	special PokegearScriptHarness
 	waitstate
 	releaseall
 	end
