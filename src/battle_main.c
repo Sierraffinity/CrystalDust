@@ -676,7 +676,7 @@ static void CB2_InitBattleInternal(void)
     }
 
     gMain.inBattle = TRUE;
-    gSaveBlock2Ptr->field_CA9_b = 0;
+    gSaveBlock2Ptr->frontier.field_CA9_b = 0;
 
     for (i = 0; i < 6; i++)
         AdjustFriendship(&gPlayerParty[i], 3);
@@ -1819,7 +1819,7 @@ void BattleMainCB2(void)
     {
         gSpecialVar_Result = gBattleOutcome = B_OUTCOME_PLAYER_TELEPORTED;
         ResetPaletteFadeControl();
-        BeginNormalPaletteFade(-1, 0, 0, 0x10, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
         SetMainCallback2(CB2_QuitRecordedBattle);
     }
 }
@@ -2255,7 +2255,7 @@ static void sub_8038F34(void)
     case 1:
         if (--gBattleCommunication[1] == 0)
         {
-            BeginNormalPaletteFade(-1, 0, 0, 0x10, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
             gBattleCommunication[MULTIUSE_STATE]++;
         }
         break;
@@ -2273,7 +2273,7 @@ static void sub_8038F34(void)
 
             for (i = 0; i < monsCount && (gLinkPlayers[i].version & 0xFF) == VERSION_EMERALD; i++);
 
-            if (!gSaveBlock2Ptr->field_CA9_b && i == monsCount)
+            if (!gSaveBlock2Ptr->frontier.field_CA9_b && i == monsCount)
             {
                 if (FlagGet(FLAG_SYS_FRONTIER_PASS))
                 {
@@ -2312,7 +2312,7 @@ static void sub_8038F34(void)
         for (i = 0; i < 2; i++)
             LoadChosenBattleElement(i);
 
-        BeginNormalPaletteFade(-1, 0, 0x10, 0, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0);
         gBattleCommunication[MULTIUSE_STATE]++;
         break;
     case 4:
@@ -2417,7 +2417,7 @@ static void sub_80392A8(void)
     gReservedSpritePaletteCount = 4;
     SetVBlankCallback(VBlankCB_Battle);
     SetMainCallback2(sub_803937C);
-    BeginNormalPaletteFade(-1, 0, 0x10, 0, 0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0);
     gBattleCommunication[MULTIUSE_STATE] = 0;
 }
 
@@ -2577,7 +2577,7 @@ static void sub_803939C(void)
             {
                 if (sub_800A520() == TRUE)
                 {
-                    BeginNormalPaletteFade(-1, 0, 0, 0x10, 0);
+                    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
                     gBattleCommunication[1] = 0x20;
                     gBattleCommunication[MULTIUSE_STATE] = 8;
                 }
@@ -2585,7 +2585,7 @@ static void sub_803939C(void)
             }
             else
             {
-                BeginNormalPaletteFade(-1, 0, 0, 0x10, 0);
+                BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
                 gBattleCommunication[1] = 0x20;
                 gBattleCommunication[MULTIUSE_STATE] = 8;
             }
@@ -5015,7 +5015,7 @@ static void HandleEndTurn_BattleLost(void)
             {
                 gBattlescriptCurrInstr = BattleScript_PrintPlayerForfeitedLinkBattle;
                 gBattleOutcome &= ~(B_OUTCOME_LINK_BATTLE_RAN);
-                gSaveBlock2Ptr->field_CA9_b = 1;
+                gSaveBlock2Ptr->frontier.field_CA9_b = 1;
             }
             else
             {
@@ -5047,7 +5047,7 @@ static void HandleEndTurn_RanFromBattle(void)
     {
         gBattlescriptCurrInstr = BattleScript_PrintPlayerForfeited;
         gBattleOutcome = B_OUTCOME_FORFEITED;
-        gSaveBlock2Ptr->field_CA9_b = 1;
+        gSaveBlock2Ptr->frontier.field_CA9_b = 1;
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_x4000000)
     {
@@ -5666,7 +5666,7 @@ static void HandleAction_Run(void)
         }
 
         gBattleOutcome |= B_OUTCOME_LINK_BATTLE_RAN;
-        gSaveBlock2Ptr->field_CA9_b = 1;
+        gSaveBlock2Ptr->frontier.field_CA9_b = 1;
     }
     else
     {

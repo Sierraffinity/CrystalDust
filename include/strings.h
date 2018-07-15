@@ -110,6 +110,8 @@ extern const u8 gText_MoveCloserToLinkPartner[];
 extern const u8 gText_CommErrorCheckConnections[];
 extern const u8 gText_ABtnTitleScreen[];
 extern const u8 gText_ABtnRegistrationCounter[];
+extern const u8 gText_MixingRecords[];
+extern const u8 gText_RecordMixingComplete[];
 extern const u8 gText_EmptyString2[];
 extern const u8 gText_Confirm3[];
 extern const u8 gText_Cancel4[];
@@ -369,6 +371,22 @@ extern const u8 gText_ThreeDashes[];
 // party menu text
 extern const u8 gText_PkmnHPRestoredByVar2[];
 extern const u8 gText_CantBeUsedOnPkmn[];
+
+//pokedex text
+extern const u8 gText_CryOf[];
+extern const u8 gText_SizeComparedTo[];
+extern const u8 gText_PokedexRegistration[];
+extern const u8 gText_UnkCtrlF908Clear01[];
+extern const u8 sText_TenDashes2[];
+extern const u8 gText_5MarksPokemon[];
+extern const u8 gText_UnkHeight[];
+extern const u8 gText_UnkWeight[];
+extern const u8 gText_HTHeight[];
+extern const u8 gText_WTWeight[];
+extern const u8 gText_SearchingPleaseWait[];
+extern const u8 gText_SearchCompleted[];
+extern const u8 gUnknown_085E8785[];
+extern const u8 gText_SelectorArrow[];
 
 // birch dex rating text
 extern const u8 gBirchDexRatingText_LessThan10[];

@@ -2070,7 +2070,7 @@ sub_81C4F44: @ 81C4F44
 	cmp r0, 0
 	bne _081C4F6E
 	bl overworld_free_bg_tilemaps
-	ldr r0, =gUnknown_03005DB0
+	ldr r0, =gFieldCallback2
 	ldr r1, =hm_add_c3_without_phase_2
 	str r1, [r0]
 	ldr r1, =CB2_ReturnToField
@@ -2869,7 +2869,7 @@ sub_81C5674: @ 81C5674
 	movs r1, 0xAC
 	movs r2, 0xC
 	movs r3, 0x94
-	bl AddScrollIndicatorArrowPairParametrized
+	bl AddScrollIndicatorArrowPairParameterized
 	ldr r1, [r4]
 	ldr r2, =0x00000816
 	adds r1, r2
@@ -4868,7 +4868,7 @@ sub_81C67CC: @ 81C67CC
 	ldrb r0, [r5]
 	movs r1, 0x10
 	movs r2, 0x1
-	bl sub_81AF15C
+	bl ListMenuSetUnkIndicatorsStructField
 	ldr r0, =gSaveBlock2Ptr
 	ldr r3, [r0]
 	movs r0, 0x2
@@ -5293,7 +5293,7 @@ sub_81C6BD8: @ 81C6BD8
 	movs r0, 0
 	movs r1, 0x1
 	movs r2, 0xE0
-	bl sub_809882C
+	bl LoadUserWindowBorderGfx
 	movs r0, 0
 	movs r1, 0xA
 	movs r2, 0xD0

@@ -61,7 +61,7 @@ SECTIONS {
         src/main_menu.o(.text);
         src/battle_controllers.o(.text);
         src/decompress.o(.text);
-        asm/rom_8034C54.o(.text);
+        src/rom_8034C54.o(.text);
         src/battle_bg.o(.text);
         src/battle_main.o(.text);
         src/battle_util.o(.text);
@@ -93,11 +93,9 @@ SECTIONS {
         src/field_camera.o(.text);
         src/field_door.o(.text);
         asm/field_player_avatar.o(.text);
-        src/field_map_obj.o(.text);
-        asm/field_ground_effect.o(.text);
-        src/field_map_obj_helpers.o(.text);
+        src/event_object_movement.o(.text);
         src/field_message_box.o(.text);
-        src/map_obj_lock.o(.text);
+        src/event_obj_lock.o(.text);
         src/text_window.o(.text);
         src/script.o(.text);
         src/scrcmd.o(.text);
@@ -126,13 +124,12 @@ SECTIONS {
         src/scanline_effect.o(.text);
         src/option_menu.o(.text);
         src/pokedex.o(.text);
-        asm/pokedex.o(.text);
         asm/trainer_card.o(.text);
         src/pokemon_storage_system.o(.text);
         asm/pokemon_storage_system.o(.text);
         src/pokemon_icon.o(.text);
         src/script_movement.o(.text);
-        asm/fldeff_cut.o(.text);
+        src/fldeff_cut.o(.text);
         src/mail_data.o(.text);
         src/map_name_popup.o(.text);
         src/item_menu_icons.o(.text);
@@ -145,7 +142,7 @@ SECTIONS {
         src/naming_screen.o(.text);
         src/money.o(.text);
         asm/contest_effect.o(.text);
-        asm/record_mixing.o(.text);
+        src/record_mixing.o(.text);
         src/secret_base.o(.text);
         src/tv.o(.text);
         asm/contest_link_80F57C4.o(.text);
@@ -250,6 +247,7 @@ SECTIONS {
         src/save_location.o(.text);
         src/item_icon.o(.text);
         asm/party_menu.o(.text);
+        src/battle_tent.o(.text);
         asm/battle_tent.o(.text);
         src/unk_text_util_2.o(.text);
         src/multiboot.o(.text);
@@ -373,7 +371,7 @@ SECTIONS {
         data/rom_8011DC0.o(.rodata);
         src/rtc.o(.rodata);
         src/main_menu.o(.rodata);
-        data/battle_1.o(.rodata);
+        src/rom_8034C54.o(.rodata);
         data/data2b.o(.rodata);
         src/battle_main.o(.rodata);
         src/battle_util.o(.rodata);
@@ -400,9 +398,7 @@ SECTIONS {
         src/metatile_behavior.o(.rodata);
         src/field_door.o(.rodata);
         data/field_player_avatar.o(.rodata);
-        data/field_map_obj.o(.rodata);
-        data/field_ground_effect.o(.rodata);
-        data/map_obj_8097404.o(.rodata);
+        src/event_object_movement.o(.rodata);
         src/text_window.o(.rodata);
         src/scrcmd.o(.rodata);
         src/coord_event_weather.o(.rodata);
@@ -431,7 +427,7 @@ SECTIONS {
         src/pokemon_storage_system.o(.rodata);
         data/pokemon_storage_system.o(.rodata);
         src/pokemon_icon.o(.rodata);
-        data/fldeff_cut.o(.rodata);
+        src/fldeff_cut.o(.rodata);
         src/map_name_popup.o(.rodata);
         src/item_menu_icons.o(.rodata);
         data/contest.o(.rodata);
@@ -441,7 +437,7 @@ SECTIONS {
         src/naming_screen.o(.rodata);
         src/money.o(.rodata);
         data/contest_effect.o(.rodata);
-        data/record_mixing.o(.rodata);
+        src/record_mixing.o(.rodata);
         src/secret_base.o(.rodata);
         src/tv.o(.rodata);
         data/contest_link_80F57C4.o(.rodata);
@@ -525,7 +521,7 @@ SECTIONS {
         src/save_location.o(.rodata);
         src/item_icon.o(.rodata);
         data/party_menu.o(.rodata);
-        data/battle_tent.o(.rodata);
+        src/battle_tent.o(.rodata);
         src/unk_text_util_2.o(.rodata);
         src/unk_81BAD84.o(.rodata);
         src/battle_controller_player_partner.o(.rodata);

@@ -488,7 +488,7 @@ static void Task_TitleScreenProcessInput(u8 taskId)
         UpdatePressStartColor(taskId);
         if ((gMPlayInfo_BGM.status & 0xFFFF) == 0)
         {
-            BeginNormalPaletteFade(-1, 0, 0, 0x10, 0xFFFF);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0xFFFF);
             SetMainCallback2(CB2_GoToCopyrightScreen);
         }
     }

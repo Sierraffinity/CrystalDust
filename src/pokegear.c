@@ -141,19 +141,19 @@ static const struct ListMenuTemplate sPhoneCardListMenuTemplate =
 {
     .items = sTempListMenuItems,
     .moveCursorFunc = NULL,
-    .unk_08 = NULL,
+    .itemPrintFunc = NULL,
     .totalItems = 6,
     .maxShowed = 6,
     .windowId = 1,
-    .unk_11 = 0,
-    .unk_12 = 8,
+    .header_X = 0,
+    .item_X = 8,
     .cursor_X = 0,
     .upText_Y = 1,
     .cursorPal = 2,
     .fillValue = 0,
     .cursorShadowPal = 3,
     .lettersSpacing = 1,
-    .unk_16_3 = 0,
+    .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
     .fontId = 1,
     .cursorKind = 0
@@ -373,7 +373,7 @@ static void CB2_InitPokegear(void)
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     DeactivateAllTextPrinters();
-    sub_809882C(0, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM * 0x10);
+    LoadUserWindowBorderGfx(0, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM * 0x10);
     clear_scheduled_bg_copies_to_vram();
     ScanlineEffect_Stop();
     ResetTasks();

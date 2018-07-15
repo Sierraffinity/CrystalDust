@@ -99,7 +99,7 @@ include graphics_file_rules.mk
 %.lz: % ; $(GFX) $< $@
 %.rl: % ; $(GFX) $< $@
 sound/direct_sound_samples/cry_%.bin: sound/direct_sound_samples/cry_%.aif ; $(AIF) $< $@ --compress
-%.bin: %.aif ; $(AIF) $< $@
+sound/%.bin: sound/%.aif ; $(AIF) $< $@
 sound/songs/%.s: sound/songs/%.mid
 	cd $(@D) && ../../$(MID) $(<F)
 
@@ -114,6 +114,8 @@ $(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork
 
 $(C_BUILDDIR)/m4a_2.o: CC1 := tools/agbcc/bin/old_agbcc
 $(C_BUILDDIR)/m4a_4.o: CC1 := tools/agbcc/bin/old_agbcc
+
+$(C_BUILDDIR)/record_mixing.o: CFLAGS += -ffreestanding
 
 ifeq ($(NODEP),)
 $(C_BUILDDIR)/%.o: c_dep = $(shell $(SCANINC) -I include $(C_SUBDIR)/$*.c)

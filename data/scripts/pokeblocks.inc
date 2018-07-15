@@ -559,7 +559,7 @@ LilycoveCity_ContestLobby_EventScript_294032:: @ 8294032
 	end
 
 LilycoveCity_ContestLobby_Movement_294053: @ 8294053
-	step_28
+	walk_in_place_fastest_right
 	step_end
 
 LilycoveCity_ContestLobby_EventScript_294055:: @ 8294055
@@ -594,7 +594,7 @@ LilycoveCity_ContestLobby_EventScript_2940BB:: @ 82940BB
 	call LilycoveCity_ContestLobby_EventScript_27134F
 	compare VAR_RESULT, 0
 	goto_eq LilycoveCity_ContestLobby_EventScript_294160
-	specialvar VAR_RESULT, sub_80093CC
+	specialvar VAR_RESULT, IsWirelessAdapterConnected
 	compare VAR_RESULT, 1
 	goto_eq LilycoveCity_ContestLobby_EventScript_2941ED
 	message LilycoveCity_ContestLobby_Text_293955
@@ -683,7 +683,7 @@ LilycoveCity_ContestLobby_EventScript_2941AA:: @ 82941AA
 	specialvar VAR_RESULT, GetLinkPartnerNames
 	copyvar VAR_0x8008, VAR_RESULT
 	copyvar VAR_0x8004, VAR_0x8008
-	special SpawnLinkPartnerFieldObject
+	special SpawnLinkPartnerEventObject
 	goto LilycoveCity_ContestLobby_EventScript_2941C4
 	end
 

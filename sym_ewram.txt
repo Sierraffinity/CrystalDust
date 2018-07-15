@@ -214,7 +214,7 @@ gUnknown_020322D5: @ 20322D5
 gUnknown_0203734C: @ 203734C
 	.space 0x4
 
-gMapObjects: @ 2037350
+gEventObjects: @ 2037350
 	.space 0x240
 
 gPlayerAvatar: @ 2037590
@@ -232,7 +232,7 @@ gUnknown_020375B4: @ 20375B4
 gUnknown_020375B6: @ 20375B6
 	.space 0x2
 
-gUnknown_020375B8: @ 20375B8
+gLockedAnimEventObjects: @ 20375B8
 	.space 0x4
 
     .include "src/field_message_box.o"
@@ -290,17 +290,7 @@ gUnknown_02038BC6: @ 2038BC6
 	
 	.align 2
 
-gUnknown_02039B4C: @ 2039B4C
-	.space 0x4
-
-gUnknown_02039B50: @ 2039B50
-	.space 0x2
-
-gUnknown_02039B52: @ 2039B52
-	.space 0x2
-
-gUnknown_02039B54: @ 2039B54
-	.space 0x4
+    .include "src/pokedex.o"
 
 gTrainerCards: @ 2039B58
 	.space 0x14
@@ -393,10 +383,7 @@ gUnknown_02039D8C: @ 2039D8C
 	.space 0x4
 
 	.include "src/script_movement.o"
-
-gUnknown_02039DD0: @ 2039DD0
-	.space 0x4
-
+	.include "src/fldeff_cut.o"
 	.include "src/map_name_popup.o"
 	.include "src/item.o"
 
@@ -486,17 +473,7 @@ gUnknown_02039F90: @ 2039F90
 
     .include "src/naming_screen.o"
     .include "src/money.o"
-    
-    .align 2
-gUnknown_02039F9C: @ 2039F9C
-	.space 0x78
-
-gUnknown_0203A014: @ 203A014
-	.space 0x4
-
-gUnknown_0203A018: @ 203A018
-	.space 0x4
-
+    .include "src/record_mixing.o"
     .include "src/secret_base.o"
     .include "src/tv.o"
 
@@ -626,7 +603,7 @@ gUnknown_0203AB34: @ 203AB34
     .include "src/battle_ai_script_commands.o"
     
 .align 2
-gUnknown_0203AB40: @ 203AB40
+gPlayerFacingPosition: @ 203AB40
 	.space 0x8
 	
 	.include "src/pokeblock.o"
@@ -864,7 +841,7 @@ gUnknown_0203CEE8: @ 203CEE8
 gUnknown_0203CEE9: @ 203CEE9
 	.space 0x3
 
-gUnknown_0203CEEC: @ 203CEEC
+gPostMenuFieldCallback: @ 203CEEC
 	.space 0x4
 
 gUnknown_0203CEF0: @ 203CEF0

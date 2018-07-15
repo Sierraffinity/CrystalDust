@@ -201,7 +201,7 @@ extern u32 gLinkStatus;
 
 void c2_mystery_gift(void);
 void sub_801867C(void);
-bool8 sub_80093CC(void);
+bool8 IsWirelessAdapterConnected(void);
 void Task_DestroySelf(u8 taskId);
 void OpenLink(void);
 void CloseLink(void);
@@ -292,5 +292,14 @@ extern u32 gFiller_0300315c;
 extern u32 gFiller_03004138;
 extern u32 gFiller_0300413C;
 extern u32 gFiller_03003080;
+
+bool32 Link_AnyPartnersPlayingRubyOrSapphire(void);
+bool32 sub_800A03C(void);
+void sub_8009628(u8);
+u8 sub_800AA48(void);
+void sub_8009FAC(void);
+bool8 sub_800A4D8(u8 a0);
+u8 sub_800A9D8(void);
+u8 sub_800A0C8(s32, s32);
 
 #endif // GUARD_LINK_H

@@ -151,15 +151,14 @@ extern const u8 gText_Space[];
 extern const u8 gText_BlenderMaxSpeedRecord[];
 extern const u8 gText_234Players[];
 
-extern void sub_81978B0(u16);
 extern void sub_800A418(void);
 extern u8 sub_800A9D8(void);
-extern bool8 sub_800A4D8(u8);
-extern void sub_809882C(u8, u16, u8);
+extern void LoadUserWindowBorderGfx(u8, u16, u8);
 extern void copy_textbox_border_tile_patterns_to_vram(u8, u16, u8);
 extern void sub_81AABF0(void (*callback)(void));
 extern void sub_800B4C0(void);
 extern void ClearLinkCallback(void);
+extern void sub_8009F8C(void);
 extern void sub_8153430(void);
 extern bool8 sub_8153474(void);
 extern void sub_80EECEC(void);
@@ -818,7 +817,7 @@ static bool8 LoadBerryBlenderGfx(void)
     switch (sBerryBlenderData->loadGfxState)
     {
     case 0:
-        sBerryBlenderData->tilesBuffer = AllocZeroed(sub_8034974(sBlenderCenterGfx) + 100);
+        sBerryBlenderData->tilesBuffer = AllocZeroed(GetDecompressedDataSize(sBlenderCenterGfx) + 100);
         LZDecompressWram(sBlenderCenterGfx, sBerryBlenderData->tilesBuffer);
         sBerryBlenderData->loadGfxState++;
         break;
@@ -829,7 +828,7 @@ static bool8 LoadBerryBlenderGfx(void)
         sBerryBlenderData->loadGfxState++;
         break;
     case 2:
-        LoadBgTiles(2, sBerryBlenderData->tilesBuffer, sub_8034974(sBlenderCenterGfx), 0);
+        LoadBgTiles(2, sBerryBlenderData->tilesBuffer, GetDecompressedDataSize(sBlenderCenterGfx), 0);
         sBerryBlenderData->loadGfxState++;
         break;
     case 3:
@@ -837,7 +836,7 @@ static bool8 LoadBerryBlenderGfx(void)
         sBerryBlenderData->loadGfxState++;
         break;
     case 4:
-        LoadBgTiles(1, sBerryBlenderData->tilesBuffer, sub_8034974(gUnknown_08D91DB8), 0);
+        LoadBgTiles(1, sBerryBlenderData->tilesBuffer, GetDecompressedDataSize(gUnknown_08D91DB8), 0);
         sBerryBlenderData->loadGfxState++;
         break;
     case 5:
@@ -845,7 +844,7 @@ static bool8 LoadBerryBlenderGfx(void)
         sBerryBlenderData->loadGfxState++;
         break;
     case 6:
-        CopyToBgTilemapBuffer(1, sBerryBlenderData->tilesBuffer, sub_8034974(gUnknown_08D927EC), 0);
+        CopyToBgTilemapBuffer(1, sBerryBlenderData->tilesBuffer, GetDecompressedDataSize(gUnknown_08D927EC), 0);
         CopyBgTilemapBufferToVram(1);
         sBerryBlenderData->loadGfxState++;
         break;
@@ -928,7 +927,7 @@ static void sub_807FAC8(void)
         InitBgsFromTemplates(1, sBerryBlenderBgTemplates, ARRAY_COUNT(sBerryBlenderBgTemplates));
         SetBgTilemapBuffer(1, sBerryBlenderData->tilemapBuffers[0]);
         SetBgTilemapBuffer(2, sBerryBlenderData->tilemapBuffers[1]);
-        sub_809882C(0, 1, 0xD0);
+        LoadUserWindowBorderGfx(0, 1, 0xD0);
         copy_textbox_border_tile_patterns_to_vram(0, 0x14, 0xF0);
         InitBerryBlenderWindows();
 
@@ -960,7 +959,7 @@ static void sub_807FAC8(void)
         }
         break;
     case 2:
-        BeginNormalPaletteFade(-1, 0, 0x10, 0, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0);
         sub_8082D28();
         sBerryBlenderData->mainState++;
         break;
@@ -974,7 +973,7 @@ static void sub_807FAC8(void)
             sBerryBlenderData->mainState++;
         break;
     case 5:
-        BeginNormalPaletteFade(-1, 0, 0, 0x10, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
         sBerryBlenderData->mainState++;
         break;
     case 6:
@@ -1164,7 +1163,7 @@ static void sub_8080018(void)
         sBerryBlenderData->mainState++;
         break;
     case 3:
-        BeginNormalPaletteFade(-1, 0, 0x10, 0, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0);
         sBerryBlenderData->mainState++;
         break;
     case 4:
@@ -1332,7 +1331,7 @@ static void sub_8080588(void)
     SetBgTilemapBuffer(1, sBerryBlenderData->tilemapBuffers[0]);
     SetBgTilemapBuffer(2, sBerryBlenderData->tilemapBuffers[1]);
 
-    sub_809882C(0, 1, 0xD0);
+    LoadUserWindowBorderGfx(0, 1, 0xD0);
     copy_textbox_border_tile_patterns_to_vram(0, 0x14, 0xF0);
     InitBerryBlenderWindows();
 
@@ -1491,7 +1490,7 @@ static void sub_80808D4(void)
         sBerryBlenderData->mainState++;
         break;
     case 3:
-        BeginNormalPaletteFade(-1, 0, 0x10, 0, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0);
         sBerryBlenderData->mainState++;
         sBerryBlenderData->framesToWait = 0;
         break;
@@ -2657,7 +2656,7 @@ static void CB2_HandlePlayerLinkPlayAgainChoice(void)
     case 9:
         if (sub_800A520())
         {
-            BeginNormalPaletteFade(-1, 0, 0, 0x10, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
             sBerryBlenderData->gameEndState++;
         }
         break;
