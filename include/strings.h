@@ -447,6 +447,7 @@ extern const u8 gText_WinLoseDraw[];
 // Pokégear
 extern const u8 gText_PokegearInstructions[];
 extern const u8 gText_PokegearSelectToChangeMode[];
+extern const u8 gText_PokegearWhomDoYouWantToCall[];
 extern const u8 gText_PokegearRadioTuning[];
 extern const u8 *gDayOfWeekTable[];
 

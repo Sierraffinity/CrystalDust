@@ -6,6 +6,7 @@
 #include "event_data.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
+#include "list_menu.h"
 #include "malloc.h"
 #include "menu.h"
 #include "overworld.h"
@@ -57,6 +58,7 @@ static void LoadRadioCard(void);
 static void CB2_Pokegear(void);
 static void LoadCard(enum CardType type);
 static void SpriteCB_ClockDigits(struct Sprite* sprite);
+static void SpriteCB_RadioDigits(struct Sprite* sprite);
 static void UnloadClockCard(void);
 
 // .rodata
@@ -121,7 +123,40 @@ static const struct WindowTemplate sClockCardWindowTemplates[] =
 static const struct WindowTemplate sPhoneCardWindowTemplates[] =
 {
     { 0, 6, 15, 23, 4, 15, 0x0001 },
+    { 0, 8, 2, 17, 12, 15, 0x0060 },
     DUMMY_WIN_TEMPLATE
+};
+
+static const struct ListMenuItem sTempListMenuItems[] =
+{
+    {gText_Mom, 0},
+    {gText_Dad, 1},
+    {gText_Cool, 2},
+    {gText_Tough, 3},
+    {gText_Spicy, 4},
+    {gText_Cute, 5}
+};
+
+static const struct ListMenuTemplate sPhoneCardListMenuTemplate =
+{
+    .items = sTempListMenuItems,
+    .moveCursorFunc = NULL,
+    .unk_08 = NULL,
+    .totalItems = 6,
+    .maxShowed = 6,
+    .windowId = 1,
+    .unk_11 = 0,
+    .unk_12 = 8,
+    .cursor_X = 0,
+    .upText_Y = 1,
+    .cursorPal = 2,
+    .fillValue = 0,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 1,
+    .unk_16_3 = 0,
+    .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
+    .fontId = 1,
+    .cursorKind = 0
 };
 
 static const struct SpriteSheet sSpriteSheet_DigitTiles =
@@ -683,6 +718,7 @@ void LoadMapCard(void)
 
 void LoadPhoneCard(void)
 {
+    struct ListMenuTemplate menu = sPhoneCardListMenuTemplate;
     /*int i;
     u8 newTask;
     const u8 *dayOfWeek = GetDayOfWeekString();*/
@@ -692,10 +728,13 @@ void LoadPhoneCard(void)
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
     CopyWindowToVram(WIN_DIALOG, 2);
+
+    ListMenuInit(&menu, 0, 0);
+    CopyWindowToVram(1, 3);
     /*PutWindowTilemap(WIN_TOP);
-    PutWindowTilemap(WIN_BOTTOM);
-    PrintTextOnWindow(WIN_DIALOG, 1, gText_PokegearInstructions, 0, 1, 0, NULL);
-    box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 5, sTextColor, 0, dayOfWeek);
+    PutWindowTilemap(WIN_BOTTOM);*/
+    PrintTextOnWindow(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL);
+    /*box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 5, sTextColor, 0, dayOfWeek);
     box_print(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);*/
     schedule_bg_copy_tilemap_to_vram(0);
     
@@ -713,6 +752,7 @@ void LoadPhoneCard(void)
 }
 
 #define tPosition data[0]
+#define tStoredVal data[1]
 
 void LoadRadioCard(void)
 {
@@ -743,6 +783,41 @@ void LoadRadioCard(void)
     {
         spriteId = CreateSprite(&sSpriteTemplate_Digits, radioX[i], 64, 0);
         gSprites[spriteId].tPosition = i;
+        gSprites[spriteId].callback = SpriteCB_RadioDigits;
+        //gTasks[newTask].data[i + 1] = spriteId;
+    }
+}
+
+static void SpriteCB_RadioDigits(struct Sprite* sprite)
+{
+    u8 value;
+
+    switch (sprite->tPosition)
+    {
+        case 0:
+            value = 2;
+            break;
+        case 1:
+            value = 1;
+            break;
+        case 2:
+            value = 2;
+            break;
+        case 3:
+            value = 16;
+            break;
+        case 4:
+            value = 10;
+            break;
+        default:
+            value = 0;
+            break;
+    }
+
+    if (sprite->tStoredVal != value)
+    {
+        sprite->tStoredVal = value;
+        StartSpriteAnim(sprite, value);
     }
 }
 

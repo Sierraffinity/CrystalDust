@@ -5392,6 +5392,9 @@ gText_PokegearInstructions::
 gText_PokegearSelectToChangeMode::
 	.string "SELECT: Change mode$"
 
+gText_PokegearWhomDoYouWantToCall::
+	.string "Whom do you want to call?$"
+
 gText_PokegearRadioTuning::
 	.string "{LEFT_ARROW} TUNING {RIGHT_ARROW}$"
 
