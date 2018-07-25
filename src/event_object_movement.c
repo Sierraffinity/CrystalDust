@@ -1,5 +1,6 @@
 #include "global.h"
 #include "berry.h"
+#include "day_night.h"
 #include "decoration.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -2098,6 +2099,7 @@ void sub_808E8C0(u16 *paletteTags)
     }
 }
 
+// NOTE: Does not use LoadSpritePaletteDayNight because of naming screen
 static u8 sub_808E8F4(const struct SpritePalette *spritePalette)
 {
     if (IndexOfSpritePaletteTag(spritePalette->tag) != 0xff)
@@ -2112,7 +2114,7 @@ void pal_patch_for_npc(u16 paletteTag, u8 paletteSlot)
     u16 paletteIdx;
 
     paletteIdx = FindEventObjectPaletteIndexByTag(paletteTag);
-    LoadPalette(gUnknown_0850BBC8[paletteIdx].data, 16 * paletteSlot + 256, 0x20);
+    LoadPaletteDayNight(gUnknown_0850BBC8[paletteIdx].data, 16 * paletteSlot + 256, 0x20);
 }
 
 void pal_patch_for_npc_range(const u16 *paletteTags, u8 minSlot, u8 maxSlot)

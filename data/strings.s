@@ -5387,7 +5387,7 @@ gText_Berries:: @ 85EFCE5
 	.string "BERRIES$"
 
 gText_PokegearInstructions::
-	.string "Press {UP_ARROW} or {DOWN_ARROW} to change cards.\nPress B to exit.$"
+	.string "Press {LEFT_ARROW} or {RIGHT_ARROW} to change cards.\nPress B to exit.$"
 
 gText_PokegearSelectToChangeMode::
 	.string "SELECT: Change mode$"
@@ -5396,7 +5396,7 @@ gText_PokegearWhomDoYouWantToCall::
 	.string "Whom do you want to call?$"
 
 gText_PokegearRadioTuning::
-	.string "{LEFT_ARROW} TUNING {RIGHT_ARROW}$"
+	.string "{UP_ARROW} TUNING {DOWN_ARROW}$"
 
 gText_Sunday::
 	.string "SUNDAY$"
