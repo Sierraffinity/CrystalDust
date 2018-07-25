@@ -1420,8 +1420,8 @@ _080F64F2:
 	bl LoadCompressedObjectPalette
 	adds r0, r6, 0
 	movs r1, 0x1
-	bl sub_806A068
-	ldr r0, =gUnknown_0202499C
+	bl SetMultiuseSpriteTemplateToPokemon
+	ldr r0, =gMultiuseSpriteTemplate
 	ldrh r1, [r4, 0x4]
 	strh r1, [r0, 0x2]
 	movs r1, 0x88
@@ -1825,7 +1825,7 @@ _080F6884:
 	adds r0, r5, 0
 	bl DestroyTask
 	bl FreeAllWindowBuffers
-	ldr r0, =CB2_ReturnToFieldContinueScript
+	ldr r0, =CB2_ReturnToFieldContinueScriptPlayMapMusic
 	bl SetMainCallback2
 	bl sub_80F7E64
 _080F68A8:

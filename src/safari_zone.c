@@ -31,7 +31,7 @@ extern void IncrementGameStat(u8 index);
 extern void ScriptContext1_SetupScript(u8*);
 extern void ScriptContext2_RunNewScript(u8*);
 extern void CB2_ReturnToField(void);
-extern void CB2_ReturnToFieldContinueScript(void);
+extern void CB2_ReturnToFieldContinueScriptPlayMapMusic(void);
 extern void CB2_LoadMap(void);
 extern void sub_80AF6F0(void);
 extern void ScriptContext1_Stop(void);
@@ -42,7 +42,7 @@ extern void PlayerGetDestCoords(s16* x, s16* y);
 EWRAM_DATA u8 gNumSafariBalls = 0;
 EWRAM_DATA static u16 sSafariZoneStepCounter = 0;
 EWRAM_DATA static u8 sSafariZoneCaughtMons = 0;
-EWRAM_DATA static u8 sSafariZoneFleedMons = 0;
+EWRAM_DATA static u8 sSafariZonePkblkUses = 0;
 EWRAM_DATA static struct PokeblockFeeder sPokeblockFeeders[NUM_POKEBLOCK_FEEDERS] = {0};
 
 static void ClearAllPokeblockFeeders(void);
@@ -71,12 +71,12 @@ void EnterSafariMode(void)
     gNumSafariBalls = 30;
     sSafariZoneStepCounter = 500;
     sSafariZoneCaughtMons = 0;
-    sSafariZoneFleedMons = 0;
+    sSafariZonePkblkUses = 0;
 }
 
 void ExitSafariMode(void)
 {
-    sub_80EE44C(sSafariZoneCaughtMons, sSafariZoneFleedMons);
+    sub_80EE44C(sSafariZoneCaughtMons, sSafariZonePkblkUses);
     ResetSafariZoneFlag();
     ClearAllPokeblockFeeders();
     gNumSafariBalls = 0;
@@ -107,7 +107,7 @@ void SafariZoneRetirePrompt(void)
 
 void CB2_EndSafariBattle(void)
 {
-    sSafariZoneFleedMons += gBattleResults.field_1F;
+    sSafariZonePkblkUses += gBattleResults.pokeblockThrows;
     if (gBattleOutcome == B_OUTCOME_CAUGHT)
         sSafariZoneCaughtMons++;
     if (gNumSafariBalls != 0)
@@ -125,7 +125,7 @@ void CB2_EndSafariBattle(void)
     {
         ScriptContext1_SetupScript(EventScript_2A4B9B);
         ScriptContext1_Stop();
-        SetMainCallback2(CB2_ReturnToFieldContinueScript);
+        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
 }
 
@@ -172,7 +172,7 @@ void GetPokeblockFeederWithinRange(void)
     {
         if (gSaveBlock1Ptr->location.mapNum == sPokeblockFeeders[i].mapNum)
         {
-            //Get absolute value of x and y distance from Pokeblock feeder on current map
+            // Get absolute value of x and y distance from Pokeblock feeder on current map.
             x -= sPokeblockFeeders[i].x;
             y -= sPokeblockFeeders[i].y;
             if (x < 0)

@@ -16,6 +16,17 @@ static EWRAM_DATA u8 sOldTimeOfDay = TIME_NIGHT;
 //static EWRAM_DATA u8 sDemo = 0;
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 
+const u8 *const gDayOfWeekTable[] = 
+{
+    gText_Sunday,
+    gText_Monday,
+    gText_Tuesday,
+    gText_Wednesday,
+    gText_Thursday,
+    gText_Friday,
+    gText_Saturday
+};
+
 u8 GetTimeOfDay(void)
 {
     /*if (++sDemo > 240)

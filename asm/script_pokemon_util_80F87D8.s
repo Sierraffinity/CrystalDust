@@ -390,7 +390,7 @@ _080F8AB6:
 	thumb_func_start sub_80F8ACC
 sub_80F8ACC: @ 80F8ACC
 	push {lr}
-	ldr r0, =CB2_ReturnToFieldContinueScript
+	ldr r0, =CB2_ReturnToFieldContinueScriptPlayMapMusic
 	bl SetMainCallback2
 	pop {r0}
 	bx r0
@@ -737,8 +737,8 @@ _080F8DD8:
 	bl LoadCompressedObjectPalette
 	adds r0, r6, 0
 	movs r1, 0x1
-	bl sub_806A068
-	ldr r0, =gUnknown_0202499C
+	bl SetMultiuseSpriteTemplateToPokemon
+	ldr r0, =gMultiuseSpriteTemplate
 	ldrh r1, [r4, 0x4]
 	strh r1, [r0, 0x2]
 	mov r1, r9
@@ -1559,7 +1559,7 @@ _080F9478:
 	movs r0, 0x1
 	strh r0, [r1]
 _080F947E:
-	ldr r0, =CB2_ReturnToFieldContinueScript
+	ldr r0, =CB2_ReturnToFieldContinueScriptPlayMapMusic
 	bl SetMainCallback2
 	pop {r0}
 	bx r0
@@ -1599,7 +1599,7 @@ _080F94D0:
 	movs r0, 0x1
 	strh r0, [r1]
 _080F94D6:
-	ldr r0, =CB2_ReturnToFieldContinueScript
+	ldr r0, =CB2_ReturnToFieldContinueScriptPlayMapMusic
 	bl SetMainCallback2
 	pop {r0}
 	bx r0

@@ -381,7 +381,7 @@ u8 MapGridGetZCoordAt(int x, int y)
     {
         return 0;
     }
-    
+
     return block >> 12;
 }
 
@@ -560,7 +560,7 @@ void mapdata_from_sav2(void)
                 a0 = 1;
             else
                 a0 = -1;
-            
+
             for (j = x; j < x + 15; j++)
             {
                 if (!sub_8088BF0(&gUnknown_02032318[j + width * i], width, a0))
@@ -923,7 +923,7 @@ bool8 sub_8088BF0(u16* a0, u16 a1, u8 a2)
 {
     if (a2 == 0xFF)
         return FALSE;
-    
+
     if (a2 == 0)
         a0 -= a1;
     else

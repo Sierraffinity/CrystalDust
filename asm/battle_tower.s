@@ -1353,7 +1353,7 @@ _08162AD0:
 	ldr r0, =0x000003fe
 	cmp r4, r0
 	bne _08162AE4
-	bl sub_81A4CB0
+	bl GetFrontierBrainTrainerPicIndex
 	lsls r0, 24
 	lsrs r0, 24
 	b _08162BCA
@@ -1479,7 +1479,7 @@ _08162C08:
 	ldr r0, =0x000003fe
 	cmp r4, r0
 	bne _08162C1C
-	bl sub_81A4D00
+	bl GetFrontierBrainTrainerClass
 	lsls r0, 24
 	lsrs r0, 24
 	b _08162D1E
@@ -1729,7 +1729,7 @@ _08162E54:
 	cmp r5, r0
 	bne _08162E68
 	adds r0, r6, 0
-	bl sub_81A4D50
+	bl CopyFrontierBrainTrainerName
 	b _08162F62
 	.pool
 _08162E68:
@@ -3172,7 +3172,7 @@ _08163A3C:
 _08163A74:
 	bl sub_816537C
 _08163A78:
-	ldr r0, =CB2_ReturnToFieldContinueScript
+	ldr r0, =CB2_ReturnToFieldContinueScriptPlayMapMusic
 	bl SetMainCallback2
 	add sp, 0x4
 	pop {r4-r6}

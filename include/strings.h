@@ -467,8 +467,17 @@ extern const u8 gText_PokegearInstructions[];
 extern const u8 gText_PokegearSelectToChangeMode[];
 extern const u8 gText_PokegearWhomDoYouWantToCall[];
 extern const u8 gText_PokegearRadioTuning[];
-extern const u8 *gDayOfWeekTable[];
 extern const u8 gUnknown_085EC017[];
 extern const u8 gUnknown_085EC022[];
+
+// Day of week
+extern const u8 *const gDayOfWeekTable[];
+extern const u8 gText_Sunday[];
+extern const u8 gText_Monday[];
+extern const u8 gText_Tuesday[];
+extern const u8 gText_Wednesday[];
+extern const u8 gText_Thursday[];
+extern const u8 gText_Friday[];
+extern const u8 gText_Saturday[];
 
 #endif //GUARD_STRINGS_H

@@ -301,7 +301,7 @@ void sub_81AABB0(void)
 
 void CB2_ChooseBerry(void)
 {
-    GoToBagMenu(4, 3, sub_80861B0);
+    GoToBagMenu(4, 3, CB2_ReturnToFieldContinueScript);
 }
 
 void sub_81AABF0(void(*callback)(void))
@@ -2104,7 +2104,7 @@ void setup_bag_menu_textboxes(void)
     InitWindows(gUnknown_08614174);
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, 1, -32);
-    copy_textbox_border_tile_patterns_to_vram(0, 10, -48);
+    LoadMessageBoxGfx(0, 10, -48);
     sub_819A2BC(-64, 1);
     LoadPalette(&gUnknown_0860F074, 0xF0, 0x20);
     for (i = 0; i < 3; i++)

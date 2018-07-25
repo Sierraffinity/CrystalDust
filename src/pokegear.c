@@ -355,7 +355,7 @@ void PrepareToStartPokegear(MainCallback callback)
 
 void PokegearScriptHarness(void)
 {
-	PrepareToStartPokegear(sub_80861B0);
+	PrepareToStartPokegear(CB2_ReturnToFieldContinueScript);
 }
 
 const u8 sTextColor[3] = {
