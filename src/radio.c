@@ -78,6 +78,8 @@ static void NextRadioLine(u8 taskId, u8 windowId, u8 nextLine, const u8 *lineToP
     gTasks[taskId].tScrollDistance = lineHeight;
 }
 
+extern void DrawStationTitle(const u8 *title);
+
 void PlayRadioShow(u8 taskId, u8 windowId)
 {
     s16 *data = gTasks[taskId].data;
@@ -89,12 +91,12 @@ void PlayRadioShow(u8 taskId, u8 windowId)
 
     switch (tCurrentLine)
     {
-	case OAKS_POKEMON_TALK:
+    case OAKS_POKEMON_TALK:
         tMiscCounter = 5;   // play five Oak segments then channel interlude
         StartRadioStation(taskId);
         NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_2, gText_OaksPkmnTalkIntro1);
-		break;
-	case POKEDEX_SHOW:
+        break;
+    case POKEDEX_SHOW:
         {
             u16 species = SPECIES_NONE;
             StartRadioStation(taskId);
@@ -109,19 +111,21 @@ void PlayRadioShow(u8 taskId, u8 windowId)
             StringExpandPlaceholders(gStringVar4, gText_PokedexShow1);
             NextRadioLine(taskId, windowId, POKEDEX_SHOW_2, gStringVar4);
         }
-		break;
-	case POKEMON_MUSIC:
+        break;
+    case POKEMON_MUSIC:
         StartRadioStation(taskId);
         NextRadioLine(taskId, windowId, POKEMON_MUSIC_2, gText_PkmnMusicBenIntro1);
-		break;
-	case LUCKY_CHANNEL:
+        break;
+    case LUCKY_CHANNEL:
         StartRadioStation(taskId);
         // Check flag and reset number if needed
         NextRadioLine(taskId, windowId, LUCKY_NUMBER_SHOW_2, gText_LuckyChannel1);
-		break;
-	case BUENAS_PASSWORD:
+        break;
+    case BUENAS_PASSWORD:
         if (BuenasPassword_CheckTime())
         {
+            tNumLinesPrinted = 0;
+            DrawStationTitle(gText_BuenasPassword);
             StartRadioStation(taskId);
             NextRadioLine(taskId, windowId, BUENAS_PASSWORD_2, gText_BuenasPassword1);
         }
@@ -130,38 +134,40 @@ void PlayRadioShow(u8 taskId, u8 windowId)
             if (tNumLinesPrinted == 0)
             {
                 tCurrentLine = BUENAS_PASSWORD_20;
+                tNumLinesPrinted = 1;
             }
             else
             {
                 tCurrentLine = BUENAS_PASSWORD_8;
+                tNumLinesPrinted = 1;
             }
         }
-		break;
-	case PLACES_AND_PEOPLE:
+        break;
+    case PLACES_AND_PEOPLE:
         StartRadioStation(taskId);
         NextRadioLine(taskId, windowId, PLACES_AND_PEOPLE_2, gText_PlacesAndPeople1);
-		break;
-	case LETS_ALL_SING:
+        break;
+    case LETS_ALL_SING:
         StartRadioStation(taskId);
         NextRadioLine(taskId, windowId, LETS_ALL_SING_2, gText_PkmnMusicFernIntro1);
-		break;
-	case ROCKET_RADIO:
+        break;
+    case ROCKET_RADIO:
         StartRadioStation(taskId);
         NextRadioLine(taskId, windowId, ROCKET_RADIO_2, gText_RocketRadio1);
-		break;
-	case POKE_FLUTE_RADIO:
-	case UNOWN_RADIO:
-	case EVOLUTION_RADIO:
+        break;
+    case POKE_FLUTE_RADIO:
+    case UNOWN_RADIO:
+    case EVOLUTION_RADIO:
         StartRadioStation(taskId);
         tNumLinesPrinted = 1;
-		break;
-	case OAKS_POKEMON_TALK_2:
+        break;
+    case OAKS_POKEMON_TALK_2:
         NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_3, gText_OaksPkmnTalkIntro2);
-		break;
-	case OAKS_POKEMON_TALK_3:
+        break;
+    case OAKS_POKEMON_TALK_3:
         NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_4, gText_OaksPkmnTalkIntro3);
-		break;
-	case OAKS_POKEMON_TALK_4:
+        break;
+    case OAKS_POKEMON_TALK_4:
         {
             static const struct {
                 u8 mapSec;
@@ -196,19 +202,19 @@ void PlayRadioShow(u8 taskId, u8 windowId)
 
             NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_5, gStringVar4);
         }
-		break;
-	case OAKS_POKEMON_TALK_5:
+        break;
+    case OAKS_POKEMON_TALK_5:
         NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_6, gText_OaksPkmnTalk2);
-		break;
-	case OAKS_POKEMON_TALK_6:
+        break;
+    case OAKS_POKEMON_TALK_6:
         StringExpandPlaceholders(gStringVar4, gText_OaksPkmnTalk3);
         NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_7, gStringVar4);
-		break;
-	case OAKS_POKEMON_TALK_7:
+        break;
+    case OAKS_POKEMON_TALK_7:
         StringExpandPlaceholders(gStringVar4, gText_OaksPkmnTalk4);
         NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_8, gStringVar4);
-		break;
-	case OAKS_POKEMON_TALK_8:
+        break;
+    case OAKS_POKEMON_TALK_8:
         {
             static const u8 *const adverbs[] = {
                 gText_OPTAdverbSweetAndAdorably,
@@ -230,8 +236,8 @@ void PlayRadioShow(u8 taskId, u8 windowId)
             };
             NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_9, adverbs[Random() % 16]);
         }
-		break;
-	case OAKS_POKEMON_TALK_9:
+        break;
+    case OAKS_POKEMON_TALK_9:
         {
             static const u8 *const adverbs[] = {
                 gText_OPTAdjectiveCute,
@@ -253,147 +259,151 @@ void PlayRadioShow(u8 taskId, u8 windowId)
             };
             NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_4, adverbs[Random() % 16]);
         }
-		break;
-	case POKEDEX_SHOW_2:
-		break;
-	case POKEDEX_SHOW_3:
-		break;
-	case POKEDEX_SHOW_4:
-		break;
-	case POKEDEX_SHOW_5:
-		break;
-	case POKEMON_MUSIC_2:
-		break;
-	case POKEMON_MUSIC_3:
-		break;
-	case POKEMON_MUSIC_4:
-		break;
-	case POKEMON_MUSIC_5:
-		break;
-	case POKEMON_MUSIC_6:
-		break;
-	case POKEMON_MUSIC_7:
-		break;
-	case LETS_ALL_SING_2:
-		break;
-	case LUCKY_NUMBER_SHOW_2:
-		break;
-	case LUCKY_NUMBER_SHOW_3:
-		break;
-	case LUCKY_NUMBER_SHOW_4:
-		break;
-	case LUCKY_NUMBER_SHOW_5:
-		break;
-	case LUCKY_NUMBER_SHOW_6:
-		break;
-	case LUCKY_NUMBER_SHOW_7:
-		break;
-	case LUCKY_NUMBER_SHOW_8:
-		break;
-	case LUCKY_NUMBER_SHOW_9:
-		break;
-	case LUCKY_NUMBER_SHOW_10:
-		break;
-	case LUCKY_NUMBER_SHOW_11:
-		break;
-	case LUCKY_NUMBER_SHOW_12:
-		break;
-	case LUCKY_NUMBER_SHOW_13:
-		break;
-	case LUCKY_NUMBER_SHOW_14:
-		break;
-	case LUCKY_NUMBER_SHOW_15:
-		break;
-	case PLACES_AND_PEOPLE_2:
-		break;
-	case PLACES_AND_PEOPLE_3:
-		break;
-	case PLACES_AND_PEOPLE_4:
-		break;
-	case PLACES_AND_PEOPLE_5:
-		break;
-	case PLACES_AND_PEOPLE_6:
-		break;
-	case PLACES_AND_PEOPLE_7:
-		break;
-	case ROCKET_RADIO_2:
+        break;
+    case POKEDEX_SHOW_2:
+        break;
+    case POKEDEX_SHOW_3:
+        break;
+    case POKEDEX_SHOW_4:
+        break;
+    case POKEDEX_SHOW_5:
+        break;
+    case POKEMON_MUSIC_2:
+        break;
+    case POKEMON_MUSIC_3:
+        break;
+    case POKEMON_MUSIC_4:
+        break;
+    case POKEMON_MUSIC_5:
+        break;
+    case POKEMON_MUSIC_6:
+        break;
+    case POKEMON_MUSIC_7:
+        break;
+    case LETS_ALL_SING_2:
+        break;
+    case LUCKY_NUMBER_SHOW_2:
+        break;
+    case LUCKY_NUMBER_SHOW_3:
+        break;
+    case LUCKY_NUMBER_SHOW_4:
+        break;
+    case LUCKY_NUMBER_SHOW_5:
+        break;
+    case LUCKY_NUMBER_SHOW_6:
+        break;
+    case LUCKY_NUMBER_SHOW_7:
+        break;
+    case LUCKY_NUMBER_SHOW_8:
+        break;
+    case LUCKY_NUMBER_SHOW_9:
+        break;
+    case LUCKY_NUMBER_SHOW_10:
+        break;
+    case LUCKY_NUMBER_SHOW_11:
+        break;
+    case LUCKY_NUMBER_SHOW_12:
+        break;
+    case LUCKY_NUMBER_SHOW_13:
+        break;
+    case LUCKY_NUMBER_SHOW_14:
+        break;
+    case LUCKY_NUMBER_SHOW_15:
+        break;
+    case PLACES_AND_PEOPLE_2:
+        break;
+    case PLACES_AND_PEOPLE_3:
+        break;
+    case PLACES_AND_PEOPLE_4:
+        break;
+    case PLACES_AND_PEOPLE_5:
+        break;
+    case PLACES_AND_PEOPLE_6:
+        break;
+    case PLACES_AND_PEOPLE_7:
+        break;
+    case ROCKET_RADIO_2:
         NextRadioLine(taskId, windowId, ROCKET_RADIO_3, gText_RocketRadio2);
-		break;
-	case ROCKET_RADIO_3:
+        break;
+    case ROCKET_RADIO_3:
         NextRadioLine(taskId, windowId, ROCKET_RADIO_4, gText_RocketRadio3);
-		break;
-	case ROCKET_RADIO_4:
+        break;
+    case ROCKET_RADIO_4:
         NextRadioLine(taskId, windowId, ROCKET_RADIO_5, gText_RocketRadio4);
-		break;
-	case ROCKET_RADIO_5:
+        break;
+    case ROCKET_RADIO_5:
         NextRadioLine(taskId, windowId, ROCKET_RADIO_6, gText_RocketRadio5);
-		break;
-	case ROCKET_RADIO_6:
+        break;
+    case ROCKET_RADIO_6:
         NextRadioLine(taskId, windowId, ROCKET_RADIO_7, gText_RocketRadio6);
-		break;
-	case ROCKET_RADIO_7:
+        break;
+    case ROCKET_RADIO_7:
         NextRadioLine(taskId, windowId, ROCKET_RADIO_8, gText_RocketRadio7);
-		break;
-	case ROCKET_RADIO_8:
+        break;
+    case ROCKET_RADIO_8:
         NextRadioLine(taskId, windowId, ROCKET_RADIO_9, gText_RocketRadio8);
-		break;
-	case ROCKET_RADIO_9:
+        break;
+    case ROCKET_RADIO_9:
         NextRadioLine(taskId, windowId, ROCKET_RADIO_10, gText_RocketRadio9);
-		break;
-	case ROCKET_RADIO_10:
+        break;
+    case ROCKET_RADIO_10:
         NextRadioLine(taskId, windowId, ROCKET_RADIO, gText_RocketRadio10);
-		break;
-	case OAKS_POKEMON_TALK_10:
-		break;
-	case OAKS_POKEMON_TALK_11:
-		break;
-	case OAKS_POKEMON_TALK_12:
-		break;
-	case OAKS_POKEMON_TALK_13:
-		break;
-	case OAKS_POKEMON_TALK_14:
-		break;
-	case BUENAS_PASSWORD_2:
-		break;
-	case BUENAS_PASSWORD_3:
-		break;
-	case BUENAS_PASSWORD_4:
-		break;
-	case BUENAS_PASSWORD_5:
-		break;
-	case BUENAS_PASSWORD_6:
-		break;
-	case BUENAS_PASSWORD_7:
-		break;
-	case BUENAS_PASSWORD_8:
-		break;
-	case BUENAS_PASSWORD_9:
-		break;
-	case BUENAS_PASSWORD_10:
-		break;
-	case BUENAS_PASSWORD_11:
-		break;
-	case BUENAS_PASSWORD_12:
-		break;
-	case BUENAS_PASSWORD_13:
-		break;
-	case BUENAS_PASSWORD_14:
-		break;
-	case BUENAS_PASSWORD_15:
-		break;
-	case BUENAS_PASSWORD_16:
-		break;
-	case BUENAS_PASSWORD_17:
-		break;
-	case BUENAS_PASSWORD_18:
-		break;
-	case BUENAS_PASSWORD_19:
-		break;
-	case BUENAS_PASSWORD_20:
-		break;
-	case BUENAS_PASSWORD_21:
-		break;
-	case RADIO_SCROLL:
+        break;
+    case OAKS_POKEMON_TALK_10:
+        break;
+    case OAKS_POKEMON_TALK_11:
+        break;
+    case OAKS_POKEMON_TALK_12:
+        break;
+    case OAKS_POKEMON_TALK_13:
+        break;
+    case OAKS_POKEMON_TALK_14:
+        break;
+    case BUENAS_PASSWORD_2:
+        break;
+    case BUENAS_PASSWORD_3:
+        break;
+    case BUENAS_PASSWORD_4:
+        break;
+    case BUENAS_PASSWORD_5:
+        break;
+    case BUENAS_PASSWORD_6:
+        break;
+    case BUENAS_PASSWORD_7:
+        break;
+    case BUENAS_PASSWORD_8:
+        break;
+    case BUENAS_PASSWORD_9:
+        break;
+    case BUENAS_PASSWORD_10:
+        break;
+    case BUENAS_PASSWORD_11:
+        break;
+    case BUENAS_PASSWORD_12:
+        break;
+    case BUENAS_PASSWORD_13:
+        break;
+    case BUENAS_PASSWORD_14:
+        break;
+    case BUENAS_PASSWORD_15:
+        break;
+    case BUENAS_PASSWORD_16:
+        break;
+    case BUENAS_PASSWORD_17:
+        break;
+    case BUENAS_PASSWORD_18:
+        break;
+    case BUENAS_PASSWORD_19:
+        break;
+    case BUENAS_PASSWORD_20:
+        PlayNewMapMusic(MUS_DUMMY);
+        tCurrentLine = BUENAS_PASSWORD_21;
+        break;
+    case BUENAS_PASSWORD_21:
+        if (BuenasPassword_CheckTime())
+            tCurrentLine = BUENAS_PASSWORD;
+        break;
+    case RADIO_SCROLL:
         if (tTextDelay == 0)
         {
             if (tNumLinesPrinted > 1 && tScrollDistance)
@@ -421,19 +431,19 @@ void PlayRadioShow(u8 taskId, u8 windowId)
         {
             tTextDelay--;
         }
-		break;
-	case POKEDEX_SHOW_6:
-		break;
-	case POKEDEX_SHOW_7:
-		break;
-	case POKEDEX_SHOW_8:
-		break;
+        break;
+    case POKEDEX_SHOW_6:
+        break;
+    case POKEDEX_SHOW_7:
+        break;
+    case POKEDEX_SHOW_8:
+        break;
     }
 }
 
 const u8 *LoadStation_PokemonChannel(u8 taskId, u8 windowId)
 {
-    const u8 *title;
+    const u8 *title = NULL;
 
     RtcCalcLocalTime();
 
@@ -478,11 +488,9 @@ const u8 *LoadStation_BuenasPassword(u8 taskId, u8 windowId)
     gTasks[taskId].tCurrentLine = BUENAS_PASSWORD;
     gTasks[taskId].tNumLinesPrinted = 0;
     PlayRadioShow(taskId, windowId);
-    
-    if (FlagGet(FLAG_ROCKET_TAKEOVER) || BuenasPassword_CheckTime())    // if Rockets took over tower, station always on
-    {
+
+    if (FlagGet(FLAG_ROCKET_TAKEOVER))  // always show title when Rockets in tower
         title = gText_BuenasPassword;
-    }
 
     return title;
 }

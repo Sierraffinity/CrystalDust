@@ -365,11 +365,11 @@ void PrepareToStartPokegear(MainCallback callback)
 
 void PokegearScriptHarness(void)
 {
-	PrepareToStartPokegear(CB2_ReturnToFieldContinueScript);
+    PrepareToStartPokegear(CB2_ReturnToFieldContinueScript);
 }
 
 const u8 sTextColor[3] = {
-	0x00, 0x02, 0x03
+    0x00, 0x02, 0x03
 };
 
 static void CB2_InitPokegear(void)
@@ -526,7 +526,7 @@ static void Task_Pokegear2(u8 taskId)
         if (gMain.newKeys & B_BUTTON)
         {
             gTasks[taskId].func = Task_ExitPokegear1;
-		    PlaySE(SE_PN_OFF);
+            PlaySE(SE_PN_OFF);
             return;
         }
         else if (gMain.newKeys & DPAD_LEFT)
@@ -968,7 +968,7 @@ static const struct RadioStation sRadioStationData[] = {
     { 0xFF, 0xFF, NULL }
 };
 
-static void DrawStationTitle(const u8 *title)
+void DrawStationTitle(const u8 *title)
 {
     box_print(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, title, 0x70), 5, sTextColor, 0, title);
 }
