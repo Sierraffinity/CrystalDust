@@ -1,0 +1,129 @@
+#ifndef GUARD_RADIO_H
+#define GUARD_RADIO_H
+
+enum {
+    OAKS_POKEMON_TALK,	    // 00
+	POKEDEX_SHOW,	        // 01
+	POKEMON_MUSIC,	        // 02
+	LUCKY_CHANNEL,	        // 03
+	BUENAS_PASSWORD,	    // 04
+	PLACES_AND_PEOPLE,	    // 05
+	LETS_ALL_SING,	        // 06
+	ROCKET_RADIO,	        // 07
+	POKE_FLUTE_RADIO,	    // 08
+	UNOWN_RADIO,	        // 09
+	EVOLUTION_RADIO,	    // 0a
+	OAKS_POKEMON_TALK_2,	// 0b
+	OAKS_POKEMON_TALK_3,	// 0c
+	OAKS_POKEMON_TALK_4,	// 0d
+	OAKS_POKEMON_TALK_5,	// 0e
+	OAKS_POKEMON_TALK_6,	// 0f
+	OAKS_POKEMON_TALK_7,	// 10
+	OAKS_POKEMON_TALK_8,	// 11
+	OAKS_POKEMON_TALK_9,	// 12
+	POKEDEX_SHOW_2,	        // 13
+	POKEDEX_SHOW_3,	        // 14
+	POKEDEX_SHOW_4,	        // 15
+	POKEDEX_SHOW_5,	        // 16
+	POKEMON_MUSIC_2,	    // 17
+	POKEMON_MUSIC_3,	    // 18
+	POKEMON_MUSIC_4,	    // 19
+	POKEMON_MUSIC_5,	    // 1a
+	POKEMON_MUSIC_6,	    // 1b
+	POKEMON_MUSIC_7,	    // 1c
+	LETS_ALL_SING_2,	    // 1d
+	LUCKY_NUMBER_SHOW_2,	// 1e
+	LUCKY_NUMBER_SHOW_3,	// 1f
+	LUCKY_NUMBER_SHOW_4,	// 20
+	LUCKY_NUMBER_SHOW_5,	// 21
+	LUCKY_NUMBER_SHOW_6,	// 22
+	LUCKY_NUMBER_SHOW_7,	// 23
+	LUCKY_NUMBER_SHOW_8,	// 24
+	LUCKY_NUMBER_SHOW_9,	// 25
+	LUCKY_NUMBER_SHOW_10,	// 26
+	LUCKY_NUMBER_SHOW_11,	// 27
+	LUCKY_NUMBER_SHOW_12,	// 28
+	LUCKY_NUMBER_SHOW_13,	// 29
+	LUCKY_NUMBER_SHOW_14,	// 2a
+	LUCKY_NUMBER_SHOW_15,	// 2b
+	PLACES_AND_PEOPLE_2,	// 2c
+	PLACES_AND_PEOPLE_3,	// 2d
+	PLACES_AND_PEOPLE_4,	// 2e
+	PLACES_AND_PEOPLE_5,	// 2f
+	PLACES_AND_PEOPLE_6,	// 30
+	PLACES_AND_PEOPLE_7,	// 31
+	ROCKET_RADIO_2,	        // 32
+	ROCKET_RADIO_3,	        // 33
+	ROCKET_RADIO_4,	        // 34
+	ROCKET_RADIO_5,	        // 35
+	ROCKET_RADIO_6,	        // 36
+	ROCKET_RADIO_7,	        // 37
+	ROCKET_RADIO_8,	        // 38
+	ROCKET_RADIO_9,	        // 39
+	ROCKET_RADIO_10,	    // 3a
+	OAKS_POKEMON_TALK_10,	// 3b
+	OAKS_POKEMON_TALK_11,	// 3c
+	OAKS_POKEMON_TALK_12,	// 3d
+	OAKS_POKEMON_TALK_13,	// 3e
+	OAKS_POKEMON_TALK_14,	// 3f
+	BUENAS_PASSWORD_2,	    // 40
+	BUENAS_PASSWORD_3,	    // 41
+	BUENAS_PASSWORD_4,	    // 42
+	BUENAS_PASSWORD_5,	    // 43
+	BUENAS_PASSWORD_6,	    // 44
+	BUENAS_PASSWORD_7,	    // 45
+	BUENAS_PASSWORD_8,	    // 46
+	BUENAS_PASSWORD_9,	    // 47
+	BUENAS_PASSWORD_10,	    // 48
+	BUENAS_PASSWORD_11,	    // 49
+	BUENAS_PASSWORD_12,	    // 4a
+	BUENAS_PASSWORD_13,	    // 4b
+	BUENAS_PASSWORD_14,	    // 4c
+	BUENAS_PASSWORD_15,	    // 4d
+	BUENAS_PASSWORD_16,	    // 4e
+	BUENAS_PASSWORD_17,	    // 4f
+	BUENAS_PASSWORD_18,	    // 50
+	BUENAS_PASSWORD_19,	    // 51
+	BUENAS_PASSWORD_20,	    // 52
+	BUENAS_PASSWORD_21,	    // 53
+	RADIO_SCROLL,	        // 54
+	POKEDEX_SHOW_6,	        // 55
+	POKEDEX_SHOW_7,	        // 56
+	POKEDEX_SHOW_8,	        // 57
+};
+
+// TEMP
+#define FLAG_ROCKET_TAKEOVER FLAG_SYS_POKEDEX_GET
+
+#define MAPSEC_MAHOGANY_TOWN MAPSEC_LITTLEROOT_TOWN
+#define MAPSEC_LAKE_OF_RAGE MAPSEC_LITTLEROOT_TOWN
+#define ROUTE_29 ROUTE_101
+#define ROUTE_30 ROUTE_102
+#define ROUTE_31 ROUTE_103
+#define ROUTE_32 ROUTE_104
+#define ROUTE_33 ROUTE_110
+#define ROUTE_34 ROUTE_111
+#define ROUTE_35 ROUTE_112
+#define ROUTE_36 ROUTE_113
+#define ROUTE_37 ROUTE_114
+#define ROUTE_38 ROUTE_116
+#define ROUTE_39 ROUTE_117
+#define ROUTE_40 ROUTE_118
+#define ROUTE_41 ROUTE_101
+#define ROUTE_42 ROUTE_102
+#define ROUTE_43 ROUTE_103
+#define ROUTE_44 ROUTE_104
+#define ROUTE_45 ROUTE_110
+#define ROUTE_46 ROUTE_111
+#define MAPSEC_ROUTE_43 MAPSEC_ROUTE_103
+#define MAPSEC_RUINS_OF_ALPH MAPSEC_LITTLEROOT_TOWN
+
+void PlayRadioShow(u8 taskId, u8 windowId);
+const u8 *LoadStation_PokemonChannel(u8 taskId, u8 windowId);
+const u8 *LoadStation_PokemonMusic(u8 taskId, u8 windowId);
+const u8 *LoadStation_LuckyChannel(u8 taskId, u8 windowId);
+const u8 *LoadStation_BuenasPassword(u8 taskId, u8 windowId);
+const u8 *LoadStation_UnownRadio(u8 taskId, u8 windowId);
+const u8 *LoadStation_EvolutionRadio(u8 taskId, u8 windowId);
+
+#endif // GUARD_RADIO_H

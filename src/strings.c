@@ -2050,12 +2050,6 @@ const u8 gText_PokeBalls[] = _("POKé BALLS");
 const u8 gText_Berry[] = _("BERRY");
 const u8 gText_Berries[] = _("BERRIES");
 
-// Pokégear
-const u8 gText_PokegearInstructions[] = _("Press {LEFT_ARROW} or {RIGHT_ARROW} to change cards.\nPress B to exit.");
-const u8 gText_PokegearSelectToChangeMode[] = _("SELECT: Change mode");
-const u8 gText_PokegearWhomDoYouWantToCall[] = _("Whom do you want to call?");
-const u8 gText_PokegearRadioTuning[] = _("{UP_ARROW} TUNING {DOWN_ARROW}");
-
 // Day of week
 const u8 gText_Sunday[] = _("SUNDAY");
 const u8 gText_Monday[] = _("MONDAY");
@@ -2064,3 +2058,83 @@ const u8 gText_Wednesday[] = _("WEDNESDAY");
 const u8 gText_Thursday[] = _("THURSDAY");
 const u8 gText_Friday[] = _("FRIDAY");
 const u8 gText_Saturday[] = _("SATURDAY");
+
+// Pokégear
+const u8 gText_PokegearInstructions[] = _("Press {LEFT_ARROW} or {RIGHT_ARROW} to change cards.\nPress B to exit.");
+const u8 gText_PokegearSelectToChangeMode[] = _("SELECT: Change mode");
+const u8 gText_PokegearWhomDoYouWantToCall[] = _("Whom do you want to call?");
+const u8 gText_PokegearRadioTuning[] = _("{DOWN_ARROW}   TUNING   {UP_ARROW}");
+
+// Radio stations
+const u8 gText_OaksPkmnTalk[] = _("OAK’s {PKMN} Talk");
+const u8 gText_PokemonMusic[] = _("POKéMON Music");
+const u8 gText_LuckyChannel[] = _("Lucky Channel");
+const u8 gText_BuenasPassword[] = _("BUENA’S PASSWORD");
+const u8 gText_PokedexShow[] = _("POKéDEX Show");
+
+// Oak's Pokemon Talk
+const u8 gText_OaksPkmnTalkIntro1[] = _("MARY: PROF.OAK’S");
+const u8 gText_OaksPkmnTalkIntro2[] = _("POKéMON TALK!");
+const u8 gText_OaksPkmnTalkIntro3[] = _("With me, MARY!");
+const u8 gText_OaksPkmnTalk1[] = _("OAK: {STR_VAR_1}");
+const u8 gText_OaksPkmnTalk2[] = _("may be seen around");
+const u8 gText_OaksPkmnTalk3[] = _("{STR_VAR_2}.");
+const u8 gText_OaksPkmnTalk4[] = _("MARY: {STR_VAR_1}’s");
+
+const u8 gText_OPTAdverbSweetAndAdorably[] = _("sweet and adorably");
+const u8 gText_OPTAdverbWigglyAndSlickly[] = _("wiggly and slickly");
+const u8 gText_OPTAdverbAptlyNamedAnd[] = _("aptly named and");
+const u8 gText_OPTAdverbUndeniablyKindOf[] = _("undeniably kind of");
+const u8 gText_OPTAdverbSoSoUnbearably[] = _("so, so unbearably");
+const u8 gText_OPTAdverbWowImpressively[] = _("wow, impressively");
+const u8 gText_OPTAdverbAlmostPoisonously[] = _("almost poisonously");
+const u8 gText_OPTAdverbOohSoSensually[] = _("ooh, so sensually");
+const u8 gText_OPTAdverbSoMischievously[] = _("so mischievously");
+const u8 gText_OPTAdverbSoVeryTopically[] = _("so very topically");
+const u8 gText_OPTAdverbSureAddictively[] = _("sure addictively");
+const u8 gText_OPTAdverbLooksInWaterIs[] = _("looks in water is");
+const u8 gText_OPTAdverbEvolutionMustBe[] = _("evolution must be");
+const u8 gText_OPTAdverbProvocatively[] = _("provocatively");
+const u8 gText_OPTAdverbSoFlippedOutAnd[] = _("so flipped out and");
+const u8 gText_OPTAdverbHeartMeltingly[] = _("heart-meltingly");
+
+const u8 gText_OPTAdjectiveCute[] = _("cute.");
+const u8 gText_OPTAdjectiveWeird[] = _("weird.");
+const u8 gText_OPTAdjectivePleasant[] = _("pleasant.");
+const u8 gText_OPTAdjectiveBoldSortOf[] = _("bold, sort of.");
+const u8 gText_OPTAdjectiveFrightening[] = _("frightening.");
+const u8 gText_OPTAdjectiveSuaveAndDebonair[] = _("suave & debonair!");
+const u8 gText_OPTAdjectivePowerful[] = _("powerful.");
+const u8 gText_OPTAdjectiveExciting[] = _("exciting.");
+const u8 gText_OPTAdjectiveGroovy[] = _("groovy!");
+const u8 gText_OPTAdjectiveInspiring[] = _("inspiring.");
+const u8 gText_OPTAdjectiveFriendly[] = _("friendly.");
+const u8 gText_OPTAdjectiveHotHotHot[] = _("hot, hot, hot!");
+const u8 gText_OPTAdjectiveStimulating[] = _("stimulating.");
+const u8 gText_OPTAdjectiveGuarded[] = _("guarded.");
+const u8 gText_OPTAdjectiveLovely[] = _("lovely.");
+const u8 gText_OPTAdjectiveSpeedy[] = _("speedy.");
+
+const u8 gText_PokedexShow1[] = _("{STR_VAR_1}");
+
+const u8 gText_PkmnMusicBenIntro1[] = _("BEN: POKéMON MUSIC");
+
+const u8 gText_LuckyChannel1[] = _("REED: Yeehaw! How");
+
+const u8 gText_BuenasPassword1[] = _("BUENA: BUENA here!");
+
+const u8 gText_PlacesAndPeople1[] = _("PLACES AND PEOPLE!");
+
+const u8 gText_PkmnMusicFernIntro1[] = _("FERN: POKéMON MUSIC!");
+
+const u8 gText_RocketRadio1[] = _("… …Ahem, we are");
+const u8 gText_RocketRadio2[] = _("TEAM ROCKET!");
+const u8 gText_RocketRadio3[] = _("After three years");
+const u8 gText_RocketRadio4[] = _("of preparation, we");
+const u8 gText_RocketRadio5[] = _("have risen again");
+const u8 gText_RocketRadio6[] = _("from the ashes!");
+const u8 gText_RocketRadio7[] = _("GIOVANNI!{RADIO_PAUSE} Can you");
+const u8 gText_RocketRadio8[] = _("hear?{RADIO_PAUSE} We did it!");
+const u8 gText_RocketRadio9[] = _("{RADIO_PAUSE}Where is our boss?");
+const u8 gText_RocketRadio10[] = _("{RADIO_PAUSE}Is he listening?");
+

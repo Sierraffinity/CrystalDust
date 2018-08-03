@@ -5483,3 +5483,38 @@ static void ApplyCleanseTagEncounterRateMod(u32 *encRate)
     if (GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM) == ITEM_CLEANSE_TAG)
         *encRate = *encRate * 2 / 3;
 }
+
+u16 GetMapWildMonFromIndex(u8 mapGroup, u8 mapNum, u8 index)
+{
+    u16 i = 0xFFFF;
+
+    for (i = 0; ; i++)
+    {
+        const struct WildPokemonHeader *wildHeader = &gWildMonHeaders[i];
+        if (wildHeader->mapGroup == 0xFF)
+            break;
+
+        if (gWildMonHeaders[i].mapGroup == mapGroup &&
+            gWildMonHeaders[i].mapNum == mapNum)
+        {
+            if (mapGroup == MAP_GROUP(ALTERING_CAVE) &&
+                mapNum == MAP_NUM(ALTERING_CAVE))
+            {
+                u16 alteringCaveId = VarGet(VAR_ALTERING_CAVE_WILD_SET);
+                if (alteringCaveId > 8)
+                    alteringCaveId = 0;
+
+                i += alteringCaveId;
+            }
+
+            break;
+        }
+    }
+
+	if (i != 0xFFFF)
+	{
+		i = gWildMonHeaders[i].landMonsInfo->wildPokemon[index].species;
+	}
+
+	return i;
+}

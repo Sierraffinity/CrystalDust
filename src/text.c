@@ -199,12 +199,21 @@ bool16 AddTextPrinter(struct TextSubPrinter *textSubPrinter, u8 speed, void (*ca
         for (j = 0; j < 0x400; ++j)
         {
             if ((u32)RenderFont(&gTempTextPrinter) == 1)
+            {
+                gTextPrinters[textSubPrinter->windowId].sub_union.sub.active = 0;
                 break;
+            }
+            
+            // hack for instant text with pauses (for radio)
+            if (gTempTextPrinter.state == 6)
+            {
+                gTextPrinters[textSubPrinter->windowId] = gTempTextPrinter;
+                break;
+            }
         }
 
         if (speed != TEXT_SPEED_FF)
-          CopyWindowToVram(gTempTextPrinter.subPrinter.windowId, 2);
-        gTextPrinters[textSubPrinter->windowId].sub_union.sub.active = 0;
+            CopyWindowToVram(gTempTextPrinter.subPrinter.windowId, 2);
     }
     gUnknown_03002F84 = 0;
     return TRUE;
@@ -212,7 +221,7 @@ bool16 AddTextPrinter(struct TextSubPrinter *textSubPrinter, u8 speed, void (*ca
 
 void RunTextPrinters(void)
 {
-    int i;
+    int i, j;
     u16 temp;
 
     if (gUnknown_03002F84 == 0)
@@ -221,6 +230,23 @@ void RunTextPrinters(void)
         {
             if (gTextPrinters[i].sub_union.sub.active != 0)
             {
+                // hack for instant text with pauses (for radio)
+                if (gTextPrinters[i].text_speed == 0 && gTextPrinters[i].state != 6)
+                {
+                    for (j = 0; j < 0x400; ++j)
+                    {
+                        if ((u32)RenderFont(&gTextPrinters[i]) == 1)
+                        {
+                            gTextPrinters[i].sub_union.sub.active = 0;
+                            CopyWindowToVram(gTextPrinters[i].subPrinter.windowId, 2);
+                            return;
+                        }
+                        
+                        if (gTextPrinters[i].state == 6)
+                            break;
+                    }
+                }
+                
                 temp = RenderFont(&gTextPrinters[i]);
                 switch (temp) {
                     case 0:

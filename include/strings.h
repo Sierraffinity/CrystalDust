@@ -462,14 +462,6 @@ extern const u8 gText_TotalRecordWLD[];
 extern const u8 gText_PlayersBattleResults[];
 extern const u8 gText_WinLoseDraw[];
 
-// Pokégear
-extern const u8 gText_PokegearInstructions[];
-extern const u8 gText_PokegearSelectToChangeMode[];
-extern const u8 gText_PokegearWhomDoYouWantToCall[];
-extern const u8 gText_PokegearRadioTuning[];
-extern const u8 gUnknown_085EC017[];
-extern const u8 gUnknown_085EC022[];
-
 // Day of week
 extern const u8 *const gDayOfWeekTable[];
 extern const u8 gText_Sunday[];
@@ -479,5 +471,77 @@ extern const u8 gText_Wednesday[];
 extern const u8 gText_Thursday[];
 extern const u8 gText_Friday[];
 extern const u8 gText_Saturday[];
+
+// Pokégear
+extern const u8 gText_PokegearInstructions[];
+extern const u8 gText_PokegearSelectToChangeMode[];
+extern const u8 gText_PokegearWhomDoYouWantToCall[];
+extern const u8 gText_PokegearRadioTuning[];
+extern const u8 gUnknown_085EC017[];
+extern const u8 gUnknown_085EC022[];
+
+// Radio stations
+extern const u8 gText_OaksPkmnTalk[];
+extern const u8 gText_PokemonMusic[];
+extern const u8 gText_LuckyChannel[];
+extern const u8 gText_BuenasPassword[];
+extern const u8 gText_PokedexShow[];
+
+// Radio text
+extern const u8 gText_OaksPkmnTalkIntro1[];
+extern const u8 gText_OaksPkmnTalkIntro2[];
+extern const u8 gText_OaksPkmnTalkIntro3[];
+extern const u8 gText_OaksPkmnTalk1[];
+extern const u8 gText_OaksPkmnTalk2[];
+extern const u8 gText_OaksPkmnTalk3[];
+extern const u8 gText_OaksPkmnTalk4[];
+extern const u8 gText_OPTAdverbSweetAndAdorably[];
+extern const u8 gText_OPTAdverbWigglyAndSlickly[];
+extern const u8 gText_OPTAdverbAptlyNamedAnd[];
+extern const u8 gText_OPTAdverbUndeniablyKindOf[];
+extern const u8 gText_OPTAdverbSoSoUnbearably[];
+extern const u8 gText_OPTAdverbWowImpressively[];
+extern const u8 gText_OPTAdverbAlmostPoisonously[];
+extern const u8 gText_OPTAdverbOohSoSensually[];
+extern const u8 gText_OPTAdverbSoMischievously[];
+extern const u8 gText_OPTAdverbSoVeryTopically[];
+extern const u8 gText_OPTAdverbSureAddictively[];
+extern const u8 gText_OPTAdverbLooksInWaterIs[];
+extern const u8 gText_OPTAdverbEvolutionMustBe[];
+extern const u8 gText_OPTAdverbProvocatively[];
+extern const u8 gText_OPTAdverbSoFlippedOutAnd[];
+extern const u8 gText_OPTAdverbHeartMeltingly[];
+extern const u8 gText_OPTAdjectiveCute[];
+extern const u8 gText_OPTAdjectiveWeird[];
+extern const u8 gText_OPTAdjectivePleasant[];
+extern const u8 gText_OPTAdjectiveBoldSortOf[];
+extern const u8 gText_OPTAdjectiveFrightening[];
+extern const u8 gText_OPTAdjectiveSuaveAndDebonair[];
+extern const u8 gText_OPTAdjectivePowerful[];
+extern const u8 gText_OPTAdjectiveExciting[];
+extern const u8 gText_OPTAdjectiveGroovy[];
+extern const u8 gText_OPTAdjectiveInspiring[];
+extern const u8 gText_OPTAdjectiveFriendly[];
+extern const u8 gText_OPTAdjectiveHotHotHot[];
+extern const u8 gText_OPTAdjectiveStimulating[];
+extern const u8 gText_OPTAdjectiveGuarded[];
+extern const u8 gText_OPTAdjectiveLovely[];
+extern const u8 gText_OPTAdjectiveSpeedy[];
+extern const u8 gText_PokedexShow1[];
+extern const u8 gText_PkmnMusicBenIntro1[];
+extern const u8 gText_LuckyChannel1[];
+extern const u8 gText_BuenasPassword1[];
+extern const u8 gText_PlacesAndPeople1[];
+extern const u8 gText_PkmnMusicFernIntro1[];
+extern const u8 gText_RocketRadio1[];
+extern const u8 gText_RocketRadio2[];
+extern const u8 gText_RocketRadio3[];
+extern const u8 gText_RocketRadio4[];
+extern const u8 gText_RocketRadio5[];
+extern const u8 gText_RocketRadio6[];
+extern const u8 gText_RocketRadio7[];
+extern const u8 gText_RocketRadio8[];
+extern const u8 gText_RocketRadio9[];
+extern const u8 gText_RocketRadio10[];
 
 #endif //GUARD_STRINGS_H

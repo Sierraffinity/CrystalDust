@@ -11,12 +11,28 @@ enum
     TIME_AFTERNOON
 };
 
+enum
+{
+    DAY_SUNDAY,
+    DAY_MONDAY,
+    DAY_TUESDAY,
+    DAY_WEDNESDAY,
+    DAY_THURSDAY,
+    DAY_FRIDAY,
+    DAY_SATURDAY
+};
+
 struct PaletteOverride
 {
     u8 slot;
     u8 timeOfDay;
     void *palette;
 };
+
+#define TIME_MORNING_HOUR 4
+#define TIME_DAY_HOUR 10
+#define TIME_AFTERNOON_HOUR 17
+#define TIME_NIGHT_HOUR 18
 
 extern EWRAM_DATA u16 gPlttBufferPreDN[];
 extern EWRAM_DATA struct PaletteOverride *gPaletteOverrides[];

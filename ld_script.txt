@@ -264,6 +264,7 @@ SECTIONS {
         src/match_call.o(.text);
         asm/pokenav.o(.text.after.match.call);
         src/pokegear.o(.text);
+        src/radio.o(.text);
         src/rayquaza_scene.o(.text);
         src/walda_phrase.o(.text);
         asm/contest_link_81D9DE4.o(.text);
@@ -538,6 +539,7 @@ SECTIONS {
         src/match_call.o(.rodata);
         data/pokenav.o(.rodata.after.match.call);
         src/pokegear.o(.rodata);
+        src/radio.o(.rodata);
         src/rayquaza_scene.o(.rodata);
         src/walda_phrase.o(.rodata);
         src/gym_leader_rematch.o(.rodata);

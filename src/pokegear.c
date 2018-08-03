@@ -2,6 +2,7 @@
 #include "main.h"
 #include "pokegear.h"
 #include "bg.h"
+#include "data2.h"
 #include "day_night.h"
 #include "event_data.h"
 #include "gpu_regs.h"
@@ -11,18 +12,35 @@
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
+#include "radio.h"
+#include "random.h"
+#include "region_map.h"
 #include "rtc.h"
 #include "scanline_effect.h"
 #include "sound.h"
+#include "string_util.h"
 #include "strings.h"
 #include "text.h"
 #include "text_window.h"
 #include "window.h"
 #include "constants/flags.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 
 #define MENU_FRAME_BASE_TILE_NUM 532
 #define MENU_FRAME_PALETTE_NUM 13
+
+#define FREQ(a) (u8)(a * 2 - 1)
+
+struct RadioStation{
+    u8 frequency;
+    u8 region;
+    const u8 *(*loadFunc)(u8 taskId, u8 windowId);
+};
+
+// TEMP
+#define FLAG_MAP_CARD FLAG_SYS_POKEMON_GET
+#define FLAG_RADIO_CARD FLAG_SYS_POKEMON_GET
 
 // Static RAM declarations
 
@@ -40,7 +58,7 @@ static EWRAM_DATA struct {
     bool8 scrollEnabled;
     bool8 twentyFourHourMode;
     u8 currentRadioStation;
-} *sPokegearStruct = NULL;
+} sPokegearStruct = {0};
 
 // Static ROM declarations
 
@@ -69,7 +87,7 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId);
 static void PhoneCard_AddScrollIndicators(u8 taskId);
 static void PhoneCard_ReturnToMain(u8 taskId);
 static void PhoneCard_PlaceCall(u8 taskId);
-static void StartRadioStation(u8 station);
+static void UpdateRadioStation(u8 taskId, u8 frequency);
 
 // .rodata
 static const u16 gBGPals[] = INCBIN_U16("graphics/pokegear/bg.gbapal");
@@ -340,17 +358,9 @@ const struct SpriteTemplate sSpriteTemplate_Digits = {
 void PrepareToStartPokegear(MainCallback callback)
 {
     SetVBlankCallback(NULL);
-    sPokegearStruct = AllocZeroed(sizeof(*sPokegearStruct));
-    if (sPokegearStruct == NULL)
-    {
-        SetMainCallback2(callback);
-    }
-    else
-    {
-        //sPokegearStruct->callback = callback;
-        SetMainCallback2(CB2_InitPokegear);
-        gMain.savedCallback = callback;
-    }
+    //sPokegearStruct.callback = callback;
+    SetMainCallback2(CB2_InitPokegear);
+    gMain.savedCallback = callback;
 }
 
 void PokegearScriptHarness(void)
@@ -425,6 +435,7 @@ static void CB2_Pokegear(void)
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
+    RunTextPrinters();
     do_scheduled_bg_tilemap_copies_to_vram();
     UpdatePaletteFade();
 }
@@ -447,7 +458,7 @@ static void LoadCard(enum CardType cardId)
             break;
     }
 
-    sPokegearStruct->currentCard = cardId;
+    sPokegearStruct.currentCard = cardId;
 }
 
 static void UnloadCard(enum CardType cardId)
@@ -473,24 +484,20 @@ static void Task_Pokegear1(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        sPokegearStruct->scrollEnabled = TRUE;
+        sPokegearStruct.scrollEnabled = TRUE;
         gTasks[taskId].func = Task_Pokegear2;
     }
 }
 
-// TEMP
-#define FLAG_MAP_CARD FLAG_SYS_POKEMON_GET
-#define FLAG_RADIO_CARD FLAG_SYS_POKEMON_GET
-
 static u8 ChangeCardWithDelta(s8 delta)
 {
-    int newCard = sPokegearStruct->currentCard + delta;
+    int newCard = sPokegearStruct.currentCard + delta;
 
     while (TRUE)
     {
         if (newCard < 0 || newCard >= CardCount)
         {
-            newCard = sPokegearStruct->currentCard;
+            newCard = sPokegearStruct.currentCard;
             break;
         }
         
@@ -512,9 +519,9 @@ static u8 ChangeCardWithDelta(s8 delta)
 
 static void Task_Pokegear2(u8 taskId)
 {
-    if (sPokegearStruct->scrollEnabled)
+    if (sPokegearStruct.scrollEnabled)
     {
-        u8 newCard = sPokegearStruct->currentCard;
+        u8 newCard = sPokegearStruct.currentCard;
 
         if (gMain.newKeys & B_BUTTON)
         {
@@ -531,10 +538,10 @@ static void Task_Pokegear2(u8 taskId)
             newCard = ChangeCardWithDelta(1);
         }
 
-        if (sPokegearStruct->currentCard != newCard)
+        if (sPokegearStruct.currentCard != newCard)
         {
             PlaySE(SE_SELECT);
-            UnloadCard(sPokegearStruct->currentCard);
+            UnloadCard(sPokegearStruct.currentCard);
             LoadCard(newCard);
         }
     }
@@ -550,7 +557,7 @@ static void Task_ExitPokegear2(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        UnloadCard(sPokegearStruct->currentCard);
+        UnloadCard(sPokegearStruct.currentCard);
         FreeAllWindowBuffers(); // just make sure, y'know?
         SetMainCallback2(gMain.savedCallback);
     }
@@ -620,7 +627,7 @@ static void Task_ClockCard(u8 taskId)
     if (gMain.newKeys & SELECT_BUTTON)
     {
         PlaySE(SE_SELECT);
-        sPokegearStruct->twentyFourHourMode = !sPokegearStruct->twentyFourHourMode;
+        sPokegearStruct.twentyFourHourMode = !sPokegearStruct.twentyFourHourMode;
         //FlagSet(FLAG_POKEGEAR_24HR);
     }
 
@@ -641,7 +648,7 @@ static void SpriteCB_ClockDigits(struct Sprite* sprite)
     {
         case 0:
             value = gLocalTime.hours;
-            if (!sPokegearStruct->twentyFourHourMode)
+            if (!sPokegearStruct.twentyFourHourMode)
             {
                 if (value > 12)
                     value -= 12;
@@ -654,7 +661,7 @@ static void SpriteCB_ClockDigits(struct Sprite* sprite)
             break;
         case 1:
             value = gLocalTime.hours;
-            if (!sPokegearStruct->twentyFourHourMode)
+            if (!sPokegearStruct.twentyFourHourMode)
             {
                 if (value > 12)
                     value -= 12;
@@ -676,7 +683,7 @@ static void SpriteCB_ClockDigits(struct Sprite* sprite)
             value = gLocalTime.minutes % 10 + 1;
             break;
         case 5:
-            if (sPokegearStruct->twentyFourHourMode)
+            if (sPokegearStruct.twentyFourHourMode)
                 value = 13;
             else if (gLocalTime.hours < 12)
                 value = 14;
@@ -735,6 +742,7 @@ static void LoadMapCard(void)
 #define tSelectedItem data[1]
 #define tScrollTaskId data[2]
 #define tScrollOffset data[3]
+
 #define WIN_LIST 1
 #define WIN_CONFIRM 2
 
@@ -804,7 +812,7 @@ static const struct MenuAction sCallOptions[] = {
 
 static void PhoneCard_ConfirmCall(u8 taskId)
 {
-    sPokegearStruct->scrollEnabled = FALSE;
+    sPokegearStruct.scrollEnabled = FALSE;
     PhoneCard_RemoveScrollIndicators(taskId);
     SetWindowBorderStyle(WIN_CONFIRM, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PrintMenuTable(WIN_CONFIRM, ARRAY_COUNT(sCallOptions), sCallOptions);
@@ -830,7 +838,7 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId)
         default:
             PlaySE(SE_SELECT);
             sub_8197434(2, TRUE);
-            sCallOptions[inputOptionId].func.void_u8(taskId);
+            gTasks[taskId].func = sCallOptions[inputOptionId].func.void_u8;
             break;
     }
 }
@@ -838,7 +846,7 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId)
 static void PhoneCard_ReturnToMain(u8 taskId)
 {
     PhoneCard_AddScrollIndicators(taskId);
-    sPokegearStruct->scrollEnabled = TRUE;
+    sPokegearStruct.scrollEnabled = TRUE;
     gTasks[taskId].func = Task_PhoneCard;
 }
 
@@ -860,6 +868,13 @@ static void UnloadPhoneCard(void)
 
     DestroyTask(taskId);
 }
+
+#define tCurrentLine data[0]
+#define tNextLine data[1]
+#define tNumLinesPrinted data[2]
+#define tScrollDistance data[3]
+#define tTextDelay data[4]
+#define tMiscCounter data[5]
 
 #define tPosition data[0]
 #define tStoredVal data[1]
@@ -888,24 +903,31 @@ static void LoadRadioCard(void)
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
     LoadSpritePalette(&sSpritePalette_MenuSprites);
 
-    StartRadioStation(sPokegearStruct->currentRadioStation);
-
     newTask = CreateTask(Task_RadioCard, 0);
+
+    gTasks[newTask].tCurrentLine = 0;
+    gTasks[newTask].tNextLine = 0;
+    gTasks[newTask].tNumLinesPrinted = 0;
+    gTasks[newTask].tScrollDistance = 0;
+    gTasks[newTask].tTextDelay = 0;
+    gTasks[newTask].tMiscCounter = 0;
+
+    UpdateRadioStation(newTask, sPokegearStruct.currentRadioStation);
 
     for (i = 0; i < 5; i++)
     {
         spriteId = CreateSprite(&sSpriteTemplate_Digits, radioX[i], 64, 0);
         gSprites[spriteId].tPosition = i;
         gSprites[spriteId].callback = SpriteCB_RadioDigits;
-        gTasks[newTask].data[i + 1] = spriteId;
+        gTasks[newTask].data[i + 6] = spriteId;
     }
 }
 
 static void SpriteCB_RadioDigits(struct Sprite* sprite)
 {
     u8 value;
-    u8 stationMajor = sPokegearStruct->currentRadioStation >> 1;
-    bool8 stationMinor = sPokegearStruct->currentRadioStation & 1;
+    u8 station = sPokegearStruct.currentRadioStation + 1;
+    u8 stationMajor = station >> 1;
 
     switch (sprite->tPosition)
     {
@@ -922,7 +944,7 @@ static void SpriteCB_RadioDigits(struct Sprite* sprite)
             value = 16;
             break;
         case 4:
-            value = stationMinor ? 6 : 1;
+            value = station & 1 ? 6 : 1;
             break;
         default:
             value = 0;
@@ -936,9 +958,65 @@ static void SpriteCB_RadioDigits(struct Sprite* sprite)
     }
 }
 
+static const struct RadioStation sRadioStationData[] = {
+    { FREQ(4.5), REGION_JOHTO, LoadStation_PokemonChannel },
+    { FREQ(7.5), REGION_JOHTO, LoadStation_PokemonMusic },
+    { FREQ(8.5), REGION_JOHTO, LoadStation_LuckyChannel },
+    { FREQ(10.5), REGION_JOHTO, LoadStation_BuenasPassword },
+    { FREQ(13.5), REGION_JOHTO, LoadStation_UnownRadio },
+    { FREQ(20.5), REGION_JOHTO, LoadStation_EvolutionRadio },
+    { 0xFF, 0xFF, NULL }
+};
+
+static void DrawStationTitle(const u8 *title)
+{
+    box_print(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, title, 0x70), 5, sTextColor, 0, title);
+}
+
+static void ClearStationTitle(void)
+{
+    FillWindowPixelBuffer(WIN_BOTTOM, 0);
+    CopyWindowToVram(WIN_BOTTOM, 2);
+}
+
+static void UpdateRadioStation(u8 taskId, u8 frequency)
+{
+    u16 song = MUS_DUMMY;
+    const u8 *title = NULL;
+    const struct RadioStation *station;
+    u8 region = GetCurrentRegion();
+
+    for (station = &sRadioStationData[0]; station->frequency != 0xFF; station++)
+    {
+        if (station->frequency == frequency && station->region == region)
+            break;
+    }
+
+    if (station->frequency != 0xFF)
+    {
+        gTasks[taskId].tNumLinesPrinted = 0;
+        title = station->loadFunc(taskId, WIN_DIALOG);
+
+        if (title != NULL)
+        {
+            DrawStationTitle(title);
+        }
+    }
+    else
+    {
+        gTasks[taskId].tCurrentLine = 0;
+        gTasks[taskId].tNextLine = 0;
+        gTasks[taskId].tNumLinesPrinted = 0;
+        ClearStationTitle();
+        FillWindowPixelBuffer(WIN_DIALOG, 0x11);
+        CopyWindowToVram(WIN_DIALOG, 2);
+        PlayNewMapMusic(MUS_DUMMY);
+    }
+}
+
 static void Task_RadioCard(u8 taskId)
 {
-    u8 station = sPokegearStruct->currentRadioStation;
+    u8 station = sPokegearStruct.currentRadioStation;
 
     if (gMain.newAndRepeatedKeys & DPAD_UP)
     {
@@ -949,80 +1027,16 @@ static void Task_RadioCard(u8 taskId)
         station--;
     }
 
-    if (station != sPokegearStruct->currentRadioStation && station > 0 && station < 42) // limit station between 0.5 and 20.5
+    if (station != sPokegearStruct.currentRadioStation && station <= 40) // limit station between 0.5 and 20.5
     {
         PlaySE(SE_TB_KARA);
-        StartRadioStation(station);
-        sPokegearStruct->currentRadioStation = station;
+        UpdateRadioStation(taskId, station);
+        sPokegearStruct.currentRadioStation = station;
     }
-}
-
-enum {
-    STATION_POKEMON = 9,
-    STATION_MUSIC = 15,
-    STATION_LUCKY = 17,
-    STATION_BUENA = 21,
-    STATION_UNOWN = 27,
-    STATION_SIGNAL = 41,
-};
-
-// TEMP
-#define FLAG_ROCKET_TAKEOVER FLAG_SYS_POKEDEX_GET
-
-static void StartRadioStation(u8 station)
-{
-    u16 song = MUS_DUMMY;
-    u8 *title;
-
-    RtcCalcLocalTime();
-
-    switch (station)
+    else if (gTasks[taskId].tNumLinesPrinted > 0)
     {
-        case STATION_POKEMON:
-            if (GetTimeOfDay() == TIME_MORNING)
-            {
-                song = MUS_POKECEN;
-                //title = gText_RadioPokedexShow;
-            }
-            else
-            {
-                song = MUS_RG_KENKYU;
-                //title = gText_RadioOaksPokemonTalk;
-            }
-
-            if (FlagGet(FLAG_ROCKET_TAKEOVER))
-            {
-				song = MUS_M_DUNGON;
-            }
-            break;
-        case STATION_MUSIC:
-            if ((gLocalTime.dayOfWeek == 1) || (gLocalTime.dayOfWeek == 3) || (gLocalTime.dayOfWeek == 5))
-            {
-                song = MUS_TOZAN;
-            }
-            else
-            {
-                song = MUS_ASHROAD;
-            }
-
-            if (FlagGet(FLAG_ROCKET_TAKEOVER))
-            {
-				song = MUS_M_DUNGON;
-            }
-            break;
-        case STATION_LUCKY:
-            break;
-        case STATION_BUENA:
-            break;
-        case STATION_UNOWN:
-            break;
-        case STATION_SIGNAL:
-            break;
-        default:
-            break;
+        PlayRadioShow(taskId, WIN_DIALOG);
     }
-
-    PlayNewMapMusic(song);
 }
 
 static void UnloadRadioCard(void)
@@ -1048,7 +1062,7 @@ static void UnloadRadioCard(void)
 
     for (i = 0; i < 5; i++)
     {
-        DestroySpriteAndFreeResources(&gSprites[gTasks[taskId].data[i + 1]]);
+        DestroySpriteAndFreeResources(&gSprites[gTasks[taskId].data[i + 6]]);
     }
 
     DestroyTask(taskId);

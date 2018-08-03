@@ -23,6 +23,14 @@ enum {
     MAPSECTYPE_BATTLE_FRONTIER
 };
 
+enum {
+    REGION_JOHTO,
+    REGION_KANTO,
+    REGION_SEVII1,
+    REGION_SEVII2,
+    REGION_SEVII3
+};
+
 struct RegionMap {
     /*0x000*/ u16 mapSecId;
     /*0x002*/ u8 iconDrawType;
@@ -78,9 +86,20 @@ struct RegionMap {
     /*0x284*/ u8 cursorLargeImage[0x600];
 }; // size = 0x884
 
+struct RegionMapLocation
+{
+    u8 x;
+    u8 y;
+    u8 width;
+    u8 height;
+    const u8 *name;
+};
+
 // Exported RAM declarations
 
 // Exported ROM declarations
+extern const struct RegionMapLocation gRegionMapEntries[];
+
 void sub_8122CF8(struct RegionMap *regionMap, struct BgTemplate *template, bool8 zoomed);
 bool8 sub_8122DB0(void);
 void UpdateRegionMapVideoRegs(void);
@@ -94,5 +113,6 @@ void CreateRegionMapCursor(u16 tileTag, u16 paletteTag);
 u8 *GetMapName(u8 *, u16, u16);
 bool32 sub_8124668(u8 mapSecId);
 u8 *sub_81245DC(u8 *dest, u16 mapSecId);
+u8 GetCurrentRegion(void);
 
 #endif //GUARD_REGION_MAP_H

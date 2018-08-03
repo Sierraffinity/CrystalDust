@@ -32,15 +32,6 @@
 
 // Static type declarations
 
-struct RegionMapLocation
-{
-    u8 x;
-    u8 y;
-    u8 width;
-    u8 height;
-    const u8 *name;
-};
-
 // Static RAM declarations
 
 static EWRAM_DATA struct RegionMap *gRegionMap = NULL;
@@ -110,6 +101,7 @@ static const u8 sRegionMapPlayerIcon_MayGfx[] = INCBIN_U8("graphics/pokenav/may_
 static const u8 sRegionMap_MapSectionLayout[] = INCBIN_U8("graphics/pokenav/region_map_section_layout.bin");
 
 #include "data/region_map/region_map_entries.h"
+#include "data/region_map/mapsec_to_region.h"
 
 static const u16 sRegionMap_SpecialPlaceLocations[][2] = {
     {MAPSEC_UNDERWATER_TERRA_CAVE,     MAPSEC_ROUTE_105},
@@ -1945,4 +1937,9 @@ static void sub_8124E0C(void)
             }
             break;
     }
+}
+
+u8 GetCurrentRegion(void)
+{
+    return sMapSecToRegion[gMapHeader.regionMapSectionId];
 }

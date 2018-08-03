@@ -1062,6 +1062,8 @@ EMOJI_NEUTRAL = F9 FC
 EMOJI_SHOCKED = F9 FD
 EMOJI_BIGANGER = F9 FE
 
+RADIO_PAUSE = FC 08 1E
+
 '\l' = FA @ scroll up window text
 '\p' = FB @ new paragraph
 '\n' = FE @ new line
