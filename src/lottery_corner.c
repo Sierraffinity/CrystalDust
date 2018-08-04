@@ -25,7 +25,8 @@ void ResetLotteryCorner(void)
 {
     u16 rand = Random();
 
-    SetLotteryNumber((Random() << 16) | rand);
+    //SetLotteryNumber((Random() << 16) | rand);    // GF why
+    SetRandomLotteryNumber(0);
     VarSet(VAR_POKELOT_PRIZE, 0);
 }
 

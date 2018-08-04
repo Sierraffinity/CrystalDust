@@ -68,6 +68,7 @@ LittlerootTown_MaysHouse_2F_EventScript_292799:: @ 8292799
 	setflag FLAG_0x051
 	setflag FLAG_0x2F2
 	setflag FLAG_0x2F3
+	setflag FLAG_SYS_POKENAV_GET
 	checkplayergender
 	compare VAR_RESULT, 0
 	call_if 1, LittlerootTown_BrendansHouse_2F_EventScript_2927DF
@@ -107,14 +108,14 @@ LittlerootTown_BrendansHouse_2F_EventScript_29280F:: @ 829280F
 LittlerootTown_BrendansHouse_2F_EventScript_29283F:: @ 829283F
 	incrementgamestat 45
 	fadescreen 1
-	special PokegearScriptHarness
+	special Special_ViewWallClock
 	waitstate
 	releaseall
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_292849:: @ 8292849
 	fadescreen 1
-	special PokegearScriptHarness
+	special StartWallClock
 	waitstate
 	return
 

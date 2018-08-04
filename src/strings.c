@@ -2073,7 +2073,7 @@ const u8 gText_BuenasPassword[] = _("BUENA’S PASSWORD");
 const u8 gText_PokedexShow[] = _("POKéDEX Show");
 
 // Oak's Pokemon Talk
-const u8 gText_OaksPkmnTalkIntro1[] = _("MARY: PROF.OAK’S");
+const u8 gText_OaksPkmnTalkIntro1[] = _("MARY: PROF. OAK’S");
 const u8 gText_OaksPkmnTalkIntro2[] = _("POKéMON TALK!");
 const u8 gText_OaksPkmnTalkIntro3[] = _("With me, MARY!");
 const u8 gText_OaksPkmnTalk1[] = _("OAK: {STR_VAR_1}");
@@ -2115,11 +2115,25 @@ const u8 gText_OPTAdjectiveGuarded[] = _("guarded.");
 const u8 gText_OPTAdjectiveLovely[] = _("lovely.");
 const u8 gText_OPTAdjectiveSpeedy[] = _("speedy.");
 
+const u8 gText_PokemonChannel1[] = _("{PAUSE 16}POKéMON{PAUSE 100} POKéMON\n{PAUSE 100}POKéMON CHANNEL");
+
 const u8 gText_PokedexShow1[] = _("{STR_VAR_1}");
 
 const u8 gText_PkmnMusicBenIntro1[] = _("BEN: POKéMON MUSIC");
 
 const u8 gText_LuckyChannel1[] = _("REED: Yeehaw! How");
+const u8 gText_LuckyChannel2[] = _("y’all doin’ now?");
+const u8 gText_LuckyChannel3[] = _("Whether you’re up");
+const u8 gText_LuckyChannel4[] = _("or way down low,");
+const u8 gText_LuckyChannel5[] = _("don’t you miss the");
+const u8 gText_LuckyChannel6[] = _("LUCKY NUMBER SHOW!");
+const u8 gText_LuckyChannel7[] = _("This week’s Lucky");
+const u8 gText_LuckyChannel8[] = _("Number is {RADIO_PAUSE}{STR_VAR_1}!");
+const u8 gText_LuckyChannel9[] = _("I’ll repeat that!");
+const u8 gText_LuckyChannel10[] = _("Match it and go to");
+const u8 gText_LuckyChannel11[] = _("the RADIO TOWER!");
+const u8 gText_LuckyChannel12[] = _("…Repeating myself");
+const u8 gText_LuckyChannel13[] = _("gets to be a drag…");
 
 const u8 gText_BuenasPassword1[] = _("BUENA: BUENA here!");
 

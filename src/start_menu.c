@@ -85,7 +85,7 @@ extern void sub_808B864(void);
 extern void sub_80BB534(void);
 extern void play_some_sound(void);
 extern void CB2_PartyMenuFromStartMenu(void);
-extern void CB2_PokeNav(void);
+extern void CB2_InitPokegear(void);
 extern void sub_80C4DDC(void (*)(void));
 extern void sub_80C51C4(void (*)(void));
 extern void sub_80C4E74(u8, void (*)(void));
@@ -665,7 +665,7 @@ static bool8 StartMenuPokeNavCallback(void)
         play_some_sound();
         RemoveExtraStartMenuWindows();
         overworld_free_bg_tilemaps();
-        SetMainCallback2(CB2_PokeNav);  // Display PokeNav
+        SetMainCallback2(CB2_InitPokegear);  // Display PokeNav
 
         return TRUE;
     }

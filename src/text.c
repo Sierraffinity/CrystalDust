@@ -238,26 +238,30 @@ void RunTextPrinters(void)
                         if ((u32)RenderFont(&gTextPrinters[i]) == 1)
                         {
                             gTextPrinters[i].sub_union.sub.active = 0;
-                            CopyWindowToVram(gTextPrinters[i].subPrinter.windowId, 2);
-                            return;
+                            break;
                         }
                         
                         if (gTextPrinters[i].state == 6)
+                        {
+                            break;
+                        }
+                    }
+                    CopyWindowToVram(gTextPrinters[i].subPrinter.windowId, 2);
+                }
+                else
+                {
+                    temp = RenderFont(&gTextPrinters[i]);
+                    switch (temp) {
+                        case 0:
+                            CopyWindowToVram(gTextPrinters[i].subPrinter.windowId, 2);
+                        case 3:
+                            if (gTextPrinters[i].callback != 0)
+                                gTextPrinters[i].callback(&gTextPrinters[i].subPrinter, temp);
+                            break;
+                        case 1:
+                            gTextPrinters[i].sub_union.sub.active = 0;
                             break;
                     }
-                }
-                
-                temp = RenderFont(&gTextPrinters[i]);
-                switch (temp) {
-                    case 0:
-                        CopyWindowToVram(gTextPrinters[i].subPrinter.windowId, 2);
-                    case 3:
-                        if (gTextPrinters[i].callback != 0)
-                            gTextPrinters[i].callback(&gTextPrinters[i].subPrinter, temp);
-                        break;
-                    case 1:
-                        gTextPrinters[i].sub_union.sub.active = 0;
-                        break;
                 }
             }
         }

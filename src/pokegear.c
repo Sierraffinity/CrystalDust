@@ -40,7 +40,7 @@ struct RadioStation{
 
 // TEMP
 #define FLAG_MAP_CARD FLAG_SYS_POKEMON_GET
-#define FLAG_RADIO_CARD FLAG_SYS_POKEMON_GET
+#define FLAG_RADIO_CARD FLAG_SYS_TV_HOME
 
 // Static RAM declarations
 
@@ -62,7 +62,7 @@ static EWRAM_DATA struct {
 
 // Static ROM declarations
 
-static void CB2_InitPokegear(void);
+void CB2_InitPokegear(void);
 static void VBlankCB(void);
 static void CB2_Pokegear(void);
 static void Task_Pokegear1(u8 taskId);
@@ -355,7 +355,7 @@ const struct SpriteTemplate sSpriteTemplate_Digits = {
 
 // .text
 
-void PrepareToStartPokegear(MainCallback callback)
+/*void PrepareToStartPokegear(MainCallback callback)
 {
     SetVBlankCallback(NULL);
     //sPokegearStruct.callback = callback;
@@ -366,14 +366,16 @@ void PrepareToStartPokegear(MainCallback callback)
 void PokegearScriptHarness(void)
 {
     PrepareToStartPokegear(CB2_ReturnToFieldContinueScript);
-}
+}*/
 
 const u8 sTextColor[3] = {
     0x00, 0x02, 0x03
 };
 
-static void CB2_InitPokegear(void)
+void CB2_InitPokegear(void)
 {
+    ResetTasks();
+    SetVBlankCallback(NULL);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetGpuReg(REG_OFFSET_BG3CNT, 0);
     SetGpuReg(REG_OFFSET_BG2CNT, 0);
@@ -399,7 +401,6 @@ static void CB2_InitPokegear(void)
     LoadUserWindowBorderGfx(0, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM * 0x10);
     clear_scheduled_bg_copies_to_vram();
     ScanlineEffect_Stop();
-    ResetTasks();
     ResetSpriteData();
     ResetPaletteFade();
     FreeAllSpritePalettes();
@@ -905,8 +906,8 @@ static void LoadRadioCard(void)
 
     newTask = CreateTask(Task_RadioCard, 0);
 
-    gTasks[newTask].tCurrentLine = 0;
-    gTasks[newTask].tNextLine = 0;
+    gTasks[newTask].tCurrentLine = NO_RADIO_SHOW;
+    gTasks[newTask].tNextLine = NO_RADIO_SHOW;
     gTasks[newTask].tNumLinesPrinted = 0;
     gTasks[newTask].tScrollDistance = 0;
     gTasks[newTask].tTextDelay = 0;
@@ -1004,8 +1005,8 @@ static void UpdateRadioStation(u8 taskId, u8 frequency)
     }
     else
     {
-        gTasks[taskId].tCurrentLine = 0;
-        gTasks[taskId].tNextLine = 0;
+        gTasks[taskId].tCurrentLine = NO_RADIO_SHOW;
+        gTasks[taskId].tNextLine = NO_RADIO_SHOW;
         gTasks[taskId].tNumLinesPrinted = 0;
         ClearStationTitle();
         FillWindowPixelBuffer(WIN_DIALOG, 0x11);
@@ -1033,7 +1034,7 @@ static void Task_RadioCard(u8 taskId)
         UpdateRadioStation(taskId, station);
         sPokegearStruct.currentRadioStation = station;
     }
-    else if (gTasks[taskId].tNumLinesPrinted > 0)
+    else if (gTasks[taskId].tCurrentLine != NO_RADIO_SHOW)
     {
         PlayRadioShow(taskId, WIN_DIALOG);
     }
