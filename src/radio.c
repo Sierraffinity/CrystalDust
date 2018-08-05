@@ -5,6 +5,8 @@
 #include "day_night.h"
 #include "event_data.h"
 #include "lottery_corner.h"
+#include "malloc.h"
+#include "pokedex.h"
 #include "radio.h"
 #include "random.h"
 #include "region_map.h"
@@ -27,13 +29,13 @@
 #define tNumLinesPrinted data[2]
 #define tScrollDistance data[3]
 #define tTextDelay data[4]
-#define tOaksPkmnTalkCounter data[5]
+#define tMiscValue data[5]
 
 static const u16 sRadioChannelSongs[] = 
 {
     MUS_RG_KENKYU,
     MUS_POKECEN,
-    MUS_FRIENDLY,
+    MUS_DUMMY,  // Music channel
     MUS_CASINO,
     MUS_M_BOAT,
     MUS_FINECITY,
@@ -44,7 +46,7 @@ static const u16 sRadioChannelSongs[] =
     MUS_RG_VS_MYU2
 };
 
-static void StartRadioStation(u8 taskId)
+static void PlayStationMusic(u8 taskId)
 {
     if (gTasks[taskId].tNumLinesPrinted == 0)
     {
@@ -82,6 +84,17 @@ static void NextRadioLine(u8 taskId, u8 windowId, u8 nextLine, const u8 *lineToP
 
 extern void DrawStationTitle(const u8 *title);
 
+void PlayPokemonMusic(void)
+{
+    u16 song = MUS_AYASII;  // Sunday, Tuesday, Thursday, Saturday
+    RtcCalcLocalTime();
+    if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
+    {
+        song = MUS_ASHROAD;
+    }
+    PlayNewMapMusic(song);
+}
+
 void PlayRadioShow(u8 taskId, u8 windowId)
 {
     s16 *data = gTasks[taskId].data;
@@ -94,32 +107,47 @@ void PlayRadioShow(u8 taskId, u8 windowId)
     switch (tCurrentLine)
     {
     case OAKS_POKEMON_TALK:
-        tOaksPkmnTalkCounter = 5;   // play five Oak segments then channel interlude
-        StartRadioStation(taskId);
+        tMiscValue = 5;   // play five Oak segments then channel interlude
+        PlayStationMusic(taskId);
         NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_2, gText_OaksPkmnTalkIntro1);
         break;
     case POKEDEX_SHOW:
         {
-            u16 species = SPECIES_NONE;
-            StartRadioStation(taskId);
-            /*if (GetNationalPokedexCount(FLAG_GET_SEEN) > 0)
+            // TODO: Suboptimal here, should hold onto caughtMons until show unload (but we don't have a hook for that yet)
+            u16 *caughtMons = AllocZeroed(sizeof(u16[386]));
+            u16 species, caughtMonCount;
+            PlayStationMusic(taskId);
+            tMiscValue = SPECIES_NONE;
+            
+            if (caughtMons)
             {
-                do { species = Random() % NUM_SPECIES; }
-                while (species == SPECIES_NONE ||
-                        (species > SPECIES_CELEBI && species < SPECIES_TREECKO) ||
-                        !GetSetPokedexFlag(species, FLAG_GET_CAUGHT));
-            }*/
-            StringCopy(gStringVar1, gSpeciesNames[species]);
-            StringExpandPlaceholders(gStringVar4, gText_PokedexShow1);
+                for (species = 1, caughtMonCount = 0; species <= 386; species++)
+                {
+                    if (GetSetPokedexFlag(species, 1))
+                    {
+                        caughtMons[caughtMonCount] = species;
+                        caughtMonCount++;
+                    }
+                }
+
+                if (caughtMonCount > 0)
+                {
+                    tMiscValue = caughtMons[Random() % caughtMonCount];
+                }
+
+                FREE_AND_SET_NULL(caughtMons);
+            }
+
+            StringCopy10(gStringVar4, gSpeciesNames[NationalPokedexNumToSpecies(tMiscValue)]);
             NextRadioLine(taskId, windowId, POKEDEX_SHOW_2, gStringVar4);
         }
         break;
     case POKEMON_MUSIC:
-        StartRadioStation(taskId);
-        NextRadioLine(taskId, windowId, POKEMON_MUSIC_2, gText_PkmnMusicBenIntro1);
+        PlayPokemonMusic();
+        NextRadioLine(taskId, windowId, POKEMON_MUSIC_2, gText_PkmnMusicBen1);
         break;
     case LUCKY_CHANNEL:
-        StartRadioStation(taskId);
+        PlayStationMusic(taskId);
         DoTimeBasedEvents();
         ConvertUIntToDecimalStringN(gStringVar1, GetLotteryNumber(), STR_CONV_MODE_LEADING_ZEROS, 5);
         NextRadioLine(taskId, windowId, LUCKY_NUMBER_SHOW_2, gText_LuckyChannel1);
@@ -128,7 +156,7 @@ void PlayRadioShow(u8 taskId, u8 windowId)
         if (BuenasPassword_CheckTime())
         {
             DrawStationTitle(gText_BuenasPassword); // Buena's Password will never play on a regular radio so this should be okay
-            StartRadioStation(taskId);
+            PlayStationMusic(taskId);
             NextRadioLine(taskId, windowId, BUENAS_PASSWORD_2, gText_BuenasPassword1);
         }
         else
@@ -144,21 +172,21 @@ void PlayRadioShow(u8 taskId, u8 windowId)
         }
         break;
     case PLACES_AND_PEOPLE:
-        StartRadioStation(taskId);
+        PlayStationMusic(taskId);
         NextRadioLine(taskId, windowId, PLACES_AND_PEOPLE_2, gText_PlacesAndPeople1);
         break;
     case LETS_ALL_SING:
-        StartRadioStation(taskId);
+        PlayPokemonMusic();
         NextRadioLine(taskId, windowId, LETS_ALL_SING_2, gText_PkmnMusicFernIntro1);
         break;
     case ROCKET_RADIO:
-        StartRadioStation(taskId);
+        PlayStationMusic(taskId);
         NextRadioLine(taskId, windowId, ROCKET_RADIO_2, gText_RocketRadio1);
         break;
     case POKE_FLUTE_RADIO:
     case UNOWN_RADIO:
     case EVOLUTION_RADIO:
-        StartRadioStation(taskId);
+        PlayStationMusic(taskId);
         tNumLinesPrinted = 1;
         break;
     case OAKS_POKEMON_TALK_2:
@@ -257,41 +285,84 @@ void PlayRadioShow(u8 taskId, u8 windowId)
                 gText_OPTAdjectiveLovely,
                 gText_OPTAdjectiveSpeedy
             };
-            if (--tOaksPkmnTalkCounter > 0)
+            if (--tMiscValue > 0)
             {
                 NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_4, adverbs[Random() % 16]);
             }
             else
             {
-                tOaksPkmnTalkCounter = 5;
-                NextRadioLine(taskId, windowId, OAKS_POKEMON_TALK_10, adverbs[Random() % 16]);
-                tCurrentLine = OAKS_POKEMON_TALK_10;
+                tMiscValue = 5;
+                NextRadioLine(taskId, windowId, PKMN_CHANNEL_INTERLUDE_1, adverbs[Random() % 16]);
+                tCurrentLine = PKMN_CHANNEL_INTERLUDE_1;
                 tNextLine = NO_RADIO_SHOW;
                 tTextDelay = 100;
             }
         }
         break;
     case POKEDEX_SHOW_2:
+        CopyMonCategoryText(tMiscValue, gStringVar4);
+        NextRadioLine(taskId, windowId, POKEDEX_SHOW_3, gStringVar4);
         break;
     case POKEDEX_SHOW_3:
-        break;
+        StringCopy(gStringVar4, gPokedexEntries[tMiscValue].description);
+        tMiscValue = 0;
     case POKEDEX_SHOW_4:
+        {
+            u8 index;
+            for (index = tMiscValue; index < 0x3E8; index++)
+            {
+                if (gStringVar4[index] == 0xFE)
+                {
+                    gStringVar4[index] = 0xFF;
+                    NextRadioLine(taskId, windowId, POKEDEX_SHOW_4, &gStringVar4[tMiscValue]);
+                    tMiscValue = index + 1;
+                    break;
+                }
+                else if (gStringVar4[index] == 0xFF)
+                {
+                    NextRadioLine(taskId, windowId, POKEDEX_SHOW, &gStringVar4[tMiscValue]);
+                    break;
+                }
+            }
+        }
         break;
     case POKEDEX_SHOW_5:
         break;
     case POKEMON_MUSIC_2:
+        NextRadioLine(taskId, windowId, POKEMON_MUSIC_3, gText_PkmnMusicBen2);
         break;
     case POKEMON_MUSIC_3:
+        NextRadioLine(taskId, windowId, POKEMON_MUSIC_4, gText_PkmnMusicBen3);
         break;
     case POKEMON_MUSIC_4:
+        StringCopy(gStringVar1, GetDayOfWeekString());
+        StringExpandPlaceholders(gStringVar4, gText_PkmnMusicBenFern1);
+        NextRadioLine(taskId, windowId, POKEMON_MUSIC_5, gStringVar4);
         break;
     case POKEMON_MUSIC_5:
+        {
+            const u8 *string = gText_PkmnMusicBenFern2A;    // Sunday, Tuesday, Thursday, Saturday
+            if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
+            {
+                string = gText_PkmnMusicBenFern2B;
+            }
+            NextRadioLine(taskId, windowId, POKEMON_MUSIC_6, string);
+        }
         break;
     case POKEMON_MUSIC_6:
+        {
+            const u8 *string = gText_PkmnMusicBenFern3A;    // Sunday, Tuesday, Thursday, Saturday
+            if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
+            {
+                string = gText_PkmnMusicBenFern3B;
+            }
+            NextRadioLine(taskId, windowId, POKEMON_MUSIC_7, string);
+        }
         break;
     case POKEMON_MUSIC_7:
         break;
     case LETS_ALL_SING_2:
+        NextRadioLine(taskId, windowId, POKEMON_MUSIC_4, gText_PkmnMusicFern2);
         break;
     case LUCKY_NUMBER_SHOW_2:
         NextRadioLine(taskId, windowId, LUCKY_NUMBER_SHOW_3, gText_LuckyChannel2);
@@ -383,33 +454,29 @@ void PlayRadioShow(u8 taskId, u8 windowId)
     case ROCKET_RADIO_10:
         NextRadioLine(taskId, windowId, ROCKET_RADIO, gText_RocketRadio10);
         break;
-    case OAKS_POKEMON_TALK_10:
+    case PKMN_CHANNEL_INTERLUDE_1:
         if (tTextDelay == 0)
         {
-            tCurrentLine = OAKS_POKEMON_TALK_11;
+            tCurrentLine = PKMN_CHANNEL_INTERLUDE_2;
         }
         else
         {
             tTextDelay--;
         }
         break;
-    case OAKS_POKEMON_TALK_11:
+    case PKMN_CHANNEL_INTERLUDE_2:
         FillWindowPixelBuffer(windowId, 0x11);
         PrintTextOnWindow(windowId, 1, gText_PokemonChannel1, 0, 1, 0, NULL);
         PlayFanfare(MUS_ME_TAMA);
-        tCurrentLine = OAKS_POKEMON_TALK_12;
+        tCurrentLine = PKMN_CHANNEL_INTERLUDE_3;
         break;
-    case OAKS_POKEMON_TALK_12:
+    case PKMN_CHANNEL_INTERLUDE_3:
         if (IsFanfareTaskInactive())
         {
             FillWindowPixelBuffer(windowId, 0x11);
             tCurrentLine = OAKS_POKEMON_TALK;
             tNumLinesPrinted = 0;
         }
-        break;
-    case OAKS_POKEMON_TALK_13:
-        break;
-    case OAKS_POKEMON_TALK_14:
         break;
     case BUENAS_PASSWORD_2:
         break;

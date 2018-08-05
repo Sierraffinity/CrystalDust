@@ -1,6 +1,19 @@
 #ifndef GUARD_POKEDEX_H
 #define GUARD_POKEDEX_H
 
+struct PokedexEntry
+{
+    /*0x00*/ u8 categoryName[12];
+    /*0x0C*/ u16 height; //in decimeters
+    /*0x0E*/ u16 weight; //in hectograms
+    /*0x10*/ const u8 *description;
+    /*0x14*/ u16 unused;
+    /*0x16*/ u16 pokemonScale;
+    /*0x18*/ u16 pokemonOffset;
+    /*0x1A*/ u16 trainerScale;
+    /*0x1C*/ u16 trainerOffset;
+};  /*size = 0x20*/
+
 void ResetPokedex(void);
 void CopyMonCategoryText(u32 species, u8 *dst);
 u16 GetPokedexHeightWeight(u16 dexNum, u8 data);
@@ -18,5 +31,8 @@ enum
 
 s8 GetSetPokedexFlag(u16 nationalNum, u8 caseId);
 u16 sub_80C0E9C(u16, s16, s16, u16);
+const u8 *sub_80C0620(u16 dexNum);
+
+extern const struct PokedexEntry gPokedexEntries[];
 
 #endif // GUARD_POKEDEX_H

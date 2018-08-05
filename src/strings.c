@@ -2117,9 +2117,18 @@ const u8 gText_OPTAdjectiveSpeedy[] = _("speedy.");
 
 const u8 gText_PokemonChannel1[] = _("{PAUSE 16}POKéMON{PAUSE 100} POKéMON\n{PAUSE 100}POKéMON CHANNEL");
 
-const u8 gText_PokedexShow1[] = _("{STR_VAR_1}");
+const u8 gText_PkmnMusicBen1[] = _("BEN: POKéMON MUSIC");
+const u8 gText_PkmnMusicBen2[] = _("CHANNEL!");
+const u8 gText_PkmnMusicBen3[] = _("It’s me, DJ BEN!");
 
-const u8 gText_PkmnMusicBenIntro1[] = _("BEN: POKéMON MUSIC");
+const u8 gText_PkmnMusicFern1[] = _("FERN: POKéMUSIC!");
+const u8 gText_PkmnMusicFern2[] = _("With DJ FERN!");
+
+const u8 gText_PkmnMusicBenFern1[] = _("Today’s {STR_VAR_1},");
+const u8 gText_PkmnMusicBenFern2A[] = _("so let us jam to");
+const u8 gText_PkmnMusicBenFern2B[] = _("so chill out to");
+const u8 gText_PkmnMusicBenFern3A[] = _("POKéMON MARCH!");
+const u8 gText_PkmnMusicBenFern3B[] = _("POKéMON LULLABY!");
 
 const u8 gText_LuckyChannel1[] = _("REED: Yeehaw! How");
 const u8 gText_LuckyChannel2[] = _("y’all doin’ now?");
