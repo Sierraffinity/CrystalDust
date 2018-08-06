@@ -2067,10 +2067,13 @@ const u8 gText_PokegearRadioTuning[] = _("{DOWN_ARROW}   TUNING   {UP_ARROW}");
 
 // Radio stations
 const u8 gText_OaksPkmnTalk[] = _("OAK’s {PKMN} Talk");
+const u8 gText_PokedexShow[] = _("POKéDEX Show");
 const u8 gText_PokemonMusic[] = _("POKéMON Music");
 const u8 gText_LuckyChannel[] = _("Lucky Channel");
 const u8 gText_BuenasPassword[] = _("BUENA’S PASSWORD");
-const u8 gText_PokedexShow[] = _("POKéDEX Show");
+const u8 gText_PlacesAndPeople[] = _("Places & People");
+const u8 gText_LetsAllSing[] = _("Let’s All Sing!");
+const u8 gText_PokeFlute[] = _("POKé FLUTE");
 
 // Oak's Pokemon Talk
 const u8 gText_OaksPkmnTalkIntro1[] = _("MARY: PROF. OAK’S");
@@ -2145,10 +2148,24 @@ const u8 gText_LuckyChannel12[] = _("…Repeating myself");
 const u8 gText_LuckyChannel13[] = _("gets to be a drag…");
 
 const u8 gText_BuenasPassword1[] = _("BUENA: BUENA here!");
+const u8 gText_BuenasPassword2[] = _("Today’s password!");
+const u8 gText_BuenasPassword3[] = _("Let me think… It’s");
+const u8 gText_BuenasPassword4[] = _("{STR_VAR_1}!");
+const u8 gText_BuenasPassword5[] = _("Don’t forget it!");
+const u8 gText_BuenasPassword6[] = _("I’m in GOLDENROD’s");
+const u8 gText_BuenasPassword7[] = _("RADIO TOWER!");
+const u8 gText_BuenasPassword8[] = _("BUENA: Oh my…");
+const u8 gText_BuenasPassword9[] = _("It’s midnight! I");
+const u8 gText_BuenasPassword10[] = _("have to shut down!");
+const u8 gText_BuenasPassword11[] = _("Thanks for tuning");
+const u8 gText_BuenasPassword12[] = _("in to the end! But");
+const u8 gText_BuenasPassword13[] = _("don’t stay up too");
+const u8 gText_BuenasPassword14[] = _("late! Presented to");
+const u8 gText_BuenasPassword15[] = _("you by DJ BUENA!");
+const u8 gText_BuenasPassword16[] = _("I’m outta here!");
+const u8 gText_BuenasPassword17[] = _("…");
 
 const u8 gText_PlacesAndPeople1[] = _("PLACES AND PEOPLE!");
-
-const u8 gText_PkmnMusicFernIntro1[] = _("FERN: POKéMON MUSIC!");
 
 const u8 gText_RocketRadio1[] = _("… …Ahem, we are");
 const u8 gText_RocketRadio2[] = _("TEAM ROCKET!");

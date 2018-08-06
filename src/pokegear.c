@@ -560,7 +560,7 @@ static void Task_ExitPokegear2(u8 taskId)
     {
         UnloadCard(sPokegearStruct.currentCard);
         FreeAllWindowBuffers(); // just make sure, y'know?
-        SetMainCallback2(gMain.savedCallback);
+        SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
     }
 }
 
@@ -974,7 +974,7 @@ void DrawStationTitle(const u8 *title)
     box_print(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, title, 0x70), 5, sTextColor, 0, title);
 }
 
-static void ClearStationTitle(void)
+void ClearStationTitle(void)
 {
     FillWindowPixelBuffer(WIN_BOTTOM, 0);
     CopyWindowToVram(WIN_BOTTOM, 2);
