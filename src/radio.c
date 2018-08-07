@@ -231,7 +231,7 @@ void PlayRadioShow(u8 taskId, u8 windowId)
     case LUCKY_CHANNEL:
         PlayStationMusic(taskId);
         DoTimeBasedEvents();
-        ConvertUIntToDecimalStringN(gStringVar1, GetLotteryNumber(), STR_CONV_MODE_LEADING_ZEROS, 5);
+        ConvertUIntToDecimalStringN(gStringVar1, (u16)GetLotteryNumber(), STR_CONV_MODE_LEADING_ZEROS, 5);
         NextRadioLine(taskId, windowId, LUCKY_NUMBER_SHOW_2, gText_LuckyChannel1, TRUE);
         break;
     case BUENAS_PASSWORD:
