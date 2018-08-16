@@ -1244,7 +1244,7 @@ _0819AF1A:
 	movs r0, 0x1
 	adds r2, r6, 0
 	movs r3, 0x5
-	bl sub_81BF8EC
+	bl ShowPokemonSummaryScreen
 _0819AF50:
 	add sp, 0x4
 	pop {r4-r6}
@@ -4373,7 +4373,7 @@ _0819C9C4:
 	str r0, [sp]
 	movs r0, 0
 	movs r3, 0x2
-	bl sub_81BF8EC
+	bl ShowPokemonSummaryScreen
 _0819C9F0:
 	add sp, 0x4
 	pop {r4-r6}
@@ -11771,7 +11771,7 @@ sub_81A070C: @ 81A070C
 	ldrsh r0, [r4, r1]
 	cmp r0, 0
 	bne _081A0730
-	bl ProcessMenuInputNoWrapAround
+	bl Menu_ProcessInputNoWrapAround
 	b _081A0734
 	.pool
 _081A0730:
@@ -11843,7 +11843,7 @@ sub_81A0784: @ 81A0784
 	movs r1, 0
 	adds r2, r4, 0
 	adds r3, r5, 0
-	bl sub_8198A50
+	bl CreateWindowTemplate
 	ldr r0, [sp, 0x10]
 	ldr r1, [sp, 0x14]
 	str r0, [sp, 0x18]

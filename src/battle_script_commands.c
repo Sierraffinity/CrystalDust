@@ -55,7 +55,7 @@ extern const u8* const gBattleScriptsForMoveEffects[];
 // functions
 extern void sub_81A5718(u8 battlerId); // battle frontier 2
 extern void sub_81A56B4(void); // battle frontier 2
-extern void sub_81BFA38(struct Pokemon* party, u8 monPartyId, u8 monCount, void (*callback)(void), u16 move); // pokemon summary screen
+extern void ShowSelectMovePokemonSummaryScreen(struct Pokemon* party, u8 monPartyId, u8 monCount, void (*callback)(void), u16 move); // pokemon summary screen
 extern u8 sub_81C1B94(void); // pokemon summary screen
 extern void sub_81D388C(struct Pokemon* mon, void* statStoreLocation); // pokenav.s
 extern void sub_81D3640(u8 arg0, void* statStoreLocation1, void* statStoreLocation2, u8 arg3, u8 arg4, u8 arg5); // pokenav.s
@@ -1120,9 +1120,9 @@ static void atk01_accuracycheck(void)
 {
     u16 move = T2_READ_16(gBattlescriptCurrInstr + 5);
 
-    if (move == 0xFFFE || move == 0xFFFF)
+    if (move == NO_ACC_CALC || move == NO_ACC_CALC_CHECK_LOCK_ON)
     {
-        if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && move == 0xFFFF && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+        if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && move == NO_ACC_CALC_CHECK_LOCK_ON && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             gBattlescriptCurrInstr += 7;
         else if (gStatuses3[gBattlerTarget] & (STATUS3_ON_AIR | STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
@@ -4378,22 +4378,22 @@ static void atk46_playanimation2(void) // animation Id is stored in the first po
 static void atk47_setgraphicalstatchangevalues(void)
 {
     u8 value = 0;
-    switch (gBattleScripting.statChanger & 0xF0)
+    switch (GET_STAT_BUFF_VALUE2(gBattleScripting.statChanger))
     {
-    case 0x10: // +1
+    case SET_STAT_BUFF_VALUE(1): // +1
         value = 0xF;
         break;
-    case 0x20: // +2
+    case SET_STAT_BUFF_VALUE(2): // +2
         value = 0x27;
         break;
-    case 0x90: // -1
+    case SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE: // -1
         value = 0x16;
         break;
-    case 0xA0: // -2
+    case SET_STAT_BUFF_VALUE(2) | STAT_BUFF_NEGATIVE: // -2
         value = 0x2E;
         break;
     }
-    gBattleScripting.animArg1 = (gBattleScripting.statChanger & 0xF) + value - 1;
+    gBattleScripting.animArg1 = GET_STAT_BUFF_ID(gBattleScripting.statChanger) + value - 1;
     gBattleScripting.animArg2 = 0;
     gBattlescriptCurrInstr++;
 }
@@ -4479,16 +4479,16 @@ static void atk48_playstatchangeanimation(void)
         }
     }
 
-    if (gBattlescriptCurrInstr[3] & ATK48_BIT_x4 && changeableStatsCount < 2)
+    if (gBattlescriptCurrInstr[3] & ATK48_ONLY_MULTIPLE && changeableStatsCount < 2)
     {
         gBattlescriptCurrInstr += 4;
     }
-    else if (changeableStatsCount != 0 && gBattleScripting.field_1B == 0)
+    else if (changeableStatsCount != 0 && !gBattleScripting.statAnimPlayed)
     {
         BtlController_EmitBattleAnimation(0, B_ANIM_STATS_CHANGE, statAnimId);
         MarkBattlerForControllerExec(gActiveBattler);
-        if (gBattlescriptCurrInstr[3] & ATK48_BIT_x4 && changeableStatsCount > 1)
-            gBattleScripting.field_1B = 1;
+        if (gBattlescriptCurrInstr[3] & ATK48_ONLY_MULTIPLE && changeableStatsCount > 1)
+            gBattleScripting.statAnimPlayed = TRUE;
         gBattlescriptCurrInstr += 4;
     }
     else
@@ -5732,7 +5732,7 @@ static void atk5A_yesnoboxlearnmove(void)
         if (!gPaletteFade.active)
         {
             FreeAllWindowBuffers();
-            sub_81BFA38(gPlayerParty, gBattleStruct->expGetterMonId, gPlayerPartyCount - 1, ReshowBattleScreenAfterMenu, gMoveToLearn);
+            ShowSelectMovePokemonSummaryScreen(gPlayerParty, gBattleStruct->expGetterMonId, gPlayerPartyCount - 1, ReshowBattleScreenAfterMenu, gMoveToLearn);
             gBattleScripting.learnMoveState++;
         }
         break;
@@ -7230,7 +7230,7 @@ static u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8 *BS_ptr)
 
     PREPARE_STAT_BUFFER(gBattleTextBuff1, statId)
 
-    if ((statValue << 0x18) < 0) // stat decrease
+    if (statValue <= -1) // Stat decrease.
     {
         if (gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].mistTimer
             && !certain && gCurrentMove != MOVE_CURSE)

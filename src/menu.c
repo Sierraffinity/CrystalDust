@@ -120,7 +120,6 @@ extern void DrawWindowBorder(u8, u8, u8, u8, u8, u8);
 extern void sub_81980A8(u8, u8, u8, u8, u8, u8);
 extern u8 MoveMenuCursor(s8);
 extern u8 sub_8199134(s8, s8);
-extern void sub_8199F74(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 speed, void (*callback)(struct TextSubPrinter *, u16), u8 letterSpacing, u8 lineSpacing);
 extern void sub_8198C78(void);
 extern void task_free_buf_after_copying_tile_data_to_vram(u8 taskId);
 
@@ -987,7 +986,7 @@ s8 ProcessMenuInput(void)
     return MENU_NOTHING_CHOSEN;
 }
 
-s8 ProcessMenuInputNoWrapAround(void)
+s8 Menu_ProcessInputNoWrapAround(void)
 {
     u8 oldPos = gUnknown_0203CD90.cursorPos;
 
@@ -1045,7 +1044,7 @@ s8 ProcessMenuInput_other(void)
     return MENU_NOTHING_CHOSEN;
 }
 
-s8 ProcessMenuInputNoWrapAround_other(void)
+s8 Menu_ProcessInputNoWrapAround_other(void)
 {
     u8 oldPos = gUnknown_0203CD90.cursorPos;
 
@@ -1143,7 +1142,7 @@ void SetWindowTemplateFields(struct WindowTemplate *template, u8 bg, u8 left, u8
     template->baseBlock = baseBlock;
 }
 
-struct WindowTemplate sub_8198A50(u8 bg, u8 left, u8 top, u8 width, u8 height, u8 paletteNum, u16 baseBlock)
+struct WindowTemplate CreateWindowTemplate(u8 bg, u8 left, u8 top, u8 width, u8 height, u8 paletteNum, u16 baseBlock)
 {
     struct WindowTemplate template;
     SetWindowTemplateFields(&template, bg, left, top, width, height, paletteNum, baseBlock);
@@ -1188,9 +1187,9 @@ void sub_8198C34(const struct WindowTemplate *window, u8 fontId, u16 baseTileNum
     sub_8198AF8(window, fontId, 0, 1, baseTileNum, paletteNum, 0);
 }
 
-s8 ProcessMenuInputNoWrap_(void)
+s8 Menu_ProcessInputNoWrap_(void)
 {
-    s8 result = ProcessMenuInputNoWrapAround();
+    s8 result = Menu_ProcessInputNoWrapAround();
     if (result != MENU_NOTHING_CHOSEN)
         sub_8198C78();
     return result;

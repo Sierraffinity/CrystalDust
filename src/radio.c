@@ -393,14 +393,14 @@ void PlayRadioShow(u8 taskId, u8 windowId)
             u8 index;
             for (index = tMiscValue; index < 0x3E8; index++)
             {
-                if (gStringVar4[index] == 0xFE)
+                if (gStringVar4[index] == CHAR_NEWLINE)
                 {
-                    gStringVar4[index] = 0xFF;
+                    gStringVar4[index] = EOS;
                     NextRadioLine(taskId, windowId, POKEDEX_SHOW_4, &gStringVar4[tMiscValue], TRUE);
                     tMiscValue = index + 1;
                     break;
                 }
-                else if (gStringVar4[index] == 0xFF)
+                else if (gStringVar4[index] == EOS)
                 {
                     NextRadioLine(taskId, windowId, POKEDEX_SHOW, &gStringVar4[tMiscValue], TRUE);
                     break;

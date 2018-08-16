@@ -2920,7 +2920,7 @@ _080170E0:
 	negs r0, r0
 	b _08017110
 _080170F2:
-	bl ProcessMenuInputNoWrap_
+	bl Menu_ProcessInputNoWrap_
 	lsls r0, 24
 	asrs r1, r0, 24
 	movs r2, 0x80
@@ -6278,7 +6278,7 @@ _08018BD6:
 	b _08018C3E
 	.pool
 _08018BE4:
-	bl ProcessMenuInputNoWrap_
+	bl Menu_ProcessInputNoWrap_
 	lsls r0, 24
 	asrs r6, r0, 24
 	movs r1, 0x80
@@ -15650,7 +15650,7 @@ _0801D7D0:
 	b _0801D804
 	.pool
 _0801D7F0:
-	ldr r0, =0x0201c000
+	ldr r0, =gDecompressionBuffer
 	ldr r1, [r4, 0x18]
 	movs r2, 0x80
 	lsls r2, 3
@@ -15723,7 +15723,7 @@ _0801D858:
 sub_801D860: @ 801D860
 	push {r4,lr}
 	adds r4, r0, 0
-	ldr r3, =0x0201c000
+	ldr r3, =gDecompressionBuffer
 	adds r0, r4, 0x4
 	ldr r1, =gSaveBlock2Ptr
 	ldr r1, [r1]
@@ -25386,7 +25386,7 @@ sub_80226D0: @ 80226D0
 	adds r6, r0, 0
 	movs r5, 0
 	ldr r0, =gUnknown_08DE3FD4
-	ldr r4, =0x0201c000
+	ldr r4, =gDecompressionBuffer
 	adds r1, r4, 0
 	bl LZ77UnCompWram
 	b _0802271A
@@ -28890,7 +28890,7 @@ _0802426A:
 	bl sub_8197930
 	b _080242D0
 _08024270:
-	bl ProcessMenuInputNoWrap_
+	bl Menu_ProcessInputNoWrap_
 	lsls r0, 24
 	asrs r4, r0, 24
 	movs r0, 0x2
@@ -47811,7 +47811,7 @@ _0802DA84:
 	thumb_func_start sub_802DA8C
 sub_802DA8C: @ 802DA8C
 	push {lr}
-	bl ProcessMenuInputNoWrap_
+	bl Menu_ProcessInputNoWrap_
 	lsls r0, 24
 	asrs r0, 24
 	pop {r1}

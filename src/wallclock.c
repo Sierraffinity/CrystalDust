@@ -602,7 +602,7 @@ static void WallClockInit(void)
     ShowBg(3);
 }
 
-void Cb2_StartWallClock(void)
+void CB2_StartWallClock(void)
 {
     u8 taskId;
     u8 spriteId;
@@ -644,7 +644,7 @@ void Cb2_StartWallClock(void)
     schedule_bg_copy_tilemap_to_vram(2);
 }
 
-void Cb2_ViewWallClock(void)
+void CB2_ViewWallClock(void)
 {
     u8 taskId;
     u8 spriteId;
@@ -763,7 +763,7 @@ static void Task_SetClock3(u8 taskId)
 
 static void Task_SetClock4(u8 taskId)
 {
-    switch (ProcessMenuInputNoWrap_())
+    switch (Menu_ProcessInputNoWrap_())
     {
         case 0:
             PlaySE(SE_SELECT);
