@@ -59,17 +59,11 @@ struct RegionMap {
     /*0x05e*/ s16 scrollY;
     /*0x060*/ s16 unk_060;
     /*0x062*/ s16 unk_062;
-    /*0x064*/ u16 zoomedCursorPosX;
-    /*0x066*/ u16 zoomedCursorPosY;
-    /*0x068*/ s16 zoomedCursorDeltaY;
-    /*0x06a*/ s16 zoomedCursorDeltaX;
-    /*0x06c*/ u16 zoomedCursorMovementFrameCounter;
     /*0x06e*/ u16 unk_06e;
     /*0x070*/ u16 playerIconTileTag;
     /*0x072*/ u16 playerIconPaletteTag;
     /*0x074*/ u16 playerIconSpritePosX;
     /*0x076*/ u16 playerIconSpritePosY;
-    /*0x078*/ bool8 zoomed;
     /*0x079*/ u8 initStep;
     /*0x07a*/ s8 cursorMovementFrameCounter;
     /*0x07b*/ s8 cursorDeltaX;
@@ -81,9 +75,8 @@ struct RegionMap {
     /*0x081*/ u8 charBaseIdx;
     /*0x082*/ u8 mapBaseIdx;
     /*0x083*/ bool8 bgManaged;
-    /*0x084*/ u8 filler_084[0x100];
+    /*0x084*/ u32 alignFiller;
     /*0x184*/ u8 cursorSmallImage[0x100];
-    /*0x284*/ u8 cursorLargeImage[0x600];
 }; // size = 0x884
 
 struct RegionMapLocation
@@ -100,7 +93,7 @@ struct RegionMapLocation
 // Exported ROM declarations
 extern const struct RegionMapLocation gRegionMapEntries[];
 
-void sub_8122CF8(struct RegionMap *regionMap, struct BgTemplate *template, bool8 zoomed);
+void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, bool8 zoomed);
 bool8 sub_8122DB0(void);
 void UpdateRegionMapVideoRegs(void);
 void InitRegionMap(struct RegionMap *regionMap, u8 argument);

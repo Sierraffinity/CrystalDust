@@ -27,6 +27,12 @@
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 
+#define WIN_DIALOG 0
+#define WIN_TOP 1
+#define WIN_BOTTOM 2
+#define WIN_LIST 3
+#define WIN_CONFIRM 4
+
 #define MENU_FRAME_BASE_TILE_NUM 532
 #define MENU_FRAME_PALETTE_NUM 13
 
@@ -55,7 +61,7 @@ enum CardType {
 static EWRAM_DATA struct {
     MainCallback callback;
     u8 currentCard;
-    bool8 scrollEnabled;
+    bool8 inputEnabled;
     bool8 twentyFourHourMode;
     u8 currentRadioStation;
 } sPokegearStruct = {0};
@@ -70,6 +76,7 @@ static void Task_Pokegear2(u8 taskId);
 static void Task_ExitPokegear1(u8 taskId);
 static void Task_ExitPokegear2(u8 taskId);
 static void Task_ClockCard(u8 taskId);
+static void Task_MapCard(u8 taskId);
 static void Task_PhoneCard(u8 taskId);
 static void Task_RadioCard(u8 taskId);
 static void PhoneCard_ConfirmCall(u8 taskId);
@@ -117,16 +124,16 @@ static const struct BgTemplate sBgTemplates[] =
         .mapBaseIndex = 30,
         .screenSize = 0,
         .paletteMode = 0,
-        .priority = 0,
+        .priority = 1,
         .baseTile = 0
     },
     {
         .bg = 2,
-        .charBaseIndex = 0,
+        .charBaseIndex = 1,
         .mapBaseIndex = 29,
         .screenSize = 0,
         .paletteMode = 0,
-        .priority = 0,
+        .priority = 2,
         .baseTile = 0
     },
     {
@@ -135,22 +142,16 @@ static const struct BgTemplate sBgTemplates[] =
         .mapBaseIndex = 28,
         .screenSize = 0,
         .paletteMode = 0,
-        .priority = 0,
+        .priority = 3,
         .baseTile = 0
     },
 };
 
-static const struct WindowTemplate sClockCardWindowTemplates[] =
+static const struct WindowTemplate sWindowTemplates[] =
 {
     { 0, 6, 15, 23, 4, 15, 0x0001 },
     { 0, 10, 2, 14, 3, 15, 0x0060 },
     { 0, 10, 11, 14, 3, 15, 0x0090 },
-    DUMMY_WIN_TEMPLATE
-};
-
-static const struct WindowTemplate sPhoneCardWindowTemplates[] =
-{
-    { 0, 6, 15, 23, 4, 15, 0x0001 },
     { 0, 8, 2, 17, 12, 15, 0x0060 },
     { 0, 23, 9, 6, 4, 15, 0x0130 },
     DUMMY_WIN_TEMPLATE
@@ -175,7 +176,7 @@ static const struct ListMenuTemplate sPhoneCardListMenuTemplate =
     .itemPrintFunc = NULL,
     .totalItems = 8,
     .maxShowed = 6,
-    .windowId = 1,
+    .windowId = WIN_LIST,
     .header_X = 0,
     .item_X = 8,
     .cursor_X = 0,
@@ -397,6 +398,7 @@ void CB2_InitPokegear(void)
     LoadPalette(gBGPals, 0, sizeof(gBGPals));
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
+    InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM * 0x10);
     clear_scheduled_bg_copies_to_vram();
@@ -485,7 +487,7 @@ static void Task_Pokegear1(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        sPokegearStruct.scrollEnabled = TRUE;
+        sPokegearStruct.inputEnabled = TRUE;
         gTasks[taskId].func = Task_Pokegear2;
     }
 }
@@ -520,7 +522,7 @@ static u8 ChangeCardWithDelta(s8 delta)
 
 static void Task_Pokegear2(u8 taskId)
 {
-    if (sPokegearStruct.scrollEnabled)
+    if (sPokegearStruct.inputEnabled)
     {
         u8 newCard = sPokegearStruct.currentCard;
 
@@ -564,28 +566,10 @@ static void Task_ExitPokegear2(u8 taskId)
     }
 }
 
-static void Pokegear_ClearWindowBuffers(void)
-{
-    void *ptr;
-    
-    FreeAllWindowBuffers();
-    
-    ptr = GetBgTilemapBuffer(0);
-    if (ptr)
-    {
-        Free(ptr);
-        UnsetBgTilemapBuffer(0);
-    }
-}
-
 #define tDayOfWeek data[0]
 
 #define tPosition data[0]
 #define tStoredVal data[1]
-
-#define WIN_DIALOG 0
-#define WIN_TOP 1
-#define WIN_BOTTOM 2
 
 static void LoadClockCard(void)
 {
@@ -598,7 +582,6 @@ static void LoadClockCard(void)
     const u8 *dayOfWeek = GetDayOfWeekString();
 
     LZ77UnCompVram(gClockCardTilemap, (void *)(VRAM + 0xF000));
-    InitWindows(sClockCardWindowTemplates);
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PutWindowTilemap(WIN_TOP);
     PutWindowTilemap(WIN_BOTTOM);
@@ -709,7 +692,6 @@ static void UnloadClockCard(void)
     int i;
 
     sub_8198070(WIN_DIALOG, TRUE);
-    CopyWindowToVram(WIN_DIALOG, 2);
     
     FillWindowPixelBuffer(WIN_TOP, 0);
     ClearWindowTilemap(WIN_TOP);
@@ -718,8 +700,6 @@ static void UnloadClockCard(void)
     FillWindowPixelBuffer(WIN_BOTTOM, 0);
     ClearWindowTilemap(WIN_BOTTOM);
     CopyWindowToVram(WIN_BOTTOM, 2);
-
-    Pokegear_ClearWindowBuffers();
 
     for (i = 0; i < 6; i++)
     {
@@ -734,9 +714,54 @@ static void UnloadClockCard(void)
 #undef tPosition
 #undef tStoredVal
 
+#define tState data[0]
+
 static void LoadMapCard(void)
 {
+    u8 newTask;
+
     LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xF000));
+    sub_8122CF8(Alloc(sizeof(struct RegionMap)), &sBgTemplates[2], FALSE);
+
+    newTask = CreateTask(Task_MapCard, 0);
+    gTasks[newTask].tState = 0;
+}
+
+static void Task_MapCard(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    switch (tState)
+    {
+        case 0:
+            if (!sub_8122DB0())
+            {
+                CreateRegionMapCursor(0, 0);
+                CreateRegionMapPlayerIcon(1, 1);
+                tState++;
+            }
+            break;
+        case 1:
+            if (gMain.newKeys & A_BUTTON)
+            {
+                sPokegearStruct.inputEnabled = FALSE;
+                tState++;
+            }
+            break;
+        case 2:
+            switch (sub_81230AC())
+            {
+                case INPUT_EVENT_MOVE_END:
+                    //PrintRegionMapSecName();
+                    break;
+                case INPUT_EVENT_B_BUTTON:
+                    tState--;
+                    sPokegearStruct.inputEnabled = TRUE;
+                case INPUT_EVENT_A_BUTTON:
+                    break;
+            }
+            break;
+    }
 }
 
 #define tListMenuTaskId data[0]
@@ -744,16 +769,12 @@ static void LoadMapCard(void)
 #define tScrollTaskId data[2]
 #define tScrollOffset data[3]
 
-#define WIN_LIST 1
-#define WIN_CONFIRM 2
-
 static void LoadPhoneCard(void)
 {
     struct ListMenuTemplate menuTemplate = sPhoneCardListMenuTemplate;
     u8 newTask;
 
     LZ77UnCompVram(gPhoneCardTilemap, (void *)(VRAM + 0xF000));
-    InitWindows(sPhoneCardWindowTemplates);
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
     CopyWindowToVram(WIN_DIALOG, 2);
@@ -813,7 +834,7 @@ static const struct MenuAction sCallOptions[] = {
 
 static void PhoneCard_ConfirmCall(u8 taskId)
 {
-    sPokegearStruct.scrollEnabled = FALSE;
+    sPokegearStruct.inputEnabled = FALSE;
     PhoneCard_RemoveScrollIndicators(taskId);
     SetWindowBorderStyle(WIN_CONFIRM, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PrintMenuTable(WIN_CONFIRM, ARRAY_COUNT(sCallOptions), sCallOptions);
@@ -832,13 +853,13 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId)
             break;
         case MENU_B_PRESSED:
             PlaySE(SE_SELECT);
-            sub_8197434(2, TRUE);
+            sub_8197434(WIN_CONFIRM, TRUE);
             PhoneCard_ReturnToMain(taskId);
             break;
 
         default:
             PlaySE(SE_SELECT);
-            sub_8197434(2, TRUE);
+            sub_8197434(WIN_CONFIRM, TRUE);
             gTasks[taskId].func = sCallOptions[inputOptionId].func.void_u8;
             break;
     }
@@ -847,7 +868,7 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId)
 static void PhoneCard_ReturnToMain(u8 taskId)
 {
     PhoneCard_AddScrollIndicators(taskId);
-    sPokegearStruct.scrollEnabled = TRUE;
+    sPokegearStruct.inputEnabled = TRUE;
     gTasks[taskId].func = Task_PhoneCard;
 }
 
@@ -864,8 +885,6 @@ static void UnloadPhoneCard(void)
     sub_8198070(WIN_DIALOG, TRUE);
     sub_8198070(WIN_LIST, TRUE);
     DestroyListMenuTask(gTasks[taskId].tListMenuTaskId, NULL, NULL);
-
-    Pokegear_ClearWindowBuffers();
 
     DestroyTask(taskId);
 }
@@ -890,7 +909,6 @@ static void LoadRadioCard(void)
     u8 newTask, spriteId;
 
     LZ77UnCompVram(gRadioCardTilemap, (void *)(VRAM + 0xF000));
-    InitWindows(sClockCardWindowTemplates);
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
     CopyWindowToVram(WIN_DIALOG, 2);
@@ -1046,7 +1064,6 @@ static void UnloadRadioCard(void)
     int i;
 
     sub_8198070(WIN_DIALOG, TRUE);
-    CopyWindowToVram(WIN_DIALOG, 2);
     
     FillWindowPixelBuffer(WIN_TOP, 0);
     ClearWindowTilemap(WIN_TOP);
@@ -1056,10 +1073,10 @@ static void UnloadRadioCard(void)
     ClearWindowTilemap(WIN_BOTTOM);
     CopyWindowToVram(WIN_BOTTOM, 2);
 
-    Pokegear_ClearWindowBuffers();
-
     if (IsBGMStopped())
+    {
         Overworld_PlaySpecialMapMusic();
+    }
 
     for (i = 0; i < 5; i++)
     {
