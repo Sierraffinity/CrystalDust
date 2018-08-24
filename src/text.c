@@ -186,6 +186,7 @@ bool16 AddTextPrinter(struct TextSubPrinter *textSubPrinter, u8 speed, void (*ca
     gTempTextPrinter.callback = callback;
     gTempTextPrinter.minLetterSpacing = 0;
     gTempTextPrinter.japanese = 0;
+    gTempTextPrinter.isInstant = 0;
 
     GenerateFontHalfRowLookupTable(textSubPrinter->fgColor, textSubPrinter->bgColor, textSubPrinter->shadowColor);
     if (speed != TEXT_SPEED_FF && speed != 0x0)
@@ -196,6 +197,8 @@ bool16 AddTextPrinter(struct TextSubPrinter *textSubPrinter, u8 speed, void (*ca
     else
     {
         gTempTextPrinter.text_speed = 0;
+        gTempTextPrinter.isInstant = TRUE;
+        
         for (j = 0; j < 0x400; ++j)
         {
             if ((u32)RenderFont(&gTempTextPrinter) == 1)
@@ -231,7 +234,7 @@ void RunTextPrinters(void)
             if (gTextPrinters[i].sub_union.sub.active != 0)
             {
                 // hack for instant text with pauses (for radio)
-                if (gTextPrinters[i].text_speed == 0 && gTextPrinters[i].state != 6)
+                if (gTextPrinters[i].isInstant && gTextPrinters[i].state != 6)
                 {
                     for (j = 0; j < 0x400; ++j)
                     {
