@@ -36,6 +36,8 @@
 #define MENU_FRAME_BASE_TILE_NUM 532
 #define MENU_FRAME_PALETTE_NUM 13
 
+#define REGION_MAP_XOFF 2
+
 #define FREQ(a) (u8)(a * 2 - 1)
 
 struct RadioStation{
@@ -720,8 +722,13 @@ static void LoadMapCard(void)
 {
     u8 newTask;
 
+    SetGpuReg(REG_OFFSET_BG0HOFS, REGION_MAP_XOFF * -8);
+    SetGpuReg(REG_OFFSET_BG0VOFS, 0);
+    SetGpuReg(REG_OFFSET_BG2HOFS, REGION_MAP_XOFF * -8);
+    SetGpuReg(REG_OFFSET_BG2VOFS, 0);
+    
     LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xF000));
-    sub_8122CF8(Alloc(sizeof(struct RegionMap)), &sBgTemplates[2], FALSE);
+    sub_8122CF8(AllocZeroed(sizeof(struct RegionMap)), &sBgTemplates[2], REGION_MAP_XOFF);
 
     newTask = CreateTask(Task_MapCard, 0);
     gTasks[newTask].tState = 0;
@@ -736,7 +743,7 @@ static void Task_MapCard(u8 taskId)
         case 0:
             if (!sub_8122DB0())
             {
-                CreateRegionMapCursor(0, 0);
+                CreateRegionMapCursor(0, 0, FALSE);
                 CreateRegionMapPlayerIcon(1, 1);
                 tState++;
             }
@@ -744,6 +751,7 @@ static void Task_MapCard(u8 taskId)
         case 1:
             if (gMain.newKeys & A_BUTTON)
             {
+                ShowRegionMapCursorSprite();
                 sPokegearStruct.inputEnabled = FALSE;
                 tState++;
             }
@@ -757,6 +765,7 @@ static void Task_MapCard(u8 taskId)
                 case INPUT_EVENT_B_BUTTON:
                     tState--;
                     sPokegearStruct.inputEnabled = TRUE;
+                    HideRegionMapCursorSprite();
                 case INPUT_EVENT_A_BUTTON:
                     break;
             }
