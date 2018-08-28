@@ -120,7 +120,7 @@ static void FieldUpdateRegionMap(void)
         case 0:
             InitRegionMap(&sFieldRegionMapHandler->regionMap, 0);
             CreateRegionMapPlayerIcon(0, 0);
-            CreateRegionMapCursor(1, 1);
+            CreateRegionMapCursor(1, 1, TRUE);
             sFieldRegionMapHandler->state++;
             break;
         case 1:
@@ -179,10 +179,10 @@ static void FieldUpdateRegionMap(void)
 
 static void PrintRegionMapSecName(void)
 {
-    if (sFieldRegionMapHandler->regionMap.iconDrawType != MAPSECTYPE_NONE)
+    if (sFieldRegionMapHandler->regionMap.primaryMapSecStatus != MAPSECTYPE_NONE)
     {
         FillWindowPixelBuffer(0, 0x11);
-        PrintTextOnWindow(0, 1, sFieldRegionMapHandler->regionMap.mapSecName, 0, 1, 0, NULL);
+        PrintTextOnWindow(0, 1, sFieldRegionMapHandler->regionMap.primaryMapSecName, 0, 1, 0, NULL);
         schedule_bg_copy_tilemap_to_vram(0);
     }
     else

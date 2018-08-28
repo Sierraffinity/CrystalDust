@@ -97,24 +97,26 @@ static void LoadSecondaryLayerMapSec(void);
 static void SetupShadowBoxes(u8 layerNum, const struct WindowCoords *coords);
 static u8 GetMapSecStatusByLayer(u8 layer);
 static void SetShadowBoxState(u8 offset, bool8 hide);
+static const u8 *GetRegionMapTilemap(u8 region);
 
 // .rodata
 
-static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/pokenav/cursor.gbapal");
-static const u8 sRegionMapCursorGfxLZ[] = INCBIN_U8("graphics/pokenav/cursor_small.4bpp.lz");
-static const u16 sRegionMapBkgnd_Pal[] = INCBIN_U16("graphics/pokenav/region_map.gbapal");
-static const u8 sRegionMapBkgnd_GfxLZ[] = INCBIN_U8("graphics/pokenav/region_map.4bpp.lz");
-static const u8 sRegionMapBkgnd_TilemapLZ[] = INCBIN_U8("graphics/pokenav/region_map_map.bin.lz");
-static const u16 sRegionMapNames_Pal[] = INCBIN_U16("graphics/pokenav/region_map_names.gbapal");
-static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCBIN_U16("graphics/pokenav/brendan_icon.gbapal");
-static const u8 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U8("graphics/pokenav/brendan_icon.4bpp");
-static const u16 sRegionMapPlayerIcon_MayPal[] = INCBIN_U16("graphics/pokenav/may_icon.gbapal");
-static const u8 sRegionMapPlayerIcon_MayGfx[] = INCBIN_U8("graphics/pokenav/may_icon.4bpp");
+static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/region_map/cursor.gbapal");
+static const u8 sRegionMapCursorGfxLZ[] = INCBIN_U8("graphics/region_map/cursor_small.4bpp.lz");
+static const u16 sRegionMapPal[] = INCBIN_U16("graphics/region_map/region_map.gbapal");
+static const u8 sRegionMapTileset[] = INCBIN_U8("graphics/region_map/region_map.4bpp.lz");
+static const u8 sRegionMapJohtoTilemap[] = INCBIN_U8("graphics/region_map/johto_map.bin.lz");
+static const u8 sRegionMapKantoTilemap[] = INCBIN_U8("graphics/region_map/kanto_map.bin.lz");
+static const u16 sRegionMapNames_Pal[] = INCBIN_U16("graphics/region_map/region_map_names.gbapal");
+static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCBIN_U16("graphics/region_map/brendan_icon.gbapal");
+static const u8 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U8("graphics/region_map/brendan_icon.4bpp");
+static const u16 sRegionMapPlayerIcon_MayPal[] = INCBIN_U16("graphics/region_map/may_icon.gbapal");
+static const u8 sRegionMapPlayerIcon_MayGfx[] = INCBIN_U8("graphics/region_map/may_icon.4bpp");
 
-static const u8 sMapSectionLayout_JohtoPrimary[] = INCBIN_U8("graphics/pokenav/mapsec_layout_johto_primary.bin");
-static const u8 sMapSectionLayout_JohtoSecondary[] = INCBIN_U8("graphics/pokenav/mapsec_layout_johto_secondary.bin");
-static const u8 sMapSectionLayout_KantoPrimary[] = INCBIN_U8("graphics/pokenav/mapsec_layout_kanto_primary.bin");
-static const u8 sMapSectionLayout_KantoSecondary[] = INCBIN_U8("graphics/pokenav/mapsec_layout_kanto_secondary.bin");
+static const u8 sMapSectionLayout_JohtoPrimary[] = INCBIN_U8("graphics/region_map/mapsec_layout_johto_primary.bin");
+static const u8 sMapSectionLayout_JohtoSecondary[] = INCBIN_U8("graphics/region_map/mapsec_layout_johto_secondary.bin");
+static const u8 sMapSectionLayout_KantoPrimary[] = INCBIN_U8("graphics/region_map/mapsec_layout_kanto_primary.bin");
+static const u8 sMapSectionLayout_KantoSecondary[] = INCBIN_U8("graphics/region_map/mapsec_layout_kanto_secondary.bin");
 
 #include "data/region_map/region_map_entries.h"
 #include "data/region_map/mapsec_to_region.h"
@@ -231,15 +233,15 @@ static const u8 sRegionMapEventSectionIds[] = {
     MAPSEC_NAVEL_ROCK2
 };
 
-static const u16 sRegionMapFramePal[] = INCBIN_U16("graphics/pokenav/map_frame.gbapal");
+static const u16 sRegionMapFramePal[] = INCBIN_U16("graphics/region_map/map_frame.gbapal");
 
-static const u8 sRegionMapFrameGfxLZ[] = INCBIN_U8("graphics/pokenav/map_frame.4bpp.lz");
+static const u8 sRegionMapFrameGfxLZ[] = INCBIN_U8("graphics/region_map/map_frame.4bpp.lz");
 
-static const u8 sRegionMapFrameTilemapLZ[] = INCBIN_U8("graphics/pokenav/map_frame.bin.lz");
+static const u8 sRegionMapFrameTilemapLZ[] = INCBIN_U8("graphics/region_map/map_frame.bin.lz");
 
-static const u16 Unknown_085A1D48[] = INCBIN_U16("graphics/pokenav/fly_target_icons.gbapal");
+static const u16 Unknown_085A1D48[] = INCBIN_U16("graphics/region_map/fly_target_icons.gbapal");
 
-static const u8 sUnknown_085A1D68[] = INCBIN_U8("graphics/pokenav/fly_target_icons.4bpp.lz");
+static const u8 sUnknown_085A1D68[] = INCBIN_U8("graphics/region_map/fly_target_icons.4bpp.lz");
 
 static const u8 sMapHealLocations[][3] = {
     {MAP_GROUP(LITTLEROOT_TOWN), MAP_NUM(LITTLEROOT_TOWN), HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F},
@@ -463,6 +465,8 @@ bool8 sub_8122DB0(void)
         {0, 3, 3, 15, 2, 14, 31}
     };
 
+    const u8 *regionTilemap;
+
     switch (gRegionMap->initStep)
     {
         case 0:
@@ -494,30 +498,31 @@ bool8 sub_8122DB0(void)
         case 1:
             if (gRegionMap->bgManaged)
             {
-                decompress_and_copy_tile_data_to_vram(gRegionMap->bgNum, sRegionMapBkgnd_GfxLZ, 0, 0, 0);
+                decompress_and_copy_tile_data_to_vram(gRegionMap->bgNum, sRegionMapTileset, 0, 0, 0);
             }
             else
             {
-                LZ77UnCompVram(sRegionMapBkgnd_GfxLZ, (u16 *)BG_CHAR_ADDR(2));
+                LZ77UnCompVram(sRegionMapTileset, (u16 *)BG_CHAR_ADDR(2));
             }
             break;
         case 2:
+            regionTilemap = GetRegionMapTilemap(gRegionMap->region);
             if (gRegionMap->bgManaged)
             {
                 if (!free_temp_tile_data_buffers_if_possible())
                 {
-                    decompress_and_copy_tile_data_to_vram(gRegionMap->bgNum, sRegionMapBkgnd_TilemapLZ, 0, 0, 1);
+                    decompress_and_copy_tile_data_to_vram(gRegionMap->bgNum, regionTilemap, 0, 0, 1);
                 }
             }
             else
             {
-                LZ77UnCompVram(sRegionMapBkgnd_TilemapLZ, (u16 *)BG_SCREEN_ADDR(28));
+                LZ77UnCompVram(regionTilemap, (u16 *)BG_SCREEN_ADDR(28));
             }
             break;
         case 3:
             if (!free_temp_tile_data_buffers_if_possible())
             {
-                LoadPalette(sRegionMapBkgnd_Pal, 0x70, 0x60);
+                LoadPalette(sRegionMapPal, 0x70, sizeof(sRegionMapPal));
                 LoadPalette(sRegionMapNames_Pal, 0xE0, sizeof(sRegionMapNames_Pal));
             }
             break;
@@ -563,6 +568,19 @@ bool8 sub_8122DB0(void)
     }
     gRegionMap->initStep++;
     return TRUE;
+}
+
+static const u8 *GetRegionMapTilemap(u8 region)
+{
+    const u8 *const tilemaps[] = {
+        sRegionMapJohtoTilemap,
+        sRegionMapKantoTilemap,
+        sRegionMapJohtoTilemap,
+        sRegionMapJohtoTilemap,
+        sRegionMapJohtoTilemap,
+    };
+
+    return tilemaps[region];
 }
 
 void sub_8123030(u16 a0, u32 a1)
@@ -795,6 +813,7 @@ static u8 GetPrimaryRegionMapSectionIdAt_Internal(u16 x, u16 y)
         sMapSectionLayout_KantoPrimary,
         sMapSectionLayout_JohtoPrimary,
         sMapSectionLayout_JohtoPrimary,
+        sMapSectionLayout_JohtoPrimary,
     };
 
     if (y < MAPCURSOR_Y_MIN || y > MAPCURSOR_Y_MAX || x < MAPCURSOR_X_MIN || x > MAPCURSOR_X_MAX)
@@ -811,6 +830,7 @@ static u8 GetSecondaryRegionMapSectionIdAt_Internal(u16 x, u16 y)
     static const u8 *const secondaryLayouts[] = {
         sMapSectionLayout_JohtoSecondary,
         sMapSectionLayout_KantoSecondary,
+        sMapSectionLayout_JohtoSecondary,
         sMapSectionLayout_JohtoSecondary,
         sMapSectionLayout_JohtoSecondary,
     };
