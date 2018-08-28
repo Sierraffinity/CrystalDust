@@ -112,5 +112,6 @@ u8 *sub_8124610(u8 *dest, u16 mapSecId);
 u8 GetCurrentRegion(void);
 void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
+void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag);
 
 #endif //GUARD_REGION_MAP_H

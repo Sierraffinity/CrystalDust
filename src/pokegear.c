@@ -200,7 +200,7 @@ static const struct SpriteSheet sSpriteSheet_DigitTiles =
     .tag = 12345,
 };
 
-static const struct SpritePalette sSpritePalette_MenuSprites =
+const struct SpritePalette gSpritePalette_PokegearMenuSprites =
 {
     .data = sMenuSpritesPalette,
     .tag = 54321
@@ -593,7 +593,7 @@ static void LoadClockCard(void)
     schedule_bg_copy_tilemap_to_vram(0);
     
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
-    LoadSpritePalette(&sSpritePalette_MenuSprites);
+    LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);
 
     newTask = CreateTask(Task_ClockCard, 0);
     gTasks[newTask].tDayOfWeek = gLocalTime.dayOfWeek;
@@ -745,12 +745,14 @@ static void Task_MapCard(u8 taskId)
             {
                 CreateRegionMapCursor(0, 0, FALSE);
                 CreateRegionMapPlayerIcon(1, 1);
+                CreateRegionMapName(2, 3, 54321);
                 tState++;
             }
             break;
         case 1:
             if (gMain.newKeys & A_BUTTON)
             {
+                PlaySE(SE_HI_TURUN);
                 ShowRegionMapCursorSprite();
                 sPokegearStruct.inputEnabled = FALSE;
                 tState++;
@@ -760,12 +762,13 @@ static void Task_MapCard(u8 taskId)
             switch (sub_81230AC())
             {
                 case INPUT_EVENT_MOVE_END:
-                    //PrintRegionMapSecName();
                     break;
                 case INPUT_EVENT_B_BUTTON:
+                    PlaySE(SE_SELECT);
+                    HideRegionMapCursorSprite();
                     tState--;
                     sPokegearStruct.inputEnabled = TRUE;
-                    HideRegionMapCursorSprite();
+                    break;
                 case INPUT_EVENT_A_BUTTON:
                     break;
             }
@@ -929,7 +932,7 @@ static void LoadRadioCard(void)
     schedule_bg_copy_tilemap_to_vram(0);
 
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
-    LoadSpritePalette(&sSpritePalette_MenuSprites);
+    LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);
 
     newTask = CreateTask(Task_RadioCard, 0);
 
