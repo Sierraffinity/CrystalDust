@@ -485,6 +485,7 @@ void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template,
     gRegionMap->region = GetCurrentRegion();
     gRegionMap->canChangeRegion = FALSE;    // TODO: some flag check here
     gRegionMap->inputCallback = ProcessRegionMapInput_Full;
+
     if (template != NULL)
     {
         gRegionMap->bgNum = template->bg;
@@ -517,6 +518,7 @@ bool8 sub_8122DB0(void)
     };
 
     const u8 *regionTilemap;
+    u8 i;
 
     switch (gRegionMap->initStep)
     {
@@ -600,18 +602,14 @@ bool8 sub_8122DB0(void)
             break;
         case 6:
             RegionMap_GetPositionOfCursorWithinMapSection();
-            gRegionMap->cursorSprite = NULL;
-            gRegionMap->playerIconSprite = NULL;
+
+            for (i = 0; i < sizeof(gRegionMap->spriteIds); i++)
+            {
+                gRegionMap->spriteIds[i] = 0xFF;
+            }
+
             gRegionMap->cursorMovementFrameCounter = 0;
             gRegionMap->blinkPlayerIcon = FALSE;
-            if (gRegionMap->bgManaged)
-            {
-                SetBgAttribute(gRegionMap->bgNum, BG_CTRL_ATTR_MAPBASEINDEX, 2);
-                SetBgAttribute(gRegionMap->bgNum, BG_CTRL_ATTR_VISIBLE, gRegionMap->charBaseIdx);
-                SetBgAttribute(gRegionMap->bgNum, BG_CTRL_ATTR_CHARBASEINDEX, gRegionMap->mapBaseIdx);
-                SetBgAttribute(gRegionMap->bgNum, BG_CTRL_ATTR_PRIORITY, 1);
-                SetBgAttribute(gRegionMap->bgNum, BG_CTRL_ATTR_SCREENSIZE, 1);
-            }
             gRegionMap->initStep++;
             return FALSE;
         default:
@@ -642,18 +640,74 @@ void sub_8123030(u16 a0, u32 a1)
 
 void FreeRegionMapIconResources(void)
 {
-    if (gRegionMap->cursorSprite != NULL)
+    if (gRegionMap->spriteIds[0] != 0xFF)
     {
-        DestroySprite(gRegionMap->cursorSprite);
+        DestroySprite(&gSprites[gRegionMap->spriteIds[0]]);
         FreeSpriteTilesByTag(gRegionMap->cursorTileTag);
         FreeSpritePaletteByTag(gRegionMap->cursorPaletteTag);
     }
-    if (gRegionMap->playerIconSprite != NULL)
+    if (gRegionMap->spriteIds[1] != 0xFF)
     {
-        DestroySprite(gRegionMap->playerIconSprite);
+        DestroySprite(&gSprites[gRegionMap->spriteIds[1]]);
         FreeSpriteTilesByTag(gRegionMap->playerIconTileTag);
         FreeSpritePaletteByTag(gRegionMap->playerIconPaletteTag);
     }
+}
+
+void FreeRegionMapResources(bool8 shouldClearNamePalette)
+{
+    if (gRegionMap->spriteIds[0] != 0xFF)
+    {
+        DestroySprite(&gSprites[gRegionMap->spriteIds[0]]);
+        FreeSpriteTilesByTag(gRegionMap->cursorTileTag);
+        FreeSpritePaletteByTag(gRegionMap->cursorPaletteTag);
+    }
+    if (gRegionMap->spriteIds[1] != 0xFF)
+    {
+        DestroySprite(&gSprites[gRegionMap->spriteIds[1]]);
+        FreeSpriteTilesByTag(gRegionMap->playerIconTileTag);
+        FreeSpritePaletteByTag(gRegionMap->playerIconPaletteTag);
+    }
+    if (gRegionMap->spriteIds[2] != 0xFF)
+    {
+        DestroySprite(&gSprites[gRegionMap->spriteIds[2]]);
+        FreeSpriteTilesByTag(gRegionMap->regionNameCurveTileTag);
+        if (shouldClearNamePalette)
+        {
+            FreeSpritePaletteByTag(gRegionMap->regionNamePaletteTag);
+            shouldClearNamePalette = FALSE;
+        }
+    }
+    if (gRegionMap->spriteIds[3] != 0xFF)
+    {
+        DestroySprite(&gSprites[gRegionMap->spriteIds[3]]);
+        FreeSpriteTilesByTag(gRegionMap->regionNameMainTileTag);
+        if (shouldClearNamePalette)
+        {
+            FreeSpritePaletteByTag(gRegionMap->regionNamePaletteTag);
+            shouldClearNamePalette = FALSE;
+        }
+    }
+    
+    FillWindowPixelBuffer(gRegionMap->primaryWindowId, 0);
+    ClearWindowTilemap(gRegionMap->primaryWindowId);
+    CopyWindowToVram(gRegionMap->primaryWindowId, 2);
+    RemoveWindow(gRegionMap->primaryWindowId);
+
+    FillWindowPixelBuffer(gRegionMap->secondaryWindowId, 0);
+    ClearWindowTilemap(gRegionMap->secondaryWindowId);
+    CopyWindowToVram(gRegionMap->secondaryWindowId, 2);
+    RemoveWindow(gRegionMap->secondaryWindowId);
+
+    schedule_bg_copy_tilemap_to_vram(0);
+
+    SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    SetGpuReg(REG_OFFSET_BLDY, 0);
+    SetGpuReg(REG_OFFSET_WININ, 0);
+    SetGpuReg(REG_OFFSET_WINOUT, 0);
+    ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
+
+    FREE_AND_SET_NULL(gRegionMap);
 }
 
 u8 sub_81230AC(void)
@@ -1318,6 +1372,7 @@ static void SpriteCallback_CursorFull(struct Sprite *sprite)
 void CreateRegionMapCursor(u16 tileTag, u16 paletteTag, bool8 visible)
 {
     u8 spriteId;
+    struct Sprite *sprite;
     struct SpriteTemplate template;
     struct SpritePalette palette;
     struct SpriteSheet sheet;
@@ -1337,71 +1392,76 @@ void CreateRegionMapCursor(u16 tileTag, u16 paletteTag, bool8 visible)
     spriteId = CreateSprite(&template, 0x38, 0x48, 0);
     if (spriteId != MAX_SPRITES)
     {
-        gRegionMap->cursorSprite = &gSprites[spriteId];
-        gRegionMap->cursorSprite->oam.size = 1;
+        gRegionMap->spriteIds[0] = spriteId;
+        sprite = &gSprites[spriteId];
+        sprite->oam.size = 1;
 
         if (visible)
         {
-            gRegionMap->cursorSprite->pos1.x = gRegionMap->cursorPosX * 8 + 4 + gRegionMap->xOffset * 8;
-            gRegionMap->cursorSprite->pos1.y = gRegionMap->cursorPosY * 8 + 4;
+            sprite->pos1.x = gRegionMap->cursorPosX * 8 + 4 + gRegionMap->xOffset * 8;
+            sprite->pos1.y = gRegionMap->cursorPosY * 8 + 4;
         }
         else
         {
-            gRegionMap->cursorSprite->invisible = TRUE;
-            gRegionMap->cursorSprite->callback = SpriteCallbackDummy;
+            sprite->invisible = TRUE;
+            sprite->callback = SpriteCallbackDummy;
         }
 
-        gRegionMap->cursorSprite->data[1] = 2;
-        gRegionMap->cursorSprite->data[2] = (IndexOfSpritePaletteTag(paletteTag) << 4) + 0x101;
-        gRegionMap->cursorSprite->data[3] = TRUE;
+        sprite->data[1] = 2;
+        sprite->data[2] = (IndexOfSpritePaletteTag(paletteTag) << 4) + 0x101;
+        sprite->data[3] = TRUE;
     }
 }
 
 void ShowRegionMapCursorSprite(void)
 {
-    if (gRegionMap->cursorSprite != NULL)
+    if (gRegionMap->spriteIds[0] != 0xFF)
     {
-        gRegionMap->cursorSprite->pos1.x = gRegionMap->cursorPosX * 8 + 4 + gRegionMap->xOffset * 8;
-        gRegionMap->cursorSprite->pos1.y = gRegionMap->cursorPosY * 8 + 4;
-        gRegionMap->cursorSprite->callback = SpriteCallback_CursorFull;
-        StartSpriteAnim(gRegionMap->cursorSprite, 0);
-        gRegionMap->cursorSprite->invisible = FALSE;
+        struct Sprite *sprite = &gSprites[gRegionMap->spriteIds[0]];
+
+        sprite->pos1.x = gRegionMap->cursorPosX * 8 + 4 + gRegionMap->xOffset * 8;
+        sprite->pos1.y = gRegionMap->cursorPosY * 8 + 4;
+        sprite->callback = SpriteCallback_CursorFull;
+        StartSpriteAnim(sprite, 0);
+        sprite->invisible = FALSE;
     }
 }
 
 void HideRegionMapCursorSprite(void)
 {
-    if (gRegionMap->cursorSprite != NULL)
+    if (gRegionMap->spriteIds[0] != 0xFF)
     {
+        struct Sprite *sprite = &gSprites[gRegionMap->spriteIds[0]];
+
         gRegionMap->cursorPosX = gRegionMap->playerIconSpritePosX;
         gRegionMap->cursorPosY = gRegionMap->playerIconSpritePosY;
         LoadMapLayersFromPosition(gRegionMap->cursorPosX, gRegionMap->cursorPosY);
 
-        gRegionMap->cursorSprite->invisible = TRUE;
-        gRegionMap->cursorSprite->callback = SpriteCallbackDummy;
+        sprite->invisible = TRUE;
+        sprite->callback = SpriteCallbackDummy;
     }
 }
 
 void sub_8124268(void)
 {
-    gRegionMap->cursorSprite->data[3] = TRUE;
+    gSprites[gRegionMap->spriteIds[0]].data[3] = TRUE;
 }
 
 void sub_8124278(void)
 {
-    gRegionMap->cursorSprite->data[3] = FALSE;
+    gSprites[gRegionMap->spriteIds[0]].data[3] = FALSE;
 }
 
 void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
 {
-    u8 spriteId;
+    struct Sprite *sprite;
     struct SpriteSheet sheet = {sRegionMapPlayerIcon_GoldGfx, 0x80, tileTag};
     struct SpritePalette palette = {sRegionMapPlayerIcon_GoldPal, paletteTag};
     struct SpriteTemplate template = {tileTag, paletteTag, &sRegionMapPlayerIconOam, sRegionMapPlayerIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy};
 
     if (sub_8124668(gMapHeader.regionMapSectionId))
     {
-        gRegionMap->playerIconSprite = NULL;
+        gRegionMap->spriteIds[1] = 0xFF;
         return;
     }
     if (gSaveBlock2Ptr->playerGender == FEMALE)
@@ -1411,32 +1471,36 @@ void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
     }
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&palette);
-    spriteId = CreateSprite(&template, 0, 0, 1);
-    gRegionMap->playerIconSprite = &gSprites[spriteId];
-    gRegionMap->playerIconSprite->pos1.x = gRegionMap->playerIconSpritePosX * 8 + 4 + gRegionMap->xOffset * 8;
-    gRegionMap->playerIconSprite->pos1.y = gRegionMap->playerIconSpritePosY * 8 + 4;
-    gRegionMap->playerIconSprite->callback = RegionMapPlayerIconSpriteCallback_Full;
+    gRegionMap->spriteIds[1] = CreateSprite(&template, 0, 0, 1);
+    sprite = &gSprites[gRegionMap->spriteIds[1]];
+    sprite->pos1.x = gRegionMap->playerIconSpritePosX * 8 + 4 + gRegionMap->xOffset * 8;
+    sprite->pos1.y = gRegionMap->playerIconSpritePosY * 8 + 4;
+    sprite->callback = RegionMapPlayerIconSpriteCallback_Full;
 }
 
 static void HideRegionMapPlayerIcon(void)
 {
-    if (gRegionMap->playerIconSprite != NULL)
+    if (gRegionMap->spriteIds[1] != 0xFF)
     {
-        gRegionMap->playerIconSprite->invisible = TRUE;
-        gRegionMap->playerIconSprite->callback = SpriteCallbackDummy;
+        struct Sprite *sprite = &gSprites[gRegionMap->spriteIds[1]];
+
+        sprite->invisible = TRUE;
+        sprite->callback = SpriteCallbackDummy;
     }
 }
 
 static void UnhideRegionMapPlayerIcon(void)
 {
-    if (gRegionMap->playerIconSprite != NULL)
+    if (gRegionMap->spriteIds[1] != 0xFF)
     {
-        gRegionMap->playerIconSprite->pos1.x = gRegionMap->playerIconSpritePosX * 8 + 4 + gRegionMap->xOffset * 8;
-        gRegionMap->playerIconSprite->pos1.y = gRegionMap->playerIconSpritePosY * 8 + 4;
-        gRegionMap->playerIconSprite->pos2.x = 0;
-        gRegionMap->playerIconSprite->pos2.y = 0;
-        gRegionMap->playerIconSprite->callback = RegionMapPlayerIconSpriteCallback_Full;
-        gRegionMap->playerIconSprite->invisible = FALSE;
+        struct Sprite *sprite = &gSprites[gRegionMap->spriteIds[1]];
+
+        sprite->pos1.x = gRegionMap->playerIconSpritePosX * 8 + 4 + gRegionMap->xOffset * 8;
+        sprite->pos1.y = gRegionMap->playerIconSpritePosY * 8 + 4;
+        sprite->pos2.x = 0;
+        sprite->pos2.y = 0;
+        sprite->callback = RegionMapPlayerIconSpriteCallback_Full;
+        sprite->invisible = FALSE;
     }
 }
 
@@ -1471,7 +1535,6 @@ void sub_812454C(void)
 
 void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
 {
-    u8 spriteId;
     struct SpriteTemplate template;
     struct SpriteSheet curveSheet = {sRegionMapNamesCurve_Gfx, sizeof(sRegionMapNamesCurve_Gfx), tileTagCurve};
     struct SpriteSheet mainSheet = {sRegionMapNames_Gfx, sizeof(sRegionMapNames_Gfx), tileTagMain};
@@ -1481,14 +1544,17 @@ void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
     template.paletteTag = paletteTag;
     LoadSpriteSheet(&curveSheet);
     LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);
-    spriteId = CreateSprite(&template, 180 + gRegionMap->xOffset * 8, 148, 0);
+    gRegionMap->spriteIds[2] = CreateSprite(&template, 180 + gRegionMap->xOffset * 8, 148, 0);
+    gRegionMap->regionNameCurveTileTag = tileTagCurve;
+    gRegionMap->regionNamePaletteTag = paletteTag;
     
     template = sRegionMapNameSpriteTemplate;
     template.tileTag = tileTagMain;
     template.paletteTag = paletteTag;
     LoadSpriteSheet(&mainSheet);
-    spriteId = CreateSprite(&template, 200 + gRegionMap->xOffset * 8, 148, 0);
-    StartSpriteAnim(&gSprites[spriteId], gRegionMap->region);
+    gRegionMap->spriteIds[3] = CreateSprite(&template, 200 + gRegionMap->xOffset * 8, 148, 0);
+    gRegionMap->regionNameMainTileTag = tileTagMain;
+    StartSpriteAnim(&gSprites[gRegionMap->spriteIds[3]], gRegionMap->region);
 }
 
 u8 *GetMapName(u8 *dest, u16 regionMapId, u16 padLength)

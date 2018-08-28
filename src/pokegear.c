@@ -90,6 +90,7 @@ static void LoadCard(enum CardType type);
 static void SpriteCB_ClockDigits(struct Sprite* sprite);
 static void SpriteCB_RadioDigits(struct Sprite* sprite);
 static void UnloadClockCard(void);
+static void UnloadMapCard(void);
 static void UnloadPhoneCard(void);
 static void UnloadRadioCard(void);
 static void PhoneCard_ConfirmCallProcessInput(u8 taskId);
@@ -421,7 +422,6 @@ void CB2_InitPokegear(void)
 
     ShowBg(0);
     ShowBg(1);
-    ShowBg(2);
     ShowBg(3);
 
     LoadCard(ClockCard);
@@ -474,7 +474,7 @@ static void UnloadCard(enum CardType cardId)
             UnloadClockCard();
             break;
         case MapCard:
-            //UnloadMapCard();
+            UnloadMapCard();
             break;
         case PhoneCard:
             UnloadPhoneCard();
@@ -726,6 +726,7 @@ static void LoadMapCard(void)
     SetGpuReg(REG_OFFSET_BG0VOFS, 0);
     SetGpuReg(REG_OFFSET_BG2HOFS, REGION_MAP_XOFF * -8);
     SetGpuReg(REG_OFFSET_BG2VOFS, 0);
+    ShowBg(2);
     
     LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xF000));
     sub_8122CF8(AllocZeroed(sizeof(struct RegionMap)), &sBgTemplates[2], REGION_MAP_XOFF);
@@ -774,6 +775,21 @@ static void Task_MapCard(u8 taskId)
             }
             break;
     }
+}
+
+static void UnloadMapCard(void)
+{
+    u8 taskId = FindTaskIdByFunc(Task_MapCard);
+
+    SetGpuReg(REG_OFFSET_BG0HOFS, 0);
+    SetGpuReg(REG_OFFSET_BG0VOFS, 0);
+    SetGpuReg(REG_OFFSET_BG2HOFS, 0);
+    SetGpuReg(REG_OFFSET_BG2VOFS, 0);
+    HideBg(2);
+    
+    FreeRegionMapResources(FALSE);
+
+    DestroyTask(taskId);
 }
 
 #define tListMenuTaskId data[0]

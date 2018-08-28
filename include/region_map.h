@@ -44,8 +44,10 @@ struct RegionMap {
     u8 primaryMapSecName[0x14];
     u8 secondaryMapSecName[0x14];
     u8 (*inputCallback)(void);
-    struct Sprite *cursorSprite;
-    struct Sprite *playerIconSprite;
+    u8 spriteIds[4];
+    u16 regionNameCurveTileTag;
+    u16 regionNameMainTileTag;
+    u16 regionNamePaletteTag;
     s32 unk_03c;
     s32 unk_040;
     s32 unk_044;
@@ -113,5 +115,6 @@ u8 GetCurrentRegion(void);
 void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
 void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag);
+void FreeRegionMapResources(bool8 shouldClearNamePalette);
 
 #endif //GUARD_REGION_MAP_H
