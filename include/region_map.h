@@ -39,7 +39,7 @@ struct RegionMap {
     u8 primaryMapSecStatus;
     u8 secondaryMapSecStatus;
     u8 posWithinMapSec;
-    u8 region;
+    u8 currentRegion;
     bool8 canChangeRegion;
     u8 primaryMapSecName[0x14];
     u8 secondaryMapSecName[0x14];

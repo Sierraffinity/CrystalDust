@@ -78,7 +78,6 @@ static bool8 RegionMap_IsMapSecIdInNextRow(u16 y);
 static void SpriteCallback_CursorFull(struct Sprite *sprite);
 static void HideRegionMapPlayerIcon(void);
 static void UnhideRegionMapPlayerIcon(void);
-static void RegionMapPlayerIconSpriteCallback_Full(struct Sprite *sprite);
 static void RegionMapPlayerIconSpriteCallback(struct Sprite *sprite);
 static void sub_81248C0(void);
 static void sub_81248D4(void);
@@ -482,7 +481,7 @@ void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template,
     gRegionMap = regionMap;
     gRegionMap->initStep = 0;
     gRegionMap->xOffset = xOffset;
-    gRegionMap->region = GetCurrentRegion();
+    gRegionMap->currentRegion = GetCurrentRegion();
     gRegionMap->canChangeRegion = FALSE;    // TODO: some flag check here
     gRegionMap->inputCallback = ProcessRegionMapInput_Full;
 
@@ -559,7 +558,7 @@ bool8 sub_8122DB0(void)
             }
             break;
         case 2:
-            regionTilemap = GetRegionMapTilemap(gRegionMap->region);
+            regionTilemap = GetRegionMapTilemap(gRegionMap->currentRegion);
             if (gRegionMap->bgManaged)
             {
                 if (!free_temp_tile_data_buffers_if_possible())
@@ -932,7 +931,7 @@ static u8 GetPrimaryRegionMapSectionIdAt_Internal(u16 x, u16 y)
     }
     y -= MAPCURSOR_Y_MIN;
     x -= MAPCURSOR_X_MIN;
-    return primaryLayouts[gRegionMap->region][x + y * MAP_WIDTH];
+    return primaryLayouts[gRegionMap->currentRegion][x + y * MAP_WIDTH];
 }
 
 static u8 GetSecondaryRegionMapSectionIdAt_Internal(u16 x, u16 y)
@@ -951,7 +950,7 @@ static u8 GetSecondaryRegionMapSectionIdAt_Internal(u16 x, u16 y)
     }
     y -= MAPCURSOR_Y_MIN;
     x -= MAPCURSOR_X_MIN;
-    return secondaryLayouts[gRegionMap->region][x + y * MAP_WIDTH];
+    return secondaryLayouts[gRegionMap->currentRegion][x + y * MAP_WIDTH];
 }
 
 static void RegionMap_InitializeStateBasedOnPlayerLocation(void)
@@ -1475,7 +1474,7 @@ void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
     sprite = &gSprites[gRegionMap->spriteIds[1]];
     sprite->pos1.x = gRegionMap->playerIconSpritePosX * 8 + 4 + gRegionMap->xOffset * 8;
     sprite->pos1.y = gRegionMap->playerIconSpritePosY * 8 + 4;
-    sprite->callback = RegionMapPlayerIconSpriteCallback_Full;
+    //sprite->callback = RegionMapPlayerIconSpriteCallback;
 }
 
 static void HideRegionMapPlayerIcon(void)
@@ -1499,14 +1498,9 @@ static void UnhideRegionMapPlayerIcon(void)
         sprite->pos1.y = gRegionMap->playerIconSpritePosY * 8 + 4;
         sprite->pos2.x = 0;
         sprite->pos2.y = 0;
-        sprite->callback = RegionMapPlayerIconSpriteCallback_Full;
+        //sprite->callback = RegionMapPlayerIconSpriteCallback;
         sprite->invisible = FALSE;
     }
-}
-
-static void RegionMapPlayerIconSpriteCallback_Full(struct Sprite *sprite)
-{
-    RegionMapPlayerIconSpriteCallback(sprite);
 }
 
 static void RegionMapPlayerIconSpriteCallback(struct Sprite *sprite)
@@ -1535,6 +1529,8 @@ void sub_812454C(void)
 
 void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
 {
+    u8 nameToDisplay;
+
     struct SpriteTemplate template;
     struct SpriteSheet curveSheet = {sRegionMapNamesCurve_Gfx, sizeof(sRegionMapNamesCurve_Gfx), tileTagCurve};
     struct SpriteSheet mainSheet = {sRegionMapNames_Gfx, sizeof(sRegionMapNames_Gfx), tileTagMain};
@@ -1554,7 +1550,32 @@ void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
     LoadSpriteSheet(&mainSheet);
     gRegionMap->spriteIds[3] = CreateSprite(&template, 200 + gRegionMap->xOffset * 8, 148, 0);
     gRegionMap->regionNameMainTileTag = tileTagMain;
-    StartSpriteAnim(&gSprites[gRegionMap->spriteIds[3]], gRegionMap->region);
+
+    if (gRegionMap->currentRegion >= REGION_SEVII1)
+    {
+        nameToDisplay = REGION_SEVII1;
+    }
+    else
+    {
+        nameToDisplay = gRegionMap->currentRegion;
+    }
+
+    StartSpriteAnim(&gSprites[gRegionMap->spriteIds[3]], gRegionMap->currentRegion);
+}
+
+static void LoadSecondaryLayerDots(void)
+{
+    u16 x, y;
+
+    for (y = 0; y < MAP_HEIGHT; y++)
+    {
+        for (x = 0; x < MAP_WIDTH; x++)
+        {
+            u8 primaryMapSec = GetPrimaryRegionMapSectionIdAt_Internal(x, y);
+            u8 secondaryMapSec = GetSecondaryRegionMapSectionIdAt_Internal(x, y);
+            
+        }
+    }
 }
 
 u8 *GetMapName(u8 *dest, u16 regionMapId, u16 padLength)
