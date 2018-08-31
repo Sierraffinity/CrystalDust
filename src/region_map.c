@@ -1604,7 +1604,6 @@ void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
 {
     u8 i = 0;
     u16 x, y;
-    u8 bigSecondary = MAPSEC_NONE;    // WHIRL ISLANDS
 
     struct SpriteSheet sheet = {sRegionMapDots_Gfx, sizeof(sRegionMapDots_Gfx), tileTag};
     struct SpritePalette palette = {sRegionMapDots_Pal, paletteTag};
@@ -1621,13 +1620,12 @@ void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
         {
             u8 secondaryMapSec = GetRegionMapSectionIdAt_Internal(x, y, gRegionMap->currentRegion, TRUE);
             
-            if (secondaryMapSec != MAPSEC_NONE && secondaryMapSec != bigSecondary)
+            if (secondaryMapSec != MAPSEC_NONE)
             {
                 u8 spriteId;
 
-                if (gRegionMapEntries[secondaryMapSec].width > 1 || gRegionMapEntries[secondaryMapSec].height > 1)
+                if ((gRegionMapEntries[secondaryMapSec].width > 1 || gRegionMapEntries[secondaryMapSec].height > 1) && (x == gRegionMapEntries[secondaryMapSec].x && y == gRegionMapEntries[secondaryMapSec].y))
                 {
-                    bigSecondary = secondaryMapSec;
                     x = (gRegionMapEntries[secondaryMapSec].width * 8) / 2 + (gRegionMapEntries[secondaryMapSec].x + MAPCURSOR_X_MIN + gRegionMap->xOffset) * 8;
                     y = (gRegionMapEntries[secondaryMapSec].height * 8) / 2 + (gRegionMapEntries[secondaryMapSec].y + MAPCURSOR_Y_MIN) * 8;
                     spriteId = CreateSprite(&template, x, y, 3);
