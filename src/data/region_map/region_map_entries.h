@@ -284,7 +284,7 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     {11, 10, 1, 1, sMapName_SealedChamber},
     {11, 10, 1, 1, sMapName_Underwater},
     {13,  0, 1, 1, sMapName_ScorchedSlab},
-    { 0, 10, 1, 1, sMapName_IslandCave},
+    { 2,  9, 2, 2, sMapName_IslandCave},
     { 8,  3, 1, 1, sMapName_DesertRuins},
     {13,  2, 1, 1, sMapName_AncientTomb},
     { 0,  0, 1, 1, sMapName_InsideOfTruck},

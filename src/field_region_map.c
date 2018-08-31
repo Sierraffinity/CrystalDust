@@ -48,8 +48,8 @@ static const struct BgTemplate gUnknown_085E5068[] = {
         .bg = 2,
         .charBaseIndex = 2,
         .mapBaseIndex = 28,
-        .screenSize = 2,
-        .paletteMode = 1,
+        .screenSize = 0,
+        .paletteMode = 0,
         .priority = 2,
         .baseTile = 0
     }
@@ -86,7 +86,7 @@ static void MCB2_InitRegionMapRegisters(void)
     ResetSpriteData();
     FreeAllSpritePalettes();
     ResetBgsAndClearDma3BusyFlags(0);
-    InitBgsFromTemplates(1, gUnknown_085E5068, 2);
+    InitBgsFromTemplates(0, gUnknown_085E5068, 2);
     InitWindows(gUnknown_085E5070);
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, 0x27, 0xd0);

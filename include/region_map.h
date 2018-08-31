@@ -44,18 +44,20 @@ struct RegionMap {
     u8 primaryMapSecName[0x14];
     u8 secondaryMapSecName[0x14];
     u8 (*inputCallback)(void);
-    u8 spriteIds[4];
+    u8 spriteIds[20];
     u16 regionNameCurveTileTag;
     u16 regionNameMainTileTag;
     u16 regionNamePaletteTag;
+    u16 dotsTileTag;
+    u16 dotsPaletteTag;
     s32 unk_03c;
     s32 unk_040;
     s32 unk_044;
     s32 unk_048;
     s32 unk_04c;
     s32 unk_050;
-    u16 cursorPosX;
-    u16 cursorPosY;
+    s16 cursorPosX;
+    s16 cursorPosY;
     u16 cursorTileTag;
     u16 cursorPaletteTag;
     s16 scrollX;
@@ -116,5 +118,6 @@ void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
 void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag);
 void FreeRegionMapResources(bool8 shouldClearNamePalette);
+void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag);
 
 #endif //GUARD_REGION_MAP_H
