@@ -33,6 +33,10 @@ static void MCB2_FieldUpdateRegionMap(void);
 static void FieldUpdateRegionMap(void);
 static void ShowHelpBar(void);
 
+extern const u16 gRegionMapFramePal[];
+extern const u8 gRegionMapFrameGfxLZ[];
+extern const u8 gRegionMapFrameTilemapLZ[];
+
 // .rodata
 
 static const struct BgTemplate gUnknown_085E5068[] = {
@@ -56,7 +60,7 @@ static const struct BgTemplate gUnknown_085E5068[] = {
     },
     {
         .bg = 3,
-        .charBaseIndex = 2,
+        .charBaseIndex = 3,
         .mapBaseIndex = 28,
         .screenSize = 0,
         .paletteMode = 0,
@@ -129,28 +133,41 @@ static void FieldUpdateRegionMap(void)
             InitRegionMap(&sFieldRegionMapHandler->regionMap, 0);
             CreateRegionMapPlayerIcon(0, 0);
             CreateRegionMapCursor(1, 1, TRUE);
-            CreateRegionMapName(2, 3, 2);
-            CreateSecondaryLayerDots(4, 4);
+            CreateRegionMapName(2, 3, 1);
+            CreateSecondaryLayerDots(4, 2);
             ShowHelpBar();
             sFieldRegionMapHandler->state++;
             break;
         case 1:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+            LZ77UnCompVram(gRegionMapFrameGfxLZ, (u16 *)BG_CHAR_ADDR(3));
             sFieldRegionMapHandler->state++;
             break;
         case 2:
-            SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
-            ShowBg(0);
-            ShowBg(2);
+            LZ77UnCompVram(gRegionMapFrameTilemapLZ, (u16 *)BG_SCREEN_ADDR(28));
             sFieldRegionMapHandler->state++;
             break;
         case 3:
+            LoadPalette(gRegionMapFramePal, 0x10, 0x20);
+            sFieldRegionMapHandler->state++;
+            break;
+        case 4:
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+            sFieldRegionMapHandler->state++;
+            break;
+        case 5:
+            SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
+            ShowBg(0);
+            ShowBg(2);
+            ShowBg(3);
+            sFieldRegionMapHandler->state++;
+            break;
+        case 6:
             if (!gPaletteFade.active)
             {
                 sFieldRegionMapHandler->state++;
             }
             break;
-        case 4:
+        case 7:
             switch (sub_81230AC())
             {
                 case INPUT_EVENT_MOVE_END:
@@ -162,14 +179,14 @@ static void FieldUpdateRegionMap(void)
                     break;
             }
             break;
-        case 5:
+        case 8:
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
             sFieldRegionMapHandler->state++;
             break;
-        case 6:
+        case 9:
             if (!gPaletteFade.active)
             {
-                FreeRegionMapIconResources();
+                FreeRegionMapResources();
                 SetMainCallback2(sFieldRegionMapHandler->callback);
                 if (sFieldRegionMapHandler != NULL)
                 {

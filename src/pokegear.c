@@ -762,8 +762,8 @@ static void Task_MapCard(u8 taskId)
             {
                 CreateRegionMapCursor(0, 0, FALSE);
                 CreateRegionMapPlayerIcon(1, 1);
-                CreateRegionMapName(2, 3, 54321);
-                CreateSecondaryLayerDots(4, 4);
+                CreateRegionMapName(2, 3, 0);
+                CreateSecondaryLayerDots(4, 2);
                 tState++;
             }
             break;
@@ -814,7 +814,7 @@ static void UnloadMapCard(void)
 
     HideBg(2);
     
-    FreeRegionMapResources(FALSE);
+    FreeRegionMapResources();
 
     DestroyTask(taskId);
 }

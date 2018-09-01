@@ -98,7 +98,7 @@ static const u8 *GetRegionMapTilemap(u8 region);
 // .rodata
 extern const struct SpritePalette gSpritePalette_PokegearMenuSprites;
 static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/region_map/cursor.gbapal");
-static const u8 sRegionMapCursorGfxLZ[] = INCBIN_U8("graphics/region_map/cursor_small.4bpp.lz");
+static const u8 sRegionMapCursorGfxLZ[] = INCBIN_U8("graphics/region_map/cursor.4bpp.lz");
 static const u16 sRegionMapPal[] = INCBIN_U16("graphics/region_map/region_map.gbapal");
 static const u8 sRegionMapTileset[] = INCBIN_U8("graphics/region_map/region_map.4bpp.lz");
 static const u8 sRegionMapJohtoTilemap[] = INCBIN_U8("graphics/region_map/johto_map.bin.lz");
@@ -292,11 +292,11 @@ static const u8 sRegionMapEventSectionIds[] = {
     MAPSEC_NAVEL_ROCK2
 };
 
-static const u16 sRegionMapFramePal[] = INCBIN_U16("graphics/region_map/map_frame.gbapal");
+const u16 gRegionMapFramePal[] = INCBIN_U16("graphics/region_map/map_frame.gbapal");
 
-static const u8 sRegionMapFrameGfxLZ[] = INCBIN_U8("graphics/region_map/map_frame.4bpp.lz");
+const u8 gRegionMapFrameGfxLZ[] = INCBIN_U8("graphics/region_map/map_frame.4bpp.lz");
 
-static const u8 sRegionMapFrameTilemapLZ[] = INCBIN_U8("graphics/region_map/map_frame.bin.lz");
+const u8 gRegionMapFrameTilemapLZ[] = INCBIN_U8("graphics/region_map/map_frame.bin.lz");
 
 static const u16 Unknown_085A1D48[] = INCBIN_U16("graphics/region_map/fly_target_icons.gbapal");
 
@@ -372,8 +372,8 @@ static const struct {
 
 static const struct BgTemplate gUnknown_085A1EE4[] = {
     { .bg = 0, .charBaseIndex = 0, .mapBaseIndex = 31, .screenSize = 0, .paletteMode = 0, .priority = 0 },
-    { .bg = 1, .charBaseIndex = 3, .mapBaseIndex = 30, .screenSize = 0, .paletteMode = 0, .priority = 3 },
-    { .bg = 2, .charBaseIndex = 2, .mapBaseIndex = 29, .screenSize = 0, .paletteMode = 0, .priority = 2 }
+    { .bg = 2, .charBaseIndex = 2, .mapBaseIndex = 29, .screenSize = 0, .paletteMode = 0, .priority = 2 },
+    { .bg = 3, .charBaseIndex = 3, .mapBaseIndex = 28, .screenSize = 0, .paletteMode = 0, .priority = 3 }
 };
 
 static const struct WindowTemplate gUnknown_085A1EF0[] = {
@@ -681,23 +681,7 @@ void sub_8123030(u16 a0, u32 a1)
     CpuCopy16(gPlttBufferFaded + 0x70, gPlttBufferUnfaded + 0x70, 0x60);
 }
 
-void FreeRegionMapIconResources(void)
-{
-    if (gRegionMap->spriteIds[0] != 0xFF)
-    {
-        DestroySprite(&gSprites[gRegionMap->spriteIds[0]]);
-        FreeSpriteTilesByTag(gRegionMap->cursorTileTag);
-        FreeSpritePaletteByTag(gRegionMap->cursorPaletteTag);
-    }
-    if (gRegionMap->spriteIds[1] != 0xFF)
-    {
-        DestroySprite(&gSprites[gRegionMap->spriteIds[1]]);
-        FreeSpriteTilesByTag(gRegionMap->playerIconTileTag);
-        FreeSpritePaletteByTag(gRegionMap->playerIconPaletteTag);
-    }
-}
-
-void FreeRegionMapResources(bool8 shouldClearNamePalette)
+void FreeRegionMapResources(void)
 {
     u8 i;
 
@@ -717,21 +701,11 @@ void FreeRegionMapResources(bool8 shouldClearNamePalette)
     {
         DestroySprite(&gSprites[gRegionMap->spriteIds[2]]);
         FreeSpriteTilesByTag(gRegionMap->regionNameCurveTileTag);
-        if (shouldClearNamePalette)
-        {
-            FreeSpritePaletteByTag(gRegionMap->regionNamePaletteTag);
-            shouldClearNamePalette = FALSE;
-        }
     }
     if (gRegionMap->spriteIds[3] != 0xFF)
     {
         DestroySprite(&gSprites[gRegionMap->spriteIds[3]]);
         FreeSpriteTilesByTag(gRegionMap->regionNameMainTileTag);
-        if (shouldClearNamePalette)
-        {
-            FreeSpritePaletteByTag(gRegionMap->regionNamePaletteTag);
-            shouldClearNamePalette = FALSE;
-        }
     }
 
     for (i = 4; i < sizeof(gRegionMap->spriteIds); i++)
@@ -1593,15 +1567,14 @@ void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
     palette.tag = paletteTag;
     LoadSpriteSheet(&curveSheet);
     LoadSpritePalette(&palette);
-    gRegionMap->spriteIds[2] = CreateSprite(&template, 180 + gRegionMap->xOffset * 8, 156, 0);
+    gRegionMap->spriteIds[2] = CreateSprite(&template, 180 + gRegionMap->xOffset * 8, 20, 0);
     gRegionMap->regionNameCurveTileTag = tileTagCurve;
-    gRegionMap->regionNamePaletteTag = paletteTag;
     
     template = sRegionMapNameSpriteTemplate;
     template.tileTag = tileTagMain;
     template.paletteTag = paletteTag;
     LoadSpriteSheet(&mainSheet);
-    gRegionMap->spriteIds[3] = CreateSprite(&template, 200 + gRegionMap->xOffset * 8, 156, 0);
+    gRegionMap->spriteIds[3] = CreateSprite(&template, 200 + gRegionMap->xOffset * 8, 20, 0);
     gRegionMap->regionNameMainTileTag = tileTagMain;
 
     if (gRegionMap->currentRegion >= REGION_SEVII1)
@@ -1805,23 +1778,23 @@ void MCB2_FlyMap(void)
             InitRegionMap(&sFlyMap->regionMap, FALSE);
             CreateRegionMapCursor(0, 0, TRUE);
             CreateRegionMapPlayerIcon(1, 1);
-            CreateRegionMapName(2, 3, 2);
-            CreateSecondaryLayerDots(4, 4);
+            CreateRegionMapName(2, 3, 0);
+            CreateSecondaryLayerDots(4, 2);
             ShowHelpBar();
             sFlyMap->mapSecId = sFlyMap->regionMap.primaryMapSecId;
             gUnknown_03001180 = TRUE;
             gMain.state++;
             break;
         case 5:
-            LZ77UnCompVram(sRegionMapFrameGfxLZ, (u16 *)BG_CHAR_ADDR(3));
+            LZ77UnCompVram(gRegionMapFrameGfxLZ, (u16 *)BG_CHAR_ADDR(3));
             gMain.state++;
             break;
         case 6:
-            LZ77UnCompVram(sRegionMapFrameTilemapLZ, (u16 *)BG_SCREEN_ADDR(30));
+            LZ77UnCompVram(gRegionMapFrameTilemapLZ, (u16 *)BG_SCREEN_ADDR(28));
             gMain.state++;
             break;
         case 7:
-            LoadPalette(sRegionMapFramePal, 0x10, 0x20);
+            LoadPalette(gRegionMapFramePal, 0x10, 0x20);
             gMain.state++;
             break;
         case 8:
@@ -1836,8 +1809,8 @@ void MCB2_FlyMap(void)
         case 10:
             SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
             ShowBg(0);
-            ShowBg(1);
             ShowBg(2);
+            ShowBg(3);
             sub_81248F4(sub_8124D14);
             SetMainCallback2(sub_81248D4);
             gMain.state++;
@@ -2042,7 +2015,7 @@ static void sub_8124E0C(void)
         case 1:
             if (!UpdatePaletteFade())
             {
-                FreeRegionMapIconResources();
+                FreeRegionMapResources();
                 if (sFlyMap->unk_a72)
                 {
                     switch (sFlyMap->regionMap.primaryMapSecId)
