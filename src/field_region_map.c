@@ -31,7 +31,7 @@ static void MCB2_InitRegionMapRegisters(void);
 static void VBCB_FieldUpdateRegionMap(void);
 static void MCB2_FieldUpdateRegionMap(void);
 static void FieldUpdateRegionMap(void);
-static void PrintRegionMapSecName(void);
+static void ShowHelpBar(void);
 
 // .rodata
 
@@ -66,6 +66,7 @@ static const struct BgTemplate gUnknown_085E5068[] = {
 };
 
 static const struct WindowTemplate gUnknown_085E5070[] = {
+    { 0, 0, 0, 30, 2, 14, 0x003D },
     DUMMY_WIN_TEMPLATE
 };
 
@@ -130,6 +131,7 @@ static void FieldUpdateRegionMap(void)
             CreateRegionMapCursor(1, 1, TRUE);
             CreateRegionMapName(2, 3, 2);
             CreateSecondaryLayerDots(4, 4);
+            ShowHelpBar();
             sFieldRegionMapHandler->state++;
             break;
         case 1:
@@ -171,8 +173,7 @@ static void FieldUpdateRegionMap(void)
                 SetMainCallback2(sFieldRegionMapHandler->callback);
                 if (sFieldRegionMapHandler != NULL)
                 {
-                    free(sFieldRegionMapHandler);
-                    sFieldRegionMapHandler = NULL;
+                    FREE_AND_SET_NULL(sFieldRegionMapHandler);
                 }
                 FreeAllWindowBuffers();
             }
@@ -180,17 +181,13 @@ static void FieldUpdateRegionMap(void)
     }
 }
 
-static void PrintRegionMapSecName(void)
+static void ShowHelpBar(void)
 {
-    if (sFieldRegionMapHandler->regionMap.primaryMapSecStatus != MAPSECTYPE_NONE)
-    {
-        FillWindowPixelBuffer(0, 0x11);
-        PrintTextOnWindow(0, 1, sFieldRegionMapHandler->regionMap.primaryMapSecName, 0, 1, 0, NULL);
-        schedule_bg_copy_tilemap_to_vram(0);
-    }
-    else
-    {
-        FillWindowPixelBuffer(0, 0x11);
-        CopyWindowToVram(0, 3);
-    }
+    const u8 color[3] = { 15, 1, 2 };
+
+    FillWindowPixelBuffer(0, 0xFF);
+    box_print(0, 0, 144, 0, color, 0, gText_DpadMove);
+    PutWindowTilemap(0);
+    CopyWindowToVram(0, 3);
 }
+

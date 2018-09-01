@@ -2060,10 +2060,8 @@ const u8 gText_Friday[] = _("FRIDAY");
 const u8 gText_Saturday[] = _("SATURDAY");
 
 // Pokégear
-const u8 gText_PokegearInstructions[] = _("Press {LEFT_ARROW} or {RIGHT_ARROW} to change cards.\nPress B to exit.");
-const u8 gText_PokegearSelectToChangeMode[] = _("SELECT: Change mode");
+const u8 gText_PokegearInstructions[] = _("Press B to exit.");
 const u8 gText_PokegearWhomDoYouWantToCall[] = _("Whom do you want to call?");
-const u8 gText_PokegearRadioTuning[] = _("{DOWN_ARROW}   TUNING   {UP_ARROW}");
 
 // Radio stations
 const u8 gText_OaksPkmnTalk[] = _("OAK’s {PKMN} Talk");
@@ -2178,3 +2176,14 @@ const u8 gText_RocketRadio8[] = _("hear?{RADIO_PAUSE} We did it!");
 const u8 gText_RocketRadio9[] = _("{RADIO_PAUSE}Where is our boss?");
 const u8 gText_RocketRadio10[] = _("{RADIO_PAUSE}Is he listening?");
 
+const u8 gText_ClockCardHelp[] = _("{DPAD_LEFTRIGHT}SWITCH {SELECT_BUTTON}MODE");
+const u8 gText_MapCardHelp1[] = _("{DPAD_LEFTRIGHT}SWITCH {A_BUTTON}ENTER");
+const u8 gText_MapCardHelp2[] = _("{DPAD_NONE}MOVE {B_BUTTON}CANCEL");
+const u8 gText_MapCardHelp3[] = _("{DPAD_NONE}MOVE {A_BUTTON}GUIDE {B_BUTTON}CANCEL");
+const u8 gText_MapCardHelp4[] = _("{DPAD_NONE}MOVE {A_BUTTON}SWITCH {B_BUTTON}CANCEL");
+const u8 gText_PhoneCardHelp1[] = _("{DPAD_LEFTRIGHT}SWITCH {DPAD_UPDOWN}PICK {A_BUTTON}OK");
+const u8 gText_PhoneCardHelp2[] = _("{DPAD_UPDOWN}PICK {A_BUTTON}OK");
+const u8 gText_PhoneCardHelp3[] = _("{A_BUTTON}NEXT");
+const u8 gText_RadioCardHelp[] = _("{DPAD_LEFTRIGHT}SWITCH {DPAD_UPDOWN}TUNING");
+
+const u8 gText_DpadMove[] = _("{DPAD_NONE}MOVE");
