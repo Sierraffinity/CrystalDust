@@ -190,4 +190,3 @@ static void ShowHelpBar(void)
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 }
-

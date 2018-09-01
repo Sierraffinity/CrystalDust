@@ -79,7 +79,7 @@ static void RegionMapPlayerIconSpriteCallback(struct Sprite *sprite);
 static void sub_81248C0(void);
 static void sub_81248D4(void);
 static void sub_81248F4(void callback(void));
-static void sub_8124904(void);
+static void ShowHelpBar(void);
 static void sub_8124A70(void);
 static void sub_8124AD4(void);
 static void sub_8124BE4(void);
@@ -372,19 +372,17 @@ static const struct {
 
 static const struct BgTemplate gUnknown_085A1EE4[] = {
     { .bg = 0, .charBaseIndex = 0, .mapBaseIndex = 31, .screenSize = 0, .paletteMode = 0, .priority = 0 },
-    { .bg = 1, .charBaseIndex = 3, .mapBaseIndex = 30, .screenSize = 0, .paletteMode = 0, .priority = 1 },
+    { .bg = 1, .charBaseIndex = 3, .mapBaseIndex = 30, .screenSize = 0, .paletteMode = 0, .priority = 3 },
     { .bg = 2, .charBaseIndex = 2, .mapBaseIndex = 29, .screenSize = 0, .paletteMode = 0, .priority = 2 }
 };
 
 static const struct WindowTemplate gUnknown_085A1EF0[] = {
-    { 0, 17, 17, 12,  2, 15, 0x01 },
-    { 0, 17, 15, 12,  4, 15, 0x19 },
-    { 0,  1, 18, 14,  2, 15, 0x49 },
+    { 0, 0, 0, 30, 2, 14, 0x003D },
     DUMMY_WIN_TEMPLATE
 };
 
 static const struct SpritePalette gUnknown_085A1F10 = {
-    Unknown_085A1D48, 2
+    Unknown_085A1D48, 5
 };
 
 static const u16 sUnknown_085A1F18[][2] = {
@@ -442,8 +440,8 @@ static const union AnimCmd *const gUnknown_085A1F60[] = {
 };
 
 static const struct SpriteTemplate gUnknown_085A1F7C = {
-    2,
-    2,
+    5,
+    5,
     &gOamData_085A1F20,
     gUnknown_085A1F60,
     NULL,
@@ -1791,7 +1789,7 @@ void MCB2_FlyMap(void)
             break;
         case 1:
             ResetBgsAndClearDma3BusyFlags(0);
-            InitBgsFromTemplates(0, gUnknown_085A1EE4, 3);
+            InitBgsFromTemplates(0, gUnknown_085A1EE4, ARRAY_COUNT(gUnknown_085A1EE4));
             gMain.state++;
             break;
         case 2:
@@ -1800,7 +1798,6 @@ void MCB2_FlyMap(void)
             gMain.state++;
             break;
         case 3:
-            LoadUserWindowBorderGfx(0, 0x65, 0xd0);
             clear_scheduled_bg_copies_to_vram();
             gMain.state++;
             break;
@@ -1808,10 +1805,11 @@ void MCB2_FlyMap(void)
             InitRegionMap(&sFlyMap->regionMap, FALSE);
             CreateRegionMapCursor(0, 0, TRUE);
             CreateRegionMapPlayerIcon(1, 1);
+            CreateRegionMapName(2, 3, 2);
+            CreateSecondaryLayerDots(4, 4);
+            ShowHelpBar();
             sFlyMap->mapSecId = sFlyMap->regionMap.primaryMapSecId;
-            StringFill(sFlyMap->unk_a4c, CHAR_SPACE, 16);
             gUnknown_03001180 = TRUE;
-            sub_8124904();
             gMain.state++;
             break;
         case 5:
@@ -1824,10 +1822,6 @@ void MCB2_FlyMap(void)
             break;
         case 7:
             LoadPalette(sRegionMapFramePal, 0x10, 0x20);
-            PutWindowTilemap(2);
-            FillWindowPixelBuffer(2, 0x00);
-            PrintTextOnWindow(2, 1, gText_FlyToWhere, 0, 1, 0, NULL);
-            schedule_bg_copy_tilemap_to_vram(0);
             gMain.state++;
             break;
         case 8:
@@ -1840,7 +1834,6 @@ void MCB2_FlyMap(void)
             gMain.state++;
             break;
         case 10:
-            SetGpuReg(REG_OFFSET_BLDCNT, 0);
             SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
             ShowBg(0);
             ShowBg(1);
@@ -1873,64 +1866,15 @@ static void sub_81248F4(void callback(void))
     sFlyMap->unk_004 = 0;
 }
 
-static void sub_8124904(void)
+static void ShowHelpBar(void)
 {
-    u16 i;
-    bool32 flag;
-    const u8 *name;
+    const u8 color[3] = { 15, 1, 2 };
 
-    if (sFlyMap->regionMap.primaryMapSecStatus > MAPSECTYPE_NONE && sFlyMap->regionMap.primaryMapSecStatus <= MAPSECTYPE_BATTLE_FRONTIER)
-    {
-        flag = FALSE;
-        for (i = 0; i < 1; i++)
-        {
-            if (sFlyMap->regionMap.primaryMapSecId == gUnknown_085A1EDC[i].mapSecId)
-            {
-                if (FlagGet(gUnknown_085A1EDC[i].flag))
-                {
-                    StringLength(gUnknown_085A1EDC[i].name[sFlyMap->regionMap.posWithinMapSec]);
-                    flag = TRUE;
-                    sub_8198070(0, FALSE);
-                    SetWindowBorderStyle(1, FALSE, 0x65, 0x0d);
-                    PrintTextOnWindow(1, 1, sFlyMap->regionMap.primaryMapSecName, 0, 1, 0, NULL);
-                    name = gUnknown_085A1EDC[i].name[sFlyMap->regionMap.posWithinMapSec];
-                    PrintTextOnWindow(1, 1, name, GetStringRightAlignXOffset(1, name, 0x60), 0x11, 0, NULL);
-                    schedule_bg_copy_tilemap_to_vram(0);
-                    gUnknown_03001180 = TRUE;
-                }
-                break;
-            }
-        }
-        if (!flag)
-        {
-            if (gUnknown_03001180 == TRUE)
-            {
-                sub_8198070(1, FALSE);
-                SetWindowBorderStyle(0, FALSE, 0x65, 0x0d);
-            }
-            else
-            {
-                FillWindowPixelBuffer(0, 0x11);
-            }
-            PrintTextOnWindow(0, 1, sFlyMap->regionMap.primaryMapSecName, 0, 1, 0, NULL);
-            schedule_bg_copy_tilemap_to_vram(0);
-            gUnknown_03001180 = FALSE;
-        }
-    }
-    else
-    {
-        if (gUnknown_03001180 == TRUE)
-        {
-            sub_8198070(1, FALSE);
-            SetWindowBorderStyle(0, FALSE, 0x65, 0x0d);
-        }
-        FillWindowPixelBuffer(0, 0x11);
-        CopyWindowToVram(0, 2);
-        schedule_bg_copy_tilemap_to_vram(0);
-        gUnknown_03001180 = FALSE;
-    }
+    FillWindowPixelBuffer(0, 0xFF);
+    box_print(0, 0, 144, 0, color, 0, gText_DpadMove);
+    PutWindowTilemap(0);
+    CopyWindowToVram(0, 3);
 }
-
 
 static void sub_8124A70(void)
 {
@@ -1939,7 +1883,7 @@ static void sub_8124A70(void)
     LZ77UnCompWram(sUnknown_085A1D68, sFlyMap->unk_88c);
     sheet.data = sFlyMap->unk_88c;
     sheet.size = 0x1c0;
-    sheet.tag = 2;
+    sheet.tag = 5;
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&gUnknown_085A1F10);
     sub_8124AD4();
@@ -2069,7 +2013,6 @@ static void sub_8124D64(void)
             case INPUT_EVENT_MOVE_CONT:
                 break;
             case INPUT_EVENT_MOVE_END:
-                sub_8124904();
                 break;
             case INPUT_EVENT_A_BUTTON:
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
