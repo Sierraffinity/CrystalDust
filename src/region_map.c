@@ -373,7 +373,7 @@ static const struct {
 static const struct BgTemplate gUnknown_085A1EE4[] = {
     { .bg = 0, .charBaseIndex = 0, .mapBaseIndex = 31, .screenSize = 0, .paletteMode = 0, .priority = 0 },
     { .bg = 1, .charBaseIndex = 3, .mapBaseIndex = 30, .screenSize = 0, .paletteMode = 0, .priority = 1 },
-    { .bg = 2, .charBaseIndex = 2, .mapBaseIndex = 28, .screenSize = 0, .paletteMode = 0, .priority = 2 }
+    { .bg = 2, .charBaseIndex = 2, .mapBaseIndex = 29, .screenSize = 0, .paletteMode = 0, .priority = 2 }
 };
 
 static const struct WindowTemplate gUnknown_085A1EF0[] = {
@@ -505,7 +505,7 @@ void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template,
     {
         gRegionMap->bgNum = 2;
         gRegionMap->charBaseIdx = 2;
-        gRegionMap->mapBaseIdx = 28;
+        gRegionMap->mapBaseIdx = 29;
         gRegionMap->bgManaged = FALSE;
     }
 }
@@ -604,7 +604,7 @@ bool8 sub_8122DB0(void)
                 }
                 else
                 {
-                    CpuFastCopy(ptr, (u16 *)BG_SCREEN_ADDR(28), size);
+                    CpuFastCopy(ptr, (u16 *)BG_SCREEN_ADDR(29), size);
                 }
 
                 FREE_AND_SET_NULL(ptr);
@@ -1569,14 +1569,17 @@ void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
     u8 nameToDisplay;
 
     struct SpriteTemplate template;
+    struct SpritePalette palette;
     struct SpriteSheet curveSheet = {sRegionMapNamesCurve_Gfx, sizeof(sRegionMapNamesCurve_Gfx), tileTagCurve};
     struct SpriteSheet mainSheet = {sRegionMapNames_Gfx, sizeof(sRegionMapNames_Gfx), tileTagMain};
 
     template = sRegionMapNameCurveSpriteTemplate;
     template.tileTag = tileTagCurve;
     template.paletteTag = paletteTag;
+    palette = gSpritePalette_PokegearMenuSprites;
+    palette.tag = paletteTag;
     LoadSpriteSheet(&curveSheet);
-    LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);
+    LoadSpritePalette(&palette);
     gRegionMap->spriteIds[2] = CreateSprite(&template, 180 + gRegionMap->xOffset * 8, 148, 0);
     gRegionMap->regionNameCurveTileTag = tileTagCurve;
     gRegionMap->regionNamePaletteTag = paletteTag;

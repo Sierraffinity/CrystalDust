@@ -44,20 +44,28 @@ static const struct BgTemplate gUnknown_085E5068[] = {
         .paletteMode = 0,
         .priority = 0,
         .baseTile = 0
-    }, {
+    },
+    {
         .bg = 2,
+        .charBaseIndex = 2,
+        .mapBaseIndex = 29,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 2,
+        .baseTile = 0
+    },
+    {
+        .bg = 3,
         .charBaseIndex = 2,
         .mapBaseIndex = 28,
         .screenSize = 0,
         .paletteMode = 0,
-        .priority = 2,
+        .priority = 3,
         .baseTile = 0
     }
 };
 
 static const struct WindowTemplate gUnknown_085E5070[] = {
-    { 0, 17, 17, 12,  2, 15, 0x0001 },
-    { 0, 22,  1,  7,  2, 15, 0x0019 },
     DUMMY_WIN_TEMPLATE
 };
 
@@ -86,10 +94,9 @@ static void MCB2_InitRegionMapRegisters(void)
     ResetSpriteData();
     FreeAllSpritePalettes();
     ResetBgsAndClearDma3BusyFlags(0);
-    InitBgsFromTemplates(0, gUnknown_085E5068, 2);
+    InitBgsFromTemplates(0, gUnknown_085E5068, ARRAY_COUNT(gUnknown_085E5068));
     InitWindows(gUnknown_085E5070);
     DeactivateAllTextPrinters();
-    LoadUserWindowBorderGfx(0, 0x27, 0xd0);
     clear_scheduled_bg_copies_to_vram();
     SetMainCallback2(MCB2_FieldUpdateRegionMap);
     SetVBlankCallback(VBCB_FieldUpdateRegionMap);
@@ -121,15 +128,11 @@ static void FieldUpdateRegionMap(void)
             InitRegionMap(&sFieldRegionMapHandler->regionMap, 0);
             CreateRegionMapPlayerIcon(0, 0);
             CreateRegionMapCursor(1, 1, TRUE);
+            CreateRegionMapName(2, 3, 2);
+            CreateSecondaryLayerDots(4, 4);
             sFieldRegionMapHandler->state++;
             break;
         case 1:
-            SetWindowBorderStyle(1, 0, 0x27, 0xd);
-            offset = GetStringCenterAlignXOffset(1, gText_Hoenn, 0x38);
-            PrintTextOnWindow(1, 1, gText_Hoenn, offset, 1, 0, NULL);
-            schedule_bg_copy_tilemap_to_vram(0);
-            SetWindowBorderStyle(0, 0, 0x27, 0xd);
-            PrintRegionMapSecName();
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
             sFieldRegionMapHandler->state++;
             break;
@@ -149,7 +152,7 @@ static void FieldUpdateRegionMap(void)
             switch (sub_81230AC())
             {
                 case INPUT_EVENT_MOVE_END:
-                    PrintRegionMapSecName();
+                    //PrintRegionMapSecName();
                     break;
                 case INPUT_EVENT_A_BUTTON:
                 case INPUT_EVENT_B_BUTTON:
