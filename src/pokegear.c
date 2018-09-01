@@ -28,10 +28,11 @@
 #include "constants/songs.h"
 
 #define WIN_DIALOG 0
-#define WIN_TOP 1
-#define WIN_BOTTOM 2
-#define WIN_LIST 3
-#define WIN_CONFIRM 4
+#define WIN_HELP 1
+#define WIN_TOP 2
+#define WIN_BOTTOM 3
+#define WIN_LIST 4
+#define WIN_CONFIRM 5
 
 #define MENU_FRAME_BASE_TILE_NUM 532
 #define MENU_FRAME_PALETTE_NUM 13
@@ -153,10 +154,11 @@ static const struct BgTemplate sBgTemplates[] =
 static const struct WindowTemplate sWindowTemplates[] =
 {
     { 0, 6, 15, 23, 4, 15, 0x0001 },
-    { 0, 10, 2, 14, 3, 15, 0x0060 },
-    { 0, 10, 11, 14, 3, 15, 0x0090 },
-    { 0, 8, 2, 17, 12, 15, 0x0060 },
-    { 0, 23, 9, 6, 4, 15, 0x0130 },
+    { 0, 0, 0, 30, 2, 11, 0x005D },
+    { 0, 10, 5, 14, 3, 15, 0x0099 },
+    { 0, 10, 10, 14, 3, 15, 0x0099 },
+    { 0, 8, 4, 17, 10, 15, 0x0099 },
+    { 0, 23, 9, 6, 4, 15, 0x0163 },
     DUMMY_WIN_TEMPLATE
 };
 
@@ -177,8 +179,8 @@ static const struct ListMenuTemplate sPhoneCardListMenuTemplate =
     .items = sTempListMenuItems,
     .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
     .itemPrintFunc = NULL,
-    .totalItems = 8,
-    .maxShowed = 6,
+    .totalItems = ARRAY_COUNT(sTempListMenuItems),
+    .maxShowed = 5,
     .windowId = WIN_LIST,
     .header_X = 0,
     .item_X = 8,
@@ -399,6 +401,7 @@ void CB2_InitPokegear(void)
     LZ77UnCompVram(gMainTiles, (void *)(VRAM + 0x0000));
     LZ77UnCompVram(gBackgroundTilemap, (void *)(VRAM + 0xE000));
     LoadPalette(gBGPals, 0, sizeof(gBGPals));
+    LoadPalette(stdpal_get(2), 0xB0, 0x20);
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     InitWindows(sWindowTemplates);
@@ -568,6 +571,16 @@ static void Task_ExitPokegear2(u8 taskId)
     }
 }
 
+static void ShowHelpBar(const u8 *string)
+{
+    const u8 color[3] = { 15, 1, 2 };
+
+    FillWindowPixelBuffer(WIN_HELP, 0xFF);
+    box_print(WIN_HELP, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
+    PutWindowTilemap(WIN_HELP);
+    CopyWindowToVram(WIN_HELP, 3);
+}
+
 #define tDayOfWeek data[0]
 
 #define tPosition data[0]
@@ -583,13 +596,15 @@ static void LoadClockCard(void)
     u8 newTask, spriteId;
     const u8 *dayOfWeek = GetDayOfWeekString();
 
+    ShowHelpBar(gText_ClockCardHelp);
+
     LZ77UnCompVram(gClockCardTilemap, (void *)(VRAM + 0xF000));
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PutWindowTilemap(WIN_TOP);
-    PutWindowTilemap(WIN_BOTTOM);
+    //PutWindowTilemap(WIN_BOTTOM);
     PrintTextOnWindow(WIN_DIALOG, 1, gText_PokegearInstructions, 0, 1, 0, NULL);
-    box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 5, sTextColor, 0, dayOfWeek);
-    box_print(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
+    box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
+    //box_print(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
     schedule_bg_copy_tilemap_to_vram(0);
     
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
@@ -600,7 +615,7 @@ static void LoadClockCard(void)
 
     for (i = 0; i < 6; i++)
     {
-        spriteId = CreateSprite(&sSpriteTemplate_Digits, clockX[i], 64, 0);
+        spriteId = CreateSprite(&sSpriteTemplate_Digits, clockX[i], 84, 0);
         gSprites[spriteId].tPosition = i;
         gSprites[spriteId].callback = SpriteCB_ClockDigits;
         gTasks[newTask].data[i + 1] = spriteId;
@@ -699,9 +714,9 @@ static void UnloadClockCard(void)
     ClearWindowTilemap(WIN_TOP);
     CopyWindowToVram(WIN_TOP, 2);
 
-    FillWindowPixelBuffer(WIN_BOTTOM, 0);
+    /*FillWindowPixelBuffer(WIN_BOTTOM, 0);
     ClearWindowTilemap(WIN_BOTTOM);
-    CopyWindowToVram(WIN_BOTTOM, 2);
+    CopyWindowToVram(WIN_BOTTOM, 2);*/
 
     for (i = 0; i < 6; i++)
     {
@@ -717,15 +732,14 @@ static void UnloadClockCard(void)
 #undef tStoredVal
 
 #define tState data[0]
+#define tLastEvent data[1]
 
 static void LoadMapCard(void)
 {
     u8 newTask;
 
-    SetGpuReg(REG_OFFSET_BG0HOFS, REGION_MAP_XOFF * -8);
-    SetGpuReg(REG_OFFSET_BG0VOFS, 0);
-    SetGpuReg(REG_OFFSET_BG2HOFS, REGION_MAP_XOFF * -8);
-    SetGpuReg(REG_OFFSET_BG2VOFS, 0);
+    ShowHelpBar(gText_MapCardHelp1);
+
     ShowBg(2);
     
     LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xF000));
@@ -738,6 +752,8 @@ static void LoadMapCard(void)
 static void Task_MapCard(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    u8 event;
+    const u8 *helpString = NULL;
 
     switch (tState)
     {
@@ -755,25 +771,39 @@ static void Task_MapCard(u8 taskId)
             if (gMain.newKeys & A_BUTTON)
             {
                 PlaySE(SE_HI_TURUN);
+                ShowHelpBar(gText_MapCardHelp2);
                 ShowRegionMapCursorSprite();
                 sPokegearStruct.inputEnabled = FALSE;
                 tState++;
             }
             break;
         case 2:
-            switch (sub_81230AC())
+            event = sub_81230AC();
+            switch (event)
             {
-                case INPUT_EVENT_MOVE_END:
-                    break;
                 case INPUT_EVENT_B_BUTTON:
-                    PlaySE(SE_SELECT);
+                    PlaySE(SE_W063B);
+                    ShowHelpBar(gText_MapCardHelp1);
                     HideRegionMapCursorSprite();
                     tState--;
                     sPokegearStruct.inputEnabled = TRUE;
                     break;
-                case INPUT_EVENT_A_BUTTON:
+                case INPUT_EVENT_LANDMARK:
+                    helpString = gText_MapCardHelp3;
+                    break;
+                case INPUT_EVENT_SWITCH:
+                    helpString = gText_MapCardHelp4;
+                    break;
+                case INPUT_EVENT_MOVE_END:
+                    helpString = gText_MapCardHelp2;
                     break;
             }
+
+            if (helpString != NULL && event != tLastEvent)
+            {
+                ShowHelpBar(helpString);
+            }
+            tLastEvent = event;
             break;
     }
 }
@@ -782,10 +812,6 @@ static void UnloadMapCard(void)
 {
     u8 taskId = FindTaskIdByFunc(Task_MapCard);
 
-    SetGpuReg(REG_OFFSET_BG0HOFS, 0);
-    SetGpuReg(REG_OFFSET_BG0VOFS, 0);
-    SetGpuReg(REG_OFFSET_BG2HOFS, 0);
-    SetGpuReg(REG_OFFSET_BG2VOFS, 0);
     HideBg(2);
     
     FreeRegionMapResources(FALSE);
@@ -802,6 +828,8 @@ static void LoadPhoneCard(void)
 {
     struct ListMenuTemplate menuTemplate = sPhoneCardListMenuTemplate;
     u8 newTask;
+
+    ShowHelpBar(gText_PhoneCardHelp1);
 
     LZ77UnCompVram(gPhoneCardTilemap, (void *)(VRAM + 0xF000));
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
@@ -823,7 +851,7 @@ static void PhoneCard_AddScrollIndicators(u8 taskId)
     if (gTasks[taskId].tScrollTaskId == 0xFF)
         gTasks[taskId].tScrollTaskId = AddScrollIndicatorArrowPairParameterized(SCROLL_ARROW_UP,
                                                                                 206,
-                                                                                24,
+                                                                                40,
                                                                                 104,
                                                                                 2,
                                                                                 0x13F8,
@@ -864,6 +892,7 @@ static const struct MenuAction sCallOptions[] = {
 static void PhoneCard_ConfirmCall(u8 taskId)
 {
     sPokegearStruct.inputEnabled = FALSE;
+    ShowHelpBar(gText_PhoneCardHelp2);
     PhoneCard_RemoveScrollIndicators(taskId);
     SetWindowBorderStyle(WIN_CONFIRM, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PrintMenuTable(WIN_CONFIRM, ARRAY_COUNT(sCallOptions), sCallOptions);
@@ -896,6 +925,7 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId)
 
 static void PhoneCard_ReturnToMain(u8 taskId)
 {
+    ShowHelpBar(gText_PhoneCardHelp1);
     PhoneCard_AddScrollIndicators(taskId);
     sPokegearStruct.inputEnabled = TRUE;
     gTasks[taskId].func = Task_PhoneCard;
@@ -903,6 +933,7 @@ static void PhoneCard_ReturnToMain(u8 taskId)
 
 static void PhoneCard_PlaceCall(u8 taskId)
 {
+    ShowHelpBar(gText_PhoneCardHelp3);
     // TODO
 }
 
@@ -937,13 +968,15 @@ static void LoadRadioCard(void)
     int i;
     u8 newTask, spriteId;
 
+    ShowHelpBar(gText_RadioCardHelp);
+
     LZ77UnCompVram(gRadioCardTilemap, (void *)(VRAM + 0xF000));
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
     CopyWindowToVram(WIN_DIALOG, 2);
-    PutWindowTilemap(WIN_TOP);
+    //PutWindowTilemap(WIN_TOP);
     PutWindowTilemap(WIN_BOTTOM);
-    box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, gText_PokegearRadioTuning, 0x70), 5, sTextColor, 0, gText_PokegearRadioTuning);
+    //box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, gText_PokegearRadioTuning, 0x70), 5, sTextColor, 0, gText_PokegearRadioTuning);
     FillWindowPixelBuffer(WIN_BOTTOM, 0x00);
     CopyWindowToVram(WIN_BOTTOM, 2);
     schedule_bg_copy_tilemap_to_vram(0);
@@ -964,7 +997,7 @@ static void LoadRadioCard(void)
 
     for (i = 0; i < 5; i++)
     {
-        spriteId = CreateSprite(&sSpriteTemplate_Digits, radioX[i], 64, 0);
+        spriteId = CreateSprite(&sSpriteTemplate_Digits, radioX[i], 52, 0);
         gSprites[spriteId].tPosition = i;
         gSprites[spriteId].callback = SpriteCB_RadioDigits;
         gTasks[newTask].data[i + 6] = spriteId;
@@ -1094,9 +1127,9 @@ static void UnloadRadioCard(void)
 
     sub_8198070(WIN_DIALOG, TRUE);
     
-    FillWindowPixelBuffer(WIN_TOP, 0);
+    /*FillWindowPixelBuffer(WIN_TOP, 0);
     ClearWindowTilemap(WIN_TOP);
-    CopyWindowToVram(WIN_TOP, 2);
+    CopyWindowToVram(WIN_TOP, 2);*/
 
     FillWindowPixelBuffer(WIN_BOTTOM, 0);
     ClearWindowTilemap(WIN_BOTTOM);

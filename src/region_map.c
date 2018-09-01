@@ -29,7 +29,7 @@
 #define MAP_WIDTH 22
 #define MAP_HEIGHT 15
 #define MAPCURSOR_X_MIN 4
-#define MAPCURSOR_Y_MIN 3
+#define MAPCURSOR_Y_MIN 4
 
 struct WindowCoords
 {
@@ -465,15 +465,15 @@ static const struct WindowCoords blankWindowCoords = {
 static const struct WindowCoords windowCoords[] = {
     {
         .x1 = 24,
-        .y1 = 8,
+        .y1 = 16,
         .x2 = 144,
-        .y2 = 24,
+        .y2 = 32,
     },
     {
         .x1 = 24,
-        .y1 = 24,
+        .y1 = 32,
         .x2 = 144,
-        .y2 = 40,
+        .y2 = 48,
     },
 };
 
@@ -521,9 +521,11 @@ void sub_8122D88(struct RegionMap *regionMap)
 bool8 sub_8122DB0(void)
 {
     const struct WindowTemplate layerTemplates[] = {
-        {0, 3, 1, 15, 2, 14, 1},
-        {0, 3, 3, 15, 2, 14, 31}
+        {0, 3, 2, 15, 2, 14, 1},
+        {0, 3, 4, 15, 2, 14, 31}
     };
+
+    struct WindowTemplate window;
 
     const u8 *regionTilemap;
     u8 i;
@@ -553,8 +555,13 @@ bool8 sub_8122DB0(void)
             SetupShadowBoxes(0, &windowCoords[0]);
             SetupShadowBoxes(1, &windowCoords[1]);
 
-            gRegionMap->primaryWindowId = AddWindow(&layerTemplates[0]);
-            gRegionMap->secondaryWindowId = AddWindow(&layerTemplates[1]);
+            window = layerTemplates[0];
+            window.tilemapLeft += gRegionMap->xOffset;
+            gRegionMap->primaryWindowId = AddWindow(&window);
+
+            window = layerTemplates[1];
+            window.tilemapLeft += gRegionMap->xOffset;
+            gRegionMap->secondaryWindowId = AddWindow(&window);
             break;
         case 1:
             if (gRegionMap->bgManaged)
@@ -586,7 +593,7 @@ bool8 sub_8122DB0(void)
                 
                 if (!gRegionMap->canChangeRegion)
                 {
-                    for (y = 15; y < 18; y++)
+                    for (y = 16; y < 19; y++)
                     {
                         for (x = 24; x < 27; x++)
                         {
@@ -599,12 +606,12 @@ bool8 sub_8122DB0(void)
                 {
                     if (!free_temp_tile_data_buffers_if_possible())
                     {
-                        copy_decompressed_tile_data_to_vram(gRegionMap->bgNum, ptr, size, 0, 1);
+                        copy_decompressed_tile_data_to_vram(gRegionMap->bgNum, ptr, size, gRegionMap->xOffset, 1);
                     }
                 }
                 else
                 {
-                    CpuFastCopy(ptr, (u16 *)BG_SCREEN_ADDR(28), size);
+                    CpuFastCopy(ptr, (u16 *)BG_SCREEN_ADDR(28) + gRegionMap->xOffset, size);
                 }
 
                 FREE_AND_SET_NULL(ptr);
@@ -840,6 +847,7 @@ static bool8 LoadMapLayersFromPosition(u16 x, u16 y)
 static u8 MoveRegionMapCursor_Full(void)
 {
     bool8 sameSecondary;
+    u8 inputEvent;
 
     if (gRegionMap->cursorMovementFrameCounter != 0)
     {
@@ -863,19 +871,26 @@ static u8 MoveRegionMapCursor_Full(void)
     }
 
     sameSecondary = LoadMapLayersFromPosition(gRegionMap->cursorPosX, gRegionMap->cursorPosY);
+    inputEvent = INPUT_EVENT_MOVE_END;
 
-    if (gRegionMap->primaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY || (!sameSecondary && gRegionMap->secondaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY))
+    if ((!sameSecondary && gRegionMap->secondaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY) || gRegionMap->primaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY)
     {
         PlaySE(SE_Z_SCROLL);
     }
     else if (gRegionMap->canChangeRegion && gRegionMap->cursorPosX == 21 && gRegionMap->cursorPosY == 13)
     {
         PlaySE(SE_W255);
+        inputEvent = INPUT_EVENT_SWITCH;
+    }
+
+    if (gRegionMap->secondaryMapSecStatus == MAPSECTYPE_CITY_CANFLY)
+    {
+        inputEvent = INPUT_EVENT_LANDMARK;
     }
     
     RegionMap_GetPositionOfCursorWithinMapSection();
     gRegionMap->inputCallback = ProcessRegionMapInput_Full;
-    return INPUT_EVENT_MOVE_END;
+    return inputEvent;
 }
 
 static void LoadPrimaryLayerMapSec(void)
@@ -1577,7 +1592,7 @@ void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
     template.paletteTag = paletteTag;
     LoadSpriteSheet(&curveSheet);
     LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);
-    gRegionMap->spriteIds[2] = CreateSprite(&template, 180 + gRegionMap->xOffset * 8, 148, 0);
+    gRegionMap->spriteIds[2] = CreateSprite(&template, 180 + gRegionMap->xOffset * 8, 156, 0);
     gRegionMap->regionNameCurveTileTag = tileTagCurve;
     gRegionMap->regionNamePaletteTag = paletteTag;
     
@@ -1585,7 +1600,7 @@ void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
     template.tileTag = tileTagMain;
     template.paletteTag = paletteTag;
     LoadSpriteSheet(&mainSheet);
-    gRegionMap->spriteIds[3] = CreateSprite(&template, 200 + gRegionMap->xOffset * 8, 148, 0);
+    gRegionMap->spriteIds[3] = CreateSprite(&template, 200 + gRegionMap->xOffset * 8, 156, 0);
     gRegionMap->regionNameMainTileTag = tileTagMain;
 
     if (gRegionMap->currentRegion >= REGION_SEVII1)

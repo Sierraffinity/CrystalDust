@@ -55,12 +55,6 @@ static const struct BgTemplate gUnknown_085E5068[] = {
     }
 };
 
-static const struct WindowTemplate gUnknown_085E5070[] = {
-    { 0, 17, 17, 12,  2, 15, 0x0001 },
-    { 0, 22,  1,  7,  2, 15, 0x0019 },
-    DUMMY_WIN_TEMPLATE
-};
-
 // .text
 
 void FieldInitRegionMap(MainCallback callback)
@@ -87,7 +81,7 @@ static void MCB2_InitRegionMapRegisters(void)
     FreeAllSpritePalettes();
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, gUnknown_085E5068, 2);
-    InitWindows(gUnknown_085E5070);
+    sub_81971D0();
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, 0x27, 0xd0);
     clear_scheduled_bg_copies_to_vram();

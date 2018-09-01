@@ -836,9 +836,7 @@ extern const u8 gText_Saturday[];
 
 // Pokégear
 extern const u8 gText_PokegearInstructions[];
-extern const u8 gText_PokegearSelectToChangeMode[];
 extern const u8 gText_PokegearWhomDoYouWantToCall[];
-extern const u8 gText_PokegearRadioTuning[];
 extern const u8 gUnknown_085EC017[];
 extern const u8 gUnknown_085EC022[];
 
@@ -945,5 +943,15 @@ extern const u8 gText_RocketRadio7[];
 extern const u8 gText_RocketRadio8[];
 extern const u8 gText_RocketRadio9[];
 extern const u8 gText_RocketRadio10[];
+
+extern const u8 gText_ClockCardHelp[];
+extern const u8 gText_MapCardHelp1[];
+extern const u8 gText_MapCardHelp2[];
+extern const u8 gText_MapCardHelp3[];
+extern const u8 gText_MapCardHelp4[];
+extern const u8 gText_PhoneCardHelp1[];
+extern const u8 gText_PhoneCardHelp2[];
+extern const u8 gText_PhoneCardHelp3[];
+extern const u8 gText_RadioCardHelp[];
 
 #endif //GUARD_STRINGS_H
