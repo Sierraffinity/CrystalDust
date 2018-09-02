@@ -955,5 +955,7 @@ extern const u8 gText_PhoneCardHelp3[];
 extern const u8 gText_RadioCardHelp[];
 
 extern const u8 gText_DpadMove[];
+extern const u8 gText_AOK[];
+extern const u8 gText_ACancel[];
 
 #endif //GUARD_STRINGS_H

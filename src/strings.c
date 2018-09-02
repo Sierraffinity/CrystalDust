@@ -2187,3 +2187,5 @@ const u8 gText_PhoneCardHelp3[] = _("{A_BUTTON}NEXT");
 const u8 gText_RadioCardHelp[] = _("{DPAD_LEFTRIGHT}SWITCH {DPAD_UPDOWN}TUNING");
 
 const u8 gText_DpadMove[] = _("{DPAD_NONE}MOVE");
+const u8 gText_AOK[] = _("{A_BUTTON}OK");
+const u8 gText_ACancel[] = _("{A_BUTTON}CANCEL");

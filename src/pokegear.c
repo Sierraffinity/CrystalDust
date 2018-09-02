@@ -739,11 +739,10 @@ static void LoadMapCard(void)
     u8 newTask;
 
     ShowHelpBar(gText_MapCardHelp1);
-
     ShowBg(2);
     
     LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xF000));
-    sub_8122CF8(AllocZeroed(sizeof(struct RegionMap)), &sBgTemplates[2], REGION_MAP_XOFF);
+    sub_8122CF8(AllocZeroed(sizeof(struct RegionMap)), &sBgTemplates[2], MAPBUTTON_NONE, REGION_MAP_XOFF);  // TODO: Make check for button
 
     newTask = CreateTask(Task_MapCard, 0);
     gTasks[newTask].tState = 0;
@@ -791,7 +790,7 @@ static void Task_MapCard(u8 taskId)
                 case INPUT_EVENT_LANDMARK:
                     helpString = gText_MapCardHelp3;
                     break;
-                case INPUT_EVENT_SWITCH:
+                case INPUT_EVENT_ON_BUTTON:
                     helpString = gText_MapCardHelp4;
                     break;
                 case INPUT_EVENT_MOVE_END:

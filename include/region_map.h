@@ -3,6 +3,9 @@
 
 #include "bg.h"
 
+#define CORNER_BUTTON_X 21
+#define CORNER_BUTTON_Y 13
+
 // Exported type declarations
 
 enum
@@ -14,7 +17,7 @@ enum
     INPUT_EVENT_A_BUTTON,
     INPUT_EVENT_B_BUTTON,
     INPUT_EVENT_LANDMARK,
-    INPUT_EVENT_SWITCH
+    INPUT_EVENT_ON_BUTTON
 };
 
 enum {
@@ -33,6 +36,12 @@ enum {
     REGION_SEVII3
 };
 
+enum {
+    MAPBUTTON_NONE,
+    MAPBUTTON_EXIT,
+    MAPBUTTON_CHANGE
+};
+
 struct RegionMap {
     u8 primaryMapSecId;
     u8 secondaryMapSecId;
@@ -42,7 +51,7 @@ struct RegionMap {
     u8 secondaryMapSecStatus;
     u8 posWithinMapSec;
     u8 currentRegion;
-    bool8 canChangeRegion;
+    bool8 buttonType;
     u8 primaryMapSecName[0x14];
     u8 secondaryMapSecName[0x14];
     u8 (*inputCallback)(void);
@@ -82,6 +91,7 @@ struct RegionMap {
     u8 mapBaseIdx;
     bool8 bgManaged;
     s8 xOffset;
+    bool8 onButton;
     u32 alignFiller;
     u8 cursorImage[0x100];
 }; // size = 0x884
@@ -100,7 +110,7 @@ struct RegionMapLocation
 // Exported ROM declarations
 extern const struct RegionMapLocation gRegionMapEntries[];
 
-void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, s8 xOffset);
+void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 buttonType, s8 xOffset);
 bool8 sub_8122DB0(void);
 void UpdateRegionMapVideoRegs(void);
 void InitRegionMap(struct RegionMap *regionMap, s8 xOffset);
