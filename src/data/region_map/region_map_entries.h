@@ -11,7 +11,7 @@ static const u8 sMapName_PacifidlogTown[] = _("PACIFIDLOG TOWN");
 static const u8 sMapName_PetalburgCity[] = _("PETALBURG CITY");
 static const u8 sMapName_SlateportCity[] = _("SLATEPORT CITY");
 static const u8 sMapName_MauvilleCity[] = _("MAUVILLE CITY");
-static const u8 sMapName_RustboroCity[] = _("RUSTBORO CITY");
+static const u8 sMapName_GoldenrodCity[] = _("GOLDENROD CITY");
 static const u8 sMapName_FortreeCity[] = _("FORTREE CITY");
 static const u8 sMapName_LilycoveCity[] = _("LILYCOVE CITY");
 static const u8 sMapName_MossdeepCity[] = _("MOSSDEEP CITY");
@@ -211,14 +211,14 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     { 4,  6, 1, 1, sMapName_VerdanturfTown},
     {17, 10, 1, 1, sMapName_PacifidlogTown},
     { 1,  9, 1, 1, sMapName_PetalburgCity},
-    { 8, 10, 1, 2, sMapName_SlateportCity},
-    { 8,  6, 2, 1, sMapName_MauvilleCity},
-    { 0,  5, 1, 2, sMapName_RustboroCity},
+    { 8, 10, 1, 1, sMapName_SlateportCity},
+    { 8,  6, 1, 1, sMapName_MauvilleCity},
+    { 7,  9, 1, 1, sMapName_GoldenrodCity},
     {12,  0, 1, 1, sMapName_FortreeCity},
-    {18,  3, 2, 1, sMapName_LilycoveCity},
-    {24,  5, 2, 1, sMapName_MossdeepCity},
+    {18,  3, 1, 1, sMapName_LilycoveCity},
+    {24,  5, 1, 1, sMapName_MossdeepCity},
     {21,  7, 1, 1, sMapName_SootopolisCity},
-    {27,  8, 1, 2, sMapName_EverGrandeCity},
+    {27,  8, 1, 1, sMapName_EverGrandeCity},
     { 4, 10, 1, 1, sMapName_Route101},
     { 2,  9, 2, 1, sMapName_Route102},
     { 4,  8, 4, 1, sMapName_Route103},

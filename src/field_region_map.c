@@ -133,8 +133,8 @@ static void FieldUpdateRegionMap(void)
             InitRegionMap(&sFieldRegionMapHandler->regionMap, 0);
             CreateRegionMapPlayerIcon(0, 0);
             CreateRegionMapCursor(1, 1, TRUE);
-            CreateRegionMapName(2, 3, 1);
-            CreateSecondaryLayerDots(4, 2);
+            CreateSecondaryLayerDots(2, 2);
+            CreateRegionMapName(3, 4);
             ShowHelpBar();
             sFieldRegionMapHandler->state++;
             break;

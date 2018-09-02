@@ -50,7 +50,7 @@ struct RegionMap {
     u16 regionNameCurveTileTag;
     u16 regionNameMainTileTag;
     u16 dotsTileTag;
-    u16 dotsPaletteTag;
+    u16 miscSpritesPaletteTag;
     s32 unk_03c;
     s32 unk_040;
     s32 unk_044;
@@ -117,7 +117,7 @@ u8 *sub_8124610(u8 *dest, u16 mapSecId);
 u8 GetCurrentRegion(void);
 void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
-void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag);
+void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain);
 void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag);
 
 #endif //GUARD_REGION_MAP_H

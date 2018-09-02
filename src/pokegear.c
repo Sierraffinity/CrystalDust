@@ -762,8 +762,8 @@ static void Task_MapCard(u8 taskId)
             {
                 CreateRegionMapCursor(0, 0, FALSE);
                 CreateRegionMapPlayerIcon(1, 1);
-                CreateRegionMapName(2, 3, 0);
-                CreateSecondaryLayerDots(4, 2);
+                CreateSecondaryLayerDots(2, 2);
+                CreateRegionMapName(3, 4);
                 tState++;
             }
             break;

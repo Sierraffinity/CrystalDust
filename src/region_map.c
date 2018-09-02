@@ -96,7 +96,6 @@ static void SetShadowBoxState(u8 offset, bool8 hide);
 static const u8 *GetRegionMapTilemap(u8 region);
 
 // .rodata
-extern const struct SpritePalette gSpritePalette_PokegearMenuSprites;
 static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/region_map/cursor.gbapal");
 static const u8 sRegionMapCursorGfxLZ[] = INCBIN_U8("graphics/region_map/cursor.4bpp.lz");
 static const u16 sRegionMapPal[] = INCBIN_U16("graphics/region_map/region_map.gbapal");
@@ -298,9 +297,7 @@ const u8 gRegionMapFrameGfxLZ[] = INCBIN_U8("graphics/region_map/map_frame.4bpp.
 
 const u8 gRegionMapFrameTilemapLZ[] = INCBIN_U8("graphics/region_map/map_frame.bin.lz");
 
-static const u16 Unknown_085A1D48[] = INCBIN_U16("graphics/region_map/fly_target_icons.gbapal");
-
-static const u8 sUnknown_085A1D68[] = INCBIN_U8("graphics/region_map/fly_target_icons.4bpp.lz");
+static const u8 sUnknown_085A1D68[] = INCBIN_U8("graphics/region_map/fly_target_icon.4bpp.lz");
 
 static const u8 sMapHealLocations[][3] = {
     {MAP_GROUP(LITTLEROOT_TOWN), MAP_NUM(LITTLEROOT_TOWN), HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F},
@@ -381,62 +378,23 @@ static const struct WindowTemplate gUnknown_085A1EF0[] = {
     DUMMY_WIN_TEMPLATE
 };
 
-static const struct SpritePalette gUnknown_085A1F10 = {
-    Unknown_085A1D48, 5
-};
-
 static const u16 sUnknown_085A1F18[][2] = {
     {FLAG_LANDMARK_BATTLE_FRONTIER, MAPSEC_BATTLE_FRONTIER},
     {-1, MAPSEC_NONE}
 };
 
 static const struct OamData gOamData_085A1F20 = {
-    .priority = 2
+    .size = 1, .priority = 2
 };
 
 static const union AnimCmd gUnknown_085A1F28[] = {
-    ANIMCMD_FRAME( 0, 5),
-    ANIMCMD_END
-};
-
-static const union AnimCmd gUnknown_085A1F30[] = {
-    ANIMCMD_FRAME( 1, 5),
-    ANIMCMD_END
-};
-
-static const union AnimCmd gUnknown_085A1F38[] = {
-    ANIMCMD_FRAME( 3, 5),
-    ANIMCMD_END
-};
-
-static const union AnimCmd gUnknown_085A1F40[] = {
-    ANIMCMD_FRAME( 5, 5),
-    ANIMCMD_END
-};
-
-static const union AnimCmd gUnknown_085A1F48[] = {
-    ANIMCMD_FRAME( 6, 5),
-    ANIMCMD_END
-};
-
-static const union AnimCmd gUnknown_085A1F50[] = {
-    ANIMCMD_FRAME( 8, 5),
-    ANIMCMD_END
-};
-
-static const union AnimCmd gUnknown_085A1F58[] = {
-    ANIMCMD_FRAME(10, 5),
-    ANIMCMD_END
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(4, 60),
+    ANIMCMD_JUMP(0)
 };
 
 static const union AnimCmd *const gUnknown_085A1F60[] = {
     gUnknown_085A1F28,
-    gUnknown_085A1F30,
-    gUnknown_085A1F38,
-    gUnknown_085A1F40,
-    gUnknown_085A1F48,
-    gUnknown_085A1F50,
-    gUnknown_085A1F58
 };
 
 static const struct SpriteTemplate gUnknown_085A1F7C = {
@@ -717,7 +675,7 @@ void FreeRegionMapResources(void)
     }
     
     FreeSpriteTilesByTag(gRegionMap->dotsTileTag);
-    FreeSpritePaletteByTag(gRegionMap->dotsPaletteTag);
+    FreeSpritePaletteByTag(gRegionMap->miscSpritesPaletteTag);
     
     FillWindowPixelBuffer(gRegionMap->primaryWindowId, 0);
     ClearWindowTilemap(gRegionMap->primaryWindowId);
@@ -1494,7 +1452,7 @@ void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
     }
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&palette);
-    gRegionMap->spriteIds[1] = CreateSprite(&template, 0, 0, 1);
+    gRegionMap->spriteIds[1] = CreateSprite(&template, 0, 0, 2);
     sprite = &gSprites[gRegionMap->spriteIds[1]];
     sprite->pos1.x = (gRegionMap->playerIconSpritePosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
     sprite->pos1.y = (gRegionMap->playerIconSpritePosY + MAPCURSOR_Y_MIN) * 8 + 4;
@@ -1551,28 +1509,24 @@ void sub_812454C(void)
     }
 }
 
-void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
+void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain)
 {
     u8 nameToDisplay;
 
     struct SpriteTemplate template;
-    struct SpritePalette palette;
     struct SpriteSheet curveSheet = {sRegionMapNamesCurve_Gfx, sizeof(sRegionMapNamesCurve_Gfx), tileTagCurve};
     struct SpriteSheet mainSheet = {sRegionMapNames_Gfx, sizeof(sRegionMapNames_Gfx), tileTagMain};
 
     template = sRegionMapNameCurveSpriteTemplate;
     template.tileTag = tileTagCurve;
-    template.paletteTag = paletteTag;
-    palette = gSpritePalette_PokegearMenuSprites;
-    palette.tag = paletteTag;
+    template.paletteTag = gRegionMap->miscSpritesPaletteTag;
     LoadSpriteSheet(&curveSheet);
-    LoadSpritePalette(&palette);
     gRegionMap->spriteIds[2] = CreateSprite(&template, 180 + gRegionMap->xOffset * 8, 20, 0);
     gRegionMap->regionNameCurveTileTag = tileTagCurve;
     
     template = sRegionMapNameSpriteTemplate;
     template.tileTag = tileTagMain;
-    template.paletteTag = paletteTag;
+    template.paletteTag = gRegionMap->miscSpritesPaletteTag;
     LoadSpriteSheet(&mainSheet);
     gRegionMap->spriteIds[3] = CreateSprite(&template, 200 + gRegionMap->xOffset * 8, 20, 0);
     gRegionMap->regionNameMainTileTag = tileTagMain;
@@ -1592,7 +1546,7 @@ void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain, u16 paletteTag)
 void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
 {
     u8 i = 0;
-    u16 x, y;
+    u16 x, y, newX, newY;
 
     struct SpriteSheet sheet = {sRegionMapDots_Gfx, sizeof(sRegionMapDots_Gfx), tileTag};
     struct SpritePalette palette = {sRegionMapDots_Pal, paletteTag};
@@ -1601,7 +1555,7 @@ void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&palette);
     gRegionMap->dotsTileTag = tileTag;
-    gRegionMap->dotsPaletteTag = paletteTag;
+    gRegionMap->miscSpritesPaletteTag = paletteTag;
 
     for (y = 0; y < MAP_HEIGHT; y++)
     {
@@ -1613,11 +1567,18 @@ void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
             {
                 u8 spriteId;
 
-                if ((gRegionMapEntries[secondaryMapSec].width > 1 || gRegionMapEntries[secondaryMapSec].height > 1) && (x == gRegionMapEntries[secondaryMapSec].x && y == gRegionMapEntries[secondaryMapSec].y))
+                if ((gRegionMapEntries[secondaryMapSec].width > 1 || gRegionMapEntries[secondaryMapSec].height > 1))
                 {
-                    x = (gRegionMapEntries[secondaryMapSec].width * 8) / 2 + (gRegionMapEntries[secondaryMapSec].x + MAPCURSOR_X_MIN + gRegionMap->xOffset) * 8;
-                    y = (gRegionMapEntries[secondaryMapSec].height * 8) / 2 + (gRegionMapEntries[secondaryMapSec].y + MAPCURSOR_Y_MIN) * 8;
-                    spriteId = CreateSprite(&template, x, y, 3);
+                    if (x == gRegionMapEntries[secondaryMapSec].x && y == gRegionMapEntries[secondaryMapSec].y)
+                    {
+                        newX = (gRegionMapEntries[secondaryMapSec].width * 8) / 2 + (gRegionMapEntries[secondaryMapSec].x + MAPCURSOR_X_MIN + gRegionMap->xOffset) * 8;
+                        newY = (gRegionMapEntries[secondaryMapSec].height * 8) / 2 + (gRegionMapEntries[secondaryMapSec].y + MAPCURSOR_Y_MIN) * 8;
+                        spriteId = CreateSprite(&template, newX, newY, 3);
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
@@ -1778,8 +1739,8 @@ void MCB2_FlyMap(void)
             InitRegionMap(&sFlyMap->regionMap, FALSE);
             CreateRegionMapCursor(0, 0, TRUE);
             CreateRegionMapPlayerIcon(1, 1);
-            CreateRegionMapName(2, 3, 0);
-            CreateSecondaryLayerDots(4, 2);
+            CreateSecondaryLayerDots(2, 2);
+            CreateRegionMapName(3, 4);
             ShowHelpBar();
             sFlyMap->mapSecId = sFlyMap->regionMap.primaryMapSecId;
             gUnknown_03001180 = TRUE;
@@ -1855,27 +1816,34 @@ static void sub_8124A70(void)
 
     LZ77UnCompWram(sUnknown_085A1D68, sFlyMap->unk_88c);
     sheet.data = sFlyMap->unk_88c;
-    sheet.size = 0x1c0;
+    sheet.size = sizeof(sFlyMap->unk_88c);
     sheet.tag = 5;
     LoadSpriteSheet(&sheet);
-    LoadSpritePalette(&gUnknown_085A1F10);
     sub_8124AD4();
-    sub_8124BE4();
+    //sub_8124BE4();
 }
 
 static void sub_8124AD4(void)
 {
-    u16 canFlyFlag;
     u16 i;
     u16 x;
     u16 y;
-    u16 width;
-    u16 height;
-    u16 shape;
     u8 spriteId;
 
-    canFlyFlag = FLAG_VISITED_LITTLEROOT_TOWN;
-    for (i = 0; i < 16; i++)
+    struct SpriteTemplate template = gUnknown_085A1F7C;
+    template.paletteTag = sFlyMap->regionMap.miscSpritesPaletteTag;
+
+    for (y = 0; y < MAP_HEIGHT; y++)
+    {
+        for (x = 0; x < MAP_WIDTH; x++)
+        {
+            if (get_flagnr_blue_points(GetRegionMapSectionIdAt_Internal(x, y, gRegionMap->currentRegion, FALSE)) == MAPSECTYPE_CITY_CANFLY)
+            {
+                spriteId = CreateSprite(&template, (x + MAPCURSOR_X_MIN + gRegionMap->xOffset) * 8 + 4, (y + MAPCURSOR_Y_MIN) * 8 + 4, 1);
+            }
+        }
+    }
+    /*for (i = 0; i < 16; i++)
     {
         sub_8124630(i, &x, &y, &width, &height);
         x = (x + MAPCURSOR_X_MIN) * 8 + 4;
@@ -1908,7 +1876,7 @@ static void sub_8124AD4(void)
             gSprites[spriteId].data[0] = i;
         }
         canFlyFlag++;
-    }
+    }*/
 }
 
 static void sub_8124BE4(void)
