@@ -10,9 +10,11 @@
 #include "text_window.h"
 #include "palette.h"
 #include "menu.h"
+#include "m4a.h"
 #include "strings.h"
 #include "international_string_util.h"
 #include "region_map.h"
+#include "constants/songs.h"
 
 // Static type declarations
 
@@ -31,7 +33,7 @@ static void MCB2_InitRegionMapRegisters(void);
 static void VBCB_FieldUpdateRegionMap(void);
 static void MCB2_FieldUpdateRegionMap(void);
 static void FieldUpdateRegionMap(void);
-static void ShowHelpBar(void);
+static void ShowHelpBar(bool8 onButton);
 
 extern const u16 gRegionMapFramePal[];
 extern const u8 gRegionMapFrameGfxLZ[];
@@ -125,8 +127,6 @@ static void MCB2_FieldUpdateRegionMap(void)
 
 static void FieldUpdateRegionMap(void)
 {
-    u8 offset;
-
     switch (sFieldRegionMapHandler->state)
     {
         case 0:
@@ -135,7 +135,7 @@ static void FieldUpdateRegionMap(void)
             CreateRegionMapCursor(1, 1, TRUE);
             CreateRegionMapName(2, 3, 1);
             CreateSecondaryLayerDots(4, 2);
-            ShowHelpBar();
+            ShowHelpBar(FALSE);
             sFieldRegionMapHandler->state++;
             break;
         case 1:
@@ -171,9 +171,22 @@ static void FieldUpdateRegionMap(void)
             switch (sub_81230AC())
             {
                 case INPUT_EVENT_MOVE_END:
-                    //PrintRegionMapSecName();
+                    if (sFieldRegionMapHandler->regionMap.onButton)
+                    {
+                        ShowHelpBar(FALSE);
+                        sFieldRegionMapHandler->regionMap.onButton = FALSE;
+                    }
+                    break;
+                case INPUT_EVENT_ON_BUTTON:
+                    ShowHelpBar(TRUE);
+                    sFieldRegionMapHandler->regionMap.onButton = TRUE;
                     break;
                 case INPUT_EVENT_A_BUTTON:
+                    if (!sFieldRegionMapHandler->regionMap.onButton)
+                    {
+                        break;
+                    }
+                    m4aSongNumStart(SE_W063B);
                 case INPUT_EVENT_B_BUTTON:
                     sFieldRegionMapHandler->state++;
                     break;
@@ -198,12 +211,18 @@ static void FieldUpdateRegionMap(void)
     }
 }
 
-static void ShowHelpBar(void)
+static void ShowHelpBar(bool8 onButton)
 {
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(0, 0xFF);
     box_print(0, 0, 144, 0, color, 0, gText_DpadMove);
+
+    if (onButton)
+    {
+        box_print(0, 0, 192, 0, color, 0, gText_ACancel);
+    }
+
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 }

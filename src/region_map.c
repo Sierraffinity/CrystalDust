@@ -79,7 +79,7 @@ static void RegionMapPlayerIconSpriteCallback(struct Sprite *sprite);
 static void sub_81248C0(void);
 static void sub_81248D4(void);
 static void sub_81248F4(void callback(void));
-static void ShowHelpBar(void);
+static void ShowHelpBar(bool8 onButton);
 static void sub_8124A70(void);
 static void sub_8124AD4(void);
 static void sub_8124BE4(void);
@@ -479,17 +479,17 @@ static const struct WindowCoords windowCoords[] = {
 
 void InitRegionMap(struct RegionMap *regionMap, s8 xOffset)
 {
-    sub_8122CF8(regionMap, NULL, xOffset);
+    sub_8122CF8(regionMap, NULL, MAPBUTTON_EXIT, xOffset);
     while (sub_8122DB0());
 }
 
-void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, s8 xOffset)
+void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 buttonType, s8 xOffset)
 {
     gRegionMap = regionMap;
     gRegionMap->initStep = 0;
     gRegionMap->xOffset = xOffset;
     gRegionMap->currentRegion = GetCurrentRegion();
-    gRegionMap->canChangeRegion = FALSE;    // TODO: some flag check here
+    gRegionMap->buttonType = buttonType;
     gRegionMap->inputCallback = ProcessRegionMapInput_Full;
 
     if (template != NULL)
@@ -589,7 +589,11 @@ bool8 sub_8122DB0(void)
                 u8 x, y;
                 u16 *ptr = malloc_and_decompress(GetRegionMapTilemap(gRegionMap->currentRegion), &size);
                 
-                if (!gRegionMap->canChangeRegion)
+                if (gRegionMap->buttonType == MAPBUTTON_CHANGE)
+                {
+                    ptr[25 + 17 * 32] = 0x70F4;
+                }
+                else if (gRegionMap->buttonType != MAPBUTTON_EXIT)
                 {
                     for (y = 16; y < 19; y++)
                     {
@@ -849,10 +853,10 @@ static u8 MoveRegionMapCursor_Full(void)
     {
         PlaySE(SE_Z_SCROLL);
     }
-    else if (gRegionMap->canChangeRegion && gRegionMap->cursorPosX == 21 && gRegionMap->cursorPosY == 13)
+    else if (gRegionMap->buttonType != MAPBUTTON_NONE && gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
     {
         PlaySE(SE_W255);
-        inputEvent = INPUT_EVENT_SWITCH;
+        inputEvent = INPUT_EVENT_ON_BUTTON;
     }
 
     if (gRegionMap->secondaryMapSecStatus == MAPSECTYPE_CITY_CANFLY)
@@ -1780,7 +1784,7 @@ void MCB2_FlyMap(void)
             CreateRegionMapPlayerIcon(1, 1);
             CreateRegionMapName(2, 3, 0);
             CreateSecondaryLayerDots(4, 2);
-            ShowHelpBar();
+            ShowHelpBar(FALSE);
             sFlyMap->mapSecId = sFlyMap->regionMap.primaryMapSecId;
             gUnknown_03001180 = TRUE;
             gMain.state++;
@@ -1839,12 +1843,25 @@ static void sub_81248F4(void callback(void))
     sFlyMap->unk_004 = 0;
 }
 
-static void ShowHelpBar(void)
+static void ShowHelpBar(bool8 onButton)
 {
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(0, 0xFF);
     box_print(0, 0, 144, 0, color, 0, gText_DpadMove);
+
+    if (onButton)
+    {
+        if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
+        {
+            box_print(0, 0, 192, 0, color, 0, gText_AOK);
+        }
+        else
+        {
+            box_print(0, 0, 192, 0, color, 0, gText_ACancel);
+        }
+    }
+
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 }
@@ -1985,7 +2002,16 @@ static void sub_8124D64(void)
             case INPUT_EVENT_MOVE_START:
             case INPUT_EVENT_MOVE_CONT:
                 break;
+            case INPUT_EVENT_ON_BUTTON:
+                ShowHelpBar(TRUE);
+                sFlyMap->regionMap.onButton = TRUE;
+                break;
             case INPUT_EVENT_MOVE_END:
+                if (sFlyMap->regionMap.onButton)
+                {
+                    ShowHelpBar(FALSE);
+                    sFlyMap->regionMap.onButton = FALSE;
+                }
                 break;
             case INPUT_EVENT_A_BUTTON:
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
@@ -1993,10 +2019,14 @@ static void sub_8124D64(void)
                     m4aSongNumStart(SE_SELECT);
                     sFlyMap->unk_a72 = TRUE;
                     sub_81248F4(sub_8124E0C);
+                    break;
                 }
-                break;
+                else if (!sFlyMap->regionMap.onButton)
+                {
+                    break;
+                }
+                m4aSongNumStart(SE_W063B);
             case INPUT_EVENT_B_BUTTON:
-                m4aSongNumStart(SE_SELECT);
                 sFlyMap->unk_a72 = FALSE;
                 sub_81248F4(sub_8124E0C);
                 break;
