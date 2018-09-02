@@ -33,7 +33,7 @@ static void MCB2_InitRegionMapRegisters(void);
 static void VBCB_FieldUpdateRegionMap(void);
 static void MCB2_FieldUpdateRegionMap(void);
 static void FieldUpdateRegionMap(void);
-static void ShowHelpBar(bool8 onButton);
+static void ShowHelpBar(void);
 
 extern const u16 gRegionMapFramePal[];
 extern const u8 gRegionMapFrameGfxLZ[];
@@ -135,7 +135,7 @@ static void FieldUpdateRegionMap(void)
             CreateRegionMapCursor(1, 1, TRUE);
             CreateRegionMapName(2, 3, 1);
             CreateSecondaryLayerDots(4, 2);
-            ShowHelpBar(FALSE);
+            ShowHelpBar();
             sFieldRegionMapHandler->state++;
             break;
         case 1:
@@ -171,15 +171,12 @@ static void FieldUpdateRegionMap(void)
             switch (sub_81230AC())
             {
                 case INPUT_EVENT_MOVE_END:
-                    if (sFieldRegionMapHandler->regionMap.onButton)
-                    {
-                        ShowHelpBar(FALSE);
-                        sFieldRegionMapHandler->regionMap.onButton = FALSE;
-                    }
+                    sFieldRegionMapHandler->regionMap.onButton = FALSE;
+                    ShowHelpBar();
                     break;
                 case INPUT_EVENT_ON_BUTTON:
-                    ShowHelpBar(TRUE);
                     sFieldRegionMapHandler->regionMap.onButton = TRUE;
+                    ShowHelpBar();
                     break;
                 case INPUT_EVENT_A_BUTTON:
                     if (!sFieldRegionMapHandler->regionMap.onButton)
@@ -211,14 +208,14 @@ static void FieldUpdateRegionMap(void)
     }
 }
 
-static void ShowHelpBar(bool8 onButton)
+static void ShowHelpBar(void)
 {
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(0, 0xFF);
     box_print(0, 0, 144, 0, color, 0, gText_DpadMove);
 
-    if (onButton)
+    if (sFieldRegionMapHandler->regionMap.onButton)
     {
         box_print(0, 0, 192, 0, color, 0, gText_ACancel);
     }
