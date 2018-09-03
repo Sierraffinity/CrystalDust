@@ -76,6 +76,7 @@ static void VBlankCB(void);
 static void CB2_Pokegear(void);
 static void Task_Pokegear1(u8 taskId);
 static void Task_Pokegear2(u8 taskId);
+static void Task_Pokegear3(u8 taskId);
 static void Task_ExitPokegear1(u8 taskId);
 static void Task_ExitPokegear2(u8 taskId);
 static void Task_ClockCard(u8 taskId);
@@ -99,12 +100,15 @@ static void PhoneCard_AddScrollIndicators(u8 taskId);
 static void PhoneCard_ReturnToMain(u8 taskId);
 static void PhoneCard_PlaceCall(u8 taskId);
 static void UpdateRadioStation(u8 taskId, u8 frequency);
+static void LoadCardSprites(u8 taskId);
+static void SpriteCB_Icons(struct Sprite* sprite);
 
 // .rodata
 static const u16 gBGPals[] = INCBIN_U16("graphics/pokegear/bg.gbapal");
 static const u16 sMenuSpritesPalette[] = INCBIN_U16("graphics/pokegear/menu_sprites.gbapal");
 static const u8 gMainTiles[] = INCBIN_U8("graphics/pokegear/main.4bpp.lz");
 static const u8 sDigitTiles[] = INCBIN_U8("graphics/pokegear/digits.4bpp");
+static const u8 sIconTiles[] = INCBIN_U8("graphics/pokegear/icons.4bpp");
 static const u8 gBackgroundTilemap[] = INCBIN_U8("graphics/pokegear/background.bin.lz");
 static const u8 gClockCardTilemap[] = INCBIN_U8("graphics/pokegear/clock.bin.lz");
 static const u8 gMapCardTilemap[] = INCBIN_U8("graphics/pokegear/map.bin.lz");
@@ -359,20 +363,96 @@ const struct SpriteTemplate sSpriteTemplate_Digits = {
     .callback = SpriteCallbackDummy
 };
 
+static const struct SpriteSheet sSpriteSheet_IconTiles =
+{
+    .data = sIconTiles,
+    .size = 0xE00,
+    .tag = 12346,
+};
+
+static const union AnimCmd sSpriteAnim_IconClock[] =
+{
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IconMapJohto[] =
+{
+    ANIMCMD_FRAME(16, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IconMapKanto[] =
+{
+    ANIMCMD_FRAME(32, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IconMapSevii1[] =
+{
+    ANIMCMD_FRAME(48, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IconMapSevii2[] =
+{
+    ANIMCMD_FRAME(64, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IconMapSevii3[] =
+{
+    ANIMCMD_FRAME(80, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IconPhone[] =
+{
+    ANIMCMD_FRAME(96, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IconRadio[] =
+{
+    ANIMCMD_FRAME(112, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_IconWrench[] =
+{
+    ANIMCMD_FRAME(128, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd *const sSpriteAnimTable_Icons[] =
+{
+    sSpriteAnim_IconClock,
+    sSpriteAnim_IconMapJohto,
+    sSpriteAnim_IconMapKanto,
+    sSpriteAnim_IconMapSevii1,
+    sSpriteAnim_IconMapSevii2,
+    sSpriteAnim_IconMapSevii3,
+    sSpriteAnim_IconPhone,
+    sSpriteAnim_IconRadio,
+    sSpriteAnim_IconWrench,
+};
+
+static const struct OamData sOamData_Icons =
+{
+    .size = 2,
+};
+
+const struct SpriteTemplate sSpriteTemplate_Icons = {
+    .tileTag = 12346,
+    .paletteTag = 54321,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_Icons
+};
+
 // .text
-
-/*void PrepareToStartPokegear(MainCallback callback)
-{
-    SetVBlankCallback(NULL);
-    //sPokegearStruct.callback = callback;
-    SetMainCallback2(CB2_InitPokegear);
-    gMain.savedCallback = callback;
-}
-
-void PokegearScriptHarness(void)
-{
-    PrepareToStartPokegear(CB2_ReturnToFieldContinueScript);
-}*/
 
 const u8 sTextColor[3] = {
     0x00, 0x02, 0x03
@@ -426,9 +506,6 @@ void CB2_InitPokegear(void)
     ShowBg(0);
     ShowBg(1);
     ShowBg(3);
-
-    LoadCard(ClockCard);
-    PlaySE(SE_PN_ON);
 }
 
 static void VBlankCB(void)
@@ -488,12 +565,72 @@ static void UnloadCard(enum CardType cardId)
     }
 }
 
+#define tNewCard data[0]
+
 static void Task_Pokegear1(u8 taskId)
+{
+    LoadCardSprites(taskId);
+    LoadCard(ClockCard);
+    PlaySE(SE_PN_ON);
+    gTasks[taskId].func = Task_Pokegear2;
+}
+
+static void Task_Pokegear2(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
         sPokegearStruct.inputEnabled = TRUE;
-        gTasks[taskId].func = Task_Pokegear2;
+        gTasks[taskId].func = Task_Pokegear3;
+    }
+}
+
+#define tState data[0]
+
+static void LoadCardSprites(u8 taskId)
+{
+    u8 i, spriteId;
+
+    LoadSpriteSheet(&sSpriteSheet_IconTiles);
+    LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);
+
+    for (i = 0; i < CardCount; i++)
+    {
+        u8 anim;
+
+        spriteId = CreateSprite(&sSpriteTemplate_Icons, 8, i * 32 + 32, 0);
+        gTasks[taskId].data[i + 1] = spriteId;
+        gSprites[spriteId].tState = 0;
+        switch (i)
+        {
+            case ClockCard:
+                anim = 0;
+                break;
+            case MapCard:
+                anim = GetCurrentRegion() + 1;
+                break;
+            case PhoneCard:
+                anim = 4;
+                break;
+            case RadioCard:
+                anim = 5;
+                break;
+        }
+        StartSpriteAnim(&gSprites[spriteId], anim);
+    }
+}
+
+static void SpriteCB_Icons(struct Sprite *sprite)
+{
+    switch (sprite->tState)
+    {
+        case 0:
+            
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            break;
     }
 }
 
@@ -523,9 +660,7 @@ static u8 ChangeCardWithDelta(s8 delta)
     return newCard;
 }
 
-#define tNewCard data[0]
-
-static void Task_Pokegear2(u8 taskId)
+static void Task_Pokegear3(u8 taskId)
 {
     if (sPokegearStruct.inputEnabled)
     {
@@ -608,7 +743,6 @@ static void LoadClockCard(void)
     schedule_bg_copy_tilemap_to_vram(0);
     
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
-    LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);
 
     newTask = CreateTask(Task_ClockCard, 0);
     gTasks[newTask].tDayOfWeek = gLocalTime.dayOfWeek;
@@ -714,13 +848,11 @@ static void UnloadClockCard(void)
     ClearWindowTilemap(WIN_TOP);
     CopyWindowToVram(WIN_TOP, 2);
 
-    /*FillWindowPixelBuffer(WIN_BOTTOM, 0);
-    ClearWindowTilemap(WIN_BOTTOM);
-    CopyWindowToVram(WIN_BOTTOM, 2);*/
-
+    FreeSpriteTilesByTag(12345);
+    
     for (i = 0; i < 6; i++)
     {
-        DestroySpriteAndFreeResources(&gSprites[gTasks[taskId].data[i + 1]]);
+        DestroySprite(&gSprites[gTasks[taskId].data[i + 1]]);
     }
 
     DestroyTask(taskId);
@@ -981,7 +1113,6 @@ static void LoadRadioCard(void)
     schedule_bg_copy_tilemap_to_vram(0);
 
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
-    LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);
 
     newTask = CreateTask(Task_RadioCard, 0);
 
@@ -1126,10 +1257,6 @@ static void UnloadRadioCard(void)
 
     sub_8198070(WIN_DIALOG, TRUE);
     
-    /*FillWindowPixelBuffer(WIN_TOP, 0);
-    ClearWindowTilemap(WIN_TOP);
-    CopyWindowToVram(WIN_TOP, 2);*/
-
     FillWindowPixelBuffer(WIN_BOTTOM, 0);
     ClearWindowTilemap(WIN_BOTTOM);
     CopyWindowToVram(WIN_BOTTOM, 2);
@@ -1139,9 +1266,11 @@ static void UnloadRadioCard(void)
         Overworld_PlaySpecialMapMusic();
     }
 
+    FreeSpriteTilesByTag(12345);
+    
     for (i = 0; i < 5; i++)
     {
-        DestroySpriteAndFreeResources(&gSprites[gTasks[taskId].data[i + 6]]);
+        DestroySprite(&gSprites[gTasks[taskId].data[i + 6]]);
     }
 
     DestroyTask(taskId);
