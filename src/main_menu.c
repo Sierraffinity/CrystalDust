@@ -1,7 +1,5 @@
-
-// Includes
 #include "global.h"
-#include "battle_dome_cards.h"
+#include "trainer_pokemon_sprites.h"
 #include "bg.h"
 #include "constants/flags.h"
 #include "constants/rgb.h"
@@ -1052,7 +1050,7 @@ void task_new_game_prof_birch_speech_1(u8 taskId)
         ScanlineEffect_Stop();
         ResetSpriteData();
         FreeAllSpritePalettes();
-        dp13_810BB8C();
+        ResetAllPicSprites();
         AddBirchSpeechObjects(taskId);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
         gTasks[taskId].data[4] = 0;
@@ -1371,7 +1369,7 @@ void task_new_game_prof_birch_speech_17(u8 taskId)
     if (!gPaletteFade.active)
     {
         FreeAllWindowBuffers();
-        sub_818D820(gTasks[taskId].data[9]);
+        FreeAndDestroyMonPicSprite(gTasks[taskId].data[9]);
         set_default_player_name(Random() % 20);
         DestroyTask(taskId);
         DoNamingScreen(0, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, new_game_prof_birch_speech_part2_start);
@@ -1550,8 +1548,8 @@ void task_new_game_prof_birch_speech_part2_12(u8 taskId)
     if (!gPaletteFade.active)
     {
         FreeAllWindowBuffers();
-        sub_818D820(gTasks[taskId].data[9]);
-        dp13_810BB8C();
+        FreeAndDestroyMonPicSprite(gTasks[taskId].data[9]);
+        ResetAllPicSprites();
         SetMainCallback2(CB2_NewGame);
         DestroyTask(taskId);
     }
@@ -1593,7 +1591,7 @@ void new_game_prof_birch_speech_part2_start(void)
     ScanlineEffect_Stop();
     ResetSpriteData();
     FreeAllSpritePalettes();
-    dp13_810BB8C();
+    ResetAllPicSprites();
     AddBirchSpeechObjects(taskId);
     if (gSaveBlock2Ptr->playerGender != MALE)
     {
@@ -1648,7 +1646,7 @@ void sub_80318D8(struct Sprite *sprite)
 
 u8 sub_80318F4(u8 a, u8 b)
 {
-    return sub_818D3E4(SPECIES_LOTAD, 8, 0, 1, a, b, 14, -1);
+    return CreatePicSprite2(SPECIES_LOTAD, 8, 0, 1, a, b, 14, -1);
 }
 
 void AddBirchSpeechObjects(u8 taskId)

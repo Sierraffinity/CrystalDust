@@ -473,7 +473,7 @@ u8 GetPlayerTextSpeed(void)
 u8 sub_81979C4(u8 a1)
 {
     if (gStartMenuWindowId == 0xFF)
-        gStartMenuWindowId = sub_8198AA4(0, 0x16, 1, 7, (a1 * 2) + 2, 0xF, 0x139);
+        gStartMenuWindowId = sub_8198AA4(0, 0x15, 1, 8, (a1 * 2) + 2, 0xF, 0x139);
     return gStartMenuWindowId;
 }
 
@@ -1801,7 +1801,7 @@ void *decompress_and_copy_tile_data_to_vram(u8 bgId, const void *src, int size, 
     return NULL;
 }
 
-void copy_decompressed_tile_data_to_vram_autofree(u8 bgId, const void *src, int size, u16 offset, u8 mode)
+void DecompressAndLoadBgGfxUsingHeap(u8 bgId, const void *src, int size, u16 offset, u8 mode)
 {
     int sizeOut;
     void *ptr = malloc_and_decompress(src, &sizeOut);

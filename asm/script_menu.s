@@ -1706,7 +1706,7 @@ CreateStartMenu: @ 80E2BAC
 	movs r1, 0x1
 	movs r3, 0x8
 	bl PrintTextOnWindow
-	ldr r2, =gText_MenuOptionPokenav
+	ldr r2, =gText_MenuOptionPokegear
 	movs r0, 0x39
 	str r0, [sp]
 	str r5, [sp, 0x4]

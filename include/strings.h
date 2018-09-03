@@ -185,7 +185,7 @@ extern const u8 gText_SaveFailed[];
 extern const u8 gText_MenuPokedex[];
 extern const u8 gText_MenuPokemon[];
 extern const u8 gText_MenuBag[];
-extern const u8 gText_MenuPokenav[];
+extern const u8 gText_MenuPokegear[];
 extern const u8 gText_MenuPlayer[];
 extern const u8 gText_MenuSave[];
 extern const u8 gText_MenuOption[];
@@ -776,6 +776,23 @@ extern const u8 gText_TeachWhichMoveToPkmn[];
 extern const u8 gText_GiveUpTeachingNewMove[];
 extern const u8 gText_TeachX[];
 
+extern const u8 gText_DadsAdvice[];
+extern const u8 gText_CantDismountBike[];
+extern const u8 gText_ItemFinderNothing[];
+extern const u8 gText_ItemFinderNearby[];
+extern const u8 gText_ItemFinderOnTop[];
+extern const u8 gText_CoinCase[];
+extern const u8 gText_PowderQty[];
+extern const u8 gText_BootedUpHM[];
+extern const u8 gText_BootedUpTM[];
+extern const u8 gText_TMHMContainedVar1[];
+extern const u8 gText_PlayerUsedVar2[];
+extern const u8 gText_RepelEffectsLingered[];
+extern const u8 gText_UsedVar2WildLured[];
+extern const u8 gText_UsedVar2WildRepelled[];
+extern const u8 gText_BoxFull[];
+extern const u8 gText_WontHaveEffect[];
+
 extern const u8 gText_LevelSymbol[];
 extern const u8 gText_PkmnInfo[];
 extern const u8 gText_PkmnSkills[];
@@ -823,6 +840,8 @@ extern const u8 gText_None[];
 extern const u8 gText_RibbonsVar1[];
 extern const u8 gText_OneDash[];
 extern const u8 gText_TwoDashes[];
+
+extern const u8 *const gReturnToXStringsTable2[];
 
 // Day of week
 extern const u8 *const gDayOfWeekTable[];

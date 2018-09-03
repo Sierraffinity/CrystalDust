@@ -25,7 +25,7 @@
 #include "blend_palette.h"
 #include "title_screen.h"
 #include "constants/rgb.h"
-#include "battle_dome_cards.h"
+#include "trainer_pokemon_sprites.h"
 
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
 extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];

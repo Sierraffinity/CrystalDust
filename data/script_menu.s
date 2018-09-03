@@ -409,7 +409,7 @@ gUnknown_0858B3C8:: @ 58B3C8
 	.4byte gText_MenuOptionPokedex, 0
 	.4byte gText_MenuOptionPokemon, 0
 	.4byte gText_MenuOptionBag, 0
-	.4byte gText_MenuOptionPokenav, 0
+	.4byte gText_MenuOptionPokegear, 0
 	.4byte gUnknown_085EB278, 0
 	.4byte gText_MenuOptionSave, 0
 	.4byte gText_MenuOptionOption, 0
