@@ -90,6 +90,7 @@ static void LoadMapCard(void);
 static void LoadPhoneCard(void);
 static void LoadRadioCard(void);
 static void LoadCard(enum CardType type);
+static void LoadCardBgs(enum CardType type);
 static void SpriteCB_ClockDigits(struct Sprite* sprite);
 static void SpriteCB_RadioDigits(struct Sprite* sprite);
 static void UnloadClockCard(void);
@@ -121,8 +122,8 @@ static const struct BgTemplate sBgTemplates[] =
     {
         .bg = 0,
         .charBaseIndex = 2,
-        .mapBaseIndex = 31,
-        .screenSize = 0,
+        .mapBaseIndex = 30,
+        .screenSize = 1,
         .paletteMode = 0,
         .priority = 0,
         .baseTile = 0
@@ -130,8 +131,8 @@ static const struct BgTemplate sBgTemplates[] =
     {
         .bg = 1,
         .charBaseIndex = 0,
-        .mapBaseIndex = 30,
-        .screenSize = 0,
+        .mapBaseIndex = 28,
+        .screenSize = 1,
         .paletteMode = 0,
         .priority = 1,
         .baseTile = 0
@@ -139,8 +140,8 @@ static const struct BgTemplate sBgTemplates[] =
     {
         .bg = 2,
         .charBaseIndex = 1,
-        .mapBaseIndex = 29,
-        .screenSize = 0,
+        .mapBaseIndex = 26,
+        .screenSize = 1,
         .paletteMode = 0,
         .priority = 2,
         .baseTile = 0
@@ -148,7 +149,7 @@ static const struct BgTemplate sBgTemplates[] =
     {
         .bg = 3,
         .charBaseIndex = 0,
-        .mapBaseIndex = 28,
+        .mapBaseIndex = 25,
         .screenSize = 0,
         .paletteMode = 0,
         .priority = 3,
@@ -480,7 +481,7 @@ void CB2_InitPokegear(void)
     DmaClear32(3, (void *)OAM, OAM_SIZE);
     DmaClear16(3, (void *)PLTT, PLTT_SIZE);
     LZ77UnCompVram(gMainTiles, (void *)(VRAM + 0x0000));
-    LZ77UnCompVram(gBackgroundTilemap, (void *)(VRAM + 0xE000));
+    LZ77UnCompVram(gBackgroundTilemap, (void *)(VRAM + 0xC800));
     LoadPalette(gBGPals, 0, sizeof(gBGPals));
     LoadPalette(stdpal_get(2), 0xB0, 0x20);
     ResetBgsAndClearDma3BusyFlags(0);
@@ -534,7 +535,7 @@ static void LoadCard(enum CardType cardId)
             LoadClockCard();
             break;
         case MapCard:
-            LoadMapCard();
+            //LoadMapCard(); // special case, start load earlier in LoadCardBgs
             break;
         case PhoneCard:
             LoadPhoneCard();
@@ -574,6 +575,7 @@ static void UnloadCard(enum CardType cardId)
 static void Task_Pokegear1(u8 taskId)
 {
     LoadCardSprites(taskId);
+    LoadCardBgs(ClockCard);
     LoadCard(ClockCard);
     PlaySE(SE_PN_ON);
     gTasks[taskId].func = Task_Pokegear2;
@@ -620,7 +622,7 @@ static void LoadCardSprites(u8 taskId)
         StartSpriteAnim(&gSprites[spriteId], anim);
     }
 
-    //gSprites[gTasks[taskId].data[1]].pos1.x = 16;
+    gSprites[gTasks[taskId].data[1]].pos1.x = 16;
 }
 
 static void SpriteCB_Icons(struct Sprite *sprite)
@@ -704,13 +706,50 @@ static void Task_Pokegear3(u8 taskId)
             PlaySE(SE_SELECT);
             gTasks[taskId].tState = 0;
             gTasks[taskId].tNewCard = newCard;
-            gTasks[taskId].tCurrentPos = 0;
             gTasks[taskId].func = Task_SwapCards;
         }
     }
 }
 
-#define CARD_SLIDE_SPEED 8
+static void ShowHelpBar(const u8 *string)
+{
+    const u8 color[3] = { 15, 1, 2 };
+
+    FillWindowPixelBuffer(WIN_HELP, 0xFF);
+    box_print(WIN_HELP, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
+    PutWindowTilemap(WIN_HELP);
+    CopyWindowToVram(WIN_HELP, 3);
+}
+
+static void LoadCardBgs(enum CardType newCard)
+{
+    HideBg(2);
+    
+    switch (newCard)
+    {
+        case ClockCard:
+            ShowHelpBar(gText_ClockCardHelp);
+            LZ77UnCompVram(gClockCardTilemap, (void *)(VRAM + 0xE000));
+            break;
+        case MapCard:
+            ShowHelpBar(gText_MapCardHelp1);
+            ShowBg(2);
+            LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xE000));
+            LoadMapCard();  // special case, region map needs to load sooner
+            break;
+        case PhoneCard:
+            ShowHelpBar(gText_PhoneCardHelp1);
+            LZ77UnCompVram(gPhoneCardTilemap, (void *)(VRAM + 0xE000));
+            break;
+        case RadioCard:
+            ShowHelpBar(gText_RadioCardHelp);
+            LZ77UnCompVram(gRadioCardTilemap, (void *)(VRAM + 0xE000));
+            break;
+    }
+
+}
+
+#define CARD_SLIDE_SPEED 32
 
 static void Task_SwapCards(u8 taskId)
 {
@@ -719,35 +758,37 @@ static void Task_SwapCards(u8 taskId)
     switch (tState)
     {
         case 0:
+            tCurrentPos = 0;
             gSprites[tIconSprites(sPokegearStruct.currentCard)].data[0] = 2;
+            UnloadCard(sPokegearStruct.currentCard);
             tState++;
         case 1:
             if (tCurrentPos < 208)
             {
                 tCurrentPos += CARD_SLIDE_SPEED;
-                SetGpuReg(REG_OFFSET_BG1HOFS, tCurrentPos);
-                SetGpuReg(REG_OFFSET_BG2HOFS, tCurrentPos);
+                SetGpuReg(REG_OFFSET_BG1HOFS, 512 - tCurrentPos);
+                SetGpuReg(REG_OFFSET_BG2HOFS, 512 - tCurrentPos);
             }
             else
             {
-                UnloadCard(sPokegearStruct.currentCard);
                 tState++;
             }
             break;
         case 2:
             gSprites[tIconSprites(tNewCard)].data[0] = 1;
-            LoadCard(tNewCard);
+            LoadCardBgs(tNewCard);
             tState++;
             break;
         case 3:
-            if (tCurrentPos < 0)
+            if (tCurrentPos > 0)
             {
                 tCurrentPos -= CARD_SLIDE_SPEED;
-                SetGpuReg(REG_OFFSET_BG1HOFS, tCurrentPos);
-                SetGpuReg(REG_OFFSET_BG2HOFS, tCurrentPos);
+                SetGpuReg(REG_OFFSET_BG1HOFS, 512 - tCurrentPos);
+                SetGpuReg(REG_OFFSET_BG2HOFS, 512 - tCurrentPos);
             }
             else
             {
+                LoadCard(tNewCard);
                 gTasks[taskId].func = Task_Pokegear3;
             }
             break;
@@ -770,16 +811,6 @@ static void Task_ExitPokegear2(u8 taskId)
     }
 }
 
-static void ShowHelpBar(const u8 *string)
-{
-    const u8 color[3] = { 15, 1, 2 };
-
-    FillWindowPixelBuffer(WIN_HELP, 0xFF);
-    box_print(WIN_HELP, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
-    PutWindowTilemap(WIN_HELP);
-    CopyWindowToVram(WIN_HELP, 3);
-}
-
 #define tDayOfWeek data[0]
 
 #define tPosition data[0]
@@ -795,9 +826,6 @@ static void LoadClockCard(void)
     u8 newTask, spriteId;
     const u8 *dayOfWeek = GetDayOfWeekString();
 
-    ShowHelpBar(gText_ClockCardHelp);
-
-    LZ77UnCompVram(gClockCardTilemap, (void *)(VRAM + 0xF000));
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PutWindowTilemap(WIN_TOP);
     //PutWindowTilemap(WIN_BOTTOM);
@@ -934,10 +962,6 @@ static void LoadMapCard(void)
 {
     u8 newTask;
 
-    ShowHelpBar(gText_MapCardHelp1);
-    ShowBg(2);
-    
-    LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xF000));
     sub_8122CF8(AllocZeroed(sizeof(struct RegionMap)), &sBgTemplates[2], MAPBUTTON_NONE, REGION_MAP_XOFF);  // TODO: Make check for button
 
     newTask = CreateTask(Task_MapCard, 0);
@@ -955,7 +979,6 @@ static void Task_MapCard(u8 taskId)
         case 0:
             if (!sub_8122DB0())
             {
-                RegionMap_FinishSetup();
                 CreateRegionMapCursor(0, 0, FALSE);
                 CreateRegionMapPlayerIcon(1, 1);
                 CreateSecondaryLayerDots(2, 2);
@@ -1008,8 +1031,6 @@ static void UnloadMapCard(void)
 {
     u8 taskId = FindTaskIdByFunc(Task_MapCard);
 
-    HideBg(2);
-    
     FreeRegionMapResources();
 
     DestroyTask(taskId);
@@ -1025,9 +1046,6 @@ static void LoadPhoneCard(void)
     struct ListMenuTemplate menuTemplate = sPhoneCardListMenuTemplate;
     u8 newTask;
 
-    ShowHelpBar(gText_PhoneCardHelp1);
-
-    LZ77UnCompVram(gPhoneCardTilemap, (void *)(VRAM + 0xF000));
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
     CopyWindowToVram(WIN_DIALOG, 2);
@@ -1163,10 +1181,7 @@ static void LoadRadioCard(void)
 
     int i;
     u8 newTask, spriteId;
-
-    ShowHelpBar(gText_RadioCardHelp);
-
-    LZ77UnCompVram(gRadioCardTilemap, (void *)(VRAM + 0xF000));
+    
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
     CopyWindowToVram(WIN_DIALOG, 2);

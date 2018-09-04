@@ -440,11 +440,12 @@ void InitRegionMap(struct RegionMap *regionMap, s8 xOffset)
 {
     sub_8122CF8(regionMap, NULL, MAPBUTTON_EXIT, xOffset);
     while (sub_8122DB0());
-    RegionMap_FinishSetup();
 }
 
 void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 buttonType, s8 xOffset)
 {
+    u8 i;
+    
     gRegionMap = regionMap;
     gRegionMap->initStep = 0;
     gRegionMap->xOffset = xOffset;
@@ -452,6 +453,11 @@ void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template,
     gRegionMap->buttonType = buttonType;
     gRegionMap->onButton = FALSE;
     gRegionMap->inputCallback = ProcessRegionMapInput_Full;
+
+    for (i = 0; i < sizeof(gRegionMap->spriteIds); i++)
+    {
+        gRegionMap->spriteIds[i] = 0xFF;
+    }
 
     if (template != NULL)
     {
@@ -513,11 +519,6 @@ bool8 sub_8122DB0(void)
                                          WINOUT_WIN01_OBJ);
             SetupShadowBoxes(0, &windowCoords[0]);
             SetupShadowBoxes(1, &windowCoords[1]);
-
-            for (i = 0; i < sizeof(gRegionMap->spriteIds); i++)
-            {
-                gRegionMap->spriteIds[i] = 0xFF;
-            }
 
             window = layerTemplates[0];
             window.tilemapLeft += gRegionMap->xOffset;
@@ -614,6 +615,10 @@ bool8 sub_8122DB0(void)
         case 6:
             RegionMap_GetPositionOfCursorWithinMapSection();
 
+            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN);
+            LoadPrimaryLayerMapSec();
+            LoadSecondaryLayerMapSec();
+
             gRegionMap->cursorMovementFrameCounter = 0;
             gRegionMap->blinkPlayerIcon = FALSE;
             gRegionMap->initStep++;
@@ -622,13 +627,6 @@ bool8 sub_8122DB0(void)
     }
     gRegionMap->initStep++;
     return TRUE;
-}
-
-void RegionMap_FinishSetup(void)
-{
-    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN);
-    LoadPrimaryLayerMapSec();
-    LoadSecondaryLayerMapSec();
 }
 
 static const u8 *GetRegionMapTilemap(u8 region)

@@ -112,6 +112,7 @@ extern const struct RegionMapLocation gRegionMapEntries[];
 
 void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 buttonType, s8 xOffset);
 bool8 sub_8122DB0(void);
+bool8 RegionMap_LoadResources2(void);
 void UpdateRegionMapVideoRegs(void);
 void InitRegionMap(struct RegionMap *regionMap, s8 xOffset);
 u8 sub_81230AC(void);
@@ -129,6 +130,5 @@ void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
 void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain);
 void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag);
-void RegionMap_FinishSetup(void);
 
 #endif //GUARD_REGION_MAP_H
