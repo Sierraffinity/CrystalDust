@@ -64,7 +64,7 @@ enum CardType {
 static EWRAM_DATA struct {
     MainCallback callback;
     u8 currentCard;
-    bool8 inputEnabled;
+    bool8 canSwitchCards;
     bool8 twentyFourHourMode;
     u8 currentRadioStation;
 } sPokegearStruct = {0};
@@ -77,6 +77,7 @@ static void CB2_Pokegear(void);
 static void Task_Pokegear1(u8 taskId);
 static void Task_Pokegear2(u8 taskId);
 static void Task_Pokegear3(u8 taskId);
+static void Task_SwapCards(u8 taskId);
 static void Task_ExitPokegear1(u8 taskId);
 static void Task_ExitPokegear2(u8 taskId);
 static void Task_ClockCard(u8 taskId);
@@ -565,7 +566,10 @@ static void UnloadCard(enum CardType cardId)
     }
 }
 
-#define tNewCard data[0]
+#define tState data[0]
+#define tNewCard data[1]
+#define tCurrentPos data[2]
+#define tIconSprites(n) data[3 + n]
 
 static void Task_Pokegear1(u8 taskId)
 {
@@ -579,12 +583,10 @@ static void Task_Pokegear2(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        sPokegearStruct.inputEnabled = TRUE;
+        sPokegearStruct.canSwitchCards = TRUE;
         gTasks[taskId].func = Task_Pokegear3;
     }
 }
-
-#define tState data[0]
 
 static void LoadCardSprites(u8 taskId)
 {
@@ -598,7 +600,7 @@ static void LoadCardSprites(u8 taskId)
         u8 anim;
 
         spriteId = CreateSprite(&sSpriteTemplate_Icons, 8, i * 32 + 32, 0);
-        gTasks[taskId].data[i + 1] = spriteId;
+        gTasks[taskId].tIconSprites(i) = spriteId;
         gSprites[spriteId].tState = 0;
         switch (i)
         {
@@ -617,19 +619,35 @@ static void LoadCardSprites(u8 taskId)
         }
         StartSpriteAnim(&gSprites[spriteId], anim);
     }
+
+    //gSprites[gTasks[taskId].data[1]].pos1.x = 16;
 }
 
 static void SpriteCB_Icons(struct Sprite *sprite)
 {
     switch (sprite->tState)
     {
-        case 0:
-            
+        case 0: // done
             break;
-        case 1:
-            
+        case 1: // sliding out
+            if (sprite->pos1.x < 16)
+            {
+                sprite->pos1.x += 2;
+            }
+            else
+            {
+                sprite->tState = 0;
+            }
             break;
-        case 2:
+        case 2: // sliding in
+            if (sprite->pos1.x > 8)
+            {
+                sprite->pos1.x -= 2;
+            }
+            else
+            {
+                sprite->tState = 0;
+            }
             break;
     }
 }
@@ -662,7 +680,7 @@ static u8 ChangeCardWithDelta(s8 delta)
 
 static void Task_Pokegear3(u8 taskId)
 {
-    if (sPokegearStruct.inputEnabled)
+    if (sPokegearStruct.canSwitchCards)
     {
         u8 newCard = sPokegearStruct.currentCard;
 
@@ -684,9 +702,55 @@ static void Task_Pokegear3(u8 taskId)
         if (sPokegearStruct.currentCard != newCard)
         {
             PlaySE(SE_SELECT);
-            UnloadCard(sPokegearStruct.currentCard);
-            LoadCard(newCard);
+            gTasks[taskId].tState = 0;
+            gTasks[taskId].tNewCard = newCard;
+            gTasks[taskId].tCurrentPos = 0;
+            gTasks[taskId].func = Task_SwapCards;
         }
+    }
+}
+
+#define CARD_SLIDE_SPEED 8
+
+static void Task_SwapCards(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    switch (tState)
+    {
+        case 0:
+            gSprites[tIconSprites(sPokegearStruct.currentCard)].data[0] = 2;
+            tState++;
+        case 1:
+            if (tCurrentPos < 208)
+            {
+                tCurrentPos += CARD_SLIDE_SPEED;
+                SetGpuReg(REG_OFFSET_BG1HOFS, tCurrentPos);
+                SetGpuReg(REG_OFFSET_BG2HOFS, tCurrentPos);
+            }
+            else
+            {
+                UnloadCard(sPokegearStruct.currentCard);
+                tState++;
+            }
+            break;
+        case 2:
+            gSprites[tIconSprites(tNewCard)].data[0] = 1;
+            LoadCard(tNewCard);
+            tState++;
+            break;
+        case 3:
+            if (tCurrentPos < 0)
+            {
+                tCurrentPos -= CARD_SLIDE_SPEED;
+                SetGpuReg(REG_OFFSET_BG1HOFS, tCurrentPos);
+                SetGpuReg(REG_OFFSET_BG2HOFS, tCurrentPos);
+            }
+            else
+            {
+                gTasks[taskId].func = Task_Pokegear3;
+            }
+            break;
     }
 }
 
@@ -891,6 +955,7 @@ static void Task_MapCard(u8 taskId)
         case 0:
             if (!sub_8122DB0())
             {
+                RegionMap_FinishSetup();
                 CreateRegionMapCursor(0, 0, FALSE);
                 CreateRegionMapPlayerIcon(1, 1);
                 CreateSecondaryLayerDots(2, 2);
@@ -904,7 +969,7 @@ static void Task_MapCard(u8 taskId)
                 PlaySE(SE_HI_TURUN);
                 ShowHelpBar(gText_MapCardHelp2);
                 ShowRegionMapCursorSprite();
-                sPokegearStruct.inputEnabled = FALSE;
+                sPokegearStruct.canSwitchCards = FALSE;
                 tState++;
             }
             break;
@@ -917,7 +982,7 @@ static void Task_MapCard(u8 taskId)
                     ShowHelpBar(gText_MapCardHelp1);
                     HideRegionMapCursorSprite();
                     tState--;
-                    sPokegearStruct.inputEnabled = TRUE;
+                    sPokegearStruct.canSwitchCards = TRUE;
                     break;
                 case INPUT_EVENT_LANDMARK:
                     helpString = gText_MapCardHelp3;
@@ -1022,7 +1087,7 @@ static const struct MenuAction sCallOptions[] = {
 
 static void PhoneCard_ConfirmCall(u8 taskId)
 {
-    sPokegearStruct.inputEnabled = FALSE;
+    sPokegearStruct.canSwitchCards = FALSE;
     ShowHelpBar(gText_PhoneCardHelp2);
     PhoneCard_RemoveScrollIndicators(taskId);
     SetWindowBorderStyle(WIN_CONFIRM, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
@@ -1058,7 +1123,7 @@ static void PhoneCard_ReturnToMain(u8 taskId)
 {
     ShowHelpBar(gText_PhoneCardHelp1);
     PhoneCard_AddScrollIndicators(taskId);
-    sPokegearStruct.inputEnabled = TRUE;
+    sPokegearStruct.canSwitchCards = TRUE;
     gTasks[taskId].func = Task_PhoneCard;
 }
 

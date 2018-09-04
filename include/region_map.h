@@ -129,5 +129,6 @@ void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
 void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain);
 void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag);
+void RegionMap_FinishSetup(void);
 
 #endif //GUARD_REGION_MAP_H

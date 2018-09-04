@@ -440,6 +440,7 @@ void InitRegionMap(struct RegionMap *regionMap, s8 xOffset)
 {
     sub_8122CF8(regionMap, NULL, MAPBUTTON_EXIT, xOffset);
     while (sub_8122DB0());
+    RegionMap_FinishSetup();
 }
 
 void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 buttonType, s8 xOffset)
@@ -491,7 +492,7 @@ bool8 sub_8122DB0(void)
     switch (gRegionMap->initStep)
     {
         case 0:
-            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN);
+            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_NONE);
             SetGpuReg(REG_OFFSET_BLDY, 6);
             SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG0 |
                                         WININ_WIN0_BG1 |
@@ -512,6 +513,11 @@ bool8 sub_8122DB0(void)
                                          WINOUT_WIN01_OBJ);
             SetupShadowBoxes(0, &windowCoords[0]);
             SetupShadowBoxes(1, &windowCoords[1]);
+
+            for (i = 0; i < sizeof(gRegionMap->spriteIds); i++)
+            {
+                gRegionMap->spriteIds[i] = 0xFF;
+            }
 
             window = layerTemplates[0];
             window.tilemapLeft += gRegionMap->xOffset;
@@ -603,27 +609,26 @@ bool8 sub_8122DB0(void)
             gRegionMap->secondaryMapSecId = CorrectSpecialMapSecId_Internal(gRegionMap->secondaryMapSecId);
             gRegionMap->secondaryMapSecStatus = get_flagnr_blue_points(gRegionMap->secondaryMapSecId);
 
-            LoadPrimaryLayerMapSec();
-            LoadSecondaryLayerMapSec();
             schedule_bg_copy_tilemap_to_vram(0);
             break;
         case 6:
             RegionMap_GetPositionOfCursorWithinMapSection();
 
-            for (i = 0; i < sizeof(gRegionMap->spriteIds); i++)
-            {
-                gRegionMap->spriteIds[i] = 0xFF;
-            }
-
             gRegionMap->cursorMovementFrameCounter = 0;
             gRegionMap->blinkPlayerIcon = FALSE;
             gRegionMap->initStep++;
-            return FALSE;
         default:
             return FALSE;
     }
     gRegionMap->initStep++;
     return TRUE;
+}
+
+void RegionMap_FinishSetup(void)
+{
+    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN);
+    LoadPrimaryLayerMapSec();
+    LoadSecondaryLayerMapSec();
 }
 
 static const u8 *GetRegionMapTilemap(u8 region)
