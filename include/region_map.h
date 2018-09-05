@@ -111,8 +111,8 @@ struct RegionMapLocation
 extern const struct RegionMapLocation gRegionMapEntries[];
 
 void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 buttonType, s8 xOffset);
-bool8 sub_8122DB0(void);
-bool8 RegionMap_LoadResources2(void);
+bool8 sub_8122DB0(bool8 shouldBuffer);
+bool8 RegionMap_InitGfx2(void);
 void UpdateRegionMapVideoRegs(void);
 void InitRegionMap(struct RegionMap *regionMap, s8 xOffset);
 u8 sub_81230AC(void);

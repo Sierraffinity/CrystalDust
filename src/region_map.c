@@ -439,7 +439,8 @@ static const struct WindowCoords windowCoords[] = {
 void InitRegionMap(struct RegionMap *regionMap, s8 xOffset)
 {
     sub_8122CF8(regionMap, NULL, MAPBUTTON_EXIT, xOffset);
-    while (sub_8122DB0());
+    while (sub_8122DB0(gRegionMap->bgManaged));
+    while (RegionMap_InitGfx2());
 }
 
 void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 buttonType, s8 xOffset)
@@ -483,7 +484,7 @@ void sub_8122D88(struct RegionMap *regionMap)
     gRegionMap->playerIconSpritePosY = gRegionMap->cursorPosY;
 }
 
-bool8 sub_8122DB0(void)
+bool8 sub_8122DB0(bool8 shouldBuffer)
 {
     const struct WindowTemplate layerTemplates[] = {
         {0, 3, 2, 15, 2, 14, 1},
@@ -494,6 +495,7 @@ bool8 sub_8122DB0(void)
 
     const u8 *regionTilemap;
     u8 i;
+    u16 *ptr;
 
     switch (gRegionMap->initStep)
     {
@@ -529,13 +531,13 @@ bool8 sub_8122DB0(void)
             gRegionMap->secondaryWindowId = AddWindow(&window);
             break;
         case 1:
-            if (gRegionMap->bgManaged)
+            if (shouldBuffer)
             {
                 decompress_and_copy_tile_data_to_vram(gRegionMap->bgNum, sRegionMapTileset, 0, 0, 0);
             }
             else
             {
-                LZ77UnCompVram(sRegionMapTileset, (u16 *)BG_CHAR_ADDR(2));
+                LZ77UnCompVram(sRegionMapTileset, (u16 *)BG_CHAR_ADDR(gRegionMap->charBaseIdx));
             }
             break;
         case 2:
@@ -571,7 +573,7 @@ bool8 sub_8122DB0(void)
                     }
                 }
 
-                if (gRegionMap->bgManaged)
+                if (shouldBuffer)
                 {
                     if (!free_temp_tile_data_buffers_if_possible())
                     {
@@ -580,7 +582,7 @@ bool8 sub_8122DB0(void)
                 }
                 else
                 {
-                    CpuFastCopy(ptr, (u16 *)BG_SCREEN_ADDR(29) + gRegionMap->xOffset, size);
+                    CpuFastCopy(ptr, (u16 *)BG_SCREEN_ADDR(gRegionMap->mapBaseIdx) + gRegionMap->xOffset, size);
                 }
 
                 FREE_AND_SET_NULL(ptr);
@@ -592,7 +594,18 @@ bool8 sub_8122DB0(void)
                 LoadPalette(sRegionMapPal, 0x70, sizeof(sRegionMapPal));
                 LoadPalette(sRegionMapTownNames_Pal, 0xE0, sizeof(sRegionMapTownNames_Pal));
             }
-            break;
+            gRegionMap->initStep++;
+        default:
+            return FALSE;
+    }
+    gRegionMap->initStep++;
+    return TRUE;
+}
+
+bool8 RegionMap_InitGfx2(void)
+{
+    switch (gRegionMap->initStep)
+    {
         case 4:
             LZ77UnCompWram(sRegionMapCursorGfxLZ, gRegionMap->cursorImage);
             break;

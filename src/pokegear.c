@@ -535,7 +535,7 @@ static void LoadCard(enum CardType cardId)
             LoadClockCard();
             break;
         case MapCard:
-            //LoadMapCard(); // special case, start load earlier in LoadCardBgs
+            LoadMapCard(); // special case, start load earlier in LoadCardBgs
             break;
         case PhoneCard:
             LoadPhoneCard();
@@ -544,8 +544,6 @@ static void LoadCard(enum CardType cardId)
             LoadRadioCard();
             break;
     }
-
-    sPokegearStruct.currentCard = cardId;
 }
 
 static void UnloadCard(enum CardType cardId)
@@ -585,6 +583,8 @@ static void Task_Pokegear2(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
+        sPokegearStruct.callback = NULL;
+        sPokegearStruct.currentCard = ClockCard;
         sPokegearStruct.canSwitchCards = TRUE;
         gTasks[taskId].func = Task_Pokegear3;
     }
@@ -654,15 +654,15 @@ static void SpriteCB_Icons(struct Sprite *sprite)
     }
 }
 
-static u8 ChangeCardWithDelta(s8 delta)
+static u8 ChangeCardWithDelta(s8 delta, u8 oldCard)
 {
-    int newCard = sPokegearStruct.currentCard + delta;
+    int newCard = oldCard + delta;
 
     while (TRUE)
     {
         if (newCard < 0 || newCard >= CardCount)
         {
-            newCard = sPokegearStruct.currentCard;
+            newCard = oldCard;
             break;
         }
         
@@ -694,11 +694,11 @@ static void Task_Pokegear3(u8 taskId)
         }
         else if (gMain.newKeys & DPAD_LEFT)
         {
-            newCard = ChangeCardWithDelta(-1);
+            newCard = ChangeCardWithDelta(-1, sPokegearStruct.currentCard);
         }
         else if (gMain.newKeys & DPAD_RIGHT)
         {
-            newCard = ChangeCardWithDelta(1);
+            newCard = ChangeCardWithDelta(1, sPokegearStruct.currentCard);
         }
 
         if (sPokegearStruct.currentCard != newCard)
@@ -707,6 +707,7 @@ static void Task_Pokegear3(u8 taskId)
             gTasks[taskId].tState = 0;
             gTasks[taskId].tNewCard = newCard;
             gTasks[taskId].func = Task_SwapCards;
+            UnloadCard(sPokegearStruct.currentCard);
         }
     }
 }
@@ -735,7 +736,9 @@ static void LoadCardBgs(enum CardType newCard)
             ShowHelpBar(gText_MapCardHelp1);
             ShowBg(2);
             LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xE000));
-            LoadMapCard();  // special case, region map needs to load sooner
+            sub_8122CF8(AllocZeroed(sizeof(struct RegionMap)), &sBgTemplates[2], MAPBUTTON_NONE, REGION_MAP_XOFF);  // TODO: Make check for button
+            while(sub_8122DB0(FALSE));
+            //LoadMapCard();  // special case, region map needs to load sooner
             break;
         case PhoneCard:
             ShowHelpBar(gText_PhoneCardHelp1);
@@ -754,13 +757,33 @@ static void LoadCardBgs(enum CardType newCard)
 static void Task_SwapCards(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    u8 newCard = tNewCard;
+
+    if (gMain.newKeys & DPAD_LEFT)
+    {
+        newCard = ChangeCardWithDelta(-1, tNewCard);
+    }
+    else if (gMain.newKeys & DPAD_RIGHT)
+    {
+        newCard = ChangeCardWithDelta(1, tNewCard);
+    }
+
+    if (tNewCard != newCard)
+    {
+        PlaySE(SE_SELECT);
+        if (tState > 1)
+        {
+            tState = 0;
+        }
+        sPokegearStruct.currentCard = tNewCard;
+        tNewCard = newCard;
+    }
 
     switch (tState)
     {
         case 0:
             tCurrentPos = 0;
             gSprites[tIconSprites(sPokegearStruct.currentCard)].data[0] = 2;
-            UnloadCard(sPokegearStruct.currentCard);
             tState++;
         case 1:
             if (tCurrentPos < 208)
@@ -771,15 +794,13 @@ static void Task_SwapCards(u8 taskId)
             }
             else
             {
+                gSprites[tIconSprites(tNewCard)].data[0] = 1;
+                sPokegearStruct.currentCard = tNewCard;
+                LoadCardBgs(tNewCard);
                 tState++;
             }
             break;
         case 2:
-            gSprites[tIconSprites(tNewCard)].data[0] = 1;
-            LoadCardBgs(tNewCard);
-            tState++;
-            break;
-        case 3:
             if (tCurrentPos > 0)
             {
                 tCurrentPos -= CARD_SLIDE_SPEED;
@@ -962,8 +983,6 @@ static void LoadMapCard(void)
 {
     u8 newTask;
 
-    sub_8122CF8(AllocZeroed(sizeof(struct RegionMap)), &sBgTemplates[2], MAPBUTTON_NONE, REGION_MAP_XOFF);  // TODO: Make check for button
-
     newTask = CreateTask(Task_MapCard, 0);
     gTasks[newTask].tState = 0;
 }
@@ -977,7 +996,7 @@ static void Task_MapCard(u8 taskId)
     switch (tState)
     {
         case 0:
-            if (!sub_8122DB0())
+            if (!RegionMap_InitGfx2())
             {
                 CreateRegionMapCursor(0, 0, FALSE);
                 CreateRegionMapPlayerIcon(1, 1);
