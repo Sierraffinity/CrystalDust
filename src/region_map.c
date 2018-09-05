@@ -21,7 +21,6 @@
 #include "m4a.h"
 #include "field_effect.h"
 #include "region_map.h"
-#include "sound.h"
 #include "constants/region_map_sections.h"
 #include "heal_location.h"
 #include "constants/heal_locations.h"
@@ -486,13 +485,6 @@ void sub_8122D88(struct RegionMap *regionMap)
 
 bool8 sub_8122DB0(bool8 shouldBuffer)
 {
-    const struct WindowTemplate layerTemplates[] = {
-        {0, 3, 2, 15, 2, 14, 1},
-        {0, 3, 4, 15, 2, 14, 31}
-    };
-
-    struct WindowTemplate window;
-
     const u8 *regionTilemap;
     u8 i;
     u16 *ptr;
@@ -500,37 +492,6 @@ bool8 sub_8122DB0(bool8 shouldBuffer)
     switch (gRegionMap->initStep)
     {
         case 0:
-            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_NONE);
-            SetGpuReg(REG_OFFSET_BLDY, 6);
-            SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG0 |
-                                        WININ_WIN0_BG1 |
-                                        WININ_WIN0_BG2 |
-                                        WININ_WIN0_BG3 |
-                                        WININ_WIN0_OBJ |
-                                        WININ_WIN0_CLR |
-                                        WININ_WIN1_BG0 |
-                                        WININ_WIN1_BG1 |
-                                        WININ_WIN1_BG2 |
-                                        WININ_WIN1_BG3 |
-                                        WININ_WIN1_OBJ |
-                                        WININ_WIN1_CLR);
-            SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0 |
-                                         WINOUT_WIN01_BG1 |
-                                         WINOUT_WIN01_BG2 |
-                                         WINOUT_WIN01_BG3 |
-                                         WINOUT_WIN01_OBJ);
-            SetupShadowBoxes(0, &windowCoords[0]);
-            SetupShadowBoxes(1, &windowCoords[1]);
-
-            window = layerTemplates[0];
-            window.tilemapLeft += gRegionMap->xOffset;
-            gRegionMap->primaryWindowId = AddWindow(&window);
-
-            window = layerTemplates[1];
-            window.tilemapLeft += gRegionMap->xOffset;
-            gRegionMap->secondaryWindowId = AddWindow(&window);
-            break;
-        case 1:
             if (shouldBuffer)
             {
                 decompress_and_copy_tile_data_to_vram(gRegionMap->bgNum, sRegionMapTileset, 0, 0, 0);
@@ -540,7 +501,7 @@ bool8 sub_8122DB0(bool8 shouldBuffer)
                 LZ77UnCompVram(sRegionMapTileset, (u16 *)BG_CHAR_ADDR(gRegionMap->charBaseIdx));
             }
             break;
-        case 2:
+        case 1:
             /*regionTilemap = GetRegionMapTilemap(gRegionMap->currentRegion);
             if (gRegionMap->bgManaged)
             {
@@ -588,8 +549,8 @@ bool8 sub_8122DB0(bool8 shouldBuffer)
                 FREE_AND_SET_NULL(ptr);
             }
             break;
-        case 3:
-            if (!free_temp_tile_data_buffers_if_possible())
+        case 2:
+            //if (!free_temp_tile_data_buffers_if_possible())   // why are we checking for DMA3 being busy?
             {
                 LoadPalette(sRegionMapPal, 0x70, sizeof(sRegionMapPal));
                 LoadPalette(sRegionMapTownNames_Pal, 0xE0, sizeof(sRegionMapTownNames_Pal));
@@ -604,8 +565,45 @@ bool8 sub_8122DB0(bool8 shouldBuffer)
 
 bool8 RegionMap_InitGfx2(void)
 {
+    const struct WindowTemplate layerTemplates[] = {
+        {0, 3, 2, 15, 2, 14, 1},
+        {0, 3, 4, 15, 2, 14, 31}
+    };
+
+    struct WindowTemplate window;
+
     switch (gRegionMap->initStep)
     {
+        case 3:
+            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_NONE);
+            SetGpuReg(REG_OFFSET_BLDY, 6);
+            SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG0 |
+                                        WININ_WIN0_BG1 |
+                                        WININ_WIN0_BG2 |
+                                        WININ_WIN0_BG3 |
+                                        WININ_WIN0_OBJ |
+                                        WININ_WIN0_CLR |
+                                        WININ_WIN1_BG0 |
+                                        WININ_WIN1_BG1 |
+                                        WININ_WIN1_BG2 |
+                                        WININ_WIN1_BG3 |
+                                        WININ_WIN1_OBJ |
+                                        WININ_WIN1_CLR);
+            SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0 |
+                                         WINOUT_WIN01_BG1 |
+                                         WINOUT_WIN01_BG2 |
+                                         WINOUT_WIN01_BG3 |
+                                         WINOUT_WIN01_OBJ);
+            SetupShadowBoxes(0, &windowCoords[0]);
+            SetupShadowBoxes(1, &windowCoords[1]);
+
+            window = layerTemplates[0];
+            window.tilemapLeft += gRegionMap->xOffset;
+            gRegionMap->primaryWindowId = AddWindow(&window);
+
+            window = layerTemplates[1];
+            window.tilemapLeft += gRegionMap->xOffset;
+            gRegionMap->secondaryWindowId = AddWindow(&window);
         case 4:
             LZ77UnCompWram(sRegionMapCursorGfxLZ, gRegionMap->cursorImage);
             break;
@@ -627,8 +625,8 @@ bool8 RegionMap_InitGfx2(void)
             break;
         case 6:
             RegionMap_GetPositionOfCursorWithinMapSection();
-
             SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN);
+
             LoadPrimaryLayerMapSec();
             LoadSecondaryLayerMapSec();
 
@@ -827,11 +825,11 @@ static u8 MoveRegionMapCursor_Full(void)
 
     if ((!sameSecondary && gRegionMap->secondaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY) || gRegionMap->primaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY)
     {
-        PlaySE(SE_Z_SCROLL);
+        m4aSongNumStart(SE_Z_SCROLL);
     }
     else if (gRegionMap->buttonType != MAPBUTTON_NONE && gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
     {
-        PlaySE(SE_W255);
+        m4aSongNumStart(SE_W255);
         inputEvent = INPUT_EVENT_ON_BUTTON;
     }
 
@@ -1966,12 +1964,16 @@ static void sub_8124D64(void)
                 break;
             case INPUT_EVENT_MOVE_END:
                 sFlyMap->regionMap.onButton = FALSE;
+                if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
+                {
+                    m4aSongNumStart(SE_Z_PAGE);
+                }
                 ShowHelpBar();
                 break;
             case INPUT_EVENT_A_BUTTON:
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
-                    m4aSongNumStart(SE_SELECT);
+                    m4aSongNumStart(SE_KAIFUKU);
                     sFlyMap->unk_a72 = TRUE;
                     sub_81248F4(sub_8124E0C);
                     break;
