@@ -71,8 +71,17 @@ static const struct BgTemplate gUnknown_085E5068[] = {
     }
 };
 
-static const struct WindowTemplate gUnknown_085E5070[] = {
-    { 0, 0, 0, 30, 2, 14, 0x003D },
+static const struct WindowTemplate gUnknown_085E5070[] =
+{
+    {
+        .priority = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 30,
+        .height = 2,
+        .paletteNum = 14,
+        .baseBlock = 61
+    },
     DUMMY_WIN_TEMPLATE
 };
 
