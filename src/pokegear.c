@@ -41,6 +41,10 @@
 
 #define FREQ(a) (u8)(a * 2 - 1)
 
+#define CARD_SLIDE_SPEED 32
+#define ICON_SLIDE_SPEED 2
+#define CARD_SLIDE_RIGHT_X 208
+
 struct RadioStation{
     u8 frequency;
     u8 region;
@@ -63,6 +67,7 @@ enum CardType {
 
 static EWRAM_DATA struct {
     MainCallback callback;
+    struct RegionMap *map;
     u8 currentCard;
     bool8 canSwitchCards;
     bool8 twentyFourHourMode;
@@ -75,6 +80,7 @@ void CB2_InitPokegear(void);
 static void VBlankCB(void);
 static void CB2_Pokegear(void);
 static void Task_Pokegear1(u8 taskId);
+static void Task_Pokegear1_1(u8 taskId);
 static void Task_Pokegear2(u8 taskId);
 static void Task_Pokegear3(u8 taskId);
 static void Task_SwapCards(u8 taskId);
@@ -462,6 +468,8 @@ const u8 sTextColor[3] = {
 
 void CB2_InitPokegear(void)
 {
+    u8 newTask;
+
     ResetTasks();
     SetVBlankCallback(NULL);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
@@ -494,7 +502,7 @@ void CB2_InitPokegear(void)
     ResetSpriteData();
     ResetPaletteFade();
     FreeAllSpritePalettes();
-    CreateTask(Task_Pokegear1, 0);
+    newTask = CreateTask(Task_Pokegear1, 0);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0);
     EnableInterrupts(INTR_FLAG_VBLANK);
     SetVBlankCallback(VBlankCB);
@@ -505,9 +513,17 @@ void CB2_InitPokegear(void)
     SetGpuReg(REG_OFFSET_BLDY, 0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
 
+    gTasks[newTask].data[0] = 0;
+    LoadCardSprites(newTask);
+    LoadCardBgs(ClockCard);
+
+    SetGpuReg(REG_OFFSET_BG1HOFS, 512 - CARD_SLIDE_RIGHT_X);
+
     ShowBg(0);
     ShowBg(1);
     ShowBg(3);
+    
+    PlaySE(SE_PN_ON);
 }
 
 static void VBlankCB(void)
@@ -566,17 +582,39 @@ static void UnloadCard(enum CardType cardId)
 }
 
 #define tState data[0]
+#define tCounter data[1]
+
+#define tState data[0]
 #define tNewCard data[1]
 #define tCurrentPos data[2]
 #define tIconSprites(n) data[3 + n]
 
 static void Task_Pokegear1(u8 taskId)
 {
-    LoadCardSprites(taskId);
-    LoadCardBgs(ClockCard);
-    LoadCard(ClockCard);
-    PlaySE(SE_PN_ON);
-    gTasks[taskId].func = Task_Pokegear2;
+    if (gTasks[taskId].data[0]++ > 10)
+    {
+        gTasks[taskId].tCurrentPos = CARD_SLIDE_RIGHT_X;
+        gTasks[taskId].func = Task_Pokegear1_1;
+    }
+}
+
+static void Task_Pokegear1_1(u8 taskId)
+{
+    u8 i;
+    s16 *data = gTasks[taskId].data;
+    tCurrentPos -= CARD_SLIDE_SPEED;
+
+    if (tCurrentPos > 0)
+    {
+        SetGpuReg(REG_OFFSET_BG1HOFS, 512 - tCurrentPos);
+
+    }
+    else
+    {
+        SetGpuReg(REG_OFFSET_BG1HOFS, 0);
+        LoadCard(ClockCard);
+        gTasks[taskId].func = Task_Pokegear2;
+    }
 }
 
 static void Task_Pokegear2(u8 taskId)
@@ -601,13 +639,14 @@ static void LoadCardSprites(u8 taskId)
     {
         u8 anim;
 
-        spriteId = CreateSprite(&sSpriteTemplate_Icons, 8, i * 32 + 32, 0);
+        spriteId = CreateSprite(&sSpriteTemplate_Icons, -24, i * 32 + 32, 0);
         gTasks[taskId].tIconSprites(i) = spriteId;
         gSprites[spriteId].tState = 0;
         switch (i)
         {
             case ClockCard:
                 anim = 0;
+                gSprites[spriteId].pos1.x += 8;
                 break;
             case MapCard:
                 anim = GetCurrentRegion() + 1;
@@ -621,15 +660,23 @@ static void LoadCardSprites(u8 taskId)
         }
         StartSpriteAnim(&gSprites[spriteId], anim);
     }
-
-    gSprites[gTasks[taskId].data[1]].pos1.x = 16;
 }
 
 static void SpriteCB_Icons(struct Sprite *sprite)
 {
     switch (sprite->tState)
     {
-        case 0: // done
+        case 0: // slide on Pokegear init
+            if (sprite->tCounter < 32)
+            {
+                sprite->pos1.x += ICON_SLIDE_SPEED;
+                sprite->tCounter += ICON_SLIDE_SPEED;
+            }
+            else
+            {
+                sprite->tCounter = 0;
+                sprite->tState = 3;
+            }
             break;
         case 1: // sliding out
             if (sprite->pos1.x < 16)
@@ -638,7 +685,7 @@ static void SpriteCB_Icons(struct Sprite *sprite)
             }
             else
             {
-                sprite->tState = 0;
+                sprite->tState = 3;
             }
             break;
         case 2: // sliding in
@@ -648,8 +695,10 @@ static void SpriteCB_Icons(struct Sprite *sprite)
             }
             else
             {
-                sprite->tState = 0;
+                sprite->tState = 3;
             }
+            break;
+        case 3: // done
             break;
     }
 }
@@ -736,9 +785,9 @@ static void LoadCardBgs(enum CardType newCard)
             ShowHelpBar(gText_MapCardHelp1);
             ShowBg(2);
             LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xE000));
-            sub_8122CF8(AllocZeroed(sizeof(struct RegionMap)), &sBgTemplates[2], MAPBUTTON_NONE, REGION_MAP_XOFF);  // TODO: Make check for button
+            sPokegearStruct.map = AllocZeroed(sizeof(struct RegionMap));
+            sub_8122CF8(sPokegearStruct.map, &sBgTemplates[2], MAPBUTTON_NONE, REGION_MAP_XOFF);  // TODO: Make check for button
             while(sub_8122DB0(FALSE));
-            //LoadMapCard();  // special case, region map needs to load sooner
             break;
         case PhoneCard:
             ShowHelpBar(gText_PhoneCardHelp1);
@@ -751,8 +800,6 @@ static void LoadCardBgs(enum CardType newCard)
     }
 
 }
-
-#define CARD_SLIDE_SPEED 32
 
 static void Task_SwapCards(u8 taskId)
 {
@@ -786,14 +833,17 @@ static void Task_SwapCards(u8 taskId)
             gSprites[tIconSprites(sPokegearStruct.currentCard)].data[0] = 2;
             tState++;
         case 1:
-            if (tCurrentPos < 208)
+            tCurrentPos += CARD_SLIDE_SPEED;
+            if (tCurrentPos < CARD_SLIDE_RIGHT_X)
             {
-                tCurrentPos += CARD_SLIDE_SPEED;
                 SetGpuReg(REG_OFFSET_BG1HOFS, 512 - tCurrentPos);
                 SetGpuReg(REG_OFFSET_BG2HOFS, 512 - tCurrentPos);
             }
             else
             {
+                tCurrentPos = CARD_SLIDE_RIGHT_X;
+                SetGpuReg(REG_OFFSET_BG1HOFS, 512 - CARD_SLIDE_RIGHT_X);
+                SetGpuReg(REG_OFFSET_BG2HOFS, 512 - CARD_SLIDE_RIGHT_X);
                 gSprites[tIconSprites(tNewCard)].data[0] = 1;
                 sPokegearStruct.currentCard = tNewCard;
                 LoadCardBgs(tNewCard);
@@ -801,14 +851,16 @@ static void Task_SwapCards(u8 taskId)
             }
             break;
         case 2:
+            tCurrentPos -= CARD_SLIDE_SPEED;
             if (tCurrentPos > 0)
             {
-                tCurrentPos -= CARD_SLIDE_SPEED;
                 SetGpuReg(REG_OFFSET_BG1HOFS, 512 - tCurrentPos);
                 SetGpuReg(REG_OFFSET_BG2HOFS, 512 - tCurrentPos);
             }
             else
             {
+                SetGpuReg(REG_OFFSET_BG1HOFS, 0);
+                SetGpuReg(REG_OFFSET_BG2HOFS, 0);
                 LoadCard(tNewCard);
                 gTasks[taskId].func = Task_Pokegear3;
             }
@@ -884,7 +936,7 @@ static void Task_ClockCard(u8 taskId)
         const u8 *dayOfWeek = GetDayOfWeekString();
         gTasks[taskId].tDayOfWeek = gLocalTime.dayOfWeek;
         FillWindowPixelBuffer(WIN_TOP, 0);
-        box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 5, sTextColor, 0, dayOfWeek);
+        box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
     }
 }
 
