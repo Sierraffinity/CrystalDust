@@ -479,7 +479,7 @@ void Task_MainMenuCheckSaveFile(u8 taskId)
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0x0000); // fade from black
     }
-    else if ((gMPlayInfo_BGM.status & 0xFFFF) == 0) // coming from title screen, waiting for music to fade
+    else if (IsBGMStopped()) // coming from title screen, waiting for music to fade
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0xFFFF); // fade from white
         m4aSongNumStart(MUS_MAINMENU);
@@ -1122,7 +1122,7 @@ void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 isScrol
 
 void task_new_game_prof_birch_speech_1(u8 taskId)
 {
-    if ((gMPlayInfo_BGM.status & 0xFFFF) == 0)
+    if (IsBGMStopped())
     {
         SetGpuReg(REG_OFFSET_DISPCNT, 0);
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
