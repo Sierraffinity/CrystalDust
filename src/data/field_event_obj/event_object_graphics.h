@@ -1,24 +1,8 @@
 #ifndef GUARD_EVENT_OBJECT_GFX_H
 #define GUARD_EVENT_OBJECT_GFX_H
 
-const u32 gEventObjectPic_BrendanNormal_0[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/00.4bpp");
-const u32 gEventObjectPic_BrendanNormal_1[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/01.4bpp");
-const u32 gEventObjectPic_BrendanNormal_2[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/02.4bpp");
-const u32 gEventObjectPic_BrendanNormal_3[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/03.4bpp");
-const u32 gEventObjectPic_BrendanNormal_4[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/04.4bpp");
-const u32 gEventObjectPic_BrendanNormal_5[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/05.4bpp");
-const u32 gEventObjectPic_BrendanNormal_6[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/06.4bpp");
-const u32 gEventObjectPic_BrendanNormal_7[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/07.4bpp");
-const u32 gEventObjectPic_BrendanNormal_8[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/08.4bpp");
-const u32 gEventObjectPic_BrendanNormal_9[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/09.4bpp");
-const u32 gEventObjectPic_BrendanNormal_10[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/10.4bpp");
-const u32 gEventObjectPic_BrendanNormal_11[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/11.4bpp");
-const u32 gEventObjectPic_BrendanNormal_12[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/12.4bpp");
-const u32 gEventObjectPic_BrendanNormal_13[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/13.4bpp");
-const u32 gEventObjectPic_BrendanNormal_14[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/14.4bpp");
-const u32 gEventObjectPic_BrendanNormal_15[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/15.4bpp");
-const u32 gEventObjectPic_BrendanNormal_16[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/16.4bpp");
-const u32 gEventObjectPic_BrendanNormal_17[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/normal/17.4bpp");
+const u32 gEventObjectPic_BrendanNormal[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/walking.4bpp");
+const u32 gEventObjectPic_BrendanRunning[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/running.4bpp");
 const u16 gEventObjectPalette8[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_08.gbapal");
 const u32 gEventObjectPic_RubySapphireBrendan_0[] = INCBIN_U32("graphics/event_objects/pics/people/ruby_sapphire_brendan/00.4bpp");
 const u32 gEventObjectPic_RubySapphireBrendan_1[] = INCBIN_U32("graphics/event_objects/pics/people/ruby_sapphire_brendan/01.4bpp");
