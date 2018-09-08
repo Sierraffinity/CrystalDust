@@ -890,8 +890,8 @@ static void SetupShadowBoxes(u8 layerNum, const struct WindowCoords *coords)
         { REG_OFFSET_WIN1V, REG_OFFSET_WIN1H }
     };
 
-	SetGpuReg(windowIORegs[layerNum][0], WINHV_COORDS(coords->y1, coords->y2));
-	SetGpuReg(windowIORegs[layerNum][1], WINHV_COORDS(coords->x1 + gRegionMap->xOffset * 8, coords->x2 + gRegionMap->xOffset * 8));
+	SetGpuReg(windowIORegs[layerNum][0], WIN_RANGE(coords->y1, coords->y2));
+	SetGpuReg(windowIORegs[layerNum][1], WIN_RANGE(coords->x1 + gRegionMap->xOffset * 8, coords->x2 + gRegionMap->xOffset * 8));
 }
 
 static void SetShadowBoxState(u8 offset, bool8 hide)
