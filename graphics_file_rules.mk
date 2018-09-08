@@ -632,9 +632,6 @@ $(PSSGFXDIR)/whiscash.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/whisca
 $(EVENTOBJGFXDIR)/pics/effects/unknown_4F6D38/0.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 11
 
-$(EVENTOBJGFXDIR)/pics/people/brendan/walking.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 4
-
 $(INTERFACEGFXDIR)/selector_outline.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 8
 	
