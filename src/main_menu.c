@@ -117,10 +117,10 @@ void task_new_game_prof_birch_speech_part2_11(u8);
 void task_new_game_prof_birch_speech_part2_12(u8);
 void nullsub_11();
 void task_new_game_prof_birch_speech_part2_1(u8);
-void fmt_time(void);
-void fmt_pokedex(void);
-void fmt_player(void);
-void fmt_badges(void);
+void FormatPlayerNameString(void);
+void FormatPokedexString(void);
+void FormatTimeString(void);
+void FormatBadgeString(void);
 void sub_8032474(u8, u8, u8, u8, u8, u8);
 
 // .rodata
@@ -135,18 +135,18 @@ const u8 gUnknown_082FEEF0[] = INCBIN_U8("graphics/birch_speech/map.bin.lz");
 const u16 gUnknown_082FF018[] = INCBIN_U16("graphics/birch_speech/bg2.gbapal");
 const u16 gUnknown_082FF028[] = {0, 0, 0, 0, 0, 0, 0, 0};
 
-#define MENU_LEFT 2
+#define MENU_LEFT 3
 #define MENU_TOP_WIN0 1
 #define MENU_TOP_WIN1 5
 #define MENU_TOP_WIN2 1
-#define MENU_TOP_WIN3 9
-#define MENU_TOP_WIN4 13
-#define MENU_TOP_WIN5 17
-#define MENU_TOP_WIN6 21
-#define MENU_WIDTH 26
+#define MENU_TOP_WIN3 13
+#define MENU_TOP_WIN4 17
+#define MENU_TOP_WIN5 21
+#define MENU_TOP_WIN6 25
+#define MENU_WIDTH 24
 #define MENU_HEIGHT_WIN0 2
 #define MENU_HEIGHT_WIN1 2
-#define MENU_HEIGHT_WIN2 6
+#define MENU_HEIGHT_WIN2 10
 #define MENU_HEIGHT_WIN3 2
 #define MENU_HEIGHT_WIN4 2
 #define MENU_HEIGHT_WIN5 2
@@ -157,7 +157,7 @@ const u16 gUnknown_082FF028[] = {0, 0, 0, 0, 0, 0, 0, 0};
 #define MENU_WIDTH_ERROR 26
 #define MENU_HEIGHT_ERROR 4
 
-#define MENU_SHADOW_PADDING 1
+#define MENU_SHADOW_PADDING 2
 
 #define MENU_WIN_HCOORDS WIN_RANGE(((MENU_LEFT - 1) * 8) + MENU_SHADOW_PADDING, (MENU_LEFT + MENU_WIDTH + 1) * 8 - MENU_SHADOW_PADDING)
 #define MENU_WIN_VCOORDS(n) WIN_RANGE(((MENU_TOP_WIN##n - 1) * 8) + MENU_SHADOW_PADDING, (MENU_TOP_WIN##n + MENU_HEIGHT_WIN##n + 1) * 8 - MENU_SHADOW_PADDING)
@@ -205,7 +205,7 @@ const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH,
         .height = MENU_HEIGHT_WIN3,
         .paletteNum = 15,
-        .baseBlock = 0x9D
+        .baseBlock = 0xF1
     },
     // OPTION / MYSTERY GIFT
     {
@@ -215,7 +215,7 @@ const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH,
         .height = MENU_HEIGHT_WIN4,
         .paletteNum = 15,
-        .baseBlock = 0xD1
+        .baseBlock = 0x121
     },
     // OPTION / MYSTERY EVENTS
     {
@@ -225,7 +225,7 @@ const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH,
         .height = MENU_HEIGHT_WIN5,
         .paletteNum = 15,
-        .baseBlock = 0x105
+        .baseBlock = 0x151
     },
     // OPTION
     {
@@ -235,7 +235,7 @@ const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH,
         .height = MENU_HEIGHT_WIN6,
         .paletteNum = 15,
-        .baseBlock = 0x139
+        .baseBlock = 0x181
     },
     // Error message window
     {
@@ -245,7 +245,7 @@ const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .width = MENU_WIDTH_ERROR,
         .height = MENU_HEIGHT_ERROR,
         .paletteNum = 15,
-        .baseBlock = 0x16D
+        .baseBlock = 1
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -431,10 +431,10 @@ void CB2_ReinitMainMenu(void)
 #define tCurrAction data[2]
 #define tItemCount data[12]
 #define tScrollArrowTaskId data[13]
-#define tIsScrolled data[14]
+#define tScrollCount data[14]
 #define tWirelessAdapterConnected data[15]
 
-#define tArrowTaskIsScrolled data[15]   // For scroll indicator arrow task
+#define tArrowTaskScrollCount data[15]   // For scroll indicator arrow task
 
 u32 InitMainMenu(bool8 returningFromOptionsMenu)
 {
@@ -534,7 +534,7 @@ void Task_MainMenuCheckSaveFile(u8 taskId)
             case 1:
                 tMenuType = HAS_SAVED_GAME;
                 if (IsMysteryGiftEnabled())
-                    tMenuType++;
+                    tMenuType = HAS_MYSTERY_GIFT;
                 gTasks[taskId].func = Task_MainMenuCheckBattery;
                 break;
             case 2:
@@ -656,14 +656,16 @@ void Task_DisplayMainMenu(u8 taskId)
         if (!gPaletteFade.active)
             UnfadePlttBuffer(0xFFFFFFFF);
 
+        tScrollArrowTaskId = 0xFF;
+
         switch (gTasks[taskId].tMenuType)
         {
             case HAS_NO_SAVED_GAME:
             default:
                 FillWindowPixelBuffer(0, 0xAA);
                 FillWindowPixelBuffer(1, 0xAA);
-                box_print(0, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuNewGame);
-                box_print(1, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuOption);
+                box_print(0, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuNewGame);
+                box_print(1, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuOption);
                 PutWindowTilemap(0);
                 PutWindowTilemap(1);
                 CopyWindowToVram(0, 2);
@@ -675,9 +677,9 @@ void Task_DisplayMainMenu(u8 taskId)
                 FillWindowPixelBuffer(2, 0xAA);
                 FillWindowPixelBuffer(3, 0xAA);
                 FillWindowPixelBuffer(4, 0xAA);
-                box_print(2, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuContinue);
-                box_print(3, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuNewGame);
-                box_print(4, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuOption);
+                box_print(2, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuContinue);
+                box_print(3, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuNewGame);
+                box_print(4, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuOption);
                 fmt_savegame();
                 PutWindowTilemap(2);
                 PutWindowTilemap(3);
@@ -694,10 +696,10 @@ void Task_DisplayMainMenu(u8 taskId)
                 FillWindowPixelBuffer(3, 0xAA);
                 FillWindowPixelBuffer(4, 0xAA);
                 FillWindowPixelBuffer(5, 0xAA);
-                box_print(2, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuContinue);
-                box_print(3, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuNewGame);
-                box_print(4, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuMysteryGift);
-                box_print(5, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuOption);
+                box_print(2, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuContinue);
+                box_print(3, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuNewGame);
+                box_print(4, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuMysteryGift);
+                box_print(5, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuOption);
                 fmt_savegame();
                 PutWindowTilemap(2);
                 PutWindowTilemap(3);
@@ -711,6 +713,15 @@ void Task_DisplayMainMenu(u8 taskId)
                 DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[3], MAIN_MENU_BORDER_TILE);
                 DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[4], MAIN_MENU_BORDER_TILE);
                 DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[5], MAIN_MENU_BORDER_TILE);
+                tScrollArrowTaskId = AddScrollIndicatorArrowPair(&sScrollArrowsTemplate_MainMenu, &sCurrItemAndOptionMenuCheck);
+                gTasks[tScrollArrowTaskId].func = Task_ScrollIndicatorArrowPairOnMainMenu;
+                if (sCurrItemAndOptionMenuCheck == 3)
+                {
+                    ChangeBgY(0, 0x2000, 1);
+                    ChangeBgY(1, 0x2000, 1);
+                    tScrollCount = 1;
+                    gTasks[tScrollArrowTaskId].tArrowTaskScrollCount = 2;
+                }
                 break;
             case HAS_MYSTERY_EVENTS:
                 FillWindowPixelBuffer(2, 0xAA);
@@ -718,11 +729,11 @@ void Task_DisplayMainMenu(u8 taskId)
                 FillWindowPixelBuffer(4, 0xAA);
                 FillWindowPixelBuffer(5, 0xAA);
                 FillWindowPixelBuffer(6, 0xAA);
-                box_print(2, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuContinue);
-                box_print(3, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuNewGame);
-                box_print(4, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuMysteryGift2);
-                box_print(5, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuMysteryEvents);
-                box_print(6, 1, 0, 1, gTextColor_Headers, -1, gText_MainMenuOption);
+                box_print(2, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuContinue);
+                box_print(3, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuNewGame);
+                box_print(4, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuMysteryGift2);
+                box_print(5, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuMysteryEvents);
+                box_print(6, 1, 2, 2, gTextColor_Headers, -1, gText_MainMenuOption);
                 fmt_savegame();
                 PutWindowTilemap(2);
                 PutWindowTilemap(3);
@@ -743,10 +754,10 @@ void Task_DisplayMainMenu(u8 taskId)
                 gTasks[tScrollArrowTaskId].func = Task_ScrollIndicatorArrowPairOnMainMenu;
                 if (sCurrItemAndOptionMenuCheck == 4)
                 {
-                    ChangeBgY(0, 0x2000, 1);
-                    ChangeBgY(1, 0x2000, 1);
-                    tIsScrolled = TRUE;
-                    gTasks[tScrollArrowTaskId].tArrowTaskIsScrolled = TRUE;
+                    ChangeBgY(0, 0x4000, 1);
+                    ChangeBgY(1, 0x4000, 1);
+                    tScrollCount = 2;
+                    gTasks[tScrollArrowTaskId].tArrowTaskScrollCount = 2;
                 }
                 break;
         }
@@ -756,7 +767,7 @@ void Task_DisplayMainMenu(u8 taskId)
 
 void Task_HighlightSelectedMainMenuItem(u8 taskId)
 {
-    HighlightSelectedMainMenuItem(gTasks[taskId].tMenuType, gTasks[taskId].tCurrItem, gTasks[taskId].tIsScrolled);
+    HighlightSelectedMainMenuItem(gTasks[taskId].tMenuType, gTasks[taskId].tCurrItem, gTasks[taskId].tScrollCount);
     gTasks[taskId].func = Task_HandleMainMenuInput;
 }
 
@@ -784,26 +795,38 @@ bool8 HandleMainMenuInput(u8 taskId)
         }
         else if ((gMain.newKeys & DPAD_UP) && tCurrItem > 0)
         {
-            if (tMenuType == HAS_MYSTERY_EVENTS && tIsScrolled == TRUE && tCurrItem == 1)
+            if (tMenuType >= HAS_MYSTERY_GIFT && tCurrItem == 1)
             {
-                ChangeBgY(0, 0x2000, 2);
-                ChangeBgY(1, 0x2000, 2);
-                gTasks[tScrollArrowTaskId].tArrowTaskIsScrolled = tIsScrolled = FALSE;
+                if (tScrollCount == 1)
+                {
+                    ChangeBgY(0, 0x2000, 2);
+                    ChangeBgY(1, 0x2000, 2);
+                }
+                else if (tScrollCount == 2)
+                {
+                    ChangeBgY(0, 0x4000, 2);
+                    ChangeBgY(1, 0x4000, 2);
+                }
+                gTasks[tScrollArrowTaskId].tArrowTaskScrollCount = tScrollCount = 0;
             }
-            tCurrItem--;
-            sCurrItemAndOptionMenuCheck = tCurrItem;
+            sCurrItemAndOptionMenuCheck = --tCurrItem;
             return TRUE;
         }
         else if ((gMain.newKeys & DPAD_DOWN) && tCurrItem < tItemCount - 1)
         {
-            if (tMenuType == HAS_MYSTERY_EVENTS && tCurrItem == 3 && tIsScrolled == FALSE)
+            if (tMenuType >= HAS_MYSTERY_GIFT && ((tCurrItem == 2 && tScrollCount == 0) || (tCurrItem == 3 && tScrollCount == 1)))
             {
                 ChangeBgY(0, 0x2000, 1);
                 ChangeBgY(1, 0x2000, 1);
-                gTasks[tScrollArrowTaskId].tArrowTaskIsScrolled = tIsScrolled = TRUE;
+                gTasks[tScrollArrowTaskId].tArrowTaskScrollCount = ++tScrollCount;
             }
-            tCurrItem++;
-            sCurrItemAndOptionMenuCheck = tCurrItem;
+
+            if (tMenuType == HAS_MYSTERY_GIFT && tScrollCount == 1)
+            {
+                gTasks[tScrollArrowTaskId].tArrowTaskScrollCount = 2;
+            }
+
+            sCurrItemAndOptionMenuCheck = ++tCurrItem;
             return TRUE;
         }
     }
@@ -867,7 +890,7 @@ void Task_HandleMainMenuAPressed(u8 taskId)
                     if (!wirelessAdapterConnected)
                     {
                         action = ACTION_INVALID;
-                        gTasks[taskId].tMenuType = 0;
+                        gTasks[taskId].tMenuType = HAS_NO_SAVED_GAME;
                     }
                     break;
                 case 3:
@@ -892,13 +915,13 @@ void Task_HandleMainMenuAPressed(u8 taskId)
                         if (!wirelessAdapterConnected)
                         {
                             action = ACTION_INVALID;
-                            gTasks[taskId].tMenuType = 0;
+                            gTasks[taskId].tMenuType = HAS_NO_SAVED_GAME;
                         }
                     }
                     else if (wirelessAdapterConnected)
                     {
                         action = ACTION_INVALID;
-                        gTasks[taskId].tMenuType = 1;
+                        gTasks[taskId].tMenuType = HAS_SAVED_GAME;
                     }
                     else
                     {
@@ -909,7 +932,7 @@ void Task_HandleMainMenuAPressed(u8 taskId)
                     if (wirelessAdapterConnected)
                     {
                         action = ACTION_INVALID;
-                        gTasks[taskId].tMenuType = 2;
+                        gTasks[taskId].tMenuType = HAS_MYSTERY_GIFT;
                     }
                     else
                     {
@@ -938,7 +961,7 @@ void Task_HandleMainMenuAPressed_(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        if (gTasks[taskId].tMenuType == HAS_MYSTERY_EVENTS)
+        if (gTasks[taskId].tScrollArrowTaskId != 0xFF)
             RemoveScrollIndicatorArrowPair(gTasks[taskId].tScrollArrowTaskId);
         sub_819746C(0, 1);
         sub_819746C(1, 1);
@@ -1008,7 +1031,7 @@ void Task_HandleMainMenuBPressed(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        if (gTasks[taskId].tMenuType == 3)
+        if (gTasks[taskId].tScrollArrowTaskId != 0xFF)
             RemoveScrollIndicatorArrowPair(gTasks[taskId].tScrollArrowTaskId);
         sCurrItemAndOptionMenuCheck = 0;
         FreeAllWindowBuffers();
@@ -1060,12 +1083,12 @@ void Task_DisplayMainMenuInvalidActionError(u8 taskId)
 #undef tCurrItem
 #undef tItemCount
 #undef tScrollArrowTaskId
-#undef tIsScrolled
+#undef tScrollCount
 #undef tWirelessAdapterConnected
 
-#undef tArrowTaskIsScrolled
+#undef tArrowTaskScrollCount
 
-void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 isScrolled)
+void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 scrollCount)
 {
     SetGpuReg(REG_OFFSET_WIN0H, MENU_WIN_HCOORDS);
 
@@ -1107,13 +1130,22 @@ void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 isScrol
                     SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(2));
                     break;
                 case 1:
-                    SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(3));
+                    if (scrollCount == 1)
+                        SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(3) - MENU_SCROLL_SHIFT);
+                    else
+                        SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(3));
                     break;
                 case 2:
-                    SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(4));
+                    if (scrollCount == 1)
+                        SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(4) - MENU_SCROLL_SHIFT);
+                    else
+                        SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(4));
                     break;
                 case 3:
-                    SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(5));
+                    if (scrollCount == 1)
+                        SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(5) - MENU_SCROLL_SHIFT);
+                    else
+                        SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(5));
                     break;
             }
             break;
@@ -1125,25 +1157,31 @@ void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 isScrol
                     SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(2));
                     break;
                 case 1:
-                    if (isScrolled)
+                    if (scrollCount == 2)
+                        SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(3) - (MENU_SCROLL_SHIFT * 2));
+                    else if (scrollCount == 1)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(3) - MENU_SCROLL_SHIFT);
                     else
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(3));
                     break;
                 case 2:
-                    if (isScrolled)
+                    if (scrollCount == 2)
+                        SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(4) - (MENU_SCROLL_SHIFT * 2));
+                    else if (scrollCount == 1)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(4) - MENU_SCROLL_SHIFT);
                     else
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(4));
                     break;
                 case 3:
-                    if (isScrolled)
+                    if (scrollCount == 2)
+                        SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(5) - (MENU_SCROLL_SHIFT * 2));
+                    else if (scrollCount == 1)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(5) - MENU_SCROLL_SHIFT);
                     else
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(5));
                     break;
                 case 4:
-                    SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(6) - MENU_SCROLL_SHIFT);
+                    SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(6) - (MENU_SCROLL_SHIFT * 2));
                     break;
             }
             break;
@@ -1987,33 +2025,33 @@ void CreateMainMenuErrorWindow(const u8* str)
 
 void fmt_savegame(void)
 {
-    fmt_time();
-    fmt_pokedex();
-    fmt_player();
-    fmt_badges();
+    FormatPlayerNameString();
+    FormatPokedexString();
+    FormatTimeString();
+    FormatBadgeString();
 }
 
-void fmt_time(void)
+void FormatPlayerNameString(void)
 {
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuPlayer);
-    box_print(2, 1, 0, 17, gUnknown_082FF0E3, -1, gStringVar4);
-    box_print(2, 1, GetStringRightAlignXOffset(1, gSaveBlock2Ptr->playerName, 100), 17, gUnknown_082FF0E3, -1, gSaveBlock2Ptr->playerName);
+    box_print(2, 1, 2, 18, gUnknown_082FF0E3, -1, gStringVar4);
+    box_print(2, 1, 62, 18, gUnknown_082FF0E3, -1, gSaveBlock2Ptr->playerName);
 }
 
-void fmt_player(void)
+void FormatTimeString(void)
 {
     u8 str[0x20];
     u8* ptr;
 
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuTime);
-    box_print(2, 1, 0x6C, 17, gUnknown_082FF0E3, -1, gStringVar4);
+    box_print(2, 1, 2, 34, gUnknown_082FF0E3, -1, gStringVar4);
     ptr = ConvertIntToDecimalStringN(str, gSaveBlock2Ptr->playTimeHours, 0, 3);
     *ptr = 0xF0;
     ConvertIntToDecimalStringN(ptr + 1, gSaveBlock2Ptr->playTimeMinutes, 2, 2);
-    box_print(2, 1, GetStringRightAlignXOffset(1, str, 0xD0), 17, gUnknown_082FF0E3, -1, str);
+    box_print(2, 1, 62, 34, gUnknown_082FF0E3, -1, str);
 }
 
-void fmt_pokedex(void)
+void FormatPokedexString(void)
 {
     u8 str[0x20];
     u16 dexCount;
@@ -2025,13 +2063,13 @@ void fmt_pokedex(void)
         else
             dexCount = GetHoennPokedexCount(1);
         StringExpandPlaceholders(gStringVar4, gText_ContinueMenuPokedex);
-        box_print(2, 1, 0, 33, gUnknown_082FF0E3, -1, gStringVar4);
+        box_print(2, 1, 2, 50, gUnknown_082FF0E3, -1, gStringVar4);
         ConvertIntToDecimalStringN(str, dexCount, 0, 3);
-        box_print(2, 1, GetStringRightAlignXOffset(1, str, 100), 33, gUnknown_082FF0E3, -1, str);
+        box_print(2, 1, 62, 50, gUnknown_082FF0E3, -1, str);
     }
 }
 
-void fmt_badges(void)
+void FormatBadgeString(void)
 {
     u8 str[0x20];
     u8 badgeCount = 0;
@@ -2043,9 +2081,9 @@ void fmt_badges(void)
             badgeCount++;
     }
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuBadges);
-    box_print(2, 1, 0x6C, 33, gUnknown_082FF0E3, -1, gStringVar4);
+    box_print(2, 1, 2, 66, gUnknown_082FF0E3, -1, gStringVar4);
     ConvertIntToDecimalStringN(str, badgeCount, 2, 1);
-    box_print(2, 1, GetStringRightAlignXOffset(1, str, 0xD0), 33, gUnknown_082FF0E3, -1, str);
+    box_print(2, 1, 62, 66, gUnknown_082FF0E3, -1, str);
 }
 
 void LoadMainMenuWindowFrameTiles(u8 bgId, u16 tileOffset)

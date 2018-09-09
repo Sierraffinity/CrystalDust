@@ -2207,6 +2207,7 @@ EventScript_27208F:: @ 827208F
 	fadescreen 1
 	special FieldShowRegionMap
 	waitstate
+	setflag FLAG_SYS_MYSTERY_GIFT_ENABLE
 	releaseall
 	end
 
