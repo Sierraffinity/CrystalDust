@@ -5,6 +5,7 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/species.h"
+#include "clock.h"
 #include "decompress.h"
 #include "event_data.h"
 #include "field_effect.h"
@@ -37,6 +38,7 @@
 #include "text_window.h"
 #include "title_screen.h"
 #include "window.h"
+#include "wallclock.h"
 #include "m4a.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
@@ -67,6 +69,13 @@ void Task_HandleMainMenuAPressed(u8);
 void Task_HandleMainMenuAPressed_(u8);
 void Task_HandleMainMenuBPressed(u8);
 void task_new_game_prof_birch_speech_1(u8);
+void Task_NewGameClockSetIntro1(u8);
+void Task_NewGameClockSetIntro2(u8);
+void Task_NewGameClockSetIntro3(u8);
+void Task_NewGameClockSetIntro4(u8);
+void Task_NewGameClockSetIntro5(u8);
+void Task_NewGameClockSetIntro6(u8);
+void Task_NewGameClockSetIntro7(u8);
 void Task_DisplayMainMenuInvalidActionError(u8);
 void AddBirchSpeechObjects(u8);
 void task_new_game_prof_birch_speech_2(u8);
@@ -244,6 +253,20 @@ const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .tilemapTop = MENU_TOP_ERROR,
         .width = MENU_WIDTH_ERROR,
         .height = MENU_HEIGHT_ERROR,
+        .paletteNum = 15,
+        .baseBlock = 1
+    },
+    DUMMY_WIN_TEMPLATE
+};
+
+const struct WindowTemplate sClockSetWindowTemplates[] = 
+{
+    {
+        .priority = 0,
+        .tilemapLeft = 2,
+        .tilemapTop = 15,
+        .width = 27,
+        .height = 4,
         .paletteNum = 15,
         .baseBlock = 1
     },
@@ -980,7 +1003,7 @@ void Task_HandleMainMenuAPressed_(u8 taskId)
             default:
                 gPlttBufferUnfaded[0] = RGB_BLACK;
                 gPlttBufferFaded[0] = RGB_BLACK;
-                gTasks[taskId].func = task_new_game_prof_birch_speech_1;
+                gTasks[taskId].func = Task_NewGameClockSetIntro1;
                 break;
             case ACTION_CONTINUE:
                 gPlttBufferUnfaded[0] = RGB_BLACK;
@@ -1188,7 +1211,7 @@ void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 scrollC
     }
 }
 
-void task_new_game_prof_birch_speech_1(u8 taskId)
+void Task_NewGameClockSetIntro1(u8 taskId)
 {
     if (IsBGMStopped())
     {
@@ -1203,25 +1226,153 @@ void task_new_game_prof_birch_speech_1(u8 taskId)
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         SetGpuReg(REG_OFFSET_BLDY, 0);
 
-        LZ77UnCompVram(gBirchIntroShadowGfx, (void*)VRAM);
-        LZ77UnCompVram(gUnknown_082FEEF0, (void*)(VRAM + 0x3800));
-        LoadPalette(gUnknown_082FECFC, 0, 64);
-        LoadPalette(gUnknown_082FF028, 1, 16);
         ScanlineEffect_Stop();
         ResetSpriteData();
         FreeAllSpritePalettes();
+        ResetPaletteFade();
         ResetAllPicSprites();
-        AddBirchSpeechObjects(taskId);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
-        gTasks[taskId].data[4] = 0;
-        gTasks[taskId].func = task_new_game_prof_birch_speech_2;
-        gTasks[taskId].data[2] = 0xFF;
-        gTasks[taskId].data[3] = 0xFF;
-        gTasks[taskId].data[7] = 0xD8;
-        PlayBGM(MUS_ROUTE30);
+
+        gTasks[taskId].func = Task_NewGameClockSetIntro2;
+        
         ShowBg(0);
-        ShowBg(1);
     }
+}
+
+void Task_NewGameClockSetIntro2(u8 taskId)
+{
+    InitWindows(sClockSetWindowTemplates);
+    LoadMessageBoxGfx(0, 0xFC,  0xF0);
+    PutWindowTilemap(0);
+    CopyWindowToVram(0, 2);
+    sub_8032318(0);
+    StringExpandPlaceholders(gStringVar4, gText_SetClock_WhatTime);
+    AddTextPrinterForMessage(1);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+    unknown_rbox_to_vram(0, 1);
+    gTasks[taskId].func = Task_NewGameClockSetIntro3;
+}
+
+void Task_NewGameClockSetIntro3(u8 taskId)
+{
+    if (!sub_8197224() && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    {
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
+        gTasks[taskId].func = Task_NewGameClockSetIntro4;
+    }
+}
+
+static void ReturnFromSetClock(void)
+{
+    ResetBgsAndClearDma3BusyFlags(0);
+    SetGpuReg(REG_OFFSET_DISPCNT, 0);
+    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
+    InitBgsFromTemplates(0, gUnknown_082FF0E8, 2);
+    InitBgFromTemplate(&gUnknown_082FF0F0);
+    SetVBlankCallback(NULL);
+    SetGpuReg(REG_OFFSET_BG2CNT, 0);
+    SetGpuReg(REG_OFFSET_BG1CNT, 0);
+    SetGpuReg(REG_OFFSET_BG0CNT, 0);
+    SetGpuReg(REG_OFFSET_BG2HOFS, 0);
+    SetGpuReg(REG_OFFSET_BG2VOFS, 0);
+    SetGpuReg(REG_OFFSET_BG1HOFS, 0);
+    SetGpuReg(REG_OFFSET_BG1VOFS, 0);
+    SetGpuReg(REG_OFFSET_BG0HOFS, 0);
+    SetGpuReg(REG_OFFSET_BG0VOFS, 0);
+    DmaFill16(3, 0, VRAM, VRAM_SIZE);
+    DmaFill32(3, 0, OAM, OAM_SIZE);
+    DmaFill16(3, 0, PLTT, PLTT_SIZE);
+    ResetPaletteFade();
+    ResetTasks();
+    CreateTask(Task_NewGameClockSetIntro5, 0);
+    ScanlineEffect_Stop();
+    ResetSpriteData();
+    FreeAllSpritePalettes();
+    ResetAllPicSprites();
+    SetGpuReg(REG_OFFSET_WIN0H, 0);
+    SetGpuReg(REG_OFFSET_WIN0V, 0);
+    SetGpuReg(REG_OFFSET_WININ, 0);
+    SetGpuReg(REG_OFFSET_WINOUT, 0);
+    SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+    SetGpuReg(REG_OFFSET_BLDY, 0);
+    ShowBg(0);
+    gPlttBufferUnfaded[0] = RGB_BLACK;
+    gPlttBufferFaded[0] = RGB_BLACK;
+    SetVBlankCallback(VBlankCB_MainMenu);
+    SetMainCallback2(CB2_MainMenu);
+    InitWindows(sClockSetWindowTemplates);
+    LoadMainMenuWindowFrameTiles(0, 0xF3);
+    LoadMessageBoxGfx(0, 0xFC, 0xF0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+    unknown_rbox_to_vram(0, 1);
+    PutWindowTilemap(0);
+    CopyWindowToVram(0, 3);
+}
+
+void Task_NewGameClockSetIntro4(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        SetMainCallback2(CB2_StartWallClock);
+        gMain.savedCallback = ReturnFromSetClock;
+    }
+}
+
+void Task_NewGameClockSetIntro5(u8 taskId)
+{
+    StringExpandPlaceholders(gStringVar4, gText_SetClock_IOverslept);
+    AddTextPrinterForMessage(1);
+    gTasks[taskId].func = Task_NewGameClockSetIntro6;
+}
+
+void Task_NewGameClockSetIntro6(u8 taskId)
+{
+    if (!sub_8197224() && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    {
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+        gTasks[taskId].func = Task_NewGameClockSetIntro7;
+    }
+}
+
+void Task_NewGameClockSetIntro7(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        gTasks[taskId].func = task_new_game_prof_birch_speech_1;
+    }
+}
+
+void task_new_game_prof_birch_speech_1(u8 taskId)
+{
+    SetGpuReg(REG_OFFSET_DISPCNT, 0);
+    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
+    InitBgFromTemplate(&gUnknown_082FF0F0);
+    SetGpuReg(REG_OFFSET_WIN0H, 0);
+    SetGpuReg(REG_OFFSET_WIN0V, 0);
+    SetGpuReg(REG_OFFSET_WININ, 0);
+    SetGpuReg(REG_OFFSET_WINOUT, 0);
+    SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+    SetGpuReg(REG_OFFSET_BLDY, 0);
+
+    LZ77UnCompVram(gBirchIntroShadowGfx, (void*)VRAM);
+    LZ77UnCompVram(gUnknown_082FEEF0, (void*)(VRAM + 0x3800));
+    LoadPalette(gUnknown_082FECFC, 0, 64);
+    LoadPalette(gUnknown_082FF028, 1, 16);
+    ScanlineEffect_Stop();
+    ResetSpriteData();
+    FreeAllSpritePalettes();
+    ResetAllPicSprites();
+    AddBirchSpeechObjects(taskId);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+    gTasks[taskId].data[4] = 0;
+    gTasks[taskId].func = task_new_game_prof_birch_speech_2;
+    gTasks[taskId].data[2] = 0xFF;
+    gTasks[taskId].data[3] = 0xFF;
+    gTasks[taskId].data[7] = 0xD8;
+    PlayBGM(MUS_ROUTE30);
+    ShowBg(0);
+    ShowBg(1);
 }
 
 void task_new_game_prof_birch_speech_2(u8 taskId)

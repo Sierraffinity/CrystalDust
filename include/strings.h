@@ -265,6 +265,8 @@ extern const u8 gText_MainMenuMysteryGift[];
 extern const u8 gText_WirelessNotConnected[];
 extern const u8 gText_MysteryGiftCantUse[];
 extern const u8 gText_MysteryEventsCantUse[];
+extern const u8 gText_SetClock_WhatTime[];
+extern const u8 gText_SetClock_IOverslept[];
 extern const u8 gText_Birch_Welcome[];
 extern const u8 gText_ThisIsAPokemon[];
 extern const u8 gText_Birch_MainSpeech[];
