@@ -115,7 +115,6 @@ extern const u8 gText_RecordMixingComplete[];
 extern const u8 gText_EmptyString2[];
 extern const u8 gText_Confirm3[];
 extern const u8 gText_Cancel4[];
-extern const u8 gText_IsThisTheCorrectTime[];
 extern const u8 gText_PkmnFainted3[];
 extern const u8 gText_Coins[];
 
@@ -265,6 +264,7 @@ extern const u8 gText_MainMenuMysteryGift[];
 extern const u8 gText_WirelessNotConnected[];
 extern const u8 gText_MysteryGiftCantUse[];
 extern const u8 gText_MysteryEventsCantUse[];
+extern const u8 gText_SetClock_WokeMeUp[];
 extern const u8 gText_SetClock_WhatTime[];
 extern const u8 gText_SetClock_IOverslept[];
 extern const u8 gText_Birch_Welcome[];
@@ -978,5 +978,7 @@ extern const u8 gText_RadioCardHelp[];
 extern const u8 gText_DpadMove[];
 extern const u8 gText_AOK[];
 extern const u8 gText_ACancel[];
+
+extern const u8 gText_LeftRightSelectUpDownChangeAConfirm[];
 
 #endif //GUARD_STRINGS_H

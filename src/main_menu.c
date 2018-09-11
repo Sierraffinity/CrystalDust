@@ -1255,7 +1255,7 @@ void Task_NewGameClockSetIntro3(u8 taskId)
     PutWindowTilemap(0);
     CopyWindowToVram(0, 2);
     sub_8032318(0);
-    StringExpandPlaceholders(gStringVar4, gText_SetClock_WhatTime);
+    StringExpandPlaceholders(gStringVar4, gText_SetClock_WokeMeUp);
     AddTextPrinterForMessage(1);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
     unknown_rbox_to_vram(0, 1);

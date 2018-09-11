@@ -6,6 +6,7 @@
 #include "day_night.h"
 #include "event_data.h"
 #include "gpu_regs.h"
+#include "graphics.h"
 #include "international_string_util.h"
 #include "list_menu.h"
 #include "malloc.h"
@@ -117,7 +118,6 @@ static const u16 sMenuSpritesPalette[] = INCBIN_U16("graphics/pokegear/menu_spri
 static const u8 gMainTiles[] = INCBIN_U8("graphics/pokegear/main.4bpp.lz");
 static const u8 sDigitTiles[] = INCBIN_U8("graphics/pokegear/digits.4bpp");
 static const u8 sIconTiles[] = INCBIN_U8("graphics/pokegear/icons.4bpp");
-static const u8 gBackgroundTilemap[] = INCBIN_U8("graphics/pokegear/background.bin.lz");
 static const u8 gClockCardTilemap[] = INCBIN_U8("graphics/pokegear/clock.bin.lz");
 static const u8 gMapCardTilemap[] = INCBIN_U8("graphics/pokegear/map.bin.lz");
 static const u8 gPhoneCardTilemap[] = INCBIN_U8("graphics/pokegear/phone.bin.lz");
@@ -208,7 +208,7 @@ static const struct ListMenuTemplate sPhoneCardListMenuTemplate =
     .cursorKind = 0
 };
 
-static const struct SpriteSheet sSpriteSheet_DigitTiles =
+const struct SpriteSheet sSpriteSheet_DigitTiles =
 {
     .data = sDigitTiles,
     .size = 2176,
@@ -489,7 +489,7 @@ void CB2_InitPokegear(void)
     DmaClear32(3, (void *)OAM, OAM_SIZE);
     DmaClear16(3, (void *)PLTT, PLTT_SIZE);
     LZ77UnCompVram(gMainTiles, (void *)(VRAM + 0x0000));
-    LZ77UnCompVram(gBackgroundTilemap, (void *)(VRAM + 0xC800));
+    LZ77UnCompVram(gPokegear_GridMap, (void *)(VRAM + 0xC800));
     LoadPalette(gBGPals, 0, sizeof(gBGPals));
     LoadPalette(stdpal_get(2), 0xB0, 0x20);
     ResetBgsAndClearDma3BusyFlags(0);
@@ -551,7 +551,7 @@ static void LoadCard(enum CardType cardId)
             LoadClockCard();
             break;
         case MapCard:
-            LoadMapCard(); // special case, start load earlier in LoadCardBgs
+            LoadMapCard();
             break;
         case PhoneCard:
             LoadPhoneCard();
@@ -638,9 +638,6 @@ static void LoadCardSprites(u8 taskId)
     for (i = 0; i < CardCount; i++)
     {
         u8 anim;
-
-        if ((i == MapCard && !FlagGet(FLAG_MAP_CARD)) || (i == RadioCard && !FlagGet(FLAG_RADIO_CARD)))
-            continue;
 
         spriteId = CreateSprite(&sSpriteTemplate_Icons, -24, i * 32 + 32, 0);
         gTasks[taskId].tIconSprites(i) = spriteId;

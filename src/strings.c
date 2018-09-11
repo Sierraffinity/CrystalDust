@@ -1998,7 +1998,8 @@ const u8 gText_Gabby[] = _("GABBY");
 const u8 gText_Anna[] = _("ANNA");
 const u8 gText_ClearAllSaveData[] = _("Clear all save data areas?");
 const u8 gText_ClearingData[] = _("Clearing data…\nPlease wait.");
-const u8 gText_IsThisTheCorrectTime[] = _("Is this the correct time?");
+const u8 gText_SetClock_WhatTime[] = _("What time is it?");
+const u8 gText_SetClock_IOverslept[] = _("What? Some fucking late-ass time?\nI overslept!");
 const u8 gText_Confirm3[] = _("CONFIRM");
 const u8 gText_Cancel4[] = _("CANCEL");
 const u8 gMrStoneMatchCallDesc[] = _("DEVON PRES");
@@ -2176,16 +2177,18 @@ const u8 gText_RocketRadio8[] = _("hear?{RADIO_PAUSE} We did it!");
 const u8 gText_RocketRadio9[] = _("{RADIO_PAUSE}Where is our boss?");
 const u8 gText_RocketRadio10[] = _("{RADIO_PAUSE}Is he listening?");
 
-const u8 gText_ClockCardHelp[] = _("{DPAD_LEFTRIGHT}SWITCH {SELECT_BUTTON}MODE");
-const u8 gText_MapCardHelp1[] = _("{DPAD_LEFTRIGHT}SWITCH {A_BUTTON}ENTER");
-const u8 gText_MapCardHelp2[] = _("{DPAD_NONE}MOVE {B_BUTTON}CANCEL");
-const u8 gText_MapCardHelp3[] = _("{DPAD_NONE}MOVE {A_BUTTON}GUIDE {B_BUTTON}CANCEL");
-const u8 gText_MapCardHelp4[] = _("{DPAD_NONE}MOVE {A_BUTTON}SWITCH {B_BUTTON}CANCEL");
-const u8 gText_PhoneCardHelp1[] = _("{DPAD_LEFTRIGHT}SWITCH {DPAD_UPDOWN}PICK {A_BUTTON}OK");
-const u8 gText_PhoneCardHelp2[] = _("{DPAD_UPDOWN}PICK {A_BUTTON}OK");
+const u8 gText_ClockCardHelp[] = _("{DPAD_LEFTRIGHT}SWITCH  {SELECT_BUTTON}MODE");
+const u8 gText_MapCardHelp1[] = _("{DPAD_LEFTRIGHT}SWITCH  {A_BUTTON}ENTER");
+const u8 gText_MapCardHelp2[] = _("{DPAD_NONE}MOVE  {B_BUTTON}CANCEL");
+const u8 gText_MapCardHelp3[] = _("{DPAD_NONE}MOVE  {A_BUTTON}GUIDE  {B_BUTTON}CANCEL");
+const u8 gText_MapCardHelp4[] = _("{DPAD_NONE}MOVE  {A_BUTTON}SWITCH  {B_BUTTON}CANCEL");
+const u8 gText_PhoneCardHelp1[] = _("{DPAD_LEFTRIGHT}SWITCH  {DPAD_UPDOWN}PICK  {A_BUTTON}OK");
+const u8 gText_PhoneCardHelp2[] = _("{DPAD_UPDOWN}PICK  {A_BUTTON}OK");
 const u8 gText_PhoneCardHelp3[] = _("{A_BUTTON}NEXT");
-const u8 gText_RadioCardHelp[] = _("{DPAD_LEFTRIGHT}SWITCH {DPAD_UPDOWN}TUNING");
+const u8 gText_RadioCardHelp[] = _("{DPAD_LEFTRIGHT}SWITCH  {DPAD_UPDOWN}TUNING");
 
 const u8 gText_DpadMove[] = _("{DPAD_NONE}MOVE");
 const u8 gText_AOK[] = _("{A_BUTTON}OK");
 const u8 gText_ACancel[] = _("{A_BUTTON}CANCEL");
+
+const u8 gText_LeftRightSelectUpDownChangeAConfirm[] = _("{DPAD_LEFTRIGHT}SELECT  {DPAD_UPDOWN}CHANGE  {A_BUTTON}CONFIRM");

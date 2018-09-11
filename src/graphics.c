@@ -1406,11 +1406,10 @@ const u16 gEasyChatMode_Pal[] = INCBIN_U16("graphics/easy_chat/mode.gbapal");
 const u8 gEasyChatWindow_Gfx[] = INCBIN_U8("graphics/easy_chat/window.4bpp.lz"); // uses mode pal
 const u16 gEasyChatWindow_Tilemap[] = INCBIN_U16("graphics/easy_chat/window.bin.lz");
 
-const u16 gWallclockMale_Pal[] = INCBIN_U16("graphics/interface/wallclock_male.gbapal");
-const u16 gWallclockFemale_Pal[] = INCBIN_U16("graphics/interface/wallclock_female.gbapal");
-const u8 gWallclock_Gfx[] = INCBIN_U8("graphics/interface/wallclock.4bpp.lz");
-const u16 gUnknown_08DCC648[] = INCBIN_U16("graphics/interface/wallclock1.bin.lz");
-const u16 gUnknown_08DCC908[] = INCBIN_U16("graphics/interface/wallclock2.bin.lz");
+const u8 gSetClock_Gfx[] = INCBIN_U8("graphics/wallclock/setclock.4bpp.lz");
+const u16 gSetClock_Pal[] = INCBIN_U16("graphics/wallclock/setclock.gbapal");
+const u8 gSetClock_Map[] = INCBIN_U8("graphics/wallclock/setclock.bin.lz");
+const u8 gPokegear_GridMap[] = INCBIN_U8("graphics/pokegear/background.bin.lz");
 
 const u16 gUsePokeblockCondition_Pal[] = INCBIN_U16("graphics/pokeblock/use_screen/condition.gbapal");
 const u8 gUsePokeblockCondition_Gfx[] = INCBIN_U8("graphics/pokeblock/use_screen/condition.4bpp.lz");

@@ -1,14 +1,9 @@
-gText_SetClock_WhatTime::
+gText_SetClock_WokeMeUp::
 	.string "………………………………………………\n"
 	.string "………………………………………………\p"
 	.string "Zzz… Hm? Wha…?\n"
 	.string "You woke me up!\p"
-	.string "Will you check the clock for me?\n"
-	.string "What time is it?$"
-
-gText_SetClock_IOverslept::
-	.string "What? Some fucking late-ass time?\n"
-	.string "I overslept!$"
+	.string "Will you check the clock for me?$"
 
 gText_Birch_Welcome:: @ 82C897B
 	.string "Hi! Sorry to keep you waiting!\p"
