@@ -133,9 +133,9 @@ void Special_ShowDiploma(void)
 
 void Special_ViewWallClock(void)
 {
-    gMain.savedCallback = CB2_ReturnToField;
+    /*gMain.savedCallback = CB2_ReturnToField;
     SetMainCallback2(CB2_ViewWallClock);
-    ScriptContext2_Enable();
+    ScriptContext2_Enable();*/
 }
 
 void ResetCyclingRoadChallengeData(void)

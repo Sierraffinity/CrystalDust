@@ -639,6 +639,9 @@ static void LoadCardSprites(u8 taskId)
     {
         u8 anim;
 
+        if ((i == MapCard && !FlagGet(FLAG_MAP_CARD)) || (i == RadioCard && !FlagGet(FLAG_RADIO_CARD)))
+            continue;
+
         spriteId = CreateSprite(&sSpriteTemplate_Icons, -24, i * 32 + 32, 0);
         gTasks[taskId].tIconSprites(i) = spriteId;
         gSprites[spriteId].tState = 0;

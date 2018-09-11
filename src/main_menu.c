@@ -70,13 +70,13 @@ void Task_HandleMainMenuAPressed_(u8);
 void Task_HandleMainMenuBPressed(u8);
 void task_new_game_prof_birch_speech_1(u8);
 void Task_NewGameClockSetIntro1(u8);
-void Task_NewGameClockSetIntro1_1(u8);
 void Task_NewGameClockSetIntro2(u8);
 void Task_NewGameClockSetIntro3(u8);
 void Task_NewGameClockSetIntro4(u8);
 void Task_NewGameClockSetIntro5(u8);
 void Task_NewGameClockSetIntro6(u8);
 void Task_NewGameClockSetIntro7(u8);
+void Task_NewGameClockSetIntro8(u8);
 void Task_DisplayMainMenuInvalidActionError(u8);
 void AddBirchSpeechObjects(u8);
 void task_new_game_prof_birch_speech_2(u8);
@@ -1216,12 +1216,12 @@ void Task_NewGameClockSetIntro1(u8 taskId)
 {
     if (IsBGMStopped())
     {
-        gTasks[taskId].data[0] = 30;
-        gTasks[taskId].func = Task_NewGameClockSetIntro1_1;
+        gTasks[taskId].data[0] = 15;
+        gTasks[taskId].func = Task_NewGameClockSetIntro2;
     }
 }
 
-void Task_NewGameClockSetIntro1_1(u8 taskId)
+void Task_NewGameClockSetIntro2(u8 taskId)
 {
     if (--gTasks[taskId].data[0] == 0)
     {
@@ -1242,13 +1242,13 @@ void Task_NewGameClockSetIntro1_1(u8 taskId)
         ResetPaletteFade();
         ResetAllPicSprites();
 
-        gTasks[taskId].func = Task_NewGameClockSetIntro2;
+        gTasks[taskId].func = Task_NewGameClockSetIntro3;
         
         ShowBg(0);
     }
 }
 
-void Task_NewGameClockSetIntro2(u8 taskId)
+void Task_NewGameClockSetIntro3(u8 taskId)
 {
     InitWindows(sClockSetWindowTemplates);
     LoadMessageBoxGfx(0, 0xFC,  0xF0);
@@ -1259,20 +1259,21 @@ void Task_NewGameClockSetIntro2(u8 taskId)
     AddTextPrinterForMessage(1);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
     unknown_rbox_to_vram(0, 1);
-    gTasks[taskId].func = Task_NewGameClockSetIntro3;
+    gTasks[taskId].func = Task_NewGameClockSetIntro4;
 }
 
-void Task_NewGameClockSetIntro3(u8 taskId)
+void Task_NewGameClockSetIntro4(u8 taskId)
 {
     if (!sub_8197224() && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
-        gTasks[taskId].func = Task_NewGameClockSetIntro4;
+        gTasks[taskId].func = Task_NewGameClockSetIntro5;
     }
 }
 
 static void ReturnFromSetClock(void)
 {
+    InitTimeBasedEvents();
     ResetBgsAndClearDma3BusyFlags(0);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
@@ -1293,7 +1294,7 @@ static void ReturnFromSetClock(void)
     DmaFill16(3, 0, PLTT, PLTT_SIZE);
     ResetPaletteFade();
     ResetTasks();
-    CreateTask(Task_NewGameClockSetIntro5, 0);
+    CreateTask(Task_NewGameClockSetIntro6, 0);
     ScanlineEffect_Stop();
     ResetSpriteData();
     FreeAllSpritePalettes();
@@ -1319,7 +1320,7 @@ static void ReturnFromSetClock(void)
     CopyWindowToVram(0, 3);
 }
 
-void Task_NewGameClockSetIntro4(u8 taskId)
+void Task_NewGameClockSetIntro5(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
@@ -1328,23 +1329,23 @@ void Task_NewGameClockSetIntro4(u8 taskId)
     }
 }
 
-void Task_NewGameClockSetIntro5(u8 taskId)
+void Task_NewGameClockSetIntro6(u8 taskId)
 {
     StringExpandPlaceholders(gStringVar4, gText_SetClock_IOverslept);
     AddTextPrinterForMessage(1);
-    gTasks[taskId].func = Task_NewGameClockSetIntro6;
+    gTasks[taskId].func = Task_NewGameClockSetIntro7;
 }
 
-void Task_NewGameClockSetIntro6(u8 taskId)
+void Task_NewGameClockSetIntro7(u8 taskId)
 {
     if (!sub_8197224() && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
-        gTasks[taskId].func = Task_NewGameClockSetIntro7;
+        gTasks[taskId].func = Task_NewGameClockSetIntro8;
     }
 }
 
-void Task_NewGameClockSetIntro7(u8 taskId)
+void Task_NewGameClockSetIntro8(u8 taskId)
 {
     if (!gPaletteFade.active)
     {

@@ -2207,7 +2207,8 @@ EventScript_27208F:: @ 827208F
 	fadescreen 1
 	special FieldShowRegionMap
 	waitstate
-	setflag FLAG_SYS_MYSTERY_GIFT_ENABLE
+	setflag FLAG_SYS_POKEDEX_GET
+	setflag FLAG_SYS_POKEMON_GET
 	releaseall
 	end
 
