@@ -70,6 +70,7 @@ void Task_HandleMainMenuAPressed_(u8);
 void Task_HandleMainMenuBPressed(u8);
 void task_new_game_prof_birch_speech_1(u8);
 void Task_NewGameClockSetIntro1(u8);
+void Task_NewGameClockSetIntro1_1(u8);
 void Task_NewGameClockSetIntro2(u8);
 void Task_NewGameClockSetIntro3(u8);
 void Task_NewGameClockSetIntro4(u8);
@@ -1215,6 +1216,15 @@ void Task_NewGameClockSetIntro1(u8 taskId)
 {
     if (IsBGMStopped())
     {
+        gTasks[taskId].data[0] = 30;
+        gTasks[taskId].func = Task_NewGameClockSetIntro1_1;
+    }
+}
+
+void Task_NewGameClockSetIntro1_1(u8 taskId)
+{
+    if (--gTasks[taskId].data[0] == 0)
+    {
         SetGpuReg(REG_OFFSET_DISPCNT, 0);
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
         InitBgFromTemplate(&gUnknown_082FF0F0);
@@ -1338,6 +1348,7 @@ void Task_NewGameClockSetIntro7(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
+        sub_8197434(0, TRUE);
         gTasks[taskId].func = task_new_game_prof_birch_speech_1;
     }
 }

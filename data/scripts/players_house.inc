@@ -369,6 +369,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_292A51:: @ 8292A51
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_292A86:: @ 8292A86
+	setflag FLAG_SYS_B_DASH
 	msgbox LittlerootTown_BrendansHouse_1F_Text_1F7D08, 4
 	goto LittlerootTown_BrendansHouse_1F_EventScript_292A9E
 	end
