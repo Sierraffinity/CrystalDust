@@ -266,6 +266,8 @@ extern const u8 gText_MysteryGiftCantUse[];
 extern const u8 gText_MysteryEventsCantUse[];
 extern const u8 gText_SetClock_WokeMeUp[];
 extern const u8 gText_SetClock_WhatTime[];
+extern const u8 gText_SetClock_TimeNotSet[];
+extern const u8 gText_SetClock_TimeSet[];
 extern const u8 gText_SetClock_IOverslept[];
 extern const u8 gText_Birch_Welcome[];
 extern const u8 gText_ThisIsAPokemon[];

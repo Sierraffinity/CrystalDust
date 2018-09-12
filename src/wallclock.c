@@ -23,6 +23,7 @@
 #include "string_util.h"
 #include "list_menu.h"
 #include "pokegear.h"
+#include "constants/rgb.h"
 
 // static types
 
@@ -70,7 +71,6 @@ static void SpriteCallback_SetClockDigits(struct Sprite* sprite);
 static void AddScrollArrows(u8 taskId);
 
 // rodata
-
 static const struct WindowTemplate gUnknown_085B21DC[] = 
 {
     {
@@ -90,6 +90,15 @@ static const struct WindowTemplate gUnknown_085B21DC[] =
         .height = 2,
         .paletteNum = 11,
         .baseBlock = 0x70
+    },
+    {
+        .priority = 0,
+        .tilemapLeft = 8,
+        .tilemapTop = 5,
+        .width = 14,
+        .height = 3,
+        .paletteNum = 14,
+        .baseBlock = 0xB0
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -241,9 +250,11 @@ static void LoadWallClockGraphics(void)
     DmaClear16(3, (void *)PLTT, PLTT_SIZE);
     LZ77UnCompVram(gSetClock_Gfx, (void *)VRAM);
     LZ77UnCompVram(gSetClock_Map, (u16 *)BG_SCREEN_ADDR(8));
-    LZ77UnCompVram(gPokegear_GridMap, (u16 *)BG_SCREEN_ADDR(7));
+    //LZ77UnCompVram(gPokegear_GridMap, (u16 *)BG_SCREEN_ADDR(7));
     LoadPalette(gSetClock_Pal, 0x00, 0x20);
     LoadPalette(stdpal_get(2), 0xB0, 0x20);
+    gPlttBufferUnfaded[0] = RGB_BLACK;
+    gPlttBufferFaded[0] = RGB_BLACK;
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, gUnknown_085B21FC, 3);
     InitWindows(gUnknown_085B21DC);
@@ -292,6 +303,10 @@ void CB2_StartWallClock(void)
         92, 106, 114, 123, 137, 149
     };
 
+    const u8 textColor[3] = {
+        0x00, 0x02, 0x03
+    };
+
     LoadWallClockGraphics();
 
     taskId = CreateTask(Task_SetClock1, 0);
@@ -304,7 +319,8 @@ void CB2_StartWallClock(void)
     gTasks[taskId].tBlinkTimer = 0;
 
     WallClockInit();
-
+    PutWindowTilemap(2);
+    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x70), 1, textColor, 0, gText_SetClock_TimeNotSet);
     NewMenuHelpers_DrawDialogueFrame(0, TRUE);
     PrintTextOnWindow(0, 1, gText_SetClock_WhatTime, 0, 1, 0, NULL);
     PutWindowTilemap(0);
@@ -449,21 +465,21 @@ static void Task_SetClock2(u8 taskId)
     {
         gTasks[taskId].tTwentyFourHourMode = !gTasks[taskId].tTwentyFourHourMode;
     }
-    else if (gMain.newKeys & DPAD_UP)
+    else if (gMain.newAndRepeatedKeys & DPAD_UP)
     {
         ChangeTimeWithDelta(taskId, 1);
         shouldStopBlinking = TRUE;
     }
-    else if (gMain.newKeys & DPAD_LEFT)
+    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
     {
         ChangeDigitWithDelta(taskId, -1);
     }
-    else if (gMain.newKeys & DPAD_DOWN)
+    else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
     {
         ChangeTimeWithDelta(taskId, -1);
         shouldStopBlinking = TRUE;
     }
-    else if (gMain.newKeys & DPAD_RIGHT)
+    else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
     {
         ChangeDigitWithDelta(taskId, 1);
     }
@@ -494,8 +510,10 @@ static void Task_SetClock4(u8 taskId)
         case 1:
         case -1:
             PlaySE(SE_SELECT);
-            sub_8197434(0, FALSE);
-            ClearWindowTilemap(0);
+            //sub_8197434(0, FALSE);
+            //ClearWindowTilemap(0);
+            FillWindowPixelBuffer(0, 0x11);
+            PrintTextOnWindow(0, 1, gText_SetClock_WhatTime, 0, 1, 0, NULL);
             gTasks[taskId].func = Task_SetClock2;
             break;
     }
