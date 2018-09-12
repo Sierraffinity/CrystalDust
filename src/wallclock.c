@@ -23,6 +23,7 @@
 #include "string_util.h"
 #include "list_menu.h"
 #include "pokegear.h"
+#include "day_night.h"
 #include "constants/rgb.h"
 
 // static types
@@ -40,8 +41,7 @@
 
 enum {
     DIGIT_HOURS,
-    DIGIT_MINUTESTENS,
-    DIGIT_MINUTESONES
+    DIGIT_MINUTES
 };
 
 // static declarations
@@ -53,22 +53,11 @@ static void Task_SetClock3(u8 taskId);
 static void Task_SetClock4(u8 taskId);
 static void Task_SetClock5(u8 taskId);
 static void Task_SetClock6(u8 taskId);
-static void Task_ViewClock1(u8 taskId);
-static void Task_ViewClock2(u8 taskId);
-static void Task_ViewClock3(u8 taskId);
-static void Task_ViewClock4(u8 taskId);
-static u16 CalcNewMinHandAngle(u16 a0, u8 command, u8 a2);
-static bool32 AdvanceClock(u8 taskId, u8 command);
-static void UpdateClockPeriod(u8 taskId, u8 command);
-static void InitClockWithRtc(u8 taskId);
-static void SpriteCB_MinuteHand(struct Sprite *sprite);
-static void SpriteCB_HourHand(struct Sprite *sprite);
-static void SpriteCB_AMIndicator(struct Sprite *sprite);
-static void SpriteCB_PMIndicator(struct Sprite *sprite);
-static void ShowHelpBar(void);
-static void SpriteCallback_BlinkTwelve(struct Sprite* sprite);
+static void Task_SetClock7(u8 taskId);
+static void ShowHelpBar(const u8 *string);
 static void SpriteCallback_SetClockDigits(struct Sprite* sprite);
 static void AddScrollArrows(u8 taskId);
+static void RemoveScrollArrows(u8 taskId);
 
 // rodata
 static const struct WindowTemplate gUnknown_085B21DC[] = 
@@ -102,6 +91,7 @@ static const struct WindowTemplate gUnknown_085B21DC[] =
     },
     DUMMY_WIN_TEMPLATE
 };
+
 static const struct WindowTemplate gUnknown_085B21F4 =
 {
     .priority = 0,
@@ -112,6 +102,7 @@ static const struct WindowTemplate gUnknown_085B21F4 =
     .paletteNum = 14,
     .baseBlock = 572
 };
+
 static const struct BgTemplate gUnknown_085B21FC[] = {
     {
         .bg = 0,
@@ -132,93 +123,6 @@ static const struct BgTemplate gUnknown_085B21FC[] = {
         .priority = 2
     }
 };
-/*static const struct CompressedSpriteSheet gUnknown_085B2208 = {
-    sUnknown_085B1F58, 0x2000, TAG_GFX_WALL_CLOCK_HAND
-};
-static const u32 filler_85B2210[2] = {};
-static const struct SpritePalette gUnknown_085B2218[] = {
-    { gWallclockMale_Pal, TAG_PAL_WALL_CLOCK_HAND },
-    { gWallclockFemale_Pal, 0x1001 },
-    {}
-};
-static const struct OamData Unknown_085B2230 = {
-    .y = 0xa0,
-    .size = 3,
-    .priority = 1
-};
-static const union AnimCmd Unknown_085B2238[] = {
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_END
-};
-static const union AnimCmd Unknown_085B2240[] = {
-    ANIMCMD_FRAME(64, 30),
-    ANIMCMD_END
-};
-static const union AnimCmd *const gUnknown_085B2248[] = {
-    Unknown_085B2238
-};
-static const union AnimCmd *const gUnknown_085B224C[] = {
-    Unknown_085B2240
-};
-static const struct SpriteTemplate gUnknown_085B2250 =
-{
-    .tileTag = TAG_GFX_WALL_CLOCK_HAND,
-    .paletteTag = TAG_PAL_WALL_CLOCK_HAND,
-    .oam = &Unknown_085B2230,
-    .anims = gUnknown_085B2248,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_MinuteHand
-};
-static const struct SpriteTemplate gUnknown_085B2268 =
-{
-    .tileTag = TAG_GFX_WALL_CLOCK_HAND,
-    .paletteTag = TAG_PAL_WALL_CLOCK_HAND,
-    .oam = &Unknown_085B2230,
-    .anims = gUnknown_085B224C,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_HourHand
-};
-static const struct OamData Unknown_085B2280 = {
-    .y = 0xa0,
-    .size = 1,
-    .priority = 3
-};
-static const union AnimCmd Unknown_085B2288[] = {
-    ANIMCMD_FRAME(0x84, 30),
-    ANIMCMD_END
-};
-static const union AnimCmd Unknown_085B2290[] = {
-    ANIMCMD_FRAME(0x80, 30),
-    ANIMCMD_END
-};
-static const union AnimCmd *const gUnknown_085B2298[] = {
-    Unknown_085B2288
-};
-static const union AnimCmd *const gUnknown_085B229C[] = {
-    Unknown_085B2290
-};
-static const struct SpriteTemplate gUnknown_085B22A0 =
-{
-    .tileTag = TAG_GFX_WALL_CLOCK_HAND,
-    .paletteTag = TAG_PAL_WALL_CLOCK_HAND,
-    .oam = &Unknown_085B2280,
-    .anims = gUnknown_085B2298,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_AMIndicator
-};
-static const struct SpriteTemplate gUnknown_085B22B8 =
-{
-    .tileTag = TAG_GFX_WALL_CLOCK_HAND,
-    .paletteTag = TAG_PAL_WALL_CLOCK_HAND,
-    .oam = &Unknown_085B2280,
-    .anims = gUnknown_085B229C,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_PMIndicator
-};*/
 
 // text
 
@@ -289,9 +193,13 @@ static void WallClockInit(void)
     ShowBg(3);
 }
 
-#define tTask       data[0]
-#define tPosition   data[1]
-#define tStoredVal  data[2]
+#define tPosition   data[0]
+#define tStoredVal  data[1]
+#define tTask       data[2]
+
+static const u8 sTextColor[3] = {
+    0x00, 0x02, 0x03
+};
 
 void CB2_StartWallClock(void)
 {
@@ -301,10 +209,6 @@ void CB2_StartWallClock(void)
 
     static const u8 clockX[6] = {
         92, 106, 114, 123, 137, 149
-    };
-
-    const u8 textColor[3] = {
-        0x00, 0x02, 0x03
     };
 
     LoadWallClockGraphics();
@@ -320,13 +224,14 @@ void CB2_StartWallClock(void)
 
     WallClockInit();
     PutWindowTilemap(2);
-    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x70), 1, textColor, 0, gText_SetClock_TimeNotSet);
+    FillWindowPixelBuffer(2, 0x00);
+    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x70), 1, sTextColor, 0, gText_SetClock_TimeNotSet);
     NewMenuHelpers_DrawDialogueFrame(0, TRUE);
     PrintTextOnWindow(0, 1, gText_SetClock_WhatTime, 0, 1, 0, NULL);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 
-    ShowHelpBar();
+    ShowHelpBar(gText_LeftRightSelectUpDownChangeAConfirm);
 
     AddScrollArrows(taskId);
 
@@ -343,12 +248,9 @@ void CB2_StartWallClock(void)
 
 static void AddScrollArrows(u8 taskId)
 {
-    const u8 positions[] = {106, 123, 136};
+    const u8 positions[] = {99, 129};
 
-    if (gTasks[taskId].tScrollTaskId != 0xFF)
-    {
-        RemoveScrollIndicatorArrowPair(gTasks[taskId].tScrollTaskId);
-    }
+    RemoveScrollArrows(taskId);
 
     gTasks[taskId].tScrollTaskId = AddScrollIndicatorArrowPairParameterized(SCROLL_ARROW_UP,
                                                                         positions[gTasks[taskId].tWhichChanging],
@@ -358,6 +260,14 @@ static void AddScrollArrows(u8 taskId)
                                                                         54545,
                                                                         54545,
                                                                         &(gTasks[taskId].tScrollOffset));
+}
+
+static void RemoveScrollArrows(u8 taskId)
+{
+    if (gTasks[taskId].tScrollTaskId != 0xFF)
+    {
+        RemoveScrollIndicatorArrowPair(gTasks[taskId].tScrollTaskId);
+    }
 }
 
 static void WallClockMainCallback(void)
@@ -395,8 +305,8 @@ static u8 ChangeTimeWithDelta(u8 taskId, s8 delta)
             }
             gTasks[taskId].tHours = newValue;
             break;
-        case DIGIT_MINUTESTENS:
-            newValue = gTasks[taskId].tMinutes + (delta * 10);
+        case DIGIT_MINUTES:
+            newValue = gTasks[taskId].tMinutes + delta;
             if (newValue < 0)
             {
                 newValue += 60;
@@ -407,21 +317,6 @@ static u8 ChangeTimeWithDelta(u8 taskId, s8 delta)
             }
             gTasks[taskId].tMinutes = newValue;
             break;
-        case DIGIT_MINUTESONES:
-        {
-            u8 oldMinutes = gTasks[taskId].tMinutes % 10;
-            newValue = oldMinutes + delta;
-            if (newValue < 0)
-            {
-                newValue = 9;
-            }
-            else if (newValue > 9)
-            {
-                newValue = 0;
-            }
-            gTasks[taskId].tMinutes += newValue - oldMinutes;
-            break;
-        }
     }
 
     PlaySE(SE_TB_KARA);
@@ -431,11 +326,42 @@ static u8 ChangeDigitWithDelta(u8 taskId, s8 delta)
 {
     int newValue = gTasks[taskId].tWhichChanging + delta;
 
-    if (newValue >= 0 && newValue <= 2)
+    if (newValue >= 0 && newValue <= 1)
     {
         gTasks[taskId].tWhichChanging = newValue;
         AddScrollArrows(taskId);
         PlaySE(SE_SELECT);
+    }
+}
+
+static u8 *BufferTimeString(u8 *dest, u8 hours, u8 minutes, bool8 twentyFourHourMode)
+{
+    if (!twentyFourHourMode)
+    {
+        if (hours == 0)
+        {
+            hours = 12;
+        }
+        else if (hours > 12)
+        {
+            hours -= 12;
+        }
+    }
+
+    dest = ConvertIntToDecimalStringN(dest, hours, STR_CONV_MODE_LEFT_ALIGN, (hours >= 10) ? 2 : 1);
+    *dest++ = CHAR_COLON;
+    dest = ConvertIntToDecimalStringN(dest, minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
+    *dest = EOS;
+
+    return dest;
+}
+
+static void Task_SetClock2_1(u8 taskId)
+{
+    if (!sub_8197224())
+    {
+        AddScrollArrows(taskId);
+        gTasks[taskId].func = Task_SetClock2;
     }
 }
 
@@ -452,25 +378,48 @@ static void Task_SetClock2(u8 taskId)
         gTasks[taskId].tBlinkTimer++;
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (gMain.newKeys & A_BUTTON && gTasks[taskId].tWhichChanging == DIGIT_MINUTES)
     {
+        u8 *string;
         shouldStopBlinking = TRUE;
         PlaySE(SE_SELECT);
+
+        RemoveScrollArrows(taskId);
+
+        string = BufferTimeString(gStringVar1, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gTasks[taskId].tTwentyFourHourMode);
+
+        if (!gTasks[taskId].tTwentyFourHourMode)
+        {
+            *string++ = CHAR_SPACE;
+            if (gTasks[taskId].tHours < 12)
+            {
+                *string++ = CHAR_A;
+            }
+            else
+            {
+                *string++ = CHAR_P;
+            }
+            *string++ = CHAR_M;
+            *string = EOS;
+        }
+
+        ShowHelpBar(gText_UpDownPickAOk);
         FillWindowPixelBuffer(0, 0x11);
-        StringExpandPlaceholders(gStringVar4, gText_SetClock_IOverslept);
+        StringExpandPlaceholders(gStringVar4, gText_SetClock_Whoa);
         AddTextPrinterForMessage(1);
         gTasks[taskId].func = Task_SetClock3;
     }
     else if (gMain.newKeys & SELECT_BUTTON)
     {
         gTasks[taskId].tTwentyFourHourMode = !gTasks[taskId].tTwentyFourHourMode;
+        PlaySE(SE_SELECT);
     }
     else if (gMain.newAndRepeatedKeys & DPAD_UP)
     {
         ChangeTimeWithDelta(taskId, 1);
         shouldStopBlinking = TRUE;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    else if (gMain.newAndRepeatedKeys & DPAD_LEFT || (gMain.newKeys & B_BUTTON && gTasks[taskId].tWhichChanging == DIGIT_MINUTES))
     {
         ChangeDigitWithDelta(taskId, -1);
     }
@@ -479,7 +428,7 @@ static void Task_SetClock2(u8 taskId)
         ChangeTimeWithDelta(taskId, -1);
         shouldStopBlinking = TRUE;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    else if (gMain.newAndRepeatedKeys & DPAD_RIGHT || gMain.newKeys & A_BUTTON)
     {
         ChangeDigitWithDelta(taskId, 1);
     }
@@ -494,7 +443,7 @@ static void Task_SetClock3(u8 taskId)
 {
     if (!sub_8197224())
     {
-        CreateYesNoMenu(&gUnknown_085B21F4, 0x250, 0x0d, 1);
+        CreateYesNoMenu(&gUnknown_085B21F4, 0x250, 13, 0);
         gTasks[taskId].func = Task_SetClock4;
     }
 }
@@ -510,24 +459,122 @@ static void Task_SetClock4(u8 taskId)
         case 1:
         case -1:
             PlaySE(SE_SELECT);
+            ShowHelpBar(gText_LeftRightSelectUpDownChangeAConfirm);
             //sub_8197434(0, FALSE);
             //ClearWindowTilemap(0);
             FillWindowPixelBuffer(0, 0x11);
-            PrintTextOnWindow(0, 1, gText_SetClock_WhatTime, 0, 1, 0, NULL);
-            gTasks[taskId].func = Task_SetClock2;
+            StringExpandPlaceholders(gStringVar4, gText_SetClock_WhatTime);
+            AddTextPrinterForMessage(1);
+            gTasks[taskId].func = Task_SetClock2_1;
             break;
     }
 }
 
 static void Task_SetClock5(u8 taskId)
 {
+    static const u8 *const timeOfDayStrings[] = {gText_SetClock_InTheMorning, gText_SetClock_InTheAfternoon, gText_SetClock_InTheEvening, gText_SetClock_AtNight};
+    const u8 *string = NULL;
+    u8 *dest = gStringVar1;
+
+    gTasks[taskId].tBlinkTimer = -2;
+
+    ShowHelpBar(gText_ANext);
+    
     RtcInitLocalTimeOffset(gTasks[taskId].tHours, gTasks[taskId].tMinutes);
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+    FillWindowPixelBuffer(2, 0x00);
+    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeSet, 0x70), 1, sTextColor, 0, gText_SetClock_TimeSet);
+    
+    if (gTasks[taskId].tMinutes == 0)
+    {
+        if (gTasks[taskId].tHours == 0)
+        {
+            string = gText_SetClock_Midnight;
+        }
+        else if (gTasks[taskId].tHours == 12)
+        {
+            string = gText_SetClock_Noon;
+        }
+        else
+        {
+            u8 hours = gTasks[taskId].tHours;
+
+            if (!gTasks[taskId].tTwentyFourHourMode)
+            {
+                if (hours == 0)
+                {
+                    hours = 12;
+                }
+                else if (hours > 12)
+                {
+                    hours -= 12;
+                }
+            }
+
+            dest = ConvertIntToDecimalStringN(dest, hours, STR_CONV_MODE_LEFT_ALIGN, (hours >= 10) ? 2 : 1);
+            *dest++ = CHAR_SPACE;
+        }
+    }
+    else
+    {
+        dest = BufferTimeString(dest, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gTasks[taskId].tTwentyFourHourMode);
+        *dest++ = CHAR_SPACE;
+    }
+    
+    if (string == NULL)
+    {
+        if (gTasks[taskId].tHours < 12)
+        {
+            string = gText_SetClock_InTheMorning;
+        }
+        else if (gTasks[taskId].tHours < TIME_AFTERNOON_HOUR)
+        {
+            string = gText_SetClock_InTheAfternoon;
+        }
+        else if (gTasks[taskId].tHours < TIME_NIGHT_HOUR)
+        {
+            string = gText_SetClock_InTheEvening;
+        }
+        else
+        {
+            string = gText_SetClock_AtNight;
+        }
+    }
+
+    StringCopy(dest, string);
+
+    switch (GetTimeOfDay())
+    {
+        case TIME_MORNING:
+            string = gText_SetClock_IOverslept;
+            break;
+        case TIME_DAY:
+        case TIME_AFTERNOON:
+            string = gText_SetClock_YikesIOverslept;
+            break;
+        case TIME_NIGHT:
+            string = gText_SetClock_SoDark;
+            break;
+    }
+    
+    FillWindowPixelBuffer(0, 0x11);
+    StringExpandPlaceholders(gStringVar4, string);
+    AddTextPrinterForMessage(1);
     gTasks[taskId].func = Task_SetClock6;
 }
 
 static void Task_SetClock6(u8 taskId)
 {
+    RtcCalcLocalTime();
+    if (!sub_8197224() && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    {
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+        gTasks[taskId].func = Task_SetClock7;
+    }
+}
+
+static void Task_SetClock7(u8 taskId)
+{
+    RtcCalcLocalTime();
     if (!gPaletteFade.active)
     {
         FreeAllWindowBuffers();
@@ -535,10 +582,67 @@ static void Task_SetClock6(u8 taskId)
     }
 }
 
-static void InitClockWithRtc(u8 taskId)
+static void SpriteCB_ClockDigits(struct Sprite* sprite)
 {
-    RtcCalcLocalTime();
+    u8 value;
+    s16 *data = gTasks[sprite->tTask].data;
 
+    switch (sprite->tPosition)
+    {
+        case 0:
+            value = gLocalTime.hours;
+            if (!tTwentyFourHourMode)
+            {
+                if (value > 12)
+                    value -= 12;
+                else if (value == 0)
+                    value = 12;
+            }
+            value = value / 10;
+            if (value != 0)
+                value += 1;
+            break;
+        case 1:
+            value = gLocalTime.hours;
+            if (!tTwentyFourHourMode)
+            {
+                if (value > 12)
+                    value -= 12;
+                else if (value == 0)
+                    value = 12;
+            }
+            value = value % 10 + 1;
+            break;
+        case 2:
+            if (gLocalTime.seconds & 1)
+                value = 11;
+            else
+                value = 12;
+            break;
+        case 3:
+            value = gLocalTime.minutes / 10 + 1;
+            break;
+        case 4:
+            value = gLocalTime.minutes % 10 + 1;
+            break;
+        case 5:
+            if (tTwentyFourHourMode)
+                value = 13;
+            else if (gLocalTime.hours < 12)
+                value = 14;
+            else
+                value = 15;
+            break;
+        default:
+            value = 0;
+            break;
+    }
+
+    if (sprite->tStoredVal != value)
+    {
+        sprite->tStoredVal = value;
+        StartSpriteAnim(sprite, value);
+    }
 }
 
 static void SpriteCallback_SetClockDigits(struct Sprite* sprite)
@@ -608,14 +712,19 @@ static void SpriteCallback_SetClockDigits(struct Sprite* sprite)
     {
         sprite->invisible = FALSE;
     }
+
+    if (tBlinkTimer == -2)
+    {
+        sprite->callback = SpriteCB_ClockDigits;
+    }
 }
 
-static void ShowHelpBar(void)
+static void ShowHelpBar(const u8 *string)
 {
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(1, 0xFF);
-    box_print(1, 0, GetStringRightAlignXOffset(0, gText_LeftRightSelectUpDownChangeAConfirm, 240) - 4, 0, color, 0, gText_LeftRightSelectUpDownChangeAConfirm);
+    box_print(1, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
     PutWindowTilemap(1);
     CopyWindowToVram(1, 3);
 }

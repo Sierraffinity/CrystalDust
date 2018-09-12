@@ -51,13 +51,13 @@ u8 GetTimeOfDay(void)
         return TIME_NIGHT;
     }*/
     RtcSlowUpdate();
-    if (gLocalTime.hours < 4)
+    if (gLocalTime.hours < TIME_MORNING_HOUR)
         return TIME_NIGHT;
-    else if (gLocalTime.hours < 10)
+    else if (gLocalTime.hours < TIME_DAY_HOUR)
         return TIME_MORNING;
-    else if (gLocalTime.hours < 17)
+    else if (gLocalTime.hours < TIME_AFTERNOON_HOUR)
         return TIME_DAY;
-    else if (gLocalTime.hours < 18)
+    else if (gLocalTime.hours < TIME_NIGHT_HOUR)
         return TIME_AFTERNOON;
     else
         return TIME_NIGHT;

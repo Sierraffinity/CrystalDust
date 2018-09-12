@@ -1177,7 +1177,7 @@ static const struct MenuAction sCallOptions[] = {
 static void PhoneCard_ConfirmCall(u8 taskId)
 {
     sPokegearStruct.canSwitchCards = FALSE;
-    ShowHelpBar(gText_PhoneCardHelp2);
+    ShowHelpBar(gText_UpDownPickAOk);
     PhoneCard_RemoveScrollIndicators(taskId);
     SetWindowBorderStyle(WIN_CONFIRM, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PrintMenuTable(WIN_CONFIRM, ARRAY_COUNT(sCallOptions), sCallOptions);
@@ -1218,7 +1218,7 @@ static void PhoneCard_ReturnToMain(u8 taskId)
 
 static void PhoneCard_PlaceCall(u8 taskId)
 {
-    ShowHelpBar(gText_PhoneCardHelp3);
+    ShowHelpBar(gText_ANext);
     // TODO
 }
 

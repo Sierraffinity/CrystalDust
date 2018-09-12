@@ -81,7 +81,6 @@ void Task_DisplayMainMenuInvalidActionError(u8);
 void AddBirchSpeechObjects(u8);
 void task_new_game_prof_birch_speech_2(u8);
 void sub_8031BAC(u8, u8);
-void sub_8031D34(u8, u8);
 void task_new_game_prof_birch_speech_3(u8);
 void unknown_rbox_to_vram(u8, u8);
 void sub_8032318(u8);
@@ -92,7 +91,6 @@ void task_new_game_prof_birch_speech_6(u8);
 void sub_8030B14(u8);
 void task_new_game_prof_birch_speech_7(u8);
 void sub_8031ACC(u8, u8);
-void sub_8031C88(u8, u8);
 void task_new_game_prof_birch_speech_8(u8);
 void task_new_game_prof_birch_speech_9(u8);
 void task_new_game_prof_birch_speech_10(u8);
@@ -135,15 +133,10 @@ void sub_8032474(u8, u8, u8, u8, u8, u8);
 
 // .rodata
 
-const u16 gUnknown_082FECFC[][16] = {
-    INCBIN_U16("graphics/birch_speech/bg0.gbapal"),
-    INCBIN_U16("graphics/birch_speech/bg1.gbapal")
-};
+const u16 gUnknown_082FECFC[] = INCBIN_U16("graphics/birch_speech/bg0.gbapal");
 
-const u8 gBirchIntroShadowGfx[] = INCBIN_U8("graphics/birch_speech/shadow.4bpp.lz");
+const u8 gBirchIntroShadowGfx[] = INCBIN_U8("graphics/birch_speech/bg0.4bpp.lz");
 const u8 gUnknown_082FEEF0[] = INCBIN_U8("graphics/birch_speech/map.bin.lz");
-const u16 gUnknown_082FF018[] = INCBIN_U16("graphics/birch_speech/bg2.gbapal");
-const u16 gUnknown_082FF028[] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 #define MENU_LEFT 3
 #define MENU_TOP_WIN0 1
@@ -1273,6 +1266,8 @@ void Task_NewGameClockSetIntro4(u8 taskId)
 
 static void ReturnFromSetClock(void)
 {
+    u8 taskId;
+
     InitTimeBasedEvents();
     ResetBgsAndClearDma3BusyFlags(0);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
@@ -1294,7 +1289,8 @@ static void ReturnFromSetClock(void)
     DmaFill16(3, 0, PLTT, PLTT_SIZE);
     ResetPaletteFade();
     ResetTasks();
-    CreateTask(Task_NewGameClockSetIntro6, 0);
+    taskId = CreateTask(Task_NewGameClockSetIntro6, 0);
+    gTasks[taskId].data[0] = 0;
     ScanlineEffect_Stop();
     ResetSpriteData();
     FreeAllSpritePalettes();
@@ -1306,18 +1302,10 @@ static void ReturnFromSetClock(void)
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
     SetGpuReg(REG_OFFSET_BLDALPHA, 0);
     SetGpuReg(REG_OFFSET_BLDY, 0);
-    ShowBg(0);
     gPlttBufferUnfaded[0] = RGB_BLACK;
     gPlttBufferFaded[0] = RGB_BLACK;
     SetVBlankCallback(VBlankCB_MainMenu);
     SetMainCallback2(CB2_MainMenu);
-    InitWindows(sClockSetWindowTemplates);
-    LoadMainMenuWindowFrameTiles(0, 0xF3);
-    LoadMessageBoxGfx(0, 0xFC, 0xF0);
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
-    unknown_rbox_to_vram(0, 1);
-    PutWindowTilemap(0);
-    CopyWindowToVram(0, 3);
 }
 
 void Task_NewGameClockSetIntro5(u8 taskId)
@@ -1331,50 +1319,17 @@ void Task_NewGameClockSetIntro5(u8 taskId)
 
 void Task_NewGameClockSetIntro6(u8 taskId)
 {
-    StringExpandPlaceholders(gStringVar4, gText_SetClock_IOverslept);
-    AddTextPrinterForMessage(1);
-    gTasks[taskId].func = Task_NewGameClockSetIntro7;
-}
-
-void Task_NewGameClockSetIntro7(u8 taskId)
-{
-    if (!sub_8197224() && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (gTasks[taskId].data[0]++ > 15)
     {
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
-        gTasks[taskId].func = Task_NewGameClockSetIntro8;
-    }
-}
-
-void Task_NewGameClockSetIntro8(u8 taskId)
-{
-    if (!gPaletteFade.active)
-    {
-        sub_8197434(0, TRUE);
         gTasks[taskId].func = task_new_game_prof_birch_speech_1;
     }
 }
 
 void task_new_game_prof_birch_speech_1(u8 taskId)
 {
-    SetGpuReg(REG_OFFSET_DISPCNT, 0);
-    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
-    InitBgFromTemplate(&gUnknown_082FF0F0);
-    SetGpuReg(REG_OFFSET_WIN0H, 0);
-    SetGpuReg(REG_OFFSET_WIN0V, 0);
-    SetGpuReg(REG_OFFSET_WININ, 0);
-    SetGpuReg(REG_OFFSET_WINOUT, 0);
-    SetGpuReg(REG_OFFSET_BLDCNT, 0);
-    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
-    SetGpuReg(REG_OFFSET_BLDY, 0);
-
     LZ77UnCompVram(gBirchIntroShadowGfx, (void*)VRAM);
     LZ77UnCompVram(gUnknown_082FEEF0, (void*)(VRAM + 0x3800));
     LoadPalette(gUnknown_082FECFC, 0, 64);
-    LoadPalette(gUnknown_082FF028, 1, 16);
-    ScanlineEffect_Stop();
-    ResetSpriteData();
-    FreeAllSpritePalettes();
-    ResetAllPicSprites();
     AddBirchSpeechObjects(taskId);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
     gTasks[taskId].data[4] = 0;
@@ -1403,7 +1358,6 @@ void task_new_game_prof_birch_speech_2(u8 taskId)
         gSprites[spriteId].invisible = 0;
         gSprites[spriteId].oam.objMode = 1;
         sub_8031BAC(taskId, 10);
-        sub_8031D34(taskId, 20);
         gTasks[taskId].data[7] = 0x50;
         gTasks[taskId].func = task_new_game_prof_birch_speech_3;
     }
@@ -1518,7 +1472,6 @@ void task_new_game_prof_birch_speech_7(u8 taskId)
         gSprites[gTasks[taskId].data[8]].oam.objMode = 1;
         gSprites[gTasks[taskId].data[9]].oam.objMode = 1;
         sub_8031ACC(taskId, 2);
-        sub_8031C88(taskId, 1);
         gTasks[taskId].data[7] = 0x40;
         gTasks[taskId].func = task_new_game_prof_birch_speech_8;
     }
@@ -1559,7 +1512,6 @@ void task_new_game_prof_birch_speech_9(u8 taskId)
             gTasks[taskId].data[2] = spriteId;
             gTasks[taskId].data[6] = 0;
             sub_8031BAC(taskId, 2);
-            sub_8031D34(taskId, 1);
             gTasks[taskId].func = task_new_game_prof_birch_speech_10;
         }
     }
@@ -1724,7 +1676,6 @@ void task_new_game_prof_birch_speech_part2_4(u8 taskId)
             PlaySE(SE_SELECT);
             gSprites[gTasks[taskId].data[2]].oam.objMode = 1;
             sub_8031ACC(taskId, 2);
-            sub_8031C88(taskId, 1);
             gTasks[taskId].func = task_new_game_prof_birch_speech_part2_5;
             break;
         case -1:
@@ -1766,7 +1717,6 @@ void task_new_game_prof_birch_speech_part2_6(u8 taskId)
         gSprites[spriteId].invisible = FALSE;
         gSprites[spriteId].oam.objMode = 1;
         sub_8031BAC(taskId, 2);
-        sub_8031D34(taskId, 1);
         sub_8032318(0);
         StringExpandPlaceholders(gStringVar4, gText_Birch_YourePlayer);
         AddTextPrinterForMessage(1);
@@ -1785,7 +1735,6 @@ void task_new_game_prof_birch_speech_part2_7(u8 taskId)
             gSprites[gTasks[taskId].data[8]].oam.objMode = 1;
             gSprites[gTasks[taskId].data[9]].oam.objMode = 1;
             sub_8031ACC(taskId, 2);
-            sub_8031C88(taskId, 1);
             gTasks[taskId].data[7] = 64;
             gTasks[taskId].func = task_new_game_prof_birch_speech_part2_8;
         }
@@ -1815,7 +1764,6 @@ void task_new_game_prof_birch_speech_part2_8(u8 taskId)
         gSprites[spriteId].oam.objMode = 1;
         gTasks[taskId].data[2] = spriteId;
         sub_8031BAC(taskId, 2);
-        sub_8031D34(taskId, 1);
         StringExpandPlaceholders(gStringVar4, gText_Birch_AreYouReady);
         AddTextPrinterForMessage(1);
         gTasks[taskId].func = task_new_game_prof_birch_speech_part2_9;
@@ -1906,7 +1854,6 @@ void new_game_prof_birch_speech_part2_start(void)
     LZ77UnCompVram(gBirchIntroShadowGfx, (u8*)VRAM);
     LZ77UnCompVram(gUnknown_082FEEF0, (u8*)(VRAM + 0x3800));
     LoadPalette(gUnknown_082FECFC, 0, 64);
-    LoadPalette(&gUnknown_082FF018[1], 1, 16);
     ResetTasks();
     taskId = CreateTask(task_new_game_prof_birch_speech_part2_1, 0);
     gTasks[taskId].data[7] = 5;
@@ -2074,74 +2021,6 @@ void sub_8031BAC(u8 taskId, u8 a)
     gTasks[taskId2].data[0] = taskId;
     gTasks[taskId2].data[1] = 0;
     gTasks[taskId2].data[2] = 16;
-    gTasks[taskId2].data[3] = a;
-    gTasks[taskId2].data[4] = a;
-}
-
-void sub_8031C1C(u8 taskId)
-{
-    if (gTasks[taskId].data[2])
-    {
-        gTasks[taskId].data[2]--;
-    }
-    else if (gTasks[taskId].data[1] == 8)
-    {
-        DestroyTask(taskId);
-    }
-    else if (gTasks[taskId].data[4])
-    {
-        gTasks[taskId].data[4]--;
-    }
-    else
-    {
-        gTasks[taskId].data[4] = gTasks[taskId].data[3];
-        gTasks[taskId].data[1]++;
-        LoadPalette(&gUnknown_082FF018[gTasks[taskId].data[1]], 1, 16);
-    }
-}
-
-void sub_8031C88(u8 taskId, u8 a)
-{
-    u8 taskId2;
-
-    taskId2 = CreateTask(sub_8031C1C, 0);
-    gTasks[taskId2].data[0] = taskId;
-    gTasks[taskId2].data[1] = 0;
-    gTasks[taskId2].data[2] = 8;
-    gTasks[taskId2].data[3] = a;
-    gTasks[taskId2].data[4] = a;
-}
-
-void sub_8031CC8(u8 taskId)
-{
-    if (gTasks[taskId].data[2])
-    {
-        gTasks[taskId].data[2]--;
-    }
-    else if (gTasks[taskId].data[1] == 0)
-    {
-        DestroyTask(taskId);
-    }
-    else if (gTasks[taskId].data[4])
-    {
-        gTasks[taskId].data[4]--;
-    }
-    else
-    {
-        gTasks[taskId].data[4] = gTasks[taskId].data[3];
-        gTasks[taskId].data[1]--;
-        LoadPalette(&gUnknown_082FF018[gTasks[taskId].data[1]], 1, 16);
-    }
-}
-
-void sub_8031D34(u8 taskId, u8 a)
-{
-    u8 taskId2;
-
-    taskId2 = CreateTask(sub_8031CC8, 0);
-    gTasks[taskId2].data[0] = taskId;
-    gTasks[taskId2].data[1] = 8;
-    gTasks[taskId2].data[2] = 8;
     gTasks[taskId2].data[3] = a;
     gTasks[taskId2].data[4] = a;
 }
