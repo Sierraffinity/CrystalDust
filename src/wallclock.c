@@ -82,9 +82,9 @@ static const struct WindowTemplate gUnknown_085B21DC[] =
     },
     {
         .priority = 0,
-        .tilemapLeft = 8,
+        .tilemapLeft = 5,
         .tilemapTop = 5,
-        .width = 14,
+        .width = 19,
         .height = 3,
         .paletteNum = 14,
         .baseBlock = 0xB0
@@ -208,7 +208,7 @@ void CB2_StartWallClock(void)
     u8 i;
 
     static const u8 clockX[6] = {
-        92, 106, 114, 123, 137, 149
+        89, 103, 111, 120, 134, 146
     };
 
     LoadWallClockGraphics();
@@ -225,7 +225,7 @@ void CB2_StartWallClock(void)
     WallClockInit();
     PutWindowTilemap(2);
     FillWindowPixelBuffer(2, 0x00);
-    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x70), 1, sTextColor, 0, gText_SetClock_TimeNotSet);
+    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeNotSet);
     NewMenuHelpers_DrawDialogueFrame(0, TRUE);
     PrintTextOnWindow(0, 1, gText_SetClock_WhatTime, 0, 1, 0, NULL);
     PutWindowTilemap(0);
@@ -248,7 +248,7 @@ void CB2_StartWallClock(void)
 
 static void AddScrollArrows(u8 taskId)
 {
-    const u8 positions[] = {99, 129};
+    const u8 positions[] = {96, 126};
 
     RemoveScrollArrows(taskId);
 
@@ -482,7 +482,7 @@ static void Task_SetClock5(u8 taskId)
     
     RtcInitLocalTimeOffset(gTasks[taskId].tHours, gTasks[taskId].tMinutes);
     FillWindowPixelBuffer(2, 0x00);
-    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeSet, 0x70), 1, sTextColor, 0, gText_SetClock_TimeSet);
+    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeSet);
     
     if (gTasks[taskId].tMinutes == 0)
     {
