@@ -39,7 +39,7 @@ LIB := -L ../../tools/agbcc/lib -lgcc -lc
 SHA1 := $(shell { command -v sha1sum || command -v shasum; } 2>/dev/null) -c
 GFX := tools/gbagfx/gbagfx
 AIF := tools/aif2pcm/aif2pcm
-MID := $(abspath tools/mid2agb/mid2agb)
+MID := tools/mid2agb/mid2agb
 SCANINC := tools/scaninc/scaninc
 PREPROC := tools/preproc/preproc
 RAMSCRGEN := tools/ramscrgen/ramscrgen
@@ -68,8 +68,10 @@ ASM_OBJS := $(patsubst $(ASM_SUBDIR)/%.s,$(ASM_BUILDDIR)/%.o,$(ASM_SRCS))
 DATA_ASM_SRCS := $(wildcard $(DATA_ASM_SUBDIR)/*.s)
 DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DATA_ASM_SRCS))
 
-SONG_SRCS := $(wildcard $(SONG_SUBDIR)/*.s)
-SONG_OBJS := $(patsubst $(SONG_SUBDIR)/%.s,$(SONG_BUILDDIR)/%.o,$(SONG_SRCS))
+# Hack hack hack all day long
+# Hack hack hack while I sing this song
+SONG_SRCS := $(wildcard $(SONG_SUBDIR)/*.s) $(wildcard $(SONG_SUBDIR)/*.mid)
+SONG_OBJS := $(sort $(patsubst $(SONG_SUBDIR)/%.s,$(SONG_BUILDDIR)/%.o,$(patsubst $(SONG_SUBDIR)/%.mid,$(SONG_BUILDDIR)/%.o,$(SONG_SRCS))))
 
 OBJS := $(C_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(SONG_OBJS)
 OBJS_REL := $(patsubst $(OBJ_DIR)/%,%,$(OBJS))
