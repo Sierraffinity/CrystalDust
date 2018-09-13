@@ -58,6 +58,7 @@ static void ShowHelpBar(const u8 *string);
 static void SpriteCallback_SetClockDigits(struct Sprite* sprite);
 static void AddScrollArrows(u8 taskId);
 static void RemoveScrollArrows(u8 taskId);
+static void UpdateBlinkTimer(u8 taskId);
 
 // rodata
 static const struct WindowTemplate gUnknown_085B21DC[] = 
@@ -281,6 +282,7 @@ static void WallClockMainCallback(void)
 
 static void Task_SetClock1(u8 taskId)
 {
+    UpdateBlinkTimer(taskId);
     if (!gPaletteFade.active)
     {
         gTasks[taskId].func = Task_SetClock2;
@@ -365,10 +367,8 @@ static void Task_SetClock2_1(u8 taskId)
     }
 }
 
-static void Task_SetClock2(u8 taskId)
+static void UpdateBlinkTimer(u8 taskId)
 {
-    bool8 shouldStopBlinking = FALSE;
-
     if (gTasks[taskId].tBlinkTimer >= 60)
     {
         gTasks[taskId].tBlinkTimer = 0;
@@ -377,6 +377,13 @@ static void Task_SetClock2(u8 taskId)
     {
         gTasks[taskId].tBlinkTimer++;
     }
+}
+
+static void Task_SetClock2(u8 taskId)
+{
+    bool8 shouldStopBlinking = FALSE;
+
+    UpdateBlinkTimer(taskId);
 
     if (gMain.newKeys & A_BUTTON && gTasks[taskId].tWhichChanging == DIGIT_MINUTES)
     {
