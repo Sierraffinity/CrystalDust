@@ -85,10 +85,12 @@ void task_new_game_prof_birch_speech_3(u8);
 void unknown_rbox_to_vram(u8, u8);
 void sub_8032318(u8);
 void task_new_game_prof_birch_speech_4(u8);
+void task_new_game_prof_birch_speech_5_1(u8);
 void task_new_game_prof_birch_speech_5(u8);
 void sub_80323A0(struct TextSubPrinter *printer, u16 a);
+void task_new_game_prof_birch_speech_6_1(u8);
 void task_new_game_prof_birch_speech_6(u8);
-void sub_8030B14(u8);
+void task_new_game_prof_birch_speech_5_2(u8);
 void task_new_game_prof_birch_speech_7(u8);
 void sub_8031ACC(u8, u8);
 void task_new_game_prof_birch_speech_8(u8);
@@ -137,6 +139,9 @@ const u16 gUnknown_082FECFC[] = INCBIN_U16("graphics/birch_speech/bg0.gbapal");
 
 const u8 gBirchIntroShadowGfx[] = INCBIN_U8("graphics/birch_speech/bg0.4bpp.lz");
 const u8 gUnknown_082FEEF0[] = INCBIN_U8("graphics/birch_speech/map.bin.lz");
+
+const u8 gOakIntroPlatformGfx[] = INCBIN_U8("graphics/birch_speech/platform.4bpp.lz");
+const u16 gOakIntroPlatformPal[] = INCBIN_U16("graphics/birch_speech/platform.gbapal");
 
 #define MENU_LEFT 3
 #define MENU_TOP_WIN0 1
@@ -394,6 +399,62 @@ const u8 *const gFemalePresetNames[] = {
     gText_DefaultNameTerra,
     gText_DefaultNameLucy,
     gText_DefaultNameHalie
+};
+
+static const struct CompressedSpriteSheet sCompressedSpriteSheet_OakPlatform = 
+{
+    .data = gOakIntroPlatformGfx,
+    .size = 0x600,
+    .tag = 0x1000
+};
+
+static const struct SpritePalette sSpritePalette_OakPlatform = 
+{
+    .data = gOakIntroPlatformPal,
+    .tag = 0x1000
+};
+
+static const union AnimCmd sSpriteAnim_OakPlatform1[] = 
+{
+    ANIMCMD_FRAME(0, 0),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_OakPlatform2[] = 
+{
+    ANIMCMD_FRAME(16, 0),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_OakPlatform3[] = 
+{
+    ANIMCMD_FRAME(32, 0),
+    ANIMCMD_END
+};
+
+static const union AnimCmd *const sSpriteAnimTable_OakPlatform[] = 
+{
+    sSpriteAnim_OakPlatform1,
+    sSpriteAnim_OakPlatform2,
+    sSpriteAnim_OakPlatform3,
+};
+
+static const struct OamData sOamData_OakPlatform = 
+{
+    .objMode = ST_OAM_OBJ_BLEND,
+    .size = 2,
+    .priority = 1
+};
+
+static const struct SpriteTemplate sSpriteTemplate_OakPlatform = 
+{
+    .tileTag = 0x1000,
+    .paletteTag = 0x1000,
+    .oam = &sOamData_OakPlatform,
+    .anims = sSpriteAnimTable_OakPlatform,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy
 };
 
 // .text
@@ -1319,7 +1380,7 @@ void Task_NewGameClockSetIntro5(u8 taskId)
 
 void Task_NewGameClockSetIntro6(u8 taskId)
 {
-    if (gTasks[taskId].data[0]++ > 15)
+    if (gTasks[taskId].data[0]++ > 30)
     {
         gTasks[taskId].func = task_new_game_prof_birch_speech_1;
     }
@@ -1331,7 +1392,7 @@ void task_new_game_prof_birch_speech_1(u8 taskId)
     LZ77UnCompVram(gUnknown_082FEEF0, (void*)(VRAM + 0x3800));
     LoadPalette(gUnknown_082FECFC, 0, 64);
     AddBirchSpeechObjects(taskId);
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 2, 16, 0, 0);
     gTasks[taskId].data[4] = 0;
     gTasks[taskId].func = task_new_game_prof_birch_speech_2;
     gTasks[taskId].data[2] = 0xFF;
@@ -1353,11 +1414,11 @@ void task_new_game_prof_birch_speech_2(u8 taskId)
     else
     {
         spriteId = gTasks[taskId].data[8];
-        gSprites[spriteId].pos1.x = 0x88;
+        /*gSprites[spriteId].pos1.x = 0x88;
         gSprites[spriteId].pos1.y = 0x3C;
         gSprites[spriteId].invisible = 0;
         gSprites[spriteId].oam.objMode = 1;
-        sub_8031BAC(taskId, 10);
+        sub_8031BAC(taskId, 10);*/
         gTasks[taskId].data[7] = 0x50;
         gTasks[taskId].func = task_new_game_prof_birch_speech_3;
     }
@@ -1365,26 +1426,23 @@ void task_new_game_prof_birch_speech_2(u8 taskId)
 
 void task_new_game_prof_birch_speech_3(u8 taskId)
 {
-    if (gTasks[taskId].data[5])
+    gSprites[gTasks[taskId].data[8]].oam.objMode = 0;
+    if (gTasks[taskId].data[7])
     {
-        gSprites[gTasks[taskId].data[8]].oam.objMode = 0;
-        if (gTasks[taskId].data[7])
-        {
-            gTasks[taskId].data[7]--;
-        }
-        else
-        {
-            InitWindows(gUnknown_082FF080);
-            LoadMainMenuWindowFrameTiles(0, 0xF3);
-            LoadMessageBoxGfx(0, 0xFC,  0xF0);
-            unknown_rbox_to_vram(0, 1);
-            PutWindowTilemap(0);
-            CopyWindowToVram(0, 2);
-            sub_8032318(0);
-            StringExpandPlaceholders(gStringVar4, gText_Birch_Welcome);
-            AddTextPrinterForMessage(1);
-            gTasks[taskId].func = task_new_game_prof_birch_speech_4;
-        }
+        gTasks[taskId].data[7]--;
+    }
+    else
+    {
+        InitWindows(gUnknown_082FF080);
+        LoadMainMenuWindowFrameTiles(0, 0xF3);
+        LoadMessageBoxGfx(0, 0xFC,  0xF0);
+        unknown_rbox_to_vram(0, 1);
+        PutWindowTilemap(0);
+        CopyWindowToVram(0, 2);
+        sub_8032318(0);
+        StringExpandPlaceholders(gStringVar4, gText_Birch_Welcome);
+        AddTextPrinterForMessage(1);
+        gTasks[taskId].func = task_new_game_prof_birch_speech_4;
     }
 }
 
@@ -1392,40 +1450,28 @@ void task_new_game_prof_birch_speech_4(u8 taskId)
 {
     if (!gPaletteFade.active && !sub_8197224())
     {
-        gTasks[taskId].func = task_new_game_prof_birch_speech_5;
-        StringExpandPlaceholders(gStringVar4, gText_ThisIsAPokemon);
-        AddTextPrinterWithCallbackForMessage(1, sub_80323A0);
-        gUnknown_03000DD0 = taskId;
+        StringExpandPlaceholders(gStringVar4, gText_Birch_Pokemon);
+        AddTextPrinterForMessage(1);
+        gTasks[taskId].func = task_new_game_prof_birch_speech_5_1;
     }
 }
 
-void task_new_game_prof_birch_speech_5(u8 taskId)
+void task_new_game_prof_birch_speech_5_1(u8 taskId)
 {
     if (!sub_8197224())
     {
-        StringExpandPlaceholders(gStringVar4, gText_Birch_MainSpeech);
-        AddTextPrinterForMessage(1);
-        gTasks[taskId].func = task_new_game_prof_birch_speech_6;
+        u8 spriteId = gTasks[taskId].data[8];
+        gSprites[spriteId].data[0] = 0;
+
+        CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 100, 66, 0, 0, 0x20, 0xFFFF1FFF, SPECIES_WOOPER);
+        gTasks[taskId].func = task_new_game_prof_birch_speech_5_2;
+        gTasks[taskId].data[7] = 0;
     }
 }
 
-void sub_8030A70(u8 taskId)
+void task_new_game_prof_birch_speech_5_2(u8 taskId)
 {
-    u8 spriteId = gTasks[gUnknown_03000DD0].data[9];
-
-    gSprites[spriteId].pos1.x = 0x64;
-    gSprites[spriteId].pos1.y = 0x4B;
-    gSprites[spriteId].invisible = 0;
-    gSprites[spriteId].data[0] = 0;
-
-    CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 0x70, 0x3A, 0, 0, 0x20, 0xFFFF, SPECIES_LOTAD);
-    gTasks[taskId].func = sub_8030B14;
-    gTasks[gUnknown_03000DD0].data[7] = 0;
-}
-
-void sub_8030B14(u8 taskId)
-{
-    s16 *data = gTasks[taskId].data;
+    /*s16 *data = gTasks[taskId].data;
     struct Sprite *sprite = &gSprites[gTasks[gUnknown_03000DD0].data[9]];
 
     switch (data[0])
@@ -1451,6 +1497,48 @@ void sub_8030B14(u8 taskId)
             if (gTasks[gUnknown_03000DD0].data[7] < 0x4000)
                 gTasks[gUnknown_03000DD0].data[7]++;
             break;
+    }*/
+    
+    if (IsCryFinished())
+    {
+        if (gTasks[taskId].data[7] >= 0x80)
+        {
+            gTasks[taskId].func = task_new_game_prof_birch_speech_5;
+        }
+    }
+        
+    if (gTasks[taskId].data[7] < 0x4000)
+    {
+        gTasks[taskId].data[7]++;
+        
+        if (gTasks[taskId].data[7] == 32)
+        {
+            StringExpandPlaceholders(gStringVar4, gText_Birch_Pokemon2);
+            AddTextPrinterForMessage(1);
+            FillWindowPixelBuffer(0, 0x11);
+        }
+    }
+    RunTextPrinters();
+}
+
+void task_new_game_prof_birch_speech_5(u8 taskId)
+{
+    if (!sub_8197224())
+    {
+        StringExpandPlaceholders(gStringVar4, gText_Birch_MainSpeech);
+        AddTextPrinterForMessage(1);
+        gTasks[taskId].func = task_new_game_prof_birch_speech_6_1;
+    }
+}
+
+void task_new_game_prof_birch_speech_6_1(u8 taskId)
+{
+    if (!sub_8197224())
+    {
+        sub_8197434(0, TRUE);
+        StringExpandPlaceholders(gStringVar4, gText_Birch_MainSpeech);
+        AddTextPrinterForMessage(1);
+        gTasks[taskId].func = task_new_game_prof_birch_speech_6_1;
     }
 }
 
@@ -1470,7 +1558,7 @@ void task_new_game_prof_birch_speech_7(u8 taskId)
     if (!sub_8197224())
     {
         gSprites[gTasks[taskId].data[8]].oam.objMode = 1;
-        gSprites[gTasks[taskId].data[9]].oam.objMode = 1;
+        //gSprites[gTasks[taskId].data[9]].oam.objMode = 1;
         sub_8031ACC(taskId, 2);
         gTasks[taskId].data[7] = 0x40;
         gTasks[taskId].func = task_new_game_prof_birch_speech_8;
@@ -1496,7 +1584,7 @@ void task_new_game_prof_birch_speech_9(u8 taskId)
     if (gTasks[taskId].data[5])
     {
         gSprites[gTasks[taskId].data[8]].invisible = 1;
-        gSprites[gTasks[taskId].data[9]].invisible = 1;
+        //gSprites[gTasks[taskId].data[9]].invisible = 1;
         if (gTasks[taskId].data[7])
         {
             gTasks[taskId].data[7]--;
@@ -1644,7 +1732,7 @@ void task_new_game_prof_birch_speech_17(u8 taskId)
     if (!gPaletteFade.active)
     {
         FreeAllWindowBuffers();
-        FreeAndDestroyMonPicSprite(gTasks[taskId].data[9]);
+        FreeAndDestroyMonPicSprite(gTasks[taskId].data[8]);
         set_default_player_name(Random() % 20);
         DestroyTask(taskId);
         DoNamingScreen(0, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, new_game_prof_birch_speech_part2_start);
@@ -1706,12 +1794,12 @@ void task_new_game_prof_birch_speech_part2_6(u8 taskId)
     {
         gSprites[gTasks[taskId].data[10]].invisible = TRUE;
         gSprites[gTasks[taskId].data[11]].invisible = TRUE;
-        spriteId = gTasks[taskId].data[8];
+        /*spriteId = gTasks[taskId].data[8];
         gSprites[spriteId].pos1.x = 0x88;
         gSprites[spriteId].pos1.y = 0x3C;
         gSprites[spriteId].invisible = FALSE;
-        gSprites[spriteId].oam.objMode = 1;
-        spriteId = gTasks[taskId].data[9];
+        gSprites[spriteId].oam.objMode = 1;*/
+        spriteId = gTasks[taskId].data[8];
         gSprites[spriteId].pos1.x = 0x64;
         gSprites[spriteId].pos1.y = 0x4B;
         gSprites[spriteId].invisible = FALSE;
@@ -1729,11 +1817,11 @@ void task_new_game_prof_birch_speech_part2_7(u8 taskId)
     if (gTasks[taskId].data[5])
     {
         gSprites[gTasks[taskId].data[8]].oam.objMode = 0;
-        gSprites[gTasks[taskId].data[9]].oam.objMode = 0;
+        //gSprites[gTasks[taskId].data[9]].oam.objMode = 0;
         if (!sub_8197224())
         {
             gSprites[gTasks[taskId].data[8]].oam.objMode = 1;
-            gSprites[gTasks[taskId].data[9]].oam.objMode = 1;
+            //gSprites[gTasks[taskId].data[9]].oam.objMode = 1;
             sub_8031ACC(taskId, 2);
             gTasks[taskId].data[7] = 64;
             gTasks[taskId].func = task_new_game_prof_birch_speech_part2_8;
@@ -1748,7 +1836,7 @@ void task_new_game_prof_birch_speech_part2_8(u8 taskId)
     if (gTasks[taskId].data[5])
     {
         gSprites[gTasks[taskId].data[8]].invisible = 1;
-        gSprites[gTasks[taskId].data[9]].invisible = 1;
+        //gSprites[gTasks[taskId].data[9]].invisible = 1;
         if (gTasks[taskId].data[7])
         {
             gTasks[taskId].data[7]--;
@@ -1819,7 +1907,7 @@ void task_new_game_prof_birch_speech_part2_12(u8 taskId)
     if (!gPaletteFade.active)
     {
         FreeAllWindowBuffers();
-        FreeAndDestroyMonPicSprite(gTasks[taskId].data[9]);
+        FreeAndDestroyMonPicSprite(gTasks[taskId].data[8]);
         ResetAllPicSprites();
         SetMainCallback2(CB2_NewGame);
         DestroyTask(taskId);
@@ -1916,35 +2004,30 @@ void sub_80318D8(struct Sprite *sprite)
 
 u8 sub_80318F4(u8 a, u8 b)
 {
-    return CreatePicSprite2(SPECIES_LOTAD, 8, 0, 1, a, b, 14, -1);
+    return CreatePicSprite2(SPECIES_WOOPER, 8, 0, 1, a, b, 14, -1);
 }
 
 void AddBirchSpeechObjects(u8 taskId)
 {
-    u8 spriteId = AddNewGameBirchObject(0x88, 0x3C, 1);
-    u8 spriteId2;
-    u8 spriteId3;
-    u8 spriteId4;
+    u8 i;
+    u8 wooperSprite;
+    u8 spriteId;
 
-    gSprites[spriteId].callback = nullsub_11;
-    gSprites[spriteId].oam.priority = 0;
-    gSprites[spriteId].invisible = TRUE;
-    gTasks[taskId].data[8] = spriteId;
-    spriteId2 = sub_80318F4(100, 0x4B);
-    gSprites[spriteId2].callback = nullsub_11;
-    gSprites[spriteId2].oam.priority = 0;
-    gSprites[spriteId2].invisible = TRUE;
-    gTasks[taskId].data[9] = spriteId2;
-    spriteId3 = CreateTrainerSprite(FacilityClassToPicIndex(0x3C), 0x78, 0x3C, 0, gDecompressionBuffer);
-    gSprites[spriteId3].callback = nullsub_11;
-    gSprites[spriteId3].invisible = TRUE;
-    gSprites[spriteId3].oam.priority = 0;
-    gTasks[taskId].data[10] = spriteId3;
-    spriteId4 = CreateTrainerSprite(FacilityClassToPicIndex(0x3F), 0x78, 0x3C, 0, &gDecompressionBuffer[0x800]);
-    gSprites[spriteId4].callback = nullsub_11;
-    gSprites[spriteId4].invisible = TRUE;
-    gSprites[spriteId4].oam.priority = 0;
-    gTasks[taskId].data[11] = spriteId4;
+    wooperSprite = sub_80318F4(96, 96);
+    gSprites[wooperSprite].callback = nullsub_11;
+    gSprites[wooperSprite].oam.priority = 0;
+    gSprites[wooperSprite].invisible = TRUE;
+    gTasks[taskId].data[8] = wooperSprite;
+
+    LoadCompressedObjectPic(&sCompressedSpriteSheet_OakPlatform);
+    LoadSpritePalette(&sSpritePalette_OakPlatform);
+
+    for (i = 0; i < 3; i++)
+    {
+        spriteId = CreateSprite(&sSpriteTemplate_OakPlatform, 88 + (i * 32), 112, 1);
+        gTasks[taskId].data[i + 9] = spriteId;
+        StartSpriteAnim(&gSprites[spriteId], i);
+    }
 }
 
 void sub_8031A5C(u8 taskId)
@@ -2192,7 +2275,7 @@ void sub_80323A0(struct TextSubPrinter *printer, u16 a)
     if (*(printer->current_text_offset - 2) == 8 && gUnknown_02022D04 == 0)
     {
         gUnknown_02022D04 = 1;
-        CreateTask(sub_8030A70, 0);
+        CreateTask(task_new_game_prof_birch_speech_5_1, 0);
     }
 }
 
