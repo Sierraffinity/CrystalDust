@@ -1386,6 +1386,9 @@ void Task_NewGameClockSetIntro6(u8 taskId)
     }
 }
 
+#define tBG1HOFS data[4]
+#define tTimer data[7]
+
 void task_new_game_prof_birch_speech_1(u8 taskId)
 {
     LZ77UnCompVram(gBirchIntroShadowGfx, (void*)VRAM);
@@ -1414,11 +1417,6 @@ void task_new_game_prof_birch_speech_2(u8 taskId)
     else
     {
         spriteId = gTasks[taskId].data[8];
-        /*gSprites[spriteId].pos1.x = 0x88;
-        gSprites[spriteId].pos1.y = 0x3C;
-        gSprites[spriteId].invisible = 0;
-        gSprites[spriteId].oam.objMode = 1;
-        sub_8031BAC(taskId, 10);*/
         gTasks[taskId].data[7] = 0x50;
         gTasks[taskId].func = task_new_game_prof_birch_speech_3;
     }
@@ -1471,34 +1469,6 @@ void task_new_game_prof_birch_speech_5_1(u8 taskId)
 
 void task_new_game_prof_birch_speech_5_2(u8 taskId)
 {
-    /*s16 *data = gTasks[taskId].data;
-    struct Sprite *sprite = &gSprites[gTasks[gUnknown_03000DD0].data[9]];
-
-    switch (data[0])
-    {
-        case 0:
-            if (sprite->callback == SpriteCallbackDummy)
-            {
-                sprite->oam.affineMode = 0;
-                goto _08030B98_inc_data0;
-            }
-            break;
-        case 1:
-            if (gTasks[gUnknown_03000DD0].data[7] >= 0x60)
-            {
-                DestroyTask(taskId);
-                if (gTasks[gUnknown_03000DD0].data[7] < 0x4000)
-                    gTasks[gUnknown_03000DD0].data[7]++;
-            }
-            break;
-        _08030B98_inc_data0:
-        default:
-            data[0]++;
-            if (gTasks[gUnknown_03000DD0].data[7] < 0x4000)
-                gTasks[gUnknown_03000DD0].data[7]++;
-            break;
-    }*/
-    
     if (IsCryFinished())
     {
         if (gTasks[taskId].data[7] >= 0x80)
@@ -1533,9 +1503,12 @@ void task_new_game_prof_birch_speech_5(u8 taskId)
 
 void task_new_game_prof_birch_speech_6_1(u8 taskId)
 {
+    u8 spriteId;
     if (!sub_8197224())
     {
         sub_8197434(0, TRUE);
+        spriteId = gTasks[taskId].data[8];
+        sub_807671C(spriteId, gSprites[spriteId].oam.paletteNum, 100, 66, 0, 0, 0x20, 0xFFFF1F3F);
         StringExpandPlaceholders(gStringVar4, gText_Birch_MainSpeech);
         AddTextPrinterForMessage(1);
         gTasks[taskId].func = task_new_game_prof_birch_speech_6_1;
