@@ -851,7 +851,7 @@ static void LoadPrimaryLayerMapSec(void)
 	if (gRegionMap->primaryMapSecId != MAPSEC_NONE)
     {
 		GetMapName(gRegionMap->primaryMapSecName, gRegionMap->primaryMapSecId, 0);
-		box_print(gRegionMap->primaryWindowId, 1, 2, 2, whiteTextColor, 0, gRegionMap->primaryMapSecName);
+		AddTextPrinterParameterized3(gRegionMap->primaryWindowId, 1, 2, 2, whiteTextColor, 0, gRegionMap->primaryMapSecName);
 		PutWindowTilemap(gRegionMap->primaryWindowId);
 		CopyWindowToVram(gRegionMap->primaryWindowId, 3);
 		SetupShadowBoxes(0, &windowCoords[0]);
@@ -877,7 +877,7 @@ static void LoadSecondaryLayerMapSec(void)
         SetShadowBoxState(1, FALSE);
 	    FillWindowPixelBuffer(gRegionMap->secondaryWindowId, 0);
 		GetMapName(gRegionMap->secondaryMapSecName, gRegionMap->secondaryMapSecId, 0);
-		box_print(gRegionMap->secondaryWindowId, 1, 12, 2, mapNamePalDataPointerTable[GetMapSecStatusByLayer(1) - 2], 0, gRegionMap->secondaryMapSecName);
+		AddTextPrinterParameterized3(gRegionMap->secondaryWindowId, 1, 12, 2, mapNamePalDataPointerTable[GetMapSecStatusByLayer(1) - 2], 0, gRegionMap->secondaryMapSecName);
 		PutWindowTilemap(gRegionMap->secondaryWindowId);
 		CopyWindowToVram(gRegionMap->secondaryWindowId, 3);
 	}
@@ -1800,15 +1800,15 @@ static void ShowHelpBar(void)
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(0, 0xFF);
-    box_print(0, 0, 144, 0, color, 0, gText_DpadMove);
+    AddTextPrinterParameterized3(0, 0, 144, 0, color, 0, gText_DpadMove);
 
     if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
     {
-        box_print(0, 0, 192, 0, color, 0, gText_AOK);
+        AddTextPrinterParameterized3(0, 0, 192, 0, color, 0, gText_AOK);
     }
     else if (sFlyMap->regionMap.onButton)
     {
-        box_print(0, 0, 192, 0, color, 0, gText_ACancel);
+        AddTextPrinterParameterized3(0, 0, 192, 0, color, 0, gText_ACancel);
     }
 
     PutWindowTilemap(0);

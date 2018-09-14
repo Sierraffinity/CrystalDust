@@ -226,9 +226,9 @@ void CB2_StartWallClock(void)
     WallClockInit();
     PutWindowTilemap(2);
     FillWindowPixelBuffer(2, 0x00);
-    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeNotSet);
+    AddTextPrinterParameterized3(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeNotSet);
     NewMenuHelpers_DrawDialogueFrame(0, TRUE);
-    PrintTextOnWindow(0, 1, gText_SetClock_WhatTime, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(0, 1, gText_SetClock_WhatTime, 0, 1, 0, NULL);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 
@@ -360,7 +360,7 @@ static u8 *BufferTimeString(u8 *dest, u8 hours, u8 minutes, bool8 twentyFourHour
 
 static void Task_SetClock2_1(u8 taskId)
 {
-    if (!sub_8197224())
+    if (!RunTextPrintersAndIsPrinter0Active())
     {
         AddScrollArrows(taskId);
         gTasks[taskId].func = Task_SetClock2;
@@ -448,7 +448,7 @@ static void Task_SetClock2(u8 taskId)
 
 static void Task_SetClock3(u8 taskId)
 {
-    if (!sub_8197224())
+    if (!RunTextPrintersAndIsPrinter0Active())
     {
         CreateYesNoMenu(&gUnknown_085B21F4, 0x250, 13, 0);
         gTasks[taskId].func = Task_SetClock4;
@@ -489,7 +489,7 @@ static void Task_SetClock5(u8 taskId)
     
     RtcInitLocalTimeOffset(gTasks[taskId].tHours, gTasks[taskId].tMinutes);
     FillWindowPixelBuffer(2, 0x00);
-    box_print(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeSet);
+    AddTextPrinterParameterized3(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeSet);
     
     if (gTasks[taskId].tMinutes == 0)
     {
@@ -572,7 +572,7 @@ static void Task_SetClock5(u8 taskId)
 static void Task_SetClock6(u8 taskId)
 {
     RtcCalcLocalTime();
-    if (!sub_8197224() && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (!RunTextPrintersAndIsPrinter0Active() && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
         gTasks[taskId].func = Task_SetClock7;
@@ -731,7 +731,7 @@ static void ShowHelpBar(const u8 *string)
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(1, 0xFF);
-    box_print(1, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
+    AddTextPrinterParameterized3(1, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
     PutWindowTilemap(1);
     CopyWindowToVram(1, 3);
 }

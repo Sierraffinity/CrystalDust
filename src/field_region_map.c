@@ -222,11 +222,11 @@ static void ShowHelpBar(void)
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(0, 0xFF);
-    box_print(0, 0, 144, 0, color, 0, gText_DpadMove);
+    AddTextPrinterParameterized3(0, 0, 144, 0, color, 0, gText_DpadMove);
 
     if (sFieldRegionMapHandler->regionMap.onButton)
     {
-        box_print(0, 0, 192, 0, color, 0, gText_ACancel);
+        AddTextPrinterParameterized3(0, 0, 192, 0, color, 0, gText_ACancel);
     }
 
     PutWindowTilemap(0);

@@ -172,7 +172,7 @@ static const struct Sprite sDummySprite =
     .data = {0, 0, 0, 0, 0, 0, 0},
     .inUse = 0,
     .coordOffsetEnabled = 0,
-    .invisible = 0,
+    .invisible = FALSE,
     .flags_3 = 0,
     .flags_4 = 0,
     .flags_5 = 0,
@@ -288,7 +288,7 @@ static const struct OamDimensions sOamDimensions[3][4] =
 // iwram bss
 IWRAM_DATA static u16 sSpriteTileRangeTags[MAX_SPRITES];
 IWRAM_DATA static u16 sSpriteTileRanges[MAX_SPRITES * 2];
-IWRAM_DATA static struct AffineAnimState sAffineAnimStates[OAM_MATRIX_COUNT];
+IWRAM_DATA  struct AffineAnimState sAffineAnimStates[OAM_MATRIX_COUNT];
 IWRAM_DATA static u16 sSpritePaletteTags[16];
 
 // iwram common

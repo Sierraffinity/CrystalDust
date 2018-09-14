@@ -766,7 +766,7 @@ static void ShowHelpBar(const u8 *string)
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(WIN_HELP, 0xFF);
-    box_print(WIN_HELP, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
+    AddTextPrinterParameterized3(WIN_HELP, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
     PutWindowTilemap(WIN_HELP);
     CopyWindowToVram(WIN_HELP, 3);
 }
@@ -902,9 +902,9 @@ static void LoadClockCard(void)
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PutWindowTilemap(WIN_TOP);
     //PutWindowTilemap(WIN_BOTTOM);
-    PrintTextOnWindow(WIN_DIALOG, 1, gText_PokegearInstructions, 0, 1, 0, NULL);
-    box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
-    //box_print(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
+    AddTextPrinterParameterized(WIN_DIALOG, 1, gText_PokegearInstructions, 0, 1, 0, NULL);
+    AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
+    //AddTextPrinterParameterized3(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
     schedule_bg_copy_tilemap_to_vram(0);
     
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
@@ -936,7 +936,7 @@ static void Task_ClockCard(u8 taskId)
         const u8 *dayOfWeek = GetDayOfWeekString();
         gTasks[taskId].tDayOfWeek = gLocalTime.dayOfWeek;
         FillWindowPixelBuffer(WIN_TOP, 0);
-        box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
+        AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
     }
 }
 
@@ -1123,7 +1123,7 @@ static void LoadPhoneCard(void)
 
     newTask = CreateTask(Task_PhoneCard, 0);
     gTasks[newTask].tListMenuTaskId = ListMenuInit(&menuTemplate, 0, 0);
-    PrintTextOnWindow(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL);
     schedule_bg_copy_tilemap_to_vram(0);
     
     gTasks[newTask].tScrollTaskId = 0xFF;
@@ -1258,7 +1258,7 @@ static void LoadRadioCard(void)
     CopyWindowToVram(WIN_DIALOG, 2);
     //PutWindowTilemap(WIN_TOP);
     PutWindowTilemap(WIN_BOTTOM);
-    //box_print(WIN_TOP, 1, GetStringCenterAlignXOffset(1, gText_PokegearRadioTuning, 0x70), 5, sTextColor, 0, gText_PokegearRadioTuning);
+    //AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, gText_PokegearRadioTuning, 0x70), 5, sTextColor, 0, gText_PokegearRadioTuning);
     FillWindowPixelBuffer(WIN_BOTTOM, 0x00);
     CopyWindowToVram(WIN_BOTTOM, 2);
     schedule_bg_copy_tilemap_to_vram(0);
@@ -1332,7 +1332,7 @@ static const struct RadioStation sRadioStationData[] = {
 
 void DrawStationTitle(const u8 *title)
 {
-    box_print(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, title, 0x70), 5, sTextColor, 0, title);
+    AddTextPrinterParameterized3(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, title, 0x70), 5, sTextColor, 0, title);
 }
 
 void ClearStationTitle(void)

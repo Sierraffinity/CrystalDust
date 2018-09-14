@@ -282,6 +282,7 @@ extern const u8 gText_Birch_Welcome[];
 extern const u8 gText_Birch_Pokemon[];
 extern const u8 gText_Birch_Pokemon2[];
 extern const u8 gText_Birch_MainSpeech[];
+extern const u8 gText_Oak_MainSpeech2[];
 extern const u8 gText_Birch_AndYouAre[];
 extern const u8 gText_Birch_BoyOrGirl[];
 extern const u8 gText_Birch_WhatsYourName[];
