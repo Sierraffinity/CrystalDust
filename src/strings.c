@@ -2204,4 +2204,4 @@ const u8 gText_DpadMove[] = _("{DPAD_NONE}MOVE");
 const u8 gText_AOK[] = _("{A_BUTTON}OK");
 const u8 gText_ACancel[] = _("{A_BUTTON}CANCEL");
 
-const u8 gText_LeftRightSelectUpDownChangeAConfirm[] = _("{DPAD_LEFTRIGHT}SELECT  {DPAD_UPDOWN}CHANGE  {A_BUTTON}CONFIRM");
+const u8 gText_LeftRightSelectUpDownChangeAConfirm[] = _("{DPAD_LEFTRIGHT}SELECT  {DPAD_UPDOWN}CHANGE  {A_BUTTON}CONFIRM  {SELECT_BUTTON}MODE");
