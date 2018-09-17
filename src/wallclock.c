@@ -549,18 +549,21 @@ static void Task_SetClock5(u8 taskId)
 
     StringCopy(dest, string);
 
-    switch (GetTimeOfDay())
+    if (gTasks[taskId].tHours < TIME_MORNING_HOUR)
     {
-        case TIME_MORNING:
-            string = gText_SetClock_IOverslept;
-            break;
-        case TIME_DAY:
-        case TIME_AFTERNOON:
-            string = gText_SetClock_YikesIOverslept;
-            break;
-        case TIME_NIGHT:
-            string = gText_SetClock_SoDark;
-            break;
+        string = gText_SetClock_SoDark;
+    }
+    else if (gTasks[taskId].tHours < TIME_DAY_HOUR + 1)
+    {
+        string = gText_SetClock_IOverslept;
+    }
+    else if (gTasks[taskId].tHours < TIME_NIGHT_HOUR)
+    {
+        string = gText_SetClock_YikesIOverslept;
+    }
+    else
+    {
+        string = gText_SetClock_SoDark;
     }
     
     FillWindowPixelBuffer(0, 0x11);
