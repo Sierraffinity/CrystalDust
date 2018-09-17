@@ -8,6 +8,7 @@
 #include "window.h"
 #include "bg.h"
 #include "gpu_regs.h"
+#include "international_string_util.h"
 #include "pokemon.h"
 #include "field_specials.h"
 #include "field_player_avatar.h"
@@ -1780,7 +1781,7 @@ static void sub_80E4EF0(void)
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(gNamingScreenData->windows[4], 0xFF);
-    AddTextPrinterParameterized3(gNamingScreenData->windows[4], 0, 2, 1, color, 0, gText_MoveOkBack);
+    AddTextPrinterParameterized3(gNamingScreenData->windows[4], 0, GetStringRightAlignXOffset(0, gText_MoveOkBack, 240) - 4, 0, color, 0, gText_MoveOkBack);
     PutWindowTilemap(gNamingScreenData->windows[4]);
     CopyWindowToVram(gNamingScreenData->windows[4], 3);
 }

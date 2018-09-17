@@ -429,6 +429,7 @@ static void Task_SetClock2(u8 taskId)
     else if (gMain.newAndRepeatedKeys & DPAD_LEFT || (gMain.newKeys & B_BUTTON && gTasks[taskId].tWhichChanging == DIGIT_MINUTES))
     {
         ChangeDigitWithDelta(taskId, -1);
+        shouldStopBlinking = TRUE;
     }
     else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
     {
@@ -438,6 +439,7 @@ static void Task_SetClock2(u8 taskId)
     else if (gMain.newAndRepeatedKeys & DPAD_RIGHT || gMain.newKeys & A_BUTTON)
     {
         ChangeDigitWithDelta(taskId, 1);
+        shouldStopBlinking = TRUE;
     }
 
     if (shouldStopBlinking && gTasks[taskId].tBlinkTimer != -1)

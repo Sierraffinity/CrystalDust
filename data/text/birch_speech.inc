@@ -1,6 +1,6 @@
 gText_SetClock_WokeMeUp::
 	.string "………………………………………………\n"
-	.string "……………………………………………\p"
+	.string "………………………………………………\p"
 	.string "Zzz… Hm? Wha…?\n"
 	.string "You woke me up!\p"
 	.string "Will you check the clock for me?$"
@@ -32,14 +32,11 @@ gText_Oak_MainSpeech2::
 	.string "But despite this, we don’t know\n"
 	.string "everything about POKéMON yet.\p"
 	.string "There are still many mysteries\n"
-	.string "about POKéMON to solve.\p"
-	.string "That’s why I study POKéMON\n"
-	.string "as a profession every day.\p"
-	.string "$"
-
-gText_Birch_AndYouAre:: @ 82C8BD0
-	.string "But first, tell me a little about\n"
-	.string "yourself.\n"
+	.string "surrounding them to solve.\p"
+	.string "That’s why I study POKéMON as a\n"
+	.string "profession every day.\p"
+	.string "Now, enough about me.\n"
+	.string "Tell me a little about yourself.\p"
 	.string "$"
 
 gText_Birch_BoyOrGirl:: @ 82C8BDD
@@ -47,26 +44,20 @@ gText_Birch_BoyOrGirl:: @ 82C8BDD
 	.string "Or are you a girl?$"
 
 gText_Birch_WhatsYourName:: @ 82C8BFF
-	.string "All right.\n"
-	.string "What’s your name?$"
+	.string "Now, what did you say your name\n"
+	.string "was again?\p"
+	.string "$"
 
 gText_Birch_SoItsPlayer:: @ 82C8C1C
-	.string "So it’s {PLAYER}{KUN}?$"
-
-gText_Birch_YourePlayer:: @ 82C8C2A
-	.string "Ah, okay!\p"
-	.string "You’re {PLAYER}{KUN} who’s moving to my\n"
-	.string "hometown of LITTLEROOT.\l"
-	.string "I get it now!\p"
-	.string "$"
+	.string "Right…\n"
+	.string "So your name is {PLAYER}.$"
 
 gText_Birch_AreYouReady:: @ 82C8C7A
-	.string "All right, are you ready?\p"
-	.string "Your very own adventure is about\n"
-	.string "to unfold.\p"
-	.string "Take courage, and leap into the\n"
-	.string "world of POKéMON where dreams,\l"
-	.string "adventure, and friendships await!\p"
-	.string "Well, I’ll be expecting you later.\n"
-	.string "Come see me in my POKéMON LAB.\p"
-	.string "$"
+	.string "{PLAYER}, are you ready?\p"
+	.string "Your very own POKéMON story is\n"
+	.string "about to unfold.\p"
+	.string "You’ll face fun times and tough\n"
+	.string "challenges.\p"
+	.string "A world of dreams and adventures\n"
+	.string "with POKéMON awaits! Let’s go!\p"
+	.string "I’ll be seeing you later!$"
