@@ -5,7 +5,7 @@ gText_SetClock_WokeMeUp::
 	.string "You woke me up!\p"
 	.string "Will you check the clock for me?$"
 
-gText_Birch_Welcome:: @ 82C897B
+gText_Oak_Welcome:: @ 82C897B
 	.string "Hello! Sorry to keep you waiting!\p"
 	.string "Welcome to the world of POKéMON!\p"
 	.string "My name is OAK.\p"
@@ -13,15 +13,15 @@ gText_Birch_Welcome:: @ 82C897B
 	.string "as the POKéMON PROFESSOR.\p"
 	.string "$"
 
-gText_Birch_Pokemon:: @ 82C89FB
+gText_Oak_Pokemon:: @ 82C89FB
 	.string "This world…$"
 
-gText_Birch_Pokemon2:: @ 82C89FB
+gText_Oak_Pokemon2:: @ 82C89FB
 	.string "…is inhabited far and wide by\n"
 	.string "creatures that we call POKéMON.\p"
 	.string "$"
 
-gText_Birch_MainSpeech:: @ 82C8A1F
+gText_Oak_MainSpeech:: @ 82C8A1F
 	.string "People and POKéMON live together by\n"
 	.string "supporting each other.\p"
 	.string "Some people play with POKéMON,\n"
@@ -39,20 +39,20 @@ gText_Oak_MainSpeech2::
 	.string "Tell me a little about yourself.\p"
 	.string "$"
 
-gText_Birch_BoyOrGirl:: @ 82C8BDD
+gText_Oak_BoyOrGirl:: @ 82C8BDD
 	.string "Are you a boy?\n"
 	.string "Or are you a girl?$"
 
-gText_Birch_WhatsYourName:: @ 82C8BFF
+gText_Oak_WhatsYourName:: @ 82C8BFF
 	.string "Now, what did you say your name\n"
 	.string "was again?\p"
 	.string "$"
 
-gText_Birch_SoItsPlayer:: @ 82C8C1C
+gText_Oak_SoItsPlayer:: @ 82C8C1C
 	.string "Right…\n"
 	.string "So your name is {PLAYER}.$"
 
-gText_Birch_AreYouReady:: @ 82C8C7A
+gText_Oak_AreYouReady:: @ 82C8C7A
 	.string "{PLAYER}, are you ready?\p"
 	.string "Your very own POKéMON story is\n"
 	.string "about to unfold.\p"
