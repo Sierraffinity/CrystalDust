@@ -1,6 +1,6 @@
 	.include "MPlayDef.s"
 
-	.equ	mus_mainmenu_grp, voicegroup_86A2FD4
+	.equ	mus_mainmenu_grp, voicegroup137
 	.equ	mus_mainmenu_pri, 0
 	.equ	mus_mainmenu_rev, reverb_set+50
 	.equ	mus_mainmenu_mvl, 127

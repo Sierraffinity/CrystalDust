@@ -1,6 +1,6 @@
 	.include "MPlayDef.s"
 
-	.equ	mus_route30_grp, voicegroup_867A1D4
+	.equ	mus_route30_grp, voicegroup021
 	.equ	mus_route30_pri, 0
 	.equ	mus_route30_rev, reverb_set+50
 	.equ	mus_route30_mvl, 127
