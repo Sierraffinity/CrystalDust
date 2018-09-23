@@ -1,4 +1,4 @@
-LittlerootTown_MaysHouse_2F: @ 8482B48
+LittlerootTown_MaysHouse_2F::
 	.4byte LittlerootTown_MaysHouse_2F_Layout
 	.4byte LittlerootTown_MaysHouse_2F_MapEvents
 	.4byte LittlerootTown_MaysHouse_2F_MapScripts
@@ -12,4 +12,3 @@ LittlerootTown_MaysHouse_2F: @ 8482B48
 	.2byte 0
 	.byte 0
 	.byte MAP_BATTLE_SCENE_NORMAL
-

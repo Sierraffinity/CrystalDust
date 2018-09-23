@@ -1,4 +1,4 @@
-LittlerootTown_ProfessorBirchsLab: @ 8482B64
+LittlerootTown_ProfessorBirchsLab::
 	.4byte LittlerootTown_ProfessorBirchsLab_Layout
 	.4byte LittlerootTown_ProfessorBirchsLab_MapEvents
 	.4byte LittlerootTown_ProfessorBirchsLab_MapScripts
@@ -12,4 +12,3 @@ LittlerootTown_ProfessorBirchsLab: @ 8482B64
 	.2byte 0
 	.byte 0
 	.byte MAP_BATTLE_SCENE_NORMAL
-

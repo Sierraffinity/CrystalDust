@@ -1,4 +1,4 @@
-LittlerootTown_BrendansHouse_1F: @ 8482AF4
+LittlerootTown_BrendansHouse_1F::
 	.4byte LittlerootTown_BrendansHouse_1F_Layout
 	.4byte LittlerootTown_BrendansHouse_1F_MapEvents
 	.4byte LittlerootTown_BrendansHouse_1F_MapScripts
@@ -12,4 +12,3 @@ LittlerootTown_BrendansHouse_1F: @ 8482AF4
 	.2byte 0
 	.byte 0
 	.byte MAP_BATTLE_SCENE_NORMAL
-

@@ -6,8 +6,8 @@ LittlerootTown_BrendansHouse_1F_MapBlockdata::
 
 	.align 2
 LittlerootTown_BrendansHouse_1F_Layout::
-	.4byte 0xb
-	.4byte 0x9
+	.4byte 12
+	.4byte 10
 	.4byte LittlerootTown_BrendansHouse_1F_MapBorder
 	.4byte LittlerootTown_BrendansHouse_1F_MapBlockdata
 	.4byte gTileset_Building

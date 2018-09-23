@@ -25,6 +25,7 @@
 #include "battle_records.h"
 #include "item.h"
 #include "pokedex.h"
+#include "constants/maps.h"
 
 extern u8 gDifferentSaveFile;
 extern u16 gSaveFileStatus;
@@ -132,7 +133,7 @@ static void ClearFrontierRecord(void)
 
 static void WarpToTruck(void)
 {
-    Overworld_SetWarpDestination(25, 40, -1, -1, -1); // inside of truck
+    Overworld_SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), MAP_GROUP(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), -1, -1, -1); // inside of truck
     WarpIntoMap();
 }
 
