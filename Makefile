@@ -47,7 +47,7 @@ LIB := -L ../../tools/agbcc/lib -lgcc -lc
 SHA1 := $(shell { command -v sha1sum || command -v shasum; } 2>/dev/null) -c
 GFX := tools/gbagfx/gbagfx$(EXE)
 AIF := tools/aif2pcm/aif2pcm$(EXE)
-MID := $(abspath tools/mid2agb/mid2agb)$(EXE)
+MID := tools/mid2agb/mid2agb$(EXE)
 SCANINC := tools/scaninc/scaninc$(EXE)
 PREPROC := tools/preproc/preproc$(EXE)
 RAMSCRGEN := tools/ramscrgen/ramscrgen$(EXE)
@@ -93,7 +93,7 @@ compare: $(ROM)
 
 clean: tidy
 	rm -f sound/direct_sound_samples/*.bin
-	rm -f $(SONG_OBJS) $(MID_OBJS)
+	rm -f $(SONG_OBJS) $(MID_OBJS) $(MID_SUBDIR)/*.s
 	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.latfont' -o -iname '*.hwjpnfont' -o -iname '*.fwjpnfont' \) -exec rm {} +
 
 tidy:

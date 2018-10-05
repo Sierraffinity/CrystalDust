@@ -18,7 +18,6 @@
 mus_route30_1:
 	.byte	KEYSH , mus_route30_key+0
 @ 000   ----------------------------------------
-	.byte   LFOS  , 44
 	.byte	TEMPO , 125*mus_route30_tbs/2
 	.byte		VOICE , 48
 	.byte		LFOS  , 44
@@ -1113,7 +1112,6 @@ loop1:
 mus_route30_2:
 	.byte	KEYSH , mus_route30_key+0
 @ 000   ----------------------------------------
-	.byte   LFOS  , 44
 	.byte		VOICE , 48
 	.byte		LFOS  , 44
 	.byte		PAN   , c_v+0
@@ -1492,7 +1490,6 @@ loop2:
 mus_route30_3:
 	.byte	KEYSH , mus_route30_key+0
 @ 000   ----------------------------------------
-	.byte   LFOS  , 44
 	.byte		VOICE , 87
 	.byte		LFOS  , 44
 	.byte		VOL   , 127*mus_route30_mvl/mxv
@@ -1724,7 +1721,6 @@ loop3:
 mus_route30_4:
 	.byte	KEYSH , mus_route30_key+0
 @ 000   ----------------------------------------
-	.byte   LFOS  , 44
 	.byte		VOICE , 81
 	.byte		LFOS  , 44
 	.byte		PAN   , c_v+0
@@ -2041,7 +2037,6 @@ loop4:
 mus_route30_5:
 	.byte	KEYSH , mus_route30_key+0
 @ 000   ----------------------------------------
-	.byte   LFOS  , 44
 	.byte		VOICE , 82
 	.byte		LFOS  , 44
 	.byte		PAN   , c_v+0
@@ -2298,7 +2293,6 @@ mus_route30_5_004:
 mus_route30_6:
 	.byte	KEYSH , mus_route30_key+0
 @ 000   ----------------------------------------
-	.byte   LFOS  , 44
 	.byte		VOICE , 47
 	.byte		LFOS  , 44
 	.byte		VOL   , 127*mus_route30_mvl/mxv
@@ -2521,7 +2515,6 @@ loop6:
 mus_route30_7:
 	.byte	KEYSH , mus_route30_key+0
 @ 000   ----------------------------------------
-	.byte   LFOS  , 44
 	.byte		VOICE , 0
 	.byte		LFOS  , 44
 	.byte		PAN   , c_v+0
