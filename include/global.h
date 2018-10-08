@@ -93,7 +93,7 @@ enum
     VERSION_EMERALD = 3,
     VERSION_FIRE_RED = 4,
     VERSION_LEAF_GREEN = 5,
-    VERSION_CRYSTAL_DUST = 6,
+    VERSION_CRYSTAL_DUST = 7,   // shows up as "Johto" when migrated to gen IV (apparently HeartGold's game ID?)
 };
 
 enum LanguageId

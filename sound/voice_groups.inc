@@ -17506,7 +17506,7 @@ voicegroup151:: @ 86A7840
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A7BF4
 	voice_square_1_alt 0, 1, 1, 2, 3, 1  @ 86A7C00
 	voice_square_2_alt 1, 0, 2, 4, 2  @ 86A7C0C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A7C18
+	voice_square_1 0, 1, 0, 7, 8, 7  @ 86A7C18
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A7C24
 	voice_square_1_alt 0, 0, 0, 2, 3, 1  @ 86A7C30
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A7C3C

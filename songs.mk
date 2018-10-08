@@ -3,6 +3,12 @@ STD_REVERB = 50
 $(MID_BUILDDIR)/%.o: $(MID_SUBDIR)/%.s
 	$(AS) $(ASFLAGS) -I sound -o $@ $<
 
+$(MID_SUBDIR)/mus_route30.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G151 -V090
+
+$(MID_SUBDIR)/mus_mainmenu.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G137 -V090
+
 $(MID_SUBDIR)/mus_ajito.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G076 -V084
 

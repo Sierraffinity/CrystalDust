@@ -863,7 +863,7 @@ SECTIONS {
         sound/songs/midi/mus_fanfa5.o(.rodata);
         sound/songs/midi/mus_me_waza.o(.rodata);
         sound/songs/midi/mus_bijyutu.o(.rodata);
-        sound/songs/mus_route30.o(.rodata);
+        sound/songs/midi/mus_route30.o(.rodata);
         sound/songs/midi/mus_fune_kan.o(.rodata);
         sound/songs/midi/mus_me_shinka.o(.rodata);
         sound/songs/midi/mus_shinka.o(.rodata);
@@ -907,7 +907,7 @@ SECTIONS {
         sound/songs/midi/mus_girl_sup.o(.rodata);
         sound/songs/midi/mus_hageshii.o(.rodata);
         sound/songs/midi/mus_kakkoii.o(.rodata);
-        sound/songs/mus_mainmenu.o(.rodata);
+        sound/songs/midi/mus_mainmenu.o(.rodata);
         sound/songs/midi/mus_aqa_0.o(.rodata);
         sound/songs/midi/mus_tsuretek.o(.rodata);
         sound/songs/midi/mus_boy_sup.o(.rodata);
