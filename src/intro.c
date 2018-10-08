@@ -26,6 +26,7 @@
 #include "title_screen.h"
 #include "constants/rgb.h"
 #include "trainer_pokemon_sprites.h"
+#include "constants/battle_anim.h"
 
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
 extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];
