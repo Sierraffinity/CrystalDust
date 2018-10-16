@@ -17,7 +17,7 @@ LittlerootTown_BrendansHouse_2F_EventObjects::
 	object_event 16, EVENT_OBJ_GFX_SWABLU_DOLL, 0, 5, 5, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, 0x0, 815
 
 LittlerootTown_BrendansHouse_2F_MapWarps::
-	warp_def 7, 1, 0, 2, MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F
+	warp_def 9, 2, 0, 2, MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F
 
 LittlerootTown_BrendansHouse_2F_MapBGEvents::
 	bg_event 0, 1, 0, BG_EVENT_PLAYER_FACING_NORTH, gUnknown_081F860D
