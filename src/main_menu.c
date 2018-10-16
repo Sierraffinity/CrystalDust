@@ -6,7 +6,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
-#include "blend_palette.h"
+#include "util.h"
 #include "clock.h"
 #include "decompress.h"
 #include "event_data.h"
