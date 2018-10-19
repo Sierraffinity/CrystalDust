@@ -1071,11 +1071,11 @@ static void PCTurnOnEffect_1(s16 flag, s8 dx, s8 dy)
     {
         if (gSpecialVar_0x8004 == 0)
         {
-            tileId = 0x4;
+            tileId = 0x62;
         }
         else if (gSpecialVar_0x8004 == 1)
         {
-            tileId = 0x25a;
+            tileId = 0x28F;
         }
         else if (gSpecialVar_0x8004 == 2)
         {
@@ -1086,11 +1086,11 @@ static void PCTurnOnEffect_1(s16 flag, s8 dx, s8 dy)
     {
         if (gSpecialVar_0x8004 == 0)
         {
-            tileId = 0x5;
+            tileId = 0x63;
         }
         else if (gSpecialVar_0x8004 == 1)
         {
-            tileId = 0x27f;
+            tileId = 0x28A;
         }
         else if (gSpecialVar_0x8004 == 2)
         {
@@ -1128,11 +1128,11 @@ static void PCTurnOffEffect(void)
     }
     if (gSpecialVar_0x8004 == 0)
     {
-        tileId = 0x4;
+        tileId = 0x62;
     }
     else if (gSpecialVar_0x8004 == 1)
     {
-        tileId = 0x25a;
+        tileId = 0x28F;
     }
     else if (gSpecialVar_0x8004 == 2)
     {
@@ -1328,7 +1328,7 @@ u16 GetSlotMachineId(void)
 bool8 FoundAbandonedShipRoom1Key(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
-    u16 flag = FLAG_HIDDEN_ITEM_1F;
+    u16 flag = FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_1_KEY;
     *specVar = flag;
     if (!FlagGet(flag))
     {
@@ -1340,7 +1340,7 @@ bool8 FoundAbandonedShipRoom1Key(void)
 bool8 FoundAbandonedShipRoom2Key(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
-    u16 flag = FLAG_HIDDEN_ITEM_20;
+    u16 flag = FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_2_KEY;
     *specVar = flag;
     if (!FlagGet(flag))
     {
@@ -1352,7 +1352,7 @@ bool8 FoundAbandonedShipRoom2Key(void)
 bool8 FoundAbandonedShipRoom4Key(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
-    u16 flag = FLAG_HIDDEN_ITEM_21;
+    u16 flag = FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_4_KEY;
     *specVar = flag;
     if (!FlagGet(flag))
     {
@@ -1364,7 +1364,7 @@ bool8 FoundAbandonedShipRoom4Key(void)
 bool8 FoundAbandonedShipRoom6Key(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
-    u16 flag = FLAG_HIDDEN_ITEM_22;
+    u16 flag = FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_6_KEY;
     *specVar = flag;
     if (!FlagGet(flag))
     {
@@ -1508,7 +1508,7 @@ static void sub_8139620(u8 taskId)
 
 bool8 FoundBlackGlasses(void)
 {
-    return FlagGet(FLAG_HIDDEN_ITEM_BLACK_GLASSES);
+    return FlagGet(FLAG_HIDDEN_ITEM_ROUTE_116_BLACK_GLASSES);
 }
 
 void SetRoute119Weather(void)
@@ -4081,7 +4081,7 @@ void sub_813BA60(void)
         FlagClear(FLAG_HIDE_FANCLUB_BOY);
         FlagClear(FLAG_HIDE_FANCLUB_LITTLE_BOY);
         FlagClear(FLAG_HIDE_FANCLUB_LADY);
-        FlagClear(FLAG_0x2DA);
+        FlagClear(FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER);
         VarSet(VAR_LILYCOVE_FAN_CLUB_STATE, 1);
     }
 }

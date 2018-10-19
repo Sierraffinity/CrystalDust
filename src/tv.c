@@ -824,19 +824,19 @@ void UpdateTVScreensOnMap(int width, int height)
     switch (CheckForBigMovieOrEmergencyNewsOnTV())
     {
         case 1:
-            SetTVMetatilesOnMap(width, height, 0x3);
+            SetTVMetatilesOnMap(width, height, 0x61);
             break;
         case 2:
             break;
         default:
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LILYCOVE_CITY_COVE_LILY_MOTEL_1F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LILYCOVE_CITY_COVE_LILY_MOTEL_1F))
             {
-                SetTVMetatilesOnMap(width, height, 0x3);
+                SetTVMetatilesOnMap(width, height, 0x61);
             }
             else if (FlagGet(FLAG_SYS_TV_START) && (FindAnyTVShowOnTheAir() != 0xff || FindAnyTVNewsOnTheAir() != 0xff || IsTVShowInSearchOfTrainersAiring()))
             {
                 FlagClear(FLAG_SYS_TV_WATCH);
-                SetTVMetatilesOnMap(width, height, 0x3);
+                SetTVMetatilesOnMap(width, height, 0x61);
             }
             break;
     }
@@ -861,13 +861,13 @@ void SetTVMetatilesOnMap(int width, int height, u16 tileId)
 
 void TurnOffTVScreen(void)
 {
-    SetTVMetatilesOnMap(gUnknown_03005DC0.width, gUnknown_03005DC0.height, 0x0002);
+    SetTVMetatilesOnMap(gUnknown_03005DC0.width, gUnknown_03005DC0.height, 0x35);
     DrawWholeMapView();
 }
 
 void TurnOnTVScreen(void)
 {
-    SetTVMetatilesOnMap(gUnknown_03005DC0.width, gUnknown_03005DC0.height, 0x0003);
+    SetTVMetatilesOnMap(gUnknown_03005DC0.width, gUnknown_03005DC0.height, 0x61);
     DrawWholeMapView();
 }
 
