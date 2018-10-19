@@ -309,8 +309,7 @@ LittlerootTown_BrendansHouse_2F_Text_1F877F: @ 81F877F
 	.string "The remaining pages are blank…$"
 
 LittlerootTown_BrendansHouse_2F_Text_1F8820: @ 81F8820
-	.string "{PLAYER} took a closer look at the\n"
-	.string "HOENN region map.$"
+	.string "It’s the TOWN MAP.$"
 
 LittlerootTown_BrendansHouse_2F_Text_1F884F: @ 81F884F
 	.string "It’s a Nintendo GameCube.\p"
