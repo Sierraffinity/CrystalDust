@@ -86,30 +86,29 @@ static void sub_8124CBC(struct Sprite *sprite);
 static void sub_8124D14(void);
 static void sub_8124D64(void);
 static void sub_8124E0C(void);
-
 static void LoadPrimaryLayerMapSec(void);
 static void LoadSecondaryLayerMapSec(void);
 static void SetupShadowBoxes(u8 layerNum, const struct WindowCoords *coords);
 static u8 GetMapSecStatusByLayer(u8 layer);
 static void SetShadowBoxState(u8 offset, bool8 hide);
-static const u8 *GetRegionMapTilemap(u8 region);
+static const u32 *GetRegionMapTilemap(u8 region);
 
 // .rodata
 static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/region_map/cursor.gbapal");
-static const u8 sRegionMapCursorGfxLZ[] = INCBIN_U8("graphics/region_map/cursor.4bpp.lz");
+static const u32 sRegionMapCursorGfxLZ[] = INCBIN_U32("graphics/region_map/cursor.4bpp.lz");
 static const u16 sRegionMapPal[] = INCBIN_U16("graphics/region_map/region_map.gbapal");
-static const u8 sRegionMapTileset[] = INCBIN_U8("graphics/region_map/region_map.4bpp.lz");
-static const u8 sRegionMapJohtoTilemap[] = INCBIN_U8("graphics/region_map/johto_map.bin.lz");
-static const u8 sRegionMapKantoTilemap[] = INCBIN_U8("graphics/region_map/kanto_map.bin.lz");
+static const u32 sRegionMapTileset[] = INCBIN_U32("graphics/region_map/region_map.4bpp.lz");
+static const u32 sRegionMapJohtoTilemap[] = INCBIN_U32("graphics/region_map/johto_map.bin.lz");
+static const u32 sRegionMapKantoTilemap[] = INCBIN_U32("graphics/region_map/kanto_map.bin.lz");
 static const u16 sRegionMapTownNames_Pal[] = INCBIN_U16("graphics/region_map/town_names.gbapal");
 static const u16 sRegionMapPlayerIcon_GoldPal[] = INCBIN_U16("graphics/region_map/gold_icon.gbapal");
-static const u8 sRegionMapPlayerIcon_GoldGfx[] = INCBIN_U8("graphics/region_map/gold_icon.4bpp");
+static const u32 sRegionMapPlayerIcon_GoldGfx[] = INCBIN_U32("graphics/region_map/gold_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_KrisPal[] = INCBIN_U16("graphics/region_map/kris_icon.gbapal");
-static const u8 sRegionMapPlayerIcon_KrisGfx[] = INCBIN_U8("graphics/region_map/kris_icon.4bpp");
-static const u8 sRegionMapDots_Gfx[] = INCBIN_U8("graphics/region_map/dots.4bpp");
+static const u32 sRegionMapPlayerIcon_KrisGfx[] = INCBIN_U32("graphics/region_map/kris_icon.4bpp");
+static const u32 sRegionMapDots_Gfx[] = INCBIN_U32("graphics/region_map/dots.4bpp");
 static const u16 sRegionMapDots_Pal[] = INCBIN_U16("graphics/region_map/dots.gbapal");
-static const u8 sRegionMapNames_Gfx[] = INCBIN_U8("graphics/region_map/region_names.4bpp");
-static const u8 sRegionMapNamesCurve_Gfx[] = INCBIN_U8("graphics/region_map/region_names_curve.4bpp");
+static const u32 sRegionMapNames_Gfx[] = INCBIN_U32("graphics/region_map/region_names.4bpp");
+static const u32 sRegionMapNamesCurve_Gfx[] = INCBIN_U32("graphics/region_map/region_names_curve.4bpp");
 
 static const u8 sMapSectionLayout_JohtoPrimary[] = INCBIN_U8("graphics/region_map/mapsec_layout_johto_primary.bin");
 static const u8 sMapSectionLayout_JohtoSecondary[] = INCBIN_U8("graphics/region_map/mapsec_layout_johto_secondary.bin");
@@ -293,11 +292,11 @@ static const u8 sRegionMapEventSectionIds[] = {
 
 const u16 gRegionMapFramePal[] = INCBIN_U16("graphics/region_map/map_frame.gbapal");
 
-const u8 gRegionMapFrameGfxLZ[] = INCBIN_U8("graphics/region_map/map_frame.4bpp.lz");
+const u32 gRegionMapFrameGfxLZ[] = INCBIN_U32("graphics/region_map/map_frame.4bpp.lz");
 
-const u8 gRegionMapFrameTilemapLZ[] = INCBIN_U8("graphics/region_map/map_frame.bin.lz");
+const u32 gRegionMapFrameTilemapLZ[] = INCBIN_U32("graphics/region_map/map_frame.bin.lz");
 
-static const u8 sUnknown_085A1D68[] = INCBIN_U8("graphics/region_map/fly_target_icon.4bpp.lz");
+static const u32 sUnknown_085A1D68[] = INCBIN_U32("graphics/region_map/fly_target_icon.4bpp.lz");
 
 static const u8 sMapHealLocations[][3] = {
     {MAP_GROUP(LITTLEROOT_TOWN), MAP_NUM(LITTLEROOT_TOWN), HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F},
@@ -640,9 +639,9 @@ bool8 RegionMap_InitGfx2(void)
     return TRUE;
 }
 
-static const u8 *GetRegionMapTilemap(u8 region)
+static const u32 *GetRegionMapTilemap(u8 region)
 {
-    const u8 *const tilemaps[] = {
+    const u32 *const tilemaps[] = {
         sRegionMapJohtoTilemap,
         sRegionMapKantoTilemap,
         sRegionMapJohtoTilemap,

@@ -53,6 +53,7 @@
 #include "tv.h"
 #include "scanline_effect.h"
 #include "wild_encounter.h"
+#include "frontier_util.h"
 #include "constants/abilities.h"
 #include "constants/map_types.h"
 #include "constants/maps.h"
@@ -137,7 +138,6 @@ extern void sub_8087D74(void);
 extern void battle_pyramid_map_load_related(u8);
 extern void sub_80B00E8(u8);
 extern void sub_80E9238(u8);
-extern void sub_81A3908(void);
 extern void sub_81AA2F8(void);
 extern void sub_8195E10(void);
 extern void sub_80EDB44(void);
@@ -3146,7 +3146,7 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
             eventObj->spriteId = AddPseudoEventObject(GetRSAvatarGraphicsIdByGender(eventObj->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
             break;
         case VERSION_EMERALD:
-            eventObj->spriteId = AddPseudoEventObject(GetRivalAvatarGraphicsIdByStateIdAndGender(0, eventObj->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
+            eventObj->spriteId = AddPseudoEventObject(GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, eventObj->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
             break;
         }
 

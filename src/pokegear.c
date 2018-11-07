@@ -115,13 +115,13 @@ static void SpriteCB_Icons(struct Sprite* sprite);
 // .rodata
 static const u16 gBGPals[] = INCBIN_U16("graphics/pokegear/bg.gbapal");
 static const u16 sMenuSpritesPalette[] = INCBIN_U16("graphics/pokegear/menu_sprites.gbapal");
-static const u8 gMainTiles[] = INCBIN_U8("graphics/pokegear/main.4bpp.lz");
+static const u32 gMainTiles[] = INCBIN_U32("graphics/pokegear/main.4bpp.lz");
 static const u8 sDigitTiles[] = INCBIN_U8("graphics/pokegear/digits.4bpp");
 static const u8 sIconTiles[] = INCBIN_U8("graphics/pokegear/icons.4bpp");
-static const u8 gClockCardTilemap[] = INCBIN_U8("graphics/pokegear/clock.bin.lz");
-static const u8 gMapCardTilemap[] = INCBIN_U8("graphics/pokegear/map.bin.lz");
-static const u8 gPhoneCardTilemap[] = INCBIN_U8("graphics/pokegear/phone.bin.lz");
-static const u8 gRadioCardTilemap[] = INCBIN_U8("graphics/pokegear/radio.bin.lz");
+static const u32 gClockCardTilemap[] = INCBIN_U32("graphics/pokegear/clock.bin.lz");
+static const u32 gMapCardTilemap[] = INCBIN_U32("graphics/pokegear/map.bin.lz");
+static const u32 gPhoneCardTilemap[] = INCBIN_U32("graphics/pokegear/phone.bin.lz");
+static const u32 gRadioCardTilemap[] = INCBIN_U32("graphics/pokegear/radio.bin.lz");
 
 static const struct BgTemplate sBgTemplates[] =
 {

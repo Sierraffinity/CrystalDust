@@ -152,18 +152,18 @@ extern const union AffineAnimCmd *const gUnknown_082FF694[];
 
 static const u16 sOakSpeechBgPal[] = INCBIN_U16("graphics/birch_speech/bg0.gbapal");
 
-static const u8 sOakSpeechBgGfx[] = INCBIN_U8("graphics/birch_speech/bg0.4bpp.lz");
-static const u8 sOakSpeechBgMap[] = INCBIN_U8("graphics/birch_speech/map.bin.lz");
+static const u32 sOakSpeechBgGfx[] = INCBIN_U32("graphics/birch_speech/bg0.4bpp.lz");
+static const u32 sOakSpeechBgMap[] = INCBIN_U32("graphics/birch_speech/map.bin.lz");
 
-static const u8 gOakIntroPlatformGfx[] = INCBIN_U8("graphics/birch_speech/platform.4bpp.lz");
+static const u32 gOakIntroPlatformGfx[] = INCBIN_U32("graphics/birch_speech/platform.4bpp.lz");
 static const u16 gOakIntroPlatformPal[] = INCBIN_U16("graphics/birch_speech/platform.gbapal");
 
 static const u16 sOakIntro_GoldPal[] = INCBIN_U16("graphics/birch_speech/gold.gbapal");
 static const u16 sOakIntro_KrisPal[] = INCBIN_U16("graphics/birch_speech/kris.gbapal");
 static const u16 sOakIntro_OakPal[] = INCBIN_U16("graphics/birch_speech/oak.gbapal");
-static const u8 sOakIntro_GoldTiles[] = INCBIN_U8("graphics/birch_speech/gold.8bpp.lz");
-static const u8 sOakIntro_KrisTiles[] = INCBIN_U8("graphics/birch_speech/kris.8bpp.lz");
-static const u8 sOakIntro_OakTiles[] = INCBIN_U8("graphics/birch_speech/oak.8bpp.lz");
+static const u32 sOakIntro_GoldTiles[] = INCBIN_U32("graphics/birch_speech/gold.8bpp.lz");
+static const u32 sOakIntro_KrisTiles[] = INCBIN_U32("graphics/birch_speech/kris.8bpp.lz");
+static const u32 sOakIntro_OakTiles[] = INCBIN_U32("graphics/birch_speech/oak.8bpp.lz");
 
 #define MENU_LEFT 3
 #define MENU_TOP_WIN0 1
@@ -198,7 +198,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
     // No saved game
     // NEW GAME
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = MENU_LEFT,
         .tilemapTop = MENU_TOP_WIN0,
         .width = MENU_WIDTH,
@@ -208,7 +208,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
     },
     // OPTIONS
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = MENU_LEFT,
         .tilemapTop = MENU_TOP_WIN1,
         .width = MENU_WIDTH,
@@ -219,7 +219,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
     // Has saved game
     // CONTINUE
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = MENU_LEFT,
         .tilemapTop = MENU_TOP_WIN2,
         .width = MENU_WIDTH,
@@ -229,7 +229,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
     },
     // NEW GAME
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = MENU_LEFT,
         .tilemapTop = MENU_TOP_WIN3,
         .width = MENU_WIDTH,
@@ -239,7 +239,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
     },
     // OPTION / MYSTERY GIFT
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = MENU_LEFT,
         .tilemapTop = MENU_TOP_WIN4,
         .width = MENU_WIDTH,
@@ -249,7 +249,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
     },
     // OPTION / MYSTERY EVENTS
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = MENU_LEFT,
         .tilemapTop = MENU_TOP_WIN5,
         .width = MENU_WIDTH,
@@ -259,7 +259,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
     },
     // OPTION
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = MENU_LEFT,
         .tilemapTop = MENU_TOP_WIN6,
         .width = MENU_WIDTH,
@@ -269,7 +269,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
     },
     // Error message window
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = MENU_LEFT_ERROR,
         .tilemapTop = MENU_TOP_ERROR,
         .width = MENU_WIDTH_ERROR,
@@ -283,7 +283,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
 const struct WindowTemplate sClockSetWindowTemplates[] = 
 {
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = 2,
         .tilemapTop = 15,
         .width = 27,
@@ -297,7 +297,7 @@ const struct WindowTemplate sClockSetWindowTemplates[] =
 static const struct WindowTemplate gUnknown_082FF080[] =
 {
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = 2,
         .tilemapTop = 15,
         .width = 27,
@@ -306,7 +306,7 @@ static const struct WindowTemplate gUnknown_082FF080[] =
         .baseBlock = 1
     },
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = 18,
         .tilemapTop = 9,
         .width = 9,
@@ -315,7 +315,7 @@ static const struct WindowTemplate gUnknown_082FF080[] =
         .baseBlock = 0x6D
     },
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = 3,
         .tilemapTop = 2,
         .width = 9,
@@ -390,7 +390,7 @@ static const union AffineAnimCmd sSpriteAffineAnim_PlayerShrink[] = {
     AFFINEANIMCMD_END
 };
 
-static const union AffineAnimCmd *const sSpriteAffineAnimTable_PlayerShrink[] = 
+static const union AffineAnimCmd *const sSpriteAffineAnimTable_PlayerShrink[] =
 {
     sSpriteAffineAnim_PlayerShrink
 };
@@ -1792,7 +1792,7 @@ static void Task_NewGameOakSpeech_CreateNameYesNo(u8 taskId)
 
 static void Task_NewGameOakSpeech_ProcessNameYesNoMenu(u8 taskId)
 {
-    switch (Menu_ProcessInputNoWrap_())
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
         case 0:
             PlaySE(SE_SELECT);
@@ -2267,7 +2267,7 @@ static void NewGameOakSpeech_ShowGenderMenu(void)
 
 static s8 NewGameOakSpeech_ProcessGenderMenuInput(void)
 {
-    return Menu_ProcessInputNoWrapAround();
+    return Menu_ProcessInputNoWrap();
 }
 
 static void NewGameOakSpeech_SetDefaultPlayerName(u8 nameId)
@@ -2374,21 +2374,21 @@ static void DrawMainMenuWindowBorder(const struct WindowTemplate *template, u16 
     u16 sp14 = 7 + baseTileNum;
     u16 r6 = 8 + baseTileNum;
 
-    FillBgTilemapBufferRect(template->priority, baseTileNum, template->tilemapLeft - 1, template->tilemapTop - 1, 1, 1, 2);
-    FillBgTilemapBufferRect(template->priority, r9, template->tilemapLeft, template->tilemapTop - 1, template->width, 1, 2);
-    FillBgTilemapBufferRect(template->priority, r10, template->tilemapLeft + template->width, template->tilemapTop - 1, 1, 1, 2);
-    FillBgTilemapBufferRect(template->priority, sp18, template->tilemapLeft - 1, template->tilemapTop, 1, template->height, 2);
-    FillBgTilemapBufferRect(template->priority, spC, template->tilemapLeft + template->width, template->tilemapTop, 1, template->height, 2);
-    FillBgTilemapBufferRect(template->priority, sp10, template->tilemapLeft - 1, template->tilemapTop + template->height, 1, 1, 2);
-    FillBgTilemapBufferRect(template->priority, sp14, template->tilemapLeft, template->tilemapTop + template->height, template->width, 1, 2);
-    FillBgTilemapBufferRect(template->priority, r6, template->tilemapLeft + template->width, template->tilemapTop + template->height, 1, 1, 2);
-    CopyBgTilemapBufferToVram(template->priority);
+    FillBgTilemapBufferRect(template->bg, baseTileNum, template->tilemapLeft - 1, template->tilemapTop - 1, 1, 1, 2);
+    FillBgTilemapBufferRect(template->bg, r9, template->tilemapLeft, template->tilemapTop - 1, template->width, 1, 2);
+    FillBgTilemapBufferRect(template->bg, r10, template->tilemapLeft + template->width, template->tilemapTop - 1, 1, 1, 2);
+    FillBgTilemapBufferRect(template->bg, sp18, template->tilemapLeft - 1, template->tilemapTop, 1, template->height, 2);
+    FillBgTilemapBufferRect(template->bg, spC, template->tilemapLeft + template->width, template->tilemapTop, 1, template->height, 2);
+    FillBgTilemapBufferRect(template->bg, sp10, template->tilemapLeft - 1, template->tilemapTop + template->height, 1, 1, 2);
+    FillBgTilemapBufferRect(template->bg, sp14, template->tilemapLeft, template->tilemapTop + template->height, template->width, 1, 2);
+    FillBgTilemapBufferRect(template->bg, r6, template->tilemapLeft + template->width, template->tilemapTop + template->height, 1, 1, 2);
+    CopyBgTilemapBufferToVram(template->bg);
 }
 
 static void ClearMainMenuWindowTilemap(const struct WindowTemplate *template)
 {
-    FillBgTilemapBufferRect(template->priority, 0, template->tilemapLeft - 1, template->tilemapTop - 1, template->tilemapLeft + template->width + 1, template->tilemapTop + template->height + 1, 2);
-    CopyBgTilemapBufferToVram(template->priority);
+    FillBgTilemapBufferRect(template->bg, 0, template->tilemapLeft - 1, template->tilemapTop - 1, template->tilemapLeft + template->width + 1, template->tilemapTop + template->height + 1, 2);
+    CopyBgTilemapBufferToVram(template->bg);
 }
 
 static void NewGameOakSpeech_ClearGenderWindowTilemap(u8 a, u8 b, u8 c, u8 d, u8 e, u8 unused)

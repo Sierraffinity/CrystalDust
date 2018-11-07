@@ -18,6 +18,7 @@
 #include "scanline_effect.h"
 #include "gpu_regs.h"
 #include "trig.h"
+#include "graphics.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
@@ -37,10 +38,10 @@
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 EWRAM_DATA vu8 sVBlank_DMA = 0;
 
-extern const u8 gTitleScreenPressStartGfx[];
-extern const u8 gTitleScreenPokemonLogoGfx[];
-extern const u8 gTitleScreenPokemonLogoTilemap[];
-extern const u8 sTitleScreenCloudsTilemap[];
+extern const u32 gTitleScreenPressStartGfx[];
+extern const u32 gTitleScreenPokemonLogoGfx[];
+extern const u32 gTitleScreenPokemonLogoTilemap[];
+extern const u32 sTitleScreenCloudsTilemap[];
 extern const u16 gTitleScreenBgPalettes[];
 extern const u16 gTitleScreenPressStartPal[];
 
@@ -58,13 +59,13 @@ static void UpdatePressStartColor(u8);
 static void SpriteCB_PokemonLogoShine(struct Sprite *sprite);
 
 // const rom data
-static const u8 sTitleScreenRayquazaGfx[] = INCBIN_U8("graphics/title_screen/rayquaza.4bpp.lz");
-static const u8 sTitleScreenRayquazaTilemap[] = INCBIN_U8("graphics/title_screen/rayquaza.bin.lz");
-static const u8 sTitleScreenLogoShineGfx[] = INCBIN_U8("graphics/title_screen/logo_shine.4bpp.lz");
-static const u8 sTitleScreenCloudsGfx[] = INCBIN_U8("graphics/title_screen/press_start.4bpp.lz");
-static const u8 sTitleScreenEmblemGfx[] = INCBIN_U8("graphics/title_screen/emblem.4bpp.lz");
-static const u8 sTitleScreenEmblemTilemap[] = INCBIN_U8("graphics/title_screen/emblem.bin.lz");
-static const u8 sTitleScreenSuicuneGfx[] = INCBIN_U8("graphics/title_screen/suicune.4bpp.lz");
+static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rayquaza.4bpp.lz");
+static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rayquaza.bin.lz");
+static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.lz");
+static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/press_start.4bpp.lz");
+static const u32 sTitleScreenEmblemGfx[] = INCBIN_U32("graphics/title_screen/emblem.4bpp.lz");
+static const u32 sTitleScreenEmblemTilemap[] = INCBIN_U32("graphics/title_screen/emblem.bin.lz");
+static const u32 sTitleScreenSuicuneGfx[] = INCBIN_U32("graphics/title_screen/suicune.4bpp.lz");
 static const u16 sTitleScreenSuicunePal[] = INCBIN_U16("graphics/title_screen/suicune.gbapal");
 
 static const struct OamData sOamData_Suicune =

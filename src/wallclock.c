@@ -64,7 +64,7 @@ static void UpdateBlinkTimer(u8 taskId);
 static const struct WindowTemplate gUnknown_085B21DC[] = 
 {
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = 2,
         .tilemapTop = 15,
         .width = 27,
@@ -73,7 +73,7 @@ static const struct WindowTemplate gUnknown_085B21DC[] =
         .baseBlock = 1
     },
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 0,
         .width = 30,
@@ -82,7 +82,7 @@ static const struct WindowTemplate gUnknown_085B21DC[] =
         .baseBlock = 0x70
     },
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = 5,
         .tilemapTop = 5,
         .width = 19,
@@ -95,7 +95,7 @@ static const struct WindowTemplate gUnknown_085B21DC[] =
 
 static const struct WindowTemplate gUnknown_085B21F4 =
 {
-    .priority = 0,
+    .bg = 0,
     .tilemapLeft = 24,
     .tilemapTop = 9,
     .width = 5,
@@ -457,7 +457,7 @@ static void Task_SetClock3(u8 taskId)
 
 static void Task_SetClock4(u8 taskId)
 {
-    switch (Menu_ProcessInputNoWrap_())
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
         case 0:
             PlaySE(SE_SELECT);

@@ -43,45 +43,45 @@ struct GcmbStruct gMultibootProgramStruct;
 
 //.rodata
 static const u16 gIntro1BGPals[] = INCBIN_U16("graphics/intro/intro1_background.gbapal");
-static const u8 gIntro1BG2_Tilemap[] = INCBIN_U8("graphics/intro/intro1_bg2.bin.lz");
-static const u8 gIntro1BG2_LogoTilemap[] = INCBIN_U8("graphics/intro/intro1_bg2_logo.bin.lz");
-static const u8 gIntro1BG3_Tilemap[] = INCBIN_U8("graphics/intro/intro1_bg3.bin.lz");
-static const u8 gIntro1BG0_Tiles[] = INCBIN_U8("graphics/intro/intro1_background.4bpp.lz");
-static const u8 gIntro1BG0_LogoTiles[] = INCBIN_U8("graphics/intro/intro1_logotiles.4bpp.lz");
-static const u8 gIntroDittoTiles[] = INCBIN_U8("graphics/intro/intro1_ditto.4bpp.lz");
-static const u8 gIntroPresentsTiles[] = INCBIN_U8("graphics/intro/intro1_presents.4bpp.lz");
+static const u32 gIntro1BG2_Tilemap[] = INCBIN_U32("graphics/intro/intro1_bg2.bin.lz");
+static const u32 gIntro1BG2_LogoTilemap[] = INCBIN_U32("graphics/intro/intro1_bg2_logo.bin.lz");
+static const u32 gIntro1BG3_Tilemap[] = INCBIN_U32("graphics/intro/intro1_bg3.bin.lz");
+static const u32 gIntro1BG0_Tiles[] = INCBIN_U32("graphics/intro/intro1_background.4bpp.lz");
+static const u32 gIntro1BG0_LogoTiles[] = INCBIN_U32("graphics/intro/intro1_logotiles.4bpp.lz");
+static const u32 gIntroDittoTiles[] = INCBIN_U32("graphics/intro/intro1_ditto.4bpp.lz");
+static const u32 gIntroPresentsTiles[] = INCBIN_U32("graphics/intro/intro1_presents.4bpp.lz");
 static const u16 gIntro1DittoPalette[] = INCBIN_U16("graphics/intro/intro1_ditto.gbapal");
 static const u16 gIntro2BGPals[][16] = {
     INCBIN_U16("graphics/intro/intro2_bg3.gbapal"),
     INCBIN_U16("graphics/intro/intro2_bg1.gbapal")
 };
-static const u8 gIntro2Tiles[] = INCBIN_U8("graphics/intro/intro2.4bpp.lz");
-static const u8 gIntro2BG1_Tilemap[] = INCBIN_U8("graphics/intro/intro2_bg1.bin.lz");
-static const u8 gIntro2BG2_Tilemap[] = INCBIN_U8("graphics/intro/intro2_bg2.bin.lz");
-static const u8 gIntro2BG3_Tilemap[] = INCBIN_U8("graphics/intro/intro2_bg3.bin.lz");
+static const u32 gIntro2Tiles[] = INCBIN_U32("graphics/intro/intro2.4bpp.lz");
+static const u32 gIntro2BG1_Tilemap[] = INCBIN_U32("graphics/intro/intro2_bg1.bin.lz");
+static const u32 gIntro2BG2_Tilemap[] = INCBIN_U32("graphics/intro/intro2_bg2.bin.lz");
+static const u32 gIntro2BG3_Tilemap[] = INCBIN_U32("graphics/intro/intro2_bg3.bin.lz");
 static const u16 gIntro2UnownPalette[] = INCBIN_U16("graphics/intro/intro2_unownA.gbapal");
 static const u16 gIntro2UnownPulsePalette[] = INCBIN_U16("graphics/intro/intro2_unown_pulse.gbapal");
 static const u16 gIntro2SuicuneSilhouettePalette[] = INCBIN_U16("graphics/intro/intro2_suicune_silhouette.gbapal");
 static const u16 gIntro2WooperPalette[] = INCBIN_U16("graphics/intro/intro2_wooper.gbapal");
 static const u16 gIntro2PichuPalette[] = INCBIN_U16("graphics/intro/intro2_pichu.gbapal");
-static const u8 gIntro2UnownATiles[] = INCBIN_U8("graphics/intro/intro2_unownA.4bpp.lz");
-static const u8 gIntro2UnownPulseTiles[] = INCBIN_U8("graphics/intro/intro2_unown_pulse.4bpp.lz");
-static const u8 gIntro2UnownOthersTiles[] = INCBIN_U8("graphics/intro/intro2_tiny_unowns.4bpp.lz");
-static const u8 gIntro2SuicuneSilhouetteTiles[] = INCBIN_U8("graphics/intro/intro2_suicune_silhouette.4bpp.lz");
-static const u8 gIntro2WooperTiles[] = INCBIN_U8("graphics/intro/intro2_wooper.4bpp.lz");
-static const u8 gIntro2PichuTiles[] = INCBIN_U8("graphics/intro/intro2_pichu.4bpp.lz");
+static const u32 gIntro2UnownATiles[] = INCBIN_U32("graphics/intro/intro2_unownA.4bpp.lz");
+static const u32 gIntro2UnownPulseTiles[] = INCBIN_U32("graphics/intro/intro2_unown_pulse.4bpp.lz");
+static const u32 gIntro2UnownOthersTiles[] = INCBIN_U32("graphics/intro/intro2_tiny_unowns.4bpp.lz");
+static const u32 gIntro2SuicuneSilhouetteTiles[] = INCBIN_U32("graphics/intro/intro2_suicune_silhouette.4bpp.lz");
+static const u32 gIntro2WooperTiles[] = INCBIN_U32("graphics/intro/intro2_wooper.4bpp.lz");
+static const u32 gIntro2PichuTiles[] = INCBIN_U32("graphics/intro/intro2_pichu.4bpp.lz");
 static const u16 gIntro3BG3_Pals[][16] = {
     INCBIN_U16("graphics/intro/intro3_suicune_mug.gbapal"),
     INCBIN_U16("graphics/intro/intro3_fallingbg.gbapal"),
 };
 static const u16 gIntro3SuicunePalette[] = INCBIN_U16("graphics/intro/intro3_suicune.gbapal");
 static const u16 gIntro3NamePalette[] = INCBIN_U16("graphics/intro/intro3_name.gbapal");
-static const u8 gIntro3BG3_Tiles[] = INCBIN_U8("graphics/intro/intro3_suicune_mug.4bpp.lz");
-static const u8 gIntro3BG3_Tilemap[] = INCBIN_U8("graphics/intro/intro3_suicune_mug.bin.lz");
-static const u8 gIntro3Name_Tiles[] = INCBIN_U8("graphics/intro/intro3_name.4bpp.lz");
-static const u8 gIntro3Name_Tilemap[] = INCBIN_U8("graphics/intro/intro3_name.bin.lz");
-static const u8 gIntro3SuicuneTiles[] = INCBIN_U8("graphics/intro/intro3_suicune.4bpp.lz");
-static const u8 gIntro3UnownFTiles[] = INCBIN_U8("graphics/intro/intro3_unownF.4bpp.lz");
+static const u32 gIntro3BG3_Tiles[] = INCBIN_U32("graphics/intro/intro3_suicune_mug.4bpp.lz");
+static const u32 gIntro3BG3_Tilemap[] = INCBIN_U32("graphics/intro/intro3_suicune_mug.bin.lz");
+static const u32 gIntro3Name_Tiles[] = INCBIN_U32("graphics/intro/intro3_name.4bpp.lz");
+static const u32 gIntro3Name_Tilemap[] = INCBIN_U32("graphics/intro/intro3_name.bin.lz");
+static const u32 gIntro3SuicuneTiles[] = INCBIN_U32("graphics/intro/intro3_suicune.4bpp.lz");
+static const u32 gIntro3UnownFTiles[] = INCBIN_U32("graphics/intro/intro3_unownF.4bpp.lz");
 
 static const struct SpritePalette gSpritePalette_Ditto[] =
 {

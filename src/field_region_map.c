@@ -36,8 +36,8 @@ static void FieldUpdateRegionMap(void);
 static void ShowHelpBar(void);
 
 extern const u16 gRegionMapFramePal[];
-extern const u8 gRegionMapFrameGfxLZ[];
-extern const u8 gRegionMapFrameTilemapLZ[];
+extern const u32 gRegionMapFrameGfxLZ[];
+extern const u32 gRegionMapFrameTilemapLZ[];
 
 // .rodata
 
@@ -74,7 +74,7 @@ static const struct BgTemplate gUnknown_085E5068[] = {
 static const struct WindowTemplate gUnknown_085E5070[] =
 {
     {
-        .priority = 0,
+        .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 0,
         .width = 30,
