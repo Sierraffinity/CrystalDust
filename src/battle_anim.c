@@ -2450,7 +2450,7 @@ static void LoadMoveBg(u16 bgId)
 {
     if (IsContest())
     {
-        const void *tilemap = gBattleAnimBackgroundTable[bgId].tilemap;
+        const u32 *tilemap = gBattleAnimBackgroundTable[bgId].tilemap;
         void *dmaSrc;
         void *dmaDest;
 

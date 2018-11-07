@@ -4005,16 +4005,16 @@ extern const u32 gCreditsCopyrightEnd_Gfx[];
 extern const u8 gPokenavConditionMarker_Gfx[];
 extern const u16 gPokenavConditionMarker_Pal[];
 
-extern const u8 gUnknown_08D9862C[];
-extern const u8 gUnknown_08D98CC8[];
-extern const u8 gUnknown_08D987FC[];
-extern const u8 gUnknown_08D9898C[];
-extern const u8 gUnknown_08D98B28[];
-extern const u8 gUnknown_08D9853C[];
-extern const u8 gUnknown_08D85620[];
+extern const u32 gUnknown_08D9862C[];
+extern const u32 gUnknown_08D98CC8[];
+extern const u32 gUnknown_08D987FC[];
+extern const u32 gUnknown_08D9898C[];
+extern const u32 gUnknown_08D98B28[];
+extern const u32 gUnknown_08D9853C[];
+extern const u16 gUnknown_08D85620[];
 extern const u16 gSummaryScreenWindow_Tilemap[];
-extern const u16 gMoveTypes_Pal[];
-extern const u8 gUnknown_08D97D0C[];
+extern const u32 gMoveTypes_Pal[];
+extern const u32 gUnknown_08D97D0C[];
 
 extern const u16 gSummaryScreenPowAcc_Tilemap[];
 extern const u16 gUnknown_08DC3C34[];
@@ -4026,7 +4026,7 @@ extern const u32 gStatusGfx_Icons[];
 extern const u32 gStatusPal_Icons[];
 
 extern const u32 gBuyMenuFrame_Gfx[];
-extern const u16 gBuyMenuFrame_Tilemap[];
+extern const u32 gBuyMenuFrame_Tilemap[];
 extern const u32 gMenuMoneyGfx[];
 extern const u32 gMenuMoneyPal[];
 
@@ -4701,5 +4701,26 @@ extern const u32 gSetClock_Gfx[];
 extern const u16 gSetClock_Pal[];
 extern const u32 gSetClock_Map[];
 extern const u32 gPokegear_GridMap[];
+
+extern const u32 gUnknown_08D9A88C[];
+extern const u32 gContestMiscGfx[];
+extern const u32 gContestAudienceGfx[];
+extern const u32 gUnknown_08C16FA8[];
+extern const u32 gUnknown_08C16E90[];
+extern const u32 gUnknown_08C17170[];
+
+// Berry blender
+extern const u32 gBerryBlenderArrowTiles[];
+extern const u32 gBerryBlenderStartTiles[];
+extern const u32 gBerryBlenderMarubatsuTiles[];
+extern const u32 gBerryBlenderParticlesTiles[];
+extern const u32 gBerryBlenderCountdownNumbersTiles[];
+extern const u16 gBerryBlenderMiscPalette[];
+extern const u16 gBerryBlenderArrowPalette[];
+extern const u32 sBlenderCenterGfx[];
+extern const u32 gUnknown_08D91DB8[];
+extern const u32 gUnknown_08D927EC[];
+
+extern const u32 gSlotMachineReelTime_Gfx[];
 
 #endif //GUARD_GRAPHICS_H
