@@ -1,23 +1,21 @@
 #include "global.h"
 #include "battle.h"
 #include "battle_anim.h"
-#include "constants/battle_anim.h"
-#include "constants/rgb.h"
-#include "util.h"
 #include "decompress.h"
+#include "gpu_regs.h"
 #include "palette.h"
 #include "sprite.h"
 #include "task.h"
 #include "trig.h"
-#include "gpu_regs.h"
+#include "util.h"
+#include "constants/battle_anim.h"
+#include "constants/rgb.h"
 
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
 extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];
 extern const u8 *const gBattleAnims_StatusConditions[];
 extern const struct OamData gUnknown_08524904;
 extern const struct OamData gUnknown_08524A3C;
-
-extern void sub_8116EB4(u8 taskId);
 
 // This file's functions.
 static void sub_80A9DB4(u8 taskId);

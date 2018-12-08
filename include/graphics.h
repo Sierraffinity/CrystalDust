@@ -1237,7 +1237,7 @@ extern const u32 gMonBackPic_Pichu[];
 extern const u32 gMonShinyPalette_Pichu[];
 extern const u32 gMonStillFrontPic_Pichu[];
 extern const u8 gMonIcon_Pichu[];
-extern const u32 gMonFootprint_Pichu[];
+extern const u8 gMonFootprint_Pichu[];
 extern const u32 gMonFrontPic_Cleffa[];
 extern const u32 gMonPalette_Cleffa[];
 extern const u32 gMonBackPic_Cleffa[];
@@ -2860,6 +2860,7 @@ extern const u32 gMonPalette_CircledQuestionMark[];
 extern const u32 gMonShinyPalette_CircledQuestionMark[];
 extern const u32 gMonStillFrontPic_CircledQuestionMark[];
 extern const u8 gMonIcon_QuestionMark[];
+extern const u8 gMonFootprint_QuestionMark[];
 extern const u32 gMonFrontPic_DoubleQuestionMark[];
 extern const u32 gMonBackPic_DoubleQuestionMark[];
 extern const u32 gMonPalette_DoubleQuestionMark[];
@@ -2919,8 +2920,8 @@ extern const u32 gTrainerFrontPic_LeaderJuan[];
 extern const u32 gTrainerFrontPic_SchoolKidM[];
 extern const u32 gTrainerFrontPic_SchoolKidF[];
 extern const u32 gTrainerFrontPic_SrAndJr[];
-extern const u32 gTrainerFrontPic_WinstrateM[];
-extern const u32 gTrainerFrontPic_WinstrateF[];
+extern const u32 gTrainerFrontPic_PokefanM[];
+extern const u32 gTrainerFrontPic_PokefanF[];
 extern const u32 gTrainerFrontPic_Youngster[];
 extern const u32 gTrainerFrontPic_ChampionWallace[];
 extern const u32 gTrainerFrontPic_Fisherman[];
@@ -3013,8 +3014,8 @@ extern const u32 gTrainerPalette_LeaderJuan[];
 extern const u32 gTrainerPalette_SchoolKidM[];
 extern const u32 gTrainerPalette_SchoolKidF[];
 extern const u32 gTrainerPalette_SrAndJr[];
-extern const u32 gTrainerPalette_WinstrateM[];
-extern const u32 gTrainerPalette_WinstrateF[];
+extern const u32 gTrainerPalette_PokefanM[];
+extern const u32 gTrainerPalette_PokefanF[];
 extern const u32 gTrainerPalette_Youngster[];
 extern const u32 gTrainerPalette_ChampionWallace[];
 extern const u32 gTrainerPalette_Fisherman[];
@@ -3281,18 +3282,18 @@ extern const u32 gBattleTerrainPalette_StadiumWallace[];
 extern const u32 gPokedexMenu2_Gfx[];
 extern const u16 gPokedexText_Pal[];
 extern const u32 gPokedexMenu_Gfx[];
-extern const u8 gUnknown_08DC2C5C[];
-extern const u8 gUnknown_08DC2DAC[];
-extern const u8 gUnknown_08DC2A08[];
-extern const u8 gUnknown_08DC2B1C[];
+extern const u8 gPokedexTilemap_Main[];
+extern const u8 gPokedexTilemap_MainUnderlay[];
+extern const u8 gPokedexTilemap_StartMenu1[];
+extern const u8 gPokedexTilemap_StartMenu2[];
 extern const u16 gPokedexHoennBg_Pal[];
 extern const u16 gPokedexText_Pal[];
 extern const u16 gPokedexNationalBg_Pal[];
-extern const u8 gUnknown_08DC3080[];
-extern const u8 gUnknown_08DC3198[];
-extern const u8 gUnknown_08DC2E6C[];
-extern const u8 gUnknown_08DC2F5C[];
-extern const u8 gUnknown_08DC2FEC[];
+extern const u8 gPokedexTilemap_DescriptionScreen[];
+extern const u8 gPokedexTilemap_CryScreen[];
+extern const u8 gPokedexTilemap_SizeScreen[];
+extern const u8 gPokedexTilemap_ScreenSelectBar1[];
+extern const u8 gPokedexTilemap_ScreenSelectBar2[];
 extern const u16 gPokedexCaughtScreenFade_Pal[];
 extern const u32 gPokedexSearchMenu_Gfx[];
 extern const u32 gPokedexSearch2_Tilemap[];
@@ -4697,10 +4698,25 @@ extern const u32 gBattleAnimBackgroundTilemap_17[];
 extern const u32 gBattleAnimBackgroundTilemap_20[];
 extern const u32 gBattleAnimBackgroundTilemap_21[];
 
+// Pokegear/Clock
 extern const u32 gSetClock_Gfx[];
 extern const u16 gSetClock_Pal[];
 extern const u32 gSetClock_Map[];
 extern const u32 gPokegear_GridMap[];
+
+extern const u32 gUnknown_08C20668[];
+extern const u32 gUnknown_08C20684[];
+extern const u32 gBattleStatMask_Gfx[];
+extern const u32 gBattleStatMask1_Tilemap[];
+extern const u32 gBattleStatMask2_Tilemap[];
+extern const u32 gBattleStatMask1_Pal[];
+extern const u32 gBattleStatMask2_Pal[];
+extern const u32 gBattleStatMask3_Pal[];
+extern const u32 gBattleStatMask4_Pal[];
+extern const u32 gBattleStatMask5_Pal[];
+extern const u32 gBattleStatMask6_Pal[];
+extern const u32 gBattleStatMask7_Pal[];
+extern const u32 gBattleStatMask8_Pal[];
 
 extern const u32 gUnknown_08D9A88C[];
 extern const u32 gContestMiscGfx[];
@@ -4722,5 +4738,12 @@ extern const u32 gUnknown_08D91DB8[];
 extern const u32 gUnknown_08D927EC[];
 
 extern const u32 gSlotMachineReelTime_Gfx[];
+
+extern const u32 gUnknown_08D8D410[];
+extern const u32 gUnknown_08D8D58C[];
+
+// Pokedex Area Screen
+extern const u32 gPokedexAreaScreenAreaUnknown_Gfx[];
+extern const u16 gPokedexAreaScreenAreaUnknown_Pal[];
 
 #endif //GUARD_GRAPHICS_H

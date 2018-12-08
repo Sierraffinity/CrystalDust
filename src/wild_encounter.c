@@ -18,18 +18,14 @@
 #include "tv.h"
 #include "link.h"
 #include "script.h"
+#include "battle_pike.h"
+#include "battle_pyramid.h"
 #include "constants/items.h"
 #include "constants/maps.h"
 
 extern const u8 EventScript_RepelWoreOff[];
 
 #define NUM_FEEBAS_SPOTS    6
-
-extern u8 GetBattlePikeWildMonHeaderId(void);
-extern bool32 TryGenerateBattlePikeWildMon(bool8 checkKeenEyeIntimidate);
-extern void GenerateBattlePyramidWildMon(void);
-extern bool8 InBattlePike(void);
-extern bool8 InBattlePyramid(void);
 
 // this file's functions
 static u16 FeebasRandom(void);

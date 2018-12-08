@@ -5,6 +5,7 @@
 #include "data2.h"
 #include "day_night.h"
 #include "event_data.h"
+#include "international_string_util.h"
 #include "item.h"
 #include "lottery_corner.h"
 #include "malloc.h"

@@ -19,7 +19,8 @@ enum SpinnerRunnerFollowPatterns
     RUNFOLLOW_SOUTH_EAST_WEST
 };
 
-struct UnkStruct_085094AC {
+struct UnkStruct_085094AC
+{
     const union AnimCmd *const *anims;
     u8 animPos[4];
 };
@@ -45,28 +46,6 @@ struct UnkStruct_085094AC {
 #define GROUND_EFFECT_FLAG_HOT_SPRINGS           (1 << 18)
 #define GROUND_EFFECT_FLAG_SEAWEED               (1 << 19)
 
-#define movement_type_def(setup, table) \
-static u8 setup##_callback(struct EventObject *, struct Sprite *);\
-void setup(struct Sprite *sprite)\
-{\
-    UpdateEventObjectCurrentMovement(&gEventObjects[sprite->data[0]], sprite, setup##_callback);\
-}\
-static u8 setup##_callback(struct EventObject *eventObject, struct Sprite *sprite)\
-{\
-    return table[sprite->data[1]](eventObject, sprite);\
-}
-
-#define movement_type_empty_callback(setup) \
-static u8 setup##_callback(struct EventObject *, struct Sprite *);\
-void setup(struct Sprite *sprite)\
-{\
-    UpdateEventObjectCurrentMovement(&gEventObjects[sprite->data[0]], sprite, setup##_callback);\
-}\
-static u8 setup##_callback(struct EventObject *eventObject, struct Sprite *sprite)\
-{\
-    return 0;\
-}
-
 struct PairedPalettes
 {
     u16 tag;
@@ -75,14 +54,14 @@ struct PairedPalettes
 
 struct LockedAnimEventObjects
 {
-    u8 eventObjectIds[NUM_EVENT_OBJECTS];
+    u8 eventObjectIds[EVENT_OBJECTS_COUNT];
     u8 count;
 };
 
 extern const struct SpriteFrameImage gEventObjectPicTable_PechaBerryTree[];
 extern const u8 gReflectionEffectPaletteMap[];
 
-void sub_808D438(void);
+void ResetEventObjects(void);
 u8 GetMoveDirectionAnimNum(u8);
 u8 GetEventObjectIdByLocalIdAndMap(u8, u8, u8);
 bool8 TryGetEventObjectIdByLocalIdAndMap(u8, u8, u8, u8 *);
@@ -180,9 +159,7 @@ u8 ZCoordToPriority(u8);
 void EventObjectUpdateZCoord(struct EventObject *pObject);
 void SetObjectSubpriorityByZCoord(u8, struct Sprite *, u8);
 bool8 IsZCoordMismatchAt(u8, s16, s16);
-void UpdateEventObjectSpriteSubpriorityAndVisibility(struct Sprite *);
 void UnfreezeEventObject(struct EventObject *);
-void oamt_npc_ministep_reset(struct Sprite *, u8, u8);
 u8 FindLockedEventObjectIndex(struct EventObject *);
 bool8 obj_npc_ministep(struct Sprite *sprite);
 bool8 sub_80976EC(struct Sprite *sprite);

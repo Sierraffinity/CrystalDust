@@ -1,32 +1,25 @@
 #include "global.h"
 #include "battle.h"
 #include "battle_anim.h"
-#include "constants/battle_anim.h"
-#include "sprite.h"
-#include "contest.h"
-#include "m4a.h"
-#include "pokemon.h"
+#include "battle_controllers.h"
 #include "battle_interface.h"
-#include "task.h"
-#include "decompress.h"
-#include "sound.h"
-#include "graphics.h"
-#include "dma3.h"
 #include "bg.h"
+#include "contest.h"
+#include "decompress.h"
+#include "dma3.h"
 #include "gpu_regs.h"
-#include "palette.h"
+#include "graphics.h"
 #include "main.h"
+#include "m4a.h"
+#include "palette.h"
+#include "pokemon.h"
+#include "sound.h"
+#include "sprite.h"
+#include "task.h"
+#include "constants/battle_anim.h"
 
 #define ANIM_SPRITE_INDEX_COUNT 8
 
-extern u16 gBattle_WIN0H;
-extern u16 gBattle_WIN0V;
-extern u16 gBattle_WIN1H;
-extern u16 gBattle_WIN1V;
-extern u16 gBattle_BG1_X;
-extern u16 gBattle_BG1_Y;
-extern u16 gBattle_BG2_X;
-extern u16 gBattle_BG2_Y;
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 extern struct MusicPlayerInfo gMPlayInfo_SE1;
 extern struct MusicPlayerInfo gMPlayInfo_SE2;
@@ -1501,7 +1494,7 @@ void LaunchBattleAnimation(const u8 *const animsTable[], u16 tableId, bool8 isMo
     else
     {
         for (i = 0; i < 4; i++)
-            gAnimBattlerSpecies[i] = gContestResources->field_18->unk0;
+            gAnimBattlerSpecies[i] = gContestResources->field_18->species;
     }
 
     if (!isMoveAnim)
@@ -1958,7 +1951,7 @@ void sub_80A438C(u8 battlerId, bool8 toBG_2, bool8 setSpriteInvisible)
         battlerSpriteId = gBattlerSpriteIds[battlerId];
 
         gBattle_BG1_X =  -(gSprites[battlerSpriteId].pos1.x + gSprites[battlerSpriteId].pos2.x) + 0x20;
-        if (IsContest() && IsSpeciesNotUnown(gContestResources->field_18->unk0))
+        if (IsContest() && IsSpeciesNotUnown(gContestResources->field_18->species))
             gBattle_BG1_X--;
 
         gBattle_BG1_Y =  -(gSprites[battlerSpriteId].pos1.y + gSprites[battlerSpriteId].pos2.y) + 0x20;
@@ -2016,7 +2009,7 @@ static void sub_80A46A0(void)
     struct UnknownAnimStruct2 unknownStruct;
     u16 *ptr;
 
-    if (IsSpeciesNotUnown(gContestResources->field_18->unk0))
+    if (IsSpeciesNotUnown(gContestResources->field_18->species))
     {
         sub_80A6B30(&unknownStruct);
         ptr = unknownStruct.unk4;

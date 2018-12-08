@@ -130,5 +130,10 @@ void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
 void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain);
 void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag);
+u16 CorrectSpecialMapSecId(u16 mapSecId);
+void sub_8122D88(struct RegionMap *regionMap);
+void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y);
+
+extern const struct RegionMapLocation gRegionMapEntries[];
 
 #endif //GUARD_REGION_MAP_H

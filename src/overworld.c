@@ -1,5 +1,6 @@
 #include "global.h"
 #include "overworld.h"
+#include "battle_pyramid.h"
 #include "battle_setup.h"
 #include "berry.h"
 #include "bg.h"
@@ -88,12 +89,6 @@ extern const struct MapHeader *const *const gMapGroups[];
 extern const s32 gMaxFlashLevel;
 extern const u16 gUnknown_82EC7C4[];
 
-u16 gUnknown_03005DA8;
-MainCallback gFieldCallback;
-bool8 (*gFieldCallback2)(void);
-u8 gUnknown_03005DB4;
-u8 gFieldLinkPlayerCount;
-
 // functions
 extern void HealPlayerParty(void);
 extern void move_tilemap_camera_to_upper_left_corner(void);
@@ -114,7 +109,6 @@ extern void ShowMapNamePopup(void);
 extern bool32 InTrainerHill(void);
 extern bool32 sub_808651C(void);
 extern bool8 sub_80AF6A4(void);
-extern bool8 sub_81A9E6C(void);
 extern bool8 sub_80E909C(void);
 extern void sub_81AA1D8(void);
 extern void c2_change_map(void);
@@ -256,6 +250,16 @@ IWRAM_DATA static u16 (*sUnknown_03000E14)(u32);
 IWRAM_DATA static u8 sUnknown_03000E18;
 IWRAM_DATA static u8 sUnknown_03000E19;
 IWRAM_DATA static u32 sUnusedVar;
+
+// IWRAM common
+u16 *gBGTilemapBuffers1;
+u16 *gBGTilemapBuffers2;
+u16 *gBGTilemapBuffers3;
+u16 gUnknown_03005DA8;
+void (*gFieldCallback)(void);
+bool8 (*gFieldCallback2)(void);
+u8 gUnknown_03005DB4;
+u8 gFieldLinkPlayerCount;
 
 // EWRAM vars
 EWRAM_DATA static u8 sUnknown_020322D8 = 0;
@@ -518,7 +522,7 @@ void LoadSaveblockEventObjScripts(void)
     struct EventObjectTemplate *savObjTemplates = gSaveBlock1Ptr->eventObjectTemplates;
     s32 i;
 
-    for (i = 0; i < 64; i++)
+    for (i = 0; i < EVENT_OBJECT_TEMPLATES_COUNT; i++)
         savObjTemplates[i].script = mapHeaderObjTemplates[i].script;
 }
 
@@ -527,7 +531,7 @@ void Overworld_SetEventObjTemplateCoords(u8 localId, s16 x, s16 y)
     s32 i;
     struct EventObjectTemplate *savObjTemplates = gSaveBlock1Ptr->eventObjectTemplates;
 
-    for (i = 0; i < 64; i++)
+    for (i = 0; i < EVENT_OBJECT_TEMPLATES_COUNT; i++)
     {
         struct EventObjectTemplate *eventObjectTemplate = &savObjTemplates[i];
         if (eventObjectTemplate->localId == localId)
@@ -544,7 +548,7 @@ void Overworld_SetEventObjTemplateMovementType(u8 localId, u8 movementType)
     s32 i;
 
     struct EventObjectTemplate *savObjTemplates = gSaveBlock1Ptr->eventObjectTemplates;
-    for (i = 0; i < 64; i++)
+    for (i = 0; i < EVENT_OBJECT_TEMPLATES_COUNT; i++)
     {
         struct EventObjectTemplate *eventObjectTemplate = &savObjTemplates[i];
         if (eventObjectTemplate->localId == localId)
@@ -586,7 +590,7 @@ void set_warp2_warp3_to_neg_1(void)
     gFixedHoleWarp = sDummyWarpData;
 }
 
-void SetWarpData(struct WarpData *warp, s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
+static void SetWarpData(struct WarpData *warp, s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
 {
     warp->mapGroup = mapGroup;
     warp->mapNum = mapNum;
@@ -595,7 +599,7 @@ void SetWarpData(struct WarpData *warp, s8 mapGroup, s8 mapNum, s8 warpId, s8 x,
     warp->y = y;
 }
 
-bool32 IsDummyWarp(struct WarpData *warp)
+static bool32 IsDummyWarp(struct WarpData *warp)
 {
     if (warp->mapGroup != -1)
         return FALSE;
@@ -621,7 +625,7 @@ struct MapHeader const *const GetDestinationWarpMapHeader(void)
     return Overworld_GetMapHeaderByGroupAndId(sWarpDestination.mapGroup, sWarpDestination.mapNum);
 }
 
-void LoadCurrentMapData(void)
+static void LoadCurrentMapData(void)
 {
     sLastMapSectionId = gMapHeader.regionMapSectionId;
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
@@ -629,13 +633,13 @@ void LoadCurrentMapData(void)
     gMapHeader.mapLayout = GetMapLayout();
 }
 
-void LoadSaveblockMapHeader(void)
+static void LoadSaveblockMapHeader(void)
 {
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     gMapHeader.mapLayout = GetMapLayout();
 }
 
-void SetPlayerCoordsFromWarp(void)
+static void SetPlayerCoordsFromWarp(void)
 {
     if (gSaveBlock1Ptr->location.warpId >= 0 && gSaveBlock1Ptr->location.warpId < gMapHeader.events->warpCount)
     {
@@ -730,7 +734,7 @@ void SetFixedDiveWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
     SetWarpData(&gFixedDiveWarp, mapGroup, mapNum, warpId, x, y);
 }
 
-void SetFixedDiveWarpAsDestination(void)
+static void SetFixedDiveWarpAsDestination(void)
 {
     sWarpDestination = gFixedDiveWarp;
 }
@@ -765,7 +769,7 @@ void sub_8084F6C(u8 a1)
         SetWarpData(&gSaveBlock1Ptr->warp1, warp->group, warp->map, -1, warp->x, warp->y);
 }
 
-void sub_8084FAC(void)
+void sub_8084FAC(int unused)
 {
     gSaveBlock1Ptr->warp1 = gSaveBlock1Ptr->warp2;
 }
@@ -786,7 +790,7 @@ const struct MapConnection *GetMapConnection(u8 dir)
     return NULL;
 }
 
-bool8 SetDiveWarp(u8 dir, u16 x, u16 y)
+static bool8 SetDiveWarp(u8 dir, u16 x, u16 y)
 {
     const struct MapConnection *connection = GetMapConnection(dir);
 
@@ -906,8 +910,8 @@ static void mli0_load_map(u32 a1)
 
 void ResetInitialPlayerAvatarState(void)
 {
-    gInitialPlayerAvatarState.direction = 1;
-    gInitialPlayerAvatarState.transitionFlags = 1;
+    gInitialPlayerAvatarState.direction = DIR_SOUTH;
+    gInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ON_FOOT;
 }
 
 void StoreInitialPlayerAvatarState(void)
@@ -915,15 +919,15 @@ void StoreInitialPlayerAvatarState(void)
     gInitialPlayerAvatarState.direction = GetPlayerFacingDirection();
 
     if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE))
-        gInitialPlayerAvatarState.transitionFlags = 2;
+        gInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_MACH_BIKE;
     else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE))
-        gInitialPlayerAvatarState.transitionFlags = 4;
+        gInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ACRO_BIKE;
     else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
-        gInitialPlayerAvatarState.transitionFlags = 8;
+        gInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_SURFING;
     else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_UNDERWATER))
-        gInitialPlayerAvatarState.transitionFlags = 16;
+        gInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_UNDERWATER;
     else
-        gInitialPlayerAvatarState.transitionFlags = 1;
+        gInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ON_FOOT;
 }
 
 static struct InitialPlayerAvatarState *GetInitialPlayerAvatarState(void)
@@ -941,44 +945,44 @@ static struct InitialPlayerAvatarState *GetInitialPlayerAvatarState(void)
 static u8 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *playerStruct, u16 metatileBehavior, u8 mapType)
 {
     if (mapType != MAP_TYPE_INDOOR && FlagGet(FLAG_SYS_CRUISE_MODE))
-        return 1;
+        return PLAYER_AVATAR_FLAG_ON_FOOT;
     else if (mapType == MAP_TYPE_UNDERWATER)
-        return 16;
+        return PLAYER_AVATAR_FLAG_UNDERWATER;
     else if (MetatileBehavior_IsSurfableWaterOrUnderwater(metatileBehavior) == TRUE)
-        return 8;
+        return PLAYER_AVATAR_FLAG_SURFING;
     else if (Overworld_IsBikingAllowed() != TRUE)
-        return 1;
-    else if (playerStruct->transitionFlags == 2)
-        return 2;
-    else if (playerStruct->transitionFlags != 4)
-        return 1;
+        return PLAYER_AVATAR_FLAG_ON_FOOT;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_MACH_BIKE)
+        return PLAYER_AVATAR_FLAG_MACH_BIKE;
+    else if (playerStruct->transitionFlags != PLAYER_AVATAR_FLAG_ACRO_BIKE)
+        return PLAYER_AVATAR_FLAG_ON_FOOT;
     else
-        return 4;
+        return PLAYER_AVATAR_FLAG_ACRO_BIKE;
 }
 
 static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStruct, u8 transitionFlags, u16 metatileBehavior, u8 mapType)
 {
     if (FlagGet(FLAG_SYS_CRUISE_MODE) && mapType == MAP_TYPE_6)
-        return 4;
+        return DIR_EAST;
     else if (MetatileBehavior_IsDeepSouthWarp(metatileBehavior) == TRUE)
-        return 2;
+        return DIR_NORTH;
     else if (MetatileBehavior_IsNonAnimDoor(metatileBehavior) == TRUE || MetatileBehavior_IsDoor(metatileBehavior) == TRUE)
-        return 1;
+        return DIR_SOUTH;
     else if (MetatileBehavior_IsSouthArrowWarp(metatileBehavior) == TRUE)
-        return 2;
+        return DIR_NORTH;
     else if (MetatileBehavior_IsNorthArrowWarp(metatileBehavior) == TRUE)
-        return 1;
+        return DIR_SOUTH;
     else if (MetatileBehavior_IsWestArrowWarp(metatileBehavior) == TRUE)
-        return 4;
+        return DIR_EAST;
     else if (MetatileBehavior_IsEastArrowWarp(metatileBehavior) == TRUE)
-        return 3;
-    else if ((playerStruct->transitionFlags == 16 && transitionFlags == 8)
-     || (playerStruct->transitionFlags == 8 && transitionFlags == 16))
+        return DIR_WEST;
+    else if ((playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_UNDERWATER  && transitionFlags == PLAYER_AVATAR_FLAG_SURFING)
+     || (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_SURFING && transitionFlags == PLAYER_AVATAR_FLAG_UNDERWATER ))
         return playerStruct->direction;
     else if (MetatileBehavior_IsLadder(metatileBehavior) == TRUE)
         return playerStruct->direction;
     else
-        return 1;
+        return DIR_SOUTH;
 }
 
 static u16 GetCenterScreenMetatileBehavior(void)
@@ -1358,7 +1362,7 @@ u8 Overworld_GetMapTypeOfSaveblockLocation(void)
     return GetMapTypeByWarpData(&gSaveBlock1Ptr->location);
 }
 
-u8 get_map_light_from_warp0(void)
+u8 GetLastUsedWarpMapType(void)
 {
     return GetMapTypeByWarpData(&gLastUsedWarp);
 }
@@ -1459,7 +1463,7 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
     FieldGetPlayerInput(&inputStruct, newKeys, heldKeys);
     if (!ScriptContext2_IsEnabled())
     {
-        if (sub_809C014(&inputStruct) == 1)
+        if (ProcessPlayerFieldInput(&inputStruct) == 1)
         {
             ScriptContext2_Enable();
             HideMapNamePopUpWindow();
@@ -1810,7 +1814,7 @@ static void InitCurrentFlashLevelScanlineEffect(void)
 {
     u8 flashLevel;
 
-    if (sub_81A9E6C())
+    if (InBattlePyramid_())
     {
         door_upload_tiles();
         ScanlineEffect_SetParams(sFlashEffectParams);
@@ -2168,9 +2172,9 @@ static void sub_8086988(u32 a1)
 
 static void sub_80869DC(void)
 {
-    gUnknown_03005DEC = 0;
-    gUnknown_03005DE8 = 0;
-    sub_808D438();
+    gTotalCameraPixelOffsetX = 0;
+    gTotalCameraPixelOffsetY = 0;
+    ResetEventObjects();
     TrySpawnEventObjects(0, 0);
     mapheader_run_first_tag4_script_list_match();
 }
@@ -2180,9 +2184,9 @@ static void mli4_mapscripts_and_other(void)
     s16 x, y;
     struct InitialPlayerAvatarState *player;
 
-    gUnknown_03005DEC = 0;
-    gUnknown_03005DE8 = 0;
-    sub_808D438();
+    gTotalCameraPixelOffsetX = 0;
+    gTotalCameraPixelOffsetY = 0;
+    ResetEventObjects();
     sav1_camera_get_focus_coords(&x, &y);
     player = GetInitialPlayerAvatarState();
     InitPlayerAvatar(x, y, player->direction, gSaveBlock2Ptr->playerGender);
@@ -2953,7 +2957,7 @@ static void sub_808780C(u8 linkPlayerId)
     struct LinkPlayerEventObject *linkPlayerEventObj = &gLinkPlayerEventObjects[linkPlayerId];
     u8 eventObjId = linkPlayerEventObj->eventObjId;
     struct EventObject *eventObj = &gEventObjects[eventObjId];
-    if (eventObj->spriteId != 64 )
+    if (eventObj->spriteId != MAX_SPRITES)
         DestroySprite(&gSprites[eventObj->spriteId]);
     linkPlayerEventObj->active = 0;
     eventObj->active = 0;

@@ -1,30 +1,31 @@
 #include "global.h"
-#include "main.h"
-#include "palette.h"
-#include "gpu_regs.h"
 #include "bg.h"
-#include "rtc.h"
 #include "clock.h"
-#include "wallclock.h"
+#include "day_night.h"
+#include "decompress.h"
 #include "event_data.h"
+#include "gpu_regs.h"
 #include "graphics.h"
-#include "text.h"
-#include "window.h"
-#include "text_window.h"
+#include "main.h"
 #include "menu.h"
+#include "palette.h"
+#include "rtc.h"
 #include "scanline_effect.h"
-#include "task.h"
-#include "strings.h"
 #include "sound.h"
-#include "constants/songs.h"
+#include "strings.h"
+#include "task.h"
+#include "text.h"
+#include "text_window.h"
 #include "trig.h"
 #include "decompress.h"
 #include "international_string_util.h"
 #include "string_util.h"
 #include "list_menu.h"
 #include "pokegear.h"
-#include "day_night.h"
+#include "wallclock.h"
+#include "window.h"
 #include "constants/rgb.h"
+#include "constants/songs.h"
 
 // static types
 
@@ -35,9 +36,6 @@
 #define tScrollTaskId       data[4]
 #define tScrollOffset       data[5]
 #define tBlinkTimer         data[6]
-
-#define TAG_GFX_WALL_CLOCK_HAND 0x1000
-#define TAG_PAL_WALL_CLOCK_HAND 0x1000
 
 enum {
     DIGIT_HOURS,
@@ -459,12 +457,12 @@ static void Task_SetClock4(u8 taskId)
 {
     switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
-        case 0:
+        case 0:     //YES
             PlaySE(SE_SELECT);
             gTasks[taskId].func = Task_SetClock5;
             break;
-        case 1:
-        case -1:
+        case 1:    //B button
+        case -1:     //NO
             PlaySE(SE_SELECT);
             ShowHelpBar(gText_LeftRightSelectUpDownChangeAConfirm);
             //sub_8197434(0, FALSE);

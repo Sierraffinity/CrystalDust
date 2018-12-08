@@ -1,11 +1,11 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_anim.h"
+#include "contest.h"
+#include "sound.h"
+#include "task.h"
 #include "constants/battle_anim.h"
 #include "constants/species.h"
-#include "battle_anim.h"
-#include "task.h"
-#include "sound.h"
-#include "contest.h"
 
 // this file's functions
 static void sub_8158B98(u8 taskId);
@@ -131,7 +131,7 @@ void sub_8158D8C(u8 taskId)
     if (IsContest())
     {
         if (gBattleAnimArgs[0] == ANIM_ATTACKER)
-            species = gContestResources->field_18->unk0;
+            species = gContestResources->field_18->species;
         else
             DestroyAnimVisualTask(taskId); // UB: function should return upon destroying task.
     }
@@ -177,7 +177,7 @@ void sub_8158E9C(u8 taskId)
     if (IsContest())
     {
         if (gBattleAnimArgs[0] == ANIM_ATTACKER)
-            species = gContestResources->field_18->unk0;
+            species = gContestResources->field_18->species;
         else
             DestroyAnimVisualTask(taskId); // UB: function should return upon destroying task.
     }
@@ -281,7 +281,7 @@ void sub_81590B8(u8 taskId)
     pan = BattleAnimAdjustPanning(SOUND_PAN_ATTACKER);
 
     if (IsContest())
-        species = gContestResources->field_18->unk0;
+        species = gContestResources->field_18->species;
     else
         species = gAnimBattlerSpecies[gBattleAnimAttacker];
 

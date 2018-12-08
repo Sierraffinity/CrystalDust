@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle.h"
 #include "title_screen.h"
 #include "sprite.h"
 #include "gba/m4a_internal.h"

@@ -29,7 +29,6 @@
 #include "frontier_util.h"
 #include "constants/maps.h"
 
-extern u8 gDifferentSaveFile;
 extern u16 gSaveFileStatus;
 extern u8 gUnknown_030060B0;
 
@@ -61,6 +60,10 @@ extern const u8 EventScript_2715DE[];
 static void ClearFrontierRecord(void);
 static void WarpToTruck(void);
 static void ResetMiniGamesResults(void);
+
+// EWRAM vars
+EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
+EWRAM_DATA bool8 gUnknown_020322D5 = FALSE;
 
 // const rom data
 static const struct ContestWinner sContestWinnerPicDummy =
