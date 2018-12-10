@@ -44,7 +44,7 @@
 #include "window.h"
 #include "wallclock.h"
 #include "m4a.h"
-#include "malloc.h"
+#include "alloc.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
