@@ -139,15 +139,15 @@ const u8 *GetBuenasPassword(u16 category, u16 index)
         u16 values[3];
     } passwords[] = {
         { 10, PASS_SPECIES, { SPECIES_CYNDAQUIL, SPECIES_TOTODILE, SPECIES_CHIKORITA } },
-        { 12, PASS_ITEM, { ITEM_FRESH_WATER, ITEM_SODA_POP, ITEM_LEMONADE } },
-        { 12, PASS_ITEM, { ITEM_POTION, ITEM_ANTIDOTE, ITEM_PARALYZE_HEAL } },
-        { 12, PASS_ITEM, { ITEM_POKE_BALL, ITEM_GREAT_BALL, ITEM_ULTRA_BALL } },
+        { 12, PASS_ITEM,    { ITEM_FRESH_WATER, ITEM_SODA_POP, ITEM_LEMONADE } },
+        { 12, PASS_ITEM,    { ITEM_POTION, ITEM_ANTIDOTE, ITEM_PARALYZE_HEAL } },
+        { 12, PASS_ITEM,    { ITEM_POKE_BALL, ITEM_GREAT_BALL, ITEM_ULTRA_BALL } },
         { 10, PASS_SPECIES, { SPECIES_PIKACHU, SPECIES_RATTATA, SPECIES_GEODUDE } },
         { 10, PASS_SPECIES, { SPECIES_HOOTHOOT, SPECIES_SPINARAK, SPECIES_DROWZEE } },
-        { 16, PASS_MAPSEC, { MAPSEC_NEW_BARK_TOWN, MAPSEC_CHERRYGROVE_CITY, MAPSEC_AZALEA_TOWN } },
-        { 6,  PASS_TYPE, { TYPE_FLYING, TYPE_BUG, TYPE_GRASS } },
-        { 12, PASS_MOVE, { MOVE_TACKLE, MOVE_GROWL, MOVE_MUD_SLAP } },
-        { 12, PASS_ITEM, { ITEM_X_ATTACK, ITEM_X_DEFEND, ITEM_X_SPEED } },
+        { 16, PASS_MAPSEC,  { MAPSEC_NEW_BARK_TOWN, MAPSEC_CHERRYGROVE_CITY, MAPSEC_AZALEA_TOWN } },
+        { 6,  PASS_TYPE,    { TYPE_FLYING, TYPE_BUG, TYPE_GRASS } },
+        { 12, PASS_MOVE,    { MOVE_TACKLE, MOVE_GROWL, MOVE_MUD_SLAP } },
+        { 12, PASS_ITEM,    { ITEM_X_ATTACK, ITEM_X_DEFEND, ITEM_X_SPEED } },
         { 13, PASS_STATION, { OAKS_POKEMON_TALK, POKEMON_MUSIC, LUCKY_CHANNEL } }
     };
 
@@ -238,7 +238,9 @@ void PlayRadioShow(u8 taskId, u8 windowId)
     case BUENAS_PASSWORD:
         if (BuenasPassword_CheckTime())
         {
-            DrawStationTitle(gText_BuenasPassword); // Buena's Password will never play on a regular radio so this should be okay
+            // Buena's Password comes on at a specific time, so a special case has to be made here
+            // It will never play on a regular radio so this should be okay
+            DrawStationTitle(gText_BuenasPassword);
             PlayStationMusic(taskId);
             NextRadioLine(taskId, windowId, BUENAS_PASSWORD_2, gText_BuenasPassword1, TRUE);
         }
