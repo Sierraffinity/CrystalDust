@@ -63,7 +63,7 @@ bool16 InitWindows(const struct WindowTemplate *templates)
 
         if (gUnknown_03002F70[bgLayer] == NULL)
         {
-            attrib = GetBgAttribute(bgLayer, 0x8);
+            attrib = GetBgAttribute(bgLayer, BG_ATTR_METRIC);
 
             if (attrib != 0xFFFF)
             {
@@ -141,7 +141,7 @@ u16 AddWindow(const struct WindowTemplate *template)
 
     if (gUnknown_03002F70[bgLayer] == NULL)
     {
-        attrib = GetBgAttribute(bgLayer, 0x8);
+        attrib = GetBgAttribute(bgLayer, BG_ATTR_METRIC);
 
         if (attrib != 0xFFFF)
         {
@@ -276,16 +276,16 @@ void CopyWindowToVram(u8 windowId, u8 mode)
 
     switch (mode)
     {
-        case 1:
-            CopyBgTilemapBufferToVram(windowLocal.window.bg);
-            break;
-        case 2:
-            LoadBgTiles(windowLocal.window.bg, windowLocal.tileData, windowSize, windowLocal.window.baseBlock);
-            break;
-        case 3:
-            LoadBgTiles(windowLocal.window.bg, windowLocal.tileData, windowSize, windowLocal.window.baseBlock);
-            CopyBgTilemapBufferToVram(windowLocal.window.bg);
-            break;
+    case 1:
+        CopyBgTilemapBufferToVram(windowLocal.window.bg);
+        break;
+    case 2:
+        LoadBgTiles(windowLocal.window.bg, windowLocal.tileData, windowSize, windowLocal.window.baseBlock);
+        break;
+    case 3:
+        LoadBgTiles(windowLocal.window.bg, windowLocal.tileData, windowSize, windowLocal.window.baseBlock);
+        CopyBgTilemapBufferToVram(windowLocal.window.bg);
+        break;
     }
 }
 
@@ -308,16 +308,16 @@ void CopyWindowRectToVram(u32 windowId, u32 mode, u32 x, u32 y, u32 w, u32 h)
 
         switch (mode)
         {
-            case 1:
-                CopyBgTilemapBufferToVram(windowLocal.window.bg);
-                break;
-            case 2:
-                LoadBgTiles(windowLocal.window.bg, windowLocal.tileData + (rectPos * 32), rectSize, windowLocal.window.baseBlock + rectPos);
-                break;
-            case 3:
-                LoadBgTiles(windowLocal.window.bg, windowLocal.tileData + (rectPos * 32), rectSize, windowLocal.window.baseBlock + rectPos);
-                CopyBgTilemapBufferToVram(windowLocal.window.bg);
-                break;
+        case 1:
+            CopyBgTilemapBufferToVram(windowLocal.window.bg);
+            break;
+        case 2:
+            LoadBgTiles(windowLocal.window.bg, windowLocal.tileData + (rectPos * 32), rectSize, windowLocal.window.baseBlock + rectPos);
+            break;
+        case 3:
+            LoadBgTiles(windowLocal.window.bg, windowLocal.tileData + (rectPos * 32), rectSize, windowLocal.window.baseBlock + rectPos);
+            CopyBgTilemapBufferToVram(windowLocal.window.bg);
+            break;
         }
     }
 }
@@ -328,7 +328,7 @@ void PutWindowTilemap(u8 windowId)
 
     WriteSequenceToBgTilemapBuffer(
         windowLocal.window.bg,
-        GetBgAttribute(windowLocal.window.bg, 0xA) + windowLocal.window.baseBlock,
+        GetBgAttribute(windowLocal.window.bg, BG_ATTR_BASETILE) + windowLocal.window.baseBlock,
         windowLocal.window.tilemapLeft,
         windowLocal.window.tilemapTop,
         windowLocal.window.width,
@@ -340,7 +340,7 @@ void PutWindowTilemap(u8 windowId)
 void PutWindowRectTilemapOverridePalette(u8 windowId, u8 x, u8 y, u8 width, u8 height, u8 palette)
 {
     struct Window windowLocal = gWindows[windowId];
-    u16 currentRow = windowLocal.window.baseBlock + (y * windowLocal.window.width) + x + GetBgAttribute(windowLocal.window.bg, 0xA);
+    u16 currentRow = windowLocal.window.baseBlock + (y * windowLocal.window.width) + x + GetBgAttribute(windowLocal.window.bg, BG_ATTR_BASETILE);
     int i;
 
     for (i = 0; i < height; ++i)
@@ -376,7 +376,7 @@ void ClearWindowTilemap(u8 windowId)
 void PutWindowRectTilemap(u8 windowId, u8 x, u8 y, u8 width, u8 height)
 {
     struct Window windowLocal = gWindows[windowId];
-    u16 currentRow = windowLocal.window.baseBlock + (y * windowLocal.window.width) + x + GetBgAttribute(windowLocal.window.bg, 0xA);
+    u16 currentRow = windowLocal.window.baseBlock + (y * windowLocal.window.width) + x + GetBgAttribute(windowLocal.window.bg, BG_ATTR_BASETILE);
     int i;
 
     for (i = 0; i < height; ++i)
@@ -601,7 +601,7 @@ static void nullsub_9(void)
 
 }
 
-u16 AddWindow8Bit(struct WindowTemplate *template)
+u16 AddWindow8Bit(const struct WindowTemplate *template)
 {
     u16 windowId;
     u8* memAddress;
@@ -617,7 +617,7 @@ u16 AddWindow8Bit(struct WindowTemplate *template)
     bgLayer = template->bg;
     if (gUnknown_03002F70[bgLayer] == 0)
     {
-        u16 attribute = GetBgAttribute(bgLayer, 8);
+        u16 attribute = GetBgAttribute(bgLayer, BG_ATTR_METRIC);
         if (attribute != 0xFFFF)
         {
             s32 i;
@@ -669,12 +669,12 @@ void FillWindowPixelRect8Bit(u8 windowId, u8 fillValue, u16 x, u16 y, u16 width,
     FillBitmapRect8Bit(&pixelRect, x, y, width, height, fillValue);
 }
 
-void BlitBitmapRectToWindow4BitTo8Bit(u8 windowId, u8 *pixels, u16 srcX, u16 srcY, u16 srcWidth, int srcHeight, u16 destX, u16 destY, u16 rectWidth, u16 rectHeight, u8 paletteNum)
+void BlitBitmapRectToWindow4BitTo8Bit(u8 windowId, const u8 *pixels, u16 srcX, u16 srcY, u16 srcWidth, int srcHeight, u16 destX, u16 destY, u16 rectWidth, u16 rectHeight, u8 paletteNum)
 {
     struct Bitmap sourceRect;
     struct Bitmap destRect;
 
-    sourceRect.pixels = (u8*)pixels;
+    sourceRect.pixels = (u8*) pixels;
     sourceRect.width = srcWidth;
     sourceRect.height = srcHeight;
 
@@ -692,16 +692,16 @@ void CopyWindowToVram8Bit(u8 windowId, u8 mode)
 
     switch (mode)
     {
-        case 1:
-            CopyBgTilemapBufferToVram(sWindowPtr->window.bg);
-            break;
-        case 2:
-            LoadBgTiles(sWindowPtr->window.bg, sWindowPtr->tileData, sWindowSize, sWindowPtr->window.baseBlock);
-            break;
-        case 3:
-            LoadBgTiles(sWindowPtr->window.bg, sWindowPtr->tileData, sWindowSize, sWindowPtr->window.baseBlock);
-            CopyBgTilemapBufferToVram(sWindowPtr->window.bg);
-            break;
+    case 1:
+        CopyBgTilemapBufferToVram(sWindowPtr->window.bg);
+        break;
+    case 2:
+        LoadBgTiles(sWindowPtr->window.bg, sWindowPtr->tileData, sWindowSize, sWindowPtr->window.baseBlock);
+        break;
+    case 3:
+        LoadBgTiles(sWindowPtr->window.bg, sWindowPtr->tileData, sWindowSize, sWindowPtr->window.baseBlock);
+        CopyBgTilemapBufferToVram(sWindowPtr->window.bg);
+        break;
     }
 }
 

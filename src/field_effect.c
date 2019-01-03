@@ -10,9 +10,10 @@
 #include "field_screen_effect.h"
 #include "field_weather.h"
 #include "fieldmap.h"
-#include "fldeff_groundshake.h"
+#include "fldeff.h"
 #include "gpu_regs.h"
 #include "main.h"
+#include "mirage_tower.h"
 #include "menu.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
@@ -230,7 +231,7 @@ static void sub_80B9A60(struct Task *);
 
 static void sub_80B9BE8(u8 taskId);
 static void sub_80B9DB8(struct Sprite* sprite);
-static void sub_80B9EDC(u8 taskId);
+static void Fldeff_MoveDeoxysRock_Step(u8 taskId);
 
 // Static RAM declarations
 
@@ -734,8 +735,8 @@ bool8 FieldEffectActiveListContains(u8 id)
 u8 CreateTrainerSprite(u8 trainerSpriteID, s16 x, s16 y, u8 subpriority, u8 *buffer)
 {
     struct SpriteTemplate spriteTemplate;
-    LoadCompressedObjectPaletteOverrideBuffer(&gTrainerFrontPicPaletteTable[trainerSpriteID], buffer);
-    LoadCompressedObjectPicOverrideBuffer(&gTrainerFrontPicTable[trainerSpriteID], buffer);
+    LoadCompressedSpritePaletteOverrideBuffer(&gTrainerFrontPicPaletteTable[trainerSpriteID], buffer);
+    LoadCompressedSpriteSheetOverrideBuffer(&gTrainerFrontPicTable[trainerSpriteID], buffer);
     spriteTemplate.tileTag = gTrainerFrontPicTable[trainerSpriteID].tag;
     spriteTemplate.paletteTag = gTrainerFrontPicPaletteTable[trainerSpriteID].tag;
     spriteTemplate.oam = &gNewGameBirchOamAttributes;
@@ -2171,7 +2172,7 @@ static void EscapeRopeFieldEffect_Step1(struct Task *task)
         if (task->data[14] == 0 && !gPaletteFade.active && BGMusicStopped() == TRUE)
         {
             SetEventObjectDirection(eventObject, task->data[15]);
-            sub_8084E14();
+            SetWarpDestinationToEscapeWarp();
             WarpIntoMap();
             gFieldCallback = mapldr_080859D4;
             SetMainCallback2(CB2_LoadMap);
@@ -2326,13 +2327,13 @@ static void TeleportFieldEffectTask4(struct Task *task)
     {
         if (task->data[5] == FALSE)
         {
-            sub_81BE72C();
+            ClearMirageTowerPulseBlendEffect();
             task->data[5] = TRUE;
         }
 
         if (BGMusicStopped() == TRUE)
         {
-            Overworld_SetWarpDestToLastHealLoc();
+            SetWarpDestinationToLastHealLocation();
             WarpIntoMap();
             SetMainCallback2(CB2_LoadMap);
             gFieldCallback = mapldr_08085D88;
@@ -2443,7 +2444,7 @@ static void sub_80B8410(struct Task *task)
 bool8 FldEff_FieldMoveShowMon(void)
 {
     u8 taskId;
-    if (is_map_type_1_2_3_5_or_6(Overworld_GetMapTypeOfSaveblockLocation()) == TRUE)
+    if (is_map_type_1_2_3_5_or_6(GetCurrentMapType()) == TRUE)
     {
         taskId = CreateTask(sub_80B8554, 0xff);
     } else
@@ -3644,7 +3645,7 @@ static void sub_80B9DB8(struct Sprite* sprite)
         DestroySprite(sprite);
 }
 
-bool8 sub_80B9E28(struct Sprite* sprite)
+bool8 Fldeff_MoveDeoxysRock(struct Sprite* sprite)
 {
     u8 eventObjectIdBuffer;
     if (!TryGetEventObjectIdByLocalIdAndMap(gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2], &eventObjectIdBuffer))
@@ -3658,7 +3659,7 @@ bool8 sub_80B9E28(struct Sprite* sprite)
         xPos = (gFieldEffectArguments[3] - xPos) * 16;
         yPos = (gFieldEffectArguments[4] - yPos) * 16;
         ShiftEventObjectCoords(object, gFieldEffectArguments[3] + 7, gFieldEffectArguments[4] + 7);
-        taskId = CreateTask(sub_80B9EDC, 0x50);
+        taskId = CreateTask(Fldeff_MoveDeoxysRock_Step, 0x50);
         gTasks[taskId].data[1] = object->spriteId;
         gTasks[taskId].data[2] = gSprites[object->spriteId].pos1.x + xPos;
         gTasks[taskId].data[3] = gSprites[object->spriteId].pos1.y + yPos;
@@ -3668,7 +3669,7 @@ bool8 sub_80B9E28(struct Sprite* sprite)
     return FALSE;
 }
 
-static void sub_80B9EDC(u8 taskId)
+static void Fldeff_MoveDeoxysRock_Step(u8 taskId)
 {
     // BUG: Possible divide by zero
     s16 *data = gTasks[taskId].data;

@@ -852,8 +852,8 @@ static void Task_IntroLoadPart1Graphics(u8 taskId)
                                | BGCNT_SCREENBASE(30)
                                | BGCNT_16COLOR
                                | BGCNT_TXT256x256);
-    LoadCompressedObjectPic(gSpriteSheet_Ditto);
-    LoadCompressedObjectPic(gSpriteSheet_Presents);
+    LoadCompressedSpriteSheet(gSpriteSheet_Ditto);
+    LoadCompressedSpriteSheet(gSpriteSheet_Presents);
     LoadSpritePalettes(gSpritePalette_Ditto);
     CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1F0, 0x20);
     CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1E1, 0x1E);
@@ -1089,12 +1089,12 @@ static u8 BeginUnownFade(u8 speed, bool8 isFadingOut, bool8 shouldNotFadeComplet
 
 static void Task_IntroStartUnownSequence(u8 taskId)
 {
-    LoadCompressedObjectPic(gIntro2UnownASpriteSheet);
-    LoadCompressedObjectPic(gIntro2UnownPulseSpriteSheet);
-    LoadCompressedObjectPic(gIntro2UnownOthersSpriteSheet);
-    LoadCompressedObjectPic(gIntro2SuicuneSilhouetteSpriteSheet);
-    LoadCompressedObjectPic(gIntro2WooperSpriteSheet);
-    LoadCompressedObjectPic(gIntro2PichuSpriteSheet);
+    LoadCompressedSpriteSheet(gIntro2UnownASpriteSheet);
+    LoadCompressedSpriteSheet(gIntro2UnownPulseSpriteSheet);
+    LoadCompressedSpriteSheet(gIntro2UnownOthersSpriteSheet);
+    LoadCompressedSpriteSheet(gIntro2SuicuneSilhouetteSpriteSheet);
+    LoadCompressedSpriteSheet(gIntro2WooperSpriteSheet);
+    LoadCompressedSpriteSheet(gIntro2PichuSpriteSheet);
     LoadSpritePalettes(gIntro2SpritePalettes);
     LoadSpritePalettes(gSuicuneSilhouetteSpritePalettes);
     gTasks[taskId].data[1] = CreateSprite(&gSpriteTemplate_UnownA, 120, 80, 0);
@@ -1522,7 +1522,7 @@ static void Task_IntroLoadPart3Graphics(u8 taskId)
         ResetSpriteData();
         FreeAllSpritePalettes();
         
-        LoadCompressedObjectPic(gIntro2SuicuneSilhouetteSpriteSheet);
+        LoadCompressedSpriteSheet(gIntro2SuicuneSilhouetteSpriteSheet);
         LoadSpritePalettes(gSuicuneSilhouetteSpritePalettes);
         
         data[0] = 0;
@@ -1590,9 +1590,9 @@ static void Task_IntroLoadPart3Graphics1(u8 taskId)
     LZ77UnCompVram(gIntro3BG3_Tiles, (void *)VRAM + 0x400);
     LZ77UnCompVram(gBattleAnimBackgroundTilemap_17, (void *)(VRAM + 0xF800));
     LZ77UnCompVram(gIntro3BG3_Tilemap, (void *)(VRAM + 0xD800));
-    LoadCompressedObjectPic(gIntro3SuicuneSpriteSheet);
-    LoadCompressedObjectPic(gIntro3UnownFSpriteSheet);
-    LoadCompressedObjectPic(gIntro2UnownOthersSpriteSheet);
+    LoadCompressedSpriteSheet(gIntro3SuicuneSpriteSheet);
+    LoadCompressedSpriteSheet(gIntro3UnownFSpriteSheet);
+    LoadCompressedSpriteSheet(gIntro2UnownOthersSpriteSheet);
     LoadPalette(gIntro3BG3_Pals, 0x10, sizeof(gIntro3BG3_Pals));
     LoadSpritePalettes(gIntro3SpritePalettes);
     gTasks[taskId].data[1] = IndexOfSpritePaletteTag(gIntro3SpritePalettes[1].tag) + 16;

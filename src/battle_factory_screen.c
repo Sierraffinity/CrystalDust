@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle.h"
 #include "battle_factory_screen.h"
 #include "battle_factory.h"
 #include "sprite.h"
@@ -131,12 +132,6 @@ struct FactorySwapMonsStruct
     bool8 unk30;
 };
 
-extern u8 gUnknown_0203CF20;
-
-extern const u16 gBattleFrontierHeldItems[];
-extern const struct FacilityMon gBattleFrontierMons[];
-extern const struct FacilityMon gSlateportBattleTentMons[];
-extern const struct BattleFrontierTrainer gBattleFrontierTrainers[];
 extern const u32 gUnknown_085B18AC[];
 
 // This file's functions.
@@ -1167,7 +1162,7 @@ static void CB2_InitSelectScreen(void)
     case 4:
         LoadSpritePalettes(gUnknown_086103F4);
         LoadSpriteSheets(gUnknown_086103BC);
-        LoadCompressedObjectPic(gUnknown_086103E4);
+        LoadCompressedSpriteSheet(gUnknown_086103E4);
         ShowBg(0);
         ShowBg(1);
         SetVBlankCallback(Select_VblankCb);
@@ -1697,7 +1692,7 @@ static void CreateFrontierFactorySelectableMons(u8 firstMonId)
                                              gFacilityTrainerMons[monSetId].evSpread,
                                              otId);
         happiness = 0;
-        for (j = 0; j < 4; j++)
+        for (j = 0; j < MAX_MON_MOVES; j++)
             SetMonMoveAvoidReturn(&sFactorySelectScreen->mons[i + firstMonId].monData, gFacilityTrainerMons[monSetId].moves[j], j);
         SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_FRIENDSHIP, &happiness);
         SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monSetId].itemTableId]);
@@ -1727,7 +1722,7 @@ static void CreateTentFactorySelectableMons(u8 firstMonId)
                                              gFacilityTrainerMons[monSetId].evSpread,
                                              otId);
         happiness = 0;
-        for (j = 0; j < 4; j++)
+        for (j = 0; j < MAX_MON_MOVES; j++)
             SetMonMoveAvoidReturn(&sFactorySelectScreen->mons[i + firstMonId].monData, gFacilityTrainerMons[monSetId].moves[j], j);
         SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_FRIENDSHIP, &happiness);
         SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monSetId].itemTableId]);
@@ -3171,7 +3166,7 @@ static void CB2_InitSwapScreen(void)
     case 4:
         LoadSpritePalettes(gUnknown_086106B0);
         LoadSpriteSheets(gUnknown_08610650);
-        LoadCompressedObjectPic(gUnknown_086106A0);
+        LoadCompressedSpriteSheet(gUnknown_086106A0);
         SetVBlankCallback(Swap_VblankCb);
         gMain.state++;
         break;

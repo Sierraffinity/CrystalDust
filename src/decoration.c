@@ -519,7 +519,7 @@ void sub_8126B80(u8 taskId)
 
     if (!gPaletteFade.active)
     {
-        menuPos = GetMenuCursorPos();
+        menuPos = Menu_GetCursorPos();
         switch (Menu_ProcessInput())
         {
             default:
@@ -527,7 +527,7 @@ void sub_8126B80(u8 taskId)
                 sSecretBasePCMenuActions[sSecretBasePCMenuCursorPos].func.void_u8(taskId);
                 break;
             case -2:
-                sSecretBasePCMenuCursorPos = GetMenuCursorPos();
+                sSecretBasePCMenuCursorPos = Menu_GetCursorPos();
                 if ((s8)menuPos != sSecretBasePCMenuCursorPos)
                 {
                     sub_8126C08();
@@ -1131,7 +1131,7 @@ void sub_8127ACC(u8 taskId)
 void sub_8127B04(u8 taskId)
 {
     DrawWholeMapView();
-    Overworld_SetWarpDestination(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1, gTasks[taskId].data[3], gTasks[taskId].data[4]);
+    SetWarpDestination(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1, gTasks[taskId].data[3], gTasks[taskId].data[4]);
     WarpIntoMap();
 }
 
@@ -1629,7 +1629,7 @@ void sub_8128950(u8 taskId)
 void sub_81289D0(u8 taskId)
 {
     DisplayYesNoMenu();
-    sub_8121F68(taskId, &gUnknown_085A72C4);
+    DoYesNoFuncWithChoice(taskId, &gUnknown_085A72C4);
 }
 
 void sub_81289F0(u8 taskId)
@@ -1694,7 +1694,7 @@ void sub_8128AAC(u8 taskId)
 void sub_8128B80(u8 taskId)
 {
     DisplayYesNoMenu();
-    sub_8121F68(taskId, &gUnknown_085A72CC);
+    DoYesNoFuncWithChoice(taskId, &gUnknown_085A72CC);
 }
 
 void sub_8128BA0(u8 taskId)
@@ -2065,7 +2065,7 @@ u8 AddDecorationIconObjectFromIconTable(u16 tilesTag, u16 paletteTag, u8 decor)
     LoadSpriteSheet(&sheet);
     palette.data = GetDecorationIconPicOrPalette(decor, 1);
     palette.tag = paletteTag;
-    LoadCompressedObjectPalette(&palette);
+    LoadCompressedSpritePalette(&palette);
     template = malloc(sizeof(struct SpriteTemplate));
     *template = gItemIconSpriteTemplate;
     template->tileTag = tilesTag;
@@ -2589,7 +2589,7 @@ void sub_812A0E8(u8 taskId)
 void sub_812A1A0(u8 taskId)
 {
     DisplayYesNoMenu();
-    sub_8121F68(taskId, &gUnknown_085A7348);
+    DoYesNoFuncWithChoice(taskId, &gUnknown_085A7348);
 }
 
 void sub_812A1C0(u8 taskId)
@@ -2602,7 +2602,7 @@ void sub_812A1C0(u8 taskId)
 void sub_812A1F0(u8 taskId)
 {
     DisplayYesNoMenu();
-    sub_8121F68(taskId, &gUnknown_085A7350);
+    DoYesNoFuncWithChoice(taskId, &gUnknown_085A7350);
 }
 
 void sub_812A210(u8 taskId)
@@ -2726,7 +2726,7 @@ void sub_812A3D4(u8 taskId)
 void sub_812A458(u8 taskId)
 {
     DisplayYesNoMenu();
-    sub_8121F68(taskId, &gUnknown_085A741C);
+    DoYesNoFuncWithChoice(taskId, &gUnknown_085A741C);
 }
 
 void sub_812A478(u8 taskId)

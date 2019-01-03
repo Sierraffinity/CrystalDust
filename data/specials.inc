@@ -34,7 +34,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_8129708
 	def_special sub_80E91F8
 	def_special sub_80EA30C
-	def_special sub_80FA57C
+	def_special DoSecretBasePCTurnOffEffect
 	def_special sub_80E6BE8
 	def_special sub_80B2DA4
 	def_special sub_80B2E4C
@@ -71,7 +71,7 @@ gSpecials:: @ 81DBA64
 	def_special ShouldTryRematchBattle
 	def_special IsTrainerReadyForRematch
 	def_special BattleSetup_StartRematchBattle
-	def_special ShowPokemonStorageSystem
+	def_special ShowPokemonStorageSystemPC
 	def_special HasEnoughMonsForDoubleBattle
 	def_special TurnOffTVScreen
 	def_special DoTVShow
@@ -105,7 +105,7 @@ gSpecials:: @ 81DBA64
 	def_special GiveMonArtistRibbon
 	def_special sub_80B3000
 	def_special SaveGame
-	def_special sub_80FAFF8
+	def_special DoWateringBerryTreeAnim
 	def_special easy_chat_input_maybe
 	def_special sub_811EECC
 	def_special ScrSpecial_GetCurrentMauvilleMan
@@ -173,7 +173,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_81B94B0
 	def_special GetFirstFreePokeblockSlot
 	def_special DoBerryBlending
-	def_special sub_8142BC8
+	def_special PlayRoulette
 	def_special ShouldMoveLilycoveFanClubMember
 	def_special GetNumMovedLilycoveFanClubMembers
 	def_special BufferStreakTrainerText
@@ -263,10 +263,10 @@ gSpecials:: @ 81DBA64
 	def_special BedroomPC
 	def_special PlayerPC
 	def_special FieldShowRegionMap
-	def_special sub_807E73C
-	def_special sub_807EA10
-	def_special sub_807F0E4
-	def_special sub_807E9D4
+	def_special GetInGameTradeSpeciesInfo
+	def_special CreateInGameTradePokemon
+	def_special DoInGameTradeScene
+	def_special GetTradeSpecies
 	def_special GetWeekCount
 	def_special RetrieveLotteryNumber
 	def_special PickLotteryCornerTicket
@@ -286,8 +286,8 @@ gSpecials:: @ 81DBA64
 	def_special GameClear
 	def_special ShakeScreenInElevator
 	def_special nullsub_55
-	def_special SpawnScriptEventObject
-	def_special RemoveScriptEventObject
+	def_special SpawnCameraObject
+	def_special RemoveCameraObject
 	def_special GetPokeblockNameByMonNature
 	def_special GetSecretBaseNearbyMapName
 	def_special CheckRelicanthWailord
@@ -317,7 +317,7 @@ gSpecials:: @ 81DBA64
 	def_special ScriptCheckFreePokemonStorageSpace
 	def_special DoSealedChamberShakingEffect1
 	def_special sub_8139B60
-	def_special sub_80FAC78
+	def_special GetShieldToyTVDecorationInfo
 	def_special IsPokerusInParty
 	def_special SetSootopolisGymCrackedIceMetatiles
 	def_special sub_8139560
@@ -328,8 +328,8 @@ gSpecials:: @ 81DBA64
 	def_special DoSealedChamberShakingEffect2
 	def_special FoundBlackGlasses
 	def_special sub_80AC81C
-	def_special sp13E_warp_to_last_warp
-	def_special sp13F_fall_to_last_warp
+	def_special DoDiveWarp
+	def_special DoFallWarp
 	def_special ShowContestEntryMonPic
 	def_special sub_80F8EB8
 	def_special SetEReaderTrainerGfxId
@@ -419,9 +419,9 @@ gSpecials:: @ 81DBA64
 	def_special ShouldTryGetTrainerScript
 	def_special ShowMapNamePopup
 	def_special ShowMapNamePopup
-	def_special sub_81BE994
-	def_special sub_81BE79C
-	def_special sub_81BE7F4
+	def_special DoMirageTowerCeilingCrumble
+	def_special SetMirageTowerVisibility
+	def_special StartPlayerDescendMirageTower
 	def_special sub_81398C0
 	def_special IsWirelessAdapterConnected
 	def_special BerryBlenderLinkBecomeLeader
@@ -488,12 +488,12 @@ gSpecials:: @ 81DBA64
 	def_special sub_81B892C
 	def_special sub_813AEB4
 	def_special sub_813AF48
-	def_special sub_813AFC8
+	def_special DoDeoxysRockInteraction
 	def_special sub_813B1D0
 	def_special CreateObedientEnemyMon
-	def_special sub_81BEB54
-	def_special sub_81BEB68
-	def_special sub_81BEB7C
+	def_special StartMirageTowerDisintegration
+	def_special StartMirageTowerShake
+	def_special StartMirageTowerFossilFallAndSink
 	def_special ChangeBoxPokemonNickname
 	def_special get_unknown_box_id
 	def_special sub_813B21C

@@ -461,9 +461,9 @@ static void ItemStorageMenuProcessInput(u8 taskId)
     s8 r2;
     s8 inputOptionId;
 
-    r5 = GetMenuCursorPos();
+    r5 = Menu_GetCursorPos();
     inputOptionId = Menu_ProcessInput();
-    r2 = GetMenuCursorPos();
+    r2 = Menu_GetCursorPos();
     switch(inputOptionId)
     {
         case -2:
@@ -491,7 +491,7 @@ static void Task_ItemStorage_Deposit(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        overworld_free_bg_tilemaps();
+        CleanupOverworldWindowsAndTilemaps();
         sub_81AAC14();
         DestroyTask(taskId);
     }
@@ -723,7 +723,7 @@ static void Mailbox_FadeAndReadMail(u8 taskId)
     if (!gPaletteFade.active)
     {
         sub_81D1EC0();
-        overworld_free_bg_tilemaps();
+        CleanupOverworldWindowsAndTilemaps();
         ReadMail(&(gSaveBlock1Ptr->mail[playerPCItemPageInfo.itemsAbove + 6 + playerPCItemPageInfo.cursorPos]), Mailbox_ReturnToFieldFromReadMail, TRUE);
         DestroyTask(taskId);
     }
@@ -823,7 +823,7 @@ static void Mailbox_DoGiveMailPokeMenu(u8 taskId)
     if (!gPaletteFade.active)
     {
         sub_81D1EC0();
-        overworld_free_bg_tilemaps();
+        CleanupOverworldWindowsAndTilemaps();
         sub_81B8448();
         DestroyTask(taskId);
     }

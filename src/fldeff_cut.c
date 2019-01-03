@@ -5,12 +5,11 @@
 #include "field_effect.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
-#include "fldeff_cut.h"
+#include "fldeff.h"
 #include "alloc.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
 #include "party_menu.h"
-#include "rom6.h"
 #include "script.h"
 #include "sound.h"
 #include "sprite.h"
@@ -625,7 +624,7 @@ static void CutGrassSpriteCallbackEnd(struct Sprite *sprite)
         ScriptContext1_SetupScript(FarawayIsland_Interior_EventScript_267EDB);
 }
 
-void sub_80D423C(s16 x, s16 y)
+void FixLongGrassMetatilesWindowTop(s16 x, s16 y)
 {
     u8 metatileBehavior = MapGridGetMetatileBehaviorAt(x, y);
     if (MetatileBehavior_IsLongGrass_Duplicate(metatileBehavior))
@@ -648,7 +647,7 @@ void sub_80D423C(s16 x, s16 y)
     }
 }
 
-void sub_80D42B8(s16 x, s16 y)
+void FixLongGrassMetatilesWindowBottom(s16 x, s16 y)
 {
     if (MapGridGetMetatileIdAt(x, y) == METATILE_ID_GRASS)
     {

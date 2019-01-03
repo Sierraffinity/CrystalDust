@@ -13,10 +13,7 @@
 #include "string_util.h"
 #include "constants/items.h"
 #include "constants/region_map_sections.h"
-
-extern const struct BattleFrontierTrainer gSlateportBattleTentTrainers[];
-extern const struct FacilityMon gSlateportBattleTentMons[];
-extern const u16 gBattleFrontierHeldItems[];
+#include "constants/species.h"
 
 // This file's functions.
 static void sub_81B99D4(void);
@@ -103,7 +100,7 @@ static void sub_81B99D4(void)
     gSaveBlock2Ptr->frontier.field_CA8 = 0;
     gSaveBlock2Ptr->frontier.curChallengeBattleNum = 0;
     gSaveBlock2Ptr->frontier.field_CA9_a = FALSE;
-    saved_warp2_set(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
+    SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
 }
 
 static void sub_81B9A28(void)
@@ -165,7 +162,7 @@ static void sub_81B9BA0(void)
     gSaveBlock2Ptr->frontier.field_CA8 = 0;
     gSaveBlock2Ptr->frontier.curChallengeBattleNum = 0;
     gSaveBlock2Ptr->frontier.field_CA9_a = FALSE;
-    saved_warp2_set(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
+    SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
 }
 
 static void sub_81B9BF4(void)
@@ -220,7 +217,7 @@ static void sub_81B9D28(void)
     gSaveBlock2Ptr->frontier.field_CA8 = 0;
     gSaveBlock2Ptr->frontier.curChallengeBattleNum = 0;
     gSaveBlock2Ptr->frontier.field_CA9_a = FALSE;
-    saved_warp2_set(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
+    SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
 }
 
 static void sub_81B9D7C(void)
@@ -296,7 +293,7 @@ static void sub_81B9EC0(void)
         heldItems[i] = 0;
     }
     gFacilityTrainerMons = gSlateportBattleTentMons;
-    currSpecies = 0;
+    currSpecies = SPECIES_NONE;
     i = 0;
     while (i != PARTY_SIZE)
     {
@@ -309,7 +306,7 @@ static void sub_81B9EC0(void)
                 break;
             if (species[j] == gFacilityTrainerMons[monSetId].species)
             {
-                if (currSpecies == 0)
+                if (currSpecies == SPECIES_NONE)
                     currSpecies = gFacilityTrainerMons[monSetId].species;
                 else
                     break;
@@ -324,7 +321,7 @@ static void sub_81B9EC0(void)
             if (heldItems[j] != 0 && heldItems[j] == gBattleFrontierHeldItems[gFacilityTrainerMons[monSetId].itemTableId])
             {
                 if (gFacilityTrainerMons[monSetId].species == currSpecies)
-                    currSpecies = 0;
+                    currSpecies = SPECIES_NONE;
                 break;
             }
         }

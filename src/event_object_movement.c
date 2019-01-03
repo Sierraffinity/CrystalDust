@@ -1145,7 +1145,7 @@ u8 GetFirstInactiveEventObjectId(void)
 
 u8 GetEventObjectIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroupId)
 {
-    if (localId < 0xFF)
+    if (localId < EVENT_OBJ_ID_PLAYER)
     {
         return GetEventObjectIdByLocalIdAndMapInternal(localId, mapNum, mapGroupId);
     }
@@ -6422,7 +6422,7 @@ bool8 MovementAction_FacePlayer_Step0(struct EventObject *eventObject, struct Sp
 {
     u8 playerObjectId;
 
-    if (!TryGetEventObjectIdByLocalIdAndMap(0xFF, 0, 0, &playerObjectId))
+    if (!TryGetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0, &playerObjectId))
     {
         FaceDirection(eventObject, sprite, GetDirectionToFace(eventObject->currentCoords.x, eventObject->currentCoords.y, gEventObjects[playerObjectId].currentCoords.x, gEventObjects[playerObjectId].currentCoords.y));
     }
@@ -6434,7 +6434,7 @@ bool8 MovementAction_FaceAwayPlayer_Step0(struct EventObject *eventObject, struc
 {
     u8 playerObjectId;
 
-    if (!TryGetEventObjectIdByLocalIdAndMap(0xFF, 0, 0, &playerObjectId))
+    if (!TryGetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0, &playerObjectId))
     {
         FaceDirection(eventObject, sprite, GetOppositeDirection(GetDirectionToFace(eventObject->currentCoords.x, eventObject->currentCoords.y, gEventObjects[playerObjectId].currentCoords.x, gEventObjects[playerObjectId].currentCoords.y)));
     }

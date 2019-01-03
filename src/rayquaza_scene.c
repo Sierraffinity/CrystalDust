@@ -1528,14 +1528,14 @@ static void sub_81D706C(void)
     LZDecompressWram(gRaySceneClouds1_Tilemap, sRayScene->tilemapBuffers[1]);
     LZDecompressWram(gRaySceneClouds3_Tilemap, sRayScene->tilemapBuffers[2]);
     LoadCompressedPalette(gRaySceneClouds_Pal, 0, 0x40);
-    LoadCompressedObjectPic(&sUnknown_0862A8C4);
-    LoadCompressedObjectPic(&sUnknown_0862A8F8);
-    LoadCompressedObjectPic(&sUnknown_0862A924);
-    LoadCompressedObjectPic(&sUnknown_0862A9D4);
-    LoadCompressedObjectPic(&sUnknown_0862AA14);
-    LoadCompressedObjectPic(&sUnknown_0862AA34);
-    LoadCompressedObjectPalette(&sUnknown_0862A8CC);
-    LoadCompressedObjectPalette(&sUnknown_0862A9DC);
+    LoadCompressedSpriteSheet(&sUnknown_0862A8C4);
+    LoadCompressedSpriteSheet(&sUnknown_0862A8F8);
+    LoadCompressedSpriteSheet(&sUnknown_0862A924);
+    LoadCompressedSpriteSheet(&sUnknown_0862A9D4);
+    LoadCompressedSpriteSheet(&sUnknown_0862AA14);
+    LoadCompressedSpriteSheet(&sUnknown_0862AA34);
+    LoadCompressedSpritePalette(&sUnknown_0862A8CC);
+    LoadCompressedSpritePalette(&sUnknown_0862A9DC);
 }
 
 static void Task_DuoFightAnim(u8 taskId)
@@ -1708,7 +1708,7 @@ static void sub_81D752C(u8 taskId)
     if (data[0] != 16)
     {
         data[0]++;
-        SetGpuReg(REG_OFFSET_BLDALPHA, (data[0] << 8) | (16 - data[0]));
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16 - data[0], data[0]));
     }
 }
 
@@ -1943,8 +1943,8 @@ static void sub_81D7E9C(void)
     LZDecompressWram(gRaySceneOvercast_Tilemap, sRayScene->tilemapBuffers[1]);
     LZDecompressWram(gRaySceneRayquaza_Tilemap, sRayScene->tilemapBuffers[2]);
     LoadCompressedPalette(gRaySceneRayquaza_Pal, 0, 0x40);
-    LoadCompressedObjectPic(&sUnknown_0862AA90);
-    LoadCompressedObjectPalette(&sUnknown_0862AA98);
+    LoadCompressedSpriteSheet(&sUnknown_0862AA90);
+    LoadCompressedSpritePalette(&sUnknown_0862AA98);
 }
 
 static void Task_RayTakesFlightAnim(u8 taskId)
@@ -1954,7 +1954,7 @@ static void Task_RayTakesFlightAnim(u8 taskId)
     sub_81D7E10();
     sub_81D7E9C();
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_OBJ | BLDCNT_TGT2_BG1 | BLDCNT_EFFECT_BLEND);
-    SetGpuReg(REG_OFFSET_BLDALPHA, 0x808);
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(8, 8));
     BlendPalettes(-1, 0x10, 0);
     SetVBlankCallback(VBlankCB_RayquazaScene);
     CreateTask(sub_81D81A4, 0);
@@ -2118,9 +2118,9 @@ static void sub_81D8358(void)
     LoadCompressedPalette(gRaySceneOvercast2_Pal, 0, 0x40);
     gPlttBufferUnfaded[0] = RGB_WHITE;
     gPlttBufferFaded[0] = RGB_WHITE;
-    LoadCompressedObjectPic(&sUnknown_0862AAFC);
-    LoadCompressedObjectPic(&sUnknown_0862AB04);
-    LoadCompressedObjectPalette(&sUnknown_0862AB0C);
+    LoadCompressedSpriteSheet(&sUnknown_0862AAFC);
+    LoadCompressedSpriteSheet(&sUnknown_0862AB04);
+    LoadCompressedSpritePalette(&sUnknown_0862AB0C);
 }
 
 static void sub_81D844C(void)
@@ -2153,7 +2153,7 @@ static void Task_RayDescendsAnim(u8 taskId)
     sub_81D82B0();
     sub_81D8358();
     SetGpuRegBits(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_OBJ | BLDCNT_EFFECT_BLEND);
-    SetGpuReg(REG_OFFSET_BLDALPHA, 0x1000);
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
     BlendPalettes(-1, 0x10, 0);
     SetVBlankCallback(VBlankCB_RayquazaScene);
     sRayScene->field_2008 = 0;
@@ -2489,16 +2489,16 @@ static void sub_81D8CC4(void)
     LZDecompressWram(gRaySceneHushBg_Tilemap, sRayScene->tilemapBuffers[0]);
     LZDecompressWram(gRaySceneHushRing_Map, sRayScene->tilemapBuffers[2]);
     LoadCompressedPalette(gRaySceneHushBg_Pal, 0, 0x60);
-    LoadCompressedObjectPic(&sUnknown_0862AC28);
-    LoadCompressedObjectPic(&sUnknown_0862AC30);
-    LoadCompressedObjectPic(&sUnknown_0862AC38);
-    LoadCompressedObjectPic(&sUnknown_0862AC40);
-    LoadCompressedObjectPic(&sUnknown_0862AC48);
-    LoadCompressedObjectPic(&sUnknown_0862AC50);
-    LoadCompressedObjectPalette(&sUnknown_0862AC58);
-    LoadCompressedObjectPalette(&sUnknown_0862AC60);
-    LoadCompressedObjectPalette(&sUnknown_0862AC68);
-    LoadCompressedObjectPalette(&sUnknown_0862AC70);
+    LoadCompressedSpriteSheet(&sUnknown_0862AC28);
+    LoadCompressedSpriteSheet(&sUnknown_0862AC30);
+    LoadCompressedSpriteSheet(&sUnknown_0862AC38);
+    LoadCompressedSpriteSheet(&sUnknown_0862AC40);
+    LoadCompressedSpriteSheet(&sUnknown_0862AC48);
+    LoadCompressedSpriteSheet(&sUnknown_0862AC50);
+    LoadCompressedSpritePalette(&sUnknown_0862AC58);
+    LoadCompressedSpritePalette(&sUnknown_0862AC60);
+    LoadCompressedSpritePalette(&sUnknown_0862AC68);
+    LoadCompressedSpritePalette(&sUnknown_0862AC70);
 }
 
 static void Task_RayChasesAwayAnim(u8 taskId)
@@ -2509,7 +2509,7 @@ static void Task_RayChasesAwayAnim(u8 taskId)
     sub_81D68C8();
     ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_EFFECT_BLEND);
-    SetGpuReg(REG_OFFSET_BLDALPHA, 0xE09);
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(9, 14));
     BlendPalettes(-1, 0x10, 0);
     SetVBlankCallback(VBlankCB_RayquazaScene);
     data[0] = 0;

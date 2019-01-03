@@ -133,6 +133,7 @@ void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag);
 u16 CorrectSpecialMapSecId(u16 mapSecId);
 void sub_8122D88(struct RegionMap *regionMap);
 void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y);
+void MCB2_FlyMap(void);
 
 extern const struct RegionMapLocation gRegionMapEntries[];
 

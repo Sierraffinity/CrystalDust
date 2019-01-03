@@ -295,8 +295,8 @@ void CB2_InitTitleScreen(void)
         ResetSpriteData();
         FreeAllSpritePalettes();
         gReservedSpritePaletteCount = 9;
-        LoadCompressedObjectPic(&sSpriteSheet_Suicune[0]);
-        LoadCompressedObjectPic(&sPokemonLogoShineSpriteSheet[0]);
+        LoadCompressedSpriteSheet(&sSpriteSheet_Suicune[0]);
+        LoadCompressedSpriteSheet(&sPokemonLogoShineSpriteSheet[0]);
         LoadSpritePalette(&sSpritePalette_Suicune[0]);
         gMain.state = 2;
         break;

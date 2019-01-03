@@ -4971,7 +4971,7 @@ _080C5204:
 	b _080C52C8
 _080C5214:
 	str r4, [r0]
-	bl sav1_map_get_name
+	bl GetCurrentRegionMapSectionId
 	lsls r0, 24
 	lsrs r4, r0, 24
 	cmp r4, 0x3A
@@ -6952,10 +6952,10 @@ sub_80C62DC: @ 80C62DC
 	bl LoadSpritePalettes
 	ldr r4, =gUnknown_085714BC
 	adds r0, r4, 0
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	adds r4, 0x10
 	adds r0, r4, 0
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	ldr r0, =gUnknown_085715B4
 	ldr r1, =gUnknown_02039CEC
 	ldr r2, [r1]
@@ -7706,7 +7706,7 @@ sub_80C6974: @ 80C6974
 	bl LoadSpritePalettes
 	ldr r6, =gUnknown_085714BC
 	adds r0, r6, 0
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	ldr r0, =gUnknown_085715B4
 	mov r8, r0
 	ldr r4, =gUnknown_02039CF4
@@ -7747,7 +7747,7 @@ sub_80C6974: @ 80C6974
 	bl StartSpriteAnim
 	adds r6, 0x8
 	adds r0, r6, 0
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	movs r3, 0x18
 	add r8, r3
 	ldr r6, =gUnknown_08571650
@@ -7780,7 +7780,7 @@ sub_80C6974: @ 80C6974
 	adds r1, r6
 	ldrb r1, [r1, 0xC]
 	bl StartSpriteAnim
-	bl sav1_map_get_name
+	bl GetCurrentRegionMapSectionId
 	lsls r0, 24
 	lsrs r5, r0, 24
 	cmp r5, 0x3A
@@ -7875,7 +7875,7 @@ _080C6AEE:
 	lsrs r4, r0, 16
 _080C6AF2:
 	ldr r0, =gUnknown_085714D4
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	mov r1, sp
 	ldr r0, =gUnknown_085715FC
 	ldm r0!, {r2,r3,r6}

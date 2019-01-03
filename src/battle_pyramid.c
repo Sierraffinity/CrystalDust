@@ -8,7 +8,9 @@
 #include "save.h"
 #include "strings.h"
 #include "fieldmap.h"
+#include "party_menu.h"
 #include "palette.h"
+#include "field_screen_effect.h"
 #include "field_message_box.h"
 #include "random.h"
 #include "item.h"
@@ -32,14 +34,8 @@
 #include "constants/moves.h"
 #include "constants/species.h"
 
-extern u8 gSelectedOrderFromParty[3];
-extern void door_upload_tiles(void);
-
 extern const struct MapLayout *const gMapLayouts[];
 extern const u16 gUnknown_08D856C8[][16];
-extern const u16 gBattleFrontierHeldItems[];
-extern const struct FacilityMon gBattleFrontierMons[];
-extern const struct BattleFrontierTrainer gBattleFrontierTrainers[];
 
 #define TOTAL_ROUNDS 20
 #define PICKUP_ITEMS_PER_ROUND 10
@@ -1181,14 +1177,14 @@ static void sub_81A9834(void)
         {
             if (GetMonData(&gSaveBlock1Ptr->playerParty[id], MON_DATA_SPECIES, NULL) == GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL))
             {
-                for (k = 0; k < 4; k++)
+                for (k = 0; k < MAX_MON_MOVES; k++)
                 {
-                    for (l = 0; l < 4; l++)
+                    for (l = 0; l < MAX_MON_MOVES; l++)
                     {
                         if (GetMonData(&gSaveBlock1Ptr->playerParty[id], MON_DATA_MOVE1 + l, NULL) == GetMonData(&gPlayerParty[j], MON_DATA_MOVE1 + k, NULL))
                             break;
                     }
-                    if (l == 4)
+                    if (l == MAX_MON_MOVES)
                         SetMonMoveSlot(&gPlayerParty[j], MOVE_SKETCH, k);
                 }
                 gSaveBlock1Ptr->playerParty[id] = gPlayerParty[j];
@@ -1206,8 +1202,8 @@ static u8 sub_81A9998(s32 *arg0, u8 arg1, u8 arg2)
 {
     s32 i, j;
     u8 ret = 0;
-    u16 *map = gUnknown_03005DC0.map;
-    map += gUnknown_03005DC0.width * 7 + 7;
+    u16 *map = gBackupMapLayout.map;
+    map += gBackupMapLayout.width * 7 + 7;
 
     for (i = 0; i < 32; map += 47, i++)
     {
@@ -1364,7 +1360,7 @@ void GenerateBattlePyramidWildMon(void)
         break;
     }
 
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < MAX_MON_MOVES; i++)
         SetMonMoveSlot(&gEnemyParty[0], wildMons[id].moves[i], i);
 
     if (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvl] >= 140) // BUG: Reading outside the array as lvl was used for mon level instead of frontier lvl mode.
@@ -1497,11 +1493,11 @@ void sub_81AA078(u16 *mapArg, u8 arg1)
         const struct MapLayout *mapLayout = gMapLayouts[allocated[i] + 0x169];
         const u16 *layoutMap = mapLayout->map;
 
-        gUnknown_03005DC0.map = mapArg;
-        gUnknown_03005DC0.width = mapLayout->width * 4 + 15;
-        gUnknown_03005DC0.height = mapLayout->height * 4 + 14;
+        gBackupMapLayout.map = mapArg;
+        gBackupMapLayout.width = mapLayout->width * 4 + 15;
+        gBackupMapLayout.height = mapLayout->height * 4 + 14;
         map = mapArg;
-        heightAdd = (((i / 4 * mapLayout->height) + 7) * (gUnknown_03005DC0.width));
+        heightAdd = (((i / 4 * mapLayout->height) + 7) * (gBackupMapLayout.width));
         widthAdd = ((i % 4 * mapLayout->width) + 7);
         map += heightAdd + widthAdd;
         for (j = 0; j < mapLayout->height; j++)

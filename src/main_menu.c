@@ -2124,7 +2124,7 @@ void AddOakSpeechObjects(u8 taskId)
     gSprites[wooperSprite].invisible = TRUE;
     gTasks[taskId].tWooperSpriteId = wooperSprite;
 
-    LoadCompressedObjectPic(&sCompressedSpriteSheet_OakPlatform);
+    LoadCompressedSpriteSheet(&sCompressedSpriteSheet_OakPlatform);
     LoadSpritePalette(&sSpritePalette_OakPlatform);
 
     for (i = 0; i < 3; i++)

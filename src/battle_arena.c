@@ -8,6 +8,7 @@
 #include "decompress.h"
 #include "event_data.h"
 #include "frontier_util.h"
+#include "graphics.h"
 #include "gpu_regs.h"
 #include "item.h"
 #include "m4a.h"
@@ -22,9 +23,6 @@
 #include "constants/battle_string_ids.h"
 #include "constants/battle_frontier.h"
 #include "constants/moves.h"
-
-extern const u32 gUnknown_08D854E8[];
-extern const u16 gUnknown_08D855E8[];
 
 // This file's functions.
 static void sub_81A58B4(void);
@@ -499,7 +497,7 @@ u8 BattleArena_ShowJudgmentWindow(u8 *state)
     case 0:
         BeginNormalPaletteFade(0x7FFFFF1C, 4, 0, 8, 0);
         SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG1 | WININ_WIN0_BG2 | WININ_WIN0_BG3 | WININ_WIN0_OBJ | WININ_WIN0_CLR | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ | WININ_WIN1_CLR);
-        LoadCompressedObjectPic(gUnknown_08611F74);
+        LoadCompressedSpriteSheet(gUnknown_08611F74);
         LoadCompressedPalette(gUnknown_08D855E8, 0x1F0, 0x20);
         gBattle_WIN0H = 0xFF;
         gBattle_WIN0V = 0x70;
@@ -784,7 +782,7 @@ static void sub_81A58B4(void)
     if (!isCurrent)
         gSaveBlock2Ptr->frontier.arenaWinStreaks[lvlMode] = 0;
 
-    saved_warp2_set(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
+    SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
     gTrainerBattleOpponent_A = 0;
 }
 

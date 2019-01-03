@@ -22,7 +22,7 @@ void LZDecompressVram(const u32 *src, void *dest)
     LZ77UnCompVram(src, dest);
 }
 
-u16 LoadCompressedObjectPic(const struct CompressedSpriteSheet *src)
+u16 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src)
 {
     struct SpriteSheet dest;
 
@@ -33,7 +33,7 @@ u16 LoadCompressedObjectPic(const struct CompressedSpriteSheet *src)
     return LoadSpriteSheet(&dest);
 }
 
-void LoadCompressedObjectPicOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer)
+void LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer)
 {
     struct SpriteSheet dest;
 
@@ -44,7 +44,7 @@ void LoadCompressedObjectPicOverrideBuffer(const struct CompressedSpriteSheet *s
     LoadSpriteSheet(&dest);
 }
 
-void LoadCompressedObjectPalette(const struct CompressedSpritePalette *src)
+void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
 {
     struct SpritePalette dest;
 
@@ -54,7 +54,7 @@ void LoadCompressedObjectPalette(const struct CompressedSpritePalette *src)
     LoadSpritePalette(&dest);
 }
 
-void LoadCompressedObjectPaletteOverrideBuffer(const struct CompressedSpritePalette *a, void *buffer)
+void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *a, void *buffer)
 {
     struct SpritePalette dest;
 
@@ -66,7 +66,7 @@ void LoadCompressedObjectPaletteOverrideBuffer(const struct CompressedSpritePale
 
 void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void* buffer, s32 species)
 {
-    if (species > SPECIES_EGG)
+    if (species > NUM_SPECIES)
         LZ77UnCompWram(gMonFrontPicTable[0].data, buffer);
     else
         LZ77UnCompWram(src->data, buffer);
@@ -102,7 +102,7 @@ void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32
         else
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
     }
-    else if (species > SPECIES_EGG) // is species unknown? draw the ? icon
+    else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
         LZ77UnCompWram(gMonFrontPicTable[0].data, dest);
     else
         LZ77UnCompWram(src->data, dest);
@@ -465,7 +465,7 @@ u32 GetDecompressedDataSize(const u32 *ptr)
     return (ptr8[3] << 16) | (ptr8[2] << 8) | (ptr8[1]);
 }
 
-bool8 LoadCompressedObjectPicUsingHeap(const struct CompressedSpriteSheet* src)
+bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet* src)
 {
     struct SpriteSheet dest;
     void* buffer;
@@ -482,7 +482,7 @@ bool8 LoadCompressedObjectPicUsingHeap(const struct CompressedSpriteSheet* src)
     return FALSE;
 }
 
-bool8 LoadCompressedObjectPaletteUsingHeap(const struct CompressedSpritePalette *src)
+bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette *src)
 {
     struct SpritePalette dest;
     void* buffer;
@@ -499,7 +499,7 @@ bool8 LoadCompressedObjectPaletteUsingHeap(const struct CompressedSpritePalette 
 
 void DecompressPicFromTable_2(const struct CompressedSpriteSheet *src, void* buffer, s32 species) // a copy of DecompressPicFromTable
 {
-    if (species > SPECIES_EGG)
+    if (species > NUM_SPECIES)
         LZ77UnCompWram(gMonFrontPicTable[0].data, buffer);
     else
         LZ77UnCompWram(src->data, buffer);
@@ -523,7 +523,7 @@ void LoadSpecialPokePic_2(const struct CompressedSpriteSheet *src, void *dest, s
         else
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
     }
-    else if (species > SPECIES_EGG) // is species unknown? draw the ? icon
+    else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
         LZ77UnCompWram(gMonFrontPicTable[0].data, dest);
     else
         LZ77UnCompWram(src->data, dest);
@@ -546,7 +546,7 @@ void HandleLoadSpecialPokePic_2(const struct CompressedSpriteSheet *src, void *d
 
 void DecompressPicFromTable_DontHandleDeoxys(const struct CompressedSpriteSheet *src, void* buffer, s32 species)
 {
-    if (species > SPECIES_EGG)
+    if (species > NUM_SPECIES)
         LZ77UnCompWram(gMonFrontPicTable[0].data, buffer);
     else
         LZ77UnCompWram(src->data, buffer);
@@ -581,7 +581,7 @@ void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src
         else
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
     }
-    else if (species > SPECIES_EGG) // is species unknown? draw the ? icon
+    else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
         LZ77UnCompWram(gMonFrontPicTable[0].data, dest);
     else
         LZ77UnCompWram(src->data, dest);

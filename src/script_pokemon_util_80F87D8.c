@@ -36,8 +36,6 @@ extern const u16 gEventObjectPalette33[];
 extern const u16 gEventObjectPalette34[];
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];
 
-extern u8 gSelectedOrderFromParty[];
-
 static const u8 gUnknown_0858D8EC[] = { 3, 4, 5, 14 };
 
 static void sub_80F8EE8(u8 taskId);
@@ -220,7 +218,7 @@ static void ShowContestWinnerCleanup(void)
 
 void ShowContestWinner(void)
 {
-    SetMainCallback2(sub_812FDEC);
+    SetMainCallback2(CB2_ContestPainting);
     gMain.savedCallback = ShowContestWinnerCleanup;
 }
 
@@ -335,7 +333,7 @@ void ShowContestEntryMonPic(void)
             HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites[1], species, personality);
 
         palette = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
-        LoadCompressedObjectPalette(palette);
+        LoadCompressedSpritePalette(palette);
         SetMultiuseSpriteTemplateToPokemon(species, 1);
         gMultiuseSpriteTemplate.paletteTag = palette->tag;
         spriteId = CreateSprite(&gMultiuseSpriteTemplate, (left + 1) * 8 + 32, (top * 8) + 40, 0);
@@ -453,7 +451,7 @@ static void sub_80F9088(u8 taskId)
     switch (gTasks[taskId].data[0])
     {
     case 0:
-        if (sub_800A520())
+        if (IsLinkTaskFinished())
         {
             sub_800ADF8();
             gTasks[taskId].data[0]++;
@@ -463,7 +461,7 @@ static void sub_80F9088(u8 taskId)
         gTasks[taskId].data[0]++;
         break;
     default:
-        if (sub_800A520() == 1)
+        if (IsLinkTaskFinished() == 1)
         {
             EnableBothScriptContexts();
             DestroyTask(taskId);
@@ -530,7 +528,7 @@ void HealPlayerParty(void)
         ppBonuses = GetMonData(&gPlayerParty[i], MON_DATA_PP_BONUSES);
 
         // restore PP.
-        for(j = 0; j < 4; j++)
+        for(j = 0; j < MAX_MON_MOVES; j++)
         {
             arg[0] = CalculatePPWithBonus(GetMonData(&gPlayerParty[i], MON_DATA_MOVE1 + j), ppBonuses, j);
             SetMonData(&gPlayerParty[i], MON_DATA_PP1 + j, arg);
@@ -563,8 +561,8 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     {
     case 0:
     case 1:
-        GetSetPokedexFlag(nationalDexNum, 2);
-        GetSetPokedexFlag(nationalDexNum, 3);
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
         break;
     }
     return sentToPc;

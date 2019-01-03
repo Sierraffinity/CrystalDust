@@ -40,10 +40,10 @@ static void sub_8117FD0(u8);
 
 const u16 gUnknown_08597418 = RGB(31, 31, 31);
 
-// no clue what these are...
-// possibly some register offsets
-const u8 gUnknown_0859741A[] = {0x08, 0x0a, 0x0c, 0x0e};
-const u8 gUnknown_0859741E[] = {0x08, 0x0a, 0x0c, 0x0e};
+// These belong in battle_intro.c, but there putting them there causes 2 bytes of alignment padding
+// between the two .rodata segments. Perhaps battle_intro.c actually belongs in this file, too.
+const u8 gUnknown_0859741A[] = {REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET_BG2CNT, REG_OFFSET_BG3CNT};
+const u8 gUnknown_0859741E[] = {REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET_BG2CNT, REG_OFFSET_BG3CNT};
 
 void sub_8116620(u8 taskId)
 {
@@ -236,7 +236,7 @@ static void sub_81169F8(u8 taskId)
         }
         else
         {
-            task->data[6] = duplicate_obj_of_side_rel2move_in_transparent_mode(task->data[0]);
+            task->data[6] = CloneBattlerSpriteWithBlend(task->data[0]);
             if (task->data[6] >= 0)
             {
                 gSprites[task->data[6]].oam.priority = task->data[0] ? 1 : 2;
@@ -767,7 +767,8 @@ void sub_81177E4(u8 taskId)
     DestroyAnimVisualTask(taskId);
 }
 
-void sub_8117854(u8 taskId, int unused, u16 arg2, u8 battler1, u8 arg4, u8 arg5, u8 arg6, u8 arg7, const u8 *arg8, const u8 *arg9, const u16 *palette)
+
+void sub_8117854(u8 taskId, int unused, u16 arg2, u8 battler1, u8 arg4, u8 arg5, u8 arg6, u8 arg7, const u32 *gfx, const u32 *tilemap, const u32 *palette)
 {
     u16 species;
     u8 spriteId, spriteId2;
@@ -818,8 +819,8 @@ void sub_8117854(u8 taskId, int unused, u16 arg2, u8 battler1, u8 arg4, u8 arg5,
         spriteId2 = sub_80A89C8(battler2, gBattlerSpriteIds[battler2], species);
 
     sub_80A6B30(&unknownStruct);
-    sub_80A6D60(&unknownStruct, arg9, 0);
-    sub_80A6CC0(unknownStruct.bgId, arg8, unknownStruct.tilesOffset);
+    sub_80A6D60(&unknownStruct, tilemap, 0);
+    sub_80A6CC0(unknownStruct.bgId, gfx, unknownStruct.tilesOffset);
     LoadCompressedPalette(palette, unknownStruct.unk8 << 4, 32);
 
     gBattle_BG1_X = 0;

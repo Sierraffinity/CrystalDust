@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle.h"
 #include "battle_factory.h"
 #include "battle_factory_screen.h"
 #include "event_data.h"
@@ -12,11 +13,6 @@
 #include "constants/battle_frontier.h"
 #include "constants/trainers.h"
 #include "constants/moves.h"
-
-extern const struct FacilityMon gBattleFrontierMons[];
-extern const struct FacilityMon gSlateportBattleTentMons[];
-extern const struct BattleFrontierTrainer gBattleFrontierTrainers[];
-extern const u16 gBattleFrontierHeldItems[];
 
 // IWRAM bss
 static IWRAM_DATA bool8 gUnknown_03001288;
@@ -206,7 +202,7 @@ static void sub_81A5E94(void)
     for (i = 0; i < 3; i++)
         gUnknown_03006298[i] |= 0xFFFF;
 
-    saved_warp2_set(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
+    SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
     gTrainerBattleOpponent_A = 0;
 }
 
@@ -438,7 +434,7 @@ static void sub_81A64C4(void)
 
             CalculateMonStats(&gPlayerParty[i]);
             friendship = 0;
-            for (k = 0; k < 4; k++)
+            for (k = 0; k < MAX_MON_MOVES; k++)
                 SetMonMoveAvoidReturn(&gPlayerParty[i], gFacilityTrainerMons[monSetId].moves[k], k);
             SetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, &friendship);
             SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monSetId].itemTableId]);
@@ -478,7 +474,7 @@ static void sub_81A64C4(void)
             }
 
             CalculateMonStats(&gEnemyParty[i]);
-            for (k = 0; k < 4; k++)
+            for (k = 0; k < MAX_MON_MOVES; k++)
                 SetMonMoveAvoidReturn(&gEnemyParty[i], gFacilityTrainerMons[monSetId].moves[k], k);
             SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monSetId].itemTableId]);
             SetMonData(&gEnemyParty[i], MON_DATA_ALT_ABILITY, &gSaveBlock2Ptr->frontier.field_E70[i + 3].abilityBit);
@@ -531,7 +527,7 @@ static void sub_81A67EC(void)
     }
     var_40 = sub_81A6F70(factoryBattleMode, factoryLvlMode);
 
-    currSpecies = 0;
+    currSpecies = SPECIES_NONE;
     i = 0;
     while (i != PARTY_SIZE)
     {
@@ -551,7 +547,7 @@ static void sub_81A67EC(void)
                 break;
             if (species[j] == gFacilityTrainerMons[monSetId].species)
             {
-                if (currSpecies == 0)
+                if (currSpecies == SPECIES_NONE)
                     currSpecies = gFacilityTrainerMons[monSetId].species;
                 else
                     break;
@@ -566,7 +562,7 @@ static void sub_81A67EC(void)
             if (heldItems[j] != 0 && heldItems[j] == gBattleFrontierHeldItems[gFacilityTrainerMons[monSetId].itemTableId])
             {
                 if (gFacilityTrainerMons[monSetId].species == currSpecies)
-                    currSpecies = 0;
+                    currSpecies = SPECIES_NONE;
                 break;
             }
         }
@@ -584,7 +580,7 @@ static void sub_81A67EC(void)
 static void sub_81A6A08(void)
 {
     u8 i;
-    u8 typesCount[18];
+    u8 typesCount[NUMBER_OF_MON_TYPES];
     u8 usedType[2];
 
     gFacilityTrainerMons = gBattleFrontierMons;
@@ -628,7 +624,7 @@ static void sub_81A6AEC(void)
     for (i = 0; i < 3; i++)
     {
         u16 monSetId = gUnknown_03006298[i];
-        for (j = 0; j < 4; j++)
+        for (j = 0; j < MAX_MON_MOVES; j++)
         {
             u8 id = GetStyleForMove(gFacilityTrainerMons[monSetId].moves[j]);
             stylePoints[id]++;
@@ -761,7 +757,7 @@ void FillFactoryBrainParty(void)
                                              otId);
 
         friendship = 0;
-        for (k = 0; k < 4; k++)
+        for (k = 0; k < MAX_MON_MOVES; k++)
             SetMonMoveAvoidReturn(&gEnemyParty[i], gFacilityTrainerMons[monSetId].moves[k], k);
         SetMonData(&gEnemyParty[i], MON_DATA_FRIENDSHIP, &friendship);
         SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monSetId].itemTableId]);

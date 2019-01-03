@@ -365,7 +365,7 @@ static void sub_81C4F44(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        overworld_free_bg_tilemaps();
+        CleanupOverworldWindowsAndTilemaps();
         gFieldCallback2 = hm_add_c3_without_phase_2;
         sub_81C4F98(3, CB2_ReturnToField);
         DestroyTask(taskId);
@@ -547,7 +547,7 @@ static bool8 sub_81C5238(void)
         gPyramidBagResources->state++;
         break;
     case 3:
-        LoadCompressedObjectPic(&gUnknown_0861F3CC);
+        LoadCompressedSpriteSheet(&gUnknown_0861F3CC);
         gPyramidBagResources->state++;
         break;
     case 4:
@@ -964,7 +964,7 @@ static void HandleMenuActionInput(u8 taskId)
 {
     if (sub_81221EC() != TRUE)
     {
-        s8 id = GetMenuCursorPos();
+        s8 id = Menu_GetCursorPos();
         if (gMain.newKeys & DPAD_UP)
         {
             if (id > 0 && IsValidMenuAction(id - 2))

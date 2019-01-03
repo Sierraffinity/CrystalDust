@@ -14,7 +14,7 @@
 	.4byte \address
 	.endm
 
-	.macro object_event index, gfx, replacement, x, y, elevation, movement_type, x_radius, y_radius, trainer_type, sight_radius_tree_etc, script, event_flag
+	.macro object_event index:req, gfx:req, replacement:req, x:req, y:req, elevation:req, movement_type:req, x_radius:req, y_radius:req, trainer_type:req, sight_radius_tree_etc:req, script:req, event_flag:req
 	.byte \index, \gfx, \replacement, 0
 	.2byte \x
 	.2byte \y
@@ -100,4 +100,8 @@
 	.4byte \offset
 	map \map
 	.space 2
+	.endm
+
+	.macro map_header_flags allow_bike:req, allow_escape_rope:req, allow_run:req, show_map_name:req
+	.byte ((\show_map_name & 1) << 3) | ((\allow_run & 1) << 2) | ((\allow_escape_rope & 1) << 1) | \allow_bike
 	.endm

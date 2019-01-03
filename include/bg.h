@@ -13,14 +13,16 @@ struct BGCntrlBitfield // for the I/O registers
 
 enum
 {
-    BG_CTRL_ATTR_VISIBLE = 1,
-    BG_CTRL_ATTR_CHARBASEINDEX = 2,
-    BG_CTRL_ATTR_MAPBASEINDEX = 3,
-    BG_CTRL_ATTR_SCREENSIZE = 4,
-    BG_CTRL_ATTR_PALETTEMODE = 5,
-    BG_CTRL_ATTR_PRIORITY = 6,
-    BG_CTRL_ATTR_MOSAIC = 7,
-    BG_CTRL_ATTR_WRAPAROUND = 8,
+	BG_ATTR_CHARBASEINDEX = 1,
+	BG_ATTR_MAPBASEINDEX,
+	BG_ATTR_SCREENSIZE,
+	BG_ATTR_PALETTEMODE,
+	BG_ATTR_MOSAIC,
+	BG_ATTR_WRAPAROUND,
+	BG_ATTR_PRIORITY,
+	BG_ATTR_METRIC,
+	BG_ATTR_TYPE,
+	BG_ATTR_BASETILE,
 };
 
 struct BgTemplate
@@ -38,8 +40,6 @@ void ResetBgs(void);
 u8 GetBgMode(void);
 void ResetBgControlStructs(void);
 void Unused_ResetBgControlStruct(u8 bg);
-void SetBgControlAttributes(u8 bg, u8 charBaseIndex, u8 mapBaseIndex, u8 screenSize, u8 paletteMode, u8 priority, u8 mosaic, u8 wraparound);
-u16 GetBgControlAttribute(u8 bg, u8 attributeId);
 u8 LoadBgVram(u8 bg, const void *src, u16 size, u16 destOffset, u8 mode);
 void SetTextModeAndHideBgs(void);
 bool8 IsInvalidBg(u8 bg);
@@ -56,11 +56,11 @@ void ShowBg(u8 bg);
 void HideBg(u8 bg);
 void SetBgAttribute(u8 bg, u8 attributeId, u8 value);
 u16 GetBgAttribute(u8 bg, u8 attributeId);
-u32 ChangeBgX(u8 bg, u32 value, u8 op);
-u32 GetBgX(u8 bg);
-u32 ChangeBgY(u8 bg, u32 value, u8 op);
-u32 ChangeBgY_ScreenOff(u8 bg, u32 value, u8 op);
-u32 GetBgY(u8 bg);
+s32 ChangeBgX(u8 bg, s32 value, u8 op);
+s32 GetBgX(u8 bg);
+s32 ChangeBgY(u8 bg, s32 value, u8 op);
+s32 ChangeBgY_ScreenOff(u8 bg, u32 value, u8 op);
+s32 GetBgY(u8 bg);
 void SetBgAffine(u8 bg, u32 srcCenterX, u32 srcCenterY, s16 dispCenterX, s16 dispCenterY, s16 scaleX, s16 scaleY, u16 rotationAngle);
 u8 Unused_AdjustBgMosaic(u8 a1, u8 a2);
 void SetBgTilemapBuffer(u8 bg, void *tilemap);

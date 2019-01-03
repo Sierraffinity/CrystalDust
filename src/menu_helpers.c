@@ -152,7 +152,7 @@ static void Task_ContinueTaskAfterMessagePrints(u8 taskId)
         gUnknown_0300117C(taskId);
 }
 
-void sub_8121F68(u8 taskId, const struct YesNoFuncTable *data)
+void DoYesNoFuncWithChoice(u8 taskId, const struct YesNoFuncTable *data)
 {
     gUnknown_0203A138 = *data;
     gTasks[taskId].func = Task_CallYesOrNoCallback;
@@ -394,8 +394,8 @@ void sub_8122298(u16 *arg0, u16 *arg1, u8 arg2, u8 arg3, u8 arg4)
 
 void LoadListMenuArrowsGfx(void)
 {
-    LoadCompressedObjectPic(&gUnknown_0859F514);
-    LoadCompressedObjectPalette(&gUnknown_0859F51C);
+    LoadCompressedSpriteSheet(&gUnknown_0859F514);
+    LoadCompressedSpritePalette(&gUnknown_0859F51C);
 }
 
 void sub_8122344(u8 *spriteIds, u8 count)

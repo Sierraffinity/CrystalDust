@@ -135,11 +135,11 @@ static void WallClockVblankCallback(void)
 static void LoadWallClockGraphics(void)
 {
     SetVBlankCallback(NULL);
-    SetGpuReg(REG_OFFSET_DISPCNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BG3CNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BG2CNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BG1CNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BG0CNT, 0x0000);
+    SetGpuReg(REG_OFFSET_DISPCNT, 0);
+    SetGpuReg(REG_OFFSET_BG3CNT, 0);
+    SetGpuReg(REG_OFFSET_BG2CNT, 0);
+    SetGpuReg(REG_OFFSET_BG1CNT, 0);
+    SetGpuReg(REG_OFFSET_BG0CNT, 0);
     ChangeBgX(0, 0, 0);
     ChangeBgY(0, 0, 0);
     ChangeBgX(1, 0, 0);
@@ -173,7 +173,7 @@ static void LoadWallClockGraphics(void)
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
     LoadSpritePalette(&gSpritePalette_PokegearMenuSprites);
 
-    //LoadCompressedObjectPic(&gUnknown_085B2208);
+    //LoadCompressedSpriteSheet(&gUnknown_085B2208);
     //LoadSpritePalettes(gUnknown_085B2218);
 }
 
@@ -183,9 +183,9 @@ static void WallClockInit(void)
     EnableInterrupts(INTR_FLAG_VBLANK);
     SetVBlankCallback(WallClockVblankCallback);
     SetMainCallback2(WallClockMainCallback);
-    SetGpuReg(REG_OFFSET_BLDCNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BLDALPHA, 0x0000);
-    SetGpuReg(REG_OFFSET_BLDY, 0x0000);
+    SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+    SetGpuReg(REG_OFFSET_BLDY, 0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
     ShowBg(0);
     ShowBg(2);

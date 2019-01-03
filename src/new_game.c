@@ -46,7 +46,7 @@ extern void NewGameInitPCItems(void);
 extern void ClearDecorationInventories(void);
 extern void ResetFanClub(void);
 extern void copy_strings_to_sav1(void);
-extern void sub_8195E10(void);
+extern void InitMatchCallCounters(void);
 extern void sub_801AFD8(void);
 extern void sub_800E5AC(void);
 extern void sub_81D54BC(void);
@@ -136,7 +136,7 @@ static void ClearFrontierRecord(void)
 
 static void WarpToTruck(void)
 {
-    Overworld_SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), MAP_GROUP(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), -1, -1, -1); // inside of truck
+    SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), MAP_NUM(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), -1, -1, -1);
     WarpIntoMap();
 }
 
@@ -169,7 +169,7 @@ void NewGameInitData(void)
     ClearFrontierRecord();
     ClearSav1();
     ClearMailData();
-    gSaveBlock2Ptr->specialSaveWarp = 0;
+    gSaveBlock2Ptr->specialSaveWarpFlags = 0;
     gSaveBlock2Ptr->field_A8 = 0;
     InitPlayerTrainerId();
     PlayTimeCounter_Reset();
@@ -209,7 +209,7 @@ void NewGameInitData(void)
     SetLilycoveLady();
     ResetAllApprenticeData();
     ClearRankingHallRecords();
-    sub_8195E10();
+    InitMatchCallCounters();
     sub_801AFD8();
     sub_800E5AC();
     sub_81D54BC();

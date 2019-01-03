@@ -1,7 +1,8 @@
 #include "global.h"
-#include "rom6.h"
 #include "event_data.h"
 #include "rtc.h"
+#include "time_events.h"
+#include "field_specials.h"
 #include "lottery_corner.h"
 #include "dewford_trend.h"
 #include "tv.h"
@@ -11,17 +12,10 @@
 #include "overworld.h"
 #include "wallclock.h"
 
-// static types
-
-// static declarations
-
 static void UpdatePerDay(struct Time *localTime);
 static void UpdatePerMinute(struct Time *localTime);
 
-// rodata
-
-// text
-
+// needs to not be static because of how calling from OW differs from calling from main menu
 void InitTimeBasedEvents(void)
 {
     FlagSet(FLAG_SYS_CLOCK_SET);
