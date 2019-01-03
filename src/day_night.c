@@ -94,10 +94,8 @@ static void LoadPaletteOverrides(void)
                 {
                     for (j = 0, src = curr->palette, dest = gPlttBufferUnfaded + (curr->slot * 16); j < 16; j++, src++, dest++)
                     {
-                        if (*src == RGB_BLACK)
-                            continue;
-                        
-                        *dest = *src;
+                        if (*src != RGB_BLACK)
+                            *dest = *src;
                     }
                 }
                 curr++;
@@ -165,10 +163,8 @@ void TintForDayNight(void)
             default:
                 for (i = 0, src = gPlttBufferPreDN, dest = gPlttBufferUnfaded; i < PLTT_BUFFER_SIZE; i++, src++, dest++)
                 {
-                    if (*src == RGB_BLACK)
-                        continue;
-                    
-                    *dest = *src;
+                    if (*src != RGB_BLACK)
+                        *dest = *src;
                 }
                 break;
         }
