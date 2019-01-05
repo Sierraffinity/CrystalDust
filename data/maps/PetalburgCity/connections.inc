@@ -1,8 +1,7 @@
-PetalburgCity_MapConnectionsList: @ 84866D4
+PetalburgCity_MapConnectionsList::
 	connection left, -50, MAP_ROUTE104
-	connection right, 10, MAP_ROUTE102
+	connection right, 20, MAP_ROUTE103
 
-PetalburgCity_MapConnections: @ 84866EC
-	.4byte 0x2
+PetalburgCity_MapConnections::
+	.4byte 2
 	.4byte PetalburgCity_MapConnectionsList
-

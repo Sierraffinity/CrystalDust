@@ -6,10 +6,10 @@ PetalburgCity_MapBlockdata::
 
 	.align 2
 PetalburgCity_Layout::
-	.4byte 0x1e
-	.4byte 0x1e
+	.4byte 48
+	.4byte 40
 	.4byte PetalburgCity_MapBorder
 	.4byte PetalburgCity_MapBlockdata
 	.4byte gTileset_General
-	.4byte gTileset_Petalburg
+	.4byte gTileset_Dewford
 

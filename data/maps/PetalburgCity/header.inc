@@ -1,4 +1,4 @@
-PetalburgCity: @ 84824B8
+PetalburgCity::
 	.4byte PetalburgCity_Layout
 	.4byte PetalburgCity_MapEvents
 	.4byte gStdScripts_End
@@ -12,4 +12,3 @@ PetalburgCity: @ 84824B8
 	.2byte 0
 	map_header_flags allow_bike=1, allow_escape_rope=0, allow_run=1, show_map_name=1
 	.byte MAP_BATTLE_SCENE_NORMAL
-
