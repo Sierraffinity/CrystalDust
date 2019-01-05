@@ -1,9 +1,7 @@
-OldaleTown_MapConnectionsList: @ 8486614
-	connection up, 0, MAP_ROUTE103
-	connection down, 0, MAP_ROUTE101
-	connection left, 0, MAP_ROUTE102
+OldaleTown_MapConnectionsList::
+	connection up, 24, MAP_ROUTE102
+	connection right, 2, MAP_ROUTE101
 
-OldaleTown_MapConnections: @ 8486638
-	.4byte 0x3
+OldaleTown_MapConnections::
+	.4byte 2
 	.4byte OldaleTown_MapConnectionsList
-

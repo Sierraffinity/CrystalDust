@@ -1,4 +1,4 @@
-LittlerootTown: @ 84825B4
+LittlerootTown::
 	.4byte LittlerootTown_Layout
 	.4byte LittlerootTown_MapEvents
 	.4byte LittlerootTown_MapScripts
@@ -12,4 +12,3 @@ LittlerootTown: @ 84825B4
 	.2byte 0
 	map_header_flags allow_bike=1, allow_escape_rope=0, allow_run=1, show_map_name=1
 	.byte MAP_BATTLE_SCENE_NORMAL
-

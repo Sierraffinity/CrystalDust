@@ -1,4 +1,4 @@
-LittlerootTown_BrendansHouse_1F_EventObjects: @ 852D08C
+LittlerootTown_BrendansHouse_1F_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_MOM, 0, 2, 6, 3, MOVEMENT_TYPE_FACE_RIGHT, 0, 0, 0, 0, LittlerootTown_BrendansHouse_1F_EventScript_2929C5, FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
 	object_event 2, EVENT_OBJ_GFX_VIGOROTH_CARRYING_BOX, 0, 1, 3, 3, MOVEMENT_TYPE_WALK_RIGHT_AND_LEFT, 3, 0, 0, 0, LittlerootTown_BrendansHouse_1F_EventScript_292ACD, FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
 	object_event 3, EVENT_OBJ_GFX_VIGOROTH_FACING_AWAY, 0, 4, 5, 3, MOVEMENT_TYPE_WALK_IN_PLACE_UP, 0, 0, 0, 0, LittlerootTown_BrendansHouse_1F_EventScript_292ABA, FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1

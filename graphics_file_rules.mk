@@ -55,9 +55,6 @@ $(MONPALDIR)/castform_shiny_palette.gbapal: $(MONPALDIR)/castform_normal_form_sh
 											$(MONPALDIR)/castform_snowy_form_shiny_palette.gbapal
 	@cat $^ >$@
 
-$(TILESETGFXDIR)/secondary/petalburg/tiles.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -num_tiles 159
-
 $(TILESETGFXDIR)/secondary/rustboro/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 498
 

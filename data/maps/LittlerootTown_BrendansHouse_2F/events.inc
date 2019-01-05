@@ -1,4 +1,4 @@
-LittlerootTown_BrendansHouse_2F_EventObjects: @ 852D1A0
+LittlerootTown_BrendansHouse_2F_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL, 0, 7, 1, 0, MOVEMENT_TYPE_FACE_DOWN, 1, 0, 0, 0, LittlerootTown_BrendansHouse_2F_EventScript_1F94C1, FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
 	object_event 2, EVENT_OBJ_GFX_VAR_0, 0, 0, 0, 0, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, 0x0, FLAG_DECORATION_1
 	object_event 3, EVENT_OBJ_GFX_VAR_1, 0, 0, 1, 0, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, 0x0, FLAG_DECORATION_2
@@ -14,9 +14,9 @@ LittlerootTown_BrendansHouse_2F_EventObjects: @ 852D1A0
 	object_event 13, EVENT_OBJ_GFX_VAR_B, 0, 1, 5, 0, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, 0x0, FLAG_DECORATION_12
 
 LittlerootTown_BrendansHouse_2F_MapWarps::
-	warp_def 9, 2, 0, 2, MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F
+	warp_def 9, 2, 0, 2, MAP_OLDALE_TOWN
 
-LittlerootTown_BrendansHouse_2F_MapBGEvents: @ 852D328
+LittlerootTown_BrendansHouse_2F_MapBGEvents::
 	bg_event 0, 1, 0, BG_EVENT_PLAYER_FACING_NORTH, EventScript_PlayerPCMale
 	bg_event 1, 1, 0, BG_EVENT_PLAYER_FACING_ANY, LittlerootTown_BrendansHouse_2F_EventScript_1F8656
 	bg_event 5, 1, 0, BG_EVENT_PLAYER_FACING_ANY, LittlerootTown_BrendansHouse_2F_EventScript_292781
