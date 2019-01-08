@@ -416,7 +416,7 @@ extern const u8 gText_PkmnHPRestoredByVar2[];
 extern const u8 gText_CantBeUsedOnPkmn[];
 extern const u8 gText_CancelParticipation[];
 extern const u8 gText_PkmnWasGivenItem[];
-extern const u8 gText_RecievedItemFromPkmn[];
+extern const u8 gText_ReceivedItemFromPkmn[];
 extern const u8 gText_SwitchPkmnItem[];
 extern const u8 gText_SwitchedPkmnItem[];
 extern const u8 gText_BagFullCouldNotRemoveItem[];
@@ -2355,5 +2355,13 @@ extern const u8 MatchCall_BattlePyramidText11[];
 extern const u8 MatchCall_BattlePyramidText12[];
 extern const u8 MatchCall_BattlePyramidText13[];
 extern const u8 MatchCall_BattlePyramidText14[];
+
+// Contest Link
+extern const u8 gText_ColorDarkGrey[];
+extern const u8 gText_CommunicationStandby[];
+extern const u8 gText_AnnouncingResults[];
+extern const u8 gText_PreliminaryResults[];
+extern const u8 gText_Round2Results[];
+extern const u8 gText_Var1sVar2Won[];
 
 #endif //GUARD_STRINGS_H
