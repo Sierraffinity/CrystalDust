@@ -14,7 +14,7 @@ LittlerootTown_BrendansHouse_2F_EventObjects::
 	object_event 13, EVENT_OBJ_GFX_VAR_B, 0, 1, 5, 0, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, 0x0, FLAG_DECORATION_12
 
 LittlerootTown_BrendansHouse_2F_MapWarps::
-	warp_def 9, 2, 0, 2, MAP_OLDALE_TOWN
+	warp_def 9, 2, 0, 0, MAP_ROUTE104
 
 LittlerootTown_BrendansHouse_2F_MapBGEvents::
 	bg_event 0, 1, 0, BG_EVENT_PLAYER_FACING_NORTH, EventScript_PlayerPCMale

@@ -6,8 +6,8 @@ DewfordTown_MapBlockdata::
 
 	.align 2
 DewfordTown_Layout::
-	.4byte 0x14
-	.4byte 0x14
+	.4byte 52
+	.4byte 22
 	.4byte DewfordTown_MapBorder
 	.4byte DewfordTown_MapBlockdata
 	.4byte gTileset_General

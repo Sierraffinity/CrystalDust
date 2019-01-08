@@ -6,7 +6,7 @@ LittlerootTown_MapBlockdata::
 
 	.align 2
 LittlerootTown_Layout::
-	.4byte 24
+	.4byte 26
 	.4byte 22
 	.4byte LittlerootTown_MapBorder
 	.4byte LittlerootTown_MapBlockdata

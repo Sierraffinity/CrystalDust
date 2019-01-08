@@ -1,4 +1,4 @@
-Route105: @ 84826E8
+Route105::
 	.4byte Route105_Layout
 	.4byte Route105_MapEvents
 	.4byte Route105_MapScripts
@@ -12,4 +12,3 @@ Route105: @ 84826E8
 	.2byte 0
 	map_header_flags allow_bike=1, allow_escape_rope=0, allow_run=1, show_map_name=1
 	.byte MAP_BATTLE_SCENE_NORMAL
-

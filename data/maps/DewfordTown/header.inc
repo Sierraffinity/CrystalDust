@@ -1,4 +1,4 @@
-DewfordTown: @ 84825EC
+DewfordTown::
 	.4byte DewfordTown_Layout
 	.4byte DewfordTown_MapEvents
 	.4byte DewfordTown_MapScripts
@@ -12,4 +12,3 @@ DewfordTown: @ 84825EC
 	.2byte 0
 	map_header_flags allow_bike=1, allow_escape_rope=0, allow_run=1, show_map_name=1
 	.byte MAP_BATTLE_SCENE_NORMAL
-
