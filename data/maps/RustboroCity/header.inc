@@ -5,7 +5,7 @@ RustboroCity: @ 848250C
 	.4byte RustboroCity_MapConnections
 	.2byte MUS_GOTOWN
 	.2byte 4
-	.byte MAPSEC_RUSTBORO_CITY
+	.byte MAPSEC_GOLDENROD_CITY
 	.byte 0
 	.byte WEATHER_SUNNY
 	.byte MAP_TYPE_CITY

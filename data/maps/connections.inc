@@ -1,4 +1,4 @@
-	.include "data/maps/LittlerootTown/connections.inc"
+	.include "data/maps/NewBarkTown/connections.inc"
 	.include "data/maps/OldaleTown/connections.inc"
 	.include "data/maps/DewfordTown/connections.inc"
 	.include "data/maps/LavaridgeTown/connections.inc"

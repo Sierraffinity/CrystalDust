@@ -5,7 +5,7 @@ PetalburgCity_PokemonCenter_2F: @ 84830A4
 	.4byte 0x0
 	.2byte MUS_POKECEN
 	.2byte 62
-	.byte MAPSEC_PETALBURG_CITY
+	.byte MAPSEC_VIOLET_CITY
 	.byte 0
 	.byte WEATHER_NONE
 	.byte MAP_TYPE_INDOOR

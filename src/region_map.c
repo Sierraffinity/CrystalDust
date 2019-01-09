@@ -2013,7 +2013,7 @@ static void sub_8124E0C(void)
                         case MAPSEC_BATTLE_FRONTIER:
                             SetWarpDestinationToHealLocation(HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST);
                             break;
-                        case MAPSEC_LITTLEROOT_TOWN:
+                        case MAPSEC_NEW_BARK_TOWN:
                             SetWarpDestinationToHealLocation(gSaveBlock2Ptr->playerGender == MALE ? HEAL_LOCATION_LITTLEROOT_TOWN_1 : HEAL_LOCATION_LITTLEROOT_TOWN_2);
                             break;
                         case MAPSEC_EVER_GRANDE_CITY:

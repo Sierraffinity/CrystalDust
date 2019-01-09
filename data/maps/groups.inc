@@ -9,7 +9,7 @@ gMapGroup0::
 	.4byte MossdeepCity
 	.4byte SootopolisCity
 	.4byte EverGrandeCity
-	.4byte LittlerootTown
+	.4byte NewBarkTown
 	.4byte OldaleTown
 	.4byte DewfordTown
 	.4byte LavaridgeTown
@@ -60,11 +60,11 @@ gMapGroup0::
 
 	.align 2
 gMapGroup1::
-	.4byte LittlerootTown_BrendansHouse_1F
-	.4byte LittlerootTown_BrendansHouse_2F
-	.4byte LittlerootTown_MaysHouse_1F
-	.4byte LittlerootTown_MaysHouse_2F
-	.4byte LittlerootTown_ProfessorBirchsLab
+	.4byte NewBarkTown_HirosHouse_1F
+	.4byte NewBarkTown_HirosHouse_2F
+	.4byte NewBarkTown_ElmsHouse
+	.4byte NewBarkTown_OtherHouse
+	.4byte NewBarkTown_ProfessorElmsLab
 
 	.align 2
 gMapGroup2::

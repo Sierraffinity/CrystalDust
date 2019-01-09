@@ -547,8 +547,8 @@ EventScript_275CDE:: @ 8275CDE
 	releaseall
 	end
 
-LittlerootTown_BrendansHouse_2F_EventScript_275CE1:: @ 8275CE1
-LittlerootTown_MaysHouse_2F_EventScript_275CE1:: @ 8275CE1
+NewBarkTown_HirosHouse_2F_EventScript_275CE1:: @ 8275CE1
+NewBarkTown_OtherHouse_EventScript_275CE1:: @ 8275CE1
 SecretBase_RedCave1_EventScript_275CE1:: @ 8275CE1
 	setflag FLAG_DECORATION_1
 	setflag FLAG_DECORATION_2

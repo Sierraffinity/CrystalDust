@@ -5,7 +5,7 @@ RustboroCity_Gym: @ 8483398
 	.4byte 0x0
 	.2byte MUS_GIM
 	.2byte 94
-	.byte MAPSEC_RUSTBORO_CITY
+	.byte MAPSEC_GOLDENROD_CITY
 	.byte 0
 	.byte WEATHER_NONE
 	.byte MAP_TYPE_INDOOR

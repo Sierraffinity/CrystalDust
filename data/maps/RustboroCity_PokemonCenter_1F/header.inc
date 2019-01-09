@@ -5,7 +5,7 @@ RustboroCity_PokemonCenter_1F: @ 84833D0
 	.4byte 0x0
 	.2byte MUS_POKECEN
 	.2byte 61
-	.byte MAPSEC_RUSTBORO_CITY
+	.byte MAPSEC_GOLDENROD_CITY
 	.byte 0
 	.byte WEATHER_NONE
 	.byte MAP_TYPE_INDOOR

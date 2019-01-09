@@ -5,7 +5,7 @@ DewfordTown_Gym: @ 8482C60
 	.4byte 0x0
 	.2byte MUS_GIM
 	.2byte 65
-	.byte MAPSEC_DEWFORD_TOWN
+	.byte MAPSEC_AZALEA_TOWN
 	.byte 0
 	.byte WEATHER_NONE
 	.byte MAP_TYPE_INDOOR

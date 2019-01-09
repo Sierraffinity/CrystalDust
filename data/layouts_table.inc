@@ -9,7 +9,7 @@ gMapLayouts::
 	.4byte MossdeepCity_Layout
 	.4byte SootopolisCity_Layout
 	.4byte EverGrandeCity_Layout
-	.4byte LittlerootTown_Layout
+	.4byte NewBarkTown_Layout
 	.4byte OldaleTown_Layout
 	.4byte DewfordTown_Layout
 	.4byte LavaridgeTown_Layout
@@ -53,11 +53,11 @@ gMapLayouts::
 	.4byte Underwater2_Layout
 	.4byte Underwater3_Layout
 	.4byte Underwater4_Layout
-	.4byte LittlerootTown_BrendansHouse_1F_Layout
-	.4byte LittlerootTown_BrendansHouse_2F_Layout
-	.4byte LittlerootTown_MaysHouse_1F_Layout
-	.4byte LittlerootTown_MaysHouse_2F_Layout
-	.4byte LittlerootTown_ProfessorBirchsLab_Layout
+	.4byte NewBarkTown_HirosHouse_1F_Layout
+	.4byte NewBarkTown_HirosHouse_2F_Layout
+	.4byte NewBarkTown_ElmsHouse_Layout
+	.4byte NewBarkTown_OtherHouse_Layout
+	.4byte NewBarkTown_ProfessorElmsLab_Layout
 	.4byte House1_Layout
 	.4byte House2_Layout
 	.4byte PokemonCenter_1F_Layout

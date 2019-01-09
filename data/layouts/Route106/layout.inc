@@ -6,10 +6,10 @@ Route106_MapBlockdata::
 
 	.align 2
 Route106_Layout::
-	.4byte 26
-	.4byte 80
+	.4byte 32
+	.4byte 70
 	.4byte Route106_MapBorder
 	.4byte Route106_MapBlockdata
 	.4byte gTileset_General
-	.4byte gTileset_Dewford
+	.4byte gTileset_Rustboro
 

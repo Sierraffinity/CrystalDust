@@ -5,7 +5,7 @@ PetalburgCity_WallysHouse: @ 8483018
 	.4byte 0x0
 	.2byte MUS_MACHI_S2
 	.2byte 60
-	.byte MAPSEC_PETALBURG_CITY
+	.byte MAPSEC_VIOLET_CITY
 	.byte 0
 	.byte WEATHER_NONE
 	.byte MAP_TYPE_INDOOR

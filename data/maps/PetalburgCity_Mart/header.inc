@@ -5,7 +5,7 @@ PetalburgCity_Mart: @ 84830C0
 	.4byte 0x0
 	.2byte MUS_FRIENDLY
 	.2byte 63
-	.byte MAPSEC_PETALBURG_CITY
+	.byte MAPSEC_VIOLET_CITY
 	.byte 0
 	.byte WEATHER_NONE
 	.byte MAP_TYPE_INDOOR

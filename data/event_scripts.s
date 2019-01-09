@@ -75,7 +75,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/MossdeepCity/scripts.inc"
 	.include "data/maps/SootopolisCity/scripts.inc"
 	.include "data/maps/EverGrandeCity/scripts.inc"
-	.include "data/maps/LittlerootTown/scripts.inc"
+	.include "data/maps/NewBarkTown/scripts.inc"
 	.include "data/maps/OldaleTown/scripts.inc"
 	.include "data/maps/DewfordTown/scripts.inc"
 	.include "data/maps/LavaridgeTown/scripts.inc"
@@ -123,11 +123,11 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Underwater5/scripts.inc"
 	.include "data/maps/Underwater6/scripts.inc"
 	.include "data/maps/Underwater7/scripts.inc"
-	.include "data/maps/LittlerootTown_BrendansHouse_1F/scripts.inc"
-	.include "data/maps/LittlerootTown_BrendansHouse_2F/scripts.inc"
-	.include "data/maps/LittlerootTown_MaysHouse_1F/scripts.inc"
-	.include "data/maps/LittlerootTown_MaysHouse_2F/scripts.inc"
-	.include "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.inc"
+	.include "data/maps/NewBarkTown_HirosHouse_1F/scripts.inc"
+	.include "data/maps/NewBarkTown_HirosHouse_2F/scripts.inc"
+	.include "data/maps/NewBarkTown_ElmsHouse/scripts.inc"
+	.include "data/maps/NewBarkTown_OtherHouse/scripts.inc"
+	.include "data/maps/NewBarkTown_ProfessorElmsLab/scripts.inc"
 	.include "data/maps/OldaleTown_House1/scripts.inc"
 	.include "data/maps/OldaleTown_House2/scripts.inc"
 	.include "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
@@ -1784,8 +1784,8 @@ EventScript_271ED6:: @ 8271ED6
 EverGrandeCity_ChampionsRoom_EventScript_271ED7:: @ 8271ED7
 LavaridgeTown_EventScript_271ED7:: @ 8271ED7
 LilycoveCity_EventScript_271ED7:: @ 8271ED7
-LittlerootTown_EventScript_271ED7:: @ 8271ED7
-LittlerootTown_ProfessorBirchsLab_EventScript_271ED7:: @ 8271ED7
+NewBarkTown_EventScript_271ED7:: @ 8271ED7
+NewBarkTown_ProfessorElmsLab_EventScript_271ED7:: @ 8271ED7
 OldaleTown_EventScript_271ED7:: @ 8271ED7
 Route103_EventScript_271ED7:: @ 8271ED7
 Route104_EventScript_271ED7:: @ 8271ED7
@@ -1951,7 +1951,7 @@ LavaridgeTown_Gym_1F_EventScript_272054:: @ 8272054
 LavaridgeTown_HerbShop_EventScript_272054:: @ 8272054
 LilycoveCity_EventScript_272054:: @ 8272054
 LilycoveCity_House2_EventScript_272054:: @ 8272054
-LittlerootTown_BrendansHouse_1F_EventScript_272054:: @ 8272054
+NewBarkTown_HirosHouse_1F_EventScript_272054:: @ 8272054
 MauvilleCity_EventScript_272054:: @ 8272054
 MauvilleCity_Gym_EventScript_272054:: @ 8272054
 MossdeepCity_EventScript_272054:: @ 8272054
@@ -2049,7 +2049,7 @@ SootopolisCity_Gym_1F_EventScript_27207E:: @ 827207E
 	waitfanfare
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_272083:: @ 8272083
+NewBarkTown_HirosHouse_1F_EventScript_272083:: @ 8272083
 Route111_OldLadysRestStop_EventScript_272083:: @ 8272083
 Route119_WeatherInstitute_1F_EventScript_272083:: @ 8272083
 RustboroCity_DevonCorp_3F_EventScript_272083:: @ 8272083
@@ -2063,7 +2063,7 @@ SSTidalRooms_EventScript_272083:: @ 8272083
 
 EventScript_RegionMap:: @ 827208F
 	lockall
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F8820, MSGBOX_DEFAULT
+	msgbox NewBarkTown_HirosHouse_2F_Text_1F8820, MSGBOX_DEFAULT
 	fadescreen 1
 	special FieldShowRegionMap
 	waitstate
@@ -2086,7 +2086,7 @@ Route109_EventScript_2720A8:: @ 82720A8
 	fadedefaultbgm
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_2720AD:: @ 82720AD
+NewBarkTown_ProfessorElmsLab_EventScript_2720AD:: @ 82720AD
 Route101_EventScript_2720AD:: @ 82720AD
 Route103_EventScript_2720AD:: @ 82720AD
 	compare VAR_0x4085, 0
@@ -2131,7 +2131,7 @@ Route101_EventScript_272134:: @ 8272134
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_272141:: @ 8272141
+NewBarkTown_ProfessorElmsLab_EventScript_272141:: @ 8272141
 Route101_EventScript_272141:: @ 8272141
 Route103_EventScript_272141:: @ 8272141
 	lock
@@ -2417,7 +2417,7 @@ Route120_Movement_2723C7: @ 82723C7
 	set_visible
 	step_end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_2723DD:: @ 82723DD
+NewBarkTown_ProfessorElmsLab_EventScript_2723DD:: @ 82723DD
 MossdeepCity_StevensHouse_EventScript_2723DD:: @ 82723DD
 Route119_WeatherInstitute_2F_EventScript_2723DD:: @ 82723DD
 RustboroCity_DevonCorp_2F_EventScript_2723DD:: @ 82723DD
@@ -2527,11 +2527,11 @@ LavaridgeTown_Movement_272598: @ 8272598
 LilycoveCity_ContestLobby_Movement_272598: @ 8272598
 LilycoveCity_CoveLilyMotel_1F_Movement_272598: @ 8272598
 LilycoveCity_Harbor_Movement_272598: @ 8272598
-LittlerootTown_BrendansHouse_1F_Movement_272598: @ 8272598
-LittlerootTown_BrendansHouse_2F_Movement_272598: @ 8272598
-LittlerootTown_MaysHouse_1F_Movement_272598: @ 8272598
-LittlerootTown_MaysHouse_2F_Movement_272598: @ 8272598
-LittlerootTown_Movement_272598: @ 8272598
+NewBarkTown_HirosHouse_1F_Movement_272598: @ 8272598
+NewBarkTown_HirosHouse_2F_Movement_272598: @ 8272598
+NewBarkTown_ElmsHouse_Movement_272598: @ 8272598
+NewBarkTown_OtherHouse_Movement_272598: @ 8272598
+NewBarkTown_Movement_272598: @ 8272598
 MauvilleCity_House2_Movement_272598: @ 8272598
 MauvilleCity_Movement_272598: @ 8272598
 MeteorFalls_1F_1R_Movement_272598: @ 8272598
@@ -2570,10 +2570,10 @@ JaggedPass_Movement_27259A: @ 827259A
 LavaridgeTown_Movement_27259A: @ 827259A
 LilycoveCity_CoveLilyMotel_1F_Movement_27259A: @ 827259A
 LilycoveCity_Harbor_Movement_27259A: @ 827259A
-LittlerootTown_BrendansHouse_1F_Movement_27259A: @ 827259A
-LittlerootTown_BrendansHouse_2F_Movement_27259A: @ 827259A
-LittlerootTown_MaysHouse_1F_Movement_27259A: @ 827259A
-LittlerootTown_MaysHouse_2F_Movement_27259A: @ 827259A
+NewBarkTown_HirosHouse_1F_Movement_27259A: @ 827259A
+NewBarkTown_HirosHouse_2F_Movement_27259A: @ 827259A
+NewBarkTown_ElmsHouse_Movement_27259A: @ 827259A
+NewBarkTown_OtherHouse_Movement_27259A: @ 827259A
 MauvilleCity_House2_Movement_27259A: @ 827259A
 MauvilleCity_Movement_27259A: @ 827259A
 MeteorFalls_1F_1R_Movement_27259A: @ 827259A
@@ -2621,8 +2621,8 @@ LilycoveCity_LilycoveMuseum_1F_Movement_27259E: @ 827259E
 LilycoveCity_LilycoveMuseum_2F_Movement_27259E: @ 827259E
 LilycoveCity_MoveDeletersHouse_Movement_27259E: @ 827259E
 LilycoveCity_Movement_27259E: @ 827259E
-LittlerootTown_BrendansHouse_1F_Movement_27259E: @ 827259E
-LittlerootTown_BrendansHouse_2F_Movement_27259E: @ 827259E
+NewBarkTown_HirosHouse_1F_Movement_27259E: @ 827259E
+NewBarkTown_HirosHouse_2F_Movement_27259E: @ 827259E
 MagmaHideout_4F_Movement_27259E: @ 827259E
 MauvilleCity_Movement_27259E: @ 827259E
 MeteorFalls_StevensCave_Movement_27259E: @ 827259E
@@ -2662,7 +2662,7 @@ LilycoveCity_CoveLilyMotel_1F_Movement_2725A2: @ 82725A2
 LilycoveCity_House3_Movement_2725A2: @ 82725A2
 LilycoveCity_LilycoveMuseum_1F_Movement_2725A2: @ 82725A2
 LilycoveCity_Movement_2725A2: @ 82725A2
-LittlerootTown_Movement_2725A2: @ 82725A2
+NewBarkTown_Movement_2725A2: @ 82725A2
 MauvilleCity_GameCorner_Movement_2725A2: @ 82725A2
 MauvilleCity_Movement_2725A2: @ 82725A2
 MossdeepCity_Movement_2725A2: @ 82725A2
@@ -2699,12 +2699,12 @@ EverGrandeCity_HallOfFame_Movement_2725A4: @ 82725A4
 LavaridgeTown_Movement_2725A4: @ 82725A4
 LilycoveCity_Harbor_Movement_2725A4: @ 82725A4
 LilycoveCity_PokemonTrainerFanClub_Movement_2725A4: @ 82725A4
-LittlerootTown_BrendansHouse_1F_Movement_2725A4: @ 82725A4
-LittlerootTown_BrendansHouse_2F_Movement_2725A4: @ 82725A4
-LittlerootTown_MaysHouse_1F_Movement_2725A4: @ 82725A4
-LittlerootTown_MaysHouse_2F_Movement_2725A4: @ 82725A4
-LittlerootTown_Movement_2725A4: @ 82725A4
-LittlerootTown_ProfessorBirchsLab_Movement_2725A4: @ 82725A4
+NewBarkTown_HirosHouse_1F_Movement_2725A4: @ 82725A4
+NewBarkTown_HirosHouse_2F_Movement_2725A4: @ 82725A4
+NewBarkTown_ElmsHouse_Movement_2725A4: @ 82725A4
+NewBarkTown_OtherHouse_Movement_2725A4: @ 82725A4
+NewBarkTown_Movement_2725A4: @ 82725A4
+NewBarkTown_ProfessorElmsLab_Movement_2725A4: @ 82725A4
 MeteorFalls_1F_1R_Movement_2725A4: @ 82725A4
 MossdeepCity_SpaceCenter_2F_Movement_2725A4: @ 82725A4
 MossdeepCity_StevensHouse_Movement_2725A4: @ 82725A4
@@ -2745,11 +2745,11 @@ EverGrandeCity_HallOfFame_Movement_2725A6: @ 82725A6
 LavaridgeTown_Movement_2725A6: @ 82725A6
 LilycoveCity_DepartmentStore_5F_Movement_2725A6: @ 82725A6
 LilycoveCity_Harbor_Movement_2725A6: @ 82725A6
-LittlerootTown_BrendansHouse_1F_Movement_2725A6: @ 82725A6
-LittlerootTown_BrendansHouse_2F_Movement_2725A6: @ 82725A6
-LittlerootTown_MaysHouse_2F_Movement_2725A6: @ 82725A6
-LittlerootTown_Movement_2725A6: @ 82725A6
-LittlerootTown_ProfessorBirchsLab_Movement_2725A6: @ 82725A6
+NewBarkTown_HirosHouse_1F_Movement_2725A6: @ 82725A6
+NewBarkTown_HirosHouse_2F_Movement_2725A6: @ 82725A6
+NewBarkTown_OtherHouse_Movement_2725A6: @ 82725A6
+NewBarkTown_Movement_2725A6: @ 82725A6
+NewBarkTown_ProfessorElmsLab_Movement_2725A6: @ 82725A6
 MagmaHideout_4F_Movement_2725A6: @ 82725A6
 MeteorFalls_1F_1R_Movement_2725A6: @ 82725A6
 MossdeepCity_SpaceCenter_2F_Movement_2725A6: @ 82725A6
@@ -2790,11 +2790,11 @@ EverGrandeCity_HallOfFame_Movement_2725A8: @ 82725A8
 LavaridgeTown_Movement_2725A8: @ 82725A8
 LilycoveCity_DepartmentStore_1F_Movement_2725A8: @ 82725A8
 LilycoveCity_PokemonTrainerFanClub_Movement_2725A8: @ 82725A8
-LittlerootTown_BrendansHouse_1F_Movement_2725A8: @ 82725A8
-LittlerootTown_BrendansHouse_2F_Movement_2725A8: @ 82725A8
-LittlerootTown_MaysHouse_1F_Movement_2725A8: @ 82725A8
-LittlerootTown_Movement_2725A8: @ 82725A8
-LittlerootTown_ProfessorBirchsLab_Movement_2725A8: @ 82725A8
+NewBarkTown_HirosHouse_1F_Movement_2725A8: @ 82725A8
+NewBarkTown_HirosHouse_2F_Movement_2725A8: @ 82725A8
+NewBarkTown_ElmsHouse_Movement_2725A8: @ 82725A8
+NewBarkTown_Movement_2725A8: @ 82725A8
+NewBarkTown_ProfessorElmsLab_Movement_2725A8: @ 82725A8
 MagmaHideout_4F_Movement_2725A8: @ 82725A8
 MauvilleCity_Movement_2725A8: @ 82725A8
 MossdeepCity_SpaceCenter_1F_Movement_2725A8: @ 82725A8
@@ -2834,9 +2834,9 @@ LilycoveCity_DepartmentStoreElevator_Movement_2725AA: @ 82725AA
 LilycoveCity_Harbor_Movement_2725AA: @ 82725AA
 LilycoveCity_Movement_2725AA: @ 82725AA
 LilycoveCity_PokemonTrainerFanClub_Movement_2725AA: @ 82725AA
-LittlerootTown_BrendansHouse_1F_Movement_2725AA: @ 82725AA
-LittlerootTown_MaysHouse_1F_Movement_2725AA: @ 82725AA
-LittlerootTown_Movement_2725AA: @ 82725AA
+NewBarkTown_HirosHouse_1F_Movement_2725AA: @ 82725AA
+NewBarkTown_ElmsHouse_Movement_2725AA: @ 82725AA
+NewBarkTown_Movement_2725AA: @ 82725AA
 MauvilleCity_Movement_2725AA: @ 82725AA
 MeteorFalls_1F_1R_Movement_2725AA: @ 82725AA
 MossdeepCity_SpaceCenter_2F_Movement_2725AA: @ 82725AA
@@ -3357,7 +3357,7 @@ TerraCave_End_EventScript_273776:: @ 8273776
 	release
 	end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_27378B:: @ 827378B
+NewBarkTown_ProfessorElmsLab_EventScript_27378B:: @ 827378B
 MossdeepCity_StevensHouse_EventScript_27378B:: @ 827378B
 Route119_WeatherInstitute_2F_EventScript_27378B:: @ 827378B
 RustboroCity_DevonCorp_2F_EventScript_27378B:: @ 827378B
@@ -3366,7 +3366,7 @@ RustboroCity_DevonCorp_2F_EventScript_27378B:: @ 827378B
 	copyvar VAR_0x8004, VAR_RESULT
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_273797:: @ 8273797
+NewBarkTown_ProfessorElmsLab_EventScript_273797:: @ 8273797
 MossdeepCity_StevensHouse_EventScript_273797:: @ 8273797
 Route119_WeatherInstitute_2F_EventScript_273797:: @ 8273797
 RustboroCity_DevonCorp_2F_EventScript_273797:: @ 8273797
@@ -3377,43 +3377,43 @@ RustboroCity_DevonCorp_2F_EventScript_273797:: @ 8273797
 	faceplayer
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_2737A0:: @ 82737A0
+NewBarkTown_ProfessorElmsLab_EventScript_2737A0:: @ 82737A0
 MossdeepCity_StevensHouse_EventScript_2737A0:: @ 82737A0
 Route119_WeatherInstitute_2F_EventScript_2737A0:: @ 82737A0
 RustboroCity_DevonCorp_2F_EventScript_2737A0:: @ 82737A0
 	bufferboxname 0, 16438
 	bufferspeciesname 1, VAR_TEMP_1
-	call_if_unset FLAG_SYS_PC_LANETTE, LittlerootTown_ProfessorBirchsLab_EventScript_2737BB
-	call_if_set FLAG_SYS_PC_LANETTE, LittlerootTown_ProfessorBirchsLab_EventScript_2737E6
+	call_if_unset FLAG_SYS_PC_LANETTE, NewBarkTown_ProfessorElmsLab_EventScript_2737BB
+	call_if_set FLAG_SYS_PC_LANETTE, NewBarkTown_ProfessorElmsLab_EventScript_2737E6
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_2737BB:: @ 82737BB
+NewBarkTown_ProfessorElmsLab_EventScript_2737BB:: @ 82737BB
 	specialvar VAR_RESULT, sub_813B21C
 	compare VAR_RESULT, 1
-	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_2737D4
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_2737D4
 	msgbox gText_PkmnTransferredSomeonesPC, MSGBOX_DEFAULT
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_2737D4:: @ 82737D4
+NewBarkTown_ProfessorElmsLab_EventScript_2737D4:: @ 82737D4
 	specialvar VAR_RESULT, get_unknown_box_id
 	bufferboxname 2, 32781
 	msgbox gText_PkmnBoxSomeonesPCFull, MSGBOX_DEFAULT
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_2737E6:: @ 82737E6
+NewBarkTown_ProfessorElmsLab_EventScript_2737E6:: @ 82737E6
 	specialvar VAR_RESULT, sub_813B21C
 	compare VAR_RESULT, 1
-	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_2737FF
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_2737FF
 	msgbox gText_PkmnTransferredLanettesPC, MSGBOX_DEFAULT
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_2737FF:: @ 82737FF
+NewBarkTown_ProfessorElmsLab_EventScript_2737FF:: @ 82737FF
 	specialvar VAR_RESULT, get_unknown_box_id
 	bufferboxname 2, 32781
 	msgbox gText_PkmnBoxLanettesPCFull, MSGBOX_DEFAULT
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_273811:: @ 8273811
+NewBarkTown_ProfessorElmsLab_EventScript_273811:: @ 8273811
 MossdeepCity_StevensHouse_EventScript_273811:: @ 8273811
 Route119_WeatherInstitute_2F_EventScript_273811:: @ 8273811
 RustboroCity_DevonCorp_2F_EventScript_273811:: @ 8273811
@@ -4593,7 +4593,7 @@ EventScript_2926F8:: @ 82926F8
 	.include "data/scripts/players_house.inc"
 
 EventScript_RunningShoesManual:: @ 8292DE5
-	msgbox LittlerootTown_BrendansHouse_1F_Text_1F7F66, MSGBOX_SIGN
+	msgbox NewBarkTown_HirosHouse_1F_Text_1F7F66, MSGBOX_SIGN
 	end
 
 	.include "data/scripts/pokeblocks.inc"

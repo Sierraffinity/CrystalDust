@@ -1,4 +1,4 @@
-Route128: @ 848296C
+Route128::
 	.4byte Route128_Layout
 	.4byte Route128_MapEvents
 	.4byte Route128_MapScripts
@@ -12,4 +12,3 @@ Route128: @ 848296C
 	.2byte 0
 	map_header_flags allow_bike=1, allow_escape_rope=0, allow_run=1, show_map_name=1
 	.byte MAP_BATTLE_SCENE_NORMAL
-

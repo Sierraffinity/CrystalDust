@@ -5,7 +5,7 @@ DewfordTown::
 	.4byte DewfordTown_MapConnections
 	.2byte MUS_HIGHTOWN
 	.2byte 12
-	.byte MAPSEC_DEWFORD_TOWN
+	.byte MAPSEC_AZALEA_TOWN
 	.byte 0
 	.byte WEATHER_SUNNY
 	.byte MAP_TYPE_TOWN

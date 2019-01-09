@@ -5,7 +5,7 @@ RustboroCity_Flat2_1F: @ 84834B0
 	.4byte 0x0
 	.2byte MUS_GOTOWN
 	.2byte 294
-	.byte MAPSEC_RUSTBORO_CITY
+	.byte MAPSEC_GOLDENROD_CITY
 	.byte 0
 	.byte WEATHER_NONE
 	.byte MAP_TYPE_INDOOR

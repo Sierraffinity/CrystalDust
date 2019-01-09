@@ -578,7 +578,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
         }
         if (sub_8138168() == TRUE)
         {
-            ScriptContext1_SetupScript(LittlerootTown_ProfessorBirchsLab_EventScript_1FA4D6);
+            ScriptContext1_SetupScript(NewBarkTown_ProfessorElmsLab_EventScript_1FA4D6);
             return TRUE;
         }
         if (sub_81381B0() == TRUE)

@@ -387,8 +387,8 @@ extern const u8 EventScript_2926F8[];
 extern const u8 Route111_EventScript_2907F0[];
 
 //player pc
-extern const u8 LittlerootTown_BrendansHouse_2F_EventScript_1F863F[];
-extern const u8 LittlerootTown_MaysHouse_2F_EventScript_1F958F[];
+extern const u8 NewBarkTown_HirosHouse_2F_EventScript_1F863F[];
+extern const u8 NewBarkTown_OtherHouse_EventScript_1F958F[];
 
 //contest_strings
 extern const u8 gText_0827D507[];
@@ -568,7 +568,7 @@ extern const u8 gUnknown_08273D1F[];
 extern const u8 IslandCave_EventScript_238EAF[];
 extern const u8 MauvilleCity_EventScript_1DF7BA[];
 extern const u8 Route119_EventScript_1F49EC[];
-extern const u8 LittlerootTown_ProfessorBirchsLab_EventScript_1FA4D6[];
+extern const u8 NewBarkTown_ProfessorElmsLab_EventScript_1FA4D6[];
 extern const u8 RustboroCity_Gym_EventScript_21307B[];
 extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_224175[];
 extern const u8 SSTidalCorridor_EventScript_23C050[];

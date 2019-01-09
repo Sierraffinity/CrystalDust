@@ -5,7 +5,7 @@ PetalburgCity::
 	.4byte PetalburgCity_MapConnections
 	.2byte MUS_MACHI_S2
 	.2byte 1
-	.byte MAPSEC_PETALBURG_CITY
+	.byte MAPSEC_VIOLET_CITY
 	.byte 0
 	.byte WEATHER_SUNNY
 	.byte MAP_TYPE_CITY
