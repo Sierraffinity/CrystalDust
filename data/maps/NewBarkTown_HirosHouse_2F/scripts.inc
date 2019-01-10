@@ -244,16 +244,8 @@ NewBarkTown_HirosHouse_2F_Movement_1F8609: @ 81F8609
 	walk_in_place_fastest_left
 	step_end
 
-EventScript_PlayerPCMale:: @ 81F860D
+EventScript_PlayerPC:: @ 81F860D
 	lockall
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq NewBarkTown_HirosHouse_2F_EventScript_1F8626
-	compare VAR_RESULT, FEMALE
-	goto_if_eq NewBarkTown_HirosHouse_2F_EventScript_1F864C
-	end
-
-NewBarkTown_HirosHouse_2F_EventScript_1F8626:: @ 81F8626
 	setvar VAR_0x8004, 1
 	special DoPCTurnOnEffect
 	playse SE_PC_ON

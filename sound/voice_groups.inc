@@ -18443,7 +18443,7 @@ voicegroup159:: @ 86AA4BC
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AA6C0
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AA6CC
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AA6D8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AA6E4
+	voice_directsound 60, 0, DirectSoundWaveData_873D874, 255, 246, 0, 235  @ 86AA6E4
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AA6F0
 	voice_keysplit voicegroup006, KeySplitTable2  @ 86AA6FC
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AA708

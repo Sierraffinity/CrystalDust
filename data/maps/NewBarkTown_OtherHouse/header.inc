@@ -3,7 +3,7 @@ NewBarkTown_OtherHouse::
 	.4byte NewBarkTown_OtherHouse_MapEvents
 	.4byte NewBarkTown_OtherHouse_MapScripts
 	.4byte 0x0
-	.2byte MUS_MISHIRO
+	.2byte MUS_NEWBARK
 	.2byte 57
 	.byte MAPSEC_NEW_BARK_TOWN
 	.byte 0

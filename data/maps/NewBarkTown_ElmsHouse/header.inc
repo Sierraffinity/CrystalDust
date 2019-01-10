@@ -3,7 +3,7 @@ NewBarkTown_ElmsHouse::
 	.4byte NewBarkTown_ElmsHouse_MapEvents
 	.4byte NewBarkTown_ElmsHouse_MapScripts
 	.4byte 0x0
-	.2byte MUS_MISHIRO
+	.2byte MUS_NEWBARK
 	.2byte 56
 	.byte MAPSEC_NEW_BARK_TOWN
 	.byte 0

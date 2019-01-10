@@ -524,8 +524,7 @@ extern const u8 MauvilleCity_PokemonCenter_1F_Text_290097[];
 extern const u8 MauvilleCity_PokemonCenter_1F_Text_2900B5[];
 extern const u8 MauvilleCity_PokemonCenter_1F_Text_2900CB[];
 
-extern const u8 EventScript_PlayerPCMale[];
-extern const u8 EventScript_PlayerPCFemale[];
+extern const u8 EventScript_PlayerPC[];
 extern const u8 EventScript_SecretBasePC[];
 extern const u8 EventScript_RecordMixingSecretBasePC[];
 extern const u8 EventScript_SecretPower1[];

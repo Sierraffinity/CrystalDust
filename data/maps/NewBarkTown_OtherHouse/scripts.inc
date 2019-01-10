@@ -297,30 +297,6 @@ NewBarkTown_HirosHouse_2F_EventScript_1F954A:: @ 81F954A
 	msgbox NewBarkTown_HirosHouse_2F_Text_1F9BE7, MSGBOX_DEFAULT
 	return
 
-EventScript_PlayerPCFemale:: @ 81F9553
-	lockall
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq NewBarkTown_OtherHouse_EventScript_1F956C
-	compare VAR_RESULT, FEMALE
-	goto_if_eq NewBarkTown_OtherHouse_EventScript_1F9576
-	end
-
-NewBarkTown_OtherHouse_EventScript_1F956C:: @ 81F956C
-	msgbox gUnknown_08272CD5, MSGBOX_DEFAULT
-	releaseall
-	end
-
-NewBarkTown_OtherHouse_EventScript_1F9576:: @ 81F9576
-	setvar VAR_0x8004, 2
-	special DoPCTurnOnEffect
-	playse SE_PC_ON
-	msgbox gUnknown_08272D87, MSGBOX_DEFAULT
-	special BedroomPC
-	waitstate
-	releaseall
-	end
-
 NewBarkTown_OtherHouse_EventScript_1F958F:: @ 81F958F
 	setvar VAR_0x8004, 2
 	playse SE_PC_OFF

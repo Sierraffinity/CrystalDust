@@ -35,11 +35,7 @@ int GameClear(void)
         SetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME, (gSaveBlock2Ptr->playTimeHours << 16) | (gSaveBlock2Ptr->playTimeMinutes << 8) | gSaveBlock2Ptr->playTimeSeconds);
 
     SetContinueGameWarpStatus();
-
-    if (gSaveBlock2Ptr->playerGender == MALE)
-        SetContinueGameWarpToHealLocation(HEAL_LOCATION_NEW_BARK_TOWN_HIROS_HOUSE_2F);
-    else
-        SetContinueGameWarpToHealLocation(HEAL_LOCATION_NEW_BARK_TOWN_OTHER_HOUSE);
+    SetContinueGameWarpToHealLocation(HEAL_LOCATION_NEW_BARK_TOWN);
 
     ribbonGet = FALSE;
 

@@ -23,7 +23,7 @@ NewBarkTown_OtherHouse_MapBGEvents::
 	bg_event 5, 1, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_OtherHouse_EventScript_1F865F
 	bg_event 7, 1, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_OtherHouse_EventScript_1F8656
 	bg_event 3, 1, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_OtherHouse_EventScript_29278D
-	bg_event 8, 1, 0, BG_EVENT_PLAYER_FACING_ANY, EventScript_PlayerPCFemale
+	bg_event 8, 1, 0, BG_EVENT_PLAYER_FACING_ANY, EventScript_PlayerPC
 
 NewBarkTown_OtherHouse_MapEvents::
 	map_events NewBarkTown_OtherHouse_EventObjects, NewBarkTown_OtherHouse_MapWarps, 0x0, NewBarkTown_OtherHouse_MapBGEvents

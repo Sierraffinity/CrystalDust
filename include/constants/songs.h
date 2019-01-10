@@ -329,7 +329,7 @@
 #define MUS_GRANROAD 402        // Route 119
 #define MUS_CYCLING 403         // Cycling
 #define MUS_FRIENDLY 404        // Pokémart
-#define MUS_MISHIRO 405         // Littleroot Town
+#define MUS_NEWBARK 405         // Littleroot Town
 #define MUS_TOZAN 406           // Sky Pillar
 #define MUS_GIRLEYE 407         // Encounter! Girl
 #define MUS_MINAMO 408          // Lilycove City

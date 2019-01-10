@@ -303,8 +303,8 @@ $(MID_SUBDIR)/mus_mgm0.s: %.s: %.mid
 $(MID_SUBDIR)/mus_minamo.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G054 -V085
 
-$(MID_SUBDIR)/mus_mishiro.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G051 -V100
+$(MID_SUBDIR)/mus_newbark.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G159 -V100
 
 $(MID_SUBDIR)/mus_naminori.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G017 -V080

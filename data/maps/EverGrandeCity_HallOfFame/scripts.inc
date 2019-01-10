@@ -43,23 +43,7 @@ EverGrandeCity_HallOfFame_EventScript_229850:: @ 8229850
 	delay 40
 	setvar VAR_TEMP_1, 1
 	call EverGrandeCity_HallOfFame_EventScript_2717C1
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq EverGrandeCity_HallOfFame_EventScript_2298E9
-	compare VAR_RESULT, FEMALE
-	goto_if_eq EverGrandeCity_HallOfFame_EventScript_2298F5
-	end
-
-EverGrandeCity_HallOfFame_EventScript_2298E9:: @ 82298E9
-	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_HIROS_HOUSE_2F
-	fadescreenspeed 1, 24
-	special GameClear
-	waitstate
-	releaseall
-	end
-
-EverGrandeCity_HallOfFame_EventScript_2298F5:: @ 82298F5
-	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_OTHER_HOUSE
+	setrespawn HEAL_LOCATION_NEW_BARK_TOWN
 	fadescreenspeed 1, 24
 	special GameClear
 	waitstate

@@ -301,7 +301,7 @@ const u32 gRegionMapFrameTilemapLZ[] = INCBIN_U32("graphics/region_map/map_frame
 static const u32 sUnknown_085A1D68[] = INCBIN_U32("graphics/region_map/fly_target_icon.4bpp.lz");
 
 static const u8 sMapHealLocations[][3] = {
-    {MAP_GROUP(NEW_BARK_TOWN), MAP_NUM(NEW_BARK_TOWN), HEAL_LOCATION_NEW_BARK_TOWN_HIROS_HOUSE_2F},
+    {MAP_GROUP(NEW_BARK_TOWN), MAP_NUM(NEW_BARK_TOWN), HEAL_LOCATION_NEW_BARK_TOWN},
     {MAP_GROUP(OLDALE_TOWN), MAP_NUM(OLDALE_TOWN), HEAL_LOCATION_OLDALE_TOWN},
     {MAP_GROUP(DEWFORD_TOWN), MAP_NUM(DEWFORD_TOWN), HEAL_LOCATION_DEWFORD_TOWN},
     {MAP_GROUP(LAVARIDGE_TOWN), MAP_NUM(LAVARIDGE_TOWN), HEAL_LOCATION_LAVARIDGE_TOWN},
@@ -2012,9 +2012,6 @@ static void sub_8124E0C(void)
                             break;
                         case MAPSEC_BATTLE_FRONTIER:
                             SetWarpDestinationToHealLocation(HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST);
-                            break;
-                        case MAPSEC_NEW_BARK_TOWN:
-                            SetWarpDestinationToHealLocation(gSaveBlock2Ptr->playerGender == MALE ? HEAL_LOCATION_NEW_BARK_TOWN_1 : HEAL_LOCATION_NEW_BARK_TOWN_2);
                             break;
                         case MAPSEC_EVER_GRANDE_CITY:
                             SetWarpDestinationToHealLocation(FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE) && sFlyMap->regionMap.posWithinMapSec == 0 ? HEAL_LOCATION_EVER_GRANDE_CITY_2 : HEAL_LOCATION_EVER_GRANDE_CITY_1);

@@ -14,13 +14,13 @@ NewBarkTown_HirosHouse_2F_EventObjects::
 	object_event 13, EVENT_OBJ_GFX_VAR_B, 0, 1, 5, 0, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, 0x0, FLAG_DECORATION_12
 
 NewBarkTown_HirosHouse_2F_MapWarps::
-	warp_def 9, 2, 0, 0, MAP_ROUTE104
+	warp_def 9, 2, 0, 1, MAP_NEW_BARK_TOWN_HIROS_HOUSE_1F
 
 NewBarkTown_HirosHouse_2F_MapBGEvents::
-	bg_event 0, 1, 0, BG_EVENT_PLAYER_FACING_NORTH, EventScript_PlayerPCMale
-	bg_event 1, 1, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_HirosHouse_2F_EventScript_1F8656
+	bg_event 1, 1, 0, BG_EVENT_PLAYER_FACING_NORTH, EventScript_PlayerPC
+	bg_event 2, 1, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_HirosHouse_2F_EventScript_1F8656
 	bg_event 5, 1, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_HirosHouse_2F_EventScript_292781
-	bg_event 3, 1, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_HirosHouse_2F_EventScript_1F865F
+	bg_event 6, 1, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_HirosHouse_2F_EventScript_1F865F
 
 NewBarkTown_HirosHouse_2F_MapEvents::
 	map_events NewBarkTown_HirosHouse_2F_EventObjects, NewBarkTown_HirosHouse_2F_MapWarps, 0x0, NewBarkTown_HirosHouse_2F_MapBGEvents
