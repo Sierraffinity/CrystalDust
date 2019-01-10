@@ -192,8 +192,8 @@ NewBarkTown_ProfessorElmsLab_EventScript_1F9E80:: @ 81F9E80
 	special EnableNationalPokedex
 	msgbox NewBarkTown_ProfessorElmsLab_Text_1FB466, MSGBOX_DEFAULT
 	closemessage
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
+	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCH
+	setflag FLAG_HIDE_NEW_BARK_TOWN_RIVAL
 	setvar VAR_0x40D3, 2
 	setvar VAR_0x40F5, 0
 	setflag FLAG_SCOTT_CALL_NATIONAL_DEX
@@ -497,7 +497,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_1FA294:: @ 81FA294
 	end
 
 NewBarkTown_ProfessorElmsLab_EventScript_1FA29E:: @ 81FA29E
-	goto_if_unset FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380, NewBarkTown_ProfessorElmsLab_EventScript_272141
+	goto_if_unset FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380, NewBarkTown_ProfessorElmsLab_EventScript_272141
 	compare VAR_0x40D3, 3
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_272141
 	compare VAR_0x40D3, 6

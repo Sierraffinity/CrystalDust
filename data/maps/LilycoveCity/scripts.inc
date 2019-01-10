@@ -333,8 +333,8 @@ LilycoveCity_EventScript_1E2F3E:: @ 81E2F3E
 	call_if_eq LilycoveCity_EventScript_1E2F86
 	compare VAR_RESULT, 1
 	call_if_eq LilycoveCity_EventScript_1E2F8F
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_OTHER_HOUSE_PICHU_DOLL
 	goto LilycoveCity_EventScript_1E3006
 	end
 
@@ -367,8 +367,8 @@ LilycoveCity_EventScript_1E2FAA:: @ 81E2FAA
 	call_if_eq LilycoveCity_EventScript_1E2FE2
 	compare VAR_RESULT, 1
 	call_if_eq LilycoveCity_EventScript_1E2FEB
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_SWABLU_DOLL
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_RIVAL_BEDROOM
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_2F_SWABLU_DOLL
 	goto LilycoveCity_EventScript_1E3006
 	end
 

@@ -5,7 +5,7 @@ NewBarkTown_MapScripts:: @ 81E7DCB
 	.byte 0
 
 NewBarkTown_MapScript1_1E7DDB: @ 81E7DDB
-	setflag FLAG_VISITED_LITTLEROOT_TOWN
+	setflag FLAG_VISITED_NEW_BARK_TOWN
 	call NewBarkTown_EventScript_271ED7
 	compare VAR_0x4092, 2
 	call_if_eq NewBarkTown_EventScript_1E7E67
@@ -65,7 +65,7 @@ NewBarkTown_EventScript_1E7E86:: @ 81E7E86
 	return
 
 NewBarkTown_EventScript_1E7E92:: @ 81E7E92
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_MOM_OUTSIDE
 	setobjectmovementtype 4, 8
 	checkplayergender
 	compare VAR_RESULT, MALE
@@ -93,8 +93,8 @@ NewBarkTown_EventScript_1E7EDB:: @ 81E7EDB
 	setvar VAR_0x8004, 5
 	setvar VAR_0x8005, 8
 	call NewBarkTown_EventScript_1E7F17
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
-	warpsilent MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F, 255, 8, 8
+	setflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_TRUCK
+	warpsilent MAP_NEW_BARK_TOWN_HIROS_HOUSE_1F, 255, 8, 8
 	waitstate
 	releaseall
 	end
@@ -104,8 +104,8 @@ NewBarkTown_EventScript_1E7EF9:: @ 81E7EF9
 	setvar VAR_0x8004, 14
 	setvar VAR_0x8005, 8
 	call NewBarkTown_EventScript_1E7F17
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
-	warpsilent MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F, 255, 2, 8
+	setflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_TRUCK
+	warpsilent MAP_NEW_BARK_TOWN_ELMS_HOUSE, 255, 2, 8
 	waitstate
 	releaseall
 	end
@@ -135,12 +135,12 @@ NewBarkTown_EventScript_1E7F17:: @ 81E7F17
 	applymovement 4, NewBarkTown_Movement_1E7FA1
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_1E7FA9
 	waitmovement 0
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
+	setflag FLAG_HIDE_NEW_BARK_TOWN_MOM_OUTSIDE
 	setvar VAR_0x4092, 3
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
 	closedoor VAR_0x8004, VAR_0x8005
 	waitdooranim
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_FAT_MAN
 	clearflag FLAG_SPECIAL_FLAG_0x4000
 	return
 
@@ -191,11 +191,11 @@ NewBarkTown_EventScript_1E7FB1:: @ 81E7FB1
 	delay 80
 	msgbox NewBarkTown_Text_1E8DA2, MSGBOX_DEFAULT
 	closemessage
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_RIVAL
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_BIRCH
 	delay 20
 	clearflag FLAG_SPECIAL_FLAG_0x4000
-	warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 255, 6, 5
+	warp MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 255, 6, 5
 	waitstate
 	releaseall
 	end
@@ -646,7 +646,7 @@ NewBarkTown_EventScript_1E84A1:: @ 81E84A1
 	waitdooranim
 	applymovement 4, NewBarkTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	hideobjectat 4, MAP_NEW_BARK_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
@@ -658,7 +658,7 @@ NewBarkTown_EventScript_1E84C7:: @ 81E84C7
 	waitdooranim
 	applymovement 4, NewBarkTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	hideobjectat 4, MAP_NEW_BARK_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
@@ -670,7 +670,7 @@ NewBarkTown_EventScript_1E84ED:: @ 81E84ED
 	waitdooranim
 	applymovement 4, NewBarkTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	hideobjectat 4, MAP_NEW_BARK_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
@@ -682,7 +682,7 @@ NewBarkTown_EventScript_1E8513:: @ 81E8513
 	waitdooranim
 	applymovement 4, NewBarkTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	hideobjectat 4, MAP_NEW_BARK_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
@@ -694,7 +694,7 @@ NewBarkTown_EventScript_1E8539:: @ 81E8539
 	waitdooranim
 	applymovement 4, NewBarkTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	hideobjectat 4, MAP_NEW_BARK_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
@@ -706,7 +706,7 @@ NewBarkTown_EventScript_1E855F:: @ 81E855F
 	waitdooranim
 	applymovement 4, NewBarkTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	hideobjectat 4, MAP_NEW_BARK_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
@@ -718,7 +718,7 @@ NewBarkTown_EventScript_1E8585:: @ 81E8585
 	waitdooranim
 	applymovement 4, NewBarkTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	hideobjectat 4, MAP_NEW_BARK_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
@@ -730,7 +730,7 @@ NewBarkTown_EventScript_1E85AB:: @ 81E85AB
 	waitdooranim
 	applymovement 4, NewBarkTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	hideobjectat 4, MAP_NEW_BARK_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
@@ -900,7 +900,7 @@ NewBarkTown_EventScript_1E863D:: @ 81E863D
 	waitdooranim
 	applymovement 4, NewBarkTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	hideobjectat 4, MAP_NEW_BARK_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	goto NewBarkTown_EventScript_1E8686

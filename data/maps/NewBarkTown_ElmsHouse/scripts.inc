@@ -64,7 +64,7 @@ NewBarkTown_ElmsHouse_EventScript_1F8964:: @ 81F8964
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ElmsHouse_Movement_1F898A
 	applymovement 1, NewBarkTown_ElmsHouse_Movement_1F898A
 	waitmovement 0
-	warp MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F, 255, 1, 1
+	warp MAP_NEW_BARK_TOWN_OTHER_HOUSE, 255, 1, 1
 	waitstate
 	releaseall
 	end
@@ -206,9 +206,9 @@ NewBarkTown_ElmsHouse_EventScript_1F8A8B:: @ 81F8A8B
 	call_if_eq NewBarkTown_ElmsHouse_EventScript_1F8B8E
 	playse SE_KAIDAN
 	removeobject 7
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_BRENDAN
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_BRENDAN
+	setflag FLAG_HIDE_NEW_BARK_TOWN_OTHER_HOUSE_POKE_BALL
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
 	delay 30
 	setvar VAR_0x408D, 3
 	setvar VAR_0x4050, 1

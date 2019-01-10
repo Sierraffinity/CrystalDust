@@ -51,7 +51,7 @@ EverGrandeCity_HallOfFame_EventScript_229850:: @ 8229850
 	end
 
 EverGrandeCity_HallOfFame_EventScript_2298E9:: @ 82298E9
-	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
+	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_HIROS_HOUSE_2F
 	fadescreenspeed 1, 24
 	special GameClear
 	waitstate
@@ -59,7 +59,7 @@ EverGrandeCity_HallOfFame_EventScript_2298E9:: @ 82298E9
 	end
 
 EverGrandeCity_HallOfFame_EventScript_2298F5:: @ 82298F5
-	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
+	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_OTHER_HOUSE
 	fadescreenspeed 1, 24
 	special GameClear
 	waitstate

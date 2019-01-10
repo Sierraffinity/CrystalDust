@@ -83,8 +83,8 @@ NewBarkTown_OtherHouse_EventScript_1F934A:: @ 81F934A
 	compare VAR_FACING, 4
 	call_if_eq NewBarkTown_OtherHouse_EventScript_1F9440
 	setvar VAR_0x408D, 3
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_NEW_BARK_TOWN_OTHER_HOUSE_POKE_BALL
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
 	setvar VAR_0x4050, 1
 	savebgm MUS_DUMMY
 	fadedefaultbgm

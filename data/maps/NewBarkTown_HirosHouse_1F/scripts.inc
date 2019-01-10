@@ -64,7 +64,7 @@ NewBarkTown_HirosHouse_1F_EventScript_1F7814:: @ 81F7814
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_1F783A
 	applymovement 1, NewBarkTown_HirosHouse_1F_Movement_1F783A
 	waitmovement 0
-	warp MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, 255, 7, 1
+	warp MAP_NEW_BARK_TOWN_HIROS_HOUSE_2F, 255, 7, 1
 	waitstate
 	releaseall
 	end
@@ -169,9 +169,9 @@ NewBarkTown_HirosHouse_1F_EventScript_1F78E2:: @ 81F78E2
 	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_1F79E5
 	playse SE_KAIDAN
 	removeobject 7
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_BRENDAN
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_BRENDAN
+	setflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_2F_POKE_BALL
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_RIVAL_BEDROOM
 	delay 30
 	setvar VAR_0x408D, 3
 	setvar VAR_0x4050, 1
