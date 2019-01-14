@@ -11,24 +11,19 @@
 
 bool8 sub_808A964(void);
 
-const u8 DoorAnimTiles_04[][0x100] =
+const u8 DoorAnimTiles_04[][0x80] =
 {
     INCBIN_U8("graphics/door_anims/04/0.4bpp"),
     INCBIN_U8("graphics/door_anims/04/1.4bpp"),
     INCBIN_U8("graphics/door_anims/04/2.4bpp"),
 };
 
-// TODO: Make these blank palette includes?
-asm(".space 32");
-
-const u8 DoorAnimTiles_05[][0x100] =
+const u8 DoorAnimTiles_05[][0x80] =
 {
     INCBIN_U8("graphics/door_anims/05/0.4bpp"),
     INCBIN_U8("graphics/door_anims/05/1.4bpp"),
     INCBIN_U8("graphics/door_anims/05/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_08[][0x100] =
 {
@@ -37,16 +32,12 @@ const u8 DoorAnimTiles_08[][0x100] =
     INCBIN_U8("graphics/door_anims/08/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_15[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/15/0.4bpp"),
     INCBIN_U8("graphics/door_anims/15/1.4bpp"),
     INCBIN_U8("graphics/door_anims/15/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_16[][0x100] =
 {
@@ -55,16 +46,12 @@ const u8 DoorAnimTiles_16[][0x100] =
     INCBIN_U8("graphics/door_anims/16/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_00[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/00/0.4bpp"),
     INCBIN_U8("graphics/door_anims/00/1.4bpp"),
     INCBIN_U8("graphics/door_anims/00/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_01[][0x100] =
 {
@@ -94,16 +81,12 @@ const u8 DoorAnimTiles_06[][0x100] =
     INCBIN_U8("graphics/door_anims/06/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_07[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/07/0.4bpp"),
     INCBIN_U8("graphics/door_anims/07/1.4bpp"),
     INCBIN_U8("graphics/door_anims/07/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_09[][0x100] =
 {
@@ -112,16 +95,12 @@ const u8 DoorAnimTiles_09[][0x100] =
     INCBIN_U8("graphics/door_anims/09/2.4bpp"),
 };
 
-asm(".space 0x5900");
-
 const u8 DoorAnimTiles_UnusedTops[][0x40] =
 {
     INCBIN_U8("graphics/door_anims/unused_848EDEC/0_top.4bpp"),
     INCBIN_U8("graphics/door_anims/unused_848EDEC/1_top.4bpp"),
     INCBIN_U8("graphics/door_anims/unused_848EDEC/2_top.4bpp"),
 };
-
-asm(".space 0x140");
 
 const u8 DoorAnimTiles_UnusedBottoms[][0x40] =
 {
@@ -130,16 +109,12 @@ const u8 DoorAnimTiles_UnusedBottoms[][0x40] =
     INCBIN_U8("graphics/door_anims/unused_848EDEC/2_bottom.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_10[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/10/0.4bpp"),
     INCBIN_U8("graphics/door_anims/10/1.4bpp"),
     INCBIN_U8("graphics/door_anims/10/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_11[][0x100] =
 {
@@ -148,16 +123,12 @@ const u8 DoorAnimTiles_11[][0x100] =
     INCBIN_U8("graphics/door_anims/11/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_12[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/12/0.4bpp"),
     INCBIN_U8("graphics/door_anims/12/1.4bpp"),
     INCBIN_U8("graphics/door_anims/12/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_13[][0x100] =
 {
@@ -166,16 +137,12 @@ const u8 DoorAnimTiles_13[][0x100] =
     INCBIN_U8("graphics/door_anims/13/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_14[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/14/0.4bpp"),
     INCBIN_U8("graphics/door_anims/14/1.4bpp"),
     INCBIN_U8("graphics/door_anims/14/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_17[][0x100] =
 {
@@ -184,16 +151,12 @@ const u8 DoorAnimTiles_17[][0x100] =
     INCBIN_U8("graphics/door_anims/17/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_18[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/18/0.4bpp"),
     INCBIN_U8("graphics/door_anims/18/1.4bpp"),
     INCBIN_U8("graphics/door_anims/18/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_19[][0x100] =
 {
@@ -202,16 +165,12 @@ const u8 DoorAnimTiles_19[][0x100] =
     INCBIN_U8("graphics/door_anims/19/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_20[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/20/0.4bpp"),
     INCBIN_U8("graphics/door_anims/20/1.4bpp"),
     INCBIN_U8("graphics/door_anims/20/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_21[][0x100] =
 {
@@ -220,16 +179,12 @@ const u8 DoorAnimTiles_21[][0x100] =
     INCBIN_U8("graphics/door_anims/21/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_22[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/22/0.4bpp"),
     INCBIN_U8("graphics/door_anims/22/1.4bpp"),
     INCBIN_U8("graphics/door_anims/22/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_23[][0x100] =
 {
@@ -238,16 +193,12 @@ const u8 DoorAnimTiles_23[][0x100] =
     INCBIN_U8("graphics/door_anims/23/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_24[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/24/0.4bpp"),
     INCBIN_U8("graphics/door_anims/24/1.4bpp"),
     INCBIN_U8("graphics/door_anims/24/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_25[][0x100] =
 {
@@ -256,16 +207,12 @@ const u8 DoorAnimTiles_25[][0x100] =
     INCBIN_U8("graphics/door_anims/25/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_26[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/26/0.4bpp"),
     INCBIN_U8("graphics/door_anims/26/1.4bpp"),
     INCBIN_U8("graphics/door_anims/26/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_27[][0x100] =
 {
@@ -274,16 +221,12 @@ const u8 DoorAnimTiles_27[][0x100] =
     INCBIN_U8("graphics/door_anims/27/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_28[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/28/0.4bpp"),
     INCBIN_U8("graphics/door_anims/28/1.4bpp"),
     INCBIN_U8("graphics/door_anims/28/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_29[][0x100] =
 {
@@ -292,16 +235,12 @@ const u8 DoorAnimTiles_29[][0x100] =
     INCBIN_U8("graphics/door_anims/29/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_30[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/30/0.4bpp"),
     INCBIN_U8("graphics/door_anims/30/1.4bpp"),
     INCBIN_U8("graphics/door_anims/30/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_31[][0x100] =
 {
@@ -310,16 +249,12 @@ const u8 DoorAnimTiles_31[][0x100] =
     INCBIN_U8("graphics/door_anims/31/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_32[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/32/0.4bpp"),
     INCBIN_U8("graphics/door_anims/32/1.4bpp"),
     INCBIN_U8("graphics/door_anims/32/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_33[][0x100] =
 {
@@ -328,16 +263,12 @@ const u8 DoorAnimTiles_33[][0x100] =
     INCBIN_U8("graphics/door_anims/33/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_34[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/34/0.4bpp"),
     INCBIN_U8("graphics/door_anims/34/1.4bpp"),
     INCBIN_U8("graphics/door_anims/34/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_35[][0x100] =
 {
@@ -346,16 +277,12 @@ const u8 DoorAnimTiles_35[][0x100] =
     INCBIN_U8("graphics/door_anims/35/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_36[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/36/0.4bpp"),
     INCBIN_U8("graphics/door_anims/36/1.4bpp"),
     INCBIN_U8("graphics/door_anims/36/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_37[][0x100] =
 {
@@ -364,16 +291,12 @@ const u8 DoorAnimTiles_37[][0x100] =
     INCBIN_U8("graphics/door_anims/37/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_38[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/38/0.4bpp"),
     INCBIN_U8("graphics/door_anims/38/1.4bpp"),
     INCBIN_U8("graphics/door_anims/38/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_39[][0x100] =
 {
@@ -382,16 +305,12 @@ const u8 DoorAnimTiles_39[][0x100] =
     INCBIN_U8("graphics/door_anims/39/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_40[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/40/0.4bpp"),
     INCBIN_U8("graphics/door_anims/40/1.4bpp"),
     INCBIN_U8("graphics/door_anims/40/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_41[][0x100] =
 {
@@ -408,16 +327,12 @@ const u8 DoorAnimTiles_42[][0x100] =
     INCBIN_U8("graphics/door_anims/42/3.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_43[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/43/0.4bpp"),
     INCBIN_U8("graphics/door_anims/43/1.4bpp"),
     INCBIN_U8("graphics/door_anims/43/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_44[][0x100] =
 {
@@ -429,16 +344,12 @@ const u8 DoorAnimTiles_44[][0x100] =
     INCBIN_U8("graphics/door_anims/44/2_right.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_45[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/45/0.4bpp"),
     INCBIN_U8("graphics/door_anims/45/1.4bpp"),
     INCBIN_U8("graphics/door_anims/45/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_46[][0x100] =
 {
@@ -447,16 +358,12 @@ const u8 DoorAnimTiles_46[][0x100] =
     INCBIN_U8("graphics/door_anims/46/2.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_47[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/47/0.4bpp"),
     INCBIN_U8("graphics/door_anims/47/1.4bpp"),
     INCBIN_U8("graphics/door_anims/47/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_48[][0x100] =
 {
@@ -466,16 +373,12 @@ const u8 DoorAnimTiles_48[][0x100] =
     INCBIN_U8("graphics/door_anims/48/3.4bpp"),
 };
 
-asm(".space 32");
-
 const u8 DoorAnimTiles_49[][0x100] =
 {
     INCBIN_U8("graphics/door_anims/49/0.4bpp"),
     INCBIN_U8("graphics/door_anims/49/1.4bpp"),
     INCBIN_U8("graphics/door_anims/49/2.4bpp"),
 };
-
-asm(".space 32");
 
 const u8 DoorAnimTiles_50[][0x100] =
 {
@@ -484,9 +387,25 @@ const u8 DoorAnimTiles_50[][0x100] =
     INCBIN_U8("graphics/door_anims/50/2.4bpp"),
 };
 
-asm(".space 32");
-
 static const struct DoorAnimFrame gDoorOpenAnimFrames[] =
+{
+    {4, -1},
+    {4, 0},
+    {4, 0x80},
+    {4, 0x100},
+    {0, 0},
+};
+
+static const struct DoorAnimFrame gDoorCloseAnimFrames[] =
+{
+    {4, 0x100},
+    {4, 0x80},
+    {4, 0},
+    {4, -1},
+    {0, 0},
+};
+
+static const struct DoorAnimFrame gTallDoorOpenAnimFrames[] =
 {
     {4, -1},
     {4, 0},
@@ -495,7 +414,7 @@ static const struct DoorAnimFrame gDoorOpenAnimFrames[] =
     {0, 0},
 };
 
-static const struct DoorAnimFrame gDoorCloseAnimFrames[] =
+static const struct DoorAnimFrame gTallDoorCloseAnimFrames[] =
 {
     {4, 0x200},
     {4, 0x100},
@@ -526,8 +445,8 @@ const u8 DoorAnimPalettes_8496FDC[] = {1, 1, 1, 1, 1, 1, 1, 1}; // door 00
 const u8 DoorAnimPalettes_8496FE4[] = {1, 1, 1, 1, 1, 1, 1, 1}; // door 01
 const u8 DoorAnimPalettes_8496FEC[] = {5, 5, 5, 5, 5, 5, 5, 5}; // door 02
 const u8 DoorAnimPalettes_8496FF4[] = {0, 0, 1, 1, 1, 1, 1, 1}; // door 03
-const u8 DoorAnimPalettes_8496FFC[] = {10, 10, 6, 6, 6, 6, 6, 6}; // door 04
-const u8 DoorAnimPalettes_8497004[] = {8, 8, 8, 8, 8, 8, 8, 8}; // door 05
+const u8 DoorAnimPalettes_8496FFC[] = {7, 7, 7, 7}; // door 04
+const u8 DoorAnimPalettes_8497004[] = {9, 9, 9, 9}; // door 05
 const u8 DoorAnimPalettes_849700C[] = {11, 11, 11, 11, 11, 11, 11, 11}; // door 06
 const u8 DoorAnimPalettes_8497014[] = {10, 10, 10, 10, 10, 10, 10, 10}; // door 07
 const u8 DoorAnimPalettes_849701C[] = {7, 7, 7, 7, 7, 7, 7, 7}; // door 08
@@ -576,20 +495,20 @@ const u8 DoorAnimPalettes_849716C[] = {9, 9, 7, 7, 7, 7, 7, 7}; // door 52
 
 static const struct DoorGraphics gDoorAnimGraphicsTable[] =
 {
-    {0x021, 0, 1, DoorAnimTiles_00, DoorAnimPalettes_8496FDC}, // door 00
-    {0x061, 1, 1, DoorAnimTiles_01, DoorAnimPalettes_8496FE4}, // door 01
-    {0x1CD, 1, 1, DoorAnimTiles_02, DoorAnimPalettes_8496FEC}, // door 02
-    {0x041, 1, 1, DoorAnimTiles_03, DoorAnimPalettes_8496FF4}, // door 03
-    {0x248, 0, 1, DoorAnimTiles_04, DoorAnimPalettes_8496FFC}, // door 04
-    {0x249, 0, 1, DoorAnimTiles_05, DoorAnimPalettes_8497004}, // door 05
-    {0x22F, 0, 1, DoorAnimTiles_06, DoorAnimPalettes_849700C}, // door 06
+    {0x03D, 0, 0, DoorAnimTiles_00, DoorAnimPalettes_8496FDC}, // door 00 (default red house door)
+    {0x062, 1, 0, DoorAnimTiles_01, DoorAnimPalettes_8496FE4}, // door 01 (pokecenter door)
+    {0x15B, 1, 0, DoorAnimTiles_02, DoorAnimPalettes_8496FEC}, // door 02 (gym door)
+    //{0x041, 1, 1, DoorAnimTiles_03, DoorAnimPalettes_8496FF4}, // door 03 (pokemart door)
+    {0x2A3, 0, 0, DoorAnimTiles_04, DoorAnimPalettes_8496FFC}, // door 04 (littleroot house door)
+    {0x2AC, 0, 0, DoorAnimTiles_05, DoorAnimPalettes_8497004}, // door 05 (littleroot lab door)
+    {0x22F, 0, 1, DoorAnimTiles_06, DoorAnimPalettes_849700C}, // door 06 
     {0x21F, 0, 1, DoorAnimTiles_07, DoorAnimPalettes_8497014}, // door 07
     {0x2A5, 0, 1, DoorAnimTiles_08, DoorAnimPalettes_849701C}, // door 08
     {0x287, 0, 1, DoorAnimTiles_09, DoorAnimPalettes_849702C}, // door 09
     {0x2AC, 0, 1, DoorAnimTiles_10, DoorAnimPalettes_849706C}, // door 10
     {0x3A1, 0, 1, DoorAnimTiles_11, DoorAnimPalettes_8497074}, // door 11
     {0x2DC, 0, 1, DoorAnimTiles_12, DoorAnimPalettes_8497064}, // door 12
-    {0x225, 0, 1, DoorAnimTiles_13, DoorAnimPalettes_849705C}, // door 13
+    {0x225, 0, 1, DoorAnimTiles_13, DoorAnimPalettes_849705C}, // door 13 (dewford house door)
     {0x1DB, 1, 1, DoorAnimTiles_14, DoorAnimPalettes_8497084}, // door 14
     {0x246, 0, 1, DoorAnimTiles_15, DoorAnimPalettes_8497024}, // door 15
     {0x28E, 0, 1, DoorAnimTiles_16, DoorAnimPalettes_849707C}, // door 16
@@ -608,7 +527,7 @@ static const struct DoorGraphics gDoorAnimGraphicsTable[] =
     {0x2F7, 0, 1, DoorAnimTiles_29, DoorAnimPalettes_84970C4}, // door 29
     {0x297, 0, 1, DoorAnimTiles_30, DoorAnimPalettes_84970CC}, // door 30
     {0x285, 1, 1, DoorAnimTiles_31, DoorAnimPalettes_84970D4}, // door 31
-    {0x25D, 1, 1, DoorAnimTiles_32, DoorAnimPalettes_84970DC}, // door 32
+    {0x25D, 1, 1, DoorAnimTiles_32, DoorAnimPalettes_84970DC}, // door 32 (battle tower? door)
     {0x20E, 1, 1, DoorAnimTiles_33, DoorAnimPalettes_84970E4}, // door 33
     {0x3B0, 1, 1, DoorAnimTiles_34, DoorAnimPalettes_84970EC}, // door 34
     {0x28A, 1, 1, DoorAnimTiles_35, DoorAnimPalettes_84970F4}, // door 35
@@ -636,8 +555,10 @@ static void CopyDoorTilesToVram(const struct DoorGraphics *gfx, const struct Doo
 {
     if (gfx->size == 2)
         CpuFastSet(gfx->tiles + frame->offset, (void *)(VRAM + 0x7E00), 0x80);
-    else
+    else if (gfx->size == 1)
         CpuFastSet(gfx->tiles + frame->offset, (void *)(VRAM + 0x7F00), 0x40);
+    else
+        CpuFastSet(gfx->tiles + frame->offset, (void *)(VRAM + 0x7F80), 0x20);
 }
 
 static void door_build_blockdef(u16 *a, u16 b, const u8 *c)
@@ -672,11 +593,16 @@ static void DrawCurrentDoorAnimFrame(const struct DoorGraphics *gfx, u32 x, u32 
         door_build_blockdef(&arr[8], 0x3FC, pal + 4);
         DrawDoorMetatileAt(x + 1, y, &arr[8]);
     }
-    else
+    else if (gfx->size == 1)
     {
         door_build_blockdef(&arr[0], 0x3F8, pal);
         DrawDoorMetatileAt(x, y - 1, &arr[0]);
         door_build_blockdef(&arr[0], 0x3FC, pal + 4);
+        DrawDoorMetatileAt(x, y, &arr[0]);
+    }
+    else
+    {
+        door_build_blockdef(&arr[0], 0x3FC, pal);
         DrawDoorMetatileAt(x, y, &arr[0]);
     }
 }
@@ -796,7 +722,14 @@ static void DrawOpenedDoor(const struct DoorGraphics *gfx, u32 x, u32 y)
 {
     gfx = GetDoorGraphics(gfx, MapGridGetMetatileIdAt(x, y));
     if (gfx != NULL)
-        DrawDoor(gfx, GetLastDoorFrame(gDoorOpenAnimFrames, gDoorOpenAnimFrames), x, y);
+    {
+        if (gfx->size == 2)
+            DrawDoor(gfx, GetLastDoorFrame(gBigDoorOpenAnimFrames, gBigDoorOpenAnimFrames), x, y);
+        else if (gfx->size == 1)
+            DrawDoor(gfx, GetLastDoorFrame(gTallDoorOpenAnimFrames, gTallDoorOpenAnimFrames), x, y);
+        else
+            DrawDoor(gfx, GetLastDoorFrame(gDoorOpenAnimFrames, gDoorOpenAnimFrames), x, y);
+    }
 }
 
 static s8 StartDoorOpenAnimation(const struct DoorGraphics *gfx, u32 x, u32 y)
@@ -810,6 +743,8 @@ static s8 StartDoorOpenAnimation(const struct DoorGraphics *gfx, u32 x, u32 y)
     {
         if (gfx->size == 2)
             return StartDoorAnimationTask(gfx, gBigDoorOpenAnimFrames, x, y);
+        else if (gfx->size == 1)
+            return StartDoorAnimationTask(gfx, gTallDoorOpenAnimFrames, x, y);
         else
             return StartDoorAnimationTask(gfx, gDoorOpenAnimFrames, x, y);
     }
@@ -819,9 +754,18 @@ static s8 StartDoorCloseAnimation(const struct DoorGraphics *gfx, u32 x, u32 y)
 {
     gfx = GetDoorGraphics(gfx, MapGridGetMetatileIdAt(x, y));
     if (gfx == NULL)
+    {
         return -1;
+    }
     else
-        return StartDoorAnimationTask(gfx, gDoorCloseAnimFrames, x, y);
+    {
+        if (gfx->size == 2)
+            return StartDoorAnimationTask(gfx, gBigDoorCloseAnimFrames, x, y);
+        else if (gfx->size == 1)
+            return StartDoorAnimationTask(gfx, gTallDoorCloseAnimFrames, x, y);
+        else
+            return StartDoorAnimationTask(gfx, gDoorCloseAnimFrames, x, y);
+    }
 }
 
 static s8 cur_mapdata_get_door_x2_at(const struct DoorGraphics *gfx, u32 x, u32 y)
@@ -876,7 +820,7 @@ u32 GetDoorSoundEffect(u32 x, u32 y)
     int sound = cur_mapdata_get_door_x2_at(gDoorAnimGraphicsTable, x, y);
     
     if (sound == 0)
-        return SE_DOOR;
+        return SE_RG_W_DOOR;
     else if (sound == 1)
         return SE_JIDO_DOA;
     else if (sound == 2)
