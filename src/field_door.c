@@ -46,21 +46,21 @@ const u8 DoorAnimTiles_16[][0x100] =
     INCBIN_U8("graphics/door_anims/16/2.4bpp"),
 };
 
-const u8 DoorAnimTiles_00[][0x100] =
+const u8 DoorAnimTiles_00[][0x80] =
 {
     INCBIN_U8("graphics/door_anims/00/0.4bpp"),
     INCBIN_U8("graphics/door_anims/00/1.4bpp"),
     INCBIN_U8("graphics/door_anims/00/2.4bpp"),
 };
 
-const u8 DoorAnimTiles_01[][0x100] =
+const u8 DoorAnimTiles_01[][0x80] =
 {
     INCBIN_U8("graphics/door_anims/01/0.4bpp"),
     INCBIN_U8("graphics/door_anims/01/1.4bpp"),
     INCBIN_U8("graphics/door_anims/01/2.4bpp"),
 };
 
-const u8 DoorAnimTiles_02[][0x100] =
+const u8 DoorAnimTiles_02[][0x80] =
 {
     INCBIN_U8("graphics/door_anims/02/0.4bpp"),
     INCBIN_U8("graphics/door_anims/02/1.4bpp"),
@@ -441,9 +441,9 @@ static const struct DoorAnimFrame gBigDoorCloseAnimFrames[] =
     {0, 0},
 };
 
-const u8 DoorAnimPalettes_8496FDC[] = {1, 1, 1, 1, 1, 1, 1, 1}; // door 00
-const u8 DoorAnimPalettes_8496FE4[] = {1, 1, 1, 1, 1, 1, 1, 1}; // door 01
-const u8 DoorAnimPalettes_8496FEC[] = {5, 5, 5, 5, 5, 5, 5, 5}; // door 02
+const u8 DoorAnimPalettes_8496FDC[] = {2, 2, 2, 2}; // door 00
+const u8 DoorAnimPalettes_8496FE4[] = {3, 3, 3, 3}; // door 01
+const u8 DoorAnimPalettes_8496FEC[] = {3, 3, 3, 3}; // door 02
 const u8 DoorAnimPalettes_8496FF4[] = {0, 0, 1, 1, 1, 1, 1, 1}; // door 03
 const u8 DoorAnimPalettes_8496FFC[] = {7, 7, 7, 7}; // door 04
 const u8 DoorAnimPalettes_8497004[] = {9, 9, 9, 9}; // door 05

@@ -8,7 +8,7 @@ NewBarkTown_ElmsHouse_EventObjects::
 	object_event 7, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL, 0, 2, 8, 3, MOVEMENT_TYPE_FACE_UP, 1, 1, 0, 0, 0x0, FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_BRENDAN
 
 NewBarkTown_ElmsHouse_MapWarps::
-	warp_def 3, 7, 0, 0, MAP_NEW_BARK_TOWN
+	warp_def 3, 7, 0, 2, MAP_NEW_BARK_TOWN
 	warp_def 4, 7, 0, 0, MAP_NEW_BARK_TOWN
 	warp_def 2, 2, 0, 0, MAP_NEW_BARK_TOWN_OTHER_HOUSE
 
