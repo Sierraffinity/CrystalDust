@@ -374,12 +374,12 @@ const struct SpriteFrameImage gEventObjectPicTable_Cook[] = {
     overworld_frame(gEventObjectPic_Cook, 2, 4, 0),
     overworld_frame(gEventObjectPic_Cook, 2, 4, 1),
     overworld_frame(gEventObjectPic_Cook, 2, 4, 2),
-    overworld_frame(gEventObjectPic_Cook, 2, 4, 0),
-    overworld_frame(gEventObjectPic_Cook, 2, 4, 0),
-    overworld_frame(gEventObjectPic_Cook, 2, 4, 1),
-    overworld_frame(gEventObjectPic_Cook, 2, 4, 1),
-    overworld_frame(gEventObjectPic_Cook, 2, 4, 2),
-    overworld_frame(gEventObjectPic_Cook, 2, 4, 2),
+    overworld_frame(gEventObjectPic_Cook, 2, 4, 3),
+    overworld_frame(gEventObjectPic_Cook, 2, 4, 4),
+    overworld_frame(gEventObjectPic_Cook, 2, 4, 5),
+    overworld_frame(gEventObjectPic_Cook, 2, 4, 6),
+    overworld_frame(gEventObjectPic_Cook, 2, 4, 7),
+    overworld_frame(gEventObjectPic_Cook, 2, 4, 8),
 };
 
 const struct SpriteFrameImage gEventObjectPicTable_LinkReceptionist[] = {
@@ -398,12 +398,12 @@ const struct SpriteFrameImage gEventObjectPicTable_OldMan[] = {
     overworld_frame(gEventObjectPic_OldMan, 2, 4, 0),
     overworld_frame(gEventObjectPic_OldMan, 2, 4, 1),
     overworld_frame(gEventObjectPic_OldMan, 2, 4, 2),
-    overworld_frame(gEventObjectPic_OldMan, 2, 4, 0),
-    overworld_frame(gEventObjectPic_OldMan, 2, 4, 0),
-    overworld_frame(gEventObjectPic_OldMan, 2, 4, 1),
-    overworld_frame(gEventObjectPic_OldMan, 2, 4, 1),
-    overworld_frame(gEventObjectPic_OldMan, 2, 4, 2),
-    overworld_frame(gEventObjectPic_OldMan, 2, 4, 2),
+    overworld_frame(gEventObjectPic_OldMan, 2, 4, 3),
+    overworld_frame(gEventObjectPic_OldMan, 2, 4, 4),
+    overworld_frame(gEventObjectPic_OldMan, 2, 4, 5),
+    overworld_frame(gEventObjectPic_OldMan, 2, 4, 6),
+    overworld_frame(gEventObjectPic_OldMan, 2, 4, 7),
+    overworld_frame(gEventObjectPic_OldMan, 2, 4, 8),
 };
 
 const struct SpriteFrameImage gEventObjectPicTable_OldWoman[] = {
@@ -890,12 +890,12 @@ const struct SpriteFrameImage gEventObjectPicTable_Teala[] = {
     overworld_frame(gEventObjectPic_Teala, 2, 4, 0),
     overworld_frame(gEventObjectPic_Teala, 2, 4, 1),
     overworld_frame(gEventObjectPic_Teala, 2, 4, 2),
-    overworld_frame(gEventObjectPic_Teala, 2, 4, 3),
-    overworld_frame(gEventObjectPic_Teala, 2, 4, 4),
-    overworld_frame(gEventObjectPic_Teala, 2, 4, 5),
-    overworld_frame(gEventObjectPic_Teala, 2, 4, 6),
-    overworld_frame(gEventObjectPic_Teala, 2, 4, 7),
-    overworld_frame(gEventObjectPic_Teala, 2, 4, 8),
+    overworld_frame(gEventObjectPic_Teala, 2, 4, 0),
+    overworld_frame(gEventObjectPic_Teala, 2, 4, 0),
+    overworld_frame(gEventObjectPic_Teala, 2, 4, 1),
+    overworld_frame(gEventObjectPic_Teala, 2, 4, 1),
+    overworld_frame(gEventObjectPic_Teala, 2, 4, 2),
+    overworld_frame(gEventObjectPic_Teala, 2, 4, 2),
 };
 
 const struct SpriteFrameImage gEventObjectPicTable_BreakableRock[] = {

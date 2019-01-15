@@ -10,12 +10,12 @@ PetalburgCity_EventObjects::
 	object_event 9, EVENT_OBJ_GFX_SCOTT, 0, 13, 12, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, 0x0, FLAG_HIDE_PETALBURG_CITY_SCOTT
 
 PetalburgCity_MapWarps::
-	warp_def 10, 19, 0, 0, MAP_PETALBURG_CITY_HOUSE1
-	warp_def 7, 5, 0, 0, MAP_PETALBURG_CITY_WALLYS_HOUSE
+	warp_def 4, 18, 0, 0, MAP_PETALBURG_CITY_HOUSE1
+	warp_def 37, 19, 0, 0, MAP_PETALBURG_CITY_WALLYS_HOUSE
 	warp_def 24, 19, 0, 0, MAP_PETALBURG_CITY_GYM
-	warp_def 20, 16, 0, 0, MAP_PETALBURG_CITY_POKEMON_CENTER_1F
-	warp_def 20, 24, 0, 0, MAP_PETALBURG_CITY_HOUSE2
-	warp_def 25, 12, 0, 0, MAP_PETALBURG_CITY_MART
+	warp_def 38, 28, 0, 0, MAP_PETALBURG_CITY_POKEMON_CENTER_1F
+	warp_def 26, 32, 0, 0, MAP_PETALBURG_CITY_HOUSE2
+	warp_def 14, 19, 0, 0, MAP_PETALBURG_CITY_MART
 
 PetalburgCity_MapCoordEvents::
 	coord_event 8, 10, 3, VAR_0x4057, 0, PetalburgCity_EventScript_1DC49A
@@ -29,12 +29,12 @@ PetalburgCity_MapCoordEvents::
 
 PetalburgCity_MapBGEvents::
 	bg_event 20, 19, 0, BG_EVENT_PLAYER_FACING_ANY, PetalburgCity_EventScript_1DC476
-	bg_event 26, 12, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E6A
-	bg_event 21, 16, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E73
-	bg_event 17, 16, 0, BG_EVENT_PLAYER_FACING_ANY, PetalburgCity_EventScript_1DC47F
-	bg_event 22, 16, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E73
-	bg_event 27, 12, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E6A
-	bg_event 8, 9, 0, BG_EVENT_PLAYER_FACING_ANY, PetalburgCity_EventScript_1DC491
+	bg_event 12, 19, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E6A
+	bg_event 36, 28, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E73
+	bg_event 31, 23, 0, BG_EVENT_PLAYER_FACING_ANY, PetalburgCity_EventScript_1DC47F
+	bg_event 37, 28, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E73
+	bg_event 13, 19, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E6A
+	bg_event 34, 19, 0, BG_EVENT_PLAYER_FACING_ANY, PetalburgCity_EventScript_1DC491
 	bg_hidden_item_event 11, 29, 3, ITEM_RARE_CANDY, FLAG_HIDDEN_ITEM_PETALBURG_CITY_RARE_CANDY
 
 PetalburgCity_MapEvents::
