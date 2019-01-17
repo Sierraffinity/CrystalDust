@@ -928,7 +928,7 @@ static void mli0_load_map(u32 a1)
 
     if (a1 != 1 && indoors)
     {
-        UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
+        //UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
         sub_80E9238(1);
     }
 }

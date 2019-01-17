@@ -64,7 +64,7 @@ void InitMapFromSavedGame(void)
     sub_80E8EE0(gMapHeader.events);
     LoadSavedMapView();
     mapheader_run_script_with_tag_x1();
-    UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
+    //UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
 }
 
 void InitBattlePyramidMap(u8 a0)

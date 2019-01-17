@@ -1,7 +1,7 @@
 NewBarkTown_HirosHouse_1F_MapScripts:: @ 81F7755
-	map_script 1, NewBarkTown_HirosHouse_1F_MapScript1_1F7765
-	map_script 3, NewBarkTown_HirosHouse_1F_MapScript1_1F77A4
-	map_script 2, NewBarkTown_HirosHouse_1F_MapScript2_1F77EA
+	@map_script 1, NewBarkTown_HirosHouse_1F_MapScript1_1F7765
+	@map_script 3, NewBarkTown_HirosHouse_1F_MapScript1_1F77A4
+	@map_script 2, NewBarkTown_HirosHouse_1F_MapScript2_1F77EA
 	.byte 0
 
 NewBarkTown_HirosHouse_1F_MapScript1_1F7765: @ 81F7765
