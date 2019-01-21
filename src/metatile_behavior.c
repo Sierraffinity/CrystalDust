@@ -146,7 +146,7 @@ static const u8 sTileBitAttributes[] =
     [MB_REGION_MAP] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_TELEVISION] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_POKEBLOCK_FEEDER] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_88] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_WINDOW] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_SLOT_MACHINE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_ROULETTE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_CLOSED_SOOTOPOLIS_DOOR] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -608,6 +608,14 @@ bool8 MetatileBehavior_IsPlayerFacingTVScreen(u8 metatileBehavior, u8 playerDir)
     if (playerDir != DIR_NORTH)
         return FALSE;
     else if (metatileBehavior == MB_TELEVISION)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsWindow(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_WINDOW)
         return TRUE;
     else
         return FALSE;

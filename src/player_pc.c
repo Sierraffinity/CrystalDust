@@ -419,12 +419,9 @@ static void PlayerPC_Decoration(u8 var)
 
 static void PlayerPC_TurnOff(u8 taskId)
 {
-    if (gPcItemMenuOptionsNum == 4) // if the option count is 4, we are at the bedroom PC and not player PC, so do gender specific handling.
+    if (gPcItemMenuOptionsNum == 4)
     {
-        if (gSaveBlock2Ptr->playerGender == MALE)
-            ScriptContext1_SetupScript(NewBarkTown_HirosHouse_2F_EventScript_1F863F);
-        else
-            ScriptContext1_SetupScript(NewBarkTown_OtherHouse_EventScript_1F958F);
+        ScriptContext1_SetupScript(NewBarkTown_PlayersHouse_2F_EventScript_1F863F);
     }
     else
     {

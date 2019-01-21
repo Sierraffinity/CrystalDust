@@ -30,7 +30,6 @@ NewBarkTown_OtherHouse_EventScript_1F92E6:: @ 81F92E6
 	setobjectmovementtype 1, 7
 	return
 
-NewBarkTown_HirosHouse_2F_EventScript_1F9309:: @ 81F9309
 NewBarkTown_OtherHouse_EventScript_1F9309:: @ 81F9309
 	return
 
@@ -246,55 +245,55 @@ NewBarkTown_OtherHouse_Movement_1F94BB: @ 81F94BB
 	walk_in_place_fastest_right
 	step_end
 
-NewBarkTown_HirosHouse_2F_EventScript_1F94C1:: @ 81F94C1
+NewBarkTown_PlayersHouse_2F_EventScript_1F94C1:: @ 81F94C1
 NewBarkTown_OtherHouse_EventScript_1F94C1:: @ 81F94C1
 	lockall
-	goto_if_set FLAG_MET_RIVAL_LILYCOVE, NewBarkTown_HirosHouse_2F_EventScript_1F94F7
+	goto_if_set FLAG_MET_RIVAL_LILYCOVE, NewBarkTown_PlayersHouse_2F_EventScript_1F94F7
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq NewBarkTown_HirosHouse_2F_EventScript_1F94E3
+	goto_if_eq NewBarkTown_PlayersHouse_2F_EventScript_1F94E3
 	compare VAR_RESULT, FEMALE
-	goto_if_eq NewBarkTown_HirosHouse_2F_EventScript_1F94ED
+	goto_if_eq NewBarkTown_PlayersHouse_2F_EventScript_1F94ED
 	end
 
-NewBarkTown_HirosHouse_2F_EventScript_1F94E3:: @ 81F94E3
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F978A, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_2F_EventScript_1F94E3:: @ 81F94E3
+	msgbox NewBarkTown_PlayersHouse_2F_Text_1F978A, MSGBOX_DEFAULT
 	releaseall
 	end
 
-NewBarkTown_HirosHouse_2F_EventScript_1F94ED:: @ 81F94ED
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F9962, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_2F_EventScript_1F94ED:: @ 81F94ED
+	msgbox NewBarkTown_PlayersHouse_2F_Text_1F9962, MSGBOX_DEFAULT
 	releaseall
 	end
 
-NewBarkTown_HirosHouse_2F_EventScript_1F94F7:: @ 81F94F7
-	applymovement VAR_LAST_TALKED, NewBarkTown_HirosHouse_2F_Movement_27259E
+NewBarkTown_PlayersHouse_2F_EventScript_1F94F7:: @ 81F94F7
+	applymovement VAR_LAST_TALKED, NewBarkTown_PlayersHouse_2F_Movement_27259E
 	waitmovement 0
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq NewBarkTown_HirosHouse_2F_EventScript_1F951D
+	call_if_eq NewBarkTown_PlayersHouse_2F_EventScript_1F951D
 	compare VAR_RESULT, FEMALE
-	call_if_eq NewBarkTown_HirosHouse_2F_EventScript_1F952F
+	call_if_eq NewBarkTown_PlayersHouse_2F_EventScript_1F952F
 	setflag FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE
 	releaseall
 	end
 
-NewBarkTown_HirosHouse_2F_EventScript_1F951D:: @ 81F951D
-	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, NewBarkTown_HirosHouse_2F_EventScript_1F9541
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F99C9, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_2F_EventScript_1F951D:: @ 81F951D
+	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, NewBarkTown_PlayersHouse_2F_EventScript_1F9541
+	msgbox NewBarkTown_PlayersHouse_2F_Text_1F99C9, MSGBOX_DEFAULT
 	return
 
-NewBarkTown_HirosHouse_2F_EventScript_1F952F:: @ 81F952F
-	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, NewBarkTown_HirosHouse_2F_EventScript_1F954A
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F9B0D, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_2F_EventScript_1F952F:: @ 81F952F
+	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, NewBarkTown_PlayersHouse_2F_EventScript_1F954A
+	msgbox NewBarkTown_PlayersHouse_2F_Text_1F9B0D, MSGBOX_DEFAULT
 	return
 
-NewBarkTown_HirosHouse_2F_EventScript_1F9541:: @ 81F9541
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F9A9E, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_2F_EventScript_1F9541:: @ 81F9541
+	msgbox NewBarkTown_PlayersHouse_2F_Text_1F9A9E, MSGBOX_DEFAULT
 	return
 
-NewBarkTown_HirosHouse_2F_EventScript_1F954A:: @ 81F954A
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F9BE7, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_2F_EventScript_1F954A:: @ 81F954A
+	msgbox NewBarkTown_PlayersHouse_2F_Text_1F9BE7, MSGBOX_DEFAULT
 	return
 
 NewBarkTown_OtherHouse_EventScript_1F958F:: @ 81F958F
@@ -328,11 +327,11 @@ NewBarkTown_OtherHouse_Text_1F959C: @ 81F959C
 	.string "some wild POKéMON!\p"
 	.string "{PLAYER}{KUN}, I'll catch you later!$"
 
-NewBarkTown_HirosHouse_2F_Text_1F978A: @ 81F978A
+NewBarkTown_PlayersHouse_2F_Text_1F978A: @ 81F978A
 	.string "POKéMON fully restored!\n"
 	.string "Items ready, and…$"
 
-NewBarkTown_HirosHouse_2F_Text_1F97B4: @ 81F97B4
+NewBarkTown_PlayersHouse_2F_Text_1F97B4: @ 81F97B4
 	.string "Hey!\n"
 	.string "You…\p"
 	.string "Who are you?\p"
@@ -352,16 +351,16 @@ NewBarkTown_HirosHouse_2F_Text_1F97B4: @ 81F97B4
 	.string "some wild POKéMON.\p"
 	.string "Some other time, okay?$"
 
-NewBarkTown_HirosHouse_2F_Text_1F9962: @ 81F9962
+NewBarkTown_PlayersHouse_2F_Text_1F9962: @ 81F9962
 	.string "POKéMON fully restored…\n"
 	.string "Items all packed, and…$"
 
-NewBarkTown_HirosHouse_2F_Text_1F9991: @ 81F9991
+NewBarkTown_PlayersHouse_2F_Text_1F9991: @ 81F9991
 NewBarkTown_OtherHouse_Text_1F9991: @ 81F9991
 	.string "It's {RIVAL}'s POKé BALL!\p"
 	.string "Better leave it right where it is.$"
 
-NewBarkTown_HirosHouse_2F_Text_1F99C9: @ 81F99C9
+NewBarkTown_PlayersHouse_2F_Text_1F99C9: @ 81F99C9
 	.string "MAY: {PLAYER}{KUN}!\p"
 	.string "I was just checking my POKéDEX.\p"
 	.string "There's still a lot of POKéMON that\n"
@@ -371,13 +370,13 @@ NewBarkTown_HirosHouse_2F_Text_1F99C9: @ 81F99C9
 	.string "I wonder where I should go catch\n"
 	.string "some POKéMON next?$"
 
-NewBarkTown_HirosHouse_2F_Text_1F9A9E: @ 81F9A9E
+NewBarkTown_PlayersHouse_2F_Text_1F9A9E: @ 81F9A9E
 	.string "MAY: I wonder where I should go catch\n"
 	.string "some POKéMON next?\p"
 	.string "Wouldn't it be funny if we ran into each\n"
 	.string "other, {PLAYER}{KUN}?$"
 
-NewBarkTown_HirosHouse_2F_Text_1F9B0D: @ 81F9B0D
+NewBarkTown_PlayersHouse_2F_Text_1F9B0D: @ 81F9B0D
 	.string "BRENDAN: Hey, it's {PLAYER}.\p"
 	.string "I was just checking out my POKéDEX.\p"
 	.string "There are still many POKéMON that\n"
@@ -386,7 +385,7 @@ NewBarkTown_HirosHouse_2F_Text_1F9B0D: @ 81F9B0D
 	.string "Checking this POKéDEX out gives me\n"
 	.string "the urge to hit the road again.$"
 
-NewBarkTown_HirosHouse_2F_Text_1F9BE7: @ 81F9BE7
+NewBarkTown_PlayersHouse_2F_Text_1F9BE7: @ 81F9BE7
 	.string "BRENDAN: I'm having a hard time deciding\n"
 	.string "where I should catch POKéMON next.\p"
 	.string "Hey, {PLAYER}, if I see you while I'm out\n"

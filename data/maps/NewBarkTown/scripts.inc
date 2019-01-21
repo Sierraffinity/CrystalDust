@@ -93,8 +93,8 @@ NewBarkTown_EventScript_1E7EDB:: @ 81E7EDB
 	setvar VAR_0x8004, 5
 	setvar VAR_0x8005, 8
 	call NewBarkTown_EventScript_1E7F17
-	setflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_TRUCK
-	warpsilent MAP_NEW_BARK_TOWN_HIROS_HOUSE_1F, 255, 8, 8
+	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_TRUCK
+	warpsilent MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_1F, 255, 8, 8
 	waitstate
 	releaseall
 	end

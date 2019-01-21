@@ -113,40 +113,40 @@ NewBarkTown_ElmsHouse_Movement_1F89EC: @ 81F89EC
 	walk_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_EventScript_1F89F3:: @ 81F89F3
+NewBarkTown_PlayersHouse_1F_EventScript_1F89F3:: @ 81F89F3
 NewBarkTown_ElmsHouse_EventScript_1F89F3:: @ 81F89F3
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE103, NewBarkTown_HirosHouse_1F_EventScript_1F8A33
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_HirosHouse_1F_EventScript_1F8A29
+	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE103, NewBarkTown_PlayersHouse_1F_EventScript_1F8A33
+	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_PlayersHouse_1F_EventScript_1F8A29
 	compare VAR_0x408D, 3
-	goto_if_eq NewBarkTown_HirosHouse_1F_EventScript_1F8A1F
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F8A1F
 	special GetRivalSonDaughterString
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F8CA5, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F8CA5, MSGBOX_DEFAULT
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_1F8A1F:: @ 81F8A1F
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F8D37, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_1F_EventScript_1F8A1F:: @ 81F8A1F
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F8D37, MSGBOX_DEFAULT
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_1F8A29:: @ 81F8A29
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F8D93, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_1F_EventScript_1F8A29:: @ 81F8A29
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F8D93, MSGBOX_DEFAULT
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_1F8A33:: @ 81F8A33
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F8E01, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_1F_EventScript_1F8A33:: @ 81F8A33
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F8E01, MSGBOX_DEFAULT
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_1F8A3D:: @ 81F8A3D
+NewBarkTown_PlayersHouse_1F_EventScript_1F8A3D:: @ 81F8A3D
 NewBarkTown_ElmsHouse_EventScript_1F8A3D:: @ 81F8A3D
 	lock
 	faceplayer
 	special GetPlayerBigGuyGirlString
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F9262, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F9262, MSGBOX_DEFAULT
 	release
 	end
 
@@ -330,7 +330,7 @@ NewBarkTown_ElmsHouse_Movement_1F8BBF: @ 81F8BBF
 	walk_up
 	step_end
 
-NewBarkTown_HirosHouse_1F_Text_1F8BC5: @ 81F8BC5
+NewBarkTown_PlayersHouse_1F_Text_1F8BC5: @ 81F8BC5
 NewBarkTown_ElmsHouse_Text_1F8BC5: @ 81F8BC5
 	.string "Oh, hello. And you are?\p"
 	.string "… … … … … … … … …\n"
@@ -343,26 +343,26 @@ NewBarkTown_ElmsHouse_Text_1F8BC5: @ 81F8BC5
 	.string "a new friend.\p"
 	.string "Our {STR_VAR_1} is upstairs, I think.$"
 
-NewBarkTown_HirosHouse_1F_Text_1F8CA5: @ 81F8CA5
+NewBarkTown_PlayersHouse_1F_Text_1F8CA5: @ 81F8CA5
 	.string "Like child, like father.\p"
 	.string "My husband is as wild about POKéMON\n"
 	.string "as our child.\p"
 	.string "If he's not at his LAB, he's likely\n"
 	.string "scrabbling about in grassy places.$"
 
-NewBarkTown_HirosHouse_1F_Text_1F8D37: @ 81F8D37
+NewBarkTown_PlayersHouse_1F_Text_1F8D37: @ 81F8D37
 	.string "That {RIVAL}!\p"
 	.string "I guess our child is too busy with\n"
 	.string "POKéMON to notice that you came\l"
 	.string "to visit, {PLAYER}{KUN}.$"
 
-NewBarkTown_HirosHouse_1F_Text_1F8D93: @ 81F8D93
+NewBarkTown_PlayersHouse_1F_Text_1F8D93: @ 81F8D93
 	.string "Oh, {RIVAL} went out to ROUTE 103\n"
 	.string "just a little while ago.\p"
 	.string "Like father, like child.\n"
 	.string "{RIVAL} can't stay quietly at home.$"
 
-NewBarkTown_HirosHouse_1F_Text_1F8E01: @ 81F8E01
+NewBarkTown_PlayersHouse_1F_Text_1F8E01: @ 81F8E01
 	.string "I think it's wonderful for people to\n"
 	.string "travel with POKéMON.\p"
 	.string "But you should go home every so often\n"
@@ -394,7 +394,7 @@ NewBarkTown_ElmsHouse_Text_1F8EC6: @ 81F8EC6
 	.string "some wild POKéMON!\p"
 	.string "{PLAYER}{KUN}, I'll catch you later!$"
 
-NewBarkTown_HirosHouse_1F_Text_1F90B4: @ 81F90B4
+NewBarkTown_PlayersHouse_1F_Text_1F90B4: @ 81F90B4
 	.string "Hey!\n"
 	.string "You…\p"
 	.string "Who are you?\p"
@@ -414,7 +414,7 @@ NewBarkTown_HirosHouse_1F_Text_1F90B4: @ 81F90B4
 	.string "some wild POKéMON.\p"
 	.string "Some other time, okay?$"
 
-NewBarkTown_HirosHouse_1F_Text_1F9262: @ 81F9262
+NewBarkTown_PlayersHouse_1F_Text_1F9262: @ 81F9262
 	.string "Hi, neighbor!\p"
 	.string "Do you already have your\n"
 	.string "own POKéMON?$"

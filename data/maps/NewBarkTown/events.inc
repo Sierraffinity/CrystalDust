@@ -4,7 +4,7 @@ NewBarkTown_EventObjects::
 	object_event 3, EVENT_OBJ_GFX_WALLY, 0, 4, 4, 3, MOVEMENT_TYPE_FACE_RIGHT, 0, 0, FALSE, 0, NULL, 0
 
 NewBarkTown_MapWarps::
-	warp_def 16, 7, 3, 0, MAP_NEW_BARK_TOWN_HIROS_HOUSE_1F
+	warp_def 16, 7, 3, 0, MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_1F
 	warp_def 8, 5, 3, 0, MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB
 	warp_def 13, 16, 3, 0, MAP_NEW_BARK_TOWN_ELMS_HOUSE
 	warp_def 3, 15, 3, 0, MAP_NEW_BARK_TOWN_OTHER_HOUSE

@@ -53,8 +53,8 @@ gMapLayouts::
 	.4byte Underwater2_Layout
 	.4byte Underwater3_Layout
 	.4byte Underwater4_Layout
-	.4byte NewBarkTown_HirosHouse_1F_Layout
-	.4byte NewBarkTown_HirosHouse_2F_Layout
+	.4byte NewBarkTown_PlayersHouse_1F_Layout
+	.4byte NewBarkTown_PlayersHouse_2F_Layout
 	.4byte NewBarkTown_ElmsHouse_Layout
 	.4byte NewBarkTown_OtherHouse_Layout
 	.4byte NewBarkTown_ProfessorElmsLab_Layout

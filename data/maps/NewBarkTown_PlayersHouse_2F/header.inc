@@ -1,10 +1,10 @@
-NewBarkTown_HirosHouse_1F::
-	.4byte NewBarkTown_HirosHouse_1F_Layout
-	.4byte NewBarkTown_HirosHouse_1F_MapEvents
-	.4byte NewBarkTown_HirosHouse_1F_MapScripts
+NewBarkTown_PlayersHouse_2F::
+	.4byte NewBarkTown_PlayersHouse_2F_Layout
+	.4byte NewBarkTown_PlayersHouse_2F_MapEvents
+	.4byte NewBarkTown_PlayersHouse_2F_MapScripts
 	.4byte 0x0
 	.2byte MUS_NEWBARK
-	.2byte 54
+	.2byte 55
 	.byte MAPSEC_NEW_BARK_TOWN
 	.byte 0
 	.byte WEATHER_NONE

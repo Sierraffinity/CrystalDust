@@ -123,8 +123,8 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Underwater5/scripts.inc"
 	.include "data/maps/Underwater6/scripts.inc"
 	.include "data/maps/Underwater7/scripts.inc"
-	.include "data/maps/NewBarkTown_HirosHouse_1F/scripts.inc"
-	.include "data/maps/NewBarkTown_HirosHouse_2F/scripts.inc"
+	.include "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc"
+	.include "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc"
 	.include "data/maps/NewBarkTown_ElmsHouse/scripts.inc"
 	.include "data/maps/NewBarkTown_OtherHouse/scripts.inc"
 	.include "data/maps/NewBarkTown_ProfessorElmsLab/scripts.inc"
@@ -977,13 +977,13 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
 	setflag FLAG_HIDE_PETALBURG_GYM_GREETER
 	setflag FLAG_HIDE_PETALBURG_GYM_WALLYS_UNCLE
-	setflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_BRENDAN
+	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_BRENDAN
 	setflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_BRENDAN
-	setflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_BEDROOM
 	setflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
 	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
 	setflag FLAG_HIDE_NEW_BARK_TOWN_OTHER_HOUSE_PICHU_DOLL
-	setflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_2F_SWABLU_DOLL
+	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_SWABLU_DOLL
 	setflag FLAG_HIDE_FANCLUB_OLD_LADY
 	setflag FLAG_HIDE_FANCLUB_BOY
 	setflag FLAG_HIDE_FANCLUB_LITTLE_BOY
@@ -1127,7 +1127,7 @@ EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
 	special sub_813BA60
 	call_if_unset FLAG_RECEIVED_SS_TICKET, EverGrandeCity_HallOfFame_EventScript_271843
 	call_if_unset FLAG_RECEIVED_BELDUM, EverGrandeCity_HallOfFame_EventScript_27183F
-	setflag FLAG_HIDE_NEW_BARK_TOWN_HIROS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_BEDROOM
 	setflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
 	compare VAR_0x40D3, 0
 	call_if_eq EverGrandeCity_HallOfFame_EventScript_271851
@@ -1951,7 +1951,7 @@ LavaridgeTown_Gym_1F_EventScript_272054:: @ 8272054
 LavaridgeTown_HerbShop_EventScript_272054:: @ 8272054
 LilycoveCity_EventScript_272054:: @ 8272054
 LilycoveCity_House2_EventScript_272054:: @ 8272054
-NewBarkTown_HirosHouse_1F_EventScript_272054:: @ 8272054
+NewBarkTown_PlayersHouse_1F_EventScript_272054:: @ 8272054
 MauvilleCity_EventScript_272054:: @ 8272054
 MauvilleCity_Gym_EventScript_272054:: @ 8272054
 MossdeepCity_EventScript_272054:: @ 8272054
@@ -2049,7 +2049,7 @@ SootopolisCity_Gym_1F_EventScript_27207E:: @ 827207E
 	waitfanfare
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_272083:: @ 8272083
+NewBarkTown_PlayersHouse_1F_EventScript_272083:: @ 8272083
 Route111_OldLadysRestStop_EventScript_272083:: @ 8272083
 Route119_WeatherInstitute_1F_EventScript_272083:: @ 8272083
 RustboroCity_DevonCorp_3F_EventScript_272083:: @ 8272083
@@ -2063,12 +2063,10 @@ SSTidalRooms_EventScript_272083:: @ 8272083
 
 EventScript_RegionMap:: @ 827208F
 	lockall
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F8820, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_2F_Text_1F8820, MSGBOX_DEFAULT
 	fadescreen 1
 	special FieldShowRegionMap
 	waitstate
-	setflag FLAG_SYS_POKEDEX_GET
-	setflag FLAG_SYS_POKEMON_GET
 	releaseall
 	end
 
@@ -2527,8 +2525,8 @@ LavaridgeTown_Movement_272598: @ 8272598
 LilycoveCity_ContestLobby_Movement_272598: @ 8272598
 LilycoveCity_CoveLilyMotel_1F_Movement_272598: @ 8272598
 LilycoveCity_Harbor_Movement_272598: @ 8272598
-NewBarkTown_HirosHouse_1F_Movement_272598: @ 8272598
-NewBarkTown_HirosHouse_2F_Movement_272598: @ 8272598
+NewBarkTown_PlayersHouse_1F_Movement_272598: @ 8272598
+NewBarkTown_PlayersHouse_2F_Movement_272598: @ 8272598
 NewBarkTown_ElmsHouse_Movement_272598: @ 8272598
 NewBarkTown_OtherHouse_Movement_272598: @ 8272598
 NewBarkTown_Movement_272598: @ 8272598
@@ -2570,8 +2568,8 @@ JaggedPass_Movement_27259A: @ 827259A
 LavaridgeTown_Movement_27259A: @ 827259A
 LilycoveCity_CoveLilyMotel_1F_Movement_27259A: @ 827259A
 LilycoveCity_Harbor_Movement_27259A: @ 827259A
-NewBarkTown_HirosHouse_1F_Movement_27259A: @ 827259A
-NewBarkTown_HirosHouse_2F_Movement_27259A: @ 827259A
+NewBarkTown_PlayersHouse_1F_Movement_27259A: @ 827259A
+NewBarkTown_PlayersHouse_2F_Movement_27259A: @ 827259A
 NewBarkTown_ElmsHouse_Movement_27259A: @ 827259A
 NewBarkTown_OtherHouse_Movement_27259A: @ 827259A
 MauvilleCity_House2_Movement_27259A: @ 827259A
@@ -2621,8 +2619,8 @@ LilycoveCity_LilycoveMuseum_1F_Movement_27259E: @ 827259E
 LilycoveCity_LilycoveMuseum_2F_Movement_27259E: @ 827259E
 LilycoveCity_MoveDeletersHouse_Movement_27259E: @ 827259E
 LilycoveCity_Movement_27259E: @ 827259E
-NewBarkTown_HirosHouse_1F_Movement_27259E: @ 827259E
-NewBarkTown_HirosHouse_2F_Movement_27259E: @ 827259E
+NewBarkTown_PlayersHouse_1F_Movement_27259E: @ 827259E
+NewBarkTown_PlayersHouse_2F_Movement_27259E: @ 827259E
 MagmaHideout_4F_Movement_27259E: @ 827259E
 MauvilleCity_Movement_27259E: @ 827259E
 MeteorFalls_StevensCave_Movement_27259E: @ 827259E
@@ -2699,8 +2697,8 @@ EverGrandeCity_HallOfFame_Movement_2725A4: @ 82725A4
 LavaridgeTown_Movement_2725A4: @ 82725A4
 LilycoveCity_Harbor_Movement_2725A4: @ 82725A4
 LilycoveCity_PokemonTrainerFanClub_Movement_2725A4: @ 82725A4
-NewBarkTown_HirosHouse_1F_Movement_2725A4: @ 82725A4
-NewBarkTown_HirosHouse_2F_Movement_2725A4: @ 82725A4
+NewBarkTown_PlayersHouse_1F_Movement_2725A4: @ 82725A4
+NewBarkTown_PlayersHouse_2F_Movement_2725A4: @ 82725A4
 NewBarkTown_ElmsHouse_Movement_2725A4: @ 82725A4
 NewBarkTown_OtherHouse_Movement_2725A4: @ 82725A4
 NewBarkTown_Movement_2725A4: @ 82725A4
@@ -2745,8 +2743,8 @@ EverGrandeCity_HallOfFame_Movement_2725A6: @ 82725A6
 LavaridgeTown_Movement_2725A6: @ 82725A6
 LilycoveCity_DepartmentStore_5F_Movement_2725A6: @ 82725A6
 LilycoveCity_Harbor_Movement_2725A6: @ 82725A6
-NewBarkTown_HirosHouse_1F_Movement_2725A6: @ 82725A6
-NewBarkTown_HirosHouse_2F_Movement_2725A6: @ 82725A6
+NewBarkTown_PlayersHouse_1F_Movement_2725A6: @ 82725A6
+NewBarkTown_PlayersHouse_2F_Movement_2725A6: @ 82725A6
 NewBarkTown_OtherHouse_Movement_2725A6: @ 82725A6
 NewBarkTown_Movement_2725A6: @ 82725A6
 NewBarkTown_ProfessorElmsLab_Movement_2725A6: @ 82725A6
@@ -2790,8 +2788,8 @@ EverGrandeCity_HallOfFame_Movement_2725A8: @ 82725A8
 LavaridgeTown_Movement_2725A8: @ 82725A8
 LilycoveCity_DepartmentStore_1F_Movement_2725A8: @ 82725A8
 LilycoveCity_PokemonTrainerFanClub_Movement_2725A8: @ 82725A8
-NewBarkTown_HirosHouse_1F_Movement_2725A8: @ 82725A8
-NewBarkTown_HirosHouse_2F_Movement_2725A8: @ 82725A8
+NewBarkTown_PlayersHouse_1F_Movement_2725A8: @ 82725A8
+NewBarkTown_PlayersHouse_2F_Movement_2725A8: @ 82725A8
 NewBarkTown_ElmsHouse_Movement_2725A8: @ 82725A8
 NewBarkTown_Movement_2725A8: @ 82725A8
 NewBarkTown_ProfessorElmsLab_Movement_2725A8: @ 82725A8
@@ -2834,7 +2832,7 @@ LilycoveCity_DepartmentStoreElevator_Movement_2725AA: @ 82725AA
 LilycoveCity_Harbor_Movement_2725AA: @ 82725AA
 LilycoveCity_Movement_2725AA: @ 82725AA
 LilycoveCity_PokemonTrainerFanClub_Movement_2725AA: @ 82725AA
-NewBarkTown_HirosHouse_1F_Movement_2725AA: @ 82725AA
+NewBarkTown_PlayersHouse_1F_Movement_2725AA: @ 82725AA
 NewBarkTown_ElmsHouse_Movement_2725AA: @ 82725AA
 NewBarkTown_Movement_2725AA: @ 82725AA
 MauvilleCity_Movement_2725AA: @ 82725AA
@@ -2932,6 +2930,14 @@ Movement_2725CB:: @ 82725CB
 	walk_up
 	walk_up
 	step_end
+
+EventScript_TV::
+	msgbox Text_ItsATV, MSGBOX_SIGN
+	end
+
+EventScript_Window::
+	msgbox Text_MyReflection, MSGBOX_SIGN
+	end
 
 EventScript_PictureBookShelf:: @ 82725CE
 	msgbox Text_2A81E5, MSGBOX_SIGN
@@ -4227,7 +4233,6 @@ gUnknown_0827EE07:: @ 27EE07
 gUnknown_0827EE09:: @ 27EE09
 	.string "8$"
 
-	.include "data/scripts/tv.inc"
 	.include "data/text/tv.inc"
 
 BattleFrontier_BattleTowerLobby_EventScript_28C7E9:: @ 828C7E9
@@ -4593,7 +4598,7 @@ EventScript_2926F8:: @ 82926F8
 	.include "data/scripts/players_house.inc"
 
 EventScript_RunningShoesManual:: @ 8292DE5
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7F66, MSGBOX_SIGN
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7F66, MSGBOX_SIGN
 	end
 
 	.include "data/scripts/pokeblocks.inc"
@@ -4709,8 +4714,16 @@ MauvilleCity_GameCorner_EventScript_2A5B0D:: @ 82A5B0D
 	.include "data/text/berries.inc"
 	.include "data/text/shoal_cave.inc"
 
+Text_ItsATV:
+	.string "It's a TV.$"
+
+Text_MyReflection:
+	.string "My reflection!\n"
+	.string "Lookin' good!$"
+
 Text_2A81E5: @ 82A81E5
-	.string "There's a set of POKéMON picture books.$"
+	.string "It's a whole collection of\n"
+	.string "POKéMON picture books!$"
 
 Text_2A820D: @ 82A820D
 	.string "It's filled with all sorts of books.$"

@@ -387,7 +387,7 @@ extern const u8 EventScript_2926F8[];
 extern const u8 Route111_EventScript_2907F0[];
 
 //player pc
-extern const u8 NewBarkTown_HirosHouse_2F_EventScript_1F863F[];
+extern const u8 NewBarkTown_PlayersHouse_2F_EventScript_1F863F[];
 extern const u8 NewBarkTown_OtherHouse_EventScript_1F958F[];
 
 //contest_strings
@@ -534,6 +534,7 @@ extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_HiddenItemScript[];
 extern const u8 EventScript_2759F1[];
 extern const u8 EventScript_TV[];
+extern const u8 EventScript_Window[];
 extern const u8 EventScript_ClosedSootopolisDoor[];
 extern const u8 SkyPillar_Outside_EventScript_2393F9[];
 extern const u8 EventScript_CableBoxResults[];

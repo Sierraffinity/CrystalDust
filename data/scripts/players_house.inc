@@ -1,181 +1,79 @@
-NewBarkTown_HirosHouse_2F_EventScript_2926FE:: @ 82926FE
+NewBarkTown_PlayersHouse_2F_EventScript_2926FE:: @ 82926FE
 NewBarkTown_OtherHouse_EventScript_2926FE:: @ 82926FE
 	setvar VAR_0x4092, 5
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292704:: @ 8292704
+NewBarkTown_PlayersHouse_1F_EventScript_292704:: @ 8292704
 NewBarkTown_ElmsHouse_EventScript_292704:: @ 8292704
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7A1C, MSGBOX_DEFAULT
-	applymovement VAR_0x8004, NewBarkTown_HirosHouse_1F_Movement_27259E
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7A1C, MSGBOX_DEFAULT
+	applymovement VAR_0x8004, NewBarkTown_PlayersHouse_1F_Movement_27259E
 	waitmovement 0
 	compare VAR_0x8005, 0
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_29274D
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_29274D
 	compare VAR_0x8005, 1
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292758
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7A46, MSGBOX_DEFAULT
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292758
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7A46, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_0x4092, 4
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292763
-	applymovement VAR_0x8004, NewBarkTown_HirosHouse_1F_Movement_2725A6
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292763
+	applymovement VAR_0x8004, NewBarkTown_PlayersHouse_1F_Movement_2725A6
 	waitmovement 0
 	releaseall
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_29274D:: @ 829274D
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_2725A8
+NewBarkTown_PlayersHouse_1F_EventScript_29274D:: @ 829274D
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725A8
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292758:: @ 8292758
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_2725A4
+NewBarkTown_PlayersHouse_1F_EventScript_292758:: @ 8292758
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725A4
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_Movement_292763: @ 8292763
+NewBarkTown_PlayersHouse_1F_Movement_292763: @ 8292763
 	walk_up
 	step_end
 
-NewBarkTown_HirosHouse_1F_EventScript_292765:: @ 8292765
+NewBarkTown_PlayersHouse_1F_EventScript_292765:: @ 8292765
 NewBarkTown_ElmsHouse_EventScript_292765:: @ 8292765
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7B24, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7B24, MSGBOX_DEFAULT
 	closemessage
-	applymovement VAR_0x8004, NewBarkTown_HirosHouse_1F_Movement_2725A6
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292AF0
+	applymovement VAR_0x8004, NewBarkTown_PlayersHouse_1F_Movement_2725A6
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292AF0
 	waitmovement 0
 	releaseall
 	end
 
-NewBarkTown_HirosHouse_2F_EventScript_292781:: @ 8292781
-	lockall
-	setvar VAR_0x8004, 0
-	goto NewBarkTown_HirosHouse_2F_EventScript_292799
-	end
-
-NewBarkTown_OtherHouse_EventScript_29278D:: @ 829278D
-	lockall
-	setvar VAR_0x8004, 1
-	goto NewBarkTown_OtherHouse_EventScript_292799
-	end
-
-NewBarkTown_HirosHouse_2F_EventScript_292799:: @ 8292799
-NewBarkTown_OtherHouse_EventScript_292799:: @ 8292799
-	goto_if_set FLAG_SET_WALL_CLOCK, NewBarkTown_HirosHouse_2F_EventScript_29283F
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F8668, MSGBOX_DEFAULT
-	call NewBarkTown_HirosHouse_2F_EventScript_292849
-	delay 30
-	setvar VAR_0x4092, 6
-	setflag FLAG_SET_WALL_CLOCK
-	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_VIGOROTH_1
-	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_VIGOROTH_2
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq NewBarkTown_HirosHouse_2F_EventScript_2927DF
-	compare VAR_RESULT, FEMALE
-	call_if_eq NewBarkTown_HirosHouse_2F_EventScript_29280F
-	playse SE_KAIDAN
-	removeobject VAR_0x8008
-	releaseall
-	end
-
-NewBarkTown_HirosHouse_2F_EventScript_2927DF:: @ 82927DF
-	setvar VAR_0x8008, 14
-	addobject VAR_0x8008
-	applymovement VAR_0x8008, NewBarkTown_HirosHouse_2F_Movement_292850
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_2F_Movement_2725A8
-	waitmovement 0
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F869A, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_0x8008, NewBarkTown_HirosHouse_2F_Movement_292857
-	waitmovement 0
-	return
-
-NewBarkTown_HirosHouse_2F_EventScript_29280F:: @ 829280F
-	setvar VAR_0x8008, 14
-	addobject VAR_0x8008
-	applymovement VAR_0x8008, NewBarkTown_HirosHouse_2F_Movement_29285B
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_2F_Movement_2725A4
-	waitmovement 0
-	msgbox NewBarkTown_HirosHouse_2F_Text_1F869A, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_0x8008, NewBarkTown_HirosHouse_2F_Movement_292862
-	waitmovement 0
-	return
-
-NewBarkTown_HirosHouse_2F_EventScript_29283F:: @ 829283F
-	incrementgamestat 45
-	@fadescreen 1
-	@special Special_ViewWallClock
-	@waitstate
-	releaseall
-	end
-
-NewBarkTown_HirosHouse_2F_EventScript_292849:: @ 8292849
-	fadescreen 1
-	special StartWallClock
-	waitstate
-	return
-
-NewBarkTown_HirosHouse_2F_Movement_292850: @ 8292850
-	delay_8
-	walk_down
-	walk_in_place_fastest_left
-	delay_16
-	delay_8
-	walk_left
-	step_end
-
-NewBarkTown_HirosHouse_2F_Movement_292857: @ 8292857
-	walk_right
-	walk_up
-	delay_8
-	step_end
-
-NewBarkTown_HirosHouse_2F_Movement_29285B: @ 829285B
-	delay_8
-	walk_down
-	walk_in_place_fastest_right
-	delay_16
-	delay_8
-	walk_right
-	step_end
-
-NewBarkTown_HirosHouse_2F_Movement_292862: @ 8292862
-	walk_left
-	walk_up
-	delay_8
-	step_end
-
-NewBarkTown_HirosHouse_1F_EventScript_292866:: @ 8292866
+NewBarkTown_PlayersHouse_1F_EventScript_292866:: @ 8292866
 NewBarkTown_ElmsHouse_EventScript_292866:: @ 8292866
 	setvar VAR_0x4092, 7
 	releaseall
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_29286D:: @ 829286D
-	applymovement VAR_0x8005, NewBarkTown_HirosHouse_1F_Movement_2725A8
+NewBarkTown_PlayersHouse_1F_EventScript_29286D:: @ 829286D
+	applymovement VAR_0x8005, NewBarkTown_PlayersHouse_1F_Movement_2725A8
 	waitmovement 0
-	call NewBarkTown_HirosHouse_1F_EventScript_29294B
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292AE0
+	call NewBarkTown_PlayersHouse_1F_EventScript_29294B
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292AE0
 	waitmovement 0
 	playbgm MUS_INTER_V, 0
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7BBC, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7BBC, MSGBOX_DEFAULT
 	closemessage
-	applymovement VAR_0x8005, NewBarkTown_HirosHouse_1F_Movement_2929B7
+	applymovement VAR_0x8005, NewBarkTown_PlayersHouse_1F_Movement_2929B7
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292AE6
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292AE6
 	waitmovement 0
-	call NewBarkTown_HirosHouse_1F_EventScript_29296C
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_2725A4
+	call NewBarkTown_PlayersHouse_1F_EventScript_29296C
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725A4
 	waitmovement 0
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7BF1, MSGBOX_DEFAULT
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7C35, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7BF1, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7C35, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_TEMP_1, 1
-	applymovement VAR_0x8005, NewBarkTown_HirosHouse_1F_Movement_2929BD
+	applymovement VAR_0x8005, NewBarkTown_PlayersHouse_1F_Movement_2929BD
 	waitmovement 0
-	goto NewBarkTown_HirosHouse_1F_EventScript_292866
+	goto NewBarkTown_PlayersHouse_1F_EventScript_292866
 	end
 
 NewBarkTown_ElmsHouse_EventScript_2928DC:: @ 82928DC
@@ -203,29 +101,29 @@ NewBarkTown_ElmsHouse_EventScript_2928DC:: @ 82928DC
 	goto NewBarkTown_ElmsHouse_EventScript_292866
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_29294B:: @ 829294B
+NewBarkTown_PlayersHouse_1F_EventScript_29294B:: @ 829294B
 NewBarkTown_ElmsHouse_EventScript_29294B:: @ 829294B
 	playse SE_PIN
-	applymovement VAR_0x8005, NewBarkTown_HirosHouse_1F_Movement_272598
+	applymovement VAR_0x8005, NewBarkTown_PlayersHouse_1F_Movement_272598
 	waitmovement 0
-	applymovement VAR_0x8005, NewBarkTown_HirosHouse_1F_Movement_27259A
+	applymovement VAR_0x8005, NewBarkTown_PlayersHouse_1F_Movement_27259A
 	waitmovement 0
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7B96, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7B96, MSGBOX_DEFAULT
 	closemessage
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_29296C:: @ 829296C
+NewBarkTown_PlayersHouse_1F_EventScript_29296C:: @ 829296C
 NewBarkTown_ElmsHouse_EventScript_29296C:: @ 829296C
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_2725A6
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725A6
 	waitmovement 0
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7EC6, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7EC6, MSGBOX_DEFAULT
 	fadedefaultbgm
 	special TurnOffTVScreen
 	setflag FLAG_SYS_TV_HOME
 	delay 35
 	return
 
-NewBarkTown_HirosHouse_1F_Movement_292989: @ 8292989
+NewBarkTown_PlayersHouse_1F_Movement_292989: @ 8292989
 	walk_up
 	walk_right
 	walk_right
@@ -235,7 +133,7 @@ NewBarkTown_HirosHouse_1F_Movement_292989: @ 8292989
 	walk_in_place_fastest_right
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292991: @ 8292991
+NewBarkTown_PlayersHouse_1F_Movement_292991: @ 8292991
 	walk_up
 	walk_left
 	walk_left
@@ -245,15 +143,15 @@ NewBarkTown_HirosHouse_1F_Movement_292991: @ 8292991
 	walk_in_place_fastest_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292999: @ 8292999
+NewBarkTown_PlayersHouse_1F_Movement_292999: @ 8292999
 	walk_right
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_29299B: @ 829299B
+NewBarkTown_PlayersHouse_1F_Movement_29299B: @ 829299B
 	walk_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_29299D: @ 829299D
+NewBarkTown_PlayersHouse_1F_Movement_29299D: @ 829299D
 	walk_in_place_fastest_left
 	delay_16
 	delay_16
@@ -264,7 +162,7 @@ NewBarkTown_HirosHouse_1F_Movement_29299D: @ 829299D
 	delay_16
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_2929A6: @ 82929A6
+NewBarkTown_PlayersHouse_1F_Movement_2929A6: @ 82929A6
 	walk_in_place_fastest_right
 	delay_16
 	delay_16
@@ -275,19 +173,19 @@ NewBarkTown_HirosHouse_1F_Movement_2929A6: @ 82929A6
 	delay_16
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_2929AF: @ 82929AF
+NewBarkTown_PlayersHouse_1F_Movement_2929AF: @ 82929AF
 	walk_up
 	walk_left
 	walk_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_2929B3: @ 82929B3
+NewBarkTown_PlayersHouse_1F_Movement_2929B3: @ 82929B3
 	walk_up
 	walk_right
 	walk_right
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_2929B7: @ 82929B7
+NewBarkTown_PlayersHouse_1F_Movement_2929B7: @ 82929B7
 	walk_left
 	walk_in_place_fastest_right
 	step_end
@@ -297,7 +195,7 @@ NewBarkTown_ElmsHouse_Movement_2929BA: @ 82929BA
 	walk_in_place_fastest_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_2929BD: @ 82929BD
+NewBarkTown_PlayersHouse_1F_Movement_2929BD: @ 82929BD
 	walk_left
 	walk_down
 	walk_in_place_fastest_right
@@ -309,36 +207,36 @@ NewBarkTown_ElmsHouse_Movement_2929C1: @ 82929C1
 	walk_in_place_fastest_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_EventScript_2929C5:: @ 82929C5
+NewBarkTown_PlayersHouse_1F_EventScript_2929C5:: @ 82929C5
 NewBarkTown_ElmsHouse_EventScript_2929C5:: @ 82929C5
 	lock
 	faceplayer
 	compare VAR_0x4082, 4
-	goto_if_eq NewBarkTown_HirosHouse_1F_EventScript_292A0F
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292A0F
 	compare VAR_0x408C, 4
-	goto_if_eq NewBarkTown_HirosHouse_1F_EventScript_292A0F
-	goto_if_set FLAG_HAS_MATCH_CALL, NewBarkTown_HirosHouse_1F_EventScript_292A19
-	goto_if_set FLAG_RESCUED_BIRCH, NewBarkTown_HirosHouse_1F_EventScript_292A86
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292A0F
+	goto_if_set FLAG_HAS_MATCH_CALL, NewBarkTown_PlayersHouse_1F_EventScript_292A19
+	goto_if_set FLAG_RESCUED_BIRCH, NewBarkTown_PlayersHouse_1F_EventScript_292A86
 	compare VAR_TEMP_1, 1
-	goto_if_eq NewBarkTown_HirosHouse_1F_EventScript_292A94
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292A94
 	compare VAR_0x4092, 7
-	goto_if_eq NewBarkTown_HirosHouse_1F_EventScript_292AB0
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7A1C, MSGBOX_DEFAULT
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292AB0
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7A1C, MSGBOX_DEFAULT
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292A0F:: @ 8292A0F
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7DBE, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_1F_EventScript_292A0F:: @ 8292A0F
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7DBE, MSGBOX_DEFAULT
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292A19:: @ 8292A19
-	goto_if_set FLAG_ENABLE_MOM_MATCH_CALL, NewBarkTown_HirosHouse_1F_EventScript_292A43
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7E0E, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_1F_EventScript_292A19:: @ 8292A19
+	goto_if_set FLAG_ENABLE_MOM_MATCH_CALL, NewBarkTown_PlayersHouse_1F_EventScript_292A43
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7E0E, MSGBOX_DEFAULT
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7E89, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7E89, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
 	delay 30
@@ -346,68 +244,68 @@ NewBarkTown_HirosHouse_1F_EventScript_292A19:: @ 8292A19
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292A43:: @ 8292A43
-	goto_if_set FLAG_BADGE05_GET, NewBarkTown_HirosHouse_1F_EventScript_292A51
-	goto NewBarkTown_HirosHouse_1F_EventScript_292A86
+NewBarkTown_PlayersHouse_1F_EventScript_292A43:: @ 8292A43
+	goto_if_set FLAG_BADGE05_GET, NewBarkTown_PlayersHouse_1F_EventScript_292A51
+	goto NewBarkTown_PlayersHouse_1F_EventScript_292A86
 
-NewBarkTown_HirosHouse_1F_EventScript_292A51:: @ 8292A51
-	goto_if_set FLAG_MOM_SAYS_GOODBYE, NewBarkTown_HirosHouse_1F_EventScript_292A86
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7D73, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_1F_EventScript_292A51:: @ 8292A51
+	goto_if_set FLAG_MOM_SAYS_GOODBYE, NewBarkTown_PlayersHouse_1F_EventScript_292A86
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7D73, MSGBOX_DEFAULT
 	giveitem_std ITEM_AMULET_COIN
 	compare VAR_RESULT, 0
-	goto_if_eq NewBarkTown_HirosHouse_1F_EventScript_272054
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7DBE, MSGBOX_DEFAULT
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_272054
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7DBE, MSGBOX_DEFAULT
 	setflag FLAG_MOM_SAYS_GOODBYE
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292A86:: @ 8292A86
+NewBarkTown_PlayersHouse_1F_EventScript_292A86:: @ 8292A86
 	setflag FLAG_SYS_B_DASH
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7D08, MSGBOX_DEFAULT
-	goto NewBarkTown_HirosHouse_1F_EventScript_292A9E
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7D08, MSGBOX_DEFAULT
+	goto NewBarkTown_PlayersHouse_1F_EventScript_292A9E
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292A94:: @ 8292A94
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7CC3, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_1F_EventScript_292A94:: @ 8292A94
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7CC3, MSGBOX_DEFAULT
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292A9E:: @ 8292A9E
+NewBarkTown_PlayersHouse_1F_EventScript_292A9E:: @ 8292A9E
 	closemessage
-	call NewBarkTown_HirosHouse_1F_EventScript_272083
+	call NewBarkTown_PlayersHouse_1F_EventScript_272083
 	incrementgamestat 16
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7D5C, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7D5C, MSGBOX_DEFAULT
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292AB0:: @ 8292AB0
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7CD8, MSGBOX_DEFAULT
+NewBarkTown_PlayersHouse_1F_EventScript_292AB0:: @ 8292AB0
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7CD8, MSGBOX_DEFAULT
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292ABA:: @ 8292ABA
+NewBarkTown_PlayersHouse_1F_EventScript_292ABA:: @ 8292ABA
 NewBarkTown_ElmsHouse_EventScript_292ABA:: @ 8292ABA
 	lock
 	faceplayer
 	waitse
 	playmoncry SPECIES_VIGOROTH, 0
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7EA8, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7EA8, MSGBOX_DEFAULT
 	waitmoncry
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292ACD:: @ 8292ACD
+NewBarkTown_PlayersHouse_1F_EventScript_292ACD:: @ 8292ACD
 NewBarkTown_ElmsHouse_EventScript_292ACD:: @ 8292ACD
 	lock
 	faceplayer
 	waitse
 	playmoncry SPECIES_VIGOROTH, 0
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F7EB3, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7EB3, MSGBOX_DEFAULT
 	waitmoncry
 	release
 	end
 
-NewBarkTown_HirosHouse_1F_Movement_292AE0: @ 8292AE0
+NewBarkTown_PlayersHouse_1F_Movement_292AE0: @ 8292AE0
 	walk_down
 	walk_down
 	walk_left
@@ -415,7 +313,7 @@ NewBarkTown_HirosHouse_1F_Movement_292AE0: @ 8292AE0
 	walk_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292AE6: @ 8292AE6
+NewBarkTown_PlayersHouse_1F_Movement_292AE6: @ 8292AE6
 	walk_left
 	step_end
 
@@ -431,243 +329,243 @@ NewBarkTown_ElmsHouse_Movement_292AEE: @ 8292AEE
 	walk_right
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292AF0: @ 8292AF0
+NewBarkTown_PlayersHouse_1F_Movement_292AF0: @ 8292AF0
 	walk_up
 	step_end
 
-NewBarkTown_HirosHouse_1F_EventScript_292AF2:: @ 8292AF2
+NewBarkTown_PlayersHouse_1F_EventScript_292AF2:: @ 8292AF2
 NewBarkTown_ElmsHouse_EventScript_292AF2:: @ 8292AF2
 	lockall
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292C76
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292C76
 	compare VAR_RESULT, FEMALE
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292C86
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292C86
 	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D08
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D08
 	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D13
-	applymovement VAR_0x8009, NewBarkTown_HirosHouse_1F_Movement_27259E
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D13
+	applymovement VAR_0x8009, NewBarkTown_PlayersHouse_1F_Movement_27259E
 	waitmovement 0
 	playse SE_PIN
-	applymovement VAR_0x8009, NewBarkTown_HirosHouse_1F_Movement_272598
+	applymovement VAR_0x8009, NewBarkTown_PlayersHouse_1F_Movement_272598
 	waitmovement 0
-	applymovement VAR_0x8009, NewBarkTown_HirosHouse_1F_Movement_27259A
+	applymovement VAR_0x8009, NewBarkTown_PlayersHouse_1F_Movement_27259A
 	waitmovement 0
 	delay 20
 	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292C96
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292C96
 	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292CA1
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F800E, MSGBOX_DEFAULT
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292CA1
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F800E, MSGBOX_DEFAULT
 	giveitem_std ITEM_SS_TICKET
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F80FE, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F80FE, MSGBOX_DEFAULT
 	closemessage
 	delay 20
 	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292CAC
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292CAC
 	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292CC1
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F815B, MSGBOX_DEFAULT
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292CC1
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F815B, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292CD6
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292CD6
 	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292CEF
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292CEF
 	playse SE_DOOR
 	removeobject VAR_0x8009
 	setflag FLAG_RECEIVED_SS_TICKET
 	delay 30
 	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D48
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D48
 	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D5D
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D5D
 	delay 20
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F81B9, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F81B9, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_SYS_TV_LATIAS_LATIOS
 	special TurnOnTVScreen
 	delay 60
 	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D72
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D72
 	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D7D
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F824B, MSGBOX_DEFAULT
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D7D
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F824B, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D1E
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D1E
 	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D33
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F826F, MSGBOX_DEFAULT
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D33
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F826F, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_SYS_TV_LATIAS_LATIOS
 	setflag FLAG_LATIOS_OR_LATIAS_ROAMING
 	special TurnOffTVScreen
 	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D88
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D88
 	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_HirosHouse_1F_EventScript_292D9D
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F8351, MSGBOX_DEFAULT
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_292D9D
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F8351, MSGBOX_DEFAULT
 	multichoice 22, 8, 108, 1
 	copyvar VAR_0x8004, VAR_RESULT
 	special InitRoamer
 	copyvar VAR_0x40D5, VAR_RESULT
-	msgbox NewBarkTown_HirosHouse_1F_Text_1F83A1, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_Text_1F83A1, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_0x4082, 4
 	setvar VAR_0x408C, 4
 	releaseall
 	end
 
-NewBarkTown_HirosHouse_1F_EventScript_292C72:: @ 8292C72
+NewBarkTown_PlayersHouse_1F_EventScript_292C72:: @ 8292C72
 	setflag FLAG_SYS_TV_LATIAS_LATIOS
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292C76:: @ 8292C76
+NewBarkTown_PlayersHouse_1F_EventScript_292C76:: @ 8292C76
 	setvar VAR_0x8008, 0
 	setvar VAR_0x8009, 5
 	setvar VAR_0x800A, 1
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292C86:: @ 8292C86
+NewBarkTown_PlayersHouse_1F_EventScript_292C86:: @ 8292C86
 	setvar VAR_0x8008, 1
 	setvar VAR_0x8009, 5
 	setvar VAR_0x800A, 1
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292C96:: @ 8292C96
-	applymovement VAR_0x8009, NewBarkTown_HirosHouse_1F_Movement_292DB2
+NewBarkTown_PlayersHouse_1F_EventScript_292C96:: @ 8292C96
+	applymovement VAR_0x8009, NewBarkTown_PlayersHouse_1F_Movement_292DB2
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292CA1:: @ 8292CA1
-	applymovement VAR_0x8009, NewBarkTown_HirosHouse_1F_Movement_292DB5
+NewBarkTown_PlayersHouse_1F_EventScript_292CA1:: @ 8292CA1
+	applymovement VAR_0x8009, NewBarkTown_PlayersHouse_1F_Movement_292DB5
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292CAC:: @ 8292CAC
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_292989
+NewBarkTown_PlayersHouse_1F_EventScript_292CAC:: @ 8292CAC
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_292989
 	waitmovement 0
-	applymovement VAR_0x8009, NewBarkTown_HirosHouse_1F_Movement_292DB8
-	waitmovement 0
-	return
-
-NewBarkTown_HirosHouse_1F_EventScript_292CC1:: @ 8292CC1
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_292991
-	waitmovement 0
-	applymovement VAR_0x8009, NewBarkTown_HirosHouse_1F_Movement_292DBA
+	applymovement VAR_0x8009, NewBarkTown_PlayersHouse_1F_Movement_292DB8
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292CD6:: @ 8292CD6
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292DCC
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_292DCC
-	applymovement VAR_0x8009, NewBarkTown_HirosHouse_1F_Movement_292DBC
+NewBarkTown_PlayersHouse_1F_EventScript_292CC1:: @ 8292CC1
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_292991
+	waitmovement 0
+	applymovement VAR_0x8009, NewBarkTown_PlayersHouse_1F_Movement_292DBA
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292CEF:: @ 8292CEF
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292DCC
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_292DCC
-	applymovement VAR_0x8009, NewBarkTown_HirosHouse_1F_Movement_292DC1
+NewBarkTown_PlayersHouse_1F_EventScript_292CD6:: @ 8292CD6
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292DCC
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_292DCC
+	applymovement VAR_0x8009, NewBarkTown_PlayersHouse_1F_Movement_292DBC
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292D08:: @ 8292D08
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292DC6
+NewBarkTown_PlayersHouse_1F_EventScript_292CEF:: @ 8292CEF
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292DCC
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_292DCC
+	applymovement VAR_0x8009, NewBarkTown_PlayersHouse_1F_Movement_292DC1
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292D13:: @ 8292D13
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292DD1
+NewBarkTown_PlayersHouse_1F_EventScript_292D08:: @ 8292D08
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292DC6
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292D1E:: @ 8292D1E
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292DD7
-	waitmovement 0
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_2725A4
+NewBarkTown_PlayersHouse_1F_EventScript_292D13:: @ 8292D13
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292DD1
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292D33:: @ 8292D33
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_292DDE
+NewBarkTown_PlayersHouse_1F_EventScript_292D1E:: @ 8292D1E
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292DD7
 	waitmovement 0
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_2725A8
-	waitmovement 0
-	return
-
-NewBarkTown_HirosHouse_1F_EventScript_292D48:: @ 8292D48
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_292999
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_2725A4
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_2725A4
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292D5D:: @ 8292D5D
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_29299B
+NewBarkTown_PlayersHouse_1F_EventScript_292D33:: @ 8292D33
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_292DDE
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_2725A8
-	waitmovement 0
-	return
-
-NewBarkTown_HirosHouse_1F_EventScript_292D72:: @ 8292D72
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_29299D
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_2725A8
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292D7D:: @ 8292D7D
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_2929A6
+NewBarkTown_PlayersHouse_1F_EventScript_292D48:: @ 8292D48
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_292999
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725A4
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_EventScript_292D88:: @ 8292D88
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_2929AF
+NewBarkTown_PlayersHouse_1F_EventScript_292D5D:: @ 8292D5D
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_29299B
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_2725A8
-	waitmovement 0
-	return
-
-NewBarkTown_HirosHouse_1F_EventScript_292D9D:: @ 8292D9D
-	applymovement VAR_0x800A, NewBarkTown_HirosHouse_1F_Movement_2929B3
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_HirosHouse_1F_Movement_2725A4
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725A8
 	waitmovement 0
 	return
 
-NewBarkTown_HirosHouse_1F_Movement_292DB2: @ 8292DB2
+NewBarkTown_PlayersHouse_1F_EventScript_292D72:: @ 8292D72
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_29299D
+	waitmovement 0
+	return
+
+NewBarkTown_PlayersHouse_1F_EventScript_292D7D:: @ 8292D7D
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_2929A6
+	waitmovement 0
+	return
+
+NewBarkTown_PlayersHouse_1F_EventScript_292D88:: @ 8292D88
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_2929AF
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725A8
+	waitmovement 0
+	return
+
+NewBarkTown_PlayersHouse_1F_EventScript_292D9D:: @ 8292D9D
+	applymovement VAR_0x800A, NewBarkTown_PlayersHouse_1F_Movement_2929B3
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725A4
+	waitmovement 0
+	return
+
+NewBarkTown_PlayersHouse_1F_Movement_292DB2: @ 8292DB2
 	walk_right
 	walk_right
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DB5: @ 8292DB5
+NewBarkTown_PlayersHouse_1F_Movement_292DB5: @ 8292DB5
 	walk_left
 	walk_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DB8: @ 8292DB8
+NewBarkTown_PlayersHouse_1F_Movement_292DB8: @ 8292DB8
 	face_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DBA: @ 8292DBA
+NewBarkTown_PlayersHouse_1F_Movement_292DBA: @ 8292DBA
 	face_right
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DBC: @ 8292DBC
+NewBarkTown_PlayersHouse_1F_Movement_292DBC: @ 8292DBC
 	walk_down
 	walk_right
 	walk_down
 	delay_8
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DC1: @ 8292DC1
+NewBarkTown_PlayersHouse_1F_Movement_292DC1: @ 8292DC1
 	walk_down
 	walk_left
 	walk_down
 	delay_8
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DC6: @ 8292DC6
+NewBarkTown_PlayersHouse_1F_Movement_292DC6: @ 8292DC6
 	delay_16
 	walk_down
 	walk_down
@@ -675,14 +573,14 @@ NewBarkTown_HirosHouse_1F_Movement_292DC6: @ 8292DC6
 	walk_in_place_fastest_left
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DCC: @ 8292DCC
+NewBarkTown_PlayersHouse_1F_Movement_292DCC: @ 8292DCC
 	delay_8
 	delay_16
 	delay_16
 	walk_in_place_fastest_down
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DD1: @ 8292DD1
+NewBarkTown_PlayersHouse_1F_Movement_292DD1: @ 8292DD1
 	delay_16
 	walk_down
 	walk_down
@@ -690,7 +588,7 @@ NewBarkTown_HirosHouse_1F_Movement_292DD1: @ 8292DD1
 	walk_in_place_fastest_right
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DD7: @ 8292DD7
+NewBarkTown_PlayersHouse_1F_Movement_292DD7: @ 8292DD7
 	walk_up
 	walk_left
 	walk_left
@@ -699,7 +597,7 @@ NewBarkTown_HirosHouse_1F_Movement_292DD7: @ 8292DD7
 	walk_in_place_fastest_up
 	step_end
 
-NewBarkTown_HirosHouse_1F_Movement_292DDE: @ 8292DDE
+NewBarkTown_PlayersHouse_1F_Movement_292DDE: @ 8292DDE
 	walk_up
 	walk_right
 	walk_right
