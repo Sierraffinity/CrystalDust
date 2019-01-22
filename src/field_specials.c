@@ -2730,6 +2730,8 @@ void nullsub_55(void)
 
 }
 
+
+
 void sub_813A76C(void)
 {
     u8 i;

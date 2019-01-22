@@ -1,7 +1,12 @@
 NewBarkTown_PlayersHouse_2F_MapScripts:: @ 81F83E3
-	@map_script 3, NewBarkTown_PlayersHouse_2F_MapScript1_1F83EE
+	map_script 3, NewBarkTown_PlayersHouse_2F_MapScript1_1F83EE
 	map_script 4, NewBarkTown_PlayersHouse_2F_MapScript2_1F846A
 	.byte 0
+
+NewBarkTown_PlayersHouse_2F_MapScript1_1F83EE: @ 81F83EE
+	call NewBarkTown_PlayersHouse_2F_EventScript_275CE1
+	setvar VAR_0x4089, 0
+	end
 
 NewBarkTown_PlayersHouse_2F_MapScript2_1F846A: @ 81F846A
 	map_script_2 VAR_0x4089, 0, EventScript_275D0C
