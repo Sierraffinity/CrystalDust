@@ -411,7 +411,7 @@ static void Task_SetClock2(u8 taskId)
         ShowHelpBar(gText_UpDownPickAOk);
         FillWindowPixelBuffer(0, 0x11);
         StringExpandPlaceholders(gStringVar4, gText_SetClock_Whoa);
-        AddTextPrinterForMessage(1);
+        AddTextPrinterForMessage_IgnoreTextColor(1);
         gTasks[taskId].func = Task_SetClock3;
     }
     else if (gMain.newKeys & SELECT_BUTTON)
@@ -469,7 +469,7 @@ static void Task_SetClock4(u8 taskId)
             //ClearWindowTilemap(0);
             FillWindowPixelBuffer(0, 0x11);
             StringExpandPlaceholders(gStringVar4, gText_SetClock_WhatTime);
-            AddTextPrinterForMessage(1);
+            AddTextPrinterForMessage_IgnoreTextColor(1);
             gTasks[taskId].func = Task_SetClock2_1;
             break;
     }
@@ -566,7 +566,7 @@ static void Task_SetClock5(u8 taskId)
     
     FillWindowPixelBuffer(0, 0x11);
     StringExpandPlaceholders(gStringVar4, string);
-    AddTextPrinterForMessage(1);
+    AddTextPrinterForMessage_IgnoreTextColor(1);
     gTasks[taskId].func = Task_SetClock6;
 }
 

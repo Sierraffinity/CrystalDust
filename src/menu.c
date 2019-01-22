@@ -3,6 +3,7 @@
 #include "bg.h"
 #include "dma3.h"
 #include "event_data.h"
+#include "field_specials.h"
 #include "graphics.h"
 #include "main.h"
 #include "menu.h"
@@ -187,11 +188,25 @@ u16 AddTextPrinterParameterized2(u8 windowId, u8 fontId, const u8 *str, u8 speed
 
 void AddTextPrinterForMessage(bool8 allowSkippingDelayWithButtonPress)
 {
+    u8 textColor;
+
     gTextFlags.canABSpeedUpPrint = allowSkippingDelayWithButtonPress;
-    AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 2, 1, 3);
+
+    switch (GetTextColorFromSelectedEventObjectGraphicsId())
+    {
+        case MSG_COLOR_BLUE:
+            AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 8, 1, 3);
+            break;
+        case MSG_COLOR_RED:
+            AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 4, 1, 3);
+            break;
+        default:
+            AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 2, 1, 3);
+            break;
+    }
 }
 
-void AddTextPrinterForMessage_2(bool8 allowSkippingDelayWithButtonPress)
+void AddTextPrinterForMessage_IgnoreTextColor(bool8 allowSkippingDelayWithButtonPress)
 {
     gTextFlags.canABSpeedUpPrint = allowSkippingDelayWithButtonPress;
     AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 2, 1, 3);

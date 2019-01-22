@@ -23,6 +23,8 @@ EWRAM_DATA u16 gSpecialVar_LastTalked = 0;
 EWRAM_DATA u16 gSpecialVar_Facing = 0;
 EWRAM_DATA u16 gSpecialVar_MonBoxId = 0;
 EWRAM_DATA u16 gSpecialVar_MonBoxPos = 0;
+EWRAM_DATA u16 gSpecialVar_TextColor = 0;
+EWRAM_DATA u16 gSpecialVar_TextColorBackup = 0;
 EWRAM_DATA u16 gSpecialVar_0x8014 = 0;
 EWRAM_DATA static u8 gUnknown_020375FC[16] = {0};
 

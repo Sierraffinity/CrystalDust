@@ -1356,7 +1356,7 @@ void Task_NewGameClockSetIntro3(u8 taskId)
     PutWindowTilemap(0);
     CopyWindowToVram(0, 2);
     StringExpandPlaceholders(gStringVar4, gText_SetClock_WokeMeUp);
-    AddTextPrinterForMessage(1);
+    AddTextPrinterForMessage_IgnoreTextColor(1);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
     NewGameOakSpeech_ShowDialogueWindow(0, 1);
     gTasks[taskId].func = Task_NewGameClockSetIntro4;
@@ -1526,7 +1526,7 @@ static void Task_NewGameOakSpeech_WaitForTextToStart(u8 taskId)
             CopyWindowToVram(0, 2);
             FillWindowPixelBuffer(0, 0x11);
             StringExpandPlaceholders(gStringVar4, gText_Oak_Welcome);
-            AddTextPrinterForMessage(1);
+            AddTextPrinterForMessage_IgnoreTextColor(1);
             gTasks[taskId].func = Task_NewGameOakSpeech_PrintThisEllipsis;
         }
     }
@@ -1537,7 +1537,7 @@ static void Task_NewGameOakSpeech_PrintThisEllipsis(u8 taskId)
     if (!RunTextPrintersAndIsPrinter0Active())
     {
         StringExpandPlaceholders(gStringVar4, gText_Oak_Pokemon);
-        AddTextPrinterForMessage(1);
+        AddTextPrinterForMessage_IgnoreTextColor(1);
         gTasks[taskId].func = Task_NewGameOakSpeech_CreatePokeBallToReleaseWooper;
     }
 }
@@ -1576,7 +1576,7 @@ static void Task_NewGameOakSpeech_PrintIsPokemonWaitForAnimation(u8 taskId)
         if (gTasks[taskId].tTimer == 32)
         {
             StringExpandPlaceholders(gStringVar4, gText_Oak_Pokemon2);
-            AddTextPrinterForMessage(1);
+            AddTextPrinterForMessage_IgnoreTextColor(1);
             FillWindowPixelBuffer(0, 0x11);
         }
     }
@@ -1588,7 +1588,7 @@ static void Task_NewGameOakSpeech_MainSpeech1(u8 taskId)
     if (!RunTextPrintersAndIsPrinter0Active())
     {
         StringExpandPlaceholders(gStringVar4, gText_Oak_MainSpeech);
-        AddTextPrinterForMessage(1);
+        AddTextPrinterForMessage_IgnoreTextColor(1);
         gTasks[taskId].func = Task_NewGameOakSpeech_PutAwayWooper;
     }
 }
@@ -1635,7 +1635,7 @@ static void Task_NewGameOakSpeech_MainSpeech2(u8 taskId)
         {
             NewGameOakSpeech_ShowDialogueWindow(0, FALSE);
             StringExpandPlaceholders(gStringVar4, gText_Oak_MainSpeech2);
-            AddTextPrinterForMessage(1);
+            AddTextPrinterForMessage_IgnoreTextColor(1);
             CopyWindowToVram(0, 3);
             gTasks[taskId].func = Task_NewGameOakSpeech_StartOakPlatformFade;
         }
@@ -1673,7 +1673,7 @@ static void Task_NewGameOakSpeech_BoyOrGirl(u8 taskId)
     NewGameOakSpeech_ShowDialogueWindow(0, FALSE);
     FillWindowPixelBuffer(0, 0x11);
     StringExpandPlaceholders(gStringVar4, gText_Oak_BoyOrGirl);
-    AddTextPrinterForMessage(1);
+    AddTextPrinterForMessage_IgnoreTextColor(1);
     CopyWindowToVram(0, 3);
     gTasks[taskId].func = Task_NewGameOakSpeech_WaitToShowGenderMenu;
 }
@@ -1736,7 +1736,7 @@ static void Task_NewGameOakSpeech_WhatsYourName(u8 taskId)
     NewGameOakSpeech_ShowDialogueWindow(0, FALSE);
     FillWindowPixelBuffer(0, 0x11);
     StringExpandPlaceholders(gStringVar4, gText_Oak_WhatsYourName);
-    AddTextPrinterForMessage(1);
+    AddTextPrinterForMessage_IgnoreTextColor(1);
     CopyWindowToVram(0, 3);
     gTasks[taskId].func = Task_NewGameOakSpeech_WaitForWhatsYourNameToPrint;
 }
@@ -1768,7 +1768,7 @@ static void Task_NewGameOakSpeech_SoItsPlayerName(u8 taskId)
         NewGameOakSpeech_ShowDialogueWindow(0, 1);
         FillWindowPixelBuffer(0, 0x11);
         StringExpandPlaceholders(gStringVar4, gText_Oak_SoItsPlayer);
-        AddTextPrinterForMessage(1);
+        AddTextPrinterForMessage_IgnoreTextColor(1);
         gTasks[taskId].tTimer = 30;
         gTasks[taskId].func = Task_NewGameOakSpeech_CreateNameYesNo;
     }
@@ -1842,7 +1842,7 @@ static void Task_NewGameOakSpeech_AreYouReady(u8 taskId)
     {
         NewGameOakSpeech_ShowDialogueWindow(0, FALSE);
         StringExpandPlaceholders(gStringVar4, gText_Oak_AreYouReady);
-        AddTextPrinterForMessage(1);
+        AddTextPrinterForMessage_IgnoreTextColor(1);
         CopyWindowToVram(0, 3);
         gTasks[taskId].tTimer = 30;
         gTasks[taskId].func = Task_NewGameOakSpeech_PrepareToShrinkPlayer;

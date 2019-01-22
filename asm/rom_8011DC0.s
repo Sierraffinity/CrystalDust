@@ -522,7 +522,7 @@ _08017076:
 	adds r1, r5, 0
 	bl StringExpandPlaceholders
 	movs r0, 0x1
-	bl AddTextPrinterForMessage_2
+	bl AddTextPrinterForMessage_IgnoreTextColor
 	ldrb r0, [r4]
 	adds r0, 0x1
 	strb r0, [r4]

@@ -107,6 +107,12 @@
 //                              0x7
 #define TEXT_COLOR_BLUE         0x8
 
+// should really be text color and the above should be font color
+#define MSG_COLOR_BLUE          0
+#define MSG_COLOR_RED           1
+#define MSG_COLOR_BLACK         2
+#define MSG_COLOR_MISC          3
+
 // battle placeholders are located in battle_message.h
 
 #define NUM_TEXT_PRINTERS 32

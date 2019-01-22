@@ -1263,6 +1263,13 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_textcolor(struct ScriptContext *ctx)
+{
+    gSpecialVar_TextColorBackup = gSpecialVar_TextColor;
+    gSpecialVar_TextColor = ScriptReadByte(ctx);
+    return FALSE;
+}
+
 bool8 ScrCmd_message(struct ScriptContext *ctx)
 {
     const u8 *msg = (const u8 *)ScriptReadWord(ctx);
