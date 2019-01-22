@@ -943,7 +943,7 @@ EventScript_27149D:: @ 827149D
 	return
 
 EventScript_2715DE:: @ 82715DE
-	setflag FLAG_LINK_CONTEST_POKE_BALL
+	/*setflag FLAG_LINK_CONTEST_POKE_BALL
 	setflag FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
 	setflag FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
 	setflag FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
@@ -1101,7 +1101,7 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_FALLORBOR_TOWN_BATTLE_TENT_SCOTT
 	setflag FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT
 	setflag FLAG_HIDE_SKY_PILLAR_WALLACE
-	setflag FLAG_RAYQUAZA_ON_SKY_TOWER_SUMMIT
+	setflag FLAG_LISTENED_TO_INITIAL_RADIO*/
 	call EventScript_27149D
 	end
 
@@ -4722,8 +4722,8 @@ Text_MyReflection:
 	.string "Lookin' good!$"
 
 Text_2A81E5: @ 82A81E5
-	.string "It's a whole collection of\n"
-	.string "POKéMON picture books!$"
+	.string "It's a whole collection of POKéMON\n"
+	.string "picture books!$"
 
 Text_2A820D: @ 82A820D
 	.string "It's filled with all sorts of books.$"
@@ -4732,7 +4732,7 @@ Text_2A8232: @ 82A8232
 	.string "POKéMON magazines!\n"
 	.string "POKéMON PAL…\p"
 	.string "POKéMON HANDBOOK…\n"
-	.string "ADORABLE POKéMON…$"
+	.string "POKéMON GRAPH…$"
 
 Text_2A8276: @ 82A8276
 	.string "This vase looks expensive…\n"

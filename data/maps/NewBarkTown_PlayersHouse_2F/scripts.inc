@@ -32,3 +32,42 @@ NewBarkTown_PlayersHouse_2F_EventScript_1F863F:: @ 81F863F
 
 NewBarkTown_PlayersHouse_2F_Text_1F8820: @ 81F8820
 	.string "It's the TOWN MAP.$"
+
+NewBarkTown_PlayersHouse_2F_Radio::
+	goto_if_set FLAG_LISTENED_TO_INITIAL_RADIO NewBarkTown_PlayersHouse_2F_Radio_AlreadyListened
+	playbgm MUS_RG_KENKYU 0
+	message NewBarkTown_PlayersHouse_2F_Text_RadioText1
+	waitmessage
+	delay 90
+	message NewBarkTown_PlayersHouse_2F_Text_RadioText2
+	waitmessage
+	delay 90
+	message NewBarkTown_PlayersHouse_2F_Text_RadioText3
+	waitmessage
+	delay 90
+	fadedefaultbgm
+	setflag FLAG_LISTENED_TO_INITIAL_RADIO
+	message NewBarkTown_PlayersHouse_2F_Text_RadioText4
+	waitmessage
+	delay 90
+	closemessage
+	end
+
+NewBarkTown_PlayersHouse_2F_Radio_AlreadyListened:
+	msgbox NewBarkTown_PlayersHouse_2F_Text_RadioText4 MSGBOX_SIGN
+	end
+
+NewBarkTown_PlayersHouse_2F_Text_RadioText1:
+	.string "This was PROF. OAK'S POKéMON TALK!\n"
+	.string "Please tune back in next time!$"
+
+NewBarkTown_PlayersHouse_2F_Text_RadioText2:
+	.string "POKéMON CHANNEL!$"
+
+NewBarkTown_PlayersHouse_2F_Text_RadioText3:
+	.string "This is DJ MARY, your co-host,\n"
+	.string "signing off!$"
+
+NewBarkTown_PlayersHouse_2F_Text_RadioText4:
+	.string "POKéMON!\n"
+	.string "POKéMON CHANNEL…$"

@@ -32,7 +32,7 @@ SkyPillar_Top_EventScript_239705:: @ 8239705
 	return
 
 SkyPillar_Top_EventScript_23970F:: @ 823970F
-	clearflag FLAG_RAYQUAZA_ON_SKY_TOWER_SUMMIT
+	clearflag FLAG_LISTENED_TO_INITIAL_RADIO
 	return
 
 SkyPillar_Top_MapScript2_239713: @ 8239713
