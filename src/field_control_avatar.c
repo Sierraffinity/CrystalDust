@@ -701,7 +701,7 @@ static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, u8
             DoWarp();
             return TRUE;
         }
-        else if (sub_806DB84(metatileBehavior, direction) == TRUE)
+        else if (IsStaircaseWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
         {
             delay = 0;
             if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
@@ -783,7 +783,7 @@ static bool8 IsWarpMetatileBehavior(u16 metatileBehavior)
     return TRUE;
 }
 
-bool8 sub_806DB84(u16 metatileBehavior, u8 direction)
+bool8 IsStaircaseWarpMetatileBehavior(u16 metatileBehavior, u8 direction)
 {
     switch (direction)
     {

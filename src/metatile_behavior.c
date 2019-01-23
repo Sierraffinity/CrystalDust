@@ -54,10 +54,10 @@ static const u8 sTileBitAttributes[] =
     [MB_LAVARIDGE_GYM_B1F_WARP] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_SEAWEED_NO_SURFACING] = TILE_ATTRIBUTES(TRUE, TRUE, TRUE),
     [MB_REFLECTION_UNDER_BRIDGE] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
-    [MB_UNUSED_2C] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_2D] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_2E] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_2F] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_STAIRCASE_UP_EAST] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_STAIRCASE_UP_WEST] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_STAIRCASE_DOWN_EAST] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_STAIRCASE_DOWN_WEST] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_IMPASSABLE_EAST] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_IMPASSABLE_WEST] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_IMPASSABLE_NORTH] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
@@ -372,7 +372,7 @@ bool8 MetatileBehavior_IsStaircaseUpEast(u8 metatileBehavior)
 {
     u8 result = FALSE;
 
-    if(metatileBehavior == MB_UNUSED_2C)
+    if (metatileBehavior == MB_STAIRCASE_UP_EAST)
         result = TRUE;
 
     return result;
@@ -382,7 +382,7 @@ bool8 MetatileBehavior_IsStaircaseUpWest(u8 metatileBehavior)
 {
     u8 result = FALSE;
 
-    if(metatileBehavior == MB_UNUSED_2D)
+    if (metatileBehavior == MB_STAIRCASE_UP_WEST)
         result = TRUE;
 
     return result;
@@ -392,7 +392,7 @@ bool8 MetatileBehavior_IsStaircaseDownEast(u8 metatileBehavior)
 {
     u8 result = FALSE;
 
-    if(metatileBehavior == MB_UNUSED_2E)
+    if (metatileBehavior == MB_STAIRCASE_DOWN_EAST)
         result = TRUE;
 
     return result;
@@ -402,7 +402,7 @@ bool8 MetatileBehavior_IsStaircaseDownWest(u8 metatileBehavior)
 {
     u8 result = FALSE;
 
-    if(metatileBehavior == MB_UNUSED_2F)
+    if (metatileBehavior == MB_STAIRCASE_DOWN_WEST)
         result = TRUE;
 
     return result;
@@ -412,7 +412,7 @@ bool8 MetatileBehavior_IsStaircase(u8 metatileBehavior)
 {
     bool8 result = FALSE;
 
-    if(metatileBehavior >= MB_UNUSED_2C && metatileBehavior <= MB_UNUSED_2F)
+    if (metatileBehavior >= MB_STAIRCASE_UP_EAST && metatileBehavior <= MB_STAIRCASE_DOWN_WEST)
         result = TRUE;
     else
         result = FALSE;

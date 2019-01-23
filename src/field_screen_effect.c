@@ -1416,7 +1416,7 @@ static void Task_StaircaseWarpIn(u8 taskId)
     }
 }
 
-static void BeginAnimatingPlayerWalkInOnStaircase(s16 *x, s16 *y, s16 *xSubpixels, s16 *ySubpixels, s16 *frame)
+static void BeginAnimatingPlayerWalkInOnStaircase(s16 *xPixels, s16 *yPixels, s16 *xSubpixels, s16 *ySubpixels, s16 *frame)
 {
     s16 x, y;
     u8 behavior;
@@ -1431,15 +1431,15 @@ static void BeginAnimatingPlayerWalkInOnStaircase(s16 *x, s16 *y, s16 *xSubpixel
         direction = DIR_EAST;
 
     EventObjectForceSetHeldMovement(&gEventObjects[gPlayerAvatar.eventObjectId], GetWalkInPlaceFastMovementAction(direction));
-    SetStaircaseTargetPosValues(behavior, x, y);
+    SetStaircaseTargetPosValues(behavior, xPixels, yPixels);
 
-    *xSubpixels = *x * 16;
-    *ySubpixels = *y * 16;
+    *xSubpixels = *xPixels * 16;
+    *ySubpixels = *yPixels * 16;
     *frame = 16;
     gSprites[gPlayerAvatar.spriteId].pos2.x = *xSubpixels / 32;
     gSprites[gPlayerAvatar.spriteId].pos2.y = *ySubpixels / 32;
-    *x = -*x;
-    *y = -*y;
+    *xPixels = -*xPixels;
+    *yPixels = -*yPixels;
 }
 
 static bool8 AnimatePlayerWalkInOnStaircase(s16 *xDelta, s16 *yDelta, s16 *x, s16 *y, s16 *frame)
