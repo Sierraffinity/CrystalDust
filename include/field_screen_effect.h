@@ -21,6 +21,7 @@ void sub_80AF6D4(void);
 void sub_80AF6F0(void);
 void DoWarp(void);
 void DoDiveWarp(void);
+void sub_807E4A0(u16 behavior, u16 unk);
 void sub_80AF79C(void);
 void DoDoorWarp(void);
 void DoFallWarp(void);

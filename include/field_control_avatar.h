@@ -37,5 +37,6 @@ u8 sub_8068F18(void);
 bool8 dive_warp(struct MapPosition *position, u16 b);
 int SetCableClubWarp(void);
 u8 TrySetDiveWarp(void);
+bool8 sub_806DB84(u16 metatileBehavior, u8 direction);
 
 #endif // GUARD_FIELDCONTROLAVATAR_H

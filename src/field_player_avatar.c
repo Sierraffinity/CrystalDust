@@ -4,6 +4,7 @@
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "field_camera.h"
+#include "field_control_avatar.h"
 #include "field_effect.h"
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
@@ -619,6 +620,11 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
             PlayerJumpLedge(direction);
             return;
         }
+        else if (r0 == 8)
+        {
+            PlayerFaceDirection(direction);
+            return;
+        }
         else if (r0 == 4 && IsPlayerCollidingWithFarawayIslandMew(direction) != 0)
         {
             PlayerNotOnBikeCollideWithFarawayIslandMew(direction);
@@ -667,8 +673,16 @@ static u8 CheckForPlayerAvatarCollision(u8 direction)
 
     x = playerEventObj->currentCoords.x;
     y = playerEventObj->currentCoords.y;
-    MoveCoords(direction, &x, &y);
-    return CheckForEventObjectCollision(playerEventObj, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
+
+    if (!sub_806DB84(MapGridGetMetatileBehaviorAt(x, y), direction))
+    {
+        MoveCoords(direction, &x, &y);
+        return CheckForEventObjectCollision(playerEventObj, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
+    }
+    else
+    {
+        return 8;
+    }
 }
 
 static u8 sub_808B028(u8 direction)
@@ -1124,7 +1138,19 @@ static void PlayCollisionSoundIfNotFacingWarp(u8 a)
 
     if (!sArrowWarpMetatileBehaviorChecks[a - 1](metatileBehavior))
     {
-        if (a == 2)
+        if (a == DIR_WEST)
+        {
+            if (MetatileBehavior_IsStaircaseUpWest(metatileBehavior) ||
+                MetatileBehavior_IsStaircaseDownWest(metatileBehavior))
+                return;
+        }
+        if (a == DIR_EAST)
+        {
+            if (MetatileBehavior_IsStaircaseUpEast(metatileBehavior) ||
+                MetatileBehavior_IsStaircaseDownEast(metatileBehavior))
+                return;
+        }
+        if (a == DIR_NORTH)
         {
             PlayerGetDestCoords(&x, &y);
             MoveCoords(2, &x, &y);

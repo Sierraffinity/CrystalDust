@@ -250,6 +250,7 @@ u8 gFieldLinkPlayerCount;
 
 // EWRAM vars
 EWRAM_DATA static u8 sUnknown_020322D8 = 0;
+//EWRAM_DATA u8 gStaircaseState = 0;
 EWRAM_DATA struct WarpData gLastUsedWarp = {0};
 EWRAM_DATA static struct WarpData sWarpDestination = {0};  // new warp position
 EWRAM_DATA static struct WarpData gFixedDiveWarp = {0};
@@ -996,6 +997,14 @@ static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStr
     else if (MetatileBehavior_IsWestArrowWarp(metatileBehavior) == TRUE)
         return DIR_EAST;
     else if (MetatileBehavior_IsEastArrowWarp(metatileBehavior) == TRUE)
+        return DIR_WEST;
+    else if (MetatileBehavior_IsStaircaseUpEast(metatileBehavior) == TRUE)
+        return DIR_EAST;
+    else if (MetatileBehavior_IsStaircaseDownEast(metatileBehavior) == TRUE)
+        return DIR_EAST;
+    else if (MetatileBehavior_IsStaircaseUpWest(metatileBehavior) == TRUE)
+        return DIR_WEST;
+    else if (MetatileBehavior_IsStaircaseDownWest(metatileBehavior) == TRUE)
         return DIR_WEST;
     else if ((playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_UNDERWATER  && transitionFlags == PLAYER_AVATAR_FLAG_SURFING)
      || (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_SURFING && transitionFlags == PLAYER_AVATAR_FLAG_UNDERWATER ))
@@ -1775,6 +1784,7 @@ void CB2_ContinueSavedGame(void)
     PlayTimeCounter_Start();
     ScriptContext1_Init();
     ScriptContext2_Disable();
+    //gStaircaseState = 1;
     InitMatchCallCounters();
     if (UseContinueGameWarp() == TRUE)
     {
@@ -1932,6 +1942,7 @@ static bool32 load_map_stuff(u8 *state, u32 a2)
     {
     case 0:
         FieldClearVBlankHBlankCallbacks();
+        //gStaircaseState = 1;
         mli0_load_map(a2);
         (*state)++;
         break;

@@ -691,12 +691,28 @@ static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, u8
 {
     s8 warpEventId = GetWarpEventAtMapPosition(&gMapHeader, position);
 
-    if (IsArrowWarpMetatileBehavior(metatileBehavior, direction) == TRUE && warpEventId != -1)
+    if (warpEventId != -1)
     {
-        StoreInitialPlayerAvatarState();
-        SetupWarp(&gMapHeader, warpEventId, position);
-        DoWarp();
-        return TRUE;
+        if (IsArrowWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
+        {
+            StoreInitialPlayerAvatarState();
+            SetupWarp(&gMapHeader, warpEventId, position);
+            DoWarp();
+            return TRUE;
+        }
+        else if (sub_806DB84(metatileBehavior, direction) == TRUE)
+        {
+            u8 unk = 0;
+            if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+            {
+                SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
+                unk = 12;
+            }
+            StoreInitialPlayerAvatarState();
+            SetupWarp(&gMapHeader, warpEventId, position);
+            sub_807E4A0(metatileBehavior, unk);
+            return TRUE;
+        }
     }
     return FALSE;
 }
@@ -764,6 +780,24 @@ static bool8 IsWarpMetatileBehavior(u16 metatileBehavior)
      && MetatileBehavior_IsWarpOrBridge(metatileBehavior) != TRUE)
         return FALSE;
     return TRUE;
+}
+
+bool8 sub_806DB84(u16 metatileBehavior, u8 direction)
+{
+    switch (direction)
+    {
+    case DIR_WEST:
+        if (MetatileBehavior_IsStaircaseUpWest(metatileBehavior) ||
+            MetatileBehavior_IsStaircaseDownWest(metatileBehavior))
+            return TRUE;
+        break;
+    case DIR_EAST:
+        if (MetatileBehavior_IsStaircaseUpEast(metatileBehavior) ||
+            MetatileBehavior_IsStaircaseDownEast(metatileBehavior))
+            return TRUE;
+        break;
+    }
+    return FALSE;
 }
 
 static bool8 IsArrowWarpMetatileBehavior(u16 metatileBehavior, u8 direction)

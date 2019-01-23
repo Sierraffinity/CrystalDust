@@ -1105,11 +1105,13 @@ static void Task_HandleMainMenuAPressed_(u8 taskId)
             default:
                 gPlttBufferUnfaded[0] = RGB_BLACK;
                 gPlttBufferFaded[0] = RGB_BLACK;
+                //gStaircaseState = 0;
                 gTasks[taskId].func = Task_NewGameClockSetIntro1;
                 break;
             case ACTION_CONTINUE:
                 gPlttBufferUnfaded[0] = RGB_BLACK;
                 gPlttBufferFaded[0] = RGB_BLACK;
+                //gStaircaseState = 0;
                 SetMainCallback2(CB2_ContinueSavedGame);
                 DestroyTask(taskId);
                 break;

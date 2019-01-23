@@ -54,15 +54,20 @@ extern const u16 gUnknown_82EC7CC[];
 static void sub_8080B9C(u8);
 static void task_map_chg_seq_0807E20C(u8);
 static void task_map_chg_seq_0807E2CC(u8);
+static void sub_807EC34(u8);
 static void task0A_fade_n_map_maybe(u8);
 static void sub_808115C(u8);
 static void palette_bg_faded_fill_white(void);
 static void sub_80AF438(u8);
 static bool32 sub_80AF71C(void);
 static void task0A_mpl_807E31C(u8 taskId);
+static void sub_807E980(u8 taskId);
 static void sub_80AFA0C(u8 taskId);
 static void sub_80AFA88(u8 taskId);
 static void task50_0807F0C8(u8);
+static void sub_807EAC4(s16 a0, s16 a1, s16 *a2, s16 *a3, s16 *a4);
+static void sub_807EB64(s16 behavior, s16 *a1, s16 *a2);
+static void sub_807EBBC(u8 behavior, s16 *a1, s16 *a2);
 
 // const
 const u16 sFlashLevelPixelRadii[] = { 200, 72, 64, 56, 48, 40, 32, 24, 0 };
@@ -282,6 +287,8 @@ static void sub_80AF334(void)
         func = sub_80AF438;
     else if (MetatileBehavior_IsNonAnimDoor(behavior) == TRUE)
         func = task_map_chg_seq_0807E20C;
+    else if (MetatileBehavior_IsStaircase(behavior) == TRUE)
+        func = sub_807EC34;
     else
         func = task_map_chg_seq_0807E2CC;
     CreateTask(func, 10);
@@ -517,6 +524,14 @@ void DoDiveWarp(void)
     PlayRainSoundEffect();
     gFieldCallback = mapldr_default;
     CreateTask(sub_80AFA0C, 10);
+}
+
+void sub_807E4A0(u16 behavior, u16 unk)
+{
+    u8 taskId = CreateTask(sub_807E980, 10);
+    gTasks[taskId].data[1] = behavior;
+    gTasks[taskId].data[15] = unk;
+    sub_807E980(taskId);
 }
 
 void sub_80AF79C(void)
@@ -1257,5 +1272,193 @@ static void task50_0807F0C8(u8 taskId)
     {
         DestroyTask(taskId);
         EnableBothScriptContexts();
+    }
+}
+
+static bool8 sub_807EDA0(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4);
+static void sub_807ECBC(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4);
+
+static void sub_807E980(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    struct EventObject *eventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
+    struct Sprite *sprite = &gSprites[gPlayerAvatar.spriteId];
+
+    switch (data[0])
+    {
+    case 0:
+        ScriptContext2_Enable();
+        FreezeEventObjects();
+        CameraObjectReset2();
+        data[0]++;
+        break;
+    case 1:
+        if (!EventObjectIsMovementOverridden(eventObj) || EventObjectClearHeldMovementIfFinished(eventObj))
+        {
+            if (data[15] != 0)
+            {
+                data[15]--;
+            }
+            else
+            {
+                TryFadeOutOldMapMusic();
+                PlayRainSoundEffect();
+                sprite->oam.priority = 1;
+                sub_807EB64(data[1], &data[2], &data[3]);
+                PlaySE(SE_KAIDAN);
+                data[0]++;
+            }
+        }
+        break;
+    case 2:
+        sub_807EAC4(data[2], data[3], &data[4], &data[5], &data[6]);
+        if (++data[15] > 11)
+        {
+            WarpFadeScreen();
+            data[0]++;
+        }
+        break;
+    case 3:
+        sub_807EAC4(data[2], data[3], &data[4], &data[5], &data[6]);
+        if (!PaletteFadeActive() && BGMusicStopped())
+            data[0]++;
+        break;
+    default:
+        gFieldCallback = mapldr_default;
+        WarpIntoMap();
+        SetMainCallback2(CB2_LoadMap);
+        DestroyTask(taskId);
+        break;
+    }
+}
+
+static void sub_807EAC4(s16 a0, s16 a1, s16 *a2, s16 *a3, s16 *a4)
+{
+    struct EventObject *eventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
+    struct Sprite *sprite = &gSprites[gPlayerAvatar.spriteId];
+
+    if (a1 > 0 || *a4 > 6)
+        *a3 += a1;
+
+    *a2 += a0;
+    (*a4)++;
+
+    gSprites[gPlayerAvatar.spriteId].pos2.x = *a2 / 32;
+    gSprites[gPlayerAvatar.spriteId].pos2.y = *a3 / 32;
+
+    if (eventObj->heldMovementFinished)
+        EventObjectForceSetHeldMovement(eventObj, GetWalkInPlaceNormalMovementAction(GetPlayerFacingDirection()));
+}
+
+static void sub_807EB64(s16 behavior, s16 *a1, s16 *a2)
+{
+    struct EventObject *eventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
+
+    EventObjectForceSetHeldMovement(eventObj, GetWalkInPlaceNormalMovementAction(GetPlayerFacingDirection()));
+    sub_807EBBC(behavior, a1, a2);
+}
+
+static void sub_807EBBC(u8 behavior, s16 *a1, s16 *a2)
+{
+    if (MetatileBehavior_IsStaircaseUpEast(behavior))
+    {
+        *a1 = 16;
+        *a2 = -10;
+    }
+    else if (MetatileBehavior_IsStaircaseUpWest(behavior))
+    {
+        *a1 = -17;
+        *a2 = -10;
+    }
+    else if (MetatileBehavior_IsStaircaseDownEast(behavior))
+    {
+        *a1 = 17;
+        *a2 = 3;
+    }
+    else if (MetatileBehavior_IsStaircaseDownWest(behavior))
+    {
+        *a1 = -17;
+        *a2 = 3;
+    }
+    else
+    {
+        *a1 = 0;
+        *a2 = 0;
+    }
+}
+
+static void sub_807EC34(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    switch (data[0])
+    {
+        default:
+            if (sub_80AF71C() == TRUE)
+            {
+                CameraObjectReset1();
+                ScriptContext2_Disable();
+                DestroyTask(taskId);
+            }
+            break;
+        case 0:
+            Overworld_PlaySpecialMapMusic();
+            pal_fill_for_maplights();
+            ScriptContext2_Enable();
+            sub_807ECBC(&data[1], &data[2], &data[3], &data[4], &data[5]);
+            data[0]++;
+            break;
+        case 1:
+            if (!sub_807EDA0(&data[1], &data[2], &data[3], &data[4], &data[5]))
+                data[0]++;
+            break;
+    }
+}
+
+static void sub_807ECBC(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4)
+{
+    s16 x, y;
+    u8 behavior;
+    u8 direction;
+
+    PlayerGetDestCoords(&x, &y);
+    behavior = MapGridGetMetatileBehaviorAt(x, y);
+
+    if (MetatileBehavior_IsStaircaseDownEast(behavior) || MetatileBehavior_IsStaircaseUpEast(behavior))
+        direction = DIR_WEST;
+    else
+        direction = DIR_EAST;
+
+    EventObjectForceSetHeldMovement(&gEventObjects[gPlayerAvatar.eventObjectId], GetWalkInPlaceFastMovementAction(direction));
+    sub_807EBBC(behavior, a0, a1);
+
+    *a2 = *a0 * 16;
+    *a3 = *a1 * 16;
+    *a4 = 16;
+    gSprites[gPlayerAvatar.spriteId].pos2.x = *a2 / 32;
+    gSprites[gPlayerAvatar.spriteId].pos2.y = *a3 / 32;
+    *a0 = -*a0;
+    *a1 = -*a1;
+}
+
+static bool8 sub_807EDA0(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4)
+{
+    struct Sprite *playerSprite = &gSprites[gPlayerAvatar.spriteId];
+
+    if (*a4 == 0)
+    {
+        playerSprite->pos2.x = 0;
+        playerSprite->pos2.y = 0;
+        return FALSE;
+    }
+    else
+    {
+        *a2 += *a0;
+        *a3 += *a1;
+        playerSprite->pos2.x = *a2 / 32;
+        playerSprite->pos2.y = *a3 / 32;
+        (*a4)--;
+        return TRUE;
     }
 }

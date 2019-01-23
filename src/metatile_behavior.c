@@ -368,12 +368,56 @@ bool8 MetatileBehavior_IsEscalator(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 Unref_MetatileBehavior_IsUnused04(u8 metatileBehavior)
+bool8 MetatileBehavior_IsStaircaseUpEast(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_UNUSED_04)
-        return TRUE;
+    u8 result = FALSE;
+
+    if(metatileBehavior == MB_UNUSED_2C)
+        result = TRUE;
+
+    return result;
+}
+
+bool8 MetatileBehavior_IsStaircaseUpWest(u8 metatileBehavior)
+{
+    u8 result = FALSE;
+
+    if(metatileBehavior == MB_UNUSED_2D)
+        result = TRUE;
+
+    return result;
+}
+
+bool8 MetatileBehavior_IsStaircaseDownEast(u8 metatileBehavior)
+{
+    u8 result = FALSE;
+
+    if(metatileBehavior == MB_UNUSED_2E)
+        result = TRUE;
+
+    return result;
+}
+
+bool8 MetatileBehavior_IsStaircaseDownWest(u8 metatileBehavior)
+{
+    u8 result = FALSE;
+
+    if(metatileBehavior == MB_UNUSED_2F)
+        result = TRUE;
+
+    return result;
+}
+
+bool8 MetatileBehavior_IsStaircase(u8 metatileBehavior)
+{
+    bool8 result = FALSE;
+
+    if(metatileBehavior >= MB_UNUSED_2C && metatileBehavior <= MB_UNUSED_2F)
+        result = TRUE;
     else
-        return FALSE;
+        result = FALSE;
+
+    return result;
 }
 
 bool8 MetatileBehavior_IsLadder(u8 metatileBehavior)
