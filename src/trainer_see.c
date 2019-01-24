@@ -114,7 +114,11 @@ static const struct OamData sOamData_Icons =
 static const struct SpriteFrameImage sSpriteImageTable_ExclamationQuestionMark[] =
 {
     {sEmotion_ExclamationMarkGfx, 0x80},
-    {sEmotion_QuestionMarkGfx, 0x80}
+    {sEmotion_ExclamationMarkGfx + 0x80, 0x80},
+    {sEmotion_ExclamationMarkGfx + 0x100, 0x80},
+    {sEmotion_QuestionMarkGfx, 0x80},
+    {sEmotion_QuestionMarkGfx + 0x80, 0x80},
+    {sEmotion_QuestionMarkGfx + 0x100, 0x80},
 };
 
 static const struct SpriteFrameImage sSpriteImageTable_HeartIcon[] =
@@ -124,13 +128,17 @@ static const struct SpriteFrameImage sSpriteImageTable_HeartIcon[] =
 
 static const union AnimCmd sSpriteAnim_Icons1[] =
 {
-    ANIMCMD_FRAME(0, 60),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(2, 52),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_Icons2[] =
 {
-    ANIMCMD_FRAME(1, 60),
+    ANIMCMD_FRAME(3, 4),
+    ANIMCMD_FRAME(4, 4),
+    ANIMCMD_FRAME(5, 52),
     ANIMCMD_END
 };
 

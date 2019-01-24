@@ -2517,6 +2517,7 @@ EverGrandeCity_SidneysRoom_EventScript_27255F:: @ 827255F
 	setmetatile 7, 13, 526, 1
 	return
 
+Movement_Emote_Question_Mark:
 SlateportCity_Movement_272596: @ 8272596
 	emote_question_mark
 	step_end
