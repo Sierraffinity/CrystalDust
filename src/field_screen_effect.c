@@ -70,7 +70,11 @@ static void BeginAnimatingPlayerWalkOutOnStaircase(s16 behavior, s16 *a1, s16 *a
 static void SetStaircaseTargetPosValues(u8 behavior, s16 *a1, s16 *a2);
 static bool8 AnimatePlayerWalkInOnStaircase(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4);
 static void BeginAnimatingPlayerWalkInOnStaircase(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4);
-
+static void sub_807F204(u8 taskId);
+static void sub_807F0EC();
+static void sub_807F114();
+static void sub_807F2FC(u8 taskId);
+static void sub_807DF4C(bool8 a0);
 
 // const
 const u16 sFlashLevelPixelRadii[] = { 200, 72, 64, 56, 48, 40, 32, 24, 0 };
@@ -102,23 +106,37 @@ void pal_fill_for_maplights(void)
     case 0:
         palette_bg_faded_fill_black();
         FadeScreen(FADE_FROM_BLACK, 0);
+        palette_bg_faded_fill_black();
         break;
     case 1:
         palette_bg_faded_fill_white();
         FadeScreen(FADE_FROM_WHITE, 0);
+        palette_bg_faded_fill_white();
     }
 }
 
 static void sub_80AF08C(void)
 {
-    palette_bg_faded_fill_white();
-    FadeScreen(FADE_FROM_WHITE, 8);
+    u8 previousMapType = GetLastUsedWarpMapType();
+    switch (GetMapPairFadeFromType(previousMapType, GetCurrentMapType()))
+    {
+    case 0:
+        palette_bg_faded_fill_black();
+        FadeScreen(FADE_FROM_BLACK, 3);
+        palette_bg_faded_fill_black();
+        break;
+    case 1:
+        palette_bg_faded_fill_white();
+        FadeScreen(FADE_FROM_WHITE, 3);
+        palette_bg_faded_fill_white();
+    }
 }
 
 void pal_fill_black(void)
 {
     palette_bg_faded_fill_black();
     FadeScreen(FADE_FROM_BLACK, 0);
+    palette_bg_faded_fill_black();
 }
 
 void WarpFadeScreen(void)
@@ -278,7 +296,7 @@ void sub_80AF314(void)
     CreateTask(sub_80AF234, 10);
 }
 
-static void sub_80AF334(void)
+static void sub_80AF334(bool8 forceBlack)
 {
     s16 x, y;
     u8 behavior;
@@ -286,22 +304,37 @@ static void sub_80AF334(void)
 
     PlayerGetDestCoords(&x, &y);
     behavior = MapGridGetMetatileBehaviorAt(x, y);
+
     if (MetatileBehavior_IsDoor(behavior) == TRUE)
+    {
         func = sub_80AF438;
-    else if (MetatileBehavior_IsNonAnimDoor(behavior) == TRUE)
-        func = task_map_chg_seq_0807E20C;
-    else if (MetatileBehavior_IsStaircase(behavior) == TRUE)
-        func = Task_StaircaseWarpIn;
+    }
     else
-        func = task_map_chg_seq_0807E2CC;
+    {
+        sub_807DF4C(forceBlack);
+        if (MetatileBehavior_IsNonAnimDoor(behavior) == TRUE)
+            func = task_map_chg_seq_0807E20C;
+        else if (MetatileBehavior_IsStaircase(behavior) == TRUE)
+            func = Task_StaircaseWarpIn;
+        else
+            func = task_map_chg_seq_0807E2CC;
+    }
     CreateTask(func, 10);
+}
+
+static void sub_807DF4C(bool8 forceBlack)
+{
+    if (forceBlack)
+        pal_fill_black();
+    else
+        pal_fill_for_maplights();
 }
 
 void mapldr_default(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_for_maplights();
-    sub_80AF334();
+    //pal_fill_for_maplights();
+    sub_80AF334(FALSE);
     ScriptContext2_Enable();
 }
 
@@ -309,7 +342,7 @@ void sub_80AF3B0(void)
 {
     Overworld_PlaySpecialMapMusic();
     sub_80AF08C();
-    sub_80AF334();
+    sub_80AF334(FALSE);
     ScriptContext2_Enable();
 }
 
@@ -318,7 +351,7 @@ void sub_80AF3C8(void)
     if (!sub_81D6534())
         Overworld_PlaySpecialMapMusic();
     pal_fill_black();
-    sub_80AF334();
+    sub_80AF334(FALSE);
     ScriptContext2_Enable();
 }
 
@@ -349,14 +382,56 @@ static void sub_80AF438(u8 taskId)
 
     switch (task->data[0])
     {
-    case 0:
+    /*case 0:
         sub_80AF0F4(0);
         FreezeEventObjects();
         PlayerGetDestCoords(x, y);
         FieldSetDoorOpened(*x, *y);
         task->data[0] = 1;
+        break;*/
+    case 0:
+        sub_80AF0F4(0);
+        FreezeEventObjects();
+        sub_807F114();
+        sub_80AF08C();
+        task->data[0] = 1;
         break;
     case 1:
+        if (++task->data[15] == 25)
+        {
+            PlayerGetDestCoords(x, y);
+            PlaySE(GetDoorSoundEffect(*x, *y));
+            FieldAnimateDoorOpen(*x, *y);
+            task->data[0] = 2;
+        }
+        break;
+    case 2:
+        if (!FieldIsDoorAnimationRunning())
+        {
+            u8 eventObjId;
+            PlayerGetDestCoords(x, y);
+            sub_80AF0F4(1);
+            eventObjId = GetEventObjectIdByLocalIdAndMap(0xFF, 0, 0);
+            EventObjectSetHeldMovement(&gEventObjects[eventObjId], MOVEMENT_ACTION_WALK_NORMAL_DOWN);
+            task->data[0] = 3;
+        }
+        break;
+    case 3:
+        if (++task->data[14] == 14)
+        {
+            FieldAnimateDoorClose(*x, *y);
+            task->data[0] = 4;
+        }
+        break;
+    case 4:
+        if (sub_80AF71C() && walkrun_is_standing_still() && !FieldIsDoorAnimationRunning() && !FuncIsActiveTask(sub_807F204))
+        {
+            u8 eventObjId = GetEventObjectIdByLocalIdAndMap(0xFF, 0, 0);
+            EventObjectClearHeldMovementIfFinished(&gEventObjects[eventObjId]);
+            task->data[0] = 5;
+        }
+        break;
+    /*case 1:
         if (sub_80AF71C())
         {
             u8 eventObjId;
@@ -378,12 +453,10 @@ static void sub_80AF438(u8 taskId)
         break;
     case 3:
         if (task->data[1] < 0 || gTasks[task->data[1]].isActive != TRUE)
-        {
-            UnfreezeEventObjects();
             task->data[0] = 4;
-        }
-        break;
-    case 4:
+        break;*/
+    case 5:
+        UnfreezeEventObjects();
         ScriptContext2_Disable();
         DestroyTask(taskId);
         break;
@@ -1276,6 +1349,131 @@ static void task50_0807F0C8(u8 taskId)
         DestroyTask(taskId);
         EnableBothScriptContexts();
     }
+}
+
+static void sub_807F0EC()
+{
+    u8 taskId = CreateTask(sub_807F204, 80);
+    gTasks[taskId].data[10] = 0;
+}
+
+static void sub_807F114()
+{
+    u8 taskId = CreateTask(sub_807F204, 80);
+    gTasks[taskId].data[10] = 1;
+}
+
+static void sub_807F13C(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    data[0] = GetGpuReg(REG_OFFSET_DISPCNT);
+    data[1] = GetGpuReg(REG_OFFSET_WININ);
+    data[2] = GetGpuReg(REG_OFFSET_WINOUT);
+    data[3] = GetGpuReg(REG_OFFSET_BLDCNT);
+    data[4] = GetGpuReg(REG_OFFSET_BLDALPHA);
+    data[5] = GetGpuReg(REG_OFFSET_WIN0H);
+    data[6] = GetGpuReg(REG_OFFSET_WIN0V);
+    data[7] = GetGpuReg(REG_OFFSET_WIN1H);
+    data[8] = GetGpuReg(REG_OFFSET_WIN1V);
+}
+
+static void sub_807F1A0(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    SetGpuReg(REG_OFFSET_DISPCNT, data[0]);
+    SetGpuReg(REG_OFFSET_WININ, data[1]);
+    SetGpuReg(REG_OFFSET_WINOUT, data[2]);
+    SetGpuReg(REG_OFFSET_BLDCNT, data[3]);
+    SetGpuReg(REG_OFFSET_BLDALPHA, data[4]);
+    SetGpuReg(REG_OFFSET_WIN0H, data[5]);
+    SetGpuReg(REG_OFFSET_WIN0V, data[6]);
+    SetGpuReg(REG_OFFSET_WIN1H, data[7]);
+    SetGpuReg(REG_OFFSET_WIN1V, data[8]);
+}
+
+static void sub_807F204(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    switch (data[9])
+    {
+        case 0:
+            sub_807F13C(taskId);
+            SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
+            if (data[10] == 0)
+            {
+                SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 0));
+                SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(240, 255));
+                SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, 255));
+                SetGpuReg(REG_OFFSET_WIN1V, WIN_RANGE(0, 255));
+            }
+            else
+            {
+                SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 120));
+                SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(120, 255));
+                SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, 255));
+                SetGpuReg(REG_OFFSET_WIN1V, WIN_RANGE(0, 255));
+            }
+            SetGpuReg(REG_OFFSET_WININ, 0);
+            SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG_ALL |
+                                         WINOUT_WIN01_OBJ |
+                                         WINOUT_WIN01_CLR);
+            data[9] = 1;
+            break;
+        case 1:
+            CreateTask(sub_807F2FC, 80);
+            data[9] = 2;
+            break;
+        case 2:
+            if (!FuncIsActiveTask(sub_807F2FC))
+                data[9] = 3;
+            break;
+        case 3:
+            sub_807F1A0(taskId);
+            DestroyTask(taskId);
+            break;
+    }
+}
+
+static void sub_807F2FC(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    s16 *data2 = gTasks[FindTaskIdByFunc(sub_807F204)].data;
+    s16 val;
+    s16 val2;
+
+    if (data2[10] == 0)
+    {
+        val = data[0];
+        val2 = 240 - data[0];
+
+        if (val > 120)
+        {
+            DestroyTask(taskId);
+            return;
+        }
+    }
+    else
+    {
+        val = 120 - data[0];
+        val2 = 120 + data[0];
+
+        if (val < 0)
+        {
+            DestroyTask(taskId);
+            return;
+        }
+    }
+
+    SetGpuReg(REG_OFFSET_WIN0H, val);
+    SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(val2, 240));
+
+    if (val < 90)
+        data[0] += 4;
+    else
+        data[0] += 2;
 }
 
 static void Task_StaircaseWarpOut(u8 taskId)
