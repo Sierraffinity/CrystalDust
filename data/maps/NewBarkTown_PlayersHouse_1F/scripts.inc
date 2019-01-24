@@ -1,7 +1,7 @@
 NewBarkTown_PlayersHouse_1F_MapScripts:: @ 81F7755
 	@map_script 1, NewBarkTown_PlayersHouse_1F_MapScript1_1F7765
 	@map_script 3, NewBarkTown_PlayersHouse_1F_MapScript1_1F77A4
-	@map_script 2, NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA
+	map_script 2, NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA
 	.byte 0
 
 NewBarkTown_PlayersHouse_1F_MapScript1_1F7765: @ 81F7765
@@ -50,11 +50,12 @@ NewBarkTown_PlayersHouse_1F_EventScript_1F77DE:: @ 81F77DE
 	return
 
 NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA: @ 81F77EA
-	map_script_2 VAR_0x4092, 3, NewBarkTown_PlayersHouse_1F_EventScript_1F783C
-	map_script_2 VAR_0x4092, 5, NewBarkTown_PlayersHouse_1F_EventScript_1F7814
-	map_script_2 VAR_0x4092, 6, NewBarkTown_PlayersHouse_1F_EventScript_1F784D
-	map_script_2 VAR_0x4082, 1, NewBarkTown_PlayersHouse_1F_EventScript_1F785E
-	map_script_2 VAR_0x4082, 3, NewBarkTown_PlayersHouse_1F_EventScript_292AF2
+	map_script_2 VAR_0x4050, 0, NewBarkTown_PlayersHouse_1F_MomEncounter
+	@map_script_2 VAR_0x4092, 3, NewBarkTown_PlayersHouse_1F_EventScript_1F783C
+	@map_script_2 VAR_0x4092, 5, NewBarkTown_PlayersHouse_1F_EventScript_1F7814
+	@map_script_2 VAR_0x4092, 6, NewBarkTown_PlayersHouse_1F_EventScript_1F784D
+	@map_script_2 VAR_0x4082, 1, NewBarkTown_PlayersHouse_1F_EventScript_1F785E
+	@map_script_2 VAR_0x4082, 3, NewBarkTown_PlayersHouse_1F_EventScript_292AF2
 	.2byte 0
 
 NewBarkTown_PlayersHouse_1F_EventScript_1F7814:: @ 81F7814
@@ -71,6 +72,145 @@ NewBarkTown_PlayersHouse_1F_EventScript_1F7814:: @ 81F7814
 
 NewBarkTown_PlayersHouse_1F_Movement_1F783A: @ 81F783A
 	walk_up
+	step_end
+
+NewBarkTown_PlayersHouse_1F_MomEncounter:
+	lockall
+	textcolor MSG_COLOR_RED
+	playse SE_PIN
+	applymovement 1, Movement_Emote_Exclamation_Mark
+	waitmovement 0
+	applymovement 1, NewBarkTown_PlayersHouse_1F_Movement_27259A
+	waitmovement 0
+	playbgm MUS_EVENT0, 0
+	applymovement EVENT_OBJ_ID_PLAYER, Move_WalkInPlaceFastestDown
+	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer
+	waitmovement 0
+	delay 10
+	msgbox NewBarkTown_PlayersHouse_1F_MomElmIntro, MSGBOX_DEFAULT
+	call RestoreOriginalTextColor
+	playfanfare MUS_FANFA4
+	message NewBarkTown_PlayersHouse_1F_PlayerGetsPokegear
+	waitfanfare
+	setflag FLAG_SYS_POKENAV_GET
+	textcolor MSG_COLOR_RED
+	msgbox NewBarkTown_PlayersHouse_1F_MomPokegearEssential, MSGBOX_DEFAULT
+
+NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek:
+	message NewBarkTown_PlayersHouse_1F_WhatDayIsIt
+	waitmessage
+	setvar VAR_0x8004, 0
+	setvar VAR_0x8005, 1
+	special sub_813A128
+	waitstate
+	copyvar VAR_0x8004, VAR_RESULT
+	special CopyDayOfWeekStringToVar1
+	msgbox NewBarkTown_PlayersHouse_1F_DayConfirmation, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek
+	special SetDayOfWeek
+
+NewBarkTown_PlayersHouse_1F_MomDaylightSaving:
+	msgbox NewBarkTown_PlayersHouse_1F_DaylightSaving, MSGBOX_YESNO
+	special WriteCurrentTimeStringToStrVar1
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_MomDaylightSavingNo
+	setflag FLAG_SYS_DAYLIGHT_SAVING
+	msgbox NewBarkTown_PlayersHouse_1F_DaylightSavingOn, MSGBOX_YESNO
+	goto NewBarkTown_PlayersHouse_1F_MomDaylightSavingCheck
+	
+NewBarkTown_PlayersHouse_1F_MomDaylightSavingNo:
+	clearflag FLAG_SYS_DAYLIGHT_SAVING
+	msgbox NewBarkTown_PlayersHouse_1F_DaylightSavingOff, MSGBOX_YESNO
+
+NewBarkTown_PlayersHouse_1F_MomDaylightSavingCheck:
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_MomDaylightSaving
+	msgbox NewBarkTown_PlayersHouse_1F_ComeHomeToAdjustClock, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_NoGearInstructions
+	msgbox NewBarkTown_PlayersHouse_1F_GearInstructionsYes, MSGBOX_DEFAULT
+	goto NewBarkTown_PlayersHouse_1F_PostGearInstructions
+
+NewBarkTown_PlayersHouse_1F_NoGearInstructions:
+	msgbox NewBarkTown_PlayersHouse_1F_GearInstructionsNo, MSGBOX_DEFAULT
+
+NewBarkTown_PlayersHouse_1F_PostGearInstructions:
+	closemessage
+	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer
+	waitmovement 0
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	setvar VAR_0x4050 1
+	releaseall
+	end
+
+NewBarkTown_PlayersHouse_1F_MomElmIntro:
+	.string "MOM: Oh, {PLAYER}…!\n"
+	.string "Our neighbor, PROF. ELM, was\l"
+	.string "looking for you.\p"
+	.string "He said he wanted you to do\n"
+	.string "something for him.\p"
+	.string "Oh, I almost forgot! Your POKéMON\n"
+	.string "GEAR is back from the repair shop.\p"
+	.string "Here you go!$"
+
+NewBarkTown_PlayersHouse_1F_PlayerGetsPokegear:
+	.string "{PLAYER} received the POKéGEAR.$"
+
+NewBarkTown_PlayersHouse_1F_MomPokegearEssential:
+	.string "POKéMON GEAR, or just POKéGEAR.\n"
+	.string "It's essential if you want to be\l"
+	.string "a good TRAINER.\p"
+	.string "Oh, the day of the week isn't set.\n"
+	.string "You mustn't forget that!$"
+
+NewBarkTown_PlayersHouse_1F_WhatDayIsIt:
+	.string "What day is it?$"
+
+NewBarkTown_PlayersHouse_1F_DayConfirmation:
+	.string "{STR_VAR_1}, is it?$"
+
+NewBarkTown_PlayersHouse_1F_DaylightSaving:
+	.string "Is it Daylight Saving Time now?$"
+
+NewBarkTown_PlayersHouse_1F_DaylightSavingOff:
+	.string "{STR_VAR_1}, is that correct?$"
+
+NewBarkTown_PlayersHouse_1F_DaylightSavingOn:
+	.string "{STR_VAR_1} DST, is that correct?$"
+
+NewBarkTown_PlayersHouse_1F_ComeHomeToAdjustClock:
+	.string "Come home to adjust your clock for\n"
+	.string "Daylight Saving Time.\p"
+	.string "By the way, do you know how to\n"
+	.string "use the PHONE?$"
+
+NewBarkTown_PlayersHouse_1F_GearInstructionsYes:
+	.string "Don't you just turn the POKéGEAR on\n"
+	.string "and select the PHONE icon?\p"
+	.string "“Phone numbers are stored in memory.\n"
+	.string "Just choose who you want to call.”\p"
+	.string "Gee, isn't that convenient?$"
+
+NewBarkTown_PlayersHouse_1F_GearInstructionsNo:
+	.string "I'll read the instructions.\p"
+	.string "“Turn the POKéGEAR on and select\n"
+	.string "the PHONE icon by scrolling down.\p"
+	.string "“Phone numbers are stored in memory.\n"
+	.string "Just choose who you want to call.”\p"
+	.string "Gee, isn't that convenient?$"
+
+NewBarkTown_PlayersHouse_1F_MomWalkToPlayer:
+	walk_right
+	walk_up
+	walk_up
+	step_end
+
+NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer:
+	walk_down
+	walk_down
+	walk_left
 	step_end
 
 NewBarkTown_PlayersHouse_1F_EventScript_1F783C:: @ 81F783C

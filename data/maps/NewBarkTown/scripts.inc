@@ -20,10 +20,10 @@ NewBarkTown_MapScript1_1E7DDB: @ 81E7DDB
 	call_if_eq NewBarkTown_EventScript_1E7E53
 	compare VAR_0x408D, 3
 	call_if_eq NewBarkTown_EventScript_1E7E4F
-	compare VAR_0x40D3, 1
-	call_if_eq NewBarkTown_EventScript_1E7E4B
-	compare VAR_0x40D3, 2
-	call_if_eq NewBarkTown_EventScript_1E7E45
+	@compare VAR_0x40D3, 1
+	@call_if_eq NewBarkTown_EventScript_1E7E4B
+	@compare VAR_0x40D3, 2
+	@call_if_eq NewBarkTown_EventScript_1E7E45
 	end
 
 NewBarkTown_EventScript_1E7E45:: @ 81E7E45

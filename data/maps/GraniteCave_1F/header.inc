@@ -1,4 +1,4 @@
-GraniteCave_1F: @ 8483F84
+GraniteCave_1F::
 	.4byte GraniteCave_1F_Layout
 	.4byte GraniteCave_1F_MapEvents
 	.4byte GraniteCave_1F_MapScripts
@@ -12,4 +12,3 @@ GraniteCave_1F: @ 8483F84
 	.2byte 0
 	map_header_flags allow_bike=1, allow_escape_rope=1, allow_run=1, show_map_name=1
 	.byte MAP_BATTLE_SCENE_NORMAL
-

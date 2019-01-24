@@ -52,6 +52,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/moves.h"
+#include "constants/text.h"
 #include "constants/vars.h"
 #include "constants/battle_frontier.h"
 
@@ -2141,12 +2142,12 @@ void sub_813A128(void)
     switch (gSpecialVar_0x8004)
     {
         case 0:
-            task->data[0] = 1;
-            task->data[1] = 1;
-            task->data[2] = 1;
+            task->data[0] = 6;
+            task->data[1] = 7;
+            task->data[2] = 21;
             task->data[3] = 1;
-            task->data[4] = 1;
-            task->data[5] = 1;
+            task->data[4] = 10;
+            task->data[5] = 12;
             task->data[6] = 0;
             task->data[15] = taskId;
             break;
@@ -2270,13 +2271,13 @@ void sub_813A128(void)
 
 static const u8 *const gUnknown_085B2CF0[][16] = {
     {
-        gText_Exit,
-        NULL,
-        NULL,
-        NULL,
-        NULL,
-        NULL,
-        NULL,
+        gText_Sunday,
+        gText_Monday,
+        gText_Tuesday,
+        gText_Wednesday,
+        gText_Thursday,
+        gText_Friday,
+        gText_Saturday,
         NULL,
         NULL,
         NULL,
@@ -2610,9 +2611,12 @@ static void sub_813A4EC(u8 taskId)
     case LIST_NOTHING_CHOSEN:
         break;
     case LIST_B_PRESSED:
-        gSpecialVar_Result = 0x7F;
-        PlaySE(SE_SELECT);
-        sub_813A570(taskId);
+        if (!gSpecialVar_0x8005) // ignore B press if 8005 is set
+        {
+            gSpecialVar_Result = 0x7F;
+            PlaySE(SE_SELECT);
+            sub_813A570(taskId);
+        }
         break;
     default:
         gSpecialVar_Result = itemId;

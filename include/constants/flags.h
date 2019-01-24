@@ -1280,7 +1280,7 @@
 #define FLAG_BADGE08_GET                             (SYSTEM_FLAGS + 0xE)
 
 // Towns and Cities
-#define FLAG_VISITED_NEW_BARK_TOWN                 (SYSTEM_FLAGS + 0xF)
+#define FLAG_VISITED_NEW_BARK_TOWN                  (SYSTEM_FLAGS + 0xF)
 #define FLAG_VISITED_OLDALE_TOWN                    (SYSTEM_FLAGS + 0x10)
 #define FLAG_VISITED_DEWFORD_TOWN                   (SYSTEM_FLAGS + 0x11)
 #define FLAG_VISITED_LAVARIDGE_TOWN                 (SYSTEM_FLAGS + 0x12)
@@ -1300,8 +1300,8 @@
 #define FLAG_IS_CHAMPION                            (SYSTEM_FLAGS + 0x1F) // Seems to be related to linking.
 #define FLAG_NURSE_UNION_ROOM_REMINDER              (SYSTEM_FLAGS + 0x20)
 
-#define FLAG_UNUSED_0x881                           (SYSTEM_FLAGS + 0x21) // Unused Flag
-#define FLAG_UNUSED_0x882                           (SYSTEM_FLAGS + 0x22) // Unused Flag
+#define FLAG_SYS_POKEGEAR_24HR                      (SYSTEM_FLAGS + 0x21) // Unused Flag
+#define FLAG_SYS_DAYLIGHT_SAVING                    (SYSTEM_FLAGS + 0x22) // Unused Flag
 #define FLAG_UNUSED_0x883                           (SYSTEM_FLAGS + 0x23) // Unused Flag
 #define FLAG_UNUSED_0x884                           (SYSTEM_FLAGS + 0x24) // Unused Flag
 #define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag

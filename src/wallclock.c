@@ -24,6 +24,7 @@
 #include "pokegear.h"
 #include "wallclock.h"
 #include "window.h"
+#include "constants/flags.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
@@ -334,28 +335,6 @@ static u8 ChangeDigitWithDelta(u8 taskId, s8 delta)
     }
 }
 
-static u8 *BufferTimeString(u8 *dest, u8 hours, u8 minutes, bool8 twentyFourHourMode)
-{
-    if (!twentyFourHourMode)
-    {
-        if (hours == 0)
-        {
-            hours = 12;
-        }
-        else if (hours > 12)
-        {
-            hours -= 12;
-        }
-    }
-
-    dest = ConvertIntToDecimalStringN(dest, hours, STR_CONV_MODE_LEFT_ALIGN, (hours >= 10) ? 2 : 1);
-    *dest++ = CHAR_COLON;
-    dest = ConvertIntToDecimalStringN(dest, minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
-    *dest = EOS;
-
-    return dest;
-}
-
 static void Task_SetClock2_1(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
@@ -391,22 +370,7 @@ static void Task_SetClock2(u8 taskId)
 
         RemoveScrollArrows(taskId);
 
-        string = BufferTimeString(gStringVar1, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gTasks[taskId].tTwentyFourHourMode);
-
-        if (!gTasks[taskId].tTwentyFourHourMode)
-        {
-            *string++ = CHAR_SPACE;
-            if (gTasks[taskId].tHours < 12)
-            {
-                *string++ = CHAR_A;
-            }
-            else
-            {
-                *string++ = CHAR_P;
-            }
-            *string++ = CHAR_M;
-            *string = EOS;
-        }
+        WriteTimeString(gStringVar1, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gTasks[taskId].tTwentyFourHourMode, TRUE);
 
         ShowHelpBar(gText_UpDownPickAOk);
         FillWindowPixelBuffer(0, 0x11);
@@ -486,6 +450,12 @@ static void Task_SetClock5(u8 taskId)
     ShowHelpBar(gText_ANext);
     
     RtcInitLocalTimeOffset(gTasks[taskId].tHours, gTasks[taskId].tMinutes);
+
+    if (gTasks[taskId].tTwentyFourHourMode)
+        FlagSet(FLAG_SYS_POKEGEAR_24HR);
+    else
+        FlagClear(FLAG_SYS_POKEGEAR_24HR);
+
     FillWindowPixelBuffer(2, 0x00);
     AddTextPrinterParameterized3(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeSet);
     
@@ -521,7 +491,7 @@ static void Task_SetClock5(u8 taskId)
     }
     else
     {
-        dest = BufferTimeString(dest, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gTasks[taskId].tTwentyFourHourMode);
+        dest = WriteTimeString(dest, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gTasks[taskId].tTwentyFourHourMode, FALSE);
         *dest++ = CHAR_SPACE;
     }
     

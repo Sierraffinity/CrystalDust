@@ -11,6 +11,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
+#include "constants/text.h"
 #include "constants/vars.h"
 #include "constants/weather.h"
 	.include "asm/macros.inc"
@@ -1106,6 +1107,10 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_LISTENED_TO_INITIAL_RADIO*/
 	call EventScript_27149D
 	end
+
+RestoreOriginalTextColor:
+	copyvar VAR_TEXT_COLOR VAR_TEXT_COLOR_BACKUP
+	return
 
 EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
 	special sub_81AFDD0
@@ -2516,6 +2521,7 @@ SlateportCity_Movement_272596: @ 8272596
 	emote_question_mark
 	step_end
 
+Movement_Emote_Exclamation_Mark:
 AquaHideout_B2F_Movement_272598: @ 8272598
 BattleFrontier_BattleTowerBattleRoom_Movement_272598: @ 8272598
 BattleFrontier_ReceptionGate_Movement_272598: @ 8272598
@@ -2561,6 +2567,7 @@ SlateportCity_PokemonFanClub_Movement_272598: @ 8272598
 	emote_exclamation_mark
 	step_end
 
+Movement_Delay_48:
 BattleFrontier_BattleTowerBattleRoom_Movement_27259A: @ 827259A
 BattleFrontier_ReceptionGate_Movement_27259A: @ 827259A
 CaveOfOrigin_B1F_Movement_27259A: @ 827259A
@@ -2823,6 +2830,7 @@ VerdanturfTown_BattleTentBattleRoom_Movement_2725A8: @ 82725A8
 	walk_in_place_fastest_right
 	step_end
 
+Move_WalkInPlaceFastestDown:
 BattleFrontier_OutsideWest_Movement_2725AA: @ 82725AA
 BattleFrontier_ScottsHouse_Movement_2725AA: @ 82725AA
 BirthIsland_Harbor_Movement_2725AA: @ 82725AA

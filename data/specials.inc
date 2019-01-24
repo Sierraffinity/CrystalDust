@@ -43,7 +43,7 @@ gSpecials:: @ 81DBA64
 	def_special CloseLink
 	def_special sub_80B3968
 	def_special sub_80B3924
-	def_special nullsub_37
+	def_special CopyDayOfWeekStringToVar1
 	def_special sub_80B3254
 	def_special sub_80B2FD8
 	def_special GetLinkPartnerNames
@@ -285,7 +285,7 @@ gSpecials:: @ 81DBA64
 	def_special DoSoftReset
 	def_special GameClear
 	def_special ShakeScreenInElevator
-	def_special nullsub_55
+	def_special SetDayOfWeek
 	def_special SpawnCameraObject
 	def_special RemoveCameraObject
 	def_special GetPokeblockNameByMonNature
@@ -339,7 +339,7 @@ gSpecials:: @ 81DBA64
 	def_special ScriptGetMultiplayerId
 	def_special ScriptGetPartyMonSpecies
 	def_special sub_81B98DC
-	def_special nullsub_54
+	def_special WriteCurrentTimeStringToStrVar1
 	def_special sub_80E9B70
 	def_special LoadPlayerBag
 	def_special sub_80B05B4

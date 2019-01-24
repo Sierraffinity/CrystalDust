@@ -2,10 +2,12 @@
 #include "day_night.h"
 #include "constants/rgb.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "overworld.h"
 #include "palette.h"
 #include "rtc.h"
 #include "strings.h"
+#include "string_util.h"
 
 #define TINT_MORNING Q_8_8(0.9), Q_8_8(0.8), Q_8_8(1.0)
 #define TINT_AFTERNOON Q_8_8(1.0), Q_8_8(0.6), Q_8_8(0.67)
@@ -66,6 +68,14 @@ u8 GetTimeOfDay(void)
 const u8 *GetDayOfWeekString(void)
 {
     return gDayOfWeekTable[gLocalTime.dayOfWeek];
+}
+
+void CopyDayOfWeekStringToVar1(void)
+{
+    if (gSpecialVar_0x8004 <= DAY_SATURDAY)
+        StringCopy(gStringVar1, gDayOfWeekTable[gSpecialVar_0x8004]);
+    else
+        StringCopy(gStringVar1, gText_None);
 }
 
 u8 GetTimeOfDayWithModifiers(void)

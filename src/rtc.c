@@ -317,6 +317,13 @@ void RtcCalcLocalTimeOffset(s32 days, s32 hours, s32 minutes, s32 seconds)
     RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
 }
 
+void RtcSetDayOfWeek(s8 dayOfWeek)
+{
+    gLocalTime.dayOfWeek = dayOfWeek;
+    RtcGetInfo(&sRtc);
+    RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
+}
+
 void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2)
 {
     result->seconds = t2->seconds - t1->seconds;

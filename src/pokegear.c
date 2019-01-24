@@ -593,6 +593,8 @@ static void Task_Pokegear1(u8 taskId)
 {
     if (gTasks[taskId].data[0]++ > 10)
     {
+        sPokegearStruct.canSwitchCards = FALSE;
+        sPokegearStruct.twentyFourHourMode = FlagGet(FLAG_SYS_POKEGEAR_24HR);
         gTasks[taskId].tCurrentPos = CARD_SLIDE_RIGHT_X;
         gTasks[taskId].func = Task_Pokegear1_1;
     }
@@ -607,7 +609,6 @@ static void Task_Pokegear1_1(u8 taskId)
     if (tCurrentPos > 0)
     {
         SetGpuReg(REG_OFFSET_BG1HOFS, 512 - tCurrentPos);
-
     }
     else
     {
@@ -928,7 +929,10 @@ static void Task_ClockCard(u8 taskId)
     {
         PlaySE(SE_SELECT);
         sPokegearStruct.twentyFourHourMode = !sPokegearStruct.twentyFourHourMode;
-        //FlagSet(FLAG_POKEGEAR_24HR);
+        if (sPokegearStruct.twentyFourHourMode)
+            FlagSet(FLAG_SYS_POKEGEAR_24HR);
+        else
+            FlagClear(FLAG_SYS_POKEGEAR_24HR);
     }
 
     if (gTasks[taskId].tDayOfWeek != gLocalTime.dayOfWeek)
