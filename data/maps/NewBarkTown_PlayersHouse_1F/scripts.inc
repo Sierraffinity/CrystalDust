@@ -58,22 +58,6 @@ NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA: @ 81F77EA
 	@map_script_2 VAR_0x4082, 3, NewBarkTown_PlayersHouse_1F_EventScript_292AF2
 	.2byte 0
 
-NewBarkTown_PlayersHouse_1F_EventScript_1F7814:: @ 81F7814
-	lockall
-	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7B67, MSGBOX_DEFAULT
-	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_1F783A
-	applymovement 1, NewBarkTown_PlayersHouse_1F_Movement_1F783A
-	waitmovement 0
-	warp MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F, 255, 7, 1
-	waitstate
-	releaseall
-	end
-
-NewBarkTown_PlayersHouse_1F_Movement_1F783A: @ 81F783A
-	walk_up
-	step_end
-
 NewBarkTown_PlayersHouse_1F_MomEncounter:
 	lockall
 	textcolor MSG_COLOR_RED
@@ -145,72 +129,17 @@ NewBarkTown_PlayersHouse_1F_PostGearInstructions:
 	releaseall
 	end
 
-NewBarkTown_PlayersHouse_1F_MomElmIntro:
-	.string "MOM: Oh, {PLAYER}…!\n"
-	.string "Our neighbor, PROF. ELM, was\l"
-	.string "looking for you.\p"
-	.string "He said he wanted you to do\n"
-	.string "something for him.\p"
-	.string "Oh, I almost forgot! Your POKéMON\n"
-	.string "GEAR is back from the repair shop.\p"
-	.string "Here you go!$"
-
-NewBarkTown_PlayersHouse_1F_PlayerGetsPokegear:
-	.string "{PLAYER} received the POKéGEAR.$"
-
-NewBarkTown_PlayersHouse_1F_MomPokegearEssential:
-	.string "POKéMON GEAR, or just POKéGEAR.\n"
-	.string "It's essential if you want to be\l"
-	.string "a good TRAINER.\p"
-	.string "Oh, the day of the week isn't set.\n"
-	.string "You mustn't forget that!$"
-
-NewBarkTown_PlayersHouse_1F_WhatDayIsIt:
-	.string "What day is it?$"
-
-NewBarkTown_PlayersHouse_1F_DayConfirmation:
-	.string "{STR_VAR_1}, is it?$"
-
-NewBarkTown_PlayersHouse_1F_DaylightSaving:
-	.string "Is it Daylight Saving Time now?$"
-
-NewBarkTown_PlayersHouse_1F_DaylightSavingOff:
-	.string "{STR_VAR_1}, is that correct?$"
-
-NewBarkTown_PlayersHouse_1F_DaylightSavingOn:
-	.string "{STR_VAR_1} DST, is that correct?$"
-
-NewBarkTown_PlayersHouse_1F_ComeHomeToAdjustClock:
-	.string "Come home to adjust your clock for\n"
-	.string "Daylight Saving Time.\p"
-	.string "By the way, do you know how to\n"
-	.string "use the PHONE?$"
-
-NewBarkTown_PlayersHouse_1F_GearInstructionsYes:
-	.string "Don't you just turn the POKéGEAR on\n"
-	.string "and select the PHONE icon?\p"
-	.string "“Phone numbers are stored in memory.\n"
-	.string "Just choose who you want to call.”\p"
-	.string "Gee, isn't that convenient?$"
-
-NewBarkTown_PlayersHouse_1F_GearInstructionsNo:
-	.string "I'll read the instructions.\p"
-	.string "“Turn the POKéGEAR on and select\n"
-	.string "the PHONE icon by scrolling down.\p"
-	.string "“Phone numbers are stored in memory.\n"
-	.string "Just choose who you want to call.”\p"
-	.string "Gee, isn't that convenient?$"
-
 NewBarkTown_PlayersHouse_1F_MomWalkToPlayer:
-	walk_right
 	walk_up
+	walk_right
 	walk_up
 	step_end
 
 NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer:
 	walk_down
-	walk_down
 	walk_left
+	walk_down
+	face_left
 	step_end
 
 NewBarkTown_PlayersHouse_1F_EventScript_1F783C:: @ 81F783C
@@ -432,6 +361,62 @@ NewBarkTown_PlayersHouse_1F_Movement_1F7A16: @ 81F7A16
 	walk_up
 	walk_up
 	step_end
+
+NewBarkTown_PlayersHouse_1F_MomElmIntro:
+	.string "MOM: Oh, {PLAYER}…!\n"
+	.string "Our neighbor, PROF. ELM, was\l"
+	.string "looking for you.\p"
+	.string "He said he wanted you to do\n"
+	.string "something for him.\p"
+	.string "Oh, I almost forgot! Your POKéMON\n"
+	.string "GEAR is back from the repair shop.\p"
+	.string "Here you go!$"
+
+NewBarkTown_PlayersHouse_1F_PlayerGetsPokegear:
+	.string "{PLAYER} received the POKéGEAR.$"
+
+NewBarkTown_PlayersHouse_1F_MomPokegearEssential:
+	.string "POKéMON GEAR, or just POKéGEAR.\n"
+	.string "It's essential if you want to be\l"
+	.string "a good TRAINER.\p"
+	.string "Oh, the day of the week isn't set.\n"
+	.string "You mustn't forget that!$"
+
+NewBarkTown_PlayersHouse_1F_WhatDayIsIt:
+	.string "What day is it?$"
+
+NewBarkTown_PlayersHouse_1F_DayConfirmation:
+	.string "{STR_VAR_1}, is it?$"
+
+NewBarkTown_PlayersHouse_1F_DaylightSaving:
+	.string "Is it Daylight Saving Time now?$"
+
+NewBarkTown_PlayersHouse_1F_DaylightSavingOff:
+	.string "{STR_VAR_1}, is that correct?$"
+
+NewBarkTown_PlayersHouse_1F_DaylightSavingOn:
+	.string "{STR_VAR_1} DST, is that correct?$"
+
+NewBarkTown_PlayersHouse_1F_ComeHomeToAdjustClock:
+	.string "Come home to adjust your clock for\n"
+	.string "Daylight Saving Time.\p"
+	.string "By the way, do you know how to\n"
+	.string "use the PHONE?$"
+
+NewBarkTown_PlayersHouse_1F_GearInstructionsYes:
+	.string "Don't you just turn the POKéGEAR on\n"
+	.string "and select the PHONE icon?\p"
+	.string "“Phone numbers are stored in memory.\n"
+	.string "Just choose who you want to call.”\p"
+	.string "Gee, isn't that convenient?$"
+
+NewBarkTown_PlayersHouse_1F_GearInstructionsNo:
+	.string "I'll read the instructions.\p"
+	.string "“Turn the POKéGEAR on and select\n"
+	.string "the PHONE icon by scrolling down.\p"
+	.string "“Phone numbers are stored in memory.\n"
+	.string "Just choose who you want to call.”\p"
+	.string "Gee, isn't that convenient?$"
 
 NewBarkTown_PlayersHouse_1F_Text_1F7A1C: @ 81F7A1C
 	.string "MOM: See, {PLAYER}?\n"
