@@ -28,6 +28,8 @@ static const u8 sTextWindowFrame18_Gfx[] = INCBIN_U8("graphics/text_window/18.4b
 static const u8 sTextWindowFrame19_Gfx[] = INCBIN_U8("graphics/text_window/19.4bpp");
 static const u8 sTextWindowFrame20_Gfx[] = INCBIN_U8("graphics/text_window/20.4bpp");
 
+static const u8 sTextWindowFrameThin_Gfx[] = INCBIN_U8("graphics/text_window/thin.4bpp");
+
 const u16 gTextWindowFrame1_Pal[] = INCBIN_U16("graphics/text_window/1.gbapal");
 static const u16 sTextWindowFrame2_Pal[] = INCBIN_U16("graphics/text_window/2.gbapal");
 static const u16 sTextWindowFrame3_Pal[] = INCBIN_U16("graphics/text_window/3.gbapal");
@@ -101,6 +103,12 @@ void LoadSignMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gSignMessageBox_Gfx, 0x260, destOffset);
     LoadPalette(stdpal_get(1), palOffset, 0x20);
+}
+
+void LoadThinWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)
+{
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sTextWindowFrameThin_Gfx, 0x120, destOffset);
+    LoadPalette(stdpal_get(3), palOffset, 0x20);
 }
 
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)

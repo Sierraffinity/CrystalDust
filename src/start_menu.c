@@ -201,7 +201,7 @@ static const struct WindowTemplate sUnknown_085105AC[] =
     DUMMY_WIN_TEMPLATE
 };
 
-static const struct WindowTemplate sSaveInfoWindowTemplate = {0, 1, 1, 0xE, 0xA, 0xF, 8};
+static const struct WindowTemplate sSaveInfoWindowTemplate = {0, 1, 1, 14, 9, 0xF, 8};
 
 // Local functions
 static void BuildStartMenuActions(void);
@@ -1328,13 +1328,9 @@ static void ShowSaveInfoWindow(void)
     u32 xOffset;
     u32 yOffset;
 
-    if (!FlagGet(FLAG_SYS_POKEDEX_GET))
-    {
-        saveInfoWindow.height -= 2;
-    }
-
     sSaveInfoWindowId = AddWindow(&saveInfoWindow);
-    NewMenuHelpers_DrawStdWindowFrame(sSaveInfoWindowId, FALSE);
+    LoadThinWindowBorderGfx(sSaveInfoWindowId, 0x21D, 0xD0);
+    SetWindowBorderStyle(sSaveInfoWindowId, FALSE, 0x21D, 13);
 
     gender = gSaveBlock2Ptr->playerGender;
     color = TEXT_COLOR_RED;  // Red when female, blue when male.
@@ -1345,40 +1341,37 @@ static void ShowSaveInfoWindow(void)
     }
 
     // Print region name
-    yOffset = 1;
-    sub_819A344(3, gStringVar4, TEXT_COLOR_GREEN);
-    AddTextPrinterParameterized(sSaveInfoWindowId, 1, gStringVar4, 0, yOffset, 0xFF, NULL);
+    yOffset = 0;
+    sub_819A344(3, gStringVar4, color);
+    xOffset = GetStringCenterAlignXOffset(1, gStringVar4, 0x70);
+    AddTextPrinterParameterized(sSaveInfoWindowId, 1, gStringVar4, xOffset, yOffset, 0xFF, NULL);
 
     // Print player name
-    yOffset = 0x11;
-    AddTextPrinterParameterized(sSaveInfoWindowId, 1, gText_SavingPlayer, 0, yOffset, 0xFF, NULL);
-    sub_819A344(0, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(1, gStringVar4, 0x70);
-    PrintPlayerNameOnWindow(sSaveInfoWindowId, gStringVar4, xOffset, yOffset);
+    yOffset = 14;
+    AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingPlayer, 2, yOffset, 0xFF, NULL);
+    sub_819A344(0, gStringVar4, TEXT_COLOR_DARK_GREY);
+    PrintPlayerNameOnWindow(sSaveInfoWindowId, gStringVar4, 60, yOffset);
 
     // Print badge count
-    yOffset = 0x21;
-    AddTextPrinterParameterized(sSaveInfoWindowId, 1, gText_SavingBadges, 0, yOffset, 0xFF, NULL);
-    sub_819A344(4, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(1, gStringVar4, 0x70);
-    AddTextPrinterParameterized(sSaveInfoWindowId, 1, gStringVar4, xOffset, yOffset, 0xFF, NULL);
+    yOffset = 28;
+    AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingBadges, 2, yOffset, 0xFF, NULL);
+    sub_819A344(4, gStringVar4, TEXT_COLOR_DARK_GREY);
+    AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, 0xFF, NULL);
 
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
     {
         // Print pokedex count
-        yOffset = 0x31;
-        AddTextPrinterParameterized(sSaveInfoWindowId, 1, gText_SavingPokedex, 0, yOffset, 0xFF, NULL);
-        sub_819A344(1, gStringVar4, color);
-        xOffset = GetStringRightAlignXOffset(1, gStringVar4, 0x70);
-        AddTextPrinterParameterized(sSaveInfoWindowId, 1, gStringVar4, xOffset, yOffset, 0xFF, NULL);
+        yOffset = 42;
+        AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingPokedex, 2, yOffset, 0xFF, NULL);
+        sub_819A344(1, gStringVar4, TEXT_COLOR_DARK_GREY);
+        AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, 0xFF, NULL);
     }
 
     // Print play time
-    yOffset += 0x10;
-    AddTextPrinterParameterized(sSaveInfoWindowId, 1, gText_SavingTime, 0, yOffset, 0xFF, NULL);
-    sub_819A344(2, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(1, gStringVar4, 0x70);
-    AddTextPrinterParameterized(sSaveInfoWindowId, 1, gStringVar4, xOffset, yOffset, 0xFF, NULL);
+    yOffset += 14;
+    AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingTime, 2, yOffset, 0xFF, NULL);
+    sub_819A344(2, gStringVar4, TEXT_COLOR_DARK_GREY);
+    AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, 0xFF, NULL);
 
     CopyWindowToVram(sSaveInfoWindowId, 2);
 }
