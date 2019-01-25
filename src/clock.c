@@ -90,6 +90,8 @@ void StartWallClock(void)
 
 u8* WriteTimeString(u8 *dest, u8 hours, u8 minutes, bool8 twentyFourHourMode, bool8 shouldWriteAMPM)
 {
+    bool8 isPM = FALSE;
+
     if (!twentyFourHourMode)
     {
         if (hours == 0)
@@ -98,6 +100,7 @@ u8* WriteTimeString(u8 *dest, u8 hours, u8 minutes, bool8 twentyFourHourMode, bo
         }
         else if (hours > 12)
         {
+            isPM = TRUE;
             hours -= 12;
         }
     }
@@ -110,10 +113,10 @@ u8* WriteTimeString(u8 *dest, u8 hours, u8 minutes, bool8 twentyFourHourMode, bo
     {
         *dest++ = CHAR_SPACE;
 
-        if (hours < 12)
-            *dest++ = CHAR_A;
-        else
+        if (isPM)
             *dest++ = CHAR_P;
+        else
+            *dest++ = CHAR_A;
 
         *dest++ = CHAR_M;
     }
