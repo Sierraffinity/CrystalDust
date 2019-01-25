@@ -1613,6 +1613,26 @@ static bool8 IsPicboxClosed(void)
         return FALSE;
 }
 
+void ForceClearPokemonPicWindow(void)
+{
+    u8 taskId = FindTaskIdByFunc(Task_PokemonPicWindow);
+
+    if (taskId != 0xFF)
+    {
+        switch (gTasks[taskId].data[0])
+        {
+            case 0:
+            case 1:
+            case 2:
+                FreeResourcesAndDestroySprite(&gSprites[gTasks[taskId].tMonSpriteId], gTasks[taskId].tMonSpriteId);
+            case 3:
+                sub_80E2A78(gTasks[taskId].tWindowId);
+                DestroyTask(taskId);
+                break;
+        }
+    }
+}
+
 #undef tState
 #undef tMonSpecies
 #undef tMonSpriteId

@@ -202,8 +202,8 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_textcolor
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_nop1
-	.4byte ScrCmd_nop1
-	.4byte ScrCmd_nop1
+	.4byte ScrCmd_signmsg
+	.4byte ScrCmd_normalmsg
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_setmonobedient
 	.4byte ScrCmd_checkmonobedience

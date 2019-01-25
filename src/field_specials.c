@@ -1589,6 +1589,14 @@ bool8 MonOTNameMatchesPlayer(void)
     return TRUE;
 }
 
+void PrintNullStringAndClearPokemonPicWindow(void)
+{
+    u8 string[16];
+    string[0] = EOS;
+    AddTextPrinterParameterized(0, 2, string, 0, 1, 0, NULL);
+    ForceClearPokemonPicWindow();
+}
+
 void BufferLottoTicketNumber(void)
 {
     if (gSpecialVar_Result >= 10000)

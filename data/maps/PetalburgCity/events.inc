@@ -29,11 +29,7 @@ PetalburgCity_MapCoordEvents::
 
 PetalburgCity_MapBGEvents::
 	bg_event 20, 19, 0, BG_EVENT_PLAYER_FACING_ANY, PetalburgCity_EventScript_1DC476
-	bg_event 12, 19, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E6A
-	bg_event 36, 28, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E73
 	bg_event 31, 23, 0, BG_EVENT_PLAYER_FACING_ANY, PetalburgCity_EventScript_1DC47F
-	bg_event 37, 28, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E73
-	bg_event 13, 19, 0, BG_EVENT_PLAYER_FACING_NORTH, PetalburgCity_EventScript_271E6A
 	bg_event 34, 19, 0, BG_EVENT_PLAYER_FACING_ANY, PetalburgCity_EventScript_1DC491
 	bg_hidden_item_event 11, 29, 3, ITEM_RARE_CANDY, FLAG_HIDDEN_ITEM_PETALBURG_CITY_RARE_CANDY
 

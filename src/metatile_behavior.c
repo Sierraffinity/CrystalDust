@@ -136,11 +136,11 @@ static const u8 sTileBitAttributes[] =
     [MB_ROUTE120_SOUTH_BRIDGE_2] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_ROUTE120_NORTH_BRIDGE_3] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_ROUTE120_NORTH_BRIDGE_4] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
-    [MB_UNUSED_7E] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
+    [MB_SIGNPOST] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_ROUTE110_BRIDGE] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_COUNTER] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_81] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_82] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_POKEMON_CENTER_SIGN] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_POKEMART_SIGN] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_PC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_CABLE_BOX_RESULTS_1] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_REGION_MAP] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -943,7 +943,7 @@ bool8 MetatileBehavior_IsFootprints(u8 metatileBehavior)
 bool8 MetatileBehavior_IsBridge(u8 metatileBehavior)
 {
     if ((metatileBehavior == MB_WARP_OR_BRIDGE || metatileBehavior == MB_UNUSED_71 || metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_1 || metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_2)
-        || (metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_3 || metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_4 || metatileBehavior == MB_UNUSED_7E || metatileBehavior == MB_ROUTE110_BRIDGE))
+        || (metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_3 || metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_4 || metatileBehavior == MB_ROUTE110_BRIDGE))
         return TRUE;
     else
         return FALSE;
@@ -1444,6 +1444,30 @@ bool8 MetatileBehavior_IsBookShelf(u8 metatileBehavior)
 bool8 MetatileBehavior_IsPokeCenterBookShelf(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_POKEMON_CENTER_BOOKSHELF)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsPlayerFacingPokemonCenterSign(u8 metatileBehavior, u8 playerDirection)
+{
+    if (playerDirection != DIR_NORTH || metatileBehavior != MB_POKEMON_CENTER_SIGN)
+        return FALSE;
+
+    return TRUE;
+}
+
+bool8 MetatileBehavior_IsPlayerFacingPokeMartSign(u8 metatileBehavior, u8 playerDirection)
+{
+    if (playerDirection != DIR_NORTH || metatileBehavior != MB_POKEMART_SIGN)
+        return FALSE;
+
+    return TRUE;
+}
+
+bool8 MetatileBehavior_IsSignpost(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SIGNPOST)
         return TRUE;
     else
         return FALSE;

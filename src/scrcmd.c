@@ -2153,6 +2153,18 @@ bool8 ScrCmd_takecoins(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_signmsg(struct ScriptContext *ctx)
+{
+    TextboxUseSignBorder();
+    return FALSE;
+}
+
+bool8 ScrCmd_normalmsg(struct ScriptContext *ctx)
+{
+    TextboxUseStandardBorder();
+    return FALSE;
+}
+
 bool8 ScrCmd_mossdeepgym1(struct ScriptContext *ctx)
 {
     u16 v1 = VarGet(ScriptReadHalfword(ctx));

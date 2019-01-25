@@ -6,6 +6,8 @@ struct ScriptContext;
 typedef bool8 (*ScrCmdFunc)(struct ScriptContext *);
 typedef u8 Script[];
 
+extern u8 gExitFromScriptEarlyWaitTimer;
+
 struct ScriptContext
 {
     u8 stackDepth;
@@ -60,5 +62,11 @@ const u8 *GetRamScript(u8 objectId, const u8 *script);
 bool32 sub_80991F8(void);
 u8 *sub_8099244(void);
 void sub_80992A0(u8 *script, u16 scriptSize);
+void EnableExitingFromScriptEarly(void);
+void DisableExitingFromScriptEarly(void);
+bool8 CanExitScriptEarly(void);
+void TextboxUseSignBorder(void);
+void TextboxUseStandardBorder(void);
+bool8 DoesTextboxUseSignBorder(void);
 
 #endif // GUARD_SCRIPT_H

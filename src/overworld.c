@@ -1491,6 +1491,7 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
     sub_808B578();
     FieldClearPlayerInput(&inputStruct);
     FieldGetPlayerInput(&inputStruct, newKeys, heldKeys);
+    CheckEarlyScriptExit(&inputStruct);
     if (!ScriptContext2_IsEnabled())
     {
         if (ProcessPlayerFieldInput(&inputStruct) == 1)

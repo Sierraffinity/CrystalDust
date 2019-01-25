@@ -1112,6 +1112,11 @@ RestoreOriginalTextColor:
 	copyvar VAR_TEXT_COLOR VAR_TEXT_COLOR_BACKUP
 	return
 
+ClearPokepicAndTextboxForEarlyScriptExit::
+	special PrintNullStringAndClearPokemonPicWindow
+	release
+	end
+
 EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
 	special sub_81AFDD0
 	setflag FLAG_IS_CHAMPION
@@ -1698,6 +1703,7 @@ EventScript_271E54:: @ 8271E54
 	goto EventScript_271DBC
 	end
 
+PokemonMartSign::
 BattleFrontier_OutsideWest_EventScript_271E6A:: @ 8271E6A
 FallarborTown_EventScript_271E6A:: @ 8271E6A
 FortreeCity_EventScript_271E6A:: @ 8271E6A
@@ -1713,6 +1719,7 @@ VerdanturfTown_EventScript_271E6A:: @ 8271E6A
 	msgbox gUnknown_08272B6A, MSGBOX_SIGN
 	end
 
+PokemonCenterSign::
 BattleFrontier_OutsideEast_EventScript_271E73:: @ 8271E73
 DewfordTown_EventScript_271E73:: @ 8271E73
 EverGrandeCity_EventScript_271E73:: @ 8271E73

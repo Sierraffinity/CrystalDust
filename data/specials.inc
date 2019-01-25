@@ -356,7 +356,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80EE2CC
 	def_special sub_80EE72C
 	def_special sub_80EE7C0
-	def_special nullsub_55
+	def_special PrintNullStringAndClearPokemonPicWindow
 	def_special PutFanClubSpecialOnTheAir
 	def_special sub_80EED10
 	def_special sub_80EED34

@@ -1,9 +1,11 @@
 #ifndef GUARD_EVENT_SCRIPTS_H
 #define GUARD_EVENT_SCRIPTS_H
 
+extern const u8 PokemonCenterSign[];
+extern const u8 PokemonMartSign[];
+
 extern const u8 gUnknown_0823B4E8[];
 extern const u8 gUnknown_0823B5E9[];
-extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_TryGetTrainerScript[];
 extern const u8 EventScript_275BB7[];
 extern const u8 EventScript_275D0C[];

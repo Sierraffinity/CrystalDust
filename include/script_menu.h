@@ -14,5 +14,6 @@ u8 CreateWindowFromRect(u8, u8, u8, u8);
 void sub_80E2A78(u8);
 int display_text_and_get_width(const u8*, int);
 int sub_80E2D5C(int arg0, int tileWidth);
+void ForceClearPokemonPicWindow(void);
 
 #endif //GUARD_SCRIPT_MENU_H

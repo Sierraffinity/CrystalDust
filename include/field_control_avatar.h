@@ -38,5 +38,6 @@ bool8 dive_warp(struct MapPosition *position, u16 b);
 int SetCableClubWarp(void);
 u8 TrySetDiveWarp(void);
 bool8 IsStaircaseWarpMetatileBehavior(u16 metatileBehavior, u8 direction);
+void CheckEarlyScriptExit(struct FieldInput *input);
 
 #endif // GUARD_FIELDCONTROLAVATAR_H
