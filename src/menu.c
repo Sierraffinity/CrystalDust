@@ -225,6 +225,12 @@ void sub_81973A4(void)
     LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM * 0x10);
 }
 
+void sub_80F79A4(void)
+{
+    LoadSignMessageBoxGfx(0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM * 0x10);
+    LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM * 0x10);
+}
+
 void NewMenuHelpers_DrawDialogueFrame(u8 windowId, bool8 copyToVram)
 {
     CallWindowFunction(windowId, DrawDialogueFrame);
@@ -478,35 +484,35 @@ void DrawDialogueFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height
                             1,
                             DLG_WINDOW_PALETTE_NUM);
     FillBgTilemapBufferRect(bg,
-                            BG_TILE_V_FLIP(DLG_WINDOW_BASE_TILE_NUM),
+                            DLG_WINDOW_BASE_TILE_NUM + 14,
                             tilemapLeft - 2,
                             tilemapTop + 4,
                             1,
                             1,
                             DLG_WINDOW_PALETTE_NUM);
     FillBgTilemapBufferRect(bg,
-                            BG_TILE_V_FLIP(DLG_WINDOW_BASE_TILE_NUM + 1),
+                            DLG_WINDOW_BASE_TILE_NUM + 15,
                             tilemapLeft - 1,
                             tilemapTop + 4,
                             1,
                             1,
                             DLG_WINDOW_PALETTE_NUM);
     FillBgTilemapBufferRect(bg,
-                            BG_TILE_V_FLIP(DLG_WINDOW_BASE_TILE_NUM + 2),
+                            DLG_WINDOW_BASE_TILE_NUM + 16,
                             tilemapLeft,
                             tilemapTop + 4,
                             width,
                             1,
                             DLG_WINDOW_PALETTE_NUM);
     FillBgTilemapBufferRect(bg,
-                            BG_TILE_V_FLIP(DLG_WINDOW_BASE_TILE_NUM + 3),
+                            DLG_WINDOW_BASE_TILE_NUM + 17,
                             tilemapLeft + width,
                             tilemapTop + 4,
                             1,
                             1,
                             DLG_WINDOW_PALETTE_NUM);
     FillBgTilemapBufferRect(bg,
-                            BG_TILE_V_FLIP(DLG_WINDOW_BASE_TILE_NUM + 4),
+                            DLG_WINDOW_BASE_TILE_NUM + 18,
                             tilemapLeft + width + 1,
                             tilemapTop + 4,
                             1,

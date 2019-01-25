@@ -383,9 +383,6 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
 
     switch (bgEvent->kind)
     {
-    case BG_EVENT_PLAYER_FACING_ANY:
-    default:
-        return bgEvent->bgUnion.script;
     case BG_EVENT_PLAYER_FACING_NORTH:
         if (direction != DIR_NORTH)
             return NULL;

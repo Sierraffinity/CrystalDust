@@ -9,7 +9,7 @@ extern const u32 gPokegear_GridMap[];
 
 // overworld
 extern const u32 gMessageBox_Gfx[];
-extern const u16 gMessageBox_Pal[];
+extern const u32 gSignMessageBox_Gfx[];
 
 // interface pokeballs
 extern const u32 gInterfaceGfx_PokeBall[];

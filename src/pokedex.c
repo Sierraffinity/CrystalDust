@@ -1864,7 +1864,7 @@ static void LoadPokedexBgPalette(u8 a)
         LoadPalette(gPokedexText_Pal + 1, 1, 0xBE);
     else
         LoadPalette(gPokedexNationalBg_Pal + 1, 1, 0xBE);
-    LoadPalette(GetOverworldTextboxPalettePtr(), 0xF0, 32);
+    LoadPalette(stdpal_get(0), 0xF0, 32);
 }
 
 void sub_80BC890(void)

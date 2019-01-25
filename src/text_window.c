@@ -93,8 +93,14 @@ const struct TilesPal *GetWindowFrameTilesPal(u8 id)
 
 void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
-    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x1C0, destOffset);
-    LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, 0x20);
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x280, destOffset);
+    LoadPalette(stdpal_get(0), palOffset, 0x20);
+}
+
+void LoadSignMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
+{
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gSignMessageBox_Gfx, 0x260, destOffset);
+    LoadPalette(stdpal_get(1), palOffset, 0x20);
 }
 
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)
@@ -183,11 +189,6 @@ const u16 *stdpal_get(u8 id)
     }
 
     return (const u16 *)(sUnknown_0851017C) + id;
-}
-
-const u16 *GetOverworldTextboxPalettePtr(void)
-{
-    return gMessageBox_Pal;
 }
 
 void sub_8098C6C(u8 bg, u16 destOffset, u8 palOffset)

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "menu.h"
+#include "script.h"
 #include "string.h"
 #include "string_util.h"
 #include "task.h"
@@ -29,13 +30,16 @@ static void sub_8098154(u8 taskId)
     switch (task->data[0])
     {
         case 0:
-           sub_81973A4();
-           task->data[0]++;
-           break;
+            if (!DoesTextboxUseSignBorder())
+                sub_81973A4();
+            else
+                sub_80F79A4();
+            task->data[0]++;
+            break;
         case 1:
-           NewMenuHelpers_DrawDialogueFrame(0, 1);
-           task->data[0]++;
-           break;
+            NewMenuHelpers_DrawDialogueFrame(0, 1);
+            task->data[0]++;
+            break;
         case 2:
             if (RunTextPrintersAndIsPrinter0Active() != 1)
             {

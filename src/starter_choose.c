@@ -410,7 +410,7 @@ void CB2_ChooseStarter(void)
     FreeAllSpritePalettes();
     ResetAllPicSprites();
 
-    LoadPalette(GetOverworldTextboxPalettePtr(), 0xE0, 0x20);
+    LoadPalette(stdpal_get(0), 0xE0, 0x20);
     LoadPalette(gBirchBagGrassPal, 0, 0x40);
     LoadCompressedSpriteSheet(&gUnknown_085B1ED8[0]);
     LoadCompressedSpriteSheet(&gUnknown_085B1EE8[0]);

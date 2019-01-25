@@ -1533,8 +1533,8 @@ const u16 gUnknown_08DDCF04[] = INCBIN_U16("graphics/unknown/unknown_DDCF04.bin"
 
 const u16 gUnknown_08DDD704[] = INCBIN_U16("graphics/unknown/unknown_DDD704.bin"); // textbox tilemap??
 
-const u16 gMessageBox_Pal[] = INCBIN_U16("graphics/text_window/message_box.gbapal");
 const u8 gMessageBox_Gfx[] = INCBIN_U8("graphics/text_window/message_box.4bpp");
+const u8 gSignMessageBox_Gfx[] = INCBIN_U8("graphics/text_window/message_box_sign.4bpp");
 
 const u32 gWallpaperIcon_Cross[] = INCBIN_U32("graphics/pokemon_storage/cross_icon.4bpp.lz");
 const u32 gWallpaperIcon_Bolt[] = INCBIN_U32("graphics/pokemon_storage/bolt_icon.4bpp.lz");

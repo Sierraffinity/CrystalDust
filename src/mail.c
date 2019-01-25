@@ -364,7 +364,7 @@ static bool8 MailReadBuildGraphics(void)
             CopyBgTilemapBufferToVram(2);
             break;
         case 12:
-            LoadPalette(GetOverworldTextboxPalettePtr(), 240, 32);
+            LoadPalette(stdpal_get(0), 240, 32);
             gPlttBufferUnfaded[250] = sUnknown_0859F2B8[sMailRead->mailType].color10;
             gPlttBufferFaded[250] = sUnknown_0859F2B8[sMailRead->mailType].color10;
             gPlttBufferUnfaded[251] = sUnknown_0859F2B8[sMailRead->mailType].color12;
