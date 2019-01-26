@@ -134,7 +134,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
    }
 };
 
-static const u16 sUnknown_0855C6A0[] = {0x7E51};
+static const u16 sUnknown_0855C6A0[] = {0};
 
 // code
 static void MainCB2(void)
@@ -199,6 +199,8 @@ void CB2_InitOptionMenu(void)
         break;
     case 3:
         LoadBgTiles(1, GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1A2);
+        LoadThinWindowBorderGfx(0, 0x21D, 0xD0);
+        SetWindowBorderStyle(0, FALSE, 0x21D, 13);
         gMain.state++;
         break;
     case 4:
@@ -207,7 +209,7 @@ void CB2_InitOptionMenu(void)
         gMain.state++;
         break;
     case 5:
-        LoadPalette(sUnknown_0855C604, 0x10, sizeof(sUnknown_0855C604));
+        LoadPalette(stdpal_get(0), 0x10, 0x20);
         gMain.state++;
         break;
     case 6:
@@ -390,8 +392,8 @@ static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
 
     if (style != 0)
     {
-        dst[2] = 4;
-        dst[5] = 5;
+        dst[2] = 5;
+        dst[5] = 4;
     }
 
     dst[i] = EOS;
@@ -550,20 +552,18 @@ static void FrameType_DrawChoices(u8 selection)
     for (i = 0; gText_FrameTypeNumber[i] != EOS && i <= 5; i++)
         text[i] = gText_FrameTypeNumber[i];
 
+    text[i++] = CHAR_SPACE;
+
     // Convert a number to decimal string
     if (n / 10 != 0)
     {
-        text[i] = n / 10 + CHAR_0;
-        i++;
-        text[i] = n % 10 + CHAR_0;
-        i++;
+        text[i++] = n / 10 + CHAR_0;
+        text[i++] = n % 10 + CHAR_0;
     }
     else
     {
-        text[i] = n % 10 + CHAR_0;
-        i++;
-        text[i] = 0x77;
-        i++;
+        text[i++] = n % 10 + CHAR_0;
+        text[i++] = CHAR_SPACE;
     }
 
     text[i] = EOS;
@@ -640,14 +640,14 @@ static void DrawOptionMenuTexts(void)
 static void sub_80BB154(void)
 {
     //                   bg, tileNum, x,    y,    width, height,  pal
-    FillBgTilemapBufferRect(1, 0x1A2, 1,    0,      1,      1,      7);
+    /*FillBgTilemapBufferRect(1, 0x1A2, 1,    0,      1,      1,      7);
     FillBgTilemapBufferRect(1, 0x1A3, 2,    0,      0x1B,   1,      7);
     FillBgTilemapBufferRect(1, 0x1A4, 28,   0,      1,      1,      7);
     FillBgTilemapBufferRect(1, 0x1A5, 1,    1,      1,      2,      7);
     FillBgTilemapBufferRect(1, 0x1A7, 28,   1,      1,      2,      7);
     FillBgTilemapBufferRect(1, 0x1A8, 1,    3,      1,      1,      7);
     FillBgTilemapBufferRect(1, 0x1A9, 2,    3,      0x1B,   1,      7);
-    FillBgTilemapBufferRect(1, 0x1AA, 28,   3,      1,      1,      7);
+    FillBgTilemapBufferRect(1, 0x1AA, 28,   3,      1,      1,      7);*/
     FillBgTilemapBufferRect(1, 0x1A2, 1,    4,      1,      1,      7);
     FillBgTilemapBufferRect(1, 0x1A3, 2,    4,      0x1A,   1,      7);
     FillBgTilemapBufferRect(1, 0x1A4, 28,   4,      1,      1,      7);
