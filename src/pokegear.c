@@ -650,12 +650,16 @@ static void LoadCardSprites(u8 taskId)
                 gSprites[spriteId].pos1.x += 8;
                 break;
             case MapCard:
+                if (!FlagGet(FLAG_MAP_CARD))
+                    gSprites[spriteId].invisible = TRUE;
                 anim = GetCurrentRegion() + 1;
                 break;
             case PhoneCard:
                 anim = 4;
                 break;
             case RadioCard:
+                if (!FlagGet(FLAG_RADIO_CARD))
+                    gSprites[spriteId].invisible = TRUE;
                 anim = 5;
                 break;
         }
