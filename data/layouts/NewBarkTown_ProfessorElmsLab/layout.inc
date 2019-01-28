@@ -6,8 +6,8 @@ NewBarkTown_ProfessorElmsLab_MapBlockdata::
 
 	.align 2
 NewBarkTown_ProfessorElmsLab_Layout::
-	.4byte 0xd
-	.4byte 0xd
+	.4byte 13
+	.4byte 14
 	.4byte NewBarkTown_ProfessorElmsLab_MapBorder
 	.4byte NewBarkTown_ProfessorElmsLab_MapBlockdata
 	.4byte gTileset_Building

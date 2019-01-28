@@ -1,7 +1,7 @@
-NewBarkTown_OtherHouse::
-	.4byte NewBarkTown_OtherHouse_Layout
-	.4byte NewBarkTown_OtherHouse_MapEvents
-	.4byte NewBarkTown_OtherHouse_MapScripts
+NewBarkTown_NeighborsHouse::
+	.4byte NewBarkTown_NeighborsHouse_Layout
+	.4byte NewBarkTown_NeighborsHouse_MapEvents
+	.4byte NewBarkTown_NeighborsHouse_MapScripts
 	.4byte 0x0
 	.2byte MUS_NEWBARK
 	.2byte 57

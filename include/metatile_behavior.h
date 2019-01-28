@@ -52,6 +52,7 @@ bool8 MetatileBehavior_IsPlayerFacingPokeMartSign(u8 metatileBehavior, u8 player
 bool8 MetatileBehavior_IsCounter(u8);
 bool8 MetatileBehavior_IsPlayerFacingTVScreen(u8 tile, u8 playerDir);
 bool8 MetatileBehavior_IsWindow(u8);
+bool8 MetatileBehavior_IsRadio(u8);
 bool8 MetatileBehavior_IsPC(u8);
 bool8 MetatileBehavior_IsCableBoxResults1(u8);
 bool8 MetatileBehavior_IsOpenSecretBaseDoor(u8);

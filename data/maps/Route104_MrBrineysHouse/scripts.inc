@@ -82,7 +82,7 @@ Route104_MrBrineysHouse_EventScript_229E27:: @ 8229E27
 	setvar VAR_0x405A, 8
 	setvar VAR_0x4063, 2
 	setflag FLAG_HIDE_RUSBORO_CITY_RIVAL
-	setflag FLAG_HIDE_ROUTE_104_RIVAL
+	setflag 0
 	warp MAP_ROUTE104, 255, 13, 51
 	waitstate
 	releaseall

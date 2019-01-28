@@ -64,7 +64,7 @@
 #define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_1F   (0 | (1 << 8))
 #define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F   (1 | (1 << 8))
 #define MAP_NEW_BARK_TOWN_ELMS_HOUSE         (2 | (1 << 8))
-#define MAP_NEW_BARK_TOWN_OTHER_HOUSE        (3 | (1 << 8))
+#define MAP_NEW_BARK_TOWN_NEIGHBORS_HOUSE    (3 | (1 << 8))
 #define MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB (4 | (1 << 8))
 
 // Map Group 2

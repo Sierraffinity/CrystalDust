@@ -1520,7 +1520,7 @@ static void OverworldBasic(void)
     CameraUpdate();
     UpdateCameraPanning();
     BuildOamBuffer();
-    TintForDayNight();
+    RetintPalettesForDayNight();
     UpdatePaletteFade();
     sub_80A0A38();
     do_scheduled_bg_tilemap_copies_to_vram();

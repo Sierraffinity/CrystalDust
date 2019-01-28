@@ -1,61 +1,9 @@
 NewBarkTown_PlayersHouse_1F_MapScripts:: @ 81F7755
-	@map_script 1, NewBarkTown_PlayersHouse_1F_MapScript1_1F7765
-	@map_script 3, NewBarkTown_PlayersHouse_1F_MapScript1_1F77A4
 	map_script 2, NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA
 	.byte 0
 
-NewBarkTown_PlayersHouse_1F_MapScript1_1F7765: @ 81F7765
-	compare VAR_0x4092, 6
-	call_if_lt NewBarkTown_PlayersHouse_1F_EventScript_1F777A
-	call_if_set FLAG_RECEIVED_RUNNING_SHOES, NewBarkTown_PlayersHouse_1F_EventScript_1F778D
-	end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F777A:: @ 81F777A
-	setmetatile 5, 4, 624, 1
-	setmetatile 5, 2, 616, 1
-	return
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F778D:: @ 81F778D
-	checkplayergender
-	compare VAR_RESULT, 0
-	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F779A
-	return
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F779A:: @ 81F779A
-	setmetatile 3, 7, 659, 1
-	return
-
-NewBarkTown_PlayersHouse_1F_MapScript1_1F77A4: @ 81F77A4
-	compare VAR_0x4092, 3
-	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F77DE
-	compare VAR_0x4092, 5
-	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F77C6
-	compare VAR_0x4092, 6
-	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F77D2
-	end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F77C6:: @ 81F77C6
-	setobjectxyperm 1, 8, 4
-	setobjectmovementtype 1, 7
-	return
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F77D2:: @ 81F77D2
-	setobjectxyperm 1, 4, 5
-	setobjectmovementtype 1, 7
-	return
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F77DE:: @ 81F77DE
-	setobjectxyperm 1, 9, 8
-	setobjectmovementtype 1, 7
-	return
-
 NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA: @ 81F77EA
 	map_script_2 VAR_0x4050, 0, NewBarkTown_PlayersHouse_1F_MomEncounter
-	@map_script_2 VAR_0x4092, 3, NewBarkTown_PlayersHouse_1F_EventScript_1F783C
-	@map_script_2 VAR_0x4092, 5, NewBarkTown_PlayersHouse_1F_EventScript_1F7814
-	@map_script_2 VAR_0x4092, 6, NewBarkTown_PlayersHouse_1F_EventScript_1F784D
-	@map_script_2 VAR_0x4082, 1, NewBarkTown_PlayersHouse_1F_EventScript_1F785E
-	@map_script_2 VAR_0x4082, 3, NewBarkTown_PlayersHouse_1F_EventScript_292AF2
 	.2byte 0
 
 NewBarkTown_PlayersHouse_1F_MomEncounter:
@@ -64,21 +12,21 @@ NewBarkTown_PlayersHouse_1F_MomEncounter:
 	playse SE_PIN
 	applymovement 1, Movement_Emote_Exclamation_Mark
 	waitmovement 0
-	applymovement 1, NewBarkTown_PlayersHouse_1F_Movement_27259A
+	applymovement 1, Movement_Delay_48
 	waitmovement 0
-	playbgm MUS_EVENT0, 0
+	playbgm MUS_MOMENC, 0
 	applymovement EVENT_OBJ_ID_PLAYER, Move_WalkInPlaceFastestDown
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer
 	waitmovement 0
 	delay 10
-	msgbox NewBarkTown_PlayersHouse_1F_MomElmIntro, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_MomElmIntro
 	call RestoreOriginalTextColor
 	playfanfare MUS_FANFA4
 	message NewBarkTown_PlayersHouse_1F_PlayerGetsPokegear
 	waitfanfare
 	setflag FLAG_SYS_POKENAV_GET
 	textcolor MSG_COLOR_RED
-	msgbox NewBarkTown_PlayersHouse_1F_MomPokegearEssential, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_MomPokegearEssential
 
 NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek:
 	message NewBarkTown_PlayersHouse_1F_WhatDayIsIt
@@ -113,18 +61,18 @@ NewBarkTown_PlayersHouse_1F_MomDaylightSavingCheck:
 	msgbox NewBarkTown_PlayersHouse_1F_ComeHomeToAdjustClock, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq NewBarkTown_PlayersHouse_1F_NoGearInstructions
-	msgbox NewBarkTown_PlayersHouse_1F_GearInstructionsYes, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_GearInstructionsYes
 	goto NewBarkTown_PlayersHouse_1F_PostGearInstructions
 
 NewBarkTown_PlayersHouse_1F_NoGearInstructions:
-	msgbox NewBarkTown_PlayersHouse_1F_GearInstructionsNo, MSGBOX_DEFAULT
+	msgbox NewBarkTown_PlayersHouse_1F_GearInstructionsNo
 
 NewBarkTown_PlayersHouse_1F_PostGearInstructions:
 	closemessage
-	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer
-	waitmovement 0
 	savebgm MUS_DUMMY
 	fadedefaultbgm
+	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer
+	waitmovement 0
 	setvar VAR_0x4050 1
 	releaseall
 	end
@@ -139,228 +87,59 @@ NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer:
 	walk_down
 	walk_left
 	walk_down
-	face_left
-	step_end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F783C:: @ 81F783C
-	lockall
-	setvar VAR_0x8004, 1
-	setvar VAR_0x8005, 0
-	goto NewBarkTown_PlayersHouse_1F_EventScript_292704
-	end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F784D:: @ 81F784D
-	lockall
-	setvar VAR_0x8004, 0
-	setvar VAR_0x8005, 1
-	goto NewBarkTown_PlayersHouse_1F_EventScript_29286D
-	end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F785E:: @ 81F785E
-	lockall
-	playse SE_PIN
-	applymovement 4, NewBarkTown_PlayersHouse_1F_Movement_272598
-	waitmovement 0
-	applymovement 4, NewBarkTown_PlayersHouse_1F_Movement_27259A
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725A4
-	applymovement 4, NewBarkTown_PlayersHouse_1F_Movement_1F789C
-	waitmovement 0
-	special GetRivalSonDaughterString
-	msgbox NewBarkTown_PlayersHouse_1F_Text_1F8BC5, MSGBOX_DEFAULT
-	setflag FLAG_MET_RIVAL_MOM
-	setvar VAR_0x4082, 2
-	releaseall
-	end
-
-NewBarkTown_PlayersHouse_1F_Movement_1F789C: @ 81F789C
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F78A3:: @ 81F78A3
-	lockall
-	setvar VAR_0x8004, 1
-	setvar VAR_0x8005, 0
-	applymovement VAR_0x8004, NewBarkTown_PlayersHouse_1F_Movement_2725A4
-	waitmovement 0
-	goto NewBarkTown_PlayersHouse_1F_EventScript_292765
-	end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F78BE:: @ 81F78BE
-	lockall
-	setvar VAR_0x8008, 0
-	goto NewBarkTown_PlayersHouse_1F_EventScript_1F78E2
-	end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F78CA:: @ 81F78CA
-	lockall
-	setvar VAR_0x8008, 1
-	goto NewBarkTown_PlayersHouse_1F_EventScript_1F78E2
-	end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F78D6:: @ 81F78D6
-	lockall
-	setvar VAR_0x8008, 2
-	goto NewBarkTown_PlayersHouse_1F_EventScript_1F78E2
-	end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F78E2:: @ 81F78E2
-	playse SE_KAIDAN
-	delay 10
-	addobject 7
-	delay 30
-	playse SE_PIN
-	applymovement 7, NewBarkTown_PlayersHouse_1F_Movement_272598
-	waitmovement 0
-	applymovement 7, NewBarkTown_PlayersHouse_1F_Movement_27259A
-	waitmovement 0
-	compare VAR_0x8008, 1
-	call_if_ne NewBarkTown_PlayersHouse_1F_EventScript_1F7981
-	playbgm MUS_BOY_SUP, 1
-	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F798C
-	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F7997
-	compare VAR_0x8008, 2
-	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F79A2
-	msgbox NewBarkTown_PlayersHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
-	closemessage
-	compare VAR_0x8008, 0
-	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F79C1
-	compare VAR_0x8008, 1
-	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F79D3
-	compare VAR_0x8008, 2
-	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_1F79E5
-	playse SE_KAIDAN
-	removeobject 7
-	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_BRENDAN
-	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_POKE_BALL
-	clearflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_BEDROOM
-	delay 30
-	setvar VAR_0x408D, 3
-	setvar VAR_0x4050, 1
-	savebgm MUS_DUMMY
-	fadedefaultbgm
-	releaseall
-	end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F7981:: @ 81F7981
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_2725AA
-	waitmovement 0
-	return
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F798C:: @ 81F798C
-	applymovement 7, NewBarkTown_PlayersHouse_1F_Movement_1F79AD
-	waitmovement 0
-	return
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F7997:: @ 81F7997
-	applymovement 7, NewBarkTown_PlayersHouse_1F_Movement_1F79B5
-	waitmovement 0
-	return
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F79A2:: @ 81F79A2
-	applymovement 7, NewBarkTown_PlayersHouse_1F_Movement_1F79B9
-	waitmovement 0
-	return
-
-NewBarkTown_PlayersHouse_1F_Movement_1F79AD: @ 81F79AD
-	walk_in_place_fastest_left
-	walk_left
-	walk_in_place_fastest_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-NewBarkTown_PlayersHouse_1F_Movement_1F79B5: @ 81F79B5
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-NewBarkTown_PlayersHouse_1F_Movement_1F79B9: @ 81F79B9
-	walk_in_place_fastest_right
-	walk_right
-	walk_in_place_fastest_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F79C1:: @ 81F79C1
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_1F79F7
-	applymovement 7, NewBarkTown_PlayersHouse_1F_Movement_1F7A06
-	waitmovement 0
-	return
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F79D3:: @ 81F79D3
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_1F79FB
-	applymovement 7, NewBarkTown_PlayersHouse_1F_Movement_1F7A0C
-	waitmovement 0
-	return
-
-NewBarkTown_PlayersHouse_1F_EventScript_1F79E5:: @ 81F79E5
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_PlayersHouse_1F_Movement_1F7A02
-	applymovement 7, NewBarkTown_PlayersHouse_1F_Movement_1F7A16
-	waitmovement 0
-	return
-
-NewBarkTown_PlayersHouse_1F_Movement_1F79F7: @ 81F79F7
-	delay_16
-	delay_8
-	walk_in_place_fastest_right
-	step_end
-
-NewBarkTown_PlayersHouse_1F_Movement_1F79FB: @ 81F79FB
-	delay_16
-	delay_8
-	walk_in_place_fastest_right
-	delay_16
-	delay_16
-	walk_in_place_fastest_up
-	step_end
-
-NewBarkTown_PlayersHouse_1F_Movement_1F7A02: @ 81F7A02
-	delay_16
-	delay_8
 	walk_in_place_fastest_left
 	step_end
 
-NewBarkTown_PlayersHouse_1F_Movement_1F7A06: @ 81F7A06
-	walk_in_place_fastest_right
-	walk_right
-	walk_in_place_fastest_up
-	walk_up
-	walk_up
-	step_end
+NewBarkTown_PlayersHouse_1F_MomTalk::
+	lock
+	faceplayer
+	msgbox NewBarkTown_PlayersHouse_1F_MomProfElmWaiting
+	release
+	end
 
-NewBarkTown_PlayersHouse_1F_Movement_1F7A0C: @ 81F7A0C
-	walk_in_place_fastest_right
-	walk_right
-	walk_in_place_fastest_up
-	walk_up
-	walk_up
-	walk_in_place_fastest_left
-	walk_left
-	walk_in_place_fastest_up
-	walk_up
-	step_end
+NewBarkTown_PlayersHouse_1F_NeighborTalk::
+	lock
+	faceplayer
+	gettime
+	compare VAR_0x8003, TIME_MORNING
+	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning
+	compare VAR_0x8003, TIME_DAY
+	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay
+	compare VAR_0x8003, TIME_NIGHT
+	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborMain
+	applymovement VAR_LAST_TALKED, Move_WalkInPlaceFastestRight
+	waitmovement 0
+	release
+	end
 
-NewBarkTown_PlayersHouse_1F_Movement_1F7A16: @ 81F7A16
-	walk_in_place_fastest_left
-	walk_left
-	walk_in_place_fastest_up
-	walk_up
-	walk_up
-	step_end
+NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning:
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborMorning
+	return
+
+NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay:
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborDay
+	return
+
+NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight:
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborNight
+	return
+
+NewBarkTown_PlayersHouse_1F_TV::
+	msgbox NewBarkTown_PlayersHouse_1F_TVText, MSGBOX_SIGN
+	end
+
+NewBarkTown_PlayersHouse_1F_Stove::
+	msgbox NewBarkTown_PlayersHouse_1F_StoveText, MSGBOX_SIGN
+	end
+
+NewBarkTown_PlayersHouse_1F_Sink::
+	msgbox NewBarkTown_PlayersHouse_1F_SinkText, MSGBOX_SIGN
+	end
+
+NewBarkTown_PlayersHouse_1F_Fridge::
+	msgbox NewBarkTown_PlayersHouse_1F_FridgeText, MSGBOX_SIGN
+	end
 
 NewBarkTown_PlayersHouse_1F_MomElmIntro:
 	.string "MOM: Oh, {PLAYER}…!\n"
@@ -407,16 +186,62 @@ NewBarkTown_PlayersHouse_1F_GearInstructionsYes:
 	.string "Don't you just turn the POKéGEAR on\n"
 	.string "and select the PHONE icon?\p"
 	.string "“Phone numbers are stored in memory.\n"
-	.string "Just choose who you want to call.”\p"
+	.string "Just choose a name you want to\l"
+	.string "call.”\p"
 	.string "Gee, isn't that convenient?$"
 
 NewBarkTown_PlayersHouse_1F_GearInstructionsNo:
 	.string "I'll read the instructions.\p"
 	.string "“Turn the POKéGEAR on and select\n"
-	.string "the PHONE icon by scrolling down.\p"
+	.string "the PHONE icon by scrolling to it.\p"
 	.string "“Phone numbers are stored in memory.\n"
-	.string "Just choose who you want to call.”\p"
+	.string "Just choose a name you want to\l"
+	.string "call.”\p"
 	.string "Gee, isn't that convenient?$"
+
+NewBarkTown_PlayersHouse_1F_MomProfElmWaiting:
+	.string "MOM: PROF. ELM is waiting for you.\n"
+	.string "Hurry up, baby!$"
+
+NewBarkTown_PlayersHouse_1F_NeighborMorning:
+	.string "Good morning, {PLAYER}!\n"
+	.string "I'm visiting!$"
+
+NewBarkTown_PlayersHouse_1F_NeighborDay:
+	.string "Hello, {PLAYER}!\n"
+	.string "I'm visiting!$"
+
+NewBarkTown_PlayersHouse_1F_NeighborNight:
+	.string "Good evening, {PLAYER}!\n"
+	.string "I'm visiting!$"
+
+NewBarkTown_PlayersHouse_1F_NeighborMain:
+	.string "{PLAYER}, have you heard?\p"
+	.string "My daughter is adamant about\n"
+	.string "becoming PROF. ELM's assistant.\l"
+	.string "She really loves POKéMON!$"
+
+NewBarkTown_PlayersHouse_1F_TVText:
+	.string "There's a movie on TV.\n"
+	.string "Stars dot the sky as two boys\l"
+	.string "ride on a train…\p"
+	.string "I'd better get rolling too!$"
+
+NewBarkTown_PlayersHouse_1F_StoveText:
+	.string "It's MOM's specialty dish, the\n"
+	.string "CINNABAR VOLCANO BURGER!$"
+
+NewBarkTown_PlayersHouse_1F_SinkText:
+	.string "The sink is spotless.\n"
+	.string "MOM likes to keep it clean.$"
+
+NewBarkTown_PlayersHouse_1F_FridgeText:
+	.string "Let's see what's in the fridge…\p"
+	.string "FRESH WATER and tasty LEMONADE!$"
+
+
+
+
 
 NewBarkTown_PlayersHouse_1F_Text_1F7A1C: @ 81F7A1C
 	.string "MOM: See, {PLAYER}?\n"

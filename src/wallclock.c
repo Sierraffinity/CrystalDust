@@ -24,6 +24,7 @@
 #include "pokegear.h"
 #include "wallclock.h"
 #include "window.h"
+#include "constants/day_night.h"
 #include "constants/flags.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"

@@ -22,6 +22,7 @@
 #include "text.h"
 #include "wild_encounter.h"
 #include "window.h"
+#include "constants/day_night.h"
 #include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/maps.h"
@@ -420,7 +421,7 @@ void PlayRadioShow(u8 taskId, u8 windowId)
         NextRadioLine(taskId, windowId, POKEMON_MUSIC_4, gText_PkmnMusicBen3, TRUE);
         break;
     case POKEMON_MUSIC_4:
-        StringCopy(gStringVar1, GetDayOfWeekString());
+        StringCopy(gStringVar1, GetDayOfWeekString(gLocalTime.dayOfWeek));
         StringExpandPlaceholders(gStringVar4, gText_PkmnMusicBenFern1);
         NextRadioLine(taskId, windowId, POKEMON_MUSIC_5, gStringVar4, TRUE);
         break;

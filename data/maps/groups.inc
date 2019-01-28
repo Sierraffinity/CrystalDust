@@ -63,7 +63,7 @@ gMapGroup1::
 	.4byte NewBarkTown_PlayersHouse_1F
 	.4byte NewBarkTown_PlayersHouse_2F
 	.4byte NewBarkTown_ElmsHouse
-	.4byte NewBarkTown_OtherHouse
+	.4byte NewBarkTown_NeighborsHouse
 	.4byte NewBarkTown_ProfessorElmsLab
 
 	.align 2

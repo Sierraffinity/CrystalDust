@@ -56,7 +56,7 @@ gMapLayouts::
 	.4byte NewBarkTown_PlayersHouse_1F_Layout
 	.4byte NewBarkTown_PlayersHouse_2F_Layout
 	.4byte NewBarkTown_ElmsHouse_Layout
-	.4byte NewBarkTown_OtherHouse_Layout
+	.4byte NewBarkTown_NeighborsHouse_Layout
 	.4byte NewBarkTown_ProfessorElmsLab_Layout
 	.4byte House1_Layout
 	.4byte House2_Layout

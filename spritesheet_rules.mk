@@ -1,30 +1,30 @@
 EVENTOBJGFXDIR := graphics/event_objects/pics
 
-$(EVENTOBJGFXDIR)/people/brendan/walking.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/gold/walking.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/brendan/running.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/gold/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/brendan/field_move.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/gold/field_move.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/brendan/surfing.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/gold/surfing.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/brendan/mach_bike.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/gold/mach_bike.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/brendan/acro_bike.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/gold/acro_bike.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/brendan/fishing.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/gold/fishing.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/brendan/watering.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/gold/watering.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/brendan/underwater.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/gold/underwater.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 
@@ -375,7 +375,7 @@ $(EVENTOBJGFXDIR)/people/unused_woman.4bpp: %.4bpp: %.png
 $(EVENTOBJGFXDIR)/people/wallace.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/wally.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/silver.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/woman_1.4bpp: %.4bpp: %.png

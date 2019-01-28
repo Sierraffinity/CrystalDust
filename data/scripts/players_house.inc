@@ -1,5 +1,5 @@
 NewBarkTown_PlayersHouse_2F_EventScript_2926FE:: @ 82926FE
-NewBarkTown_OtherHouse_EventScript_2926FE:: @ 82926FE
+NewBarkTown_NeighborsHouse_EventScript_2926FE:: @ 82926FE
 	setvar VAR_0x4092, 5
 	return
 

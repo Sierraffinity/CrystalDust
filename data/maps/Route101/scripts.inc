@@ -8,7 +8,7 @@ Route101_MapScript1_1EBCC5: @ 81EBCC5
 	end
 
 Route101_MapScript2_1EBCCB: @ 81EBCCB
-	map_script_2 VAR_0x4060, 0, Route101_EventScript_1EBCD5
+	@map_script_2 VAR_0x4060, 0, Route101_EventScript_1EBCD5
 	.2byte 0
 
 Route101_EventScript_1EBCD5:: @ 81EBCD5
@@ -18,7 +18,7 @@ Route101_EventScript_1EBCD5:: @ 81EBCD5
 
 Route101_EventScript_1EBCDE:: @ 81EBCDE
 	lockall
-	playbgm MUS_EVENT0, 1
+	playbgm MUS_MOMENC, 1
 	msgbox Route101_Text_1EBE8F, MSGBOX_DEFAULT
 	closemessage
 	setobjectxy 2, 0, 15
@@ -233,7 +233,7 @@ Route101_EventScript_1EBE16:: @ 81EBE16
 	special HealPlayerParty
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_BIRCH
-	setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
+	setflag FLAG_HIDE_NEW_BARK_TOWN_RIVAL
 	setvar VAR_0x4084, 2
 	setvar VAR_0x4060, 3
 	clearflag FLAG_SPECIAL_FLAG_0x4000

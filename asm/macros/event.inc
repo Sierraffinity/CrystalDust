@@ -1554,6 +1554,11 @@
 	.2byte \quantity
 	.endm
 
+	@ Gets the current time of day and puts it into gSpecialVar_Result.
+	.macro gettimeofday
+	.byte 0xe3
+	.endm
+
 
 @ Supplementary
 

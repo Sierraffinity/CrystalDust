@@ -131,7 +131,7 @@ static const u8 sTileBitAttributes[] =
     [MB_PACIFIDLOG_HORIZONTAL_LOG_1] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_PACIFIDLOG_HORIZONTAL_LOG_2] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_FORTREE_BRIDGE] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
-    [MB_UNUSED_79] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_RADIO] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_ROUTE120_SOUTH_BRIDGE_1] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_ROUTE120_SOUTH_BRIDGE_2] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_ROUTE120_NORTH_BRIDGE_3] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
@@ -660,6 +660,14 @@ bool8 MetatileBehavior_IsPlayerFacingTVScreen(u8 metatileBehavior, u8 playerDir)
 bool8 MetatileBehavior_IsWindow(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_WINDOW)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsRadio(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_RADIO)
         return TRUE;
     else
         return FALSE;

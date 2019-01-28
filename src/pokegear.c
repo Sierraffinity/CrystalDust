@@ -898,7 +898,7 @@ static void LoadClockCard(void)
 
     int i;
     u8 newTask, spriteId;
-    const u8 *dayOfWeek = GetDayOfWeekString();
+    const u8 *dayOfWeek = GetDayOfWeekString(gLocalTime.dayOfWeek);
 
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PutWindowTilemap(WIN_TOP);
@@ -937,7 +937,7 @@ static void Task_ClockCard(u8 taskId)
 
     if (gTasks[taskId].tDayOfWeek != gLocalTime.dayOfWeek)
     {
-        const u8 *dayOfWeek = GetDayOfWeekString();
+        const u8 *dayOfWeek = GetDayOfWeekString(gLocalTime.dayOfWeek);
         gTasks[taskId].tDayOfWeek = gLocalTime.dayOfWeek;
         FillWindowPixelBuffer(WIN_TOP, 0);
         AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);

@@ -5241,134 +5241,134 @@ voicegroup055:: @ 8684248
 
 	.align 2
 voicegroup056:: @ 8684848
-	voice_keysplit_all voicegroup001  @ 8684848
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684854
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684860
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 868486C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684878
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684884
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684890
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 868489C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86848A8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86848B4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86848C0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86848CC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86848D8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86848E4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86848F0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86848FC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684908
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684914
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684920
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 868492C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684938
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684944
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684950
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 868495C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684968
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684974
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684980
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 868498C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684998
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86849A4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86849B0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86849BC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86849C8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86849D4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86849E0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86849EC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86849F8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A04
-	voice_directsound 60, 0, DirectSoundWaveData_86B86A4, 255, 252, 0, 115  @ 8684A10
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A1C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A28
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A34
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A40
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A4C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A58
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A64
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A70
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A7C
-	voice_keysplit voicegroup006, KeySplitTable2  @ 8684A88
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684A94
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684AA0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684AAC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684AB8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684AC4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684AD0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684ADC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684AE8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684AF4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B00
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B0C
-	voice_keysplit voicegroup009, KeySplitTable5  @ 8684B18
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B24
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B30
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B3C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B48
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B54
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B60
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B6C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B78
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B84
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B90
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684B9C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684BA8
-	voice_directsound 60, 0, DirectSoundWaveData_86FF65C, 255, 0, 255, 165  @ 8684BB4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684BC0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684BCC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684BD8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684BE4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684BF0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684BFC
-	voice_square_2_alt 0, 0, 1, 4, 1  @ 8684C08
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C14
-	voice_square_1_alt 0, 0, 0, 1, 4, 1  @ 8684C20
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C2C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C38
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C44
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C50
-	voice_programmable_wave_alt ProgrammableWaveData_86B4880, 0, 7, 15, 1  @ 8684C5C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C68
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C74
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C80
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C8C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684C98
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684CA4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684CB0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684CBC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684CC8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684CD4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684CE0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684CEC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684CF8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D04
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D10
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D1C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D28
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D34
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D40
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D4C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D58
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D64
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D70
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D7C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D88
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684D94
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684DA0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684DAC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684DB8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684DC4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684DD0
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684DDC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684DE8
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684DF4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684E00
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684E0C
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684E18
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684E24
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 8684E30
-	voice_noise_alt 0, 0, 1, 0, 0  @ 8684E3C
+	voice_keysplit_all voicegroup002  @ 86AAEDC
+	voice_keysplit voicegroup005, KeySplitTable1  @ 86AAEE8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAEF4
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF00
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF0C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF18
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF24
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF30
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF3C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF48
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF54
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF60
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF6C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF78
+	voice_directsound 60, 0, DirectSoundWaveData_8736C74, 255, 165, 90, 216  @ 86AAF84
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF90
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAF9C
+	voice_directsound 60, 0, DirectSoundWaveData_86B63A8, 255, 0, 255, 127  @ 86AAFA8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAFB4
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAFC0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAFCC
+	voice_directsound 60, 0, DirectSoundWaveData_87410E0, 255, 0, 255, 165  @ 86AAFD8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAFE4
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AAFF0
+	voice_directsound 60, 0, DirectSoundWaveData_88D8418, 255, 249, 25, 149  @ 86AAFFC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB008
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB014
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB020
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB02C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB038
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB044
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB050
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB05C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB068
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB074
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB080
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB08C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB098
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB0A4
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB0B0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB0BC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB0C8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB0D4
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB0E0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB0EC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB0F8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB104
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB110
+	voice_keysplit voicegroup006, KeySplitTable2  @ 86AB11C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB128
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB134
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB140
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB14C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB158
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB164
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB170
+	voice_keysplit voicegroup007, KeySplitTable3  @ 86AB17C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB188
+	voice_keysplit voicegroup008, KeySplitTable4  @ 86AB194
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB1A0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB1AC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB1B8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB1C4
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB1D0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB1DC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB1E8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB1F4
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB200
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB20C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB218
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB224
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB230
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB23C
+	voice_directsound 60, 0, DirectSoundWaveData_86FF65C, 255, 0, 255, 165  @ 86AB248
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB254
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB260
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB26C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB278
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB284
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB290
+	voice_square_1_alt 0, 2, 0, 2, 6, 4  @ 86AB29C
+	voice_square_2_alt 2, 0, 2, 6, 2  @ 86AB2A8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB2B4
+	voice_square_2_alt 1, 0, 2, 6, 2  @ 86AB2C0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB2CC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB2D8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB2E4
+	voice_programmable_wave_alt ProgrammableWaveData_86B4870, 0, 7, 15, 0  @ 86AB2F0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB2FC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB308
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB314
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB320
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB32C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB338
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB344
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB350
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB35C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB368
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB374
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB380
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB38C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB398
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB3A4
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB3B0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB3BC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB3C8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB3D4
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB3E0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB3EC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB3F8
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB404
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB410
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB41C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB428
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB434
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB440
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB44C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB458
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB464
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB470
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB47C
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB488
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB494
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB4A0
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB4AC
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AB4B8
+	voice_noise_alt 0, 0, 2, 4, 0  @ 86AB4C4
+	voice_noise_alt 0, 0, 1, 0, 0  @ 86AB4D0
 
 	.align 2
 voicegroup057:: @ 8684E48

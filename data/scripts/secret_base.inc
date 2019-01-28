@@ -548,7 +548,7 @@ EventScript_275CDE:: @ 8275CDE
 	end
 
 NewBarkTown_PlayersHouse_2F_EventScript_275CE1:: @ 8275CE1
-NewBarkTown_OtherHouse_EventScript_275CE1:: @ 8275CE1
+NewBarkTown_NeighborsHouse_EventScript_275CE1:: @ 8275CE1
 SecretBase_RedCave1_EventScript_275CE1:: @ 8275CE1
 	setflag FLAG_DECORATION_1
 	setflag FLAG_DECORATION_2

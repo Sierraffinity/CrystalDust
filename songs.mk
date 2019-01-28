@@ -150,7 +150,7 @@ $(MID_SUBDIR)/mus_eikou_r.s: %.s: %.mid
 $(MID_SUBDIR)/mus_end.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G102 -V036
 
-$(MID_SUBDIR)/mus_event0.s: %.s: %.mid
+$(MID_SUBDIR)/mus_momenc.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G056 -V078
 
 $(MID_SUBDIR)/mus_fanfa1.s: %.s: %.mid

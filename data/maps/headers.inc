@@ -58,7 +58,7 @@
 	.include "data/maps/NewBarkTown_PlayersHouse_1F/header.inc"
 	.include "data/maps/NewBarkTown_PlayersHouse_2F/header.inc"
 	.include "data/maps/NewBarkTown_ElmsHouse/header.inc"
-	.include "data/maps/NewBarkTown_OtherHouse/header.inc"
+	.include "data/maps/NewBarkTown_NeighborsHouse/header.inc"
 	.include "data/maps/NewBarkTown_ProfessorElmsLab/header.inc"
 	.include "data/maps/OldaleTown_House1/header.inc"
 	.include "data/maps/OldaleTown_House2/header.inc"

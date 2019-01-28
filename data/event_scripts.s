@@ -1,6 +1,7 @@
 #include "constants/global.h"
 #include "constants/battle_frontier.h"
 #include "constants/battle_setup.h"
+#include "constants/day_night.h"
 #include "constants/event_objects.h"
 #include "constants/field_effects.h"
 #include "constants/flags.h"
@@ -129,7 +130,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc"
 	.include "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc"
 	.include "data/maps/NewBarkTown_ElmsHouse/scripts.inc"
-	.include "data/maps/NewBarkTown_OtherHouse/scripts.inc"
+	.include "data/maps/NewBarkTown_NeighborsHouse/scripts.inc"
 	.include "data/maps/NewBarkTown_ProfessorElmsLab/scripts.inc"
 	.include "data/maps/OldaleTown_House1/scripts.inc"
 	.include "data/maps/OldaleTown_House2/scripts.inc"
@@ -1061,7 +1062,7 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_CHAMPIONS_ROOM_BIRCH
 	setflag FLAG_HIDE_ROUTE_110_RIVAL_2
 	setflag FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE
-	setflag FLAG_HIDE_ROUTE_104_RIVAL
+	setflag 0
 	setflag FLAG_HIDE_LILCOVE_MOTEL_GAME_DESIGNERS
 	setflag FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_1
 	setflag FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_2
@@ -1133,7 +1134,7 @@ EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
 	clearflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL
 	clearflag FLAG_HIDE_LILYCOVE_HARBOR_SSTIDAL
-	setflag FLAG_HIDE_SAFARI_ZONE_SOUTH_CONSTRUCTION_WORKERS
+	setflag 0
 	clearflag FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION
 	setflag FLAG_HIDE_LILYCOVE_CITY_RIVAL
 	special sub_813BA60
@@ -1405,9 +1406,11 @@ OldaleTown_PokemonCenter_1F_Movement_271AD0: @ 8271AD0
 	step_end
 
 Std_ObtainItem:: @ 8271AD3
+	textcolor MSG_COLOR_MISC
 	giveitem VAR_0x8000, 32769
 	copyvar VAR_0x8007, VAR_RESULT
 	call EventScript_271AE3
+	copyvar VAR_TEXT_COLOR, VAR_TEXT_COLOR_BACKUP
 	return
 
 EventScript_271AE3:: @ 8271AE3
@@ -2544,7 +2547,7 @@ LilycoveCity_Harbor_Movement_272598: @ 8272598
 NewBarkTown_PlayersHouse_1F_Movement_272598: @ 8272598
 NewBarkTown_PlayersHouse_2F_Movement_272598: @ 8272598
 NewBarkTown_ElmsHouse_Movement_272598: @ 8272598
-NewBarkTown_OtherHouse_Movement_272598: @ 8272598
+NewBarkTown_NeighborsHouse_Movement_272598: @ 8272598
 NewBarkTown_Movement_272598: @ 8272598
 MauvilleCity_House2_Movement_272598: @ 8272598
 MauvilleCity_Movement_272598: @ 8272598
@@ -2588,7 +2591,7 @@ LilycoveCity_Harbor_Movement_27259A: @ 827259A
 NewBarkTown_PlayersHouse_1F_Movement_27259A: @ 827259A
 NewBarkTown_PlayersHouse_2F_Movement_27259A: @ 827259A
 NewBarkTown_ElmsHouse_Movement_27259A: @ 827259A
-NewBarkTown_OtherHouse_Movement_27259A: @ 827259A
+NewBarkTown_NeighborsHouse_Movement_27259A: @ 827259A
 MauvilleCity_House2_Movement_27259A: @ 827259A
 MauvilleCity_Movement_27259A: @ 827259A
 MeteorFalls_1F_1R_Movement_27259A: @ 827259A
@@ -2704,6 +2707,7 @@ VerdanturfTown_Movement_2725A2: @ 82725A2
 	face_original_direction
 	step_end
 
+Move_WalkInPlaceFastestLeft:
 AquaHideout_B2F_Movement_2725A4: @ 82725A4
 BattleFrontier_BattleFactoryBattleRoom_Movement_2725A4: @ 82725A4
 BattleFrontier_OutsideWest_Movement_2725A4: @ 82725A4
@@ -2717,7 +2721,7 @@ LilycoveCity_PokemonTrainerFanClub_Movement_2725A4: @ 82725A4
 NewBarkTown_PlayersHouse_1F_Movement_2725A4: @ 82725A4
 NewBarkTown_PlayersHouse_2F_Movement_2725A4: @ 82725A4
 NewBarkTown_ElmsHouse_Movement_2725A4: @ 82725A4
-NewBarkTown_OtherHouse_Movement_2725A4: @ 82725A4
+NewBarkTown_NeighborsHouse_Movement_2725A4: @ 82725A4
 NewBarkTown_Movement_2725A4: @ 82725A4
 NewBarkTown_ProfessorElmsLab_Movement_2725A4: @ 82725A4
 MeteorFalls_1F_1R_Movement_2725A4: @ 82725A4
@@ -2748,6 +2752,7 @@ SootopolisCity_Movement_2725A4: @ 82725A4
 	walk_in_place_fastest_left
 	step_end
 
+Move_WalkInPlaceFastestUp:
 BattleFrontier_BattleTowerCorridor2_Movement_2725A6: @ 82725A6
 BattleFrontier_BattleTowerMultiBattleRoom_Movement_2725A6: @ 82725A6
 BattleFrontier_OutsideWest_Movement_2725A6: @ 82725A6
@@ -2762,7 +2767,7 @@ LilycoveCity_DepartmentStore_5F_Movement_2725A6: @ 82725A6
 LilycoveCity_Harbor_Movement_2725A6: @ 82725A6
 NewBarkTown_PlayersHouse_1F_Movement_2725A6: @ 82725A6
 NewBarkTown_PlayersHouse_2F_Movement_2725A6: @ 82725A6
-NewBarkTown_OtherHouse_Movement_2725A6: @ 82725A6
+NewBarkTown_NeighborsHouse_Movement_2725A6: @ 82725A6
 NewBarkTown_Movement_2725A6: @ 82725A6
 NewBarkTown_ProfessorElmsLab_Movement_2725A6: @ 82725A6
 MagmaHideout_4F_Movement_2725A6: @ 82725A6
@@ -2795,6 +2800,7 @@ VerdanturfTown_BattleTentBattleRoom_Movement_2725A6: @ 82725A6
 	walk_in_place_fastest_up
 	step_end
 
+Move_WalkInPlaceFastestRight:
 BattleFrontier_BattleFactoryBattleRoom_Movement_2725A8: @ 82725A8
 BattleFrontier_BattlePalaceBattleRoom_Movement_2725A8: @ 82725A8
 BattleFrontier_OutsideWest_Movement_2725A8: @ 82725A8
@@ -2965,6 +2971,10 @@ EventScript_BookShelf:: @ 82725D7
 	msgbox Text_2A820D, MSGBOX_SIGN
 	end
 
+EventScript_DifficultBookShelf::
+	msgbox Text_DifficultBooks, MSGBOX_SIGN
+	end
+
 EventScript_PokemonCenterBookshelf:: @ 82725E0
 	msgbox Text_2A8232, MSGBOX_SIGN
 	end
@@ -2983,6 +2993,10 @@ EventScript_ShopShelf:: @ 82725FB
 
 EventScript_Blueprint:: @ 8272604
 	msgbox Text_2A82F7, MSGBOX_SIGN
+	end
+
+EventScript_Radio::
+	msgbox Text_RadioPlaceholder, MSGBOX_SIGN
 	end
 
 Text_27260D: @ 827260D
@@ -4746,6 +4760,9 @@ Text_2A81E5: @ 82A81E5
 Text_2A820D: @ 82A820D
 	.string "It's filled with all sorts of books.$"
 
+Text_DifficultBooks:
+	.string "It's full of difficult books.$"
+
 Text_2A8232: @ 82A8232
 	.string "POKéMON magazines!\n"
 	.string "POKéMON PAL…\p"
@@ -4767,6 +4784,10 @@ Text_2A82BF: @ 82A82BF
 Text_2A82F7: @ 82A82F7
 	.string "A blueprint of some sort?\n"
 	.string "It's too complicated!$"
+
+Text_RadioPlaceholder:
+	.string "It's a radio!\n"
+	.string "Or at least, it will be soon.$"
 
 GraniteCave_B1F_MapScript2_2A8327: @ 82A8327
 MirageTower_2F_MapScript2_2A8327: @ 82A8327

@@ -72,7 +72,7 @@
 	.include "data/maps/NewBarkTown_PlayersHouse_1F/events.inc"
 	.include "data/maps/NewBarkTown_PlayersHouse_2F/events.inc"
 	.include "data/maps/NewBarkTown_ElmsHouse/events.inc"
-	.include "data/maps/NewBarkTown_OtherHouse/events.inc"
+	.include "data/maps/NewBarkTown_NeighborsHouse/events.inc"
 	.include "data/maps/NewBarkTown_ProfessorElmsLab/events.inc"
 	.include "data/maps/OldaleTown_House1/events.inc"
 	.include "data/maps/OldaleTown_House2/events.inc"

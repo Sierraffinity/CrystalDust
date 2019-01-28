@@ -8,6 +8,7 @@
 #include "contest_link_80F57C4.h"
 #include "contest_painting.h"
 #include "data2.h"
+#include "day_night.h"
 #include "decoration.h"
 #include "decoration_inventory.h"
 #include "event_data.h"
@@ -702,6 +703,7 @@ bool8 ScrCmd_gettime(struct ScriptContext *ctx)
     gSpecialVar_0x8000 = gLocalTime.hours;
     gSpecialVar_0x8001 = gLocalTime.minutes;
     gSpecialVar_0x8002 = gLocalTime.seconds;
+    gSpecialVar_0x8003 = GetTimeOfDay();
     return FALSE;
 }
 

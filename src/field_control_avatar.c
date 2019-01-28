@@ -431,8 +431,6 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
 
     if (MetatileBehavior_IsPlayerFacingTVScreen(metatileBehavior, direction) == TRUE)
         return EventScript_TV;
-    if (MetatileBehavior_IsWindow(metatileBehavior) == TRUE)
-        return EventScript_Window;
     if (MetatileBehavior_IsPC(metatileBehavior) == TRUE)
         return EventScript_PC;
     if (MetatileBehavior_IsClosedSootopolisDoor(metatileBehavior) == TRUE)
@@ -471,6 +469,10 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return EventScript_Questionnaire;
     if (MetatileBehavior_IsTrainerHillTimer(metatileBehavior) == TRUE)
         return EventScript_TrainerHillTimer;
+    if (MetatileBehavior_IsWindow(metatileBehavior) == TRUE)
+        return EventScript_Window;
+    if (MetatileBehavior_IsRadio(metatileBehavior) == TRUE)
+        return EventScript_Radio;
 
     height = position->height;
     if (height == MapGridGetZCoordAt(position->x, position->y))

@@ -1,6 +1,5 @@
 #include "global.h"
 #include "day_night.h"
-#include "constants/rgb.h"
 #include "decompress.h"
 #include "event_data.h"
 #include "overworld.h"
@@ -8,6 +7,8 @@
 #include "rtc.h"
 #include "strings.h"
 #include "string_util.h"
+#include "constants/day_night.h"
+#include "constants/rgb.h"
 
 #define TINT_MORNING Q_8_8(0.9), Q_8_8(0.8), Q_8_8(1.0)
 #define TINT_AFTERNOON Q_8_8(1.0), Q_8_8(0.6), Q_8_8(0.67)
@@ -15,7 +16,6 @@
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 static EWRAM_DATA u8 sOldTimeOfDay = TIME_NIGHT;
-//static EWRAM_DATA u8 sDemo = 0;
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 
 const u8 *const gDayOfWeekTable[] = 
@@ -31,28 +31,34 @@ const u8 *const gDayOfWeekTable[] =
 
 u8 GetTimeOfDay(void)
 {
-    /*if (++sDemo > 240)
-    {
-        sDemo = 0;
+    if (gLocalTime.hours < TIME_MORNING_HOUR)
         return TIME_NIGHT;
-    }
-    else if (sDemo > 180)
-    {
-        return TIME_AFTERNOON;
-    }
-    else if (sDemo > 120)
-    {
-        return TIME_DAY;
-    }
-    else if (sDemo > 60)
-    {
+    else if (gLocalTime.hours < TIME_DAY_HOUR)
         return TIME_MORNING;
-    }
+    else if (gLocalTime.hours < TIME_NIGHT_HOUR)
+        return TIME_DAY;
     else
-    {
         return TIME_NIGHT;
-    }*/
-    RtcSlowUpdate();
+}
+
+const u8 *GetDayOfWeekString(u8 dayOfWeek)
+{
+    return gDayOfWeekTable[dayOfWeek];
+}
+
+void CopyDayOfWeekStringToVar1(void)
+{
+    if (gSpecialVar_0x8004 <= DAY_SATURDAY)
+        StringCopy(gStringVar1, gDayOfWeekTable[gSpecialVar_0x8004]);
+    else
+        StringCopy(gStringVar1, gText_None);
+}
+
+u8 GetTimeOfDayForTinting(void)
+{
+    if (Overworld_MapTypeIsIndoors(gMapHeader.mapType))
+        return TIME_DAY;
+    
     if (gLocalTime.hours < TIME_MORNING_HOUR)
         return TIME_NIGHT;
     else if (gLocalTime.hours < TIME_DAY_HOUR)
@@ -65,33 +71,15 @@ u8 GetTimeOfDay(void)
         return TIME_NIGHT;
 }
 
-const u8 *GetDayOfWeekString(void)
-{
-    return gDayOfWeekTable[gLocalTime.dayOfWeek];
-}
-
-void CopyDayOfWeekStringToVar1(void)
-{
-    if (gSpecialVar_0x8004 <= DAY_SATURDAY)
-        StringCopy(gStringVar1, gDayOfWeekTable[gSpecialVar_0x8004]);
-    else
-        StringCopy(gStringVar1, gText_None);
-}
-
-u8 GetTimeOfDayWithModifiers(void)
-{
-    if (Overworld_MapTypeIsIndoors(gMapHeader.mapType))
-        return TIME_DAY;
-    
-    return GetTimeOfDay();
-}
-
 static void LoadPaletteOverrides(void)
 {
     u8 i, j;
     const u16* src;
     u16* dest;
-    u8 timeOfDay = GetTimeOfDay();
+    u8 timeOfDay;
+
+    RtcSlowUpdate();
+    timeOfDay = GetTimeOfDay();
 
     for (i = 0; i < ARRAY_COUNT(gPaletteOverrides); i++)
     {
@@ -114,9 +102,10 @@ static void LoadPaletteOverrides(void)
     }
 }
 
-static void TintForDayNightOnLoad(u16 offset, u16 size)
+static void TintPaletteForDayNight(u16 offset, u16 size)
 {
-    switch (GetTimeOfDayWithModifiers())
+    RtcCalcLocalTime();
+    switch (GetTimeOfDayForTinting())
     {
         case TIME_MORNING:
             TintPalette_CustomToneWithCopy(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size / 2, TINT_MORNING, FALSE);
@@ -138,23 +127,26 @@ void LoadCompressedPaletteDayNight(const void *src, u16 offset, u16 size)
 {
     LZDecompressWram(src, gPaletteDecompressionBuffer);
     CpuCopy16(gPaletteDecompressionBuffer, gPlttBufferPreDN + offset, size);
-    TintForDayNightOnLoad(offset, size);
+    TintPaletteForDayNight(offset, size);
     CpuCopy16(gPlttBufferUnfaded + offset, gPlttBufferFaded + offset, size);
 }
 
 void LoadPaletteDayNight(const void *src, u16 offset, u16 size)
 {
     CpuCopy16(src, gPlttBufferPreDN + offset, size);
-    TintForDayNightOnLoad(offset, size);
+    TintPaletteForDayNight(offset, size);
     CpuCopy16(gPlttBufferUnfaded + offset, gPlttBufferFaded + offset, size);
 }
 
-void TintForDayNight(void)
+void RetintPalettesForDayNight(void)
 {
     u32 i;
     const u16* src;
     u16* dest;
-    u8 timeOfDay = GetTimeOfDayWithModifiers();
+    u8 timeOfDay;
+
+    RtcSlowUpdate();
+    timeOfDay = GetTimeOfDayForTinting();
 
     if (timeOfDay != sOldTimeOfDay)
     {

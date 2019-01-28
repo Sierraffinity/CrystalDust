@@ -54,7 +54,7 @@
 	.include "data/layouts/NewBarkTown_PlayersHouse_1F/layout.inc"
 	.include "data/layouts/NewBarkTown_PlayersHouse_2F/layout.inc"
 	.include "data/layouts/NewBarkTown_ElmsHouse/layout.inc"
-	.include "data/layouts/NewBarkTown_OtherHouse/layout.inc"
+	.include "data/layouts/NewBarkTown_NeighborsHouse/layout.inc"
 	.include "data/layouts/NewBarkTown_ProfessorElmsLab/layout.inc"
 	.include "data/layouts/House1/layout.inc"
 	.include "data/layouts/House2/layout.inc"

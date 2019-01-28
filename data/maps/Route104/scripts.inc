@@ -55,7 +55,7 @@ Route104_EventScript_1ECCB3:: @ 81ECCB3
 	waitmovement 0
 	delay 10
 	addobject 34
-	clearflag FLAG_HIDE_ROUTE_104_RIVAL
+	clearflag 0
 	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ECF86
 	waitmovement 0
 	applymovement 34, Route104_Movement_1ECF8A
