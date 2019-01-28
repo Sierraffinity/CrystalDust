@@ -11,4 +11,4 @@ for i in range(0, 16):
     filename = os.sep.join([argv[3], format(i, '02')])
     with open(filename + '.gbapal', 'wb+') as f:
         f.write(data[i * 32:i * 32 + 32])
-    subprocess.call(["C:\\CrystalDust\\tools\\gbagfx\\gbagfx", filename + '.gbapal', filename + '.pal'])
+    subprocess.call(["C:\\CrystalDust\\tools\\gbagfx\\gbagfx.exe", filename + '.gbapal', filename + '.pal'])
