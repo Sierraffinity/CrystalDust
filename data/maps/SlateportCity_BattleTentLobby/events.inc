@@ -1,5 +1,5 @@
 SlateportCity_BattleTentLobby_EventObjects: @ 852F408
-	object_event 1, EVENT_OBJ_GFX_SCIENTIST_1, 0, 6, 5, 3, MOVEMENT_TYPE_FACE_DOWN, 1, 1, 0, 0, SlateportCity_BattleTentLobby_EventScript_2088AA, 0
+	object_event 1, EVENT_OBJ_GFX_SCIENTIST, 0, 6, 5, 3, MOVEMENT_TYPE_FACE_DOWN, 1, 1, 0, 0, SlateportCity_BattleTentLobby_EventScript_2088AA, 0
 	object_event 2, EVENT_OBJ_GFX_SAILOR, 0, 1, 5, 3, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, SlateportCity_BattleTentLobby_EventScript_208A3D, 0
 	object_event 3, EVENT_OBJ_GFX_MAN_3, 0, 3, 7, 3, MOVEMENT_TYPE_FACE_UP, 1, 1, 0, 0, SlateportCity_BattleTentLobby_EventScript_208A7E, 0
 	object_event 4, EVENT_OBJ_GFX_GIRL_1, 0, 1, 8, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, SlateportCity_BattleTentLobby_EventScript_208A87, 0

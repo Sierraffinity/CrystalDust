@@ -47,7 +47,7 @@
 #define EVENT_OBJ_GFX_SWIMMER_F                   43
 #define EVENT_OBJ_GFX_BLACK_BELT                  44
 #define EVENT_OBJ_GFX_BEAUTY                      45
-#define EVENT_OBJ_GFX_SCIENTIST_1                 46
+#define EVENT_OBJ_GFX_SCIENTIST                 46
 #define EVENT_OBJ_GFX_LASS                        47
 #define EVENT_OBJ_GFX_GENTLEMAN                   48
 #define EVENT_OBJ_GFX_SAILOR                      49
@@ -65,7 +65,7 @@
 #define EVENT_OBJ_GFX_BERRY_TREE_EARLY_STAGES     61
 #define EVENT_OBJ_GFX_BERRY_TREE_LATE_STAGES      62
 #define EVENT_OBJ_GFX_BRENDAN_ACRO_BIKE           63
-#define EVENT_OBJ_GFX_PROF_BIRCH                  64
+#define EVENT_OBJ_GFX_PROF_ELM                    64
 #define EVENT_OBJ_GFX_MAN_4                       65
 #define EVENT_OBJ_GFX_MAN_5                       66
 #define EVENT_OBJ_GFX_REPORTER_M                  67
@@ -116,7 +116,7 @@
 #define EVENT_OBJ_GFX_MAY_UNDERWATER             112
 #define EVENT_OBJ_GFX_MOVING_BOX                 113
 #define EVENT_OBJ_GFX_CABLE_CAR                  114
-#define EVENT_OBJ_GFX_SCIENTIST_2                115
+#define EVENT_OBJ_GFX_OFFICER                    115
 #define EVENT_OBJ_GFX_DEVON_EMPLOYEE             116
 #define EVENT_OBJ_GFX_AQUA_MEMBER_M              117
 #define EVENT_OBJ_GFX_AQUA_MEMBER_F              118

@@ -113,7 +113,7 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_BrendanUnderwater;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_MayUnderwater;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_MovingBox;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_CableCar;
-const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Scientist2;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Officer;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_DevonEmployee;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_AquaMemberM;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_AquaMemberF;
@@ -362,7 +362,7 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     &gEventObjectGraphicsInfo_MayUnderwater,
     &gEventObjectGraphicsInfo_MovingBox,
     &gEventObjectGraphicsInfo_CableCar,
-    &gEventObjectGraphicsInfo_Scientist2,
+    &gEventObjectGraphicsInfo_Officer,
     &gEventObjectGraphicsInfo_DevonEmployee,
     &gEventObjectGraphicsInfo_AquaMemberM,
     &gEventObjectGraphicsInfo_AquaMemberF,

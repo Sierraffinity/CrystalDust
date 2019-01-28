@@ -1,7 +1,7 @@
 MossdeepCity_SpaceCenter_2F_EventObjects: @ 8532E4C
 	object_event 1, EVENT_OBJ_GFX_RICH_BOY, 0, 6, 2, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, MossdeepCity_SpaceCenter_2F_EventScript_223F03, 0
 	object_event 2, EVENT_OBJ_GFX_GENTLEMAN, 0, 11, 8, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, MossdeepCity_SpaceCenter_2F_EventScript_223EC8, 0
-	object_event 3, EVENT_OBJ_GFX_SCIENTIST_1, 0, 5, 6, 3, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, MossdeepCity_SpaceCenter_2F_EventScript_223E8D, 0
+	object_event 3, EVENT_OBJ_GFX_SCIENTIST, 0, 5, 6, 3, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, MossdeepCity_SpaceCenter_2F_EventScript_223E8D, 0
 	object_event 4, EVENT_OBJ_GFX_STEVEN, 0, 1, 8, 3, MOVEMENT_TYPE_FACE_DOWN, 1, 1, 0, 0, MossdeepCity_SpaceCenter_2F_EventScript_223F7A, FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
 	object_event 5, EVENT_OBJ_GFX_MAGMA_MEMBER_M, 0, 12, 2, 3, MOVEMENT_TYPE_FACE_RIGHT, 1, 1, 0, 0, MossdeepCity_SpaceCenter_2F_EventScript_223F3E, FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
 	object_event 6, EVENT_OBJ_GFX_MAGMA_MEMBER_M, 0, 13, 3, 3, MOVEMENT_TYPE_FACE_UP, 1, 1, 0, 0, MossdeepCity_SpaceCenter_2F_EventScript_223F50, FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA

@@ -1,6 +1,6 @@
 MossdeepCity_SpaceCenter_1F_EventObjects: @ 8532D18
-	object_event 1, EVENT_OBJ_GFX_SCIENTIST_1, 0, 7, 2, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, MossdeepCity_SpaceCenter_1F_EventScript_222FD8, 0
-	object_event 2, EVENT_OBJ_GFX_SCIENTIST_1, 0, 2, 2, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, MossdeepCity_SpaceCenter_1F_EventScript_223063, 0
+	object_event 1, EVENT_OBJ_GFX_SCIENTIST, 0, 7, 2, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, MossdeepCity_SpaceCenter_1F_EventScript_222FD8, 0
+	object_event 2, EVENT_OBJ_GFX_SCIENTIST, 0, 2, 2, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, MossdeepCity_SpaceCenter_1F_EventScript_223063, 0
 	object_event 3, EVENT_OBJ_GFX_SAILOR, 0, 6, 6, 3, MOVEMENT_TYPE_FACE_LEFT, 0, 0, 0, 0, MossdeepCity_SpaceCenter_1F_EventScript_22308E, 0
 	object_event 4, EVENT_OBJ_GFX_OLD_MAN, 0, 10, 2, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, MossdeepCity_SpaceCenter_1F_EventScript_223168, 0
 	object_event 5, EVENT_OBJ_GFX_WOMAN_4, 0, 14, 7, 3, MOVEMENT_TYPE_WANDER_UP_AND_DOWN, 1, 1, 0, 0, MossdeepCity_SpaceCenter_1F_EventScript_22312D, 0

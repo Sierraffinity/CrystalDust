@@ -336,10 +336,10 @@ $(EVENTOBJGFXDIR)/people/sailor.4bpp: %.4bpp: %.png
 $(EVENTOBJGFXDIR)/people/school_kid_m.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/scientist_1.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/scientist.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/scientist_2.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/officer.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/scott.4bpp: %.4bpp: %.png
