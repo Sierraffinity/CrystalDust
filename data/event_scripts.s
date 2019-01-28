@@ -947,8 +947,9 @@ EventScript_27149D:: @ 827149D
 	return
 
 EventScript_2715DE:: @ 82715DE
-	/*setflag FLAG_LINK_CONTEST_POKE_BALL
-	setflag FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
+	setflag FLAG_LINK_CONTEST_POKE_BALL
+	setflag FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR
+	/*setflag FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
 	setflag FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
 	setflag FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_BIRCH
@@ -1104,8 +1105,7 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION
 	setflag FLAG_HIDE_FALLORBOR_TOWN_BATTLE_TENT_SCOTT
 	setflag FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT
-	setflag FLAG_HIDE_SKY_PILLAR_WALLACE
-	setflag FLAG_LISTENED_TO_INITIAL_RADIO*/
+	setflag FLAG_HIDE_SKY_PILLAR_WALLACE*/
 	call EventScript_27149D
 	end
 
@@ -4625,12 +4625,6 @@ BattleFrontier_BattleTowerLobby_EventScript_28CCA6:: @ 828CCA6
 EventScript_2926F8:: @ 82926F8
 	animateflash 1
 	setflashradius 1
-	end
-
-	.include "data/scripts/players_house.inc"
-
-EventScript_RunningShoesManual:: @ 8292DE5
-	msgbox NewBarkTown_PlayersHouse_1F_Text_1F7F66, MSGBOX_SIGN
 	end
 
 	.include "data/scripts/pokeblocks.inc"

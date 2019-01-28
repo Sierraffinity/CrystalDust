@@ -152,7 +152,7 @@ static const u8 sTileBitAttributes[] =
     [MB_CLOSED_SOOTOPOLIS_DOOR] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_TRICK_HOUSE_PUZZLE_DOOR] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_PETALBURG_GYM_DOOR] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_RUNNING_SHOES_INSTRUCTION] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_UNUSED_8E] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_QUESTIONNAIRE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_SECRET_BASE_SPOT_RED_CAVE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_SECRET_BASE_SPOT_RED_CAVE_OPEN] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -1420,14 +1420,6 @@ bool8 MetatileBehavior_IsCuttableGrass(u8 metatileBehavior)
      || metatileBehavior == MB_LONG_GRASS
      || metatileBehavior == MB_ASHGRASS
      || metatileBehavior == MB_LONG_GRASS_SOUTH_EDGE)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-bool8 MetatileBehavior_IsRunningShoesManual(u8 metatileBehavior)
-{
-    if (metatileBehavior == MB_RUNNING_SHOES_INSTRUCTION)
         return TRUE;
     else
         return FALSE;

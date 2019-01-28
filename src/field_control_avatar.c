@@ -445,8 +445,6 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return Route110_TrickHouseEntrance_EventScript_26A22A;
     if (MetatileBehavior_IsRegionMap(metatileBehavior) == TRUE)
         return EventScript_RegionMap;
-    if (MetatileBehavior_IsRunningShoesManual(metatileBehavior) == TRUE)
-        return EventScript_RunningShoesManual;
     if (MetatileBehavior_IsPictureBookShelf(metatileBehavior) == TRUE)
         return EventScript_PictureBookShelf;
     if (MetatileBehavior_IsBookShelf(metatileBehavior) == TRUE)
