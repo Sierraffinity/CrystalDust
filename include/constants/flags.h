@@ -1302,8 +1302,8 @@
 
 #define FLAG_SYS_POKEGEAR_24HR                      (SYSTEM_FLAGS + 0x21) // Unused Flag
 #define FLAG_SYS_DAYLIGHT_SAVING                    (SYSTEM_FLAGS + 0x22) // Unused Flag
-#define FLAG_UNUSED_0x883                           (SYSTEM_FLAGS + 0x23) // Unused Flag
-#define FLAG_UNUSED_0x884                           (SYSTEM_FLAGS + 0x24) // Unused Flag
+#define FLAG_SYS_HAS_MAP_CARD                       (SYSTEM_FLAGS + 0x23) // Unused Flag
+#define FLAG_SYS_HAS_RADIO_CARD                     (SYSTEM_FLAGS + 0x24) // Unused Flag
 #define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag
 #define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
 #define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag

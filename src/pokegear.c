@@ -52,10 +52,6 @@ struct RadioStation{
     const u8 *(*loadFunc)(u8 taskId, u8 windowId);
 };
 
-// TEMP
-#define FLAG_MAP_CARD FLAG_SYS_POKEMON_GET
-#define FLAG_RADIO_CARD FLAG_SYS_TV_HOME
-
 // Static RAM declarations
 
 enum CardType {
@@ -650,7 +646,7 @@ static void LoadCardSprites(u8 taskId)
                 gSprites[spriteId].pos1.x += 8;
                 break;
             case MapCard:
-                if (!FlagGet(FLAG_MAP_CARD))
+                if (!FlagGet(FLAG_SYS_HAS_MAP_CARD))
                     gSprites[spriteId].invisible = TRUE;
                 anim = GetCurrentRegion() + 1;
                 break;
@@ -658,7 +654,7 @@ static void LoadCardSprites(u8 taskId)
                 anim = 4;
                 break;
             case RadioCard:
-                if (!FlagGet(FLAG_RADIO_CARD))
+                if (!FlagGet(FLAG_SYS_HAS_RADIO_CARD))
                     gSprites[spriteId].invisible = TRUE;
                 anim = 5;
                 break;
@@ -720,8 +716,8 @@ static u8 ChangeCardWithDelta(s8 delta, u8 oldCard)
             break;
         }
         
-        if ((newCard == MapCard && !FlagGet(FLAG_MAP_CARD)) ||
-            (newCard == RadioCard && !FlagGet(FLAG_RADIO_CARD)))
+        if ((newCard == MapCard && !FlagGet(FLAG_SYS_HAS_MAP_CARD)) ||
+            (newCard == RadioCard && !FlagGet(FLAG_SYS_HAS_RADIO_CARD)))
         {
             newCard += delta;
         }
