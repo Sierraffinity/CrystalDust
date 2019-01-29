@@ -315,7 +315,7 @@ $(MID_SUBDIR)/mus_nextroad.s: %.s: %.mid
 $(MID_SUBDIR)/mus_nibi.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -V080
 
-$(MID_SUBDIR)/mus_odamaki.s: %.s: %.mid
+$(MID_SUBDIR)/mus_elmslab.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G033 -V080
 
 $(MID_SUBDIR)/mus_ooame.s: %.s: %.mid

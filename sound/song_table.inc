@@ -384,7 +384,7 @@ gSongTable:: @ 86B49F0
 	song mus_boyeye, 0, 0           @ Trainers' Eyes Meet (Youngster)
 	song mus_dan02, 0, 0            @ Abandoned Ship
 	song mus_machi_s3, 0, 0         @ Fortree City
-	song mus_odamaki, 0, 0          @ Birch Pokémon Lab
+	song mus_elmslab, 0, 0          @ Birch Pokémon Lab
 	song mus_b_tower, 0, 0          @ Battle Tower (RS)
 	song mus_swimeye, 0, 0          @ Trainers' Eyes Meet (Swimmer♀)
 	song mus_dan03, 0, 0            @ Cave of Origin

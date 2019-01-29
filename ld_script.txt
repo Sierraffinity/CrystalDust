@@ -924,7 +924,7 @@ SECTIONS {
         sound/songs/midi/mus_boyeye.o(.rodata);
         sound/songs/midi/mus_dan02.o(.rodata);
         sound/songs/midi/mus_machi_s3.o(.rodata);
-        sound/songs/midi/mus_odamaki.o(.rodata);
+        sound/songs/midi/mus_elmslab.o(.rodata);
         sound/songs/midi/mus_b_tower.o(.rodata);
         sound/songs/midi/mus_swimeye.o(.rodata);
         sound/songs/midi/mus_dan03.o(.rodata);
