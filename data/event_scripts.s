@@ -956,9 +956,9 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_BIRCH
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_RIVAL
-	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_POKEBALL_CYNDAQUIL
-	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_POKEBALL_TOTODILE
-	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA
 	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
 	setflag FLAG_UNKNOWN_0x363
 	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
@@ -2068,6 +2068,7 @@ SootopolisCity_Gym_1F_EventScript_27207E:: @ 827207E
 	waitfanfare
 	return
 
+EventScript_HealParty:
 NewBarkTown_PlayersHouse_1F_EventScript_272083:: @ 8272083
 Route111_OldLadysRestStop_EventScript_272083:: @ 8272083
 Route119_WeatherInstitute_1F_EventScript_272083:: @ 8272083
@@ -2154,7 +2155,7 @@ Route103_EventScript_272141:: @ 8272141
 	lock
 	faceplayer
 	goto_if_unset FLAG_HAS_MATCH_CALL, Route101_EventScript_272155
-	@goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, Route101_EventScript_1FA2D2
+	@goto_if_unset FLAG_ENABLE_PROF_ELM_MATCH_CALL, Route101_EventScript_1FA2D2
 
 Route101_EventScript_272155:: @ 8272155
 	msgbox gUnknown_082A5C9C, MSGBOX_YESNO
@@ -2434,6 +2435,7 @@ Route120_Movement_2723C7: @ 82723C7
 	set_visible
 	step_end
 
+EventScript_ChangePokemonNickname:
 NewBarkTown_ProfessorElmsLab_EventScript_2723DD:: @ 82723DD
 MossdeepCity_StevensHouse_EventScript_2723DD:: @ 82723DD
 Route119_WeatherInstitute_2F_EventScript_2723DD:: @ 82723DD
@@ -3406,6 +3408,7 @@ RustboroCity_DevonCorp_2F_EventScript_27378B:: @ 827378B
 	copyvar VAR_0x8004, VAR_RESULT
 	return
 
+EventScript_ChangeBoxMonNickname:
 NewBarkTown_ProfessorElmsLab_EventScript_273797:: @ 8273797
 MossdeepCity_StevensHouse_EventScript_273797:: @ 8273797
 Route119_WeatherInstitute_2F_EventScript_273797:: @ 8273797

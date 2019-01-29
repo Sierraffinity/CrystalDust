@@ -347,7 +347,7 @@ static const match_call_text_data_t sNormanTextScripts[] = {
 
 MATCHCALLDEF(sNormanMatchCallHeader, 5, 7, FLAG_ENABLE_NORMAN_MATCH_CALL, 0x45, gNormanMatchCallDesc, gNormanMatchCallName, sNormanTextScripts);
 
-MATCHCALLDEF(sProfBirchMatchCallHeader, 3, 0, FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, gProfBirchMatchCallDesc, gProfBirchMatchCallName)
+MATCHCALLDEF(sProfBirchMatchCallHeader, 3, 0, FLAG_ENABLE_PROF_ELM_MATCH_CALL, gProfBirchMatchCallDesc, gProfBirchMatchCallName)
 
 static const match_call_text_data_t sMomTextScripts[] = {
     { gText_Mom_Pokenav_2B227B, 0xffff,              0xffff },

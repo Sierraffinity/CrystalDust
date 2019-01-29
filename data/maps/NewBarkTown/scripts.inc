@@ -105,17 +105,17 @@ NewBarkTown_Movement_RivalEncounter_RivalStepsToWindow:
 
 NewBarkTown_EventScript_Teacher1::
 	lockall
-	setvar VAR_TEMP_0, 0
+	setvar VAR_TEMP_1, 0
 	goto NewBarkTown_EventScript_TeacherMain
 
 NewBarkTown_EventScript_Teacher2::
 	lockall
-	setvar VAR_TEMP_0, 1
+	setvar VAR_TEMP_1, 1
 	goto NewBarkTown_EventScript_TeacherMain
 
 NewBarkTown_EventScript_Teacher3::
 	lockall
-	setvar VAR_TEMP_0, 2
+	setvar VAR_TEMP_1, 2
 	goto NewBarkTown_EventScript_TeacherMain
 
 NewBarkTown_EventScript_TeacherMain:
@@ -127,20 +127,20 @@ NewBarkTown_EventScript_TeacherMain:
 	applymovement EVENT_OBJ_ID_PLAYER, Move_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 10
-	compare VAR_TEMP_0, 0
+	compare VAR_TEMP_1, 0
 	call_if_eq  NewBarkTown_EventScript_TeacherToTopSpot
-	compare VAR_TEMP_0, 1
+	compare VAR_TEMP_1, 1
 	call_if_eq  NewBarkTown_EventScript_TeacherToMiddleSpot
-	compare VAR_TEMP_0, 2
+	compare VAR_TEMP_1, 2
 	call_if_eq  NewBarkTown_EventScript_TeacherToBottomSpot
 	waitmovement 0
 	msgbox NewBarkTown_Text_WhatDoYouThinkYoureDoing
 	closemessage
-	compare VAR_TEMP_0, 0
+	compare VAR_TEMP_1, 0
 	call_if_eq  NewBarkTown_EventScript_TeacherAndPlayerFromTopSpot
-	compare VAR_TEMP_0, 1
+	compare VAR_TEMP_1, 1
 	call_if_eq  NewBarkTown_EventScript_TeacherAndPlayerFromMiddleSpot
-	compare VAR_TEMP_0, 2
+	compare VAR_TEMP_1, 2
 	call_if_eq  NewBarkTown_EventScript_TeacherAndPlayerFromBottomSpot
 	waitmovement 0
 	msgbox NewBarkTown_Text_ItsDangerousToGoAlone
