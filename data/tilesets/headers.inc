@@ -5,7 +5,7 @@ gTileset_General:: @ 83DF704
 	.2byte 0 @ padding
 	.4byte gTilesetTiles_General
 	.4byte gTilesetPalettes_General
-	.4byte NULL
+	.4byte gTilesetPalOverrides_General
 	.4byte gMetatiles_General
 	.4byte gMetatileAttributes_General
 	.4byte TilesetCb_General

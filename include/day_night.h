@@ -12,6 +12,10 @@ struct PaletteOverride
 
 extern EWRAM_DATA u16 gPlttBufferPreDN[];
 extern EWRAM_DATA struct PaletteOverride *gPaletteOverrides[];
+#ifdef DEBUG
+extern EWRAM_DATA bool8 gPaletteTintDisabled;
+extern EWRAM_DATA bool8 gPaletteOverrideDisabled;
+#endif
 
 u8 GetTimeOfDay(void);
 void LoadCompressedPaletteDayNight(const void *src, u16 offset, u16 size);

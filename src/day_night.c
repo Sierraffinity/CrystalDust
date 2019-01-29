@@ -17,6 +17,10 @@
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 static EWRAM_DATA u8 sOldTimeOfDay = TIME_NIGHT;
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
+#ifdef DEBUG
+EWRAM_DATA bool8 gPaletteTintDisabled = 0;
+EWRAM_DATA bool8 gPaletteOverrideDisabled = 0;
+#endif
 
 const u8 *const gDayOfWeekTable[] = 
 {
@@ -56,6 +60,10 @@ void CopyDayOfWeekStringToVar1(void)
 
 u8 GetTimeOfDayForTinting(void)
 {
+#ifdef DEBUG
+    if (gPaletteTintDisabled)
+        return TIME_DAY;
+#endif
     if (Overworld_MapTypeIsIndoors(gMapHeader.mapType))
         return TIME_DAY;
     
@@ -78,7 +86,10 @@ static void LoadPaletteOverrides(void)
     u16* dest;
     u8 timeOfDay;
 
-    RtcSlowUpdate();
+#ifdef DEBUG
+    if (gPaletteOverrideDisabled)
+        return;
+#endif
     timeOfDay = GetTimeOfDay();
 
     for (i = 0; i < ARRAY_COUNT(gPaletteOverrides); i++)

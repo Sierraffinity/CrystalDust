@@ -1,4 +1,5 @@
 #include "global.h"
+#include "day_night.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_obj_lock.h"
@@ -23,17 +24,24 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId);
 static void DebugMenu_SetVar(u8 taskId);
 static void DebugMenu_SetVar_ProcessInputVar(u8 taskId);
 static void DebugMenu_SetVar_ProcessInputVal(u8 taskId);
+static void DebugMenu_DN(u8 taskId);
+static void DebugMenu_DN_ProcessInput(u8 taskId);
 static void DebugMenu_Misc(u8 taskId);
 static void DebugMenu_Misc_ProcessInput(u8 taskId);
 static void DebugMenu_ToggleRunningShoes(u8 taskId);
 static void DebugMenu_EnableResetRTC(u8 taskId);
+static void DebugMenu_ToggleTinting(u8 taskId);
+static void DebugMenu_ToggleOverride(u8 taskId);
 static void DebugMenu_RemoveMenu(u8 taskId);
 
 static const u8 sText_SetFlag[] = _("Set flag");
 static const u8 sText_SetVar[] = _("Set variable");
+static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
+static const u8 sText_ToggleDNTinting[] = _("Toggle DN tinting");
+static const u8 sText_ToggleDNPalOverride[] = _("Toggle DN pal override");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
 static const u8 sText_VarStatus[] = _("Var: {STR_VAR_1}\nValue: {STR_VAR_2}\nAddress: {STR_VAR_3}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
@@ -43,8 +51,15 @@ static const struct MenuAction sDebugMenu_MainActions[] =
 {
     { sText_SetFlag, DebugMenu_SetFlag },
     { sText_SetVar, DebugMenu_SetVar },
+    { sText_DayNight, DebugMenu_DN },
     { sText_Misc, DebugMenu_Misc },
     { gText_MenuOptionExit, DebugMenu_Exit }
+};
+
+static const struct MenuAction sDebugMenu_DNActions[] =
+{
+    { sText_ToggleDNTinting, DebugMenu_ToggleTinting },
+    { sText_ToggleDNPalOverride, DebugMenu_ToggleOverride },
 };
 
 static const struct MenuAction sDebugMenu_MiscActions[] =
@@ -82,6 +97,17 @@ static const struct WindowTemplate sDebugMenu_Window_SetVar =
     .tilemapTop = 1,
     .width = 16,
     .height = 6,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_DN = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 0,
+    .height = ARRAY_COUNT(sDebugMenu_DNActions) * 2,
     .paletteNum = 15,
     .baseBlock = 0x120
 };
@@ -426,6 +452,10 @@ static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
     }
 }
 
+#undef tVarNum
+#undef tVarVal
+#undef tWhichDigit
+
 static void DebugMenu_Misc(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
@@ -474,6 +504,48 @@ static void DebugMenu_Misc_ProcessInput(u8 taskId)
     }
 }
 
-#undef tVarNum
-#undef tVarVal
-#undef tWhichDigit
+static void DebugMenu_DN(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    struct WindowTemplate windowTemplate = sDebugMenu_Window_DN;
+    DebugMenu_RemoveMenu(taskId);
+
+    windowTemplate.width = GetMaxWidthInMenuTable(sDebugMenu_DNActions, ARRAY_COUNT(sDebugMenu_DNActions));
+    tWindowId = AddWindow(&windowTemplate);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_DNActions), sDebugMenu_DNActions);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, ARRAY_COUNT(sDebugMenu_DNActions), 0);
+    schedule_bg_copy_tilemap_to_vram(0);
+    gTasks[taskId].func = DebugMenu_DN_ProcessInput;
+}
+
+static void DebugMenu_ToggleTinting(u8 taskId)
+{
+    gPaletteTintDisabled = !gPaletteTintDisabled;
+}
+
+static void DebugMenu_ToggleOverride(u8 taskId)
+{
+    gPaletteOverrideDisabled = !gPaletteOverrideDisabled;
+    RetintPalettesForDayNight();
+}
+
+static void DebugMenu_DN_ProcessInput(u8 taskId)
+{
+    s8 inputOptionId = Menu_ProcessInput();
+
+    switch (inputOptionId)
+    {
+        case MENU_NOTHING_CHOSEN:
+            break;
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            DebugMenu_RemoveMenu(taskId);
+            ReturnToMainMenu(taskId);
+            break;
+        default:
+            PlaySE(SE_SELECT);
+            sDebugMenu_DNActions[inputOptionId].func.void_u8(taskId);
+            break;
+    }
+}
