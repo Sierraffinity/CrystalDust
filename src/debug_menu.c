@@ -20,13 +20,18 @@ static void HandleDebugMenuInput(u8 taskId);
 static void DebugMenu_Exit(u8 taskId);
 static void DebugMenu_SetFlag(u8 taskId);
 static void DebugMenu_SetFlag_ProcessInput(u8 taskId);
-static void DebugMenu_SetFlag_RemoveMenu(u8 taskId);
 static void DebugMenu_SetVar(u8 taskId);
-static void DebugMenu_SetVar_ProcessInput(u8 taskId);
-static void DebugMenu_SetVar_RemoveMenu(u8 taskId);
+static void DebugMenu_SetVar_ProcessInputVar(u8 taskId);
+static void DebugMenu_SetVar_ProcessInputVal(u8 taskId);
+static void DebugMenu_Misc(u8 taskId);
+static void DebugMenu_Misc_ProcessInput(u8 taskId);
+static void DebugMenu_ToggleRunningShoes(u8 taskId);
+static void DebugMenu_RemoveMenu(u8 taskId);
 
 static const u8 sText_SetFlag[] = _("Set flag");
 static const u8 sText_SetVar[] = _("Set variable");
+static const u8 sText_Misc[] = _("Misc");
+static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
 static const u8 sText_VarStatus[] = _("Var: {STR_VAR_1}\nValue: {STR_VAR_2}\nAddress: {STR_VAR_3}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
@@ -36,7 +41,13 @@ static const struct MenuAction sDebugMenu_MainActions[] =
 {
     { sText_SetFlag, DebugMenu_SetFlag },
     { sText_SetVar, DebugMenu_SetVar },
+    { sText_Misc, DebugMenu_Misc },
     { gText_MenuOptionExit, DebugMenu_Exit }
+};
+
+static const struct MenuAction sDebugMenu_MiscActions[] =
+{
+    { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes }
 };
 
 static const struct WindowTemplate sDebugMenu_Window_Main = 
@@ -68,6 +79,17 @@ static const struct WindowTemplate sDebugMenu_Window_SetVar =
     .tilemapTop = 1,
     .width = 16,
     .height = 6,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_Misc = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 0,
+    .height = ARRAY_COUNT(sDebugMenu_MiscActions) * 2,
     .paletteNum = 15,
     .baseBlock = 0x120
 };
@@ -128,7 +150,7 @@ static void HandleDebugMenuInput(u8 taskId)
     }
 }
 
-static void DebugMenu_RemoveMainMenu(u8 taskId)
+static void DebugMenu_RemoveMenu(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
@@ -138,7 +160,7 @@ static void DebugMenu_RemoveMainMenu(u8 taskId)
 
 static void DebugMenu_Exit(u8 taskId)
 {
-    DebugMenu_RemoveMainMenu(taskId);
+    DebugMenu_RemoveMenu(taskId);
     ScriptUnfreezeEventObjects();
     ScriptContext2_Disable();
     DestroyTask(taskId);
@@ -165,7 +187,7 @@ static void DebugMenu_SetFlag(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    DebugMenu_RemoveMainMenu(taskId);
+    DebugMenu_RemoveMenu(taskId);
 
     tWindowId = AddWindow(&sDebugMenu_Window_SetFlag);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
@@ -240,47 +262,44 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
     if (gMain.newKeys & B_BUTTON)
     {
         PlaySE(SE_SELECT);
-        DebugMenu_SetFlag_RemoveMenu(taskId);
+        DebugMenu_RemoveMenu(taskId);
         ReturnToMainMenu(taskId);
     }
 }
 
-static void DebugMenu_SetFlag_RemoveMenu(u8 taskId)
-{
-    s16 *data = gTasks[taskId].data;
-
-    sub_8198070(tWindowId, TRUE);
-    RemoveWindow(tWindowId);
-}
-
-static void DebugMenu_SetVar_PrintStatus(u8 windowId, u16 varId)
+static void DebugMenu_SetVar_PrintStatus(u8 windowId, u16 varId, u16 varVal)
 {
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertIntToHexStringN(gStringVar1, varId, STR_CONV_MODE_LEADING_ZEROS, 4);
-    ConvertIntToHexStringN(gStringVar2, VarGet(varId), STR_CONV_MODE_LEADING_ZEROS, 4);
+    ConvertIntToHexStringN(gStringVar2, varVal, STR_CONV_MODE_LEADING_ZEROS, 4);
     ConvertIntToHexStringN(gStringVar3, (u32)GetVarPointer(varId), STR_CONV_MODE_LEADING_ZEROS, 8);
     StringExpandPlaceholders(gStringVar4, sText_VarStatus);
     AddTextPrinterParameterized(windowId, 1, gStringVar4, 0, 1, 0, NULL);
 }
 
+#undef tFlagNum
+#undef tWhichDigit
+
 #define tVarNum data[1]
-#define tWhichDigit data[2]
+#define tVarVal data[2]
+#define tWhichDigit data[3]
 
 static void DebugMenu_SetVar(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    DebugMenu_RemoveMainMenu(taskId);
+    DebugMenu_RemoveMenu(taskId);
 
     tWindowId = AddWindow(&sDebugMenu_Window_SetVar);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
-    DebugMenu_SetVar_PrintStatus(tWindowId, VAR_TEMP_0);
-    schedule_bg_copy_tilemap_to_vram(0);
     tVarNum = VAR_TEMP_0;
+    tVarVal = VarGet(VAR_TEMP_0);
+    DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum, tVarVal);
+    schedule_bg_copy_tilemap_to_vram(0);
     tWhichDigit = 0;
-    gTasks[taskId].func = DebugMenu_SetVar_ProcessInput;
+    gTasks[taskId].func = DebugMenu_SetVar_ProcessInputVar;
 }
 
-static void DebugMenu_SetVar_ProcessInput(u8 taskId)
+static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
 {
     u32 temp, shifter;
     u16 *data = gTasks[taskId].data;
@@ -295,7 +314,8 @@ static void DebugMenu_SetVar_ProcessInput(u8 taskId)
         {
             PlaySE(SE_SELECT);
             tVarNum = temp;
-            DebugMenu_SetVar_PrintStatus(tWindowId, temp);
+            tVarVal = VarGet(tVarNum);
+            DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum, tVarVal);
         }
     }
 
@@ -309,7 +329,8 @@ static void DebugMenu_SetVar_ProcessInput(u8 taskId)
         {
             PlaySE(SE_SELECT);
             tVarNum = temp;
-            DebugMenu_SetVar_PrintStatus(tWindowId, temp);
+            tVarVal = VarGet(tVarNum);
+            DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum, tVarVal);
         }
     }
 
@@ -332,27 +353,118 @@ static void DebugMenu_SetVar_ProcessInput(u8 taskId)
     if (gMain.newKeys & A_BUTTON)
     {
         PlaySE(SE_SELECT);
-
-        /*if (FlagGet(tVarNum))
-            FlagClear(tVarNum);
-        else
-            FlagSet(tVarNum);*/
-
-        DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum);
+        tWhichDigit = 0;
+        gTasks[taskId].func = DebugMenu_SetVar_ProcessInputVal;
     }
 
     if (gMain.newKeys & B_BUTTON)
     {
         PlaySE(SE_SELECT);
-        DebugMenu_SetVar_RemoveMenu(taskId);
+        DebugMenu_RemoveMenu(taskId);
         ReturnToMainMenu(taskId);
     }
 }
 
-static void DebugMenu_SetVar_RemoveMenu(u8 taskId)
+static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
+{
+    u32 temp, shifter;
+    u16 *data = gTasks[taskId].data;
+
+    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    {
+        shifter = tWhichDigit * 4;
+        temp = (((tVarVal >> shifter) & 0xF) + 1) & 0xF;
+        temp = (tVarVal & ~(0xF << shifter)) | (temp << shifter);
+        PlaySE(SE_SELECT);
+        tVarVal = temp;
+        DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum, tVarVal);
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    {
+        shifter = tWhichDigit * 4;
+        temp = (((tVarVal >> shifter) & 0xF) - 1) & 0xF;
+        temp = (tVarVal & ~(0xF << shifter)) | (temp << shifter);
+        PlaySE(SE_SELECT);
+        tVarVal = temp;
+        DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum, tVarVal);
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    {
+        if (++tWhichDigit > 3)
+            tWhichDigit = 3;
+        else
+            PlaySE(SE_SELECT);
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    {
+        if (--tWhichDigit > 3)
+            tWhichDigit = 0;
+        else
+            PlaySE(SE_SELECT);
+    }
+
+    if (gMain.newKeys & A_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        VarSet(tVarNum, tVarVal);
+        DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum, tVarVal);
+        tWhichDigit = 0;
+        gTasks[taskId].func = DebugMenu_SetVar_ProcessInputVar;
+    }
+
+    if (gMain.newKeys & B_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        tWhichDigit = 0;
+        gTasks[taskId].func = DebugMenu_SetVar_ProcessInputVar;
+    }
+}
+
+static void DebugMenu_Misc(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    struct WindowTemplate windowTemplate = sDebugMenu_Window_Misc;
 
-    sub_8198070(tWindowId, TRUE);
-    RemoveWindow(tWindowId);
+    windowTemplate.width = GetMaxWidthInMenuTable(sDebugMenu_MiscActions, ARRAY_COUNT(sDebugMenu_MiscActions));
+    tWindowId = AddWindow(&windowTemplate);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_MiscActions), sDebugMenu_MiscActions);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, ARRAY_COUNT(sDebugMenu_MiscActions), 0);
+    schedule_bg_copy_tilemap_to_vram(0);
+    gTasks[taskId].func = DebugMenu_SetFlag_ProcessInput;
 }
+
+static void DebugMenu_ToggleRunningShoes(u8 taskId)
+{
+    if (FlagGet(FLAG_SYS_B_DASH))
+        FlagClear(FLAG_SYS_B_DASH);
+    else
+        FlagSet(FLAG_SYS_B_DASH);
+}
+
+static void DebugMenu_Misc_ProcessInput(u8 taskId)
+{
+    s8 inputOptionId = Menu_ProcessInput();
+
+    switch (inputOptionId)
+    {
+        case MENU_NOTHING_CHOSEN:
+            break;
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            DebugMenu_RemoveMenu(taskId);
+            ReturnToMainMenu(taskId);
+            break;
+        default:
+            PlaySE(SE_SELECT);
+            sDebugMenu_MiscActions[inputOptionId].func.void_u8(taskId);
+            break;
+    }
+}
+
+#undef tVarNum
+#undef tVarVal
+#undef tWhichDigit

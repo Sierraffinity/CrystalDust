@@ -2154,7 +2154,7 @@ Route103_EventScript_272141:: @ 8272141
 	lock
 	faceplayer
 	goto_if_unset FLAG_HAS_MATCH_CALL, Route101_EventScript_272155
-	goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, Route101_EventScript_1FA2D2
+	@goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, Route101_EventScript_1FA2D2
 
 Route101_EventScript_272155:: @ 8272155
 	msgbox gUnknown_082A5C9C, MSGBOX_YESNO

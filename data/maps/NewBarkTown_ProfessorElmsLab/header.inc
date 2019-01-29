@@ -3,7 +3,7 @@ NewBarkTown_ProfessorElmsLab::
 	.4byte NewBarkTown_ProfessorElmsLab_MapEvents
 	.4byte NewBarkTown_ProfessorElmsLab_MapScripts
 	.4byte 0x0
-	.2byte MUS_ODAMAKI
+	.2byte MUS_ELMSLAB
 	.2byte 58
 	.byte MAPSEC_NEW_BARK_TOWN
 	.byte 0
