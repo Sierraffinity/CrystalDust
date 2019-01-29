@@ -135,8 +135,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Chikorita::
 	goto NewBarkTown_EventScript_PokeBallMain
 
 NewBarkTown_EventScript_PokeBallMain:
-	compare VAR_0x4050, 2
-	goto_if_le NewBarkTown_EventScript_PokeBallChoice
+	goto_if_unset FLAG_SYS_POKEMON_GET, NewBarkTown_EventScript_PokeBallChoice
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ItContainsAMon
 	release
 	end
@@ -179,7 +178,7 @@ NewBarkTown_EventScript_ChoseMon:
 	msgbox NewBarkTown_ProfessorElmsLab_Text_GreatMonToo
 	call RestoreOriginalTextColor
 	setflag FLAG_SYS_POKEMON_GET
-	givemon VAR_TEMP_2, 5, ITEM_NONE, 0, 0, 0
+	givemon VAR_TEMP_2, 5, ITEM_ORAN_BERRY, 0, 0, 0
 	copyvar VAR_STARTER_MON, VAR_TEMP_1
 	bufferspeciesname 0, VAR_TEMP_2
 	message NewBarkTown_ProfessorElmsLab_Text_GotMonFromElm
@@ -354,6 +353,96 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmCountingOnYou, MSGBOX_DEFAULT
 	setvar VAR_0x4050, 3
 	release
+	end
+
+NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1::
+	lockall
+	setvar VAR_TEMP_1, 0
+	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideToLeftTrigger
+	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain
+
+NewBarkTown_ProfessorElmsLab_Movement_AideToLeftTrigger:
+	walk_right
+	walk_right
+	face_up
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2::
+	lockall
+	setvar VAR_TEMP_1, 1
+	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideToMiddleTrigger
+	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain
+
+NewBarkTown_ProfessorElmsLab_Movement_AideToMiddleTrigger:
+	walk_right
+	walk_right
+	walk_right
+	face_up
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3::
+	lockall
+	setvar VAR_TEMP_1, 2
+	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger
+	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain
+
+NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	face_up
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain:
+	waitmovement 0
+	textcolor MSG_COLOR_BLUE
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_TakeThisForErrand
+	giveitem_std ITEM_POTION
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy
+	closemessage
+	compare VAR_TEMP_1, 0
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromLeft
+	compare VAR_TEMP_1, 1
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle
+	compare VAR_TEMP_1, 2
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight
+	end
+
+NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromLeft:
+	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideFromLeftTrigger
+	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionPostReturn
+
+NewBarkTown_ProfessorElmsLab_Movement_AideFromLeftTrigger:
+	walk_left
+	walk_left
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle:
+	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger
+	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionPostReturn
+
+NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger:
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight:
+	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger
+	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionPostReturn
+
+NewBarkTown_ProfessorElmsLab_Movement_AideFromRightTrigger:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_AidePotionPostReturn:
+	waitmovement 0
+	setvar VAR_0x4051, 1
+	releaseall
 	end
 
 NewBarkTown_ProfessorElmsLab_EventScript_Aide::
@@ -546,6 +635,10 @@ NewBarkTown_ProfessorElmsLab_Text_ElmCountingOnYou:
 NewBarkTown_ProfessorElmsLab_Text_ItContainsAMon:
 	.string "It contains a POKéMON caught by\n"
 	.string "PROF. ELM.$"
+
+NewBarkTown_ProfessorElmsLab_Text_Aide_TakeThisForErrand:
+	.string "{PLAYER}, I want you to have this\n"
+	.string "for your errand.$"
 
 NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy:
 	.string "There are only two of us, so we're\n"

@@ -13,6 +13,9 @@ NewBarkTown_ProfessorElmsLab_MapCoordEvents::
 	coord_event 5, 8, 3, VAR_0x4050, 2, NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo
 	coord_event 6, 8, 3, VAR_0x4050, 2, NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo
 	coord_event 7, 8, 3, VAR_0x4050, 2, NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo
+	coord_event 5, 9, 3, VAR_0x4051, 0, NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1
+	coord_event 6, 9, 3, VAR_0x4051, 0, NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2
+	coord_event 7, 9, 3, VAR_0x4051, 0, NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3
 
 NewBarkTown_ProfessorElmsLab_MapBGEvents::
 	bg_event 2, 1, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine

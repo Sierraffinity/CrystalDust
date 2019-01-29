@@ -23,7 +23,16 @@ NewBarkTown_EventScript_FatMan::
 	end
 
 NewBarkTown_EventScript_Teacher::
-	msgbox NewBarkTown_Text_GearImpressive, MSGBOX_NPC
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_EventScript_Teacher_MonIsAdorable
+	msgbox NewBarkTown_Text_GearImpressive
+	release
+	end
+
+NewBarkTown_EventScript_Teacher_MonIsAdorable::
+	msgbox NewBarkTown_Text_MonIsAdorable
+	release
 	end
 
 NewBarkTown_EventScript_Rival::
@@ -128,56 +137,16 @@ NewBarkTown_EventScript_TeacherMain:
 	waitmovement 0
 	delay 10
 	compare VAR_TEMP_1, 0
-	call_if_eq  NewBarkTown_EventScript_TeacherToTopSpot
+	goto_if_eq  NewBarkTown_EventScript_TeacherToTopSpot
 	compare VAR_TEMP_1, 1
-	call_if_eq  NewBarkTown_EventScript_TeacherToMiddleSpot
+	goto_if_eq  NewBarkTown_EventScript_TeacherToMiddleSpot
 	compare VAR_TEMP_1, 2
-	call_if_eq  NewBarkTown_EventScript_TeacherToBottomSpot
-	waitmovement 0
-	msgbox NewBarkTown_Text_WhatDoYouThinkYoureDoing
-	closemessage
-	compare VAR_TEMP_1, 0
-	call_if_eq  NewBarkTown_EventScript_TeacherAndPlayerFromTopSpot
-	compare VAR_TEMP_1, 1
-	call_if_eq  NewBarkTown_EventScript_TeacherAndPlayerFromMiddleSpot
-	compare VAR_TEMP_1, 2
-	call_if_eq  NewBarkTown_EventScript_TeacherAndPlayerFromBottomSpot
-	waitmovement 0
-	msgbox NewBarkTown_Text_ItsDangerousToGoAlone
-	closemessage
-	savebgm MUS_DUMMY
-	fadedefaultbgm
-	releaseall
+	goto_if_eq  NewBarkTown_EventScript_TeacherToBottomSpot
 	end
 
 NewBarkTown_EventScript_TeacherToTopSpot:
 	applymovement 2, NewBarkTown_Movement_TeacherToTopSpot
-	return
-
-NewBarkTown_EventScript_TeacherToMiddleSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher
-	applymovement 2, NewBarkTown_Movement_TeacherToMiddleSpot
-	return
-
-NewBarkTown_EventScript_TeacherToBottomSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher
-	applymovement 2, NewBarkTown_Movement_TeacherToBottomSpot
-	return
-
-NewBarkTown_EventScript_TeacherAndPlayerFromTopSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerFromTopSpot
-	applymovement 2, NewBarkTown_Movement_TeacherFromTopSpot
-	return
-
-NewBarkTown_EventScript_TeacherAndPlayerFromMiddleSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerFromMiddleSpot
-	applymovement 2, NewBarkTown_Movement_TeacherFromMiddleSpot
-	return
-
-NewBarkTown_EventScript_TeacherAndPlayerFromBottomSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerFromBottomSpot
-	applymovement 2, NewBarkTown_Movement_TeacherFromBottomSpot
-	return
+	goto NewBarkTown_EventScript_TeacherPostMoveToPlayer
 
 NewBarkTown_Movement_TeacherToTopSpot:
 	walk_left
@@ -185,6 +154,21 @@ NewBarkTown_Movement_TeacherToTopSpot:
 	walk_left
 	walk_left
 	walk_left
+	step_end
+
+NewBarkTown_EventScript_TeacherToMiddleSpot:
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher
+	applymovement 2, NewBarkTown_Movement_TeacherToMiddleSpot
+	goto NewBarkTown_EventScript_TeacherPostMoveToPlayer
+
+NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher:
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_fastest_up
 	step_end
 
 NewBarkTown_Movement_TeacherToMiddleSpot:
@@ -197,6 +181,11 @@ NewBarkTown_Movement_TeacherToMiddleSpot:
 	walk_down
 	step_end
 
+NewBarkTown_EventScript_TeacherToBottomSpot:
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher
+	applymovement 2, NewBarkTown_Movement_TeacherToBottomSpot
+	goto NewBarkTown_EventScript_TeacherPostMoveToPlayer
+
 NewBarkTown_Movement_TeacherToBottomSpot:
 	walk_left
 	walk_left
@@ -207,14 +196,29 @@ NewBarkTown_Movement_TeacherToBottomSpot:
 	walk_down
 	step_end
 
-NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher:
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	walk_in_place_fastest_up
+NewBarkTown_EventScript_TeacherPostMoveToPlayer:
+	waitmovement 0
+	msgbox NewBarkTown_Text_WhatDoYouThinkYoureDoing
+	closemessage
+	compare VAR_TEMP_1, 0
+	goto_if_eq  NewBarkTown_EventScript_TeacherAndPlayerFromTopSpot
+	compare VAR_TEMP_1, 1
+	goto_if_eq  NewBarkTown_EventScript_TeacherAndPlayerFromMiddleSpot
+	compare VAR_TEMP_1, 2
+	goto_if_eq  NewBarkTown_EventScript_TeacherAndPlayerFromBottomSpot
+	end
+
+NewBarkTown_EventScript_TeacherAndPlayerFromTopSpot:
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerFromTopSpot
+	applymovement 2, NewBarkTown_Movement_TeacherFromTopSpot
+	goto NewBarkTown_EventScript_TeacherPostReturn
+
+NewBarkTown_Movement_PlayerFromTopSpot:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
 NewBarkTown_Movement_TeacherFromTopSpot:
@@ -226,6 +230,20 @@ NewBarkTown_Movement_TeacherFromTopSpot:
 	face_left
 	step_end
 
+NewBarkTown_EventScript_TeacherAndPlayerFromMiddleSpot:
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerFromMiddleSpot
+	applymovement 2, NewBarkTown_Movement_TeacherFromMiddleSpot
+	goto NewBarkTown_EventScript_TeacherPostReturn
+
+NewBarkTown_Movement_PlayerFromMiddleSpot:
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
 NewBarkTown_Movement_TeacherFromMiddleSpot:
 	walk_right
 	walk_right
@@ -234,6 +252,21 @@ NewBarkTown_Movement_TeacherFromMiddleSpot:
 	walk_right
 	walk_right
 	face_left
+	step_end
+
+NewBarkTown_EventScript_TeacherAndPlayerFromBottomSpot:
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerFromBottomSpot
+	applymovement 2, NewBarkTown_Movement_TeacherFromBottomSpot
+	goto NewBarkTown_EventScript_TeacherPostReturn
+
+NewBarkTown_Movement_PlayerFromBottomSpot:
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	step_end
 
 NewBarkTown_Movement_TeacherFromBottomSpot:
@@ -247,32 +280,14 @@ NewBarkTown_Movement_TeacherFromBottomSpot:
 	face_left
 	step_end
 
-NewBarkTown_Movement_PlayerFromTopSpot:
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-NewBarkTown_Movement_PlayerFromMiddleSpot:
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-NewBarkTown_Movement_PlayerFromBottomSpot:
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
+NewBarkTown_EventScript_TeacherPostReturn:
+	waitmovement 0
+	msgbox NewBarkTown_Text_ItsDangerousToGoAlone
+	closemessage
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	releaseall
+	end
 
 NewBarkTown_EventScript_Slogan::
 	msgbox NewBarkTown_Text_TownSlogan, MSGBOX_SIGN
@@ -306,6 +321,10 @@ NewBarkTown_Text_FatMan:
 NewBarkTown_Text_GearImpressive:
 	.string "Wow, your POKéGEAR is impressive!\n"
 	.string "Did your mom get it for you?$"
+
+NewBarkTown_Text_MonIsAdorable:
+	.string "Oh! Your POKéMON is adorable!\n"
+	.string "I wish I had one!$"
 
 NewBarkTown_Text_WaitPlayer:
 	.string "Wait, {PLAYER}!$"

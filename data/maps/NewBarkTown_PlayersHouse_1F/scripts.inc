@@ -1,6 +1,30 @@
 NewBarkTown_PlayersHouse_1F_MapScripts:: @ 81F7755
+	map_script 3, NewBarkTown_PlayersHouse_1F_MapScript1_Type3
 	map_script 2, NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA
 	.byte 0
+
+NewBarkTown_PlayersHouse_1F_MapScript1_Type3:
+	compare VAR_0x4050, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomDay
+	gettime
+	compare VAR_0x8003, TIME_MORNING
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomMorning
+	compare VAR_0x8003, TIME_DAY
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomDay
+	compare VAR_0x8003, TIME_NIGHT
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomNight
+NewBarkTown_PlayersHouse_1F_EventScript_MomDay:
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomMorning:
+	setobjectxyperm 1, 2, 2
+	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomNight:
+	setobjectxyperm 1, 1, 2
+	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
+	end
 
 NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA: @ 81F77EA
 	map_script_2 VAR_0x4050, 0, NewBarkTown_PlayersHouse_1F_MomEncounter
@@ -93,7 +117,13 @@ NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer:
 NewBarkTown_PlayersHouse_1F_MomTalk::
 	lock
 	faceplayer
+	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_PlayersHouse_1F_EventScript_MomWhatWasElmsErrand
 	msgbox NewBarkTown_PlayersHouse_1F_MomProfElmWaiting
+	release
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomWhatWasElmsErrand::
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomWhatWasElmsErrand
 	release
 	end
 
@@ -102,28 +132,31 @@ NewBarkTown_PlayersHouse_1F_NeighborTalk::
 	faceplayer
 	gettime
 	compare VAR_0x8003, TIME_MORNING
-	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning
+	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning
 	compare VAR_0x8003, TIME_DAY
-	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay
+	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay
 	compare VAR_0x8003, TIME_NIGHT
-	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight
-	msgbox NewBarkTown_PlayersHouse_1F_NeighborMain
-	applymovement VAR_LAST_TALKED, Move_WalkInPlaceFastestRight
-	waitmovement 0
-	release
+	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight
 	end
 
 NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning:
 	msgbox NewBarkTown_PlayersHouse_1F_NeighborMorning
-	return
+	goto NewBarkTown_PlayersHouse_1F_NeighborMain
 
 NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay:
 	msgbox NewBarkTown_PlayersHouse_1F_NeighborDay
-	return
+	goto NewBarkTown_PlayersHouse_1F_NeighborMain
 
 NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight:
 	msgbox NewBarkTown_PlayersHouse_1F_NeighborNight
-	return
+	goto NewBarkTown_PlayersHouse_1F_NeighborMain
+
+NewBarkTown_PlayersHouse_1F_NeighborMain:
+	msgbox NewBarkTown_PlayersHouse_1F_Text_NeighborMain
+	applymovement VAR_LAST_TALKED, Move_WalkInPlaceFastestRight
+	waitmovement 0
+	release
+	end
 
 NewBarkTown_PlayersHouse_1F_TV::
 	msgbox NewBarkTown_PlayersHouse_1F_TVText, MSGBOX_SIGN
@@ -203,6 +236,14 @@ NewBarkTown_PlayersHouse_1F_MomProfElmWaiting:
 	.string "MOM: PROF. ELM is waiting for you.\n"
 	.string "Hurry up, baby!$"
 
+NewBarkTown_PlayersHouse_1F_Text_MomWhatWasElmsErrand:
+	.string "MOM: So, what was PROF. ELM's\n"
+	.string "errand?\p"
+	.string "…\p"
+	.string "That does sound challenging.\p"
+	.string "But, you should be proud that\n"
+	.string "people rely on you.$"
+
 NewBarkTown_PlayersHouse_1F_NeighborMorning:
 	.string "Good morning, {PLAYER}!\n"
 	.string "I'm visiting!$"
@@ -215,7 +256,7 @@ NewBarkTown_PlayersHouse_1F_NeighborNight:
 	.string "Good evening, {PLAYER}!\n"
 	.string "I'm visiting!$"
 
-NewBarkTown_PlayersHouse_1F_NeighborMain:
+NewBarkTown_PlayersHouse_1F_Text_NeighborMain:
 	.string "{PLAYER}, have you heard?\p"
 	.string "My daughter is adamant about\n"
 	.string "becoming PROF. ELM's assistant.\l"

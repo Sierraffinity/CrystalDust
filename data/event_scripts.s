@@ -3,6 +3,7 @@
 #include "constants/battle_setup.h"
 #include "constants/day_night.h"
 #include "constants/event_objects.h"
+#include "constants/event_object_movement_constants.h"
 #include "constants/field_effects.h"
 #include "constants/flags.h"
 #include "constants/items.h"
