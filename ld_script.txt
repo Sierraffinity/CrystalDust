@@ -125,7 +125,8 @@ SECTIONS {
         src/scanline_effect.o(.text);
         src/option_menu.o(.text);
         src/pokedex.o(.text);
-        asm/trainer_card.o(.text);
+        src/trainer_card.o(.text);
+        src/frontier_pass.o(.text);
         src/pokemon_storage_system.o(.text);
         src/pokemon_icon.o(.text);
         src/script_movement.o(.text);
@@ -136,7 +137,6 @@ SECTIONS {
         src/battle_anim_80D51AC.o(.text);
         src/item.o(.text);
         src/contest.o(.text);
-        asm/contest.o(.text);
         src/shop.o(.text);
         src/fldeff_escalator.o(.text);
         src/berry.o(.text);
@@ -444,14 +444,13 @@ SECTIONS {
         src/start_menu.o(.rodata);
         src/tileset_anims.o(.rodata);
         src/palette.o(.rodata);
-        data/fanfares.o(.rodata);
+        src/sound.o(.rodata);
         src/battle_anim.o(.rodata);
         src/battle_anim_80A5C6C.o(.rodata);
         data/map_events.o(.rodata);
         data/battle_anim_80A9C70.o(.rodata);
         src/battle_anim_80A9C70.o(.rodata);
         src/title_screen.o(.rodata);
-        data/field_weather.o(.rodata);
         src/field_weather.o(.rodata);
         src/field_weather_effect.o(.rodata);
         src/field_screen_effect.o(.rodata);
@@ -462,7 +461,8 @@ SECTIONS {
         src/field_effect.o(.rodata);
         src/option_menu.o(.rodata);
         src/pokedex.o(.rodata);
-        data/trainer_card.o(.rodata);
+        src/trainer_card.o(.rodata);
+        src/frontier_pass.o(.rodata);
         src/pokemon_storage_system.o(.rodata);
         src/pokemon_icon.o(.rodata);
         src/fldeff_cut.o(.rodata);
