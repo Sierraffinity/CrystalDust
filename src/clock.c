@@ -98,6 +98,10 @@ u8* WriteTimeString(u8 *dest, u8 hours, u8 minutes, bool8 twentyFourHourMode, bo
         {
             hours = 12;
         }
+        else if (hours == 12)
+        {
+            isPM = TRUE;
+        }
         else if (hours > 12)
         {
             isPM = TRUE;

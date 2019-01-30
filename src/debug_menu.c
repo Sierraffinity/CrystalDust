@@ -1,4 +1,5 @@
 #include "global.h"
+#include "clock.h"
 #include "day_night.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -7,6 +8,7 @@
 #include "international_string_util.h"
 #include "main.h"
 #include "overworld.h"
+#include "rtc.h"
 #include "script.h"
 #include "sound.h"
 #include "strings.h"
@@ -28,6 +30,8 @@ static void DebugMenu_DN(u8 taskId);
 static void DebugMenu_DN_ProcessInput(u8 taskId);
 static void DebugMenu_Misc(u8 taskId);
 static void DebugMenu_Misc_ProcessInput(u8 taskId);
+static void DebugMenu_TimeCycle(u8 taskId);
+static void DebugMenu_TimeCycle_ProcessInput(u8 taskId);
 static void DebugMenu_ToggleRunningShoes(u8 taskId);
 static void DebugMenu_EnableResetRTC(u8 taskId);
 static void DebugMenu_ToggleTinting(u8 taskId);
@@ -40,10 +44,12 @@ static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
-static const u8 sText_ToggleDNTinting[] = _("Toggle DN tinting");
-static const u8 sText_ToggleDNPalOverride[] = _("Toggle DN pal override");
+static const u8 sText_ToggleDNTinting[] = _("Toggle tinting");
+static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
+static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
 static const u8 sText_VarStatus[] = _("Var: {STR_VAR_1}\nValue: {STR_VAR_2}\nAddress: {STR_VAR_3}");
+static const u8 sText_ClockStatus[] = _("Time: {STR_VAR_1}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
 static const u8 sText_Off[] = _("{COLOR RED}OFF");
 
@@ -60,6 +66,7 @@ static const struct MenuAction sDebugMenu_DNActions[] =
 {
     { sText_ToggleDNTinting, DebugMenu_ToggleTinting },
     { sText_ToggleDNPalOverride, DebugMenu_ToggleOverride },
+    { sText_DNTimeCycle, DebugMenu_TimeCycle },
 };
 
 static const struct MenuAction sDebugMenu_MiscActions[] =
@@ -108,6 +115,17 @@ static const struct WindowTemplate sDebugMenu_Window_DN =
     .tilemapTop = 1,
     .width = 0,
     .height = ARRAY_COUNT(sDebugMenu_DNActions) * 2,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_TimeCycle = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 10,
+    .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x120
 };
@@ -547,5 +565,60 @@ static void DebugMenu_DN_ProcessInput(u8 taskId)
             PlaySE(SE_SELECT);
             sDebugMenu_DNActions[inputOptionId].func.void_u8(taskId);
             break;
+    }
+}
+
+static void DebugMenu_TimeCycle_PrintStatus(u8 windowId, u16 hour)
+{
+    FillWindowPixelBuffer(windowId, 0x11);
+    WriteTimeString(gStringVar1, hour, 0, FALSE, TRUE);
+    StringExpandPlaceholders(gStringVar4, sText_ClockStatus);
+    AddTextPrinterParameterized(windowId, 1, gStringVar4, 0, 1, 0, NULL);
+}
+
+#define tFlagNum data[1]
+
+static void DebugMenu_TimeCycle(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    DebugMenu_RemoveMenu(taskId);
+
+    tWindowId = AddWindow(&sDebugMenu_Window_TimeCycle);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    DebugMenu_TimeCycle_PrintStatus(tWindowId, gLocalTime.hours);
+    schedule_bg_copy_tilemap_to_vram(0);
+    gDNHourOverride = gLocalTime.hours + 1;
+    gTasks[taskId].func = DebugMenu_TimeCycle_ProcessInput;
+}
+
+static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    {
+        PlaySE(SE_SELECT);
+        if (++gDNHourOverride > 24)
+            gDNHourOverride = 1;
+        RetintPalettesForDayNight();
+        DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNHourOverride - 1);
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    {
+        PlaySE(SE_SELECT);
+        if (--gDNHourOverride < 1)
+            gDNHourOverride = 24;
+        RetintPalettesForDayNight();
+        DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNHourOverride - 1);
+    }
+
+    if (gMain.newKeys & B_BUTTON)
+    {
+        gDNHourOverride = 0;
+        PlaySE(SE_SELECT);
+        DebugMenu_RemoveMenu(taskId);
+        ReturnToMainMenu(taskId);
     }
 }

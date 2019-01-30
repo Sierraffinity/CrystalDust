@@ -6,7 +6,8 @@
 struct PaletteOverride
 {
     u8 slot;
-    u8 timeOfDay;
+    u8 startHour;
+    u8 endHour;
     void *palette;
 };
 
@@ -15,6 +16,7 @@ extern EWRAM_DATA struct PaletteOverride *gPaletteOverrides[];
 #ifdef DEBUG
 extern EWRAM_DATA bool8 gPaletteTintDisabled;
 extern EWRAM_DATA bool8 gPaletteOverrideDisabled;
+extern EWRAM_DATA s8 gDNHourOverride;
 #endif
 
 u8 GetTimeOfDay(void);
