@@ -283,7 +283,7 @@
 #define MUS_PCC 356             // Crystal - Pokémon Communication Center
 #define MUS_NIBI 357            // GSC - Viridian/Saffron/Pewter/etc
 #define MUS_SUIKUN 358          // Crystal - Battle! Legendary Beasts
-#define MUS_DOORO1 359          // Route 101
+#define MUS_ROUTE29 359          // Route 101
 #define MUS_DOORO_X1 360        // Route 110
 #define MUS_DOORO_X3 361        // Route 120
 #define MUS_MACHI_S2 362        // Petalburg City
