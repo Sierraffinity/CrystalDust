@@ -34,7 +34,6 @@ static void DebugMenu_TimeCycle(u8 taskId);
 static void DebugMenu_TimeCycle_ProcessInput(u8 taskId);
 static void DebugMenu_ToggleRunningShoes(u8 taskId);
 static void DebugMenu_EnableResetRTC(u8 taskId);
-static void DebugMenu_ToggleTinting(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
 static void DebugMenu_RemoveMenu(u8 taskId);
 
@@ -44,7 +43,6 @@ static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
-static const u8 sText_ToggleDNTinting[] = _("Toggle tinting");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
@@ -64,7 +62,6 @@ static const struct MenuAction sDebugMenu_MainActions[] =
 
 static const struct MenuAction sDebugMenu_DNActions[] =
 {
-    { sText_ToggleDNTinting, DebugMenu_ToggleTinting },
     { sText_ToggleDNPalOverride, DebugMenu_ToggleOverride },
     { sText_DNTimeCycle, DebugMenu_TimeCycle },
 };
@@ -535,11 +532,6 @@ static void DebugMenu_DN(u8 taskId)
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, ARRAY_COUNT(sDebugMenu_DNActions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = DebugMenu_DN_ProcessInput;
-}
-
-static void DebugMenu_ToggleTinting(u8 taskId)
-{
-    gPaletteTintDisabled = !gPaletteTintDisabled;
 }
 
 static void DebugMenu_ToggleOverride(u8 taskId)

@@ -20,7 +20,6 @@ static EWRAM_DATA s8 sOldHour = 0;
 static EWRAM_DATA bool8 sRetintPhase = FALSE;
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 #ifdef DEBUG
-EWRAM_DATA bool8 gPaletteTintDisabled = 0;
 EWRAM_DATA bool8 gPaletteOverrideDisabled = 0;
 EWRAM_DATA s8 gDNHourOverride = 0;
 #endif
@@ -88,35 +87,6 @@ void CopyDayOfWeekStringToVar1(void)
         StringCopy(gStringVar1, gText_None);
 }
 
-u8 GetTimeOfDayForTinting(void)
-{
-    s8 hour;
-
-#ifdef DEBUG
-    if (gPaletteTintDisabled)
-        return TIME_DAY;
-#endif
-    if (Overworld_MapTypeIsIndoors(gMapHeader.mapType))
-        return TIME_DAY;
-
-    hour = gLocalTime.hours;
-#ifdef DEBUG
-    if (gDNHourOverride != 0)
-        hour = gDNHourOverride - 1;
-#endif
-    
-    if (hour < TIME_MORNING_HOUR)
-        return TIME_NIGHT;
-    else if (hour < TIME_DAY_HOUR)
-        return TIME_MORNING;
-    else if (hour < TIME_AFTERNOON_HOUR)
-        return TIME_DAY;
-    else if (hour < TIME_NIGHT_HOUR)
-        return TIME_AFTERNOON;
-    else
-        return TIME_NIGHT;
-}
-
 static void LoadPaletteOverrides(void)
 {
     u8 i, j;
@@ -170,7 +140,7 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
     if (ShouldTintOverworld())
     {
         s8 hour;
-        RtcCalcLocalTime();
+        RtcCalcLocalTimeFast();
         
         hour = gLocalTime.hours;
 #ifdef DEBUG
@@ -218,7 +188,7 @@ void RetintPalettesForDayNight(void)
         {
             hour = gLocalTime.hours;
 
-    #ifdef DEBUG
+#ifdef DEBUG
             if (gDNHourOverride != 0)
                 hour = gDNHourOverride - 1;
 #endif
