@@ -178,7 +178,7 @@ NewBarkTown_Movement_TeacherToMiddleSpot:
 	walk_left
 	walk_left
 	walk_left
-	walk_down
+	face_down
 	step_end
 
 NewBarkTown_EventScript_TeacherToBottomSpot:

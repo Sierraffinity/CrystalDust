@@ -22,6 +22,7 @@ extern EWRAM_DATA s8 gDNHourOverride;
 u8 GetTimeOfDay(void);
 void LoadCompressedPaletteDayNight(const void *src, u16 offset, u16 size);
 void LoadPaletteDayNight(const void *src, u16 offset, u16 size);
+void CheckClockToRetintForDayNight(void);
 void RetintPalettesForDayNight(void);
 void DoLoadSpritePaletteDayNight(const u16 *src, u16 paletteOffset);
 const u8 *GetDayOfWeekString(u8 timeOfDay);

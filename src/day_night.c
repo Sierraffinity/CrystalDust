@@ -2,6 +2,7 @@
 #include "day_night.h"
 #include "decompress.h"
 #include "event_data.h"
+#include "field_weather.h"
 #include "overworld.h"
 #include "palette.h"
 #include "rtc.h"
@@ -16,6 +17,7 @@
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 static EWRAM_DATA s8 sOldHour = 0;
+static EWRAM_DATA bool8 sRetintPhase = FALSE;
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 #ifdef DEBUG
 EWRAM_DATA bool8 gPaletteTintDisabled = 0;
@@ -133,7 +135,6 @@ static void LoadPaletteOverrides(void)
         hour = gDNHourOverride - 1;
 #endif
 
-
     for (i = 0; i < ARRAY_COUNT(gPaletteOverrides); i++)
     {
         const struct PaletteOverride *curr = gPaletteOverrides[i];
@@ -156,18 +157,33 @@ static void LoadPaletteOverrides(void)
     }
 }
 
+static bool8 ShouldTintOverworld(void)
+{
+    if (Overworld_MapTypeIsIndoors(gMapHeader.mapType))
+        return FALSE;
+
+    return TRUE;
+}
+
 static void TintPaletteForDayNight(u16 offset, u16 size)
 {
-    s8 hour;
-    RtcCalcLocalTime();
-    
-    hour = gLocalTime.hours;
+    if (ShouldTintOverworld())
+    {
+        s8 hour;
+        RtcCalcLocalTime();
+        
+        hour = gLocalTime.hours;
 #ifdef DEBUG
-    if (gDNHourOverride != 0)
-        hour = gDNHourOverride - 1;
+        if (gDNHourOverride != 0)
+            hour = gDNHourOverride - 1;
 #endif
 
-    TintPalette_CustomToneWithCopy(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size / 2, sTimeOfDayTints[hour][0], sTimeOfDayTints[hour][1], sTimeOfDayTints[hour][2], FALSE);
+        TintPalette_CustomToneWithCopy(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size / 2, sTimeOfDayTints[hour][0], sTimeOfDayTints[hour][1], sTimeOfDayTints[hour][2], FALSE);
+    }
+    else
+    {
+        CpuCopy16(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size);
+    }
     LoadPaletteOverrides();
 }
 
@@ -186,27 +202,44 @@ void LoadPaletteDayNight(const void *src, u16 offset, u16 size)
     CpuCopy16(gPlttBufferUnfaded + offset, gPlttBufferFaded + offset, size);
 }
 
+void CheckClockToRetintForDayNight(void)
+{
+    if (ShouldTintOverworld() && !sRetintPhase)
+        RtcCalcLocalTimeFast();
+}
+
 void RetintPalettesForDayNight(void)
 {
-    u32 i;
-    const u16* src;
-    u16* dest;
     s8 hour;
 
-    RtcSlowUpdate();
-    hour = gLocalTime.hours;
-#ifdef DEBUG
-    if (gDNHourOverride != 0)
-        hour = gDNHourOverride - 1;
+    if (ShouldTintOverworld())
+    {
+        if (!sRetintPhase)
+        {
+            hour = gLocalTime.hours;
+
+    #ifdef DEBUG
+            if (gDNHourOverride != 0)
+                hour = gDNHourOverride - 1;
 #endif
 
-    if (hour != sOldHour)
-    {
-        sOldHour = hour;
-        TintPalette_CustomToneWithCopy(gPlttBufferPreDN, gPlttBufferUnfaded, PLTT_BUFFER_SIZE, sTimeOfDayTints[hour][0], sTimeOfDayTints[hour][1], sTimeOfDayTints[hour][2], TRUE);
-        LoadPaletteOverrides();
-        if (!gPaletteFade.active && gPaletteFade.yDec)  // HACK
-            CpuCopy16(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_BUFFER_SIZE * 2);
+            if (hour != sOldHour)
+            {
+                sOldHour = hour;
+                sRetintPhase = 1;
+                TintPalette_CustomToneWithCopy(gPlttBufferPreDN, gPlttBufferUnfaded, BG_PLTT_SIZE / 2, sTimeOfDayTints[hour][0], sTimeOfDayTints[hour][1], sTimeOfDayTints[hour][2], TRUE);
+            }
+        }
+        else
+        {
+            sRetintPhase = 0;
+            TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sTimeOfDayTints[sOldHour][0], sTimeOfDayTints[sOldHour][1], sTimeOfDayTints[sOldHour][2], TRUE);
+            LoadPaletteOverrides();
+            
+            if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&
+                gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)
+                CpuCopy16(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_SIZE);
+        }
     }
 }
 

@@ -614,6 +614,13 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
         DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNHourOverride - 1);
     }
 
+    if (gMain.newKeys & A_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        DebugMenu_RemoveMenu(taskId);
+        ReturnToMainMenu(taskId);
+    }
+
     if (gMain.newKeys & B_BUTTON)
     {
         gDNHourOverride = 0;

@@ -3,7 +3,7 @@ Route102::
 	.4byte Route102_MapEvents
 	.4byte Route102_MapScripts
 	.4byte Route102_MapConnections
-	.2byte MUS_DOORO1
+	.2byte MUS_ROUTE29
 	.2byte 18
 	.byte MAPSEC_ROUTE_102
 	.byte 0

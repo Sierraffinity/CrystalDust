@@ -250,7 +250,6 @@ u8 gFieldLinkPlayerCount;
 
 // EWRAM vars
 EWRAM_DATA static u8 sUnknown_020322D8 = 0;
-//EWRAM_DATA u8 gStaircaseState = 0;
 EWRAM_DATA struct WarpData gLastUsedWarp = {0};
 EWRAM_DATA static struct WarpData sWarpDestination = {0};  // new warp position
 EWRAM_DATA static struct WarpData gFixedDiveWarp = {0};
@@ -1785,7 +1784,6 @@ void CB2_ContinueSavedGame(void)
     PlayTimeCounter_Start();
     ScriptContext1_Init();
     ScriptContext2_Disable();
-    //gStaircaseState = 1;
     InitMatchCallCounters();
     if (UseContinueGameWarp() == TRUE)
     {
@@ -1840,6 +1838,7 @@ static void VBlankCB_Field(void)
     FieldUpdateBgTilemapScroll();
     TransferPlttBuffer();
     TransferTilesetAnimsBuffer();
+    CheckClockToRetintForDayNight();
 }
 
 static void InitCurrentFlashLevelScanlineEffect(void)
@@ -1943,7 +1942,6 @@ static bool32 load_map_stuff(u8 *state, u32 a2)
     {
     case 0:
         FieldClearVBlankHBlankCallbacks();
-        //gStaircaseState = 1;
         mli0_load_map(a2);
         (*state)++;
         break;
