@@ -15,6 +15,7 @@
 #include "random.h"
 #include "region_map.h"
 #include "rtc.h"
+#include "script.h"
 #include "sound.h"
 #include "strings.h"
 #include "string_util.h"
@@ -77,21 +78,29 @@ static const u8 *const sStationNames[] =
     gText_FiveMarks,
 };
 
+#define FREQ(a) (u8)(a * 2 - 1)
+
+const struct RadioStation gRadioStationData[] = {
+    { FREQ(4.5), REGION_JOHTO, LoadStation_PokemonChannel },
+    { FREQ(7.5), REGION_JOHTO, LoadStation_PokemonMusic },
+    { FREQ(8.5), REGION_JOHTO, LoadStation_LuckyChannel },
+    { FREQ(10.5), REGION_JOHTO, LoadStation_BuenasPassword },
+    { FREQ(13.5), REGION_JOHTO, LoadStation_UnownRadio },
+    { FREQ(20.5), REGION_JOHTO, LoadStation_EvolutionRadio },
+    { 0xFF, 0xFF, NULL }
+};
+
 static void PlayStationMusic(u8 taskId)
 {
     if (gTasks[taskId].tNumLinesPrinted == 0)
-    {
         PlayNewMapMusic(sRadioChannelSongs[gTasks[taskId].tCurrentLine]);
-    }
 }
 
 static bool8 BuenasPassword_CheckTime(void)
 {
     RtcCalcLocalTime();
     if (gLocalTime.hours >= TIME_NIGHT_HOUR)
-    {
         return TRUE;
-    }
     return FALSE;
 }
 
@@ -184,9 +193,7 @@ void PlayRadioShow(u8 taskId, u8 windowId)
     s16 *data = gTasks[taskId].data;
 
     if (tCurrentLine < UNOWN_RADIO && GetCurrentRegion() == REGION_JOHTO && FlagGet(FLAG_ROCKET_TAKEOVER))
-    {
         tCurrentLine = ROCKET_RADIO;
-    }
 
     switch (tCurrentLine)
     {
@@ -773,6 +780,10 @@ const u8 *LoadStation_UnownRadio(u8 taskId, u8 windowId)
         PlayRadioShow(taskId, windowId);
         title = sStationNames[UNOWN_RADIO];
     }
+    else
+    {
+        PlayNewMapMusic(MUS_DUMMY);
+    }
 
     return title;
 }
@@ -790,6 +801,27 @@ const u8 *LoadStation_EvolutionRadio(u8 taskId, u8 windowId)
         PlayRadioShow(taskId, windowId);
         title = sStationNames[EVOLUTION_RADIO];
     }
+    else
+    {
+        PlayNewMapMusic(MUS_DUMMY);
+    }
 
     return title;
+}
+
+void Task_FieldRadio(u8 taskId)
+{
+    if (gMain.newKeys & B_BUTTON)
+    {
+        sub_8197434(0, TRUE);
+        EnableBothScriptContexts();
+        DestroyTask(taskId);
+    }
+}
+
+void FieldRadio(void)
+{
+    sub_81973A4();
+    NewMenuHelpers_DrawDialogueFrame(0, 1);
+    CreateTask(Task_FieldRadio, 3);
 }

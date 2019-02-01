@@ -225,7 +225,7 @@ void sub_81973A4(void)
     LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM * 0x10);
 }
 
-void sub_80F79A4(void)
+void LoadSignAndUserWindowBorderGfx(void)
 {
     LoadSignMessageBoxGfx(0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM * 0x10);
     LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM * 0x10);

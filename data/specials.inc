@@ -535,3 +535,4 @@ gSpecials:: @ 81DBA64
 	def_special RemoveRecordsWindow
 	def_special sub_8139C10
 	def_special sub_80B3BC4
+	def_special FieldRadio

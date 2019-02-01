@@ -40,17 +40,9 @@
 
 #define REGION_MAP_XOFF 2
 
-#define FREQ(a) (u8)(a * 2 - 1)
-
 #define CARD_SLIDE_SPEED 32
 #define ICON_SLIDE_SPEED 2
 #define CARD_SLIDE_RIGHT_X 208
-
-struct RadioStation{
-    u8 frequency;
-    u8 region;
-    const u8 *(*loadFunc)(u8 taskId, u8 windowId);
-};
 
 // Static RAM declarations
 
@@ -1324,16 +1316,6 @@ static void SpriteCB_RadioDigits(struct Sprite* sprite)
     }
 }
 
-static const struct RadioStation sRadioStationData[] = {
-    { FREQ(4.5), REGION_JOHTO, LoadStation_PokemonChannel },
-    { FREQ(7.5), REGION_JOHTO, LoadStation_PokemonMusic },
-    { FREQ(8.5), REGION_JOHTO, LoadStation_LuckyChannel },
-    { FREQ(10.5), REGION_JOHTO, LoadStation_BuenasPassword },
-    { FREQ(13.5), REGION_JOHTO, LoadStation_UnownRadio },
-    { FREQ(20.5), REGION_JOHTO, LoadStation_EvolutionRadio },
-    { 0xFF, 0xFF, NULL }
-};
-
 void DrawStationTitle(const u8 *title)
 {
     AddTextPrinterParameterized3(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, title, 0x70), 5, sTextColor, 0, title);
@@ -1347,12 +1329,11 @@ void ClearStationTitle(void)
 
 static void UpdateRadioStation(u8 taskId, u8 frequency)
 {
-    u16 song = MUS_DUMMY;
     const u8 *title = NULL;
     const struct RadioStation *station;
     u8 region = GetCurrentRegion();
 
-    for (station = &sRadioStationData[0]; station->frequency != 0xFF; station++)
+    for (station = gRadioStationData; station->frequency != 0xFF; station++)
     {
         if (station->frequency == frequency && station->region == region)
             break;
@@ -1364,9 +1345,7 @@ static void UpdateRadioStation(u8 taskId, u8 frequency)
         title = station->loadFunc(taskId, WIN_DIALOG);
 
         if (title != NULL)
-        {
             DrawStationTitle(title);
-        }
     }
     else
     {

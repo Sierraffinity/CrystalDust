@@ -10,6 +10,7 @@
 #include "constants/heal_locations.h"
 #include "constants/maps.h"
 #include "constants/moves.h"
+#include "constants/radio.h"
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
@@ -2996,8 +2997,10 @@ EventScript_Blueprint:: @ 8272604
 	msgbox Text_2A82F7, MSGBOX_SIGN
 	end
 
-EventScript_Radio::
-	msgbox Text_RadioPlaceholder, MSGBOX_SIGN
+EventScript_Radio1::
+	setvar VAR_0x8004, 0
+	special FieldRadio
+	waitstate
 	end
 
 Text_27260D: @ 827260D
@@ -4780,10 +4783,6 @@ Text_2A82BF: @ 82A82BF
 Text_2A82F7: @ 82A82F7
 	.string "A blueprint of some sort?\n"
 	.string "It's too complicated!$"
-
-Text_RadioPlaceholder:
-	.string "It's a radio!\n"
-	.string "Or at least, it will be soon.$"
 
 GraniteCave_B1F_MapScript2_2A8327: @ 82A8327
 MirageTower_2F_MapScript2_2A8327: @ 82A8327

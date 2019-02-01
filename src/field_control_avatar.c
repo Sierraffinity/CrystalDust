@@ -487,7 +487,7 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
     if (MetatileBehavior_IsWindow(metatileBehavior) == TRUE)
         return EventScript_Window;
     if (MetatileBehavior_IsRadio(metatileBehavior) == TRUE)
-        return EventScript_Radio;
+        return EventScript_Radio1;
 
     height = position->height;
     if (height == MapGridGetZCoordAt(position->x, position->y))

@@ -91,6 +91,14 @@ enum {
 	NO_RADIO_SHOW,
 };
 
+struct RadioStation{
+    u8 frequency;
+    u8 region;
+    const u8 *(*loadFunc)(u8 taskId, u8 windowId);
+};
+
+extern const struct RadioStation gRadioStationData[];
+
 // TEMP
 #define FLAG_ROCKET_TAKEOVER FLAG_SYS_POKEDEX_GET
 #define FLAG_BUENAS_PASSWORD FLAG_DAILY_0x920

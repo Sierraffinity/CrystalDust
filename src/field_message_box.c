@@ -33,7 +33,7 @@ static void sub_8098154(u8 taskId)
             if (!DoesTextboxUseSignBorder())
                 sub_81973A4();
             else
-                sub_80F79A4();
+                LoadSignAndUserWindowBorderGfx();
             task->data[0]++;
             break;
         case 1:

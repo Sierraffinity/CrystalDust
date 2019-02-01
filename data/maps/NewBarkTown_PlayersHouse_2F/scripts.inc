@@ -34,7 +34,8 @@ NewBarkTown_PlayersHouse_2F_Text_1F8820: @ 81F8820
 	.string "It's the TOWN MAP.$"
 
 NewBarkTown_PlayersHouse_2F_Radio::
-	goto_if_set FLAG_LISTENED_TO_INITIAL_RADIO NewBarkTown_PlayersHouse_2F_Radio_AlreadyListened
+	goto_if_set FLAG_SYS_POKEMON_GET, EventScript_Radio1
+	goto_if_set FLAG_LISTENED_TO_INITIAL_RADIO, NewBarkTown_PlayersHouse_2F_Radio_AlreadyListened
 	playbgm MUS_RG_KENKYU 0
 	message NewBarkTown_PlayersHouse_2F_Text_RadioText1
 	waitmessage
@@ -54,7 +55,7 @@ NewBarkTown_PlayersHouse_2F_Radio::
 	end
 
 NewBarkTown_PlayersHouse_2F_Radio_AlreadyListened:
-	msgbox NewBarkTown_PlayersHouse_2F_Text_RadioText4 MSGBOX_SIGN
+	msgbox NewBarkTown_PlayersHouse_2F_Text_RadioText4, MSGBOX_SIGN
 	end
 
 NewBarkTown_PlayersHouse_2F_Text_RadioText1:
