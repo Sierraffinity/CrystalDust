@@ -35,16 +35,23 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId);
 static void DebugMenu_ToggleRunningShoes(u8 taskId);
 static void DebugMenu_EnableResetRTC(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
+static void DebugMenu_Pokegear(u8 taskId);
+static void DebugMenu_Pokegear_ProcessInput(u8 taskId);
+static void DebugMenu_EnableMapCard(u8 taskId);
+static void DebugMenu_EnableRadioCard(u8 taskId);
 static void DebugMenu_RemoveMenu(u8 taskId);
 
 static const u8 sText_SetFlag[] = _("Set flag");
 static const u8 sText_SetVar[] = _("Set variable");
 static const u8 sText_DayNight[] = _("Day/night");
+static const u8 sText_Pokegear[] = _("Pokégear");
 static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
+static const u8 sText_EnableMapCard[] = _("Enable map card");
+static const u8 sText_EnableRadioCard[] = _("Enable radio card");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
 static const u8 sText_VarStatus[] = _("Var: {STR_VAR_1}\nValue: {STR_VAR_2}\nAddress: {STR_VAR_3}");
 static const u8 sText_ClockStatus[] = _("Time: {STR_VAR_1}");
@@ -56,6 +63,7 @@ static const struct MenuAction sDebugMenu_MainActions[] =
     { sText_SetFlag, DebugMenu_SetFlag },
     { sText_SetVar, DebugMenu_SetVar },
     { sText_DayNight, DebugMenu_DN },
+    { sText_Pokegear, DebugMenu_Pokegear },
     { sText_Misc, DebugMenu_Misc },
     { gText_MenuOptionExit, DebugMenu_Exit }
 };
@@ -64,6 +72,12 @@ static const struct MenuAction sDebugMenu_DNActions[] =
 {
     { sText_ToggleDNPalOverride, DebugMenu_ToggleOverride },
     { sText_DNTimeCycle, DebugMenu_TimeCycle },
+};
+
+static const struct MenuAction sDebugMenu_PokegearActions[] =
+{
+    { sText_EnableMapCard, DebugMenu_EnableMapCard },
+    { sText_EnableRadioCard, DebugMenu_EnableRadioCard },
 };
 
 static const struct MenuAction sDebugMenu_MiscActions[] =
@@ -123,6 +137,17 @@ static const struct WindowTemplate sDebugMenu_Window_TimeCycle =
     .tilemapTop = 1,
     .width = 10,
     .height = 2,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_Pokegear = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 0,
+    .height = ARRAY_COUNT(sDebugMenu_PokegearActions) * 2,
     .paletteNum = 15,
     .baseBlock = 0x120
 };
@@ -619,5 +644,50 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
         PlaySE(SE_SELECT);
         DebugMenu_RemoveMenu(taskId);
         ReturnToMainMenu(taskId);
+    }
+}
+
+static void DebugMenu_Pokegear(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    struct WindowTemplate windowTemplate = sDebugMenu_Window_Pokegear;
+    DebugMenu_RemoveMenu(taskId);
+
+    windowTemplate.width = GetMaxWidthInMenuTable(sDebugMenu_PokegearActions, ARRAY_COUNT(sDebugMenu_PokegearActions));
+    tWindowId = AddWindow(&windowTemplate);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_PokegearActions), sDebugMenu_PokegearActions);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, ARRAY_COUNT(sDebugMenu_PokegearActions), 0);
+    schedule_bg_copy_tilemap_to_vram(0);
+    gTasks[taskId].func = DebugMenu_Pokegear_ProcessInput;
+}
+
+static void DebugMenu_EnableMapCard(u8 taskId)
+{
+    FlagSet(FLAG_SYS_HAS_MAP_CARD);
+}
+
+static void DebugMenu_EnableRadioCard(u8 taskId)
+{
+    FlagSet(FLAG_SYS_HAS_RADIO_CARD);
+}
+
+static void DebugMenu_Pokegear_ProcessInput(u8 taskId)
+{
+    s8 inputOptionId = Menu_ProcessInput();
+
+    switch (inputOptionId)
+    {
+        case MENU_NOTHING_CHOSEN:
+            break;
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            DebugMenu_RemoveMenu(taskId);
+            ReturnToMainMenu(taskId);
+            break;
+        default:
+            PlaySE(SE_SELECT);
+            sDebugMenu_PokegearActions[inputOptionId].func.void_u8(taskId);
+            break;
     }
 }

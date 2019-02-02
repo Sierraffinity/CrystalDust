@@ -1230,12 +1230,9 @@ static void UnloadPhoneCard(void)
     DestroyTask(taskId);
 }
 
-#define tCurrentLine data[0]
-#define tNextLine data[1]
-#define tNumLinesPrinted data[2]
-#define tScrollDistance data[3]
-#define tTextDelay data[4]
-#define tMiscCounter data[5]
+#define tRadioShowTaskId data[0]
+
+#define tShowNameId data[0]
 
 #define tPosition data[0]
 #define tStoredVal data[1]
@@ -1252,9 +1249,7 @@ static void LoadRadioCard(void)
     SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
     CopyWindowToVram(WIN_DIALOG, 2);
-    //PutWindowTilemap(WIN_TOP);
     PutWindowTilemap(WIN_BOTTOM);
-    //AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, gText_PokegearRadioTuning, 0x70), 5, sTextColor, 0, gText_PokegearRadioTuning);
     FillWindowPixelBuffer(WIN_BOTTOM, 0x00);
     CopyWindowToVram(WIN_BOTTOM, 2);
     schedule_bg_copy_tilemap_to_vram(0);
@@ -1263,21 +1258,17 @@ static void LoadRadioCard(void)
 
     newTask = CreateTask(Task_RadioCard, 0);
 
-    gTasks[newTask].tCurrentLine = NO_RADIO_SHOW;
-    gTasks[newTask].tNextLine = NO_RADIO_SHOW;
-    gTasks[newTask].tNumLinesPrinted = 0;
-    gTasks[newTask].tScrollDistance = 0;
-    gTasks[newTask].tTextDelay = 0;
-    gTasks[newTask].tMiscCounter = 0;
+    gTasks[newTask].tRadioShowTaskId = 0xFF;
 
     UpdateRadioStation(newTask, sPokegearStruct.currentRadioStation);
+    PlayNewMapMusic(MUS_DUMMY);
 
     for (i = 0; i < 5; i++)
     {
         spriteId = CreateSprite(&sSpriteTemplate_Digits, radioX[i], 52, 0);
         gSprites[spriteId].tPosition = i;
         gSprites[spriteId].callback = SpriteCB_RadioDigits;
-        gTasks[newTask].data[i + 6] = spriteId;
+        gTasks[newTask].data[i + 1] = spriteId;
     }
 }
 
@@ -1316,15 +1307,12 @@ static void SpriteCB_RadioDigits(struct Sprite* sprite)
     }
 }
 
-void DrawStationTitle(const u8 *title)
-{
-    AddTextPrinterParameterized3(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, title, 0x70), 5, sTextColor, 0, title);
-}
-
-void ClearStationTitle(void)
+static void ClearRadioWindows(void)
 {
     FillWindowPixelBuffer(WIN_BOTTOM, 0);
     CopyWindowToVram(WIN_BOTTOM, 2);
+    FillWindowPixelBuffer(WIN_DIALOG, 0x11);
+    CopyWindowToVram(WIN_DIALOG, 2);
 }
 
 static void UpdateRadioStation(u8 taskId, u8 frequency)
@@ -1339,24 +1327,17 @@ static void UpdateRadioStation(u8 taskId, u8 frequency)
             break;
     }
 
-    if (station->frequency != 0xFF)
+    if (gTasks[taskId].tRadioShowTaskId != 0xFF)
     {
-        gTasks[taskId].tNumLinesPrinted = 0;
-        title = station->loadFunc(taskId, WIN_DIALOG);
-
-        if (title != NULL)
-            DrawStationTitle(title);
-    }
-    else
-    {
-        gTasks[taskId].tCurrentLine = NO_RADIO_SHOW;
-        gTasks[taskId].tNextLine = NO_RADIO_SHOW;
-        gTasks[taskId].tNumLinesPrinted = 0;
-        ClearStationTitle();
-        FillWindowPixelBuffer(WIN_DIALOG, 0x11);
-        CopyWindowToVram(WIN_DIALOG, 2);
+        DestroyTask(gTasks[taskId].tRadioShowTaskId);
+        ClearRadioWindows();
         PlayNewMapMusic(MUS_DUMMY);
     }
+
+    if (station->frequency != 0xFF)
+        gTasks[taskId].tRadioShowTaskId = station->loadFunc(WIN_DIALOG);
+    else
+        gTasks[taskId].tRadioShowTaskId = 0xFF;
 }
 
 static void Task_RadioCard(u8 taskId)
@@ -1378,9 +1359,28 @@ static void Task_RadioCard(u8 taskId)
         UpdateRadioStation(taskId, station);
         sPokegearStruct.currentRadioStation = station;
     }
-    else if (gTasks[taskId].tCurrentLine != NO_RADIO_SHOW)
+
+    if (gTasks[taskId].tRadioShowTaskId != 0xFF)
     {
-        PlayRadioShow(taskId, WIN_DIALOG);
+        u8 channelNameId = gTasks[gTasks[taskId].tRadioShowTaskId].tShowNameId;
+        if (channelNameId != 0)
+        {
+            if (channelNameId != 0xFF)
+            {
+                AddTextPrinterParameterized3(WIN_BOTTOM,
+                                             1,
+                                             GetStringCenterAlignXOffset(1, gRadioShowNames[channelNameId - 1], 0x70),
+                                             5,
+                                             sTextColor,
+                                             0,
+                                             gRadioShowNames[channelNameId - 1]);
+            }
+            else
+            {
+                ClearRadioWindows();
+            }
+            gTasks[gTasks[taskId].tRadioShowTaskId].tShowNameId = 0;
+        }
     }
 }
 
@@ -1396,17 +1396,16 @@ static void UnloadRadioCard(void)
     CopyWindowToVram(WIN_BOTTOM, 2);
 
     if (IsBGMStopped())
-    {
         Overworld_PlaySpecialMapMusic();
-    }
 
     FreeSpriteTilesByTag(12345);
     
     for (i = 0; i < 5; i++)
     {
-        DestroySprite(&gSprites[gTasks[taskId].data[i + 6]]);
+        DestroySprite(&gSprites[gTasks[taskId].data[i + 1]]);
     }
 
+    DestroyTask(gTasks[taskId].tRadioShowTaskId);
     DestroyTask(taskId);
 }
 

@@ -94,10 +94,11 @@ enum {
 struct RadioStation{
     u8 frequency;
     u8 region;
-    const u8 *(*loadFunc)(u8 taskId, u8 windowId);
+    u8 (*loadFunc)(u8 windowId);
 };
 
 extern const struct RadioStation gRadioStationData[];
+extern const u8 *const gRadioShowNames[];
 
 // TEMP
 #define FLAG_ROCKET_TAKEOVER FLAG_SYS_POKEDEX_GET
@@ -109,12 +110,6 @@ extern const struct RadioStation gRadioStationData[];
 #define MAPSEC_ROUTE_43 MAPSEC_ROUTE_103
 #define MAPSEC_RUINS_OF_ALPH MAPSEC_NEW_BARK_TOWN
 
-void PlayRadioShow(u8 taskId, u8 windowId);
-const u8 *LoadStation_PokemonChannel(u8 taskId, u8 windowId);
-const u8 *LoadStation_PokemonMusic(u8 taskId, u8 windowId);
-const u8 *LoadStation_LuckyChannel(u8 taskId, u8 windowId);
-const u8 *LoadStation_BuenasPassword(u8 taskId, u8 windowId);
-const u8 *LoadStation_UnownRadio(u8 taskId, u8 windowId);
-const u8 *LoadStation_EvolutionRadio(u8 taskId, u8 windowId);
+void Task_PlayRadioShow(u8 taskId);
 
 #endif
