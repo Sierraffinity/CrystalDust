@@ -143,7 +143,7 @@ void PlayPokemonMusic(void)
     PlayNewMapMusic(song);
 }
 
-const u8 *GetBuenasPassword(u16 category, u16 index)
+const u8 *GetBuenasPassword(u8 category, u8 index)
 {
     const u8 *string;
     u16 value;
@@ -200,14 +200,14 @@ void Task_PlayRadioShow(u8 taskId)
 
     if (tCurrentLine < UNOWN_RADIO && GetCurrentRegion() == REGION_JOHTO && FlagGet(FLAG_ROCKET_TAKEOVER))
     {
-        tShowNameId = tCurrentLine + 1;
+        tShowNameId = tCurrentLine; // always show show title when Rockets are taking over
         tCurrentLine = ROCKET_RADIO;
     }
 
     switch (tCurrentLine)
     {
     case OAKS_POKEMON_TALK:
-        tShowNameId = tCurrentLine + 1;
+        tShowNameId = tCurrentLine;
         tMiscValue = 5;   // play five Oak segments then channel interlude
         PlayStationMusic(taskId);
         NextRadioLine(taskId, OAKS_POKEMON_TALK_2, gText_OaksPkmnTalkIntro1, TRUE);
@@ -216,13 +216,13 @@ void Task_PlayRadioShow(u8 taskId)
         {
             u16 species;
             u16 **caughtMons = (u16 **)&tMiscPtr;
-            tShowNameId = tCurrentLine + 1;
+            tShowNameId = tCurrentLine;
             PlayStationMusic(taskId);
             tMiscValue = SPECIES_NONE;
             
             if (*caughtMons == NULL)
             {
-                *caughtMons = AllocZeroed(sizeof(u16[386]));
+                *caughtMons = AllocZeroed(sizeof(u16) * 386);
                 if (*caughtMons)
                 {
                     for (species = 1, tMiscValue2 = 0; species <= 386; species++)
@@ -244,12 +244,12 @@ void Task_PlayRadioShow(u8 taskId)
         }
         break;
     case POKEMON_MUSIC:
-        tShowNameId = tCurrentLine + 1;
+        tShowNameId = tCurrentLine;
         PlayPokemonMusic();
         NextRadioLine(taskId, POKEMON_MUSIC_2, gText_PkmnMusicBen1, TRUE);
         break;
     case LUCKY_CHANNEL:
-        tShowNameId = tCurrentLine + 1;
+        tShowNameId = tCurrentLine;
         PlayStationMusic(taskId);
         DoTimeBasedEvents();
         ConvertIntToDecimalStringN(gStringVar1, (u16)GetLotteryNumber(), STR_CONV_MODE_LEADING_ZEROS, 5);
@@ -258,7 +258,7 @@ void Task_PlayRadioShow(u8 taskId)
     case BUENAS_PASSWORD:
         if (BuenasPassword_CheckTime())
         {
-            tShowNameId = tCurrentLine + 1;
+            tShowNameId = tCurrentLine;
             PlayStationMusic(taskId);
             NextRadioLine(taskId, BUENAS_PASSWORD_2, gText_BuenasPassword1, TRUE);
         }
@@ -276,24 +276,24 @@ void Task_PlayRadioShow(u8 taskId)
         }
         break;
     case PLACES_AND_PEOPLE:
-        tShowNameId = tCurrentLine + 1;
+        tShowNameId = tCurrentLine;
         PlayStationMusic(taskId);
         NextRadioLine(taskId, PLACES_AND_PEOPLE_2, gText_PlacesAndPeople1, TRUE);
         break;
     case LETS_ALL_SING:
-        tShowNameId = tCurrentLine + 1;
+        tShowNameId = tCurrentLine;
         PlayPokemonMusic();
         NextRadioLine(taskId, LETS_ALL_SING_2, gText_PkmnMusicFern1, TRUE);
         break;
     case ROCKET_RADIO:
-        tShowNameId = tCurrentLine + 1;
+        tShowNameId = tCurrentLine;
         PlayStationMusic(taskId);
         NextRadioLine(taskId, ROCKET_RADIO_2, gText_RocketRadio1, TRUE);
         break;
     case POKE_FLUTE_RADIO:
     case UNOWN_RADIO:
     case EVOLUTION_RADIO:
-        tShowNameId = tCurrentLine + 1;
+        tShowNameId = tCurrentLine;
         PlayStationMusic(taskId);
         tNumLinesPrinted = 1;
         break;
@@ -637,9 +637,7 @@ void Task_PlayRadioShow(u8 taskId)
         {
             u8 nextLine = BUENAS_PASSWORD;
             if (!BuenasPassword_CheckTime())
-            {
                 nextLine = BUENAS_PASSWORD_8;
-            }
             NextRadioLine(taskId, nextLine, gText_BuenasPassword7, TRUE);
         }
         break;
@@ -682,7 +680,7 @@ void Task_PlayRadioShow(u8 taskId)
         NextRadioLine(taskId, BUENAS_PASSWORD_20, NULL, FALSE);
         break;
     case BUENAS_PASSWORD_20:
-        gTasks[taskId].tShowNameId = 0xFF;
+        gTasks[taskId].tShowNameId = NO_RADIO_SHOW;
         FlagClear(FLAG_BUENAS_PASSWORD);
         FadeOutAndPlayNewMapMusic(MUS_DUMMY, 4);
         tCurrentLine = BUENAS_PASSWORD_21;

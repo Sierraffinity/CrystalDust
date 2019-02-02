@@ -1340,12 +1340,13 @@ static void UpdateRadioStation(u8 taskId, u8 frequency)
     {
         u8 showId = station->loadFunc();
 
-        if (showId != 0xFF)
+        if (showId != NO_RADIO_SHOW)
         {
             u8 radioShowTaskId = CreateTask(Task_PlayRadioShow, 80);
 
             gTasks[radioShowTaskId].tWindowId = WIN_DIALOG;
             gTasks[radioShowTaskId].tCurrentLine = showId;
+            gTasks[radioShowTaskId].tShowNameId = NO_RADIO_SHOW;
             gTasks[taskId].tRadioShowTaskId = radioShowTaskId;
 
             ClearRadioWindows();
@@ -1383,24 +1384,24 @@ static void Task_RadioCard(u8 taskId)
 
     if (gTasks[taskId].tRadioShowTaskId != 0xFF)
     {
-        u8 channelNameId = gTasks[gTasks[taskId].tRadioShowTaskId].tShowNameId;
-        if (channelNameId != 0)
+        u8 showNameId = gTasks[gTasks[taskId].tRadioShowTaskId].tShowNameId;
+        if (showNameId != 0xFF)
         {
-            if (channelNameId != 0xFF)
+            if (showNameId != NO_RADIO_SHOW)
             {
                 AddTextPrinterParameterized3(WIN_BOTTOM,
                                              1,
-                                             GetStringCenterAlignXOffset(1, gRadioShowNames[channelNameId - 1], 0x70),
+                                             GetStringCenterAlignXOffset(1, gRadioShowNames[showNameId], 0x70),
                                              5,
                                              sTextColor,
                                              0,
-                                             gRadioShowNames[channelNameId - 1]);
+                                             gRadioShowNames[showNameId]);
             }
             else
             {
                 ClearRadioWindows();
             }
-            gTasks[gTasks[taskId].tRadioShowTaskId].tShowNameId = 0;
+            gTasks[gTasks[taskId].tRadioShowTaskId].tShowNameId = 0xFF;
         }
     }
 }
