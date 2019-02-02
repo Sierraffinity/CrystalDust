@@ -11,7 +11,7 @@
  
  //Start of regular Pokemon tables.
 
-const struct WildPokemon gRoute101_LandMons[] =
+const struct WildPokemon gRoute29_LandMons[] =
 {
     {2, 2, SPECIES_WURMPLE},
     {2, 2, SPECIES_POOCHYENA},
@@ -27,7 +27,7 @@ const struct WildPokemon gRoute101_LandMons[] =
     {3, 3, SPECIES_ZIGZAGOON},
 };
 
-const struct WildPokemonInfo gRoute101_LandMonsInfo = {20, gRoute101_LandMons};
+const struct WildPokemonInfo gRoute29_LandMonsInfo = {20, gRoute29_LandMons};
 
 const struct WildPokemon gRoute102_LandMons[] =
 {
@@ -3245,9 +3245,9 @@ const struct WildPokemonInfo gMeteorFalls_StevensCave_LandMonsInfo = {10, gMeteo
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
     {
-        .mapGroup = MAP_GROUP(ROUTE101),
-        .mapNum = MAP_NUM(ROUTE101),
-        .landMonsInfo = &gRoute101_LandMonsInfo,
+        .mapGroup = MAP_GROUP(ROUTE29),
+        .mapNum = MAP_NUM(ROUTE29),
+        .landMonsInfo = &gRoute29_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
         .fishingMonsInfo = NULL,

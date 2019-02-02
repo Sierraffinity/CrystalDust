@@ -6652,7 +6652,7 @@ u16 GetBattleBGM(void)
         }
     }
     else
-        return MUS_BATTLE27;
+        return MUS_JOHTOWILD;
 }
 
 void PlayBattleBGM(void)

@@ -398,7 +398,7 @@
 #define MUS_VS_FRONT 471        // Battle! Frontier Brain
 #define MUS_VS_MEW 472          // Battle! Mew
 #define MUS_B_DOME1 473         // Battle Dome Lobby
-#define MUS_BATTLE27 474        // Battle! Wild Pokémon
+#define MUS_JOHTOWILD 474        // Battle! Wild Pokémon
 #define MUS_BATTLE31 475        // Battle! Team Aqua/Magma
 #define MUS_BATTLE20 476        // Battle! Trainer
 #define MUS_BATTLE32 477        // Battle! Gym Leader

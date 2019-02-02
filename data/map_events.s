@@ -28,7 +28,7 @@
 	.include "data/maps/FallarborTown/events.inc"
 	.include "data/maps/VerdanturfTown/events.inc"
 	.include "data/maps/PacifidlogTown/events.inc"
-	.include "data/maps/Route101/events.inc"
+	.include "data/maps/Route29/events.inc"
 	.include "data/maps/Route102/events.inc"
 	.include "data/maps/Route103/events.inc"
 	.include "data/maps/Route104/events.inc"

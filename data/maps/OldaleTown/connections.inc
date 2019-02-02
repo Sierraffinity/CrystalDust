@@ -1,6 +1,6 @@
 OldaleTown_MapConnectionsList::
 	connection up, 24, MAP_ROUTE102
-	connection right, 2, MAP_ROUTE101
+	connection right, 2, MAP_ROUTE29
 
 OldaleTown_MapConnections::
 	.4byte 2

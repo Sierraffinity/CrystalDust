@@ -2831,7 +2831,7 @@ gText_Steven_Pokenav_2B5ED9:: @ 82B5ED9
 	.string "I hope we can meet again\n"
 	.string "somewhere!$"
 
-Route101_Text_2B5F52: @ 82B5F52
+Route29_Text_2B5F52: @ 82B5F52
 	.string "PROF. BIRCH: Oh, {PLAYER}{KUN}!\n"
 	.string "I've already heard about you!\p"
 	.string "It seems your POKéNAV's been\n"
@@ -2842,7 +2842,7 @@ Route101_Text_2B5F52: @ 82B5F52
 	.string "out in the field.\p"
 	.string "… … … … … …$"
 
-Route101_Text_2B603A: @ 82B603A
+Route29_Text_2B603A: @ 82B603A
 	.string "Registered PROF. BIRCH\n"
 	.string "in the POKéNAV.$"
 

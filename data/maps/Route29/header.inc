@@ -1,11 +1,11 @@
-Route101::
-	.4byte Route101_Layout
-	.4byte Route101_MapEvents
-	.4byte Route101_MapScripts
-	.4byte Route101_MapConnections
+Route29::
+	.4byte Route29_Layout
+	.4byte Route29_MapEvents
+	.4byte Route29_MapScripts
+	.4byte Route29_MapConnections
 	.2byte MUS_ROUTE29
 	.2byte 17
-	.byte MAPSEC_ROUTE_101
+	.byte MAPSEC_ROUTE_29
 	.byte 0
 	.byte WEATHER_SUNNY
 	.byte MAP_TYPE_ROUTE

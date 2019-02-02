@@ -3,7 +3,7 @@ gUnknown_082A5C9C:: @ 82A5C9C
 	.string "Are you curious about how your\n"
 	.string "POKéDEX is coming along?$"
 
-Route101_Text_2A5CEB: @ 82A5CEB
+Route29_Text_2A5CEB: @ 82A5CEB
 	.string "Hm? Oh, you haven't caught enough\n"
 	.string "POKéMON to make it worthwhile.$"
 

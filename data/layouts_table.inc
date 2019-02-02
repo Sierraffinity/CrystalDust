@@ -16,7 +16,7 @@ gMapLayouts::
 	.4byte FallarborTown_Layout
 	.4byte VerdanturfTown_Layout
 	.4byte PacifidlogTown_Layout
-	.4byte Route101_Layout
+	.4byte Route29_Layout
 	.4byte Route102_Layout
 	.4byte Route103_Layout
 	.4byte Route104_Layout

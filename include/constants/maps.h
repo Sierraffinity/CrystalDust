@@ -18,7 +18,7 @@
 #define MAP_FALLARBOR_TOWN   (13 | (0 << 8))
 #define MAP_VERDANTURF_TOWN  (14 | (0 << 8))
 #define MAP_PACIFIDLOG_TOWN  (15 | (0 << 8))
-#define MAP_ROUTE101         (16 | (0 << 8))
+#define MAP_ROUTE29          (16 | (0 << 8))
 #define MAP_ROUTE102         (17 | (0 << 8))
 #define MAP_ROUTE103         (18 | (0 << 8))
 #define MAP_ROUTE104         (19 | (0 << 8))

@@ -14,7 +14,7 @@
 	.include "data/maps/FallarborTown/header.inc"
 	.include "data/maps/VerdanturfTown/header.inc"
 	.include "data/maps/PacifidlogTown/header.inc"
-	.include "data/maps/Route101/header.inc"
+	.include "data/maps/Route29/header.inc"
 	.include "data/maps/Route102/header.inc"
 	.include "data/maps/Route103/header.inc"
 	.include "data/maps/Route104/header.inc"

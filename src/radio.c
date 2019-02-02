@@ -310,7 +310,7 @@ void Task_PlayRadioShow(u8 taskId)
                 u8 group;
                 u8 num;
             } oaksTalkRoutes[] = {
-                { MAPSEC_ROUTE_101, MAP_GROUP(ROUTE101), MAP_NUM(ROUTE101) },
+                { MAPSEC_ROUTE_29, MAP_GROUP(ROUTE29), MAP_NUM(ROUTE29) },
                 { MAPSEC_ROUTE_102, MAP_GROUP(ROUTE102), MAP_NUM(ROUTE102) },
                 { MAPSEC_ROUTE_103, MAP_GROUP(ROUTE103), MAP_NUM(ROUTE103) },
                 { MAPSEC_ROUTE_104, MAP_GROUP(ROUTE104), MAP_NUM(ROUTE104) },
@@ -320,7 +320,7 @@ void Task_PlayRadioShow(u8 taskId)
                 { MAPSEC_ROUTE_113, MAP_GROUP(ROUTE113), MAP_NUM(ROUTE113) },
                 { MAPSEC_ROUTE_114, MAP_GROUP(ROUTE114), MAP_NUM(ROUTE114) },
                 { MAPSEC_ROUTE_115, MAP_GROUP(ROUTE116), MAP_NUM(ROUTE116) },
-                { MAPSEC_ROUTE_101, MAP_GROUP(ROUTE101), MAP_NUM(ROUTE101) },
+                { MAPSEC_ROUTE_29, MAP_GROUP(ROUTE29), MAP_NUM(ROUTE29) },
                 { MAPSEC_ROUTE_102, MAP_GROUP(ROUTE102), MAP_NUM(ROUTE102) },
                 { MAPSEC_ROUTE_103, MAP_GROUP(ROUTE103), MAP_NUM(ROUTE103) },
                 { MAPSEC_ROUTE_104, MAP_GROUP(ROUTE104), MAP_NUM(ROUTE104) },

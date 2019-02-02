@@ -16,7 +16,7 @@ gMapGroup0::
 	.4byte FallarborTown
 	.4byte VerdanturfTown
 	.4byte PacifidlogTown
-	.4byte Route101
+	.4byte Route29
 	.4byte Route102
 	.4byte Route103
 	.4byte Route104

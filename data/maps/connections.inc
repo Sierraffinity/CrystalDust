@@ -14,7 +14,7 @@
 	.include "data/maps/MossdeepCity/connections.inc"
 	.include "data/maps/SootopolisCity/connections.inc"
 	.include "data/maps/EverGrandeCity/connections.inc"
-	.include "data/maps/Route101/connections.inc"
+	.include "data/maps/Route29/connections.inc"
 	.include "data/maps/Route102/connections.inc"
 	.include "data/maps/Route103/connections.inc"
 	.include "data/maps/Route104/connections.inc"

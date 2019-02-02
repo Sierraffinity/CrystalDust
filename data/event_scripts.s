@@ -84,7 +84,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/FallarborTown/scripts.inc"
 	.include "data/maps/VerdanturfTown/scripts.inc"
 	.include "data/maps/PacifidlogTown/scripts.inc"
-	.include "data/maps/Route101/scripts.inc"
+	.include "data/maps/Route29/scripts.inc"
 	.include "data/maps/Route102/scripts.inc"
 	.include "data/maps/Route103/scripts.inc"
 	.include "data/maps/Route104/scripts.inc"
@@ -1049,7 +1049,7 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCH
 	setflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	setflag FLAG_HIDE_MAPSEC_ROUTE_29_BIRCH
 	setflag FLAG_HIDE_ROUTE_103_BIRCH
 	setflag FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR
 	setflag FLAG_HIDE_LILYCOVE_HARBOR_EON_TICKET_TAKER
@@ -1085,7 +1085,7 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
 	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY
 	setflag FLAG_HIDE_OLDALE_TOWN_RIVAL
-	setflag FLAG_HIDE_ROUTE_101_BOY
+	setflag FLAG_HIDE_MAPSEC_ROUTE_29_BOY
 	setflag FLAG_HIDE_PETALBURG_CITY_SCOTT
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE
@@ -2103,72 +2103,72 @@ Route109_EventScript_2720A8:: @ 82720A8
 	return
 
 NewBarkTown_ProfessorElmsLab_EventScript_2720AD:: @ 82720AD
-Route101_EventScript_2720AD:: @ 82720AD
+Route29_EventScript_2720AD:: @ 82720AD
 Route103_EventScript_2720AD:: @ 82720AD
 	compare VAR_0x4085, 0
-	goto_if_eq Route101_EventScript_27374E
-	goto_if_set FLAG_SYS_GAME_CLEAR, Route101_EventScript_27211A
+	goto_if_eq Route29_EventScript_27374E
+	goto_if_set FLAG_SYS_GAME_CLEAR, Route29_EventScript_27211A
 	compare VAR_BIRCH_STATE, 0
-	call_if_eq Route101_EventScript_27211A
+	call_if_eq Route29_EventScript_27211A
 	compare VAR_BIRCH_STATE, 1
-	call_if_eq Route101_EventScript_27211A
+	call_if_eq Route29_EventScript_27211A
 	compare VAR_BIRCH_STATE, 2
-	call_if_eq Route101_EventScript_272127
+	call_if_eq Route29_EventScript_272127
 	compare VAR_BIRCH_STATE, 3
-	call_if_eq Route101_EventScript_272127
+	call_if_eq Route29_EventScript_272127
 	compare VAR_BIRCH_STATE, 4
-	call_if_eq Route101_EventScript_272134
+	call_if_eq Route29_EventScript_272134
 	compare VAR_BIRCH_STATE, 5
-	call_if_eq Route101_EventScript_272134
+	call_if_eq Route29_EventScript_272134
 	compare VAR_BIRCH_STATE, 6
-	call_if_eq Route101_EventScript_27211A
+	call_if_eq Route29_EventScript_27211A
 	compare VAR_BIRCH_STATE, 7
-	call_if_eq Route101_EventScript_27211A
+	call_if_eq Route29_EventScript_27211A
 	return
 
-Route101_EventScript_27211A:: @ 827211A
+Route29_EventScript_27211A:: @ 827211A
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_BIRCH
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	setflag FLAG_HIDE_MAPSEC_ROUTE_29_BIRCH
 	setflag FLAG_HIDE_ROUTE_103_BIRCH
 	return
 
-Route101_EventScript_272127:: @ 8272127
-	clearflag FLAG_HIDE_ROUTE_101_BIRCH
+Route29_EventScript_272127:: @ 8272127
+	clearflag FLAG_HIDE_MAPSEC_ROUTE_29_BIRCH
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_BIRCH
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380
 	setflag FLAG_HIDE_ROUTE_103_BIRCH
 	return
 
-Route101_EventScript_272134:: @ 8272134
+Route29_EventScript_272134:: @ 8272134
 	clearflag FLAG_HIDE_ROUTE_103_BIRCH
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	setflag FLAG_HIDE_MAPSEC_ROUTE_29_BIRCH
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_BIRCH
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380
 	return
 
 NewBarkTown_ProfessorElmsLab_EventScript_272141:: @ 8272141
-Route101_EventScript_272141:: @ 8272141
+Route29_EventScript_272141:: @ 8272141
 Route103_EventScript_272141:: @ 8272141
 	lock
 	faceplayer
-	goto_if_unset FLAG_HAS_MATCH_CALL, Route101_EventScript_272155
-	@goto_if_unset FLAG_ENABLE_PROF_ELM_MATCH_CALL, Route101_EventScript_1FA2D2
+	goto_if_unset FLAG_HAS_MATCH_CALL, Route29_EventScript_272155
+	@goto_if_unset FLAG_ENABLE_PROF_ELM_MATCH_CALL, Route29_EventScript_1FA2D2
 
-Route101_EventScript_272155:: @ 8272155
+Route29_EventScript_272155:: @ 8272155
 	msgbox gUnknown_082A5C9C, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq Route101_EventScript_27216F
-	call Route101_EventScript_272184
+	goto_if_eq Route29_EventScript_27216F
+	call Route29_EventScript_272184
 	release
 	end
 
-Route101_EventScript_27216F:: @ 827216F
-	msgbox Route101_Text_2A5CEB, MSGBOX_DEFAULT
+Route29_EventScript_27216F:: @ 827216F
+	msgbox Route29_Text_2A5CEB, MSGBOX_DEFAULT
 	release
 	end
 
-Route101_EventScript_272179:: @ 8272179
+Route29_EventScript_272179:: @ 8272179
 	copyvar VAR_0x8004, VAR_0x8009
 	special ShowPokedexRatingMessage
 	waitmessage
@@ -2176,7 +2176,7 @@ Route101_EventScript_272179:: @ 8272179
 	return
 
 EverGrandeCity_ChampionsRoom_EventScript_272184:: @ 8272184
-Route101_EventScript_272184:: @ 8272184
+Route29_EventScript_272184:: @ 8272184
 	setvar VAR_0x8004, 0
 	specialvar VAR_RESULT, ScriptGetPokedexInfo
 	copyvar VAR_0x8008, VAR_0x8005
@@ -2185,9 +2185,9 @@ Route101_EventScript_272184:: @ 8272184
 	buffernumberstring 0, VAR_0x8008
 	buffernumberstring 1, VAR_0x8009
 	msgbox gUnknown_082A5D2C, MSGBOX_DEFAULT
-	call Route101_EventScript_272179
+	call Route29_EventScript_272179
 	compare VAR_0x800A, 0
-	goto_if_eq Route101_EventScript_27374E
+	goto_if_eq Route29_EventScript_27374E
 	setvar VAR_0x8004, 1
 	specialvar VAR_RESULT, ScriptGetPokedexInfo
 	copyvar VAR_0x8008, VAR_0x8005
@@ -2735,7 +2735,7 @@ OldaleTown_PokemonCenter_1F_Movement_2725A4: @ 82725A4
 PetalburgCity_Gym_Movement_2725A4: @ 82725A4
 PetalburgCity_Movement_2725A4: @ 82725A4
 PetalburgWoods_Movement_2725A4: @ 82725A4
-Route101_Movement_2725A4: @ 82725A4
+Route29_Movement_2725A4: @ 82725A4
 Route110_Movement_2725A4: @ 82725A4
 Route110_TrickHouseEnd_Movement_2725A4: @ 82725A4
 Route111_Movement_2725A4: @ 82725A4
@@ -2826,7 +2826,7 @@ MtPyre_Summit_Movement_2725A8: @ 82725A8
 OldaleTown_Movement_2725A8: @ 82725A8
 PetalburgCity_Gym_Movement_2725A8: @ 82725A8
 PetalburgCity_Movement_2725A8: @ 82725A8
-Route101_Movement_2725A8: @ 82725A8
+Route29_Movement_2725A8: @ 82725A8
 Route110_Movement_2725A8: @ 82725A8
 Route110_TrickHouseEnd_Movement_2725A8: @ 82725A8
 Route112_Movement_2725A8: @ 82725A8
@@ -3291,7 +3291,7 @@ NavelRock_Top_EventScript_27374E:: @ 827374E
 NewMauville_Inside_EventScript_27374E:: @ 827374E
 OldaleTown_PokemonCenter_1F_EventScript_27374E:: @ 827374E
 PacifidlogTown_House2_EventScript_27374E:: @ 827374E
-Route101_EventScript_27374E:: @ 827374E
+Route29_EventScript_27374E:: @ 827374E
 Route119_EventScript_27374E:: @ 827374E
 Route120_EventScript_27374E:: @ 827374E
 SkyPillar_Top_EventScript_27374E:: @ 827374E
