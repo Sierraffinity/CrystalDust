@@ -2271,9 +2271,13 @@ static void PlayerHandleDrawTrainerPic(void)
         {
             trainerPicId = gLinkPlayers[GetMultiplayerId()].gender + TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN;
         }
+        else if ((gLinkPlayers[GetMultiplayerId()].version & 0xFF) == VERSION_EMERALD)
+        {
+            trainerPicId = gLinkPlayers[GetMultiplayerId()].gender + TRAINER_BACK_PIC_EM_BRENDAN;
+        }
         else
         {
-            trainerPicId = gLinkPlayers[GetMultiplayerId()].gender + TRAINER_BACK_PIC_BRENDAN;
+            trainerPicId = gLinkPlayers[GetMultiplayerId()].gender + TRAINER_BACK_PIC_GOLD;
         }
     }
     else
@@ -2353,14 +2357,18 @@ static void PlayerHandleTrainerSlide(void)
         {
             trainerPicId = gLinkPlayers[GetMultiplayerId()].gender + TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN;
         }
+        else if ((gLinkPlayers[GetMultiplayerId()].version & 0xFF) == VERSION_EMERALD)
+        {
+            trainerPicId = gLinkPlayers[GetMultiplayerId()].gender + TRAINER_BACK_PIC_EM_BRENDAN;
+        }
         else
         {
-            trainerPicId = gLinkPlayers[GetMultiplayerId()].gender + TRAINER_BACK_PIC_BRENDAN;
+            trainerPicId = gLinkPlayers[GetMultiplayerId()].gender + TRAINER_BACK_PIC_GOLD;
         }
     }
     else
     {
-        trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
+        trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_GOLD;
     }
 
     DecompressTrainerBackPic(trainerPicId, gActiveBattler);

@@ -54,6 +54,7 @@ extern const struct SpriteFrameImage gUnknown_082FF3A8[];
 extern const struct SpriteFrameImage gUnknown_082FF3C8[];
 extern const struct SpriteFrameImage gUnknown_082FF3E8[];
 extern const struct SpriteFrameImage gUnknown_082FF408[];
+extern const struct SpriteFrameImage gBackspriteTable_Gold[];
 extern const struct SpriteFrameImage gUnknown_082FF428[];
 extern const struct SpriteFrameImage gUnknown_082FF448[];
 extern const struct SpriteFrameImage gUnknown_082FF468[];
@@ -2330,8 +2331,26 @@ const struct SpriteTemplate gUnknown_08329D98[MAX_BATTLERS_COUNT] =
     },
 };
 
-static const struct SpriteTemplate gUnknown_08329DF8[] =
+static const struct SpriteTemplate sSpriteTemplates_TrainerBacksprites[] =
 {
+    {
+        .tileTag = 0xFFFF,
+        .paletteTag = 0,
+        .oam = &gOamData_831ACB0,
+        .anims = NULL,
+        .images = gBackspriteTable_Gold,
+        .affineAnims = gUnknown_082FF618,
+        .callback = sub_8039BB4,
+    },
+    {
+        .tileTag = 0xFFFF,
+        .paletteTag = 0,
+        .oam = &gOamData_831ACB0,
+        .anims = NULL,
+        .images = gUnknown_082FF448,
+        .affineAnims = gUnknown_082FF618,
+        .callback = sub_8039BB4,
+    },
     {
         .tileTag = 0xFFFF,
         .paletteTag = 0,
@@ -3819,7 +3838,7 @@ void SetMultiuseSpriteTemplateToTrainerBack(u16 trainerSpriteId, u8 battlerPosit
     gMultiuseSpriteTemplate.paletteTag = trainerSpriteId;
     if (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_PLAYER_RIGHT)
     {
-        gMultiuseSpriteTemplate = gUnknown_08329DF8[trainerSpriteId];
+        gMultiuseSpriteTemplate = sSpriteTemplates_TrainerBacksprites[trainerSpriteId];
         gMultiuseSpriteTemplate.anims = gTrainerBackAnimsPtrTable[trainerSpriteId];
     }
     else
@@ -7103,9 +7122,9 @@ u16 FacilityClassToPicIndex(u16 facilityClass)
 u16 PlayerGenderToFrontTrainerPicId(u8 playerGender)
 {
     if (playerGender != MALE)
-        return FacilityClassToPicIndex(FACILITY_CLASS_MAY);
+        return FacilityClassToPicIndex(FACILITY_CLASS_GOLD);
     else
-        return FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN);
+        return FacilityClassToPicIndex(FACILITY_CLASS_KRIS);
 }
 
 void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)

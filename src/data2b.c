@@ -40,6 +40,15 @@ const struct SpriteFrameImage gUnknown_082FF408[] =
     gHeap + 0xF800, 0x800,
 };
 
+const struct SpriteFrameImage gBackspriteTable_Gold[] =
+{
+    gTrainerBackPic_Gold, 0x0800,
+    gTrainerBackPic_Gold + 0x0800, 0x0800,
+    gTrainerBackPic_Gold + 0x1000, 0x0800,
+    gTrainerBackPic_Gold + 0x1800, 0x0800,
+    gTrainerBackPic_Gold + 0x2000, 0x0800,
+};
+
 const struct SpriteFrameImage gUnknown_082FF428[] =
 {
     gTrainerBackPic_Brendan, 0x0800,

@@ -1136,6 +1136,10 @@ static void LinkPartnerHandleDrawTrainerPic(void)
     {
         trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(gActiveBattler)].gender + TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN;
     }
+    else if ((gLinkPlayers[GetBattlerMultiplayerId(gActiveBattler)].version & 0xFF) == VERSION_EMERALD)
+    {
+        trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(gActiveBattler)].gender + TRAINER_BACK_PIC_EM_BRENDAN;
+    }
     else
     {
         trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(gActiveBattler)].gender;
@@ -1547,6 +1551,10 @@ static void LinkPartnerHandleIntroTrainerBallThrow(void)
              || (gLinkPlayers[GetBattlerMultiplayerId(gActiveBattler)].version & 0xFF) == VERSION_SAPPHIRE)
     {
         trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(gActiveBattler)].gender + TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN;
+    }
+    else if ((gLinkPlayers[GetBattlerMultiplayerId(gActiveBattler)].version & 0xFF) == VERSION_EMERALD)
+    {
+        trainerPicId = gLinkPlayers[GetBattlerMultiplayerId(gActiveBattler)].gender + TRAINER_BACK_PIC_EM_BRENDAN;
     }
     else
     {

@@ -284,11 +284,11 @@ const union AnimCmd *const gTrainerFrontAnims_Wally[] ={
     gAnimCmd_General_Frame0,
 };
 
-const union AnimCmd *const gTrainerFrontAnims_Brendan[] ={
+const union AnimCmd *const gTrainerFrontAnims_Gold[] ={
     gAnimCmd_General_Frame0,
 };
 
-const union AnimCmd *const gTrainerFrontAnims_May[] ={
+const union AnimCmd *const gTrainerFrontAnims_Kris[] ={
     gAnimCmd_General_Frame0,
 };
 
@@ -372,6 +372,14 @@ const union AnimCmd *const gTrainerFrontAnims_RubySapphireMay[] ={
     gAnimCmd_General_Frame0,
 };
 
+const union AnimCmd *const gTrainerFrontAnims_EmBrendan[] ={
+    gAnimCmd_General_Frame0,
+};
+
+const union AnimCmd *const gTrainerFrontAnims_EmMay[] ={
+    gAnimCmd_General_Frame0,
+};
+
 const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
 {
     [TRAINER_PIC_HIKER] = gTrainerFrontAnims_Hiker,
@@ -445,8 +453,8 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_SAILOR] = gTrainerFrontAnims_Sailor,
     [TRAINER_PIC_MAGMA_ADMIN] = gTrainerFrontAnims_MagmaAdmin,
     [TRAINER_PIC_WALLY] = gTrainerFrontAnims_Wally,
-    [TRAINER_PIC_BRENDAN] = gTrainerFrontAnims_Brendan,
-    [TRAINER_PIC_MAY] = gTrainerFrontAnims_May,
+    [TRAINER_PIC_GOLD] = gTrainerFrontAnims_Gold,
+    [TRAINER_PIC_KRIS] = gTrainerFrontAnims_Kris,
     [TRAINER_PIC_BUG_CATCHER] = gTrainerFrontAnims_BugCatcher,
     [TRAINER_PIC_POKEMON_RANGER_M] = gTrainerFrontAnims_PokemonRangerM,
     [TRAINER_PIC_POKEMON_RANGER_F] = gTrainerFrontAnims_PokemonRangerF,
@@ -467,4 +475,6 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_LEAF] = gTrainerFrontAnims_Leaf,
     [TRAINER_PIC_RS_BRENDAN] = gTrainerFrontAnims_RubySapphireBrendan,
     [TRAINER_PIC_RS_MAY] = gTrainerFrontAnims_RubySapphireMay,
+    [TRAINER_PIC_EM_BRENDAN] = gTrainerFrontAnims_EmBrendan,
+    [TRAINER_PIC_EM_MAY] = gTrainerFrontAnims_EmMay,
 };

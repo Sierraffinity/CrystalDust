@@ -1,3 +1,13 @@
+const union AnimCmd gAnimCmd_Gold_1[] =
+{
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(2, 6),
+    ANIMCMD_FRAME(3, 6),
+    ANIMCMD_FRAME(4, 24),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
 const union AnimCmd gAnimCmd_Brendan_1[] =
 {
     ANIMCMD_FRAME(0, 24),
@@ -68,6 +78,12 @@ const union AnimCmd gAnimCmd_RubySapphireMay_1[] =
     ANIMCMD_END,
 };
 
+const union AnimCmd *const gTrainerBackAnims_Gold[] =
+{
+    gAnimCmd_General_Frame0,
+    gAnimCmd_Gold_1,
+};
+
 const union AnimCmd *const gTrainerBackAnims_Brendan[] =
 {
     AnimCmd_82FF540,
@@ -118,6 +134,8 @@ const union AnimCmd *const gTrainerBackAnims_Steven[] =
 
 const union AnimCmd *const *const gTrainerBackAnimsPtrTable[] =
 {
+    gTrainerBackAnims_Gold,
+    gTrainerBackAnims_May,
     gTrainerBackAnims_Brendan,
     gTrainerBackAnims_May,
     gTrainerBackAnims_Red,

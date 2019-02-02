@@ -85,8 +85,8 @@
 #define TRAINER_PIC_SAILOR                68
 #define TRAINER_PIC_MAGMA_ADMIN           69
 #define TRAINER_PIC_WALLY                 70
-#define TRAINER_PIC_BRENDAN               71
-#define TRAINER_PIC_MAY                   72
+#define TRAINER_PIC_GOLD                  71
+#define TRAINER_PIC_KRIS                  72
 #define TRAINER_PIC_BUG_CATCHER           73
 #define TRAINER_PIC_POKEMON_RANGER_M      74
 #define TRAINER_PIC_POKEMON_RANGER_F      75
@@ -107,15 +107,19 @@
 #define TRAINER_PIC_LEAF                  90
 #define TRAINER_PIC_RS_BRENDAN            91
 #define TRAINER_PIC_RS_MAY                92
+#define TRAINER_PIC_EM_BRENDAN            93
+#define TRAINER_PIC_EM_MAY                94
 
-#define TRAINER_BACK_PIC_BRENDAN                0
-#define TRAINER_BACK_PIC_MAY                    1
-#define TRAINER_BACK_PIC_RED                    2
-#define TRAINER_BACK_PIC_LEAF                   3
-#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN  4
-#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      5
-#define TRAINER_BACK_PIC_WALLY                  6
-#define TRAINER_BACK_PIC_STEVEN                 7
+#define TRAINER_BACK_PIC_GOLD                   0
+#define TRAINER_BACK_PIC_KRIS                   1
+#define TRAINER_BACK_PIC_EM_BRENDAN             2
+#define TRAINER_BACK_PIC_EM_MAY                 3
+#define TRAINER_BACK_PIC_RED                    4
+#define TRAINER_BACK_PIC_LEAF                   5
+#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN  6
+#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      7
+#define TRAINER_BACK_PIC_WALLY                  8
+#define TRAINER_BACK_PIC_STEVEN                 9
 
 #define FACILITY_CLASS_HIKER                 0x0
 #define FACILITY_CLASS_AQUA_GRUNT_M          0x1
@@ -177,10 +181,10 @@
 #define FACILITY_CLASS_TWINS                 0x39
 #define FACILITY_CLASS_SAILOR                0x3a
 #define FACILITY_CLASS_WALLY                 0x3b
-#define FACILITY_CLASS_BRENDAN               0x3c
+#define FACILITY_CLASS_GOLD                  0x3c
 #define FACILITY_CLASS_BRENDAN_2             0x3d
 #define FACILITY_CLASS_BRENDAN_3             0x3e
-#define FACILITY_CLASS_MAY                   0x3f
+#define FACILITY_CLASS_KRIS                  0x3f
 #define FACILITY_CLASS_MAY_2                 0x40
 #define FACILITY_CLASS_MAY_3                 0x41
 #define FACILITY_CLASS_PKMN_BREEDER_M        0x42
@@ -199,6 +203,8 @@
 #define FACILITY_CLASS_LEAF                  0x4f
 #define FACILITY_CLASS_RS_BRENDAN            0x50
 #define FACILITY_CLASS_RS_MAY                0x51
+#define FACILITY_CLASS_EM_BRENDAN            0x52
+#define FACILITY_CLASS_EM_MAY                0x53
 
 #define FACILITY_CLASSES_COUNT               0x52
 
