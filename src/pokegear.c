@@ -1151,7 +1151,7 @@ static void PhoneCard_RemoveScrollIndicators(u8 taskId)
 
 static void Task_PhoneCard(u8 taskId)
 {
-    s32 id = ListMenuHandleInputGetItemId(gTasks[taskId].tListMenuTaskId);
+    s32 id = ListMenu_ProcessInput(gTasks[taskId].tListMenuTaskId);
     ListMenuGetScrollAndRow(gTasks[taskId].tListMenuTaskId, &(gTasks[taskId].tScrollOffset), &(gTasks[taskId].tSelectedItem));
     switch(id)
     {

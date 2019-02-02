@@ -40,7 +40,7 @@ const struct SpriteFrameImage gUnknown_082FF408[] =
     gHeap + 0xF800, 0x800,
 };
 
-const struct SpriteFrameImage gBackspriteTable_Gold[] =
+const struct SpriteFrameImage gTrainerBackPicTable_Gold[] =
 {
     gTrainerBackPic_Gold, 0x0800,
     gTrainerBackPic_Gold + 0x0800, 0x0800,
@@ -49,23 +49,32 @@ const struct SpriteFrameImage gBackspriteTable_Gold[] =
     gTrainerBackPic_Gold + 0x2000, 0x0800,
 };
 
-const struct SpriteFrameImage gUnknown_082FF428[] =
+const struct SpriteFrameImage gTrainerBackPicTable_Kris[] =
 {
-    gTrainerBackPic_Brendan, 0x0800,
-    gTrainerBackPic_Brendan + 0x0800, 0x0800,
-    gTrainerBackPic_Brendan + 0x1000, 0x0800,
-    gTrainerBackPic_Brendan + 0x1800, 0x0800,
+    gTrainerBackPic_Kris, 0x0800,
+    gTrainerBackPic_Kris + 0x0800, 0x0800,
+    gTrainerBackPic_Kris + 0x1000, 0x0800,
+    gTrainerBackPic_Kris + 0x1800, 0x0800,
+    gTrainerBackPic_Kris + 0x2000, 0x0800,
 };
 
-const struct SpriteFrameImage gUnknown_082FF448[] =
+const struct SpriteFrameImage gTrainerBackPicTable_EmeraldBrendan[] =
 {
-    gTrainerBackPic_May, 0x0800,
-    gTrainerBackPic_May + 0x0800, 0x0800,
-    gTrainerBackPic_May + 0x1000, 0x0800,
-    gTrainerBackPic_May + 0x1800, 0x0800,
+    gTrainerBackPic_EmeraldBrendan, 0x0800,
+    gTrainerBackPic_EmeraldBrendan + 0x0800, 0x0800,
+    gTrainerBackPic_EmeraldBrendan + 0x1000, 0x0800,
+    gTrainerBackPic_EmeraldBrendan + 0x1800, 0x0800,
 };
 
-const struct SpriteFrameImage gUnknown_082FF468[] =
+const struct SpriteFrameImage gTrainerBackPicTable_EmeraldMay[] =
+{
+    gTrainerBackPic_EmeraldMay, 0x0800,
+    gTrainerBackPic_EmeraldMay + 0x0800, 0x0800,
+    gTrainerBackPic_EmeraldMay + 0x1000, 0x0800,
+    gTrainerBackPic_EmeraldMay + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_Red[] =
 {
     gTrainerBackPic_Red, 0x0800,
     gTrainerBackPic_Red + 0x0800, 0x0800,
@@ -74,7 +83,7 @@ const struct SpriteFrameImage gUnknown_082FF468[] =
     gTrainerBackPic_Red + 0x2000, 0x0800,
 };
 
-const struct SpriteFrameImage gUnknown_082FF490[] =
+const struct SpriteFrameImage gTrainerBackPicTable_Leaf[] =
 {
     gTrainerBackPic_Leaf, 0x0800,
     gTrainerBackPic_Leaf + 0x0800, 0x0800,
@@ -83,7 +92,7 @@ const struct SpriteFrameImage gUnknown_082FF490[] =
     gTrainerBackPic_Leaf + 0x2000, 0x0800,
 };
 
-const struct SpriteFrameImage gUnknown_082FF4B8[] =
+const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireBrendan[] =
 {
     gTrainerBackPic_RubySapphireBrendan, 0x0800,
     gTrainerBackPic_RubySapphireBrendan + 0x0800, 0x0800,
@@ -91,7 +100,7 @@ const struct SpriteFrameImage gUnknown_082FF4B8[] =
     gTrainerBackPic_RubySapphireBrendan + 0x1800, 0x0800,
 };
 
-const struct SpriteFrameImage gUnknown_082FF4D8[] =
+const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireMay[] =
 {
     gTrainerBackPic_RubySapphireMay, 0x0800,
     gTrainerBackPic_RubySapphireMay + 0x0800, 0x0800,
@@ -99,7 +108,7 @@ const struct SpriteFrameImage gUnknown_082FF4D8[] =
     gTrainerBackPic_RubySapphireMay + 0x1800, 0x0800,
 };
 
-const struct SpriteFrameImage gUnknown_082FF4F8[] =
+const struct SpriteFrameImage gTrainerBackPicTable_Wally[] =
 {
     gTrainerBackPic_Wally, 0x0800,
     gTrainerBackPic_Wally + 0x0800, 0x0800,
@@ -107,7 +116,7 @@ const struct SpriteFrameImage gUnknown_082FF4F8[] =
     gTrainerBackPic_Wally + 0x1800, 0x0800,
 };
 
-const struct SpriteFrameImage gUnknown_082FF518[] =
+const struct SpriteFrameImage gTrainerBackPicTable_Steven[] =
 {
     gTrainerBackPic_Steven, 0x0800,
     gTrainerBackPic_Steven + 0x0800, 0x0800,
@@ -121,7 +130,7 @@ const union AnimCmd gAnimCmd_General_Frame0[] =
     ANIMCMD_END,
 };
 
-const union AnimCmd AnimCmd_82FF540[] =
+const union AnimCmd gAnimCmd_General_Frame3[] =
 {
     ANIMCMD_FRAME(3, 0),
     ANIMCMD_END,

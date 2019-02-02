@@ -91,7 +91,7 @@ static bool8 sub_808B618(void);
 static bool8 PlayerIsAnimActive(void);
 static bool8 PlayerCheckIfAnimFinishedOrInactive(void);
 
-static void PlayerRun(u8); 
+static void PlayerRun(u8);
 static void PlayerNotOnBikeCollide(u8);
 static void PlayerNotOnBikeCollideWithFarawayIslandMew(u8);
 
@@ -344,7 +344,7 @@ static bool8 TryInterruptEventObjectSpecialAnim(struct EventObject *playerEventO
         u8 r5 = direction;
         register u8 r6 asm("r6") = direction;
     #endif
-    //a very bad HACK 
+    //a very bad HACK
 
     if (EventObjectIsMovementOverridden(playerEventObj)
      && !EventObjectClearHeldMovementIfFinished(playerEventObj))
@@ -835,24 +835,14 @@ void SetPlayerAvatarTransitionFlags(u16 transitionFlags)
 static void DoPlayerAvatarTransition(void)
 {
     u8 i;
-    u32 flags = gPlayerAvatar.unk1;
+    u8 flags = gPlayerAvatar.unk1;
 
     if (flags != 0)
     {
         for (i = 0; i < 8; i++, flags >>= 1)
         {
-#ifdef NONMATCHING
             if (flags & 1)
-            {
                 gUnknown_084974B8[i](&gEventObjects[gPlayerAvatar.eventObjectId]);
-            }
-#else
-            if (flags & 1)
-            {
-                register void (*const *funcs)(struct EventObject *) asm("r0") = gUnknown_084974B8;
-                funcs[i](&gEventObjects[gPlayerAvatar.eventObjectId]);
-            }
-#endif
         }
         gPlayerAvatar.unk1 = 0;
     }
@@ -1177,7 +1167,7 @@ void PlayerGetDestCoords(s16 *x, s16 *y)
 u8 player_get_pos_including_state_based_drift(s16 *x, s16 *y)
 {
     struct EventObject *object = &gEventObjects[gPlayerAvatar.eventObjectId];
-    
+
     if (object->heldMovementActive && !object->heldMovementFinished && !gSprites[object->spriteId].data[2])
     {
         *x = object->currentCoords.x;
@@ -1791,7 +1781,7 @@ static bool8 Fishing2(struct Task *task)
 static bool8 Fishing3(struct Task *task)
 {
     AlignFishingAnimationFrames();
-    
+
     // Wait one second
     task->tFrameCounter++;
     if (task->tFrameCounter >= 60)

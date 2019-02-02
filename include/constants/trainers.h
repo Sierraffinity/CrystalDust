@@ -112,8 +112,8 @@
 
 #define TRAINER_BACK_PIC_GOLD                   0
 #define TRAINER_BACK_PIC_KRIS                   1
-#define TRAINER_BACK_PIC_EM_BRENDAN             2
-#define TRAINER_BACK_PIC_EM_MAY                 3
+#define TRAINER_BACK_PIC_EMERALD_BRENDAN        2
+#define TRAINER_BACK_PIC_EMERALD_MAY            3
 #define TRAINER_BACK_PIC_RED                    4
 #define TRAINER_BACK_PIC_LEAF                   5
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN  6
