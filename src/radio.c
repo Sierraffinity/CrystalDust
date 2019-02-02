@@ -40,6 +40,8 @@
 #define tScrollDistance data[5]
 #define tTextDelay data[6]
 #define tMiscValue data[7]
+#define tMiscValue2 data[8]
+#define tMiscPtr data[14]
 
 static const u16 sRadioChannelSongs[] = 
 {
@@ -82,12 +84,12 @@ const u8 *const gRadioShowNames[] =
 
 #define FREQ(a) (u8)(a * 2 - 1)
 
-u8 LoadStation_PokemonChannel(u8 windowId);
-u8 LoadStation_PokemonMusic(u8 windowId);
-u8 LoadStation_LuckyChannel(u8 windowId);
-u8 LoadStation_BuenasPassword(u8 windowId);
-u8 LoadStation_UnownRadio(u8 windowId);
-u8 LoadStation_EvolutionRadio(u8 windowId);
+u8 LoadStation_PokemonChannel(void);
+u8 LoadStation_PokemonMusic(void);
+u8 LoadStation_LuckyChannel(void);
+u8 LoadStation_BuenasPassword(void);
+u8 LoadStation_UnownRadio(void);
+u8 LoadStation_EvolutionRadio(void);
 
 const struct RadioStation gRadioStationData[] = {
     { FREQ(4.5), REGION_JOHTO, LoadStation_PokemonChannel },
@@ -120,14 +122,10 @@ static void NextRadioLine(u8 taskId, u8 nextLine, const u8 *lineToPrint, bool8 s
     u8 lineHeight = GetFontAttribute(1, FONTATTR_MAX_LETTER_HEIGHT) + GetFontAttribute(1, FONTATTR_LINE_SPACING);
     
     if (tNumLinesPrinted != 0)
-    {
         yPos += lineHeight;
-    }
 
     if (lineToPrint)
-    {
         AddTextPrinterParameterized(tWindowId, 1, lineToPrint, 0, yPos, 0, NULL);
-    }
 
     tNumLinesPrinted += lineToPrint ? 1 : 0;
     tNextLine = nextLine;
@@ -201,51 +199,57 @@ void Task_PlayRadioShow(u8 taskId)
     s16 *data = gTasks[taskId].data;
 
     if (tCurrentLine < UNOWN_RADIO && GetCurrentRegion() == REGION_JOHTO && FlagGet(FLAG_ROCKET_TAKEOVER))
+    {
+        tShowNameId = tCurrentLine + 1;
         tCurrentLine = ROCKET_RADIO;
+    }
 
     switch (tCurrentLine)
     {
     case OAKS_POKEMON_TALK:
+        tShowNameId = tCurrentLine + 1;
         tMiscValue = 5;   // play five Oak segments then channel interlude
         PlayStationMusic(taskId);
         NextRadioLine(taskId, OAKS_POKEMON_TALK_2, gText_OaksPkmnTalkIntro1, TRUE);
         break;
     case POKEDEX_SHOW:
         {
-            // TODO: Suboptimal here, should hold onto caughtMons until show unload (but we don't have a hook for that yet)
-            u16 *caughtMons = AllocZeroed(sizeof(u16[386]));
-            u16 species, caughtMonCount;
+            u16 species;
+            u16 **caughtMons = (u16 **)&tMiscPtr;
+            tShowNameId = tCurrentLine + 1;
             PlayStationMusic(taskId);
             tMiscValue = SPECIES_NONE;
             
-            if (caughtMons)
+            if (*caughtMons == NULL)
             {
-                for (species = 1, caughtMonCount = 0; species <= 386; species++)
+                *caughtMons = AllocZeroed(sizeof(u16[386]));
+                if (*caughtMons)
                 {
-                    if (GetSetPokedexFlag(species, 1))
+                    for (species = 1, tMiscValue2 = 0; species <= 386; species++)
                     {
-                        caughtMons[caughtMonCount] = species;
-                        caughtMonCount++;
+                        if (GetSetPokedexFlag(species, FLAG_GET_CAUGHT))
+                        {
+                            *caughtMons[tMiscValue2] = species;
+                            tMiscValue2++;
+                        }
                     }
                 }
-
-                if (caughtMonCount > 0)
-                {
-                    tMiscValue = caughtMons[Random() % caughtMonCount];
-                }
-
-                FREE_AND_SET_NULL(caughtMons);
             }
+
+            if (*caughtMons && tMiscValue2 > 0)
+                tMiscValue = *caughtMons[Random() % tMiscValue2];
 
             StringCopy10(gStringVar4, gSpeciesNames[NationalPokedexNumToSpecies(tMiscValue)]);
             NextRadioLine(taskId, POKEDEX_SHOW_2, gStringVar4, TRUE);
         }
         break;
     case POKEMON_MUSIC:
+        tShowNameId = tCurrentLine + 1;
         PlayPokemonMusic();
         NextRadioLine(taskId, POKEMON_MUSIC_2, gText_PkmnMusicBen1, TRUE);
         break;
     case LUCKY_CHANNEL:
+        tShowNameId = tCurrentLine + 1;
         PlayStationMusic(taskId);
         DoTimeBasedEvents();
         ConvertIntToDecimalStringN(gStringVar1, (u16)GetLotteryNumber(), STR_CONV_MODE_LEADING_ZEROS, 5);
@@ -254,7 +258,7 @@ void Task_PlayRadioShow(u8 taskId)
     case BUENAS_PASSWORD:
         if (BuenasPassword_CheckTime())
         {
-            gTasks[taskId].tShowNameId = BUENAS_PASSWORD + 1;
+            tShowNameId = tCurrentLine + 1;
             PlayStationMusic(taskId);
             NextRadioLine(taskId, BUENAS_PASSWORD_2, gText_BuenasPassword1, TRUE);
         }
@@ -272,20 +276,24 @@ void Task_PlayRadioShow(u8 taskId)
         }
         break;
     case PLACES_AND_PEOPLE:
+        tShowNameId = tCurrentLine + 1;
         PlayStationMusic(taskId);
         NextRadioLine(taskId, PLACES_AND_PEOPLE_2, gText_PlacesAndPeople1, TRUE);
         break;
     case LETS_ALL_SING:
+        tShowNameId = tCurrentLine + 1;
         PlayPokemonMusic();
         NextRadioLine(taskId, LETS_ALL_SING_2, gText_PkmnMusicFern1, TRUE);
         break;
     case ROCKET_RADIO:
+        tShowNameId = tCurrentLine + 1;
         PlayStationMusic(taskId);
         NextRadioLine(taskId, ROCKET_RADIO_2, gText_RocketRadio1, TRUE);
         break;
     case POKE_FLUTE_RADIO:
     case UNOWN_RADIO:
     case EVOLUTION_RADIO:
+        tShowNameId = tCurrentLine + 1;
         PlayStationMusic(taskId);
         tNumLinesPrinted = 1;
         break;
@@ -721,108 +729,117 @@ void Task_PlayRadioShow(u8 taskId)
     }
 }
 
-u8 LoadStation_PokemonChannel(u8 windowId)
+u8 LoadStation_PokemonChannel(void)
 {
-    u8 taskId = CreateTask(Task_PlayRadioShow, 80);
-    gTasks[taskId].tWindowId = windowId;
-    gTasks[taskId].tNumLinesPrinted = 0;
-
     RtcCalcLocalTime();
 
     if (GetTimeOfDay() == TIME_MORNING)
-    {
-        gTasks[taskId].tCurrentLine = POKEDEX_SHOW;
-        gTasks[taskId].tShowNameId = POKEDEX_SHOW + 1;
-    }
+        return POKEDEX_SHOW;
     else
-    {
-        gTasks[taskId].tCurrentLine = OAKS_POKEMON_TALK;
-        gTasks[taskId].tShowNameId = OAKS_POKEMON_TALK + 1;
-    }
-    
-    return taskId;
+        return OAKS_POKEMON_TALK;
 }
 
-u8 LoadStation_PokemonMusic(u8 windowId)
+u8 LoadStation_PokemonMusic(void)
 {
-    u8 taskId = CreateTask(Task_PlayRadioShow, 80);
-    gTasks[taskId].tWindowId = windowId;
-    gTasks[taskId].tNumLinesPrinted = 0;
-    gTasks[taskId].tCurrentLine = POKEMON_MUSIC;
-    gTasks[taskId].tShowNameId = POKEMON_MUSIC + 1;
-    return taskId;
+    return POKEMON_MUSIC;
 }
 
-u8 LoadStation_LuckyChannel(u8 windowId)
+u8 LoadStation_LuckyChannel(void)
 {
-    u8 taskId = CreateTask(Task_PlayRadioShow, 80);
-    gTasks[taskId].tWindowId = windowId;
-    gTasks[taskId].tNumLinesPrinted = 0;
-    gTasks[taskId].tCurrentLine = LUCKY_CHANNEL;
-    gTasks[taskId].tShowNameId = LUCKY_CHANNEL + 1;
-    return taskId;
+    return LUCKY_CHANNEL;
 }
 
-u8 LoadStation_BuenasPassword(u8 windowId)
+u8 LoadStation_BuenasPassword(void)
 {
-    u8 taskId = CreateTask(Task_PlayRadioShow, 80);
-    gTasks[taskId].tWindowId = windowId;
-    gTasks[taskId].tNumLinesPrinted = 0;
-    gTasks[taskId].tCurrentLine = BUENAS_PASSWORD;
-
-    if (FlagGet(FLAG_ROCKET_TAKEOVER))  // always show title when Rockets in tower
-        gTasks[taskId].tShowNameId = BUENAS_PASSWORD + 1;
-
-    return taskId;
+    return BUENAS_PASSWORD;
 }
 
-u8 LoadStation_UnownRadio(u8 windowId)
+u8 LoadStation_UnownRadio(void)
 {
-    u8 taskId = 0xFF;
-
     if (gMapHeader.regionMapSectionId == MAPSEC_RUINS_OF_ALPH)
-    {
-        taskId = CreateTask(Task_PlayRadioShow, 80);
-        gTasks[taskId].tWindowId = windowId;
-        gTasks[taskId].tNumLinesPrinted = 0;
-        gTasks[taskId].tCurrentLine = UNOWN_RADIO;
-        gTasks[taskId].tShowNameId = UNOWN_RADIO + 1;
-    }
+        return UNOWN_RADIO;
 
-    return taskId;
+    return 0xFF;
 }
 
-u8 LoadStation_EvolutionRadio(u8 windowId)
+u8 LoadStation_EvolutionRadio(void)
 {
-    u8 taskId = 0xFF;
-
     if (gMapHeader.regionMapSectionId == MAPSEC_MAHOGANY_TOWN ||
         gMapHeader.regionMapSectionId == MAPSEC_ROUTE_43 ||
         gMapHeader.regionMapSectionId == MAPSEC_LAKE_OF_RAGE)
     {
-        taskId = CreateTask(Task_PlayRadioShow, 80);
-        gTasks[taskId].tWindowId = windowId;
-        gTasks[taskId].tNumLinesPrinted = 0;
-        gTasks[taskId].tCurrentLine = EVOLUTION_RADIO;
-        gTasks[taskId].tShowNameId = EVOLUTION_RADIO + 1;
+        return EVOLUTION_RADIO;
     }
 
-    return taskId;
+    return 0xFF;
 }
 
-void Task_FieldRadio(u8 taskId)
+#define tTimer data[0]
+#define tShowId data[1]
+#define tRadioShowTaskId data[1]
+
+void Task_FieldRadio_2(u8 taskId);
+
+void Task_FieldRadio_1(u8 taskId)
 {
-    if (gMain.newKeys & B_BUTTON)
+    if (gTasks[taskId].tTimer == 0)
+    {
+        u8 *str = gStringVar4;
+        
+        u8 stationId = gSpecialVar_0x8004;
+
+        if (stationId > ARRAY_COUNT(gRadioStationData) - 1)
+            stationId = 0;
+
+        gTasks[taskId].tShowId = gRadioStationData[stationId].loadFunc();
+
+        if (gTasks[taskId].tShowId != 0xFF)
+        {
+            *(str++) = CHAR_DBL_QUOT_LEFT;
+            str = StringCopy(str, gRadioShowNames[gTasks[taskId].tShowId]);
+            *(str++) = CHAR_DBL_QUOT_RIGHT;
+            *str = EOS;
+        }
+        AddTextPrinterParameterized(0, 1, gStringVar4, 0, 1, 0, NULL);
+    }
+    else if (gTasks[taskId].tTimer > 100)
+    {
+        u8 radioShowTaskId = CreateTask(Task_PlayRadioShow, 80);
+
+        gTasks[radioShowTaskId].tWindowId = 0;
+        gTasks[radioShowTaskId].tCurrentLine = gTasks[taskId].tShowId;
+
+        gTasks[taskId].tRadioShowTaskId = radioShowTaskId;
+
+        FillWindowPixelBuffer(0, 0x11);
+        CopyWindowToVram(0, 2);
+
+        gTasks[taskId].func = Task_FieldRadio_2;
+    }
+    gTasks[taskId].tTimer++;
+}
+
+void Task_FieldRadio_2(u8 taskId)
+{
+    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         sub_8197434(0, TRUE);
         EnableBothScriptContexts();
+
+        DestroyTask(gTasks[taskId].tRadioShowTaskId);
         DestroyTask(taskId);
     }
 }
 
-void FieldRadio(void)
+bool16 FieldRadio(void)
 {
+    if (FuncIsActiveTask(Task_FieldRadio_1) == TRUE)
+        return FALSE;
+
     sub_81973A4();
     NewMenuHelpers_DrawDialogueFrame(0, 1);
-    CreateTask(Task_FieldRadio, 3);
+    CreateTask(Task_FieldRadio_1, 3);
+    return TRUE;
 }
+
+#undef tRadioShowTaskId

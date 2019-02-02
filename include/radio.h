@@ -94,7 +94,7 @@ enum {
 struct RadioStation{
     u8 frequency;
     u8 region;
-    u8 (*loadFunc)(u8 windowId);
+    u8 (*loadFunc)(void);
 };
 
 extern const struct RadioStation gRadioStationData[];

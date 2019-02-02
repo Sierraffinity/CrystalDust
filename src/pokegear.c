@@ -1233,6 +1233,8 @@ static void UnloadPhoneCard(void)
 #define tRadioShowTaskId data[0]
 
 #define tShowNameId data[0]
+#define tWindowId data[1]
+#define tCurrentLine data[2]
 
 #define tPosition data[0]
 #define tStoredVal data[1]
@@ -1335,9 +1337,28 @@ static void UpdateRadioStation(u8 taskId, u8 frequency)
     }
 
     if (station->frequency != 0xFF)
-        gTasks[taskId].tRadioShowTaskId = station->loadFunc(WIN_DIALOG);
+    {
+        u8 showId = station->loadFunc();
+
+        if (showId != 0xFF)
+        {
+            u8 radioShowTaskId = CreateTask(Task_PlayRadioShow, 80);
+
+            gTasks[radioShowTaskId].tWindowId = WIN_DIALOG;
+            gTasks[radioShowTaskId].tCurrentLine = showId;
+            gTasks[taskId].tRadioShowTaskId = radioShowTaskId;
+
+            ClearRadioWindows();
+        }
+        else
+        {
+            gTasks[taskId].tRadioShowTaskId = 0xFF;
+        }
+    }
     else
+    {
         gTasks[taskId].tRadioShowTaskId = 0xFF;
+    }
 }
 
 static void Task_RadioCard(u8 taskId)
