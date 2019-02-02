@@ -16,6 +16,7 @@
 #include "task.h"
 #include "window.h"
 #include "constants/flags.h"
+#include "constants/heal_locations.h"
 #include "constants/songs.h"
 #include "constants/vars.h"
 
@@ -39,12 +40,15 @@ static void DebugMenu_Pokegear(u8 taskId);
 static void DebugMenu_Pokegear_ProcessInput(u8 taskId);
 static void DebugMenu_EnableMapCard(u8 taskId);
 static void DebugMenu_EnableRadioCard(u8 taskId);
+static void DebugMenu_SetRespawn(u8 taskId);
+static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
 static void DebugMenu_RemoveMenu(u8 taskId);
 
 static const u8 sText_SetFlag[] = _("Set flag");
 static const u8 sText_SetVar[] = _("Set variable");
 static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Pokegear[] = _("Pokégear");
+static const u8 sText_SetRespawn[] = _("Set respawn");
 static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
@@ -55,6 +59,7 @@ static const u8 sText_EnableRadioCard[] = _("Enable radio card");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
 static const u8 sText_VarStatus[] = _("Var: {STR_VAR_1}\nValue: {STR_VAR_2}\nAddress: {STR_VAR_3}");
 static const u8 sText_ClockStatus[] = _("Time: {STR_VAR_1}");
+static const u8 sText_RespawnStatus[] = _("Respawn point:\n{STR_VAR_1}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
 static const u8 sText_Off[] = _("{COLOR RED}OFF");
 
@@ -64,6 +69,7 @@ static const struct MenuAction sDebugMenu_MainActions[] =
     { sText_SetVar, DebugMenu_SetVar },
     { sText_DayNight, DebugMenu_DN },
     { sText_Pokegear, DebugMenu_Pokegear },
+    { sText_SetRespawn, DebugMenu_SetRespawn },
     { sText_Misc, DebugMenu_Misc },
     { gText_MenuOptionExit, DebugMenu_Exit }
 };
@@ -148,6 +154,17 @@ static const struct WindowTemplate sDebugMenu_Window_Pokegear =
     .tilemapTop = 1,
     .width = 0,
     .height = ARRAY_COUNT(sDebugMenu_PokegearActions) * 2,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_SetRespawn = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 10,
+    .height = 4,
     .paletteNum = 15,
     .baseBlock = 0x120
 };
@@ -689,5 +706,72 @@ static void DebugMenu_Pokegear_ProcessInput(u8 taskId)
             PlaySE(SE_SELECT);
             sDebugMenu_PokegearActions[inputOptionId].func.void_u8(taskId);
             break;
+    }
+}
+
+static void DebugMenu_SetRespawn_PrintStatus(u8 windowId, u8 respawnPoint)
+{
+    FillWindowPixelBuffer(windowId, 0x11);
+    ConvertIntToDecimalStringN(gStringVar1, respawnPoint, STR_CONV_MODE_LEFT_ALIGN, 2);
+    StringExpandPlaceholders(gStringVar4, sText_RespawnStatus);
+    AddTextPrinterParameterized(windowId, 1, gStringVar4, 0, 1, 0, NULL);
+}
+
+#define tRespawnNum data[1]
+
+static void DebugMenu_SetRespawn(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    DebugMenu_RemoveMenu(taskId);
+
+    tWindowId = AddWindow(&sDebugMenu_Window_SetRespawn);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    DebugMenu_SetRespawn_PrintStatus(tWindowId, 1);
+    schedule_bg_copy_tilemap_to_vram(0);
+    tRespawnNum = HEAL_LOCATION_NEW_BARK_TOWN;
+    gTasks[taskId].func = DebugMenu_SetRespawn_ProcessInput;
+}
+
+static void DebugMenu_SetRespawn_ProcessInput(u8 taskId)
+{
+    u32 temp, shifter;
+    u16 *data = gTasks[taskId].data;
+
+    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    {
+        temp = tRespawnNum + 1;
+
+        if (temp >= HEAL_LOCATION_NEW_BARK_TOWN && temp <= HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST)
+        {
+            PlaySE(SE_SELECT);
+            tRespawnNum = temp;
+            DebugMenu_SetRespawn_PrintStatus(tWindowId, tRespawnNum);
+        }
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    {
+        temp = tRespawnNum - 1;
+
+        if (temp >= HEAL_LOCATION_NEW_BARK_TOWN && temp <= HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST)
+        {
+            PlaySE(SE_SELECT);
+            tRespawnNum = temp;
+            DebugMenu_SetRespawn_PrintStatus(tWindowId, tRespawnNum);
+        }
+    }
+
+    if (gMain.newKeys & A_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        SetLastHealLocationWarp(tRespawnNum);
+    }
+
+    if (gMain.newKeys & B_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        DebugMenu_RemoveMenu(taskId);
+        ReturnToMainMenu(taskId);
     }
 }

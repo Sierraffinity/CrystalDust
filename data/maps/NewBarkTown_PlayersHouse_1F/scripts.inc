@@ -98,6 +98,7 @@ NewBarkTown_PlayersHouse_1F_PostGearInstructions:
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer
 	waitmovement 0
 	setvar VAR_0x4050 1
+	setrespawn HEAL_LOCATION_NEW_BARK_TOWN	@ TODO: This should really be for player's room 2F, or do the FR approach
 	releaseall
 	end
 
