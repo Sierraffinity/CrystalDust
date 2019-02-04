@@ -286,6 +286,9 @@ bool8 (*const gFieldEffectScriptFuncs[])(u8 **, u32 *) = {
     FieldEffectCmd_loadgfx_callnative,
     FieldEffectCmd_loadtiles_callnative,
     FieldEffectCmd_loadfadedpal_callnative,
+    FieldEffectCmd_loadfadedpalnotint,
+    FieldEffectCmd_loadpalnotint,
+    FieldEffectCmd_loadfadedpalnotint_callnative,
 };
 
 const struct OamData gNewGameBirchOamAttributes = {.size = 3};
@@ -609,6 +612,28 @@ bool8 FieldEffectCmd_loadfadedpal_callnative(u8 **script, u32 *val)
     return TRUE;
 }
 
+bool8 FieldEffectCmd_loadfadedpalnotint(u8 **script, u32 *val)
+{
+    (*script)++;
+    FieldEffectScript_LoadFadedPaletteNoTint(script);
+    return TRUE;
+}
+
+bool8 FieldEffectCmd_loadpalnotint(u8 **script, u32 *val)
+{
+    (*script)++;
+    FieldEffectScript_LoadPaletteNoTint(script);
+    return TRUE;
+}
+
+bool8 FieldEffectCmd_loadfadedpalnotint_callnative(u8 **script, u32 *val)
+{
+    (*script)++;
+    FieldEffectScript_LoadFadedPaletteNoTint(script);
+    FieldEffectScript_CallNative(script, val);
+    return TRUE;
+}
+
 u32 FieldEffectScript_ReadWord(u8 **script)
 {
     return (*script)[0]
@@ -637,6 +662,21 @@ void FieldEffectScript_LoadPalette(u8 **script)
 {
     struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
     LoadSpritePaletteDayNight(palette);
+    (*script) += 4;
+}
+
+void FieldEffectScript_LoadFadedPaletteNoTint(u8 **script)
+{
+    struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
+    LoadSpritePalette(palette);
+    UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag));
+    (*script) += 4;
+}
+
+void FieldEffectScript_LoadPaletteNoTint(u8 **script)
+{
+    struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
+    LoadSpritePalette(palette);
     (*script) += 4;
 }
 

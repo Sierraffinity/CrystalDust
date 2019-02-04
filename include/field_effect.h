@@ -24,6 +24,8 @@ void FieldEffectActiveListAdd(u8 id);
 void FieldEffectScript_LoadTiles(u8 **script);
 void FieldEffectScript_LoadFadedPalette(u8 **script);
 void FieldEffectScript_LoadPalette(u8 **script);
+void FieldEffectScript_LoadFadedPaletteNoTint(u8 **script);
+void FieldEffectScript_LoadPaletteNoTint(u8 **script);
 void FieldEffectScript_CallNative(u8 **script, u32 *val);
 void FieldEffectFreeTilesIfUnused(u16 tileStart);
 void FieldEffectFreePaletteIfUnused(u8 paletteNum);
@@ -35,6 +37,9 @@ bool8 FieldEffectCmd_end(u8 **script, u32 *val);
 bool8 FieldEffectCmd_loadgfx_callnative(u8 **script, u32 *val);
 bool8 FieldEffectCmd_loadtiles_callnative(u8 **script, u32 *val);
 bool8 FieldEffectCmd_loadfadedpal_callnative(u8 **script, u32 *val);
+bool8 FieldEffectCmd_loadfadedpalnotint(u8 **script, u32 *val);
+bool8 FieldEffectCmd_loadpalnotint(u8 **script, u32 *val);
+bool8 FieldEffectCmd_loadfadedpalnotint_callnative(u8 **script, u32 *val);
 
 void sub_80B9C28(s16*, u8);
 void sub_80B9C54(s16*, u8);

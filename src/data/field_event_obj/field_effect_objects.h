@@ -168,29 +168,29 @@ const struct SpriteFrameImage gFieldEffectObjectPicTable_Arrow[] = {
 
 const union AnimCmd gFieldEffectObjectImageAnim_850CC1C[] =
 {
+    ANIMCMD_FRAME(2, 32),
     ANIMCMD_FRAME(3, 32),
-    ANIMCMD_FRAME(7, 32),
     ANIMCMD_JUMP(0),
 };
 
 const union AnimCmd gFieldEffectObjectImageAnim_850CC28[] =
 {
     ANIMCMD_FRAME(0, 32),
-    ANIMCMD_FRAME(4, 32),
+    ANIMCMD_FRAME(1, 32),
     ANIMCMD_JUMP(0),
 };
 
 const union AnimCmd gFieldEffectObjectImageAnim_850CC34[] =
 {
-    ANIMCMD_FRAME(1, 32),
+    ANIMCMD_FRAME(4, 32),
     ANIMCMD_FRAME(5, 32),
     ANIMCMD_JUMP(0),
 };
 
 const union AnimCmd gFieldEffectObjectImageAnim_850CC40[] =
 {
-    ANIMCMD_FRAME(2, 32),
     ANIMCMD_FRAME(6, 32),
+    ANIMCMD_FRAME(7, 32),
     ANIMCMD_JUMP(0),
 };
 
@@ -202,7 +202,7 @@ const union AnimCmd *const gFieldEffectObjectImageAnimTable_Arrow[] =
     gFieldEffectObjectImageAnim_850CC40,
 };
 
-const struct SpriteTemplate gFieldEffectObjectTemplate_Arrow = {0xFFFF, 0xFFFF, &gEventObjectBaseOam_16x16, gFieldEffectObjectImageAnimTable_Arrow, gFieldEffectObjectPicTable_Arrow, gDummySpriteAffineAnimTable, SpriteCallbackDummy};
+const struct SpriteTemplate gFieldEffectObjectTemplate_Arrow = {0xFFFF, 0x1006, &gEventObjectBaseOam_16x16, gFieldEffectObjectImageAnimTable_Arrow, gFieldEffectObjectPicTable_Arrow, gDummySpriteAffineAnimTable, SpriteCallbackDummy};
 
 const struct SpriteFrameImage gFieldEffectObjectPicTable_GroundImpactDust[] = {
     overworld_frame(gFieldEffectObjectPic_GroundImpactDust, 2, 1, 0),
@@ -990,3 +990,5 @@ const struct SpriteFrameImage  gFieldEffectObjectPicTable_Rayquaza[] = {
 const struct SpriteTemplate gFieldEffectObjectTemplate_Rayquaza = {0xFFFF, 0xFFFF, &gEventObjectBaseOam_32x32, gFieldEffectObjectImageAnimTable_Rayquaza, gFieldEffectObjectPicTable_Rayquaza, gDummySpriteAffineAnimTable, sub_8155F80};
 
 const struct SpritePalette gFieldEffectObjectPaletteInfoUnused = {gEventObjectPalette2, 0x1011};
+
+const struct SpritePalette gFieldEffectObjectPaletteInfo11 = {gEventObjectPalette28, 0x1006};
