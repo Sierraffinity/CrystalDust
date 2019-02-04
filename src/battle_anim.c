@@ -1934,17 +1934,17 @@ void MoveBattlerSpriteToBG(u8 battlerId, bool8 toBG_2, bool8 setSpriteInvisible)
         if (IsContest() == TRUE)
         {
             RequestDma3Fill(0, (void*)(VRAM + 0x8000), 0x2000, 1);
-            RequestDma3Fill(0xFF, (void*)(VRAM + 0xF000), 0x1000, 0);
+            RequestDma3Fill(0, (void*)(VRAM + 0xF000), 0x1000, 0);
         }
         else
         {
             RequestDma3Fill(0, (void*)(VRAM + 0x4000), 0x2000, 1);
-            RequestDma3Fill(0xFF, (void*)(VRAM + 0xe000), 0x1000, 0);
+            RequestDma3Fill(0, (void*)(VRAM + 0xe000), 0x1000, 0);
         }
 
         sub_80A6B30(&unknownStruct);
         CpuFill16(0, unknownStruct.bgTiles, 0x1000);
-        CpuFill16(0xFF, unknownStruct.unk4, 0x800);
+        CpuFill16(0, unknownStruct.unk4, 0x800);
 
         SetAnimBgAttribute(1, BG_ANIM_PRIORITY, 2);
         SetAnimBgAttribute(1, BG_ANIM_SCREEN_SIZE, 1);
