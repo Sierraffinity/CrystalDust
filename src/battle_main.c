@@ -13,6 +13,7 @@
 #include "berry.h"
 #include "bg.h"
 #include "data2.h"
+#include "day_night.h"
 #include "decompress.h"
 #include "dma3.h"
 #include "event_data.h"
@@ -1852,6 +1853,7 @@ void BattleMainCB2(void)
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
+    RetintPalettesForDayNight();
     UpdatePaletteFade();
     RunTasks();
 
@@ -2086,6 +2088,7 @@ void VBlankCB_Battle(void)
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
     ScanlineEffect_InitHBlankDmaTransfer();
+    CheckClockToRetintForDayNight();
 }
 
 void nullsub_17(struct Sprite *sprite)
@@ -2470,6 +2473,7 @@ static void sub_803937C(void)
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
+    RetintPalettesForDayNight();
     UpdatePaletteFade();
     RunTasks();
 }

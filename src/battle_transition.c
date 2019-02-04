@@ -1019,6 +1019,7 @@ static bool8 Transition_WaitForPhase2(struct Task *task)
     task->tTransitionDone = FALSE;
     if (FindTaskIdByFunc(sPhase2_Tasks[task->tTransitionId]) == 0xFF)
         task->tTransitionDone = TRUE;
+    sub_80AC3E4();
     return FALSE;
 }
 
