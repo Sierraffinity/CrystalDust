@@ -7,15 +7,15 @@ Route29_EventObjects:
 	object_event 6, EVENT_OBJ_GFX_BOY_2, 0, 2, 13, 3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT, 1, 1, 0, 0, Route29_EventScript_1EBE04, FLAG_HIDE_MAPSEC_ROUTE_29_BOY
 
 Route29_MapCoordEvents:
-	coord_event 10, 19, 3, VAR_0x4060, 1, Route29_EventScript_1EBCDE
-	coord_event 11, 19, 3, VAR_0x4060, 1, Route29_EventScript_1EBCDE
-	coord_event 10, 18, 3, VAR_0x4060, 2, Route29_EventScript_1EBD4E
-	coord_event 11, 18, 3, VAR_0x4060, 2, Route29_EventScript_1EBD4E
-	coord_event 6, 16, 3, VAR_0x4060, 2, Route29_EventScript_1EBD64
-	coord_event 6, 15, 3, VAR_0x4060, 2, Route29_EventScript_1EBD64
-	coord_event 6, 17, 3, VAR_0x4060, 2, Route29_EventScript_1EBD64
-	coord_event 6, 18, 3, VAR_0x4060, 2, Route29_EventScript_1EBD64
-	coord_event 7, 13, 3, VAR_0x4060, 2, Route29_EventScript_1EBD7A
+	coord_event 10, 19, 3, VAR_0x4060, 0, Route29_EventScript_1EBCDE
+	coord_event 11, 19, 3, VAR_0x4060, 0, Route29_EventScript_1EBCDE
+	coord_event 10, 18, 3, VAR_0x4060, 0, Route29_EventScript_1EBD4E
+	coord_event 11, 18, 3, VAR_0x4060, 0, Route29_EventScript_1EBD4E
+	coord_event 6, 16, 3, VAR_0x4060, 0, Route29_EventScript_1EBD64
+	coord_event 6, 15, 3, VAR_0x4060, 0, Route29_EventScript_1EBD64
+	coord_event 6, 17, 3, VAR_0x4060, 0, Route29_EventScript_1EBD64
+	coord_event 6, 18, 3, VAR_0x4060, 0, Route29_EventScript_1EBD64
+	coord_event 7, 13, 3, VAR_0x4060, 0, Route29_EventScript_1EBD7A
 
 Route29_MapBGEvents:
 	bg_event 3, 5, 0, BG_EVENT_PLAYER_FACING_ANY, Route29_EventScript_DirectionSign
