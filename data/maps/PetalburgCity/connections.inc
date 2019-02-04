@@ -1,7 +1,8 @@
-PetalburgCity_MapConnectionsList::
+PetalburgCity_MapConnectionsList:
 	connection right, 20, MAP_ROUTE103
 	connection down, -2, MAP_ROUTE104
 
-PetalburgCity_MapConnections::
+PetalburgCity_MapConnections:
 	.4byte 2
 	.4byte PetalburgCity_MapConnectionsList
+

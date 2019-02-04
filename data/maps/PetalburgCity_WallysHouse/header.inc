@@ -1,10 +1,10 @@
-PetalburgCity_WallysHouse::
+PetalburgCity_WallysHouse:
 	.4byte House2_Layout
 	.4byte PetalburgCity_WallysHouse_MapEvents
 	.4byte PetalburgCity_WallysHouse_MapScripts
 	.4byte 0x0
 	.2byte MUS_MACHI_S2
-	.2byte 60
+	.2byte LAYOUT_HOUSE2
 	.byte MAPSEC_VIOLET_CITY
 	.byte 0
 	.byte WEATHER_NONE
@@ -12,3 +12,4 @@ PetalburgCity_WallysHouse::
 	.2byte 0
 	map_header_flags allow_bike=0, allow_escape_rope=0, allow_run=0, show_map_name=0
 	.byte MAP_BATTLE_SCENE_NORMAL
+

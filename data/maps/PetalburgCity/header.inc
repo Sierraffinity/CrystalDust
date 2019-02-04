@@ -1,10 +1,10 @@
-PetalburgCity::
+PetalburgCity:
 	.4byte PetalburgCity_Layout
 	.4byte PetalburgCity_MapEvents
 	.4byte PetalburgCity_MapScripts
 	.4byte PetalburgCity_MapConnections
 	.2byte MUS_MACHI_S2
-	.2byte 1
+	.2byte LAYOUT_PETALBURG_CITY
 	.byte MAPSEC_VIOLET_CITY
 	.byte 0
 	.byte WEATHER_SUNNY
@@ -12,3 +12,4 @@ PetalburgCity::
 	.2byte 0
 	map_header_flags allow_bike=1, allow_escape_rope=0, allow_run=1, show_map_name=1
 	.byte MAP_BATTLE_SCENE_NORMAL
+

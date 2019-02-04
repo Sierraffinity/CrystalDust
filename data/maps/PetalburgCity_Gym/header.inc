@@ -1,10 +1,10 @@
-PetalburgCity_Gym::
+PetalburgCity_Gym:
 	.4byte PetalburgCity_Gym_Layout
 	.4byte PetalburgCity_Gym_MapEvents
 	.4byte PetalburgCity_Gym_MapScripts
 	.4byte 0x0
 	.2byte MUS_GIM
-	.2byte 79
+	.2byte LAYOUT_PETALBURG_CITY_GYM
 	.byte MAPSEC_VIOLET_CITY
 	.byte 0
 	.byte WEATHER_NONE
@@ -12,3 +12,4 @@ PetalburgCity_Gym::
 	.2byte 0
 	map_header_flags allow_bike=0, allow_escape_rope=0, allow_run=0, show_map_name=0
 	.byte MAP_BATTLE_SCENE_GYM
+
