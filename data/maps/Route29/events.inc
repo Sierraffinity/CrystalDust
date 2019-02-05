@@ -6,8 +6,8 @@ Route29_EventObjects:
 	object_event 5, EVENT_OBJ_GFX_MAN_4, 0, 16, 6, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, 0, 0
 	object_event 6, EVENT_OBJ_GFX_WOMAN_2, 0, 37, 14, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, 0, FLAG_HIDE_ROUTE_29_TUSCANY
 	object_event 7, EVENT_OBJ_GFX_ITEM_BALL, 0, 60, 2, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, NULL, FLAG_ITEM_ROUTE_29_POTION
-	object_event 8, EVENT_OBJ_GFX_CUTTABLE_TREE, 0, 26, 13, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, EventScript_CutTree, 0
-	object_event 9, EVENT_OBJ_GFX_CUTTABLE_TREE, 0, 39, 11, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, EventScript_CutTree, 0
+	object_event 8, EVENT_OBJ_GFX_PUSHABLE_BOULDER, 0, 26, 13, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, EventScript_CutTree, 0
+	object_event 9, EVENT_OBJ_GFX_BREAKABLE_ROCK, 0, 39, 11, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, EventScript_CutTree, 0
 
 Route29_MapWarps:
 	warp_def 34, 3, 3, 0, MAP_ROUTE29

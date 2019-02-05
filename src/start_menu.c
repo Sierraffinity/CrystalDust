@@ -46,7 +46,7 @@ enum
     MENU_ACTION_POKEDEX,
     MENU_ACTION_POKEMON,
     MENU_ACTION_BAG,
-    MENU_ACTION_POKENAV,
+    MENU_ACTION_POKEGEAR,
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
     MENU_ACTION_OPTION,
@@ -239,7 +239,7 @@ void SetDexPokemonPokenavFlags(void) // unused
 {
     FlagSet(FLAG_SYS_POKEDEX_GET);
     FlagSet(FLAG_SYS_POKEMON_GET);
-    FlagSet(FLAG_SYS_POKENAV_GET);
+    FlagSet(FLAG_SYS_POKEGEAR_GET);
 }
 
 static void BuildStartMenuActions(void)
@@ -294,9 +294,9 @@ static void BuildNormalStartMenu(void)
 
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKEGEAR_GET) == TRUE)
     {
-        AddStartMenuAction(MENU_ACTION_POKENAV);
+        AddStartMenuAction(MENU_ACTION_POKEGEAR);
     }
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
@@ -321,9 +321,9 @@ static void BuildLinkModeStartMenu(void)
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKEGEAR_GET) == TRUE)
     {
-        AddStartMenuAction(MENU_ACTION_POKENAV);
+        AddStartMenuAction(MENU_ACTION_POKEGEAR);
     }
 
     AddStartMenuAction(MENU_ACTION_PLAYER_LINK);
@@ -336,9 +336,9 @@ static void BuildUnionRoomStartMenu(void)
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKEGEAR_GET) == TRUE)
     {
-        AddStartMenuAction(MENU_ACTION_POKENAV);
+        AddStartMenuAction(MENU_ACTION_POKEGEAR);
     }
 
     AddStartMenuAction(MENU_ACTION_PLAYER);

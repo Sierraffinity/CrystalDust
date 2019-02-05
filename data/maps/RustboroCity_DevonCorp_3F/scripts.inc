@@ -53,7 +53,7 @@ RustboroCity_DevonCorp_3F_EventScript_21246E:: @ 821246E
 	playfanfare MUS_FANFA4
 	message RustboroCity_DevonCorp_3F_Text_212820
 	waitfanfare
-	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_SYS_POKEGEAR_GET
 	setflag FLAG_RECEIVED_POKENAV
 	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
 	msgbox RustboroCity_DevonCorp_3F_Text_212837, MSGBOX_DEFAULT
