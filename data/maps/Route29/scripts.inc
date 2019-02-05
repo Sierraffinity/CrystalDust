@@ -1,11 +1,24 @@
 Route29_MapScripts:: @ 81EBCBA
-	map_script 3, Route29_MapScript1_1EBCC5
+	map_script 3, Route29_MapScript1_Type3
 	map_script 2, Route29_MapScript2_1EBCCB
 	.byte 0
 
-Route29_MapScript1_1EBCC5: @ 81EBCC5
-	call Route29_EventScript_2720AD
+Route29_MapScript1_Type3: @ 81EBCC5
+	call Route29_MapScript1_CheckForTuscany
 	end
+
+Route29_MapScript1_CheckForTuscany:
+	goto_if_unset FLAG_BADGE01_GET, Route29_EventScript_HideTuscany
+	gettime
+	compare VAR_0x8003, DAY_TUESDAY
+	goto_if_eq Route29_EventScript_ShowTuscany
+Route29_EventScript_HideTuscany:
+	setflag FLAG_HIDE_ROUTE_29_TUSCANY
+	return
+
+Route29_EventScript_ShowTuscany:
+	clearflag FLAG_HIDE_ROUTE_29_TUSCANY
+	return
 
 Route29_MapScript2_1EBCCB: @ 81EBCCB
 	@map_script_2 VAR_0x4060, 0, Route29_EventScript_1EBCD5
@@ -231,7 +244,7 @@ Route29_EventScript_1EBE16:: @ 81EBE16
 	waitmovement 0
 	msgbox Route29_Text_1EBF12, MSGBOX_DEFAULT
 	special HealPlayerParty
-	clearflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_BIRCH
+	clearflag FLAG_HIDE_ROUTE_29_TUSCANY
 	setflag FLAG_HIDE_NEW_BARK_TOWN_RIVAL
 	setvar VAR_0x4084, 2
 	setvar VAR_0x4060, 3

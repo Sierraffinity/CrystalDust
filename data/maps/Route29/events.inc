@@ -1,26 +1,28 @@
 Route29_EventObjects:
-	object_event 1, EVENT_OBJ_GFX_YOUNGSTER, 0, 16, 8, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, Route29_EventScript_1EBDFB, 0
-	object_event 2, EVENT_OBJ_GFX_PROF_ELM, 0, 9, 13, 0, MOVEMENT_TYPE_JOG_IN_PLACE_RIGHT, 0, 0, 0, 0, 0x0, 0
-	object_event 3, EVENT_OBJ_GFX_BIRCHS_BAG, 0, 7, 14, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, Route29_EventScript_1EBE16, FLAG_HIDE_NEW_BARK_TOWN_RIVAL
-	object_event 4, EVENT_OBJ_GFX_ZIGZAGOON_1, 0, 10, 13, 0, MOVEMENT_TYPE_JOG_IN_PLACE_LEFT, 0, 0, 0, 0, 0x0, FLAG_HIDE_MAPSEC_ROUTE_29_ZIGZAGOON
-	object_event 5, EVENT_OBJ_GFX_PROF_ELM, 0, 5, 11, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, Route29_EventScript_272141, FLAG_HIDE_MAPSEC_ROUTE_29_BIRCH
-	object_event 6, EVENT_OBJ_GFX_BOY_2, 0, 2, 13, 3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT, 1, 1, 0, 0, Route29_EventScript_1EBE04, FLAG_HIDE_MAPSEC_ROUTE_29_BOY
+	object_event 1, EVENT_OBJ_GFX_PSYCHIC_M, 0, 62, 16, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, NULL, 0
+	object_event 2, EVENT_OBJ_GFX_BOY_1, 0, 34, 18, 0, MOVEMENT_TYPE_WANDER_DOWN_AND_UP, 0, 1, 0, 0, 0x0, 0
+	object_event 3, EVENT_OBJ_GFX_GIRL_1, 0, 19, 15, 3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT, 1, 0, 0, 0, 0, 0
+	object_event 4, EVENT_OBJ_GFX_FAT_MAN, 0, 31, 5, 0, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, 0x0, 0
+	object_event 5, EVENT_OBJ_GFX_MAN_4, 0, 16, 6, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, 0, 0
+	object_event 6, EVENT_OBJ_GFX_WOMAN_2, 0, 37, 14, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, 0, FLAG_HIDE_ROUTE_29_TUSCANY
+	object_event 7, EVENT_OBJ_GFX_ITEM_BALL, 0, 60, 2, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, NULL, FLAG_ITEM_ROUTE_29_POTION
+	object_event 8, EVENT_OBJ_GFX_CUTTABLE_TREE, 0, 26, 13, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, EventScript_CutTree, 0
+	object_event 9, EVENT_OBJ_GFX_CUTTABLE_TREE, 0, 39, 11, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, EventScript_CutTree, 0
+
+Route29_MapWarps:
+	warp_def 34, 3, 3, 0, MAP_ROUTE29
+	warp_def 35, 3, 3, 0, MAP_ROUTE29
 
 Route29_MapCoordEvents:
-	coord_event 10, 19, 3, VAR_0x4060, 0, Route29_EventScript_1EBCDE
-	coord_event 11, 19, 3, VAR_0x4060, 0, Route29_EventScript_1EBCDE
-	coord_event 10, 18, 3, VAR_0x4060, 0, Route29_EventScript_1EBD4E
-	coord_event 11, 18, 3, VAR_0x4060, 0, Route29_EventScript_1EBD4E
-	coord_event 6, 16, 3, VAR_0x4060, 0, Route29_EventScript_1EBD64
-	coord_event 6, 15, 3, VAR_0x4060, 0, Route29_EventScript_1EBD64
-	coord_event 6, 17, 3, VAR_0x4060, 0, Route29_EventScript_1EBD64
-	coord_event 6, 18, 3, VAR_0x4060, 0, Route29_EventScript_1EBD64
-	coord_event 7, 13, 3, VAR_0x4060, 0, Route29_EventScript_1EBD7A
+	coord_event 65, 10, 3, VAR_0x4060, 0, NULL
+	coord_event 65, 11, 3, VAR_0x4060, 0, NULL
+	coord_event 65, 12, 3, VAR_0x4060, 0, NULL
+	coord_event 65, 13, 3, VAR_0x4060, 0, NULL
 
 Route29_MapBGEvents:
 	bg_event 3, 5, 0, BG_EVENT_PLAYER_FACING_ANY, Route29_EventScript_DirectionSign
 	bg_event 63, 9, 3, BG_EVENT_PLAYER_FACING_ANY, Route29_EventScript_DirectionSign
 
 Route29_MapEvents::
-	map_events Route29_EventObjects, 0x0, Route29_MapCoordEvents, Route29_MapBGEvents
+	map_events Route29_EventObjects, Route29_MapWarps, Route29_MapCoordEvents, Route29_MapBGEvents
 

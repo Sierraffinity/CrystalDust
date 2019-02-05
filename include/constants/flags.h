@@ -672,7 +672,7 @@
 #define FLAG_HIDE_MEW                                               0x2CE
 #define FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR            0x2CF
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER                    0x2D0
-#define FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_BIRCH                    0x2D1
+#define FLAG_HIDE_ROUTE_29_TUSCANY                                  0x2D1
 #define FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_BEDROOM            0x2D2
 #define FLAG_HIDE_ROUTE_103_RIVAL                                   0x2D3
 #define FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE                    0x2D4
@@ -957,7 +957,7 @@
 #define FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT                0x3E7
 
 // Item Ball Flags
-#define FLAG_ITEM_ROUTE_102_POTION                                  0x3E8
+#define FLAG_ITEM_ROUTE_29_POTION                                  0x3E8
 #define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9
 #define FLAG_ITEM_ROUTE_104_PP_UP                                   0x3EA
 #define FLAG_ITEM_ROUTE_105_IRON                                    0x3EB

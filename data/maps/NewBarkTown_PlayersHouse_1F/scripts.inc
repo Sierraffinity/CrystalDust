@@ -7,11 +7,11 @@ NewBarkTown_PlayersHouse_1F_MapScript1_Type3:
 	compare VAR_0x4050, 0
 	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomDay
 	gettime
-	compare VAR_0x8003, TIME_MORNING
+	compare VAR_0x8002, TIME_MORNING
 	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomMorning
-	compare VAR_0x8003, TIME_DAY
+	compare VAR_0x8002, TIME_DAY
 	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomDay
-	compare VAR_0x8003, TIME_NIGHT
+	compare VAR_0x8002, TIME_NIGHT
 	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomNight
 NewBarkTown_PlayersHouse_1F_EventScript_MomDay:
 	end
@@ -132,11 +132,11 @@ NewBarkTown_PlayersHouse_1F_NeighborTalk::
 	lock
 	faceplayer
 	gettime
-	compare VAR_0x8003, TIME_MORNING
+	compare VAR_0x8002, TIME_MORNING
 	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning
-	compare VAR_0x8003, TIME_DAY
+	compare VAR_0x8002, TIME_DAY
 	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay
-	compare VAR_0x8003, TIME_NIGHT
+	compare VAR_0x8002, TIME_NIGHT
 	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight
 	end
 

@@ -1,3 +1,4 @@
+EventScript_CutTree::
 PetalburgWoods_EventScript_2906BB:: @ 82906BB
 Route103_EventScript_2906BB:: @ 82906BB
 Route104_EventScript_2906BB:: @ 82906BB
@@ -10,7 +11,7 @@ Route120_EventScript_2906BB:: @ 82906BB
 Route121_EventScript_2906BB:: @ 82906BB
 Route123_EventScript_2906BB:: @ 82906BB
 	lockall
-	goto_if_unset FLAG_BADGE01_GET, Route103_EventScript_290721
+	goto_if_unset FLAG_BADGE02_GET, Route103_EventScript_290721
 	checkpartymove MOVE_CUT
 	compare VAR_RESULT, 6
 	goto_if_eq Route103_EventScript_290721
@@ -56,8 +57,8 @@ Route103_EventScript_29072B:: @ 829072B
 	end
 
 Route103_Text_29072E: @ 829072E
-	.string "This tree looks like it can be\n"
-	.string "CUT down!\p"
+	.string "This tree looks like it can be CUT\n"
+	.string "down!\p"
 	.string "Would you like to CUT it?$"
 
 Route103_Text_290771: @ 8290771
@@ -65,8 +66,8 @@ Route111_Text_290771: @ 8290771
 	.string "{STR_VAR_1} used {STR_VAR_2}!$"
 
 Route103_Text_29077D: @ 829077D
-	.string "This tree looks like it can be\n"
-	.string "CUT down!$"
+	.string "This tree looks like it can be CUT\n"
+	.string "down!$"
 
 GraniteCave_B2F_EventScript_2907A6:: @ 82907A6
 MirageTower_3F_EventScript_2907A6:: @ 82907A6
