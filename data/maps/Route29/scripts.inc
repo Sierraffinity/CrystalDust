@@ -39,9 +39,9 @@ Route29_EventScript_DirectionSign::
 	end
 
 Route29_Text_Youngster:
-	.string "Yo. How are your POKeMON?\p"
-	.string "If they're weak and not ready for battle,\n"
-	.string "keep out of the grass.$"
+	.string "Yo. How are your POKéMON?\p"
+	.string "If they're weak and not ready for\n"
+	.string "battle, keep out of the grass.$"
 
 Route29_Text_LedgeGirl:
 	.string "See those ledges?\n"
@@ -50,8 +50,8 @@ Route29_Text_LedgeGirl:
 	.string "walking through the grass.$"
 
 Route29_Text_FatMan:
-	.string "I wanted to take a break, so I saved to\n"
-	.string "record my progress.$"
+	.string "I wanted to take a break, so I saved\n"
+	.string "to record my progress.$"
 
 Route29_Text_DirectionSign:
 	.string "ROUTE 29\n"

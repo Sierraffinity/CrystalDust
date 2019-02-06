@@ -219,18 +219,18 @@ NewBarkTown_PlayersHouse_1F_ComeHomeToAdjustClock:
 NewBarkTown_PlayersHouse_1F_GearInstructionsYes:
 	.string "Don't you just turn the POKéGEAR on\n"
 	.string "and select the PHONE icon?\p"
-	.string "“Phone numbers are stored in memory.\n"
-	.string "Just choose a name you want to\l"
-	.string "call.”\p"
+	.string "“Phone numbers are stored in memory.\p"
+	.string "“Just choose a name you want\n"
+	.string "to call.”\p"
 	.string "Gee, isn't that convenient?$"
 
 NewBarkTown_PlayersHouse_1F_GearInstructionsNo:
 	.string "I'll read the instructions.\p"
 	.string "“Turn the POKéGEAR on and select\n"
 	.string "the PHONE icon by scrolling to it.\p"
-	.string "“Phone numbers are stored in memory.\n"
-	.string "Just choose a name you want to\l"
-	.string "call.”\p"
+	.string "“Phone numbers are stored in memory.\p"
+	.string "“Just choose a name you want\n"
+	.string "to call.”\p"
 	.string "Gee, isn't that convenient?$"
 
 NewBarkTown_PlayersHouse_1F_MomProfElmWaiting:

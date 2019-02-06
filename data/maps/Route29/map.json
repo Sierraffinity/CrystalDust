@@ -171,7 +171,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_TEMP_11",
-            "graphics_id": "EVENT_OBJ_GFX_PUSHABLE_BOULDER",
+            "graphics_id": "EVENT_OBJ_GFX_CUTTABLE_TREE",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
