@@ -1,5 +1,6 @@
 #include "global.h"
 #include "bg.h"
+#include "day_night.h"
 #include "event_data.h"
 #include "gpu_regs.h"
 #include "graphics.h"
@@ -11,6 +12,7 @@
 #include "pokedex_area_screen.h"
 #include "region_map.h"
 #include "roamer.h"
+#include "rtc.h"
 #include "sound.h"
 #include "string_util.h"
 #include "trig.h"
@@ -356,11 +358,16 @@ static bool8 MapHasMon(const struct WildPokemonHeader *info, u16 species)
 static bool8 MonListHasMon(const struct WildPokemonInfo *info, u16 species, u16 size)
 {
     u16 i;
+    u8 timeOfDay;
+    
+    RtcCalcLocalTime();
+    timeOfDay = GetTimeOfDay();
+
     if (info != NULL)
     {
         for (i = 0; i < size; i++)
         {
-            if (info->wildPokemon[i].species == species)
+            if (info->wildPokemon[timeOfDay][i].species == species)
                 return TRUE;
         }
     }

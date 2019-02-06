@@ -9,7 +9,7 @@
 #define TIME_NIGHT 0
 #define TIME_MORNING 1
 #define TIME_DAY 2
-#define TIME_AFTERNOON 3
+#define TIME_OF_DAY_COUNT 3
 
 #define DAY_SUNDAY 0
 #define DAY_MONDAY 1

@@ -34,8 +34,30 @@ Route29_EventScript_FatMan::
 	msgbox Route29_Text_FatMan, MSGBOX_NPC
 	end
 
+Route29_EventScript_WaitingMan::
+	lock
+	faceplayer
+	gettime
+	compare VAR_0x8002, TIME_NIGHT
+	goto_if_eq Route29_EventScript_ManWaitingForMorning
+	msgbox Route29_Text_WaitingForNight
+	release
+	end
+
+Route29_EventScript_ManWaitingForMorning::
+	msgbox Route29_Text_WaitingForMorning
+	release
+	end
+
 Route29_EventScript_DirectionSign::
 	msgbox Route29_Text_DirectionSign, MSGBOX_SIGN
+	end
+
+Route29_EventScript_Dude::
+	lock
+	faceplayer
+	msgbox Route29_Text_PokemonInTheGrass
+	release
 	end
 
 Route29_Text_Youngster:
@@ -52,6 +74,18 @@ Route29_Text_LedgeGirl:
 Route29_Text_FatMan:
 	.string "I wanted to take a break, so I saved\n"
 	.string "to record my progress.$"
+
+Route29_Text_WaitingForNight:
+	.string "I'm waiting for POKéMON that appear\n"
+	.string "only at night.$"
+
+Route29_Text_WaitingForMorning:
+	.string "I'm waiting for POKéMON that appear\n"
+	.string "only in the morning.$"
+
+Route29_Text_PokemonInTheGrass:
+	.string "POKéMON hide in the grass.\n"
+	.string "Who knows when they'll pop out…$"
 
 Route29_Text_DirectionSign:
 	.string "ROUTE 29\n"

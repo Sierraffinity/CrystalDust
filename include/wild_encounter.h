@@ -1,6 +1,8 @@
 #ifndef GUARD_WILD_ENCOUNTER_H
 #define GUARD_WILD_ENCOUNTER_H
 
+#include "constants/day_night.h"
+
 #define LAND_WILD_COUNT     12
 #define WATER_WILD_COUNT    5
 #define ROCK_WILD_COUNT     5
@@ -16,7 +18,7 @@ struct WildPokemon
 struct WildPokemonInfo
 {
     u8 encounterRate;
-    const struct WildPokemon *wildPokemon;
+    const struct WildPokemon *wildPokemon[TIME_OF_DAY_COUNT];
 };
 
 struct WildPokemonHeader
