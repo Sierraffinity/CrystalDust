@@ -3,12 +3,11 @@
 
 #define TIME_MORNING_HOUR 4
 #define TIME_DAY_HOUR 10
-#define TIME_AFTERNOON_HOUR 18
 #define TIME_NIGHT_HOUR 20
 
-#define TIME_NIGHT 0
-#define TIME_MORNING 1
-#define TIME_DAY 2
+#define TIME_MORNING 0
+#define TIME_DAY 1
+#define TIME_NIGHT 2
 #define TIME_OF_DAY_COUNT 3
 
 #define DAY_SUNDAY 0

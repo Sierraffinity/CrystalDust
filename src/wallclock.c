@@ -502,11 +502,11 @@ static void Task_SetClock5(u8 taskId)
         {
             string = gText_SetClock_InTheMorning;
         }
-        else if (gTasks[taskId].tHours < TIME_AFTERNOON_HOUR)
+        else if (gTasks[taskId].tHours < 18)
         {
             string = gText_SetClock_InTheAfternoon;
         }
-        else if (gTasks[taskId].tHours < TIME_NIGHT_HOUR)
+        else if (gTasks[taskId].tHours < 22)
         {
             string = gText_SetClock_InTheEvening;
         }
