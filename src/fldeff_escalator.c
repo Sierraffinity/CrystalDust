@@ -53,13 +53,13 @@ static void sub_80E12E8(u8 taskId, const s16 *list, u16 c)
     }
 }
 
-static const u16 gUnknown_08589ABA[] = {0x284, 0x282, 0x280};
-static const u16 gUnknown_08589AC0[] = {0x285, 0x283, 0x281};
-static const u16 gUnknown_08589AC6[] = {0x28C, 0x28A, 0x288};
-static const u16 gUnknown_08589ACC[] = {0x28D, 0x28B, 0x289};
-static const u16 gUnknown_08589AD2[] = {0x2A0, 0x2A2, 0x2A4};
-static const u16 gUnknown_08589AD8[] = {0x2A1, 0x2A3, 0x2A5};
-static const u16 gUnknown_08589ADE[] = {0x2A8, 0x2AA, 0x2AC};
+static const u16 gUnknown_08589ABA[] = {0x308, 0x30A, 0x2D0};
+static const u16 gUnknown_08589AC0[] = {0x309, 0x30B, 0x2D1};
+static const u16 gUnknown_08589AC6[] = {0x310, 0x312, 0x2D8};
+static const u16 gUnknown_08589ACC[] = {0x311, 0x313, 0x2D9};
+static const u16 gUnknown_08589AD2[] = {0x2E3, 0x316, 0x314};
+static const u16 gUnknown_08589AD8[] = {0x2E4, 0x317, 0x315};
+static const u16 gUnknown_08589ADE[] = {0x2EB, 0x31E, 0x31C};
 
 static void sub_80E1444(u8 taskId)
 {

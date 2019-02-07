@@ -314,8 +314,8 @@ static void InitLocalLinkPlayer(void)
     gLocalLinkPlayer.gender = gSaveBlock2Ptr->playerGender;
     gLocalLinkPlayer.linkType = gLinkType;
     gLocalLinkPlayer.language = gGameLanguage;
-    gLocalLinkPlayer.version = VERSION_FIRE_RED + 0x4000;   // fake being FireRed
-    gLocalLinkPlayer.name[9] = gGameVersion;
+    gLocalLinkPlayer.version = VERSION_FIRE_RED + 0x4000;   // fake being FireRed for vanilla games
+    gLocalLinkPlayer.name[9] = gGameVersion;                // ...but transfer the real version for other hacks
     gLocalLinkPlayer.lp_field_2 = 0x8000;
     gLocalLinkPlayer.name[8] = IsNationalPokedexEnabled();
     if (FlagGet(FLAG_IS_CHAMPION))
