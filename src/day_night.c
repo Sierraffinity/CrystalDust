@@ -205,6 +205,7 @@ void RetintPalettesForDayNight(void)
             sRetintPhase = 0;
             TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sTimeOfDayTints[sOldHour][0], sTimeOfDayTints[sOldHour][1], sTimeOfDayTints[sOldHour][2], TRUE);
             LoadPaletteOverrides();
+            ChooseAmbientCrySpecies();  // so a time-of-day appropriate mon is chosen
             
             if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&
                 gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)

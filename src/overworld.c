@@ -159,7 +159,6 @@ static void c2_80567AC(void);
 static void CB2_LoadMap2(void);
 static void VBlankCB_Field(void);
 static void SpriteCB_LinkPlayer(struct Sprite *sprite);
-static void ChooseAmbientCrySpecies(void);
 static void do_load_map_stuff_loop(u8 *state);
 static bool32 map_loading_iteration_3(u8 *state);
 static bool32 sub_8086638(u8 *state);
@@ -1360,7 +1359,7 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
     }
 }
 
-static void ChooseAmbientCrySpecies(void)
+void ChooseAmbientCrySpecies(void)
 {
     if ((gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE130)
      && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE130))
