@@ -3183,6 +3183,9 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
         case VERSION_EMERALD:
             eventObj->spriteId = AddPseudoEventObject(GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, eventObj->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
             break;
+        case VERSION_CRYSTAL_DUST:
+            eventObj->spriteId = AddPseudoEventObject(GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, eventObj->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
+            break;
         }
 
         sprite = &gSprites[eventObj->spriteId];

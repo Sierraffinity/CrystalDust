@@ -314,7 +314,8 @@ static void InitLocalLinkPlayer(void)
     gLocalLinkPlayer.gender = gSaveBlock2Ptr->playerGender;
     gLocalLinkPlayer.linkType = gLinkType;
     gLocalLinkPlayer.language = gGameLanguage;
-    gLocalLinkPlayer.version = gGameVersion + 0x4000;
+    gLocalLinkPlayer.version = VERSION_FIRE_RED + 0x4000;   // fake being FireRed
+    gLocalLinkPlayer.name[9] = gGameVersion;
     gLocalLinkPlayer.lp_field_2 = 0x8000;
     gLocalLinkPlayer.name[8] = IsNationalPokedexEnabled();
     if (FlagGet(FLAG_IS_CHAMPION))
@@ -600,6 +601,11 @@ static void ProcessRecvCmds(u8 unused)
                             linkPlayer->name[10] = 0;
                             linkPlayer->name[9] = 0;
                             linkPlayer->name[8] = 0;
+                        }
+                        else if (linkPlayer->name[9] > 0)
+                        {
+                            // if game other than CD detected, restore it
+                            linkPlayer->version = (linkPlayer->version & 0xFF00) | linkPlayer->name[9];
                         }
                         sub_800B524(linkPlayer);
                         if (strcmp(block->magic1, gASCIIGameFreakInc) != 0
