@@ -603,12 +603,12 @@
         {
             "blockdata_filepath": "data/layouts/PokemonCenter_1F/map.bin",
             "border_filepath": "data/layouts/PokemonCenter_1F/border.bin",
-            "height": 9,
+            "height": 10,
             "id": "LAYOUT_POKEMON_CENTER_1F",
             "name": "PokemonCenter_1F_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_PokemonCenter",
-            "width": 14
+            "width": 15
         },
         {
             "blockdata_filepath": "data/layouts/PokemonCenter_2F/map.bin",
@@ -618,7 +618,7 @@
             "name": "PokemonCenter_2F_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_PokemonCenter",
-            "width": 14
+            "width": 15
         },
         {
             "blockdata_filepath": "data/layouts/Mart/map.bin",

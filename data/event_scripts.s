@@ -3096,10 +3096,10 @@ gUnknown_08272B48:: @ 8272B48
 	.string "The {STR_VAR_2} was transferred\nto the PC.$"
 
 gUnknown_08272B6A:: @ 8272B6A
-	.string "“Selected items for your convenience!”\nPOKéMON MART$"
+	.string "For All Your POKéMON Needs\nPOKéMON MART$"
 
 gUnknown_08272B9E:: @ 8272B9E
-	.string "“Rejuvenate your tired partners!”\nPOKéMON CENTER$"
+	.string "Heal Your POKéMON!\nPOKéMON CENTER$"
 
 gUnknown_08272BCF:: @ 8272BCF
 	.string "{STR_VAR_1} might like this program.\n… … … … … … … … … … … … … … … …\pBetter get going!$"

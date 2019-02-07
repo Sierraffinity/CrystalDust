@@ -442,8 +442,8 @@ static const struct DoorAnimFrame gBigDoorCloseAnimFrames[] =
 };
 
 const u8 DoorAnimPalettes_8496FDC[] = {2, 2, 2, 2}; // door 00
-const u8 DoorAnimPalettes_8496FE4[] = {3, 3, 3, 3}; // door 01
-const u8 DoorAnimPalettes_8496FEC[] = {3, 3, 3, 3}; // door 02
+const u8 DoorAnimPalettes_8496FE4[] = {7, 7, 7, 7}; // door 01
+const u8 DoorAnimPalettes_8496FEC[] = {7, 7, 7, 7}; // door 02
 const u8 DoorAnimPalettes_8496FF4[] = {0, 0, 1, 1, 1, 1, 1, 1}; // door 03
 const u8 DoorAnimPalettes_8496FFC[] = {12, 12, 12, 12}; // door 04
 const u8 DoorAnimPalettes_8497004[] = {9, 9, 9, 9}; // door 05
