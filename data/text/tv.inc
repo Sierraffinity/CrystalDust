@@ -2701,7 +2701,7 @@ Route111_Text_28AF05: @ 0828AF05
 	.string "Let's get this interview.$"
 
 Route111_Text_28AF7D: @ 0828AF7D
-Route118_Text_28AF7D: @ 0828AF7D
+Route46_Text_28AF7D: @ 0828AF7D
 Route120_Text_28AF7D: @ 0828AF7D
 	.string "GABBY: Oh! You're {PLAYER}! Hi!\n"
 	.string "Do you remember us from last time?\p"
@@ -2782,13 +2782,13 @@ Route111_Text_28B577: @ 0828B577
 	.string "We'll be keeping an eye out for you!$"
 
 Route111_Text_28B5C0: @ 0828B5C0
-Route118_Text_28B5C0: @ 0828B5C0
+Route46_Text_28B5C0: @ 0828B5C0
 Route120_Text_28B5C0: @ 0828B5C0
 	.string "GABBY: We'll be keeping an eye out\n"
 	.string "for you!$"
 
 Route111_Text_28B5EC: @ 0828B5EC
-Route118_Text_28B5EC: @ 0828B5EC
+Route46_Text_28B5EC: @ 0828B5EC
 Route120_Text_28B5EC: @ 0828B5EC
 	.string "GABBY: Is there a strong TRAINER\n"
 	.string "anywhere with a lot of POKéMON?$"
@@ -2804,7 +2804,7 @@ Route111_Text_28B62D: @ 0828B62D
 	.string "this time?$"
 
 Route111_Text_28B719: @ 0828B719
-Route118_Text_28B719: @ 0828B719
+Route46_Text_28B719: @ 0828B719
 Route120_Text_28B719: @ 0828B719
 	.string "GABBY: That was an intense battle!\n"
 	.string "Did you get all that on camera?$"
@@ -2815,7 +2815,7 @@ Route111_Text_28B75C: @ 0828B75C
 	.string "Camera's rolling!$"
 
 Route111_Text_28B7B1: @ 0828B7B1
-Route118_Text_28B7B1: @ 0828B7B1
+Route46_Text_28B7B1: @ 0828B7B1
 Route120_Text_28B7B1: @ 0828B7B1
 	.string "TY: Hey, lookie here!\n"
 	.string "I remember you!\p"
@@ -2823,13 +2823,13 @@ Route120_Text_28B7B1: @ 0828B7B1
 	.string "here camera!$"
 
 Route111_Text_28B805: @ 0828B805
-Route118_Text_28B805: @ 0828B805
+Route46_Text_28B805: @ 0828B805
 Route120_Text_28B805: @ 0828B805
 	.string "TY: You're a natural!\n"
 	.string "Got me some prime footage right here!$"
 
 Route111_Text_28B841: @ 0828B841
-Route118_Text_28B841: @ 0828B841
+Route46_Text_28B841: @ 0828B841
 Route120_Text_28B841: @ 0828B841
 	.string "TY: Do you only have the one POKéMON\n"
 	.string "and that's it?\p"
@@ -2841,7 +2841,7 @@ Route111_Text_28B8B1: @ 0828B8B1
 	.string "This is a huge scoop for us!$"
 
 Route111_Text_28B8F6: @ 0828B8F6
-Route118_Text_28B8F6: @ 0828B8F6
+Route46_Text_28B8F6: @ 0828B8F6
 Route120_Text_28B8F6: @ 0828B8F6
 	.string "TY: Yep, I got it all.\n"
 	.string "That whole battle's on camera.$"

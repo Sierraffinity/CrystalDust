@@ -33,7 +33,7 @@ gMapLayouts::
 	.4byte Route115_Layout
 	.4byte Route116_Layout
 	.4byte Route117_Layout
-	.4byte Route118_Layout
+	.4byte Route46_Layout
 	.4byte Route119_Layout
 	.4byte Route120_Layout
 	.4byte Route121_Layout

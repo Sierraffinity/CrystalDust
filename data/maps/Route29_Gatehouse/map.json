@@ -11,7 +11,7 @@
     "id": "MAP_ROUTE29_GATEHOUSE",
     "layout": "LAYOUT_ROUTE29_GATEHOUSE",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_MACHI_S2",
+    "music": "MUS_ROUTE29",
     "name": "Route29_Gatehouse",
     "object_events": [
         {
@@ -46,7 +46,7 @@
     "show_map_name": false,
     "warp_events": [
         {
-            "dest_map": "MAP_ROUTE118",
+            "dest_map": "MAP_ROUTE46",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 4,

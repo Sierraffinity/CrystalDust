@@ -260,7 +260,7 @@ Route111_Movement_1F0FAE: @ 81F0FAE
 
 Route111_EventScript_1F0FB0:: @ 81F0FB0
 	setweather WEATHER_SUNNY
-	fadenewbgm MUS_DOORO_X1
+	fadenewbgm MUS_ROUTE34
 	doweather
 	setvar VAR_TEMP_3, 0
 	end

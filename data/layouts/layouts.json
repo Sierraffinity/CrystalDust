@@ -331,11 +331,11 @@
             "width": 60
         },
         {
-            "blockdata_filepath": "data/layouts/Route118/map.bin",
-            "border_filepath": "data/layouts/Route118/border.bin",
+            "blockdata_filepath": "data/layouts/Route46/map.bin",
+            "border_filepath": "data/layouts/Route46/border.bin",
             "height": 40,
-            "id": "LAYOUT_ROUTE118",
-            "name": "Route118_Layout",
+            "id": "LAYOUT_ROUTE46",
+            "name": "Route46_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Mauville",
             "width": 26

@@ -284,7 +284,7 @@
 #define MUS_NIBI 357            // GSC - Viridian/Saffron/Pewter/etc
 #define MUS_SUIKUN 358          // Crystal - Battle! Legendary Beasts
 #define MUS_ROUTE29 359          // Route 101
-#define MUS_DOORO_X1 360        // Route 110
+#define MUS_ROUTE34 360        // Route 110
 #define MUS_DOORO_X3 361        // Route 120
 #define MUS_MACHI_S2 362        // Petalburg City
 #define MUS_MACHI_S4 363        // Oldale/Lavaridge Town
@@ -536,6 +536,6 @@
 #define PH_NURSE_HELD 608
 #define PH_NURSE_SOLO 609
 
-#define MUS_ROUTE_118 0x7FFF  // map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
+#define MUS_ROUTE_46 0x7FFF  // map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 
 #endif  // GUARD_CONSTANTS_SONGS_H

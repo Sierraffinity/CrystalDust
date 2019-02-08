@@ -31,7 +31,7 @@
 	.include "data/maps/Route115/header.inc"
 	.include "data/maps/Route116/header.inc"
 	.include "data/maps/Route117/header.inc"
-	.include "data/maps/Route118/header.inc"
+	.include "data/maps/Route46/header.inc"
 	.include "data/maps/Route119/header.inc"
 	.include "data/maps/Route120/header.inc"
 	.include "data/maps/Route121/header.inc"

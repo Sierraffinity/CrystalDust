@@ -2575,120 +2575,120 @@ Route117_Text_29D24C: @ 829D24C
 	.string "I think that if you worry about losing,\n"
 	.string "you're more likely to lose.$"
 
-Route118_Text_29D290: @ 829D290
+Route46_Text_29D290: @ 829D290
 	.string "The aroma of flowers has a magical\n"
 	.string "power. It cleanses us body and soul.$"
 
-Route118_Text_29D2D8: @ 829D2D8
+Route46_Text_29D2D8: @ 829D2D8
 	.string "Oh, dear me.\n"
 	.string "I seem to have lost.$"
 
-Route118_Text_29D2FA: @ 829D2FA
+Route46_Text_29D2FA: @ 829D2FA
 	.string "Flowers, POKéMON…\n"
 	.string "I love whatever smells nice.\p"
 	.string "Stinky things…\n"
 	.string "I'll pass.$"
 
-Route118_Text_29D343: @ 829D343
+Route46_Text_29D343: @ 829D343
 	.string "Sniff… That odor--it's a POKéNAV!\n"
 	.string "We must register each other!$"
 
-Route118_Text_29D382: @ 829D382
+Route46_Text_29D382: @ 829D382
 	.string "Were you drawn here by the sweet\n"
 	.string "aroma?$"
 
-Route118_Text_29D3AA: @ 829D3AA
+Route46_Text_29D3AA: @ 829D3AA
 	.string "The power of aroma…\n"
 	.string "It didn't seem to do much.$"
 
-Route118_Text_29D3D9: @ 829D3D9
+Route46_Text_29D3D9: @ 829D3D9
 	.string "If you use a sweet aroma properly,\n"
 	.string "POKéMON will be attracted by it.$"
 
-Route118_Text_29D41D: @ 829D41D
+Route46_Text_29D41D: @ 829D41D
 	.string "BIRD POKéMON that FLY elegantly in\n"
 	.string "the sky… They're the best!$"
 
-Route118_Text_29D45B: @ 829D45B
+Route46_Text_29D45B: @ 829D45B
 	.string "Urgh…\n"
 	.string "I crashed…$"
 
-Route118_Text_29D46C: @ 829D46C
+Route46_Text_29D46C: @ 829D46C
 	.string "You've got great POKéMON.\n"
 	.string "I'll have to train mine better.$"
 
-Route118_Text_29D4A6: @ 829D4A6
+Route46_Text_29D4A6: @ 829D4A6
 	.string "Take flight!\n"
 	.string "My BIRD POKéMON!$"
 
-Route118_Text_29D4C4: @ 829D4C4
+Route46_Text_29D4C4: @ 829D4C4
 	.string "They did take flight…$"
 
-Route118_Text_29D4DA: @ 829D4DA
+Route46_Text_29D4DA: @ 829D4DA
 	.string "If they'd get stronger, they'd be able\n"
 	.string "to fly more freely…$"
 
-Route118_Text_29D515: @ 829D515
+Route46_Text_29D515: @ 829D515
 	.string "I'm a FISHERMAN, but also a TRAINER.\n"
 	.string "I'm raising the POKéMON I caught.$"
 
-Route118_Text_29D55C: @ 829D55C
+Route46_Text_29D55C: @ 829D55C
 	.string "I thought I was doing okay in my\n"
 	.string "training…$"
 
-Route118_Text_29D587: @ 829D587
+Route46_Text_29D587: @ 829D587
 	.string "I couldn't win by training POKéMON\n"
 	.string "while I fished…\p"
 	.string "Was I doing things in half measures?$"
 
-Route118_Text_29D5DF: @ 829D5DF
+Route46_Text_29D5DF: @ 829D5DF
 	.string "For FISHERMEN, equipment is the key.\p"
 	.string "But for TRAINERS, the key ingredients\n"
 	.string "are POKéMON and heart, of course!$"
 
-Route118_Text_29D64C: @ 829D64C
+Route46_Text_29D64C: @ 829D64C
 	.string "I was beaten in heart?$"
 
-Route118_Text_29D663: @ 829D663
+Route46_Text_29D663: @ 829D663
 	.string "Come to think of it, fishing is a battle\n"
 	.string "between a FISHERMAN and a POKéMON.$"
 
-Route118_Text_29D6AF: @ 829D6AF
+Route46_Text_29D6AF: @ 829D6AF
 	.string "Let my melody rock your soul!$"
 
-Route118_Text_29D6CD: @ 829D6CD
+Route46_Text_29D6CD: @ 829D6CD
 	.string "La-lalala…$"
 
-Route118_Text_29D6D8: @ 829D6D8
+Route46_Text_29D6D8: @ 829D6D8
 	.string "An electric guitar doesn't always\n"
 	.string "have to be noisy…\p"
 	.string "It can be strummed to squeeze out\n"
 	.string "this heart-stirring melody…$"
 
-Route118_Text_29D74A: @ 829D74A
+Route46_Text_29D74A: @ 829D74A
 	.string "When I compose better melodies,\n"
 	.string "you have to come listen, okay?$"
 
-Route118_Text_29D789: @ 829D789
+Route46_Text_29D789: @ 829D789
 	.string "A melody from my POKéMON and me…\n"
 	.string "Let us deliver it to your soul.$"
 
-Route118_Text_29D7CA: @ 829D7CA
+Route46_Text_29D7CA: @ 829D7CA
 	.string "La-lalala…$"
 
-Route118_Text_29D7D5: @ 829D7D5
+Route46_Text_29D7D5: @ 829D7D5
 	.string "When I play, my emotions should reach\n"
 	.string "you through my electric guitar…$"
 
-Route118_Text_29D81B: @ 829D81B
+Route46_Text_29D81B: @ 829D81B
 	.string "Go, go, go!\n"
 	.string "POKéMON 1, 2, and 3!$"
 
-Route118_Text_29D83C: @ 829D83C
+Route46_Text_29D83C: @ 829D83C
 	.string "Come in, POKéMON! Are you okay?\n"
 	.string "POKéMON 1, 2, and 3?!$"
 
-Route118_Text_29D872: @ 829D872
+Route46_Text_29D872: @ 829D872
 	.string "Isn't it cool that I have a POKéMON\n"
 	.string "battle team?\p"
 	.string "You can copy me--I don't mind!$"

@@ -6,7 +6,7 @@ Route110_TrickHousePuzzle1_EventScript_2906BB:: @ 82906BB
 Route111_EventScript_2906BB:: @ 82906BB
 Route116_EventScript_2906BB:: @ 82906BB
 Route117_EventScript_2906BB:: @ 82906BB
-Route118_EventScript_2906BB:: @ 82906BB
+Route46_EventScript_2906BB:: @ 82906BB
 Route120_EventScript_2906BB:: @ 82906BB
 Route121_EventScript_2906BB:: @ 82906BB
 Route123_EventScript_2906BB:: @ 82906BB

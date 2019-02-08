@@ -102,7 +102,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route115/scripts.inc"
 	.include "data/maps/Route116/scripts.inc"
 	.include "data/maps/Route117/scripts.inc"
-	.include "data/maps/Route118/scripts.inc"
+	.include "data/maps/Route46/scripts.inc"
 	.include "data/maps/Route119/scripts.inc"
 	.include "data/maps/Route120/scripts.inc"
 	.include "data/maps/Route121/scripts.inc"
@@ -995,13 +995,13 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_FANCLUB_LITTLE_BOY
 	setflag FLAG_HIDE_FANCLUB_LADY
 	setflag FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER
-	setflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1
+	setflag FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1
 	setflag FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1
 	setflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3
-	setflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2
+	setflag FLAG_HIDE_ROUTE_46_GABBY_AND_TY_2
 	setflag FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2
 	setflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2
-	setflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3
+	setflag FLAG_HIDE_ROUTE_46_GABBY_AND_TY_3
 	setflag FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER
 	setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
@@ -2907,7 +2907,7 @@ MeteorFalls_1F_1R_Movement_2725B0: @ 82725B0
 
 MarineCave_End_Movement_2725B2: @ 82725B2
 MtPyre_Summit_Movement_2725B2: @ 82725B2
-Route118_Movement_2725B2: @ 82725B2
+Route46_Movement_2725B2: @ 82725B2
 SkyPillar_Top_Movement_2725B2: @ 82725B2
 SlateportCity_Movement_2725B2: @ 82725B2
 TerraCave_End_Movement_2725B2: @ 82725B2
@@ -3558,12 +3558,12 @@ Route116_EventScript_273972:: @ 8273972
 	setmetatile 79, 6, 167, 0
 	return
 
-Route118_EventScript_273985:: @ 8273985
+Route46_EventScript_273985:: @ 8273985
 	setmetatile 42, 5, 159, 1
 	setmetatile 42, 6, 167, 0
 	return
 
-Route118_EventScript_273998:: @ 8273998
+Route46_EventScript_273998:: @ 8273998
 	setmetatile 9, 5, 159, 1
 	setmetatile 9, 6, 167, 0
 	return
@@ -3692,7 +3692,7 @@ Route105_EventScript_273D13:: @ 8273D13
 Route114_EventScript_273D13:: @ 8273D13
 Route115_EventScript_273D13:: @ 8273D13
 Route116_EventScript_273D13:: @ 8273D13
-Route118_EventScript_273D13:: @ 8273D13
+Route46_EventScript_273D13:: @ 8273D13
 Route125_EventScript_273D13:: @ 8273D13
 Route127_EventScript_273D13:: @ 8273D13
 Route129_EventScript_273D13:: @ 8273D13
@@ -3709,7 +3709,7 @@ Route129_EventScript_273D17:: @ 8273D17
 Route114_EventScript_273D1B:: @ 8273D1B
 Route115_EventScript_273D1B:: @ 8273D1B
 Route116_EventScript_273D1B:: @ 8273D1B
-Route118_EventScript_273D1B:: @ 8273D1B
+Route46_EventScript_273D1B:: @ 8273D1B
 	setweather 12
 	return
 

@@ -32,7 +32,7 @@ gMapGroup0::
 	.4byte Route115
 	.4byte Route116
 	.4byte Route117
-	.4byte Route118
+	.4byte Route46
 	.4byte Route119
 	.4byte Route120
 	.4byte Route121

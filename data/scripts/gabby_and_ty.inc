@@ -11,7 +11,7 @@ EventScript_28CCC6:: @ 828CCC6
 	return
 
 Route111_EventScript_28CCC7:: @ 828CCC7
-Route118_EventScript_28CCC7:: @ 828CCC7
+Route46_EventScript_28CCC7:: @ 828CCC7
 Route120_EventScript_28CCC7:: @ 828CCC7
 	cleartrainerflag TRAINER_GABBY_AND_TY_6
 	specialvar VAR_RESULT, GabbyAndTyGetBattleNum
@@ -80,11 +80,11 @@ Route111_EventScript_28CD9A:: @ 828CD9A
 	return
 
 Route111_EventScript_28CD9E:: @ 828CD9E
-	setflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1
+	setflag FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1
 	return
 
 Route111_EventScript_28CDA2:: @ 828CDA2
-	clearflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1
+	clearflag FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1
 	return
 
 Route111_EventScript_28CDA6:: @ 828CDA6
@@ -104,11 +104,11 @@ Route111_EventScript_28CDB2:: @ 828CDB2
 	return
 
 Route111_EventScript_28CDB6:: @ 828CDB6
-	setflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2
+	setflag FLAG_HIDE_ROUTE_46_GABBY_AND_TY_2
 	return
 
 Route111_EventScript_28CDBA:: @ 828CDBA
-	clearflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2
+	clearflag FLAG_HIDE_ROUTE_46_GABBY_AND_TY_2
 	return
 
 Route111_EventScript_28CDBE:: @ 828CDBE
@@ -128,11 +128,11 @@ Route111_EventScript_28CDCA:: @ 828CDCA
 	return
 
 Route111_EventScript_28CDCE:: @ 828CDCE
-	setflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3
+	setflag FLAG_HIDE_ROUTE_46_GABBY_AND_TY_3
 	return
 
 Route111_EventScript_28CDD2:: @ 828CDD2
-	clearflag FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3
+	clearflag FLAG_HIDE_ROUTE_46_GABBY_AND_TY_3
 	return
 
 Route111_EventScript_28CDD6:: @ 828CDD6
@@ -147,15 +147,15 @@ Route111_EventScript_28CDF6:: @ 828CDF6
 	release
 	end
 
-Route118_EventScript_28CE16:: @ 828CE16
-	trainerbattle_double TRAINER_GABBY_AND_TY_2, Route118_Text_28AF7D, Route118_Text_28B719, Route118_Text_28B5EC, Route118_EventScript_28CFC3
-	msgbox Route118_Text_28B5C0, MSGBOX_DEFAULT
+Route46_EventScript_28CE16:: @ 828CE16
+	trainerbattle_double TRAINER_GABBY_AND_TY_2, Route46_Text_28AF7D, Route46_Text_28B719, Route46_Text_28B5EC, Route46_EventScript_28CFC3
+	msgbox Route46_Text_28B5C0, MSGBOX_DEFAULT
 	release
 	end
 
-Route118_EventScript_28CE36:: @ 828CE36
-	trainerbattle_double TRAINER_GABBY_AND_TY_2, Route118_Text_28B7B1, Route118_Text_28B8F6, Route118_Text_28B841, Route118_EventScript_28CFC3
-	msgbox Route118_Text_28B805, MSGBOX_DEFAULT
+Route46_EventScript_28CE36:: @ 828CE36
+	trainerbattle_double TRAINER_GABBY_AND_TY_2, Route46_Text_28B7B1, Route46_Text_28B8F6, Route46_Text_28B841, Route46_EventScript_28CFC3
+	msgbox Route46_Text_28B805, MSGBOX_DEFAULT
 	release
 	end
 
@@ -183,20 +183,20 @@ Route111_EventScript_28CEB6:: @ 828CEB6
 	release
 	end
 
-Route118_EventScript_28CED6:: @ 828CED6
-	trainerbattle_double TRAINER_GABBY_AND_TY_5, Route118_Text_28AF7D, Route118_Text_28B719, Route118_Text_28B5EC, Route118_EventScript_28CFC3
-	msgbox Route118_Text_28B5C0, MSGBOX_DEFAULT
+Route46_EventScript_28CED6:: @ 828CED6
+	trainerbattle_double TRAINER_GABBY_AND_TY_5, Route46_Text_28AF7D, Route46_Text_28B719, Route46_Text_28B5EC, Route46_EventScript_28CFC3
+	msgbox Route46_Text_28B5C0, MSGBOX_DEFAULT
 	release
 	end
 
-Route118_EventScript_28CEF6:: @ 828CEF6
-	trainerbattle_double TRAINER_GABBY_AND_TY_5, Route118_Text_28B7B1, Route118_Text_28B8F6, Route118_Text_28B841, Route118_EventScript_28CFC3
-	msgbox Route118_Text_28B805, MSGBOX_DEFAULT
+Route46_EventScript_28CEF6:: @ 828CEF6
+	trainerbattle_double TRAINER_GABBY_AND_TY_5, Route46_Text_28B7B1, Route46_Text_28B8F6, Route46_Text_28B841, Route46_EventScript_28CFC3
+	msgbox Route46_Text_28B805, MSGBOX_DEFAULT
 	release
 	end
 
 Route111_EventScript_28CF16:: @ 828CF16
-Route118_EventScript_28CF16:: @ 828CF16
+Route46_EventScript_28CF16:: @ 828CF16
 Route120_EventScript_28CF16:: @ 828CF16
 	trainerbattle_double TRAINER_GABBY_AND_TY_6, Route111_Text_28AF7D, Route111_Text_28B719, Route111_Text_28B5EC, Route111_EventScript_28CFC3
 	msgbox Route111_Text_28B5C0, MSGBOX_DEFAULT
@@ -204,7 +204,7 @@ Route120_EventScript_28CF16:: @ 828CF16
 	end
 
 Route111_EventScript_28CF36:: @ 828CF36
-Route118_EventScript_28CF36:: @ 828CF36
+Route46_EventScript_28CF36:: @ 828CF36
 Route120_EventScript_28CF36:: @ 828CF36
 	trainerbattle_double TRAINER_GABBY_AND_TY_6, Route111_Text_28B7B1, Route111_Text_28B8F6, Route111_Text_28B841, Route111_EventScript_28CFC3
 	msgbox Route111_Text_28B805, MSGBOX_DEFAULT
@@ -243,7 +243,7 @@ Route111_EventScript_28CFB1:: @ 828CFB1
 	return
 
 Route111_EventScript_28CFC3:: @ 828CFC3
-Route118_EventScript_28CFC3:: @ 828CFC3
+Route46_EventScript_28CFC3:: @ 828CFC3
 Route120_EventScript_28CFC3:: @ 828CFC3
 	special GabbyAndTyBeforeInterview
 	special GabbyAndTySetScriptVarsToEventObjectLocalIds

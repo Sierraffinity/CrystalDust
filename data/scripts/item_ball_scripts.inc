@@ -158,7 +158,7 @@ Route117_EventScript_290EC6:: @ 8290EC6
 	giveitem_std ITEM_REVIVE, 1, 1
 	end
 
-Route118_EventScript_290ED3:: @ 8290ED3
+Route46_EventScript_290ED3:: @ 8290ED3
 	giveitem_std ITEM_HYPER_POTION, 1, 1
 	end
 

@@ -129,7 +129,7 @@ $(MID_SUBDIR)/mus_demo1.s: %.s: %.mid
 $(MID_SUBDIR)/mus_dendou.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G082 -V078
 
-$(MID_SUBDIR)/mus_dooro_x1.s: %.s: %.mid
+$(MID_SUBDIR)/mus_route34.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G010 -V080
 
 $(MID_SUBDIR)/mus_dooro_x3.s: %.s: %.mid
