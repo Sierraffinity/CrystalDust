@@ -333,12 +333,12 @@
         {
             "blockdata_filepath": "data/layouts/Route118/map.bin",
             "border_filepath": "data/layouts/Route118/border.bin",
-            "height": 20,
+            "height": 40,
             "id": "LAYOUT_ROUTE118",
             "name": "Route118_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Mauville",
-            "width": 80
+            "width": 26
         },
         {
             "blockdata_filepath": "data/layouts/Route119/map.bin",
