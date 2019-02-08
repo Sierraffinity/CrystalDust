@@ -263,15 +263,15 @@ gTileset_PokemonFanClub:: @ 83DF8FC
 	.4byte NULL @ animation callback
 
 	.align 2
-gTileset_Unused1:: @ 83DF914
+gTileset_Gatehouse:: @ 83DF914
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_Unused1
-	.4byte gTilesetPalettes_Unused1
+	.4byte gTilesetTiles_Gatehouse
+	.4byte gTilesetPalettes_Gatehouse
 	.4byte NULL
-	.4byte gMetatiles_Unused1
-	.4byte gMetatileAttributes_Unused1
+	.4byte gMetatiles_Gatehouse
+	.4byte gMetatileAttributes_Gatehouse
 	.4byte NULL @ animation callback
 
 	.align 2

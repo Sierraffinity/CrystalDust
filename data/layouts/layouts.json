@@ -1013,12 +1013,12 @@
         {
             "blockdata_filepath": "data/layouts/Route104_MrBrineysHouse/map.bin",
             "border_filepath": "data/layouts/Route104_MrBrineysHouse/border.bin",
-            "height": 9,
+            "height": 11,
             "id": "LAYOUT_ROUTE104_MR_BRINEYS_HOUSE",
             "name": "Route104_MrBrineysHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 12
+            "secondary_tileset": "gTileset_Gatehouse",
+            "width": 9
         },
         {
             "blockdata_filepath": "data/layouts/LilycoveCity_LilycoveMuseum_1F/map.bin",

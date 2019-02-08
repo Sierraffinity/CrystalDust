@@ -30,28 +30,28 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_GENTLEMAN",
+            "graphics_id": "EVENT_OBJ_GFX_FAT_MAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "OldaleTown_PokemonCenter_1F_EventScript_1FC028",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 4,
+            "x": 5,
             "y": 4
         },
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+            "graphics_id": "EVENT_OBJ_GFX_GENTLEMAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "OldaleTown_PokemonCenter_1F_EventScript_1FC031",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 10,
-            "y": 6
+            "x": 12,
+            "y": 5
         },
         {
             "elevation": 3,
@@ -63,8 +63,8 @@
             "script": "OldaleTown_PokemonCenter_1F_EventScript_1FC03A",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 3,
-            "y": 7
+            "x": 2,
+            "y": 5
         }
     ],
     "region_map_section": "MAPSEC_CHERRYGROVE_CITY",

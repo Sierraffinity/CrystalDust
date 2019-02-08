@@ -10,9 +10,9 @@ NewBarkTown_MapWarps:
 	warp_def 3, 15, 3, 0, MAP_NEW_BARK_TOWN_NEIGHBORS_HOUSE
 
 NewBarkTown_MapCoordEvents:
-	coord_event 1, 10, 3, VAR_0x4050, 1, NewBarkTown_EventScript_Teacher1
-	coord_event 1, 11, 3, VAR_0x4050, 1, NewBarkTown_EventScript_Teacher2
-	coord_event 1, 12, 3, VAR_0x4050, 1, NewBarkTown_EventScript_Teacher3
+	coord_event 1, 10, 3, VAR_0x4050, 0, NewBarkTown_EventScript_Teacher1
+	coord_event 1, 11, 3, VAR_0x4050, 0, NewBarkTown_EventScript_Teacher2
+	coord_event 1, 12, 3, VAR_0x4050, 0, NewBarkTown_EventScript_Teacher3
 
 NewBarkTown_MapBGEvents:
 	bg_event 9, 10, 0, BG_EVENT_PLAYER_FACING_ANY, NewBarkTown_EventScript_Slogan

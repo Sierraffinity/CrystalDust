@@ -31,27 +31,27 @@ RustboroCity_MapWarps:
 	warp_def 26, 46, 0, 0, MAP_RUSTBORO_CITY_HOUSE3
 
 RustboroCity_MapCoordEvents:
-	coord_event 23, 20, 3, VAR_0x405A, 1, RustboroCity_EventScript_1E095A
-	coord_event 23, 21, 3, VAR_0x405A, 1, RustboroCity_EventScript_1E0971
-	coord_event 23, 22, 3, VAR_0x405A, 1, RustboroCity_EventScript_1E0988
-	coord_event 23, 23, 3, VAR_0x405A, 1, RustboroCity_EventScript_1E099F
-	coord_event 23, 24, 3, VAR_0x405A, 1, RustboroCity_EventScript_1E09B6
-	coord_event 30, 9, 3, VAR_0x405A, 2, RustboroCity_EventScript_1E0AFE
-	coord_event 29, 10, 3, VAR_0x405A, 2, RustboroCity_EventScript_1E0B0A
-	coord_event 30, 11, 3, VAR_0x405A, 2, RustboroCity_EventScript_1E0B16
-	coord_event 30, 12, 3, VAR_0x405A, 2, RustboroCity_EventScript_1E0B22
-	coord_event 30, 9, 3, VAR_0x405A, 4, RustboroCity_EventScript_1E0C2B
-	coord_event 31, 10, 3, VAR_0x405A, 4, RustboroCity_EventScript_1E0C37
-	coord_event 30, 11, 3, VAR_0x405A, 4, RustboroCity_EventScript_1E0C43
-	coord_event 30, 12, 3, VAR_0x405A, 4, RustboroCity_EventScript_1E0C4F
-	coord_event 12, 53, 3, VAR_0x405A, 7, RustboroCity_EventScript_1E0DF3
-	coord_event 13, 53, 3, VAR_0x405A, 7, RustboroCity_EventScript_1E0E33
-	coord_event 14, 53, 3, VAR_0x405A, 7, RustboroCity_EventScript_1E0E73
-	coord_event 15, 53, 3, VAR_0x405A, 7, RustboroCity_EventScript_1E0EB3
-	coord_event 16, 53, 3, VAR_0x405A, 7, RustboroCity_EventScript_1E0EF3
-	coord_event 17, 53, 3, VAR_0x405A, 7, RustboroCity_EventScript_1E0F33
-	coord_event 18, 53, 3, VAR_0x405A, 7, RustboroCity_EventScript_1E0F73
-	coord_event 19, 53, 3, VAR_0x405A, 7, RustboroCity_EventScript_1E0FB3
+	coord_event 23, 20, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E095A
+	coord_event 23, 21, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0971
+	coord_event 23, 22, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0988
+	coord_event 23, 23, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E099F
+	coord_event 23, 24, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E09B6
+	coord_event 30, 9, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0AFE
+	coord_event 29, 10, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0B0A
+	coord_event 30, 11, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0B16
+	coord_event 30, 12, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0B22
+	coord_event 30, 9, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0C2B
+	coord_event 31, 10, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0C37
+	coord_event 30, 11, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0C43
+	coord_event 30, 12, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0C4F
+	coord_event 12, 53, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0DF3
+	coord_event 13, 53, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0E33
+	coord_event 14, 53, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0E73
+	coord_event 15, 53, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0EB3
+	coord_event 16, 53, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0EF3
+	coord_event 17, 53, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0F33
+	coord_event 18, 53, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0F73
+	coord_event 19, 53, 3, VAR_0x405A, 0, RustboroCity_EventScript_1E0FB3
 
 RustboroCity_MapBGEvents:
 	bg_event 23, 19, 0, BG_EVENT_PLAYER_FACING_ANY, RustboroCity_EventScript_1E08F5

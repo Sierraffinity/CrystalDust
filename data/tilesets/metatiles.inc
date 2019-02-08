@@ -175,12 +175,12 @@ gMetatileAttributes_PokemonFanClub:: @ 83B4860
 	.incbin "data/tilesets/secondary/pokemon_fan_club/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Unused1:: @ 83B4930
-	.incbin "data/tilesets/secondary/unused_1/metatiles.bin"
+gMetatiles_Gatehouse:: @ 83B4930
+	.incbin "data/tilesets/secondary/gatehouse/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Unused1:: @ 83B4950
-	.incbin "data/tilesets/secondary/unused_1/metatile_attributes.bin"
+gMetatileAttributes_Gatehouse:: @ 83B4950
+	.incbin "data/tilesets/secondary/gatehouse/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_MeteorFalls:: @ 83B4954

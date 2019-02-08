@@ -482,27 +482,27 @@ gTilesetPalettes_PokemonFanClub:: @ 83566D4
 	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_Unused1:: @ 83568D4
-	.incbin "data/tilesets/secondary/unused_1/tiles.4bpp.lz"
+gTilesetTiles_Gatehouse:: @ 83568D4
+	.incbin "data/tilesets/secondary/gatehouse/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_Unused1:: @ 8356920
-	.incbin "data/tilesets/secondary/unused_1/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/unused_1/palettes/15.gbapal"
+gTilesetPalettes_Gatehouse:: @ 8356920
+	.incbin "data/tilesets/secondary/gatehouse/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/gatehouse/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_MeteorFalls:: @ 8356B20

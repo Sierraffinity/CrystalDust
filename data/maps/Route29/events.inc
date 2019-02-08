@@ -10,8 +10,8 @@ Route29_EventObjects:
 	object_event 9, EVENT_OBJ_GFX_CUTTABLE_TREE, 0, 39, 11, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, EventScript_CutTree, FLAG_TEMP_12
 
 Route29_MapWarps:
-	warp_def 34, 3, 3, 0, MAP_ROUTE29
-	warp_def 35, 3, 3, 0, MAP_ROUTE29
+	warp_def 34, 3, 3, 1, MAP_ROUTE104_MR_BRINEYS_HOUSE
+	warp_def 35, 3, 3, 1, MAP_ROUTE104_MR_BRINEYS_HOUSE
 
 Route29_MapCoordEvents:
 	coord_event 65, 10, 3, VAR_0x4060, 0, NULL

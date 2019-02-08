@@ -6,18 +6,11 @@
     "bg_events": [
         {
             "elevation": 0,
-            "secret_base_id": "SECRET_BASE_RED_CAVE1_1",
-            "type": "secret_base",
-            "x": 47,
-            "y": 14
-        },
-        {
-            "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "Route118_EventScript_1F3E7C",
             "type": "sign",
-            "x": 13,
-            "y": 6
+            "x": 11,
+            "y": 31
         },
         {
             "elevation": 0,
@@ -122,54 +115,15 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
+            "graphics_id": "EVENT_OBJ_GFX_MAN_1",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
-            "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "31",
-            "trainer_type": "0",
-            "x": 35,
-            "y": 5
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
-            "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "32",
-            "trainer_type": "0",
-            "x": 36,
-            "y": 5
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
-            "script": "BerryTreeScript",
-            "trainer_sight_or_berry_tree_id": "33",
-            "trainer_type": "0",
-            "x": 37,
-            "y": 5
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_MAN_5",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "Route118_EventScript_1F4079",
-            "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
-            "x": 64,
-            "y": 10
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 16,
+            "y": 23
         },
         {
             "elevation": 3,
@@ -181,8 +135,8 @@
             "script": "Route118_EventScript_28CE16",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 33,
-            "y": 8
+            "x": 8,
+            "y": 16
         },
         {
             "elevation": 3,
@@ -194,8 +148,8 @@
             "script": "Route118_EventScript_28CE36",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 34,
-            "y": 8
+            "x": 4,
+            "y": 15
         },
         {
             "elevation": 3,
@@ -203,12 +157,12 @@
             "graphics_id": "EVENT_OBJ_GFX_GIRL_2",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "script": "Route118_EventScript_1F3E73",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 12,
-            "y": 10
+            "x": 3,
+            "y": 17
         },
         {
             "elevation": 3,
@@ -296,8 +250,8 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "Route118_EventScript_1F3F87",
-            "trainer_sight_or_berry_tree_id": "4",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 7,
             "y": 12
         },
@@ -310,7 +264,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "Route118_EventScript_1F4000",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "1",
+            "trainer_type": "0",
             "x": 14,
             "y": 14
         },
@@ -322,8 +276,8 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_RIGHT",
             "script": "Route118_EventScript_1F4090",
-            "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 56,
             "y": 7
         },
@@ -335,8 +289,8 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "Route118_EventScript_1F3FE9",
-            "trainer_sight_or_berry_tree_id": "2",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 39,
             "y": 15
         },
@@ -348,8 +302,8 @@
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
             "script": "Route118_EventScript_1F4017",
-            "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 17,
             "y": 11
         },
@@ -387,8 +341,8 @@
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "Route118_EventScript_1F40A7",
-            "trainer_sight_or_berry_tree_id": "4",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 7,
             "y": 7
         }
@@ -398,18 +352,18 @@
     "show_map_name": true,
     "warp_events": [
         {
-            "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
+            "dest_map": "MAP_ROUTE104_MR_BRINEYS_HOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 42,
-            "y": 6
+            "x": 10,
+            "y": 37
         },
         {
-            "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
+            "dest_map": "MAP_ROUTE104_MR_BRINEYS_HOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 9,
-            "y": 6
+            "x": 11,
+            "y": 37
         }
     ],
     "weather": "WEATHER_SUNNY"

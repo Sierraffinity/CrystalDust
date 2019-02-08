@@ -205,15 +205,15 @@
     "show_map_name": true,
     "warp_events": [
         {
-            "dest_map": "MAP_ROUTE29",
-            "dest_warp_id": 0,
+            "dest_map": "MAP_ROUTE104_MR_BRINEYS_HOUSE",
+            "dest_warp_id": 1,
             "elevation": 3,
             "x": 34,
             "y": 3
         },
         {
-            "dest_map": "MAP_ROUTE29",
-            "dest_warp_id": 0,
+            "dest_map": "MAP_ROUTE104_MR_BRINEYS_HOUSE",
+            "dest_warp_id": 1,
             "elevation": 3,
             "x": 35,
             "y": 3

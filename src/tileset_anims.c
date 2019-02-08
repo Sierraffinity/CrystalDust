@@ -517,16 +517,6 @@ const u16 gTilesetAnims_Sootopolis0_Frame6[] = INCBIN_U16("data/tilesets/seconda
 
 const u16 gTilesetAnims_Sootopolis0_Frame7[] = INCBIN_U16("data/tilesets/secondary/sootopolis/anim/7.4bpp");
 
-const u16 tileset_anims_space_8[16] = {};
-
-const u16 gTilesetAnims_Unused1_Frame0[] = INCBIN_U16("data/tilesets/secondary/unused_1/0.4bpp");
-
-const u16 gTilesetAnims_Unused1_Frame1[] = INCBIN_U16("data/tilesets/secondary/unused_1/1.4bpp");
-
-const u16 gTilesetAnims_Unused1_Frame2[] = INCBIN_U16("data/tilesets/secondary/unused_1/2.4bpp");
-
-const u16 gTilesetAnims_Unused1_Frame3[] = INCBIN_U16("data/tilesets/secondary/unused_1/3.4bpp");
-
 const u16 *const gTilesetAnims_Sootopolis0[] = {
     gTilesetAnims_Sootopolis0_Frame0,
     gTilesetAnims_Sootopolis0_Frame1,
