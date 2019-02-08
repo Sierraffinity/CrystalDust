@@ -8,11 +8,11 @@
     "connections": null,
     "coord_events": [
     ],
-    "id": "MAP_ROUTE104_MR_BRINEYS_HOUSE",
-    "layout": "LAYOUT_ROUTE104_MR_BRINEYS_HOUSE",
+    "id": "MAP_ROUTE29_GATEHOUSE",
+    "layout": "LAYOUT_ROUTE29_GATEHOUSE",
     "map_type": "MAP_TYPE_INDOOR",
     "music": "MUS_MACHI_S2",
-    "name": "Route104_MrBrineysHouse",
+    "name": "Route29_Gatehouse",
     "object_events": [
         {
             "elevation": 3,
@@ -21,7 +21,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "Route104_MrBrineysHouse_EventScript_229D67",
+            "script": "Route29_Gatehouse_EventScript_Officer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 1,
@@ -34,7 +34,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
-            "script": "Route104_MrBrineysHouse_EventScript_229E5D",
+            "script": "Route29_Gatehouse_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 5,

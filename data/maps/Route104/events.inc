@@ -35,7 +35,7 @@ Route104_EventObjects:
 	object_event 34, EVENT_OBJ_GFX_VAR_0, 0, 17, 50, 0, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, Route104_EventScript_1ECC9E, 0
 
 Route104_MapWarps:
-	warp_def 17, 50, 0, 0, MAP_ROUTE104_MR_BRINEYS_HOUSE
+	warp_def 17, 50, 0, 0, MAP_ROUTE29_GATEHOUSE
 	warp_def 5, 18, 0, 0, MAP_ROUTE104_PRETTY_PETAL_FLOWER_SHOP
 	warp_def 10, 30, 3, 0, MAP_PETALBURG_WOODS
 	warp_def 11, 30, 3, 1, MAP_PETALBURG_WOODS

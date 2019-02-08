@@ -101,7 +101,7 @@ gMapLayouts::
 	.4byte FortreeCity_House1_Layout
 	.4byte FortreeCity_Gym_Layout
 	.4byte FortreeCity_House2_Layout
-	.4byte Route104_MrBrineysHouse_Layout
+	.4byte Route29_Gatehouse_Layout
 	.4byte LilycoveCity_LilycoveMuseum_1F_Layout
 	.4byte LilycoveCity_LilycoveMuseum_2F_Layout
 	.4byte LilycoveCity_ContestLobby_Layout

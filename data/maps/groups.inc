@@ -259,7 +259,7 @@ gMapGroup16::
 	.4byte EverGrandeCity_PokemonLeague_2F
 
 gMapGroup17::
-	.4byte Route104_MrBrineysHouse
+	.4byte Route29_Gatehouse
 	.4byte Route104_PrettyPetalFlowerShop
 
 gMapGroup18::

@@ -99,7 +99,7 @@
 	.include "data/layouts/FortreeCity_House1/layout.inc"
 	.include "data/layouts/FortreeCity_Gym/layout.inc"
 	.include "data/layouts/FortreeCity_House2/layout.inc"
-	.include "data/layouts/Route104_MrBrineysHouse/layout.inc"
+	.include "data/layouts/Route29_Gatehouse/layout.inc"
 	.include "data/layouts/LilycoveCity_LilycoveMuseum_1F/layout.inc"
 	.include "data/layouts/LilycoveCity_LilycoveMuseum_2F/layout.inc"
 	.include "data/layouts/LilycoveCity_ContestLobby/layout.inc"

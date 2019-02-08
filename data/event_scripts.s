@@ -295,7 +295,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/EverGrandeCity_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/EverGrandeCity_PokemonLeague_2F/scripts.inc"
-	.include "data/maps/Route104_MrBrineysHouse/scripts.inc"
+	.include "data/maps/Route29_Gatehouse/scripts.inc"
 	.include "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
 	.include "data/maps/Route111_WinstrateFamilysHouse/scripts.inc"
 	.include "data/maps/Route111_OldLadysRestStop/scripts.inc"
@@ -1774,7 +1774,7 @@ DewfordTown_Hall_EventScript_271E8B:: @ 8271E8B
 	return
 
 DewfordTown_EventScript_271E95:: @ 8271E95
-Route104_MrBrineysHouse_EventScript_271E95:: @ 8271E95
+Route29_Gatehouse_EventScript_271E95:: @ 8271E95
 Route109_EventScript_271E95:: @ 8271E95
 	copyvar VAR_0x8008, VAR_0x4096
 	setvar VAR_0x4096, 0

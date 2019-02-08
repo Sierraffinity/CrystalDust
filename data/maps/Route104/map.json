@@ -562,7 +562,7 @@
     "show_map_name": true,
     "warp_events": [
         {
-            "dest_map": "MAP_ROUTE104_MR_BRINEYS_HOUSE",
+            "dest_map": "MAP_ROUTE29_GATEHOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 17,

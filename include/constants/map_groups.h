@@ -262,7 +262,7 @@
 #define MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F (14 | (16 << 8))
 
 // Map Group 17
-#define MAP_ROUTE104_MR_BRINEYS_HOUSE         (0 | (17 << 8))
+#define MAP_ROUTE29_GATEHOUSE                 (0 | (17 << 8))
 #define MAP_ROUTE104_PRETTY_PETAL_FLOWER_SHOP (1 | (17 << 8))
 
 // Map Group 18

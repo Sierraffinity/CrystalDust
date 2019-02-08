@@ -140,7 +140,7 @@ DewfordTown_EventScript_1E9660:: @ 81E9660
 	hideobjectat 4, MAP_DEWFORD_TOWN
 	setvar VAR_0x408E, 2
 	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
-	warp MAP_ROUTE104_MR_BRINEYS_HOUSE, 255, 5, 4
+	warp MAP_ROUTE29_GATEHOUSE, 255, 5, 4
 	copyvar VAR_0x4096, VAR_0x8008
 	waitstate
 	release

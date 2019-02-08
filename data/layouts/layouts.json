@@ -1011,11 +1011,11 @@
             "width": 8
         },
         {
-            "blockdata_filepath": "data/layouts/Route104_MrBrineysHouse/map.bin",
-            "border_filepath": "data/layouts/Route104_MrBrineysHouse/border.bin",
+            "blockdata_filepath": "data/layouts/Route29_Gatehouse/map.bin",
+            "border_filepath": "data/layouts/Route29_Gatehouse/border.bin",
             "height": 11,
-            "id": "LAYOUT_ROUTE104_MR_BRINEYS_HOUSE",
-            "name": "Route104_MrBrineysHouse_Layout",
+            "id": "LAYOUT_ROUTE29_GATEHOUSE",
+            "name": "Route29_Gatehouse_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_Gatehouse",
             "width": 9

@@ -224,7 +224,7 @@
 	.include "data/maps/EverGrandeCity_PokemonCenter_1F/connections.inc"
 	.include "data/maps/EverGrandeCity_PokemonCenter_2F/connections.inc"
 	.include "data/maps/EverGrandeCity_PokemonLeague_2F/connections.inc"
-	.include "data/maps/Route104_MrBrineysHouse/connections.inc"
+	.include "data/maps/Route29_Gatehouse/connections.inc"
 	.include "data/maps/Route104_PrettyPetalFlowerShop/connections.inc"
 	.include "data/maps/Route111_WinstrateFamilysHouse/connections.inc"
 	.include "data/maps/Route111_OldLadysRestStop/connections.inc"
