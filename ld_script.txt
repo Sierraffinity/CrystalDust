@@ -302,6 +302,7 @@ SECTIONS {
         src/international_string_util.o(.text);
         src/pokegear.o(.text);
         src/radio.o(.text);
+        src/card_flip.o(.text);
         src/debug_menu.o(.text);
     } =0
 
@@ -610,6 +611,7 @@ SECTIONS {
         data/mystery_event_msg.o(.rodata);
         src/pokegear.o(.rodata);
         src/radio.o(.rodata);
+        src/card_flip.o(.rodata);
         src/debug_menu.o(.rodata);
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);

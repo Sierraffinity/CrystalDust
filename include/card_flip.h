@@ -1,0 +1,4 @@
+#ifndef GUARD_CARD_FLIP_H
+#define GUARD_CARD_FLIP_H
+
+#endif // GUARD_CARD_FLIP_H
