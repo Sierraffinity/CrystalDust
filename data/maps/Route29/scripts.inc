@@ -60,6 +60,10 @@ Route29_EventScript_Dude::
 	release
 	end
 
+Route29_EventScript_FruitTree::
+	fruit_tree 0
+	end
+
 Route29_Text_Youngster:
 	.string "Yo. How are your POKéMON?\p"
 	.string "If they're weak and not ready for\n"

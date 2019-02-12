@@ -1567,7 +1567,22 @@ EventScript_271CA1:: @ 8271CA1
 
 Std_FruitTree:
 	lockall
-	
+	special GetFruitTreeItem
+	compare VAR_RESULT, 0
+	goto_if_eq FruitTree_EventScript_NothingHere
+	bufferitemnameplural 1, VAR_RESULT, 1
+	msgbox FruitTree_Text_FruitBearingTree
+	giveitem_std VAR_RESULT
+	compare VAR_RESULT, 0
+	goto_if_eq FruitTree_NotEnoughSpace
+	addvar VAR_0x8004, FLAG_FRUIT_TREES_START
+	special SetFlagInVar
+FruitTree_NotEnoughSpace:
+	releaseall
+	return
+
+FruitTree_EventScript_NothingHere:
+	msgbox FruitTree_Text_NothingHere
 	releaseall
 	return
 
@@ -3098,6 +3113,14 @@ gUnknown_08272B09:: @ 8272B09
 
 gUnknown_08272B1A:: @ 8272B1A
 	.string "Too bad! There's no room left for\nanother {STR_VAR_2}…$"
+
+FruitTree_Text_FruitBearingTree:
+	.string "It's a fruit-bearing tree.\n"
+	.string "Hey! It's {STR_VAR_2}!$"
+
+FruitTree_Text_NothingHere:
+	.string "It's a fruit-bearing tree.\n"
+	.string "Looks like there's nothing here…$"
 
 gUnknown_08272B48:: @ 8272B48
 	.string "The {STR_VAR_2} was transferred\nto the PC.$"

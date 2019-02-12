@@ -1669,8 +1669,6 @@
 	.endm
 
 	.macro fruit_tree id:req
-	setvar VAR_0x8004, \trainer
-	special SetMatchCallRegisteredFlag
-	setorcopyvar VAR_0x8000, \trainer
+	setvar VAR_0x8004, \id
 	callstd STD_FRUIT_TREE
 	.endm

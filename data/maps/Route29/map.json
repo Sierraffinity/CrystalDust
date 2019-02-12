@@ -23,7 +23,7 @@
         {
             "elevation": 3,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NULL",
+            "script": "Route29_EventScript_FruitTree",
             "type": "sign",
             "x": 14,
             "y": 4
