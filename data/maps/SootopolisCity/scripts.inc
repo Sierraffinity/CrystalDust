@@ -97,7 +97,7 @@ SootopolisCity_EventScript_1E5800:: @ 81E5800
 	return
 
 SootopolisCity_EventScript_1E5801:: @ 81E5801
-	setmaplayoutindex LAYOUT_UNKNOWN_MAP_08469200
+	setmaplayoutindex LAYOUT_SOOTOPOLIS_CITY_LEGENDS_BATTLE
 	return
 
 SootopolisCity_EventScript_1E5805:: @ 81E5805
@@ -742,7 +742,7 @@ SootopolisCity_EventScript_1E5F10:: @ 81E5F10
 	end
 
 SootopolisCity_EventScript_1E5F1B:: @ 81E5F1B
-	dodailyevents
+	dotimebasedevents
 	special GetPlayerBigGuyGirlString
 	goto_if_set FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY, SootopolisCity_EventScript_1E5FBB
 	msgbox SootopolisCity_Text_2A7BB0, MSGBOX_DEFAULT

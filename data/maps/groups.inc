@@ -424,12 +424,12 @@ gMapGroup25::
 	.4byte RecordCorner
 	.4byte DoubleBattleColosseum
 	.4byte LinkContestRoom1
-	.4byte UnknownMap_25_29
-	.4byte UnknownMap_25_30
-	.4byte UnknownMap_25_31
-	.4byte UnknownMap_25_32
-	.4byte UnknownMap_25_33
-	.4byte UnknownMap_25_34
+	.4byte UnknownLinkContestRoom_25_29
+	.4byte UnknownLinkContestRoom_25_30
+	.4byte UnknownLinkContestRoom_25_31
+	.4byte UnknownLinkContestRoom_25_32
+	.4byte UnknownLinkContestRoom_25_33
+	.4byte UnknownLinkContestRoom_25_34
 	.4byte LinkContestRoom2
 	.4byte LinkContestRoom3
 	.4byte LinkContestRoom4

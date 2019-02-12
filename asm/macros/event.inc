@@ -314,7 +314,7 @@
 	.endm
 
 	@ Runs time based events. In FireRed, this command is a nop.
-	.macro dodailyevents
+	.macro dotimebasedevents
 	.byte 0x2d
 	.endm
 
