@@ -53,7 +53,7 @@ void ClearTempFieldEventData(void)
 // Probably had different flag splits at one point.
 void ClearUpperFlags(void)
 {
-    memset(gSaveBlock1Ptr->flags + 0x124, 0, TEMP_UPPER_FLAGS_SIZE);
+    memset(gSaveBlock1Ptr->flags + 0x120, 0, TEMP_UPPER_FLAGS_SIZE);
 }
 
 void DisableNationalPokedex(void)

@@ -67,6 +67,7 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_RegisteredInMatchCall
 	.4byte Std_9
 	.4byte Std_10
+	.4byte Std_FruitTree
 gStdScripts_End:: @ 81DC2CC
 
 	.include "data/maps/PetalburgCity/scripts.inc"
@@ -1562,6 +1563,12 @@ EventScript_271CA1:: @ 8271CA1
 	msgbox gUnknown_08272A78, MSGBOX_DEFAULT
 	msgbox gUnknown_08272AD0, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0
+	return
+
+Std_FruitTree:
+	lockall
+	
+	releaseall
 	return
 
 EventScript_HiddenItemScript:: @ 8271CB7

@@ -19,6 +19,14 @@
             "type": "sign",
             "x": 63,
             "y": 9
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "NULL",
+            "type": "sign",
+            "x": 14,
+            "y": 4
         }
     ],
     "connections": [

@@ -55,6 +55,7 @@
 	STD_FIND_ITEM = 1
 	STD_OBTAIN_DECORATION = 7
 	STD_REGISTER_MATCH_CALL = 8
+	STD_FRUIT_TREE = 11
 
 	@ Calls the standard function at index function.
 	.macro callstd function:req
@@ -1665,4 +1666,11 @@
 	special SetMatchCallRegisteredFlag
 	setorcopyvar VAR_0x8000, \trainer
 	callstd STD_REGISTER_MATCH_CALL
+	.endm
+
+	.macro fruit_tree id:req
+	setvar VAR_0x8004, \trainer
+	special SetMatchCallRegisteredFlag
+	setorcopyvar VAR_0x8000, \trainer
+	callstd STD_FRUIT_TREE
 	.endm

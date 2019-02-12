@@ -22,6 +22,7 @@ Route29_MapCoordEvents:
 Route29_MapBGEvents:
 	bg_event 3, 5, 0, BG_EVENT_PLAYER_FACING_ANY, Route29_EventScript_DirectionSign
 	bg_event 63, 9, 3, BG_EVENT_PLAYER_FACING_ANY, Route29_EventScript_DirectionSign
+	bg_event 14, 4, 3, BG_EVENT_PLAYER_FACING_ANY, NULL
 
 Route29_MapEvents::
 	map_events Route29_EventObjects, Route29_MapWarps, Route29_MapCoordEvents, Route29_MapBGEvents
