@@ -17,8 +17,7 @@
 static void UpdatePerDay(struct Time *localTime);
 static void UpdatePerMinute(struct Time *localTime);
 
-// needs to not be static because of how calling from OW differs from calling from main menu
-void InitTimeBasedEvents(void)
+static void InitTimeBasedEvents(void)
 {
     FlagSet(FLAG_SYS_CLOCK_SET);
     RtcCalcLocalTime();
@@ -137,4 +136,5 @@ void WriteCurrentTimeStringToStrVar1(void)
 void SetDayOfWeek(void)
 {
     RtcSetDayOfWeek(gSpecialVar_0x8004);
+    InitTimeBasedEvents();
 }

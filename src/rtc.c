@@ -344,8 +344,9 @@ void RtcCalcLocalTimeOffset(s32 days, s32 hours, s32 minutes, s32 seconds)
 
 void RtcSetDayOfWeek(s8 dayOfWeek)
 {
+    // calc local time so we have an up-to-date time offset before recalculating offset
+    RtcCalcLocalTime();
     gLocalTime.dayOfWeek = dayOfWeek;
-    RtcGetInfo(&sRtc);
     RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
 }
 

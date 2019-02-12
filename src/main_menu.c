@@ -1375,7 +1375,7 @@ static void ReturnFromSetClock(void)
 {
     u8 taskId;
 
-    InitTimeBasedEvents();
+    //InitTimeBasedEvents();
     ResetBgsAndClearDma3BusyFlags(0);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);

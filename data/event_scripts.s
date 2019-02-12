@@ -3115,11 +3115,12 @@ gUnknown_08272B1A:: @ 8272B1A
 	.string "Too bad! There's no room left for\nanother {STR_VAR_2}…$"
 
 FruitTree_Text_FruitBearingTree:
-	.string "It's a fruit-bearing tree.\n"
-	.string "Hey! It's {STR_VAR_2}!$"
+	.string "It's a fruit-bearing tree.\p"
+	.string "Hey!\n"
+	.string "It's {STR_VAR_2}!$"
 
 FruitTree_Text_NothingHere:
-	.string "It's a fruit-bearing tree.\n"
+	.string "It's a fruit-bearing tree.\p"
 	.string "Looks like there's nothing here…$"
 
 gUnknown_08272B48:: @ 8272B48
