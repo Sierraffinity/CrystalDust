@@ -29,7 +29,7 @@
 #include "constants/species.h"
 
 // In order to invoke the Card Flip game, it should be launched via a normal script like the example below.
-// The number of coins required to play each round is specified by VAR_0x8004, which can be either 3 or 6.
+// The number of coins required to play each round is specified by VAR_0x8004.
 //
 // ...
 // setvar VAR_0x8004, 3
@@ -72,8 +72,6 @@ enum
     CARD_FLIP_STATE_PLAY_PROMPT_GET_INPUT,
     CARD_FLIP_STATE_PLAY_DEAL_CARDS,
     CARD_FLIP_STATE_CHOOSE_CARD,
-    CARD_FLIP_STATE_PLACE_BET_PROMPT,
-    CARD_FLIP_STATE_PLACE_BET_GET_INPUT,
     CARD_FLIP_STATE_PLACE_BET,
     CARD_FLIP_STATE_REVEAL_CARD,
     CARD_FLIP_STATE_DISPLAY_OUTCOME_MESSAGE,
@@ -149,6 +147,7 @@ struct CardFlip
     u8 betType;
     u8 betOutlineSpriteIds[16];
     u8 roundCounterSpriteIds[12];
+    u8 cardSelectionSoundTaskId;
     MainCallback returnMainCallback;
 };
 
@@ -172,8 +171,6 @@ static void InitCardFlipTable(u8 taskId);
 static void DisplayInitialPlayMessage(void);
 static void DisplayInitialPlayPrompt();
 static void ProcessPlayPromptInput(void);
-static void DisplayPlaceBetText(void);
-static void DisplayPlaceBetText_WaitButtonPress(void);
 static void PlaceBet(void);
 static bool8 IsValidBetType(u8 betType);
 static void DrawBetType(u8 betType);
@@ -190,8 +187,8 @@ static void DisplayNotEnoughCoinsMessage(void);
 static void ProcessNotEnoughCoinsInput(void);
 static void DealCards(u8 taskId);
 static void ChooseCard(u8 taskId);
-static void ChangeCoinAmount(int delta);
-static void ChangeCoinAmountFixedDuration(int delta, int duration);
+static void ChangeCoinAmount(int delta, int startDelay);
+static void ChangeCoinAmountFixedDuration(int delta, int duration, int startDelay);
 static void UpdateCoinDigitSprites(u8 taskId);
 static void StartExitCardFlip(void);
 static void ExitCardFlip(void);
@@ -215,9 +212,7 @@ static void HighlightCardNumber(struct Sprite *sprite);
 
 static EWRAM_DATA struct CardFlip *sCardFlip = NULL;
 
-static const u8 sPlayTheGame3PromptText[] = _("Play CARD FLIP for 3 COINS?");
-static const u8 sPlayTheGame6PromptText[] = _("Play CARD FLIP for 6 COINS?");
-static const u8 sPlaceBetText[] = _("Place your bet.");
+static const u8 sPlayTheGamePromptText[] = _("Play CARD FLIP for {STR_VAR_1} COINS?");
 static const u8 sYeahText[] = _("Yeah!");
 static const u8 sDarnText[] = _("Darn…");
 static const u8 sPlayAgainText[] = _("Want to play again?");
@@ -226,6 +221,8 @@ static const u8 sNotEnoughCoinsText[] = _("You don't have enough COINS to\nplay.
 static const u8 sHelpBar_Select[] = _("{A_BUTTON}SELECT");
 static const u8 sHelpBar_SelectExit[] = _("{A_BUTTON}SELECT {B_BUTTON}EXIT");
 static const u8 sHelpBar_MoveSelect[] = _("{DPAD_ALL}MOVE {A_BUTTON}SELECT");
+static const u8 sHelpBar_BetPlace[] = _("{DPAD_ALL}BET {A_BUTTON}PLACE");
+static const u8 sHelpBar_Next[] = _("{A_BUTTON}NEXT");
 
 static const u32 sCardFlipBaseBgGfx[] = INCBIN_U32("graphics/card_flip/card_flip_base_bg_tiles.4bpp.lz");
 static const u16 sCardFlipBaseBgPalette[] = INCBIN_U16("graphics/card_flip/card_flip_base_bg_tiles.gbapal");
@@ -1347,10 +1344,10 @@ static const u8 sBetPayoutMultipliers[] = {
 
 static u8 SanitizeNumCoinsEntry(int numCoinsEntry)
 {
-    if (numCoinsEntry == 3 || numCoinsEntry == 6)
-        return numCoinsEntry;
-    else
-        return 3;
+    if (numCoinsEntry <= 0)
+        numCoinsEntry = 1;
+
+    return numCoinsEntry;
 }
 
 void PlayCardFlip(void)
@@ -1485,12 +1482,6 @@ static void CardFlipMain(u8 taskId)
     case CARD_FLIP_STATE_CHOOSE_CARD:
         ChooseCard(taskId);
         break;
-    case CARD_FLIP_STATE_PLACE_BET_PROMPT:
-        DisplayPlaceBetText();
-        break;
-    case CARD_FLIP_STATE_PLACE_BET_GET_INPUT:
-        DisplayPlaceBetText_WaitButtonPress();
-        break;
     case CARD_FLIP_STATE_PLACE_BET:
         PlaceBet();
         break;
@@ -1568,10 +1559,9 @@ static void InitCardFlipTable(u8 taskId)
 static void DisplayInitialPlayMessage(void)
 {
     NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
-    if (sCardFlip->numCoinsEntry == 3)
-        AddTextPrinterParameterized(WIN_TEXT, 1, sPlayTheGame3PromptText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
-    else
-        AddTextPrinterParameterized(WIN_TEXT, 1, sPlayTheGame6PromptText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+    ConvertIntToDecimalStringN(gStringVar1, sCardFlip->numCoinsEntry, 0, 3);
+    StringExpandPlaceholders(gStringVar2, sPlayTheGamePromptText);
+    AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar2, 0, 1, GetPlayerTextSpeedDelay(), NULL);
 
     CopyWindowToVram(WIN_TEXT, 3);
     sCardFlip->state = CARD_FLIP_STATE_PLAY_PROMPT;
@@ -1612,7 +1602,7 @@ static void ProcessPlayPromptInput(void)
 static void DealCards(u8 taskId)
 {
     ShowHelpBar(sHelpBar_Select);
-    ChangeCoinAmount(-sCardFlip->numCoinsEntry);
+    ChangeCoinAmount(-sCardFlip->numCoinsEntry, 0);
 
     // Light up current round light.
     StartSpriteAnim(&gSprites[sCardFlip->roundCounterSpriteIds[sCardFlip->deckTop / 2]], 1);
@@ -1633,26 +1623,7 @@ static void ChooseCard(u8 taskId)
     u8 spriteId = CreateSprite(&sCardSelectionSpriteTemplate, 48, 61, 2);
     gSprites[spriteId].data[0] = taskId;
 
-    StartUIAnim(taskId, CARD_FLIP_STATE_PLACE_BET_PROMPT);
-}
-
-static void DisplayPlaceBetText(void)
-{
-    NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sPlaceBetText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
-    CopyWindowToVram(WIN_TEXT, 3);
-    sCardFlip->state = CARD_FLIP_STATE_PLACE_BET_GET_INPUT;
-}
-
-static void DisplayPlaceBetText_WaitButtonPress(void)
-{
-    if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
-    {
-        sub_8197434(0, TRUE);
-        ShowHelpBar(sHelpBar_MoveSelect);
-        DrawBetType(sCardFlip->betType);
-        sCardFlip->state = CARD_FLIP_STATE_PLACE_BET;
-    }
+    StartUIAnim(taskId, CARD_FLIP_STATE_PLACE_BET);
 }
 
 static void PlaceBet(void)
@@ -1674,28 +1645,17 @@ static void PlaceBet(void)
     }
 
     if (gMain.newKeys & DPAD_UP)
-    {
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][0];
-        PlaySE(SE_SELECT);
-    }
     else if (gMain.newKeys & DPAD_RIGHT)
-    {
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][1];
-        PlaySE(SE_SELECT);
-    }
     else if (gMain.newKeys & DPAD_DOWN)
-    {
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][2];
-        PlaySE(SE_SELECT);
-    }
     else if (gMain.newKeys & DPAD_LEFT)
-    {
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][3];
-        PlaySE(SE_SELECT);
-    }
 
     if (nextBetType != 0xFF)
     {
+        PlaySE(SE_TB_KARA);
         sCardFlip->betType = nextBetType;
         DrawBetType(sCardFlip->betType);
     }
@@ -1777,7 +1737,7 @@ static void DisplayBetOutcomeMessage(void)
     if (!FuncIsActiveTask(UpdateCoinDigitSprites) && IsFanfareTaskInactive())
     {
         u8 wonBet = sBetTypeCards[sCardFlip->betType][CARD_ID(sCardFlip->drawnCard)];
-        ShowHelpBar(sHelpBar_Select);
+        ShowHelpBar(sHelpBar_Next);
         NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
         if (wonBet)
             AddTextPrinterParameterized(WIN_TEXT, 1, sYeahText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
@@ -1807,7 +1767,7 @@ static void AwardCoins(void)
     else
         PlayFanfare(MUS_ME_B_SMALL);
 
-    ChangeCoinAmount(coinsToGive);
+    ChangeCoinAmount(coinsToGive, 100);
 }
 
 static void PlayAgainMessage(void)
@@ -1949,12 +1909,12 @@ static void InitRoundCounterSprites(void)
     }
 }
 
-static void ChangeCoinAmount(int delta)
+static void ChangeCoinAmount(int delta, int startDelay)
 {
-    ChangeCoinAmountFixedDuration(delta, 0);
+    ChangeCoinAmountFixedDuration(delta, 0, startDelay);
 }
 
-static void ChangeCoinAmountFixedDuration(int delta, int duration)
+static void ChangeCoinAmountFixedDuration(int delta, int duration, int startDelay)
 {
     u8 taskId;
     int curCoins, targetCoins;
@@ -1970,6 +1930,7 @@ static void ChangeCoinAmountFixedDuration(int delta, int duration)
 
     taskId = CreateTask(UpdateCoinDigitSprites, 3);
     gTasks[taskId].data[0] = curCoins;
+    gTasks[taskId].data[3] = startDelay;
 
     if (delta > 0)
         GiveCoins(delta);
@@ -1991,6 +1952,13 @@ static void UpdateCoinDigitSprites(u8 taskId)
     int currentCoins = gTasks[taskId].data[0];
     int targetCoins = gTasks[taskId].data[1];
     int delta = gTasks[taskId].data[2];
+    int startDelay = gTasks[taskId].data[3];
+
+    if (gTasks[taskId].data[4]++ < startDelay)
+        return;
+
+    if (startDelay > 0 && IsFanfareTaskInactive() && gTasks[taskId].data[4] % 3 == 0)
+        PlaySE(SE_PIN);
 
     if (currentCoins < targetCoins)
     {
@@ -2150,7 +2118,8 @@ static void ChooseCard_SpriteCallback(struct Sprite *sprite)
     case 0:
         if (gMain.newKeys & A_BUTTON)
         {
-            PlaySE(SE_SELECT);
+            DestroyTask(sCardFlip->cardSelectionSoundTaskId);
+            PlaySE(SE_KAIFUKU);
             selectedCard = sprite->data[1];
             otherCard = (selectedCard + 1) % 2;
             DestroySprite(&gSprites[sCardFlip->cardBackSpriteIds[otherCard]]);
@@ -2167,6 +2136,7 @@ static void ChooseCard_SpriteCallback(struct Sprite *sprite)
                 sprite->pos1.y = 61;
             else
                 sprite->pos1.y = 123;
+            PlaySE(SE_KON4);
         }
         break;
     case 1:
@@ -2182,6 +2152,8 @@ static void ChooseCard_SpriteCallback(struct Sprite *sprite)
             else
             {
                 // Signal that the UI animation is complete.
+                ShowHelpBar(sHelpBar_BetPlace);
+                DrawBetType(sCardFlip->betType);
                 gTasks[sprite->data[0]].data[0] = 0;
             }
 
@@ -2202,6 +2174,8 @@ static void SlideBottomCardUp(struct Sprite *sprite)
     if (sprite->pos1.y <= 61)
     {
         // Signal that the UI animation is complete.
+        ShowHelpBar(sHelpBar_BetPlace);
+        DrawBetType(sCardFlip->betType);
         gTasks[sprite->data[0]].data[0] = 0;
         sprite->pos1.y = 61;
         sprite->callback = SpriteCallbackDummy;
