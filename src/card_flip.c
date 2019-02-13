@@ -167,7 +167,7 @@ static void DisplayPlaceBetText_WaitButtonPress(void);
 static void PlaceBet(void);
 static bool8 IsValidBetType(u8 betType);
 static void DrawBetType(u8 betType);
-static void RevealCard(void);
+static void RevealCard(u8 taskId);
 static void DisplayBetOutcomeMessage(void);
 static void DisplayBetOutcomeMessage_WaitButtonPress(void);
 static void AwardCoins(void);
@@ -194,12 +194,14 @@ static void ResetAllRoundCounters(void);
 static void LoadCardBackGfx(void);
 static void LoadCardSelectionGfx(void);
 static void LoadCardGfx(int cardId);
-static void FreeCardGfx();
 static void CardEntry_SpriteCallback(struct Sprite *sprite);
 static void ChooseCard_SpriteCallback(struct Sprite *sprite);
 static void SlideBottomCardUp(struct Sprite *sprite);
 static void SlideOutCard(struct Sprite *sprite);
+static void FlipOverCardStart(struct Sprite *sprite);
+static void FlipOverCardEnd(struct Sprite *sprite);
 static void ShowHelpBar(const u8 *str);
+static void HighlightCardNumber(struct Sprite *sprite);
 
 static EWRAM_DATA struct CardFlip *sCardFlip = NULL;
 
@@ -431,13 +433,23 @@ static const union AnimCmd *const sCardNumberAnimCmds[] = {
     sCardNumberAnimCmd_5,
 };
 
+const union AffineAnimCmd sCardNumberHighlight_AffineAnimCmd0[] = {
+    AFFINEANIMCMD_FRAME(30, 30, 0, 10),
+    AFFINEANIMCMD_FRAME(-30, -30, 0, 10),
+    AFFINEANIMCMD_JUMP(0),
+};
+
+static const union AffineAnimCmd *const sCardNumberHighlight_AffineAnimCmds[] = {
+    sCardNumberHighlight_AffineAnimCmd0,
+};
+
 static const struct SpriteTemplate sCardNumberSpriteTemplate = {
     .tileTag = TAG_CARD_NUMBER,
     .paletteTag = TAG_CARD_NUMBER,
     .oam = &sCoinDigitOamData,
     .anims = sCardNumberAnimCmds,
     .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
+    .affineAnims = sCardNumberHighlight_AffineAnimCmds,
     .callback = SpriteCallbackDummy,
 };
 
@@ -562,13 +574,48 @@ static const struct SpriteTemplate sCardSelectionSpriteTemplate = {
     .callback = ChooseCard_SpriteCallback,
 };
 
+const union AffineAnimCmd sCardFlipOver_AffineAnimCmd0[] = {
+    AFFINEANIMCMD_FRAME(-10, 0, 0, 1),
+    AFFINEANIMCMD_FRAME(-10, 0, 0, 1),
+    AFFINEANIMCMD_FRAME(-10, 1, 0, 1),
+    AFFINEANIMCMD_FRAME(-20, 2, 0, 1),
+    AFFINEANIMCMD_FRAME(-20, 2, 0, 1),
+    AFFINEANIMCMD_FRAME(-20, 3, 0, 1),
+    AFFINEANIMCMD_FRAME(-30, 3, 0, 1),
+    AFFINEANIMCMD_FRAME(-30, 4, 0, 1),
+    AFFINEANIMCMD_FRAME(-30, 4, 0, 1),
+    AFFINEANIMCMD_FRAME(-70, 5, 0, 1),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd sCardFlipOver_AffineAnimCmd1[] = {
+    AFFINEANIMCMD_FRAME(6, 0x118, 0, 0),
+    AFFINEANIMCMD_FRAME(70, -5, 0, 1),
+    AFFINEANIMCMD_FRAME(30, -4, 0, 1),
+    AFFINEANIMCMD_FRAME(30, -4, 0, 1),
+    AFFINEANIMCMD_FRAME(30, -3, 0, 1),
+    AFFINEANIMCMD_FRAME(20, -3, 0, 1),
+    AFFINEANIMCMD_FRAME(20, -2, 0, 1),
+    AFFINEANIMCMD_FRAME(20, -2, 0, 1),
+    AFFINEANIMCMD_FRAME(10, -1, 0, 1),
+    AFFINEANIMCMD_FRAME(10, 0, 0, 1),
+    AFFINEANIMCMD_FRAME(10, 0, 0, 1),
+    AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
+    AFFINEANIMCMD_END,
+};
+
+static const union AffineAnimCmd *const sCardFlipOver_AffineAnimCmds[] = {
+    sCardFlipOver_AffineAnimCmd0,
+    sCardFlipOver_AffineAnimCmd1,
+};
+
 static const struct SpriteTemplate sCardBackSpriteTemplate = {
     .tileTag = TAG_CARD_BACK,
     .paletteTag = TAG_CARD_BACK,
     .oam = &sCardOamData,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
+    .affineAnims = sCardFlipOver_AffineAnimCmds,
     .callback = CardEntry_SpriteCallback,
 };
 
@@ -578,7 +625,7 @@ static const struct SpriteTemplate sCardFrontSpriteTemplate = {
     .oam = &sCardOamData,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
+    .affineAnims = sCardFlipOver_AffineAnimCmds,
     .callback = SpriteCallbackDummy,
 };
 
@@ -636,7 +683,7 @@ static const struct OamData sBetOutlineHorizontalOamData = {
     .matrixNum = 0,
     .size = 1,
     .tileNum = 0,
-    .priority = 1,
+    .priority = 2,
     .paletteNum = 0,
     .affineParam = 0,
 };
@@ -652,7 +699,7 @@ static const struct OamData sBetOutlineVerticalOamData = {
     .matrixNum = 0,
     .size = 1,
     .tileNum = 0,
-    .priority = 1,
+    .priority = 2,
     .paletteNum = 0,
     .affineParam = 0,
 };
@@ -1438,7 +1485,7 @@ static void CardFlipMain(u8 taskId)
         PlaceBet();
         break;
     case CARD_FLIP_STATE_REVEAL_CARD:
-        RevealCard();
+        RevealCard(taskId);
         break;
     case CARD_FLIP_STATE_DISPLAY_OUTCOME_MESSAGE:
         DisplayBetOutcomeMessage();
@@ -1605,9 +1652,14 @@ static void PlaceBet(void)
     if (gMain.newKeys & A_BUTTON)
     {
         if (IsValidBetType(sCardFlip->betType))
+        {
+            PlaySE(SE_SELECT);
             sCardFlip->state = CARD_FLIP_STATE_REVEAL_CARD;
+        }
         else
+        {
             PlaySE(SE_HAZURE);
+        }
         return;
     }
 
@@ -1698,30 +1750,16 @@ static void DrawBetType(u8 betType)
     }
 }
 
-static void RevealCard(void)
+static void RevealCard(u8 taskId)
 {
-    u8 card;
-    u8 cardId;
-    u8 wonBet;
-    int x, y;
-    DestroySprite(&gSprites[sCardFlip->cardBackSpriteIds[sCardFlip->selectedCardIndex]]);
-    ShowHelpBar(sHelpBar_Select);
+    struct Sprite *sprite;
 
-    // Randomly choose one of the top two cards.  The actual card the player
-    // selected does not matter.
-    card = sCardFlip->cardDeck[sCardFlip->deckTop + (Random() & 1)];
-    sCardFlip->deckTop += 2; // Two cards were drawn fromm the deck.
-    sCardFlip->drawnCard = card;
-    LoadCardGfx(CARD_ID(card));
-
-    sCardFlip->cardFrontSpriteId = CreateSprite(&sCardFrontSpriteTemplate, 48, 61, 3);
-    wonBet = sBetTypeCards[sCardFlip->betType][CARD_ID(sCardFlip->drawnCard)];
-    if (wonBet)
-        AwardCoins();
-    else
-        PlayFanfare(MUS_ME_ZANNEN);
-
-    sCardFlip->state = CARD_FLIP_STATE_DISPLAY_OUTCOME_MESSAGE;
+    sprite = &gSprites[sCardFlip->cardBackSpriteIds[sCardFlip->selectedCardIndex]];
+    sprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
+    StartSpriteAffineAnim(sprite, 0);
+    sprite->callback = FlipOverCardStart;
+    sprite->data[0] = taskId;
+    StartUIAnim(taskId, CARD_FLIP_STATE_DISPLAY_OUTCOME_MESSAGE);
 }
 
 static void DisplayBetOutcomeMessage(void)
@@ -1729,6 +1767,7 @@ static void DisplayBetOutcomeMessage(void)
     if (!FuncIsActiveTask(UpdateCoinDigitSprites) && IsFanfareTaskInactive())
     {
         u8 wonBet = sBetTypeCards[sCardFlip->betType][CARD_ID(sCardFlip->drawnCard)];
+        ShowHelpBar(sHelpBar_Select);
         NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
         if (wonBet)
             AddTextPrinterParameterized(WIN_TEXT, 1, sYeahText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
@@ -2079,12 +2118,6 @@ static void LoadCardGfx(int cardId)
     LoadSpritePalette(&spritePalette);
 }
 
-static void FreeCardGfx()
-{
-    FreeSpritePaletteByTag(TAG_CARD_FRONT);
-    FreeSpriteTilesByTag(TAG_CARD_FRONT);
-}
-
 static void CardEntry_SpriteCallback(struct Sprite *sprite)
 {
     sprite->pos1.x += 5;
@@ -2172,8 +2205,62 @@ static void SlideOutCard(struct Sprite *sprite)
     {
         // Signal that the UI animation is complete.            
         gTasks[sprite->data[0]].data[0] = 0;
+        DestroySpriteAndFreeResources(sprite);
+    }
+}
+
+static void FlipOverCardStart(struct Sprite *sprite)
+{
+    u8 card;
+    struct Sprite *newSprite;
+
+    if (sprite->affineAnimEnded)
+    {
+        // Randomly choose one of the top two cards.  The actual card the player
+        // selected does not matter.
+        card = sCardFlip->cardDeck[sCardFlip->deckTop + (Random() & 1)];
+        sCardFlip->deckTop += 2; // Two cards were drawn fromm the deck.
+        sCardFlip->drawnCard = card;
+        LoadCardGfx(CARD_ID(card));
+
+        sCardFlip->cardFrontSpriteId = CreateSprite(&sCardFrontSpriteTemplate, 48, 61, 3);
+        newSprite = &gSprites[sCardFlip->cardFrontSpriteId];
+        // Hack--make sprite invisible for one frame, because affine animation
+        // sometimes doesn't immediately take aeffect. Not sure why.
+        newSprite->invisible = 1;
+        newSprite->callback = FlipOverCardEnd;
+        newSprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
+        newSprite->data[0] = sprite->data[0];
+        StartSpriteAffineAnim(newSprite, 1);
+        FreeSpriteOamMatrix(sprite);
         DestroySprite(sprite);
-        FreeCardGfx();
+    }
+}
+
+static void FlipOverCardEnd(struct Sprite *sprite)
+{
+    u8 wonBet;
+    struct Sprite *numberSprite;
+
+    sprite->invisible = 0; // See above invisibility hack in FlipOverCardStart().
+    if (sprite->affineAnimEnded)
+    {
+        wonBet = sBetTypeCards[sCardFlip->betType][CARD_ID(sCardFlip->drawnCard)];
+        if (wonBet)
+            AwardCoins();
+        else
+            PlayFanfare(MUS_ME_ZANNEN);
+
+        numberSprite = &gSprites[sCardFlip->cardNumberSpriteIds[CARD_ID(sCardFlip->drawnCard)]];
+        numberSprite->oam.affineMode = ST_OAM_AFFINE_DOUBLE;
+        CalcCenterToCornerVec(numberSprite, numberSprite->oam.shape, numberSprite->oam.size, numberSprite->oam.affineMode);
+        StartSpriteAffineAnim(numberSprite, 0);
+        numberSprite->callback = HighlightCardNumber;
+
+        // Signal that the UI animation is complete.
+        gTasks[sprite->data[0]].data[0] = 0;
+        sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
+        sprite->callback = SpriteCallbackDummy;
     }
 }
 
@@ -2185,6 +2272,17 @@ static void ShowHelpBar(const u8 *str)
     AddTextPrinterParameterized3(WIN_HELP, 0, GetStringRightAlignXOffset(0, str, 120) - 4, 0, color, 0, str);
     PutWindowTilemap(WIN_HELP);
     CopyWindowToVram(WIN_HELP, 3);
+}
+
+static void HighlightCardNumber(struct Sprite *sprite)
+{
+    if (IsFanfareTaskInactive())
+    {
+        sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
+        FreeSpriteOamMatrix(sprite);
+        CalcCenterToCornerVec(sprite, sprite->oam.shape, sprite->oam.size, sprite->oam.affineMode);
+        sprite->callback = SpriteCallbackDummy;
+    }
 }
 
 #undef CARD_FLIP_BG_TEXT
