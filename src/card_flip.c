@@ -28,6 +28,16 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 
+// In order to invoke the Card Flip game, it should be launched via a normal script like the example below.
+// The number of coins required to play each round is specified by VAR_0x8004, which can be either 3 or 6.
+//
+// ...
+// setvar VAR_0x8004, 3
+// callnative PlayCardFlip
+// waitstate
+// ...
+
+
 #define CARD_FLIP_BG_TEXT        0
 #define CARD_FLIP_BG_BET_OUTLINE 1
 #define CARD_FLIP_BG_BASE        2
