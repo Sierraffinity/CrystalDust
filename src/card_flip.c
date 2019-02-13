@@ -6,12 +6,14 @@
 #include "decompress.h"
 #include "event_data.h"
 #include "gpu_regs.h"
+#include "international_string_util.h"
 #include "main.h"
 #include "main_menu.h"
 #include "menu.h"
 #include "menu_helpers.h"
 #include "overworld.h"
 #include "palette.h"
+#include "pokemon_icon.h"
 #include "scanline_effect.h"
 #include "script.h"
 #include "sound.h"
@@ -24,12 +26,14 @@
 #include "window.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/species.h"
 
 #define CARD_FLIP_BG_TEXT        0
 #define CARD_FLIP_BG_BET_OUTLINE 1
 #define CARD_FLIP_BG_BASE        2
 
 #define WIN_TEXT 0
+#define WIN_HELP 1
 
 #define TAG_COIN_DIGIT          500
 #define TAG_CARD_NUMBER         501
@@ -40,6 +44,7 @@
 #define TAG_BET_OUTLINE_HORIZONTAL 506
 #define TAG_BET_OUTLINE_VERTICAL   507
 #define TAG_BET_OUTLINE_VERTICAL_SMALL 508
+#define TAG_ROUND_COUNTERS      509
 
 #define NUM_NUMBERS 6
 #define NUM_SUITS 4
@@ -68,6 +73,8 @@ enum
     CARD_FLIP_STATE_PLAY_AGAIN_PROMPT_INPUT,
     CARD_FLIP_STATE_SHUFFLE_DECK_MESSAGE,
     CARD_FLIP_STATE_SHUFFLE_DECK_INPUT,
+    CARD_FLIP_NOT_ENOUGH_COINS,
+    CARD_FLIP_NOT_ENOUGH_COINS_INPUT,
     CARD_FLIP_STATE_START_EXIT,
     CARD_FLIP_STATE_EXIT,
     CARD_FLIP_WAIT_ANIM,
@@ -121,6 +128,7 @@ struct CardFlip
     u8 state;
     u8 numCoinsEntry;
     u8 coinDigitSpriteIds[4];
+    u8 suitSpriteIds[NUM_SUITS];
     u8 cardNumberSpriteIds[NUM_CARDS];
     u8 cardDeck[NUM_CARDS];
     u8 deckTop;
@@ -129,8 +137,8 @@ struct CardFlip
     u8 selectedCardIndex;
     u8 drawnCard;
     u8 betType;
-    u8 betWindowId;
     u8 betOutlineSpriteIds[16];
+    u8 roundCounterSpriteIds[12];
     MainCallback returnMainCallback;
 };
 
@@ -146,7 +154,9 @@ static void InitCardFlipScreen(void);
 static void CardFlipMainCallback(void);
 static void CardFlipVBlankCallback(void);
 static void InitCoinDigitSprites(void);
+static void InitMonIcons(void);
 static void InitCardNumberSprites(void);
+static void InitRoundCounterSprites(void);
 static void CardFlipMain(u8 taskId);
 static void InitCardFlipTable(u8 taskId);
 static void DisplayInitialPlayMessage(void);
@@ -166,6 +176,8 @@ static void PlayAgainPrompt(void);
 static void ProcessPlayAgainPromptInput(u8 taskId);
 static void ShuffleDeckMessage(void);
 static void ProcessShuffleDeckInput(void);
+static void DisplayNotEnoughCoinsMessage(void);
+static void ProcessNotEnoughCoinsInput(void);
 static void DealCards(u8 taskId);
 static void ChooseCard(u8 taskId);
 static void ChangeCoinAmount(int delta);
@@ -178,6 +190,7 @@ static void StartUIAnim(u8 taskId, s16 nextState);
 static void WaitForUIAnimToFinish(u8 taskId);
 static void RemoveCardNumberFromBoard(int cardId);
 static void ShowAllCardNumbers(void);
+static void ResetAllRoundCounters(void);
 static void LoadCardBackGfx(void);
 static void LoadCardSelectionGfx(void);
 static void LoadCardGfx(int cardId);
@@ -186,6 +199,7 @@ static void CardEntry_SpriteCallback(struct Sprite *sprite);
 static void ChooseCard_SpriteCallback(struct Sprite *sprite);
 static void SlideBottomCardUp(struct Sprite *sprite);
 static void SlideOutCard(struct Sprite *sprite);
+static void ShowHelpBar(const u8 *str);
 
 static EWRAM_DATA struct CardFlip *sCardFlip = NULL;
 
@@ -196,6 +210,10 @@ static const u8 sYeahText[] = _("Yeah!");
 static const u8 sDarnText[] = _("Darn…");
 static const u8 sPlayAgainText[] = _("Want to play again?");
 static const u8 sShuffledCardsText[] = _("The cards have been shuffled.");
+static const u8 sNotEnoughCoinsText[] = _("You don't have enough COINS to\nplay.");
+static const u8 sHelpBar_Select[] = _("{A_BUTTON}SELECT");
+static const u8 sHelpBar_SelectExit[] = _("{A_BUTTON}SELECT {B_BUTTON}EXIT");
+static const u8 sHelpBar_MoveSelect[] = _("{DPAD_ALL}MOVE {A_BUTTON}SELECT");
 
 static const u32 sCardFlipBaseBgGfx[] = INCBIN_U32("graphics/card_flip/card_flip_base_bg_tiles.4bpp.lz");
 static const u16 sCardFlipBaseBgPalette[] = INCBIN_U16("graphics/card_flip/card_flip_base_bg_tiles.gbapal");
@@ -205,6 +223,18 @@ static const u16 sCoinDigitsPalette[] = INCBIN_U16("graphics/card_flip/coin_digi
 static const u32 sCardNumbersGfx[] = INCBIN_U32("graphics/card_flip/card_numbers.4bpp.lz");
 static const u16 sCardNumbersPalette[] = INCBIN_U16("graphics/card_flip/card_numbers.gbapal");
 
+static const u32 sCard_Pikachu1Gfx[] = INCBIN_U32("graphics/card_flip/pikachu_1.4bpp.lz");
+static const u16 sCard_Pikachu1Palette[] = INCBIN_U16("graphics/card_flip/pikachu_1.gbapal");
+static const u32 sCard_Pikachu2Gfx[] = INCBIN_U32("graphics/card_flip/pikachu_2.4bpp.lz");
+static const u16 sCard_Pikachu2Palette[] = INCBIN_U16("graphics/card_flip/pikachu_2.gbapal");
+static const u32 sCard_Pikachu3Gfx[] = INCBIN_U32("graphics/card_flip/pikachu_3.4bpp.lz");
+static const u16 sCard_Pikachu3Palette[] = INCBIN_U16("graphics/card_flip/pikachu_3.gbapal");
+static const u32 sCard_Pikachu4Gfx[] = INCBIN_U32("graphics/card_flip/pikachu_4.4bpp.lz");
+static const u16 sCard_Pikachu4Palette[] = INCBIN_U16("graphics/card_flip/pikachu_4.gbapal");
+static const u32 sCard_Pikachu5Gfx[] = INCBIN_U32("graphics/card_flip/pikachu_5.4bpp.lz");
+static const u16 sCard_Pikachu5Palette[] = INCBIN_U16("graphics/card_flip/pikachu_5.gbapal");
+static const u32 sCard_Pikachu6Gfx[] = INCBIN_U32("graphics/card_flip/pikachu_6.4bpp.lz");
+static const u16 sCard_Pikachu6Palette[] = INCBIN_U16("graphics/card_flip/pikachu_6.gbapal");
 static const u32 sCard_JigglyPuff1Gfx[] = INCBIN_U32("graphics/card_flip/jigglypuff_1.4bpp.lz");
 static const u16 sCard_JigglyPuff1Palette[] = INCBIN_U16("graphics/card_flip/jigglypuff_1.gbapal");
 static const u32 sCard_JigglyPuff2Gfx[] = INCBIN_U32("graphics/card_flip/jigglypuff_2.4bpp.lz");
@@ -217,6 +247,30 @@ static const u32 sCard_JigglyPuff5Gfx[] = INCBIN_U32("graphics/card_flip/jigglyp
 static const u16 sCard_JigglyPuff5Palette[] = INCBIN_U16("graphics/card_flip/jigglypuff_5.gbapal");
 static const u32 sCard_JigglyPuff6Gfx[] = INCBIN_U32("graphics/card_flip/jigglypuff_6.4bpp.lz");
 static const u16 sCard_JigglyPuff6Palette[] = INCBIN_U16("graphics/card_flip/jigglypuff_6.gbapal");
+static const u32 sCard_Poliwag1Gfx[] = INCBIN_U32("graphics/card_flip/poliwag_1.4bpp.lz");
+static const u16 sCard_Poliwag1Palette[] = INCBIN_U16("graphics/card_flip/poliwag_1.gbapal");
+static const u32 sCard_Poliwag2Gfx[] = INCBIN_U32("graphics/card_flip/poliwag_2.4bpp.lz");
+static const u16 sCard_Poliwag2Palette[] = INCBIN_U16("graphics/card_flip/poliwag_2.gbapal");
+static const u32 sCard_Poliwag3Gfx[] = INCBIN_U32("graphics/card_flip/poliwag_3.4bpp.lz");
+static const u16 sCard_Poliwag3Palette[] = INCBIN_U16("graphics/card_flip/poliwag_3.gbapal");
+static const u32 sCard_Poliwag4Gfx[] = INCBIN_U32("graphics/card_flip/poliwag_4.4bpp.lz");
+static const u16 sCard_Poliwag4Palette[] = INCBIN_U16("graphics/card_flip/poliwag_4.gbapal");
+static const u32 sCard_Poliwag5Gfx[] = INCBIN_U32("graphics/card_flip/poliwag_5.4bpp.lz");
+static const u16 sCard_Poliwag5Palette[] = INCBIN_U16("graphics/card_flip/poliwag_5.gbapal");
+static const u32 sCard_Poliwag6Gfx[] = INCBIN_U32("graphics/card_flip/poliwag_6.4bpp.lz");
+static const u16 sCard_Poliwag6Palette[] = INCBIN_U16("graphics/card_flip/poliwag_6.gbapal");
+static const u32 sCard_Oddish1Gfx[] = INCBIN_U32("graphics/card_flip/oddish_1.4bpp.lz");
+static const u16 sCard_Oddish1Palette[] = INCBIN_U16("graphics/card_flip/oddish_1.gbapal");
+static const u32 sCard_Oddish2Gfx[] = INCBIN_U32("graphics/card_flip/oddish_2.4bpp.lz");
+static const u16 sCard_Oddish2Palette[] = INCBIN_U16("graphics/card_flip/oddish_2.gbapal");
+static const u32 sCard_Oddish3Gfx[] = INCBIN_U32("graphics/card_flip/oddish_3.4bpp.lz");
+static const u16 sCard_Oddish3Palette[] = INCBIN_U16("graphics/card_flip/oddish_3.gbapal");
+static const u32 sCard_Oddish4Gfx[] = INCBIN_U32("graphics/card_flip/oddish_4.4bpp.lz");
+static const u16 sCard_Oddish4Palette[] = INCBIN_U16("graphics/card_flip/oddish_4.gbapal");
+static const u32 sCard_Oddish5Gfx[] = INCBIN_U32("graphics/card_flip/oddish_5.4bpp.lz");
+static const u16 sCard_Oddish5Palette[] = INCBIN_U16("graphics/card_flip/oddish_5.gbapal");
+static const u32 sCard_Oddish6Gfx[] = INCBIN_U32("graphics/card_flip/oddish_6.4bpp.lz");
+static const u16 sCard_Oddish6Palette[] = INCBIN_U16("graphics/card_flip/oddish_6.gbapal");
 
 static const u32 sCardBackGfx[] = INCBIN_U32("graphics/card_flip/card_back.4bpp.lz");
 static const u16 sCardBackPalette[] = INCBIN_U16("graphics/card_flip/card_back.gbapal");
@@ -230,6 +284,8 @@ static const u16 sBetOutlineHorizontalPalette[] = INCBIN_U16("graphics/card_flip
 static const u16 sBetOutlineVerticalPalette[] = INCBIN_U16("graphics/card_flip/bet_outline_vertical.gbapal");
 static const u16 sBetOutlineVerticalSmallPalette[] = INCBIN_U16("graphics/card_flip/bet_outline_vertical_small.gbapal");
 
+static const u32 sRoundCountersGfx[] = INCBIN_U32("graphics/card_flip/round_counters.4bpp.lz");
+static const u16 sRoundCountersPalette[] = INCBIN_U16("graphics/card_flip/round_counters.gbapal");
 
 static const struct WindowTemplate sCardFlipWinTemplates[] = {
     {
@@ -240,6 +296,15 @@ static const struct WindowTemplate sCardFlipWinTemplates[] = {
         .height = 4,
         .paletteNum = 15,
         .baseBlock = 0x14,
+    },
+    {
+        .bg = CARD_FLIP_BG_TEXT,
+        .tilemapLeft = 15,
+        .tilemapTop = 0,
+        .width = 15,
+        .height = 2,
+        .paletteNum = 11,
+        .baseBlock = 0x117,
     },
     DUMMY_WIN_TEMPLATE,
 };
@@ -376,58 +441,99 @@ static const struct SpriteTemplate sCardNumberSpriteTemplate = {
     .callback = SpriteCallbackDummy,
 };
 
+static const struct OamData sRoundCounterOamData = {
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = 0,
+    .bpp = ST_OAM_4BPP,
+    .shape = ST_OAM_SQUARE,
+    .x = 0,
+    .matrixNum = 0,
+    .size = 0,
+    .tileNum = 0,
+    .priority = 1,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const union AnimCmd sRoundCounterAnimCmd_0[] = {
+    ANIMCMD_FRAME(0, 0),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sRoundCounterAnimCmd_1[] = {
+    ANIMCMD_FRAME(1, 0),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sRoundCounterAnimCmds[] = {
+    sRoundCounterAnimCmd_0,
+    sRoundCounterAnimCmd_1,
+};
+
+static const struct SpriteTemplate sRoundCounterSpriteTemplate = {
+    .tileTag = TAG_ROUND_COUNTERS,
+    .paletteTag = TAG_ROUND_COUNTERS,
+    .oam = &sRoundCounterOamData,
+    .anims = sRoundCounterAnimCmds,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
 static const u32 *const sCardSpriteGfx[] = {
+    sCard_Pikachu1Gfx,
+    sCard_Pikachu2Gfx,
+    sCard_Pikachu3Gfx,
+    sCard_Pikachu4Gfx,
+    sCard_Pikachu5Gfx,
+    sCard_Pikachu6Gfx,
     sCard_JigglyPuff1Gfx,
     sCard_JigglyPuff2Gfx,
     sCard_JigglyPuff3Gfx,
     sCard_JigglyPuff4Gfx,
     sCard_JigglyPuff5Gfx,
     sCard_JigglyPuff6Gfx,
-    sCard_JigglyPuff1Gfx,
-    sCard_JigglyPuff2Gfx,
-    sCard_JigglyPuff3Gfx,
-    sCard_JigglyPuff4Gfx,
-    sCard_JigglyPuff5Gfx,
-    sCard_JigglyPuff6Gfx,
-    sCard_JigglyPuff1Gfx,
-    sCard_JigglyPuff2Gfx,
-    sCard_JigglyPuff3Gfx,
-    sCard_JigglyPuff4Gfx,
-    sCard_JigglyPuff5Gfx,
-    sCard_JigglyPuff6Gfx,
-    sCard_JigglyPuff1Gfx,
-    sCard_JigglyPuff2Gfx,
-    sCard_JigglyPuff3Gfx,
-    sCard_JigglyPuff4Gfx,
-    sCard_JigglyPuff5Gfx,
-    sCard_JigglyPuff6Gfx,
+    sCard_Poliwag1Gfx,
+    sCard_Poliwag2Gfx,
+    sCard_Poliwag3Gfx,
+    sCard_Poliwag4Gfx,
+    sCard_Poliwag5Gfx,
+    sCard_Poliwag6Gfx,
+    sCard_Oddish1Gfx,
+    sCard_Oddish2Gfx,
+    sCard_Oddish3Gfx,
+    sCard_Oddish4Gfx,
+    sCard_Oddish5Gfx,
+    sCard_Oddish6Gfx,
 };
 
 static const u16 *const sCardSpritePalettes[] = {
+    sCard_Pikachu1Palette,
+    sCard_Pikachu2Palette,
+    sCard_Pikachu3Palette,
+    sCard_Pikachu4Palette,
+    sCard_Pikachu5Palette,
+    sCard_Pikachu6Palette,
     sCard_JigglyPuff1Palette,
     sCard_JigglyPuff2Palette,
     sCard_JigglyPuff3Palette,
     sCard_JigglyPuff4Palette,
     sCard_JigglyPuff5Palette,
     sCard_JigglyPuff6Palette,
-    sCard_JigglyPuff1Palette,
-    sCard_JigglyPuff2Palette,
-    sCard_JigglyPuff3Palette,
-    sCard_JigglyPuff4Palette,
-    sCard_JigglyPuff5Palette,
-    sCard_JigglyPuff6Palette,
-    sCard_JigglyPuff1Palette,
-    sCard_JigglyPuff2Palette,
-    sCard_JigglyPuff3Palette,
-    sCard_JigglyPuff4Palette,
-    sCard_JigglyPuff5Palette,
-    sCard_JigglyPuff6Palette,
-    sCard_JigglyPuff1Palette,
-    sCard_JigglyPuff2Palette,
-    sCard_JigglyPuff3Palette,
-    sCard_JigglyPuff4Palette,
-    sCard_JigglyPuff5Palette,
-    sCard_JigglyPuff6Palette,
+    sCard_Poliwag1Palette,
+    sCard_Poliwag2Palette,
+    sCard_Poliwag3Palette,
+    sCard_Poliwag4Palette,
+    sCard_Poliwag5Palette,
+    sCard_Poliwag6Palette,
+    sCard_Oddish1Palette,
+    sCard_Oddish2Palette,
+    sCard_Oddish3Palette,
+    sCard_Oddish4Palette,
+    sCard_Oddish5Palette,
+    sCard_Oddish6Palette,
 };
 
 static const struct OamData sCardOamData = {
@@ -599,12 +705,19 @@ static const struct CompressedSpriteSheet sBetOutlineVerticalSmallSpriteSheet = 
     .tag = TAG_BET_OUTLINE_VERTICAL_SMALL,
 };
 
-static const struct SpritePalette sCoinFlipSpritePalettes[] = {
+static const struct CompressedSpriteSheet sRoundCountersSpriteSheet = {
+    .data = sRoundCountersGfx,
+    .size = 0x40,
+    .tag = TAG_ROUND_COUNTERS,
+};
+
+static const struct SpritePalette sCardFlipSpritePalettes[] = {
     {sCoinDigitsPalette, TAG_COIN_DIGIT},
     {sCardNumbersPalette, TAG_CARD_NUMBER},
     {sBetOutlineHorizontalPalette, TAG_BET_OUTLINE_HORIZONTAL},
     {sBetOutlineVerticalPalette, TAG_BET_OUTLINE_VERTICAL},
     {sBetOutlineVerticalSmallPalette, TAG_BET_OUTLINE_VERTICAL_SMALL},
+    {sRoundCountersPalette, TAG_ROUND_COUNTERS},
     {0},
 };
 
@@ -1255,11 +1368,17 @@ static void InitCardFlipScreen(void)
         LoadCompressedSpriteSheet(&sBetOutlineHorizontalSpriteSheet);
         LoadCompressedSpriteSheet(&sBetOutlineVerticalSpriteSheet);
         LoadCompressedSpriteSheet(&sBetOutlineVerticalSmallSpriteSheet);
-        LoadSpritePalettes(sCoinFlipSpritePalettes);
+        LoadCompressedSpriteSheet(&sRoundCountersSpriteSheet);
+        LoadSpritePalettes(sCardFlipSpritePalettes);
+        LoadMonIconPalettes();
+        LoadPalette(stdpal_get(2), 11 * 16, 32); // palette for WIN_HELP
         LoadCardBackGfx();
         LoadCardSelectionGfx();
         InitCoinDigitSprites();
+        InitMonIcons();
         InitCardNumberSprites();
+        InitRoundCounterSprites();
+        ShowHelpBar(sHelpBar_SelectExit);
         gMain.state++;
     case 5:
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
@@ -1342,6 +1461,12 @@ static void CardFlipMain(u8 taskId)
     case CARD_FLIP_STATE_SHUFFLE_DECK_INPUT:
         ProcessShuffleDeckInput();
         break;
+    case CARD_FLIP_NOT_ENOUGH_COINS:
+        DisplayNotEnoughCoinsMessage();
+        break;
+    case CARD_FLIP_NOT_ENOUGH_COINS_INPUT:
+        ProcessNotEnoughCoinsInput();
+        break;
     case CARD_FLIP_STATE_START_EXIT:
         StartExitCardFlip();
         break;
@@ -1367,10 +1492,16 @@ static void ShowAllCardNumbers(void)
         gSprites[sCardFlip->cardNumberSpriteIds[i]].invisible = 0;
 }
 
+static void ResetAllRoundCounters(void)
+{
+    int i;
+    for (i = 0; i < 12; i++)
+        StartSpriteAnim(&gSprites[sCardFlip->roundCounterSpriteIds[i]], 0);
+}
+
 static void InitCardFlipTable(u8 taskId)
 {
     int i;
-    sCardFlip->betWindowId = 0xFF;
     for (i = 0; i < ARRAY_COUNT(sCardFlip->betOutlineSpriteIds); i++)
         sCardFlip->betOutlineSpriteIds[i] = MAX_SPRITES;
 
@@ -1404,8 +1535,15 @@ static void ProcessPlayPromptInput(void)
     if (selection == 0)
     {
         sub_8197434(0, TRUE);
-        ResetAndShuffleCardDeck();
-        sCardFlip->state = CARD_FLIP_STATE_PLAY_DEAL_CARDS;
+        if (GetCoins() >= sCardFlip->numCoinsEntry)
+        {
+            ResetAndShuffleCardDeck();
+            sCardFlip->state = CARD_FLIP_STATE_PLAY_DEAL_CARDS;
+        }
+        else
+        {
+            sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS;
+        }
     }
     else if (selection == 1 || selection == MENU_B_PRESSED)
     {
@@ -1416,9 +1554,11 @@ static void ProcessPlayPromptInput(void)
 
 static void DealCards(u8 taskId)
 {
-    // TODO: Update round lights
-
+    ShowHelpBar(sHelpBar_Select);
     ChangeCoinAmount(-sCardFlip->numCoinsEntry);
+
+    // Light up current round light.
+    StartSpriteAnim(&gSprites[sCardFlip->roundCounterSpriteIds[sCardFlip->deckTop / 2]], 1);
 
     // Create two card sprites and slide them in.
     sCardFlip->cardBackSpriteIds[0] = CreateSprite(&sCardBackSpriteTemplate, -32, 61, 3);
@@ -1452,6 +1592,7 @@ static void DisplayPlaceBetText_WaitButtonPress(void)
     if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         sub_8197434(0, TRUE);
+        ShowHelpBar(sHelpBar_MoveSelect);
         DrawBetType(sCardFlip->betType);
         sCardFlip->state = CARD_FLIP_STATE_PLACE_BET;
     }
@@ -1564,6 +1705,7 @@ static void RevealCard(void)
     u8 wonBet;
     int x, y;
     DestroySprite(&gSprites[sCardFlip->cardBackSpriteIds[sCardFlip->selectedCardIndex]]);
+    ShowHelpBar(sHelpBar_Select);
 
     // Randomly choose one of the top two cards.  The actual card the player
     // selected does not matter.
@@ -1621,10 +1763,11 @@ static void AwardCoins(void)
 
 static void PlayAgainMessage(void)
 {
+    ShowHelpBar(sHelpBar_SelectExit);
     NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
     AddTextPrinterParameterized(WIN_TEXT, 1, sPlayAgainText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
     CopyWindowToVram(WIN_TEXT, 3);
-    sCardFlip->state = CARD_FLIP_STATE_PLAY_AGAIN_PROMPT;   
+    sCardFlip->state = CARD_FLIP_STATE_PLAY_AGAIN_PROMPT;
 }
 
 static void PlayAgainPrompt(void)
@@ -1643,12 +1786,19 @@ static void ProcessPlayAgainPromptInput(u8 taskId)
     {
         sub_8197434(0, TRUE);
         RemoveCardNumberFromBoard(CARD_ID(sCardFlip->drawnCard));
-        gSprites[sCardFlip->cardFrontSpriteId].data[0] = taskId;
-        gSprites[sCardFlip->cardFrontSpriteId].callback = SlideOutCard;
-        if (sCardFlip->deckTop >= 24)
-            StartUIAnim(taskId, CARD_FLIP_STATE_SHUFFLE_DECK_MESSAGE);
+        if (GetCoins() >= sCardFlip->numCoinsEntry)
+        {
+            gSprites[sCardFlip->cardFrontSpriteId].data[0] = taskId;
+            gSprites[sCardFlip->cardFrontSpriteId].callback = SlideOutCard;
+            if (sCardFlip->deckTop >= NUM_CARDS)
+                StartUIAnim(taskId, CARD_FLIP_STATE_SHUFFLE_DECK_MESSAGE);
+            else
+                StartUIAnim(taskId, CARD_FLIP_STATE_PLAY_DEAL_CARDS);
+        }
         else
-            StartUIAnim(taskId, CARD_FLIP_STATE_PLAY_DEAL_CARDS);
+        {
+            sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS;
+        }
     }
     else if (selection == 1 || selection == MENU_B_PRESSED)
     {
@@ -1675,6 +1825,24 @@ static void ProcessShuffleDeckInput(void)
     }
 }
 
+static void DisplayNotEnoughCoinsMessage(void)
+{
+    NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
+    AddTextPrinterParameterized(WIN_TEXT, 1, sNotEnoughCoinsText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+    CopyWindowToVram(WIN_TEXT, 3);
+    sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS_INPUT;
+}
+
+static void ProcessNotEnoughCoinsInput(void)
+{
+    if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        sub_8197434(0, TRUE);
+        sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
+    }
+}
+
 static void InitCoinDigitSprites(void)
 {
     int i;
@@ -1691,6 +1859,14 @@ static void InitCoinDigitSprites(void)
         sCardFlip->coinDigitSpriteIds[i] = CreateSprite(&sCoinDigitSpriteTemplate, x, y, 3);
         StartSpriteAnim(&gSprites[sCardFlip->coinDigitSpriteIds[i]], digit);
     }
+}
+
+static void InitMonIcons(void)
+{
+    sCardFlip->suitSpriteIds[2] = CreateMonIcon(SPECIES_PIKACHU, SpriteCallbackDummy, 136, 40, 3, 0, 0);
+    sCardFlip->suitSpriteIds[1] = CreateMonIcon(SPECIES_JIGGLYPUFF, SpriteCallbackDummy, 166, 40, 3, 0, 0);
+    sCardFlip->suitSpriteIds[2] = CreateMonIcon(SPECIES_POLIWAG, SpriteCallbackDummy, 196, 40, 3, 0, 0);
+    sCardFlip->suitSpriteIds[3] = CreateMonIcon(SPECIES_ODDISH, SpriteCallbackDummy, 226, 40, 3, 0, 0);
 }
 
 static void InitCardNumberSprites(void)
@@ -1711,6 +1887,16 @@ static void InitCardNumberSprites(void)
             sCardFlip->cardNumberSpriteIds[index] = CreateSprite(&sCardNumberSpriteTemplate, x, y, 3);
             StartSpriteAnim(&gSprites[sCardFlip->cardNumberSpriteIds[index]], i);
         }
+    }
+}
+
+static void InitRoundCounterSprites(void)
+{
+    int i;
+    for (i = 0; i < 12; i++)
+    {
+        sCardFlip->roundCounterSpriteIds[i] = CreateSprite(&sRoundCounterSpriteTemplate, i * 8 + 5, 21, 3);
+        StartSpriteAnim(&gSprites[sCardFlip->roundCounterSpriteIds[i]], 0);
     }
 }
 
@@ -1826,6 +2012,7 @@ static void ResetAndShuffleCardDeck(void)
     sCardFlip->deckTop = 0;
 
     ShowAllCardNumbers();
+    ResetAllRoundCounters();
 }
 
 static void StartUIAnim(u8 taskId, s16 nextState)
@@ -1990,6 +2177,16 @@ static void SlideOutCard(struct Sprite *sprite)
     }
 }
 
+static void ShowHelpBar(const u8 *str)
+{
+    const u8 color[3] = { 15, 1, 2 };
+
+    FillWindowPixelBuffer(WIN_HELP, 0xFF);
+    AddTextPrinterParameterized3(WIN_HELP, 0, GetStringRightAlignXOffset(0, str, 120) - 4, 0, color, 0, str);
+    PutWindowTilemap(WIN_HELP);
+    CopyWindowToVram(WIN_HELP, 3);
+}
+
 #undef CARD_FLIP_BG_TEXT
 #undef CARD_FLIP_BG_BET_OUTLINE
 #undef CARD_FLIP_BG_BASE
@@ -2000,9 +2197,14 @@ static void SlideOutCard(struct Sprite *sprite)
 #undef TAG_CARD_2
 #undef TAG_CARD_BACK
 #undef TAG_CARD_SELECTION
+#undef TAG_BET_OUTLINE_HORIZONTAL
+#undef TAG_BET_OUTLINE_VERTICAL
+#undef TAG_BET_OUTLINE_VERTICAL_SMALL
+#undef TAG_ROUND_COUNTERS
 #undef NUM_NUMBERS
 #undef NUM_SUITS
 #undef NUM_CARDS
 #undef CARD
+#undef CARD_ID
 #undef CARD_NUMBER
 #undef CARD_SUIT
