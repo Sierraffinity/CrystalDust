@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_setup.h"
 #include "battle_tower.h"
 #include "cable_club.h"
 #include "data2.h"
@@ -26,6 +27,7 @@
 #include "overworld.h"
 #include "party_menu.h"
 #include "pokeblock.h"
+#include "pokegear_phone.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "random.h"
@@ -3861,7 +3863,7 @@ bool32 sub_813B4E0(void)
     int index = GetRematchIdxByTrainerIdx(gSpecialVar_0x8004);
     if (index >= 0)
     {
-        if (FlagGet(FLAG_MATCH_CALL_REGISTERED + index) == TRUE)
+        if (FlagGet(gPhoneContacts[gRematchTable[index].phoneContactId].registeredFlag) == TRUE)
             return TRUE;
     }
     return FALSE;

@@ -95,9 +95,12 @@
 #define EXT_CTRL_CODE_HIGHLIGHT 0x2
 #define EXT_CTRL_CODE_SHADOW    0x3
 //
+#define EXT_CTRL_CODE_SIZE      0x6
 #define EXT_CTRL_CODE_UNKNOWN_7 0x7
 //
 #define EXT_CTRL_CODE_CLEAR     0x11
+//
+#define EXT_CTRL_CODE_CLEAR_TO  0x13
 //
 #define EXT_CTRL_CODE_JPN       0x15
 #define EXT_CTRL_CODE_ENG       0x16
