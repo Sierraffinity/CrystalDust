@@ -74,7 +74,7 @@
     "id": "MAP_CHERRYGROVE_CITY",
     "layout": "LAYOUT_CHERRYGROVE_CITY",
     "map_type": "MAP_TYPE_TOWN",
-    "music": "MUS_MACHI_S4",
+    "music": "MUS_CHERRYGROVE",
     "name": "CherrygroveCity",
     "object_events": [
         {
@@ -84,7 +84,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "0",
+            "script": "CherrygroveCity_EventScript_GuideGent",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 51,

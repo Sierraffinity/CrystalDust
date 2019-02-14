@@ -11,7 +11,7 @@
     "id": "MAP_CHERRYGROVE_CITY_HOUSE1",
     "layout": "LAYOUT_HOUSE1",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_MACHI_S4",
+    "music": "MUS_CHERRYGROVE",
     "name": "CherrygroveCity_House1",
     "object_events": [
         {

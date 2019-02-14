@@ -249,7 +249,7 @@ $(MID_SUBDIR)/mus_machi_s2.s: %.s: %.mid
 $(MID_SUBDIR)/mus_machi_s3.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G032 -V080
 
-$(MID_SUBDIR)/mus_machi_s4.s: %.s: %.mid
+$(MID_SUBDIR)/mus_cherrygrove.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G019 -V080
 
 $(MID_SUBDIR)/mus_machupi.s: %.s: %.mid

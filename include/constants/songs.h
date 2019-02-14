@@ -283,11 +283,11 @@
 #define MUS_PCC 356             // Crystal - Pokémon Communication Center
 #define MUS_NIBI 357            // GSC - Viridian/Saffron/Pewter/etc
 #define MUS_SUIKUN 358          // Crystal - Battle! Legendary Beasts
-#define MUS_ROUTE29 359          // Route 101
-#define MUS_ROUTE34 360        // Route 110
+#define MUS_ROUTE29 359         // Route 29
+#define MUS_ROUTE34 360         // Route 34/35/36/37/40/41/45/46
 #define MUS_DOORO_X3 361        // Route 120
 #define MUS_MACHI_S2 362        // Petalburg City
-#define MUS_MACHI_S4 363        // Oldale/Lavaridge Town
+#define MUS_CHERRYGROVE 363     // Cherrygrove/Mahogany
 #define MUS_GIM 364             // Gym
 #define MUS_NAMINORI 365        // Surfing
 #define MUS_DAN01 366           // Caves and Darkness

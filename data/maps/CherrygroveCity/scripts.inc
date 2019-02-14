@@ -14,6 +14,21 @@ CherrygroveCity_EventScript_Slogan::
 	msgbox CherrygroveCity_Text_Slogan, MSGBOX_SIGN
 	end
 
+CherrygroveCity_EventScript_GuideGent::
+	lock
+	faceplayer
+	msgbox CherrygroveCity_Text_GuideGent_Intro, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq CherrygroveCity_EventScript_GuideGent_Accepted
+	msgbox CherrygroveCity_Text_GuideGent_Rejected
+	release
+	end
+
+CherrygroveCity_EventScript_GuideGent_Accepted:
+	setflag FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT
+	release
+	end
+
 CherrygroveCity_EventScript_Teacher::
 	lock
 	faceplayer
@@ -39,6 +54,19 @@ CherrygroveCity_EventScript_YoungsterPostDex:
 	msgbox CherrygroveCity_Text_YoungsterPostDex
 	release
 	end
+
+CherrygroveCity_Text_GuideGent_Intro:
+	.string "You're a rookie trainer, aren't you?\n"
+	.string "I can tell!\p"
+	.string "That's okay!\n"
+	.string "Everyone is a rookie at some point!\p"
+	.string "If you'd like, I can teach you a\n"
+	.string "few things.$"
+
+CherrygroveCity_Text_GuideGent_Rejected:
+	.string "Oh…\n"
+	.string "It's something I enjoy doing…\p"
+	.string "Fine. Come see me when you like.$"
 
 CherrygroveCity_Text_TeacherPreMapCard:
 	.string "Did you talk to the old man by the\n"

@@ -364,7 +364,7 @@ gSongTable:: @ 86B49F0
 	song mus_route34, 0, 0          @ Route 34/35/36/37/40/41/45/46
 	song mus_dooro_x3, 0, 0         @ Route 120
 	song mus_machi_s2, 0, 0         @ Petalburg City
-	song mus_machi_s4, 0, 0         @ Oldale Town
+	song mus_cherrygrove, 0, 0      @ Cherrygrove/Mahogany
 	song mus_gim, 0, 0              @ Pokémon Gym
 	song mus_naminori, 0, 0         @ Surf
 	song mus_dan01, 0, 0            @ Petalburg Woods
