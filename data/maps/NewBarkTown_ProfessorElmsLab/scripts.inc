@@ -359,6 +359,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1::
 	lockall
 	setvar VAR_TEMP_1, 0
 	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideToLeftTrigger
+	waitmovement 0
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain
 
 NewBarkTown_ProfessorElmsLab_Movement_AideToLeftTrigger:
@@ -371,6 +372,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2::
 	lockall
 	setvar VAR_TEMP_1, 1
 	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideToMiddleTrigger
+	waitmovement 0
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain
 
 NewBarkTown_ProfessorElmsLab_Movement_AideToMiddleTrigger:
@@ -384,6 +386,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3::
 	lockall
 	setvar VAR_TEMP_1, 2
 	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger
+	waitmovement 0
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain
 
 NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger:
@@ -395,23 +398,25 @@ NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger:
 	step_end
 
 NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain:
-	waitmovement 0
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_TakeThisForErrand
 	giveitem_std ITEM_POTION
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy
 	closemessage
 	compare VAR_TEMP_1, 0
-	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromLeft
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromLeft
 	compare VAR_TEMP_1, 1
-	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle
 	compare VAR_TEMP_1, 2
-	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight
+	setvar VAR_0x4050, 4
+	releaseall
 	end
 
 NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromLeft:
 	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideFromLeftTrigger
-	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionPostReturn
+	waitmovement 0
+	return
 
 NewBarkTown_ProfessorElmsLab_Movement_AideFromLeftTrigger:
 	walk_left
@@ -420,7 +425,8 @@ NewBarkTown_ProfessorElmsLab_Movement_AideFromLeftTrigger:
 
 NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle:
 	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger
-	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionPostReturn
+	waitmovement 0
+	return
 
 NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger:
 	walk_left
@@ -430,7 +436,8 @@ NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger:
 
 NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight:
 	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger
-	goto NewBarkTown_ProfessorElmsLab_EventScript_AidePotionPostReturn
+	waitmovement 0
+	return
 
 NewBarkTown_ProfessorElmsLab_Movement_AideFromRightTrigger:
 	walk_left
@@ -438,12 +445,6 @@ NewBarkTown_ProfessorElmsLab_Movement_AideFromRightTrigger:
 	walk_left
 	walk_left
 	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_AidePotionPostReturn:
-	waitmovement 0
-	setvar VAR_0x4050, 4
-	releaseall
-	end
 
 NewBarkTown_ProfessorElmsLab_EventScript_Aide::
 	lock
@@ -570,7 +571,8 @@ NewBarkTown_ProfessorElmsLab_Text_ElmsAcquaintance:
 
 NewBarkTown_ProfessorElmsLab_Text_RaiseAPokemon:
 	.string "I want you to raise one of the\n"
-	.string "POKéMON contained in these BALLS.\p"
+	.string "POKéMON contained in these\l"
+	.string "POKé BALLS.\p"
 	.string "You'll be that POKéMON's first\n"
 	.string "partner, {PLAYER}!\p"
 	.string "Go on. Pick one!$"
@@ -585,7 +587,7 @@ NewBarkTown_ProfessorElmsLab_Text_ElmWildMonAdvice:
 
 NewBarkTown_ProfessorElmsLab_Text_Cyndaquil:
 	.string "ELM: Oh! CYNDAQUIL is your choice.\n"
-	.string "Raising it would be a breeze.\p"
+	.string "Raising it would be a cinch.\p"
 	.string "So, {PLAYER}, you'll take CYNDAQUIL,\n"
 	.string "the FIRE POKéMON?$"
 

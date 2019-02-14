@@ -18,14 +18,248 @@ CherrygroveCity_EventScript_GuideGent::
 	lock
 	faceplayer
 	msgbox CherrygroveCity_Text_GuideGent_Intro, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq CherrygroveCity_EventScript_GuideGent_Accepted
-	msgbox CherrygroveCity_Text_GuideGent_Rejected
+	compare VAR_RESULT, 0
+	goto_if_eq CherrygroveCity_EventScript_GuideGent_Rejected
+	msgbox CherrygroveCity_Text_GuideGent_OkayThen
+	closemessage
+	playbgm MUS_TSURETEK, 0
+	compare VAR_FACING, 4
+	call_if_eq CherrygroveCity_EventScript_GuideGentFromLeft
+	compare VAR_FACING, 2
+	call_if_eq CherrygroveCity_EventScript_GuideGentFromBelow
+	compare VAR_FACING, 3
+	call_if_eq CherrygroveCity_EventScript_GuideGentFromRight
+	msgbox CherrygroveCity_Text_GuideGent_PokemonCenter
+	closemessage
+	applymovement 1, CherrygroveCity_Movement_ToMart
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_ToMart
+	waitmovement 0
+	msgbox CherrygroveCity_Text_GuideGent_PokemonMart
+	closemessage
+	applymovement 1, CherrygroveCity_Movement_ToRoute30
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_ToRoute30
+	waitmovement 0
+	msgbox CherrygroveCity_Text_GuideGent_Route30
+	closemessage
+	applymovement 1, CherrygroveCity_Movement_GuideGentToSea
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerToSea
+	waitmovement 0
+	msgbox CherrygroveCity_Text_GuideGent_Sea
+	closemessage
+	applymovement 1, CherrygroveCity_Movement_GuideGentToGuideGentsHouse
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerToGuideGentsHouse
+	waitmovement 0
+	delay 60
+	turnobject 1, 3
+	turnobject EVENT_OBJ_ID_PLAYER, 4
+	msgbox CherrygroveCity_Text_GuideGent_ItsMyHouse
+	textcolor MSG_COLOR_BLACK
+	playfanfare MUS_FANFA4
+	setflag FLAG_SYS_HAS_MAP_CARD
+	message CherrygroveCity_Text_GuideGent_GetMapCard1
+	waitfanfare
+	msgbox CherrygroveCity_Text_GuideGent_GetMapCard2
+	call RestoreOriginalTextColor
+	msgbox CherrygroveCity_Text_GuideGent_Pokegear
+	closemessage
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	turnobject EVENT_OBJ_ID_PLAYER, 2
+	applymovement 1, CherrygroveCity_Movement_WalkUp
+	waitmovement 0
+	opendoor 42, 12
+	waitdooranim
+	applymovement 1, CherrygroveCity_Movement_WalkUp
+	waitmovement 0
+	removeobject 1
+	closedoor 42, 12
+	waitdooranim
+	setflag FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT
 	release
 	end
 
-CherrygroveCity_EventScript_GuideGent_Accepted:
-	setflag FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT
+CherrygroveCity_Movement_ToMart:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+CherrygroveCity_Movement_ToRoute30:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+CherrygroveCity_Movement_GuideGentToSea:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_in_place_fastest_left
+	step_end
+
+CherrygroveCity_Movement_PlayerToSea:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+CherrygroveCity_Movement_GuideGentToGuideGentsHouse:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fastest_up
+	step_end
+
+CherrygroveCity_Movement_PlayerToGuideGentsHouse:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fastest_up
+	step_end
+
+CherrygroveCity_Movement_WalkUp:
+	walk_up
+	step_end
+
+CherrygroveCity_EventScript_GuideGentFromLeft:
+	applymovement 1, CherrygroveCity_Movement_GuideGentFromLeft
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerFromLeft
+	waitmovement 0
+	return
+
+CherrygroveCity_Movement_GuideGentFromLeft:
+	delay_16
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+CherrygroveCity_Movement_PlayerFromLeft:
+	walk_down
+	walk_in_place_fastest_up
+	delay_8
+	delay_4
+	walk_up
+	walk_left
+	walk_left
+	walk_up
+	step_end
+
+CherrygroveCity_EventScript_GuideGentFromBelow:
+	applymovement 1, CherrygroveCity_Movement_GuideGentFromBelow
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerFromBelow
+	waitmovement 0
+	return
+
+CherrygroveCity_Movement_GuideGentFromBelow:
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+CherrygroveCity_Movement_PlayerFromBelow:
+	walk_up
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	step_end
+
+CherrygroveCity_EventScript_GuideGentFromRight:
+	applymovement 1, CherrygroveCity_Movement_GuideGentFromRight
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerFromRight
+	waitmovement 0
+	return
+
+CherrygroveCity_Movement_GuideGentFromRight:
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+
+CherrygroveCity_Movement_PlayerFromRight:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	step_end
+
+CherrygroveCity_EventScript_GuideGent_Rejected:
+	msgbox CherrygroveCity_Text_GuideGent_Rejected
 	release
 	end
 
@@ -62,6 +296,49 @@ CherrygroveCity_Text_GuideGent_Intro:
 	.string "Everyone is a rookie at some point!\p"
 	.string "If you'd like, I can teach you a\n"
 	.string "few things.$"
+
+CherrygroveCity_Text_GuideGent_OkayThen:
+	.string "Okay, then!\n"
+	.string "Follow me!$"
+
+CherrygroveCity_Text_GuideGent_PokemonCenter:
+	.string "This is a POKéMON CENTER.\p"
+	.string "They heal your POKéMON in no time\n"
+	.string "at all.\p"
+	.string "You'll be relying on them a lot, so\n"
+	.string "you better learn about them.$"
+
+CherrygroveCity_Text_GuideGent_PokemonMart:
+	.string "This is a POKéMON MART.\p"
+	.string "They sell POKé BALLS for catching\n"
+	.string "wild POKéMON and other useful items.$"
+
+CherrygroveCity_Text_GuideGent_Route30:
+	.string "ROUTE 30 is out this way.\p"
+	.string "TRAINERS will be battling their\n"
+	.string "prized POKéMON there.$"
+
+CherrygroveCity_Text_GuideGent_Sea:
+	.string "This is the sea, as you can see.\p"
+	.string "Some POKéMON are found only in\n"
+	.string "water.$"
+
+CherrygroveCity_Text_GuideGent_ItsMyHouse:
+	.string "Here…\p"
+	.string "It's my house!\n"
+	.string "Thanks for your company.\p"
+	.string "Let me give you a small gift.$"
+
+CherrygroveCity_Text_GuideGent_GetMapCard1:
+	.string "{PLAYER} received the MAP CARD.$"
+
+CherrygroveCity_Text_GuideGent_GetMapCard2:
+	.string "{PLAYER}'s POKéGEAR now has a MAP!$"
+
+CherrygroveCity_Text_GuideGent_Pokegear:
+	.string "The POKéGEAR becomes more useful\n"
+	.string "as you add CARDS.\p"
+	.string "I wish you luck on your journey!$"
 
 CherrygroveCity_Text_GuideGent_Rejected:
 	.string "Oh…\n"

@@ -47,25 +47,29 @@ NewBarkTown_EventScript_Rival::
 	delay 10
 	compare VAR_FACING, 2
 	call_if_eq NewBarkTown_EventScript_Rival_FacingNorth
-	applymovement VAR_LAST_TALKED, NewBarkTown_Movement_RivalEncounter_RivalStepsLeft
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackLeft
-	goto NewBarkTown_EventScript_Rival_ReadyingKick
-
-NewBarkTown_EventScript_Rival_FacingNorth:
-	applymovement VAR_LAST_TALKED, NewBarkTown_Movement_RivalEncounter_RivalStepsDown
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackDown
-
-NewBarkTown_EventScript_Rival_ReadyingKick:
-	waitmovement 0
+	compare VAR_FACING, 2
+	call_if_ne NewBarkTown_EventScript_Rival_FacingRight
 	delay 10
 	playse SE_KOUKA_L
-	applymovement VAR_LAST_TALKED, NewBarkTown_Movement_RivalEncounter_RivalKicksPlayer
+	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalKicksPlayer
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerJumpsBack
 	waitmovement 0
-	applymovement VAR_LAST_TALKED, NewBarkTown_Movement_RivalEncounter_RivalStepsToWindow
+	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalStepsToWindow
 	waitmovement 0
 	releaseall
 	end
+
+NewBarkTown_EventScript_Rival_FacingNorth:
+	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalStepsDown
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackDown
+	waitmovement 0
+	return
+
+NewBarkTown_EventScript_Rival_FacingRight:
+	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalStepsLeft
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackLeft
+	waitmovement 0
+	return
 
 NewBarkTown_Movement_RivalEncounter_RivalStepsLeft:
 	walk_left

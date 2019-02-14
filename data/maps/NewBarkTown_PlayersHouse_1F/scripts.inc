@@ -154,6 +154,7 @@ NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight:
 
 NewBarkTown_PlayersHouse_1F_NeighborMain:
 	msgbox NewBarkTown_PlayersHouse_1F_Text_NeighborMain
+	closemessage
 	applymovement VAR_LAST_TALKED, Move_WalkInPlaceFastestRight
 	waitmovement 0
 	release
