@@ -162,7 +162,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_MAUVILLE_CITY_WALLY",
-            "graphics_id": "EVENT_OBJ_GFX_WALLY",
+            "graphics_id": "EVENT_OBJ_GFX_RIVAL",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",

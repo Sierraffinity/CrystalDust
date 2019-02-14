@@ -8,11 +8,11 @@
     "connections": null,
     "coord_events": [
     ],
-    "id": "MAP_OLDALE_TOWN_POKEMON_CENTER_1F",
+    "id": "MAP_CHERRYGROVE_CITY_POKEMON_CENTER_1F",
     "layout": "LAYOUT_POKEMON_CENTER_1F",
     "map_type": "MAP_TYPE_INDOOR",
     "music": "MUS_POKECEN",
-    "name": "OldaleTown_PokemonCenter_1F",
+    "name": "CherrygroveCity_PokemonCenter_1F",
     "object_events": [
         {
             "elevation": 3,
@@ -21,7 +21,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "OldaleTown_PokemonCenter_1F_EventScript_1FC01A",
+            "script": "CherrygroveCity_PokemonCenter_1F_EventScript_1FC01A",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 7,
@@ -34,7 +34,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "OldaleTown_PokemonCenter_1F_EventScript_1FC028",
+            "script": "CherrygroveCity_PokemonCenter_1F_EventScript_1FC028",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 5,
@@ -47,7 +47,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "OldaleTown_PokemonCenter_1F_EventScript_1FC031",
+            "script": "CherrygroveCity_PokemonCenter_1F_EventScript_1FC031",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 12,
@@ -60,7 +60,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "OldaleTown_PokemonCenter_1F_EventScript_1FC03A",
+            "script": "CherrygroveCity_PokemonCenter_1F_EventScript_1FC03A",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 2,
@@ -72,14 +72,14 @@
     "show_map_name": false,
     "warp_events": [
         {
-            "dest_map": "MAP_OLDALE_TOWN",
+            "dest_map": "MAP_CHERRYGROVE_CITY",
             "dest_warp_id": 2,
             "elevation": 3,
             "x": 7,
             "y": 8
         },
         {
-            "dest_map": "MAP_OLDALE_TOWN_POKEMON_CENTER_2F",
+            "dest_map": "MAP_CHERRYGROVE_CITY_POKEMON_CENTER_2F",
             "dest_warp_id": 0,
             "elevation": 4,
             "x": 1,

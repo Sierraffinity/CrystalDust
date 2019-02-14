@@ -54,7 +54,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WALLY",
+      "graphics_id": "EVENT_OBJ_GFX_RIVAL",
       "x": 12,
       "y": 25,
       "elevation": 4,
@@ -93,7 +93,7 @@
       "flag": "FLAG_ITEM_VICTORY_ROAD_1F_PP_UP"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WALLY",
+      "graphics_id": "EVENT_OBJ_GFX_RIVAL",
       "x": 31,
       "y": 9,
       "elevation": 3,

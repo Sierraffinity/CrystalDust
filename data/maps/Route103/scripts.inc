@@ -144,7 +144,7 @@ Route103_EventScript_1EC5A2:: @ 81EC5A2
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_RIVAL
 	setflag FLAG_DEFEATED_RIVAL_ROUTE103
 	setvar VAR_0x40C7, 1
-	clearflag FLAG_HIDE_OLDALE_TOWN_RIVAL
+	clearflag FLAG_HIDE_CHERRYGROVE_CITY_RIVAL
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	releaseall

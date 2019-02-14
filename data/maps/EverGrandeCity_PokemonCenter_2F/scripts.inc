@@ -6,15 +6,15 @@ EverGrandeCity_PokemonCenter_2F_MapScripts:: @ 8229CE0
 	.byte 0
 
 EverGrandeCity_PokemonCenter_2F_EventScript_229CF5:: @ 8229CF5
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 EverGrandeCity_PokemonCenter_2F_EventScript_229CFB:: @ 8229CFB
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 EverGrandeCity_PokemonCenter_2F_EventScript_229D01:: @ 8229D01
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 
 

@@ -1,5 +1,5 @@
 Route102_MapConnectionsList:
-	connection down, -24, MAP_OLDALE_TOWN
+	connection down, -24, MAP_CHERRYGROVE_CITY
 	connection up, -22, MAP_ROUTE103
 
 Route102_MapConnections:

@@ -2,7 +2,7 @@
 #define GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
 
 static const u8 sMapName_NewBarkTown[] = _("NEW BARK TOWN");
-static const u8 sMapName_OldaleTown[] = _("OLDALE TOWN");
+static const u8 sMapName_CherrygroveCity[] = _("CHERRYGROVE CITY");
 static const u8 sMapName_DewfordTown[] = _("DEWFORD TOWN");
 static const u8 sMapName_LavaridgeTown[] = _("LAVARIDGE TOWN");
 static const u8 sMapName_FallarborTown[] = _("FALLARBOR TOWN");
@@ -201,7 +201,7 @@ static const u8 sMapName_TrainerHill[] = _("TRAINER HILL");
 
 const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_NEW_BARK_TOWN]           = {21, 10, 1, 1, sMapName_NewBarkTown},
-    [MAPSEC_CHERRYGROVE_CITY]               = { 4,  9, 1, 1, sMapName_OldaleTown},
+    [MAPSEC_CHERRYGROVE_CITY]               = { 4,  9, 1, 1, sMapName_CherrygroveCity},
     [MAPSEC_AZALEA_TOWN]              = { 2, 14, 1, 1, sMapName_DewfordTown},
     [MAPSEC_LAVARIDGE_TOWN]            = { 5,  3, 1, 1, sMapName_LavaridgeTown},
     [MAPSEC_FALLARBOR_TOWN]            = { 3,  0, 1, 1, sMapName_FallarborTown},

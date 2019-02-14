@@ -6,14 +6,14 @@ LilycoveCity_PokemonCenter_2F_MapScripts:: @ 821C75D
 	.byte 0
 
 LilycoveCity_PokemonCenter_2F_EventScript_21C772:: @ 821C772
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 LilycoveCity_PokemonCenter_2F_EventScript_21C778:: @ 821C778
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 LilycoveCity_PokemonCenter_2F_EventScript_21C77E:: @ 821C77E
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 

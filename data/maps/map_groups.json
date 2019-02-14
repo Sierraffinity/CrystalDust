@@ -10,7 +10,7 @@
         "SootopolisCity",
         "EverGrandeCity",
         "NewBarkTown",
-        "OldaleTown",
+        "CherrygroveCity",
         "DewfordTown",
         "LavaridgeTown",
         "FallarborTown",
@@ -193,11 +193,11 @@
         "MtChimney_CableCarStation"
     ],
     "gMapGroup2": [
-        "OldaleTown_House1",
-        "OldaleTown_House2",
-        "OldaleTown_PokemonCenter_1F",
-        "OldaleTown_PokemonCenter_2F",
-        "OldaleTown_Mart"
+        "CherrygroveCity_House1",
+        "CherrygroveCity_House2",
+        "CherrygroveCity_PokemonCenter_1F",
+        "CherrygroveCity_PokemonCenter_2F",
+        "CherrygroveCity_Mart"
     ],
     "gMapGroup20": [
         "Route114_FossilManiacsHouse",

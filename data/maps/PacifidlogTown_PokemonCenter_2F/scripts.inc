@@ -6,14 +6,14 @@ PacifidlogTown_PokemonCenter_2F_MapScripts:: @ 8203635
 	.byte 0
 
 PacifidlogTown_PokemonCenter_2F_EventScript_20364A:: @ 820364A
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 PacifidlogTown_PokemonCenter_2F_EventScript_203650:: @ 8203650
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 PacifidlogTown_PokemonCenter_2F_EventScript_203656:: @ 8203656
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 

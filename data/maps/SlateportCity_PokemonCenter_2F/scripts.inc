@@ -6,14 +6,14 @@ SlateportCity_PokemonCenter_2F_MapScripts:: @ 820DC21
 	.byte 0
 
 SlateportCity_PokemonCenter_2F_EventScript_20DC36:: @ 820DC36
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 SlateportCity_PokemonCenter_2F_EventScript_20DC3C:: @ 820DC3C
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 SlateportCity_PokemonCenter_2F_EventScript_20DC42:: @ 820DC42
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 

@@ -6,14 +6,14 @@ FallarborTown_PokemonCenter_2F_MapScripts:: @ 8200EEB
 	.byte 0
 
 FallarborTown_PokemonCenter_2F_EventScript_200F00:: @ 8200F00
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 FallarborTown_PokemonCenter_2F_EventScript_200F06:: @ 8200F06
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 FallarborTown_PokemonCenter_2F_EventScript_200F0C:: @ 8200F0C
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 

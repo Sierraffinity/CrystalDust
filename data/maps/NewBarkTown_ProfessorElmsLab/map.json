@@ -135,8 +135,8 @@
       "x": 5,
       "y": 9,
       "elevation": 3,
-      "var": "VAR_0x4051",
-      "var_value": 0,
+      "var": "VAR_0x4050",
+      "var_value": 3,
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1"
     },
     {
@@ -144,8 +144,8 @@
       "x": 6,
       "y": 9,
       "elevation": 3,
-      "var": "VAR_0x4051",
-      "var_value": 0,
+      "var": "VAR_0x4050",
+      "var_value": 3,
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2"
     },
     {
@@ -153,8 +153,8 @@
       "x": 7,
       "y": 9,
       "elevation": 3,
-      "var": "VAR_0x4051",
-      "var_value": 0,
+      "var": "VAR_0x4050",
+      "var_value": 3,
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3"
     }
   ],

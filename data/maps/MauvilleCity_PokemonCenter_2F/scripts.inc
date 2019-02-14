@@ -6,15 +6,15 @@ MauvilleCity_PokemonCenter_2F_MapScripts:: @ 8211008
 	.byte 0
 
 MauvilleCity_PokemonCenter_2F_EventScript_21101D:: @ 821101D
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 MauvilleCity_PokemonCenter_2F_EventScript_211023:: @ 8211023
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 MauvilleCity_PokemonCenter_2F_EventScript_211029:: @ 8211029
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 
 MauvilleCity_PokemonCenter_2F_EventScript_21102F:: @ 821102F

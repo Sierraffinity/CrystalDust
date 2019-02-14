@@ -6,14 +6,14 @@ SootopolisCity_PokemonCenter_2F_MapScripts:: @ 822676D
 	.byte 0
 
 SootopolisCity_PokemonCenter_2F_EventScript_226782:: @ 8226782
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 SootopolisCity_PokemonCenter_2F_EventScript_226788:: @ 8226788
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 SootopolisCity_PokemonCenter_2F_EventScript_22678E:: @ 822678E
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 

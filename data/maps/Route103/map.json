@@ -48,7 +48,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_ROUTE_103_RIVAL",
+            "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT",
             "graphics_id": "EVENT_OBJ_GFX_VAR_0",
             "movement_range_x": 0,
             "movement_range_y": 0,

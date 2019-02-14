@@ -8,7 +8,7 @@ PetalburgCity_Gym_EventObjects:
 	object_event 7, EVENT_OBJ_GFX_WOMAN_5, 0, 4, 16, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 1, 0, PetalburgCity_Gym_EventScript_205522, 0
 	object_event 8, EVENT_OBJ_GFX_MAN_3, 0, 4, 29, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 1, 0, PetalburgCity_Gym_EventScript_20546E, 0
 	object_event 9, EVENT_OBJ_GFX_MAN_2, 0, 3, 109, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, PetalburgCity_Gym_EventScript_20574F, FLAG_HIDE_PETALBURG_GYM_GREETER
-	object_event 10, EVENT_OBJ_GFX_WALLY, 0, 4, 111, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, 0x0, FLAG_HIDE_PETALBURG_GYM_WALLY
+	object_event 10, EVENT_OBJ_GFX_RIVAL, 0, 4, 111, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, 0x0, FLAG_HIDE_PETALBURG_GYM_WALLY
 	object_event 11, EVENT_OBJ_GFX_POKEFAN_M, 0, 1, 7, 3, MOVEMENT_TYPE_FACE_UP, 1, 1, 0, 0, 0x0, FLAG_HIDE_PETALBURG_GYM_WALLYS_UNCLE
 
 PetalburgCity_Gym_MapWarps:

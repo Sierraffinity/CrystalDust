@@ -441,7 +441,7 @@ NewBarkTown_ProfessorElmsLab_Movement_AideFromRightTrigger:
 
 NewBarkTown_ProfessorElmsLab_EventScript_AidePotionPostReturn:
 	waitmovement 0
-	setvar VAR_0x4051, 1
+	setvar VAR_0x4050, 4
 	releaseall
 	end
 

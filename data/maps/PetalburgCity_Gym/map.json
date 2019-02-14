@@ -132,7 +132,7 @@
       "flag": "FLAG_HIDE_PETALBURG_GYM_GREETER"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WALLY",
+      "graphics_id": "EVENT_OBJ_GFX_RIVAL",
       "x": 4,
       "y": 111,
       "elevation": 3,
