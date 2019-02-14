@@ -269,11 +269,7 @@ const struct CompressedSpriteSheet gIntro2FlygonSpriteSheet[] = {
     { NULL }
 };
 
-const struct SpritePalette gUnknown_085F530C[] = {
-    { NULL, 1002 },
-    { NULL, 1003 },
-    { NULL,        1004 },
-    { NULL,        1005 },
+const struct SpritePalette gIntroBikeAndFlygonPalette[] = {
     { NULL }
 };
 
@@ -358,6 +354,7 @@ void load_intro_part2_graphics(u8 a)
     gReservedSpritePaletteCount = 8;
 }
 
+// Note: This is only called with a=1.
 void sub_817B150(u8 a)
 {
     switch (a)
@@ -509,7 +506,7 @@ void sub_817B3A8(u8 a)
                                 | DISPCNT_OBJ_ON);
 }
 
-u8 sub_817B3DC(u8 a, u16 b, u16 c, u16 d)
+u8 CreateBicycleAnimationTask(u8 a, u16 b, u16 c, u16 d)
 {
     u8 taskId = CreateTask(&sub_817B458, 0);
 
