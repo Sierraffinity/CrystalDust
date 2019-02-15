@@ -49,6 +49,7 @@ NewBarkTown_PlayersHouse_1F_MomEncounter:
 	message NewBarkTown_PlayersHouse_1F_PlayerGetsPokegear
 	waitfanfare
 	setflag FLAG_SYS_POKEGEAR_GET
+	setflag FLAG_PHONE_CARD_MOM
 	textcolor MSG_COLOR_RED
 	msgbox NewBarkTown_PlayersHouse_1F_MomPokegearEssential
 
