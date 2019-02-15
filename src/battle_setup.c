@@ -42,7 +42,7 @@
 #include "fldeff_misc.h"
 #include "field_control_avatar.h"
 #include "mirage_tower.h"
-#include "pokegear_phone.h"
+#include "phone_contact.h"
 #include "constants/map_types.h"
 #include "constants/battle_frontier.h"
 

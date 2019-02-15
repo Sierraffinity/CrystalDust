@@ -27,7 +27,7 @@
 #include "overworld.h"
 #include "party_menu.h"
 #include "pokeblock.h"
-#include "pokegear_phone.h"
+#include "phone_contact.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "random.h"

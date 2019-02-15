@@ -9,12 +9,13 @@
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
 #include "main.h"
+#include "match_call.h"
 #include "menu.h"
 #include "new_game.h"
 #include "overworld.h"
 #include "palette.h"
+#include "phone_contact.h"
 #include "pokedex.h"
-#include "pokegear_phone.h"
 #include "pokemon.h"
 #include "random.h"
 #include "region_map.h"
@@ -39,9 +40,10 @@
 struct MatchCallState
 {
     u32 minutes;
-    u16 trainerId;
+    u16 callerId;
     u8 stepCounter;
-    u8 triggeredFromScript;
+    u8 triggeredFromScript:1;
+    u8 forcedPhoneCallId:7;
 };
 
 struct MatchCallTrainerTextInfo
@@ -73,10 +75,15 @@ struct BattleFrontierStreakInfo
     u16 streak;
 };
 
+struct ForcedPhoneCall
+{
+    u16 flag;
+    u16 phoneContactId;
+};
+
 EWRAM_DATA struct MatchCallState gMatchCallState = {0};
 EWRAM_DATA struct BattleFrontierStreakInfo gBattleFrontierStreakInfo = {0};
 
-bool32 SelectMatchCallMessage(int, u8 *);
 static u32 GetCurrentTotalMinutes(struct Time *);
 static u32 GetNumRegisteredNPCs(void);
 static u32 GetActiveMatchCallTrainerId(u32);
@@ -969,6 +976,13 @@ static const struct MatchCallText *const sMatchCallGeneralTopics[] =
     sMatchCallBattlePyramidTexts,
 };
 
+static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
+    {
+        .flag = FLAG_FORCE_PHONE_CALL_ROSE,
+        .phoneContactId = PHONE_CONTACT_ROSE,
+    },
+};
+
 extern const u8 gUnknown_082A5C9C[];
 extern const u8 gUnknown_082A5D2C[];
 extern const u8 gUnknown_082A633D[];
@@ -1049,16 +1063,33 @@ static bool32 SelectMatchCallTrainer(void)
     if (!numRegistered)
         return FALSE;
 
-    gMatchCallState.trainerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
+    gMatchCallState.callerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
     gMatchCallState.triggeredFromScript = 0;
-    if (gMatchCallState.trainerId == REMATCH_TABLE_ENTRIES)
+    if (gMatchCallState.callerId == REMATCH_TABLE_ENTRIES)
         return FALSE;
 
-    matchCallId = GetTrainerMatchCallId(gMatchCallState.trainerId);
+    matchCallId = GetTrainerMatchCallId(gMatchCallState.callerId);
     if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(matchCallId))
         return FALSE;
 
     return TRUE;
+}
+
+static bool32 SelectForcedPhoneCall(void)
+{
+    int i;
+
+    gMatchCallState.forcedPhoneCallId = 0;
+    for (i = 0; i < ARRAY_COUNT(sForcedPhoneCalls); i++)
+    {
+        if (FlagGet(sForcedPhoneCalls[i].flag) && FlagGet(gPhoneContacts[sForcedPhoneCalls[i].phoneContactId].registeredFlag))
+        {
+            gMatchCallState.forcedPhoneCallId = i + 1;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
 }
 
 static u32 GetNumRegisteredNPCs(void)
@@ -1092,7 +1123,13 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 
 bool32 TryStartMatchCall(void)
 {
-    if (FlagGet(FLAG_HAS_MATCH_CALL) && UpdateMatchCallStepCounter() && UpdateMatchCallMinutesCounter()
+    if (MapAllowsMatchCall() & SelectForcedPhoneCall())
+    {
+        StartMatchCall();
+        return TRUE;
+    }
+
+    if (UpdateMatchCallStepCounter() && UpdateMatchCallMinutesCounter()
      && CheckMatchCallChance() && MapAllowsMatchCall() && SelectMatchCallTrainer())
     {
         StartMatchCall();
@@ -1240,15 +1277,34 @@ static bool32 sub_81962B0(u8 taskId)
 
 static bool32 sub_81962D8(u8 taskId)
 {
+    const u8 *message;
     s16 *taskData = gTasks[taskId].data;
     if (!ExecuteMatchCallTextPrinter(taskData[2]))
     {
         FillWindowPixelBuffer(taskData[2], 0x88);
         if (!gMatchCallState.triggeredFromScript)
-            SelectMatchCallMessage(gMatchCallState.trainerId, gStringVar4);
-
-        InitMatchCallTextPrinter(taskData[2], gStringVar4);
-        return TRUE;
+        {
+            if (gMatchCallState.forcedPhoneCallId)
+            {
+                const struct ForcedPhoneCall *forcedPhoneCall = &sForcedPhoneCalls[gMatchCallState.forcedPhoneCallId - 1];
+                const struct PhoneContact *phoneContact = &gPhoneContacts[forcedPhoneCall->phoneContactId];
+                message = phoneContact->selectMessage(phoneContact, TRUE);
+                FlagClear(forcedPhoneCall->flag);
+                InitMatchCallTextPrinter(taskData[2], message);
+                return TRUE;
+            }
+            else
+            {
+                SelectMatchCallMessage(gMatchCallState.callerId, gStringVar4, TRUE);
+                InitMatchCallTextPrinter(taskData[2], gStringVar4);
+                return TRUE;
+            }
+        }
+        else
+        {
+            InitMatchCallTextPrinter(taskData[2], gStringVar4);
+            return TRUE;
+        }
     }
 
     return FALSE;
@@ -1415,7 +1471,7 @@ static u32 sub_8196774(int arg0)
     return REMATCH_TABLE_ENTRIES;
 }
 
-bool32 SelectMatchCallMessage(int trainerId, u8 *str)
+bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer)
 {
     u32 matchCallId;
     const struct MatchCallText *matchCallText;
@@ -1428,7 +1484,9 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str)
     {
         matchCallText = GetSameRouteMatchCallText(matchCallId, str);
     }
-    else if (sub_8196D74(matchCallId))
+    // // TODO: Disable ability to ask for rematch until making decision about daily rematch flags.
+    else if (FALSE /*(!isCallingPlayer && gPhoneContacts[gRematchTable[matchCallId].phoneContactId].canAcceptRematch(gLocalTime.dayOfWeek, gLocalTime.hours))*/
+          || (isCallingPlayer  && sub_8196D74(matchCallId)))
     {
         matchCallText = GetDifferentRouteMatchCallText(matchCallId, str);
         retVal = TRUE;
@@ -1653,7 +1711,7 @@ static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)
     u8 timeOfDay;
     
     RtcCalcLocalTime();
-    timeOfDay = GetTimeOfDay();
+    timeOfDay = GetCurrentTimeOfDay();
 
     if (gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED)) // ??? This check is nonsense.
     {

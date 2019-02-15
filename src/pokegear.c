@@ -2,7 +2,6 @@
 #include "main.h"
 #include "pokegear.h"
 #include "alloc.h"
-#include "battle.h"
 #include "battle_setup.h"
 #include "bg.h"
 #include "data2.h"
@@ -16,7 +15,7 @@
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
-#include "pokegear_phone.h"
+#include "phone_contact.h"
 #include "radio.h"
 #include "random.h"
 #include "region_map.h"
@@ -77,8 +76,6 @@ static EWRAM_DATA struct {
     bool8 twentyFourHourMode;
     u8 currentRadioStation;
 } sPokegearStruct = {0};
-
-extern const u8 gTrainerClassNames[][13];
 
 void CB2_InitPokegear(void);
 static void VBlankCB(void);
@@ -1302,7 +1299,6 @@ static void PhoneCard_ReturnToMain(u8 taskId)
 }
 
 static const u8 sPhoneCallText_Ellipsis[] = _("………………\p");
-static const u8 sTestText[] = _("Hiya helloooo!\nBye.");
 static const u8 sPhoneCallText_NobodyAnswered[] = _("Nobody answered the call…");
 
 static void PhoneCard_PlaceCall(u8 taskId)
@@ -1358,6 +1354,13 @@ static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 palette
     FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 7), x + width, y + height, 1, 1);
 }
 
+static bool8 CanPhoneMakeCallsInCurrentLocation(void)
+{
+    return Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType);
+}
+
+static const u8 sPhoneCallText_CallCantBeMadeHere[] = _("A call can't be made from here.");
+
 static void PhoneCard_ExecuteCallStart(u8 taskId)
 {
     const struct PhoneContact *phoneContact;
@@ -1371,8 +1374,10 @@ static void PhoneCard_ExecuteCallStart(u8 taskId)
         RtcCalcLocalTime();
         FillWindowPixelBuffer(gTasks[taskId].tPhoneCallWindowId, 0x11);
         phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
-        if (phoneContact->isAvailable(gLocalTime.dayOfWeek, gLocalTime.hours))
-            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sTestText, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+        if (!CanPhoneMakeCallsInCurrentLocation())
+            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_CallCantBeMadeHere, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+        else if (IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
+            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, phoneContact->selectMessage(phoneContact, FALSE), 32, 1, GetPlayerTextSpeedDelay(), NULL);
         else
             AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_NobodyAnswered, 32, 1, GetPlayerTextSpeedDelay(), NULL);
 
@@ -1611,21 +1616,15 @@ static void UnloadRadioCard(void)
     DestroyTask(taskId);
 }
 
-static const u8 sPhoneContactName_UnknownContact[] = _("UNKNOWN CONTACT");
-
 static void InitPhoneCardData(void)
 {
-    int i, j, l;
-    int classXOffset;
-    const u8 *src;
-    u8 *dest;
-    u8 *contactName;
+    int i;
     u8 contacts[PHONE_CONTACT_COUNT];
     int contactCount = 0;
 
     for (i = 0; i < PHONE_CONTACT_COUNT; i++)
     {
-        if (TRUE || FlagGet(gPhoneContacts[i].registeredFlag))
+        if (FlagGet(gPhoneContacts[i].registeredFlag))
         {
             contacts[contactCount] = i;
             contactCount++;
@@ -1645,40 +1644,7 @@ static void InitPhoneCardData(void)
             struct ListMenuItem *item = &sPokegearStruct.phoneContactItems[i];
             item->id = i;
             sPokegearStruct.phoneContactIds[i] = contacts[i];
-            if (phoneContact->customDisplayName)
-            {
-                item->name = phoneContact->customDisplayName;
-            }
-            else if (phoneContact->rematchTrainerId != 0xFF)
-            {
-                int trainerId = gRematchTable[phoneContact->rematchTrainerId].trainerIds[0];
-                src = gTrainers[trainerId].trainerName;
-                dest = sPokegearStruct.phoneContactNames + i * PHONE_CARD_MAX_NAME_LENGTH;
-                j = 0;
-                for (l = 0; src[l] != EOS; l++)
-                    dest[j++] = src[l];
-
-                dest[j++] = CHAR_COLON;
-                dest[j++] = EXT_CTRL_CODE_BEGIN;
-                dest[j++] = EXT_CTRL_CODE_SIZE;
-                dest[j++] = 0;
-
-                classXOffset = GetStringRightAlignXOffset(0, gTrainerClassNames[gTrainers[trainerId].trainerClass], 128);
-                dest[j++] = EXT_CTRL_CODE_BEGIN;
-                dest[j++] = EXT_CTRL_CODE_CLEAR_TO;
-                dest[j++] = classXOffset;
-
-                src = gTrainerClassNames[gTrainers[trainerId].trainerClass];
-                for (l = 0; src[l] != EOS; l++)
-                    dest[j++] = src[l];
-
-                dest[j++] = EOS;
-                item->name = dest;
-            }
-            else
-            {
-                item->name = sPhoneContactName_UnknownContact;
-            }
+            item->name = BuildPhoneContactDisplayName(phoneContact, sPokegearStruct.phoneContactNames + i * PHONE_CARD_MAX_NAME_LENGTH);
         }
     }
 }

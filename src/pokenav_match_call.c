@@ -3,7 +3,7 @@
 #include "global.h"
 #include "battle_setup.h"
 #include "event_data.h"
-#include "pokegear_phone.h"
+#include "phone_contact.h"
 #include "string_util.h"
 #include "battle.h"
 #include "gym_leader_rematch.h"

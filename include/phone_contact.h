@@ -1,18 +1,18 @@
-#ifndef GUARD_POKEGEAR_PHONE_H
-#define GUARD_POKEGEAR_PHONE_H
+#ifndef GUARD_PHONE_CONTACT_H
+#define GUARD_PHONE_CONTACT_H
 
-typedef void (*PhoneContactLogicCB)(void);
-typedef bool8 (*PhoneContactAvailabilityCB)(s8 dayOfWeek, s8 hour);
+struct PhoneContact;
+typedef const u8 *(*PhoneContactSelectMessage)(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
 typedef bool8 (*PhoneContactAcceptRematchCB)(s8 dayOfWeek, s8 hour);
 
 struct PhoneContact
 {
     const u8 *customDisplayName;
-    PhoneContactLogicCB updateState;
-    PhoneContactAvailabilityCB isAvailable;
+    PhoneContactSelectMessage selectMessage;
     PhoneContactAcceptRematchCB canAcceptRematch;
     u16 registeredFlag;
     u8 rematchTrainerId;
+    u8 availability;
     u8 isPermanent;
 };
 
@@ -100,6 +100,14 @@ enum {
     PHONE_CONTACT_COUNT,
 };
 
+enum
+{
+    PHONE_AVAILABILITY_ALWAYS,
+};
+
 extern const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT];
 
-#endif //GUARD_POKEGEAR_PHONE_H
+bool8 IsPhoneContactAvailable(const struct PhoneContact *phoneContact, s8 dayOfWeek, s8 hour);
+const u8 *BuildPhoneContactDisplayName(const struct PhoneContact *phoneContact, u8 *dest);
+
+#endif //GUARD_PHONE_CONTACT_H
