@@ -93,7 +93,6 @@ static bool32 TrainerIsEligibleForRematch(int);
 static void StartMatchCall(void);
 static void ExecuteMatchCall(u8);
 static void DrawMatchCallTextBoxBorder(u32, u32, u32);
-static void sub_8196694(u8);
 static void InitMatchCallTextPrinter(int, const u8 *);
 static bool32 ExecuteMatchCallTextPrinter(int);
 static const struct MatchCallText *GetSameRouteMatchCallText(int, u8 *);
@@ -1166,8 +1165,8 @@ static void StartMatchCall(void)
 
 static const u16 sUnknown_0860EA4C[] = INCBIN_U16("graphics/unknown/unknown_60EA4C.gbapal");
 static const u8 sUnknown_0860EA6C[] = INCBIN_U8("graphics/interface/menu_border.4bpp");
-static const u16 sPokeNavIconPalette[] = INCBIN_U16("graphics/pokenav/icon.gbapal");
-static const u32 sPokeNavIconGfx[] = INCBIN_U32("graphics/pokenav/icon.4bpp.lz");
+static const u16 sPokeNavIconPalette[] = INCBIN_U16("graphics/pokegear/phone_call_icon_with_bg.gbapal");
+static const u32 sPokeNavIconGfx[] = INCBIN_U32("graphics/pokegear/phone_call_icon_with_bg.4bpp.lz");
 
 static const u8 sText_PokenavCallEllipsis[] = _("………………\p");
 
@@ -1246,7 +1245,6 @@ static bool32 MoveMatchCallWindowToVram(u8 taskId)
     PutWindowTilemap(taskData[2]);
     DrawMatchCallTextBoxBorder(taskData[2], 0x270, 14);
     WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 15, 4, 4, 17, 1);
-    taskData[5] = CreateTask(sub_8196694, 10);
     CopyWindowToVram(taskData[2], 2);
     CopyBgTilemapBufferToVram(0);
     return TRUE;
@@ -1330,7 +1328,6 @@ static bool32 sub_8196390(u8 taskId)
     if (ChangeBgY(0, 0x600, 2) <= -0x2000)
     {
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
-        DestroyTask(taskData[5]);
         RemoveWindow(taskData[2]);
         CopyBgTilemapBufferToVram(0);
         return TRUE;
@@ -1413,21 +1410,6 @@ static bool32 ExecuteMatchCallTextPrinter(int windowId)
 
     RunTextPrinters();
     return IsTextPrinterActive(windowId);
-}
-
-static void sub_8196694(u8 taskId)
-{
-    s16 *taskData = gTasks[taskId].data;
-    if (++taskData[0] > 8)
-    {
-        taskData[0] = 0;
-        if (++taskData[1] > 7)
-            taskData[1] = 0;
-
-        taskData[2] = (taskData[1] * 16) + 0x279;
-        WriteSequenceToBgTilemapBuffer(0, taskData[2] | ~0xFFF, 1, 15, 4, 4, 17, 1);
-        CopyBgTilemapBufferToVram(0);
-    }
 }
 
 static bool32 TrainerIsEligibleForRematch(int matchCallId)
