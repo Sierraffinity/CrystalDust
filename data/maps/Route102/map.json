@@ -38,7 +38,7 @@
     "id": "MAP_ROUTE102",
     "layout": "LAYOUT_ROUTE102",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_ROUTE29",
+    "music": "MUS_ROUTE30",
     "name": "Route102",
     "object_events": [
         {
