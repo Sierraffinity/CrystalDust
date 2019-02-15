@@ -65,7 +65,8 @@ Route29_EventScript_FruitTree::
 	end
 
 Route29_Text_Youngster:
-	.string "Yo. How are your POKéMON?\p"
+	.string "Yo.\n"
+	.string "How are your POKéMON?\p"
 	.string "If they're weak and not ready for\n"
 	.string "battle, keep out of the grass.$"
 
