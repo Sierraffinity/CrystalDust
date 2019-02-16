@@ -10,6 +10,8 @@ struct PhoneContact
     const u8 *customDisplayName;
     PhoneContactSelectMessage selectMessage;
     PhoneContactAcceptRematchCB canAcceptRematch;
+    u8 mapNum;
+    u8 mapGroup;
     u16 registeredFlag;
     u8 rematchTrainerId;
     u8 availability;

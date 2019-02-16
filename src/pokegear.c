@@ -1356,10 +1356,11 @@ static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 palette
 
 static bool8 CanPhoneMakeCallsInCurrentLocation(void)
 {
-    return Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType);
+    return 1; // (gMapHeader.flags & 0x10) == 0;
 }
 
-static const u8 sPhoneCallText_CallCantBeMadeHere[] = _("A call can't be made from here.");
+static const u8 sPhoneCallText_OutOfService[] = _("You're out of the service area.");
+static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that person!");
 
 static void PhoneCard_ExecuteCallStart(u8 taskId)
 {
@@ -1375,7 +1376,9 @@ static void PhoneCard_ExecuteCallStart(u8 taskId)
         FillWindowPixelBuffer(gTasks[taskId].tPhoneCallWindowId, 0x11);
         phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
         if (!CanPhoneMakeCallsInCurrentLocation())
-            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_CallCantBeMadeHere, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_OutOfService, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+        else if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
+            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_JustGoTalkToThem, 32, 1, GetPlayerTextSpeedDelay(), NULL);
         else if (IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
             AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, phoneContact->selectMessage(phoneContact, FALSE), 32, 1, GetPlayerTextSpeedDelay(), NULL);
         else
