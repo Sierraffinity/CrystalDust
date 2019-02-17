@@ -298,5 +298,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DEC"
     }
-  ]
+  ],
+  "phone_service": true
 }

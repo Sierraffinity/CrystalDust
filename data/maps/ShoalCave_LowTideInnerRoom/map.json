@@ -136,5 +136,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "ShoalCave_LowTideInnerRoom_EventScript_23705A"
     }
-  ]
+  ],
+  "phone_service": true
 }

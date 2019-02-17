@@ -33,5 +33,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Underwater_SealedChamber_EventScript_2390FC"
     }
-  ]
+  ],
+  "phone_service": true
 }

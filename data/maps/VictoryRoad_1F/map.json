@@ -198,5 +198,6 @@
       "item": "ITEM_ULTRA_BALL",
       "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_1F_ULTRA_BALL"
     }
-  ]
+  ],
+  "phone_service": true
 }

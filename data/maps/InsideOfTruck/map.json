@@ -147,5 +147,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "InsideOfTruck_EventScript_23BF6C"
     }
-  ]
+  ],
+  "phone_service": true
 }

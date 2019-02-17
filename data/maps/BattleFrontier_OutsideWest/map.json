@@ -454,5 +454,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "BattleFrontier_OutsideWest_EventScript_271E6A"
     }
-  ]
+  ],
+  "phone_service": true
 }

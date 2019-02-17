@@ -107,5 +107,6 @@
       "script": "BattleFrontier_BattlePikeRandomRoom1_EventScript_2C408D"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

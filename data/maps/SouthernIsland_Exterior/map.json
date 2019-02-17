@@ -67,5 +67,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SouthernIsland_Exterior_EventScript_242A3C"
     }
-  ]
+  ],
+  "phone_service": true
 }

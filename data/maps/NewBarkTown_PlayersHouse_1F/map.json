@@ -91,5 +91,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "NewBarkTown_PlayersHouse_1F_TV"
     }
-  ]
+  ],
+  "phone_service": true
 }

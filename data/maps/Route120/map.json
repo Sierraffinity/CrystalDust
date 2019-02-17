@@ -854,5 +854,6 @@
       "elevation": 0,
       "secret_base_id": "SECRET_BASE_SHRUB1_4"
     }
-  ]
+  ],
+  "phone_service": true
 }

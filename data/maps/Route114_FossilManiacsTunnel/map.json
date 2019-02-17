@@ -71,5 +71,6 @@
       "script": "Route114_FossilManiacsTunnel_EventScript_22AF66"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

@@ -215,5 +215,6 @@
       "item": "ITEM_RARE_CANDY",
       "flag": "FLAG_HIDDEN_ITEM_MT_PYRE_SUMMIT_RARE_CANDY"
     }
-  ]
+  ],
+  "phone_service": true
 }

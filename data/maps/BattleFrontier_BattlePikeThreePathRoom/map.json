@@ -125,5 +125,6 @@
       "script": "BattleFrontier_BattlePikeThreePathRoom_EventScript_2C406D"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

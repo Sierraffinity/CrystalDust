@@ -62,5 +62,6 @@
       "script": "LilycoveCity_CoveLilyMotel_1F_EventScript_218211"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

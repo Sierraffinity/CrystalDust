@@ -106,5 +106,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SlateportCity_BattleTentLobby_EventScript_208A99"
     }
-  ]
+  ],
+  "phone_service": true
 }

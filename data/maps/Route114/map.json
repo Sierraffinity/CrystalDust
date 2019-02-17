@@ -505,5 +505,6 @@
       "item": "ITEM_REVIVE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_113_REVIVE"
     }
-  ]
+  ],
+  "phone_service": true
 }

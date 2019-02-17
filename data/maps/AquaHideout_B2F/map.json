@@ -185,5 +185,6 @@
       "script": "AquaHideout_B2F_EventScript_233DE5"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

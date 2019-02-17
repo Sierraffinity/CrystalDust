@@ -66,5 +66,6 @@
             "y": 7
         }
     ],
-    "weather": "WEATHER_NONE"
+    "weather": "WEATHER_NONE",
+    "phone_service": true
 }

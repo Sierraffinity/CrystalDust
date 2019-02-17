@@ -57,5 +57,6 @@
       "item": "ITEM_SACRED_ASH",
       "flag": "FLAG_HIDDEN_ITEM_NAVEL_ROCK_TOP_SACRED_ASH"
     }
-  ]
+  ],
+  "phone_service": true
 }
