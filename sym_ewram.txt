@@ -252,3 +252,4 @@ gUnknown_0203CF50: @ 203CF50
 	.include "src/trainer_hill.o"
 	.include "src/rayquaza_scene.o"
 	.include "src/pokegear.o"
+	.include "src/card_flip.o"
