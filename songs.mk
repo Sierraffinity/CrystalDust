@@ -624,7 +624,7 @@ $(MID_SUBDIR)/mus_tonekusa.s: %.s: %.mid
 $(MID_SUBDIR)/mus_tozan.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G052 -V078
 
-$(MID_SUBDIR)/mus_tsuretek.s: %.s: %.mid
+$(MID_SUBDIR)/mus_followme.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G066 -V074
 
 $(MID_SUBDIR)/mus_vs_front.s: %.s: %.mid

@@ -22,7 +22,7 @@ CherrygroveCity_EventScript_GuideGent::
 	goto_if_eq CherrygroveCity_EventScript_GuideGent_Rejected
 	msgbox CherrygroveCity_Text_GuideGent_OkayThen
 	closemessage
-	playbgm MUS_TSURETEK, 0
+	playbgm MUS_FOLLOWME, 0
 	compare VAR_FACING, 4
 	call_if_eq CherrygroveCity_EventScript_GuideGentFromLeft
 	compare VAR_FACING, 2

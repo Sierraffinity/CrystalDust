@@ -205,7 +205,7 @@ PetalburgCity_Gym_EventScript_204AAC:: @ 8204AAC
 	msgbox PetalburgCity_Gym_Text_205B0F, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_SPECIAL_FLAG_0x4001
-	playbgm MUS_TSURETEK, 0
+	playbgm MUS_FOLLOWME, 0
 	compare VAR_0x8008, 0
 	call_if_eq PetalburgCity_Gym_EventScript_204C78
 	compare VAR_0x8008, 1
@@ -488,7 +488,7 @@ PetalburgCity_Gym_EventScript_204F13:: @ 8204F13
 	msgbox PetalburgCity_Gym_Text_2063CA, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_SPECIAL_FLAG_0x4001
-	playbgm MUS_TSURETEK, 0
+	playbgm MUS_FOLLOWME, 0
 	compare VAR_0x8008, 1
 	call_if_eq PetalburgCity_Gym_EventScript_205041
 	compare VAR_0x8008, 2

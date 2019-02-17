@@ -37,7 +37,7 @@ RustboroCity_DevonCorp_3F_EventScript_21246E:: @ 821246E
 	waitmovement 0
 	msgbox RustboroCity_DevonCorp_3F_Text_212DE8, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_TSURETEK, 0
+	playbgm MUS_FOLLOWME, 0
 	applymovement 2, RustboroCity_DevonCorp_3F_Movement_212534
 	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_DevonCorp_3F_Movement_212558
 	waitmovement 0

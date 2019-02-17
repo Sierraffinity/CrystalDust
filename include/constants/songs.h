@@ -344,7 +344,7 @@
 #define MUS_KAKKOII 417         // Encounter! Electric Trainer
 #define MUS_MAINMENU 418        // Main Menu
 #define MUS_AQA_0 419           // Encounter! Team Aqua
-#define MUS_TSURETEK 420        // Follow Me!
+#define MUS_FOLLOWME 420        // Follow Me!
 #define MUS_BOY_SUP 421         // Encounter! Brendan
 #define MUS_RAINBOW 422         // Ever Grande City
 #define MUS_AYASII 423          // Encounter! Psychic
