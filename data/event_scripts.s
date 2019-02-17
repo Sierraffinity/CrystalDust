@@ -133,7 +133,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/NewBarkTown_NeighborsHouse/scripts.inc"
 	.include "data/maps/NewBarkTown_ProfessorElmsLab/scripts.inc"
 	.include "data/maps/CherrygroveCity_House1/scripts.inc"
-	.include "data/maps/CherrygroveCity_House2/scripts.inc"
+	.include "data/maps/CherrygroveCity_GuideGentsHouse/scripts.inc"
 	.include "data/maps/CherrygroveCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/CherrygroveCity_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/CherrygroveCity_Mart/scripts.inc"
@@ -952,6 +952,7 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR
 	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER
 	setflag FLAG_HIDE_CHERRYGROVE_CITY_RIVAL
+	setflag FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE
 	/*setflag FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
 	setflag FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
 	setflag FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
@@ -7742,3 +7743,5 @@ gText_082C877B:: @ 82C877B
 	.align 2
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/CherrygroveCity_House2/scripts.inc"

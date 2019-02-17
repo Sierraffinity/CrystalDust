@@ -1,15 +1,22 @@
-CherrygroveCity_House1_MapScripts:: @ 81FBE85
+CherrygroveCity_House1_MapScripts::
 	.byte 0
 
-CherrygroveCity_House1_EventScript_1FBE86:: @ 81FBE86
-	msgbox CherrygroveCity_House1_Text_1FBE8F, MSGBOX_NPC
+CherrygroveCity_House1_EventScript_Pokefan::
+	msgbox CherrygroveCity_House1_Text_Pokefan, MSGBOX_NPC
 	end
 
-CherrygroveCity_House1_Text_1FBE8F: @ 81FBE8F
-	.string "When a POKéMON battle starts, the one\n"
-	.string "at the left of the list goes out first.\p"
-	.string "So, when you get more POKéMON in your\n"
-	.string "party, try switching around the order\l"
-	.string "of your POKéMON.\p"
-	.string "It could give you an advantage.$"
+CherrygroveCity_House1_EventScript_Child::
+	msgbox CherrygroveCity_House1_Text_Child, MSGBOX_NPC
+	end
 
+CherrygroveCity_House1_Text_Pokefan:
+	.string "You're trying to see how good you\n"
+	.string "are as a POKéMON TRAINER?\p"
+	.string "You better visit the POKéMON GYMS\n"
+	.string "all over JOHTO and collect BADGES.$"
+
+CherrygroveCity_House1_Text_Child:
+	.string "When I get older, I'm going to be a\n"
+	.string "GYM LEADER!\p"
+	.string "I make my POKéMON battle with my\n"
+	.string "friend's to make them tougher!$"

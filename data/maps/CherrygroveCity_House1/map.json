@@ -17,15 +17,28 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_WOMAN_2",
+            "graphics_id": "EVENT_OBJ_GFX_MAN_1",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "CherrygroveCity_House1_EventScript_1FBE86",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "CherrygroveCity_House1_EventScript_Pokefan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 6,
+            "x": 4,
             "y": 4
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_LITTLE_BOY",
+            "movement_range_x": 1,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+            "script": "CherrygroveCity_House1_EventScript_Child",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 7,
+            "y": 6
         }
     ],
     "region_map_section": "MAPSEC_CHERRYGROVE_CITY",
@@ -36,15 +49,8 @@
             "dest_map": "MAP_CHERRYGROVE_CITY",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 3,
-            "y": 8
-        },
-        {
-            "dest_map": "MAP_CHERRYGROVE_CITY",
-            "dest_warp_id": 0,
-            "elevation": 0,
             "x": 4,
-            "y": 8
+            "y": 7
         }
     ],
     "weather": "WEATHER_NONE"

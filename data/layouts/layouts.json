@@ -588,12 +588,12 @@
             "name": "House1_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/House2/map.bin",
             "border_filepath": "data/layouts/House2/border.bin",
-            "height": 8,
+            "height": 9,
             "id": "LAYOUT_HOUSE2",
             "name": "House2_Layout",
             "primary_tileset": "gTileset_Building",

@@ -75,6 +75,7 @@ CherrygroveCity_EventScript_GuideGent::
 	closedoor 36, 12
 	waitdooranim
 	setflag FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_OUTSIDE
+	clearflag FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE
 	release
 	end
 

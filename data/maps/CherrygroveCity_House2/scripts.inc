@@ -1,20 +1,22 @@
-CherrygroveCity_House2_MapScripts:: @ 81FBF5A
+CherrygroveCity_House2_MapScripts::
 	.byte 0
 
-CherrygroveCity_House2_EventScript_1FBF5B:: @ 81FBF5B
-	msgbox CherrygroveCity_House2_Text_1FBF6D, MSGBOX_NPC
+CherrygroveCity_House1_EventScript_Boy::
+	lock
+	msgbox CherrygroveCity_House1_Text_Boy
+	release
 	end
 
-CherrygroveCity_House2_EventScript_1FBF64:: @ 81FBF64
-	msgbox CherrygroveCity_House2_Text_1FBFB0, MSGBOX_NPC
+CherrygroveCity_House1_EventScript_Girl::
+	lock
+	msgbox CherrygroveCity_House1_Text_Girl
+	release
 	end
 
-CherrygroveCity_House2_Text_1FBF6D: @ 81FBF6D
-	.string "When POKéMON battle, they eventually\n"
-	.string "level up and become stronger.$"
+CherrygroveCity_House1_Text_Boy:
+	.string "POKéMON gain experience in battle\n"
+	.string "and change their form.$"
 
-CherrygroveCity_House2_Text_1FBFB0: @ 81FBFB0
-	.string "If the POKéMON with you become\n"
-	.string "stronger, you'll be able to go farther\l"
-	.string "away from here.$"
-
+CherrygroveCity_House1_Text_Girl:
+	.string "POKéMON change?\n"
+	.string "I would be shocked if one did that!$"

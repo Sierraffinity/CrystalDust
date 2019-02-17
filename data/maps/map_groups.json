@@ -194,10 +194,11 @@
     ],
     "gMapGroup2": [
         "CherrygroveCity_House1",
-        "CherrygroveCity_House2",
+        "CherrygroveCity_GuideGentsHouse",
         "CherrygroveCity_PokemonCenter_1F",
         "CherrygroveCity_PokemonCenter_2F",
-        "CherrygroveCity_Mart"
+        "CherrygroveCity_Mart",
+        "CherrygroveCity_House2"
     ],
     "gMapGroup20": [
         "Route114_FossilManiacsHouse",

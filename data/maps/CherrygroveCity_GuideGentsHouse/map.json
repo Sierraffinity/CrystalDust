@@ -8,37 +8,24 @@
     "connections": null,
     "coord_events": [
     ],
-    "id": "MAP_CHERRYGROVE_CITY_HOUSE2",
+    "id": "MAP_CHERRYGROVE_CITY_GUIDE_GENTS_HOUSE",
     "layout": "LAYOUT_HOUSE2",
     "map_type": "MAP_TYPE_INDOOR",
     "music": "MUS_CHERRYGROVE",
-    "name": "CherrygroveCity_House2",
+    "name": "CherrygroveCity_GuideGentsHouse",
     "object_events": [
         {
             "elevation": 3,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+            "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE",
+            "graphics_id": "EVENT_OBJ_GFX_OLD_MAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "CherrygroveCity_House1_EventScript_Boy",
+            "script": "CherrygroveCity_GuideGentsHouse_EventScript_GuideGent",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
-            "y": 3
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_GIRL_1",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "CherrygroveCity_House1_EventScript_Girl",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 6,
-            "y": 3
+            "x": 4,
+            "y": 4
         }
     ],
     "region_map_section": "MAPSEC_CHERRYGROVE_CITY",
@@ -47,8 +34,8 @@
     "warp_events": [
         {
             "dest_map": "MAP_CHERRYGROVE_CITY",
-            "dest_warp_id": 4,
-            "elevation": 3,
+            "dest_warp_id": 1,
+            "elevation": 0,
             "x": 4,
             "y": 7
         }

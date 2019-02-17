@@ -155,7 +155,7 @@
             "y": 11
         },
         {
-            "dest_map": "MAP_CHERRYGROVE_CITY_HOUSE2",
+            "dest_map": "MAP_CHERRYGROVE_CITY_GUIDE_GENTS_HOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 36,
@@ -176,7 +176,7 @@
             "y": 5
         },
         {
-            "dest_map": "MAP_CHERRYGROVE_CITY",
+            "dest_map": "MAP_CHERRYGROVE_CITY_HOUSE2",
             "dest_warp_id": 0,
             "elevation": 3,
             "x": 44,
