@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "CherrygroveCity_EventScript_Slogan",
             "type": "sign",
-            "x": 49,
+            "x": 43,
             "y": 10
         },
         {
@@ -17,7 +17,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
             "script": "CherrygroveCity_EventScript_GuideGentsHouse",
             "type": "sign",
-            "x": 40,
+            "x": 34,
             "y": 12
         }
     ],
@@ -25,7 +25,7 @@
         {
             "direction": "up",
             "map": "MAP_ROUTE102",
-            "offset": 24
+            "offset": 18
         },
         {
             "direction": "right",
@@ -40,7 +40,7 @@
             "type": "trigger",
             "var": "0",
             "var_value": "0",
-            "x": 53,
+            "x": 47,
             "y": 8
         },
         {
@@ -49,7 +49,7 @@
             "type": "trigger",
             "var": "0",
             "var_value": "0",
-            "x": 53,
+            "x": 47,
             "y": 9
         },
         {
@@ -58,7 +58,7 @@
             "type": "trigger",
             "var": "0",
             "var_value": "0",
-            "x": 53,
+            "x": 47,
             "y": 10
         },
         {
@@ -67,7 +67,7 @@
             "type": "trigger",
             "var": "0",
             "var_value": "0",
-            "x": 53,
+            "x": 47,
             "y": 11
         }
     ],
@@ -79,7 +79,7 @@
     "object_events": [
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT",
+            "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_OUTSIDE",
             "graphics_id": "EVENT_OBJ_GFX_OLD_MAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -87,7 +87,7 @@
             "script": "CherrygroveCity_EventScript_GuideGent",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 51,
+            "x": 45,
             "y": 8
         },
         {
@@ -113,7 +113,7 @@
             "script": "CherrygroveCity_EventScript_Teacher",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 44,
+            "x": 38,
             "y": 17
         },
         {
@@ -126,7 +126,7 @@
             "script": "CherrygroveCity_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 40,
+            "x": 34,
             "y": 9
         },
         {
@@ -139,7 +139,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 21,
+            "x": 15,
             "y": 16
         }
     ],
@@ -151,35 +151,35 @@
             "dest_map": "MAP_CHERRYGROVE_CITY_HOUSE1",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 32,
+            "x": 26,
             "y": 11
         },
         {
             "dest_map": "MAP_CHERRYGROVE_CITY_HOUSE2",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 42,
+            "x": 36,
             "y": 12
         },
         {
             "dest_map": "MAP_CHERRYGROVE_CITY_POKEMON_CENTER_1F",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 48,
+            "x": 42,
             "y": 5
         },
         {
             "dest_map": "MAP_CHERRYGROVE_CITY_MART",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 42,
+            "x": 36,
             "y": 5
         },
         {
             "dest_map": "MAP_CHERRYGROVE_CITY",
             "dest_warp_id": 0,
             "elevation": 3,
-            "x": 50,
+            "x": 44,
             "y": 15
         }
     ],

@@ -674,8 +674,8 @@
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER                    0x2D0
 #define FLAG_HIDE_ROUTE_29_TUSCANY                                  0x2D1
 #define FLAG_HIDE_CHERRYGROVE_CITY_RIVAL                            0x2D2
-#define FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT                       0x2D3
-#define FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE                    0x2D4
+#define FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_OUTSIDE               0x2D3
+#define FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE                0x2D4
 #define FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT                        0x2D5
 #define FLAG_HIDE_PETALBURG_CITY_WALLY                              0x2D6
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7

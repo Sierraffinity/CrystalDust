@@ -1256,6 +1256,7 @@ CherrygroveCity_PokemonCenter_1F_EventScript_271918:: @ 8271918
 	setvar VAR_0x4096, 3
 	return
 
+EventScript_Nurse::
 BattleFrontier_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 DewfordTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 EverGrandeCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
@@ -1280,12 +1281,30 @@ VerdanturfTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 	specialvar VAR_RESULT, CountPlayerTrainerStars
 	compare VAR_RESULT, 4
 	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271A68
-	msgbox gUnknown_082726EB, MSGBOX_YESNO
+	gettime
+	compare VAR_0x8002, TIME_MORNING
+	call_if_eq EventScript_Nurse_IntroMorning
+	compare VAR_0x8002, TIME_DAY
+	call_if_eq EventScript_Nurse_IntroMorning
+	compare VAR_0x8002, TIME_NIGHT
+	call_if_eq EventScript_Nurse_IntroNight
 	compare VAR_RESULT, 1
 	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_27195A
 	compare VAR_RESULT, 0
 	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271954
 	end
+
+EventScript_Nurse_IntroMorning:
+	msgbox Text_NurseIntro_Morning, MSGBOX_YESNO
+	return
+
+EventScript_Nurse_IntroDay:
+	msgbox Text_NurseIntro_Day, MSGBOX_YESNO
+	return
+
+EventScript_Nurse_IntroNight:
+	msgbox Text_NurseIntro_Night, MSGBOX_YESNO
+	return
 
 CherrygroveCity_PokemonCenter_1F_EventScript_271954:: @ 8271954
 	message gUnknown_082727DB
@@ -3049,20 +3068,43 @@ gUnknown_082726C2:: @ 82726C2
 gUnknown_082726D4:: @ 82726D4
 	.string "Accessed LANETTE's PC.$"
 
-gUnknown_082726EB:: @ 82726EB
-	.string "Hello, and welcome to\nthe POKéMON CENTER.\pWe restore your tired POKéMON\nto full health.\pWould you like to rest your POKéMON?$"
+Text_NurseIntro_Morning::
+	.string "Good morning!\n"
+	.string "Welcome to our POKéMON CENTER.\p"
+	.string "We can heal your POKéMON to\n"
+	.string "perfect health.\p"
+	.string "Shall we heal your POKéMON?$"
+
+Text_NurseIntro_Day::
+	.string "Hello!\n"
+	.string "Welcome to our POKéMON CENTER.\p"
+	.string "We can heal your POKéMON to\n"
+	.string "perfect health.\p"
+	.string "Shall we heal your POKéMON?$"
+
+Text_NurseIntro_Night::
+	.string "Good evening! You're out late.\n"
+	.string "Welcome to our POKéMON CENTER.\p"
+	.string "We can heal your POKéMON to\n"
+	.string "perfect health.\p"
+	.string "Shall we heal your POKéMON?$"
 
 gUnknown_08272768:: @ 8272768
-	.string "Okay, I'll take your POKéMON\nfor a few seconds.$"
+	.string "Okay, may I see your POKéMON?$"
 
 gUnknown_08272798:: @ 8272798
-	.string "Thank you for waiting.\pWe've restored your POKéMON\nto full health.$"
+	.string "Thank you for waiting.\n"
+	.string "Your POKéMON are fully healed.$"
 
 gUnknown_082727DB:: @ 82727DB
 	.string "We hope to see you again!$"
 
 gUnknown_082727F5:: @ 82727F5
-	.string "Hello, and welcome to\nthe POKéMON CENTER.\pWe restore your tired POKéMON\nto full health.\pWould you like to…$"
+	.string "Hello!\n"
+	.string "Welcome to our POKéMON CENTER.\p"
+	.string "We can heal your POKéMON to\n"
+	.string "perfect health.\p"
+	.string "Shall we…$"
 
 gUnknown_08272860:: @ 8272860
 	.string "Th-that card…\nCould it be… The GOLD CARD?!\pOh, the gold color is brilliant!\nThe four stars seem to sparkle!\pI've seen several TRAINERS with\na SILVER CARD before, but, {PLAYER},\lyou're the first TRAINER I've ever\lseen with a GOLD CARD!\pOkay, {PLAYER}, please allow me\nthe honor of resting your POKéMON!$"

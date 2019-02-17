@@ -108,7 +108,7 @@
             "name": "CherrygroveCity_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Petalburg",
-            "width": 60
+            "width": 54
         },
         {
             "blockdata_filepath": "data/layouts/DewfordTown/map.bin",
@@ -623,7 +623,7 @@
         {
             "blockdata_filepath": "data/layouts/Mart/map.bin",
             "border_filepath": "data/layouts/Mart/border.bin",
-            "height": 8,
+            "height": 9,
             "id": "LAYOUT_MART",
             "name": "Mart_Layout",
             "primary_tileset": "gTileset_Building",

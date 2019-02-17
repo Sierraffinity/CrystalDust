@@ -254,8 +254,10 @@ const u32 gUnusedBirchBeauty[] = INCBIN_U32("graphics/unused/intro_birch_beauty.
 const u16 gNewGameBirchPalette[16] = INCBIN_U16("graphics/birch_speech/birch.gbapal");
 const u32 gSpriteImage_855A970[] = INCBIN_U32("graphics/misc/pokeball_glow.4bpp");
 const u16 gFieldEffectObjectPalette4[16] = INCBIN_U16("graphics/event_objects/palettes/field_effect_object_palette_04.gbapal");
-const u32 gSpriteImage_855A9B0[] = INCBIN_U32("graphics/misc/pokecenter_monitor/0.4bpp");
-const u32 gSpriteImage_855AA70[] = INCBIN_U32("graphics/misc/pokecenter_monitor/1.4bpp");
+const u32 gSpriteImage_PokecenterMonitor_1[] = INCBIN_U32("graphics/misc/pokecenter_monitor/0.4bpp");
+const u32 gSpriteImage_PokecenterMonitor_2[] = INCBIN_U32("graphics/misc/pokecenter_monitor/1.4bpp");
+const u32 gSpriteImage_PokecenterMonitor_3[] = INCBIN_U32("graphics/misc/pokecenter_monitor/2.4bpp");
+const u32 gSpriteImage_PokecenterMonitor_4[] = INCBIN_U32("graphics/misc/pokecenter_monitor/3.4bpp");
 const u32 gSpriteImage_855AB30[] = INCBIN_U32("graphics/misc/big_hof_monitor.4bpp");
 const u8 gSpriteImage_855AD30[] = INCBIN_U8("graphics/misc/small_hof_monitor.4bpp");
 const u16 gFieldEffectObjectPalette5[16] = INCBIN_U16("graphics/event_objects/palettes/field_effect_object_palette_05.gbapal");
@@ -293,7 +295,7 @@ bool8 (*const gFieldEffectScriptFuncs[])(u8 **, u32 *) = {
 
 const struct OamData gNewGameBirchOamAttributes = {.size = 3};
 const struct OamData gOamData_855C218 = {.size = 0};
-const struct OamData gOamData_855C220 = {.size = 1};
+const struct OamData gOamData_855C220 = {.shape = ST_OAM_H_RECTANGLE, .size = 2};
 
 const struct SpriteFrameImage gNewGameBirchPicTable[] = {
     obj_frame_tiles(gNewGameBirchPic)
@@ -331,8 +333,10 @@ const struct SpriteFrameImage gSpriteImageTable_855C274[] = {
 };
 
 const struct SpriteFrameImage gSpriteImageTable_855C27C[] = {
-    obj_frame_tiles(gSpriteImage_855A9B0),
-    obj_frame_tiles(gSpriteImage_855AA70)
+    obj_frame_tiles(gSpriteImage_PokecenterMonitor_1),
+    obj_frame_tiles(gSpriteImage_PokecenterMonitor_2),
+    obj_frame_tiles(gSpriteImage_PokecenterMonitor_3),
+    obj_frame_tiles(gSpriteImage_PokecenterMonitor_4),
 };
 
 const struct SpriteFrameImage gSpriteImageTable_855C28C[] = {
@@ -367,14 +371,13 @@ const union AnimCmd gSpriteAnim_855C2CC[] = {
 };
 
 const union AnimCmd gSpriteAnim_855C2D4[] = {
-    ANIMCMD_FRAME(.imageValue = 0, .duration = 16),
-    ANIMCMD_FRAME(.imageValue = 1, .duration = 16),
-    ANIMCMD_FRAME(.imageValue = 0, .duration = 16),
-    ANIMCMD_FRAME(.imageValue = 1, .duration = 16),
-    ANIMCMD_FRAME(.imageValue = 0, .duration = 16),
-    ANIMCMD_FRAME(.imageValue = 1, .duration = 16),
-    ANIMCMD_FRAME(.imageValue = 0, .duration = 16),
-    ANIMCMD_FRAME(.imageValue = 1, .duration = 16),
+    ANIMCMD_FRAME(.imageValue = 1, .duration = 5),
+    ANIMCMD_FRAME(.imageValue = 2, .duration = 5),
+    ANIMCMD_FRAME(.imageValue = 3, .duration = 7),
+    ANIMCMD_FRAME(.imageValue = 2, .duration = 5),
+    ANIMCMD_FRAME(.imageValue = 1, .duration = 5),
+    ANIMCMD_FRAME(.imageValue = 0, .duration = 5),
+    ANIMCMD_LOOP(3),
     ANIMCMD_END
 };
 
@@ -399,7 +402,7 @@ const struct SpriteTemplate gSpriteTemplate_855C304 = {
 
 const struct SpriteTemplate gSpriteTemplate_855C31C = {
     .tileTag = 0xFFFF,
-    .paletteTag = 4100,
+    .paletteTag = 0x1007,
     .oam = &gOamData_855C220,
     .anims = gSpriteAnimTable_855C2F8,
     .images = gSpriteImageTable_855C27C,
@@ -1012,7 +1015,7 @@ bool8 FldEff_PokecenterHeal(void)
     task->data[1] = nPokemon;
     task->data[2] = 0x5d;
     task->data[3] = 0x24;
-    task->data[4] = 0x7c;
+    task->data[4] = 0x80;
     task->data[5] = 0x18;
     return FALSE;
 }
@@ -1266,7 +1269,7 @@ static u8 PokecenterHealEffectHelper(s16 x, s16 y)
     sprite = &gSprites[spriteIdAtEnd];
     sprite->oam.priority = 2;
     sprite->invisible = TRUE;
-    SetSubspriteTables(sprite, &gUnknown_0855C2AC);
+    //SetSubspriteTables(sprite, &gUnknown_0855C2AC);
     return spriteIdAtEnd;
 }
 

@@ -67,14 +67,14 @@ CherrygroveCity_EventScript_GuideGent::
 	turnobject EVENT_OBJ_ID_PLAYER, 2
 	applymovement 1, CherrygroveCity_Movement_WalkUp
 	waitmovement 0
-	opendoor 42, 12
+	opendoor 36, 12
 	waitdooranim
 	applymovement 1, CherrygroveCity_Movement_WalkUp
 	waitmovement 0
 	removeobject 1
-	closedoor 42, 12
+	closedoor 36, 12
 	waitdooranim
-	setflag FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT
+	setflag FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_OUTSIDE
 	release
 	end
 
