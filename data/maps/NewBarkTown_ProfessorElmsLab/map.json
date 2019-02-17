@@ -22,8 +22,8 @@
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": 0,
-      "trainer_sight_or_berry_tree_id": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_Aide",
       "flag": "0"
     },
@@ -35,8 +35,8 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": 0,
-      "trainer_sight_or_berry_tree_id": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_Elm",
       "flag": "0"
     },
@@ -48,8 +48,8 @@
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": 0,
-      "trainer_sight_or_berry_tree_id": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER"
     },
@@ -61,8 +61,8 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": 0,
-      "trainer_sight_or_berry_tree_id": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil",
       "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL"
     },
@@ -74,8 +74,8 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": 0,
-      "trainer_sight_or_berry_tree_id": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_Totodile",
       "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE"
     },
@@ -87,8 +87,8 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": 0,
-      "trainer_sight_or_berry_tree_id": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_Chikorita",
       "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA"
     }
@@ -109,7 +109,7 @@
       "y": 8,
       "elevation": 3,
       "var": "VAR_0x4050",
-      "var_value": 2,
+      "var_value": "2",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo"
     },
     {
@@ -118,7 +118,7 @@
       "y": 8,
       "elevation": 3,
       "var": "VAR_0x4050",
-      "var_value": 2,
+      "var_value": "2",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo"
     },
     {
@@ -127,7 +127,7 @@
       "y": 8,
       "elevation": 3,
       "var": "VAR_0x4050",
-      "var_value": 2,
+      "var_value": "2",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo"
     },
     {
@@ -136,7 +136,7 @@
       "y": 9,
       "elevation": 3,
       "var": "VAR_0x4050",
-      "var_value": 3,
+      "var_value": "3",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1"
     },
     {
@@ -145,7 +145,7 @@
       "y": 9,
       "elevation": 3,
       "var": "VAR_0x4050",
-      "var_value": 3,
+      "var_value": "3",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2"
     },
     {
@@ -154,7 +154,7 @@
       "y": 9,
       "elevation": 3,
       "var": "VAR_0x4050",
-      "var_value": 3,
+      "var_value": "3",
       "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3"
     }
   ],

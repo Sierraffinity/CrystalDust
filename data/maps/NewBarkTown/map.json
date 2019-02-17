@@ -50,7 +50,7 @@
             "script": "NewBarkTown_EventScript_Teacher2",
             "type": "trigger",
             "var": "VAR_0x4050",
-            "var_value": 1,
+            "var_value": "1",
             "x": 1,
             "y": 10
         },
@@ -59,7 +59,7 @@
             "script": "NewBarkTown_EventScript_Teacher2",
             "type": "trigger",
             "var": "VAR_0x4050",
-            "var_value": 1,
+            "var_value": "1",
             "x": 1,
             "y": 11
         },
@@ -68,7 +68,7 @@
             "script": "NewBarkTown_EventScript_Teacher3",
             "type": "trigger",
             "var": "VAR_0x4050",
-            "var_value": 1,
+            "var_value": "1",
             "x": 1,
             "y": 12
         }
