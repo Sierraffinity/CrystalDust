@@ -313,7 +313,7 @@ void CB2_InitTitleScreen(void)
         gMain.state = 4;
         break;
     case 4:
-        sub_816F2A8(0x78, 0x50, 0x100, 0);
+        PanFadeAndZoomScreen(0x78, 0x50, 0x100, 0);
         SetGpuReg(REG_OFFSET_WIN0H, 0);
         SetGpuReg(REG_OFFSET_WIN0V, 160);
         SetGpuReg(REG_OFFSET_WININ, 0x3F);

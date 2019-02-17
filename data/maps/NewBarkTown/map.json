@@ -47,10 +47,10 @@
     "coord_events": [
         {
             "elevation": 3,
-            "script": "NewBarkTown_EventScript_Teacher1",
+            "script": "NewBarkTown_EventScript_Teacher2",
             "type": "trigger",
             "var": "VAR_0x4050",
-            "var_value": "0",
+            "var_value": 1,
             "x": 1,
             "y": 10
         },
@@ -59,7 +59,7 @@
             "script": "NewBarkTown_EventScript_Teacher2",
             "type": "trigger",
             "var": "VAR_0x4050",
-            "var_value": "0",
+            "var_value": 1,
             "x": 1,
             "y": 11
         },
@@ -68,7 +68,7 @@
             "script": "NewBarkTown_EventScript_Teacher3",
             "type": "trigger",
             "var": "VAR_0x4050",
-            "var_value": "0",
+            "var_value": 1,
             "x": 1,
             "y": 12
         }
@@ -108,7 +108,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_WALLY",
+            "graphics_id": "EVENT_OBJ_GFX_RIVAL",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",

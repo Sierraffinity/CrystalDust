@@ -9,7 +9,7 @@ gMapGroup0::
 	.4byte SootopolisCity
 	.4byte EverGrandeCity
 	.4byte NewBarkTown
-	.4byte OldaleTown
+	.4byte CherrygroveCity
 	.4byte DewfordTown
 	.4byte LavaridgeTown
 	.4byte FallarborTown
@@ -65,11 +65,12 @@ gMapGroup1::
 	.4byte NewBarkTown_ProfessorElmsLab
 
 gMapGroup2::
-	.4byte OldaleTown_House1
-	.4byte OldaleTown_House2
-	.4byte OldaleTown_PokemonCenter_1F
-	.4byte OldaleTown_PokemonCenter_2F
-	.4byte OldaleTown_Mart
+	.4byte CherrygroveCity_House1
+	.4byte CherrygroveCity_GuideGentsHouse
+	.4byte CherrygroveCity_PokemonCenter_1F
+	.4byte CherrygroveCity_PokemonCenter_2F
+	.4byte CherrygroveCity_Mart
+	.4byte CherrygroveCity_House2
 
 gMapGroup3::
 	.4byte DewfordTown_House1

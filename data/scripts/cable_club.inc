@@ -8,31 +8,31 @@ LavaridgeTown_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
 LilycoveCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
 MauvilleCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
 MossdeepCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-OldaleTown_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
+CherrygroveCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
 PacifidlogTown_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
 PetalburgCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
 RustboroCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
 SlateportCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
 SootopolisCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
 VerdanturfTown_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-	call OldaleTown_PokemonCenter_2F_EventScript_276AD5
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276AD5
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276AD5:: @ 8276AD5
+CherrygroveCity_PokemonCenter_2F_EventScript_276AD5:: @ 8276AD5
 	specialvar VAR_RESULT, sub_813B514
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276AFB
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276AFB
 	specialvar VAR_RESULT, sub_801B27C
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276AFF
-	goto OldaleTown_PokemonCenter_2F_EventScript_276AFB
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276AFF
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276AFB
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276AFB:: @ 8276AFB
+CherrygroveCity_PokemonCenter_2F_EventScript_276AFB:: @ 8276AFB
 	clearflag FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_276AFF:: @ 8276AFF
+CherrygroveCity_PokemonCenter_2F_EventScript_276AFF:: @ 8276AFF
 	setflag FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN
 	return
 
@@ -46,7 +46,7 @@ LavaridgeTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
 LilycoveCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
 MauvilleCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
 MossdeepCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-OldaleTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
+CherrygroveCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
 PacifidlogTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
 PetalburgCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
 RustboroCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
@@ -55,22 +55,22 @@ SootopolisCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
 VerdanturfTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
 	specialvar VAR_RESULT, sub_813B514
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276B23
-	goto OldaleTown_PokemonCenter_2F_EventScript_276B19
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276B23
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276B19
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276B19:: @ 8276B19
+CherrygroveCity_PokemonCenter_2F_EventScript_276B19:: @ 8276B19
 	execram
 
-OldaleTown_PokemonCenter_2F_EventScript_276B1A:: @ 8276B1A
+CherrygroveCity_PokemonCenter_2F_EventScript_276B1A:: @ 8276B1A
 	msgbox gUnknown_08273178, MSGBOX_NPC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276B23:: @ 8276B23
+CherrygroveCity_PokemonCenter_2F_EventScript_276B23:: @ 8276B23
 	checkitem ITEM_EON_TICKET, 1
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276B19
-	goto_if_set FLAG_SYS_HAS_EON_TICKET, OldaleTown_PokemonCenter_2F_EventScript_276B19
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276B19
+	goto_if_set FLAG_SYS_HAS_EON_TICKET, CherrygroveCity_PokemonCenter_2F_EventScript_276B19
 	msgbox gUnknown_08273594, MSGBOX_DEFAULT
 	giveitem_std ITEM_EON_TICKET
 	setflag FLAG_SYS_HAS_EON_TICKET
@@ -79,7 +79,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276B23:: @ 8276B23
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276B62:: @ 8276B62
+CherrygroveCity_PokemonCenter_2F_EventScript_276B62:: @ 8276B62
 	msgbox gUnknown_08273178, MSGBOX_DEFAULT
 	release
 	end
@@ -94,30 +94,30 @@ LavaridgeTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 LilycoveCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 MauvilleCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 MossdeepCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-OldaleTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
+CherrygroveCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 PacifidlogTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 PetalburgCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 RustboroCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 SlateportCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 SootopolisCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 VerdanturfTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-	map_script_2 VAR_0x4087, 1, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_0x4087, 2, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_0x4087, 5, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_0x4087, 3, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_0x4087, 4, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_0x4087, 6, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_0x4087, 7, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_0x4087, 8, OldaleTown_PokemonCenter_2F_EventScript_276BAE
+	map_script_2 VAR_0x4087, 1, CherrygroveCity_PokemonCenter_2F_EventScript_276BAE
+	map_script_2 VAR_0x4087, 2, CherrygroveCity_PokemonCenter_2F_EventScript_276BAE
+	map_script_2 VAR_0x4087, 5, CherrygroveCity_PokemonCenter_2F_EventScript_276BAE
+	map_script_2 VAR_0x4087, 3, CherrygroveCity_PokemonCenter_2F_EventScript_276BAE
+	map_script_2 VAR_0x4087, 4, CherrygroveCity_PokemonCenter_2F_EventScript_276BAE
+	map_script_2 VAR_0x4087, 6, CherrygroveCity_PokemonCenter_2F_EventScript_276BAE
+	map_script_2 VAR_0x4087, 7, CherrygroveCity_PokemonCenter_2F_EventScript_276BAE
+	map_script_2 VAR_0x4087, 8, CherrygroveCity_PokemonCenter_2F_EventScript_276BAE
 	.2byte 0
 
 MossdeepCity_GameCorner_1F_EventScript_276BAE:: @ 8276BAE
-OldaleTown_PokemonCenter_2F_EventScript_276BAE:: @ 8276BAE
+CherrygroveCity_PokemonCenter_2F_EventScript_276BAE:: @ 8276BAE
 	compare VAR_0x8007, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276BBD
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276BBD
 	turnobject VAR_0x8007, 3
 
-OldaleTown_PokemonCenter_2F_EventScript_276BBD:: @ 8276BBD
+CherrygroveCity_PokemonCenter_2F_EventScript_276BBD:: @ 8276BBD
 	end
 
 BattleFrontier_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
@@ -131,7 +131,7 @@ LilycoveCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 MauvilleCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 MossdeepCity_GameCorner_1F_MapScript1_276BBE: @ 8276BBE
 MossdeepCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-OldaleTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
+CherrygroveCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 PacifidlogTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 PetalburgCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 RustboroCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
@@ -139,45 +139,45 @@ SlateportCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 SootopolisCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 VerdanturfTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 	compare VAR_0x4087, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276C17
 	compare VAR_0x4087, 2
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276C17
 	compare VAR_0x4087, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276C17
 	compare VAR_0x4087, 3
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C1D
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276C1D
 	compare VAR_0x4087, 4
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C23
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276C23
 	compare VAR_0x4087, 6
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C29
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276C29
 	compare VAR_0x4087, 7
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C2F
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276C2F
 	compare VAR_0x4087, 8
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C35
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276C35
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276C17:: @ 8276C17
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
+CherrygroveCity_PokemonCenter_2F_EventScript_276C17:: @ 8276C17
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BE4
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276C1D:: @ 8276C1D
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
+CherrygroveCity_PokemonCenter_2F_EventScript_276C1D:: @ 8276C1D
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BE4
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276C23:: @ 8276C23
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
+CherrygroveCity_PokemonCenter_2F_EventScript_276C23:: @ 8276C23
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BE4
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276C29:: @ 8276C29
-	call OldaleTown_PokemonCenter_2F_EventScript_277BBE
+CherrygroveCity_PokemonCenter_2F_EventScript_276C29:: @ 8276C29
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BBE
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276C2F:: @ 8276C2F
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
+CherrygroveCity_PokemonCenter_2F_EventScript_276C2F:: @ 8276C2F
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BE4
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276C35:: @ 8276C35
-	call OldaleTown_PokemonCenter_2F_EventScript_277C0A
+CherrygroveCity_PokemonCenter_2F_EventScript_276C35:: @ 8276C35
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277C0A
 	end
 
 BattleFrontier_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
@@ -190,28 +190,28 @@ LavaridgeTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 LilycoveCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 MauvilleCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 MossdeepCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-OldaleTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
+CherrygroveCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 PacifidlogTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 PetalburgCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 RustboroCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 SlateportCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 SootopolisCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 VerdanturfTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-	map_script_2 VAR_0x40CD, 1, OldaleTown_PokemonCenter_2F_EventScript_276DE0
-	map_script_2 VAR_0x4087, 1, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	map_script_2 VAR_0x4087, 2, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	map_script_2 VAR_0x4087, 5, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	map_script_2 VAR_0x4087, 3, OldaleTown_PokemonCenter_2F_EventScript_276CE7
-	map_script_2 VAR_0x4087, 4, OldaleTown_PokemonCenter_2F_EventScript_276D2C
-	map_script_2 VAR_0x4087, 6, OldaleTown_PokemonCenter_2F_EventScript_276D6C
-	map_script_2 VAR_0x4087, 7, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	map_script_2 VAR_0x4087, 8, OldaleTown_PokemonCenter_2F_EventScript_276C9D
+	map_script_2 VAR_0x40CD, 1, CherrygroveCity_PokemonCenter_2F_EventScript_276DE0
+	map_script_2 VAR_0x4087, 1, CherrygroveCity_PokemonCenter_2F_EventScript_276C85
+	map_script_2 VAR_0x4087, 2, CherrygroveCity_PokemonCenter_2F_EventScript_276C85
+	map_script_2 VAR_0x4087, 5, CherrygroveCity_PokemonCenter_2F_EventScript_276C85
+	map_script_2 VAR_0x4087, 3, CherrygroveCity_PokemonCenter_2F_EventScript_276CE7
+	map_script_2 VAR_0x4087, 4, CherrygroveCity_PokemonCenter_2F_EventScript_276D2C
+	map_script_2 VAR_0x4087, 6, CherrygroveCity_PokemonCenter_2F_EventScript_276D6C
+	map_script_2 VAR_0x4087, 7, CherrygroveCity_PokemonCenter_2F_EventScript_276C85
+	map_script_2 VAR_0x4087, 8, CherrygroveCity_PokemonCenter_2F_EventScript_276C9D
 	.2byte 0
 
-OldaleTown_PokemonCenter_2F_EventScript_276C85:: @ 8276C85
+CherrygroveCity_PokemonCenter_2F_EventScript_276C85:: @ 8276C85
 	lockall
-	call OldaleTown_PokemonCenter_2F_EventScript_276CB5
-	call OldaleTown_PokemonCenter_2F_EventScript_277BF7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276CB5
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BF7
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	erasebox 0, 0, 29, 19
@@ -219,356 +219,356 @@ OldaleTown_PokemonCenter_2F_EventScript_276C85:: @ 8276C85
 	end
 
 MossdeepCity_GameCorner_1F_EventScript_276C9D:: @ 8276C9D
-OldaleTown_PokemonCenter_2F_EventScript_276C9D:: @ 8276C9D
+CherrygroveCity_PokemonCenter_2F_EventScript_276C9D:: @ 8276C9D
 	lockall
-	call OldaleTown_PokemonCenter_2F_EventScript_276CB5
-	call OldaleTown_PokemonCenter_2F_EventScript_277C1D
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276CB5
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277C1D
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	erasebox 0, 0, 29, 19
 	releaseall
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276CB5:: @ 8276CB5
+CherrygroveCity_PokemonCenter_2F_EventScript_276CB5:: @ 8276CB5
 	special CloseLink
 	setvar VAR_0x4087, 0
 	compare VAR_0x8007, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276DD5
-	applymovement VAR_0x8007, OldaleTown_PokemonCenter_2F_Movement_27734D
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276DD5
+	applymovement VAR_0x8007, CherrygroveCity_PokemonCenter_2F_Movement_27734D
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27734F
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27734F
 	waitmovement 0
-	applymovement VAR_0x8007, OldaleTown_PokemonCenter_2F_Movement_277349
+	applymovement VAR_0x8007, CherrygroveCity_PokemonCenter_2F_Movement_277349
 	waitmovement 0
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_276CE7:: @ 8276CE7
+CherrygroveCity_PokemonCenter_2F_EventScript_276CE7:: @ 8276CE7
 	lockall
-	call OldaleTown_PokemonCenter_2F_EventScript_276CFF
-	call OldaleTown_PokemonCenter_2F_EventScript_277BF7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276CFF
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BF7
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	erasebox 0, 0, 29, 19
 	releaseall
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276CFF:: @ 8276CFF
+CherrygroveCity_PokemonCenter_2F_EventScript_276CFF:: @ 8276CFF
 	special CloseLink
 	setvar VAR_0x4087, 0
 	compare VAR_0x8007, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276DD5
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27735E
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276DD5
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27735E
 	waitmovement 0
-	applymovement VAR_0x8007, OldaleTown_PokemonCenter_2F_Movement_27734D
+	applymovement VAR_0x8007, CherrygroveCity_PokemonCenter_2F_Movement_27734D
 	waitmovement 0
-	call OldaleTown_PokemonCenter_2F_EventScript_276DAE
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276DAE
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_276D2C:: @ 8276D2C
+CherrygroveCity_PokemonCenter_2F_EventScript_276D2C:: @ 8276D2C
 	lockall
-	call OldaleTown_PokemonCenter_2F_EventScript_276D44
-	call OldaleTown_PokemonCenter_2F_EventScript_277BF7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276D44
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BF7
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	erasebox 0, 0, 29, 19
 	releaseall
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276D44:: @ 8276D44
+CherrygroveCity_PokemonCenter_2F_EventScript_276D44:: @ 8276D44
 	special CloseLink
 	setvar VAR_0x4087, 0
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27734F
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27734F
 	waitmovement 0
 	compare VAR_0x8007, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276D6B
-	applymovement VAR_0x8007, OldaleTown_PokemonCenter_2F_Movement_277349
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276D6B
+	applymovement VAR_0x8007, CherrygroveCity_PokemonCenter_2F_Movement_277349
 	waitmovement 0
 
-OldaleTown_PokemonCenter_2F_EventScript_276D6B:: @ 8276D6B
+CherrygroveCity_PokemonCenter_2F_EventScript_276D6B:: @ 8276D6B
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_276D6C:: @ 8276D6C
+CherrygroveCity_PokemonCenter_2F_EventScript_276D6C:: @ 8276D6C
 	lockall
-	call OldaleTown_PokemonCenter_2F_EventScript_276D84
-	call OldaleTown_PokemonCenter_2F_EventScript_277BD1
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276D84
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BD1
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	erasebox 0, 0, 29, 19
 	releaseall
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276D84:: @ 8276D84
+CherrygroveCity_PokemonCenter_2F_EventScript_276D84:: @ 8276D84
 	setvar VAR_0x4087, 0
 	compare VAR_0x8007, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276DD5
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27735E
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276DD5
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27735E
 	waitmovement 0
-	applymovement VAR_0x8007, OldaleTown_PokemonCenter_2F_Movement_27734D
+	applymovement VAR_0x8007, CherrygroveCity_PokemonCenter_2F_Movement_27734D
 	waitmovement 0
-	call OldaleTown_PokemonCenter_2F_EventScript_276DAE
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276DAE
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_276DAE:: @ 8276DAE
-	message OldaleTown_PokemonCenter_2F_Text_278521
+CherrygroveCity_PokemonCenter_2F_EventScript_276DAE:: @ 8276DAE
+	message CherrygroveCity_PokemonCenter_2F_Text_278521
 	waitmessage
 	playse SE_PIN
 	delay 60
-	message OldaleTown_PokemonCenter_2F_Text_27854C
+	message CherrygroveCity_PokemonCenter_2F_Text_27854C
 	waitmessage
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27734F
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27734F
 	waitmovement 0
-	applymovement VAR_0x8007, OldaleTown_PokemonCenter_2F_Movement_277349
-	waitmovement 0
-	return
-
-OldaleTown_PokemonCenter_2F_EventScript_276DD5:: @ 8276DD5
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27734F
+	applymovement VAR_0x8007, CherrygroveCity_PokemonCenter_2F_Movement_277349
 	waitmovement 0
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_276DE0:: @ 8276DE0
+CherrygroveCity_PokemonCenter_2F_EventScript_276DD5:: @ 8276DD5
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27734F
+	waitmovement 0
+	return
+
+CherrygroveCity_PokemonCenter_2F_EventScript_276DE0:: @ 8276DE0
 	lockall
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_2725A6
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_2725A6
 	waitmovement 0
-	msgbox OldaleTown_PokemonCenter_2F_Text_27964A, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_27964A, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_276E10
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_276E10
 	waitmovement 0
 	delay 30
-	msgbox OldaleTown_PokemonCenter_2F_Text_279718, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_279718, MSGBOX_DEFAULT
 	setvar VAR_0x40CD, 2
 	releaseall
 	end
 
-OldaleTown_PokemonCenter_2F_Movement_276E10: @ 8276E10
+CherrygroveCity_PokemonCenter_2F_Movement_276E10: @ 8276E10
 	walk_up
 	walk_up
 	step_end
 
-OldaleTown_PokemonCenter_2F_EventScript_276E13:: @ 8276E13
-	message OldaleTown_PokemonCenter_2F_Text_277EA4
+CherrygroveCity_PokemonCenter_2F_EventScript_276E13:: @ 8276E13
+	message CherrygroveCity_PokemonCenter_2F_Text_277EA4
 	waitmessage
 	delay 28
-	goto OldaleTown_PokemonCenter_2F_EventScript_276E30
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276E30
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276E22:: @ 8276E22
-	msgbox OldaleTown_PokemonCenter_2F_Text_277EF1, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_276E30
+CherrygroveCity_PokemonCenter_2F_EventScript_276E22:: @ 8276E22
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_277EF1, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276E30
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276E30:: @ 8276E30
+CherrygroveCity_PokemonCenter_2F_EventScript_276E30:: @ 8276E30
 	setvar VAR_0x8004, 0
-	goto_if_set FLAG_VISITED_MAUVILLE_CITY, OldaleTown_PokemonCenter_2F_EventScript_276E75
+	goto_if_set FLAG_VISITED_MAUVILLE_CITY, CherrygroveCity_PokemonCenter_2F_EventScript_276E75
 	multichoice 0, 0, 74, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_2770B2
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_276EB7
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276E75:: @ 8276E75
+CherrygroveCity_PokemonCenter_2F_EventScript_276E75:: @ 8276E75
 	multichoice 0, 0, 76, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_2770B2
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_276EB7
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2771DB
-	case 3, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
+	case 3, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276EB7:: @ 8276EB7
+CherrygroveCity_PokemonCenter_2F_EventScript_276EB7:: @ 8276EB7
 	copyvar VAR_0x8007, VAR_LAST_TALKED
-	goto OldaleTown_PokemonCenter_2F_EventScript_276EC2
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276EC2
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276EC2:: @ 8276EC2
-	message OldaleTown_PokemonCenter_2F_Text_2790BE
+CherrygroveCity_PokemonCenter_2F_EventScript_276EC2:: @ 8276EC2
+	message CherrygroveCity_PokemonCenter_2F_Text_2790BE
 	waitmessage
 	multichoice 0, 0, 18, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_276F23
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_276F2E
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_276F55
-	case 3, OldaleTown_PokemonCenter_2F_EventScript_276F15
-	case 4, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_276F23
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_276F2E
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_276F55
+	case 3, CherrygroveCity_PokemonCenter_2F_EventScript_276F15
+	case 4, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276F15:: @ 8276F15
-	msgbox OldaleTown_PokemonCenter_2F_Text_279142, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_276EC2
+CherrygroveCity_PokemonCenter_2F_EventScript_276F15:: @ 8276F15
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_279142, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276EC2
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276F23:: @ 8276F23
+CherrygroveCity_PokemonCenter_2F_EventScript_276F23:: @ 8276F23
 	setvar VAR_0x8004, 1
-	goto OldaleTown_PokemonCenter_2F_EventScript_276F60
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276F60
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276F2E:: @ 8276F2E
+CherrygroveCity_PokemonCenter_2F_EventScript_276F2E:: @ 8276F2E
 	special HasEnoughMonsForDoubleBattle
 	compare VAR_RESULT, 0
-	goto_if_ne OldaleTown_PokemonCenter_2F_EventScript_276F47
+	goto_if_ne CherrygroveCity_PokemonCenter_2F_EventScript_276F47
 	setvar VAR_0x8004, 2
-	goto OldaleTown_PokemonCenter_2F_EventScript_276F60
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276F60
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276F47:: @ 8276F47
-	msgbox OldaleTown_PokemonCenter_2F_Text_277FEE, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_276EC2
+CherrygroveCity_PokemonCenter_2F_EventScript_276F47:: @ 8276F47
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_277FEE, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276EC2
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276F55:: @ 8276F55
+CherrygroveCity_PokemonCenter_2F_EventScript_276F55:: @ 8276F55
 	setvar VAR_0x8004, 5
-	goto OldaleTown_PokemonCenter_2F_EventScript_276F60
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_276F60
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276F60:: @ 8276F60
-	call OldaleTown_PokemonCenter_2F_EventScript_27134F
+CherrygroveCity_PokemonCenter_2F_EventScript_276F60:: @ 8276F60
+	call CherrygroveCity_PokemonCenter_2F_EventScript_27134F
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	message gText_PleaseWaitForLink
 	waitmessage
 	special sub_80B2DA4
 	waitstate
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276FBD
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276FBD
 	compare VAR_RESULT, 2
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772D2
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772D2
 	compare VAR_RESULT, 3
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772DF
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772DF
 	compare VAR_RESULT, 4
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277046
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277046
 	compare VAR_RESULT, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	compare VAR_RESULT, 6
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772C5
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772C5
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_276FBD:: @ 8276FBD
+CherrygroveCity_PokemonCenter_2F_EventScript_276FBD:: @ 8276FBD
 	special HealPlayerParty
 	special SavePlayerParty
 	special LoadPlayerBag
 	copyvar VAR_0x4087, VAR_0x8004
-	messageautoscroll OldaleTown_PokemonCenter_2F_Text_278197
+	messageautoscroll CherrygroveCity_PokemonCenter_2F_Text_278197
 	waitmessage
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BE4
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	delay 60
-	applymovement VAR_LAST_TALKED, OldaleTown_PokemonCenter_2F_Movement_27734D
+	applymovement VAR_LAST_TALKED, CherrygroveCity_PokemonCenter_2F_Movement_27734D
 	waitmovement 0
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_277356
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_277356
 	waitmovement 0
 	opendoor 9, 1
 	waitdooranim
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27735A
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27735A
 	waitmovement 0
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
 	closedoor 9, 1
 	waitdooranim
 	release
 	compare VAR_0x8004, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277036
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277036
 	special SetCableClubWarp
 	warp MAP_SINGLE_BATTLE_COLOSSEUM, 255, 6, 8
 	special sub_80AF948
 	waitstate
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27702B:: @ 827702B
+CherrygroveCity_PokemonCenter_2F_EventScript_27702B:: @ 827702B
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_277352
 	waitmovement 0
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277036:: @ 8277036
+CherrygroveCity_PokemonCenter_2F_EventScript_277036:: @ 8277036
 	special SetCableClubWarp
 	warp MAP_DOUBLE_BATTLE_COLOSSEUM, 255, 5, 8
 	special sub_80AF948
 	waitstate
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277046:: @ 8277046
+CherrygroveCity_PokemonCenter_2F_EventScript_277046:: @ 8277046
 	switch VAR_0x8004
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_277094
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_277083
-	case 5, OldaleTown_PokemonCenter_2F_EventScript_277072
-	goto OldaleTown_PokemonCenter_2F_EventScript_27730E
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_277094
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_277083
+	case 5, CherrygroveCity_PokemonCenter_2F_EventScript_277072
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_27730E
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277072:: @ 8277072
+CherrygroveCity_PokemonCenter_2F_EventScript_277072:: @ 8277072
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_27833D, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_2770A5
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_27833D, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_2770A5
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277083:: @ 8277083
+CherrygroveCity_PokemonCenter_2F_EventScript_277083:: @ 8277083
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_278307, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_2770A5
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_278307, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_2770A5
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277094:: @ 8277094
+CherrygroveCity_PokemonCenter_2F_EventScript_277094:: @ 8277094
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_2782D1, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_2770A5
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_2782D1, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_2770A5
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2770A5:: @ 82770A5
+CherrygroveCity_PokemonCenter_2F_EventScript_2770A5:: @ 82770A5
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_278372, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_278372, MSGBOX_DEFAULT
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2770B2:: @ 82770B2
+CherrygroveCity_PokemonCenter_2F_EventScript_2770B2:: @ 82770B2
 	copyvar VAR_0x8007, VAR_LAST_TALKED
-	call OldaleTown_PokemonCenter_2F_EventScript_277199
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277199
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	call OldaleTown_PokemonCenter_2F_EventScript_27134F
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	call CherrygroveCity_PokemonCenter_2F_EventScript_27134F
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	message gText_PleaseWaitForLink
 	waitmessage
 	special sub_80B2E4C
 	waitstate
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_27713A
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27713A
 	compare VAR_RESULT, 2
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772D2
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772D2
 	compare VAR_RESULT, 3
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772DF
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772DF
 	compare VAR_RESULT, 4
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_27730E
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27730E
 	compare VAR_RESULT, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	compare VAR_RESULT, 6
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772C5
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772C5
 	compare VAR_RESULT, 7
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772AB
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772AB
 	compare VAR_RESULT, 9
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772B8
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772B8
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27713A:: @ 827713A
+CherrygroveCity_PokemonCenter_2F_EventScript_27713A:: @ 827713A
 	setvar VAR_0x8004, 3
 	copyvar VAR_0x4087, VAR_0x8004
-	messageautoscroll OldaleTown_PokemonCenter_2F_Text_278197
+	messageautoscroll CherrygroveCity_PokemonCenter_2F_Text_278197
 	waitmessage
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BE4
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	delay 60
-	applymovement VAR_LAST_TALKED, OldaleTown_PokemonCenter_2F_Movement_27734D
+	applymovement VAR_LAST_TALKED, CherrygroveCity_PokemonCenter_2F_Movement_27734D
 	waitmovement 0
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_277356
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_277356
 	waitmovement 0
 	opendoor 9, 1
 	waitdooranim
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27735A
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27735A
 	waitmovement 0
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
 	closedoor 9, 1
@@ -580,31 +580,31 @@ OldaleTown_PokemonCenter_2F_EventScript_27713A:: @ 827713A
 	waitstate
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277199:: @ 8277199
+CherrygroveCity_PokemonCenter_2F_EventScript_277199:: @ 8277199
 	specialvar VAR_RESULT, CalculatePlayerPartyCount
 	compare VAR_RESULT, 2
-	goto_if_lt OldaleTown_PokemonCenter_2F_EventScript_2771BF
+	goto_if_lt CherrygroveCity_PokemonCenter_2F_EventScript_2771BF
 	specialvar VAR_RESULT, sub_80F9370
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2771CD
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2771CD
 	setvar VAR_RESULT, 1
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_2771BF:: @ 82771BF
-	msgbox OldaleTown_PokemonCenter_2F_Text_278027, MSGBOX_DEFAULT
+CherrygroveCity_PokemonCenter_2F_EventScript_2771BF:: @ 82771BF
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_278027, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_2771CD:: @ 82771CD
-	msgbox OldaleTown_PokemonCenter_2F_Text_278061, MSGBOX_DEFAULT
+CherrygroveCity_PokemonCenter_2F_EventScript_2771CD:: @ 82771CD
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_278061, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_2771DB:: @ 82771DB
+CherrygroveCity_PokemonCenter_2F_EventScript_2771DB:: @ 82771DB
 	copyvar VAR_0x8007, VAR_LAST_TALKED
-	call OldaleTown_PokemonCenter_2F_EventScript_27134F
+	call CherrygroveCity_PokemonCenter_2F_EventScript_27134F
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	message gText_PleaseWaitForLink
 	waitmessage
 	special sub_80B2E74
@@ -612,38 +612,38 @@ OldaleTown_PokemonCenter_2F_EventScript_2771DB:: @ 82771DB
 	special sub_80B2EA8
 	waitstate
 	compare VAR_RESULT, 12
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277328
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277328
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_27724C
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27724C
 	compare VAR_RESULT, 2
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772D2
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772D2
 	compare VAR_RESULT, 3
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772DF
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772DF
 	compare VAR_RESULT, 4
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_27730E
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27730E
 	compare VAR_RESULT, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	compare VAR_RESULT, 6
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772C5
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772C5
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27724C:: @ 827724C
+CherrygroveCity_PokemonCenter_2F_EventScript_27724C:: @ 827724C
 	setvar VAR_0x8004, 4
 	copyvar VAR_0x4087, VAR_0x8004
-	messageautoscroll OldaleTown_PokemonCenter_2F_Text_278197
+	messageautoscroll CherrygroveCity_PokemonCenter_2F_Text_278197
 	waitmessage
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BE4
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	delay 60
-	applymovement VAR_LAST_TALKED, OldaleTown_PokemonCenter_2F_Movement_27734D
+	applymovement VAR_LAST_TALKED, CherrygroveCity_PokemonCenter_2F_Movement_27734D
 	waitmovement 0
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_277356
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_277356
 	waitmovement 0
 	opendoor 9, 1
 	waitdooranim
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27735A
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27735A
 	waitmovement 0
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
 	closedoor 9, 1
@@ -655,41 +655,41 @@ OldaleTown_PokemonCenter_2F_EventScript_27724C:: @ 827724C
 	waitstate
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2772AB:: @ 82772AB
+CherrygroveCity_PokemonCenter_2F_EventScript_2772AB:: @ 82772AB
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_278565, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_278565, MSGBOX_DEFAULT
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2772B8:: @ 82772B8
+CherrygroveCity_PokemonCenter_2F_EventScript_2772B8:: @ 82772B8
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_2785C9, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_2785C9, MSGBOX_DEFAULT
 	release
 	end
 
 BattleFrontier_BattleTowerLobby_EventScript_2772C5:: @ 82772C5
-OldaleTown_PokemonCenter_2F_EventScript_2772C5:: @ 82772C5
+CherrygroveCity_PokemonCenter_2F_EventScript_2772C5:: @ 82772C5
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_27821C, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_27821C, MSGBOX_DEFAULT
 	release
 	end
 
 BattleFrontier_BattleTowerLobby_EventScript_2772D2:: @ 82772D2
-OldaleTown_PokemonCenter_2F_EventScript_2772D2:: @ 82772D2
+CherrygroveCity_PokemonCenter_2F_EventScript_2772D2:: @ 82772D2
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_2781C7, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_2781C7, MSGBOX_DEFAULT
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2772DF:: @ 82772DF
+CherrygroveCity_PokemonCenter_2F_EventScript_2772DF:: @ 82772DF
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_278255, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_278255, MSGBOX_DEFAULT
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2772EC:: @ 82772EC
+CherrygroveCity_PokemonCenter_2F_EventScript_2772EC:: @ 82772EC
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_278291, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_278291, MSGBOX_DEFAULT
 	release
 	end
 
@@ -699,54 +699,54 @@ MossdeepCity_GameCorner_1F_EventScript_2772F9:: @ 82772F9
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277306:: @ 8277306
+CherrygroveCity_PokemonCenter_2F_EventScript_277306:: @ 8277306
 	special SetCableClubWarp
 	special sub_80AF948
 	waitstate
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27730E:: @ 827730E
+CherrygroveCity_PokemonCenter_2F_EventScript_27730E:: @ 827730E
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_2782A8, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_2782A8, MSGBOX_DEFAULT
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27731B:: @ 827731B
+CherrygroveCity_PokemonCenter_2F_EventScript_27731B:: @ 827731B
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_2785E9, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_2785E9, MSGBOX_DEFAULT
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277328:: @ 8277328
+CherrygroveCity_PokemonCenter_2F_EventScript_277328:: @ 8277328
 	special CloseLink
-	msgbox OldaleTown_PokemonCenter_2F_Text_278651, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_278651, MSGBOX_DEFAULT
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277335:: @ 8277335
+CherrygroveCity_PokemonCenter_2F_EventScript_277335:: @ 8277335
 	msgbox gUnknown_0827306F, MSGBOX_DEFAULT
 	release
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27733F:: @ 827733F
+CherrygroveCity_PokemonCenter_2F_EventScript_27733F:: @ 827733F
 	msgbox gUnknown_082730BC, MSGBOX_DEFAULT
 	releaseall
 	end
 
-OldaleTown_PokemonCenter_2F_Movement_277349: @ 8277349
+CherrygroveCity_PokemonCenter_2F_Movement_277349: @ 8277349
 	face_down
 	step_end
 
-OldaleTown_PokemonCenter_2F_Movement_27734B: @ 827734B
+CherrygroveCity_PokemonCenter_2F_Movement_27734B: @ 827734B
 	face_right
 	step_end
 
 MossdeepCity_GameCorner_1F_Movement_27734D: @ 827734D
-OldaleTown_PokemonCenter_2F_Movement_27734D: @ 827734D
+CherrygroveCity_PokemonCenter_2F_Movement_27734D: @ 827734D
 	face_left
 	step_end
 
-OldaleTown_PokemonCenter_2F_Movement_27734F: @ 827734F
+CherrygroveCity_PokemonCenter_2F_Movement_27734F: @ 827734F
 	walk_down
 	walk_down
 	step_end
@@ -757,21 +757,21 @@ Movement_277352: @ 8277352
 	walk_up
 	step_end
 
-OldaleTown_PokemonCenter_2F_Movement_277356: @ 8277356
+CherrygroveCity_PokemonCenter_2F_Movement_277356: @ 8277356
 	walk_left
 	walk_up
 	walk_up
 	step_end
 
-OldaleTown_PokemonCenter_2F_Movement_27735A: @ 827735A
+CherrygroveCity_PokemonCenter_2F_Movement_27735A: @ 827735A
 	walk_up
 	step_end
 
-OldaleTown_PokemonCenter_2F_Movement_27735C: @ 827735C
+CherrygroveCity_PokemonCenter_2F_Movement_27735C: @ 827735C
 	face_left
 	step_end
 
-OldaleTown_PokemonCenter_2F_Movement_27735E: @ 827735E
+CherrygroveCity_PokemonCenter_2F_Movement_27735E: @ 827735E
 	face_right
 	step_end
 
@@ -987,61 +987,61 @@ EventScript_277513:: @ 8277513
 	waitstate
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27751B:: @ 827751B
+CherrygroveCity_PokemonCenter_2F_EventScript_27751B:: @ 827751B
 	lock
 	faceplayer
 	setvar VAR_FRONTIER_FACILITY, 8
-	goto_if_unset FLAG_SYS_POKEDEX_GET, OldaleTown_PokemonCenter_2F_EventScript_277335
+	goto_if_unset FLAG_SYS_POKEDEX_GET, CherrygroveCity_PokemonCenter_2F_EventScript_277335
 	specialvar VAR_RESULT, sub_813990C
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_27731B
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27731B
 	copyvar VAR_0x8007, VAR_LAST_TALKED
 	specialvar VAR_RESULT, IsWirelessAdapterConnected
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277668
-	message OldaleTown_PokemonCenter_2F_Text_27940D
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277668
+	message CherrygroveCity_PokemonCenter_2F_Text_27940D
 	waitmessage
-	goto OldaleTown_PokemonCenter_2F_EventScript_27755C
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_27755C
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27755C:: @ 827755C
+CherrygroveCity_PokemonCenter_2F_EventScript_27755C:: @ 827755C
 	multichoice 17, 6, 17, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_27759F
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_277593
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_27759F
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_277593
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277593:: @ 8277593
-	message OldaleTown_PokemonCenter_2F_Text_2794B8
+CherrygroveCity_PokemonCenter_2F_EventScript_277593:: @ 8277593
+	message CherrygroveCity_PokemonCenter_2F_Text_2794B8
 	waitmessage
-	goto OldaleTown_PokemonCenter_2F_EventScript_27755C
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_27755C
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27759F:: @ 827759F
-	call OldaleTown_PokemonCenter_2F_EventScript_277626
+CherrygroveCity_PokemonCenter_2F_EventScript_27759F:: @ 827759F
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277626
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	call OldaleTown_PokemonCenter_2F_EventScript_27134F
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	call CherrygroveCity_PokemonCenter_2F_EventScript_27134F
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	msgbox OldaleTown_PokemonCenter_2F_Text_27961C, MSGBOX_DEFAULT
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_27961C, MSGBOX_DEFAULT
 	closemessage
 	special HealPlayerParty
 	setvar VAR_0x8004, 6
 	copyvar VAR_0x4087, VAR_0x8004
-	call OldaleTown_PokemonCenter_2F_EventScript_277BBE
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BBE
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	delay 60
-	applymovement VAR_LAST_TALKED, OldaleTown_PokemonCenter_2F_Movement_27734D
+	applymovement VAR_LAST_TALKED, CherrygroveCity_PokemonCenter_2F_Movement_27734D
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_277356
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_277356
 	waitmovement 0
 	opendoor 5, 1
 	waitdooranim
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27735A
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27735A
 	waitmovement 0
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
 	closedoor 5, 1
@@ -1054,329 +1054,329 @@ OldaleTown_PokemonCenter_2F_EventScript_27759F:: @ 827759F
 	waitstate
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277626:: @ 8277626
+CherrygroveCity_PokemonCenter_2F_EventScript_277626:: @ 8277626
 	specialvar VAR_RESULT, CountPartyNonEggMons
 	compare VAR_RESULT, 2
-	goto_if_lt OldaleTown_PokemonCenter_2F_EventScript_27764C
+	goto_if_lt CherrygroveCity_PokemonCenter_2F_EventScript_27764C
 	specialvar VAR_RESULT, sub_80F9370
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_27765A
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27765A
 	setvar VAR_RESULT, 1
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_27764C:: @ 827764C
-	msgbox OldaleTown_PokemonCenter_2F_Text_27893E, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_273755
+CherrygroveCity_PokemonCenter_2F_EventScript_27764C:: @ 827764C
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_27893E, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_273755
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27765A:: @ 827765A
-	msgbox OldaleTown_PokemonCenter_2F_Text_27897B, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_273755
+CherrygroveCity_PokemonCenter_2F_EventScript_27765A:: @ 827765A
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_27897B, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_273755
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277668:: @ 8277668
-	msgbox OldaleTown_PokemonCenter_2F_Text_2789B5, MSGBOX_DEFAULT
+CherrygroveCity_PokemonCenter_2F_EventScript_277668:: @ 8277668
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_2789B5, MSGBOX_DEFAULT
 	release
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277672:: @ 8277672
+CherrygroveCity_PokemonCenter_2F_EventScript_277672:: @ 8277672
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_POKEDEX_GET, OldaleTown_PokemonCenter_2F_EventScript_277335
-	msgbox OldaleTown_PokemonCenter_2F_Text_279937, MSGBOX_YESNO
+	goto_if_unset FLAG_SYS_POKEDEX_GET, CherrygroveCity_PokemonCenter_2F_EventScript_277335
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_279937, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_27769A
-	msgbox OldaleTown_PokemonCenter_2F_Text_2799AA, MSGBOX_DEFAULT
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27769A
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_2799AA, MSGBOX_DEFAULT
 	release
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_27769A:: @ 827769A
-	msgbox OldaleTown_PokemonCenter_2F_Text_279C91, MSGBOX_DEFAULT
+CherrygroveCity_PokemonCenter_2F_EventScript_27769A:: @ 827769A
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_279C91, MSGBOX_DEFAULT
 	release
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_2776A4:: @ 82776A4
+CherrygroveCity_PokemonCenter_2F_EventScript_2776A4:: @ 82776A4
 	lock
 	faceplayer
 	setvar VAR_FRONTIER_FACILITY, 9
-	goto_if_unset FLAG_SYS_POKEDEX_GET, OldaleTown_PokemonCenter_2F_EventScript_277335
+	goto_if_unset FLAG_SYS_POKEDEX_GET, CherrygroveCity_PokemonCenter_2F_EventScript_277335
 	specialvar VAR_RESULT, sub_813990C
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_27731B
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27731B
 	specialvar VAR_RESULT, IsWirelessAdapterConnected
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276E13
-	message OldaleTown_PokemonCenter_2F_Text_279013
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276E13
+	message CherrygroveCity_PokemonCenter_2F_Text_279013
 	waitmessage
 	delay 28
-	goto OldaleTown_PokemonCenter_2F_EventScript_2776E3
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_2776E3
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2776E3:: @ 82776E3
+CherrygroveCity_PokemonCenter_2F_EventScript_2776E3:: @ 82776E3
 	checkitem ITEM_POWDER_JAR, 1
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_27778B
-	goto_if_set FLAG_VISITED_MAUVILLE_CITY, OldaleTown_PokemonCenter_2F_EventScript_27773E
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27778B
+	goto_if_set FLAG_VISITED_MAUVILLE_CITY, CherrygroveCity_PokemonCenter_2F_EventScript_27773E
 	multichoice 0, 0, 78, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_27780D
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_27783B
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2778F7
-	case 3, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_27780D
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_27783B
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2778F7
+	case 3, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27773E:: @ 827773E
+CherrygroveCity_PokemonCenter_2F_EventScript_27773E:: @ 827773E
 	multichoice 0, 0, 79, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_27780D
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_27783B
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2778D9
-	case 3, OldaleTown_PokemonCenter_2F_EventScript_2778F7
-	case 4, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_27780D
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_27783B
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2778D9
+	case 3, CherrygroveCity_PokemonCenter_2F_EventScript_2778F7
+	case 4, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27778B:: @ 827778B
-	goto_if_set FLAG_VISITED_MAUVILLE_CITY, OldaleTown_PokemonCenter_2F_EventScript_2777CB
+CherrygroveCity_PokemonCenter_2F_EventScript_27778B:: @ 827778B
+	goto_if_set FLAG_VISITED_MAUVILLE_CITY, CherrygroveCity_PokemonCenter_2F_EventScript_2777CB
 	multichoice 0, 0, 75, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_27780D
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_27783B
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_27780D
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_27783B
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2777CB:: @ 82777CB
+CherrygroveCity_PokemonCenter_2F_EventScript_2777CB:: @ 82777CB
 	multichoice 0, 0, 77, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_27780D
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_27783B
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2778D9
-	case 3, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_27780D
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_27783B
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2778D9
+	case 3, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27780D:: @ 827780D
-	msgbox OldaleTown_PokemonCenter_2F_Text_27909D, MSGBOX_YESNO
+CherrygroveCity_PokemonCenter_2F_EventScript_27780D:: @ 827780D
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_27909D, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	call OldaleTown_PokemonCenter_2F_EventScript_277199
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277199
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	setvar VAR_0x8004, 3
-	goto OldaleTown_PokemonCenter_2F_EventScript_277931
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_277931
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27783B:: @ 827783B
-	message OldaleTown_PokemonCenter_2F_Text_2790BE
+CherrygroveCity_PokemonCenter_2F_EventScript_27783B:: @ 827783B
+	message CherrygroveCity_PokemonCenter_2F_Text_2790BE
 	waitmessage
 	multichoice 0, 0, 18, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_27788E
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_277899
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2778C0
-	case 3, OldaleTown_PokemonCenter_2F_EventScript_2778CB
-	case 4, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_27788E
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_277899
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2778C0
+	case 3, CherrygroveCity_PokemonCenter_2F_EventScript_2778CB
+	case 4, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_27788E:: @ 827788E
+CherrygroveCity_PokemonCenter_2F_EventScript_27788E:: @ 827788E
 	setvar VAR_0x8004, 0
-	goto OldaleTown_PokemonCenter_2F_EventScript_277931
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_277931
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277899:: @ 8277899
+CherrygroveCity_PokemonCenter_2F_EventScript_277899:: @ 8277899
 	special HasEnoughMonsForDoubleBattle
 	compare VAR_RESULT, 0
-	goto_if_ne OldaleTown_PokemonCenter_2F_EventScript_2778B2
+	goto_if_ne CherrygroveCity_PokemonCenter_2F_EventScript_2778B2
 	setvar VAR_0x8004, 1
-	goto OldaleTown_PokemonCenter_2F_EventScript_277931
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_277931
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2778B2:: @ 82778B2
-	msgbox OldaleTown_PokemonCenter_2F_Text_277FEE, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_27783B
+CherrygroveCity_PokemonCenter_2F_EventScript_2778B2:: @ 82778B2
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_277FEE, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_27783B
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2778C0:: @ 82778C0
+CherrygroveCity_PokemonCenter_2F_EventScript_2778C0:: @ 82778C0
 	setvar VAR_0x8004, 2
-	goto OldaleTown_PokemonCenter_2F_EventScript_277931
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_277931
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2778CB:: @ 82778CB
-	msgbox OldaleTown_PokemonCenter_2F_Text_279142, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_27783B
+CherrygroveCity_PokemonCenter_2F_EventScript_2778CB:: @ 82778CB
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_279142, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_27783B
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2778D9:: @ 82778D9
-	msgbox OldaleTown_PokemonCenter_2F_Text_2790E8, MSGBOX_YESNO
+CherrygroveCity_PokemonCenter_2F_EventScript_2778D9:: @ 82778D9
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_2790E8, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	setvar VAR_0x8004, 12
-	goto OldaleTown_PokemonCenter_2F_EventScript_277931
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_277931
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2778F7:: @ 82778F7
-	msgbox OldaleTown_PokemonCenter_2F_Text_279114, MSGBOX_YESNO
+CherrygroveCity_PokemonCenter_2F_EventScript_2778F7:: @ 82778F7
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_279114, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	special HasAtLeastOneBerry
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277923
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277923
 	setvar VAR_0x8004, 5
-	goto OldaleTown_PokemonCenter_2F_EventScript_277931
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_277931
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277923:: @ 8277923
-	msgbox OldaleTown_PokemonCenter_2F_Text_2788FC, MSGBOX_DEFAULT
-	goto OldaleTown_PokemonCenter_2F_EventScript_2776E3
+CherrygroveCity_PokemonCenter_2F_EventScript_277923:: @ 8277923
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_2788FC, MSGBOX_DEFAULT
+	goto CherrygroveCity_PokemonCenter_2F_EventScript_2776E3
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277931:: @ 8277931
-	call OldaleTown_PokemonCenter_2F_EventScript_27134F
+CherrygroveCity_PokemonCenter_2F_EventScript_277931:: @ 8277931
+	call CherrygroveCity_PokemonCenter_2F_EventScript_27134F
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	switch VAR_0x8004
-	case 3, OldaleTown_PokemonCenter_2F_EventScript_277989
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_277989
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_277989
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_277A16
-	case 5, OldaleTown_PokemonCenter_2F_EventScript_277AA3
-	case 12, OldaleTown_PokemonCenter_2F_EventScript_277AA3
+	case 3, CherrygroveCity_PokemonCenter_2F_EventScript_277989
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_277989
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_277989
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_277A16
+	case 5, CherrygroveCity_PokemonCenter_2F_EventScript_277AA3
+	case 12, CherrygroveCity_PokemonCenter_2F_EventScript_277AA3
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277989:: @ 8277989
-	message OldaleTown_PokemonCenter_2F_Text_2792CD
+CherrygroveCity_PokemonCenter_2F_EventScript_277989:: @ 8277989
+	message CherrygroveCity_PokemonCenter_2F_Text_2792CD
 	waitmessage
 	multichoice 16, 6, 81, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_2779EE
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_2779C6
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_2779EE
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_2779C6
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_2779C6:: @ 82779C6
-	call OldaleTown_PokemonCenter_2F_EventScript_277B30
+CherrygroveCity_PokemonCenter_2F_EventScript_2779C6:: @ 82779C6
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277B30
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277B3A
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277B3A
 	compare VAR_RESULT, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277989
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277989
 	compare VAR_RESULT, 8
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2779C6
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2779C6
 	release
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_2779EE:: @ 82779EE
-	call OldaleTown_PokemonCenter_2F_EventScript_277B35
+CherrygroveCity_PokemonCenter_2F_EventScript_2779EE:: @ 82779EE
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277B35
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277B3A
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277B3A
 	compare VAR_RESULT, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277989
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277989
 	compare VAR_RESULT, 8
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_2779EE
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_2779EE
 	release
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277A16:: @ 8277A16
-	message OldaleTown_PokemonCenter_2F_Text_279334
+CherrygroveCity_PokemonCenter_2F_EventScript_277A16:: @ 8277A16
+	message CherrygroveCity_PokemonCenter_2F_Text_279334
 	waitmessage
 	multichoice 16, 6, 81, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_277A7B
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_277A53
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_277A7B
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_277A53
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277A53:: @ 8277A53
-	call OldaleTown_PokemonCenter_2F_EventScript_277B30
+CherrygroveCity_PokemonCenter_2F_EventScript_277A53:: @ 8277A53
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277B30
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277B3A
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277B3A
 	compare VAR_RESULT, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277A16
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277A16
 	compare VAR_RESULT, 8
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277A53
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277A53
 	release
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277A7B:: @ 8277A7B
-	call OldaleTown_PokemonCenter_2F_EventScript_277B35
+CherrygroveCity_PokemonCenter_2F_EventScript_277A7B:: @ 8277A7B
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277B35
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277B3A
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277B3A
 	compare VAR_RESULT, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277A16
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277A16
 	compare VAR_RESULT, 8
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277A7B
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277A7B
 	release
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277AA3:: @ 8277AA3
-	message OldaleTown_PokemonCenter_2F_Text_2793A3
+CherrygroveCity_PokemonCenter_2F_EventScript_277AA3:: @ 8277AA3
+	message CherrygroveCity_PokemonCenter_2F_Text_2793A3
 	waitmessage
 	multichoice 16, 6, 81, 0
 	switch VAR_RESULT
-	case 0, OldaleTown_PokemonCenter_2F_EventScript_277B08
-	case 1, OldaleTown_PokemonCenter_2F_EventScript_277AE0
-	case 2, OldaleTown_PokemonCenter_2F_EventScript_2772EC
-	case 127, OldaleTown_PokemonCenter_2F_EventScript_2772EC
+	case 0, CherrygroveCity_PokemonCenter_2F_EventScript_277B08
+	case 1, CherrygroveCity_PokemonCenter_2F_EventScript_277AE0
+	case 2, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
+	case 127, CherrygroveCity_PokemonCenter_2F_EventScript_2772EC
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277AE0:: @ 8277AE0
-	call OldaleTown_PokemonCenter_2F_EventScript_277B30
+CherrygroveCity_PokemonCenter_2F_EventScript_277AE0:: @ 8277AE0
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277B30
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277B3A
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277B3A
 	compare VAR_RESULT, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277AA3
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277AA3
 	compare VAR_RESULT, 8
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277AE0
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277AE0
 	release
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277B08:: @ 8277B08
-	call OldaleTown_PokemonCenter_2F_EventScript_277B35
+CherrygroveCity_PokemonCenter_2F_EventScript_277B08:: @ 8277B08
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277B35
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277B3A
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277B3A
 	compare VAR_RESULT, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277AA3
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277AA3
 	compare VAR_RESULT, 8
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_277B08
+	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_277B08
 	release
 	return
 
 BattleFrontier_BattleTowerLobby_EventScript_277B30:: @ 8277B30
 MossdeepCity_GameCorner_1F_EventScript_277B30:: @ 8277B30
-OldaleTown_PokemonCenter_2F_EventScript_277B30:: @ 8277B30
+CherrygroveCity_PokemonCenter_2F_EventScript_277B30:: @ 8277B30
 	special BerryBlenderLinkBecomeLeader
 	waitstate
 	return
 
 BattleFrontier_BattleTowerLobby_EventScript_277B35:: @ 8277B35
 MossdeepCity_GameCorner_1F_EventScript_277B35:: @ 8277B35
-OldaleTown_PokemonCenter_2F_EventScript_277B35:: @ 8277B35
+CherrygroveCity_PokemonCenter_2F_EventScript_277B35:: @ 8277B35
 	special BerryBlenderLinkJoinGroup
 	waitstate
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277B3A:: @ 8277B3A
-	messageautoscroll OldaleTown_PokemonCenter_2F_Text_2781A5
+CherrygroveCity_PokemonCenter_2F_EventScript_277B3A:: @ 8277B3A
+	messageautoscroll CherrygroveCity_PokemonCenter_2F_Text_2781A5
 	waitmessage
 	delay 60
 	closemessage
 	copyvar VAR_0x8007, VAR_LAST_TALKED
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277BE4
 	special DrawWholeMapView
 	playse SE_TK_KASYA
 	delay 60
-	applymovement VAR_LAST_TALKED, OldaleTown_PokemonCenter_2F_Movement_27734D
+	applymovement VAR_LAST_TALKED, CherrygroveCity_PokemonCenter_2F_Movement_27734D
 	waitmovement 0
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_277356
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_277356
 	waitmovement 0
 	opendoor 9, 1
 	waitdooranim
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_PokemonCenter_2F_Movement_27735A
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_PokemonCenter_2F_Movement_27735A
 	waitmovement 0
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
 	closedoor 9, 1
@@ -1387,49 +1387,49 @@ OldaleTown_PokemonCenter_2F_EventScript_277B3A:: @ 8277B3A
 
 EventScript_WirelessBoxResults:: @ 8277B8A
 	lockall
-	goto_if_unset FLAG_SYS_POKEDEX_GET, OldaleTown_PokemonCenter_2F_EventScript_27733F
+	goto_if_unset FLAG_SYS_POKEDEX_GET, CherrygroveCity_PokemonCenter_2F_EventScript_27733F
 	specialvar VAR_RESULT, IsWirelessAdapterConnected
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_277BB4
 	fadescreen 1
 	special sub_801A42C
 	waitstate
-	msgbox OldaleTown_PokemonCenter_2F_Text_27874F, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_27874F, MSGBOX_DEFAULT
 	releaseall
 	end
 
 EventScript_277BB4:: @ 8277BB4
-	msgbox OldaleTown_PokemonCenter_2F_Text_27871F, MSGBOX_DEFAULT
+	msgbox CherrygroveCity_PokemonCenter_2F_Text_27871F, MSGBOX_DEFAULT
 	releaseall
 	end
 
-OldaleTown_PokemonCenter_2F_EventScript_277BBE:: @ 8277BBE
+CherrygroveCity_PokemonCenter_2F_EventScript_277BBE:: @ 8277BBE
 	setmetatile 5, 2, 732, 0
 	setmetatile 5, 3, 740, 0
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277BD1:: @ 8277BD1
+CherrygroveCity_PokemonCenter_2F_EventScript_277BD1:: @ 8277BD1
 	setmetatile 5, 2, 542, 1
 	setmetatile 5, 3, 605, 1
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277BE4:: @ 8277BE4
+CherrygroveCity_PokemonCenter_2F_EventScript_277BE4:: @ 8277BE4
 	setmetatile 9, 2, 732, 0
 	setmetatile 9, 3, 740, 0
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277BF7:: @ 8277BF7
+CherrygroveCity_PokemonCenter_2F_EventScript_277BF7:: @ 8277BF7
 	setmetatile 9, 2, 542, 1
 	setmetatile 9, 3, 605, 1
 	return
 
 MossdeepCity_GameCorner_1F_EventScript_277C0A:: @ 8277C0A
-OldaleTown_PokemonCenter_2F_EventScript_277C0A:: @ 8277C0A
+CherrygroveCity_PokemonCenter_2F_EventScript_277C0A:: @ 8277C0A
 	setmetatile 5, 2, 556, 0
 	setmetatile 5, 3, 564, 0
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_277C1D:: @ 8277C1D
+CherrygroveCity_PokemonCenter_2F_EventScript_277C1D:: @ 8277C1D
 	setmetatile 5, 2, 554, 1
 	setmetatile 5, 3, 562, 1
 	return
@@ -1444,7 +1444,7 @@ LavaridgeTown_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
 LilycoveCity_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
 MauvilleCity_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
 MossdeepCity_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
-OldaleTown_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
+CherrygroveCity_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
 PacifidlogTown_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
 PetalburgCity_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
 RustboroCity_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
@@ -1630,40 +1630,40 @@ MossdeepCity_GameCorner_1F_EventScript_277E9D:: @ 8277E9D
 	waitstate
 	releaseall
 	end
-OldaleTown_PokemonCenter_2F_Text_277EA4: @ 8277EA4
+CherrygroveCity_PokemonCenter_2F_Text_277EA4: @ 8277EA4
 	.string "Welcome to the POKéMON CABLE\n"
 	.string "CLUB.\p"
 	.string "Which of our services do you wish\n"
 	.string "to use?$"
 
-OldaleTown_PokemonCenter_2F_Text_277EF1: @ 8277EF1
+CherrygroveCity_PokemonCenter_2F_Text_277EF1: @ 8277EF1
 	.string "Which of our services do you wish\n"
 	.string "to use?$"
 
-OldaleTown_PokemonCenter_2F_Text_277F1B:: @ 8277F1B
+CherrygroveCity_PokemonCenter_2F_Text_277F1B:: @ 8277F1B
 	.string "Trade POKéMON with another player\n"
 	.string "using a GBA Game Link cable.$"
 
-OldaleTown_PokemonCenter_2F_Text_277F5A:: @ 8277F5A
+CherrygroveCity_PokemonCenter_2F_Text_277F5A:: @ 8277F5A
 	.string "You may battle another TRAINER\n"
 	.string "using a GBA Game Link cable.$"
 
-OldaleTown_PokemonCenter_2F_Text_277F96:: @ 8277F96
+CherrygroveCity_PokemonCenter_2F_Text_277F96:: @ 8277F96
 	.string "You can use the RECORD CORNER with\n"
 	.string "others using a GBA Game Link cable.$"
 
-OldaleTown_PokemonCenter_2F_Text_277FDD: @ 8277FDD
+CherrygroveCity_PokemonCenter_2F_Text_277FDD: @ 8277FDD
 	.string "Close this menu.$"
 
-OldaleTown_PokemonCenter_2F_Text_277FEE: @ 8277FEE
+CherrygroveCity_PokemonCenter_2F_Text_277FEE: @ 8277FEE
 	.string "For a DOUBLE BATTLE, you must\n"
 	.string "have at least two POKéMON.$"
 
-OldaleTown_PokemonCenter_2F_Text_278027: @ 8278027
+CherrygroveCity_PokemonCenter_2F_Text_278027: @ 8278027
 	.string "For trading, you must have at\n"
 	.string "least two POKéMON with you.$"
 
-OldaleTown_PokemonCenter_2F_Text_278061: @ 8278061
+CherrygroveCity_PokemonCenter_2F_Text_278061: @ 8278061
 	.string "A POKéMON holding the {STR_VAR_1}\n"
 	.string "BERRY can't be traded.$"
 
@@ -1685,54 +1685,54 @@ gText_AwaitingLinkup:: @ 8278131
 	.string "Awaiting linkup…\n"
 	.string "… … B Button: Cancel$"
 
-OldaleTown_PokemonCenter_2F_Text_278157:: @ 8278157
+CherrygroveCity_PokemonCenter_2F_Text_278157:: @ 8278157
 	.string "Your progress must be saved before\n"
 	.string "linking. Is it okay to save?$"
 
-OldaleTown_PokemonCenter_2F_Text_278197: @ 8278197
+CherrygroveCity_PokemonCenter_2F_Text_278197: @ 8278197
 	.string "Please enter.$"
 
-OldaleTown_PokemonCenter_2F_Text_2781A5: @ 82781A5
+CherrygroveCity_PokemonCenter_2F_Text_2781A5: @ 82781A5
 	.string "I'll direct you to your room now.$"
 
 LilycoveCity_ContestLobby_Text_2781C7: @ 82781C7
-OldaleTown_PokemonCenter_2F_Text_2781C7: @ 82781C7
+CherrygroveCity_PokemonCenter_2F_Text_2781C7: @ 82781C7
 	.string "Someone is not ready to link.\p"
 	.string "Please come back after everyone\n"
 	.string "has made preparations.$"
 
 LilycoveCity_ContestLobby_Text_27821C: @ 827821C
-OldaleTown_PokemonCenter_2F_Text_27821C: @ 827821C
+CherrygroveCity_PokemonCenter_2F_Text_27821C: @ 827821C
 	.string "Sorry, we have a link error…\n"
 	.string "Please reset and try again.$"
 
 BattleFrontier_BattleTowerLobby_Text_278255: @ 8278255
 LilycoveCity_ContestLobby_Text_278255: @ 8278255
-OldaleTown_PokemonCenter_2F_Text_278255: @ 8278255
+CherrygroveCity_PokemonCenter_2F_Text_278255: @ 8278255
 	.string "The link partners appear to have\n"
 	.string "made different selections.$"
 
-OldaleTown_PokemonCenter_2F_Text_278291: @ 8278291
+CherrygroveCity_PokemonCenter_2F_Text_278291: @ 8278291
 	.string "Please do visit again.$"
 
 BattleFrontier_BattleTowerLobby_Text_2782A8: @ 82782A8
-OldaleTown_PokemonCenter_2F_Text_2782A8: @ 82782A8
+CherrygroveCity_PokemonCenter_2F_Text_2782A8: @ 82782A8
 	.string "The number of participants is\n"
 	.string "incorrect.$"
 
-OldaleTown_PokemonCenter_2F_Text_2782D1: @ 82782D1
+CherrygroveCity_PokemonCenter_2F_Text_2782D1: @ 82782D1
 	.string "The SINGLE BATTLE Mode can't be\n"
 	.string "played by {STR_VAR_1} players.$"
 
-OldaleTown_PokemonCenter_2F_Text_278307: @ 8278307
+CherrygroveCity_PokemonCenter_2F_Text_278307: @ 8278307
 	.string "The DOUBLE BATTLE Mode can't be\n"
 	.string "played by {STR_VAR_1} players.$"
 
-OldaleTown_PokemonCenter_2F_Text_27833D: @ 827833D
+CherrygroveCity_PokemonCenter_2F_Text_27833D: @ 827833D
 	.string "There must be four players to play\n"
 	.string "this Battle Mode.$"
 
-OldaleTown_PokemonCenter_2F_Text_278372: @ 8278372
+CherrygroveCity_PokemonCenter_2F_Text_278372: @ 8278372
 	.string "Please confirm the number of\n"
 	.string "players and start again.$"
 
@@ -1769,23 +1769,23 @@ TradeCenter_Text_2784E2: @ 82784E2
 RecordCorner_Text_27850E: @ 827850E
 	.string "Thanks for coming.$"
 
-OldaleTown_PokemonCenter_2F_Text_278521: @ 8278521
+CherrygroveCity_PokemonCenter_2F_Text_278521: @ 8278521
 	.string "The TRAINER CARD data will\n"
 	.string "be overwritten.$"
 
-OldaleTown_PokemonCenter_2F_Text_27854C: @ 827854C
+CherrygroveCity_PokemonCenter_2F_Text_27854C: @ 827854C
 	.string "I hope to see you again!$"
 
-OldaleTown_PokemonCenter_2F_Text_278565: @ 8278565
+CherrygroveCity_PokemonCenter_2F_Text_278565: @ 8278565
 	.string "I'm awfully sorry.\p"
 	.string "We're not set up to conduct trades\n"
 	.string "with TRAINERS far away in another\l"
 	.string "region yet…$"
 
-OldaleTown_PokemonCenter_2F_Text_2785C9: @ 82785C9
+CherrygroveCity_PokemonCenter_2F_Text_2785C9: @ 82785C9
 	.string "The other TRAINER is not ready.$"
 
-OldaleTown_PokemonCenter_2F_Text_2785E9: @ 82785E9
+CherrygroveCity_PokemonCenter_2F_Text_2785E9: @ 82785E9
 	.string "You have at least one POKéMON\n"
 	.string "that can't be taken.$"
 
@@ -1796,7 +1796,7 @@ RecordCorner_Text_27863C: @ 827863C
 	.string "{STR_VAR_1} sent over one\n"
 	.string "{STR_VAR_2}.$"
 
-OldaleTown_PokemonCenter_2F_Text_278651: @ 8278651
+CherrygroveCity_PokemonCenter_2F_Text_278651: @ 8278651
 	.string "Sorry, there is a transmission error.\p"
 	.string "You may not mix records with  \n"
 	.string "Japanese Ruby or Sapphire games.\p"
@@ -1804,73 +1804,73 @@ OldaleTown_PokemonCenter_2F_Text_278651: @ 8278651
 	.string "Japanese Emerald and overseas Ruby\l"
 	.string "or Sapphire games at the same time.$"
 
-OldaleTown_PokemonCenter_2F_Text_27871F: @ 827871F
+CherrygroveCity_PokemonCenter_2F_Text_27871F: @ 827871F
 	.string "The Wireless Adapter is not\n"
 	.string "connected properly.$"
 
-OldaleTown_PokemonCenter_2F_Text_27874F: @ 827874F
+CherrygroveCity_PokemonCenter_2F_Text_27874F: @ 827874F
 	.string "Participants are asked to step up\n"
 	.string "to the reception counter.$"
 
-OldaleTown_PokemonCenter_2F_Text_27878B: @ 827878B
+CherrygroveCity_PokemonCenter_2F_Text_27878B: @ 827878B
 	.string "Hello!$"
 
-OldaleTown_PokemonCenter_2F_Text_278792: @ 8278792
+CherrygroveCity_PokemonCenter_2F_Text_278792: @ 8278792
 	.string "Please wait.$"
 
-OldaleTown_PokemonCenter_2F_Text_27879F:: @ 827879F
+CherrygroveCity_PokemonCenter_2F_Text_27879F:: @ 827879F
 	.string "You may trade your POKéMON here\n"
 	.string "with another TRAINER.$"
 
-OldaleTown_PokemonCenter_2F_Text_2787D5:: @ 82787D5
+CherrygroveCity_PokemonCenter_2F_Text_2787D5:: @ 82787D5
 	.string "You may battle with your friends\n"
 	.string "here.$"
 
-OldaleTown_PokemonCenter_2F_Text_2787FC:: @ 82787FC
+CherrygroveCity_PokemonCenter_2F_Text_2787FC:: @ 82787FC
 	.string "Two to five TRAINERS can make\n"
 	.string "BERRY POWDER together.$"
 
-OldaleTown_PokemonCenter_2F_Text_278831:: @ 8278831
+CherrygroveCity_PokemonCenter_2F_Text_278831:: @ 8278831
 	.string "The records of two to four players\n"
 	.string "can be mixed together.$"
 
-OldaleTown_PokemonCenter_2F_Text_27886B: @ 827886B
+CherrygroveCity_PokemonCenter_2F_Text_27886B: @ 827886B
 	.string "A guide to the WIRELESS CLUB's\n"
 	.string "various services.$"
 
-OldaleTown_PokemonCenter_2F_Text_27889C:: @ 827889C
+CherrygroveCity_PokemonCenter_2F_Text_27889C:: @ 827889C
 	.string "Cancels the selected MENU item.$"
 
-OldaleTown_PokemonCenter_2F_Text_2788BC: @ 82788BC
+CherrygroveCity_PokemonCenter_2F_Text_2788BC: @ 82788BC
 	.string "Which battle mode would you like?$"
 
-OldaleTown_PokemonCenter_2F_Text_2788DE: @ 82788DE
+CherrygroveCity_PokemonCenter_2F_Text_2788DE: @ 82788DE
 	.string "Returns to the previous step.$"
 
-OldaleTown_PokemonCenter_2F_Text_2788FC: @ 82788FC
+CherrygroveCity_PokemonCenter_2F_Text_2788FC: @ 82788FC
 	.string "To use the BERRY CRUSH service,\n"
 	.string "you must have at least one BERRY.$"
 
-OldaleTown_PokemonCenter_2F_Text_27893E: @ 827893E
+CherrygroveCity_PokemonCenter_2F_Text_27893E: @ 827893E
 	.string "To enter the UNION ROOM, you must\n"
 	.string "have at least two POKéMON.$"
 
-OldaleTown_PokemonCenter_2F_Text_27897B: @ 827897B
+CherrygroveCity_PokemonCenter_2F_Text_27897B: @ 827897B
 	.string "No POKéMON holding the {STR_VAR_1}\n"
 	.string "BERRY may enter the UNION ROOM.$"
 
-OldaleTown_PokemonCenter_2F_Text_2789B5: @ 82789B5
+CherrygroveCity_PokemonCenter_2F_Text_2789B5: @ 82789B5
 	.string "This is the POKéMON WIRELESS CLUB\n"
 	.string "UNION ROOM.\p"
 	.string "Unfortunately, your Wireless\n"
 	.string "Adapter is not connected properly.\p"
 	.string "Please do come again.$"
 
-OldaleTown_PokemonCenter_2F_Text_278A39: @ 8278A39
+CherrygroveCity_PokemonCenter_2F_Text_278A39: @ 8278A39
 	.string "Oh…\n"
 	.string "Excuse me!$"
 
-OldaleTown_PokemonCenter_1F_Text_278A48: @ 8278A48
+CherrygroveCity_PokemonCenter_1F_Text_278A48: @ 8278A48
 	.string "It appears as if {STR_VAR_1} is playing\n"
 	.string "right now.\l"
 	.string "Go for it!$"
@@ -1958,7 +1958,7 @@ MossdeepCity_GameCorner_1F_Text_278FE0: @ 8278FE0
 	.string "Could you retry this from the start\n"
 	.string "again, please?$"
 
-OldaleTown_PokemonCenter_2F_Text_279013: @ 8279013
+CherrygroveCity_PokemonCenter_2F_Text_279013: @ 8279013
 	.string "Welcome to the POKéMON WIRELESS\n"
 	.string "CLUB DIRECT CORNER.\p"
 	.string "You may interact directly with\n"
@@ -1966,22 +1966,22 @@ OldaleTown_PokemonCenter_2F_Text_279013: @ 8279013
 	.string "Which room would you like to\n"
 	.string "enter?$"
 
-OldaleTown_PokemonCenter_2F_Text_27909D: @ 827909D
+CherrygroveCity_PokemonCenter_2F_Text_27909D: @ 827909D
 	.string "Would you like to trade POKéMON?$"
 
-OldaleTown_PokemonCenter_2F_Text_2790BE: @ 82790BE
+CherrygroveCity_PokemonCenter_2F_Text_2790BE: @ 82790BE
 	.string "Which Battle Mode would you like\n"
 	.string "to play?$"
 
-OldaleTown_PokemonCenter_2F_Text_2790E8: @ 82790E8
+CherrygroveCity_PokemonCenter_2F_Text_2790E8: @ 82790E8
 	.string "Would you like to access\n"
 	.string "the RECORD CORNER?$"
 
-OldaleTown_PokemonCenter_2F_Text_279114: @ 8279114
+CherrygroveCity_PokemonCenter_2F_Text_279114: @ 8279114
 	.string "Would you like to use the\n"
 	.string "BERRY CRUSH System?$"
 
-OldaleTown_PokemonCenter_2F_Text_279142: @ 8279142
+CherrygroveCity_PokemonCenter_2F_Text_279142: @ 8279142
 	.string "There are three Battle Modes.\p"
 	.string "SINGLE BATTLE is for two TRAINERS\n"
 	.string "with one or more POKéMON each.\p"
@@ -1997,26 +1997,26 @@ OldaleTown_PokemonCenter_2F_Text_279142: @ 8279142
 	.string "in battle at a time.$"
 
 BattleFrontier_BattleTowerLobby_Text_2792CD: @ 82792CD
-OldaleTown_PokemonCenter_2F_Text_2792CD: @ 82792CD
+CherrygroveCity_PokemonCenter_2F_Text_2792CD: @ 82792CD
 	.string "Please decide which of you two\n"
 	.string "will become the LEADER.\p"
 	.string "The other player must then choose\n"
 	.string "“JOIN GROUP.”$"
 
-OldaleTown_PokemonCenter_2F_Text_279334: @ 8279334
+CherrygroveCity_PokemonCenter_2F_Text_279334: @ 8279334
 	.string "Please decide which of you four\n"
 	.string "will become the GROUP LEADER.\p"
 	.string "The other players must then choose\n"
 	.string "“JOIN GROUP.”$"
 
 MossdeepCity_GameCorner_1F_Text_2793A3: @ 82793A3
-OldaleTown_PokemonCenter_2F_Text_2793A3: @ 82793A3
+CherrygroveCity_PokemonCenter_2F_Text_2793A3: @ 82793A3
 	.string "Please decide which of you will\n"
 	.string "become the GROUP LEADER.\p"
 	.string "The other players must then choose\n"
 	.string "“JOIN GROUP.”$"
 
-OldaleTown_PokemonCenter_2F_Text_27940D: @ 827940D
+CherrygroveCity_PokemonCenter_2F_Text_27940D: @ 827940D
 	.string "Welcome to the POKéMON WIRELESS\n"
 	.string "CLUB UNION ROOM.\p"
 	.string "You may interact directly with\n"
@@ -2024,7 +2024,7 @@ OldaleTown_PokemonCenter_2F_Text_27940D: @ 827940D
 	.string "whom you may not even know.\p"
 	.string "Would you like to enter the ROOM?$"
 
-OldaleTown_PokemonCenter_2F_Text_2794B8: @ 82794B8
+CherrygroveCity_PokemonCenter_2F_Text_2794B8: @ 82794B8
 	.string "The TRAINERS in the UNION ROOM\n"
 	.string "will be those players around you\l"
 	.string "who have also entered the ROOM.\p"
@@ -2038,11 +2038,11 @@ OldaleTown_PokemonCenter_2F_Text_2794B8: @ 82794B8
 	.string "trade.\p"
 	.string "Would you like to enter the ROOM?$"
 
-OldaleTown_PokemonCenter_2F_Text_27961C: @ 827961C
+CherrygroveCity_PokemonCenter_2F_Text_27961C: @ 827961C
 	.string "I hope you enjoy your time in\n"
 	.string "the UNION ROOM.$"
 
-OldaleTown_PokemonCenter_2F_Text_27964A: @ 827964A
+CherrygroveCity_PokemonCenter_2F_Text_27964A: @ 827964A
 	.string "Hello!\n"
 	.string "My name is TEALA.\p"
 	.string "This must be your first time\n"
@@ -2053,7 +2053,7 @@ OldaleTown_PokemonCenter_2F_Text_27964A: @ 827964A
 	.string "floor of our POKéMON CENTER.\p"
 	.string "Right this way, please.$"
 
-OldaleTown_PokemonCenter_2F_Text_279718: @ 8279718
+CherrygroveCity_PokemonCenter_2F_Text_279718: @ 8279718
 	.string "On the top floor, there are two\n"
 	.string "rooms.\p"
 	.string "First, the room on the left.\n"
@@ -2075,14 +2075,14 @@ OldaleTown_PokemonCenter_2F_Text_279718: @ 8279718
 	.string "I hope you enjoy the Wireless \n"
 	.string "Communication System.$"
 
-OldaleTown_PokemonCenter_2F_Text_279937: @ 8279937
+CherrygroveCity_PokemonCenter_2F_Text_279937: @ 8279937
 	.string "Hello, {PLAYER}!\p"
 	.string "It's me, TEALA, the POKéMON\n"
 	.string "CENTER 2F attendant.\p"
 	.string "Is there something you needed to\n"
 	.string "ask me about linking?$"
 
-OldaleTown_PokemonCenter_2F_Text_2799AA: @ 82799AA
+CherrygroveCity_PokemonCenter_2F_Text_2799AA: @ 82799AA
 	.string "Let me explain how the POKéMON\n"
 	.string "WIRELESS CLUB works.\p"
 	.string "On this, the top floor, there are\n"
@@ -2111,6 +2111,6 @@ OldaleTown_PokemonCenter_2F_Text_2799AA: @ 82799AA
 	.string "I hope you enjoy the Wireless \n"
 	.string "Communication System.$"
 
-OldaleTown_PokemonCenter_2F_Text_279C91: @ 8279C91
+CherrygroveCity_PokemonCenter_2F_Text_279C91: @ 8279C91
 	.string "I hope you enjoy the Wireless\n"
 	.string "Communication System.$"

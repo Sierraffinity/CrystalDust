@@ -21,7 +21,7 @@ PetalburgCity_EventScript_1DC307:: @ 81DC307
 
 PetalburgCity_EventScript_1DC30F:: @ 81DC30F
 	setflag FLAG_SPECIAL_FLAG_0x4000
-	savebgm MUS_TSURETEK
+	savebgm MUS_FOLLOWME
 	return
 
 PetalburgCity_EventScript_1DC316:: @ 81DC316
@@ -265,7 +265,7 @@ PetalburgCity_EventScript_1DC4BE:: @ 81DC4BE
 PetalburgCity_EventScript_1DC4CA:: @ 81DC4CA
 	applymovement 8, PetalburgCity_Movement_27259E
 	waitmovement 0
-	playbgm MUS_TSURETEK, 0
+	playbgm MUS_FOLLOWME, 0
 	playse SE_PIN
 	applymovement 8, PetalburgCity_Movement_272598
 	waitmovement 0

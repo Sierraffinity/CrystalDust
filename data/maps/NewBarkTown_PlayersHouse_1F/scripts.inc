@@ -134,31 +134,30 @@ NewBarkTown_PlayersHouse_1F_NeighborTalk::
 	faceplayer
 	gettime
 	compare VAR_0x8002, TIME_MORNING
-	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning
+	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning
 	compare VAR_0x8002, TIME_DAY
-	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay
+	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay
 	compare VAR_0x8002, TIME_NIGHT
-	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight
-	end
-
-NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning:
-	msgbox NewBarkTown_PlayersHouse_1F_NeighborMorning
-	goto NewBarkTown_PlayersHouse_1F_NeighborMain
-
-NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay:
-	msgbox NewBarkTown_PlayersHouse_1F_NeighborDay
-	goto NewBarkTown_PlayersHouse_1F_NeighborMain
-
-NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight:
-	msgbox NewBarkTown_PlayersHouse_1F_NeighborNight
-	goto NewBarkTown_PlayersHouse_1F_NeighborMain
-
-NewBarkTown_PlayersHouse_1F_NeighborMain:
-	msgbox NewBarkTown_PlayersHouse_1F_Text_NeighborMain
+	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight
 	applymovement VAR_LAST_TALKED, Move_WalkInPlaceFastestRight
 	waitmovement 0
 	release
 	end
+
+NewBarkTown_PlayersHouse_1F_NeighborTalkIntroMorning:
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborMorning
+	closemessage
+	return
+
+NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay:
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborDay
+	closemessage
+	return
+
+NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight:
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborNight
+	closemessage
+	return
 
 NewBarkTown_PlayersHouse_1F_TV::
 	msgbox NewBarkTown_PlayersHouse_1F_TVText, MSGBOX_SIGN
@@ -220,8 +219,8 @@ NewBarkTown_PlayersHouse_1F_ComeHomeToAdjustClock:
 NewBarkTown_PlayersHouse_1F_GearInstructionsYes:
 	.string "Don't you just turn the POKéGEAR on\n"
 	.string "and select the PHONE icon?\p"
-	.string "“Phone numbers are stored in memory.\p"
-	.string "“Just choose a name you want\n"
+	.string "“Phone numbers are stored in memory.\n"
+	.string "“Just choose the person you want\l"
 	.string "to call.”\p"
 	.string "Gee, isn't that convenient?$"
 
@@ -229,8 +228,8 @@ NewBarkTown_PlayersHouse_1F_GearInstructionsNo:
 	.string "I'll read the instructions.\p"
 	.string "“Turn the POKéGEAR on and select\n"
 	.string "the PHONE icon by scrolling to it.\p"
-	.string "“Phone numbers are stored in memory.\p"
-	.string "“Just choose a name you want\n"
+	.string "“Phone numbers are stored in memory.\n"
+	.string "“Just choose the person you want\l"
 	.string "to call.”\p"
 	.string "Gee, isn't that convenient?$"
 
@@ -248,17 +247,23 @@ NewBarkTown_PlayersHouse_1F_Text_MomWhatWasElmsErrand:
 
 NewBarkTown_PlayersHouse_1F_NeighborMorning:
 	.string "Good morning, {PLAYER}!\n"
-	.string "I'm visiting!$"
+	.string "I'm visiting!\p"
+	.string "{PLAYER}, have you heard?\p"
+	.string "My daughter is adamant about\n"
+	.string "becoming PROF. ELM's assistant.\l"
+	.string "She really loves POKéMON!$"
 
 NewBarkTown_PlayersHouse_1F_NeighborDay:
 	.string "Hello, {PLAYER}!\n"
-	.string "I'm visiting!$"
+	.string "I'm visiting!\p"
+	.string "{PLAYER}, have you heard?\p"
+	.string "My daughter is adamant about\n"
+	.string "becoming PROF. ELM's assistant.\l"
+	.string "She really loves POKéMON!$"
 
 NewBarkTown_PlayersHouse_1F_NeighborNight:
 	.string "Good evening, {PLAYER}!\n"
-	.string "I'm visiting!$"
-
-NewBarkTown_PlayersHouse_1F_Text_NeighborMain:
+	.string "I'm visiting!\p"
 	.string "{PLAYER}, have you heard?\p"
 	.string "My daughter is adamant about\n"
 	.string "becoming PROF. ELM's assistant.\l"

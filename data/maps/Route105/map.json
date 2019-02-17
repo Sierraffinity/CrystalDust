@@ -49,8 +49,8 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "Route105_EventScript_1EE261",
-            "trainer_sight_or_berry_tree_id": "6",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 19,
             "y": 60
         },
@@ -62,8 +62,8 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
             "script": "Route105_EventScript_1EE278",
-            "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 27,
             "y": 36
         },
@@ -75,8 +75,8 @@
             "movement_range_y": 7,
             "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
             "script": "Route105_EventScript_1EE28F",
-            "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 8,
             "y": 45
         },
@@ -88,8 +88,8 @@
             "movement_range_y": 5,
             "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
             "script": "Route105_EventScript_1EE2A6",
-            "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 19,
             "y": 9
         },
@@ -114,8 +114,8 @@
             "movement_range_y": 7,
             "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
             "script": "Route105_EventScript_1EE24A",
-            "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 17,
             "y": 48
         },
@@ -127,8 +127,8 @@
             "movement_range_y": 2,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "Route105_EventScript_1EE2BD",
-            "trainer_sight_or_berry_tree_id": "2",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 4,
             "y": 54
         },
@@ -140,8 +140,8 @@
             "movement_range_y": 2,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "Route105_EventScript_1EE2D4",
-            "trainer_sight_or_berry_tree_id": "4",
-            "trainer_type": "1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
             "x": 4,
             "y": 58
         }

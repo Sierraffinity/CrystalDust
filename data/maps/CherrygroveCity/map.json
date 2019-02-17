@@ -1,0 +1,187 @@
+{
+    "allow_bike": true,
+    "allow_escape_rope": false,
+    "allow_running": true,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "CherrygroveCity_EventScript_Slogan",
+            "type": "sign",
+            "x": 43,
+            "y": 10
+        },
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "CherrygroveCity_EventScript_GuideGentsHouse",
+            "type": "sign",
+            "x": 34,
+            "y": 12
+        }
+    ],
+    "connections": [
+        {
+            "direction": "up",
+            "map": "MAP_ROUTE102",
+            "offset": 18
+        },
+        {
+            "direction": "right",
+            "map": "MAP_ROUTE29",
+            "offset": 2
+        }
+    ],
+    "coord_events": [
+        {
+            "elevation": 3,
+            "script": "0",
+            "type": "trigger",
+            "var": "0",
+            "var_value": "0",
+            "x": 47,
+            "y": 8
+        },
+        {
+            "elevation": 3,
+            "script": "0",
+            "type": "trigger",
+            "var": "0",
+            "var_value": "0",
+            "x": 47,
+            "y": 9
+        },
+        {
+            "elevation": 3,
+            "script": "0",
+            "type": "trigger",
+            "var": "0",
+            "var_value": "0",
+            "x": 47,
+            "y": 10
+        },
+        {
+            "elevation": 3,
+            "script": "0",
+            "type": "trigger",
+            "var": "0",
+            "var_value": "0",
+            "x": 47,
+            "y": 11
+        }
+    ],
+    "id": "MAP_CHERRYGROVE_CITY",
+    "layout": "LAYOUT_CHERRYGROVE_CITY",
+    "map_type": "MAP_TYPE_TOWN",
+    "music": "MUS_CHERRYGROVE",
+    "name": "CherrygroveCity",
+    "object_events": [
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_OUTSIDE",
+            "graphics_id": "EVENT_OBJ_GFX_OLD_MAN",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "CherrygroveCity_EventScript_GuideGent",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 45,
+            "y": 8
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_CHERRYGROVE_CITY_RIVAL",
+            "graphics_id": "EVENT_OBJ_GFX_RIVAL",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "0",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 61,
+            "y": 8
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_WOMAN_1",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+            "script": "CherrygroveCity_EventScript_Teacher",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 38,
+            "y": 17
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+            "script": "CherrygroveCity_EventScript_Youngster",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 34,
+            "y": 9
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_FISHERMAN",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 15,
+            "y": 16
+        }
+    ],
+    "region_map_section": "MAPSEC_CHERRYGROVE_CITY",
+    "requires_flash": false,
+    "show_map_name": true,
+    "warp_events": [
+        {
+            "dest_map": "MAP_CHERRYGROVE_CITY_HOUSE1",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 26,
+            "y": 11
+        },
+        {
+            "dest_map": "MAP_CHERRYGROVE_CITY_GUIDE_GENTS_HOUSE",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 36,
+            "y": 12
+        },
+        {
+            "dest_map": "MAP_CHERRYGROVE_CITY_POKEMON_CENTER_1F",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 42,
+            "y": 5
+        },
+        {
+            "dest_map": "MAP_CHERRYGROVE_CITY_MART",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 36,
+            "y": 5
+        },
+        {
+            "dest_map": "MAP_CHERRYGROVE_CITY_HOUSE2",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 44,
+            "y": 15
+        }
+    ],
+    "weather": "WEATHER_SUNNY"
+}

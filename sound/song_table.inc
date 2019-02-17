@@ -364,7 +364,7 @@ gSongTable:: @ 86B49F0
 	song mus_route34, 0, 0          @ Route 34/35/36/37/40/41/45/46
 	song mus_dooro_x3, 0, 0         @ Route 120
 	song mus_machi_s2, 0, 0         @ Petalburg City
-	song mus_machi_s4, 0, 0         @ Oldale Town
+	song mus_cherrygrove, 0, 0      @ Cherrygrove/Mahogany
 	song mus_gim, 0, 0              @ Pokémon Gym
 	song mus_naminori, 0, 0         @ Surf
 	song mus_dan01, 0, 0            @ Petalburg Woods
@@ -421,7 +421,7 @@ gSongTable:: @ 86B49F0
 	song mus_kakkoii, 0, 0          @ Trainers' Eyes Meet (Cooltrainer)
 	song mus_mainmenu, 0, 0         @ Main Menu
 	song mus_aqa_0, 0, 0            @ Team Aqua Appears!
-	song mus_tsuretek, 0, 0         @ Hurry Along
+	song mus_followme, 0, 0         @ Hurry Along
 	song mus_boy_sup, 0, 0          @ Brendan
 	song mus_rainbow, 0, 0          @ Evergrande City
 	song mus_ayasii, 0, 0           @ Trainers' Eyes Meet (Hex Maniac)
@@ -475,7 +475,7 @@ gSongTable:: @ 86B49F0
 	song mus_vs_front, 0, 0         @ Battle! (Frontier Brain)
 	song mus_vs_mew, 0, 0           @ Battle! (Mew)
 	song mus_b_dome1, 0, 0          @ Battle Dome Lobby
-	song mus_johtowild, 0, 0         @ Battle! (Wild Pokémon)
+	song mus_johtowild, 0, 0        @ Battle! (Wild Pokémon)
 	song mus_battle31, 0, 0         @ Battle! (Team Aqua / Team Magma)
 	song mus_battle20, 0, 0         @ Battle! (Trainer Battle)
 	song mus_battle32, 0, 0         @ Battle! (Gym Leader)

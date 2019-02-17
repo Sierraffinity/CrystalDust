@@ -25,10 +25,10 @@ EverGrandeCity_PokemonLeague_1F_EventScript_2295FC:: @ 82295FC
 EverGrandeCity_PokemonLeague_1F_EventScript_22960A:: @ 822960A
 	lock
 	faceplayer
-	message gUnknown_08272A21
+	message Text_MartClerk_Intro
 	waitmessage
 	pokemart EverGrandeCity_PokemonLeague_1F_Pokemart_229624
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 

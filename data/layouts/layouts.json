@@ -101,14 +101,14 @@
             "width": 26
         },
         {
-            "blockdata_filepath": "data/layouts/OldaleTown/map.bin",
-            "border_filepath": "data/layouts/OldaleTown/border.bin",
+            "blockdata_filepath": "data/layouts/CherrygroveCity/map.bin",
+            "border_filepath": "data/layouts/CherrygroveCity/border.bin",
             "height": 30,
-            "id": "LAYOUT_OLDALE_TOWN",
-            "name": "OldaleTown_Layout",
+            "id": "LAYOUT_CHERRYGROVE_CITY",
+            "name": "CherrygroveCity_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Petalburg",
-            "width": 60
+            "width": 54
         },
         {
             "blockdata_filepath": "data/layouts/DewfordTown/map.bin",
@@ -588,12 +588,12 @@
             "name": "House1_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_GenericBuilding",
-            "width": 10
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/House2/map.bin",
             "border_filepath": "data/layouts/House2/border.bin",
-            "height": 8,
+            "height": 9,
             "id": "LAYOUT_HOUSE2",
             "name": "House2_Layout",
             "primary_tileset": "gTileset_Building",
@@ -623,7 +623,7 @@
         {
             "blockdata_filepath": "data/layouts/Mart/map.bin",
             "border_filepath": "data/layouts/Mart/border.bin",
-            "height": 8,
+            "height": 9,
             "id": "LAYOUT_MART",
             "name": "Mart_Layout",
             "primary_tileset": "gTileset_Building",

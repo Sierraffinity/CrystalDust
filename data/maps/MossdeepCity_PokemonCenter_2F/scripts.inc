@@ -6,15 +6,15 @@ MossdeepCity_PokemonCenter_2F_MapScripts:: @ 8222334
 	.byte 0
 
 MossdeepCity_PokemonCenter_2F_EventScript_222349:: @ 8222349
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 MossdeepCity_PokemonCenter_2F_EventScript_22234F:: @ 822234F
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 MossdeepCity_PokemonCenter_2F_EventScript_222355:: @ 8222355
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 
 MossdeepCity_PokemonCenter_2F_EventScript_22235B:: @ 822235B

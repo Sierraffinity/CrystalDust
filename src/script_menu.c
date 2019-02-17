@@ -975,44 +975,44 @@ const u8 *const gUnknown_0858BB80[] =
 
 const u8 *const gUnknown_0858BB9C[] =
 {
-    OldaleTown_PokemonCenter_2F_Text_277F1B,
-    OldaleTown_PokemonCenter_2F_Text_277F5A,
-    OldaleTown_PokemonCenter_2F_Text_277F96,
-    OldaleTown_PokemonCenter_2F_Text_27889C,
+    CherrygroveCity_PokemonCenter_2F_Text_277F1B,
+    CherrygroveCity_PokemonCenter_2F_Text_277F5A,
+    CherrygroveCity_PokemonCenter_2F_Text_277F96,
+    CherrygroveCity_PokemonCenter_2F_Text_27889C,
 };
 const u8 *const gUnknown_0858BBAC[] =
 {
-    OldaleTown_PokemonCenter_2F_Text_27879F,
-    OldaleTown_PokemonCenter_2F_Text_2787D5,
-    OldaleTown_PokemonCenter_2F_Text_278831,
-    OldaleTown_PokemonCenter_2F_Text_27889C,
+    CherrygroveCity_PokemonCenter_2F_Text_27879F,
+    CherrygroveCity_PokemonCenter_2F_Text_2787D5,
+    CherrygroveCity_PokemonCenter_2F_Text_278831,
+    CherrygroveCity_PokemonCenter_2F_Text_27889C,
 };
 const u8 *const gUnknown_0858BBBC[] =
 {
-    OldaleTown_PokemonCenter_2F_Text_27879F,
-    OldaleTown_PokemonCenter_2F_Text_2787D5,
-    OldaleTown_PokemonCenter_2F_Text_2787FC,
-    OldaleTown_PokemonCenter_2F_Text_27889C,
+    CherrygroveCity_PokemonCenter_2F_Text_27879F,
+    CherrygroveCity_PokemonCenter_2F_Text_2787D5,
+    CherrygroveCity_PokemonCenter_2F_Text_2787FC,
+    CherrygroveCity_PokemonCenter_2F_Text_27889C,
 };
 const u8 *const gUnknown_0858BBCC[] =
 {
-    OldaleTown_PokemonCenter_2F_Text_27879F,
-    OldaleTown_PokemonCenter_2F_Text_2787D5,
-    OldaleTown_PokemonCenter_2F_Text_278831,
-    OldaleTown_PokemonCenter_2F_Text_2787FC,
-    OldaleTown_PokemonCenter_2F_Text_27889C,
+    CherrygroveCity_PokemonCenter_2F_Text_27879F,
+    CherrygroveCity_PokemonCenter_2F_Text_2787D5,
+    CherrygroveCity_PokemonCenter_2F_Text_278831,
+    CherrygroveCity_PokemonCenter_2F_Text_2787FC,
+    CherrygroveCity_PokemonCenter_2F_Text_27889C,
 };
 const u8 *const gUnknown_0858BBE0[] =
 {
-    OldaleTown_PokemonCenter_2F_Text_277F1B,
-    OldaleTown_PokemonCenter_2F_Text_277F5A,
-    OldaleTown_PokemonCenter_2F_Text_27889C,
+    CherrygroveCity_PokemonCenter_2F_Text_277F1B,
+    CherrygroveCity_PokemonCenter_2F_Text_277F5A,
+    CherrygroveCity_PokemonCenter_2F_Text_27889C,
 };
 const u8 *const gUnknown_0858BBEC[] =
 {
-    OldaleTown_PokemonCenter_2F_Text_27879F,
-    OldaleTown_PokemonCenter_2F_Text_2787D5,
-    OldaleTown_PokemonCenter_2F_Text_27889C,
+    CherrygroveCity_PokemonCenter_2F_Text_27879F,
+    CherrygroveCity_PokemonCenter_2F_Text_2787D5,
+    CherrygroveCity_PokemonCenter_2F_Text_27889C,
 };
 
 EWRAM_DATA u8 gUnknown_02039F90 = 0;

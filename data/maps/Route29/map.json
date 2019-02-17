@@ -31,11 +31,6 @@
     ],
     "connections": [
         {
-            "direction": "left",
-            "map": "MAP_OLDALE_TOWN",
-            "offset": -2
-        },
-        {
             "direction": "right",
             "map": "MAP_NEW_BARK_TOWN",
             "offset": 0
@@ -44,6 +39,11 @@
             "direction": "up",
             "map": "MAP_ROUTE46",
             "offset": 24
+        },
+        {
+            "direction": "left",
+            "map": "MAP_CHERRYGROVE_CITY",
+            "offset": -2
         }
     ],
     "coord_events": [

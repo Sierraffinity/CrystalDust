@@ -815,7 +815,7 @@ void CB2_InitCopyrightScreenAfterBootup(void)
     if (!SetUpCopyrightScreen())
     {
         SetSaveBlocksPointers(sub_815355C());
-        sub_808447C();
+        ResetMenuAndMonGlobals();
         Save_ResetSaveCounters();
         Save_LoadGameData(SAVE_NORMAL);
         if (gSaveFileStatus == 0 || gSaveFileStatus == 2)
@@ -1919,7 +1919,7 @@ static void intro_reset_and_hide_bgs(void)
     SetGpuReg(REG_OFFSET_BLDY, 0);
 }
 
-void sub_816F2A8(u16 scrX, u16 scrY, u16 zoom, u16 alpha)
+void PanFadeAndZoomScreen(u16 scrX, u16 scrY, u16 zoom, u16 alpha)
 {
     struct BgAffineSrcData src;
     struct BgAffineDstData dest;

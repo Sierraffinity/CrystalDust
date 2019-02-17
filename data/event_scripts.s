@@ -80,7 +80,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/SootopolisCity/scripts.inc"
 	.include "data/maps/EverGrandeCity/scripts.inc"
 	.include "data/maps/NewBarkTown/scripts.inc"
-	.include "data/maps/OldaleTown/scripts.inc"
+	.include "data/maps/CherrygroveCity/scripts.inc"
 	.include "data/maps/DewfordTown/scripts.inc"
 	.include "data/maps/LavaridgeTown/scripts.inc"
 	.include "data/maps/FallarborTown/scripts.inc"
@@ -132,11 +132,11 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/NewBarkTown_ElmsHouse/scripts.inc"
 	.include "data/maps/NewBarkTown_NeighborsHouse/scripts.inc"
 	.include "data/maps/NewBarkTown_ProfessorElmsLab/scripts.inc"
-	.include "data/maps/OldaleTown_House1/scripts.inc"
-	.include "data/maps/OldaleTown_House2/scripts.inc"
-	.include "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/OldaleTown_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/OldaleTown_Mart/scripts.inc"
+	.include "data/maps/CherrygroveCity_House1/scripts.inc"
+	.include "data/maps/CherrygroveCity_GuideGentsHouse/scripts.inc"
+	.include "data/maps/CherrygroveCity_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/CherrygroveCity_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/CherrygroveCity_Mart/scripts.inc"
 	.include "data/maps/DewfordTown_House1/scripts.inc"
 	.include "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/DewfordTown_PokemonCenter_2F/scripts.inc"
@@ -840,7 +840,7 @@ BattleFrontier_BattleTowerLobby_EventScript_27134F:: @ 827134F
 FallarborTown_BattleTentLobby_EventScript_27134F:: @ 827134F
 LilycoveCity_ContestLobby_EventScript_27134F:: @ 827134F
 MossdeepCity_GameCorner_1F_EventScript_27134F:: @ 827134F
-OldaleTown_PokemonCenter_2F_EventScript_27134F:: @ 827134F
+CherrygroveCity_PokemonCenter_2F_EventScript_27134F:: @ 827134F
 SecretBase_RedCave1_EventScript_27134F:: @ 827134F
 SlateportCity_BattleTentLobby_EventScript_27134F:: @ 827134F
 SootopolisCity_MysteryEventsHouse_1F_EventScript_27134F:: @ 827134F
@@ -951,6 +951,8 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_DEOXYS
 	setflag FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR
 	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER
+	setflag FLAG_HIDE_CHERRYGROVE_CITY_RIVAL
+	setflag FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE
 	/*setflag FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
 	setflag FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
 	setflag FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
@@ -987,7 +989,6 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_BRENDAN
 	setflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_BRENDAN
 	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_BEDROOM
-	setflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
 	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
 	setflag FLAG_HIDE_NEW_BARK_TOWN_OTHER_HOUSE_PICHU_DOLL
 	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_SWABLU_DOLL
@@ -1086,7 +1087,7 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN
 	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
 	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY
-	setflag FLAG_HIDE_OLDALE_TOWN_RIVAL
+	setflag FLAG_HIDE_CHERRYGROVE_CITY_RIVAL
 	setflag FLAG_HIDE_ROUTE_29_BOY
 	setflag FLAG_HIDE_PETALBURG_CITY_SCOTT
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA
@@ -1143,7 +1144,7 @@ EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
 	call_if_unset FLAG_RECEIVED_SS_TICKET, EverGrandeCity_HallOfFame_EventScript_271843
 	call_if_unset FLAG_RECEIVED_BELDUM, EverGrandeCity_HallOfFame_EventScript_27183F
 	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_BEDROOM
-	setflag FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_CHERRYGROVE_CITY_RIVAL
 	compare VAR_0x40D3, 0
 	call_if_eq EverGrandeCity_HallOfFame_EventScript_271851
 	return
@@ -1232,30 +1233,31 @@ DewfordTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
 FallarborTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
 LavaridgeTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
 MauvilleCity_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-OldaleTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
+CherrygroveCity_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
 PetalburgCity_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
 RustboroCity_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
 SlateportCity_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
 VerdanturfTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-	goto_if_unset FLAG_RECEIVED_POKENAV, OldaleTown_PokemonCenter_1F_EventScript_27374E
-	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, OldaleTown_PokemonCenter_1F_EventScript_27374E
-	goto_if_unset FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT, OldaleTown_PokemonCenter_1F_EventScript_27190C
-	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, OldaleTown_PokemonCenter_1F_EventScript_271912
-	goto_if_unset FLAG_HIDE_ROUTE_108_MR_BRINEY, OldaleTown_PokemonCenter_1F_EventScript_271918
+	goto_if_unset FLAG_RECEIVED_POKENAV, CherrygroveCity_PokemonCenter_1F_EventScript_27374E
+	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, CherrygroveCity_PokemonCenter_1F_EventScript_27374E
+	goto_if_unset FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT, CherrygroveCity_PokemonCenter_1F_EventScript_27190C
+	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, CherrygroveCity_PokemonCenter_1F_EventScript_271912
+	goto_if_unset FLAG_HIDE_ROUTE_108_MR_BRINEY, CherrygroveCity_PokemonCenter_1F_EventScript_271918
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_27190C:: @ 827190C
+CherrygroveCity_PokemonCenter_1F_EventScript_27190C:: @ 827190C
 	setvar VAR_0x4096, 1
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_271912:: @ 8271912
+CherrygroveCity_PokemonCenter_1F_EventScript_271912:: @ 8271912
 	setvar VAR_0x4096, 2
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_271918:: @ 8271918
+CherrygroveCity_PokemonCenter_1F_EventScript_271918:: @ 8271918
 	setvar VAR_0x4096, 3
 	return
 
+EventScript_Nurse::
 BattleFrontier_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 DewfordTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 EverGrandeCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
@@ -1266,7 +1268,7 @@ LavaridgeTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 LilycoveCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 MauvilleCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 MossdeepCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-OldaleTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
+CherrygroveCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 PacifidlogTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 PetalburgCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 RustboroCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
@@ -1279,130 +1281,148 @@ VerdanturfTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 	setvar VAR_0x8004, 0
 	specialvar VAR_RESULT, CountPlayerTrainerStars
 	compare VAR_RESULT, 4
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271A68
-	msgbox gUnknown_082726EB, MSGBOX_YESNO
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271A68
+	gettime
+	compare VAR_0x8002, TIME_MORNING
+	call_if_eq EventScript_Nurse_IntroMorning
+	compare VAR_0x8002, TIME_DAY
+	call_if_eq EventScript_Nurse_IntroMorning
+	compare VAR_0x8002, TIME_NIGHT
+	call_if_eq EventScript_Nurse_IntroNight
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_27195A
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_27195A
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271954
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271954
 	end
 
-OldaleTown_PokemonCenter_1F_EventScript_271954:: @ 8271954
+EventScript_Nurse_IntroMorning:
+	msgbox Text_NurseIntro_Morning, MSGBOX_YESNO
+	return
+
+EventScript_Nurse_IntroDay:
+	msgbox Text_NurseIntro_Day, MSGBOX_YESNO
+	return
+
+EventScript_Nurse_IntroNight:
+	msgbox Text_NurseIntro_Night, MSGBOX_YESNO
+	return
+
+CherrygroveCity_PokemonCenter_1F_EventScript_271954:: @ 8271954
 	message gUnknown_082727DB
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_27195A:: @ 827195A
+CherrygroveCity_PokemonCenter_1F_EventScript_27195A:: @ 827195A
 	incrementgamestat 15
 	compare VAR_0x8004, 0
-	call_if_eq OldaleTown_PokemonCenter_1F_EventScript_271987
+	call_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271987
 	compare VAR_0x8004, 1
-	call_if_eq OldaleTown_PokemonCenter_1F_EventScript_27198D
+	call_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_27198D
 	waitmessage
-	call OldaleTown_PokemonCenter_1F_EventScript_271993
-	goto_if_unset FLAG_POKERUS_EXPLAINED, OldaleTown_PokemonCenter_1F_EventScript_271A43
-	goto OldaleTown_PokemonCenter_1F_EventScript_2719B1
+	call CherrygroveCity_PokemonCenter_1F_EventScript_271993
+	goto_if_unset FLAG_POKERUS_EXPLAINED, CherrygroveCity_PokemonCenter_1F_EventScript_271A43
+	goto CherrygroveCity_PokemonCenter_1F_EventScript_2719B1
 	end
 
-OldaleTown_PokemonCenter_1F_EventScript_271987:: @ 8271987
+CherrygroveCity_PokemonCenter_1F_EventScript_271987:: @ 8271987
 	message gUnknown_08272768
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_27198D:: @ 827198D
+CherrygroveCity_PokemonCenter_1F_EventScript_27198D:: @ 827198D
 	message gUnknown_082729C0
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_271993:: @ 8271993
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_2725A4
+CherrygroveCity_PokemonCenter_1F_EventScript_271993:: @ 8271993
+	applymovement VAR_0x800B, CherrygroveCity_PokemonCenter_1F_Movement_2725A4
 	waitmovement 0
 	dofieldeffect FLDEFF_POKECENTER_HEAL
 	waitfieldeffect FLDEFF_POKECENTER_HEAL
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_2725AA
+	applymovement VAR_0x800B, CherrygroveCity_PokemonCenter_1F_Movement_2725AA
 	waitmovement 0
 	special HealPlayerParty
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_2719B1:: @ 82719B1
+CherrygroveCity_PokemonCenter_1F_EventScript_2719B1:: @ 82719B1
 	specialvar VAR_RESULT, sub_8139ED0
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_2719E2
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_2719E2
 	specialvar VAR_RESULT, sp182_move_string
 	copyvar VAR_0x8008, VAR_RESULT
 	compare VAR_0x8008, 0
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_2719E2
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_2719E2
 	compare VAR_0x8008, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271A19
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271A19
 	end
 
-OldaleTown_PokemonCenter_1F_EventScript_2719E2:: @ 82719E2
+CherrygroveCity_PokemonCenter_1F_EventScript_2719E2:: @ 82719E2
 	compare VAR_0x8004, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271A03
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271A03
 	message gUnknown_08272798
 	waitmessage
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_271AD0
+	applymovement VAR_0x800B, CherrygroveCity_PokemonCenter_1F_Movement_271AD0
 	waitmovement 0
 	message gUnknown_082727DB
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_271A03:: @ 8271A03
+CherrygroveCity_PokemonCenter_1F_EventScript_271A03:: @ 8271A03
 	message gUnknown_082729F0
 	waitmessage
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_271AD0
+	applymovement VAR_0x800B, CherrygroveCity_PokemonCenter_1F_Movement_271AD0
 	waitmovement 0
 	message gUnknown_08272A07
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_271A19:: @ 8271A19
-	goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER, OldaleTown_PokemonCenter_1F_EventScript_2719E2
+CherrygroveCity_PokemonCenter_1F_EventScript_271A19:: @ 8271A19
+	goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER, CherrygroveCity_PokemonCenter_1F_EventScript_2719E2
 	msgbox gUnknown_08272798, MSGBOX_DEFAULT
 	setflag FLAG_NURSE_UNION_ROOM_REMINDER
-	message OldaleTown_PokemonCenter_1F_Text_278A48
+	message CherrygroveCity_PokemonCenter_1F_Text_278A48
 	waitmessage
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_271AD0
+	applymovement VAR_0x800B, CherrygroveCity_PokemonCenter_1F_Movement_271AD0
 	waitmovement 0
 	message gUnknown_082727DB
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_271A43:: @ 8271A43
+CherrygroveCity_PokemonCenter_1F_EventScript_271A43:: @ 8271A43
 	specialvar VAR_RESULT, IsPokerusInParty
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271A5F
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271A5F
 	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_2719B1
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_2719B1
 	end
 
-OldaleTown_PokemonCenter_1F_EventScript_271A5F:: @ 8271A5F
+CherrygroveCity_PokemonCenter_1F_EventScript_271A5F:: @ 8271A5F
 	message gUnknown_08272F07
 	setflag FLAG_POKERUS_EXPLAINED
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_271A68:: @ 8271A68
-	goto_if_set FLAG_OLDALE_NURSE_MENTIONS_GOLD_CARD, OldaleTown_PokemonCenter_1F_EventScript_271AAC
+CherrygroveCity_PokemonCenter_1F_EventScript_271A68:: @ 8271A68
+	goto_if_set FLAG_OLDALE_NURSE_MENTIONS_GOLD_CARD, CherrygroveCity_PokemonCenter_1F_EventScript_271AAC
 	setflag FLAG_OLDALE_NURSE_MENTIONS_GOLD_CARD
 	msgbox gUnknown_082727F5, MSGBOX_DEFAULT
 	playse SE_PIN
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_272598
+	applymovement VAR_0x800B, CherrygroveCity_PokemonCenter_1F_Movement_272598
 	waitmovement 0
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_27259A
+	applymovement VAR_0x800B, CherrygroveCity_PokemonCenter_1F_Movement_27259A
 	waitmovement 0
 	msgbox gUnknown_08272860, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271AC5
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271AC5
 	message gUnknown_08272A07
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_271AAC:: @ 8271AAC
+CherrygroveCity_PokemonCenter_1F_EventScript_271AAC:: @ 8271AAC
 	msgbox gUnknown_08272982, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271AC5
+	goto_if_eq CherrygroveCity_PokemonCenter_1F_EventScript_271AC5
 	message gUnknown_08272A07
 	return
 
-OldaleTown_PokemonCenter_1F_EventScript_271AC5:: @ 8271AC5
+CherrygroveCity_PokemonCenter_1F_EventScript_271AC5:: @ 8271AC5
 	setvar VAR_0x8004, 1
-	goto OldaleTown_PokemonCenter_1F_EventScript_27195A
+	goto CherrygroveCity_PokemonCenter_1F_EventScript_27195A
 	end
 
-OldaleTown_PokemonCenter_1F_Movement_271AD0: @ 8271AD0
+CherrygroveCity_PokemonCenter_1F_Movement_271AD0: @ 8271AD0
 	nurse_joy_bow
 	delay_4
 	step_end
@@ -1736,13 +1756,12 @@ FortreeCity_EventScript_271E6A:: @ 8271E6A
 LavaridgeTown_EventScript_271E6A:: @ 8271E6A
 MauvilleCity_EventScript_271E6A:: @ 8271E6A
 MossdeepCity_EventScript_271E6A:: @ 8271E6A
-OldaleTown_EventScript_271E6A:: @ 8271E6A
 PetalburgCity_EventScript_271E6A:: @ 8271E6A
 RustboroCity_EventScript_271E6A:: @ 8271E6A
 SlateportCity_EventScript_271E6A:: @ 8271E6A
 SootopolisCity_EventScript_271E6A:: @ 8271E6A
 VerdanturfTown_EventScript_271E6A:: @ 8271E6A
-	msgbox gUnknown_08272B6A, MSGBOX_SIGN
+	msgbox Text_PokemonMart, MSGBOX_SIGN
 	end
 
 PokemonCenterSign::
@@ -1755,14 +1774,13 @@ LavaridgeTown_EventScript_271E73:: @ 8271E73
 LilycoveCity_EventScript_271E73:: @ 8271E73
 MauvilleCity_EventScript_271E73:: @ 8271E73
 MossdeepCity_EventScript_271E73:: @ 8271E73
-OldaleTown_EventScript_271E73:: @ 8271E73
 PacifidlogTown_EventScript_271E73:: @ 8271E73
 PetalburgCity_EventScript_271E73:: @ 8271E73
 RustboroCity_EventScript_271E73:: @ 8271E73
 SlateportCity_EventScript_271E73:: @ 8271E73
 SootopolisCity_EventScript_271E73:: @ 8271E73
 VerdanturfTown_EventScript_271E73:: @ 8271E73
-	msgbox gUnknown_08272B9E, MSGBOX_SIGN
+	msgbox Text_PokemonCenter, MSGBOX_SIGN
 	end
 
 BattleFrontier_BattleTowerLobby_EventScript_271E7C:: @ 8271E7C
@@ -1826,7 +1844,7 @@ LavaridgeTown_EventScript_271ED7:: @ 8271ED7
 LilycoveCity_EventScript_271ED7:: @ 8271ED7
 NewBarkTown_EventScript_271ED7:: @ 8271ED7
 NewBarkTown_ProfessorElmsLab_EventScript_271ED7:: @ 8271ED7
-OldaleTown_EventScript_271ED7:: @ 8271ED7
+CherrygroveCity_EventScript_271ED7:: @ 8271ED7
 Route103_EventScript_271ED7:: @ 8271ED7
 Route104_EventScript_271ED7:: @ 8271ED7
 Route110_EventScript_271ED7:: @ 8271ED7
@@ -2582,7 +2600,7 @@ MossdeepCity_SpaceCenter_2F_Movement_272598: @ 8272598
 MossdeepCity_StevensHouse_Movement_272598: @ 8272598
 MtChimney_Movement_272598: @ 8272598
 MtPyre_Summit_Movement_272598: @ 8272598
-OldaleTown_PokemonCenter_1F_Movement_272598: @ 8272598
+CherrygroveCity_PokemonCenter_1F_Movement_272598: @ 8272598
 PetalburgCity_Gym_Movement_272598: @ 8272598
 PetalburgCity_Movement_272598: @ 8272598
 Route103_Movement_272598: @ 8272598
@@ -2625,7 +2643,7 @@ MossdeepCity_SpaceCenter_2F_Movement_27259A: @ 827259A
 MossdeepCity_StevensHouse_Movement_27259A: @ 827259A
 MtChimney_Movement_27259A: @ 827259A
 MtPyre_Summit_Movement_27259A: @ 827259A
-OldaleTown_PokemonCenter_1F_Movement_27259A: @ 827259A
+CherrygroveCity_PokemonCenter_1F_Movement_27259A: @ 827259A
 PetalburgCity_Gym_Movement_27259A: @ 827259A
 PetalburgCity_Movement_27259A: @ 827259A
 Route103_Movement_27259A: @ 827259A
@@ -2671,7 +2689,7 @@ MauvilleCity_Movement_27259E: @ 827259E
 MeteorFalls_StevensCave_Movement_27259E: @ 827259E
 MossdeepCity_SpaceCenter_2F_Movement_27259E: @ 827259E
 MtChimney_Movement_27259E: @ 827259E
-OldaleTown_Movement_27259E: @ 827259E
+CherrygroveCity_Movement_27259E: @ 827259E
 PetalburgCity_Gym_Movement_27259E: @ 827259E
 PetalburgCity_Movement_27259E: @ 827259E
 Route103_Movement_27259E: @ 827259E
@@ -2712,7 +2730,7 @@ MossdeepCity_Movement_2725A2: @ 82725A2
 MossdeepCity_SpaceCenter_1F_Movement_2725A2: @ 82725A2
 MossdeepCity_SpaceCenter_2F_Movement_2725A2: @ 82725A2
 MtChimney_Movement_2725A2: @ 82725A2
-OldaleTown_Movement_2725A2: @ 82725A2
+CherrygroveCity_Movement_2725A2: @ 82725A2
 PetalburgCity_Movement_2725A2: @ 82725A2
 Route109_Movement_2725A2: @ 82725A2
 Route110_Movement_2725A2: @ 82725A2
@@ -2754,7 +2772,7 @@ MossdeepCity_SpaceCenter_2F_Movement_2725A4: @ 82725A4
 MossdeepCity_StevensHouse_Movement_2725A4: @ 82725A4
 MtChimney_Movement_2725A4: @ 82725A4
 MtPyre_Summit_Movement_2725A4: @ 82725A4
-OldaleTown_PokemonCenter_1F_Movement_2725A4: @ 82725A4
+CherrygroveCity_PokemonCenter_1F_Movement_2725A4: @ 82725A4
 PetalburgCity_Gym_Movement_2725A4: @ 82725A4
 PetalburgCity_Movement_2725A4: @ 82725A4
 PetalburgWoods_Movement_2725A4: @ 82725A4
@@ -2800,7 +2818,7 @@ MeteorFalls_1F_1R_Movement_2725A6: @ 82725A6
 MossdeepCity_SpaceCenter_2F_Movement_2725A6: @ 82725A6
 MtPyre_Summit_Movement_2725A6: @ 82725A6
 NewMauville_Entrance_Movement_2725A6: @ 82725A6
-OldaleTown_PokemonCenter_2F_Movement_2725A6: @ 82725A6
+CherrygroveCity_PokemonCenter_2F_Movement_2725A6: @ 82725A6
 PetalburgCity_Gym_Movement_2725A6: @ 82725A6
 PetalburgCity_Movement_2725A6: @ 82725A6
 PetalburgWoods_Movement_2725A6: @ 82725A6
@@ -2846,7 +2864,7 @@ MauvilleCity_Movement_2725A8: @ 82725A8
 MossdeepCity_SpaceCenter_1F_Movement_2725A8: @ 82725A8
 MossdeepCity_SpaceCenter_2F_Movement_2725A8: @ 82725A8
 MtPyre_Summit_Movement_2725A8: @ 82725A8
-OldaleTown_Movement_2725A8: @ 82725A8
+CherrygroveCity_Movement_2725A8: @ 82725A8
 PetalburgCity_Gym_Movement_2725A8: @ 82725A8
 PetalburgCity_Movement_2725A8: @ 82725A8
 Route29_Movement_2725A8: @ 82725A8
@@ -2889,7 +2907,7 @@ MeteorFalls_1F_1R_Movement_2725AA: @ 82725AA
 MossdeepCity_SpaceCenter_2F_Movement_2725AA: @ 82725AA
 MtPyre_Summit_Movement_2725AA: @ 82725AA
 NavelRock_Harbor_Movement_2725AA: @ 82725AA
-OldaleTown_PokemonCenter_1F_Movement_2725AA: @ 82725AA
+CherrygroveCity_PokemonCenter_1F_Movement_2725AA: @ 82725AA
 PetalburgCity_Gym_Movement_2725AA: @ 82725AA
 PetalburgCity_Movement_2725AA: @ 82725AA
 PetalburgWoods_Movement_2725AA: @ 82725AA
@@ -3051,20 +3069,43 @@ gUnknown_082726C2:: @ 82726C2
 gUnknown_082726D4:: @ 82726D4
 	.string "Accessed LANETTE's PC.$"
 
-gUnknown_082726EB:: @ 82726EB
-	.string "Hello, and welcome to\nthe POKéMON CENTER.\pWe restore your tired POKéMON\nto full health.\pWould you like to rest your POKéMON?$"
+Text_NurseIntro_Morning::
+	.string "Good morning!\n"
+	.string "Welcome to our POKéMON CENTER.\p"
+	.string "We can heal your POKéMON to\n"
+	.string "perfect health.\p"
+	.string "Shall we heal your POKéMON?$"
+
+Text_NurseIntro_Day::
+	.string "Hello!\n"
+	.string "Welcome to our POKéMON CENTER.\p"
+	.string "We can heal your POKéMON to\n"
+	.string "perfect health.\p"
+	.string "Shall we heal your POKéMON?$"
+
+Text_NurseIntro_Night::
+	.string "Good evening! You're out late.\n"
+	.string "Welcome to our POKéMON CENTER.\p"
+	.string "We can heal your POKéMON to\n"
+	.string "perfect health.\p"
+	.string "Shall we heal your POKéMON?$"
 
 gUnknown_08272768:: @ 8272768
-	.string "Okay, I'll take your POKéMON\nfor a few seconds.$"
+	.string "Okay, may I see your POKéMON?$"
 
 gUnknown_08272798:: @ 8272798
-	.string "Thank you for waiting.\pWe've restored your POKéMON\nto full health.$"
+	.string "Thank you for waiting.\n"
+	.string "Your POKéMON are fully healed.$"
 
 gUnknown_082727DB:: @ 82727DB
 	.string "We hope to see you again!$"
 
 gUnknown_082727F5:: @ 82727F5
-	.string "Hello, and welcome to\nthe POKéMON CENTER.\pWe restore your tired POKéMON\nto full health.\pWould you like to…$"
+	.string "Hello!\n"
+	.string "Welcome to our POKéMON CENTER.\p"
+	.string "We can heal your POKéMON to\n"
+	.string "perfect health.\p"
+	.string "Shall we…$"
 
 gUnknown_08272860:: @ 8272860
 	.string "Th-that card…\nCould it be… The GOLD CARD?!\pOh, the gold color is brilliant!\nThe four stars seem to sparkle!\pI've seen several TRAINERS with\na SILVER CARD before, but, {PLAYER},\lyou're the first TRAINER I've ever\lseen with a GOLD CARD!\pOkay, {PLAYER}, please allow me\nthe honor of resting your POKéMON!$"
@@ -3081,10 +3122,11 @@ gUnknown_082729F0:: @ 82729F0
 gUnknown_08272A07:: @ 8272A07
 	.string "We hope to see you again!$"
 
-gUnknown_08272A21:: @ 8272A21
-	.string "Welcome!\pHow may I serve you?$"
+Text_MartClerk_Intro:: @ 8272A21
+	.string "Welcome!\n"
+	.string "How may I help you?$"
 
-gUnknown_08272A3F:: @ 8272A3F
+Text_MartClerk_Outro:: @ 8272A3F
 	.string "Please come again!$"
 
 gUnknown_08272A52:: @ 8272A52
@@ -3126,10 +3168,10 @@ FruitTree_Text_NothingHere:
 gUnknown_08272B48:: @ 8272B48
 	.string "The {STR_VAR_2} was transferred\nto the PC.$"
 
-gUnknown_08272B6A:: @ 8272B6A
+Text_PokemonMart:: @ 8272B6A
 	.string "For All Your POKéMON Needs\nPOKéMON MART$"
 
-gUnknown_08272B9E:: @ 8272B9E
+Text_PokemonCenter:: @ 8272B9E
 	.string "Heal Your POKéMON!\nPOKéMON CENTER$"
 
 gUnknown_08272BCF:: @ 8272BCF
@@ -3321,7 +3363,7 @@ MarineCave_End_EventScript_27374E:: @ 827374E
 NavelRock_Bottom_EventScript_27374E:: @ 827374E
 NavelRock_Top_EventScript_27374E:: @ 827374E
 NewMauville_Inside_EventScript_27374E:: @ 827374E
-OldaleTown_PokemonCenter_1F_EventScript_27374E:: @ 827374E
+CherrygroveCity_PokemonCenter_1F_EventScript_27374E:: @ 827374E
 PacifidlogTown_House2_EventScript_27374E:: @ 827374E
 Route29_EventScript_27374E:: @ 827374E
 Route119_EventScript_27374E:: @ 827374E
@@ -3335,7 +3377,7 @@ EventScript_27374F:: @ 827374F
 	setvar VAR_RESULT, 1
 	return
 
-OldaleTown_PokemonCenter_2F_EventScript_273755:: @ 8273755
+CherrygroveCity_PokemonCenter_2F_EventScript_273755:: @ 8273755
 	setvar VAR_RESULT, 0
 	return
 
@@ -3349,14 +3391,14 @@ LavaridgeTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
 LilycoveCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
 MauvilleCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
 MossdeepCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-OldaleTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
+CherrygroveCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
 PacifidlogTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
 PetalburgCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
 RustboroCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
 SlateportCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
 SootopolisCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
 VerdanturfTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-	call OldaleTown_PokemonCenter_2F_EventScript_27751B
+	call CherrygroveCity_PokemonCenter_2F_EventScript_27751B
 	end
 
 BattleFrontier_PokemonCenter_2F_EventScript_273761:: @ 8273761
@@ -3369,14 +3411,14 @@ LavaridgeTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
 LilycoveCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
 MauvilleCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
 MossdeepCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-OldaleTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
+CherrygroveCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
 PacifidlogTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
 PetalburgCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
 RustboroCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
 SlateportCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
 SootopolisCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
 VerdanturfTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
-	call OldaleTown_PokemonCenter_2F_EventScript_277672
+	call CherrygroveCity_PokemonCenter_2F_EventScript_277672
 	end
 
 BattleFrontier_PokemonCenter_2F_EventScript_273767:: @ 8273767
@@ -3389,14 +3431,14 @@ LavaridgeTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
 LilycoveCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
 MauvilleCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
 MossdeepCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-OldaleTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
+CherrygroveCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
 PacifidlogTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
 PetalburgCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
 RustboroCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
 SlateportCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
 SootopolisCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
 VerdanturfTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
-	call OldaleTown_PokemonCenter_2F_EventScript_2776A4
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2776A4
 	end
 
 AncientTomb_EventScript_27376D:: @ 827376D
@@ -4809,8 +4851,7 @@ Text_2A82B3: @ 82A82B3
 	.string "It's empty.$"
 
 Text_2A82BF: @ 82A82BF
-	.string "The shelves brim with all sorts of\n"
-	.string "POKéMON merchandise.$"
+	.string "Lots of POKéMON merchandise!$"
 
 Text_2A82F7: @ 82A82F7
 	.string "A blueprint of some sort?\n"
@@ -7702,3 +7743,5 @@ gText_082C877B:: @ 82C877B
 	.align 2
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/CherrygroveCity_House2/scripts.inc"

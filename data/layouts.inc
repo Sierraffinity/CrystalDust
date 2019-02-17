@@ -8,7 +8,7 @@
 	.include "data/layouts/SootopolisCity/layout.inc"
 	.include "data/layouts/EverGrandeCity/layout.inc"
 	.include "data/layouts/NewBarkTown/layout.inc"
-	.include "data/layouts/OldaleTown/layout.inc"
+	.include "data/layouts/CherrygroveCity/layout.inc"
 	.include "data/layouts/DewfordTown/layout.inc"
 	.include "data/layouts/LavaridgeTown/layout.inc"
 	.include "data/layouts/FallarborTown/layout.inc"

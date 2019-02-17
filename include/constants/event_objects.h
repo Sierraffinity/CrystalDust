@@ -136,7 +136,7 @@
 #define EVENT_OBJ_GFX_TATE                       132
 #define EVENT_OBJ_GFX_WALLACE                    133
 #define EVENT_OBJ_GFX_STEVEN                     134
-#define EVENT_OBJ_GFX_WALLY                      135
+#define EVENT_OBJ_GFX_RIVAL                      135
 #define EVENT_OBJ_GFX_LITTLE_BOY_3               136
 #define EVENT_OBJ_GFX_BRENDAN_FISHING            137
 #define EVENT_OBJ_GFX_MAY_FISHING                138

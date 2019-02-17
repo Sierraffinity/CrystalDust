@@ -12,7 +12,7 @@
 #define MAP_SOOTOPOLIS_CITY  (7 | (0 << 8))
 #define MAP_EVER_GRANDE_CITY (8 | (0 << 8))
 #define MAP_NEW_BARK_TOWN    (9 | (0 << 8))
-#define MAP_OLDALE_TOWN      (10 | (0 << 8))
+#define MAP_CHERRYGROVE_CITY (10 | (0 << 8))
 #define MAP_DEWFORD_TOWN     (11 | (0 << 8))
 #define MAP_LAVARIDGE_TOWN   (12 | (0 << 8))
 #define MAP_FALLARBOR_TOWN   (13 | (0 << 8))
@@ -68,11 +68,12 @@
 #define MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB (4 | (1 << 8))
 
 // Map Group 2
-#define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))
-#define MAP_OLDALE_TOWN_HOUSE2            (1 | (2 << 8))
-#define MAP_OLDALE_TOWN_POKEMON_CENTER_1F (2 | (2 << 8))
-#define MAP_OLDALE_TOWN_POKEMON_CENTER_2F (3 | (2 << 8))
-#define MAP_OLDALE_TOWN_MART              (4 | (2 << 8))
+#define MAP_CHERRYGROVE_CITY_HOUSE1            (0 | (2 << 8))
+#define MAP_CHERRYGROVE_CITY_GUIDE_GENTS_HOUSE (1 | (2 << 8))
+#define MAP_CHERRYGROVE_CITY_POKEMON_CENTER_1F (2 | (2 << 8))
+#define MAP_CHERRYGROVE_CITY_POKEMON_CENTER_2F (3 | (2 << 8))
+#define MAP_CHERRYGROVE_CITY_MART              (4 | (2 << 8))
+#define MAP_CHERRYGROVE_CITY_HOUSE2            (5 | (2 << 8))
 
 // Map Group 3
 #define MAP_DEWFORD_TOWN_HOUSE1            (0 | (3 << 8))

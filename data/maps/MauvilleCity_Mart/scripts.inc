@@ -4,10 +4,10 @@ MauvilleCity_Mart_MapScripts:: @ 82110E5
 MauvilleCity_Mart_EventScript_2110E6:: @ 82110E6
 	lock
 	faceplayer
-	message gUnknown_08272A21
+	message Text_MartClerk_Intro
 	waitmessage
 	pokemart MauvilleCity_Mart_Pokemart_211100
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 

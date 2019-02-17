@@ -64,7 +64,7 @@
       "trainer_type": 0,
       "trainer_sight_or_berry_tree_id": 0,
       "script": "0x0",
-      "flag": "FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE"
+      "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",

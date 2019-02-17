@@ -6,14 +6,14 @@ VerdanturfTown_PokemonCenter_2F_MapScripts:: @ 8202897
 	.byte 0
 
 VerdanturfTown_PokemonCenter_2F_EventScript_2028AC:: @ 82028AC
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 VerdanturfTown_PokemonCenter_2F_EventScript_2028B2:: @ 82028B2
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 VerdanturfTown_PokemonCenter_2F_EventScript_2028B8:: @ 82028B8
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 

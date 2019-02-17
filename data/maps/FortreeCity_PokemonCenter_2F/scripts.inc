@@ -6,14 +6,14 @@ FortreeCity_PokemonCenter_2F_MapScripts:: @ 821763E
 	.byte 0
 
 FortreeCity_PokemonCenter_2F_EventScript_217653:: @ 8217653
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 FortreeCity_PokemonCenter_2F_EventScript_217659:: @ 8217659
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 FortreeCity_PokemonCenter_2F_EventScript_21765F:: @ 821765F
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 

@@ -6,14 +6,14 @@ RustboroCity_PokemonCenter_2F_MapScripts:: @ 8214EDE
 	.byte 0
 
 RustboroCity_PokemonCenter_2F_EventScript_214EF3:: @ 8214EF3
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
+	call CherrygroveCity_PokemonCenter_2F_EventScript_276EB7
 	end
 
 RustboroCity_PokemonCenter_2F_EventScript_214EF9:: @ 8214EF9
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2770B2
 	end
 
 RustboroCity_PokemonCenter_2F_EventScript_214EFF:: @ 8214EFF
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
+	call CherrygroveCity_PokemonCenter_2F_EventScript_2771DB
 	end
 

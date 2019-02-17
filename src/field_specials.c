@@ -2882,7 +2882,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [EVENT_OBJ_GFX_TATE] =                      MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_WALLACE] =                   MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_STEVEN] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_WALLY] =                     MSG_COLOR_BLUE,
+        [EVENT_OBJ_GFX_RIVAL] =                     MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_LITTLE_BOY_3] =              MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_BRENDAN_FISHING] =           MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_MAY_FISHING] =               MSG_COLOR_RED,
@@ -4108,7 +4108,7 @@ void sub_813B9A0(void)
 bool8 sub_813B9C0(void)
 {
     static const u16 gUnknown_085B3444[] = {
-        MAP_OLDALE_TOWN_POKEMON_CENTER_1F,
+        MAP_CHERRYGROVE_CITY_POKEMON_CENTER_1F,
         MAP_DEWFORD_TOWN_POKEMON_CENTER_1F,
         MAP_LAVARIDGE_TOWN_POKEMON_CENTER_1F,
         MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F,
