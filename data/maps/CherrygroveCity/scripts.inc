@@ -290,7 +290,7 @@ CherrygroveCity_EventScript_YoungsterPostDex:
 	end
 
 CherrygroveCity_Text_GuideGent_Intro:
-	.string "You're a rookie trainer, aren't you?\n"
+	.string "You're a rookie TRAINER, aren't you?\n"
 	.string "I can tell!\p"
 	.string "That's okay!\n"
 	.string "Everyone is a rookie at some point!\p"

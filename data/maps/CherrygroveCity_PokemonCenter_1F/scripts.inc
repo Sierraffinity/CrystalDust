@@ -42,8 +42,8 @@ CherrygroveCity_PokemonCenter_1F_Text_FatMan:
 	.string "of POKéMON, and it's all free.$"
 
 CherrygroveCity_PokemonCenter_1F_Text_Gentleman: @ 81FC0CD
-	.string "That PC is free for any trainer to\n"
-	.string "use.$"
+	.string "That PC in the corner is free for\n"
+	.string "any TRAINER to use.$"
 
 CherrygroveCity_PokemonCenter_1F_Text_1FC148: @ 81FC148
 	.string "The POKéMON WIRELESS CLUB upstairs\n"

@@ -261,11 +261,11 @@ TrainerHill_Entrance_EventScript_2683BE:: @ 82683BE
 TrainerHill_Entrance_EventScript_2683C7:: @ 82683C7
 	lock
 	faceplayer
-	message gUnknown_08272A21
+	message Text_MartClerk_Intro
 	waitmessage
 	goto_if_set FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_EventScript_268402
 	pokemart TrainerHill_Entrance_Pokemart_2683E8
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 
@@ -288,7 +288,7 @@ TrainerHill_Entrance_Pokemart_2683E8: @ 82683E8
 
 TrainerHill_Entrance_EventScript_268402:: @ 8268402
 	pokemart TrainerHill_Entrance_Pokemart_268414
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 

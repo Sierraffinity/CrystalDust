@@ -1,71 +1,69 @@
-CherrygroveCity_Mart_MapScripts:: @ 81FC23F
+CherrygroveCity_Mart_MapScripts::
 	.byte 0
 
-CherrygroveCity_Mart_EventScript_1FC240:: @ 81FC240
+CherrygroveCity_Mart_EventScript_Clerk::
 	lock
 	faceplayer
-	message gUnknown_08272A21
+	message Text_MartClerk_Intro
 	waitmessage
-	goto_if_set FLAG_ADVENTURE_STARTED, CherrygroveCity_Mart_EventScript_1FC26C
-	pokemart CherrygroveCity_Mart_Pokemart_1FC260
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	goto_if_set FLAG_ADVENTURE_STARTED, CherrygroveCity_Mart_EventScript_PostDex
+	pokemart CherrygroveCity_Mart_Pokemart_PreDex
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 
-CherrygroveCity_Mart_Pokemart_1FC260: @ 81FC260
+CherrygroveCity_Mart_Pokemart_PreDex:
 	.2byte ITEM_POTION
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
 	.2byte ITEM_NONE
-	release
-	end
 
-CherrygroveCity_Mart_EventScript_1FC26C:: @ 81FC26C
-	pokemart CherrygroveCity_Mart_Pokemart_1FC27C
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+CherrygroveCity_Mart_EventScript_PostDex::
+	pokemart CherrygroveCity_Mart_Pokemart_PostDex
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 
 	.align 2
-CherrygroveCity_Mart_Pokemart_1FC27C: @ 81FC27C
+CherrygroveCity_Mart_Pokemart_PostDex:
 	.2byte ITEM_POKE_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
 	.2byte ITEM_NONE
-	release
-	end
 
-CherrygroveCity_Mart_EventScript_1FC28A:: @ 81FC28A
+CherrygroveCity_Mart_EventScript_BallGuy::
 	lock
 	faceplayer
-	goto_if_set FLAG_ADVENTURE_STARTED, CherrygroveCity_Mart_EventScript_1FC29F
-	msgbox CherrygroveCity_Mart_Text_1FC2B2, MSGBOX_DEFAULT
+	goto_if_set FLAG_ADVENTURE_STARTED, CherrygroveCity_Mart_EventScript_BallGuy_PostDex
+	msgbox CherrygroveCity_Mart_Text_BallGuy_PreDex, MSGBOX_DEFAULT
 	release
 	end
 
-CherrygroveCity_Mart_EventScript_1FC29F:: @ 81FC29F
-	msgbox CherrygroveCity_Mart_Text_1FC2F3, MSGBOX_DEFAULT
+CherrygroveCity_Mart_EventScript_BallGuy_PostDex::
+	msgbox CherrygroveCity_Mart_Text_BallGuy_PostDex, MSGBOX_DEFAULT
 	release
 	end
 
-CherrygroveCity_Mart_EventScript_1FC2A9:: @ 81FC2A9
-	msgbox CherrygroveCity_Mart_Text_1FC338, MSGBOX_NPC
+CherrygroveCity_Mart_EventScript_Youngster::
+	msgbox CherrygroveCity_Mart_Text_Youngster, MSGBOX_NPC
 	end
 
-CherrygroveCity_Mart_Text_1FC2B2: @ 81FC2B2
-	.string "The clerk says they're all sold out.\n"
-	.string "I can't buy any POKé BALLS.$"
+CherrygroveCity_Mart_Text_BallGuy_PreDex:
+	.string "They're fresh out of POKé BALLS!\n"
+	.string "When will they get more of them?$"
 
-CherrygroveCity_Mart_Text_1FC2F3: @ 81FC2F3
-	.string "I'm going to buy a bunch of POKé BALLS\n"
-	.string "and catch a bunch of POKéMON!$"
+CherrygroveCity_Mart_Text_BallGuy_PostDex:
+	.string "POKé BALLS are in stock!\n"
+	.string "Now I can catch POKéMON!$"
 
-CherrygroveCity_Mart_Text_1FC338: @ 81FC338
-	.string "If a POKéMON gets hurt and loses its HP\n"
-	.string "and faints, it won't be able to battle.\p"
-	.string "To prevent your POKéMON from fainting,\n"
-	.string "restore its HP with a POTION.$"
-
+CherrygroveCity_Mart_Text_Youngster:
+	.string "When I was walking in the grass,\n"
+	.string "a BUG-type POKéMON poisoned my\l"
+	.string "POKéMON!\p"
+	.string "I just kept going but then my\n"
+	.string "POKéMON fainted.\p"
+	.string "You should always keep an antidote\n"
+	.string "with you, just in case.$"

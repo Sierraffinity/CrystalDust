@@ -122,7 +122,7 @@ SlateportCity_EventScript_1DCDBD:: @ 81DCDBD
 	message SlateportCity_Text_1DD64A
 	waitmessage
 	pokemart SlateportCity_Pokemart_1DCDD4
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 
@@ -489,10 +489,10 @@ SlateportCity_EventScript_1DD153:: @ 81DD153
 SlateportCity_EventScript_1DD16A:: @ 81DD16A
 	lock
 	faceplayer
-	message gUnknown_08272A21
+	message Text_MartClerk_Intro
 	waitmessage
 	pokemartdecoration SlateportCity_PokemartDecor_1DD184
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 
@@ -514,10 +514,10 @@ SlateportCity_EventScript_1DD198:: @ 81DD198
 	lock
 	faceplayer
 	goto_if_unset FLAG_RECEIVED_SECRET_POWER, SlateportCity_EventScript_1DD18E
-	message gUnknown_08272A21
+	message Text_MartClerk_Intro
 	waitmessage
 	pokemartdecoration SlateportCity_PokemartDecor_1DD1B8
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 
@@ -543,10 +543,10 @@ SlateportCity_PokemartDecor_1DD1B8: @ 81DD1B8
 SlateportCity_EventScript_1DD1D8:: @ 81DD1D8
 	lock
 	faceplayer
-	message gUnknown_08272A21
+	message Text_MartClerk_Intro
 	waitmessage
 	pokemart SlateportCity_Pokemart_1DD1F0
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
 	release
 	end
 

@@ -3121,10 +3121,11 @@ gUnknown_082729F0:: @ 82729F0
 gUnknown_08272A07:: @ 8272A07
 	.string "We hope to see you again!$"
 
-gUnknown_08272A21:: @ 8272A21
-	.string "Welcome!\pHow may I serve you?$"
+Text_MartClerk_Intro:: @ 8272A21
+	.string "Welcome!\n"
+	.string "How may I help you?$"
 
-gUnknown_08272A3F:: @ 8272A3F
+Text_MartClerk_Outro:: @ 8272A3F
 	.string "Please come again!$"
 
 gUnknown_08272A52:: @ 8272A52
@@ -4849,8 +4850,7 @@ Text_2A82B3: @ 82A82B3
 	.string "It's empty.$"
 
 Text_2A82BF: @ 82A82BF
-	.string "The shelves brim with all sorts of\n"
-	.string "POKéMON merchandise.$"
+	.string "Lots of POKéMON merchandise!$"
 
 Text_2A82F7: @ 82A82F7
 	.string "A blueprint of some sort?\n"
