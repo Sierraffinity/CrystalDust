@@ -61,5 +61,6 @@
       "script": "SkyPillar_Top_EventScript_23979A"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

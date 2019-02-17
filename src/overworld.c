@@ -1686,7 +1686,7 @@ void sub_80861E8(void)
 
 static void sub_8086204(void)
 {
-    if ((gMapHeader.flags & 0xF8) == 8 && sub_80E909C() == TRUE)
+    if ((gMapHeader.flags & 0x8) && sub_80E909C() == TRUE)
         ShowMapNamePopup();
     sub_80AF3C8();
 }
@@ -1933,7 +1933,7 @@ static bool32 load_map_stuff(u8 *state, u32 a2)
         (*state)++;
         break;
     case 11:
-        if ((gMapHeader.flags & 0xF8) == 8 && sub_80E909C() == 1)
+        if ((gMapHeader.flags & 0x8) && sub_80E909C() == 1)
             ShowMapNamePopup();
         (*state)++;
         break;

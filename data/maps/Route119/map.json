@@ -911,5 +911,6 @@
             "y": 109
         }
     ],
-    "weather": "WEATHER_SUNNY"
+    "weather": "WEATHER_SUNNY",
+    "phone_service": true
 }

@@ -1111,5 +1111,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route111_EventScript_1F146C"
     }
-  ]
+  ],
+  "phone_service": true
 }

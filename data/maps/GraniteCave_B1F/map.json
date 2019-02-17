@@ -80,5 +80,6 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

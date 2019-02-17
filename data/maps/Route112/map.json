@@ -283,5 +283,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route112_EventScript_1F1E58"
     }
-  ]
+  ],
+  "phone_service": true
 }

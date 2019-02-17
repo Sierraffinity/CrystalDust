@@ -215,5 +215,6 @@
       "script": "RusturfTunnel_EventScript_22D07D"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

@@ -511,5 +511,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "LilycoveCity_ContestHall_EventScript_21B73C"
     }
-  ]
+  ],
+  "phone_service": true
 }

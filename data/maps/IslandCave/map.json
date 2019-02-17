@@ -77,5 +77,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "IslandCave_EventScript_238F1D"
     }
-  ]
+  ],
+  "phone_service": true
 }

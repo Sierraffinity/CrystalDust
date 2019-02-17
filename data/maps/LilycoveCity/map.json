@@ -518,5 +518,6 @@
       "item": "ITEM_POKE_BALL",
       "flag": "FLAG_HIDDEN_ITEM_LILYCOVE_CITY_POKE_BALL"
     }
-  ]
+  ],
+  "phone_service": true
 }

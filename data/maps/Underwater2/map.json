@@ -105,5 +105,6 @@
       "item": "ITEM_BLUE_SHARD",
       "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_2_BLUE_SHARD"
     }
-  ]
+  ],
+  "phone_service": true
 }

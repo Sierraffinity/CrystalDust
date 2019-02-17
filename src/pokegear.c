@@ -2,6 +2,7 @@
 #include "main.h"
 #include "pokegear.h"
 #include "alloc.h"
+#include "battle_setup.h"
 #include "bg.h"
 #include "data2.h"
 #include "day_night.h"
@@ -10,9 +11,11 @@
 #include "graphics.h"
 #include "international_string_util.h"
 #include "list_menu.h"
+#include "match_call.h"
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
+#include "phone_contact.h"
 #include "radio.h"
 #include "random.h"
 #include "region_map.h"
@@ -33,7 +36,6 @@
 #define WIN_TOP 2
 #define WIN_BOTTOM 3
 #define WIN_LIST 4
-#define WIN_CONFIRM 5
 
 #define MENU_FRAME_BASE_TILE_NUM 532
 #define MENU_FRAME_PALETTE_NUM 13
@@ -43,6 +45,11 @@
 #define CARD_SLIDE_SPEED 32
 #define ICON_SLIDE_SPEED 2
 #define CARD_SLIDE_RIGHT_X 208
+
+#define PHONE_CARD_MAX_SHOWN_CONTACTS 5
+#define PHONE_CARD_MAX_NAME_LENGTH 31
+
+#define TAG_PHONE_CALL_ICON 12347
 
 // Static RAM declarations
 
@@ -57,13 +64,18 @@ enum CardType {
 static EWRAM_DATA struct {
     MainCallback callback;
     struct RegionMap *map;
+    struct ListMenuItem *phoneContactItems;
+    u8 *phoneContactNames;
+    u8 *phoneContactIds;
+    u8 phoneContactCount;
+    u8 phoneCallActionWindowId;
+    u16 phoneScrollOffset;
+    u16 phoneSelectedItem;
     u8 currentCard;
     bool8 canSwitchCards;
     bool8 twentyFourHourMode;
     u8 currentRadioStation;
 } sPokegearStruct = {0};
-
-// Static ROM declarations
 
 void CB2_InitPokegear(void);
 static void VBlankCB(void);
@@ -83,11 +95,13 @@ static void PhoneCard_ConfirmCall(u8 taskId);
 static void LoadClockCard(void);
 static void LoadMapCard(void);
 static void LoadPhoneCard(void);
+static void DisplayPhoneCardDefaultText(void);
 static void LoadRadioCard(void);
 static void LoadCard(enum CardType type);
 static void LoadCardBgs(enum CardType type);
 static void SpriteCB_ClockDigits(struct Sprite* sprite);
 static void SpriteCB_RadioDigits(struct Sprite* sprite);
+static void FreePokegearData(void);
 static void UnloadClockCard(void);
 static void UnloadMapCard(void);
 static void UnloadPhoneCard(void);
@@ -96,9 +110,15 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId);
 static void PhoneCard_AddScrollIndicators(u8 taskId);
 static void PhoneCard_ReturnToMain(u8 taskId);
 static void PhoneCard_PlaceCall(u8 taskId);
+static void LoadPhoneCallWindowGfx(u8 taskId);
+static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId);
+static void MovePhoneCallWindowToVram(u8 taskId);
 static void UpdateRadioStation(u8 taskId, u8 frequency);
 static void LoadCardSprites(u8 taskId);
 static void SpriteCB_Icons(struct Sprite* sprite);
+static void InitPhoneCardData(void);
+static void PhoneCard_ExecuteCallStart(u8 taskId);
+static void PhoneCard_ExecuteCall(u8 taskId);
 
 // .rodata
 static const u16 gBGPals[] = INCBIN_U16("graphics/pokegear/bg.gbapal");
@@ -110,6 +130,10 @@ static const u32 gClockCardTilemap[] = INCBIN_U32("graphics/pokegear/clock.bin.l
 static const u32 gMapCardTilemap[] = INCBIN_U32("graphics/pokegear/map.bin.lz");
 static const u32 gPhoneCardTilemap[] = INCBIN_U32("graphics/pokegear/phone.bin.lz");
 static const u32 gRadioCardTilemap[] = INCBIN_U32("graphics/pokegear/radio.bin.lz");
+static const u16 sPhoneCallWindowPalette[] = INCBIN_U16("graphics/unknown/unknown_60EA4C.gbapal");
+static const u8 sPhoneCallWindowGfx[] = INCBIN_U8("graphics/interface/menu_border.4bpp");
+static const u8 sPhoneCallWindowIconGfx[] = INCBIN_U8("graphics/pokegear/phone_call_icon.4bpp");
+static const u16 sPhoneCallWindowIconPalette[] = INCBIN_U16("graphics/pokegear/phone_call_icon.gbapal");
 
 static const struct BgTemplate sBgTemplates[] =
 {
@@ -158,29 +182,37 @@ static const struct WindowTemplate sWindowTemplates[] =
     { 0, 10, 5, 14, 3, 15, 0x0099 },
     { 0, 10, 10, 14, 3, 15, 0x0099 },
     { 0, 8, 4, 17, 10, 15, 0x0099 },
-    { 0, 23, 9, 6, 4, 15, 0x0163 },
     DUMMY_WIN_TEMPLATE
 };
 
-static const struct ListMenuItem sTempListMenuItems[] =
+static const struct WindowTemplate sConfirmWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 23,
+    .tilemapTop = 9,
+    .width = 6,
+    .height = 4,
+    .paletteNum = 15,
+    .baseBlock = 0x0163,
+};
+
+static const struct WindowTemplate sPhoneCallWindowTemplate =
 {
-    {gText_Mom, 0},
-    {gText_Dad, 1},
-    {gText_Cool, 2},
-    {gText_Tough, 3},
-    {gText_Spicy, 4},
-    {gText_Cute, 5},
-    {gText_Cute, 6},
-    {gText_Cute, 7}
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 15,
+    .width = 28,
+    .height = 4,
+    .paletteNum = 15,
+    .baseBlock = 0x14B
 };
 
 static const struct ListMenuTemplate sPhoneCardListMenuTemplate =
 {
-    .items = sTempListMenuItems,
+    .items = NULL,
     .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
     .itemPrintFunc = NULL,
-    .totalItems = ARRAY_COUNT(sTempListMenuItems),
-    .maxShowed = 5,
+    .totalItems = 0,
+    .maxShowed = PHONE_CARD_MAX_SHOWN_CONTACTS,
     .windowId = WIN_LIST,
     .header_X = 0,
     .item_X = 8,
@@ -448,6 +480,31 @@ const struct SpriteTemplate sSpriteTemplate_Icons = {
     .callback = SpriteCB_Icons
 };
 
+static const struct SpriteSheet sPhoneCallIconSpriteSheet = {
+    .data = sPhoneCallWindowIconGfx,
+    .size = 0x200,
+    .tag = TAG_PHONE_CALL_ICON,
+};
+
+const struct SpritePalette gPhoneCallIconSpritePalette = {
+    .data = sPhoneCallWindowIconPalette,
+    .tag = TAG_PHONE_CALL_ICON
+};
+
+static const struct OamData sPhoneCallIcon_OamData = {
+    .size = 2,
+};
+
+static const struct SpriteTemplate sPhoneCallIconSpriteTemplate = {
+    .tileTag = TAG_PHONE_CALL_ICON,
+    .paletteTag = TAG_PHONE_CALL_ICON,
+    .oam = &sPhoneCallIcon_OamData,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
 // .text
 
 const u8 sTextColor[3] = {
@@ -569,6 +626,14 @@ static void UnloadCard(enum CardType cardId)
     }
 }
 
+static void FreePokegearData(void)
+{
+    Free(sPokegearStruct.map);
+    Free(sPokegearStruct.phoneContactItems);
+    Free(sPokegearStruct.phoneContactNames);
+    Free(sPokegearStruct.phoneContactIds);
+}
+
 #define tState data[0]
 #define tCounter data[1]
 
@@ -583,6 +648,7 @@ static void Task_Pokegear1(u8 taskId)
     {
         sPokegearStruct.canSwitchCards = FALSE;
         sPokegearStruct.twentyFourHourMode = FlagGet(FLAG_SYS_POKEGEAR_24HR);
+        InitPhoneCardData();
         gTasks[taskId].tCurrentPos = CARD_SLIDE_RIGHT_X;
         gTasks[taskId].func = Task_Pokegear1_1;
     }
@@ -761,7 +827,7 @@ static void ShowHelpBar(const u8 *string)
     FillWindowPixelBuffer(WIN_HELP, 0xFF);
     AddTextPrinterParameterized3(WIN_HELP, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
     PutWindowTilemap(WIN_HELP);
-    CopyWindowToVram(WIN_HELP, 3);
+    schedule_bg_copy_tilemap_to_vram(0);
 }
 
 static void LoadCardBgs(enum CardType newCard)
@@ -872,6 +938,7 @@ static void Task_ExitPokegear2(u8 taskId)
     if (!gPaletteFade.active)
     {
         UnloadCard(sPokegearStruct.currentCard);
+        FreePokegearData();
         FreeAllWindowBuffers(); // just make sure, y'know?
         SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
     }
@@ -1104,40 +1171,49 @@ static void UnloadMapCard(void)
 }
 
 #define tListMenuTaskId data[0]
-#define tSelectedItem data[1]
 #define tScrollTaskId data[2]
-#define tScrollOffset data[3]
+#define tPhoneCallWindowId data[3]
+#define tPhoneCallIconSpriteId data[4]
 
 static void LoadPhoneCard(void)
 {
-    struct ListMenuTemplate menuTemplate = sPhoneCardListMenuTemplate;
     u8 newTask;
-
-    SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
-    FillWindowPixelBuffer(WIN_DIALOG, 0x11);
-    CopyWindowToVram(WIN_DIALOG, 2);
+    int scrollOffset, selectedRow;
+    struct ListMenuTemplate menuTemplate = sPhoneCardListMenuTemplate;
+    menuTemplate.items = sPokegearStruct.phoneContactItems;
+    menuTemplate.totalItems = sPokegearStruct.phoneContactCount;
 
     newTask = CreateTask(Task_PhoneCard, 0);
-    gTasks[newTask].tListMenuTaskId = ListMenuInit(&menuTemplate, 0, 0);
-    AddTextPrinterParameterized(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL);
-    schedule_bg_copy_tilemap_to_vram(0);
+    if (sPokegearStruct.phoneScrollOffset + sPokegearStruct.phoneSelectedItem >= sPokegearStruct.phoneContactCount)
+        gTasks[newTask].tListMenuTaskId = ListMenuInit(&menuTemplate, 0, 0);
+    else
+        gTasks[newTask].tListMenuTaskId = ListMenuInit(&menuTemplate, sPokegearStruct.phoneScrollOffset, sPokegearStruct.phoneSelectedItem);
+
+    DisplayPhoneCardDefaultText();
     
     gTasks[newTask].tScrollTaskId = 0xFF;
-    gTasks[newTask].tScrollOffset = 0;
+    gTasks[newTask].tPhoneCallIconSpriteId = MAX_SPRITES;
     PhoneCard_AddScrollIndicators(newTask);
+}
+
+static void DisplayPhoneCardDefaultText(void)
+{
+    SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
+    AddTextPrinterParameterized(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL);
+    schedule_bg_copy_tilemap_to_vram(0);
 }
 
 static void PhoneCard_AddScrollIndicators(u8 taskId)
 {
-    if (gTasks[taskId].tScrollTaskId == 0xFF)
+    if (sPokegearStruct.phoneContactCount > PHONE_CARD_MAX_SHOWN_CONTACTS && gTasks[taskId].tScrollTaskId == 0xFF)
         gTasks[taskId].tScrollTaskId = AddScrollIndicatorArrowPairParameterized(SCROLL_ARROW_UP,
                                                                                 206,
                                                                                 40,
                                                                                 104,
-                                                                                2,
+                                                                                sPokegearStruct.phoneContactCount - PHONE_CARD_MAX_SHOWN_CONTACTS,
                                                                                 0x13F8,
                                                                                 0x13F8,
-                                                                                &(gTasks[taskId].tScrollOffset));
+                                                                                &sPokegearStruct.phoneScrollOffset);
 }
 
 static void PhoneCard_RemoveScrollIndicators(u8 taskId)
@@ -1151,9 +1227,9 @@ static void PhoneCard_RemoveScrollIndicators(u8 taskId)
 
 static void Task_PhoneCard(u8 taskId)
 {
-    s32 id = ListMenu_ProcessInput(gTasks[taskId].tListMenuTaskId);
-    ListMenuGetScrollAndRow(gTasks[taskId].tListMenuTaskId, &(gTasks[taskId].tScrollOffset), &(gTasks[taskId].tSelectedItem));
-    switch(id)
+    int input = ListMenu_ProcessInput(gTasks[taskId].tListMenuTaskId);
+    ListMenuGetScrollAndRow(gTasks[taskId].tListMenuTaskId, &sPokegearStruct.phoneScrollOffset, &sPokegearStruct.phoneSelectedItem);
+    switch (input)
     {
     case LIST_NOTHING_CHOSEN:
     case LIST_B_PRESSED:
@@ -1175,31 +1251,35 @@ static void PhoneCard_ConfirmCall(u8 taskId)
     sPokegearStruct.canSwitchCards = FALSE;
     ShowHelpBar(gText_UpDownPickAOk);
     PhoneCard_RemoveScrollIndicators(taskId);
-    SetWindowBorderStyle(WIN_CONFIRM, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
-    PrintMenuTable(WIN_CONFIRM, ARRAY_COUNT(sCallOptions), sCallOptions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(WIN_CONFIRM, ARRAY_COUNT(sCallOptions), 0);
+    sPokegearStruct.phoneCallActionWindowId = AddWindow(&sConfirmWindowTemplate);
+    SetWindowBorderStyle(sPokegearStruct.phoneCallActionWindowId, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
+    PrintMenuTable(sPokegearStruct.phoneCallActionWindowId, ARRAY_COUNT(sCallOptions), sCallOptions);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, ARRAY_COUNT(sCallOptions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = PhoneCard_ConfirmCallProcessInput;
 }
 
 static void PhoneCard_ConfirmCallProcessInput(u8 taskId)
 {
-    s8 inputOptionId = ProcessMenuInput_other();
+    s8 input = ProcessMenuInput_other();
 
-    switch(inputOptionId)
+    switch (input)
     {
         case MENU_NOTHING_CHOSEN:
             break;
         case MENU_B_PRESSED:
             PlaySE(SE_SELECT);
-            sub_8197434(WIN_CONFIRM, TRUE);
+            sub_8198070(sPokegearStruct.phoneCallActionWindowId, FALSE);
+            RemoveWindow(sPokegearStruct.phoneCallActionWindowId);
+            PutWindowTilemap(WIN_LIST);
             PhoneCard_ReturnToMain(taskId);
             break;
-
         default:
             PlaySE(SE_SELECT);
-            sub_8197434(WIN_CONFIRM, TRUE);
-            gTasks[taskId].func = sCallOptions[inputOptionId].func.void_u8;
+            sub_8198070(sPokegearStruct.phoneCallActionWindowId, FALSE);
+            RemoveWindow(sPokegearStruct.phoneCallActionWindowId);
+            PutWindowTilemap(WIN_LIST);
+            gTasks[taskId].func = sCallOptions[input].func.void_u8;
             break;
     }
 }
@@ -1208,14 +1288,122 @@ static void PhoneCard_ReturnToMain(u8 taskId)
 {
     ShowHelpBar(gText_PhoneCardHelp1);
     PhoneCard_AddScrollIndicators(taskId);
+    DisplayPhoneCardDefaultText();
+    if (gTasks[taskId].tPhoneCallIconSpriteId != MAX_SPRITES)
+    {
+        DestroySprite(&gSprites[gTasks[taskId].tPhoneCallIconSpriteId]);
+        gTasks[taskId].tPhoneCallIconSpriteId = MAX_SPRITES;
+    }
     sPokegearStruct.canSwitchCards = TRUE;
     gTasks[taskId].func = Task_PhoneCard;
 }
 
+static const u8 sPhoneCallText_Ellipsis[] = _("………………\p");
+static const u8 sPhoneCallText_NobodyAnswered[] = _("Nobody answered the call…");
+
 static void PhoneCard_PlaceCall(u8 taskId)
 {
     ShowHelpBar(gText_ANext);
-    // TODO
+    FillWindowPixelBuffer(WIN_DIALOG, 0x11);
+    gTasks[taskId].func = LoadPhoneCallWindowGfx;
+}
+
+static void LoadPhoneCallWindowGfx(u8 taskId)
+{
+    gTasks[taskId].tPhoneCallWindowId = AddWindow(&sPhoneCallWindowTemplate);
+    LoadBgTiles(0, sPhoneCallWindowGfx, sizeof(sPhoneCallWindowGfx), 0x143);
+    FillWindowPixelBuffer(gTasks[taskId].tPhoneCallWindowId, 0x11);
+    LoadPalette(sPhoneCallWindowPalette, 0xE0, 0x20);
+    LoadSpriteSheet(&sPhoneCallIconSpriteSheet);
+    LoadSpritePalette(&gPhoneCallIconSpritePalette);
+    gTasks[taskId].func = MovePhoneCallWindowToVram;
+}
+
+static void MovePhoneCallWindowToVram(u8 taskId)
+{
+    free_temp_tile_data_buffers_if_possible();
+    PutWindowTilemap(gTasks[taskId].tPhoneCallWindowId);
+    DrawPhoneCallTextBoxBorder(gTasks[taskId].tPhoneCallWindowId, 0x143, 14);
+    CopyWindowToVram(gTasks[taskId].tPhoneCallWindowId, 2);
+    CopyBgTilemapBufferToVram(0);
+    gTasks[taskId].tPhoneCallIconSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
+    PlaySE(SE_TOREEYE);
+    AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 32, 1, 8, NULL);
+    gTasks[taskId].func = PhoneCard_ExecuteCallStart;
+}
+
+static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
+{
+    int bg, x, y, width, height;
+    int tileNum;
+
+    bg = GetWindowAttribute(windowId, WINDOW_BG);
+    x = GetWindowAttribute(windowId, WINDOW_TILEMAP_LEFT);
+    y = GetWindowAttribute(windowId, WINDOW_TILEMAP_TOP);
+    width = GetWindowAttribute(windowId, WINDOW_WIDTH);
+    height = GetWindowAttribute(windowId, WINDOW_HEIGHT);
+    tileNum = tileOffset + GetBgAttribute(bg, BG_ATTR_BASETILE);
+
+    FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 0), x - 1, y - 1, 1, 1);
+    FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 1), x, y - 1, width, 1);
+    FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 2), x + width, y - 1, 1, 1);
+    FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 3), x - 1, y, 1, height);
+    FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 4), x + width, y, 1, height);
+    FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 5), x - 1, y + height, 1, 1);
+    FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 6), x, y + height, width, 1);
+    FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 7), x + width, y + height, 1, 1);
+}
+
+static bool8 NoPhoneServiceInCurrentLocation(void)
+{
+    return (gMapHeader.flags & 0x10) == 0;
+}
+
+static const u8 sPhoneCallText_OutOfService[] = _("You're out of the service area.");
+static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that person!");
+
+static void PhoneCard_ExecuteCallStart(u8 taskId)
+{
+    const struct PhoneContact *phoneContact;
+
+    if (IsTextPrinterActive(gTasks[taskId].tPhoneCallWindowId))
+    {
+        gTextFlags.canABSpeedUpPrint = 0;
+    }
+    else
+    {
+        RtcCalcLocalTime();
+        FillWindowPixelBuffer(gTasks[taskId].tPhoneCallWindowId, 0x11);
+        phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
+        if (NoPhoneServiceInCurrentLocation())
+            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_OutOfService, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+        else if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
+            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_JustGoTalkToThem, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+        else if (IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
+            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, phoneContact->selectMessage(phoneContact, FALSE), 32, 1, GetPlayerTextSpeedDelay(), NULL);
+        else
+            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_NobodyAnswered, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+
+        gTasks[taskId].func = PhoneCard_ExecuteCall;
+    }
+}
+
+static void PhoneCard_ExecuteCall(u8 taskId)
+{
+    if (IsTextPrinterActive(gTasks[taskId].tPhoneCallWindowId))
+    {
+        if (gMain.heldKeys & A_BUTTON)
+            gTextFlags.canABSpeedUpPrint = 1;
+        else
+            gTextFlags.canABSpeedUpPrint = 0;
+    }
+    else if (!IsSEPlaying() && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    {
+        FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
+        RemoveWindow(gTasks[taskId].tPhoneCallWindowId);
+        PlaySE(SE_TOREOFF);
+        gTasks[taskId].func = PhoneCard_ReturnToMain;
+    }
 }
 
 static void UnloadPhoneCard(void)
@@ -1429,6 +1617,39 @@ static void UnloadRadioCard(void)
 
     DestroyTask(gTasks[taskId].tRadioShowTaskId);
     DestroyTask(taskId);
+}
+
+static void InitPhoneCardData(void)
+{
+    int i;
+    u8 contacts[PHONE_CONTACT_COUNT];
+    int contactCount = 0;
+
+    for (i = 0; i < PHONE_CONTACT_COUNT; i++)
+    {
+        if (FlagGet(gPhoneContacts[i].registeredFlag))
+        {
+            contacts[contactCount] = i;
+            contactCount++;
+        }
+    }
+
+    // Generate the phone contact list.
+    sPokegearStruct.phoneContactCount = contactCount;
+    if (contactCount > 0)
+    {
+        sPokegearStruct.phoneContactNames = Alloc(contactCount * PHONE_CARD_MAX_NAME_LENGTH);
+        sPokegearStruct.phoneContactItems = Alloc(contactCount * sizeof(struct ListMenuItem));
+        sPokegearStruct.phoneContactIds = Alloc(contactCount);
+        for (i = 0; i < contactCount; i++)
+        {
+            const struct PhoneContact *phoneContact = &gPhoneContacts[contacts[i]];
+            struct ListMenuItem *item = &sPokegearStruct.phoneContactItems[i];
+            item->id = i;
+            sPokegearStruct.phoneContactIds[i] = contacts[i];
+            item->name = BuildPhoneContactDisplayName(phoneContact, sPokegearStruct.phoneContactNames + i * PHONE_CARD_MAX_NAME_LENGTH);
+        }
+    }
 }
 
 #undef WIN_DIALOG

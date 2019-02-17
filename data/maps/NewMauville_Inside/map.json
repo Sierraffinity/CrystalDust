@@ -285,5 +285,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "NewMauville_Inside_EventScript_23778F"
     }
-  ]
+  ],
+  "phone_service": true
 }

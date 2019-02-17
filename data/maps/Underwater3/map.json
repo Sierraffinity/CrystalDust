@@ -80,5 +80,6 @@
       "item": "ITEM_RED_SHARD",
       "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_3_RED_SHARD"
     }
-  ]
+  ],
+  "phone_service": true
 }

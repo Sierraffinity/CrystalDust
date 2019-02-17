@@ -164,5 +164,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "RustboroCity_PokemonSchool_EventScript_213F8C"
     }
-  ]
+  ],
+  "phone_service": true
 }

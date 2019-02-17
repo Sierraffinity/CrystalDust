@@ -214,5 +214,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "AbandonedShip_HiddenFloorRooms_EventScript_238DF3"
     }
-  ]
+  ],
+  "phone_service": true
 }

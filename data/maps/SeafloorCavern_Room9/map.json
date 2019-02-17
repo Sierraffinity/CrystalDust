@@ -126,5 +126,6 @@
       "script": "SeafloorCavern_Room9_EventScript_234DC9"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

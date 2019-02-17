@@ -187,5 +187,6 @@
       "script": "SlateportCity_Harbor_EventScript_20C9DF"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

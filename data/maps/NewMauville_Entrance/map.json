@@ -41,5 +41,6 @@
       "script": "NewMauville_Entrance_EventScript_2372FF"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

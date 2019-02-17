@@ -295,5 +295,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "LavaridgeTown_Gym_1F_EventScript_1FE99B"
     }
-  ]
+  ],
+  "phone_service": true
 }

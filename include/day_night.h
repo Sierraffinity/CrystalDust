@@ -19,7 +19,8 @@ extern EWRAM_DATA bool8 gPaletteOverrideDisabled;
 extern EWRAM_DATA s8 gDNHourOverride;
 #endif
 
-u8 GetTimeOfDay(void);
+u8 GetCurrentTimeOfDay(void);
+u8 GetTimeOfDay(s8 hours);
 void LoadCompressedPaletteDayNight(const void *src, u16 offset, u16 size);
 void LoadPaletteDayNight(const void *src, u16 offset, u16 size);
 void CheckClockToRetintForDayNight(void);

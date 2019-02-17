@@ -702,7 +702,7 @@ bool8 ScrCmd_gettime(struct ScriptContext *ctx)
     RtcCalcLocalTime();
     gSpecialVar_0x8000 = gLocalTime.hours;
     gSpecialVar_0x8001 = gLocalTime.minutes;
-    gSpecialVar_0x8002 = GetTimeOfDay();
+    gSpecialVar_0x8002 = GetCurrentTimeOfDay();
     gSpecialVar_0x8003 = gLocalTime.dayOfWeek;
     return FALSE;
 }

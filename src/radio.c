@@ -731,7 +731,7 @@ u8 LoadStation_PokemonChannel(void)
 {
     RtcCalcLocalTime();
 
-    if (GetTimeOfDay() == TIME_MORNING)
+    if (GetCurrentTimeOfDay() == TIME_MORNING)
         return POKEDEX_SHOW;
     else
         return OAKS_POKEMON_TALK;

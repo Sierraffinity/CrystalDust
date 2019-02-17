@@ -52,5 +52,6 @@
       "item": "ITEM_PEARL",
       "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_4_PEARL"
     }
-  ]
+  ],
+  "phone_service": true
 }

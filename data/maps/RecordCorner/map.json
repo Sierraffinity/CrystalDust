@@ -96,5 +96,6 @@
       "script": "gUnknown_0827745C"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }

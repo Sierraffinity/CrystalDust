@@ -361,7 +361,7 @@ static bool8 MonListHasMon(const struct WildPokemonInfo *info, u16 species, u16 
     u8 timeOfDay;
     
     RtcCalcLocalTime();
-    timeOfDay = GetTimeOfDay();
+    timeOfDay = GetCurrentTimeOfDay();
 
     if (info != NULL)
     {

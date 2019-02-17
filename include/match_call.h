@@ -12,5 +12,6 @@ enum {
 
 s32 GetRematchIdxByTrainerIdx(s32 trainerIdx);
 void InitMatchCallCounters(void);
+bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer);
 
 #endif //GUARD_MATCH_CALL_H

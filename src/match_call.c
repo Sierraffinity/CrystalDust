@@ -9,10 +9,12 @@
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
 #include "main.h"
+#include "match_call.h"
 #include "menu.h"
 #include "new_game.h"
 #include "overworld.h"
 #include "palette.h"
+#include "phone_contact.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "random.h"
@@ -38,9 +40,10 @@
 struct MatchCallState
 {
     u32 minutes;
-    u16 trainerId;
+    u16 callerId;
     u8 stepCounter;
-    u8 triggeredFromScript;
+    u8 triggeredFromScript:1;
+    u8 forcedPhoneCallId:7;
 };
 
 struct MatchCallTrainerTextInfo
@@ -72,10 +75,15 @@ struct BattleFrontierStreakInfo
     u16 streak;
 };
 
+struct ForcedPhoneCall
+{
+    u16 flag;
+    u16 phoneContactId;
+};
+
 EWRAM_DATA struct MatchCallState gMatchCallState = {0};
 EWRAM_DATA struct BattleFrontierStreakInfo gBattleFrontierStreakInfo = {0};
 
-bool32 SelectMatchCallMessage(int, u8 *);
 static u32 GetCurrentTotalMinutes(struct Time *);
 static u32 GetNumRegisteredNPCs(void);
 static u32 GetActiveMatchCallTrainerId(u32);
@@ -85,7 +93,6 @@ static bool32 TrainerIsEligibleForRematch(int);
 static void StartMatchCall(void);
 static void ExecuteMatchCall(u8);
 static void DrawMatchCallTextBoxBorder(u32, u32, u32);
-static void sub_8196694(u8);
 static void InitMatchCallTextPrinter(int, const u8 *);
 static bool32 ExecuteMatchCallTextPrinter(int);
 static const struct MatchCallText *GetSameRouteMatchCallText(int, u8 *);
@@ -968,6 +975,13 @@ static const struct MatchCallText *const sMatchCallGeneralTopics[] =
     sMatchCallBattlePyramidTexts,
 };
 
+static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
+    {
+        .flag = FLAG_FORCE_PHONE_CALL_ROSE,
+        .phoneContactId = PHONE_CONTACT_ROSE,
+    },
+};
+
 extern const u8 gUnknown_082A5C9C[];
 extern const u8 gUnknown_082A5D2C[];
 extern const u8 gUnknown_082A633D[];
@@ -1012,20 +1026,7 @@ static bool32 CheckMatchCallChance(void)
 
 static bool32 MapAllowsMatchCall(void)
 {
-    if (!Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) || gMapHeader.regionMapSectionId == MAPSEC_SAFARI_ZONE)
-        return FALSE;
-    
-    if (gMapHeader.regionMapSectionId == MAPSEC_SOOTOPOLIS_CITY
-     && FlagGet(FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA) == TRUE
-     && FlagGet(FLAG_UNUSED_0x0DC) == FALSE)
-        return FALSE;
-
-    if (gMapHeader.regionMapSectionId == MAPSEC_MT_CHIMNEY
-     && FlagGet(FLAG_MET_ARCHIE_METEOR_FALLS) == TRUE
-     && FlagGet(FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY) == FALSE)
-        return FALSE;
-
-    return TRUE;
+    return gMapHeader.flags & 0x10;
 }
 
 static bool32 UpdateMatchCallStepCounter(void)
@@ -1048,24 +1049,41 @@ static bool32 SelectMatchCallTrainer(void)
     if (!numRegistered)
         return FALSE;
 
-    gMatchCallState.trainerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
+    gMatchCallState.callerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
     gMatchCallState.triggeredFromScript = 0;
-    if (gMatchCallState.trainerId == REMATCH_TABLE_ENTRIES)
+    if (gMatchCallState.callerId == REMATCH_TABLE_ENTRIES)
         return FALSE;
 
-    matchCallId = GetTrainerMatchCallId(gMatchCallState.trainerId);
+    matchCallId = GetTrainerMatchCallId(gMatchCallState.callerId);
     if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(matchCallId))
         return FALSE;
 
     return TRUE;
 }
 
+static bool32 SelectForcedPhoneCall(void)
+{
+    int i;
+
+    gMatchCallState.forcedPhoneCallId = 0;
+    for (i = 0; i < ARRAY_COUNT(sForcedPhoneCalls); i++)
+    {
+        if (FlagGet(sForcedPhoneCalls[i].flag) && FlagGet(gPhoneContacts[sForcedPhoneCalls[i].phoneContactId].registeredFlag))
+        {
+            gMatchCallState.forcedPhoneCallId = i + 1;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 static u32 GetNumRegisteredNPCs(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < 64; i++)
+    for (i = 0, count = 0; i < REMATCH_TRAINER_WALLY; i++)
     {
-        if (FlagGet(FLAG_MATCH_CALL_REGISTERED + i))
+        if (FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
             count++;
     }
 
@@ -1075,9 +1093,9 @@ static u32 GetNumRegisteredNPCs(void)
 static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 {
     u32 i;
-    for (i = 0; i < 64; i++)
+    for (i = 0; i < REMATCH_TRAINER_WALLY; i++)
     {
-        if (FlagGet(FLAG_MATCH_CALL_REGISTERED + i))
+        if (FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
         {
             if (!activeMatchCallId)
                 return gRematchTable[i].trainerIds[0];
@@ -1091,7 +1109,13 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 
 bool32 TryStartMatchCall(void)
 {
-    if (FlagGet(FLAG_HAS_MATCH_CALL) && UpdateMatchCallStepCounter() && UpdateMatchCallMinutesCounter()
+    if (MapAllowsMatchCall() & SelectForcedPhoneCall())
+    {
+        StartMatchCall();
+        return TRUE;
+    }
+
+    if (UpdateMatchCallStepCounter() && UpdateMatchCallMinutesCounter()
      && CheckMatchCallChance() && MapAllowsMatchCall() && SelectMatchCallTrainer())
     {
         StartMatchCall();
@@ -1128,8 +1152,8 @@ static void StartMatchCall(void)
 
 static const u16 sUnknown_0860EA4C[] = INCBIN_U16("graphics/unknown/unknown_60EA4C.gbapal");
 static const u8 sUnknown_0860EA6C[] = INCBIN_U8("graphics/interface/menu_border.4bpp");
-static const u16 sPokeNavIconPalette[] = INCBIN_U16("graphics/pokenav/icon.gbapal");
-static const u32 sPokeNavIconGfx[] = INCBIN_U32("graphics/pokenav/icon.4bpp.lz");
+static const u16 sPokeNavIconPalette[] = INCBIN_U16("graphics/pokegear/phone_call_icon_with_bg.gbapal");
+static const u32 sPokeNavIconGfx[] = INCBIN_U32("graphics/pokegear/phone_call_icon_with_bg.4bpp.lz");
 
 static const u8 sText_PokenavCallEllipsis[] = _("………………\p");
 
@@ -1208,7 +1232,6 @@ static bool32 MoveMatchCallWindowToVram(u8 taskId)
     PutWindowTilemap(taskData[2]);
     DrawMatchCallTextBoxBorder(taskData[2], 0x270, 14);
     WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 15, 4, 4, 17, 1);
-    taskData[5] = CreateTask(sub_8196694, 10);
     CopyWindowToVram(taskData[2], 2);
     CopyBgTilemapBufferToVram(0);
     return TRUE;
@@ -1239,15 +1262,34 @@ static bool32 sub_81962B0(u8 taskId)
 
 static bool32 sub_81962D8(u8 taskId)
 {
+    const u8 *message;
     s16 *taskData = gTasks[taskId].data;
     if (!ExecuteMatchCallTextPrinter(taskData[2]))
     {
         FillWindowPixelBuffer(taskData[2], 0x88);
         if (!gMatchCallState.triggeredFromScript)
-            SelectMatchCallMessage(gMatchCallState.trainerId, gStringVar4);
-
-        InitMatchCallTextPrinter(taskData[2], gStringVar4);
-        return TRUE;
+        {
+            if (gMatchCallState.forcedPhoneCallId)
+            {
+                const struct ForcedPhoneCall *forcedPhoneCall = &sForcedPhoneCalls[gMatchCallState.forcedPhoneCallId - 1];
+                const struct PhoneContact *phoneContact = &gPhoneContacts[forcedPhoneCall->phoneContactId];
+                message = phoneContact->selectMessage(phoneContact, TRUE);
+                FlagClear(forcedPhoneCall->flag);
+                InitMatchCallTextPrinter(taskData[2], message);
+                return TRUE;
+            }
+            else
+            {
+                SelectMatchCallMessage(gMatchCallState.callerId, gStringVar4, TRUE);
+                InitMatchCallTextPrinter(taskData[2], gStringVar4);
+                return TRUE;
+            }
+        }
+        else
+        {
+            InitMatchCallTextPrinter(taskData[2], gStringVar4);
+            return TRUE;
+        }
     }
 
     return FALSE;
@@ -1273,7 +1315,6 @@ static bool32 sub_8196390(u8 taskId)
     if (ChangeBgY(0, 0x600, 2) <= -0x2000)
     {
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
-        DestroyTask(taskData[5]);
         RemoveWindow(taskData[2]);
         CopyBgTilemapBufferToVram(0);
         return TRUE;
@@ -1358,21 +1399,6 @@ static bool32 ExecuteMatchCallTextPrinter(int windowId)
     return IsTextPrinterActive(windowId);
 }
 
-static void sub_8196694(u8 taskId)
-{
-    s16 *taskData = gTasks[taskId].data;
-    if (++taskData[0] > 8)
-    {
-        taskData[0] = 0;
-        if (++taskData[1] > 7)
-            taskData[1] = 0;
-
-        taskData[2] = (taskData[1] * 16) + 0x279;
-        WriteSequenceToBgTilemapBuffer(0, taskData[2] | ~0xFFF, 1, 15, 4, 4, 17, 1);
-        CopyBgTilemapBufferToVram(0);
-    }
-}
-
 static bool32 TrainerIsEligibleForRematch(int matchCallId)
 {
     return gSaveBlock1Ptr->trainerRematches[matchCallId] > 0;
@@ -1387,7 +1413,7 @@ static u16 GetRematchTrainerLocation(int matchCallId)
 static u32 GetNumRematchTrainersFought(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < 64; i++)
+    for (i = 0, count = 0; i < REMATCH_TRAINER_WALLY; i++)
     {
         if (HasTrainerBeenFought(gRematchTable[i].trainerIds[0]))
             count++;
@@ -1414,7 +1440,7 @@ static u32 sub_8196774(int arg0)
     return REMATCH_TABLE_ENTRIES;
 }
 
-bool32 SelectMatchCallMessage(int trainerId, u8 *str)
+bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer)
 {
     u32 matchCallId;
     const struct MatchCallText *matchCallText;
@@ -1427,7 +1453,9 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str)
     {
         matchCallText = GetSameRouteMatchCallText(matchCallId, str);
     }
-    else if (sub_8196D74(matchCallId))
+    // // TODO: Disable ability to ask for rematch until making decision about daily rematch flags.
+    else if (FALSE /*(!isCallingPlayer && gPhoneContacts[gRematchTable[matchCallId].phoneContactId].canAcceptRematch(gLocalTime.dayOfWeek, gLocalTime.hours))*/
+          || (isCallingPlayer  && sub_8196D74(matchCallId)))
     {
         matchCallText = GetDifferentRouteMatchCallText(matchCallId, str);
         retVal = TRUE;
@@ -1652,7 +1680,7 @@ static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)
     u8 timeOfDay;
     
     RtcCalcLocalTime();
-    timeOfDay = GetTimeOfDay();
+    timeOfDay = GetCurrentTimeOfDay();
 
     if (gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED)) // ??? This check is nonsense.
     {

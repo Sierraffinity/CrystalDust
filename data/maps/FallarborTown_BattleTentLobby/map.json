@@ -106,5 +106,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "FallarborTown_BattleTentLobby_EventScript_20024F"
     }
-  ]
+  ],
+  "phone_service": true
 }

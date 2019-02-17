@@ -164,5 +164,6 @@
     "show_map_name": true,
     "warp_events": [
     ],
-    "weather": "WEATHER_SUNNY"
+    "weather": "WEATHER_SUNNY",
+    "phone_service": true
 }

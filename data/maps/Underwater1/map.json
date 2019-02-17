@@ -84,5 +84,6 @@
       "item": "ITEM_HEART_SCALE",
       "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_1_HEART_SCALE_2"
     }
-  ]
+  ],
+  "phone_service": true
 }

@@ -187,5 +187,6 @@
       "item": "ITEM_EVERSTONE",
       "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_B2F_EVERSTONE_2"
     }
-  ]
+  ],
+  "phone_service": true
 }

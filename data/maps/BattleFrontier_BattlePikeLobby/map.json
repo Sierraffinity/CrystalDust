@@ -108,5 +108,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "BattleFrontier_BattlePikeLobby_EventScript_25BAC6"
     }
-  ]
+  ],
+  "phone_service": true
 }

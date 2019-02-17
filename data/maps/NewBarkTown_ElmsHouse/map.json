@@ -92,5 +92,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "EventScript_DifficultBookShelf"
     }
-  ]
+  ],
+  "phone_service": true
 }

@@ -48,5 +48,6 @@
       "script": "TerraCave_End_EventScript_23B0EC"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "phone_service": true
 }
