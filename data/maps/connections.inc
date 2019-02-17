@@ -15,7 +15,7 @@
 	.include "data/maps/VerdanturfTown/connections.inc"
 	.include "data/maps/PacifidlogTown/connections.inc"
 	.include "data/maps/Route29/connections.inc"
-	.include "data/maps/Route102/connections.inc"
+	.include "data/maps/Route30/connections.inc"
 	.include "data/maps/Route103/connections.inc"
 	.include "data/maps/Route104/connections.inc"
 	.include "data/maps/Route105/connections.inc"

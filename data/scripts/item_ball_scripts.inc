@@ -2,7 +2,7 @@ Route29_EventScript_ItemBall_Potion::
 	giveitem_std ITEM_POTION, 1, 1
 	end
 
-Route102_EventScript_290CD8:: @ 8290CD8
+Route30_EventScript_290CD8:: @ 8290CD8
 	giveitem_std ITEM_POTION, 1, 1
 	end
 

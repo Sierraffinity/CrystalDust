@@ -19,7 +19,7 @@
 #define MAP_VERDANTURF_TOWN  (14 | (0 << 8))
 #define MAP_PACIFIDLOG_TOWN  (15 | (0 << 8))
 #define MAP_ROUTE29          (16 | (0 << 8))
-#define MAP_ROUTE102         (17 | (0 << 8))
+#define MAP_ROUTE30          (17 | (0 << 8))
 #define MAP_ROUTE103         (18 | (0 << 8))
 #define MAP_ROUTE104         (19 | (0 << 8))
 #define MAP_ROUTE105         (20 | (0 << 8))

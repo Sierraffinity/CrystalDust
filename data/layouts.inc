@@ -15,7 +15,7 @@
 	.include "data/layouts/VerdanturfTown/layout.inc"
 	.include "data/layouts/PacifidlogTown/layout.inc"
 	.include "data/layouts/Route29/layout.inc"
-	.include "data/layouts/Route102/layout.inc"
+	.include "data/layouts/Route30/layout.inc"
 	.include "data/layouts/Route103/layout.inc"
 	.include "data/layouts/Route104/layout.inc"
 	.include "data/layouts/Route105/layout.inc"
