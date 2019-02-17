@@ -1354,9 +1354,9 @@ static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 palette
     FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 7), x + width, y + height, 1, 1);
 }
 
-static bool8 CanPhoneMakeCallsInCurrentLocation(void)
+static bool8 NoPhoneServiceInCurrentLocation(void)
 {
-    return 1; // (gMapHeader.flags & 0x10) == 0;
+    return (gMapHeader.flags & 0x10) == 0;
 }
 
 static const u8 sPhoneCallText_OutOfService[] = _("You're out of the service area.");
@@ -1375,7 +1375,7 @@ static void PhoneCard_ExecuteCallStart(u8 taskId)
         RtcCalcLocalTime();
         FillWindowPixelBuffer(gTasks[taskId].tPhoneCallWindowId, 0x11);
         phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
-        if (!CanPhoneMakeCallsInCurrentLocation())
+        if (NoPhoneServiceInCurrentLocation())
             AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_OutOfService, 32, 1, GetPlayerTextSpeedDelay(), NULL);
         else if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
             AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_JustGoTalkToThem, 32, 1, GetPlayerTextSpeedDelay(), NULL);
