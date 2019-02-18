@@ -1,0 +1,6 @@
+#ifndef GUARD_RUINS_OF_ALPH_PUZZLE_H
+#define GUARD_RUINS_OF_ALPH_PUZZLE_H
+
+void DoRuinsOfAlphPuzzle(void);
+
+#endif //GUARD_RUINS_OF_ALPH_PUZZLE_H
