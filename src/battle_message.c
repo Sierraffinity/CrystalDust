@@ -1394,7 +1394,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
     },
     { // 3 Top left move
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1406,7 +1406,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
     },
     { // 4 Top right move
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1418,7 +1418,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
     },
     { // 5 Bottom left move
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1430,7 +1430,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
     },
     { // 6 Bottom right move
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1442,9 +1442,9 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
     },
     { // 7 "PP"
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
-        .y = 1,
+        .y = 2,
         .letterSpacing = 0,
         .lineSpacing = 0,
         .speed = 0,
@@ -1456,7 +1456,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
         .fillValue = 0xEE,
         .fontId = 1,
         .x = 0,
-        .y = 1,
+        .y = 2,
         .letterSpacing = 0,
         .lineSpacing = 0,
         .speed = 0,
@@ -1468,7 +1468,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
         .fillValue = 0xEE,
         .fontId = 1,
         .x = 2,
-        .y = 1,
+        .y = 2,
         .letterSpacing = 0,
         .lineSpacing = 0,
         .speed = 0,
@@ -1478,9 +1478,9 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
     },
     { // 10 "type"
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
-        .y = 1,
+        .y = 2,
         .letterSpacing = 0,
         .lineSpacing = 0,
         .speed = 0,
@@ -1490,9 +1490,9 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] =
     },
     { // 11 "switch which?"
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 1,
         .x = 0,
-        .y = 1,
+        .y = 2,
         .letterSpacing = 0,
         .lineSpacing = 0,
         .speed = 0,
@@ -1686,7 +1686,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
     },
     { // 3
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1698,7 +1698,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
     },
     { // 4
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1710,7 +1710,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
     },
     { // 5
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1722,7 +1722,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
     },
     { // 6
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1734,7 +1734,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
     },
     { // 7
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1770,7 +1770,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
     },
     { // 10
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
@@ -1782,7 +1782,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
     },
     { // 11
         .fillValue = 0xEE,
-        .fontId = 7,
+        .fontId = 0,
         .x = 0,
         .y = 1,
         .letterSpacing = 0,
