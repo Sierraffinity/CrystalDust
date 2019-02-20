@@ -45,23 +45,55 @@ const struct WildPokemon gRoute29_LandMons_Night[] =
 
 const struct WildPokemonInfo gRoute29_LandMonsInfo = {20, {gRoute29_LandMons_Day, gRoute29_LandMons_Day, gRoute29_LandMons_Night}};
 
-const struct WildPokemon gRoute30_LandMons[] =
+const struct WildPokemon gRoute30_LandMons_Morning[] =
 {
-    {3, 3, SPECIES_POOCHYENA},
-    {3, 3, SPECIES_WURMPLE},
-    {4, 4, SPECIES_POOCHYENA},
-    {4, 4, SPECIES_WURMPLE},
-    {3, 3, SPECIES_LOTAD},
-    {4, 4, SPECIES_LOTAD},
-    {3, 3, SPECIES_ZIGZAGOON},
-    {3, 3, SPECIES_ZIGZAGOON},
-    {4, 4, SPECIES_ZIGZAGOON},
-    {4, 4, SPECIES_RALTS},
-    {4, 4, SPECIES_ZIGZAGOON},
-    {3, 3, SPECIES_SEEDOT},
+    {3, 3, SPECIES_LEDYBA},
+    {3, 3, SPECIES_CATERPIE},
+    {3, 3, SPECIES_LEDYBA},
+    {3, 3, SPECIES_CATERPIE},
+    {4, 4, SPECIES_CATERPIE},
+    {4, 4, SPECIES_CATERPIE},
+    {4, 4, SPECIES_PIDGEY},
+    {4, 4, SPECIES_PIDGEY},
+    {3, 3, SPECIES_WEEDLE},
+    {4, 4, SPECIES_HOPPIP},
+    {3, 3, SPECIES_WEEDLE},
+    {5, 5, SPECIES_HOPPIP},
 };
 
-const struct WildPokemonInfo gRoute30_LandMonsInfo = {20, {gRoute30_LandMons, gRoute30_LandMons, gRoute30_LandMons}};
+const struct WildPokemon gRoute30_LandMons_Day[] =
+{
+    {3, 3, SPECIES_PIDGEY},
+    {3, 3, SPECIES_CATERPIE},
+    {3, 3, SPECIES_PIDGEY},
+    {3, 3, SPECIES_CATERPIE},
+    {4, 4, SPECIES_CATERPIE},
+    {4, 4, SPECIES_CATERPIE},
+    {4, 4, SPECIES_PIDGEY},
+    {4, 4, SPECIES_PIDGEY},
+    {3, 3, SPECIES_WEEDLE},
+    {4, 4, SPECIES_HOPPIP},
+    {3, 3, SPECIES_WEEDLE},
+    {5, 5, SPECIES_HOPPIP},
+};
+
+const struct WildPokemon gRoute30_LandMons_Night[] =
+{
+    {3, 3, SPECIES_SPINARAK},
+    {3, 3, SPECIES_HOOTHOOT},
+    {3, 3, SPECIES_SPINARAK},
+    {3, 3, SPECIES_HOOTHOOT},
+    {4, 4, SPECIES_POLIWAG},
+    {4, 4, SPECIES_POLIWAG},
+    {4, 4, SPECIES_HOOTHOOT},
+    {4, 4, SPECIES_HOOTHOOT},
+    {3, 3, SPECIES_ZUBAT},
+    {4, 4, SPECIES_HOOTHOOT},
+    {3, 3, SPECIES_ZUBAT},
+    {5, 5, SPECIES_HOOTHOOT},
+};
+
+const struct WildPokemonInfo gRoute30_LandMonsInfo = {20, {gRoute30_LandMons_Morning, gRoute30_LandMons_Day, gRoute30_LandMons_Night}};
 
 const struct WildPokemon gRoute30_WaterMons[] =
 {

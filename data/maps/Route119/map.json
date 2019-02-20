@@ -777,7 +777,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_119_KECLEON_1",
-            "graphics_id": "EVENT_OBJ_GFX_KECLEON_1",
+            "graphics_id": "EVENT_OBJ_GFX_RATTATA",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_INVISIBLE",
@@ -790,7 +790,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_119_KECLEON_2",
-            "graphics_id": "EVENT_OBJ_GFX_KECLEON_1",
+            "graphics_id": "EVENT_OBJ_GFX_RATTATA",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_INVISIBLE",

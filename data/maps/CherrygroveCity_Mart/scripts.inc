@@ -60,8 +60,8 @@ CherrygroveCity_Mart_Text_BallGuy_PostDex:
 	.string "Now I can catch POKéMON!$"
 
 CherrygroveCity_Mart_Text_Youngster:
-	.string "When I was walking in the grass,\n"
-	.string "a BUG-type POKéMON poisoned my\l"
+	.string "When I was walking in the grass, a\n"
+	.string "BUG-type POKéMON poisoned my\l"
 	.string "POKéMON!\p"
 	.string "I just kept going but then my\n"
 	.string "POKéMON fainted.\p"

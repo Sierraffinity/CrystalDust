@@ -201,8 +201,8 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Fossil;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Regirock;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Regice;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Registeel;
-const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Skitty;
-const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Kecleon1;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Pidgey;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Rattata;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Kyogre2;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Groudon2;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Rayquaza2;
@@ -450,8 +450,8 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     &gEventObjectGraphicsInfo_Regirock,
     &gEventObjectGraphicsInfo_Regice,
     &gEventObjectGraphicsInfo_Registeel,
-    &gEventObjectGraphicsInfo_Skitty,
-    &gEventObjectGraphicsInfo_Kecleon1,
+    &gEventObjectGraphicsInfo_Pidgey,
+    &gEventObjectGraphicsInfo_Rattata,
     &gEventObjectGraphicsInfo_Kyogre2,
     &gEventObjectGraphicsInfo_Groudon2,
     &gEventObjectGraphicsInfo_Rayquaza2,

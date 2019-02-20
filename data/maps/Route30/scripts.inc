@@ -5,12 +5,20 @@ Route30_EventScript_1EC0E1:: @ 81EC0E1
 	msgbox Route30_Text_1EC2C0, MSGBOX_NPC
 	end
 
-Route30_EventScript_1EC0EA:: @ 81EC0EA
-	msgbox Route30_Text_1EC35B, MSGBOX_SIGN
+Route30_EventScript_Directions::
+	msgbox Route30_Text_Directions, MSGBOX_SIGN
 	end
 
-Route30_EventScript_1EC0F3:: @ 81EC0F3
-	msgbox Route30_Text_1EC373, MSGBOX_SIGN
+Route30_EventScript_MrPokemonsHouseAhead::
+	msgbox Route30_Text_MrPokemonsHouseAhead, MSGBOX_SIGN
+	end
+
+Route30_EventScript_MrPokemonsHouse::
+	msgbox Route30_Text_MrPokemonsHouse, MSGBOX_SIGN
+	end
+
+Route30_EventScript_TrainerTips::
+	msgbox Route30_Text_TrainerTips, MSGBOX_SIGN
 	end
 
 Route30_EventScript_1EC0FC:: @ 81EC0FC
@@ -102,10 +110,19 @@ Route30_Text_1EC32E: @ 81EC32E
 	.string "I'm going to catch a whole bunch of\n"
 	.string "POKéMON!$"
 
-Route30_Text_1EC35B: @ 81EC35B
-	.string "ROUTE 102\n"
-	.string "{RIGHT_ARROW} OLDALE TOWN$"
+Route30_Text_Directions:
+	.string "ROUTE 30\n"
+	.string "VIOLET CITY - CHERRYGROVE CITY$"
 
-Route30_Text_1EC373: @ 81EC373
-	.string "ROUTE 102\n"
-	.string "{LEFT_ARROW} PETALBURG CITY$"
+Route30_Text_MrPokemonsHouseAhead:
+	.string "MR. POKéMON'S HOUSE\n"
+	.string "STRAIGHT AHEAD!$"
+
+Route30_Text_MrPokemonsHouse:
+	.string "MR. POKéMON'S HOUSE$"
+
+Route30_Text_TrainerTips:
+	.string "TRAINER TIPS\p"
+	.string "No stealing other people's POKéMON!\p"
+	.string "POKé BALLS are to be thrown only at\n"
+	.string "wild POKéMON!$"

@@ -183,6 +183,5 @@
             "y": 15
         }
     ],
-    "weather": "WEATHER_SUNNY",
-    "phone_service": true
+    "weather": "WEATHER_SUNNY"
 }

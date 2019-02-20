@@ -403,7 +403,7 @@
       "flag": "FLAG_ITEM_ROUTE_120_HYPER_POTION"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_KECLEON_1",
+      "graphics_id": "EVENT_OBJ_GFX_RATTATA",
       "x": 12,
       "y": 16,
       "elevation": 4,
@@ -494,7 +494,7 @@
       "flag": "FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_KECLEON_1",
+      "graphics_id": "EVENT_OBJ_GFX_RATTATA",
       "x": 20,
       "y": 11,
       "elevation": 3,
@@ -507,7 +507,7 @@
       "flag": "FLAG_HIDE_ROUTE_120_KECLEON_2"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_KECLEON_1",
+      "graphics_id": "EVENT_OBJ_GFX_RATTATA",
       "x": 27,
       "y": 2,
       "elevation": 3,
@@ -520,7 +520,7 @@
       "flag": "FLAG_HIDE_ROUTE_120_KECLEON_3"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_KECLEON_1",
+      "graphics_id": "EVENT_OBJ_GFX_RATTATA",
       "x": 4,
       "y": 77,
       "elevation": 3,
@@ -533,7 +533,7 @@
       "flag": "FLAG_HIDE_ROUTE_120_KECLEON_4"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_KECLEON_1",
+      "graphics_id": "EVENT_OBJ_GFX_RATTATA",
       "x": 7,
       "y": 51,
       "elevation": 3,
@@ -546,7 +546,7 @@
       "flag": "FLAG_HIDE_ROUTE_120_KECLEON_6"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_KECLEON_1",
+      "graphics_id": "EVENT_OBJ_GFX_RATTATA",
       "x": 19,
       "y": 48,
       "elevation": 3,

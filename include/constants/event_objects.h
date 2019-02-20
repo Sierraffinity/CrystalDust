@@ -47,7 +47,7 @@
 #define EVENT_OBJ_GFX_SWIMMER_F                   43
 #define EVENT_OBJ_GFX_BLACK_BELT                  44
 #define EVENT_OBJ_GFX_BEAUTY                      45
-#define EVENT_OBJ_GFX_SCIENTIST                 46
+#define EVENT_OBJ_GFX_SCIENTIST                   46
 #define EVENT_OBJ_GFX_LASS                        47
 #define EVENT_OBJ_GFX_GENTLEMAN                   48
 #define EVENT_OBJ_GFX_SAILOR                      49
@@ -204,8 +204,8 @@
 #define EVENT_OBJ_GFX_REGIROCK                   200
 #define EVENT_OBJ_GFX_REGICE                     201
 #define EVENT_OBJ_GFX_REGISTEEL                  202
-#define EVENT_OBJ_GFX_SKITTY                     203
-#define EVENT_OBJ_GFX_KECLEON_1                  204
+#define EVENT_OBJ_GFX_PIDGEY                     203
+#define EVENT_OBJ_GFX_RATTATA                    204
 #define EVENT_OBJ_GFX_KYOGRE_2                   205
 #define EVENT_OBJ_GFX_GROUDON_2                  206
 #define EVENT_OBJ_GFX_RAYQUAZA_2                 207

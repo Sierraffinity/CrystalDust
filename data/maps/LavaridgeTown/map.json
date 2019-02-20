@@ -256,7 +256,7 @@
       "y": 5,
       "elevation": 3,
       "item": "ITEM_ICE_HEAL",
-      "flag": "FLAG_HIDDEN_ITEM_LAVARIDGE_TOWN_ICE_HEAL"
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_30_POTION"
     }
   ],
   "phone_service": true
