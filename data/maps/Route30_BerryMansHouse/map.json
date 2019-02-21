@@ -1,0 +1,45 @@
+{
+    "allow_bike": false,
+    "allow_escape_rope": false,
+    "allow_running": false,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_ROUTE30_BERRY_MANS_HOUSE",
+    "layout": "LAYOUT_HOUSE1",
+    "map_type": "MAP_TYPE_INDOOR",
+    "music": "MUS_CHERRYGROVE",
+    "name": "Route30_BerryMansHouse",
+    "object_events": [
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_MAN_1",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "Route30_BerryMansHouse_EventScript_Man",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 4,
+            "y": 4
+        }
+    ],
+    "phone_service": true,
+    "region_map_section": "MAPSEC_ROUTE_30",
+    "requires_flash": false,
+    "show_map_name": false,
+    "warp_events": [
+        {
+            "dest_map": "MAP_ROUTE30",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 4,
+            "y": 7
+        }
+    ],
+    "weather": "WEATHER_NONE"
+}

@@ -263,12 +263,12 @@
 #define MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F (14 | (16 << 8))
 
 // Map Group 17
-#define MAP_ROUTE29_GATEHOUSE                 (0 | (17 << 8))
-#define MAP_ROUTE104_PRETTY_PETAL_FLOWER_SHOP (1 | (17 << 8))
+#define MAP_ROUTE29_GATEHOUSE (0 | (17 << 8))
 
 // Map Group 18
-#define MAP_ROUTE111_WINSTRATE_FAMILYS_HOUSE (0 | (18 << 8))
-#define MAP_ROUTE111_OLD_LADYS_REST_STOP     (1 | (18 << 8))
+#define MAP_ROUTE30_BERRY_MANS_HOUSE     (0 | (18 << 8))
+#define MAP_ROUTE30_MR_POKEMONS_HOUSE    (1 | (18 << 8))
+#define MAP_ROUTE111_OLD_LADYS_REST_STOP (2 | (18 << 8))
 
 // Map Group 19
 #define MAP_ROUTE112_CABLE_CAR_STATION   (0 | (19 << 8))

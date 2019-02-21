@@ -88,7 +88,7 @@
 
 // Scripts
 #define FLAG_LISTENED_TO_INITIAL_RADIO       0x50
-#define FLAG_SET_WALL_CLOCK                  0x51
+#define FLAG_ROUTE_30_RECEIVED_BERRY_MAN     0x51
 #define FLAG_RESCUED_BIRCH                   0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS       0x53
 
@@ -675,8 +675,8 @@
 #define FLAG_HIDE_CHERRYGROVE_CITY_RIVAL                            0x2D2
 #define FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_OUTSIDE               0x2D3
 #define FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE                0x2D4
-#define FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT                        0x2D5
-#define FLAG_HIDE_PETALBURG_CITY_WALLY                              0x2D6
+#define FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED                       0x2D5
+#define FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS                       0x2D6
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7
 #define FLAG_HIDE_PETALBURG_CITY_WALLYS_AUNT                        0x2D8
 
@@ -957,7 +957,7 @@
 
 // Item Ball Flags
 #define FLAG_ITEM_ROUTE_29_POTION                                   0x3E8
-#define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9
+#define FLAG_ITEM_ROUTE_30_ANTIDOTE                                 0x3E9
 #define FLAG_ITEM_ROUTE_104_PP_UP                                   0x3EA
 #define FLAG_ITEM_ROUTE_105_IRON                                    0x3EB
 #define FLAG_ITEM_ROUTE_106_PROTEIN                                 0x3EC

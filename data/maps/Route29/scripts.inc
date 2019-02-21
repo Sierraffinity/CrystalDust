@@ -61,7 +61,7 @@ Route29_EventScript_Dude::
 	end
 
 Route29_EventScript_FruitTree::
-	fruit_tree 0
+	fruit_tree FRUITTREE_ROUTE_29
 	end
 
 Route29_Text_Youngster:

@@ -95,7 +95,7 @@ PetalburgCity_Gym_EventScript_2049A4:: @ 82049A4
 	waitmovement 0
 	playse SE_KAIDAN
 	removeobject 10
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	setflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
 	delay 30
 	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Gym_Movement_2725A6
 	waitmovement 0
@@ -218,7 +218,7 @@ PetalburgCity_Gym_EventScript_204AAC:: @ 8204AAC
 	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_AUNT
 	setvar VAR_0x4085, 1
 	setvar VAR_0x4057, 2
-	clearflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
 	clearflag FLAG_HIDE_PETALBURG_GYM_WALLY
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_RIVAL
 	special InitBirchState

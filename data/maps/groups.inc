@@ -261,10 +261,10 @@ gMapGroup16::
 
 gMapGroup17::
 	.4byte Route29_Gatehouse
-	.4byte Route104_PrettyPetalFlowerShop
 
 gMapGroup18::
-	.4byte Route111_WinstrateFamilysHouse
+	.4byte Route30_BerryMansHouse
+	.4byte Route30_MrPokemonsHouse
 	.4byte Route111_OldLadysRestStop
 
 gMapGroup19::

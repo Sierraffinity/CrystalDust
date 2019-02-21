@@ -1,8 +1,12 @@
 Route30_MapScripts:: @ 81EC0E0
 	.byte 0
 
-Route30_EventScript_1EC0E1:: @ 81EC0E1
-	msgbox Route30_Text_1EC2C0, MSGBOX_NPC
+Route30_EventScript_FruitTree1::
+	fruit_tree FRUITTREE_ROUTE_30_1
+	end
+
+Route30_EventScript_FruitTree2::
+	fruit_tree FRUITTREE_ROUTE_30_2
 	end
 
 Route30_EventScript_Directions::
@@ -21,9 +25,69 @@ Route30_EventScript_TrainerTips::
 	msgbox Route30_Text_TrainerTips, MSGBOX_SIGN
 	end
 
-Route30_EventScript_1EC0FC:: @ 81EC0FC
-	msgbox Route30_Text_1EC32E, MSGBOX_NPC
+Route30_EventScript_NotATrainerGirl::
+	msgbox Route30_Text_NotATrainerShh, MSGBOX_NPC
 	end
+
+Route30_EventScript_DirectionsBoy::
+	lock
+	faceplayer
+	goto_if_set FLAG_ADVENTURE_STARTED, Route30_EventScript_DirectionsBoyPostEgg
+	msgbox Route30_Text_DirectionsBoy
+	release
+	end
+
+Route30_EventScript_DirectionsBoyPostEgg:
+	msgbox Route30_Text_DirectionsBoyPostEgg
+	release
+	end
+
+Route30_EventScript_BattlingYoungster::
+	lock
+	waitse
+	playbgm MUS_BATTLE20, 0
+	msgbox Route30_Text_BattlingYoungster_UseTackle
+	closemessage
+	delay 15
+	applymovement 7, Route30_Movement_RattataTackle
+	delay 5
+	playse SE_W004
+	waitmovement 0
+	faceplayer
+	msgbox Route30_Text_BattlingYoungster_LeaveMeAlone
+	closemessage
+	turnobject VAR_LAST_TALKED, 2
+	delay 10
+	applymovement 6, Route30_Movement_PidgeyTackle
+	delay 5
+	playse SE_W004
+	waitmovement 0
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	release
+	end
+
+Route30_Movement_RattataTackle:
+	lock_facing_direction
+	set_fixed_priority
+	disable_jump_landing_ground_effect
+	jump_up
+	walk_fast_down
+	unlock_facing_direction
+	clear_fixed_priority
+	enable_jump_landing_ground_effect
+	step_end
+
+Route30_Movement_PidgeyTackle:
+	lock_facing_direction
+	set_fixed_priority
+	disable_jump_landing_ground_effect
+	jump_down
+	walk_fast_up
+	unlock_facing_direction
+	clear_fixed_priority
+	enable_jump_landing_ground_effect
+	step_end
 
 Route30_EventScript_1EC105:: @ 81EC105
 	trainerbattle_single TRAINER_CALVIN_1, Route30_Text_294513, Route30_Text_29457C, Route30_EventScript_1EC146
@@ -109,6 +173,27 @@ Route30_Text_1EC2C0: @ 81EC2C0
 Route30_Text_1EC32E: @ 81EC32E
 	.string "I'm going to catch a whole bunch of\n"
 	.string "POKéMON!$"
+
+Route30_Text_DirectionsBoy:
+	.string "MR. POKéMON's house?\n"
+	.string "It's a bit farther ahead.$"
+
+Route30_Text_DirectionsBoyPostEgg:
+	.string "Everyone's having fun battling!\n"
+	.string "You should too!$"
+
+Route30_Text_NotATrainerShh:
+	.string "I'm not a TRAINER.\p"
+	.string "But if you look one in the eyes,\n"
+	.string "prepare to battle.$"
+
+Route30_Text_BattlingYoungster_UseTackle:
+	.string "Go, RATTATA!\n"
+	.string "Use TACKLE!$"
+
+Route30_Text_BattlingYoungster_LeaveMeAlone:
+	.string "What? This is a big battle!\n"
+	.string "Leave me alone!$"
 
 Route30_Text_Directions:
 	.string "ROUTE 30\n"

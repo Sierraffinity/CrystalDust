@@ -1161,14 +1161,14 @@
             "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/Route104_PrettyPetalFlowerShop/map.bin",
-            "border_filepath": "data/layouts/Route104_PrettyPetalFlowerShop/border.bin",
-            "height": 9,
-            "id": "LAYOUT_ROUTE104_PRETTY_PETAL_FLOWER_SHOP",
-            "name": "Route104_PrettyPetalFlowerShop_Layout",
+            "blockdata_filepath": "data/layouts/Route30_MrPokemonsHouse/map.bin",
+            "border_filepath": "data/layouts/Route30_MrPokemonsHouse/border.bin",
+            "height": 10,
+            "id": "LAYOUT_ROUTE30_MR_POKEMONS_HOUSE",
+            "name": "Route30_MrPokemonsHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_PrettyPetalFlowerShop",
-            "width": 15
+            "secondary_tileset": "gTileset_Lab",
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/CableCarStation/map.bin",

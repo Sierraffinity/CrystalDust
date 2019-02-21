@@ -116,7 +116,7 @@ gMapLayouts::
 	.4byte EverGrandeCity_DrakesRoom_Layout
 	.4byte EverGrandeCity_ChampionsRoom_Layout
 	.4byte EverGrandeCity_ShortHall_Layout
-	.4byte Route104_PrettyPetalFlowerShop_Layout
+	.4byte Route30_MrPokemonsHouse_Layout
 	.4byte CableCarStation_Layout
 	.4byte Route114_FossilManiacsHouse_Layout
 	.4byte Route114_FossilManiacsTunnel_Layout

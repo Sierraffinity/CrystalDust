@@ -2,8 +2,8 @@ Route29_EventScript_ItemBall_Potion::
 	giveitem_std ITEM_POTION, 1, 1
 	end
 
-Route30_EventScript_290CD8:: @ 8290CD8
-	giveitem_std ITEM_POTION, 1, 1
+Route30_EventScript_ItemBall_Antidote::
+	giveitem_std ITEM_ANTIDOTE, 1, 1
 	end
 
 Route103_EventScript_290CE5:: @ 8290CE5

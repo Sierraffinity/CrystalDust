@@ -1,21 +1,25 @@
 {
-  "id": "MAP_ROUTE104_PROTOTYPE_PRETTY_PETAL_FLOWER_SHOP",
-  "name": "Route104_PrototypePrettyPetalFlowerShop",
-  "layout": "LAYOUT_ROUTE104_PRETTY_PETAL_FLOWER_SHOP",
-  "music": "MUS_NEXTROAD",
-  "region_map_section": "MAPSEC_ROUTE_104",
-  "requires_flash": false,
-  "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_INDOOR",
-  "allow_bike": false,
-  "allow_escape_rope": false,
-  "allow_running": false,
-  "show_map_name": true,
-  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
-  "bg_events": [],
-  "phone_service": true
+    "allow_bike": false,
+    "allow_escape_rope": false,
+    "allow_running": false,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_ROUTE104_PROTOTYPE_PRETTY_PETAL_FLOWER_SHOP",
+    "layout": "LAYOUT_ROUTE30_MR_POKEMONS_HOUSE",
+    "map_type": "MAP_TYPE_INDOOR",
+    "music": "MUS_NEXTROAD",
+    "name": "Route104_PrototypePrettyPetalFlowerShop",
+    "object_events": [
+    ],
+    "phone_service": true,
+    "region_map_section": "MAPSEC_ROUTE_104",
+    "requires_flash": false,
+    "show_map_name": true,
+    "warp_events": [
+    ],
+    "weather": "WEATHER_NONE"
 }

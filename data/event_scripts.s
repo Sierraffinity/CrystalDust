@@ -6,6 +6,7 @@
 #include "constants/event_object_movement_constants.h"
 #include "constants/field_effects.h"
 #include "constants/flags.h"
+#include "constants/fruit_trees.h"
 #include "constants/items.h"
 #include "constants/heal_locations.h"
 #include "constants/layouts.h"
@@ -297,8 +298,8 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/EverGrandeCity_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/EverGrandeCity_PokemonLeague_2F/scripts.inc"
 	.include "data/maps/Route29_Gatehouse/scripts.inc"
-	.include "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
-	.include "data/maps/Route111_WinstrateFamilysHouse/scripts.inc"
+	.include "data/maps/Route30_BerryMansHouse/scripts.inc"
+	.include "data/maps/Route30_MrPokemonsHouse/scripts.inc"
 	.include "data/maps/Route111_OldLadysRestStop/scripts.inc"
 	.include "data/maps/Route112_CableCarStation/scripts.inc"
 	.include "data/maps/MtChimney_CableCarStation/scripts.inc"
@@ -961,7 +962,7 @@ EventScript_2715DE:: @ 82715DE
 	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL
 	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE
 	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	setflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
 	setflag FLAG_UNKNOWN_0x363
 	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
 	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
@@ -1999,6 +2000,7 @@ DewfordTown_Gym_EventScript_272035:: @ 8272035
 	settrainerflag TRAINER_DAPHNE
 	return
 
+EventScript_NoSpaceInBag:
 DewfordTown_Gym_EventScript_272054:: @ 8272054
 DewfordTown_Hall_EventScript_272054:: @ 8272054
 FallarborTown_House1_EventScript_272054:: @ 8272054
@@ -2020,10 +2022,10 @@ PacifidlogTown_House2_EventScript_272054:: @ 8272054
 PetalburgCity_Gym_EventScript_272054:: @ 8272054
 PetalburgWoods_EventScript_272054:: @ 8272054
 Route104_EventScript_272054:: @ 8272054
-Route104_PrettyPetalFlowerShop_EventScript_272054:: @ 8272054
+Route30_BerryMansHouse_EventScript_272054:: @ 8272054
 Route109_EventScript_272054:: @ 8272054
 Route111_EventScript_272054:: @ 8272054
-Route111_WinstrateFamilysHouse_EventScript_272054:: @ 8272054
+Route30_MrPokemonsHouse_EventScript_272054:: @ 8272054
 Route114_EventScript_272054:: @ 8272054
 Route114_FossilManiacsHouse_EventScript_272054:: @ 8272054
 Route120_EventScript_272054:: @ 8272054
@@ -2049,6 +2051,7 @@ VerdanturfTown_BattleTentLobby_EventScript_272054:: @ 8272054
 	release
 	end
 
+EventScript_NoSpaceInBag_Return:
 DewfordTown_Gym_EventScript_27205E:: @ 827205E
 FortreeCity_Gym_EventScript_27205E:: @ 827205E
 LavaridgeTown_Gym_1F_EventScript_27205E:: @ 827205E
@@ -2735,7 +2738,7 @@ PetalburgCity_Movement_2725A2: @ 82725A2
 Route109_Movement_2725A2: @ 82725A2
 Route110_Movement_2725A2: @ 82725A2
 Route111_Movement_2725A2: @ 82725A2
-Route111_WinstrateFamilysHouse_Movement_2725A2: @ 82725A2
+Route30_MrPokemonsHouse_Movement_2725A2: @ 82725A2
 Route112_Movement_2725A2: @ 82725A2
 Route119_Movement_2725A2: @ 82725A2
 RustboroCity_DevonCorp_3F_Movement_2725A2: @ 82725A2

@@ -144,7 +144,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_PETALBURG_CITY_WALLY",
+            "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED",
             "graphics_id": "EVENT_OBJ_GFX_RIVAL",
             "movement_range_x": 0,
             "movement_range_y": 0,
