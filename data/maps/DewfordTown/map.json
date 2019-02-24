@@ -81,7 +81,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN",
-            "graphics_id": "EVENT_OBJ_GFX_EXPERT_M",
+            "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
             "movement_range_x": 0,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",

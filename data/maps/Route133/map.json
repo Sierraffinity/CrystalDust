@@ -117,7 +117,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_F",
+      "graphics_id": "EVENT_OBJ_GFX_PROF_OAK",
       "x": 56,
       "y": 11,
       "elevation": 3,
@@ -130,7 +130,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_M",
+      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
       "x": 56,
       "y": 15,
       "elevation": 3,

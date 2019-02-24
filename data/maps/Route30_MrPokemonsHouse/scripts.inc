@@ -1,103 +1,212 @@
-Route30_MrPokemonsHouse_MapScripts:: @ 822A48C
+Route30_MrPokemonsHouse_MapScripts::
+	map_script 2, Route30_MrPokemonsHouse_MapScripts_Type2
 	.byte 0
 
-Route30_MrPokemonsHouse_EventScript_22A48D:: @ 822A48D
-	lock
-	faceplayer
-	setvar VAR_0x8008, 2
-	msgbox Route30_MrPokemonsHouse_Text_22A539, MSGBOX_DEFAULT
-	goto Route30_MrPokemonsHouse_EventScript_22A52C
-	end
+Route30_MrPokemonsHouse_MapScripts_Type2:
+	map_script_2 VAR_0x4051, 0, Route30_MrPokemonsHouse_MapScript_MrPokemonIntro
+	.2byte 0
 
-Route30_MrPokemonsHouse_EventScript_22A4A2:: @ 822A4A2
-	lock
-	faceplayer
-	setvar VAR_0x8008, 3
-	goto_if_set FLAG_RECEIVED_MACHO_BRACE, Route30_MrPokemonsHouse_EventScript_22A4DA
-	msgbox Route30_MrPokemonsHouse_Text_22A5F4, MSGBOX_DEFAULT
-	giveitem_std ITEM_MACHO_BRACE
-	compare VAR_RESULT, 0
-	goto_if_eq Route30_MrPokemonsHouse_EventScript_272054
-	setflag FLAG_RECEIVED_MACHO_BRACE
-	goto Route30_MrPokemonsHouse_EventScript_22A52C
-	end
-
-Route30_MrPokemonsHouse_EventScript_22A4DA:: @ 822A4DA
-	msgbox Route30_MrPokemonsHouse_Text_22A6B4, MSGBOX_DEFAULT
-	goto Route30_MrPokemonsHouse_EventScript_22A52C
-	end
-
-Route30_MrPokemonsHouse_EventScript_22A4E8:: @ 822A4E8
-	lock
-	faceplayer
-	setvar VAR_0x8008, 1
-	msgbox Route30_MrPokemonsHouse_Text_22A6F7, MSGBOX_DEFAULT
-	goto Route30_MrPokemonsHouse_EventScript_22A52C
-	end
-
-Route30_MrPokemonsHouse_EventScript_22A4FD:: @ 822A4FD
-	lock
-	faceplayer
-	setvar VAR_0x8008, 4
-	goto_if_set FLAG_TEMP_4, Route30_MrPokemonsHouse_EventScript_22A51E
-	msgbox Route30_MrPokemonsHouse_Text_22A780, MSGBOX_DEFAULT
-	setflag FLAG_TEMP_4
-	goto Route30_MrPokemonsHouse_EventScript_22A52C
-	end
-
-Route30_MrPokemonsHouse_EventScript_22A51E:: @ 822A51E
-	msgbox Route30_MrPokemonsHouse_Text_22A89B, MSGBOX_DEFAULT
-	goto Route30_MrPokemonsHouse_EventScript_22A52C
-	end
-
-Route30_MrPokemonsHouse_EventScript_22A52C:: @ 822A52C
-	closemessage
-	applymovement VAR_0x8008, Route30_MrPokemonsHouse_Movement_2725A2
+Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
+	lockall
+	textcolor MSG_COLOR_BLUE
+	playse SE_PIN
+	applymovement 1, Movement_Emote_Exclamation_Mark
 	waitmovement 0
+	applymovement 1, Movement_Delay_48
+	waitmovement 0
+	applymovement 1, Move_WalkInPlaceFastestDown
+	waitmovement 0
+	msgbox Route30_MrPokemonsHouse_Text_HelloHello
+	closemessage
+	applymovement EVENT_OBJ_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PlayerToMrPokemon
+	waitmovement 0
+	msgbox Route30_MrPokemonsHouse_Text_ThisIsWhatIWant
+	giveitem_std ITEM_MYSTERY_EGG
+	setflag FLAG_RECEIVED_MYSTERY_EGG
+	msgbox Route30_MrPokemonsHouse_Text_IKnowACouple
+	applymovement 1, Move_WalkInPlaceFastestRight
+	waitmovement 0
+	msgbox Route30_MrPokemonsHouse_Text_EvenOakKnows
+	applymovement 1, Move_WalkInPlaceFastestDown
+	applymovement 2, Move_WalkInPlaceFastestLeft
+	waitmovement 0
+	msgbox Route30_MrPokemonsHouse_Text_IfMyAssumption
+	closemessage
+	playbgm MUS_RG_OHKIDO, 0
+	applymovement EVENT_OBJ_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnRight
+	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToPlayer
+	waitmovement 0
+	msgbox Route30_MrPokemonsHouse_Text_SoYourePlayer
+	textcolor MSG_COLOR_MISC
+	playfanfare MUS_RG_FAN5
+	message Route30_MrPokemonsHouse_Text_PlayerReceivedPokedex
+	waitmessage
+	waitfanfare
+	call RestoreOriginalTextColor
+	setflag FLAG_SYS_POKEDEX_GET
+	msgbox Route30_MrPokemonsHouse_Text_GoMeetManyPokemon
+	closemessage
+	applymovement EVENT_OBJ_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnDown
+	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToDoor
+	waitmovement 0
+	delay 10
+	playse SE_KAIDAN
+	fadedefaultbgm
+	removeobject 2
+	waitse
+	applymovement EVENT_OBJ_ID_PLAYER, Move_WalkInPlaceFastestUp
+	waitmovement 0
+	msgbox Route30_MrPokemonsHouse_Text_ReturningToElm
+	closemessage
+	call EventScript_HealParty
+	msgbox Route30_MrPokemonsHouse_Text_DependingOnYou
+	closemessage
+	turnobject 1, 4
+	setrespawn HEAL_LOCATION_CHERRYGROVE_CITY
+	setflag FLAG_HIDE_NEW_BARK_TOWN_RIVAL
+	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_1F_NEIGHBOR
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER
+	compare VAR_STARTER_MON, 0
+	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsTotodile
+	compare VAR_STARTER_MON, 1
+	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsChikorita
+	compare VAR_STARTER_MON, 2
+	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsCyndaquil
+	setflag FLAG_SPECIAL_FLAG_0x4000
+	setvar VAR_0x4051, 1
+	releaseall
+	end
+
+Route30_MrPokemonsHouse_EventScript_RivalGetsTotodile:
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE
+	return
+
+Route30_MrPokemonsHouse_EventScript_RivalGetsChikorita:
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA
+	return
+
+Route30_MrPokemonsHouse_EventScript_RivalGetsCyndaquil:
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL
+	return
+
+Route30_MrPokemonsHouse_Movement_PlayerToMrPokemon:
+	walk_right
+	walk_up
+	step_end
+
+Route30_MrPokemonsHouse_Movement_OakToPlayer:
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+Route30_MrPokemonsHouse_Movement_PauseThenTurnRight:
+	delay_16
+	walk_in_place_fastest_right
+	step_end
+
+Route30_MrPokemonsHouse_Movement_PauseThenTurnDown:
+	delay_16
+	walk_in_place_fastest_down
+	step_end
+
+Route30_MrPokemonsHouse_Movement_OakToDoor:
+	walk_down
+	walk_left
+	walk_left
+	face_down
+	step_end
+
+Route30_MrPokemonsHouse_EventScript_MrPokemon::
+	lock
+	faceplayer
+	@checkitem ITEM_RED_SCALE, 1
+	@goto_if_true Route30_MrPokemonsHouse_EventScript_MrPokemon_RedScale
+	goto_if_set FLAG_ADVENTURE_STARTED, Route30_MrPokemonsHouse_EventScript_MrPokemon_AlwaysNewDiscoveries
+	msgbox Route30_MrPokemonsHouse_Text_DependingOnYou
 	release
 	end
 
-Route30_MrPokemonsHouse_Text_22A539: @ 822A539
-	.string "You're the first TRAINER I've seen who\n"
-	.string "deploys POKéMON so masterfully.\p"
-	.string "But, I should tell you--my son is\n"
-	.string "stronger than you.\p"
-	.string "He even took the POKéMON LEAGUE\n"
-	.string "challenge, I'll have you know.$"
+Route30_MrPokemonsHouse_EventScript_MrPokemon_AlwaysNewDiscoveries:
+	msgbox Route30_MrPokemonsHouse_Text_AlwaysNewDiscoveries
+	release
+	end
 
-Route30_MrPokemonsHouse_Text_22A5F4: @ 822A5F4
-	.string "We use this MACHO BRACE to more\n"
-	.string "effectively strengthen our POKéMON\l"
-	.string "in training.\p"
-	.string "Since you've beaten all of us here,\n"
-	.string "I don't know if you need it, but we\l"
-	.string "would like you to have our MACHO BRACE.$"
+Route30_MrPokemonsHouse_Text_HelloHello:
+	.string "Hello, hello!\n"
+	.string "You must be {PLAYER}.\p"
+	.string "PROF. ELM said that you would visit.$"
 
-Route30_MrPokemonsHouse_Text_22A6B4: @ 822A6B4
-	.string "When it comes to POKéMON battles,\n"
-	.string "we tend to be pretty passionate.$"
+Route30_MrPokemonsHouse_Text_ThisIsWhatIWant:
+	.string "This is what I want PROF. ELM to\n"
+	.string "examine.$"
 
-Route30_MrPokemonsHouse_Text_22A6F7: @ 822A6F7
-	.string "Mommy is stronger than Daddy.\p"
-	.string "I'm stronger than Mommy.\p"
-	.string "And Grandma's stronger than me!\p"
-	.string "But my big brother is even stronger\n"
-	.string "than Grandma.$"
+Route30_MrPokemonsHouse_Text_IKnowACouple:
+	.string "I know a couple who run a DAY-CARE\n"
+	.string "service. They gave me that EGG.\p"
+	.string "I was intrigued, so I sent mail to\n"
+	.string "PROF. ELM.\p"
+	.string "For POKéMON evolution, PROF. ELM is\n"
+	.string "the authority.$"
 
-Route30_MrPokemonsHouse_Text_22A780: @ 822A780
-	.string "There's no question that you're strong.\p"
-	.string "But if you were to battle my grandson,\n"
-	.string "you'd end up crying in frustration.\p"
-	.string "He's much stronger than any TRAINER\n"
-	.string "our family knows.\p"
-	.string "He must be challenging the POKéMON\n"
-	.string "LEAGUE CHAMPION by now.\p"
-	.string "Knowing my grandson, he could be the\n"
-	.string "CHAMPION already!$"
+Route30_MrPokemonsHouse_Text_EvenOakKnows:
+	.string "Even PROF. OAK here recognizes that.$"
 
-Route30_MrPokemonsHouse_Text_22A89B: @ 822A89B
-	.string "My grandson must be challenging the\n"
-	.string "POKéMON LEAGUE CHAMPION by now.\p"
-	.string "Knowing my grandson, he could be the\n"
-	.string "CHAMPION already!$"
+Route30_MrPokemonsHouse_Text_IfMyAssumption:
+	.string "If my assumption is correct, PROF.\n"
+	.string "ELM will know what to do.$"
 
+Route30_MrPokemonsHouse_Text_SoYourePlayer:
+	.string "OAK: Aha!\n"
+	.string "So you're {PLAYER}!\p"
+	.string "I'm PROF. OAK, a POKéMON researcher\n"
+	.string "from the KANTO region.\p"
+	.string "I was just visiting my old friend,\n"
+	.string "MR. POKéMON.\p"
+	.string "I heard you were running an errand\n"
+	.string "for PROF. ELM, so I waited here.\p"
+	.string "…Oh! What's this?\n"
+	.string "You have a rare POKéMON with you!\p"
+	.string "Let's see…\p"
+	.string "Hm, I see!\p"
+	.string "I understand why PROF. ELM gave you\n"
+	.string "a POKéMON for this errand.\p"
+	.string "To researchers like PROF. ELM and I,\n"
+	.string "POKéMON are our friends.\p"
+	.string "He saw that you would treat your\n"
+	.string "POKéMON with love and care.\p"
+	.string "…Ah!\p"
+	.string "You seem to be dependable.\n"
+	.string "How would you like to help me out?\p"
+	.string "See? This is the latest version of\n"
+	.string "the POKéDEX.\p"
+	.string "It automatically records data on\n"
+	.string "POKéMON you've seen or caught.\p"
+	.string "It's a high-tech encyclopedia!$"
+
+Route30_MrPokemonsHouse_Text_PlayerReceivedPokedex:
+	.string "{PLAYER} received the POKéDEX\n"
+	.string "from PROF. OAK.$"
+
+Route30_MrPokemonsHouse_Text_GoMeetManyPokemon:
+	.string "OAK: Go meet many kinds of POKéMON\n"
+	.string "and complete that POKéDEX!\p"
+	.string "But, I've stayed too long.\n"
+	.string "I have to get to GOLDENROD for my\l"
+	.string "usual radio show.\p"
+	.string "{PLAYER}, I'm counting on you!$"
+
+Route30_MrPokemonsHouse_Text_ReturningToElm:
+	.string "You are returning to PROF. ELM?\p"
+	.string "Here.\n"
+	.string "Your POKéMON should have some rest.$"
+
+Route30_MrPokemonsHouse_Text_DependingOnYou:
+	.string "I'm depending on you!$"
+
+Route30_MrPokemonsHouse_Text_AlwaysNewDiscoveries:
+	.string "Life is delightful!\n"
+	.string "Always, new discoveries to be made!$"

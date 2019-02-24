@@ -67,7 +67,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_M",
+      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
       "x": 8,
       "y": 10,
       "elevation": 3,

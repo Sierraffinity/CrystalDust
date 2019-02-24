@@ -15,7 +15,7 @@
   "connections": [],
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_M",
+      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
       "x": 31,
       "y": 18,
       "elevation": 3,

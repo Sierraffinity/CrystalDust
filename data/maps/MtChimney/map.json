@@ -327,7 +327,7 @@
       "flag": "FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_F",
+      "graphics_id": "EVENT_OBJ_GFX_PROF_OAK",
       "x": 16,
       "y": 18,
       "elevation": 3,

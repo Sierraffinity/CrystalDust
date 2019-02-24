@@ -1,5 +1,18 @@
 Route30_MapScripts:: @ 81EC0E0
+	map_script 2, Route30_MapScripts_Type2
 	.byte 0
+
+Route30_MapScripts_Type2:
+	map_script_2 VAR_0x4051, 1, Route30_MapScript_ElmCall
+	.2byte 0
+
+Route30_MapScript_ElmCall:
+	lockall
+	pokenavcall Route30_Text_ElmCall
+	waitmessage
+	addvar VAR_0x4051, 1
+	releaseall
+	end
 
 Route30_EventScript_FruitTree1::
 	fruit_tree FRUITTREE_ROUTE_30_1
@@ -211,3 +224,11 @@ Route30_Text_TrainerTips:
 	.string "No stealing other people's POKéMON!\p"
 	.string "POKé BALLS are to be thrown only at\n"
 	.string "wild POKéMON!$"
+
+Route30_Text_ElmCall:
+	.string "H-hello? {PLAYER}?\n"
+	.string "It's a disaster!\p"
+	.string "Uh, um, it's just terrible!\p"
+	.string "What should I do?\n"
+	.string "It… Oh, no…\p"
+	.string "Please get back here now!$"

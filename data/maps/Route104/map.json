@@ -208,7 +208,7 @@
         {
             "elevation": 4,
             "flag": "FLAG_HIDE_ROUTE_104_MR_BRINEY",
-            "graphics_id": "EVENT_OBJ_GFX_EXPERT_M",
+            "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -312,7 +312,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_EXPERT_F",
+            "graphics_id": "EVENT_OBJ_GFX_PROF_OAK",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -569,7 +569,7 @@
             "y": 50
         },
         {
-            "dest_map": "MAP_ROUTE104_PRETTY_PETAL_FLOWER_SHOP",
+            "dest_map": "MAP_ROUTE30_MR_POKEMONS_HOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 5,

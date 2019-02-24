@@ -338,7 +338,6 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	closemessage
 	delay 20
 	setflag FLAG_ENABLE_PROF_ELM_MATCH_CALL
-	
 	playfanfare MUS_ME_TORE_EYE
 	call RestoreOriginalTextColor
 	msgbox NewBarkTown_ProfessorElmsLab_Text_GotElmsNumber, MSGBOX_DEFAULT

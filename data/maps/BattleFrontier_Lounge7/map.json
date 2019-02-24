@@ -28,7 +28,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_F",
+      "graphics_id": "EVENT_OBJ_GFX_PROF_OAK",
       "x": 2,
       "y": 5,
       "elevation": 0,
@@ -41,7 +41,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_F",
+      "graphics_id": "EVENT_OBJ_GFX_PROF_OAK",
       "x": 6,
       "y": 5,
       "elevation": 0,

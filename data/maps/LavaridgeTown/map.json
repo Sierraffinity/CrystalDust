@@ -21,7 +21,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_F",
+      "graphics_id": "EVENT_OBJ_GFX_PROF_OAK",
       "x": 8,
       "y": 7,
       "elevation": 3,
@@ -34,7 +34,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_M",
+      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
       "x": 5,
       "y": 1,
       "elevation": 3,
@@ -125,7 +125,7 @@
       "flag": "FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_1"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_EXPERT_F",
+      "graphics_id": "EVENT_OBJ_GFX_PROF_OAK",
       "x": 4,
       "y": 7,
       "elevation": 3,

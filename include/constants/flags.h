@@ -89,7 +89,7 @@
 // Scripts
 #define FLAG_LISTENED_TO_INITIAL_RADIO       0x50
 #define FLAG_ROUTE_30_RECEIVED_BERRY_MAN     0x51
-#define FLAG_RESCUED_BIRCH                   0x52
+#define FLAG_RECEIVED_MYSTERY_EGG            0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS       0x53
 
 #define FLAG_UNUSED_0x054                    0x54  // Unused Flag
@@ -676,8 +676,8 @@
 #define FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_OUTSIDE               0x2D3
 #define FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE                0x2D4
 #define FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED                       0x2D5
-#define FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS                       0x2D6
-#define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7
+#define FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS                 0x2D6
+#define FLAG_HIDE_MR_POKEMONS_HOUSE_OAK                             0x2D7
 #define FLAG_HIDE_PETALBURG_CITY_WALLYS_AUNT                        0x2D8
 
 #define FLAG_UNUSED_0x2D9                                           0x2D9 // Unused Flag

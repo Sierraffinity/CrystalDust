@@ -41,6 +41,7 @@
             "y": 3
         }
     ],
+    "phone_service": true,
     "region_map_section": "MAPSEC_CHERRYGROVE_CITY",
     "requires_flash": false,
     "show_map_name": false,
@@ -53,6 +54,5 @@
             "y": 7
         }
     ],
-    "weather": "WEATHER_NONE",
-    "phone_service": true
+    "weather": "WEATHER_NONE"
 }

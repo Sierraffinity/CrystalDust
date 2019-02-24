@@ -285,7 +285,7 @@ $(EVENTOBJGFXDIR)/people/mystery_event_deliveryman.4bpp: %.4bpp: %.png
 $(EVENTOBJGFXDIR)/people/nurse.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/expert_m.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/mr_pokemon.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/old_man.4bpp: %.4bpp: %.png

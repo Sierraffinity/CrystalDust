@@ -6814,4 +6814,25 @@ const struct Item gItems[] =
         .battleUseFunc = NULL,
         .secondaryId = 0,
     },
+
+// CrystalDust-specific key items
+
+    [ITEM_MYSTERY_EGG] =
+    {
+        .name = _("MYSTERY EGG"),
+        .itemId = ITEM_MYSTERY_EGG,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_NONE,
+        .holdEffectParam = 0,
+        .description = gMagmaEmblemItemDescription,
+        .importance = 1,
+        .unk19 = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = 0,
+        .battleUseFunc = NULL,
+        .secondaryId = 0,
+    },
+
 };
