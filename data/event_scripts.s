@@ -4784,6 +4784,7 @@ Text_RepelWoreOff: @ 82A4B33
 	.string "REPEL's effect wore off…$"
 
 	.include "data/scripts/safari_zone.inc"
+	.include "data/scripts/bug_catching_contest.inc"
 
 MauvilleCity_GameCorner_EventScript_2A5AB1:: @ 82A5AB1
 	checkitem ITEM_COIN_CASE, 1

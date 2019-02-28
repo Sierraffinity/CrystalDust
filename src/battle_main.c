@@ -12,6 +12,7 @@
 #include "battle_tower.h"
 #include "berry.h"
 #include "bg.h"
+#include "bug_catching_contest.h"
 #include "data2.h"
 #include "day_night.h"
 #include "decompress.h"
@@ -136,6 +137,7 @@ static void HandleAction_UseItem(void);
 static void HandleAction_Run(void);
 static void HandleAction_WatchesCarefully(void);
 static void HandleAction_SafariZoneBallThrow(void);
+static void HandleAction_ParkBallThrow(void);
 static void HandleAction_ThrowPokeblock(void);
 static void HandleAction_GoNear(void);
 static void HandleAction_SafariZoneRun(void);
@@ -557,6 +559,7 @@ static void (* const sTurnActionsFuncsTable[])(void) =
     [B_ACTION_TRY_FINISH] = HandleAction_TryFinish,
     [B_ACTION_FINISHED] = HandleAction_ActionFinished,
     [B_ACTION_NOTHING_FAINTED] = HandleAction_NothingIsFainted,
+    [B_ACTION_PARK_BALL] = HandleAction_ParkBallThrow,
 };
 
 static void (* const sEndTurnFuncsTable[])(void) =
@@ -572,6 +575,7 @@ static void (* const sEndTurnFuncsTable[])(void) =
     [B_OUTCOME_NO_SAFARI_BALLS] = HandleEndTurn_FinishBattle,
     [B_OUTCOME_FORFEITED] = HandleEndTurn_FinishBattle,
     [B_OUTCOME_MON_TELEPORTED] = HandleEndTurn_FinishBattle,
+    [B_OUTCOME_NO_PARK_BALLS] = HandleEndTurn_FinishBattle,
 };
 
 const u8 gStatusConditionString_PoisonJpn[8] = _("どく$$$$$");
@@ -4325,6 +4329,16 @@ static void HandleTurnActionSelectionState(void)
                     BtlController_EmitChooseItem(0, gBattleStruct->field_60[gActiveBattler]);
                     MarkBattlerForControllerExec(gActiveBattler);
                     break;
+                case B_ACTION_PARK_BALL:
+                    if (IsPokemonStorageFull())
+                    {
+                        gSelectionBattleScripts[gActiveBattler] = BattleScript_PrintFullBox;
+                        gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
+                        *(gBattleStruct->selectionScriptFinished + gActiveBattler) = FALSE;
+                        *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
+                        return;
+                    }
+                    break;
                 case B_ACTION_CANCEL_PARTNER:
                     gBattleCommunication[gActiveBattler] = STATE_WAIT_SET_BEFORE_ACTION;
                     gBattleCommunication[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))] = STATE_BEFORE_ACTION_CHOSEN;
@@ -4480,6 +4494,9 @@ static void HandleTurnActionSelectionState(void)
                     gBattleCommunication[gActiveBattler]++;
                     break;
                 case B_ACTION_SAFARI_BALL:
+                    gBattleCommunication[gActiveBattler]++;
+                    break;
+                case B_ACTION_PARK_BALL:
                     gBattleCommunication[gActiveBattler]++;
                     break;
                 case B_ACTION_SAFARI_POKEBLOCK:
@@ -5774,6 +5791,17 @@ static void HandleAction_SafariZoneBallThrow(void)
     gNumSafariBalls--;
     gLastUsedItem = ITEM_SAFARI_BALL;
     gBattlescriptCurrInstr = gBattlescriptsForBallThrow[ITEM_SAFARI_BALL];
+    gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
+}
+
+static void HandleAction_ParkBallThrow(void)
+{
+    gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+    gBattle_BG0_X = 0;
+    gBattle_BG0_Y = 0;
+    gNumParkBalls--;
+    gLastUsedItem = ITEM_POKE_BALL; // huderlem TODO: ITEM_PARK_BALL
+    gBattlescriptCurrInstr = BattleScript_ParkBallThrow;
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 

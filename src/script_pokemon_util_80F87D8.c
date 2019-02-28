@@ -647,6 +647,13 @@ void sub_80F9438(void)
     sub_81B8518(0);
 }
 
+void SelectBugCatchingContestMon(void)
+{
+    gMain.savedCallback = sub_80F9460;
+    VarSet(VAR_FRONTIER_FACILITY, 10);
+    sub_81B8518(0);
+}
+
 static void sub_80F9460(void)
 {
     switch (gSelectedOrderFromParty[0])

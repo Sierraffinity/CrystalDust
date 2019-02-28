@@ -254,3 +254,4 @@ gUnknown_0203CF50: @ 203CF50
 	.include "src/pokegear.o"
 	.include "src/card_flip.o"
 	.include "src/ruins_of_alph_puzzle.o"
+	.include "src/bug_catching_contest.o"

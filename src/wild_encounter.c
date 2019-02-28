@@ -1,4 +1,5 @@
 #include "global.h"
+#include "bug_catching_contest.h"
 #include "day_night.h"
 #include "wild_encounter.h"
 #include "pokemon.h"

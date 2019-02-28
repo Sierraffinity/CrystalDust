@@ -90,6 +90,7 @@
 #define B_OUTCOME_NO_SAFARI_BALLS      0x8
 #define B_OUTCOME_FORFEITED            0x9
 #define B_OUTCOME_MON_TELEPORTED       0xA
+#define B_OUTCOME_NO_PARK_BALLS        0xB
 #define B_OUTCOME_LINK_BATTLE_RAN      0x80
 
 // Non-volatile status conditions
