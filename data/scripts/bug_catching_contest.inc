@@ -52,6 +52,14 @@ EventScript_ReturnBugCatchingContestMons::
 	special LoadPlayerParty
 	return
 
+BugCatchingContest_StartMenuPrompt::
+	lockall
+	msgbox Text_StartMenu_ExitBugCatchingContest, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq EventScript_WarpOutOfBugCatchingContest
+	releaseall
+	end
+
 Text_BugCatchingContestRanOutOfParkBalls:
 	.string "You ran out of PARK BALLs.$"
 
@@ -61,3 +69,7 @@ Text_BugCatchingContestTimeExpired:
 
 Text_BugCatchingContestStart::
 	.string "Start contest.$"
+
+Text_StartMenu_ExitBugCatchingContest:
+	.string "Would you like to end the Bug\n"
+	.string "Catching Contest right now?$"

@@ -213,6 +213,7 @@ extern const u8 gText_MenuOption[];
 extern const u8 gText_MenuExit[];
 extern const u8 gText_MenuRetire[];
 extern const u8 gText_MenuRest[];
+extern const u8 gText_MenuQuit[];
 extern const u8 gText_Floor1[];
 extern const u8 gText_Floor2[];
 extern const u8 gText_Floor3[];
@@ -222,6 +223,8 @@ extern const u8 gText_Floor6[];
 extern const u8 gText_Floor7[];
 extern const u8 gText_Peak[];
 extern const u8 gText_SafariBallStock[];
+extern const u8 gText_BugCatchingContestStatus[];
+extern const u8 gText_BugCatchingContestNoneCaught[];
 extern const u8 gText_BattlePyramidFloor[];
 
 extern const u8 gText_MenuOptionPokedex[];
