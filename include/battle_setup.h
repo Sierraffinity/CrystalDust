@@ -106,7 +106,6 @@ void StartWallyTutorialBattle(void);
 void BattleSetup_StartScriptedWildBattle(void);
 void BattleSetup_StartLatiBattle(void);
 void BattleSetup_StartLegendaryBattle(void);
-void StartGroudonKyogreBattle(void);
 void StartRegiBattle(void);
 u8 BattleSetup_GetTerrainId(void);
 u8 sub_80B100C(s32 arg0);
@@ -144,5 +143,6 @@ bool8 ShouldTryRematchBattle(void);
 bool8 IsTrainerReadyForRematch(void);
 void ShouldTryGetTrainerScript(void);
 u16 CountBattledRematchTeams(u16 trainerId);
+bool32 IsPlayerDefeated(u32 battleOutcome);
 
 #endif // GUARD_BATTLE_SETUP_H

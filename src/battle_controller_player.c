@@ -2566,7 +2566,16 @@ static void PlayerHandleChooseAction(void)
 
     gBattlerControllerFuncs[gActiveBattler] = HandleChooseActionAfterDma3;
     BattleTv_ClearExplosionFaintCause();
-    BattlePutTextOnWindow(gText_BattleMenu, 2);
+    if (gBattleTypeFlags & BATTLE_TYPE_BUG_CATCHING_CONTEST)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, 20, STR_CONV_MODE_LEFT_ALIGN, 2);
+        StringExpandPlaceholders(gStringVar2, gText_BugCatchingContestMenu);
+        BattlePutTextOnWindow(gStringVar2, 2);
+    }
+    else
+    {
+        BattlePutTextOnWindow(gText_BattleMenu, 2);
+    }
 
     for (i = 0; i < 4; i++)
         ActionSelectionDestroyCursorAt(i);

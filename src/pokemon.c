@@ -6619,9 +6619,7 @@ void ClearBattleMonForms(void)
 
 u16 GetBattleBGM(void)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE_GROUDON)
-        return MUS_BATTLE34;
-    else if (gBattleTypeFlags & BATTLE_TYPE_REGI)
+    if (gBattleTypeFlags & BATTLE_TYPE_REGI)
         return MUS_BATTLE36;
     else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000))
         return MUS_BATTLE20;
