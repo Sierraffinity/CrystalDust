@@ -1213,6 +1213,14 @@
 	.byte 0xf8
 	.byte \param0
 	.endm
+
+	.macro setcaughtbugcatchingcontestmon
+	.byte 0xf9
+	.endm
+
+	.macro swapbugcatchingcontestmon
+	.byte 0xfa
+	.endm
 	
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req

@@ -1,6 +1,5 @@
 #include "global.h"
 #include "bug_catching_contest.h"
-#include "data2.h"
 #include "start_menu.h"
 #include "menu.h"
 #include "safari_zone.h"
@@ -431,7 +430,7 @@ static void ShowBugCatchingContestWindow(void)
     if (CaughtBugCatchingContestMon())
     {
         u16 species = GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES);
-        StringCopy(gStringVar1, gSpeciesNames[species]);
+        GetSpeciesName(gStringVar1, species);
         ConvertIntToDecimalStringN(gStringVar2, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_LEVEL), STR_CONV_MODE_LEFT_ALIGN, 3);
         ConvertIntToDecimalStringN(gStringVar3, gNumParkBalls, STR_CONV_MODE_LEFT_ALIGN, 2);
         StringExpandPlaceholders(gStringVar4, gText_BugCatchingContestStatus);

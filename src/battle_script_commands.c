@@ -1,5 +1,7 @@
 #include "global.h"
 #include "battle.h"
+#include "bug_catching_contest.h"
+#include "data2.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_script_commands.h"
 #include "battle_message.h"
@@ -327,6 +329,8 @@ static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
 static void atkF8_trainerslideout(void);
+static void atkF9_setcaughtbugcatchingcontestmon(void);
+static void atkFA_swapbugcatchingcontestmon(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -578,7 +582,9 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF5_removeattackerstatus1,
     atkF6_finishaction,
     atkF7_finishturn,
-    atkF8_trainerslideout
+    atkF8_trainerslideout,
+    atkF9_setcaughtbugcatchingcontestmon,
+    atkFA_swapbugcatchingcontestmon,
 };
 
 struct StatFractions
@@ -10515,4 +10521,37 @@ static void atkF8_trainerslideout(void)
     MarkBattlerForControllerExec(gActiveBattler);
 
     gBattlescriptCurrInstr += 2;
+}
+
+static void atkF9_setcaughtbugcatchingcontestmon(void)
+{
+    SetCaughtBugCatchingContestMon(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]]);
+    gBattleResults.caughtMonSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_SPECIES, NULL);
+    GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, gBattleResults.caughtMonNick);
+    gBattleResults.caughtMonBall = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_POKEBALL, NULL);
+    gBattlescriptCurrInstr++;
+}
+
+static void atkFA_swapbugcatchingcontestmon(void)
+{
+    switch (gBattleCommunication[MULTIUSE_STATE])
+    {
+    case 0:
+        gBattleCommunication[MULTIUSE_STATE]++;
+        BeginFastPaletteFade(3);
+        break;
+    case 1:
+        if (!gPaletteFade.active)
+        {
+            FreeAllWindowBuffers();
+            DoSwapBugContestMonScreen(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], BattleMainCB2);
+
+            gBattleCommunication[MULTIUSE_STATE]++;
+        }
+        break;
+    case 2:
+        if (gMain.callback2 == BattleMainCB2 && !gPaletteFade.active)
+            gBattlescriptCurrInstr++;
+        break;
+    }
 }
