@@ -49,6 +49,7 @@ static void VBlank_BugCatchingContestSwapScreen(void);
 static void InitSwapScreenSprites(void);
 static void InitSwapScreenWindows(void);
 static void SwapScreenWaitFadeIn(u8 taskId);
+static void SwapScreenDisplayAlreadyCaughtMessage(u8 taskId);
 static void SwapScreenHandleInput(u8 taskId);
 static void SwapScreenWaitFinalText(u8 taskId);
 static void SwapScreenExit(u8 taskId);
@@ -120,9 +121,9 @@ static const struct WindowTemplate sYesNoWindowTemplate = {
 
 static const u8 sStockMonText[] = _("Stock {PKMN}\n{STR_VAR_1}\nLevel: {STR_VAR_2}\nHealth: {STR_VAR_3}");
 static const u8 sNewMonText[] = _("New {PKMN}\n{STR_VAR_1}\nLevel: {STR_VAR_2}\nHealth: {STR_VAR_3}");
-static const u8 sTextSwapMonsPrompt[] = _("Switch POKéMON?");
 static const u8 sTextReleasedNewlyCaughtMon[] = _("Released the newly-caught\n{STR_VAR_1}.\p");
-static const u8 sTextCaughtMon[] = _("Caught {STR_VAR_1}!\p");
+static const u8 sTextReleasedPreviousCaughtMon[] = _("Released the previously-\ncaught {STR_VAR_1}.\p");
+static const u8 sTextAlreadyCaught[] = _("You already caught a\n{STR_VAR_1}.\pSwitch POKéMON?");
 
 bool8 InBugCatchingContest(void)
 {
@@ -302,15 +303,26 @@ static void InitSwapScreenWindows(void)
     PutWindowTilemap(sSwapScreen->textWindowId);
     NewMenuHelpers_DrawStdWindowFrame(sSwapScreen->textWindowId, FALSE);
     CopyWindowToVram(sSwapScreen->textWindowId, 3);
-    AddTextPrinterParameterized(sSwapScreen->textWindowId, 1, sTextSwapMonsPrompt, 0, 1, 0, NULL);
-
-    CreateYesNoMenu(&sYesNoWindowTemplate, 0x214, 14, 0);
 }
 
 static void SwapScreenWaitFadeIn(u8 taskId)
 {
     if (!gPaletteFade.active)
+    {
+        GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
+        StringExpandPlaceholders(gStringVar4, sTextAlreadyCaught);
+        AddTextPrinterParameterized(sSwapScreen->textWindowId, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+        gTasks[taskId].func = SwapScreenDisplayAlreadyCaughtMessage;
+    }
+}
+
+static void SwapScreenDisplayAlreadyCaughtMessage(u8 taskId)
+{
+    if (!IsTextPrinterActive(sSwapScreen->textWindowId))
+    {
+        CreateYesNoMenu(&sYesNoWindowTemplate, 0x214, 14, 0);
         gTasks[taskId].func = SwapScreenHandleInput;
+    }
 }
 
 static void SwapScreenHandleInput(u8 taskId)
@@ -319,8 +331,8 @@ static void SwapScreenHandleInput(u8 taskId)
     if (selection == 0)
     {
         FillWindowPixelBuffer(sSwapScreen->textWindowId, 0x11);
-        GetSpeciesName(gStringVar1, GetMonData(sSwapScreen->newMon, MON_DATA_SPECIES));
-        StringExpandPlaceholders(gStringVar4, sTextCaughtMon);
+        GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
+        StringExpandPlaceholders(gStringVar4, sTextReleasedPreviousCaughtMon);
         AddTextPrinterParameterized(sSwapScreen->textWindowId, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
         gCaughtBugCatchingContestMon = *sSwapScreen->newMon;
         gTasks[taskId].func = SwapScreenWaitFinalText;

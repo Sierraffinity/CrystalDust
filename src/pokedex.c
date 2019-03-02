@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle_main.h"
 #include "bg.h"
+#include "bug_catching_contest.h"
 #include "data2.h"
 #include "decompress.h"
 #include "event_data.h"
@@ -3809,13 +3810,36 @@ void sub_80BFE38(u8 taskId)
     }
 }
 
+static void FreeDexInfoScreenResources(void)
+{
+    void *buffer;
+
+    FreeAllWindowBuffers();
+    buffer = GetBgTilemapBuffer(2);
+    if (buffer)
+        Free(buffer);
+    buffer = GetBgTilemapBuffer(3);
+    if (buffer)
+        Free(buffer);
+}
+
 void sub_80C0088(u8 taskId)
 {
     if (gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
-        BeginNormalPaletteFade(0x0000FFFF, 0, 0, 16, RGB_BLACK);
-        gSprites[gTasks[taskId].data[3]].callback = sub_80C01CC;
-        gTasks[taskId].func = blockset_load_palette_to_gpu;
+        if (gBugCatchingContestStatus != BUG_CATCHING_CONTEST_STATUS_OFF)
+        {
+            // Skip the mon scrolling and fade-out effect if catching a new mon
+            // during the bug catching contest.
+            FreeDexInfoScreenResources();
+            DestroyTask(taskId);
+        }
+        else
+        {
+            BeginNormalPaletteFade(0x0000FFFF, 0, 0, 16, RGB_BLACK);
+            gSprites[gTasks[taskId].data[3]].callback = sub_80C01CC;
+            gTasks[taskId].func = blockset_load_palette_to_gpu;
+        }
     }
     else if (++gTasks[taskId].data[2] & 0x10)
     {
@@ -3839,13 +3863,7 @@ void blockset_load_palette_to_gpu(u8 taskId)
         void *buffer;
 
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
-        FreeAllWindowBuffers();
-        buffer = GetBgTilemapBuffer(2);
-        if (buffer)
-            Free(buffer);
-        buffer = GetBgTilemapBuffer(3);
-        if (buffer)
-            Free(buffer);
+        FreeDexInfoScreenResources();
 
         species = NationalPokedexNumToSpecies(gTasks[taskId].data[1]);
         otId = ((u16)gTasks[taskId].data[13] << 16) | (u16)gTasks[taskId].data[12];

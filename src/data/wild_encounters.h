@@ -15,9 +15,9 @@ const struct WildPokemon gRoute29_LandMons_Day[] =
 {
     {2, 2, SPECIES_PIDGEY},
     {2, 2, SPECIES_SENTRET},
-    {2, 2, SPECIES_PIDGEY},
+    {2, 2, SPECIES_RATTATA},
     {2, 2, SPECIES_SENTRET},
-    {3, 3, SPECIES_PIDGEY},
+    {3, 3, SPECIES_RATTATA},
     {3, 3, SPECIES_PIDGEY},
     {3, 3, SPECIES_SENTRET},
     {3, 3, SPECIES_SENTRET},

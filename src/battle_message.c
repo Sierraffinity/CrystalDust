@@ -467,8 +467,6 @@ static const u8 sText_ShootSoClose[] = _("Shoot!\nIt was so close, too!");
 static const u8 sText_GotchaPkmnCaught[] = _("Gotcha!\n{B_OPPONENT_MON1_NAME} was caught!{UNKNOWN_A}{PLAY_BGM MUS_KACHI22}\p");
 static const u8 sText_GotchaPkmnCaught2[] = _("Gotcha!\n{B_OPPONENT_MON1_NAME} was caught!{UNKNOWN_A}{PLAY_BGM MUS_KACHI22}{PAUSE 127}");
 static const u8 sText_GiveNicknameCaptured[] = _("Give a nickname to the\ncaptured {B_OPPONENT_MON1_NAME}?");
-static const u8 sText_BugCatchingContestCaughtMon[] = _("Caught {B_OPPONENT_MON1_NAME}!\p");
-static const u8 sText_BugCatchingContestAlreadyCaught[] = _("You arleady caught a {B_BUG_CONTEST_MON}.\p");
 static const u8 sText_PkmnSentToPC[] = _("{B_OPPONENT_MON1_NAME} was sent to\n{B_PC_CREATOR_NAME} PC.");
 static const u8 sText_Someones[] = _("someone's");
 static const u8 sText_Lanettes[] = _("LANETTE's");
@@ -883,8 +881,6 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_TRAINER1WINTEXT - 12] = sText_Trainer1WinText,
     [STRINGID_TRAINER2WINTEXT - 12] = sText_Trainer2WinText,
     [STRINGID_OUTOFPARKBALLS - 12] = sText_OutOfParkBalls,
-    [STRINGID_BUGCATCHINGCONTEST_CAUGHTMON - 12] = sText_BugCatchingContestCaughtMon,
-    [STRINGID_BUGCATCHINGCONTEST_ALREADYCAUGHT - 12] = sText_BugCatchingContestAlreadyCaught,
 };
 
 const u16 gMissStringIds[] =
