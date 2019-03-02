@@ -1192,6 +1192,17 @@ static const struct WindowTemplate sMatchCallTextWindow =
     .baseBlock = 0x200
 };
 
+static const struct WindowTemplate sPhoneCardNameTextWindow =
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 10,
+    .height = 2,
+    .paletteNum = 15,
+    .baseBlock = 0x180
+};
+
 static bool32 LoadMatchCallWindowGfx(u8 taskId)
 {
     s16 *taskData = gTasks[taskId].data;
@@ -1201,10 +1212,17 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
         DestroyTask(taskId);
         return FALSE;
     }
+    taskData[3] = AddWindow(&sPhoneCardNameTextWindow);
+    if (taskData[3] == 0xFF)
+    {
+        DestroyTask(taskId);
+        return FALSE;
+    }
 
     if (LoadBgTiles(0, sUnknown_0860EA6C, sizeof(sUnknown_0860EA6C), 0x270) == 0xFFFF)
     {
         RemoveWindow(taskData[2]);
+        RemoveWindow(taskData[3]);
         DestroyTask(taskId);
         return FALSE;
     }
@@ -1212,11 +1230,13 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
     if (!decompress_and_copy_tile_data_to_vram(0, sPokeNavIconGfx, 0, 0x279, 0))
     {
         RemoveWindow(taskData[2]);
+        RemoveWindow(taskData[3]);
         DestroyTask(taskId);
         return FALSE;
     }
 
     FillWindowPixelBuffer(taskData[2], 0x88);
+    FillWindowPixelBuffer(taskData[3], 0x88);
     LoadPalette(sUnknown_0860EA4C, 0xE0, 0x20);
     LoadPalette(sPokeNavIconPalette, 0xF0, 0x20);
     ChangeBgY(0, -0x2000, 0);
@@ -1230,9 +1250,12 @@ static bool32 MoveMatchCallWindowToVram(u8 taskId)
         return FALSE;
 
     PutWindowTilemap(taskData[2]);
+    PutWindowTilemap(taskData[3]);
     DrawMatchCallTextBoxBorder(taskData[2], 0x270, 14);
+    DrawMatchCallTextBoxBorder(taskData[3], 0x270, 14);
     WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 15, 4, 4, 17, 1);
     CopyWindowToVram(taskData[2], 2);
+    CopyWindowToVram(taskData[3], 2);
     CopyBgTilemapBufferToVram(0);
     return TRUE;
 }
@@ -1315,7 +1338,9 @@ static bool32 sub_8196390(u8 taskId)
     if (ChangeBgY(0, 0x600, 2) <= -0x2000)
     {
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
+        FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 12, 4);
         RemoveWindow(taskData[2]);
+        RemoveWindow(taskData[3]);
         CopyBgTilemapBufferToVram(0);
         return TRUE;
     }
