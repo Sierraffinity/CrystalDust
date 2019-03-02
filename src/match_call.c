@@ -8,6 +8,7 @@
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
+#include "gpu_regs.h"
 #include "main.h"
 #include "match_call.h"
 #include "menu.h"
@@ -20,6 +21,7 @@
 #include "random.h"
 #include "region_map.h"
 #include "rtc.h"
+#include "scanline_effect.h"
 #include "script.h"
 #include "script_movement.h"
 #include "sound.h"
@@ -982,6 +984,11 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
     },
 };
 
+static const struct ScanlineEffectParams sScanlineParams =
+{
+    (void *)REG_ADDR_BG0VOFS, SCANLINE_EFFECT_DMACNT_16BIT, 1
+};
+
 extern const u8 gUnknown_082A5C9C[];
 extern const u8 gUnknown_082A5D2C[];
 extern const u8 gUnknown_082A633D[];
@@ -1205,6 +1212,7 @@ static const struct WindowTemplate sPhoneCardNameTextWindow =
 
 static bool32 LoadMatchCallWindowGfx(u8 taskId)
 {
+    int i;
     s16 *taskData = gTasks[taskId].data;
     taskData[2] = AddWindow(&sMatchCallTextWindow);
     if (taskData[2] == 0xFF)
@@ -1239,7 +1247,25 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
     FillWindowPixelBuffer(taskData[3], 0x88);
     LoadPalette(sUnknown_0860EA4C, 0xE0, 0x20);
     LoadPalette(sPokeNavIconPalette, 0xF0, 0x20);
-    ChangeBgY(0, -0x2000, 0);
+
+    ScanlineEffect_Clear();
+
+    for (i = 0; i < 80; i++)
+    {
+        gScanlineEffectRegBuffers[0][i] = 32;
+        gScanlineEffectRegBuffers[1][i] = 32;
+    }
+
+    for (; i < 160; i++)
+    {
+        gScanlineEffectRegBuffers[0][i] = -32;
+        gScanlineEffectRegBuffers[1][i] = -32;
+    }
+
+    ScanlineEffect_SetParams(sScanlineParams);
+
+    taskData[4] = 32;
+
     return TRUE;
 }
 
@@ -1274,13 +1300,26 @@ static bool32 PrintMatchCallIntroEllipsis(u8 taskId)
 
 static bool32 sub_81962B0(u8 taskId)
 {
-    if (ChangeBgY(0, 0x600, 1) >= 0)
+    int i;
+
+    gTasks[taskId].data[4] -= 6;
+
+    if (gTasks[taskId].data[4] > 0)
     {
-        ChangeBgY(0, 0, 0);
+        for (i = 0; i < 80; i++)
+            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].data[4];
+
+        for (; i < 160; i++)
+            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = -gTasks[taskId].data[4];
+
+        return FALSE;
+    }
+    else
+    {
+        SetGpuReg(REG_OFFSET_BG0VOFS, 0);
+        gScanlineEffect.state = 3;
         return TRUE;
     }
-
-    return FALSE;
 }
 
 static bool32 sub_81962D8(u8 taskId)
@@ -1320,11 +1359,18 @@ static bool32 sub_81962D8(u8 taskId)
 
 static bool32 sub_8196330(u8 taskId)
 {
+    int i;
     s16 *taskData = gTasks[taskId].data;
     if (!ExecuteMatchCallTextPrinter(taskData[2]) && !IsSEPlaying() && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         FillWindowPixelBuffer(taskData[2], 0x88);
         CopyWindowToVram(taskData[2], 2);
+
+        ScanlineEffect_Clear();
+        ScanlineEffect_SetParams(sScanlineParams);
+
+        taskData[4] = 0;
+
         PlaySE(SE_TOREOFF);
         return TRUE;
     }
@@ -1334,9 +1380,24 @@ static bool32 sub_8196330(u8 taskId)
 
 static bool32 sub_8196390(u8 taskId)
 {
+    int i;
     s16 *taskData = gTasks[taskId].data;
-    if (ChangeBgY(0, 0x600, 2) <= -0x2000)
+    
+    gTasks[taskId].data[4] += 6;
+
+    if (gTasks[taskId].data[4] < 32)
     {
+        for (i = 0; i < 80; i++)
+            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].data[4];
+
+        for (; i < 160; i++)
+            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = -gTasks[taskId].data[4];
+
+        return FALSE;
+    }
+    else
+    {
+        gScanlineEffect.state = 3;
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 12, 4);
         RemoveWindow(taskData[2]);
@@ -1344,8 +1405,6 @@ static bool32 sub_8196390(u8 taskId)
         CopyBgTilemapBufferToVram(0);
         return TRUE;
     }
-
-    return FALSE;
 }
 
 static bool32 sub_81963F0(u8 taskId)
@@ -1353,7 +1412,7 @@ static bool32 sub_81963F0(u8 taskId)
     u8 playerObjectId;
     if (!IsDma3ManagerBusyWithBgCopy() && !IsSEPlaying())
     {
-        ChangeBgY(0, 0, 0);
+        SetGpuReg(REG_OFFSET_BG0VOFS, 0);
         if (!gMatchCallState.triggeredFromScript)
         {
             sub_81973A4();

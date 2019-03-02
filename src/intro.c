@@ -700,7 +700,7 @@ static void VBlankCB_Intro(void)
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
-    ScanlineEffect_InitHBlankDmaTransfer();
+    //ScanlineEffect_InitHBlankDmaTransfer();
 }
 
 static void MainCB2_Intro(void)
