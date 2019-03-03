@@ -5,8 +5,11 @@
 #include "bg.h"
 #include "bug_catching_contest.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "field_screen_effect.h"
+#include "frontier_util.h"
 #include "gpu_regs.h"
+#include "load_save.h"
 #include "main.h"
 #include "menu.h"
 #include "menu_helpers.h"
@@ -279,9 +282,24 @@ void EnterBugCatchingContest(void)
 
 void EndBugCatchingContest(void)
 {
+    int i;
+
     gBugCatchingContestStatus = BUG_CATCHING_CONTEST_STATUS_OFF;
     gNumParkBalls = 0;
     memset(&gCaughtBugCatchingContestMon, 0, sizeof(gCaughtBugCatchingContestMon));
+    for (i = 0; i < ARRAY_COUNT(gBugCatchingContestNPCs); i++)
+        memset(&gBugCatchingContestNPCs[i], 0, sizeof(gBugCatchingContestNPCs[i]));
+
+    // Restore the rest of the player's party.
+    gSpecialVar_0x8004 = 6;
+    CallFrontierUtilFunc();
+    LoadPlayerParty();
+}
+
+void TryEndBugCatchingContest(void)
+{
+    if (gBugCatchingContestStatus != BUG_CATCHING_CONTEST_STATUS_OFF)
+        EndBugCatchingContest();
 }
 
 void BugCatchingContestQuitPrompt(void)

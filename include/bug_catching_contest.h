@@ -11,6 +11,7 @@
 #define MAP_BUG_CATCHING_CONTEST MAP_ROUTE29
 
 bool8 InBugCatchingContest(void);
+void TryEndBugCatchingContest(void);
 bool8 CaughtBugCatchingContestMon(void);
 void SetCaughtBugCatchingContestMon(struct Pokemon *caughtMon);
 void EnterBugCatchingContest(void);
