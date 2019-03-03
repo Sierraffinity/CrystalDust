@@ -27,6 +27,7 @@
 #include "window.h"
 #include "constants/event_objects.h"
 #include "constants/flags.h"
+#include "constants/items.h"
 #include "constants/maps.h"
 #include "constants/rgb.h"
 #include "constants/species.h"
@@ -77,8 +78,10 @@ struct BugCatchingContestSwapScreen
 EWRAM_DATA u8 gNumParkBalls = 0;
 EWRAM_DATA u8 gBugCatchingContestStatus = 0;
 EWRAM_DATA struct Pokemon gCaughtBugCatchingContestMon = {0};
+EWRAM_DATA u16 gPlayerBugCatchingContestScore = 0;
 EWRAM_DATA struct BugCatchingContestNPC gBugCatchingContestNPCs[NUM_BUG_CONTEST_NPCS] = {0};
 EWRAM_DATA struct BugCatchingContestSwapScreen *sSwapScreen = NULL;
+EWRAM_DATA u8 gBugCatchingContestStandings[NUM_BUG_CONTEST_NPCS + 1] = {0};
 
 extern const u8 EventScript_RanOutOfParkBalls[];
 extern const u8 EventScript_CaughtButRanOutOfParkBalls[];
@@ -275,9 +278,7 @@ void EnterBugCatchingContest(void)
 {
     gBugCatchingContestStatus = BUG_CATCHING_CONTEST_STATUS_NOT_CAUGHT;
     gNumParkBalls = 20;
-    CreateMon(&gCaughtBugCatchingContestMon, 214, 15, 1, 0, 0, OT_ID_PLAYER_ID, 0);
     InitBugContestNPCs();
-    GenerateBugCatchingContestNPCMons();
 }
 
 void EndBugCatchingContest(void)
@@ -296,6 +297,47 @@ void EndBugCatchingContest(void)
     LoadPlayerParty();
 }
 
+static int GetContestantScore(u32 id)
+{
+    if (id < NUM_BUG_CONTEST_NPCS)
+        return gBugCatchingContestNPCs[id].score;
+    else
+        return gPlayerBugCatchingContestScore;
+}
+
+void DetermineBugCatchingContestStandings(void)
+{
+    int i, j;
+    int playerId;
+
+    if (gBugCatchingContestStatus == BUG_CATCHING_CONTEST_STATUS_CAUGHT)
+        gPlayerBugCatchingContestScore = CalculateBugCatchingContestMonScore(&gCaughtBugCatchingContestMon, FALSE);
+    else
+        gPlayerBugCatchingContestScore = 0;
+
+    GenerateBugCatchingContestNPCMons();
+    for (i = 0; i < ARRAY_COUNT(gBugCatchingContestStandings); i++)
+        gBugCatchingContestStandings[i] = i;
+
+    // Sort the standings based on the contestants' scores from largest to smallest.
+    playerId = NUM_BUG_CONTEST_NPCS;
+    for (i = 0; i < ARRAY_COUNT(gBugCatchingContestStandings) - 1; i++)
+    {
+        for (j = i + 1; j < ARRAY_COUNT(gBugCatchingContestStandings); j++)
+        {
+            int scoreA = GetContestantScore(gBugCatchingContestStandings[i]);
+            int scoreB = GetContestantScore(gBugCatchingContestStandings[j]);
+            // Favor the player when score is tied with any NPC.
+            if (scoreA < scoreB || (scoreA == scoreB && gBugCatchingContestStandings[j] == playerId))
+            {
+                int temp = gBugCatchingContestStandings[i];
+                gBugCatchingContestStandings[i] = gBugCatchingContestStandings[j];
+                gBugCatchingContestStandings[j] = temp;
+            }
+        }
+    }
+}
+
 void TryEndBugCatchingContest(void)
 {
     if (gBugCatchingContestStatus != BUG_CATCHING_CONTEST_STATUS_OFF)
@@ -305,6 +347,31 @@ void TryEndBugCatchingContest(void)
 void BugCatchingContestQuitPrompt(void)
 {
     ScriptContext1_SetupScript(BugCatchingContest_StartMenuPrompt);
+}
+
+void DetermineBugCatchingContestPrize(void)
+{
+    int i;
+    int playerPlace;
+    int playerId = NUM_BUG_CONTEST_NPCS;
+
+    for (i = 0; i < ARRAY_COUNT(gBugCatchingContestStandings); i++)
+    {
+        if (gBugCatchingContestStandings[i] == playerId)
+        {
+            playerPlace = i;
+            break;
+        }
+    }
+
+    if (playerPlace == 0)
+        gSpecialVar_Result = ITEM_SUN_STONE;
+    else if (playerPlace == 1)
+        gSpecialVar_Result = ITEM_EVERSTONE;
+    else if (playerPlace == 2)
+        gSpecialVar_Result = ITEM_SITRUS_BERRY;
+    else
+        gSpecialVar_Result = ITEM_ORAN_BERRY;
 }
 
 void CB2_EndBugCatchingContestBattle(void)
