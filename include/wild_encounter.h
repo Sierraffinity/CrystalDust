@@ -43,5 +43,7 @@ u16 GetLocalWildMon(bool8 *isWaterMon);
 u16 GetLocalWaterMon(void);
 bool8 UpdateRepelCounter(void);
 u16 GetMapWildMonFromIndex(u8, u8, u8);
+u8 ChooseWildMonIndex_Land(void);
+u8 ChooseWildMonLevelWithAbility(const struct WildPokemon *wildPokemon, bool8 useAbility);
 
 #endif // GUARD_WILD_ENCOUNTER_H

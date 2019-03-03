@@ -2,10 +2,13 @@
 #define GUARD_BUG_CATCHING_CONTEST_H
 
 #include "main.h"
+#include "constants/map_groups.h"
 
 #define BUG_CATCHING_CONTEST_STATUS_OFF        0
 #define BUG_CATCHING_CONTEST_STATUS_NOT_CAUGHT 1
 #define BUG_CATCHING_CONTEST_STATUS_CAUGHT     2
+
+#define MAP_BUG_CATCHING_CONTEST MAP_ROUTE29
 
 bool8 InBugCatchingContest(void);
 bool8 CaughtBugCatchingContestMon(void);
