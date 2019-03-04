@@ -17,6 +17,7 @@ void SetCaughtBugCatchingContestMon(struct Pokemon *caughtMon);
 void EnterBugCatchingContest(void);
 void EndBugCatchingContest(void);
 void BugCatchingContestQuitPrompt(void);
+void PlaceBugCatchingContestEventObjects(void);
 void CB2_EndBugCatchingContestBattle(void);
 void DoSwapBugContestMonScreen(struct Pokemon *newMon, MainCallback returnCallback);
 

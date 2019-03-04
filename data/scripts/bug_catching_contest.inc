@@ -21,6 +21,7 @@ EventScript_BugCatchingContestTimeExpired::
 	goto EventScript_WarpOutOfBugCatchingContest
 
 EventScript_WarpOutOfBugCatchingContest::
+	setvar VAR_BUG_CATCHING_CONTEST_STATE, 2
 	warp MAP_NEW_BARK_TOWN, -1, 3, 3
 	waitstate
 	end

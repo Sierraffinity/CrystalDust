@@ -539,3 +539,4 @@ gSpecials:: @ 81DBA64
 	def_special GetFruitTreeItem
 	def_special SelectBugCatchingContestMon
 	def_special EnterBugCatchingContest
+	def_special PlaceBugCatchingContestEventObjects

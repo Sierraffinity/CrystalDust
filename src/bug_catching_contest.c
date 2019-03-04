@@ -33,6 +33,17 @@
 #include "constants/species.h"
 #include "constants/trainers.h"
 
+extern const u8 NationalParkContest_Nick[];
+extern const u8 NationalParkContest_William[];
+extern const u8 NationalParkContest_Samuel[];
+extern const u8 NationalParkContest_Barry[];
+extern const u8 NationalParkContest_Ed[];
+extern const u8 NationalParkContest_Benny[];
+extern const u8 NationalParkContest_Josh[];
+extern const u8 NationalParkContest_Don[];
+extern const u8 NationalParkContest_Kipp[];
+extern const u8 NationalParkContest_Cindy[];
+
 #define NUM_BUG_CONTEST_NPCS 5
 
 enum
@@ -48,6 +59,7 @@ struct BugCatchingContestNPCTemplate
     u8 graphicsId;
     u8 trainerClass;
     const u8 *name;
+    const u8 *script;
 };
 
 struct BugCatchingContestNPC
@@ -56,6 +68,7 @@ struct BugCatchingContestNPC
     u8 graphicsId;
     u8 trainerClass;
     const u8 *name;
+    const u8 *script;
     u16 caughtSpecies;
     u8 caughtLevel;
     u8 caughtShiny;
@@ -210,52 +223,75 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .graphicsId = EVENT_OBJ_GFX_BOY_1,
         .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .name = sName_Nick,
+        .script = NationalParkContest_Nick,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_POKEFAN_M,
         .trainerClass = TRAINER_CLASS_POKEFAN,
         .name = sName_William,
+        .script = NationalParkContest_William,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_YOUNGSTER,
         .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .name = sName_Samuel,
+        .script = NationalParkContest_Samuel,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_CAMPER,
         .trainerClass = TRAINER_CLASS_CAMPER,
         .name = sName_Barry,
+        .script = NationalParkContest_Barry,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Ed,
+        .script = NationalParkContest_Ed,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Benny,
+        .script = NationalParkContest_Benny,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Josh,
+        .script = NationalParkContest_Josh,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Don,
+        .script = NationalParkContest_Don,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_SCHOOL_KID_M,
         .trainerClass = TRAINER_CLASS_SCHOOL_KID,
         .name = sName_Kipp,
+        .script = NationalParkContest_Kipp,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_PICNICKER,
         .trainerClass = TRAINER_CLASS_PICNICKER,
         .name = sName_Cindy,
+        .script = NationalParkContest_Cindy,
     },
+};
+
+static const u8 sBugContestNPCCoords[][2] = {
+    {1, 2},
+    {3, 2},
+    {5, 2},
+    {7, 2},
+    {9, 2},
+    {11, 2},
+    {12, 2},
+    {13, 2},
+    {15, 2},
+    {17, 2},
 };
 
 bool8 InBugCatchingContest(void)
@@ -461,6 +497,7 @@ static void InitBugContestNPCs(void)
         gBugCatchingContestNPCs[i].graphicsId = npcTemplate->graphicsId;
         gBugCatchingContestNPCs[i].trainerClass = npcTemplate->trainerClass;
         gBugCatchingContestNPCs[i].name = npcTemplate->name;
+        gBugCatchingContestNPCs[i].script = npcTemplate->script;
         if (i == strongIndex)
             gBugCatchingContestNPCs[i].trait = BUG_CONTEST_NPC_TRAIT_STRONG;
         else if (i == shinyIndex)
@@ -738,6 +775,26 @@ static int CalculateRarityScore(u16 species)
     return 80;
 }
 
+void PlaceBugCatchingContestEventObjects(void)
+{
+    int i;
+    u16 coordIndex;
+    struct EventObjectTemplate *events = gSaveBlock1Ptr->eventObjectTemplates;
+    u8 takenCoords[ARRAY_COUNT(sBugContestNPCCoords)] = {0};
+
+    for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
+    {
+        do {
+            coordIndex = Random() % ARRAY_COUNT(sBugContestNPCCoords);
+        } while (takenCoords[coordIndex] != 0);
+
+        takenCoords[coordIndex] = 1;
+        events[i].x = sBugContestNPCCoords[coordIndex][0];
+        events[i].y = sBugContestNPCCoords[coordIndex][1];
+        events[i].graphicsId = gBugCatchingContestNPCs[i].graphicsId;
+        events[i].script = gBugCatchingContestNPCs[i].script;
+    }
+}
 
 /////////////////////////////////
 // Swapping Screen             //
