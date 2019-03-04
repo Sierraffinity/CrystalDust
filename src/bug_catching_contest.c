@@ -297,6 +297,12 @@ void EndBugCatchingContest(void)
     LoadPlayerParty();
 }
 
+void TryEndBugCatchingContest(void)
+{
+    if (gBugCatchingContestStatus != BUG_CATCHING_CONTEST_STATUS_OFF)
+        EndBugCatchingContest();
+}
+
 static int GetContestantScore(u32 id)
 {
     if (id < NUM_BUG_CONTEST_NPCS)
@@ -336,12 +342,6 @@ void DetermineBugCatchingContestStandings(void)
             }
         }
     }
-}
-
-void TryEndBugCatchingContest(void)
-{
-    if (gBugCatchingContestStatus != BUG_CATCHING_CONTEST_STATUS_OFF)
-        EndBugCatchingContest();
 }
 
 void BugCatchingContestQuitPrompt(void)

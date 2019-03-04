@@ -4409,6 +4409,16 @@
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_MysteryEventsHouse",
             "width": 11
+        },
+        {
+            "blockdata_filepath": "data/layouts/NationalParkGateSouth/map.bin",
+            "border_filepath": "data/layouts/NationalParkGateSouth/border.bin",
+            "height": 11,
+            "id": "LAYOUT_NATIONAL_PARK_GATE_SOUTH",
+            "name": "NationalParkGateSouth_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Gatehouse",
+            "width": 9
         }
     ],
     "layouts_table_label": "gMapLayouts"

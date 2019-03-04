@@ -1,0 +1,17 @@
+NationalParkGateSouth_MapScripts::
+	map_script 1, NationalParkGateSouth_OnLoad
+	.byte 0
+
+NationalParkGateSouth_OnLoad:
+	gettime
+	compare VAR_0x8003, DAY_TUESDAY
+	switch VAR_0x8003
+	case DAY_WEDNESDAY, NationalParkGateSouth_OnLoad_SetObjectVisibility_BugContest
+	case DAY_THURSDAY, NationalParkGateSouth_OnLoad_SetObjectVisibility_BugContest
+	case DAY_SATURDAY, NationalParkGateSouth_OnLoad_SetObjectVisibility_BugContest
+	setflag FLAG_TEMP_2
+	end
+
+NationalParkGateSouth_OnLoad_SetObjectVisibility_BugContest:
+	setflag FLAG_TEMP_1
+	end

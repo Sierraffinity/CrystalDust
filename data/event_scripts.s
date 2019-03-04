@@ -7749,3 +7749,4 @@ gText_082C877B:: @ 82C877B
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/CherrygroveCity_House2/scripts.inc"
+	.include "data/maps/NationalParkGateSouth/scripts.inc"
