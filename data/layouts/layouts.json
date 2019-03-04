@@ -4419,6 +4419,26 @@
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_Gatehouse",
             "width": 9
+        },
+        {
+            "blockdata_filepath": "data/layouts/NationalParkContest/map.bin",
+            "border_filepath": "data/layouts/NationalParkContest/border.bin",
+            "height": 20,
+            "id": "LAYOUT_NATIONAL_PARK_CONTEST",
+            "name": "NationalParkContest_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Petalburg",
+            "width": 20
+        },
+        {
+            "blockdata_filepath": "data/layouts/NationalPark/map.bin",
+            "border_filepath": "data/layouts/NationalPark/border.bin",
+            "height": 20,
+            "id": "LAYOUT_NATIONAL_PARK",
+            "name": "NationalPark_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Petalburg",
+            "width": 20
         }
     ],
     "layouts_table_label": "gMapLayouts"

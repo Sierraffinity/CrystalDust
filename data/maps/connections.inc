@@ -227,6 +227,8 @@
 	.include "data/maps/EverGrandeCity_PokemonLeague_2F/connections.inc"
 	.include "data/maps/Route29_Gatehouse/connections.inc"
 	.include "data/maps/NationalParkGateSouth/connections.inc"
+	.include "data/maps/NationalParkContest/connections.inc"
+	.include "data/maps/NationalPark/connections.inc"
 	.include "data/maps/Route30_BerryMansHouse/connections.inc"
 	.include "data/maps/Route30_MrPokemonsHouse/connections.inc"
 	.include "data/maps/Route111_OldLadysRestStop/connections.inc"

@@ -4,6 +4,14 @@
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "NationalParkGateSouth_ContestSign",
+            "type": "sign",
+            "x": 6,
+            "y": 1
+        }
     ],
     "connections": null,
     "coord_events": [
@@ -21,7 +29,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "NULL",
+            "script": "NationalParkGateSouth_NoContestOfficer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 1,
@@ -34,7 +42,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "NULL",
+            "script": "NationalParkGateSouth_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 6,
@@ -47,7 +55,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NULL",
+            "script": "NationalParkGateSouth_BugContestOfficer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 3,
@@ -65,6 +73,13 @@
             "elevation": 3,
             "x": 4,
             "y": 9
+        },
+        {
+            "dest_map": "MAP_NATIONAL_PARK",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 4,
+            "y": 1
         }
     ],
     "weather": "WEATHER_NONE"

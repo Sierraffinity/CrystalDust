@@ -44,6 +44,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B3968
 	def_special sub_80B3924
 	def_special CopyDayOfWeekStringToVar1
+	def_special CopyCurrentDayOfWeekStringToVar1
 	def_special sub_80B3254
 	def_special sub_80B2FD8
 	def_special GetLinkPartnerNames
@@ -536,3 +537,5 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B3BC4
 	def_special FieldRadio
 	def_special GetFruitTreeItem
+	def_special SelectBugCatchingContestMon
+	def_special EnterBugCatchingContest

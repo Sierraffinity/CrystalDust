@@ -7750,3 +7750,7 @@ gText_082C877B:: @ 82C877B
 
 	.include "data/maps/CherrygroveCity_House2/scripts.inc"
 	.include "data/maps/NationalParkGateSouth/scripts.inc"
+
+	.include "data/maps/NationalParkContest/scripts.inc"
+
+	.include "data/maps/NationalPark/scripts.inc"

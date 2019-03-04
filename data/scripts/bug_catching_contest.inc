@@ -25,27 +25,6 @@ EventScript_WarpOutOfBugCatchingContest::
 	waitstate
 	end
 
-EventScript_SelectBugCatchingContestMon::
-	special SavePlayerParty
-	fadescreen 1
-	callnative SelectBugCatchingContestMon
-	waitstate
-	compare VAR_RESULT, 0
-	goto_if_ne BugCatchingContest_ChoseMon
-	special LoadPlayerParty
-	release
-	end
-
-BugCatchingContest_ChoseMon::
-	special ReducePlayerPartyToSelectedMons
-	setvar VAR_0x8004, 2
-	setvar VAR_0x8005, 4
-	special CallFrontierUtilFunc
-	callnative EnterBugCatchingContest
-	msgbox Text_BugCatchingContestStart, MSGBOX_DEFAULT
-	release
-	end
-
 EventScript_ReturnBugCatchingContestMons::
 	setvar VAR_0x8004, 6
 	special CallFrontierUtilFunc

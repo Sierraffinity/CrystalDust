@@ -262,6 +262,8 @@ gMapGroup16::
 gMapGroup17::
 	.4byte Route29_Gatehouse
 	.4byte NationalParkGateSouth
+	.4byte NationalParkContest
+	.4byte NationalPark
 
 gMapGroup18::
 	.4byte Route30_BerryMansHouse

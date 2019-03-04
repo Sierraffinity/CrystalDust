@@ -182,7 +182,9 @@
     ],
     "gMapGroup17": [
         "Route29_Gatehouse",
-        "NationalParkGateSouth"
+        "NationalParkGateSouth",
+        "NationalParkContest",
+        "NationalPark"
     ],
     "gMapGroup18": [
         "Route30_BerryMansHouse",
