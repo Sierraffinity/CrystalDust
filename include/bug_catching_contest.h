@@ -8,7 +8,7 @@
 #define BUG_CATCHING_CONTEST_STATUS_NOT_CAUGHT 1
 #define BUG_CATCHING_CONTEST_STATUS_CAUGHT     2
 
-#define MAP_BUG_CATCHING_CONTEST MAP_ROUTE29
+#define MAP_BUG_CATCHING_CONTEST MAP_NATIONAL_PARK_CONTEST
 
 bool8 InBugCatchingContest(void);
 void TryEndBugCatchingContest(void);
@@ -17,6 +17,7 @@ void SetCaughtBugCatchingContestMon(struct Pokemon *caughtMon);
 void EnterBugCatchingContest(void);
 void EndBugCatchingContest(void);
 void BugCatchingContestQuitPrompt(void);
+u8 GetPlayerBugContestPlace(void);
 void PlaceBugCatchingContestEventObjects(void);
 void CB2_EndBugCatchingContestBattle(void);
 void DoSwapBugContestMonScreen(struct Pokemon *newMon, MainCallback returnCallback);

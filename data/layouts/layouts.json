@@ -4439,6 +4439,16 @@
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Petalburg",
             "width": 20
+        },
+        {
+            "blockdata_filepath": "data/layouts/NationalParkGateEast/map.bin",
+            "border_filepath": "data/layouts/NationalParkGateEast/border.bin",
+            "height": 10,
+            "id": "LAYOUT_NATIONAL_PARK_GATE_EAST",
+            "name": "NationalParkGateEast_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Gatehouse",
+            "width": 12
         }
     ],
     "layouts_table_label": "gMapLayouts"

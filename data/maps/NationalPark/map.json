@@ -26,6 +26,13 @@
             "elevation": 3,
             "x": 9,
             "y": 19
+        },
+        {
+            "dest_map": "MAP_NATIONAL_PARK_GATE_EAST",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 19,
+            "y": 8
         }
     ],
     "weather": "WEATHER_SUNNY"

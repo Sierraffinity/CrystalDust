@@ -229,6 +229,7 @@
 	.include "data/maps/NationalParkGateSouth/header.inc"
 	.include "data/maps/NationalParkContest/header.inc"
 	.include "data/maps/NationalPark/header.inc"
+	.include "data/maps/NationalParkGateEast/header.inc"
 	.include "data/maps/Route30_BerryMansHouse/header.inc"
 	.include "data/maps/Route30_MrPokemonsHouse/header.inc"
 	.include "data/maps/Route111_OldLadysRestStop/header.inc"

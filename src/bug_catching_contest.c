@@ -6,9 +6,11 @@
 #include "bug_catching_contest.h"
 #include "decompress.h"
 #include "event_data.h"
+#include "event_object_movement.h"
 #include "field_screen_effect.h"
 #include "frontier_util.h"
 #include "gpu_regs.h"
+#include "item.h"
 #include "load_save.h"
 #include "main.h"
 #include "menu.h"
@@ -26,6 +28,7 @@
 #include "wild_encounter.h"
 #include "window.h"
 #include "constants/event_objects.h"
+#include "constants/event_object_movement_constants.h"
 #include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/maps.h"
@@ -43,8 +46,32 @@ extern const u8 NationalParkContest_Josh[];
 extern const u8 NationalParkContest_Don[];
 extern const u8 NationalParkContest_Kipp[];
 extern const u8 NationalParkContest_Cindy[];
+extern const u8 NationalParkGateEast_NickPlayerWon[];
+extern const u8 NationalParkGateEast_NickPlayerLost[];
+extern const u8 NationalParkGateEast_WilliamPlayerWon[];
+extern const u8 NationalParkGateEast_WilliamPlayerLost[];
+extern const u8 NationalParkGateEast_SamuelPlayerWon[];
+extern const u8 NationalParkGateEast_SamuelPlayerLost[];
+extern const u8 NationalParkGateEast_BarryPlayerWon[];
+extern const u8 NationalParkGateEast_BarryPlayerLost[];
+extern const u8 NationalParkGateEast_EdPlayerWon[];
+extern const u8 NationalParkGateEast_EdPlayerLost[];
+extern const u8 NationalParkGateEast_BennyPlayerWon[];
+extern const u8 NationalParkGateEast_BennyPlayerLost[];
+extern const u8 NationalParkGateEast_JoshPlayerWon[];
+extern const u8 NationalParkGateEast_JoshPlayerLost[];
+extern const u8 NationalParkGateEast_DonPlayerWon[];
+extern const u8 NationalParkGateEast_DonPlayerLost[];
+extern const u8 NationalParkGateEast_KippPlayerWon[];
+extern const u8 NationalParkGateEast_KippPlayerLost[];
+extern const u8 NationalParkGateEast_CindyPlayerWon[];
+extern const u8 NationalParkGateEast_CindyPlayerLost[];
+extern const u8 gTrainerClassNames[][13];
 
 #define NUM_BUG_CONTEST_NPCS 5
+
+// The maximum score for a mon is only 400, so shiny mmons trump normal mons.
+#define SHINY_SCORE_INCREASE 500
 
 enum
 {
@@ -60,18 +87,17 @@ struct BugCatchingContestNPCTemplate
     u8 trainerClass;
     const u8 *name;
     const u8 *script;
+    const u8 *awardsScriptPlayerWon;
+    const u8 *awardsScriptPlayerLost;
 };
 
 struct BugCatchingContestNPC
 {
+    u8 templateId;
     u8 trait;
-    u8 graphicsId;
-    u8 trainerClass;
-    const u8 *name;
-    const u8 *script;
-    u16 caughtSpecies;
     u8 caughtLevel;
     u8 caughtShiny;
+    u16 caughtSpecies;
     u16 score;
 };
 
@@ -110,6 +136,7 @@ static int CalculateLevelScore(int level, int maxLevel);
 static int CalculateIVScore(int hpIV, int attackIV, int defenseIV, int speedIV, int spAttackIV, int spDefenseIV);
 static int CalculateHPScore(int curHP, int maxHP);
 static int CalculateRarityScore(u16 species);
+static void SetAwardsCeremonyBugContestEventObjectScripts(void);
 static void MainCallback_BugCatchingContestSwapScreen(void);
 static void InitBugCatchingContestSwapScreen(void);
 static void VBlank_BugCatchingContestSwapScreen(void);
@@ -224,60 +251,80 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .name = sName_Nick,
         .script = NationalParkContest_Nick,
+        .awardsScriptPlayerWon = NationalParkGateEast_NickPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_NickPlayerLost,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_POKEFAN_M,
         .trainerClass = TRAINER_CLASS_POKEFAN,
         .name = sName_William,
         .script = NationalParkContest_William,
+        .awardsScriptPlayerWon = NationalParkGateEast_WilliamPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_WilliamPlayerLost,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_YOUNGSTER,
         .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .name = sName_Samuel,
         .script = NationalParkContest_Samuel,
+        .awardsScriptPlayerWon = NationalParkGateEast_SamuelPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_SamuelPlayerLost,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_CAMPER,
         .trainerClass = TRAINER_CLASS_CAMPER,
         .name = sName_Barry,
         .script = NationalParkContest_Barry,
+        .awardsScriptPlayerWon = NationalParkGateEast_BarryPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_BarryPlayerLost,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Ed,
         .script = NationalParkContest_Ed,
+        .awardsScriptPlayerWon = NationalParkGateEast_EdPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_EdPlayerLost,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Benny,
         .script = NationalParkContest_Benny,
+        .awardsScriptPlayerWon = NationalParkGateEast_BennyPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_BennyPlayerLost,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Josh,
         .script = NationalParkContest_Josh,
+        .awardsScriptPlayerWon = NationalParkGateEast_JoshPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_JoshPlayerLost,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Don,
         .script = NationalParkContest_Don,
+        .awardsScriptPlayerWon = NationalParkGateEast_DonPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_DonPlayerLost,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_SCHOOL_KID_M,
         .trainerClass = TRAINER_CLASS_SCHOOL_KID,
         .name = sName_Kipp,
         .script = NationalParkContest_Kipp,
+        .awardsScriptPlayerWon = NationalParkGateEast_KippPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_KippPlayerLost,
     },
     {
         .graphicsId = EVENT_OBJ_GFX_PICNICKER,
         .trainerClass = TRAINER_CLASS_PICNICKER,
         .name = sName_Cindy,
         .script = NationalParkContest_Cindy,
+        .awardsScriptPlayerWon = NationalParkGateEast_CindyPlayerWon,
+        .awardsScriptPlayerLost = NationalParkGateEast_CindyPlayerLost,
     },
 };
 
@@ -317,9 +364,18 @@ void EnterBugCatchingContest(void)
     InitBugContestNPCs();
 }
 
+void GiveCaughtBugCatchingContestMon(void)
+{
+    if (gBugCatchingContestStatus == BUG_CATCHING_CONTEST_STATUS_CAUGHT)
+        gSpecialVar_Result = GiveMonToPlayer(&gCaughtBugCatchingContestMon);
+    else
+        gSpecialVar_Result = 3;
+}
+
 void EndBugCatchingContest(void)
 {
     int i;
+    u8 eventObjectId;
 
     gBugCatchingContestStatus = BUG_CATCHING_CONTEST_STATUS_OFF;
     gNumParkBalls = 0;
@@ -327,16 +383,23 @@ void EndBugCatchingContest(void)
     for (i = 0; i < ARRAY_COUNT(gBugCatchingContestNPCs); i++)
         memset(&gBugCatchingContestNPCs[i], 0, sizeof(gBugCatchingContestNPCs[i]));
 
-    // Restore the rest of the player's party.
-    gSpecialVar_0x8004 = 6;
-    CallFrontierUtilFunc();
-    LoadPlayerParty();
+    for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
+    {
+        if (!TryGetEventObjectIdByLocalIdAndMap(i + 1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &eventObjectId))
+            SetTrainerMovementType(&gEventObjects[eventObjectId], MOVEMENT_TYPE_LOOK_AROUND);
+    }
 }
 
 void TryEndBugCatchingContest(void)
 {
     if (gBugCatchingContestStatus != BUG_CATCHING_CONTEST_STATUS_OFF)
+    {
         EndBugCatchingContest();
+        // Restore the rest of the player's party.
+        gSpecialVar_0x8004 = 6;
+        CallFrontierUtilFunc();
+        LoadPlayerParty();
+    }
 }
 
 static int GetContestantScore(u32 id)
@@ -378,6 +441,8 @@ void DetermineBugCatchingContestStandings(void)
             }
         }
     }
+
+    SetAwardsCeremonyBugContestEventObjectScripts();
 }
 
 void BugCatchingContestQuitPrompt(void)
@@ -385,29 +450,23 @@ void BugCatchingContestQuitPrompt(void)
     ScriptContext1_SetupScript(BugCatchingContest_StartMenuPrompt);
 }
 
-void DetermineBugCatchingContestPrize(void)
+u16 DetermineBugCatchingContestPrize(void)
 {
     int i;
-    int playerPlace;
-    int playerId = NUM_BUG_CONTEST_NPCS;
+    u16 item;
+    int playerPlace = GetPlayerBugContestPlace();
 
-    for (i = 0; i < ARRAY_COUNT(gBugCatchingContestStandings); i++)
-    {
-        if (gBugCatchingContestStandings[i] == playerId)
-        {
-            playerPlace = i;
-            break;
-        }
-    }
-
-    if (playerPlace == 0)
-        gSpecialVar_Result = ITEM_SUN_STONE;
-    else if (playerPlace == 1)
-        gSpecialVar_Result = ITEM_EVERSTONE;
+    if (playerPlace == 1)
+        item = ITEM_SUN_STONE;
     else if (playerPlace == 2)
-        gSpecialVar_Result = ITEM_SITRUS_BERRY;
+        item = ITEM_EVERSTONE;
+    else if (playerPlace == 3)
+        item = ITEM_SITRUS_BERRY;
     else
-        gSpecialVar_Result = ITEM_ORAN_BERRY;
+        item = ITEM_ORAN_BERRY;
+
+    CopyItemName(item, gStringVar1);
+    return item;
 }
 
 void CB2_EndBugCatchingContestBattle(void)
@@ -492,12 +551,7 @@ static void InitBugContestNPCs(void)
     // Initialize the NPC data.
     for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
     {
-        int id = selectedNPCs[i];
-        const struct BugCatchingContestNPCTemplate *npcTemplate = &sBugContestNPCTemplates[id];
-        gBugCatchingContestNPCs[i].graphicsId = npcTemplate->graphicsId;
-        gBugCatchingContestNPCs[i].trainerClass = npcTemplate->trainerClass;
-        gBugCatchingContestNPCs[i].name = npcTemplate->name;
-        gBugCatchingContestNPCs[i].script = npcTemplate->script;
+        gBugCatchingContestNPCs[i].templateId = selectedNPCs[i];
         if (i == strongIndex)
             gBugCatchingContestNPCs[i].trait = BUG_CONTEST_NPC_TRAIT_STRONG;
         else if (i == shinyIndex)
@@ -666,7 +720,7 @@ static void GenerateBugCatchingContestNPCMon(struct BugCatchingContestNPC *npc)
 
     npc->score = CalculateBugCatchingContestMonScore(&mon, TRUE);
     if (npc->caughtShiny)
-        npc->score += 9999;
+        npc->score += SHINY_SCORE_INCREASE;
 }
 
 static int CalculateBugCatchingContestMonScore(struct Pokemon *mon, bool8 isNPC)
@@ -690,7 +744,7 @@ static int CalculateBugCatchingContestMonScore(struct Pokemon *mon, bool8 isNPC)
     // Can't rely on IsMonShiny() for NPC mons because it will use the
     // player's trainer Id to do the shiny check.
     if (!isNPC && IsMonShiny(mon))
-        shinyScore = 9999;
+        shinyScore = SHINY_SCORE_INCREASE;
     else
         shinyScore = 0;
 
@@ -779,6 +833,7 @@ void PlaceBugCatchingContestEventObjects(void)
 {
     int i;
     u16 coordIndex;
+    const struct BugCatchingContestNPCTemplate *npcTemplate;
     struct EventObjectTemplate *events = gSaveBlock1Ptr->eventObjectTemplates;
     u8 takenCoords[ARRAY_COUNT(sBugContestNPCCoords)] = {0};
 
@@ -789,10 +844,177 @@ void PlaceBugCatchingContestEventObjects(void)
         } while (takenCoords[coordIndex] != 0);
 
         takenCoords[coordIndex] = 1;
+        npcTemplate = &sBugContestNPCTemplates[gBugCatchingContestNPCs[i].templateId];
         events[i].x = sBugContestNPCCoords[coordIndex][0];
         events[i].y = sBugContestNPCCoords[coordIndex][1];
-        events[i].graphicsId = gBugCatchingContestNPCs[i].graphicsId;
-        events[i].script = gBugCatchingContestNPCs[i].script;
+        events[i].graphicsId = npcTemplate->graphicsId;
+        events[i].script = npcTemplate->script;
+    }
+}
+
+void SetAwardsCeremonyBugContestEventObjectGraphics(void)
+{
+    int i;
+    const struct BugCatchingContestNPCTemplate *npcTemplate;
+    struct EventObjectTemplate *events = gSaveBlock1Ptr->eventObjectTemplates;
+
+    for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
+    {
+        npcTemplate = &sBugContestNPCTemplates[gBugCatchingContestNPCs[i].templateId];
+        VarSet(VAR_OBJ_GFX_ID_0 + i, npcTemplate->graphicsId);
+    }
+}
+
+static void SetAwardsCeremonyBugContestEventObjectScripts(void)
+{
+    int i;
+    const struct BugCatchingContestNPCTemplate *npcTemplate;
+    int playerId = NUM_BUG_CONTEST_NPCS;
+    struct EventObjectTemplate *events = gSaveBlock1Ptr->eventObjectTemplates;
+
+    for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
+    {
+        npcTemplate = &sBugContestNPCTemplates[gBugCatchingContestNPCs[i].templateId];
+        if (gBugCatchingContestStandings[0] == playerId)
+            events[i].script = npcTemplate->awardsScriptPlayerWon;
+        else
+            events[i].script = npcTemplate->awardsScriptPlayerLost;
+    }
+}
+
+static const u8 *GetContestantNamePrefix(int contestantId)
+{
+    static const u8 sNewBarkTownsText[] = _("NEW BARK TOWN's");
+    if (contestantId == NUM_BUG_CONTEST_NPCS)
+        return sNewBarkTownsText;
+    else
+        return gTrainerClassNames[sBugContestNPCTemplates[gBugCatchingContestNPCs[contestantId].templateId].trainerClass];
+}
+
+static const u8 *GetContestantName(int contestantId)
+{
+    if (contestantId == NUM_BUG_CONTEST_NPCS)
+        return gSaveBlock2Ptr->playerName;
+    else
+        return sBugContestNPCTemplates[gBugCatchingContestNPCs[contestantId].templateId].name;
+}
+
+static u8 GetContestantCaughtLevel(int contestantId)
+{
+    if (contestantId == NUM_BUG_CONTEST_NPCS)
+    {
+        if (gBugCatchingContestStatus == BUG_CATCHING_CONTEST_STATUS_CAUGHT)
+            return GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_LEVEL);
+        else
+            return 0;
+    }
+    else
+    {
+        return gBugCatchingContestNPCs[contestantId].caughtLevel;
+    }
+}
+
+static u16 GetContestantCaughtSpecies(int contestantId)
+{
+    if (contestantId == NUM_BUG_CONTEST_NPCS)
+    {
+        if (gBugCatchingContestStatus == BUG_CATCHING_CONTEST_STATUS_CAUGHT)
+            return GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES);
+        else
+            return SPECIES_NONE;
+    }
+    else
+    {
+        return gBugCatchingContestNPCs[contestantId].caughtSpecies;
+    }
+}
+
+static bool8 GetContestantCaughtShiny(int contestantId)
+{
+    if (contestantId == NUM_BUG_CONTEST_NPCS)
+    {
+        if (gBugCatchingContestStatus == BUG_CATCHING_CONTEST_STATUS_CAUGHT)
+            return IsMonShiny(&gCaughtBugCatchingContestMon);
+        else
+            return FALSE;
+    }
+    else
+    {
+        return gBugCatchingContestNPCs[contestantId].caughtShiny;
+    }
+}
+
+static void BuildBugContestPlacementString_FirstPlace(void)
+{
+    static const u8 sFirstPlaceString_Part1[] = _("The Bug-Catching Contest winner is\n{STR_VAR_1} {STR_VAR_2} who caught\la level {STR_VAR_3} ");
+    static const u8 sFirstPlaceString_Part2[] = _("{STR_VAR_1}!");
+    static const u8 sFirstPlaceString_Shiny[] = _("\pAmazing! The POKéMON is shiny!\pI've never seen such a beautiful\nbug POKéMON!\p");
+    u8 *str;
+    int contestantId = gBugCatchingContestStandings[0];
+
+    StringCopy(gStringVar1, GetContestantNamePrefix(contestantId));
+    StringCopy(gStringVar2, GetContestantName(contestantId));
+    ConvertIntToDecimalStringN(gStringVar3, GetContestantCaughtLevel(contestantId), 0, 3);
+    str = StringExpandPlaceholders(gStringVar4, sFirstPlaceString_Part1);
+    GetSpeciesName(gStringVar1, GetContestantCaughtSpecies(contestantId));
+    str = StringExpandPlaceholders(str, sFirstPlaceString_Part2);
+    if (GetContestantCaughtShiny(contestantId))
+        str = StringCopy(str, sFirstPlaceString_Shiny);
+}
+
+static void BuildBugContestPlacementString_SecondPlace(void)
+{
+    static const u8 sSecondPlaceString_Part1[] = _("The runner-up was {STR_VAR_1}\n{STR_VAR_2} who caught a level {STR_VAR_3}\l");
+    static const u8 sSecondPlaceString_Part2[] = _("{STR_VAR_1}!");
+    u8 *str;
+    int contestantId = gBugCatchingContestStandings[1];
+
+    StringCopy(gStringVar1, GetContestantNamePrefix(contestantId));
+    StringCopy(gStringVar2, GetContestantName(contestantId));
+    ConvertIntToDecimalStringN(gStringVar3, GetContestantCaughtLevel(contestantId), 0, 3);
+    str = StringExpandPlaceholders(gStringVar4, sSecondPlaceString_Part1);
+    GetSpeciesName(gStringVar1, GetContestantCaughtSpecies(contestantId));
+    str = StringExpandPlaceholders(str, sSecondPlaceString_Part2);
+}
+
+static void BuildBugContestPlacementString_ThirdPlace(void)
+{
+    static const u8 sThirdPlaceString_Part1[] = _("Placing third was {STR_VAR_1}\n{STR_VAR_2} who caught a level {STR_VAR_3}\l");
+    static const u8 sThirdPlaceString_Part2[] = _("{STR_VAR_1}!");
+    u8 *str;
+    int contestantId = gBugCatchingContestStandings[2];
+
+    StringCopy(gStringVar1, GetContestantNamePrefix(contestantId));
+    StringCopy(gStringVar2, GetContestantName(contestantId));
+    ConvertIntToDecimalStringN(gStringVar3, GetContestantCaughtLevel(contestantId), 0, 3);
+    str = StringExpandPlaceholders(gStringVar4, sThirdPlaceString_Part1);
+    GetSpeciesName(gStringVar1, GetContestantCaughtSpecies(contestantId));
+    str = StringExpandPlaceholders(str, sThirdPlaceString_Part2);
+}
+
+void BuildBugContestPlacementString(void)
+{
+    if (gSpecialVar_0x8004 == 1)
+        BuildBugContestPlacementString_FirstPlace();
+    else if (gSpecialVar_0x8004 == 2)
+        BuildBugContestPlacementString_SecondPlace();
+    else
+        BuildBugContestPlacementString_ThirdPlace();
+}
+
+void CopyBugContestPlacementScoreToVar1(void)
+{
+    ConvertIntToDecimalStringN(gStringVar1, GetContestantScore(gBugCatchingContestStandings[gSpecialVar_0x8004 - 1]), 0, 3);
+}
+
+u8 GetPlayerBugContestPlace(void)
+{
+    int i;
+    int playerId = NUM_BUG_CONTEST_NPCS;
+    for (i = 0; i < ARRAY_COUNT(gBugCatchingContestStandings); i++)
+    {
+        if (gBugCatchingContestStandings[i] == playerId)
+            return i + 1;
     }
 }
 

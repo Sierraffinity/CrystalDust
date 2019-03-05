@@ -184,7 +184,8 @@
         "Route29_Gatehouse",
         "NationalParkGateSouth",
         "NationalParkContest",
-        "NationalPark"
+        "NationalPark",
+        "NationalParkGateEast"
     ],
     "gMapGroup18": [
         "Route30_BerryMansHouse",

@@ -540,3 +540,11 @@ gSpecials:: @ 81DBA64
 	def_special SelectBugCatchingContestMon
 	def_special EnterBugCatchingContest
 	def_special PlaceBugCatchingContestEventObjects
+	def_special DetermineBugCatchingContestStandings
+	def_special BuildBugContestPlacementString
+	def_special CopyBugContestPlacementScoreToVar1
+	def_special SetAwardsCeremonyBugContestEventObjectGraphics
+	def_special GetPlayerBugContestPlace
+	def_special DetermineBugCatchingContestPrize
+	def_special EndBugCatchingContest
+	def_special GiveCaughtBugCatchingContestMon

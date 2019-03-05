@@ -28,10 +28,10 @@ NationalParkGateSouth_OnFrame_EndContestPrompt:
 	applymovement 3, NationalParkGateSouth_Movement_EndContestOfficerMovement
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE
-	msgbox NationalParkGateSouth_Text_DoYouWantToFinish, MSGBOX_YESNO
+	msgbox NationalParkGate_Text_DoYouWantToFinish, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_ne NationalParkGateSouth_EndContest
-	msgbox NationalParkGateSouth_Text_GetBackOutside, MSGBOX_DEFAULT
+	msgbox NationalParkGate_Text_GetBackOutside, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateSouth_Movement_ReEnterContest
 	waitmovement 0
@@ -44,7 +44,7 @@ NationalParkGateSouth_EndContest:
 	msgbox NationalParkGateSouth_Text_WaitAtNorthGate, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_BUG_CATCHING_CONTEST_STATE, 2
-	warp MAP_NATIONAL_PARK_CONTEST, 0, -1, -1
+	warp MAP_NATIONAL_PARK_GATE_EAST, 0, -1, -1
 	waitstate
 	release
 	end
@@ -64,37 +64,13 @@ NationalParkGateSouth_Movement_ReEnterContest:
 NationalParkGateSouth_BugContestOfficer::
 	lock
 	faceplayer
-	goto_if_set FLAG_DAILY_BUG_CATCHING_CONTEST, NationalParkGateSouth_BugContestOfficer_ContestIfOver
-	special CopyCurrentDayOfWeekStringToVar1
-	msgbox NationalParkGateSouth_Text_ContestIntro, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq NationalParkGateSouth_BugContestOfficer_SaidNoToParticipating
-	msgbox NationalParkGateSouth_Text_ChoosePokemon, MSGBOX_DEFAULT
-	special SavePlayerParty
-	fadescreen 1
-	special SelectBugCatchingContestMon
-	waitstate
-	compare VAR_RESULT, 0
-	goto_if_ne NationalParkGateSouth_BugContestOfficer_ChosePokemon
-	special LoadPlayerParty
-	msgbox NationalParkGateSouth_Text_ComeSeeMeLater, MSGBOX_DEFAULT
+	call BugContestOfficer_EnterContest
+	compare VAR_RESULT, 1
+	goto_if_eq NationalParkGateSouth_BugContestOfficer_EnterDoor
 	release
 	end
 
-NationalParkGateSouth_BugContestOfficer_ChosePokemon:
-	special ReducePlayerPartyToSelectedMons
-	setvar VAR_0x8004, 2
-	setvar VAR_0x8005, 4
-	special CallFrontierUtilFunc
-	msgbox NationalParkGateSouth_Text_HereAreTheParkBalls, MSGBOX_DEFAULT
-	playfanfare MUS_FANFA4
-	message NationalParkGateSouth_Text_ReceivedParkBalls
-	waitfanfare
-	msgbox NationalParkGateSouth_Text_SendOff, MSGBOX_DEFAULT
-	closemessage
-	setflag FLAG_DAILY_BUG_CATCHING_CONTEST
-	setvar VAR_BUG_CATCHING_CONTEST_STATE, 1
-	special EnterBugCatchingContest
+NationalParkGateSouth_BugContestOfficer_EnterDoor:
 	switch VAR_FACING
 	case 2, NationalParkGateSouth_BugContestOfficer_EnterContestFromBelow
 	case 3, NationalParkGateSouth_BugContestOfficer_EnterContestFromRight
@@ -122,21 +98,11 @@ NationalParkGateSouth_Youngster::
 	end
 
 NationalParkGateSouth_NoContestOfficer::
-	msgbox NationalParkGateSouth_Text_WeHoldContests, MSGBOX_NPC
+	msgbox NationalParkGate_Text_WeHoldContests, MSGBOX_NPC
 	end
 
-NationalParkGateSouth_ContestSign::
+NationalParkGate_ContestSign::
 	msgbox NationalParkGateSouth_Text_ContestInfo, MSGBOX_SIGN
-	end
-
-NationalParkGateSouth_BugContestOfficer_SaidNoToParticipating:
-	msgbox NationalParkGateSouth_Text_TakePartInFuture, MSGBOX_DEFAULT
-	release
-	end
-
-NationalParkGateSouth_BugContestOfficer_ContestIfOver:
-	msgbox NationalParkGateSouth_Text_ContestIsOver, MSGBOX_DEFAULT
-	release
 	end
 
 NationalParkGateSouth_Movement_EnterContestFromBelow:
@@ -157,76 +123,26 @@ NationalParkGateSouth_Movement_EnterContestFromLeft:
 	walk_up
 	step_end
 
-NationalParkGateSouth_Text_DoYouWantToFinish:
-	.string "The contest is still going\n"
-	.string "for another XX minutes.\p"
+NationalParkGate_Text_DoYouWantToFinish:
+	.string "The contest is still going for\n"
+	.string "another XX minutes.\p"
 	.string "Do you want to finish now?$"
 
 NationalParkGateSouth_Text_WaitAtNorthGate:
 	.string "Ok. Please wait at the North Gate\n"
 	.string "for the awards ceremony.$"
 
-NationalParkGateSouth_Text_GetBackOutside:
-	.string "Ok. Please get back outside\n"
-	.string "and finish up.$"
-
-NationalParkGateSouth_Text_ContestIntro:
-	.string "Today is {STR_VAR_1}.\p"
-	.string "That means the Bug-Catching\n"
-	.string "Contest is on today.\p"
-	.string "The rules are simple.\p"
-	.string "Using one of your POKéMON,\n"
-	.string "catch a bug POKéMON to be\l"
-	.string "judged.\p"
-	.string "Would you like to give it\n"
-	.string "a try?$"
-
-NationalParkGateSouth_Text_TakePartInFuture:
-	.string "Ok. We hope you'll take part\n"
-	.string "in the future.$"
-
-NationalParkGateSouth_Text_ContestIsOver:
-	.string "Today's bug catching contest is\n"
-	.string "over.\p"
-	.string "We hope you will participate\n"
-	.string "in the future.$"
-
-NationalParkGateSouth_Text_ChoosePokemon:
-	.string "Please choose one POKéMON to\n"
-	.string "bring into the contest.\p"
-	.string "We'll hold onto the others\n"
-	.string "until the contest is finshed.$"
-
-NationalParkGateSouth_Text_ComeSeeMeLater:
-	.string "Come see me again if you decide\n"
-	.string "to participate in the contest.$"
-
-NationalParkGateSouth_Text_HereAreTheParkBalls:
-	.string "Here are the PARK BALLS for\n"
-	.string "the contest.$"
-
-NationalParkGateSouth_Text_ReceivedParkBalls:
-	.string "{PLAYER} received 20 PARK BALLS.$"
-
-NationalParkGateSouth_Text_SendOff:
-	.string "The person who catches the\n"
-	.string "best bug POKéMON will be\l"
-	.string "the winner.\p"
-	.string "You have 20 minutes.\p"
-	.string "If you run out of PARK BALLS,\n"
-	.string "you're done.\p"
-	.string "You can keep the last POKéMON\n"
-	.string "you catch as your own.\p"
-	.string "Go out and catch the best bug\n"
-	.string "POKéMON you can find!$"
+NationalParkGate_Text_GetBackOutside:
+	.string "Ok. Please get back outside and\n"
+	.string "finish up.$"
 
 NationalParkGateSouth_Text_WhenIsContest:
 	.string "When is the next Bug-Catching\n"
 	.string "Contest going to be?$"
 
-NationalParkGateSouth_Text_WeHoldContests:
-	.string "We hold Contests regularly in\n"
-	.string "the PARK.\p"
+NationalParkGate_Text_WeHoldContests::
+	.string "We hold Contests regularly in the\n"
+	.string "PARK.\p"
 	.string "You should give it a shot.$"
 
 NationalParkGateSouth_Text_ContestInfo:

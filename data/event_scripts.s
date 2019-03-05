@@ -7754,3 +7754,5 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/NationalParkContest/scripts.inc"
 
 	.include "data/maps/NationalPark/scripts.inc"
+
+	.include "data/maps/NationalParkGateEast/scripts.inc"

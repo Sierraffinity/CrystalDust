@@ -52,16 +52,16 @@ NationalParkContest_Text_William::
 	.string "I'm just looking for rare POKéMON.$"
 
 NationalParkContest_Text_Samuel::
-	.string "SAMUEL: If you've got the time\n"
-	.string "to chat, go find some bug POKéMON.$"
+	.string "SAMUEL: If you've got the time to\n"
+	.string "chat, go find some bug POKéMON.$"
 
 NationalParkContest_Text_Barry::
 	.string "BARRY: You should weaken bug\n"
 	.string "POKéMON first, then throw a BALL.$"
 
 NationalParkContest_Text_Ed::
-	.string "ED: My PARASECT puts POKéMON\n"
-	.string "to sleep with SPORE.$"
+	.string "ED: My PARASECT puts POKéMON to\n"
+	.string "sleep with SPORE.$"
 
 NationalParkContest_Text_Benny::
 	.string "BENNY: Ssh! You'll scare off\n"
@@ -78,8 +78,8 @@ NationalParkContest_Text_Don::
 	.string "Don't bother me.$"
 
 NationalParkContest_Text_Kipp::
-	.string "KIPP: I've studied bug POKéMON\n"
-	.string "a lot.\p"
+	.string "KIPP: I've studied bug POKéMON a\n"
+	.string "lot.\p"
 	.string "I'm going to win for sure.$"
 
 NationalParkContest_Text_Cindy::

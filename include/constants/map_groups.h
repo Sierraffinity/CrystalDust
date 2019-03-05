@@ -267,6 +267,7 @@
 #define MAP_NATIONAL_PARK_GATE_SOUTH (1 | (17 << 8))
 #define MAP_NATIONAL_PARK_CONTEST    (2 | (17 << 8))
 #define MAP_NATIONAL_PARK            (3 | (17 << 8))
+#define MAP_NATIONAL_PARK_GATE_EAST  (4 | (17 << 8))
 
 // Map Group 18
 #define MAP_ROUTE30_BERRY_MANS_HOUSE     (0 | (18 << 8))

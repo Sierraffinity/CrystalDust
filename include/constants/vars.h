@@ -94,7 +94,7 @@
 #define VAR_POKELOT_RND1           0x404B
 #define VAR_POKELOT_RND2           0x404C
 #define VAR_0x404D                 0x404D
-#define VAR_0x404E                 0x404E
+#define VAR_BUG_CONTEST_PRIZE      0x404E
 #define VAR_LOTAD_SIZE_RECORD      0x404F
 #define VAR_0x4050                 0x4050
 #define VAR_0x4051                 0x4051
