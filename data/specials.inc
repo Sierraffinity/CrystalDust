@@ -548,3 +548,6 @@ gSpecials:: @ 81DBA64
 	def_special DetermineBugCatchingContestPrize
 	def_special EndBugCatchingContest
 	def_special GiveCaughtBugCatchingContestMon
+	def_special IsPlayerPartyAndPokemonStorageFull
+	def_special CopyBugCatchingContestRemainingMinutesToVar1
+	def_special GetWinningBugContestSpecies

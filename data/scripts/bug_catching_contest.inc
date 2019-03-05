@@ -1,10 +1,12 @@
+EventScript_BugContest_WhiteOut::
+	special HealPlayerParty
 EventScript_RanOutOfParkBalls::
-	setwarp MAP_NEW_BARK_TOWN, -1, 3, 3
+	setvar VAR_BUG_CATCHING_CONTEST_STATE, 2
+	setwarp MAP_NATIONAL_PARK_GATE_EAST, 0, -1, -1
 	end
 
 EventScript_CaughtButRanOutOfParkBalls::
 	lockall
-	playse SE_PINPON
 	message Text_BugCatchingContestRanOutOfParkBalls
 	waitmessage
 	waitbuttonpress
@@ -13,7 +15,6 @@ EventScript_CaughtButRanOutOfParkBalls::
 
 EventScript_BugCatchingContestTimeExpired::
 	lockall
-	playse SE_PINPON
 	message Text_BugCatchingContestTimeExpired
 	waitmessage
 	waitbuttonpress
@@ -48,6 +49,9 @@ BugContestOfficer_EnterContest::
 	msgbox BugContestOfficer_Text_ContestIntro, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq BugContestOfficer_SaidNoToParticipating
+	specialvar VAR_RESULT, IsPlayerPartyAndPokemonStorageFull
+	compare VAR_RESULT, 1
+	goto_if_eq BugContestOfficer_PartyAndBoxFull
 	msgbox BugContestOfficer_Text_ChoosePokemon, MSGBOX_DEFAULT
 	special SavePlayerParty
 	fadescreen 1
@@ -100,12 +104,19 @@ BugContestOfficer_SaidNoToParticipating:
 	setvar VAR_RESULT, 0
 	return
 
+BugContestOfficer_PartyAndBoxFull:
+	msgbox BugContestOfficer_Text_PartyAndBoxFull, MSGBOX_DEFAULT
+	setvar VAR_RESULT, 0
+	return
+
 Text_BugCatchingContestRanOutOfParkBalls:
 	.string "You ran out of PARK BALLs.$"
 
 Text_BugCatchingContestTimeExpired:
-	.string "Time's up for the bug\n"
-	.string "catching contest.$"
+	.string "Time's up for the Bug-Catching\n"
+	.string "Contest!\p"
+	.string "All contestants should report to\n"
+	.string "to the North Gate.$"
 
 Text_StartMenu_ExitBugCatchingContest:
 	.string "Would you like to end the Bug\n"
@@ -157,6 +168,13 @@ BugContestOfficer_Text_ContestIsOver::
 BugContestOfficer_Text_TakePartInFuture:
 	.string "Ok. We hope you'll take part in the\n"
 	.string "future.$"
+
+BugContestOfficer_Text_PartyAndBoxFull:
+	.string "Sorry, but you have no more room in\n"
+	.string "your party or PC, so you won't be\l"
+	.string "able to catch any bug POKéMON!\p"
+	.string "Come back later when you have\n"
+	.string "room.$"
 
 BugContestOfficer_Text_GivePrizeItem:
 	.string "{PLAYER}, I have your prize\n"

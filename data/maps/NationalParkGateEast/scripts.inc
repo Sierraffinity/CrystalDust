@@ -38,7 +38,11 @@ NationalParkGateEast_OnFrame_EndContestPrompt:
 	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateEast_Movement_EndContestPlayerMovement
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE
-	msgbox NationalParkGate_Text_DoYouWantToFinish, MSGBOX_YESNO
+	specialvar VAR_RESULT, CopyBugCatchingContestRemainingMinutesToVar1
+	compare VAR_RESULT, 0
+	call_if_eq NationalParkGate_DoYouWantToFinishOneMinute
+	compare VAR_RESULT, 1
+	call_if_eq NationalParkGate_DoYouWantToFinishMinutes
 	compare VAR_RESULT, 0
 	goto_if_ne NationalParkGateEast_EndContest
 	msgbox NationalParkGate_Text_GetBackOutside, MSGBOX_DEFAULT
@@ -132,11 +136,17 @@ NationalParkGateEast_OnFrame_AwardsCeremony:
 	special BuildBugContestPlacementString
 	message gStringVar4
 	waitmessage
+	specialvar VAR_RESULT, GetWinningBugContestSpecies
+	compare VAR_0x8005, 0
+	call_if_eq NationalParkGateEast_DrawNormalMonPic
+	compare VAR_0x8005, 1
+	call_if_eq NationalParkGateEast_DrawShinyMonPic
 	playfanfare MUS_FANFA5
 	waitfanfare
 	special CopyBugContestPlacementScoreToVar1
 	message NationalParkGateEast_Text_TheWinningScoreWas
 	waitmessage
+	erasemonpic
 	specialvar VAR_0x8004, DetermineBugCatchingContestPrize
 	copyvar VAR_BUG_CONTEST_PRIZE, VAR_0x8004
 	specialvar VAR_RESULT, GetPlayerBugContestPlace
@@ -187,6 +197,14 @@ NationalParkGateEast_ConcludeAwardsCeremony:
 	special RemoveCameraObject
 	release
 	end
+
+NationalParkGateEast_DrawNormalMonPic:
+	drawmonpic VAR_RESULT, 10, 3
+	return
+
+NationalParkGateEast_DrawShinyMonPic:
+	drawmonpic VAR_RESULT, 10, 3, 1
+	return
 
 NationalParkGateEast_MonAddedToParty:
 	msgbox NationalParkGateEast_Text_AddedToParty, MSGBOX_DEFAULT
@@ -362,7 +380,7 @@ NationalParkGateEast_Text_SecondPrize:
 	.string "{STR_VAR_1}!\p$"
 
 NationalParkGateEast_Text_ThirdPrize:
-	.string "{PLAYER}, wins the third-place prize\n"
+	.string "{PLAYER} wins the third-place prize\n"
 	.string "of a sweet {STR_VAR_1}!\p$"
 
 NationalParkGateEast_Text_NoRoomInBag:

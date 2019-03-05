@@ -21,6 +21,7 @@ u8 GetPlayerBugContestPlace(void);
 void PlaceBugCatchingContestEventObjects(void);
 void CB2_EndBugCatchingContestBattle(void);
 void DoSwapBugContestMonScreen(struct Pokemon *newMon, MainCallback returnCallback);
+bool8 CheckBugCatchingContestTimerExpired(void);
 
 extern u8 gNumParkBalls;
 extern u8 gBugCatchingContestStatus;

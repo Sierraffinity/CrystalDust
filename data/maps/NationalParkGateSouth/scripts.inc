@@ -28,7 +28,11 @@ NationalParkGateSouth_OnFrame_EndContestPrompt:
 	applymovement 3, NationalParkGateSouth_Movement_EndContestOfficerMovement
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE
-	msgbox NationalParkGate_Text_DoYouWantToFinish, MSGBOX_YESNO
+	specialvar VAR_RESULT, CopyBugCatchingContestRemainingMinutesToVar1
+	compare VAR_RESULT, 0
+	call_if_eq NationalParkGate_DoYouWantToFinishOneMinute
+	compare VAR_RESULT, 1
+	call_if_eq NationalParkGate_DoYouWantToFinishMinutes
 	compare VAR_RESULT, 0
 	goto_if_ne NationalParkGateSouth_EndContest
 	msgbox NationalParkGate_Text_GetBackOutside, MSGBOX_DEFAULT
@@ -39,6 +43,14 @@ NationalParkGateSouth_OnFrame_EndContestPrompt:
 	waitstate
 	release
 	end
+
+NationalParkGate_DoYouWantToFinishMinutes:
+	msgbox NationalParkGate_Text_DoYouWantToFinish, MSGBOX_YESNO
+	return
+
+NationalParkGate_DoYouWantToFinishOneMinute:
+	msgbox NationalParkGate_Text_DoYouWantToFinishOneMinute, MSGBOX_YESNO
+	return
 
 NationalParkGateSouth_EndContest:
 	msgbox NationalParkGateSouth_Text_WaitAtNorthGate, MSGBOX_DEFAULT
@@ -98,7 +110,17 @@ NationalParkGateSouth_Youngster::
 	end
 
 NationalParkGateSouth_NoContestOfficer::
-	msgbox NationalParkGate_Text_WeHoldContests, MSGBOX_NPC
+	lock
+	faceplayer
+	compare VAR_BUG_CONTEST_PRIZE, ITEM_NONE
+	goto_if_ne NationalParkGateSouth_NoContestOfficer_GivePrize
+	msgbox NationalParkGate_Text_WeHoldContests, MSGBOX_DEFAULT
+	release
+	end
+
+NationalParkGateSouth_NoContestOfficer_GivePrize:
+	call BugContestOfficer_GivePrizeItem
+	release
 	end
 
 NationalParkGate_ContestSign::
@@ -125,7 +147,12 @@ NationalParkGateSouth_Movement_EnterContestFromLeft:
 
 NationalParkGate_Text_DoYouWantToFinish:
 	.string "The contest is still going for\n"
-	.string "another XX minutes.\p"
+	.string "another {STR_VAR_1} minutes.\p"
+	.string "Do you want to finish now?$"
+
+NationalParkGate_Text_DoYouWantToFinishOneMinute:
+	.string "The contest is still going for\n"
+	.string "another minute or so.\p"
 	.string "Do you want to finish now?$"
 
 NationalParkGateSouth_Text_WaitAtNorthGate:

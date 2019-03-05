@@ -878,11 +878,12 @@
 	.endm
 
 	@ Displays a box containing the front sprite for the specified (species) Pokemon species.
-	.macro drawmonpic species:req, x:req, y:req
+	.macro drawmonpic species:req, x:req, y:req, shiny=0
 	.byte 0x75
 	.2byte \species
 	.byte \x
 	.byte \y
+	.byte \shiny
 	.endm
 
 	@ Hides all boxes displayed with drawmonpic.

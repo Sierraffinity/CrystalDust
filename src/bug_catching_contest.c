@@ -20,6 +20,7 @@
 #include "pokemon_icon.h"
 #include "day_night.h"
 #include "random.h"
+#include "rtc.h"
 #include "script.h"
 #include "sprite.h"
 #include "string_util.h"
@@ -66,12 +67,18 @@ extern const u8 NationalParkGateEast_KippPlayerWon[];
 extern const u8 NationalParkGateEast_KippPlayerLost[];
 extern const u8 NationalParkGateEast_CindyPlayerWon[];
 extern const u8 NationalParkGateEast_CindyPlayerLost[];
+extern const u8 EventScript_BugContest_WhiteOut[];
+extern const u8 EventScript_RanOutOfParkBalls[];
+extern const u8 EventScript_BugCatchingContestTimeExpired[];
+extern const u8 EventScript_CaughtButRanOutOfParkBalls[];
+extern const u8 BugCatchingContest_StartMenuPrompt[];
 extern const u8 gTrainerClassNames[][13];
 
 #define NUM_BUG_CONTEST_NPCS 5
 
 // The maximum score for a mon is only 400, so shiny mmons trump normal mons.
 #define SHINY_SCORE_INCREASE 500
+#define BUG_CONTEST_DURATION_SECONDS 1200
 
 enum
 {
@@ -116,15 +123,12 @@ struct BugCatchingContestSwapScreen
 
 EWRAM_DATA u8 gNumParkBalls = 0;
 EWRAM_DATA u8 gBugCatchingContestStatus = 0;
-EWRAM_DATA struct Pokemon gCaughtBugCatchingContestMon = {0};
 EWRAM_DATA u16 gPlayerBugCatchingContestScore = 0;
+EWRAM_DATA struct Pokemon gCaughtBugCatchingContestMon = {0};
 EWRAM_DATA struct BugCatchingContestNPC gBugCatchingContestNPCs[NUM_BUG_CONTEST_NPCS] = {0};
 EWRAM_DATA struct BugCatchingContestSwapScreen *sSwapScreen = NULL;
 EWRAM_DATA u8 gBugCatchingContestStandings[NUM_BUG_CONTEST_NPCS + 1] = {0};
-
-extern const u8 EventScript_RanOutOfParkBalls[];
-extern const u8 EventScript_CaughtButRanOutOfParkBalls[];
-extern const u8 BugCatchingContest_StartMenuPrompt[];
+EWRAM_DATA u32 gBugCatchingContestStartSeconds = 0;
 
 static void GenerateBugCatchingContestNPCMons();
 static void InitBugContestNPCs(void);
@@ -362,6 +366,48 @@ void EnterBugCatchingContest(void)
     gBugCatchingContestStatus = BUG_CATCHING_CONTEST_STATUS_NOT_CAUGHT;
     gNumParkBalls = 20;
     InitBugContestNPCs();
+    RtcCalcLocalTime();
+    gBugCatchingContestStartSeconds = GetTotalSeconds(&gLocalTime);
+}
+
+bool8 CheckBugCatchingContestTimerExpired(void)
+{
+    u32 curSeconds;
+
+    if (gBugCatchingContestStatus != BUG_CATCHING_CONTEST_STATUS_OFF
+     && gMain.vblankCounter1 % 60 == 0)
+    {
+        // Check if 20 minutes has passsed since the contest started.
+        RtcCalcLocalTime();
+        curSeconds = GetTotalSeconds(&gLocalTime);
+        if (curSeconds - gBugCatchingContestStartSeconds > BUG_CONTEST_DURATION_SECONDS)
+        {
+            ScriptContext1_SetupScript(EventScript_BugCatchingContestTimeExpired);
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+bool8 CopyBugCatchingContestRemainingMinutesToVar1(void)
+{
+    u32 curSeconds;
+    int remainingSeconds;
+    int remainingMinutes;
+
+    RtcCalcLocalTime();
+    curSeconds = GetTotalSeconds(&gLocalTime);
+    remainingSeconds = BUG_CONTEST_DURATION_SECONDS - (curSeconds - gBugCatchingContestStartSeconds);
+    if (remainingSeconds % 60 >= 30)
+        remainingSeconds += 30;
+
+    remainingMinutes = remainingSeconds / 60;
+    if (remainingMinutes < 0)
+        remainingMinutes = 0;
+
+    ConvertIntToDecimalStringN(gStringVar1, remainingMinutes, 0, 3);
+    return remainingMinutes > 1;
 }
 
 void GiveCaughtBugCatchingContestMon(void)
@@ -399,6 +445,7 @@ void TryEndBugCatchingContest(void)
         gSpecialVar_0x8004 = 6;
         CallFrontierUtilFunc();
         LoadPlayerParty();
+        VarSet(VAR_BUG_CATCHING_CONTEST_STATE, 0);
     }
 }
 
@@ -476,7 +523,10 @@ void CB2_EndBugCatchingContestBattle(void)
 
     if (IsPlayerDefeated(gBattleOutcome))
     {
-        SetMainCallback2(CB2_WhiteOut);
+        ScriptContext2_RunNewScript(EventScript_BugContest_WhiteOut);
+        WarpIntoMap();
+        gFieldCallback = sub_80AF6F0;
+        SetMainCallback2(CB2_LoadMap);
     }
     else if (gNumParkBalls > 0)
     {
@@ -1018,6 +1068,12 @@ u8 GetPlayerBugContestPlace(void)
     }
 }
 
+u16 GetWinningBugContestSpecies(void)
+{
+    gSpecialVar_0x8005 = GetContestantCaughtShiny(gBugCatchingContestStandings[0]);
+    return GetContestantCaughtSpecies(gBugCatchingContestStandings[0]);
+}
+
 /////////////////////////////////
 // Swapping Screen             //
 /////////////////////////////////
@@ -1105,6 +1161,7 @@ static void InitSwapScreenSprites(void)
 
 static void InitSwapScreenWindows(void)
 {
+    u8 *hpStr;
     sSwapScreen->stockMonWindowId = AddWindow(&sStockMonWindowTemplate);
     sSwapScreen->newMonWindowId = AddWindow(&sNewMonWindowTemplate);
     LoadMessageBoxGfx(sSwapScreen->stockMonWindowId, 0x200, 0xC0);
@@ -1120,13 +1177,17 @@ static void InitSwapScreenWindows(void)
 
     GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
     ConvertIntToDecimalStringN(gStringVar2, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_LEVEL), STR_CONV_MODE_LEFT_ALIGN, 3);
-    ConvertIntToDecimalStringN(gStringVar3, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
+    hpStr = ConvertIntToDecimalStringN(gStringVar3, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
+    *(hpStr++) = CHAR_SLASH;
+    ConvertIntToDecimalStringN(hpStr, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, sStockMonText);
     AddTextPrinterParameterized(sSwapScreen->stockMonWindowId, 1, gStringVar4, 0, 1, 0, NULL);
 
     GetSpeciesName(gStringVar1, GetMonData(sSwapScreen->newMon, MON_DATA_SPECIES));
     ConvertIntToDecimalStringN(gStringVar2, GetMonData(sSwapScreen->newMon, MON_DATA_LEVEL), STR_CONV_MODE_LEFT_ALIGN, 3);
-    ConvertIntToDecimalStringN(gStringVar3, GetMonData(sSwapScreen->newMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
+    hpStr = ConvertIntToDecimalStringN(gStringVar3, GetMonData(sSwapScreen->newMon, MON_DATA_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
+    *(hpStr++) = CHAR_SLASH;
+    ConvertIntToDecimalStringN(hpStr, GetMonData(sSwapScreen->newMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, sNewMonText);
     AddTextPrinterParameterized(sSwapScreen->newMonWindowId, 1, gStringVar4, 0, 1, 0, NULL);
 
