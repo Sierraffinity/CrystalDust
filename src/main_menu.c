@@ -150,20 +150,20 @@ extern const union AffineAnimCmd *const gUnknown_082FF694[];
 
 // .rodata
 
-static const u16 sOakSpeechBgPal[] = INCBIN_U16("graphics/birch_speech/bg0.gbapal");
+static const u16 sOakSpeechBgPal[] = INCBIN_U16("graphics/oak_speech/bg0.gbapal");
 
-static const u32 sOakSpeechBgGfx[] = INCBIN_U32("graphics/birch_speech/bg0.4bpp.lz");
-static const u32 sOakSpeechBgMap[] = INCBIN_U32("graphics/birch_speech/map.bin.lz");
+static const u32 sOakSpeechBgGfx[] = INCBIN_U32("graphics/oak_speech/bg0.4bpp.lz");
+static const u32 sOakSpeechBgMap[] = INCBIN_U32("graphics/oak_speech/map.bin.lz");
 
-static const u32 gOakIntroPlatformGfx[] = INCBIN_U32("graphics/birch_speech/platform.4bpp.lz");
-static const u16 gOakIntroPlatformPal[] = INCBIN_U16("graphics/birch_speech/platform.gbapal");
+static const u32 gOakIntroPlatformGfx[] = INCBIN_U32("graphics/oak_speech/platform.4bpp.lz");
+static const u16 gOakIntroPlatformPal[] = INCBIN_U16("graphics/oak_speech/platform.gbapal");
 
-static const u16 sOakIntro_GoldPal[] = INCBIN_U16("graphics/birch_speech/gold.gbapal");
-static const u16 sOakIntro_KrisPal[] = INCBIN_U16("graphics/birch_speech/kris.gbapal");
-static const u16 sOakIntro_OakPal[] = INCBIN_U16("graphics/birch_speech/oak.gbapal");
-static const u32 sOakIntro_GoldTiles[] = INCBIN_U32("graphics/birch_speech/gold.8bpp.lz");
-static const u32 sOakIntro_KrisTiles[] = INCBIN_U32("graphics/birch_speech/kris.8bpp.lz");
-static const u32 sOakIntro_OakTiles[] = INCBIN_U32("graphics/birch_speech/oak.8bpp.lz");
+static const u16 sOakIntro_GoldPal[] = INCBIN_U16("graphics/oak_speech/gold.gbapal");
+static const u16 sOakIntro_KrisPal[] = INCBIN_U16("graphics/oak_speech/kris.gbapal");
+static const u16 sOakIntro_OakPal[] = INCBIN_U16("graphics/oak_speech/oak.gbapal");
+static const u32 sOakIntro_GoldTiles[] = INCBIN_U32("graphics/oak_speech/gold.8bpp.lz");
+static const u32 sOakIntro_KrisTiles[] = INCBIN_U32("graphics/oak_speech/kris.8bpp.lz");
+static const u32 sOakIntro_OakTiles[] = INCBIN_U32("graphics/oak_speech/oak.8bpp.lz");
 
 #define MENU_LEFT 3
 #define MENU_TOP_WIN0 1
