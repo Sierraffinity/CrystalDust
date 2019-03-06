@@ -3308,6 +3308,8 @@ EventScript_Poison:: @ 82736BC
 	goto_if_eq EventScript_2736D9
 	compare VAR_RESULT, 2
 	goto_if_eq EventScript_2736F8
+	compare VAR_RESULT, 3
+	goto_if_eq EventScript_Poison_BugCatchingContest
 	releaseall
 	end
 
@@ -3351,6 +3353,12 @@ EventScript_2736F8:: @ 82736F8
 	special sp0C8_whiteout_maybe
 	waitstate
 	end
+
+EventScript_Poison_BugCatchingContest::
+	message gUnknown_08272DE3
+	waitmessage
+	waitbuttonpress
+	goto EventScript_WarpOutOfBugCatchingContestHeal
 
 AncientTomb_EventScript_27374E:: @ 827374E
 AquaHideout_B1F_EventScript_27374E:: @ 827374E

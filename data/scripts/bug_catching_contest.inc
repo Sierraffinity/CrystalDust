@@ -21,6 +21,8 @@ EventScript_BugCatchingContestTimeExpired::
 	releaseall
 	goto EventScript_WarpOutOfBugCatchingContest
 
+EventScript_WarpOutOfBugCatchingContestHeal::
+	special HealPlayerParty
 EventScript_WarpOutOfBugCatchingContest::
 	setvar VAR_BUG_CATCHING_CONTEST_STATE, 2
 	warp MAP_NATIONAL_PARK_GATE_EAST, 0, -1, -1
