@@ -1,6 +1,7 @@
 #include "global.h"
 #include "constants/trainers.h"
 #include "battle.h"
+#include "bug_catching_contest.h"
 #include "constants/battle_setup.h"
 #include "battle_setup.h"
 #include "battle_transition.h"
@@ -70,6 +71,7 @@ extern void sub_80AF6F0(void);
 // this file's functions
 static void DoBattlePikeWildBattle(void);
 static void DoSafariBattle(void);
+static void DoBugCatchingContestBattle(void);
 static void DoStandardWildBattle(void);
 static void CB2_EndWildBattle(void);
 static void CB2_EndScriptedWildBattle(void);
@@ -81,7 +83,6 @@ static void CB2_GiveStarter(void);
 static void CB2_StartFirstBattle(void);
 static void CB2_EndFirstBattle(void);
 static void CB2_EndTrainerBattle(void);
-static bool32 IsPlayerDefeated(u32 battleOutcome);
 static u16 GetRematchTrainerId(u16 trainerId);
 static void RegisterTrainerInPhone(void);
 static void HandleRematchVarsOnBattleEnd(void);
@@ -367,6 +368,8 @@ void BattleSetup_StartWildBattle(void)
 {
     if (GetSafariZoneFlag())
         DoSafariBattle();
+    else if (InBugCatchingContest())
+        DoBugCatchingContestBattle();
     else
         DoStandardWildBattle();
 }
@@ -439,6 +442,20 @@ static void DoTrainerBattle(void)
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_TRAINER_BATTLES);
     sub_80B1234();
+}
+
+static void DoBugCatchingContestBattle(void)
+{
+    ScriptContext2_Enable();
+    FreezeEventObjects();
+    sub_808BCF4();
+    gMain.savedCallback = CB2_EndBugCatchingContestBattle;
+    gBattleTypeFlags = BATTLE_TYPE_BUG_CATCHING_CONTEST;
+    CreateBattleStartTask(GetWildBattleTransition(), 0);
+    IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
+    IncrementGameStat(GAME_STAT_WILD_BATTLES);
+    sub_80EECC8();
+    sub_80B1218();
 }
 
 static void sub_80B0828(void)
@@ -519,23 +536,6 @@ void BattleSetup_StartLegendaryBattle(void)
         CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_VS_MEW);
         break;
     }
-
-    IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
-    IncrementGameStat(GAME_STAT_WILD_BATTLES);
-    sub_80EECC8();
-    sub_80B1218();
-}
-
-void StartGroudonKyogreBattle(void)
-{
-    ScriptContext2_Enable();
-    gMain.savedCallback = CB2_EndScriptedWildBattle;
-    gBattleTypeFlags = BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_KYOGRE_GROUDON;
-
-    if (gGameVersion == VERSION_RUBY)
-        CreateBattleStartTask(B_TRANSITION_SHARDS, MUS_BATTLE34); // GROUDON
-    else
-        CreateBattleStartTask(B_TRANSITION_RIPPLE, MUS_BATTLE34); // KYOGRE
 
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
@@ -964,7 +964,7 @@ static u16 GetTrainerBFlag(void)
     return FLAG_TRAINER_FLAG_START + gTrainerBattleOpponent_B;
 }
 
-static bool32 IsPlayerDefeated(u32 battleOutcome)
+bool32 IsPlayerDefeated(u32 battleOutcome)
 {
     switch (battleOutcome)
     {

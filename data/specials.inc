@@ -44,6 +44,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B3968
 	def_special sub_80B3924
 	def_special CopyDayOfWeekStringToVar1
+	def_special CopyCurrentDayOfWeekStringToVar1
 	def_special sub_80B3254
 	def_special sub_80B2FD8
 	def_special GetLinkPartnerNames
@@ -321,7 +322,6 @@ gSpecials:: @ 81DBA64
 	def_special IsPokerusInParty
 	def_special SetSootopolisGymCrackedIceMetatiles
 	def_special sub_8139560
-	def_special StartGroudonKyogreBattle
 	def_special BattleSetup_StartLegendaryBattle
 	def_special StartRegiBattle
 	def_special SetUpTrainerMovement
@@ -537,3 +537,17 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B3BC4
 	def_special FieldRadio
 	def_special GetFruitTreeItem
+	def_special SelectBugCatchingContestMon
+	def_special EnterBugCatchingContest
+	def_special PlaceBugCatchingContestEventObjects
+	def_special DetermineBugCatchingContestStandings
+	def_special BuildBugContestPlacementString
+	def_special CopyBugContestPlacementScoreToVar1
+	def_special SetAwardsCeremonyBugContestEventObjectGraphics
+	def_special GetPlayerBugContestPlace
+	def_special DetermineBugCatchingContestPrize
+	def_special EndBugCatchingContest
+	def_special GiveCaughtBugCatchingContestMon
+	def_special IsPlayerPartyAndPokemonStorageFull
+	def_special CopyBugCatchingContestRemainingMinutesToVar1
+	def_special GetWinningBugContestSpecies

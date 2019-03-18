@@ -306,6 +306,7 @@ SECTIONS {
         src/fruit_tree.o(.text);
         src/card_flip.o(.text);
         src/ruins_of_alph_puzzle.o(.text);
+        src/bug_catching_contest.o(.text);
         src/debug_menu.o(.text);
     } =0
 
@@ -618,6 +619,7 @@ SECTIONS {
         src/fruit_tree.o(.rodata);
         src/card_flip.o(.rodata);
         src/ruins_of_alph_puzzle.o(.rodata);
+        src/bug_catching_contest.o(.rodata);
         src/debug_menu.o(.rodata);
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);

@@ -1487,7 +1487,7 @@
 #define FLAG_DAILY_0x920                            (SYSTEM_FLAGS + 0xC0)
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (SYSTEM_FLAGS + 0xC1)
 #define FLAG_DAILY_SECRET_BASE                      (SYSTEM_FLAGS + 0xC2)
-#define FLAG_DAILY_0x923                            (SYSTEM_FLAGS + 0xC3)
+#define FLAG_DAILY_BUG_CATCHING_CONTEST             (SYSTEM_FLAGS + 0xC3)
 #define FLAG_DAILY_0x924                            (SYSTEM_FLAGS + 0xC4)
 #define FLAG_DAILY_0x925                            (SYSTEM_FLAGS + 0xC5)
 #define FLAG_DAILY_0x926                            (SYSTEM_FLAGS + 0xC6)

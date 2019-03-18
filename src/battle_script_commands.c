@@ -1,5 +1,7 @@
 #include "global.h"
 #include "battle.h"
+#include "bug_catching_contest.h"
+#include "data2.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_script_commands.h"
 #include "battle_message.h"
@@ -48,6 +50,7 @@
 #include "battle_pyramid.h"
 #include "field_specials.h"
 #include "pokemon_summary_screen.h"
+#include "constants/rgb.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
@@ -327,6 +330,8 @@ static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
 static void atkF8_trainerslideout(void);
+static void atkF9_setcaughtbugcatchingcontestmon(void);
+static void atkFA_swapbugcatchingcontestmon(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -578,7 +583,9 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF5_removeattackerstatus1,
     atkF6_finishaction,
     atkF7_finishturn,
-    atkF8_trainerslideout
+    atkF8_trainerslideout,
+    atkF9_setcaughtbugcatchingcontestmon,
+    atkFA_swapbugcatchingcontestmon,
 };
 
 struct StatFractions
@@ -10316,7 +10323,15 @@ static void atkF2_displaydexinfo(void)
             && !gTasks[gBattleCommunication[TASK_ID]].isActive)
         {
             SetVBlankCallback(VBlankCB_Battle);
-            gBattleCommunication[0]++;
+            if (gBugCatchingContestStatus != BUG_CATCHING_CONTEST_STATUS_OFF)
+            {
+                // Skips fade-in when catching a mon in bug catching contest.
+                gBattlescriptCurrInstr++;
+            }
+            else
+            {
+                gBattleCommunication[0]++;
+            }
         }
         break;
     case 3:
@@ -10515,4 +10530,39 @@ static void atkF8_trainerslideout(void)
     MarkBattlerForControllerExec(gActiveBattler);
 
     gBattlescriptCurrInstr += 2;
+}
+
+static void atkF9_setcaughtbugcatchingcontestmon(void)
+{
+    SetCaughtBugCatchingContestMon(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]]);
+    gBattleResults.caughtMonSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_SPECIES, NULL);
+    GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, gBattleResults.caughtMonNick);
+    gBattleResults.caughtMonBall = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_POKEBALL, NULL);
+    gBattlescriptCurrInstr++;
+}
+
+static void atkFA_swapbugcatchingcontestmon(void)
+{
+    switch (gBattleCommunication[MULTIUSE_STATE])
+    {
+    case 0:
+        gBattleCommunication[MULTIUSE_STATE]++;
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        break;
+    case 1:
+        if (!gPaletteFade.active)
+        {
+            sub_80356D0();
+            gBattle_BG3_X = 0x100;
+            FreeAllWindowBuffers();
+            DoSwapBugContestMonScreen(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], BattleMainCB2);
+
+            gBattleCommunication[MULTIUSE_STATE]++;
+        }
+        break;
+    case 2:
+        if (gMain.callback2 == BattleMainCB2 && !gPaletteFade.active)
+            gBattlescriptCurrInstr++;
+        break;
+    }
 }

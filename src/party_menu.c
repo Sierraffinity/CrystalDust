@@ -992,6 +992,7 @@ static const u8 *const gUnknown_08615B60[] =
     gUnknown_085EA0CF,
     gUnknown_085EA0D7,
     gUnknown_085EA0DC,
+    gText_PartySelectionEntered,
 };
 
 // Unknown unused data. Feel free to remove.
@@ -4512,29 +4513,50 @@ static void CursorCb_Enter(u8 taskId)
 {
     u8 unk;
     u8 i;
+    u16 facility = VarGet(VAR_FRONTIER_FACILITY);
 
     sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
     sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
-    unk = sub_81B8830();
-    for (i = 0; i < unk; i++)
+    if (facility == 10) // Bug catching contest
     {
-        if (gSelectedOrderFromParty[i] == 0)
-        {
-            PlaySE(SE_SELECT);
-            gSelectedOrderFromParty[i] = gUnknown_0203CEC8.unk9 + 1;
-            DisplayPartyPokemonOtherText(i + 2, &gUnknown_0203CEDC[gUnknown_0203CEC8.unk9], 1);
-            if (i == (unk - 1))
-                sub_81B4F88();
-            display_pokemon_menu_message(0);
-            gTasks[taskId].func = sub_81B1370;
-            return;
-        }
+        PlaySE(SE_SELECT);
+        if (gSelectedOrderFromParty[0] != 0)
+            DisplayPartyPokemonOtherText(6, &gUnknown_0203CEDC[gSelectedOrderFromParty[0] - 1], 1);
+
+        gSelectedOrderFromParty[0] = gUnknown_0203CEC8.unk9 + 1;
+        DisplayPartyPokemonOtherText(13, &gUnknown_0203CEDC[gUnknown_0203CEC8.unk9], 1);
+        sub_81B12C0(taskId);
+        // Uncomment these three lines and remove the above single line to restore the final
+        // confirmation functionality.
+        // sub_81B4F88();
+        // display_pokemon_menu_message(0);
+        // gTasks[taskId].func = sub_81B1370;
     }
-    ConvertIntToDecimalStringN(gStringVar1, unk, 0, 1);
-    StringExpandPlaceholders(gStringVar4, gText_NoMoreThanVar1Pkmn);
-    PlaySE(SE_HAZURE);
-    sub_81B1B5C(gStringVar4, 1);
-    gTasks[taskId].func = sub_81B1C1C;
+    else
+    {
+        unk = sub_81B8830();
+        for (i = 0; i < unk; i++)
+        {
+            if (gSelectedOrderFromParty[i] == 0)
+            {
+                PlaySE(SE_SELECT);
+                gSelectedOrderFromParty[i] = gUnknown_0203CEC8.unk9 + 1;
+                DisplayPartyPokemonOtherText(i + 2, &gUnknown_0203CEDC[gUnknown_0203CEC8.unk9], 1);
+                if (i == (unk - 1))
+                    sub_81B4F88();
+
+                display_pokemon_menu_message(0);
+                gTasks[taskId].func = sub_81B1370;
+                return;
+            }
+        }
+
+        ConvertIntToDecimalStringN(gStringVar1, unk, 0, 1);
+        StringExpandPlaceholders(gStringVar4, gText_NoMoreThanVar1Pkmn);
+        PlaySE(SE_HAZURE);
+        sub_81B1B5C(gStringVar4, 1);
+        gTasks[taskId].func = sub_81B1C1C;
+    }
 }
 
 static void sub_81B4F88(void)
@@ -4548,6 +4570,7 @@ static void CursorCb_NoEntry(u8 taskId)
 {
     u8 unk;
     u8 i, j;
+    u16 facility = VarGet(VAR_FRONTIER_FACILITY);
 
     PlaySE(SE_SELECT);
     sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
@@ -4567,7 +4590,12 @@ static void CursorCb_NoEntry(u8 taskId)
     for (i = 0; i < (unk - 1); i++)
     {
         if (gSelectedOrderFromParty[i] != 0)
-            DisplayPartyPokemonOtherText(i + 2, &gUnknown_0203CEDC[gSelectedOrderFromParty[i] - 1], 1);
+        {
+            if (facility == 10) // Bug catching contest
+                DisplayPartyPokemonOtherText(13, &gUnknown_0203CEDC[gSelectedOrderFromParty[i] - 1], 1);
+            else
+                DisplayPartyPokemonOtherText(i + 2, &gUnknown_0203CEDC[gSelectedOrderFromParty[i] - 1], 1);
+        }
     }
     display_pokemon_menu_message(0);
     gTasks[taskId].func = sub_81B1370;
@@ -6550,6 +6578,7 @@ static bool8 GetBattleEntryEligibility(struct Pokemon *mon)
 
     switch (VarGet(VAR_FRONTIER_FACILITY)) // oddly the specific cases are beyond 6, turns out case 9 is apparently related to link battles
     {
+    case 10: // Bug catching contest
     case 9:
         if (GetMonData(mon, MON_DATA_HP) != 0)
             return TRUE;
@@ -6585,7 +6614,7 @@ static u8 sub_81B865C(void)
     }
 
     facility = VarGet(VAR_FRONTIER_FACILITY);
-    if (facility == 8 || facility == 9)
+    if (facility == 8 || facility == 9 || facility == 10)
         return 0xFF;
 
     unk2 = sub_81B8830();
@@ -6648,6 +6677,8 @@ static u8 sub_81B8830(void)
 {
     switch (VarGet(VAR_FRONTIER_FACILITY))
     {
+    case 10: // bug catching contest single mon selection
+        return 1;
     case 9:
         return 3;
     case 8:
@@ -6661,6 +6692,8 @@ static u8 sub_81B885C(void)
 {
     switch (VarGet(VAR_FRONTIER_FACILITY))
     {
+    case 10: // Bug catching contest
+        return 1;
     case 9:
         return 1;
     case 8:
@@ -6674,6 +6707,8 @@ static u8 sub_81B8888(void)
 {
     switch (VarGet(VAR_FRONTIER_FACILITY))
     {
+    case 10: // Bug catching contest
+        return 100;
     case 9:
         return 100;
     case 8:
@@ -6689,7 +6724,9 @@ static const u8* sub_81B88BC(void)
 {
     u8 facilityNum = VarGet(VAR_FRONTIER_FACILITY);
 
-    if (!(facilityNum != 8 && facilityNum != 9))
+    if (facilityNum == 10) // Bug catching contest
+        return gText_AbandonBugCatchingContest;
+    else if (!(facilityNum != 8 && facilityNum != 9))
         return gText_CancelBattle;
     else if (facilityNum == FRONTIER_FACILITY_DOME && gSpecialVar_0x8005 == 2)
         return gText_ReturnToWaitingRoom;

@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
+#include "bug_catching_contest.h"
 #include "event_data.h"
 #include "field_message_box.h"
 #include "field_poison.h"
@@ -89,7 +90,11 @@ static void Task_WhiteOut(u8 taskId)
         case 2:
             if (AllMonsFainted())
             {
-                if (InBattlePyramid() | InBattlePike() || sub_81D5C18())
+                if (InBugCatchingContest())
+                {
+                    gSpecialVar_Result = 3;
+                }
+                else if (InBattlePyramid() | InBattlePike() || sub_81D5C18())
                 {
                     gSpecialVar_Result = 2;
                 }

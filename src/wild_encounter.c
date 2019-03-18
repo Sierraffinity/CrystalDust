@@ -1,4 +1,5 @@
 #include "global.h"
+#include "bug_catching_contest.h"
 #include "day_night.h"
 #include "wild_encounter.h"
 #include "pokemon.h"
@@ -133,7 +134,7 @@ static void FeebasSeedRng(u16 seed)
     sFeebasRngValue = seed;
 }
 
-static u8 ChooseWildMonIndex_Land(void)
+u8 ChooseWildMonIndex_Land(void)
 {
     u8 rand = Random() % 100;
 
@@ -225,6 +226,11 @@ static u8 ChooseWildMonIndex_Fishing(u8 rod)
 
 static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon)
 {
+    return ChooseWildMonLevelWithAbility(wildPokemon, TRUE);
+}
+
+u8 ChooseWildMonLevelWithAbility(const struct WildPokemon *wildPokemon, bool8 useAbility)
+{
     u8 min;
     u8 max;
     u8 range;
@@ -245,7 +251,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon)
     rand = Random() % range;
 
     // check ability for max level mon
-    if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
+    if (useAbility && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
     {
         u8 ability = GetMonAbility(&gPlayerParty[0]);
         if (ability == ABILITY_HUSTLE || ability == ABILITY_VITAL_SPIRIT || ability == ABILITY_PRESSURE)

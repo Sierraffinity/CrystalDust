@@ -1,0 +1,39 @@
+{
+    "allow_bike": true,
+    "allow_escape_rope": false,
+    "allow_running": true,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_NATIONAL_PARK",
+    "layout": "LAYOUT_NATIONAL_PARK",
+    "map_type": "MAP_TYPE_ROUTE",
+    "music": "MUS_DAN02",
+    "name": "NationalPark",
+    "object_events": [
+    ],
+    "phone_service": true,
+    "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+    "requires_flash": false,
+    "show_map_name": true,
+    "warp_events": [
+        {
+            "dest_map": "MAP_NATIONAL_PARK_GATE_SOUTH",
+            "dest_warp_id": 1,
+            "elevation": 3,
+            "x": 9,
+            "y": 19
+        },
+        {
+            "dest_map": "MAP_NATIONAL_PARK_GATE_EAST",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 19,
+            "y": 8
+        }
+    ],
+    "weather": "WEATHER_SUNNY"
+}

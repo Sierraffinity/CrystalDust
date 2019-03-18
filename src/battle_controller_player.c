@@ -8,6 +8,7 @@
 #include "battle_message.h"
 #include "battle_setup.h"
 #include "battle_tv.h"
+#include "bug_catching_contest.h"
 #include "bg.h"
 #include "data2.h"
 #include "item.h"
@@ -254,21 +255,43 @@ static void HandleInputChooseAction(void)
     {
         PlaySE(SE_SELECT);
 
-        switch (gActionSelectionCursor[gActiveBattler])
+        if (gBattleTypeFlags & BATTLE_TYPE_BUG_CATCHING_CONTEST)
         {
-        case 0:
-            BtlController_EmitTwoReturnValues(1, B_ACTION_USE_MOVE, 0);
-            break;
-        case 1:
-            BtlController_EmitTwoReturnValues(1, B_ACTION_USE_ITEM, 0);
-            break;
-        case 2:
-            BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
-            break;
-        case 3:
-            BtlController_EmitTwoReturnValues(1, B_ACTION_RUN, 0);
-            break;
+            switch (gActionSelectionCursor[gActiveBattler])
+            {
+            case 0:
+                BtlController_EmitTwoReturnValues(1, B_ACTION_USE_MOVE, 0);
+                break;
+            case 1:
+                BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+                break;
+            case 2:
+                BtlController_EmitTwoReturnValues(1, B_ACTION_PARK_BALL, 0);
+                break;
+            case 3:
+                BtlController_EmitTwoReturnValues(1, B_ACTION_RUN, 0);
+                break;
+            }
         }
+        else
+        {
+            switch (gActionSelectionCursor[gActiveBattler])
+            {
+            case 0:
+                BtlController_EmitTwoReturnValues(1, B_ACTION_USE_MOVE, 0);
+                break;
+            case 1:
+                BtlController_EmitTwoReturnValues(1, B_ACTION_USE_ITEM, 0);
+                break;
+            case 2:
+                BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+                break;
+            case 3:
+                BtlController_EmitTwoReturnValues(1, B_ACTION_RUN, 0);
+                break;
+            }
+        }
+
         PlayerBufferExecCompleted();
     }
     else if (gMain.newKeys & DPAD_LEFT)
@@ -2566,7 +2589,16 @@ static void PlayerHandleChooseAction(void)
 
     gBattlerControllerFuncs[gActiveBattler] = HandleChooseActionAfterDma3;
     BattleTv_ClearExplosionFaintCause();
-    BattlePutTextOnWindow(gText_BattleMenu, 2);
+    if (gBattleTypeFlags & BATTLE_TYPE_BUG_CATCHING_CONTEST)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, gNumParkBalls, STR_CONV_MODE_LEFT_ALIGN, 2);
+        StringExpandPlaceholders(gStringVar2, gText_BugCatchingContestMenu);
+        BattlePutTextOnWindow(gStringVar2, 2);
+    }
+    else
+    {
+        BattlePutTextOnWindow(gText_BattleMenu, 2);
+    }
 
     for (i = 0; i < 4; i++)
         ActionSelectionDestroyCursorAt(i);

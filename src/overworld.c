@@ -4,6 +4,7 @@
 #include "battle_setup.h"
 #include "berry.h"
 #include "bg.h"
+#include "bug_catching_contest.h"
 #include "cable_club.h"
 #include "clock.h"
 #include "day_night.h"
@@ -833,6 +834,9 @@ static void mli0_load_map(u32 a1)
             sub_81D5DF8();
         else
             LoadEventObjTemplatesFromHeader();
+
+        if (gMapHeader.mapLayoutId == LAYOUT_NATIONAL_PARK_CONTEST && VarGet(VAR_BUG_CATCHING_CONTEST_STATE) == 1)
+            PlaceBugCatchingContestEventObjects();
     }
 
     v2 = is_map_type_1_2_3_5_or_6(gMapHeader.mapType);

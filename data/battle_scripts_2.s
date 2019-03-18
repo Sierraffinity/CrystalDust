@@ -61,16 +61,30 @@ BattleScript_SafariBallThrow::
 	updatestatusicon BS_ATTACKER
 	handleballthrow
 
+BattleScript_ParkBallThrow::
+	printstring STRINGID_PLAYERUSEDITEM
+	updatestatusicon BS_ATTACKER
+	handleballthrow
+
 BattleScript_SuccessBallThrow::
 	jumpifhalfword CMP_EQUAL, gLastUsedItem, ITEM_SAFARI_BALL, BattleScript_PrintCaughtMonInfo
 	incrementgamestat GAME_STAT_POKEMON_CAPTURES
 BattleScript_PrintCaughtMonInfo::
 	printstring STRINGID_GOTCHAPKMNCAUGHT
-	trysetcaughtmondexflags BattleScript_TryNicknameCaughtMon
+	trysetcaughtmondexflags BattleScript_SuccessBallThrow_CheckBugCatchingContest
 	printstring STRINGID_PKMNDATAADDEDTODEX
 	waitstate
 	setbyte gBattleCommunication, 0x0
 	displaydexinfo
+BattleScript_SuccessBallThrow_CheckBugCatchingContest::
+	jumpifword CMP_NO_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_BUG_CATCHING_CONTEST, BattleScript_TryNicknameCaughtMon
+	jumpifbyte CMP_EQUAL, gBugCatchingContestStatus, 2, BattleScript_SwapBugContestMon
+	setcaughtbugcatchingcontestmon
+	goto BattleScript_SuccessBallThrowEnd
+BattleScript_SwapBugContestMon::
+	setbyte gBattleCommunication, 0
+	swapbugcatchingcontestmon
+	goto BattleScript_SuccessBallThrowEnd
 BattleScript_TryNicknameCaughtMon::
 	printstring STRINGID_GIVENICKNAMECAPTURED
 	waitstate
@@ -94,11 +108,18 @@ BattleScript_WallyBallThrow::
 BattleScript_ShakeBallThrow::
 	printfromtable gBallEscapeStringIds
 	waitmessage 0x40
-	jumpifword CMP_NO_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_SAFARI, BattleScript_ShakeBallThrowEnd
+	jumpifword CMP_NO_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_SAFARI, BattleScript_ShakeBallThrow_CheckParkBalls
 	jumpifbyte CMP_NOT_EQUAL, gNumSafariBalls, 0x0, BattleScript_ShakeBallThrowEnd
 	printstring STRINGID_OUTOFSAFARIBALLS
 	waitmessage 0x40
 	setbyte gBattleOutcome, B_OUTCOME_NO_SAFARI_BALLS
+	goto BattleScript_ShakeBallThrowEnd
+BattleScript_ShakeBallThrow_CheckParkBalls::
+	jumpifword CMP_NO_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_BUG_CATCHING_CONTEST, BattleScript_ShakeBallThrowEnd
+	jumpifbyte CMP_NOT_EQUAL, gNumParkBalls, 0x0, BattleScript_ShakeBallThrowEnd
+	printstring STRINGID_OUTOFPARKBALLS
+	waitmessage 0x40
+	setbyte gBattleOutcome, B_OUTCOME_NO_PARK_BALLS
 BattleScript_ShakeBallThrowEnd::
 	finishaction
 

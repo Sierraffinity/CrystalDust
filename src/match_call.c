@@ -86,7 +86,6 @@ struct ForcedPhoneCall
 EWRAM_DATA struct MatchCallState gMatchCallState = {0};
 EWRAM_DATA struct BattleFrontierStreakInfo gBattleFrontierStreakInfo = {0};
 
-static u32 GetCurrentTotalMinutes(struct Time *);
 static u32 GetNumRegisteredNPCs(void);
 static u32 GetActiveMatchCallTrainerId(u32);
 static int GetTrainerMatchCallId(int);
@@ -996,20 +995,15 @@ extern const u8 gUnknown_082A633D[];
 void InitMatchCallCounters(void)
 {
     RtcCalcLocalTime();
-    gMatchCallState.minutes = GetCurrentTotalMinutes(&gLocalTime) + 10;
+    gMatchCallState.minutes = GetTotalMinutes(&gLocalTime) + 10;
     gMatchCallState.stepCounter = 0;
-}
-
-static u32 GetCurrentTotalMinutes(struct Time *time)
-{
-    return time->days * 1440 + time->hours * 60 + time->minutes;
 }
 
 static bool32 UpdateMatchCallMinutesCounter(void)
 {
     int curMinutes;
     RtcCalcLocalTime();
-    curMinutes = GetCurrentTotalMinutes(&gLocalTime);
+    curMinutes = GetTotalMinutes(&gLocalTime);
     if (gMatchCallState.minutes > curMinutes || curMinutes - gMatchCallState.minutes > 9)
     {
         gMatchCallState.minutes = curMinutes;

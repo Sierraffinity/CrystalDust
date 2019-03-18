@@ -1,0 +1,86 @@
+{
+    "allow_bike": false,
+    "allow_escape_rope": false,
+    "allow_running": false,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "NationalParkGate_ContestSign",
+            "type": "sign",
+            "x": 6,
+            "y": 1
+        }
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_NATIONAL_PARK_GATE_SOUTH",
+    "layout": "LAYOUT_NATIONAL_PARK_GATE_SOUTH",
+    "map_type": "MAP_TYPE_INDOOR",
+    "music": "MUS_DAN02",
+    "name": "NationalParkGateSouth",
+    "object_events": [
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_1",
+            "graphics_id": "EVENT_OBJ_GFX_OFFICER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "NationalParkGateSouth_NoContestOfficer",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 1,
+            "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_1",
+            "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "NationalParkGateSouth_Youngster",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 6,
+            "y": 7
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_2",
+            "graphics_id": "EVENT_OBJ_GFX_OFFICER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "NationalParkGateSouth_BugContestOfficer",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 3,
+            "y": 2
+        }
+    ],
+    "phone_service": true,
+    "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+    "requires_flash": false,
+    "show_map_name": false,
+    "warp_events": [
+        {
+            "dest_map": "MAP_ROUTE29",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 4,
+            "y": 9
+        },
+        {
+            "dest_map": "MAP_NATIONAL_PARK",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 4,
+            "y": 1
+        }
+    ],
+    "weather": "WEATHER_NONE"
+}

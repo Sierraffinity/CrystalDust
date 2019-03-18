@@ -2261,6 +2261,7 @@ void sub_80EE184(void)
             case B_OUTCOME_RAN:
             case B_OUTCOME_PLAYER_TELEPORTED:
             case B_OUTCOME_NO_SAFARI_BALLS:
+            case B_OUTCOME_NO_PARK_BALLS:
                 show->breakingNews.outcome = 2;
                 break;
             case B_OUTCOME_MON_FLED:

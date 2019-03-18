@@ -92,6 +92,15 @@ void CopyDayOfWeekStringToVar1(void)
         StringCopy(gStringVar1, gText_None);
 }
 
+void CopyCurrentDayOfWeekStringToVar1(void)
+{
+    RtcCalcLocalTime();
+    if (gLocalTime.dayOfWeek <= DAY_SATURDAY)
+        StringCopy(gStringVar1, gDayOfWeekTable[gLocalTime.dayOfWeek]);
+    else
+        StringCopy(gStringVar1, gText_None);
+}
+
 static void LoadPaletteOverrides(void)
 {
     u8 i, j;

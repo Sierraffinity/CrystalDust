@@ -35,6 +35,7 @@
 #define subsprite_table(ptr) {.subsprites = ptr, .subspriteCount = (sizeof ptr) / (sizeof(struct Subsprite))}
 
 extern struct CompressedSpritePalette gMonPaletteTable[]; // GF made a mistake and did not extern it as const.
+extern const struct CompressedSpritePalette gMonShinyPaletteTable[];
 
 EWRAM_DATA s32 gFieldEffectArguments[8] = {0};
 
@@ -769,9 +770,24 @@ void LoadTrainerGfx_TrainerCard(u8 gender, u16 palOffset, u8 *dest)
     LoadCompressedPalette(gTrainerFrontPicPaletteTable[gender].data, palOffset, 0x20);
 }
 
-u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
+u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority, bool8 isShiny)
 {
-    s32 spriteId = CreateMonPicSprite_HandleDeoxys(species, 0, 0x8000, 1, x, y, 0, gMonPaletteTable[species].tag);
+    u16 tag;
+    u32 personality;
+    u32 spriteId;
+
+    if (isShiny)
+    {
+        tag = gMonShinyPaletteTable[species].tag;
+        personality = 0;
+    }
+    else
+    {
+        tag = gMonPaletteTable[species].tag;
+        personality = 0x8000;
+    }
+
+    spriteId = CreateMonPicSprite_HandleDeoxys(species, 0, personality, 1, x, y, 0, tag);
     PreservePaletteInWeather(IndexOfSpritePaletteTag(gMonPaletteTable[species].tag) + 0x10);
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;

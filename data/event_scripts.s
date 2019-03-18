@@ -3308,6 +3308,8 @@ EventScript_Poison:: @ 82736BC
 	goto_if_eq EventScript_2736D9
 	compare VAR_RESULT, 2
 	goto_if_eq EventScript_2736F8
+	compare VAR_RESULT, 3
+	goto_if_eq EventScript_Poison_BugCatchingContest
 	releaseall
 	end
 
@@ -3351,6 +3353,12 @@ EventScript_2736F8:: @ 82736F8
 	special sp0C8_whiteout_maybe
 	waitstate
 	end
+
+EventScript_Poison_BugCatchingContest::
+	message gUnknown_08272DE3
+	waitmessage
+	waitbuttonpress
+	goto EventScript_WarpOutOfBugCatchingContestHeal
 
 AncientTomb_EventScript_27374E:: @ 827374E
 AquaHideout_B1F_EventScript_27374E:: @ 827374E
@@ -4784,6 +4792,7 @@ Text_RepelWoreOff: @ 82A4B33
 	.string "REPEL's effect wore off…$"
 
 	.include "data/scripts/safari_zone.inc"
+	.include "data/scripts/bug_catching_contest.inc"
 
 MauvilleCity_GameCorner_EventScript_2A5AB1:: @ 82A5AB1
 	checkitem ITEM_COIN_CASE, 1
@@ -7748,3 +7757,10 @@ gText_082C877B:: @ 82C877B
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/CherrygroveCity_House2/scripts.inc"
+	.include "data/maps/NationalParkGateSouth/scripts.inc"
+
+	.include "data/maps/NationalParkContest/scripts.inc"
+
+	.include "data/maps/NationalPark/scripts.inc"
+
+	.include "data/maps/NationalParkGateEast/scripts.inc"

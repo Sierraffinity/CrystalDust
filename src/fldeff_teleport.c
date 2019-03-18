@@ -1,4 +1,5 @@
 #include "global.h"
+#include "bug_catching_contest.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
 #include "fldeff.h"
@@ -26,6 +27,7 @@ static void FieldCallback_Teleport(void)
     Overworld_ResetStateAfterTeleport();
     FieldEffectStart(FLDEFF_USE_TELEPORT);
     gFieldEffectArguments[0] = (u32)GetCursorSelectionMonId();
+    TryEndBugCatchingContest();
 }
 
 bool8 FldEff_UseTeleport(void)

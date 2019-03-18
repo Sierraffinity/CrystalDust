@@ -4,6 +4,7 @@
 #include "battle_message.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
+#include "bug_catching_contest.h"
 #include "data2.h"
 #include "event_data.h"
 #include "frontier_util.h"
@@ -377,6 +378,7 @@ static const u8 sText_PkmnEnthralledByX[] = _("{B_OPPONENT_MON1_NAME} is enthral
 static const u8 sText_PkmnIgnoredX[] = _("{B_OPPONENT_MON1_NAME} completely ignored\nthe {B_BUFF1}!");
 static const u8 sText_ThrewPokeblockAtPkmn[] = _("{B_PLAYER_NAME} threw a {POKEBLOCK}\nat the {B_OPPONENT_MON1_NAME}!");
 static const u8 sText_OutOfSafariBalls[] = _("{PLAY_SE 0x0049}ANNOUNCER: You're out of\nSAFARI BALLS! Game over!\p");
+static const u8 sText_OutOfParkBalls[] = _("{PLAY_SE 0x0049}ANNOUNCER: You're out of\nPARK BALLS! Contest over!\p");
 static const u8 sText_OpponentMon1Appeared[] = _("{B_OPPONENT_MON1_NAME} appeared!\p");
 static const u8 sText_WildPkmnAppeared[] = _("Wild {B_OPPONENT_MON1_NAME} appeared!\p");
 static const u8 sText_WildPkmnAppeared2[] = _("Wild {B_OPPONENT_MON1_NAME} appeared!\p");
@@ -878,6 +880,7 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNBOXLANETTESPCFULL - 12] = gText_PkmnBoxLanettesPCFull,
     [STRINGID_TRAINER1WINTEXT - 12] = sText_Trainer1WinText,
     [STRINGID_TRAINER2WINTEXT - 12] = sText_Trainer2WinText,
+    [STRINGID_OUTOFPARKBALLS - 12] = sText_OutOfParkBalls,
 };
 
 const u16 gMissStringIds[] =
@@ -1157,6 +1160,7 @@ const u8 gText_WhatWillWallyDo[] = _("What will\nWALLY do?");
 const u8 gText_LinkStandby[] = _("{PAUSE 16}Link standby…");
 const u8 gText_BattleMenu[] = _("FIGHT{CLEAR_TO 56}BAG\nPOKéMON{CLEAR_TO 56}RUN");
 const u8 gText_SafariZoneMenu[] = _("BALL{CLEAR_TO 56}{POKEBLOCK}\nGO NEAR{CLEAR_TO 56}RUN");
+const u8 gText_BugCatchingContestMenu[] = _("FIGHT{CLEAR_TO 56}{PKMN}\nBALLx{STR_VAR_1}{CLEAR_TO 56}RUN");
 const u8 gText_MoveInterfacePP[] = _("PP ");
 const u8 gText_MoveInterfaceType[] = _("TYPE/");
 const u8 gText_MoveInterfacePpType[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}PP\nTYPE/");
@@ -2696,6 +2700,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
             case B_TXT_PARTNER_NAME:
                 GetFrontierTrainerName(text, gPartnerTrainerId);
                 toCpy = text;
+                break;
+            case B_TXT_CAUGHT_BUG_CATCHING_CONTEST_MON:
+                GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
+                toCpy = gStringVar1;
                 break;
             }
 

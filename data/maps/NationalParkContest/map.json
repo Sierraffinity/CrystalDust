@@ -1,0 +1,104 @@
+{
+    "allow_bike": false,
+    "allow_escape_rope": false,
+    "allow_running": false,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_NATIONAL_PARK_CONTEST",
+    "layout": "LAYOUT_NATIONAL_PARK_CONTEST",
+    "map_type": "MAP_TYPE_ROUTE",
+    "music": "MUS_DAN02",
+    "name": "NationalParkContest",
+    "object_events": [
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 0,
+            "y": 0
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 1,
+            "y": 0
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 2,
+            "y": 0
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 3,
+            "y": 0
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 4,
+            "y": 0
+        }
+    ],
+    "phone_service": false,
+    "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+    "requires_flash": false,
+    "show_map_name": false,
+    "warp_events": [
+        {
+            "dest_map": "MAP_NATIONAL_PARK_GATE_SOUTH",
+            "dest_warp_id": 1,
+            "elevation": 3,
+            "x": 9,
+            "y": 19
+        },
+        {
+            "dest_map": "MAP_NATIONAL_PARK_GATE_EAST",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 19,
+            "y": 9
+        }
+    ],
+    "weather": "WEATHER_SUNNY"
+}

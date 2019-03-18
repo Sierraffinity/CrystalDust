@@ -1,0 +1,131 @@
+{
+    "allow_bike": false,
+    "allow_escape_rope": false,
+    "allow_running": false,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "NationalParkGate_ContestSign",
+            "type": "sign",
+            "x": 8,
+            "y": 1
+        }
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_NATIONAL_PARK_GATE_EAST",
+    "layout": "LAYOUT_NATIONAL_PARK_GATE_EAST",
+    "map_type": "MAP_TYPE_INDOOR",
+    "music": "MUS_DAN02",
+    "name": "NationalParkGateEast",
+    "object_events": [
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_3",
+            "graphics_id": "EVENT_OBJ_GFX_VAR_0",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 3,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_3",
+            "graphics_id": "EVENT_OBJ_GFX_VAR_1",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 4,
+            "y": 7
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_3",
+            "graphics_id": "EVENT_OBJ_GFX_VAR_2",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 5,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_3",
+            "graphics_id": "EVENT_OBJ_GFX_VAR_3",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 6,
+            "y": 7
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_3",
+            "graphics_id": "EVENT_OBJ_GFX_VAR_4",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 7,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_1",
+            "graphics_id": "EVENT_OBJ_GFX_OFFICER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "NationalParkGateEast_BehindCounterOfficer",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 4,
+            "y": 3
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_2",
+            "graphics_id": "EVENT_OBJ_GFX_OFFICER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "NationalParkGateEast_BugContestOfficer",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 1,
+            "y": 4
+        }
+    ],
+    "phone_service": true,
+    "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+    "requires_flash": false,
+    "show_map_name": true,
+    "warp_events": [
+        {
+            "dest_map": "MAP_NATIONAL_PARK",
+            "dest_warp_id": 1,
+            "elevation": 3,
+            "x": 1,
+            "y": 6
+        }
+    ],
+    "weather": "WEATHER_NONE"
+}

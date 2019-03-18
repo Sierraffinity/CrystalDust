@@ -57,6 +57,7 @@
 #define B_TXT_PARTNER_CLASS 0x32
 #define B_TXT_PARTNER_NAME 0x33
 #define B_TXT_BUFF3 0x34
+#define B_TXT_CAUGHT_BUG_CATCHING_CONTEST_MON 0x35
 
 // for B_TXT_BUFF1, B_TXT_BUFF2 and B_TXT_BUFF3
 
@@ -236,6 +237,7 @@ extern const u8 gText_WhatWillWallyDo[];
 extern const u8 gText_LinkStandby[];
 extern const u8 gText_BattleMenu[];
 extern const u8 gText_SafariZoneMenu[];
+extern const u8 gText_BugCatchingContestMenu[];
 extern const u8 gText_MoveInterfacePP[];
 extern const u8 gText_MoveInterfaceType[];
 extern const u8 gText_MoveInterfacePpType[];

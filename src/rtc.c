@@ -393,3 +393,13 @@ u32 RtcGetLocalDayCount(void)
 {
     return RtcGetDayCount(&sRtc);
 }
+
+u32 GetTotalMinutes(struct Time *time)
+{
+    return time->days * 1440 + time->hours * 60 + time->minutes;
+}
+
+u32 GetTotalSeconds(struct Time *time)
+{
+    return time->days * 86400 + time->hours * 3600 + time->minutes * 60 + time->seconds;
+}

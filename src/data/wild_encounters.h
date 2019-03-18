@@ -15,9 +15,9 @@ const struct WildPokemon gRoute29_LandMons_Day[] =
 {
     {2, 2, SPECIES_PIDGEY},
     {2, 2, SPECIES_SENTRET},
-    {2, 2, SPECIES_PIDGEY},
+    {2, 2, SPECIES_RATTATA},
     {2, 2, SPECIES_SENTRET},
-    {3, 3, SPECIES_PIDGEY},
+    {3, 3, SPECIES_RATTATA},
     {3, 3, SPECIES_PIDGEY},
     {3, 3, SPECIES_SENTRET},
     {3, 3, SPECIES_SENTRET},
@@ -121,6 +121,74 @@ const struct WildPokemon gRoute30_FishingMons[] =
 };
 
 const struct WildPokemonInfo gRoute30_FishingMonsInfo = {30, {gRoute30_FishingMons, gRoute30_FishingMons, gRoute30_FishingMons}};
+
+const struct WildPokemon gNationalPark_LandMons_Day[] =
+{
+    {2, 2, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+};
+
+const struct WildPokemon gNationalPark_LandMons_Night[] =
+{
+    {2, 2, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+    {2, 2, SPECIES_PIKACHU},
+    {3, 3, SPECIES_PIKACHU},
+};
+
+const struct WildPokemonInfo gNationalPark_LandMonsInfo = {20, {gNationalPark_LandMons_Day, gNationalPark_LandMons_Day, gNationalPark_LandMons_Night}};
+
+const struct WildPokemon gNationalParkContest_LandMons_Day[] =
+{
+    {2, 2, SPECIES_KAKUNA},
+    {2, 2, SPECIES_METAPOD},
+    {2, 2, SPECIES_WEEDLE},
+    {2, 2, SPECIES_CATERPIE},
+    {3, 3, SPECIES_BEEDRILL},
+    {3, 3, SPECIES_BUTTERFREE},
+    {3, 3, SPECIES_METAPOD},
+    {3, 3, SPECIES_KAKUNA},
+    {2, 2, SPECIES_WEEDLE},
+    {3, 3, SPECIES_CATERPIE},
+    {2, 2, SPECIES_SCYTHER},
+    {3, 3, SPECIES_PINSIR},
+};
+
+const struct WildPokemon gNationalParkContest_LandMons_Night[] =
+{
+    {2, 2, SPECIES_KAKUNA},
+    {2, 2, SPECIES_METAPOD},
+    {2, 2, SPECIES_WEEDLE},
+    {2, 2, SPECIES_CATERPIE},
+    {3, 3, SPECIES_BEEDRILL},
+    {3, 3, SPECIES_BUTTERFREE},
+    {3, 3, SPECIES_METAPOD},
+    {3, 3, SPECIES_KAKUNA},
+    {2, 2, SPECIES_WEEDLE},
+    {3, 3, SPECIES_CATERPIE},
+    {2, 2, SPECIES_SCYTHER},
+    {3, 3, SPECIES_PINSIR},
+};
+
+const struct WildPokemonInfo gNationalParkContest_LandMonsInfo = {20, {gNationalParkContest_LandMons_Day, gNationalParkContest_LandMons_Day, gNationalParkContest_LandMons_Night}};
 
 const struct WildPokemon gRoute103_LandMons[] =
 {
@@ -3339,6 +3407,22 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .waterMonsInfo = &gRoute30_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
         .fishingMonsInfo = &gRoute30_FishingMonsInfo,
+    },
+    {
+        .mapGroup = MAP_GROUP(NATIONAL_PARK),
+        .mapNum = MAP_NUM(NATIONAL_PARK),
+        .landMonsInfo = &gNationalPark_LandMonsInfo,
+        .waterMonsInfo = NULL,
+        .rockSmashMonsInfo = NULL,
+        .fishingMonsInfo = NULL,
+    },
+    {
+        .mapGroup = MAP_GROUP(NATIONAL_PARK_CONTEST),
+        .mapNum = MAP_NUM(NATIONAL_PARK_CONTEST),
+        .landMonsInfo = &gNationalParkContest_LandMonsInfo,
+        .waterMonsInfo = NULL,
+        .rockSmashMonsInfo = NULL,
+        .fishingMonsInfo = NULL,
     },
     {
         .mapGroup = MAP_GROUP(ROUTE103),

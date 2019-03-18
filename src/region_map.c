@@ -1,4 +1,5 @@
 #include "global.h"
+#include "bug_catching_contest.h"
 #include "main.h"
 #include "text.h"
 #include "menu.h"
@@ -2028,6 +2029,7 @@ static void sub_8124E0C(void)
                             break;
                     }
                     sub_80B69DC();
+                    TryEndBugCatchingContest();
                 }
                 else
                 {
