@@ -120,8 +120,6 @@ static void PopulateSpeciesFromTrainerParty(int, u8 *);
 static void PopulateBattleFrontierFacilityName(int, u8 *);
 static void PopulateBattleFrontierStreak(int, u8 *);
 
-extern void sub_81973A4(void);
-
 #define TEXT_ID(topic, id) (((topic) << 8) | ((id) & 0xFF))
 
 static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
@@ -1082,7 +1080,7 @@ static bool32 SelectForcedPhoneCall(void)
 static u32 GetNumRegisteredNPCs(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < REMATCH_TRAINER_WALLY; i++)
+    for (i = 0, count = 0; i < 64; i++)
     {
         if (FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
             count++;
@@ -1094,7 +1092,7 @@ static u32 GetNumRegisteredNPCs(void)
 static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 {
     u32 i;
-    for (i = 0; i < REMATCH_TRAINER_WALLY; i++)
+    for (i = 0; i < 64; i++)
     {
         if (FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
         {
@@ -1126,13 +1124,13 @@ bool32 TryStartMatchCall(void)
     return FALSE;
 }
 
-void StartMatchCallFromScript(void)
+void StartMatchCallFromScript(u8 *str)
 {
     gMatchCallState.triggeredFromScript = 1;
     StartMatchCall();
 }
 
-bool8 IsMatchCallTaskActive(void)
+bool32 IsMatchCallTaskActive(void)
 {
     return FuncIsActiveTask(ExecuteMatchCall);
 }
@@ -1237,8 +1235,8 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
         return FALSE;
     }
 
-    FillWindowPixelBuffer(taskData[2], 0x88);
-    FillWindowPixelBuffer(taskData[3], 0x88);
+    FillWindowPixelBuffer(taskData[2], PIXEL_FILL(8));
+    FillWindowPixelBuffer(taskData[3], PIXEL_FILL(8));
     LoadPalette(sUnknown_0860EA4C, 0xE0, 0x20);
     LoadPalette(sPokeNavIconPalette, 0xF0, 0x20);
 
@@ -1322,7 +1320,7 @@ static bool32 sub_81962D8(u8 taskId)
     s16 *taskData = gTasks[taskId].data;
     if (!ExecuteMatchCallTextPrinter(taskData[2]))
     {
-        FillWindowPixelBuffer(taskData[2], 0x88);
+        FillWindowPixelBuffer(taskData[2], PIXEL_FILL(8));
         if (!gMatchCallState.triggeredFromScript)
         {
             if (gMatchCallState.forcedPhoneCallId)
@@ -1357,7 +1355,7 @@ static bool32 sub_8196330(u8 taskId)
     s16 *taskData = gTasks[taskId].data;
     if (!ExecuteMatchCallTextPrinter(taskData[2]) && !IsSEPlaying() && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
-        FillWindowPixelBuffer(taskData[2], 0x88);
+        FillWindowPixelBuffer(taskData[2], PIXEL_FILL(8));
         CopyWindowToVram(taskData[2], 2);
 
         ScanlineEffect_Clear();
@@ -1491,7 +1489,7 @@ static u16 GetRematchTrainerLocation(int matchCallId)
 static u32 GetNumRematchTrainersFought(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < REMATCH_TRAINER_WALLY; i++)
+    for (i = 0, count = 0; i < 64; i++)
     {
         if (HasTrainerBeenFought(gRematchTable[i].trainerIds[0]))
             count++;

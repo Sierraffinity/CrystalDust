@@ -199,7 +199,7 @@ void ShowDebugMenu(void)
 {
     u8 taskId;
 
-    if (!is_c1_link_related_active())
+    if (!IsUpdateLinkStateCBActive())
     {
         FreezeEventObjects();
         sub_808B864();
@@ -240,7 +240,7 @@ static void DebugMenu_RemoveMenu(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    sub_8198070(tWindowId, TRUE);
+    ClearStdWindowAndFrameToTransparent(tWindowId, TRUE);
     RemoveWindow(tWindowId);
 }
 
@@ -396,7 +396,7 @@ static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
         temp = (((tVarNum >> shifter) & 0xF) + 1) & 0xF;
         temp = (tVarNum & ~(0xF << shifter)) | (temp << shifter);
 
-        if (temp >= VAR_TEMP_0 && temp <= VAR_0x40FF)
+        if (temp >= VAR_TEMP_0 && temp <= VAR_UNUSED_0x40FF)
         {
             PlaySE(SE_SELECT);
             tVarNum = temp;
@@ -411,7 +411,7 @@ static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
         temp = (((tVarNum >> shifter) & 0xF) - 1) & 0xF;
         temp = (tVarNum & ~(0xF << shifter)) | (temp << shifter);
 
-        if (temp >= VAR_TEMP_0 && temp <= VAR_0x40FF)
+        if (temp >= VAR_TEMP_0 && temp <= VAR_UNUSED_0x40FF)
         {
             PlaySE(SE_SELECT);
             tVarNum = temp;

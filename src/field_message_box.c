@@ -5,9 +5,7 @@
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
-
-extern bool32 IsMatchCallTaskActive(void);
-extern void StartMatchCallFromScript(u8*);
+#include "match_call.h"
 
 static EWRAM_DATA u8 sFieldMessageBoxMode = 0;
 
@@ -37,7 +35,7 @@ static void sub_8098154(u8 taskId)
             task->data[0]++;
             break;
         case 1:
-            NewMenuHelpers_DrawDialogueFrame(0, 1);
+            DrawDialogueFrame(0, 1);
             task->data[0]++;
             break;
         case 2:
@@ -131,7 +129,7 @@ static void textbox_auto_and_task_add(void)
 void HideFieldMessageBox(void)
 {
     task_del_textbox();
-    sub_8197434(0, 1);
+    ClearDialogWindowAndFrame(0, 1);
     sFieldMessageBoxMode = 0;
 }
 
@@ -150,7 +148,7 @@ bool8 IsFieldMessageBoxHidden(void)
 void sub_8098358(void)
 {
     task_del_textbox();
-    NewMenuHelpers_DrawStdWindowFrame(0, 1);
+    DrawStdWindowFrame(0, 1);
     sFieldMessageBoxMode = 0;
 }
 

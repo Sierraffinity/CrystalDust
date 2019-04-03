@@ -25,18 +25,16 @@ EWRAM_DATA u16 gSpecialVar_MonBoxId = 0;
 EWRAM_DATA u16 gSpecialVar_MonBoxPos = 0;
 EWRAM_DATA u16 gSpecialVar_TextColor = 0;
 EWRAM_DATA u16 gSpecialVar_TextColorBackup = 0;
-EWRAM_DATA u16 gSpecialVar_0x8014 = 0;
-EWRAM_DATA static u8 gUnknown_020375FC[16] = {0};
+EWRAM_DATA u16 gSpecialVar_Unused_0x8014 = 0;
+EWRAM_DATA static u8 gSpecialFlags[16] = {0};
 
 extern u16 *const gSpecialVars[];
-
-extern void sub_80BB358(void);
 
 void InitEventData(void)
 {
     memset(gSaveBlock1Ptr->flags, 0, sizeof(gSaveBlock1Ptr->flags));
     memset(gSaveBlock1Ptr->vars, 0, sizeof(gSaveBlock1Ptr->vars));
-    memset(gUnknown_020375FC, 0, sizeof(gUnknown_020375FC));
+    memset(gSpecialFlags, 0, sizeof(gSpecialFlags));
 }
 
 void ClearTempFieldEventData(void)
@@ -71,7 +69,7 @@ void EnableNationalPokedex(void)
     FlagSet(FLAG_SYS_NATIONAL_DEX);
     gSaveBlock2Ptr->pokedex.mode = DEX_MODE_NATIONAL;
     gSaveBlock2Ptr->pokedex.order = 0;
-    sub_80BB358();
+    ResetPokedexScrollPositions();
 }
 
 bool32 IsNationalPokedexEnabled(void)
@@ -135,13 +133,13 @@ void sub_809D4D8(void)
 void sub_809D570(void)
 {
     VarSet(VAR_EVENT_PICHU_SLOT, 0);
-    VarSet(VAR_0x40DE, 0);
-    VarSet(VAR_0x40DF, 0);
-    VarSet(VAR_0x40E0, 0);
-    VarSet(VAR_0x40E1, 0);
-    VarSet(VAR_0x40E2, 0);
-    VarSet(VAR_0x40E3, 0);
-    VarSet(VAR_0x40E4, 0);
+    VarSet(VAR_NEVER_READ_0x40DE, 0);
+    VarSet(VAR_NEVER_READ_0x40DF, 0);
+    VarSet(VAR_NEVER_READ_0x40E0, 0);
+    VarSet(VAR_NEVER_READ_0x40E1, 0);
+    VarSet(VAR_NEVER_READ_0x40E2, 0);
+    VarSet(VAR_NEVER_READ_0x40E3, 0);
+    VarSet(VAR_NEVER_READ_0x40E4, 0);
 }
 
 void DisableResetRTC(void)
@@ -203,7 +201,7 @@ u8 *GetFlagPointer(u16 id)
     else if (id < SPECIAL_FLAGS_START)
         return &gSaveBlock1Ptr->flags[id / 8];
     else
-        return &gUnknown_020375FC[(id - SPECIAL_FLAGS_START) / 8];
+        return &gSpecialFlags[(id - SPECIAL_FLAGS_START) / 8];
 }
 
 u8 FlagSet(u16 id)

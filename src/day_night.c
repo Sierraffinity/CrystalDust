@@ -143,7 +143,7 @@ static void LoadPaletteOverrides(void)
 
 static bool8 ShouldTintOverworld(void)
 {
-    if (Overworld_MapTypeIsIndoors(gMapHeader.mapType))
+    if (IsMapTypeIndoors(gMapHeader.mapType))
         return FALSE;
 
     return TRUE;

@@ -3,14 +3,14 @@ Route30_MapScripts:: @ 81EC0E0
 	.byte 0
 
 Route30_MapScripts_Type2:
-	map_script_2 VAR_0x4051, 1, Route30_MapScript_ElmCall
+	map_script_2 VAR_ROUTE102_ACCESSIBLE, 1, Route30_MapScript_ElmCall
 	.2byte 0
 
 Route30_MapScript_ElmCall:
 	lockall
 	pokenavcall Route30_Text_ElmCall
 	waitmessage
-	addvar VAR_0x4051, 1
+	addvar VAR_ROUTE102_ACCESSIBLE, 1
 	releaseall
 	end
 

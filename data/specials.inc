@@ -12,8 +12,8 @@ gSpecials:: @ 81DBA64
 	def_special SetCableClubWarp
 	def_special sub_80AF948
 	def_special sub_80AF9F8
-	def_special sub_80B36EC
-	def_special sub_80B371C
+	def_special CleanupLinkRoomState
+	def_special ExitLinkRoom
 	def_special sub_80E8E18
 	def_special sub_80E8BC8
 	def_special sub_80E9068
@@ -35,23 +35,22 @@ gSpecials:: @ 81DBA64
 	def_special sub_80E91F8
 	def_special sub_80EA30C
 	def_special DoSecretBasePCTurnOffEffect
-	def_special sub_80E6BE8
+	def_special RecordMixingPlayerSpotTriggered
 	def_special sub_80B2DA4
 	def_special sub_80B2E4C
 	def_special sub_80B2E74
 	def_special sub_80B2EA8
 	def_special CloseLink
-	def_special sub_80B3968
-	def_special sub_80B3924
+	def_special ColosseumPlayerSpotTriggered
+	def_special PlayerEnteredTradeSeat
 	def_special CopyDayOfWeekStringToVar1
-	def_special CopyCurrentDayOfWeekStringToVar1
 	def_special sub_80B3254
 	def_special sub_80B2FD8
 	def_special GetLinkPartnerNames
 	def_special SpawnLinkPartnerEventObject
 	def_special SavePlayerParty
 	def_special LoadPlayerParty
-	def_special sub_80F9438
+	def_special ChooseHalfPartyForBattle
 	def_special sp02A_crash_sound
 	def_special EventObjectInteractionGetBerryTreeData
 	def_special EventObjectInteractionGetBerryName
@@ -107,7 +106,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B3000
 	def_special SaveGame
 	def_special DoWateringBerryTreeAnim
-	def_special easy_chat_input_maybe
+	def_special ShowEasyChatScreen
 	def_special sub_811EECC
 	def_special ScrSpecial_GetCurrentMauvilleMan
 	def_special ScrSpecial_HasBardSongBeenChanged
@@ -236,7 +235,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_81B9770
 	def_special sub_81B9718
 	def_special sub_81B96D0
-	def_special TeachMoveTutorMove
+	def_special TeachMoveRelearnerMove
 	def_special GetRecordedCyclingRoadResults
 	def_special Special_BeginCyclingRoadChallenge
 	def_special GetPlayerAvatarBike
@@ -292,7 +291,7 @@ gSpecials:: @ 81DBA64
 	def_special GetPokeblockNameByMonNature
 	def_special GetSecretBaseNearbyMapName
 	def_special CheckRelicanthWailord
-	def_special ShouldDoBrailleStrengthEffectOld
+	def_special ShouldDoBrailleRegirockEffectOld
 	def_special sub_80B0534
 	def_special sub_80B058C
 	def_special WaitWeather
@@ -434,7 +433,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_81B8958
 	def_special sub_8018090
 	def_special sub_813990C
-	def_special sub_801B27C
+	def_special ValidateReceivedWonderCard
 	def_special HasAtLeastOneBerry
 	def_special sub_802C920
 	def_special sub_802E3C4
@@ -471,11 +470,11 @@ gSpecials:: @ 81DBA64
 	def_special sub_813AA04
 	def_special sub_813AA18
 	def_special sub_813AA44
-	def_special sub_80248B0
-	def_special sub_8024918
-	def_special sub_80246D4
-	def_special sub_802477C
-	def_special sub_802488C
+	def_special DisplayBerryPowderVendorMenu
+	def_special RemoveBerryPowderVendorMenu
+	def_special HasEnoughBerryPowder
+	def_special TakeBerryPowder
+	def_special PrintPlayerBerryPowderAmount
 	def_special sub_813A820
 	def_special sub_813A854
 	def_special sub_813B7D8
@@ -499,11 +498,11 @@ gSpecials:: @ 81DBA64
 	def_special sub_813B21C
 	def_special SetMatchCallRegisteredFlag
 	def_special sub_8175280
-	def_special sub_813B2E4
-	def_special sub_813B374
+	def_special CreateUnusualWeatherEvent
+	def_special GetUnusualWeatherMapNameAndType
 	def_special sub_813B490
 	def_special sub_80A08CC
-	def_special sub_813B484
+	def_special Unused_SetWeatherSunny
 	def_special sub_81AFDA0
 	def_special sub_813B4E0
 	def_special ShouldDoBrailleRegicePuzzle
@@ -537,6 +536,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B3BC4
 	def_special FieldRadio
 	def_special GetFruitTreeItem
+	def_special CopyCurrentDayOfWeekStringToVar1
 	def_special SelectBugCatchingContestMon
 	def_special EnterBugCatchingContest
 	def_special PlaceBugCatchingContestEventObjects

@@ -1,6 +1,13 @@
 #ifndef GUARD_GLOBAL_FIELDMAP_H
 #define GUARD_GLOBAL_FIELDMAP_H
 
+#define METATILE_COLLISION_MASK 0x0C00
+#define METATILE_ID_MASK 0x03FF
+#define METATILE_ID_UNDEFINED 0x03FF
+#define METATILE_ELEVATION_SHIFT 12
+#define METATILE_COLLISION_SHIFT 10
+#define METATILE_ELEVATION_MASK 0xF000
+
 enum
 {
     CONNECTION_SOUTH = 1,
@@ -20,8 +27,8 @@ struct Tileset
     /*0x04*/ void *tiles;
     /*0x08*/ void *palettes;
     /*0x0c*/ struct PaletteOverride *paletteOverrides;
-    /*0x10*/ void *metatiles;
-    /*0x14*/ void *metatileAttributes;
+    /*0x10*/ u16 *metatiles;
+    /*0x14*/ u16 *metatileAttributes;
     /*0x18*/ TilesetCB callback;
 };
 
@@ -226,14 +233,25 @@ struct EventObjectGraphicsInfo
     /*0x20*/ const union AffineAnimCmd *const *affineAnims;
 };
 
-#define PLAYER_AVATAR_FLAG_ON_FOOT    (1 << 0)
-#define PLAYER_AVATAR_FLAG_MACH_BIKE  (1 << 1)
-#define PLAYER_AVATAR_FLAG_ACRO_BIKE  (1 << 2)
-#define PLAYER_AVATAR_FLAG_SURFING    (1 << 3)
-#define PLAYER_AVATAR_FLAG_UNDERWATER (1 << 4)
-#define PLAYER_AVATAR_FLAG_5          (1 << 5)
-#define PLAYER_AVATAR_FLAG_6          (1 << 6)
-#define PLAYER_AVATAR_FLAG_DASH       (1 << 7)
+enum {
+    PLAYER_AVATAR_STATE_NORMAL,
+    PLAYER_AVATAR_STATE_MACH_BIKE,
+    PLAYER_AVATAR_STATE_ACRO_BIKE,
+    PLAYER_AVATAR_STATE_SURFING,
+    PLAYER_AVATAR_STATE_UNDERWATER,
+    PLAYER_AVATAR_STATE_FIELD_MOVE,
+    PLAYER_AVATAR_STATE_FISHING,
+    PLAYER_AVATAR_STATE_WATERING,
+};
+
+#define PLAYER_AVATAR_FLAG_ON_FOOT    (1 << PLAYER_AVATAR_STATE_NORMAL)
+#define PLAYER_AVATAR_FLAG_MACH_BIKE  (1 << PLAYER_AVATAR_STATE_MACH_BIKE)
+#define PLAYER_AVATAR_FLAG_ACRO_BIKE  (1 << PLAYER_AVATAR_STATE_ACRO_BIKE)
+#define PLAYER_AVATAR_FLAG_SURFING    (1 << PLAYER_AVATAR_STATE_SURFING)
+#define PLAYER_AVATAR_FLAG_UNDERWATER (1 << PLAYER_AVATAR_STATE_UNDERWATER)
+#define PLAYER_AVATAR_FLAG_5          (1 << PLAYER_AVATAR_STATE_FIELD_MOVE)
+#define PLAYER_AVATAR_FLAG_6          (1 << PLAYER_AVATAR_STATE_FISHING)
+#define PLAYER_AVATAR_FLAG_DASH       (1 << PLAYER_AVATAR_STATE_WATERING)
 
 enum
 {

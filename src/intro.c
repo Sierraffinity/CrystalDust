@@ -100,10 +100,10 @@ static const struct OamData gOamData_Ditto =
     .objMode = 0,
     .mosaic = TRUE,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(64x64),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(64x64),
     .tileNum = 0,
     .priority = 3,
     .paletteNum = 0,
@@ -176,10 +176,10 @@ static const struct OamData gOamData_Presents =
     .objMode = 1,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 1,
+    .shape = SPRITE_SHAPE(32x8),
     .x = 0,
     .matrixNum = 0,
-    .size = 1,
+    .size = SPRITE_SIZE(32x8),
     .tileNum = 0,
     .priority = 3,
     .paletteNum = 0,
@@ -220,10 +220,10 @@ static const struct OamData gOamData_UnownA =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 2,
+    .shape = SPRITE_SHAPE(32x64),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(32x64),
     .tileNum = 0,
     .priority = 3,
     .paletteNum = 0,
@@ -268,10 +268,10 @@ static const struct OamData gOamData_UnownPulse =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(32x32),
     .x = 0,
     .matrixNum = 0,
-    .size = 2,
+    .size = SPRITE_SIZE(32x32),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -312,10 +312,10 @@ static const struct OamData gOamData_UnownOthers =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(32x32),
     .x = 0,
     .matrixNum = 0,
-    .size = 2,
+    .size = SPRITE_SIZE(32x32),
     .tileNum = 0,
     .priority = 3,
     .paletteNum = 0,
@@ -431,10 +431,10 @@ static const struct OamData gOamData_SuicuneSilhouette =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(64x64),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(64x64),
     .tileNum = 0,
     .priority = 3,
     .paletteNum = 0,
@@ -486,10 +486,10 @@ static const struct OamData gOamData_PopUpPkmn =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(64x64),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(64x64),
     .tileNum = 0,
     .priority = 2,
     .paletteNum = 0,
@@ -560,10 +560,10 @@ static const struct OamData gOamData_Suicune =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(8x8),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(32x64),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -837,10 +837,10 @@ static void Task_IntroLoadPart1Graphics(u8 taskId)
     intro_reset_and_hide_bgs();
     SetGpuReg(REG_OFFSET_BG3VOFS, 0);
     SetGpuReg(REG_OFFSET_BG2VOFS, 0);
-    LZ77UnCompVram(gIntro1BG0_Tiles, (void *)(VRAM + 0xC000));
-    LZ77UnCompVram(gIntro1BG0_LogoTiles, (void *)(VRAM + 0xC200));
-    LZ77UnCompVram(gIntro1BG2_Tilemap, (void *)(VRAM + 0xF000));
-    LZ77UnCompVram(gIntro1BG3_Tilemap, (void *)(VRAM + 0xF800));
+    LZ77UnCompVram(gIntro1BG0_Tiles, (void *)(BG_CHAR_ADDR(3)));
+    LZ77UnCompVram(gIntro1BG0_LogoTiles, (void *)(BG_CHAR_ADDR(3) + 0x200));
+    LZ77UnCompVram(gIntro1BG2_Tilemap, (void *)(BG_SCREEN_ADDR(30)));
+    LZ77UnCompVram(gIntro1BG3_Tilemap, (void *)(BG_SCREEN_ADDR(31)));
     LoadPalette(gIntro1BGPals, 0, sizeof(gIntro1BGPals));
     SetGpuReg(REG_OFFSET_BG3CNT, BGCNT_PRIORITY(3)
                                | BGCNT_CHARBASE(3)
@@ -935,7 +935,7 @@ static void Task_ShowGameFreakScreen(u8 taskId)
     
     if (gIntroFrameCounter == 200)
     {
-        LZ77UnCompVram(gIntro1BG2_LogoTilemap, (void *)(VRAM + 0xF000));
+        LZ77UnCompVram(gIntro1BG2_LogoTilemap, (void *)(BG_SCREEN_ADDR(30)));
         DestroySprite(&gSprites[gTasks[taskId].data[1]]);
         gTasks[taskId].data[0] = CreateSprite(&gSpriteTemplate_Presents, 104, 108, 5);
         gTasks[taskId].data[1] = CreateSprite(&gSpriteTemplate_Presents, 136, 108, 5);

@@ -34,12 +34,12 @@ NewBarkTown_PlayersHouse_1F_MomEncounter:
 	lockall
 	textcolor MSG_COLOR_RED
 	playse SE_PIN
-	applymovement 1, Movement_Emote_Exclamation_Mark
+	applymovement 1, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 1, Movement_Delay_48
+	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
 	playbgm MUS_MOMENC, 0
-	applymovement EVENT_OBJ_ID_PLAYER, Move_WalkInPlaceFastestDown
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer
 	waitmovement 0
 	delay 10
@@ -139,7 +139,7 @@ NewBarkTown_PlayersHouse_1F_NeighborTalk::
 	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay
 	compare VAR_0x8002, TIME_NIGHT
 	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight
-	applymovement VAR_LAST_TALKED, Move_WalkInPlaceFastestRight
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	release
 	end

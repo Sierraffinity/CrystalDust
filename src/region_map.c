@@ -43,6 +43,13 @@ struct WindowCoords
 
 // Static type declarations
 
+struct FlagControlledFlyDest
+{
+    const u8 *const *name;
+    u16 mapSecId;
+    u16 flag;
+};
+
 // Static RAM declarations
 
 static EWRAM_DATA struct RegionMap *gRegionMap = NULL;
@@ -122,7 +129,8 @@ static const u8 sMapSectionLayout_KantoSecondary[] = INCBIN_U8("graphics/region_
 #include "data/region_map/mapsec_to_region.h"
 #include "data/region_map/mapsec_flags.h"
 
-static const u16 sRegionMap_SpecialPlaceLocations[][2] = {
+static const u16 sRegionMap_SpecialPlaceLocations[][2] =
+{
     {MAPSEC_UNDERWATER_TERRA_CAVE,     MAPSEC_ROUTE_105},
     {MAPSEC_UNDERWATER_124,            MAPSEC_ROUTE_124},
     {MAPSEC_UNDERWATER_UNK1,           MAPSEC_ROUTE_129},
@@ -149,13 +157,15 @@ static const u16 sRegionMap_SpecialPlaceLocations[][2] = {
     {MAPSEC_NONE,                      MAPSEC_NONE}
 };
 
-static const u16 sRegionMap_MarineCaveMapSecIds[] = {
+static const u16 sRegionMap_MarineCaveMapSecIds[] =
+{
     MAPSEC_MARINE_CAVE,
     MAPSEC_UNDERWATER_MARINE_CAVE,
     MAPSEC_UNDERWATER_MARINE_CAVE
 };
 
-static const u16 sTerraCaveMapSectionIds[] = {
+static const u16 sTerraCaveMapSectionIds[] =
+{
     MAPSEC_ROUTE_114,
     MAPSEC_ROUTE_114,
     MAPSEC_ROUTE_115,
@@ -174,7 +184,8 @@ static const u16 sTerraCaveMapSectionIds[] = {
     MAPSEC_ROUTE_129
 };
 
-static const struct UCoords16 sTerraCaveLocationCoords[] = {
+static const struct UCoords16 sTerraCaveLocationCoords[] =
+{
     {0x00, 0x0a},
     {0x00, 0x0c},
     {0x18, 0x03},
@@ -185,15 +196,20 @@ static const struct UCoords16 sTerraCaveLocationCoords[] = {
     {0x18, 0x0a}
 };
 
-static const u8 sRegionMap_MapSecAquaHideoutOld[] = {
+static const u8 sRegionMap_MapSecAquaHideoutOld[] =
+{
     MAPSEC_AQUA_HIDEOUT_OLD
 };
 
-static const struct OamData sRegionMapCursorOam = {
-    .size = 1, .priority = 2
+static const struct OamData sRegionMapCursorOam =
+{
+    .shape = SPRITE_SHAPE(16x16),
+    .size = SPRITE_SIZE(16x16),
+    .priority = 2
 };
 
-static const union AnimCmd sRegionMapCursorAnim1[] = {
+static const union AnimCmd sRegionMapCursorAnim1[] =
+{
     ANIMCMD_FRAME(0, 20),
     ANIMCMD_FRAME(4, 20),
     ANIMCMD_JUMP(0)
@@ -203,20 +219,28 @@ static const union AnimCmd *const sRegionMapCursorAnimTable[] = {
     sRegionMapCursorAnim1
 };
 
-static const struct SpritePalette sRegionMapCursorSpritePalette = { sRegionMapCursorPal, 0 };
-
-static const struct SpriteTemplate sRegionMapCursorSpriteTemplate = {
-    0,
-    0,
-    &sRegionMapCursorOam,
-    sRegionMapCursorAnimTable,
-    NULL,
-    gDummySpriteAffineAnimTable,
-    SpriteCallback_CursorFull
+static const struct SpritePalette sRegionMapCursorSpritePalette =
+{
+    .data = sRegionMapCursorPal,
+    .tag = 0
 };
 
-static const struct OamData sRegionMapPlayerIconOam = {
-    .size = 1, .priority = 2
+static const struct SpriteTemplate sRegionMapCursorSpriteTemplate =
+{
+    .tileTag = 0,
+    .paletteTag = 0,
+    .oam = &sRegionMapCursorOam,
+    .anims = sRegionMapCursorAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallback_CursorFull
+};
+
+static const struct OamData sRegionMapPlayerIconOam =
+{
+    .shape = SPRITE_SHAPE(16x16),
+    .size = SPRITE_SIZE(16x16),
+    .priority = 2
 };
 
 static const struct OamData sRegionMapDotsOam = {
@@ -287,7 +311,8 @@ static const struct SpriteTemplate sRegionMapNameSpriteTemplate = {
     SpriteCallbackDummy
 };
 
-static const u8 sRegionMapEventSectionIds[] = {
+static const u8 sRegionMapEventSectionIds[] =
+{
     MAPSEC_BIRTH_ISLAND_2,
     MAPSEC_FARAWAY_ISLAND,
     MAPSEC_NAVEL_ROCK2
@@ -354,29 +379,58 @@ static const u8 sMapHealLocations[][3] = {
     {MAP_GROUP(ROUTE134), MAP_NUM(ROUTE134), 0}
 };
 
-static const u8 *const gUnknown_085A1ED4[] = {
+static const u8 *const gUnknown_085A1ED4[] =
+{
     gText_PokemonLeague,
     gText_PokemonCenter
 };
 
-static const struct {
-    const u8 *const *name;
-    u16 mapSecId;
-    u16 flag;
-} gUnknown_085A1EDC[] = {
-    gUnknown_085A1ED4,
-    MAPSEC_EVER_GRANDE_CITY,
-    FLAG_LANDMARK_POKEMON_LEAGUE
+static const struct FlagControlledFlyDest gUnknown_085A1EDC[] =
+{
+    {
+        .name = gUnknown_085A1ED4,
+        .mapSecId = MAPSEC_EVER_GRANDE_CITY,
+        .flag = FLAG_LANDMARK_POKEMON_LEAGUE
+    }
 };
 
 static const struct BgTemplate gUnknown_085A1EE4[] = {
-    { .bg = 0, .charBaseIndex = 0, .mapBaseIndex = 31, .screenSize = 0, .paletteMode = 0, .priority = 0 },
-    { .bg = 2, .charBaseIndex = 2, .mapBaseIndex = 29, .screenSize = 0, .paletteMode = 0, .priority = 2 },
-    { .bg = 3, .charBaseIndex = 3, .mapBaseIndex = 28, .screenSize = 0, .paletteMode = 0, .priority = 3 }
+    {
+        .bg = 0,
+        .charBaseIndex = 0,
+        .mapBaseIndex = 31,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 0
+    },
+    {
+        .bg = 2,
+        .charBaseIndex = 2,
+        .mapBaseIndex = 29,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 2
+    },
+    {
+        .bg = 3,
+        .charBaseIndex = 3,
+        .mapBaseIndex = 28,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 3
+    }
 };
 
 static const struct WindowTemplate gUnknown_085A1EF0[] = {
-    { 0, 0, 0, 30, 2, 14, 0x003D },
+    {
+        .bg = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 30,
+        .height = 2,
+        .paletteNum = 14,
+        .baseBlock = 0x3D
+    },
     DUMMY_WIN_TEMPLATE
 };
 
@@ -395,18 +449,20 @@ static const union AnimCmd gUnknown_085A1F28[] = {
     ANIMCMD_JUMP(0)
 };
 
-static const union AnimCmd *const gUnknown_085A1F60[] = {
+static const union AnimCmd *const gUnknown_085A1F60[] =
+{
     gUnknown_085A1F28,
 };
 
-static const struct SpriteTemplate gUnknown_085A1F7C = {
-    5,
-    5,
-    &gOamData_085A1F20,
-    gUnknown_085A1F60,
-    NULL,
-    gDummySpriteAffineAnimTable,
-    SpriteCallbackDummy
+static const struct SpriteTemplate gUnknown_085A1F7C =
+{
+    .tileTag = 5,
+    .paletteTag = 5,
+    .oam = &gOamData_085A1F20,
+    .anims = gUnknown_085A1F60,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy
 };
 
 static const u8 whiteTextColor[] = {
@@ -984,7 +1040,7 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation(void)
         case MAP_TYPE_CITY:
         case MAP_TYPE_ROUTE:
         case MAP_TYPE_UNDERWATER:
-        case MAP_TYPE_6:
+        case MAP_TYPE_OCEAN_ROUTE:
             gRegionMap->primaryMapSecId = gMapHeader.regionMapSectionId;
             gRegionMap->playerIsInCave = FALSE;
             mapWidth = gMapHeader.mapLayout->width;
@@ -997,7 +1053,7 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation(void)
             }
             break;
         case MAP_TYPE_UNDERGROUND:
-        case MAP_TYPE_7:
+        case MAP_TYPE_UNUSED_2:
             if (gMapHeader.flags & 0x02)
             {
                 mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
@@ -1237,7 +1293,7 @@ static u16 RegionMap_GetTerraCaveMapSecId(void)
 {
     s16 idx;
 
-    idx = VarGet(VAR_0x4037) - 1;
+    idx = VarGet(VAR_UNUSUAL_WEATHER_LOCATION) - 1;
     if (idx < 0 || idx > 15)
     {
         idx = 0;
@@ -1249,7 +1305,7 @@ static void RegionMap_GetMarineCaveCoords(u16 *x, u16 *y)
 {
     u16 idx;
 
-    idx = VarGet(VAR_0x4037);
+    idx = VarGet(VAR_UNUSUAL_WEATHER_LOCATION);
     if (idx < 9 || idx > 16)
     {
         idx = 9;

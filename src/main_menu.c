@@ -21,6 +21,7 @@
 #include "menu_helpers.h"
 #include "list_menu.h"
 #include "mystery_event_menu.h"
+#include "mystery_gift.h"
 #include "naming_screen.h"
 #include "option_menu.h"
 #include "overworld.h"
@@ -47,6 +48,135 @@
 #include "alloc.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
+
+/*
+ * Main menu state machine
+ * -----------------------
+ * 
+ * Entry point: CB2_InitMainMenu
+ * 
+ * Note: States advance sequentially unless otherwise stated.
+ * 
+ * CB2_InitMainMenu / CB2_ReinitMainMenu
+ *  - Both of these states call InitMainMenu, which does all the work.
+ *  - In the Reinit case, the init code will check if the user came from
+ *    the options screen. If they did, then the options menu item is
+ *    pre-selected.
+ * 
+ * Task_MainMenuCheckSaveFile
+ *  - Determines how many menu options to show based on whether
+ *    the save file is Ok, empty, corrupted, etc.
+ *  - If there was an error loading the save file, advance to
+ *    Task_WaitForSaveFileErrorWindow.
+ *  - If there were no errors, advance to Task_MainMenuCheckBattery.
+ *  - Note that the check to enable Mystery Events would normally happen
+ *    here, but this version of Emerald has them disabled.
+ * 
+ * Task_WaitForSaveFileErrorWindow
+ *  - Wait for the text to finish printing and then for the A button
+ *    to be pressed.
+ * 
+ * Task_MainMenuCheckBattery
+ *  - If the battery is OK, advance to Task_DisplayMainMenu.
+ *  - If the battery is dry, advance to Task_WaitForBatteryDryErrorWindow.
+ * 
+ * Task_WaitForBatteryDryErrorWindow
+ *  - Wait for the text to finish printing and then for the A button
+ *    to be pressed.
+ * 
+ * Task_DisplayMainWindow
+ *  - Display the buttons to the user. If the menu is in HAS_MYSTERY_EVENTS
+ *    mode, there are too many buttons for one screen and a scrollbar is added,
+ *    and the scrollbar task is spawned (Task_ScrollIndicatorArrowPairOnMainMenu).
+ * 
+ * Task_HighlightSelectedMainMenuItem
+ *  - Update the UI to match the currently selected item.
+ * 
+ * Task_HandleMainMenuInput
+ *  - If A is pressed, advance to Task_HandleMainMenuAPressed.
+ *  - If B is pressed, return to the title screen via CB2_InitTitleScreen.
+ *  - If Up or Down is pressed, handle scrolling if there is a scroll bar, change
+ *    the selection, then go back to Task_HighlightSelectedMainMenuItem.
+ * 
+ * Task_HandleMainMenuAPressed
+ *  - If the user selected New Game, advance to Task_NewGameBirchSpeech_Init.
+ *  - If the user selected Continue, advance to CB2_ContinueSavedGame.
+ *  - If the user selected the Options menu, advance to CB2_InitOptionMenu.
+ *  - If the user selected Mystery Gift, advance to CB2_MysteryGift. However,
+ *    if the wireless adapter was removed, instead advance to
+ *    Task_DisplayMainMenuInvalidActionError.
+ *  - Code to start a Mystery Event is present here, but is unreachable in this
+ *    version.
+ *    
+ * Task_HandleMainMenuBPressed
+ *  - Clean up the main menu and go back to CB2_InitTitleScreen.
+ * 
+ * Task_DisplayMainMenuInvalidActionError
+ *  - Print one of three different error messages, wait for the text to stop
+ *    printing, and then wait for A or B to be pressed.
+ * - Then advance to Task_HandleMainMenuBPressed.
+ * 
+ * Task_NewGameBirchSpeechInit
+ *  - Load the sprites for the intro speech, start playing music
+ * Task_NewGameBirchSpeech_WaitToShowBirch
+ *  - Spawn Task_NewGameBirchSpeech_FadeInTarget1OutTarget2
+ *  - Spawn Task_NewGameBirchSpeech_FadePlatformOut
+ *  - Both of these tasks destroy themselves when done.
+ * Task_NewGameBirchSpeech_WaitForSpriteFadeInWelcome
+ * Task_NewGameBirchSpeech_ThisIsAPokemon
+ *  - When the text is done printing, spawns Task_NewGameBirchSpeechSub_InitPokeball
+ * Task_NewGameBirchSpeech_MainSpeech
+ * Task_NewGameBirchSpeech_AndYouAre
+ * Task_NewGameBirchSpeech_StartBirchLotadPlatformFade
+ * Task_NewGameBirchSpeech_StartBirchLotadPlatformFade
+ * Task_NewGameBirchSpeech_SlidePlatformAway
+ * Task_NewGameBirchSpeech_StartPlayerFadeIn
+ * Task_NewGameBirchSpeech_WaitForPlayerFadeIn
+ * Task_NewGameBirchSpeech_BoyOrGirl
+ * Task_NewGameBirchSpeech_WaitToShowGenderMenu
+ * Task_NewGameBirchSpeech_ChooseGender
+ *  - Animates by advancing to Task_NewGameBirchSpeech_SlideOutOldGenderSprite
+ *    whenever the player's selection changes.
+ *  - Advances to Task_NewGameBirchSpeech_WhatsYourName when done.
+ * 
+ * Task_NewGameBirchSpeech_SlideOutOldGenderSprite
+ * Task_NewGameBirchSpeech_SlideInNewGenderSprite
+ *  - Returns back to Task_NewGameBirchSpeech_ChooseGender.
+ * 
+ * Task_NewGameBirchSpeech_WhatsYourName
+ * Task_NewGameBirchSpeech_WaitForWhatsYourNameToPrint
+ * Task_NewGameBirchSpeech_WaitPressBeforeNameChoice
+ * Task_NewGameBirchSpeech_StartNamingScreen
+ * C2_NamingScreen
+ *  - Returns to CB2_NewGameBirchSpeech_ReturnFromNamingScreen when done
+ * CB2_NewGameBirchSpeech_ReturnFromNamingScreen
+ * Task_NewGameBirchSpeech_ReturnFromNamingScreenShowTextbox
+ * Task_NewGameBirchSpeech_SoItsPlayerName
+ * Task_NewGameBirchSpeech_CreateNameYesNo
+ * Task_NewGameBirchSpeech_ProcessNameYesNoMenu
+ *  - If confirmed, advance to Task_NewGameBirchSpeech_SlidePlatformAway2.
+ *  - Otherwise, return to Task_NewGameBirchSpeech_BoyOrGirl.
+ * 
+ * Task_NewGameBirchSpeech_SlidePlatformAway2
+ * Task_NewGameBirchSpeech_ReshowBirchLotad
+ * Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter
+ * Task_NewGameBirchSpeech_AreYouReady
+ * Task_NewGameBirchSpeech_ShrinkPlayer
+ * Task_NewGameBirchSpeech_WaitForPlayerShrink
+ * Task_NewGameBirchSpeech_FadePlayerToWhite
+ * Task_NewGameBirchSpeech_Cleanup
+ *  - Advances to CB2_NewGame.
+ * 
+ * Task_NewGameBirchSpeechSub_InitPokeball
+ *  - Advances to Task_NewGameBirchSpeechSub_WaitForLotad
+ * Task_NewGameBirchSpeechSub_WaitForLotad
+ *  - Destroys itself when done.
+ */
+
+// These two defines are used with the sCurrItemAndOptionsMenuCheck,
+// to distinguish between its two parts.
+#define OPTION_MENU_FLAG 0x8000
+#define CURRENT_ITEM_MASK 0x7FFF
 
 // Static type declarations
 
@@ -134,7 +264,7 @@ static void Task_NewGameOakSpeech_ShrinkBG2(u8);
 static void Task_NewGameOakSpeech_FadePlayerToBlack(u8);
 static void Task_NewGameOakSpeech_FadePlayerToWhite(u8);
 static void Task_NewGameOakSpeech_Cleanup(u8);
-static void nullsub_11();
+static void SpriteCB_Null();
 static void Task_NewGameOakSpeech_ReturnFromNamingScreenShowTextbox(u8);
 static void MainMenu_FormatSavegamePlayer(void);
 static void MainMenu_FormatSavegamePokedex(void);
@@ -294,7 +424,7 @@ const struct WindowTemplate sClockSetWindowTemplates[] =
     DUMMY_WIN_TEMPLATE
 };
 
-static const struct WindowTemplate gUnknown_082FF080[] =
+static const struct WindowTemplate gNewGameBirchSpeechTextWindows[] =
 {
     {
         .bg = 0,
@@ -519,7 +649,7 @@ enum
     ACTION_OPTION,
     ACTION_MYSTERY_GIFT,
     ACTION_MYSTERY_EVENTS,
-    ACTION_UNKNOWN, // TODO: change when rom_8011DC0 decompiled
+    ACTION_EREADER,
     ACTION_INVALID
 };
 
@@ -685,7 +815,7 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
                 gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
                 break;
         }
-        if (sCurrItemAndOptionMenuCheck & 0x8000)   // are we returning from the options menu?
+        if (sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG)   // are we returning from the options menu?
         {
             switch (tMenuType)  // if so, highlight the OPTIONS item
             {
@@ -701,7 +831,7 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
                     break;
             }
         }
-        sCurrItemAndOptionMenuCheck &= 0x7FFF;  // turn off the "returning from options menu" flag
+        sCurrItemAndOptionMenuCheck &= CURRENT_ITEM_MASK;  // turn off the "returning from options menu" flag
         tCurrItem = sCurrItemAndOptionMenuCheck;
         tItemCount = tMenuType + 2;
     }
@@ -772,6 +902,8 @@ static void Task_DisplayMainMenu(u8 taskId)
         gPlttBufferUnfaded[251] = RGB(12, 12, 12);
         gPlttBufferUnfaded[252] = RGB(26, 26, 25);
 
+        // Note: If there is no save file, the save block is zeroed out,
+        // so the default gender is MALE.
         if (gSaveBlock2Ptr->playerGender == MALE)
             gPlttBufferUnfaded[241] = RGB(4, 16, 31);
         else
@@ -787,8 +919,8 @@ static void Task_DisplayMainMenu(u8 taskId)
         {
             case HAS_NO_SAVED_GAME:
             default:
-                FillWindowPixelBuffer(0, 0xAA);
-                FillWindowPixelBuffer(1, 0xAA);
+                FillWindowPixelBuffer(0, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(1, PIXEL_FILL(0xA));
                 AddTextPrinterParameterized3(0, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
                 AddTextPrinterParameterized3(1, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
                 PutWindowTilemap(0);
@@ -799,9 +931,9 @@ static void Task_DisplayMainMenu(u8 taskId)
                 DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[1], MAIN_MENU_BORDER_TILE);
                 break;
             case HAS_SAVED_GAME:
-                FillWindowPixelBuffer(2, 0xAA);
-                FillWindowPixelBuffer(3, 0xAA);
-                FillWindowPixelBuffer(4, 0xAA);
+                FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(3, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(4, PIXEL_FILL(0xA));
                 AddTextPrinterParameterized3(2, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
                 AddTextPrinterParameterized3(3, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
                 AddTextPrinterParameterized3(4, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
@@ -817,10 +949,10 @@ static void Task_DisplayMainMenu(u8 taskId)
                 DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[4], MAIN_MENU_BORDER_TILE);
                 break;
             case HAS_MYSTERY_GIFT:
-                FillWindowPixelBuffer(2, 0xAA);
-                FillWindowPixelBuffer(3, 0xAA);
-                FillWindowPixelBuffer(4, 0xAA);
-                FillWindowPixelBuffer(5, 0xAA);
+                FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(3, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(4, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(5, PIXEL_FILL(0xA));
                 AddTextPrinterParameterized3(2, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
                 AddTextPrinterParameterized3(3, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
                 AddTextPrinterParameterized3(4, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryGift);
@@ -849,11 +981,11 @@ static void Task_DisplayMainMenu(u8 taskId)
                 }
                 break;
             case HAS_MYSTERY_EVENTS:
-                FillWindowPixelBuffer(2, 0xAA);
-                FillWindowPixelBuffer(3, 0xAA);
-                FillWindowPixelBuffer(4, 0xAA);
-                FillWindowPixelBuffer(5, 0xAA);
-                FillWindowPixelBuffer(6, 0xAA);
+                FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(3, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(4, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(5, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(6, PIXEL_FILL(0xA));
                 AddTextPrinterParameterized3(2, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
                 AddTextPrinterParameterized3(3, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
                 AddTextPrinterParameterized3(4, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryGift2);
@@ -1050,7 +1182,7 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
                     }
                     else
                     {
-                        action = ACTION_UNKNOWN;
+                        action = ACTION_EREADER;
                     }
                     break;
                 case 3:
@@ -1088,14 +1220,14 @@ static void Task_HandleMainMenuAPressed_(u8 taskId)
     {
         if (gTasks[taskId].tScrollArrowTaskId != 0xFF)
             RemoveScrollIndicatorArrowPair(gTasks[taskId].tScrollArrowTaskId);
-        sub_819746C(0, 1);
-        sub_819746C(1, 1);
-        sub_819746C(2, 1);
-        sub_819746C(3, 1);
-        sub_819746C(4, 1);
-        sub_819746C(5, 1);
-        sub_819746C(6, 1);
-        sub_819746C(7, 1);
+        ClearStdWindowAndFrame(0, TRUE);
+        ClearStdWindowAndFrame(1, TRUE);
+        ClearStdWindowAndFrame(2, TRUE);
+        ClearStdWindowAndFrame(3, TRUE);
+        ClearStdWindowAndFrame(4, TRUE);
+        ClearStdWindowAndFrame(5, TRUE);
+        ClearStdWindowAndFrame(6, TRUE);
+        ClearStdWindowAndFrame(7, TRUE);
         
         ChangeBgY(0, 0, 0);
         ChangeBgY(1, 0, 0);
@@ -1126,8 +1258,8 @@ static void Task_HandleMainMenuAPressed_(u8 taskId)
                 SetMainCallback2(CB2_InitMysteryEventMenu);
                 DestroyTask(taskId);
                 break;
-            case ACTION_UNKNOWN:
-                SetMainCallback2(sub_801867C);
+            case ACTION_EREADER:
+                SetMainCallback2(c2_ereader);
                 DestroyTask(taskId);
                 break;
             case ACTION_INVALID:
@@ -1148,7 +1280,7 @@ static void Task_HandleMainMenuAPressed_(u8 taskId)
         if (gTasks[taskId].tCurrAction != ACTION_OPTION)
             sCurrItemAndOptionMenuCheck = 0;
         else
-            sCurrItemAndOptionMenuCheck |= 0x8000;  // entering the options menu
+            sCurrItemAndOptionMenuCheck |= OPTION_MENU_FLAG;  // entering the options menu
     }
 }
 
@@ -1518,7 +1650,7 @@ static void Task_NewGameOakSpeech_WaitForTextToStart(u8 taskId)
         }
         else
         {
-            InitWindows(gUnknown_082FF080);
+            InitWindows(gNewGameBirchSpeechTextWindows);
             LoadMainMenuWindowFrameTiles(0, 0xF3);
             LoadMessageBoxGfx(0, 0xFC,  0xF0);
             NewGameOakSpeech_ShowDialogueWindow(0, 1);
@@ -1598,7 +1730,7 @@ static void Task_NewGameOakSpeech_PutAwayWooper(u8 taskId)
     u8 spriteId;
     if (!RunTextPrintersAndIsPrinter0Active())
     {
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         spriteId = gTasks[taskId].tWooperSpriteId;
         gTasks[taskId].tPokeBallSpriteId = sub_807671C(spriteId, gSprites[spriteId].oam.paletteNum, 100, 66, 0, 0, 0x20, 0xFFFF1F3F);
         gTasks[taskId].tTimer2 = 48;
@@ -1646,7 +1778,7 @@ static void Task_NewGameOakSpeech_StartOakPlatformFade(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
     {
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         NewGameOakSpeech_StartFadeOutTarget1InTarget2(taskId, 1);
         gTasks[taskId].tTimer = 48;
         gTasks[taskId].func = Task_NewGameOakSpeech_WaitOakPlatformFade;
@@ -1708,7 +1840,7 @@ static void Task_NewGameOakSpeech_ChooseGender(u8 taskId)
 
 static void Task_NewGameOakSpeech_StartPlayerFadeIn(u8 taskId)
 {
-    sub_8197434(0, TRUE);
+    ClearDialogWindowAndFrame(0, TRUE);
     NewGameOakSpeech_ClearGenderWindow(1, 1);
     LoadOakIntroBigSprite(gSaveBlock2Ptr->playerGender, 0);
     NewGameOakSpeech_StartFadeInTarget1OutTarget2(taskId, 1);
@@ -1796,7 +1928,7 @@ static void Task_NewGameOakSpeech_ProcessNameYesNoMenu(u8 taskId)
     {
         case 0:
             PlaySE(SE_SELECT);
-            sub_8197434(0, TRUE);
+            ClearDialogWindowAndFrame(0, TRUE);
             gTasks[taskId].func = Task_NewGameOakSpeech_SlidePlatformAway2;
             break;
         case -1:
@@ -2050,7 +2182,7 @@ static void CB2_NewGameOakSpeech_ReturnFromNamingScreen(void)
     DmaFill16(3, 0, PLTT, PLTT_SIZE);
     ResetPaletteFade();
     LZ77UnCompVram(sOakSpeechBgGfx, (u8*)VRAM);
-    LZ77UnCompVram(sOakSpeechBgMap, (u8*)(VRAM + 0xF000));
+    LZ77UnCompVram(sOakSpeechBgMap, (u8*)(BG_SCREEN_ADDR(30)));
     LoadPalette(sOakSpeechBgPal, 0, 64);
     ResetTasks();
     taskId = CreateTask(Task_NewGameOakSpeech_ReturnFromNamingScreenShowTextbox, 0);
@@ -2087,14 +2219,14 @@ static void CB2_NewGameOakSpeech_ReturnFromNamingScreen(void)
     REG_IME = savedIme;
     SetVBlankCallback(VBlankCB_MainMenu);
     SetMainCallback2(CB2_MainMenu);
-    InitWindows(gUnknown_082FF080);
+    InitWindows(gNewGameBirchSpeechTextWindows);
     LoadMainMenuWindowFrameTiles(0, 0xF3);
     LoadMessageBoxGfx(0, 0xFC, 0xF0);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 }
 
-static void nullsub_11(struct Sprite *sprite)
+static void SpriteCB_Null(struct Sprite *sprite)
 {
 }
 
@@ -2119,7 +2251,7 @@ void AddOakSpeechObjects(u8 taskId)
     u8 spriteId;
 
     wooperSprite = NewGameOakSpeech_CreateLotadSprite(96, 96);
-    gSprites[wooperSprite].callback = nullsub_11;
+    gSprites[wooperSprite].callback = SpriteCB_Null;
     gSprites[wooperSprite].oam.priority = 0;
     gSprites[wooperSprite].invisible = TRUE;
     gTasks[taskId].tWooperSpriteId = wooperSprite;
@@ -2257,8 +2389,8 @@ static void NewGameOakSpeech_StartFadeInTarget1OutTarget2(u8 taskId, u8 delay)
 
 static void NewGameOakSpeech_ShowGenderMenu(void)
 {
-    DrawMainMenuWindowBorder(&gUnknown_082FF080[1], 0xF3);
-    FillWindowPixelBuffer(1, 17);
+    DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[1], 0xF3);
+    FillWindowPixelBuffer(1, PIXEL_FILL(1));
     PrintMenuTable(1, 2, sMenuActions_Gender);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0);
     PutWindowTilemap(1);
@@ -2286,7 +2418,7 @@ static void NewGameOakSpeech_SetDefaultPlayerName(u8 nameId)
 
 static void CreateMainMenuErrorWindow(const u8* str)
 {
-    FillWindowPixelBuffer(7, 17);
+    FillWindowPixelBuffer(7, PIXEL_FILL(1));
     AddTextPrinterParameterized(7, 1, str, 0, 1, 1, 0);
     PutWindowTilemap(7);
     CopyWindowToVram(7, 2);
@@ -2396,12 +2528,12 @@ static void NewGameOakSpeech_ClearGenderWindowTilemap(u8 a, u8 b, u8 c, u8 d, u8
     FillBgTilemapBufferRect(a, 0, b + 0xFF, c + 0xFF, d + 2, e + 2, 2);
 }
 
-static void NewGameOakSpeech_ClearGenderWindow(u8 windowId, u8 a)
+static void NewGameOakSpeech_ClearGenderWindow(u8 windowId, u8 copyToVram)
 {
     CallWindowFunction(windowId, NewGameOakSpeech_ClearGenderWindowTilemap);
-    FillWindowPixelBuffer(windowId, 0x11);
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     ClearWindowTilemap(windowId);
-    if (a == 1)
+    if (copyToVram == TRUE)
         CopyWindowToVram(windowId, 3);
 }
 
@@ -2416,7 +2548,7 @@ void CreateYesNoMenuParameterized(u8 x, u8 y, u16 borderTileNum, u16 windowTileN
 static void NewGameOakSpeech_ShowDialogueWindow(u8 windowId, u8 copyToVram)
 {
     CallWindowFunction(windowId, NewGameOakSpeech_CreateDialogueWindowBorder);
-    FillWindowPixelBuffer(windowId, 0x11);
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
     if (copyToVram == TRUE)
         CopyWindowToVram(windowId, 3);

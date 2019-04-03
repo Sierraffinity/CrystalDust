@@ -24,7 +24,6 @@
 #include "constants/songs.h"
 
 #define VERSION_BANNER_RIGHT_TILEOFFSET 64
-#define VERSION_BANNER_BYTES 0x1000
 #define VERSION_BANNER_LEFT_X 98
 #define VERSION_BANNER_RIGHT_X 162
 #define VERSION_BANNER_Y 2
@@ -112,14 +111,21 @@ static const struct SpriteTemplate sSuicuneSpriteTemplate =
 
 static const struct CompressedSpriteSheet sSpriteSheet_Suicune[] =
 {
-    {sTitleScreenSuicuneGfx, 0x2000, 1001},
-    {NULL},
+    {
+        .data = sTitleScreenSuicuneGfx,
+        .size = 0x2000,
+        .tag = 1001
+    },
+    {},
 };
 
 static const struct SpritePalette sSpritePalette_Suicune[] =
 {
-    {sTitleScreenSuicunePal, 1001},
-    {NULL},
+    {
+        .data = sTitleScreenSuicunePal,
+        .tag = 1001
+    },
+    {},
 };
 
 static const struct OamData sPokemonLogoShineOamData =
@@ -129,10 +135,10 @@ static const struct OamData sPokemonLogoShineOamData =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(64x64),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(64x64),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -163,8 +169,12 @@ static const struct SpriteTemplate sPokemonLogoShineSpriteTemplate =
 
 static const struct CompressedSpriteSheet sPokemonLogoShineSpriteSheet[] =
 {
-    {sTitleScreenLogoShineGfx, 0x800, 1002},
-    {NULL},
+    {
+        .data = sTitleScreenLogoShineGfx,
+        .size = 0x800,
+        .tag = 1002
+    },
+    {},
 };
 
 // code
@@ -284,12 +294,12 @@ void CB2_InitTitleScreen(void)
         break;
     case 1:
         LZ77UnCompVram(gTitleScreenPokemonLogoGfx, (void *)VRAM);
-        LZ77UnCompVram(gTitleScreenPokemonLogoTilemap, (void *)(VRAM + 0xF800));
+        LZ77UnCompVram(gTitleScreenPokemonLogoTilemap, (void *)(BG_SCREEN_ADDR(31)));
         LoadPalette(gTitleScreenBgPalettes, 0, 0x200);
-        LZ77UnCompVram(sTitleScreenCloudsGfx, (void *)(VRAM + 0x8000));
-        LZ77UnCompVram(sTitleScreenCloudsTilemap, (void *)(VRAM + 0xE000));
-        LZ77UnCompVram(sTitleScreenEmblemGfx, (void *)(VRAM + 0x4000));
-        LZ77UnCompVram(sTitleScreenEmblemTilemap, (void *)(VRAM + 0xE800));
+        LZ77UnCompVram(sTitleScreenCloudsGfx, (void *)(BG_CHAR_ADDR(2)));
+        LZ77UnCompVram(sTitleScreenCloudsTilemap, (void *)(BG_SCREEN_ADDR(28)));
+        LZ77UnCompVram(sTitleScreenEmblemGfx, (void *)(BG_CHAR_ADDR(1)));
+        LZ77UnCompVram(sTitleScreenEmblemTilemap, (void *)(BG_SCREEN_ADDR(29)));
         ScanlineEffect_Stop();
         ResetTasks();
         ResetSpriteData();

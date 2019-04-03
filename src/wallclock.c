@@ -104,7 +104,8 @@ static const struct WindowTemplate gUnknown_085B21F4 =
     .baseBlock = 572
 };
 
-static const struct BgTemplate gUnknown_085B21FC[] = {
+static const struct BgTemplate gUnknown_085B21FC[] =
+{
     {
         .bg = 0,
         .charBaseIndex = 2,
@@ -227,7 +228,7 @@ void CB2_StartWallClock(void)
     PutWindowTilemap(2);
     FillWindowPixelBuffer(2, 0x00);
     AddTextPrinterParameterized3(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeNotSet);
-    NewMenuHelpers_DrawDialogueFrame(0, TRUE);
+    DrawDialogueFrame(0, TRUE);
     AddTextPrinterParameterized(0, 1, gText_SetClock_WhatTime, 0, 1, 0, NULL);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
@@ -430,9 +431,9 @@ static void Task_SetClock4(u8 taskId)
         case -1:     //NO
             PlaySE(SE_SELECT);
             ShowHelpBar(gText_LeftRightSelectUpDownChangeAConfirm);
-            //sub_8197434(0, FALSE);
+            //ClearDialogWindowAndFrame(0, FALSE);
             //ClearWindowTilemap(0);
-            FillWindowPixelBuffer(0, 0x11);
+            FillWindowPixelBuffer(0, PIXEL_FILL(1));
             StringExpandPlaceholders(gStringVar4, gText_SetClock_WhatTime);
             AddTextPrinterForMessage_IgnoreTextColor(1);
             gTasks[taskId].func = Task_SetClock2_1;

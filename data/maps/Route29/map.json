@@ -51,7 +51,7 @@
             "elevation": 3,
             "script": "NULL",
             "type": "trigger",
-            "var": "VAR_0x4060",
+            "var": "VAR_ROUTE101_STATE",
             "var_value": "0",
             "x": 65,
             "y": 10
@@ -60,7 +60,7 @@
             "elevation": 3,
             "script": "NULL",
             "type": "trigger",
-            "var": "VAR_0x4060",
+            "var": "VAR_ROUTE101_STATE",
             "var_value": "0",
             "x": 65,
             "y": 11
@@ -69,7 +69,7 @@
             "elevation": 3,
             "script": "NULL",
             "type": "trigger",
-            "var": "VAR_0x4060",
+            "var": "VAR_ROUTE101_STATE",
             "var_value": "0",
             "x": 65,
             "y": 12
@@ -78,7 +78,7 @@
             "elevation": 3,
             "script": "NULL",
             "type": "trigger",
-            "var": "VAR_0x4060",
+            "var": "VAR_ROUTE101_STATE",
             "var_value": "0",
             "x": 65,
             "y": 13

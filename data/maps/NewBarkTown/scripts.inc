@@ -137,7 +137,7 @@ NewBarkTown_EventScript_TeacherMain:
 	turnobject 2, 3
 	msgbox NewBarkTown_Text_WaitPlayer
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, Move_WalkInPlaceFastestRight
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	delay 10
 	compare VAR_TEMP_1, 0

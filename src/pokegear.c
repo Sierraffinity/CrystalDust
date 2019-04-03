@@ -959,7 +959,7 @@ static void LoadClockCard(void)
     u8 newTask, spriteId;
     const u8 *dayOfWeek = GetDayOfWeekString(gLocalTime.dayOfWeek);
 
-    SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
+    DrawStdFrameWithCustomTileAndPalette(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PutWindowTilemap(WIN_TOP);
     //PutWindowTilemap(WIN_BOTTOM);
     AddTextPrinterParameterized(WIN_DIALOG, 1, gText_PokegearInstructions, 0, 1, 0, NULL);
@@ -1070,7 +1070,7 @@ static void UnloadClockCard(void)
     u8 taskId = FindTaskIdByFunc(Task_ClockCard);
     int i;
 
-    sub_8198070(WIN_DIALOG, TRUE);
+    ClearStdWindowAndFrameToTransparent(WIN_DIALOG, TRUE);
     
     FillWindowPixelBuffer(WIN_TOP, 0);
     ClearWindowTilemap(WIN_TOP);
@@ -1198,7 +1198,7 @@ static void LoadPhoneCard(void)
 
 static void DisplayPhoneCardDefaultText(void)
 {
-    SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
+    DrawStdFrameWithCustomTileAndPalette(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     AddTextPrinterParameterized(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL);
     schedule_bg_copy_tilemap_to_vram(0);
 }
@@ -1232,7 +1232,7 @@ static void Task_PhoneCard(u8 taskId)
     switch (input)
     {
     case LIST_NOTHING_CHOSEN:
-    case LIST_B_PRESSED:
+    case LIST_CANCEL:
         break;
     default:
         PlaySE(SE_SELECT);
@@ -1252,7 +1252,7 @@ static void PhoneCard_ConfirmCall(u8 taskId)
     ShowHelpBar(gText_UpDownPickAOk);
     PhoneCard_RemoveScrollIndicators(taskId);
     sPokegearStruct.phoneCallActionWindowId = AddWindow(&sConfirmWindowTemplate);
-    SetWindowBorderStyle(sPokegearStruct.phoneCallActionWindowId, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
+    DrawStdFrameWithCustomTileAndPalette(sPokegearStruct.phoneCallActionWindowId, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PrintMenuTable(sPokegearStruct.phoneCallActionWindowId, ARRAY_COUNT(sCallOptions), sCallOptions);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, ARRAY_COUNT(sCallOptions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
@@ -1269,14 +1269,14 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId)
             break;
         case MENU_B_PRESSED:
             PlaySE(SE_SELECT);
-            sub_8198070(sPokegearStruct.phoneCallActionWindowId, FALSE);
+            ClearStdWindowAndFrameToTransparent(sPokegearStruct.phoneCallActionWindowId, FALSE);
             RemoveWindow(sPokegearStruct.phoneCallActionWindowId);
             PutWindowTilemap(WIN_LIST);
             PhoneCard_ReturnToMain(taskId);
             break;
         default:
             PlaySE(SE_SELECT);
-            sub_8198070(sPokegearStruct.phoneCallActionWindowId, FALSE);
+            ClearStdWindowAndFrameToTransparent(sPokegearStruct.phoneCallActionWindowId, FALSE);
             RemoveWindow(sPokegearStruct.phoneCallActionWindowId);
             PutWindowTilemap(WIN_LIST);
             gTasks[taskId].func = sCallOptions[input].func.void_u8;
@@ -1411,8 +1411,8 @@ static void UnloadPhoneCard(void)
     u8 taskId = FindTaskIdByFunc(Task_PhoneCard);
 
     PhoneCard_RemoveScrollIndicators(taskId);
-    sub_8198070(WIN_DIALOG, TRUE);
-    sub_8198070(WIN_LIST, TRUE);
+    ClearStdWindowAndFrameToTransparent(WIN_DIALOG, TRUE);
+    ClearStdWindowAndFrameToTransparent(WIN_LIST, TRUE);
     DestroyListMenuTask(gTasks[taskId].tListMenuTaskId, NULL, NULL);
 
     DestroyTask(taskId);
@@ -1436,7 +1436,7 @@ static void LoadRadioCard(void)
     int i;
     u8 newTask, spriteId;
     
-    SetWindowBorderStyle(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
+    DrawStdFrameWithCustomTileAndPalette(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
     CopyWindowToVram(WIN_DIALOG, 2);
     PutWindowTilemap(WIN_BOTTOM);
@@ -1599,7 +1599,7 @@ static void UnloadRadioCard(void)
     u8 taskId = FindTaskIdByFunc(Task_RadioCard);
     int i;
 
-    sub_8198070(WIN_DIALOG, TRUE);
+    ClearStdWindowAndFrameToTransparent(WIN_DIALOG, TRUE);
     
     FillWindowPixelBuffer(WIN_BOTTOM, 0);
     ClearWindowTilemap(WIN_BOTTOM);

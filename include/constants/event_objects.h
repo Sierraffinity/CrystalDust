@@ -22,7 +22,7 @@
 #define EVENT_OBJ_GFX_POKEFAN_F                   18
 #define EVENT_OBJ_GFX_MAN_1                       19
 #define EVENT_OBJ_GFX_WOMAN_2                     20
-#define EVENT_OBJ_GFX_MR_POKEMON                    21
+#define EVENT_OBJ_GFX_MR_POKEMON                  21
 #define EVENT_OBJ_GFX_PROF_OAK                    22
 #define EVENT_OBJ_GFX_MAN_2                       23
 #define EVENT_OBJ_GFX_WOMAN_3                     24

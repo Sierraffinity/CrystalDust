@@ -13,8 +13,7 @@
 #include "text_window.h"
 #include "international_string_util.h"
 #include "strings.h"
-
-extern void SetPokemonCryStereo(u32 val);
+#include "gba/m4a_internal.h"
 
 // Task data
 enum
@@ -200,7 +199,7 @@ void CB2_InitOptionMenu(void)
     case 3:
         LoadBgTiles(1, GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1A2);
         LoadThinWindowBorderGfx(0, 0x21D, 0xD0);
-        SetWindowBorderStyle(0, FALSE, 0x21D, 13);
+        DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x21D, 13);
         gMain.state++;
         break;
     case 4:
@@ -620,7 +619,7 @@ static void ButtonMode_DrawChoices(u8 selection)
 
 static void DrawTextOption(void)
 {
-    FillWindowPixelBuffer(WIN_TEXT_OPTION, 0x11);
+    FillWindowPixelBuffer(WIN_TEXT_OPTION, PIXEL_FILL(1));
     AddTextPrinterParameterized(WIN_TEXT_OPTION, 1, gText_Option, 8, 1, TEXT_SPEED_FF, NULL);
     CopyWindowToVram(WIN_TEXT_OPTION, 3);
 }
@@ -629,7 +628,7 @@ static void DrawOptionMenuTexts(void)
 {
     u8 i;
 
-    FillWindowPixelBuffer(WIN_OPTIONS, 0x11);
+    FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
     for (i = 0; i < MENUITEM_COUNT; i++)
     {
         AddTextPrinterParameterized(WIN_OPTIONS, 1, sOptionMenuItemsNames[i], 8, (i * 16) + 1, TEXT_SPEED_FF, NULL);

@@ -821,7 +821,7 @@ void Task_FieldRadio_2(u8 taskId)
 {
     if (gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         EnableBothScriptContexts();
 
         DestroyTask(gTasks[taskId].tRadioShowTaskId);
@@ -835,7 +835,7 @@ bool16 FieldRadio(void)
         return FALSE;
 
     sub_81973A4();
-    NewMenuHelpers_DrawDialogueFrame(0, 1);
+    DrawDialogueFrame(0, 1);
     CreateTask(Task_FieldRadio_1, 3);
     return TRUE;
 }

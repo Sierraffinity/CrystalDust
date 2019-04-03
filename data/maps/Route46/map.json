@@ -82,7 +82,7 @@
             "elevation": 3,
             "script": "Route46_EventScript_1F3E8E",
             "type": "trigger",
-            "var": "VAR_0x4071",
+            "var": "VAR_ROUTE118_STATE",
             "var_value": "0",
             "x": 43,
             "y": 11
@@ -91,7 +91,7 @@
             "elevation": 3,
             "script": "Route46_EventScript_1F3EAE",
             "type": "trigger",
-            "var": "VAR_0x4071",
+            "var": "VAR_ROUTE118_STATE",
             "var_value": "0",
             "x": 44,
             "y": 11
@@ -100,7 +100,7 @@
             "elevation": 3,
             "script": "Route46_EventScript_1F3EC4",
             "type": "trigger",
-            "var": "VAR_0x4071",
+            "var": "VAR_ROUTE118_STATE",
             "var_value": "0",
             "x": 45,
             "y": 11

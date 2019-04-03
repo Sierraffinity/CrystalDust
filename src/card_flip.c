@@ -1558,7 +1558,7 @@ static void InitCardFlipTable(u8 taskId)
 
 static void DisplayInitialPlayMessage(void)
 {
-    NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
+    DrawDialogueFrame(WIN_TEXT, 0);
     ConvertIntToDecimalStringN(gStringVar1, sCardFlip->numCoinsEntry, 0, 3);
     StringExpandPlaceholders(gStringVar2, sPlayTheGamePromptText);
     AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar2, 0, 1, GetPlayerTextSpeedDelay(), NULL);
@@ -1581,7 +1581,7 @@ static void ProcessPlayPromptInput(void)
     int selection = Menu_ProcessInputNoWrapClearOnChoose();
     if (selection == 0)
     {
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         if (GetCoins() >= sCardFlip->numCoinsEntry)
         {
             ResetAndShuffleCardDeck();
@@ -1594,7 +1594,7 @@ static void ProcessPlayPromptInput(void)
     }
     else if (selection == 1 || selection == MENU_B_PRESSED)
     {
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
     }
 }
@@ -1738,7 +1738,7 @@ static void DisplayBetOutcomeMessage(void)
     {
         u8 wonBet = sBetTypeCards[sCardFlip->betType][CARD_ID(sCardFlip->drawnCard)];
         ShowHelpBar(sHelpBar_Next);
-        NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
+        DrawDialogueFrame(WIN_TEXT, 0);
         if (wonBet)
             AddTextPrinterParameterized(WIN_TEXT, 1, sYeahText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
         else
@@ -1773,7 +1773,7 @@ static void AwardCoins(void)
 static void PlayAgainMessage(void)
 {
     ShowHelpBar(sHelpBar_SelectExit);
-    NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
+    DrawDialogueFrame(WIN_TEXT, 0);
     AddTextPrinterParameterized(WIN_TEXT, 1, sPlayAgainText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     sCardFlip->state = CARD_FLIP_STATE_PLAY_AGAIN_PROMPT;
@@ -1793,7 +1793,7 @@ static void ProcessPlayAgainPromptInput(u8 taskId)
     int selection = Menu_ProcessInputNoWrapClearOnChoose();
     if (selection == 0)
     {
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         RemoveCardNumberFromBoard(CARD_ID(sCardFlip->drawnCard));
         if (GetCoins() >= sCardFlip->numCoinsEntry)
         {
@@ -1811,14 +1811,14 @@ static void ProcessPlayAgainPromptInput(u8 taskId)
     }
     else if (selection == 1 || selection == MENU_B_PRESSED)
     {
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
     }
 }
 
 static void ShuffleDeckMessage(void)
 {
-    NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
+    DrawDialogueFrame(WIN_TEXT, 0);
     AddTextPrinterParameterized(WIN_TEXT, 1, sShuffledCardsText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     ResetAndShuffleCardDeck();
@@ -1829,14 +1829,14 @@ static void ProcessShuffleDeckInput(void)
 {
     if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         sCardFlip->state = CARD_FLIP_STATE_PLAY_DEAL_CARDS;
     }
 }
 
 static void DisplayNotEnoughCoinsMessage(void)
 {
-    NewMenuHelpers_DrawDialogueFrame(WIN_TEXT, 0);
+    DrawDialogueFrame(WIN_TEXT, 0);
     AddTextPrinterParameterized(WIN_TEXT, 1, sNotEnoughCoinsText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS_INPUT;
@@ -1847,7 +1847,7 @@ static void ProcessNotEnoughCoinsInput(void)
     if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         PlaySE(SE_SELECT);
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
     }
 }

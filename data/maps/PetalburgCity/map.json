@@ -54,7 +54,7 @@
             "elevation": 3,
             "script": "PetalburgCity_EventScript_1DC49A",
             "type": "trigger",
-            "var": "VAR_0x4057",
+            "var": "VAR_PETALBURG_STATE",
             "var_value": "0",
             "x": 8,
             "y": 10
@@ -63,7 +63,7 @@
             "elevation": 3,
             "script": "PetalburgCity_EventScript_1DC4A6",
             "type": "trigger",
-            "var": "VAR_0x4057",
+            "var": "VAR_PETALBURG_STATE",
             "var_value": "0",
             "x": 8,
             "y": 11
@@ -72,7 +72,7 @@
             "elevation": 3,
             "script": "PetalburgCity_EventScript_1DC4B2",
             "type": "trigger",
-            "var": "VAR_0x4057",
+            "var": "VAR_PETALBURG_STATE",
             "var_value": "0",
             "x": 8,
             "y": 12
@@ -81,7 +81,7 @@
             "elevation": 3,
             "script": "PetalburgCity_EventScript_1DC4BE",
             "type": "trigger",
-            "var": "VAR_0x4057",
+            "var": "VAR_PETALBURG_STATE",
             "var_value": "0",
             "x": 8,
             "y": 13
@@ -90,7 +90,7 @@
             "elevation": 3,
             "script": "PetalburgCity_EventScript_1DC691",
             "type": "trigger",
-            "var": "VAR_0x40C9",
+            "var": "VAR_SCOTT_PETALBURG_ENCOUNTER",
             "var_value": "0",
             "x": 4,
             "y": 10
@@ -99,7 +99,7 @@
             "elevation": 3,
             "script": "PetalburgCity_EventScript_1DC6A7",
             "type": "trigger",
-            "var": "VAR_0x40C9",
+            "var": "VAR_SCOTT_PETALBURG_ENCOUNTER",
             "var_value": "0",
             "x": 4,
             "y": 11
@@ -108,7 +108,7 @@
             "elevation": 3,
             "script": "PetalburgCity_EventScript_1DC6BD",
             "type": "trigger",
-            "var": "VAR_0x40C9",
+            "var": "VAR_SCOTT_PETALBURG_ENCOUNTER",
             "var_value": "0",
             "x": 4,
             "y": 12
@@ -117,7 +117,7 @@
             "elevation": 3,
             "script": "PetalburgCity_EventScript_1DC6D3",
             "type": "trigger",
-            "var": "VAR_0x40C9",
+            "var": "VAR_SCOTT_PETALBURG_ENCOUNTER",
             "var_value": "0",
             "x": 4,
             "y": 13

@@ -3,18 +3,18 @@ Route30_MrPokemonsHouse_MapScripts::
 	.byte 0
 
 Route30_MrPokemonsHouse_MapScripts_Type2:
-	map_script_2 VAR_0x4051, 0, Route30_MrPokemonsHouse_MapScript_MrPokemonIntro
+	map_script_2 VAR_ROUTE102_ACCESSIBLE, 0, Route30_MrPokemonsHouse_MapScript_MrPokemonIntro
 	.2byte 0
 
 Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	lockall
 	textcolor MSG_COLOR_BLUE
 	playse SE_PIN
-	applymovement 1, Movement_Emote_Exclamation_Mark
+	applymovement 1, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 1, Movement_Delay_48
+	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
-	applymovement 1, Move_WalkInPlaceFastestDown
+	applymovement 1, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_HelloHello
 	closemessage
@@ -24,11 +24,11 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	giveitem_std ITEM_MYSTERY_EGG
 	setflag FLAG_RECEIVED_MYSTERY_EGG
 	msgbox Route30_MrPokemonsHouse_Text_IKnowACouple
-	applymovement 1, Move_WalkInPlaceFastestRight
+	applymovement 1, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_EvenOakKnows
-	applymovement 1, Move_WalkInPlaceFastestDown
-	applymovement 2, Move_WalkInPlaceFastestLeft
+	applymovement 1, Common_Movement_WalkInPlaceDown
+	applymovement 2, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_IfMyAssumption
 	closemessage
@@ -54,11 +54,11 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	fadedefaultbgm
 	removeobject 2
 	waitse
-	applymovement EVENT_OBJ_ID_PLAYER, Move_WalkInPlaceFastestUp
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_ReturningToElm
 	closemessage
-	call EventScript_HealParty
+	call Common_EventScript_OutOfCenterPartyHeal
 	msgbox Route30_MrPokemonsHouse_Text_DependingOnYou
 	closemessage
 	turnobject 1, 4
@@ -73,8 +73,8 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsChikorita
 	compare VAR_STARTER_MON, 2
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsCyndaquil
-	setflag FLAG_SPECIAL_FLAG_0x4000
-	setvar VAR_0x4051, 1
+	setflag FLAG_HIDE_MAP_NAME_POPUP
+	setvar VAR_ROUTE102_ACCESSIBLE, 1
 	releaseall
 	end
 

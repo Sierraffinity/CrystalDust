@@ -193,6 +193,9 @@ void UpdateEventObjectSpriteVisibility(struct Sprite *sprite, bool8 invisible);
 s16 sub_809773C(s16 a1);
 s16 sub_8097728(s16 a1);
 void CameraObjectReset2(void);
+u8 EventObjectGetBerryTreeId(u8 eventObjectId);
+void sub_8092EF0(u8 mapId, u8 mapNumber, u8 mapGroup);
+bool8 IsBerryTreeSparkling(u8, u8, u8);
 
 void MovementType_None(struct Sprite *);
 void MovementType_LookAround(struct Sprite *);
@@ -410,5 +413,10 @@ u8 MovementType_RunInPlace_Step0(struct EventObject *, struct Sprite *);
 u8 MovementType_Invisible_Step0(struct EventObject *, struct Sprite *);
 u8 MovementType_Invisible_Step1(struct EventObject *, struct Sprite *);
 u8 MovementType_Invisible_Step2(struct EventObject *, struct Sprite *);
+void sub_8097C44(u8 var, bool32 var2);
+bool32 sub_8097C8C(u8 var);
+void sub_8097BB4(u8 var1, u8 graphicsId);
+void sub_8097CC4(u8 var1, u8 var2);
+bool32 sub_8097D9C(u8 var);
 
 #endif //GUARD_FIELD_EVENT_OBJ_H

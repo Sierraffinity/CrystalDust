@@ -1170,8 +1170,8 @@ static void InitSwapScreenWindows(void)
     LoadUserWindowBorderGfx(sSwapScreen->newMonWindowId, 0x21D, 0xE0);
     PutWindowTilemap(sSwapScreen->stockMonWindowId);
     PutWindowTilemap(sSwapScreen->newMonWindowId);
-    NewMenuHelpers_DrawStdWindowFrame(sSwapScreen->stockMonWindowId, FALSE);
-    NewMenuHelpers_DrawStdWindowFrame(sSwapScreen->newMonWindowId, FALSE);
+    DrawStdWindowFrame(sSwapScreen->stockMonWindowId, FALSE);
+    DrawStdWindowFrame(sSwapScreen->newMonWindowId, FALSE);
     CopyWindowToVram(sSwapScreen->stockMonWindowId, 3);
     CopyWindowToVram(sSwapScreen->newMonWindowId, 3);
 
@@ -1195,7 +1195,7 @@ static void InitSwapScreenWindows(void)
     LoadMessageBoxGfx(sSwapScreen->textWindowId, 0x200, 0xC0);
     LoadUserWindowBorderGfx(sSwapScreen->textWindowId, 0x214, 0xC0);
     PutWindowTilemap(sSwapScreen->textWindowId);
-    NewMenuHelpers_DrawStdWindowFrame(sSwapScreen->textWindowId, FALSE);
+    DrawStdWindowFrame(sSwapScreen->textWindowId, FALSE);
     CopyWindowToVram(sSwapScreen->textWindowId, 3);
 }
 

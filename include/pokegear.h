@@ -5,4 +5,6 @@ extern const struct SpriteTemplate sSpriteTemplate_Digits;
 extern const struct SpritePalette gSpritePalette_PokegearMenuSprites;
 extern const struct SpriteSheet sSpriteSheet_DigitTiles;
 
+void CB2_InitPokegear(void);
+
 #endif //GUARD_POKEGEAR_H

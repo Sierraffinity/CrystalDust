@@ -22,11 +22,11 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction:
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerStepToElm
 	waitmovement 0
 	playse SE_PIN
-	applymovement 2, Movement_Emote_Exclamation_Mark
+	applymovement 2, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 2, Movement_Delay_48
+	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
-	applymovement 2, Move_WalkInPlaceFastestRight
+	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmIntro, MSGBOX_YESNO
 NewBarkTown_ProfessorElmsLab_EventScript_ElmBegs:
@@ -43,16 +43,16 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmAccepted:
 	waitse
 	delay 20
 	playse SE_PIN
-	applymovement 2, Movement_Emote_Exclamation_Mark
+	applymovement 2, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 2, Movement_Delay_48
+	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
-	applymovement 2, Move_WalkInPlaceFastestDown
+	applymovement 2, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmGotAnEmail
 	closemessage
 	delay 30
-	applymovement 2, Move_WalkInPlaceFastestRight
+	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmsAcquaintance
 	closemessage
@@ -185,7 +185,7 @@ NewBarkTown_EventScript_ChoseMon:
 	waitmessage
 	playfanfare MUS_RG_FAN5
 	waitfanfare
-	msgbox gUnknown_08273374, MSGBOX_YESNO
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_Nickname
 	closemessage
@@ -267,7 +267,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom103:
 	step_end
 
 NewBarkTown_ProfessorElmsLab_EventScript_BallFromLeft:
-	applymovement 2, Move_WalkInPlaceFastestDown
+	applymovement 2, Common_Movement_WalkInPlaceDown
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom74
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
 
@@ -328,7 +328,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom105:
 
 NewBarkTown_ProfessorElmsLab_EventScript_Nickname:
 	setvar VAR_0x8004, 0
-	call EventScript_ChangePokemonNickname
+	call Common_EventScript_NameReceivedPokemon
 	return
 
 NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
@@ -344,11 +344,11 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	waitfanfare
 	closemessage
 	delay 10
-	applymovement 2, Move_WalkInPlaceFastestLeft
+	applymovement 2, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmMachineDirections, MSGBOX_DEFAULT
-	applymovement 2, Move_WalkInPlaceFastestDown
+	applymovement 2, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmCountingOnYou, MSGBOX_DEFAULT
 	setvar VAR_0x4050, 3
@@ -468,7 +468,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine::
 
 NewBarkTown_ProfessorElmsLab_EventScript_HealMon:
 	closemessage
-	call EventScript_HealParty
+	call Common_EventScript_OutOfCenterPartyHeal
 	return
 
 NewBarkTown_ProfessorElmsLab_EventScript_UnknownMachine:

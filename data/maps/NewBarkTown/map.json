@@ -47,7 +47,7 @@
     "coord_events": [
         {
             "elevation": 3,
-            "script": "NewBarkTown_EventScript_Teacher2",
+            "script": "NewBarkTown_EventScript_Teacher1",
             "type": "trigger",
             "var": "VAR_0x4050",
             "var_value": "1",

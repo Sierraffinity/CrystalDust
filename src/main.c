@@ -24,9 +24,6 @@
 #include "main.h"
 #include "trainer_hill.h"
 
-extern void sub_800B9B8(void);
-extern u8 gUnknown_03002748;
-
 static void VBlankIntr(void);
 static void HBlankIntr(void);
 static void VCountIntr(void);
@@ -164,7 +161,7 @@ static void UpdateLinkAndCallCallbacks(void)
 static void InitMainCallbacks(void)
 {
     gMain.vblankCounter1 = 0;
-    gUnknown_0203CF5C = NULL;
+    gTrainerHillVBlankCounter = NULL;
     gMain.vblankCounter2 = 0;
     gMain.callback1 = NULL;
     SetMainCallback2(CB2_InitCopyrightScreenAfterBootup);
@@ -321,8 +318,6 @@ void SetSerialCallback(IntrCallback callback)
     gMain.serialCallback = callback;
 }
 
-extern void CopyBufferedValuesToGpuRegs(void);
-
 static void VBlankIntr(void)
 {
     if (gWirelessCommType != 0)
@@ -332,8 +327,8 @@ static void VBlankIntr(void)
 
     gMain.vblankCounter1++;
 
-    if (gUnknown_0203CF5C && *gUnknown_0203CF5C < 0xFFFFFFFF)
-        (*gUnknown_0203CF5C)++;
+    if (gTrainerHillVBlankCounter && *gTrainerHillVBlankCounter < 0xFFFFFFFF)
+        (*gTrainerHillVBlankCounter)++;
 
     if (gMain.vblankCallback)
         gMain.vblankCallback();
@@ -404,14 +399,14 @@ static void WaitForVBlank(void)
     VBlankIntrWait();
 }
 
-void sub_80008DC(u32 *var)
+void SetTrainerHillVBlankCounter(u32 *counter)
 {
-    gUnknown_0203CF5C = var;
+    gTrainerHillVBlankCounter = counter;
 }
 
-void sub_80008E8(void)
+void ClearTrainerHillVBlankCounter(void)
 {
-    gUnknown_0203CF5C = NULL;
+    gTrainerHillVBlankCounter = NULL;
 }
 
 void DoSoftReset(void)

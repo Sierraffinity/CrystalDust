@@ -8,7 +8,7 @@ Route30_BerryMansHouse_EventScript_Man::
 	msgbox Route30_BerryMansHouse_Text_PokemonEatBerries, MSGBOX_DEFAULT
 	giveitem_std ITEM_ORAN_BERRY
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_NoSpaceInBag
+	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_ROUTE_30_RECEIVED_BERRY_MAN
 Route30_BerryMansHouse_EventScript_Man_AlreadyGot::
 	msgbox Route30_BerryMansHouse_Text_CheckTrees, MSGBOX_DEFAULT

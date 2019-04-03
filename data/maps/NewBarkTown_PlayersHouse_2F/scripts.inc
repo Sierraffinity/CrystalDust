@@ -5,11 +5,11 @@ NewBarkTown_PlayersHouse_2F_MapScripts:: @ 81F83E3
 
 NewBarkTown_PlayersHouse_2F_MapScript1_1F83EE: @ 81F83EE
 	call NewBarkTown_PlayersHouse_2F_EventScript_275CE1
-	setvar VAR_0x4089, 0
+	setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
 
 NewBarkTown_PlayersHouse_2F_MapScript2_1F846A: @ 81F846A
-	map_script_2 VAR_0x4089, 0, EventScript_275D0C
+	map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, EventScript_275D0C
 	.2byte 0
 
 EventScript_PlayerPC:: @ 81F860D
@@ -17,7 +17,7 @@ EventScript_PlayerPC:: @ 81F860D
 	setvar VAR_0x8004, 1
 	special DoPCTurnOnEffect
 	playse SE_PC_ON
-	msgbox gUnknown_08272D87, MSGBOX_DEFAULT
+	msgbox gText_PlayerHouseBootPC, MSGBOX_DEFAULT
 	special BedroomPC
 	waitstate
 	releaseall
@@ -30,7 +30,7 @@ NewBarkTown_PlayersHouse_2F_EventScript_1F863F:: @ 81F863F
 	releaseall
 	end
 
-NewBarkTown_PlayersHouse_2F_Text_1F8820: @ 81F8820
+Common_Text_LookCloserAtMap: @ 81F8820
 	.string "It's the TOWN MAP.$"
 
 NewBarkTown_PlayersHouse_2F_Radio::

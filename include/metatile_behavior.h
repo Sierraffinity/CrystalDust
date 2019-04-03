@@ -47,7 +47,7 @@ bool8 MetatileBehavior_IsSlideSouth(u8);
 bool8 MetatileBehavior_IsSlideWest(u8);
 bool8 MetatileBehavior_IsSlideEast(u8);
 bool8 MetatileBehavior_IsSignpost(u8 tile);
-bool8 MetatileBehavior_IsPlayerFacingPokemonCenterSign(u8 metatileBehavior, u8 playerDirection);
+bool8 MetatileBehavior_IsPlayerFacingCommon_EventScript_ShowPokemonCenterSign(u8 metatileBehavior, u8 playerDirection);
 bool8 MetatileBehavior_IsPlayerFacingPokeMartSign(u8 metatileBehavior, u8 playerDirection);
 bool8 MetatileBehavior_IsCounter(u8);
 bool8 MetatileBehavior_IsPlayerFacingTVScreen(u8 tile, u8 playerDir);

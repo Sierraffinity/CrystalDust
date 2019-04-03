@@ -1,5 +1,5 @@
 LilycoveCity_DepartmentStoreRooftop_MapScripts:: @ 8220207
-	map_script 3, LilycoveCity_DepartmentStoreRooftop_MapScript1_22020D
+	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_DepartmentStoreRooftop_MapScript1_22020D
 	.byte 0
 
 LilycoveCity_DepartmentStoreRooftop_MapScript1_22020D: @ 822020D
@@ -151,7 +151,7 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_22032F:: @ 822032F
 	giveitem VAR_TEMP_0, 1
 	bufferitemname 1, VAR_TEMP_0
 	bufferstdstring 2, 14
-	msgbox gUnknown_08272A9A, MSGBOX_DEFAULT
+	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
 	random 64
 	compare VAR_RESULT, 0
 	goto_if_ne LilycoveCity_DepartmentStoreRooftop_EventScript_220436
@@ -163,7 +163,7 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_22032F:: @ 822032F
 	giveitem VAR_TEMP_0, 1
 	bufferitemname 1, VAR_TEMP_0
 	bufferstdstring 2, 14
-	msgbox gUnknown_08272A9A, MSGBOX_DEFAULT
+	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
 	random 64
 	compare VAR_RESULT, 0
 	goto_if_ne LilycoveCity_DepartmentStoreRooftop_EventScript_220436
@@ -175,7 +175,7 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_22032F:: @ 822032F
 	giveitem VAR_TEMP_0, 1
 	bufferitemname 1, VAR_TEMP_0
 	bufferstdstring 2, 14
-	msgbox gUnknown_08272A9A, MSGBOX_DEFAULT
+	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
 	goto LilycoveCity_DepartmentStoreRooftop_EventScript_220436
 	end
 

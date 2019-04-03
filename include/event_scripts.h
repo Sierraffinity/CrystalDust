@@ -1,8 +1,8 @@
 #ifndef GUARD_EVENT_SCRIPTS_H
 #define GUARD_EVENT_SCRIPTS_H
 
-extern const u8 PokemonCenterSign[];
-extern const u8 PokemonMartSign[];
+extern const u8 Common_EventScript_ShowPokemonCenterSign[];
+extern const u8 Common_EventScript_ShowPokemartSign[];
 
 extern const u8 gUnknown_0823B4E8[];
 extern const u8 gUnknown_0823B5E9[];
@@ -546,9 +546,9 @@ extern const u8 Route110_TrickHouseEntrance_EventScript_26A22A[];
 extern const u8 EventScript_RegionMap[];
 extern const u8 EventScript_PictureBookShelf[];
 extern const u8 EventScript_BookShelf[];
-extern const u8 EventScript_PokemonCenterBookshelf[];
+extern const u8 EventScript_PokemonCenterBookShelf[];
 extern const u8 EventScript_Vase[];
-extern const u8 EventScript_TrashCan[];
+extern const u8 EventScript_EmptyTrashCan[];
 extern const u8 EventScript_ShopShelf[];
 extern const u8 EventScript_Blueprint[];
 extern const u8 EventScript_WirelessBoxResults[];
@@ -566,7 +566,7 @@ extern const u8 EventScript_FallDownHole[];
 extern const u8 BattleFrontier_BattlePyramidEmptySquare_EventScript_252BE8[];
 extern const u8 EventScript_Poison[];
 extern const u8 EventScript_EggHatch[];
-extern const u8 gUnknown_08273D1F[];
+extern const u8 UnusualWeather_EventScript_EndEventAndCleanup_1[];
 extern const u8 IslandCave_EventScript_238EAF[];
 extern const u8 MauvilleCity_EventScript_1DF7BA[];
 extern const u8 Route119_EventScript_1F49EC[];

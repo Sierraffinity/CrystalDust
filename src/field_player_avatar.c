@@ -1944,7 +1944,7 @@ static bool8 Fishing9(struct Task *task)
 static bool8 Fishing10(struct Task *task)
 {
     AlignFishingAnimationFrames();
-    FillWindowPixelBuffer(0, 0x11);
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized2(0, 1, gText_PokemonOnHook, 1, 0, 2, 1, 3);
     task->tStep++;
     task->tFrameCounter = 0;
@@ -1970,7 +1970,7 @@ static bool8 Fishing11(struct Task *task)
                 sub_8155604(gEventObjects[gPlayerAvatar.eventObjectId].fieldEffectSpriteId, 0, 0);
             gSprites[gPlayerAvatar.spriteId].pos2.x = 0;
             gSprites[gPlayerAvatar.spriteId].pos2.y = 0;
-            sub_8197434(0, TRUE);
+            ClearDialogWindowAndFrame(0, TRUE);
             task->tFrameCounter++;
             return FALSE;
         }
@@ -1992,7 +1992,7 @@ static bool8 Fishing12(struct Task *task)
 {
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
-    FillWindowPixelBuffer(0, 0x11);
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized2(0, 1, gText_NotEvenANibble, 1, 0, 2, 1, 3);
     task->tStep = FISHING_SHOW_RESULT;
     return TRUE;
@@ -2003,7 +2003,7 @@ static bool8 Fishing13(struct Task *task)
 {
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
-    FillWindowPixelBuffer(0, 0x11);
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized2(0, 1, gText_ItGotAway, 1, 0, 2, 1, 3);
     task->tStep++;
     return TRUE;
@@ -2043,7 +2043,7 @@ static bool8 Fishing16(struct Task *task)
         gPlayerAvatar.preventStep = FALSE;
         ScriptContext2_Disable();
         UnfreezeEventObjects();
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         sub_80ED950(0);
         DestroyTask(FindTaskIdByFunc(Task_Fishing));
     }
@@ -2151,7 +2151,7 @@ void sub_808D194(void)
     sub_808D1FC(CreateTask(sub_808D1FC, 0));
 }
 
-bool8 sub_808D1B4(void)
+bool32 sub_808D1B4(void)
 {
     return FuncIsActiveTask(sub_808D1FC);
 }
@@ -2161,7 +2161,7 @@ void sub_808D1C8(void)
     sub_808D094(CreateTask(sub_808D094, 0));
 }
 
-bool8 sub_808D1E8(void)
+bool32 sub_808D1E8(void)
 {
     return FuncIsActiveTask(sub_808D094);
 }

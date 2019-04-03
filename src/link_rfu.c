@@ -11,14 +11,15 @@
 #include "overworld.h"
 #include "random.h"
 #include "palette.h"
-#include "rom_8011DC0.h"
+#include "union_room.h"
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
 #include "constants/species.h"
+#include "save.h"
+#include "mystery_gift.h"
 
-extern u16 gUnknown_03005DA8;
-extern void nullsub_89(u8 taskId);
+extern u16 gHeldKeyCodeToSend;
 
 struct UnkRfuStruct_1 gUnknown_03004140;
 struct UnkRfuStruct_2 gUnknown_03005000;
@@ -153,8 +154,18 @@ const u8 sWireless_RSEtoASCIITable[] = {
     0x20, 0x2b, 0x5b, 0x5c, 0x5d, 0x5e, 0x5f, 0x20,
     0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x00
 };
-const struct OamData sWirelessStatusIndicatorOamData = {
-    .size = 1
+const struct OamData sWirelessStatusIndicatorOamData =
+{
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(16x16),
+    .x = 0,
+    .size = SPRITE_SIZE(16x16),
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
 };
 static const union AnimCmd sWirelessStatusIndicatorAnim0[] = {
     // 3 bars
@@ -308,10 +319,22 @@ const char gUnknown_082ED7EC[] = "PokemonSioInfo";
 const char gUnknown_082ED7FC[] = "LINK LOSS DISCONNECT!";
 const char gUnknown_082ED814[] = "LINK LOSS RECOVERY NOW";
 
-extern const char gUnknown_082ED82C[];
-extern const char gUnknown_082ED84B[];
-extern const char gUnknown_082ED85B[];
-extern const char gUnknown_082ED868[];
+ALIGNED(4) const char gUnknown_082ED82C[31] = {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',0x00};
+const char gUnknown_082ED84B[16] = {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',0x00};
+const char gUnknown_082ED85B[9] = {' ',' ',' ',' ',' ',' ',' ',' ',0x00};
+ALIGNED(4) const char gUnknown_082ED864[2] = {' ',0x00};
+const char gUnknown_082ED866[2] = {'*',0x00};
+const char gUnknown_082ED868[8] = "NOWSLOT";
+const char gUnknown_082ED870[12] = "           ";
+const char gUnknown_082ED87C[12] = "CLOCK DRIFT";
+const char gUnknown_082ED888[12] = "BUSY SEND  ";
+const char gUnknown_082ED894[12] = "CMD REJECT ";
+const char gUnknown_082ED8A0[12] = "CLOCK SLAVE";
+const char gUnknown_082ED8A8[3][8] = {
+    "CHILD ",
+    "PARENT",
+    "SEARCH"
+};
 
 // .text
 
@@ -2229,7 +2252,7 @@ void CreateWirelessStatusIndicatorSprite(u8 x, u8 y)
     }
 }
 
-void sub_800E084(void)
+void DestroyWirelessStatusIndicatorSprite(void)
 {
     if (gSprites[gWirelessStatusIndicatorSpriteId].data[7] == 0x1234)
     {
@@ -2342,22 +2365,22 @@ void sub_800E174(void)
         CpuCopy16(gMain.oamBuffer + 125, (struct OamData *)OAM + 125, sizeof(struct OamData));
         if (sub_8011A74() == 1)
         {
-            sub_800E084();
+            DestroyWirelessStatusIndicatorSprite();
         }
     }
 }
 
-void sub_800E378(struct UnkSaveSubstruct_3b98 *dest, u32 trainerId, const u8 *name)
+void CopyTrainerRecord(struct TrainerNameRecord *dest, u32 trainerId, const u8 *name)
 {
     dest->trainerId = trainerId;
     StringCopy(dest->trainerName, name);
 }
 
-bool32 sub_800E388(const u8 *name)
+bool32 NameIsNotEmpty(const u8 *name)
 {
     s32 i;
 
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < PLAYER_NAME_LENGTH + 1; i++)
     {
         if (name[i] != 0)
         {
@@ -2367,52 +2390,64 @@ bool32 sub_800E388(const u8 *name)
     return FALSE;
 }
 
-void sub_800E3A8(void)
+// Save the currently connected players into the trainer records, shifting all previous records down.
+void RecordMixTrainerNames(void)
 {
     if (gWirelessCommType != 0)
     {
         s32 i;
         s32 j;
-        s32 cnt;
-        s32 sp0[5];
-        struct UnkSaveSubstruct_3b98 *sp14 = calloc(20, sizeof(struct UnkSaveSubstruct_3b98));
+        s32 nextSpace;
+        s32 connectedTrainerRecordIndices[5];
+        struct TrainerNameRecord *newRecords = calloc(20, sizeof(struct TrainerNameRecord));
+
+        // Check if we already have a record saved for connected trainers.
         for (i = 0; i < GetLinkPlayerCount(); i++)
         {
-            sp0[i] = -1;
+            connectedTrainerRecordIndices[i] = -1;
             for (j = 0; j < 20; j++)
             {
-                if ((u16)gLinkPlayers[i].trainerId ==  gSaveBlock1Ptr->unk_3B98[j].trainerId && StringCompare(gLinkPlayers[i].name, gSaveBlock1Ptr->unk_3B98[j].trainerName) == 0)
+                if ((u16)gLinkPlayers[i].trainerId ==  gSaveBlock1Ptr->trainerNameRecords[j].trainerId && StringCompare(gLinkPlayers[i].name, gSaveBlock1Ptr->trainerNameRecords[j].trainerName) == 0)
                 {
-                    sp0[i] = j;
+                    connectedTrainerRecordIndices[i] = j;
                 }
             }
         }
-        cnt = 0;
+        
+        // Save the connected trainers first, at the top of the list.
+        nextSpace = 0;
         for (i = 0; i < GetLinkPlayerCount(); i++)
         {
             if (i != GetMultiplayerId() && gLinkPlayers[i].language != LANGUAGE_JAPANESE)
             {
-                sub_800E378(&sp14[cnt], (u16)gLinkPlayers[i].trainerId, gLinkPlayers[i].name);
-                if (sp0[i] >= 0)
+                CopyTrainerRecord(&newRecords[nextSpace], (u16)gLinkPlayers[i].trainerId, gLinkPlayers[i].name);
+
+                // If we already had a record for this trainer, wipe it so that the next step doesn't duplicate it.
+                if (connectedTrainerRecordIndices[i] >= 0)
                 {
-                    memset(gSaveBlock1Ptr->unk_3B98[sp0[i]].trainerName, 0, 8);
+                    memset(gSaveBlock1Ptr->trainerNameRecords[connectedTrainerRecordIndices[i]].trainerName, 0, 8);
                 }
-                cnt++;
+                nextSpace++;
             }
         }
+
+        // Copy all non-empty records to the new list, in the order they appear on the old list. If the list is full,
+        // the last (oldest) records will be dropped.
         for (i = 0; i < 20; i++)
         {
-            if (sub_800E388(gSaveBlock1Ptr->unk_3B98[i].trainerName))
+            if (NameIsNotEmpty(gSaveBlock1Ptr->trainerNameRecords[i].trainerName))
             {
-                sub_800E378(&sp14[cnt], gSaveBlock1Ptr->unk_3B98[i].trainerId, gSaveBlock1Ptr->unk_3B98[i].trainerName);
-                if (++cnt >= 20)
+                CopyTrainerRecord(&newRecords[nextSpace], gSaveBlock1Ptr->trainerNameRecords[i].trainerId, gSaveBlock1Ptr->trainerNameRecords[i].trainerName);
+                if (++nextSpace >= 20)
                 {
                     break;
                 }
             }
         }
-        memcpy(gSaveBlock1Ptr->unk_3B98, sp14, 20 * sizeof(struct UnkSaveSubstruct_3b98));
-        free(sp14);
+        
+        // Finalize the new list, and clean up.
+        memcpy(gSaveBlock1Ptr->trainerNameRecords, newRecords, 20 * sizeof(struct TrainerNameRecord));
+        free(newRecords);
     }
 }
 
@@ -2422,11 +2457,11 @@ bool32 sub_800E540(u16 id, u8 *name)
 
     for (i = 0; i < 20; i++)
     {
-        if (StringCompare(gSaveBlock1Ptr->unk_3B98[i].trainerName, name) == 0 && gSaveBlock1Ptr->unk_3B98[i].trainerId == id)
+        if (StringCompare(gSaveBlock1Ptr->trainerNameRecords[i].trainerName, name) == 0 && gSaveBlock1Ptr->trainerNameRecords[i].trainerId == id)
         {
             return TRUE;
         }
-        if (!sub_800E388(gSaveBlock1Ptr->unk_3B98[i].trainerName))
+        if (!NameIsNotEmpty(gSaveBlock1Ptr->trainerNameRecords[i].trainerName))
         {
             return FALSE;
         }
@@ -2434,14 +2469,14 @@ bool32 sub_800E540(u16 id, u8 *name)
     return FALSE;
 }
 
-void sub_800E5AC(void)
+void WipeTrainerNameRecords(void)
 {
     s32 i;
 
     for (i = 0; i < 20; i++)
     {
-        gSaveBlock1Ptr->unk_3B98[i].trainerId = 0;
-        CpuFill16(0, gSaveBlock1Ptr->unk_3B98[i].trainerName, 8);
+        gSaveBlock1Ptr->trainerNameRecords[i].trainerId = 0;
+        CpuFill16(0, gSaveBlock1Ptr->trainerNameRecords[i].trainerName, 8);
     }
 }
 
@@ -2978,7 +3013,7 @@ static void sub_800F048(void)
     }
 }
 
-bool32 sub_800F0B8(void)
+bool32 IsRfuRecvQueueEmpty(void)
 {
     s32 i;
     s32 j;
@@ -3199,7 +3234,7 @@ bool32 sub_800F4F0(void)
         for (i = 0; i < CMD_LENGTH - 1; i++)
             gSendCmd[i] = 0;
     }
-    return sub_800F0B8();
+    return IsRfuRecvQueueEmpty();
 }
 
 void sub_800F638(u8 unused, u32 flags)
@@ -3259,10 +3294,12 @@ u8 sub_800F74C(const u8 *a0)
 
 void rfu_func_080F97B8(void)
 {
-    if (gReceivedRemoteLinkPlayers && gUnknown_03005DA8 && gLinkTransferringData != 1)
+    if (gReceivedRemoteLinkPlayers
+        && gHeldKeyCodeToSend != LINK_KEY_CODE_NULL
+        && gLinkTransferringData != TRUE)
     {
         gUnknown_03000D78[0]++;
-        gUnknown_03005DA8 |= (gUnknown_03000D78[0] << 8);
+        gHeldKeyCodeToSend |= (gUnknown_03000D78[0] << 8);
         sub_800FD14(0xbe00);
     }
 }
@@ -3272,7 +3309,7 @@ struct UnkLinkRfuStruct_02022B14 *sub_800F7DC(void)
     return &gUnknown_02022B14;
 }
 
-bool32 sub_800F7E4(void)
+bool32 IsSendingKeysToRfu(void)
 {
     return gUnknown_03005000.unk_00 == rfu_func_080F97B8;
 }
@@ -3496,7 +3533,7 @@ void sub_800FD14(u16 command)
             gSendCmd[1 + i] = gUnknown_03005000.unk_f2[i];
         break;
     case 0xbe00:
-        gSendCmd[1] = gUnknown_03005DA8;
+        gSendCmd[1] = gHeldKeyCodeToSend;
         break;
     case 0xee00:
         break;
@@ -3786,10 +3823,10 @@ bool32 sub_8010454(u32 a0)
 
 u8 sub_801048C(bool32 a0)
 {
-    if (a0 == 0)
+    if (a0 == FALSE)
         return sub_800D550(0, 0);
     sub_800D550(1, 0x258);
-    return FALSE;
+    return 0;
 }
 
 void sub_80104B0(void)
@@ -4181,7 +4218,7 @@ void sub_8010DB4(void)
 {
     if (gUnknown_03005000.unk_ee == 1 && gUnknown_03004140.unk_02 == 0)
     {
-        if (gMain.callback2 == sub_8018438 || gUnknown_03004140.unk_3c->unk_04)
+        if (gMain.callback2 == c2_mystery_gift_e_reader_run || gUnknown_03004140.unk_3c->unk_04)
             gWirelessCommType = 2;
         SetMainCallback2(CB2_LinkError);
         gMain.savedCallback = CB2_LinkError;
@@ -4713,7 +4750,7 @@ bool32 sub_8011A80(void)
         return FALSE;
 }
 
-u8 sub_8011A9C(void)
+bool32 sub_8011A9C(void)
 {
     return gUnknown_03005000.unk_ce8;
 }
@@ -5150,7 +5187,8 @@ u32 sub_80124C0(void)
     return gUnknown_03005000.unk_9e8.unk_232;
 }
 
-u32 sub_80124D4(void)
+u32 GetRfuRecvQueueLength(void)
 {
     return gUnknown_03005000.unk_124.unk_8c2;
 }
+

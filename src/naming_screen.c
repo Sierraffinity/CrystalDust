@@ -558,7 +558,7 @@ static void DisplaySentToPCMessage(void)
         stringToDisplay++;
 
     StringExpandPlaceholders(gStringVar4, gUnknown_0858BDB8[stringToDisplay]);
-    NewMenuHelpers_DrawDialogueFrame(0, 0);
+    DrawDialogueFrame(0, 0);
     gTextFlags.canABSpeedUpPrint = TRUE;
     AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), 0, 2, 1, 3);
     CopyWindowToVram(0, 3);
@@ -1475,7 +1475,7 @@ static void HandleDpadMovement(struct Task *task)
 
 static void sub_80E4894(void)
 {
-    FillWindowPixelBuffer(gNamingScreenData->windows[3], 0x11);
+    FillWindowPixelBuffer(gNamingScreenData->windows[3], PIXEL_FILL(1));
     AddTextPrinterParameterized(gNamingScreenData->windows[3], 1, gNamingScreenData->template->title, 8, 1, 0, 0);
     PutWindowTilemap(gNamingScreenData->windows[3]);
 }
@@ -1486,7 +1486,7 @@ static void sub_80E48E8(void)
 
     StringCopy(buffer, gSpeciesNames[gNamingScreenData->monSpecies]);
     StringAppendN(buffer, gNamingScreenData->template->title, 15);
-    FillWindowPixelBuffer(gNamingScreenData->windows[3], 0x11);
+    FillWindowPixelBuffer(gNamingScreenData->windows[3], PIXEL_FILL(1));
     AddTextPrinterParameterized(gNamingScreenData->windows[3], 1, buffer, 8, 1, 0, 0);
     PutWindowTilemap(gNamingScreenData->windows[3]);
 }
@@ -1673,7 +1673,7 @@ static void sub_80E4D10(void)
     u8 maxChars = gNamingScreenData->template->maxChars;
     u16 unk = gNamingScreenData->inputCharBaseXPos - 0x40;
 
-    FillWindowPixelBuffer(gNamingScreenData->windows[2], 0x11);
+    FillWindowPixelBuffer(gNamingScreenData->windows[2], PIXEL_FILL(1));
 
     for (i = 0; i < maxChars; i++)
     {
@@ -1705,7 +1705,9 @@ static const struct TextColorThing sUnkColorStruct =
 
 static const u8 sFillValues[3] =
 {
-    0xEE, 0xDD, 0xFF
+    PIXEL_FILL(0xE),
+    PIXEL_FILL(0xD),
+    PIXEL_FILL(0xF)
 };
 
 static const u8 *const sUnkColors[3] =
@@ -1767,7 +1769,7 @@ static void sub_80E4EF0(void)
 {
     const u8 color[3] = { 15, 1, 2 };
 
-    FillWindowPixelBuffer(gNamingScreenData->windows[4], 0xFF);
+    FillWindowPixelBuffer(gNamingScreenData->windows[4], PIXEL_FILL(15));
     AddTextPrinterParameterized3(gNamingScreenData->windows[4], 0, GetStringRightAlignXOffset(0, gText_MoveOkBack, 240) - 4, 0, color, 0, gText_MoveOkBack);
     PutWindowTilemap(gNamingScreenData->windows[4]);
     CopyWindowToVram(gNamingScreenData->windows[4], 3);
@@ -1905,52 +1907,43 @@ static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
 const struct OamData gOamData_858BFEC =
 {
     .y = 0,
-    .affineMode = 0,
-    .objMode = 0,
-    .mosaic = 0,
-    .bpp = 0,
-    .shape = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(8x8),
     .x = 0,
-    .matrixNum = 0,
-    .size = 0,
+    .size = SPRITE_SIZE(8x8),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
-    .affineParam = 0,
 };
 
 const struct OamData gOamData_858BFF4 =
 {
     .y = 0,
-    .affineMode = 0,
-    .objMode = 0,
-    .mosaic = 0,
-    .bpp = 0,
-    .shape = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(16x16),
     .x = 0,
-    .matrixNum = 0,
-    .size = 1,
+    .size = SPRITE_SIZE(16x16),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
-    .affineParam = 0,
 };
 
 const struct OamData gOamData_858BFFC =
 {
     .y = 0,
-    .affineMode = 0,
-    .objMode = 0,
-    .mosaic = 0,
-    .bpp = 0,
-    .shape = 1,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(32x16),
     .x = 0,
-    .matrixNum = 0,
-    .size = 2,
+    .size = SPRITE_SIZE(32x16),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
-    .affineParam = 0,
 };
 
 static const struct Subsprite gUnknown_0858C004[] =
@@ -2202,3 +2195,5 @@ static const struct SpritePalette gUnknown_0858C230[] =
     {gNamingScreenMenu_Pal + 0x40,  0x0007},
     {NULL}
 };
+
+
