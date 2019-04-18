@@ -134,6 +134,10 @@ u16 CorrectSpecialMapSecId(u16 mapSecId);
 void sub_8122D88(struct RegionMap *regionMap);
 void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y);
 void MCB2_FlyMap(void);
+bool8 sub_8124658(void);
+void sub_812454C(void);
+void sub_8123030(u16 a0, u32 a1);
+void sub_8123418(void);
 
 extern const struct RegionMapLocation gRegionMapEntries[];
 
