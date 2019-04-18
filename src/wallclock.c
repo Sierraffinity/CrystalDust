@@ -182,7 +182,7 @@ static void LoadWallClockGraphics(void)
 
 static void WallClockInit(void)
 {
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     EnableInterrupts(INTR_FLAG_VBLANK);
     SetVBlankCallback(WallClockVblankCallback);
     SetMainCallback2(WallClockMainCallback);

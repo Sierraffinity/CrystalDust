@@ -12,6 +12,7 @@
 #include "text.h"
 #include "text_window.h"
 #include "window.h"
+#include "constants/rgb.h"
 #include "constants/songs.h"
 
 // Static type declarations
@@ -197,7 +198,7 @@ static void FieldUpdateRegionMap(void)
             }
             break;
         case 8:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             sFieldRegionMapHandler->state++;
             break;
         case 9:

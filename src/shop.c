@@ -1,6 +1,6 @@
 #include "global.h"
 #include "bg.h"
-#include "data2.h"
+#include "data.h"
 #include "decompress.h"
 #include "decoration.h"
 #include "decoration_inventory.h"
@@ -1154,7 +1154,7 @@ static void BuyMenuPrintItemQuantityAndPrice(u8 taskId)
 static void ExitBuyMenu(u8 taskId)
 {
     gFieldCallback = MapPostLoadHook_ReturnToShopMenu;
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_ExitBuyMenu;
 }
 

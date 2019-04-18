@@ -17,6 +17,7 @@
 #include "battle_setup.h"
 #include "frontier_util.h"
 #include "constants/trainers.h"
+#include "constants/rgb.h"
 
 #define BATTLER_RECORD_SIZE 664
 #define ILLEGAL_BATTLE_TYPES ((BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_FIRST_BATTLE                  \
@@ -220,7 +221,7 @@ u8 RecordedBattle_GetBattlerAction(u8 battlerId)
     {
         gSpecialVar_Result = gBattleOutcome = B_OUTCOME_PLAYER_TELEPORTED; // hah
         ResetPaletteFadeControl();
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_QuitRecordedBattle);
         return 0xFF;
     }
@@ -322,7 +323,7 @@ static bool32 RecordedBattleToSave(struct RecordedBattleSave *battleSave, struct
 
     saveSection->checksum = CalcByteArraySum((void*)(saveSection), sizeof(*saveSection) - 4);
 
-    if (sub_8153634(31, (void*)(saveSection)) != 1)
+    if (TryWriteSpecialSaveSection(SECTOR_ID_RECORDED_BATTLE, (void*)(saveSection)) != 1)
         return FALSE;
     else
         return TRUE;
@@ -491,7 +492,7 @@ bool32 MoveRecordedBattleToSaveData(void)
 
 static bool32 TryCopyRecordedBattleSaveData(struct RecordedBattleSave *dst, struct SaveSection *saveBuffer)
 {
-    if (TryCopySpecialSaveSection(SECTOR_ID_RECORDED_BATTLE, (void*)(saveBuffer)) != 1)
+    if (TryReadSpecialSaveSection(SECTOR_ID_RECORDED_BATTLE, (void*)(saveBuffer)) != 1)
         return FALSE;
 
     memcpy(dst, saveBuffer, sizeof(struct RecordedBattleSave));

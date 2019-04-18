@@ -47,6 +47,7 @@
 #include "constants/songs.h"
 #include "rom_8011DC0.h"
 #include "union_room.h"
+#include "constants/rgb.h"
 
 // Menu actions
 enum
@@ -1324,7 +1325,7 @@ static void sub_80A0550(u8 taskId)
             DrawTextBorderOuter(0, 8, 14);
             PutWindowTilemap(0);
             CopyWindowToVram(0, 3);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
 
             if (gWirelessCommType != 0 && InUnionRoom())
             {
@@ -1357,7 +1358,7 @@ static void sub_80A0550(u8 taskId)
             }
             break;
         case 3:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             *step = 4;
             break;
         case 4:

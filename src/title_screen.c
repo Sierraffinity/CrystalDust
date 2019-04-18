@@ -319,7 +319,7 @@ void CB2_InitTitleScreen(void)
         break;
     }
     case 3:
-        BeginNormalPaletteFade(0xFFFFFFFF, 1, 0x10, 0, 0xFFFF);
+        BeginNormalPaletteFade(0xFFFFFFFF, 1, 0x10, 0, RGB_WHITEALPHA);
         gMain.state = 4;
         break;
     case 4:
@@ -500,7 +500,7 @@ static void Task_TitleScreenProcessInput(u8 taskId)
         UpdatePressStartColor(taskId);
         if (IsBGMStopped())
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0xFFFF);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_WHITEALPHA);
             SetMainCallback2(CB2_GoToCopyrightScreen);
         }
     }

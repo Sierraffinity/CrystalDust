@@ -37,7 +37,7 @@
 #include "decoration.h"
 #include "secret_base.h"
 #include "tv.h"
-#include "data2.h"
+#include "data.h"
 #include "constants/layouts.h"
 #include "constants/metatile_behaviors.h"
 
@@ -2568,7 +2568,7 @@ void sub_80EEA70(void)
             show->secretBaseSecrets.active = FALSE;
             StringCopy(show->secretBaseSecrets.playerName, gSaveBlock2Ptr->playerName);
             show->secretBaseSecrets.stepsInBase = VarGet(VAR_SECRET_BASE_STEP_COUNTER);
-            sub_80E980C();
+            CopyCurSecretBaseOwnerName_StrVar1();
             StringCopy(strbuf, gStringVar1);
             StripExtCtrlCodes(strbuf);
             StringCopy(show->secretBaseSecrets.baseOwnersName, strbuf);
@@ -7367,7 +7367,7 @@ u8 TVShowGetFlagCount(TVShow *show)
     return tot;
 }
 
-u8 TVShowGetStateForFlagNumber(TVShow *show, u8 a1)
+static u8 SecretBaseSecrets_GetStateForFlagNumber(TVShow *show, u8 a1)
 {
     u8 i;
     u8 tot;
@@ -7410,7 +7410,7 @@ static void DoTVShowSecretBaseSecrets(void)
             {
                 show->secretBaseSecrets.savedState = 1;
                 sTVSecretBaseSecretsRandomValues[0] = Random() % bitCount;
-                sTVShowState = TVShowGetStateForFlagNumber(show, sTVSecretBaseSecretsRandomValues[0]);
+                sTVShowState = SecretBaseSecrets_GetStateForFlagNumber(show, sTVSecretBaseSecretsRandomValues[0]);
             }
             break;
         case 1:
@@ -7425,11 +7425,11 @@ static void DoTVShowSecretBaseSecrets(void)
                     show->secretBaseSecrets.savedState = 2;
                     if (sTVSecretBaseSecretsRandomValues[0] == 0)
                     {
-                        sTVShowState = TVShowGetStateForFlagNumber(show, 1);
+                        sTVShowState = SecretBaseSecrets_GetStateForFlagNumber(show, 1);
                     }
                     else
                     {
-                        sTVShowState = TVShowGetStateForFlagNumber(show, 0);
+                        sTVShowState = SecretBaseSecrets_GetStateForFlagNumber(show, 0);
                     }
                     break;
                 default:
@@ -7442,7 +7442,7 @@ static void DoTVShowSecretBaseSecrets(void)
                         }
                     }
                     show->secretBaseSecrets.savedState = 2;
-                    sTVShowState = TVShowGetStateForFlagNumber(show, sTVSecretBaseSecretsRandomValues[1]);
+                    sTVShowState = SecretBaseSecrets_GetStateForFlagNumber(show, sTVSecretBaseSecretsRandomValues[1]);
                     break;
             }
             break;
@@ -7464,7 +7464,7 @@ static void DoTVShowSecretBaseSecrets(void)
                     }
                 }
                 show->secretBaseSecrets.savedState = 3;
-                sTVShowState = TVShowGetStateForFlagNumber(show, sTVSecretBaseSecretsRandomValues[2]);
+                sTVShowState = SecretBaseSecrets_GetStateForFlagNumber(show, sTVSecretBaseSecretsRandomValues[2]);
             }
             break;
         case 3:

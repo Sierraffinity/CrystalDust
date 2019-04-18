@@ -34,9 +34,6 @@
 
 #define subsprite_table(ptr) {.subsprites = ptr, .subspriteCount = (sizeof ptr) / (sizeof(struct Subsprite))}
 
-extern struct CompressedSpritePalette gMonPaletteTable[]; // GF made a mistake and did not extern it as const.
-extern const struct CompressedSpritePalette gMonShinyPaletteTable[];
-
 EWRAM_DATA s32 gFieldEffectArguments[8] = {0};
 
 // Static type declarations
@@ -239,7 +236,10 @@ static void Fldeff_MoveDeoxysRock_Step(u8 taskId);
 static IWRAM_DATA u8 sActiveList[32];
 
 // External declarations
-
+extern struct CompressedSpritePalette gMonPaletteTable[]; // GF made a mistake and did not extern it as const.
+extern const struct CompressedSpritePalette gMonShinyPaletteTable[];
+extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
+extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
 extern u8 *gFieldEffectScriptPointers[];
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 
@@ -3502,7 +3502,7 @@ static void sub_80B9978(struct Task *task)
         eventObject = &gEventObjects[gPlayerAvatar.eventObjectId];
         sprite = &gSprites[eventObject->spriteId];
         eventObject->inanimate = 0;
-        sub_808EB08(eventObject, eventObject->currentCoords.x, eventObject->currentCoords.y);
+        MoveEventObjectToMapCoords(eventObject, eventObject->currentCoords.x, eventObject->currentCoords.y);
         sprite->pos2.x = 0;
         sprite->pos2.y = 0;
         sprite->coordOffsetEnabled = 1;

@@ -28,4 +28,5 @@ Thumbs.db
 build/
 .DS_Store
 *.ddump
+porymap.project.cfg
 .vscode/

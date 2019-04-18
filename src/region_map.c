@@ -27,6 +27,7 @@
 #include "heal_location.h"
 #include "constants/heal_locations.h"
 #include "constants/map_types.h"
+#include "constants/rgb.h"
 
 #define MAP_WIDTH 22
 #define MAP_HEIGHT 15
@@ -1993,7 +1994,7 @@ static void sub_8124D14(void)
     switch (sFlyMap->unk_004)
     {
         case 0:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
             sFlyMap->unk_004++;
             break;
         case 1:
@@ -2053,7 +2054,7 @@ static void sub_8124E0C(void)
     switch (sFlyMap->unk_004)
     {
         case 0:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             sFlyMap->unk_004++;
             break;
         case 1:

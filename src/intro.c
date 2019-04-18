@@ -1586,9 +1586,9 @@ static void Task_IntroLoadPart3Graphics1(u8 taskId)
     intro_reset_and_hide_bgs();
     ResetSpriteData();
     FreeAllSpritePalettes();
-    LZ77UnCompVram(gBattleAnimBackgroundImage_17, (void *)VRAM);
+    LZ77UnCompVram(gBattleAnimBgImage_InAir, (void *)VRAM);
     LZ77UnCompVram(gIntro3BG3_Tiles, (void *)VRAM + 0x400);
-    LZ77UnCompVram(gBattleAnimBackgroundTilemap_17, (void *)(VRAM + 0xF800));
+    LZ77UnCompVram(gBattleAnimBgTilemap_InAir, (void *)(VRAM + 0xF800));
     LZ77UnCompVram(gIntro3BG3_Tilemap, (void *)(VRAM + 0xD800));
     LoadCompressedSpriteSheet(gIntro3SuicuneSpriteSheet);
     LoadCompressedSpriteSheet(gIntro3UnownFSpriteSheet);

@@ -4,7 +4,7 @@
 #include "alloc.h"
 #include "battle_setup.h"
 #include "bg.h"
-#include "data2.h"
+#include "data.h"
 #include "day_night.h"
 #include "event_data.h"
 #include "gpu_regs.h"

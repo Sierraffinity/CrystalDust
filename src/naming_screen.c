@@ -22,12 +22,13 @@
 #include "trig.h"
 #include "field_effect.h"
 #include "pokemon_icon.h"
-#include "data2.h"
+#include "data.h"
 #include "strings.h"
 #include "menu.h"
 #include "text_window.h"
 #include "overworld.h"
 #include "constants/event_objects.h"
+#include "constants/rgb.h"
 
 EWRAM_DATA static struct NamingScreenData *gNamingScreenData = NULL;
 extern u16 gKeyRepeatStartDelay;
@@ -450,7 +451,7 @@ static u8 sub_80E3274(void)
 static bool8 MainState_BeginFadeIn(void)
 {
     sub_80E4CF8(3, gUnknown_08DD4544);
-    gNamingScreenData->currentPage = 1;
+    gNamingScreenData->currentPage = PAGE_UPPER;
     sub_80E4CF8(2, gUnknown_08DD46E0);
     sub_80E4CF8(1, gUnknown_08DD4620);
     sub_80E4DE4(gNamingScreenData->windows[1], 0);
@@ -464,7 +465,7 @@ static bool8 MainState_BeginFadeIn(void)
     CopyBgTilemapBufferToVram(2);
     CopyBgTilemapBufferToVram(3);
     BlendPalettes(-1, 16, 0);
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     gNamingScreenData->state++;
     return FALSE;
 }
@@ -518,7 +519,7 @@ static bool8 MainState_6(void)
 
 static bool8 MainState_BeginFadeInOut(void)
 {
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
     gNamingScreenData->state++;
     return FALSE;
 }
@@ -1857,7 +1858,7 @@ static const struct NamingScreenTemplate playerNamingScreenTemplate =
     .maxChars = 7,
     .iconFunction = 1,
     .addGenderIcon = 0,
-    .initialPage = 1,
+    .initialPage = PAGE_UPPER,
     .unused = 35,
     .title = gText_YourName,
 };
@@ -1868,7 +1869,7 @@ static const struct NamingScreenTemplate pcBoxNamingTemplate =
     .maxChars = 8,
     .iconFunction = 2,
     .addGenderIcon = 0,
-    .initialPage = 1,
+    .initialPage = PAGE_UPPER,
     .unused = 19,
     .title = gText_BoxName,
 };
@@ -1879,7 +1880,7 @@ static const struct NamingScreenTemplate monNamingScreenTemplate =
     .maxChars = 10,
     .iconFunction = 3,
     .addGenderIcon = 1,
-    .initialPage = 1,
+    .initialPage = PAGE_UPPER,
     .unused = 35,
     .title = gText_PkmnsNickname,
 };
@@ -1890,7 +1891,7 @@ static const struct NamingScreenTemplate wandaWordsScreenTemplate =
     .maxChars = 15,
     .iconFunction = 4,
     .addGenderIcon = 0,
-    .initialPage = 1,
+    .initialPage = PAGE_UPPER,
     .unused = 11,
     .title = gText_TellHimTheWords,
 };

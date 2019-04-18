@@ -14,6 +14,7 @@
 #include "link_rfu.h"
 #include "mevent.h"
 #include "mystery_gift.h"
+#include "constants/rgb.h"
 
 struct UnkStruct_8467FB8
 {
@@ -35,7 +36,7 @@ struct UnkStruct_203F3C8_02DC
 
 struct UnkStruct_203F3C8
 {
-    /*0000*/ struct MEventBuffer_32E0_Sub unk_0000;
+    /*0000*/ struct WonderCard unk_0000;
     /*014c*/ struct MEventBuffer_3430_Sub unk_014C;
     /*0170*/ const struct UnkStruct_8467FB8 * unk_0170;
     /*0174*/ u8 unk_0174;
@@ -150,7 +151,7 @@ const struct UnkStruct_8467FB8 gUnknown_082F1D60[8] = {
     {1, 0, 0, 7, gWonderCardBgGfx8, gWonderCardBgTilemap8, gWonderCardBgPal8}
 };
 
-bool32 InitWonderCardResources(struct MEventBuffer_32E0_Sub * r5, struct MEventBuffer_3430_Sub * r6)
+bool32 InitWonderCardResources(struct WonderCard * r5, struct MEventBuffer_3430_Sub * r6)
 {
     if (r5 == NULL || r6 == NULL)
         return FALSE;
@@ -186,7 +187,7 @@ s32 FadeToWonderCardMenu(void)
     switch(sWonderCardData->unk_0174)
     {
         case 0:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             break;
         case 1:
             if (UpdatePaletteFade())
@@ -231,7 +232,7 @@ s32 FadeToWonderCardMenu(void)
             ShowBg(2);
             gPaletteFade.bufferTransferDisabled = FALSE;
             sub_801C4C0();
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
             UpdatePaletteFade();
             break;
         default:
@@ -251,7 +252,7 @@ s32 FadeOutFromWonderCard(bool32 flag)
     switch (sWonderCardData->unk_0174)
     {
         case 0:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             break;
         case 1:
             if (UpdatePaletteFade())
@@ -279,7 +280,7 @@ s32 FadeOutFromWonderCard(bool32 flag)
         case 5:
             PrintMysteryGiftOrEReaderTopMenu(gGiftIsFromEReader, flag);
             CopyBgTilemapBufferToVram(0);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
             break;
         default:
             if (UpdatePaletteFade())
@@ -465,7 +466,7 @@ void sub_801C61C(void)
 
 struct UnkStruct_203F3CC
 {
-    /*0000*/ struct MEventBuffer_3120_Sub unk_0000;
+    /*0000*/ struct WonderNews unk_0000;
     /*01bc*/ const struct UnkStruct_8467FB8 * unk_01BC;
     /*01c0*/ u8 unk_01C0_0:1;
              u8 unk_01C0_1:7;
@@ -542,7 +543,7 @@ const struct UnkStruct_8467FB8 gUnknown_082F24C8[] = {
     {1, 0, 0, 0, gWonderNewsGfx8, gWonderNewsTilemap8, gWonderNewsPal8}
 };
 
-bool32 InitWonderNewsResources(const struct MEventBuffer_3120_Sub * a0)
+bool32 InitWonderNewsResources(const struct WonderNews * a0)
 {
     if (a0 == NULL)
         return FALSE;
@@ -575,7 +576,7 @@ s32 FadeToWonderNewsMenu(void)
     switch (sWonderNewsData->unk_01C0_1)
     {
         case 0:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             break;
         case 1:
             if (UpdatePaletteFade())
@@ -629,7 +630,7 @@ s32 FadeToWonderNewsMenu(void)
             ShowBg(3);
             gPaletteFade.bufferTransferDisabled = FALSE;
             sWonderNewsData->unk_01C1 = AddScrollIndicatorArrowPair(&sWonderNewsData->unk_0394, &sWonderNewsData->unk_01C6);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
             UpdatePaletteFade();
             break;
         default:
@@ -650,7 +651,7 @@ s32 FadeOutFromWonderNews(bool32 flag)
     switch (sWonderNewsData->unk_01C0_1)
     {
         case 0:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             break;
         case 1:
             if (UpdatePaletteFade())
@@ -692,7 +693,7 @@ s32 FadeOutFromWonderNews(bool32 flag)
             MG_DrawCheckerboardPattern(3);
             CopyBgTilemapBufferToVram(0);
             CopyBgTilemapBufferToVram(3);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
             break;
         default:
             if (UpdatePaletteFade())

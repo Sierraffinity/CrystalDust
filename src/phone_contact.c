@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle.h"
 #include "battle_setup.h"
+#include "data.h"
 #include "day_night.h"
 #include "event_data.h"
 #include "international_string_util.h"

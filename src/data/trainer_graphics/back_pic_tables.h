@@ -1,13 +1,15 @@
 const struct MonCoords gTrainerBackPicCoords[] =
 {
-    {.size = 8, .y_offset = 4},
-    {.size = 8, .y_offset = 4},
-    {.size = 8, .y_offset = 5},
-    {.size = 8, .y_offset = 5},
-    {.size = 8, .y_offset = 4},
-    {.size = 8, .y_offset = 4},
-    {.size = 8, .y_offset = 4},
-    {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_GOLD] = {.size = 8, .y_offset = 5},
+    [TRAINER_BACK_PIC_KRIS] = {.size = 8, .y_offset = 5},
+    [TRAINER_BACK_PIC_RED] = {.size = 8, .y_offset = 5},
+    [TRAINER_BACK_PIC_LEAF] = {.size = 8, .y_offset = 5},
+    [TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN] = {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] = {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_WALLY] = {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_STEVEN] = {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_EMERALD_BRENDAN] = {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_EMERALD_MAY] = {.size = 8, .y_offset = 4},
 };
 
 // this table goes functionally unused, since none of these pics are compressed
@@ -27,16 +29,16 @@ const struct CompressedSpriteSheet gTrainerBackPicTable[] =
     (const u32 *)gTrainerBackPic_Steven, 0x2000, TRAINER_BACK_PIC_STEVEN,
 };
 
-const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] = 
+const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] =
 {
-    gTrainerBackPicPalette_Gold, TRAINER_BACK_PIC_GOLD,
-    gTrainerBackPicPalette_Kris, TRAINER_BACK_PIC_KRIS,
-    gTrainerPalette_Brendan, TRAINER_BACK_PIC_EMERALD_BRENDAN,
-    gTrainerPalette_May, TRAINER_BACK_PIC_EMERALD_MAY,
-    gTrainerBackPicPalette_Red, TRAINER_BACK_PIC_RED,
-    gTrainerBackPicPalette_Leaf, TRAINER_BACK_PIC_LEAF,
-    gTrainerPalette_RubySapphireBrendan, TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN,
-    gTrainerPalette_RubySapphireMay, TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY,
-    gTrainerPalette_Wally, TRAINER_BACK_PIC_WALLY,
-    gTrainerPalette_Steven, TRAINER_BACK_PIC_STEVEN,
+    TRAINER_BACK_PAL(GOLD, gTrainerBackPicPalette_Gold),
+    TRAINER_BACK_PAL(KRIS, gTrainerBackPicPalette_Kris),
+    TRAINER_BACK_PAL(EMERALD_BRENDAN, gTrainerPalette_Brendan),
+    TRAINER_BACK_PAL(EMERALD_MAY, gTrainerPalette_May),
+    TRAINER_BACK_PAL(RED, gTrainerBackPicPalette_Red),
+    TRAINER_BACK_PAL(LEAF, gTrainerBackPicPalette_Leaf),
+    TRAINER_BACK_PAL(RUBY_SAPPHIRE_BRENDAN, gTrainerPalette_RubySapphireBrendan),
+    TRAINER_BACK_PAL(RUBY_SAPPHIRE_MAY, gTrainerPalette_RubySapphireMay),
+    TRAINER_BACK_PAL(WALLY, gTrainerPalette_Wally),
+    TRAINER_BACK_PAL(STEVEN, gTrainerPalette_Steven),
 };

@@ -192,7 +192,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "Route30_EventScript_ItemBall_Antidote",
+            "script": "Route29_EventScript_ItemAntidote",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 9,

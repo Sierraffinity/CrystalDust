@@ -47,6 +47,7 @@
 #include "constants/map_types.h"
 #include "constants/battle_frontier.h"
 #include "field_screen_effect.h"
+#include "data.h"
 
 enum
 {

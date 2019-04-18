@@ -15,7 +15,9 @@ void InitMatchCallCounters(void);
 bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer);
 bool32 TryStartMatchCall(void);
 bool32 IsMatchCallTaskActive(void);
-void StartMatchCallFromScript(u8* script);
+void StartMatchCallFromScript(u8 *message);
 void sub_8197080(u8 *destStr);
+void sub_8197184(u32 windowId, u32 destOffset, u32 paletteId);
+void sub_81971C4(u32 windowId, u32 tileOffset, u32 paletteId);
 
 #endif //GUARD_MATCH_CALL_H

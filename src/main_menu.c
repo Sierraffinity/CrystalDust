@@ -28,7 +28,7 @@
 #include "palette.h"
 #include "pokeball.h"
 #include "pokedex.h"
-#include "pokemon_3.h"
+#include "pokemon.h"
 #include "random.h"
 #include "rtc.h"
 #include "save.h"
@@ -1273,7 +1273,7 @@ static void Task_HandleMainMenuAPressed_(u8 taskId)
                 SetGpuReg(REG_OFFSET_BG1VOFS, 0);
                 SetGpuReg(REG_OFFSET_BG0HOFS, 0);
                 SetGpuReg(REG_OFFSET_BG0VOFS, 0);
-                BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+                BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
                 return;
         }
         FreeAllWindowBuffers();
@@ -2202,7 +2202,7 @@ static void CB2_NewGameOakSpeech_ReturnFromNamingScreen(void)
     }
     
     ChangeBgX(2, 60 * -0x100, 0);
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     SetGpuReg(REG_OFFSET_WIN0H, 0);
     SetGpuReg(REG_OFFSET_WIN0V, 0);
     SetGpuReg(REG_OFFSET_WININ, 0);

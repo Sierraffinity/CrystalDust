@@ -6,6 +6,7 @@
 #include "battle_setup.h"
 #include "bg.h"
 #include "day_night.h"
+#include "data.h"
 #include "decompress.h"
 #include "gpu_regs.h"
 #include "graphics.h"
@@ -598,6 +599,7 @@ const struct WindowTemplate * const gBattleWindowTemplates[] =
 
 static const struct BattleBackground gBattleTerrainTable[] =
 {
+    [BATTLE_TERRAIN_GRASS] =
     {
         .tileset = gBattleTerrainTiles_TallGrass,
         .tilemap = gBattleTerrainTilemap_TallGrass,
@@ -605,6 +607,8 @@ static const struct BattleBackground gBattleTerrainTable[] =
         .entryTilemap = gBattleTerrainAnimTilemap_TallGrass,
         .palette = gBattleTerrainPalette_TallGrass,
     },
+
+    [BATTLE_TERRAIN_LONG_GRASS] =
     {
         .tileset = gBattleTerrainTiles_LongGrass,
         .tilemap = gBattleTerrainTilemap_LongGrass,
@@ -612,6 +616,8 @@ static const struct BattleBackground gBattleTerrainTable[] =
         .entryTilemap = gBattleTerrainAnimTilemap_LongGrass,
         .palette = gBattleTerrainPalette_LongGrass,
     },
+
+    [BATTLE_TERRAIN_SAND] =
     {
         .tileset = gBattleTerrainTiles_Sand,
         .tilemap = gBattleTerrainTilemap_Sand,
@@ -619,6 +625,8 @@ static const struct BattleBackground gBattleTerrainTable[] =
         .entryTilemap = gBattleTerrainAnimTilemap_Sand,
         .palette = gBattleTerrainPalette_Sand,
     },
+
+    [BATTLE_TERRAIN_UNDERWATER] =
     {
         .tileset = gBattleTerrainTiles_Underwater,
         .tilemap = gBattleTerrainTilemap_Underwater,
@@ -626,6 +634,8 @@ static const struct BattleBackground gBattleTerrainTable[] =
         .entryTilemap = gBattleTerrainAnimTilemap_Underwater,
         .palette = gBattleTerrainPalette_Underwater,
     },
+
+    [BATTLE_TERRAIN_WATER] =
     {
         .tileset = gBattleTerrainTiles_Water,
         .tilemap = gBattleTerrainTilemap_Water,
@@ -633,6 +643,8 @@ static const struct BattleBackground gBattleTerrainTable[] =
         .entryTilemap = gBattleTerrainAnimTilemap_Water,
         .palette = gBattleTerrainPalette_Water,
     },
+
+    [BATTLE_TERRAIN_POND] =
     {
         .tileset = gBattleTerrainTiles_PondWater,
         .tilemap = gBattleTerrainTilemap_PondWater,
@@ -640,6 +652,8 @@ static const struct BattleBackground gBattleTerrainTable[] =
         .entryTilemap = gBattleTerrainAnimTilemap_PondWater,
         .palette = gBattleTerrainPalette_PondWater,
     },
+
+    [BATTLE_TERRAIN_MOUNTAIN] =
     {
         .tileset = gBattleTerrainTiles_Rock,
         .tilemap = gBattleTerrainTilemap_Rock,
@@ -647,6 +661,8 @@ static const struct BattleBackground gBattleTerrainTable[] =
         .entryTilemap = gBattleTerrainAnimTilemap_Rock,
         .palette = gBattleTerrainPalette_Rock,
     },
+
+    [BATTLE_TERRAIN_CAVE] =
     {
         .tileset = gBattleTerrainTiles_Cave,
         .tilemap = gBattleTerrainTilemap_Cave,
@@ -654,6 +670,8 @@ static const struct BattleBackground gBattleTerrainTable[] =
         .entryTilemap = gBattleTerrainAnimTilemap_Cave,
         .palette = gBattleTerrainPalette_Cave,
     },
+
+    [BATTLE_TERRAIN_BUILDING] =
     {
         .tileset = gBattleTerrainTiles_Building,
         .tilemap = gBattleTerrainTilemap_Building,
@@ -661,7 +679,9 @@ static const struct BattleBackground gBattleTerrainTable[] =
         .entryTilemap = gBattleTerrainAnimTilemap_Building,
         .palette = gBattleTerrainPalette_Building,
     },
-    {// plain
+
+    [BATTLE_TERRAIN_PLAIN] =
+    {
         .tileset = gBattleTerrainTiles_Building,
         .tilemap = gBattleTerrainTilemap_Building,
         .entryTileset = gBattleTerrainAnimTiles_Building,

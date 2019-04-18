@@ -1,13 +1,12 @@
 #include "global.h"
 #include "battle_setup.h"
+#include "data.h"
 #include "event_data.h"
 #include "phone_contact.h"
 #include "string_util.h"
 #include "battle.h"
 #include "gym_leader_rematch.h"
 #include "match_call.h"
-
-extern const u8 gTrainerClassNames[][13];
 
 // Static type declarations
 
@@ -378,7 +377,7 @@ static const match_call_text_data_t sMayTextScripts[] = {
     { NULL,                     0xFFFF,              0xFFFF }
 };
 
-static const struct MatchCallStruct4 sMayMatchCallHeader =
+static const struct MatchCallStruct4 sBrendanMatchCallHeader =
 {
     .type = 4,
     .gender = MALE,
@@ -407,7 +406,7 @@ static const match_call_text_data_t sBrendanTextScripts[] = {
     { NULL,                         0xFFFF,              0xFFFF }
 };
 
-static const struct MatchCallStruct4 sBrendanMatchCallHeader =
+static const struct MatchCallStruct4 sMayMatchCallHeader =
 {
     .type = 4,
     .gender = FEMALE,
@@ -684,8 +683,8 @@ static const struct MatchCallStruct5 sWallaceMatchCallHeader =
 static const match_call_t sMatchCallHeaders[] = {
     {.type0 = &sMrStoneMatchCallHeader},
     {.type3 = &sProfBirchMatchCallHeader},
-    {.type4 = &sBrendanMatchCallHeader},
     {.type4 = &sMayMatchCallHeader},
+    {.type4 = &sBrendanMatchCallHeader},
     {.type2 = &sWallyMatchCallHeader},
     {.type5 = &sNormanMatchCallHeader},
     {.type0 = &sMomMatchCallHeader},
@@ -780,7 +779,7 @@ void MatchCall_GetMessage(u32 idx, u8 *dest)
     return;
 }
 
-void sub_81D1920(const match_call_text_data_t *sub0, u8 *dest)
+static void sub_81D1920(const match_call_text_data_t *sub0, u8 *dest)
 {
     u32 i;
     for (i = 0; sub0[i].text != NULL; i++)
@@ -959,16 +958,16 @@ const u8 *sub_81D1B40(u32 idx, u32 offset)
     return NULL;
 }
 
-s32 sub_81D1BD0(u32 idx)
+int sub_81D1BD0(u32 idx)
 {
     return -1;
 }
 
 bool32 sub_81D1BF8(u32 idx)
 {
-    s32 i;
+    int i;
 
-    for (i = 0; i < (s32)ARRAY_COUNT(sMatchCallHeaders); i++)
+    for (i = 0; i < (int)ARRAY_COUNT(sMatchCallHeaders); i++)
     {
         u32 r0 = MatchCall_GetRematchTableIdx(i);
         if (r0 != REMATCH_TABLE_ENTRIES && r0 == idx)
@@ -979,7 +978,7 @@ bool32 sub_81D1BF8(u32 idx)
 
 void SetMatchCallRegisteredFlag(void)
 {
-    s32 r0 = GetRematchIdxByTrainerIdx(gSpecialVar_0x8004);
+    int r0 = GetRematchIdxByTrainerIdx(gSpecialVar_0x8004);
     if (r0 >= 0)
         FlagSet(gPhoneContacts[gRematchTable[r0].phoneContactId].registeredFlag);
 }
