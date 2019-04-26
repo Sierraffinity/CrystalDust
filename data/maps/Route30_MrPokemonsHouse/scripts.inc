@@ -135,6 +135,18 @@ Route30_MrPokemonsHouse_EventScript_MrPokemon_AlwaysNewDiscoveries:
 	release
 	end
 
+Route30_MrPokemonsHouse_EventScript_ForeignMagazines::
+	msgbox Route30_MrPokemonsHouse_Text_ForeignMagazines, MSGBOX_SIGN
+	end
+
+Route30_MrPokemonsHouse_EventScript_BrokenComputer::
+	msgbox Route30_MrPokemonsHouse_Text_BrokenComputer, MSGBOX_SIGN
+	end
+
+Route30_MrPokemonsHouse_EventScript_StrangeCoins::
+	msgbox Route30_MrPokemonsHouse_Text_StrangeCoins, MSGBOX_SIGN
+	end
+
 Route30_MrPokemonsHouse_Text_HelloHello:
 	.string "Hello, hello!\n"
 	.string "You must be {PLAYER}.\p"
@@ -210,3 +222,16 @@ Route30_MrPokemonsHouse_Text_DependingOnYou:
 Route30_MrPokemonsHouse_Text_AlwaysNewDiscoveries:
 	.string "Life is delightful!\n"
 	.string "Always, new discoveries to be made!$"
+
+Route30_MrPokemonsHouse_Text_ForeignMagazines:
+	.string "It's a bookshelf packed with foreign\n"
+	.string "magazines.\p"
+	.string "Can't even read their titles…$"
+
+Route30_MrPokemonsHouse_Text_BrokenComputer:
+	.string "It's a big mainframe computer.\n"
+	.string "Hm… It seems to be broken.$"
+
+Route30_MrPokemonsHouse_Text_StrangeCoins:
+	.string "It's a whole pile of strange coins.\n"
+	.string "Maybe they're from another country…$"

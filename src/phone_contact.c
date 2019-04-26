@@ -30,7 +30,7 @@ static const u8 sPhoneContactName_ProfessorElm[] = _("PROF. ELM");
 
 const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 {
-    [PHONE_CONTACT_MOM] ={
+    [PHONE_CONTACT_MOM] = {
         .customDisplayName = sPhoneContactName_Mom,
         .selectMessage = SelectMessage_Mom,
         .canAcceptRematch = CanAcceptRematch_Always,
@@ -41,7 +41,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
         .availability = PHONE_AVAILABILITY_ALWAYS,
         .isPermanent = TRUE,
     },
-    [PHONE_CONTACT_ELM] ={
+    [PHONE_CONTACT_ELM] = {
         .customDisplayName = sPhoneContactName_ProfessorElm,
         .selectMessage = SelectMessage_Elm,
         .canAcceptRematch = CanAcceptRematch_Always,

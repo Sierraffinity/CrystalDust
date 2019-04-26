@@ -143,7 +143,7 @@
             "y": 16
         }
     ],
-    "phone_service": false,
+    "phone_service": true,
     "region_map_section": "MAPSEC_CHERRYGROVE_CITY",
     "requires_flash": false,
     "show_map_name": true,

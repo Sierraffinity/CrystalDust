@@ -212,7 +212,7 @@
             "y": 6
         }
     ],
-    "phone_service": false,
+    "phone_service": true,
     "region_map_section": "MAPSEC_ROUTE_30",
     "requires_flash": false,
     "show_map_name": true,

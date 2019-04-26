@@ -4,6 +4,70 @@
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route30_MrPokemonsHouse_EventScript_ForeignMagazines",
+            "type": "sign",
+            "x": 0,
+            "y": 1
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route30_MrPokemonsHouse_EventScript_ForeignMagazines",
+            "type": "sign",
+            "x": 1,
+            "y": 1
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route30_MrPokemonsHouse_EventScript_BrokenComputer",
+            "type": "sign",
+            "x": 6,
+            "y": 1
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route30_MrPokemonsHouse_EventScript_BrokenComputer",
+            "type": "sign",
+            "x": 7,
+            "y": 1
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route30_MrPokemonsHouse_EventScript_BrokenComputer",
+            "type": "sign",
+            "x": 8,
+            "y": 1
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route30_MrPokemonsHouse_EventScript_BrokenComputer",
+            "type": "sign",
+            "x": 9,
+            "y": 1
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route30_MrPokemonsHouse_EventScript_BrokenComputer",
+            "type": "sign",
+            "x": 10,
+            "y": 1
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route30_MrPokemonsHouse_EventScript_StrangeCoins",
+            "type": "sign",
+            "x": 8,
+            "y": 5
+        }
     ],
     "connections": null,
     "coord_events": [
