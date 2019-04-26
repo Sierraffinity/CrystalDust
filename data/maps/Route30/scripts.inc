@@ -8,7 +8,7 @@ Route30_MapScripts_Type2:
 
 Route30_MapScript_ElmCall:
 	lockall
-	pokenavcall Route30_Text_ElmCall
+	pokegearcall Route30_Text_ElmCall, 1
 	waitmessage
 	addvar VAR_ROUTE102_ACCESSIBLE, 1
 	releaseall

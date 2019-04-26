@@ -453,7 +453,7 @@ MauvilleCity_EventScript_1DF7B0:: @ 81DF7B0
 
 MauvilleCity_EventScript_1DF7BA:: @ 81DF7BA
 	lockall
-	pokenavcall MauvilleCity_Text_1DFDFB
+	pokegearcall MauvilleCity_Text_1DFDFB, 0
 	waitmessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE

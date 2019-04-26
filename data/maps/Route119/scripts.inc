@@ -488,7 +488,7 @@ Route119_EventScript_1F49E3:: @ 81F49E3
 
 Route119_EventScript_1F49EC:: @ 81F49EC
 	lockall
-	pokenavcall Route119_Text_1F4FBA
+	pokegearcall Route119_Text_1F4FBA, 0
 	waitmessage
 	clearflag FLAG_REGISTER_WINONA_POKENAV
 	addvar VAR_SCOTT_STATE, 1

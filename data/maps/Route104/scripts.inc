@@ -379,7 +379,7 @@ Route104_EventScript_1ED0EF:: @ 81ED0EF
 	applymovement 7, Route104_Movement_1ED1C8
 	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED1C8
 	waitmovement 0
-	pokenavcall Route104_Text_1EE336
+	pokegearcall Route104_Text_1EE336, 0
 	waitmessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE

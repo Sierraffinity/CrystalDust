@@ -1282,13 +1282,14 @@ bool8 ScrCmd_message(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_pokenavcall(struct ScriptContext *ctx)
+bool8 ScrCmd_pokegearcall(struct ScriptContext *ctx)
 {
     const u8 *msg = (const u8 *)ScriptReadWord(ctx);
+    u8 callerId = ScriptReadByte(ctx);
 
     if (msg == NULL)
         msg = (const u8 *)ctx->data[0];
-    sub_8098238(msg);
+    sub_8098238(msg, callerId);
     return FALSE;
 }
 

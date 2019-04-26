@@ -93,7 +93,7 @@ RustboroCity_Gym_EventScript_213071:: @ 8213071
 
 RustboroCity_Gym_EventScript_21307B:: @ 821307B
 	lockall
-	pokenavcall RustboroCity_Gym_Text_213A76
+	pokegearcall RustboroCity_Gym_Text_213A76, 0
 	waitmessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE

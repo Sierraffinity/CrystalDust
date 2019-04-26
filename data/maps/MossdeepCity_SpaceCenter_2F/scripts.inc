@@ -359,12 +359,12 @@ MossdeepCity_SpaceCenter_2F_EventScript_224175:: @ 8224175
 	end
 
 MossdeepCity_SpaceCenter_2F_EventScript_224193:: @ 8224193
-	pokenavcall MossdeepCity_SpaceCenter_2F_Text_2B38C1
+	pokegearcall MossdeepCity_SpaceCenter_2F_Text_2B38C1, 0
 	waitmessage
 	return
 
 MossdeepCity_SpaceCenter_2F_EventScript_22419A:: @ 822419A
-	pokenavcall MossdeepCity_SpaceCenter_2F_Text_2B39C6
+	pokegearcall MossdeepCity_SpaceCenter_2F_Text_2B39C6, 0
 	waitmessage
 	return
 

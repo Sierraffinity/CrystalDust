@@ -223,7 +223,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_fadescreenswapbuffers
 	.4byte ScrCmd_buffertrainerclassname
 	.4byte ScrCmd_buffertrainername
-	.4byte ScrCmd_pokenavcall
+	.4byte ScrCmd_pokegearcall
 	.4byte ScrCmd_warpE0
 	.4byte ScrCmd_buffercontesttype
 	.4byte ScrCmd_bufferitemnameplural

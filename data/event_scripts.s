@@ -828,7 +828,7 @@ Std_9: @ 827133C
 	return
 
 Std_10: @ 8271347
-	pokenavcall 0x0
+	pokegearcall 0x0, 0
 	waitmessage
 	return
 

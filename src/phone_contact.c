@@ -1015,3 +1015,45 @@ const u8 *BuildPhoneContactDisplayName(const struct PhoneContact *phoneContact, 
         return sPhoneContactName_UnknownContact;
     }
 }
+
+const u8 *BuildPhoneContactDisplayNameForCall(const struct PhoneContact *phoneContact, u8 *dest)
+{
+    int i, j;
+    int classXOffset;
+    const u8 *src;
+
+    if (phoneContact->customDisplayName)
+    {
+        return phoneContact->customDisplayName;
+    }
+    else if (phoneContact->rematchTrainerId != 0xFF)
+    {
+        int trainerId = gRematchTable[phoneContact->rematchTrainerId].trainerIds[0];
+        src = gTrainers[trainerId].trainerName;
+        i = 0;
+        for (j = 0; src[j] != EOS; j++)
+            dest[i++] = src[j];
+
+        dest[i++] = CHAR_COLON;
+        dest[i++] = CHAR_NEWLINE;
+        dest[i++] = EXT_CTRL_CODE_BEGIN;
+        dest[i++] = EXT_CTRL_CODE_SIZE;
+        dest[i++] = 0;
+
+        classXOffset = GetStringRightAlignXOffset(0, gTrainerClassNames[gTrainers[trainerId].trainerClass], 76);
+        dest[i++] = EXT_CTRL_CODE_BEGIN;
+        dest[i++] = EXT_CTRL_CODE_CLEAR_TO;
+        dest[i++] = classXOffset;
+
+        src = gTrainerClassNames[gTrainers[trainerId].trainerClass];
+        for (j = 0; src[j] != EOS; j++)
+            dest[i++] = src[j];
+
+        dest[i++] = EOS;
+        return dest;
+    }
+    else
+    {
+        return sPhoneContactName_UnknownContact;
+    }
+}

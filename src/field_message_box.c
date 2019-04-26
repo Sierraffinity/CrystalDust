@@ -77,13 +77,13 @@ void sub_8098214(u8 taskId)
     }
 }
 
-bool8 sub_8098238(u8 *str)
+bool8 sub_8098238(u8 *str, u8 callerId)
 {
     if (sFieldMessageBoxMode != 0)
         return FALSE;
     StringExpandPlaceholders(gStringVar4, str);
     CreateTask(sub_8098214, 0);
-    StartMatchCallFromScript(str);
+    StartMatchCallFromScript(str, callerId);
     sFieldMessageBoxMode = 2;
     return TRUE;
 }

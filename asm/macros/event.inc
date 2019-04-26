@@ -1529,9 +1529,10 @@
 	.2byte \trainer
 	.endm
 
-	.macro pokenavcall pointer:req
+	.macro pokegearcall pointer:req, callerid:req
 	.byte 0xdf
 	.4byte \pointer
+	.byte \callerid
 	.endm
 
 	.macro warp8 map:req, byte:req, word1:req, word2:req

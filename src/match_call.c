@@ -46,6 +46,7 @@ struct MatchCallState
     u8 stepCounter;
     u8 triggeredFromScript:1;
     u8 forcedPhoneCallId:7;
+    u8 name[16];
 };
 
 struct MatchCallTrainerTextInfo
@@ -96,6 +97,7 @@ static void StartMatchCall(void);
 static void ExecuteMatchCall(u8);
 static void DrawMatchCallTextBoxBorder(u32, u32, u32);
 static void InitMatchCallTextPrinter(int, const u8 *);
+static void InitMatchCallCallerNameTextPrinter(int, const u8 *);
 static bool32 ExecuteMatchCallTextPrinter(int);
 static const struct MatchCallText *GetSameRouteMatchCallText(int, u8 *);
 static const struct MatchCallText *GetDifferentRouteMatchCallText(int, u8 *);
@@ -1051,10 +1053,10 @@ static bool32 SelectMatchCallTrainer(void)
 
     gMatchCallState.callerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
     gMatchCallState.triggeredFromScript = 0;
-    if (gMatchCallState.callerId == REMATCH_TABLE_ENTRIES)
+    if (gMatchCallState.callerId == PHONE_CONTACT_COUNT)
         return FALSE;
 
-    matchCallId = GetTrainerMatchCallId(gMatchCallState.callerId);
+    matchCallId = GetTrainerMatchCallId(gRematchTable[gPhoneContacts[gMatchCallState.callerId].rematchTrainerId].trainerIds[0]);
     if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(matchCallId))
         return FALSE;
 
@@ -1081,10 +1083,13 @@ static bool32 SelectForcedPhoneCall(void)
 static u32 GetNumRegisteredNPCs(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < 64; i++)
+    for (i = 0, count = 0; i < PHONE_CONTACT_COUNT; i++)
     {
-        if (FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
+        if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
+            FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
+        {
             count++;
+        }
     }
 
     return count;
@@ -1093,12 +1098,13 @@ static u32 GetNumRegisteredNPCs(void)
 static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 {
     u32 i;
-    for (i = 0; i < 64; i++)
+    for (i = 0; i < PHONE_CONTACT_COUNT; i++)
     {
-        if (FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
+        if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
+            FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
         {
             if (!activeMatchCallId)
-                return gRematchTable[i].trainerIds[0];
+                return gRematchTable[i].phoneContactId;
 
             activeMatchCallId--;
         }
@@ -1125,9 +1131,10 @@ bool32 TryStartMatchCall(void)
     return FALSE;
 }
 
-void StartMatchCallFromScript(u8 *message)
+void StartMatchCallFromScript(u8 *message, u8 callerId)
 {
     gMatchCallState.triggeredFromScript = 1;
+    gMatchCallState.callerId = callerId;
     StartMatchCall();
 }
 
@@ -1197,8 +1204,8 @@ static const struct WindowTemplate sPhoneCardNameTextWindow =
     .bg = 0,
     .tilemapLeft = 1,
     .tilemapTop = 1,
-    .width = 10,
-    .height = 2,
+    .width = 12,
+    .height = 3,
     .paletteNum = 15,
     .baseBlock = 0x180
 };
@@ -1281,10 +1288,14 @@ static bool32 MoveMatchCallWindowToVram(u8 taskId)
 
 static bool32 PrintMatchCallIntroEllipsis(u8 taskId)
 {
+    const u8 *name;
     s16 *taskData = gTasks[taskId].data;
     if (!IsDma3ManagerBusyWithBgCopy())
     {
+        name = BuildPhoneContactDisplayNameForCall(&gPhoneContacts[gMatchCallState.callerId], gMatchCallState.name);
         InitMatchCallTextPrinter(taskData[2], sText_PokenavCallEllipsis);
+        InitMatchCallCallerNameTextPrinter(taskData[3], name);
+        CopyWindowToVram(taskData[3], 3);
         return TRUE;
     }
 
@@ -1335,7 +1346,7 @@ static bool32 sub_81962D8(u8 taskId)
             }
             else
             {
-                SelectMatchCallMessage(gMatchCallState.callerId, gStringVar4, TRUE);
+                SelectMatchCallMessage(gRematchTable[gPhoneContacts[gMatchCallState.callerId].rematchTrainerId].trainerIds[0], gStringVar4, TRUE);
                 InitMatchCallTextPrinter(taskData[2], gStringVar4);
                 return TRUE;
             }
@@ -1392,7 +1403,7 @@ static bool32 sub_8196390(u8 taskId)
     {
         gScanlineEffect.state = 3;
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
-        FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 12, 4);
+        FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 14, 5);
         RemoveWindow(taskData[2]);
         RemoveWindow(taskData[3]);
         CopyBgTilemapBufferToVram(0);
@@ -1463,6 +1474,27 @@ static void InitMatchCallTextPrinter(int windowId, const u8 *str)
     gTextFlags.useAlternateDownArrow = 0;
 
     AddTextPrinter(&printerTemplate, GetPlayerTextSpeedDelay(), NULL);
+}
+
+static void InitMatchCallCallerNameTextPrinter(int windowId, const u8 *str)
+{
+    struct TextPrinterTemplate printerTemplate;
+    printerTemplate.currentChar = str;
+    printerTemplate.windowId = windowId;
+    printerTemplate.fontId = 1;
+    printerTemplate.x = 16;
+    printerTemplate.y = 0;
+    printerTemplate.currentX = 16;
+    printerTemplate.currentY = 0;
+    printerTemplate.letterSpacing = 0;
+    printerTemplate.lineSpacing = -4;
+    printerTemplate.unk = 0;
+    printerTemplate.fgColor = 10;
+    printerTemplate.bgColor = 8;
+    printerTemplate.shadowColor = 14;
+    gTextFlags.useAlternateDownArrow = 0;
+
+    AddTextPrinter(&printerTemplate, TEXT_SPEED_FF, NULL);
 }
 
 static bool32 ExecuteMatchCallTextPrinter(int windowId)
