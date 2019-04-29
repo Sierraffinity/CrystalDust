@@ -3,3 +3,5 @@ MrAPT1 - Music
 Avatar - Gold overworld
 Tetra - Intro BGs
 Farore - Intro Suicunes, Oak big sprites
+Spherical Ice - Apricorn trees
+ShantyTown - Phone card functionality, card flip, bug-catching contest
