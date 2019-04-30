@@ -2,7 +2,9 @@
 #include "day_night.h"
 #include "decompress.h"
 #include "event_data.h"
+#include "field_tasks.h"
 #include "field_weather.h"
+#include "fruit_tree.h"
 #include "overworld.h"
 #include "palette.h"
 #include "rtc.h"
@@ -186,13 +188,13 @@ void LoadPaletteDayNight(const void *src, u16 offset, u16 size)
     CpuCopy16(gPlttBufferUnfaded + offset, gPlttBufferFaded + offset, size);
 }
 
-void CheckClockToRetintForDayNight(void)
+void CheckClockForImmediateTimeEvents(void)
 {
     if (ShouldTintOverworld() && !sRetintPhase)
         RtcCalcLocalTimeFast();
 }
 
-void RetintPalettesForDayNight(void)
+void ProcessImmediateTimeEvents(void)
 {
     s8 hour;
 
@@ -219,11 +221,13 @@ void RetintPalettesForDayNight(void)
             sRetintPhase = 0;
             TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sTimeOfDayTints[sOldHour][0], sTimeOfDayTints[sOldHour][1], sTimeOfDayTints[sOldHour][2], TRUE);
             LoadPaletteOverrides();
-            ChooseAmbientCrySpecies();  // so a time-of-day appropriate mon is chosen
             
             if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&
                 gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)
                 CpuCopy16(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_SIZE);
+
+            ChooseAmbientCrySpecies();  // so a time-of-day appropriate mon is chosen
+            ForceTimeBasedEvents();     // for misc events that should run on time of day boundaries
         }
     }
 }

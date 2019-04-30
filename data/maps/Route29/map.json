@@ -22,9 +22,8 @@
         },
         {
             "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "Route29_EventScript_FruitTree",
-            "type": "sign",
+            "fruit_tree_id": "FRUIT_TREE_ROUTE_29",
+            "type": "fruit_tree",
             "x": 14,
             "y": 4
         }

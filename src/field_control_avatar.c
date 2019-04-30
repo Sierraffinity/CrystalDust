@@ -450,6 +450,9 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
                 return EventScript_2759F1;
         }
         return NULL;
+    case BG_EVENT_FRUIT_TREE:
+        gSpecialVar_0x8004 = bgEvent->bgUnion.berryTreeId;
+        return EventScript_FruitTree;
     }
 
     if (whichScript != 0xFF)
@@ -821,7 +824,7 @@ static bool8 WalkingNorthOrSouthIntoSignpost(const struct MapPosition *position,
 
 static bool8 GetSpecialSignpostScriptId(u8 metatileBehavior, u8 direction)
 {
-    if (MetatileBehavior_IsPlayerFacingCommon_EventScript_ShowPokemonCenterSign(metatileBehavior, direction))
+    if (MetatileBehavior_IsPlayerFacingPokemonCenterSign(metatileBehavior, direction))
         return 0;
     else if (MetatileBehavior_IsPlayerFacingPokeMartSign(metatileBehavior, direction))
         return 1;

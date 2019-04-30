@@ -23,8 +23,8 @@ u8 GetCurrentTimeOfDay(void);
 u8 GetTimeOfDay(s8 hours);
 void LoadCompressedPaletteDayNight(const void *src, u16 offset, u16 size);
 void LoadPaletteDayNight(const void *src, u16 offset, u16 size);
-void CheckClockToRetintForDayNight(void);
-void RetintPalettesForDayNight(void);
+void CheckClockForImmediateTimeEvents(void);
+void ProcessImmediateTimeEvents(void);
 void DoLoadSpritePaletteDayNight(const u16 *src, u16 paletteOffset);
 const u8 *GetDayOfWeekString(u8 timeOfDay);
 

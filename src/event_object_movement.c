@@ -1939,6 +1939,7 @@ void EventObjectSetGraphicsId(struct EventObject *eventObject, u8 graphicsId)
         paletteSlot -= 16;
         sub_808EAB0(graphicsInfo->paletteTag1, paletteSlot);
     }
+
     sprite->oam.shape = graphicsInfo->oam->shape;
     sprite->oam.size = graphicsInfo->oam->size;
     sprite->images = graphicsInfo->images;

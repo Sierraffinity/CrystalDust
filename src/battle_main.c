@@ -1852,7 +1852,7 @@ void BattleMainCB2(void)
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
-    RetintPalettesForDayNight();
+    ProcessImmediateTimeEvents();
     UpdatePaletteFade();
     RunTasks();
 
@@ -2087,7 +2087,7 @@ void VBlankCB_Battle(void)
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
     ScanlineEffect_InitHBlankDmaTransfer();
-    CheckClockToRetintForDayNight();
+    CheckClockForImmediateTimeEvents();
 }
 
 void nullsub_17(struct Sprite *sprite)
@@ -2472,7 +2472,7 @@ static void sub_803937C(void)
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
-    RetintPalettesForDayNight();
+    ProcessImmediateTimeEvents();
     UpdatePaletteFade();
     RunTasks();
 }

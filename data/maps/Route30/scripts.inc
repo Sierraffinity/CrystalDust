@@ -14,14 +14,6 @@ Route30_MapScript_ElmCall:
 	releaseall
 	end
 
-Route30_EventScript_FruitTree1::
-	fruit_tree FRUITTREE_ROUTE_30_1
-	end
-
-Route30_EventScript_FruitTree2::
-	fruit_tree FRUITTREE_ROUTE_30_2
-	end
-
 Route30_EventScript_Directions::
 	msgbox Route30_Text_Directions, MSGBOX_SIGN
 	end

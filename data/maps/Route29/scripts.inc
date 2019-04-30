@@ -60,10 +60,6 @@ Route29_EventScript_Dude::
 	release
 	end
 
-Route29_EventScript_FruitTree::
-	fruit_tree FRUITTREE_ROUTE_29
-	end
-
 Route29_Text_Youngster:
 	.string "Yo.\n"
 	.string "How are your POKéMON?\p"

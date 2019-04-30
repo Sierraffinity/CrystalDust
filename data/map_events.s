@@ -2,6 +2,7 @@
 #include "constants/event_object_movement_constants.h"
 #include "constants/event_objects.h"
 #include "constants/flags.h"
+#include "constants/fruit_trees.h"
 #include "constants/items.h"
 #include "constants/map_scripts.h"
 #include "constants/maps.h"

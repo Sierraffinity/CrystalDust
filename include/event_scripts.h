@@ -534,6 +534,7 @@ extern const u8 EventScript_PC[];
 extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_HiddenItemScript[];
 extern const u8 EventScript_2759F1[];
+extern const u8 EventScript_FruitTree[];
 extern const u8 EventScript_TV[];
 extern const u8 EventScript_Window[];
 extern const u8 EventScript_Radio1[];

@@ -1449,7 +1449,7 @@ bool8 MetatileBehavior_IsPokeCenterBookShelf(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsPlayerFacingCommon_EventScript_ShowPokemonCenterSign(u8 metatileBehavior, u8 playerDirection)
+bool8 MetatileBehavior_IsPlayerFacingPokemonCenterSign(u8 metatileBehavior, u8 playerDirection)
 {
     if (playerDirection != DIR_NORTH || metatileBehavior != MB_POKEMON_CENTER_SIGN)
         return FALSE;

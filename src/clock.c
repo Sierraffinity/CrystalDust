@@ -5,6 +5,7 @@
 #include "field_specials.h"
 #include "lottery_corner.h"
 #include "dewford_trend.h"
+#include "fruit_tree.h"
 #include "tv.h"
 #include "field_weather.h"
 #include "berry.h"
@@ -44,6 +45,7 @@ static void UpdatePerDay(struct Time *localTime)
     {
         daysSince = localTime->days - *days;
         ClearDailyFlags();
+        SetFruitTreeMetatiles(TRUE);
         UpdateDewfordTrendPerDay(daysSince);
         UpdateTVShowsPerDay(daysSince);
         UpdateWeatherPerDay(daysSince);

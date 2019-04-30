@@ -72,6 +72,10 @@
 	bg_event \x, \y, \height, 8, \secret_base_id, 0, 0
 	.endm
 
+	.macro bg_fruit_tree_event x, y, height, fruit_tree_id
+	bg_event \x, \y, \height, 9, \fruit_tree_id, 0, 0
+	.endm
+
 	.macro map_events npcs, warps, traps, signs
 	.byte _num_npcs, _num_warps, _num_traps, _num_signs
 	.4byte \npcs, \warps, \traps, \signs

@@ -103,6 +103,9 @@ struct BgEvent
         // secret base type
         u32 secretBaseId;
 
+        // berry tree ID
+        u16 berryTreeId;
+
     } bgUnion;
 };
 

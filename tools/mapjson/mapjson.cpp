@@ -241,6 +241,13 @@ string generate_map_events_text(Json map_data) {
                      << bg_event["elevation"].int_value() << ", "
                      << bg_event["secret_base_id"].string_value() << "\n";
             }
+            else if (bg_event["type"] == "fruit_tree") {
+                text << "\tbg_fruit_tree_event "
+                     << bg_event["x"].int_value() << ", "
+                     << bg_event["y"].int_value() << ", "
+                     << bg_event["elevation"].int_value() << ", "
+                     << bg_event["fruit_tree_id"].string_value() << "\n";
+            }
         }
         text << "\n";
     } else {

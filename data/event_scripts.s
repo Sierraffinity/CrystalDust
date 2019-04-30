@@ -72,7 +72,6 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_RegisteredInMatchCall
 	.4byte Std_9
 	.4byte Std_10
-	.4byte Std_FruitTree
 gStdScripts_End:: @ 81DC2CC
 
 	.include "data/maps/PetalburgCity/scripts.inc"
@@ -1575,20 +1574,32 @@ EventScript_271CA1:: @ 8271CA1
 	setvar VAR_RESULT, 0
 	return
 
-Std_FruitTree:
+EventScript_FruitTree::
 	lockall
 	special GetFruitTreeItem
 	compare VAR_RESULT, 0
 	goto_if_eq FruitTree_EventScript_NothingHere
-	bufferitemnameplural 1, VAR_RESULT, 1
+	copyvar VAR_0x8000, VAR_RESULT
+	bufferitemnameplural 1, VAR_0x8000, 1
 	msgbox FruitTree_Text_FruitBearingTree
-	giveitem_std VAR_RESULT
+
+@ Done so the fruit only disappears from the tree if it can be put in the bag,
+@ but before the actual giveitem text appears.
+
+	checkitemspace VAR_0x8000, 1
+	compare VAR_RESULT, 1
+	call_if_eq FruitTree_TakeItemFromTree
+	giveitem_std VAR_0x8000
 	compare VAR_RESULT, 0
 	goto_if_eq FruitTree_NotEnoughSpace
 	addvar VAR_0x8004, FLAG_FRUIT_TREES_START
 	special SetFlagInVar
 FruitTree_NotEnoughSpace:
 	releaseall
+	return
+
+FruitTree_TakeItemFromTree:
+	special SetFruitTreeMetatileTakenFromId
 	return
 
 FruitTree_EventScript_NothingHere:

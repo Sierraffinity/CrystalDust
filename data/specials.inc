@@ -536,6 +536,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B3BC4
 	def_special FieldRadio
 	def_special GetFruitTreeItem
+	def_special SetFruitTreeMetatileTakenFromId
 	def_special CopyCurrentDayOfWeekStringToVar1
 	def_special SelectBugCatchingContestMon
 	def_special EnterBugCatchingContest

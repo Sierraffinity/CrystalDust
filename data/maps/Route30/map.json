@@ -46,17 +46,15 @@
         },
         {
             "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "Route30_EventScript_FruitTree2",
-            "type": "sign",
+            "fruit_tree_id": "FRUIT_TREE_ROUTE_30_2",
+            "type": "fruit_tree",
             "x": 14,
             "y": 5
         },
         {
             "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "Route30_EventScript_FruitTree1",
-            "type": "sign",
+            "fruit_tree_id": "FRUIT_TREE_ROUTE_30_1",
+            "type": "fruit_tree",
             "x": 7,
             "y": 45
         }

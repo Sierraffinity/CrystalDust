@@ -6,6 +6,7 @@
 #include "fldeff.h"
 #include "fldeff_misc.h"
 #include "frontier_util.h"
+#include "fruit_tree.h"
 #include "menu.h"
 #include "mirage_tower.h"
 #include "overworld.h"
@@ -54,6 +55,7 @@ void InitMap(void)
 {
     InitMapLayoutData(&gMapHeader);
     SetOccupiedSecretBaseEntranceMetatiles(gMapHeader.events);
+    SetFruitTreeMetatiles(FALSE);
     RunOnLoadMapScript();
 }
 
@@ -62,6 +64,7 @@ void InitMapFromSavedGame(void)
     InitMapLayoutData(&gMapHeader);
     InitSecretBaseAppearance(FALSE);
     SetOccupiedSecretBaseEntranceMetatiles(gMapHeader.events);
+    SetFruitTreeMetatiles(FALSE);
     LoadSavedMapView();
     RunOnLoadMapScript();
     //UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);

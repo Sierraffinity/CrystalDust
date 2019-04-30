@@ -579,7 +579,7 @@ static void DebugMenu_DN(u8 taskId)
 static void DebugMenu_ToggleOverride(u8 taskId)
 {
     gPaletteOverrideDisabled = !gPaletteOverrideDisabled;
-    RetintPalettesForDayNight();
+    ProcessImmediateTimeEvents();
 }
 
 static void DebugMenu_DN_ProcessInput(u8 taskId)
@@ -635,7 +635,7 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
         PlaySE(SE_SELECT);
         if (++gDNHourOverride > 24)
             gDNHourOverride = 1;
-        RetintPalettesForDayNight();
+        ProcessImmediateTimeEvents();
         DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNHourOverride - 1);
     }
 
@@ -644,7 +644,7 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
         PlaySE(SE_SELECT);
         if (--gDNHourOverride < 1)
             gDNHourOverride = 24;
-        RetintPalettesForDayNight();
+        ProcessImmediateTimeEvents();
         DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNHourOverride - 1);
     }
 
