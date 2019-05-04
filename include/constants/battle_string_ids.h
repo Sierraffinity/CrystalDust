@@ -1,7 +1,7 @@
 #ifndef GUARD_CONSTANTS_BATTLE_STRING_IDS_H
 #define GUARD_CONSTANTS_BATTLE_STRING_IDS_H
 
-#define BATTLESTRINGS_COUNT     370
+#define BATTLESTRINGS_COUNT     371
 
 #define BATTLESTRINGS_ID_ADDER  12 // all battlestrings have its ID + 12, because first 5 are reserved
 
@@ -383,5 +383,6 @@
 #define STRINGID_TRAINER1WINTEXT            379
 #define STRINGID_TRAINER2WINTEXT            380
 #define STRINGID_OUTOFPARKBALLS             381
+#define STRINGID_TRAINER1COMEBACK           382
 
 #endif // GUARD_CONSTANTS_BATTLE_STRING_IDS_H

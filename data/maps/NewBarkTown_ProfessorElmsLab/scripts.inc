@@ -4,7 +4,7 @@ NewBarkTown_ProfessorElmsLab_MapScripts:: @ 81F9C91
 	.byte 0
 
 NewBarkTown_ProfessorElmsLab_MapScript1_Type3:
-	compare VAR_0x4050, 1
+	compare VAR_NEWBARK_STATE, 1
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_MoveElmToPC
 	end
 
@@ -13,7 +13,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_MoveElmToPC:
 	return
 
 NewBarkTown_ProfessorElmsLab_MapScript2_Type2:
-	map_script_2 VAR_0x4050, 1, NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction
+	map_script_2 VAR_NEWBARK_STATE, 1, NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction
 	.2byte 0
 
 NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction:
@@ -61,7 +61,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmAccepted:
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_RaiseAPokemon
 	closemessage
-	setvar VAR_0x4050, 2
+	setvar VAR_NEWBARK_STATE, 2
 	releaseall
 	end
 
@@ -113,11 +113,11 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm::
 	release
 	end
 
-NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil::
+NewBarkTown_ProfessorElmsLab_EventScript_Chikorita::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 0
-	setvar VAR_TEMP_2, SPECIES_CYNDAQUIL
+	setvar VAR_TEMP_2, SPECIES_CHIKORITA
 	goto NewBarkTown_EventScript_PokeBallMain
 
 NewBarkTown_ProfessorElmsLab_EventScript_Totodile::
@@ -127,11 +127,11 @@ NewBarkTown_ProfessorElmsLab_EventScript_Totodile::
 	setvar VAR_TEMP_2, SPECIES_TOTODILE
 	goto NewBarkTown_EventScript_PokeBallMain
 
-NewBarkTown_ProfessorElmsLab_EventScript_Chikorita::
+NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 2
-	setvar VAR_TEMP_2, SPECIES_CHIKORITA
+	setvar VAR_TEMP_2, SPECIES_CYNDAQUIL
 	goto NewBarkTown_EventScript_PokeBallMain
 
 NewBarkTown_EventScript_PokeBallMain:
@@ -145,11 +145,11 @@ NewBarkTown_EventScript_PokeBallChoice:
 	drawmonpic VAR_TEMP_2, 10, 3
 	textcolor MSG_COLOR_BLUE
 	compare VAR_TEMP_1, 0
-	goto_if_eq NewBarkTown_EventScript_ChoosingCyndaquil
+	goto_if_eq NewBarkTown_EventScript_ChoosingChikorita
 	compare VAR_TEMP_1, 1
 	goto_if_eq NewBarkTown_EventScript_ChoosingTotodile
 	compare VAR_TEMP_1, 2
-	goto_if_eq NewBarkTown_EventScript_ChoosingChikorita
+	goto_if_eq NewBarkTown_EventScript_ChoosingCyndaquil
 	end
 
 NewBarkTown_EventScript_ChoosingCyndaquil:
@@ -166,7 +166,7 @@ NewBarkTown_EventScript_ChoosingChikorita:
 
 NewBarkTown_EventScript_ChoosingMon:
 	compare VAR_RESULT, 1
-	call_if_eq NewBarkTown_EventScript_ChoseMon
+	goto_if_eq NewBarkTown_EventScript_ChoseMon
 	erasemonpic
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ThinkItOver
 	release
@@ -199,14 +199,14 @@ NewBarkTown_EventScript_ChoseMon:
 
 NewBarkTown_ProfessorElmsLab_EventScript_BallFromAbove:
 	compare VAR_TEMP_1, 0
-	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromAbove
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromAbove
 	compare VAR_TEMP_1, 1
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_TotodileFromAbove
 	compare VAR_TEMP_1, 2
-	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromAbove
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromAbove
 	end
 
-NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromAbove:
+NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromAbove:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay32FaceDown
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom83
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
@@ -244,7 +244,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom93:
 	face_up
 	step_end
 
-NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromAbove:
+NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromAbove:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay64FaceDown
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom103
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
@@ -278,14 +278,14 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom74:
 
 NewBarkTown_ProfessorElmsLab_EventScript_BallFromBelow:
 	compare VAR_TEMP_1, 0
-	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromBelow
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromBelow
 	compare VAR_TEMP_1, 1
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_TotodileFromBelow
 	compare VAR_TEMP_1, 2
-	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromBelow
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromBelow
 	end
 
-NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromBelow:
+NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromBelow:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay16FaceDown
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom85
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
@@ -313,7 +313,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom95:
 	walk_up
 	step_end
 
-NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromBelow:
+NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromBelow:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay48FaceDown
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom105
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
@@ -351,7 +351,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	applymovement 2, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmCountingOnYou, MSGBOX_DEFAULT
-	setvar VAR_0x4050, 3
+	setvar VAR_NEWBARK_STATE, 3
 	release
 	end
 
@@ -409,7 +409,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain:
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle
 	compare VAR_TEMP_1, 2
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight
-	setvar VAR_0x4050, 4
+	setvar VAR_NEWBARK_STATE, 4
 	releaseall
 	end
 

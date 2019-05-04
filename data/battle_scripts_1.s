@@ -2960,6 +2960,7 @@ BattleScript_LocalBattleLost::
 	jumpifbattletype BATTLE_TYPE_TRAINER_HILL, BattleScript_LocalBattleLostPrintTrainersWinText
 	jumpifbattletype BATTLE_TYPE_EREADER_TRAINER, BattleScript_LocalBattleLostEnd
 	jumpifhalfword CMP_EQUAL, gTrainerBattleOpponent_A, 0x400, BattleScript_LocalBattleLostEnd
+    jumpifbyte CMP_NOT_EQUAL, cMULTISTRING_CHOOSER, 0x0, BattleScript_FirstBattleLost
 BattleScript_LocalBattleLostPrintWhiteOut::
 	printstring STRINGID_PLAYERWHITEOUT
 	waitmessage 0x40
@@ -2967,6 +2968,21 @@ BattleScript_LocalBattleLostPrintWhiteOut::
 	waitmessage 0x40
 BattleScript_LocalBattleLostEnd::
 	end2
+
+BattleScript_FirstBattleLost:
+    jumpifhasnohp BS_ATTACKER, BattleScript_FirstBattleLost_SkipEnemyReturn
+    printstring STRINGID_TRAINER1COMEBACK
+    waitmessage 0x40
+    returnatktoball
+    waitstate
+
+BattleScript_FirstBattleLost_SkipEnemyReturn:
+    trainerslidein BS_ATTACKER
+    waitstate
+    printstring STRINGID_TRAINER1WINTEXT
+    jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_LocalBattleLostPrintWhiteOut
+    end2
+
 BattleScript_CheckDomeDrew::
 	jumpifbyte CMP_EQUAL, gBattleOutcome, B_OUTCOME_DREW, BattleScript_LocalBattleLostEnd_
 BattleScript_LocalBattleLostPrintTrainersWinText::

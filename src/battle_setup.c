@@ -31,6 +31,7 @@
 #include "sound.h"
 #include "strings.h"
 #include "trainer_hill.h"
+#include "script_pokemon_util_80F87D8.h"
 #include "secret_base.h"
 #include "string_util.h"
 #include "overworld.h"
@@ -104,6 +105,7 @@ EWRAM_DATA static u8 *sTrainerABattleScriptRetAddr = NULL;
 EWRAM_DATA static u8 *sTrainerBBattleScriptRetAddr = NULL;
 EWRAM_DATA static bool8 sShouldCheckTrainerBScript = FALSE;
 EWRAM_DATA static u8 sNoOfPossibleTrainerRetScripts = 0;
+EWRAM_DATA static u16 sFirstBattleTutorialMode = 0;
 
 // const rom data
 
@@ -230,6 +232,19 @@ static const struct TrainerBattleParameter sTrainerBContinueScriptBattleParams[]
     {&sTrainerVictorySpeech,        TRAINER_PARAM_CLEAR_VAL_32BIT},
     {&sTrainerCannotBattleSpeech,   TRAINER_PARAM_CLEAR_VAL_32BIT},
     {&sTrainerBBattleScriptRetAddr, TRAINER_PARAM_LOAD_VAL_32BIT},
+    {&sTrainerBattleEndScript,      TRAINER_PARAM_LOAD_SCRIPT_RET_ADDR},
+};
+
+static const struct TrainerBattleParameter sWinLoseNoIntroBattleParams[] =
+{
+    {&sTrainerBattleMode,           TRAINER_PARAM_LOAD_VAL_8BIT},
+    {&gTrainerBattleOpponent_A,     TRAINER_PARAM_LOAD_VAL_16BIT},
+    {&sFirstBattleTutorialMode,     TRAINER_PARAM_LOAD_VAL_16BIT},
+    {&sTrainerAIntroSpeech,         TRAINER_PARAM_CLEAR_VAL_32BIT},
+    {&sTrainerADefeatSpeech,        TRAINER_PARAM_LOAD_VAL_32BIT},
+    {&sTrainerVictorySpeech,        TRAINER_PARAM_LOAD_VAL_32BIT},
+    {&sTrainerCannotBattleSpeech,   TRAINER_PARAM_CLEAR_VAL_32BIT},
+    {&sTrainerABattleScriptRetAddr, TRAINER_PARAM_CLEAR_VAL_32BIT},
     {&sTrainerBattleEndScript,      TRAINER_PARAM_LOAD_SCRIPT_RET_ADDR},
 };
 
@@ -1005,6 +1020,7 @@ static void InitTrainerBattleVariables(void)
     sTrainerVictorySpeech = NULL;
     sTrainerCannotBattleSpeech = NULL;
     sTrainerBattleEndScript = NULL;
+    sFirstBattleTutorialMode = 0;
 }
 
 static inline void SetU8(void *ptr, u8 value)
@@ -1147,6 +1163,9 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
             gTrainerBattleOpponent_B = LocalIdToHillTrainerId(gSpecialVar_LastTalked);
         }
         return EventScript_TryDoNormalTrainerBattle;
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_WINTEXT:
+        TrainerBattleLoadArgs(sWinLoseNoIntroBattleParams, data);
+        return EventScript_DoTainerBattle;
     default:
         if (gApproachingTrainerId == 0)
         {
@@ -1201,6 +1220,11 @@ u8 GetTrainerBattleMode(void)
     return sTrainerBattleMode;
 }
 
+u8 GetFirstBattleTutorialMode(void)
+{
+    return sFirstBattleTutorialMode;
+}
+
 bool8 GetTrainerFlag(void)
 {
     if (InBattlePyramid())
@@ -1244,6 +1268,11 @@ void BattleSetup_StartTrainerBattle(void)
         gBattleTypeFlags = (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TRAINER);
     else
         gBattleTypeFlags = (BATTLE_TYPE_TRAINER);
+    
+    // TODO: Figure out if we even need a different battle type
+    /*if (GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_WINTEXT &&
+        GetFirstBattleTutorialMode() & 3)
+        gBattleTypeFlags |= BATTLE_TYPE_FIRST_BATTLE;*/
 
     if (InBattlePyramid())
     {
@@ -1295,24 +1324,50 @@ void BattleSetup_StartTrainerBattle(void)
 
 static void CB2_EndTrainerBattle(void)
 {
-    if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
+    if (sTrainerBattleMode == TRAINER_BATTLE_CONTINUE_SCRIPT_WINTEXT)
     {
-        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-    }
-    else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
-    {
-        if (InBattlePyramid() || sub_81D5C18())
-            SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+        if (IsPlayerDefeated(gBattleOutcome) == TRUE)
+        {
+            gSpecialVar_Result = TRUE;
+            if (sFirstBattleTutorialMode & 1)
+            {
+                HealPlayerParty();
+                SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+                SetBattledTrainersFlags();
+            }
+            else
+            {
+                SetMainCallback2(CB2_WhiteOut);
+            }
+        }
         else
-            SetMainCallback2(CB2_WhiteOut);
+        {
+            gSpecialVar_Result = FALSE;
+            SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+            SetBattledTrainersFlags();
+        }
     }
     else
     {
-        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-        if (!InBattlePyramid() && !sub_81D5C18())
+        if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
         {
-            RegisterTrainerInPhone();
-            SetBattledTrainersFlags();
+            SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+        }
+        else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
+        {
+            if (InBattlePyramid() || sub_81D5C18())
+                SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+            else
+                SetMainCallback2(CB2_WhiteOut);
+        }
+        else
+        {
+            SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+            if (!InBattlePyramid() && !sub_81D5C18())
+            {
+                RegisterTrainerInPhone();
+                SetBattledTrainersFlags();
+            }
         }
     }
 }
@@ -1504,7 +1559,8 @@ const u8 *GetTrainerBLoseText(void)
 
 const u8 *GetTrainerWonSpeech(void)
 {
-    return ReturnEmptyStringIfNull(sTrainerVictorySpeech);
+    StringExpandPlaceholders(gStringVar4, ReturnEmptyStringIfNull(sTrainerVictorySpeech));
+    return gStringVar4;
 }
 
 static const u8 *GetTrainerCantBattleSpeech(void)

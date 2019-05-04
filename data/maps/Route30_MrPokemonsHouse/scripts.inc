@@ -3,7 +3,7 @@ Route30_MrPokemonsHouse_MapScripts::
 	.byte 0
 
 Route30_MrPokemonsHouse_MapScripts_Type2:
-	map_script_2 VAR_ROUTE102_ACCESSIBLE, 0, Route30_MrPokemonsHouse_MapScript_MrPokemonIntro
+	map_script_2 VAR_ROUTE30_STATE, 0, Route30_MrPokemonsHouse_MapScript_MrPokemonIntro
 	.2byte 0
 
 Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
@@ -74,7 +74,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	compare VAR_STARTER_MON, 2
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsCyndaquil
 	setflag FLAG_HIDE_MAP_NAME_POPUP
-	setvar VAR_ROUTE102_ACCESSIBLE, 1
+	setvar VAR_ROUTE30_STATE, 1
 	releaseall
 	end
 
@@ -83,11 +83,11 @@ Route30_MrPokemonsHouse_EventScript_RivalGetsTotodile:
 	return
 
 Route30_MrPokemonsHouse_EventScript_RivalGetsChikorita:
-	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL
 	return
 
 Route30_MrPokemonsHouse_EventScript_RivalGetsCyndaquil:
-	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA
 	return
 
 Route30_MrPokemonsHouse_Movement_PlayerToMrPokemon:

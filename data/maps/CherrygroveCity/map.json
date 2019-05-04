@@ -36,39 +36,30 @@
     "coord_events": [
         {
             "elevation": 3,
-            "script": "0",
+            "script": "CherrygroveCity_EventScript_Rival1",
             "type": "trigger",
-            "var": "0",
-            "var_value": "0",
+            "var": "VAR_CHERRYGROVE_RIVAL_STATE",
+            "var_value": "1",
             "x": 47,
             "y": 8
         },
         {
             "elevation": 3,
-            "script": "0",
+            "script": "CherrygroveCity_EventScript_Rival2",
             "type": "trigger",
-            "var": "0",
-            "var_value": "0",
+            "var": "VAR_CHERRYGROVE_RIVAL_STATE",
+            "var_value": "1",
             "x": 47,
             "y": 9
         },
         {
             "elevation": 3,
-            "script": "0",
+            "script": "CherrygroveCity_EventScript_Rival3",
             "type": "trigger",
-            "var": "0",
-            "var_value": "0",
+            "var": "VAR_CHERRYGROVE_RIVAL_STATE",
+            "var_value": "1",
             "x": 47,
             "y": 10
-        },
-        {
-            "elevation": 3,
-            "script": "0",
-            "type": "trigger",
-            "var": "0",
-            "var_value": "0",
-            "x": 47,
-            "y": 11
         }
     ],
     "id": "MAP_CHERRYGROVE_CITY",
@@ -100,8 +91,8 @@
             "script": "0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 61,
-            "y": 8
+            "x": 55,
+            "y": 9
         },
         {
             "elevation": 3,

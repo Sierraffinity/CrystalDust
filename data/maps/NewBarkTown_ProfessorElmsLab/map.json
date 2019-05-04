@@ -91,7 +91,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo",
             "type": "trigger",
-            "var": "VAR_0x4050",
+            "var": "VAR_NEWBARK_STATE",
             "var_value": "2",
             "x": 5,
             "y": 8
@@ -100,7 +100,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo",
             "type": "trigger",
-            "var": "VAR_0x4050",
+            "var": "VAR_NEWBARK_STATE",
             "var_value": "2",
             "x": 6,
             "y": 8
@@ -109,7 +109,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo",
             "type": "trigger",
-            "var": "VAR_0x4050",
+            "var": "VAR_NEWBARK_STATE",
             "var_value": "2",
             "x": 7,
             "y": 8
@@ -118,7 +118,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1",
             "type": "trigger",
-            "var": "VAR_0x4050",
+            "var": "VAR_NEWBARK_STATE",
             "var_value": "3",
             "x": 5,
             "y": 9
@@ -127,7 +127,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2",
             "type": "trigger",
-            "var": "VAR_0x4050",
+            "var": "VAR_NEWBARK_STATE",
             "var_value": "3",
             "x": 6,
             "y": 9
@@ -136,7 +136,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3",
             "type": "trigger",
-            "var": "VAR_0x4050",
+            "var": "VAR_NEWBARK_STATE",
             "var_value": "3",
             "x": 7,
             "y": 9
@@ -189,12 +189,12 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL",
+            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA",
             "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil",
+            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Chikorita",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 8,
@@ -215,12 +215,12 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA",
+            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL",
             "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Chikorita",
+            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 10,

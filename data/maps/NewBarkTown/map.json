@@ -49,7 +49,7 @@
             "elevation": 3,
             "script": "NewBarkTown_EventScript_Teacher1",
             "type": "trigger",
-            "var": "VAR_0x4050",
+            "var": "VAR_NEWBARK_STATE",
             "var_value": "1",
             "x": 1,
             "y": 10
@@ -58,7 +58,7 @@
             "elevation": 3,
             "script": "NewBarkTown_EventScript_Teacher2",
             "type": "trigger",
-            "var": "VAR_0x4050",
+            "var": "VAR_NEWBARK_STATE",
             "var_value": "1",
             "x": 1,
             "y": 11
@@ -67,7 +67,7 @@
             "elevation": 3,
             "script": "NewBarkTown_EventScript_Teacher3",
             "type": "trigger",
-            "var": "VAR_0x4050",
+            "var": "VAR_NEWBARK_STATE",
             "var_value": "1",
             "x": 1,
             "y": 12

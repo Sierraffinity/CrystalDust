@@ -406,6 +406,7 @@ static const u8 sText_PkmnThatsEnough[] = _("{B_BUFF1}, that's enough!\nCome bac
 static const u8 sText_PkmnComeBack[] = _("{B_BUFF1}, come back!");
 static const u8 sText_PkmnOkComeBack[] = _("{B_BUFF1}, OK!\nCome back!");
 static const u8 sText_PkmnGoodComeBack[] = _("{B_BUFF1}, good!\nCome back!");
+static const u8 sText_Trainer1ComeBack[] = _("{B_TRAINER1_NAME}: {B_OPPONENT_MON1_NAME}, come back!");
 static const u8 sText_Trainer1WithdrewPkmn[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nwithdrew {B_BUFF1}!");
 static const u8 sText_LinkTrainer1WithdrewPkmn[] = _("{B_LINK_OPPONENT1_NAME} withdrew\n{B_BUFF1}!");
 static const u8 sText_LinkTrainer2WithdrewPkmn[] = _("{B_LINK_SCR_TRAINER_NAME} withdrew\n{B_BUFF1}!");
@@ -881,6 +882,7 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_TRAINER1WINTEXT - 12] = sText_Trainer1WinText,
     [STRINGID_TRAINER2WINTEXT - 12] = sText_Trainer2WinText,
     [STRINGID_OUTOFPARKBALLS - 12] = sText_OutOfParkBalls,
+    [STRINGID_TRAINER1COMEBACK - 12] = sText_Trainer1ComeBack,
 };
 
 const u16 gMissStringIds[] =
@@ -2595,6 +2597,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 {
                     CopyTrainerHillTrainerText(3, gTrainerBattleOpponent_A);
                     toCpy = gStringVar4;
+                }
+                else
+                {
+                    toCpy = GetTrainerWonSpeech();
                 }
                 break;
             case B_TXT_26: // ?

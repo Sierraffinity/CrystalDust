@@ -52,6 +52,7 @@
 #include "window.h"
 #include "constants/abilities.h"
 #include "constants/battle_move_effects.h"
+#include "constants/battle_setup.h"
 #include "constants/battle_string_ids.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
@@ -5105,6 +5106,20 @@ static void HandleEndTurn_BattleLost(void)
     }
     else
     {
+        if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) &&
+             GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_WINTEXT)
+        {
+            if (GetFirstBattleTutorialMode() & 1)
+                gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+            else
+                gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+            
+            gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+        }
+        else
+        {
+            gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+        }
         gBattlescriptCurrInstr = BattleScript_LocalBattleLost;
     }
 

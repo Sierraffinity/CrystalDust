@@ -3,14 +3,15 @@ Route30_MapScripts:: @ 81EC0E0
 	.byte 0
 
 Route30_MapScripts_Type2:
-	map_script_2 VAR_ROUTE102_ACCESSIBLE, 1, Route30_MapScript_ElmCall
+	map_script_2 VAR_ROUTE30_STATE, 1, Route30_MapScript_ElmCall
 	.2byte 0
 
 Route30_MapScript_ElmCall:
 	lockall
 	pokegearcall Route30_Text_ElmCall, 1
 	waitmessage
-	addvar VAR_ROUTE102_ACCESSIBLE, 1
+	setvar VAR_CHERRYGROVE_RIVAL_STATE, 1
+	addvar VAR_ROUTE30_STATE, 1
 	releaseall
 	end
 
