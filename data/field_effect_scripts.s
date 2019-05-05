@@ -255,7 +255,7 @@ gFieldEffectScript_UseDive:: @ 82DBC45
 	field_eff_end
 
 gFieldEffectScript_Pokeball:: @ 82DBC4B
-	field_eff_loadpal gFieldEffectObjectPaletteInfo10
+	field_eff_loadpalnotint gFieldEffectObjectPaletteInfo10
 	field_eff_callnative FldEff_Pokeball
 	field_eff_end
 
