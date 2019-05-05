@@ -2962,8 +2962,11 @@ BattleScript_LocalBattleLost::
 	jumpifhalfword CMP_EQUAL, gTrainerBattleOpponent_A, 0x400, BattleScript_LocalBattleLostEnd
     jumpifbyte CMP_NOT_EQUAL, cMULTISTRING_CHOOSER, 0x0, BattleScript_FirstBattleLost
 BattleScript_LocalBattleLostPrintWhiteOut::
+    @jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_LocalBattleLostTrainerWhiteout
 	printstring STRINGID_PLAYERWHITEOUT
 	waitmessage 0x40
+    @cmd5d 0x1D886F	@ TODO: Find out what this does in FireRed.
+	@getmoneyreward	@ It's like getmoneyreward but not
 	printstring STRINGID_PLAYERWHITEOUT2
 	waitmessage 0x40
 BattleScript_LocalBattleLostEnd::
@@ -2981,6 +2984,15 @@ BattleScript_FirstBattleLost_SkipEnemyReturn:
     waitstate
     printstring STRINGID_TRAINER1WINTEXT
     jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_LocalBattleLostPrintWhiteOut
+    end2
+
+BattleScript_LocalBattleLostTrainerWhiteout:
+    printstring STRINGID_PLAYERWHITEOUTTRAINER
+    waitmessage 0x40
+    @cmd5d 0x1D886F	@ TODO: Find out what this does in FireRed.
+	getmoneyreward	@ It's like getmoneyreward but not
+    printstring STRINGID_PLAYERWHITEOUTTRAINER2
+    waitmessage 0x40
     end2
 
 BattleScript_CheckDomeDrew::

@@ -5912,6 +5912,8 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
     return moneyReward;
 }
 
+// TODO: Replicate how FireRed does this
+// sub_80258AC in FireRed
 static void atk5D_getmoneyreward(void)
 {
     u32 moneyReward = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
