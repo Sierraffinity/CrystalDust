@@ -271,19 +271,19 @@ CherrygroveCity_EventScript_Rival1::
 CherrygroveCity_EventScript_Rival2::
 	lockall
 	setvar VAR_TEMP_1, 1
-	setobjectxy 2, 55, 9
+	setobjectxyperm 2, 55, 9
 	goto CherrygroveCity_EventScript_RivalMain
 
 CherrygroveCity_EventScript_Rival3::
 	lockall
 	setvar VAR_TEMP_1, 2
-	setobjectxy 2, 55, 10
+	setobjectxyperm 2, 55, 10
 	goto CherrygroveCity_EventScript_RivalMain
 
 CherrygroveCity_EventScript_RivalMain:
 	addobject 2
 	textcolor MSG_COLOR_BLUE
-	fadeoutbgm 0
+	fadenewbgm 0
 	turnobject EVENT_OBJ_ID_PLAYER, 4
 	playse SE_PIN
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_ExclamationMark
@@ -292,22 +292,13 @@ CherrygroveCity_EventScript_RivalMain:
 	waitmovement 0
 	applymovement 2, CherrygroveCity_Movement_RivalToPlayer
 	waitmovement 0
-	playbgm MUS_BOY_SUP, 0
+	playbgm MUS_GIRL_SUP, 0
+	savebgm MUS_BOY_SUP
 	msgbox CherrygroveCity_Text_Rival_GotAMon
 	switch VAR_STARTER_MON
-	case 0, CherrygroveCity_EventScript_RivalTotodile
+	case 0, CherrygroveCity_EventScript_RivalCyndaquil
 	case 1, CherrygroveCity_EventScript_RivalChikorita
-	case 2, CherrygroveCity_EventScript_RivalCyndaquil
-	end
-
-CherrygroveCity_EventScript_RivalTotodile:
-	trainerbattle_wintext TRAINER_BRENDAN_4, 1, CherrygroveCity_Text_Rival_Lose, CherrygroveCity_Text_Rival_Won
-	goto CherrygroveCity_EventScript_RivalPostBattle
-	end
-
-CherrygroveCity_EventScript_RivalChikorita:
-	trainerbattle_wintext TRAINER_BRENDAN_7, 1, CherrygroveCity_Text_Rival_Lose, CherrygroveCity_Text_Rival_Won
-	goto CherrygroveCity_EventScript_RivalPostBattle
+	case 2, CherrygroveCity_EventScript_RivalTotodile
 	end
 
 CherrygroveCity_EventScript_RivalCyndaquil:
@@ -315,17 +306,36 @@ CherrygroveCity_EventScript_RivalCyndaquil:
 	goto CherrygroveCity_EventScript_RivalPostBattle
 	end
 
+CherrygroveCity_EventScript_RivalChikorita:
+	trainerbattle_wintext TRAINER_BRENDAN_4, 1, CherrygroveCity_Text_Rival_Lose, CherrygroveCity_Text_Rival_Won
+	goto CherrygroveCity_EventScript_RivalPostBattle
+	end
+
+CherrygroveCity_EventScript_RivalTotodile:
+	trainerbattle_wintext TRAINER_BRENDAN_7, 0, CherrygroveCity_Text_Rival_Lose, CherrygroveCity_Text_Rival_Won
+	goto CherrygroveCity_EventScript_RivalPostBattle
+	end
+
 CherrygroveCity_EventScript_RivalPostBattle:
 	end
 
 CherrygroveCity_Text_Rival_GotAMon:
-	.string "Neat you got a POKéMON$"
+	.string "…… …… ……\p"
+	.string "You got a POKéMON at the lab.\p"
+	.string "What a waste.\n"
+	.string "A wimp like you.\p"
+	.string "…… …… ……\p"
+	.string "Don't you get what I'm saying?\p"
+	.string "Well, I too have a good POKéMON.\n"
+	.string "I'll show you what I mean!$"
 
 CherrygroveCity_Text_Rival_Lose:
-	.string "Oh noes I lost$"
+	.string "{RIVAL}: Humph.\n"
+	.string "Are you happy you won?$"
 
 CherrygroveCity_Text_Rival_Won:
-	.string "Oh noes I won$"
+	.string "{RIVAL}: Humph.\n"
+	.string "That was a waste of time.$"
 
 CherrygroveCity_Movement_RivalToPlayer:
 	walk_left
