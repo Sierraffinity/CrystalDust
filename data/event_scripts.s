@@ -8,6 +8,7 @@
 #include "constants/field_effects.h"
 #include "constants/flags.h"
 #include "constants/fruit_trees.h"
+#include "constants/decorations.h"
 #include "constants/items.h"
 #include "constants/heal_locations.h"
 #include "constants/layouts.h"
@@ -831,7 +832,7 @@ Std_10: @ 8271347
 	waitmessage
 	return
 
-EventScript_27134E: @ 827134E
+EventScript_UnusedReturn: @ 827134E
 	return
 
 Common_EventScript_SaveGame:: @ 827134F
@@ -852,7 +853,7 @@ Std_MsgboxAutoclose:: @ 8271494
 	release
 	return
 
-EventScript_27149D:: @ 827149D
+EventScript_ResetAllBerries:: @ 827149D
 	setberrytree 2, 7, 5
 	setberrytree 1, 3, 5
 	setberrytree 11, 7, 5
@@ -1098,7 +1099,7 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_FALLORBOR_TOWN_BATTLE_TENT_SCOTT
 	setflag FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT
 	setflag FLAG_HIDE_SKY_PILLAR_WALLACE*/
-	call EventScript_27149D
+	call EventScript_ResetAllBerries
 	end
 
 RestoreOriginalTextColor:
@@ -1113,7 +1114,7 @@ ClearPokepicAndTextboxForEarlyScriptExit::
 EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
 	special sub_81AFDD0
 	setflag FLAG_IS_CHAMPION
-	call EverGrandeCity_HallOfFame_EventScript_271829
+	call EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries
 	compare VAR_FOSSIL_MANIAC_STATE, 0
 	call_if_eq EverGrandeCity_HallOfFame_EventScript_271839
 	clearflag FLAG_HIDE_LILCOVE_MOTEL_GAME_DESIGNERS
@@ -1138,7 +1139,7 @@ EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
 	call_if_eq EverGrandeCity_HallOfFame_EventScript_271851
 	return
 
-EverGrandeCity_HallOfFame_EventScript_271829:: @ 8271829
+EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries:: @ 8271829
 	clearflag FLAG_DEFEATED_MEW
 	clearflag FLAG_DEFEATED_LATIAS_OR_LATIOS
 	clearflag FLAG_DEFEATED_DEOXYS
@@ -1211,7 +1212,7 @@ EventScript_MoveMrBrineyToRoute108:: @ 82718B3
 	end
 
 EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
-	clearflag FLAG_DEFEATED_ELITE_4_SYDNEY
+	clearflag FLAG_DEFEATED_ELITE_4_SIDNEY
 	clearflag FLAG_DEFEATED_ELITE_4_PHOEBE
 	clearflag FLAG_DEFEATED_ELITE_4_GLACIA
 	clearflag FLAG_DEFEATED_ELITE_4_DRAKE
@@ -2898,7 +2899,7 @@ EventScript_Poison_BugCatchingContest::
 Common_EventScript_NopReturn:: @ 827374E
 	return
 
-EventScript_27374F:: @ 827374F
+EventScript_UnusedSetVarResult1:: @ 827374F
 	setvar VAR_RESULT, 1
 	return
 

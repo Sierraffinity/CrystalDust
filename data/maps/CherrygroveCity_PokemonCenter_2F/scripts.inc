@@ -2,7 +2,7 @@ CherrygroveCity_PokemonCenter_2F_MapScripts:: @ 81FC218
 	map_script 2, CherrygroveCity_PokemonCenter_2F_MapScript2_276C3B
 	map_script 4, CherrygroveCity_PokemonCenter_2F_MapScript2_276B6C
 	map_script 1, CherrygroveCity_PokemonCenter_2F_MapScript1_276BBE
-	map_script 3, CherrygroveCity_PokemonCenter_2F_MapScript1_276ACF
+	map_script 3, PokemonCenter_2F_OnTransition
 	.byte 0
 
 CherrygroveCity_PokemonCenter_2F_EventScript_1FC22D:: @ 81FC22D

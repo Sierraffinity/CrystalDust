@@ -1,24 +1,8 @@
-BattleFrontier_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-DewfordTown_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-EverGrandeCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-EverGrandeCity_PokemonLeague_2F_MapScript1_276ACF: @ 8276ACF
-FallarborTown_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-FortreeCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-LavaridgeTown_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-LilycoveCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-MauvilleCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-MossdeepCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-CherrygroveCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-PacifidlogTown_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-PetalburgCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-RustboroCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-SlateportCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-SootopolisCity_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-VerdanturfTown_PokemonCenter_2F_MapScript1_276ACF: @ 8276ACF
-	call CherrygroveCity_PokemonCenter_2F_EventScript_276AD5
+PokemonCenter_2F_OnTransition: @ 8276ACF
+	call CherrygroveCity_PokemonCenter_2F_EventScript_OnTransitionCheckMysteryGift
 	end
 
-CherrygroveCity_PokemonCenter_2F_EventScript_276AD5:: @ 8276AD5
+CherrygroveCity_PokemonCenter_2F_EventScript_OnTransitionCheckMysteryGift:: @ 8276AD5
 	specialvar VAR_RESULT, sub_813B514
 	compare VAR_RESULT, 1
 	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_276AFB
