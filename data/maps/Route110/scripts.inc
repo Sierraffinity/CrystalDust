@@ -405,11 +405,11 @@ Route110_EventScript_1EF76E:: @ 81EF76E
 	end
 
 Route110_EventScript_1EF7E1:: @ 81EF7E1
-	playbgm MUS_GIRL_SUP, 1
+	playbgm MUS_RIVALENC, 1
 	return
 
 Route110_EventScript_1EF7E6:: @ 81EF7E6
-	playbgm MUS_BOY_SUP, 1
+	playbgm MUS_RIVALEXIT, 1
 	return
 
 Route110_EventScript_1EF7EB:: @ 81EF7EB
@@ -461,7 +461,7 @@ Route110_EventScript_1EF8A4:: @ 81EF8A4
 	end
 
 Route110_EventScript_1EF8B4:: @ 81EF8B4
-	trainerbattle_no_intro TRAINER_BRENDAN_2, Route110_Text_1EFEB4
+	trainerbattle_no_intro TRAINER_RIVAL_3, Route110_Text_1EFEB4
 	goto Route110_EventScript_1EF8C4
 	end
 

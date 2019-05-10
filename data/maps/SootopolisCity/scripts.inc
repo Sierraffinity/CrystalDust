@@ -541,7 +541,7 @@ SootopolisCity_EventScript_1E5C1E:: @ 81E5C1E
 	waitstate
 	clearflag FLAG_SYS_WEATHER_CTRL
 	setvar VAR_SKY_PILLAR_STATE, 3
-	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	clearflag FLAG_ELM_CALLED_ABOUT_STOLEN_MON
 	fadenewbgm MUS_RUNECITY
 	delay 120
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
@@ -594,7 +594,7 @@ SootopolisCity_EventScript_1E5CCE:: @ 81E5CCE
 	waitstate
 	clearflag FLAG_SYS_WEATHER_CTRL
 	setvar VAR_SKY_PILLAR_STATE, 2
-	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	clearflag FLAG_ELM_CALLED_ABOUT_STOLEN_MON
 	fadenewbgm MUS_NAMINORI
 	delay 120
 	clearflag FLAG_HIDE_MAP_NAME_POPUP

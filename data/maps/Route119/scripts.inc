@@ -70,11 +70,11 @@ Route119_EventScript_1F4488:: @ 81F4488
 	end
 
 Route119_EventScript_1F4501:: @ 81F4501
-	playbgm MUS_GIRL_SUP, 1
+	playbgm MUS_RIVALENC, 1
 	return
 
 Route119_EventScript_1F4506:: @ 81F4506
-	playbgm MUS_BOY_SUP, 1
+	playbgm MUS_RIVALEXIT, 1
 	return
 
 Route119_EventScript_1F450B:: @ 81F450B

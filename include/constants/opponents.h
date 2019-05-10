@@ -520,9 +520,9 @@
 #define TRAINER_EDWIN_3         516
 #define TRAINER_EDWIN_4         517
 #define TRAINER_EDWIN_5         518
-#define TRAINER_WALLY_1         519
-#define TRAINER_BRENDAN_1       520
-#define TRAINER_BRENDAN_2       521
+#define TRAINER_RIVAL_1         519
+#define TRAINER_RIVAL_2       520
+#define TRAINER_RIVAL_3       521
 #define TRAINER_BRENDAN_3       522
 #define TRAINER_BRENDAN_4       523
 #define TRAINER_BRENDAN_5       524

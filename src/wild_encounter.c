@@ -527,7 +527,7 @@ static bool8 AreLegendariesInSootopolisPreventingEncounters(void)
         return FALSE;
     }
 
-    return FlagGet(FLAG_LEGENDARIES_IN_SOOTOPOLIS);
+    return FlagGet(FLAG_ELM_CALLED_ABOUT_STOLEN_MON);
 }
 
 bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavior)

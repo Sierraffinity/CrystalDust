@@ -6274,11 +6274,12 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_CHAMPION:
             return MUS_BATTLE33;
         case TRAINER_CLASS_PKMN_TRAINER_3:
-            if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-                return MUS_BATTLE35;
+        case TRAINER_CLASS_RIVAL:
+            /*if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+                return MUS_BTLRIVAL;
             if (!StringCompare(gTrainers[gTrainerBattleOpponent_A].trainerName, gText_BattleWallyName))
-                return MUS_BATTLE20;
-            return MUS_BATTLE35;
+                return MUS_BATTLE20;*/
+            return MUS_BTLRIVAL;
         case TRAINER_CLASS_ELITE_FOUR:
             return MUS_BATTLE38;
         case TRAINER_CLASS_SALON_MAIDEN:
@@ -6294,7 +6295,7 @@ u16 GetBattleBGM(void)
         }
     }
     else
-        return MUS_JOHTOWILD;
+        return MUS_BTLJOHTOWILD;
 }
 
 void PlayBattleBGM(void)

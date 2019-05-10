@@ -196,6 +196,7 @@ CherrygroveCity_Movement_GuideGentFromLeft:
 	walk_left
 	walk_left
 	walk_left
+	walk_left
 	walk_up
 	walk_left
 	walk_in_place_fastest_up
@@ -207,6 +208,7 @@ CherrygroveCity_Movement_PlayerFromLeft:
 	delay_8
 	delay_4
 	walk_up
+	walk_left
 	walk_left
 	walk_left
 	walk_up
@@ -222,6 +224,7 @@ CherrygroveCity_Movement_GuideGentFromBelow:
 	walk_left
 	walk_left
 	walk_left
+	walk_left
 	walk_up
 	walk_left
 	walk_in_place_fastest_up
@@ -229,6 +232,7 @@ CherrygroveCity_Movement_GuideGentFromBelow:
 
 CherrygroveCity_Movement_PlayerFromBelow:
 	walk_up
+	walk_left
 	walk_left
 	walk_left
 	walk_left
@@ -245,12 +249,14 @@ CherrygroveCity_Movement_GuideGentFromRight:
 	walk_left
 	walk_left
 	walk_left
+	walk_left
 	walk_up
 	walk_left
 	walk_in_place_fastest_up
 	step_end
 
 CherrygroveCity_Movement_PlayerFromRight:
+	walk_left
 	walk_left
 	walk_left
 	walk_left
@@ -292,50 +298,63 @@ CherrygroveCity_EventScript_RivalMain:
 	waitmovement 0
 	applymovement 2, CherrygroveCity_Movement_RivalToPlayer
 	waitmovement 0
-	playbgm MUS_GIRL_SUP, 0
-	savebgm MUS_BOY_SUP
+	playbgm MUS_RIVALENC, 0
+	savebgm MUS_RIVALEXIT
 	msgbox CherrygroveCity_Text_Rival_GotAMon
-	switch VAR_STARTER_MON
-	case 0, CherrygroveCity_EventScript_RivalCyndaquil
-	case 1, CherrygroveCity_EventScript_RivalChikorita
-	case 2, CherrygroveCity_EventScript_RivalTotodile
+	setvar VAR_LAST_TALKED, 2
+	compare VAR_STARTER_MON, 0
+	call_if_eq CherrygroveCity_EventScript_RivalCyndaquil
+	compare VAR_STARTER_MON, 1
+	call_if_eq CherrygroveCity_EventScript_RivalChikorita
+	compare VAR_STARTER_MON, 2
+	call_if_eq CherrygroveCity_EventScript_RivalTotodile
+	special HealPlayerParty
+	msgbox CherrygroveCity_Text_Rival_PostBattle
+	closemessage
+	delay 10
+	playse SE_KOUKA_L
+	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_RivalPushesPlayer
+	applymovement 2, CherrygroveCity_Movement_RivalRunsAway
+	waitmovement 0
+	fadedefaultbgm
+	removeobject 2
+	setvar VAR_CHERRYGROVE_RIVAL_STATE, 2
+	releaseall
 	end
+
+CherrygroveCity_Movement_RivalPushesPlayer:
+	face_up
+	lock_facing_direction
+	walk_fast_down
+	unlock_facing_direction
+	walk_in_place_fastest_left
+	step_end
+
+CherrygroveCity_Movement_RivalRunsAway:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
 
 CherrygroveCity_EventScript_RivalCyndaquil:
-	trainerbattle_wintext TRAINER_BRENDAN_1, 1, CherrygroveCity_Text_Rival_Lose, CherrygroveCity_Text_Rival_Won
-	goto CherrygroveCity_EventScript_RivalPostBattle
-	end
+	trainerbattle_wintext TRAINER_RIVAL_1, 1, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose
+	return
 
 CherrygroveCity_EventScript_RivalChikorita:
-	trainerbattle_wintext TRAINER_BRENDAN_4, 1, CherrygroveCity_Text_Rival_Lose, CherrygroveCity_Text_Rival_Won
-	goto CherrygroveCity_EventScript_RivalPostBattle
-	end
+	trainerbattle_wintext TRAINER_RIVAL_2, 1, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose
+	return
 
 CherrygroveCity_EventScript_RivalTotodile:
-	trainerbattle_wintext TRAINER_BRENDAN_7, 0, CherrygroveCity_Text_Rival_Lose, CherrygroveCity_Text_Rival_Won
-	goto CherrygroveCity_EventScript_RivalPostBattle
-	end
-
-CherrygroveCity_EventScript_RivalPostBattle:
-	end
-
-CherrygroveCity_Text_Rival_GotAMon:
-	.string "…… …… ……\p"
-	.string "You got a POKéMON at the lab.\p"
-	.string "What a waste.\n"
-	.string "A wimp like you.\p"
-	.string "…… …… ……\p"
-	.string "Don't you get what I'm saying?\p"
-	.string "Well, I too have a good POKéMON.\n"
-	.string "I'll show you what I mean!$"
-
-CherrygroveCity_Text_Rival_Lose:
-	.string "{RIVAL}: Humph.\n"
-	.string "Are you happy you won?$"
-
-CherrygroveCity_Text_Rival_Won:
-	.string "{RIVAL}: Humph.\n"
-	.string "That was a waste of time.$"
+	trainerbattle_wintext TRAINER_RIVAL_3, 1, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose
+	return
 
 CherrygroveCity_Movement_RivalToPlayer:
 	walk_left
@@ -424,6 +443,30 @@ CherrygroveCity_Text_GuideGent_Pokegear:
 	.string "as you add CARDS.\p"
 	.string "I wish you luck on your journey!$"
 
+CherrygroveCity_Text_Rival_GotAMon:
+	.string "…… …… ……\n"
+	.string "You got a POKéMON at the lab.\p"
+	.string "What a waste of a POKéMON.\n"
+	.string "Given to a wimp like you.\p"
+	.string "…… …… ……\n"
+	.string "Don't you get what I'm saying?\p"
+	.string "Well, I too have a good POKéMON.\n"
+	.string "I'll show you what I mean!$"
+
+CherrygroveCity_Text_Rival_BattleWin:
+	.string "…Humph.\n"
+	.string "Are you happy you won?$"
+
+CherrygroveCity_Text_Rival_BattleLose:
+	.string "…Humph.\n"
+	.string "That was a waste of time.$"
+
+CherrygroveCity_Text_Rival_PostBattle:
+	.string "…… …… ……\n"
+	.string "My name's ???.\p"
+	.string "I'm going to be the world's greatest\n"
+	.string "POKéMON TRAINER.$"
+
 CherrygroveCity_Text_GuideGent_Rejected:
 	.string "Oh…\n"
 	.string "It's something I enjoy doing…\p"
@@ -444,7 +487,7 @@ CherrygroveCity_Text_YoungsterPreDex:
 	.string "up ahead.$"
 
 CherrygroveCity_Text_YoungsterPostDex:
-	.string "I battled the trainers on the road.\n"
+	.string "I battled the TRAINERS on the road.\n"
 	.string "My POKéMON lost. They're a mess!\p"
 	.string "I need to take them to a POKéMON\n"
 	.string "CENTER.$"

@@ -684,11 +684,11 @@ RustboroCity_EventScript_1E0DD1:: @ 81E0DD1
 	return
 
 RustboroCity_EventScript_1E0DE9:: @ 81E0DE9
-	playbgm MUS_GIRL_SUP, 1
+	playbgm MUS_RIVALENC, 1
 	return
 
 RustboroCity_EventScript_1E0DEE:: @ 81E0DEE
-	playbgm MUS_BOY_SUP, 1
+	playbgm MUS_RIVALEXIT, 1
 	return
 
 RustboroCity_EventScript_1E0DF3:: @ 81E0DF3

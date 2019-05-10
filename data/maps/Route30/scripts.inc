@@ -10,6 +10,7 @@ Route30_MapScript_ElmCall:
 	lockall
 	pokegearcall Route30_Text_ElmCall, 1
 	waitmessage
+	setflag FLAG_ELM_CALLED_ABOUT_STOLEN_MON
 	setvar VAR_CHERRYGROVE_RIVAL_STATE, 1
 	addvar VAR_ROUTE30_STATE, 1
 	releaseall

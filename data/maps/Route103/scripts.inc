@@ -29,7 +29,7 @@ Route103_EventScript_1EC3C1:: @ 81EC3C1
 Route103_EventScript_1EC3DA:: @ 81EC3DA
 	msgbox Route103_Text_1EC7A6, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_GIRL_SUP, 1
+	playbgm MUS_RIVALENC, 1
 	applymovement 2, Common_Movement_FacePlayer
 	waitmovement 0
 	applymovement 2, Common_Movement_ExclamationMark
@@ -46,7 +46,7 @@ Route103_EventScript_1EC3DA:: @ 81EC3DA
 Route103_EventScript_1EC434:: @ 81EC434
 	msgbox Route103_Text_1EC989, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_BOY_SUP, 1
+	playbgm MUS_RIVALEXIT, 1
 	applymovement 2, Common_Movement_FacePlayer
 	waitmovement 0
 	applymovement 2, Common_Movement_ExclamationMark
@@ -86,7 +86,7 @@ Route103_EventScript_1EC4CE:: @ 81EC4CE
 	end
 
 Route103_EventScript_1EC4DE:: @ 81EC4DE
-	trainerbattle_no_intro TRAINER_BRENDAN_1, Route103_Text_1ECA59
+	trainerbattle_no_intro TRAINER_RIVAL_2, Route103_Text_1ECA59
 	goto Route103_EventScript_1EC4FC
 	end
 

@@ -67,11 +67,11 @@ EverGrandeCity_ChampionsRoom_EventScript_228A61:: @ 8228A61
 	end
 
 EverGrandeCity_ChampionsRoom_EventScript_228ABC:: @ 8228ABC
-	playbgm MUS_GIRL_SUP, 0
+	playbgm MUS_RIVALENC, 0
 	return
 
 EverGrandeCity_ChampionsRoom_EventScript_228AC1:: @ 8228AC1
-	playbgm MUS_BOY_SUP, 0
+	playbgm MUS_RIVALEXIT, 0
 	return
 
 EverGrandeCity_ChampionsRoom_EventScript_228AC6:: @ 8228AC6

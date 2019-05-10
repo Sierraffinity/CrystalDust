@@ -2317,6 +2317,14 @@ extern const u8 gText_CommunicationStandby5[];
 // roulette
 extern const u8 gUnknown_082A5B89[];
 
+// phone call
+extern const u8 Text_Pokegear_Mom_Start[];
+extern const u8 Text_Pokegear_Mom_GotMon[];
+extern const u8 Text_Pokegear_Mom_GaveEggToElm[];
+extern const u8 Text_Pokegear_Elm_Start[];
+extern const u8 Text_Pokegear_Elm_SawMrPokemon[];
+extern const u8 Text_Pokegear_Elm_MonWasStolen[];
+
 // match call
 extern const u8 MatchCall_WildBattleText1[];
 extern const u8 MatchCall_WildBattleText2[];

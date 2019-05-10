@@ -84,7 +84,7 @@
 #define TRAINER_PIC_TWINS                 67
 #define TRAINER_PIC_SAILOR                68
 #define TRAINER_PIC_MAGMA_ADMIN           69
-#define TRAINER_PIC_WALLY                 70
+#define TRAINER_PIC_RIVAL                 70
 #define TRAINER_PIC_GOLD                  71
 #define TRAINER_PIC_KRIS                  72
 #define TRAINER_PIC_BUG_CATCHER           73
@@ -180,7 +180,7 @@
 #define FACILITY_CLASS_SWIMMER_F             0x38
 #define FACILITY_CLASS_TWINS                 0x39
 #define FACILITY_CLASS_SAILOR                0x3a
-#define FACILITY_CLASS_WALLY                 0x3b
+#define FACILITY_CLASS_RIVAL                 0x3b
 #define FACILITY_CLASS_GOLD                  0x3c
 #define FACILITY_CLASS_BRENDAN_2             0x3d
 #define FACILITY_CLASS_BRENDAN_3             0x3e
@@ -243,7 +243,7 @@
 #define TRAINER_CLASS_LEADER         0x20
 #define TRAINER_CLASS_SCHOOL_KID     0x21
 #define TRAINER_CLASS_SR_AND_JR      0x22
-#define TRAINER_CLASS_WINSTRATE      0x23
+#define TRAINER_CLASS_RIVAL          0x23
 #define TRAINER_CLASS_POKEFAN        0x24
 #define TRAINER_CLASS_YOUNGSTER      0x25
 #define TRAINER_CLASS_CHAMPION       0x26

@@ -8,6 +8,7 @@
 #include "match_call.h"
 #include "phone_contact.h"
 #include "text.h"
+#include "strings.h"
 #include "string_util.h"
 #include "constants/day_night.h"
 #include "constants/flags.h"
@@ -23,7 +24,6 @@ static const u8 *SelectMessage_StandardMatchCallTrainer(const struct PhoneContac
 static const u8 *SelectMessage_Test(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
 static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
 static const u8 *SelectMessage_Elm(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
-static const u8 *SelectMessage_Rose(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
 
 static const u8 sPhoneContactName_Mom[] = _("MOM");
 static const u8 sPhoneContactName_ProfessorElm[] = _("PROF. ELM");
@@ -54,7 +54,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ROSE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Rose,
+        .selectMessage = SelectMessage_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -927,20 +927,26 @@ static const u8 *SelectMessage_Test(const struct PhoneContact *phoneContact, boo
 
 static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
 {
-    static const u8 sTestText_Mom[] = _("Hi I'm MOM!\nBye.");
-    return sTestText_Mom;
+    if (FlagGet(FLAG_RECEIVED_MYSTERY_EGG))
+        return Text_Pokegear_Mom_GaveEggToElm;
+    else if (FlagGet(FLAG_SYS_POKEMON_GET))
+        return Text_Pokegear_Mom_GotMon;
+    return Text_Pokegear_Mom_Start;
 }
 
 static const u8 *SelectMessage_Elm(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
 {
-    static const u8 sTestText_Elm[] = _("Hi I'm PROF. ELM!.");
-    return sTestText_Elm;
+    if (FlagGet(FLAG_ELM_CALLED_ABOUT_STOLEN_MON))
+        return Text_Pokegear_Elm_MonWasStolen;
+    else if (FlagGet(FLAG_RECEIVED_MYSTERY_EGG))
+        return Text_Pokegear_Elm_SawMrPokemon;
+    return Text_Pokegear_Elm_Start;
 }
 
 static const u8 *SelectMessage_Rose(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
 {
     static const u8 sTestText_Rose[] = _("Hi I'm ROSE!\nI'm being forced to call you!");
-    if (FlagGet(FLAG_FORCE_PHONE_CALL_ROSE) && isCallingPlayer)
+    if (FlagGet(FLAG_UNUSED_0x493) && isCallingPlayer)
         return sTestText_Rose;
     else
         return SelectMessage_StandardMatchCallTrainer(phoneContact, isCallingPlayer);

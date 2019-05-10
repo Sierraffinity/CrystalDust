@@ -102,11 +102,11 @@ LavaridgeTown_EventScript_1EA5FF:: @ 81EA5FF
 	end
 
 LavaridgeTown_EventScript_1EA630:: @ 81EA630
-	playbgm MUS_GIRL_SUP, 1
+	playbgm MUS_RIVALENC, 1
 	return
 
 LavaridgeTown_EventScript_1EA635:: @ 81EA635
-	playbgm MUS_BOY_SUP, 1
+	playbgm MUS_RIVALEXIT, 1
 	return
 
 LavaridgeTown_EventScript_1EA63A:: @ 81EA63A

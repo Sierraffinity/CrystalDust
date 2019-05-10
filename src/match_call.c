@@ -979,7 +979,7 @@ static const struct MatchCallText *const sMatchCallGeneralTopics[] =
 
 static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
     {
-        .flag = FLAG_FORCE_PHONE_CALL_ROSE,
+        .flag = FLAG_UNUSED_0x493,
         .phoneContactId = PHONE_CONTACT_ROSE,
     },
 };

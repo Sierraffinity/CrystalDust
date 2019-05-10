@@ -1365,6 +1365,7 @@ static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that pers
 static void PhoneCard_ExecuteCallStart(u8 taskId)
 {
     const struct PhoneContact *phoneContact;
+    const u8 *str;
 
     if (IsTextPrinterActive(gTasks[taskId].tPhoneCallWindowId))
     {
@@ -1375,14 +1376,18 @@ static void PhoneCard_ExecuteCallStart(u8 taskId)
         RtcCalcLocalTime();
         FillWindowPixelBuffer(gTasks[taskId].tPhoneCallWindowId, 0x11);
         phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
+        
         if (NoPhoneServiceInCurrentLocation())
-            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_OutOfService, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+            str = sPhoneCallText_OutOfService;
         else if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
-            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_JustGoTalkToThem, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+            str = sPhoneCallText_JustGoTalkToThem;
         else if (IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
-            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, phoneContact->selectMessage(phoneContact, FALSE), 32, 1, GetPlayerTextSpeedDelay(), NULL);
+            str = phoneContact->selectMessage(phoneContact, FALSE);
         else
-            AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_NobodyAnswered, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+            str = sPhoneCallText_NobodyAnswered;
+
+        StringExpandPlaceholders(gStringVar4, str);
+        AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, gStringVar4, 32, 1, GetPlayerTextSpeedDelay(), NULL);
 
         gTasks[taskId].func = PhoneCard_ExecuteCall;
     }

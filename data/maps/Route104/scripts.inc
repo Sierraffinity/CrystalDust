@@ -79,11 +79,11 @@ Route104_EventScript_1ECD11:: @ 81ECD11
 	return
 
 Route104_EventScript_1ECD29:: @ 81ECD29
-	playbgm MUS_GIRL_SUP, 1
+	playbgm MUS_RIVALENC, 1
 	return
 
 Route104_EventScript_1ECD2E:: @ 81ECD2E
-	playbgm MUS_BOY_SUP, 1
+	playbgm MUS_RIVALEXIT, 1
 	return
 
 Route104_EventScript_1ECD33:: @ 81ECD33

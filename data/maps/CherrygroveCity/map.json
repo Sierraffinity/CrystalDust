@@ -10,7 +10,7 @@
             "script": "CherrygroveCity_EventScript_Slogan",
             "type": "sign",
             "x": 43,
-            "y": 10
+            "y": 11
         },
         {
             "elevation": 0,
@@ -78,7 +78,7 @@
             "script": "CherrygroveCity_EventScript_GuideGent",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 45,
+            "x": 46,
             "y": 8
         },
         {

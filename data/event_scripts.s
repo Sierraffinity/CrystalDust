@@ -1593,7 +1593,7 @@ EventScript_FruitTree::
 	giveitem_std VAR_0x8000
 	compare VAR_RESULT, 0
 	goto_if_eq FruitTree_NotEnoughSpace
-	addvar VAR_0x8004, FLAG_FRUIT_TREES_START
+	addvar VAR_0x8004, FLAG_FRUIT_TREES_START - 1
 	special SetFlagInVar
 FruitTree_NotEnoughSpace:
 	releaseall
@@ -5268,6 +5268,7 @@ LilycoveCity_PokemonCenter_1F_Text_2A9703: @ 82A9703
 LilycoveCity_PokemonCenter_1F_Text_2A970E: @ 82A970E
 	.string "{STR_VAR_1}: Umyaaaan!$"
 
+	.include "data/text/phone_call.inc"
 	.include "data/text/match_call.inc"
 	.include "data/scripts/apprentice.inc"
 

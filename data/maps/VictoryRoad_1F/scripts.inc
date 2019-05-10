@@ -41,7 +41,7 @@ VictoryRoad_1F_EventScript_235DE1:: @ 8235DE1
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox VictoryRoad_1F_Text_235EE6, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_WALLY_1, VictoryRoad_1F_Text_235FFC
+	trainerbattle_no_intro TRAINER_RIVAL_1, VictoryRoad_1F_Text_235FFC
 	msgbox VictoryRoad_1F_Text_236020, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
 	moveobjectoffscreen 4

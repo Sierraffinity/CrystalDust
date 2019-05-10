@@ -90,7 +90,7 @@
 #define FLAG_LISTENED_TO_INITIAL_RADIO       0x50
 #define FLAG_ROUTE_30_RECEIVED_BERRY_MAN     0x51
 #define FLAG_RECEIVED_MYSTERY_EGG            0x52
-#define FLAG_LEGENDARIES_IN_SOOTOPOLIS       0x53
+#define FLAG_ELM_CALLED_ABOUT_STOLEN_MON     0x53
 
 #define FLAG_UNUSED_0x054                    0x54  // Unused Flag
 #define FLAG_UNUSED_0x055                    0x55  // Unused Flag
@@ -1139,8 +1139,7 @@
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET                     0x491
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
-#define FLAG_FORCE_PHONE_CALL_ROSE                                  0x493
-
+#define FLAG_UNUSED_0x493                                           0x493 // Unused Flag
 #define FLAG_UNUSED_0x494                                           0x494 // Unused Flag
 #define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
 #define FLAG_UNUSED_0x496                                           0x496 // Unused Flag

@@ -977,7 +977,7 @@ CherrygroveCity_PokemonCenter_2F_EventScript_27751B:: @ 827751B
 	lock
 	faceplayer
 	setvar VAR_FRONTIER_FACILITY, 8
-	goto_if_unset FLAG_SYS_POKEDEX_GET, CherrygroveCity_PokemonCenter_2F_EventScript_277335
+	goto_if_unset FLAG_ADVENTURE_STARTED, CherrygroveCity_PokemonCenter_2F_EventScript_277335
 	specialvar VAR_RESULT, sub_813990C
 	compare VAR_RESULT, 1
 	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27731B
@@ -1068,7 +1068,7 @@ CherrygroveCity_PokemonCenter_2F_EventScript_277668:: @ 8277668
 CherrygroveCity_PokemonCenter_2F_EventScript_277672:: @ 8277672
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_POKEDEX_GET, CherrygroveCity_PokemonCenter_2F_EventScript_277335
+	goto_if_unset FLAG_ADVENTURE_STARTED, CherrygroveCity_PokemonCenter_2F_EventScript_277335
 	msgbox CherrygroveCity_PokemonCenter_2F_Text_279937, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27769A
@@ -1085,7 +1085,7 @@ CherrygroveCity_PokemonCenter_2F_EventScript_2776A4:: @ 82776A4
 	lock
 	faceplayer
 	setvar VAR_FRONTIER_FACILITY, 9
-	goto_if_unset FLAG_SYS_POKEDEX_GET, CherrygroveCity_PokemonCenter_2F_EventScript_277335
+	goto_if_unset FLAG_ADVENTURE_STARTED, CherrygroveCity_PokemonCenter_2F_EventScript_277335
 	specialvar VAR_RESULT, sub_813990C
 	compare VAR_RESULT, 1
 	goto_if_eq CherrygroveCity_PokemonCenter_2F_EventScript_27731B
@@ -1373,7 +1373,7 @@ CherrygroveCity_PokemonCenter_2F_EventScript_277B3A:: @ 8277B3A
 
 EventScript_WirelessBoxResults:: @ 8277B8A
 	lockall
-	goto_if_unset FLAG_SYS_POKEDEX_GET, CherrygroveCity_PokemonCenter_2F_EventScript_27733F
+	goto_if_unset FLAG_ADVENTURE_STARTED, CherrygroveCity_PokemonCenter_2F_EventScript_27733F
 	specialvar VAR_RESULT, IsWirelessAdapterConnected
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_277BB4
