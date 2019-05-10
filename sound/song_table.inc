@@ -416,13 +416,13 @@ gSongTable:: @ 86B49F0
 	song mus_kachi1, 0, 0           @ Victory! (Trainer Battle)
 	song mus_title3, 0, 0           @ Title Screen
 	song mus_demo1, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
-	song mus_girl_sup, 0, 0         @ May
+	song mus_rivalenc, 0, 0         @ Rival Arrives
 	song mus_hageshii, 0, 0         @ Trainers' Eyes Meet (Psychic)
 	song mus_kakkoii, 0, 0          @ Trainers' Eyes Meet (Cooltrainer)
 	song mus_mainmenu, 0, 0         @ Main Menu
 	song mus_aqa_0, 0, 0            @ Team Aqua Appears!
 	song mus_followme, 0, 0         @ Hurry Along
-	song mus_boy_sup, 0, 0          @ Brendan
+	song mus_rivalexit, 0, 0        @ Rival Leaves
 	song mus_rainbow, 0, 0          @ Evergrande City
 	song mus_ayasii, 0, 0           @ Trainers' Eyes Meet (Hex Maniac)
 	song mus_kachi4, 0, 0           @ Victory! (Team Aqua / Team Magma)
@@ -475,14 +475,14 @@ gSongTable:: @ 86B49F0
 	song mus_vs_front, 0, 0         @ Battle! (Frontier Brain)
 	song mus_vs_mew, 0, 0           @ Battle! (Mew)
 	song mus_b_dome1, 0, 0          @ Battle Dome Lobby
-	song mus_johtowild, 0, 0        @ Battle! (Wild Pokémon)
+	song mus_btljohtowild, 0, 0     @ Battle! (Wild Pokémon)
 	song mus_battle31, 0, 0         @ Battle! (Team Aqua / Team Magma)
 	song mus_battle20, 0, 0         @ Battle! (Trainer Battle)
 	song mus_battle32, 0, 0         @ Battle! (Gym Leader)
 	song mus_battle33, 0, 0         @ Battle! (Champion Wallace)
 	song mus_battle36, 0, 0         @ Battle! (Regirock/Regice/Registeel)
 	song mus_battle34, 0, 0         @ Battle! (Groudon/Kyogre)
-	song mus_battle35, 0, 0         @ Battle! (Brendan/May/Steven)
+	song mus_btlrival, 0, 0         @ Battle! (Rival)
 	song mus_battle38, 0, 0         @ Battle! (Elite Four)
 	song mus_battle30, 0, 0         @ Battle! (Team Aqua/Team Magma Leaders)
 	song mus_rg_annai, 0, 0         @ Guide (FRLG)

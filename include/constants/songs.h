@@ -339,13 +339,13 @@
 #define MUS_KACHI1 412          // Victory! Trainer
 #define MUS_TITLE3 413          // Title Screen
 #define MUS_DEMO1 414           // Opening Movie
-#define MUS_GIRL_SUP 415        // Encounter! May
+#define MUS_RIVALENC 415        // Encounter! May
 #define MUS_HAGESHII 416        // Encounter! Biker
 #define MUS_KAKKOII 417         // Encounter! Electric Trainer
 #define MUS_MAINMENU 418        // Main Menu
 #define MUS_AQA_0 419           // Encounter! Team Aqua
 #define MUS_FOLLOWME 420        // Follow Me!
-#define MUS_BOY_SUP 421         // Encounter! Brendan
+#define MUS_RIVALEXIT 421         // Encounter! Brendan
 #define MUS_RAINBOW 422         // Ever Grande City
 #define MUS_AYASII 423          // Encounter! Psychic
 #define MUS_KACHI4 424          // Victory! Aqua/Magma Grunt
@@ -398,14 +398,14 @@
 #define MUS_VS_FRONT 471        // Battle! Frontier Brain
 #define MUS_VS_MEW 472          // Battle! Mew
 #define MUS_B_DOME1 473         // Battle Dome Lobby
-#define MUS_JOHTOWILD 474       // Battle! Wild Pokémon
+#define MUS_BTLJOHTOWILD 474       // Battle! Wild Pokémon
 #define MUS_BATTLE31 475        // Battle! Team Aqua/Magma
 #define MUS_BATTLE20 476        // Battle! Trainer
 #define MUS_BATTLE32 477        // Battle! Gym Leader
 #define MUS_BATTLE33 478        // Battle! Champion
 #define MUS_BATTLE36 479        // Battle! Regi Trio
 #define MUS_BATTLE34 480        // Battle! Legendary Pokémon (dupe)
-#define MUS_BATTLE35 481        // Battle! Rival
+#define MUS_BTLRIVAL 481        // Battle! Rival
 #define MUS_BATTLE38 482        // Battle! Elite Four
 #define MUS_BATTLE30 483        // Battle! Archie/Maxie
 // FRLG Music Below
