@@ -9,6 +9,9 @@
 #include "constants/items.h"
 #include "constants/fruit_trees.h"
 
+// Fruit tree IDs are 1-indexed so field_control_avatar code doesn't have a fit
+// with a "NULL script pointer" (AKA zero in the ID field)
+
 static const u16 sFruitTrees[] = 
 {
     [FRUIT_TREE_ROUTE_29]   = ITEM_ORAN_BERRY,
@@ -22,7 +25,7 @@ void GetFruitTreeItem(void)
 
     DoTimeBasedEvents();
 
-    if (!FlagGet(FLAG_FRUIT_TREES_START + treeId))
+    if (!FlagGet(FLAG_FRUIT_TREES_START + treeId - 1))
         gSpecialVar_Result = sFruitTrees[treeId];
     else
         gSpecialVar_Result = 0;
@@ -73,7 +76,7 @@ void SetFruitTreeMetatiles(bool8 redrawMetatile)
             s16 x = events->bgEvents[bgId].x + 7;
             s16 y = events->bgEvents[bgId].y + 6;
             
-            if (FlagGet(FLAG_FRUIT_TREES_START + treeId))
+            if (FlagGet(FLAG_FRUIT_TREES_START + treeId - 1))
                 SetFruitTreeMetatileTaken(treeId, x, y);
             else
                 SetFruitTreeMetatileGrown(treeId, x, y);
