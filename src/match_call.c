@@ -82,6 +82,7 @@ struct ForcedPhoneCall
 {
     u16 flag;
     u16 phoneContactId;
+    bool8 (*callCondition)(void);
 };
 
 EWRAM_DATA struct MatchCallState gMatchCallState = {0};
@@ -977,11 +978,14 @@ static const struct MatchCallText *const sMatchCallGeneralTopics[] =
     sMatchCallBattlePyramidTexts,
 };
 
+static bool8 ReceiveCallWhenOutside(void);
+
 static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
-    {
-        .flag = FLAG_UNUSED_0x493,
-        .phoneContactId = PHONE_CONTACT_ROSE,
-    },
+    /*{
+        .flag = FLAG_ELM_CALLED_ABOUT_STOLEN_MON,
+        .phoneContactId = PHONE_CONTACT_ELM,
+        .callCondition = ReceiveCallWhenOutside
+    },*/
 };
 
 static const struct ScanlineEffectParams sScanlineParams =
@@ -1028,7 +1032,7 @@ static bool32 CheckMatchCallChance(void)
 
 static bool32 MapAllowsMatchCall(void)
 {
-    return gMapHeader.flags & 0x10;
+    return (gMapHeader.flags & 0x10) != 0;
 }
 
 static bool32 UpdateMatchCallStepCounter(void)
@@ -1070,14 +1074,22 @@ static bool32 SelectForcedPhoneCall(void)
     gMatchCallState.forcedPhoneCallId = 0;
     for (i = 0; i < ARRAY_COUNT(sForcedPhoneCalls); i++)
     {
-        if (FlagGet(sForcedPhoneCalls[i].flag) && FlagGet(gPhoneContacts[sForcedPhoneCalls[i].phoneContactId].registeredFlag))
+        if (sForcedPhoneCalls[i].callCondition() &&
+            FlagGet(sForcedPhoneCalls[i].flag) &&
+            FlagGet(gPhoneContacts[sForcedPhoneCalls[i].phoneContactId].registeredFlag))
         {
+            gMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
             gMatchCallState.forcedPhoneCallId = i + 1;
             return TRUE;
         }
     }
 
     return FALSE;
+}
+
+static bool8 ReceiveCallWhenOutside(void)
+{
+    return IsMapTypeOutdoors(gMapHeader.mapType);
 }
 
 static u32 GetNumRegisteredNPCs(void)
@@ -1328,7 +1340,6 @@ static bool32 sub_81962B0(u8 taskId)
 
 static bool32 sub_81962D8(u8 taskId)
 {
-    const u8 *message;
     s16 *taskData = gTasks[taskId].data;
     if (!ExecuteMatchCallTextPrinter(taskData[2]))
     {
@@ -1339,9 +1350,9 @@ static bool32 sub_81962D8(u8 taskId)
             {
                 const struct ForcedPhoneCall *forcedPhoneCall = &sForcedPhoneCalls[gMatchCallState.forcedPhoneCallId - 1];
                 const struct PhoneContact *phoneContact = &gPhoneContacts[forcedPhoneCall->phoneContactId];
-                message = phoneContact->selectMessage(phoneContact, TRUE);
+                StringExpandPlaceholders(gStringVar4, phoneContact->selectMessage(phoneContact, TRUE));
                 FlagClear(forcedPhoneCall->flag);
-                InitMatchCallTextPrinter(taskData[2], message);
+                InitMatchCallTextPrinter(taskData[2], gStringVar4);
                 return TRUE;
             }
             else

@@ -145,10 +145,11 @@ static void LoadPaletteOverrides(void)
 
 static bool8 ShouldTintOverworld(void)
 {
-    if (IsMapTypeIndoors(gMapHeader.mapType))
-        return FALSE;
+    if (IsMapTypeOutdoors(gMapHeader.mapType))
+        return TRUE;
 
-    return TRUE;
+    // more conditions?
+    return FALSE;
 }
 
 static void TintPaletteForDayNight(u16 offset, u16 size)
