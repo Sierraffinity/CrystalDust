@@ -140,6 +140,33 @@
             "var_value": "3",
             "x": 7,
             "y": 9
+        },
+        {
+            "elevation": 0,
+            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer1",
+            "type": "trigger",
+            "var": "VAR_NEWBARK_STATE",
+            "var_value": "5",
+            "x": 5,
+            "y": 7
+        },
+        {
+            "elevation": 0,
+            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer2",
+            "type": "trigger",
+            "var": "VAR_NEWBARK_STATE",
+            "var_value": "5",
+            "x": 6,
+            "y": 7
+        },
+        {
+            "elevation": 0,
+            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer3",
+            "type": "trigger",
+            "var": "VAR_NEWBARK_STATE",
+            "var_value": "5",
+            "x": 7,
+            "y": 7
         }
     ],
     "id": "MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB",

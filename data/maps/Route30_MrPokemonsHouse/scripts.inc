@@ -67,6 +67,8 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_1F_NEIGHBOR
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER
+	setvar VAR_CHERRYGROVE_RIVAL_STATE, 1
+	setvar VAR_NEWBARK_STATE, 5
 	compare VAR_STARTER_MON, 0
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsCyndaquil
 	compare VAR_STARTER_MON, 1

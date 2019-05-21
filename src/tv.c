@@ -38,6 +38,7 @@
 #include "secret_base.h"
 #include "tv.h"
 #include "data.h"
+#include "naming_screen.h"
 #include "constants/layouts.h"
 #include "constants/metatile_behaviors.h"
 
@@ -3444,6 +3445,12 @@ bool8 TV_PutNameRaterShowOnTheAirIfNicnkameChanged(void)
     }
     PutNameRaterShowOnTheAir();
     return TRUE;
+}
+
+void SetRivalNickname(void)
+{
+    StringCopy(gSaveBlock2Ptr->rivalName, gText_DefaultNameSilver);
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, 0, 0, 0, CB2_ReturnToFieldContinueScriptPlayMapMusic);
 }
 
 void ChangePokemonNickname(void)

@@ -41,6 +41,7 @@ extern const u8 gText_PkmnBoxSomeonesPCFull[];
 extern const u8 gText_PkmnBoxLanettesPCFull[];
 extern const u8 gText_MoveOkBack[];
 extern const u8 gText_YourName[];
+extern const u8 gText_RivalsName[];
 extern const u8 gText_BoxName[];
 extern const u8 gText_PkmnsNickname[];
 extern const u8 gText_TellHimTheWords[];
@@ -1146,6 +1147,7 @@ static void NamingScreen_CreatePlayerIcon(void);
 static void NamingScreen_CreatePCIcon(void);
 static void NamingScreen_CreateMonIcon(void);
 static void NamingScreen_CreateWandaDadIcon(void);
+static void NamingScreen_CreateRivalIcon(void);
 
 static void (*const sIconFunctions[])(void) =
 {
@@ -1154,6 +1156,7 @@ static void (*const sIconFunctions[])(void) =
     NamingScreen_CreatePCIcon,
     NamingScreen_CreateMonIcon,
     NamingScreen_CreateWandaDadIcon,
+    NamingScreen_CreateRivalIcon,
 };
 
 static void CreateInputTargetIcon(void)
@@ -1200,6 +1203,15 @@ static void NamingScreen_CreateWandaDadIcon(void)
     u8 spriteId;
 
     spriteId = AddPseudoEventObject(EVENT_OBJ_GFX_MAN_1, SpriteCallbackDummy, 0x38, 0x25, 0);
+    gSprites[spriteId].oam.priority = 3;
+    StartSpriteAnim(&gSprites[spriteId], 4);
+}
+
+static void NamingScreen_CreateRivalIcon(void)
+{
+    u8 spriteId;
+
+    spriteId = AddPseudoEventObject(EVENT_OBJ_GFX_RIVAL, SpriteCallbackDummy, 0x38, 0x25, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], 4);
 }
@@ -1498,6 +1510,7 @@ static void (*const gUnknown_0858BF58[])(void) =
     sub_80E4894,
     sub_80E48E8,
     sub_80E48E8,
+    sub_80E4894,
     sub_80E4894,
 };
 
@@ -1896,6 +1909,17 @@ static const struct NamingScreenTemplate wandaWordsScreenTemplate =
     .title = gText_TellHimTheWords,
 };
 
+static const struct NamingScreenTemplate rivalNamingScreenTemplate =
+{
+    .copyExistingString = 0,
+    .maxChars = 7,
+    .iconFunction = 5,
+    .addGenderIcon = 0,
+    .initialPage = PAGE_UPPER,
+    .unused = 35,
+    .title = gText_RivalsName,
+};
+
 static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
 {
     &playerNamingScreenTemplate,
@@ -1903,6 +1927,7 @@ static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
     &monNamingScreenTemplate,
     &monNamingScreenTemplate,
     &wandaWordsScreenTemplate,
+    &rivalNamingScreenTemplate,
 };
 
 const struct OamData gOamData_858BFEC =

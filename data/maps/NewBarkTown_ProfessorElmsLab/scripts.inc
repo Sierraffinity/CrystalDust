@@ -446,15 +446,124 @@ NewBarkTown_ProfessorElmsLab_Movement_AideFromRightTrigger:
 	walk_left
 	step_end
 
+NewBarkTown_ProfessorElmsLab_EventScript_Officer1::
+	lockall
+	setvar VAR_TEMP_1, 0
+	applymovement 3, NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeft
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromLeft
+	waitmovement 0
+	goto NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain
+
+NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeft:
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_fastest_left
+	step_end
+
+NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromLeft:
+	walk_up
+	walk_up
+	walk_up
+	face_right
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_Officer2::
+	lockall
+	setvar VAR_TEMP_1, 1
+	applymovement 3, NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeftFromCenter
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromCenter
+	waitmovement 0
+	goto NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain
+
+NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeftFromCenter:
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_fastest_left
+	step_end
+
+NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromCenter:
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	face_right
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_Officer3::
+	lockall
+	setvar VAR_TEMP_1, 2
+	applymovement 3, NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceRight
+	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromRight
+	waitmovement 0
+	goto NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain
+
+NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceRight:
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_fastest_right
+	step_end
+
+NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromRight:
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain:
+	textcolor MSG_COLOR_BLUE
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Officer_MonStolen
+NewBarkTown_ProfessorElmsLab_EventScript_Officer_NameRival:
+	fadescreen 1
+	special SetRivalNickname
+	waitstate
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Officer_RivalNameConfirm, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_Officer_NameRival
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Officer_ThanksForTheHelp
+	closemessage
+	applymovement 3, NewBarkTown_ProfessorElmsLab_Movement_OfficerLeaves
+	waitmovement 0
+	removeobject 3
+	setvar VAR_NEWBARK_STATE, 6
+	releaseall
+	end
+
+NewBarkTown_ProfessorElmsLab_Movement_OfficerLeaves:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
 NewBarkTown_ProfessorElmsLab_EventScript_Aide::
 	lock
 	faceplayer
+	goto_if_set FLAG_RECEIVED_MYSTERY_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Aide_Testimony
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy
 	release
 	end
 
+NewBarkTown_ProfessorElmsLab_EventScript_Aide_Testimony:
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_Testimony
+	release
+	end
+
 NewBarkTown_ProfessorElmsLab_EventScript_OpenWindow::
+	goto_if_set FLAG_VISITED_PETALBURG_CITY, NewBarkTown_ProfessorElmsLab_EventScript_PleasantBreeze
+	goto_if_set FLAG_ELM_CALLED_ABOUT_STOLEN_MON, NewBarkTown_ProfessorElmsLab_EventScript_BrokeInHere
+NewBarkTown_ProfessorElmsLab_EventScript_PleasantBreeze:
 	msgbox NewBarkTown_ProfessorElmsLab_Text_OpenWindow, MSGBOX_SIGN
+	end
+
+NewBarkTown_ProfessorElmsLab_EventScript_BrokeInHere::
+	msgbox NewBarkTown_ProfessorElmsLab_Text_BrokeInHere, MSGBOX_SIGN
 	end
 
 NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine::
@@ -646,9 +755,42 @@ NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy:
 	.string "There are only two of us, so we're\n"
 	.string "always busy.$"
 
+NewBarkTown_ProfessorElmsLab_Text_Aide_Testimony:
+	.string "There was a loud noise outside…\p"
+	.string "When we went to look, someone stole\n"
+	.string "a POKéMON off the table.\p"
+	.string "It's unbelievable that anyone would\n"
+	.string "do that!\p"
+	.string "…sigh… That stolen POKéMON.\n"
+	.string "I wonder how it's doing.\p"
+	.string "They say a POKéMON raised by a bad\n"
+	.string "person turns bad itself.$"
+
+NewBarkTown_ProfessorElmsLab_Text_Officer_MonStolen:
+	.string "I heard a POKéMON was stolen from\n"
+	.string "here…\p"
+	.string "I was just getting some information\n"
+	.string "from PROF. ELM.\p"
+	.string "Apparently, it was a young male with\n"
+	.string "long, red hair…\p"
+	.string "What?\n"
+	.string "You battled a TRAINER like that?\p"
+	.string "Did you happen to get his name?$"
+
+NewBarkTown_ProfessorElmsLab_Text_Officer_RivalNameConfirm:
+	.string "So, just to confirm here…\n"
+	.string "His name is {RIVAL}, correct?$"
+
+NewBarkTown_ProfessorElmsLab_Text_Officer_ThanksForTheHelp:
+	.string "Okay! So {RIVAL} was his name.\n"
+	.string "Thanks for helping my investigation!$"
+
 NewBarkTown_ProfessorElmsLab_Text_OpenWindow:
 	.string "The window is open.\n"
 	.string "A pleasant breeze is blowing in.$"
+
+NewBarkTown_ProfessorElmsLab_Text_BrokeInHere:
+	.string "He must've broken in through here!$"
 
 NewBarkTown_ProfessorElmsLab_Text_LikeToHealMon:
 	.string "Would you like to heal your POKéMON?$"
@@ -661,8 +803,8 @@ NewBarkTown_ProfessorElmsLab_Text_Observations:
 	.string "EVOLUTION”, it says on the screen…$"
 
 NewBarkTown_ProfessorElmsLab_Text_TrashCan:
-	.string "The wrapper from the snack\n"
-	.string "PROF. ELM ate is in there…$"
+	.string "The wrapper from the snack PROF. ELM\n"
+	.string "ate is in there…$"
 
 NewBarkTown_ProfessorElmsLab_Text_ShelfIntro:
 	.string "{PLAYER} opened a book.$"

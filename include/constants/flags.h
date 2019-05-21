@@ -1279,7 +1279,7 @@
 
 // Towns and Cities
 #define FLAG_VISITED_NEW_BARK_TOWN                  (SYSTEM_FLAGS + 0xF)
-#define FLAG_VISITED_CHERRYGROVE_CITY                    (SYSTEM_FLAGS + 0x10)
+#define FLAG_VISITED_CHERRYGROVE_CITY               (SYSTEM_FLAGS + 0x10)
 #define FLAG_VISITED_DEWFORD_TOWN                   (SYSTEM_FLAGS + 0x11)
 #define FLAG_VISITED_LAVARIDGE_TOWN                 (SYSTEM_FLAGS + 0x12)
 #define FLAG_VISITED_FALLARBOR_TOWN                 (SYSTEM_FLAGS + 0x13)

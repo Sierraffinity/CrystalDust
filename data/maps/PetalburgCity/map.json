@@ -73,12 +73,12 @@
         {
             "direction": "right",
             "map": "MAP_ROUTE103",
-            "offset": 10
+            "offset": 20
         },
         {
-            "direction": "left",
+            "direction": "down",
             "map": "MAP_ROUTE104",
-            "offset": -50
+            "offset": -2
         }
     ],
     "coord_events": [
