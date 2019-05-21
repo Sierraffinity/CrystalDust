@@ -97,7 +97,7 @@
 #define VAR_NEWBARK_STATE                    0x4050
 #define VAR_ROUTE30_STATE                    0x4051
 #define VAR_CHERRYGROVE_RIVAL_STATE          0x4052
-#define VAR_LAVARIDGE_RIVAL_STATE            0x4053
+#define VAR_ROUTE29_STATE                    0x4053
 #define VAR_CURRENT_SECRET_BASE              0x4054
 #define VAR_UNUSED_0x4055                    0x4055 // Unused Var
 #define VAR_UNUSED_0x4056                    0x4056 // Unused Var

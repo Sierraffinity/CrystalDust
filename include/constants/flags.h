@@ -91,8 +91,8 @@
 #define FLAG_ROUTE_30_RECEIVED_BERRY_MAN     0x51
 #define FLAG_RECEIVED_MYSTERY_EGG            0x52
 #define FLAG_ELM_CALLED_ABOUT_STOLEN_MON     0x53
+#define FLAG_GAVE_MYSTERY_EGG_TO_ELM         0x54
 
-#define FLAG_UNUSED_0x054                    0x54  // Unused Flag
 #define FLAG_UNUSED_0x055                    0x55  // Unused Flag
 
 #define FLAG_LINK_CONTEST_POKE_BALL          0x56

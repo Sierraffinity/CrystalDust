@@ -2324,6 +2324,7 @@ extern const u8 Text_Pokegear_Mom_GaveEggToElm[];
 extern const u8 Text_Pokegear_Elm_Start[];
 extern const u8 Text_Pokegear_Elm_SawMrPokemon[];
 extern const u8 Text_Pokegear_Elm_MonWasStolen[];
+extern const u8 Text_Pokegear_Elm_CheckingEgg[];
 
 // match call
 extern const u8 MatchCall_WildBattleText1[];

@@ -167,6 +167,33 @@
             "var_value": "5",
             "x": 7,
             "y": 7
+        },
+        {
+            "elevation": 0,
+            "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls1",
+            "type": "trigger",
+            "var": "VAR_NEWBARK_STATE",
+            "var_value": "7",
+            "x": 5,
+            "y": 9
+        },
+        {
+            "elevation": 0,
+            "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls2",
+            "type": "trigger",
+            "var": "VAR_NEWBARK_STATE",
+            "var_value": "7",
+            "x": 6,
+            "y": 9
+        },
+        {
+            "elevation": 0,
+            "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls3",
+            "type": "trigger",
+            "var": "VAR_NEWBARK_STATE",
+            "var_value": "7",
+            "x": 7,
+            "y": 9
         }
     ],
     "id": "MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB",

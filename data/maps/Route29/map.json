@@ -50,8 +50,8 @@
             "elevation": 3,
             "script": "NULL",
             "type": "trigger",
-            "var": "VAR_ROUTE101_STATE",
-            "var_value": "0",
+            "var": "VAR_ROUTE29_STATE",
+            "var_value": "1",
             "x": 65,
             "y": 10
         },
@@ -59,8 +59,8 @@
             "elevation": 3,
             "script": "NULL",
             "type": "trigger",
-            "var": "VAR_ROUTE101_STATE",
-            "var_value": "0",
+            "var": "VAR_ROUTE29_STATE",
+            "var_value": "1",
             "x": 65,
             "y": 11
         },
@@ -68,8 +68,8 @@
             "elevation": 3,
             "script": "NULL",
             "type": "trigger",
-            "var": "VAR_ROUTE101_STATE",
-            "var_value": "0",
+            "var": "VAR_ROUTE29_STATE",
+            "var_value": "1",
             "x": 65,
             "y": 12
         },
@@ -77,8 +77,8 @@
             "elevation": 3,
             "script": "NULL",
             "type": "trigger",
-            "var": "VAR_ROUTE101_STATE",
-            "var_value": "0",
+            "var": "VAR_ROUTE29_STATE",
+            "var_value": "1",
             "x": 65,
             "y": 13
         }

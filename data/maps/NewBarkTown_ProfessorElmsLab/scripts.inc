@@ -109,7 +109,129 @@ NewBarkTown_ProfessorElmsLab_Movement_PlayerComeBack:
 NewBarkTown_ProfessorElmsLab_EventScript_Elm::
 	lock
 	faceplayer
+	goto_if_set FLAG_GAVE_MYSTERY_EGG_TO_ELM, NewBarkTown_ProfessorElmsLab_EventScript_ElmWithEgg
+	goto_if_set FLAG_RECEIVED_MYSTERY_EGG, NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft
+	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_ProfessorElmsLab_EventScript_ElmMrPokemon
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmWildMonAdvice
+	release
+	end
+
+NewBarkTown_ProfessorElmsLab_EventScript_ElmMrPokemon:
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmMrPokemon
+	release
+	end
+
+NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThisIsTerrible
+	textcolor MSG_COLOR_MISC
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmHandedMysteryEgg
+	closemessage
+	call RestoreOriginalTextColor
+	takeitem ITEM_MYSTERY_EGG, 1
+	delay 10
+	compare VAR_FACING, 1
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsDown
+	compare VAR_FACING, 2
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsUp
+	compare VAR_FACING, 3
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsLeft
+	compare VAR_FACING, 4
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsRight
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmIsThisAnEgg
+	setflag FLAG_GAVE_MYSTERY_EGG_TO_ELM
+	setflag FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS
+	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
+	setvar VAR_ROUTE29_STATE, 1
+	setvar VAR_NEWBARK_STATE, 7
+	release
+	end
+
+NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsDown:
+	playse SE_DANSA
+	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsDown
+	waitmovement 0
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThis
+	closemessage
+	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsUp
+	waitmovement 0
+	return
+
+NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsDown:
+	lock_facing_direction
+	disable_jump_landing_ground_effect
+	jump_down
+	unlock_facing_direction
+	step_end
+
+NewBarkTown_ProfessorElmsLab_Movement_ElmStepsUp:
+	walk_up
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsUp:
+	playse SE_DANSA
+	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsUp
+	waitmovement 0
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThis
+	closemessage
+	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsDown
+	waitmovement 0
+	return
+
+NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsUp:
+	lock_facing_direction
+	disable_jump_landing_ground_effect
+	jump_up
+	unlock_facing_direction
+	step_end
+
+NewBarkTown_ProfessorElmsLab_Movement_ElmStepsDown:
+	walk_down
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsLeft:
+	playse SE_DANSA
+	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsLeft
+	waitmovement 0
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThis
+	closemessage
+	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsRight
+	waitmovement 0
+	return
+
+NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsLeft:
+	lock_facing_direction
+	disable_jump_landing_ground_effect
+	jump_left
+	unlock_facing_direction
+	step_end
+
+NewBarkTown_ProfessorElmsLab_Movement_ElmStepsRight:
+	walk_right
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsRight:
+	playse SE_DANSA
+	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsRight
+	waitmovement 0
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThis
+	closemessage
+	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsLeft
+	waitmovement 0
+	return
+
+NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsRight:
+	lock_facing_direction
+	disable_jump_landing_ground_effect
+	jump_right
+	unlock_facing_direction
+	step_end
+
+NewBarkTown_ProfessorElmsLab_Movement_ElmStepsLeft:
+	walk_left
+	step_end
+
+NewBarkTown_ProfessorElmsLab_EventScript_ElmWithEgg:
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmDontGiveUp
 	release
 	end
 
@@ -446,6 +568,43 @@ NewBarkTown_ProfessorElmsLab_Movement_AideFromRightTrigger:
 	walk_left
 	step_end
 
+NewBarkTown_ProfessorElmsLab_EventScript_AideBalls1::
+	lockall
+	setvar VAR_TEMP_1, 0
+	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideToLeftTrigger
+	waitmovement 0
+	goto NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain
+
+NewBarkTown_ProfessorElmsLab_EventScript_AideBalls2::
+	lockall
+	setvar VAR_TEMP_1, 1
+	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideToMiddleTrigger
+	waitmovement 0
+	goto NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain
+
+NewBarkTown_ProfessorElmsLab_EventScript_AideBalls3::
+	lockall
+	setvar VAR_TEMP_1, 2
+	applymovement 1, NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger
+	waitmovement 0
+	goto NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain
+
+NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain:
+	textcolor MSG_COLOR_BLUE
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_TakeBalls
+	giveitem_std ITEM_POKE_BALL, 5
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_BallExplanation
+	closemessage
+	compare VAR_TEMP_1, 0
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromLeft
+	compare VAR_TEMP_1, 1
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle
+	compare VAR_TEMP_1, 2
+	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight
+	setvar VAR_NEWBARK_STATE, 8
+	releaseall
+	end
+
 NewBarkTown_ProfessorElmsLab_EventScript_Officer1::
 	lockall
 	setvar VAR_TEMP_1, 0
@@ -545,6 +704,7 @@ NewBarkTown_ProfessorElmsLab_Movement_OfficerLeaves:
 NewBarkTown_ProfessorElmsLab_EventScript_Aide::
 	lock
 	faceplayer
+	goto_if_set FLAG_GAVE_MYSTERY_EGG_TO_ELM, NewBarkTown_ProfessorElmsLab_EventScript_Aide_BallExplanation
 	goto_if_set FLAG_RECEIVED_MYSTERY_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Aide_Testimony
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy
 	release
@@ -552,6 +712,11 @@ NewBarkTown_ProfessorElmsLab_EventScript_Aide::
 
 NewBarkTown_ProfessorElmsLab_EventScript_Aide_Testimony:
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_Testimony
+	release
+	end
+
+NewBarkTown_ProfessorElmsLab_EventScript_Aide_BallExplanation:
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_BallExplanation
 	release
 	end
 
@@ -694,6 +859,50 @@ NewBarkTown_ProfessorElmsLab_Text_ElmWildMonAdvice:
 	.string "ELM: If a wild POKéMON appears, let\n"
 	.string "your POKéMON battle it!$"
 
+NewBarkTown_ProfessorElmsLab_Text_ElmMrPokemon:
+	.string "ELM: MR. POKéMON goes everywhere\n"
+	.string "and finds rarities.\p"
+	.string "Too bad they're just rare and not\n"
+	.string "very useful…$"
+
+NewBarkTown_ProfessorElmsLab_Text_ElmThisIsTerrible:
+	.string "ELM: {PLAYER}, this is terrible…\p"
+	.string "Oh, yes, what was MR. POKéMON's big\n"
+	.string "discovery?$"
+
+NewBarkTown_ProfessorElmsLab_Text_ElmHandedMysteryEgg:
+	.string "{PLAYER} handed the MYSTERY EGG to\n"
+	.string "PROF. ELM.$"
+
+NewBarkTown_ProfessorElmsLab_Text_ElmThis:
+	.string "ELM: This?$"
+
+NewBarkTown_ProfessorElmsLab_Text_ElmIsThisAnEgg:
+	.string "But… Is it a POKéMON EGG?\n"
+	.string "If it is, it's a great discovery!\p"
+	.string "What?!?\n"
+	.string "PROF. OAK gave you a POKéDEX?\p"
+	.string "{PLAYER}, is that true?\n"
+	.string "Th-that's incredible!\p"
+	.string "He is superb at seeing the potential\n"
+	.string "of people as TRAINERS.\p"
+	.string "Wow, {PLAYER}. You may have what it\n"
+	.string "takes to become the CHAMPION.\p"
+	.string "You seem to be getting on great with\n"
+	.string "POKéMON too.\p"
+	.string "You should take the POKéMON GYM\n"
+	.string "challenge.\p"
+	.string "The closest GYM would be the one in\n"
+	.string "VIOLET CITY.\p"
+	.string "…{PLAYER}. The road to the championship\n"
+	.string "will be a long one.\p"
+	.string "Before you leave, make sure that\n"
+	.string "you talk to your mom.$"
+
+NewBarkTown_ProfessorElmsLab_Text_ElmDontGiveUp:
+	.string "ELM: Don't give up! I'll call if I\n"
+	.string "learn anything about that EGG!$"
+
 NewBarkTown_ProfessorElmsLab_Text_Cyndaquil:
 	.string "ELM: Oh! CYNDAQUIL is your choice.\n"
 	.string "Raising it would be a cinch.\p"
@@ -755,6 +964,16 @@ NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy:
 	.string "There are only two of us, so we're\n"
 	.string "always busy.$"
 
+NewBarkTown_ProfessorElmsLab_Text_Aide_TakeBalls:
+	.string "{PLAYER}!\n"
+	.string "Use these on your POKéDEX quest!$"
+
+NewBarkTown_ProfessorElmsLab_Text_Aide_BallExplanation:
+	.string "To add to your POKéDEX, you have to\n"
+	.string "catch POKéMON.\p"
+	.string "Throw POKé BALLS at wild POKéMON to\n"
+	.string "get them.$"
+
 NewBarkTown_ProfessorElmsLab_Text_Aide_Testimony:
 	.string "There was a loud noise outside…\p"
 	.string "When we went to look, someone stole\n"
@@ -773,13 +992,13 @@ NewBarkTown_ProfessorElmsLab_Text_Officer_MonStolen:
 	.string "from PROF. ELM.\p"
 	.string "Apparently, it was a young male with\n"
 	.string "long, red hair…\p"
-	.string "What?\n"
-	.string "You battled a TRAINER like that?\p"
+	.string "What? You're saying you battled a\n"
+	.string "TRAINER like that?\p"
 	.string "Did you happen to get his name?$"
 
 NewBarkTown_ProfessorElmsLab_Text_Officer_RivalNameConfirm:
-	.string "So, just to confirm here…\n"
-	.string "His name is {RIVAL}, correct?$"
+	.string "Let me make sure I got that right…\n"
+	.string "So you said his name was {RIVAL}?$"
 
 NewBarkTown_ProfessorElmsLab_Text_Officer_ThanksForTheHelp:
 	.string "Okay! So {RIVAL} was his name.\n"

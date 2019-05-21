@@ -927,7 +927,7 @@ static const u8 *SelectMessage_Test(const struct PhoneContact *phoneContact, boo
 
 static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
 {
-    if (FlagGet(FLAG_RECEIVED_MYSTERY_EGG))
+    if (FlagGet(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
         return Text_Pokegear_Mom_GaveEggToElm;
     else if (FlagGet(FLAG_SYS_POKEMON_GET))
         return Text_Pokegear_Mom_GotMon;
@@ -936,7 +936,9 @@ static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool
 
 static const u8 *SelectMessage_Elm(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
 {
-    if (FlagGet(FLAG_ELM_CALLED_ABOUT_STOLEN_MON))
+    if (FlagGet(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+        return Text_Pokegear_Elm_CheckingEgg;
+    else if (FlagGet(FLAG_ELM_CALLED_ABOUT_STOLEN_MON))
         return Text_Pokegear_Elm_MonWasStolen;
     else if (FlagGet(FLAG_RECEIVED_MYSTERY_EGG))
         return Text_Pokegear_Elm_SawMrPokemon;
