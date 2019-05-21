@@ -337,7 +337,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmDirectionsToMrPokemon
 	closemessage
 	delay 20
-	setflag FLAG_ENABLE_PROF_ELM_MATCH_CALL
+	setflag FLAG_PHONE_CARD_ELM
 	playfanfare MUS_ME_TORE_EYE
 	call RestoreOriginalTextColor
 	msgbox NewBarkTown_ProfessorElmsLab_Text_GotElmsNumber, MSGBOX_DEFAULT

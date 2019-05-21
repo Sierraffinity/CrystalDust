@@ -107,7 +107,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_HIDE_NEW_BARK_TOWN_RIVAL",
             "graphics_id": "EVENT_OBJ_GFX_RIVAL",
             "movement_range_x": 0,
             "movement_range_y": 0,
