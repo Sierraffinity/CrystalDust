@@ -3,12 +3,6 @@ STD_REVERB = 50
 $(MID_BUILDDIR)/%.o: $(MID_SUBDIR)/%.s
 	$(AS) $(ASFLAGS) -I sound -o $@ $<
 
-$(MID_SUBDIR)/mus_route30.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G151 -V090
-
-$(MID_SUBDIR)/mus_mainmenu.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G137 -V090
-
 $(MID_SUBDIR)/mus_ajito.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G076 -V084
 
@@ -135,7 +129,7 @@ $(MID_SUBDIR)/mus_route34.s: %.s: %.mid
 $(MID_SUBDIR)/mus_dooro_x3.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G014 -V080
 
-$(MID_SUBDIR)/mus_dooro_x4.s: %.s: %.mid
+$(MID_SUBDIR)/mus_route30.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G021 -V080
 
 $(MID_SUBDIR)/mus_route29.s: %.s: %.mid
@@ -231,7 +225,7 @@ $(MID_SUBDIR)/mus_kakkoii.s: %.s: %.mid
 $(MID_SUBDIR)/mus_karakuri.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G094 -V070
 
-$(MID_SUBDIR)/mus_kazanbai.s: %.s: %.mid
+$(MID_SUBDIR)/mus_mainmenu.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G064 -V084
 
 $(MID_SUBDIR)/mus_m_boat.s: %.s: %.mid
