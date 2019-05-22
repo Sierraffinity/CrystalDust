@@ -1,7 +1,9 @@
 #include "global.h"
+#include "event_data.h"
 #include "rtc.h"
 #include "string_util.h"
 #include "text.h"
+#include "constants/flags.h"
 
 // iwram bss
 IWRAM_DATA static u16 sErrorStatus;
@@ -346,7 +348,8 @@ void RtcSetDayOfWeek(s8 dayOfWeek)
 {
     // calc local time so we have an up-to-date time offset before recalculating offset
     RtcCalcLocalTime();
-    gLocalTime.dayOfWeek = dayOfWeek;
+    gLocalTime.dayOfWeek = dayOfWeek;;
+    RtcGetInfo(&sRtc);
     RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
 }
 
@@ -402,4 +405,30 @@ u32 GetTotalMinutes(struct Time *time)
 u32 GetTotalSeconds(struct Time *time)
 {
     return time->days * 86400 + time->hours * 3600 + time->minutes * 60 + time->seconds;
+}
+
+void SwitchDSTMode(void)
+{
+    if (FlagGet(FLAG_SYS_DAYLIGHT_SAVING))
+    {
+        if (gLocalTime.hours > 0)
+        {
+            FlagClear(FLAG_SYS_DAYLIGHT_SAVING);
+            RtcCalcLocalTime();
+            gLocalTime.hours--;
+            RtcGetInfo(&sRtc);
+            RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
+        }
+    }
+    else
+    {
+        if (gLocalTime.hours < 23)
+        {
+            FlagSet(FLAG_SYS_DAYLIGHT_SAVING);
+            RtcCalcLocalTime();
+            gLocalTime.hours++;
+            RtcGetInfo(&sRtc);
+            RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
+        }
+    }
 }

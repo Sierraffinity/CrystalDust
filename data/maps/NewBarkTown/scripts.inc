@@ -6,6 +6,7 @@ NewBarkTown_MapScripts::
 
 NewBarkTown_MapScript1_1E7DDB:
 	setflag FLAG_VISITED_NEW_BARK_TOWN
+	clearflag FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM
 	end
 
 NewBarkTown_MapScript2_1E7EC1:

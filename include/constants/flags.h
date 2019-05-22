@@ -92,11 +92,9 @@
 #define FLAG_RECEIVED_MYSTERY_EGG            0x52
 #define FLAG_ELM_CALLED_ABOUT_STOLEN_MON     0x53
 #define FLAG_GAVE_MYSTERY_EGG_TO_ELM         0x54
-
-#define FLAG_UNUSED_0x055                    0x55  // Unused Flag
-
+#define FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST 0x55
 #define FLAG_LINK_CONTEST_POKE_BALL          0x56
-#define FLAG_MET_RIVAL_MOM                   0x57
+#define FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM 0x57
 #define FLAG_BIRCH_AIDE_MET                  0x58
 #define FLAG_DECLINED_BIKE                   0x59
 #define FLAG_RECEIVED_BIKE                   0x5A
@@ -1298,11 +1296,11 @@
 #define FLAG_IS_CHAMPION                            (SYSTEM_FLAGS + 0x1F) // Seems to be related to linking.
 #define FLAG_NURSE_UNION_ROOM_REMINDER              (SYSTEM_FLAGS + 0x20)
 
-#define FLAG_SYS_POKEGEAR_24HR                      (SYSTEM_FLAGS + 0x21) // Unused Flag
-#define FLAG_SYS_DAYLIGHT_SAVING                    (SYSTEM_FLAGS + 0x22) // Unused Flag
-#define FLAG_SYS_HAS_MAP_CARD                       (SYSTEM_FLAGS + 0x23) // Unused Flag
-#define FLAG_SYS_HAS_RADIO_CARD                     (SYSTEM_FLAGS + 0x24) // Unused Flag
-#define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag
+#define FLAG_SYS_POKEGEAR_24HR                      (SYSTEM_FLAGS + 0x21)
+#define FLAG_SYS_DAYLIGHT_SAVING                    (SYSTEM_FLAGS + 0x22)
+#define FLAG_SYS_HAS_MAP_CARD                       (SYSTEM_FLAGS + 0x23)
+#define FLAG_SYS_HAS_RADIO_CARD                     (SYSTEM_FLAGS + 0x24)
+#define FLAG_SYS_MOM_SAVING_ENABLED                 (SYSTEM_FLAGS + 0x25)
 #define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
 #define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag
 

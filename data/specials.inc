@@ -553,3 +553,4 @@ gSpecials:: @ 81DBA64
 	def_special CopyBugCatchingContestRemainingMinutesToVar1
 	def_special GetWinningBugContestSpecies
 	def_special SetRivalNickname
+	def_special SwitchDSTMode

@@ -119,15 +119,78 @@ NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer:
 NewBarkTown_PlayersHouse_1F_MomTalk::
 	lock
 	faceplayer
+	goto_if_set FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM, NewBarkTown_PlayersHouse_1F_EventScript_MomBehindYou
+	goto_if_set FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST, NewBarkTown_PlayersHouse_1F_EventScript_MomBankingAndDST
+	goto_if_set FLAG_GAVE_MYSTERY_EGG_TO_ELM, NewBarkTown_PlayersHouse_1F_EventScript_MomLetsYouBank
 	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_PlayersHouse_1F_EventScript_MomWhatWasElmsErrand
 	msgbox NewBarkTown_PlayersHouse_1F_MomProfElmWaiting
 	release
 	end
 
-NewBarkTown_PlayersHouse_1F_EventScript_MomWhatWasElmsErrand::
+NewBarkTown_PlayersHouse_1F_EventScript_MomWhatWasElmsErrand:
 	msgbox NewBarkTown_PlayersHouse_1F_Text_MomWhatWasElmsErrand
 	release
 	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomLetsYouBank:
+	setflag FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
+	setflag FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomSaveMoneyQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomEnableBanking
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomBeCarefulPokemonAreFriends
+	release
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomEnableBanking:
+	setflag FLAG_SYS_MOM_SAVING_ENABLED
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomIllTakeCareOfMoney
+	return
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomBehindYou:
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomBehindYou
+	release
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomBankingAndDST:
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomWelcomeHome, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomBank
+	gettime
+	goto_if_set FLAG_SYS_DAYLIGHT_SAVING, NewBarkTown_PlayersHouse_1F_EventScript_MomDSTCurrentlySet
+	compare VAR_0x8000, 23
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomSetDST, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan
+	special SwitchDSTMode
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomSetClockForward
+NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan:
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomJustDoWhatYouCan
+	release
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomBank:
+	@ TODO: actual banking stuff
+	release
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomDSTCurrentlySet:
+	compare VAR_0x8000, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomClearDST, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan
+	special SwitchDSTMode
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomSetClockBack
+	goto NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet:
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomAdjustClock, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet
+	goto NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk::
 	lock
@@ -244,6 +307,65 @@ NewBarkTown_PlayersHouse_1F_Text_MomWhatWasElmsErrand:
 	.string "That does sound challenging.\p"
 	.string "But, you should be proud that\n"
 	.string "people rely on you.$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomSaveMoneyQuestion:
+	.string "MOM: Wow, that's a cute POKéMON.\n"
+	.string "Where did you get it?\p"
+	.string "…\p"
+	.string "So, you're leaving on an adventure…\p"
+	.string "Okay! I'll help too.\n"
+	.string "But what can I do for you?\p"
+	.string "I know!\n"
+	.string "I'll save money for you.\p"
+	.string "On a long journey, money is very\n"
+	.string "important.\p"
+	.string "Do you want me to save your money?$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomIllTakeCareOfMoney:
+	.string "Okay, I'll take care of your money.\n"
+	.string "………………$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomBeCarefulPokemonAreFriends:
+	.string "Be careful.\p"
+	.string "POKéMON are your friends.\n"
+	.string "You need to work as a team.\p"
+	.string "Now, go on!$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomBehindYou:
+	.string "MOM: {PLAYER}, do it!\n"
+	.string "I'm behind you all the way!$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomWelcomeHome:
+	.string "MOM: Hi! Welcome home!\n"
+	.string "You're trying very hard, I see.\p"
+	.string "I've kept your room tidy.\p"
+	.string "Or is this about your money?$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomSetDST:
+	.string "Do you want to switch to Daylight\n"
+	.string "Saving Time?$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomSetClockForward:
+	.string "I set the clock forward by one hour.$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomClearDST:
+	.string "Is Daylight Saving Time over?$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomSetClockBack:
+	.string "I put the clock back one hour.$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomAdjustClock:
+	.string "Do you want to adjust your clock for\n"
+	.string "Daylight Saving Time?$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet:
+	.string "I seem to have lost the instruction\n"
+	.string "booklet for the POKéGEAR…\p"
+	.string "I need to go look for it.\n"
+	.string "Come back again in a while.$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomJustDoWhatYouCan:
+	.string "Just do what you can.$"
 
 NewBarkTown_PlayersHouse_1F_NeighborMorning:
 	.string "Good morning, {PLAYER}!\n"
