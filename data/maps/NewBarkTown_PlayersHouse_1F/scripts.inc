@@ -171,7 +171,8 @@ NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan:
 	end
 
 NewBarkTown_PlayersHouse_1F_EventScript_MomBank:
-	@ TODO: actual banking stuff
+	@ TODO: Banking
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MomBankPlaceholder
 	release
 	end
 
@@ -366,6 +367,10 @@ NewBarkTown_PlayersHouse_1F_Text_MomLostBooklet:
 
 NewBarkTown_PlayersHouse_1F_Text_MomJustDoWhatYouCan:
 	.string "Just do what you can.$"
+
+NewBarkTown_PlayersHouse_1F_Text_MomBankPlaceholder:
+	.string "If you see this text, remind Diego to\n"
+	.string "add the bank functionality.$"
 
 NewBarkTown_PlayersHouse_1F_NeighborMorning:
 	.string "Good morning, {PLAYER}!\n"

@@ -95,7 +95,7 @@
 #define FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST 0x55
 #define FLAG_LINK_CONTEST_POKE_BALL          0x56
 #define FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM 0x57
-#define FLAG_BIRCH_AIDE_MET                  0x58
+#define FLAG_DUDE_TALKED_TO_YOU              0x58
 #define FLAG_DECLINED_BIKE                   0x59
 #define FLAG_RECEIVED_BIKE                   0x5A
 #define FLAG_WATTSON_REMATCH_AVAILABLE       0x5B

@@ -930,11 +930,26 @@ static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool
     extern const u8 Text_Pokegear_Mom_Start[];
     extern const u8 Text_Pokegear_Mom_GotMon[];
     extern const u8 Text_Pokegear_Mom_GaveEggToElm[];
+    extern const u8 Text_Pokegear_Mom_PhoneBankingPlaceholder[];
 
-    if (FlagGet(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+    if (FlagGet(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
+    {
+        return Text_Pokegear_Mom_PhoneBankingPlaceholder;
+    }
+    else if (FlagGet(FLAG_DUDE_TALKED_TO_YOU))
+    {
+        //TODO: Yes/no box
+        FlagSet(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST);
+        return Text_Pokegear_Mom_PhoneBankingPlaceholder;
+    }
+    else if (FlagGet(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+    {
         return Text_Pokegear_Mom_GaveEggToElm;
+    }
     else if (FlagGet(FLAG_SYS_POKEMON_GET))
+    {
         return Text_Pokegear_Mom_GotMon;
+    }
     return Text_Pokegear_Mom_Start;
 }
 

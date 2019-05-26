@@ -15,6 +15,20 @@ Text_Pokegear_Mom_GaveEggToElm::
 	.string "If you're done with your errand,\n"
 	.string "come on home, dear.$"
 
+Text_Pokegear_Mom_PhoneBankingPlaceholder::
+	.string "Hello?\n"
+	.string "…… {PLAYER}?\p"
+	.string "I heard from PROF. ELM that you\n"
+	.string "went on a long trip.\p"
+	.string "I wish you would have told me…\p"
+	.string "What about money?\n"
+	.string "Do you want me to save it?\p"
+	.string "…insert yesno box here…\p$"
+	.string "Okay. I'll save your money.\p$"
+	.string "Okay. I won't save your money.\p$"
+	.string "{PLAYER}, keep it up!\n"
+	.string "I'm rooting for you, baby!$"
+
 Text_Pokegear_Elm_Start::
 	.string "Hello, {PLAYER}?\n"
 	.string "Try not to overdo it.\p"
