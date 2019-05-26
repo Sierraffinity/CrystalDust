@@ -217,6 +217,7 @@ EWRAM_DATA static u16 sLastMapSectionId = 0;
 EWRAM_DATA static struct InitialPlayerAvatarState gInitialPlayerAvatarState = {0};
 EWRAM_DATA static u16 sAmbientCrySpecies = 0;
 EWRAM_DATA static bool8 sIsAmbientCryWaterMon = FALSE;
+EWRAM_DATA bool8 gIsStaircaseWarpAnimDisabled = FALSE;
 EWRAM_DATA struct LinkPlayerEventObject gLinkPlayerEventObjects[4] = {0};
 
 // const rom data
@@ -1753,6 +1754,7 @@ void CB2_ContinueSavedGame(void)
     PlayTimeCounter_Start();
     ScriptContext1_Init();
     ScriptContext2_Disable();
+    gIsStaircaseWarpAnimDisabled = TRUE;
     InitMatchCallCounters();
     if (UseContinueGameWarp() == TRUE)
     {

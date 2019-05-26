@@ -300,11 +300,13 @@ static void sub_80AF334(bool8 forceBlack)
         sub_807DF4C(forceBlack);
         if (MetatileBehavior_IsNonAnimDoor(behavior) == TRUE)
             func = task_map_chg_seq_0807E20C;
-        else if (MetatileBehavior_IsStaircase(behavior) == TRUE)
+        else if (!gIsStaircaseWarpAnimDisabled &&
+                 MetatileBehavior_IsStaircase(behavior) == TRUE)
             func = Task_StaircaseWarpIn;
         else
             func = task_map_chg_seq_0807E2CC;
     }
+    gIsStaircaseWarpAnimDisabled = FALSE;
     CreateTask(func, 10);
 }
 
