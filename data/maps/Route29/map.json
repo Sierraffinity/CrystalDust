@@ -48,7 +48,7 @@
     "coord_events": [
         {
             "elevation": 3,
-            "script": "NULL",
+            "script": "Route29_EventScript_CatchingTutorial1",
             "type": "trigger",
             "var": "VAR_ROUTE29_STATE",
             "var_value": "1",
@@ -57,7 +57,7 @@
         },
         {
             "elevation": 3,
-            "script": "NULL",
+            "script": "Route29_EventScript_CatchingTutorial2",
             "type": "trigger",
             "var": "VAR_ROUTE29_STATE",
             "var_value": "1",
@@ -66,7 +66,7 @@
         },
         {
             "elevation": 3,
-            "script": "NULL",
+            "script": "Route29_EventScript_CatchingTutorial3",
             "type": "trigger",
             "var": "VAR_ROUTE29_STATE",
             "var_value": "1",
@@ -75,7 +75,7 @@
         },
         {
             "elevation": 3,
-            "script": "NULL",
+            "script": "Route29_EventScript_CatchingTutorial4",
             "type": "trigger",
             "var": "VAR_ROUTE29_STATE",
             "var_value": "1",
@@ -100,7 +100,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 62,
-            "y": 16
+            "y": 15
         },
         {
             "elevation": 0,

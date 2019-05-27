@@ -138,6 +138,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	compare VAR_FACING, 4
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsRight
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmIsThisAnEgg
+	setflag FLAG_ADVENTURE_STARTED
 	setflag FLAG_GAVE_MYSTERY_EGG_TO_ELM
 	setflag FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS
 	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED

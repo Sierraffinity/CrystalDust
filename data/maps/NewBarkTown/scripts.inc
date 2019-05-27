@@ -26,6 +26,7 @@ NewBarkTown_EventScript_FatMan::
 NewBarkTown_EventScript_Teacher::
 	lock
 	faceplayer
+	goto_if_set FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST, NewBarkTown_EventScript_Teacher_CallMom
 	goto_if_set FLAG_GAVE_MYSTERY_EGG_TO_ELM, NewBarkTown_EventScript_Teacher_TellMomYoureLeaving
 	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_EventScript_Teacher_MonIsAdorable
 	msgbox NewBarkTown_Text_GearImpressive
@@ -39,6 +40,11 @@ NewBarkTown_EventScript_Teacher_MonIsAdorable::
 
 NewBarkTown_EventScript_Teacher_TellMomYoureLeaving::
 	msgbox NewBarkTown_Text_TellMomYoureLeaving
+	release
+	end
+
+NewBarkTown_EventScript_Teacher_CallMom::
+	msgbox NewBarkTown_Text_CallMom
 	release
 	end
 
@@ -342,6 +348,10 @@ NewBarkTown_Text_TellMomYoureLeaving:
 	.string "Leaving again?\p"
 	.string "You should tell your mom if you're\n"
 	.string "leaving town.$"
+
+NewBarkTown_Text_CallMom:
+	.string "Call your mom on your POKéGEAR to\n"
+	.string "let her know how you're doing.$"
 
 NewBarkTown_Text_WaitPlayer:
 	.string "Wait, {PLAYER}!$"

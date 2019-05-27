@@ -60,6 +60,238 @@ Route29_EventScript_Dude::
 	release
 	end
 
+Route29_EventScript_CatchingTutorial1::
+	lockall
+	setvar VAR_TEMP_1, 0
+	turnobject 1, 2
+	playse SE_PIN
+	applymovement 1, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 1, Common_Movement_Delay48
+	waitmovement 0
+	applymovement 1, Route29_Movement_DudeToPlayerTop
+	waitmovement 0
+	goto Route29_EventScript_CatchingTutorialMain
+
+Route29_Movement_DudeToPlayerTop:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+Route29_EventScript_CatchingTutorial2::
+	lockall
+	setvar VAR_TEMP_1, 1
+	turnobject 1, 2
+	playse SE_PIN
+	applymovement 1, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 1, Common_Movement_Delay48
+	waitmovement 0
+	applymovement 1, Route29_Movement_DudeToPlayerMiddleTop
+	waitmovement 0
+	goto Route29_EventScript_CatchingTutorialMain
+
+Route29_Movement_DudeToPlayerMiddleTop:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+Route29_EventScript_CatchingTutorial3::
+	lockall
+	setvar VAR_TEMP_1, 2
+	turnobject 1, 2
+	playse SE_PIN
+	applymovement 1, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 1, Common_Movement_Delay48
+	waitmovement 0
+	applymovement 1, Route29_Movement_DudeToPlayerMiddleBottom
+	waitmovement 0
+	goto Route29_EventScript_CatchingTutorialMain
+
+Route29_Movement_DudeToPlayerMiddleBottom:
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+Route29_EventScript_CatchingTutorial4::
+	lockall
+	setvar VAR_TEMP_1, 3
+	turnobject 1, 2
+	playse SE_PIN
+	applymovement 1, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 1, Common_Movement_Delay48
+	waitmovement 0
+	applymovement 1, Route29_Movement_DudeToPlayerBottom
+	waitmovement 0
+	goto Route29_EventScript_CatchingTutorialMain
+
+Route29_Movement_DudeToPlayerBottom:
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+Route29_EventScript_CatchingTutorialMain:
+	textcolor MSG_COLOR_BLUE
+	msgbox Route29_Text_Dude_CatchingIntro, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq Route29_EventScript_CatchingTutorialRejected
+	closemessage
+	compare VAR_TEMP_1, 0
+	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromTop
+	compare VAR_TEMP_1, 1
+	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromMiddleTop
+	compare VAR_TEMP_1, 2
+	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromMiddleBottom
+	compare VAR_TEMP_1, 3
+	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromBottom
+	special StartWallyTutorialBattle
+	waitstate
+	releaseall
+	end
+
+Route29_EventScript_DudeAndPlayerWalkFromTop:
+	applymovement EVENT_OBJ_ID_PLAYER, Route29_Movement_PlayerFromTop
+	applymovement 1, Route29_Movement_DudeFromTop
+	waitmovement 0
+	return
+
+Route29_Movement_PlayerFromTop:
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route29_EventScript_DudeAndPlayerWalkFromMiddleTop:
+	applymovement EVENT_OBJ_ID_PLAYER, Route29_Movement_PlayerFromMiddleTop
+	applymovement 1, Route29_Movement_DudeFromMiddleTop
+	waitmovement 0
+	return
+
+Route29_Movement_PlayerFromMiddleTop:
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route29_EventScript_DudeAndPlayerWalkFromMiddleBottom:
+	applymovement EVENT_OBJ_ID_PLAYER, Route29_Movement_PlayerFromMiddleBottom
+	applymovement 1, Route29_Movement_DudeFromMiddleBottom
+	waitmovement 0
+	return
+
+Route29_Movement_PlayerFromMiddleBottom:
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	step_end
+
+Route29_EventScript_DudeAndPlayerWalkFromBottom:
+	applymovement EVENT_OBJ_ID_PLAYER, Route29_Movement_PlayerFromBottom
+	applymovement 1, Route29_Movement_DudeFromBottom
+	waitmovement 0
+	return
+
+Route29_Movement_PlayerFromBottom:
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	step_end
+
+Route29_EventScript_CatchingTutorialRejected:
+	msgbox Route29_Text_Dude_CatchingTutRejected
+	closemessage
+	compare VAR_TEMP_1, 0
+	call_if_eq Route29_EventScript_DudeWalkBackFromTop
+	compare VAR_TEMP_1, 1
+	call_if_eq Route29_EventScript_DudeWalkBackFromMiddleTop
+	compare VAR_TEMP_1, 2
+	call_if_eq Route29_EventScript_DudeWalkBackFromMiddleBottom
+	compare VAR_TEMP_1, 3
+	call_if_eq Route29_EventScript_DudeWalkBackFromBottom
+	releaseall
+	end
+
+Route29_EventScript_DudeWalkBackFromTop:
+	applymovement 1, Route29_Movement_DudeFromTop
+	waitmovement 0
+	return
+
+Route29_Movement_DudeFromTop:
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route29_EventScript_DudeWalkBackFromMiddleTop:
+	applymovement 1, Route29_Movement_DudeFromMiddleTop
+	waitmovement 0
+	return
+
+Route29_Movement_DudeFromMiddleTop:
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route29_EventScript_DudeWalkBackFromMiddleBottom:
+	applymovement 1, Route29_Movement_DudeFromMiddleBottom
+	waitmovement 0
+	return
+
+Route29_Movement_DudeFromMiddleBottom:
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route29_EventScript_DudeWalkBackFromBottom:
+	applymovement 1, Route29_Movement_DudeFromBottom
+	waitmovement 0
+	return
+
+Route29_Movement_DudeFromBottom:
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	step_end
+
 Route29_Text_Youngster:
 	.string "Yo.\n"
 	.string "How are your POKéMON?\p"
@@ -87,6 +319,18 @@ Route29_Text_WaitingForMorning:
 Route29_Text_PokemonInTheGrass:
 	.string "POKéMON hide in the grass.\n"
 	.string "Who knows when they'll pop out…$"
+
+Route29_Text_Dude_CatchingIntro:
+	.string "I've seen you a couple times.\n"
+	.string "How many POKéMON have you caught?\p"
+	.string "Would you like me to show you how to\n"
+	.string "catch POKéMON?$"
+
+Route29_Text_Dude_CatchingTutRejected:
+	.string "Oh.\n"
+	.string "Fine, then.\p"
+	.string "Anyway, if you want to catch POKéMON,\n"
+	.string "you have to walk a lot.$"
 
 Route29_Text_DirectionSign:
 	.string "ROUTE 29\n"
