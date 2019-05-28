@@ -48,12 +48,12 @@ gBattlescriptsForSafariActions:: @ 82DBD58
 	.4byte BattleScript_ActionWallyThrow
 
 BattleScript_BallThrow::
-	jumpifword CMP_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_WALLY_TUTORIAL, BattleScript_BallThrowByWally
+	jumpifword CMP_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_DUDE_TUTORIAL, BattleScript_BallThrowByDude
 	printstring STRINGID_PLAYERUSEDITEM
 	handleballthrow
 
-BattleScript_BallThrowByWally::
-	printstring STRINGID_WALLYUSEDITEM
+BattleScript_BallThrowByDude::
+	printstring STRINGID_DUDEUSEDITEM
 	handleballthrow
 
 BattleScript_SafariBallThrow::
@@ -81,10 +81,12 @@ BattleScript_SuccessBallThrow_CheckBugCatchingContest::
 	jumpifbyte CMP_EQUAL, gBugCatchingContestStatus, 2, BattleScript_SwapBugContestMon
 	setcaughtbugcatchingcontestmon
 	goto BattleScript_SuccessBallThrowEnd
+
 BattleScript_SwapBugContestMon::
 	setbyte gBattleCommunication, 0
 	swapbugcatchingcontestmon
 	goto BattleScript_SuccessBallThrowEnd
+
 BattleScript_TryNicknameCaughtMon::
 	printstring STRINGID_GIVENICKNAMECAPTURED
 	waitstate

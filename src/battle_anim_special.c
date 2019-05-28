@@ -760,7 +760,7 @@ void sub_8170F2C(u8 taskId)
     u8 subpriority;
     u8 spriteId;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL)
+    if (gBattleTypeFlags & BATTLE_TYPE_DUDE_TUTORIAL)
     {
         x = 32;
         y = 11;

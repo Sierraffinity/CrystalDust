@@ -489,7 +489,7 @@ void StartWallyTutorialBattle(void)
     CreateMon(&gEnemyParty[0], SPECIES_RATTATA, 5, 32, 0, 0, 0, 0);
     ScriptContext2_Enable();
     gMain.savedCallback = CB2_ReturnToFieldContinueScriptPlayMapMusic;
-    gBattleTypeFlags = BATTLE_TYPE_WALLY_TUTORIAL;
+    gBattleTypeFlags = BATTLE_TYPE_DUDE_TUTORIAL;
     CreateBattleStartTask(B_TRANSITION_SLICE, 0);
 }
 
