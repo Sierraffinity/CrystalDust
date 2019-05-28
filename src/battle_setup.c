@@ -483,8 +483,8 @@ static void sub_80B0828(void)
     sub_80B1234();
 }
 
-// Initiates battle where Wally catches Ralts
-void StartWallyTutorialBattle(void)
+// Initiates battle where Dude catches Rattata
+void StartDudeTutorialBattle(void)
 {
     CreateMon(&gEnemyParty[0], SPECIES_RATTATA, 5, 32, 0, 0, 0, 0);
     ScriptContext2_Enable();

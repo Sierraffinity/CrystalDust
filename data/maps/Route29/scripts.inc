@@ -56,6 +56,26 @@ Route29_EventScript_DirectionSign::
 Route29_EventScript_Dude::
 	lock
 	faceplayer
+	goto_if_set FLAG_LEARNED_TO_CATCH_POKEMON, Route29_EventScript_Dude_NothingToTeach
+	goto_if_unset FLAG_GAVE_MYSTERY_EGG_TO_ELM, Route29_EventScript_Dude_NothingToTeach
+	msgbox Route29_Text_Dude_HowAboutNow, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq Route29_EventScript_Dude_CatchingTutorialRejected
+	closemessage
+	special StartDudeTutorialBattle
+	waitstate
+	lock @ hack
+	msgbox Route29_Text_Dude_CatchingOutro
+	setflag FLAG_LEARNED_TO_CATCH_POKEMON
+	release
+	end
+
+Route29_EventScript_Dude_CatchingTutorialRejected:
+	msgbox Route29_Text_Dude_CatchingTutRejected
+	release
+	end
+
+Route29_EventScript_Dude_NothingToTeach:
 	msgbox Route29_Text_PokemonInTheGrass
 	release
 	end
@@ -148,6 +168,8 @@ Route29_Movement_DudeToPlayerBottom:
 
 Route29_EventScript_CatchingTutorialMain:
 	textcolor MSG_COLOR_BLUE
+	setflag FLAG_DUDE_TALKED_TO_YOU
+	setvar VAR_ROUTE29_STATE, 2
 	msgbox Route29_Text_Dude_CatchingIntro, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq Route29_EventScript_CatchingTutorialRejected
@@ -160,8 +182,11 @@ Route29_EventScript_CatchingTutorialMain:
 	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromMiddleBottom
 	compare VAR_TEMP_1, 3
 	call_if_eq Route29_EventScript_DudeAndPlayerWalkFromBottom
-	special StartWallyTutorialBattle
+	special StartDudeTutorialBattle
 	waitstate
+	turnobject 1, 2
+	msgbox Route29_Text_Dude_CatchingOutro
+	setflag FLAG_LEARNED_TO_CATCH_POKEMON
 	releaseall
 	end
 
@@ -323,14 +348,23 @@ Route29_Text_PokemonInTheGrass:
 Route29_Text_Dude_CatchingIntro:
 	.string "I've seen you a couple times.\n"
 	.string "How many POKéMON have you caught?\p"
-	.string "Would you like me to show you how to\n"
-	.string "catch POKéMON?$"
+	.string "Would you like me to show you how\n"
+	.string "to catch POKéMON?$"
+
+Route29_Text_Dude_CatchingOutro:
+	.string "That's how you do it.\p"
+	.string "If you weaken them first, POKéMON\n"
+	.string "are easier to catch.$"
+
+Route29_Text_Dude_HowAboutNow:
+	.string "Huh? You want me to show you how\n"
+	.string "to catch POKéMON?$"
 
 Route29_Text_Dude_CatchingTutRejected:
 	.string "Oh.\n"
 	.string "Fine, then.\p"
-	.string "Anyway, if you want to catch POKéMON,\n"
-	.string "you have to walk a lot.$"
+	.string "Anyway, if you want to catch\n"
+	.string "POKéMON, you have to walk a lot.$"
 
 Route29_Text_DirectionSign:
 	.string "ROUTE 29\n"

@@ -41,7 +41,7 @@ PetalburgCity_EventScript_1DC32E:: @ 81DC32E
 	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_1DC430
 	waitmovement 0
 	msgbox PetalburgCity_Text_1EC1F8, MSGBOX_DEFAULT
-	special StartWallyTutorialBattle
+	special StartDudeTutorialBattle
 	waitstate
 	msgbox PetalburgCity_Text_1EC271, MSGBOX_DEFAULT
 	applymovement 2, Common_Movement_WalkInPlaceLeft, MAP_PETALBURG_CITY

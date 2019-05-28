@@ -168,7 +168,7 @@ gSpecials:: @ 81DBA64
 	def_special StartWallClock
 	def_special Special_ViewWallClock
 	def_special ChooseStarter
-	def_special StartWallyTutorialBattle
+	def_special StartDudeTutorialBattle
 	def_special ChangePokemonNickname
 	def_special sub_81B94B0
 	def_special GetFirstFreePokeblockSlot

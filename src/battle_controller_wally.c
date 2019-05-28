@@ -26,6 +26,7 @@
 #include "util.h"
 #include "window.h"
 #include "constants/battle_anim.h"
+#include "constants/battle_string_ids.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
@@ -503,7 +504,7 @@ static void WallyHandlePrintString(void)
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
     stringId = (u16*)(&gBattleBufferA[gActiveBattler][2]);
-    if (*stringId == 1)
+    if (*stringId == STRINGID_INTROSENDOUT)
     {
         WallyBufferExecCompleted();
     }
