@@ -426,11 +426,11 @@ static void WallyHandleReturnMonToBall(void)
 
 static void WallyHandleDrawTrainerPic(void)
 {
-    DecompressTrainerBackPic(TRAINER_BACK_PIC_WALLY, gActiveBattler);
-    SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_WALLY, GetBattlerPosition(gActiveBattler));
+    DecompressTrainerBackPic(TRAINER_BACK_PIC_DUDE, gActiveBattler);
+    SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_DUDE, GetBattlerPosition(gActiveBattler));
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
                                                80,
-                                               80 + 4 * (8 - gTrainerBackPicCoords[TRAINER_BACK_PIC_WALLY].size),
+                                               80 + 4 * (8 - gTrainerBackPicCoords[TRAINER_BACK_PIC_DUDE].size),
                                                30);
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = 240;
@@ -441,11 +441,11 @@ static void WallyHandleDrawTrainerPic(void)
 
 static void WallyHandleTrainerSlide(void)
 {
-    DecompressTrainerBackPic(TRAINER_BACK_PIC_WALLY, gActiveBattler);
-    SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_WALLY, GetBattlerPosition(gActiveBattler));
+    DecompressTrainerBackPic(TRAINER_BACK_PIC_DUDE, gActiveBattler);
+    SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_DUDE, GetBattlerPosition(gActiveBattler));
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
                                                80,
-                                               80 + 4 * (8 - gTrainerBackPicCoords[TRAINER_BACK_PIC_WALLY].size),
+                                               80 + 4 * (8 - gTrainerBackPicCoords[TRAINER_BACK_PIC_DUDE].size),
                                                30);
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = -96;

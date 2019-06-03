@@ -932,8 +932,10 @@ static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool
     extern const u8 Text_Pokegear_Mom_GaveEggToElm[];
     extern const u8 Text_Pokegear_Mom_PhoneBankingPlaceholder[];
 
+    // MomPhoneScript in pokecrystal (phone_scripts.asm)
     if (FlagGet(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
     {
+        // TODO: Finish
         return Text_Pokegear_Mom_PhoneBankingPlaceholder;
     }
     else if (FlagGet(FLAG_DUDE_TALKED_TO_YOU))

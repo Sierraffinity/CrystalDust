@@ -118,7 +118,7 @@
 #define TRAINER_BACK_PIC_LEAF                   5
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN  6
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      7
-#define TRAINER_BACK_PIC_WALLY                  8
+#define TRAINER_BACK_PIC_DUDE                  8
 #define TRAINER_BACK_PIC_STEVEN                 9
 
 #define FACILITY_CLASS_HIKER                 0x0

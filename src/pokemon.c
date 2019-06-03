@@ -2031,7 +2031,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
-        .images = gTrainerBackPicTable_Wally,
+        .images = gTrainerBackPicTable_Dude,
         .affineAnims = gUnknown_082FF618,
         .callback = sub_8039BB4,
     },

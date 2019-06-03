@@ -762,8 +762,8 @@ void sub_8170F2C(u8 taskId)
 
     if (gBattleTypeFlags & BATTLE_TYPE_DUDE_TUTORIAL)
     {
-        x = 32;
-        y = 11;
+        x = 26;
+        y = 7;
     }
     else
     {
