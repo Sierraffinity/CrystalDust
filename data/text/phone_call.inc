@@ -23,9 +23,17 @@ Text_Pokegear_Mom_PhoneBankingPlaceholder::
 	.string "I wish you would have told me…\p"
 	.string "What about money?\n"
 	.string "Do you want me to save it?\p"
-	.string "…insert yesno box here…\p$"
-	.string "Okay. I'll save your money.\p$"
-	.string "Okay. I won't save your money.\p$"
+	.string "…insert yesno box here…\p"
+	.string "Okay. I'll save your money.\p"
+	.string "Okay. I won't save your money.\p"
+	.string "{PLAYER}, keep it up!\n"
+	.string "I'm rooting for you, baby!$"
+
+Text_Pokegear_Mom_RegularCallPlaceholder::
+	.string "Hello?\n"
+	.string "Oh, hi, {PLAYER}! Working hard?\p"
+	.string "…insert location stuff here…\p"
+	.string "…insert money stuff here…\p"
 	.string "{PLAYER}, keep it up!\n"
 	.string "I'm rooting for you, baby!$"
 

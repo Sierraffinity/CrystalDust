@@ -931,12 +931,13 @@ static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool
     extern const u8 Text_Pokegear_Mom_GotMon[];
     extern const u8 Text_Pokegear_Mom_GaveEggToElm[];
     extern const u8 Text_Pokegear_Mom_PhoneBankingPlaceholder[];
+    extern const u8 Text_Pokegear_Mom_RegularCallPlaceholder[];
 
     // MomPhoneScript in pokecrystal (phone_scripts.asm)
     if (FlagGet(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
     {
         // TODO: Finish
-        return Text_Pokegear_Mom_PhoneBankingPlaceholder;
+        return Text_Pokegear_Mom_RegularCallPlaceholder;
     }
     else if (FlagGet(FLAG_DUDE_TALKED_TO_YOU))
     {
