@@ -144,6 +144,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
 	setvar VAR_ROUTE29_STATE, 1
 	setvar VAR_NEWBARK_STATE, 7
+	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	release
 	end
 
