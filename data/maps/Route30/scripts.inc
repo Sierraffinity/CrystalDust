@@ -97,39 +97,19 @@ Route30_Movement_PidgeyTackle:
 	step_end
 
 Route30_EventScript_1EC105:: @ 81EC105
-	trainerbattle_single TRAINER_CALVIN_1, Route30_Text_294513, Route30_Text_29457C, Route30_EventScript_1EC146
-	specialvar VAR_RESULT, ShouldTryRematchBattle
+	trainerbattle_single TRAINER_CALVIN_1, Route30_Text_294513, Route30_Text_29457C
+	@TODO: Rematch
+	/*specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_if_eq Route30_EventScript_1EC19C
-	setvar VAR_0x8004, 318
-	specialvar VAR_RESULT, sub_813B4E0
-	compare VAR_RESULT, 0
-	goto_if_eq Route30_EventScript_1EC170
+	goto_if_eq Route30_EventScript_1EC19C*/
 	msgbox Route30_Text_2945AC, MSGBOX_DEFAULT
 	release
 	end
 
 Route30_EventScript_1EC146:: @ 81EC146
-	special sub_80B4808
-	waitmovement 0
-	goto_if_set FLAG_HAS_MATCH_CALL, Route30_EventScript_1EC157
-	release
-	end
-
-Route30_EventScript_1EC157:: @ 81EC157
-	msgbox Route30_Text_294668, MSGBOX_DEFAULT
-	register_matchcall TRAINER_CALVIN_1
-	release
-	end
-
-Route30_EventScript_1EC170:: @ 81EC170
-	goto_if_set FLAG_HAS_MATCH_CALL, Route30_EventScript_1EC183
-	msgbox Route30_Text_2945AC, MSGBOX_DEFAULT
-	release
-	end
-
-Route30_EventScript_1EC183:: @ 81EC183
-	msgbox Route30_Text_2945EB, MSGBOX_DEFAULT
+	msgbox Route30_Text_294668, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route30_EventScript_1EC19C
 	register_matchcall TRAINER_CALVIN_1
 	release
 	end
