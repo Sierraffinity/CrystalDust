@@ -330,8 +330,8 @@ Route29_Text_LedgeGirl:
 	.string "walking through the grass.$"
 
 Route29_Text_FatMan:
-	.string "I wanted to take a break, so I saved\n"
-	.string "to record my progress.$"
+	.string "I wanted to take a break, so I\n"
+	.string "saved to record my progress.$"
 
 Route29_Text_WaitingForNight:
 	.string "I'm waiting for POKéMON that appear\n"

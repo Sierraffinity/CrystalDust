@@ -16,7 +16,7 @@ CherrygroveCity_House1_Text_Pokefan:
 	.string "all over JOHTO and collect BADGES.$"
 
 CherrygroveCity_House1_Text_Child:
-	.string "When I get older, I'm going to be a\n"
-	.string "GYM LEADER!\p"
+	.string "When I get older, I'm going to be\n"
+	.string "a GYM LEADER!\p"
 	.string "I make my POKéMON battle with my\n"
 	.string "friend's to make them tougher!$"

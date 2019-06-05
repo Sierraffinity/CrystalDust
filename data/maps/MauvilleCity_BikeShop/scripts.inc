@@ -4,7 +4,7 @@ MauvilleCity_BikeShop_MapScripts:: @ 820EBBB
 MauvilleCity_BikeShop_EventScript_20EBBC:: @ 820EBBC
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_BIKE, MauvilleCity_BikeShop_EventScript_20EC94
+	goto_if_set FLAG_ROCKET_TAKEOVER, MauvilleCity_BikeShop_EventScript_20EC94
 	goto_if_set FLAG_LEARNED_TO_CATCH_POKEMON, MauvilleCity_BikeShop_EventScript_20EBF7
 	msgbox MauvilleCity_BikeShop_Text_20EE22, MSGBOX_DEFAULT
 	msgbox MauvilleCity_BikeShop_Text_20EE99, MSGBOX_YESNO
@@ -38,7 +38,7 @@ MauvilleCity_BikeShop_EventScript_20EC3D:: @ 820EC3D
 	end
 
 MauvilleCity_BikeShop_EventScript_20EC4A:: @ 820EC4A
-	setflag FLAG_RECEIVED_BIKE
+	setflag FLAG_ROCKET_TAKEOVER
 	goto MauvilleCity_BikeShop_EventScript_20EC16
 	end
 

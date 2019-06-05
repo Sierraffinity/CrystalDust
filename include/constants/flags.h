@@ -97,7 +97,7 @@
 #define FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM 0x57
 #define FLAG_DUDE_TALKED_TO_YOU              0x58
 #define FLAG_LEARNED_TO_CATCH_POKEMON        0x59
-#define FLAG_RECEIVED_BIKE                   0x5A
+#define FLAG_ROCKET_TAKEOVER                 0x5A
 #define FLAG_WATTSON_REMATCH_AVAILABLE       0x5B
 #define FLAG_COLLECTED_ALL_SILVER_SYMBOLS    0x5C
 #define FLAG_GOOD_LUCK_SAFARI_ZONE           0x5D // Set after talking to NPC blocking Safari Zone entrance/exit once.

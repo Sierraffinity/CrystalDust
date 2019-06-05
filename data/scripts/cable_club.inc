@@ -312,6 +312,7 @@ CherrygroveCity_PokemonCenter_2F_EventScript_276DD5:: @ 8276DD5
 
 CherrygroveCity_PokemonCenter_2F_EventScript_276DE0:: @ 8276DE0
 	lockall
+	textcolor MSG_COLOR_RED
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	msgbox CherrygroveCity_PokemonCenter_2F_Text_27964A, MSGBOX_DEFAULT

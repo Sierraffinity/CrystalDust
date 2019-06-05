@@ -819,6 +819,7 @@ void Task_FieldRadio_1(u8 taskId)
 
 void Task_FieldRadio_2(u8 taskId)
 {
+    RunTextPrinters();  // TODO: This is needed for the RADIO_PAUSE, but is this the right way to do it?
     if (gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         ClearDialogWindowAndFrame(0, TRUE);
