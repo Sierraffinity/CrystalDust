@@ -525,7 +525,7 @@ MtChimney_EventScript_22F1F1:: @ 822F1F1
 	end
 
 MtChimney_EventScript_22F208:: @ 822F208
-	trainerbattle_single TRAINER_SAWYER_1, MtChimney_Text_2304B3, MtChimney_Text_2304F7, MtChimney_EventScript_22F234
+	trainerbattle_single TRAINER_JOEY_1, MtChimney_Text_2304B3, MtChimney_Text_2304F7, MtChimney_EventScript_22F234
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq MtChimney_EventScript_22F253
@@ -537,12 +537,12 @@ MtChimney_EventScript_22F234:: @ 822F234
 	special sub_80B4808
 	waitmovement 0
 	msgbox MtChimney_Text_230557, MSGBOX_DEFAULT
-	register_matchcall TRAINER_SAWYER_1
+	register_matchcall TRAINER_JOEY_1
 	release
 	end
 
 MtChimney_EventScript_22F253:: @ 822F253
-	trainerbattle_rematch TRAINER_SAWYER_1, MtChimney_Text_23059C, MtChimney_Text_2305E3
+	trainerbattle_rematch TRAINER_JOEY_1, MtChimney_Text_23059C, MtChimney_Text_2305E3
 	msgbox MtChimney_Text_230614, MSGBOX_AUTOCLOSE
 	end
 

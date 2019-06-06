@@ -1,29 +1,34 @@
-static const struct TrainerMonNoItemDefaultMoves sParty_Sawyer1[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Joey1[] = {
     {
     .iv = 0,
-    .lvl = 21,
-    .species = SPECIES_GEODUDE,
+    .lvl = 4,
+    .species = SPECIES_RATTATA,
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Grunt1[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Mikey[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_POOCHYENA,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_Grunt2[] = {
-    {
-    .iv = 0,
-    .lvl = 31,
-    .species = SPECIES_ZUBAT,
+    .lvl = 2,
+    .species = SPECIES_PIDGEY,
     },
     {
     .iv = 0,
-    .lvl = 31,
-    .species = SPECIES_CARVANHA,
+    .lvl = 4,
+    .species = SPECIES_RATTATA,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Don[] = {
+    {
+    .iv = 0,
+    .lvl = 3,
+    .species = SPECIES_CATERPIE,
+    },
+    {
+    .iv = 0,
+    .lvl = 3,
+    .species = SPECIES_CATERPIE,
     }
 };
 
@@ -4246,7 +4251,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Tommy[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Joey[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_JoeyOld[] = {
     {
     .iv = 0,
     .lvl = 9,

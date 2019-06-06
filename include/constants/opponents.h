@@ -2,9 +2,9 @@
 #define GUARD_CONSTANTS_OPPONENTS_H
 
 #define TRAINER_NONE              0
-#define TRAINER_SAWYER_1          1
-#define TRAINER_GRUNT_1           2
-#define TRAINER_GRUNT_2           3
+#define TRAINER_JOEY_1            1
+#define TRAINER_MIKEY             2
+#define TRAINER_DON               3
 #define TRAINER_GRUNT_3           4
 #define TRAINER_GRUNT_4           5
 #define TRAINER_GRUNT_5           6
@@ -323,7 +323,7 @@
 #define TRAINER_BILLY           319
 #define TRAINER_JOSH            320
 #define TRAINER_TOMMY           321
-#define TRAINER_JOEY            322
+#define TRAINER_JOEYOLD            322
 #define TRAINER_BEN             323
 #define TRAINER_QUINCY          324
 #define TRAINER_KATELYNN        325

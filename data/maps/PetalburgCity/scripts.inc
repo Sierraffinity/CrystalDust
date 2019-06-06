@@ -29,35 +29,9 @@ PetalburgCity_EventScript_1DC316:: @ 81DC316
 	return
 
 PetalburgCity_MapScript2_1DC31C: @ 81DC31C
-	map_script_2 VAR_PETALBURG_STATE, 2, PetalburgCity_EventScript_1DC32E
-	map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_EventScript_1DC390
+	@map_script_2 VAR_PETALBURG_STATE, 2, PetalburgCity_EventScript_1DC32E
+	@map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_EventScript_1DC390
 	.2byte 0
-
-PetalburgCity_EventScript_1DC32E:: @ 81DC32E
-	lockall
-	special SavePlayerParty
-	special PutZigzagoonInPlayerParty
-	applymovement 2, PetalburgCity_Movement_1DC451
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_1DC430
-	waitmovement 0
-	msgbox PetalburgCity_Text_1EC1F8, MSGBOX_DEFAULT
-	special StartDudeTutorialBattle
-	waitstate
-	msgbox PetalburgCity_Text_1EC271, MSGBOX_DEFAULT
-	applymovement 2, Common_Movement_WalkInPlaceLeft, MAP_PETALBURG_CITY
-	waitmovement 2, MAP_PETALBURG_CITY
-	msgbox PetalburgCity_Text_1EC297, MSGBOX_DEFAULT
-	closemessage
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	setvar VAR_PETALBURG_STATE, 3
-	fadedefaultbgm
-	clearflag FLAG_SPECIAL_FLAG_0x4001
-	special LoadPlayerParty
-	setvar VAR_PETALBURG_GYM_STATE, 1
-	warp MAP_PETALBURG_CITY_GYM, 255, 4, 108
-	waitstate
-	releaseall
-	end
 
 PetalburgCity_EventScript_1DC390:: @ 81DC390
 	lockall

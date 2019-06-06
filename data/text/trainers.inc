@@ -1,15 +1,45 @@
-Route30_Text_294513: @ 8294513
-	.string "If you have POKéMON with you, then\n"
-	.string "you're an official POKéMON TRAINER!\l"
-	.string "You can't say no to my challenge!$"
+Trainer_Text_Joey_See:
+	.string "I just lost, so I'm trying to find\n"
+	.string "more POKéMON.\p"
+	.string "Wait! You look weak!\n"
+	.string "Come on, let's battle!$"
 
-Route30_Text_29457C: @ 829457C
-	.string "Arrgh, I lost…\n"
-	.string "I should have trained mine more…$"
+Trainer_Text_Joey_Beat:
+	.string "Ack! I lost again!\n"
+	.string "Doggone it!$"
 
-Route30_Text_2945AC: @ 82945AC
-	.string "Listen, you. If you're strong,\n"
-	.string "you should have told me before!$"
+Trainer_Text_Joey_After:
+	.string "Do I have to have more POKéMON\n"
+	.string "in order to battle better?\p"
+	.string "No! I'm sticking with this one no\n"
+	.string "matter what!$"
+
+Trainer_Text_Mikey_See:
+	.string "You're a POKéMON TRAINER, right?\n"
+	.string "Then you have to battle!$"
+
+Trainer_Text_Mikey_Beat:
+	.string "That's strange.\n"
+	.string "I won before.$"
+
+Trainer_Text_Mikey_After:
+	.string "Becoming a good TRAINER is really\n"
+	.string "tough.\p"
+	.string "I'm going to battle other people\n"
+	.string "to get better.$"
+
+Trainer_Text_Don_See:
+	.string "Instead of a BUG-type POKéMON,\n"
+	.string "I found a TRAINER!$"
+
+Trainer_Text_Don_Beat:
+	.string "Argh!\n"
+	.string "You're too strong!$"
+
+Trainer_Text_Don_After:
+	.string "I ran out of POKé BALLS while\n"
+	.string "I was catching POKéMON.\p"
+	.string "I should've bought some more…$"
 
 Route30_Text_2945EB: @ 82945EB
 	.string "I've been working hard at this since\n"

@@ -244,7 +244,7 @@ Route116_Movement_1F2E7E: @ 81F2E7E
 	step_end
 
 Route116_EventScript_1F2E89:: @ 81F2E89
-	trainerbattle_single TRAINER_JOEY, Route116_Text_29BB79, Route116_Text_29BB9A
+	trainerbattle_single TRAINER_JOEYOLD, Route116_Text_29BB79, Route116_Text_29BB9A
 	msgbox Route116_Text_29BBC6, MSGBOX_AUTOCLOSE
 	end
 

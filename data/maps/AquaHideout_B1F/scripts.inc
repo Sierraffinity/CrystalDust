@@ -82,7 +82,7 @@ AquaHideout_B1F_EventScript_233A7C:: @ 8233A7C
 	end
 
 AquaHideout_B1F_EventScript_233A85:: @ 8233A85
-	trainerbattle_single TRAINER_GRUNT_2, AquaHideout_B1F_Text_233B03, AquaHideout_B1F_Text_233B4A, AquaHideout_B1F_EventScript_233AA0
+	trainerbattle_single TRAINER_DON, AquaHideout_B1F_Text_233B03, AquaHideout_B1F_Text_233B4A, AquaHideout_B1F_EventScript_233AA0
 	msgbox AquaHideout_B1F_Text_233B5E, MSGBOX_AUTOCLOSE
 	end
 
