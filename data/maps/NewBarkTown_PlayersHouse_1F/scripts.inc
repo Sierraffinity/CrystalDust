@@ -135,6 +135,7 @@ NewBarkTown_PlayersHouse_1F_EventScript_MomWhatWasElmsErrand:
 NewBarkTown_PlayersHouse_1F_EventScript_MomLetsYouBank:
 	setflag FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	setflag FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM
+	setvar VAR_ROUTE31_STATE, 1
 	msgbox NewBarkTown_PlayersHouse_1F_Text_MomSaveMoneyQuestion, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	call_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomEnableBanking
