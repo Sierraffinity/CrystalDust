@@ -19,7 +19,7 @@
 #define MAPSEC_EVER_GRANDE_CITY             0x0F
 #define MAPSEC_ROUTE_29                    0x10
 #define MAPSEC_ROUTE_30                    0x11
-#define MAPSEC_ROUTE_103                    0x12
+#define MAPSEC_ROUTE_31                    0x12
 #define MAPSEC_ROUTE_104                    0x13
 #define MAPSEC_ROUTE_105                    0x14
 #define MAPSEC_ROUTE_106                    0x15

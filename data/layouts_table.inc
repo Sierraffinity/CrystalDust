@@ -18,7 +18,7 @@ gMapLayouts::
 	.4byte PacifidlogTown_Layout
 	.4byte Route29_Layout
 	.4byte Route30_Layout
-	.4byte Route103_Layout
+	.4byte Route31_Layout
 	.4byte Route104_Layout
 	.4byte Route105_Layout
 	.4byte Route106_Layout

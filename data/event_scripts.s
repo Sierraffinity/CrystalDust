@@ -93,7 +93,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/PacifidlogTown/scripts.inc"
 	.include "data/maps/Route29/scripts.inc"
 	.include "data/maps/Route30/scripts.inc"
-	.include "data/maps/Route103/scripts.inc"
+	.include "data/maps/Route31/scripts.inc"
 	.include "data/maps/Route104/scripts.inc"
 	.include "data/maps/Route105/scripts.inc"
 	.include "data/maps/Route106/scripts.inc"
@@ -1043,7 +1043,7 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380
 	setflag FLAG_HIDE_ROUTE_29_BIRCH
-	setflag FLAG_HIDE_ROUTE_103_BIRCH
+	setflag FLAG_HIDE_ROUTE_31_BIRCH
 	setflag FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR
 	setflag FLAG_HIDE_LILYCOVE_HARBOR_EON_TICKET_TAKER
 	setflag FLAG_HIDE_SOUTHERN_ISLAND_EON_STONE
@@ -2014,7 +2014,7 @@ Route109_EventScript_2720A8:: @ 82720A8
 
 NewBarkTown_ProfessorElmsLab_EventScript_2720AD:: @ 82720AD
 Route29_EventScript_2720AD:: @ 82720AD
-Route103_EventScript_2720AD:: @ 82720AD
+Route31_EventScript_2720AD:: @ 82720AD
 	compare VAR_PETALBURG_GYM_STATE, 0
 	goto_if_eq Common_EventScript_NopReturn
 	goto_if_set FLAG_SYS_GAME_CLEAR, Route29_EventScript_27211A
@@ -2040,18 +2040,18 @@ Route29_EventScript_27211A:: @ 827211A
 	clearflag FLAG_HIDE_ROUTE_29_TUSCANY
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380
 	setflag FLAG_HIDE_ROUTE_29_BIRCH
-	setflag FLAG_HIDE_ROUTE_103_BIRCH
+	setflag FLAG_HIDE_ROUTE_31_BIRCH
 	return
 
 Route29_EventScript_272127:: @ 8272127
 	clearflag FLAG_HIDE_ROUTE_29_BIRCH
 	setflag FLAG_HIDE_ROUTE_29_TUSCANY
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380
-	setflag FLAG_HIDE_ROUTE_103_BIRCH
+	setflag FLAG_HIDE_ROUTE_31_BIRCH
 	return
 
 Route29_EventScript_272134:: @ 8272134
-	clearflag FLAG_HIDE_ROUTE_103_BIRCH
+	clearflag FLAG_HIDE_ROUTE_31_BIRCH
 	setflag FLAG_HIDE_ROUTE_29_BIRCH
 	setflag FLAG_HIDE_ROUTE_29_TUSCANY
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380
@@ -2059,7 +2059,7 @@ Route29_EventScript_272134:: @ 8272134
 
 NewBarkTown_ProfessorElmsLab_EventScript_272141:: @ 8272141
 Route29_EventScript_272141:: @ 8272141
-Route103_EventScript_272141:: @ 8272141
+Route31_EventScript_272141:: @ 8272141
 	lock
 	faceplayer
 	goto_if_unset FLAG_HAS_MATCH_CALL, Route29_EventScript_272155

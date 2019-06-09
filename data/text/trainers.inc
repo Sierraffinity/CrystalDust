@@ -99,177 +99,177 @@ Route30_Text_294916: @ 8294916
 	.string "To keep winning my way up, I see that\n"
 	.string "I have to catch more POKéMON.$"
 
-Route103_Text_29495A: @ 829495A
+Route31_Text_29495A: @ 829495A
 	.string "Did you feel the tug of our\n"
 	.string "soul-soothing fragrance?$"
 
-Route103_Text_29498F: @ 829498F
+Route31_Text_29498F: @ 829498F
 	.string "You weren't led astray by our aroma…$"
 
-Route103_Text_2949B4: @ 82949B4
+Route31_Text_2949B4: @ 82949B4
 	.string "Aromatherapy is a form of mental\n"
 	.string "healing that works with fragrances.$"
 
-Route103_Text_2949F9: @ 82949F9
+Route31_Text_2949F9: @ 82949F9
 	.string "AMY: I'm AMY.\n"
 	.string "And this is my little sister LIV.\l"
 	.string "We battle together!$"
 
-Route103_Text_294A3D: @ 8294A3D
+Route31_Text_294A3D: @ 8294A3D
 	.string "AMY: Uh-oh, we lost.$"
 
-Route103_Text_294A52: @ 8294A52
+Route31_Text_294A52: @ 8294A52
 	.string "AMY: You have to think about all\n"
 	.string "kinds of things when you're battling\l"
 	.string "against two TRAINERS.$"
 
-Route103_Text_294AAE: @ 8294AAE
+Route31_Text_294AAE: @ 8294AAE
 	.string "AMY: Uh-oh, you have only one\n"
 	.string "POKéMON with you.\l"
 	.string "You can't battle us like that.$"
 
-Route103_Text_294AFD: @ 8294AFD
+Route31_Text_294AFD: @ 8294AFD
 	.string "LIV: We battle together as one\n"
 	.string "team.$"
 
-Route103_Text_294B22: @ 8294B22
+Route31_Text_294B22: @ 8294B22
 	.string "LIV: Oh, we lost, big sister…$"
 
-Route103_Text_294B40: @ 8294B40
+Route31_Text_294B40: @ 8294B40
 	.string "LIV: We work perfectly together,\n"
 	.string "me and my big sister…\p"
 	.string "But we still lost…$"
 
-Route103_Text_294B8A: @ 8294B8A
+Route31_Text_294B8A: @ 8294B8A
 	.string "LIV: Really, we're a lot better…\n"
 	.string "It's true! We'll show you next time!$"
 
-Route103_Text_294BD0: @ 8294BD0
+Route31_Text_294BD0: @ 8294BD0
 	.string "LIV: If you want to battle us,\n"
 	.string "you have to have two POKéMON!\l"
 	.string "It's not fair if you don't!$"
 
-Route103_Text_294C29: @ 8294C29
+Route31_Text_294C29: @ 8294C29
 	.string "AMY: I'm AMY.\n"
 	.string "And this is my little sister LIV.\l"
 	.string "We battle together!$"
 
-Route103_Text_294C6D: @ 8294C6D
+Route31_Text_294C6D: @ 8294C6D
 	.string "AMY: Aww, boo!\n"
 	.string "We couldn't win again…$"
 
-Route103_Text_294C93: @ 8294C93
+Route31_Text_294C93: @ 8294C93
 	.string "AMY: You have to think about all\n"
 	.string "kinds of things when you're battling\l"
 	.string "against two TRAINERS.$"
 
-Route103_Text_294CEF: @ 8294CEF
+Route31_Text_294CEF: @ 8294CEF
 	.string "AMY: Uh-oh, you have only one\n"
 	.string "POKéMON with you.\l"
 	.string "You can't battle us like that.$"
 
-Route103_Text_294D3E: @ 8294D3E
+Route31_Text_294D3E: @ 8294D3E
 	.string "LIV: We battle together as one\n"
 	.string "team.$"
 
-Route103_Text_294D63: @ 8294D63
+Route31_Text_294D63: @ 8294D63
 	.string "LIV: Awww, we lost again…\n"
 	.string "Big sister…$"
 
-Route103_Text_294D89: @ 8294D89
+Route31_Text_294D89: @ 8294D89
 	.string "LIV: We work perfectly together,\n"
 	.string "me and my big sister…\p"
 	.string "But why did we lose again?$"
 
-Route103_Text_294DDB: @ 8294DDB
+Route31_Text_294DDB: @ 8294DDB
 	.string "LIV: If you want to battle us, you\n"
 	.string "have to have two POKéMON!\l"
 	.string "It's not fair if you don't!$"
 
-Route103_Text_294E34: @ 8294E34
+Route31_Text_294E34: @ 8294E34
 	.string "Gah! My fishing line's all snarled up!\n"
 	.string "I'm getting frustrated and mean!\l"
 	.string "That's it! Battle me!$"
 
-Route103_Text_294E92: @ 8294E92
+Route31_Text_294E92: @ 8294E92
 	.string "Gah! Lost it!\n"
 	.string "I'm even more annoyed now!$"
 
-Route103_Text_294EBB: @ 8294EBB
+Route31_Text_294EBB: @ 8294EBB
 	.string "Gah, I'm still boiling mad…\n"
 	.string "Grrrrr…$"
 
-Route103_Text_294EDF: @ 8294EDF
+Route31_Text_294EDF: @ 8294EDF
 	.string "My POKéMON is delightfully adorable!\n"
 	.string "Don't be shy--I'll show you!$"
 
-Route103_Text_294F21: @ 8294F21
+Route31_Text_294F21: @ 8294F21
 	.string "Oh, my gosh!\n"
 	.string "My darling POKéMON!$"
 
-Route103_Text_294F42: @ 8294F42
+Route31_Text_294F42: @ 8294F42
 	.string "My delightful POKéMON looks darling\n"
 	.string "even when it's fainted!$"
 
-Route103_Text_294F7E: @ 8294F7E
+Route31_Text_294F7E: @ 8294F7E
 	.string "I'll get you to come out and look in\n"
 	.string "on my delightful POKéMON again!$"
 
-Route103_Text_294FC3: @ 8294FC3
+Route31_Text_294FC3: @ 8294FC3
 	.string "Hi, you! My delightfully adorable\n"
 	.string "POKéMON has become more darling!$"
 
-Route103_Text_295006: @ 8295006
+Route31_Text_295006: @ 8295006
 	.string "Oh!\n"
 	.string "My darling POKéMON!$"
 
-Route103_Text_29501E: @ 829501E
+Route31_Text_29501E: @ 829501E
 	.string "The more I spend time with it,\n"
 	.string "the more adorable my POKéMON becomes.$"
 
-Route103_Text_295063: @ 8295063
+Route31_Text_295063: @ 8295063
 	.string "This sort of distance…\n"
 	.string "You should just swim it!$"
 
-Route103_Text_295093: @ 8295093
+Route31_Text_295093: @ 8295093
 	.string "Oh, that's good going!$"
 
-Route103_Text_2950AA: @ 82950AA
+Route31_Text_2950AA: @ 82950AA
 	.string "Oh, I understand where you're coming\n"
 	.string "from now.\p"
 	.string "If I had a POKéMON that trusty,\n"
 	.string "I'd want to SURF on it, too!$"
 
-Route103_Text_295116: @ 8295116
+Route31_Text_295116: @ 8295116
 	.string "Watch where you're going!\n"
 	.string "We're going to crash!$"
 
-Route103_Text_295146: @ 8295146
+Route31_Text_295146: @ 8295146
 	.string "Groan…$"
 
-Route103_Text_29514D: @ 829514D
+Route31_Text_29514D: @ 829514D
 	.string "I'm a poor swimmer so I was practicing…\n"
 	.string "Sorry for almost crashing into you.$"
 
-Route103_Text_295199: @ 8295199
+Route31_Text_295199: @ 8295199
 	.string "Whoa!\n"
 	.string "How'd you get into a space this small?$"
 
-Route103_Text_2951C6: @ 82951C6
+Route31_Text_2951C6: @ 82951C6
 	.string "Whoa!\n"
 	.string "The kid can rock!$"
 
-Route103_Text_2951DE: @ 82951DE
+Route31_Text_2951DE: @ 82951DE
 	.string "Do you like cramped quarters\n"
 	.string "like this?$"
 
-Route103_Text_295206: @ 8295206
+Route31_Text_295206: @ 8295206
 	.string "Did my guitar's wailing draw you in?$"
 
-Route103_Text_29522B: @ 829522B
+Route31_Text_29522B: @ 829522B
 	.string "My one-man show is ruined…$"
 
-Route103_Text_295246: @ 8295246
+Route31_Text_295246: @ 8295246
 	.string "I was playing my guitar where few\n"
 	.string "people were around, but a lot of fans\l"
 	.string "have gathered.\p"

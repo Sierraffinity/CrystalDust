@@ -72,7 +72,7 @@
     "connections": [
         {
             "direction": "right",
-            "map": "MAP_ROUTE103",
+            "map": "MAP_ROUTE31",
             "offset": 20
         },
         {

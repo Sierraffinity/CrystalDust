@@ -2,16 +2,16 @@ Route29_EventScript_ItemPotion::
 	giveitem_std ITEM_POTION, 1, 1
 	end
 
-Route29_EventScript_ItemAntidote::
+Route30_EventScript_ItemAntidote::
 	giveitem_std ITEM_ANTIDOTE, 1, 1
 	end
 
-Route103_EventScript_290CE5:: @ 8290CE5
-	giveitem_std ITEM_GUARD_SPEC, 1, 1
+Route31_EventScript_ItemPotion::
+	giveitem_std ITEM_POTION, 1, 1
 	end
 
-Route103_EventScript_ItemPPUp:: @ 8290CF2
-	giveitem_std ITEM_PP_UP, 1, 1
+Route31_EventScript_ItemPokeBall::
+	giveitem_std ITEM_POKE_BALL, 1, 1
 	end
 
 Route104_EventScript_ItemPPUp:: @ 8290CFF

@@ -141,7 +141,7 @@
 #define FLAG_MET_PRETTY_PETAL_SHOP_OWNER     0x7F
 #define FLAG_ENABLE_ROXANNE_FIRST_CALL       0x80 // Set after defeating Brawly. This will activate a call with Roxanne in order to register her.
 #define FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN  0x81
-#define FLAG_DEFEATED_RIVAL_ROUTE103         0x82
+#define FLAG_DEFEATED_RIVAL_ROUTE31         0x82
 #define FLAG_RECEIVED_DOLL_LANETTE           0x83
 #define FLAG_RECEIVED_POTION_OLDALE          0x84
 #define FLAG_MOM_SAYS_GOODBYE                0x85
@@ -318,7 +318,7 @@
 #define FLAG_RECEIVED_BELDUM                 0x12A
 #define FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK   0x12B
 #define FLAG_MET_FANCLUB_YOUNGER_BROTHER     0x12C
-#define FLAG_RIVAL_LEFT_FOR_ROUTE103         0x12D
+#define FLAG_RIVAL_LEFT_FOR_ROUTE31         0x12D
 #define FLAG_OMIT_DIVE_FROM_STEVEN_LETTER    0x12E
 #define FLAG_HAS_MATCH_CALL                  0x12F
 #define FLAG_ADDED_MATCH_CALL_TO_POKENAV     0x130
@@ -849,7 +849,7 @@
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2         0x37F
 #define FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380            0x380
 #define FLAG_HIDE_ROUTE_29_BIRCH                                    0x381
-#define FLAG_HIDE_ROUTE_103_BIRCH                                   0x382
+#define FLAG_HIDE_ROUTE_31_BIRCH                                   0x382
 #define FLAG_HIDE_TRICK_HOUSE_END_MAN                               0x383
 #define FLAG_HIDE_ROUTE_110_TEAM_AQUA                               0x384
 #define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_2                          0x385
@@ -955,8 +955,8 @@
 // Item Ball Flags
 #define FLAG_ITEM_ROUTE_29_POTION                                   0x3E8
 #define FLAG_ITEM_ROUTE_30_ANTIDOTE                                 0x3E9
-#define FLAG_ITEM_ROUTE_104_PP_UP                                   0x3EA
-#define FLAG_ITEM_ROUTE_105_IRON                                    0x3EB
+#define FLAG_ITEM_ROUTE_31_POTION                                   0x3EA
+#define FLAG_ITEM_ROUTE_31_POKE_BALL                                0x3EB
 #define FLAG_ITEM_ROUTE_106_PROTEIN                                 0x3EC
 #define FLAG_ITEM_ROUTE_109_PP_UP                                   0x3ED
 #define FLAG_ITEM_ROUTE_109_RARE_CANDY                              0x3EE
@@ -1069,7 +1069,7 @@
 #define FLAG_ITEM_FIERY_PATH_FIRE_STONE                             0x457
 #define FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_TM_07                         0x458
 #define FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_NEVER_MELT_ICE                0x459
-#define FLAG_ITEM_ROUTE_103_GUARD_SPEC                              0x45A
+#define FLAG_ITEM_ROUTE_31_GUARD_SPEC                              0x45A
 #define FLAG_ITEM_ROUTE_104_X_ACCURACY                              0x45B
 #define FLAG_ITEM_MAUVILLE_CITY_X_SPEED                             0x45C
 #define FLAG_ITEM_PETALBURD_WOODS_PARALYZE_HEAL                     0x45D
@@ -1098,7 +1098,7 @@
 
 #define FLAG_UNUSED_0x470                                           0x470 // Unused Flag
 
-#define FLAG_ITEM_ROUTE_103_PP_UP                                   0x471
+#define FLAG_ITEM_ROUTE_31_PP_UP                                   0x471
 
 #define FLAG_UNUSED_0x472                                           0x472 // Unused Flag
 

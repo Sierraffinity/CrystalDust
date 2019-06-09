@@ -181,11 +181,11 @@
             "width": 26
         },
         {
-            "blockdata_filepath": "data/layouts/Route103/map.bin",
-            "border_filepath": "data/layouts/Route103/border.bin",
+            "blockdata_filepath": "data/layouts/Route31/map.bin",
+            "border_filepath": "data/layouts/Route31/border.bin",
             "height": 20,
-            "id": "LAYOUT_ROUTE103",
-            "name": "Route103_Layout",
+            "id": "LAYOUT_ROUTE31",
+            "name": "Route31_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Dewford",
             "width": 50

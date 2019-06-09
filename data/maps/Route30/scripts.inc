@@ -147,8 +147,8 @@ Route30_Text_MrPokemonsHouse:
 
 Route30_Text_TrainerTips:
 	.string "TRAINER TIPS\p"
-	.string "No stealing other people's\n"
-	.string "POKéMON!\p"
+	.string "There's no stealing of other\n"
+	.string "people's POKéMON!\p"
 	.string "POKé BALLS are to be thrown only\n"
 	.string "at wild POKéMON!$"
 

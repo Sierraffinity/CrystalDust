@@ -16,7 +16,7 @@
 	.include "data/layouts/PacifidlogTown/layout.inc"
 	.include "data/layouts/Route29/layout.inc"
 	.include "data/layouts/Route30/layout.inc"
-	.include "data/layouts/Route103/layout.inc"
+	.include "data/layouts/Route31/layout.inc"
 	.include "data/layouts/Route104/layout.inc"
 	.include "data/layouts/Route105/layout.inc"
 	.include "data/layouts/Route106/layout.inc"

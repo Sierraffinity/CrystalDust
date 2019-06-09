@@ -95,7 +95,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_ITEM_ROUTE_105_IRON",
+            "flag": "FLAG_ITEM_ROUTE_31_POTION",
             "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
             "movement_range_x": 0,
             "movement_range_y": 0,

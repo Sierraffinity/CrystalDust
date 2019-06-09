@@ -1,0 +1,178 @@
+{
+    "allow_bike": true,
+    "allow_escape_rope": false,
+    "allow_running": true,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route31_EventScript_1EC5EB",
+            "type": "sign",
+            "x": 9,
+            "y": 5
+        },
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "NULL",
+            "type": "sign",
+            "x": 18,
+            "y": 9
+        },
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "NULL",
+            "type": "sign",
+            "x": 36,
+            "y": 7
+        }
+    ],
+    "connections": [
+        {
+            "direction": "down",
+            "map": "MAP_ROUTE30",
+            "offset": 22
+        },
+        {
+            "direction": "left",
+            "map": "MAP_PETALBURG_CITY",
+            "offset": -20
+        }
+    ],
+    "coord_events": [
+    ],
+    "id": "MAP_ROUTE31",
+    "layout": "LAYOUT_ROUTE31",
+    "map_type": "MAP_TYPE_ROUTE",
+    "music": "MUS_ROUTE29",
+    "name": "Route31",
+    "object_events": [
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_FAT_MAN",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "Route31_EventScript_1EC5E2",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 19,
+            "y": 9
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "Route31_EventScript_1EC3C1",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 11,
+            "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_BUG_CATCHER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "Route31_EventScript_1EC5F4",
+            "trainer_sight_or_berry_tree_id": "3",
+            "trainer_type": "1",
+            "x": 25,
+            "y": 15
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_PSYCHIC_M",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "Route31_EventScript_1EC66E",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 38,
+            "y": 9
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_11",
+            "graphics_id": "EVENT_OBJ_GFX_CUTTABLE_TREE",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "EventScript_CutTree",
+            "trainer_sight_or_berry_tree_id": "1",
+            "trainer_type": "1",
+            "x": 14,
+            "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_12",
+            "graphics_id": "EVENT_OBJ_GFX_CUTTABLE_TREE",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "EventScript_CutTree",
+            "trainer_sight_or_berry_tree_id": "3",
+            "trainer_type": "1",
+            "x": 29,
+            "y": 12
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_ITEM_ROUTE_31_POTION",
+            "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "Route31_EventScript_ItemPotion",
+            "trainer_sight_or_berry_tree_id": "5",
+            "trainer_type": "0",
+            "x": 33,
+            "y": 7
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_ITEM_ROUTE_31_POKE_BALL",
+            "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "Route31_EventScript_ItemPokeBall",
+            "trainer_sight_or_berry_tree_id": "6",
+            "trainer_type": "0",
+            "x": 21,
+            "y": 17
+        }
+    ],
+    "phone_service": true,
+    "region_map_section": "MAPSEC_ROUTE_31",
+    "requires_flash": false,
+    "show_map_name": true,
+    "warp_events": [
+        {
+            "dest_map": "MAP_ALTERING_CAVE",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 6,
+            "y": 7
+        },
+        {
+            "dest_map": "MAP_ROUTE31",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 39,
+            "y": 6
+        }
+    ],
+    "weather": "WEATHER_SUNNY"
+}

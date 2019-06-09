@@ -190,7 +190,7 @@ const struct WildPokemon gNationalParkContest_LandMons_Night[] =
 
 const struct WildPokemonInfo gNationalParkContest_LandMonsInfo = {20, {gNationalParkContest_LandMons_Day, gNationalParkContest_LandMons_Day, gNationalParkContest_LandMons_Night}};
 
-const struct WildPokemon gRoute103_LandMons[] =
+const struct WildPokemon gRoute31_LandMons[] =
 {
     {2, 2, SPECIES_POOCHYENA},
     {3, 3, SPECIES_POOCHYENA},
@@ -206,9 +206,9 @@ const struct WildPokemon gRoute103_LandMons[] =
     {4, 4, SPECIES_WINGULL},
 };
 
-const struct WildPokemonInfo gRoute103_LandMonsInfo = {20, {gRoute103_LandMons, gRoute103_LandMons, gRoute103_LandMons}};
+const struct WildPokemonInfo gRoute31_LandMonsInfo = {20, {gRoute31_LandMons, gRoute31_LandMons, gRoute31_LandMons}};
 
-const struct WildPokemon gRoute103_WaterMons[] =
+const struct WildPokemon gRoute31_WaterMons[] =
 {
     {5, 35, SPECIES_TENTACOOL},
     {10, 30, SPECIES_WINGULL},
@@ -217,9 +217,9 @@ const struct WildPokemon gRoute103_WaterMons[] =
     {25, 30, SPECIES_PELIPPER},
 };
 
-const struct WildPokemonInfo gRoute103_WaterMonsInfo = {4, {gRoute103_WaterMons, gRoute103_WaterMons, gRoute103_WaterMons}};
+const struct WildPokemonInfo gRoute31_WaterMonsInfo = {4, {gRoute31_WaterMons, gRoute31_WaterMons, gRoute31_WaterMons}};
 
-const struct WildPokemon gRoute103_FishingMons[] =
+const struct WildPokemon gRoute31_FishingMons[] =
 {
     {5, 10, SPECIES_MAGIKARP},
     {5, 10, SPECIES_TENTACOOL},
@@ -233,7 +233,7 @@ const struct WildPokemon gRoute103_FishingMons[] =
     {40, 45, SPECIES_WAILMER},
 };
 
-const struct WildPokemonInfo gRoute103_FishingMonsInfo = {30, {gRoute103_FishingMons, gRoute103_FishingMons, gRoute103_FishingMons}};
+const struct WildPokemonInfo gRoute31_FishingMonsInfo = {30, {gRoute31_FishingMons, gRoute31_FishingMons, gRoute31_FishingMons}};
 
 const struct WildPokemon gRoute104_LandMons[] =
 {
@@ -3425,12 +3425,12 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .fishingMonsInfo = NULL,
     },
     {
-        .mapGroup = MAP_GROUP(ROUTE103),
-        .mapNum = MAP_NUM(ROUTE103),
-        .landMonsInfo = &gRoute103_LandMonsInfo,
-        .waterMonsInfo = &gRoute103_WaterMonsInfo,
+        .mapGroup = MAP_GROUP(ROUTE31),
+        .mapNum = MAP_NUM(ROUTE31),
+        .landMonsInfo = &gRoute31_LandMonsInfo,
+        .waterMonsInfo = &gRoute31_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
-        .fishingMonsInfo = &gRoute103_FishingMonsInfo,
+        .fishingMonsInfo = &gRoute31_FishingMonsInfo,
     },
     {
         .mapGroup = MAP_GROUP(ROUTE104),
