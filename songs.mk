@@ -78,7 +78,7 @@ $(MID_SUBDIR)/mus_bijyutu.s: %.s: %.mid
 $(MID_SUBDIR)/mus_rivalexit.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G067 -V078
 
-$(MID_SUBDIR)/mus_boyeye.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encyoung.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G028 -V080
 
 $(MID_SUBDIR)/mus_c_road.s: %.s: %.mid

@@ -381,7 +381,7 @@ gSongTable:: @ 86B49F0
 	song mus_shinka, 0, 0           @ Evolution
 	song mus_me_wasure, 2, 2        @ Move Deleted
 	song mus_syoujoeye, 0, 0        @ Trainers' Eyes Meet (Tuber♀)
-	song mus_boyeye, 0, 0           @ Trainers' Eyes Meet (Youngster)
+	song mus_encyoung, 0, 0           @ Trainers' Eyes Meet (Youngster)
 	song mus_dan02, 0, 0            @ Abandoned Ship
 	song mus_machi_s3, 0, 0         @ Fortree City
 	song mus_elmslab, 0, 0          @ Birch Pokémon Lab

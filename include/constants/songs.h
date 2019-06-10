@@ -304,7 +304,7 @@
 #define MUS_SHINKA 377          // Evolution
 #define MUS_ME_WASURE 378       // Move Deleted/Messed Up Appeal
 #define MUS_SYOUJOEYE 379       // Encounter! Tuber
-#define MUS_BOYEYE 380          // Encounter! Boy
+#define MUS_ENCYOUNG 380          // Encounter! Boy
 #define MUS_DAN02 381           // Abandoned Ship/Southern Island
 #define MUS_MACHI_S3 382        // Fortree City/Pacifidlog Town
 #define MUS_ELMSLAB 383         // Professor Birch's Lab

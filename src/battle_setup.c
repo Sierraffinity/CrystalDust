@@ -1477,7 +1477,7 @@ void SetUpTrainerEncounterMusic(void)
         switch (GetTrainerEncounterMusicId(trainerId))
         {
         case TRAINER_ENCOUNTER_MUSIC_MALE:
-            music = MUS_BOYEYE;
+            music = MUS_ENCYOUNG;
             break;
         case TRAINER_ENCOUNTER_MUSIC_FEMALE:
             music = MUS_GIRLEYE;
