@@ -400,7 +400,7 @@
 #define MUS_B_DOME1 473         // Battle Dome Lobby
 #define MUS_BTLJOHTOWILD 474       // Battle! Wild Pokémon
 #define MUS_BATTLE31 475        // Battle! Team Aqua/Magma
-#define MUS_BATTLE20 476        // Battle! Trainer
+#define MUS_BTLJOHTOTRN 476        // Battle! Trainer
 #define MUS_BATTLE32 477        // Battle! Gym Leader
 #define MUS_BATTLE33 478        // Battle! Champion
 #define MUS_BATTLE36 479        // Battle! Regi Trio

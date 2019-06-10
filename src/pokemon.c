@@ -6247,7 +6247,7 @@ u16 GetBattleBGM(void)
     if (gBattleTypeFlags & BATTLE_TYPE_REGI)
         return MUS_BATTLE36;
     else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000))
-        return MUS_BATTLE20;
+        return MUS_BTLJOHTOTRN;
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         u8 trainerClass;
@@ -6278,7 +6278,7 @@ u16 GetBattleBGM(void)
             /*if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_BTLRIVAL;
             if (!StringCompare(gTrainers[gTrainerBattleOpponent_A].trainerName, gText_BattleWallyName))
-                return MUS_BATTLE20;*/
+                return MUS_BTLJOHTOTRN;*/
             return MUS_BTLRIVAL;
         case TRAINER_CLASS_ELITE_FOUR:
             return MUS_BATTLE38;
@@ -6291,7 +6291,7 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_PYRAMID_KING:
             return MUS_VS_FRONT;
         default:
-            return MUS_BATTLE20;
+            return MUS_BTLJOHTOTRN;
         }
     }
     else

@@ -39,7 +39,7 @@ $(MID_SUBDIR)/mus_b_tower.s: %.s: %.mid
 $(MID_SUBDIR)/mus_b_tube.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G112 -V092
 
-$(MID_SUBDIR)/mus_battle20.s: %.s: %.mid
+$(MID_SUBDIR)/mus_btljohtotrn.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G119 -V080 -P1
 
 $(MID_SUBDIR)/mus_btljohtowild.s: %.s: %.mid

@@ -381,7 +381,7 @@ gSongTable:: @ 86B49F0
 	song mus_shinka, 0, 0           @ Evolution
 	song mus_me_wasure, 2, 2        @ Move Deleted
 	song mus_syoujoeye, 0, 0        @ Trainers' Eyes Meet (Tuber♀)
-	song mus_encyoung, 0, 0           @ Trainers' Eyes Meet (Youngster)
+	song mus_encyoung, 0, 0         @ Trainers' Eyes Meet (Youngster)
 	song mus_dan02, 0, 0            @ Abandoned Ship
 	song mus_machi_s3, 0, 0         @ Fortree City
 	song mus_elmslab, 0, 0          @ Birch Pokémon Lab
@@ -477,7 +477,7 @@ gSongTable:: @ 86B49F0
 	song mus_b_dome1, 0, 0          @ Battle Dome Lobby
 	song mus_btljohtowild, 0, 0     @ Battle! (Wild Pokémon)
 	song mus_battle31, 0, 0         @ Battle! (Team Aqua / Team Magma)
-	song mus_battle20, 0, 0         @ Battle! (Trainer Battle)
+	song mus_btljohtotrn, 0, 0         @ Battle! (Trainer Battle)
 	song mus_battle32, 0, 0         @ Battle! (Gym Leader)
 	song mus_battle33, 0, 0         @ Battle! (Champion Wallace)
 	song mus_battle36, 0, 0         @ Battle! (Regirock/Regice/Registeel)

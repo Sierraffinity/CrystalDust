@@ -843,7 +843,7 @@ static void sub_80B32B4(u8 taskId)
         if (gLinkPlayers[0].trainerId & 1)
             PlayMapChosenOrBattleBGM(MUS_BATTLE32);
         else
-            PlayMapChosenOrBattleBGM(MUS_BATTLE20);
+            PlayMapChosenOrBattleBGM(MUS_BTLJOHTOTRN);
 
         sub_80B3260(gSpecialVar_0x8004);
         CleanupOverworldWindowsAndTilemaps();
@@ -908,7 +908,7 @@ static void sub_80B33BC(u8 taskId)
         if (gLinkPlayers[0].trainerId & 1)
             PlayMapChosenOrBattleBGM(MUS_BATTLE32);
         else
-            PlayMapChosenOrBattleBGM(MUS_BATTLE20);
+            PlayMapChosenOrBattleBGM(MUS_BTLJOHTOTRN);
 
         gLinkPlayers[0].linkType = 0x2211;
         sub_80B3260(gSpecialVar_0x8004);
