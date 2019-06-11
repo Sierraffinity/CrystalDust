@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_transition.h"
 #include "clock.h"
 #include "day_night.h"
 #include "event_data.h"
@@ -35,6 +36,7 @@ static void DebugMenu_TimeCycle(u8 taskId);
 static void DebugMenu_TimeCycle_ProcessInput(u8 taskId);
 static void DebugMenu_ToggleRunningShoes(u8 taskId);
 static void DebugMenu_EnableResetRTC(u8 taskId);
+static void DebugMenu_TestBattleTransition(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
 static void DebugMenu_Pokegear(u8 taskId);
 static void DebugMenu_Pokegear_ProcessInput(u8 taskId);
@@ -52,6 +54,7 @@ static const u8 sText_SetRespawn[] = _("Set respawn");
 static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
+static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_EnableMapCard[] = _("Enable map card");
@@ -90,6 +93,7 @@ static const struct MenuAction sDebugMenu_MiscActions[] =
 {
     { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes },
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC },
+    { sText_TestBattleTransition, DebugMenu_TestBattleTransition },
 };
 
 static const struct WindowTemplate sDebugMenu_Window_Main = 
@@ -539,6 +543,11 @@ static void DebugMenu_ToggleRunningShoes(u8 taskId)
 static void DebugMenu_EnableResetRTC(u8 taskId)
 {
     EnableResetRTC();
+}
+
+static void DebugMenu_TestBattleTransition(u8 taskId)
+{
+    TestBattleTransition(VarGet(0x4000));
 }
 
 static void DebugMenu_Misc_ProcessInput(u8 taskId)

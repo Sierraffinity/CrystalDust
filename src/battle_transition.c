@@ -472,7 +472,7 @@ static const TransitionStateFunc sPhase2_PokeballsTrail_Funcs[] =
 };
 
 static const s16 sUnknown_085C8B88[2] = {-16, 256};
-static const s16 sUnknown_085C8B8C[5] = {0, 32, 64, 18, 48};
+static const s16 sUnknown_085C8B8C[5] = {0, 16, 32, 8, 24};
 static const s16 sUnknown_085C8B96[2] = {8, -8};
 
 static const TransitionStateFunc sPhase2_Clockwise_BlackFade_Funcs[] =
@@ -704,7 +704,7 @@ static const s16 sUnknown_085C8DD0[][5] =
     {168,   160,    48,     0,      1},
 };
 
-static const s16 sUnknown_085C8E16[] = {8, 4, 2, 1, 1, 1, 0};
+static const s16 sUnknown_085C8E16[] = {1, 1, 1, 1, 1, 1, 0};
 
 static const TransitionStateFunc sPhase1_TransitionAll_Funcs[] =
 {
@@ -1032,7 +1032,7 @@ static void Phase1Task_TransitionAll(u8 taskId)
     if (gTasks[taskId].tState == 0)
     {
         gTasks[taskId].tState++;
-        CreatePhase1Task(0, 0, 3, 2, 2); // creates a sub-task for this sub-task
+        CreatePhase1Task(0, 0, 2, 2, 2); // creates a sub-task for this sub-task
     }
     else if (IsPhase1Done())
     {
