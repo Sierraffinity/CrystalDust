@@ -1853,7 +1853,6 @@ void BattleMainCB2(void)
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
-    ProcessImmediateTimeEvents();
     UpdatePaletteFade();
     RunTasks();
 
@@ -2088,7 +2087,6 @@ void VBlankCB_Battle(void)
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
     ScanlineEffect_InitHBlankDmaTransfer();
-    CheckClockForImmediateTimeEvents();
 }
 
 void nullsub_17(struct Sprite *sprite)
@@ -2473,7 +2471,6 @@ static void sub_803937C(void)
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
-    ProcessImmediateTimeEvents();
     UpdatePaletteFade();
     RunTasks();
 }
