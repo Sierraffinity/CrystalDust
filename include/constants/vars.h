@@ -97,53 +97,53 @@
 #define VAR_NEWBARK_STATE                    0x4050
 #define VAR_ROUTE30_STATE                    0x4051
 #define VAR_CHERRYGROVE_RIVAL_STATE          0x4052
-#define VAR_ROUTE29_STATE                    0x4053
+#define VAR_LAVARIDGE_TOWN_STATE             0x4053
 #define VAR_CURRENT_SECRET_BASE              0x4054
 #define VAR_ROUTE31_STATE                    0x4055
 #define VAR_UNUSED_0x4056                    0x4056 // Unused Var
-#define VAR_PETALBURG_STATE                  0x4057
-#define VAR_SLATEPORT_STATE                  0x4058
+#define VAR_PETALBURG_CITY_STATE             0x4057
+#define VAR_SLATEPORT_CITY_STATE             0x4058
 #define VAR_UNUSED_0x4059                    0x4059 // Unused Var
-#define VAR_RUSTBORO_STATE                   0x405A
+#define VAR_RUSTBORO_CITY_STATE              0x405A
 #define VAR_UNUSED_0x405B                    0x405B // Unused Var
 #define VAR_UNUSED_0x405C                    0x405C // Unused Var
-#define VAR_MOSSDEEP_STATE                   0x405D
-#define VAR_RAYQUAZA_STATE                   0x405E
+#define VAR_MOSSDEEP_CITY_STATE              0x405D
+#define VAR_SOOTOPOLIS_CITY_STATE            0x405E
 #define VAR_UNUSED_0x405F                    0x405F // Unused Var
 #define VAR_ROUTE101_STATE                   0x4060
-#define VAR_UNUSED_0x4061                    0x4061 // Unused Var
-#define VAR_UNUSED_0x4062                    0x4062 // Unused Var
-#define VAR_0x4063                           0x4063
-#define VAR_UNUSED_0x4064                    0x4064 // Unused Var
-#define VAR_UNUSED_0x4065                    0x4065 // Unused Var
-#define VAR_UNUSED_0x4066                    0x4066 // Unused Var
-#define VAR_UNUSED_0x4067                    0x4067 // Unused Var
-#define VAR_UNUSED_0x4068                    0x4068 // Unused Var
+#define VAR_ROUTE102_STATE                   0x4061 // Unused Var
+#define VAR_ROUTE103_STATE                   0x4062 // Unused Var
+#define VAR_ROUTE104_STATE                   0x4063
+#define VAR_ROUTE105_STATE                   0x4064 // Unused Var
+#define VAR_ROUTE106_STATE                   0x4065 // Unused Var
+#define VAR_ROUTE107_STATE                   0x4066 // Unused Var
+#define VAR_ROUTE108_STATE                   0x4067 // Unused Var
+#define VAR_ROUTE109_STATE                   0x4068 // Unused Var
 #define VAR_ROUTE110_STATE                   0x4069
-#define VAR_UNUSED_0x406A                    0x406A // Unused Var
-#define VAR_UNUSED_0x406B                    0x406B // Unused Var
-#define VAR_UNUSED_0x406C                    0x406C // Unused Var
-#define VAR_UNUSED_0x406D                    0x406D // Unused Var
-#define VAR_UNUSED_0x406E                    0x406E // Unused Var
+#define VAR_ROUTE111_STATE                   0x406A // Unused Var
+#define VAR_ROUTE112_STATE                   0x406B // Unused Var
+#define VAR_ROUTE113_STATE                   0x406C // Unused Var
+#define VAR_ROUTE114_STATE                   0x406D // Unused Var
+#define VAR_ROUTE115_STATE                   0x406E // Unused Var
 #define VAR_ROUTE116_STATE                   0x406F
-#define VAR_UNUSED_0x4070                    0x4070 // Unused Var
+#define VAR_ROUTE117_STATE                   0x4070 // Unused Var
 #define VAR_ROUTE118_STATE                   0x4071
 #define VAR_ROUTE119_STATE                   0x4072
-#define VAR_UNUSED_0x4073                    0x4073 // Unused Var
+#define VAR_ROUTE120_STATE                   0x4073 // Unused Var
 #define VAR_ROUTE121_STATE                   0x4074
-#define VAR_UNUSED_0x4075                    0x4075 // Unused Var
-#define VAR_UNUSED_0x4076                    0x4076 // Unused Var
-#define VAR_UNUSED_0x4077                    0x4077 // Unused Var
-#define VAR_UNUSED_0x4078                    0x4078 // Unused Var
-#define VAR_UNUSED_0x4079                    0x4079 // Unused Var
-#define VAR_UNUSED_0x407A                    0x407A // Unused Var
+#define VAR_ROUTE122_STATE                   0x4075 // Unused Var
+#define VAR_ROUTE123_STATE                   0x4076 // Unused Var
+#define VAR_ROUTE124_STATE                   0x4077 // Unused Var
+#define VAR_ROUTE125_STATE                   0x4078 // Unused Var
+#define VAR_ROUTE126_STATE                   0x4079 // Unused Var
+#define VAR_ROUTE127_STATE                   0x407A // Unused Var
 #define VAR_ROUTE128_STATE                   0x407B
-#define VAR_UNUSED_0x407C                    0x407C // Unused Var
-#define VAR_UNUSED_0x407D                    0x407D // Unused Var
-#define VAR_UNUSED_0x407E                    0x407E // Unused Var
-#define VAR_UNUSED_0x407F                    0x407F // Unused Var
-#define VAR_UNUSED_0x4080                    0x4080 // Unused Var
-#define VAR_UNUSED_0x4081                    0x4081 // Unused Var
+#define VAR_ROUTE129_STATE                   0x407C // Unused Var
+#define VAR_ROUTE130_STATE                   0x407D // Unused Var
+#define VAR_ROUTE131_STATE                   0x407E // Unused Var
+#define VAR_ROUTE132_STATE                   0x407F // Unused Var
+#define VAR_ROUTE133_STATE                   0x4080 // Unused Var
+#define VAR_ROUTE134_STATE                   0x4081 // Unused Var
 #define VAR_LITTLEROOT_HOUSES_STATE          0x4082
 #define VAR_UNUSED_0x4083                    0x4083 // Unused Var
 #define VAR_BIRCH_LAB_STATE                  0x4084
@@ -156,7 +156,7 @@
 #define VAR_UNUSED_0x408B                    0x408B // Unused Var
 #define VAR_LITTLEROOT_HOUSES_STATE_2        0x408C
 #define VAR_LITTLEROOT_RIVAL_STATE           0x408D
-#define VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE 0x408E
+#define VAR_BOARD_BRINEY_BOAT_STATE          0x408E
 #define VAR_DEVON_CORP_3F_STATE              0x408F
 #define VAR_BRINEY_HOUSE_STATE               0x4090
 #define VAR_UNUSED_0x4091                    0x4091 // Unused Var
@@ -213,11 +213,11 @@
 #define VAR_FOSSIL_RESURRECTION_STATE        0x40C4
 #define VAR_WHICH_FOSSIL_REVIVED             0x40C5
 #define VAR_STEVENS_HOUSE_STATE              0x40C6
-#define VAR_OLDALE_STATE                     0x40C7
+#define VAR_OLDALE_RIVAL_STATE               0x40C7
 #define VAR_JAGGED_PASS_STATE                0x40C8
 #define VAR_SCOTT_PETALBURG_ENCOUNTER        0x40C9
 #define VAR_SKY_PILLAR_STATE                 0x40CA
-#define VAR_ROUTE_111_STATE                  0x40CB
+#define VAR_MIRAGE_TOWER_STATE               0x40CB
 #define VAR_FOSSIL_MANIAC_STATE              0x40CC
 #define VAR_CABLE_CLUB_TUTORIAL_STATE        0x40CD
 #define VAR_FRONTIER_BATTLE_MODE             0x40CE
@@ -225,14 +225,14 @@
 #define VAR_HAS_ENTERED_BATTLE_FRONTIER      0x40D0 // Var is used like a flag.
 #define VAR_SCOTT_STATE                      0x40D1
 #define VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE   0x40D2
-#define VAR_0x40D3                           0x40D3
+#define VAR_DEX_UPGRADE_JOHTO_STARTER_STATE  0x40D3
 #define VAR_SS_TIDAL_SCOTT_STATE             0x40D4 // Always equal to FLAG_MET_SCOTT_ON_SS_TIDAL
 #define VAR_ROAMER_POKEMON                   0x40D5 // 0 = Latias, 1 = Latios
 #define VAR_TRAINER_HILL_IS_ACTIVE           0x40D6
 #define VAR_SKY_PILLAR_RAQUAZA_CRY_DONE      0x40D7
-#define VAR_SOOTOPOLIS_STATE                 0x40D8
+#define VAR_SOOTOPOLIS_WALLACE_STATE         0x40D8
 #define VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 0x40D9
-#define VAR_0x40DA                           0x40DA
+#define VAR_REGISTER_BIRCH_STATE             0x40DA
 #define VAR_UNUSED_0x40DB                    0x40DB // Unused Var
 #define VAR_UNUSED_0x40DC                    0x40DC // Unused Var
 #define VAR_EVENT_PICHU_SLOT                 0x40DD

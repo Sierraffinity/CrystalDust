@@ -217,7 +217,7 @@ PetalburgCity_Gym_EventScript_204AAC:: @ 8204AAC
 	removeobject 10
 	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_AUNT
 	setvar VAR_PETALBURG_GYM_STATE, 1
-	setvar VAR_PETALBURG_STATE, 2
+	setvar VAR_PETALBURG_CITY_STATE, 2
 	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
 	clearflag FLAG_HIDE_PETALBURG_GYM_WALLY
 	setflag FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_RIVAL
@@ -496,7 +496,7 @@ PetalburgCity_Gym_EventScript_204F13:: @ 8204F13
 	compare VAR_0x8008, 3
 	call_if_eq PetalburgCity_Gym_EventScript_20506C
 	removeobject 11
-	setvar VAR_PETALBURG_STATE, 4
+	setvar VAR_PETALBURG_CITY_STATE, 4
 	clearflag FLAG_HIDE_PETALBURG_CITY_WALLYS_UNCLE
 	warp MAP_PETALBURG_CITY, 255, 15, 8
 	waitstate
@@ -1146,51 +1146,51 @@ PetalburgCity_Gym_EventScript_205645:: @ 8205645
 	return
 
 PetalburgCity_Gym_EventScript_205666:: @ 8205666
-	setmetatile 6, 85, 528, 0
-	setmetatile 7, 85, 529, 0
-	setmetatile 1, 98, 528, 0
-	setmetatile 2, 98, 529, 0
+	setmetatile 6, 85, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 7, 85, METATILE_PetalburgGym_RoomEntrance_Right, 0
+	setmetatile 1, 98, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 2, 98, METATILE_PetalburgGym_RoomEntrance_Right, 0
 	return
 
 PetalburgCity_Gym_EventScript_20568B:: @ 820568B
-	setmetatile 6, 46, 528, 0
-	setmetatile 7, 46, 529, 0
-	setmetatile 1, 59, 528, 0
-	setmetatile 2, 59, 529, 0
+	setmetatile 6, 46, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 7, 46, METATILE_PetalburgGym_RoomEntrance_Right, 0
+	setmetatile 1, 59, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 2, 59, METATILE_PetalburgGym_RoomEntrance_Right, 0
 	return
 
 PetalburgCity_Gym_EventScript_2056B0:: @ 82056B0
-	setmetatile 6, 59, 528, 0
-	setmetatile 7, 59, 529, 0
-	setmetatile 1, 72, 528, 0
-	setmetatile 2, 72, 529, 0
+	setmetatile 6, 59, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 7, 59, METATILE_PetalburgGym_RoomEntrance_Right, 0
+	setmetatile 1, 72, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 2, 72, METATILE_PetalburgGym_RoomEntrance_Right, 0
 	return
 
 PetalburgCity_Gym_EventScript_2056D5:: @ 82056D5
-	setmetatile 1, 20, 528, 0
-	setmetatile 2, 20, 529, 0
+	setmetatile 1, 20, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 2, 20, METATILE_PetalburgGym_RoomEntrance_Right, 0
 	return
 
 PetalburgCity_Gym_EventScript_2056E8:: @ 82056E8
-	setmetatile 6, 20, 528, 0
-	setmetatile 7, 20, 529, 0
-	setmetatile 1, 33, 528, 0
-	setmetatile 2, 33, 529, 0
+	setmetatile 6, 20, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 7, 20, METATILE_PetalburgGym_RoomEntrance_Right, 0
+	setmetatile 1, 33, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 2, 33, METATILE_PetalburgGym_RoomEntrance_Right, 0
 	return
 
 PetalburgCity_Gym_EventScript_20570D:: @ 820570D
-	setmetatile 6, 33, 528, 0
-	setmetatile 7, 33, 529, 0
+	setmetatile 6, 33, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 7, 33, METATILE_PetalburgGym_RoomEntrance_Right, 0
 	return
 
 PetalburgCity_Gym_EventScript_205720:: @ 8205720
-	setmetatile 1, 7, 528, 0
-	setmetatile 2, 7, 529, 0
+	setmetatile 1, 7, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 2, 7, METATILE_PetalburgGym_RoomEntrance_Right, 0
 	return
 
 PetalburgCity_Gym_EventScript_205733:: @ 8205733
-	setmetatile 6, 7, 528, 0
-	setmetatile 7, 7, 529, 0
+	setmetatile 6, 7, METATILE_PetalburgGym_RoomEntrance_Left, 0
+	setmetatile 7, 7, METATILE_PetalburgGym_RoomEntrance_Right, 0
 	return
 
 PetalburgCity_Gym_EventScript_205746:: @ 8205746

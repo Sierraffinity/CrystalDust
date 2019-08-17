@@ -4,6 +4,7 @@
 #include "fieldmap.h"
 #include "fldeff.h"
 #include "task.h"
+#include "constants/metatile_labels.h"
 
 static EWRAM_DATA u8 sEscalatorAnim_TaskId = 0;
 
@@ -53,13 +54,47 @@ static void sub_80E12E8(u8 taskId, const s16 *list, u16 isImpassableFlag)
     }
 }
 
-static const u16 gUnknown_08589ABA[] = {0x308, 0x30A, 0x2D0};
-static const u16 gUnknown_08589AC0[] = {0x309, 0x30B, 0x2D1};
-static const u16 gUnknown_08589AC6[] = {0x310, 0x312, 0x2D8};
-static const u16 gUnknown_08589ACC[] = {0x311, 0x313, 0x2D9};
-static const u16 gUnknown_08589AD2[] = {0x2E3, 0x316, 0x314};
-static const u16 gUnknown_08589AD8[] = {0x2E4, 0x317, 0x315};
-static const u16 gUnknown_08589ADE[] = {0x2EB, 0x31E, 0x31C};
+static const u16 sElevatorMetatiles_1F_0[] = {
+    METATILE_ID(PokemonCenter, Elevator1F_Tile0_Frame2),
+    METATILE_ID(PokemonCenter, Elevator1F_Tile0_Frame1),
+    METATILE_ID(PokemonCenter, Elevator1F_Tile0_Frame0)
+};
+
+static const u16 sElevatorMetatiles_1F_1[] = {
+    METATILE_ID(PokemonCenter, Elevator1F_Tile1_Frame2),
+    METATILE_ID(PokemonCenter, Elevator1F_Tile1_Frame1),
+    METATILE_ID(PokemonCenter, Elevator1F_Tile1_Frame0)
+};
+
+static const u16 sElevatorMetatiles_1F_2[] = {
+    METATILE_ID(PokemonCenter, Elevator1F_Tile2_Frame2),
+    METATILE_ID(PokemonCenter, Elevator1F_Tile2_Frame1),
+    METATILE_ID(PokemonCenter, Elevator1F_Tile2_Frame0)
+};
+
+static const u16 sElevatorMetatiles_1F_3[] = {
+    METATILE_ID(PokemonCenter, Elevator1F_Tile3_Frame2),
+    METATILE_ID(PokemonCenter, Elevator1F_Tile3_Frame1),
+    METATILE_ID(PokemonCenter, Elevator1F_Tile3_Frame0)
+};
+
+static const u16 sElevatorMetatiles_2F_0[] = {
+    METATILE_ID(PokemonCenter, Elevator2F_Tile0_Frame0),
+    METATILE_ID(PokemonCenter, Elevator2F_Tile0_Frame1),
+    METATILE_ID(PokemonCenter, Elevator2F_Tile0_Frame2)
+};
+
+static const u16 sElevatorMetatiles_2F_1[] = {
+    METATILE_ID(PokemonCenter, Elevator2F_Tile1_Frame0),
+    METATILE_ID(PokemonCenter, Elevator2F_Tile1_Frame1),
+    METATILE_ID(PokemonCenter, Elevator2F_Tile1_Frame2)
+};
+
+static const u16 sElevatorMetatiles_2F_2[] = {
+    METATILE_ID(PokemonCenter, Elevator2F_Tile2_Frame0),
+    METATILE_ID(PokemonCenter, Elevator2F_Tile2_Frame1),
+    METATILE_ID(PokemonCenter, Elevator2F_Tile2_Frame2)
+};
 
 static void sub_80E1444(u8 taskId)
 {
@@ -70,25 +105,25 @@ static void sub_80E1444(u8 taskId)
     switch (data[0])
     {
         case 0:
-            sub_80E12E8(taskId, gUnknown_08589ABA, 0);
+            sub_80E12E8(taskId, sElevatorMetatiles_1F_0, 0);
             break;
         case 1:
-            sub_80E12E8(taskId, gUnknown_08589AC0, 0);
+            sub_80E12E8(taskId, sElevatorMetatiles_1F_1, 0);
             break;
         case 2:
-            sub_80E12E8(taskId, gUnknown_08589AC6, METATILE_COLLISION_MASK);
+            sub_80E12E8(taskId, sElevatorMetatiles_1F_2, METATILE_COLLISION_MASK);
             break;
         case 3:
-            sub_80E12E8(taskId, gUnknown_08589ACC, 0);
+            sub_80E12E8(taskId, sElevatorMetatiles_1F_3, 0);
             break;
         case 4:
-            sub_80E12E8(taskId, gUnknown_08589AD2, METATILE_COLLISION_MASK);
+            sub_80E12E8(taskId, sElevatorMetatiles_2F_0, METATILE_COLLISION_MASK);
             break;
         case 5:
-            sub_80E12E8(taskId, gUnknown_08589AD8, 0);
+            sub_80E12E8(taskId, sElevatorMetatiles_2F_1, 0);
             break;
         case 6:
-            sub_80E12E8(taskId, gUnknown_08589ADE, 0);
+            sub_80E12E8(taskId, sElevatorMetatiles_2F_2, 0);
             break;
     }
 

@@ -169,7 +169,7 @@ Route29_Movement_DudeToPlayerBottom:
 Route29_EventScript_CatchingTutorialMain:
 	textcolor MSG_COLOR_BLUE
 	setflag FLAG_DUDE_TALKED_TO_YOU
-	setvar VAR_ROUTE29_STATE, 2
+	setvar VAR_LAVARIDGE_TOWN_STATE, 2
 	msgbox Route29_Text_Dude_CatchingIntro, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq Route29_EventScript_CatchingTutorialRejected

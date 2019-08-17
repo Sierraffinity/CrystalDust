@@ -185,7 +185,7 @@ extern struct MusicPlayerInfo gMPlayInfo_BGM;
 static EWRAM_DATA u8 *sOakIntro_BgBuffer = NULL;
 static EWRAM_DATA u16 sCurrItemAndOptionMenuCheck = 0;
 
-static IWRAM_DATA u8 sOakSpeechMainTaskId;
+static u8 sOakSpeechMainTaskId;
 
 // Static ROM declarations
 

@@ -7,6 +7,7 @@
 #include "battle.h"
 #include "gym_leader_rematch.h"
 #include "match_call.h"
+#include "constants/region_map_sections.h"
 
 // Static type declarations
 
@@ -18,13 +19,13 @@ typedef struct MatchCallTextDataStruct {
 
 struct MatchCallStructCommon {
     u8 type;
-    u8 v1;
+    u8 mapSec;
     u16 flag;
 };
 
 struct MatchCallStruct0 {
     u8 type;
-    u8 v1;
+    u8 mapSec;
     u16 flag;
     const u8 *desc;
     const u8 *name;
@@ -33,7 +34,7 @@ struct MatchCallStruct0 {
 
 struct MatchCallStruct1 {
     u8 type;
-    u8 v1;
+    u8 mapSec;
     u16 flag;
     u16 rematchTableIdx;
     const u8 *desc;
@@ -43,12 +44,12 @@ struct MatchCallStruct1 {
 
 struct MatchCallSubstruct2 {
     u16 flag;
-    u8 v2;
+    u8 mapSec;
 };
 
 struct MatchCallStruct2 {
     u8 type;
-    u8 v1;
+    u8 mapSec;
     u16 flag;
     u16 rematchTableIdx;
     const u8 *desc;
@@ -58,7 +59,7 @@ struct MatchCallStruct2 {
 
 struct MatchCallStruct3 {
     u8 type;
-    u8 v1;
+    u8 mapSec;
     u16 flag;
     const u8 *desc;
     const u8 *name;
@@ -76,7 +77,7 @@ struct MatchCallStruct4 {
 // Note: Type1 and Type5 have identical struct layouts.
 struct MatchCallStruct5 {
     u8 type;
-    u8 v1;
+    u8 mapSec;
     u16 flag;
     u16 rematchTableIdx;
     const u8 *desc;
@@ -97,7 +98,7 @@ typedef union {
 struct UnkStruct_08625388 {
     u16 idx;
     u16 v2;
-    u16 v4;
+    u32 v4;
     const u8 *v8[4];
 };
 
@@ -280,7 +281,7 @@ static const match_call_text_data_t sMrStoneTextScripts[] = {
 static const struct MatchCallStruct0 sMrStoneMatchCallHeader =
 {
     .type = 0,
-    .v1 = 10,
+    .mapSec = 10,
     .flag = 0xFFFF,
     .desc = gMrStoneMatchCallDesc,
     .name = gMrStoneMatchCallName,
@@ -303,7 +304,7 @@ static const match_call_text_data_t sNormanTextScripts[] = {
 static const struct MatchCallStruct5 sNormanMatchCallHeader =
 {
     .type = 5,
-    .v1 = 7,
+    .mapSec = 7,
     .flag = FLAG_ENABLE_NORMAN_MATCH_CALL,
     .rematchTableIdx = REMATCH_NORMAN,
     .desc = gNormanMatchCallDesc,
@@ -314,7 +315,7 @@ static const struct MatchCallStruct5 sNormanMatchCallHeader =
 static const struct MatchCallStruct3 sProfBirchMatchCallHeader =
 {
     .type = 3,
-    .v1 = 0,
+    .mapSec = 0,
     .flag = FLAG_ENABLE_PROF_ELM_MATCH_CALL,
     .desc = gProfBirchMatchCallDesc,
     .name = gProfBirchMatchCallName
@@ -330,7 +331,7 @@ static const match_call_text_data_t sMomTextScripts[] = {
 static const struct MatchCallStruct0 sMomMatchCallHeader =
 {
     .type = 0,
-    .v1 = 0,
+    .mapSec = 0,
     .flag = FLAG_ENABLE_MOM_MATCH_CALL,
     .desc = gMomMatchCallDesc,
     .name = gMomMatchCallName,
@@ -351,7 +352,7 @@ static const match_call_text_data_t sStevenTextScripts[] = {
 static const struct MatchCallStruct0 sStevenMatchCallHeader =
 {
     .type = 0,
-    .v1 = 0xD5,
+    .mapSec = MAPSEC_NONE,
     .flag = FLAG_REGISTERED_STEVEN_POKENAV,
     .desc = gStevenMatchCallDesc,
     .name = gStevenMatchCallName,
@@ -428,16 +429,16 @@ static const match_call_text_data_t sWallyTextScripts[] = {
 };
 
 const struct MatchCallSubstruct2 sWallyAdditionalData[] = {
-    { FLAG_HIDE_MAUVILLE_CITY_WALLY, 0x05 },
-    { FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, 0xD5 },
-    { FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY, 0x46 },
-    { 0xFFFF,     0xD5 }
+    { FLAG_HIDE_MAUVILLE_CITY_WALLY,          MAPSEC_VERDANTURF_TOWN },
+    { FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT,    MAPSEC_NONE },
+    { FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY,  MAPSEC_VICTORY_ROAD },
+    { 0xFFFF,                                 MAPSEC_NONE }
 };
 
 static const struct MatchCallStruct2 sWallyMatchCallHeader =
 {
     .type = 2,
-    .v1 = 0,
+    .mapSec = 0,
     .flag = FLAG_ENABLE_WALLY_MATCH_CALL,
     .rematchTableIdx = REMATCH_WALLY_3,
     .desc = gWallyMatchCallDesc,
@@ -460,7 +461,7 @@ static const match_call_text_data_t sScottTextScripts[] = {
 static const struct MatchCallStruct0 sScottMatchCallHeader =
 {
     .type = 0,
-    .v1 = 0xD5,
+    .mapSec = MAPSEC_NONE,
     .flag = FLAG_ENABLE_SCOTT_MATCH_CALL,
     .desc = gScottMatchCallDesc,
     .name = gScottMatchCallName,
@@ -478,7 +479,7 @@ static const match_call_text_data_t sRoxanneTextScripts[] = {
 static const struct MatchCallStruct5 sRoxanneMatchCallHeader =
 {
     .type = 5,
-    .v1 = 10,
+    .mapSec = 10,
     .flag = FLAG_ENABLE_ROXANNE_MATCH_CALL,
     .rematchTableIdx = REMATCH_ROXANNE,
     .desc = gRoxanneMatchCallDesc,
@@ -497,7 +498,7 @@ static const match_call_text_data_t sBrawlyTextScripts[] = {
 static const struct MatchCallStruct5 sBrawlyMatchCallHeader =
 {
     .type = 5,
-    .v1 = 2,
+    .mapSec = 2,
     .flag = FLAG_ENABLE_BRAWLY_MATCH_CALL,
     .rematchTableIdx = REMATCH_BRAWLY,
     .desc = gBrawlyMatchCallDesc,
@@ -516,7 +517,7 @@ static const match_call_text_data_t sWattsonTextScripts[] = {
 static const struct MatchCallStruct5 sWattsonMatchCallHeader =
 {
     .type = 5,
-    .v1 = 9,
+    .mapSec = MAPSEC_MAUVILLE_CITY,
     .flag = FLAG_ENABLE_WATTSON_MATCH_CALL,
     .rematchTableIdx = REMATCH_WATTSON,
     .desc = gWattsonMatchCallDesc,
@@ -535,7 +536,7 @@ static const match_call_text_data_t sFlanneryTextScripts[] = {
 static const struct MatchCallStruct5 sFlanneryMatchCallHeader =
 {
     .type = 5,
-    .v1 = 3,
+    .mapSec = MAPSEC_LAVARIDGE_TOWN,
     .flag = FLAG_ENABLE_FLANNERY_MATCH_CALL,
     .rematchTableIdx = REMATCH_FLANNERY,
     .desc = gFlanneryMatchCallDesc,
@@ -554,7 +555,7 @@ static const match_call_text_data_t sWinonaTextScripts[] = {
 static const struct MatchCallStruct5 sWinonaMatchCallHeader =
 {
     .type = 5,
-    .v1 = 11,
+    .mapSec = MAPSEC_FORTREE_CITY,
     .flag = FLAG_ENABLE_WINONA_MATCH_CALL,
     .rematchTableIdx = REMATCH_WINONA,
     .desc = gWinonaMatchCallDesc,
@@ -573,7 +574,7 @@ static const match_call_text_data_t sTateLizaTextScripts[] = {
 static const struct MatchCallStruct5 sTateLizaMatchCallHeader =
 {
     .type = 5,
-    .v1 = 13,
+    .mapSec = MAPSEC_MOSSDEEP_CITY,
     .flag = FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL,
     .rematchTableIdx = REMATCH_TATE_AND_LIZA,
     .desc = gTateLizaMatchCallDesc,
@@ -592,7 +593,7 @@ static const match_call_text_data_t sJuanTextScripts[] = {
 static const struct MatchCallStruct5 sJuanMatchCallHeader =
 {
     .type = 5,
-    .v1 = 14,
+    .mapSec = MAPSEC_SOOTOPOLIS_CITY,
     .flag = FLAG_ENABLE_JUAN_MATCH_CALL,
     .rematchTableIdx = REMATCH_JUAN,
     .desc = gJuanMatchCallDesc,
@@ -608,7 +609,7 @@ static const match_call_text_data_t sSidneyTextScripts[] = {
 static const struct MatchCallStruct5 sSidneyMatchCallHeader =
 {
     .type = 5,
-    .v1 = 15,
+    .mapSec = MAPSEC_EVER_GRANDE_CITY,
     .flag = FLAG_PHONE_CARD_SIDNEY,
     .rematchTableIdx = REMATCH_SIDNEY,
     .desc = gEliteFourMatchCallDesc,
@@ -624,7 +625,7 @@ static const match_call_text_data_t sPhoebeTextScripts[] = {
 static const struct MatchCallStruct5 sPhoebeMatchCallHeader =
 {
     .type = 5,
-    .v1 = 15,
+    .mapSec = MAPSEC_EVER_GRANDE_CITY,
     .flag = FLAG_PHONE_CARD_PHOEBE,
     .rematchTableIdx = REMATCH_PHOEBE,
     .desc = gEliteFourMatchCallDesc,
@@ -640,7 +641,7 @@ static const match_call_text_data_t sGlaciaTextScripts[] = {
 static const struct MatchCallStruct5 sGlaciaMatchCallHeader =
 {
     .type = 5,
-    .v1 = 15,
+    .mapSec = MAPSEC_EVER_GRANDE_CITY,
     .flag = FLAG_PHONE_CARD_GLACIA,
     .rematchTableIdx = REMATCH_GLACIA,
     .desc = gEliteFourMatchCallDesc,
@@ -656,7 +657,7 @@ static const match_call_text_data_t sDrakeTextScripts[] = {
 static const struct MatchCallStruct5 sDrakeMatchCallHeader =
 {
     .type = 5,
-    .v1 = 15,
+    .mapSec = MAPSEC_EVER_GRANDE_CITY,
     .flag = FLAG_PHONE_CARD_DRAKE,
     .rematchTableIdx = REMATCH_DRAKE,
     .desc = gEliteFourMatchCallDesc,
@@ -672,7 +673,7 @@ static const match_call_text_data_t sWallaceTextScripts[] = {
 static const struct MatchCallStruct5 sWallaceMatchCallHeader =
 {
     .type = 5,
-    .v1 = 15,
+    .mapSec = MAPSEC_EVER_GRANDE_CITY,
     .flag = FLAG_PHONE_CARD_WALLACE,
     .rematchTableIdx = REMATCH_WALLACE,
     .desc = gChampionMatchCallDesc,

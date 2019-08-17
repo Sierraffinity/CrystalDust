@@ -7,43 +7,43 @@ Route111_MapScripts:: @ 81F0CA7
 
 Route111_MapScript1_1F0CBC: @ 81F0CBC
 	call_if_unset FLAG_REGI_DOORS_OPENED, Route111_EventScript_1F0CD1
-	compare VAR_ROUTE_111_STATE, 1
+	compare VAR_MIRAGE_TOWER_STATE, 1
 	call_if_eq Route111_EventScript_1F0CE4
 	end
 
 Route111_EventScript_1F0CD1:: @ 81F0CD1
-	setmetatile 29, 86, 124, 1
-	setmetatile 29, 87, 145, 1
+	setmetatile 29, 86, METATILE_General_RockWall_RockBase, 1
+	setmetatile 29, 87, METATILE_General_RockWall_SandBase, 1
 	return
 
 Route111_EventScript_1F0CE4:: @ 81F0CE4
-	setmetatile 18, 53, 984, 0
-	setmetatile 19, 53, 985, 0
-	setmetatile 20, 53, 986, 0
-	setmetatile 18, 54, 992, 0
-	setmetatile 19, 54, 993, 0
-	setmetatile 20, 54, 994, 0
-	setmetatile 18, 55, 1000, 0
-	setmetatile 19, 55, 1001, 0
-	setmetatile 20, 55, 1002, 0
-	setmetatile 18, 56, 1008, 0
-	setmetatile 19, 56, 1009, 0
-	setmetatile 20, 56, 1010, 0
-	setmetatile 18, 57, 987, 0
-	setmetatile 19, 57, 988, 0
-	setmetatile 20, 57, 989, 0
-	setmetatile 18, 58, 995, 0
-	setmetatile 19, 58, 996, 0
-	setmetatile 20, 58, 997, 0
+	setmetatile 18, 53, METATILE_Mauville_MirageTower_Tile0, 0
+	setmetatile 19, 53, METATILE_Mauville_MirageTower_Tile1, 0
+	setmetatile 20, 53, METATILE_Mauville_MirageTower_Tile2, 0
+	setmetatile 18, 54, METATILE_Mauville_MirageTower_Tile3, 0
+	setmetatile 19, 54, METATILE_Mauville_MirageTower_Tile4, 0
+	setmetatile 20, 54, METATILE_Mauville_MirageTower_Tile5, 0
+	setmetatile 18, 55, METATILE_Mauville_MirageTower_Tile6, 0
+	setmetatile 19, 55, METATILE_Mauville_MirageTower_Tile7, 0
+	setmetatile 20, 55, METATILE_Mauville_MirageTower_Tile8, 0
+	setmetatile 18, 56, METATILE_Mauville_MirageTower_Tile9, 0
+	setmetatile 19, 56, METATILE_Mauville_MirageTower_TileA, 0
+	setmetatile 20, 56, METATILE_Mauville_MirageTower_TileB, 0
+	setmetatile 18, 57, METATILE_Mauville_MirageTower_TileC, 0
+	setmetatile 19, 57, METATILE_Mauville_MirageTower_TileD, 0
+	setmetatile 20, 57, METATILE_Mauville_MirageTower_TileE, 0
+	setmetatile 18, 58, METATILE_Mauville_MirageTower_TileF, 0
+	setmetatile 19, 58, METATILE_Mauville_MirageTower_Tile10, 0
+	setmetatile 20, 58, METATILE_Mauville_MirageTower_Tile11, 0
 	return
 
 Route111_OnTransition: @ 81F0D87
 	setvar VAR_TRAINER_HILL_IS_ACTIVE, 0
 	special SetMirageTowerVisibility
 	call_if_unset FLAG_MIRAGE_TOWER_VISIBLE, Route111_EventScript_1F0E3C
-	compare VAR_ROUTE_111_STATE, 1
+	compare VAR_MIRAGE_TOWER_STATE, 1
 	call_if_eq Route111_EventScript_1F0DC2
-	compare VAR_ROUTE_111_STATE, 2
+	compare VAR_MIRAGE_TOWER_STATE, 2
 	call_if_eq Route111_EventScript_1F0E40
 	call Route111_EventScript_1F0DE6
 	call Route111_EventScript_28CCC7
@@ -101,11 +101,11 @@ Route111_EventScript_1F0E3C:: @ 81F0E3C
 	return
 
 Route111_EventScript_1F0E40:: @ 81F0E40
-	setvar VAR_ROUTE_111_STATE, 3
+	setvar VAR_MIRAGE_TOWER_STATE, 3
 	return
 
 Route111_MapScript2_1F0E46: @ 81F0E46
-	map_script_2 VAR_ROUTE_111_STATE, 1, Route111_EventScript_1F0E50
+	map_script_2 VAR_MIRAGE_TOWER_STATE, 1, Route111_EventScript_1F0E50
 	.2byte 0
 
 Route111_EventScript_1F0E50:: @ 81F0E50
@@ -113,7 +113,7 @@ Route111_EventScript_1F0E50:: @ 81F0E50
 	end
 
 Route111_MapScript2_1F0E56: @ 81F0E56
-	map_script_2 VAR_ROUTE_111_STATE, 1, Route111_EventScript_1F0E60
+	map_script_2 VAR_MIRAGE_TOWER_STATE, 1, Route111_EventScript_1F0E60
 	.2byte 0
 
 Route111_EventScript_1F0E60:: @ 81F0E60
@@ -134,7 +134,7 @@ Route111_EventScript_1F0E60:: @ 81F0E60
 	waitstate
 	special StartMirageTowerFossilFallAndSink
 	waitstate
-	setvar VAR_ROUTE_111_STATE, 2
+	setvar VAR_MIRAGE_TOWER_STATE, 2
 	clearflag FLAG_HIDE_DESERT_UNDERPASS_FOSSIL
 	goto_if_set FLAG_CHOSE_ROOT_FOSSIL, Route111_EventScript_1F0EA7
 	msgbox Route111_Text_1F1C74, MSGBOX_DEFAULT
@@ -411,9 +411,9 @@ Route111_EventScript_1F1192:: @ 81F1192
 Route111_EventScript_1F119B:: @ 81F119B
 	lock
 	faceplayer
-	compare VAR_ROUTE_111_STATE, 3
+	compare VAR_MIRAGE_TOWER_STATE, 3
 	goto_if_eq Route111_EventScript_1F11C6
-	compare VAR_ROUTE_111_STATE, 2
+	compare VAR_MIRAGE_TOWER_STATE, 2
 	goto_if_eq Route111_EventScript_1F11D0
 	goto_if_set FLAG_MIRAGE_TOWER_VISIBLE, Route111_EventScript_1F11DA
 	msgbox Route111_Text_1F1A22, MSGBOX_DEFAULT

@@ -22,26 +22,26 @@ MossdeepCity_Gym_EventScript_220833:: @ 8220833
 	end
 
 MossdeepCity_Gym_EventScript_22083D:: @ 822083D
-	setmetatile 5, 5, 516, 0
-	setmetatile 2, 7, 569, 1
+	setmetatile 5, 5, METATILE_MossdeepGym_Obelisk_Top, 0
+	setmetatile 2, 7, METATILE_MossdeepGym_Empty1, 1
 	goto MossdeepCity_Gym_EventScript_220815
 	end
 
 MossdeepCity_Gym_EventScript_220855:: @ 8220855
-	setmetatile 8, 14, 516, 0
-	setmetatile 8, 10, 569, 1
+	setmetatile 8, 14, METATILE_MossdeepGym_Obelisk_Top, 0
+	setmetatile 8, 10, METATILE_MossdeepGym_Empty1, 1
 	goto MossdeepCity_Gym_EventScript_220824
 	end
 
 MossdeepCity_Gym_EventScript_22086D:: @ 822086D
-	setmetatile 15, 17, 524, 0
-	setmetatile 17, 15, 569, 1
+	setmetatile 15, 17, METATILE_MossdeepGym_Obelisk_Base, 0
+	setmetatile 17, 15, METATILE_MossdeepGym_Empty1, 1
 	goto MossdeepCity_Gym_EventScript_220833
 	end
 
 MossdeepCity_Gym_EventScript_220885:: @ 8220885
-	setmetatile 1, 23, 525, 0
-	setmetatile 5, 24, 569, 1
+	setmetatile 1, 23, METATILE_MossdeepGym_Wall_LeftCorner, 0
+	setmetatile 5, 24, METATILE_MossdeepGym_Empty1, 1
 	end
 
 MossdeepCity_Gym_EventScript_220898:: @ 8220898
@@ -71,7 +71,7 @@ MossdeepCity_Gym_EventScript_2208D1:: @ 82208D1
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
-	setvar VAR_MOSSDEEP_STATE, 1
+	setvar VAR_MOSSDEEP_CITY_STATE, 1
 	setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
 	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE_2, 1
 	call MossdeepCity_Gym_EventScript_22095B
@@ -114,8 +114,8 @@ MossdeepCity_Gym_EventScript_220999:: @ 8220999
 	setflag FLAG_MOSSDEEP_GYM_SWITCH_1
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Gym_Movement_220C30
 	waitmovement 0
-	setmetatile 5, 5, 516, 0
-	setmetatile 2, 7, 569, 1
+	setmetatile 5, 5, METATILE_MossdeepGym_Obelisk_Top, 0
+	setmetatile 2, 7, METATILE_MossdeepGym_Empty1, 1
 	goto MossdeepCity_Gym_EventScript_2209C8
 	end
 
@@ -129,8 +129,8 @@ MossdeepCity_Gym_EventScript_2209D0:: @ 82209D0
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Gym_Movement_220C30
 	waitmovement 0
-	setmetatile 5, 5, 524, 0
-	setmetatile 2, 7, 568, 1
+	setmetatile 5, 5, METATILE_MossdeepGym_Obelisk_Base, 0
+	setmetatile 2, 7, METATILE_MossdeepGym_Empty0, 1
 	goto MossdeepCity_Gym_EventScript_2209C8
 	end
 
@@ -140,8 +140,8 @@ MossdeepCity_Gym_EventScript_2209F5:: @ 82209F5
 	setflag FLAG_MOSSDEEP_GYM_SWITCH_2
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Gym_Movement_220C30
 	waitmovement 0
-	setmetatile 8, 14, 516, 0
-	setmetatile 8, 10, 569, 1
+	setmetatile 8, 14, METATILE_MossdeepGym_Obelisk_Top, 0
+	setmetatile 8, 10, METATILE_MossdeepGym_Empty1, 1
 	goto MossdeepCity_Gym_EventScript_2209C8
 	end
 
@@ -149,8 +149,8 @@ MossdeepCity_Gym_EventScript_220A24:: @ 8220A24
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_2
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Gym_Movement_220C30
 	waitmovement 0
-	setmetatile 8, 14, 517, 0
-	setmetatile 8, 10, 568, 1
+	setmetatile 8, 14, METATILE_MossdeepGym_OuterWall_RightCorner, 0
+	setmetatile 8, 10, METATILE_MossdeepGym_Empty0, 1
 	goto MossdeepCity_Gym_EventScript_2209C8
 	end
 
@@ -160,8 +160,8 @@ MossdeepCity_Gym_EventScript_220A49:: @ 8220A49
 	setflag FLAG_MOSSDEEP_GYM_SWITCH_3
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Gym_Movement_220C30
 	waitmovement 0
-	setmetatile 15, 17, 524, 0
-	setmetatile 17, 15, 569, 1
+	setmetatile 15, 17, METATILE_MossdeepGym_Obelisk_Base, 0
+	setmetatile 17, 15, METATILE_MossdeepGym_Empty1, 1
 	goto MossdeepCity_Gym_EventScript_2209C8
 	end
 
@@ -169,8 +169,8 @@ MossdeepCity_Gym_EventScript_220A78:: @ 8220A78
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Gym_Movement_220C30
 	waitmovement 0
-	setmetatile 15, 17, 516, 0
-	setmetatile 17, 15, 568, 1
+	setmetatile 15, 17, METATILE_MossdeepGym_Obelisk_Top, 0
+	setmetatile 17, 15, METATILE_MossdeepGym_Empty0, 1
 	goto MossdeepCity_Gym_EventScript_2209C8
 	end
 
@@ -180,8 +180,8 @@ MossdeepCity_Gym_EventScript_220A9D:: @ 8220A9D
 	setflag FLAG_MOSSDEEP_GYM_SWITCH_4
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Gym_Movement_220C30
 	waitmovement 0
-	setmetatile 1, 23, 525, 0
-	setmetatile 5, 24, 569, 1
+	setmetatile 1, 23, METATILE_MossdeepGym_Wall_LeftCorner, 0
+	setmetatile 5, 24, METATILE_MossdeepGym_Empty1, 1
 	goto MossdeepCity_Gym_EventScript_2209C8
 	end
 
@@ -189,8 +189,8 @@ MossdeepCity_Gym_EventScript_220ACC:: @ 8220ACC
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_4
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Gym_Movement_220C30
 	waitmovement 0
-	setmetatile 1, 23, 516, 0
-	setmetatile 5, 24, 568, 1
+	setmetatile 1, 23, METATILE_MossdeepGym_Obelisk_Top, 0
+	setmetatile 5, 24, METATILE_MossdeepGym_Empty0, 1
 	goto MossdeepCity_Gym_EventScript_2209C8
 	end
 

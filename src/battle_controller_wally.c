@@ -96,7 +96,6 @@ static void WallyBufferRunCommand(void);
 static void WallyBufferExecCompleted(void);
 static void CompleteOnChosenItem(void);
 static void sub_8168818(void);
-static u32 CopyWallyMonData(u8 monId, u8 *dst);
 static void SetWallyMonData(u8 monId);
 static void WallyDoMoveAnimation(void);
 static void sub_816AC04(u8 taskId);

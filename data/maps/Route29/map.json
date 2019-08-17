@@ -50,7 +50,7 @@
             "elevation": 3,
             "script": "Route29_EventScript_CatchingTutorial1",
             "type": "trigger",
-            "var": "VAR_ROUTE29_STATE",
+            "var": "VAR_LAVARIDGE_TOWN_STATE",
             "var_value": "1",
             "x": 65,
             "y": 10
@@ -59,7 +59,7 @@
             "elevation": 3,
             "script": "Route29_EventScript_CatchingTutorial2",
             "type": "trigger",
-            "var": "VAR_ROUTE29_STATE",
+            "var": "VAR_LAVARIDGE_TOWN_STATE",
             "var_value": "1",
             "x": 65,
             "y": 11
@@ -68,7 +68,7 @@
             "elevation": 3,
             "script": "Route29_EventScript_CatchingTutorial3",
             "type": "trigger",
-            "var": "VAR_ROUTE29_STATE",
+            "var": "VAR_LAVARIDGE_TOWN_STATE",
             "var_value": "1",
             "x": 65,
             "y": 12
@@ -77,7 +77,7 @@
             "elevation": 3,
             "script": "Route29_EventScript_CatchingTutorial4",
             "type": "trigger",
-            "var": "VAR_ROUTE29_STATE",
+            "var": "VAR_LAVARIDGE_TOWN_STATE",
             "var_value": "1",
             "x": 65,
             "y": 13
