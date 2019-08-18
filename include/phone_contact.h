@@ -8,7 +8,7 @@ typedef bool8 (*PhoneContactAcceptRematchCB)(s8 dayOfWeek, s8 hour);
 struct PhoneContact
 {
     const u8 *customDisplayName;
-    PhoneContactSelectMessage selectMessage;
+    const u8 *phoneScript;
     PhoneContactAcceptRematchCB canAcceptRematch;
     u8 mapNum;
     u8 mapGroup;

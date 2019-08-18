@@ -23,7 +23,11 @@ static u8 sDoesTextboxUseSignBorder;
 
 extern ScrCmdFunc gScriptCmdTable[];
 extern ScrCmdFunc gScriptCmdTableEnd[];
+extern ScrCmdFunc gPhoneScriptCmdTable[];
+extern ScrCmdFunc gPhoneScriptCmdTableEnd[];
 extern void *gNullScriptPtr;
+
+static void ReturnFromPhoneScript(void);
 
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd)
 {
@@ -32,6 +36,7 @@ void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTable
     ctx->mode = 0;
     ctx->scriptPtr = 0;
     ctx->stackDepth = 0;
+    ctx->phoneContext = PHONE_SCRIPT_NONE;
     ctx->nativePtr = 0;
     ctx->cmdTable = cmdTable;
     ctx->cmdTableEnd = cmdTableEnd;
@@ -58,8 +63,15 @@ void SetupNativeScript(struct ScriptContext *ctx, bool8 (*ptr)(void))
 
 void StopScript(struct ScriptContext *ctx)
 {
-    ctx->mode = 0;
-    ctx->scriptPtr = 0;
+    if (ctx->returnFromPhoneScript)
+    {
+        ReturnFromPhoneScript();
+    }
+    else
+    {
+        ctx->mode = 0;
+        ctx->scriptPtr = 0;
+    }
 }
 
 bool8 RunScriptCommand(struct ScriptContext *ctx)
@@ -261,6 +273,17 @@ void ScriptContext1_SetupScript(const u8 *ptr)
     DisableExitingFromScriptEarly();
     InitScriptContext(&sScriptContext1, gScriptCmdTable, gScriptCmdTableEnd);
     SetupBytecodeScript(&sScriptContext1, ptr);
+    ScriptContext2_Enable();
+    sScriptContext1Status = 0;
+}
+
+void ScriptContext1_SetupPhoneScript(const struct PhoneContact *phoneContact, u32 phoneContext)
+{
+    DisableExitingFromScriptEarly();
+    InitScriptContext(&sScriptContext1, gPhoneScriptCmdTable, gPhoneScriptCmdTableEnd);
+    sScriptContext1.phoneContext = phoneContext;
+    sScriptContext1.phoneContact = phoneContact;
+    SetupBytecodeScript(&sScriptContext1, phoneContact->phoneScript);
     ScriptContext2_Enable();
     sScriptContext1Status = 0;
 }
@@ -473,4 +496,24 @@ void InitRamScript_NoEventObject(u8 *script, u16 scriptSize)
     if (scriptSize > sizeof(gSaveBlock1Ptr->ramScript.data.script))
         scriptSize = sizeof(gSaveBlock1Ptr->ramScript.data.script);
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
+}
+
+void SwitchToPhoneScript(const u8 *script, u32 phoneContext)
+{
+    sScriptContext1.returnFromPhoneScript = sScriptContext1.scriptPtr;
+    sScriptContext1.phoneContext = phoneContext;
+    sScriptContext1.cmdTable = gPhoneScriptCmdTable;
+    sScriptContext1.cmdTableEnd = gPhoneScriptCmdTableEnd;
+    SetupBytecodeScript(&sScriptContext1, script);
+    sScriptContext1Status = 0;
+}
+
+static void ReturnFromPhoneScript(void)
+{
+    sScriptContext1.phoneContext = PHONE_SCRIPT_NONE;
+    sScriptContext1.cmdTable = gScriptCmdTable;
+    sScriptContext1.cmdTableEnd = gScriptCmdTableEnd;
+    SetupBytecodeScript(&sScriptContext1, sScriptContext1.returnFromPhoneScript);
+    sScriptContext1.returnFromPhoneScript = NULL;
+    sScriptContext1Status = 0;
 }

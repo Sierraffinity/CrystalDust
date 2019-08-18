@@ -6,5 +6,7 @@ extern const struct SpritePalette gSpritePalette_PokegearMenuSprites;
 extern const struct SpriteSheet sSpriteSheet_DigitTiles;
 
 void CB2_InitPokegear(void);
+void InitPokegearPhoneCall(u8 taskId);
+void HangupPokegearPhoneCall(void);
 
 #endif //GUARD_POKEGEAR_H

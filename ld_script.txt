@@ -338,6 +338,7 @@ SECTIONS {
         src/card_flip.o(.text);
         src/ruins_of_alph_puzzle.o(.text);
         src/bug_catching_contest.o(.text);
+        src/phone_script.o(.text);
         src/debug_menu.o(.text);
     } =0
 
@@ -352,6 +353,7 @@ SECTIONS {
         data/battle_ai_scripts.o(script_data);
         data/contest_ai_scripts.o(script_data);
         data/mystery_event_script_cmd_table.o(script_data);
+        data/phone.o(script_data);
     } =0
 
     lib_text :
@@ -691,6 +693,7 @@ SECTIONS {
         src/card_flip.o(.rodata);
         src/ruins_of_alph_puzzle.o(.rodata);
         src/bug_catching_contest.o(.rodata);
+        src/phone_script.o(.rodata);
         src/debug_menu.o(.rodata);
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);

@@ -1,6 +1,8 @@
 #ifndef GUARD_SCRIPT_H
 #define GUARD_SCRIPT_H
 
+#include "phone_contact.h"
+
 struct ScriptContext;
 
 typedef bool8 (*ScrCmdFunc)(struct ScriptContext *);
@@ -13,12 +15,22 @@ struct ScriptContext
     u8 stackDepth;
     u8 mode;
     u8 comparisonResult;
+    u8 phoneContext;
     u8 (*nativePtr)(void);
     const u8 *scriptPtr;
     const u8 *stack[20];
     ScrCmdFunc *cmdTable;
     ScrCmdFunc *cmdTableEnd;
     u32 data[4];
+    const u8 *returnFromPhoneScript;
+    const struct PhoneContact *phoneContact;
+};
+
+enum
+{
+    PHONE_SCRIPT_NONE,
+    PHONE_SCRIPT_POKEGEAR,
+    PHONE_SCRIPT_OVERWORLD,
 };
 
 #define ScriptReadByte(ctx) (*(ctx->scriptPtr++))
@@ -42,6 +54,7 @@ void ScriptContext1_Init(void);
 bool8 ScriptContext1_IsScriptSetUp(void);
 bool8 ScriptContext2_RunScript(void);
 void ScriptContext1_SetupScript(const u8 *ptr);
+void ScriptContext1_SetupPhoneScript(const struct PhoneContact *phoneContact, u32 phoneContext);
 void ScriptContext1_Stop(void);
 void EnableBothScriptContexts(void);
 void ScriptContext2_RunNewScript(const u8 *ptr);
@@ -68,6 +81,7 @@ bool8 CanExitScriptEarly(void);
 void TextboxUseSignBorder(void);
 void TextboxUseStandardBorder(void);
 bool8 DoesTextboxUseSignBorder(void);
+void SwitchToPhoneScript(const u8 *script, u32 phoneContext);
 
 // srccmd.h
 void sub_809BE48(u16 npcId);

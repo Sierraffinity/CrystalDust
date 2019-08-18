@@ -16,6 +16,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "phone_contact.h"
+#include "phone_script.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "random.h"
@@ -47,6 +48,7 @@ struct MatchCallState
     u8 triggeredFromScript:1;
     u8 forcedPhoneCallId:7;
     u8 name[16];
+    const u8 *script;
 };
 
 struct MatchCallTrainerTextInfo
@@ -95,11 +97,8 @@ static int GetTrainerMatchCallId(int);
 static u16 GetRematchTrainerLocation(int);
 static bool32 TrainerIsEligibleForRematch(int);
 static void StartMatchCall(void);
-static void ExecuteMatchCall(u8);
 static void DrawMatchCallTextBoxBorder(u32, u32, u32);
-static void InitMatchCallTextPrinter(int, const u8 *);
 static void InitMatchCallCallerNameTextPrinter(int, const u8 *);
-static bool32 ExecuteMatchCallTextPrinter(int);
 static const struct MatchCallText *GetSameRouteMatchCallText(int, u8 *);
 static const struct MatchCallText *GetDifferentRouteMatchCallText(int, u8 *);
 static const struct MatchCallText *GetBattleMatchCallText(int, u8 *);
@@ -114,9 +113,6 @@ static bool32 MoveMatchCallWindowToVram(u8);
 static bool32 PrintMatchCallIntroEllipsis(u8);
 static bool32 sub_81962B0(u8);
 static bool32 sub_81962D8(u8);
-static bool32 sub_8196330(u8);
-static bool32 sub_8196390(u8);
-static bool32 sub_81963F0(u8);
 static void PopulateTrainerName(int, u8 *);
 static void PopulateMapName(int, u8 *);
 static void PopulateSpeciesFromTrainerLocation(int, u8 *);
@@ -1143,16 +1139,12 @@ bool32 TryStartMatchCall(void)
     return FALSE;
 }
 
-void StartMatchCallFromScript(u8 *message, u8 callerId)
+void StartMatchCallFromScript(const u8 *script, u8 callerId)
 {
     gMatchCallState.triggeredFromScript = 1;
     gMatchCallState.callerId = callerId;
+    gMatchCallState.script = script;
     StartMatchCall();
-}
-
-bool32 IsMatchCallTaskActive(void)
-{
-    return FuncIsActiveTask(ExecuteMatchCall);
 }
 
 static void StartMatchCall(void)
@@ -1163,10 +1155,12 @@ static void StartMatchCall(void)
         FreezeEventObjects();
         sub_808B864();
         sub_808BCF4();
+        ScriptContext1_SetupPhoneScript(&gPhoneContacts[gMatchCallState.callerId], PHONE_SCRIPT_OVERWORLD);
     }
-
-    PlaySE(SE_TOREEYE);
-    CreateTask(ExecuteMatchCall, 1);
+    else
+    {
+        SwitchToPhoneScript(gMatchCallState.script, PHONE_SCRIPT_OVERWORLD);
+    }
 }
 
 static const u16 sUnknown_0860EA4C[] = INCBIN_U16("graphics/unknown/unknown_60EA4C.gbapal");
@@ -1175,30 +1169,6 @@ static const u16 sPokeNavIconPalette[] = INCBIN_U16("graphics/pokegear/phone_cal
 static const u32 sPokeNavIconGfx[] = INCBIN_U32("graphics/pokegear/phone_call_icon_with_bg.4bpp.lz");
 
 static const u8 sText_PokenavCallEllipsis[] = _("………………\p");
-
-static bool32 (*const sMatchCallTaskFuncs[])(u8) =
-{
-    LoadMatchCallWindowGfx,
-    MoveMatchCallWindowToVram,
-    PrintMatchCallIntroEllipsis,
-    sub_81962B0,
-    sub_81962D8,
-    sub_8196330,
-    sub_8196390,
-    sub_81963F0,
-};
-
-static void ExecuteMatchCall(u8 taskId)
-{
-    s16 *taskData = gTasks[taskId].data;
-    if (sMatchCallTaskFuncs[taskData[0]](taskId))
-    {
-        taskData[0]++;
-        taskData[1] = 0;
-        if ((u16)taskData[0] > 7)
-            DestroyTask(taskId);
-    }
-}
 
 static const struct WindowTemplate sMatchCallTextWindow =
 {
@@ -1222,18 +1192,46 @@ static const struct WindowTemplate sPhoneCardNameTextWindow =
     .baseBlock = 0x180
 };
 
+static bool32 (*const sMatchCallTaskFuncs[])(u8) =
+{
+    LoadMatchCallWindowGfx,
+    MoveMatchCallWindowToVram,
+    PrintMatchCallIntroEllipsis,
+    sub_81962B0,
+    sub_81962D8,
+};
+
+void InitOverworldPhoneCall(u8 taskId)
+{
+    s16 *taskData = gTasks[taskId].data;
+    if (sMatchCallTaskFuncs[taskData[0]](taskId))
+    {
+        taskData[0]++;
+        taskData[1] = 0;
+        if (taskData[0] >= ARRAY_COUNT(sMatchCallTaskFuncs))
+        {
+            gSpecialVar_Result = TRUE;
+            DestroyTask(taskId);
+        }
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE;
+    }
+}
+
 static bool32 LoadMatchCallWindowGfx(u8 taskId)
 {
     int i;
     s16 *taskData = gTasks[taskId].data;
-    taskData[2] = AddWindow(&sMatchCallTextWindow);
-    if (taskData[2] == 0xFF)
+    gPhoneCallWindowId = AddWindow(&sMatchCallTextWindow);
+    if (gPhoneCallWindowId == 0xFF)
     {
         DestroyTask(taskId);
         return FALSE;
     }
-    taskData[3] = AddWindow(&sPhoneCardNameTextWindow);
-    if (taskData[3] == 0xFF)
+    gPhoneCallerNameWindowId = AddWindow(&sPhoneCardNameTextWindow);
+    if (gPhoneCallerNameWindowId == 0xFF)
     {
         DestroyTask(taskId);
         return FALSE;
@@ -1241,22 +1239,22 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
 
     if (LoadBgTiles(0, sUnknown_0860EA6C, sizeof(sUnknown_0860EA6C), 0x270) == 0xFFFF)
     {
-        RemoveWindow(taskData[2]);
-        RemoveWindow(taskData[3]);
+        RemoveWindow(gPhoneCallWindowId);
+        RemoveWindow(gPhoneCallerNameWindowId);
         DestroyTask(taskId);
         return FALSE;
     }
 
     if (!decompress_and_copy_tile_data_to_vram(0, sPokeNavIconGfx, 0, 0x279, 0))
     {
-        RemoveWindow(taskData[2]);
-        RemoveWindow(taskData[3]);
+        RemoveWindow(gPhoneCallWindowId);
+        RemoveWindow(gPhoneCallerNameWindowId);
         DestroyTask(taskId);
         return FALSE;
     }
 
-    FillWindowPixelBuffer(taskData[2], PIXEL_FILL(8));
-    FillWindowPixelBuffer(taskData[3], PIXEL_FILL(8));
+    FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
+    FillWindowPixelBuffer(gPhoneCallerNameWindowId, PIXEL_FILL(8));
     LoadPalette(sUnknown_0860EA4C, 0xE0, 0x20);
     LoadPalette(sPokeNavIconPalette, 0xF0, 0x20);
 
@@ -1278,6 +1276,7 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
 
     taskData[4] = 32;
 
+    PlaySE(SE_TOREEYE);
     return TRUE;
 }
 
@@ -1287,13 +1286,13 @@ static bool32 MoveMatchCallWindowToVram(u8 taskId)
     if (free_temp_tile_data_buffers_if_possible())
         return FALSE;
 
-    PutWindowTilemap(taskData[2]);
-    PutWindowTilemap(taskData[3]);
-    DrawMatchCallTextBoxBorder(taskData[2], 0x270, 14);
-    DrawMatchCallTextBoxBorder(taskData[3], 0x270, 14);
+    PutWindowTilemap(gPhoneCallWindowId);
+    PutWindowTilemap(gPhoneCallerNameWindowId);
+    DrawMatchCallTextBoxBorder(gPhoneCallWindowId, 0x270, 14);
+    DrawMatchCallTextBoxBorder(gPhoneCallerNameWindowId, 0x270, 14);
     WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 15, 4, 4, 17, 1);
-    CopyWindowToVram(taskData[2], 2);
-    CopyWindowToVram(taskData[3], 2);
+    CopyWindowToVram(gPhoneCallWindowId, 2);
+    CopyWindowToVram(gPhoneCallerNameWindowId, 2);
     CopyBgTilemapBufferToVram(0);
     return TRUE;
 }
@@ -1305,9 +1304,9 @@ static bool32 PrintMatchCallIntroEllipsis(u8 taskId)
     if (!IsDma3ManagerBusyWithBgCopy())
     {
         name = BuildPhoneContactDisplayNameForCall(&gPhoneContacts[gMatchCallState.callerId], gMatchCallState.name);
-        InitMatchCallTextPrinter(taskData[2], sText_PokenavCallEllipsis);
-        InitMatchCallCallerNameTextPrinter(taskData[3], name);
-        CopyWindowToVram(taskData[3], 3);
+        InitMatchCallTextPrinter(gPhoneCallWindowId, sText_PokenavCallEllipsis);
+        InitMatchCallCallerNameTextPrinter(gPhoneCallerNameWindowId, name);
+        CopyWindowToVram(gPhoneCallerNameWindowId, 3);
         return TRUE;
     }
 
@@ -1341,108 +1340,85 @@ static bool32 sub_81962B0(u8 taskId)
 static bool32 sub_81962D8(u8 taskId)
 {
     s16 *taskData = gTasks[taskId].data;
-    if (!ExecuteMatchCallTextPrinter(taskData[2]))
+    if (!ExecuteMatchCallTextPrinter(gPhoneCallWindowId))
     {
-        FillWindowPixelBuffer(taskData[2], PIXEL_FILL(8));
-        if (!gMatchCallState.triggeredFromScript)
-        {
-            if (gMatchCallState.forcedPhoneCallId)
-            {
-                const struct ForcedPhoneCall *forcedPhoneCall = &sForcedPhoneCalls[gMatchCallState.forcedPhoneCallId - 1];
-                const struct PhoneContact *phoneContact = &gPhoneContacts[forcedPhoneCall->phoneContactId];
-                StringExpandPlaceholders(gStringVar4, phoneContact->selectMessage(phoneContact, TRUE));
-                FlagClear(forcedPhoneCall->flag);
-                InitMatchCallTextPrinter(taskData[2], gStringVar4);
-                return TRUE;
-            }
-            else
-            {
-                SelectMatchCallMessage(gRematchTable[gPhoneContacts[gMatchCallState.callerId].rematchTrainerId].trainerIds[0], gStringVar4, TRUE);
-                InitMatchCallTextPrinter(taskData[2], gStringVar4);
-                return TRUE;
-            }
-        }
-        else
-        {
-            InitMatchCallTextPrinter(taskData[2], gStringVar4);
-            return TRUE;
-        }
-    }
-
-    return FALSE;
-}
-
-static bool32 sub_8196330(u8 taskId)
-{
-    int i;
-    s16 *taskData = gTasks[taskId].data;
-    if (!ExecuteMatchCallTextPrinter(taskData[2]) && !IsSEPlaying() && gMain.newKeys & (A_BUTTON | B_BUTTON))
-    {
-        FillWindowPixelBuffer(taskData[2], PIXEL_FILL(8));
-        CopyWindowToVram(taskData[2], 2);
-
-        ScanlineEffect_Clear();
-        ScanlineEffect_SetParams(sScanlineParams);
-
-        taskData[4] = 0;
-
-        PlaySE(SE_TOREOFF);
+        FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
         return TRUE;
     }
 
     return FALSE;
 }
 
-static bool32 sub_8196390(u8 taskId)
+static void PerformHangupAnimation(u8 taskId)
 {
     int i;
     s16 *taskData = gTasks[taskId].data;
     
-    gTasks[taskId].data[4] += 6;
+    gTasks[taskId].data[0] += 6;
 
-    if (gTasks[taskId].data[4] < 32)
+    if (gTasks[taskId].data[0] < 32)
     {
         for (i = 0; i < 80; i++)
-            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].data[4];
+            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].data[0];
 
         for (; i < 160; i++)
-            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = -gTasks[taskId].data[4];
-
-        return FALSE;
+            gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = -gTasks[taskId].data[0];
     }
     else
     {
         gScanlineEffect.state = 3;
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 14, 5);
-        RemoveWindow(taskData[2]);
-        RemoveWindow(taskData[3]);
+        RemoveWindow(gPhoneCallWindowId);
+        RemoveWindow(gPhoneCallerNameWindowId);
         CopyBgTilemapBufferToVram(0);
-        return TRUE;
+        DestroyTask(taskId);
     }
 }
 
-static bool32 sub_81963F0(u8 taskId)
+u8 HangupOverworldPhoneCall(void)
 {
-    u8 playerObjectId;
-    if (!IsDma3ManagerBusyWithBgCopy() && !IsSEPlaying())
-    {
-        SetGpuReg(REG_OFFSET_BG0VOFS, 0);
-        if (!gMatchCallState.triggeredFromScript)
-        {
-            sub_81973A4();
-            playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
-            EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
-            sub_80D338C();
-            UnfreezeEventObjects();
-            ScriptContext2_Disable();
-        }
-
-        return TRUE;
-    }
-
-    return FALSE;
+    FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
+    CopyWindowToVram(gPhoneCallWindowId, 2);
+    ScanlineEffect_Clear();
+    ScanlineEffect_SetParams(sScanlineParams);
+    PlaySE(SE_TOREOFF);
+    return CreateTask(PerformHangupAnimation, 3);
 }
+
+// static bool32 sub_81962D8(u8 taskId)
+// {
+//     s16 *taskData = gTasks[taskId].data;
+//     if (!ExecuteMatchCallTextPrinter(gPhoneCallWindowId))
+//     {
+//         FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
+//         if (!gMatchCallState.triggeredFromScript)
+//         {
+//             if (gMatchCallState.forcedPhoneCallId)
+//             {
+//                 const struct ForcedPhoneCall *forcedPhoneCall = &sForcedPhoneCalls[gMatchCallState.forcedPhoneCallId - 1];
+//                 const struct PhoneContact *phoneContact = &gPhoneContacts[forcedPhoneCall->phoneContactId];
+//                 StringExpandPlaceholders(gStringVar4, phoneContact->selectMessage(phoneContact, TRUE));
+//                 FlagClear(forcedPhoneCall->flag);
+//                 InitMatchCallTextPrinter(gPhoneCallWindowId, gStringVar4);
+//                 return TRUE;
+//             }
+//             else
+//             {
+//                 SelectMatchCallMessage(gRematchTable[gPhoneContacts[gMatchCallState.callerId].rematchTrainerId].trainerIds[0], gStringVar4, TRUE);
+//                 InitMatchCallTextPrinter(gPhoneCallWindowId, gStringVar4);
+//                 return TRUE;
+//             }
+//         }
+//         else
+//         {
+//             InitMatchCallTextPrinter(gPhoneCallWindowId, gStringVar4);
+//             return TRUE;
+//         }
+//     }
+
+//     return FALSE;
+// }
 
 static void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
 {
@@ -1466,7 +1442,7 @@ static void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 palette
     FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 7), x + width, y + height, 1, 1);
 }
 
-static void InitMatchCallTextPrinter(int windowId, const u8 *str)
+void InitMatchCallTextPrinter(int windowId, const u8 *str)
 {
     struct TextPrinterTemplate printerTemplate;
     printerTemplate.currentChar = str;
@@ -1508,7 +1484,7 @@ static void InitMatchCallCallerNameTextPrinter(int windowId, const u8 *str)
     AddTextPrinter(&printerTemplate, TEXT_SPEED_FF, NULL);
 }
 
-static bool32 ExecuteMatchCallTextPrinter(int windowId)
+bool32 ExecuteMatchCallTextPrinter(int windowId)
 {
     if (gMain.heldKeys & A_BUTTON)
         gTextFlags.canABSpeedUpPrint = 1;
