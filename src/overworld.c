@@ -39,6 +39,7 @@
 #include "new_game.h"
 #include "palette.h"
 #include "play_time.h"
+#include "phone_script.h"
 #include "random.h"
 #include "roamer.h"
 #include "rotating_gate.h"
@@ -1482,6 +1483,7 @@ void CB1_Overworld(void)
 
 static void OverworldBasic(void)
 {
+    PhoneScriptContext_RunScript();
     ScriptContext2_RunScript();
     RunTasks();
     AnimateSprites();

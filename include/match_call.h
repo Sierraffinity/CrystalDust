@@ -22,5 +22,6 @@ void StartMatchCallFromScript(const u8 *script, u8 callerId);
 void sub_8197080(u8 *destStr);
 void sub_8197184(u32 windowId, u32 destOffset, u32 paletteId);
 void sub_81971C4(u32 windowId, u32 tileOffset, u32 paletteId);
+bool32 IsHangupAnimationTaskActive(void);
 
 #endif //GUARD_MATCH_CALL_H

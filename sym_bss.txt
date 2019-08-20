@@ -51,6 +51,7 @@
 	.include "src/pokenav_unk_10.o"
     .include "src/ereader_helpers.o"
 	.include "src/faraway_island.o"
+	.include "src/phone_script.o"
 	.include "asm/m4a_1.o"
 	.include "src/agb_flash.o"
 	.include "src/siirtc.o"
