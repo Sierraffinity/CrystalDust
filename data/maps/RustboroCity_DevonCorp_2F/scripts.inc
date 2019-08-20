@@ -156,7 +156,7 @@ RustboroCity_DevonCorp_2F_EventScript_211A2C:: @ 8211A2C
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_211A3E:: @ 8211A3E
-	setvar VAR_TEMP_1, 388
+	setvar VAR_TEMP_1, SPECIES_LILEEP
 	givemon SPECIES_LILEEP, 20, ITEM_NONE, 0x0, 0x0, 0
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211A6E
@@ -205,7 +205,7 @@ RustboroCity_DevonCorp_2F_EventScript_211AD7:: @ 8211AD7
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_211AE1:: @ 8211AE1
-	setvar VAR_TEMP_1, 390
+	setvar VAR_TEMP_1, SPECIES_ANORITH
 	givemon SPECIES_ANORITH, 20, ITEM_NONE, 0x0, 0x0, 0
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211B11
@@ -281,7 +281,7 @@ RustboroCity_DevonCorp_2F_EventScript_211BCF:: @ 8211BCF
 	faceplayer
 	compare VAR_FOSSIL_RESURRECTION_STATE, 1
 	call_if_eq RustboroCity_DevonCorp_2F_EventScript_211869
-	compare VAR_RUSTBORO_STATE, 6
+	compare VAR_RUSTBORO_CITY_STATE, 6
 	goto_if_ge RustboroCity_DevonCorp_2F_EventScript_211BF1
 	msgbox RustboroCity_DevonCorp_2F_Text_212338, MSGBOX_DEFAULT
 	release

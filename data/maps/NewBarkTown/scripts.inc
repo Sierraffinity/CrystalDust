@@ -12,11 +12,11 @@ NewBarkTown_MapScript1_1E7DDB:
 NewBarkTown_MapScript2_1E7EC1:
 	@map_script_2 VAR_0x4092, 1, NewBarkTown_EventScript_1E7EDB
 	@map_script_2 VAR_0x4092, 2, NewBarkTown_EventScript_1E7EF9
-	@map_script_2 VAR_0x40D3, 1, NewBarkTown_EventScript_1E7FB1
+	@map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, NewBarkTown_EventScript_1E7FB1
 	.2byte 0
 
 NewBarkTown_MapScript2_1E7FE2:
-	@map_script_2 VAR_0x40D3, 1, NewBarkTown_EventScript_1E7FEC
+	@map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, NewBarkTown_EventScript_1E7FEC
 	.2byte 0
 
 NewBarkTown_EventScript_FatMan::
