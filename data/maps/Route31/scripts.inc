@@ -11,8 +11,8 @@ Route31_MapScript2_FrameTable:
 Route31_EventScript_MomCall:
 	lockall
 	setflag FLAG_HIDE_MAP_NAME_POPUP
-	pokegearcall Text_Pokegear_Mom_PhoneBankingPlaceholder, 0
-	waitmessage
+	pokegearcall PhoneScript_Mom, 0
+	waitstate
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	addvar VAR_ROUTE31_STATE, 1
 	releaseall

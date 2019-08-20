@@ -1155,11 +1155,11 @@ static void StartMatchCall(void)
         FreezeEventObjects();
         sub_808B864();
         sub_808BCF4();
-        ScriptContext1_SetupPhoneScript(&gPhoneContacts[gMatchCallState.callerId], PHONE_SCRIPT_OVERWORLD);
+        PhoneScriptContext_SetupPhoneScript(&gPhoneContacts[gMatchCallState.callerId], PHONE_SCRIPT_OVERWORLD);
     }
     else
     {
-        SwitchToPhoneScript(gMatchCallState.script, PHONE_SCRIPT_OVERWORLD);
+        PhoneScriptContext_SetupCustomPhoneScript(gMatchCallState.script, PHONE_SCRIPT_OVERWORLD);
     }
 }
 
@@ -1384,6 +1384,11 @@ u8 HangupOverworldPhoneCall(void)
     ScanlineEffect_SetParams(sScanlineParams);
     PlaySE(SE_TOREOFF);
     return CreateTask(PerformHangupAnimation, 3);
+}
+
+bool32 IsHangupAnimationTaskActive(void)
+{
+    return FuncIsActiveTask(PerformHangupAnimation) || IsSEPlaying();
 }
 
 // static bool32 sub_81962D8(u8 taskId)

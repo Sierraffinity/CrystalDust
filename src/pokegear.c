@@ -579,7 +579,7 @@ static void VBlankCB(void)
 
 static void CB2_Pokegear(void)
 {
-    ScriptContext2_RunScript();
+    PhoneScriptContext_RunScript();
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
@@ -1299,7 +1299,7 @@ static void PhoneCard_PlaceCall(u8 taskId)
     const struct PhoneContact *phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
     ShowHelpBar(gText_ANext);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
-    ScriptContext1_SetupPhoneScript(phoneContact, PHONE_SCRIPT_POKEGEAR);
+    PhoneScriptContext_SetupPhoneScript(phoneContact, PHONE_SCRIPT_POKEGEAR);
     gTasks[taskId].func = PhoneCard_ExecuteCall;
 }
 
@@ -1335,7 +1335,7 @@ void InitPokegearPhoneCall(u8 taskId)
         CopyBgTilemapBufferToVram(0);
         gPhoneCallSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
         PlaySE(SE_TOREEYE);
-        AddTextPrinterParameterized(gPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 32, 1, 8, NULL);
+        AddTextPrinterParameterized(gPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 32, 1, 4, NULL);
         gTasks[taskId].tPhoneCallInitState = 2;
         break;
     case 2:
@@ -1426,7 +1426,7 @@ void HangupPokegearPhoneCall(void)
 
 static void PhoneCard_ExecuteCall(u8 taskId)
 {
-    if (!ScriptContext2_IsEnabled())
+    if (!PhoneScriptContext_IsEnabled())
         gTasks[taskId].func = PhoneCard_ReturnToMain;
 }
 

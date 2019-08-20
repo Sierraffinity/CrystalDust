@@ -15,22 +15,12 @@ struct ScriptContext
     u8 stackDepth;
     u8 mode;
     u8 comparisonResult;
-    u8 phoneContext;
     u8 (*nativePtr)(void);
     const u8 *scriptPtr;
     const u8 *stack[20];
     ScrCmdFunc *cmdTable;
     ScrCmdFunc *cmdTableEnd;
     u32 data[4];
-    const u8 *returnFromPhoneScript;
-    const struct PhoneContact *phoneContact;
-};
-
-enum
-{
-    PHONE_SCRIPT_NONE,
-    PHONE_SCRIPT_POKEGEAR,
-    PHONE_SCRIPT_OVERWORLD,
 };
 
 #define ScriptReadByte(ctx) (*(ctx->scriptPtr++))

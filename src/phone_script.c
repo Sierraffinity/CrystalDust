@@ -22,6 +22,13 @@ EWRAM_DATA u16 gPhoneCallerNameWindowId = 0;
 EWRAM_DATA u8 gPhoneCallSpriteId = 0;
 static EWRAM_DATA u16 sPauseCounter = 0;
 
+static u8 sPhoneScriptContextStatus;
+static bool8 sPhoneScriptContextEnabled;
+static struct ScriptContext sPhoneScriptContext;
+
+extern ScrCmdFunc gPhoneScriptCmdTable[];
+extern ScrCmdFunc gPhoneScriptCmdTableEnd[];
+
 static const u8 sScriptConditionTable[6][3] =
 {
 //  <  =  >
@@ -34,6 +41,77 @@ static const u8 sScriptConditionTable[6][3] =
 };
 
 static void HangupPhoneCall(u32 phoneContext);
+static bool8 WaitForHangupAnimation(void);
+
+void PhoneScriptContext_Enable(void)
+{
+    sPhoneScriptContextEnabled = TRUE;
+}
+
+void PhoneScriptContext_Disable(void)
+{
+    sPhoneScriptContextEnabled = FALSE;
+}
+
+bool8 PhoneScriptContext_IsEnabled(void)
+{
+    return sPhoneScriptContextEnabled;
+}
+
+bool8 PhoneScriptContext_RunScript(void)
+{
+    if (sPhoneScriptContextStatus == 2)
+        return 0;
+
+    if (sPhoneScriptContextStatus == 1)
+        return 0;
+
+    PhoneScriptContext_Enable();
+
+    if (!RunScriptCommand(&sPhoneScriptContext))
+    {
+        sPhoneScriptContextStatus = 2;
+        PhoneScriptContext_Disable();
+        return 0;
+    }
+
+    return 1;
+}
+
+void PhoneScriptContext_SetupPhoneScript(const struct PhoneContact *contact, u32 callContext)
+{
+    InitScriptContext(&sPhoneScriptContext, gPhoneScriptCmdTable, gPhoneScriptCmdTableEnd);
+    SetupBytecodeScript(&sPhoneScriptContext, contact->phoneScript);
+    PhoneScriptContext_Enable();
+    sPhoneScriptContext.data[0] = callContext;
+    sPhoneScriptContext.data[1] = (u32)contact;
+    sPhoneScriptContext.data[2] = 0;
+    sPhoneScriptContext.data[3] = 0;
+    sPhoneScriptContextStatus = 0;
+}
+
+void PhoneScriptContext_SetupCustomPhoneScript(const u8 *script, u32 callContext)
+{
+    InitScriptContext(&sPhoneScriptContext, gPhoneScriptCmdTable, gPhoneScriptCmdTableEnd);
+    SetupBytecodeScript(&sPhoneScriptContext, script);
+    PhoneScriptContext_Enable();
+    sPhoneScriptContext.data[0] = callContext;
+    sPhoneScriptContext.data[1] = 0;
+    sPhoneScriptContext.data[2] = 0;
+    sPhoneScriptContext.data[3] = 0;
+    sPhoneScriptContextStatus = 0;
+}
+
+static bool8 StopPhoneScript(struct ScriptContext *ctx)
+{
+    StopScript(ctx);
+    if (ctx->data[0] == PHONE_SCRIPT_OVERWORLD)
+    {
+        SetupNativeScript(ctx, WaitForHangupAnimation);
+        return TRUE;
+    }
+    return FALSE;
+}
 
 bool8 PhoneScrCmd_nop(struct ScriptContext *ctx)
 {
@@ -42,8 +120,7 @@ bool8 PhoneScrCmd_nop(struct ScriptContext *ctx)
 
 bool8 PhoneScrCmd_end(struct ScriptContext *ctx)
 {
-    StopScript(ctx);
-    return FALSE;
+    return StopPhoneScript(ctx);
 }
 
 static bool8 IsPokegearPhoneInitFinished(void)
@@ -65,7 +142,8 @@ static bool8 IsOverworldPhoneInitFinished(void)
 bool8 PhoneScrCmd_initcall(struct ScriptContext *ctx)
 {
     gSpecialVar_Result = TRUE;
-    switch (ctx->phoneContext)
+
+    switch (ctx->data[0])
     {
     case PHONE_SCRIPT_POKEGEAR:
         CreateTask(InitPokegearPhoneCall, 3);
@@ -101,7 +179,7 @@ static bool8 IsOverworldPhoneMessageFinished(void)
 
 static void AddPhoneTextPrinter(struct ScriptContext *ctx, u8 *str)
 {
-    switch (ctx->phoneContext)
+    switch (ctx->data[0])
     {
     case PHONE_SCRIPT_POKEGEAR:
         AddTextPrinterParameterized(gPhoneCallWindowId, 1, str, 32, 1, GetPlayerTextSpeedDelay(), NULL);
@@ -124,7 +202,7 @@ bool8 PhoneScrCmd_message(struct ScriptContext *ctx)
 
 bool8 PhoneScrCmd_hangup(struct ScriptContext *ctx)
 {
-    HangupPhoneCall(ctx->phoneContext);
+    HangupPhoneCall(ctx->data[0]);
     return FALSE;
 }
 
@@ -318,8 +396,18 @@ bool8 PhoneScrCmd_end_if_not_available(struct ScriptContext *ctx)
 {
     if (!gSpecialVar_Result)
     {
-        HangupPhoneCall(ctx->phoneContext);
-        StopScript(ctx);
+        HangupPhoneCall(ctx->data[0]);
+        return StopPhoneScript(ctx);
+    }
+    return FALSE;
+}
+
+static bool8 WaitForHangupAnimation(void)
+{
+    if (!IsHangupAnimationTaskActive())
+    {
+        EnableBothScriptContexts();
+        return TRUE;
     }
     return FALSE;
 }
@@ -340,7 +428,7 @@ static void HangupPhoneCall(u32 phoneContext)
 bool8 PhoneScrCmd_callnativecontext(struct ScriptContext *ctx)
 {
     PhoneNativeFunc func = (PhoneNativeFunc)ScriptReadWord(ctx);
-    bool8 isCallingPlayer = ctx->phoneContext == PHONE_SCRIPT_OVERWORLD;
-    func(ctx->phoneContact, isCallingPlayer);
+    bool8 isCallingPlayer = ctx->data[0] == PHONE_SCRIPT_OVERWORLD;
+    func((const struct PhoneContact *)ctx->data[1], isCallingPlayer);
     return FALSE;
 }
