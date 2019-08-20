@@ -94,25 +94,25 @@
 #define VAR_POKELOT_PRIZE_PLACE              0x404D
 #define VAR_BUG_CONTEST_PRIZE                0x404E
 #define VAR_LOTAD_SIZE_RECORD                0x404F
-#define VAR_NEWBARK_STATE                    0x4050
-#define VAR_ROUTE30_STATE                    0x4051
-#define VAR_CHERRYGROVE_RIVAL_STATE          0x4052
+#define VAR_NEW_BARK_TOWN_STATE              0x4050
+#define VAR_CHERRYGROVE_CITY_STATE           0x4051
+#define VAR_DEWFORD_TOWN_STATE               0x4052 // Unused Var
 #define VAR_LAVARIDGE_TOWN_STATE             0x4053
 #define VAR_CURRENT_SECRET_BASE              0x4054
-#define VAR_ROUTE31_STATE                    0x4055
-#define VAR_UNUSED_0x4056                    0x4056 // Unused Var
+#define VAR_VERDANTURF_TOWN_STATE            0x4055 // Unused Var
+#define VAR_PACIFIDLOG_TOWN_STATE            0x4056 // Unused Var
 #define VAR_PETALBURG_CITY_STATE             0x4057
 #define VAR_SLATEPORT_CITY_STATE             0x4058
-#define VAR_UNUSED_0x4059                    0x4059 // Unused Var
+#define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
 #define VAR_RUSTBORO_CITY_STATE              0x405A
-#define VAR_UNUSED_0x405B                    0x405B // Unused Var
-#define VAR_UNUSED_0x405C                    0x405C // Unused Var
+#define VAR_FORTREE_CITY_STATE               0x405B // Unused Var
+#define VAR_LILYCOVE_CITY_STATE              0x405C // Unused Var
 #define VAR_MOSSDEEP_CITY_STATE              0x405D
 #define VAR_SOOTOPOLIS_CITY_STATE            0x405E
-#define VAR_UNUSED_0x405F                    0x405F // Unused Var
-#define VAR_ROUTE101_STATE                   0x4060
-#define VAR_ROUTE102_STATE                   0x4061 // Unused Var
-#define VAR_ROUTE103_STATE                   0x4062 // Unused Var
+#define VAR_EVER_GRANDE_CITY_STATE           0x405F // Unused Var
+#define VAR_ROUTE29_STATE                    0x4060
+#define VAR_ROUTE30_STATE                    0x4061
+#define VAR_ROUTE31_STATE                    0x4062
 #define VAR_ROUTE104_STATE                   0x4063
 #define VAR_ROUTE105_STATE                   0x4064 // Unused Var
 #define VAR_ROUTE106_STATE                   0x4065 // Unused Var

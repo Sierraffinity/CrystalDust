@@ -318,7 +318,7 @@ CherrygroveCity_EventScript_RivalMain:
 	waitmovement 0
 	fadedefaultbgm
 	removeobject 2
-	setvar VAR_CHERRYGROVE_RIVAL_STATE, 2
+	setvar VAR_CHERRYGROVE_CITY_STATE, 2
 	releaseall
 	end
 

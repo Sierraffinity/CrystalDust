@@ -4,7 +4,7 @@ NewBarkTown_PlayersHouse_1F_MapScripts:: @ 81F7755
 	.byte 0
 
 NewBarkTown_PlayersHouse_1F_MapScript1_Type3:
-	compare VAR_NEWBARK_STATE, 0
+	compare VAR_NEW_BARK_TOWN_STATE, 0
 	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomDay
 	gettime
 	compare VAR_0x8002, TIME_MORNING
@@ -27,7 +27,7 @@ NewBarkTown_PlayersHouse_1F_EventScript_MomNight:
 	end
 
 NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA: @ 81F77EA
-	map_script_2 VAR_NEWBARK_STATE, 0, NewBarkTown_PlayersHouse_1F_MomEncounter
+	map_script_2 VAR_NEW_BARK_TOWN_STATE, 0, NewBarkTown_PlayersHouse_1F_MomEncounter
 	.2byte 0
 
 NewBarkTown_PlayersHouse_1F_MomEncounter:
@@ -98,7 +98,7 @@ NewBarkTown_PlayersHouse_1F_PostGearInstructions:
 	fadedefaultbgm
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer
 	waitmovement 0
-	setvar VAR_NEWBARK_STATE 1
+	setvar VAR_NEW_BARK_TOWN_STATE 1
 	setrespawn HEAL_LOCATION_NEW_BARK_TOWN	@ TODO: This should really be for player's room 2F, or do the FR approach
 	releaseall
 	end

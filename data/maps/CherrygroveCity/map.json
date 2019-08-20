@@ -38,7 +38,7 @@
             "elevation": 3,
             "script": "CherrygroveCity_EventScript_Rival1",
             "type": "trigger",
-            "var": "VAR_CHERRYGROVE_RIVAL_STATE",
+            "var": "VAR_CHERRYGROVE_CITY_STATE",
             "var_value": "1",
             "x": 47,
             "y": 8
@@ -47,7 +47,7 @@
             "elevation": 3,
             "script": "CherrygroveCity_EventScript_Rival2",
             "type": "trigger",
-            "var": "VAR_CHERRYGROVE_RIVAL_STATE",
+            "var": "VAR_CHERRYGROVE_CITY_STATE",
             "var_value": "1",
             "x": 47,
             "y": 9
@@ -56,7 +56,7 @@
             "elevation": 3,
             "script": "CherrygroveCity_EventScript_Rival3",
             "type": "trigger",
-            "var": "VAR_CHERRYGROVE_RIVAL_STATE",
+            "var": "VAR_CHERRYGROVE_CITY_STATE",
             "var_value": "1",
             "x": 47,
             "y": 10

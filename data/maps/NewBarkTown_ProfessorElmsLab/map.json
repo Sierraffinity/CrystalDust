@@ -91,7 +91,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "2",
             "x": 5,
             "y": 8
@@ -100,7 +100,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "2",
             "x": 6,
             "y": 8
@@ -109,7 +109,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "2",
             "x": 7,
             "y": 8
@@ -118,7 +118,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "3",
             "x": 5,
             "y": 9
@@ -127,7 +127,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "3",
             "x": 6,
             "y": 9
@@ -136,7 +136,7 @@
             "elevation": 3,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "3",
             "x": 7,
             "y": 9
@@ -145,7 +145,7 @@
             "elevation": 0,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer1",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "5",
             "x": 5,
             "y": 7
@@ -154,7 +154,7 @@
             "elevation": 0,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer2",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "5",
             "x": 6,
             "y": 7
@@ -163,7 +163,7 @@
             "elevation": 0,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer3",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "5",
             "x": 7,
             "y": 7
@@ -172,7 +172,7 @@
             "elevation": 0,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls1",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "7",
             "x": 5,
             "y": 9
@@ -181,7 +181,7 @@
             "elevation": 0,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls2",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "7",
             "x": 6,
             "y": 9
@@ -190,7 +190,7 @@
             "elevation": 0,
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls3",
             "type": "trigger",
-            "var": "VAR_NEWBARK_STATE",
+            "var": "VAR_NEW_BARK_TOWN_STATE",
             "var_value": "7",
             "x": 7,
             "y": 9
