@@ -20,19 +20,18 @@ static bool8 CanAcceptRematch_Always(s8 dayOfWeek, s8 hour);
 static bool8 CanAcceptRematch_Never(s8 dayOfWeek, s8 hour);
 static bool8 CanAcceptRematch_MondayDaytime(s8 dayOfWeek, s8 hour);
 
-static const u8 *SelectMessage_StandardMatchCallTrainer(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
-static const u8 *SelectMessage_Test(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
-static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
-static const u8 *SelectMessage_Elm(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
-
 static const u8 sPhoneContactName_Mom[] = _("MOM");
 static const u8 sPhoneContactName_ProfessorElm[] = _("PROF. ELM");
+
+extern const u8 PhoneScript_Mom[];
+extern const u8 PhoneScript_Elm[];
+extern const u8 PhoneScript_StandardMatchCallTrainer[];
 
 const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 {
     [PHONE_CONTACT_MOM] = {
         .customDisplayName = sPhoneContactName_Mom,
-        .selectMessage = SelectMessage_Mom,
+        .phoneScript = PhoneScript_Mom,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(NEW_BARK_TOWN_PLAYERS_HOUSE_1F),
         .mapGroup = MAP_GROUP(NEW_BARK_TOWN_PLAYERS_HOUSE_1F),
@@ -43,7 +42,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ELM] = {
         .customDisplayName = sPhoneContactName_ProfessorElm,
-        .selectMessage = SelectMessage_Elm,
+        .phoneScript = PhoneScript_Elm,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(NEW_BARK_TOWN_PROFESSOR_ELMS_LAB),
         .mapGroup = MAP_GROUP(NEW_BARK_TOWN_PROFESSOR_ELMS_LAB),
@@ -54,7 +53,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ROSE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -65,7 +64,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ANDRES] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -76,7 +75,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_DUSTY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -87,7 +86,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_LOLA] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -98,7 +97,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_RICKY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -109,7 +108,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_LILA_AND_ROY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -120,7 +119,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_CRISTIN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -131,7 +130,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_BROOKE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -142,7 +141,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_WILTON] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -153,7 +152,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_VALERIE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -164,7 +163,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_CINDY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -175,7 +174,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_THALIA] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -186,7 +185,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JESSICA] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -197,7 +196,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_WINSTON] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -208,7 +207,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_STEVE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -219,7 +218,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_TONY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -230,7 +229,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_NOB] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -241,7 +240,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_KOJI] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -252,7 +251,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_FERNANDO] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -263,7 +262,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_DALTON] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -274,7 +273,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_BERNIE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -285,7 +284,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ETHAN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -296,7 +295,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JOHN_AND_JAY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -307,7 +306,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JEFFREY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -318,7 +317,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_CAMERON] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -329,7 +328,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JACKI] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -340,7 +339,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_WALTER] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -351,7 +350,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_KAREN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -362,7 +361,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JERRY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -373,7 +372,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ANNA_AND_MEG] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -384,7 +383,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ISABEL] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -395,7 +394,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_MIGUEL] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -406,7 +405,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_TIMOTHY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -417,7 +416,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_SHELBY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -428,7 +427,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_CALVIN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -439,7 +438,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ELLIOT] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -450,7 +449,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ISAIAH] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -461,7 +460,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_MARIA] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -472,7 +471,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ABIGAIL] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -483,7 +482,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_DYLAN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -494,7 +493,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_KATELYN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -505,7 +504,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_BENJAMIN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -516,7 +515,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_PABLO] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -527,7 +526,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_NICOLAS] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -538,7 +537,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ROBERT] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -549,7 +548,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_LAO] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -560,7 +559,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_CYNDY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -571,7 +570,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_MADELINE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -582,7 +581,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JENNY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -593,7 +592,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_DIANA] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -604,7 +603,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_AMY_AND_LIV] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -615,7 +614,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ERNEST] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -626,7 +625,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_CORY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -637,7 +636,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_EDWIN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -648,7 +647,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_LYDIA] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -659,7 +658,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ISAAC] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -670,7 +669,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_GABRIELLE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -681,7 +680,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_CATHERINE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -692,7 +691,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JACKSON] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -703,7 +702,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_HALEY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -714,7 +713,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JAMES] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -725,7 +724,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_TRENT] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -736,7 +735,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_SAWYER] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -747,7 +746,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_KIRA_AND_DAN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_StandardMatchCallTrainer,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -758,7 +757,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_WALLY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -769,7 +768,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_ROXANNE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -780,7 +779,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_BRAWLY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -791,7 +790,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_WATTSON] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -802,7 +801,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_FLANNERY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -813,7 +812,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_NORMAN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -824,7 +823,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_WINONA] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -835,7 +834,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_TATE_AND_LIZA] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -846,7 +845,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_JUAN] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -857,7 +856,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_SIDNEY] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -868,7 +867,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_PHOEBE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -879,7 +878,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_GLACIA] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -890,7 +889,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_DRAKE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -901,7 +900,7 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
     [PHONE_CONTACT_WALLACE] = {
         .customDisplayName = NULL,
-        .selectMessage = SelectMessage_Test,
+        .phoneScript = PhoneScript_StandardMatchCallTrainer,
         .canAcceptRematch = CanAcceptRematch_Never,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
@@ -912,73 +911,10 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
     },
 };
 
-static const u8 *SelectMessage_StandardMatchCallTrainer(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
+void SelectMessage_StandardMatchCallTrainer(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
 {
     int rematchTrainerId = gRematchTable[phoneContact->rematchTrainerId].trainerIds[0];
     SelectMatchCallMessage(rematchTrainerId, gStringVar4, isCallingPlayer);
-    return gStringVar4;
-}
-
-static const u8 *SelectMessage_Test(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
-{
-    static const u8 sTestText[] = _("TEST PHONE MESSAGE.");
-    return sTestText;
-}
-
-static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
-{
-    extern const u8 Text_Pokegear_Mom_Start[];
-    extern const u8 Text_Pokegear_Mom_GotMon[];
-    extern const u8 Text_Pokegear_Mom_GaveEggToElm[];
-    extern const u8 Text_Pokegear_Mom_PhoneBankingPlaceholder[];
-    extern const u8 Text_Pokegear_Mom_RegularCallPlaceholder[];
-
-    // MomPhoneScript in pokecrystal (phone_scripts.asm)
-    if (FlagGet(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
-    {
-        // TODO: Finish
-        return Text_Pokegear_Mom_RegularCallPlaceholder;
-    }
-    else if (FlagGet(FLAG_DUDE_TALKED_TO_YOU))
-    {
-        //TODO: Yes/no box
-        FlagSet(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST);
-        return Text_Pokegear_Mom_PhoneBankingPlaceholder;
-    }
-    else if (FlagGet(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
-    {
-        return Text_Pokegear_Mom_GaveEggToElm;
-    }
-    else if (FlagGet(FLAG_SYS_POKEMON_GET))
-    {
-        return Text_Pokegear_Mom_GotMon;
-    }
-    return Text_Pokegear_Mom_Start;
-}
-
-static const u8 *SelectMessage_Elm(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
-{
-    extern const u8 Text_Pokegear_Elm_Start[];
-    extern const u8 Text_Pokegear_Elm_SawMrPokemon[];
-    extern const u8 Text_Pokegear_Elm_MonWasStolen[];
-    extern const u8 Text_Pokegear_Elm_CheckingEgg[];
-
-    if (FlagGet(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
-        return Text_Pokegear_Elm_CheckingEgg;
-    else if (FlagGet(FLAG_ELM_CALLED_ABOUT_STOLEN_MON))
-        return Text_Pokegear_Elm_MonWasStolen;
-    else if (FlagGet(FLAG_RECEIVED_MYSTERY_EGG))
-        return Text_Pokegear_Elm_SawMrPokemon;
-    return Text_Pokegear_Elm_Start;
-}
-
-static const u8 *SelectMessage_Rose(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
-{
-    static const u8 sTestText_Rose[] = _("Hi I'm ROSE!\nI'm being forced to call you!");
-    if (FlagGet(FLAG_UNUSED_0x493) && isCallingPlayer)
-        return sTestText_Rose;
-    else
-        return SelectMessage_StandardMatchCallTrainer(phoneContact, isCallingPlayer);
 }
 
 static bool8 CanAcceptRematch_Always(s8 dayOfWeek, s8 hour)

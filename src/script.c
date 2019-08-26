@@ -25,6 +25,8 @@ extern ScrCmdFunc gScriptCmdTable[];
 extern ScrCmdFunc gScriptCmdTableEnd[];
 extern void *gNullScriptPtr;
 
+static void ReturnFromPhoneScript(void);
+
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd)
 {
     s32 i;

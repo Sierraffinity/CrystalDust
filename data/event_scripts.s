@@ -5270,7 +5270,6 @@ LilycoveCity_PokemonCenter_1F_Text_2A9703: @ 82A9703
 LilycoveCity_PokemonCenter_1F_Text_2A970E: @ 82A970E
 	.string "{STR_VAR_1}: Umyaaaan!$"
 
-	.include "data/text/phone_call.inc"
 	.include "data/text/match_call.inc"
 	.include "data/scripts/apprentice.inc"
 

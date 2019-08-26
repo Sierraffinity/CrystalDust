@@ -16,11 +16,13 @@
 #include "overworld.h"
 #include "palette.h"
 #include "phone_contact.h"
+#include "phone_script.h"
 #include "radio.h"
 #include "random.h"
 #include "region_map.h"
 #include "rtc.h"
 #include "scanline_effect.h"
+#include "script.h"
 #include "sound.h"
 #include "string_util.h"
 #include "strings.h"
@@ -110,14 +112,11 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId);
 static void PhoneCard_AddScrollIndicators(u8 taskId);
 static void PhoneCard_ReturnToMain(u8 taskId);
 static void PhoneCard_PlaceCall(u8 taskId);
-static void LoadPhoneCallWindowGfx(u8 taskId);
 static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId);
-static void MovePhoneCallWindowToVram(u8 taskId);
 static void UpdateRadioStation(u8 taskId, u8 frequency);
 static void LoadCardSprites(u8 taskId);
 static void SpriteCB_Icons(struct Sprite* sprite);
 static void InitPhoneCardData(void);
-static void PhoneCard_ExecuteCallStart(u8 taskId);
 static void PhoneCard_ExecuteCall(u8 taskId);
 
 // .rodata
@@ -580,6 +579,7 @@ static void VBlankCB(void)
 
 static void CB2_Pokegear(void)
 {
+    PhoneScriptContext_RunScript();
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
@@ -1172,8 +1172,6 @@ static void UnloadMapCard(void)
 
 #define tListMenuTaskId data[0]
 #define tScrollTaskId data[2]
-#define tPhoneCallWindowId data[3]
-#define tPhoneCallIconSpriteId data[4]
 
 static void LoadPhoneCard(void)
 {
@@ -1192,7 +1190,7 @@ static void LoadPhoneCard(void)
     DisplayPhoneCardDefaultText();
     
     gTasks[newTask].tScrollTaskId = 0xFF;
-    gTasks[newTask].tPhoneCallIconSpriteId = MAX_SPRITES;
+    gPhoneCallSpriteId = MAX_SPRITES;
     PhoneCard_AddScrollIndicators(newTask);
 }
 
@@ -1289,11 +1287,6 @@ static void PhoneCard_ReturnToMain(u8 taskId)
     ShowHelpBar(gText_PhoneCardHelp1);
     PhoneCard_AddScrollIndicators(taskId);
     DisplayPhoneCardDefaultText();
-    if (gTasks[taskId].tPhoneCallIconSpriteId != MAX_SPRITES)
-    {
-        DestroySprite(&gSprites[gTasks[taskId].tPhoneCallIconSpriteId]);
-        gTasks[taskId].tPhoneCallIconSpriteId = MAX_SPRITES;
-    }
     sPokegearStruct.canSwitchCards = TRUE;
     gTasks[taskId].func = Task_PhoneCard;
 }
@@ -1303,33 +1296,97 @@ static const u8 sPhoneCallText_NobodyAnswered[] = _("Nobody answered the call…
 
 static void PhoneCard_PlaceCall(u8 taskId)
 {
+    const struct PhoneContact *phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
     ShowHelpBar(gText_ANext);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
-    gTasks[taskId].func = LoadPhoneCallWindowGfx;
+    PhoneScriptContext_SetupPhoneScript(phoneContact, PHONE_SCRIPT_POKEGEAR);
+    gTasks[taskId].func = PhoneCard_ExecuteCall;
 }
 
-static void LoadPhoneCallWindowGfx(u8 taskId)
+static const u8 sPhoneCallText_OutOfService[] = _("You're out of the service area.");
+static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that person!");
+
+static bool8 NoPhoneServiceInCurrentLocation(void)
 {
-    gTasks[taskId].tPhoneCallWindowId = AddWindow(&sPhoneCallWindowTemplate);
-    LoadBgTiles(0, sPhoneCallWindowGfx, sizeof(sPhoneCallWindowGfx), 0x143);
-    FillWindowPixelBuffer(gTasks[taskId].tPhoneCallWindowId, 0x11);
-    LoadPalette(sPhoneCallWindowPalette, 0xE0, 0x20);
-    LoadSpriteSheet(&sPhoneCallIconSpriteSheet);
-    LoadSpritePalette(&gPhoneCallIconSpritePalette);
-    gTasks[taskId].func = MovePhoneCallWindowToVram;
+    return (gMapHeader.flags & 0x10) == 0;
 }
 
-static void MovePhoneCallWindowToVram(u8 taskId)
+#define tPhoneCallInitState data[0]
+
+void InitPokegearPhoneCall(u8 taskId)
 {
-    free_temp_tile_data_buffers_if_possible();
-    PutWindowTilemap(gTasks[taskId].tPhoneCallWindowId);
-    DrawPhoneCallTextBoxBorder(gTasks[taskId].tPhoneCallWindowId, 0x143, 14);
-    CopyWindowToVram(gTasks[taskId].tPhoneCallWindowId, 2);
-    CopyBgTilemapBufferToVram(0);
-    gTasks[taskId].tPhoneCallIconSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
-    PlaySE(SE_TOREEYE);
-    AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 32, 1, 8, NULL);
-    gTasks[taskId].func = PhoneCard_ExecuteCallStart;
+    switch (gTasks[taskId].tPhoneCallInitState)
+    {
+    case 0:
+        gSpecialVar_Result = TRUE;
+        gPhoneCallWindowId = AddWindow(&sPhoneCallWindowTemplate);
+        LoadBgTiles(0, sPhoneCallWindowGfx, sizeof(sPhoneCallWindowGfx), 0x143);
+        FillWindowPixelBuffer(gPhoneCallWindowId, 0x11);
+        LoadPalette(sPhoneCallWindowPalette, 0xE0, 0x20);
+        LoadSpriteSheet(&sPhoneCallIconSpriteSheet);
+        LoadSpritePalette(&gPhoneCallIconSpritePalette);
+        gTasks[taskId].tPhoneCallInitState = 1;
+        break;
+    case 1:
+        free_temp_tile_data_buffers_if_possible();
+        PutWindowTilemap(gPhoneCallWindowId);
+        DrawPhoneCallTextBoxBorder(gPhoneCallWindowId, 0x143, 14);
+        CopyWindowToVram(gPhoneCallWindowId, 2);
+        CopyBgTilemapBufferToVram(0);
+        gPhoneCallSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
+        PlaySE(SE_TOREEYE);
+        AddTextPrinterParameterized(gPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 32, 1, 4, NULL);
+        gTasks[taskId].tPhoneCallInitState = 2;
+        break;
+    case 2:
+        if (IsTextPrinterActive(gPhoneCallWindowId))
+        {
+            gTextFlags.canABSpeedUpPrint = 0;
+        }
+        else
+        {
+            const struct PhoneContact *phoneContact;
+            const u8 *str = NULL;
+            RtcCalcLocalTime();
+            FillWindowPixelBuffer(gPhoneCallWindowId, 0x11);
+            phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
+            
+            if (NoPhoneServiceInCurrentLocation())
+                str = sPhoneCallText_OutOfService;
+            else if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
+                str = sPhoneCallText_JustGoTalkToThem;
+            else if (!IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
+                str = sPhoneCallText_NobodyAnswered;
+
+            if (str != NULL)
+            {
+                StringExpandPlaceholders(gStringVar4, str);
+                AddTextPrinterParameterized(gPhoneCallWindowId, 1, gStringVar4, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+                gTasks[taskId].tPhoneCallInitState = 3;
+            }
+            else
+            {
+                DestroyTask(taskId);
+            }
+        }
+        break;
+    case 3:
+        // Getting to this switch case means that the phone call was unsuccessful, due to being out of range, in the same map, or 
+        // the phone contact not being available to talk.
+        if (IsTextPrinterActive(gPhoneCallWindowId))
+        {
+            if (gMain.heldKeys & A_BUTTON)
+                gTextFlags.canABSpeedUpPrint = 1;
+            else
+                gTextFlags.canABSpeedUpPrint = 0;
+        }
+        else if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+        {
+            gSpecialVar_Result = FALSE;
+            DestroyTask(taskId);
+        }
+        break;
+    }
 }
 
 static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
@@ -1354,61 +1411,23 @@ static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 palette
     FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 7), x + width, y + height, 1, 1);
 }
 
-static bool8 NoPhoneServiceInCurrentLocation(void)
+void HangupPokegearPhoneCall(void)
 {
-    return (gMapHeader.flags & 0x10) == 0;
-}
-
-static const u8 sPhoneCallText_OutOfService[] = _("You're out of the service area.");
-static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that person!");
-
-static void PhoneCard_ExecuteCallStart(u8 taskId)
-{
-    const struct PhoneContact *phoneContact;
-    const u8 *str;
-
-    if (IsTextPrinterActive(gTasks[taskId].tPhoneCallWindowId))
+    PlaySE(SE_TOREOFF);
+    ClearStdWindowAndFrameToTransparent(gPhoneCallWindowId, TRUE);
+    RemoveWindow(gPhoneCallWindowId);
+    if (gPhoneCallSpriteId != MAX_SPRITES)
     {
-        gTextFlags.canABSpeedUpPrint = 0;
+        DestroySprite(&gSprites[gPhoneCallSpriteId]);
+        gPhoneCallSpriteId = MAX_SPRITES;
     }
-    else
-    {
-        RtcCalcLocalTime();
-        FillWindowPixelBuffer(gTasks[taskId].tPhoneCallWindowId, 0x11);
-        phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
-        
-        if (NoPhoneServiceInCurrentLocation())
-            str = sPhoneCallText_OutOfService;
-        else if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
-            str = sPhoneCallText_JustGoTalkToThem;
-        else if (IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
-            str = phoneContact->selectMessage(phoneContact, FALSE);
-        else
-            str = sPhoneCallText_NobodyAnswered;
-
-        StringExpandPlaceholders(gStringVar4, str);
-        AddTextPrinterParameterized(gTasks[taskId].tPhoneCallWindowId, 1, gStringVar4, 32, 1, GetPlayerTextSpeedDelay(), NULL);
-
-        gTasks[taskId].func = PhoneCard_ExecuteCall;
-    }
+    DisplayPhoneCardDefaultText();
 }
 
 static void PhoneCard_ExecuteCall(u8 taskId)
 {
-    if (IsTextPrinterActive(gTasks[taskId].tPhoneCallWindowId))
-    {
-        if (gMain.heldKeys & A_BUTTON)
-            gTextFlags.canABSpeedUpPrint = 1;
-        else
-            gTextFlags.canABSpeedUpPrint = 0;
-    }
-    else if (!IsSEPlaying() && gMain.newKeys & (A_BUTTON | B_BUTTON))
-    {
-        FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
-        RemoveWindow(gTasks[taskId].tPhoneCallWindowId);
-        PlaySE(SE_TOREOFF);
+    if (!PhoneScriptContext_IsEnabled())
         gTasks[taskId].func = PhoneCard_ReturnToMain;
-    }
 }
 
 static void UnloadPhoneCard(void)

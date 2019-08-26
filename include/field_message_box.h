@@ -10,7 +10,6 @@ enum
 };
 
 bool8 ShowFieldMessage(const u8 *message);
-bool8 sub_8098238(const u8 *message, u8 callerId);
 bool8 sub_80982B8(void);
 bool8 ShowFieldAutoScrollMessage(const u8 *message);
 void HideFieldMessageBox(void);
