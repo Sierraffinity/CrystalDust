@@ -917,53 +917,6 @@ void SelectMessage_StandardMatchCallTrainer(const struct PhoneContact *phoneCont
     SelectMatchCallMessage(rematchTrainerId, gStringVar4, isCallingPlayer);
 }
 
-// static const u8 *SelectMessage_Mom(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
-// {
-//     extern const u8 Text_Pokegear_Mom_Start[];
-//     extern const u8 Text_Pokegear_Mom_GotMon[];
-//     extern const u8 Text_Pokegear_Mom_GaveEggToElm[];
-//     extern const u8 Text_Pokegear_Mom_PhoneBankingPlaceholder[];
-//     extern const u8 Text_Pokegear_Mom_RegularCallPlaceholder[];
-
-//     // MomPhoneScript in pokecrystal (phone_scripts.asm)
-//     if (FlagGet(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
-//     {
-//         // TODO: Finish
-//         return Text_Pokegear_Mom_RegularCallPlaceholder;
-//     }
-//     else if (FlagGet(FLAG_DUDE_TALKED_TO_YOU))
-//     {
-//         //TODO: Yes/no box
-//         FlagSet(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST);
-//         return Text_Pokegear_Mom_PhoneBankingPlaceholder;
-//     }
-//     else if (FlagGet(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
-//     {
-//         return Text_Pokegear_Mom_GaveEggToElm;
-//     }
-//     else if (FlagGet(FLAG_SYS_POKEMON_GET))
-//     {
-//         return Text_Pokegear_Mom_GotMon;
-//     }
-//     return Text_Pokegear_Mom_Start;
-// }
-
-// static const u8 *SelectMessage_Elm(const struct PhoneContact *phoneContact, bool8 isCallingPlayer)
-// {
-//     extern const u8 Text_Pokegear_Elm_Start[];
-//     extern const u8 Text_Pokegear_Elm_SawMrPokemon[];
-//     extern const u8 Text_Pokegear_Elm_MonWasStolen[];
-//     extern const u8 Text_Pokegear_Elm_CheckingEgg[];
-
-//     if (FlagGet(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
-//         return Text_Pokegear_Elm_CheckingEgg;
-//     else if (FlagGet(FLAG_ELM_CALLED_ABOUT_STOLEN_MON))
-//         return Text_Pokegear_Elm_MonWasStolen;
-//     else if (FlagGet(FLAG_RECEIVED_MYSTERY_EGG))
-//         return Text_Pokegear_Elm_SawMrPokemon;
-//     return Text_Pokegear_Elm_Start;
-// }
-
 static bool8 CanAcceptRematch_Always(s8 dayOfWeek, s8 hour)
 {
     return TRUE;

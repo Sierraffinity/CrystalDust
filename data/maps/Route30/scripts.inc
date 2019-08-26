@@ -8,8 +8,8 @@ Route30_MapScripts_Type2:
 
 Route30_MapScript_ElmCall:
 	lockall
-	pokegearcall Route30_Text_ElmCall, 1
-	waitmessage
+	pokegearcall Route30_PhoneScript_ElmCall, 1
+	waitstate
 	setflag FLAG_ELM_CALLED_ABOUT_STOLEN_MON
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	addvar VAR_ROUTE30_STATE, 1
@@ -151,11 +151,3 @@ Route30_Text_TrainerTips:
 	.string "people's POKéMON!\p"
 	.string "POKé BALLS are to be thrown only\n"
 	.string "at wild POKéMON!$"
-
-Route30_Text_ElmCall:
-	.string "H-hello? {PLAYER}?\n"
-	.string "It's a disaster!\p"
-	.string "Uh, um, it's just terrible!\p"
-	.string "What should I do?\n"
-	.string "It… Oh, no…\p"
-	.string "Please get back here now!$"
