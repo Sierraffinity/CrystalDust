@@ -178,9 +178,13 @@ u8 CreateWarpArrowSprite(void)
     return spriteId;
 }
 
+// this function is only used for the warp arrow sprite
 void SetSpriteInvisible(u8 spriteId)
 {
-    FieldEffectFreePaletteIfUnused(gSprites[spriteId].oam.paletteNum);
+    // needed in order to trick the palette system into thinking that no sprite is using that palette
+    u8 paletteNum = gSprites[spriteId].oam.paletteNum;
+    gSprites[spriteId].oam.paletteNum = 0;
+    FieldEffectFreePaletteIfUnused(paletteNum);
     gSprites[spriteId].invisible = TRUE;
 }
 
