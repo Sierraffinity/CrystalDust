@@ -1386,9 +1386,33 @@ u8 HangupOverworldPhoneCall(void)
     return CreateTask(PerformHangupAnimation, 3);
 }
 
-bool32 IsHangupAnimationTaskActive(void)
+bool32 CleanupAfterMatchCallHangup(void)
 {
-    return FuncIsActiveTask(PerformHangupAnimation) || IsSEPlaying();
+    u8 playerObjectId;
+    if (!FuncIsActiveTask(PerformHangupAnimation) &&
+        !IsDma3ManagerBusyWithBgCopy() &&
+        !IsSEPlaying())
+    {
+        ChangeBgY(0, 0, 0);
+        if (!gMatchCallState.triggeredFromScript)
+        {
+            sub_81973A4();
+            playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+            EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
+            sub_80D338C();
+            UnfreezeEventObjects();
+            ScriptContext2_Disable();
+        }
+        else
+        {
+            // this allows waitstate to continue
+            EnableBothScriptContexts();
+        }
+
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 // static bool32 sub_81962D8(u8 taskId)

@@ -404,9 +404,8 @@ bool8 PhoneScrCmd_end_if_not_available(struct ScriptContext *ctx)
 
 static bool8 WaitForHangupAnimation(void)
 {
-    if (!IsHangupAnimationTaskActive())
+    if (CleanupAfterMatchCallHangup())
     {
-        EnableBothScriptContexts();
         return TRUE;
     }
     return FALSE;
