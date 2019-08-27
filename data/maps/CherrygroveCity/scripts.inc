@@ -488,9 +488,10 @@ CherrygroveCity_Text_YoungsterPreDex:
 
 CherrygroveCity_Text_YoungsterPostDex:
 	.string "I battled the TRAINERS on the road.\n"
-	.string "My POKéMON lost. They're a mess!\p"
-	.string "I need to take them to a POKéMON\n"
-	.string "CENTER.$"
+	.string "My POKéMON lost.\l"
+	.string "They're a mess!\p"
+	.string "I really need to take them to a\n"
+	.string "POKéMON CENTER.$"
 
 CherrygroveCity_Text_GuideGentsHouse:
 	.string "GUIDE GENT'S HOUSE$"
