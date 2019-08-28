@@ -24,7 +24,7 @@ Trainer_Text_Mikey_Beat:
 
 Trainer_Text_Mikey_After:
 	.string "Becoming a good TRAINER is really\n"
-	.string "tough.\p"
+	.string "tough to do.\p"
 	.string "I'm going to battle other people\n"
 	.string "to get better.$"
 
@@ -37,67 +37,9 @@ Trainer_Text_Don_Beat:
 	.string "You're too strong!$"
 
 Trainer_Text_Don_After:
-	.string "I ran out of POKé BALLS while\n"
-	.string "I was catching POKéMON.\p"
+	.string "I ran out of POKé BALLS while I was\n"
+	.string "catching POKéMON.\p"
 	.string "I should've bought some more…$"
-
-Route30_Text_2945EB: @ 82945EB
-	.string "I've been working hard at this since\n"
-	.string "I saw you before.\p"
-	.string "I'd like to battle you again, so can\n"
-	.string "you register me in your POKéNAV?$"
-
-Route30_Text_294668: @ 8294668
-	.string "I'd like to battle you again, so can\n"
-	.string "you register me in your POKéNAV?$"
-
-Route30_Text_2946AE: @ 82946AE
-	.string "Ever since I lost to you, I desperately\n"
-	.string "trained my POKéMON.\l"
-	.string "You can't say no to my challenge!$"
-
-Route30_Text_29470C: @ 829470C
-	.string "Arrgh, I lost…\n"
-	.string "Is my training method not right?$"
-
-Route30_Text_29473C: @ 829473C
-	.string "If you're going to get stronger,\n"
-	.string "I'll get stronger, too.$"
-
-Route30_Text_294775: @ 8294775
-	.string "Did you just become a TRAINER?\n"
-	.string "We're both beginners!$"
-
-Route30_Text_2947AA: @ 82947AA
-	.string "I called you because I thought\n"
-	.string "I could beat you…$"
-
-Route30_Text_2947DB: @ 82947DB
-	.string "I haven't won once yet…\n"
-	.string "I wish I would win soon…$"
-
-Route30_Text_29480C: @ 829480C
-	.string "Hahah! Our eyes met!\n"
-	.string "I'll take you on with my BUG POKéMON!$"
-
-Route30_Text_294847: @ 8294847
-	.string "Ow! Down and out!$"
-
-Route30_Text_294859: @ 8294859
-	.string "If you lock eyes with a TRAINER,\n"
-	.string "you have to challenge! It's a rule!$"
-
-Route30_Text_29489E: @ 829489E
-	.string "I'm going to keep winning and aim\n"
-	.string "to be the best TRAINER.\p"
-	.string "Help me further my career!$"
-
-Route30_Text_2948F3: @ 82948F3
-	.string "I ended up furthering your career…$"
-
-Route30_Text_294916: @ 8294916
-	.string "To keep winning my way up, I see that\n"
-	.string "I have to catch more POKéMON.$"
 
 Route31_Text_29495A: @ 829495A
 	.string "Did you feel the tug of our\n"
