@@ -1199,24 +1199,51 @@ static u8 GetEventObjectIdByLocalId(u8 localId)
     return EVENT_OBJECTS_COUNT;
 }
 
+static void SetObjectTemplateFlagIfTemporary(struct EventObjectTemplate *template);
+static bool8 IsTreeOrRockOffScreenPostWalkTransition(struct EventObjectTemplate *template, s16 x, s16 y);
+static bool8 IsTreeOrRockCloneOffScreen(struct EventObjectTemplate *template, s16 x, s16 y);
+static bool8 ShouldTreeOrRockObjectBeCreated(struct EventObjectTemplate *template, bool8 isClone, s16 x, s16 y);
+
 // This function has the same nonmatching quirk as in Ruby/Sapphire.
-#ifdef NONMATCHING
+//#ifdef NONMATCHING
 static u8 InitEventObjectStateFromTemplate(struct EventObjectTemplate *template, u8 mapNum, u8 mapGroup)
 {
     struct EventObject *eventObject;
     u8 eventObjectId;
+    bool8 isClone = FALSE;
     s16 x;
     s16 y;
+    s16 cloneX = 0;
+    s16 cloneY = 0;
+
+    if (template->unk2 == 0xFF)
+    {
+        isClone = TRUE;
+        mapNum = template->trainerType;
+        mapGroup = template->trainerRange_berryTreeId;
+        cloneX = template->x;
+        cloneY = template->y;
+        template = &Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->events->eventObjects[template->elevation - 1];
+    }
 
     // mapNum and mapGroup are in the wrong registers (r7/r6 instead of r6/r7)
-    if (GetAvailableEventObjectId(template->localId, mapNum, mapGroup, &eventObjectId))
+    if (GetAvailableEventObjectId(template->localId, mapNum, mapGroup, &eventObjectId) ||
+        !ShouldTreeOrRockObjectBeCreated(template, isClone, cloneX, cloneY))
     {
         return EVENT_OBJECTS_COUNT;
     }
     eventObject = &gEventObjects[eventObjectId];
     ClearEventObject(eventObject);
-    x = template->x + 7;
-    y = template->y + 7;
+    if (isClone)
+    {
+        x = cloneX + 7;
+        y = cloneY + 7;
+    }
+    else
+    {
+        x = template->x + 7;
+        y = template->y + 7;
+    }
     eventObject->active = TRUE;
     eventObject->triggerGroundEffectsOnMove = TRUE;
     eventObject->graphicsId = template->graphicsId;
@@ -1255,7 +1282,7 @@ static u8 InitEventObjectStateFromTemplate(struct EventObjectTemplate *template,
     }
     return eventObjectId;
 }
-#else
+/*#else
 static NAKED u8 InitEventObjectStateFromTemplate(struct EventObjectTemplate *template, u8 mapId, u8 mapGroupId)
 {
     asm_unified("\tpush {r4-r7,lr}\n"
@@ -1410,7 +1437,78 @@ static NAKED u8 InitEventObjectStateFromTemplate(struct EventObjectTemplate *tem
                 "\tbx r1\n"
                 ".pool");
 }
-#endif
+#endif*/
+
+static bool8 ShouldTreeOrRockObjectBeCreated(struct EventObjectTemplate *template, bool8 isClone, s16 x, s16 y)
+{
+    if (isClone && !IsTreeOrRockCloneOffScreen(template, x, y))
+        return FALSE;
+    else if (!IsTreeOrRockOffScreenPostWalkTransition(template, x, y))
+        return FALSE;
+    return TRUE;
+}
+
+static bool8 IsTreeOrRockCloneOffScreen(struct EventObjectTemplate *template, s16 x, s16 y)
+{
+    if (template->graphicsId == EVENT_OBJ_GFX_CUTTABLE_TREE ||
+        template->graphicsId == EVENT_OBJ_GFX_BREAKABLE_ROCK)
+    {
+        if (((gSaveBlock1Ptr->pos.x < x) && (gSaveBlock1Ptr->pos.x + 8) >= x) ||
+             (gSaveBlock1Ptr->pos.x - 8) < x)
+        {
+            if (((gSaveBlock1Ptr->pos.y - 6) <= y) &&
+                ((gSaveBlock1Ptr->pos.y + 6) >= y))
+            {
+                return FALSE;
+            }
+        }
+    }
+    return TRUE;
+}
+
+static bool8 IsTreeOrRockOffScreenPostWalkTransition(struct EventObjectTemplate *template, s16 x, s16 y)
+{
+    s32 width, height;
+
+    if (!IsMapTypeOutdoors(GetCurrentMapType()))
+        return TRUE;
+    
+    width = gBackupMapLayout.width - 16;
+    height = gBackupMapLayout.height - 15;
+
+    if (template->graphicsId != EVENT_OBJ_GFX_CUTTABLE_TREE &&
+        template->graphicsId != EVENT_OBJ_GFX_BREAKABLE_ROCK)
+        return TRUE;
+    
+    if ((gSaveBlock1Ptr->pos.x != 0) ||
+       ((gSaveBlock1Ptr->pos.x == 0) && (template->x > 8)))
+    {
+        if ((gSaveBlock1Ptr->pos.x != width) ||
+           ((gSaveBlock1Ptr->pos.x == width) && (template->x < (width - 8))))
+        {
+            if ((gSaveBlock1Ptr->pos.y != 0) ||
+               ((gSaveBlock1Ptr->pos.y == 0) && (template->y > 6)))
+            {
+                if ((gSaveBlock1Ptr->pos.y != height) ||
+                   ((gSaveBlock1Ptr->pos.y == height) && (template->y < (height - 6))))
+                {
+                    return TRUE;
+                }
+            }
+        }
+    }
+
+    SetObjectTemplateFlagIfTemporary(template);
+    return FALSE;
+}
+
+static void SetObjectTemplateFlagIfTemporary(struct EventObjectTemplate *template)
+{
+    if ((template->flagId >= FLAG_TEMP_11) && (template->flagId <= FLAG_TEMP_1F))
+    {
+        FlagSet(template->flagId);
+    }
+}
 
 u8 Unref_TryInitLocalEventObject(u8 localId)
 {

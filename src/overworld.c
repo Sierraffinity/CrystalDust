@@ -498,12 +498,34 @@ void ApplyNewEncryptionKeyToGameStats(u32 newKey)
 void LoadEventObjTemplatesFromHeader(void)
 {
     // Clear map object templates
-    CpuFill32(0, gSaveBlock1Ptr->eventObjectTemplates, sizeof(gSaveBlock1Ptr->eventObjectTemplates));
+    /*CpuFill32(0, gSaveBlock1Ptr->eventObjectTemplates, sizeof(gSaveBlock1Ptr->eventObjectTemplates));
 
     // Copy map header events to save block
     CpuCopy32(gMapHeader.events->eventObjects,
               gSaveBlock1Ptr->eventObjectTemplates,
-              gMapHeader.events->eventObjectCount * sizeof(struct EventObjectTemplate));
+              gMapHeader.events->eventObjectCount * sizeof(struct EventObjectTemplate));*/
+
+    u8 i;
+
+    for (i = 0; i < gMapHeader.events->eventObjectCount; i++)
+    {
+        if (gMapHeader.events->eventObjects[i].unk2 == 0xFF)
+        {
+            gSaveBlock1Ptr->eventObjectTemplates[i] = Overworld_GetMapHeaderByGroupAndId(gMapHeader.events->eventObjects[i].trainerRange_berryTreeId, gMapHeader.events->eventObjects[i].trainerType)->events->eventObjects[gMapHeader.events->eventObjects[i].elevation - 1];
+            gSaveBlock1Ptr->eventObjectTemplates[i].localId = gMapHeader.events->eventObjects[i].localId;
+            gSaveBlock1Ptr->eventObjectTemplates[i].x = gMapHeader.events->eventObjects[i].x;
+            gSaveBlock1Ptr->eventObjectTemplates[i].y = gMapHeader.events->eventObjects[i].y;
+            // set up object for seamless map transitions
+            gSaveBlock1Ptr->eventObjectTemplates[i].elevation = gMapHeader.events->eventObjects[i].elevation;
+            gSaveBlock1Ptr->eventObjectTemplates[i].trainerType = gMapHeader.events->eventObjects[i].trainerType;
+            gSaveBlock1Ptr->eventObjectTemplates[i].trainerRange_berryTreeId = gMapHeader.events->eventObjects[i].trainerRange_berryTreeId;
+            gSaveBlock1Ptr->eventObjectTemplates[i].unk2 = 0xFF;
+        }
+        else
+        {
+            gSaveBlock1Ptr->eventObjectTemplates[i] = gMapHeader.events->eventObjects[i];
+        }
+    }
 }
 
 void LoadSaveblockEventObjScripts(void)
