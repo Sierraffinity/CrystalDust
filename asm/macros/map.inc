@@ -26,6 +26,18 @@
 	inc _num_npcs
 	.endm
 
+	.macro object_clone_event index:req, x:req, y:req, source_id:req, source_map:req
+	.byte \index, 0, 0xFF, 0
+	.2byte \x
+	.2byte \y
+	.byte \source_id, 0, 0, 0
+	.2byte \source_map & 0xFF  @ map num
+	.2byte \source_map >> 8    @ map group
+	.4byte NULL
+	.2byte 0, 0
+	inc _num_npcs
+	.endm
+
 	.macro warp_def x, y, byte, warp, map_id
 	.2byte \x, \y
 	.byte \byte, \warp

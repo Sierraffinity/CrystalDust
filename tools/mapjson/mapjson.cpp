@@ -154,18 +154,27 @@ string generate_map_events_text(Json map_data) {
         text << objects_label << ":\n";
         for (unsigned int i = 0; i < map_data["object_events"].array_items().size(); i++) {
             auto obj_event = map_data["object_events"].array_items()[i];
-            text << "\tobject_event " << i + 1 << ", "
-                 << obj_event["graphics_id"].string_value() << ", 0, "
-                 << obj_event["x"].int_value() << ", "
-                 << obj_event["y"].int_value() << ", "
-                 << obj_event["elevation"].int_value() << ", "
-                 << obj_event["movement_type"].string_value() << ", "
-                 << obj_event["movement_range_x"].int_value() << ", "
-                 << obj_event["movement_range_y"].int_value() << ", "
-                 << obj_event["trainer_type"].string_value() << ", "
-                 << obj_event["trainer_sight_or_berry_tree_id"].string_value() << ", "
-                 << obj_event["script"].string_value() << ", "
-                 << obj_event["flag"].string_value() << "\n";
+            if (obj_event["type"].string_value() == "original") {
+                text << "\tobject_event " << i + 1 << ", "
+                    << obj_event["graphics_id"].string_value() << ", 0, "
+                    << obj_event["x"].int_value() << ", "
+                    << obj_event["y"].int_value() << ", "
+                    << obj_event["elevation"].int_value() << ", "
+                    << obj_event["movement_type"].string_value() << ", "
+                    << obj_event["movement_range_x"].int_value() << ", "
+                    << obj_event["movement_range_y"].int_value() << ", "
+                    << obj_event["trainer_type"].string_value() << ", "
+                    << obj_event["trainer_sight_or_berry_tree_id"].string_value() << ", "
+                    << obj_event["script"].string_value() << ", "
+                    << obj_event["flag"].string_value() << "\n";
+            }
+            else if (obj_event["type"] == "clone") {
+                text << "\tobject_clone_event " << i + 1 << ", "
+                    << obj_event["x"].int_value() << ", "
+                    << obj_event["y"].int_value() << ", "
+                    << obj_event["source_id"].int_value() << ", "
+                    << obj_event["source_map"].string_value() << "\n";
+            }
         }
         text << "\n";
     } else {
