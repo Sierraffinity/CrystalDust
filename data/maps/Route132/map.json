@@ -34,6 +34,7 @@
       "movement_range_x": 3,
       "movement_range_y": 3,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "Route132_EventScript_1F74EA",
       "flag": "0"
@@ -47,6 +48,7 @@
       "movement_range_x": 3,
       "movement_range_y": 3,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "Route132_EventScript_1F7501",
       "flag": "0"
@@ -60,6 +62,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route132_EventScript_ItemRareCandy",
       "flag": "FLAG_ITEM_ROUTE_132_RARE_CANDY"
@@ -73,6 +76,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route132_EventScript_1F752F",
       "flag": "0"
@@ -86,6 +90,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route132_EventScript_1F7518",
       "flag": "0"
@@ -99,6 +104,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route132_EventScript_1F7546",
       "flag": "0"
@@ -112,6 +118,7 @@
       "movement_range_x": 1,
       "movement_range_y": 4,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route132_EventScript_1F755D",
       "flag": "0"
@@ -125,6 +132,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route132_EventScript_1F758B",
       "flag": "0"
@@ -138,6 +146,7 @@
       "movement_range_x": 1,
       "movement_range_y": 4,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route132_EventScript_1F7574",
       "flag": "0"
@@ -151,6 +160,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route132_EventScript_ItemProtein",
       "flag": "FLAG_ITEM_ROUTE_132_PROTEIN"

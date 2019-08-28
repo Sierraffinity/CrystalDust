@@ -23,6 +23,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BirthIsland_Exterior_EventScript_267F83",
       "flag": "FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE"
@@ -36,6 +37,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_DEOXYS"

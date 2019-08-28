@@ -44,6 +44,7 @@
       "movement_range_x": 5,
       "movement_range_y": 5,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route128_EventScript_1F6CBE",
       "flag": "0"
@@ -57,6 +58,7 @@
       "movement_range_x": 5,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "7",
       "script": "Route128_EventScript_1F6D20",
       "flag": "0"
@@ -70,6 +72,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_ROUTE_128_STEVEN"
@@ -83,6 +86,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_ROUTE_128_ARCHIE"
@@ -96,6 +100,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_ROUTE_128_MAXIE"
@@ -109,6 +114,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route128_EventScript_1F6DB0",
       "flag": "0"
@@ -122,6 +128,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route128_EventScript_1F6D99",
       "flag": "0"
@@ -135,6 +142,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route128_EventScript_1F6D82",
       "flag": "0"
@@ -148,6 +156,7 @@
       "movement_range_x": 1,
       "movement_range_y": 3,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route128_EventScript_1F6DDE",
       "flag": "0"
@@ -161,6 +170,7 @@
       "movement_range_x": 1,
       "movement_range_y": 3,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route128_EventScript_1F6DC7",
       "flag": "0"

@@ -23,6 +23,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "7",
       "script": "MagmaHideout_2F_2R_EventScript_239E4D",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
@@ -36,6 +37,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "MagmaHideout_2F_2R_EventScript_239E36",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
@@ -49,6 +51,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MagmaHideout_2F_2R_EventScript_MaxElixir",
       "flag": "FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_MAX_ELIXIR"
@@ -62,6 +65,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "MagmaHideout_2F_2R_EventScript_239E1F",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
@@ -75,6 +79,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "MagmaHideout_2F_2R_EventScript_239E08",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
@@ -88,6 +93,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MagmaHideout_2F_2R_EventScript_ItemFullRestore",
       "flag": "FLAG_ITEM_MAGMA_HIDEOUT_2F_2R_FULL_RESTORE"

@@ -75,6 +75,7 @@
             "script": "DewfordTown_EventScript_1E95B1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 7,
             "y": 12
         },
@@ -88,6 +89,7 @@
             "script": "DewfordTown_EventScript_1E9511",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "0",
+            "type": "original",
             "x": 12,
             "y": 9
         },
@@ -101,6 +103,7 @@
             "script": "DewfordTown_EventScript_1E95D5",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 12,
             "y": 14
         },
@@ -114,6 +117,7 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 12,
             "y": 8
         },
@@ -127,6 +131,7 @@
             "script": "DewfordTown_EventScript_1E9922",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 1,
             "y": 6
         }

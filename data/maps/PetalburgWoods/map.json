@@ -23,6 +23,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
       "flag": "FLAG_TEMP_11"
@@ -36,6 +37,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
       "flag": "FLAG_TEMP_12"
@@ -49,6 +51,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS"
@@ -62,6 +65,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE"
@@ -75,6 +79,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgWoods_EventScript_ItemGreatBall",
       "flag": "FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL"
@@ -88,6 +93,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgWoods_EventScript_ItemXAttack",
       "flag": "FLAG_ITEM_PETALBURG_WOODS_X_ATTACK"
@@ -101,6 +107,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgWoods_EventScript_ItemEther",
       "flag": "FLAG_ITEM_PETALBURG_WOODS_ETHER"
@@ -114,6 +121,7 @@
       "movement_range_x": 1,
       "movement_range_y": 2,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgWoods_EventScript_22E210",
       "flag": "0"
@@ -127,6 +135,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "PetalburgWoods_EventScript_22E26D",
       "flag": "0"
@@ -140,6 +149,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "PetalburgWoods_EventScript_22E284",
       "flag": "0"
@@ -153,6 +163,7 @@
       "movement_range_x": 2,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgWoods_EventScript_22E219",
       "flag": "0"
@@ -166,6 +177,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgWoods_EventScript_ItemParalyzeHeal",
       "flag": "FLAG_ITEM_PETALBURD_WOODS_PARALYZE_HEAL"
@@ -179,6 +191,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgWoods_EventScript_22E222",
       "flag": "0"

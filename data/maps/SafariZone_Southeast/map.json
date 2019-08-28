@@ -34,6 +34,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SafariZone_Southeast_EventScript_23D3BD",
       "flag": "0"
@@ -47,6 +48,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SafariZone_Southeast_EventScript_23D3B4",
       "flag": "0"
@@ -60,6 +62,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SafariZone_Southeast_EventScript_23D3AB",
       "flag": "0"
@@ -73,6 +76,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SafariZone_Southeast_EventScript_ItemBigPearl",
       "flag": "FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL"
@@ -86,6 +90,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SafariZone_Southeast_EventScript_23D399",
       "flag": "FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION"

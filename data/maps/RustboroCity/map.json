@@ -40,6 +40,7 @@
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E088A",
       "flag": "0"
@@ -53,6 +54,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E085F",
       "flag": "0"
@@ -66,6 +68,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E08DA",
       "flag": "0"
@@ -79,6 +82,7 @@
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E08D1",
       "flag": "0"
@@ -92,6 +96,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E08B2",
       "flag": "0"
@@ -105,6 +110,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E0893",
       "flag": "0"
@@ -118,6 +124,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E0922",
       "flag": "0"
@@ -131,6 +138,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E0938",
       "flag": "0"
@@ -144,6 +152,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E0ADD",
       "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1"
@@ -157,6 +166,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT"
@@ -170,6 +180,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E087E",
       "flag": "0"
@@ -183,6 +194,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_ItemXDefend",
       "flag": "FLAG_ITEM_RUSTBORO_CITY_X_DEFEND"
@@ -196,6 +208,7 @@
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E094E",
       "flag": "0"
@@ -209,6 +222,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E0DB8",
       "flag": "FLAG_HIDE_RUSBORO_CITY_RIVAL"
@@ -222,6 +236,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_RUSTBORO_CITY_SCIENTIST"
@@ -235,6 +250,7 @@
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E1236",
       "flag": "0"

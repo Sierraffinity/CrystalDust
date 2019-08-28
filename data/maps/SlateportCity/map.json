@@ -39,6 +39,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCED9",
       "flag": "0"
@@ -52,6 +53,7 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCEF6",
       "flag": "0"
@@ -65,6 +67,7 @@
       "movement_range_x": 1,
       "movement_range_y": 2,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCEB8",
       "flag": "0"
@@ -78,6 +81,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCF17",
       "flag": "0"
@@ -91,6 +95,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD009",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -104,6 +109,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCE42",
       "flag": "0"
@@ -117,6 +123,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCE63",
       "flag": "0"
@@ -130,6 +137,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCE84",
       "flag": "0"
@@ -143,6 +151,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD353",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY"
@@ -156,6 +165,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD35C",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY"
@@ -169,6 +179,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD1F8",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN"
@@ -182,6 +193,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCFE5",
       "flag": "0"
@@ -195,6 +207,7 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCFEE",
       "flag": "0"
@@ -208,6 +221,7 @@
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCFF7",
       "flag": "0"
@@ -221,6 +235,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD000",
       "flag": "0"
@@ -234,6 +249,7 @@
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCFBB",
       "flag": "0"
@@ -247,6 +263,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCFDC",
       "flag": "0"
@@ -260,6 +277,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD020",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -273,6 +291,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD037",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -286,6 +305,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD198",
       "flag": "0"
@@ -299,6 +319,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD16A",
       "flag": "0"
@@ -312,6 +333,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD365",
       "flag": "0"
@@ -325,6 +347,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCDE4",
       "flag": "0"
@@ -338,6 +361,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD1D8",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN"
@@ -351,6 +375,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DCDBD",
       "flag": "0"
@@ -364,6 +389,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD04E",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -377,6 +403,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD065",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -390,6 +417,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD07C",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -403,6 +431,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD093",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -416,6 +445,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD0AA",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -429,6 +459,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD0C1",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -442,6 +473,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD14A",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -455,6 +487,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD153",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
@@ -468,6 +501,7 @@
       "movement_range_x": 1,
       "movement_range_y": 2,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_1DD36E",
       "flag": "0"
@@ -481,6 +515,7 @@
       "movement_range_x": 1,
       "movement_range_y": 2,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_SCOTT"

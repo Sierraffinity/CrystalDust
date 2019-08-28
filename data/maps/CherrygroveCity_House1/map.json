@@ -24,6 +24,7 @@
             "script": "CherrygroveCity_House1_EventScript_Pokefan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 4,
             "y": 4
         },
@@ -37,6 +38,7 @@
             "script": "CherrygroveCity_House1_EventScript_Child",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 7,
             "y": 6
         }

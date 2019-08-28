@@ -23,6 +23,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_Harbor_EventScript_21E00F",
       "flag": "FLAG_HIDE_LILYCOVE_HARBOR_FERRY_ATTENDANT"
@@ -36,6 +37,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_LILYCOVE_HARBOR_SSTIDAL"
@@ -49,6 +51,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_Harbor_EventScript_21E637",
       "flag": "0"
@@ -62,6 +65,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR"
@@ -75,6 +79,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_LILYCOVE_HARBOR_EON_TICKET_TAKER"

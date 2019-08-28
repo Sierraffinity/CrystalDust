@@ -23,6 +23,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "VictoryRoad_1F_EventScript_235E73",
       "flag": "0"
@@ -36,6 +37,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "VictoryRoad_1F_EventScript_235EA1",
       "flag": "0"
@@ -49,6 +51,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "VictoryRoad_1F_EventScript_235E8A",
       "flag": "0"
@@ -62,6 +65,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VictoryRoad_1F_EventScript_235E2C",
       "flag": "FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY"
@@ -75,6 +79,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VictoryRoad_1F_EventScript_ItemMaxElixir",
       "flag": "FLAG_ITEM_VICTORY_ROAD_1F_MAX_ELIXIR"
@@ -88,6 +93,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VictoryRoad_1F_EventScript_ItemPPUp",
       "flag": "FLAG_ITEM_VICTORY_ROAD_1F_PP_UP"
@@ -101,6 +107,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VictoryRoad_1F_EventScript_235E35",
       "flag": "FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY"
@@ -114,6 +121,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "VictoryRoad_1F_EventScript_235ECF",
       "flag": "0"
@@ -127,6 +135,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "VictoryRoad_1F_EventScript_235EB8",
       "flag": "0"

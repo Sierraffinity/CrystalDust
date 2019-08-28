@@ -34,6 +34,7 @@
       "movement_range_x": 3,
       "movement_range_y": 5,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "Route134_EventScript_1F7653",
       "flag": "0"
@@ -47,6 +48,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route134_EventScript_1F766A",
       "flag": "0"
@@ -60,6 +62,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "Route134_EventScript_1F7698",
       "flag": "0"
@@ -73,6 +76,7 @@
       "movement_range_x": 0,
       "movement_range_y": 3,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "6",
       "script": "Route134_EventScript_1F7681",
       "flag": "0"
@@ -86,6 +90,7 @@
       "movement_range_x": 6,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "Route134_EventScript_1F76AF",
       "flag": "0"
@@ -99,6 +104,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "Route134_EventScript_1F76F4",
       "flag": "0"
@@ -112,6 +118,7 @@
       "movement_range_x": 0,
       "movement_range_y": 3,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "6",
       "script": "Route134_EventScript_1F770B",
       "flag": "0"
@@ -125,6 +132,7 @@
       "movement_range_x": 6,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "Route134_EventScript_1F76DD",
       "flag": "0"
@@ -138,6 +146,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route134_EventScript_1F76C6",
       "flag": "0"
@@ -151,6 +160,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route134_EventScript_ItemCarbos",
       "flag": "FLAG_ITEM_ROUTE_134_CARBOS"
@@ -164,6 +174,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route134_EventScript_ItemStarPiece",
       "flag": "FLAG_ITEM_ROUTE_134_STAR_PIECE"

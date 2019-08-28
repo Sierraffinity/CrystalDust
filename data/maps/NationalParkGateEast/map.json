@@ -32,6 +32,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 3,
             "y": 6
         },
@@ -45,6 +46,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 4,
             "y": 7
         },
@@ -58,6 +60,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 5,
             "y": 6
         },
@@ -71,6 +74,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 6,
             "y": 7
         },
@@ -84,6 +88,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 7,
             "y": 6
         },
@@ -97,6 +102,7 @@
             "script": "NationalParkGateEast_BehindCounterOfficer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 4,
             "y": 3
         },
@@ -110,6 +116,7 @@
             "script": "NationalParkGateEast_BugContestOfficer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 1,
             "y": 4
         }

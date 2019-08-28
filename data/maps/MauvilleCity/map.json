@@ -40,6 +40,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_1DF3B3",
       "flag": "0"
@@ -53,6 +54,7 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_1DF3CE",
       "flag": "0"
@@ -66,6 +68,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_1DF3BC",
       "flag": "0"
@@ -79,6 +82,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_1DF3C5",
       "flag": "0"
@@ -92,6 +96,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_1DF3FB",
       "flag": "0"
@@ -105,6 +110,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_1DF452",
       "flag": "FLAG_HIDE_MAUVILLE_CITY_WALLY"
@@ -118,6 +124,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_1DF41D",
       "flag": "FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE"
@@ -131,6 +138,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_1DF73A",
       "flag": "FLAG_HIDE_MAUVILLE_CITY_WATTSON"
@@ -144,6 +152,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_ItemXSpeed",
       "flag": "FLAG_ITEM_MAUVILLE_CITY_X_SPEED"
@@ -157,6 +166,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_2C7F7E",
       "flag": "0"
@@ -170,6 +180,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_MAUVILLE_CITY_SCOTT"

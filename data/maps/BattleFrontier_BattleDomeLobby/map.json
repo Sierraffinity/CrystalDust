@@ -23,6 +23,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_BattleDomeLobby_EventScript_249A35",
       "flag": "0"
@@ -36,6 +37,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_BattleDomeLobby_EventScript_249E10",
       "flag": "0"
@@ -49,6 +51,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_BattleDomeLobby_EventScript_249DFE",
       "flag": "0"
@@ -62,6 +65,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_BattleDomeLobby_EventScript_249E07",
       "flag": "0"
@@ -75,6 +79,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_BattleDomeLobby_EventScript_249DED",
       "flag": "0"
@@ -88,6 +93,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_BattleDomeLobby_EventScript_249A47",
       "flag": "0"

@@ -89,6 +89,7 @@
             "script": "Route30_EventScript_BattlingYoungster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 8,
             "y": 28
         },
@@ -102,6 +103,7 @@
             "script": "Route30_EventScript_Trainer_Joey",
             "trainer_sight_or_berry_tree_id": "6",
             "trainer_type": "1",
+            "type": "original",
             "x": 2,
             "y": 32
         },
@@ -115,6 +117,7 @@
             "script": "Route30_EventScript_Trainer_Mikey",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 8,
             "y": 25
         },
@@ -128,6 +131,7 @@
             "script": "Route30_EventScript_Trainer_Don",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 3,
             "y": 7
         },
@@ -141,6 +145,7 @@
             "script": "Route30_EventScript_DirectionsBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 10,
             "y": 34
         },
@@ -154,6 +159,7 @@
             "script": "0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 8,
             "y": 26
         },
@@ -167,6 +173,7 @@
             "script": "0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 8,
             "y": 27
         },
@@ -180,6 +187,7 @@
             "script": "Route30_EventScript_NotATrainerGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 4,
             "y": 13
         },
@@ -193,6 +201,7 @@
             "script": "Route30_EventScript_ItemAntidote",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 9,
             "y": 40
         },
@@ -206,6 +215,7 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 11,
             "y": 6
         }

@@ -23,6 +23,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON_1"
@@ -36,6 +37,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "MagmaHideout_4F_EventScript_23A68C",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
@@ -49,6 +51,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "MagmaHideout_4F_EventScript_23A6A3",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
@@ -62,6 +65,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "MagmaHideout_4F_EventScript_23A6BA",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
@@ -75,6 +79,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "MagmaHideout_4F_EventScript_23A6D1",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
@@ -88,6 +93,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MagmaHideout_4F_EventScript_23A560",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
@@ -101,6 +107,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON_2"
@@ -114,6 +121,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MagmaHideout_4F_EventScript_MaxRevive",
       "flag": "FLAG_ITEM_MAGMA_HIDEOUT_4F_MAX_REVIVE"

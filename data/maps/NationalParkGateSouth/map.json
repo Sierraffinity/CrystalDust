@@ -32,6 +32,7 @@
             "script": "NationalParkGateSouth_NoContestOfficer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 1,
             "y": 5
         },
@@ -45,6 +46,7 @@
             "script": "NationalParkGateSouth_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 6,
             "y": 7
         },
@@ -58,6 +60,7 @@
             "script": "NationalParkGateSouth_BugContestOfficer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 3,
             "y": 2
         }

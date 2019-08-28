@@ -23,6 +23,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtPyre_Summit_EventScript_23213C",
       "flag": "0"
@@ -36,6 +37,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE"
@@ -49,6 +51,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtPyre_Summit_EventScript_2321A2",
       "flag": "0"
@@ -62,6 +65,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "MtPyre_Summit_EventScript_2323FD",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
@@ -75,6 +79,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "MtPyre_Summit_EventScript_232414",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
@@ -88,6 +93,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "MtPyre_Summit_EventScript_23242B",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
@@ -101,6 +107,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "MtPyre_Summit_EventScript_232442",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
@@ -114,6 +121,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE"

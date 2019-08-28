@@ -171,6 +171,7 @@
             "script": "PetalburgCity_EventScript_1DC3FD",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 16,
             "y": 18
         },
@@ -184,6 +185,7 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 15,
             "y": 10
         },
@@ -197,6 +199,7 @@
             "script": "PetalburgCity_EventScript_1DC3E6",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 8,
             "y": 22
         },
@@ -210,6 +213,7 @@
             "script": "PetalburgCity_EventScript_1DC488",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 20,
             "y": 10
         },
@@ -223,6 +227,7 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 15,
             "y": 10
         },
@@ -236,6 +241,7 @@
             "script": "PetalburgCity_EventScript_ItemMaxRevive",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 19,
             "y": 2
         },
@@ -249,6 +255,7 @@
             "script": "PetalburgCity_EventScript_ItemEther",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 3,
             "y": 28
         },
@@ -262,6 +269,7 @@
             "script": "PetalburgCity_EventScript_1DC82E",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 12,
             "y": 15
         },
@@ -275,6 +283,7 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 13,
             "y": 12
         }

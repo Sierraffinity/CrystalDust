@@ -30,6 +30,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "34",
       "script": "BerryTreeScript",
       "flag": "0"
@@ -43,6 +44,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "35",
       "script": "BerryTreeScript",
       "flag": "0"
@@ -56,6 +58,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "36",
       "script": "BerryTreeScript",
       "flag": "0"
@@ -69,6 +72,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route119_EventScript_1F47E2",
       "flag": "0"
@@ -82,6 +86,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route119_EventScript_1F47B4",
       "flag": "0"
@@ -95,6 +100,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route119_EventScript_1F479D",
       "flag": "0"
@@ -108,6 +114,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route119_EventScript_1F4810",
       "flag": "0"
@@ -121,6 +128,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route119_EventScript_1F4786",
       "flag": "0"
@@ -134,6 +142,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "Route119_EventScript_1F4872",
       "flag": "0"
@@ -147,6 +156,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route119_EventScript_1F47CB",
       "flag": "0"
@@ -160,6 +170,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route119_EventScript_1F47F9",
       "flag": "0"
@@ -173,6 +184,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route119_EventScript_1F4902",
       "flag": "0"
@@ -186,6 +198,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route119_EventScript_1F4919",
       "flag": "0"
@@ -199,6 +212,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route119_EventScript_1F48D4",
       "flag": "0"
@@ -212,6 +226,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "Route119_EventScript_1F48EB",
       "flag": "0"
@@ -225,6 +240,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_ROUTE_119_RIVAL"
@@ -238,6 +254,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_ItemSuperRepel",
       "flag": "FLAG_ITEM_ROUTE_119_SUPER_REPEL"
@@ -251,6 +268,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_ItemZinc",
       "flag": "FLAG_ITEM_ROUTE_119_ZINC"
@@ -264,6 +282,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_ItemElixir",
       "flag": "FLAG_ITEM_ROUTE_119_ELIXIR_1"
@@ -277,6 +296,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_ItemLeafStone",
       "flag": "FLAG_ITEM_ROUTE_119_LEAF_STONE"
@@ -290,6 +310,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_ItemRareCandy",
       "flag": "FLAG_ITEM_ROUTE_119_RARE_CANDY"
@@ -303,6 +324,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_ItemHyperPotion",
       "flag": "FLAG_ITEM_ROUTE_119_HYPER_POTION_1"
@@ -316,6 +338,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_1F49A3",
       "flag": "FLAG_HIDE_ROUTE_119_TEAM_AQUA"
@@ -329,6 +352,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_1F49BA",
       "flag": "FLAG_HIDE_ROUTE_119_TEAM_AQUA"
@@ -342,6 +366,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE"
@@ -355,6 +380,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_1F49D1",
       "flag": "0"
@@ -368,6 +394,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "83",
       "script": "BerryTreeScript",
       "flag": "0"
@@ -381,6 +408,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "84",
       "script": "BerryTreeScript",
       "flag": "0"
@@ -394,6 +422,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "85",
       "script": "BerryTreeScript",
       "flag": "0"
@@ -407,6 +436,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "86",
       "script": "BerryTreeScript",
       "flag": "0"
@@ -420,6 +450,7 @@
       "movement_range_x": 2,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_1F476B",
       "flag": "0"
@@ -433,6 +464,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_ItemHyperPotion2",
       "flag": "FLAG_ITEM_ROUTE_119_HYPER_POTION_2"
@@ -446,6 +478,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_1F49DA",
       "flag": "0"
@@ -459,6 +492,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route119_EventScript_1F4930",
       "flag": "0"
@@ -472,6 +506,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_27231C",
       "flag": "FLAG_HIDE_ROUTE_119_KECLEON_1"
@@ -485,6 +520,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_272329",
       "flag": "FLAG_HIDE_ROUTE_119_KECLEON_2"
@@ -498,6 +534,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_1F4947",
       "flag": "0"
@@ -511,6 +548,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "Route119_EventScript_1F498C",
       "flag": "0"
@@ -524,6 +562,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route119_EventScript_1F4975",
       "flag": "0"
@@ -537,6 +576,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route119_EventScript_1F495E",
       "flag": "0"
@@ -550,6 +590,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_ItemNugget",
       "flag": "FLAG_ITEM_ROUTE_119_NUGGET"
@@ -563,6 +604,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_EventScript_ItemElixir2",
       "flag": "FLAG_ITEM_ROUTE_119_ELIXIR_2"
@@ -576,6 +618,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_ROUTE_119_SCOTT"

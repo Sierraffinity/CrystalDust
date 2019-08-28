@@ -88,6 +88,7 @@
             "script": "Route30_MrPokemonsHouse_EventScript_MrPokemon",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 4,
             "y": 6
         },
@@ -101,6 +102,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 9,
             "y": 6
         }

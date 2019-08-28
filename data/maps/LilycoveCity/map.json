@@ -34,6 +34,7 @@
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2C53",
       "flag": "0"
@@ -47,6 +48,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2C2B",
       "flag": "0"
@@ -60,6 +62,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2C22",
       "flag": "0"
@@ -73,6 +76,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2C4A",
       "flag": "0"
@@ -86,6 +90,7 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2C91",
       "flag": "0"
@@ -99,6 +104,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2C72",
       "flag": "0"
@@ -112,6 +118,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2C9A",
       "flag": "0"
@@ -125,6 +132,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2CA3",
       "flag": "0"
@@ -138,6 +146,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2CAC",
       "flag": "0"
@@ -151,6 +160,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2D7D",
       "flag": "FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS"
@@ -164,6 +174,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_ItemMaxRepel",
       "flag": "FLAG_ITEM_LILYCOVE_CITY_MAX_REPEL"
@@ -177,6 +188,7 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2DD5",
       "flag": "FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS"
@@ -190,6 +202,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2DBA",
       "flag": "FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS"
@@ -203,6 +216,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2DC3",
       "flag": "FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS"
@@ -216,6 +230,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2DCC",
       "flag": "FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS"
@@ -229,6 +244,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2BD8",
       "flag": "0"
@@ -242,6 +258,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2DDE",
       "flag": "FLAG_HIDE_LILYCOVE_CITY_RIVAL"
@@ -255,6 +272,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E302D",
       "flag": "0"
@@ -268,6 +286,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2CEE",
       "flag": "0"
@@ -281,6 +300,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2CDD",
       "flag": "0"
@@ -294,6 +314,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2CCB",
       "flag": "0"
@@ -307,6 +328,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_1E2CD4",
       "flag": "0"

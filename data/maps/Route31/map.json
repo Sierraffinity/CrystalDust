@@ -59,6 +59,7 @@
             "script": "Route31_EventScript_1EC5E2",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 19,
             "y": 9
         },
@@ -72,6 +73,7 @@
             "script": "Route31_EventScript_1EC3C1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 11,
             "y": 5
         },
@@ -85,6 +87,7 @@
             "script": "Route31_EventScript_1EC5F4",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 25,
             "y": 15
         },
@@ -98,6 +101,7 @@
             "script": "Route31_EventScript_1EC66E",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 38,
             "y": 9
         },
@@ -111,6 +115,7 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 14,
             "y": 5
         },
@@ -124,6 +129,7 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 29,
             "y": 12
         },
@@ -137,6 +143,7 @@
             "script": "Route31_EventScript_ItemPotion",
             "trainer_sight_or_berry_tree_id": "5",
             "trainer_type": "0",
+            "type": "original",
             "x": 33,
             "y": 7
         },
@@ -150,6 +157,7 @@
             "script": "Route31_EventScript_ItemPokeBall",
             "trainer_sight_or_berry_tree_id": "6",
             "trainer_type": "0",
+            "type": "original",
             "x": 21,
             "y": 17
         }

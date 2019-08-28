@@ -99,6 +99,7 @@
             "script": "Route29_EventScript_Dude",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 62,
             "y": 15
         },
@@ -112,6 +113,7 @@
             "script": "Route29_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 34,
             "y": 18
         },
@@ -125,6 +127,7 @@
             "script": "Route29_EventScript_LedgeGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 19,
             "y": 15
         },
@@ -138,6 +141,7 @@
             "script": "Route29_EventScript_FatMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 31,
             "y": 5
         },
@@ -151,6 +155,7 @@
             "script": "Route29_EventScript_WaitingMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 16,
             "y": 6
         },
@@ -164,6 +169,7 @@
             "script": "0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 37,
             "y": 14
         },
@@ -177,6 +183,7 @@
             "script": "Route29_EventScript_ItemPotion",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 60,
             "y": 2
         },
@@ -190,6 +197,7 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 26,
             "y": 13
         },
@@ -203,6 +211,7 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 39,
             "y": 11
         }

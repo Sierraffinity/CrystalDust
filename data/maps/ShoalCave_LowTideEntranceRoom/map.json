@@ -23,6 +23,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "ShoalCave_LowTideEntranceRoom_EventScript_ItemBigPearl",
       "flag": "FLAG_ITEM_SHOAL_CAVE_ENTRANCE_BIG_PEARL"
@@ -36,6 +37,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "ShoalCave_LowTideEntranceRoom_EventScript_236DD9",
       "flag": "0"

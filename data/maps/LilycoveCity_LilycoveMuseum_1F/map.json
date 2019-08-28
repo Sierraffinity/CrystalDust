@@ -23,6 +23,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218CB9",
       "flag": "0"
@@ -36,6 +37,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218CC2",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR"
@@ -49,6 +51,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DF5",
       "flag": "0"
@@ -62,6 +65,7 @@
       "movement_range_x": 2,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DFE",
       "flag": "0"
@@ -75,6 +79,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E07",
       "flag": "0"
@@ -88,6 +93,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E10",
       "flag": "0"
@@ -101,6 +107,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E19",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1"
@@ -114,6 +121,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E2B",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4"
@@ -127,6 +135,7 @@
       "movement_range_x": 2,
       "movement_range_y": 2,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E42",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS"
@@ -140,6 +149,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E22",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3"

@@ -124,6 +124,7 @@
             "script": "Route104_EventScript_1ED00F",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 15,
             "y": 60
         },
@@ -137,6 +138,7 @@
             "script": "Route104_EventScript_1ED006",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 25,
             "y": 49
         },
@@ -150,6 +152,7 @@
             "script": "Route104_EventScript_1ED38D",
             "trainer_sight_or_berry_tree_id": "7",
             "trainer_type": "1",
+            "type": "original",
             "x": 31,
             "y": 24
         },
@@ -163,6 +166,7 @@
             "script": "Route104_EventScript_1ED045",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 27,
             "y": 63
         },
@@ -176,6 +180,7 @@
             "script": "Route104_EventScript_1ED04E",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 30,
             "y": 50
         },
@@ -189,6 +194,7 @@
             "script": "Route104_EventScript_1ED090",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 28,
             "y": 74
         },
@@ -202,6 +208,7 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 12,
             "y": 54
         },
@@ -215,6 +222,7 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 12,
             "y": 51
         },
@@ -228,6 +236,7 @@
             "script": "Route104_EventScript_1ED35F",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "1",
+            "type": "original",
             "x": 29,
             "y": 8
         },
@@ -241,6 +250,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "8",
             "trainer_type": "0",
+            "type": "original",
             "x": 34,
             "y": 6
         },
@@ -254,6 +264,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "9",
             "trainer_type": "0",
+            "type": "original",
             "x": 35,
             "y": 6
         },
@@ -267,6 +278,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "10",
             "trainer_type": "0",
+            "type": "original",
             "x": 36,
             "y": 6
         },
@@ -280,6 +292,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "11",
             "trainer_type": "0",
+            "type": "original",
             "x": 22,
             "y": 41
         },
@@ -293,6 +306,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "12",
             "trainer_type": "0",
+            "type": "original",
             "x": 23,
             "y": 41
         },
@@ -306,6 +320,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "13",
             "trainer_type": "0",
+            "type": "original",
             "x": 24,
             "y": 41
         },
@@ -319,6 +334,7 @@
             "script": "Route104_EventScript_1ECF8C",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 37,
             "y": 8
         },
@@ -332,6 +348,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "0",
+            "type": "original",
             "x": 3,
             "y": 22
         },
@@ -345,6 +362,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "4",
             "trainer_type": "0",
+            "type": "original",
             "x": 3,
             "y": 23
         },
@@ -358,6 +376,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "75",
             "trainer_type": "0",
+            "type": "original",
             "x": 3,
             "y": 24
         },
@@ -371,6 +390,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "76",
             "trainer_type": "0",
+            "type": "original",
             "x": 3,
             "y": 25
         },
@@ -384,6 +404,7 @@
             "script": "Route104_EventScript_ItemPPUp",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 39,
             "y": 15
         },
@@ -397,6 +418,7 @@
             "script": "Route104_EventScript_1ECFCD",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 8,
             "y": 19
         },
@@ -410,6 +432,7 @@
             "script": "Route104_EventScript_1ED597",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 27,
             "y": 15
         },
@@ -423,6 +446,7 @@
             "script": "Route104_EventScript_1ED5B6",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 28,
             "y": 15
         },
@@ -436,6 +460,7 @@
             "script": "Route104_EventScript_1ED43B",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 21,
             "y": 25
         },
@@ -449,6 +474,7 @@
             "script": "Route104_EventScript_1ED4E9",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 11,
             "y": 44
         },
@@ -462,6 +488,7 @@
             "script": "Route104_EventScript_ItemPokeBall",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 29,
             "y": 53
         },
@@ -475,6 +502,7 @@
             "script": "Route104_EventScript_1ED376",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
+            "type": "original",
             "x": 18,
             "y": 67
         },
@@ -488,6 +516,7 @@
             "script": "Route104_EventScript_ItemXAccuracy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 37,
             "y": 22
         },
@@ -501,6 +530,7 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 35,
             "y": 22
         },
@@ -514,6 +544,7 @@
             "script": "Route104_EventScript_ItemPotion",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 5,
             "y": 8
         },
@@ -527,6 +558,7 @@
             "script": "Route104_EventScript_1ED057",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 5,
             "y": 26
         },
@@ -540,6 +572,7 @@
             "script": "Route104_EventScript_1ED5D5",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "1",
+            "type": "original",
             "x": 15,
             "y": 59
         },
@@ -553,6 +586,7 @@
             "script": "Route104_EventScript_1ECC9E",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 17,
             "y": 50
         }

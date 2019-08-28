@@ -56,6 +56,7 @@
             "script": "NewBarkTown_PlayersHouse_1F_MomTalk",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 8,
             "y": 5
         },
@@ -69,6 +70,7 @@
             "script": "NewBarkTown_PlayersHouse_1F_NeighborTalk",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 5,
             "y": 5
         }

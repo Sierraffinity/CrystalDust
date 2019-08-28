@@ -89,6 +89,7 @@
             "script": "NewBarkTown_EventScript_FatMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 15,
             "y": 11
         },
@@ -102,6 +103,7 @@
             "script": "NewBarkTown_EventScript_Teacher",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 7,
             "y": 10
         },
@@ -115,6 +117,7 @@
             "script": "NewBarkTown_EventScript_Rival",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 4,
             "y": 3
         }

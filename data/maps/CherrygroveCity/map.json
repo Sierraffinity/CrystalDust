@@ -78,6 +78,7 @@
             "script": "CherrygroveCity_EventScript_GuideGent",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 46,
             "y": 8
         },
@@ -91,6 +92,7 @@
             "script": "0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 55,
             "y": 8
         },
@@ -104,6 +106,7 @@
             "script": "CherrygroveCity_EventScript_Teacher",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 38,
             "y": 17
         },
@@ -117,6 +120,7 @@
             "script": "CherrygroveCity_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 34,
             "y": 9
         },
@@ -130,6 +134,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 15,
             "y": 16
         }

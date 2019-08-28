@@ -51,6 +51,7 @@
             "script": "Route105_EventScript_1EE261",
             "trainer_sight_or_berry_tree_id": "6",
             "trainer_type": "1",
+            "type": "original",
             "x": 19,
             "y": 60
         },
@@ -64,6 +65,7 @@
             "script": "Route105_EventScript_1EE278",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 27,
             "y": 36
         },
@@ -77,6 +79,7 @@
             "script": "Route105_EventScript_1EE28F",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 8,
             "y": 45
         },
@@ -90,6 +93,7 @@
             "script": "Route105_EventScript_1EE2A6",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 19,
             "y": 9
         },
@@ -103,6 +107,7 @@
             "script": "Route105_EventScript_ItemIron",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 8,
             "y": 73
         },
@@ -116,6 +121,7 @@
             "script": "Route105_EventScript_1EE24A",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 17,
             "y": 48
         },
@@ -129,6 +135,7 @@
             "script": "Route105_EventScript_1EE2BD",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
+            "type": "original",
             "x": 4,
             "y": 54
         },
@@ -142,6 +149,7 @@
             "script": "Route105_EventScript_1EE2D4",
             "trainer_sight_or_berry_tree_id": "4",
             "trainer_type": "1",
+            "type": "original",
             "x": 4,
             "y": 58
         }

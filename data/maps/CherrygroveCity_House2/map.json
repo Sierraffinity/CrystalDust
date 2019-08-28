@@ -24,6 +24,7 @@
             "script": "CherrygroveCity_House1_EventScript_Boy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 5,
             "y": 3
         },
@@ -37,6 +38,7 @@
             "script": "CherrygroveCity_House1_EventScript_Girl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 6,
             "y": 3
         }

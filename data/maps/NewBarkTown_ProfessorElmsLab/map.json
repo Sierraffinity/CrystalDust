@@ -212,6 +212,7 @@
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_Aide",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 3,
             "y": 10
         },
@@ -225,6 +226,7 @@
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_Elm",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 6,
             "y": 3
         },
@@ -238,6 +240,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 6,
             "y": 4
         },
@@ -251,6 +254,7 @@
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_Chikorita",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 8,
             "y": 4
         },
@@ -264,6 +268,7 @@
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_Totodile",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 9,
             "y": 4
         },
@@ -277,6 +282,7 @@
             "script": "NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 10,
             "y": 4
         }

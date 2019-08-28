@@ -23,6 +23,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "AquaHideout_B2F_EventScript_233E09",
       "flag": "FLAG_HIDE_AQUA_HIDEOUT_GRUNTS"
@@ -36,6 +37,7 @@
       "movement_range_x": 4,
       "movement_range_y": 3,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "AquaHideout_B2F_EventScript_233E8A",
       "flag": "FLAG_HIDE_AQUA_HIDEOUT_GRUNTS"
@@ -49,6 +51,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "AquaHideout_B2F_EventScript_ItemNestBall",
       "flag": "FLAG_ITEM_AQUA_HIDEOUT_B2F_NEST_BALL"
@@ -62,6 +65,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_AQUA_HIDEOUT_B2F_SUBMARINE_SHADOW"
@@ -75,6 +79,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "AquaHideout_B2F_EventScript_233EAF",
       "flag": "FLAG_HIDE_AQUA_HIDEOUT_GRUNTS"
@@ -88,6 +93,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "1",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "AquaHideout_B2F_EventScript_233EC6",
       "flag": "FLAG_HIDE_AQUA_HIDEOUT_GRUNTS"

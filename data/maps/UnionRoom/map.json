@@ -23,6 +23,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_23D236",
       "flag": "0"
@@ -36,6 +37,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_23D204",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_4"
@@ -49,6 +51,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_23D22C",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_8"
@@ -62,6 +65,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_23D222",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_7"
@@ -75,6 +79,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_23D218",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_6"
@@ -88,6 +93,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_23D20E",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_5"
@@ -101,6 +107,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_23D1FA",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_3"
@@ -114,6 +121,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_23D1F0",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_2"
@@ -127,6 +135,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
+      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_23D1E6",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_1"

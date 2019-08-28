@@ -274,6 +274,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "58",
             "trainer_type": "0",
+            "type": "original",
             "x": 11,
             "y": 3
         },
@@ -287,6 +288,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "59",
             "trainer_type": "0",
+            "type": "original",
             "x": 12,
             "y": 3
         },
@@ -300,6 +302,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "60",
             "trainer_type": "0",
+            "type": "original",
             "x": 14,
             "y": 3
         },
@@ -313,6 +316,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "61",
             "trainer_type": "0",
+            "type": "original",
             "x": 15,
             "y": 3
         },
@@ -326,6 +330,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "62",
             "trainer_type": "0",
+            "type": "original",
             "x": 81,
             "y": 1
         },
@@ -339,6 +344,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "63",
             "trainer_type": "0",
+            "type": "original",
             "x": 82,
             "y": 1
         },
@@ -352,6 +358,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "64",
             "trainer_type": "0",
+            "type": "original",
             "x": 83,
             "y": 1
         },
@@ -365,6 +372,7 @@
             "script": "Route123_EventScript_1F61C5",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 70,
             "y": 12
         },
@@ -378,6 +386,7 @@
             "script": "Route123_EventScript_1F61DC",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
+            "type": "original",
             "x": 58,
             "y": 7
         },
@@ -391,6 +400,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "65",
             "trainer_type": "0",
+            "type": "original",
             "x": 14,
             "y": 5
         },
@@ -404,6 +414,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "72",
             "trainer_type": "0",
+            "type": "original",
             "x": 15,
             "y": 5
         },
@@ -417,6 +428,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "73",
             "trainer_type": "0",
+            "type": "original",
             "x": 17,
             "y": 5
         },
@@ -430,6 +442,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "74",
             "trainer_type": "0",
+            "type": "original",
             "x": 18,
             "y": 5
         },
@@ -443,6 +456,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "79",
             "trainer_type": "0",
+            "type": "original",
             "x": 17,
             "y": 3
         },
@@ -456,6 +470,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "14",
             "trainer_type": "0",
+            "type": "original",
             "x": 18,
             "y": 3
         },
@@ -469,6 +484,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "15",
             "trainer_type": "0",
+            "type": "original",
             "x": 11,
             "y": 5
         },
@@ -482,6 +498,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "30",
             "trainer_type": "0",
+            "type": "original",
             "x": 12,
             "y": 5
         },
@@ -495,6 +512,7 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 101,
             "y": 13
         },
@@ -508,6 +526,7 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 129,
             "y": 14
         },
@@ -521,6 +540,7 @@
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 92,
             "y": 9
         },
@@ -534,6 +554,7 @@
             "script": "Route123_EventScript_ItemCalcium",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 31,
             "y": 8
         },
@@ -547,6 +568,7 @@
             "script": "Route123_EventScript_1F6151",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 108,
             "y": 13
         },
@@ -560,6 +582,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "87",
             "trainer_type": "0",
+            "type": "original",
             "x": 109,
             "y": 13
         },
@@ -573,6 +596,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "88",
             "trainer_type": "0",
+            "type": "original",
             "x": 110,
             "y": 13
         },
@@ -586,6 +610,7 @@
             "script": "BerryTreeScript",
             "trainer_sight_or_berry_tree_id": "89",
             "trainer_type": "0",
+            "type": "original",
             "x": 111,
             "y": 13
         },
@@ -599,6 +624,7 @@
             "script": "Route123_EventScript_1F61F3",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
+            "type": "original",
             "x": 18,
             "y": 9
         },
@@ -612,6 +638,7 @@
             "script": "Route123_EventScript_1F62E9",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 38,
             "y": 13
         },
@@ -625,6 +652,7 @@
             "script": "Route123_EventScript_1F62CE",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 37,
             "y": 13
         },
@@ -638,6 +666,7 @@
             "script": "Route123_EventScript_1F620A",
             "trainer_sight_or_berry_tree_id": "7",
             "trainer_type": "1",
+            "type": "original",
             "x": 138,
             "y": 12
         },
@@ -651,6 +680,7 @@
             "script": "Route123_EventScript_1F626C",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 49,
             "y": 16
         },
@@ -664,6 +694,7 @@
             "script": "Route123_EventScript_1F6304",
             "trainer_sight_or_berry_tree_id": "4",
             "trainer_type": "1",
+            "type": "original",
             "x": 87,
             "y": 12
         },
@@ -677,6 +708,7 @@
             "script": "Route123_EventScript_ItemUltraBall",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 27,
             "y": 18
         },
@@ -690,6 +722,7 @@
             "script": "Route123_EventScript_ItemElixir",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 75,
             "y": 9
         },
@@ -703,6 +736,7 @@
             "script": "Route123_EventScript_1F6377",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 138,
             "y": 14
         },
@@ -716,6 +750,7 @@
             "script": "Route123_EventScript_1F6360",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
+            "type": "original",
             "x": 138,
             "y": 16
         },
@@ -729,6 +764,7 @@
             "script": "Route123_EventScript_1F6349",
             "trainer_sight_or_berry_tree_id": "4",
             "trainer_type": "1",
+            "type": "original",
             "x": 87,
             "y": 17
         },
@@ -742,6 +778,7 @@
             "script": "Route123_EventScript_1F63BC",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
+            "type": "original",
             "x": 66,
             "y": 16
         },
@@ -755,6 +792,7 @@
             "script": "Route123_EventScript_1F6332",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
+            "type": "original",
             "x": 66,
             "y": 19
         },
@@ -768,6 +806,7 @@
             "script": "Route123_EventScript_1F631B",
             "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
+            "type": "original",
             "x": 49,
             "y": 19
         },
@@ -781,6 +820,7 @@
             "script": "Route123_EventScript_ItemPPUp",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 43,
             "y": 15
         },
@@ -794,6 +834,7 @@
             "script": "Route123_EventScript_1F638E",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 14,
             "y": 16
         },
@@ -807,6 +848,7 @@
             "script": "Route123_EventScript_1F63A5",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
+            "type": "original",
             "x": 14,
             "y": 12
         },
@@ -820,6 +862,7 @@
             "script": "Route123_EventScript_ItemRevivalHerb",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
+            "type": "original",
             "x": 57,
             "y": 16
         }
