@@ -1453,11 +1453,11 @@ static bool8 IsTreeOrRockCloneOffScreen(struct EventObjectTemplate *template, s1
     if (template->graphicsId == EVENT_OBJ_GFX_CUTTABLE_TREE ||
         template->graphicsId == EVENT_OBJ_GFX_BREAKABLE_ROCK)
     {
-        if (((gSaveBlock1Ptr->pos.x < x) && (gSaveBlock1Ptr->pos.x + 8) >= x) ||
-             (gSaveBlock1Ptr->pos.x - 8) < x)
+        if (((gSaveBlock1Ptr->pos.x < x) && (gSaveBlock1Ptr->pos.x + 7) >= x) ||
+             (gSaveBlock1Ptr->pos.x - 7) < x)
         {
-            if (((gSaveBlock1Ptr->pos.y - 6) <= y) &&
-                ((gSaveBlock1Ptr->pos.y + 6) >= y))
+            if (((gSaveBlock1Ptr->pos.y - 5) <= y) &&
+                ((gSaveBlock1Ptr->pos.y + 5) >= y))
             {
                 return FALSE;
             }
@@ -1480,26 +1480,17 @@ static bool8 IsTreeOrRockOffScreenPostWalkTransition(struct EventObjectTemplate 
         template->graphicsId != EVENT_OBJ_GFX_BREAKABLE_ROCK)
         return TRUE;
     
-    if ((gSaveBlock1Ptr->pos.x != 0) ||
-       ((gSaveBlock1Ptr->pos.x == 0) && (template->x > 8)))
+    // in FR, radius was slightly wider; shrinking may cause popping
+    if (((gSaveBlock1Ptr->pos.x == 0) && (template->x <= 7)) ||
+        ((gSaveBlock1Ptr->pos.x == width) && (template->x >= (width - 7))) ||
+        ((gSaveBlock1Ptr->pos.y == 0) && (template->y <= 5)) ||
+        ((gSaveBlock1Ptr->pos.y == height) && (template->y >= (height - 5))))
     {
-        if ((gSaveBlock1Ptr->pos.x != width) ||
-           ((gSaveBlock1Ptr->pos.x == width) && (template->x < (width - 8))))
-        {
-            if ((gSaveBlock1Ptr->pos.y != 0) ||
-               ((gSaveBlock1Ptr->pos.y == 0) && (template->y > 6)))
-            {
-                if ((gSaveBlock1Ptr->pos.y != height) ||
-                   ((gSaveBlock1Ptr->pos.y == height) && (template->y < (height - 6))))
-                {
-                    return TRUE;
-                }
-            }
-        }
+        SetObjectTemplateFlagIfTemporary(template);
+        return FALSE;
     }
-
-    SetObjectTemplateFlagIfTemporary(template);
-    return FALSE;
+    
+    return TRUE;
 }
 
 static void SetObjectTemplateFlagIfTemporary(struct EventObjectTemplate *template)
