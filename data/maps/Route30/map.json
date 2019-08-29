@@ -218,6 +218,20 @@
             "type": "original",
             "x": 11,
             "y": 6
+        },
+        {
+            "source_id": 3,
+            "source_map": "MAP_ROUTE31",
+            "type": "clone",
+            "x": 3,
+            "y": -5
+        },
+        {
+            "source_id": 8,
+            "source_map": "MAP_ROUTE31",
+            "type": "clone",
+            "x": -1,
+            "y": -3
         }
     ],
     "phone_service": true,
