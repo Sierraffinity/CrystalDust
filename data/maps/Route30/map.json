@@ -132,7 +132,7 @@
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
             "type": "original",
-            "x": 3,
+            "x": 4,
             "y": 7
         },
         {
@@ -188,8 +188,8 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
-            "x": 4,
-            "y": 13
+            "x": 5,
+            "y": 14
         },
         {
             "elevation": 3,
