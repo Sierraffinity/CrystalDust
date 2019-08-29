@@ -13,11 +13,6 @@ struct PaletteOverride
 
 extern EWRAM_DATA u16 gPlttBufferPreDN[];
 extern EWRAM_DATA struct PaletteOverride *gPaletteOverrides[];
-#ifdef DEBUG
-extern EWRAM_DATA bool8 gPaletteTintDisabled;
-extern EWRAM_DATA bool8 gPaletteOverrideDisabled;
-extern EWRAM_DATA s8 gDNHourOverride;
-#endif
 
 u8 GetCurrentTimeOfDay(void);
 u8 GetTimeOfDay(s8 hours);

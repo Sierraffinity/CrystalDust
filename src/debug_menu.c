@@ -1,3 +1,4 @@
+#if DEBUG
 #include "global.h"
 #include "battle_transition.h"
 #include "clock.h"
@@ -37,6 +38,7 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId);
 static void DebugMenu_ToggleRunningShoes(u8 taskId);
 static void DebugMenu_EnableResetRTC(u8 taskId);
 static void DebugMenu_TestBattleTransition(u8 taskId);
+static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
 static void DebugMenu_Pokegear(u8 taskId);
 static void DebugMenu_Pokegear_ProcessInput(u8 taskId);
@@ -45,6 +47,11 @@ static void DebugMenu_EnableRadioCard(u8 taskId);
 static void DebugMenu_SetRespawn(u8 taskId);
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
 static void DebugMenu_RemoveMenu(u8 taskId);
+
+extern bool8 gWalkThroughWalls;
+extern bool8 gPaletteTintDisabled;
+extern bool8 gPaletteOverrideDisabled;
+extern s8 gDNHourOverride;
 
 static const u8 sText_SetFlag[] = _("Set flag");
 static const u8 sText_SetVar[] = _("Set variable");
@@ -55,6 +62,7 @@ static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
+static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_EnableMapCard[] = _("Enable map card");
@@ -91,6 +99,7 @@ static const struct MenuAction sDebugMenu_PokegearActions[] =
 
 static const struct MenuAction sDebugMenu_MiscActions[] =
 {
+    { sText_ToggleWalkThroughWalls, DebugMenu_ToggleWalkThroughWalls },
     { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes },
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC },
     { sText_TestBattleTransition, DebugMenu_TestBattleTransition },
@@ -550,6 +559,11 @@ static void DebugMenu_TestBattleTransition(u8 taskId)
     TestBattleTransition(VarGet(0x4000));
 }
 
+static void DebugMenu_ToggleWalkThroughWalls(u8 taskId)
+{
+    gWalkThroughWalls = !gWalkThroughWalls;
+}
+
 static void DebugMenu_Misc_ProcessInput(u8 taskId)
 {
     s8 inputOptionId = Menu_ProcessInput();
@@ -784,3 +798,4 @@ static void DebugMenu_SetRespawn_ProcessInput(u8 taskId)
         ReturnToMainMenu(taskId);
     }
 }
+#endif

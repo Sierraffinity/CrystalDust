@@ -32,6 +32,9 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 
+#if DEBUG
+EWRAM_DATA bool8 gWalkThroughWalls = 0;
+#endif
 static EWRAM_DATA u8 gUnknown_0203734C = 0;
 EWRAM_DATA struct EventObject gEventObjects[EVENT_OBJECTS_COUNT] = {};
 EWRAM_DATA struct PlayerAvatar gPlayerAvatar = {};
@@ -666,18 +669,19 @@ static u8 CheckForPlayerAvatarCollision(u8 direction)
     s16 x, y;
     struct EventObject *playerEventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
 
+#if DEBUG
+    if (gWalkThroughWalls)
+        return 0;
+#endif
+
     x = playerEventObj->currentCoords.x;
     y = playerEventObj->currentCoords.y;
 
-    if (!IsStaircaseWarpMetatileBehavior(MapGridGetMetatileBehaviorAt(x, y), direction))
-    {
-        MoveCoords(direction, &x, &y);
-        return CheckForEventObjectCollision(playerEventObj, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
-    }
-    else
-    {
+    if (IsStaircaseWarpMetatileBehavior(MapGridGetMetatileBehaviorAt(x, y), direction))
         return 8;
-    }
+
+    MoveCoords(direction, &x, &y);
+    return CheckForEventObjectCollision(playerEventObj, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
 }
 
 static u8 sub_808B028(u8 direction)

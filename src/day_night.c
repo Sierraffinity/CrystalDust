@@ -21,7 +21,7 @@ EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 static EWRAM_DATA s8 sOldHour = 0;
 static EWRAM_DATA bool8 sRetintPhase = FALSE;
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
-#ifdef DEBUG
+#if DEBUG
 EWRAM_DATA bool8 gPaletteOverrideDisabled = 0;
 EWRAM_DATA s8 gDNHourOverride = 0;
 #endif
@@ -110,13 +110,13 @@ static void LoadPaletteOverrides(void)
     u16* dest;
     s8 hour;
 
-#ifdef DEBUG
+#if DEBUG
     if (gPaletteOverrideDisabled)
         return;
 #endif
 
     hour = gLocalTime.hours;
-#ifdef DEBUG
+#if DEBUG
     if (gDNHourOverride != 0)
         hour = gDNHourOverride - 1;
 #endif
@@ -160,7 +160,7 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
         RtcCalcLocalTimeFast();
         
         hour = gLocalTime.hours;
-#ifdef DEBUG
+#if DEBUG
         if (gDNHourOverride != 0)
             hour = gDNHourOverride - 1;
 #endif
@@ -205,7 +205,7 @@ void ProcessImmediateTimeEvents(void)
         {
             hour = gLocalTime.hours;
 
-#ifdef DEBUG
+#if DEBUG
             if (gDNHourOverride != 0)
                 hour = gDNHourOverride - 1;
 #endif
