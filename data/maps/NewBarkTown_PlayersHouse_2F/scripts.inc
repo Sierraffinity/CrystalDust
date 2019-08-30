@@ -60,7 +60,7 @@ NewBarkTown_PlayersHouse_2F_Radio_AlreadyListened:
 
 NewBarkTown_PlayersHouse_2F_Text_RadioText1:
 	.string "This was PROF. OAK'S POKéMON TALK!\n"
-	.string "Please tune back in next time!$"
+	.string "Please tune in next time!$"
 
 NewBarkTown_PlayersHouse_2F_Text_RadioText2:
 	.string "POKéMON CHANNEL!$"

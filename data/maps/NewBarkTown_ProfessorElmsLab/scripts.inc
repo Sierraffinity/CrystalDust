@@ -3,18 +3,18 @@ NewBarkTown_ProfessorElmsLab_MapScripts:: @ 81F9C91
 	map_script 2, NewBarkTown_ProfessorElmsLab_MapScript2_Type2
 	.byte 0
 
+NewBarkTown_ProfessorElmsLab_MapScript2_Type2:
+	map_script_2 VAR_ELMS_LAB_STATE, 0, NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction
+	.2byte 0
+
 NewBarkTown_ProfessorElmsLab_MapScript1_Type3:
-	compare VAR_NEW_BARK_TOWN_STATE, 1
+	compare VAR_ELMS_LAB_STATE, 0
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_MoveElmToPC
 	end
 
 NewBarkTown_ProfessorElmsLab_EventScript_MoveElmToPC:
 	setobjectxyperm 2, 4, 5
 	return
-
-NewBarkTown_ProfessorElmsLab_MapScript2_Type2:
-	map_script_2 VAR_NEW_BARK_TOWN_STATE, 1, NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction
-	.2byte 0
 
 NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction:
 	lockall
@@ -61,7 +61,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmAccepted:
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_RaiseAPokemon
 	closemessage
-	setvar VAR_NEW_BARK_TOWN_STATE, 2
+	setvar VAR_ELMS_LAB_STATE, 1
 	releaseall
 	end
 
@@ -143,7 +143,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	setflag FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS
 	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
 	setvar VAR_ROUTE29_STATE, 1
-	setvar VAR_NEW_BARK_TOWN_STATE, 7
+	setvar VAR_ELMS_LAB_STATE, 7
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	release
 	end
@@ -475,7 +475,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	applymovement 2, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmCountingOnYou, MSGBOX_DEFAULT
-	setvar VAR_NEW_BARK_TOWN_STATE, 3
+	setvar VAR_ELMS_LAB_STATE, 2
 	release
 	end
 
@@ -533,7 +533,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain:
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle
 	compare VAR_TEMP_1, 2
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight
-	setvar VAR_NEW_BARK_TOWN_STATE, 4
+	setvar VAR_ELMS_LAB_STATE, 3
 	releaseall
 	end
 
@@ -603,7 +603,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain:
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle
 	compare VAR_TEMP_1, 2
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight
-	setvar VAR_NEW_BARK_TOWN_STATE, 8
+	setvar VAR_ELMS_LAB_STATE, 7
 	releaseall
 	end
 
@@ -690,7 +690,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Officer_NameRival:
 	applymovement 3, NewBarkTown_ProfessorElmsLab_Movement_OfficerLeaves
 	waitmovement 0
 	removeobject 3
-	setvar VAR_NEW_BARK_TOWN_STATE, 6
+	setvar VAR_ELMS_LAB_STATE, 5
 	releaseall
 	end
 
@@ -808,8 +808,7 @@ NewBarkTown_ProfessorElmsLab_Text_ElmIntro:
 	.string "present at a conference.\p"
 	.string "But there are some things I don't\n"
 	.string "quite understand yet.\p"
-	.string "So!\p"
-	.string "I'd like you to raise a POKéMON\n"
+	.string "So! I'd like you to raise a POKéMON\n"
 	.string "that I recently caught.$"
 
 NewBarkTown_ProfessorElmsLab_Text_ElmBegs:
@@ -858,14 +857,14 @@ NewBarkTown_ProfessorElmsLab_Text_ElmWaitWhereAreYouGoing:
 	.string "Where are you going?$"
 
 NewBarkTown_ProfessorElmsLab_Text_ElmWildMonAdvice:
-	.string "ELM: If a wild POKéMON appears, let\n"
-	.string "your POKéMON battle it!$"
+	.string "ELM: If a wild POKéMON appears,\n"
+	.string "let your POKéMON battle it!$"
 
 NewBarkTown_ProfessorElmsLab_Text_ElmMrPokemon:
 	.string "ELM: MR. POKéMON goes everywhere\n"
 	.string "and finds rarities.\p"
-	.string "Too bad they're just rare and not\n"
-	.string "very useful…$"
+	.string "Too bad they're just rare and\n"
+	.string "not very useful…$"
 
 NewBarkTown_ProfessorElmsLab_Text_ElmThisIsTerrible:
 	.string "ELM: {PLAYER}, this is terrible…\p"
@@ -936,12 +935,12 @@ NewBarkTown_ProfessorElmsLab_Text_GotMonFromElm:
 	.string "from PROF. ELM!$"
 
 NewBarkTown_ProfessorElmsLab_Text_ElmDirectionsToMrPokemon:
-	.string "MR. POKéMON lives a little bit beyond\n"
+	.string "MR. POKéMON lives a bit beyond\n"
 	.string "CHERRYGROVE, the next city over.\p"
 	.string "It's almost a direct route there,\n"
 	.string "so you can't miss it.\p"
-	.string "But just in case, here's my phone\n"
-	.string "number. Call me if anything comes up!$"
+	.string "But just in case, here's my number.\n"
+	.string "Call me if anything comes up!$"
 
 NewBarkTown_ProfessorElmsLab_Text_GotElmsNumber:
 	.string "{PLAYER} got PROF. ELM's phone number.$"

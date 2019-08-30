@@ -3,8 +3,12 @@ NewBarkTown_PlayersHouse_1F_MapScripts:: @ 81F7755
 	map_script 2, NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA
 	.byte 0
 
+NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA: @ 81F77EA
+	map_script_2 VAR_PLAYERS_HOUSE_STATE, 0, NewBarkTown_PlayersHouse_1F_MomEncounter
+	.2byte 0
+
 NewBarkTown_PlayersHouse_1F_MapScript1_Type3:
-	compare VAR_NEW_BARK_TOWN_STATE, 0
+	compare VAR_PLAYERS_HOUSE_STATE, 0
 	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomDay
 	gettime
 	compare VAR_0x8002, TIME_MORNING
@@ -25,10 +29,6 @@ NewBarkTown_PlayersHouse_1F_EventScript_MomNight:
 	setobjectxyperm 1, 1, 2
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
 	end
-
-NewBarkTown_PlayersHouse_1F_MapScript2_1F77EA: @ 81F77EA
-	map_script_2 VAR_NEW_BARK_TOWN_STATE, 0, NewBarkTown_PlayersHouse_1F_MomEncounter
-	.2byte 0
 
 NewBarkTown_PlayersHouse_1F_MomEncounter:
 	lockall
@@ -98,7 +98,7 @@ NewBarkTown_PlayersHouse_1F_PostGearInstructions:
 	fadedefaultbgm
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer
 	waitmovement 0
-	setvar VAR_NEW_BARK_TOWN_STATE 1
+	setvar VAR_PLAYERS_HOUSE_STATE 1
 	setrespawn HEAL_LOCATION_NEW_BARK_TOWN	@ TODO: This should really be for player's room 2F, or do the FR approach
 	releaseall
 	end
@@ -242,12 +242,12 @@ NewBarkTown_PlayersHouse_1F_Fridge::
 
 NewBarkTown_PlayersHouse_1F_MomElmIntro:
 	.string "MOM: Oh, {PLAYER}…!\n"
-	.string "Our neighbor, PROF. ELM, was\l"
+	.string "Our neighbor, PROF. ELM, was just\l"
 	.string "looking for you.\p"
 	.string "He said he wanted you to do\n"
 	.string "something for him.\p"
 	.string "Oh, I almost forgot! Your POKéMON\n"
-	.string "GEAR is back from the repair shop.\p"
+	.string "GEAR is back from the repair shop.\l"
 	.string "Here you go!$"
 
 NewBarkTown_PlayersHouse_1F_PlayerGetsPokegear:
@@ -285,8 +285,7 @@ NewBarkTown_PlayersHouse_1F_GearInstructionsYes:
 	.string "Don't you just turn the POKéGEAR on\n"
 	.string "and select the PHONE icon?\p"
 	.string "“Phone numbers are stored in memory.\n"
-	.string "“Just choose the person you want\l"
-	.string "to call.”\p"
+	.string "Just choose who you want to call.”\p"
 	.string "Gee, isn't that convenient?$"
 
 NewBarkTown_PlayersHouse_1F_GearInstructionsNo:
@@ -294,8 +293,7 @@ NewBarkTown_PlayersHouse_1F_GearInstructionsNo:
 	.string "“Turn the POKéGEAR on and select\n"
 	.string "the PHONE icon by scrolling to it.\p"
 	.string "“Phone numbers are stored in memory.\n"
-	.string "“Just choose the person you want\l"
-	.string "to call.”\p"
+	.string "Just choose who you want to call.”\p"
 	.string "Gee, isn't that convenient?$"
 
 NewBarkTown_PlayersHouse_1F_MomProfElmWaiting:
@@ -305,7 +303,7 @@ NewBarkTown_PlayersHouse_1F_MomProfElmWaiting:
 NewBarkTown_PlayersHouse_1F_Text_MomWhatWasElmsErrand:
 	.string "MOM: So, what was PROF. ELM's\n"
 	.string "errand?\p"
-	.string "…\p"
+	.string "…\n"
 	.string "That does sound challenging.\p"
 	.string "But, you should be proud that\n"
 	.string "people rely on you.$"
@@ -313,7 +311,7 @@ NewBarkTown_PlayersHouse_1F_Text_MomWhatWasElmsErrand:
 NewBarkTown_PlayersHouse_1F_Text_MomSaveMoneyQuestion:
 	.string "MOM: Wow, that's a cute POKéMON.\n"
 	.string "Where did you get it?\p"
-	.string "…\p"
+	.string "…\n"
 	.string "So, you're leaving on an adventure…\p"
 	.string "Okay! I'll help too.\n"
 	.string "But what can I do for you?\p"
@@ -404,12 +402,12 @@ NewBarkTown_PlayersHouse_1F_TVText:
 	.string "I'd better get rolling too!$"
 
 NewBarkTown_PlayersHouse_1F_StoveText:
-	.string "It's mom's specialty, the\n"
+	.string "It's MOM's specialty, the\n"
 	.string "CINNABAR VOLCANO BURGER!$"
 
 NewBarkTown_PlayersHouse_1F_SinkText:
 	.string "The sink is spotless.\n"
-	.string "Mom likes to keep it clean.$"
+	.string "MOM likes to keep it clean.$"
 
 NewBarkTown_PlayersHouse_1F_FridgeText:
 	.string "Let's see what's in the fridge…\p"
