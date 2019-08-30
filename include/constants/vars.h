@@ -144,9 +144,9 @@
 #define VAR_ROUTE132_STATE                   0x407F // Unused Var
 #define VAR_ROUTE133_STATE                   0x4080 // Unused Var
 #define VAR_ROUTE134_STATE                   0x4081 // Unused Var
-#define VAR_PLAYERS_HOUSE_STATE              0x4082
-#define VAR_UNUSED_0x4083                    0x4083 // Unused Var
-#define VAR_ELMS_LAB_STATE                  0x4084
+#define VAR_PLAYER_HOUSE_STATE               0x4082
+#define VAR_ELM_LAB_STATE                    0x4083
+#define VAR_MR_POKEMONS_HOUSE_STATE          0x4084
 #define VAR_PETALBURG_GYM_STATE              0x4085
 #define VAR_LINK_CONTEST_ROOM_STATE          0x4086
 #define VAR_CABLE_CLUB_STATE                 0x4087

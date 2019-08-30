@@ -3,7 +3,7 @@ Route30_MrPokemonsHouse_MapScripts::
 	.byte 0
 
 Route30_MrPokemonsHouse_MapScripts_Type2:
-	map_script_2 VAR_ROUTE30_STATE, 0, Route30_MrPokemonsHouse_MapScript_MrPokemonIntro
+	map_script_2 VAR_MR_POKEMONS_HOUSE_STATE, 0, Route30_MrPokemonsHouse_MapScript_MrPokemonIntro
 	.2byte 0
 
 Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
@@ -68,7 +68,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER
 	setvar VAR_CHERRYGROVE_CITY_STATE, 1
-	setvar VAR_ELMS_LAB_STATE, 4
+	setvar VAR_ELM_LAB_STATE, 4
 	compare VAR_STARTER_MON, 0
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsCyndaquil
 	compare VAR_STARTER_MON, 1
@@ -76,6 +76,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	compare VAR_STARTER_MON, 2
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsTotodile
 	setflag FLAG_HIDE_MAP_NAME_POPUP
+	setvar VAR_MR_POKEMONS_HOUSE_STATE, 1
 	setvar VAR_ROUTE30_STATE, 1
 	releaseall
 	end

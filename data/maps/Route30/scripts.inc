@@ -12,7 +12,7 @@ Route30_MapScript_ElmCall:
 	waitstate
 	setflag FLAG_ELM_CALLED_ABOUT_STOLEN_MON
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	addvar VAR_ROUTE30_STATE, 1
+	setvar VAR_ROUTE30_STATE, 2
 	releaseall
 	end
 

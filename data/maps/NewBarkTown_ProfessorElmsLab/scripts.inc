@@ -4,11 +4,11 @@ NewBarkTown_ProfessorElmsLab_MapScripts:: @ 81F9C91
 	.byte 0
 
 NewBarkTown_ProfessorElmsLab_MapScript2_Type2:
-	map_script_2 VAR_ELMS_LAB_STATE, 0, NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction
+	map_script_2 VAR_ELM_LAB_STATE, 0, NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction
 	.2byte 0
 
 NewBarkTown_ProfessorElmsLab_MapScript1_Type3:
-	compare VAR_ELMS_LAB_STATE, 0
+	compare VAR_ELM_LAB_STATE, 0
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_MoveElmToPC
 	end
 
@@ -61,7 +61,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmAccepted:
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_RaiseAPokemon
 	closemessage
-	setvar VAR_ELMS_LAB_STATE, 1
+	setvar VAR_ELM_LAB_STATE, 1
 	releaseall
 	end
 
@@ -143,7 +143,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	setflag FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS
 	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
 	setvar VAR_ROUTE29_STATE, 1
-	setvar VAR_ELMS_LAB_STATE, 7
+	setvar VAR_ELM_LAB_STATE, 7
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	release
 	end
@@ -475,7 +475,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	applymovement 2, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmCountingOnYou, MSGBOX_DEFAULT
-	setvar VAR_ELMS_LAB_STATE, 2
+	setvar VAR_ELM_LAB_STATE, 2
 	release
 	end
 
@@ -533,7 +533,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain:
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle
 	compare VAR_TEMP_1, 2
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight
-	setvar VAR_ELMS_LAB_STATE, 3
+	setvar VAR_ELM_LAB_STATE, 3
 	releaseall
 	end
 
@@ -603,7 +603,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain:
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromMiddle
 	compare VAR_TEMP_1, 2
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_AidePotionReturnFromRight
-	setvar VAR_ELMS_LAB_STATE, 7
+	setvar VAR_ELM_LAB_STATE, 7
 	releaseall
 	end
 
@@ -690,7 +690,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Officer_NameRival:
 	applymovement 3, NewBarkTown_ProfessorElmsLab_Movement_OfficerLeaves
 	waitmovement 0
 	removeobject 3
-	setvar VAR_ELMS_LAB_STATE, 5
+	setvar VAR_ELM_LAB_STATE, 5
 	releaseall
 	end
 
