@@ -62,7 +62,7 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_BerryTree;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_BerryTreeEarlyStages;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_BerryTreeLateStages;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_BrendanAcroBike;
-const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProfBirch;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProfElm;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Man4;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Man5;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ReporterM;
@@ -311,7 +311,7 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     &gEventObjectGraphicsInfo_BerryTreeEarlyStages,
     &gEventObjectGraphicsInfo_BerryTreeLateStages,
     &gEventObjectGraphicsInfo_BrendanAcroBike,
-    &gEventObjectGraphicsInfo_ProfBirch,
+    &gEventObjectGraphicsInfo_ProfElm,
     &gEventObjectGraphicsInfo_Man4,
     &gEventObjectGraphicsInfo_Man5,
     &gEventObjectGraphicsInfo_ReporterM,

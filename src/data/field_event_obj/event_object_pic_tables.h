@@ -747,16 +747,16 @@ const struct SpriteFrameImage gEventObjectPicTable_ItemBall[] = {
     obj_frame_tiles(gEventObjectPic_ItemBall),
 };
 
-const struct SpriteFrameImage gEventObjectPicTable_ProfBirch[] = {
-    overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 0),
-    overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 1),
-    overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 2),
-    overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 3),
-    overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 4),
-    overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 5),
-    overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 6),
-    overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 7),
-    overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 8),
+const struct SpriteFrameImage gEventObjectPicTable_ProfElm[] = {
+    overworld_frame(gEventObjectPic_ProfElm, 2, 4, 0),
+    overworld_frame(gEventObjectPic_ProfElm, 2, 4, 1),
+    overworld_frame(gEventObjectPic_ProfElm, 2, 4, 2),
+    overworld_frame(gEventObjectPic_ProfElm, 2, 4, 3),
+    overworld_frame(gEventObjectPic_ProfElm, 2, 4, 4),
+    overworld_frame(gEventObjectPic_ProfElm, 2, 4, 5),
+    overworld_frame(gEventObjectPic_ProfElm, 2, 4, 6),
+    overworld_frame(gEventObjectPic_ProfElm, 2, 4, 7),
+    overworld_frame(gEventObjectPic_ProfElm, 2, 4, 8),
 };
 
 const struct SpriteFrameImage gEventObjectPicTable_Man4[] = {

@@ -408,8 +408,8 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define EVENT_OBJ_PAL_TAG_9  0x1101
 #define EVENT_OBJ_PAL_TAG_10 0x1102
 #define EVENT_OBJ_PAL_TAG_11 0x1115
-#define EVENT_OBJ_PAL_TAG_12 0x110B
-#define EVENT_OBJ_PAL_TAG_13 0x110C
+#define EVENT_OBJ_PAL_TAG_12 0x110B // Elm
+#define EVENT_OBJ_PAL_TAG_13 0x110C // Unused (previously Quinty's reflection)
 #define EVENT_OBJ_PAL_TAG_14 0x110D
 #define EVENT_OBJ_PAL_TAG_15 0x110E
 #define EVENT_OBJ_PAL_TAG_16 0x110F
@@ -508,11 +508,11 @@ const struct PairedPalettes gPlayerReflectionPaletteSets[] = {
     {EVENT_OBJ_PAL_TAG_NONE, NULL},
 };
 
-const u16 gQuintyPlumpReflectionPaletteTags[] = {
-    EVENT_OBJ_PAL_TAG_13,
-    EVENT_OBJ_PAL_TAG_13,
-    EVENT_OBJ_PAL_TAG_13,
-    EVENT_OBJ_PAL_TAG_13,
+const u16 gElmReflectionPaletteTags[] = {
+    EVENT_OBJ_PAL_TAG_12,
+    EVENT_OBJ_PAL_TAG_12,
+    EVENT_OBJ_PAL_TAG_12,
+    EVENT_OBJ_PAL_TAG_12,
 };
 
 const u16 gTruckReflectionPaletteTags[] = {
@@ -588,7 +588,7 @@ const u16 gRedLeafReflectionPaletteTags[] = {
 const struct PairedPalettes gSpecialObjectReflectionPaletteSets[] = {
     {EVENT_OBJ_PAL_TAG_8, gPlayerReflectionPaletteTags},
     {EVENT_OBJ_PAL_TAG_17, Unknown_0850BCF0},
-    {EVENT_OBJ_PAL_TAG_12, gQuintyPlumpReflectionPaletteTags},
+    {EVENT_OBJ_PAL_TAG_12, gElmReflectionPaletteTags},
     {EVENT_OBJ_PAL_TAG_14, gTruckReflectionPaletteTags},
     {EVENT_OBJ_PAL_TAG_15, gVigorothMoverReflectionPaletteTags},
     {EVENT_OBJ_PAL_TAG_19, gMovingBoxReflectionPaletteTags},
@@ -1453,6 +1453,8 @@ static bool8 IsTreeOrRockCloneOffScreen(struct EventObjectTemplate *template, s1
     if (template->graphicsId == EVENT_OBJ_GFX_CUTTABLE_TREE ||
         template->graphicsId == EVENT_OBJ_GFX_BREAKABLE_ROCK)
     {
+        // in FR, radius was slightly wider; shrinking may cause popping
+        // TODO: check
         if (((gSaveBlock1Ptr->pos.x < x) && (gSaveBlock1Ptr->pos.x + 7) >= x) ||
              (gSaveBlock1Ptr->pos.x - 7) < x)
         {
@@ -1479,8 +1481,9 @@ static bool8 IsTreeOrRockOffScreenPostWalkTransition(struct EventObjectTemplate 
     if (template->graphicsId != EVENT_OBJ_GFX_CUTTABLE_TREE &&
         template->graphicsId != EVENT_OBJ_GFX_BREAKABLE_ROCK)
         return TRUE;
-    
+
     // in FR, radius was slightly wider; shrinking may cause popping
+    // TODO: check
     if (((gSaveBlock1Ptr->pos.x == 0) && (template->x <= 7)) ||
         ((gSaveBlock1Ptr->pos.x == width) && (template->x >= (width - 7))) ||
         ((gSaveBlock1Ptr->pos.y == 0) && (template->y <= 5)) ||
