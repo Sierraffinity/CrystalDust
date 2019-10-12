@@ -367,8 +367,8 @@ NewBarkTown_Text_ItsDangerousToGoAlone:
 
 NewBarkTown_Text_TownSlogan:
 	.string "NEW BARK TOWN\n"
-	.string "The Town Where the Winds of a New\l"
-	.string "Beginning Blow$"
+	.string "The Town Where the Winds of a\l"
+	.string "New Beginning Blow$"
 
 NewBarkTown_Text_ElmLab:
 	.string "ELM POKéMON LAB$"

@@ -267,6 +267,7 @@ NewBarkTown_EventScript_PokeBallMain:
 NewBarkTown_EventScript_PokeBallChoice:
 	turnobject 2, 4
 	drawmonpic VAR_TEMP_2, 10, 3
+	playmoncry VAR_TEMP_2, 0
 	textcolor MSG_COLOR_BLUE
 	compare VAR_TEMP_1, 0
 	goto_if_eq NewBarkTown_EventScript_ChoosingChikorita
@@ -303,7 +304,7 @@ NewBarkTown_EventScript_ChoseMon:
 	call RestoreOriginalTextColor
 	setflag FLAG_SYS_POKEMON_GET
 	givemon VAR_TEMP_2, 5, ITEM_ORAN_BERRY, 0, 0, 0
-	copyvar VAR_STARTER_MON, VAR_TEMP_1
+	copyvar VAR_STARTER_MON, VAR_TEMP_1 @ 0=Chikorita, 1=Totodile, 2=Cyndaquil
 	bufferspeciesname 0, VAR_TEMP_2
 	message NewBarkTown_ProfessorElmsLab_Text_GotMonFromElm
 	waitmessage
@@ -850,7 +851,8 @@ NewBarkTown_ProfessorElmsLab_Text_RaiseAPokemon:
 	.string "POKé BALLS.\p"
 	.string "You'll be that POKéMON's first\n"
 	.string "partner, {PLAYER}!\p"
-	.string "Go on. Pick one!$"
+	.string "Go on, then.\n"
+	.string "Pick one!$"
 
 NewBarkTown_ProfessorElmsLab_Text_ElmWaitWhereAreYouGoing:
 	.string "ELM: Wait!\n"
@@ -912,7 +914,7 @@ NewBarkTown_ProfessorElmsLab_Text_Cyndaquil:
 
 NewBarkTown_ProfessorElmsLab_Text_Totodile:
 	.string "ELM: Ah! TOTODILE is your choice.\n"
-	.string "Raising it would be rewarding.\p"
+	.string "It would be rewarding to raise.\p"
 	.string "So, {PLAYER}, do you want TOTODILE,\n"
 	.string "the WATER POKéMON?$"
 

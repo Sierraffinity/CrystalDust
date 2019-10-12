@@ -82,11 +82,11 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	end
 
 Route30_MrPokemonsHouse_EventScript_RivalGetsCyndaquil:
-	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL
 	return
 
 Route30_MrPokemonsHouse_EventScript_RivalGetsChikorita:
-	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA
 	return
 
 Route30_MrPokemonsHouse_EventScript_RivalGetsTotodile:
