@@ -1459,6 +1459,7 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
     u8 isShiny = ScriptReadByte(ctx);
 
     ScriptMenu_ShowPokemonPic(species, x, y, isShiny);
+    PlayCry5(species, 0);
     return FALSE;
 }
 

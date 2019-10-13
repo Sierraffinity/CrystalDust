@@ -1277,7 +1277,7 @@ VerdanturfTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
 	compare VAR_0x8002, TIME_MORNING
 	call_if_eq EventScript_Nurse_IntroMorning
 	compare VAR_0x8002, TIME_DAY
-	call_if_eq EventScript_Nurse_IntroMorning
+	call_if_eq EventScript_Nurse_IntroDay
 	compare VAR_0x8002, TIME_NIGHT
 	call_if_eq EventScript_Nurse_IntroNight
 	compare VAR_RESULT, 1

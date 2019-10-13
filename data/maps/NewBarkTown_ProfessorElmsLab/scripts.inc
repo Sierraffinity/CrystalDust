@@ -143,7 +143,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	setflag FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS
 	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
 	setvar VAR_ROUTE29_STATE, 1
-	setvar VAR_ELM_LAB_STATE, 7
+	setvar VAR_ELM_LAB_STATE, 6
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	release
 	end
@@ -267,7 +267,6 @@ NewBarkTown_EventScript_PokeBallMain:
 NewBarkTown_EventScript_PokeBallChoice:
 	turnobject 2, 4
 	drawmonpic VAR_TEMP_2, 10, 3
-	playmoncry VAR_TEMP_2, 0
 	textcolor MSG_COLOR_BLUE
 	compare VAR_TEMP_1, 0
 	goto_if_eq NewBarkTown_EventScript_ChoosingChikorita
@@ -477,6 +476,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmCountingOnYou, MSGBOX_DEFAULT
 	setvar VAR_ELM_LAB_STATE, 2
+	setvar VAR_NEW_BARK_TOWN_STATE, 1
 	release
 	end
 
