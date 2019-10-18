@@ -156,6 +156,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/NewBarkTown_NeighborsHouse/scripts.inc"
 	.include "data/maps/NewBarkTown_ProfessorElmsLab/scripts.inc"
 	.include "data/maps/CherrygroveCity_House1/scripts.inc"
+	.include "data/maps/CherrygroveCity_House2/scripts.inc"
 	.include "data/maps/CherrygroveCity_GuideGentsHouse/scripts.inc"
 	.include "data/maps/CherrygroveCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/CherrygroveCity_PokemonCenter_2F/scripts.inc"
@@ -588,6 +589,10 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route119_WeatherInstitute_2F/scripts.inc"
 	.include "data/maps/Route119_House/scripts.inc"
 	.include "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc"
+	.include "data/maps/NationalParkGateSouth/scripts.inc"
+	.include "data/maps/NationalParkContest/scripts.inc"
+	.include "data/maps/NationalPark/scripts.inc"
+	.include "data/maps/NationalParkGateEast/scripts.inc"
 
 Std_MsgboxNPC: @ 8271315
 	lock
@@ -1814,9 +1819,3 @@ EventScript_TestSignpostMsg:: @ 82C8436
 	.align 2
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
-
-	.include "data/maps/CherrygroveCity_House2/scripts.inc"
-	.include "data/maps/NationalParkGateSouth/scripts.inc"
-	.include "data/maps/NationalParkContest/scripts.inc"
-	.include "data/maps/NationalPark/scripts.inc"
-	.include "data/maps/NationalParkGateEast/scripts.inc"

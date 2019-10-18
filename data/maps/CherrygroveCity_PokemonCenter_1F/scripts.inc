@@ -8,14 +8,6 @@ CherrygroveCity_PokemonCenter_1F_MapScript1_1FC011:
 	call Common_EventScript_UpdateBrineyLocation
 	end
 
-CherrygroveCity_PokemonCenter_1F_EventScript_Nurse::
-	setvar VAR_0x800B, 1
-	call Common_EventScript_PkmnCenterNurse
-	waitmessage
-	waitbuttonpress
-	release
-	end
-
 CherrygroveCity_PokemonCenter_1F_EventScript_FatMan::
 	msgbox CherrygroveCity_PokemonCenter_1F_Text_FatMan, MSGBOX_NPC
 	end
