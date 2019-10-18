@@ -15,6 +15,7 @@
 #include "strings.h"
 #include "task.h"
 #include "trainer_hill.h"
+#include "constants/field_poison.h"
 #include "constants/species.h"
 
 static bool32 IsMonValidSpecies(struct Pokemon *pokemon)
@@ -63,7 +64,7 @@ static bool32 MonFaintedFromPoison(u8 partyIdx)
     return FALSE;
 }
 
-static void Task_WhiteOut(u8 taskId)
+static void Task_TryFieldPoisonWhiteOut(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     switch (data[0])
@@ -92,20 +93,20 @@ static void Task_WhiteOut(u8 taskId)
             {
                 if (InBugCatchingContest())
                 {
-                    gSpecialVar_Result = 3;
+                    gSpecialVar_Result = FLDPSN_BUGCONTEST_WHITEOUT;
                 }
-                else if (InBattlePyramid() | InBattlePike() || sub_81D5C18())
+                else if (InBattlePyramid() | InBattlePike() || InTrainerHillChallenge())
                 {
-                    gSpecialVar_Result = 2;
+                    gSpecialVar_Result = FLDPSN_FRONTIER_WHITEOUT;
                 }
                 else
                 {
-                    gSpecialVar_Result = 1;
+                    gSpecialVar_Result = FLDPSN_WHITEOUT;
                 }
             }
             else
             {
-                gSpecialVar_Result = 0;
+                gSpecialVar_Result = FLDPSN_NO_WHITEOUT;
             }
             EnableBothScriptContexts();
             DestroyTask(taskId);
@@ -113,9 +114,9 @@ static void Task_WhiteOut(u8 taskId)
     }
 }
 
-void ExecuteWhiteOut(void)
+void TryFieldPoisonWhiteOut(void)
 {
-    CreateTask(Task_WhiteOut, 80);
+    CreateTask(Task_TryFieldPoisonWhiteOut, 80);
     ScriptContext1_Stop();
 }
 

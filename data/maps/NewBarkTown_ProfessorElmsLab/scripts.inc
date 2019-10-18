@@ -26,7 +26,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction:
 	waitmovement 0
 	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
-	applymovement 2, Common_Movement_WalkInPlaceRight
+	applymovement 2, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmIntro, MSGBOX_YESNO
 NewBarkTown_ProfessorElmsLab_EventScript_ElmBegs:
@@ -47,12 +47,12 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmAccepted:
 	waitmovement 0
 	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
-	applymovement 2, Common_Movement_WalkInPlaceDown
+	applymovement 2, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmGotAnEmail
 	closemessage
 	delay 30
-	applymovement 2, Common_Movement_WalkInPlaceRight
+	applymovement 2, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmsAcquaintance
 	closemessage
@@ -266,7 +266,7 @@ NewBarkTown_EventScript_PokeBallMain:
 
 NewBarkTown_EventScript_PokeBallChoice:
 	turnobject 2, 4
-	drawmonpic VAR_TEMP_2, 10, 3
+	showmonpic VAR_TEMP_2, 10, 3
 	textcolor MSG_COLOR_BLUE
 	compare VAR_TEMP_1, 0
 	goto_if_eq NewBarkTown_EventScript_ChoosingChikorita
@@ -291,18 +291,18 @@ NewBarkTown_EventScript_ChoosingChikorita:
 NewBarkTown_EventScript_ChoosingMon:
 	compare VAR_RESULT, 1
 	goto_if_eq NewBarkTown_EventScript_ChoseMon
-	erasemonpic
+	hidemonpic
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ThinkItOver
 	release
 	end
 
 NewBarkTown_EventScript_ChoseMon:
-	erasemonpic
+	hidemonpic
 	removeobject VAR_LAST_TALKED
 	msgbox NewBarkTown_ProfessorElmsLab_Text_GreatMonToo
 	call RestoreOriginalTextColor
 	setflag FLAG_SYS_POKEMON_GET
-	givemon VAR_TEMP_2, 5, ITEM_ORAN_BERRY, 0, 0, 0
+	givemon VAR_TEMP_2, 5, ITEM_ORAN_BERRY
 	copyvar VAR_STARTER_MON, VAR_TEMP_1 @ 0=Chikorita, 1=Totodile, 2=Cyndaquil
 	bufferspeciesname 0, VAR_TEMP_2
 	message NewBarkTown_ProfessorElmsLab_Text_GotMonFromElm
@@ -391,7 +391,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom103:
 	step_end
 
 NewBarkTown_ProfessorElmsLab_EventScript_BallFromLeft:
-	applymovement 2, Common_Movement_WalkInPlaceDown
+	applymovement 2, Common_Movement_WalkInPlaceFastestDown
 	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom74
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
 
@@ -452,7 +452,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom105:
 
 NewBarkTown_ProfessorElmsLab_EventScript_Nickname:
 	setvar VAR_0x8004, 0
-	call Common_EventScript_NameReceivedPokemon
+	call Common_EventScript_NameReceivedPartyMon
 	return
 
 NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
@@ -468,11 +468,11 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	waitfanfare
 	closemessage
 	delay 10
-	applymovement 2, Common_Movement_WalkInPlaceLeft
+	applymovement 2, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmMachineDirections, MSGBOX_DEFAULT
-	applymovement 2, Common_Movement_WalkInPlaceDown
+	applymovement 2, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmCountingOnYou, MSGBOX_DEFAULT
 	setvar VAR_ELM_LAB_STATE, 2

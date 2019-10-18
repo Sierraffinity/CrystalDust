@@ -4,11 +4,11 @@ CherrygroveCity_Mart_MapScripts::
 CherrygroveCity_Mart_EventScript_Clerk::
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	goto_if_set FLAG_ADVENTURE_STARTED, CherrygroveCity_Mart_EventScript_PostDex
 	pokemart CherrygroveCity_Mart_Pokemart_PreDex
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
@@ -21,7 +21,7 @@ CherrygroveCity_Mart_Pokemart_PreDex:
 
 CherrygroveCity_Mart_EventScript_PostDex::
 	pokemart CherrygroveCity_Mart_Pokemart_PostDex
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 

@@ -1,5 +1,5 @@
 #include "global.h"
-#include "alloc.h"
+#include "malloc.h"
 #include "battle.h"
 #include "battle_setup.h"
 #include "bg.h"
@@ -989,9 +989,9 @@ static const struct ScanlineEffectParams sScanlineParams =
     (void *)REG_ADDR_BG0VOFS, SCANLINE_EFFECT_DMACNT_16BIT, 1
 };
 
-extern const u8 gUnknown_082A5C9C[];
-extern const u8 gUnknown_082A5D2C[];
-extern const u8 gUnknown_082A633D[];
+extern const u8 gBirchDexRatingText_AreYouCurious[];
+extern const u8 gBirchDexRatingText_SoYouveSeenAndCaught[];
+extern const u8 gBirchDexRatingText_OnANationwideBasis[];
 
 void InitMatchCallCounters(void)
 {
@@ -1399,7 +1399,7 @@ bool32 CleanupAfterMatchCallHangup(void)
             sub_81973A4();
             playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
             EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
-            sub_80D338C();
+            ScriptMovement_UnfreezeEventObjects();
             UnfreezeEventObjects();
             ScriptContext2_Disable();
         }
@@ -1903,7 +1903,7 @@ static void PopulateBattleFrontierStreak(int matchCallId, u8 *destStr)
         i++;
     }
     
-    ConvertIntToDecimalStringN(destStr, gBattleFrontierStreakInfo.streak, 0, i);
+    ConvertIntToDecimalStringN(destStr, gBattleFrontierStreakInfo.streak, STR_CONV_MODE_LEFT_ALIGN, i);
 }
 
 static const u16 sBadgeFlags[] =
@@ -2136,13 +2136,13 @@ void sub_8197080(u8 *destStr)
 
     numSeen = GetHoennPokedexCount(FLAG_GET_SEEN);
     numCaught = GetHoennPokedexCount(FLAG_GET_CAUGHT);
-    ConvertIntToDecimalStringN(gStringVar1, numSeen, 0, 3);
-    ConvertIntToDecimalStringN(gStringVar2, numCaught, 0, 3);
+    ConvertIntToDecimalStringN(gStringVar1, numSeen, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar2, numCaught, STR_CONV_MODE_LEFT_ALIGN, 3);
     dexRatingLevel = GetPokedexRatingLevel(numCaught);
-    str = StringCopy(buffer, gUnknown_082A5C9C);
+    str = StringCopy(buffer, gBirchDexRatingText_AreYouCurious);
     str[0] = CHAR_PROMPT_CLEAR;
     str++;
-    str = StringCopy(str, gUnknown_082A5D2C);
+    str = StringCopy(str, gBirchDexRatingText_SoYouveSeenAndCaught);
     str[0] = CHAR_PROMPT_CLEAR;
     str++;
     StringCopy(str, sBirchDexRatingTexts[dexRatingLevel]);
@@ -2154,9 +2154,9 @@ void sub_8197080(u8 *destStr)
         str++;
         numSeen = GetNationalPokedexCount(FLAG_GET_SEEN);
         numCaught = GetNationalPokedexCount(FLAG_GET_CAUGHT);
-        ConvertIntToDecimalStringN(gStringVar1, numSeen, 0, 3);
-        ConvertIntToDecimalStringN(gStringVar2, numCaught, 0, 3);
-        StringExpandPlaceholders(str, gUnknown_082A633D);
+        ConvertIntToDecimalStringN(gStringVar1, numSeen, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(gStringVar2, numCaught, STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(str, gBirchDexRatingText_OnANationwideBasis);
     }
 
     Free(buffer);

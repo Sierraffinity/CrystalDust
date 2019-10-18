@@ -48,10 +48,10 @@ SlateportCity_Harbor_EventScript_20C9DF:: @ 820C9DF
 	end
 
 SlateportCity_Harbor_EventScript_20C9F5:: @ 820C9F5
-	applymovement 7, Common_Movement_WalkInPlaceDown
+	applymovement 7, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
-	applymovement 6, Common_Movement_WalkInPlaceDown
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	applymovement 6, Common_Movement_WalkInPlaceFastestDown
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox SlateportCity_Harbor_Text_20D291, MSGBOX_DEFAULT
 	closemessage
@@ -77,7 +77,7 @@ SlateportCity_Harbor_EventScript_20C9F5:: @ 820C9F5
 	closemessage
 	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
 	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
-	moveobjectoffscreen 4
+	copyobjectxytoperm 4
 	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_RIGHT
 	releaseall
 	end
@@ -85,21 +85,21 @@ SlateportCity_Harbor_EventScript_20C9F5:: @ 820C9F5
 SlateportCity_Harbor_EventScript_20CA89:: @ 820CA89
 	applymovement 4, SlateportCity_Harbor_Movement_20CAE0
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
 
 SlateportCity_Harbor_EventScript_20CA9E:: @ 820CA9E
 	applymovement 4, SlateportCity_Harbor_Movement_20CAE6
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
 SlateportCity_Harbor_EventScript_20CAB3:: @ 820CAB3
 	applymovement 4, SlateportCity_Harbor_Movement_20CAEB
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
@@ -175,20 +175,20 @@ SlateportCity_Harbor_EventScript_20CB06:: @ 820CB06
 
 SlateportCity_Harbor_EventScript_20CB1A:: @ 820CB1A
 	goto_if_set FLAG_MET_SCOTT_ON_SS_TIDAL, SlateportCity_Harbor_EventScript_20CB50
-	multichoicedefault 18, 8, 56, 2, 0
+	multichoicedefault 18, 8, MULTI_SSTIDAL_SLATEPORT_NO_BF, 2, 0
 	switch VAR_RESULT
 	case 0, SlateportCity_Harbor_EventScript_20CB92
 	case 1, SlateportCity_Harbor_EventScript_20CC2D
-	case 127, SlateportCity_Harbor_EventScript_20CC2D
+	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_20CC2D
 	end
 
 SlateportCity_Harbor_EventScript_20CB50:: @ 820CB50
-	multichoicedefault 17, 6, 52, 2, 0
+	multichoicedefault 17, 6, MULTI_SSTIDAL_SLATEPORT_WITH_BF, 2, 0
 	switch VAR_RESULT
 	case 0, SlateportCity_Harbor_EventScript_20CB92
 	case 1, SlateportCity_Harbor_EventScript_20CBBA
 	case 2, SlateportCity_Harbor_EventScript_20CC2D
-	case 127, SlateportCity_Harbor_EventScript_20CC2D
+	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_20CC2D
 	end
 
 SlateportCity_Harbor_EventScript_20CB88:: @ 820CB88
@@ -226,18 +226,18 @@ SlateportCity_Harbor_EventScript_20CBDD:: @ 820CBDD
 SlateportCity_Harbor_EventScript_20CBE9:: @ 820CBE9
 	msgbox SlateportCity_Harbor_Text_20CFCB, MSGBOX_DEFAULT
 	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceUp
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	delay 30
 	hideobjectat VAR_LAST_TALKED, MAP_SLATEPORT_CITY_HARBOR
-	compare VAR_FACING, 2
+	compare VAR_FACING, DIR_NORTH
 	call_if_eq SlateportCity_Harbor_EventScript_20CC42
-	compare VAR_FACING, 4
+	compare VAR_FACING, DIR_EAST
 	call_if_eq SlateportCity_Harbor_EventScript_20CC37
 	delay 30
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
 	setvar VAR_0x8004, 5
-	call SlateportCity_Harbor_EventScript_2721E2
+	call Common_EventScript_FerryDepart
 	return
 
 SlateportCity_Harbor_EventScript_20CC2D:: @ 820CC2D
@@ -344,12 +344,12 @@ SlateportCity_Harbor_EventScript_20CD38:: @ 820CD38
 	end
 
 SlateportCity_Harbor_EventScript_20CD44:: @ 820CD44
-	multichoice 0, 0, 46, 0
+	multichoice 0, 0, MULTI_STERN_DEEPSEA, 0
 	switch VAR_RESULT
 	case 0, SlateportCity_Harbor_EventScript_20CD7B
 	case 1, SlateportCity_Harbor_EventScript_20CDBB
 	case 2, SlateportCity_Harbor_EventScript_20CDFB
-	case 127, SlateportCity_Harbor_EventScript_20CDFB
+	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_20CDFB
 	end
 
 SlateportCity_Harbor_EventScript_20CD7B:: @ 820CD7B

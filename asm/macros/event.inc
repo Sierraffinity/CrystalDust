@@ -773,7 +773,8 @@
 	.2byte \y
 	.endm
 
-	.macro moveobjectoffscreen index:req
+	@ Copies a live event object's xy position to its template, so that if the sprite goes off screen, it'll still be there when it comes back on screen.
+	.macro copyobjectxytoperm index:req
 	.byte 0x64
 	.2byte \index
 	.endm
@@ -832,7 +833,7 @@
 	.byte \y
 	.endm
 
-	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined (gMultichoiceLists) and the one to be used is specified with list. If b is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
+	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined (sMultichoiceLists) and the one to be used is specified with list. If b is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
 	.macro multichoice x:req, y:req, list:req, b:req
 	.byte 0x6f
 	.byte \x
@@ -841,7 +842,7 @@
 	.byte \b
 	.endm
 
-	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined (gMultichoiceLists) and the one to be used is specified with list. The default argument determines the initial position of the cursor when the box is first opened; it is zero-indexed, and if it is too large, it is treated as 0x00. If b is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
+	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined (sMultichoiceLists) and the one to be used is specified with list. The default argument determines the initial position of the cursor when the box is first opened; it is zero-indexed, and if it is too large, it is treated as 0x00. If b is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
 	.macro multichoicedefault x:req, y:req, list:req, default:req, b:req
 	.byte 0x70
 	.byte \x
@@ -851,7 +852,7 @@
 	.byte \b
 	.endm
 
-	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined (gMultichoiceLists) and the one to be used is specified with list. The per_row argument determines how many list items will be shown on a single row of the box.
+	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined (sMultichoiceLists) and the one to be used is specified with list. The per_row argument determines how many list items will be shown on a single row of the box.
 	.macro multichoicegrid x:req, y:req, list:req, per_row:req, B:req
 	.byte 0x71
 	.byte \x
@@ -885,7 +886,7 @@
 	.endm
 
 	@ Displays a box containing the front sprite for the specified (species) Pokemon species.
-	.macro drawmonpic species:req, x:req, y:req, shiny=0
+	.macro showmonpic species:req, x:req, y:req, shiny=0
 	.byte 0x75
 	.2byte \species
 	.byte \x
@@ -893,8 +894,8 @@
 	.byte \shiny
 	.endm
 
-	@ Hides all boxes displayed with drawmonpic.
-	.macro erasemonpic
+	@ Hides all boxes displayed with showmonpic.
+	.macro hidemonpic
 	.byte 0x76
 	.endm
 
@@ -910,15 +911,15 @@
 	.4byte \text
 	.endm
 
-	@ Gives the player one of the specified (species) Pokemon at level level holding item. The unknown arguments should all be zeroes.
-	.macro givemon species:req, level:req, item:req, unknown1:req, unknown2:req, unknown3:req
+	@ Gives the player one of the specified (species) Pokemon at level level holding item. The trailing 0s are unused parameters
+	.macro givemon species:req, level:req, item:req
 	.byte 0x79
 	.2byte \species
 	.byte \level
 	.2byte \item
-	.4byte \unknown1
-	.4byte \unknown2
-	.byte \unknown3
+	.4byte 0x0
+	.4byte 0x0
+	.byte 0
 	.endm
 
 	.macro giveegg species:req
@@ -1098,6 +1099,7 @@
 	.byte 0x95
 	.byte \x
 	.byte \y
+	.byte 0 @ 1 = don't perform this command. Always 0 in vanilla. Why this is a thing is beyond me.
 	.endm
 
 	@ Gets the price reduction for the index given. In FireRed, this command is a nop.

@@ -1,5 +1,5 @@
 #include "global.h"
-#include "alloc.h"
+#include "malloc.h"
 #include "bard_music.h"
 #include "bg.h"
 #include "data.h"
@@ -30,6 +30,7 @@
 #include "constants/easy_chat.h"
 #include "constants/event_objects.h"
 #include "constants/flags.h"
+#include "constants/lilycove_lady.h"
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/rgb.h"
@@ -120,8 +121,8 @@ static void sub_811B768(void);
 static u8 sub_811B960(u8);
 static void sub_811B9A0(void);
 static u8 sub_811BA1C(void);
-static int sub_811BF20(void);
-static u16 sub_811BF40(void);
+static int DidPlayerInputMysteryGiftPhrase(void);
+static u16 DidPlayerInputABerryMasterWifePhrase(void);
 static bool8 sub_811CE94(void);
 static void sub_811CF64(void);
 static void sub_811CF04(void);
@@ -208,7 +209,7 @@ static void sub_811D830(void);
 static void sub_811D058(u8, u8, const u8 *, u8, u8, u8, u8, u8, u8);
 static void sub_811DD84(void);
 static void sub_811D6F4(void);
-static void sub_811D758(void);
+static void PrintEasyChatKeyboardText(void);
 static void sub_811D794(void);
 static const u8 *GetEasyChatWordGroupName(u8);
 static void sub_811D864(u8, u8);
@@ -240,6 +241,7 @@ struct Unk8597530
     MainCallback callback;
 };
 
+// Lilycove Quiz Lady
 static const struct Unk8597530 sUnknown_08597530[] = {
     {
         .word = 26,
@@ -696,11 +698,12 @@ static  const struct WindowTemplate sEasyChatYesNoWindowTemplate = {
 
 static const u8 sText_Clear17[] = _("{CLEAR 17}");
 
-static const u8 *const sUnknown_08597C90[] = {
-    gUnknown_862B810,
-    gUnknown_862B832,
-    gUnknown_862B84B,
-    gUnknown_862B86C,
+static const u8 *const sEasyChatKeyboardText[] = 
+{
+    gText_EasyChatKeyboard_ABCDEFothers,
+    gText_EasyChatKeyboard_GHIJKL,
+    gText_EasyChatKeyboard_MNOPQRS,
+    gText_EasyChatKeyboard_TUVWXYZ,
 };
 
 static const struct SpriteSheet sEasyChatSpriteSheets[] = {
@@ -1305,15 +1308,15 @@ void ShowEasyChatScreen(void)
         displayedPersonType = EASY_CHAT_PERSON_BOY;
         break;
     case EASY_CHAT_TYPE_QUIZ_ANSWER:
-        words = &gSaveBlock1Ptr->lilycoveLady.quiz.unk_016;
+        words = &gSaveBlock1Ptr->lilycoveLady.quiz.playerAnswer;
         break;
     case EASY_CHAT_TYPE_QUIZ_QUESTION:
         return;
     case EASY_CHAT_TYPE_QUIZ_SET_QUESTION:
-        words = gSaveBlock1Ptr->lilycoveLady.quiz.unk_002;
+        words = gSaveBlock1Ptr->lilycoveLady.quiz.question;
         break;
     case EASY_CHAT_TYPE_QUIZ_SET_ANSWER:
-        words = &gSaveBlock1Ptr->lilycoveLady.quiz.unk_014;
+        words = &gSaveBlock1Ptr->lilycoveLady.quiz.correctAnswer;
         break;
     case EASY_CHAT_TYPE_APPRENTICE:
         words = gSaveBlock2Ptr->apprentices[0].easyChatWords;
@@ -1329,7 +1332,7 @@ void ShowEasyChatScreen(void)
     DoEasyChatScreen(gSpecialVar_0x8004, words, CB2_ReturnToFieldContinueScript, displayedPersonType);
 }
 
-static void sub_811A7E4(void)
+static void CB2_QuizLadyQuestion(void)
 {
     LilycoveLady *lilycoveLady;
 
@@ -1343,7 +1346,7 @@ static void sub_811A7E4(void)
         if (!gPaletteFade.active)
         {
             lilycoveLady = &gSaveBlock1Ptr->lilycoveLady;
-            lilycoveLady->quiz.unk_016 = -1;
+            lilycoveLady->quiz.playerAnswer = -1;
             CleanupOverworldWindowsAndTilemaps();
             DoQuizQuestionEasyChatScreen();
         }
@@ -1352,9 +1355,9 @@ static void sub_811A7E4(void)
     gMain.state ++;
 }
 
-void sub_811A858(void)
+void QuizLadyShowQuizQuestion(void)
 {
-    SetMainCallback2(sub_811A7E4);
+    SetMainCallback2(CB2_QuizLadyQuestion);
 }
 
 static int sub_811A868(u16 word)
@@ -1387,7 +1390,7 @@ static void DoQuizAnswerEasyChatScreen(void)
 {
     DoEasyChatScreen(
         EASY_CHAT_TYPE_QUIZ_ANSWER,
-        &gSaveBlock1Ptr->lilycoveLady.quiz.unk_016,
+        &gSaveBlock1Ptr->lilycoveLady.quiz.playerAnswer,
         CB2_ReturnToFieldContinueScript,
         EASY_CHAT_PERSON_DISPLAY_NONE);
 }
@@ -1395,7 +1398,7 @@ static void DoQuizAnswerEasyChatScreen(void)
 static void DoQuizQuestionEasyChatScreen(void)
 {
     DoEasyChatScreen(EASY_CHAT_TYPE_QUIZ_QUESTION,
-        gSaveBlock1Ptr->lilycoveLady.quiz.unk_002,
+        gSaveBlock1Ptr->lilycoveLady.quiz.question,
         CB2_ReturnToFieldContinueScript,
         EASY_CHAT_PERSON_DISPLAY_NONE);
 }
@@ -1403,7 +1406,7 @@ static void DoQuizQuestionEasyChatScreen(void)
 static void DoQuizSetAnswerEasyChatScreen(void)
 {
     DoEasyChatScreen(EASY_CHAT_TYPE_QUIZ_SET_ANSWER,
-        &gSaveBlock1Ptr->lilycoveLady.quiz.unk_014,
+        &gSaveBlock1Ptr->lilycoveLady.quiz.correctAnswer,
         CB2_ReturnToFieldContinueScript,
         EASY_CHAT_PERSON_DISPLAY_NONE);
 }
@@ -1411,7 +1414,7 @@ static void DoQuizSetAnswerEasyChatScreen(void)
 static void DoQuizSetQuestionEasyChatScreen(void)
 {
     DoEasyChatScreen(EASY_CHAT_TYPE_QUIZ_SET_QUESTION,
-        gSaveBlock1Ptr->lilycoveLady.quiz.unk_002,
+        gSaveBlock1Ptr->lilycoveLady.quiz.question,
         CB2_ReturnToFieldContinueScript,
         EASY_CHAT_PERSON_DISPLAY_NONE);
 }
@@ -2594,17 +2597,17 @@ static int FooterHasFourOptions_(void)
     return FooterHasFourOptions();
 }
 
-u8 sub_811BC7C(const u16 *arg0, u8 arg1)
+static bool8 IsPhraseDifferentThanPlayerInput(const u16 *phrase, u8 phraseLength)
 {
     u8 i;
 
-    for (i = 0; i < arg1; i++)
+    for (i = 0; i < phraseLength; i++)
     {
-        if (arg0[i] != sEasyChatScreen->ecWordBuffer[i])
-            return 1;
+        if (phrase[i] != sEasyChatScreen->ecWordBuffer[i])
+            return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static u8 GetDisplayedPersonType(void)
@@ -2660,9 +2663,9 @@ static int sub_811BD64(void)
         return sub_811BCF4();
 
     saveBlock1 = gSaveBlock1Ptr;
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < QUIZ_QUESTION_LEN; i++)
     {
-        if (saveBlock1->lilycoveLady.quiz.unk_002[i] != 0xFFFF)
+        if (saveBlock1->lilycoveLady.quiz.question[i] != 0xFFFF)
             return 0;
     }
 
@@ -2676,7 +2679,7 @@ static int sub_811BDB0(void)
         return sub_811BCF4();
 
     quiz = &gSaveBlock1Ptr->lilycoveLady.quiz;
-    return quiz->unk_014 == 0xFFFF ? 1 : 0;
+    return quiz->correctAnswer == 0xFFFF ? 1 : 0;
 }
 
 static void sub_811BDF0(u8 *arg0)
@@ -2727,7 +2730,7 @@ static void sub_811BE9C(void)
         FlagSet(FLAG_SYS_CHAT_USED);
         break;
     case EASY_CHAT_TYPE_QUESTIONNAIRE:
-        if (sub_811BF20())
+        if (DidPlayerInputMysteryGiftPhrase())
             gSpecialVar_0x8004 = 2;
         else
             gSpecialVar_0x8004 = 0;
@@ -2737,22 +2740,22 @@ static void sub_811BE9C(void)
         gSpecialVar_0x8004 = sub_81226D8(sEasyChatScreen->ecWordBuffer);
         break;
     case EASY_CHAT_TYPE_GOOD_SAYING:
-        gSpecialVar_0x8004 = sub_811BF40();
+        gSpecialVar_0x8004 = DidPlayerInputABerryMasterWifePhrase();
         break;
     }
 }
 
-static int sub_811BF20(void)
+static int DidPlayerInputMysteryGiftPhrase(void)
 {
-    return sub_811BC7C(sMysteryGiftPhrase, ARRAY_COUNT(sMysteryGiftPhrase)) == 0;
+    return !IsPhraseDifferentThanPlayerInput(sMysteryGiftPhrase, ARRAY_COUNT(sMysteryGiftPhrase));
 }
 
-static u16 sub_811BF40(void)
+static u16 DidPlayerInputABerryMasterWifePhrase(void)
 {
     int i;
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < (int)ARRAY_COUNT(sBerryMasterWifePhrases); i++)
     {
-        if (!sub_811BC7C(sBerryMasterWifePhrases[i], ARRAY_COUNT(*sBerryMasterWifePhrases)))
+        if (!IsPhraseDifferentThanPlayerInput(sBerryMasterWifePhrases[i], ARRAY_COUNT(*sBerryMasterWifePhrases)))
             return i + 1;
     }
 
@@ -3965,7 +3968,7 @@ static void sub_811D698(u32 arg0)
         sub_811D6F4();
         break;
     case 1:
-        sub_811D758();
+        PrintEasyChatKeyboardText();
         break;
     case 2:
         sub_811D794();
@@ -4008,12 +4011,12 @@ static void sub_811D6F4(void)
     }
 }
 
-static void sub_811D758(void)
+static void PrintEasyChatKeyboardText(void)
 {
     u32 i;
 
-    for (i = 0; i < ARRAY_COUNT(sUnknown_08597C90); i++)
-        sub_811D028(2, 1, sUnknown_08597C90[i], 10, 97 + i * 16, 0xFF, NULL);
+    for (i = 0; i < ARRAY_COUNT(sEasyChatKeyboardText); i++)
+        sub_811D028(2, 1, sEasyChatKeyboardText[i], 10, 97 + i * 16, 0xFF, NULL);
 }
 
 static void sub_811D794(void)

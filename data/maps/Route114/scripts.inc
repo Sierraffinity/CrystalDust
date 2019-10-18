@@ -6,7 +6,7 @@ Route114_MapScripts:: @ 81F252F
 
 Route114_OnTransition: @ 81F253F
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
-	call_if_eq Route114_EventScript_273D13
+	call_if_eq UnusualWeather_EventScript_HideMapNamePopup
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_114_NORTH
 	call_if_eq UnusualWeather_StartGroudonWeather
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_114_SOUTH
@@ -32,7 +32,7 @@ Route114_EventScript_1F2582:: @ 81F2582
 	msgbox Route114_Text_2A6FCB, MSGBOX_DEFAULT
 	random 5
 	addvar VAR_RESULT, 15
-	addvar VAR_RESULT, 133
+	addvar VAR_RESULT, FIRST_BERRY_INDEX
 	giveitem_std VAR_RESULT
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull

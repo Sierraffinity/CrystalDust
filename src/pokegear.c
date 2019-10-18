@@ -1,7 +1,7 @@
 #include "global.h"
 #include "main.h"
 #include "pokegear.h"
-#include "alloc.h"
+#include "malloc.h"
 #include "battle_setup.h"
 #include "bg.h"
 #include "data.h"

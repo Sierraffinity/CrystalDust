@@ -6,7 +6,7 @@ BattleFrontier_BattleTowerMultiBattleRoom_MapScripts:: @ 8243D92
 	.byte 0
 
 BattleFrontier_BattleTowerMultiBattleRoom_MapScript1_243DA7: @ 8243DA7
-	setvar VAR_0x8004, 17
+	setvar VAR_0x8004, BATTLE_PYRAMID_FUNC_RESTORE_PARTY
 	special CallBattlePyramidFunction
 	end
 
@@ -43,7 +43,7 @@ BattleFrontier_BattleTowerMultiBattleRoom_MapScript2_243E14: @ 8243E14
 	.2byte 0
 
 BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243E1E:: @ 8243E1E
-	turnobject EVENT_OBJ_ID_PLAYER, 2
+	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
 	end
 
 BattleFrontier_BattleTowerMultiBattleRoom_MapScript2_243E23: @ 8243E23
@@ -63,8 +63,8 @@ BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243E41:: @ 8243E41
 	waitmovement 0
 	applymovement 1, BattleFrontier_BattleTowerMultiBattleRoom_Movement_243E77
 	waitmovement 0
-	moveobjectoffscreen 1
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	copyobjectxytoperm 1
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox BattleFrontier_BattleTowerMultiBattleRoom_Text_244056, MSGBOX_DEFAULT
 	special HealPlayerParty
@@ -86,7 +86,7 @@ BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243E7A:: @ 8243E7A
 	faceplayer
 	message BattleFrontier_BattleTowerMultiBattleRoom_Text_244094
 	waitmessage
-	multichoicedefault 20, 8, 94, 1, 0
+	multichoicedefault 20, 8, MULTI_YESNO, 1, 0
 	compare VAR_RESULT, 0
 	goto_if_eq BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243E9D
 	msgbox BattleFrontier_BattleTowerMultiBattleRoom_Text_24410C, MSGBOX_DEFAULT
@@ -104,7 +104,7 @@ BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243E9D:: @ 8243E9D
 BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243EB5:: @ 8243EB5
 	msgbox BattleFrontier_BattleTowerMultiBattleRoom_Text_244149, MSGBOX_DEFAULT
 	closemessage
-	applymovement 1, Common_Movement_WalkInPlaceUp
+	applymovement 1, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	opendoor 10, 1
 	waitdooranim
@@ -180,19 +180,19 @@ BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243F36:: @ 8243F36
 	setvar VAR_0x8005, 2
 	special sub_8161F74
 	waitmessage
-	multichoicedefault 20, 8, 94, 1, 0
+	multichoicedefault 20, 8, MULTI_YESNO, 1, 0
 	switch VAR_RESULT
 	case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243FC3
-	case 127, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243FC3
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243FC3
 	setvar VAR_0x8004, 11
 	setvar VAR_0x8005, 3
 	special sub_8161F74
 	waitmessage
 	waitbuttonpress
 	closemessage
-	compare VAR_FACING, 1
+	compare VAR_FACING, DIR_SOUTH
 	call_if_ne BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243FD4
-	compare VAR_FACING, 1
+	compare VAR_FACING, DIR_SOUTH
 	call_if_eq BattleFrontier_BattleTowerMultiBattleRoom_EventScript_243FDF
 	removeobject VAR_LAST_TALKED
 	setflag FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER

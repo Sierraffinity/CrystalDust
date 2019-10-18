@@ -22,7 +22,7 @@ LilycoveCity_DepartmentStore_1F_EventScript_21F69C:: @ 821F69C
 	copyvar VAR_0x8008, VAR_RESULT
 	special BufferLottoTicketNumber
 	msgbox LilycoveCity_DepartmentStore_1F_Text_2A650B, MSGBOX_DEFAULT
-	applymovement 2, Common_Movement_WalkInPlaceRight
+	applymovement 2, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	playse SE_PC_ON
 	special DoLotteryCornerComputerEffect
@@ -34,7 +34,7 @@ LilycoveCity_DepartmentStore_1F_EventScript_21F69C:: @ 821F69C
 	waitmovement 0
 	compare VAR_0x8004, 0
 	goto_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7A1
-	incrementgamestat 46
+	incrementgamestat GAME_STAT_WON_POKEMON_LOTTERY
 	compare VAR_0x8006, 0
 	call_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F77B
 	compare VAR_0x8006, 1

@@ -45,7 +45,7 @@
 #include "window.h"
 #include "wallclock.h"
 #include "m4a.h"
-#include "alloc.h"
+#include "malloc.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
@@ -1734,7 +1734,7 @@ static void Task_NewGameOakSpeech_PutAwayWooper(u8 taskId)
     {
         ClearDialogWindowAndFrame(0, TRUE);
         spriteId = gTasks[taskId].tWooperSpriteId;
-        gTasks[taskId].tPokeBallSpriteId = sub_807671C(spriteId, gSprites[spriteId].oam.paletteNum, 100, 66, 0, 0, 0x20, 0xFFFF1F3F);
+        gTasks[taskId].tPokeBallSpriteId = CreateTradePokeballSprite(spriteId, gSprites[spriteId].oam.paletteNum, 100, 66, 0, 0, 0x20, 0xFFFF1F3F);
         gTasks[taskId].tTimer2 = 48;
         gTasks[taskId].tTimer = 64;
         gTasks[taskId].func = Task_NewGameOakSpeech_MainSpeech2;
@@ -2451,9 +2451,9 @@ static void MainMenu_FormatSavegameTime(void)
 
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuTime);
     AddTextPrinterParameterized3(2, 1, 2, 34, sTextColor_PlayerGenderColor, -1, gStringVar4);
-    ptr = ConvertIntToDecimalStringN(str, gSaveBlock2Ptr->playTimeHours, 0, 3);
+    ptr = ConvertIntToDecimalStringN(str, gSaveBlock2Ptr->playTimeHours, STR_CONV_MODE_LEFT_ALIGN, 3);
     *ptr = CHAR_COLON;
-    ConvertIntToDecimalStringN(ptr + 1, gSaveBlock2Ptr->playTimeMinutes, 2, 2);
+    ConvertIntToDecimalStringN(ptr + 1, gSaveBlock2Ptr->playTimeMinutes, STR_CONV_MODE_LEADING_ZEROS, 2);
     AddTextPrinterParameterized3(2, 1, 62, 34, sTextColor_PlayerGenderColor, -1, str);
 }
 
@@ -2465,12 +2465,12 @@ static void MainMenu_FormatSavegamePokedex(void)
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
     {
         if (IsNationalPokedexEnabled())
-            dexCount = GetNationalPokedexCount(1);
+            dexCount = GetNationalPokedexCount(FLAG_GET_CAUGHT);
         else
-            dexCount = GetHoennPokedexCount(1);
+            dexCount = GetHoennPokedexCount(FLAG_GET_CAUGHT);
         StringExpandPlaceholders(gStringVar4, gText_ContinueMenuPokedex);
         AddTextPrinterParameterized3(2, 1, 2, 50, sTextColor_PlayerGenderColor, -1, gStringVar4);
-        ConvertIntToDecimalStringN(str, dexCount, 0, 3);
+        ConvertIntToDecimalStringN(str, dexCount, STR_CONV_MODE_LEFT_ALIGN, 3);
         AddTextPrinterParameterized3(2, 1, 62, 50, sTextColor_PlayerGenderColor, -1, str);
     }
 }
@@ -2488,7 +2488,7 @@ static void MainMenu_FormatSavegameBadges(void)
     }
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuBadges);
     AddTextPrinterParameterized3(2, 1, 2, 66, sTextColor_PlayerGenderColor, -1, gStringVar4);
-    ConvertIntToDecimalStringN(str, badgeCount, 2, 1);
+    ConvertIntToDecimalStringN(str, badgeCount, STR_CONV_MODE_LEADING_ZEROS, 1);
     AddTextPrinterParameterized3(2, 1, 62, 66, sTextColor_PlayerGenderColor, -1, str);
 }
 

@@ -39,7 +39,7 @@ NewBarkTown_PlayersHouse_1F_MomEncounter:
 	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
 	playbgm MUS_MOMENC, 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer
 	waitmovement 0
 	delay 10
@@ -58,7 +58,7 @@ NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek:
 	waitmessage
 	setvar VAR_0x8004, 0
 	setvar VAR_0x8005, 1
-	special sub_813A128
+	special ShowScrollableMultichoice
 	waitstate
 	copyvar VAR_0x8004, VAR_RESULT
 	special CopyDayOfWeekStringToVar1
@@ -204,7 +204,7 @@ NewBarkTown_PlayersHouse_1F_NeighborTalk::
 	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroDay
 	compare VAR_0x8002, TIME_NIGHT
 	call_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalkIntroNight
-	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceRight
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	release
 	end

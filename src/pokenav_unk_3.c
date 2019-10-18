@@ -84,7 +84,7 @@ static u32 sub_81CAB44(struct Pokenav3Struct *state)
         state->callback = sub_81CAC04;
         state->unk0 = 0;
         selectedMatchCall = GetSelectedMatchCall();
-        if (!state->unk1C[selectedMatchCall].boxId || sub_81D17E8(state->unk1C[selectedMatchCall].unk6))
+        if (!state->unk1C[selectedMatchCall].boxId || MatchCall_HasCheckPage(state->unk1C[selectedMatchCall].unk6))
         {
             state->unk4 = gUnknown_0862250A;
             state->unk2 = 2;
@@ -208,11 +208,11 @@ static u32 sub_81CAD20(s32 taskState)
             {
                 state->unk1C[state->unkA].unk6 = j;
                 state->unk1C[state->unkA].boxId = 1;
-                state->unk1C[state->unkA].monId = sub_81D16DC(j);
+                state->unk1C[state->unkA].monId = MatchCallMapSecGetByIndex(j);
                 state->unkA++;
             }
 
-            if (++state->unk8 >= 21) // TODO: This is the size of sMatchCallHeaders
+            if (++state->unk8 >= MC_HEADER_COUNT)
             {
                 state->unkC = state->unk8;
                 state->unk8 = 0;
@@ -328,7 +328,7 @@ int sub_81CAF04(int index)
         return gTrainers[index].trainerPic;
     }
 
-    index = sub_81D1BD0(var0);
+    index = MatchCall_GetOverrideFacilityClass(var0);
     return gFacilityClassToPicIndex[index];
 }
 
@@ -355,7 +355,7 @@ const u8 *sub_81CAFD8(int index, int textType)
     {
         var0 = MatchCall_GetRematchTableIdx(state->unk1C[index].unk6);
         if (var0 == REMATCH_TABLE_ENTRIES)
-            return sub_81D1B40(state->unk1C[index].unk6, textType);
+            return MatchCall_GetOverrideFlavorText(state->unk1C[index].unk6, textType);
     }
     else
     {
@@ -423,7 +423,7 @@ int sub_81CB0E4(int index)
     {
         if (!state->unk1C[index].boxId)
             return count;
-        if (sub_81D17E8(state->unk1C[index].unk6))
+        if (MatchCall_HasCheckPage(state->unk1C[index].unk6))
             return count;
 
         count++;
@@ -440,7 +440,7 @@ int sub_81CB128(int index)
     {
         if (!state->unk1C[index].boxId)
             return count;
-        if (sub_81D17E8(state->unk1C[index].unk6))
+        if (MatchCall_HasCheckPage(state->unk1C[index].unk6))
             return count;
 
         count--;
@@ -459,7 +459,7 @@ bool32 unref_sub_81CB16C(void)
             return TRUE;
     }
 
-    for (i = 0; i < 21; i++) // TODO: This is the size of sMatchCallHeaders
+    for (i = 0; i < MC_HEADER_COUNT; i++)
     {
         if (MatchCallFlagGetByIndex(i))
         {

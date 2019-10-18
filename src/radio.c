@@ -1,6 +1,6 @@
 #include "global.h"
 #include "main.h"
-#include "alloc.h"
+#include "malloc.h"
 #include "battle_main.h"
 #include "clock.h"
 #include "data.h"

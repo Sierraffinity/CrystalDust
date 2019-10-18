@@ -4,12 +4,12 @@ NewBarkTown_PlayersHouse_2F_MapScripts:: @ 81F83E3
 	.byte 0
 
 NewBarkTown_PlayersHouse_2F_MapScript1_1F83EE: @ 81F83EE
-	call NewBarkTown_PlayersHouse_2F_EventScript_275CE1
+	call SecretBase_EventScript_SetDecorationFlags
 	setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
 
 NewBarkTown_PlayersHouse_2F_MapScript2_1F846A: @ 81F846A
-	map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, EventScript_275D0C
+	map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, SecretBase_EventScript_InitDecorations
 	.2byte 0
 
 EventScript_PlayerPC:: @ 81F860D

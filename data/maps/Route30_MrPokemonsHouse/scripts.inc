@@ -14,7 +14,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	waitmovement 0
 	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
-	applymovement 1, Common_Movement_WalkInPlaceDown
+	applymovement 1, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_HelloHello
 	closemessage
@@ -24,11 +24,11 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	giveitem_std ITEM_MYSTERY_EGG
 	setflag FLAG_RECEIVED_MYSTERY_EGG
 	msgbox Route30_MrPokemonsHouse_Text_IKnowACouple
-	applymovement 1, Common_Movement_WalkInPlaceRight
+	applymovement 1, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_EvenOakKnows
-	applymovement 1, Common_Movement_WalkInPlaceDown
-	applymovement 2, Common_Movement_WalkInPlaceLeft
+	applymovement 1, Common_Movement_WalkInPlaceFastestDown
+	applymovement 2, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_IfMyAssumption
 	closemessage
@@ -54,7 +54,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	fadedefaultbgm
 	removeobject 2
 	waitse
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_ReturningToElm
 	closemessage

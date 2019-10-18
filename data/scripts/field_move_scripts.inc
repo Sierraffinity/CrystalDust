@@ -3,7 +3,7 @@ EventScript_CutTree:: @ 82906BB
 	lockall
 	goto_if_unset FLAG_BADGE01_GET, EventScript_CheckTreeCantCut
 	checkpartymove MOVE_CUT
-	compare VAR_RESULT, 6
+	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CheckTreeCantCut
 	setfieldeffectargument 0, VAR_RESULT
 	bufferpartymonnick 0, VAR_RESULT
@@ -11,7 +11,7 @@ EventScript_CutTree:: @ 82906BB
 	msgbox Text_WantToCut, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_CancelCut
-	msgbox Text_MonUsedHM, MSGBOX_DEFAULT
+	msgbox Text_MonUsedFieldMove, MSGBOX_DEFAULT
 	closemessage
 	dofieldeffect FLDEFF_USE_CUT_ON_TREE
 	waitstate
@@ -51,7 +51,7 @@ Text_WantToCut: @ 829072E
 	.string "down!\p"
 	.string "Would you like to CUT it?$"
 
-Text_MonUsedHM: @ 8290771
+Text_MonUsedFieldMove: @ 8290771
 	.string "{STR_VAR_1} used {STR_VAR_2}!$"
 
 Text_CantCut: @ 829077D
@@ -62,7 +62,7 @@ EventScript_RockSmash:: @ 82907A6
 	lockall
 	goto_if_unset FLAG_BADGE03_GET, EventScript_CantSmashRock
 	checkpartymove MOVE_ROCK_SMASH
-	compare VAR_RESULT, 6
+	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CantSmashRock
 	setfieldeffectargument 0, VAR_RESULT
 	bufferpartymonnick 0, VAR_RESULT
@@ -70,7 +70,7 @@ EventScript_RockSmash:: @ 82907A6
 	msgbox Text_WantToSmash, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_CancelSmash
-	msgbox Text_MonUsedHM, MSGBOX_DEFAULT
+	msgbox Text_MonUsedFieldMove, MSGBOX_DEFAULT
 	closemessage
 	dofieldeffect FLDEFF_USE_ROCK_SMASH
 	waitstate
@@ -129,7 +129,7 @@ EventScript_StrengthBoulder:: @ 82908BA
 	goto_if_unset FLAG_BADGE04_GET, EventScript_CantStrength
 	goto_if_set FLAG_SYS_USE_STRENGTH, EventScript_CheckActivatedBoulder
 	checkpartymove MOVE_STRENGTH
-	compare VAR_RESULT, 6
+	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CantStrength
 	setfieldeffectargument 0, VAR_RESULT
 	msgbox Text_WantToStrength, MSGBOX_YESNO
@@ -190,7 +190,7 @@ Text_StrengthActivated: @ 8290A16
 EventScript_UseWaterfall:: @ 8290A49
 	lockall
 	checkpartymove MOVE_WATERFALL
-	compare VAR_RESULT, 6
+	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CantWaterfall
 	bufferpartymonnick 0, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
@@ -225,7 +225,7 @@ Text_MonUsedWaterfall: @ 8290AFC
 EventScript_UseDive:: @ 8290B0F
 	lockall
 	checkpartymove MOVE_DIVE
-	compare VAR_RESULT, 6
+	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CantDive
 	bufferpartymonnick 0, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
@@ -250,7 +250,7 @@ EventScript_EndDive:: @ 8290B58
 EventScript_UseDiveUnderwater:: @ 8290B5A
 	lockall
 	checkpartymove MOVE_DIVE
-	compare VAR_RESULT, 6
+	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CantSurface
 	bufferpartymonnick 0, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT

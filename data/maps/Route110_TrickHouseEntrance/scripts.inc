@@ -132,8 +132,8 @@ Route110_TrickHouseEntrance_MapScript2_269BD3: @ 8269BD3
 Route110_TrickHouseEntrance_EventScript_269C15:: @ 8269C15
 	addobject 1
 	showobjectat 1, MAP_ROUTE110_TRICK_HOUSE_ENTRANCE
-	turnobject 1, 4
-	turnobject EVENT_OBJ_ID_PLAYER, 3
+	turnobject 1, DIR_EAST
+	turnobject EVENT_OBJ_ID_PLAYER, DIR_WEST
 	end
 
 Route110_TrickHouseEntrance_EventScript_269C26:: @ 8269C26
@@ -189,13 +189,13 @@ Route110_TrickHouseEntrance_EventScript_269CCC:: @ 8269CCC
 Route110_TrickHouseEntrance_EventScript_269CD0:: @ 8269CD0
 	addobject 1
 	setobjectxy 1, 5, 2
-	turnobject 1, 2
+	turnobject 1, DIR_NORTH
 	end
 
 Route110_TrickHouseEntrance_EventScript_269CDF:: @ 8269CDF
 	addobject 1
 	setobjectxy 1, 5, 2
-	turnobject 1, 1
+	turnobject 1, DIR_SOUTH
 	end
 
 Route110_TrickHouseEntrance_MapScript2_269CEE: @ 8269CEE
@@ -334,7 +334,7 @@ Route110_TrickHouseEntrance_EventScript_269E51:: @ 8269E51
 	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
 	msgbox Route110_TrickHouseEntrance_Text_26A9AF, MSGBOX_DEFAULT
-	applymovement 1, Common_Movement_WalkInPlaceUp
+	applymovement 1, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	releaseall
 	end
@@ -432,7 +432,7 @@ Route110_TrickHouseEntrance_EventScript_269FF7:: @ 8269FF7
 Route110_TrickHouseEntrance_EventScript_26A023:: @ 826A023
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
 	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE_3, 3
-	applymovement 1, Common_Movement_WalkInPlaceUp
+	applymovement 1, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	releaseall
 	end
@@ -451,17 +451,17 @@ Route110_TrickHouseEntrance_EventScript_26A039:: @ 826A039
 	end
 
 Route110_TrickHouseEntrance_EventScript_26A070:: @ 826A070
-	multichoice 0, 0, 88, 1
+	multichoice 0, 0, MULTI_TENT, 1
 	switch VAR_RESULT
 	case 0, Route110_TrickHouseEntrance_EventScript_26A08A
 	goto Route110_TrickHouseEntrance_EventScript_26A092
 
 Route110_TrickHouseEntrance_EventScript_26A08A:: @ 826A08A
-	givedecoration_std 31
+	givedecoration_std DECOR_RED_TENT
 	return
 
 Route110_TrickHouseEntrance_EventScript_26A092:: @ 826A092
-	givedecoration_std 32
+	givedecoration_std DECOR_BLUE_TENT
 	return
 
 Route110_TrickHouseEntrance_EventScript_26A09A:: @ 826A09A
@@ -506,7 +506,7 @@ Route110_TrickHouseEntrance_EventScript_26A126:: @ 826A126
 	setmetatile 5, 1, METATILE_GenericBuilding_TrickHouse_Stairs_Down, 0
 	special DrawWholeMapView
 	delay 20
-	applymovement EVENT_OBJ_ID_PLAYER, Route110_TrickHouseEntrance_Movement_2725C9
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Route110_TrickHouseEntrance_Movement_26A1A7
 	waitmovement 0

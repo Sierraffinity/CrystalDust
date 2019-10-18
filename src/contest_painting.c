@@ -1,5 +1,5 @@
 #include "global.h"
-#include "alloc.h"
+#include "malloc.h"
 #include "battle.h"
 #include "battle_gfx_sfx_util.h"
 #include "bg.h"
@@ -292,7 +292,7 @@ static void PrintContestPaintingCaption(u8 contestType, u8 arg1)
     category = gUnknown_030061C0->contestCategory;
     if (contestType < 8)
     {
-        sub_818E868(gStringVar1, category);
+        BufferContestName(gStringVar1, category);
         StringAppend(gStringVar1, gText_Space);
         StringAppend(gStringVar1, gContestRankTextPointers[gUnknown_030061C0->contestRank]);
         StringCopy(gStringVar2, gUnknown_030061C0->trainerName);

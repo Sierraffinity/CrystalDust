@@ -4,10 +4,10 @@ SootopolisCity_Mart_MapScripts:: @ 8226794
 SootopolisCity_Mart_EventScript_226795:: @ 8226795
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemart SootopolisCity_Mart_Pokemart_2267AC
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 

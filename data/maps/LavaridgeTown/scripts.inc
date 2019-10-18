@@ -7,8 +7,8 @@ LavaridgeTown_OnTransition: @ 81EA4DE
 	setflag FLAG_VISITED_LAVARIDGE_TOWN
 	call_if_set FLAG_FLANNERY_GIVES_BADGE_INFO, LavaridgeTown_EventScript_1EA514
 	call_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, LavaridgeTown_EventScript_1EA53F
-	call Common_EventScript_SetupRivalGender
-	call Common_EventScript_SetupRivalOnBikeGender
+	call Common_EventScript_SetupRivalGfxId
+	call Common_EventScript_SetupRivalOnBikeGfxId
 	compare VAR_LAVARIDGE_TOWN_STATE, 1
 	call_if_eq LavaridgeTown_EventScript_1EA518
 	compare VAR_LAVARIDGE_TOWN_STATE, 1
@@ -110,7 +110,7 @@ LavaridgeTown_EventScript_1EA635:: @ 81EA635
 	return
 
 LavaridgeTown_EventScript_1EA63A:: @ 81EA63A
-	applymovement 8, Common_Movement_WalkInPlaceUp
+	applymovement 8, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	playse SE_PIN
 	applymovement 8, Common_Movement_ExclamationMark
@@ -127,14 +127,14 @@ LavaridgeTown_EventScript_1EA65C:: @ 81EA65C
 	waitmovement 0
 	closedoor 12, 15
 	waitdooranim
-	applymovement 8, Common_Movement_WalkInPlaceLeft
+	applymovement 8, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	playse SE_PIN
 	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
 	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
@@ -216,7 +216,7 @@ LavaridgeTown_EventScript_1EA6FA:: @ 81EA6FA
 	end
 
 LavaridgeTown_EventScript_1EA70B:: @ 81EA70B
-	incrementgamestat 49
+	incrementgamestat GAME_STAT_ENTERED_HOT_SPRINGS
 	end
 
 LavaridgeTown_EventScript_1EA70E:: @ 81EA70E

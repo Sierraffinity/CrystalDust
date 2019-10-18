@@ -36,16 +36,16 @@ SkyPillar_Outside_EventScript_239304:: @ 8239304
 	lockall
 	applymovement 1, SkyPillar_Outside_Movement_2393D3
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox SkyPillar_Outside_Text_239416, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	setvar VAR_0x8004, 1
-	setvar VAR_0x8005, 1
-	setvar VAR_0x8006, 8
-	setvar VAR_0x8007, 3
-	special sub_8139560
+	setvar VAR_0x8004, 1  @ vertical pan
+	setvar VAR_0x8005, 1  @ horizontal pan
+	setvar VAR_0x8006, 8  @ num shakes
+	setvar VAR_0x8007, 3  @ shake delay
+	special ShakeCamera
 	waitstate
 	delay 40
 	msgbox SkyPillar_Outside_Text_2394BC, MSGBOX_DEFAULT
@@ -53,20 +53,20 @@ SkyPillar_Outside_EventScript_239304:: @ 8239304
 	applymovement EVENT_OBJ_ID_PLAYER, SkyPillar_Outside_Movement_2393EB
 	applymovement 1, SkyPillar_Outside_Movement_2393DE
 	waitmovement 0
-	setvar VAR_0x8004, 1
-	setvar VAR_0x8005, 3
-	setvar VAR_0x8006, 20
-	setvar VAR_0x8007, 5
-	special sub_8139560
+	setvar VAR_0x8004, 1   @ vertical pan
+	setvar VAR_0x8005, 3   @ horizontal pan
+	setvar VAR_0x8006, 20  @ num shakes
+	setvar VAR_0x8007, 5   @ shake delay
+	special ShakeCamera
 	waitstate
 	delay 20
-	applymovement 1, Common_Movement_WalkInPlaceLeft
+	applymovement 1, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	delay 10
-	applymovement 1, Common_Movement_WalkInPlaceRight
+	applymovement 1, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 20
-	applymovement 1, Common_Movement_WalkInPlaceDown
+	applymovement 1, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	delay 30
 	msgbox SkyPillar_Outside_Text_23950C, MSGBOX_DEFAULT

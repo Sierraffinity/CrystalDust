@@ -6,7 +6,7 @@ BattleFrontier_BattlePyramidTop_MapScripts:: @ 82550A1
 	.byte 0
 
 BattleFrontier_BattlePyramidTop_MapScript1_2550B6: @ 82550B6
-	setvar VAR_0x8004, 13
+	setvar VAR_0x8004, BATTLE_PYRAMID_FUNC_UPDATE_LIGHT
 	setvar VAR_0x8005, 200
 	setvar VAR_0x8006, 0
 	special CallBattlePyramidFunction
@@ -19,7 +19,7 @@ BattleFrontier_BattlePyramidTop_MapScript2_2550CE: @ 82550CE
 
 BattleFrontier_BattlePyramidTop_EventScript_2550D8:: @ 82550D8
 	setvar VAR_TEMP_1, 1
-	turnobject EVENT_OBJ_ID_PLAYER, 2
+	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
 	compare VAR_TEMP_C, 0
 	goto_if_ne BattleFrontier_BattlePyramidTop_EventScript_2550F3
 	setobjectxyperm 2, 0, 0
@@ -69,7 +69,7 @@ BattleFrontier_BattlePyramidTop_EventScript_25518A:: @ 825518A
 	end
 
 BattleFrontier_BattlePyramidTop_EventScript_255193:: @ 8255193
-	setvar VAR_0x8004, 3
+	setvar VAR_0x8004, BATTLE_PYRAMID_FUNC_3
 	setvar VAR_0x8005, 1
 	special CallBattlePyramidFunction
 	special SavePlayerParty
@@ -77,7 +77,7 @@ BattleFrontier_BattlePyramidTop_EventScript_255193:: @ 8255193
 	setvar VAR_0x8005, 0
 	setvar VAR_0x8006, 0
 	special CallFrontierUtilFunc
-	setvar VAR_0x8004, 9
+	setvar VAR_0x8004, BATTLE_PYRAMID_FUNC_INIT_TRAINERS
 	special CallBattlePyramidFunction
 	setvar VAR_0x8004, 3
 	setvar VAR_0x8005, 3

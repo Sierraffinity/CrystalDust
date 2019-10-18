@@ -1,6 +1,8 @@
 #ifndef GUARD_CONSTANTS_BATTLE_FRONTIER_H
 #define GUARD_CONSTANTS_BATTLE_FRONTIER_H
 
+#define FRONTIER_CHALLENGE(facility, mode) ((facility << 8) + mode)
+
 // Battle Frontier facility ids.
 #define FRONTIER_FACILITY_TOWER 0
 #define FRONTIER_FACILITY_DOME 1
@@ -12,6 +14,8 @@
 #define NUM_FRONTIER_FACILITIES 7
 // The multiplayer battle colosseum rooms re-use VAR_FRONTIER_FACILITY.
 #define FRONTIER_FACILITY_DOUBLE_COLOSSEUM 9
+// ...as does the Bug Catching Contest.
+#define FRONTIER_FACILITY_BUG_CATCHING_CONTEST 10
 
 #define TENT_VERDANTURF 2
 #define TENT_FALLARBOR 3
@@ -40,6 +44,36 @@
 #define SPECIAL_BATTLE_STEVEN 8
 #define SPECIAL_BATTLE_PIKE_DOUBLE 9
 #define SPECIAL_BATTLE_PYRAMID 10
+
+#define MAX_BATTLE_FRONTIER_POINTS 9999
+
+// Frontier Maniac
+#define FRONTIER_MANIAC_BATTLE_TOWER_SINGLES       0
+#define FRONTIER_MANIAC_BATTLE_TOWER_DOUBLES       1
+#define FRONTIER_MANIAC_BATTLE_TOWER_MULTIS        2
+#define FRONTIER_MANIAC_BATTLE_TOWER_LINK_MULTIS   3
+#define FRONTIER_MANIAC_BATTLE_DOME                4
+#define FRONTIER_MANIAC_BATTLE_FACTORY             5
+#define FRONTIER_MANIAC_BATTLE_PALACE              6
+#define FRONTIER_MANIAC_BATTLE_ARENA               7
+#define FRONTIER_MANIAC_BATTLE_PIKE                8
+#define FRONTIER_MANIAC_BATTLE_PYRAMID             9
+#define FRONTIER_MANIAC_FACILITY_COUNT            10
+
+#define FRONTIER_MANIAC_MESSAGE_COUNT 3
+
+// Frontier Gambler
+#define FRONTIER_GAMBLER_WAITING     0
+#define FRONTIER_GAMBLER_PLACED_BET  1
+#define FRONTIER_GAMBLER_WON         2
+#define FRONTIER_GAMBLER_LOST        3
+
+#define FRONTIER_GAMBLER_BET_5      0
+#define FRONTIER_GAMBLER_BET_10     1
+#define FRONTIER_GAMBLER_BET_15     2
+#define FRONTIER_GAMBLER_BET_CANCEL 3
+
+#define FRONTIER_GAMBLER_CHALLENGE_COUNT 12
 
 // For 'ShowFacilityResultsWindow' function which is a part of the 'CallFrontierUtilFunc' special.
 #define RESULTS_LINK_CONTEST 7

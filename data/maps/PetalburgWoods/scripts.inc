@@ -15,7 +15,7 @@ PetalburgWoods_EventScript_22DFD7:: @ 822DFD7
 	closemessage
 	applymovement 3, PetalburgWoods_Movement_22E1F6
 	waitmovement 0
-	applymovement 4, Common_Movement_WalkInPlaceUp
+	applymovement 4, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox PetalburgWoods_Text_22E428, MSGBOX_DEFAULT
 	closemessage
@@ -41,7 +41,7 @@ PetalburgWoods_EventScript_22E079:: @ 822E079
 	call PetalburgWoods_EventScript_22E124
 	applymovement 4, PetalburgWoods_Movement_22E1D0
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox PetalburgWoods_Text_22E34F, MSGBOX_DEFAULT
 	closemessage
@@ -52,14 +52,14 @@ PetalburgWoods_EventScript_22E079:: @ 822E079
 	closemessage
 	applymovement 3, PetalburgWoods_Movement_22E205
 	waitmovement 0
-	applymovement 4, Common_Movement_WalkInPlaceUp
+	applymovement 4, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox PetalburgWoods_Text_22E428, MSGBOX_DEFAULT
 	closemessage
 	applymovement 4, PetalburgWoods_Movement_22E1EA
 	waitmovement 0
 	msgbox PetalburgWoods_Text_22E457, MSGBOX_DEFAULT
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox PetalburgWoods_Text_22E4A5, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_GRUNT_8, PetalburgWoods_Text_22E542
@@ -85,7 +85,7 @@ PetalburgWoods_EventScript_22E138:: @ 822E138
 	applymovement 3, PetalburgWoods_Movement_22E1FD
 	waitmovement 0
 	removeobject 3
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	msgbox PetalburgWoods_Text_22E63D, MSGBOX_DEFAULT
 	giveitem_std ITEM_GREAT_BALL
@@ -281,8 +281,8 @@ PetalburgWoods_EventScript_22E284:: @ 822E284
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq PetalburgWoods_EventScript_22E31B
-	setvar VAR_0x8004, 621
-	specialvar VAR_RESULT, sub_813B4E0
+	setvar VAR_0x8004, TRAINER_JAMES_1
+	specialvar VAR_RESULT, IsTrainerRegistered
 	compare VAR_RESULT, 0
 	goto_if_eq PetalburgWoods_EventScript_22E2EF
 	msgbox PetalburgWoods_Text_22E889, MSGBOX_DEFAULT

@@ -365,7 +365,7 @@
 #define FLAG_MET_SLATEPORT_FANCLUB_CHAIRMAN  0x156
 #define FLAG_MET_BATTLE_FRONTIER_BETTOR      0x157
 #define FLAG_ENABLE_MR_STONE_POKENAV         0x158
-#define FLAG_OLDALE_NURSE_MENTIONS_GOLD_CARD 0x159
+#define FLAG_NURSE_MENTIONS_GOLD_CARD        0x159
 #define FLAG_MET_FRONTIER_BEAUTY_MOVE_TUTOR  0x15A
 #define FLAG_MET_FRONTIER_SWIMMER_MOVE_TUTOR 0x15B
 
@@ -697,7 +697,7 @@
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_BRENDAN               0x2E9
 #define FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_BRENDAN                  0x2EA
 #define FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION                  0x2EB
-#define FLAG_HIDE_LILYCOVE_HARBOR_EON_TICKET_TAKER                  0x2EC
+#define FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER                0x2EC
 #define FLAG_HIDE_SLATEPORT_CITY_SCOTT                              0x2ED
 #define FLAG_HIDE_ROUTE_29_ZIGZAGOON                                0x2EE
 #define FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY                           0x2EF
@@ -921,7 +921,7 @@
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN                0x3C7
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL       0x3C8
 #define FLAG_HIDE_FORTREE_CITY_KECLEON                              0x3C9
-#define FLAG_HIDE_ROUTE_120_KECLEON_1                               0x3CA
+#define FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE_INVISIBLE                0x3CA
 #define FLAG_HIDE_LILYCOVE_CITY_RIVAL                               0x3CB
 #define FLAG_HIDE_ROUTE_120_STEVEN                                  0x3CC
 #define FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN                            0x3CD
@@ -932,14 +932,14 @@
 #define FLAG_HIDE_AQUA_HIDEOUT_B1F_ELECTRODE_2                      0x3D2
 #define FLAG_HIDE_CHERRYGROVE_CITY_RIVAL2                           0x3D3
 #define FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE      0x3D4
-#define FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE                          0x3D5
-#define FLAG_HIDE_ROUTE_120_KECLEON_2                               0x3D6
+#define FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE_VISIBLE                  0x3D5
+#define FLAG_HIDE_ROUTE_120_KECLEON_1                               0x3D6
 #define FLAG_HIDE_RUSTURF_TUNNEL_LOVER_WOMAN                        0x3D7
 #define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_WOMAN          0x3D8
-#define FLAG_HIDE_ROUTE_120_KECLEON_3                               0x3D9
-#define FLAG_HIDE_ROUTE_120_KECLEON_4                               0x3DA
-#define FLAG_HIDE_ROUTE_120_KECLEON_5                               0x3DB
-#define FLAG_HIDE_ROUTE_120_KECLEON_6                               0x3DC
+#define FLAG_HIDE_ROUTE_120_KECLEON_2                               0x3D9
+#define FLAG_HIDE_ROUTE_120_KECLEON_3                               0x3DA
+#define FLAG_HIDE_ROUTE_120_KECLEON_4                               0x3DB
+#define FLAG_HIDE_ROUTE_120_KECLEON_5                               0x3DC
 #define FLAG_HIDE_ROUTE_119_KECLEON_1                               0x3DD
 #define FLAG_HIDE_ROUTE_119_KECLEON_2                               0x3DE
 #define FLAG_HIDE_ROUTE_29_BOY                                      0x3DF
@@ -1396,7 +1396,7 @@
 #define FLAG_ENABLE_SHIP_BIRTH_ISLAND               (SYSTEM_FLAGS + 0x75)
 #define FLAG_ENABLE_SHIP_FARAWAY_ISLAND             (SYSTEM_FLAGS + 0x76)
 
-#define FLAG_SYS_STORAGE_UNKNOWN_FLAG               (SYSTEM_FLAGS + 0x77)
+#define FLAG_SHOWN_BOX_WAS_FULL_MESSAGE             (SYSTEM_FLAGS + 0x77)
 
 #define FLAG_ARRIVED_ON_FARAWAY_ISLAND              (SYSTEM_FLAGS + 0x78)
 #define FLAG_ARRIVED_AT_MARINE_CAVE_EMERGE_SPOT     (SYSTEM_FLAGS + 0x79)

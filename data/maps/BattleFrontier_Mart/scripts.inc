@@ -4,10 +4,10 @@ BattleFrontier_Mart_MapScripts:: @ 8267ACB
 BattleFrontier_Mart_EventScript_267ACC:: @ 8267ACC
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemart BattleFrontier_Mart_Pokemart_267AE4
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 

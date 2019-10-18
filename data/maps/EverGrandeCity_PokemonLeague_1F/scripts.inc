@@ -1,6 +1,6 @@
 EverGrandeCity_PokemonLeague_1F_MapScripts:: @ 82295D2
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_PokemonLeague_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, EverGrandeCity_PokemonLeague_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 
 EverGrandeCity_PokemonLeague_1F_OnTransition: @ 82295DD
@@ -16,7 +16,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_2295ED:: @ 82295ED
 
 EverGrandeCity_PokemonLeague_1F_EventScript_2295FC:: @ 82295FC
 	setvar VAR_0x800B, 1
-	call EverGrandeCity_PokemonLeague_1F_EventScript_27191E
+	call Common_EventScript_PkmnCenterNurse
 	waitmessage
 	waitbuttonpress
 	release
@@ -25,10 +25,10 @@ EverGrandeCity_PokemonLeague_1F_EventScript_2295FC:: @ 82295FC
 EverGrandeCity_PokemonLeague_1F_EventScript_22960A:: @ 822960A
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemart EverGrandeCity_PokemonLeague_1F_Pokemart_229624
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
@@ -67,8 +67,8 @@ EverGrandeCity_PokemonLeague_1F_EventScript_229636:: @ 8229636
 	waitmessage
 	waitfanfare
 	closemessage
-	moveobjectoffscreen 3
-	moveobjectoffscreen 4
+	copyobjectxytoperm 3
+	copyobjectxytoperm 4
 	setflag FLAG_ENTERED_ELITE_FOUR
 	releaseall
 	end

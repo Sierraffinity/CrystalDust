@@ -146,7 +146,7 @@ NationalParkGateEast_OnFrame_AwardsCeremony:
 	special CopyBugContestPlacementScoreToVar1
 	message NationalParkGateEast_Text_TheWinningScoreWas
 	waitmessage
-	erasemonpic
+	hidemonpic
 	specialvar VAR_0x8004, DetermineBugCatchingContestPrize
 	copyvar VAR_BUG_CONTEST_PRIZE, VAR_0x8004
 	specialvar VAR_RESULT, GetPlayerBugContestPlace
@@ -199,11 +199,11 @@ NationalParkGateEast_ConcludeAwardsCeremony:
 	end
 
 NationalParkGateEast_DrawNormalMonPic:
-	drawmonpic VAR_RESULT, 10, 3
+	showmonpic VAR_RESULT, 10, 3
 	return
 
 NationalParkGateEast_DrawShinyMonPic:
-	drawmonpic VAR_RESULT, 10, 3, 1
+	showmonpic VAR_RESULT, 10, 3, 1
 	return
 
 NationalParkGateEast_MonAddedToParty:

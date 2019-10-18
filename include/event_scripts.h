@@ -3,22 +3,14 @@
 
 extern const u8 Common_EventScript_ShowPokemonCenterSign[];
 extern const u8 Common_EventScript_ShowPokemartSign[];
-
-extern const u8 gUnknown_0823B4E8[];
-extern const u8 gUnknown_0823B5E9[];
+extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_TryGetTrainerScript[];
-extern const u8 EventScript_275BB7[];
-extern const u8 EventScript_275D0C[];
-extern const u8 EventScript_275D1F[];
-extern const u8 EventScript_275D2E[];
 extern const u8 EventScript_271354[];
 extern const u8 EventScript_DoTainerBattle[];
 extern const u8 EventScript_TryDoDoubleTrainerBattle[];
 extern const u8 EventScript_TryDoNormalTrainerBattle[];
 extern const u8 EventScript_TryDoDoubleRematchBattle[];
 extern const u8 EventScript_TryDoRematchBattle[];
-extern const u8 SecretBase_EventScript_DollInteract[];
-extern const u8 SecretBase_EventScript_CushionInteract[];
 
 extern const u8 BerryTreeScript[];
 
@@ -370,16 +362,16 @@ extern const u8 gPokeNewsTextLilycove_Ending[];
 extern const u8 gPokeNewsTextBlendMaster_Upcoming[];
 extern const u8 gPokeNewsTextBlendMaster_Ongoing[];
 extern const u8 gPokeNewsTextBlendMaster_Ending[];
-extern const u8 SecretBase_RedCave1_Text_274966[];
-extern const u8 SecretBase_RedCave1_Text_274D13[];
-extern const u8 SecretBase_RedCave1_Text_274FFE[];
-extern const u8 SecretBase_RedCave1_Text_275367[];
-extern const u8 SecretBase_RedCave1_Text_2756C7[];
-extern const u8 SecretBase_RedCave1_Text_274B24[];
-extern const u8 SecretBase_RedCave1_Text_274E75[];
-extern const u8 SecretBase_RedCave1_Text_2751E1[];
-extern const u8 SecretBase_RedCave1_Text_2754F6[];
-extern const u8 SecretBase_RedCave1_Text_2758CC[];
+extern const u8 SecretBase_Text_Trainer0Defeated[];
+extern const u8 SecretBase_Text_Trainer1Defeated[];
+extern const u8 SecretBase_Text_Trainer2Defeated[];
+extern const u8 SecretBase_Text_Trainer3Defeated[];
+extern const u8 SecretBase_Text_Trainer4Defeated[];
+extern const u8 SecretBase_Text_Trainer5Defeated[];
+extern const u8 SecretBase_Text_Trainer6Defeated[];
+extern const u8 SecretBase_Text_Trainer7Defeated[];
+extern const u8 SecretBase_Text_Trainer8Defeated[];
+extern const u8 SecretBase_Text_Trainer9Defeated[];
 
 extern const u8 BattleFrontier_BattlePyramidEmptySquare_EventScript_252C88[];
 
@@ -528,12 +520,9 @@ extern const u8 MauvilleCity_PokemonCenter_1F_Text_2900B5[];
 extern const u8 MauvilleCity_PokemonCenter_1F_Text_2900CB[];
 
 extern const u8 EventScript_PlayerPC[];
-extern const u8 EventScript_SecretBasePC[];
-extern const u8 EventScript_RecordMixingSecretBasePC[];
 extern const u8 EventScript_PC[];
 extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_HiddenItemScript[];
-extern const u8 EventScript_2759F1[];
 extern const u8 EventScript_FruitTree[];
 extern const u8 EventScript_TV[];
 extern const u8 EventScript_Window[];
@@ -555,8 +544,6 @@ extern const u8 EventScript_WirelessBoxResults[];
 extern const u8 EventScript_CableBoxResults[];
 extern const u8 EventScript_Questionnaire[];
 extern const u8 EventScript_TrainerHillTimer[];
-extern const u8 EventScript_SecretBaseSandOrnament[];
-extern const u8 EventScript_SecretBaseShieldOrToyTV[];
 extern const u8 EventScript_UseSurf[];
 extern const u8 EventScript_UseWaterfall[];
 extern const u8 EventScript_CannotUseWaterfall[];
@@ -564,17 +551,32 @@ extern const u8 EventScript_UseDive[];
 extern const u8 EventScript_UseDiveUnderwater[];
 extern const u8 EventScript_FallDownHole[];
 extern const u8 BattleFrontier_BattlePyramidEmptySquare_EventScript_252BE8[];
-extern const u8 EventScript_Poison[];
+extern const u8 EventScript_FieldPoison[];
 extern const u8 EventScript_EggHatch[];
 extern const u8 UnusualWeather_EventScript_EndEventAndCleanup_1[];
 extern const u8 IslandCave_EventScript_238EAF[];
 extern const u8 MauvilleCity_EventScript_1DF7BA[];
 extern const u8 Route119_EventScript_1F49EC[];
 extern const u8 NewBarkTown_ProfessorElmsLab_EventScript_1FA4D6[];
-extern const u8 RustboroCity_Gym_EventScript_21307B[];
+extern const u8 RustboroCity_Gym_EventScript_RegisterRoxanne[];
 extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_224175[];
 extern const u8 SSTidalCorridor_EventScript_23C050[];
-extern const u8 gUnknown_082A8350[];
+extern const u8 EventScript_FallDownHoleMtPyre[];
+
+// Secret Base
+extern const u8 SecretBase_EventScript_PC[];
+extern const u8 SecretBase_EventScript_RecordMixingPC[];
+extern const u8 SecretBase_EventScript_PCCancel[];
+extern const u8 SecretBase_EventScript_ShowRegisterMenu[];
+extern const u8 SecretBase_EventScript_SandOrnament[];
+extern const u8 SecretBase_EventScript_ShieldOrToyTV[];
+extern const u8 SecretBase_EventScript_DollInteract[];
+extern const u8 SecretBase_EventScript_CushionInteract[];
+extern const u8 SecretBase_EventScript_CheckEntrance[];
+extern const u8 SecretBase_EventScript_Enter[];
+extern const u8 SecretBase_EventScript_InitDecorations[];
+extern const u8 SecretBase_EventScript_PutAwayDecoration[];
+extern const u8 SecretBase_EventScript_SetDecoration[];
 
 // Battle Pyramid.
 extern const u8 BattleFrontier_BattlePyramidEmptySquare_EventScript_252C88[];
@@ -582,9 +584,9 @@ extern const u8 BattlePyramid_TrainerBattle[];
 extern const u8 BattlePyramid_FindItemBall[];
 
 // fldeff misc
-extern const u8 EventScript_275A86[];
-extern const u8 EventScript_275ADF[];
-extern const u8 EventScript_275B38[];
+extern const u8 SecretBase_EventScript_CaveUseSecretPower[];
+extern const u8 SecretBase_EventScript_TreeUseSecretPower[];
+extern const u8 SecretBase_EventScript_ShrubUseSecretPower[];
 
 // trainer hill
 extern const u8 EventScript_2C83F0[];

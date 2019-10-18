@@ -4,10 +4,10 @@ LavaridgeTown_Mart_MapScripts:: @ 81FF9CD
 LavaridgeTown_Mart_EventScript_1FF9CE:: @ 81FF9CE
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemart LavaridgeTown_Mart_Pokemart_1FF9E8
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 

@@ -4,10 +4,10 @@ FortreeCity_Mart_MapScripts:: @ 8217665
 FortreeCity_Mart_EventScript_217666:: @ 8217666
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemart FortreeCity_Mart_Pokemart_217680
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 

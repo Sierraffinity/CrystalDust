@@ -4,10 +4,10 @@ SlateportCity_Mart_MapScripts:: @ 820DC48
 SlateportCity_Mart_EventScript_20DC49:: @ 820DC49
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemart SlateportCity_Mart_Pokemart_20DC60
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 

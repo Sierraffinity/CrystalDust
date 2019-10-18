@@ -64,7 +64,7 @@ static EWRAM_DATA u16 sMovingNpcMapBank = 0;
 static EWRAM_DATA u16 sMovingNpcMapId = 0;
 static EWRAM_DATA u16 sFieldEffectScriptId = 0;
 
-static u8 gUnknown_03000F30;
+static u8 gBrailleWindowId;
 
 extern const SpecialFunc gSpecials[];
 extern const u8 *gStdScripts[];
@@ -468,6 +468,9 @@ bool8 ScrCmd_addvar(struct ScriptContext *ctx)
 {
     u16 *ptr = GetVarPointer(ScriptReadHalfword(ctx));
     *ptr += ScriptReadHalfword(ctx);
+    // Note: addvar doesn't support adding from a variable in vanilla. If you were to 
+    // add a VarGet() to the above, make sure you change the `addvar VAR_0x8006, 65535`
+    // in the contest scripts to `subvar VAR_0x8006, 1`, else contests will break.
     return FALSE;
 }
 
@@ -606,7 +609,7 @@ bool8 ScrCmd_incrementgamestat(struct ScriptContext *ctx)
 
 bool8 ScrCmd_animateflash(struct ScriptContext *ctx)
 {
-    sub_80B009C(ScriptReadByte(ctx));
+    AnimateFlash(ScriptReadByte(ctx));
     ScriptContext1_Stop();
     return TRUE;
 }
@@ -1105,7 +1108,7 @@ bool8 ScrCmd_setobjectxyperm(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_moveobjectoffscreen(struct ScriptContext *ctx)
+bool8 ScrCmd_copyobjectxytoperm(struct ScriptContext *ctx)
 {
     u16 localId = VarGet(ScriptReadHalfword(ctx));
 
@@ -1247,7 +1250,7 @@ bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
     HideFieldMessageBox();
     playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
     EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
-    sub_80D338C();
+    ScriptMovement_UnfreezeEventObjects();
     UnfreezeEventObjects();
     return FALSE;
 }
@@ -1261,7 +1264,7 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
         EventObjectClearHeldMovementIfFinished(&gEventObjects[gSelectedEventObject]);
     playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
     EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
-    sub_80D338C();
+    ScriptMovement_UnfreezeEventObjects();
     UnfreezeEventObjects();
     return FALSE;
 }
@@ -1525,13 +1528,13 @@ bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
     yText = (yText - yWindow - 1) * 8;
 
     winTemplate = CreateWindowTemplate(0, xWindow, yWindow + 1, width, height, 0xF, 0x1);
-    gUnknown_03000F30 = AddWindow(&winTemplate);
-    LoadUserWindowBorderGfx(gUnknown_03000F30, 0x214, 0xE0);
-    DrawStdWindowFrame(gUnknown_03000F30, 0);
-    PutWindowTilemap(gUnknown_03000F30);
-    FillWindowPixelBuffer(gUnknown_03000F30, PIXEL_FILL(1));
-    AddTextPrinterParameterized(gUnknown_03000F30, 6, gStringVar4, xText, yText, 0xFF, 0x0);
-    CopyWindowToVram(gUnknown_03000F30, 3);
+    gBrailleWindowId = AddWindow(&winTemplate);
+    LoadUserWindowBorderGfx(gBrailleWindowId, 0x214, 0xE0);
+    DrawStdWindowFrame(gBrailleWindowId, 0);
+    PutWindowTilemap(gBrailleWindowId);
+    FillWindowPixelBuffer(gBrailleWindowId, PIXEL_FILL(1));
+    AddTextPrinterParameterized(gBrailleWindowId, 6, gStringVar4, xText, yText, 0xFF, 0x0);
+    CopyWindowToVram(gBrailleWindowId, 3);
     return FALSE;
 }
 
@@ -1619,10 +1622,10 @@ bool8 ScrCmd_buffermovename(struct ScriptContext *ctx)
 bool8 ScrCmd_buffernumberstring(struct ScriptContext *ctx)
 {
     u8 stringVarIndex = ScriptReadByte(ctx);
-    u16 v1 = VarGet(ScriptReadHalfword(ctx));
-    u8 v2 = CountDigits(v1);
+    u16 num = VarGet(ScriptReadHalfword(ctx));
+    u8 numDigits = CountDigits(num);
 
-    ConvertIntToDecimalStringN(sScriptStringVars[stringVarIndex], v1, 0, v2);
+    ConvertIntToDecimalStringN(sScriptStringVars[stringVarIndex], num, STR_CONV_MODE_LEFT_ALIGN, numDigits);
     return FALSE;
 }
 
@@ -1631,7 +1634,7 @@ bool8 ScrCmd_bufferstdstring(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 index = VarGet(ScriptReadHalfword(ctx));
 
-    StringCopy(sScriptStringVars[stringVarIndex], gUnknown_0858BAF0[index]);
+    StringCopy(sScriptStringVars[stringVarIndex], gStdStrings[index]);
     return FALSE;
 }
 
@@ -1640,7 +1643,7 @@ bool8 ScrCmd_buffercontesttype(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 index = VarGet(ScriptReadHalfword(ctx));
 
-    sub_818E868(sScriptStringVars[stringVarIndex], index);
+    BufferContestName(sScriptStringVars[stringVarIndex], index);
     return FALSE;
 }
 
@@ -1937,9 +1940,9 @@ bool8 ScrCmd_setberrytree(struct ScriptContext *ctx)
 
 bool8 ScrCmd_getpricereduction(struct ScriptContext *ctx)
 {
-    u16 value = VarGet(ScriptReadHalfword(ctx));
+    u16 newsKind = VarGet(ScriptReadHalfword(ctx));
 
-    gSpecialVar_Result = GetPriceReduction(value);
+    gSpecialVar_Result = GetPriceReduction(newsKind);
     return FALSE;
 }
 
@@ -2237,6 +2240,8 @@ bool8 ScrCmd_checkmonobedience(struct ScriptContext *ctx)
     return FALSE;
 }
 
+// TODO: Should be renamed. Name implies general usage, but its specifically for Wonder Card
+// See GetSavedRamScriptIfValid, which is NULL if ValidateReceivedWonderCard returns FALSE
 bool8 ScrCmd_gotoram(struct ScriptContext *ctx)
 {
     const u8* v1 = GetSavedRamScriptIfValid();
@@ -2276,8 +2281,8 @@ bool8 ScrCmd_setmonmetlocation(struct ScriptContext *ctx)
 
 void sub_809BDB4(void)
 {
-    ClearStdWindowAndFrame(gUnknown_03000F30, 1);
-    RemoveWindow(gUnknown_03000F30);
+    ClearStdWindowAndFrame(gBrailleWindowId, 1);
+    RemoveWindow(gBrailleWindowId);
 }
 
 bool8 ScrCmd_buffertrainerclassname(struct ScriptContext *ctx)

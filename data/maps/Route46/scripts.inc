@@ -7,7 +7,7 @@ Route46_MapScripts:: @ 81F3DBC
 Route46_MapScript1_1F3DCC: @ 81F3DCC
 	call Route46_EventScript_28CCC7
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
-	call_if_eq Route46_EventScript_273D13
+	call_if_eq UnusualWeather_EventScript_HideMapNamePopup
 	compare VAR_UNUSUAL_WEATHER_LOCATION, 7
 	call_if_eq UnusualWeather_StartGroudonWeather
 	compare VAR_UNUSUAL_WEATHER_LOCATION, 8

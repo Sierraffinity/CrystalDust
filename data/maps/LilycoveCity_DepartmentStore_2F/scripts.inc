@@ -16,10 +16,10 @@ LilycoveCity_DepartmentStore_2F_EventScript_21FB3F:: @ 821FB3F
 LilycoveCity_DepartmentStore_2F_EventScript_21FB48:: @ 821FB48
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemart LilycoveCity_DepartmentStore_2F_Pokemart_21FB60
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
@@ -43,10 +43,10 @@ LilycoveCity_DepartmentStore_2F_Pokemart_21FB60: @ 821FB60
 LilycoveCity_DepartmentStore_2F_EventScript_21FB7A:: @ 821FB7A
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemart LilycoveCity_DepartmentStore_2F_Pokemart_21FB94
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 

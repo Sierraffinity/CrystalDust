@@ -9,7 +9,7 @@
 #include "graphics.h"
 #include "international_string_util.h"
 #include "main.h"
-#include "alloc.h"
+#include "malloc.h"
 #include "menu.h"
 #include "m4a.h"
 #include "overworld.h"
@@ -1348,13 +1348,13 @@ void CB2_Pokedex(void)
             sPokedexView->selectedScreen = 0;
             if (!IsNationalPokedexEnabled())
             {
-                sPokedexView->seenCount = GetHoennPokedexCount(0);
-                sPokedexView->ownCount = GetHoennPokedexCount(1);
+                sPokedexView->seenCount = GetHoennPokedexCount(FLAG_GET_SEEN);
+                sPokedexView->ownCount = GetHoennPokedexCount(FLAG_GET_CAUGHT);
             }
             else
             {
-                sPokedexView->seenCount = GetNationalPokedexCount(0);
-                sPokedexView->ownCount = GetNationalPokedexCount(1);
+                sPokedexView->seenCount = GetNationalPokedexCount(FLAG_GET_SEEN);
+                sPokedexView->ownCount = GetNationalPokedexCount(FLAG_GET_CAUGHT);
             }
             sPokedexView->initialVOffset = 8;
             gMain.state++;
@@ -2584,7 +2584,7 @@ static void CreateInterfaceSprites(u8 a)
             spriteId = CreateSprite(&gUnknown_0855D20C, 17, 91, 1);
             StartSpriteAnim(&gSprites[spriteId], 1);
 
-            r6 = GetHoennPokedexCount(0);
+            r6 = GetHoennPokedexCount(FLAG_GET_SEEN);
             _a = 0;
 
             spriteId = CreateSprite(&gUnknown_0855D23C, 40, 45, 1);
@@ -2627,7 +2627,7 @@ static void CreateInterfaceSprites(u8 a)
             r5 = (sPokedexView->seenCount % 100) % 10;
             StartSpriteAnim(&gSprites[spriteId], r5);
 
-            r6 = GetHoennPokedexCount(1);
+            r6 = GetHoennPokedexCount(FLAG_GET_CAUGHT);
             _a = 0;
 
             spriteId = CreateSprite(&gUnknown_0855D23C, 40, 81, 1);
@@ -3907,7 +3907,7 @@ void sub_80C020C(u32 num, u32 value, u32 c, u32 d)
         value = NationalToHoennOrder(num);
     else
         value = num;
-    ConvertIntToDecimalStringN(StringCopy(str, gText_UnkCtrlF908Clear01), value, 2, 3);
+    ConvertIntToDecimalStringN(StringCopy(str, gText_UnkCtrlF908Clear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
     sub_80BE8DC(str, 0x60, 0x19);
     natNum = NationalPokedexNumToSpecies(num);
     if (natNum)
@@ -4267,12 +4267,12 @@ u16 GetPokedexHeightWeight(u16 dexNum, u8 data)
 {
     switch (data)
     {
-        case 0:  // height
-            return gPokedexEntries[dexNum].height;
-        case 1:  // weight
-            return gPokedexEntries[dexNum].weight;
-        default:
-            return 1;
+    case 0:  // height
+        return gPokedexEntries[dexNum].height;
+    case 1:  // weight
+        return gPokedexEntries[dexNum].weight;
+    default:
+        return 1;
     }
 }
 
@@ -4378,23 +4378,23 @@ u16 GetHoennPokedexCount(u8 caseID)
     return count;
 }
 
-u16 sub_80C089C(u8 caseID)
+u16 GetKantoPokedexCount(u8 caseID)
 {
     u16 count = 0;
     u16 i;
 
-    for (i = 0; i < 151; i++)
+    for (i = 0; i < KANTO_DEX_COUNT; i++)
     {
         switch (caseID)
         {
-            case FLAG_GET_SEEN:
-                if (GetSetPokedexFlag(i + 1, FLAG_GET_SEEN))
-                    count++;
-                break;
-            case FLAG_GET_CAUGHT:
-                if (GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
-                    count++;
-                break;
+        case FLAG_GET_SEEN:
+            if (GetSetPokedexFlag(i + 1, FLAG_GET_SEEN))
+                count++;
+            break;
+        case FLAG_GET_CAUGHT:
+            if (GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+                count++;
+            break;
         }
     }
     return count;
@@ -4404,7 +4404,7 @@ bool16 HasAllHoennMons(void)
 {
     u16 i;
 
-    for (i = 0; i < 200; i++)
+    for (i = 0; i < HOENN_DEX_COUNT - 2; i++)
     {
         if (!GetSetPokedexFlag(HoennToNationalOrder(i + 1), FLAG_GET_CAUGHT))
             return FALSE;
@@ -4412,11 +4412,11 @@ bool16 HasAllHoennMons(void)
     return TRUE;
 }
 
-bool8 sub_80C0918(void)
+bool8 HasAllKantoMons(void)
 {
     u16 i;
 
-    for (i = 0; i < 150; i++)
+    for (i = 0; i < KANTO_DEX_COUNT - 1; i++)
     {
         if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
             return FALSE;
@@ -4424,26 +4424,26 @@ bool8 sub_80C0918(void)
     return TRUE;
 }
 
-u16 sub_80C0944(void)
+bool16 HasAllMons(void)
 {
     u16 i;
 
-    for (i = 0; i < 150; i++)
+    for (i = 0; i < NATIONAL_DEX_MEWTWO; i++)
     {
         if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
-            return 0;
+            return FALSE;
     }
-    for (i = 151; i < 248; i++)
+    for (i = NATIONAL_DEX_MEW; i < NATIONAL_DEX_TYRANITAR; i++)
     {
         if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
-            return 0;
+            return FALSE;
     }
-    for (i = 251; i < 384; i++)
+    for (i = NATIONAL_DEX_CELEBI; i < NATIONAL_DEX_RAYQUAZA; i++)
     {
         if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
-            return 0;
+            return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 void sub_80C09B0(u16 a)

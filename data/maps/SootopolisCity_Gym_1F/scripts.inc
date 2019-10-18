@@ -109,7 +109,7 @@ SootopolisCity_Gym_1F_EventScript_224F82:: @ 8224F82
 	setvar VAR_SOOTOPOLIS_CITY_STATE, 6
 	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
 	setvar VAR_0x8008, 8
-	call SootopolisCity_Gym_1F_EventScript_271F43
+	call Common_EventScript_SetGymTrainers
 	call SootopolisCity_Gym_1F_EventScript_224FD4
 	closemessage
 	delay 30
@@ -222,6 +222,10 @@ SootopolisCity_Gym_1F_Text_225268: @ 8225268
 	.string "A grand illusion of water sculpted\n"
 	.string "by POKéMON and myself!$"
 
+@ NOTE: This defeat text actually causes a buffer overflow. It's about 50 bytes too long for
+@ the gDisplayedStringBattle buffer that it's put into, and it stomps all over the gBattleTextBuffs
+@ after, as well as the otherwise unused array after that. One wonders if that's the reason for
+@ the existence of that unused array of ints.
 SootopolisCity_Gym_1F_Text_225432: @ 8225432
 	.string "Ahahaha, excellent!\n"
 	.string "Very well, you are the winner.\p"

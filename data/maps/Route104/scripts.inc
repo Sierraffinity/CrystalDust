@@ -13,7 +13,7 @@ Route104_EventScript_1ECC47:: @ 81ECC47
 	end
 
 Route104_OnTransition: @ 81ECC4E
-	call Common_EventScript_SetupRivalGender
+	call Common_EventScript_SetupRivalGfxId
 	call Route104_EventScript_1ECC78
 	call Route104_EventScript_1ECC5E
 	end
@@ -51,7 +51,7 @@ Route104_EventScript_1ECCB3:: @ 81ECCB3
 	setflag FLAG_HIDE_RUSBORO_CITY_RIVAL
 	setvar VAR_RUSTBORO_CITY_STATE, 8
 	setvar VAR_ROUTE104_STATE, 2
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	delay 10
 	addobject 34
@@ -114,7 +114,7 @@ Route104_EventScript_1ECD4B:: @ 81ECD4B
 	waitmovement 0
 	applymovement 34, Route104_Movement_1ECDCA
 	waitmovement 0
-	moveobjectoffscreen 34
+	copyobjectxytoperm 34
 	msgbox Route104_Text_1EDCED, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq Route104_EventScript_1ECDED
@@ -203,7 +203,7 @@ Route104_EventScript_1ECE6F:: @ 81ECE6F
 	waitmovement 0
 	applymovement 34, Route104_Movement_1ECDCA
 	waitmovement 0
-	moveobjectoffscreen 34
+	copyobjectxytoperm 34
 	msgbox Route104_Text_1EE009, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq Route104_EventScript_1ECF09
@@ -364,7 +364,7 @@ Route104_EventScript_1ED099:: @ 81ED099
 	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED34F
 	waitmovement 0
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
-	call Route104_EventScript_2720A0
+	call Common_EventScript_PlayBrineysBoatMusic
 	goto_if_set FLAG_ENABLE_NORMAN_MATCH_CALL, Route104_EventScript_1ED0D9
 	goto_if_unset FLAG_ENABLE_NORMAN_MATCH_CALL, Route104_EventScript_1ED0EF
 	end
@@ -398,7 +398,7 @@ Route104_EventScript_1ED139:: @ 81ED139
 	delay 50
 	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED353
 	waitmovement 0
-	call Route104_EventScript_2720A8
+	call Common_EventScript_StopBrineysBoatMusic
 	showobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
 	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED355
 	waitmovement 0
@@ -410,13 +410,13 @@ Route104_EventScript_1ED139:: @ 81ED139
 	waitmovement 0
 	addobject 4
 	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	call Route104_EventScript_2720A8
+	call Common_EventScript_StopBrineysBoatMusic
 	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
 	hideobjectat 7, MAP_ROUTE104
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
 	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
 	resetobjectpriority 2, MAP_DEWFORD_TOWN
-	moveobjectoffscreen 2
+	copyobjectxytoperm 2
 	setvar VAR_BOARD_BRINEY_BOAT_STATE, 0
 	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, Route104_EventScript_1ED1B4
 	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, Route104_EventScript_1ED1BE
@@ -870,8 +870,8 @@ Route104_EventScript_1ED38D:: @ 81ED38D
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq Route104_EventScript_1ED424
-	setvar VAR_0x8004, 604
-	specialvar VAR_RESULT, sub_813B4E0
+	setvar VAR_0x8004, TRAINER_HALEY_1
+	specialvar VAR_RESULT, IsTrainerRegistered
 	compare VAR_RESULT, 0
 	goto_if_eq Route104_EventScript_1ED3F8
 	msgbox Route104_Text_295689, MSGBOX_DEFAULT
@@ -913,8 +913,8 @@ Route104_EventScript_1ED43B:: @ 81ED43B
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq Route104_EventScript_1ED4D2
-	setvar VAR_0x8004, 136
-	specialvar VAR_RESULT, sub_813B4E0
+	setvar VAR_0x8004, TRAINER_WINSTON_1
+	specialvar VAR_RESULT, IsTrainerRegistered
 	compare VAR_RESULT, 0
 	goto_if_eq Route104_EventScript_1ED4A6
 	msgbox Route104_Text_2958C1, MSGBOX_DEFAULT
@@ -956,8 +956,8 @@ Route104_EventScript_1ED4E9:: @ 81ED4E9
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq Route104_EventScript_1ED580
-	setvar VAR_0x8004, 114
-	specialvar VAR_RESULT, sub_813B4E0
+	setvar VAR_0x8004, TRAINER_CINDY_1
+	specialvar VAR_RESULT, IsTrainerRegistered
 	compare VAR_RESULT, 0
 	goto_if_eq Route104_EventScript_1ED554
 	msgbox Route104_Text_295AC3, MSGBOX_DEFAULT

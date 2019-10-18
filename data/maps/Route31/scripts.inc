@@ -19,8 +19,8 @@ Route31_EventScript_MomCall:
 	end
 
 Route31_OnTransition: @ 81EC399
-	call Common_EventScript_SetupRivalGender
-	call Route31_EventScript_2720AD
+	call Common_EventScript_SetupRivalGfxId
+	call ProfBirch_EventScript_UpdateLocation
 	end
 
 Route31_MapScript1_1EC3A4: @ 81EC3A4

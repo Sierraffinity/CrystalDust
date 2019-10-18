@@ -1,16 +1,16 @@
 CherrygroveCity_PokemonCenter_1F_MapScripts::
-	map_script 3, CherrygroveCity_PokemonCenter_1F_MapScript1_1FC011
-	map_script 5, CherrygroveCity_PokemonCenter_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_TRANSITION, CherrygroveCity_PokemonCenter_1F_MapScript1_1FC011
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 
 CherrygroveCity_PokemonCenter_1F_MapScript1_1FC011:
 	setrespawn HEAL_LOCATION_CHERRYGROVE_CITY
-	call CherrygroveCity_PokemonCenter_1F_EventScript_2718DE
+	call Common_EventScript_UpdateBrineyLocation
 	end
 
 CherrygroveCity_PokemonCenter_1F_EventScript_Nurse::
 	setvar VAR_0x800B, 1
-	call EventScript_Nurse
+	call Common_EventScript_PkmnCenterNurse
 	waitmessage
 	waitbuttonpress
 	release

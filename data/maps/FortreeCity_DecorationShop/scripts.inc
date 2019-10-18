@@ -12,10 +12,10 @@ FortreeCity_DecorationShop_EventScript_218017:: @ 8218017
 FortreeCity_DecorationShop_EventScript_218020:: @ 8218020
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Desks
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
@@ -36,10 +36,10 @@ FortreeCity_DecorationShop_PokemartDecor_Desks: @ 8218038
 FortreeCity_DecorationShop_EventScript_21804C:: @ 821804C
 	lock
 	faceplayer
-	message Text_MartClerk_Intro
+	message gText_HowMayIHelpYou
 	waitmessage
 	pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Chairs
-	msgbox Text_MartClerk_Outro, MSGBOX_DEFAULT
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 

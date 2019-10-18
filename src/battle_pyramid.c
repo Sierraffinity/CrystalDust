@@ -23,10 +23,11 @@
 #include "main.h"
 #include "load_save.h"
 #include "script.h"
-#include "alloc.h"
+#include "malloc.h"
 #include "overworld.h"
 #include "event_scripts.h"
 #include "constants/battle_frontier.h"
+#include "constants/battle_pyramid.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement_constants.h"
 #include "constants/items.h"
@@ -39,45 +40,14 @@
 extern const struct MapLayout *const gMapLayouts[];
 extern const u16 gUnknown_08D856C8[][16];
 
-#define TOTAL_ROUNDS 20
-#define PICKUP_ITEMS_PER_ROUND 10
-#define FLOOR_WALKABLE_METATILE 0x28D
-#define FLOOR_EXIT_METATILE 0x28E
 
-enum
-{
-    HINT_EXIT_DIRECTION,
-    HINT_REMAINING_ITEMS,
-    HINT_REMAINING_TRAINERS,
-    HINT_EXIT_SHORT_REMAINING_TRAINERS,
-    HINT_EXIT_SHORT_REMAINING_ITEMS,
-    HINT_EXIT_MEDIUM_REMAINING_TRAINERS,
-    HINT_EXIT_MEDIUM_REMAINING_ITEMS,
-    HINT_EXIT_FAR_REMAINING_TRAINERS,
-    HINT_EXIT_FAR_REMAINING_ITEMS,
-};
-
-enum
-{
-    OBJ_TRAINERS,
-    OBJ_ITEMS,
-};
-
-enum
-{
-    OBJ_POSITIONS_UNIFORM,
-    OBJ_POSITIONS_IN_AND_NEAR_ENTRANCE,
-    OBJ_POSITIONS_IN_AND_NEAR_EXIT,
-    OBJ_POSITIONS_NEAR_ENTRANCE,
-    OBJ_POSITIONS_NEAR_EXIT,
-};
 
 struct PyramidWildMon
 {
     u16 species;
     u8 lvl;
     u8 abilityNum;
-    u16 moves[4];
+    u16 moves[MAX_MON_MOVES];
 };
 
 struct PyramidFloorTemplate
