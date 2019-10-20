@@ -88,7 +88,7 @@
     "connections": [
         {
             "direction": "up",
-            "map": "MAP_PETALBURG_CITY",
+            "map": "MAP_VIOLET_CITY",
             "offset": 2
         },
         {

@@ -41,6 +41,19 @@ Trainer_Text_Don_After:
 	.string "catching POKéMON.\p"
 	.string "I should've bought some more…$"
 
+Trainer_Text_Wade_See:
+	.string "I caught a bunch of POKéMON.\n"
+	.string "Let me battle with you!$"
+
+Trainer_Text_Wade_Beat:
+	.string "Awwwww…$"
+
+Trainer_Text_Wade_After:
+	.string "You can catch POKéMON even if you\n"
+	.string "have six with you.\p"
+	.string "If you catch one, it'll go to your\n"
+	.string "BOX automatically.$"
+
 Route31_Text_29495A: @ 829495A
 	.string "Did you feel the tug of our\n"
 	.string "soul-soothing fragrance?$"

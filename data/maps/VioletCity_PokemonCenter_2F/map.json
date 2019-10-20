@@ -1,6 +1,6 @@
 {
-  "id": "MAP_PETALBURG_CITY_POKEMON_CENTER_2F",
-  "name": "PetalburgCity_PokemonCenter_2F",
+  "id": "MAP_VIOLET_CITY_POKEMON_CENTER_2F",
+  "name": "VioletCity_PokemonCenter_2F",
   "layout": "LAYOUT_POKEMON_CENTER_2F",
   "music": "MUS_POKECEN",
   "region_map_section": "MAPSEC_VIOLET_CITY",
@@ -76,7 +76,7 @@
       "x": 1,
       "y": 6,
       "elevation": 4,
-      "dest_map": "MAP_PETALBURG_CITY_POKEMON_CENTER_1F",
+      "dest_map": "MAP_VIOLET_CITY_POKEMON_CENTER_1F",
       "dest_warp_id": 2
     },
     {

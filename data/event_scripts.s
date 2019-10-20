@@ -93,7 +93,7 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_10
 gStdScripts_End:: @ 81DC2CC
 
-	.include "data/maps/PetalburgCity/scripts.inc"
+	.include "data/maps/VioletCity/scripts.inc"
 	.include "data/maps/SlateportCity/scripts.inc"
 	.include "data/maps/MauvilleCity/scripts.inc"
 	.include "data/maps/RustboroCity/scripts.inc"
@@ -198,13 +198,13 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/PacifidlogTown_House3/scripts.inc"
 	.include "data/maps/PacifidlogTown_House4/scripts.inc"
 	.include "data/maps/PacifidlogTown_House5/scripts.inc"
-	.include "data/maps/PetalburgCity_WallysHouse/scripts.inc"
-	.include "data/maps/PetalburgCity_Gym/scripts.inc"
-	.include "data/maps/PetalburgCity_House1/scripts.inc"
-	.include "data/maps/PetalburgCity_House2/scripts.inc"
-	.include "data/maps/PetalburgCity_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/PetalburgCity_Mart/scripts.inc"
+	.include "data/maps/VioletCity_WallysHouse/scripts.inc"
+	.include "data/maps/VioletCity_Gym/scripts.inc"
+	.include "data/maps/VioletCity_House1/scripts.inc"
+	.include "data/maps/VioletCity_House2/scripts.inc"
+	.include "data/maps/VioletCity_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/VioletCity_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/VioletCity_Mart/scripts.inc"
 	.include "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
 	.include "data/maps/SlateportCity_SternsShipyard_2F/scripts.inc"
 	.include "data/maps/SlateportCity_BattleTentLobby/scripts.inc"
@@ -323,7 +323,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route29_Gatehouse/scripts.inc"
 	.include "data/maps/Route30_BerryMansHouse/scripts.inc"
 	.include "data/maps/Route30_MrPokemonsHouse/scripts.inc"
-	.include "data/maps/Route111_OldLadysRestStop/scripts.inc"
+	.include "data/maps/Route31_Gatehouse/scripts.inc"
 	.include "data/maps/Route112_CableCarStation/scripts.inc"
 	.include "data/maps/MtChimney_CableCarStation/scripts.inc"
 	.include "data/maps/Route114_FossilManiacsHouse/scripts.inc"
@@ -1173,7 +1173,7 @@ Common_EventScript_SetGymTrainers:: @ 8271F43
 	case 2, DewfordTown_Gym_SetGymTrainers
 	case 3, MauvilleCity_Gym_SetGymTrainers
 	case 4, LavaridgeTown_Gym_SetGymTrainers
-	case 5, PetalburgCity_Gym_SetGymTrainers
+	case 5, VioletCity_Gym_SetGymTrainers
 	case 6, FortreeCity_Gym_SetGymTrainers
 	case 7, MossdeepCity_Gym_SetGymTrainers
 	case 8, SootopolisCity_Gym_SetGymTrainers
@@ -1213,7 +1213,7 @@ LavaridgeTown_Gym_SetGymTrainers:: @ 8271FCE
 	settrainerflag TRAINER_ELI
 	return
 
-PetalburgCity_Gym_SetGymTrainers:: @ 8271FE7
+VioletCity_Gym_SetGymTrainers:: @ 8271FE7
 	settrainerflag TRAINER_RANDALL
 	settrainerflag TRAINER_PARKER
 	settrainerflag TRAINER_GEORGE
@@ -1332,7 +1332,7 @@ Movement_FerryDepart: @ 82721F0
 	walk_right
 	step_end
 
-PetalburgCity_Gym_EventScript_2721F8:: @ 82721F8
+VioletCity_Gym_EventScript_2721F8:: @ 82721F8
 	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_108_MR_BRINEY
@@ -1357,7 +1357,7 @@ EventScript_27222B:: @ 827222B
 	delay 30
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
-	showobjectat 255, MAP_PETALBURG_CITY
+	showobjectat 255, MAP_VIOLET_CITY
 	delay 30
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_27224E
 	waitmovement 0
@@ -1378,7 +1378,7 @@ SouthernIsland_Exterior_EventScript_272250:: @ 8272250
 	compare VAR_FACING, DIR_WEST
 	call_if_eq BattleFrontier_OutsideWest_EventScript_242A2C
 	delay 30
-	hideobjectat 255, MAP_PETALBURG_CITY
+	hideobjectat 255, MAP_VIOLET_CITY
 	call Common_EventScript_FerryDepart
 	return
 

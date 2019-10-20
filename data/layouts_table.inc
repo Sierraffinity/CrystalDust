@@ -1,6 +1,6 @@
 	.align 2
 gMapLayouts::
-	.4byte PetalburgCity_Layout
+	.4byte VioletCity_Layout
 	.4byte SlateportCity_Layout
 	.4byte MauvilleCity_Layout
 	.4byte RustboroCity_Layout
@@ -78,7 +78,7 @@ gMapLayouts::
 	.4byte VerdanturfTown_WandasHouse_Layout
 	.4byte PacifidlogTown_House1_Layout
 	.4byte PacifidlogTown_House2_Layout
-	.4byte PetalburgCity_Gym_Layout
+	.4byte VioletCity_Gym_Layout
 	.4byte HouseWithBed_Layout
 	.4byte SlateportCity_SternsShipyard_1F_Layout
 	.4byte SlateportCity_SternsShipyard_2F_Layout

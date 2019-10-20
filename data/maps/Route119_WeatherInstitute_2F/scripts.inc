@@ -26,7 +26,7 @@ Route119_WeatherInstitute_2F_EventScript_26FF5C:: @ 826FF5C
 	return
 
 Route119_WeatherInstitute_2F_EventScript_26FF68:: @ 826FF68
-	trainerbattle_single TRAINER_GRUNT_37, Route119_WeatherInstitute_2F_Text_270335, Route119_WeatherInstitute_2F_Text_27039F
+	trainerbattle_single TRAINER_WADE_17, Route119_WeatherInstitute_2F_Text_270335, Route119_WeatherInstitute_2F_Text_27039F
 	msgbox Route119_WeatherInstitute_2F_Text_2703C0, MSGBOX_AUTOCLOSE
 	end
 

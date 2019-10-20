@@ -240,23 +240,55 @@ const struct WildPokemon gNationalParkContest_LandMons_Night[] =
 
 const struct WildPokemonInfo gNationalParkContest_LandMonsInfo = {20, {gNationalParkContest_LandMons_Day, gNationalParkContest_LandMons_Day, gNationalParkContest_LandMons_Night}};
 
-const struct WildPokemon gRoute31_LandMons[] =
+const struct WildPokemon gRoute31_LandMons_Morning[] =
 {
-    {2, 2, SPECIES_POOCHYENA},
-    {3, 3, SPECIES_POOCHYENA},
-    {3, 3, SPECIES_POOCHYENA},
-    {4, 4, SPECIES_POOCHYENA},
-    {2, 2, SPECIES_WINGULL},
-    {3, 3, SPECIES_ZIGZAGOON},
-    {3, 3, SPECIES_ZIGZAGOON},
-    {4, 4, SPECIES_ZIGZAGOON},
-    {3, 3, SPECIES_WINGULL},
-    {3, 3, SPECIES_WINGULL},
-    {2, 2, SPECIES_WINGULL},
-    {4, 4, SPECIES_WINGULL},
+    {3, 3, SPECIES_LEDYBA},
+    {3, 3, SPECIES_CATERPIE},
+    {3, 3, SPECIES_LEDYBA},
+    {3, 3, SPECIES_CATERPIE},
+    {4, 4, SPECIES_CATERPIE},
+    {4, 4, SPECIES_CATERPIE},
+    {4, 4, SPECIES_PIDGEY},
+    {4, 4, SPECIES_PIDGEY},
+    {3, 3, SPECIES_WEEDLE},
+    {4, 4, SPECIES_HOPPIP},
+    {3, 3, SPECIES_WEEDLE},
+    {4, 4, SPECIES_HOPPIP},
 };
 
-const struct WildPokemonInfo gRoute31_LandMonsInfo = {20, {gRoute31_LandMons, gRoute31_LandMons, gRoute31_LandMons}};
+const struct WildPokemon gRoute31_LandMons_Day[] =
+{
+    {3, 3, SPECIES_PIDGEY},
+    {3, 3, SPECIES_CATERPIE},
+    {3, 3, SPECIES_PIDGEY},
+    {3, 3, SPECIES_CATERPIE},
+    {4, 4, SPECIES_CATERPIE},
+    {4, 4, SPECIES_CATERPIE},
+    {4, 4, SPECIES_PIDGEY},
+    {4, 4, SPECIES_PIDGEY},
+    {3, 3, SPECIES_WEEDLE},
+    {4, 4, SPECIES_HOPPIP},
+    {3, 3, SPECIES_WEEDLE},
+    {4, 4, SPECIES_HOPPIP},
+};
+
+const struct WildPokemon gRoute31_LandMons_Night[] =
+{
+    {3, 3, SPECIES_SPINARAK},
+    {3, 3, SPECIES_HOOTHOOT},
+    {3, 3, SPECIES_SPINARAK},
+    {3, 3, SPECIES_HOOTHOOT},
+    {4, 4, SPECIES_POLIWAG},
+    {4, 4, SPECIES_POLIWAG},
+    {4, 4, SPECIES_HOOTHOOT},
+    {4, 4, SPECIES_HOOTHOOT},
+    {3, 3, SPECIES_ZUBAT},
+    {4, 4, SPECIES_HOOTHOOT},
+    {3, 3, SPECIES_ZUBAT},
+    {4, 4, SPECIES_HOOTHOOT},
+};
+
+const struct WildPokemonInfo gRoute31_LandMonsInfo = {20, {gRoute31_LandMons_Morning, gRoute31_LandMons_Day, gRoute31_LandMons_Night}};
 
 const struct WildPokemon gRoute31_WaterMons[] =
 {
@@ -2777,7 +2809,7 @@ const struct WildPokemon gEverGrandeCity_FishingMons[] =
 
 const struct WildPokemonInfo gEverGrandeCity_FishingMonsInfo = {10, {gEverGrandeCity_FishingMons, gEverGrandeCity_FishingMons, gEverGrandeCity_FishingMons}};
 
-const struct WildPokemon gPetalburgCity_WaterMons[] =
+const struct WildPokemon gVioletCity_WaterMons[] =
 {
     {20, 30, SPECIES_MARILL},
     {10, 20, SPECIES_MARILL},
@@ -2786,9 +2818,9 @@ const struct WildPokemon gPetalburgCity_WaterMons[] =
     {5, 10, SPECIES_MARILL},
 };
 
-const struct WildPokemonInfo gPetalburgCity_WaterMonsInfo = {1, {gPetalburgCity_WaterMons, gPetalburgCity_WaterMons, gPetalburgCity_WaterMons}};
+const struct WildPokemonInfo gVioletCity_WaterMonsInfo = {1, {gVioletCity_WaterMons, gVioletCity_WaterMons, gVioletCity_WaterMons}};
 
-const struct WildPokemon gPetalburgCity_FishingMons[] =
+const struct WildPokemon gVioletCity_FishingMons[] =
 {
     {5, 10, SPECIES_MAGIKARP},
     {5, 10, SPECIES_GOLDEEN},
@@ -2802,7 +2834,7 @@ const struct WildPokemon gPetalburgCity_FishingMons[] =
     {40, 45, SPECIES_CORPHISH},
 };
 
-const struct WildPokemonInfo gPetalburgCity_FishingMonsInfo = {10, {gPetalburgCity_FishingMons, gPetalburgCity_FishingMons, gPetalburgCity_FishingMons}};
+const struct WildPokemonInfo gVioletCity_FishingMonsInfo = {10, {gVioletCity_FishingMons, gVioletCity_FishingMons, gVioletCity_FishingMons}};
 
 const struct WildPokemon gUnderwater1_WaterMons[] =
 {
@@ -4179,12 +4211,12 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .fishingMonsInfo = &gEverGrandeCity_FishingMonsInfo,
     },
     {
-        .mapGroup = MAP_GROUP(PETALBURG_CITY),
-        .mapNum = MAP_NUM(PETALBURG_CITY),
+        .mapGroup = MAP_GROUP(VIOLET_CITY),
+        .mapNum = MAP_NUM(VIOLET_CITY),
         .landMonsInfo = NULL,
-        .waterMonsInfo = &gPetalburgCity_WaterMonsInfo,
+        .waterMonsInfo = &gVioletCity_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
-        .fishingMonsInfo = &gPetalburgCity_FishingMonsInfo,
+        .fishingMonsInfo = &gVioletCity_FishingMonsInfo,
     },
     {
         .mapGroup = MAP_GROUP(UNDERWATER1),

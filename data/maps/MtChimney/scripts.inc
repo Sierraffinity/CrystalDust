@@ -413,7 +413,7 @@ MtChimney_EventScript_22F06E:: @ 822F06E
 	end
 
 MtChimney_EventScript_22F085:: @ 822F085
-	trainerbattle_single TRAINER_GRUNT_31, MtChimney_Text_22F7A2, MtChimney_Text_22F83A
+	trainerbattle_single TRAINER_WADE_11, MtChimney_Text_22F7A2, MtChimney_Text_22F83A
 	msgbox MtChimney_Text_22F859, MSGBOX_AUTOCLOSE
 	end
 

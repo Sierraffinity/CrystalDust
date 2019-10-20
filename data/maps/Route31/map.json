@@ -7,7 +7,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "Route31_EventScript_1EC5EB",
+            "script": "Route31_EventScript_Directions",
             "type": "sign",
             "x": 9,
             "y": 5
@@ -15,18 +15,17 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NULL",
-            "type": "sign",
-            "x": 18,
-            "y": 9
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NULL",
+            "script": "Route31_EventScript_DarkCave",
             "type": "sign",
             "x": 36,
             "y": 7
+        },
+        {
+            "elevation": 0,
+            "fruit_tree_id": "FRUIT_TREE_ROUTE_31",
+            "type": "fruit_tree",
+            "x": 18,
+            "y": 9
         }
     ],
     "connections": [
@@ -37,7 +36,7 @@
         },
         {
             "direction": "left",
-            "map": "MAP_PETALBURG_CITY",
+            "map": "MAP_VIOLET_CITY",
             "offset": -20
         }
     ],
@@ -46,7 +45,7 @@
     "id": "MAP_ROUTE31",
     "layout": "LAYOUT_ROUTE31",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_ROUTE29",
+    "music": "MUS_ROUTE30",
     "name": "Route31",
     "object_events": [
         {
@@ -56,7 +55,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "Route31_EventScript_1EC5E2",
+            "script": "Route31_EventScript_SleepyMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -70,7 +69,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "Route31_EventScript_1EC3C1",
+            "script": "Route31_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -84,8 +83,8 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "Route31_EventScript_1EC5F4",
-            "trainer_sight_or_berry_tree_id": "3",
+            "script": "Route31_EventScript_Trainer_Wade",
+            "trainer_sight_or_berry_tree_id": "4",
             "trainer_type": "1",
             "type": "original",
             "x": 25,
@@ -98,7 +97,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "Route31_EventScript_1EC66E",
+            "script": "Route31_EventScript_Explorer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -168,8 +167,8 @@
     "show_map_name": true,
     "warp_events": [
         {
-            "dest_map": "MAP_ALTERING_CAVE",
-            "dest_warp_id": 0,
+            "dest_map": "MAP_ROUTE31_GATEHOUSE",
+            "dest_warp_id": 1,
             "elevation": 0,
             "x": 6,
             "y": 7

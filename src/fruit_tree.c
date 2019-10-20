@@ -17,6 +17,7 @@ static const u16 sFruitTrees[] =
     [FRUIT_TREE_ROUTE_29]   = ITEM_ORAN_BERRY,
     [FRUIT_TREE_ROUTE_30_1] = ITEM_ORAN_BERRY,
     [FRUIT_TREE_ROUTE_30_2] = ITEM_PECHA_BERRY,
+    [FRUIT_TREE_ROUTE_31]   = ITEM_PERSIM_BERRY,
 };
 
 void GetFruitTreeItem(void)

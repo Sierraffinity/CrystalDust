@@ -384,7 +384,7 @@ CableClub_EventScript_EnterColosseum:: @ 8276FBD
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
 	closedoor 9, 1
 	waitdooranim
 	release
@@ -489,7 +489,7 @@ CableClub_EventScript_EnterTradeCenter:: @ 827713A
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
 	closedoor 9, 1
 	waitdooranim
 	release
@@ -564,7 +564,7 @@ CableClub_EventScript_EnterRecordCorner:: @ 827724C
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
 	closedoor 9, 1
 	waitdooranim
 	release
@@ -965,7 +965,7 @@ CableClub_EventScript_EnterUnionRoom:: @ 827759F
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
 	closedoor 5, 1
 	waitdooranim
 	special Script_ResetUnionRoomTrade
@@ -1296,7 +1296,7 @@ CableClub_EventScript_EnterWirelessLinkRoom:: @ 8277B3A
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
 	closedoor 9, 1
 	waitdooranim
 	release
@@ -1488,7 +1488,7 @@ MossdeepCity_GameCorner_1F_EventScript_EnterMinigameRoom:: @ 8277E0E
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterMinigameRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
 	release
 	waitstate
 	end

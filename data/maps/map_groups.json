@@ -1,6 +1,6 @@
 {
     "gMapGroup0": [
-        "PetalburgCity",
+        "VioletCity",
         "SlateportCity",
         "MauvilleCity",
         "RustboroCity",
@@ -189,10 +189,10 @@
     ],
     "gMapGroup18": [
         "Route30_BerryMansHouse",
-        "Route30_MrPokemonsHouse",
-        "Route111_OldLadysRestStop"
+        "Route30_MrPokemonsHouse"
     ],
     "gMapGroup19": [
+        "Route31_Gatehouse",
         "Route112_CableCarStation",
         "MtChimney_CableCarStation"
     ],
@@ -566,13 +566,13 @@
         "PacifidlogTown_House5"
     ],
     "gMapGroup8": [
-        "PetalburgCity_WallysHouse",
-        "PetalburgCity_Gym",
-        "PetalburgCity_House1",
-        "PetalburgCity_House2",
-        "PetalburgCity_PokemonCenter_1F",
-        "PetalburgCity_PokemonCenter_2F",
-        "PetalburgCity_Mart"
+        "VioletCity_WallysHouse",
+        "VioletCity_Gym",
+        "VioletCity_House1",
+        "VioletCity_House2",
+        "VioletCity_PokemonCenter_1F",
+        "VioletCity_PokemonCenter_2F",
+        "VioletCity_Mart"
     ],
     "gMapGroup9": [
         "SlateportCity_SternsShipyard_1F",

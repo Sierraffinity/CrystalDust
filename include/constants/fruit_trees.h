@@ -7,5 +7,6 @@
 #define FRUIT_TREE_ROUTE_29      1
 #define FRUIT_TREE_ROUTE_30_1    2
 #define FRUIT_TREE_ROUTE_30_2    3
+#define FRUIT_TREE_ROUTE_31      4
 
 #endif // GUARD_CONSTANTS_FRUIT_TREES_H

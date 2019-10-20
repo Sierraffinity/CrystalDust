@@ -306,12 +306,12 @@ Route134_EventScript_ItemStarPiece:: @ 82910A7
 	giveitem_std ITEM_STAR_PIECE, 1, 1
 	end
 
-PetalburgCity_EventScript_ItemMaxRevive:: @ 82910B4
-	giveitem_std ITEM_MAX_REVIVE, 1, 1
+VioletCity_EventScript_ItemPPUp::
+	giveitem_std ITEM_PP_UP, 1, 1
 	end
 
-PetalburgCity_EventScript_ItemEther:: @ 82910C1
-	giveitem_std ITEM_ETHER, 1, 1
+VioletCity_EventScript_ItemRareCandy::
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 MauvilleCity_EventScript_ItemXSpeed:: @ 82910CE

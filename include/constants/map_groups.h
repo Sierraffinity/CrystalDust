@@ -2,7 +2,7 @@
 #define GUARD_CONSTANTS_MAP_GROUPS_H
 
 // Map Group 0
-#define MAP_PETALBURG_CITY   (0 | (0 << 8))
+#define MAP_VIOLET_CITY      (0 | (0 << 8))
 #define MAP_SLATEPORT_CITY   (1 | (0 << 8))
 #define MAP_MAUVILLE_CITY    (2 | (0 << 8))
 #define MAP_RUSTBORO_CITY    (3 | (0 << 8))
@@ -123,13 +123,13 @@
 #define MAP_PACIFIDLOG_TOWN_HOUSE5            (6 | (7 << 8))
 
 // Map Group 8
-#define MAP_PETALBURG_CITY_WALLYS_HOUSE      (0 | (8 << 8))
-#define MAP_PETALBURG_CITY_GYM               (1 | (8 << 8))
-#define MAP_PETALBURG_CITY_HOUSE1            (2 | (8 << 8))
-#define MAP_PETALBURG_CITY_HOUSE2            (3 | (8 << 8))
-#define MAP_PETALBURG_CITY_POKEMON_CENTER_1F (4 | (8 << 8))
-#define MAP_PETALBURG_CITY_POKEMON_CENTER_2F (5 | (8 << 8))
-#define MAP_PETALBURG_CITY_MART              (6 | (8 << 8))
+#define MAP_VIOLET_CITY_WALLYS_HOUSE      (0 | (8 << 8))
+#define MAP_VIOLET_CITY_GYM               (1 | (8 << 8))
+#define MAP_VIOLET_CITY_HOUSE1            (2 | (8 << 8))
+#define MAP_VIOLET_CITY_HOUSE2            (3 | (8 << 8))
+#define MAP_VIOLET_CITY_POKEMON_CENTER_1F (4 | (8 << 8))
+#define MAP_VIOLET_CITY_POKEMON_CENTER_2F (5 | (8 << 8))
+#define MAP_VIOLET_CITY_MART              (6 | (8 << 8))
 
 // Map Group 9
 #define MAP_SLATEPORT_CITY_STERNS_SHIPYARD_1F      (0 | (9 << 8))
@@ -270,13 +270,13 @@
 #define MAP_NATIONAL_PARK_GATE_EAST  (4 | (17 << 8))
 
 // Map Group 18
-#define MAP_ROUTE30_BERRY_MANS_HOUSE     (0 | (18 << 8))
-#define MAP_ROUTE30_MR_POKEMONS_HOUSE    (1 | (18 << 8))
-#define MAP_ROUTE111_OLD_LADYS_REST_STOP (2 | (18 << 8))
+#define MAP_ROUTE30_BERRY_MANS_HOUSE  (0 | (18 << 8))
+#define MAP_ROUTE30_MR_POKEMONS_HOUSE (1 | (18 << 8))
 
 // Map Group 19
-#define MAP_ROUTE112_CABLE_CAR_STATION   (0 | (19 << 8))
-#define MAP_MT_CHIMNEY_CABLE_CAR_STATION (1 | (19 << 8))
+#define MAP_ROUTE31_GATEHOUSE            (0 | (19 << 8))
+#define MAP_ROUTE112_CABLE_CAR_STATION   (1 | (19 << 8))
+#define MAP_MT_CHIMNEY_CABLE_CAR_STATION (2 | (19 << 8))
 
 // Map Group 20
 #define MAP_ROUTE114_FOSSIL_MANIACS_HOUSE  (0 | (20 << 8))

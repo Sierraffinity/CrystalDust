@@ -54,19 +54,19 @@ MossdeepCity_SpaceCenter_2F_Movement_223E07: @ 8223E07
 
 MossdeepCity_SpaceCenter_2F_EventScript_223E09:: @ 8223E09
 	msgbox MossdeepCity_SpaceCenter_2F_Text_22442D, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_GRUNT_34, MossdeepCity_SpaceCenter_2F_Text_224461
+	trainerbattle_no_intro TRAINER_WADE_14, MossdeepCity_SpaceCenter_2F_Text_224461
 	applymovement 6, MossdeepCity_SpaceCenter_2F_Movement_223E85
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox MossdeepCity_SpaceCenter_2F_Text_22446E, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_GRUNT_35, MossdeepCity_SpaceCenter_2F_Text_224499
+	trainerbattle_no_intro TRAINER_WADE_15, MossdeepCity_SpaceCenter_2F_Text_224499
 	applymovement 5, MossdeepCity_SpaceCenter_2F_Movement_223E81
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox MossdeepCity_SpaceCenter_2F_Text_2244AB, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_GRUNT_36, MossdeepCity_SpaceCenter_2F_Text_2244F1
+	trainerbattle_no_intro TRAINER_WADE_16, MossdeepCity_SpaceCenter_2F_Text_2244F1
 	applymovement 7, MossdeepCity_SpaceCenter_2F_Movement_223E89
 	waitmovement 0
 	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE_2, 2
