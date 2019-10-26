@@ -10,7 +10,7 @@ void * const gMPlayJumpTableTemplate[] =
     ply_patt,
     ply_pend,
     ply_rept,
-    ply_fine,
+    ply_gbs_switch,
     ply_fine,
     ply_fine,
     ply_fine,

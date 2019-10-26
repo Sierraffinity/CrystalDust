@@ -415,7 +415,7 @@ gSongTable:: @ 86B49F0
 	song mus_deepdeep, 0, 0         @ Dive
 	song mus_kachi1, 0, 0           @ Victory! (Trainer Battle)
 	song mus_title3, 0, 0           @ Title Screen
-	song mus_demo1, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
+	song gbs_azalea_town_Header, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
 	song mus_rivalenc, 0, 0         @ Rival Arrives
 	song mus_hageshii, 0, 0         @ Trainers' Eyes Meet (Psychic)
 	song mus_kakkoii, 0, 0          @ Trainers' Eyes Meet (Cooltrainer)
