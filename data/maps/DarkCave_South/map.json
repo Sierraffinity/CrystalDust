@@ -1,0 +1,74 @@
+{
+    "allow_bike": true,
+    "allow_escape_rope": true,
+    "allow_running": true,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_DARK_CAVE_SOUTH",
+    "layout": "LAYOUT_DARK_CAVE_SOUTH",
+    "map_type": "MAP_TYPE_UNDERGROUND",
+    "music": "MUS_DARKCAVE",
+    "name": "DarkCave_South",
+    "object_events": [
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_HIKER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "script": "DarkCave_South_EventScript_22DA5E",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "type": "original",
+            "x": 36,
+            "y": 9
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_ITEM_DARK_CAVE_SOUTH_ESCAPE_ROPE",
+            "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "DarkCave_South_EventScript_ItemEscapeRope",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "type": "original",
+            "x": 17,
+            "y": 7
+        }
+    ],
+    "phone_service": true,
+    "region_map_section": "MAPSEC_DARK_CAVE",
+    "requires_flash": false,
+    "show_map_name": true,
+    "warp_events": [
+        {
+            "dest_map": "MAP_ROUTE31",
+            "dest_warp_id": 1,
+            "elevation": 3,
+            "x": 3,
+            "y": 17
+        },
+        {
+            "dest_map": "MAP_DARK_CAVE_B1F",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 41,
+            "y": 37
+        },
+        {
+            "dest_map": "MAP_DARK_CAVE_B1F",
+            "dest_warp_id": 1,
+            "elevation": 3,
+            "x": 19,
+            "y": 1
+        }
+    ],
+    "weather": "WEATHER_NONE"
+}

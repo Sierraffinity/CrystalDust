@@ -108,8 +108,8 @@ $(MID_SUBDIR)/mus_daigo.s: %.s: %.mid
 $(MID_SUBDIR)/mus_dan01.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G018 -V080
 
-$(MID_SUBDIR)/mus_dan02.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G030 -V080
+$(MID_SUBDIR)/mus_darkcave.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G030 -V072
 
 $(MID_SUBDIR)/mus_dan03.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G037 -V080
@@ -130,7 +130,7 @@ $(MID_SUBDIR)/mus_dooro_x3.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G014 -V080
 
 $(MID_SUBDIR)/mus_route30.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G021 -V080
+	$(MID) $< $@ -E -R$(STD_REVERB) -G021 -V088
 
 $(MID_SUBDIR)/mus_route29.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G011 -V080

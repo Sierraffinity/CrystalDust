@@ -174,7 +174,7 @@
             "y": 7
         },
         {
-            "dest_map": "MAP_ROUTE31",
+            "dest_map": "MAP_DARK_CAVE_SOUTH",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 39,

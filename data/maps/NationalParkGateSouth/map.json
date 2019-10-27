@@ -19,7 +19,7 @@
     "id": "MAP_NATIONAL_PARK_GATE_SOUTH",
     "layout": "LAYOUT_NATIONAL_PARK_GATE_SOUTH",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_DAN02",
+    "music": "MUS_DARKCAVE",
     "name": "NationalParkGateSouth",
     "object_events": [
         {

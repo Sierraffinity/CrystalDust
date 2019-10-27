@@ -1,0 +1,53 @@
+mapscripts Route31_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_ROUTE31_STATE, 0 {
+            lockall
+            setflag(FLAG_HIDE_MAP_NAME_POPUP)
+            pokegearcall(PhoneScript_Mom, 0)
+            waitstate
+            clearflag(FLAG_HIDE_MAP_NAME_POPUP)
+            setvar(VAR_ROUTE31_STATE, 1)
+            releaseall
+        }
+    ]
+}
+
+script Route31_EventScript_Explorer {
+    msgbox("DARK CAVE…\p"
+	       "If POKéMON could light it up, I'd\n"
+	       "explore it.", MSGBOX_NPC)
+}
+
+script Route31_EventScript_SleepyMan {
+    msgbox("… Hnuurg… Huh?\p"
+           "I walked too far today looking\n"
+           "for POKéMON.\p"
+           "My feet hurt and I'm sleepy…\p"
+           "If I were a wild POKéMON, I'd be\n"
+           "easy to catch…\p"
+           "…Zzzz…", MSGBOX_NPC)
+}
+
+script Route31_EventScript_Youngster {
+    msgbox("I found a good POKéMON in\n"
+           "DARK CAVE.\p"
+           "I'm going to raise it to take on\n"
+           "FALKNER, the leader of VIOLET\l"
+           "CITY's GYM.", MSGBOX_NPC)
+}
+
+script Route31_EventScript_Trainer_Wade {
+    trainerbattle_single(TRAINER_WADE_1, Trainer_Text_Wade_See, Trainer_Text_Wade_Beat)
+    // TODO: Rematch
+	msgbox(Trainer_Text_Wade_After, MSGBOX_DEFAULT)
+	release
+}
+
+script Route31_EventScript_Directions {
+    msgbox("ROUTE 31\n"
+           "VIOLET CITY - CHERRYGROVE CITY", MSGBOX_SIGN)
+}
+
+script Route31_EventScript_DarkCave {
+    msgbox("DARK CAVE", MSGBOX_SIGN)
+}
