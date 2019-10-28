@@ -5807,8 +5807,8 @@
           }
         },
         {
-          "map": "MAP_GRANITE_CAVE_1F",
-          "base_label": "gGraniteCave_1F",
+          "map": "MAP_DARK_CAVE_SOUTH",
+          "base_label": "gDarkCave_South",
           "land_mons": {
             "encounter_rate": 10,
             "mons": [
@@ -6002,8 +6002,8 @@
           }
         },
         {
-          "map": "MAP_GRANITE_CAVE_B1F",
-          "base_label": "gGraniteCave_B1F",
+          "map": "MAP_DARK_CAVE_B1F",
+          "base_label": "gDarkCave_B1F",
           "land_mons": {
             "encounter_rate": 10,
             "mons": [
@@ -7123,8 +7123,8 @@
           }
         },
         {
-          "map": "MAP_GRANITE_CAVE_B2F",
-          "base_label": "gGraniteCave_B2F",
+          "map": "MAP_DARK_CAVE_B2F",
+          "base_label": "gDarkCave_B2F",
           "land_mons": {
             "encounter_rate": 10,
             "mons": [
@@ -13261,8 +13261,8 @@
           }
         },
         {
-          "map": "MAP_GRANITE_CAVE_STEVENS_ROOM",
-          "base_label": "gGraniteCave_StevensRoom",
+          "map": "MAP_DARK_CAVE_STEVENS_ROOM",
+          "base_label": "gDarkCave_StevensRoom",
           "land_mons": {
             "encounter_rate": 10,
             "mons": [

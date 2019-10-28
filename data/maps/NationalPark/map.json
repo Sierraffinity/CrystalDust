@@ -11,7 +11,7 @@
     "id": "MAP_NATIONAL_PARK",
     "layout": "LAYOUT_NATIONAL_PARK",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_DAN02",
+    "music": "MUS_DARKCAVE",
     "name": "NationalPark",
     "object_events": [
     ],

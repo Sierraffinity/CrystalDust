@@ -1,9 +1,9 @@
 {
-  "id": "MAP_GRANITE_CAVE_STEVENS_ROOM",
-  "name": "GraniteCave_StevensRoom",
-  "layout": "LAYOUT_GRANITE_CAVE_STEVENS_ROOM",
+  "id": "MAP_DARK_CAVE_STEVENS_ROOM",
+  "name": "DarkCave_StevensRoom",
+  "layout": "LAYOUT_DARK_CAVE_STEVENS_ROOM",
   "music": "MUS_DAN01",
-  "region_map_section": "MAPSEC_GRANITE_CAVE",
+  "region_map_section": "MAPSEC_DARK_CAVE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
@@ -25,8 +25,8 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "GraniteCave_StevensRoom_EventScript_22DC7B",
-      "flag": "FLAG_HIDE_GRANITE_CAVE_STEVEN"
+      "script": "DarkCave_StevensRoom_EventScript_22DC7B",
+      "flag": "FLAG_HIDE_DARK_CAVE_STEVEN"
     }
   ],
   "warp_events": [
@@ -34,7 +34,7 @@
       "x": 7,
       "y": 3,
       "elevation": 3,
-      "dest_map": "MAP_GRANITE_CAVE_1F",
+      "dest_map": "MAP_DARK_CAVE_SOUTH",
       "dest_warp_id": 3
     }
   ],

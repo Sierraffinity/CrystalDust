@@ -1311,31 +1311,31 @@
             "width": 17
         },
         {
-            "blockdata_filepath": "data/layouts/GraniteCave_1F/map.bin",
-            "border_filepath": "data/layouts/GraniteCave_1F/border.bin",
-            "height": 15,
-            "id": "LAYOUT_GRANITE_CAVE_1F",
-            "name": "GraniteCave_1F_Layout",
+            "blockdata_filepath": "data/layouts/DarkCave_South/map.bin",
+            "border_filepath": "data/layouts/DarkCave_South/border.bin",
+            "height": 40,
+            "id": "LAYOUT_DARK_CAVE_SOUTH",
+            "name": "DarkCave_South_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
-            "width": 42
+            "width": 48
         },
         {
-            "blockdata_filepath": "data/layouts/GraniteCave_B1F/map.bin",
-            "border_filepath": "data/layouts/GraniteCave_B1F/border.bin",
+            "blockdata_filepath": "data/layouts/DarkCave_B1F/map.bin",
+            "border_filepath": "data/layouts/DarkCave_B1F/border.bin",
             "height": 26,
-            "id": "LAYOUT_GRANITE_CAVE_B1F",
-            "name": "GraniteCave_B1F_Layout",
+            "id": "LAYOUT_DARK_CAVE_B1F",
+            "name": "DarkCave_B1F_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
             "width": 32
         },
         {
-            "blockdata_filepath": "data/layouts/GraniteCave_B2F/map.bin",
-            "border_filepath": "data/layouts/GraniteCave_B2F/border.bin",
+            "blockdata_filepath": "data/layouts/DarkCave_B2F/map.bin",
+            "border_filepath": "data/layouts/DarkCave_B2F/border.bin",
             "height": 26,
-            "id": "LAYOUT_GRANITE_CAVE_B2F",
-            "name": "GraniteCave_B2F_Layout",
+            "id": "LAYOUT_DARK_CAVE_B2F",
+            "name": "DarkCave_B2F_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
             "width": 32
@@ -2871,11 +2871,11 @@
             "width": 1
         },
         {
-            "blockdata_filepath": "data/layouts/GraniteCave_StevensRoom/map.bin",
-            "border_filepath": "data/layouts/GraniteCave_StevensRoom/border.bin",
+            "blockdata_filepath": "data/layouts/DarkCave_StevensRoom/map.bin",
+            "border_filepath": "data/layouts/DarkCave_StevensRoom/border.bin",
             "height": 14,
-            "id": "LAYOUT_GRANITE_CAVE_STEVENS_ROOM",
-            "name": "GraniteCave_StevensRoom_Layout",
+            "id": "LAYOUT_DARK_CAVE_STEVENS_ROOM",
+            "name": "DarkCave_StevensRoom_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
             "width": 15
