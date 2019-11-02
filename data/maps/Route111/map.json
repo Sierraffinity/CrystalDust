@@ -280,7 +280,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route111_EventScript_ItemTM37",
-      "flag": "FLAG_ITEM_ROUTE_111_TM_37"
+      "flag": "0"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
@@ -378,7 +378,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route111_EventScript_ItemStardust",
-      "flag": "FLAG_ITEM_ROUTE_111_STARDUST"
+      "flag": "0"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
@@ -1102,7 +1102,7 @@
       "y": 70,
       "elevation": 0,
       "item": "ITEM_STARDUST",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_111_STARDUST"
+      "flag": "FLAG_HIDDEN_ITEM_VIOLET_CITY_HYPER_POTION"
     },
     {
       "type": "secret_base",

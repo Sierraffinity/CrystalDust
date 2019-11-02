@@ -534,8 +534,8 @@
 // Hidden Items -- sorted by location
 #define FLAG_HIDDEN_ITEMS_START                                                         0x1F4
 #define FLAG_HIDDEN_ITEM_ROUTE_30_POTION                     (FLAG_HIDDEN_ITEMS_START + 0x00)
-#define FLAG_HIDDEN_ITEM_VIOLET_CITY_HYPER_POTION            (FLAG_HIDDEN_ITEMS_START + 0x01)
-#define FLAG_HIDDEN_ITEM_ROUTE_111_STARDUST                  (FLAG_HIDDEN_ITEMS_START + 0x02)
+#define FLAG_HIDDEN_ITEM_DARK_CAVE_SOUTH_ELIXIR              (FLAG_HIDDEN_ITEMS_START + 0x01)
+#define FLAG_HIDDEN_ITEM_VIOLET_CITY_HYPER_POTION            (FLAG_HIDDEN_ITEMS_START + 0x02)
 #define FLAG_HIDDEN_ITEM_ROUTE_113_ETHER                     (FLAG_HIDDEN_ITEMS_START + 0x03)
 #define FLAG_HIDDEN_ITEM_ROUTE_114_CARBOS                    (FLAG_HIDDEN_ITEMS_START + 0x04)
 #define FLAG_HIDDEN_ITEM_ROUTE_119_CALCIUM                   (FLAG_HIDDEN_ITEMS_START + 0x05)
@@ -957,12 +957,12 @@
 #define FLAG_ITEM_ROUTE_30_ANTIDOTE                                 0x3E9
 #define FLAG_ITEM_ROUTE_31_POTION                                   0x3EA
 #define FLAG_ITEM_ROUTE_31_POKE_BALL                                0x3EB
-#define FLAG_ITEM_ROUTE_106_PROTEIN                                 0x3EC
-#define FLAG_ITEM_ROUTE_109_PP_UP                                   0x3ED
-#define FLAG_ITEM_ROUTE_109_RARE_CANDY                              0x3EE
-#define FLAG_ITEM_ROUTE_110_DIRE_HIT                                0x3EF
-#define FLAG_ITEM_ROUTE_111_TM_37                                   0x3F0
-#define FLAG_ITEM_ROUTE_111_STARDUST                                0x3F1
+#define FLAG_ITEM_DARK_CAVE_SOUTH_POTION                            0x3EC
+#define FLAG_ITEM_DARK_CAVE_SOUTH_FULL_HEAL                         0x3ED
+#define FLAG_ITEM_DARK_CAVE_SOUTH_HYPER_POTION                      0x3EE
+#define FLAG_ITEM_DARK_CAVE_SOUTH_DIRE_HIT                          0x3EF
+#define FLAG_ITEM_VIOLET_CITY_PP_UP                                 0x3F0
+#define FLAG_ITEM_VIOLET_CITY_RARE_CANDY                            0x3F1
 #define FLAG_ITEM_ROUTE_111_HP_UP                                   0x3F2
 #define FLAG_ITEM_ROUTE_112_NUGGET                                  0x3F3
 #define FLAG_ITEM_ROUTE_113_MAX_ETHER                               0x3F4
@@ -994,22 +994,22 @@
 #define FLAG_ITEM_ROUTE_132_RARE_CANDY                              0x40C
 #define FLAG_ITEM_ROUTE_133_BIG_PEARL                               0x40D
 #define FLAG_ITEM_ROUTE_133_STAR_PIECE                              0x40E
-#define FLAG_ITEM_VIOLET_CITY_PP_UP                                 0x40F
-#define FLAG_ITEM_VIOLET_CITY_RARE_CANDY                            0x410
-#define FLAG_ITEM_RUSTBORO_CITY_X_DEFEND                            0x411
-#define FLAG_ITEM_LILYCOVE_CITY_MAX_REPEL                           0x412
-#define FLAG_ITEM_MOSSDEEP_CITY_NET_BALL                            0x413
-#define FLAG_ITEM_METEOR_FALLS_1F_1R_TM_23                          0x414
+#define FLAG_UNUSED_0x40F                                           0x40F
+#define FLAG_UNUSED_0x410                                           0x410
+#define FLAG_UNUSED_0x411                                           0x411
+#define FLAG_UNUSED_0x412                                           0x412
+#define FLAG_UNUSED_0x413                                           0x413
+#define FLAG_UNUSED_0x414                                           0x414
 #define FLAG_ITEM_METEOR_FALLS_1F_1R_FULL_HEAL                      0x415
 #define FLAG_ITEM_METEOR_FALLS_1F_1R_MOON_STONE                     0x416
 #define FLAG_ITEM_METEOR_FALLS_1F_1R_PP_UP                          0x417
 #define FLAG_ITEM_RUSTURF_TUNNEL_POKE_BALL                          0x418
 #define FLAG_ITEM_RUSTURF_TUNNEL_MAX_ETHER                          0x419
 #define FLAG_ITEM_DARK_CAVE_SOUTH_ESCAPE_ROPE                       0x41A
-#define FLAG_ITEM_DARK_CAVE_B1F_POKE_BALL                        0x41B
+#define FLAG_ITEM_DARK_CAVE_B1F_POKE_BALL                           0x41B
 #define FLAG_ITEM_MT_PYRE_5F_LAX_INCENSE                            0x41C
-#define FLAG_ITEM_DARK_CAVE_B2F_REPEL                            0x41D
-#define FLAG_ITEM_DARK_CAVE_B2F_RARE_CANDY                       0x41E
+#define FLAG_ITEM_DARK_CAVE_B2F_REPEL                               0x41D
+#define FLAG_ITEM_DARK_CAVE_B2F_RARE_CANDY                          0x41E
 #define FLAG_ITEM_PETALBURG_WOODS_X_ATTACK                          0x41F
 #define FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL                        0x420
 #define FLAG_ITEM_ROUTE_104_POKE_BALL                               0x421

@@ -294,7 +294,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route110_EventScript_ItemDireHit",
-      "flag": "FLAG_ITEM_ROUTE_110_DIRE_HIT"
+      "flag": "0"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
@@ -308,7 +308,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route110_EventScript_ItemRareCandy",
-      "flag": "FLAG_ITEM_ROUTE_109_RARE_CANDY"
+      "flag": "0"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_M",

@@ -14,6 +14,30 @@ Route31_EventScript_ItemPokeBall::
 	giveitem_std ITEM_POKE_BALL, 1, 1
 	end
 
+DarkCave_South_EventScript_ItemPotion::
+	giveitem_std ITEM_POTION, 1, 1
+	end
+
+DarkCave_South_EventScript_ItemFullHeal::
+	giveitem_std ITEM_FULL_HEAL, 1, 1
+	end
+
+DarkCave_South_EventScript_ItemHyperPotion::
+	giveitem_std ITEM_HYPER_POTION, 1, 1
+	end
+
+DarkCave_South_EventScript_ItemDireHit::
+	giveitem_std ITEM_DIRE_HIT, 1, 1
+	end
+
+VioletCity_EventScript_ItemPPUp::
+	giveitem_std ITEM_PP_UP, 1, 1
+	end
+
+VioletCity_EventScript_ItemRareCandy::
+	giveitem_std ITEM_RARE_CANDY, 1, 1
+	end
+
 Route104_EventScript_ItemPPUp:: @ 8290CFF
 	giveitem_std ITEM_PP_UP, 1, 1
 	end
@@ -304,14 +328,6 @@ Route134_EventScript_ItemCarbos:: @ 829109A
 
 Route134_EventScript_ItemStarPiece:: @ 82910A7
 	giveitem_std ITEM_STAR_PIECE, 1, 1
-	end
-
-VioletCity_EventScript_ItemPPUp::
-	giveitem_std ITEM_PP_UP, 1, 1
-	end
-
-VioletCity_EventScript_ItemRareCandy::
-	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 MauvilleCity_EventScript_ItemXSpeed:: @ 82910CE

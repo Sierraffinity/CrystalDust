@@ -163,7 +163,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route109_EventScript_ItemPPUp",
-      "flag": "FLAG_ITEM_ROUTE_109_PP_UP"
+      "flag": "0"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_TUBER_F",
