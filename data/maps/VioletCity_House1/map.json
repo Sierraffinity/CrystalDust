@@ -2,7 +2,7 @@
   "id": "MAP_VIOLET_CITY_HOUSE1",
   "name": "VioletCity_House1",
   "layout": "LAYOUT_HOUSE1",
-  "music": "MUS_MACHI_S2",
+  "music": "MUS_VIOLET",
   "region_map_section": "MAPSEC_VIOLET_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

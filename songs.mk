@@ -237,7 +237,7 @@ $(MID_SUBDIR)/mus_m_dungon.s: %.s: %.mid
 $(MID_SUBDIR)/mus_maborosi.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G084 -V100
 
-$(MID_SUBDIR)/mus_machi_s2.s: %.s: %.mid
+$(MID_SUBDIR)/mus_violet.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G015 -V080
 
 $(MID_SUBDIR)/mus_machi_s3.s: %.s: %.mid
