@@ -7,7 +7,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_EventScript_1DC476",
+            "script": "VioletCity_GymSign",
             "type": "sign",
             "x": 20,
             "y": 19
@@ -15,7 +15,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "Common_EventScript_ShowPokemartSign",
+            "script": "VioletCity_SproutTowerSign",
             "type": "sign",
             "x": 33,
             "y": 9
@@ -23,7 +23,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_EventScript_1DC47F",
+            "script": "VioletCity_TownSloganSign",
             "type": "sign",
             "x": 31,
             "y": 23
@@ -31,7 +31,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_EventScript_1DC491",
+            "script": "VioletCity_EarlsAcademySign",
             "type": "sign",
             "x": 34,
             "y": 19
@@ -72,7 +72,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "VioletCity_EventScript_1DC3FD",
+            "script": "VioletCity_Earl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -86,7 +86,7 @@
             "movement_range_x": 2,
             "movement_range_y": 2,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "0x0",
+            "script": "VioletCity_GhostGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -100,7 +100,7 @@
             "movement_range_x": 1,
             "movement_range_y": 2,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "VioletCity_EventScript_1DC3E6",
+            "script": "VioletCity_PrimeTimeGuy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -114,7 +114,7 @@
             "movement_range_x": 1,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-            "script": "VioletCity_EventScript_1DC488",
+            "script": "VioletCity_Gramps",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -128,7 +128,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "0x0",
+            "script": "VioletCity_TreeBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",

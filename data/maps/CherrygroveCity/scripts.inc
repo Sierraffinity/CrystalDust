@@ -23,11 +23,11 @@ CherrygroveCity_EventScript_GuideGent::
 	msgbox CherrygroveCity_Text_GuideGent_OkayThen
 	closemessage
 	playbgm MUS_FOLLOWME, 0
-	compare VAR_FACING, 4
+	compare VAR_FACING, DIR_EAST
 	call_if_eq CherrygroveCity_EventScript_GuideGentFromLeft
-	compare VAR_FACING, 2
+	compare VAR_FACING, DIR_NORTH
 	call_if_eq CherrygroveCity_EventScript_GuideGentFromBelow
-	compare VAR_FACING, 3
+	compare VAR_FACING, DIR_WEST
 	call_if_eq CherrygroveCity_EventScript_GuideGentFromRight
 	msgbox CherrygroveCity_Text_GuideGent_PokemonCenter
 	closemessage

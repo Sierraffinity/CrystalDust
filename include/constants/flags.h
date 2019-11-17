@@ -676,9 +676,7 @@
 #define FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS                 0x2D6
 #define FLAG_HIDE_MR_POKEMONS_HOUSE_OAK                             0x2D7
 #define FLAG_HIDE_VIOLET_CITY_EARL                                  0x2D8
-
-#define FLAG_UNUSED_0x2D9                                           0x2D9 // Unused Flag
-
+#define FLAG_HIDE_VIOLET_CITY_ACADEMY_EARL                          0x2D9
 #define FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER                     0x2DA
 #define FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT                          0x2DB
 #define FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1                    0x2DC
