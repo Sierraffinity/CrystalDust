@@ -11,9 +11,12 @@
 #include "random.h"
 #include "rtc.h"
 #include "script.h"
+#include "script_menu.h"
+#include "sound.h"
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
+#include "constants/songs.h"
 
 typedef void (*PhoneNativeFunc)(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
 
@@ -56,6 +59,16 @@ void PhoneScriptContext_Disable(void)
 bool8 PhoneScriptContext_IsEnabled(void)
 {
     return sPhoneScriptContextEnabled;
+}
+
+void PhoneScriptContext_Stop(void)
+{
+    sPhoneScriptContextStatus = 1;
+}
+
+void PhoneScriptContext_Start(void)
+{
+    sPhoneScriptContextStatus = 0;
 }
 
 bool8 PhoneScriptContext_RunScript(void)
@@ -195,6 +208,15 @@ static void AddPhoneTextPrinter(struct ScriptContext *ctx, u8 *str)
 bool8 PhoneScrCmd_message(struct ScriptContext *ctx)
 {
     const u8 *str = (const u8 *)ScriptReadWord(ctx);
+    switch (ctx->data[0])
+    {
+    case PHONE_SCRIPT_POKEGEAR:
+        FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
+        break;
+    case PHONE_SCRIPT_OVERWORLD:
+        FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
+        break;
+    }
     StringExpandPlaceholders(gStringVar4, str);
     AddPhoneTextPrinter(ctx, gStringVar4);
     return TRUE;
@@ -431,5 +453,167 @@ bool8 PhoneScrCmd_callnativecontext(struct ScriptContext *ctx)
     PhoneNativeFunc func = (PhoneNativeFunc)ScriptReadWord(ctx);
     bool8 isCallingPlayer = ctx->data[0] == PHONE_SCRIPT_OVERWORLD;
     func((const struct PhoneContact *)ctx->data[1], isCallingPlayer);
+    return FALSE;
+}
+
+static void Task_HandlePhoneYesNoInput(u8 taskId)
+{
+    if (gTasks[taskId].data[2] < 5)
+    {
+        gTasks[taskId].data[2]++;
+        return;
+    }
+
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
+    {
+    case MENU_NOTHING_CHOSEN:
+        return;
+    case MENU_B_PRESSED:
+    case 1:
+        PlaySE(SE_SELECT);
+        gSpecialVar_Result = 0;
+        break;
+    case 0:
+        gSpecialVar_Result = 1;
+        break;
+    }
+
+    DestroyTask(taskId);
+    PhoneScriptContext_Start();
+    PhoneCard_RefreshContactList();
+}
+
+static const struct WindowTemplate sPhoneYesNo_WindowTemplates =
+{
+    .bg = 0,
+    .tilemapLeft = 21,
+    .tilemapTop = 9,
+    .width = 6,
+    .height = 4,
+    .paletteNum = 14,
+    .baseBlock = 0x289
+};
+
+static void DisplayPhoneYesNoMenu(u8 initialPos, u32 callType)
+{
+    switch (callType)
+    {
+    case PHONE_SCRIPT_OVERWORLD:
+        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates, 0x270, 14, initialPos, TRUE);
+        break;
+    case PHONE_SCRIPT_POKEGEAR:
+        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates, 0x143, 14, initialPos, FALSE);
+        break;
+    }
+}
+
+static bool8 DoPhoneYesNoBox(u8 left, u8 top, u32 callType)
+{
+    u8 taskId;
+
+    if (FuncIsActiveTask(Task_HandlePhoneYesNoInput) == TRUE)
+    {
+        return FALSE;
+    }
+    else
+    {
+        gSpecialVar_Result = 0xFF;
+        DisplayPhoneYesNoMenu(0, callType);
+        taskId = CreateTask(Task_HandlePhoneYesNoInput, 0x50);
+        return TRUE;
+    }
+}
+
+bool8 PhoneScrCmd_yesnobox(struct ScriptContext *ctx)
+{
+    if (DoPhoneYesNoBox(20, 8, ctx->data[0]) == TRUE)
+    {
+        PhoneScriptContext_Stop();
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+static u8 DoCompare(u16 a1, u16 a2)
+{
+    if (a1 < a2)
+        return 0;
+    if (a1 == a2)
+        return 1;
+    return 2;
+}
+
+bool8 PhoneScrCmd_compare_local_to_local(struct ScriptContext *ctx)
+{
+    const u8 value1 = ctx->data[ScriptReadByte(ctx)];
+    const u8 value2 = ctx->data[ScriptReadByte(ctx)];
+
+    ctx->comparisonResult = DoCompare(value1, value2);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_compare_local_to_value(struct ScriptContext *ctx)
+{
+    const u8 value1 = ctx->data[ScriptReadByte(ctx)];
+    const u8 value2 = ScriptReadByte(ctx);
+
+    ctx->comparisonResult = DoCompare(value1, value2);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_compare_local_to_addr(struct ScriptContext *ctx)
+{
+    const u8 value1 = ctx->data[ScriptReadByte(ctx)];
+    const u8 value2 = *(const u8 *)ScriptReadWord(ctx);
+
+    ctx->comparisonResult = DoCompare(value1, value2);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_compare_addr_to_local(struct ScriptContext *ctx)
+{
+    const u8 value1 = *(const u8 *)ScriptReadWord(ctx);
+    const u8 value2 = ctx->data[ScriptReadByte(ctx)];
+
+    ctx->comparisonResult = DoCompare(value1, value2);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_compare_addr_to_value(struct ScriptContext *ctx)
+{
+    const u8 value1 = *(const u8 *)ScriptReadWord(ctx);
+    const u8 value2 = ScriptReadByte(ctx);
+
+    ctx->comparisonResult = DoCompare(value1, value2);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_compare_addr_to_addr(struct ScriptContext *ctx)
+{
+    const u8 value1 = *(const u8 *)ScriptReadWord(ctx);
+    const u8 value2 = *(const u8 *)ScriptReadWord(ctx);
+
+    ctx->comparisonResult = DoCompare(value1, value2);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_compare_var_to_value(struct ScriptContext *ctx)
+{
+    const u16 value1 = *GetVarPointer(ScriptReadHalfword(ctx));
+    const u16 value2 = ScriptReadHalfword(ctx);
+
+    ctx->comparisonResult = DoCompare(value1, value2);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_compare_var_to_var(struct ScriptContext *ctx)
+{
+    const u16 *ptr1 = GetVarPointer(ScriptReadHalfword(ctx));
+    const u16 *ptr2 = GetVarPointer(ScriptReadHalfword(ctx));
+
+    ctx->comparisonResult = DoCompare(*ptr1, *ptr2);
     return FALSE;
 }
