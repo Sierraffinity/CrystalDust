@@ -138,7 +138,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_PokemonTrainerFanClub_EventScript_21CD7B",
-      "flag": "FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER"
+      "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE"
     }
   ],
   "warp_events": [

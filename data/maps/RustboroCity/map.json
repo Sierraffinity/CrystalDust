@@ -169,7 +169,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT"
+      "flag": "FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_DEVON_EMPLOYEE",

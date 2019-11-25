@@ -15,7 +15,7 @@ MauvilleCity_OnTransition: @ 81DF38B
 MauvilleCity_EventScript_1DF3A9:: @ 81DF3A9
 	clearflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
 	setflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
-	setflag FLAG_WATTSON_REMATCH_AVAILABLE
+	setflag FLAG_REFUSED_ELMS_EGG
 	return
 
 MauvilleCity_EventScript_1DF3B3:: @ 81DF3B3

@@ -4343,7 +4343,7 @@ void sub_813BA60(void)
         FlagClear(FLAG_HIDE_FANCLUB_BOY);
         FlagClear(FLAG_HIDE_FANCLUB_LITTLE_BOY);
         FlagClear(FLAG_HIDE_FANCLUB_LADY);
-        FlagClear(FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER);
+        FlagClear(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE);
         VarSet(VAR_LILYCOVE_FAN_CLUB_STATE, 1);
     }
 }

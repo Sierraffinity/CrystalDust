@@ -109,12 +109,12 @@ LilycoveCity_PokemonTrainerFanClub_EventScript_21C8DA:: @ 821C8DA
 	specialvar VAR_RESULT, sub_80EE7C0
 	compare VAR_RESULT, 1
 	goto_if_eq LilycoveCity_PokemonTrainerFanClub_EventScript_21C8F1
-	clearflag FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER
+	clearflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE
 	clearflag FLAG_FAN_CLUB_STRENGTH_SHARED
 	return
 
 LilycoveCity_PokemonTrainerFanClub_EventScript_21C8F1:: @ 821C8F1
-	setflag FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE
 	return
 
 LilycoveCity_PokemonTrainerFanClub_EventScript_21C8F5:: @ 821C8F5

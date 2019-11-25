@@ -98,8 +98,8 @@
 #define FLAG_DUDE_TALKED_TO_YOU              0x58
 #define FLAG_LEARNED_TO_CATCH_POKEMON        0x59
 #define FLAG_ROCKET_TAKEOVER                 0x5A
-#define FLAG_WATTSON_REMATCH_AVAILABLE       0x5B
-#define FLAG_COLLECTED_ALL_SILVER_SYMBOLS    0x5C
+#define FLAG_REFUSED_ELMS_EGG                0x5B
+#define FLAG_GOT_ELMS_EGG                    0x5C
 #define FLAG_GOOD_LUCK_SAFARI_ZONE           0x5D // Set after talking to NPC blocking Safari Zone entrance/exit once.
 #define FLAG_RECEIVED_WAILMER_PAIL           0x5E
 #define FLAG_RECEIVED_POKEBLOCK_CASE         0x5F
@@ -677,8 +677,8 @@
 #define FLAG_HIDE_MR_POKEMONS_HOUSE_OAK                             0x2D7
 #define FLAG_HIDE_VIOLET_CITY_EARL                                  0x2D8
 #define FLAG_HIDE_VIOLET_CITY_ACADEMY_EARL                          0x2D9
-#define FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER                     0x2DA
-#define FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT                          0x2DB
+#define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE                       0x2DA
+#define FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE           0x2DB
 #define FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1                    0x2DC
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE_2                   0x2DD
 #define FLAG_HIDE_PLAYERS_HOUSE_DAD                                 0x2DE

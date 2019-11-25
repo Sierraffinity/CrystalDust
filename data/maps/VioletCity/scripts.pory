@@ -91,7 +91,6 @@ movement VioletCity_Movement_EarlSpin {
 	face_right
 	delay_1
 	face_down
-	step_end
 }
 
 movement VioletCity_Movement_EarlToAcademy {
@@ -164,7 +163,6 @@ movement VioletCity_Movement_EarlToAcademy {
 	face_right
 	delay_1
 	walk_fast_up * 2
-	step_end
 }
 
 movement VioletCity_Movement_PlayerToAcademySouth {
@@ -181,7 +179,6 @@ movement VioletCity_Movement_PlayerToAcademySouth {
 	delay_16
 	walk_fast_right
 	walk_fast_up
-	step_end
 }
 
 movement VioletCity_Movement_PlayerToAcademyNorth {
@@ -200,7 +197,6 @@ movement VioletCity_Movement_PlayerToAcademyNorth {
 	delay_16
 	walk_fast_right
 	walk_fast_up
-	step_end
 }
 
 movement VioletCity_Movement_PlayerToAcademyWest {
@@ -218,7 +214,6 @@ movement VioletCity_Movement_PlayerToAcademyWest {
 	delay_16
 	walk_fast_right
 	walk_fast_up
-	step_end
 }
 
 movement VioletCity_Movement_PlayerToAcademyEast {
@@ -236,13 +231,11 @@ movement VioletCity_Movement_PlayerToAcademyEast {
 	delay_16
 	walk_fast_right
 	walk_fast_up * 1
-	step_end
 }
 
 movement VioletCity_Movement_EarlIntoDoor {
 	walk_up
 	set_invisible
-	step_end
 }
 
 script VioletCity_GhostGirl {

@@ -491,7 +491,7 @@ static bool32 sub_81CB1D0(void)
             if (sub_81CAEA4(index) == gMapHeader.regionMapSectionId
              && FlagGet(FLAG_BADGE05_GET) == TRUE)
             {
-                if (!FlagGet(FLAG_WATTSON_REMATCH_AVAILABLE))
+                if (!FlagGet(FLAG_REFUSED_ELMS_EGG))
                     return TRUE;
             }
         }

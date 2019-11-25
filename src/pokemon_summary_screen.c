@@ -245,7 +245,7 @@ static void PrintMonTrainerMemo(void);
 static void BufferNatureString(void);
 static void GetMetLevelString(u8 *a);
 static bool8 DoesMonOTMatchOwner(void);
-static bool8 DidMonComeFromGBAGames(void);
+static bool8 DidMonComeFromOfficialGBAGames(void);
 static bool8 IsInGamePartnerMon(void);
 static void PrintEggOTName(void);
 static void PrintEggOTID(void);
@@ -3109,7 +3109,7 @@ static void BufferMonTrainerMemo(void)
         {
             text = gText_XNatureFatefulEncounter;
         }
-        else if (sum->metLocation != METLOC_IN_GAME_TRADE && DidMonComeFromGBAGames())
+        else if (sum->metLocation != METLOC_IN_GAME_TRADE && DidMonComeFromOfficialGBAGames())
         {
             text = (sum->metLocation >= MAPSEC_NONE) ? gText_XNatureObtainedInTrade : gText_XNatureProbablyMetAt;
         }
@@ -3171,7 +3171,7 @@ static bool8 DoesMonOTMatchOwner(void)
     return TRUE;
 }
 
-static bool8 DidMonComeFromGBAGames(void)
+static bool8 DidMonComeFromOfficialGBAGames(void)
 {
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
     if (sum->metGame > 0 && sum->metGame <= VERSION_LEAF_GREEN)
@@ -3179,7 +3179,18 @@ static bool8 DidMonComeFromGBAGames(void)
     return FALSE;
 }
 
-bool8 DidMonComeFromRSE(void)
+static bool8 DidMonComeFromCrystalDust(void)
+{
+    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+    return sum->metGame == VERSION_CRYSTAL_DUST;
+}
+
+static bool8 DidMonComeFromAnyGBAGame(void)
+{
+    return DidMonComeFromOfficialGBAGames() || DidMonComeFromCrystalDust();
+}
+
+static bool8 DidMonComeFromRSE(void)
 {
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
     if (sum->metGame > 0 && sum->metGame <= VERSION_EMERALD)
@@ -3241,13 +3252,32 @@ static void PrintEggMemo(void)
     if (sMonSummaryScreen->summary.sanity != 1)
     {
         if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
+        {
             text = gText_PeculiarEggNicePlace;
-        else if (DidMonComeFromGBAGames() == FALSE || DoesMonOTMatchOwner() == FALSE)
+        }
+        else if (DidMonComeFromAnyGBAGame() == FALSE || DoesMonOTMatchOwner() == FALSE)
+        {
             text = gText_PeculiarEggTrade;
+        }
         else if (sum->metLocation == METLOC_SPECIAL_EGG)
-            text = (DidMonComeFromRSE() == TRUE) ? gText_EggFromHotSprings : gText_EggFromTraveler;
+        {
+            if (DidMonComeFromCrystalDust() == TRUE)
+            {
+                text = gText_EggFromElm;
+            }
+            else if (DidMonComeFromRSE() == TRUE)
+            {
+                text = gText_EggFromHotSprings;
+            }
+            else
+            {
+                text = gText_EggFromTraveler;
+            }
+        }
         else
+        {
             text = gText_OddEggFoundByCouple;
+        }
     }
     else
     {

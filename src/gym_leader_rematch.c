@@ -34,7 +34,7 @@ void UpdateGymLeaderRematch(void)
 {
     if (FlagGet(FLAG_SYS_GAME_CLEAR) && (Random() % 100) <= 30)
     {
-        if (FlagGet(FLAG_WATTSON_REMATCH_AVAILABLE))
+        if (FlagGet(FLAG_REFUSED_ELMS_EGG))
             UpdateGymLeaderRematchFromArray(GymLeaderRematches_AfterNewMauville, ARRAY_COUNT(GymLeaderRematches_AfterNewMauville), 5);
         else
             UpdateGymLeaderRematchFromArray(GymLeaderRematches_BeforeNewMauville, ARRAY_COUNT(GymLeaderRematches_BeforeNewMauville), 1);
