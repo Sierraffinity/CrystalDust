@@ -311,7 +311,7 @@ NewBarkTown_PlayersHouse_1F_Text_MomWhatWasElmsErrand:
 NewBarkTown_PlayersHouse_1F_Text_MomSaveMoneyQuestion:
 	.string "MOM: Wow, that's a cute POKéMON.\n"
 	.string "Where did you get it?\p"
-	.string "…\n"
+	.string "…\p"
 	.string "So, you're leaving on an adventure…\p"
 	.string "Okay! I'll help too.\n"
 	.string "But what can I do for you?\p"

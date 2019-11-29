@@ -92,7 +92,7 @@
 	.include "data/layouts/RustboroCity_DevonCorp_1F/layout.inc"
 	.include "data/layouts/RustboroCity_DevonCorp_2F/layout.inc"
 	.include "data/layouts/RustboroCity_Gym/layout.inc"
-	.include "data/layouts/RustboroCity_PokemonSchool/layout.inc"
+	.include "data/layouts/VioletCity_EarlsAcademy/layout.inc"
 	.include "data/layouts/RustboroCity_House/layout.inc"
 	.include "data/layouts/RustboroCity_House1/layout.inc"
 	.include "data/layouts/RustboroCity_CuttersHouse/layout.inc"

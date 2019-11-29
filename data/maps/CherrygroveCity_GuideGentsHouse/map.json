@@ -9,7 +9,7 @@
     "coord_events": [
     ],
     "id": "MAP_CHERRYGROVE_CITY_GUIDE_GENTS_HOUSE",
-    "layout": "LAYOUT_HOUSE2",
+    "layout": "LAYOUT_HOUSE1",
     "map_type": "MAP_TYPE_INDOOR",
     "music": "MUS_CHERRYGROVE",
     "name": "CherrygroveCity_GuideGentsHouse",

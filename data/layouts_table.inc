@@ -94,7 +94,7 @@ gMapLayouts::
 	.4byte RustboroCity_DevonCorp_1F_Layout
 	.4byte RustboroCity_DevonCorp_2F_Layout
 	.4byte RustboroCity_Gym_Layout
-	.4byte RustboroCity_PokemonSchool_Layout
+	.4byte VioletCity_EarlsAcademy_Layout
 	.4byte RustboroCity_House_Layout
 	.4byte RustboroCity_House1_Layout
 	.4byte RustboroCity_CuttersHouse_Layout

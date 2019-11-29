@@ -503,7 +503,7 @@ Route110_TrickHouseEntrance_EventScript_26A110:: @ 826A110
 	end
 
 Route110_TrickHouseEntrance_EventScript_26A126:: @ 826A126
-	setmetatile 5, 1, METATILE_GenericBuilding_TrickHouse_Stairs_Down, 0
+	@setmetatile 5, 1, METATILE_GenericBuilding_TrickHouse_Stairs_Down, 0
 	special DrawWholeMapView
 	delay 20
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp
