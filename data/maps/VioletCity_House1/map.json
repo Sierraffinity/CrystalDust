@@ -20,27 +20,41 @@
             "graphics_id": "EVENT_OBJ_GFX_GIRL_1",
             "movement_range_x": 2,
             "movement_range_y": 2,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "VioletCity_House1_EventScript_2077A3",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "VioletCity_House1_EventScript_Girl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
-            "x": 7,
-            "y": 4
+            "x": 8,
+            "y": 5
         },
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+            "graphics_id": "EVENT_OBJ_GFX_WOMAN_1",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "VioletCity_House1_EventScript_20779A",
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "VioletCity_House1_EventScript_Woman",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
             "x": 4,
             "y": 4
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_PIDGEY",
+            "movement_range_x": 1,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+            "script": "VioletCity_House1_EventScript_Strawberry",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "type": "original",
+            "x": 7,
+            "y": 3
         }
     ],
     "phone_service": true,
@@ -52,15 +66,8 @@
             "dest_map": "MAP_VIOLET_CITY",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 3,
-            "y": 8
-        },
-        {
-            "dest_map": "MAP_VIOLET_CITY",
-            "dest_warp_id": 0,
-            "elevation": 0,
             "x": 4,
-            "y": 8
+            "y": 7
         }
     ],
     "weather": "WEATHER_NONE"
