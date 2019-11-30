@@ -34,7 +34,7 @@
             "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
             "movement_range_x": 0,
             "movement_range_y": 2,
-            "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
+            "movement_type": "MOVEMENT_TYPE_WANDER_DOWN_AND_UP",
             "script": "VioletCity_House2_EventScript_Kyle",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",

@@ -33,7 +33,10 @@ VioletCity_House2_EventScript_Kyle_5:
 	waitstate
 	copyvar VAR_0x800A, VAR_0x8004
 	compare VAR_0x8004, 0xFF
-	goto_if_ne VioletCity_House2_EventScript_Kyle_9
+	goto_if_ne VioletCity_House2_EventScript_Kyle_8
+	goto no_trade
+	goto VioletCity_House2_EventScript_Kyle_1
+
 VioletCity_House2_EventScript_Kyle_8:
 	copyvar VAR_0x8005, VAR_0x800A
 	specialvar VAR_RESULT, GetTradeSpecies
@@ -43,10 +46,6 @@ VioletCity_House2_EventScript_Kyle_8:
 	bufferspeciesname 0, VAR_0x8009
 	msgbox VioletCity_House2_EventScript_Kyle_Text_2
 	goto VioletCity_House2_EventScript_Kyle_1
-
-VioletCity_House2_EventScript_Kyle_9:
-	goto no_trade
-	goto VioletCity_House2_EventScript_Kyle_8
 
 VioletCity_House2_EventScript_Kyle_11:
 	copyvar VAR_0x8004, VAR_0x8008
