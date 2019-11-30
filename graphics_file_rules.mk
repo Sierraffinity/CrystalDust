@@ -18,6 +18,7 @@ PSSGFXDIR := graphics/pokemon_storage
 EVENTOBJGFXDIR := graphics/event_objects
 MISCGFXDIR := graphics/misc
 INTROGFXDIR := graphics/intro
+DOORANIMSGFXDIR := graphics/door_anims
 
 types := normal fight flying poison ground rock bug ghost steel mystery fire water grass electric psychic ice dragon dark
 contest_types := cool beauty cute smart tough
@@ -495,3 +496,6 @@ $(MISCGFXDIR)/birch_help.4bpp: $(MISCGFXDIR)/birch_bag.4bpp $(MISCGFXDIR)/birch_
 
 $(INTROGFXDIR)/intro2.4bpp: $(INTROGFXDIR)/intro2_bg3.4bpp $(INTROGFXDIR)/intro2_bg2.4bpp $(INTROGFXDIR)/intro2_bg1.4bpp
 	@cat $^ >$@
+
+$(DOORANIMSGFXDIR)/06.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2

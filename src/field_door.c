@@ -74,12 +74,7 @@ const u8 DoorAnimTiles_03[][0x100] =
     INCBIN_U8("graphics/door_anims/03/2.4bpp"),
 };
 
-const u8 DoorAnimTiles_06[][0x100] =
-{
-    INCBIN_U8("graphics/door_anims/06/0.4bpp"),
-    INCBIN_U8("graphics/door_anims/06/1.4bpp"),
-    INCBIN_U8("graphics/door_anims/06/2.4bpp"),
-};
+const u8 DoorAnimTiles_06[] = INCBIN_U8("graphics/door_anims/06.4bpp");
 
 const u8 DoorAnimTiles_07[][0x100] =
 {
@@ -447,7 +442,7 @@ const u8 DoorAnimPalettes_8496FEC[] = {7, 7, 7, 7}; // door 02
 const u8 DoorAnimPalettes_8496FF4[] = {0, 0, 1, 1, 1, 1, 1, 1}; // door 03
 const u8 DoorAnimPalettes_8496FFC[] = {12, 12, 12, 12}; // door 04
 const u8 DoorAnimPalettes_8497004[] = {9, 9, 9, 9}; // door 05
-const u8 DoorAnimPalettes_849700C[] = {11, 11, 11, 11, 11, 11, 11, 11}; // door 06
+const u8 DoorAnimPalettes_849700C[] = {12, 12, 12, 12}; // door 06
 const u8 DoorAnimPalettes_8497014[] = {10, 10, 10, 10, 10, 10, 10, 10}; // door 07
 const u8 DoorAnimPalettes_849701C[] = {7, 7, 7, 7, 7, 7, 7, 7}; // door 08
 const u8 DoorAnimPalettes_8497024[] = {8, 8, 8, 8, 8, 8, 8, 8}; // door 09
@@ -499,9 +494,9 @@ static const struct DoorGraphics gDoorAnimGraphicsTable[] =
     {0x062, 1, 0, DoorAnimTiles_01, DoorAnimPalettes_8496FE4}, // door 01 (pokecenter door)
     {0x15B, 1, 0, DoorAnimTiles_02, DoorAnimPalettes_8496FEC}, // door 02 (gym door)
     //{0x041, 1, 1, DoorAnimTiles_03, DoorAnimPalettes_8496FF4}, // door 03 (pokemart door)
-    {0x2A3, 0, 0, DoorAnimTiles_04, DoorAnimPalettes_8496FFC}, // door 04 (littleroot house door)
-    {0x2AC, 0, 0, DoorAnimTiles_05, DoorAnimPalettes_8497004}, // door 05 (littleroot lab door)
-    {0x22F, 0, 1, DoorAnimTiles_06, DoorAnimPalettes_849700C}, // door 06 
+    {0x2A3, 0, 0, DoorAnimTiles_04, DoorAnimPalettes_8496FFC}, // door 04 (New Bark house door)
+    {0x2AC, 0, 0, DoorAnimTiles_05, DoorAnimPalettes_8497004}, // door 05 (New Bark lab door)
+    {0x298, 0, 0, DoorAnimTiles_06, DoorAnimPalettes_849700C}, // door 06 (Violet house door)
     {0x21F, 0, 1, DoorAnimTiles_07, DoorAnimPalettes_8497014}, // door 07
     {0x2A5, 0, 1, DoorAnimTiles_08, DoorAnimPalettes_849701C}, // door 08
     {0x287, 0, 1, DoorAnimTiles_09, DoorAnimPalettes_849702C}, // door 09
@@ -609,8 +604,12 @@ static void DrawCurrentDoorAnimFrame(const struct DoorGraphics *gfx, u32 x, u32 
 
 static void DrawClosedDoorTiles(const struct DoorGraphics *gfx, u32 x, u32 y)
 {
-    CurrentMapDrawMetatileAt(x, y - 1);
     CurrentMapDrawMetatileAt(x, y);
+
+    if (gfx->size == 1)
+    {
+        CurrentMapDrawMetatileAt(x, y - 1);
+    }
 
     if (gfx->size == 2)
     {
