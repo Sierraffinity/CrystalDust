@@ -77,6 +77,7 @@ static EWRAM_DATA struct {
     bool8 canSwitchCards;
     bool8 twentyFourHourMode;
     u8 currentRadioStation;
+    bool8 exiting;
 } sPokegearStruct = {0};
 
 void CB2_InitPokegear(void);
@@ -568,6 +569,7 @@ void CB2_InitPokegear(void)
     ShowBg(3);
     
     PlaySE(SE_PN_ON);
+    sPokegearStruct.exiting = FALSE;
 }
 
 static void VBlankCB(void)
@@ -929,6 +931,7 @@ static void Task_SwapCards(u8 taskId)
 
 static void Task_ExitPokegear1(u8 taskId)
 {
+    sPokegearStruct.exiting = TRUE;
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
     gTasks[taskId].func = Task_ExitPokegear2;
 }
@@ -1225,7 +1228,11 @@ static void PhoneCard_RemoveScrollIndicators(u8 taskId)
 
 static void Task_PhoneCard(u8 taskId)
 {
-    int input = ListMenu_ProcessInput(gTasks[taskId].tListMenuTaskId);
+    int input;
+    if (sPokegearStruct.exiting)
+        return;
+
+    input = ListMenu_ProcessInput(gTasks[taskId].tListMenuTaskId);
     ListMenuGetScrollAndRow(gTasks[taskId].tListMenuTaskId, &sPokegearStruct.phoneScrollOffset, &sPokegearStruct.phoneSelectedItem);
     switch (input)
     {
@@ -1576,8 +1583,11 @@ static void UpdateRadioStation(u8 taskId, u8 frequency)
 
 static void Task_RadioCard(u8 taskId)
 {
-    u8 station = sPokegearStruct.currentRadioStation;
+    u8 station;
+    if (sPokegearStruct.exiting)
+        return;
 
+    station = sPokegearStruct.currentRadioStation;
     if (gMain.newAndRepeatedKeys & DPAD_UP)
     {
         station++;
