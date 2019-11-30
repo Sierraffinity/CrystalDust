@@ -7,7 +7,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NULL",
+            "script": "VioletCity_EarlsAcademy_EventScript_StatusInfoBoard",
             "type": "sign",
             "x": 4,
             "y": 1
@@ -15,7 +15,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NULL",
+            "script": "VioletCity_EarlsAcademy_EventScript_StatusInfoBoard",
             "type": "sign",
             "x": 5,
             "y": 1
@@ -23,7 +23,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NULL",
+            "script": "VioletCity_EarlsAcademy_EventScript_Notes",
             "type": "sign",
             "x": 3,
             "y": 6
@@ -75,7 +75,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "VioletCity_EarlsAcademy_EventScript_2042C0",
+            "script": "VioletCity_EarlsAcademy_EventScript_NoteTakingKid",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -89,7 +89,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "NULL",
+            "script": "VioletCity_EarlsAcademy_EventScript_HeldItemsKid",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -103,7 +103,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NULL",
+            "script": "VioletCity_EarlsAcademy_EventScript_TradingKid1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -117,7 +117,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "NULL",
+            "script": "VioletCity_EarlsAcademy_EventScript_TradingKid2",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
