@@ -198,7 +198,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/PacifidlogTown_House3/scripts.inc"
 	.include "data/maps/PacifidlogTown_House4/scripts.inc"
 	.include "data/maps/PacifidlogTown_House5/scripts.inc"
-	.include "data/maps/VioletCity_WallysHouse/scripts.inc"
+	.include "data/maps/VioletCity_EarlsAcademy/scripts.inc"
 	.include "data/maps/VioletCity_Gym/scripts.inc"
 	.include "data/maps/VioletCity_House1/scripts.inc"
 	.include "data/maps/VioletCity_House2/scripts.inc"

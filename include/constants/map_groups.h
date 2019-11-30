@@ -123,7 +123,7 @@
 #define MAP_PACIFIDLOG_TOWN_HOUSE5            (6 | (7 << 8))
 
 // Map Group 8
-#define MAP_VIOLET_CITY_WALLYS_HOUSE      (0 | (8 << 8))
+#define MAP_VIOLET_CITY_EARLS_ACADEMY     (0 | (8 << 8))
 #define MAP_VIOLET_CITY_GYM               (1 | (8 << 8))
 #define MAP_VIOLET_CITY_HOUSE1            (2 | (8 << 8))
 #define MAP_VIOLET_CITY_HOUSE2            (3 | (8 << 8))

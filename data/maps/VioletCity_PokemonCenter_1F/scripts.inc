@@ -145,8 +145,8 @@ VioletCity_PokemonCenter_1F_EventScript_Aide_Text_3:
 	.string "hatch until it grows in the EGG.\p"
 	.string "It also has to be with other active\n"
 	.string "POKéMON to hatch.\p"
-	.string "{PLAYER}, you're the only person we can\n"
-	.string "rely on.\p"
+	.string "{PLAYER}, you're the only person\n"
+	.string "we can rely on.\p"
 	.string "Please call PROF. ELM when that\n"
 	.string "EGG hatches!$"
 

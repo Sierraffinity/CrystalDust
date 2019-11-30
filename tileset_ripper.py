@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     path = os.sep.join([os.curdir, 'data', 'tilesets', 'primary' if not is_secondary else 'secondary', argv[3]])
     os.makedirs(path, exist_ok=True)
-    create_image(path, image, is_compressed)
     create_pals(path, palettes)
+    create_image(path, image, is_compressed)
     create_metatiles(path, metatiles, num_metatiles)
     create_behavior(path, behavior, num_metatiles)

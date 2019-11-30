@@ -68,8 +68,8 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                    "hatch until it grows in the EGG.\p"
                    "It also has to be with other active\n"
                    "POKéMON to hatch.\p"
-                   "{PLAYER}, you're the only person we can\n"
-                   "rely on.\p"
+                   "{PLAYER}, you're the only person\n"
+                   "we can rely on.\p"
                    "Please call PROF. ELM when that\n"
                    "EGG hatches!")
             closemessage

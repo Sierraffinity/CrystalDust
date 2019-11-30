@@ -793,12 +793,12 @@
         {
             "blockdata_filepath": "data/layouts/VioletCity_EarlsAcademy/map.bin",
             "border_filepath": "data/layouts/VioletCity_EarlsAcademy/border.bin",
-            "height": 11,
+            "height": 21,
             "id": "LAYOUT_VIOLET_CITY_EARLS_ACADEMY",
             "name": "VioletCity_EarlsAcademy_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_PokemonSchool",
-            "width": 12
+            "width": 10
         },
         {
             "blockdata_filepath": "data/layouts/HouseWithBed/map.bin",
