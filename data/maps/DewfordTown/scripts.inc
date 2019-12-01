@@ -128,14 +128,14 @@ DewfordTown_EventScript_1E9660:: @ 81E9660
 	applymovement 4, DewfordTown_Movement_1E97A2
 	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_1E97A2
 	waitmovement 0
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE32
 	call Common_EventScript_StopBrineysBoatMusic
 	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_1E9914
 	waitmovement 0
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE32
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+	clearflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	hideobjectat 4, MAP_DEWFORD_TOWN
 	setvar VAR_BOARD_BRINEY_BOAT_STATE, 2
@@ -653,7 +653,7 @@ DewfordTown_Text_1E9A7F: @ 81E9A7F
 	.string "DEWFORD HALL\n"
 	.string "“Everyone's information exchange!”$"
 
-Route104_Text_1E9AAF: @ 81E9AAF
+Route32_Text_1E9AAF: @ 81E9AAF
 	.string "MR. BRINEY: Ahoy!\n"
 	.string "We've hit land in DEWFORD.\p"
 	.string "I suppose you're off to deliver that\n"
@@ -674,7 +674,7 @@ DewfordTown_Text_1E9BD9: @ 81E9BD9
 	.string "MR. BRINEY: Then you go on and deliver\n"
 	.string "the LETTER. I'll be waiting.$"
 
-Route104_Text_1E9C1D: @ 81E9C1D
+Route32_Text_1E9C1D: @ 81E9C1D
 Route109_Text_1E9C1D: @ 81E9C1D
 	.string "MR. BRINEY: Ahoy!\n"
 	.string "We've hit land in DEWFORD!\p"

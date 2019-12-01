@@ -38,19 +38,19 @@ VioletCity_EventScript_ItemRareCandy::
 	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
-Route104_EventScript_ItemPPUp:: @ 8290CFF
+Route32_EventScript_ItemPPUp:: @ 8290CFF
 	giveitem_std ITEM_PP_UP, 1, 1
 	end
 
-Route104_EventScript_ItemPokeBall:: @ 8290D0C
+Route32_EventScript_ItemPokeBall:: @ 8290D0C
 	giveitem_std ITEM_POKE_BALL, 1, 1
 	end
 
-Route104_EventScript_ItemXAccuracy:: @ 8290D19
+Route32_EventScript_ItemXAccuracy:: @ 8290D19
 	giveitem_std ITEM_X_ACCURACY, 1, 1
 	end
 
-Route104_EventScript_ItemPotion:: @ 8290D26
+Route32_EventScript_ItemPotion:: @ 8290D26
 	giveitem_std ITEM_POTION, 1, 1
 	end
 

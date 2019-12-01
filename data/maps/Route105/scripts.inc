@@ -82,7 +82,7 @@ Route105_EventScript_1EE31F:: @ 81EE31F
 	msgbox Route105_Text_2961FE, MSGBOX_AUTOCLOSE
 	end
 
-Route104_Text_1EE336: @ 81EE336
+Route32_Text_1EE336: @ 81EE336
 	.string "… … … … … …\n"
 	.string "… … … … … Beep!\p"
 	.string "DAD: Oh, {PLAYER}?\p"
@@ -98,6 +98,6 @@ Route104_Text_1EE336: @ 81EE336
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
 
-Route104_Text_1EE463: @ 81EE463
+Route32_Text_1EE463: @ 81EE463
 	.string "Registered DAD NORMAN\n"
 	.string "in the POKéNAV.$"

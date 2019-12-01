@@ -230,185 +230,185 @@ Route31_Text_295246: @ 8295246
 	.string "have gathered.\p"
 	.string "Heh, maybe I should turn pro.$"
 
-Route104_Text_2952BB: @ 82952BB
+Route32_Text_2952BB: @ 82952BB
 	.string "GINA: Okay, let's battle with our\n"
 	.string "POKéMON!$"
 
-Route104_Text_2952E6: @ 82952E6
+Route32_Text_2952E6: @ 82952E6
 	.string "GINA: Losing upsets me!$"
 
-Route104_Text_2952FE: @ 82952FE
+Route32_Text_2952FE: @ 82952FE
 	.string "GINA: You are strong!\n"
 	.string "We have to train lots more!$"
 
-Route104_Text_295330: @ 8295330
+Route32_Text_295330: @ 8295330
 	.string "GINA: Oh? Only one POKéMON?\n"
 	.string "Then, we don't battle with you.\p"
 	.string "If there's only one POKéMON, it will\n"
 	.string "be lonesome. That's not nice.$"
 
-Route104_Text_2953AF: @ 82953AF
+Route32_Text_2953AF: @ 82953AF
 	.string "MIA: We are twins, so we battle\n"
 	.string "POKéMON together.$"
 
-Route104_Text_2953E1: @ 82953E1
+Route32_Text_2953E1: @ 82953E1
 	.string "MIA: We battled together, but we\n"
 	.string "both lost…$"
 
-Route104_Text_29540D: @ 829540D
+Route32_Text_29540D: @ 829540D
 	.string "MIA: We will train our POKéMON more\n"
 	.string "and be strong like you.$"
 
-Route104_Text_295449: @ 8295449
+Route32_Text_295449: @ 8295449
 	.string "MIA: You want to battle with us?\p"
 	.string "It's a big no-no if you don't have two\n"
 	.string "POKéMON with you.\l"
 	.string "We're too strong for you!$"
 
-Route104_Text_2954BD: @ 82954BD
+Route32_Text_2954BD: @ 82954BD
 	.string "Why keep it a secret?\n"
 	.string "I'm the WATER POKéMON expert!\p"
 	.string "Huh?\n"
 	.string "You don't know me?$"
 
-Route104_Text_295509: @ 8295509
+Route32_Text_295509: @ 8295509
 	.string "I thought I wasn't too bad, if I may\n"
 	.string "say so, but I guess not… Bleah…$"
 
-Route104_Text_29554E: @ 829554E
+Route32_Text_29554E: @ 829554E
 	.string "I got too into fishing.\n"
 	.string "I forgot I had to raise my POKéMON…$"
 
-Route104_Text_29558A: @ 829558A
+Route32_Text_29558A: @ 829558A
 	.string "Leaving footprints in the sand is\n"
 	.string "so fun!$"
 
-Route104_Text_2955B4: @ 82955B4
+Route32_Text_2955B4: @ 82955B4
 	.string "Waah! I got sand in my runners!\n"
 	.string "They're all gritty!$"
 
-Route104_Text_2955E8: @ 82955E8
+Route32_Text_2955E8: @ 82955E8
 	.string "I want to leave my footprints in\n"
 	.string "the sand everywhere, but they\l"
 	.string "disappear quickly…$"
 
-Route104_Text_29563A: @ 829563A
+Route32_Text_29563A: @ 829563A
 	.string "Should I…\n"
 	.string "Or shouldn't I?\p"
 	.string "Okay, sure, I will battle!$"
 
-Route104_Text_29566F: @ 829566F
+Route32_Text_29566F: @ 829566F
 	.string "I shouldn't have battled…$"
 
-Route104_Text_295689: @ 8295689
+Route32_Text_295689: @ 8295689
 	.string "If you're faced with a decision and\n"
 	.string "you let someone else choose for you,\l"
 	.string "you will regret it, however things\l"
 	.string "turn out.$"
 
-Route104_Text_2956FF: @ 82956FF
+Route32_Text_2956FF: @ 82956FF
 	.string "You're strong, but should I register\n"
 	.string "you in my POKéNAV?\l"
 	.string "Maybe I shouldn't…\p"
 	.string "Okay, sure, I will register you!$"
 
-Route104_Text_29576B: @ 829576B
+Route32_Text_29576B: @ 829576B
 	.string "You're strong, but should I register\n"
 	.string "you in my POKéNAV?\l"
 	.string "Maybe I shouldn't…\p"
 	.string "Okay, sure, I will register you!$"
 
-Route104_Text_2957D7: @ 82957D7
+Route32_Text_2957D7: @ 82957D7
 	.string "Come on, battle with me!$"
 
-Route104_Text_2957F0: @ 82957F0
+Route32_Text_2957F0: @ 82957F0
 	.string "Ohh…\n"
 	.string "I thought I could win…$"
 
-Route104_Text_29580C: @ 829580C
+Route32_Text_29580C: @ 829580C
 	.string "I made the decision to battle, so\n"
 	.string "I can accept this loss with grace.\p"
 	.string "I am still upset about losing!$"
 
-Route104_Text_295870: @ 8295870
+Route32_Text_295870: @ 8295870
 	.string "Oh, sure, I'll accept your challenge.\n"
 	.string "I have a lot of money.$"
 
-Route104_Text_2958AD: @ 82958AD
+Route32_Text_2958AD: @ 82958AD
 	.string "Why couldn't I win?$"
 
-Route104_Text_2958C1: @ 82958C1
+Route32_Text_2958C1: @ 82958C1
 	.string "There are some things money can't buy.\n"
 	.string "That's POKéMON…$"
 
-Route104_Text_2958F8: @ 82958F8
+Route32_Text_2958F8: @ 82958F8
 	.string "Hm?\n"
 	.string "Ah, you've obtained a POKéNAV.\p"
 	.string "I will gladly register you.\n"
 	.string "After all, I have plenty of money.$"
 
-Route104_Text_29595A: @ 829595A
+Route32_Text_29595A: @ 829595A
 	.string "Hm?\n"
 	.string "Ah, you've obtained a POKéNAV.\p"
 	.string "I will gladly register you.\n"
 	.string "After all, I have plenty of money.$"
 
-Route104_Text_2959BC: @ 82959BC
+Route32_Text_2959BC: @ 82959BC
 	.string "After I lost to you, I learned a bunch\n"
 	.string "of things about POKéMON.$"
 
-Route104_Text_2959FC: @ 82959FC
+Route32_Text_2959FC: @ 82959FC
 	.string "I lost again?\n"
 	.string "Why couldn't I win?$"
 
-Route104_Text_295A1E: @ 8295A1E
+Route32_Text_295A1E: @ 8295A1E
 	.string "I'm fabulously wealthy, but I can't\n"
 	.string "seem to win at POKéMON…\p"
 	.string "It's so deep, the world of POKéMON…$"
 
-Route104_Text_295A7E: @ 8295A7E
+Route32_Text_295A7E: @ 8295A7E
 	.string "We must have been fated to meet.\n"
 	.string "May I ask you for a battle?$"
 
-Route104_Text_295ABB: @ 8295ABB
+Route32_Text_295ABB: @ 8295ABB
 	.string "Oh, my!$"
 
-Route104_Text_295AC3: @ 8295AC3
+Route32_Text_295AC3: @ 8295AC3
 	.string "“Hello” is the beginning of “good-bye.”\n"
 	.string "I hope we meet again.$"
 
-Route104_Text_295B01: @ 8295B01
+Route32_Text_295B01: @ 8295B01
 	.string "Hello, we meet again.\p"
 	.string "We seem to be drawn together. Let's\n"
 	.string "register each other in our POKéNAVS.$"
 
-Route104_Text_295B60: @ 8295B60
+Route32_Text_295B60: @ 8295B60
 	.string "We should commemorate how we seem\n"
 	.string "to be drawn to each other.\p"
 	.string "Let's register each other in our\n"
 	.string "POKéNAVS.$"
 
-Route104_Text_295BC8: @ 8295BC8
+Route32_Text_295BC8: @ 8295BC8
 	.string "Hello, we meet again.\n"
 	.string "May I ask you for a battle?$"
 
-Route104_Text_295BFA: @ 8295BFA
+Route32_Text_295BFA: @ 8295BFA
 	.string "Oh, my…\n"
 	.string "I did the best that I could…$"
 
-Route104_Text_295C1F: @ 8295C1F
+Route32_Text_295C1F: @ 8295C1F
 	.string "“Hello” is the beginning of “good-bye.”\n"
 	.string "I hope we meet again.$"
 
-Route104_Text_295C5D: @ 8295C5D
+Route32_Text_295C5D: @ 8295C5D
 	.string "I fished up a tough-looking POKéMON!\p"
 	.string "It has this magical quality to it!\n"
 	.string "It surely looks tough, yes it does!$"
 
-Route104_Text_295CC9: @ 8295CC9
+Route32_Text_295CC9: @ 8295CC9
 	.string "What the…$"
 
-Route104_Text_295CD3: @ 8295CD3
+Route32_Text_295CD3: @ 8295CD3
 	.string "Hey, MAGIKARP, you sure don't live up\n"
 	.string "to your name, do you?$"
 

@@ -1506,8 +1506,8 @@
           }
         },
         {
-          "map": "MAP_ROUTE104",
-          "base_label": "gRoute104",
+          "map": "MAP_ROUTE32",
+          "base_label": "gRoute32",
           "land_mons": {
             "encounter_rate": 20,
             "mons": [
