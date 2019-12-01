@@ -36,7 +36,7 @@ script(local) StatusBoard_Loop {
 			msgbox("Paralysis reduces SPEED and may\n"
 				   "prevent movement.\p"
 				   "It remains after battle, so use a\n"
-				   "PARLYZ HEAL.")
+				   "PARALYZE HEAL.")
 			goto(StatusBoard_Loop)
 		case SLP:
 			msgbox("If asleep, your POKéMON can't make\n"

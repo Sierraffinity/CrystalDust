@@ -199,7 +199,7 @@ StatusBoard_Loop_Text_2:
 	.string "Paralysis reduces SPEED and may\n"
 	.string "prevent movement.\p"
 	.string "It remains after battle, so use a\n"
-	.string "PARLYZ HEAL.$"
+	.string "PARALYZE HEAL.$"
 
 StatusBoard_Loop_Text_3:
 	.string "If asleep, your POKéMON can't make\n"
