@@ -58,7 +58,7 @@ static const u8 LandmarkName_AlteringCave[] = _("ALTERING CAVE");
 static const u8 LandmarkName_DesertUnderpass[] = _("DESERT UNDERPASS");
 static const u8 LandmarkName_TrainerHill[] = _("TRAINER HILL");
 
-static const struct Landmark Landmark_FlowerShop = {LandmarkName_FlowerShop, FLAG_LANDMARK_FLOWER_SHOP};
+static const struct Landmark Landmark_FlowerShop = {LandmarkName_FlowerShop, FLAG_LANDMARK_DARK_CAVE};
 static const struct Landmark Landmark_PetalburgWoods = {LandmarkName_PetalburgWoods, -1};
 static const struct Landmark Landmark_MrBrineysCottage = {LandmarkName_MrBrineysCottage, FLAG_LANDMARK_MR_BRINEY_HOUSE};
 static const struct Landmark Landmark_AbandonedShip = {LandmarkName_AbandonedShip, FLAG_LANDMARK_ABANDONED_SHIP};

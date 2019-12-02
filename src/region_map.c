@@ -75,6 +75,7 @@ static u8 MoveRegionMapCursor_Full(void);
 static u8 GetRegionMapSectionIdAt_Internal(s16 x, s16 y, u8 region, bool8 secondary);
 static void RegionMap_SetBG2XAndBG2Y(s16 x, s16 y);
 static void RegionMap_InitializeStateBasedOnPlayerLocation(void);
+static void RegionMap_InitializeStateBasedOnPlayerLocation_(void);
 static void RegionMap_InitializeStateBasedOnSSTidalLocation(void);
 static u8 get_flagnr_blue_points(u16 mapSecId);
 static u16 CorrectSpecialMapSecId_Internal(u16 mapSecId);
@@ -133,30 +134,7 @@ static const u8 sMapSectionLayout_KantoSecondary[] = INCBIN_U8("graphics/region_
 
 static const u16 sRegionMap_SpecialPlaceLocations[][2] =
 {
-    {MAPSEC_UNDERWATER_TERRA_CAVE,     MAPSEC_ROUTE_105},
-    {MAPSEC_UNDERWATER_124,            MAPSEC_ROUTE_124},
-    {MAPSEC_UNDERWATER_UNK1,           MAPSEC_ROUTE_129},
-    {MAPSEC_UNDERWATER_125,            MAPSEC_ROUTE_126},
-    {MAPSEC_UNDERWATER_126,            MAPSEC_ROUTE_127},
-    {MAPSEC_UNDERWATER_127,            MAPSEC_ROUTE_128},
-    {MAPSEC_UNDERWATER_129,            MAPSEC_ROUTE_129},
-    {MAPSEC_UNDERWATER_SOOTOPOLIS,     MAPSEC_SOOTOPOLIS_CITY},
-    {MAPSEC_UNDERWATER_128,            MAPSEC_ROUTE_128},
-    {MAPSEC_AQUA_HIDEOUT,              MAPSEC_LILYCOVE_CITY},
-    {MAPSEC_AQUA_HIDEOUT_OLD,          MAPSEC_LILYCOVE_CITY},
-    {MAPSEC_MAGMA_HIDEOUT,             MAPSEC_ROUTE_112},
-    {MAPSEC_UNDERWATER_SEALED_CHAMBER, MAPSEC_ROUTE_134},
-    {MAPSEC_PETALBURG_WOODS,           MAPSEC_ROUTE_32},
-    {MAPSEC_JAGGED_PASS,               MAPSEC_ROUTE_112},
-    {MAPSEC_MT_PYRE,                   MAPSEC_ROUTE_122},
-    {MAPSEC_SKY_PILLAR,                MAPSEC_ROUTE_131},
-    {MAPSEC_MIRAGE_TOWER,              MAPSEC_ROUTE_111},
-    {MAPSEC_TRAINER_HILL,              MAPSEC_ROUTE_111},
-    {MAPSEC_DESERT_UNDERPASS,          MAPSEC_ROUTE_114},
-    {MAPSEC_ALTERING_CAVE_2,           MAPSEC_ROUTE_31},
-    {MAPSEC_ARTISAN_CAVE,              MAPSEC_ROUTE_31},
-    {MAPSEC_ABANDONED_SHIP,            MAPSEC_ROUTE_108},
-    {MAPSEC_NONE,                      MAPSEC_NONE}
+    {MAPSEC_NONE, MAPSEC_NONE}
 };
 
 static const u16 sRegionMap_MarineCaveMapSecIds[] =
@@ -1017,6 +995,42 @@ static u8 GetRegionMapSectionIdAt_Internal(s16 x, s16 y, u8 region, bool8 second
 
 static void RegionMap_InitializeStateBasedOnPlayerLocation(void)
 {
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SS_TIDAL_CORRIDOR)
+        && (gSaveBlock1Ptr->location.mapNum == MAP_NUM(SS_TIDAL_CORRIDOR)
+            || gSaveBlock1Ptr->location.mapNum == MAP_NUM(SS_TIDAL_LOWER_DECK)
+            || gSaveBlock1Ptr->location.mapNum == MAP_NUM(SS_TIDAL_ROOMS)))
+    {
+        RegionMap_InitializeStateBasedOnSSTidalLocation();
+    }
+    else
+    {
+        // This is actually how FireRed fixes gatehouse map positions
+        switch (GetCurrentRegionMapSectionId())
+        {
+            case MAPSEC_ROUTE_31:
+                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE31_GATEHOUSE) &&
+                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE31_GATEHOUSE))
+                {
+                    gRegionMap->cursorPosX = 12;
+                    gRegionMap->cursorPosY = 5;
+                }
+                else
+                {
+                    RegionMap_InitializeStateBasedOnPlayerLocation_();
+                }
+                break;
+            default:
+                RegionMap_InitializeStateBasedOnPlayerLocation_();
+                break;
+        }
+    }
+
+    gRegionMap->primaryMapSecId = GetRegionMapSectionIdAt_Internal(gRegionMap->cursorPosX, gRegionMap->cursorPosY, gRegionMap->currentRegion, FALSE);
+    gRegionMap->secondaryMapSecId = GetRegionMapSectionIdAt_Internal(gRegionMap->cursorPosX, gRegionMap->cursorPosY, gRegionMap->currentRegion, TRUE);
+}
+
+static void RegionMap_InitializeStateBasedOnPlayerLocation_(void)
+{
     const struct MapHeader *mapHeader;
     u16 mapWidth;
     u16 mapHeight;
@@ -1025,15 +1039,6 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation(void)
     u16 dimensionScale;
     u16 xOnMap;
     struct WarpData *warp;
-
-    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SS_TIDAL_CORRIDOR)
-        && (gSaveBlock1Ptr->location.mapNum == MAP_NUM(SS_TIDAL_CORRIDOR)
-            || gSaveBlock1Ptr->location.mapNum == MAP_NUM(SS_TIDAL_LOWER_DECK)
-            || gSaveBlock1Ptr->location.mapNum == MAP_NUM(SS_TIDAL_ROOMS)))
-    {
-        RegionMap_InitializeStateBasedOnSSTidalLocation();
-        return;
-    }
 
     switch (GetMapTypeByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
     {
@@ -1187,7 +1192,6 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation(void)
     }
     gRegionMap->cursorPosX = gRegionMapEntries[gRegionMap->primaryMapSecId].x + x;
     gRegionMap->cursorPosY = gRegionMapEntries[gRegionMap->primaryMapSecId].y + y;
-    gRegionMap->secondaryMapSecId = GetRegionMapSectionIdAt_Internal(gRegionMap->cursorPosX, gRegionMap->cursorPosY, gRegionMap->currentRegion, TRUE);
 }
 
 static void RegionMap_InitializeStateBasedOnSSTidalLocation(void)
@@ -1240,7 +1244,6 @@ static void RegionMap_InitializeStateBasedOnSSTidalLocation(void)
     gRegionMap->playerIsInCave = FALSE;
     gRegionMap->cursorPosX = gRegionMapEntries[gRegionMap->primaryMapSecId].x + x;
     gRegionMap->cursorPosY = gRegionMapEntries[gRegionMap->primaryMapSecId].y + y;
-    gRegionMap->secondaryMapSecId = GetRegionMapSectionIdAt_Internal(gRegionMap->cursorPosX, gRegionMap->cursorPosY, gRegionMap->currentRegion, TRUE);
 }
 
 static u8 get_flagnr_blue_points(u16 mapSecId)

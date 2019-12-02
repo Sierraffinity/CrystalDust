@@ -1281,7 +1281,7 @@
 #define FLAG_VISITED_FALLARBOR_TOWN                 (SYSTEM_FLAGS + 0x13)
 #define FLAG_VISITED_VERDANTURF_TOWN                (SYSTEM_FLAGS + 0x14)
 #define FLAG_VISITED_PACIFIDLOG_TOWN                (SYSTEM_FLAGS + 0x15)
-#define FLAG_VISITED_VIOLET_CITY                 (SYSTEM_FLAGS + 0x16)
+#define FLAG_VISITED_VIOLET_CITY                    (SYSTEM_FLAGS + 0x16)
 #define FLAG_VISITED_SLATEPORT_CITY                 (SYSTEM_FLAGS + 0x17)
 #define FLAG_VISITED_MAUVILLE_CITY                  (SYSTEM_FLAGS + 0x18)
 #define FLAG_VISITED_RUSTBORO_CITY                  (SYSTEM_FLAGS + 0x19)
@@ -1325,7 +1325,7 @@
 #define FLAG_SYS_SHOAL_TIDE                         (SYSTEM_FLAGS + 0x3A)
 #define FLAG_SYS_RIBBON_GET                         (SYSTEM_FLAGS + 0x3B)
 
-#define FLAG_LANDMARK_FLOWER_SHOP                   (SYSTEM_FLAGS + 0x3C)
+#define FLAG_LANDMARK_DARK_CAVE                     (SYSTEM_FLAGS + 0x3C)
 #define FLAG_LANDMARK_MR_BRINEY_HOUSE               (SYSTEM_FLAGS + 0x3D)
 #define FLAG_LANDMARK_ABANDONED_SHIP                (SYSTEM_FLAGS + 0x3E)
 #define FLAG_LANDMARK_SEASHORE_HOUSE                (SYSTEM_FLAGS + 0x3F)

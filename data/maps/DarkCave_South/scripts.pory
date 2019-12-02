@@ -1,0 +1,5 @@
+mapscripts DarkCave_South_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_DARK_CAVE)
+    }
+}
