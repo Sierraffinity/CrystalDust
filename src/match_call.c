@@ -97,7 +97,6 @@ static int GetTrainerMatchCallId(int);
 static u16 GetRematchTrainerLocation(int);
 static bool32 TrainerIsEligibleForRematch(int);
 static void StartMatchCall(void);
-static void DrawMatchCallTextBoxBorder(u32, u32, u32);
 static void InitMatchCallCallerNameTextPrinter(int, const u8 *);
 static const struct MatchCallText *GetSameRouteMatchCallText(int, u8 *);
 static const struct MatchCallText *GetDifferentRouteMatchCallText(int, u8 *);
@@ -1449,7 +1448,7 @@ bool32 CleanupAfterMatchCallHangup(void)
 //     return FALSE;
 // }
 
-static void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
+void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
 {
     int bg, x, y, width, height;
     int tileNum;

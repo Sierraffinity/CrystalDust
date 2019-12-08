@@ -18,6 +18,13 @@ struct MenuAction
     } func;
 };
 
+enum
+{
+	YESNO_STANDARD,
+	YESNO_PHONE_OVERWORLD,
+	YESNO_PHONE_POKEGEAR,
+};
+
 extern const u16 gUnknown_0860F074[];
 
 void FreeAllOverworldWindowBuffers(void);
@@ -55,6 +62,7 @@ void *decompress_and_copy_tile_data_to_vram(u8 bgId, const void *src, u32 size, 
 bool8 free_temp_tile_data_buffers_if_possible(void);
 struct WindowTemplate CreateWindowTemplate(u8 bg, u8 left, u8 top, u8 width, u8 height, u8 paletteNum, u16 baseBlock);
 void CreateYesNoMenu(const struct WindowTemplate *windowTemplate, u16 borderFirstTileNum, u8 borderPalette, u8 initialCursorPos);
+void CreatePhoneYesNoMenu(const struct WindowTemplate *windowTemplate, u16 borderFirstTileNum, u8 borderPalette, u8 initialCursorPos, bool8 fromOverworld);
 void DecompressAndLoadBgGfxUsingHeap(u8 bgId, const void *src, u32 size, u16 offset, u8 mode);
 s8 Menu_ProcessInputNoWrapClearOnChoose(void);
 s8 ProcessMenuInput_other(void);

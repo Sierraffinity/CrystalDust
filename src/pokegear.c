@@ -113,7 +113,6 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId);
 static void PhoneCard_AddScrollIndicators(u8 taskId);
 static void PhoneCard_ReturnToMain(u8 taskId);
 static void PhoneCard_PlaceCall(u8 taskId);
-static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId);
 static void UpdateRadioStation(u8 taskId, u8 frequency);
 static void LoadCardSprites(u8 taskId);
 static void SpriteCB_Icons(struct Sprite* sprite);
@@ -1289,6 +1288,11 @@ static void PhoneCard_ConfirmCallProcessInput(u8 taskId)
     }
 }
 
+void PhoneCard_RefreshContactList(void)
+{
+    PutWindowTilemap(WIN_LIST);
+}
+
 static void PhoneCard_ReturnToMain(u8 taskId)
 {
     ShowHelpBar(gText_PhoneCardHelp1);
@@ -1396,7 +1400,7 @@ void InitPokegearPhoneCall(u8 taskId)
     }
 }
 
-static void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
+void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
 {
     int bg, x, y, width, height;
     int tileNum;

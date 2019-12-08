@@ -6,11 +6,13 @@
 #include "event_data.h"
 #include "field_specials.h"
 #include "graphics.h"
+#include "match_call.h"
 #include "main.h"
 #include "menu.h"
 #include "menu_helpers.h"
 #include "palette.h"
 #include "pokedex.h"
+#include "pokegear.h"
 #include "pokemon_icon.h"
 #include "region_map.h"
 #include "sound.h"
@@ -1840,12 +1842,29 @@ void sub_81995E4(u8 windowId, u8 itemCount, const struct MenuAction *strs, const
     CopyWindowToVram(windowId, 2);
 }
 
-void CreateYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos)
+static void _CreateYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos, u8 type)
 {
     struct TextPrinterTemplate printer;
 
     sYesNoWindowId = AddWindow(window);
-    DrawStdFrameWithCustomTileAndPalette(sYesNoWindowId, TRUE, baseTileNum, paletteNum);
+    switch (type)
+    {
+    case YESNO_STANDARD:
+        DrawStdFrameWithCustomTileAndPalette(sYesNoWindowId, TRUE, baseTileNum, paletteNum);
+        break;
+    case YESNO_PHONE_OVERWORLD:
+        DrawMatchCallTextBoxBorder(sYesNoWindowId, baseTileNum, paletteNum);
+        FillWindowPixelBuffer(sYesNoWindowId, PIXEL_FILL(1));
+        PutWindowTilemap(sYesNoWindowId);
+        CopyWindowToVram(sYesNoWindowId, 3);
+        break;
+    case YESNO_PHONE_POKEGEAR:
+        DrawPhoneCallTextBoxBorder(sYesNoWindowId, baseTileNum, paletteNum);
+        FillWindowPixelBuffer(sYesNoWindowId, PIXEL_FILL(1));
+        PutWindowTilemap(sYesNoWindowId);
+        CopyWindowToVram(sYesNoWindowId, 3);
+        break;
+    }
 
     printer.currentChar = gText_YesNo;
     printer.windowId = sYesNoWindowId;
@@ -1863,6 +1882,17 @@ void CreateYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 pa
 
     AddTextPrinter(&printer, 0xFF, NULL);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sYesNoWindowId, 2, initialCursorPos);
+}
+
+void CreateYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos)
+{
+    _CreateYesNoMenu(window, baseTileNum, paletteNum, initialCursorPos, YESNO_STANDARD);
+}
+
+void CreatePhoneYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos, bool8 fromOverworld)
+{
+    u8 type = fromOverworld ? YESNO_PHONE_OVERWORLD : YESNO_PHONE_POKEGEAR;
+    _CreateYesNoMenu(window, baseTileNum, paletteNum, initialCursorPos, type);
 }
 
 void PrintMenuGridTable(u8 windowId, u8 optionWidth, u8 columns, u8 rows, const struct MenuAction *strs)
