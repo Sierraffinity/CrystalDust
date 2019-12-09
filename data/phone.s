@@ -13,9 +13,11 @@
 #include "constants/heal_locations.h"
 #include "constants/layouts.h"
 #include "constants/map_scripts.h"
+#include "constants/map_types.h"
 #include "constants/maps.h"
 #include "constants/moves.h"
 #include "constants/radio.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
@@ -41,13 +43,85 @@ PhoneScript_Mom::
 	phone_end
 
 PhoneScript_Mom_RegularCall:
-	phone_stdcall Text_Pokegear_Mom_RegularCallPlaceholder
+	phone_initcall
+	phone_end_if_not_available
+	phone_message Text_Pokegear_Mom_RegularCall_WorkingHard
+	phone_getmapinfo
+	phone_buffermapsecname 0, VAR_0x8005
+	phone_compare VAR_0x8004, MAP_TYPE_TOWN
+	phone_goto_if_eq PhoneScript_Mom_CityOrTown
+	phone_compare VAR_0x8004, MAP_TYPE_CITY
+	phone_goto_if_eq PhoneScript_Mom_CityOrTown
+	phone_compare VAR_0x8004, MAP_TYPE_ROUTE
+	phone_goto_if_eq PhoneScript_Mom_Route
+	phone_compare VAR_0x8004, MAP_TYPE_OCEAN_ROUTE
+	phone_goto_if_eq PhoneScript_Mom_Route
+	phone_message Text_Pokegear_Mom_RegularCall_Determined
+PhoneScript_Mom_PostLocationBanking:
+	@ TODO: banking
+PhoneScript_Mom_PostBanking:
+	phone_message Text_Pokegear_Mom_RootingForYou
+	phone_waitbuttonpress
+	phone_hangup
 	phone_end
 
+PhoneScript_Mom_CityOrTown:
+	phone_compare VAR_0x8005, MAPSEC_NEW_BARK_TOWN
+	phone_goto_if_eq PhoneScript_Mom_NewBark
+	phone_compare VAR_0x8005, MAPSEC_CHERRYGROVE_CITY
+	phone_goto_if_eq PhoneScript_Mom_Cherrygrove
+	phone_compare VAR_0x8005, MAPSEC_VIOLET_CITY
+	phone_goto_if_eq PhoneScript_Mom_Violet
+	phone_compare VAR_0x8005, MAPSEC_AZALEA_TOWN
+	phone_goto_if_eq PhoneScript_Mom_Azalea
+	phone_compare VAR_0x8005, MAPSEC_GOLDENROD_CITY
+	phone_goto_if_eq PhoneScript_Mom_Goldenrod
+	phone_message Text_Pokegear_Mom_RegularCall_NeverGoneThere
+	phone_goto PhoneScript_Mom_PostLocationBanking
+
+PhoneScript_Mom_NewBark:
+	phone_message Text_Pokegear_Mom_RegularCall_NewBark
+	phone_goto PhoneScript_Mom_PostLocationBanking
+
+PhoneScript_Mom_Cherrygrove:
+	phone_message Text_Pokegear_Mom_RegularCall_Cherrygrove
+	phone_goto PhoneScript_Mom_PostLocationBanking
+
+PhoneScript_Mom_Violet:
+	phone_buffermapsecname 1, MAPSEC_ABANDONED_SHIP
+	phone_message Text_Pokegear_Mom_RegularCall_Landmark
+	phone_goto PhoneScript_Mom_PostLocationBanking
+
+PhoneScript_Mom_Azalea:
+	phone_buffermapsecname 1, MAPSEC_RUSTURF_TUNNEL
+	phone_message Text_Pokegear_Mom_RegularCall_Landmark
+	phone_goto PhoneScript_Mom_PostLocationBanking
+
+PhoneScript_Mom_Goldenrod:
+	phone_buffermapsecname 1, MAPSEC_NEW_MAUVILLE
+	phone_message Text_Pokegear_Mom_RegularCall_Landmark
+	phone_goto PhoneScript_Mom_PostLocationBanking
+
+PhoneScript_Mom_Route:
+	phone_message Text_Pokegear_Mom_RegularCall_Route
+	phone_goto PhoneScript_Mom_PostLocationBanking
+
 PhoneScript_Mom_BeginPhoneBanking:
+	phone_initcall
+	phone_end_if_not_available
 	phone_setflag FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	phone_stdcall Text_Pokegear_Mom_PhoneBankingPlaceholder
-	phone_end
+	phone_message Text_Pokegear_Mom_PhoneBanking_Question
+	phone_yesnobox
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_Mom_NoPhoneBanking
+	phone_setflag FLAG_SYS_MOM_BANKING_ENABLED
+	phone_message Text_Pokegear_Mom_PhoneBanking_Yes
+	phone_goto PhoneScript_Mom_PostBanking
+
+PhoneScript_Mom_NoPhoneBanking:
+	phone_clearflag FLAG_SYS_MOM_BANKING_ENABLED
+	phone_message Text_Pokegear_Mom_PhoneBanking_No
+	phone_goto PhoneScript_Mom_PostBanking
 
 PhoneScript_Mom_GaveEggToElm:
 	phone_stdcall Text_Pokegear_Mom_GaveEggToElm
@@ -74,25 +148,53 @@ Text_Pokegear_Mom_GaveEggToElm:
 	.string "If you're done with your errand,\n"
 	.string "come on home, dear.$"
 
-Text_Pokegear_Mom_PhoneBankingPlaceholder:
+Text_Pokegear_Mom_PhoneBanking_Question:
 	.string "Hello?\n"
 	.string "…… {PLAYER}?\p"
 	.string "I heard from PROF. ELM that you\n"
 	.string "went on a long trip.\p"
 	.string "I wish you would have told me…\p"
 	.string "What about money?\n"
-	.string "Do you want me to save it?\p"
-	.string "…insert yesno box here…\p"
-	.string "Okay. I'll save your money.\p"
-	.string "Okay. I won't save your money.\p"
-	.string "{PLAYER}, keep it up!\n"
-	.string "I'm rooting for you, baby!$"
+	.string "Do you want me to save it?$"
 
-Text_Pokegear_Mom_RegularCallPlaceholder:
+Text_Pokegear_Mom_PhoneBanking_Yes:
+	.string "Okay. I'll save your money.\p$"
+
+Text_Pokegear_Mom_PhoneBanking_No:
+	.string "Okay. I won't save your money.\p$"
+
+Text_Pokegear_Mom_RegularCall_WorkingHard:
 	.string "Hello?\n"
-	.string "Oh, hi, {PLAYER}! Working hard?\p"
-	.string "…insert location stuff here…\p"
-	.string "…insert money stuff here…\p"
+	.string "Oh, hi, {PLAYER}! Working hard?\p$"
+
+Text_Pokegear_Mom_RegularCall_NeverGoneThere:
+	.string "Really, you're in {STR_VAR_1}?\p"
+	.string "I've never gone there.\n"
+	.string "That's kind of neat, {PLAYER}.\p$"
+
+Text_Pokegear_Mom_RegularCall_NewBark:
+	.string "What? You're in {STR_VAR_1}?\n"
+	.string "Come see your MOM sometime!\p$"
+
+Text_Pokegear_Mom_RegularCall_Cherrygrove:
+	.string "You're visiting {STR_VAR_1}?\n"
+	.string "How about coming home for a bit?\p$"
+
+Text_Pokegear_Mom_RegularCall_Landmark:
+	.string "Oh, so you're in {STR_VAR_1}?\p"
+	.string "Isn't that where {STR_VAR_2}\n"
+	.string "is? Did you go take a look?\p$"
+
+Text_Pokegear_Mom_RegularCall_Route:
+	.string "Wow, you're in {STR_VAR_1}?\n"
+	.string "Good luck on your POKéMON quest!\p$"
+
+Text_Pokegear_Mom_RegularCall_Determined:
+	.string "That sounds really tough.\p"
+	.string "But, {PLAYER}, I know you're really\n"
+	.string "determined. You'll be okay, right?\p$"
+
+Text_Pokegear_Mom_RootingForYou:
 	.string "{PLAYER}, keep it up!\n"
 	.string "I'm rooting for you, baby!$"
 

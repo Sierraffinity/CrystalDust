@@ -1192,7 +1192,7 @@ static void LoadPhoneCard(void)
     DisplayPhoneCardDefaultText();
     
     gTasks[newTask].tScrollTaskId = 0xFF;
-    gPhoneCallSpriteId = MAX_SPRITES;
+    //gPhoneCallSpriteId = MAX_SPRITES;
     PhoneCard_AddScrollIndicators(newTask);
 }
 
@@ -1334,8 +1334,8 @@ void InitPokegearPhoneCall(u8 taskId)
         LoadBgTiles(0, sPhoneCallWindowGfx, sizeof(sPhoneCallWindowGfx), 0x143);
         FillWindowPixelBuffer(gPhoneCallWindowId, 0x11);
         LoadPalette(sPhoneCallWindowPalette, 0xE0, 0x20);
-        LoadSpriteSheet(&sPhoneCallIconSpriteSheet);
-        LoadSpritePalette(&gPhoneCallIconSpritePalette);
+        /*LoadSpriteSheet(&sPhoneCallIconSpriteSheet);
+        LoadSpritePalette(&gPhoneCallIconSpritePalette);*/
         gTasks[taskId].tPhoneCallInitState = 1;
         break;
     case 1:
@@ -1344,9 +1344,9 @@ void InitPokegearPhoneCall(u8 taskId)
         DrawPhoneCallTextBoxBorder(gPhoneCallWindowId, 0x143, 14);
         CopyWindowToVram(gPhoneCallWindowId, 2);
         CopyBgTilemapBufferToVram(0);
-        gPhoneCallSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
+        //gPhoneCallSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
         PlaySE(SE_TOREEYE);
-        AddTextPrinterParameterized(gPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 32, 1, 4, NULL);
+        AddTextPrinterParameterized(gPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 2, 1, 4, NULL);
         gTasks[taskId].tPhoneCallInitState = 2;
         break;
     case 2:
@@ -1372,7 +1372,7 @@ void InitPokegearPhoneCall(u8 taskId)
             if (str != NULL)
             {
                 StringExpandPlaceholders(gStringVar4, str);
-                AddTextPrinterParameterized(gPhoneCallWindowId, 1, gStringVar4, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+                AddTextPrinterParameterized(gPhoneCallWindowId, 1, gStringVar4, 2, 1, GetPlayerTextSpeedDelay(), NULL);
                 gTasks[taskId].tPhoneCallInitState = 3;
             }
             else
@@ -1427,11 +1427,11 @@ void HangupPokegearPhoneCall(void)
     PlaySE(SE_TOREOFF);
     ClearStdWindowAndFrameToTransparent(gPhoneCallWindowId, TRUE);
     RemoveWindow(gPhoneCallWindowId);
-    if (gPhoneCallSpriteId != MAX_SPRITES)
+    /*if (gPhoneCallSpriteId != MAX_SPRITES)
     {
         DestroySprite(&gSprites[gPhoneCallSpriteId]);
         gPhoneCallSpriteId = MAX_SPRITES;
-    }
+    }*/
     DisplayPhoneCardDefaultText();
 }
 

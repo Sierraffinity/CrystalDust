@@ -87,7 +87,7 @@ static const u8 sScriptConditionTable[6][3] =
     1, 0, 1, // !=
 };
 
-static u8 * const sScriptStringVars[] =
+u8 * const gScriptStringVars[] =
 {
     gStringVar1,
     gStringVar2,
@@ -1557,7 +1557,7 @@ bool8 ScrCmd_bufferspeciesname(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 species = VarGet(ScriptReadHalfword(ctx));
 
-    StringCopy(sScriptStringVars[stringVarIndex], gSpeciesNames[species]);
+    StringCopy(gScriptStringVars[stringVarIndex], gSpeciesNames[species]);
     return FALSE;
 }
 
@@ -1565,7 +1565,7 @@ bool8 ScrCmd_bufferleadmonspeciesname(struct ScriptContext *ctx)
 {
     u8 stringVarIndex = ScriptReadByte(ctx);
 
-    u8 *dest = sScriptStringVars[stringVarIndex];
+    u8 *dest = gScriptStringVars[stringVarIndex];
     u8 partyIndex = GetLeadMonIndex();
     u32 species = GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES, NULL);
     StringCopy(dest, gSpeciesNames[species]);
@@ -1577,8 +1577,8 @@ bool8 ScrCmd_bufferpartymonnick(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 partyIndex = VarGet(ScriptReadHalfword(ctx));
 
-    GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, sScriptStringVars[stringVarIndex]);
-    StringGetEnd10(sScriptStringVars[stringVarIndex]);
+    GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, gScriptStringVars[stringVarIndex]);
+    StringGetEnd10(gScriptStringVars[stringVarIndex]);
     return FALSE;
 }
 
@@ -1587,7 +1587,7 @@ bool8 ScrCmd_bufferitemname(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 itemId = VarGet(ScriptReadHalfword(ctx));
 
-    CopyItemName(itemId, sScriptStringVars[stringVarIndex]);
+    CopyItemName(itemId, gScriptStringVars[stringVarIndex]);
     return FALSE;
 }
 
@@ -1597,7 +1597,7 @@ bool8 ScrCmd_bufferitemnameplural(struct ScriptContext *ctx)
     u16 itemId = VarGet(ScriptReadHalfword(ctx));
     u16 quantity = VarGet(ScriptReadHalfword(ctx));
 
-    CopyItemNameHandlePlural(itemId, sScriptStringVars[stringVarIndex], quantity);
+    CopyItemNameHandlePlural(itemId, gScriptStringVars[stringVarIndex], quantity);
     return FALSE;
 }
 
@@ -1606,7 +1606,7 @@ bool8 ScrCmd_bufferdecorationname(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 decorId = VarGet(ScriptReadHalfword(ctx));
 
-    StringCopy(sScriptStringVars[stringVarIndex], gDecorations[decorId].name);
+    StringCopy(gScriptStringVars[stringVarIndex], gDecorations[decorId].name);
     return FALSE;
 }
 
@@ -1615,7 +1615,7 @@ bool8 ScrCmd_buffermovename(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 moveId = VarGet(ScriptReadHalfword(ctx));
 
-    StringCopy(sScriptStringVars[stringVarIndex], gMoveNames[moveId]);
+    StringCopy(gScriptStringVars[stringVarIndex], gMoveNames[moveId]);
     return FALSE;
 }
 
@@ -1625,7 +1625,7 @@ bool8 ScrCmd_buffernumberstring(struct ScriptContext *ctx)
     u16 num = VarGet(ScriptReadHalfword(ctx));
     u8 numDigits = CountDigits(num);
 
-    ConvertIntToDecimalStringN(sScriptStringVars[stringVarIndex], num, STR_CONV_MODE_LEFT_ALIGN, numDigits);
+    ConvertIntToDecimalStringN(gScriptStringVars[stringVarIndex], num, STR_CONV_MODE_LEFT_ALIGN, numDigits);
     return FALSE;
 }
 
@@ -1634,7 +1634,7 @@ bool8 ScrCmd_bufferstdstring(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 index = VarGet(ScriptReadHalfword(ctx));
 
-    StringCopy(sScriptStringVars[stringVarIndex], gStdStrings[index]);
+    StringCopy(gScriptStringVars[stringVarIndex], gStdStrings[index]);
     return FALSE;
 }
 
@@ -1643,7 +1643,7 @@ bool8 ScrCmd_buffercontesttype(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 index = VarGet(ScriptReadHalfword(ctx));
 
-    BufferContestName(sScriptStringVars[stringVarIndex], index);
+    BufferContestName(gScriptStringVars[stringVarIndex], index);
     return FALSE;
 }
 
@@ -1652,7 +1652,7 @@ bool8 ScrCmd_bufferstring(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     const u8 *text = (u8 *)ScriptReadWord(ctx);
 
-    StringCopy(sScriptStringVars[stringVarIndex], text);
+    StringCopy(gScriptStringVars[stringVarIndex], text);
     return FALSE;
 }
 
@@ -1670,7 +1670,7 @@ bool8 ScrCmd_vbufferstring(struct ScriptContext *ctx)
     u32 addr = ScriptReadWord(ctx);
 
     const u8 *src = (u8 *)(addr - gUnknown_020375C4);
-    u8 *dest = sScriptStringVars[stringVarIndex];
+    u8 *dest = gScriptStringVars[stringVarIndex];
     StringCopy(dest, src);
     return FALSE;
 }
@@ -1680,7 +1680,7 @@ bool8 ScrCmd_bufferboxname(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 boxId = VarGet(ScriptReadHalfword(ctx));
 
-    StringCopy(sScriptStringVars[stringVarIndex], GetBoxNamePtr(boxId));
+    StringCopy(gScriptStringVars[stringVarIndex], GetBoxNamePtr(boxId));
     return FALSE;
 }
 
@@ -2290,7 +2290,7 @@ bool8 ScrCmd_buffertrainerclassname(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 trainerClassId = VarGet(ScriptReadHalfword(ctx));
 
-    StringCopy(sScriptStringVars[stringVarIndex], GetTrainerClassNameFromId(trainerClassId));
+    StringCopy(gScriptStringVars[stringVarIndex], GetTrainerClassNameFromId(trainerClassId));
     return FALSE;
 }
 
@@ -2299,7 +2299,7 @@ bool8 ScrCmd_buffertrainername(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 trainerClassId = VarGet(ScriptReadHalfword(ctx));
 
-    StringCopy(sScriptStringVars[stringVarIndex], GetTrainerNameFromId(trainerClassId));
+    StringCopy(gScriptStringVars[stringVarIndex], GetTrainerNameFromId(trainerClassId));
     return FALSE;
 }
 

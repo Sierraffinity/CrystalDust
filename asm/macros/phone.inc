@@ -173,6 +173,7 @@
 	.4byte \func
 	.endm
 
+	@ Shows a yes/no box.
 	.macro phone_yesnobox
 	.byte 0x1D
 	.endm
@@ -244,6 +245,19 @@
 			.error "Invalid arguments for 'phone_compare'"
 		.endif
 	.endm
+
+	@ Gets the current map type and mapsec and stores them into VAR_0x8004 and VAR_0x8005.
+	.macro phone_getmapinfo
+	.byte 0x26
+	.endm
+
+	@ Gets a map name and stores it into a string variable.
+	.macro phone_buffermapsecname out:req, mapsec:req
+	.byte 0x27
+	.byte \out
+	.2byte \mapsec
+	.endm
+	
 
 @ Supplementary
 

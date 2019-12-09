@@ -10,6 +10,8 @@ typedef u8 Script[];
 
 extern u8 gExitFromScriptEarlyWaitTimer;
 
+extern u8 * const gScriptStringVars[];
+
 struct ScriptContext
 {
     u8 stackDepth;

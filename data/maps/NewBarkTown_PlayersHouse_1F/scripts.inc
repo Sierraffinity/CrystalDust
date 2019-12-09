@@ -144,7 +144,7 @@ NewBarkTown_PlayersHouse_1F_EventScript_MomLetsYouBank:
 	end
 
 NewBarkTown_PlayersHouse_1F_EventScript_MomEnableBanking:
-	setflag FLAG_SYS_MOM_SAVING_ENABLED
+	setflag FLAG_SYS_MOM_BANKING_ENABLED
 	msgbox NewBarkTown_PlayersHouse_1F_Text_MomIllTakeCareOfMoney
 	return
 

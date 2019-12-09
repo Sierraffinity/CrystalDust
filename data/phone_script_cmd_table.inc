@@ -38,6 +38,8 @@ gPhoneScriptCmdTable::
 	.4byte PhoneScrCmd_compare_addr_to_addr
 	.4byte PhoneScrCmd_compare_var_to_value
 	.4byte PhoneScrCmd_compare_var_to_var
+	.4byte PhoneScrCmd_getmapinfo
+	.4byte PhoneScrCmd_buffermapsecname
 
 gPhoneScriptCmdTableEnd::
 	.4byte PhoneScrCmd_nop

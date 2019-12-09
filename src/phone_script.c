@@ -9,6 +9,7 @@
 #include "phone_script.h"
 #include "pokegear.h"
 #include "random.h"
+#include "region_map.h"
 #include "rtc.h"
 #include "script.h"
 #include "script_menu.h"
@@ -22,7 +23,7 @@ typedef void (*PhoneNativeFunc)(const struct PhoneContact *phoneContact, bool8 i
 
 EWRAM_DATA u16 gPhoneCallWindowId = 0;
 EWRAM_DATA u16 gPhoneCallerNameWindowId = 0;
-EWRAM_DATA u8 gPhoneCallSpriteId = 0;
+//EWRAM_DATA u8 gPhoneCallSpriteId = 0;
 static EWRAM_DATA u16 sPauseCounter = 0;
 
 static u8 sPhoneScriptContextStatus;
@@ -195,7 +196,7 @@ static void AddPhoneTextPrinter(struct ScriptContext *ctx, u8 *str)
     switch (ctx->data[0])
     {
     case PHONE_SCRIPT_POKEGEAR:
-        AddTextPrinterParameterized(gPhoneCallWindowId, 1, str, 32, 1, GetPlayerTextSpeedDelay(), NULL);
+        AddTextPrinterParameterized(gPhoneCallWindowId, 1, str, 2, 1, GetPlayerTextSpeedDelay(), NULL);
         SetupNativeScript(ctx, IsPokegearPhoneMessageFinished);
         break;
     case PHONE_SCRIPT_OVERWORLD:
@@ -615,5 +616,22 @@ bool8 PhoneScrCmd_compare_var_to_var(struct ScriptContext *ctx)
     const u16 *ptr2 = GetVarPointer(ScriptReadHalfword(ctx));
 
     ctx->comparisonResult = DoCompare(*ptr1, *ptr2);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_getmapinfo(struct ScriptContext *ctx)
+{
+    gSpecialVar_0x8004 = gMapHeader.mapType;
+    gSpecialVar_0x8005 = gMapHeader.regionMapSectionId;
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_buffermapsecname(struct ScriptContext *ctx)
+{
+    const u8 stringVarIndex = ScriptReadByte(ctx);
+    const u16 mapSec = VarGet(ScriptReadHalfword(ctx));
+
+    GetMapName(gScriptStringVars[stringVarIndex], mapSec, 0);
+
     return FALSE;
 }

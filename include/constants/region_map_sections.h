@@ -17,10 +17,10 @@
 #define MAPSEC_MOSSDEEP_CITY                0x0D
 #define MAPSEC_SOOTOPOLIS_CITY              0x0E
 #define MAPSEC_EVER_GRANDE_CITY             0x0F
-#define MAPSEC_ROUTE_29                    0x10
-#define MAPSEC_ROUTE_30                    0x11
-#define MAPSEC_ROUTE_31                    0x12
-#define MAPSEC_ROUTE_32                    0x13
+#define MAPSEC_ROUTE_29                     0x10
+#define MAPSEC_ROUTE_30                     0x11
+#define MAPSEC_ROUTE_31                     0x12
+#define MAPSEC_ROUTE_32                     0x13
 #define MAPSEC_ROUTE_105                    0x14
 #define MAPSEC_ROUTE_106                    0x15
 #define MAPSEC_ROUTE_107                    0x16
@@ -34,7 +34,7 @@
 #define MAPSEC_ROUTE_115                    0x1E
 #define MAPSEC_ROUTE_116                    0x1F
 #define MAPSEC_ROUTE_117                    0x20
-#define MAPSEC_ROUTE_46                    0x21
+#define MAPSEC_ROUTE_46                     0x21
 #define MAPSEC_ROUTE_119                    0x22
 #define MAPSEC_ROUTE_120                    0x23
 #define MAPSEC_ROUTE_121                    0x24
@@ -56,7 +56,7 @@
 #define MAPSEC_UNDERWATER_126               0x34
 #define MAPSEC_UNDERWATER_127               0x35
 #define MAPSEC_UNDERWATER_SOOTOPOLIS        0x36
-#define MAPSEC_DARK_CAVE                 0x37
+#define MAPSEC_DARK_CAVE                    0x37
 #define MAPSEC_MT_CHIMNEY                   0x38
 #define MAPSEC_SAFARI_ZONE                  0x39
 #define MAPSEC_BATTLE_FRONTIER              0x3A

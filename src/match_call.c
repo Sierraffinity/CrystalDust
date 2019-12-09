@@ -1244,13 +1244,13 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
         return FALSE;
     }
 
-    if (!decompress_and_copy_tile_data_to_vram(0, sPokeNavIconGfx, 0, 0x279, 0))
+    /*if (!decompress_and_copy_tile_data_to_vram(0, sPokeNavIconGfx, 0, 0x279, 0))
     {
         RemoveWindow(gPhoneCallWindowId);
         RemoveWindow(gPhoneCallerNameWindowId);
         DestroyTask(taskId);
         return FALSE;
-    }
+    }*/
 
     FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
     FillWindowPixelBuffer(gPhoneCallerNameWindowId, PIXEL_FILL(8));
@@ -1476,9 +1476,9 @@ void InitMatchCallTextPrinter(int windowId, const u8 *str)
     printerTemplate.currentChar = str;
     printerTemplate.windowId = windowId;
     printerTemplate.fontId = 1;
-    printerTemplate.x = 32;
+    printerTemplate.x = 0;
     printerTemplate.y = 1;
-    printerTemplate.currentX = 32;
+    printerTemplate.currentX = 0;
     printerTemplate.currentY = 1;
     printerTemplate.letterSpacing = 0;
     printerTemplate.lineSpacing = 0;
