@@ -168,7 +168,7 @@ DewfordTown_EventScript_1E96E7:: @ 81E96E7
 	setobjectpriority 2, MAP_ROUTE109, 0
 	applymovement 2, DewfordTown_Movement_1E991F
 	waitmovement 0
-	clearflag FLAG_HIDE_ROUTE_108_MR_BRINEY
+	clearflag FLAG_HIDE_ROUTE_36_MR_BRINEY
 	addobject 1
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN

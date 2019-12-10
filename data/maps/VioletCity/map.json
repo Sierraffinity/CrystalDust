@@ -55,6 +55,11 @@
             "direction": "down",
             "map": "MAP_ROUTE32",
             "offset": -2
+        },
+        {
+            "direction": "left",
+            "map": "MAP_ROUTE36",
+            "offset": -2
         }
     ],
     "coord_events": [

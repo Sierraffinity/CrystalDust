@@ -698,89 +698,89 @@ Route107_Text_296CC0: @ 8296CC0
 	.string "to do after this.\p"
 	.string "Am I going to be okay?$"
 
-Route108_Text_296D10: @ 8296D10
+Route36_Text_296D10: @ 8296D10
 	.string "My dream is to swim the world's seven\n"
 	.string "seas!$"
 
-Route108_Text_296D3C: @ 8296D3C
+Route36_Text_296D3C: @ 8296D3C
 	.string "I won't be able to swim the seven seas\n"
 	.string "like this…$"
 
-Route108_Text_296D6E: @ 8296D6E
+Route36_Text_296D6E: @ 8296D6E
 	.string "Playing with marine POKéMON is one of\n"
 	.string "the pleasures of swimming!$"
 
-Route108_Text_296DAF: @ 8296DAF
+Route36_Text_296DAF: @ 8296DAF
 	.string "Ahoy, there! Are you going out to\n"
 	.string "the ABANDONED SHIP, too?$"
 
-Route108_Text_296DEA: @ 8296DEA
+Route36_Text_296DEA: @ 8296DEA
 	.string "I'm sinking!\n"
 	.string "Glub… Glub…$"
 
-Route108_Text_296E03: @ 8296E03
+Route36_Text_296E03: @ 8296E03
 	.string "Some people even go inside that\n"
 	.string "ABANDONED SHIP.$"
 
-Route108_Text_296E33: @ 8296E33
+Route36_Text_296E33: @ 8296E33
 	.string "My liar of a boyfriend told me that\n"
 	.string "I look great in a bikini…$"
 
-Route108_Text_296E71: @ 8296E71
+Route36_Text_296E71: @ 8296E71
 	.string "Oh, boo!$"
 
-Route108_Text_296E7A: @ 8296E7A
+Route36_Text_296E7A: @ 8296E7A
 	.string "Even if it's a lie, I love being told\n"
 	.string "I look great…\l"
 	.string "We girls are so complex…$"
 
-Route108_Text_296EC7: @ 8296EC7
+Route36_Text_296EC7: @ 8296EC7
 	.string "I love the sea!\n"
 	.string "I forget all my worries when I swim!$"
 
-Route108_Text_296EFC: @ 8296EFC
+Route36_Text_296EFC: @ 8296EFC
 	.string "When I lose a battle, I get all\n"
 	.string "stressed out!$"
 
-Route108_Text_296F2A: @ 8296F2A
+Route36_Text_296F2A: @ 8296F2A
 	.string "Work off your stress by swimming!\n"
 	.string "It's so healthy!$"
 
-Route108_Text_296F5D: @ 8296F5D
+Route36_Text_296F5D: @ 8296F5D
 	.string "I love WATER-type POKéMON.\n"
 	.string "I love other POKéMON, too!$"
 
-Route108_Text_296F93: @ 8296F93
+Route36_Text_296F93: @ 8296F93
 	.string "Waaah! I lost!\n"
 	.string "Waaah! Waaah!$"
 
-Route108_Text_296FB0: @ 8296FB0
+Route36_Text_296FB0: @ 8296FB0
 	.string "Shouting is good for me!\n"
 	.string "It uplifts me!$"
 
-Route108_Text_296FD8: @ 8296FD8
+Route36_Text_296FD8: @ 8296FD8
 	.string "I love tough TRAINERS, too!\n"
 	.string "Register me in your POKéNAV!$"
 
-Route108_Text_297011: @ 8297011
+Route36_Text_297011: @ 8297011
 	.string "Win or lose, I love battling at sea!$"
 
-Route108_Text_297036: @ 8297036
+Route36_Text_297036: @ 8297036
 	.string "Waaah! I lost again!\n"
 	.string "Waaah! Waaah!$"
 
-Route108_Text_297059: @ 8297059
+Route36_Text_297059: @ 8297059
 	.string "If you're faced with a challenge,\n"
 	.string "try shouting at the sea!$"
 
-Route108_Text_297094: @ 8297094
+Route36_Text_297094: @ 8297094
 	.string "I take huge pride in my POKéMON.\n"
 	.string "We'll show you one speedy battle!$"
 
-Route108_Text_2970D7: @ 82970D7
+Route36_Text_2970D7: @ 82970D7
 	.string "That wasn't cute at all.$"
 
-Route108_Text_2970F0: @ 82970F0
+Route36_Text_2970F0: @ 82970F0
 	.string "Since I'm at sea like this, I wouldn't\n"
 	.string "mind putting on a pink, frilly swimsuit…$"
 

@@ -24,7 +24,7 @@
 #define MAPSEC_ROUTE_105                    0x14
 #define MAPSEC_ROUTE_106                    0x15
 #define MAPSEC_ROUTE_107                    0x16
-#define MAPSEC_ROUTE_108                    0x17
+#define MAPSEC_ROUTE_36                    0x17
 #define MAPSEC_ROUTE_109                    0x18
 #define MAPSEC_ROUTE_110                    0x19
 #define MAPSEC_ROUTE_111                    0x1A

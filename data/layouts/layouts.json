@@ -231,14 +231,14 @@
             "width": 60
         },
         {
-            "blockdata_filepath": "data/layouts/Route108/map.bin",
-            "border_filepath": "data/layouts/Route108/border.bin",
-            "height": 20,
-            "id": "LAYOUT_ROUTE108",
-            "name": "Route108_Layout",
+            "blockdata_filepath": "data/layouts/Route36/map.bin",
+            "border_filepath": "data/layouts/Route36/border.bin",
+            "height": 26,
+            "id": "LAYOUT_ROUTE36",
+            "name": "Route36_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Slateport",
-            "width": 60
+            "secondary_tileset": "gTileset_Dewford",
+            "width": 64
         },
         {
             "blockdata_filepath": "data/layouts/Route109/map.bin",

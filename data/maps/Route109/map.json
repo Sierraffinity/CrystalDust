@@ -21,7 +21,7 @@
     {
       "direction": "left",
       "offset": 40,
-      "map": "MAP_ROUTE108"
+      "map": "MAP_ROUTE36"
     }
   ],
   "object_events": [
@@ -51,7 +51,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route109_EventScript_1EE910",
-      "flag": "FLAG_HIDE_ROUTE_108_MR_BRINEY"
+      "flag": "FLAG_HIDE_ROUTE_36_MR_BRINEY"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_SWIMMER_M",

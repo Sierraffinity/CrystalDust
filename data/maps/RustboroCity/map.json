@@ -155,7 +155,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_1E0ADD",
-      "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1"
+      "flag": "FLAG_HIDE_ROUTE_36_ARTHUR"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",

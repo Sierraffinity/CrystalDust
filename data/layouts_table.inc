@@ -23,7 +23,7 @@ gMapLayouts::
 	.4byte Route105_Layout
 	.4byte Route106_Layout
 	.4byte Route107_Layout
-	.4byte Route108_Layout
+	.4byte Route36_Layout
 	.4byte Route109_Layout
 	.4byte Route110_Layout
 	.4byte Route111_Layout

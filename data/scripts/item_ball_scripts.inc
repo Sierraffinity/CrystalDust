@@ -62,7 +62,7 @@ Route106_EventScript_ItemProtein:: @ 8290D40
 	giveitem_std ITEM_PROTEIN, 1, 1
 	end
 
-Route108_EventScript_ItemStarPiece:: @ 8290D4D
+Route36_EventScript_ItemStarPiece:: @ 8290D4D
 	giveitem_std ITEM_STAR_PIECE, 1, 1
 	end
 
