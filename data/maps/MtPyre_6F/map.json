@@ -25,7 +25,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "MtPyre_6F_EventScript_231D3B",
+      "script": "MtPyre_6F_EventScript_Valerie",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "MtPyre_6F_EventScript_231D9D",
+      "script": "MtPyre_6F_EventScript_Cedric",
       "flag": "0"
     }
   ],

@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_House4_EventScript_222DD8",
+      "script": "MossdeepCity_House4_EventScript_Woman",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_House4_EventScript_222DF7",
+      "script": "MossdeepCity_House4_EventScript_NinjaBoy",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_House4_EventScript_222E1E",
+      "script": "MossdeepCity_House4_EventScript_Skitty",
       "flag": "0"
     }
   ],

@@ -123,7 +123,7 @@ void CreateRegionMapPlayerIcon(u16 x, u16 y);
 void CreateRegionMapCursor(u16 tileTag, u16 paletteTag, bool8 visible);
 u8 *GetMapName(u8 *, u16, u16);
 bool32 sub_8124668(u8 mapSecId);
-u8 *sub_81245DC(u8 *dest, u16 mapSecId);
+u8 *GetMapNameGeneric(u8 *dest, u16 mapSecId);
 u8 *sub_8124610(u8 *dest, u16 mapSecId);
 u8 GetCurrentRegion(void);
 void ShowRegionMapCursorSprite(void);

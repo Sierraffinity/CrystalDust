@@ -123,7 +123,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PetalburgWoods_EventScript_22E210",
+      "script": "PetalburgWoods_EventScript_Boy1",
       "flag": "0"
     },
     {
@@ -137,7 +137,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "PetalburgWoods_EventScript_22E26D",
+      "script": "PetalburgWoods_EventScript_Lyle",
       "flag": "0"
     },
     {
@@ -151,7 +151,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "PetalburgWoods_EventScript_22E284",
+      "script": "PetalburgWoods_EventScript_James",
       "flag": "0"
     },
     {
@@ -165,7 +165,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PetalburgWoods_EventScript_22E219",
+      "script": "PetalburgWoods_EventScript_Boy2",
       "flag": "0"
     },
     {
@@ -193,7 +193,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PetalburgWoods_EventScript_22E222",
+      "script": "PetalburgWoods_EventScript_Girl",
       "flag": "0"
     }
   ],
@@ -249,7 +249,7 @@
       "elevation": 3,
       "var": "VAR_PETALBURG_WOODS_STATE",
       "var_value": "0",
-      "script": "PetalburgWoods_EventScript_22DFD7"
+      "script": "PetalburgWoods_EventScript_DevonResearcherLeft"
     },
     {
       "type": "trigger",
@@ -258,7 +258,7 @@
       "elevation": 3,
       "var": "VAR_PETALBURG_WOODS_STATE",
       "var_value": "0",
-      "script": "PetalburgWoods_EventScript_22E079"
+      "script": "PetalburgWoods_EventScript_DevonResearcherRight"
     }
   ],
   "bg_events": [
@@ -268,7 +268,7 @@
       "y": 32,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PetalburgWoods_EventScript_22E25B"
+      "script": "PetalburgWoods_EventScript_Sign1"
     },
     {
       "type": "hidden_item",
@@ -308,7 +308,7 @@
       "y": 8,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PetalburgWoods_EventScript_22E264"
+      "script": "PetalburgWoods_EventScript_Sign2"
     }
   ],
   "phone_service": true

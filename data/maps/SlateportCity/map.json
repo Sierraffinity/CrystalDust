@@ -41,7 +41,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCED9",
+      "script": "SlateportCity_EventScript_FatMan",
       "flag": "0"
     },
     {
@@ -55,7 +55,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCEF6",
+      "script": "SlateportCity_EventScript_Man1",
       "flag": "0"
     },
     {
@@ -69,7 +69,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCEB8",
+      "script": "SlateportCity_EventScript_RichBoy",
       "flag": "0"
     },
     {
@@ -83,7 +83,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCF17",
+      "script": "SlateportCity_EventScript_Woman1",
       "flag": "0"
     },
     {
@@ -97,7 +97,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD009",
+      "script": "SlateportCity_EventScript_AquaGrunt1",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -111,7 +111,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCE42",
+      "script": "SlateportCity_EventScript_Cook",
       "flag": "0"
     },
     {
@@ -125,7 +125,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCE63",
+      "script": "SlateportCity_EventScript_OldWoman",
       "flag": "0"
     },
     {
@@ -139,7 +139,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCE84",
+      "script": "SlateportCity_EventScript_Girl",
       "flag": "0"
     },
     {
@@ -153,7 +153,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD353",
+      "script": "SlateportCity_EventScript_Ty",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY"
     },
     {
@@ -167,7 +167,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD35C",
+      "script": "SlateportCity_EventScript_Gabby",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY"
     },
     {
@@ -181,7 +181,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD1F8",
+      "script": "SlateportCity_EventScript_CaptStern",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN"
     },
     {
@@ -195,7 +195,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCFE5",
+      "script": "SlateportCity_EventScript_Sailor1",
       "flag": "0"
     },
     {
@@ -209,7 +209,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCFEE",
+      "script": "SlateportCity_EventScript_Sailor2",
       "flag": "0"
     },
     {
@@ -223,7 +223,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCFF7",
+      "script": "SlateportCity_EventScript_PokefanF",
       "flag": "0"
     },
     {
@@ -237,7 +237,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD000",
+      "script": "SlateportCity_EventScript_Man2",
       "flag": "0"
     },
     {
@@ -251,7 +251,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCFBB",
+      "script": "SlateportCity_EventScript_Maniac",
       "flag": "0"
     },
     {
@@ -265,7 +265,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCFDC",
+      "script": "SlateportCity_EventScript_Woman2",
       "flag": "0"
     },
     {
@@ -279,7 +279,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD020",
+      "script": "SlateportCity_EventScript_AquaGrunt2",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -293,7 +293,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD037",
+      "script": "SlateportCity_EventScript_AquaGrunt3",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -307,7 +307,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD198",
+      "script": "SlateportCity_EventScript_DecorClerk",
       "flag": "0"
     },
     {
@@ -321,7 +321,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD16A",
+      "script": "SlateportCity_EventScript_DollClerk",
       "flag": "0"
     },
     {
@@ -335,7 +335,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD365",
+      "script": "SlateportCity_EventScript_Man3",
       "flag": "0"
     },
     {
@@ -349,7 +349,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCDE4",
+      "script": "SlateportCity_EventScript_EffortRibbonWoman",
       "flag": "0"
     },
     {
@@ -363,7 +363,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD1D8",
+      "script": "SlateportCity_EventScript_PowerTMClerk",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN"
     },
     {
@@ -377,7 +377,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DCDBD",
+      "script": "SlateportCity_EventScript_EnergyGuru",
       "flag": "0"
     },
     {
@@ -391,7 +391,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD04E",
+      "script": "SlateportCity_EventScript_AquaGrunt4",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -405,7 +405,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD065",
+      "script": "SlateportCity_EventScript_AquaGrunt5",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -419,7 +419,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD07C",
+      "script": "SlateportCity_EventScript_AquaGrunt6",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -433,7 +433,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD093",
+      "script": "SlateportCity_EventScript_AquaGrunt7",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -447,7 +447,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD0AA",
+      "script": "SlateportCity_EventScript_AquaGrunt8",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -461,7 +461,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD0C1",
+      "script": "SlateportCity_EventScript_AquaGrunt9",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -475,7 +475,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD14A",
+      "script": "SlateportCity_EventScript_AquaGrunt10",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -489,7 +489,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD153",
+      "script": "SlateportCity_EventScript_AquaGrunt11",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA"
     },
     {
@@ -503,7 +503,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_1DD36E",
+      "script": "SlateportCity_EventScript_BerryPowderClerk",
       "flag": "0"
     },
     {
@@ -568,7 +568,7 @@
       "x": 5,
       "y": 19,
       "elevation": 0,
-      "dest_map": "MAP_SLATEPORT_CITY_HOUSE1",
+      "dest_map": "MAP_SLATEPORT_CITY_NAME_RATERS_HOUSE",
       "dest_warp_id": 0
     },
     {
@@ -596,7 +596,7 @@
       "x": 21,
       "y": 44,
       "elevation": 0,
-      "dest_map": "MAP_SLATEPORT_CITY_HOUSE2",
+      "dest_map": "MAP_SLATEPORT_CITY_HOUSE",
       "dest_warp_id": 0
     }
   ],
@@ -608,7 +608,7 @@
       "elevation": 3,
       "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
       "var_value": "2",
-      "script": "SlateportCity_EventScript_1DD5DC"
+      "script": "SlateportCity_EventScript_ScottBattleTentScene"
     }
   ],
   "bg_events": [
@@ -618,7 +618,7 @@
       "y": 19,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_EventScript_1DCFB2"
+      "script": "SlateportCity_EventScript_NameRatersHouseSign"
     },
     {
       "type": "sign",
@@ -650,7 +650,7 @@
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_EventScript_1DCF94"
+      "script": "SlateportCity_EventScript_HarborSign"
     },
     {
       "type": "sign",
@@ -666,7 +666,7 @@
       "y": 51,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_EventScript_1DCF8B"
+      "script": "SlateportCity_EventScript_MarketSign"
     },
     {
       "type": "sign",
@@ -674,7 +674,7 @@
       "y": 26,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_EventScript_1DCF79"
+      "script": "SlateportCity_EventScript_OceanicMuseumSign"
     },
     {
       "type": "sign",
@@ -682,7 +682,7 @@
       "y": 22,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_EventScript_1DCF82"
+      "script": "SlateportCity_EventScript_CitySign"
     },
     {
       "type": "sign",
@@ -690,7 +690,7 @@
       "y": 26,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_EventScript_1DCF70"
+      "script": "SlateportCity_EventScript_PokemonFanClubSign"
     },
     {
       "type": "sign",
@@ -698,7 +698,7 @@
       "y": 13,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_EventScript_1DCF36"
+      "script": "SlateportCity_EventScript_BattleTentSign"
     },
     {
       "type": "sign",
@@ -706,7 +706,7 @@
       "y": 38,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_EventScript_1DCF3F"
+      "script": "SlateportCity_EventScript_SternsShipyardSign"
     },
     {
       "type": "sign",
@@ -714,7 +714,7 @@
       "y": 36,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "SlateportCity_EventScript_1DD643"
+      "script": "SlateportCity_EventScript_BerryCrushRankingsSign"
     }
   ],
   "phone_service": true

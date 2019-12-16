@@ -1246,8 +1246,8 @@ static void Task_PhoneCard(u8 taskId)
 }
 
 static const struct MenuAction sCallOptions[] = {
-    {gUnknown_085EC017, PhoneCard_PlaceCall},
-    {gUnknown_085EC022, PhoneCard_ReturnToMain}
+    {gText_Call, PhoneCard_PlaceCall},
+    {gText_Cancel6, PhoneCard_ReturnToMain}
 };
 
 static void PhoneCard_ConfirmCall(u8 taskId)

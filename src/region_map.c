@@ -62,7 +62,7 @@ static EWRAM_DATA struct {
     /*0x008*/ struct RegionMap regionMap;
     /*0x88c*/ u8 unk_88c[0x1c0];
     /*0xa4c*/ u8 unk_a4c[0x26];
-    /*0xa72*/ bool8 unk_a72;
+    /*0xa72*/ bool8 choseFlyLocation;
 } *sFlyMap = NULL; // a74
 
 static bool32 gUnknown_03001180;
@@ -1298,7 +1298,7 @@ static u16 RegionMap_GetTerraCaveMapSecId(void)
 {
     s16 idx;
 
-    idx = VarGet(VAR_UNUSUAL_WEATHER_LOCATION) - 1;
+    idx = VarGet(VAR_ABNORMAL_WEATHER_LOCATION) - 1;
     if (idx < 0 || idx > 15)
     {
         idx = 0;
@@ -1310,7 +1310,7 @@ static void RegionMap_GetMarineCaveCoords(u16 *x, u16 *y)
 {
     u16 idx;
 
-    idx = VarGet(VAR_UNUSUAL_WEATHER_LOCATION);
+    idx = VarGet(VAR_ABNORMAL_WEATHER_LOCATION);
     if (idx < 9 || idx > 16)
     {
         idx = 9;
@@ -1697,7 +1697,8 @@ u8 *GetMapName(u8 *dest, u16 regionMapId, u16 padLength)
     return str;
 }
 
-u8 *sub_81245DC(u8 *dest, u16 mapSecId)
+// TODO: probably needs a better name
+u8 *GetMapNameGeneric(u8 *dest, u16 mapSecId)
 {
     switch (mapSecId)
     {
@@ -1718,7 +1719,7 @@ u8 *sub_8124610(u8 *dest, u16 mapSecId)
     }
     else
     {
-        return sub_81245DC(dest, mapSecId);
+        return GetMapNameGeneric(dest, mapSecId);
     }
 }
 
@@ -1917,15 +1918,15 @@ static void sub_8124AD4(void)
         y = (y + MAPCURSOR_Y_MIN) * 8 + 4;
         if (width == 2)
         {
-            shape = ST_OAM_H_RECTANGLE;
+            shape = SPRITE_SHAPE(16x8);
         }
         else if (height == 2)
         {
-            shape = ST_OAM_V_RECTANGLE;
+            shape = SPRITE_SHAPE(8x16);
         }
         else
         {
-            shape = ST_OAM_SQUARE;
+            shape = SPRITE_SHAPE(8x8);
         }
         spriteId = CreateSprite(&gUnknown_085A1F7C, x, y, 10);
         if (spriteId != MAX_SPRITES)
@@ -1967,7 +1968,7 @@ static void sub_8124BE4(void)
             spriteId = CreateSprite(&gUnknown_085A1F7C, x, y, 10);
             if (spriteId != MAX_SPRITES)
             {
-                gSprites[spriteId].oam.size = 1;
+                gSprites[spriteId].oam.size = SPRITE_SIZE(16x16);
                 gSprites[spriteId].callback = sub_8124CBC;
                 StartSpriteAnim(&gSprites[spriteId], 6);
                 gSprites[spriteId].data[0] = mapSecId;
@@ -2036,7 +2037,7 @@ static void sub_8124D64(void)
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
                     m4aSongNumStart(SE_KAIFUKU);
-                    sFlyMap->unk_a72 = TRUE;
+                    sFlyMap->choseFlyLocation = TRUE;
                     sub_81248F4(sub_8124E0C);
                     break;
                 }
@@ -2046,7 +2047,7 @@ static void sub_8124D64(void)
                 }
                 m4aSongNumStart(SE_W063B);
             case INPUT_EVENT_B_BUTTON:
-                sFlyMap->unk_a72 = FALSE;
+                sFlyMap->choseFlyLocation = FALSE;
                 sub_81248F4(sub_8124E0C);
                 break;
         }
@@ -2065,7 +2066,7 @@ static void sub_8124E0C(void)
             if (!UpdatePaletteFade())
             {
                 FreeRegionMapResources();
-                if (sFlyMap->unk_a72)
+                if (sFlyMap->choseFlyLocation)
                 {
                     switch (sFlyMap->regionMap.primaryMapSecId)
                     {
@@ -2089,12 +2090,12 @@ static void sub_8124E0C(void)
                             }
                             break;
                     }
-                    sub_80B69DC();
+                    ReturnToFieldFromFlyMapSelect();
                     TryEndBugCatchingContest();
                 }
                 else
                 {
-                    SetMainCallback2(sub_81B58A8);
+                    SetMainCallback2(CB2_ReturnToPartyMenuFromFlyMap);
                 }
                 if (sFlyMap != NULL)
                 {

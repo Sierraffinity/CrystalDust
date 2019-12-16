@@ -36,7 +36,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route134_EventScript_1F7653",
+      "script": "Route134_EventScript_Jack",
       "flag": "0"
     },
     {
@@ -50,7 +50,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route134_EventScript_1F766A",
+      "script": "Route134_EventScript_Laurel",
       "flag": "0"
     },
     {
@@ -64,7 +64,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route134_EventScript_1F7698",
+      "script": "Route134_EventScript_Aaron",
       "flag": "0"
     },
     {
@@ -78,7 +78,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "6",
-      "script": "Route134_EventScript_1F7681",
+      "script": "Route134_EventScript_Alex",
       "flag": "0"
     },
     {
@@ -92,7 +92,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
-      "script": "Route134_EventScript_1F76AF",
+      "script": "Route134_EventScript_Hitoshi",
       "flag": "0"
     },
     {
@@ -106,7 +106,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route134_EventScript_1F76F4",
+      "script": "Route134_EventScript_Marley",
       "flag": "0"
     },
     {
@@ -120,7 +120,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "6",
-      "script": "Route134_EventScript_1F770B",
+      "script": "Route134_EventScript_Kelvin",
       "flag": "0"
     },
     {
@@ -134,7 +134,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
-      "script": "Route134_EventScript_1F76DD",
+      "script": "Route134_EventScript_Reyna",
       "flag": "0"
     },
     {
@@ -148,7 +148,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route134_EventScript_1F76C6",
+      "script": "Route134_EventScript_Hudson",
       "flag": "0"
     },
     {

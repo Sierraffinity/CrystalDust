@@ -421,7 +421,7 @@ static void PlayerPC_TurnOff(u8 taskId)
 {
     if (gPcItemMenuOptionsNum == 4)
     {
-        ScriptContext1_SetupScript(NewBarkTown_PlayersHouse_2F_EventScript_1F863F);
+        ScriptContext1_SetupScript(NewBarkTown_PlayersHouse_2F_EventScript_TurnOffPlayerPC);
     }
     else
     {
@@ -821,7 +821,7 @@ static void Mailbox_DoGiveMailPokeMenu(u8 taskId)
     {
         sub_81D1EC0();
         CleanupOverworldWindowsAndTilemaps();
-        sub_81B8448();
+        ChooseMonToGiveMailFromMailbox();
         DestroyTask(taskId);
     }
 }

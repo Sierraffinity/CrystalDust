@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route119_House_EventScript_270966",
+      "script": "Route119_House_EventScript_Woman",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route119_House_EventScript_27096F",
+      "script": "Route119_House_EventScript_Wingull",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route119_House_EventScript_27096F",
+      "script": "Route119_House_EventScript_Wingull",
       "flag": "0"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route119_House_EventScript_27096F",
+      "script": "Route119_House_EventScript_Wingull",
       "flag": "0"
     },
     {
@@ -81,7 +81,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route119_House_EventScript_27096F",
+      "script": "Route119_House_EventScript_Wingull",
       "flag": "0"
     },
     {
@@ -95,7 +95,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route119_House_EventScript_27096F",
+      "script": "Route119_House_EventScript_Wingull",
       "flag": "0"
     },
     {
@@ -109,7 +109,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route119_House_EventScript_27096F",
+      "script": "Route119_House_EventScript_Wingull",
       "flag": "0"
     }
   ],

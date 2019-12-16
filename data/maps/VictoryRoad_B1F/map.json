@@ -207,7 +207,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "VictoryRoad_B1F_EventScript_2364E5",
+      "script": "VictoryRoad_B1F_EventScript_Samuel",
       "flag": "0"
     },
     {
@@ -221,7 +221,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "VictoryRoad_B1F_EventScript_2364FC",
+      "script": "VictoryRoad_B1F_EventScript_Shannon",
       "flag": "0"
     },
     {
@@ -235,7 +235,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "VictoryRoad_B1F_EventScript_236513",
+      "script": "VictoryRoad_B1F_EventScript_Michelle",
       "flag": "0"
     },
     {
@@ -291,7 +291,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "VictoryRoad_B1F_EventScript_23652A",
+      "script": "VictoryRoad_B1F_EventScript_Mitchell",
       "flag": "0"
     },
     {
@@ -305,7 +305,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "VictoryRoad_B1F_EventScript_236541",
+      "script": "VictoryRoad_B1F_EventScript_Halle",
       "flag": "0"
     }
   ],

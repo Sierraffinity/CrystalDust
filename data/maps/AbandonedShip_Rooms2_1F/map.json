@@ -25,7 +25,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "AbandonedShip_Rooms2_1F_EventScript_2380A7",
+      "script": "AbandonedShip_Rooms2_1F_EventScript_Dan",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "AbandonedShip_Rooms2_1F_EventScript_23810B",
+      "script": "AbandonedShip_Rooms2_1F_EventScript_Kira",
       "flag": "0"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "AbandonedShip_Rooms2_1F_EventScript_238186",
+      "script": "AbandonedShip_Rooms2_1F_EventScript_Garrison",
       "flag": "0"
     },
     {
@@ -81,7 +81,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "AbandonedShip_Rooms2_1F_EventScript_23816F",
+      "script": "AbandonedShip_Rooms2_1F_EventScript_Jani",
       "flag": "0"
     }
   ],

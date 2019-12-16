@@ -82,7 +82,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "FallarborTown_BattleTentLobby_EventScript_200228",
-      "flag": "FLAG_HIDE_FALLORBOR_TOWN_BATTLE_TENT_SCOTT"
+      "flag": "FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT"
     }
   ],
   "warp_events": [

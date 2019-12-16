@@ -36,7 +36,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route117_EventScript_1F399A",
+      "script": "Route117_EventScript_Woman",
       "flag": "0"
     },
     {
@@ -50,7 +50,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route117_EventScript_1F39A3",
+      "script": "Route117_EventScript_LittleBoy",
       "flag": "0"
     },
     {
@@ -134,7 +134,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route117_EventScript_1F3A94",
+      "script": "Route117_EventScript_Dylan",
       "flag": "0"
     },
     {
@@ -148,7 +148,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route117_EventScript_1F3A32",
+      "script": "Route117_EventScript_Lydia",
       "flag": "0"
     },
     {
@@ -162,7 +162,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route117_EventScript_1F39D0",
+      "script": "Route117_EventScript_Isaac",
       "flag": "0"
     },
     {
@@ -260,7 +260,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
-      "script": "Route117_EventScript_1F3AF6",
+      "script": "Route117_EventScript_Maria",
       "flag": "0"
     },
     {
@@ -274,7 +274,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route117_EventScript_1F3B58",
+      "script": "Route117_EventScript_Derek",
       "flag": "0"
     },
     {
@@ -288,7 +288,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "Route117_EventScript_1F3BD3",
+      "script": "Route117_EventScript_Meg",
       "flag": "0"
     },
     {
@@ -302,7 +302,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "Route117_EventScript_1F3B6F",
+      "script": "Route117_EventScript_Anna",
       "flag": "0"
     },
     {
@@ -316,7 +316,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route117_EventScript_1F39AC",
+      "script": "Route117_EventScript_Girl",
       "flag": "0"
     },
     {
@@ -330,7 +330,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route117_EventScript_1F3C4E",
+      "script": "Route117_EventScript_Brandi",
       "flag": "0"
     },
     {
@@ -344,7 +344,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route117_EventScript_1F3C65",
+      "script": "Route117_EventScript_Aisha",
       "flag": "0"
     },
     {
@@ -358,7 +358,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route117_EventScript_1F3C37",
+      "script": "Route117_EventScript_Melina",
       "flag": "0"
     }
   ],
@@ -379,7 +379,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route117_EventScript_1F39B5"
+      "script": "Route117_EventScript_RouteSignVerdanturf"
     },
     {
       "type": "sign",
@@ -387,7 +387,7 @@
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route117_EventScript_1F39BE"
+      "script": "Route117_EventScript_RouteSignMauville"
     },
     {
       "type": "sign",
@@ -395,7 +395,7 @@
       "y": 5,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route117_EventScript_1F39C7"
+      "script": "Route117_EventScript_DayCareSign"
     },
     {
       "type": "hidden_item",

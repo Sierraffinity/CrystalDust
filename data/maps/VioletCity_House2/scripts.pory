@@ -23,7 +23,7 @@ script VioletCity_House2_EventScript_Kyle {
         
         if (var(VAR_RESULT) != NO)
         {
-            special(sub_81B94B0)
+            special(ChoosePartyMon)
             waitstate
             copyvar(VAR_0x800A, VAR_0x8004)
             

@@ -123,7 +123,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "6",
-      "script": "SeafloorCavern_Room3_EventScript_234938",
+      "script": "SeafloorCavern_Room3_EventScript_Shelly",
       "flag": "FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS"
     },
     {
@@ -137,7 +137,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "SeafloorCavern_Room3_EventScript_23494F",
+      "script": "SeafloorCavern_Room3_EventScript_Grunt5",
       "flag": "FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS"
     }
   ],

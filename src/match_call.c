@@ -1537,7 +1537,7 @@ static u16 GetRematchTrainerLocation(int matchCallId)
 static u32 GetNumRematchTrainersFought(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < 64; i++)
+    for (i = 0, count = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
     {
         if (HasTrainerBeenFought(gRematchTable[i].trainerIds[0]))
             count++;
@@ -2120,7 +2120,7 @@ static const u8 *const sBirchDexRatingTexts[] =
     gBirchDexRatingText_DexCompleted,
 };
 
-void sub_8197080(u8 *destStr)
+void BufferPokedexRatingForMatchCall(u8 *destStr)
 {
     int numSeen, numCaught;
     u8 *str;

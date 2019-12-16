@@ -39,7 +39,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "MagmaHideout_4F_EventScript_23A68C",
+      "script": "MagmaHideout_4F_EventScript_Grunt11",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "MagmaHideout_4F_EventScript_23A6A3",
+      "script": "MagmaHideout_4F_EventScript_Grunt12",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "MagmaHideout_4F_EventScript_23A6BA",
+      "script": "MagmaHideout_4F_EventScript_Grunt13",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
     },
     {
@@ -81,7 +81,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "MagmaHideout_4F_EventScript_23A6D1",
+      "script": "MagmaHideout_4F_EventScript_Tabitha",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
     },
     {
@@ -95,7 +95,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MagmaHideout_4F_EventScript_23A560",
+      "script": "MagmaHideout_4F_EventScript_Maxie",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
     },
     {

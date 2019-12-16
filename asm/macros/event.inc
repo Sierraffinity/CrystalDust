@@ -677,7 +677,7 @@
 	.elseif \type == TRAINER_BATTLE_SET_TRAINER_B
 		.4byte \pointer1 @ text
 		.4byte \pointer2 @ text
-	.elseif \type == TRAINER_BATTLE_12
+	.elseif \type == TRAINER_BATTLE_HILL
 		.4byte \pointer1 @ text
 		.4byte \pointer2 @ text
 	.elseif \type == TRAINER_BATTLE_CONTINUE_SCRIPT_WINTEXT
@@ -900,7 +900,7 @@
 	.endm
 
 	@ Draws an image of the winner of the contest. In FireRed, this command is a nop. (The argument is discarded.)
-	.macro drawcontestwinner a:req
+	.macro showcontestwinner a:req
 	.byte 0x77
 	.byte \a
 	.endm
@@ -1089,9 +1089,11 @@
 	.byte \check
 	.endm
 
-	@ Hides the secondary box spawned by showmoney.
+	@ Hides the secondary box spawned by showmoney. Consumption of the x and y arguments was dummied out.
 	.macro hidemoneybox
 	.byte 0x94
+	.byte 0  @ \x
+	.byte 0  @ \y
 	.endm
 
 	@ Updates the secondary box spawned by showmoney. Consumes but does not use arguments.
@@ -1477,31 +1479,34 @@
 	.byte \location
 	.endm
 
-	.macro mossdeepgym1 unknown:req
+	@ For the rotating tile puzzles in Mossdeep Gym/Trick House Room 7. Moves the objects on the colored puzzle specified by puzzleNumber one rotation
+	.macro moverotatingtileobjects puzzleNumber:req
 	.byte 0xd3
-	.2byte \unknown
+	.2byte \puzzleNumber
 	.endm
 
-	.macro mossdeepgym2
+	@ For the rotating tile puzzles in Mossdeep Gym/Trick House Room 7. Updates the facing direction of all objects on the puzzle tiles
+	.macro turnrotatingtileobjects
 	.byte 0xd4
 	.endm
 
-	@ In FireRed, this command is a nop.
-	.macro mossdeepgym3 var:req
+	@ For the rotating tile puzzles in Mossdeep Gym/Trick House Room 7. Allocates memory for the puzzle objects. isTrickHouse is needed to determine which of the two maps the puzzle is on, in order to know where in the tileset the puzzle tiles start. In FireRed, this command is a nop.
+	.macro initrotatingtilepuzzle isTrickHouse:req
 	.byte 0xd5
-	.2byte \var
+	.2byte \isTrickHouse
 	.endm
 
-	.macro mossdeepgym4
+	@ For the rotating tile puzzles in Mossdeep Gym/Trick House Room 7. Frees the memory allocated for the puzzle objects.
+	.macro freerotatingtilepuzzle
 	.byte 0xd6
 	.endm
 
-	.macro warp7 map:req, byte:req, word1:req, word2:req
+	.macro warpmossdeepgym map:req, warpId:req, x:req, y:req
 	.byte 0xd7
 	map \map
-	.byte \byte
-	.2byte \word1
-	.2byte \word2
+	.byte \warpId
+	.2byte \x
+	.2byte \y
 	.endm
 
 	.macro cmdD8
@@ -1512,7 +1517,7 @@
 	.byte 0xd9
 	.endm
 
-	.macro hidebox2
+	.macro closebraillemessage
 	.byte 0xda
 	.endm
 
@@ -1637,6 +1642,14 @@
 	call_if 5, \dest
 	.endm
 
+	.macro vgoto_if_eq dest:req
+	vgoto_if 1, \dest
+	.endm
+
+	.macro vgoto_if_ne dest:req
+	vgoto_if 0, \dest
+	.endm
+
 	.macro switch var:req
 	copyvar VAR_0x8000, \var
 	.endm
@@ -1652,6 +1665,7 @@
 	MSGBOX_DEFAULT = 4
 	MSGBOX_YESNO = 5
 	MSGBOX_AUTOCLOSE = 6
+	MSGBOX_GETPOINTS = 9
 
 	YES = 1
 	NO  = 0
@@ -1661,10 +1675,16 @@
 	callstd \type
 	.endm
 
-	.macro giveitem_std item:req, amount=1, function=0
+	.macro giveitem_std item:req, amount=1
 	setorcopyvar VAR_0x8000, \item
 	setorcopyvar VAR_0x8001, \amount
-	callstd \function
+	callstd STD_OBTAIN_ITEM
+	.endm
+
+	.macro finditem_std item:req, amount=1
+	setorcopyvar VAR_0x8000, \item
+	setorcopyvar VAR_0x8001, \amount
+	callstd STD_FIND_ITEM
 	.endm
 
 	.macro givedecoration_std decoration:req
@@ -1677,4 +1697,11 @@
 	special SetMatchCallRegisteredFlag
 	setorcopyvar VAR_0x8000, \trainer
 	callstd STD_REGISTER_MATCH_CALL
+	.endm
+
+	.macro dofieldeffectsparkle x:req, y:req, priority:req
+	setfieldeffectargument 0, \x
+	setfieldeffectargument 1, \y
+	setfieldeffectargument 2, \priority
+	dofieldeffect FLDEFF_SPARKLE
 	.endm

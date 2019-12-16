@@ -12,9 +12,9 @@ Common_EventScript_PkmnCenterNurse:: @ 827191E
 	call_if_eq EventScript_PkmnCenterNurse_IntroDay
 	compare VAR_0x8002, TIME_NIGHT
 	call_if_eq EventScript_PkmnCenterNurse_IntroNight
-    compare VAR_RESULT, 1
+    compare VAR_RESULT, YES
     goto_if_eq EventScript_PkmnCenterNurse_HealPkmn
-    compare VAR_RESULT, 0
+    compare VAR_RESULT, NO
     goto_if_eq EventScript_PkmnCenterNurse_Goodbye
     end
 
@@ -109,9 +109,9 @@ EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom:: @ 8271A19
 
 EventScript_PkmnCenterNurse_CheckPokerus:: @ 8271A43
     specialvar VAR_RESULT, IsPokerusInParty
-    compare VAR_RESULT, 1
+    compare VAR_RESULT, TRUE
     goto_if_eq EventScript_PkmnCenterNurse_ExplainPokerus
-    compare VAR_RESULT, 0
+    compare VAR_RESULT, FALSE
     goto_if_eq EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
     end
 
@@ -130,14 +130,14 @@ EventScript_PkmnCenterNurse_GoldCard:: @ 8271A68
     applymovement VAR_0x800B, Common_Movement_Delay48
     waitmovement 0
     msgbox gText_NoticesGoldCard, MSGBOX_YESNO
-    compare VAR_RESULT, 1
+    compare VAR_RESULT, YES
     goto_if_eq EventScript_PkmnCenterNurse_GoldCardHealPkmn
     message gText_WeHopeToSeeYouAgain2
     return
 
 EventScript_PkmnCenterNurse_AskForUsual:: @ 8271AAC
     msgbox gText_YouWantTheUsual, MSGBOX_YESNO
-    compare VAR_RESULT, 1
+    compare VAR_RESULT, YES
     goto_if_eq EventScript_PkmnCenterNurse_GoldCardHealPkmn
     message gText_WeHopeToSeeYouAgain2
     return

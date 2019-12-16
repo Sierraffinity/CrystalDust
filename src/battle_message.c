@@ -21,9 +21,11 @@
 #include "trainer_hill.h"
 #include "window.h"
 #include "constants/battle_string_ids.h"
+#include "constants/frontier_util.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/trainers.h"
+#include "constants/trainer_hill.h"
 
 struct BattleWindowText
 {
@@ -879,8 +881,8 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_FORFEITEDMATCH - 12] = sText_ForfeitedMatch,
     [STRINGID_PKMNTRANSFERREDSOMEONESPC - 12] = gText_PkmnTransferredSomeonesPC,
     [STRINGID_PKMNTRANSFERREDLANETTESPC - 12] = gText_PkmnTransferredLanettesPC,
-    [STRINGID_PKMNBOXSOMEONESPCFULL - 12] = gText_PkmnBoxSomeonesPCFull,
-    [STRINGID_PKMNBOXLANETTESPCFULL - 12] = gText_PkmnBoxLanettesPCFull,
+    [STRINGID_PKMNBOXSOMEONESPCFULL - 12] = gText_PkmnTransferredSomeonesPCBoxFull,
+    [STRINGID_PKMNBOXLANETTESPCFULL - 12] = gText_PkmnTransferredLanettesPCBoxFull,
     [STRINGID_TRAINER1WINTEXT - 12] = sText_Trainer1WinText,
     [STRINGID_TRAINER2WINTEXT - 12] = sText_Trainer2WinText,
     [STRINGID_OUTOFPARKBALLS - 12] = sText_OutOfParkBalls,
@@ -1203,7 +1205,7 @@ const u8 gText_Love[] = _("love");
 const u8 gText_SpaceAndSpace[] = _(" and ");
 const u8 gText_CommaSpace[] = _(", ");
 const u8 gText_Space2[] = _(" ");
-const u8 gText_ScrollTextUp[] = _("\l");
+const u8 gText_LineBreak[] = _("\l");
 const u8 gText_NewLine[] = _("\n");
 const u8 gText_Are[] = _("are");
 const u8 gText_Are2[] = _("are");
@@ -2583,7 +2585,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
                 {
-                    CopyTrainerHillTrainerText(4, gTrainerBattleOpponent_A);
+                    CopyTrainerHillTrainerText(TRAINER_HILL_TEXT_PLAYER_WON, gTrainerBattleOpponent_A);
                     toCpy = gStringVar4;
                 }
                 else
@@ -2599,7 +2601,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
                 {
-                    CopyTrainerHillTrainerText(3, gTrainerBattleOpponent_A);
+                    CopyTrainerHillTrainerText(TRAINER_HILL_TEXT_PLAYER_LOST, gTrainerBattleOpponent_A);
                     toCpy = gStringVar4;
                 }
                 else
@@ -2684,7 +2686,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
                 {
-                    CopyTrainerHillTrainerText(4, gTrainerBattleOpponent_B);
+                    CopyTrainerHillTrainerText(TRAINER_HILL_TEXT_PLAYER_WON, gTrainerBattleOpponent_B);
                     toCpy = gStringVar4;
                 }
                 else
@@ -2700,7 +2702,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
                 {
-                    CopyTrainerHillTrainerText(3, gTrainerBattleOpponent_B);
+                    CopyTrainerHillTrainerText(TRAINER_HILL_TEXT_PLAYER_LOST, gTrainerBattleOpponent_B);
                     toCpy = gStringVar4;
                 }
                 break;

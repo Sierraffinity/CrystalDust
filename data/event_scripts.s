@@ -1,11 +1,19 @@
 #include "constants/global.h"
+#include "constants/apprentice.h"
 #include "constants/battle.h"
+#include "constants/battle_arena.h"
+#include "constants/battle_dome.h"
+#include "constants/battle_factory.h"
+#include "constants/battle_frontier.h"
+#include "constants/battle_palace.h"
 #include "constants/battle_pike.h"
 #include "constants/battle_pyramid.h"
-#include "constants/battle_frontier.h"
 #include "constants/battle_setup.h"
+#include "constants/battle_tent.h"
+#include "constants/battle_tower.h"
 #include "constants/berry.h"
 #include "constants/cable_club.h"
+#include "constants/coins.h"
 #include "constants/contest.h"
 #include "constants/daycare.h"
 #include "constants/day_night.h"
@@ -16,7 +24,9 @@
 #include "constants/field_effects.h"
 #include "constants/field_poison.h"
 #include "constants/field_specials.h"
+#include "constants/field_tasks.h"
 #include "constants/flags.h"
+#include "constants/frontier_util.h"
 #include "constants/fruit_trees.h"
 #include "constants/game_stat.h"
 #include "constants/item.h"
@@ -26,6 +36,7 @@
 #include "constants/lilycove_lady.h"
 #include "constants/map_scripts.h"
 #include "constants/maps.h"
+#include "constants/mauville_old_man.h"
 #include "constants/metatile_labels.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
@@ -40,6 +51,7 @@
 #include "constants/trainers.h"
 #include "constants/text.h"
 #include "constants/tv.h"
+#include "constants/union_room.h"
 #include "constants/vars.h"
 #include "constants/weather.h"
 	.include "asm/macros.inc"
@@ -80,16 +92,16 @@ gSpecialVars:: @ 81DBA0C
 	.include "data/specials.inc"
 
 gStdScripts:: @ 81DC2A0
-	.4byte Std_ObtainItem
-	.4byte Std_FindItem
-	.4byte Std_MsgboxNPC
-	.4byte Std_MsgboxSign
-	.4byte Std_MsgboxDefault
-	.4byte Std_MsgboxYesNo
-	.4byte Std_MsgboxAutoclose
-	.4byte Std_ObtainDecoration
-	.4byte Std_RegisteredInMatchCall
-	.4byte Std_9
+	.4byte Std_ObtainItem              @ STD_OBTAIN_ITEM
+	.4byte Std_FindItem                @ STD_FIND_ITEM
+	.4byte Std_MsgboxNPC               @ MSGBOX_NPC
+	.4byte Std_MsgboxSign              @ MSGBOX_SIGN
+	.4byte Std_MsgboxDefault           @ MSGBOX_DEFAULT
+	.4byte Std_MsgboxYesNo             @ MSGBOX_YESNO
+	.4byte Std_MsgboxAutoclose         @ MSGBOX_AUTOCLOSE
+	.4byte Std_ObtainDecoration        @ STD_OBTAIN_DECORATION
+	.4byte Std_RegisteredInMatchCall   @ STD_REGISTER_MATCH_CALL
+	.4byte Std_MsgboxGetPoints         @ MSGBOX_GETPOINTS
 	.4byte Std_10
 gStdScripts_End:: @ 81DC2CC
 
@@ -180,8 +192,8 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/FallarborTown_BattleTentBattleRoom/scripts.inc"
 	.include "data/maps/FallarborTown_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/FallarborTown_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/FallarborTown_House1/scripts.inc"
-	.include "data/maps/FallarborTown_House2/scripts.inc"
+	.include "data/maps/FallarborTown_CozmosHouse/scripts.inc"
+	.include "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
 	.include "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
 	.include "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
 	.include "data/maps/VerdanturfTown_BattleTentBattleRoom/scripts.inc"
@@ -210,12 +222,12 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/SlateportCity_BattleTentLobby/scripts.inc"
 	.include "data/maps/SlateportCity_BattleTentCorridor/scripts.inc"
 	.include "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
-	.include "data/maps/SlateportCity_House1/scripts.inc"
+	.include "data/maps/SlateportCity_NameRatersHouse/scripts.inc"
 	.include "data/maps/SlateportCity_PokemonFanClub/scripts.inc"
 	.include "data/maps/SlateportCity_OceanicMuseum_1F/scripts.inc"
 	.include "data/maps/SlateportCity_OceanicMuseum_2F/scripts.inc"
 	.include "data/maps/SlateportCity_Harbor/scripts.inc"
-	.include "data/maps/SlateportCity_House2/scripts.inc"
+	.include "data/maps/SlateportCity_House/scripts.inc"
 	.include "data/maps/SlateportCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/SlateportCity_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/SlateportCity_Mart/scripts.inc"
@@ -441,42 +453,16 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/AlteringCave/scripts.inc"
 	.include "data/maps/MeteorFalls_StevensCave/scripts.inc"
 	.include "data/scripts/shared_secret_base.inc"
-	.include "data/maps/SingleBattleColosseum/scripts.inc"
+	.include "data/maps/BattleColosseum2P/scripts.inc"
 	.include "data/maps/TradeCenter/scripts.inc"
 	.include "data/maps/RecordCorner/scripts.inc"
-	.include "data/maps/DoubleBattleColosseum/scripts.inc"
-	.include "data/maps/LinkContestRoom1/scripts.inc"
-	.include "data/maps/UnknownLinkContestRoom_25_29/scripts.inc"
-	.include "data/maps/UnknownLinkContestRoom_25_30/scripts.inc"
-	.include "data/maps/UnknownLinkContestRoom_25_31/scripts.inc"
-	.include "data/maps/UnknownLinkContestRoom_25_32/scripts.inc"
-	.include "data/maps/UnknownLinkContestRoom_25_33/scripts.inc"
-	.include "data/maps/UnknownLinkContestRoom_25_34/scripts.inc"
-	.include "data/maps/LinkContestRoom2/scripts.inc"
-	.include "data/maps/LinkContestRoom3/scripts.inc"
-	.include "data/maps/LinkContestRoom4/scripts.inc"
-	.include "data/maps/LinkContestRoom5/scripts.inc"
-	.include "data/maps/LinkContestRoom6/scripts.inc"
+	.include "data/maps/BattleColosseum4P/scripts.inc"
+	.include "data/maps/ContestHall/scripts.inc"
 	.include "data/maps/InsideOfTruck/scripts.inc"
 	.include "data/maps/SSTidalCorridor/scripts.inc"
 	.include "data/maps/SSTidalLowerDeck/scripts.inc"
 	.include "data/maps/SSTidalRooms/scripts.inc"
 	.include "data/maps/BattlePyramidSquare01/scripts.inc"
-	.include "data/maps/BattlePyramidSquare02/scripts.inc"
-	.include "data/maps/BattlePyramidSquare03/scripts.inc"
-	.include "data/maps/BattlePyramidSquare04/scripts.inc"
-	.include "data/maps/BattlePyramidSquare05/scripts.inc"
-	.include "data/maps/BattlePyramidSquare06/scripts.inc"
-	.include "data/maps/BattlePyramidSquare07/scripts.inc"
-	.include "data/maps/BattlePyramidSquare08/scripts.inc"
-	.include "data/maps/BattlePyramidSquare09/scripts.inc"
-	.include "data/maps/BattlePyramidSquare10/scripts.inc"
-	.include "data/maps/BattlePyramidSquare11/scripts.inc"
-	.include "data/maps/BattlePyramidSquare12/scripts.inc"
-	.include "data/maps/BattlePyramidSquare13/scripts.inc"
-	.include "data/maps/BattlePyramidSquare14/scripts.inc"
-	.include "data/maps/BattlePyramidSquare15/scripts.inc"
-	.include "data/maps/BattlePyramidSquare16/scripts.inc"
 	.include "data/maps/UnionRoom/scripts.inc"
 	.include "data/maps/SafariZone_Northwest/scripts.inc"
 	.include "data/maps/SafariZone_North/scripts.inc"
@@ -504,7 +490,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/BattleFrontier_BattlePalaceCorridor/scripts.inc"
 	.include "data/maps/BattleFrontier_BattlePalaceBattleRoom/scripts.inc"
 	.include "data/maps/BattleFrontier_BattlePyramidLobby/scripts.inc"
-	.include "data/maps/BattleFrontier_BattlePyramidEmptySquare/scripts.inc"
+	.include "data/maps/BattleFrontier_BattlePyramidFloor/scripts.inc"
 	.include "data/maps/BattleFrontier_BattlePyramidTop/scripts.inc"
 	.include "data/maps/BattleFrontier_BattleArenaLobby/scripts.inc"
 	.include "data/maps/BattleFrontier_BattleArenaCorridor/scripts.inc"
@@ -515,12 +501,12 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/BattleFrontier_BattlePikeLobby/scripts.inc"
 	.include "data/maps/BattleFrontier_BattlePikeCorridor/scripts.inc"
 	.include "data/maps/BattleFrontier_BattlePikeThreePathRoom/scripts.inc"
-	.include "data/maps/BattleFrontier_BattlePikeRandomRoom1/scripts.inc"
-	.include "data/maps/BattleFrontier_BattlePikeRandomRoom2/scripts.inc"
-	.include "data/maps/BattleFrontier_BattlePikeRandomRoom3/scripts.inc"
+	.include "data/maps/BattleFrontier_BattlePikeRoomNormal/scripts.inc"
+	.include "data/maps/BattleFrontier_BattlePikeRoomFinal/scripts.inc"
+	.include "data/maps/BattleFrontier_BattlePikeRoomWildMons/scripts.inc"
 	.include "data/maps/BattleFrontier_RankingHall/scripts.inc"
 	.include "data/maps/BattleFrontier_Lounge1/scripts.inc"
-	.include "data/maps/BattleFrontier_BattlePointExchangeServiceCorner/scripts.inc"
+	.include "data/maps/BattleFrontier_ExchangeServiceCorner/scripts.inc"
 	.include "data/maps/BattleFrontier_Lounge2/scripts.inc"
 	.include "data/maps/BattleFrontier_Lounge3/scripts.inc"
 	.include "data/maps/BattleFrontier_Lounge4/scripts.inc"
@@ -594,6 +580,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/NationalPark/scripts.inc"
 	.include "data/maps/NationalParkGateEast/scripts.inc"
 
+@ Below could be split as std_msgbox.inc but autoclose straddles trainer_battle.inc
 Std_MsgboxNPC: @ 8271315
 	lock
 	faceplayer
@@ -623,7 +610,7 @@ Std_MsgboxYesNo: @ 8271332
 	yesnobox 20, 8
 	return
 
-Std_9: @ 827133C
+Std_MsgboxGetPoints: @ 827133C
 	message 0x0
 	playfanfare MUS_ME_POINTGET
 	waitfanfare
@@ -643,10 +630,6 @@ Common_EventScript_SaveGame:: @ 827134F
 	waitstate
 	return
 
-EventScript_271354:: @ 8271354
-	cmdD8
-	cmdD9
-
 	.include "data/scripts/trainer_battle.inc"
 
 Std_MsgboxAutoclose:: @ 8271494
@@ -657,6 +640,7 @@ Std_MsgboxAutoclose:: @ 8271494
 	return
 
 	.include "data/scripts/new_game.inc"
+	.include "data/scripts/hall_of_fame.inc"
 
 RestoreOriginalTextColor:
 	copyvar VAR_TEXT_COLOR VAR_TEXT_COLOR_BACKUP
@@ -666,60 +650,6 @@ ClearPokepicAndTextboxForEarlyScriptExit::
 	special PrintNullStringAndClearPokemonPicWindow
 	release
 	end
-
-EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
-	special sub_81AFDD0
-	setflag FLAG_IS_CHAMPION
-	call EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries
-	compare VAR_FOSSIL_MANIAC_STATE, 0
-	call_if_eq EverGrandeCity_HallOfFame_EventScript_271839
-	clearflag FLAG_HIDE_LILCOVE_MOTEL_GAME_DESIGNERS
-	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour
-	setflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
-	clearflag FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY
-	clearflag FLAG_HIDE_MR_POKEMONS_HOUSE_OAK
-	setvar VAR_STEVENS_HOUSE_STATE, 2
-	setflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
-	clearflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
-	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL
-	clearflag FLAG_HIDE_LILYCOVE_HARBOR_SSTIDAL
-	setflag 0
-	clearflag FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION
-	setflag FLAG_HIDE_LILYCOVE_CITY_RIVAL
-	special sub_813BA60
-	call_if_unset FLAG_RECEIVED_SS_TICKET, EverGrandeCity_HallOfFame_EventScript_271843
-	call_if_unset FLAG_RECEIVED_BELDUM, EverGrandeCity_HallOfFame_EventScript_27183F
-	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_BEDROOM
-	setflag FLAG_HIDE_CHERRYGROVE_CITY_RIVAL
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 0
-	call_if_eq EverGrandeCity_HallOfFame_EventScript_271851
-	return
-
-EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries:: @ 8271829
-	clearflag FLAG_DEFEATED_MEW
-	clearflag FLAG_DEFEATED_LATIAS_OR_LATIOS
-	clearflag FLAG_DEFEATED_DEOXYS
-	clearflag FLAG_DEFEATED_LUGIA
-	clearflag FLAG_DEFEATED_HO_OH
-	return
-
-EverGrandeCity_HallOfFame_EventScript_271839:: @ 8271839
-	setvar VAR_FOSSIL_MANIAC_STATE, 1
-	return
-
-EverGrandeCity_HallOfFame_EventScript_27183F:: @ 827183F
-	clearflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
-	return
-
-EverGrandeCity_HallOfFame_EventScript_271843:: @ 8271843
-	setvar VAR_PLAYER_HOUSE_STATE, 3
-	setvar VAR_LITTLEROOT_HOUSES_STATE_2, 3
-	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD
-	return
-
-EverGrandeCity_HallOfFame_EventScript_271851:: @ 8271851
-	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1
-	return
 
 EventScript_WhiteOut:: @ 8271857
 	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour
@@ -796,276 +726,11 @@ EventScript_SetBrineyLocation_Route36:: @ 8271918
 	return
 
 	.include "data/scripts/pkmn_center_nurse.inc"
-
-Std_ObtainItem:: @ 8271AD3
-	textcolor MSG_COLOR_MISC
-	giveitem VAR_0x8000, VAR_0x8001
-	copyvar VAR_0x8007, VAR_RESULT
-	call EventScript_271AE3
-	copyvar VAR_TEXT_COLOR, VAR_TEXT_COLOR_BACKUP
-	return
-
-EventScript_271AE3:: @ 8271AE3
-	bufferitemnameplural 1, VAR_0x8000, VAR_0x8001
-	checkitemtype VAR_0x8000
-	call EventScript_BufferStdString
-	compare VAR_0x8007, 1
-	call_if_eq EventScript_271B95
-	compare VAR_0x8007, 0
-	call_if_eq EventScript_271BA9
-	return
-
-EventScript_BufferStdString:: @ 8271B08
-	switch VAR_RESULT
-	case POCKET_ITEMS, EventScript_StdStringItem
-	case POCKET_KEY_ITEMS, EventScript_StdStringKeyItems
-	case POCKET_POKE_BALLS, EventScript_StdStringPokeballs
-	case POCKET_TM_HM, EventScript_StdStringTMHMS
-	case POCKET_BERRIES, EventScript_StdStringBerries
-	end
-
-EventScript_StdStringItem:: @ 8271B45
-	bufferstdstring 2, STDSTRING_ITEMS
-	compare VAR_0x8007, 1
-	call_if_eq EventScript_PlayFanfare4
-	return
-
-EventScript_StdStringKeyItems:: @ 8271B55
-	bufferstdstring 2, STDSTRING_KEYITEMS
-	compare VAR_0x8007, 1
-	call_if_eq EventScript_PlayFanfare4
-	return
-
-EventScript_StdStringPokeballs:: @ 8271B65
-	bufferstdstring 2, STDSTRING_POKEBALLS
-	compare VAR_0x8007, 1
-	call_if_eq EventScript_PlayFanfare4
-	return
-
-EventScript_StdStringTMHMS:: @ 8271B75
-	bufferstdstring 2, STDSTRING_TMHMS
-	compare VAR_0x8007, 1
-	call_if_eq EventScript_271BB3
-	return
-
-EventScript_StdStringBerries:: @ 8271B85
-	bufferstdstring 2, STDSTRING_BERRIES
-	compare VAR_0x8007, 1
-	call_if_eq EventScript_PlayFanfare4
-	return
-
-EventScript_271B95:: @ 8271B95
-	message gText_ObtainedTheItem
-	waitfanfare
-	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
-	setvar VAR_RESULT, 1
-	return
-
-EventScript_271BA9:: @ 8271BA9
-	setvar VAR_RESULT, 0
-	return
-
-EventScript_PlayFanfare4:: @ 8271BAF
-	playfanfare MUS_FANFA4
-	return
-
-EventScript_271BB3:: @ 8271BB3
-	playfanfare MUS_ME_WAZA
-	return
-
-Std_ObtainDecoration:: @ 8271BB7
-	givedecoration VAR_0x8000
-	copyvar VAR_0x8007, VAR_RESULT
-	call EventScript_271BC5
-	return
-
-EventScript_271BC5:: @ 8271BC5
-	bufferdecorationname 1, VAR_0x8000
-	compare VAR_0x8007, 1
-	call_if_eq EventScript_271BE0
-	compare VAR_0x8007, 0
-	call_if_eq EventScript_271BF7
-	return
-
-EventScript_271BE0:: @ 8271BE0
-	playfanfare MUS_FANFA4
-	message gText_ObtainedTheMon
-	waitfanfare
-	msgbox gText_TheMonWasTransferredToThePC, MSGBOX_DEFAULT
-	setvar VAR_RESULT, 1
-	return
-
-EventScript_271BF7:: @ 8271BF7
-	setvar VAR_RESULT, 0
-	return
-
-Std_FindItem:: @ 8271BFD
-	lock
-	faceplayer
-	waitse
-	copyvar VAR_0x8004, VAR_0x8000
-	copyvar VAR_0x8005, VAR_0x8001
-	checkitemspace VAR_0x8000, VAR_0x8001
-	copyvar VAR_0x8007, VAR_RESULT
-	bufferitemnameplural 1, VAR_0x8000, VAR_0x8001
-	checkitemtype VAR_0x8000
-	call EventScript_BufferStdString
-	compare VAR_0x8007, 1
-	call_if_eq EventScript_PickItemUp
-	compare VAR_0x8007, 0
-	call_if_eq EventScript_271CA1
-	release
-	return
-
-EventScript_PickItemUp:: @ 8271C3A
-	removeobject VAR_LAST_TALKED
-	giveitem VAR_0x8004, VAR_0x8005
-	specialvar VAR_RESULT, BufferTMHMMoveName
-	copyvar VAR_0x8008, VAR_RESULT
-	compare VAR_0x8008, 1
-	call_if_eq EventScript_271C8F
-	compare VAR_0x8008, 0
-	call_if_eq EventScript_271C9B
-	waitfanfare
-	waitmessage
-	bufferitemnameplural 1, VAR_0x8004, VAR_0x8005
-	setvar VAR_0x8004, BATTLE_PYRAMID_FUNC_IS_IN
-	special CallBattlePyramidFunction
-	compare VAR_RESULT, 1
-	goto_if_eq EventScript_271C86
-	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
-	return
-
-EventScript_271C86:: @ 8271C86
-	msgbox gText_PlayerPutItemInBag, MSGBOX_DEFAULT
-	return
-
-EventScript_271C8F:: @ 8271C8F
-	bufferitemnameplural 0, VAR_0x8004, VAR_0x8005
-	message gText_PlayerFoundOneItemTwoLines
-	return
-
-EventScript_271C9B:: @ 8271C9B
-	message gText_PlayerFoundOneItem
-	return
-
-EventScript_271CA1:: @ 8271CA1
-	msgbox gText_ObtainedTheItem, MSGBOX_DEFAULT
-	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
-	setvar VAR_RESULT, 0
-	return
-
-EventScript_FruitTree::
-	lockall
-	special GetFruitTreeItem
-	compare VAR_RESULT, 0
-	goto_if_eq FruitTree_EventScript_NothingHere
-	copyvar VAR_0x8000, VAR_RESULT
-	bufferitemnameplural 1, VAR_0x8000, 1
-	msgbox gText_FruitBearingTree
-
-@ Done so the fruit only disappears from the tree if it can be put in the bag,
-@ but before the actual giveitem text appears.
-
-	checkitemspace VAR_0x8000, 1
-	compare VAR_RESULT, 1
-	call_if_eq FruitTree_TakeItemFromTree
-	giveitem_std VAR_0x8000
-	compare VAR_RESULT, 0
-	goto_if_eq FruitTree_NotEnoughSpace
-	addvar VAR_0x8004, FLAG_FRUIT_TREES_START - 1
-	special SetFlagInVar
-FruitTree_NotEnoughSpace:
-	releaseall
-	return
-
-FruitTree_TakeItemFromTree:
-	special SetFruitTreeMetatileTakenFromId
-	return
-
-FruitTree_EventScript_NothingHere:
-	msgbox gText_FruitBearingTreeNothingHere
-	releaseall
-	return
-
-EventScript_HiddenItemScript:: @ 8271CB7
-	lockall
-	waitse
-	giveitem VAR_0x8005, 1
-	copyvar VAR_0x8007, VAR_RESULT
-	bufferitemnameplural 1, VAR_0x8005, 1
-	checkitemtype VAR_0x8005
-	call EventScript_BufferStdString
-	compare VAR_0x8007, 1
-	goto_if_eq EventScript_271CE8
-	compare VAR_0x8007, 0
-	goto_if_eq EventScript_271D47
-	end
-
-EventScript_271CE8:: @ 8271CE8
-	copyvar VAR_0x8008, VAR_0x8004
-	copyvar VAR_0x8004, VAR_0x8005
-	specialvar VAR_RESULT, BufferTMHMMoveName
-	compare VAR_RESULT, 1
-	goto_if_eq EventScript_271D0E
-	compare VAR_RESULT, 0
-	goto_if_eq EventScript_271D1F
-	end
-
-EventScript_271D0E:: @ 8271D0E
-	bufferitemnameplural 0, VAR_0x8004, 1
-	message gText_PlayerFoundOneItemTwoLines
-	goto EventScript_271D2A
-	end
-
-EventScript_271D1F:: @ 8271D1F
-	message gText_PlayerFoundOneItem
-	goto EventScript_271D2A
-	end
-
-EventScript_271D2A:: @ 8271D2A
-	waitmessage
-	waitfanfare
-	bufferitemnameplural 1, VAR_0x8004, 1
-	copyvar VAR_0x8004, VAR_0x8008
-	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
-	special sub_80EDCE8
-	special SetFlagInVar
-	releaseall
-	end
-
-EventScript_271D47:: @ 8271D47
-	msgbox gText_PlayerFoundOneItem, MSGBOX_DEFAULT
-	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
-	setvar VAR_RESULT, 0
-	releaseall
-	end
-
-EventScript_271D5E:: @ 8271D5E
-	lock
-	faceplayer
-	msgbox Text_WouldYouLikeToMixRecords, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq EventScript_271D83
-	compare VAR_RESULT, 0
-	goto_if_eq EventScript_271D89
-	goto EventScript_271D89
-
-EventScript_271D83:: @ 8271D83
-	special RecordMixingPlayerSpotTriggered
-	waitstate
-	lock
-	faceplayer
-
-EventScript_271D89:: @ 8271D89
-	message Text_WouldNotLikeToMixRecords
-	waitmessage
-	waitbuttonpress
-	release
-	end
-
+	.include "data/scripts/obtain_item.inc"
+	.include "data/scripts/record_mix.inc"
 	.include "data/scripts/pc.inc"
 
+@ scripts/notices.inc? signs.inc? See comment about text/notices.inc
 Common_EventScript_ShowPokemartSign:: @ 8271E6A
 	msgbox gText_PokemartSign, MSGBOX_SIGN
 	end
@@ -1085,180 +750,20 @@ Common_EventScript_ReadyPetalburgGymForBattle:: @ 8271E84
 	setflag FLAG_PETALBURG_MART_EXPANDED_ITEMS
 	return
 
-DewfordTown_EventScript_271E8B:: @ 8271E8B
-DewfordTown_Hall_EventScript_271E8B:: @ 8271E8B
+Common_EventScript_BufferTrendyPhrase:: @ 8271E8B
 	dotimebasedevents
 	setvar VAR_0x8004, 0
 	special BufferTrendyPhraseString
 	return
 
-DewfordTown_EventScript_271E95:: @ 8271E95
-Route29_Gatehouse_EventScript_271E95:: @ 8271E95
-Route109_EventScript_271E95:: @ 8271E95
+EventScript_BackupMrBrineyLocation:: @ 8271E95
 	copyvar VAR_0x8008, VAR_BRINEY_LOCATION
 	setvar VAR_BRINEY_LOCATION, 0
 	return
 
-EventScript_UseSurf:: @ 8271EA0
-	checkpartymove MOVE_SURF
-	compare VAR_RESULT, 6
-	goto_if_eq EventScript_CantSurf
-	bufferpartymonnick 0, VAR_RESULT
-	setfieldeffectargument 0, VAR_RESULT
-	lockall
-	msgbox gText_WantToUseSurf, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq EventScript_CancelSurf
-	msgbox gText_PlayerUsedSurf, MSGBOX_DEFAULT
-	dofieldeffect FLDEFF_USE_SURF
-
-EventScript_CancelSurf:: @ 8271ED5
-	releaseall
-
-EventScript_CantSurf:: @ 8271ED6
-	end
-
-Common_EventScript_SetupRivalGfxId:: @ 8271ED7
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq EventScript_SetupRivalGfxIdFemale
-	compare VAR_RESULT, FEMALE
-	goto_if_eq EventScript_SetupRivalGfxIdMale
-	end
-
-EventScript_SetupRivalGfxIdFemale:: @ 8271EEF
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
-	return
-
-EventScript_SetupRivalGfxIdMale:: @ 8271EF5
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
-	return
-
-Common_EventScript_SetupRivalOnBikeGfxId:: @ 8271EFB
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq EventScript_SetupRivalOnBikeGfxIdFemale
-	compare VAR_RESULT, FEMALE
-	goto_if_eq EventScript_SetupRivalOnBikeGfxIdMale
-	end
-
-EventScript_SetupRivalOnBikeGfxIdFemale:: @ 8271F13
-	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_MAY_MACH_BIKE
-	return
-
-EventScript_SetupRivalOnBikeGfxIdMale:: @ 8271F19
-	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE
-	return
-
-@ Unused
-Common_EventScript_SetupRivalGfxIdSameGender:: @ 8271F1F
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq EventScript_SetupRivalGfxIdMale2
-	compare VAR_RESULT, FEMALE
-	goto_if_eq EventScript_SetupRivalGfxIdFemale2
-	end
-
-EventScript_SetupRivalGfxIdMale2:: @ 8271F37
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
-	return
-
-EventScript_SetupRivalGfxIdFemale2:: @ 8271F3D
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
-	return
-
-Common_EventScript_SetGymTrainers:: @ 8271F43
-	switch VAR_0x8008
-	case 1, RusboroCity_Gym_SetGymTrainers
-	case 2, DewfordTown_Gym_SetGymTrainers
-	case 3, MauvilleCity_Gym_SetGymTrainers
-	case 4, LavaridgeTown_Gym_SetGymTrainers
-	case 5, VioletCity_Gym_SetGymTrainers
-	case 6, FortreeCity_Gym_SetGymTrainers
-	case 7, MossdeepCity_Gym_SetGymTrainers
-	case 8, SootopolisCity_Gym_SetGymTrainers
-	end
-
-RusboroCity_Gym_SetGymTrainers:: @ 8271FA1
-	settrainerflag TRAINER_JOSH
-	settrainerflag TRAINER_TOMMY
-	settrainerflag TRAINER_MARC
-	return
-
-DewfordTown_Gym_SetGymTrainers:: @ 8271FAB
-	settrainerflag TRAINER_TAKAO
-	settrainerflag TRAINER_JOCELYN
-	settrainerflag TRAINER_LAURA
-	settrainerflag TRAINER_BRENDEN
-	settrainerflag TRAINER_CRISTIAN
-	settrainerflag TRAINER_LILITH
-	return
-
-MauvilleCity_Gym_SetGymTrainers:: @ 8271FBE
-	settrainerflag TRAINER_KIRK
-	settrainerflag TRAINER_SHAWN
-	settrainerflag TRAINER_BEN
-	settrainerflag TRAINER_VIVIAN
-	settrainerflag TRAINER_ANGELO
-	return
-
-LavaridgeTown_Gym_SetGymTrainers:: @ 8271FCE
-	settrainerflag TRAINER_COLE
-	settrainerflag TRAINER_AXLE
-	settrainerflag TRAINER_KEEGAN
-	settrainerflag TRAINER_GERALD
-	settrainerflag TRAINER_DANIELLE
-	settrainerflag TRAINER_JACE
-	settrainerflag TRAINER_JEFF
-	settrainerflag TRAINER_ELI
-	return
-
-VioletCity_Gym_SetGymTrainers:: @ 8271FE7
-	settrainerflag TRAINER_RANDALL
-	settrainerflag TRAINER_PARKER
-	settrainerflag TRAINER_GEORGE
-	settrainerflag TRAINER_BERKE
-	settrainerflag TRAINER_MARY
-	settrainerflag TRAINER_ALEXIA
-	settrainerflag TRAINER_JODY
-	return
-
-FortreeCity_Gym_SetGymTrainers:: @ 8271FFD
-	settrainerflag TRAINER_JARED
-	settrainerflag TRAINER_FLINT
-	settrainerflag TRAINER_ASHLEY
-	settrainerflag TRAINER_EDWARDO
-	settrainerflag TRAINER_HUMBERTO
-	settrainerflag TRAINER_DARIUS
-	return
-
-MossdeepCity_Gym_SetGymTrainers:: @ 8272010
-	settrainerflag TRAINER_PRESTON
-	settrainerflag TRAINER_VIRGIL
-	settrainerflag TRAINER_BLAKE
-	settrainerflag TRAINER_HANNAH
-	settrainerflag TRAINER_SAMANTHA
-	settrainerflag TRAINER_MAURA
-	settrainerflag TRAINER_SYLVIA
-	settrainerflag TRAINER_NATE
-	settrainerflag TRAINER_KATHLEEN
-	settrainerflag TRAINER_CLIFFORD
-	settrainerflag TRAINER_MACEY
-	settrainerflag TRAINER_NICHOLAS
-	return
-
-SootopolisCity_Gym_SetGymTrainers:: @ 8272035
-	settrainerflag TRAINER_ANDREA
-	settrainerflag TRAINER_CRISSY
-	settrainerflag TRAINER_BRIANNA
-	settrainerflag TRAINER_CONNIE
-	settrainerflag TRAINER_BRIDGET
-	settrainerflag TRAINER_OLIVIA
-	settrainerflag TRAINER_TIFFANY
-	settrainerflag TRAINER_BETHANY
-	settrainerflag TRAINER_ANNIKA
-	settrainerflag TRAINER_DAPHNE
-	return
+	.include "data/scripts/surf.inc"
+	.include "data/scripts/rival_graphics.inc"
+	.include "data/scripts/set_gym_trainers.inc"
 
 Common_EventScript_ShowBagIsFull:: @ 8272054
 	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
@@ -1269,17 +774,17 @@ Common_EventScript_BagIsFull:: @ 827205E
 	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
 	return
 
-Route114_LanettesHouse_EventScript_272067:: @ 8272067
+Common_EventScript_ShowNoRoomForDecor:: @ 8272067
 	msgbox gText_NoRoomLeftForAnother, MSGBOX_DEFAULT
 	release
 	end
 
-Common_EventScript_NoRoomLeftForAnother:: @ 8272071
+Common_EventScript_NoRoomForDecor:: @ 8272071
 	msgbox gText_NoRoomLeftForAnother, MSGBOX_DEFAULT
 	return
 
-Common_EventScript_SetWeather15:: @ 827207A
-	setweather WEATHER_ALTERNATING
+Common_EventScript_SetAbnormalWeather:: @ 827207A
+	setweather WEATHER_ABNORMAL
 	return
 
 Common_EventScript_PlayGymBadgeFanfare:: @ 827207E
@@ -1305,17 +810,18 @@ EventScript_RegionMap:: @ 827208F
 	end
 
 Common_EventScript_PlayBrineysBoatMusic:: @ 82720A0
-	setflag FLAG_SPECIAL_FLAG_0x4001
+	setflag FLAG_DONT_TRANSITION_MUSIC
 	playbgm MUS_M_BOAT, 0
 	return
 
 Common_EventScript_StopBrineysBoatMusic:: @ 82720A8
-	clearflag FLAG_SPECIAL_FLAG_0x4001
+	clearflag FLAG_DONT_TRANSITION_MUSIC
 	fadedefaultbgm
 	return
 
 	.include "data/scripts/prof_birch.inc"
 
+@ Below could be split as ferry.inc aside from the Rusturf tunnel script
 Common_EventScript_FerryDepart:: @ 82721E2
 	delay 60
 	applymovement VAR_0x8004, Movement_FerryDepart
@@ -1332,7 +838,7 @@ Movement_FerryDepart: @ 82721F0
 	walk_right
 	step_end
 
-VioletCity_Gym_EventScript_2721F8:: @ 82721F8
+EventScript_HideMrBriney:: @ 82721F8
 	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
@@ -1344,39 +850,35 @@ VioletCity_Gym_EventScript_2721F8:: @ 82721F8
 	setvar VAR_BRINEY_LOCATION, 0
 	return
 
-RusturfTunnel_EventScript_272216:: @ 8272216
+RusturfTunnel_EventScript_SetRusturfTunnelOpen:: @ 8272216
 	removeobject 1
 	removeobject 10
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_MAN
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_WOMAN
+	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA
 	setvar VAR_RUSTURF_TUNNEL_STATE, 6
 	setflag FLAG_RUSTURF_TUNNEL_OPENED
 	return
 
-EventScript_27222B:: @ 827222B
+EventScript_UnusedBoardFerry:: @ 827222B
 	delay 30
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	showobjectat 255, MAP_VIOLET_CITY
 	delay 30
-	applymovement EVENT_OBJ_ID_PLAYER, Movement_27224E
+	applymovement EVENT_OBJ_ID_PLAYER, Movement_UnusedBoardFerry
 	waitmovement 0
 	delay 30
 	return
 
-Movement_27224E: @ 827224E
+Movement_UnusedBoardFerry: @ 827224E
 	walk_up
 	step_end
 
-BattleFrontier_OutsideWest_EventScript_272250:: @ 8272250
-BirthIsland_Harbor_EventScript_272250:: @ 8272250
-FarawayIsland_Entrance_EventScript_272250:: @ 8272250
-NavelRock_Harbor_EventScript_272250:: @ 8272250
-SouthernIsland_Exterior_EventScript_272250:: @ 8272250
+Common_EventScript_FerryDepartIsland:: @ 8272250
 	compare VAR_FACING, DIR_SOUTH
-	call_if_eq BattleFrontier_OutsideWest_EventScript_242A21
+	call_if_eq Ferry_EventScript_DepartIslandSouth
 	compare VAR_FACING, DIR_WEST
-	call_if_eq BattleFrontier_OutsideWest_EventScript_242A2C
+	call_if_eq Ferry_EventScript_DepartIslandWest
 	delay 30
 	hideobjectat 255, MAP_VIOLET_CITY
 	call Common_EventScript_FerryDepart
@@ -1403,69 +905,13 @@ Common_EventScript_PlayerHandedOverTheItem:: @ 82723E4
 	.include "data/scripts/elite_four.inc"
 	.include "data/scripts/movement.inc"
 	.include "data/scripts/check_furniture.inc"
-
-Text_WouldYouLikeToMixRecords: @ 827260D
-	.string "Would you like to mix records with\n"
-	.string "other TRAINERS?$"
-
-Text_WouldNotLikeToMixRecords: @ 8272640
-	.string "We hope to see you again!$"
-
+	.include "data/text/record_mix.inc"
 	.include "data/text/pc.inc"
 	.include "data/text/pkmn_center_nurse.inc"
+	.include "data/text/mart_clerk.inc"
+	.include "data/text/obtain_item.inc"
 
-gText_HowMayIHelpYou:: @ 8272A21
-	.string "Welcome!\n"
-	.string "How may I help you?$"
-
-gText_PleaseComeAgain:: @ 8272A3F
-	.string "Please come again!$"
-
-gText_PlayerWhatCanIDoForYou:: @ 8272A52
-	.string "{PLAYER}{STRING 5}, welcome!\p"
-	.string "What can I do for you?$"
-
-gText_ObtainedTheItem:: @ 8272A78
-	.string "Obtained the {STR_VAR_2}!$"
-
-gText_TheBagIsFull:: @ 8272A89
-	.string "The BAG is full…$"
-
-gText_PutItemInPocket:: @ 8272A9A
-	.string "{PLAYER} put away the {STR_VAR_2}\n"
-	.string "in the {STR_VAR_3} POCKET.$"
-
-gText_PlayerFoundOneItem:: @ 8272ABF
-	.string "{PLAYER} found one {STR_VAR_2}!$"
-
-gText_TooBadBagIsFull:: @ 8272AD0
-	.string "Too bad!\n"
-	.string "The BAG is full…$"
-
-gText_PlayerPutItemInBag:: @ 8272AEA
-	.string "{PLAYER} put away the {STR_VAR_2}\n"
-	.string "in the BAG.$"
-
-gText_ObtainedTheMon:: @ 8272B09
-	.string "Obtained the {STR_VAR_2}!$"
-
-gText_NoRoomLeftForAnother:: @ 8272B1A
-	.string "Too bad! There's no room left for\n"
-	.string "another {STR_VAR_2}…$"
-
-gText_FruitBearingTree:
-	.string "It's a fruit-bearing tree.\p"
-	.string "Hey!\n"
-	.string "It's {STR_VAR_2}!$"
-
-gText_FruitBearingTreeNothingHere:
-	.string "It's a fruit-bearing tree.\p"
-	.string "Looks like there's nothing here…$"
-
-gText_TheMonWasTransferredToThePC:: @ 8272B48
-	.string "The {STR_VAR_2} was transferred\n"
-	.string "to the PC.$"
-
+@ The below and surf.inc could be split into some text/notices.inc
 gText_PokemartSign:: @ 8272B6A
 	.string "For All Your POKéMON Needs\n"
 	.string "POKéMON MART$"
@@ -1572,7 +1018,7 @@ gText_ThankYouForAccessingMysteryGift:: @ 8273178
 	.string "Thank you for accessing the\n"
 	.string "MYSTERY GIFT System.$"
 
-gText_PlayerFoundOneItemTwoLines:: @ 82731A9
+gText_PlayerFoundOneTMHM:: @ 82731A9
 	.string "{PLAYER} found one {STR_VAR_1}\n"
 	.string "{STR_VAR_2}!$"
 
@@ -1584,40 +1030,9 @@ gText_Sudowoodo_Attacked:: @ 82731BD
 gText_LegendaryFlewAway:: @ 8273204
 	.string "The {STR_VAR_1} flew away!$"
 
-gText_PkmnTransferredSomeonesPC:: @ 8273216
-	.string "{STR_VAR_2} was transferred to\n"
-	.string "SOMEONE'S PC.\p"
-	.string "It was placed in \n"
-	.string "BOX “{STR_VAR_1}.”$"
-
-gText_PkmnTransferredLanettesPC:: @ 8273256
-	.string "{STR_VAR_2} was transferred to\nLANETTE'S PC.\p"
-	.string "It was placed in \n"
-	.string "BOX “{STR_VAR_1}.”$"
-
-gText_PkmnBoxSomeonesPCFull:: @ 8273296
-	.string "BOX “{STR_VAR_3}” on\n"
-	.string "SOMEONE'S PC was full.\p"
-	.string "{STR_VAR_2} was transferred to\n"
-	.string "BOX “{STR_VAR_1}.”$"
-
-gText_PkmnBoxLanettesPCFull:: @ 82732D9
-	.string "BOX “{STR_VAR_3}” on\n"
-	.string "LANETTE'S PC was full.\p"
-	.string "{STR_VAR_2} was transferred to\n"
-	.string "BOX “{STR_VAR_1}.”$"
-
-gText_NoMoreRoomForPokemon:: @ 827331C
-	.string "There's no more room for POKéMON!\p"
-	.string "The POKéMON BOXES are full and\n"
-	.string "can't accept any more!$"
-
-gText_NicknameThisPokemon:: @ 8273374
-	.string "Do you want to give a nickname to\n"
-	.string "this {STR_VAR_1}?$"
-
+	.include "data/text/pc_transfer.inc"
 	.include "data/text/mevent.inc"
-	.include "data/text/unusual_weather.inc"
+	.include "data/text/abnormal_weather.inc"
 
 EventScript_SelectWithoutRegisteredItem:: @ 82736B3
 	msgbox gText_SelectWithoutRegisteredItem, MSGBOX_SIGN
@@ -1665,89 +1080,10 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	release
 	end
 
-@ VAR_0x8004 here is used by ChangePokemonNickname
-Common_EventScript_GetGiftMonPartySlot:: @ 827378B
-	getpartysize
-	subvar VAR_RESULT, 1
-	copyvar VAR_0x8004, VAR_RESULT
-	return
-
-Common_EventScript_NameReceivedBoxMon:: @ 8273797
-	fadescreen 1
-	special ChangeBoxPokemonNickname
-	waitstate
-	lock
-	faceplayer
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_2737A0:: @ 82737A0
-MossdeepCity_StevensHouse_EventScript_2737A0:: @ 82737A0
-Route119_WeatherInstitute_2F_EventScript_2737A0:: @ 82737A0
-RustboroCity_DevonCorp_2F_EventScript_2737A0:: @ 82737A0
-	bufferboxname 0, VAR_PC_BOX_TO_SEND_MON
-	bufferspeciesname 1, VAR_TEMP_1
-	call_if_unset FLAG_SYS_PC_LANETTE, NewBarkTown_ProfessorElmsLab_EventScript_2737BB
-	call_if_set FLAG_SYS_PC_LANETTE, NewBarkTown_ProfessorElmsLab_EventScript_2737E6
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_2737BB:: @ 82737BB
-	specialvar VAR_RESULT, ShouldShowBoxWasFullMessage
-	compare VAR_RESULT, 1
-	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_2737D4
-	msgbox gText_PkmnTransferredSomeonesPC, MSGBOX_DEFAULT
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_2737D4:: @ 82737D4
-	specialvar VAR_RESULT, GetPCBoxToSendMon
-	bufferboxname 2, VAR_RESULT
-	msgbox gText_PkmnBoxSomeonesPCFull, MSGBOX_DEFAULT
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_2737E6:: @ 82737E6
-	specialvar VAR_RESULT, ShouldShowBoxWasFullMessage
-	compare VAR_RESULT, 1
-	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_2737FF
-	msgbox gText_PkmnTransferredLanettesPC, MSGBOX_DEFAULT
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_2737FF:: @ 82737FF
-	specialvar VAR_RESULT, GetPCBoxToSendMon
-	bufferboxname 2, VAR_RESULT
-	msgbox gText_PkmnBoxLanettesPCFull, MSGBOX_DEFAULT
-	return
-
-Common_EventScript_NoMoreRoomForPokemon:: @ 8273811
-	msgbox gText_NoMoreRoomForPokemon, MSGBOX_DEFAULT
-	release
-	end
-
+	.include "data/scripts/pc_transfer.inc"
 	.include "data/scripts/mevent.inc"
-	.include "data/scripts/unusual_weather.inc"
-
-Std_RegisteredInMatchCall:: @ 82742C9
-	buffertrainerclassname 0, VAR_0x8000
-	buffertrainername 1, VAR_0x8000
-	closemessage
-	delay 30
-	playfanfare MUS_ME_TORE_EYE
-	msgbox gText_RegisteredTrainerinPokeNav, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	return
-
-EventScript_TryGetTrainerScript:: @ 82742E6
-	special ShouldTryGetTrainerScript
-	compare VAR_RESULT, 1
-	goto_if_eq EventScript_GotoTrainerScript
-	releaseall
-	end
-
-EventScript_GotoTrainerScript:: @ 82742F6
-	gotobeatenscript
-	releaseall
-	end
-
+	.include "data/scripts/abnormal_weather.inc"
+	.include "data/scripts/trainer_script.inc"
 	.include "data/scripts/berry_tree.inc"
 	.include "data/scripts/secret_base.inc"
 	.include "data/scripts/cable_club.inc"
@@ -1766,23 +1102,11 @@ EventScript_GotoTrainerScript:: @ 82742F6
 	.include "data/scripts/item_ball_scripts.inc"
 	.include "data/scripts/mystery_event_club.inc"
 	.include "data/scripts/day_care.inc"
-
-EventScript_2926F8:: @ 82926F8
-	animateflash 1
-	setflashradius 1
-	end
-
-	.include "data/scripts/pokeblocks.inc"
+	.include "data/scripts/flash.inc"
+	.include "data/scripts/berry_blender.inc"
 	.include "data/text/mauville_man.inc"
 	.include "data/text/trainers.inc"
-
-EventScript_RepelWoreOff:: @ 82A4B2A
-	msgbox Text_RepelWoreOff, MSGBOX_SIGN
-	end
-
-Text_RepelWoreOff: @ 82A4B33
-	.string "REPEL's effect wore off…$"
-
+	.include "data/scripts/repel.inc"
 	.include "data/scripts/safari_zone.inc"
 	.include "data/scripts/bug_catching_contest.inc"
 	.include "data/scripts/roulette.inc"
@@ -1797,25 +1121,16 @@ Text_RepelWoreOff: @ 82A4B33
 	.include "data/scripts/lilycove_lady.inc"
 	.include "data/text/match_call.inc"
 	.include "data/scripts/apprentice.inc"
+	.include "data/text/apprentice.inc"
 	.include "data/text/battle_dome.inc"
 	.include "data/scripts/battle_pike.inc"
-	.include "data/text/contest_hall.inc"
+	.include "data/text/blend_master.inc"
 	.include "data/text/battle_tent.inc"
 	.include "data/text/event_ticket_2.inc"
 	.include "data/text/move_tutors.inc"
 	.include "data/scripts/move_tutors.inc"
 	.include "data/scripts/trainer_hill.inc"
-
-Text_ThisIsATestSignpostMsg:: @ 82C840A
-	.string "This is a test message.\n"
-	.string "This is a signpost.$"
-
-EventScript_TestSignpostMsg:: @ 82C8436
-	msgbox Text_ThisIsATestSignpostMsg, MSGBOX_SIGN
-	end
-
+	.include "data/scripts/test_signpost.inc"
 	.include "data/text/frontier_brain.inc"
-
-	.align 2
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"

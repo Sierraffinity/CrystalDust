@@ -1,7 +1,6 @@
 #include "global.h"
 #include "rtc.h"
 #include "overworld.h"
-#include "constants/maps.h"
 #include "random.h"
 #include "event_data.h"
 #include "fieldmap.h"
@@ -14,12 +13,9 @@
 #include "pokemon_storage_system.h"
 #include "field_message_box.h"
 #include "easy_chat.h"
-#include "constants/species.h"
-#include "constants/moves.h"
 #include "battle.h"
 #include "battle_tower.h"
 #include "contest.h"
-#include "constants/items.h"
 #include "item.h"
 #include "link.h"
 #include "main.h"
@@ -33,15 +29,20 @@
 #include "naming_screen.h"
 #include "malloc.h"
 #include "region_map.h"
-#include "constants/region_map_sections.h"
 #include "decoration.h"
 #include "secret_base.h"
 #include "tv.h"
 #include "data.h"
+#include "constants/battle_frontier.h"
 #include "constants/contest.h"
+#include "constants/items.h"
 #include "constants/layouts.h"
+#include "constants/maps.h"
 #include "constants/metatile_behaviors.h"
+#include "constants/moves.h"
+#include "constants/region_map_sections.h"
 #include "constants/script_menu.h"
+#include "constants/species.h"
 #include "constants/tv.h"
 
 // Static type declarations
@@ -762,7 +763,7 @@ void ClearTVShowData(void)
     ClearPokemonNews();
 }
 
-u8 special_0x44(void)
+u8 GetRandomActiveShowIdx(void)
 {
     u8 i;
     u8 j;
@@ -771,10 +772,8 @@ u8 special_0x44(void)
 
     for (i = 5; i < ARRAY_COUNT(gSaveBlock1Ptr->tvShows) - 1; i ++)
     {
-        if (gSaveBlock1Ptr->tvShows[i].common.kind == 0)
-        {
+        if (gSaveBlock1Ptr->tvShows[i].common.kind == TVSHOW_OFF_AIR)
             break;
-        }
     }
     j = Random() % i;
     selIdx = j;
@@ -783,44 +782,38 @@ u8 special_0x44(void)
         if (GetTVChannelByShowType(gSaveBlock1Ptr->tvShows[j].common.kind) != 4)
         {
             if (gSaveBlock1Ptr->tvShows[j].common.active == TRUE)
-            {
                 return j;
-            }
         }
         else
         {
             show = &gSaveBlock1Ptr->tvShows[j];
             if (show->massOutbreak.daysLeft == 0 && show->massOutbreak.active == TRUE)
-            {
                 return j;
-            }
         }
+
         if (j == 0)
-        {
             j = ARRAY_COUNT(gSaveBlock1Ptr->tvShows) - 2;
-        }
         else
-        {
             j --;
-        }
+
     } while (j != selIdx);
     return 0xFF;
 }
 
 u8 FindAnyTVShowOnTheAir(void)
 {
-    u8 response;
+    u8 show;
 
-    response = special_0x44();
-    if (response == 0xFF)
+    show = GetRandomActiveShowIdx();
+    if (show == 0xFF)
     {
         return 0xFF;
     }
-    if (gSaveBlock1Ptr->outbreakPokemonSpecies != SPECIES_NONE && gSaveBlock1Ptr->tvShows[response].common.kind == TVSHOW_MASS_OUTBREAK)
+    if (gSaveBlock1Ptr->outbreakPokemonSpecies != SPECIES_NONE && gSaveBlock1Ptr->tvShows[show].common.kind == TVSHOW_MASS_OUTBREAK)
     {
         return FindFirstActiveTVShowThatIsNotAMassOutbreak();
     }
-    return response;
+    return show;
 }
 
 void UpdateTVScreensOnMap(int width, int height)
@@ -876,7 +869,7 @@ void TurnOnTVScreen(void)
     DrawWholeMapView();
 }
 
-u8 special_0x45(void)
+u8 GetSelectedTVShow(void)
 {
     return gSaveBlock1Ptr->tvShows[gSpecialVar_0x8004].common.kind;
 }
@@ -887,7 +880,7 @@ u8 FindFirstActiveTVShowThatIsNotAMassOutbreak(void)
 
     for (i = 0; i < ARRAY_COUNT(gSaveBlock1Ptr->tvShows) - 1; i ++)
     {
-        if (gSaveBlock1Ptr->tvShows[i].common.kind != 0 && gSaveBlock1Ptr->tvShows[i].common.kind != TVSHOW_MASS_OUTBREAK && gSaveBlock1Ptr->tvShows[i].common.active == TRUE)
+        if (gSaveBlock1Ptr->tvShows[i].common.kind != TVSHOW_OFF_AIR && gSaveBlock1Ptr->tvShows[i].common.kind != TVSHOW_MASS_OUTBREAK && gSaveBlock1Ptr->tvShows[i].common.active == TRUE)
         {
             return i;
         }
@@ -895,7 +888,7 @@ u8 FindFirstActiveTVShowThatIsNotAMassOutbreak(void)
     return 0xFF;
 }
 
-u8 special_0x4a(void)
+u8 GetNextActiveShowIfMassOutbreak(void)
 {
     TVShow *tvShow;
 
@@ -1546,12 +1539,12 @@ static void InterviewAfter_BravoTrainerBattleTowerProfile(void)
     show->bravoTrainerTower.kind = TVSHOW_BRAVO_TRAINER_BATTLE_TOWER_PROFILE;
     show->bravoTrainerTower.active = TRUE;
     StringCopy(show->bravoTrainerTower.trainerName, gSaveBlock2Ptr->playerName);
-    StringCopy(show->bravoTrainerTower.pokemonName, gSaveBlock2Ptr->frontier.field_BD8);
-    show->bravoTrainerTower.species = gSaveBlock2Ptr->frontier.field_BD4;
-    show->bravoTrainerTower.defeatedSpecies = gSaveBlock2Ptr->frontier.field_BD6;
-    show->bravoTrainerTower.numFights = GetCurrentBattleTowerWinStreak(gSaveBlock2Ptr->frontier.field_D07, 0);
-    show->bravoTrainerTower.wonTheChallenge = gSaveBlock2Ptr->frontier.field_D06;
-    if (gSaveBlock2Ptr->frontier.field_D07 == 0)
+    StringCopy(show->bravoTrainerTower.pokemonName, gSaveBlock2Ptr->frontier.towerInterview.opponentName);
+    show->bravoTrainerTower.species = gSaveBlock2Ptr->frontier.towerInterview.playerSpecies;
+    show->bravoTrainerTower.defeatedSpecies = gSaveBlock2Ptr->frontier.towerInterview.opponentSpecies;
+    show->bravoTrainerTower.numFights = GetCurrentBattleTowerWinStreak(gSaveBlock2Ptr->frontier.towerLvlMode, 0);
+    show->bravoTrainerTower.wonTheChallenge = gSaveBlock2Ptr->frontier.towerBattleOutcome;
+    if (gSaveBlock2Ptr->frontier.towerLvlMode == FRONTIER_LVL_50)
     {
         show->bravoTrainerTower.btLevel = 50;
     }
@@ -1562,13 +1555,13 @@ static void InterviewAfter_BravoTrainerBattleTowerProfile(void)
     show->bravoTrainerTower.interviewResponse = gSpecialVar_0x8004;
     tv_store_id_2x(show);
     show->bravoTrainerTower.language = gGameLanguage;
-    if (show->bravoTrainerTower.language == LANGUAGE_JAPANESE || gSaveBlock2Ptr->frontier.field_BEB == LANGUAGE_JAPANESE)
+    if (show->bravoTrainerTower.language == LANGUAGE_JAPANESE || gSaveBlock2Ptr->frontier.towerInterview.opponentLanguage == LANGUAGE_JAPANESE)
     {
         show->bravoTrainerTower.pokemonNameLanguage = LANGUAGE_JAPANESE;
     }
     else
     {
-        show->bravoTrainerTower.pokemonNameLanguage = gSaveBlock2Ptr->frontier.field_BEB;
+        show->bravoTrainerTower.pokemonNameLanguage = gSaveBlock2Ptr->frontier.towerInterview.opponentLanguage;
     }
 }
 
@@ -2003,7 +1996,7 @@ void sub_80EDC60(const u16 *words)
     }
 }
 
-void sub_80EDCE8(void)
+void TryPutTreasureInvestigatorsOnAir(void)
 {
     TVShow *show;
 
@@ -2299,7 +2292,7 @@ void sub_80EE184(void)
     }
 }
 
-void sub_80EE2CC(void)
+void TryPutLotteryWinnerReportOnAir(void)
 {
     TVShow *show;
 
@@ -2366,7 +2359,7 @@ void sub_80EE44C(u8 nMonsCaught, u8 nPkblkUsed)
     }
 }
 
-void sub_80EE4DC(struct Pokemon *pokemon, u8 ribbonMonDataIdx)
+void TryPutSpotTheCutiesOnAir(struct Pokemon *pokemon, u8 ribbonMonDataIdx)
 {
     TVShow *show;
 
@@ -2441,7 +2434,7 @@ u8 TV_MonDataIdxToRibbon(u8 monDataIdx)
     return 0;
 }
 
-void sub_80EE72C(void)
+void TrySetUpTrainerFanClubSpecial(void)
 {
     TVShow *show;
 
@@ -2459,26 +2452,23 @@ void sub_80EE72C(void)
     }
 }
 
-bool8 sub_80EE7C0(void)
+bool8 ShouldHideFanClubInterviewer(void)
 {
     sCurTVShowSlot = FindEmptyTVSlotWithinFirstFiveShowsOfArray(gSaveBlock1Ptr->tvShows);
     if (sCurTVShowSlot == -1)
-    {
         return TRUE;
-    }
+
     FindActiveBroadcastByShowType_SetScriptResult(TVSHOW_FAN_CLUB_SPECIAL);
     if (gSpecialVar_Result == TRUE)
-    {
         return TRUE;
-    }
+
     if (gSaveBlock1Ptr->linkBattleRecords.entries[0].name[0] == EOS)
-    {
         return TRUE;
-    }
+    
     return FALSE;
 }
 
-bool8 sub_80EE818(void)
+bool8 ShouldAirFrontierTVShow(void)
 {
     u32 playerId;
     u8 showIdx;
@@ -2506,7 +2496,7 @@ bool8 sub_80EE818(void)
     return TRUE;
 }
 
-void sub_80EE8C8(u16 winStreak, u8 facilityAndMode)
+void TryPutFrontierTVShowOnAir(u16 winStreak, u8 facilityAndMode)
 {
     TVShow *show;
 
@@ -2627,37 +2617,37 @@ static void sub_80EEBF4(u8 actionIdx)
     }
 }
 
-void sub_80EEC80(void)
+void IncrementDailySlotsUses(void)
 {
     VarSet(VAR_DAILY_SLOTS, VarGet(VAR_DAILY_SLOTS) + 1);
 }
 
-void sub_80EECA4(void)
+void IncrementDailyRouletteUses(void)
 {
     VarSet(VAR_DAILY_ROULETTE, VarGet(VAR_DAILY_ROULETTE) + 1);
 }
 
-void sub_80EECC8(void)
+void IncrementDailyWildBattles(void)
 {
     VarSet(VAR_DAILY_WILDS, VarGet(VAR_DAILY_WILDS) + 1);
 }
 
-void sub_80EECEC(void)
+void IncrementDailyBerryBlender(void)
 {
     VarSet(VAR_DAILY_BLENDER, VarGet(VAR_DAILY_BLENDER) + 1);
 }
 
-void sub_80EED10(void)
+void IncrementDailyPlantedBerries(void)
 {
     VarSet(VAR_DAILY_PLANTED_BERRIES, VarGet(VAR_DAILY_PLANTED_BERRIES) + 1);
 }
 
-void sub_80EED34(void)
+void IncrementDailyPickedBerries(void)
 {
     VarSet(VAR_DAILY_PICKED_BERRIES, VarGet(VAR_DAILY_PICKED_BERRIES) + gSpecialVar_0x8006);
 }
 
-void sub_80EED60(u16 delta)
+void IncrementDailyBattlePoints(u16 delta)
 {
     VarSet(VAR_DAILY_BP, VarGet(VAR_DAILY_BP) + delta);
 }
@@ -3150,7 +3140,7 @@ static void InterviewBefore_FanClubSpecial(void)
     }
 }
 
-bool8 sub_80EF88C(u8 monIdx)
+static bool8 IsPartyMonNicknamedOrNotEnglish(u8 monIdx)
 {
     struct Pokemon *pokemon;
     u8 language;
@@ -3165,9 +3155,9 @@ bool8 sub_80EF88C(u8 monIdx)
     return TRUE;
 }
 
-bool8 sub_80EF8F8(void)
+bool8 IsLeadMonNicknamedOrNotEnglish(void)
 {
-    return sub_80EF88C(GetLeadMonIndex());
+    return IsPartyMonNicknamedOrNotEnglish(GetLeadMonIndex());
 }
 
 void DeleteTVShowInArrayByIdx(TVShow *shows, u8 idx)
@@ -3437,13 +3427,14 @@ bool8 TV_IsScriptShowKindAlreadyInQueue(void)
     return FALSE;
 }
 
-bool8 TV_PutNameRaterShowOnTheAirIfNicknameChanged(void)
+bool8 TryPutNameRaterShowOnTheAir(void)
 {
     GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar1);
+
+    // Nickname wasnt changed
     if (!StringCompare(gStringVar3, gStringVar1))
-    {
         return FALSE;
-    }
+
     PutNameRaterShowOnTheAir();
     return TRUE;
 }
@@ -3485,22 +3476,18 @@ void ChangeBoxPokemonNickname_CB(void)
     CB2_ReturnToFieldContinueScriptPlayMapMusic();
 }
 
-void TV_CopyNicknameToStringVar1AndEnsureTerminated(void)
+void BufferMonNickname(void)
 {
     GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar1);
     StringGetEnd10(gStringVar1);
 }
 
-void TV_CheckMonOTIDEqualsPlayerID(void)
+void IsMonOTIDNotPlayers(void)
 {
     if (GetPlayerIDAsU32() == GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_OT_ID, NULL))
-    {
         gSpecialVar_Result = FALSE;
-    }
     else
-    {
         gSpecialVar_Result = TRUE;
-    }
 }
 
 u8 GetTVChannelByShowType(u8 kind)

@@ -176,7 +176,7 @@
       "y": 5,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "AbandonedShip_HiddenFloorRooms_EventScript_238DF3"
+      "script": "AbandonedShip_HiddenFloorRooms_EventScript_Trash"
     },
     {
       "type": "sign",
@@ -184,7 +184,7 @@
       "y": 3,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "AbandonedShip_HiddenFloorRooms_EventScript_238DF3"
+      "script": "AbandonedShip_HiddenFloorRooms_EventScript_Trash"
     },
     {
       "type": "sign",
@@ -192,7 +192,7 @@
       "y": 10,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "AbandonedShip_HiddenFloorRooms_EventScript_238DF3"
+      "script": "AbandonedShip_HiddenFloorRooms_EventScript_Trash"
     },
     {
       "type": "sign",
@@ -200,7 +200,7 @@
       "y": 3,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "AbandonedShip_HiddenFloorRooms_EventScript_238DF3"
+      "script": "AbandonedShip_HiddenFloorRooms_EventScript_Trash"
     },
     {
       "type": "sign",
@@ -208,7 +208,7 @@
       "y": 2,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "AbandonedShip_HiddenFloorRooms_EventScript_238DF3"
+      "script": "AbandonedShip_HiddenFloorRooms_EventScript_Trash"
     },
     {
       "type": "sign",
@@ -216,7 +216,7 @@
       "y": 6,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "AbandonedShip_HiddenFloorRooms_EventScript_238DF3"
+      "script": "AbandonedShip_HiddenFloorRooms_EventScript_Trash"
     }
   ],
   "phone_service": true

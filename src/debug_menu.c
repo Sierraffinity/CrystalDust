@@ -308,7 +308,7 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
         temp = (((tFlagNum >> shifter) & 0xF) + 1) & 0xF;
         temp = (tFlagNum & ~(0xF << shifter)) | (temp << shifter);
 
-        if (temp >= FLAG_TEMP_1 && temp <= FLAG_0x95F)
+        if (temp >= FLAG_TEMP_1 && temp <= DAILY_FLAGS_END)
         {
             PlaySE(SE_SELECT);
             tFlagNum = temp;
@@ -322,7 +322,7 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
         temp = (((tFlagNum >> shifter) & 0xF) - 1) & 0xF;
         temp = (tFlagNum & ~(0xF << shifter)) | (temp << shifter);
 
-        if (temp >= FLAG_TEMP_1 && temp <= FLAG_0x95F)
+        if (temp >= FLAG_TEMP_1 && temp <= DAILY_FLAGS_END)
         {
             PlaySE(SE_SELECT);
             tFlagNum = temp;

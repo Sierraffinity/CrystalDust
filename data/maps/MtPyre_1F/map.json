@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MtPyre_1F_EventScript_230F3F",
+      "script": "MtPyre_1F_EventScript_CleanseTagWoman",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MtPyre_1F_EventScript_230F78",
+      "script": "MtPyre_1F_EventScript_PokefanF",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MtPyre_1F_EventScript_230F81",
+      "script": "MtPyre_1F_EventScript_Man",
       "flag": "0"
     }
   ],

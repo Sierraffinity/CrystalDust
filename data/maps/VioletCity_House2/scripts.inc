@@ -29,7 +29,7 @@ VioletCity_House2_EventScript_Kyle_2:
 	goto VioletCity_House2_EventScript_Kyle_1
 
 VioletCity_House2_EventScript_Kyle_5:
-	special sub_81B94B0
+	special ChoosePartyMon
 	waitstate
 	copyvar VAR_0x800A, VAR_0x8004
 	compare VAR_0x8004, 0xFF

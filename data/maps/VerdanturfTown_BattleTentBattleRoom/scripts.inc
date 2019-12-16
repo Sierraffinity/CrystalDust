@@ -34,44 +34,32 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_202348:: @ 8202348
 	showobjectat 1, MAP_VERDANTURF_TOWN_BATTLE_TENT_BATTLE_ROOM
 	applymovement 1, VerdanturfTown_BattleTentBattleRoom_Movement_202575
 	waitmovement 0
-	setvar VAR_0x8004, 1
-	setvar VAR_0x8005, 2
-	special CallFrontierUtilFunc
+	frontier_get FRONTIER_DATA_BATTLE_NUM
 	compare VAR_RESULT, 0
 	goto_if_ne VerdanturfTown_BattleTentBattleRoom_EventScript_20243C
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_20236F:: @ 820236F
-	setvar VAR_0x8004, 3
-	special sub_8161F74
+	tower_setopponent
 	addobject 2
 	applymovement 2, VerdanturfTown_BattleTentBattleRoom_Movement_20257B
 	waitmovement 0
-	setvar VAR_0x8004, 4
-	special sub_81B99B4
+	battletent_getopponentintro
 	msgbox gStringVar4, MSGBOX_DEFAULT
 	waitmessage
-	call VerdanturfTown_BattleTentBattleRoom_EventScript_24FDF7
+	call BattleFrontier_BattlePalaceBattleRoom_EventScript_DoPalaceBattle
 	switch VAR_RESULT
 	case 1, VerdanturfTown_BattleTentBattleRoom_EventScript_2023C8
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_2023AA:: @ 82023AA
-	setvar VAR_0x8004, 2
-	setvar VAR_0x8005, 0
-	setvar VAR_0x8006, 4
-	special CallFrontierUtilFunc
+	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST
 	special LoadPlayerParty
 	warp MAP_VERDANTURF_TOWN_BATTLE_TENT_LOBBY, 255, 6, 6
 	waitstate
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_2023C8:: @ 82023C8
-	setvar VAR_0x8004, 1
-	setvar VAR_0x8005, 2
-	special CallFrontierUtilFunc
+	frontier_get FRONTIER_DATA_BATTLE_NUM
 	addvar VAR_RESULT, 1
-	setvar VAR_0x8004, 2
-	setvar VAR_0x8005, 2
-	copyvar VAR_0x8006, VAR_RESULT
-	special CallFrontierUtilFunc
+	frontier_set FRONTIER_DATA_BATTLE_NUM, VAR_RESULT
 	switch VAR_RESULT
 	case 3, VerdanturfTown_BattleTentBattleRoom_EventScript_202501
 	applymovement 2, VerdanturfTown_BattleTentBattleRoom_Movement_202581
@@ -80,20 +68,16 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_2023C8:: @ 82023C8
 	applymovement 3, Common_Movement_WalkInPlaceFastestDown
 	applymovement 1, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
-	msgbox VerdanturfTown_BattleTentBattleRoom_Text_24FF00, MSGBOX_DEFAULT
+	msgbox BattleFrontier_BattlePalaceBattleRoom_Text_LetMeRestoreYourMons, MSGBOX_DEFAULT
 	special LoadPlayerParty
 	special SavePlayerParty
-	setvar VAR_0x8004, 3
-	setvar VAR_0x8005, 3
-	special CallFrontierUtilFunc
+	frontier_setpartyorder FRONTIER_PARTY_SIZE
 	playfanfare MUS_ME_ASA
 	waitfanfare
 	special HealPlayerParty
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_20243C:: @ 820243C
-	setvar VAR_0x8004, 1
-	setvar VAR_0x8005, 2
-	special CallFrontierUtilFunc
+	frontier_get FRONTIER_DATA_BATTLE_NUM
 	compare VAR_RESULT, 1
 	call_if_eq VerdanturfTown_BattleTentBattleRoom_EventScript_202565
 	compare VAR_RESULT, 2
@@ -105,14 +89,14 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_20243C:: @ 820243C
 	case 2, VerdanturfTown_BattleTentBattleRoom_EventScript_2024B8
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_20248A:: @ 820248A
-	msgbox VerdanturfTown_BattleTentBattleRoom_Text_250030, MSGBOX_YESNO
+	msgbox BattleFrontier_BattlePalaceBattleRoom_Text_SaveAndQuitGame, MSGBOX_YESNO
 	switch VAR_RESULT
-	case 0, VerdanturfTown_BattleTentBattleRoom_EventScript_20243C
-	case 1, VerdanturfTown_BattleTentBattleRoom_EventScript_20251F
-	case 127, VerdanturfTown_BattleTentBattleRoom_EventScript_20243C
+	case NO, VerdanturfTown_BattleTentBattleRoom_EventScript_20243C
+	case YES, VerdanturfTown_BattleTentBattleRoom_EventScript_20251F
+	case MULTI_B_PRESSED, VerdanturfTown_BattleTentBattleRoom_EventScript_20243C
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_2024B8:: @ 82024B8
-	message VerdanturfTown_BattleTentBattleRoom_Text_25005A
+	message BattleFrontier_BattlePalaceBattleRoom_Text_WishToQuitChallenge
 	waitmessage
 	multichoicedefault 20, 8, MULTI_YESNO, 1, 0
 	switch VAR_RESULT
@@ -128,25 +112,19 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_2024EA:: @ 82024EA
 	goto VerdanturfTown_BattleTentBattleRoom_EventScript_20236F
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_202501:: @ 8202501
-	setvar VAR_0x8004, 2
-	setvar VAR_0x8005, 0
-	setvar VAR_0x8006, 3
-	special CallFrontierUtilFunc
+	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_WON
 	special LoadPlayerParty
 	warp MAP_VERDANTURF_TOWN_BATTLE_TENT_LOBBY, 255, 6, 6
 	waitstate
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_20251F:: @ 820251F
-	message VerdanturfTown_BattleTentBattleRoom_Text_25007E
+	message BattleFrontier_BattlePalaceBattleRoom_Text_SavingData
 	waitmessage
-	setvar VAR_0x8004, 5
-	setvar VAR_0x8005, 2
-	special sub_81B99B4
+	verdanturftent_save CHALLENGE_STATUS_PAUSED
 	playse SE_SAVE
 	waitse
 	fadescreen 1
-	setvar VAR_0x8004, 4
-	special CallFrontierUtilFunc
+	frontier_reset
 	end
 
 VerdanturfTown_BattleTentBattleRoom_MapScript2_202541: @ 8202541
@@ -162,12 +140,12 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_20254B:: @ 820254B
 	end
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_202565:: @ 8202565
-	message VerdanturfTown_BattleTentBattleRoom_Text_24FF28
+	message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor2ndOpponent
 	waitmessage
 	return
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_20256C:: @ 820256C
-	message VerdanturfTown_BattleTentBattleRoom_Text_24FF54
+	message BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor3rdOpponent
 	waitmessage
 	return
 

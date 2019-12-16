@@ -97,7 +97,7 @@
 
 #define VAR_ROUTE116_STATE         0x406F
 
-#define VAR_ROUTE118_STATE         0x4071
+#define VAR_ROUTE46_STATE         0x4071
 #define VAR_ROUTE119_STATE         0x4072
 
 #define VAR_ROUTE121_STATE         0x4074

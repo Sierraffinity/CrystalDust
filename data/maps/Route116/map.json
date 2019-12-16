@@ -65,7 +65,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route116_EventScript_1F2E89",
+      "script": "Route116_EventScript_Joey",
       "flag": "0"
     },
     {
@@ -107,7 +107,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route116_EventScript_1F2EA0",
+      "script": "Route116_EventScript_Jose",
       "flag": "0"
     },
     {
@@ -177,7 +177,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route116_EventScript_1F2D84",
+      "script": "Route116_EventScript_Briney",
       "flag": "FLAG_HIDE_ROUTE_116_MR_BRINEY"
     },
     {
@@ -205,7 +205,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route116_EventScript_1F2F65",
+      "script": "Route116_EventScript_Clark",
       "flag": "0"
     },
     {
@@ -247,7 +247,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route116_EventScript_1F2F7C",
+      "script": "Route116_EventScript_Janice",
       "flag": "0"
     },
     {
@@ -261,7 +261,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route116_EventScript_1F2F93",
+      "script": "Route116_EventScript_Karen",
       "flag": "0"
     },
     {
@@ -275,7 +275,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route116_EventScript_1F2EB7",
+      "script": "Route116_EventScript_Jerry",
       "flag": "0"
     },
     {
@@ -289,7 +289,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route116_EventScript_1F2CA2",
+      "script": "Route116_EventScript_DevonEmployee",
       "flag": "FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE"
     },
     {
@@ -317,8 +317,8 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route116_EventScript_1F2C70",
-      "flag": "FLAG_HIDE_ROUTE_116_TUNNELER"
+      "script": "Route116_EventScript_WandasBoyfriend",
+      "flag": "FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_MANIAC",
@@ -331,7 +331,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route116_EventScript_1F2DB6",
+      "script": "Route116_EventScript_GlassesMan",
       "flag": "FLAG_HIDE_ROUTE_116_DROPPED_GLASSES_MAN"
     },
     {
@@ -345,7 +345,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "Route116_EventScript_1F3041",
+      "script": "Route116_EventScript_Sarah",
       "flag": "0"
     },
     {
@@ -359,7 +359,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route116_EventScript_1F3058",
+      "script": "Route116_EventScript_Dawson",
       "flag": "0"
     },
     {
@@ -401,7 +401,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
-      "script": "Route116_EventScript_1F3086",
+      "script": "Route116_EventScript_Johnson",
       "flag": "0"
     },
     {
@@ -415,7 +415,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "5",
-      "script": "Route116_EventScript_1F306F",
+      "script": "Route116_EventScript_Devan",
       "flag": "0"
     }
   ],
@@ -464,7 +464,7 @@
       "elevation": 3,
       "var": "VAR_ROUTE116_STATE",
       "var_value": "1",
-      "script": "Route116_EventScript_1F2D95"
+      "script": "Route116_EventScript_BrineyTrigger"
     }
   ],
   "bg_events": [
@@ -474,7 +474,7 @@
       "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route116_EventScript_1F2D57"
+      "script": "Route116_EventScript_RouteSignRustboro"
     },
     {
       "type": "sign",
@@ -482,7 +482,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route116_EventScript_1F2D60"
+      "script": "Route116_EventScript_RusturfTunnelSign"
     },
     {
       "type": "sign",
@@ -490,7 +490,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route116_EventScript_1F2D69"
+      "script": "Route116_EventScript_TunnelersRestHouseSign"
     },
     {
       "type": "secret_base",
@@ -512,7 +512,7 @@
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route116_EventScript_1F2D72"
+      "script": "Route116_EventScript_TrainerTipsBToStopEvolution"
     },
     {
       "type": "sign",
@@ -520,7 +520,7 @@
       "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route116_EventScript_1F2D7B"
+      "script": "Route116_EventScript_TrainerTipsBagHasPockets"
     },
     {
       "type": "secret_base",

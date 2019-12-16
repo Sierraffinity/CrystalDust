@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_PokemonSchool_EventScript_213F5F",
+      "script": "RustboroCity_PokemonSchool_EventScript_GameboyKid1",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_PokemonSchool_EventScript_213F68",
+      "script": "RustboroCity_PokemonSchool_EventScript_GameboyKid2",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_PokemonSchool_EventScript_213F71",
+      "script": "RustboroCity_PokemonSchool_EventScript_RichBoy",
       "flag": "0"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_PokemonSchool_EventScript_213F7A",
+      "script": "RustboroCity_PokemonSchool_EventScript_Lass",
       "flag": "0"
     },
     {
@@ -81,7 +81,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_PokemonSchool_EventScript_213F83",
+      "script": "RustboroCity_PokemonSchool_EventScript_SchoolKidM",
       "flag": "0"
     },
     {
@@ -95,7 +95,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_PokemonSchool_EventScript_213F95",
+      "script": "RustboroCity_PokemonSchool_EventScript_Teacher",
       "flag": "0"
     },
     {
@@ -109,7 +109,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_PokemonSchool_EventScript_214040",
+      "script": "RustboroCity_PokemonSchool_EventScript_Scott",
       "flag": "FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT"
     }
   ],
@@ -137,7 +137,7 @@
       "y": 2,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RustboroCity_PokemonSchool_EventScript_213EA9"
+      "script": "RustboroCity_PokemonSchool_EventScript_Blackboard"
     },
     {
       "type": "sign",
@@ -145,7 +145,7 @@
       "y": 2,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RustboroCity_PokemonSchool_EventScript_213EA9"
+      "script": "RustboroCity_PokemonSchool_EventScript_Blackboard"
     },
     {
       "type": "sign",
@@ -153,7 +153,7 @@
       "y": 2,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RustboroCity_PokemonSchool_EventScript_213EA9"
+      "script": "RustboroCity_PokemonSchool_EventScript_Blackboard"
     },
     {
       "type": "sign",
@@ -161,7 +161,7 @@
       "y": 2,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RustboroCity_PokemonSchool_EventScript_213EA9"
+      "script": "RustboroCity_PokemonSchool_EventScript_Blackboard"
     },
     {
       "type": "sign",
@@ -169,7 +169,7 @@
       "y": 5,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RustboroCity_PokemonSchool_EventScript_213F8C"
+      "script": "RustboroCity_PokemonSchool_EventScript_StudentNotebook"
     }
   ],
   "phone_service": true

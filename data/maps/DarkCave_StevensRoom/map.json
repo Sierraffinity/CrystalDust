@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "DarkCave_StevensRoom_EventScript_22DC7B",
+      "script": "DarkCave_StevensRoom_EventScript_Steven",
       "flag": "FLAG_HIDE_DARK_CAVE_STEVEN"
     }
   ],

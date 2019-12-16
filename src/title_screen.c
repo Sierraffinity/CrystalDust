@@ -71,11 +71,11 @@ static const u16 sTitleScreenSuicunePal[] = INCBIN_U16("graphics/title_screen/su
 static const struct OamData sOamData_Suicune =
 {
     .y = 0,
-    .affineMode = 0,
-    .objMode = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
     .mosaic = 0,
-    .bpp = 0,
-    .shape = 0,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(8x8),
     .x = 0,
     .matrixNum = 0,
     .size = 3,
@@ -131,10 +131,10 @@ static const struct SpritePalette sSpritePalette_Suicune[] =
 static const struct OamData sPokemonLogoShineOamData =
 {
     .y = 160,
-    .affineMode = 0,
-    .objMode = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
     .mosaic = 0,
-    .bpp = 0,
+    .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x64),
     .x = 0,
     .matrixNum = 0,
@@ -238,22 +238,22 @@ static void StartPokemonLogoShine(u8 flashBg)
     case 0:
     case 2:
         spriteId = CreateSprite(&sPokemonLogoShineSpriteTemplate, 0, 68, 0);
-        gSprites[spriteId].oam.objMode = 2;
+        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_WINDOW;
         gSprites[spriteId].data[0] = flashBg;
         break;
     case 1:
         spriteId = CreateSprite(&sPokemonLogoShineSpriteTemplate, 0, 68, 0);
-        gSprites[spriteId].oam.objMode = 2;
+        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_WINDOW;
         gSprites[spriteId].data[0] = flashBg;
         gSprites[spriteId].invisible = TRUE;
 
         spriteId = CreateSprite(&sPokemonLogoShineSpriteTemplate, 0, 68, 0);
         gSprites[spriteId].callback = SpriteCB_PokemonLogoShine2;
-        gSprites[spriteId].oam.objMode = 2;
+        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_WINDOW;
 
         spriteId = CreateSprite(&sPokemonLogoShineSpriteTemplate, -80, 68, 0);
         gSprites[spriteId].callback = SpriteCB_PokemonLogoShine2;
-        gSprites[spriteId].oam.objMode = 2;
+        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_WINDOW;
         break;
     }
 }

@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "VerdanturfTown_WandasHouse_EventScript_2028BF",
+      "script": "VerdanturfTown_WandasHouse_EventScript_Wally",
       "flag": "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY"
     },
     {
@@ -39,8 +39,8 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "VerdanturfTown_WandasHouse_EventScript_202913",
-      "flag": "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_MAN"
+      "script": "VerdanturfTown_WandasHouse_EventScript_WandasBoyfriend",
+      "flag": "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_POKEFAN_M",
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "VerdanturfTown_WandasHouse_EventScript_2028E1",
+      "script": "VerdanturfTown_WandasHouse_EventScript_WallysUncle",
       "flag": "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "VerdanturfTown_WandasHouse_EventScript_20294E",
+      "script": "VerdanturfTown_WandasHouse_EventScript_WallysAunt",
       "flag": "0"
     },
     {
@@ -81,8 +81,8 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "VerdanturfTown_WandasHouse_EventScript_20291C",
-      "flag": "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_WOMAN"
+      "script": "VerdanturfTown_WandasHouse_EventScript_Wanda",
+      "flag": "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA"
     }
   ],
   "warp_events": [
