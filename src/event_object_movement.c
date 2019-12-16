@@ -1289,6 +1289,7 @@ static u8 InitEventObjectStateFromTemplate(struct EventObjectTemplate *template,
     }
     return eventObjectId;
 }
+
 static bool8 ShouldTreeOrRockObjectBeCreated(struct EventObjectTemplate *template, bool8 isClone, s16 x, s16 y)
 {
     if (isClone && !IsTreeOrRockCloneOffScreen(template, x, y))

@@ -3461,10 +3461,10 @@ static void CursorCb_Enter(u8 taskId)
     {
         PlaySE(SE_SELECT);
         if (gSelectedOrderFromParty[0] != 0)
-            DisplayPartyPokemonDescriptionText(6, &sPartyMenuBoxes[gSelectedOrderFromParty[0] - 1], 1);
+            DisplayPartyPokemonDescriptionText(PARTYBOX_DESC_ABLE, &sPartyMenuBoxes[gSelectedOrderFromParty[0] - 1], 1);
 
         gSelectedOrderFromParty[0] = gPartyMenu.slotId + 1;
-        DisplayPartyPokemonDescriptionText(13, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
+        DisplayPartyPokemonDescriptionText(PARTYBOX_DESC_SELECTION_ENTERED, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
         Task_ClosePartyMenu(taskId);
         // Uncomment these three lines and remove the above single line to restore the final
         // confirmation functionality.
@@ -3531,8 +3531,8 @@ static void CursorCb_NoEntry(u8 taskId)
     {
         if (gSelectedOrderFromParty[i] != 0)
         {
-            if (facility == FACILITY_BUG_CATCHING_CONTEST) // Bug catching contest
-                DisplayPartyPokemonDescriptionText(13, &sPartyMenuBoxes[gSelectedOrderFromParty[i] - 1], 1);
+            if (facility == FACILITY_BUG_CATCHING_CONTEST)
+                DisplayPartyPokemonDescriptionText(PARTYBOX_DESC_SELECTION_ENTERED, &sPartyMenuBoxes[gSelectedOrderFromParty[i] - 1], 1);
             else
                 DisplayPartyPokemonDescriptionText(i + PARTYBOX_DESC_FIRST, &sPartyMenuBoxes[gSelectedOrderFromParty[i] - 1], 1);
         }

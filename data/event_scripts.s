@@ -640,8 +640,7 @@ Std_MsgboxAutoclose:: @ 8271494
 	return
 
 	.include "data/scripts/new_game.inc"
-	.include "data/scripts/hall_of_fame.inc"
-
+	
 RestoreOriginalTextColor:
 	copyvar VAR_TEXT_COLOR VAR_TEXT_COLOR_BACKUP
 	return
@@ -650,6 +649,8 @@ ClearPokepicAndTextboxForEarlyScriptExit::
 	special PrintNullStringAndClearPokemonPicWindow
 	release
 	end
+
+	.include "data/scripts/hall_of_fame.inc"
 
 EventScript_WhiteOut:: @ 8271857
 	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour

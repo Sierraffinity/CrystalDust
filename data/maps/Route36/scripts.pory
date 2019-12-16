@@ -103,3 +103,52 @@ script Route36_EventScript_RuinsOfAlphSign {
     msgbox("RUINS OF ALPH\n"
 		   "NORTH ENTRANCE", MSGBOX_SIGN)
 }
+
+raw `
+Route36_EventScript_Jerome:: @ 81EE68A
+	trainerbattle_single TRAINER_JEROME, Route36_Text_JeromeIntro, Route36_Text_JeromeDefeated
+	msgbox Route36_Text_JeromePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route36_EventScript_Matthew:: @ 81EE6A1
+	trainerbattle_single TRAINER_MATTHEW, Route36_Text_MatthewIntro, Route36_Text_MatthewDefeated
+	msgbox Route36_Text_MatthewPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route36_EventScript_Tara:: @ 81EE6B8
+	trainerbattle_single TRAINER_TARA, Route36_Text_TaraIntro, Route36_Text_TaraDefeated
+	msgbox Route36_Text_TaraPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route36_EventScript_Missy:: @ 81EE6CF
+	trainerbattle_single TRAINER_MISSY, Route36_Text_MissyIntro, Route36_Text_MissyDefeated
+	msgbox Route36_Text_MissyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route36_EventScript_Carolina:: @ 81EE6E6
+	trainerbattle_single TRAINER_CAROLINA, Route36_Text_CarolinaIntro, Route36_Text_CarolinaDefeated
+	msgbox Route36_Text_CarolinaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route36_EventScript_Cory:: @ 81EE6FD
+	trainerbattle_single TRAINER_CORY_1, Route36_Text_CoryIntro, Route36_Text_CoryDefeated, Route36_EventScript_CoryRegisterMatchCallAfterBattle
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route36_EventScript_CoryRematch
+	msgbox Route36_Text_CoryPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route36_EventScript_CoryRegisterMatchCallAfterBattle:: @ 81EE729
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox Route36_Text_CoryRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_CORY_1
+	release
+	end
+
+Route36_EventScript_CoryRematch:: @ 81EE748
+	trainerbattle_rematch TRAINER_CORY_1, Route36_Text_CoryRematchIntro, Route36_Text_CoryRematchDefeated
+	msgbox Route36_Text_CoryRematchPostBattle, MSGBOX_AUTOCLOSE
+	end
+`

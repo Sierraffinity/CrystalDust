@@ -1,57 +1,57 @@
 Route29_EventScript_ItemPotion::
-	giveitem_std ITEM_POTION
+	finditem_std ITEM_POTION
 	end
 
 Route30_EventScript_ItemAntidote::
-	giveitem_std ITEM_ANTIDOTE
+	finditem_std ITEM_ANTIDOTE
 	end
 
 Route31_EventScript_ItemPotion::
-	giveitem_std ITEM_POTION
+	finditem_std ITEM_POTION
 	end
 
 Route31_EventScript_ItemPokeBall::
-	giveitem_std ITEM_POKE_BALL
+	finditem_std ITEM_POKE_BALL
 	end
 
 DarkCave_South_EventScript_ItemPotion::
-	giveitem_std ITEM_POTION
+	finditem_std ITEM_POTION
 	end
 
 DarkCave_South_EventScript_ItemFullHeal::
-	giveitem_std ITEM_FULL_HEAL
+	finditem_std ITEM_FULL_HEAL
 	end
 
 DarkCave_South_EventScript_ItemHyperPotion::
-	giveitem_std ITEM_HYPER_POTION
+	finditem_std ITEM_HYPER_POTION
 	end
 
 DarkCave_South_EventScript_ItemDireHit::
-	giveitem_std ITEM_DIRE_HIT
+	finditem_std ITEM_DIRE_HIT
 	end
 
 VioletCity_EventScript_ItemPPUp::
-	giveitem_std ITEM_PP_UP
+	finditem_std ITEM_PP_UP
 	end
 
 VioletCity_EventScript_ItemRareCandy::
-	giveitem_std ITEM_RARE_CANDY
+	finditem_std ITEM_RARE_CANDY
 	end
 
 Route32_EventScript_ItemPPUp:: @ 8290CFF
-	giveitem_std ITEM_PP_UP
+	finditem_std ITEM_PP_UP
 	end
 
 Route32_EventScript_ItemPokeBall:: @ 8290D0C
-	giveitem_std ITEM_POKE_BALL
+	finditem_std ITEM_POKE_BALL
 	end
 
 Route32_EventScript_ItemXAccuracy:: @ 8290D19
-	giveitem_std ITEM_X_ACCURACY
+	finditem_std ITEM_X_ACCURACY
 	end
 
 Route32_EventScript_ItemPotion:: @ 8290D26
-	giveitem_std ITEM_POTION
+	finditem_std ITEM_POTION
 	end
 
 Route105_EventScript_ItemIron:: @ 8290D33
@@ -63,7 +63,7 @@ Route106_EventScript_ItemProtein:: @ 8290D40
 	end
 
 Route36_EventScript_ItemStarPiece:: @ 8290D4D
-	giveitem_std ITEM_STAR_PIECE
+	finditem_std ITEM_STAR_PIECE
 	end
 
 Route109_EventScript_ItemPPUp:: @ 8290D5A
@@ -183,7 +183,7 @@ Route117_EventScript_ItemRevive:: @ 8290EC6
 	end
 
 Route46_EventScript_ItemHyperPotion:: @ 8290ED3
-	giveitem_std ITEM_HYPER_POTION
+	finditem_std ITEM_HYPER_POTION
 	end
 
 Route119_EventScript_ItemSuperRepel:: @ 8290EE0
@@ -371,19 +371,19 @@ RusturfTunnel_EventScript_ItemMaxEther:: @ 8291143
 	end
 
 DarkCave_South_EventScript_ItemEscapeRope:: @ 8291150
-	giveitem_std ITEM_ESCAPE_ROPE
+	finditem_std ITEM_ESCAPE_ROPE
 	end
 
 DarkCave_B1F_EventScript_ItemPokeBall:: @ 829115D
-	giveitem_std ITEM_POKE_BALL
+	finditem_std ITEM_POKE_BALL
 	end
 
 DarkCave_B2F_EventScript_ItemRepel:: @ 829116A
-	giveitem_std ITEM_REPEL
+	finditem_std ITEM_REPEL
 	end
 
 DarkCave_B2F_EventScript_ItemRareCandy:: @ 8291177
-	giveitem_std ITEM_RARE_CANDY
+	finditem_std ITEM_RARE_CANDY
 	end
 
 JaggedPass_EventScript_ItemBurnHeal:: @ 8291184

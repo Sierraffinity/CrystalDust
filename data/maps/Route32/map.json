@@ -206,7 +206,7 @@
         "flag": "FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT"
       },
       {
-        "graphics_id": "EVENT_OBJ_GFX_EXPERT_M",
+        "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
         "x": 12,
         "y": 51,
         "elevation": 4,
@@ -310,7 +310,7 @@
         "flag": "0"
       },
       {
-        "graphics_id": "EVENT_OBJ_GFX_EXPERT_F",
+        "graphics_id": "EVENT_OBJ_GFX_PROF_OAK",
         "x": 37,
         "y": 8,
         "elevation": 3,
@@ -385,7 +385,7 @@
         "trainer_type": "0",
         "trainer_sight_or_berry_tree_id": "0",
         "script": "Route32_EventScript_ItemPPUp",
-        "flag": "FLAG_ITEM_ROUTE_32_PP_UP"
+        "flag": "FLAG_ITEM_ROUTE_31_POKE_BALL"
       },
       {
         "graphics_id": "EVENT_OBJ_GFX_WOMAN_5",
@@ -554,7 +554,7 @@
         "trainer_type": "0",
         "trainer_sight_or_berry_tree_id": "0",
         "script": "Route32_EventScript_Rival",
-        "flag": "FLAG_HIDE_ROUTE_32_RIVAL"
+        "flag": "FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR"
       }
     ],
     "phone_service": true,

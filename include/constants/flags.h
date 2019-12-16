@@ -833,7 +833,7 @@
 #define FLAG_HIDE_NEW_BARK_TOWN_RIVAL2                              0x31A
 #define FLAG_HIDE_NEW_BARK_TOWN_BIRCH                               0x31B
 #define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1                          0x31C
-#define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1                          0x31D
+#define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1                           0x31D
 #define FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1                          0x31E
 #define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3                          0x31F
 #define FLAG_HIDE_LUGIA                                             0x320
