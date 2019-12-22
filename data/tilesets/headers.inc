@@ -35,7 +35,7 @@ gTileset_Rustboro:: @ 83DF734
 	.4byte InitTilesetAnim_Rustboro
 
 	.align 2
-gTileset_Dewford:: @ 83DF74C
+gTileset_Violet:: @ 83DF74C
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding

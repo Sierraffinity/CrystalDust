@@ -7,7 +7,7 @@
             "id": "LAYOUT_VIOLET_CITY",
             "name": "VioletCity_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
+            "secondary_tileset": "gTileset_Violet",
             "width": 48
         },
         {
@@ -117,7 +117,7 @@
             "id": "LAYOUT_DEWFORD_TOWN",
             "name": "DewfordTown_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
+            "secondary_tileset": "gTileset_Violet",
             "width": 52
         },
         {
@@ -187,7 +187,7 @@
             "id": "LAYOUT_ROUTE31",
             "name": "Route31_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
+            "secondary_tileset": "gTileset_Violet",
             "width": 50
         },
         {
@@ -197,7 +197,7 @@
             "id": "LAYOUT_ROUTE32",
             "name": "Route32_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
+            "secondary_tileset": "gTileset_Violet",
             "width": 28
         },
         {
@@ -207,7 +207,7 @@
             "id": "LAYOUT_ROUTE105",
             "name": "Route105_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
+            "secondary_tileset": "gTileset_Violet",
             "width": 26
         },
         {
@@ -227,7 +227,7 @@
             "id": "LAYOUT_ROUTE107",
             "name": "Route107_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
+            "secondary_tileset": "gTileset_Violet",
             "width": 60
         },
         {
@@ -237,7 +237,7 @@
             "id": "LAYOUT_ROUTE36",
             "name": "Route36_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
+            "secondary_tileset": "gTileset_Violet",
             "width": 64
         },
         {
@@ -4037,7 +4037,7 @@
             "id": "LAYOUT_BIRTH_ISLAND_EXTERIOR",
             "name": "BirthIsland_Exterior_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
+            "secondary_tileset": "gTileset_Violet",
             "width": 30
         },
         {
@@ -4207,7 +4207,7 @@
             "id": "LAYOUT_NAVEL_ROCK_EXTERIOR",
             "name": "NavelRock_Exterior_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
+            "secondary_tileset": "gTileset_Violet",
             "width": 21
         },
         {

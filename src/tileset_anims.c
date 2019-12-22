@@ -347,10 +347,10 @@ const u16 *const gTilesetAnims_EverGrande_Flowers[] = {
     gTilesetAnims_EverGrande_Flowers_Frame7
 };
 
-const u16 gTilesetAnims_Dewford_Flag_Frame0[] = INCBIN_U16("data/tilesets/secondary/dewford/anim/flag/0.4bpp");
-const u16 gTilesetAnims_Dewford_Flag_Frame1[] = INCBIN_U16("data/tilesets/secondary/dewford/anim/flag/1.4bpp");
-const u16 gTilesetAnims_Dewford_Flag_Frame2[] = INCBIN_U16("data/tilesets/secondary/dewford/anim/flag/2.4bpp");
-const u16 gTilesetAnims_Dewford_Flag_Frame3[] = INCBIN_U16("data/tilesets/secondary/dewford/anim/flag/3.4bpp");
+const u16 gTilesetAnims_Dewford_Flag_Frame0[] = INCBIN_U16("data/tilesets/secondary/violet/anim/flag/0.4bpp");
+const u16 gTilesetAnims_Dewford_Flag_Frame1[] = INCBIN_U16("data/tilesets/secondary/violet/anim/flag/1.4bpp");
+const u16 gTilesetAnims_Dewford_Flag_Frame2[] = INCBIN_U16("data/tilesets/secondary/violet/anim/flag/2.4bpp");
+const u16 gTilesetAnims_Dewford_Flag_Frame3[] = INCBIN_U16("data/tilesets/secondary/violet/anim/flag/3.4bpp");
 
 const u16 *const gTilesetAnims_Dewford_Flag[] = {
     gTilesetAnims_Dewford_Flag_Frame0,
