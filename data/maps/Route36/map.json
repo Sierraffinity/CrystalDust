@@ -54,7 +54,7 @@
     "id": "MAP_ROUTE36",
     "layout": "LAYOUT_ROUTE36",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_NEXTROAD",
+    "music": "MUS_ROUTE34",
     "name": "Route36",
     "object_events": [
         {

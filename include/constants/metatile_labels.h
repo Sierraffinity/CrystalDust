@@ -139,19 +139,19 @@
 #define METATILE_Fallarbor_RedRockWall               0x269
 
 // gTileset_Fortree
-#define METATILE_Fortree_LongGrass_Root                   0x208
-#define METATILE_Fortree_BridgeOverGrass_Raised           0x24E
-#define METATILE_Fortree_BridgeOverGrass_Lowered          0x24F
-#define METATILE_Fortree_BridgeOverTrees_Raised           0x256
-#define METATILE_Fortree_BridgeOverTrees_Lowered          0x257
-#define METATILE_Fortree_SecretBase_LongGrass_TopLeft     0x279
-#define METATILE_Fortree_SecretBase_LongGrass_TopMid      0x27A
-#define METATILE_Fortree_SecretBase_LongGrass_TopRight    0x27B
-#define METATILE_Fortree_SecretBase_LongGrass_BottomLeft  0x281
-#define METATILE_Fortree_SecretBase_LongGrass_BottomMid   0x282
-#define METATILE_Fortree_SecretBase_LongGrass_BottomRight 0x283
-#define METATILE_Fortree_WoodBridge1_Top                  0x297
-#define METATILE_Fortree_WoodBridge1_Bottom               0x29F
+#define METATILE_Fortree_BridgeOverGrass_Lowered           0x24F
+#define METATILE_Fortree_BridgeOverGrass_Raised            0x24E
+#define METATILE_Fortree_BridgeOverTrees_Lowered           0x257
+#define METATILE_Fortree_BridgeOverTrees_Raised            0x256
+#define METATILE_Fortree_LongGrass_Root                    0x208
+#define METATILE_Fortree_SecretBase_LongGrass_BottomLeft   0x281
+#define METATILE_Fortree_SecretBase_LongGrass_BottomMid    0x282
+#define METATILE_Fortree_SecretBase_LongGrass_BottomRight  0x283
+#define METATILE_Fortree_SecretBase_LongGrass_TopLeft      0x279
+#define METATILE_Fortree_SecretBase_LongGrass_TopMid       0x27A
+#define METATILE_Fortree_SecretBase_LongGrass_TopRight     0x27B
+#define METATILE_Fortree_WoodBridge1_Bottom                0x29F
+#define METATILE_Fortree_WoodBridge1_Top                   0x297
 
 // gTileset_General
 #define METATILE_General_CalmWater            0x170
@@ -190,10 +190,10 @@
 #define METATILE_InsideOfTruck_ExitLight_Top           0x208
 
 // gTileset_InsideShip
-#define METATILE_InsideShip_IntactDoor_Bottom_Unlocked 0x22B
-#define METATILE_InsideShip_IntactDoor_Bottom_Locked   0x233
-#define METATILE_InsideShip_DoorIndent_Unlocked        0x21A
-#define METATILE_InsideShip_DoorIndent_Locked          0x234
+#define METATILE_InsideShip_DoorIndent_Locked           0x234
+#define METATILE_InsideShip_DoorIndent_Unlocked         0x21A
+#define METATILE_InsideShip_IntactDoor_Bottom_Locked    0x233
+#define METATILE_InsideShip_IntactDoor_Bottom_Unlocked  0x22B
 
 // gTileset_Lavaridge
 #define METATILE_Lavaridge_AshGrass             0x207
@@ -286,16 +286,8 @@
 #define METATILE_MossdeepGameCorner_CounterOpen_Bottom    0x234
 #define METATILE_MossdeepGameCorner_CounterOpen_Top       0x22C
 
-// gTileset_MossdeepGym from R/S
-#define METATILE_RS_MossdeepGym_RedArrow_Right        0x204
-#define METATILE_RS_MossdeepGym_RedArrow_Left         0x20C
-#define METATILE_RS_MossdeepGym_RedArrow_Up           0x20D
-#define METATILE_RS_MossdeepGym_RedArrow_Down         0x205
-#define METATILE_RS_MossdeepGym_Switch_Up             0x238
-#define METATILE_RS_MossdeepGym_Switch_Down           0x239
-
-// gTileset_MossdeepGym from Emerald
-#define METATILE_MossdeepGym_YellowArrow_Right        0x250
+// gTileset_MossdeepGym
+#define METATILE_MossdeepGym_YellowArrow_Right  0x250
 
 // gTileset_Pacifidlog
 #define METATILE_Pacifidlog_FloatingLogs_Horizontal0       0x250
@@ -349,6 +341,14 @@
 #define METATILE_PokemonCenter_Floor_ShadowTop          0x21E
 #define METATILE_PokemonCenter_Floor_ShadowTop_Alt      0x2DC
 
+// gTileset_RS
+#define METATILE_RS_MossdeepGym_RedArrow_Down   0x205
+#define METATILE_RS_MossdeepGym_RedArrow_Left   0x20C
+#define METATILE_RS_MossdeepGym_RedArrow_Right  0x204
+#define METATILE_RS_MossdeepGym_RedArrow_Up     0x20D
+#define METATILE_RS_MossdeepGym_Switch_Down     0x239
+#define METATILE_RS_MossdeepGym_Switch_Up       0x238
+
 // gTileset_Shop
 #define METATILE_Shop_Laptop1_Flash   0x258
 #define METATILE_Shop_Laptop1_Normal  0x29D
@@ -370,43 +370,43 @@
 #define METATILE_TrainerHill_GreenFloorTile  0x307
 
 // gTileset_TrickHousePuzzle
-#define METATILE_TrickHousePuzzle_Stairs_Down                0x20B
-#define METATILE_TrickHousePuzzle_Lever_Off                  0x23E
-#define METATILE_TrickHousePuzzle_Lever_On                   0x23F
-#define METATILE_TrickHousePuzzle_Button_Up                  0x258
-#define METATILE_TrickHousePuzzle_Button_Pressed             0x259
-#define METATILE_TrickHousePuzzle_Door_Shuttered             0x26A
-#define METATILE_TrickHousePuzzle_Floor_ShadowTop_Alt        0x252
-#define METATILE_TrickHousePuzzle_Floor_ShadowTop            0x255
-#define METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile0       0x24B
-#define METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile1       0x24C
-#define METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile2       0x253
-#define METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile3       0x254
-#define METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile0     0x23B
-#define METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile1     0x23C
-#define METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile2     0x243
-#define METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile3     0x244
-#define METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0        0x248
-#define METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1        0x249
-#define METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2        0x250
-#define METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3        0x251
-#define METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0      0x238
-#define METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1      0x239
-#define METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2      0x240
-#define METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3      0x241
-#define METATILE_TrickHousePuzzle_BlueDoorV_Retracted        0x24D
-#define METATILE_TrickHousePuzzle_RedDoorV_Retracted         0x24A
-#define METATILE_TrickHousePuzzle_RedDoorV_Open0             0x23A
-#define METATILE_TrickHousePuzzle_RedDoorV_Open1             0x242
-#define METATILE_TrickHousePuzzle_BlueDoorV_Open0            0x23D
-#define METATILE_TrickHousePuzzle_BlueDoorV_Open1            0x245
-#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Right     0x260
-#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Left      0x261
-#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Up        0x262
-#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Down      0x263
-#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Left_Alt  0x27B
-#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Right_Alt 0x27C
-#define METATILE_TrickHousePuzzle_Arrow_YellowOnWhite_Right  0x298
+#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Down       0x263
+#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Left       0x261
+#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Left_Alt   0x27B
+#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Right      0x260
+#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Right_Alt  0x27C
+#define METATILE_TrickHousePuzzle_Arrow_RedOnBlack_Up         0x262
+#define METATILE_TrickHousePuzzle_Arrow_YellowOnWhite_Right   0x298
+#define METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile0      0x23B
+#define METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile1      0x23C
+#define METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile2      0x243
+#define METATILE_TrickHousePuzzle_BlueDoorH_Closed_Tile3      0x244
+#define METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile0        0x24B
+#define METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile1        0x24C
+#define METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile2        0x253
+#define METATILE_TrickHousePuzzle_BlueDoorH_Open_Tile3        0x254
+#define METATILE_TrickHousePuzzle_BlueDoorV_Open0             0x23D
+#define METATILE_TrickHousePuzzle_BlueDoorV_Open1             0x245
+#define METATILE_TrickHousePuzzle_BlueDoorV_Retracted         0x24D
+#define METATILE_TrickHousePuzzle_Button_Pressed              0x259
+#define METATILE_TrickHousePuzzle_Button_Up                   0x258
+#define METATILE_TrickHousePuzzle_Door_Shuttered              0x26A
+#define METATILE_TrickHousePuzzle_Floor_ShadowTop             0x255
+#define METATILE_TrickHousePuzzle_Floor_ShadowTop_Alt         0x252
+#define METATILE_TrickHousePuzzle_Lever_Off                   0x23E
+#define METATILE_TrickHousePuzzle_Lever_On                    0x23F
+#define METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile0       0x238
+#define METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile1       0x239
+#define METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile2       0x240
+#define METATILE_TrickHousePuzzle_RedDoorH_Closed_Tile3       0x241
+#define METATILE_TrickHousePuzzle_RedDoorH_Open_Tile0         0x248
+#define METATILE_TrickHousePuzzle_RedDoorH_Open_Tile1         0x249
+#define METATILE_TrickHousePuzzle_RedDoorH_Open_Tile2         0x250
+#define METATILE_TrickHousePuzzle_RedDoorH_Open_Tile3         0x251
+#define METATILE_TrickHousePuzzle_RedDoorV_Open0              0x23A
+#define METATILE_TrickHousePuzzle_RedDoorV_Open1              0x242
+#define METATILE_TrickHousePuzzle_RedDoorV_Retracted          0x24A
+#define METATILE_TrickHousePuzzle_Stairs_Down                 0x20B
 
 // gTileset_Underwater
 #define METATILE_Underwater_FloorShadow  0x228

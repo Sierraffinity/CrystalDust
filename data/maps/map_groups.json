@@ -625,5 +625,6 @@
         "gMapGroup31",
         "gMapGroup32",
         "gMapGroup33"
-    ]
+    ],
+    "layouts_table_label": "gMapLayouts"
 }

@@ -1,7 +1,7 @@
 Chaos Rush - trees
 MrAPT1 - Music
-Avatar - Gold overworld
 Tetra - Intro BGs
-Farore - Intro Suicunes, Oak big sprites
+Farore - Intro Suicunes, Oak big sprites, Gold overworld
 Spherical Ice - Apricorn trees
 ShantyTown - Phone card functionality, card flip, bug-catching contest
+Kurausukun - Route 1 song

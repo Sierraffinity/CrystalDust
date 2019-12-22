@@ -1144,7 +1144,16 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation_(void)
 
     switch (gRegionMap->primaryMapSecId)
     {
-        case MAPSEC_ROUTE_114:
+        case MAPSEC_ROUTE_36:
+            x = 0;
+            if (gSaveBlock1Ptr->pos.x > 36)
+                x = 3;
+            else if (gSaveBlock1Ptr->pos.x > 16)
+                x = 2;
+            else if (gSaveBlock1Ptr->pos.x > 9)
+                x = 1;
+            break;
+        /*case MAPSEC_ROUTE_114:
             if (y != 0)
             {
                 x = 0;
@@ -1188,7 +1197,7 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation_(void)
             break;
         case MAPSEC_UNDERWATER_MARINE_CAVE:
             RegionMap_GetMarineCaveCoords(&gRegionMap->cursorPosX, &gRegionMap->cursorPosY);
-            return;
+            return;*/
     }
     gRegionMap->cursorPosX = gRegionMapEntries[gRegionMap->primaryMapSecId].x + x;
     gRegionMap->cursorPosY = gRegionMapEntries[gRegionMap->primaryMapSecId].y + y;

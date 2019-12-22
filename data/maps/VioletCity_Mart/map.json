@@ -11,7 +11,7 @@
     "id": "MAP_VIOLET_CITY_MART",
     "layout": "LAYOUT_MART",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_FRIENDLY",
+    "music": "MUS_VIOLET",
     "name": "VioletCity_Mart",
     "object_events": [
         {

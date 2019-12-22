@@ -18,7 +18,7 @@
             "script": "VioletCity_SproutTowerSign",
             "type": "sign",
             "x": 33,
-            "y": 9
+            "y": 11
         },
         {
             "elevation": 0,
@@ -236,6 +236,13 @@
             "elevation": 0,
             "x": 47,
             "y": 27
+        },
+        {
+            "dest_map": "MAP_VIOLET_CITY",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 30,
+            "y": 8
         }
     ],
     "weather": "WEATHER_SUNNY"
