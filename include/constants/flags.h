@@ -934,15 +934,15 @@
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2         0x37F
 #define FLAG_HIDE_NEW_BARK_TOWN_BIRCHS_LAB_UNKNOWN_0x380            0x380
 #define FLAG_HIDE_ROUTE_29_BIRCH                                    0x381
-#define FLAG_HIDE_ROUTE_31_BIRCH                                   0x382
+#define FLAG_HIDE_ROUTE_31_BIRCH                                    0x382
 #define FLAG_HIDE_TRICK_HOUSE_END_MAN                               0x383
 #define FLAG_HIDE_ROUTE_110_TEAM_AQUA                               0x384
-#define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_2                          0x385
+#define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_2                           0x385
 #define FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2                          0x386
 #define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2                          0x387
-#define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_3                          0x388
+#define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_3                           0x388
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS                     0x389
-#define FLAG_HIDE_ROUTE_32_WHITE_HERB_FLORIST                      0x38A
+#define FLAG_HIDE_ROUTE_32_WHITE_HERB_FLORIST                       0x38A
 #define FLAG_HIDE_FALLARBOR_AZURILL                                 0x38B
 #define FLAG_HIDE_LILYCOVE_HARBOR_FERRY_ATTENDANT                   0x38C
 #define FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR                      0x38D
@@ -1002,7 +1002,7 @@
 #define FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL                          0x3C3
 #define FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL                          0x3C4
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_FAMILIAR_AQUA_GRUNT 0x3C5
-#define FLAG_HIDE_ROUTE_46_STEVEN                                  0x3C6
+#define FLAG_HIDE_ROUTE_46_STEVEN                                   0x3C6
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN                0x3C7
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL       0x3C8
 #define FLAG_HIDE_FORTREE_CITY_KECLEON                              0x3C9
@@ -1031,7 +1031,7 @@
 #define FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M                 0x3E0
 #define FLAG_HIDE_LILYCOVE_POKEMON_CENTER_CONTEST_LADY_MON          0x3E1
 #define FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY                       0x3E2
-#define FLAG_HIDE_VIOLET_CITY_SCOTT                              0x3E3
+#define FLAG_HIDE_VIOLET_CITY_SCOTT                                 0x3E3
 #define FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA                          0x3E4
 #define FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE                            0x3E5
 #define FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON                           0x3E6
@@ -1097,7 +1097,7 @@
 #define FLAG_ITEM_DARK_CAVE_B2F_RARE_CANDY                          0x41E
 #define FLAG_ITEM_PETALBURG_WOODS_X_ATTACK                          0x41F
 #define FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL                        0x420
-#define FLAG_ITEM_ROUTE_32_POKE_BALL                               0x421
+#define FLAG_ITEM_ROUTE_32_POKE_BALL                                0x421
 #define FLAG_ITEM_PETALBURG_WOODS_ETHER                             0x422
 #define FLAG_ITEM_MAGMA_HIDEOUT_3F_3R_ECAPE_ROPE                    0x423
 #define FLAG_ITEM_TRICK_HOUSE_PUZZLE_1_ORANGE_MAIL                  0x424
@@ -1154,14 +1154,14 @@
 #define FLAG_ITEM_FIERY_PATH_FIRE_STONE                             0x457
 #define FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_TM_07                         0x458
 #define FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_NEVER_MELT_ICE                0x459
-#define FLAG_ITEM_ROUTE_31_GUARD_SPEC                              0x45A
-#define FLAG_ITEM_ROUTE_32_X_ACCURACY                              0x45B
+#define FLAG_ITEM_ROUTE_31_GUARD_SPEC                               0x45A
+#define FLAG_ITEM_ROUTE_32_X_ACCURACY                               0x45B
 #define FLAG_ITEM_MAUVILLE_CITY_X_SPEED                             0x45C
 #define FLAG_ITEM_PETALBURD_WOODS_PARALYZE_HEAL                     0x45D
 #define FLAG_ITEM_ROUTE_115_GREAT_BALL                              0x45E
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_CALCIUM                         0x45F
 #define FLAG_ITEM_MT_PYRE_3F_SUPER_REPEL                            0x460
-#define FLAG_ITEM_ROUTE_46_HYPER_POTION                            0x461
+#define FLAG_ITEM_ROUTE_46_HYPER_POTION                             0x461
 #define FLAG_ITEM_NEW_MAUVILLE_FULL_HEAL                            0x462
 #define FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL                        0x463
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL                      0x464
@@ -1179,15 +1179,15 @@
 #define FLAG_UNUSED_0x46D                                           0x46D // Unused Flag
 
 #define FLAG_ITEM_ROUTE_119_NUGGET                                  0x46E
-#define FLAG_ITEM_ROUTE_32_POTION                                  0x46F
+#define FLAG_ITEM_ROUTE_32_POTION                                   0x46F
 
 #define FLAG_UNUSED_0x470                                           0x470 // Unused Flag
 
-#define FLAG_ITEM_ROUTE_31_PP_UP                                   0x471
+#define FLAG_ITEM_ROUTE_31_PP_UP                                    0x471
 
 #define FLAG_UNUSED_0x472                                           0x472 // Unused Flag
 
-#define FLAG_ITEM_ROUTE_36_STAR_PIECE                              0x473
+#define FLAG_ITEM_ROUTE_36_STAR_PIECE                               0x473
 #define FLAG_ITEM_ROUTE_109_POTION                                  0x474
 #define FLAG_ITEM_ROUTE_110_ELIXIR                                  0x475
 #define FLAG_ITEM_ROUTE_111_ELIXIR                                  0x476

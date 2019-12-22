@@ -44,7 +44,7 @@ EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame:: @ 8229850
 	setvar VAR_TEMP_1, 1
 	call EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags
 	setrespawn HEAL_LOCATION_NEW_BARK_TOWN
-	fadescreenspeed 1, 24
+	fadescreenspeed FADE_TO_BLACK, 24
 	special GameClear
 	waitstate
 	releaseall

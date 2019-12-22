@@ -659,7 +659,7 @@ static bool8 HandleStartMenuInput(void)
             && gMenuCallback != StartMenuBattlePyramidRetireCallback
             && gMenuCallback != StartMenuQuitBugCatchingContestCallback)
         {
-           FadeScreen(1, 0);
+           FadeScreen(FADE_TO_BLACK, 0);
         }
 
         return FALSE;

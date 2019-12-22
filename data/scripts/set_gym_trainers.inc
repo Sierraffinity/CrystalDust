@@ -4,7 +4,7 @@ Common_EventScript_SetGymTrainers:: @ 8271F43
 	case 2, DewfordTown_Gym_SetGymTrainers
 	case 3, MauvilleCity_Gym_SetGymTrainers
 	case 4, LavaridgeTown_Gym_SetGymTrainers
-	case 5, PetalburgCity_Gym_SetGymTrainers
+	case 5, VioletCity_Gym_SetGymTrainers
 	case 6, FortreeCity_Gym_SetGymTrainers
 	case 7, MossdeepCity_Gym_SetGymTrainers
 	case 8, SootopolisCity_Gym_SetGymTrainers
@@ -44,7 +44,7 @@ LavaridgeTown_Gym_SetGymTrainers:: @ 8271FCE
 	settrainerflag TRAINER_ELI
 	return
 
-PetalburgCity_Gym_SetGymTrainers:: @ 8271FE7
+VioletCity_Gym_SetGymTrainers:: @ 8271FE7
 	settrainerflag TRAINER_RANDALL
 	settrainerflag TRAINER_PARKER
 	settrainerflag TRAINER_GEORGE
