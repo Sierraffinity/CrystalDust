@@ -45,11 +45,11 @@ gTilesetPalettes_Rustboro:: @ 833BEC0
 	.incbin "data/tilesets/secondary/rustboro/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_Dewford:: @ 833C0C0
+gTilesetTiles_Violet:: @ 833C0C0
 	.incbin "data/tilesets/secondary/violet/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_Dewford:: @ 833D540
+gTilesetPalettes_Violet:: @ 833D540
 	.incbin "data/tilesets/secondary/violet/palettes/00.gbapal"
 	.incbin "data/tilesets/secondary/violet/palettes/01.gbapal"
 	.incbin "data/tilesets/secondary/violet/palettes/02.gbapal"
@@ -1108,26 +1108,26 @@ gTilesetPalettes_RustboroGym:: @ 8374F34
 
 	.align 2
 gTilesetTiles_DewfordGym:: @ 8375134
-	.incbin "data/tilesets/secondary/violet_gym/tiles.4bpp.lz"
+	.incbin "data/tilesets/secondary/dewford_gym/tiles.4bpp.lz"
 
 	.align 2
 gTilesetPalettes_DewfordGym:: @ 8375400
-	.incbin "data/tilesets/secondary/violet_gym/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/violet_gym/palettes/15.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/dewford_gym/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_MauvilleGym:: @ 8375600

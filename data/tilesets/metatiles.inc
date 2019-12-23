@@ -23,11 +23,11 @@ gMetatileAttributes_Rustboro:: @ 839A4F0
 	.incbin "data/tilesets/secondary/rustboro/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Dewford:: @ 839A7AC
+gMetatiles_Violet:: @ 839A7AC
 	.incbin "data/tilesets/secondary/violet/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Dewford:: @ 839BF5C
+gMetatileAttributes_Violet:: @ 839BF5C
 	.incbin "data/tilesets/secondary/violet/metatile_attributes.bin"
 
 	.align 1
@@ -343,12 +343,12 @@ gMetatileAttributes_RustboroGym:: @ 83C47C6
 	.incbin "data/tilesets/secondary/rustboro_gym/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_DewfordGym:: @ 83C4836
-	.incbin "data/tilesets/secondary/violet_gym/metatiles.bin"
+gMetatiles_VioletGym:: @ 83C4836
+	.incbin "data/tilesets/secondary/dewford_gym/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_DewfordGym:: @ 83C4C86
-	.incbin "data/tilesets/secondary/violet_gym/metatile_attributes.bin"
+gMetatileAttributes_VioletGym:: @ 83C4C86
+	.incbin "data/tilesets/secondary/dewford_gym/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_MauvilleGym:: @ 83C4D10

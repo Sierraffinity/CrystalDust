@@ -47,7 +47,7 @@ AbandonedShip_HiddenFloorRooms_EventScript_InUpperRoomRow:: @ 8238CDD
 AbandonedShip_HiddenFloorRooms_EventScript_EnterRm1:: @ 8238CE3
 	delay 20
 	dofieldeffectsparkle 10, 10, 0
-	specialvar VAR_RESULT, FoundAbandonedShipRoom4Key
+	specialvar VAR_RESULT, FoundSproutTowerRoom4Key
 	compare VAR_RESULT, FALSE
 	call_if_eq AbandonedShip_HiddenFloorRooms_EventScript_Rm4KeySparkle
 	waitfieldeffect FLDEFF_SPARKLE
@@ -58,7 +58,7 @@ AbandonedShip_HiddenFloorRooms_EventScript_EnterRm2:: @ 8238D0C
 	end
 
 AbandonedShip_HiddenFloorRooms_EventScript_EnterRm3:: @ 8238D0D
-	specialvar VAR_RESULT, FoundAbandonedShipRoom1Key
+	specialvar VAR_RESULT, FoundSproutTowerRoom1Key
 	compare VAR_RESULT, TRUE
 	goto_if_eq AbandonedShip_HiddenFloorRooms_EventScript_Rm3NoSparkle
 	delay 20
@@ -75,7 +75,7 @@ AbandonedShip_HiddenFloorRooms_EventScript_EnterRm4:: @ 8238D33
 	delay 20
 	dofieldeffectsparkle 8, 5, 0
 	dofieldeffectsparkle 11, 3, 0
-	specialvar VAR_RESULT, FoundAbandonedShipRoom6Key
+	specialvar VAR_RESULT, FoundSproutTowerRoom6Key
 	compare VAR_RESULT, FALSE
 	call_if_eq AbandonedShip_HiddenFloorRooms_EventScript_Rm6KeySparkle
 	waitfieldeffect FLDEFF_SPARKLE
@@ -87,7 +87,7 @@ AbandonedShip_HiddenFloorRooms_EventScript_EnterRm5:: @ 8238D6B
 	dofieldeffectsparkle 16, 3, 0
 	dofieldeffectsparkle 25, 2, 0
 	dofieldeffectsparkle 24, 6, 0
-	specialvar VAR_RESULT, FoundAbandonedShipRoom2Key
+	specialvar VAR_RESULT, FoundSproutTowerRoom2Key
 	compare VAR_RESULT, FALSE
 	call_if_eq AbandonedShip_HiddenFloorRooms_EventScript_Rm2KeySparkle
 	waitfieldeffect FLDEFF_SPARKLE

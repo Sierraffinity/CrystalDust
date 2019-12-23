@@ -438,7 +438,7 @@ NewMauville_Inside_EventScript_ItemParalyzeHeal:: @ 8291220
 	finditem_std ITEM_PARALYZE_HEAL
 	end
 
-AbandonedShip_Rooms_1F_EventScript_ItemHarborMail:: @ 829122D
+SproutTower_3F_EventScript_ItemHarborMail:: @ 829122D
 	finditem_std ITEM_HARBOR_MAIL
 	end
 

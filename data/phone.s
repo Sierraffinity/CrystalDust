@@ -88,7 +88,7 @@ PhoneScript_Mom_Cherrygrove:
 	phone_goto PhoneScript_Mom_PostLocationBanking
 
 PhoneScript_Mom_Violet:
-	phone_buffermapsecname 1, MAPSEC_ABANDONED_SHIP
+	phone_buffermapsecname 1, MAPSEC_SPROUT_TOWER
 	phone_message Text_Pokegear_Mom_RegularCall_Landmark
 	phone_goto PhoneScript_Mom_PostLocationBanking
 

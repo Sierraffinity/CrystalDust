@@ -1,9 +1,9 @@
 {
-  "id": "MAP_ABANDONED_SHIP_CORRIDORS_1F",
-  "name": "AbandonedShip_Corridors_1F",
-  "layout": "LAYOUT_ABANDONED_SHIP_CORRIDORS_1F",
+  "id": "MAP_SPROUT_TOWER_2F",
+  "name": "SproutTower_2F",
+  "layout": "LAYOUT_SPROUT_TOWER_2F",
   "music": "MUS_DARKCAVE",
-  "region_map_section": "MAPSEC_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_SPROUT_TOWER",
   "requires_flash": false,
   "weather": "WEATHER_SHADE",
   "map_type": "MAP_TYPE_UNDERGROUND",
@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "AbandonedShip_Corridors_1F_EventScript_Youngster",
+      "script": "SproutTower_2F_EventScript_Youngster",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "AbandonedShip_Corridors_1F_EventScript_Charlie",
+      "script": "SproutTower_2F_EventScript_Charlie",
       "flag": "0"
     }
   ],
@@ -48,56 +48,56 @@
       "x": 9,
       "y": 11,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_DECK",
+      "dest_map": "MAP_SPROUT_TOWER_1F",
       "dest_warp_id": 2
     },
     {
       "x": 8,
       "y": 11,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_DECK",
+      "dest_map": "MAP_SPROUT_TOWER_1F",
       "dest_warp_id": 2
     },
     {
       "x": 0,
       "y": 11,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_DECK",
+      "dest_map": "MAP_SPROUT_TOWER_1F",
       "dest_warp_id": 3
     },
     {
       "x": 1,
       "y": 11,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_DECK",
+      "dest_map": "MAP_SPROUT_TOWER_1F",
       "dest_warp_id": 3
     },
     {
       "x": 11,
       "y": 9,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_ROOMS_1F",
+      "dest_map": "MAP_SPROUT_TOWER_3F",
       "dest_warp_id": 0
     },
     {
       "x": 14,
       "y": 9,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_ROOMS_1F",
+      "dest_map": "MAP_SPROUT_TOWER_3F",
       "dest_warp_id": 3
     },
     {
       "x": 11,
       "y": 3,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_ROOMS_1F",
+      "dest_map": "MAP_SPROUT_TOWER_3F",
       "dest_warp_id": 2
     },
     {
       "x": 14,
       "y": 3,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_ROOMS_1F",
+      "dest_map": "MAP_SPROUT_TOWER_3F",
       "dest_warp_id": 4
     },
     {

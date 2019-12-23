@@ -1352,7 +1352,7 @@ u16 GetSlotMachineId(void)
     return sSlotMachineIds[rnd % SLOT_MACHINE_COUNT];
 }
 
-bool8 FoundAbandonedShipRoom1Key(void)
+bool8 FoundSproutTowerRoom1Key(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
     u16 flag = FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_1_KEY;
@@ -1364,7 +1364,7 @@ bool8 FoundAbandonedShipRoom1Key(void)
     return TRUE;
 }
 
-bool8 FoundAbandonedShipRoom2Key(void)
+bool8 FoundSproutTowerRoom2Key(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
     u16 flag = FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_2_KEY;
@@ -1376,7 +1376,7 @@ bool8 FoundAbandonedShipRoom2Key(void)
     return TRUE;
 }
 
-bool8 FoundAbandonedShipRoom4Key(void)
+bool8 FoundSproutTowerRoom4Key(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
     u16 flag = FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_4_KEY;
@@ -1388,7 +1388,7 @@ bool8 FoundAbandonedShipRoom4Key(void)
     return TRUE;
 }
 
-bool8 FoundAbandonedShipRoom6Key(void)
+bool8 FoundSproutTowerRoom6Key(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
     u16 flag = FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_6_KEY;

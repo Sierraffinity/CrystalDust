@@ -257,7 +257,7 @@ SlateportCity_OceanicMuseum_2F_EventScript_SSAnneReplica:: @ 820BD5B
 	end
 
 SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron1:: @ 820BD64
-	msgbox SlateportCity_OceanicMuseum_2F_Text_RemindsMeOfAbandonedShip, MSGBOX_NPC
+	msgbox SlateportCity_OceanicMuseum_2F_Text_RemindsMeOfSproutTower, MSGBOX_NPC
 	end
 
 SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron2:: @ 820BD6D
@@ -367,7 +367,7 @@ SlateportCity_OceanicMuseum_2F_Text_SternIveGotToGo: @ 820C36C
 	.string "Feel free to wander around and check\n"
 	.string "out our facilities, though.$"
 
-SlateportCity_OceanicMuseum_2F_Text_RemindsMeOfAbandonedShip: @ 820C43F
+SlateportCity_OceanicMuseum_2F_Text_RemindsMeOfSproutTower: @ 820C43F
 	.string "I saw a model of a ship here.\p"
 	.string "It reminded me of the ABANDONED SHIP\n"
 	.string "near DEWFORD TOWN…$"

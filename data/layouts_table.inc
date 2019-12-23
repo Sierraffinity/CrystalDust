@@ -185,9 +185,9 @@ gMapLayouts::
 	.4byte UnknownMap_0843E894_Layout
 	.4byte NewMauville_Entrance_Layout
 	.4byte NewMauville_Inside_Layout
-	.4byte AbandonedShip_Deck_Layout
-	.4byte AbandonedShip_Corridors_1F_Layout
-	.4byte AbandonedShip_Rooms_1F_Layout
+	.4byte SproutTower_1F_Layout
+	.4byte SproutTower_2F_Layout
+	.4byte SproutTower_3F_Layout
 	.4byte AbandonedShip_Corridors_B1F_Layout
 	.4byte AbandonedShip_Rooms_B1F_Layout
 	.4byte AbandonedShip_Rooms2_B1F_Layout

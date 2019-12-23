@@ -45,7 +45,7 @@ AbandonedShip_Corridors_B1F_EventScript_DoorIsLocked:: @ 8237DFF
 	end
 
 AbandonedShip_Corridors_B1F_EventScript_DoorIsUnlocked:: @ 8237E09
-	msgbox AbandonedShip_Text_TheDoorIsOpen, MSGBOX_DEFAULT
+	msgbox SproutTower_Text_TheDoorIsOpen, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -82,6 +82,6 @@ AbandonedShip_Corridors_B1F_Text_InsertedStorageKey: @ 8237F4B
 	.string "The inserted KEY stuck fast,\n"
 	.string "but the door opened.$"
 
-AbandonedShip_Text_TheDoorIsOpen: @ 8237FA5
+SproutTower_Text_TheDoorIsOpen: @ 8237FA5
 	.string "The door is open.$"
 

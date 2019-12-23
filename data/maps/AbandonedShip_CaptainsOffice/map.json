@@ -3,7 +3,7 @@
   "name": "AbandonedShip_CaptainsOffice",
   "layout": "LAYOUT_ABANDONED_SHIP_CAPTAINS_OFFICE",
   "music": "MUS_DARKCAVE",
-  "region_map_section": "MAPSEC_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_SPROUT_TOWER",
   "requires_flash": false,
   "weather": "WEATHER_SHADE",
   "map_type": "MAP_TYPE_UNDERGROUND",
@@ -48,14 +48,14 @@
       "x": 7,
       "y": 6,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_DECK",
+      "dest_map": "MAP_SPROUT_TOWER_1F",
       "dest_warp_id": 4
     },
     {
       "x": 8,
       "y": 6,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_DECK",
+      "dest_map": "MAP_SPROUT_TOWER_1F",
       "dest_warp_id": 4
     }
   ],

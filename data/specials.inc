@@ -298,10 +298,10 @@ gSpecials:: @ 81DBA64
 	def_special BufferEReaderTrainerName
 	def_special GetSlotMachineId
 	def_special GetPlayerFacingDirection
-	def_special FoundAbandonedShipRoom1Key
-	def_special FoundAbandonedShipRoom2Key
-	def_special FoundAbandonedShipRoom4Key
-	def_special FoundAbandonedShipRoom6Key
+	def_special FoundSproutTowerRoom1Key
+	def_special FoundSproutTowerRoom2Key
+	def_special FoundSproutTowerRoom4Key
+	def_special FoundSproutTowerRoom6Key
 	def_special LeadMonHasEffortRibbon
 	def_special GiveLeadMonEffortRibbon
 	def_special Special_AreLeadMonEVsMaxedOut
