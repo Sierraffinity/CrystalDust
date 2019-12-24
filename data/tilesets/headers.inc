@@ -311,15 +311,15 @@ gTileset_CableClub:: @ 83DF95C
 	.4byte NULL @ animation callback
 
 	.align 2
-gTileset_SeashoreHouse:: @ 83DF974
+gTileset_PagodaTower:: @ 83DF974
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_SeashoreHouse
-	.4byte gTilesetPalettes_SeashoreHouse
+	.4byte gTilesetTiles_PagodaTower
+	.4byte gTilesetPalettes_PagodaTower
 	.4byte NULL
-	.4byte gMetatiles_SeashoreHouse
-	.4byte gMetatileAttributes_SeashoreHouse
+	.4byte gMetatiles_PagodaTower
+	.4byte gMetatileAttributes_PagodaTower
 	.4byte NULL @ animation callback
 
 	.align 2

@@ -207,12 +207,12 @@ gMetatileAttributes_CableClub:: @ 83B6D16
 	.incbin "data/tilesets/secondary/cable_club/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_SeashoreHouse:: @ 83B6F16
-	.incbin "data/tilesets/secondary/seashore_house/metatiles.bin"
+gMetatiles_PagodaTower:: @ 83B6F16
+	.incbin "data/tilesets/secondary/pagoda_tower/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_SeashoreHouse:: @ 83B7296
-	.incbin "data/tilesets/secondary/seashore_house/metatile_attributes.bin"
+gMetatileAttributes_PagodaTower:: @ 83B7296
+	.incbin "data/tilesets/secondary/pagoda_tower/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_PrettyPetalFlowerShop:: @ 83B7306

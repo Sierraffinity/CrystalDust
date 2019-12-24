@@ -5,3 +5,4 @@ Farore - Intro Suicunes, Oak big sprites, Gold overworld
 Spherical Ice - Apricorn trees
 ShantyTown - Phone card functionality, card flip, bug-catching contest
 Kurausukun - Route 1 song
+Bauerklos - Pallet Town song

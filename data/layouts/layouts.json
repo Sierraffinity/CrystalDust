@@ -1853,12 +1853,12 @@
         {
             "blockdata_filepath": "data/layouts/SproutTower_1F/map.bin",
             "border_filepath": "data/layouts/SproutTower_1F/border.bin",
-            "height": 21,
+            "height": 20,
             "id": "LAYOUT_SPROUT_TOWER_1F",
             "name": "SproutTower_1F_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Facility",
-            "width": 23
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_PagodaTower",
+            "width": 19
         },
         {
             "blockdata_filepath": "data/layouts/SproutTower_2F/map.bin",
@@ -2427,7 +2427,7 @@
             "id": "LAYOUT_ROUTE109_SEASHORE_HOUSE",
             "name": "Route109_SeashoreHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_SeashoreHouse",
+            "secondary_tileset": "gTileset_PagodaTower",
             "width": 15
         },
         {
