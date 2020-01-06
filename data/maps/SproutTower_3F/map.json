@@ -67,8 +67,8 @@
             "trainer_sight_or_berry_tree_id": "4",
             "trainer_type": "1",
             "type": "original",
-            "x": 10,
-            "y": 16
+            "x": 9,
+            "y": 15
         }
     ],
     "phone_service": true,
@@ -80,42 +80,7 @@
             "dest_map": "MAP_SPROUT_TOWER_2F",
             "dest_warp_id": 4,
             "elevation": 3,
-            "x": 4,
-            "y": 16
-        },
-        {
-            "dest_map": "MAP_SPROUT_TOWER_2F",
-            "dest_warp_id": 4,
-            "elevation": 3,
-            "x": 5,
-            "y": 16
-        },
-        {
-            "dest_map": "MAP_SPROUT_TOWER_2F",
-            "dest_warp_id": 6,
-            "elevation": 3,
-            "x": 4,
-            "y": 1
-        },
-        {
-            "dest_map": "MAP_SPROUT_TOWER_2F",
-            "dest_warp_id": 5,
-            "elevation": 3,
-            "x": 13,
-            "y": 16
-        },
-        {
-            "dest_map": "MAP_SPROUT_TOWER_2F",
-            "dest_warp_id": 7,
-            "elevation": 3,
-            "x": 13,
-            "y": 1
-        },
-        {
-            "dest_map": "MAP_SPROUT_TOWER_2F",
-            "dest_warp_id": 5,
-            "elevation": 3,
-            "x": 14,
+            "x": 10,
             "y": 16
         }
     ],

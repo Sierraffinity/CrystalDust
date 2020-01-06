@@ -1853,7 +1853,7 @@
         {
             "blockdata_filepath": "data/layouts/SproutTower_1F/map.bin",
             "border_filepath": "data/layouts/SproutTower_1F/border.bin",
-            "height": 20,
+            "height": 19,
             "id": "LAYOUT_SPROUT_TOWER_1F",
             "name": "SproutTower_1F_Layout",
             "primary_tileset": "gTileset_Building",
@@ -1863,22 +1863,22 @@
         {
             "blockdata_filepath": "data/layouts/SproutTower_2F/map.bin",
             "border_filepath": "data/layouts/SproutTower_2F/border.bin",
-            "height": 12,
+            "height": 18,
             "id": "LAYOUT_SPROUT_TOWER_2F",
             "name": "SproutTower_2F_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 18
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_PagodaTower",
+            "width": 19
         },
         {
             "blockdata_filepath": "data/layouts/SproutTower_3F/map.bin",
             "border_filepath": "data/layouts/SproutTower_3F/border.bin",
-            "height": 17,
+            "height": 18,
             "id": "LAYOUT_SPROUT_TOWER_3F",
             "name": "SproutTower_3F_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 18
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_PagodaTower",
+            "width": 19
         },
         {
             "blockdata_filepath": "data/layouts/AbandonedShip_Corridors_B1F/map.bin",
