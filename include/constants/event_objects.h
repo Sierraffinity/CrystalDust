@@ -26,7 +26,7 @@
 #define EVENT_OBJ_GFX_PROF_OAK                    22
 #define EVENT_OBJ_GFX_MAN_2                       23
 #define EVENT_OBJ_GFX_WOMAN_3                     24
-#define EVENT_OBJ_GFX_POKEFAN_M                   25
+#define EVENT_OBJ_GFX_SAGE                        25
 #define EVENT_OBJ_GFX_WOMAN_4                     26
 #define EVENT_OBJ_GFX_COOK                        27
 #define EVENT_OBJ_GFX_LINK_RECEPTIONIST           28

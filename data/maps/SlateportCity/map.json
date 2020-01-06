@@ -367,7 +367,7 @@
       "flag": "FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_POKEFAN_M",
+      "graphics_id": "EVENT_OBJ_GFX_SAGE",
       "x": 5,
       "y": 47,
       "elevation": 3,

@@ -155,7 +155,7 @@
       "flag": "FLAG_HIDE_PETALBURG_GYM_WALLY"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_POKEFAN_M",
+      "graphics_id": "EVENT_OBJ_GFX_SAGE",
       "x": 1,
       "y": 7,
       "elevation": 3,

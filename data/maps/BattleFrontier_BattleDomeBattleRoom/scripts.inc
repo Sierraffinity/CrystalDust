@@ -529,7 +529,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_24C52F:: @ 824C52F
 
 BattleFrontier_BattleDomeBattleRoom_EventScript_24C530:: @ 824C530
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 1, 3, 0, 3, DIR_SOUTH
-	createvobject EVENT_OBJ_GFX_POKEFAN_M, 4, 6, 0, 3, DIR_SOUTH
+	createvobject EVENT_OBJ_GFX_SAGE, 4, 6, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_NINJA_BOY, 6, 8, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_LITTLE_GIRL, 9, 11, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 11, 13, 0, 3, DIR_SOUTH
@@ -543,7 +543,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_24C530:: @ 824C530
 
 BattleFrontier_BattleDomeBattleRoom_EventScript_24C594:: @ 824C594
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 1, 3, 0, 3, DIR_SOUTH
-	createvobject EVENT_OBJ_GFX_POKEFAN_M, 4, 6, 0, 3, DIR_SOUTH
+	createvobject EVENT_OBJ_GFX_SAGE, 4, 6, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_NINJA_BOY, 6, 8, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_WOMAN_2, 7, 9, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_LITTLE_GIRL, 9, 11, 0, 3, DIR_SOUTH
@@ -554,7 +554,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_24C594:: @ 824C594
 	createvobject EVENT_OBJ_GFX_NINJA_BOY, 16, 3, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_WOMAN_2, 17, 4, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_BEAUTY, 19, 7, 1, 3, DIR_SOUTH
-	createvobject EVENT_OBJ_GFX_POKEFAN_M, 20, 9, 1, 3, DIR_SOUTH
+	createvobject EVENT_OBJ_GFX_SAGE, 20, 9, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_WOMAN_5, 22, 11, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 23, 13, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_LITTLE_BOY, 25, 15, 1, 3, DIR_SOUTH
@@ -570,7 +570,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_24C652:: @ 824C652
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 1, 3, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_BEAUTY, 2, 15, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_MAN_5, 3, 5, 0, 3, DIR_SOUTH
-	createvobject EVENT_OBJ_GFX_POKEFAN_M, 4, 6, 0, 3, DIR_SOUTH
+	createvobject EVENT_OBJ_GFX_SAGE, 4, 6, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 5, 7, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_NINJA_BOY, 6, 8, 0, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_WOMAN_2, 7, 9, 0, 3, DIR_SOUTH
@@ -586,7 +586,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_24C652:: @ 824C652
 	createvobject EVENT_OBJ_GFX_WOMAN_2, 17, 4, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_WOMAN_3, 18, 6, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_BEAUTY, 19, 7, 1, 3, DIR_SOUTH
-	createvobject EVENT_OBJ_GFX_POKEFAN_M, 20, 9, 1, 3, DIR_SOUTH
+	createvobject EVENT_OBJ_GFX_SAGE, 20, 9, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_MAN_2, 21, 10, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_WOMAN_5, 22, 11, 1, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 23, 13, 1, 3, DIR_SOUTH

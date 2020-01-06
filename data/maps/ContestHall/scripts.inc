@@ -238,7 +238,7 @@ ContestHall_EventScript_RandomAudienceExpertF:: @ 823BAC5
 	return
 
 ContestHall_EventScript_RandomAudiencePokefanM:: @ 823BACB
-	setvar VAR_TEMP_1, EVENT_OBJ_GFX_POKEFAN_M
+	setvar VAR_TEMP_1, EVENT_OBJ_GFX_SAGE
 	return
 
 ContestHall_EventScript_RandomAudienceWoman4:: @ 823BAD1
@@ -340,7 +340,7 @@ ContestHall_EventScript_CreateHyperContestAudience:: @ 823BBE6
 	createvobject EVENT_OBJ_GFX_WOMAN_2, 11, 12, 4, 3, DIR_WEST
 	createvobject EVENT_OBJ_GFX_WOMAN_3, 12, 12, 7, 3, DIR_WEST
 	createvobject EVENT_OBJ_GFX_BEAUTY, 13, 12, 8, 3, DIR_WEST
-	createvobject EVENT_OBJ_GFX_POKEFAN_M, 20, 3, 2, 3, DIR_SOUTH
+	createvobject EVENT_OBJ_GFX_SAGE, 20, 3, 2, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_MAN_2, 20, 6, 2, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_WOMAN_5, 20, 7, 2, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 24, 8, 2, 3, DIR_SOUTH
@@ -371,7 +371,7 @@ ContestHall_EventScript_CreateMasterContestAudience:: @ 823BC92
 	createvobject EVENT_OBJ_GFX_MAN_4, 17, 13, 6, 3, DIR_WEST
 	createvobject EVENT_OBJ_GFX_MART_EMPLOYEE, 18, 13, 7, 3, DIR_WEST
 	createvobject EVENT_OBJ_GFX_DEVON_EMPLOYEE, 19, 13, 8, 3, DIR_WEST
-	createvobject EVENT_OBJ_GFX_POKEFAN_M, 20, 3, 2, 3, DIR_SOUTH
+	createvobject EVENT_OBJ_GFX_SAGE, 20, 3, 2, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_CAMPER, 21, 6, 2, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_MAN_3, 22, 7, 2, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 24, 11, 2, 3, DIR_SOUTH
@@ -401,7 +401,7 @@ ContestHall_EventScript_CreateWirelessContestAudience:: @ 823BD86
 	createvobject EVENT_OBJ_GFX_MAN_4, 17, 13, 6, 3, DIR_WEST
 	createvobject EVENT_OBJ_GFX_MART_EMPLOYEE, 18, 13, 7, 3, DIR_WEST
 	createvobject EVENT_OBJ_GFX_DEVON_EMPLOYEE, 19, 13, 8, 3, DIR_WEST
-	createvobject EVENT_OBJ_GFX_POKEFAN_M, 20, 3, 2, 3, DIR_SOUTH
+	createvobject EVENT_OBJ_GFX_SAGE, 20, 3, 2, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_CAMPER, 21, 6, 2, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_MAN_3, 22, 7, 2, 3, DIR_SOUTH
 	createvobject EVENT_OBJ_GFX_SCIENTIST, 24, 11, 2, 3, DIR_SOUTH
