@@ -231,7 +231,7 @@ $(MID_SUBDIR)/mus_mainmenu.s: %.s: %.mid
 $(MID_SUBDIR)/mus_m_boat.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G077 -V086
 
-$(MID_SUBDIR)/mus_m_dungon.s: %.s: %.mid
+$(MID_SUBDIR)/mus_sprouttower.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G078 -V088
 
 $(MID_SUBDIR)/mus_maborosi.s: %.s: %.mid

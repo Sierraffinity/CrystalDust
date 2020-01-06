@@ -286,7 +286,7 @@
 #define MUS_ROUTE29 359         // Route 29
 #define MUS_ROUTE34 360         // Route 34/35/36/37/40/41/45/46
 #define MUS_DOORO_X3 361        // Route 120
-#define MUS_VIOLET 362        // Petalburg City
+#define MUS_VIOLET 362          // Violet City
 #define MUS_CHERRYGROVE 363     // Cherrygrove/Mahogany
 #define MUS_GIM 364             // Gym
 #define MUS_NAMINORI 365        // Surfing
@@ -304,8 +304,8 @@
 #define MUS_SHINKA 377          // Evolution
 #define MUS_ME_WASURE 378       // Move Deleted/Messed Up Appeal
 #define MUS_SYOUJOEYE 379       // Encounter! Tuber
-#define MUS_ENCYOUNG 380          // Encounter! Boy
-#define MUS_DARKCAVE 381           // Abandoned Ship/Southern Island
+#define MUS_ENCYOUNG 380        // Encounter! Boy
+#define MUS_DARKCAVE 381        // Abandoned Ship/Southern Island
 #define MUS_MACHI_S3 382        // Fortree City/Pacifidlog Town
 #define MUS_ELMSLAB 383         // Professor Birch's Lab
 #define MUS_B_TOWER 384         // Battle Tower (RS)
@@ -345,7 +345,7 @@
 #define MUS_MAINMENU 418        // Main Menu
 #define MUS_AQA_0 419           // Encounter! Team Aqua
 #define MUS_FOLLOWME 420        // Follow Me!
-#define MUS_RIVALEXIT 421         // Encounter! Brendan
+#define MUS_RIVALEXIT 421       // Rival exits, stage left
 #define MUS_RAINBOW 422         // Ever Grande City
 #define MUS_AYASII 423          // Encounter! Psychic
 #define MUS_KACHI4 424          // Victory! Aqua/Magma Grunt
@@ -356,7 +356,7 @@
 #define MUS_C_ROAD 429          // Victory Road
 #define MUS_AJITO 430           // Aqua/Magma Hideout
 #define MUS_M_BOAT 431          // Sailing
-#define MUS_M_DUNGON 432        // Mt. Pyre (Inside)
+#define MUS_SPROUTTOWER 432     // Sprout Tower
 #define MUS_FINECITY 433        // Slateport City
 #define MUS_MACHUPI 434         // Mt. Pyre (Outside)
 #define MUS_P_SCHOOL 435        // Pokémon Trainer's School
