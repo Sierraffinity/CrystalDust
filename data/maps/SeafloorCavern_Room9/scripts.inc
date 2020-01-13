@@ -11,7 +11,7 @@ SeafloorCavern_Room9_EventScript_ArchieAwakenKyogre:: @ 8234DC9
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, SeafloorCavern_Room9_Movement_Delay32
 	waitmovement 0
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCROCKET, 0
 	msgbox SeafloorCavern_Room9_Text_ArchieHoldItRightThere, MSGBOX_DEFAULT
 	closemessage
 	addobject VAR_0x8004

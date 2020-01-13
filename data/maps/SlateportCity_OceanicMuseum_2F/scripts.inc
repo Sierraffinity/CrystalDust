@@ -6,7 +6,7 @@ SlateportCity_OceanicMuseum_2F_EventScript_CaptStern:: @ 820BB00
 	faceplayer
 	msgbox SlateportCity_OceanicMuseum_2F_Text_ThankYouForTheParts, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_AQA_0, 1
+	playbgm MUS_ENCROCKET, 1
 	addobject 3
 	applymovement 3, SlateportCity_OceanicMuseum_2F_Movement_FirstGruntEnter
 	waitmovement 0

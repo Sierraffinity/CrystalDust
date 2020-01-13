@@ -54,6 +54,17 @@ Trainer_Text_Wade_After:
 	.string "If you catch one, it'll go to your\n"
 	.string "BOX automatically.$"
 
+Trainer_Text_Nico_See:
+	.string "However hard we battle, the TOWER\n"
+	.string "will stay strong.$"
+
+Trainer_Text_Nico_Beat:
+	.string "I fought hard, but I'm too weak.$"
+
+Trainer_Text_Nico_After:
+	.string "The flexible pillar protects the\n"
+	.string "TOWER, even from earthquakes.$"
+
 Route31_Text_29495A: @ 829495A
 	.string "Did you feel the tug of our\n"
 	.string "soul-soothing fragrance?$"

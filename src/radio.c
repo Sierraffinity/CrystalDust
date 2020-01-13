@@ -136,7 +136,7 @@ static void NextRadioLine(u8 taskId, u8 nextLine, const u8 *lineToPrint, bool8 s
 
 void PlayPokemonMusic(void)
 {
-    u16 song = MUS_AYASII;  // Sunday, Tuesday, Thursday, Saturday
+    u16 song = MUS_ENCSUSPICIOUS;  // Sunday, Tuesday, Thursday, Saturday
     RtcCalcLocalTime();
     if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
         song = MUS_ASHROAD;

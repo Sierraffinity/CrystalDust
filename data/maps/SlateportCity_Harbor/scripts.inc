@@ -15,7 +15,7 @@ SlateportCity_Harbor_EventScript_ShowSSTidal:: @ 820C9A5
 	return
 
 SlateportCity_Harbor_EventScript_ReadyAquaEscapeScene:: @ 820C9A9
-	savebgm MUS_AQA_0
+	savebgm MUS_ENCROCKET
 	setobjectxyperm 4, 12, 13
 	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_LEFT
 	setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS

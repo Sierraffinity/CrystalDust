@@ -1,5 +1,5 @@
 {
-    "allow_bike": true,
+    "allow_bike": false,
     "allow_escape_rope": true,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
@@ -10,37 +10,51 @@
     ],
     "id": "MAP_SPROUT_TOWER_2F",
     "layout": "LAYOUT_SPROUT_TOWER_2F",
-    "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_DARKCAVE",
+    "map_type": "MAP_TYPE_INDOOR",
+    "music": "MUS_SPROUTTOWER",
     "name": "SproutTower_2F",
     "object_events": [
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
+            "graphics_id": "EVENT_OBJ_GFX_SAGE",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "SproutTower_2F_EventScript_Youngster",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "script": "SproutTower_2F_EventScript_SageNico",
+            "trainer_sight_or_berry_tree_id": "5",
+            "trainer_type": "1",
             "type": "original",
-            "x": 17,
-            "y": 7
+            "x": 12,
+            "y": 5
         },
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_TUBER_M",
+            "graphics_id": "EVENT_OBJ_GFX_SAGE",
             "movement_range_x": 4,
             "movement_range_y": 7,
             "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_UP_LEFT_DOWN_RIGHT",
-            "script": "SproutTower_2F_EventScript_Charlie",
+            "script": "NULL",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
             "type": "original",
-            "x": 5,
-            "y": 10
+            "x": 9,
+            "y": 16
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "type": "original",
+            "x": 2,
+            "y": 2
         }
     ],
     "phone_service": true,
@@ -77,5 +91,5 @@
             "y": 16
         }
     ],
-    "weather": "WEATHER_SHADE"
+    "weather": "WEATHER_NONE"
 }

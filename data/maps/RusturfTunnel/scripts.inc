@@ -313,7 +313,7 @@ RusturfTunnel_EventScript_Peeko:: @ 822D0AF
 RusturfTunnel_EventScript_Grunt:: @ 822D0C2
 	lock
 	faceplayer
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCROCKET, 0
 	msgbox RusturfTunnel_Text_GruntIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_GRUNT_RUSTURF_TUNNEL, RusturfTunnel_Text_GruntDefeat
 	msgbox RusturfTunnel_Text_GruntTakePackage, MSGBOX_DEFAULT

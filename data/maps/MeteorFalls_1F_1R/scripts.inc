@@ -44,7 +44,7 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	addobject 7
 	addobject 8
 	addobject 9
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCROCKET, 0
 	applymovement 7, MeteorFalls_1F_1R_Movement_ArchieArrive
 	applymovement 8, MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive
 	applymovement 9, MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive

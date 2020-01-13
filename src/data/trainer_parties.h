@@ -55,11 +55,21 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Wade1[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout4[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Nico[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_CARVANHA,
+    .lvl = 3,
+    .species = SPECIES_BELLSPROUT,
+    },
+    {
+    .iv = 0,
+    .lvl = 3,
+    .species = SPECIES_BELLSPROUT,
+    },
+    {
+    .iv = 0,
+    .lvl = 3,
+    .species = SPECIES_BELLSPROUT,
     }
 };
 

@@ -380,8 +380,8 @@ gSongTable:: @ 86B49F0
 	song mus_me_shinka, 2, 2        @ Evolution (Intro)
 	song mus_shinka, 0, 0           @ Evolution
 	song mus_me_wasure, 2, 2        @ Move Deleted
-	song mus_syoujoeye, 0, 0        @ Trainers' Eyes Meet (Tuber♀)
-	song mus_encyoung, 0, 0         @ Trainers' Eyes Meet (Youngster)
+	song mus_encfemaleold, 0, 0     @ Trainers' Eyes Meet (Tuber♀)
+	song mus_encmale, 0, 0          @ Trainers' Eyes Meet (Youngster)
 	song mus_darkcave, 0, 0         @ Dark Cave
 	song mus_machi_s3, 0, 0         @ Fortree City
 	song mus_elmslab, 0, 0          @ Birch Pokémon Lab
@@ -408,7 +408,7 @@ gSongTable:: @ 86B49F0
 	song mus_friendly, 0, 0         @ Poké Mart
 	song mus_newbark, 0, 0          @ Littleroot Town
 	song mus_tozan, 0, 0            @ Mt. Chimney
-	song mus_girleye, 0, 0          @ Trainers' Eyes Meet (Lass)
+	song mus_encfemale, 0, 0        @ Trainers' Eyes Meet (Lass)
 	song mus_minamo, 0, 0           @ Lilycove City
 	song mus_ashroad, 0, 0          @ Route 111
 	song mus_momenc, 0, 0           @ Mom Encounter
@@ -417,14 +417,14 @@ gSongTable:: @ 86B49F0
 	song mus_title3, 0, 0           @ Title Screen
 	song mus_demo1, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
 	song mus_rivalenc, 0, 0         @ Rival Arrives
-	song mus_hageshii, 0, 0         @ Trainers' Eyes Meet (Psychic)
-	song mus_kakkoii, 0, 0          @ Trainers' Eyes Meet (Cooltrainer)
+	song mus_encsage, 0, 0          @ Trainers' Eyes Meet (Psychic)
+	song mus_encmaleold, 0, 0       @ Trainers' Eyes Meet (Cooltrainer)
 	song mus_mainmenu, 0, 0         @ Main Menu
-	song mus_aqa_0, 0, 0            @ Team Aqua Appears!
+	song mus_encrocket, 0, 0        @ Team Aqua Appears!
 	song mus_followme, 0, 0         @ Hurry Along
 	song mus_rivalexit, 0, 0        @ Rival Leaves
 	song mus_rainbow, 0, 0          @ Evergrande City
-	song mus_ayasii, 0, 0           @ Trainers' Eyes Meet (Hex Maniac)
+	song mus_encsuspicious, 0, 0    @ Trainers' Eyes Meet (Hex Maniac)
 	song mus_kachi4, 0, 0           @ Victory! (Team Aqua / Team Magma)
 	song mus_ropeway, 0, 0          @ Cable Car
 	song mus_casino, 0, 0           @ Game Corner
@@ -452,9 +452,9 @@ gSongTable:: @ 86B49F0
 	song mus_karakuri, 0, 0         @ The Trick House
 	song mus_hutago, 0, 0           @ Twins
 	song mus_sitennou, 0, 0         @ The Elite Four Appear!
-	song mus_yama_eye, 0, 0         @ Trainers' Eyes Meet (Hiker)
+	song mus_encsuspold, 0, 0       @ Trainers' Eyes Meet (Hiker)
 	song mus_conlobby, 0, 0         @ Contest Lobby
-	song mus_inter_v, 0, 0          @ Interviewers
+	song mus_enckimono, 0, 0        @ Interviewers
 	song mus_daigo, 0, 0            @ Champion Wallace
 	song mus_thankfor, 0, 0         @ Ending Theme
 	song mus_end, 0, 0              @ The End

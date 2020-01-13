@@ -15,7 +15,7 @@ Route121_EventScript_SafariZoneSign:: @ 81F5E0F
 
 Route121_EventScript_AquaGruntsMoveOut:: @ 81F5E18
 	lockall
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCROCKET, 0
 	applymovement 13, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox Route121_Text_OkayMoveOutToMtPyre, MSGBOX_DEFAULT

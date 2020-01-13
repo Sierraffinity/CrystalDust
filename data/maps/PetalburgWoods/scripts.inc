@@ -8,7 +8,7 @@ PetalburgWoods_EventScript_DevonResearcherLeft:: @ 822DFD7
 	waitmovement 0
 	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCROCKET, 0
 	applymovement 3, PetalburgWoods_Movement_AquaEntrance
 	waitmovement 0
 	msgbox PetalburgWoods_Text_IWasGoingToAmbushYou, MSGBOX_DEFAULT
@@ -45,7 +45,7 @@ PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
 	waitmovement 0
 	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCROCKET, 0
 	applymovement 3, PetalburgWoods_Movement_AquaEntrance
 	waitmovement 0
 	msgbox PetalburgWoods_Text_IWasGoingToAmbushYou, MSGBOX_DEFAULT

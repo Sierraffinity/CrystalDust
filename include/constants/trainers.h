@@ -19,7 +19,7 @@
 #define TRAINER_PIC_POKEMON_BREEDER_F      2
 #define TRAINER_PIC_COOLTRAINER_M          3
 #define TRAINER_PIC_BIRD_KEEPER            4
-#define TRAINER_PIC_COLLECTOR              5
+#define TRAINER_PIC_SAGE              5
 #define TRAINER_PIC_AQUA_GRUNT_F           6
 #define TRAINER_PIC_SWIMMER_M              7
 #define TRAINER_PIC_MAGMA_GRUNT_M          8
@@ -295,7 +295,7 @@
 #define TRAINER_CLASS_PKMN_BREEDER   0x4
 #define TRAINER_CLASS_COOLTRAINER    0x5
 #define TRAINER_CLASS_BIRD_KEEPER    0x6
-#define TRAINER_CLASS_COLLECTOR      0x7
+#define TRAINER_CLASS_SAGE      0x7
 #define TRAINER_CLASS_SWIMMER_M      0x8
 #define TRAINER_CLASS_TEAM_MAGMA     0x9
 #define TRAINER_CLASS_EXPERT         0xa
@@ -357,17 +357,17 @@
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
-#define TRAINER_ENCOUNTER_MUSIC_GIRL         2 // used for male Tubers and Young Couples too
+#define TRAINER_ENCOUNTER_MUSIC_FEMALEOLD    2
 #define TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS   3
-#define TRAINER_ENCOUNTER_MUSIC_INTENSE      4
-#define TRAINER_ENCOUNTER_MUSIC_COOL         5
-#define TRAINER_ENCOUNTER_MUSIC_AQUA         6
+#define TRAINER_ENCOUNTER_MUSIC_SAGE         4
+#define TRAINER_ENCOUNTER_MUSIC_MALEOLD      5
+#define TRAINER_ENCOUNTER_MUSIC_ROCKET       6
 #define TRAINER_ENCOUNTER_MUSIC_MAGMA        7
 #define TRAINER_ENCOUNTER_MUSIC_SWIMMER      8
 #define TRAINER_ENCOUNTER_MUSIC_TWINS        9 // used for other trainer classes too
 #define TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR  10
-#define TRAINER_ENCOUNTER_MUSIC_HIKER       11 // used for other trainer classes too
-#define TRAINER_ENCOUNTER_MUSIC_INTERVIEWER 12
+#define TRAINER_ENCOUNTER_MUSIC_SUSPOLD     11
+#define TRAINER_ENCOUNTER_MUSIC_KIMONO      12
 #define TRAINER_ENCOUNTER_MUSIC_RICH        13 // Rich Boys and Gentlemen
 
 #define F_TRAINER_FEMALE (1 << 7)

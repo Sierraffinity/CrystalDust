@@ -6,7 +6,7 @@
 #define TRAINER_MIKEY             2
 #define TRAINER_DON               3
 #define TRAINER_WADE_1            4
-#define TRAINER_GRUNT_AQUA_HIDEOUT_4           5
+#define TRAINER_NICO           5
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_1           6
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_2           7
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_3           8

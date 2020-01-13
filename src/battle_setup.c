@@ -1486,22 +1486,22 @@ void SetUpTrainerEncounterMusic(void)
         switch (GetTrainerEncounterMusicId(trainerId))
         {
         case TRAINER_ENCOUNTER_MUSIC_MALE:
-            music = MUS_ENCYOUNG;
+            music = MUS_ENCMALE;
             break;
         case TRAINER_ENCOUNTER_MUSIC_FEMALE:
-            music = MUS_GIRLEYE;
+            music = MUS_ENCFEMALE;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_GIRL:
-            music = MUS_SYOUJOEYE;
+        case TRAINER_ENCOUNTER_MUSIC_FEMALEOLD:
+            music = MUS_ENCFEMALEOLD;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_INTENSE:
-            music = MUS_HAGESHII;
+        case TRAINER_ENCOUNTER_MUSIC_SAGE:
+            music = MUS_ENCSAGE;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_COOL:
-            music = MUS_KAKKOII;
+        case TRAINER_ENCOUNTER_MUSIC_MALEOLD:
+            music = MUS_ENCMALEOLD;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_AQUA:
-            music = MUS_AQA_0;
+        case TRAINER_ENCOUNTER_MUSIC_ROCKET:
+            music = MUS_ENCROCKET;
             break;
         case TRAINER_ENCOUNTER_MUSIC_MAGMA:
             music = MUS_MGM0;
@@ -1515,17 +1515,17 @@ void SetUpTrainerEncounterMusic(void)
         case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
             music = MUS_SITENNOU;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_HIKER:
-            music = MUS_YAMA_EYE;
+        case TRAINER_ENCOUNTER_MUSIC_SUSPOLD:
+            music = MUS_ENCSUSPOLD;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_INTERVIEWER:
-            music = MUS_INTER_V;
+        case TRAINER_ENCOUNTER_MUSIC_KIMONO:
+            music = MUS_ENCKIMONO;
             break;
         case TRAINER_ENCOUNTER_MUSIC_RICH:
             music = MUS_TEST;
             break;
         default:
-            music = MUS_AYASII;
+            music = MUS_ENCSUSPICIOUS;
         }
         PlayNewMapMusic(music);
     }

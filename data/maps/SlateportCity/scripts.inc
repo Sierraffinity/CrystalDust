@@ -582,7 +582,7 @@ SlateportCity_EventScript_CaptStern:: @ 81DD1F8
 	applymovement 11, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox SlateportCity_Text_OhPlayerWeMadeDiscovery, MSGBOX_DEFAULT
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCROCKET, 0
 	msgbox SlateportCity_Text_AquaWillAssumeControlOfSubmarine, MSGBOX_DEFAULT
 	applymovement 6, Common_Movement_WalkInPlaceFastestLeft
 	applymovement 1, Common_Movement_WalkInPlaceFastestLeft
