@@ -320,7 +320,7 @@ gTileset_PagodaTower:: @ 83DF974
 	.4byte NULL
 	.4byte gMetatiles_PagodaTower
 	.4byte gMetatileAttributes_PagodaTower
-	.4byte NULL @ animation callback
+	.4byte InitTilesetAnim_PagodaTower @ animation callback
 
 	.align 2
 gTileset_PrettyPetalFlowerShop:: @ 83DF98C
