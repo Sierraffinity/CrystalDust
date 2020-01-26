@@ -2,7 +2,7 @@ SeafloorCavern_Room4_MapScripts:: @ 8234C9B
 	.byte 0
 
 SeafloorCavern_Room4_EventScript_Grunt3:: @ 8234C9C
-	trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_3, SeafloorCavern_Room4_Text_Grunt3Intro, SeafloorCavern_Room4_Text_Grunt3Defeat
+	trainerbattle_single TRAINER_JIN, SeafloorCavern_Room4_Text_Grunt3Intro, SeafloorCavern_Room4_Text_Grunt3Defeat
 	msgbox SeafloorCavern_Room4_Text_Grunt3PostBattle, MSGBOX_AUTOCLOSE
 	end
 

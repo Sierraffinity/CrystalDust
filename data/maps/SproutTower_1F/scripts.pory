@@ -23,3 +23,9 @@ script SproutTower_1F_EventScript_Woman {
     msgbox("See the pillar shaking?\n"
            "People are training upstairs.", MSGBOX_NPC)
 }
+
+script SproutTower_1F_EventScript_SageChow {
+    trainerbattle_single(TRAINER_CHOW, Trainer_Text_Chow_See, Trainer_Text_Chow_Beat)
+	msgbox(Trainer_Text_Chow_After, MSGBOX_DEFAULT)
+	release
+}

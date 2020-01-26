@@ -26,7 +26,7 @@
             "trainer_type": "0",
             "type": "original",
             "x": 6,
-            "y": 6
+            "y": 7
         },
         {
             "elevation": 3,
@@ -77,21 +77,21 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "NULL",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "script": "SproutTower_1F_EventScript_SageChow",
+            "trainer_sight_or_berry_tree_id": "5",
+            "trainer_type": "1",
             "type": "original",
             "x": 2,
             "y": 7
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_ITEM_SPROUT_TOWER_1F_PARALYZE_HEAL",
             "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NULL",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "script": "SproutTower_1F_EventScript_ItemParalyzeHeal",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -116,7 +116,7 @@
             "dest_warp_id": 0,
             "elevation": 3,
             "x": 5,
-            "y": 6
+            "y": 7
         },
         {
             "dest_map": "MAP_SPROUT_TOWER_2F",

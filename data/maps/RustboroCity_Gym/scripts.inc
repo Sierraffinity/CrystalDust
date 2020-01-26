@@ -19,10 +19,10 @@ RustboroCity_Gym_EventScript_RoxanneDefeated:: @ 8212F66
 	setflag FLAG_DEFEATED_RUSTBORO_GYM
 	setflag FLAG_BADGE01_GET
 	setvar VAR_RUSTBORO_CITY_STATE, 1
-	addvar VAR_PETALBURG_GYM_STATE, 1
+	addvar VAR_SPROUT_TOWER_STATE, 1
 	setvar VAR_0x8008, 1
 	call Common_EventScript_SetGymTrainers
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_SPROUT_TOWER_STATE, 6
 	call_if_eq Common_EventScript_ReadyPetalburgGymForBattle
 	goto RustboroCity_Gym_EventScript_GiveRockTomb
 	end

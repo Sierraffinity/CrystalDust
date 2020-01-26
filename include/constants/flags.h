@@ -769,7 +769,7 @@
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE                       0x2DA
 #define FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE           0x2DB
 #define FLAG_HIDE_ROUTE_36_ARTHUR                                   0x2DC
-#define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE_2                   0x2DD
+#define FLAG_HIDE_SPROUT_TOWER_3F_RIVAL                             0x2DD
 #define FLAG_HIDE_PLAYERS_HOUSE_DAD                                 0x2DE
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_SIBLING         0x2DF
 #define FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_SIBLING            0x2E0
@@ -1048,10 +1048,10 @@
 #define FLAG_ITEM_DARK_CAVE_SOUTH_DIRE_HIT                          0x3EF
 #define FLAG_ITEM_VIOLET_CITY_PP_UP                                 0x3F0
 #define FLAG_ITEM_VIOLET_CITY_RARE_CANDY                            0x3F1
-#define FLAG_ITEM_ROUTE_111_HP_UP                                   0x3F2
-#define FLAG_ITEM_ROUTE_112_NUGGET                                  0x3F3
-#define FLAG_ITEM_ROUTE_113_MAX_ETHER                               0x3F4
-#define FLAG_ITEM_ROUTE_113_SUPER_REPEL                             0x3F5
+#define FLAG_ITEM_SPROUT_TOWER_1F_PARALYZE_HEAL                     0x3F2
+#define FLAG_ITEM_SPROUT_TOWER_2F_X_ACCURACY                        0x3F3
+#define FLAG_ITEM_SPROUT_TOWER_3F_POTION                            0x3F4
+#define FLAG_ITEM_SPROUT_TOWER_3F_ESCAPE_ROPE                       0x3F5
 #define FLAG_ITEM_ROUTE_114_RARE_CANDY                              0x3F6
 #define FLAG_ITEM_ROUTE_114_PROTEIN                                 0x3F7
 #define FLAG_ITEM_ROUTE_115_SUPER_POTION                            0x3F8

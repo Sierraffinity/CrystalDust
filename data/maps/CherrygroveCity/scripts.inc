@@ -62,7 +62,6 @@ CherrygroveCity_EventScript_GuideGent::
 	call RestoreOriginalTextColor
 	msgbox CherrygroveCity_Text_GuideGent_Pokegear
 	closemessage
-	savebgm MUS_DUMMY
 	fadedefaultbgm
 	turnobject EVENT_OBJ_ID_PLAYER, 2
 	applymovement 1, CherrygroveCity_Movement_WalkUp
@@ -316,6 +315,7 @@ CherrygroveCity_EventScript_RivalMain:
 	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_RivalPushesPlayer
 	applymovement 2, CherrygroveCity_Movement_RivalRunsAway
 	waitmovement 0
+	savebgm MUS_DUMMY
 	fadedefaultbgm
 	removeobject 2
 	setvar VAR_CHERRYGROVE_CITY_STATE, 2

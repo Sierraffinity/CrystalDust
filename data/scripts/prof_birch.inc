@@ -1,5 +1,5 @@
 ProfBirch_EventScript_UpdateLocation:: @ 82720AD
-	compare VAR_PETALBURG_GYM_STATE, 0
+	compare VAR_SPROUT_TOWER_STATE, 0
 	goto_if_eq Common_EventScript_NopReturn
 	goto_if_set FLAG_SYS_GAME_CLEAR, ProfBirch_EventScript_MoveToLab
 	compare VAR_BIRCH_STATE, 0

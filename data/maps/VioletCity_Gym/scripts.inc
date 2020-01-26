@@ -6,9 +6,9 @@ VioletCity_Gym_MapScripts:: @ 8204889
 	.byte 0
 
 VioletCity_Gym_OnLoad: @ 820489E
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_SPROUT_TOWER_STATE, 6
 	goto_if_eq VioletCity_Gym_EventScript_OpenUnlockedDoors
-	compare VAR_PETALBURG_GYM_STATE, 7
+	compare VAR_SPROUT_TOWER_STATE, 7
 	call_if_ge VioletCity_Gym_EventScript_UnlockAllDoors
 	end
 
@@ -45,9 +45,9 @@ VioletCity_Gym_EventScript_UnlockAllDoors:: @ 82048FF
 	return
 
 VioletCity_Gym_OnTransition: @ 820492D
-	compare VAR_PETALBURG_GYM_STATE, 1
+	compare VAR_SPROUT_TOWER_STATE, 1
 	call_if_eq VioletCity_Gym_EventScript_MoveWallyToEntrance
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_SPROUT_TOWER_STATE, 6
 	call_if_lt VioletCity_Gym_EventScript_MoveNormanToEntrance
 	call_if_set FLAG_SYS_GAME_CLEAR, VioletCity_Gym_EventScript_CheckNormanForRematch
 	end
@@ -65,17 +65,17 @@ VioletCity_Gym_EventScript_CheckNormanForRematch:: @ 820495D
 	specialvar VAR_RESULT, IsTrainerReadyForRematch
 	compare VAR_RESULT, TRUE
 	goto_if_eq VioletCity_Gym_EventScript_DontMoveNormanToFront
-	compare VAR_PETALBURG_GYM_STATE, 8
+	compare VAR_SPROUT_TOWER_STATE, 8
 	goto_if_eq VioletCity_Gym_EventScript_DontMoveNormanToFront
 	setobjectxyperm 1, 4, 107
 	return
 
 VioletCity_Gym_EventScript_DontMoveNormanToFront:: @ 8204985
-	setvar VAR_PETALBURG_GYM_STATE, 8
+	setvar VAR_SPROUT_TOWER_STATE, 8
 	end
 
 VioletCity_Gym_OnWarp: @ 820498B
-	map_script_2 VAR_PETALBURG_GYM_STATE, 1, VioletCity_Gym_EventScript_TurnPlayerNorth
+	map_script_2 VAR_SPROUT_TOWER_STATE, 1, VioletCity_Gym_EventScript_TurnPlayerNorth
 	.2byte 0
 
 VioletCity_Gym_EventScript_TurnPlayerNorth:: @ 8204995
@@ -83,7 +83,7 @@ VioletCity_Gym_EventScript_TurnPlayerNorth:: @ 8204995
 	end
 
 VioletCity_Gym_OnFrame: @ 820499A
-	map_script_2 VAR_PETALBURG_GYM_STATE, 1, VioletCity_Gym_EventScript_ReturnFromWallyTutorial
+	map_script_2 VAR_SPROUT_TOWER_STATE, 1, VioletCity_Gym_EventScript_ReturnFromWallyTutorial
 	.2byte 0
 
 VioletCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
@@ -101,7 +101,7 @@ VioletCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox VioletCity_Gym_Text_DadGoCollectBadges, MSGBOX_DEFAULT
-	setvar VAR_PETALBURG_GYM_STATE, 2
+	setvar VAR_SPROUT_TOWER_STATE, 2
 	releaseall
 	end
 
@@ -115,7 +115,7 @@ VioletCity_Gym_Movement_WallyExitGym: @ 82049EC
 VioletCity_Gym_EventScript_Norman:: @ 82049F1
 	lock
 	faceplayer
-	switch VAR_PETALBURG_GYM_STATE
+	switch VAR_SPROUT_TOWER_STATE
 	case 2, VioletCity_Gym_EventScript_NormanNoBadges
 	case 3, VioletCity_Gym_EventScript_NormanOneBadge
 	case 4, VioletCity_Gym_EventScript_NormanTwoBadges
@@ -217,7 +217,7 @@ VioletCity_Gym_EventScript_BeginWallyTutorial:: @ 8204AAC
 	call_if_eq VioletCity_Gym_EventScript_ExitGymWithWallyEast
 	removeobject 10
 	setflag FLAG_HIDE_VIOLET_CITY_EARL
-	setvar VAR_PETALBURG_GYM_STATE, 1
+	setvar VAR_SPROUT_TOWER_STATE, 1
 	setvar VAR_VIOLET_CITY_STATE, 2
 	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED
 	clearflag FLAG_HIDE_PETALBURG_GYM_WALLY
@@ -418,7 +418,7 @@ VioletCity_Gym_EventScript_NormanBattle:: @ 8204E3B
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox VioletCity_Gym_Text_ExplainBalanceBadgeTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_PETALBURG_GYM
-	setvar VAR_PETALBURG_GYM_STATE, 7
+	setvar VAR_SPROUT_TOWER_STATE, 7
 	setflag FLAG_BADGE05_GET
 	special ResetHealLocationFromDewford
 	call EventScript_HideMrBriney
@@ -786,7 +786,7 @@ VioletCity_Gym_EventScript_NoAmountOfTrainingIsEnough:: @ 820512D
 
 VioletCity_Gym_EventScript_SpeedRoomDoor:: @ 8205137
 	lockall
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_SPROUT_TOWER_STATE, 6
 	goto_if_lt VioletCity_Gym_EventScript_DoorLocked
 	setvar VAR_0x8008, 7
 	setvar VAR_0x8009, 85
@@ -817,7 +817,7 @@ VioletCity_Gym_EventScript_DoorLocked:: @ 820517D
 @ VAR_0x8008 and VAR_0x8009 below are the x and y coordinates of the warp
 VioletCity_Gym_EventScript_AccuracyRoomDoor:: @ 8205187
 	lockall
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_SPROUT_TOWER_STATE, 6
 	goto_if_lt VioletCity_Gym_EventScript_DoorLocked
 	setvar VAR_0x8008, 1
 	setvar VAR_0x8009, 98

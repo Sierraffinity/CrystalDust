@@ -8,3 +8,10 @@ SproutTower_2F_EventScript_SageNico::
 	release
 	return
 
+
+SproutTower_2F_EventScript_SageEdmond::
+	trainerbattle_single TRAINER_EDMOND, Trainer_Text_Edmond_See, Trainer_Text_Edmond_Beat
+	msgbox Trainer_Text_Edmond_After, MSGBOX_DEFAULT
+	release
+	return
+

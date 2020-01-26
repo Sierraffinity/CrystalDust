@@ -389,7 +389,7 @@ Route109_EventScript_Huey:: @ 81EEA6B
 	end
 
 Route109_EventScript_Edmond:: @ 81EEA82
-	trainerbattle_single TRAINER_EDMOND, Route109_Text_EdmondIntro, Route109_Text_EdmondDefeated
+	trainerbattle_single TRAINER_EDMOND_OLD, Route109_Text_EdmondIntro, Route109_Text_EdmondDefeated
 	msgbox Route109_Text_EdmondPostBattle, MSGBOX_AUTOCLOSE
 	end
 

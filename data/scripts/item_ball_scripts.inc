@@ -38,6 +38,22 @@ VioletCity_EventScript_ItemRareCandy::
 	finditem_std ITEM_RARE_CANDY
 	end
 
+SproutTower_1F_EventScript_ItemParalyzeHeal::
+	finditem_std ITEM_PARALYZE_HEAL
+	end
+
+SproutTower_2F_EventScript_ItemXAccuracy::
+	finditem_std ITEM_X_ACCURACY
+	end
+
+SproutTower_3F_EventScript_ItemPotion::
+	finditem_std ITEM_POTION
+	end
+
+SproutTower_3F_EventScript_ItemEscapeRope::
+	finditem_std ITEM_ESCAPE_ROPE
+	end
+
 Route32_EventScript_ItemPPUp:: @ 8290CFF
 	finditem_std ITEM_PP_UP
 	end

@@ -145,7 +145,7 @@ Route121_EventScript_Pat:: @ 81F5FCA
 	end
 
 Route121_EventScript_Marcel:: @ 81F5FE1
-	trainerbattle_single TRAINER_MARCEL, Route121_Text_MarcelIntro, Route121_Text_MarcelDefeat
+	trainerbattle_single TRAINER_LI, Route121_Text_MarcelIntro, Route121_Text_MarcelDefeat
 	msgbox Route121_Text_MarcelPostBattle, MSGBOX_AUTOCLOSE
 	end
 

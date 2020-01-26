@@ -1,3 +1,4 @@
+raw `
 Trainer_Text_Joey_See:
 	.string "I just lost, so I'm trying to find\n"
 	.string "more POKéMON.\p"
@@ -71,8 +72,71 @@ Trainer_Text_Chow_See:
 	.string "honor all POKéMON.$"
 
 Trainer_Text_Chow_Beat:
-	.string "Th-Thank you!$"
+	.string "Th-Thank you!$"`
 
+text Trainer_Text_Chow_After {
+    "All living beings coexist through\n"
+    "cooperation. We must always be\l"
+    "thankful for this."
+}
+
+text Trainer_Text_Edmond_See {
+    "…Sway like leaves in the wind…"
+}
+
+text Trainer_Text_Edmond_Beat {
+    "Oh, I'm weak!"
+}
+
+text Trainer_Text_Edmond_After {
+    "I tried to copy BELLSPROUT'S gentle\n"
+    "movements for battle…\p"
+    "But I didn't train well enough."
+}
+
+text Trainer_Text_Jin_See {
+    "I train to find enlightenment in\n"
+    "POKéMON!"
+}
+
+text Trainer_Text_Jin_Beat {
+    "My training is incomplete…"
+}
+
+text Trainer_Text_Jin_After {
+    "As POKéMON grow stronger, so does\n"
+    "the TRAINER.\p"
+    "No, wait. As the TRAINER grows\n"
+    "stronger, so do the POKéMON."
+}
+
+text Trainer_Text_Troy_See {
+    "Let me see how much you trust your\n"
+    "POKéMON."
+}
+
+text Trainer_Text_Troy_Beat {
+    "Yes, your trust is real!"
+}
+
+text Trainer_Text_Troy_After {
+    "It is not far to the ELDER."
+}
+
+text Trainer_Text_Neal_See {
+    "The ELDER's HM lights even pitch-\n"
+    "black darkness."
+}
+
+text Trainer_Text_Neal_Beat {
+    "It is my head that is bright!"
+}
+
+text Trainer_Text_Neal_After {
+    "Let there be light on your journey."
+}
+
+raw `
 Route32_Text_GinaIntro: @ 82952BB
 	.string "GINA: Okay, let's battle with our\n"
 	.string "POKéMON!$"
@@ -4607,52 +4671,4 @@ Route134_Text_HudsonPostBattle: @ 82A4AD8
 	.string "Our boat drifted out to sea.\p"
 	.string "My buddy's a timid fellow, so I'm\n"
 	.string "worried about him.$"
-
-Trainer_Text_Chow_After::
-	.string "All living beings coexist through\n"
-	.string "cooperation. We must always be\l"
-	.string "thankful for this.$"
-
-Trainer_Text_Edmond_See::
-	.string "…Sway like leaves in the wind…$"
-
-Trainer_Text_Edmond_Beat::
-	.string "Oh, I'm weak!$"
-
-Trainer_Text_Edmond_After::
-	.string "I tried to copy BELLSPROUT'S gentle\n"
-	.string "movements for battle…\p"
-	.string "But I didn't train well enough.$"
-
-Trainer_Text_Jin_See::
-	.string "I train to find enlightenment in\n"
-	.string "POKéMON!$"
-
-Trainer_Text_Jin_Beat::
-	.string "My training is incomplete…$"
-
-Trainer_Text_Jin_After::
-	.string "As POKéMON grow stronger, so does\n"
-	.string "the TRAINER.\p"
-	.string "No, wait. As the TRAINER grows\n"
-	.string "stronger, so do the POKéMON.$"
-
-Trainer_Text_Troy_See::
-	.string "Let me see how much you trust your\n"
-	.string "POKéMON.$"
-
-Trainer_Text_Troy_Beat::
-	.string "Yes, your trust is real!$"
-
-Trainer_Text_Troy_After::
-	.string "It is not far to the ELDER.$"
-
-Trainer_Text_Neal_See::
-	.string "The ELDER's HM lights even pitch-\n"
-	.string "black darkness.$"
-
-Trainer_Text_Neal_Beat::
-	.string "It is my head that is bright!$"
-
-Trainer_Text_Neal_After::
-	.string "Let there be light on your journey.$"
+`

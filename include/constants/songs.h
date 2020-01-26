@@ -303,7 +303,7 @@
 #define MUS_ME_SHINKA 376       // Evolution Intro
 #define MUS_SHINKA 377          // Evolution
 #define MUS_ME_WASURE 378       // Move Deleted/Messed Up Appeal
-#define MUS_ENCFEMALEOLD 379       // Encounter! Tuber
+#define MUS_ENCFEMALEOLD 379    // Encounter! Tuber
 #define MUS_ENCMALE 380         // Encounter! Boy
 #define MUS_DARKCAVE 381        // Abandoned Ship/Southern Island
 #define MUS_MACHI_S3 382        // Fortree City/Pacifidlog Town

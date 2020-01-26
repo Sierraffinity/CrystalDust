@@ -12,7 +12,7 @@ MtPyre_3F_EventScript_Kayla:: @ 823176A
 	end
 
 MtPyre_3F_EventScript_Gabrielle:: @ 8231781
-	trainerbattle_single TRAINER_GABRIELLE_1, MtPyre_3F_Text_GabrielleIntro, MtPyre_3F_Text_GabrielleDefeat, MtPyre_3F_EventScript_RegisterGabrielle
+	trainerbattle_single TRAINER_TROY, MtPyre_3F_Text_GabrielleIntro, MtPyre_3F_Text_GabrielleDefeat, MtPyre_3F_EventScript_RegisterGabrielle
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq MtPyre_3F_EventScript_RematchGabrielle
@@ -24,12 +24,12 @@ MtPyre_3F_EventScript_RegisterGabrielle:: @ 82317AD
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox MtPyre_3F_Text_GabrielleRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_GABRIELLE_1
+	register_matchcall TRAINER_TROY
 	release
 	end
 
 MtPyre_3F_EventScript_RematchGabrielle:: @ 82317CC
-	trainerbattle_rematch TRAINER_GABRIELLE_1, MtPyre_3F_Text_GabrielleRematchIntro, MtPyre_3F_Text_GabrielleRematchDefeat
+	trainerbattle_rematch TRAINER_TROY, MtPyre_3F_Text_GabrielleRematchIntro, MtPyre_3F_Text_GabrielleRematchDefeat
 	msgbox MtPyre_3F_Text_GabriellePostRematch, MSGBOX_AUTOCLOSE
 	end
 

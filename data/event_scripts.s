@@ -104,6 +104,8 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_RegisteredInMatchCall   @ STD_REGISTER_MATCH_CALL
 	.4byte Std_MsgboxGetPoints         @ MSGBOX_GETPOINTS
 	.4byte Std_10
+	.4byte Std_PutItemAway			   @ STD_PUT_ITEM_AWAY
+	.4byte Std_ReceivedItem			   @ STD_RECEIVED_ITEM
 gStdScripts_End:: @ 81DC2CC
 
 	.include "data/maps/VioletCity/scripts.inc"
@@ -621,6 +623,58 @@ Std_MsgboxGetPoints: @ 827133C
 Std_10: @ 8271347
 	pokegearcall 0x0, 0
 	waitmessage
+	return
+
+Std_PutItemAway::
+	bufferitemnameplural 1, VAR_0x8000, VAR_0x8001
+	checkitemtype VAR_0x8000
+	call EventScript_BufferPocketName
+	msgbox gText_PutItemInPocket
+	return
+
+EventScript_BufferPocketName::
+	switch VAR_RESULT
+	case POCKET_ITEMS, EventScript_BufferItemsPocket2
+	case POCKET_KEY_ITEMS, EventScript_BufferKeyItemsPocket2
+	case POCKET_POKE_BALLS, EventScript_BufferPokeballsPocket2
+	case POCKET_TM_HM, EventScript_BufferTMHMsPocket2
+	case POCKET_BERRIES, EventScript_BufferBerriesPocket2
+	end
+
+EventScript_BufferItemsPocket2::
+	bufferstdstring 2, STDSTRING_ITEMS
+	return
+
+EventScript_BufferKeyItemsPocket2::
+	bufferstdstring 2, STDSTRING_KEYITEMS
+	return
+
+EventScript_BufferPokeballsPocket2::
+	bufferstdstring 2, STDSTRING_POKEBALLS
+	return
+
+EventScript_BufferTMHMsPocket2::
+	bufferstdstring 2, STDSTRING_TMHMS
+	return
+
+EventScript_BufferBerriesPocket2::
+	bufferstdstring 2, STDSTRING_BERRIES
+	return
+
+Std_ReceivedItem::
+	textcolor MSG_COLOR_MISC
+	playfanfare VAR_0x8002
+	message 0x0
+	waitmessage
+	waitfanfare
+	compare VAR_0x8002, MUS_FANFA4
+	call_if_eq EventScript_ReceivedItemWaitFanfare
+	putitemaway VAR_0x8000, VAR_0x8001
+	call RestoreOriginalTextColor
+	return
+
+EventScript_ReceivedItemWaitFanfare::
+	delay 50
 	return
 
 EventScript_UnusedReturn: @ 827134E

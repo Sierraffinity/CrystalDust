@@ -930,7 +930,7 @@ bool8 ScrCmd_waitse(struct ScriptContext *ctx)
 
 bool8 ScrCmd_playfanfare(struct ScriptContext *ctx)
 {
-    PlayFanfare(ScriptReadHalfword(ctx));
+    PlayFanfare(VarGet(ScriptReadHalfword(ctx)));
     return FALSE;
 }
 

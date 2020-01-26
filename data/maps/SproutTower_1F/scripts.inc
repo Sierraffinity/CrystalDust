@@ -27,6 +27,13 @@ SproutTower_1F_EventScript_Woman::
 	return
 
 
+SproutTower_1F_EventScript_SageChow::
+	trainerbattle_single TRAINER_CHOW, Trainer_Text_Chow_See, Trainer_Text_Chow_Beat
+	msgbox Trainer_Text_Chow_After, MSGBOX_DEFAULT
+	release
+	return
+
+
 SproutTower_1F_EventScript_SageHM_Text_0:
 	.string "Only if you reach the top will you\n"
 	.string "obtain an HM.$"

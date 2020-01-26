@@ -83,88 +83,88 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Nico},
     },
 
-    [TRAINER_GRUNT_SEAFLOOR_CAVERN_1] =
+    [TRAINER_CHOW] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
-        .trainerName = _("GRUNT"),
+        .trainerClass = TRAINER_CLASS_SAGE,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SAGE,
+        .trainerPic = TRAINER_PIC_SAGE,
+        .trainerName = _("CHOW"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntSeafloorCavern1),
-        .party = {.NoItemDefaultMoves = sParty_GruntSeafloorCavern1},
+        .partySize = ARRAY_COUNT(sParty_Chow),
+        .party = {.NoItemDefaultMoves = sParty_Chow},
     },
 
-    [TRAINER_GRUNT_SEAFLOOR_CAVERN_2] =
+    [TRAINER_EDMOND] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
-        .trainerName = _("GRUNT"),
+        .trainerClass = TRAINER_CLASS_SAGE,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SAGE,
+        .trainerPic = TRAINER_PIC_SAGE,
+        .trainerName = _("EDMOND"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntSeafloorCavern2),
-        .party = {.NoItemDefaultMoves = sParty_GruntSeafloorCavern2},
+        .partySize = ARRAY_COUNT(sParty_Edmond),
+        .party = {.NoItemDefaultMoves = sParty_Edmond},
     },
 
-    [TRAINER_GRUNT_SEAFLOOR_CAVERN_3] =
+    [TRAINER_JIN] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
-        .trainerName = _("GRUNT"),
+        .trainerClass = TRAINER_CLASS_SAGE,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SAGE,
+        .trainerPic = TRAINER_PIC_SAGE,
+        .trainerName = _("JIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntSeafloorCavern3),
-        .party = {.NoItemDefaultMoves = sParty_GruntSeafloorCavern3},
+        .partySize = ARRAY_COUNT(sParty_Jin),
+        .party = {.NoItemDefaultMoves = sParty_Jin},
     },
 
-    [TRAINER_GABRIELLE_1] =
+    [TRAINER_TROY] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_PKMN_BREEDER,
-        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
-        .trainerPic = TRAINER_PIC_POKEMON_BREEDER_F,
-        .trainerName = _("GABRIELLE"),
+        .trainerClass = TRAINER_CLASS_SAGE,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SAGE,
+        .trainerPic = TRAINER_PIC_SAGE,
+        .trainerName = _("TROY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Gabrielle1),
-        .party = {.NoItemDefaultMoves = sParty_Gabrielle1},
+        .partySize = ARRAY_COUNT(sParty_Troy),
+        .party = {.NoItemDefaultMoves = sParty_Troy},
     },
 
-    [TRAINER_GRUNT_PETALBURG_WOODS] =
+    [TRAINER_NEAL] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
-        .trainerName = _("GRUNT"),
+        .trainerClass = TRAINER_CLASS_SAGE,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SAGE,
+        .trainerPic = TRAINER_PIC_SAGE,
+        .trainerName = _("NEAL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntPetalburgWoods),
-        .party = {.NoItemDefaultMoves = sParty_GruntPetalburgWoods},
+        .partySize = ARRAY_COUNT(sParty_Neal),
+        .party = {.NoItemDefaultMoves = sParty_Neal},
     },
 
-    [TRAINER_MARCEL] =
+    [TRAINER_LI] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_COOLTRAINER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALEOLD,
-        .trainerPic = TRAINER_PIC_COOLTRAINER_M,
-        .trainerName = _("MARCEL"),
-        .items = {ITEM_HYPER_POTION, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .trainerClass = TRAINER_CLASS_SAGE,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SAGE,
+        .trainerPic = TRAINER_PIC_SAGE,
+        .trainerName = _("LI"),
+        .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_Marcel),
-        .party = {.NoItemDefaultMoves = sParty_Marcel},
+        .partySize = ARRAY_COUNT(sParty_Li),
+        .party = {.NoItemDefaultMoves = sParty_Li},
     },
 
     [TRAINER_ALBERTO] =
@@ -6873,7 +6873,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Huey},
     },
 
-    [TRAINER_EDMOND] =
+    [TRAINER_EDMOND_OLD] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_SAILOR,
@@ -6883,8 +6883,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Edmond),
-        .party = {.NoItemDefaultMoves = sParty_Edmond},
+        .partySize = ARRAY_COUNT(sParty_Edmond_Old),
+        .party = {.NoItemDefaultMoves = sParty_Edmond_Old},
     },
 
     [TRAINER_ERNEST_1] =
