@@ -37,6 +37,7 @@ MAKER_CODE  := 01
 REVISION    := 0
 MODERN      ?= 0
 DEBUG		?= 0
+RELEASE_ID  ?= 0
 
 SHELL := /bin/bash -o pipefail
 
@@ -76,7 +77,7 @@ OBJ_DIR := build/modern
 LIBPATH := -L $(TOOLCHAIN)/lib/gcc/arm-none-eabi/$(GCC_VER)/thumb -L $(TOOLCHAIN)/arm-none-eabi/lib/thumb
 endif
 
-CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DDEBUG=$(DEBUG) -DMODERN=$(MODERN)
+CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DDEBUG=$(DEBUG) -DMODERN=$(MODERN) -DRELEASE_ID=$(RELEASE_ID)
 ifeq ($(MODERN),0)
 CPPFLAGS += -I tools/agbcc/include -I tools/agbcc
 endif
@@ -96,6 +97,7 @@ FIX := tools/gbafix/gbafix$(EXE)
 MAPJSON := tools/mapjson/mapjson$(EXE)
 JSONPROC := tools/jsonproc/jsonproc$(EXE)
 SCRIPT := tools/poryscript/poryscript$(EXE)
+XORENCRYPT := tools/xorencrypt/xorencrypt$(EXE)
 
 TOOLDIRS := $(filter-out tools/agbcc tools/binutils tools/poryscript,$(wildcard tools/*))
 TOOLBASE = $(TOOLDIRS:tools/%=%)
@@ -322,6 +324,11 @@ $(ELF): $(OBJ_DIR)/ld_script.ld $(OBJS) berry_fix libagbsyscall
 
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary $< $@
+ifneq ($(RELEASE_ID),0)
+	$(eval EncryptedAddrStart := $(shell grep \\bIntrMain\\b $(MAP) | awk '{ print strtonum($$1) - 0x8000000 }'))
+	$(eval EncryptedAddrEnd := $(shell grep \\bIntrMain_End\\b $(MAP) | awk '{ print strtonum($$1) - 0x8000000 }'))
+	$(XORENCRYPT) $(ROM) $(EncryptedAddrStart) $(EncryptedAddrEnd) $(RELEASE_ID)
+endif
 	$(FIX) $@ -p --silent
 
 modern: ; @$(MAKE) MODERN=1

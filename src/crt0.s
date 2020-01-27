@@ -195,5 +195,7 @@ IntrMain_RetAddr:
 	bx lr
 
 	.pool
+	.global IntrMain_End
+IntrMain_End:
 
 	.align 2, 0 @ Don't pad with nop.
