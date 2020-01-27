@@ -233,7 +233,7 @@ static const u8 sTileBitAttributes[] =
     [MB_UNUSED_DC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_DD] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_DE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_DF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_DISTINGUISHED_STATUE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_PICTURE_BOOK_SHELF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_BOOKSHELF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_POKEMON_CENTER_BOOKSHELF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -1420,6 +1420,14 @@ bool8 MetatileBehavior_IsCuttableGrass(u8 metatileBehavior)
      || metatileBehavior == MB_LONG_GRASS
      || metatileBehavior == MB_ASHGRASS
      || metatileBehavior == MB_LONG_GRASS_SOUTH_EDGE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsDistinguishedStatue(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_DISTINGUISHED_STATUE)
         return TRUE;
     else
         return FALSE;

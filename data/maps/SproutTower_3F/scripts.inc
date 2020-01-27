@@ -194,8 +194,8 @@ SproutTower_3F_EventScript_Li_PostBattle_Text_2:
 
 SproutTower_3F_Text_Li_Prebattle::
 	.string "So good of you to come here!\p"
-	.string "SPROUT TOWER is a place of\n"
-	.string "training and learning.\p"
+	.string "SPROUT TOWER is a place of training\n"
+	.string "and learning.\p"
 	.string "Here, people and POKéMON test\n"
 	.string "their bonds to build a bright\l"
 	.string "future together.\p"

@@ -1064,6 +1064,396 @@
           }
         },
         {
+          "map": "MAP_SPROUT_TOWER_2F",
+          "base_label": "gSproutTower2F",
+          "land_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                }
+              ],
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                }
+              ],
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "map": "MAP_SPROUT_TOWER_3F",
+          "base_label": "gSproutTower3F",
+          "land_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                }
+              ],
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                }
+              ],
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_GASTLY"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 5,
+                  "species": "SPECIES_RATTATA"
+                }
+              ]
+            ]
+          }
+        },
+        {
           "map": "MAP_ROUTE31",
           "base_label": "gRoute31",
           "land_mons": {
