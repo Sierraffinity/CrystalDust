@@ -67,7 +67,6 @@ IntrFunc gIntrTable[INTR_COUNT];
 u8 gLinkVSyncDisabled;
 u32 IntrMain_Buffer[0x200];
 s8 gPcmDmaCounter;
-u32 gReleaseId;
 
 static EWRAM_DATA u16 gTrainerId = 0;
 
