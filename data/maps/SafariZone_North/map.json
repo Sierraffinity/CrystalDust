@@ -41,7 +41,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SafariZone_North_EventScript_23D254",
+      "script": "SafariZone_North_EventScript_Fisherman",
       "flag": "0"
     },
     {
@@ -55,7 +55,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SafariZone_North_EventScript_23D25D",
+      "script": "SafariZone_North_EventScript_Man",
       "flag": "0"
     },
     {

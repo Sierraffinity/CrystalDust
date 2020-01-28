@@ -1,0 +1,22 @@
+mapscripts VioletCity_House1_MapScripts { }
+
+script VioletCity_House1_EventScript_Woman {
+    msgbox("She uses the names of her favorite\n"
+           "things to eat.\p"
+           "For the nicknames she gives to her\n"
+           "POKéMON, I mean.", MSGBOX_NPC)
+}
+
+script VioletCity_House1_EventScript_Girl {
+    msgbox("I call my PIDGEY STRAWBERRY!", MSGBOX_NPC)
+}
+
+script VioletCity_House1_EventScript_Strawberry {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_SPEAROW, 0)
+    msgbox("STRAWBERRY: Pijji!")
+    waitmoncry
+    release
+}

@@ -7,7 +7,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_EventScript_1DC476",
+            "script": "VioletCity_GymSign",
             "type": "sign",
             "x": 20,
             "y": 19
@@ -15,15 +15,15 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "Common_EventScript_ShowPokemartSign",
+            "script": "VioletCity_SproutTowerSign",
             "type": "sign",
             "x": 33,
-            "y": 9
+            "y": 11
         },
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_EventScript_1DC47F",
+            "script": "VioletCity_TownSloganSign",
             "type": "sign",
             "x": 31,
             "y": 23
@@ -31,7 +31,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_EventScript_1DC491",
+            "script": "VioletCity_EarlsAcademySign",
             "type": "sign",
             "x": 34,
             "y": 19
@@ -53,88 +53,21 @@
         },
         {
             "direction": "down",
-            "map": "MAP_ROUTE104",
+            "map": "MAP_ROUTE32",
+            "offset": -2
+        },
+        {
+            "direction": "left",
+            "map": "MAP_ROUTE36",
             "offset": -2
         }
     ],
     "coord_events": [
-        {
-            "elevation": 3,
-            "script": "VioletCity_EventScript_1DC49A",
-            "type": "trigger",
-            "var": "VAR_VIOLET_CITY_STATE",
-            "var_value": "0",
-            "x": 8,
-            "y": 10
-        },
-        {
-            "elevation": 3,
-            "script": "VioletCity_EventScript_1DC4A6",
-            "type": "trigger",
-            "var": "VAR_VIOLET_CITY_STATE",
-            "var_value": "0",
-            "x": 8,
-            "y": 11
-        },
-        {
-            "elevation": 3,
-            "script": "VioletCity_EventScript_1DC4B2",
-            "type": "trigger",
-            "var": "VAR_VIOLET_CITY_STATE",
-            "var_value": "0",
-            "x": 8,
-            "y": 12
-        },
-        {
-            "elevation": 3,
-            "script": "VioletCity_EventScript_1DC4BE",
-            "type": "trigger",
-            "var": "VAR_VIOLET_CITY_STATE",
-            "var_value": "0",
-            "x": 8,
-            "y": 13
-        },
-        {
-            "elevation": 3,
-            "script": "VioletCity_EventScript_1DC691",
-            "type": "trigger",
-            "var": "VAR_SCOTT_PETALBURG_ENCOUNTER",
-            "var_value": "0",
-            "x": 4,
-            "y": 10
-        },
-        {
-            "elevation": 3,
-            "script": "VioletCity_EventScript_1DC6A7",
-            "type": "trigger",
-            "var": "VAR_SCOTT_PETALBURG_ENCOUNTER",
-            "var_value": "0",
-            "x": 4,
-            "y": 11
-        },
-        {
-            "elevation": 3,
-            "script": "VioletCity_EventScript_1DC6BD",
-            "type": "trigger",
-            "var": "VAR_SCOTT_PETALBURG_ENCOUNTER",
-            "var_value": "0",
-            "x": 4,
-            "y": 12
-        },
-        {
-            "elevation": 3,
-            "script": "VioletCity_EventScript_1DC6D3",
-            "type": "trigger",
-            "var": "VAR_SCOTT_PETALBURG_ENCOUNTER",
-            "var_value": "0",
-            "x": 4,
-            "y": 13
-        }
     ],
     "id": "MAP_VIOLET_CITY",
     "layout": "LAYOUT_VIOLET_CITY",
     "map_type": "MAP_TYPE_CITY",
-    "music": "MUS_RG_NANA67",
+    "music": "MUS_VIOLET",
     "name": "VioletCity",
     "object_events": [
         {
@@ -144,7 +77,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "VioletCity_EventScript_1DC3FD",
+            "script": "VioletCity_Earl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -158,7 +91,7 @@
             "movement_range_x": 2,
             "movement_range_y": 2,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "0x0",
+            "script": "VioletCity_GhostGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -172,7 +105,7 @@
             "movement_range_x": 1,
             "movement_range_y": 2,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "VioletCity_EventScript_1DC3E6",
+            "script": "VioletCity_PrimeTimeGuy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -186,7 +119,7 @@
             "movement_range_x": 1,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-            "script": "VioletCity_EventScript_1DC488",
+            "script": "VioletCity_Gramps",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -200,7 +133,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "0x0",
+            "script": "VioletCity_TreeBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",
@@ -234,6 +167,20 @@
             "type": "original",
             "x": 43,
             "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_11",
+            "graphics_id": "EVENT_OBJ_GFX_CUTTABLE_TREE",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "EventScript_CutTree",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "type": "original",
+            "x": 44,
+            "y": 21
         }
     ],
     "phone_service": true,
@@ -249,7 +196,7 @@
             "y": 18
         },
         {
-            "dest_map": "MAP_VIOLET_CITY_WALLYS_HOUSE",
+            "dest_map": "MAP_VIOLET_CITY_EARLS_ACADEMY",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 37,
@@ -289,6 +236,13 @@
             "elevation": 0,
             "x": 47,
             "y": 27
+        },
+        {
+            "dest_map": "MAP_SPROUT_TOWER_1F",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 30,
+            "y": 8
         }
     ],
     "weather": "WEATHER_SUNNY"

@@ -35,6 +35,7 @@ void ConvertGbaToPng(char *inputPath, char *outputPath, struct GbaToPngOptions *
         image.hasPalette = false;
     }
 
+    // TODO: Figure out why anyone would ever invert this shit.
     ReadImage(inputPath, options->width, options->bitDepth, options->metatileWidth, options->metatileHeight, &image, !image.hasPalette);
 
     image.hasTransparency = options->hasTransparency;

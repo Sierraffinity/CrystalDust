@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_Flat1_2F_EventScript_21523D",
+      "script": "RustboroCity_Flat1_2F_EventScript_WaldasMom",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_Flat1_2F_EventScript_215246",
+      "script": "RustboroCity_Flat1_2F_EventScript_PokeDoll",
       "flag": "0"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_Flat1_2F_EventScript_215246",
+      "script": "RustboroCity_Flat1_2F_EventScript_PokeDoll",
       "flag": "0"
     },
     {
@@ -81,7 +81,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_Flat1_2F_EventScript_215246",
+      "script": "RustboroCity_Flat1_2F_EventScript_PokeDoll",
       "flag": "0"
     },
     {
@@ -95,7 +95,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_Flat1_2F_EventScript_21513A",
+      "script": "RustboroCity_Flat1_2F_EventScript_WaldasDad",
       "flag": "0"
     },
     {
@@ -109,7 +109,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_Flat1_2F_EventScript_215246",
+      "script": "RustboroCity_Flat1_2F_EventScript_PokeDoll",
       "flag": "0"
     },
     {
@@ -123,7 +123,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RustboroCity_Flat1_2F_EventScript_215246",
+      "script": "RustboroCity_Flat1_2F_EventScript_PokeDoll",
       "flag": "0"
     }
   ],

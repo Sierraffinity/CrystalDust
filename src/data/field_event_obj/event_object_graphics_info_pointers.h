@@ -23,7 +23,7 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_MrPokemon;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProfOak;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Man2;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Woman3;
-const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_PokefanM;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Sage;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Woman4;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Cook;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_LinkReceptionist;
@@ -272,7 +272,7 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     [EVENT_OBJ_GFX_PROF_OAK] =                 &gEventObjectGraphicsInfo_ProfOak,
     [EVENT_OBJ_GFX_MAN_2] =                    &gEventObjectGraphicsInfo_Man2,
     [EVENT_OBJ_GFX_WOMAN_3] =                  &gEventObjectGraphicsInfo_Woman3,
-    [EVENT_OBJ_GFX_POKEFAN_M] =                &gEventObjectGraphicsInfo_PokefanM,
+    [EVENT_OBJ_GFX_SAGE] =                     &gEventObjectGraphicsInfo_Sage,
     [EVENT_OBJ_GFX_WOMAN_4] =                  &gEventObjectGraphicsInfo_Woman4,
     [EVENT_OBJ_GFX_COOK] =                     &gEventObjectGraphicsInfo_Cook,
     [EVENT_OBJ_GFX_LINK_RECEPTIONIST] =        &gEventObjectGraphicsInfo_LinkReceptionist,
@@ -489,11 +489,11 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
 };
 
 const struct EventObjectGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
-    &gEventObjectGraphicsInfo_Bard,
-    &gEventObjectGraphicsInfo_Hipster,
-    &gEventObjectGraphicsInfo_Trader,
-    &gEventObjectGraphicsInfo_Storyteller,
-    &gEventObjectGraphicsInfo_Giddy,
-    &gEventObjectGraphicsInfo_UnusedMauvilleOldMan1,
-    &gEventObjectGraphicsInfo_UnusedMauvilleOldMan2,
+    [MAUVILLE_MAN_BARD]        = &gEventObjectGraphicsInfo_Bard,
+    [MAUVILLE_MAN_HIPSTER]     = &gEventObjectGraphicsInfo_Hipster,
+    [MAUVILLE_MAN_TRADER]      = &gEventObjectGraphicsInfo_Trader,
+    [MAUVILLE_MAN_STORYTELLER] = &gEventObjectGraphicsInfo_Storyteller,
+    [MAUVILLE_MAN_GIDDY]       = &gEventObjectGraphicsInfo_Giddy,
+    [MAUVILLE_MAN_UNUSED1]     = &gEventObjectGraphicsInfo_UnusedMauvilleOldMan1,
+    [MAUVILLE_MAN_UNUSED2]     = &gEventObjectGraphicsInfo_UnusedMauvilleOldMan2,
 };

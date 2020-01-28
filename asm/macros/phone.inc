@@ -173,6 +173,92 @@
 	.4byte \func
 	.endm
 
+	@ Shows a yes/no box.
+	.macro phone_yesnobox
+	.byte 0x1D
+	.endm
+
+	@ Compares the values of script banks a and b, after forcing the values to bytes.
+	.macro phone_compare_local_to_local byte1:req, byte2:req
+	.byte 0x1E
+	.byte \byte1
+	.byte \byte2
+	.endm
+
+	@ Compares the least-significant byte of the value of script bank a to a fixed byte value (b).
+	.macro phone_compare_local_to_value a:req, b:req
+	.byte 0x1F
+	.byte \a
+	.byte \b
+	.endm
+
+	@ Compares the least-significant byte of the value of script bank a to the byte located at offset b.
+	.macro phone_compare_local_to_addr a:req, b:req
+	.byte 0x20
+	.byte \a
+	.4byte \b
+	.endm
+
+	@ Compares the byte located at offset a to the least-significant byte of the value of script bank b.
+	.macro phone_compare_addr_to_local a:req, b:req
+	.byte 0x21
+	.4byte \a
+	.byte \b
+	.endm
+
+	@ Compares the byte located at offset a to a fixed byte value (b).
+	.macro phone_compare_addr_to_value a:req, b:req
+	.byte 0x22
+	.4byte \a
+	.byte \b
+	.endm
+
+	@ Compares the byte located at offset a to the byte located at offset b.
+	.macro phone_compare_addr_to_addr a:req, b:req
+	.byte 0x23
+	.4byte \a
+	.4byte \b
+	.endm
+
+	@ Compares the value of `var` to a fixed word value (b).
+	.macro phone_compare_var_to_value var:req, value:req
+	.byte 0x24
+	.2byte \var
+	.2byte \value
+	.endm
+
+	@ Compares the value of `var1` to the value of `var2`.
+	.macro phone_compare_var_to_var var1:req, var2:req
+	.byte 0x25
+	.2byte \var1
+	.2byte \var2
+	.endm
+
+	@ Generic compare macro which attempts to deduce argument types based on their values
+	@ Any values between 0x4000 to 0x4FFF and 0x8000 to 0x8FFF are considered event variable identifiers
+	.macro phone_compare arg1:req, arg2:req
+		.if ((\arg1 >> 12) == 4 || (\arg1 >> 12) == 8) && ((\arg2 >> 12) == 4 || (\arg2 >> 12) == 8)
+			phone_compare_var_to_var \arg1, \arg2
+		.elseif ((\arg1 >> 12) == 4 || (\arg1 >> 12) == 8) && (\arg2 >= 0 && \arg2 <= 0xFFFF)
+			phone_compare_var_to_value \arg1, \arg2
+		.else
+			.error "Invalid arguments for 'phone_compare'"
+		.endif
+	.endm
+
+	@ Gets the current map type and mapsec and stores them into VAR_0x8004 and VAR_0x8005.
+	.macro phone_getmapinfo
+	.byte 0x26
+	.endm
+
+	@ Gets a map name and stores it into a string variable.
+	.macro phone_buffermapsecname out:req, mapsec:req
+	.byte 0x27
+	.byte \out
+	.2byte \mapsec
+	.endm
+	
+
 @ Supplementary
 
 	.macro phone_goto_if_unset flag:req, dest:req

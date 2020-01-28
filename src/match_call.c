@@ -97,7 +97,6 @@ static int GetTrainerMatchCallId(int);
 static u16 GetRematchTrainerLocation(int);
 static bool32 TrainerIsEligibleForRematch(int);
 static void StartMatchCall(void);
-static void DrawMatchCallTextBoxBorder(u32, u32, u32);
 static void InitMatchCallCallerNameTextPrinter(int, const u8 *);
 static const struct MatchCallText *GetSameRouteMatchCallText(int, u8 *);
 static const struct MatchCallText *GetDifferentRouteMatchCallText(int, u8 *);
@@ -629,7 +628,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
         .differentRouteMatchCallTextId = TEXT_ID(2, 5),
     },
     {
-        .trainerId = TRAINER_GABRIELLE_1,
+        .trainerId = TRAINER_TROY,
         .unused = 0,
         .battleTopicTextIds = { TEXT_ID(1, 8), TEXT_ID(2, 8), TEXT_ID(3, 8) },
         .generalTextId = TEXT_ID(1, 2),
@@ -1245,13 +1244,13 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
         return FALSE;
     }
 
-    if (!decompress_and_copy_tile_data_to_vram(0, sPokeNavIconGfx, 0, 0x279, 0))
+    /*if (!decompress_and_copy_tile_data_to_vram(0, sPokeNavIconGfx, 0, 0x279, 0))
     {
         RemoveWindow(gPhoneCallWindowId);
         RemoveWindow(gPhoneCallerNameWindowId);
         DestroyTask(taskId);
         return FALSE;
-    }
+    }*/
 
     FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
     FillWindowPixelBuffer(gPhoneCallerNameWindowId, PIXEL_FILL(8));
@@ -1449,7 +1448,7 @@ bool32 CleanupAfterMatchCallHangup(void)
 //     return FALSE;
 // }
 
-static void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
+void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
 {
     int bg, x, y, width, height;
     int tileNum;
@@ -1477,9 +1476,9 @@ void InitMatchCallTextPrinter(int windowId, const u8 *str)
     printerTemplate.currentChar = str;
     printerTemplate.windowId = windowId;
     printerTemplate.fontId = 1;
-    printerTemplate.x = 32;
+    printerTemplate.x = 0;
     printerTemplate.y = 1;
-    printerTemplate.currentX = 32;
+    printerTemplate.currentX = 0;
     printerTemplate.currentY = 1;
     printerTemplate.letterSpacing = 0;
     printerTemplate.lineSpacing = 0;
@@ -1538,7 +1537,7 @@ static u16 GetRematchTrainerLocation(int matchCallId)
 static u32 GetNumRematchTrainersFought(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < 64; i++)
+    for (i = 0, count = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
     {
         if (HasTrainerBeenFought(gRematchTable[i].trainerIds[0]))
             count++;
@@ -2121,7 +2120,7 @@ static const u8 *const sBirchDexRatingTexts[] =
     gBirchDexRatingText_DexCompleted,
 };
 
-void sub_8197080(u8 *destStr)
+void BufferPokedexRatingForMatchCall(u8 *destStr)
 {
     int numSeen, numCaught;
     u8 *str;

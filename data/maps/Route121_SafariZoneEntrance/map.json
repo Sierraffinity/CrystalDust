@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route121_SafariZoneEntrance_EventScript_22BBE6",
+      "script": "Route121_SafariZoneEntrance_EventScript_WelcomeAttendant",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route121_SafariZoneEntrance_EventScript_22BBEF",
+      "script": "Route121_SafariZoneEntrance_EventScript_InfoAttendant",
       "flag": "0"
     },
     {
@@ -95,7 +95,7 @@
       "elevation": 3,
       "var": "VAR_TEMP_1",
       "var_value": "0",
-      "script": "Route121_SafariZoneEntrance_EventScript_22BC18"
+      "script": "Route121_SafariZoneEntrance_EventScript_EntranceCounterTrigger"
     }
   ],
   "bg_events": [
@@ -105,7 +105,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route121_SafariZoneEntrance_EventScript_22BD21"
+      "script": "Route121_SafariZoneEntrance_EventScript_TrainerTipSign"
     }
   ],
   "phone_service": true

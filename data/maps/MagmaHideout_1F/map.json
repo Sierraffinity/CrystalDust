@@ -25,7 +25,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "MagmaHideout_1F_EventScript_23988C",
+      "script": "MagmaHideout_1F_EventScript_Grunt1",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "MagmaHideout_1F_EventScript_2398A3",
+      "script": "MagmaHideout_1F_EventScript_Grunt2",
       "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS"
     },
     {

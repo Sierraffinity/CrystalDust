@@ -1,0 +1,169 @@
+const RIVAL_ID = 7
+
+mapscripts SproutTower_3F_MapScripts { }
+
+script SproutTower_3F_EventScript_Painting {
+    msgbox("It's a powerful painting of a\n"
+           "BELLSPROUT.", MSGBOX_SIGN)
+}
+
+script SproutTower_3F_EventScript_RivalScene {
+    lockall
+    playse(SE_PIN)
+    applymovement(EVENT_OBJ_ID_PLAYER, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(EVENT_OBJ_ID_PLAYER, Common_Movement_Delay48)
+    fadeoutbgm(0)
+	waitmovement(0)
+	setvar(VAR_0x8004, 2)  # vertical pan
+	setvar(VAR_0x8005, 2)  # horizontal pan
+	setvar(VAR_0x8006, 8)  # num shakes
+	setvar(VAR_0x8007, 4)  # shake delay
+	special(ShakeCamera)
+	waitstate
+    delay(10)
+	setvar(VAR_0x8004, 2)  # vertical pan
+	setvar(VAR_0x8005, 2)  # horizontal pan
+	setvar(VAR_0x8006, 8)  # num shakes
+	setvar(VAR_0x8007, 4)  # shake delay
+	special(ShakeCamera)
+	waitstate
+    applymovement(EVENT_OBJ_ID_PLAYER, SproutTower_3F_Movement_PlayerToRival)
+    waitmovement(0)
+    applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalToSage)
+    waitmovement(0)
+    textcolor(MSG_COLOR_BLUE)
+    msgbox("ELDER: You are indeed skilled as a\n"
+           "TRAINER.\l"
+           "As promised, here is your HM.\p"
+           "But let me say this: You should\n"
+           "treat your POKéMON better.\p"
+           "The way you battle is far too harsh.\n"
+           "POKéMON are not tools of war…")
+    closemessage
+    playse(SE_PIN)
+    applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalExclamationFaceSouth)
+    waitmovement(0)
+	applymovement(RIVAL_ID, Common_Movement_Delay48)
+    waitmovement(0)
+    playbgm(MUS_RIVALENC, 0)
+	applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalToPlayer)
+    waitmovement(0)
+    msgbox("…\n"
+           "…Humph!\p"
+           "He claims to be the ELDER, but\n"
+           "he's weak.\p"
+           "It stands to reason.\p"
+           "I'd never lose to fools who babble\n"
+           "about being nice to POKéMON.\p"
+           "I only care about strong POKéMON\n"
+           "that can win.\p"
+           "I really couldn't care less about\n"
+           "weak POKéMON.")
+    applymovement(RIVAL_ID, Common_Movement_WalkInPlaceFastestUp)
+    waitmovement(0)
+    call(RestoreOriginalTextColor)
+    msgbox("{RIVAL} used the\n"
+           "ESCAPE ROPE.")
+    closemessage
+	applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalSpin)
+	waitmovement(0)
+	playse(SE_TK_WARPIN)
+	applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalFlyAway)
+	waitmovement(0)
+	removeobject(RIVAL_ID)
+	fadedefaultbgm
+    setvar(VAR_SPROUT_TOWER_STATE, 1)
+    releaseall
+}
+
+script SproutTower_3F_EventScript_Elder {
+	trainerbattle_single(TRAINER_LI, SproutTower_3F_Text_Li_Prebattle, SproutTower_3F_Text_Li_Beat, SproutTower_3F_EventScript_Li_PostBattle, NO_MUSIC)
+	msgbox("I hope you learn and grow from\n"
+           "your journey.")
+	release
+}
+
+text SproutTower_3F_Text_Li_Prebattle {
+    "So good of you to come here!\p"
+    "SPROUT TOWER is a place of training\n"
+    "and learning.\p"
+    "Here, people and POKéMON test\n"
+    "their bonds to build a bright\l"
+    "future together.\p"
+    "I am the final test.\p"
+    "Allow me to check the ties between\n"
+    "your POKéMON and you!"
+}
+
+text SproutTower_3F_Text_Li_Beat {
+    "Ah, excellent!"
+}
+
+script SproutTower_3F_EventScript_Li_PostBattle {
+    msgbox("You and your POKéMON should have\n"
+           "no problem using this move.\l"
+           "Take this FLASH HM.")
+    giveitem_msg("{PLAYER} received HM05\n"
+                 "from the ELDER.", ITEM_HM05, 1, MUS_ME_WAZA)
+    setflag(FLAG_RECEIVED_HM05)
+    msgbox("FLASH illuminates even the darkest\n"
+           "of all places.\p"
+           "But to use it out of battle, you\n"
+           "need the BADGE from VIOLET's GYM.")
+    release
+}
+
+movement SproutTower_3F_Movement_PlayerToRival {
+    walk_up * 4
+}
+
+movement SproutTower_3F_Movement_RivalToSage {
+    walk_up
+}
+
+movement SproutTower_3F_Movement_RivalExclamationFaceSouth {
+    emote_exclamation_mark
+    walk_in_place_fastest_down
+}
+
+movement SproutTower_3F_Movement_RivalToPlayer {
+    walk_down
+    walk_right * 2
+    walk_down
+}
+
+movement SproutTower_3F_Movement_RivalSpin {
+	face_up
+	delay_4
+	face_left
+	delay_4
+	face_down
+	delay_4
+	face_right
+	delay_4
+}
+
+movement SproutTower_3F_Movement_RivalFlyAway {
+	face_up
+	disable_anim
+	slide_up * 6
+}
+
+script SproutTower_3F_EventScript_SageJin {
+    trainerbattle_single(TRAINER_JIN, Trainer_Text_Jin_See, Trainer_Text_Jin_Beat)
+	msgbox(Trainer_Text_Jin_After, MSGBOX_DEFAULT)
+	release
+}
+
+script SproutTower_3F_EventScript_SageTroy {
+    trainerbattle_single(TRAINER_TROY, Trainer_Text_Troy_See, Trainer_Text_Troy_Beat)
+	msgbox(Trainer_Text_Troy_After, MSGBOX_DEFAULT)
+	release
+}
+
+script SproutTower_3F_EventScript_SageNeal {
+    trainerbattle_single(TRAINER_NEAL, Trainer_Text_Neal_See, Trainer_Text_Neal_Beat)
+	msgbox(Trainer_Text_Neal_After, MSGBOX_DEFAULT)
+	release
+}

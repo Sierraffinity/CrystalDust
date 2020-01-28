@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 Nothing, yet.
 
+## [2.7.0] - 2019-11-05
+### Added
+- Add support for compile-time switches using the `poryswitch` statement. This helps with language differences or game-version differences, for example.
+- Add support for user-defined constants with `const` keyword. This helps with things like defining event object ids to refer to throughout the script.
+
 ## [2.6.0] - 2019-10-26
 ### Added
 - Add support for scope modifiers `global` and `local` for `script`, `text`, `movement`, and `mapscripts` statements. This will force labels for be generated with `::` (global) or `:` (local) in the compiled output script.
@@ -78,7 +83,8 @@ Nothing, yet.
 ## [1.0.0] - 2019-08-27
 Initial Release
 
-[Unreleased]: https://github.com/huderlem/poryscript/compare/2.6.0...HEAD
+[Unreleased]: https://github.com/huderlem/poryscript/compare/2.7.0...HEAD
+[2.7.0]: https://github.com/huderlem/poryscript/compare/2.6.0...2.7.0
 [2.6.0]: https://github.com/huderlem/poryscript/compare/2.5.0...2.6.0
 [2.5.0]: https://github.com/huderlem/poryscript/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/huderlem/poryscript/compare/2.3.0...2.4.0

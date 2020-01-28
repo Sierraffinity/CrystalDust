@@ -36,7 +36,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route132_EventScript_1F74EA",
+      "script": "Route132_EventScript_Gilbert",
       "flag": "0"
     },
     {
@@ -50,7 +50,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route132_EventScript_1F7501",
+      "script": "Route132_EventScript_Dana",
       "flag": "0"
     },
     {
@@ -78,7 +78,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route132_EventScript_1F752F",
+      "script": "Route132_EventScript_Kiyo",
       "flag": "0"
     },
     {
@@ -92,7 +92,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "Route132_EventScript_1F7518",
+      "script": "Route132_EventScript_Ronald",
       "flag": "0"
     },
     {
@@ -106,7 +106,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route132_EventScript_1F7546",
+      "script": "Route132_EventScript_Paxton",
       "flag": "0"
     },
     {
@@ -120,7 +120,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route132_EventScript_1F755D",
+      "script": "Route132_EventScript_Darcy",
       "flag": "0"
     },
     {
@@ -134,7 +134,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route132_EventScript_1F758B",
+      "script": "Route132_EventScript_Makayla",
       "flag": "0"
     },
     {
@@ -148,7 +148,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route132_EventScript_1F7574",
+      "script": "Route132_EventScript_Jonathan",
       "flag": "0"
     },
     {

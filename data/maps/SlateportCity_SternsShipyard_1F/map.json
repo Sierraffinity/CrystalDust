@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_SternsShipyard_1F_EventScript_207F40",
+      "script": "SlateportCity_SternsShipyard_1F_EventScript_Dock",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_SternsShipyard_1F_EventScript_207FED",
+      "script": "SlateportCity_SternsShipyard_1F_EventScript_Scientist1",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_SternsShipyard_1F_EventScript_207FF6",
+      "script": "SlateportCity_SternsShipyard_1F_EventScript_Scientist2",
       "flag": "0"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_SternsShipyard_1F_EventScript_207FFF",
+      "script": "SlateportCity_SternsShipyard_1F_EventScript_Briney",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY"
     }
   ],

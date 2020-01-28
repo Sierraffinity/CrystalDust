@@ -23,12 +23,12 @@ gMetatileAttributes_Rustboro:: @ 839A4F0
 	.incbin "data/tilesets/secondary/rustboro/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Dewford:: @ 839A7AC
-	.incbin "data/tilesets/secondary/dewford/metatiles.bin"
+gMetatiles_Violet:: @ 839A7AC
+	.incbin "data/tilesets/secondary/violet/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Dewford:: @ 839BF5C
-	.incbin "data/tilesets/secondary/dewford/metatile_attributes.bin"
+gMetatileAttributes_Violet:: @ 839BF5C
+	.incbin "data/tilesets/secondary/violet/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Slateport:: @ 839C252
@@ -207,12 +207,12 @@ gMetatileAttributes_CableClub:: @ 83B6D16
 	.incbin "data/tilesets/secondary/cable_club/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_SeashoreHouse:: @ 83B6F16
-	.incbin "data/tilesets/secondary/seashore_house/metatiles.bin"
+gMetatiles_PagodaTower:: @ 83B6F16
+	.incbin "data/tilesets/secondary/pagoda_tower/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_SeashoreHouse:: @ 83B7296
-	.incbin "data/tilesets/secondary/seashore_house/metatile_attributes.bin"
+gMetatileAttributes_PagodaTower:: @ 83B7296
+	.incbin "data/tilesets/secondary/pagoda_tower/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_PrettyPetalFlowerShop:: @ 83B7306
@@ -343,11 +343,11 @@ gMetatileAttributes_RustboroGym:: @ 83C47C6
 	.incbin "data/tilesets/secondary/rustboro_gym/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_DewfordGym:: @ 83C4836
+gMetatiles_VioletGym:: @ 83C4836
 	.incbin "data/tilesets/secondary/dewford_gym/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_DewfordGym:: @ 83C4C86
+gMetatileAttributes_VioletGym:: @ 83C4C86
 	.incbin "data/tilesets/secondary/dewford_gym/metatile_attributes.bin"
 
 	.align 1

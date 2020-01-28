@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BB00",
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_CaptStern",
       "flag": "FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN"
     },
     {
@@ -81,7 +81,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD64",
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron1",
       "flag": "FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION"
     },
     {
@@ -95,7 +95,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD6D",
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron2",
       "flag": "FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION"
     },
     {
@@ -109,7 +109,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD76",
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron3",
       "flag": "FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION"
     }
   ],
@@ -130,7 +130,7 @@
       "y": 4,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD0A"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_WaterQualitySample1"
     },
     {
       "type": "sign",
@@ -138,7 +138,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD13"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_WaterQualitySample2"
     },
     {
       "type": "sign",
@@ -146,7 +146,7 @@
       "y": 3,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD52"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SubmersibleReplica"
     },
     {
       "type": "sign",
@@ -154,7 +154,7 @@
       "y": 4,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD52"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SubmersibleReplica"
     },
     {
       "type": "sign",
@@ -162,7 +162,7 @@
       "y": 3,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD49"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SubmarineReplica"
     },
     {
       "type": "sign",
@@ -170,7 +170,7 @@
       "y": 3,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD49"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SubmarineReplica"
     },
     {
       "type": "sign",
@@ -178,7 +178,7 @@
       "y": 4,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD49"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SubmarineReplica"
     },
     {
       "type": "sign",
@@ -186,7 +186,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD40"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SSTidalReplica"
     },
     {
       "type": "sign",
@@ -194,7 +194,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD40"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SSTidalReplica"
     },
     {
       "type": "sign",
@@ -202,7 +202,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD5B"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SSAnneReplica"
     },
     {
       "type": "sign",
@@ -210,7 +210,7 @@
       "y": 7,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD5B"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SSAnneReplica"
     },
     {
       "type": "sign",
@@ -218,7 +218,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD37"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SurfaceSeawaterDisplay"
     },
     {
       "type": "sign",
@@ -226,7 +226,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD37"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SurfaceSeawaterDisplay"
     },
     {
       "type": "sign",
@@ -234,7 +234,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD2E"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_DeepSeawaterDisplay"
     },
     {
       "type": "sign",
@@ -242,7 +242,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD2E"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_DeepSeawaterDisplay"
     },
     {
       "type": "sign",
@@ -250,7 +250,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD25"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_HoennModel"
     },
     {
       "type": "sign",
@@ -258,7 +258,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD25"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_HoennModel"
     },
     {
       "type": "sign",
@@ -266,7 +266,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD1C"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_PressureExperiment"
     },
     {
       "type": "sign",
@@ -274,7 +274,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD1C"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_PressureExperiment"
     },
     {
       "type": "sign",
@@ -282,7 +282,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD40"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SSTidalReplica"
     },
     {
       "type": "sign",
@@ -290,7 +290,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SlateportCity_OceanicMuseum_2F_EventScript_20BD40"
+      "script": "SlateportCity_OceanicMuseum_2F_EventScript_SSTidalReplica"
     }
   ],
   "phone_service": true

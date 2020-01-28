@@ -1,0 +1,130 @@
+const ELMS_AIDE = 5
+
+mapscripts VioletCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_VIOLET_CITY)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script VioletCity_PokemonCenter_1F_EventScript_Nurse {
+    setvar(VAR_0x800B, 1)
+	call(Common_EventScript_PkmnCenterNurse)
+	waitmessage
+	waitbuttonpress
+	release
+}
+
+script VioletCity_PokemonCenter_1F_EventScript_Gameboy_Kid {
+    msgbox("A guy named BILL made the POKéMON\n"
+           "PC storage system.", MSGBOX_NPC)
+}
+
+script VioletCity_PokemonCenter_1F_EventScript_Gentleman {
+    msgbox("Around three years ago, TEAM ROCKET\n"
+           "was up to no good with POKéMON.\p"
+           "But justice prevailed--a young kid\n"
+           "broke 'em up.", MSGBOX_NPC)
+}
+
+script VioletCity_PokemonCenter_1F_EventScript_Youngster {
+    msgbox("POKéMON are smart. They won't obey\n"
+           "a TRAINER they don't respect.\p"
+           "Without the right GYM BADGES,\n"
+           "they'll do just as they please.", MSGBOX_NPC)
+}
+
+script VioletCity_PokemonCenter_1F_EventScript_Aide {
+    lock
+    faceplayer
+
+    if (!flag(FLAG_REFUSED_ELMS_EGG))
+    {
+        msgbox("{PLAYER}!\n"
+               "Long time, no see.\p"
+               "PROF. ELM asked me to find you.\n"
+               "He has another favor to ask.\p"
+               "Would you take the POKéMON EGG?", MSGBOX_YESNO)
+    }
+    else
+    {
+        msgbox("{PLAYER}, will you take the EGG?", MSGBOX_YESNO)
+    }
+
+    if (var(VAR_RESULT) == YES)
+    {
+        getpartysize
+        if (var(VAR_RESULT) != 6)
+        {
+            delay(5)
+	        textcolor(MSG_COLOR_MISC)
+            setflag(FLAG_GOT_ELMS_EGG)
+	        playfanfare(MUS_FANFA4)
+            message("{PLAYER} received the EGG.")
+            waitfanfare
+            giveegg(SPECIES_TOGEPI)
+            call(RestoreOriginalTextColor)
+            msgbox("We discovered that a POKéMON won't\n"
+                   "hatch until it grows in the EGG.\p"
+                   "It also has to be with other active\n"
+                   "POKéMON to hatch.\p"
+                   "{PLAYER}, you're the only person\n"
+                   "we can rely on.\p"
+                   "Please call PROF. ELM when that\n"
+                   "EGG hatches!")
+            closemessage
+
+            if (var(VAR_FACING) == DIR_NORTH)
+            {
+                applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_PokemonCenter_1F_Movement_PlayerWatchesAide)
+                applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideAroundPlayer)
+                waitmovement(0)
+            }
+            else
+            {
+                applymovement(EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown)
+                applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideStraightOut)
+                waitmovement(0)
+            }
+
+	        playse(SE_KAIDAN)
+            removeobject(ELMS_AIDE)
+            clearflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE)
+        }
+        else
+        {
+            msgbox("Oh, no. You can't carry any more\n"
+                   "POKéMON with you.\p"
+                   "I'll wait here while you make\n"
+                   "room for the EGG.")
+        }
+    }
+    else
+    {
+        msgbox("B-but…\n"
+               "PROF. ELM asked for you…")
+        setflag(FLAG_REFUSED_ELMS_EGG)
+    }
+
+    release
+}
+
+movement VioletCity_PokemonCenter_1F_Movement_AideStraightOut {
+    walk_down * 1
+    walk_right
+    walk_down * 3
+    delay_4
+}
+
+movement VioletCity_PokemonCenter_1F_Movement_AideAroundPlayer {
+    walk_right
+    walk_down * 4
+    delay_4
+}
+
+movement VioletCity_PokemonCenter_1F_Movement_PlayerWatchesAide {
+    delay_16
+    walk_in_place_fastest_right
+    delay_16
+    walk_in_place_fastest_down
+}

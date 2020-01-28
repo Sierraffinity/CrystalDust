@@ -29,7 +29,9 @@ View the [Changelog](https://github.com/huderlem/poryscript/blob/master/CHANGELO
   * [`mapscripts` Statement](#mapscripts-statement)
   * [`raw` Statement](#raw-statement)
   * [Comments](#comments)
+  * [Constants](#constants)
   * [Scope Modifiers](#scope-modifiers)
+  * [Compile-Time Switches](#compile-time-switches)
   * [Optimization](#optimization)
 - [Local Development](#local-development)
   * [Building from Source](#building-from-source)
@@ -370,7 +372,7 @@ mapscripts MyNewCity_MapScripts {
         VAR_TEMP_0, 0: MyNewCity_OnFrame_0
         VAR_TEMP_0, 1 {
             lock
-            msgbox("This script is inlined."))
+            msgbox("This script is inlined.")
             setvar(VAR_TEMP_0, 2)
             release
         }
@@ -439,6 +441,48 @@ script MyScript {
 }
 ```
 
+## Constants
+Use `const` to define constants that can be used in the current script. This is especially useful for giving human-friendly names to event object ids, or temporary flags. Constants must be defined before they are used. Constants can also be composed of previously-defined constants.
+```
+const PROF_BIRCH_ID = 3
+const ASSISTANT_ID = PROF_BIRCH_ID + 1
+const FLAG_GREETED_BIRCH = FLAG_TEMP_2
+
+script ProfBirchScript {
+    applymovement(PROF_BIRCH_ID, BirchMovementData)
+    showobject(ASSISTANT_ID)
+    setflag(FLAG_GREETED_BIRCH)
+}
+```
+
+Note that these constants are **not** a general macro system. They can only be used in certain places in Poryscript syntax. Below is an example of all possible places where constants can be substituted into the script:
+```
+const CONSTANT = 1
+
+mapscripts MyMapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        // The operand and comparison values can both use constants in a
+        // table-based map script.
+        CONSTANT, CONSTANT: MyOnFrameScript_0
+    ]
+}
+
+script MyScript {
+    // Any parameter of any command can use constants.
+    somecommand(CONSTANT)
+
+    // Any comparison operator can use constants, as well as their comparison values.
+    if (flag(CONSTANT)) {}
+    if (var(CONSTANT) == CONSTANT) {}
+    if (defeated(CONSTANT)) {}
+
+    // A switch var value can be a constant, as well as the individual cases.
+    switch (var(CONSTANT)) {
+        case CONSTANT: break
+    }
+}
+```
+
 ## Scope Modifiers
 To control whether a script should be global or local, a scope modifier can be specified. This is supported for `script`, `text`, `movement`, and `mapscripts`. In this context, "global" means that the label will be defined with two colons `::`.  Local scopes means one colon `:`.
 ```
@@ -466,6 +510,57 @@ The top-level statements have different default scopes. They are as follows:
 | `text` | Global |
 | `movement` | Local |
 | `mapscripts` | Global |
+
+## Compile-Time Switches
+Use the `poryswitch` statement to change compiler behavior depending on custom switches. This makes it easy to make scripts behave different depending on, say, the `GAME_VERSION` or `LANGUAGE`. Any content that does not match the compile-time switch will not be included in the final output. To define custom switches, use the `-s` option when running `poryscript`.  You can specify multiple switches, and each key/value pair must be separated by an equals sign. For example:
+
+```
+./poryscript -i script.pory -o script.inc -s GAME_VERSION=RUBY -s LANGUAGE=GERMAN
+```
+
+The `poryswitch` statement can be embedded into any script section, including `text` and `movement` statements. The underscore `_` case is used as the fallback, if none of the other cases match. Cases that only contain a single statement or command can be started with a colon `:`.  Otherwise, use curly braces to define the case's block.
+
+Here are some examples of compile-time switches. This assumes that two compile-time switches are defined, `GAME_VERSION` and `LANGUAGE`.
+
+```
+script MyScript {
+    lock
+    faceplayer
+    poryswitch(GAME_VERSION) {
+        RUBY {
+            msgbox("Here, take this Ruby Orb.")
+            giveitem(ITEM_RUBY_ORB)
+        }
+        SAPPHIRE {
+            msgbox("Here, take this Sapphire Orb.")
+            giveitem(ITEM_SAPPHIRE_ORB)
+        }
+        _: msgbox(format("This case is used when GAME_VERSION doesn't match either of the above."))
+    }
+    release
+}
+
+text MyText {
+    poryswitch(LANGUAGE) {
+        GERMAN:  msgbox("Hallo. Ich spreche Deutsch.")
+        ENGLISH: msgbox("Hello. I speak English.")
+    }
+}
+
+movement MyMovement {
+    face_player
+    walk_down
+    poryswitch(GAME_VERSION) {
+        RUBY: walk_left * 2
+        SAPPHIRE {
+            walk_right * 2
+            walk_left * 4
+        }
+    }
+}
+```
+
+Note, `poryswitch` can also be embedded inside inlined `mapscripts` scripts.
 
 ## Optimization
 By default, Poryscript produces optimized output. It attempts to minimize the number of `goto` commands and unnecessary script labels. To disable optimizations, pass the `-optimize=false` option to `poryscript`.

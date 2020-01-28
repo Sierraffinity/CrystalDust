@@ -4,6 +4,7 @@
 #include "battle_controllers.h"
 #include "battle_pyramid.h"
 #include "frontier_util.h"
+#include "battle_pyramid_bag.h"
 #include "berry_tag_screen.h"
 #include "bg.h"
 #include "constants/items.h"
@@ -118,7 +119,7 @@ void sub_81AD9C0(u8);
 void sub_81ADB14(u8);
 void sub_81ADA7C(u8);
 void sub_81ADC0C(u8);
-void bag_menu_leave_maybe(void);
+void CB2_ApprenticeExitBagMenu(void);
 void CB2_FavorLadyExitBagMenu(void);
 void CB2_QuizLadyExitBagMenu(void);
 void sub_81ABA6C(void);
@@ -466,9 +467,9 @@ void CB2_BagMenuFromStartMenu(void)
 void sub_81AABB0(void)
 {
     if (!InBattlePyramid())
-        GoToBagMenu(RETURN_LOCATION_BATTLE, POCKETS_COUNT, SetCB2ToReshowScreenAfterMenu2);
+        GoToBagMenu(RETURN_LOCATION_BATTLE, POCKETS_COUNT, CB2_SetUpReshowBattleScreenAfterMenu2);
     else
-        sub_81C4F98(1, SetCB2ToReshowScreenAfterMenu2);
+        GoToBattlePyramidBagMenu(1, CB2_SetUpReshowBattleScreenAfterMenu2);
 }
 
 void CB2_ChooseBerry(void)
@@ -476,7 +477,7 @@ void CB2_ChooseBerry(void)
     GoToBagMenu(RETURN_LOCATION_FIELD_2, BERRIES_POCKET, CB2_ReturnToFieldContinueScript);
 }
 
-void sub_81AABF0(void (*callback)(void))
+void ChooseBerrySetCallback(void (*callback)(void))
 {
     GoToBagMenu(RETURN_LOCATION_FIELD_3, BERRIES_POCKET, callback);
 }
@@ -491,23 +492,23 @@ void sub_81AAC14(void)
     GoToBagMenu(RETURN_LOCATION_PC, POCKETS_COUNT, sub_816B31C);
 }
 
-void sub_81AAC28(void)
+void ApprenticeOpenBagMenu(void)
 {
-    GoToBagMenu(RETURN_LOCATION_FIELD_6, POCKETS_COUNT, bag_menu_leave_maybe);
-    gSpecialVar_0x8005 = 0;
-    gSpecialVar_Result = 0;
+    GoToBagMenu(RETURN_LOCATION_FIELD_6, POCKETS_COUNT, CB2_ApprenticeExitBagMenu);
+    gSpecialVar_0x8005 = ITEM_NONE;
+    gSpecialVar_Result = FALSE;
 }
 
 void FavorLadyOpenBagMenu(void)
 {
     GoToBagMenu(RETURN_LOCATION_FIELD_4, POCKETS_COUNT, CB2_FavorLadyExitBagMenu);
-    gSpecialVar_Result = 0;
+    gSpecialVar_Result = FALSE;
 }
 
 void QuizLadyOpenBagMenu(void)
 {
     GoToBagMenu(RETURN_LOCATION_FIELD_5, POCKETS_COUNT, CB2_QuizLadyExitBagMenu);
-    gSpecialVar_Result = 0;
+    gSpecialVar_Result = FALSE;
 }
 
 void GoToBagMenu(u8 bagMenuType, u8 pocketId, void ( *postExitMenuMainCallback2)())
@@ -796,13 +797,13 @@ void GetItemName(s8 *dest, u16 itemId)
             else
             {
                 ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_TM01 + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
-                StringExpandPlaceholders(dest, gText_UnkF908Var1Clear7Var2);
+                StringExpandPlaceholders(dest, gText_NumberVar1Clear7Var2);
             }
             break;
         case BERRIES_POCKET:
             ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_CHERI_BERRY + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
             CopyItemName(itemId, gStringVar2);
-            StringExpandPlaceholders(dest, gText_UnkF908Var1Clear7Var2);
+            StringExpandPlaceholders(dest, gText_NumberVar1Clear7Var2);
             break;
         default:
             CopyItemName(itemId, dest);
@@ -1148,13 +1149,13 @@ u8 GetSwitchBagPocketDirection(void)
     u8 LRKeys;
     if (gBagMenu->unk81B != 0)
         return 0;
-    LRKeys = GetLRKeysState();
-    if ((gMain.newKeys & DPAD_LEFT) || LRKeys == 1)
+    LRKeys = GetLRKeysPressed();
+    if ((gMain.newKeys & DPAD_LEFT) || LRKeys == MENU_L_PRESSED)
     {
         PlaySE(SE_SELECT);
         return 1;
     }
-    if ((gMain.newKeys & DPAD_RIGHT) || LRKeys == 2)
+    if ((gMain.newKeys & DPAD_RIGHT) || LRKeys == MENU_R_PRESSED)
     {
         PlaySE(SE_SELECT);
         return 2;
@@ -1581,7 +1582,7 @@ void Task_HandleOutOfBattleItemMenuInput(u8 taskId)
                 sub_8199134(0, 1);
             }
         }
-        else if ((gMain.newKeys & DPAD_LEFT) || GetLRKeysState() == 1)
+        else if ((gMain.newKeys & DPAD_LEFT) || GetLRKeysPressed() == MENU_L_PRESSED)
         {
             if ((cursorPos & 1) && sub_81ACDFC(cursorPos - 1))
             {
@@ -1589,7 +1590,7 @@ void Task_HandleOutOfBattleItemMenuInput(u8 taskId)
                 sub_8199134(-1, 0);
             }
         }
-        else if ((gMain.newKeys & DPAD_RIGHT) || GetLRKeysState() == 2)
+        else if ((gMain.newKeys & DPAD_RIGHT) || GetLRKeysPressed() == MENU_R_PRESSED)
         {
             if (!(cursorPos & 1) && sub_81ACDFC(cursorPos + 1))
             {
@@ -1651,7 +1652,7 @@ void ItemMenu_UseOutOfBattle(u8 taskId)
             if (gBagPositionStruct.pocket != BERRIES_POCKET)
                 ItemId_GetFieldFunc(gSpecialVar_ItemId)(taskId);
             else
-                sub_80FDD10(taskId);
+                ItemUseOutOfBattle_Berry(taskId);
         }
     }
 }
@@ -1782,7 +1783,7 @@ void ItemMenu_Give(u8 taskId)
             BagMenu_PrintThereIsNoPokemon(taskId);
         else
         {
-            gBagMenu->mainCallback2 = sub_81B7F60;
+            gBagMenu->mainCallback2 = CB2_ChooseMonToGiveItem;
             unknown_ItemMenu_Confirm(taskId);
         }
     }
@@ -2157,7 +2158,7 @@ void DoWallyTutorialBagMenu(void)
     PrepareBagForWallyTutorial();
     AddBagItem(ITEM_POTION, 1);
     AddBagItem(ITEM_POKE_BALL, 5);
-    GoToBagMenu(RETURN_LOCATION_BATTLE_2, ITEMS_POCKET, SetCB2ToReshowScreenAfterMenu2);
+    GoToBagMenu(RETURN_LOCATION_BATTLE_2, ITEMS_POCKET, CB2_SetUpReshowBattleScreenAfterMenu2);
 }
 
 void Task_WallyTutorialBagMenu(u8 taskId)
@@ -2202,7 +2203,7 @@ void unknown_ItemMenu_Show(u8 taskId)
     unknown_ItemMenu_Confirm(taskId);
 }
 
-void bag_menu_leave_maybe(void)
+void CB2_ApprenticeExitBagMenu(void)
 {
     gFieldCallback = Apprentice_EnableBothScriptContexts;
     SetMainCallback2(CB2_ReturnToField);

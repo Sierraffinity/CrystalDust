@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218CB9",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_Greeter",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218CC2",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_Curator",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DF5",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_SchoolKidM",
       "flag": "0"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DFE",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_Artist1",
       "flag": "0"
     },
     {
@@ -81,7 +81,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E07",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_NinjaBoy",
       "flag": "0"
     },
     {
@@ -95,7 +95,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E10",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_Woman1",
       "flag": "0"
     },
     {
@@ -109,7 +109,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E19",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_Woman2",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1"
     },
     {
@@ -123,7 +123,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E2B",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_Artist2",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4"
     },
     {
@@ -137,7 +137,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E42",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_FatMan",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS"
     },
     {
@@ -151,7 +151,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218E22",
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_PsychicM",
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3"
     }
   ],
@@ -186,7 +186,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DAD"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_FantasyPainting"
     },
     {
       "type": "sign",
@@ -194,7 +194,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DAD"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_FantasyPainting"
     },
     {
       "type": "sign",
@@ -202,7 +202,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DD1"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_BerryPainting"
     },
     {
       "type": "sign",
@@ -210,7 +210,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DD1"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_BerryPainting"
     },
     {
       "type": "sign",
@@ -218,7 +218,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DA4"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_OldPainting"
     },
     {
       "type": "sign",
@@ -226,7 +226,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DB6"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_WomanPainting"
     },
     {
       "type": "sign",
@@ -234,7 +234,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DB6"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_WomanPainting"
     },
     {
       "type": "sign",
@@ -242,7 +242,7 @@
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DDA"
+      "script": "LilycoveCity_LilycoveMuseum_EventScript_BirdSculpture"
     },
     {
       "type": "sign",
@@ -250,7 +250,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DA4"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_OldPainting"
     },
     {
       "type": "sign",
@@ -258,7 +258,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DC8"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_GrassPokemonPainting"
     },
     {
       "type": "sign",
@@ -266,7 +266,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DEC"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_StoneTablet"
     },
     {
       "type": "sign",
@@ -274,7 +274,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DBF"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_LegendaryPokemonPainting"
     },
     {
       "type": "sign",
@@ -282,7 +282,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DBF"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_LegendaryPokemonPainting"
     },
     {
       "type": "sign",
@@ -290,7 +290,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DEC"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_StoneTablet"
     },
     {
       "type": "sign",
@@ -298,7 +298,7 @@
       "y": 11,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DE3"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_PokeBallSculpture"
     },
     {
       "type": "sign",
@@ -306,7 +306,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_218DEC"
+      "script": "LilycoveCity_LilycoveMuseum_1F_EventScript_StoneTablet"
     }
   ],
   "phone_service": true

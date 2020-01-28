@@ -1,0 +1,285 @@
+mapscripts VioletCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_VIOLET_CITY)
+    }
+}
+
+script VioletCity_Earl {
+	lockall
+	applymovement(1, VioletCity_Movement_EarlSpin)
+	waitmovement(0)
+	faceplayer
+	msgbox("Hello!\n"
+		   "You are TRAINER?\p"
+		   "Battle GYM LEADER, win you did?", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == YES)
+	{
+		msgbox("Ooh, la la!\n"
+			   "Very indeed nice!")
+		releaseall
+	}
+	else
+	{
+		msgbox("Is that so? Then study shall you!\n"
+			   "Follow me!")
+		closemessage
+		playbgm(MUS_FOLLOWME, 0)
+		switch (var(VAR_FACING))
+		{
+			case DIR_SOUTH:
+				applymovement(1, VioletCity_Movement_EarlToAcademy)
+				applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademySouth)
+				waitmovement(0)
+			case DIR_NORTH:
+				applymovement(1, VioletCity_Movement_EarlToAcademy)
+				applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademyNorth)
+				waitmovement(0)
+			case DIR_WEST:
+				applymovement(1, VioletCity_Movement_EarlToAcademy)
+				applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademyWest)
+				waitmovement(0)
+			case DIR_EAST:
+				applymovement(1, VioletCity_Movement_EarlToAcademy)
+				applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademyEast)
+				waitmovement(0)
+		}
+		applymovement(1, VioletCity_Movement_EarlSpin)
+		waitmovement(0)
+		fadedefaultbgm
+		msgbox("Here, teacher I am.\n"
+			   "Good it is you study here!")
+		closemessage
+		applymovement(1, VioletCity_Movement_EarlSpin)
+		waitmovement(0)
+		applymovement(1, Common_Movement_WalkInPlaceFastestUp)
+		waitmovement(0)
+		opendoor(37, 19)
+		waitdooranim
+		applymovement(1, VioletCity_Movement_EarlIntoDoor)
+		waitmovement(0)
+		removeobject(1)
+		closedoor(37, 19)
+		waitdooranim
+		clearflag(FLAG_HIDE_VIOLET_CITY_ACADEMY_EARL)
+		releaseall
+	}
+}
+
+movement VioletCity_Movement_EarlSpin {
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	face_down
+}
+
+movement VioletCity_Movement_EarlToAcademy {
+	walk_fast_down * 3
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	walk_fast_right * 11
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	walk_fast_down
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	walk_fast_right * 8
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	face_down
+	delay_1
+	face_left
+	delay_1
+	face_up
+	delay_1
+	face_right
+	delay_1
+	walk_fast_up * 2
+}
+
+movement VioletCity_Movement_PlayerToAcademySouth {
+	walk_fast_down * 3
+	delay_16
+	walk_fast_down
+	walk_fast_right * 10
+	delay_16
+	walk_fast_right
+	face_down
+	delay_16
+	walk_fast_down
+	walk_fast_right * 7
+	delay_16
+	walk_fast_right
+	walk_fast_up
+}
+
+movement VioletCity_Movement_PlayerToAcademyNorth {
+	walk_fast_left
+	walk_fast_right
+	walk_fast_down
+	delay_16
+	walk_fast_down
+	walk_fast_right * 10
+	delay_16
+	walk_fast_right
+	face_down
+	delay_16
+	walk_fast_down
+	walk_fast_right * 7
+	delay_16
+	walk_fast_right
+	walk_fast_up
+}
+
+movement VioletCity_Movement_PlayerToAcademyWest {
+	walk_fast_left
+	walk_fast_down * 2
+	delay_16
+	walk_fast_down
+	walk_fast_right * 10
+	delay_16
+	walk_fast_right
+	face_down
+	delay_16
+	walk_fast_down
+	walk_fast_right * 7
+	delay_16
+	walk_fast_right
+	walk_fast_up
+}
+
+movement VioletCity_Movement_PlayerToAcademyEast {
+	walk_fast_right
+	walk_fast_down * 2
+	delay_16
+	walk_fast_down
+	walk_fast_right * 10
+	delay_16
+	walk_fast_right
+	face_down
+	delay_16
+	walk_fast_down
+	walk_fast_right * 7
+	delay_16
+	walk_fast_right
+	walk_fast_up * 1
+}
+
+movement VioletCity_Movement_EarlIntoDoor {
+	walk_up
+	set_invisible
+}
+
+script VioletCity_GhostGirl {
+    msgbox("Ghosts are rumored to appear in\n"
+           "SPROUT TOWER.\p"
+           "They said NORMAL-type POKéMON moves\n"
+           "had no effect on ghosts.", MSGBOX_NPC)
+}
+
+script VioletCity_PrimeTimeGuy {
+    msgbox("Hey, you're a POKéMON TRAINER?\p"
+		   "If you beat the GYM LEADER here,\n"
+		   "you'll be ready for prime time!", MSGBOX_NPC)
+}
+
+script VioletCity_Gramps {
+    msgbox("FALKNER, from the VIOLET POKéMON\n"
+	       "GYM, is a fine TRAINER!\p"
+		   "He inherited his father's GYM and\n"
+		   "has done a great job with it.", MSGBOX_NPC)
+}
+
+script VioletCity_TreeBoy {
+    msgbox("I saw a wiggly tree up ahead!\p"
+		   "If you touch it, it squirms and\n"
+		   "dances! Cool!", MSGBOX_NPC)
+}
+
+script VioletCity_TownSloganSign {
+    msgbox("VIOLET CITY\n"
+		   "The City of Nostalgic Scents", MSGBOX_SIGN)
+}
+
+script VioletCity_GymSign {
+    msgbox("VIOLET CITY POKéMON GYM\n"
+		   "LEADER: FALKNER\l"
+		   "The Elegant FLYING POKéMON Master", MSGBOX_SIGN)
+}
+
+script VioletCity_SproutTowerSign {
+    msgbox("SPROUT TOWER\n"
+		   "Experience the Way of POKéMON", MSGBOX_SIGN)
+}
+
+script VioletCity_EarlsAcademySign {
+    msgbox("EARL'S POKéMON ACADEMY", MSGBOX_SIGN)
+}

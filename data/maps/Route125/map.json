@@ -41,7 +41,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route125_EventScript_1F67A4",
+      "script": "Route125_EventScript_Nolen",
       "flag": "0"
     },
     {
@@ -55,7 +55,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route125_EventScript_1F67BB",
+      "script": "Route125_EventScript_Stan",
       "flag": "0"
     },
     {
@@ -69,7 +69,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route125_EventScript_1F67D2",
+      "script": "Route125_EventScript_Tanya",
       "flag": "0"
     },
     {
@@ -83,7 +83,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route125_EventScript_1F67E9",
+      "script": "Route125_EventScript_Sharon",
       "flag": "0"
     },
     {
@@ -97,7 +97,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route125_EventScript_1F6800",
+      "script": "Route125_EventScript_Ernest",
       "flag": "0"
     },
     {
@@ -111,7 +111,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "Route125_EventScript_1F6862",
+      "script": "Route125_EventScript_Kim",
       "flag": "0"
     },
     {
@@ -125,7 +125,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "Route125_EventScript_1F687D",
+      "script": "Route125_EventScript_Iris",
       "flag": "0"
     },
     {
@@ -139,7 +139,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route125_EventScript_1F6898",
+      "script": "Route125_EventScript_Presley",
       "flag": "0"
     },
     {
@@ -153,7 +153,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route125_EventScript_1F68AF",
+      "script": "Route125_EventScript_Auron",
       "flag": "0"
     },
     {

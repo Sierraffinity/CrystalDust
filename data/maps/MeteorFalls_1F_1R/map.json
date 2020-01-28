@@ -26,7 +26,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MeteorFalls_1F_1R_EventScript_ItemTM23",
-      "flag": "FLAG_ITEM_METEOR_FALLS_1F_1R_TM_23"
+      "flag": "0"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
@@ -151,7 +151,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MeteorFalls_1F_1R_EventScript_22BF25",
+      "script": "MeteorFalls_1F_1R_EventScript_ProfCozmo",
       "flag": "FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO"
     }
   ],
@@ -207,7 +207,7 @@
       "elevation": 4,
       "var": "VAR_METEOR_FALLS_STATE",
       "var_value": "0",
-      "script": "MeteorFalls_1F_1R_EventScript_22BD5F"
+      "script": "MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene"
     }
   ],
   "bg_events": [

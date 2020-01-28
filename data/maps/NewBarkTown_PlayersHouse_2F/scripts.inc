@@ -23,7 +23,7 @@ EventScript_PlayerPC:: @ 81F860D
 	releaseall
 	end
 
-NewBarkTown_PlayersHouse_2F_EventScript_1F863F:: @ 81F863F
+NewBarkTown_PlayersHouse_2F_EventScript_TurnOffPlayerPC:: @ 81F863F
 	setvar VAR_0x8004, 1
 	playse SE_PC_OFF
 	special DoPCTurnOffEffect

@@ -459,8 +459,8 @@ static const struct WindowTemplate gNewGameBirchSpeechTextWindows[] =
 static const u16 sMainMenuBgPal[] = INCBIN_U16("graphics/misc/main_menu_bg.gbapal");
 static const u16 sMainMenuTextPal[] = INCBIN_U16("graphics/misc/main_menu_text.gbapal");
 
-static const u8 sTextColor_Headers[] = {10, 11, 12};
-static const u8 sTextColor_PlayerGenderColor[] = {10, 1, 12};
+static const u8 sTextColor_Headers[] = {TEXT_DYNAMIC_COLOR_1, TEXT_DYNAMIC_COLOR_2, TEXT_DYNAMIC_COLOR_3};
+static const u8 sTextColor_MenuInfo[] = {TEXT_DYNAMIC_COLOR_1, TEXT_COLOR_WHITE, TEXT_DYNAMIC_COLOR_3};
 
 static const struct BgTemplate sMainMenuBgTemplates[] = {
     {
@@ -2440,8 +2440,8 @@ static void MainMenu_FormatSavegameText(void)
 static void MainMenu_FormatSavegamePlayer(void)
 {
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuPlayer);
-    AddTextPrinterParameterized3(2, 1, 2, 18, sTextColor_PlayerGenderColor, -1, gStringVar4);
-    AddTextPrinterParameterized3(2, 1, 62, 18, sTextColor_PlayerGenderColor, -1, gSaveBlock2Ptr->playerName);
+    AddTextPrinterParameterized3(2, 1, 2, 18, sTextColor_MenuInfo, -1, gStringVar4);
+    AddTextPrinterParameterized3(2, 1, 62, 18, sTextColor_MenuInfo, -1, gSaveBlock2Ptr->playerName);
 }
 
 static void MainMenu_FormatSavegameTime(void)
@@ -2450,11 +2450,11 @@ static void MainMenu_FormatSavegameTime(void)
     u8* ptr;
 
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuTime);
-    AddTextPrinterParameterized3(2, 1, 2, 34, sTextColor_PlayerGenderColor, -1, gStringVar4);
+    AddTextPrinterParameterized3(2, 1, 2, 34, sTextColor_MenuInfo, -1, gStringVar4);
     ptr = ConvertIntToDecimalStringN(str, gSaveBlock2Ptr->playTimeHours, STR_CONV_MODE_LEFT_ALIGN, 3);
     *ptr = CHAR_COLON;
     ConvertIntToDecimalStringN(ptr + 1, gSaveBlock2Ptr->playTimeMinutes, STR_CONV_MODE_LEADING_ZEROS, 2);
-    AddTextPrinterParameterized3(2, 1, 62, 34, sTextColor_PlayerGenderColor, -1, str);
+    AddTextPrinterParameterized3(2, 1, 62, 34, sTextColor_MenuInfo, -1, str);
 }
 
 static void MainMenu_FormatSavegamePokedex(void)
@@ -2469,9 +2469,9 @@ static void MainMenu_FormatSavegamePokedex(void)
         else
             dexCount = GetHoennPokedexCount(FLAG_GET_CAUGHT);
         StringExpandPlaceholders(gStringVar4, gText_ContinueMenuPokedex);
-        AddTextPrinterParameterized3(2, 1, 2, 50, sTextColor_PlayerGenderColor, -1, gStringVar4);
+        AddTextPrinterParameterized3(2, 1, 2, 50, sTextColor_MenuInfo, -1, gStringVar4);
         ConvertIntToDecimalStringN(str, dexCount, STR_CONV_MODE_LEFT_ALIGN, 3);
-        AddTextPrinterParameterized3(2, 1, 62, 50, sTextColor_PlayerGenderColor, -1, str);
+        AddTextPrinterParameterized3(2, 1, 62, 50, sTextColor_MenuInfo, -1, str);
     }
 }
 
@@ -2487,9 +2487,9 @@ static void MainMenu_FormatSavegameBadges(void)
             badgeCount++;
     }
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuBadges);
-    AddTextPrinterParameterized3(2, 1, 2, 66, sTextColor_PlayerGenderColor, -1, gStringVar4);
+    AddTextPrinterParameterized3(2, 1, 2, 66, sTextColor_MenuInfo, -1, gStringVar4);
     ConvertIntToDecimalStringN(str, badgeCount, STR_CONV_MODE_LEADING_ZEROS, 1);
-    AddTextPrinterParameterized3(2, 1, 62, 66, sTextColor_PlayerGenderColor, -1, str);
+    AddTextPrinterParameterized3(2, 1, 62, 66, sTextColor_MenuInfo, -1, str);
 }
 
 static void LoadMainMenuWindowFrameTiles(u8 bgId, u16 tileOffset)

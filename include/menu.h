@@ -1,4 +1,3 @@
-
 #ifndef GUARD_MENU_H
 #define GUARD_MENU_H
 
@@ -16,6 +15,13 @@ struct MenuAction
         void (*void_u8)(u8);
         u8 (*u8_void)(void);
     } func;
+};
+
+enum
+{
+	YESNO_STANDARD,
+	YESNO_PHONE_OVERWORLD,
+	YESNO_PHONE_POKEGEAR,
 };
 
 extern const u16 gUnknown_0860F074[];
@@ -55,6 +61,7 @@ void *decompress_and_copy_tile_data_to_vram(u8 bgId, const void *src, u32 size, 
 bool8 free_temp_tile_data_buffers_if_possible(void);
 struct WindowTemplate CreateWindowTemplate(u8 bg, u8 left, u8 top, u8 width, u8 height, u8 paletteNum, u16 baseBlock);
 void CreateYesNoMenu(const struct WindowTemplate *windowTemplate, u16 borderFirstTileNum, u8 borderPalette, u8 initialCursorPos);
+void CreatePhoneYesNoMenu(const struct WindowTemplate *windowTemplate, u16 borderFirstTileNum, u8 borderPalette, u8 initialCursorPos, bool8 fromOverworld);
 void DecompressAndLoadBgGfxUsingHeap(u8 bgId, const void *src, u32 size, u16 offset, u8 mode);
 s8 Menu_ProcessInputNoWrapClearOnChoose(void);
 s8 ProcessMenuInput_other(void);
@@ -88,7 +95,7 @@ void RemoveMapNamePopUpWindow(void);
 u8 GetMapNamePopUpWindowId(void);
 u8 AddMapNamePopUpWindow(void);
 void AddTextPrinterParameterized5(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16), u8 letterSpacing, u8 lineSpacing);
-void sub_8199C30(u8 bgId, u8 left, u8 top, u8 width, u8 height, u8 palette);
+void SetBgTilemapPalette(u8 bgId, u8 left, u8 top, u8 width, u8 height, u8 palette);
 void sub_8199D3C(void *ptr, int delta, int width, int height, bool32 is8BPP);
 void sub_8198204(const u8 *string, const u8 *string2, u8 a3, u8 a4, bool8 copyToVram);
 void sub_8197AE8(bool8 copyToVram);
@@ -96,7 +103,7 @@ void PrintMenuGridTable(u8 windowId, u8 optionWidth, u8 columns, u8 rows, const 
 s8 Menu_ProcessInputGridLayout(void);
 u8 InitMenuInUpperLeftCorner(u8 windowId, u8 itemCount, u8 initialCursorPos, bool8 APressMuted);
 s8 Menu_ProcessInputNoWrapAround_other(void);
-void sub_8199CBC(u8 bgId, u16 *dest, u8 left, u8 top, u8 width, u8 height);
+void CopyToBufferFromBgTilemap(u8 bgId, u16 *dest, u8 left, u8 top, u8 width, u8 height);
 u8 sub_81980F0(u8 bg, u8 xPos, u8 yPos, u8 palette, u16 baseTile);
 void sub_8198314(void);
 void sub_8198180(const u8 *string, u8 a2, bool8 copyToVram);

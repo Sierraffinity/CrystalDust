@@ -35,16 +35,16 @@ gTileset_Rustboro:: @ 83DF734
 	.4byte InitTilesetAnim_Rustboro
 
 	.align 2
-gTileset_Dewford:: @ 83DF74C
+gTileset_Violet:: @ 83DF74C
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_Dewford
-	.4byte gTilesetPalettes_Dewford
+	.4byte gTilesetTiles_Violet
+	.4byte gTilesetPalettes_Violet
 	.4byte NULL
-	.4byte gMetatiles_Dewford
-	.4byte gMetatileAttributes_Dewford
-	.4byte InitTilesetAnim_Dewford
+	.4byte gMetatiles_Violet
+	.4byte gMetatileAttributes_Violet
+	.4byte InitTilesetAnim_Violet
 
 	.align 2
 gTileset_Slateport:: @ 83DF764
@@ -311,16 +311,16 @@ gTileset_CableClub:: @ 83DF95C
 	.4byte NULL @ animation callback
 
 	.align 2
-gTileset_SeashoreHouse:: @ 83DF974
+gTileset_PagodaTower:: @ 83DF974
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_SeashoreHouse
-	.4byte gTilesetPalettes_SeashoreHouse
+	.4byte gTilesetTiles_PagodaTower
+	.4byte gTilesetPalettes_PagodaTower
 	.4byte NULL
-	.4byte gMetatiles_SeashoreHouse
-	.4byte gMetatileAttributes_SeashoreHouse
-	.4byte NULL @ animation callback
+	.4byte gMetatiles_PagodaTower
+	.4byte gMetatileAttributes_PagodaTower
+	.4byte InitTilesetAnim_PagodaTower @ animation callback
 
 	.align 2
 gTileset_PrettyPetalFlowerShop:: @ 83DF98C
@@ -606,8 +606,8 @@ gTileset_DewfordGym:: @ 83DFBB4
 	.4byte gTilesetTiles_DewfordGym
 	.4byte gTilesetPalettes_DewfordGym
 	.4byte NULL
-	.4byte gMetatiles_DewfordGym
-	.4byte gMetatileAttributes_DewfordGym
+	.4byte gMetatiles_VioletGym
+	.4byte gMetatileAttributes_VioletGym
 	.4byte NULL @ animation callback
 
 	.align 2

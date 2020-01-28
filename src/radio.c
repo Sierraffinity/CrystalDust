@@ -136,7 +136,7 @@ static void NextRadioLine(u8 taskId, u8 nextLine, const u8 *lineToPrint, bool8 s
 
 void PlayPokemonMusic(void)
 {
-    u16 song = MUS_AYASII;  // Sunday, Tuesday, Thursday, Saturday
+    u16 song = MUS_ENCSUSPICIOUS;  // Sunday, Tuesday, Thursday, Saturday
     RtcCalcLocalTime();
     if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
         song = MUS_ASHROAD;
@@ -313,7 +313,7 @@ void Task_PlayRadioShow(u8 taskId)
                 { MAPSEC_ROUTE_29, MAP_GROUP(ROUTE29), MAP_NUM(ROUTE29) },
                 { MAPSEC_ROUTE_30, MAP_GROUP(ROUTE30), MAP_NUM(ROUTE30) },
                 { MAPSEC_ROUTE_31, MAP_GROUP(ROUTE31), MAP_NUM(ROUTE31) },
-                { MAPSEC_ROUTE_104, MAP_GROUP(ROUTE104), MAP_NUM(ROUTE104) },
+                { MAPSEC_ROUTE_32, MAP_GROUP(ROUTE32), MAP_NUM(ROUTE32) },
                 { MAPSEC_ROUTE_110, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
                 { MAPSEC_ROUTE_111, MAP_GROUP(ROUTE111), MAP_NUM(ROUTE111) },
                 { MAPSEC_ROUTE_112, MAP_GROUP(ROUTE112), MAP_NUM(ROUTE112) },
@@ -323,7 +323,7 @@ void Task_PlayRadioShow(u8 taskId)
                 { MAPSEC_ROUTE_29, MAP_GROUP(ROUTE29), MAP_NUM(ROUTE29) },
                 { MAPSEC_ROUTE_30, MAP_GROUP(ROUTE30), MAP_NUM(ROUTE30) },
                 { MAPSEC_ROUTE_31, MAP_GROUP(ROUTE31), MAP_NUM(ROUTE31) },
-                { MAPSEC_ROUTE_104, MAP_GROUP(ROUTE104), MAP_NUM(ROUTE104) },
+                { MAPSEC_ROUTE_32, MAP_GROUP(ROUTE32), MAP_NUM(ROUTE32) },
                 { MAPSEC_ROUTE_110, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
             };
 

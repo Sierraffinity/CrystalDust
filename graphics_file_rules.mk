@@ -18,6 +18,7 @@ PSSGFXDIR := graphics/pokemon_storage
 EVENTOBJGFXDIR := graphics/event_objects
 MISCGFXDIR := graphics/misc
 INTROGFXDIR := graphics/intro
+DOORANIMSGFXDIR := graphics/door_anims
 
 types := normal fight flying poison ground rock bug ghost steel mystery fire water grass electric psychic ice dragon dark
 contest_types := cool beauty cute smart tough
@@ -55,6 +56,30 @@ $(CASTFORMGFXDIR)/shiny.gbapal: $(CASTFORMGFXDIR)/shiny_normal_form.gbapal \
 								$(CASTFORMGFXDIR)/shiny_rainy_form.gbapal \
 								$(CASTFORMGFXDIR)/shiny_snowy_form.gbapal
 	@cat $^ >$@
+
+
+
+### Tilesets ###
+
+$(TILESETGFXDIR)/secondary/secret_base/brown_cave/unused_tiles.4bpp: $(TILESETGFXDIR)/secondary/secret_base/brown_cave/tiles.png
+	$(GFX) $< $@ -num_tiles 82
+
+$(TILESETGFXDIR)/secondary/secret_base/tree/unused_tiles.4bpp: $(TILESETGFXDIR)/secondary/secret_base/tree/tiles.png
+	$(GFX) $< $@ -num_tiles 82
+
+$(TILESETGFXDIR)/secondary/secret_base/shrub/unused_tiles.4bpp: $(TILESETGFXDIR)/secondary/secret_base/shrub/tiles.png
+	$(GFX) $< $@ -num_tiles 82
+
+$(TILESETGFXDIR)/secondary/secret_base/blue_cave/unused_tiles.4bpp: $(TILESETGFXDIR)/secondary/secret_base/blue_cave/tiles.png
+	$(GFX) $< $@ -num_tiles 82
+
+$(TILESETGFXDIR)/secondary/secret_base/yellow_cave/unused_tiles.4bpp: $(TILESETGFXDIR)/secondary/secret_base/yellow_cave/tiles.png
+	$(GFX) $< $@ -num_tiles 82
+
+$(TILESETGFXDIR)/secondary/secret_base/red_cave/unused_tiles.4bpp: $(TILESETGFXDIR)/secondary/secret_base/red_cave/tiles.png
+	$(GFX) $< $@ -num_tiles 82
+
+
 
 ### Fonts ###
 
@@ -212,7 +237,7 @@ $(MASKSGFXDIR)/unknown_C2EA50.4bpp: %.4bpp: %.png
 $(BATTRANSGFXDIR)/vs_frame.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 16
 
-$(INTERFACEGFXDIR)/party_menu_misc.4bpp: %.4bpp: %.png
+$(INTERFACEGFXDIR)/party_menu_bg.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 62
 
 $(TYPESGFXDIR)/move_types.4bpp: $(types:%=$(TYPESGFXDIR)/%.4bpp) $(contest_types:%=$(TYPESGFXDIR)/contest_%.4bpp)
@@ -495,3 +520,6 @@ $(MISCGFXDIR)/birch_help.4bpp: $(MISCGFXDIR)/birch_bag.4bpp $(MISCGFXDIR)/birch_
 
 $(INTROGFXDIR)/intro2.4bpp: $(INTROGFXDIR)/intro2_bg3.4bpp $(INTROGFXDIR)/intro2_bg2.4bpp $(INTROGFXDIR)/intro2_bg1.4bpp
 	@cat $^ >$@
+
+$(DOORANIMSGFXDIR)/06.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2

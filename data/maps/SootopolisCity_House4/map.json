@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SootopolisCity_House4_EventScript_226D16",
+      "script": "SootopolisCity_House4_EventScript_Man",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SootopolisCity_House4_EventScript_226D1F",
+      "script": "SootopolisCity_House4_EventScript_Woman",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SootopolisCity_House4_EventScript_226D28",
+      "script": "SootopolisCity_House4_EventScript_Azumarill",
       "flag": "0"
     }
   ],

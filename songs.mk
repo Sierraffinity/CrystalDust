@@ -9,13 +9,13 @@ $(GBS_BUILDDIR)/%.o: $(GBS_SUBDIR)/%.s
 $(MID_SUBDIR)/mus_ajito.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G076 -V084
 
-$(MID_SUBDIR)/mus_aqa_0.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encrocket.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G065 -V086
 
 $(MID_SUBDIR)/mus_ashroad.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G055 -V076
 
-$(MID_SUBDIR)/mus_ayasii.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encsuspicious.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G069 -V078
 
 $(MID_SUBDIR)/mus_b_arena.s: %.s: %.mid
@@ -81,7 +81,7 @@ $(MID_SUBDIR)/mus_bijyutu.s: %.s: %.mid
 $(MID_SUBDIR)/mus_rivalexit.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G067 -V078
 
-$(MID_SUBDIR)/mus_encyoung.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encmale.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G028 -V080
 
 $(MID_SUBDIR)/mus_c_road.s: %.s: %.mid
@@ -177,7 +177,7 @@ $(MID_SUBDIR)/mus_gim.s: %.s: %.mid
 $(MID_SUBDIR)/mus_rivalenc.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G061 -V078
 
-$(MID_SUBDIR)/mus_girleye.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encfemale.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G053 -V072
 
 $(MID_SUBDIR)/mus_gomachi0.s: %.s: %.mid
@@ -189,8 +189,8 @@ $(MID_SUBDIR)/mus_gotown.s: %.s: %.mid
 $(MID_SUBDIR)/mus_granroad.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G048 -V096
 
-$(MID_SUBDIR)/mus_hageshii.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G062 -V078
+$(MID_SUBDIR)/mus_encsage.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G062 -V090
 
 $(MID_SUBDIR)/mus_hideri.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G090 -V050
@@ -201,7 +201,7 @@ $(MID_SUBDIR)/mus_hightown.s: %.s: %.mid
 $(MID_SUBDIR)/mus_hutago.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G095 -V075
 
-$(MID_SUBDIR)/mus_inter_v.s: %.s: %.mid
+$(MID_SUBDIR)/mus_enckimono.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G099 -V062
 
 $(MID_SUBDIR)/mus_kachi1.s: %.s: %.mid
@@ -222,7 +222,7 @@ $(MID_SUBDIR)/mus_kachi5.s: %.s: %.mid
 $(MID_SUBDIR)/mus_kachi22.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G025 -V080
 
-$(MID_SUBDIR)/mus_kakkoii.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encmaleold.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G063 -V086
 
 $(MID_SUBDIR)/mus_karakuri.s: %.s: %.mid
@@ -234,13 +234,13 @@ $(MID_SUBDIR)/mus_mainmenu.s: %.s: %.mid
 $(MID_SUBDIR)/mus_m_boat.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G077 -V086
 
-$(MID_SUBDIR)/mus_m_dungon.s: %.s: %.mid
+$(MID_SUBDIR)/mus_sprouttower.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G078 -V088
 
 $(MID_SUBDIR)/mus_maborosi.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G084 -V100
 
-$(MID_SUBDIR)/mus_machi_s2.s: %.s: %.mid
+$(MID_SUBDIR)/mus_violet.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G015 -V080
 
 $(MID_SUBDIR)/mus_machi_s3.s: %.s: %.mid
@@ -585,7 +585,7 @@ $(MID_SUBDIR)/mus_suikun.s: %.s: %.mid
 $(MID_SUBDIR)/mus_swimeye.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G036 -V080
 
-$(MID_SUBDIR)/mus_syoujoeye.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encfemaleold.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G027 -V080
 
 $(MID_SUBDIR)/mus_t_battle.s: %.s: %.mid
@@ -633,7 +633,7 @@ $(MID_SUBDIR)/mus_vs_mew.s: %.s: %.mid
 $(MID_SUBDIR)/mus_vs_rekku.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G114 -V080 -P1
 
-$(MID_SUBDIR)/mus_yama_eye.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encsuspold.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G097 -V076
 
 $(MID_SUBDIR)/ph_choice_blend.s: %.s: %.mid

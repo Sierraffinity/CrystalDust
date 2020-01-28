@@ -1,28 +1,36 @@
-VioletCity_House1_MapScripts:: @ 8207799
+VioletCity_House1_MapScripts::
 	.byte 0
 
-VioletCity_House1_EventScript_20779A:: @ 820779A
-	msgbox VioletCity_House1_Text_2077AC, MSGBOX_NPC
-	end
 
-VioletCity_House1_EventScript_2077A3:: @ 82077A3
-	msgbox VioletCity_House1_Text_2077FB, MSGBOX_NPC
-	end
+VioletCity_House1_EventScript_Woman::
+	msgbox VioletCity_House1_EventScript_Woman_Text_0, MSGBOX_NPC
+	return
 
-VioletCity_House1_Text_2077AC: @ 82077AC
-	.string "Traveling is wonderful!\p"
-	.string "When I was young, I roamed the seas\n"
-	.string "and the mountains!$"
 
-VioletCity_House1_Text_2077FB: @ 82077FB
-	.string "Sigh…\p"
-	.string "I wish I could go on an adventure\n"
-	.string "with some POKéMON…\p"
-	.string "Crawl through some damp grass…\n"
-	.string "Climb rocky, rugged mountains…\p"
-	.string "Cross the raging seas…\n"
-	.string "Wander about in dark caves…\p"
-	.string "And, sometimes, even get a little\n"
-	.string "homesick…\p"
-	.string "It must be fabulous to travel!$"
+VioletCity_House1_EventScript_Girl::
+	msgbox VioletCity_House1_EventScript_Girl_Text_0, MSGBOX_NPC
+	return
 
+
+VioletCity_House1_EventScript_Strawberry::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_SPEAROW, 0
+	msgbox VioletCity_House1_EventScript_Strawberry_Text_0
+	waitmoncry
+	release
+	return
+
+
+VioletCity_House1_EventScript_Woman_Text_0:
+	.string "She uses the names of her favorite\n"
+	.string "things to eat.\p"
+	.string "For the nicknames she gives to her\n"
+	.string "POKéMON, I mean.$"
+
+VioletCity_House1_EventScript_Girl_Text_0:
+	.string "I call my PIDGEY STRAWBERRY!$"
+
+VioletCity_House1_EventScript_Strawberry_Text_0:
+	.string "STRAWBERRY: Pijji!$"

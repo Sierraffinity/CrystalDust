@@ -6,6 +6,10 @@ EventScript_Window::
 	msgbox Text_MyReflection, MSGBOX_SIGN
 	end
 
+EventScript_DistinguishedStatue::
+	msgbox Text_DistinguishedStatue, MSGBOX_SIGN
+	end
+
 EventScript_PictureBookShelf:: @ 82725CE
 	msgbox Text_PictureBookShelf, MSGBOX_SIGN
 	end

@@ -94,8 +94,8 @@ MauvilleCity_Gym_EventScript_WattsonDefeated:: @ 820DF2B
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
 	setflag FLAG_BADGE03_GET
-	addvar VAR_PETALBURG_GYM_STATE, 1
-	compare VAR_PETALBURG_GYM_STATE, 6
+	addvar VAR_SPROUT_TOWER_STATE, 1
+	compare VAR_SPROUT_TOWER_STATE, 6
 	call_if_eq Common_EventScript_ReadyPetalburgGymForBattle
 	setvar VAR_0x8008, 3
 	call Common_EventScript_SetGymTrainers
@@ -138,7 +138,7 @@ MauvilleCity_Gym_EventScript_CompletedNewMauville:: @ 820DFD4
 
 MauvilleCity_Gym_EventScript_WattsonRematch:: @ 820DFDE
 	trainerbattle_rematch_double TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonPreRematch, MauvilleCity_Gym_Text_WattsonRematchDefeat, MauvilleCity_Gym_Text_WattsonRematchNeedTwoMons
-	msgbox MauvilleCity_Gym_Text_20EA5E, MSGBOX_AUTOCLOSE
+	msgbox MauvilleCity_Gym_Text_WattsonPostRematch, MSGBOX_AUTOCLOSE
 	end
 
 MauvilleCity_Gym_EventScript_Switch1:: @ 820DFF9
@@ -410,7 +410,7 @@ MauvilleCity_Gym_Text_WattsonRematchDefeat: @ 820EA42
 	.string "Oof…\n"
 	.string "Our batteries ran dry…$"
 
-MauvilleCity_Gym_Text_20EA5E: @ 820EA5E
+MauvilleCity_Gym_Text_WattsonPostRematch: @ 820EA5E
 	.string "WATTSON: We'll have to recharge our\n"
 	.string "batteries again.\p"
 	.string "When we're fully charged up, we'll\n"

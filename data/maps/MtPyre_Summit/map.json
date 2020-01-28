@@ -5,7 +5,7 @@
   "music": "MUS_MACHUPI",
   "region_map_section": "MAPSEC_MT_PYRE",
   "requires_flash": false,
-  "weather": "WEATHER_FOG_1",
+  "weather": "WEATHER_FOG_HORIZONTAL",
   "map_type": "MAP_TYPE_ROUTE",
   "allow_bike": true,
   "allow_escape_rope": false,
@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MtPyre_Summit_EventScript_23213C",
+      "script": "MtPyre_Summit_EventScript_OldMan",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MtPyre_Summit_EventScript_2321A2",
+      "script": "MtPyre_Summit_EventScript_OldLady",
       "flag": "0"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "MtPyre_Summit_EventScript_2323FD",
+      "script": "MtPyre_Summit_EventScript_Grunt1",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
     },
     {
@@ -81,7 +81,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "MtPyre_Summit_EventScript_232414",
+      "script": "MtPyre_Summit_EventScript_Grunt2",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
     },
     {
@@ -95,7 +95,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "MtPyre_Summit_EventScript_23242B",
+      "script": "MtPyre_Summit_EventScript_Grunt3",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
     },
     {
@@ -109,7 +109,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "MtPyre_Summit_EventScript_232442",
+      "script": "MtPyre_Summit_EventScript_Grunt4",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
     },
     {
@@ -158,7 +158,7 @@
       "elevation": 3,
       "var": "VAR_MT_PYRE_STATE",
       "var_value": "0",
-      "script": "MtPyre_Summit_EventScript_232018"
+      "script": "MtPyre_Summit_EventScript_TeamAquaTrigger0"
     },
     {
       "type": "trigger",
@@ -167,7 +167,7 @@
       "elevation": 3,
       "var": "VAR_MT_PYRE_STATE",
       "var_value": "0",
-      "script": "MtPyre_Summit_EventScript_232024"
+      "script": "MtPyre_Summit_EventScript_TeamAquaTrigger1"
     },
     {
       "type": "trigger",
@@ -176,7 +176,7 @@
       "elevation": 3,
       "var": "VAR_MT_PYRE_STATE",
       "var_value": "0",
-      "script": "MtPyre_Summit_EventScript_232030"
+      "script": "MtPyre_Summit_EventScript_TeamAquaTrigger2"
     },
     {
       "type": "trigger",
@@ -185,7 +185,7 @@
       "elevation": 3,
       "var": "VAR_MT_PYRE_STATE",
       "var_value": "2",
-      "script": "MtPyre_Summit_EventScript_2321EC"
+      "script": "MtPyre_Summit_EventScript_ArchieMaxieTrigger0"
     },
     {
       "type": "trigger",
@@ -194,7 +194,7 @@
       "elevation": 3,
       "var": "VAR_MT_PYRE_STATE",
       "var_value": "2",
-      "script": "MtPyre_Summit_EventScript_2321F8"
+      "script": "MtPyre_Summit_EventScript_ArchieMaxieTrigger1"
     },
     {
       "type": "trigger",
@@ -203,7 +203,7 @@
       "elevation": 3,
       "var": "VAR_MT_PYRE_STATE",
       "var_value": "2",
-      "script": "MtPyre_Summit_EventScript_232204"
+      "script": "MtPyre_Summit_EventScript_ArchieMaxieTrigger2"
     }
   ],
   "bg_events": [

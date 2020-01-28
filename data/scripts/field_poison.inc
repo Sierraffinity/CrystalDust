@@ -17,8 +17,8 @@ EventScript_FieldWhiteOut:: @ 82736D9
 	waitbuttonpress
 	special Script_FadeOutMapMusic
 	waitstate
-	fadescreen 1
-	call_if_set FLAG_FLANNERY_GIVES_BADGE_INFO, EventScript_SetRespawnLavaridgePkmnCenter
+	fadescreen FADE_TO_BLACK
+	call_if_set FLAG_WHITEOUT_TO_LAVARIDGE, EventScript_SetRespawnLavaridgePkmnCenter
 	special SetCB2WhiteOut
 	waitstate
 	end
@@ -31,23 +31,20 @@ EventScript_FrontierFieldWhiteOut:: @ 82736F8
 	message gText_PlayerWhitedOut
 	waitmessage
 	waitbuttonpress
-	setvar VAR_0x8004, BATTLE_PIKE_FUNC_IS_IN
-	special CallBattlePikeFunction
-	compare VAR_RESULT, 1
+	pike_inchallenge
+	compare VAR_RESULT, TRUE
 	goto_if_eq BattleFrontier_BattlePike_EventScript_Retire
-	setvar VAR_0x8004, BATTLE_PYRAMID_FUNC_IS_IN
-	special CallBattlePyramidFunction
-	compare VAR_RESULT, 1
-	goto_if_eq BattleFrontier_BattlePyramidTop_EventScript_252B42
-	compare VAR_RESULT, 2
-	goto_if_eq BattleFrontier_BattlePyramidTop_EventScript_252B42
-	setvar VAR_0x8004, TRAINER_HILL_FUNC_IS_IN
-	special CallTrainerHillFunction
-	compare VAR_RESULT, 1
+	pyramid_inchallenge
+	compare VAR_RESULT, 1  @ On Pyramid floor
+	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+	compare VAR_RESULT, 2  @ On Pyramid peak
+	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+	trainerhill_inchallenge
+	compare VAR_RESULT, TRUE
 	goto_if_eq TrainerHill_1F_EventScript_Lost
 	special Script_FadeOutMapMusic
 	waitstate
-	fadescreen 1
+	fadescreen FADE_TO_BLACK
 	special SetCB2WhiteOut
 	waitstate
 	end

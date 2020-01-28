@@ -1,5 +1,5 @@
 ProfBirch_EventScript_UpdateLocation:: @ 82720AD
-	compare VAR_PETALBURG_GYM_STATE, 0
+	compare VAR_SPROUT_TOWER_STATE, 0
 	goto_if_eq Common_EventScript_NopReturn
 	goto_if_set FLAG_SYS_GAME_CLEAR, ProfBirch_EventScript_MoveToLab
 	compare VAR_BIRCH_STATE, 0
@@ -49,7 +49,7 @@ ProfBirch_EventScript_RatePokedexOrRegister:: @ 8272141
 
 ProfBirch_EventScript_AskRatePokedex:: @ 8272155
 	msgbox gBirchDexRatingText_AreYouCurious, MSGBOX_YESNO
-	compare VAR_RESULT, 0
+	compare VAR_RESULT, NO
 	goto_if_eq ProfBirch_EventScript_DeclineRating
 	call ProfBirch_EventScript_RatePokedex
 	release

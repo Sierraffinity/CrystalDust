@@ -249,7 +249,7 @@ $(EVENTOBJGFXDIR)/people/man_1.4bpp: %.4bpp: %.png
 $(EVENTOBJGFXDIR)/people/man_2.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/pokefan_m.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/sage.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/man_3.4bpp: %.4bpp: %.png

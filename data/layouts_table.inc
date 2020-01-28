@@ -19,11 +19,11 @@ gMapLayouts::
 	.4byte Route29_Layout
 	.4byte Route30_Layout
 	.4byte Route31_Layout
-	.4byte Route104_Layout
+	.4byte Route32_Layout
 	.4byte Route105_Layout
 	.4byte Route106_Layout
 	.4byte Route107_Layout
-	.4byte Route108_Layout
+	.4byte Route36_Layout
 	.4byte Route109_Layout
 	.4byte Route110_Layout
 	.4byte Route111_Layout
@@ -94,7 +94,7 @@ gMapLayouts::
 	.4byte RustboroCity_DevonCorp_1F_Layout
 	.4byte RustboroCity_DevonCorp_2F_Layout
 	.4byte RustboroCity_Gym_Layout
-	.4byte RustboroCity_PokemonSchool_Layout
+	.4byte VioletCity_EarlsAcademy_Layout
 	.4byte RustboroCity_House_Layout
 	.4byte RustboroCity_House1_Layout
 	.4byte RustboroCity_CuttersHouse_Layout
@@ -185,9 +185,9 @@ gMapLayouts::
 	.4byte UnknownMap_0843E894_Layout
 	.4byte NewMauville_Entrance_Layout
 	.4byte NewMauville_Inside_Layout
-	.4byte AbandonedShip_Deck_Layout
-	.4byte AbandonedShip_Corridors_1F_Layout
-	.4byte AbandonedShip_Rooms_1F_Layout
+	.4byte SproutTower_1F_Layout
+	.4byte SproutTower_2F_Layout
+	.4byte SproutTower_3F_Layout
 	.4byte AbandonedShip_Corridors_B1F_Layout
 	.4byte AbandonedShip_Rooms_B1F_Layout
 	.4byte AbandonedShip_Rooms2_B1F_Layout

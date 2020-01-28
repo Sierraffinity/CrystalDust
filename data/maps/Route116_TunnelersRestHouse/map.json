@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_POKEFAN_M",
+      "graphics_id": "EVENT_OBJ_GFX_SAGE",
       "x": 6,
       "y": 5,
       "elevation": 3,
@@ -25,11 +25,11 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route116_TunnelersRestHouse_EventScript_22B85A",
+      "script": "Route116_TunnelersRestHouse_EventScript_Tunneler1",
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_POKEFAN_M",
+      "graphics_id": "EVENT_OBJ_GFX_SAGE",
       "x": 3,
       "y": 6,
       "elevation": 3,
@@ -39,11 +39,11 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route116_TunnelersRestHouse_EventScript_22B86C",
+      "script": "Route116_TunnelersRestHouse_EventScript_Tunneler3",
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_POKEFAN_M",
+      "graphics_id": "EVENT_OBJ_GFX_SAGE",
       "x": 7,
       "y": 2,
       "elevation": 3,
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route116_TunnelersRestHouse_EventScript_22B863",
+      "script": "Route116_TunnelersRestHouse_EventScript_Tunneler2",
       "flag": "0"
     }
   ],

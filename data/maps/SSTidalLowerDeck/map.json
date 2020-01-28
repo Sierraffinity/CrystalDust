@@ -25,7 +25,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "SSTidalLowerDeck_EventScript_23C819",
+      "script": "SSTidalLowerDeck_EventScript_Phillip",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "SSTidalLowerDeck_EventScript_23C830",
+      "script": "SSTidalLowerDeck_EventScript_Leonard",
       "flag": "0"
     }
   ],

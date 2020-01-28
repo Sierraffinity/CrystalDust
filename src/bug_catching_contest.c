@@ -259,7 +259,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_NickPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_POKEFAN_M,
+        .graphicsId = EVENT_OBJ_GFX_SAGE,
         .trainerClass = TRAINER_CLASS_POKEFAN,
         .name = sName_William,
         .script = NationalParkContest_William,

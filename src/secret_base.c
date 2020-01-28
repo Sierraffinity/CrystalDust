@@ -423,7 +423,7 @@ static void Task_EnterSecretBase(u8 taskId)
 void EnterSecretBase(void)
 {
     CreateTask(Task_EnterSecretBase, 0);
-    FadeScreen(1, 0);
+    FadeScreen(FADE_TO_BLACK, 0);
     SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
 }
 
@@ -1117,7 +1117,7 @@ const u8 *GetSecretBaseTrainerLoseText(void)
 
 void PrepSecretBaseBattleFlags(void)
 {
-    sub_813BADC(1);
+    TryGainNewFanFromCounter(1);
     gTrainerBattleOpponent_A = TRAINER_SECRET_BASE;
     gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_SECRET_BASE;
 }

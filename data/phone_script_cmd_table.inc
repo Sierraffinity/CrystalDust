@@ -29,6 +29,17 @@ gPhoneScriptCmdTable::
 	.4byte PhoneScrCmd_waitbuttonpress
 	.4byte PhoneScrCmd_end_if_not_available
 	.4byte PhoneScrCmd_callnativecontext
+	.4byte PhoneScrCmd_yesnobox
+	.4byte PhoneScrCmd_compare_local_to_local
+	.4byte PhoneScrCmd_compare_local_to_value
+	.4byte PhoneScrCmd_compare_local_to_addr
+	.4byte PhoneScrCmd_compare_addr_to_local
+	.4byte PhoneScrCmd_compare_addr_to_value
+	.4byte PhoneScrCmd_compare_addr_to_addr
+	.4byte PhoneScrCmd_compare_var_to_value
+	.4byte PhoneScrCmd_compare_var_to_var
+	.4byte PhoneScrCmd_getmapinfo
+	.4byte PhoneScrCmd_buffermapsecname
 
 gPhoneScriptCmdTableEnd::
 	.4byte PhoneScrCmd_nop

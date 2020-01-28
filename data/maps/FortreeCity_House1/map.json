@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FortreeCity_House1_EventScript_2162BB",
+      "script": "FortreeCity_House1_EventScript_Trader",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FortreeCity_House1_EventScript_216368",
+      "script": "FortreeCity_House1_EventScript_Zigzagoon",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FortreeCity_House1_EventScript_21635F",
+      "script": "FortreeCity_House1_EventScript_ExpertF",
       "flag": "0"
     }
   ],

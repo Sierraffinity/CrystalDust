@@ -101,7 +101,7 @@ extern const struct RadioStation gRadioStationData[];
 extern const u8 *const gRadioShowNames[];
 
 // TEMP
-#define FLAG_BUENAS_PASSWORD FLAG_DAILY_0x920
+#define FLAG_BUENAS_PASSWORD FLAG_UNUSED_0x920
 #define VAR_BUENAS_PASSWORD VAR_TEMP_0
 
 #define MAPSEC_MAHOGANY_TOWN MAPSEC_NEW_BARK_TOWN

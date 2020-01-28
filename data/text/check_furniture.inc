@@ -5,6 +5,10 @@ Text_MyReflection:
 	.string "My reflection!\n"
 	.string "Lookin' good!$"
 
+Text_DistinguishedStatue:
+	.string "A POKéMON statue…\n"
+	.string "It looks very distinguished.$"
+
 Text_PictureBookShelf: @ 82A81E5
 	.string "It's a whole collection of POKéMON\n"
 	.string "picture books!$"

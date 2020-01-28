@@ -41,7 +41,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4AD1",
+      "script": "MossdeepCity_EventScript_Sailor",
       "flag": "0"
     },
     {
@@ -55,7 +55,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4AF9",
+      "script": "MossdeepCity_EventScript_ExpertM",
       "flag": "0"
     },
     {
@@ -69,7 +69,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4AB2",
+      "script": "MossdeepCity_EventScript_PokefanF",
       "flag": "0"
     },
     {
@@ -83,7 +83,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4AF0",
+      "script": "MossdeepCity_EventScript_NinjaBoy",
       "flag": "0"
     },
     {
@@ -97,7 +97,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4B02",
+      "script": "MossdeepCity_EventScript_Girl",
       "flag": "0"
     },
     {
@@ -112,7 +112,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_EventScript_ItemNetBall",
-      "flag": "FLAG_ITEM_MOSSDEEP_CITY_NET_BALL"
+      "flag": "0"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_MAN_1",
@@ -125,7 +125,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4C10",
+      "script": "MossdeepCity_EventScript_Man",
       "flag": "0"
     },
     {
@@ -139,7 +139,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4B0B",
+      "script": "MossdeepCity_EventScript_Woman",
       "flag": "0"
     },
     {
@@ -153,7 +153,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4C26",
+      "script": "MossdeepCity_EventScript_KingsRockBoy",
       "flag": "0"
     },
     {
@@ -251,7 +251,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4C85",
+      "script": "MossdeepCity_EventScript_Scott",
       "flag": "FLAG_HIDE_MOSSDEEP_CITY_SCOTT"
     },
     {
@@ -265,7 +265,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_EventScript_1E4C7C",
+      "script": "MossdeepCity_EventScript_BlackBelt",
       "flag": "0"
     }
   ],
@@ -349,7 +349,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_1",
       "var_value": "0",
-      "script": "MossdeepCity_EventScript_1E4B38"
+      "script": "MossdeepCity_EventScript_VisitedMossdeep"
     },
     {
       "type": "trigger",
@@ -358,7 +358,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_1",
       "var_value": "0",
-      "script": "MossdeepCity_EventScript_1E4B38"
+      "script": "MossdeepCity_EventScript_VisitedMossdeep"
     },
     {
       "type": "trigger",
@@ -367,7 +367,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_1",
       "var_value": "0",
-      "script": "MossdeepCity_EventScript_1E4B38"
+      "script": "MossdeepCity_EventScript_VisitedMossdeep"
     },
     {
       "type": "trigger",
@@ -376,7 +376,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_1",
       "var_value": "0",
-      "script": "MossdeepCity_EventScript_1E4B38"
+      "script": "MossdeepCity_EventScript_VisitedMossdeep"
     },
     {
       "type": "trigger",
@@ -385,7 +385,7 @@
       "elevation": 5,
       "var": "VAR_MOSSDEEP_CITY_STATE",
       "var_value": "1",
-      "script": "MossdeepCity_EventScript_1E4B41"
+      "script": "MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter"
     },
     {
       "type": "trigger",
@@ -394,7 +394,7 @@
       "elevation": 5,
       "var": "VAR_MOSSDEEP_CITY_STATE",
       "var_value": "1",
-      "script": "MossdeepCity_EventScript_1E4B41"
+      "script": "MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter"
     },
     {
       "type": "trigger",
@@ -403,7 +403,7 @@
       "elevation": 5,
       "var": "VAR_MOSSDEEP_CITY_STATE",
       "var_value": "1",
-      "script": "MossdeepCity_EventScript_1E4B41"
+      "script": "MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter"
     },
     {
       "type": "trigger",
@@ -412,7 +412,7 @@
       "elevation": 5,
       "var": "VAR_MOSSDEEP_CITY_STATE",
       "var_value": "1",
-      "script": "MossdeepCity_EventScript_1E4B41"
+      "script": "MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter"
     },
     {
       "type": "trigger",
@@ -421,7 +421,7 @@
       "elevation": 5,
       "var": "VAR_MOSSDEEP_CITY_STATE",
       "var_value": "1",
-      "script": "MossdeepCity_EventScript_1E4B41"
+      "script": "MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter"
     },
     {
       "type": "trigger",
@@ -430,7 +430,7 @@
       "elevation": 5,
       "var": "VAR_MOSSDEEP_CITY_STATE",
       "var_value": "1",
-      "script": "MossdeepCity_EventScript_1E4B41"
+      "script": "MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter"
     }
   ],
   "bg_events": [
@@ -440,7 +440,7 @@
       "y": 16,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "MossdeepCity_EventScript_1E4B26"
+      "script": "MossdeepCity_EventScript_CitySign"
     },
     {
       "type": "sign",
@@ -448,7 +448,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "MossdeepCity_EventScript_1E4B1D"
+      "script": "MossdeepCity_EventScript_GymSign"
     },
     {
       "type": "sign",
@@ -472,7 +472,7 @@
       "y": 16,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "MossdeepCity_EventScript_1E4B2F"
+      "script": "MossdeepCity_EventScript_SpaceCenterSign"
     },
     {
       "type": "sign",
@@ -496,7 +496,7 @@
       "y": 21,
       "elevation": 7,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "MossdeepCity_EventScript_1E4B14"
+      "script": "MossdeepCity_EventScript_WhiteRock"
     }
   ],
   "phone_service": true

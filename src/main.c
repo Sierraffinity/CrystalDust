@@ -83,6 +83,19 @@ void EnableVCountIntrAtLine150(void);
 
 #define B_START_SELECT (B_BUTTON | START_BUTTON | SELECT_BUTTON)
 
+#if RELEASE_ID
+void DecryptIntrMain(void)
+{
+    u32 i;
+    extern u32 IntrMain[];
+    extern u32 IntrMain_End[];
+    for (i = 0; i < ((u32)IntrMain_End - (u32)IntrMain) / sizeof(u32); i++)
+    {
+        IntrMain_Buffer[i] ^= RELEASE_ID;
+    }
+}
+#endif
+
 void AgbMain()
 {
 #if MODERN
@@ -106,6 +119,7 @@ void AgbMain()
 #else
     RegisterRamReset(RESET_ALL);
 #endif //MODERN
+
     *(vu16 *)BG_PLTT = 0x7FFF;
     InitGpuRegManager();
     REG_WAITCNT = WAITCNT_PREFETCH_ENABLE | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3;
@@ -300,6 +314,9 @@ void InitIntrHandlers(void)
         gIntrTable[i] = gIntrTableTemplate[i];
 
     DmaCopy32(3, IntrMain, IntrMain_Buffer, sizeof(IntrMain_Buffer));
+#if RELEASE_ID
+    DecryptIntrMain();
+#endif
 
     INTR_VECTOR = IntrMain_Buffer;
 

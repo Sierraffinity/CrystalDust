@@ -348,7 +348,7 @@ static void Task_HandleShopMenuBuy(u8 taskId)
     data[8] = (u32)CB2_InitBuyMenu >> 16;
     data[9] = (u32)CB2_InitBuyMenu;
     gTasks[taskId].func = Task_GoToBuyOrSellMenu;
-    FadeScreen(1, 0);
+    FadeScreen(FADE_TO_BLACK, 0);
 }
 
 static void Task_HandleShopMenuSell(u8 taskId)
@@ -357,7 +357,7 @@ static void Task_HandleShopMenuSell(u8 taskId)
     data[8] = (u32)CB2_GoToSellMenu >> 16;
     data[9] = (u32)CB2_GoToSellMenu;
     gTasks[taskId].func = Task_GoToBuyOrSellMenu;
-    FadeScreen(1, 0);
+    FadeScreen(FADE_TO_BLACK, 0);
 }
 
 void CB2_ExitSellMenu(void)
@@ -439,7 +439,7 @@ static void CB2_InitBuyMenu(void)
     {
     case 0:
         SetVBlankHBlankCallbacksToNull();
-        CpuFastFill(0, (void *)OAM, 0x400);
+        CpuFastFill(0, (void *)OAM, OAM_SIZE);
         ScanlineEffect_Stop();
         reset_temp_tile_data_buffers();
         FreeAllSpritePalettes();
@@ -856,7 +856,7 @@ static void BuyMenuDrawEventObjects(void)
         if (BuyMenuCheckIfEventObjectOverlapsMenuBg(gShopDataPtr->viewportObjects[i]) == TRUE)
         {
             gSprites[spriteId].subspriteTableNum = 4;
-            gSprites[spriteId].subspriteMode = 1;
+            gSprites[spriteId].subspriteMode = SUBSPRITES_ON;
         }
 
         StartSpriteAnim(&gSprites[spriteId], gShopDataPtr->viewportObjects[i][ANIM_NUM]);

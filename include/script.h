@@ -10,6 +10,8 @@ typedef u8 Script[];
 
 extern u8 gExitFromScriptEarlyWaitTimer;
 
+extern u8 * const gScriptStringVars[];
+
 struct ScriptContext
 {
     u8 stackDepth;
@@ -74,6 +76,6 @@ bool8 DoesTextboxUseSignBorder(void);
 void SwitchToPhoneScript(const u8 *script, u32 phoneContext);
 
 // srccmd.h
-void sub_809BE48(u16 npcId);
+void SetMovingNpcId(u16 npcId);
 
 #endif // GUARD_SCRIPT_H

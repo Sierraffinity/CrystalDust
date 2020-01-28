@@ -41,7 +41,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route112_EventScript_1F1DB7",
+      "script": "Route112_EventScript_MagmaGrunts",
       "flag": "FLAG_HIDE_ROUTE_112_TEAM_MAGMA"
     },
     {
@@ -55,7 +55,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route112_EventScript_1F1E6A",
+      "script": "Route112_EventScript_Brice",
       "flag": "0"
     },
     {
@@ -69,7 +69,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route112_EventScript_1F1EE3",
+      "script": "Route112_EventScript_Larry",
       "flag": "0"
     },
     {
@@ -83,7 +83,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route112_EventScript_1F1EFA",
+      "script": "Route112_EventScript_Carol",
       "flag": "0"
     },
     {
@@ -97,7 +97,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route112_EventScript_1F1E81",
+      "script": "Route112_EventScript_Trent",
       "flag": "0"
     },
     {
@@ -111,7 +111,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route112_EventScript_1F1DB7",
+      "script": "Route112_EventScript_MagmaGrunts",
       "flag": "FLAG_HIDE_ROUTE_112_TEAM_MAGMA"
     },
     {
@@ -181,7 +181,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route112_EventScript_1F1E61",
+      "script": "Route112_EventScript_Hiker",
       "flag": "0"
     },
     {
@@ -196,7 +196,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route112_EventScript_ItemNugget",
-      "flag": "FLAG_ITEM_ROUTE_112_NUGGET"
+      "flag": "FLAG_ITEM_SPROUT_TOWER_2F_X_ACCURACY"
     },
     {
       "graphics_id": "EVENT_OBJ_GFX_MAN_5",
@@ -209,7 +209,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route112_EventScript_1F1F11",
+      "script": "Route112_EventScript_Bryant",
       "flag": "0"
     },
     {
@@ -223,7 +223,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route112_EventScript_1F1F28",
+      "script": "Route112_EventScript_Shayla",
       "flag": "0"
     }
   ],
@@ -279,7 +279,7 @@
       "y": 44,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route112_EventScript_1F1E4F"
+      "script": "Route112_EventScript_MtChimneySign"
     },
     {
       "type": "sign",
@@ -287,7 +287,7 @@
       "y": 37,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route112_EventScript_1F1E46"
+      "script": "Route112_EventScript_MtChimneyCableCarSign"
     },
     {
       "type": "sign",
@@ -295,7 +295,7 @@
       "y": 49,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route112_EventScript_1F1E58"
+      "script": "Route112_EventScript_RouteSignLavaridge"
     }
   ],
   "phone_service": true

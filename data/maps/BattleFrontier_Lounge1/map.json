@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BattleFrontier_Lounge1_EventScript_25E775",
+      "script": "BattleFrontier_Lounge1_EventScript_Breeder",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BattleFrontier_Lounge1_EventScript_25E94D",
+      "script": "BattleFrontier_Lounge1_EventScript_Boy1",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BattleFrontier_Lounge1_EventScript_25E956",
+      "script": "BattleFrontier_Lounge1_EventScript_Boy2",
       "flag": "0"
     }
   ],

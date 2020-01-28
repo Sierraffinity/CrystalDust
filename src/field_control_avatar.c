@@ -34,9 +34,11 @@
 #include "wild_encounter.h"
 #include "constants/bg_event_constants.h"
 #include "constants/event_objects.h"
+#include "constants/field_poison.h"
 #include "constants/map_types.h"
 #include "constants/maps.h"
 #include "constants/songs.h"
+#include "constants/trainer_hill.h"
 
 static EWRAM_DATA u8 sWildEncounterImmunitySteps = 0;
 static EWRAM_DATA u16 sPreviousPlayerMetatileBehavior = 0;
@@ -472,16 +474,18 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return EventScript_PC;
     if (MetatileBehavior_IsClosedSootopolisDoor(metatileBehavior) == TRUE)
         return EventScript_ClosedSootopolisDoor;
-    if (MetatileBehavior_IsUnknownClosedDoor(metatileBehavior) == TRUE)
-        return SkyPillar_Outside_EventScript_2393F9;
+    if (MetatileBehavior_IsSkyPillarClosedDoor(metatileBehavior) == TRUE)
+        return SkyPillar_Outside_EventScript_ClosedDoor;
     if (MetatileBehavior_IsCableBoxResults1(metatileBehavior) == TRUE)
         return EventScript_CableBoxResults;
     if (MetatileBehavior_IsPokeblockFeeder(metatileBehavior) == TRUE)
         return EventScript_PokeBlockFeeder;
     if (MetatileBehavior_IsTrickHousePuzzleDoor(metatileBehavior) == TRUE)
-        return Route110_TrickHouseEntrance_EventScript_26A22A;
+        return Route110_TrickHousePuzzle_EventScript_Door;
     if (MetatileBehavior_IsRegionMap(metatileBehavior) == TRUE)
         return EventScript_RegionMap;
+    if (MetatileBehavior_IsDistinguishedStatue(metatileBehavior) == TRUE)
+        return EventScript_DistinguishedStatue;
     if (MetatileBehavior_IsPictureBookShelf(metatileBehavior) == TRUE)
         return EventScript_PictureBookShelf;
     if (MetatileBehavior_IsBookShelf(metatileBehavior) == TRUE)
@@ -616,7 +620,7 @@ static bool8 TryStartMiscWalkingScripts(u16 metatileBehavior)
     }
     else if (MetatileBehavior_IsBattlePyramidWarp(metatileBehavior))
     {
-        ScriptContext1_SetupScript(BattleFrontier_BattlePyramidEmptySquare_EventScript_252BE8);
+        ScriptContext1_SetupScript(BattlePyramid_WarpToNextFloor);
         return TRUE;
     }
     else if (MetatileBehavior_IsSecretBaseGlitterMat(metatileBehavior) == TRUE)
@@ -657,29 +661,29 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext1_SetupScript(EventScript_EggHatch);
             return TRUE;
         }
-        if (UnusualWeatherHasExpired() == TRUE)
+        if (AbnormalWeatherHasExpired() == TRUE)
         {
-            ScriptContext1_SetupScript(UnusualWeather_EventScript_EndEventAndCleanup_1);
+            ScriptContext1_SetupScript(AbnormalWeather_EventScript_EndEventAndCleanup_1);
             return TRUE;
         }
         if (ShouldDoBrailleRegicePuzzle() == TRUE)
         {
-            ScriptContext1_SetupScript(IslandCave_EventScript_238EAF);
+            ScriptContext1_SetupScript(IslandCave_EventScript_OpenRegiEntrance);
             return TRUE;
         }
         if (ShouldDoWallyCall() == TRUE)
         {
-            ScriptContext1_SetupScript(MauvilleCity_EventScript_1DF7BA);
+            ScriptContext1_SetupScript(MauvilleCity_EventScript_RegisterWallyCall);
             return TRUE;
         }
-        if (ShouldDoWinonaCall() == TRUE)
+        if (ShouldDoScottFortreeCall() == TRUE)
         {
-            ScriptContext1_SetupScript(Route119_EventScript_1F49EC);
+            ScriptContext1_SetupScript(Route119_EventScript_ScottWonAtFortreeGymCall);
             return TRUE;
         }
-        if (ShouldDoScottCall() == TRUE)
+        if (ShouldDoScottBattleFrontierCall() == TRUE)
         {
-            //ScriptContext1_SetupScript(NewBarkTown_ProfessorElmsLab_EventScript_1FA4D6);
+            //ScriptContext1_SetupScript(NewBarkTown_ProfessorElmsLab_EventScript_ScottAboardSSTidalCall);
             return TRUE;
         }
         if (ShouldDoRoxanneCall() == TRUE)
@@ -689,7 +693,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
         }
         if (ShouldDoRivalRayquazaCall() == TRUE)
         {
-            ScriptContext1_SetupScript(MossdeepCity_SpaceCenter_2F_EventScript_224175);
+            ScriptContext1_SetupScript(MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall);
             return TRUE;
         }
     }
@@ -698,7 +702,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
         return TRUE;
     if (CountSSTidalStep(1) == TRUE)
     {
-        ScriptContext1_SetupScript(SSTidalCorridor_EventScript_23C050);
+        ScriptContext1_SetupScript(SSTidalCorridor_EventScript_ReachedStepCount);
         return TRUE;
     }
     if (TryStartMatchCall())
@@ -747,11 +751,11 @@ static bool8 UpdatePoisonStepCounter(void)
         {
             switch (DoPoisonFieldEffect())
             {
-            case 0:
+            case FLDPSN_NONE:
                 return FALSE;
-            case 1:
+            case FLDPSN_PSN:
                 return FALSE;
-            case 2:
+            case FLDPSN_FNT:
                 return TRUE;
             }
         }
@@ -931,7 +935,7 @@ static bool8 TryStartWarpEventScript(struct MapPosition *position, u16 metatileB
         }
         if (MetatileBehavior_IsMossdeepGymWarp(metatileBehavior) == TRUE)
         {
-            sub_80AF87C();
+            DoMossdeepGymWarp();
             return TRUE;
         }
         DoWarp();
@@ -1003,20 +1007,16 @@ static void SetupWarp(struct MapHeader *unused, s8 warpEventId, struct MapPositi
 
     if (trainerHillMapId)
     {
-        if (trainerHillMapId == sub_81D6490())
+        if (trainerHillMapId == GetNumFloorsInTrainerHillChallenge())
         {
             if (warpEventId == 0)
-            {
                 warpEvent = &gMapHeader.events->warps[0];
-            }
             else
-            {
-                warpEvent = sub_81D6120();
-            }
+                warpEvent = SetWarpDestinationTrainerHill4F();
         }
-        else if (trainerHillMapId == 5)
+        else if (trainerHillMapId == TRAINER_HILL_ROOF)
         {
-            warpEvent = sub_81D6134(warpEventId);
+            warpEvent = SetWarpDestinationTrainerHillFinalFloor(warpEventId);
         }
         else
         {

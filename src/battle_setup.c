@@ -1,26 +1,19 @@
 #include "global.h"
-#include "constants/trainers.h"
 #include "battle.h"
-#include "bug_catching_contest.h"
-#include "constants/battle_setup.h"
 #include "battle_setup.h"
 #include "battle_transition.h"
+#include "bug_catching_contest.h"
 #include "main.h"
 #include "task.h"
 #include "safari_zone.h"
 #include "script.h"
-#include "constants/game_stat.h"
 #include "event_data.h"
-#include "constants/species.h"
-#include "constants/songs.h"
 #include "metatile_behavior.h"
-#include "constants/maps.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
 #include "random.h"
 #include "starter_choose.h"
 #include "script_pokemon_80F8.h"
-#include "constants/items.h"
 #include "palette.h"
 #include "window.h"
 #include "event_object_movement.h"
@@ -44,11 +37,19 @@
 #include "fldeff_misc.h"
 #include "field_control_avatar.h"
 #include "mirage_tower.h"
-#include "phone_contact.h"
-#include "constants/map_types.h"
-#include "constants/battle_frontier.h"
 #include "field_screen_effect.h"
+#include "phone_contact.h"
 #include "data.h"
+#include "constants/battle_frontier.h"
+#include "constants/battle_setup.h"
+#include "constants/game_stat.h"
+#include "constants/items.h"
+#include "constants/songs.h"
+#include "constants/map_types.h"
+#include "constants/maps.h"
+#include "constants/species.h"
+#include "constants/trainers.h"
+#include "constants/trainer_hill.h"
 
 enum
 {
@@ -76,8 +77,8 @@ static void CB2_EndWildBattle(void);
 static void CB2_EndScriptedWildBattle(void);
 static u8 GetWildBattleTransition(void);
 static u8 GetTrainerBattleTransition(void);
-static void sub_80B1218(void);
-static void sub_80B1234(void);
+static void TryUpdateGymLeaderRematchFromWild(void);
+static void TryUpdateGymLeaderRematchFromTrainer(void);
 static void CB2_GiveStarter(void);
 static void CB2_StartFirstBattle(void);
 static void CB2_EndFirstBattle(void);
@@ -268,10 +269,10 @@ const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES] =
     [REMATCH_BROOKE] = REMATCH(TRAINER_BROOKE_1, TRAINER_BROOKE_2, TRAINER_BROOKE_3, TRAINER_BROOKE_4, TRAINER_BROOKE_5, ROUTE111, PHONE_CONTACT_BROOKE),
     [REMATCH_WILTON] = REMATCH(TRAINER_WILTON_1, TRAINER_WILTON_2, TRAINER_WILTON_3, TRAINER_WILTON_4, TRAINER_WILTON_5, ROUTE111, PHONE_CONTACT_WILTON),
     [REMATCH_VALERIE] = REMATCH(TRAINER_VALERIE_1, TRAINER_VALERIE_2, TRAINER_VALERIE_3, TRAINER_VALERIE_4, TRAINER_VALERIE_5, MT_PYRE_6F, PHONE_CONTACT_VALERIE),
-    [REMATCH_CINDY] = REMATCH(TRAINER_CINDY_1, TRAINER_CINDY_3, TRAINER_CINDY_4, TRAINER_CINDY_5, TRAINER_CINDY_6, ROUTE104, PHONE_CONTACT_CINDY),
-    [REMATCH_THALIA] = REMATCH(TRAINER_THALIA_1, TRAINER_THALIA_2, TRAINER_THALIA_3, TRAINER_THALIA_4, TRAINER_THALIA_5, ABANDONED_SHIP_ROOMS_1F, PHONE_CONTACT_THALIA),
+    [REMATCH_CINDY] = REMATCH(TRAINER_CINDY_1, TRAINER_CINDY_3, TRAINER_CINDY_4, TRAINER_CINDY_5, TRAINER_CINDY_6, ROUTE32, PHONE_CONTACT_CINDY),
+    [REMATCH_THALIA] = REMATCH(TRAINER_THALIA_1, TRAINER_THALIA_2, TRAINER_THALIA_3, TRAINER_THALIA_4, TRAINER_THALIA_5, SPROUT_TOWER_3F, PHONE_CONTACT_THALIA),
     [REMATCH_JESSICA] = REMATCH(TRAINER_JESSICA_1, TRAINER_JESSICA_2, TRAINER_JESSICA_3, TRAINER_JESSICA_4, TRAINER_JESSICA_5, ROUTE121, PHONE_CONTACT_JESSICA),
-    [REMATCH_WINSTON] = REMATCH(TRAINER_WINSTON_1, TRAINER_WINSTON_2, TRAINER_WINSTON_3, TRAINER_WINSTON_4, TRAINER_WINSTON_5, ROUTE104, PHONE_CONTACT_WINSTON),
+    [REMATCH_WINSTON] = REMATCH(TRAINER_WINSTON_1, TRAINER_WINSTON_2, TRAINER_WINSTON_3, TRAINER_WINSTON_4, TRAINER_WINSTON_5, ROUTE32, PHONE_CONTACT_WINSTON),
     [REMATCH_STEVE] = REMATCH(TRAINER_STEVE_1, TRAINER_STEVE_2, TRAINER_STEVE_3, TRAINER_STEVE_4, TRAINER_STEVE_5, ROUTE114, PHONE_CONTACT_STEVE),
     [REMATCH_TONY] = REMATCH(TRAINER_TONY_1, TRAINER_TONY_2, TRAINER_TONY_3, TRAINER_TONY_4, TRAINER_TONY_5, ROUTE107, PHONE_CONTACT_TONY),
     [REMATCH_NOB] = REMATCH(TRAINER_NOB_1, TRAINER_NOB_2, TRAINER_NOB_3, TRAINER_NOB_4, TRAINER_NOB_5, ROUTE115, PHONE_CONTACT_NOB),
@@ -310,14 +311,14 @@ const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES] =
     [REMATCH_DIANA] = REMATCH(TRAINER_DIANA_1, TRAINER_DIANA_2, TRAINER_DIANA_3, TRAINER_DIANA_4, TRAINER_DIANA_5, JAGGED_PASS, PHONE_CONTACT_DIANA),
     [REMATCH_AMY_AND_LIV] = REMATCH(TRAINER_AMY_AND_LIV_1, TRAINER_AMY_AND_LIV_2, TRAINER_AMY_AND_LIV_4, TRAINER_AMY_AND_LIV_5, TRAINER_AMY_AND_LIV_6, ROUTE31, PHONE_CONTACT_AMY_AND_LIV),
     [REMATCH_ERNEST] = REMATCH(TRAINER_ERNEST_1, TRAINER_ERNEST_2, TRAINER_ERNEST_3, TRAINER_ERNEST_4, TRAINER_ERNEST_5, ROUTE125, PHONE_CONTACT_ERNEST),
-    [REMATCH_CORY] = REMATCH(TRAINER_CORY_1, TRAINER_CORY_2, TRAINER_CORY_3, TRAINER_CORY_4, TRAINER_CORY_5, ROUTE108, PHONE_CONTACT_CORY),
+    [REMATCH_CORY] = REMATCH(TRAINER_CORY_1, TRAINER_CORY_2, TRAINER_CORY_3, TRAINER_CORY_4, TRAINER_CORY_5, ROUTE36, PHONE_CONTACT_CORY),
     [REMATCH_EDWIN] = REMATCH(TRAINER_EDWIN_1, TRAINER_EDWIN_2, TRAINER_EDWIN_3, TRAINER_EDWIN_4, TRAINER_EDWIN_5, ROUTE110, PHONE_CONTACT_EDWIN),
     [REMATCH_LYDIA] = REMATCH(TRAINER_LYDIA_1, TRAINER_LYDIA_2, TRAINER_LYDIA_3, TRAINER_LYDIA_4, TRAINER_LYDIA_5, ROUTE117, PHONE_CONTACT_LYDIA),
     [REMATCH_ISAAC] = REMATCH(TRAINER_ISAAC_1, TRAINER_ISAAC_2, TRAINER_ISAAC_3, TRAINER_ISAAC_4, TRAINER_ISAAC_5, ROUTE117, PHONE_CONTACT_ISAAC),
-    [REMATCH_GABRIELLE] = REMATCH(TRAINER_GABRIELLE_1, TRAINER_GABRIELLE_2, TRAINER_GABRIELLE_3, TRAINER_GABRIELLE_4, TRAINER_GABRIELLE_5, MT_PYRE_3F, PHONE_CONTACT_GABRIELLE),
+    [REMATCH_GABRIELLE] = REMATCH(TRAINER_TROY, TRAINER_GABRIELLE_2, TRAINER_GABRIELLE_3, TRAINER_GABRIELLE_4, TRAINER_GABRIELLE_5, MT_PYRE_3F, PHONE_CONTACT_GABRIELLE),
     [REMATCH_CATHERINE] = REMATCH(TRAINER_CATHERINE_1, TRAINER_CATHERINE_2, TRAINER_CATHERINE_3, TRAINER_CATHERINE_4, TRAINER_CATHERINE_5, ROUTE119, PHONE_CONTACT_CATHERINE),
     [REMATCH_JACKSON] = REMATCH(TRAINER_JACKSON_1, TRAINER_JACKSON_2, TRAINER_JACKSON_3, TRAINER_JACKSON_4, TRAINER_JACKSON_5, ROUTE119, PHONE_CONTACT_JACKSON),
-    [REMATCH_HALEY] = REMATCH(TRAINER_HALEY_1, TRAINER_HALEY_2, TRAINER_HALEY_3, TRAINER_HALEY_4, TRAINER_HALEY_5, ROUTE104, PHONE_CONTACT_HALEY),
+    [REMATCH_HALEY] = REMATCH(TRAINER_HALEY_1, TRAINER_HALEY_2, TRAINER_HALEY_3, TRAINER_HALEY_4, TRAINER_HALEY_5, ROUTE32, PHONE_CONTACT_HALEY),
     [REMATCH_JAMES] = REMATCH(TRAINER_JAMES_1, TRAINER_JAMES_2, TRAINER_JAMES_3, TRAINER_JAMES_4, TRAINER_JAMES_5, PETALBURG_WOODS, PHONE_CONTACT_JAMES),
     [REMATCH_TRENT] = REMATCH(TRAINER_TRENT_1, TRAINER_TRENT_2, TRAINER_TRENT_3, TRAINER_TRENT_4, TRAINER_TRENT_5, ROUTE112, PHONE_CONTACT_TRENT),
     [REMATCH_SAWYER] = REMATCH(TRAINER_JOEY_1, TRAINER_SAWYER_2, TRAINER_SAWYER_3, TRAINER_SAWYER_4, TRAINER_SAWYER_5, MT_CHIMNEY, PHONE_CONTACT_SAWYER),
@@ -415,8 +416,8 @@ static void DoStandardWildBattle(void)
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
-    sub_80EECC8();
-    sub_80B1218();
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
 }
 
 void BattleSetup_StartRoamerBattle(void)
@@ -429,8 +430,8 @@ void BattleSetup_StartRoamerBattle(void)
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
-    sub_80EECC8();
-    sub_80B1218();
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
 }
 
 static void DoSafariBattle(void)
@@ -453,8 +454,8 @@ static void DoBattlePikeWildBattle(void)
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
-    sub_80EECC8();
-    sub_80B1218();
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
 }
 
 static void DoTrainerBattle(void)
@@ -462,7 +463,7 @@ static void DoTrainerBattle(void)
     CreateBattleStartTask(GetTrainerBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_TRAINER_BATTLES);
-    sub_80B1234();
+    TryUpdateGymLeaderRematchFromTrainer();
 }
 
 static void DoBugCatchingContestBattle(void)
@@ -475,8 +476,8 @@ static void DoBugCatchingContestBattle(void)
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
-    sub_80EECC8();
-    sub_80B1218();
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
 }
 
 static void sub_80B0828(void)
@@ -488,7 +489,7 @@ static void sub_80B0828(void)
 
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_TRAINER_BATTLES);
-    sub_80B1234();
+    TryUpdateGymLeaderRematchFromTrainer();
 }
 
 // Initiates battle where Dude catches Rattata
@@ -509,8 +510,8 @@ void BattleSetup_StartScriptedWildBattle(void)
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
-    sub_80EECC8();
-    sub_80B1218();
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
 }
 
 void BattleSetup_StartLatiBattle(void)
@@ -521,8 +522,8 @@ void BattleSetup_StartLatiBattle(void)
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
-    sub_80EECC8();
-    sub_80B1218();
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
 }
 
 void BattleSetup_StartLegendaryBattle(void)
@@ -560,8 +561,8 @@ void BattleSetup_StartLegendaryBattle(void)
 
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
-    sub_80EECC8();
-    sub_80B1218();
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
 }
 
 void StartRegiBattle(void)
@@ -593,8 +594,8 @@ void StartRegiBattle(void)
 
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
-    sub_80EECC8();
-    sub_80B1218();
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
 }
 
 static void CB2_EndWildBattle(void)
@@ -914,7 +915,7 @@ static void CB2_GiveStarter(void)
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
-    ScriptGiveMon(starterMon, 5, 0, 0, 0, 0);
+    ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);
@@ -936,8 +937,8 @@ static void CB2_StartFirstBattle(void)
         ClearPoisonStepCounter();
         IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
         IncrementGameStat(GAME_STAT_WILD_BATTLES);
-        sub_80EECC8();
-        sub_80B1218();
+        IncrementDailyWildBattles();
+        TryUpdateGymLeaderRematchFromWild();
     }
 }
 
@@ -947,13 +948,13 @@ static void CB2_EndFirstBattle(void)
     SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
 }
 
-static void sub_80B1218(void)
+static void TryUpdateGymLeaderRematchFromWild(void)
 {
     if (GetGameStat(GAME_STAT_WILD_BATTLES) % 60 == 0)
         UpdateGymLeaderRematch();
 }
 
-static void sub_80B1234(void)
+static void TryUpdateGymLeaderRematchFromTrainer(void)
 {
     if (GetGameStat(GAME_STAT_TRAINER_BATTLES) % 20 == 0)
         UpdateGymLeaderRematch();
@@ -1158,7 +1159,7 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
     case TRAINER_BATTLE_SET_TRAINER_B:
         TrainerBattleLoadArgs(sTrainerBOrdinaryBattleParams, data);
         return NULL;
-    case TRAINER_BATTLE_12:
+    case TRAINER_BATTLE_HILL:
         if (gApproachingTrainerId == 0)
         {
             TrainerBattleLoadArgs(sOrdinaryBattleParams, data);
@@ -1319,7 +1320,7 @@ void BattleSetup_StartTrainerBattle(void)
     sNoOfPossibleTrainerRetScripts = gNoOfApproachingTrainers;
     gNoOfApproachingTrainers = 0;
     sShouldCheckTrainerBScript = FALSE;
-    gUnknown_03006080 = 0;
+    gWhichTrainerToFaceAfterBattle = 0;
     gMain.savedCallback = CB2_EndTrainerBattle;
 
     if (InBattlePyramid() || InTrainerHillChallenge())
@@ -1421,9 +1422,9 @@ void ShowTrainerIntroSpeech(void)
     else if (InTrainerHillChallenge())
     {
         if (gNoOfApproachingTrainers == 0 || gNoOfApproachingTrainers == 1)
-            CopyTrainerHillTrainerText(2, LocalIdToHillTrainerId(gSpecialVar_LastTalked));
+            CopyTrainerHillTrainerText(TRAINER_HILL_TEXT_INTRO, LocalIdToHillTrainerId(gSpecialVar_LastTalked));
         else
-            CopyTrainerHillTrainerText(2, LocalIdToHillTrainerId(gEventObjects[gApproachingTrainers[gApproachingTrainerId].eventObjectId].localId));
+            CopyTrainerHillTrainerText(TRAINER_HILL_TEXT_INTRO, LocalIdToHillTrainerId(gEventObjects[gApproachingTrainers[gApproachingTrainerId].eventObjectId].localId));
 
         sub_80982B8();
     }
@@ -1448,7 +1449,7 @@ const u8 *BattleSetup_GetTrainerPostBattleScript(void)
         sShouldCheckTrainerBScript = FALSE;
         if (sTrainerBBattleScriptRetAddr != NULL)
         {
-            gUnknown_03006080 = 1;
+            gWhichTrainerToFaceAfterBattle = 1;
             return sTrainerBBattleScriptRetAddr;
         }
     }
@@ -1456,7 +1457,7 @@ const u8 *BattleSetup_GetTrainerPostBattleScript(void)
     {
         if (sTrainerABattleScriptRetAddr != NULL)
         {
-            gUnknown_03006080 = 0;
+            gWhichTrainerToFaceAfterBattle = 0;
             return sTrainerABattleScriptRetAddr;
         }
     }
@@ -1485,22 +1486,22 @@ void SetUpTrainerEncounterMusic(void)
         switch (GetTrainerEncounterMusicId(trainerId))
         {
         case TRAINER_ENCOUNTER_MUSIC_MALE:
-            music = MUS_ENCYOUNG;
+            music = MUS_ENCMALE;
             break;
         case TRAINER_ENCOUNTER_MUSIC_FEMALE:
-            music = MUS_GIRLEYE;
+            music = MUS_ENCFEMALE;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_GIRL:
-            music = MUS_SYOUJOEYE;
+        case TRAINER_ENCOUNTER_MUSIC_FEMALEOLD:
+            music = MUS_ENCFEMALEOLD;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_INTENSE:
-            music = MUS_HAGESHII;
+        case TRAINER_ENCOUNTER_MUSIC_SAGE:
+            music = MUS_ENCSAGE;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_COOL:
-            music = MUS_KAKKOII;
+        case TRAINER_ENCOUNTER_MUSIC_MALEOLD:
+            music = MUS_ENCMALEOLD;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_AQUA:
-            music = MUS_AQA_0;
+        case TRAINER_ENCOUNTER_MUSIC_ROCKET:
+            music = MUS_ENCROCKET;
             break;
         case TRAINER_ENCOUNTER_MUSIC_MAGMA:
             music = MUS_MGM0;
@@ -1514,17 +1515,17 @@ void SetUpTrainerEncounterMusic(void)
         case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
             music = MUS_SITENNOU;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_HIKER:
-            music = MUS_YAMA_EYE;
+        case TRAINER_ENCOUNTER_MUSIC_SUSPOLD:
+            music = MUS_ENCSUSPOLD;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_INTERVIEWER:
-            music = MUS_INTER_V;
+        case TRAINER_ENCOUNTER_MUSIC_KIMONO:
+            music = MUS_ENCKIMONO;
             break;
         case TRAINER_ENCOUNTER_MUSIC_RICH:
             music = MUS_TEST;
             break;
         default:
-            music = MUS_AYASII;
+            music = MUS_ENCSUSPICIOUS;
         }
         PlayNewMapMusic(music);
     }
@@ -1639,7 +1640,7 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
     s32 i;
     bool32 ret = FALSE;
 
-    for (i = 0; i <= REMATCH_WALLY_3; i++)
+    for (i = 0; i <= REMATCH_SPECIAL_TRAINER_START; i++)
     {
         if (table[i].mapGroup == mapGroup && table[i].mapNum == mapNum && !sub_80B1D94(i))
         {
@@ -1698,7 +1699,7 @@ static bool8 IsFirstTrainerIdReadyForRematch(const struct RematchTrainer *table,
 
     if (tableId == -1)
         return FALSE;
-    if (tableId >= 100)
+    if (tableId >= MAX_REMATCH_ENTRIES)
         return FALSE;
     if (gSaveBlock1Ptr->trainerRematches[tableId] == 0)
         return FALSE;
@@ -1712,7 +1713,7 @@ static bool8 IsTrainerReadyForRematch_(const struct RematchTrainer *table, u16 t
 
     if (tableId == -1)
         return FALSE;
-    if (tableId >= 100)
+    if (tableId >= MAX_REMATCH_ENTRIES)
         return FALSE;
     if (gSaveBlock1Ptr->trainerRematches[tableId] == 0)
         return FALSE;

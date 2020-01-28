@@ -36,7 +36,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SafariZone_Southwest_EventScript_23D267",
+      "script": "SafariZone_Southwest_EventScript_Woman",
       "flag": "0"
     },
     {
@@ -71,7 +71,7 @@
       "y": 7,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "SafariZone_Southwest_EventScript_23D270"
+      "script": "SafariZone_Southwest_EventScript_RestHouseSign"
     }
   ],
   "phone_service": true

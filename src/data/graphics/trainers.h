@@ -13,8 +13,8 @@ const u32 gTrainerPalette_CoolTrainerM[] = INCBIN_U32("graphics/trainers/palette
 const u32 gTrainerFrontPic_BirdKeeper[] = INCBIN_U32("graphics/trainers/front_pics/bird_keeper_front_pic.4bpp.lz");
 const u32 gTrainerPalette_BirdKeeper[] = INCBIN_U32("graphics/trainers/palettes/bird_keeper.gbapal.lz");
 
-const u32 gTrainerFrontPic_Collector[] = INCBIN_U32("graphics/trainers/front_pics/collector_front_pic.4bpp.lz");
-const u32 gTrainerPalette_Collector[] = INCBIN_U32("graphics/trainers/palettes/collector.gbapal.lz");
+const u32 gTrainerFrontPic_Sage[] = INCBIN_U32("graphics/trainers/front_pics/sage_front_pic.4bpp.lz");
+const u32 gTrainerPalette_Sage[] = INCBIN_U32("graphics/trainers/palettes/sage.gbapal.lz");
 
 const u32 gTrainerFrontPic_AquaGruntF[] = INCBIN_U32("graphics/trainers/front_pics/aqua_grunt_f_front_pic.4bpp.lz");
 const u32 gTrainerPalette_AquaGruntF[] = INCBIN_U32("graphics/trainers/palettes/aqua_grunt_f.gbapal.lz");

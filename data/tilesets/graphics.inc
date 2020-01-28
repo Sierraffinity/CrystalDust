@@ -45,27 +45,27 @@ gTilesetPalettes_Rustboro:: @ 833BEC0
 	.incbin "data/tilesets/secondary/rustboro/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_Dewford:: @ 833C0C0
-	.incbin "data/tilesets/secondary/dewford/tiles.4bpp.lz"
+gTilesetTiles_Violet:: @ 833C0C0
+	.incbin "data/tilesets/secondary/violet/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_Dewford:: @ 833D540
-	.incbin "data/tilesets/secondary/dewford/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/15.gbapal"
+gTilesetPalettes_Violet:: @ 833D540
+	.incbin "data/tilesets/secondary/violet/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/violet/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Slateport:: @ 833D740
@@ -577,27 +577,27 @@ gTilesetPalettes_CableClub:: @ 835EACC
 	.incbin "data/tilesets/secondary/cable_club/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_SeashoreHouse:: @ 835ECCC
-	.incbin "data/tilesets/secondary/seashore_house/tiles.4bpp.lz"
+gTilesetTiles_PagodaTower:: @ 835ECCC
+	.incbin "data/tilesets/secondary/pagoda_tower/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_SeashoreHouse:: @ 835F5A8
-	.incbin "data/tilesets/secondary/seashore_house/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/seashore_house/palettes/15.gbapal"
+gTilesetPalettes_PagodaTower:: @ 835F5A8
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/pagoda_tower/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_PrettyPetalFlowerShop:: @ 835F7A8

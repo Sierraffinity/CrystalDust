@@ -233,7 +233,7 @@ static const u8 sTileBitAttributes[] =
     [MB_UNUSED_DC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_DD] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_DE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_DF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_DISTINGUISHED_STATUE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_PICTURE_BOOK_SHELF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_BOOKSHELF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_POKEMON_CENTER_BOOKSHELF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -244,7 +244,7 @@ static const u8 sTileBitAttributes[] =
     [MB_CABLE_BOX_RESULTS_2] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_WIRELESS_BOX_RESULTS] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_TRAINER_HILL_TIMER] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNKNOWN_CLOSED_DOOR] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_SKY_PILLAR_CLOSED_DOOR] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_EB] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_EC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_ED] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -1232,9 +1232,9 @@ bool8 MetatileBehavior_IsClosedSootopolisDoor(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsUnknownClosedDoor(u8 metatileBehavior)
+bool8 MetatileBehavior_IsSkyPillarClosedDoor(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_UNKNOWN_CLOSED_DOOR)
+    if (metatileBehavior == MB_SKY_PILLAR_CLOSED_DOOR)
         return TRUE;
     else
         return FALSE;
@@ -1420,6 +1420,14 @@ bool8 MetatileBehavior_IsCuttableGrass(u8 metatileBehavior)
      || metatileBehavior == MB_LONG_GRASS
      || metatileBehavior == MB_ASHGRASS
      || metatileBehavior == MB_LONG_GRASS_SOUTH_EDGE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsDistinguishedStatue(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_DISTINGUISHED_STATUE)
         return TRUE;
     else
         return FALSE;

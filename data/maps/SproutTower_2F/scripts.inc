@@ -1,0 +1,17 @@
+SproutTower_2F_MapScripts::
+	.byte 0
+
+
+SproutTower_2F_EventScript_SageNico::
+	trainerbattle_single TRAINER_NICO, Trainer_Text_Nico_See, Trainer_Text_Nico_Beat
+	msgbox Trainer_Text_Nico_After, MSGBOX_DEFAULT
+	release
+	return
+
+
+SproutTower_2F_EventScript_SageEdmond::
+	trainerbattle_single TRAINER_EDMOND, Trainer_Text_Edmond_See, Trainer_Text_Edmond_Beat
+	msgbox Trainer_Text_Edmond_After, MSGBOX_DEFAULT
+	release
+	return
+

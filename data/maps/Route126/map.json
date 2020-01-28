@@ -41,7 +41,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route126_EventScript_1F68D6",
+      "script": "Route126_EventScript_Barry",
       "flag": "0"
     },
     {
@@ -55,7 +55,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route126_EventScript_1F68ED",
+      "script": "Route126_EventScript_Dean",
       "flag": "0"
     },
     {
@@ -69,7 +69,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route126_EventScript_1F6904",
+      "script": "Route126_EventScript_Nikki",
       "flag": "0"
     },
     {
@@ -83,7 +83,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route126_EventScript_1F691B",
+      "script": "Route126_EventScript_Brenda",
       "flag": "0"
     },
     {
@@ -111,7 +111,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "7",
-      "script": "Route126_EventScript_1F6960",
+      "script": "Route126_EventScript_Sienna",
       "flag": "0"
     },
     {
@@ -125,7 +125,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "7",
-      "script": "Route126_EventScript_1F6977",
+      "script": "Route126_EventScript_Pablo",
       "flag": "0"
     },
     {
@@ -139,7 +139,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "7",
-      "script": "Route126_EventScript_1F6949",
+      "script": "Route126_EventScript_Isobel",
       "flag": "0"
     },
     {
@@ -153,7 +153,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "7",
-      "script": "Route126_EventScript_1F6932",
+      "script": "Route126_EventScript_Leonardo",
       "flag": "0"
     }
   ],

@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PacifidlogTown_House2_EventScript_203792",
+      "script": "PacifidlogTown_House2_EventScript_FanClubYoungerBrother",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PacifidlogTown_House2_EventScript_203891",
+      "script": "PacifidlogTown_House2_EventScript_HappyAzurill",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PacifidlogTown_House2_EventScript_2038AC",
+      "script": "PacifidlogTown_House2_EventScript_UnhappyAzurill",
       "flag": "0"
     }
   ],

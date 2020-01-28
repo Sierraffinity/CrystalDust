@@ -25,7 +25,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "JaggedPass_EventScript_230785",
+      "script": "JaggedPass_EventScript_Eric",
       "flag": "0"
     },
     {
@@ -39,7 +39,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "JaggedPass_EventScript_2307FB",
+      "script": "JaggedPass_EventScript_Ethan",
       "flag": "0"
     },
     {
@@ -67,7 +67,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "JaggedPass_EventScript_23079C",
+      "script": "JaggedPass_EventScript_Diana",
       "flag": "0"
     },
     {
@@ -81,7 +81,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "JaggedPass_EventScript_230718",
+      "script": "JaggedPass_EventScript_MagmaHideoutGuard",
       "flag": "FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD"
     },
     {
@@ -95,7 +95,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "JaggedPass_EventScript_230871",
+      "script": "JaggedPass_EventScript_Autumn",
       "flag": "0"
     },
     {
@@ -109,7 +109,7 @@
       "trainer_type": "1",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "JaggedPass_EventScript_23085A",
+      "script": "JaggedPass_EventScript_Julio",
       "flag": "0"
     }
   ],
@@ -163,7 +163,7 @@
       "x": 21,
       "y": 12,
       "elevation": 3,
-      "weather": "COORD_EVENT_WEATHER_ASH"
+      "weather": "COORD_EVENT_WEATHER_VOLCANIC_ASH"
     },
     {
       "type": "weather",
@@ -193,7 +193,7 @@
       "elevation": 3,
       "var": "VAR_JAGGED_PASS_STATE",
       "var_value": "1",
-      "script": "JaggedPass_EventScript_2306BB"
+      "script": "JaggedPass_EventScript_OpenMagmaHideout"
     },
     {
       "type": "trigger",
@@ -202,7 +202,7 @@
       "elevation": 3,
       "var": "VAR_JAGGED_PASS_STATE",
       "var_value": "1",
-      "script": "JaggedPass_EventScript_2306BB"
+      "script": "JaggedPass_EventScript_OpenMagmaHideout"
     },
     {
       "type": "trigger",
@@ -211,7 +211,7 @@
       "elevation": 3,
       "var": "VAR_JAGGED_PASS_STATE",
       "var_value": "1",
-      "script": "JaggedPass_EventScript_2306BB"
+      "script": "JaggedPass_EventScript_OpenMagmaHideout"
     },
     {
       "type": "trigger",
@@ -220,7 +220,7 @@
       "elevation": 3,
       "var": "VAR_JAGGED_PASS_STATE",
       "var_value": "1",
-      "script": "JaggedPass_EventScript_2306BB"
+      "script": "JaggedPass_EventScript_OpenMagmaHideout"
     },
     {
       "type": "trigger",
@@ -229,7 +229,7 @@
       "elevation": 3,
       "var": "VAR_JAGGED_PASS_STATE",
       "var_value": "1",
-      "script": "JaggedPass_EventScript_2306BB"
+      "script": "JaggedPass_EventScript_OpenMagmaHideout"
     }
   ],
   "bg_events": [

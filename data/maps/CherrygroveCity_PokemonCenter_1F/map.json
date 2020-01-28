@@ -21,7 +21,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "Common_EventScript_PkmnCenterNurse",
+            "script": "CherrygroveCity_PokemonCenter_1F_EventScript_Nurse",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "type": "original",

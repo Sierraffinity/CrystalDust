@@ -1,39 +1,8 @@
-DarkCave_South_MapScripts:: @ 822DA5D
+DarkCave_South_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, DarkCave_South_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	.byte 0
 
-DarkCave_South_EventScript_22DA5E:: @ 822DA5E
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_HM05, DarkCave_South_EventScript_22DA8A
-	msgbox DarkCave_South_Text_22DA94, MSGBOX_DEFAULT
-	giveitem_std ITEM_HM05
-	setflag FLAG_RECEIVED_HM05
-	msgbox DarkCave_South_Text_22DBB7, MSGBOX_DEFAULT
-	release
-	end
-
-DarkCave_South_EventScript_22DA8A:: @ 822DA8A
-	msgbox DarkCave_South_Text_22DBB7, MSGBOX_DEFAULT
-	release
-	end
-
-DarkCave_South_Text_22DA94: @ 822DA94
-	.string "Hey, you.\n"
-	.string "It gets awfully dark ahead.\l"
-	.string "It'll be tough trying to explore.\p"
-	.string "That guy who came by earlier…\n"
-	.string "STEVEN, I think it was.\p"
-	.string "He knew how to use FLASH, so he ought\n"
-	.string "to be all right, but…\p"
-	.string "Well, for us HIKERS, helping out those\n"
-	.string "that we meet is our motto.\p"
-	.string "Here you go, I'll pass this on to you.$"
-
-DarkCave_South_Text_22DBB7: @ 822DBB7
-	.string "Teach that hidden move FLASH to\n"
-	.string "a POKéMON and use it.\p"
-	.string "It lights up even the inky darkness\n"
-	.string "of caves.\p"
-	.string "But, to use it, you need the GYM BADGE\n"
-	.string "from DEWFORD's POKéMON GYM.$"
+DarkCave_South_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	setflag FLAG_LANDMARK_DARK_CAVE
+	return
 
