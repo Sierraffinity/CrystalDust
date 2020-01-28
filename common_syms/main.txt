@@ -7,4 +7,3 @@ gIntrTable
 gLinkVSyncDisabled
 IntrMain_Buffer
 gPcmDmaCounter
-gReleaseId
