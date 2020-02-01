@@ -43,7 +43,7 @@ $(MID_SUBDIR)/mus_btljohtotrn.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G119 -V080 -P1
 
 $(MID_SUBDIR)/mus_btljohtowild.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G117 -V080 -P1
+	$(MID) $< $@ -E -R$(STD_REVERB) -G117 -V090 -P1
 
 $(MID_SUBDIR)/mus_battle30.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G126 -V080 -P1

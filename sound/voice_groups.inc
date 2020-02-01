@@ -13277,7 +13277,7 @@ voicegroup117:: @ 869A454
 	voice_programmable_wave_alt ProgrammableWaveData_86B4830, 0, 7, 15, 0  @ 86A9CAC
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9CB8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9CC4
-	voice_programmable_wave_alt ProgrammableWaveData_86B4870, 0, 7, 15, 0  @ 86A9CD0
+	voice_programmable_wave_alt ProgrammableWaveData_86B4880, 0, 7, 15, 0  @ 86A9CD0
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9CDC
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9CE8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9CF4
