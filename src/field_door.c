@@ -491,7 +491,7 @@ static const struct DoorGraphics gDoorAnimGraphicsTable[] =
     {0x2A3, 0, 0, DoorAnimTiles_04, DoorAnimPalettes_8496FFC}, // door 04 (New Bark house door)
     {0x2AC, 0, 0, DoorAnimTiles_05, DoorAnimPalettes_8497004}, // door 05 (New Bark lab door)
     {0x298, 0, 0, DoorAnimTiles_06, DoorAnimPalettes_849700C}, // door 06 (Violet house door)
-    {0x294, 0, 0, DoorAnimTiles_07, DoorAnimPalettes_8497014}, // door 07
+    {0x294, 0, 0, DoorAnimTiles_07, DoorAnimPalettes_8497014}, // door 07 (Sprout Tower door)
     {0x2A5, 0, 1, DoorAnimTiles_08, DoorAnimPalettes_849701C}, // door 08
     {0x287, 0, 1, DoorAnimTiles_09, DoorAnimPalettes_849702C}, // door 09
     {0x2AC, 0, 1, DoorAnimTiles_10, DoorAnimPalettes_849706C}, // door 10
