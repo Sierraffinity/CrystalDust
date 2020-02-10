@@ -311,7 +311,7 @@
 #define MUS_B_TOWER 384         // Battle Tower (RS)
 #define MUS_SWIMEYE 385         // Encounter! Swimmer
 #define MUS_DAN03 386           // Meteor Falls/Cave of Origin
-#define MUS_ME_KINOMI 387       // Obtained a Berry!
+#define MUS_FANFAREEGG 387      // Obtained the Egg!
 #define MUS_ME_TAMA 388         // Awakening the Super-Ancient Pokémon
 #define MUS_ME_B_BIG 389        // Slots Jackpot!
 #define MUS_ME_B_SMALL 390      // Slots Victory!
@@ -401,7 +401,7 @@
 #define MUS_BTLJOHTOWILD 474       // Battle! Wild Pokémon
 #define MUS_BATTLE31 475        // Battle! Team Aqua/Magma
 #define MUS_BTLJOHTOTRN 476        // Battle! Trainer
-#define MUS_BATTLE32 477        // Battle! Gym Leader
+#define MUS_BTLJOHTOLDR 477        // Battle! Gym Leader
 #define MUS_BATTLE33 478        // Battle! Champion
 #define MUS_BATTLE36 479        // Battle! Regi Trio
 #define MUS_BATTLE34 480        // Battle! Legendary Pokémon (dupe)

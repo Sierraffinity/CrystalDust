@@ -2,11 +2,11 @@ RustboroCity_Gym_MapScripts:: @ 8212F30
 	.byte 0
 
 RustboroCity_Gym_EventScript_Roxanne:: @ 8212F31
-	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxannePreBattle, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	trainerbattle_single TRAINER_FALKNER, RustboroCity_Gym_Text_RoxannePreBattle, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq RustboroCity_Gym_EventScript_RoxanneRematch
-	goto_if_unset FLAG_RECEIVED_TM39, RustboroCity_Gym_EventScript_GiveRockTomb
+	goto_if_unset FLAG_GOT_TM40_FROM_FALKNER, RustboroCity_Gym_EventScript_GiveRockTomb
 	msgbox RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -16,7 +16,7 @@ RustboroCity_Gym_EventScript_RoxanneDefeated:: @ 8212F66
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox RustboroCity_Gym_Text_StoneBadgeInfoTakeThis, MSGBOX_DEFAULT
-	setflag FLAG_DEFEATED_RUSTBORO_GYM
+	setflag FLAG_DEFEATED_VIOLET_GYM
 	setflag FLAG_BADGE01_GET
 	setvar VAR_RUSTBORO_CITY_STATE, 1
 	addvar VAR_SPROUT_TOWER_STATE, 1
@@ -31,13 +31,13 @@ RustboroCity_Gym_EventScript_GiveRockTomb:: @ 8212FA4
 	giveitem_std ITEM_TM39
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_TM39
+	setflag FLAG_GOT_TM40_FROM_FALKNER
 	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
 	release
 	end
 
 RustboroCity_Gym_EventScript_RoxanneRematch:: @ 8212FC8
-	trainerbattle_rematch_double TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxannePreRematch, RustboroCity_Gym_Text_RoxanneRematchDefeat, RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons
+	trainerbattle_rematch_double TRAINER_FALKNER, RustboroCity_Gym_Text_RoxannePreRematch, RustboroCity_Gym_Text_RoxanneRematchDefeat, RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons
 	msgbox RustboroCity_Gym_Text_RoxannePostRematch, MSGBOX_AUTOCLOSE
 	end
 
@@ -59,7 +59,7 @@ RustboroCity_Gym_EventScript_Marc:: @ 8213011
 RustboroCity_Gym_EventScript_GymGuide:: @ 8213028
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_RUSTBORO_GYM, RustboroCity_Gym_EventScript_GymGuidePostVictory
+	goto_if_set FLAG_DEFEATED_VIOLET_GYM, RustboroCity_Gym_EventScript_GymGuidePostVictory
 	msgbox RustboroCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
 	release
 	end

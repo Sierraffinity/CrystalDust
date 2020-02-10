@@ -59,11 +59,12 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
             delay(5)
 	        textcolor(MSG_COLOR_MISC)
             setflag(FLAG_GOT_ELMS_EGG)
-	        playfanfare(MUS_FANFA4)
-            message("{PLAYER} received the EGG.")
+	        playfanfare(MUS_FANFAREEGG)
+            message("{PLAYER} received the EGG\n"
+                    "from ELM's AIDE.")
             waitfanfare
             giveegg(SPECIES_TOGEPI)
-            call(RestoreOriginalTextColor)
+            call(Common_RestoreOriginalTextColor)
             msgbox("We discovered that a POKéMON won't\n"
                    "hatch until it grows in the EGG.\p"
                    "It also has to be with other active\n"

@@ -102,7 +102,7 @@
 #define FLAG_ROCKET_TAKEOVER                 0x5A
 #define FLAG_REFUSED_ELMS_EGG                0x5B
 #define FLAG_GOT_ELMS_EGG                    0x5C
-#define FLAG_GOOD_LUCK_SAFARI_ZONE           0x5D
+#define FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET           0x5D
 #define FLAG_RECEIVED_WAILMER_PAIL           0x5E
 #define FLAG_RECEIVED_POKEBLOCK_CASE         0x5F
 #define FLAG_RECEIVED_SECRET_POWER           0x60
@@ -178,7 +178,7 @@
 #define FLAG_CUTE_PAINTING_MADE              0xA2
 #define FLAG_SMART_PAINTING_MADE             0xA3
 #define FLAG_TOUGH_PAINTING_MADE             0xA4
-#define FLAG_RECEIVED_TM39                   0xA5
+#define FLAG_GOT_TM40_FROM_FALKNER           0xA5
 #define FLAG_RECEIVED_TM08                   0xA6
 #define FLAG_RECEIVED_TM34                   0xA7
 #define FLAG_RECEIVED_TM50                   0xA8
@@ -1316,7 +1316,7 @@
 #define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
 #define FLAG_UNUSED_0x4EF                                           0x4EF // Unused Flag
 
-#define FLAG_DEFEATED_RUSTBORO_GYM                                  0x4F0
+#define FLAG_DEFEATED_VIOLET_GYM                                    0x4F0
 #define FLAG_DEFEATED_DEWFORD_GYM                                   0x4F1
 #define FLAG_DEFEATED_MAUVILLE_GYM                                  0x4F2
 #define FLAG_DEFEATED_LAVARIDGE_GYM                                 0x4F3

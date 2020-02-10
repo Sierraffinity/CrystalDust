@@ -1176,27 +1176,27 @@ gTilesetPalettes_LavaridgeGym:: @ 83762AC
 	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_PetalburgGym:: @ 83764AC
-	.incbin "data/tilesets/secondary/petalburg_gym/tiles.4bpp.lz"
+gTilesetTiles_VioletGym:: @ 83764AC
+	.incbin "data/tilesets/secondary/violet_gym/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_PetalburgGym:: @ 8376B50
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/15.gbapal"
+gTilesetPalettes_VioletGym:: @ 8376B50
+	.incbin "data/tilesets/secondary/violet_gym/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_FortreeGym:: @ 8376D50

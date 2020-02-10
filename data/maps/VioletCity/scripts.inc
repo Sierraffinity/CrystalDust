@@ -1,9 +1,32 @@
 VioletCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VioletCity_MapScripts_MAP_SCRIPT_ON_TRANSITION
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, VioletCity_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
 	.byte 0
 
 VioletCity_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 	setflag FLAG_VISITED_VIOLET_CITY
+	compare VAR_VIOLET_CITY_STATE, 1
+	goto_if_eq VioletCity_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
+	return
+
+VioletCity_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
+	setflag FLAG_HIDE_MAP_NAME_POPUP
+	return
+
+VioletCity_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
+	map_script_2 VAR_VIOLET_CITY_STATE, 1, VioletCity_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0
+	.2byte 0
+
+VioletCity_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0:
+	lockall
+	pokegearcall VioletCity_PhoneScript_ElmCall, 1
+	waitstate
+	setflag FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET
+	setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE
+	clearflag FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	setvar VAR_VIOLET_CITY_STATE, 2
+	releaseall
 	return
 
 

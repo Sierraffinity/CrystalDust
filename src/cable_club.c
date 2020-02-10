@@ -840,7 +840,7 @@ static void sub_80B32B4(u8 taskId)
         break;
     case 5:
         if (gLinkPlayers[0].trainerId & 1)
-            PlayMapChosenOrBattleBGM(MUS_BATTLE32);
+            PlayMapChosenOrBattleBGM(MUS_BTLJOHTOLDR);
         else
             PlayMapChosenOrBattleBGM(MUS_BTLJOHTOTRN);
 
@@ -905,7 +905,7 @@ static void sub_80B33BC(u8 taskId)
         break;
     case 7:
         if (gLinkPlayers[0].trainerId & 1)
-            PlayMapChosenOrBattleBGM(MUS_BATTLE32);
+            PlayMapChosenOrBattleBGM(MUS_BTLJOHTOLDR);
         else
             PlayMapChosenOrBattleBGM(MUS_BTLJOHTOTRN);
 

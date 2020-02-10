@@ -124,12 +124,12 @@ Route123_EventScript_Frederick:: @ 81F631B
 	end
 
 Route123_EventScript_Alberto:: @ 81F6332
-	trainerbattle_single TRAINER_ALBERTO, Route123_Text_AlbertoIntro, Route123_Text_AlbertoDefeat
+	trainerbattle_single TRAINER_ABE, Route123_Text_AlbertoIntro, Route123_Text_AlbertoDefeat
 	msgbox Route123_Text_AlbertoPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route123_EventScript_Ed:: @ 81F6349
-	trainerbattle_single TRAINER_ED, Route123_Text_EdIntro, Route123_Text_EdDefeat
+	trainerbattle_single TRAINER_ROD, Route123_Text_EdIntro, Route123_Text_EdDefeat
 	msgbox Route123_Text_EdPostBattle, MSGBOX_AUTOCLOSE
 	end
 

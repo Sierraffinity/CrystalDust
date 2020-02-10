@@ -204,7 +204,7 @@
     "object_events": [
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE",
             "graphics_id": "EVENT_OBJ_GFX_SCIENTIST",
             "movement_range_x": 1,
             "movement_range_y": 1,

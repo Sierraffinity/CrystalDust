@@ -343,11 +343,11 @@ gMetatileAttributes_RustboroGym:: @ 83C47C6
 	.incbin "data/tilesets/secondary/rustboro_gym/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_VioletGym:: @ 83C4836
+gMetatiles_DewfordGym:: @ 83C4836
 	.incbin "data/tilesets/secondary/dewford_gym/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_VioletGym:: @ 83C4C86
+gMetatileAttributes_DewfordGym:: @ 83C4C86
 	.incbin "data/tilesets/secondary/dewford_gym/metatile_attributes.bin"
 
 	.align 1
@@ -367,12 +367,12 @@ gMetatileAttributes_LavaridgeGym:: @ 83C591A
 	.incbin "data/tilesets/secondary/lavaridge_gym/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_PetalburgGym:: @ 83C5994
-	.incbin "data/tilesets/secondary/petalburg_gym/metatiles.bin"
+gMetatiles_VioletGym:: @ 83C5994
+	.incbin "data/tilesets/secondary/violet_gym/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_PetalburgGym:: @ 83C6794
-	.incbin "data/tilesets/secondary/petalburg_gym/metatile_attributes.bin"
+gMetatilesAttributes_VioletGym:: @ 83C6794
+	.incbin "data/tilesets/secondary/violet_gym/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_FortreeGym:: @ 83C6954

@@ -46,7 +46,7 @@ SproutTower_3F_EventScript_RivalScene::
 	msgbox SproutTower_3F_EventScript_RivalScene_Text_1
 	applymovement 7, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
-	call RestoreOriginalTextColor
+	call Common_RestoreOriginalTextColor
 	msgbox SproutTower_3F_EventScript_RivalScene_Text_2
 	closemessage
 	applymovement 7, SproutTower_3F_Movement_RivalSpin
@@ -70,7 +70,7 @@ SproutTower_3F_EventScript_Elder::
 
 SproutTower_3F_EventScript_Li_PostBattle::
 	msgbox SproutTower_3F_EventScript_Li_PostBattle_Text_0
-	giveitem_msg SproutTower_3F_EventScript_Li_PostBattle_Text_1, ITEM_HM05, 1, MUS_ME_WAZA
+	givetmhm_msg SproutTower_3F_EventScript_Li_PostBattle_Text_1, ITEM_HM05
 	setflag FLAG_RECEIVED_HM05
 	msgbox SproutTower_3F_EventScript_Li_PostBattle_Text_2
 	release

@@ -1719,10 +1719,19 @@
 	msgreceiveditem \msg, \item, \amount, \fanfare
 	.endm
 
+	.macro givetmhm_msg msg:req, item:req
+	giveitem_msg \msg, \item, 1, MUS_ME_WAZA
+	.endm
+
 	.macro msgreceiveditem msg:req, item:req, amount=1, fanfare=MUS_FANFA4
 	loadword 0, \msg
 	setorcopyvar VAR_0x8000, \item
 	setorcopyvar VAR_0x8001, \amount
 	setorcopyvar VAR_0x8002, \fanfare
 	callstd STD_RECEIVED_ITEM
+	.endm
+
+	.macro set_gym_trainers gym:req
+	setvar VAR_0x8008, \gym
+	call Common_EventScript_SetGymTrainers
 	.endm

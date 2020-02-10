@@ -109,7 +109,7 @@
     "id": "MAP_ROUTE46",
     "layout": "LAYOUT_ROUTE46",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_ROUTE_46",
+    "music": "MUS_ROUTE34",
     "name": "Route46",
     "object_events": [
         {

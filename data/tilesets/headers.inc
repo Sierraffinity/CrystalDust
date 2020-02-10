@@ -539,15 +539,15 @@ gTileset_Underwater:: @ 83DFB24
 	.4byte InitTilesetAnim_Underwater
 
 	.align 2
-gTileset_PetalburgGym:: @ 83DFB3C
+gTileset_VioletGym:: @ 83DFB3C
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_PetalburgGym
-	.4byte gTilesetPalettes_PetalburgGym
+	.4byte gTilesetTiles_VioletGym
+	.4byte gTilesetPalettes_VioletGym
 	.4byte NULL
-	.4byte gMetatiles_PetalburgGym
-	.4byte gMetatileAttributes_PetalburgGym
+	.4byte gMetatiles_VioletGym
+	.4byte gMetatilesAttributes_VioletGym
 	.4byte NULL @ animation callback
 
 	.align 2
@@ -606,8 +606,8 @@ gTileset_DewfordGym:: @ 83DFBB4
 	.4byte gTilesetTiles_DewfordGym
 	.4byte gTilesetPalettes_DewfordGym
 	.4byte NULL
-	.4byte gMetatiles_VioletGym
-	.4byte gMetatileAttributes_VioletGym
+	.4byte gMetatiles_DewfordGym
+	.4byte gMetatileAttributes_DewfordGym
 	.4byte NULL @ animation callback
 
 	.align 2

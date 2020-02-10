@@ -42,7 +42,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	message Route30_MrPokemonsHouse_Text_PlayerReceivedPokedex
 	waitmessage
 	waitfanfare
-	call RestoreOriginalTextColor
+	call Common_RestoreOriginalTextColor
 	setflag FLAG_SYS_POKEDEX_GET
 	msgbox Route30_MrPokemonsHouse_Text_GoMeetManyPokemon
 	closemessage

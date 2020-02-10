@@ -12,9 +12,9 @@
 #define TRAINER_JIN               8
 #define TRAINER_TROY              9
 #define TRAINER_NEAL             10
-#define TRAINER_LI           11
-#define TRAINER_ALBERTO          12
-#define TRAINER_ED               13
+#define TRAINER_LI               11
+#define TRAINER_ABE              12
+#define TRAINER_ROD              13
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_4          14
 #define TRAINER_DECLAN           15
 #define TRAINER_GRUNT_RUSTURF_TUNNEL         16
@@ -266,7 +266,7 @@
 #define TRAINER_PHOEBE          262
 #define TRAINER_GLACIA          263
 #define TRAINER_DRAKE           264
-#define TRAINER_ROXANNE_1       265
+#define TRAINER_FALKNER       265
 #define TRAINER_BRAWLY_1        266
 #define TRAINER_WATTSON_1       267
 #define TRAINER_FLANNERY_1      268

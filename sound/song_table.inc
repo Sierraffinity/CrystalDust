@@ -388,7 +388,7 @@ gSongTable:: @ 86B49F0
 	song mus_b_tower, 0, 0          @ Battle Tower (RS)
 	song mus_swimeye, 0, 0          @ Trainers' Eyes Meet (Swimmer♀)
 	song mus_dan03, 0, 0            @ Cave of Origin
-	song mus_me_kinomi, 2, 2        @ Obtained a Berry!
+	song mus_fanfareegg, 2, 2        @ Obtained a Berry!
 	song mus_me_tama, 2, 2          @ The Super-Ancient Pokémon Awaken!
 	song mus_me_b_big, 2, 2         @ Jackpot
 	song mus_me_b_small, 2, 2       @ Win
@@ -478,7 +478,7 @@ gSongTable:: @ 86B49F0
 	song mus_btljohtowild, 0, 0     @ Battle! (Wild Pokémon)
 	song mus_battle31, 0, 0         @ Battle! (Team Aqua / Team Magma)
 	song mus_btljohtotrn, 0, 0      @ Battle! (Trainer Battle)
-	song mus_battle32, 0, 0         @ Battle! (Gym Leader)
+	song mus_btljohtoldr, 0, 0      @ Battle! (Gym Leader)
 	song mus_battle33, 0, 0         @ Battle! (Champion Wallace)
 	song mus_battle36, 0, 0         @ Battle! (Regirock/Regice/Registeel)
 	song mus_battle34, 0, 0         @ Battle! (Groudon/Kyogre)

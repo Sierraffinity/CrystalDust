@@ -783,12 +783,12 @@
         {
             "blockdata_filepath": "data/layouts/VioletCity_Gym/map.bin",
             "border_filepath": "data/layouts/VioletCity_Gym/border.bin",
-            "height": 112,
+            "height": 17,
             "id": "LAYOUT_VIOLET_CITY_GYM",
             "name": "VioletCity_Gym_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_PetalburgGym",
-            "width": 9
+            "secondary_tileset": "gTileset_VioletGym",
+            "width": 13
         },
         {
             "blockdata_filepath": "data/layouts/VioletCity_EarlsAcademy/map.bin",

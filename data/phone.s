@@ -199,10 +199,20 @@ Text_Pokegear_Mom_RootingForYou:
 	.string "I'm rooting for you, baby!$"
 
 PhoneScript_Elm::
+	phone_goto_if_set FLAG_GOT_ELMS_EGG, PhoneScript_Elm_EggUnhatched
+	phone_goto_if_set FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET, PhoneScript_Elm_SeeAssistant
 	phone_goto_if_set FLAG_GAVE_MYSTERY_EGG_TO_ELM, PhoneScript_Elm_CheckingEgg
 	phone_goto_if_set FLAG_ELM_CALLED_ABOUT_STOLEN_MON, PhoneScript_Elm_MonWasStolen
 	phone_goto_if_set FLAG_RECEIVED_MYSTERY_EGG, PhoneScript_Elm_SawMrPokemon
 	phone_stdcall Text_Pokegear_Elm_Start
+	phone_end
+
+PhoneScript_Elm_EggUnhatched::
+	phone_stdcall Text_Pokegear_Elm_EggUnhatched
+	phone_end
+
+PhoneScript_Elm_SeeAssistant::
+	phone_stdcall Text_Pokegear_Elm_SeeAssistant
 	phone_end
 
 PhoneScript_Elm_CheckingEgg::
@@ -241,6 +251,18 @@ Text_Pokegear_Elm_CheckingEgg::
 	.string "It does appear to be a POKéMON\n"
 	.string "EGG.$"
 
+Text_Pokegear_Elm_SeeAssistant::
+	.string "Hello, {PLAYER}?\n"
+	.string "Did you see my assistant?\p"
+	.string "He's at the POKéMON CENTER in\n"
+	.string "VIOLET CITY.$"
+
+Text_Pokegear_Elm_EggUnhatched::
+	.string "Hello, {PLAYER}?\n"
+	.string "How's the EGG?\l"
+	.string "Has anything changed?\p"
+	.string "If anything happens, please call.$"
+
 Route30_PhoneScript_ElmCall::
 	phone_stdcall Route30_Text_ElmCall
 	phone_end
@@ -252,6 +274,18 @@ Route30_Text_ElmCall:
 	.string "What should I do?\n"
 	.string "It… Oh, no…\p"
 	.string "Please get back here now!$"
+
+VioletCity_PhoneScript_ElmCall::
+	phone_stdcall VioletCity_Text_ElmCall
+	phone_end
+
+VioletCity_Text_ElmCall:
+	.string "Hello, {PLAYER}?\n"
+	.string "We discovered something about\l"
+	.string "the EGG!\p"
+	.string "My assistant is at the POKéMON\n"
+	.string "CENTER in VIOLET CITY.\l"
+	.string "Could you talk to him?$"
 
 PhoneScript_StandardMatchCallTrainer::
 	phone_callnativecontext SelectMessage_StandardMatchCallTrainer

@@ -126,7 +126,7 @@
 #define EVENT_OBJ_GFX_PHOEBE                     122
 #define EVENT_OBJ_GFX_GLACIA                     123
 #define EVENT_OBJ_GFX_DRAKE                      124
-#define EVENT_OBJ_GFX_ROXANNE                    125
+#define EVENT_OBJ_GFX_FALKNER                    125
 #define EVENT_OBJ_GFX_BRAWLY                     126
 #define EVENT_OBJ_GFX_WATTSON                    127
 #define EVENT_OBJ_GFX_FLANNERY                   128

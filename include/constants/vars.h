@@ -103,7 +103,7 @@
 #define VAR_CURRENT_SECRET_BASE              0x4054
 #define VAR_VERDANTURF_TOWN_STATE            0x4055 // Unused Var
 #define VAR_PACIFIDLOG_TOWN_STATE            0x4056 // Unused Var
-#define VAR_VIOLET_CITY_STATE             0x4057
+#define VAR_VIOLET_CITY_STATE                0x4057
 #define VAR_SLATEPORT_CITY_STATE             0x4058
 #define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
 #define VAR_RUSTBORO_CITY_STATE              0x405A

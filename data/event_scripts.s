@@ -670,7 +670,7 @@ Std_ReceivedItem::
 	compare VAR_0x8002, MUS_FANFA4
 	call_if_eq EventScript_ReceivedItemWaitFanfare
 	putitemaway VAR_0x8000, VAR_0x8001
-	call RestoreOriginalTextColor
+	call Common_RestoreOriginalTextColor
 	return
 
 EventScript_ReceivedItemWaitFanfare::
@@ -696,7 +696,7 @@ Std_MsgboxAutoclose:: @ 8271494
 
 	.include "data/scripts/new_game.inc"
 	
-RestoreOriginalTextColor:
+Common_RestoreOriginalTextColor:
 	copyvar VAR_TEXT_COLOR VAR_TEXT_COLOR_BACKUP
 	return
 

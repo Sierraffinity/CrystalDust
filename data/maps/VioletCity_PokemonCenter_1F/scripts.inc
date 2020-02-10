@@ -61,11 +61,11 @@ VioletCity_PokemonCenter_1F_EventScript_Aide_9:
 	delay 5
 	textcolor MSG_COLOR_MISC
 	setflag FLAG_GOT_ELMS_EGG
-	playfanfare MUS_FANFA4
+	playfanfare MUS_FANFAREEGG
 	message VioletCity_PokemonCenter_1F_EventScript_Aide_Text_2
 	waitfanfare
 	giveegg SPECIES_TOGEPI
-	call RestoreOriginalTextColor
+	call Common_RestoreOriginalTextColor
 	msgbox VioletCity_PokemonCenter_1F_EventScript_Aide_Text_3
 	closemessage
 	compare VAR_FACING, DIR_NORTH
@@ -138,7 +138,8 @@ VioletCity_PokemonCenter_1F_EventScript_Aide_Text_1:
 	.string "{PLAYER}, will you take the EGG?$"
 
 VioletCity_PokemonCenter_1F_EventScript_Aide_Text_2:
-	.string "{PLAYER} received the EGG.$"
+	.string "{PLAYER} received the EGG\n"
+	.string "from ELM's AIDE.$"
 
 VioletCity_PokemonCenter_1F_EventScript_Aide_Text_3:
 	.string "We discovered that a POKéMON won't\n"

@@ -6268,7 +6268,7 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_MAGMA_ADMIN:
             return MUS_BATTLE31;
         case TRAINER_CLASS_LEADER:
-            return MUS_BATTLE32;
+            return MUS_BTLJOHTOLDR;
         case TRAINER_CLASS_CHAMPION:
             return MUS_BATTLE33;
         case TRAINER_CLASS_PKMN_TRAINER_3:

@@ -73,6 +73,31 @@ Trainer_Text_Chow_See:
 Trainer_Text_Chow_Beat:
 	.string "Th-Thank you!$"
 
+VioletCity_Gym_Text_AbeIntro:
+	.string "Let me see if you are good enough\n"
+	.string "to face FALKNER!$"
+
+VioletCity_Gym_Text_AbeDefeat:
+	.string "This can't be true!$"
+
+VioletCity_Gym_Text_AbePostBattle:
+	.string "This is pathetic, losing to some\n"
+	.string "rookie TRAINER…$"
+
+VioletCity_Gym_Text_RodIntro:
+	.string "The key word is guts!\p"
+	.string "Those here are training night and\n"
+	.string "day to become bird POKéMON\l"
+	.string "masters. Come on!$"
+
+VioletCity_Gym_Text_RodDefeat:
+	.string "Gaaah!$"
+
+VioletCity_Gym_Text_RodPostBattle:
+	.string "FALKNER's skills are for real!\n"
+	.string "Don't get cocky just because you\l"
+	.string "beat me!$"
+
 Route32_Text_GinaIntro: @ 82952BB
 	.string "GINA: Okay, let's battle with our\n"
 	.string "POKéMON!$"

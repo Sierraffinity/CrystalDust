@@ -2984,7 +2984,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [EVENT_OBJ_GFX_PHOEBE] =                    MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_GLACIA] =                    MSG_COLOR_RED,
         [EVENT_OBJ_GFX_DRAKE] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_ROXANNE] =                   MSG_COLOR_RED,
+        [EVENT_OBJ_GFX_FALKNER] =                   MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_BRAWLY] =                    MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_WATTSON] =                   MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_FLANNERY] =                  MSG_COLOR_RED,

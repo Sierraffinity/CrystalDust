@@ -1289,7 +1289,7 @@ static bool32 MoveMatchCallWindowToVram(u8 taskId)
     PutWindowTilemap(gPhoneCallerNameWindowId);
     DrawMatchCallTextBoxBorder(gPhoneCallWindowId, 0x270, 14);
     DrawMatchCallTextBoxBorder(gPhoneCallerNameWindowId, 0x270, 14);
-    WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 15, 4, 4, 17, 1);
+    //WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 15, 4, 4, 17, 1);
     CopyWindowToVram(gPhoneCallWindowId, 2);
     CopyWindowToVram(gPhoneCallerNameWindowId, 2);
     CopyBgTilemapBufferToVram(0);

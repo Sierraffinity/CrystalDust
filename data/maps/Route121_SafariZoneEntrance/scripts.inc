@@ -79,7 +79,7 @@ Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone:: @ 822BC48
 	waitmovement 0
 	special EnterSafariMode
 	setvar VAR_SAFARI_ZONE_STATE, 2
-	clearflag FLAG_GOOD_LUCK_SAFARI_ZONE
+	clearflag FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET
 	warp MAP_SAFARI_ZONE_SOUTH, 255, 32, 33
 	waitstate
 	end
