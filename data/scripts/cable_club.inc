@@ -41,7 +41,7 @@ CableClub_EventScript_DistributeEonTicket:: @ 8276B23
 	goto_if_eq CableClub_EventScript_AlreadyGotEonTicket
 	goto_if_set FLAG_SYS_HAS_EON_TICKET, CableClub_EventScript_AlreadyGotEonTicket
 	msgbox Mevent_Text_TheresATicketForYou, MSGBOX_DEFAULT
-	giveitem_std ITEM_EON_TICKET
+	giveitem ITEM_EON_TICKET
 	setflag FLAG_SYS_HAS_EON_TICKET
 	setvar VAR_DISTRIBUTE_EON_TICKET, 0
 	msgbox Mevent_Text_TryUsingItAtLilycovePort, MSGBOX_DEFAULT
@@ -384,7 +384,7 @@ CableClub_EventScript_EnterColosseum:: @ 8276FBD
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, 0
 	closedoor 9, 1
 	waitdooranim
 	release
@@ -392,7 +392,7 @@ CableClub_EventScript_EnterColosseum:: @ 8276FBD
 	goto_if_eq CableClub_EventScript_WarpTo4PColosseum
 	special SetCableClubWarp
 	warp MAP_BATTLE_COLOSSEUM_2P, 255, 6, 8
-	special sub_80AF948
+	special DoCableClubWarp
 	waitstate
 	end
 
@@ -405,7 +405,7 @@ CableClub_EventScript_PlayerApproachLinkRoomRight:: @ 827702B
 CableClub_EventScript_WarpTo4PColosseum:: @ 8277036
 	special SetCableClubWarp
 	warp MAP_BATTLE_COLOSSEUM_4P, 255, 5, 8
-	special sub_80AF948
+	special DoCableClubWarp
 	waitstate
 	end
 
@@ -489,13 +489,13 @@ CableClub_EventScript_EnterTradeCenter:: @ 827713A
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, 0
 	closedoor 9, 1
 	waitdooranim
 	release
 	special SetCableClubWarp
 	setwarp MAP_TRADE_CENTER, 255, 5, 8
-	special sub_80AF948
+	special DoCableClubWarp
 	waitstate
 	end
 
@@ -526,7 +526,7 @@ CableClub_EventScript_RecordCorner:: @ 82771DB
 	goto_if_eq CableClub_EventScript_AbortLink
 	message gText_PleaseWaitForLink
 	waitmessage
-	special sub_80B2E74
+	special TryRecordMixLinkup
 	waitstate
 	special sub_80B2EA8
 	waitstate
@@ -564,13 +564,13 @@ CableClub_EventScript_EnterRecordCorner:: @ 827724C
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, 0
 	closedoor 9, 1
 	waitdooranim
 	release
 	special SetCableClubWarp
 	setwarp MAP_RECORD_CORNER, 255, 8, 9
-	special sub_80AF948
+	special DoCableClubWarp
 	waitstate
 	end
 
@@ -619,7 +619,7 @@ MossdeepCity_GameCorner_1F_EventScript_AbortMinigame:: @ 82772F9
 @ Unused
 CableClub_EventScript_CableClubWarp:: @ 8277306
 	special SetCableClubWarp
-	special sub_80AF948
+	special DoCableClubWarp
 	waitstate
 	end
 
@@ -711,63 +711,63 @@ EventScript_CableBoxResults:: @ 8277365
 	releaseall
 	end
 
-EventScript_BattleColosseum2P_PlayerSpot0:: @ 8277374
+EventScript_BattleColosseum_2P_PlayerSpot0:: @ 8277374
 	setvar VAR_0x8005, 0
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
 
-EventScript_BattleColosseum2P_PlayerSpot1:: @ 827737E
+EventScript_BattleColosseum_2P_PlayerSpot1:: @ 827737E
 	setvar VAR_0x8005, 1
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
 
-EventScript_BattleColosseum4P_PlayerSpot0:: @ 8277388
+EventScript_BattleColosseum_4P_PlayerSpot0:: @ 8277388
 	fadescreen FADE_TO_BLACK
 	special ChooseHalfPartyForBattle
 	waitstate
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_BattleColosseum4P_CancelSpotTrigger
+	goto_if_eq EventScript_BattleColosseum_4P_CancelSpotTrigger
 	setvar VAR_0x8005, 0
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
 
-EventScript_BattleColosseum4P_PlayerSpot1:: @ 82773A3
+EventScript_BattleColosseum_4P_PlayerSpot1:: @ 82773A3
 	fadescreen FADE_TO_BLACK
 	special ChooseHalfPartyForBattle
 	waitstate
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_BattleColosseum4P_CancelSpotTrigger
+	goto_if_eq EventScript_BattleColosseum_4P_CancelSpotTrigger
 	setvar VAR_0x8005, 1
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
 
-EventScript_BattleColosseum4P_PlayerSpot2:: @ 82773BE
+EventScript_BattleColosseum_4P_PlayerSpot2:: @ 82773BE
 	fadescreen FADE_TO_BLACK
 	special ChooseHalfPartyForBattle
 	waitstate
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_BattleColosseum4P_CancelSpotTrigger
+	goto_if_eq EventScript_BattleColosseum_4P_CancelSpotTrigger
 	setvar VAR_0x8005, 2
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
 
-EventScript_BattleColosseum4P_PlayerSpot3:: @ 82773D9
+EventScript_BattleColosseum_4P_PlayerSpot3:: @ 82773D9
 	fadescreen FADE_TO_BLACK
 	special ChooseHalfPartyForBattle
 	waitstate
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_BattleColosseum4P_CancelSpotTrigger
+	goto_if_eq EventScript_BattleColosseum_4P_CancelSpotTrigger
 	setvar VAR_0x8005, 3
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
 
-EventScript_BattleColosseum4P_CancelSpotTrigger:: @ 82773F4
+EventScript_BattleColosseum_4P_CancelSpotTrigger:: @ 82773F4
 	end
 
 EventScript_TradeCenter_Chair0:: @ 82773F5
@@ -856,9 +856,9 @@ CableClub_EventScript_TooBusyToNotice:: @ 827749C
 	closemessage
 	end
 
-BattleColosseum2P_EventScript_Attendant:: @ 82774A6
+BattleColosseum_2P_EventScript_Attendant:: @ 82774A6
 	special Script_FacePlayer
-	msgbox BattleColosseum2P_Text_TakePlaceStartBattle, MSGBOX_DEFAULT
+	msgbox BattleColosseum_2P_Text_TakePlaceStartBattle, MSGBOX_DEFAULT
 	special Script_ClearHeldMovement
 	closemessage
 	end
@@ -966,7 +966,7 @@ CableClub_EventScript_EnterUnionRoom:: @ 827759F
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, 0
 	closedoor 5, 1
 	waitdooranim
 	special Script_ResetUnionRoomTrade
@@ -1297,7 +1297,7 @@ CableClub_EventScript_EnterWirelessLinkRoom:: @ 8277B3A
 	waitdooranim
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterLinkRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, 0
 	closedoor 9, 1
 	waitdooranim
 	release
@@ -1489,7 +1489,7 @@ MossdeepCity_GameCorner_1F_EventScript_EnterMinigameRoom:: @ 8277E0E
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, Movement_PlayerEnterMinigameRoom
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_VIOLET_CITY
+	hideobjectat EVENT_OBJ_ID_PLAYER, 0
 	release
 	waitstate
 	end

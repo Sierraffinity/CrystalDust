@@ -390,7 +390,7 @@ static void Task_GoToBuyOrSellMenu(u8 taskId)
 
 static void MapPostLoadHook_ReturnToShopMenu(void)
 {
-    pal_fill_black();
+    FadeInFromBlack();
     CreateTask(Task_ReturnToShopMenu, 8);
 }
 
@@ -994,9 +994,9 @@ static void Task_BuyHowManyDialogueInit(u8 taskId)
 
     maxQuantity = GetMoney(&gSaveBlock1Ptr->money) / gShopDataPtr->totalCost;
 
-    if (maxQuantity > 99)
+    if (maxQuantity > MAX_BAG_ITEM_CAPACITY)
     {
-        gShopDataPtr->maxQuantity = 99;
+        gShopDataPtr->maxQuantity = MAX_BAG_ITEM_CAPACITY;
     }
     else
     {

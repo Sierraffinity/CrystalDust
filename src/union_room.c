@@ -1424,7 +1424,7 @@ void sub_8014384(void)
         break;
     case 1:
         if (!FuncIsActiveTask(sub_80140E0))
-            SetMainCallback2(sub_8086074);
+            SetMainCallback2(CB2_ReturnToFieldCableClub);
         break;
     }
 
@@ -2880,7 +2880,7 @@ void sub_80156E0(u8 taskId)
         if (!gPaletteFade.active)
         {
             sUnionRoomTrade.field_0 = 1;
-            gFieldCallback = sub_80AF128;
+            gFieldCallback = FieldCB_ContinueScriptUnionRoom;
             ChooseMonForTradingBoard(PARTY_MENU_TYPE_UNION_ROOM_REGISTER, CB2_ReturnToField);
         }
         break;
@@ -2992,7 +2992,7 @@ void sub_80156E0(u8 taskId)
             memcpy(&gUnknown_02022C38, &data->field_0->arr[taskData[1]].unk.field_0.unk_00, sizeof(gUnknown_02022C38));
             gUnionRoomRequestedMonType = data->field_0->arr[taskData[1]].unk.field_0.type;
             gUnionRoomOfferedSpecies = data->field_0->arr[taskData[1]].unk.field_0.species;
-            gFieldCallback = sub_80AF128;
+            gFieldCallback = FieldCB_ContinueScriptUnionRoom;
             ChooseMonForTradingBoard(PARTY_MENU_TYPE_UNION_ROOM_TRADE, CB2_ReturnToField);
             sub_80156B0(data);
             sUnionRoomTrade.field_8 = taskData[1];
@@ -3376,7 +3376,7 @@ u8 sub_8016FF0(struct UnkStruct_Main4 * a0, u32 a1)
 
 bool32 sub_8017020(const u8 *src)
 {
-    sub_81973A4();
+    LoadMessageBoxAndBorderGfx();
     DrawDialogueFrame(0, 1);
     StringExpandPlaceholders(gStringVar4, src);
     AddTextPrinterWithCustomSpeedForMessage(FALSE, 1);
@@ -3400,7 +3400,7 @@ bool8 PrintOnTextbox(u8 *textState, const u8 *str)
     switch (*textState)
     {
     case 0:
-        sub_81973A4();
+        LoadMessageBoxAndBorderGfx();
         DrawDialogueFrame(0, 1);
         StringExpandPlaceholders(gStringVar4, str);
         AddTextPrinterForMessage_IgnoreTextColor(TRUE);
@@ -4077,7 +4077,7 @@ s32 sub_8017EA0(u8 *dst, u32 gender, u16 *arg2, struct UnkStruct_URoom *arg3)
         StringCopy(arg3->field_58 + 0x10, gSpeciesNames[sUnionRoomTrade.playerSpecies]);
         for (i = 0; i < 4; i++)
         {
-            if (gUnknown_03007890->unk_14[i].unk_04 == 2)
+            if (gRfuLinkStatus->partner[i].serialNo == 2)
             {
                 ConvertIntToDecimalStringN(arg3->field_58 + 0x20, arg2[2], STR_CONV_MODE_LEFT_ALIGN, 3);
                 StringCopy(arg3->field_58 + 0x30, gSpeciesNames[arg2[1]]);
@@ -4316,9 +4316,9 @@ void sub_8018220(u8 *unused, struct UnkStruct_URoom *arg1, bool8 arg2)
     ConvertIntToDecimalStringN(arg1->field_C0[2], trainerCard->pokemonTrades, STR_CONV_MODE_LEFT_ALIGN, 5);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(3, arg1->field_C0[2]);
 
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < TRAINER_CARD_PROFILE_LENGTH; i++)
     {
-        CopyEasyChatWord(arg1->field_C0[i + 3], trainerCard->var_28[i]);
+        CopyEasyChatWord(arg1->field_C0[i + 3], trainerCard->easyChatProfile[i]);
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(i + 4, arg1->field_C0[i + 3]);
     }
 

@@ -48,6 +48,7 @@
 #include "wallclock.h"
 #include "window.h"
 #include "constants/battle_frontier.h"
+#include "constants/battle_tower.h"
 #include "constants/decorations.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement_constants.h"
@@ -86,7 +87,7 @@ static EWRAM_DATA u8 sScrollableMultichoice_ItemSpriteId = 0;
 static EWRAM_DATA u8 sBattlePointsWindowId = 0;
 static EWRAM_DATA u8 sFrontierExchangeCorner_ItemIconWindowId = 0;
 static EWRAM_DATA u8 sPCBoxToSendMon = 0;
-static EWRAM_DATA u32 sUnknown_0203AB70 = 0;
+static EWRAM_DATA u32 sBattleTowerMultiBattleTypeFlags = 0;
 
 struct ListMenuTemplate gScrollableMultichoice_ListMenuTemplate;
 
@@ -131,7 +132,7 @@ static void ShowFrontierExchangeCornerItemIcon(u16 item);
 static void Task_DeoxysRockInteraction(u8 taskId);
 static void ChangeDeoxysRockLevel(u8 a0);
 static void WaitForDeoxysRockMovement(u8 taskId);
-static void sub_813B57C(u8 taskId);
+static void Task_LinkRetireStatusWithBattleTowerPartner(u8 taskId);
 static void Task_LoopWingFlapSE(u8 taskId);
 static void Task_CloseBattlePikeCurtain(u8 taskId);
 static u8 DidPlayerGetFirstFans(void);
@@ -369,7 +370,7 @@ u8 GetSSTidalLocation(s8 *mapGroup, s8 *mapNum, s16 *x, s16 *y)
     }
     *mapGroup = MAP_GROUP(ROUTE132);
     *y = 20;
-    return SS_TIDAL_LOCATION_OTHER;
+    return SS_TIDAL_LOCATION_CURRENTS;
 }
 
 bool32 ShouldDoWallyCall(void)
@@ -997,7 +998,7 @@ u16 GetWeekCount(void)
 u8 GetLeadMonFriendshipScore(void)
 {
     struct Pokemon *pokemon = &gPlayerParty[GetLeadMonIndex()];
-    if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) == 255)
+    if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) == MAX_FRIENDSHIP)
     {
         return 6;
     }
@@ -1223,18 +1224,18 @@ void EndLotteryCornerComputerEffect(void)
     DrawWholeMapView();
 }
 
-void SetTrickHouseEndRoomFlag(void)
+void SetTrickHouseNuggetFlag(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
-    u16 flag = FLAG_TRICK_HOUSE_END_ROOM;
+    u16 flag = FLAG_HIDDEN_ITEM_DARK_CAVE_SOUTH_ELIXIR;
     *specVar = flag;
     FlagSet(flag);
 }
 
-void ResetTrickHouseEndRoomFlag(void)
+void ResetTrickHouseNuggetFlag(void)
 {
     u16 *specVar = &gSpecialVar_0x8004;
-    u16 flag = FLAG_TRICK_HOUSE_END_ROOM;
+    u16 flag = FLAG_HIDDEN_ITEM_DARK_CAVE_SOUTH_ELIXIR;
     *specVar = flag;
     FlagClear(flag);
 }
@@ -1712,10 +1713,10 @@ bool8 IsBadEggInParty(void)
     return FALSE;
 }
 
-bool8 InMultiBattleRoom(void)
+bool8 InMultiPartnerRoom(void)
 {
-    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BATTLE_FRONTIER_BATTLE_TOWER_MULTI_BATTLE_ROOM)
-        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(BATTLE_FRONTIER_BATTLE_TOWER_MULTI_BATTLE_ROOM) &&
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BATTLE_FRONTIER_BATTLE_TOWER_MULTI_PARTNER_ROOM)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(BATTLE_FRONTIER_BATTLE_TOWER_MULTI_PARTNER_ROOM) &&
         VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_MULTIS)
         return TRUE;
     return FALSE;
@@ -2858,7 +2859,7 @@ void ShowGlassWorkshopMenu(void)
 
 static u8 GetTextColorFromGraphicsId(u16 graphicsId)
 {
-    const u8 textColors[] = {
+    const u8 textColors[NUM_OBJ_EVENT_GFX] = {
         [EVENT_OBJ_GFX_BRENDAN_NORMAL] =            MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_BRENDAN_MACH_BIKE] =         MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_BRENDAN_SURFING] =           MSG_COLOR_BLUE,
@@ -3097,11 +3098,10 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [EVENT_OBJ_GFX_LINK_RS_BRENDAN] =           MSG_COLOR_BLUE,
         [EVENT_OBJ_GFX_LINK_RS_MAY] =               MSG_COLOR_RED,
         [EVENT_OBJ_GFX_LUGIA] =                     MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_HOOH] =                      MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_BARD_2] =                    MSG_COLOR_BLUE,
+        [EVENT_OBJ_GFX_HOOH] =                      MSG_COLOR_BLACK
     };
 
-    if (graphicsId < NUM_OBJECT_GRAPHICS_INFO)
+    if (graphicsId < NUM_OBJ_EVENT_GFX)
         return textColors[graphicsId];
 
     return MSG_COLOR_MISC;
@@ -3115,15 +3115,15 @@ u8 GetTextColorFromSelectedEventObjectGraphicsId(void)
         {
             u8 graphicsId = gEventObjects[gSelectedEventObject].graphicsId;
             
-            if (graphicsId >= SPRITE_VAR)
+            if (graphicsId >= OBJ_EVENT_GFX_VARS)
             {
-                graphicsId = VarGetEventObjectGraphicsId(graphicsId - SPRITE_VAR);
+                graphicsId = VarGetEventObjectGraphicsId(graphicsId - OBJ_EVENT_GFX_VARS);
             }
             if (graphicsId == EVENT_OBJ_GFX_BARD)
             {
                 return MSG_COLOR_BLUE;
             }
-            if (graphicsId >= NUM_OBJECT_GRAPHICS_INFO)
+            if (graphicsId >= NUM_OBJ_EVENT_GFX)
             {
                 graphicsId = EVENT_OBJ_GFX_NINJA_BOY;
             }
@@ -4047,7 +4047,7 @@ bool32 ShouldDistributeEonTicket(void)
 
 void sub_813B534(void)
 {
-    sUnknown_0203AB70 = gBattleTypeFlags;
+    sBattleTowerMultiBattleTypeFlags = gBattleTypeFlags;
     gBattleTypeFlags = 0;
     if (!gReceivedRemoteLinkPlayers)
     {
@@ -4055,12 +4055,12 @@ void sub_813B534(void)
     }
 }
 
-void sub_813B568(void)
+void LinkRetireStatusWithBattleTowerPartner(void)
 {
-    CreateTask(sub_813B57C, 5);
+    CreateTask(Task_LinkRetireStatusWithBattleTowerPartner, 5);
 }
 
-static void sub_813B57C(u8 taskId)
+static void Task_LinkRetireStatusWithBattleTowerPartner(u8 taskId)
 {
     switch (gTasks[taskId].data[0])
     {
@@ -4091,21 +4091,24 @@ static void sub_813B57C(u8 taskId)
                 {
                     gSpecialVar_0x8005 = gBlockRecvBuffer[1][0];
                     ResetBlockReceivedFlag(1);
-                    if (gSpecialVar_0x8004 == 1 && gSpecialVar_0x8005 == 1)
+                    if (gSpecialVar_0x8004 == BATTLE_TOWER_LINK_RETIRE 
+                     && gSpecialVar_0x8005 == BATTLE_TOWER_LINK_RETIRE)
                     {
-                        gSpecialVar_Result = 1;
+                        gSpecialVar_Result = BATTLE_TOWER_LINKSTAT_BOTH_RETIRE;
                     }
-                    else if (gSpecialVar_0x8004 == 0 && gSpecialVar_0x8005 == 1)
+                    else if (gSpecialVar_0x8004 == BATTLE_TOWER_LINK_CONTINUE 
+                          && gSpecialVar_0x8005 == BATTLE_TOWER_LINK_RETIRE)
                     {
-                        gSpecialVar_Result = 2;
+                        gSpecialVar_Result = BATTLE_TOWER_LINKSTAT_PARTNER_RETIRE;
                     }
-                    else if (gSpecialVar_0x8004 == 1 && gSpecialVar_0x8005 == 0)
+                    else if (gSpecialVar_0x8004 == BATTLE_TOWER_LINK_RETIRE 
+                          && gSpecialVar_0x8005 == BATTLE_TOWER_LINK_CONTINUE)
                     {
-                        gSpecialVar_Result = 3;
+                        gSpecialVar_Result = BATTLE_TOWER_LINKSTAT_PLAYER_RETIRE;
                     }
                     else
                     {
-                        gSpecialVar_Result = 0;
+                        gSpecialVar_Result = BATTLE_TOWER_LINKSTAT_CONTINUE;
                     }
                 }
                 gTasks[taskId].data[0]++;
@@ -4143,14 +4146,14 @@ static void sub_813B57C(u8 taskId)
         case 5:
             if (GetMultiplayerId() == 0)
             {
-                if (gSpecialVar_Result == 2)
+                if (gSpecialVar_Result == BATTLE_TOWER_LINKSTAT_PARTNER_RETIRE)
                 {
                     ShowFieldAutoScrollMessage(gText_YourPartnerHasRetired);
                 }
             }
             else
             {
-                if (gSpecialVar_Result == 3)
+                if (gSpecialVar_Result == BATTLE_TOWER_LINKSTAT_PLAYER_RETIRE)
                 {
                     ShowFieldAutoScrollMessage(gText_YourPartnerHasRetired);
                 }
@@ -4181,7 +4184,7 @@ static void sub_813B57C(u8 taskId)
             {
                 sub_800AC34();
             }
-            gBattleTypeFlags = sUnknown_0203AB70;
+            gBattleTypeFlags = sBattleTowerMultiBattleTypeFlags;
             EnableBothScriptContexts();
             DestroyTask(taskId);
             break;

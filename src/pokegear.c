@@ -1319,7 +1319,7 @@ static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that pers
 
 static bool8 NoPhoneServiceInCurrentLocation(void)
 {
-    return (gMapHeader.flags & 0x10) == 0;
+    return (gMapHeader.flags & MAP_HAS_PHONE_SERVICE) == 0;
 }
 
 #define tPhoneCallInitState data[0]

@@ -1027,7 +1027,7 @@ static bool32 CheckMatchCallChance(void)
 
 static bool32 MapAllowsMatchCall(void)
 {
-    return (gMapHeader.flags & 0x10) != 0;
+    return (gMapHeader.flags & MAP_HAS_PHONE_SERVICE) != 0;
 }
 
 static bool32 UpdateMatchCallStepCounter(void)
@@ -1395,7 +1395,7 @@ bool32 CleanupAfterMatchCallHangup(void)
         ChangeBgY(0, 0, 0);
         if (!gMatchCallState.triggeredFromScript)
         {
-            sub_81973A4();
+            LoadMessageBoxAndBorderGfx();
             playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
             EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
             ScriptMovement_UnfreezeEventObjects();
@@ -1905,7 +1905,7 @@ static void PopulateBattleFrontierStreak(int matchCallId, u8 *destStr)
     ConvertIntToDecimalStringN(destStr, gBattleFrontierStreakInfo.streak, STR_CONV_MODE_LEFT_ALIGN, i);
 }
 
-static const u16 sBadgeFlags[] =
+static const u16 sBadgeFlags[NUM_BADGES] =
 {
     FLAG_BADGE01_GET,
     FLAG_BADGE02_GET,
@@ -1921,7 +1921,7 @@ static int GetNumOwnedBadges(void)
 {
     u32 i;
 
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < NUM_BADGES; i++)
     {
         if (!FlagGet(sBadgeFlags[i]))
             break;

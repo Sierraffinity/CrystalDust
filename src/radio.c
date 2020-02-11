@@ -835,7 +835,7 @@ bool16 FieldRadio(void)
     if (FuncIsActiveTask(Task_FieldRadio_1) == TRUE)
         return FALSE;
 
-    sub_81973A4();
+    LoadMessageBoxAndBorderGfx();
     DrawDialogueFrame(0, 1);
     CreateTask(Task_FieldRadio_1, 3);
     return TRUE;

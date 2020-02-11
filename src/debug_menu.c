@@ -219,7 +219,7 @@ void ShowDebugMenu(void)
         sub_808BCF4();
     }
     taskId = CreateTask(HandleDebugMenuInput, 80);
-    sub_81973A4();
+    LoadMessageBoxAndBorderGfx();
     InitDebugMenu(taskId);
     ScriptContext2_Enable();
 }

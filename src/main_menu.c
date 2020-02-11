@@ -786,30 +786,30 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
 
         switch (gSaveFileStatus)
         {
-            case 1:
+            case SAVE_STATUS_OK:
                 tMenuType = HAS_SAVED_GAME;
                 if (IsMysteryGiftEnabled())
                     tMenuType = HAS_MYSTERY_GIFT;
                 gTasks[taskId].func = Task_MainMenuCheckBattery;
                 break;
-            case 2:
+            case SAVE_STATUS_CORRUPT:
                 CreateMainMenuErrorWindow(gText_SaveFileErased);
                 tMenuType = HAS_NO_SAVED_GAME;
                 gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
                 break;
-            case 0xFF:
+            case SAVE_STATUS_ERROR:
                 CreateMainMenuErrorWindow(gText_SaveFileCorrupted);
                 gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
                 tMenuType = HAS_SAVED_GAME;
                 if (IsMysteryGiftEnabled() == TRUE)
                     tMenuType++;
                 break;
-            case 0:
+            case SAVE_STATUS_EMPTY:
             default:
                 tMenuType = HAS_NO_SAVED_GAME;
                 gTasks[taskId].func = Task_MainMenuCheckBattery;
                 break;
-            case 4:
+            case SAVE_STATUS_NO_FLASH:
                 CreateMainMenuErrorWindow(gJPText_No1MSubCircuit);
                 gTasks[taskId].tMenuType = HAS_NO_SAVED_GAME;
                 gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
@@ -2241,9 +2241,9 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *sprite)
     sprite->data[0] = y;
 }
 
-static u8 NewGameOakSpeech_CreateLotadSprite(u8 a, u8 b)
+static u8 NewGameOakSpeech_CreateWooperSprite(u8 a, u8 b)
 {
-    return CreatePicSprite2(SPECIES_WOOPER, 8, 0, 1, a, b, 14, -1);
+    return CreatePicSprite2(SPECIES_WOOPER, SHINY_ODDS, 0, 1, a, b, 14, -1);
 }
 
 void AddOakSpeechObjects(u8 taskId)
@@ -2252,7 +2252,7 @@ void AddOakSpeechObjects(u8 taskId)
     u8 wooperSprite;
     u8 spriteId;
 
-    wooperSprite = NewGameOakSpeech_CreateLotadSprite(96, 96);
+    wooperSprite = NewGameOakSpeech_CreateWooperSprite(96, 96);
     gSprites[wooperSprite].callback = SpriteCB_Null;
     gSprites[wooperSprite].oam.priority = 0;
     gSprites[wooperSprite].invisible = TRUE;
@@ -2481,7 +2481,7 @@ static void MainMenu_FormatSavegameBadges(void)
     u8 badgeCount = 0;
     u32 i;
 
-    for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
+    for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
     {
         if (FlagGet(i))
             badgeCount++;

@@ -547,7 +547,7 @@ SootopolisCity_EventScript_RayquazaSceneFromPokeCenter:: @ 81E5C1E
 	fadenewbgm MUS_RUNECITY
 	delay 120
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	warp8 MAP_SOOTOPOLIS_CITY, 255, 43, 32
+	warpsootopolislegend MAP_SOOTOPOLIS_CITY, 255, 43, 32
 	waitstate
 	end
 
@@ -600,7 +600,7 @@ SootopolisCity_EventScript_RayquazaSceneFromDive:: @ 81E5CCE
 	fadenewbgm MUS_NAMINORI
 	delay 120
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	warp8 MAP_SOOTOPOLIS_CITY, 255, 29, 53
+	warpsootopolislegend MAP_SOOTOPOLIS_CITY, 255, 29, 53
 	waitstate
 	end
 
@@ -755,7 +755,7 @@ SootopolisCity_EventScript_KiriGiveBerry:: @ 81E5F1B
 	random NUM_KIRI_BERRIES
 	addvar VAR_RESULT, NUM_KIRI_BERRIES_SKIPPED
 	addvar VAR_RESULT, FIRST_BERRY_INDEX
-	giveitem_std VAR_RESULT
+	giveitem VAR_RESULT
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY
@@ -768,7 +768,7 @@ SootopolisCity_EventScript_KiriGiveBerry:: @ 81E5F1B
 	end
 
 SootopolisCity_EventScript_GiveFigyBerry:: @ 81E5F79
-	giveitem_std ITEM_FIGY_BERRY
+	giveitem ITEM_FIGY_BERRY
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	msgbox SootopolisCity_Text_WhatKindOfWishInYourName, MSGBOX_DEFAULT
@@ -776,7 +776,7 @@ SootopolisCity_EventScript_GiveFigyBerry:: @ 81E5F79
 	end
 
 SootopolisCity_EventScript_GiveIapapaBerry:: @ 81E5F9A
-	giveitem_std ITEM_IAPAPA_BERRY
+	giveitem ITEM_IAPAPA_BERRY
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	msgbox SootopolisCity_Text_WhatKindOfWishInYourName, MSGBOX_DEFAULT
@@ -1356,7 +1356,7 @@ SootopolisCity_EventScript_Wallace:: @ 81E6446
 
 SootopolisCity_EventScript_GiveWaterfall:: @ 81E646F
 	msgbox SootopolisCity_Text_ThankYouForHelpAcceptThis, MSGBOX_DEFAULT
-	giveitem_std ITEM_HM07
+	giveitem ITEM_HM07
 	setflag FLAG_RECEIVED_HM07
 	msgbox SootopolisCity_Text_ExplainWaterfallGoToGym, MSGBOX_DEFAULT
 	closemessage

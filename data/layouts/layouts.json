@@ -2201,11 +2201,11 @@
             "width": 14
         },
         {
-            "blockdata_filepath": "data/layouts/BattleColosseum2P/map.bin",
-            "border_filepath": "data/layouts/BattleColosseum2P/border.bin",
+            "blockdata_filepath": "data/layouts/BattleColosseum_2P/map.bin",
+            "border_filepath": "data/layouts/BattleColosseum_2P/border.bin",
             "height": 9,
             "id": "LAYOUT_BATTLE_COLOSSEUM_2P",
-            "name": "BattleColosseum2P_Layout",
+            "name": "BattleColosseum_2P_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_CableClub",
             "width": 14
@@ -2231,11 +2231,11 @@
             "width": 20
         },
         {
-            "blockdata_filepath": "data/layouts/BattleColosseum4P/map.bin",
-            "border_filepath": "data/layouts/BattleColosseum4P/border.bin",
+            "blockdata_filepath": "data/layouts/BattleColosseum_4P/map.bin",
+            "border_filepath": "data/layouts/BattleColosseum_4P/border.bin",
             "height": 9,
             "id": "LAYOUT_BATTLE_COLOSSEUM_4P",
-            "name": "BattleColosseum4P_Layout",
+            "name": "BattleColosseum_4P_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_CableClub",
             "width": 14
@@ -3891,21 +3891,21 @@
             "width": 139
         },
         {
-            "blockdata_filepath": "data/layouts/BattleFrontier_BattleTowerMultiBattleRoom/map.bin",
-            "border_filepath": "data/layouts/BattleFrontier_BattleTowerMultiBattleRoom/border.bin",
+            "blockdata_filepath": "data/layouts/BattleFrontier_BattleTowerMultiPartnerRoom/map.bin",
+            "border_filepath": "data/layouts/BattleFrontier_BattleTowerMultiPartnerRoom/border.bin",
             "height": 15,
-            "id": "LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_BATTLE_ROOM",
-            "name": "BattleFrontier_BattleTowerMultiBattleRoom_Layout",
+            "id": "LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_PARTNER_ROOM",
+            "name": "BattleFrontier_BattleTowerMultiPartnerRoom_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_BattleFrontier",
             "width": 21
         },
         {
-            "blockdata_filepath": "data/layouts/BattleFrontier_BattleTowerCorridor2/map.bin",
-            "border_filepath": "data/layouts/BattleFrontier_BattleTowerCorridor2/border.bin",
+            "border_filepath": "data/layouts/BattleFrontier_BattleTowerMultiCorridor/border.bin",
+            "blockdata_filepath": "data/layouts/BattleFrontier_BattleTowerMultiCorridor/map.bin",
             "height": 5,
-            "id": "LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_CORRIDOR2",
-            "name": "BattleFrontier_BattleTowerCorridor2_Layout",
+            "id": "LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_CORRIDOR",
+            "name": "BattleFrontier_BattleTowerMultiCorridor_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_BattleFrontier",
             "width": 17

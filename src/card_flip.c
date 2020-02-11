@@ -1933,9 +1933,9 @@ static void ChangeCoinAmountFixedDuration(int delta, int duration, int startDela
     gTasks[taskId].data[3] = startDelay;
 
     if (delta > 0)
-        GiveCoins(delta);
+        AddCoins(delta);
     else
-        TakeCoins(-delta);
+        RemoveCoins(-delta);
     
     targetCoins = GetCoins();
     gTasks[taskId].data[1] = targetCoins;

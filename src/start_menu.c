@@ -87,7 +87,7 @@ EWRAM_DATA static u8 sBattlePyramidFloorWindowId = 0;
 EWRAM_DATA static u8 sStartMenuCursorPos = 0;
 EWRAM_DATA static u8 sNumStartMenuActions = 0;
 EWRAM_DATA static u8 sCurrentStartMenuActions[9] = {0};
-EWRAM_DATA static u8 sUnknown_02037619[2] = {0};
+EWRAM_DATA static u8 sInitStartMenuData[2] = {0};
 
 EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
@@ -140,9 +140,7 @@ static void StartMenuTask(u8 taskId);
 static void SaveGameTask(u8 taskId);
 static void sub_80A0550(u8 taskId);
 static void sub_80A08A4(u8 taskId);
-
-// Some other callback
-static bool8 sub_809FA00(void);
+static bool8 FieldCB_ReturnToFieldStartMenu(void);
 
 static const struct WindowTemplate sSafariBallsWindowTemplate = {0, 1, 1, 9, 4, 0xF, 8};
 
@@ -230,7 +228,7 @@ static void BuildLinkModeStartMenu(void);
 static void BuildUnionRoomStartMenu(void);
 static void BuildBattlePikeStartMenu(void);
 static void BuildBattlePyramidStartMenu(void);
-static void BuildMultiBattleRoomStartMenu(void);
+static void BuildMultiPartnerRoomStartMenu(void);
 static void ShowSafariBallsWindow(void);
 static void ShowBugCatchingContestWindow(void);
 static void ShowPyramidFloorWindow(void);
@@ -290,9 +288,9 @@ static void BuildStartMenuActions(void)
     {
         BuildBattlePyramidStartMenu();
     }
-    else if (InMultiBattleRoom())
+    else if (InMultiPartnerRoom())
     {
-        BuildMultiBattleRoomStartMenu();
+        BuildMultiPartnerRoomStartMenu();
     }
     else
     {
@@ -400,7 +398,7 @@ static void BuildBattlePyramidStartMenu(void)
     AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
-static void BuildMultiBattleRoomStartMenu(void)
+static void BuildMultiPartnerRoomStartMenu(void)
 {
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PLAYER);
@@ -515,22 +513,22 @@ static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
 
 static bool32 InitStartMenuStep(void)
 {
-    s8 value = sUnknown_02037619[0];
+    s8 state = sInitStartMenuData[0];
 
-    switch (value)
+    switch (state)
     {
     case 0:
-        sUnknown_02037619[0]++;
+        sInitStartMenuData[0]++;
         break;
     case 1:
         BuildStartMenuActions();
-        sUnknown_02037619[0]++;
+        sInitStartMenuData[0]++;
         break;
     case 2:
-        sub_81973A4();
+        LoadMessageBoxAndBorderGfx();
         DrawStdWindowFrame(sub_81979C4(sNumStartMenuActions), FALSE);
-        sUnknown_02037619[1] = 0;
-        sUnknown_02037619[0]++;
+        sInitStartMenuData[1] = 0;
+        sInitStartMenuData[0]++;
         break;
     case 3:
         if (GetSafariZoneFlag())
@@ -539,11 +537,11 @@ static bool32 InitStartMenuStep(void)
             ShowBugCatchingContestWindow();
         if (InBattlePyramid())
             ShowPyramidFloorWindow();
-        sUnknown_02037619[0]++;
+        sInitStartMenuData[0]++;
         break;
     case 4:
-        if (PrintStartMenuActions(&sUnknown_02037619[1], 2))
-            sUnknown_02037619[0]++;
+        if (PrintStartMenuActions(&sInitStartMenuData[1], 2))
+            sInitStartMenuData[0]++;
         break;
     case 5:
         sStartMenuCursorPos = sub_81983AC(GetStartMenuWindowId(), 1, 0, 9, 16, sNumStartMenuActions, sStartMenuCursorPos);
@@ -556,8 +554,8 @@ static bool32 InitStartMenuStep(void)
 
 static void InitStartMenu(void)
 {
-    sUnknown_02037619[0] = 0;
-    sUnknown_02037619[1] = 0;
+    sInitStartMenuData[0] = 0;
+    sInitStartMenuData[1] = 0;
     while (!InitStartMenuStep())
         ;
 }
@@ -572,28 +570,28 @@ static void CreateStartMenuTask(TaskFunc followupFunc)
 {
     u8 taskId;
 
-    sUnknown_02037619[0] = 0;
-    sUnknown_02037619[1] = 0;
+    sInitStartMenuData[0] = 0;
+    sInitStartMenuData[1] = 0;
     taskId = CreateTask(StartMenuTask, 0x50);
     SetTaskFuncWithFollowupFunc(taskId, StartMenuTask, followupFunc);
 }
 
-static bool8 sub_809FA00(void)
+static bool8 FieldCB_ReturnToFieldStartMenu(void)
 {
     if (InitStartMenuStep() == FALSE)
     {
         return FALSE;
     }
 
-    sub_80AF688();
+    ReturnToFieldOpenStartMenu();
     return TRUE;
 }
 
-void sub_809FA18(void)
+void ShowReturnToFieldStartMenu(void)
 {
-    sUnknown_02037619[0] = 0;
-    sUnknown_02037619[1] = 0;
-    gFieldCallback2 = sub_809FA00;
+    sInitStartMenuData[0] = 0;
+    sInitStartMenuData[1] = 0;
+    gFieldCallback2 = FieldCB_ReturnToFieldStartMenu;
 }
 
 void Task_ShowStartMenu(u8 taskId)
@@ -1055,8 +1053,8 @@ static u8 SaveConfirmInputCallback(void)
     case 0: // Yes
         switch (gSaveFileStatus)
         {
-        case 0:
-        case 2:
+        case SAVE_STATUS_EMPTY:
+        case SAVE_STATUS_CORRUPT:
             if (gDifferentSaveFile == FALSE)
             {
                 sSaveDialogCallback = SaveFileExistsCallback;
@@ -1148,14 +1146,10 @@ static u8 SaveDoSaveCallback(void)
         saveStatus = TrySavingData(SAVE_NORMAL);
     }
 
-    if (saveStatus == 1) // Save succeded
-    {
+    if (saveStatus == SAVE_STATUS_OK)
         ShowSaveMessage(gText_PlayerSavedGame, SaveSuccessCallback);
-    }
-    else                 // Save error
-    {
+    else
         ShowSaveMessage(gText_SaveError, SaveErrorCallback);
-    }
 
     SaveStartTimer();
     return SAVE_IN_PROGRESS;
@@ -1403,20 +1397,20 @@ static void ShowSaveInfoWindow(void)
 
     // Print region name
     yOffset = 0;
-    sub_819A344(3, gStringVar4, color);
+    BufferSaveMenuText(SAVE_MENU_LOCATION, gStringVar4, color);
     xOffset = GetStringCenterAlignXOffset(1, gStringVar4, 0x70);
     AddTextPrinterParameterized(sSaveInfoWindowId, 1, gStringVar4, xOffset, yOffset, 0xFF, NULL);
 
     // Print player name
     yOffset = 14;
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingPlayer, 2, yOffset, 0xFF, NULL);
-    sub_819A344(0, gStringVar4, TEXT_COLOR_DARK_GREY);
+    BufferSaveMenuText(SAVE_MENU_NAME, gStringVar4, TEXT_COLOR_DARK_GREY);
     PrintPlayerNameOnWindow(sSaveInfoWindowId, gStringVar4, 60, yOffset);
 
     // Print badge count
     yOffset = 28;
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingBadges, 2, yOffset, 0xFF, NULL);
-    sub_819A344(4, gStringVar4, TEXT_COLOR_DARK_GREY);
+    BufferSaveMenuText(SAVE_MENU_BADGES, gStringVar4, TEXT_COLOR_DARK_GREY);
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, 0xFF, NULL);
 
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
@@ -1424,14 +1418,14 @@ static void ShowSaveInfoWindow(void)
         // Print pokedex count
         yOffset = 42;
         AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingPokedex, 2, yOffset, 0xFF, NULL);
-        sub_819A344(1, gStringVar4, TEXT_COLOR_DARK_GREY);
+        BufferSaveMenuText(SAVE_MENU_CAUGHT, gStringVar4, TEXT_COLOR_DARK_GREY);
         AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, 0xFF, NULL);
     }
 
     // Print play time
     yOffset += 14;
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingTime, 2, yOffset, 0xFF, NULL);
-    sub_819A344(2, gStringVar4, TEXT_COLOR_DARK_GREY);
+    BufferSaveMenuText(2, gStringVar4, TEXT_COLOR_DARK_GREY);
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, 0xFF, NULL);
 
     CopyWindowToVram(sSaveInfoWindowId, 2);

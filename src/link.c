@@ -1355,7 +1355,7 @@ bool8 sub_800AA60(void)
     {
         if (gLinkPlayers[i].trainerId == gSavedLinkPlayers[i].trainerId)
         {
-            if (gLinkType == LINKTYPE_0x2288)
+            if (gLinkType == LINKTYPE_BATTLE_TOWER)
             {
                 if (gLinkType == gLinkPlayers[i].linkType)
                 {
@@ -1908,7 +1908,8 @@ bool32 sub_800B504(void)
     return FALSE;
 }
 
-u8 sub_800B518(void)
+// Unused
+u8 GetWirelessCommType(void)
 {
     return gWirelessCommType;
 }

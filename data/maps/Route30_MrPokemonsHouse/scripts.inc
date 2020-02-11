@@ -21,7 +21,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	applymovement EVENT_OBJ_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PlayerToMrPokemon
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_ThisIsWhatIWant
-	giveitem_std ITEM_MYSTERY_EGG
+	giveitem ITEM_MYSTERY_EGG
 	setflag FLAG_RECEIVED_MYSTERY_EGG
 	msgbox Route30_MrPokemonsHouse_Text_IKnowACouple
 	applymovement 1, Common_Movement_WalkInPlaceFastestRight

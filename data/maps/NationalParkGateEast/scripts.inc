@@ -169,7 +169,7 @@ NationalParkGateEast_AwardPlayerThirdPlace:
 	message NationalParkGateEast_Text_ThirdPrize
 NationalParkGateEast_GivePrize:
 	waitmessage
-	giveitem_std VAR_0x8004
+	giveitem VAR_0x8004
 	compare VAR_RESULT, 0
 	goto_if_eq NationalParkGateEast_NoRoomForPrize
 	setvar VAR_BUG_CONTEST_PRIZE, ITEM_NONE

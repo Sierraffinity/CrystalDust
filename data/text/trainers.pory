@@ -136,6 +136,37 @@ text Trainer_Text_Neal_After {
     "Let there be light on your journey."
 }
 
+text VioletCity_Gym_Text_AbeIntro {
+	"Let me see if you are good enough\n"
+	"to face FALKNER!"
+}
+
+text VioletCity_Gym_Text_AbeDefeat {
+	"This can't be true!"
+}
+
+text VioletCity_Gym_Text_AbePostBattle {
+	"This is pathetic, losing to some\n"
+	"rookie TRAINER…"
+}
+
+text VioletCity_Gym_Text_RodIntro {
+	"The key word is guts!\p"
+	"Those here are training night and\n"
+	"day to become bird POKéMON\l"
+	"masters. Come on!"
+}
+
+text VioletCity_Gym_Text_RodDefeat {
+	"Gaaah!"
+}
+
+text VioletCity_Gym_Text_RodPostBattle {
+	"FALKNER's skills are for real!\n"
+	"Don't get cocky just because you\l"
+	"beat me!"
+}
+
 raw `
 Route32_Text_GinaIntro: @ 82952BB
 	.string "GINA: Okay, let's battle with our\n"

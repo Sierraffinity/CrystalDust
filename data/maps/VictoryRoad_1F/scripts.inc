@@ -84,7 +84,7 @@ VictoryRoad_1F_EventScript_EntranceWally:: @ 8235E2C
 
 @ This Wally appears and remains at the exit after the Hall of Fame is entered 
 VictoryRoad_1F_EventScript_ExitWally:: @ 8235E35
-	trainerbattle_single TRAINER_WALLY_3, VictoryRoad_1F_Text_WallyIntro, VictoryRoad_1F_Text_WallyDefeat
+	trainerbattle_single TRAINER_WALLY_VR_2, VictoryRoad_1F_Text_WallyIntro, VictoryRoad_1F_Text_WallyDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq VictoryRoad_1F_EventScript_RematchWally
@@ -92,7 +92,7 @@ VictoryRoad_1F_EventScript_ExitWally:: @ 8235E35
 	end
 
 VictoryRoad_1F_EventScript_RematchWally:: @ 8235E5C
-	trainerbattle_rematch TRAINER_WALLY_3, VictoryRoad_1F_Text_WallyIntro, VictoryRoad_1F_Text_WallyDefeat
+	trainerbattle_rematch TRAINER_WALLY_VR_2, VictoryRoad_1F_Text_WallyIntro, VictoryRoad_1F_Text_WallyDefeat
 	msgbox VictoryRoad_1F_Text_WallyPostBattle, MSGBOX_AUTOCLOSE
 	end
 

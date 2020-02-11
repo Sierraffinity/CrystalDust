@@ -1735,7 +1735,7 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
     {
     case 0:
         CreatePCMenu(task->data[1], &task->data[15]);
-        sub_81973A4();
+        LoadMessageBoxAndBorderGfx();
         DrawDialogueFrame(0, 0);
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
         AddTextPrinterParameterized2(0, 1, gUnknown_085716C0[task->data[1]].desc, TEXT_SPEED_FF, NULL, 2, 1, 3);
@@ -1855,7 +1855,7 @@ static void FieldCb_ReturnToPcMenu(void)
     gTasks[taskId].data[1] = sPreviousBoxOption;
     Task_PokemonStorageSystemPC(taskId);
     SetVBlankCallback(vblankCb);
-    pal_fill_black();
+    FadeInFromBlack();
 }
 
 static void CreatePCMenu(u8 whichMenu, s16 *windowIdPtr)
@@ -6898,7 +6898,7 @@ static void SetCursorMonData(void *pokemon, u8 mode)
         *(txtPtr++) = 3;
         *(txtPtr++) = 0;
         *(txtPtr++) = CHAR_SPECIAL_F9;
-        *(txtPtr++) = 5;
+        *(txtPtr++) = CHAR_LV_2;
 
         txtPtr = ConvertIntToDecimalStringN(txtPtr, sPSSData->cursorMonLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
         txtPtr[0] = CHAR_SPACE;

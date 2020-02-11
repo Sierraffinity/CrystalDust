@@ -127,7 +127,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmHandedMysteryEgg
 	closemessage
 	call Common_RestoreOriginalTextColor
-	takeitem ITEM_MYSTERY_EGG, 1
+	removeitem ITEM_MYSTERY_EGG, 1
 	delay 10
 	compare VAR_FACING, 1
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsDown
@@ -525,7 +525,7 @@ NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger:
 NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain:
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_TakeThisForErrand
-	giveitem_std ITEM_POTION
+	giveitem ITEM_POTION
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy
 	closemessage
 	compare VAR_TEMP_1, 0
@@ -595,7 +595,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AideBalls3::
 NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain:
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_TakeBalls
-	giveitem_std ITEM_POKE_BALL, 5
+	giveitem ITEM_POKE_BALL, 5
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_BallExplanation
 	closemessage
 	compare VAR_TEMP_1, 0
