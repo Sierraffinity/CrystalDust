@@ -339,7 +339,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route30_BerryMansHouse/scripts.inc"
 	.include "data/maps/Route30_MrPokemonsHouse/scripts.inc"
 	.include "data/maps/Route31_Gatehouse/scripts.inc"
-	.include "data/maps/Route112_CableCarStation/scripts.inc"
+	.include "data/maps/Route32_Gatehouse/scripts.inc"
 	.include "data/maps/MtChimney_CableCarStation/scripts.inc"
 	.include "data/maps/Route114_FossilManiacsHouse/scripts.inc"
 	.include "data/maps/Route114_FossilManiacsTunnel/scripts.inc"

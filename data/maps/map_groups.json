@@ -192,9 +192,7 @@
         "Route30_MrPokemonsHouse"
     ],
     "gMapGroup19": [
-        "Route31_Gatehouse",
-        "Route112_CableCarStation",
-        "MtChimney_CableCarStation"
+        "Route31_Gatehouse"
     ],
     "gMapGroup2": [
         "CherrygroveCity_House1",
@@ -205,6 +203,8 @@
         "CherrygroveCity_House2"
     ],
     "gMapGroup20": [
+        "Route32_Gatehouse",
+        "MtChimney_CableCarStation",
         "Route114_FossilManiacsHouse",
         "Route114_FossilManiacsTunnel",
         "Route114_LanettesHouse"

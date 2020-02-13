@@ -274,14 +274,14 @@
 #define MAP_ROUTE30_MR_POKEMONS_HOUSE (1 | (18 << 8))
 
 // Map Group 19
-#define MAP_ROUTE31_GATEHOUSE            (0 | (19 << 8))
-#define MAP_ROUTE112_CABLE_CAR_STATION   (1 | (19 << 8))
-#define MAP_MT_CHIMNEY_CABLE_CAR_STATION (2 | (19 << 8))
+#define MAP_ROUTE31_GATEHOUSE (0 | (19 << 8))
 
 // Map Group 20
-#define MAP_ROUTE114_FOSSIL_MANIACS_HOUSE  (0 | (20 << 8))
-#define MAP_ROUTE114_FOSSIL_MANIACS_TUNNEL (1 | (20 << 8))
-#define MAP_ROUTE114_LANETTES_HOUSE        (2 | (20 << 8))
+#define MAP_ROUTE32_GATEHOUSE              (0 | (20 << 8))
+#define MAP_MT_CHIMNEY_CABLE_CAR_STATION   (1 | (20 << 8))
+#define MAP_ROUTE114_FOSSIL_MANIACS_HOUSE  (2 | (20 << 8))
+#define MAP_ROUTE114_FOSSIL_MANIACS_TUNNEL (3 | (20 << 8))
+#define MAP_ROUTE114_LANETTES_HOUSE        (4 | (20 << 8))
 
 // Map Group 21
 #define MAP_ROUTE116_TUNNELERS_REST_HOUSE (0 | (21 << 8))

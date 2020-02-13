@@ -1,6 +1,6 @@
 {
-  "id": "MAP_ROUTE112_CABLE_CAR_STATION",
-  "name": "Route112_CableCarStation",
+  "id": "MAP_ROUTE32_GATEHOUSE",
+  "name": "Route32_Gatehouse",
   "layout": "LAYOUT_CABLE_CAR_STATION",
   "music": "MUS_ROUTE34",
   "region_map_section": "MAPSEC_ROUTE_112",
@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route112_CableCarStation_EventScript_Attendant",
+      "script": "Route32_Gatehouse_EventScript_Attendant",
       "flag": "0"
     },
     {
