@@ -17,7 +17,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_SAGE",
+            "graphics_id": "OBJ_EVENT_GFX_SAGE",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -31,7 +31,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_SAGE",
+            "graphics_id": "OBJ_EVENT_GFX_SAGE",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
@@ -45,7 +45,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_OLD_WOMAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -59,7 +59,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_WOMAN_1",
+            "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -73,7 +73,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_SAGE",
+            "graphics_id": "OBJ_EVENT_GFX_SAGE",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -87,7 +87,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_ITEM_SPROUT_TOWER_1F_PARALYZE_HEAL",
-            "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",

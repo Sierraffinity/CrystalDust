@@ -70,17 +70,18 @@ VioletCity_PokemonCenter_1F_EventScript_Aide_9:
 	closemessage
 	compare VAR_FACING, DIR_NORTH
 	goto_if_eq VioletCity_PokemonCenter_1F_EventScript_Aide_13
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 5, VioletCity_PokemonCenter_1F_Movement_AideStraightOut
 	waitmovement 0
 VioletCity_PokemonCenter_1F_EventScript_Aide_12:
 	playse SE_KAIDAN
 	removeobject 5
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE
+	setvar VAR_ROUTE32_STATE, 1
 	goto VioletCity_PokemonCenter_1F_EventScript_Aide_5
 
 VioletCity_PokemonCenter_1F_EventScript_Aide_13:
-	applymovement EVENT_OBJ_ID_PLAYER, VioletCity_PokemonCenter_1F_Movement_PlayerWatchesAide
+	applymovement OBJ_EVENT_ID_PLAYER, VioletCity_PokemonCenter_1F_Movement_PlayerWatchesAide
 	applymovement 5, VioletCity_PokemonCenter_1F_Movement_AideAroundPlayer
 	waitmovement 0
 	goto VioletCity_PokemonCenter_1F_EventScript_Aide_12

@@ -105,7 +105,7 @@
 #define FLAG_REFUSED_ELMS_EGG                0x5B
 #define FLAG_GOT_ELMS_EGG                    0x5C
 #define FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET           0x5D
-#define FLAG_RECEIVED_WAILMER_PAIL           0x5E
+#define FLAG_GOT_MIRACLE_SEED_ROUTE_32       0x5E
 #define FLAG_RECEIVED_POKEBLOCK_CASE         0x5F
 #define FLAG_RECEIVED_SECRET_POWER           0x60
 #define FLAG_MET_TEAM_AQUA_HARBOR            0x61

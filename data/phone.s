@@ -4,7 +4,7 @@
 #include "constants/day_night.h"
 #include "constants/easy_chat.h"
 #include "constants/event_objects.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/field_effects.h"
 #include "constants/flags.h"
 #include "constants/fruit_trees.h"

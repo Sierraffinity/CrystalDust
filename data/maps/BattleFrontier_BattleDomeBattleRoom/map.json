@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_REPORTER_M",
+      "graphics_id": "OBJ_EVENT_GFX_REPORTER_M",
       "x": 5,
       "y": 4,
       "elevation": 0,
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_TWIN",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "x": 7,
       "y": 2,
       "elevation": 0,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "x": 9,
       "y": 2,
       "elevation": 0,
@@ -57,7 +57,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BOY_2",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
       "x": 11,
       "y": 2,
       "elevation": 0,
@@ -71,7 +71,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
       "x": 16,
       "y": 2,
       "elevation": 0,
@@ -85,7 +85,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
       "x": 4,
       "y": 2,
       "elevation": 0,
@@ -99,7 +99,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 16,
       "y": 1,
       "elevation": 0,
@@ -113,7 +113,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CAMPER",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "x": 8,
       "y": 1,
       "elevation": 0,
@@ -127,7 +127,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
       "x": 0,
       "y": 4,
       "elevation": 0,
@@ -141,7 +141,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_FAT_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "x": 12,
       "y": 1,
       "elevation": 0,
@@ -155,7 +155,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_GIRL_2",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
       "x": 13,
       "y": 2,
       "elevation": 0,
@@ -169,7 +169,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_GIRL_1",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
       "x": 10,
       "y": 2,
       "elevation": 0,
@@ -183,7 +183,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_VAR_1",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_1",
       "x": 4,
       "y": 9,
       "elevation": 4,
@@ -197,7 +197,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WOMAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
       "x": 14,
       "y": 2,
       "elevation": 0,
@@ -211,7 +211,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_VAR_0",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
       "x": 11,
       "y": 6,
       "elevation": 0,

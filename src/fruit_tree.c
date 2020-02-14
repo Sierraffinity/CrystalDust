@@ -5,7 +5,7 @@
 #include "field_camera.h"
 #include "field_player_avatar.h"
 #include "item.h"
-#include "constants/bg_event_constants.h"
+#include "constants/event_bg.h"
 #include "constants/items.h"
 #include "constants/fruit_trees.h"
 

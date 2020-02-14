@@ -31,7 +31,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_SWIMMER_M",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
       "x": 7,
       "y": 31,
       "elevation": 1,
@@ -45,7 +45,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SWIMMER_M",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
       "x": 45,
       "y": 9,
       "elevation": 1,
@@ -59,7 +59,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SWIMMER_F",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
       "x": 38,
       "y": 24,
       "elevation": 1,
@@ -73,7 +73,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SWIMMER_F",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
       "x": 30,
       "y": 28,
       "elevation": 1,
@@ -87,7 +87,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SAILOR",
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
       "x": 21,
       "y": 30,
       "elevation": 3,
@@ -101,7 +101,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_LASS",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "x": 17,
       "y": 19,
       "elevation": 3,
@@ -115,7 +115,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_LASS",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "x": 18,
       "y": 19,
       "elevation": 3,
@@ -129,7 +129,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_5",
       "x": 43,
       "y": 19,
       "elevation": 3,
@@ -143,7 +143,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 48,
       "y": 19,
       "elevation": 3,
@@ -157,7 +157,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 46,
       "y": 17,
       "elevation": 3,

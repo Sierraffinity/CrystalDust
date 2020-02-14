@@ -65,7 +65,7 @@ NewBarkTown_EventScript_Rival::
 	delay 10
 	playse SE_KOUKA_L
 	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalKicksPlayer
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerJumpsBack
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerJumpsBack
 	waitmovement 0
 	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalStepsToWindow
 	waitmovement 0
@@ -74,13 +74,13 @@ NewBarkTown_EventScript_Rival::
 
 NewBarkTown_EventScript_Rival_FacingNorth:
 	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalStepsDown
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackDown
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackDown
 	waitmovement 0
 	return
 
 NewBarkTown_EventScript_Rival_FacingRight:
 	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalStepsLeft
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackLeft
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerStepsBackLeft
 	waitmovement 0
 	return
 
@@ -150,7 +150,7 @@ NewBarkTown_EventScript_TeacherMain:
 	turnobject 2, 3
 	msgbox NewBarkTown_Text_WaitPlayer
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 10
 	compare VAR_TEMP_1, 0
@@ -174,7 +174,7 @@ NewBarkTown_Movement_TeacherToTopSpot:
 	step_end
 
 NewBarkTown_EventScript_TeacherToMiddleSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher
 	applymovement 2, NewBarkTown_Movement_TeacherToMiddleSpot
 	goto NewBarkTown_EventScript_TeacherPostMoveToPlayer
 
@@ -199,7 +199,7 @@ NewBarkTown_Movement_TeacherToMiddleSpot:
 	step_end
 
 NewBarkTown_EventScript_TeacherToBottomSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerTurnAfterWaitingForTeacher
 	applymovement 2, NewBarkTown_Movement_TeacherToBottomSpot
 	goto NewBarkTown_EventScript_TeacherPostMoveToPlayer
 
@@ -226,7 +226,7 @@ NewBarkTown_EventScript_TeacherPostMoveToPlayer:
 	end
 
 NewBarkTown_EventScript_TeacherAndPlayerFromTopSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerFromTopSpot
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerFromTopSpot
 	applymovement 2, NewBarkTown_Movement_TeacherFromTopSpot
 	goto NewBarkTown_EventScript_TeacherPostReturn
 
@@ -248,7 +248,7 @@ NewBarkTown_Movement_TeacherFromTopSpot:
 	step_end
 
 NewBarkTown_EventScript_TeacherAndPlayerFromMiddleSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerFromMiddleSpot
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerFromMiddleSpot
 	applymovement 2, NewBarkTown_Movement_TeacherFromMiddleSpot
 	goto NewBarkTown_EventScript_TeacherPostReturn
 
@@ -272,7 +272,7 @@ NewBarkTown_Movement_TeacherFromMiddleSpot:
 	step_end
 
 NewBarkTown_EventScript_TeacherAndPlayerFromBottomSpot:
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_Movement_PlayerFromBottomSpot
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PlayerFromBottomSpot
 	applymovement 2, NewBarkTown_Movement_TeacherFromBottomSpot
 	goto NewBarkTown_EventScript_TeacherPostReturn
 

@@ -32,26 +32,26 @@ CherrygroveCity_EventScript_GuideGent::
 	msgbox CherrygroveCity_Text_GuideGent_PokemonCenter
 	closemessage
 	applymovement 1, CherrygroveCity_Movement_ToMart
-	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_ToMart
+	applymovement OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_ToMart
 	waitmovement 0
 	msgbox CherrygroveCity_Text_GuideGent_PokemonMart
 	closemessage
 	applymovement 1, CherrygroveCity_Movement_ToRoute30
-	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_ToRoute30
+	applymovement OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_ToRoute30
 	waitmovement 0
 	msgbox CherrygroveCity_Text_GuideGent_Route30
 	closemessage
 	applymovement 1, CherrygroveCity_Movement_GuideGentToSea
-	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerToSea
+	applymovement OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerToSea
 	waitmovement 0
 	msgbox CherrygroveCity_Text_GuideGent_Sea
 	closemessage
 	applymovement 1, CherrygroveCity_Movement_GuideGentToGuideGentsHouse
-	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerToGuideGentsHouse
+	applymovement OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerToGuideGentsHouse
 	waitmovement 0
 	delay 60
 	turnobject 1, 3
-	turnobject EVENT_OBJ_ID_PLAYER, 4
+	turnobject OBJ_EVENT_ID_PLAYER, 4
 	msgbox CherrygroveCity_Text_GuideGent_ItsMyHouse
 	textcolor MSG_COLOR_BLACK
 	playfanfare MUS_FANFA4
@@ -63,7 +63,7 @@ CherrygroveCity_EventScript_GuideGent::
 	msgbox CherrygroveCity_Text_GuideGent_Pokegear
 	closemessage
 	fadedefaultbgm
-	turnobject EVENT_OBJ_ID_PLAYER, 2
+	turnobject OBJ_EVENT_ID_PLAYER, 2
 	applymovement 1, CherrygroveCity_Movement_WalkUp
 	waitmovement 0
 	opendoor 36, 12
@@ -186,7 +186,7 @@ CherrygroveCity_Movement_WalkUp:
 
 CherrygroveCity_EventScript_GuideGentFromLeft:
 	applymovement 1, CherrygroveCity_Movement_GuideGentFromLeft
-	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerFromLeft
+	applymovement OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerFromLeft
 	waitmovement 0
 	return
 
@@ -215,7 +215,7 @@ CherrygroveCity_Movement_PlayerFromLeft:
 
 CherrygroveCity_EventScript_GuideGentFromBelow:
 	applymovement 1, CherrygroveCity_Movement_GuideGentFromBelow
-	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerFromBelow
+	applymovement OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerFromBelow
 	waitmovement 0
 	return
 
@@ -240,7 +240,7 @@ CherrygroveCity_Movement_PlayerFromBelow:
 
 CherrygroveCity_EventScript_GuideGentFromRight:
 	applymovement 1, CherrygroveCity_Movement_GuideGentFromRight
-	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_PlayerFromRight
+	applymovement OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_PlayerFromRight
 	waitmovement 0
 	return
 
@@ -289,11 +289,11 @@ CherrygroveCity_EventScript_RivalMain:
 	addobject 2
 	textcolor MSG_COLOR_BLUE
 	fadenewbgm 0
-	turnobject EVENT_OBJ_ID_PLAYER, 4
+	turnobject OBJ_EVENT_ID_PLAYER, 4
 	playse SE_PIN
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_ExclamationMark
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_Delay48
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48
 	waitmovement 0
 	applymovement 2, CherrygroveCity_Movement_RivalToPlayer
 	waitmovement 0
@@ -312,7 +312,7 @@ CherrygroveCity_EventScript_RivalMain:
 	closemessage
 	delay 10
 	playse SE_KOUKA_L
-	applymovement EVENT_OBJ_ID_PLAYER, CherrygroveCity_Movement_RivalPushesPlayer
+	applymovement OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_RivalPushesPlayer
 	applymovement 2, CherrygroveCity_Movement_RivalRunsAway
 	waitmovement 0
 	savebgm MUS_DUMMY

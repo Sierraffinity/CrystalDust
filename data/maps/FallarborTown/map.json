@@ -26,7 +26,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_GIRL_1",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
       "x": 8,
       "y": 11,
       "elevation": 3,
@@ -40,7 +40,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 11,
       "y": 9,
       "elevation": 3,
@@ -54,7 +54,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_GENTLEMAN",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 11,
       "y": 15,
       "elevation": 3,
@@ -68,7 +68,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_AZURILL",
+      "graphics_id": "OBJ_EVENT_GFX_AZURILL",
       "x": 8,
       "y": 12,
       "elevation": 3,

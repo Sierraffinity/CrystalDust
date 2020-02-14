@@ -631,11 +631,11 @@
             "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/House3/map.bin",
-            "border_filepath": "data/layouts/House3/border.bin",
+            "blockdata_filepath": "data/layouts/Gatehouse_Horizontal/map.bin",
+            "border_filepath": "data/layouts/Gatehouse_Horizontal/border.bin",
             "height": 9,
-            "id": "LAYOUT_HOUSE3",
-            "name": "House3_Layout",
+            "id": "LAYOUT_GATEHOUSE_HORIZONTAL",
+            "name": "GatehouseHorizontal_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_Gatehouse",
             "width": 13
@@ -1011,11 +1011,11 @@
             "width": 8
         },
         {
-            "blockdata_filepath": "data/layouts/Route29_Gatehouse/map.bin",
-            "border_filepath": "data/layouts/Route29_Gatehouse/border.bin",
+            "blockdata_filepath": "data/layouts/Gatehouse_Vertical/map.bin",
+            "border_filepath": "data/layouts/Gatehouse_Vertical/border.bin",
             "height": 11,
-            "id": "LAYOUT_ROUTE29_GATEHOUSE",
-            "name": "Route29_Gatehouse_Layout",
+            "id": "LAYOUT_GATEHOUSE_VERTICAL",
+            "name": "GatehouseVertical_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_Gatehouse",
             "width": 9
@@ -3901,8 +3901,8 @@
             "width": 21
         },
         {
-            "border_filepath": "data/layouts/BattleFrontier_BattleTowerMultiCorridor/border.bin",
             "blockdata_filepath": "data/layouts/BattleFrontier_BattleTowerMultiCorridor/map.bin",
+            "border_filepath": "data/layouts/BattleFrontier_BattleTowerMultiCorridor/border.bin",
             "height": 5,
             "id": "LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_CORRIDOR",
             "name": "BattleFrontier_BattleTowerMultiCorridor_Layout",

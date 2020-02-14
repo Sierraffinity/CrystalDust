@@ -51,7 +51,7 @@
 #include "constants/battle_tower.h"
 #include "constants/decorations.h"
 #include "constants/event_objects.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/field_effects.h"
 #include "constants/field_specials.h"
 #include "constants/items.h"
@@ -91,17 +91,17 @@ static EWRAM_DATA u32 sBattleTowerMultiBattleTypeFlags = 0;
 
 struct ListMenuTemplate gScrollableMultichoice_ListMenuTemplate;
 
-extern const u16 gEventObjectPalette8[];
-extern const u16 gEventObjectPalette17[];
-extern const u16 gEventObjectPalette33[];
-extern const u16 gEventObjectPalette34[];
+extern const u16 gObjectEventPalette8[];
+extern const u16 gObjectEventPalette17[];
+extern const u16 gObjectEventPalette33[];
+extern const u16 gObjectEventPalette34[];
 
 void TryLoseFansFromPlayTime(void);
 void SetPlayerGotFirstFans(void);
 u16 GetNumFansOfPlayerInTrainerFanClub(void);
 
 static void RecordCyclingRoadResults(u32, u8);
-static void LoadLinkPartnerEventObjectSpritePalette(u8 graphicsId, u8 localEventId, u8 paletteNum);
+static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEventId, u8 paletteNum);
 static void Task_PetalburgGymSlideOpenRoomDoors(u8 taskId);
 static void PetalburgGymSetDoorMetatiles(u8 roomNumber, u16 metatileId);
 static void Task_PCTurnOnEffect(u8);
@@ -525,7 +525,7 @@ u8 GetLinkPartnerNames(void)
     return nLinkPlayers;
 }
 
-void SpawnLinkPartnerEventObject(void)
+void SpawnLinkPartnerObjectEvent(void)
 {
     u8 j = 0;
     s16 x = 0;
@@ -579,25 +579,25 @@ void SpawnLinkPartnerEventObject(void)
                 case VERSION_RUBY:
                 case VERSION_SAPPHIRE:
                     if (gLinkPlayers[i].gender == 0)
-                        linkSpriteId = EVENT_OBJ_GFX_LINK_RS_BRENDAN;
+                        linkSpriteId = OBJ_EVENT_GFX_LINK_RS_BRENDAN;
                     else
-                        linkSpriteId = EVENT_OBJ_GFX_LINK_RS_MAY;
+                        linkSpriteId = OBJ_EVENT_GFX_LINK_RS_MAY;
                     break;
                 case VERSION_EMERALD:
                     if (gLinkPlayers[i].gender == 0)
-                        linkSpriteId = EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL;
+                        linkSpriteId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL;
                     else
-                        linkSpriteId = EVENT_OBJ_GFX_RIVAL_MAY_NORMAL;
+                        linkSpriteId = OBJ_EVENT_GFX_RIVAL_MAY_NORMAL;
                     break;
                 default:
                     if (gLinkPlayers[i].gender == 0)
-                        linkSpriteId = EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL;
+                        linkSpriteId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL;
                     else
-                        linkSpriteId = EVENT_OBJ_GFX_RIVAL_MAY_NORMAL;
+                        linkSpriteId = OBJ_EVENT_GFX_RIVAL_MAY_NORMAL;
                     break;
             }
-            SpawnSpecialEventObjectParameterized(linkSpriteId, movementTypes[j], 240 - i, coordOffsets[j][0] + x + 7, coordOffsets[j][1] + y + 7, 0);
-            LoadLinkPartnerEventObjectSpritePalette(linkSpriteId, 240 - i, i);
+            SpawnSpecialObjectEventParameterized(linkSpriteId, movementTypes[j], 240 - i, coordOffsets[j][0] + x + 7, coordOffsets[j][1] + y + 7, 0);
+            LoadLinkPartnerObjectEventSpritePalette(linkSpriteId, 240 - i, i);
             j++;
             if (j == MAX_LINK_PLAYERS)
             {
@@ -607,36 +607,36 @@ void SpawnLinkPartnerEventObject(void)
     }
 }
 
-static void LoadLinkPartnerEventObjectSpritePalette(u8 graphicsId, u8 localEventId, u8 paletteNum)
+static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEventId, u8 paletteNum)
 {
     u8 adjustedPaletteNum;
     // Note: This temp var is necessary; paletteNum += 6 doesn't match.
     adjustedPaletteNum = paletteNum + 6;
-    if (graphicsId == EVENT_OBJ_GFX_LINK_RS_BRENDAN ||
-        graphicsId == EVENT_OBJ_GFX_LINK_RS_MAY ||
-        graphicsId == EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL ||
-        graphicsId == EVENT_OBJ_GFX_RIVAL_MAY_NORMAL)
+    if (graphicsId == OBJ_EVENT_GFX_LINK_RS_BRENDAN ||
+        graphicsId == OBJ_EVENT_GFX_LINK_RS_MAY ||
+        graphicsId == OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL ||
+        graphicsId == OBJ_EVENT_GFX_RIVAL_MAY_NORMAL)
     {
-        u8 obj = GetEventObjectIdByLocalIdAndMap(localEventId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-        if (obj != EVENT_OBJECTS_COUNT)
+        u8 obj = GetObjectEventIdByLocalIdAndMap(localEventId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+        if (obj != OBJECT_EVENTS_COUNT)
         {
-            u8 spriteId = gEventObjects[obj].spriteId;
+            u8 spriteId = gObjectEvents[obj].spriteId;
             struct Sprite *sprite = &gSprites[spriteId];
             sprite->oam.paletteNum = adjustedPaletteNum;
 
             switch (graphicsId)
             {
-                case EVENT_OBJ_GFX_LINK_RS_BRENDAN:
-                    LoadPalette(gEventObjectPalette33, 0x100 + (adjustedPaletteNum << 4), 0x20);
+                case OBJ_EVENT_GFX_LINK_RS_BRENDAN:
+                    LoadPalette(gObjectEventPalette33, 0x100 + (adjustedPaletteNum << 4), 0x20);
                     break;
-                case EVENT_OBJ_GFX_LINK_RS_MAY:
-                    LoadPalette(gEventObjectPalette34, 0x100 + (adjustedPaletteNum << 4), 0x20);
+                case OBJ_EVENT_GFX_LINK_RS_MAY:
+                    LoadPalette(gObjectEventPalette34, 0x100 + (adjustedPaletteNum << 4), 0x20);
                     break;
-                case EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL:
-                    LoadPalette(gEventObjectPalette8, 0x100 + (adjustedPaletteNum << 4), 0x20);
+                case OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL:
+                    LoadPalette(gObjectEventPalette8, 0x100 + (adjustedPaletteNum << 4), 0x20);
                     break;
-                case EVENT_OBJ_GFX_RIVAL_MAY_NORMAL:
-                    LoadPalette(gEventObjectPalette17, 0x100 + (adjustedPaletteNum << 4), 0x20);
+                case OBJ_EVENT_GFX_RIVAL_MAY_NORMAL:
+                    LoadPalette(gObjectEventPalette17, 0x100 + (adjustedPaletteNum << 4), 0x20);
                     break;
             }
         }
@@ -1308,15 +1308,15 @@ void IsGrassTypeInParty(void)
 
 void SpawnCameraObject(void)
 {
-    u8 obj = SpawnSpecialEventObjectParameterized(EVENT_OBJ_GFX_BOY_1, MOVEMENT_TYPE_FACE_DOWN, EVENT_OBJ_ID_CAMERA, gSaveBlock1Ptr->pos.x + 7, gSaveBlock1Ptr->pos.y + 7, 3);
-    gEventObjects[obj].invisible = TRUE;
-    CameraObjectSetFollowedObjectId(gEventObjects[obj].spriteId);
+    u8 obj = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_BOY_1, MOVEMENT_TYPE_FACE_DOWN, OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->pos.x + 7, gSaveBlock1Ptr->pos.y + 7, 3);
+    gObjectEvents[obj].invisible = TRUE;
+    CameraObjectSetFollowedObjectId(gObjectEvents[obj].spriteId);
 }
 
 void RemoveCameraObject(void)
 {
     CameraObjectSetFollowedObjectId(GetPlayerAvatarObjectId());
-    RemoveEventObjectByLocalIdAndMap(EVENT_OBJ_ID_CAMERA, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+    RemoveObjectEventByLocalIdAndMap(OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
 }
 
 u8 GetPokeblockNameByMonNature(void)
@@ -1589,9 +1589,9 @@ u16 ScriptGetPartyMonSpecies(void)
 }
 
 // Removed for Emerald
-void TryInitBattleTowerAwardManEventObject(void)
+void TryInitBattleTowerAwardManObjectEvent(void)
 {
-    //TryInitLocalEventObject(6);
+    //TryInitLocalObjectEvent(6);
 }
 
 u16 GetDaysUntilPacifidlogTMAvailable(void)
@@ -2860,245 +2860,245 @@ void ShowGlassWorkshopMenu(void)
 static u8 GetTextColorFromGraphicsId(u16 graphicsId)
 {
     const u8 textColors[NUM_OBJ_EVENT_GFX] = {
-        [EVENT_OBJ_GFX_BRENDAN_NORMAL] =            MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_BRENDAN_MACH_BIKE] =         MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_BRENDAN_SURFING] =           MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_BRENDAN_FIELD_MOVE] =        MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_QUINTY_PLUMP] =              MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_NINJA_BOY] =                 MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_TWIN] =                      MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_BOY_1] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_GIRL_1] =                    MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_BOY_2] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_GIRL_2] =                    MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_LITTLE_BOY] =                MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_LITTLE_GIRL] =               MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_BOY_3] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_GIRL_3] =                    MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_RICH_BOY] =                  MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_WOMAN_1] =                   MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_FAT_MAN] =                   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_POKEFAN_F] =                 MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_MAN_1] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_WOMAN_2] =                   MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_MR_POKEMON] =                MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_PROF_OAK] =                  MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MAN_2] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_WOMAN_3] =                   MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_SAGE] =                      MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_WOMAN_4] =                   MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_COOK] =                      MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_LINK_RECEPTIONIST] =         MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_OLD_MAN] =                   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_OLD_WOMAN] =                 MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_CAMPER] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_PICNICKER] =                 MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_MAN_3] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_WOMAN_5] =                   MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_YOUNGSTER] =                 MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_BUG_CATCHER] =               MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_PSYCHIC_M] =                 MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_SCHOOL_KID_M] =              MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MANIAC] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_HEX_MANIAC] =                MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_RAYQUAZA_1] =                MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_SWIMMER_M] =                 MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_SWIMMER_F] =                 MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_BLACK_BELT] =                MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_BEAUTY] =                    MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_SCIENTIST] =                 MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_LASS] =                      MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_GENTLEMAN] =                 MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_SAILOR] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_FISHERMAN] =                 MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_RUNNING_TRIATHLETE_M] =      MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_RUNNING_TRIATHLETE_F] =      MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_TUBER_F] =                   MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_TUBER_M] =                   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_HIKER] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_CYCLING_TRIATHLETE_M] =      MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_CYCLING_TRIATHLETE_F] =      MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_NURSE] =                     MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_ITEM_BALL] =                 MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BERRY_TREE] =                MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BERRY_TREE_EARLY_STAGES] =   MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BERRY_TREE_LATE_STAGES] =    MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BRENDAN_ACRO_BIKE] =         MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_PROF_ELM] =                  MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MAN_4] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MAN_5] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_REPORTER_M] =                MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_REPORTER_F] =                MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_BARD] =                      MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_ANABEL] =                    MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_TUCKER] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_GRETA] =                     MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_SPENSER] =                   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_NOLAND] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_LUCY] =                      MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_UNUSED_NATU_DOLL] =          MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_UNUSED_MAGNEMITE_DOLL] =     MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_UNUSED_SQUIRTLE_DOLL] =      MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_UNUSED_WOOPER_DOLL] =        MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_UNUSED_PIKACHU_DOLL] =       MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_UNUSED_PORYGON2_DOLL] =      MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_CUTTABLE_TREE] =             MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_MART_EMPLOYEE] =             MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_ROOFTOP_SALE_WOMAN] =        MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_TEALA] =                     MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_BREAKABLE_ROCK] =            MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_PUSHABLE_BOULDER] =          MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_MR_BRINEYS_BOAT] =           MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_MAY_NORMAL] =                MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_MAY_MACH_BIKE] =             MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_MAY_ACRO_BIKE] =             MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_MAY_SURFING] =               MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_MAY_FIELD_MOVE] =            MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_TRUCK] =                     MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_VIGOROTH_CARRYING_BOX] =     MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_VIGOROTH_FACING_AWAY] =      MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_BIRCHS_BAG] =                MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_ZIGZAGOON_1] =               MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_ARTIST] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL] =      MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE] =   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_RIVAL_BRENDAN_ACRO_BIKE] =   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_RIVAL_BRENDAN_SURFING] =     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_RIVAL_BRENDAN_FIELD_MOVE] =  MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_RIVAL_MAY_NORMAL] =          MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_RIVAL_MAY_MACH_BIKE] =       MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_RIVAL_MAY_ACRO_BIKE] =       MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_RIVAL_MAY_SURFING] =         MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_RIVAL_MAY_FIELD_MOVE] =      MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_CAMERAMAN] =                 MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_BRENDAN_UNDERWATER] =        MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MAY_UNDERWATER] =            MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_MOVING_BOX] =                MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_CABLE_CAR] =                 MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_OFFICER] =                   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_DEVON_EMPLOYEE] =            MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_AQUA_MEMBER_M] =             MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_AQUA_MEMBER_F] =             MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_MAGMA_MEMBER_M] =            MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MAGMA_MEMBER_F] =            MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_SIDNEY] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_PHOEBE] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_GLACIA] =                    MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_DRAKE] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_FALKNER] =                   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_BRAWLY] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_WATTSON] =                   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_FLANNERY] =                  MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_NORMAN] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_WINONA] =                    MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_LIZA] =                      MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_TATE] =                      MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_WALLACE] =                   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_STEVEN] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_RIVAL] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_LITTLE_BOY_3] =              MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_BRENDAN_FISHING] =           MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MAY_FISHING] =               MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_HOT_SPRINGS_OLD_WOMAN] =     MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_SS_TIDAL] =                  MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_SUBMARINE_SHADOW] =          MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_PICHU_DOLL] =                MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_PIKACHU_DOLL] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_MARILL_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_TOGEPI_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_CYNDAQUIL_DOLL] =            MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_CHIKORITA_DOLL] =            MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_TOTODILE_DOLL] =             MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_JIGGLYPUFF_DOLL] =           MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_MEOWTH_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_CLEFAIRY_DOLL] =             MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_DITTO_DOLL] =                MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_SMOOCHUM_DOLL] =             MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_TREECKO_DOLL] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_TORCHIC_DOLL] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_MUDKIP_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_DUSKULL_DOLL] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_WYNAUT_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BALTOY_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_KECLEON_DOLL] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_AZURILL_DOLL] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_SKITTY_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_SWABLU_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_GULPIN_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_LOTAD_DOLL] =                MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_SEEDOT_DOLL] =               MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_PIKA_CUSHION] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_ROUND_CUSHION] =             MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_KISS_CUSHION] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_ZIGZAG_CUSHION] =            MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_SPIN_CUSHION] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_DIAMOND_CUSHION] =           MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BALL_CUSHION] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_GRASS_CUSHION] =             MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_FIRE_CUSHION] =              MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_WATER_CUSHION] =             MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_SNORLAX_DOLL] =          MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_RHYDON_DOLL] =           MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_LAPRAS_DOLL] =           MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_VENUSAUR_DOLL] =         MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_CHARIZARD_DOLL] =        MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_BLASTOISE_DOLL] =        MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_WAILMER_DOLL] =          MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_REGIROCK_DOLL] =         MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_REGICE_DOLL] =           MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BIG_REGISTEEL_DOLL] =        MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_LATIAS] =                    MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_LATIOS] =                    MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_GAMEBOY_KID] =               MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_CONTEST_JUDGE] =             MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_BRENDAN_WATERING] =          MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MAY_WATERING] =              MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_BRENDAN_DECORATING] =        MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MAY_DECORATING] =            MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_ARCHIE] =                    MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_MAXIE] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_KYOGRE_1] =                  MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_GROUDON_1] =                 MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_FOSSIL] =                    MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_REGIROCK] =                  MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_REGICE] =                    MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_REGISTEEL] =                 MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_PIDGEY] =                    MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_RATTATA] =                   MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_KYOGRE_2] =                  MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_GROUDON_2] =                 MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_RAYQUAZA_2] =                MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_ZIGZAGOON_2] =               MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_PIKACHU] =                   MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_AZUMARILL] =                 MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_WINGULL] =                   MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_KECLEON_2] =                 MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_TUBER_M_SWIMMING] =          MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_AZURILL] =                   MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_MOM] =                       MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_LINK_BRENDAN] =              MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_LINK_MAY] =                  MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_JUAN] =                      MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_SCOTT] =                     MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_POOCHYENA] =                 MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_KYOGRE_3] =                  MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_GROUDON_3] =                 MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_MYSTERY_GIFT_MAN] =          MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_TRICK_HOUSE_STATUE] =        MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_KIRLIA] =                    MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_DUSCLOPS] =                  MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_UNION_ROOM_NURSE] =          MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_SUDOWOODO] =                 MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_MEW] =                       MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_RED] =                       MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_LEAF] =                      MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_DEOXYS] =                    MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_DEOXYS_TRIANGLE] =           MSG_COLOR_MISC,
-        [EVENT_OBJ_GFX_BRANDON] =                   MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_LINK_RS_BRENDAN] =           MSG_COLOR_BLUE,
-        [EVENT_OBJ_GFX_LINK_RS_MAY] =               MSG_COLOR_RED,
-        [EVENT_OBJ_GFX_LUGIA] =                     MSG_COLOR_BLACK,
-        [EVENT_OBJ_GFX_HOOH] =                      MSG_COLOR_BLACK
+        [OBJ_EVENT_GFX_BRENDAN_NORMAL] =            MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_BRENDAN_MACH_BIKE] =         MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_BRENDAN_SURFING] =           MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_BRENDAN_FIELD_MOVE] =        MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_QUINTY_PLUMP] =              MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_NINJA_BOY] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_TWIN] =                      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_BOY_1] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GIRL_1] =                    MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_BOY_2] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GIRL_2] =                    MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_LITTLE_BOY] =                MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_LITTLE_GIRL] =               MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_BOY_3] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GIRL_3] =                    MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_RICH_BOY] =                  MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_WOMAN_1] =                   MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_FAT_MAN] =                   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_POKEFAN_F] =                 MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MAN_1] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_WOMAN_2] =                   MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MR_POKEMON] =                MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_PROF_OAK] =                  MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MAN_2] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_WOMAN_3] =                   MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_SAGE] =                      MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_WOMAN_4] =                   MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_COOK] =                      MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_LINK_RECEPTIONIST] =         MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_OLD_MAN] =                   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_OLD_WOMAN] =                 MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_CAMPER] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_PICNICKER] =                 MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MAN_3] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_WOMAN_5] =                   MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_YOUNGSTER] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_BUG_CATCHER] =               MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_PSYCHIC_M] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_SCHOOL_KID_M] =              MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MANIAC] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_HEX_MANIAC] =                MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_RAYQUAZA_1] =                MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_SWIMMER_M] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_SWIMMER_F] =                 MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_BLACK_BELT] =                MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_BEAUTY] =                    MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_SCIENTIST] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_LASS] =                      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_GENTLEMAN] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_SAILOR] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_FISHERMAN] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RUNNING_TRIATHLETE_M] =      MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RUNNING_TRIATHLETE_F] =      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_TUBER_F] =                   MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_TUBER_M] =                   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_HIKER] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M] =      MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_CYCLING_TRIATHLETE_F] =      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_NURSE] =                     MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_ITEM_BALL] =                 MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BERRY_TREE] =                MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BERRY_TREE_EARLY_STAGES] =   MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BERRY_TREE_LATE_STAGES] =    MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BRENDAN_ACRO_BIKE] =         MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_PROF_ELM] =                  MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MAN_4] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MAN_5] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_REPORTER_M] =                MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_REPORTER_F] =                MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_BARD] =                      MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_ANABEL] =                    MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_TUCKER] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GRETA] =                     MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_SPENSER] =                   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_NOLAND] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_LUCY] =                      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_UNUSED_NATU_DOLL] =          MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_UNUSED_MAGNEMITE_DOLL] =     MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_UNUSED_SQUIRTLE_DOLL] =      MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_UNUSED_WOOPER_DOLL] =        MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_UNUSED_PIKACHU_DOLL] =       MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_UNUSED_PORYGON2_DOLL] =      MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_CUTTABLE_TREE] =             MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_MART_EMPLOYEE] =             MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_ROOFTOP_SALE_WOMAN] =        MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_TEALA] =                     MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_BREAKABLE_ROCK] =            MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_PUSHABLE_BOULDER] =          MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_MR_BRINEYS_BOAT] =           MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_MAY_NORMAL] =                MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MAY_MACH_BIKE] =             MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MAY_ACRO_BIKE] =             MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MAY_SURFING] =               MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MAY_FIELD_MOVE] =            MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_TRUCK] =                     MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_VIGOROTH_CARRYING_BOX] =     MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_VIGOROTH_FACING_AWAY] =      MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_BIRCHS_BAG] =                MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_ZIGZAGOON_1] =               MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_ARTIST] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL] =      MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE] =   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RIVAL_BRENDAN_ACRO_BIKE] =   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RIVAL_BRENDAN_SURFING] =     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RIVAL_BRENDAN_FIELD_MOVE] =  MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RIVAL_MAY_NORMAL] =          MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE] =       MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_RIVAL_MAY_ACRO_BIKE] =       MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_RIVAL_MAY_SURFING] =         MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_RIVAL_MAY_FIELD_MOVE] =      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_CAMERAMAN] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_BRENDAN_UNDERWATER] =        MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MAY_UNDERWATER] =            MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MOVING_BOX] =                MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_CABLE_CAR] =                 MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_OFFICER] =                   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_DEVON_EMPLOYEE] =            MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_AQUA_MEMBER_M] =             MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_AQUA_MEMBER_F] =             MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MAGMA_MEMBER_M] =            MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MAGMA_MEMBER_F] =            MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_SIDNEY] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_PHOEBE] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GLACIA] =                    MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_DRAKE] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_FALKNER] =                   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_BRAWLY] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_WATTSON] =                   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_FLANNERY] =                  MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_NORMAN] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_WINONA] =                    MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_LIZA] =                      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_TATE] =                      MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_WALLACE] =                   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_STEVEN] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RIVAL] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_LITTLE_BOY_3] =              MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_BRENDAN_FISHING] =           MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MAY_FISHING] =               MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_HOT_SPRINGS_OLD_WOMAN] =     MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_SS_TIDAL] =                  MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_SUBMARINE_SHADOW] =          MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_PICHU_DOLL] =                MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_PIKACHU_DOLL] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_MARILL_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_TOGEPI_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_CYNDAQUIL_DOLL] =            MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_CHIKORITA_DOLL] =            MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_TOTODILE_DOLL] =             MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_JIGGLYPUFF_DOLL] =           MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_MEOWTH_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_CLEFAIRY_DOLL] =             MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_DITTO_DOLL] =                MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_SMOOCHUM_DOLL] =             MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_TREECKO_DOLL] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_TORCHIC_DOLL] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_MUDKIP_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_DUSKULL_DOLL] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_WYNAUT_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BALTOY_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_KECLEON_DOLL] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_AZURILL_DOLL] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_SKITTY_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_SWABLU_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_GULPIN_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_LOTAD_DOLL] =                MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_SEEDOT_DOLL] =               MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_PIKA_CUSHION] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_ROUND_CUSHION] =             MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_KISS_CUSHION] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_ZIGZAG_CUSHION] =            MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_SPIN_CUSHION] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_DIAMOND_CUSHION] =           MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BALL_CUSHION] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_GRASS_CUSHION] =             MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_FIRE_CUSHION] =              MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_WATER_CUSHION] =             MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_SNORLAX_DOLL] =          MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_RHYDON_DOLL] =           MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_LAPRAS_DOLL] =           MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_VENUSAUR_DOLL] =         MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_CHARIZARD_DOLL] =        MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_BLASTOISE_DOLL] =        MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_WAILMER_DOLL] =          MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_REGIROCK_DOLL] =         MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_REGICE_DOLL] =           MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BIG_REGISTEEL_DOLL] =        MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_LATIAS] =                    MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_LATIOS] =                    MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_GAMEBOY_KID] =               MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_CONTEST_JUDGE] =             MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_BRENDAN_WATERING] =          MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MAY_WATERING] =              MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_BRENDAN_DECORATING] =        MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MAY_DECORATING] =            MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_ARCHIE] =                    MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_MAXIE] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_KYOGRE_1] =                  MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_GROUDON_1] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_FOSSIL] =                    MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_REGIROCK] =                  MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_REGICE] =                    MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_REGISTEEL] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_PIDGEY] =                    MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_RATTATA] =                   MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_KYOGRE_2] =                  MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_GROUDON_2] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_RAYQUAZA_2] =                MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_ZIGZAGOON_2] =               MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_PIKACHU] =                   MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_AZUMARILL] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_WINGULL] =                   MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_KECLEON_2] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_TUBER_M_SWIMMING] =          MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_AZURILL] =                   MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_MOM] =                       MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_LINK_BRENDAN] =              MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_LINK_MAY] =                  MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_JUAN] =                      MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_SCOTT] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_POOCHYENA] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_KYOGRE_3] =                  MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_GROUDON_3] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_MYSTERY_GIFT_MAN] =          MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_TRICK_HOUSE_STATUE] =        MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_KIRLIA] =                    MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_DUSCLOPS] =                  MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_UNION_ROOM_NURSE] =          MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_SUDOWOODO] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_MEW] =                       MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_RED] =                       MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_LEAF] =                      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_DEOXYS] =                    MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_DEOXYS_TRIANGLE] =           MSG_COLOR_MISC,
+        [OBJ_EVENT_GFX_BRANDON] =                   MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_LINK_RS_BRENDAN] =           MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_LINK_RS_MAY] =               MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_LUGIA] =                     MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_HOOH] =                      MSG_COLOR_BLACK
     };
 
     if (graphicsId < NUM_OBJ_EVENT_GFX)
@@ -3107,25 +3107,25 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
     return MSG_COLOR_MISC;
 }
 
-u8 GetTextColorFromSelectedEventObjectGraphicsId(void)
+u8 GetTextColorFromSelectedObjectEventGraphicsId(void)
 {
     if (gSpecialVar_TextColor == 0xFF)
     {
-        if (gSelectedEventObject != 0)
+        if (gSelectedObjectEvent != 0)
         {
-            u8 graphicsId = gEventObjects[gSelectedEventObject].graphicsId;
+            u8 graphicsId = gObjectEvents[gSelectedObjectEvent].graphicsId;
             
             if (graphicsId >= OBJ_EVENT_GFX_VARS)
             {
-                graphicsId = VarGetEventObjectGraphicsId(graphicsId - OBJ_EVENT_GFX_VARS);
+                graphicsId = VarGetObjectEventGraphicsId(graphicsId - OBJ_EVENT_GFX_VARS);
             }
-            if (graphicsId == EVENT_OBJ_GFX_BARD)
+            if (graphicsId == OBJ_EVENT_GFX_BARD)
             {
                 return MSG_COLOR_BLUE;
             }
             if (graphicsId >= NUM_OBJ_EVENT_GFX)
             {
-                graphicsId = EVENT_OBJ_GFX_NINJA_BOY;
+                graphicsId = OBJ_EVENT_GFX_NINJA_BOY;
             }
             
             return GetTextColorFromGraphicsId(graphicsId);
@@ -3144,11 +3144,11 @@ void SetBattleTowerLinkPlayerGfx(void)
     {
         if (gLinkPlayers[i].gender == MALE)
         {
-            VarSet(VAR_OBJ_GFX_ID_F - i, EVENT_OBJ_GFX_BRENDAN_NORMAL);
+            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_BRENDAN_NORMAL);
         }
         else
         {
-            VarSet(VAR_OBJ_GFX_ID_F - i, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL);
+            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL);
         }
     }
 }
@@ -3734,9 +3734,9 @@ static void Task_DeoxysRockInteraction(u8 taskId)
 
 static void ChangeDeoxysRockLevel(u8 rockLevel)
 {
-    u8 eventObjectId;
+    u8 objectEventId;
     LoadPalette(&sDeoxysRockPalettes[rockLevel], 0x1A0, 8);
-    TryGetEventObjectIdByLocalIdAndMap(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &eventObjectId);
+    TryGetObjectEventIdByLocalIdAndMap(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objectEventId);
 
     if (rockLevel == 0)
         PlaySE(SE_W109);
@@ -3756,7 +3756,7 @@ static void ChangeDeoxysRockLevel(u8 rockLevel)
         gFieldEffectArguments[5] = 5;
 
     FieldEffectStart(FLDEFF_MOVE_DEOXYS_ROCK);
-    Overworld_SetEventObjTemplateCoords(1, sDeoxysRockCoords[rockLevel][0], sDeoxysRockCoords[rockLevel][1]);
+    Overworld_SetObjEventTemplateCoords(1, sDeoxysRockCoords[rockLevel][0], sDeoxysRockCoords[rockLevel][1]);
 }
 
 static void WaitForDeoxysRockMovement(u8 taskId)

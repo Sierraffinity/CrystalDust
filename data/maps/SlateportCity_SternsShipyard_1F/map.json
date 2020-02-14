@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
       "x": 5,
       "y": 5,
       "elevation": 3,
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SCIENTIST",
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
       "x": 10,
       "y": 7,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SCIENTIST",
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
       "x": 18,
       "y": 8,
       "elevation": 3,
@@ -57,7 +57,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 12,
       "y": 11,
       "elevation": 3,

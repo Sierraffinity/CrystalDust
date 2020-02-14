@@ -31,7 +31,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAGMA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
       "x": 26,
       "y": 30,
       "elevation": 3,
@@ -45,7 +45,7 @@
       "flag": "FLAG_HIDE_ROUTE_112_TEAM_MAGMA"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_HIKER",
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "x": 24,
       "y": 34,
       "elevation": 3,
@@ -59,7 +59,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CAMPER",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "x": 29,
       "y": 49,
       "elevation": 3,
@@ -73,7 +73,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_PICNICKER",
+      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "x": 22,
       "y": 46,
       "elevation": 3,
@@ -87,7 +87,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_HIKER",
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "x": 15,
       "y": 40,
       "elevation": 3,
@@ -101,7 +101,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAGMA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
       "x": 27,
       "y": 30,
       "elevation": 3,
@@ -115,7 +115,7 @@
       "flag": "FLAG_HIDE_ROUTE_112_TEAM_MAGMA"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 27,
       "y": 6,
       "elevation": 0,
@@ -129,7 +129,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 28,
       "y": 6,
       "elevation": 0,
@@ -143,7 +143,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 29,
       "y": 6,
       "elevation": 0,
@@ -157,7 +157,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 30,
       "y": 6,
       "elevation": 3,
@@ -171,7 +171,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_HIKER",
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "x": 8,
       "y": 50,
       "elevation": 3,
@@ -185,7 +185,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 14,
       "y": 43,
       "elevation": 3,
@@ -199,7 +199,7 @@
       "flag": "FLAG_ITEM_SPROUT_TOWER_2F_X_ACCURACY"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_5",
       "x": 31,
       "y": 7,
       "elevation": 3,
@@ -213,7 +213,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WOMAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "x": 31,
       "y": 11,
       "elevation": 3,

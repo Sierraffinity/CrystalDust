@@ -6,7 +6,7 @@
 #include "bug_catching_contest.h"
 #include "event_data.h"
 #include "event_object_movement.h"
-#include "event_obj_lock.h"
+#include "event_object_lock.h"
 #include "event_scripts.h"
 #include "fieldmap.h"
 #include "field_effect.h"
@@ -618,7 +618,7 @@ void ShowStartMenu(void)
 {
     if (!IsUpdateLinkStateCBActive())
     {
-        FreezeEventObjects();
+        FreezeObjectEvents();
         sub_808B864();
         sub_808BCF4();
     }
@@ -832,7 +832,7 @@ static bool8 StartMenuBattlePyramidRetireCallback(void)
 void ShowBattlePyramidStartMenu(void)
 {
     ClearDialogWindowAndFrameToTransparent(0, FALSE);
-    ScriptUnfreezeEventObjects();
+    ScriptUnfreezeObjectEvents();
     CreateStartMenuTask(Task_ShowStartMenu);
     ScriptContext2_Enable();
 }
@@ -874,7 +874,7 @@ static bool8 SaveCallback(void)
     case SAVE_SUCCESS:
     case SAVE_ERROR:    // Close start menu
         ClearDialogWindowAndFrameToTransparent(0, TRUE);
-        ScriptUnfreezeEventObjects();
+        ScriptUnfreezeObjectEvents();
         ScriptContext2_Disable();
         SoftResetInBattlePyramid();
         return TRUE;
@@ -911,7 +911,7 @@ static bool8 BattlePyramidRetireCallback(void)
         return FALSE;
     case SAVE_CANCELED: // Yes (Retire from battle pyramid)
         ClearDialogWindowAndFrameToTransparent(0, TRUE);
-        ScriptUnfreezeEventObjects();
+        ScriptUnfreezeObjectEvents();
         ScriptContext2_Disable();
         ScriptContext1_SetupScript(BattlePyramid_Retire);
         return TRUE;
@@ -1457,7 +1457,7 @@ static void HideStartMenuWindow(void)
 {
     ClearStdWindowAndFrame(GetStartMenuWindowId(), TRUE);
     RemoveStartMenuWindow();
-    ScriptUnfreezeEventObjects();
+    ScriptUnfreezeObjectEvents();
     ScriptContext2_Disable();
 }
 

@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_BEAUTY",
+      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
       "x": 8,
       "y": 10,
       "elevation": 3,
@@ -29,7 +29,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_HARBOR_FERRY_ATTENDANT"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SS_TIDAL",
+      "graphics_id": "OBJ_EVENT_GFX_SS_TIDAL",
       "x": 8,
       "y": 9,
       "elevation": 1,
@@ -43,7 +43,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_HARBOR_SSTIDAL"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SAILOR",
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
       "x": 3,
       "y": 13,
       "elevation": 3,
@@ -57,7 +57,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SAILOR",
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
       "x": 8,
       "y": 10,
       "elevation": 3,
@@ -71,7 +71,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 8,
       "y": 10,
       "elevation": 3,

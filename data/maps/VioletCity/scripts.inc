@@ -74,25 +74,25 @@ VioletCity_Earl_1:
 
 VioletCity_Earl_6:
 	applymovement 1, VioletCity_Movement_EarlToAcademy
-	applymovement EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademySouth
+	applymovement OBJ_EVENT_ID_PLAYER, VioletCity_Movement_PlayerToAcademySouth
 	waitmovement 0
 	goto VioletCity_Earl_4
 
 VioletCity_Earl_7:
 	applymovement 1, VioletCity_Movement_EarlToAcademy
-	applymovement EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademyNorth
+	applymovement OBJ_EVENT_ID_PLAYER, VioletCity_Movement_PlayerToAcademyNorth
 	waitmovement 0
 	goto VioletCity_Earl_4
 
 VioletCity_Earl_8:
 	applymovement 1, VioletCity_Movement_EarlToAcademy
-	applymovement EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademyWest
+	applymovement OBJ_EVENT_ID_PLAYER, VioletCity_Movement_PlayerToAcademyWest
 	waitmovement 0
 	goto VioletCity_Earl_4
 
 VioletCity_Earl_9:
 	applymovement 1, VioletCity_Movement_EarlToAcademy
-	applymovement EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademyEast
+	applymovement OBJ_EVENT_ID_PLAYER, VioletCity_Movement_PlayerToAcademyEast
 	waitmovement 0
 	goto VioletCity_Earl_4
 

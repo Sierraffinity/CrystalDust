@@ -191,7 +191,7 @@ Route29_EventScript_CatchingTutorialMain:
 	end
 
 Route29_EventScript_DudeAndPlayerWalkFromTop:
-	applymovement EVENT_OBJ_ID_PLAYER, Route29_Movement_PlayerFromTop
+	applymovement OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromTop
 	applymovement 1, Route29_Movement_DudeFromTop
 	waitmovement 0
 	return
@@ -207,7 +207,7 @@ Route29_Movement_PlayerFromTop:
 	step_end
 
 Route29_EventScript_DudeAndPlayerWalkFromMiddleTop:
-	applymovement EVENT_OBJ_ID_PLAYER, Route29_Movement_PlayerFromMiddleTop
+	applymovement OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromMiddleTop
 	applymovement 1, Route29_Movement_DudeFromMiddleTop
 	waitmovement 0
 	return
@@ -222,7 +222,7 @@ Route29_Movement_PlayerFromMiddleTop:
 	step_end
 
 Route29_EventScript_DudeAndPlayerWalkFromMiddleBottom:
-	applymovement EVENT_OBJ_ID_PLAYER, Route29_Movement_PlayerFromMiddleBottom
+	applymovement OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromMiddleBottom
 	applymovement 1, Route29_Movement_DudeFromMiddleBottom
 	waitmovement 0
 	return
@@ -236,7 +236,7 @@ Route29_Movement_PlayerFromMiddleBottom:
 	step_end
 
 Route29_EventScript_DudeAndPlayerWalkFromBottom:
-	applymovement EVENT_OBJ_ID_PLAYER, Route29_Movement_PlayerFromBottom
+	applymovement OBJ_EVENT_ID_PLAYER, Route29_Movement_PlayerFromBottom
 	applymovement 1, Route29_Movement_DudeFromBottom
 	waitmovement 0
 	return

@@ -17,7 +17,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_MART_EMPLOYEE",
+            "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -31,7 +31,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -45,7 +45,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_PSYCHIC_M",
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
             "movement_range_x": 0,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",

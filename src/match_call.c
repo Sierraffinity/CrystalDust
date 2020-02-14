@@ -1151,7 +1151,7 @@ static void StartMatchCall(void)
     if (!gMatchCallState.triggeredFromScript)
     {
         ScriptContext2_Enable();
-        FreezeEventObjects();
+        FreezeObjectEvents();
         sub_808B864();
         sub_808BCF4();
         PhoneScriptContext_SetupPhoneScript(&gPhoneContacts[gMatchCallState.callerId], PHONE_SCRIPT_OVERWORLD);
@@ -1396,10 +1396,10 @@ bool32 CleanupAfterMatchCallHangup(void)
         if (!gMatchCallState.triggeredFromScript)
         {
             LoadMessageBoxAndBorderGfx();
-            playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
-            EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
-            ScriptMovement_UnfreezeEventObjects();
-            UnfreezeEventObjects();
+            playerObjectId = GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
+            ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
+            ScriptMovement_UnfreezeObjectEvents();
+            UnfreezeObjectEvents();
             ScriptContext2_Disable();
         }
         else

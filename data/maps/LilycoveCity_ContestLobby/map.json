@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_TEALA",
+      "graphics_id": "OBJ_EVENT_GFX_TEALA",
       "x": 14,
       "y": 2,
       "elevation": 3,
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_TEALA",
+      "graphics_id": "OBJ_EVENT_GFX_TEALA",
       "x": 15,
       "y": 2,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAN_4",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
       "x": 26,
       "y": 9,
       "elevation": 3,
@@ -57,7 +57,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ARTIST",
+      "graphics_id": "OBJ_EVENT_GFX_ARTIST",
       "x": 9,
       "y": 1,
       "elevation": 0,
@@ -71,7 +71,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_1"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
       "x": 18,
       "y": 8,
       "elevation": 3,
@@ -85,7 +85,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_GIRL_2",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
       "x": 4,
       "y": 9,
       "elevation": 3,
@@ -99,7 +99,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ARTIST",
+      "graphics_id": "OBJ_EVENT_GFX_ARTIST",
       "x": 3,
       "y": 4,
       "elevation": 3,
@@ -113,7 +113,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_REPORTER_M",
+      "graphics_id": "OBJ_EVENT_GFX_REPORTER_M",
       "x": 13,
       "y": 10,
       "elevation": 3,
@@ -127,7 +127,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "x": 23,
       "y": 8,
       "elevation": 3,
@@ -141,7 +141,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_TWIN",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "x": 28,
       "y": 9,
       "elevation": 3,
@@ -155,7 +155,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ARTIST",
+      "graphics_id": "OBJ_EVENT_GFX_ARTIST",
       "x": 21,
       "y": 1,
       "elevation": 0,
@@ -169,7 +169,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_2"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_FISHERMAN",
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
       "x": 5,
       "y": 6,
       "elevation": 3,
@@ -183,7 +183,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_FAT_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "x": 0,
       "y": 8,
       "elevation": 3,
@@ -197,7 +197,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
       "x": 8,
       "y": 7,
       "elevation": 3,
@@ -211,7 +211,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_POKEFAN_F",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
       "x": 22,
       "y": 9,
       "elevation": 3,
@@ -225,7 +225,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 26,
       "y": 5,
       "elevation": 3,
@@ -239,7 +239,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_GIRL_1",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
       "x": 24,
       "y": 9,
       "elevation": 3,
@@ -253,7 +253,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_5",
       "x": 27,
       "y": 3,
       "elevation": 3,
@@ -267,7 +267,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CAMPER",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "x": 28,
       "y": 3,
       "elevation": 3,
@@ -281,7 +281,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_LITTLE_GIRL",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
       "x": 28,
       "y": 7,
       "elevation": 3,
@@ -295,7 +295,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_OFFICER",
+      "graphics_id": "OBJ_EVENT_GFX_OFFICER",
       "x": 26,
       "y": 7,
       "elevation": 3,
@@ -309,7 +309,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "x": 27,
       "y": 7,
       "elevation": 3,
@@ -323,7 +323,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
       "x": 26,
       "y": 3,
       "elevation": 3,
@@ -337,7 +337,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_OLD_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
       "x": 26,
       "y": 5,
       "elevation": 3,
@@ -351,7 +351,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_LITTLE_GIRL",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
       "x": 9,
       "y": 10,
       "elevation": 3,

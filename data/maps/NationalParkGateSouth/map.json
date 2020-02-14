@@ -25,7 +25,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_TEMP_1",
-            "graphics_id": "EVENT_OBJ_GFX_OFFICER",
+            "graphics_id": "OBJ_EVENT_GFX_OFFICER",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -39,7 +39,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_TEMP_1",
-            "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
@@ -53,7 +53,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_TEMP_2",
-            "graphics_id": "EVENT_OBJ_GFX_OFFICER",
+            "graphics_id": "OBJ_EVENT_GFX_OFFICER",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",

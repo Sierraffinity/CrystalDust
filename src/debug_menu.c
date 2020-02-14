@@ -5,7 +5,7 @@
 #include "day_night.h"
 #include "event_data.h"
 #include "event_object_movement.h"
-#include "event_obj_lock.h"
+#include "event_object_lock.h"
 #include "field_player_avatar.h"
 #include "international_string_util.h"
 #include "main.h"
@@ -214,7 +214,7 @@ void ShowDebugMenu(void)
 
     if (!IsUpdateLinkStateCBActive())
     {
-        FreezeEventObjects();
+        FreezeObjectEvents();
         sub_808B864();
         sub_808BCF4();
     }
@@ -260,7 +260,7 @@ static void DebugMenu_RemoveMenu(u8 taskId)
 static void DebugMenu_Exit(u8 taskId)
 {
     DebugMenu_RemoveMenu(taskId);
-    ScriptUnfreezeEventObjects();
+    ScriptUnfreezeObjectEvents();
     ScriptContext2_Disable();
     DestroyTask(taskId);
 }

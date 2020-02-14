@@ -200,7 +200,7 @@ void AddTextPrinterForMessage(bool8 allowSkippingDelayWithButtonPress)
 
     gTextFlags.canABSpeedUpPrint = allowSkippingDelayWithButtonPress;
 
-    switch (GetTextColorFromSelectedEventObjectGraphicsId())
+    switch (GetTextColorFromSelectedObjectEventGraphicsId())
     {
         case MSG_COLOR_BLUE:
             AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 8, 1, 3);

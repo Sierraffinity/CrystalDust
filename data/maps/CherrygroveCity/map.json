@@ -71,7 +71,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_OUTSIDE",
-            "graphics_id": "EVENT_OBJ_GFX_OLD_MAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -85,7 +85,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_CHERRYGROVE_CITY_RIVAL",
-            "graphics_id": "EVENT_OBJ_GFX_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_RIVAL",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -99,7 +99,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_WOMAN_1",
+            "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
@@ -113,7 +113,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
@@ -127,7 +127,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_FISHERMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",

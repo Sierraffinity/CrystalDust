@@ -31,7 +31,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_CAMPER",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "x": 17,
       "y": 90,
       "elevation": 3,
@@ -45,7 +45,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_M",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M",
       "x": 29,
       "y": 79,
       "elevation": 4,
@@ -59,7 +59,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_PROF_OAK",
+      "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
       "x": 14,
       "y": 69,
       "elevation": 3,
@@ -73,7 +73,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_M",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M",
       "x": 9,
       "y": 57,
       "elevation": 4,
@@ -87,7 +87,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 10,
       "y": 11,
       "elevation": 3,
@@ -101,7 +101,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_F",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_F",
       "x": 27,
       "y": 24,
       "elevation": 4,
@@ -115,7 +115,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BOY_3",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_3",
       "x": 15,
       "y": 7,
       "elevation": 3,
@@ -129,7 +129,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_F",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_F",
       "x": 16,
       "y": 73,
       "elevation": 4,
@@ -143,7 +143,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_M",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M",
       "x": 19,
       "y": 31,
       "elevation": 4,
@@ -157,7 +157,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_F",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_F",
       "x": 30,
       "y": 31,
       "elevation": 4,
@@ -171,7 +171,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_M",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M",
       "x": 16,
       "y": 55,
       "elevation": 4,
@@ -185,7 +185,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_PSYCHIC_M",
+      "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
       "x": 3,
       "y": 39,
       "elevation": 3,
@@ -199,7 +199,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_LASS",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "x": 33,
       "y": 15,
       "elevation": 3,
@@ -213,7 +213,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MANIAC",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 34,
       "y": 40,
       "elevation": 3,
@@ -227,7 +227,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_FISHERMAN",
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
       "x": 10,
       "y": 19,
       "elevation": 3,
@@ -241,7 +241,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 5,
       "y": 11,
       "elevation": 3,
@@ -255,7 +255,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 6,
       "y": 11,
       "elevation": 3,
@@ -269,7 +269,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BERRY_TREE",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 7,
       "y": 11,
       "elevation": 3,
@@ -283,7 +283,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 30,
       "y": 69,
       "elevation": 3,
@@ -297,7 +297,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 26,
       "y": 47,
       "elevation": 3,
@@ -311,7 +311,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_M",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M",
       "x": 27,
       "y": 92,
       "elevation": 3,
@@ -325,7 +325,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
       "x": 7,
       "y": 83,
       "elevation": 3,
@@ -339,7 +339,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
       "x": 8,
       "y": 83,
       "elevation": 3,
@@ -353,7 +353,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
       "x": 9,
       "y": 83,
       "elevation": 3,
@@ -367,7 +367,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
       "x": 10,
       "y": 83,
       "elevation": 3,
@@ -381,7 +381,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
       "x": 8,
       "y": 82,
       "elevation": 3,
@@ -395,7 +395,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_M",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M",
       "x": 21,
       "y": 78,
       "elevation": 4,
@@ -409,7 +409,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_VAR_0",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
       "x": 34,
       "y": 54,
       "elevation": 3,
@@ -423,7 +423,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_RIVAL_1"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_VAR_3",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_3",
       "x": 34,
       "y": 54,
       "elevation": 3,
@@ -437,7 +437,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_RIVAL_2"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 33,
       "y": 69,
       "elevation": 3,
@@ -451,7 +451,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_POKEFAN_F",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
       "x": 10,
       "y": 76,
       "elevation": 3,
@@ -465,7 +465,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SAGE",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE",
       "x": 7,
       "y": 76,
       "elevation": 3,
@@ -479,7 +479,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_CYCLING_TRIATHLETE_F",
+      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_F",
       "x": 10,
       "y": 39,
       "elevation": 3,
@@ -493,7 +493,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_5",
       "x": 36,
       "y": 40,
       "elevation": 3,
@@ -507,7 +507,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 6,
       "y": 38,
       "elevation": 3,
@@ -521,7 +521,7 @@
       "flag": "FLAG_ITEM_ROUTE_110_ELIXIR"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_PROF_ELM",
+      "graphics_id": "OBJ_EVENT_GFX_PROF_ELM",
       "x": 9,
       "y": 79,
       "elevation": 3,
