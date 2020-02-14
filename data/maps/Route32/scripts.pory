@@ -1,155 +1,172 @@
-Route32_MapScripts::
-	.byte 0
+const ROADBLOCK_MAN = 1
 
+mapscripts Route32_MapScripts { }
 
-Route32_EventScript_RoadblockManTrigger_1::
-	lockall
-	setvar VAR_TEMP_1, 0
-	goto Route32_EventScript_RoadblockManTrigger_All
-	return
+script Route32_EventScript_RoadblockManTrigger_1 {
+    lockall
+    setvar(VAR_TEMP_1, 0)
+    goto(Route32_EventScript_RoadblockManTrigger_All)
+}
 
+script Route32_EventScript_RoadblockManTrigger_2 {
+    lockall
+    setvar(VAR_TEMP_1, 1)
+    goto(Route32_EventScript_RoadblockManTrigger_All)
+}
 
-Route32_EventScript_RoadblockManTrigger_2::
-	lockall
-	setvar VAR_TEMP_1, 1
-	goto Route32_EventScript_RoadblockManTrigger_All
-	return
+script Route32_EventScript_RoadblockManTrigger_All {
+    playse(SE_PIN)
+    applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_NoticePlayer)
+	waitmovement(0)
+	applymovement(ROADBLOCK_MAN, Common_Movement_Delay48)
+	waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    textcolor(MSG_COLOR_BLUE)
+    msgbox("Wait up!\n"
+           "What's the hurry?")
+    closemessage
 
+    if (var(VAR_TEMP_1) == 0)
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, Route32_Movement_RoadblockMan_PlayerFromLeft)
+        applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_ManFromLeft)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, Route32_Movement_RoadblockMan_PlayerFromRight)
+        applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_ManFromRight)
+        waitmovement(0)
+    }
 
-Route32_EventScript_RoadblockManTrigger_All::
-	playse SE_PIN
-	applymovement 1, Route32_Movement_RoadblockMan_NoticePlayer
-	waitmovement 0
-	applymovement 1, Common_Movement_Delay48
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
-	waitmovement 0
-	textcolor MSG_COLOR_BLUE
-	msgbox Route32_EventScript_RoadblockManTrigger_All_Text_0
-	closemessage
-	compare VAR_TEMP_1, 0
-	goto_if_eq Route32_EventScript_RoadblockManTrigger_All_2
-	applymovement OBJ_EVENT_ID_PLAYER, Route32_Movement_RoadblockMan_PlayerFromRight
-	applymovement 1, Route32_Movement_RoadblockMan_ManFromRight
-	waitmovement 0
-Route32_EventScript_RoadblockManTrigger_All_1:
-	call Route32_EventScript_RoadblockMan_Common
-	closemessage
-	compare VAR_TEMP_1, 0
-	goto_if_eq Route32_EventScript_RoadblockManTrigger_All_6
-	applymovement 1, Route32_Movement_RoadblockMan_ManResetFromRight
-	waitmovement 0
-Route32_EventScript_RoadblockManTrigger_All_5:
-	releaseall
-	return
+    call(Route32_EventScript_RoadblockMan_Common)
+    closemessage
+    
+    if (var(VAR_TEMP_1) == 0)
+    {
+        applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_ManResetFromLeft)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_ManResetFromRight)
+        waitmovement(0)
+    }
 
-Route32_EventScript_RoadblockManTrigger_All_2:
-	applymovement OBJ_EVENT_ID_PLAYER, Route32_Movement_RoadblockMan_PlayerFromLeft
-	applymovement 1, Route32_Movement_RoadblockMan_ManFromLeft
-	waitmovement 0
-	goto Route32_EventScript_RoadblockManTrigger_All_1
+    releaseall
+}
 
-Route32_EventScript_RoadblockManTrigger_All_6:
-	applymovement 1, Route32_Movement_RoadblockMan_ManResetFromLeft
-	waitmovement 0
-	goto Route32_EventScript_RoadblockManTrigger_All_5
+script Route32_EventScript_RoadblockMan {
+    lock
+    faceplayer
+    call(Route32_EventScript_RoadblockMan_Common)
+    release
+}
 
+script Route32_EventScript_RoadblockMan_Common {
+    if (flag(FLAG_GOT_MIRACLE_SEED_ROUTE_32))
+    {
+        call(Route32_EventScript_RoadblockMan_AfterItem)
+    }
+    elif (!flag(FLAG_BADGE01_GET))
+    {
+        msgbox("Have you gone to the POKéMON\n"
+               "GYM in VIOLET yet?\p"
+               "You can test your POKéMON and\n"
+               "yourself there.\p"
+               "It's a rite of passage for all\n"
+               "TRAINERS!")
+    }
+    elif (flag(FLAG_GOT_ELMS_EGG))
+    {
+        msgbox("Looks like you have some good\n"
+               "POKéMON there.\p"
+               "It must be from the training you\n"
+               "gave them around VIOLET CITY.\p"
+               "The training at the GYM must have\n"
+               "been especially helpful.\p"
+               "As a souvenir of VIOLET CITY,\n"
+               "take this.\p"
+               "It increases the power of GRASS-\n"
+               "type moves.")
+        giveitem(ITEM_MIRACLE_SEED)
+        if (!var(VAR_RESULT))
+        {
+            msgbox("Hm, you don't have room for this.\n"
+                   "I'll hold onto it.")
+        }
+        else
+        {
+            setflag(FLAG_GOT_MIRACLE_SEED_ROUTE_32)
+            setvar(VAR_ROUTE32_STATE, 1)
+            call(Route32_EventScript_RoadblockMan_AfterItem)
+        }
+    }
+    else
+    {
+        msgbox("{PLAYER}, right?\n"
+               "Some guy wearing glasses was\l"
+               "looking for you.\p"
+               "Go see for yourself. He's waiting\n"
+               "for you at the POKéMON CENTER.")
+    }
+}
 
-Route32_EventScript_RoadblockMan::
-	lock
-	faceplayer
-	call Route32_EventScript_RoadblockMan_Common
-	release
-	return
+script Route32_EventScript_RoadblockMan_AfterItem {
+    msgbox("Your experiences in VIOLET CITY\n"
+           "should be useful for your journey.")
+}
 
+movement Route32_Movement_RoadblockMan_NoticePlayer {
+    emote_exclamation_mark
+    face_left
+}
 
-Route32_EventScript_RoadblockMan_Common::
-	goto_if_set FLAG_GOT_MIRACLE_SEED_ROUTE_32, Route32_EventScript_RoadblockMan_Common_1
-	goto_if_unset FLAG_BADGE01_GET, Route32_EventScript_RoadblockMan_Common_2
-	goto_if_set FLAG_GOT_ELMS_EGG, Route32_EventScript_RoadblockMan_Common_3
-	msgbox Route32_EventScript_RoadblockMan_Common_Text_3
-	return
+movement Route32_Movement_RoadblockMan_PlayerFromLeft {
+    delay_16
+    walk_up * 2
+    face_down
+}
 
-Route32_EventScript_RoadblockMan_Common_1:
-	call Route32_EventScript_RoadblockMan_AfterItem
-	return
+movement Route32_Movement_RoadblockMan_ManFromLeft {
+    walk_left * 2
+    walk_up
+}
 
-Route32_EventScript_RoadblockMan_Common_2:
-	msgbox Route32_EventScript_RoadblockMan_Common_Text_0
-	return
+movement Route32_Movement_RoadblockMan_PlayerFromRight {
+    walk_up * 2
+    face_down
+}
 
-Route32_EventScript_RoadblockMan_Common_3:
-	msgbox Route32_EventScript_RoadblockMan_Common_Text_1
-	giveitem ITEM_MIRACLE_SEED
-	compare VAR_RESULT, 0
-	goto_if_eq Route32_EventScript_RoadblockMan_Common_8
-	setflag FLAG_GOT_MIRACLE_SEED_ROUTE_32
-	setvar VAR_ROUTE32_STATE, 1
-	call Route32_EventScript_RoadblockMan_AfterItem
-	return
+movement Route32_Movement_RoadblockMan_ManFromRight {
+    walk_left
+    walk_up
+}
 
-Route32_EventScript_RoadblockMan_Common_8:
-	msgbox Route32_EventScript_RoadblockMan_Common_Text_2
-	return
+movement Route32_Movement_RoadblockMan_ManResetFromLeft {
+    walk_down
+    walk_right * 2
+    face_left
+}
 
+movement Route32_Movement_RoadblockMan_ManResetFromRight {
+    walk_down
+    walk_right
+    face_left
+}
 
-Route32_EventScript_RoadblockMan_AfterItem::
-	msgbox Route32_EventScript_RoadblockMan_AfterItem_Text_0
-	return
+script Route32_EventScript_RuinsOfAlphSign {
+    msgbox("RUINS OF ALPH\n"
+           "EAST ENTRANCE", MSGBOX_SIGN)
+}
 
+script Route32_EventScript_DirectionsSign {
+    msgbox("ROUTE 32\n"
+           "VIOLET CITY - AZALEA TOWN", MSGBOX_SIGN)
+}
 
-Route32_Movement_RoadblockMan_NoticePlayer:
-	emote_exclamation_mark
-	face_left
-	step_end
-
-Route32_Movement_RoadblockMan_PlayerFromLeft:
-	delay_16
-	walk_up
-	walk_up
-	face_down
-	step_end
-
-Route32_Movement_RoadblockMan_ManFromLeft:
-	walk_left
-	walk_left
-	walk_up
-	step_end
-
-Route32_Movement_RoadblockMan_PlayerFromRight:
-	walk_up
-	walk_up
-	face_down
-	step_end
-
-Route32_Movement_RoadblockMan_ManFromRight:
-	walk_left
-	walk_up
-	step_end
-
-Route32_Movement_RoadblockMan_ManResetFromLeft:
-	walk_down
-	walk_right
-	walk_right
-	face_left
-	step_end
-
-Route32_Movement_RoadblockMan_ManResetFromRight:
-	walk_down
-	walk_right
-	face_left
-	step_end
-
-Route32_EventScript_RuinsOfAlphSign::
-	msgbox Route32_EventScript_RuinsOfAlphSign_Text_0, MSGBOX_SIGN
-	return
-
-
-Route32_EventScript_DirectionsSign::
-	msgbox Route32_EventScript_DirectionsSign_Text_0, MSGBOX_SIGN
-	return
-
-
+raw `
 Route32_OnFrame: @ 81ECC3D
 	map_script_2 VAR_BOARD_BRINEY_BOAT_STATE, 1, Route32_EventScript_StartSailToDewford
 	.2byte 0
@@ -1333,50 +1350,4 @@ Route32_Text_BrendanPostBattle: @ 81EE120
 	.string "making POKéMON battle.\p"
 	.string "Like MR. BRINEY, it's important to\n"
 	.string "become friends with your POKéMON.$"
-
-Route32_EventScript_RoadblockManTrigger_All_Text_0:
-	.string "Wait up!\n"
-	.string "What's the hurry?$"
-
-Route32_EventScript_RoadblockMan_Common_Text_0:
-	.string "Have you gone to the POKéMON\n"
-	.string "GYM in VIOLET yet?\p"
-	.string "You can test your POKéMON and\n"
-	.string "yourself there.\p"
-	.string "It's a rite of passage for all\n"
-	.string "TRAINERS!$"
-
-Route32_EventScript_RoadblockMan_Common_Text_1:
-	.string "Looks like you have some good\n"
-	.string "POKéMON there.\p"
-	.string "It must be from the training you\n"
-	.string "gave them around VIOLET CITY.\p"
-	.string "The training at the GYM must have\n"
-	.string "been especially helpful.\p"
-	.string "As a souvenir of VIOLET CITY,\n"
-	.string "take this.\p"
-	.string "It increases the power of GRASS-\n"
-	.string "type moves.$"
-
-Route32_EventScript_RoadblockMan_Common_Text_2:
-	.string "Hm, you don't have room for this.\n"
-	.string "I'll hold onto it.$"
-
-Route32_EventScript_RoadblockMan_Common_Text_3:
-	.string "{PLAYER}, right?\n"
-	.string "Some guy wearing glasses was\l"
-	.string "looking for you.\p"
-	.string "Go see for yourself. He's waiting\n"
-	.string "for you at the POKéMON CENTER.$"
-
-Route32_EventScript_RoadblockMan_AfterItem_Text_0:
-	.string "Your experiences in VIOLET CITY\n"
-	.string "should be useful for your journey.$"
-
-Route32_EventScript_RuinsOfAlphSign_Text_0:
-	.string "RUINS OF ALPH\n"
-	.string "EAST ENTRANCE$"
-
-Route32_EventScript_DirectionsSign_Text_0:
-	.string "ROUTE 32\n"
-	.string "VIOLET CITY - AZALEA TOWN$"
+`

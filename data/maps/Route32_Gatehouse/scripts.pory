@@ -1,0 +1,18 @@
+mapscripts Route32_Gatehouse_MapScripts { }
+
+script Route32_Gatehouse_Officer {
+    msgbox("RUINS OF ALPH: a look-and-touch\n"
+           "tourist site.\p"
+           "Try the sliding stone panels!", MSGBOX_NPC)
+}
+
+script Route32_Gatehouse_Man {
+    msgbox("You're studying the RUINS?\n"
+           "I see a scientist in the making.", MSGBOX_NPC)
+}
+
+script Route32_Gatehouse_Boy {
+    msgbox("There are drawings on stone panels.\n"
+           "I tried moving them.\l"
+           "I wonder what they are.", MSGBOX_NPC)
+}
