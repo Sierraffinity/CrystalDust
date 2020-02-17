@@ -106,7 +106,7 @@
 #define FLAG_GOT_ELMS_EGG                    0x5C
 #define FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET           0x5D
 #define FLAG_GOT_MIRACLE_SEED_ROUTE_32       0x5E
-#define FLAG_RECEIVED_POKEBLOCK_CASE         0x5F
+#define FLAG_TALKED_TO_RUINS_COWARD          0x5F
 #define FLAG_RECEIVED_SECRET_POWER           0x60
 #define FLAG_MET_TEAM_AQUA_HARBOR            0x61
 #define FLAG_TV_EXPLAINED                    0x62
@@ -770,10 +770,10 @@
 #define FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE           0x2DB
 #define FLAG_HIDE_ROUTE_36_ARTHUR                                   0x2DC
 #define FLAG_HIDE_SPROUT_TOWER_3F_RIVAL                             0x2DD
-#define FLAG_HIDE_PLAYERS_HOUSE_DAD                                 0x2DE
-#define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_SIBLING         0x2DF
-#define FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_SIBLING            0x2E0
-#define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE             0x2E1
+#define FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_SCIENTIST                   0x2DE
+#define FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_COWARD                      0x2DF
+#define FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_YOUNGSTERS                  0x2E0
+#define FLAG_HIDE_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS              0x2E1
 #define FLAG_HIDE_ROUTE_32_MR_BRINEY                                0x2E2
 #define FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY                           0x2E3
 #define FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN                            0x2E4
@@ -1420,7 +1420,7 @@
 
 #define FLAG_LANDMARK_DARK_CAVE                     (SYSTEM_FLAGS + 0x3C)
 #define FLAG_LANDMARK_SPROUT_TOWER                  (SYSTEM_FLAGS + 0x3D)
-#define FLAG_LANDMARK_ABANDONED_SHIP                (SYSTEM_FLAGS + 0x3E)
+#define FLAG_LANDMARK_RUINS_OF_ALPH                 (SYSTEM_FLAGS + 0x3E)
 #define FLAG_LANDMARK_SEASHORE_HOUSE                (SYSTEM_FLAGS + 0x3F)
 #define FLAG_LANDMARK_NEW_MAUVILLE                  (SYSTEM_FLAGS + 0x40)
 #define FLAG_LANDMARK_OLD_LADY_REST_SHOP            (SYSTEM_FLAGS + 0x41)

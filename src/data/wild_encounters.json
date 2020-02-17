@@ -10072,10 +10072,10 @@
           }
         },
         {
-          "map": "MAP_NEW_MAUVILLE_INSIDE",
-          "base_label": "gNewMauville_Inside",
+          "map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+          "base_label": "gRuinsOfAlph_InnerChamber",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 0,
             "mons": [
               [
                 {
@@ -20078,8 +20078,8 @@
           }
         },
         {
-          "map": "MAP_NEW_MAUVILLE_ENTRANCE",
-          "base_label": "gNewMauville_Entrance",
+          "map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+          "base_label": "gRuinsOfAlph_Outside",
           "land_mons": {
             "encounter_rate": 10,
             "mons": [

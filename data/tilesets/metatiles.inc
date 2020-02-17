@@ -215,12 +215,12 @@ gMetatileAttributes_PagodaTower:: @ 83B7296
 	.incbin "data/tilesets/secondary/pagoda_tower/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_PrettyPetalFlowerShop:: @ 83B7306
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/metatiles.bin"
+gMetatiles_RuinsOfAlph:: @ 83B7306
+	.incbin "data/tilesets/secondary/ruins_of_alph/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_PrettyPetalFlowerShop:: @ 83B7786
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/metatile_attributes.bin"
+gMetatileAttributes_RuinsOfAlph:: @ 83B7786
+	.incbin "data/tilesets/secondary/ruins_of_alph/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_PokemonDayCare:: @ 83B7816

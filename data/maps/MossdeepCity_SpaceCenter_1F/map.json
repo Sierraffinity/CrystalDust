@@ -152,7 +152,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_MagmaNote",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE"
+      "flag": "FLAG_HIDE_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_STEVEN",

@@ -434,23 +434,23 @@ MeteorFalls_B1F_2R_EventScript_ItemTM02:: @ 82911DF
 	finditem ITEM_TM02
 	end
 
-NewMauville_Inside_EventScript_ItemUltraRope:: @ 82911EC
+RuinsOfAlph_InnerChamber_EventScript_ItemUltraRope:: @ 82911EC
 	finditem ITEM_ULTRA_BALL
 	end
 
-NewMauville_Inside_EventScript_ItemEscapeRope:: @ 82911F9
+RuinsOfAlph_InnerChamber_EventScript_ItemEscapeRope:: @ 82911F9
 	finditem ITEM_ESCAPE_ROPE
 	end
 
-NewMauville_Inside_EventScript_ItemThunderStone:: @ 8291206
+RuinsOfAlph_InnerChamber_EventScript_ItemThunderStone:: @ 8291206
 	finditem ITEM_THUNDER_STONE
 	end
 
-NewMauville_Inside_EventScript_ItemFullHeal:: @ 8291213
+RuinsOfAlph_InnerChamber_EventScript_ItemFullHeal:: @ 8291213
 	finditem ITEM_FULL_HEAL
 	end
 
-NewMauville_Inside_EventScript_ItemParalyzeHeal:: @ 8291220
+RuinsOfAlph_InnerChamber_EventScript_ItemParalyzeHeal:: @ 8291220
 	finditem ITEM_PARALYZE_HEAL
 	end
 

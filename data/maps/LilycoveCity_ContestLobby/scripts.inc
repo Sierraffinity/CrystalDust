@@ -1006,7 +1006,7 @@ LilycoveCity_ContestLobby_Movement_LinkReceptionistFacePlayer: @ 821ACEF
 LilycoveCity_ContestLobby_EventScript_LittleGirl:: @ 821ACF1
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase
+	goto_if_set FLAG_TALKED_TO_RUINS_COWARD, LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase
 	msgbox LilycoveCity_ContestLobby_Text_LadyGaveMePokeblockCase, MSGBOX_DEFAULT
 	release
 	end

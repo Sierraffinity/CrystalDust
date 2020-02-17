@@ -92,7 +92,7 @@ SafariZone_South_EventScript_ExitEarlyEast:: @ 823D359
 SafariZone_South_EventScript_Exit:: @ 823D373
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
-	warpdoor MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 255, 2, 5
+	warpdoor MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE, 255, 2, 5
 	waitstate
 	end
 

@@ -290,7 +290,7 @@
 #define MAP_ROUTE117_POKEMON_DAY_CARE (0 | (22 << 8))
 
 // Map Group 23
-#define MAP_ROUTE121_SAFARI_ZONE_ENTRANCE (0 | (23 << 8))
+#define MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE (0 | (23 << 8))
 
 // Map Group 24
 #define MAP_METEOR_FALLS_1F_1R                       (0 | (24 << 8))
@@ -345,11 +345,11 @@
 #define MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM           (49 | (24 << 8))
 #define MAP_SHOAL_CAVE_HIGH_TIDE_ENTRANCE_ROOM       (50 | (24 << 8))
 #define MAP_SHOAL_CAVE_HIGH_TIDE_INNER_ROOM          (51 | (24 << 8))
-#define MAP_NEW_MAUVILLE_ENTRANCE                    (52 | (24 << 8))
-#define MAP_NEW_MAUVILLE_INSIDE                      (53 | (24 << 8))
-#define MAP_SPROUT_TOWER_1F                          (54 | (24 << 8))
-#define MAP_SPROUT_TOWER_2F                          (55 | (24 << 8))
-#define MAP_SPROUT_TOWER_3F                          (56 | (24 << 8))
+#define MAP_SPROUT_TOWER_1F                          (52 | (24 << 8))
+#define MAP_SPROUT_TOWER_2F                          (53 | (24 << 8))
+#define MAP_SPROUT_TOWER_3F                          (54 | (24 << 8))
+#define MAP_RUINS_OF_ALPH_OUTSIDE                    (55 | (24 << 8))
+#define MAP_RUINS_OF_ALPH_INNER_CHAMBER              (56 | (24 << 8))
 #define MAP_ABANDONED_SHIP_CORRIDORS_B1F             (57 | (24 << 8))
 #define MAP_ABANDONED_SHIP_ROOMS_B1F                 (58 | (24 << 8))
 #define MAP_ABANDONED_SHIP_ROOMS2_B1F                (59 | (24 << 8))

@@ -216,7 +216,7 @@
         "Route117_PokemonDayCare"
     ],
     "gMapGroup23": [
-        "Route121_SafariZoneEntrance"
+        "Route36_RuinsOfAlphGatehouse"
     ],
     "gMapGroup24": [
         "MeteorFalls_1F_1R",
@@ -271,11 +271,11 @@
         "ShoalCave_LowTideLowerRoom",
         "ShoalCave_HighTideEntranceRoom",
         "ShoalCave_HighTideInnerRoom",
-        "NewMauville_Entrance",
-        "NewMauville_Inside",
         "SproutTower_1F",
         "SproutTower_2F",
         "SproutTower_3F",
+        "RuinsOfAlph_Outside",
+        "RuinsOfAlph_InnerChamber",
         "AbandonedShip_Corridors_B1F",
         "AbandonedShip_Rooms_B1F",
         "AbandonedShip_Rooms2_B1F",

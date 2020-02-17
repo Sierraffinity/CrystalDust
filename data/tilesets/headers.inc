@@ -323,15 +323,15 @@ gTileset_PagodaTower:: @ 83DF974
 	.4byte InitTilesetAnim_PagodaTower @ animation callback
 
 	.align 2
-gTileset_PrettyPetalFlowerShop:: @ 83DF98C
+gTileset_RuinsOfAlph:: @ 83DF98C
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_PrettyPetalFlowerShop
-	.4byte gTilesetPalettes_PrettyPetalFlowerShop
+	.4byte gTilesetTiles_RuinsOfAlph
+	.4byte gTilesetPalettes_RuinsOfAlph
 	.4byte NULL
-	.4byte gMetatiles_PrettyPetalFlowerShop
-	.4byte gMetatileAttributes_PrettyPetalFlowerShop
+	.4byte gMetatiles_RuinsOfAlph
+	.4byte gMetatileAttributes_RuinsOfAlph
 	.4byte NULL @ animation callback
 
 	.align 2

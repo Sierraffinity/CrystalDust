@@ -17,7 +17,7 @@ def create_image(path, data, is_compressed):
         f.write(data)
     if is_compressed:
         gbagfx([filename + ".4bpp.lz", filename + ".4bpp"])
-    gbagfx([filename + ".4bpp", filename + ".png", "-width", "16", "-palette", os.sep.join([path, "palettes/0.gbapal"])])
+    gbagfx([filename + ".4bpp", filename + ".png", "-width", "16", "-palette", os.sep.join([path, "palettes/00.gbapal"])])
 
 def create_pals(path, data):
     subdir = os.sep.join([path, 'palettes'])
@@ -30,11 +30,11 @@ def create_pals(path, data):
 
 def create_metatiles(path, data, num_metatiles):
     # Uncomment and edit the 9 in the last row to make mass palette edits
-    '''data = bytearray(data)
+    data = bytearray(data)
     for i in range(0, num_metatiles):
         for j in range(0, 16, 2):
             if (data[(i * 16) + j + 1] >> 4) == 6:
-                data[(i * 16) + j + 1] = (data[(i * 16) + j + 1] & 3) | (9 << 4)'''
+                data[(i * 16) + j + 1] = (data[(i * 16) + j + 1] & 3) | (7 << 4)
 
     with open(os.sep.join([path, 'metatiles.bin']), 'wb+') as f:
         f.write(data)

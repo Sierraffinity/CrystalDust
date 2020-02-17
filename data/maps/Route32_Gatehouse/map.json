@@ -63,8 +63,8 @@
     "show_map_name": false,
     "warp_events": [
         {
-            "dest_map": "MAP_ROUTE112",
-            "dest_warp_id": 0,
+            "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+            "dest_warp_id": 2,
             "elevation": 0,
             "x": 1,
             "y": 5

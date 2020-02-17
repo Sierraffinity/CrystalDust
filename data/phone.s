@@ -98,7 +98,7 @@ PhoneScript_Mom_Azalea:
 	phone_goto PhoneScript_Mom_PostLocationBanking
 
 PhoneScript_Mom_Goldenrod:
-	phone_buffermapsecname 1, MAPSEC_NEW_MAUVILLE
+	phone_buffermapsecname 1, MAPSEC_RUINS_OF_ALPH
 	phone_message Text_Pokegear_Mom_RegularCall_Landmark
 	phone_goto PhoneScript_Mom_PostLocationBanking
 

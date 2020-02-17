@@ -123,7 +123,7 @@ gMapLayouts::
 	.4byte Route114_LanettesHouse_Layout
 	.4byte Route116_TunnelersRestHouse_Layout
 	.4byte Route117_PokemonDayCare_Layout
-	.4byte Route121_SafariZoneEntrance_Layout
+	.4byte Route36_RuinsOfAlphGatehouse_Layout
 	.4byte MeteorFalls_1F_1R_Layout
 	.4byte MeteorFalls_1F_2R_Layout
 	.4byte MeteorFalls_B1F_1R_Layout
@@ -183,8 +183,8 @@ gMapLayouts::
 	.4byte UnknownMap_0843E84C_Layout
 	.4byte UnknownMap_0843E870_Layout
 	.4byte UnknownMap_0843E894_Layout
-	.4byte NewMauville_Entrance_Layout
-	.4byte NewMauville_Inside_Layout
+	.4byte RuinsOfAlph_Outside_Layout
+	.4byte RuinsOfAlph_InnerChamber_Layout
 	.4byte SproutTower_1F_Layout
 	.4byte SproutTower_2F_Layout
 	.4byte SproutTower_3F_Layout

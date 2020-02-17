@@ -1831,26 +1831,6 @@
             "width": 1
         },
         {
-            "blockdata_filepath": "data/layouts/NewMauville_Entrance/map.bin",
-            "border_filepath": "data/layouts/NewMauville_Entrance/border.bin",
-            "height": 9,
-            "id": "LAYOUT_NEW_MAUVILLE_ENTRANCE",
-            "name": "NewMauville_Entrance_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Facility",
-            "width": 9
-        },
-        {
-            "blockdata_filepath": "data/layouts/NewMauville_Inside/map.bin",
-            "border_filepath": "data/layouts/NewMauville_Inside/border.bin",
-            "height": 41,
-            "id": "LAYOUT_NEW_MAUVILLE_INSIDE",
-            "name": "NewMauville_Inside_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_BikeShop",
-            "width": 41
-        },
-        {
             "blockdata_filepath": "data/layouts/SproutTower_1F/map.bin",
             "border_filepath": "data/layouts/SproutTower_1F/border.bin",
             "height": 19,
@@ -1879,6 +1859,26 @@
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_PagodaTower",
             "width": 19
+        },
+        {
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_Outside/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_Outside/border.bin",
+            "height": 48,
+            "id": "LAYOUT_RUINS_OF_ALPH_OUTSIDE",
+            "name": "RuinsOfAlph_Outside_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Violet",
+            "width": 32
+        },
+        {
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_InnerChamber/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_InnerChamber/border.bin",
+            "height": 33,
+            "id": "LAYOUT_RUINS_OF_ALPH_INNER_CHAMBER",
+            "name": "RuinsOfAlph_InnerChamber_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 23
         },
         {
             "blockdata_filepath": "data/layouts/AbandonedShip_Corridors_B1F/map.bin",
