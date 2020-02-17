@@ -2529,7 +2529,7 @@ voicegroup029:: @ 867C184
 voicegroup030:: @ 867C5A4
 	voice_keysplit_all voicegroup002  @ 86A1BB8
 	voice_keysplit voicegroup005, KeySplitTable1  @ 86A1BC4
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1BD0
+	voice_directsound 60, 0, DirectSoundWaveData_steinway_b_piano, 255, 165, 103, 235
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1BDC
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1BE8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1BF4
@@ -2608,18 +2608,18 @@ voicegroup030:: @ 867C5A4
 	voice_directsound 60, 0, DirectSoundWaveData_sd90_classical_whistle, 255, 0, 255, 127  @ 86A1F60
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1F6C
 	voice_square_1_alt 0, 1, 0, 1, 9, 0  @ 86A1F78
-	voice_square_2_alt 3, 0, 2, 9, 1  @ 86A1F84
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1F90
+	voice_square_2_alt 0, 0, 2, 9, 2  @ 86A1F84
+	voice_square_1 0, 1, 0, 2, 9, 2  @ 86A1F90
 	voice_square_2_alt 2, 1, 0, 9, 1  @ 86A1F9C
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1FA8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1FB4
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1FC0
 	voice_programmable_wave_alt ProgrammableWaveData_86B4870, 0, 7, 15, 0  @ 86A1FCC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1FD8
+	voice_square_2_alt 1, 0, 5, 12, 0  @ 86A1FD8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1FE4
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1FF0
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A1FFC
-	voice_programmable_wave_alt ProgrammableWaveData_86B4830, 0, 0, 15, 0  @ 86A2008
+	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A2014
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A2014
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A2020
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A202C

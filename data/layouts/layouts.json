@@ -1901,21 +1901,21 @@
             "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/RuinsOfAlph_AerodactylChamber/map.bin",
-            "border_filepath": "data/layouts/RuinsOfAlph_AerodactylChamber/border.bin",
-            "height": 12,
-            "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
-            "name": "RuinsOfAlph_AerodactylChamber_Layout",
-            "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_RuinsOfAlph",
-            "width": 11
-        },
-        {
             "blockdata_filepath": "data/layouts/RuinsOfAlph_OmanyteChamber/map.bin",
             "border_filepath": "data/layouts/RuinsOfAlph_OmanyteChamber/border.bin",
             "height": 12,
             "id": "LAYOUT_RUINS_OF_ALPH_OMANYTE_CHAMBER",
             "name": "RuinsOfAlph_OmanyteChamber_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 11
+        },
+        {
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_AerodactylChamber/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_AerodactylChamber/border.bin",
+            "height": 12,
+            "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+            "name": "RuinsOfAlph_AerodactylChamber_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_RuinsOfAlph",
             "width": 11
@@ -1941,21 +1941,21 @@
             "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/RuinsOfAlph_AerodactylItemRoom/map.bin",
-            "border_filepath": "data/layouts/RuinsOfAlph_AerodactylItemRoom/border.bin",
-            "height": 12,
-            "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM",
-            "name": "RuinsOfAlph_AerodactylItemRoom_Layout",
-            "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_RuinsOfAlph",
-            "width": 11
-        },
-        {
             "blockdata_filepath": "data/layouts/RuinsOfAlph_OmanyteItemRoom/map.bin",
             "border_filepath": "data/layouts/RuinsOfAlph_OmanyteItemRoom/border.bin",
             "height": 12,
             "id": "LAYOUT_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
             "name": "RuinsOfAlph_OmanyteItemRoom_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 11
+        },
+        {
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_AerodactylItemRoom/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_AerodactylItemRoom/border.bin",
+            "height": 12,
+            "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM",
+            "name": "RuinsOfAlph_AerodactylItemRoom_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_RuinsOfAlph",
             "width": 11
