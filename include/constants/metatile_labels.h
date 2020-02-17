@@ -431,6 +431,13 @@
 
 // gTileset_RuinsOfAlph
 #define METATILE_RuinsOfAlph_HoleInWall          0x2FF
+#define METATILE_RuinsOfAlph_Pillar_Blue         0x28D
+#define METATILE_RuinsOfAlph_Pillar_Gray         0x28C
+#define METATILE_RuinsOfAlph_Pillar_Green        0x2CE
+#define METATILE_RuinsOfAlph_Pillar_Purple       0x2CF
+#define METATILE_RuinsOfAlph_Pillar_Red          0x289
+#define METATILE_RuinsOfAlph_Pillar_White        0x28B
+#define METATILE_RuinsOfAlph_Pillar_Yellow       0x28A
 #define METATILE_RuinsOfAlph_Puzzle_Hole_Center  0x2EF
 #define METATILE_RuinsOfAlph_Puzzle_Hole_Left    0x2E7
 #define METATILE_RuinsOfAlph_Puzzle_Hole_Right   0x2F6

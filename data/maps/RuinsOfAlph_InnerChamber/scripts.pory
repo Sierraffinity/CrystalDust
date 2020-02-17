@@ -1,4 +1,22 @@
 mapscripts RuinsOfAlph_InnerChamber_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_SOLVED_KABUTO_PUZZLE))
+        {
+            setmetatile(4, 1, METATILE_RuinsOfAlph_Pillar_Green, TRUE)
+        }
+        if (flag(FLAG_SOLVED_OMANYTE_PUZZLE))
+        {
+            setmetatile(9, 1, METATILE_RuinsOfAlph_Pillar_Green, TRUE)
+        }
+        if (flag(FLAG_SOLVED_AERODACTYL_PUZZLE))
+        {
+            setmetatile(13, 1, METATILE_RuinsOfAlph_Pillar_Green, TRUE)
+        }
+        if (flag(FLAG_SOLVED_HOOH_PUZZLE))
+        {
+            setmetatile(18, 1, METATILE_RuinsOfAlph_Pillar_Green, TRUE)
+        }
+    }
     MAP_SCRIPT_ON_TRANSITION {
         if (var(VAR_RUINS_OF_ALPH_STATE) == 1)
         {
