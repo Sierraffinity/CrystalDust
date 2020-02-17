@@ -43,7 +43,7 @@
     "id": "MAP_RUINS_OF_ALPH_OUTSIDE",
     "layout": "LAYOUT_RUINS_OF_ALPH_OUTSIDE",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_SPROUTTOWER",
+    "music": "MUS_ILEXFOREST",
     "name": "RuinsOfAlph_Outside",
     "object_events": [
         {

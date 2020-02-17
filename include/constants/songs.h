@@ -290,7 +290,7 @@
 #define MUS_CHERRYGROVE 363     // Cherrygrove/Mahogany
 #define MUS_GIM 364             // Gym
 #define MUS_NAMINORI 365        // Surfing
-#define MUS_DAN01 366           // Caves and Darkness
+#define MUS_ILEXFOREST 366           // Caves and Darkness
 #define MUS_FANFA1 367          // Level Up!
 #define MUS_ME_ASA 368          // Pokémon Healed
 #define MUS_ME_BACHI 369        // Obtained a Badge!

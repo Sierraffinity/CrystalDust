@@ -2,7 +2,7 @@
   "id": "MAP_DARK_CAVE_STEVENS_ROOM",
   "name": "DarkCave_StevensRoom",
   "layout": "LAYOUT_DARK_CAVE_STEVENS_ROOM",
-  "music": "MUS_DAN01",
+  "music": "MUS_ILEXFOREST",
   "region_map_section": "MAPSEC_DARK_CAVE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

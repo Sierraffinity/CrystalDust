@@ -105,7 +105,7 @@ $(MID_SUBDIR)/mus_cycling.s: %.s: %.mid
 $(MID_SUBDIR)/mus_daigo.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G100 -V076
 
-$(MID_SUBDIR)/mus_dan01.s: %.s: %.mid
+$(MID_SUBDIR)/mus_ilexforest.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G018 -V080
 
 $(MID_SUBDIR)/mus_darkcave.s: %.s: %.mid

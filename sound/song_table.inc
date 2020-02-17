@@ -367,7 +367,7 @@ gSongTable:: @ 86B49F0
 	song mus_cherrygrove, 0, 0      @ Cherrygrove/Mahogany City
 	song mus_gim, 0, 0              @ Pokémon Gym
 	song mus_naminori, 0, 0         @ Surf
-	song mus_dan01, 0, 0            @ Petalburg Woods
+	song mus_ilexforest, 0, 0       @ Petalburg Woods
 	song mus_fanfa1, 2, 2           @ Level Up!
 	song mus_me_asa, 2, 2           @ Pokémon Healed
 	song mus_me_bachi, 2, 2         @ Obtained a Badge!
