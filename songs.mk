@@ -72,7 +72,7 @@ $(MID_SUBDIR)/mus_battle38.s: %.s: %.mid
 $(MID_SUBDIR)/mus_bd_time.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G038 -V080
 
-$(MID_SUBDIR)/mus_bijyutu.s: %.s: %.mid
+$(MID_SUBDIR)/mus_ruinsofalph.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G020 -V080
 
 $(MID_SUBDIR)/mus_rivalexit.s: %.s: %.mid

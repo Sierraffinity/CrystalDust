@@ -43,6 +43,13 @@
             "type": "hidden_item",
             "x": 45,
             "y": 16
+        },
+        {
+            "elevation": 0,
+            "fruit_tree_id": "FRUIT_TREE_VIOLET_CITY",
+            "type": "fruit_tree",
+            "x": 18,
+            "y": 34
         }
     ],
     "connections": [

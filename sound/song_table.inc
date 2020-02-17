@@ -367,14 +367,14 @@ gSongTable:: @ 86B49F0
 	song mus_cherrygrove, 0, 0      @ Cherrygrove/Mahogany City
 	song mus_gim, 0, 0              @ Pokémon Gym
 	song mus_naminori, 0, 0         @ Surf
-	song mus_ilexforest, 0, 0       @ Petalburg Woods
+	song mus_ilexforest, 0, 0       @ Ilex Forest/Ruins of Alph
 	song mus_fanfa1, 2, 2           @ Level Up!
 	song mus_me_asa, 2, 2           @ Pokémon Healed
 	song mus_me_bachi, 2, 2         @ Obtained a Badge!
 	song mus_fanfa4, 2, 2           @ Obtained an Item!
 	song mus_fanfa5, 2, 2           @ Congratulations! Your Pokémon Evolved!
 	song mus_me_waza, 2, 2          @ Obtained a TM!
-	song mus_bijyutu, 0, 0          @ Museum
+	song mus_ruinsofalph, 0, 0      @ Ruins of Alph Inner Chamber
 	song mus_route30, 0, 0          @ Introductions
 	song mus_fune_kan, 0, 0         @ Oceanic Museum
 	song mus_me_shinka, 2, 2        @ Evolution (Intro)
@@ -388,7 +388,7 @@ gSongTable:: @ 86B49F0
 	song mus_b_tower, 0, 0          @ Battle Tower (RS)
 	song mus_swimeye, 0, 0          @ Trainers' Eyes Meet (Swimmer♀)
 	song mus_dan03, 0, 0            @ Cave of Origin
-	song mus_fanfareegg, 2, 2        @ Obtained a Berry!
+	song mus_fanfareegg, 2, 2       @ Obtained an Egg!
 	song mus_me_tama, 2, 2          @ The Super-Ancient Pokémon Awaken!
 	song mus_me_b_big, 2, 2         @ Jackpot
 	song mus_me_b_small, 2, 2       @ Win

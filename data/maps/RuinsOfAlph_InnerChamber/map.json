@@ -11,7 +11,7 @@
     "id": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
     "layout": "LAYOUT_RUINS_OF_ALPH_INNER_CHAMBER",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_ILEXFOREST",
+    "music": "MUS_RUINSOFALPH",
     "name": "RuinsOfAlph_InnerChamber",
     "object_events": [
         {
