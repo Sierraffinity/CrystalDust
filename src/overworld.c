@@ -2954,7 +2954,7 @@ bool32 sub_808766C(void)
 static u32 GetLinkSendQueueLength(void)
 {
     if (gWirelessCommType != 0)
-        return gUnknown_03005000.unk_9e8.unk_232;
+        return Rfu.unk_9e8.unk_232;
     else
         return gLink.sendQueue.count;
 }
