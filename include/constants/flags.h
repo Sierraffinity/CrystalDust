@@ -108,7 +108,7 @@
 #define FLAG_GOT_MIRACLE_SEED_ROUTE_32       0x5E
 #define FLAG_TALKED_TO_RUINS_COWARD          0x5F
 #define FLAG_RECEIVED_SECRET_POWER           0x60
-#define FLAG_MET_TEAM_AQUA_HARBOR            0x61
+#define FLAG_MADE_UNOWN_APPEAR_IN_RUINS      0x61
 #define FLAG_TV_EXPLAINED                    0x62
 #define FLAG_MAUVILLE_GYM_BARRIERS_STATE     0x63
 #define FLAG_MOSSDEEP_GYM_SWITCH_1           0x64 // Leftover from the RS version of Mossdeep Gym, functionally unused
@@ -774,7 +774,7 @@
 #define FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_COWARD                      0x2DF
 #define FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_YOUNGSTERS                  0x2E0
 #define FLAG_HIDE_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS              0x2E1
-#define FLAG_HIDE_ROUTE_32_MR_BRINEY                                0x2E2
+#define FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST           0x2E2
 #define FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY                           0x2E3
 #define FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN                            0x2E4
 #define FLAG_HIDE_ROUTE_36_MR_BRINEY                                0x2E5

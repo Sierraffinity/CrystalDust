@@ -1881,14 +1881,14 @@
             "width": 23
         },
         {
-            "blockdata_filepath": "data/layouts/AbandonedShip_Corridors_B1F/map.bin",
-            "border_filepath": "data/layouts/AbandonedShip_Corridors_B1F/border.bin",
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_ResearchCenter/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_ResearchCenter/border.bin",
             "height": 10,
-            "id": "LAYOUT_ABANDONED_SHIP_CORRIDORS_B1F",
-            "name": "AbandonedShip_Corridors_B1F_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 13
+            "id": "LAYOUT_RUINS_OF_ALPH_RESEARCH_CENTER",
+            "name": "RuinsOfAlph_ResearchCenter_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Lab",
+            "width": 12
         },
         {
             "blockdata_filepath": "data/layouts/AbandonedShip_Rooms_B1F/map.bin",

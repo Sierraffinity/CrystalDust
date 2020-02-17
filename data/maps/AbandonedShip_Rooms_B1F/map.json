@@ -48,21 +48,21 @@
       "x": 4,
       "y": 1,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_CORRIDORS_B1F",
+      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
       "dest_warp_id": 2
     },
     {
       "x": 13,
       "y": 1,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_CORRIDORS_B1F",
+      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
       "dest_warp_id": 3
     },
     {
       "x": 22,
       "y": 1,
       "elevation": 3,
-      "dest_map": "MAP_ABANDONED_SHIP_CORRIDORS_B1F",
+      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
       "dest_warp_id": 4
     }
   ],

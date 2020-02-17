@@ -188,7 +188,7 @@ gMapLayouts::
 	.4byte SproutTower_1F_Layout
 	.4byte SproutTower_2F_Layout
 	.4byte SproutTower_3F_Layout
-	.4byte AbandonedShip_Corridors_B1F_Layout
+	.4byte RuinsOfAlph_ResearchCenter_Layout
 	.4byte AbandonedShip_Rooms_B1F_Layout
 	.4byte AbandonedShip_Rooms2_B1F_Layout
 	.4byte AbandonedShip_Underwater1_Layout

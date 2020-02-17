@@ -131,7 +131,7 @@ AbandonedShip_HiddenFloorCorridors_EventScript_Rm6IsLocked:: @ 8238B13
 	end
 
 AbandonedShip_HiddenFloorCorridors_EventScript_TheDoorIsOpen:: @ 8238B1D
-	msgbox SproutTower_Text_TheDoorIsOpen, MSGBOX_DEFAULT
+	@msgbox SproutTower_Text_TheDoorIsOpen, MSGBOX_DEFAULT
 	releaseall
 	end
 
