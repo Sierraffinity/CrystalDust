@@ -133,7 +133,7 @@ DewfordTown_EventScript_SailToPetalburg:: @ 81E9660
 	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_ExitBoatPetalburg
 	waitmovement 0
 	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE32
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	clearflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN

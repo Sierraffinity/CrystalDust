@@ -109,16 +109,14 @@
 #define FLAG_TALKED_TO_RUINS_COWARD          0x5F
 #define FLAG_RECEIVED_SECRET_POWER           0x60
 #define FLAG_MADE_UNOWN_APPEAR_IN_RUINS      0x61
-#define FLAG_TV_EXPLAINED                    0x62
-#define FLAG_MAUVILLE_GYM_BARRIERS_STATE     0x63
-#define FLAG_MOSSDEEP_GYM_SWITCH_1           0x64 // Leftover from the RS version of Mossdeep Gym, functionally unused
-#define FLAG_MOSSDEEP_GYM_SWITCH_2           0x65 //
-#define FLAG_MOSSDEEP_GYM_SWITCH_3           0x66 //
-#define FLAG_MOSSDEEP_GYM_SWITCH_4           0x67 //
-
-#define FLAG_UNUSED_0x068                    0x68  // Unused Flag
-
-#define FLAG_OCEANIC_MUSEUM_MET_REPORTER     0x69
+#define FLAG_SOLVED_KABUTO_PUZZLE            0x62
+#define FLAG_SOLVED_AERODACTYL_PUZZLE        0x64
+#define FLAG_SOLVED_OMANYTE_PUZZLE           0x63
+#define FLAG_SOLVED_HOOH_PUZZLE              0x65
+#define FLAG_OPENED_WALL_IN_KABUTO_CHAMBER   0x66
+#define FLAG_OPENED_WALL_IN_AERODACTYL_CHAMBER  0x67
+#define FLAG_OPENED_WALL_IN_OMANYTE_CHAMBER  0x68
+#define FLAG_OPENED_WALL_IN_HOOH_CHAMBER     0x69
 #define FLAG_RECEIVED_HM04                   0x6A
 #define FLAG_RECEIVED_HM06                   0x6B
 #define FLAG_WHITEOUT_TO_LAVARIDGE           0x6C // Set after defeating Flannery, so the player cant white out from poison before receiving Go Goggles
@@ -775,7 +773,7 @@
 #define FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_YOUNGSTERS                  0x2E0
 #define FLAG_HIDE_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS              0x2E1
 #define FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST           0x2E2
-#define FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY                           0x2E3
+#define FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST         0x2E3
 #define FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN                            0x2E4
 #define FLAG_HIDE_ROUTE_36_MR_BRINEY                                0x2E5
 #define FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT                           0x2E6
@@ -1136,9 +1134,9 @@
 #define FLAG_ITEM_ROUTE_124_BLUE_SHARD                              0x445 
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_WEST_TM_22                      0x446 
 #define FLAG_ITEM_SPROUT_TOWER_3F_HARBOR_MAIL               0x447 
-#define FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_ESCAPE_ROPE              0x448 
+#define FLAG_ITEM_RUINS_OF_ALPH_KABUTO_CHAMBER_ESCAPE_ROPE              0x448 
 #define FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL              0x449 
-#define FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_TM_13                    0x44A 
+#define FLAG_ITEM_RUINS_OF_ALPH_KABUTO_CHAMBER_TM_13                    0x44A 
 #define FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_1F_REVIVE                  0x44B 
 #define FLAG_ITEM_ABANDONED_SHIP_CAPTAINS_OFFICE_STORAGE_KEY        0x44C 
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_3_WATER_STONE    0x44D 

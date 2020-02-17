@@ -429,6 +429,11 @@
 #define METATILE_RS_MossdeepGym_Switch_Down     0x239
 #define METATILE_RS_MossdeepGym_Switch_Up       0x238
 
+// gTileset_RuinsOfAlph
+#define METATILE_RuinsOfAlph_Puzzle_Hole_Center  0x2EF
+#define METATILE_RuinsOfAlph_Puzzle_Hole_Left    0x2E7
+#define METATILE_RuinsOfAlph_Puzzle_Hole_Right   0x2F6
+
 // gTileset_Rustboro
 #define METATILE_Rustboro_Door_Gray  0x294
 #define METATILE_Rustboro_Door_Tan   0x298

@@ -351,7 +351,7 @@
 #define MAP_RUINS_OF_ALPH_OUTSIDE                    (55 | (24 << 8))
 #define MAP_RUINS_OF_ALPH_RESEARCH_CENTER            (56 | (24 << 8))
 #define MAP_RUINS_OF_ALPH_INNER_CHAMBER              (57 | (24 << 8))
-#define MAP_ABANDONED_SHIP_ROOMS_B1F                 (58 | (24 << 8))
+#define MAP_RUINS_OF_ALPH_KABUTO_CHAMBER             (58 | (24 << 8))
 #define MAP_ABANDONED_SHIP_ROOMS2_B1F                (59 | (24 << 8))
 #define MAP_ABANDONED_SHIP_UNDERWATER1               (60 | (24 << 8))
 #define MAP_ABANDONED_SHIP_ROOM_B1F                  (61 | (24 << 8))

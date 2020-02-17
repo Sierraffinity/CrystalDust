@@ -458,7 +458,7 @@ SproutTower_3F_EventScript_ItemHarborMail:: @ 829122D
 	finditem ITEM_HARBOR_MAIL
 	end
 
-AbandonedShip_Rooms_B1F_EventScript_ItemEscapeRope:: @ 829123A
+RuinsOfAlph_KabutoChamber_EventScript_ItemEscapeRope:: @ 829123A
 	finditem ITEM_ESCAPE_ROPE
 	end
 

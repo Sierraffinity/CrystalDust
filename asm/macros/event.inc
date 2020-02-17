@@ -905,7 +905,7 @@
 	.byte \a
 	.endm
 
-	@ Displays the string at pointer as braille text in a standard message box. The string must be formatted to use braille characters and needs to provide six extra starting characters that are skipped (in RS, these characters determined the box's size and position, but in Emerald these are calculated automatically).
+	@ Displays the string at pointer as braille text in a standard message box. The string must be formatted to use braille characters.
 	.macro braillemessage text:req
 	.byte 0x78
 	.4byte \text

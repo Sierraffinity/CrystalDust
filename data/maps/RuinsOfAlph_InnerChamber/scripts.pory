@@ -1,5 +1,20 @@
 mapscripts RuinsOfAlph_InnerChamber_MapScripts {
-    
+    MAP_SCRIPT_ON_TRANSITION {
+        if (var(VAR_RUINS_OF_ALPH_STATE) == 1)
+        {
+            setflag(FLAG_HIDE_MAP_NAME_POPUP)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_RUINS_OF_ALPH_STATE, 1{
+            lockall
+            delay(5)
+            msgbox("There is a strange presence here…")
+            setvar(VAR_RUINS_OF_ALPH_STATE, 0)
+            clearflag(FLAG_HIDE_MAP_NAME_POPUP)
+            releaseall
+        }
+    ]
 }
 
 script RuinsOfAlph_InnerChamber_Coward {

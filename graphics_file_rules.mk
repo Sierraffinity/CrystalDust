@@ -110,7 +110,7 @@ $(FONTGFXDIR)/font9.hwjpnfont: $(FONTGFXDIR)/font9_japanese.png
 $(FONTGFXDIR)/font2.fwjpnfont: $(FONTGFXDIR)/font2_japanese.png
 	$(GFX) $< $@
 
-$(FONTGFXDIR)/font6.fwjpnfont: $(FONTGFXDIR)/font6_braille.png
+$(FONTGFXDIR)/font6.fwjpnfont: $(FONTGFXDIR)/font6_unown.png
 	$(GFX) $< $@
 
 $(FONTGFXDIR)/unused_frlg_male.fwjpnfont: $(FONTGFXDIR)/unused_japanese_frlg_male_font.png

@@ -3,6 +3,6 @@ AbandonedShip_Underwater2_MapScripts:: @ 823895D
 	.byte 0
 
 AbandonedShip_Underwater2_OnResume: @ 8238963
-	setdivewarp MAP_ABANDONED_SHIP_ROOMS_B1F, 255, 13, 7
+	setdivewarp MAP_RUINS_OF_ALPH_KABUTO_CHAMBER, 255, 13, 7
 	end
 

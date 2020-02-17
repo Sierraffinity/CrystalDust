@@ -3,10 +3,10 @@ MossdeepCity_MapScripts:: @ 81E4A96
 	.byte 0
 
 MossdeepCity_OnTransition: @ 81E4A9C
-	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
-	clearflag FLAG_MOSSDEEP_GYM_SWITCH_2
-	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
-	clearflag FLAG_MOSSDEEP_GYM_SWITCH_4
+	clearflag FLAG_SOLVED_AERODACTYL_PUZZLE
+	clearflag FLAG_SOLVED_HOOH_PUZZLE
+	clearflag FLAG_OPENED_WALL_IN_KABUTO_CHAMBER
+	clearflag FLAG_OPENED_WALL_IN_AERODACTYL_CHAMBER
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	end
 

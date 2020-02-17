@@ -399,13 +399,13 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
 	.include "data/maps/ShoalCave_HighTideEntranceRoom/scripts.inc"
 	.include "data/maps/ShoalCave_HighTideInnerRoom/scripts.inc"
-	.include "data/maps/RuinsOfAlph_Outside/scripts.inc"
-	.include "data/maps/RuinsOfAlph_InnerChamber/scripts.inc"
 	.include "data/maps/SproutTower_1F/scripts.inc"
 	.include "data/maps/SproutTower_2F/scripts.inc"
 	.include "data/maps/SproutTower_3F/scripts.inc"
+	.include "data/maps/RuinsOfAlph_Outside/scripts.inc"
 	.include "data/maps/RuinsOfAlph_ResearchCenter/scripts.inc"
-	.include "data/maps/AbandonedShip_Rooms_B1F/scripts.inc"
+	.include "data/maps/RuinsOfAlph_InnerChamber/scripts.inc"
+	.include "data/maps/RuinsOfAlph_KabutoChamber/scripts.inc"
 	.include "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc"
 	.include "data/maps/AbandonedShip_Underwater1/scripts.inc"
 	.include "data/maps/AbandonedShip_Room_B1F/scripts.inc"
@@ -618,7 +618,7 @@ EventScript_MoveMrBrineyToHouse:: @ 8271884
 	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	clearflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	end
 
@@ -627,7 +627,7 @@ EventScript_MoveMrBrineyToDewford:: @ 827189A
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
@@ -636,7 +636,7 @@ EventScript_MoveMrBrineyToDewford:: @ 827189A
 EventScript_MoveMrBrineyToRoute36:: @ 82718B3
 	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
@@ -792,7 +792,7 @@ EventScript_HideMrBriney:: @ 82721F8
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setvar VAR_BRINEY_LOCATION, 0
 	return

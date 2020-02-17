@@ -166,7 +166,7 @@ gSpecials:: @ 81DBA64
 	def_special CableCar
 	def_special Overworld_PlaySpecialMapMusic
 	def_special StartWallClock
-	def_special Special_ViewWallClock
+	def_special DoRuinsOfAlphPuzzle
 	def_special ChooseStarter
 	def_special StartDudeTutorialBattle
 	def_special ChangePokemonNickname

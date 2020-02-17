@@ -26,7 +26,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "AbandonedShip_Room_B1F_EventScript_ItemTM13",
-      "flag": "FLAG_ITEM_ABANDONED_SHIP_ROOMS_B1F_TM_13"
+      "flag": "FLAG_ITEM_RUINS_OF_ALPH_KABUTO_CHAMBER_TM_13"
     }
   ],
   "warp_events": [

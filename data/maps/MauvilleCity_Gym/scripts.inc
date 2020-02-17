@@ -13,7 +13,7 @@ MauvilleCity_Gym_OnLoad: @ 820DD74
 	end
 
 MauvilleCity_Gym_EventScript_UpdateBarriers:: @ 820DDBA
-	goto_if_set FLAG_MAUVILLE_GYM_BARRIERS_STATE, MauvilleCity_Gym_EventScript_SetAltBarriers
+	goto_if_set FLAG_SOLVED_OMANYTE_PUZZLE, MauvilleCity_Gym_EventScript_SetAltBarriers
 	end
 
 MauvilleCity_Gym_EventScript_SetAltBarriers:: @ 820DDC4
@@ -186,8 +186,8 @@ MauvilleCity_Gym_EventScript_PressFloorSwitch:: @ 820E08D
 	special MauvilleGymPressSwitch
 	special DrawWholeMapView
 	playse SE_KI_GASYAN
-	goto_if_set FLAG_MAUVILLE_GYM_BARRIERS_STATE, MauvilleCity_Gym_EventScript_ClearBarriersAltState
-	goto_if_unset FLAG_MAUVILLE_GYM_BARRIERS_STATE, MauvilleCity_Gym_EventScript_SetBarriersAltState
+	goto_if_set FLAG_SOLVED_OMANYTE_PUZZLE, MauvilleCity_Gym_EventScript_ClearBarriersAltState
+	goto_if_unset FLAG_SOLVED_OMANYTE_PUZZLE, MauvilleCity_Gym_EventScript_SetBarriersAltState
 	releaseall
 	end
 
@@ -196,12 +196,12 @@ MauvilleCity_Gym_EventScript_SwitchDoNothing:: @ 820E0AD
 	end
 
 MauvilleCity_Gym_EventScript_SetBarriersAltState:: @ 820E0AF
-	setflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
+	setflag FLAG_SOLVED_OMANYTE_PUZZLE
 	releaseall
 	end
 
 MauvilleCity_Gym_EventScript_ClearBarriersAltState:: @ 820E0B4
-	clearflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
+	clearflag FLAG_SOLVED_OMANYTE_PUZZLE
 	releaseall
 	end
 

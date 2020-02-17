@@ -7262,8 +7262,8 @@
           }
         },
         {
-          "map": "MAP_ABANDONED_SHIP_ROOMS_B1F",
-          "base_label": "gAbandonedShip_Rooms_B1F",
+          "map": "MAP_RUINS_OF_ALPH_KABUTO_CHAMBER",
+          "base_label": "gRuinsOfAlph_KabutoChamber",
           "water_mons": {
             "encounter_rate": 4,
             "mons": [

@@ -67,8 +67,8 @@ RuinsOfAlph_ResearchCenter_EventScript_Scientist1_Text_1:
 RuinsOfAlph_ResearchCenter_EventScript_Scientist2_Text_0:
 	.string "The strange POKéMON you saw in\n"
 	.string "the RUINS?\p"
-	.string "They appear to be very much like the\n"
-	.string "drawings on the walls there.\p"
+	.string "They appear to be very much like\n"
+	.string "the drawings on the walls there.\p"
 	.string "Hmm…\p"
 	.string "That must mean there are many\n"
 	.string "kinds of them…$"

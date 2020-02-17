@@ -28,8 +28,8 @@ script RuinsOfAlph_ResearchCenter_EventScript_Scientist2 {
     {
         msgbox("The strange POKéMON you saw in\n"
                "the RUINS?\p"
-               "They appear to be very much like the\n"
-               "drawings on the walls there.\p"
+               "They appear to be very much like\n"
+               "the drawings on the walls there.\p"
                "Hmm…\p"
                "That must mean there are many\n"
                "kinds of them…")

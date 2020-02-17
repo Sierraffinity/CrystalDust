@@ -187,7 +187,7 @@
 	.include "data/layouts/SproutTower_2F/layout.inc"
 	.include "data/layouts/SproutTower_3F/layout.inc"
 	.include "data/layouts/RuinsOfAlph_ResearchCenter/layout.inc"
-	.include "data/layouts/AbandonedShip_Rooms_B1F/layout.inc"
+	.include "data/layouts/RuinsOfAlph_KabutoChamber/layout.inc"
 	.include "data/layouts/AbandonedShip_Rooms2_B1F/layout.inc"
 	.include "data/layouts/AbandonedShip_Underwater1/layout.inc"
 	.include "data/layouts/AbandonedShip_Room_B1F/layout.inc"

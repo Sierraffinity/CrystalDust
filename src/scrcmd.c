@@ -797,6 +797,8 @@ bool8 ScrCmd_warphole(struct ScriptContext *ctx)
     PlayerGetDestCoords(&x, &y);
     if (mapGroup == 0xFF && mapNum == 0xFF)
         SetWarpDestinationToFixedHoleWarp(x - 7, y - 7);
+    else if (mapGroup == 0x7F && mapNum == 0x7F)
+        SetWarpDestinationToFixedHoleWarp(-32768, -32768);
     else
         SetWarpDestination(mapGroup, mapNum, -1, x - 7, y - 7);
     DoFallWarp();
@@ -1496,12 +1498,12 @@ bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
     u8 xWindow, yWindow, xText, yText;
     u8 temp;
 
-    StringExpandPlaceholders(gStringVar4, ptr + 6);
+    StringExpandPlaceholders(gStringVar4, ptr);
 
     width = GetStringWidth(6, gStringVar4, -1) / 8u;
 
-    if (width > 0x1C)
-        width = 0x1C;
+    if (width > 28)
+        width = 28;
 
     for (i = 0, height = 4; gStringVar4[i] != 0xFF;)
     {
@@ -1509,14 +1511,14 @@ bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
             height += 3;
     }
 
-    if (height > 0x12)
-        height = 0x12;
+    if (height > 18)
+        height = 18;
 
     temp = width + 2;
-    xWindow = (0x1E - temp) / 2;
+    xWindow = (30 - temp) / 2;
 
     temp = height + 2;
-    yText = (0x14 - temp) / 2;
+    yText = (20 - temp) / 2;
 
     xText = xWindow;
     xWindow += 1;
@@ -1524,7 +1526,7 @@ bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
     yWindow = yText;
     yText += 2;
 
-    xText = (xWindow - xText - 1) * 8 + 3;
+    xText = (xWindow - xText - 1) * 8;
     yText = (yText - yWindow - 1) * 8;
 
     winTemplate = CreateWindowTemplate(0, xWindow, yWindow + 1, width, height, 0xF, 0x1);

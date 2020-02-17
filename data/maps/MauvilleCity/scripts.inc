@@ -7,7 +7,7 @@ MauvilleCity_OnTransition: @ 81DF38B
 	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
 	clearflag FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
 	setflag FLAG_SYS_TV_START
-	clearflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
+	clearflag FLAG_SOLVED_OMANYTE_PUZZLE
 	setvar VAR_MAUVILLE_GYM_STATE, 0
 	call_if_set FLAG_GOT_TM24_FROM_WATTSON, MauvilleCity_EventScript_MoveWattsonBackToGym
 	end
@@ -53,9 +53,9 @@ MauvilleCity_EventScript_GameCornerSign:: @ 81DF3F2
 MauvilleCity_EventScript_SchoolKidM:: @ 81DF3FB
 	lock
 	faceplayer
-	goto_if_set FLAG_TV_EXPLAINED, MauvilleCity_EventScript_TVExplained
+	goto_if_set FLAG_SOLVED_KABUTO_PUZZLE, MauvilleCity_EventScript_TVExplained
 	msgbox MauvilleCity_Text_ExplainTV, MSGBOX_DEFAULT
-	setflag FLAG_TV_EXPLAINED
+	setflag FLAG_SOLVED_KABUTO_PUZZLE
 	release
 	end
 

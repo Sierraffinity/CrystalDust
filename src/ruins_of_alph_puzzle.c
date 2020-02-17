@@ -587,7 +587,10 @@ static void MoveCursor(int direction)
         gSprites[cursorSprite->data[3]].callback = MovePuzzlePiece;
     }
 
-    PlaySE(SE_MU_PACHI);
+    if (cursorSprite->data[0])
+        PlaySE(SE_MU_PACHI);
+    else
+        PlaySE(SE_TB_KARA);
 }
 
 static u8 FindPuzzlePieceSpriteIdAtCoords(int x, int y, int selectedPieceSpriteId)

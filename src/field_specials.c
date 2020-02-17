@@ -146,13 +146,6 @@ void Special_ShowDiploma(void)
     ScriptContext2_Enable();
 }
 
-void Special_ViewWallClock(void)
-{
-    /*gMain.savedCallback = CB2_ReturnToField;
-    SetMainCallback2(CB2_ViewWallClock);
-    ScriptContext2_Enable();*/
-}
-
 void ResetCyclingRoadChallengeData(void)
 {
     gBikeCyclingChallenge = FALSE;
