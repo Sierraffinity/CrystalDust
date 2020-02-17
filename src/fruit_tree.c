@@ -14,10 +14,11 @@
 
 static const u16 sFruitTrees[] = 
 {
-    [FRUIT_TREE_ROUTE_29]   = ITEM_ORAN_BERRY,
-    [FRUIT_TREE_ROUTE_30_1] = ITEM_ORAN_BERRY,
-    [FRUIT_TREE_ROUTE_30_2] = ITEM_PECHA_BERRY,
-    [FRUIT_TREE_ROUTE_31]   = ITEM_PERSIM_BERRY,
+    [FRUIT_TREE_ROUTE_29]       = ITEM_ORAN_BERRY,
+    [FRUIT_TREE_ROUTE_30_1]     = ITEM_ORAN_BERRY,
+    [FRUIT_TREE_ROUTE_30_2]     = ITEM_PECHA_BERRY,
+    [FRUIT_TREE_ROUTE_31]       = ITEM_PERSIM_BERRY,
+    [FRUIT_TREE_VIOLET_CITY]    = ITEM_CHERI_BERRY,
 };
 
 void GetFruitTreeItem(void)
@@ -32,16 +33,16 @@ void GetFruitTreeItem(void)
         gSpecialVar_Result = 0;
 }
 
-void SetFruitTreeMetatileTaken(u16 treeId, s16 x, s16 y)
+u16 GetFruitTreeMetatileTaken(u16 treeId)
 {
     //MapGridSetMetatileIdAt(x, y, sFruitTrees[treeId].takenMetatileId | METATILE_COLLISION_MASK);
-    MapGridSetMetatileIdAt(x, y, 0x22C);
+    return 0x22C;
 }
 
-void SetFruitTreeMetatileGrown(u16 treeId, s16 x, s16 y)
+u16 GetFruitTreeMetatileGrown(u16 treeId)
 {
     //MapGridSetMetatileIdAt(x, y, sFruitTrees[treeId].grownMetatileId | METATILE_COLLISION_MASK);
-    MapGridSetMetatileIdAt(x, y, 0x22D);
+    return 0x22D;
 }
 
 void SetFruitTreeMetatileTakenFromId(void)
@@ -57,7 +58,7 @@ void SetFruitTreeMetatileTakenFromId(void)
         {
             s16 x = events->bgEvents[bgId].x + 7;
             s16 y = events->bgEvents[bgId].y + 6;
-            SetFruitTreeMetatileTaken(treeId, x, y);
+            MapGridSetMetatileIdAt(x, y, GetFruitTreeMetatileTaken(treeId));
             CurrentMapDrawMetatileAt(x, y);
             break;
         }
@@ -68,6 +69,7 @@ void SetFruitTreeMetatiles(bool8 redrawMetatile)
 {
     struct MapEvents const *events = gMapHeader.events;
     u16 bgId;
+    u16 metatile;
 
     for (bgId = 0; bgId < events->bgEventCount; bgId++)
     {
@@ -78,12 +80,42 @@ void SetFruitTreeMetatiles(bool8 redrawMetatile)
             s16 y = events->bgEvents[bgId].y + 6;
             
             if (FlagGet(FLAG_FRUIT_TREES_START + treeId - 1))
-                SetFruitTreeMetatileTaken(treeId, x, y);
+                metatile = GetFruitTreeMetatileTaken(treeId);
             else
-                SetFruitTreeMetatileGrown(treeId, x, y);
+                metatile = GetFruitTreeMetatileGrown(treeId);
+
+            MapGridSetMetatileIdAt(x, y, metatile);
 
             if (redrawMetatile)
                 CurrentMapDrawMetatileAt(x, y);
+        }
+    }
+}
+
+void SetFruitTreeMetatilesOnConnectedMap(int x, int y, struct MapHeader const *connectedMapHeader, int x2, int y2, int width, int height)
+{
+    struct MapEvents const *events = connectedMapHeader->events;
+    u16 bgId;
+    u16 metatile;
+
+    for (bgId = 0; bgId < events->bgEventCount; bgId++)
+    {
+        if (events->bgEvents[bgId].kind == BG_EVENT_FRUIT_TREE)
+        {
+            u16 treeId = events->bgEvents[bgId].bgUnion.berryTreeId;
+            s16 treeX = events->bgEvents[bgId].x - x2;
+            s16 treeY = events->bgEvents[bgId].y - y2 - 1; // adjust for top of tree
+
+            if (treeX >= 0 && treeX < width
+             && treeY >= 0 && treeY < height)
+            {
+                if (FlagGet(FLAG_FRUIT_TREES_START + treeId - 1))
+                    metatile = GetFruitTreeMetatileTaken(treeId);
+                else
+                    metatile = GetFruitTreeMetatileGrown(treeId);
+
+                MapGridSetMetatileIdAt(x + treeX, y + treeY, metatile);
+            }
         }
     }
 }

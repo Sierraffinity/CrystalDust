@@ -170,6 +170,8 @@ static void sub_8087F54(int x, int y, struct MapHeader const *connectedMapHeader
         dest += gBackupMapLayout.width;
         src += mapWidth;
     }
+    
+    SetFruitTreeMetatilesOnConnectedMap(x, y, connectedMapHeader, x2, y2, width, height);
 }
 
 static void FillSouthConnection(struct MapHeader const *mapHeader, struct MapHeader const *connectedMapHeader, s32 offset)
