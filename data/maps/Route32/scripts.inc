@@ -67,7 +67,7 @@ Route32_EventScript_RoadblockMan_Common::
 	goto_if_set FLAG_GOT_MIRACLE_SEED_ROUTE_32, Route32_EventScript_RoadblockMan_Common_1
 	goto_if_unset FLAG_BADGE01_GET, Route32_EventScript_RoadblockMan_Common_2
 	goto_if_set FLAG_GOT_ELMS_EGG, Route32_EventScript_RoadblockMan_Common_3
-	msgbox Route32_EventScript_RoadblockMan_Common_Text_3
+	msgbox Route32_EventScript_RoadblockMan_Common_Text_2
 	return
 
 Route32_EventScript_RoadblockMan_Common_1:
@@ -89,7 +89,7 @@ Route32_EventScript_RoadblockMan_Common_3:
 	return
 
 Route32_EventScript_RoadblockMan_Common_8:
-	msgbox Route32_EventScript_RoadblockMan_Common_Text_2
+	goto Common_EventScript_ShowBagIsFull
 	return
 
 
@@ -166,7 +166,7 @@ Route32_OnTransition: @ 81ECC4E
 	end
 
 Route32_EventScript_ShowOrHideWhiteHerbFlorist:: @ 81ECC5E
-	goto_if_unset FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route32_EventScript_HideWhiteHerbFlorist
+	goto_if_unset FLAG_MET_SANTOS_OF_SATURDAY, Route32_EventScript_HideWhiteHerbFlorist
 	goto_if_unset FLAG_BADGE03_GET, Route32_EventScript_HideWhiteHerbFlorist
 	clearflag FLAG_HIDE_ROUTE_32_WHITE_HERB_FLORIST
 	return
@@ -179,7 +179,7 @@ Route32_EventScript_TrySetRivalPos:: @ 81ECC78
 	compare VAR_BOARD_BRINEY_BOAT_STATE, 1
 	goto_if_ge Route32_EventScript_DontSetRivalPos
 	goto_if_set FLAG_MET_RIVAL_RUSTBORO, Route32_EventScript_DontSetRivalPos
-	goto_if_unset FLAG_REGISTER_RIVAL_POKENAV, Route32_EventScript_DontSetRivalPos
+	goto_if_unset FLAG_MET_WESLEY_OF_WEDNESDAY, Route32_EventScript_DontSetRivalPos
 	setobjectxyperm 34, 17, 52
 	return
 
@@ -243,9 +243,9 @@ Route32_EventScript_RivalEncounter:: @ 81ECD33
 	end
 
 Route32_EventScript_MayEncounter:: @ 81ECD4B
-	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_32, Route32_EventScript_MayDefeated
-	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route32_EventScript_MayAskToBattle
-	setflag FLAG_REGISTER_RIVAL_POKENAV
+	goto_if_set FLAG_MET_ARTHUR_OF_THURSDAY, Route32_EventScript_MayDefeated
+	goto_if_set FLAG_MET_WESLEY_OF_WEDNESDAY, Route32_EventScript_MayAskToBattle
+	setflag FLAG_MET_WESLEY_OF_WEDNESDAY
 	msgbox Route32_Text_MayWeShouldRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -315,26 +315,26 @@ Route32_EventScript_RestoreMusic:: @ 81ECE31
 
 Route32_EventScript_BattleMayTreecko:: @ 81ECE36
 	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO, Route32_Text_MayDefeat
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_32
+	setflag FLAG_MET_ARTHUR_OF_THURSDAY
 	goto Route32_EventScript_MayDefeated
 	end
 
 Route32_EventScript_BattleMayTorchic:: @ 81ECE49
 	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC, Route32_Text_MayDefeat
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_32
+	setflag FLAG_MET_ARTHUR_OF_THURSDAY
 	goto Route32_EventScript_MayDefeated
 	end
 
 Route32_EventScript_BattleMayMudkip:: @ 81ECE5C
 	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP, Route32_Text_MayDefeat
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_32
+	setflag FLAG_MET_ARTHUR_OF_THURSDAY
 	goto Route32_EventScript_MayDefeated
 	end
 
 Route32_EventScript_BrendanEncounter:: @ 81ECE6F
-	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_32, Route32_EventScript_BrendanDefeated
-	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route32_EventScript_BrendanAskToBattle
-	setflag FLAG_REGISTER_RIVAL_POKENAV
+	goto_if_set FLAG_MET_ARTHUR_OF_THURSDAY, Route32_EventScript_BrendanDefeated
+	goto_if_set FLAG_MET_WESLEY_OF_WEDNESDAY, Route32_EventScript_BrendanAskToBattle
+	setflag FLAG_MET_WESLEY_OF_WEDNESDAY
 	msgbox Route32_Text_BrendanWeShouldRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -385,19 +385,19 @@ Route32_EventScript_BrendanDefeated:: @ 81ECF38
 
 Route32_EventScript_BattleBrendanTreecko:: @ 81ECF4D
 	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TREECKO, Route32_Text_BrendanDefeat
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_32
+	setflag FLAG_MET_ARTHUR_OF_THURSDAY
 	goto Route32_EventScript_BrendanDefeated
 	end
 
 Route32_EventScript_BattleBrendanTorchic:: @ 81ECF60
 	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TORCHIC, Route32_Text_BrendanDefeat
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_32
+	setflag FLAG_MET_ARTHUR_OF_THURSDAY
 	goto Route32_EventScript_BrendanDefeated
 	end
 
 Route32_EventScript_BattleBrendanMudkip:: @ 81ECF73
 	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_MUDKIP, Route32_Text_BrendanDefeat
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_32
+	setflag FLAG_MET_ARTHUR_OF_THURSDAY
 	goto Route32_EventScript_BrendanDefeated
 	end
 
@@ -1359,10 +1359,6 @@ Route32_EventScript_RoadblockMan_Common_Text_1:
 	.string "type moves.$"
 
 Route32_EventScript_RoadblockMan_Common_Text_2:
-	.string "Hm, you don't have room for this.\n"
-	.string "I'll hold onto it.$"
-
-Route32_EventScript_RoadblockMan_Common_Text_3:
 	.string "{PLAYER}, right?\n"
 	.string "Some guy wearing glasses was\l"
 	.string "looking for you.\p"

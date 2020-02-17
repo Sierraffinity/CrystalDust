@@ -12,7 +12,7 @@ LilycoveCity_OnTransition: @ 81E2B47
 	end
 
 LilycoveCity_OnLoad: @ 81E2B61
-	call_if_unset FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_SetWailmerMetatiles
+	call_if_unset FLAG_RECEIVED_HM07, LilycoveCity_EventScript_SetWailmerMetatiles
 	end
 
 LilycoveCity_EventScript_SetWailmerMetatiles:: @ 81E2B6B
@@ -75,7 +75,7 @@ LilycoveCity_EventScript_RichBoy:: @ 81E2C4A
 LilycoveCity_EventScript_Sailor2:: @ 81E2C53
 	lock
 	faceplayer
-	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_Sailor2AquaGone
+	goto_if_set FLAG_RECEIVED_HM07, LilycoveCity_EventScript_Sailor2AquaGone
 	msgbox LilycoveCity_Text_TeamAquaBeenTrainingWailmer, MSGBOX_DEFAULT
 	release
 	end
@@ -88,7 +88,7 @@ LilycoveCity_EventScript_Sailor2AquaGone:: @ 81E2C68
 LilycoveCity_EventScript_Woman2:: @ 81E2C72
 	lock
 	faceplayer
-	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_Woman2AquaGone
+	goto_if_set FLAG_RECEIVED_HM07, LilycoveCity_EventScript_Woman2AquaGone
 	msgbox LilycoveCity_Text_SomeoneStoleMyPokemon, MSGBOX_DEFAULT
 	release
 	end

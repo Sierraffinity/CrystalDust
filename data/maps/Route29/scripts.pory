@@ -1,41 +1,56 @@
-Route29_EventScript_Tuscany::
+script Route29_EventScript_Tuscany {
 	lock
 	faceplayer
-	goto_if_unset FLAG_RECEIVED_SILK_SCARF_FROM_TUSCANY, Route29_EventScript_Tuscany_2
-	msgbox Route29_EventScript_Tuscany_Text_4
-Route29_EventScript_Tuscany_1:
+	if (!flag(FLAG_RECEIVED_SILK_SCARF_FROM_TUSCANY))
+	{
+		gettime
+		if (var(VAR_0x8003) == DAY_TUESDAY)
+		{
+			if (!flag(FLAG_MET_TUSCANY_OF_TUESDAY))
+			{
+				msgbox("TUSCANY: I do believe that this\n"
+                       "is the first time we've met?\p"
+                       "Please allow me to introduce\n"
+                       "myself.\p"
+                       "I am TUSCANY of TUESDAY.\p"
+                       "By way of introduction, please\n"
+                       "accept this gift, a SILK SCARF.")
+				setflag(FLAG_MET_TUSCANY_OF_TUESDAY)
+			}
+			else
+			{
+				msgbox("TUSCANY: By way of introduction,\n"
+                       "please accept this gift, a\l"
+                       "SILK SCARF.")
+			}
+			giveitem(ITEM_SILK_SCARF)
+			if (!var(VAR_RESULT))
+			{
+				goto(Common_EventScript_ShowBagIsFull)
+			}
+			setflag(FLAG_RECEIVED_SILK_SCARF_FROM_TUSCANY)
+			msgbox("TUSCANY: Wouldn't you agree that\n"
+                   "it is most adorable?\p"
+                   "It strengthens NORMAL-type moves.\n"
+                   "I am certain it will be of use.")
+		}
+		else
+		{
+			msgbox("TUSCANY: Today is not TUESDAY.\n"
+                   "That is unfortunate…")
+		}
+	}
+	else
+	{
+		msgbox("TUSCANY: Have you met MONICA,\n"
+               "my older sister?\l"
+               "Or my younger brother, WESLEY?\p"
+               "I am the second of seven children.")
+	}
 	release
-	return
+}
 
-Route29_EventScript_Tuscany_2:
-	gettime
-	compare VAR_0x8003, DAY_TUESDAY
-	goto_if_eq Route29_EventScript_Tuscany_5
-	msgbox Route29_EventScript_Tuscany_Text_3
-	goto Route29_EventScript_Tuscany_1
-
-Route29_EventScript_Tuscany_5:
-	goto_if_unset FLAG_MET_TUSCANY_OF_TUESDAY, Route29_EventScript_Tuscany_9
-	msgbox Route29_EventScript_Tuscany_Text_1
-Route29_EventScript_Tuscany_8:
-	giveitem ITEM_SILK_SCARF
-	compare VAR_RESULT, 0
-	goto_if_eq Route29_EventScript_Tuscany_13
-Route29_EventScript_Tuscany_12:
-	setflag FLAG_RECEIVED_SILK_SCARF_FROM_TUSCANY
-	msgbox Route29_EventScript_Tuscany_Text_2
-	goto Route29_EventScript_Tuscany_1
-
-Route29_EventScript_Tuscany_9:
-	msgbox Route29_EventScript_Tuscany_Text_0
-	setflag FLAG_MET_TUSCANY_OF_TUESDAY
-	goto Route29_EventScript_Tuscany_8
-
-Route29_EventScript_Tuscany_13:
-	goto Common_EventScript_ShowBagIsFull
-	goto Route29_EventScript_Tuscany_12
-
-
+raw `
 Route29_MapScripts:: @ 81EBCBA
 	map_script 3, Route29_MapScript1_Type3
 	map_script 2, Route29_MapScript2_Type2
@@ -407,33 +422,4 @@ Route29_Text_Dude_CatchingTutRejected:
 Route29_Text_DirectionSign:
 	.string "ROUTE 29\n"
 	.string "CHERRYGROVE CITY - NEW BARK TOWN$"
-
-Route29_EventScript_Tuscany_Text_0:
-	.string "TUSCANY: I do believe that this\n"
-	.string "is the first time we've met?\p"
-	.string "Please allow me to introduce\n"
-	.string "myself.\p"
-	.string "I am TUSCANY of TUESDAY.\p"
-	.string "By way of introduction, please\n"
-	.string "accept this gift, a SILK SCARF.$"
-
-Route29_EventScript_Tuscany_Text_1:
-	.string "TUSCANY: By way of introduction,\n"
-	.string "please accept this gift, a\l"
-	.string "SILK SCARF.$"
-
-Route29_EventScript_Tuscany_Text_2:
-	.string "TUSCANY: Wouldn't you agree that\n"
-	.string "it is most adorable?\p"
-	.string "It strengthens NORMAL-type moves.\n"
-	.string "I am certain it will be of use.$"
-
-Route29_EventScript_Tuscany_Text_3:
-	.string "TUSCANY: Today is not TUESDAY.\n"
-	.string "That is unfortunate…$"
-
-Route29_EventScript_Tuscany_Text_4:
-	.string "TUSCANY: Have you met MONICA,\n"
-	.string "my older sister?\l"
-	.string "Or my younger brother, WESLEY?\p"
-	.string "I am the second of seven children.$"
+`

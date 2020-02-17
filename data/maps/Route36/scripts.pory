@@ -14,6 +14,52 @@ mapscripts Route36_MapScripts {
 	}
 }
 
+script Route36_EventScript_Arthur {
+	lock
+	faceplayer
+	if (!flag(FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR))
+	{
+		gettime
+		if (var(VAR_0x8003) == DAY_THURSDAY)
+		{
+			if (!flag(FLAG_MET_ARTHUR_OF_THURSDAY))
+			{
+				msgbox("ARTHUR: Who are you?\n"
+					   "I'm ARTHUR of THURSDAY.\p"
+					   "Here.\n"
+					   "You can have this.")
+				setflag(FLAG_MET_ARTHUR_OF_THURSDAY)
+			}
+			else
+			{
+				msgbox("ARTHUR: Here.\n"
+					   "You can have this.")
+			}
+			giveitem(ITEM_HARD_STONE)
+			if (!var(VAR_RESULT))
+			{
+				goto(Common_EventScript_ShowBagIsFull)
+			}
+			setflag(FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR)
+			msgbox("ARTHUR: A POKéMON that uses ROCK-\n"
+				   "type moves should hold onto that.\p"
+				   "It pumps up ROCK-type attacks.")
+		}
+		else
+		{
+			msgbox("ARTHUR: Today's not THURSDAY.\n"
+				   "How disappointing.")
+		}
+	}
+	else
+	{
+		msgbox("ARTHUR: I'm ARTHUR of THURSDAY.\n"
+			   "I'm the second son out of\l"
+			   "seven children.")
+	}
+	release
+}
+
 script Route36_EventScript_BlockedGirl {
 	lock
 	faceplayer

@@ -63,7 +63,7 @@ RusturfTunnel_EventScript_ClearTunnelScene:: @ 822CEAE
 	compare VAR_TEMP_1, 3
 	call_if_eq RusturfTunnel_EventScript_WandasBoyfriendApproachPlayer
 	giveitem ITEM_HM04
-	setflag FLAG_RECEIVED_HM04
+	setflag FLAG_RECEIVED_MAGNET_FROM_SUNNY
 	msgbox RusturfTunnel_Text_ExplainStrength, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_TEMP_1, 1

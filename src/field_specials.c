@@ -422,7 +422,7 @@ bool32 ShouldDoScottFortreeCall(void)
 
 bool32 ShouldDoScottBattleFrontierCall(void)
 {
-    if (FlagGet(FLAG_SCOTT_CALL_BATTLE_FRONTIER))
+    if (FlagGet(FLAG_RECEIVED_MAGNET_FROM_SUNNY))
     {
         switch (gMapHeader.mapType)
         {
@@ -449,7 +449,7 @@ bool32 ShouldDoScottBattleFrontierCall(void)
 
 bool32 ShouldDoRoxanneCall(void)
 {
-    if (FlagGet(FLAG_ENABLE_ROXANNE_FIRST_CALL))
+    if (FlagGet(FLAG_CANCEL_BATTLE_ROOM_CHALLENGE))
     {
         switch (gMapHeader.mapType)
         {
@@ -476,7 +476,7 @@ bool32 ShouldDoRoxanneCall(void)
 
 bool32 ShouldDoRivalRayquazaCall(void)
 {
-    if (FlagGet(FLAG_DEFEATED_MAGMA_SPACE_CENTER))
+    if (FlagGet(FLAG_RECEIVED_BLACK_BELT_FROM_WESLEY))
     {
         switch (gMapHeader.mapType)
         {

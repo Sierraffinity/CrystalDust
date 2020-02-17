@@ -96,12 +96,12 @@
 #define FLAG_RECEIVED_MYSTERY_EGG            0x52
 #define FLAG_ELM_CALLED_ABOUT_STOLEN_MON     0x53
 #define FLAG_GAVE_MYSTERY_EGG_TO_ELM         0x54
-#define FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST 0x55
-#define FLAG_HIDE_CONTEST_POKE_BALL          0x56
-#define FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM 0x57
-#define FLAG_DUDE_TALKED_TO_YOU              0x58
-#define FLAG_LEARNED_TO_CATCH_POKEMON        0x59
-#define FLAG_ROCKET_TAKEOVER                 0x5A
+#define FLAG_ADVENTURE_STARTED               0x55
+#define FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST 0x56
+#define FLAG_HIDE_CONTEST_POKE_BALL          0x57
+#define FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM 0x58
+#define FLAG_DUDE_TALKED_TO_YOU              0x59
+#define FLAG_LEARNED_TO_CATCH_POKEMON        0x5A
 #define FLAG_REFUSED_ELMS_EGG                0x5B
 #define FLAG_GOT_ELMS_EGG                    0x5C
 #define FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET           0x5D
@@ -117,31 +117,29 @@
 #define FLAG_OPENED_WALL_IN_OMANYTE_CHAMBER  0x67
 #define FLAG_OPENED_WALL_IN_AERODACTYL_CHAMBER  0x68
 #define FLAG_OPENED_WALL_IN_HO_OH_CHAMBER     0x69
-#define FLAG_RECEIVED_HM04                   0x6A
-#define FLAG_RECEIVED_HM06                   0x6B
-#define FLAG_WHITEOUT_TO_LAVARIDGE           0x6C // Set after defeating Flannery, so the player cant white out from poison before receiving Go Goggles
-#define FLAG_RECEIVED_HM05                   0x6D
-#define FLAG_RECEIVED_HM02                   0x6E
-#define FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT  0x6F
-#define FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE  0x70
-#define FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE 0x71 // Unused Flag. Used in R/S to indicate whether player defeated or caught Groudon/Kyogre in Cave of Origin.
-#define FLAG_SCOTT_CALL_BATTLE_FRONTIER      0x72 // Used in order to activate a phone call from Scott, inviting the player to the SS Tidal.
-#define FLAG_RECEIVED_METEORITE              0x73
-#define FLAG_ADVENTURE_STARTED               0x74 // RECEIVED Pokédex.
-#define FLAG_DEFEATED_MAGMA_SPACE_CENTER     0x75 // Set when Team Magma is defeated at Mossdeep's Space Center.
-#define FLAG_MET_HIDDEN_POWER_GIVER          0x76
-
-#define FLAG_CANCEL_BATTLE_ROOM_CHALLENGE    0x77
-
-#define FLAG_LANDMARK_MIRAGE_TOWER           0x78
-#define FLAG_RECEIVED_TM31                   0x79
-#define FLAG_RECEIVED_HM03                   0x7A
-#define FLAG_RECEIVED_HM08                   0x7B
-#define FLAG_REGISTER_RIVAL_POKENAV          0x7C
-#define FLAG_DEFEATED_RIVAL_ROUTE_32        0x7D
-#define FLAG_DEFEATED_WALLY_VICTORY_ROAD     0x7E
-#define FLAG_MET_PRETTY_PETAL_SHOP_OWNER     0x7F
-#define FLAG_ENABLE_ROXANNE_FIRST_CALL       0x80 // Set after defeating Brawly. This will activate a call with Roxanne in order to register her.
+#define FLAG_RECEIVED_HM01                   0x6A
+#define FLAG_RECEIVED_HM02                   0x6B
+#define FLAG_RECEIVED_HM03                   0x6C
+#define FLAG_RECEIVED_HM04                   0x6D
+#define FLAG_RECEIVED_HM05                   0x6E
+#define FLAG_RECEIVED_HM06                   0x6F
+#define FLAG_RECEIVED_HM07                   0x70
+#define FLAG_RECEIVED_HM08                   0x71
+#define FLAG_MET_SUNNY_OF_SUNDAY             0x72
+#define FLAG_MET_MONICA_OF_MONDAY            0x73
+#define FLAG_MET_TUSCANY_OF_TUESDAY          0x74
+#define FLAG_MET_WESLEY_OF_WEDNESDAY         0x75
+#define FLAG_MET_ARTHUR_OF_THURSDAY          0x76
+#define FLAG_MET_FRIEDA_OF_FRIDAY            0x77
+#define FLAG_MET_SANTOS_OF_SATURDAY          0x78
+#define FLAG_RECEIVED_MAGNET_FROM_SUNNY      0x79
+#define FLAG_RECEIVED_SHARP_BEAK_FROM_MONICA 0x7A
+#define FLAG_RECEIVED_SILK_SCARF_FROM_TUSCANY 0x7B
+#define FLAG_RECEIVED_BLACK_BELT_FROM_WESLEY 0x7C
+#define FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR 0x7D
+#define FLAG_RECEIVED_POISON_BARB_FROM_FRIEDA 0x7E
+#define FLAG_RECEIVED_SPELL_TAG_FROM_SANTOS  0x7F
+#define FLAG_CANCEL_BATTLE_ROOM_CHALLENGE    0x80 // Set after defeating Brawly. This will activate a call with Roxanne in order to register her.
 #define FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN  0x81
 #define FLAG_DEFEATED_RIVAL_ROUTE31         0x82
 #define FLAG_RECEIVED_DOLL_LANETTE           0x83
@@ -150,7 +148,7 @@
 #define FLAG_PENDING_DAYCARE_EGG             0x86
 #define FLAG_THANKED_FOR_PLAYING_WITH_WALLY  0x87
 #define FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL 0x88 // Set after defeating Wally outside Mauville Gym. Will activate a call later to register Wally.
-#define FLAG_RECEIVED_HM01                   0x89
+#define FLAG_RECEIVED_HM01_OLD               0x89
 #define FLAG_SCOTT_CALL_FORTREE_GYM          0x8A // Triggers call from Scott after defeating Winona
 #define FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY   0x8B
 #define FLAG_RECEIVED_6_SODA_POP             0x8C
@@ -329,7 +327,7 @@
 #define FLAG_MET_MAXIE_SOOTOPOLIS            0x135
 #define FLAG_MET_SCOTT_RUSTBORO              0x136
 #define FLAG_WALLACE_GOES_TO_SKY_PILLAR      0x137 // Set after speaking to Wallace within the Cave of Origin.
-#define FLAG_RECEIVED_HM07                   0x138
+#define FLAG_RECEIVED_HM07_OLD               0x138
 #define FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS    0x139
 #define FLAG_RECEIVED_AURORA_TICKET          0x13A
 #define FLAG_RECEIVED_MYSTIC_TICKET          0x13B

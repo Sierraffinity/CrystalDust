@@ -61,8 +61,7 @@ script VioletCity_Gym_EventScript_GiveAerialAce {
     checkitemspace(ITEM_TM40, 1)
     if (!var(VAR_RESULT))
 	{
-		msgbox("It seems you don't have room\n"
-			   "for this.")
+        goto(Common_EventScript_ShowBagIsFull)
 	}
 	else
 	{

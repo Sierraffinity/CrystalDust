@@ -444,13 +444,13 @@ MtChimney_EventScript_AquaPoochyena:: @ 822F0DB
 MtChimney_EventScript_MeteoriteMachine:: @ 822F0E4
 	lockall
 	goto_if_unset FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, MtChimney_EventScript_MachineOn
-	goto_if_set FLAG_RECEIVED_METEORITE, MtChimney_EventScript_MachineOff
+	goto_if_set FLAG_RECEIVED_SHARP_BEAK_FROM_MONICA, MtChimney_EventScript_MachineOff
 	msgbox MtChimney_Text_RemoveTheMeteorite, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq MtChimney_EventScript_LeaveMeteoriteAlone
 	msgbox MtChimney_Text_PlayerRemovedMeteorite, MSGBOX_DEFAULT
 	giveitem ITEM_METEORITE
-	setflag FLAG_RECEIVED_METEORITE
+	setflag FLAG_RECEIVED_SHARP_BEAK_FROM_MONICA
 	releaseall
 	end
 

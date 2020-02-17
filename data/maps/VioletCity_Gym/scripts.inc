@@ -34,15 +34,15 @@ VioletCity_Gym_EventScript_GiveAerialAce::
 	checkitemspace ITEM_TM40, 1
 	compare VAR_RESULT, 0
 	goto_if_eq VioletCity_Gym_EventScript_GiveAerialAce_2
-	givetmhm_msg VioletCity_Gym_EventScript_GiveAerialAce_Text_2, ITEM_TM40
+	givetmhm_msg VioletCity_Gym_EventScript_GiveAerialAce_Text_1, ITEM_TM40
 	setflag FLAG_GOT_TM40_FROM_FALKNER
-	msgbox VioletCity_Gym_EventScript_GiveAerialAce_Text_3
+	msgbox VioletCity_Gym_EventScript_GiveAerialAce_Text_2
 VioletCity_Gym_EventScript_GiveAerialAce_1:
 	release
 	return
 
 VioletCity_Gym_EventScript_GiveAerialAce_2:
-	msgbox VioletCity_Gym_EventScript_GiveAerialAce_Text_1
+	goto Common_EventScript_ShowBagIsFull
 	goto VioletCity_Gym_EventScript_GiveAerialAce_1
 
 
@@ -107,14 +107,10 @@ VioletCity_Gym_EventScript_GiveAerialAce_Text_0:
 	.string "Here--take this too.$"
 
 VioletCity_Gym_EventScript_GiveAerialAce_Text_1:
-	.string "It seems you don't have room\n"
-	.string "for this.$"
-
-VioletCity_Gym_EventScript_GiveAerialAce_Text_2:
 	.string "{PLAYER} received TM40\n"
 	.string "from FALKNER.$"
 
-VioletCity_Gym_EventScript_GiveAerialAce_Text_3:
+VioletCity_Gym_EventScript_GiveAerialAce_Text_2:
 	.string "By using a TM, a POKéMON will\n"
 	.string "instantly learn a new move.\p"
 	.string "Think before you act--a TM can\n"

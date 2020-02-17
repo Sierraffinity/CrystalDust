@@ -308,7 +308,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha:: @ 8224071
 	msgbox MossdeepCity_SpaceCenter_2F_Text_StevenThankYouComeSeeMeAtHome, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
-	setflag FLAG_DEFEATED_MAGMA_SPACE_CENTER
+	setflag FLAG_RECEIVED_BLACK_BELT_FROM_WESLEY
 	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN
 	removeobject 4
 	setflag FLAG_HIDE_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
@@ -352,7 +352,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall:: @ 8224175
 	compare VAR_RESULT, FEMALE
 	call_if_eq MossdeepCity_SpaceCenter_2F_EventScript_BrendanRayquazaCall
 	closemessage
-	clearflag FLAG_DEFEATED_MAGMA_SPACE_CENTER
+	clearflag FLAG_RECEIVED_BLACK_BELT_FROM_WESLEY
 	releaseall
 	end
 

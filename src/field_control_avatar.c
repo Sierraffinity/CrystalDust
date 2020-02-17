@@ -683,19 +683,9 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext1_SetupScript(Route119_EventScript_ScottWonAtFortreeGymCall);
             return TRUE;
         }
-        if (ShouldDoScottBattleFrontierCall() == TRUE)
-        {
-            //ScriptContext1_SetupScript(NewBarkTown_ProfessorElmsLab_EventScript_ScottAboardSSTidalCall);
-            return TRUE;
-        }
         if (ShouldDoRoxanneCall() == TRUE)
         {
             ScriptContext1_SetupScript(RustboroCity_Gym_EventScript_RegisterRoxanne);
-            return TRUE;
-        }
-        if (ShouldDoRivalRayquazaCall() == TRUE)
-        {
-            ScriptContext1_SetupScript(MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall);
             return TRUE;
         }
     }

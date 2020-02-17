@@ -14,6 +14,44 @@ Route36_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
 	return
 
 
+Route36_EventScript_Arthur::
+	lock
+	faceplayer
+	goto_if_unset FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR, Route36_EventScript_Arthur_2
+	msgbox Route36_EventScript_Arthur_Text_4
+Route36_EventScript_Arthur_1:
+	release
+	return
+
+Route36_EventScript_Arthur_2:
+	gettime
+	compare VAR_0x8003, DAY_THURSDAY
+	goto_if_eq Route36_EventScript_Arthur_5
+	msgbox Route36_EventScript_Arthur_Text_3
+	goto Route36_EventScript_Arthur_1
+
+Route36_EventScript_Arthur_5:
+	goto_if_unset FLAG_MET_ARTHUR_OF_THURSDAY, Route36_EventScript_Arthur_9
+	msgbox Route36_EventScript_Arthur_Text_1
+Route36_EventScript_Arthur_8:
+	giveitem ITEM_HARD_STONE
+	compare VAR_RESULT, 0
+	goto_if_eq Route36_EventScript_Arthur_13
+Route36_EventScript_Arthur_12:
+	setflag FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR
+	msgbox Route36_EventScript_Arthur_Text_2
+	goto Route36_EventScript_Arthur_1
+
+Route36_EventScript_Arthur_9:
+	msgbox Route36_EventScript_Arthur_Text_0
+	setflag FLAG_MET_ARTHUR_OF_THURSDAY
+	goto Route36_EventScript_Arthur_8
+
+Route36_EventScript_Arthur_13:
+	goto Common_EventScript_ShowBagIsFull
+	goto Route36_EventScript_Arthur_12
+
+
 Route36_EventScript_BlockedGirl::
 	lock
 	faceplayer
@@ -134,6 +172,30 @@ Route36_EventScript_CoryRematch:: @ 81EE748
 	trainerbattle_rematch TRAINER_CORY_1, Route36_Text_CoryRematchIntro, Route36_Text_CoryRematchDefeated
 	msgbox Route36_Text_CoryRematchPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+Route36_EventScript_Arthur_Text_0:
+	.string "ARTHUR: Who are you?\n"
+	.string "I'm ARTHUR of THURSDAY.\p"
+	.string "Here.\n"
+	.string "You can have this.$"
+
+Route36_EventScript_Arthur_Text_1:
+	.string "ARTHUR: Here.\n"
+	.string "You can have this.$"
+
+Route36_EventScript_Arthur_Text_2:
+	.string "ARTHUR: A POKéMON that uses ROCK-\n"
+	.string "type moves should hold onto that.\p"
+	.string "It pumps up ROCK-type attacks.$"
+
+Route36_EventScript_Arthur_Text_3:
+	.string "ARTHUR: Today's not THURSDAY.\n"
+	.string "How disappointing.$"
+
+Route36_EventScript_Arthur_Text_4:
+	.string "ARTHUR: I'm ARTHUR of THURSDAY.\n"
+	.string "I'm the second son out of\l"
+	.string "seven children.$"
 
 Route36_EventScript_BlockedGirl_Text_0:
 	.string "An odd tree is blocking the way\n"

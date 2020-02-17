@@ -3,7 +3,7 @@ AquaHideout_B2F_MapScripts:: @ 8233DCF
 	.byte 0
 
 AquaHideout_B2F_OnTransition: @ 8233DD5
-	call_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, AquaHideout_B2F_EventScript_PreventMattNoticing
+	call_if_set FLAG_RECEIVED_HM07, AquaHideout_B2F_EventScript_PreventMattNoticing
 	end
 
 AquaHideout_B2F_EventScript_PreventMattNoticing:: @ 8233DDF
@@ -46,7 +46,7 @@ AquaHideout_B2F_EventScript_SubmarineEscape:: @ 8233E25
 	applymovement VAR_0x8008, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox AquaHideout_B2F_Text_MattPostBattle, MSGBOX_DEFAULT
-	setflag FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE
+	setflag FLAG_RECEIVED_HM07
 	setflag FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
 	release
 	end

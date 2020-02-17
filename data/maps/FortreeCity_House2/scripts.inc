@@ -5,7 +5,7 @@ FortreeCity_House2_EventScript_HiddenPowerGiver:: @ 82177CB
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_TM10, FortreeCity_House2_EventScript_ExplainHiddenPower
-	call_if_unset FLAG_MET_HIDDEN_POWER_GIVER, FortreeCity_House2_EventScript_Greeting
+	call_if_unset FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR, FortreeCity_House2_EventScript_Greeting
 	msgbox FortreeCity_House2_Text_CoinInWhichHand, MSGBOX_DEFAULT
 	multichoice 21, 8, MULTI_RIGHTLEFT, 1
 	switch VAR_RESULT
@@ -29,7 +29,7 @@ FortreeCity_House2_EventScript_HiddenPowerGiver:: @ 82177CB
 
 FortreeCity_House2_EventScript_Greeting:: @ 8217862
 	msgbox FortreeCity_House2_Text_HiddenPowersArousedByNature, MSGBOX_DEFAULT
-	setflag FLAG_MET_HIDDEN_POWER_GIVER
+	setflag FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR
 	return
 
 FortreeCity_House2_EventScript_ExplainHiddenPower:: @ 821786E

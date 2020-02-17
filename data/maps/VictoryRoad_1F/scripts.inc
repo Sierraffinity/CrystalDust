@@ -45,7 +45,7 @@ VictoryRoad_1F_EventScript_WallyEntranceBattle:: @ 8235DE1
 	msgbox VictoryRoad_1F_Text_WallyPostEntranceBattle, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
 	copyobjectxytoperm 4
-	setflag FLAG_DEFEATED_WALLY_VICTORY_ROAD
+	setflag FLAG_MET_FRIEDA_OF_FRIDAY
 	copyvar VAR_VICTORY_ROAD_1F_STATE, VAR_0x8008
 	releaseall
 	end
