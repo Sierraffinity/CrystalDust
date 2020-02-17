@@ -1,8 +1,0 @@
-DarkCave_South_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, DarkCave_South_MapScripts_MAP_SCRIPT_ON_TRANSITION
-	.byte 0
-
-DarkCave_South_MapScripts_MAP_SCRIPT_ON_TRANSITION:
-	setflag FLAG_LANDMARK_DARK_CAVE
-	return
-
