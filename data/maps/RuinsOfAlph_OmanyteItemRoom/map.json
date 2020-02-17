@@ -1,0 +1,32 @@
+{
+    "allow_bike": false,
+    "allow_escape_rope": true,
+    "allow_running": true,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
+    "layout": "LAYOUT_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
+    "map_type": "MAP_TYPE_UNDERWATER",
+    "music": "MUS_ILEXFOREST",
+    "name": "RuinsOfAlph_OmanyteItemRoom",
+    "object_events": [
+    ],
+    "phone_service": true,
+    "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+    "requires_flash": false,
+    "show_map_name": true,
+    "warp_events": [
+        {
+            "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 3,
+            "y": 1
+        }
+    ],
+    "weather": "WEATHER_UNDERWATER_BUBBLES"
+}

@@ -165,7 +165,7 @@
             "y": 19
         },
         {
-            "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+            "dest_map": "MAP_RUINS_OF_ALPH_HO_OH_CHAMBER",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 5,
@@ -179,14 +179,14 @@
             "y": 36
         },
         {
-            "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+            "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 5,
             "y": 40
         },
         {
-            "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+            "dest_map": "MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 22,

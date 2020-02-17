@@ -116,7 +116,7 @@
 #define FLAG_OPENED_WALL_IN_KABUTO_CHAMBER   0x66
 #define FLAG_OPENED_WALL_IN_AERODACTYL_CHAMBER  0x67
 #define FLAG_OPENED_WALL_IN_OMANYTE_CHAMBER  0x68
-#define FLAG_OPENED_WALL_IN_HOOH_CHAMBER     0x69
+#define FLAG_OPENED_WALL_IN_HO_OH_CHAMBER     0x69
 #define FLAG_RECEIVED_HM04                   0x6A
 #define FLAG_RECEIVED_HM06                   0x6B
 #define FLAG_WHITEOUT_TO_LAVARIDGE           0x6C // Set after defeating Flannery, so the player cant white out from poison before receiving Go Goggles
@@ -1050,10 +1050,10 @@
 #define FLAG_ITEM_SPROUT_TOWER_2F_X_ACCURACY                        0x3F3
 #define FLAG_ITEM_SPROUT_TOWER_3F_POTION                            0x3F4
 #define FLAG_ITEM_SPROUT_TOWER_3F_ESCAPE_ROPE                       0x3F5
-#define FLAG_ITEM_ROUTE_114_RARE_CANDY                              0x3F6
-#define FLAG_ITEM_ROUTE_114_PROTEIN                                 0x3F7
-#define FLAG_ITEM_ROUTE_115_SUPER_POTION                            0x3F8
-#define FLAG_ITEM_ROUTE_115_TM_01                                   0x3F9
+#define FLAG_ITEM_RUINS_OF_ALPH_KABUTO_ITEM_ROOM_ORAN_BERRY         0x3F6
+#define FLAG_ITEM_RUINS_OF_ALPH_KABUTO_ITEM_ROOM_PECHA_BERRY        0x3F7
+#define FLAG_ITEM_RUINS_OF_ALPH_KABUTO_ITEM_ROOM_HEAL_POWDER        0x3F8
+#define FLAG_ITEM_RUINS_OF_ALPH_KABUTO_ITEM_ROOM_ENERGY_POWDER      0x3F9
 #define FLAG_ITEM_ROUTE_115_IRON                                    0x3FA
 #define FLAG_ITEM_ROUTE_116_ETHER                                   0x3FB
 #define FLAG_ITEM_ROUTE_116_REPEL                                   0x3FC
@@ -1138,7 +1138,7 @@
 #define FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL              0x449 
 #define FLAG_ITEM_RUINS_OF_ALPH_KABUTO_CHAMBER_TM_13                    0x44A 
 #define FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_1F_REVIVE                  0x44B 
-#define FLAG_ITEM_ABANDONED_SHIP_CAPTAINS_OFFICE_STORAGE_KEY        0x44C 
+#define FLAG_ITEM_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM_STORAGE_KEY        0x44C 
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_3_WATER_STONE    0x44D 
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_1_TM_18          0x44E 
 #define FLAG_ITEM_ROUTE_121_CARBOS                                  0x44F

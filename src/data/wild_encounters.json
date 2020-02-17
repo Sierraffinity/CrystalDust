@@ -16547,8 +16547,8 @@
           }
         },
         {
-          "map": "MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS",
-          "base_label": "gAbandonedShip_HiddenFloorCorridors",
+          "map": "MAP_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
+          "base_label": "gRuinsOfAlph_HoOhItemRoom",
           "water_mons": {
             "encounter_rate": 4,
             "mons": [

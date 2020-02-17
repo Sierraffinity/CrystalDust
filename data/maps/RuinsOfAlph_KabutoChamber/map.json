@@ -88,8 +88,8 @@
             "y": 10
         },
         {
-            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
-            "dest_warp_id": 3,
+            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM",
+            "dest_warp_id": 0,
             "elevation": 3,
             "x": 5,
             "y": 1

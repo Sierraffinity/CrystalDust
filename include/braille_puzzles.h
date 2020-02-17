@@ -4,6 +4,7 @@
 bool8 ShouldDoBrailleRegisteelEffect(void);
 bool8 ShouldDoBrailleRegirockEffect(void);
 bool8 ShouldDoBrailleDigEffect(void);
+bool8 ShouldDoUnownEscapeEffect(void);
 void DoBrailleDigEffect(void);
 void SetUpPuzzleEffectRegisteel(void);
 void SetUpPuzzleEffectRegirock(void);

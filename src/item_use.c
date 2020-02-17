@@ -6,6 +6,7 @@
 #include "berry.h"
 #include "berry_powder.h"
 #include "bike.h"
+#include "braille_puzzles.h"
 #include "coins.h"
 #include "data.h"
 #include "event_data.h"
@@ -909,6 +910,11 @@ static void ItemUseOnFieldCB_EscapeRope(u8 taskId)
     RemoveUsedItem();
     gTasks[taskId].data[0] = 0;
     DisplayItemMessageOnField(taskId, gStringVar4, Task_UseDigEscapeRopeOnField);
+
+    if (ShouldDoUnownEscapeEffect())
+    {
+        FlagSet(FLAG_SYS_BRAILLE_DIG);
+    }
 }
 
 bool8 CanUseEscapeRopeOnCurrMap(void)

@@ -53,6 +53,7 @@ enum
 {
     ALPH_PUZZLE_STATE_INIT,
     ALPH_PUZZLE_STATE_PROCESS_INPUT,
+    ALPH_PUZZLE_STATE_COMPLETED_WAIT_FOR_SOUND,
     ALPH_PUZZLE_STATE_PROCESS_COMPLETED_INPUT,
     ALPH_PUZZLE_STATE_START_EXIT,
     ALPH_PUZZLE_STATE_EXIT,
@@ -460,6 +461,14 @@ static void PuzzleMain(u8 taskId)
     case ALPH_PUZZLE_STATE_PROCESS_INPUT:
         HandleInput();
         break;
+    case ALPH_PUZZLE_STATE_COMPLETED_WAIT_FOR_SOUND:
+        if (IsSEPlaying())
+            break;
+
+        ShowHelpBar(sHelpBarExitText);
+        PlayFanfare(MUS_ME_B_SMALL);
+        sRuinsOfAlphPuzzle->state = ALPH_PUZZLE_STATE_PROCESS_COMPLETED_INPUT;
+        // fallthrough
     case ALPH_PUZZLE_STATE_PROCESS_COMPLETED_INPUT:
         HandleInput_PuzzleComplete();
         break;
@@ -535,10 +544,8 @@ static void UpdateCursorSelection(void)
             PlaySE(SE_KI_GASYAN);
             if (IsPuzzleCompleted())
             {
-                ShowHelpBar(sHelpBarExitText);
                 DestroySprite(cursorSprite);
-                PlayFanfare(MUS_ME_B_SMALL);
-                sRuinsOfAlphPuzzle->state = ALPH_PUZZLE_STATE_PROCESS_COMPLETED_INPUT;
+                sRuinsOfAlphPuzzle->state = ALPH_PUZZLE_STATE_COMPLETED_WAIT_FOR_SOUND;
             }
             else
             {

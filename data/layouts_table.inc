@@ -190,12 +190,12 @@ gMapLayouts::
 	.4byte SproutTower_3F_Layout
 	.4byte RuinsOfAlph_ResearchCenter_Layout
 	.4byte RuinsOfAlph_KabutoChamber_Layout
-	.4byte AbandonedShip_Rooms2_B1F_Layout
-	.4byte AbandonedShip_Underwater1_Layout
-	.4byte AbandonedShip_Room_B1F_Layout
-	.4byte AbandonedShip_Rooms2_1F_Layout
-	.4byte AbandonedShip_CaptainsOffice_Layout
-	.4byte AbandonedShip_Underwater2_Layout
+	.4byte RuinsOfAlph_AerodactylChamber_Layout
+	.4byte RuinsOfAlph_OmanyteChamber_Layout
+	.4byte RuinsOfAlph_HoOhChamber_Layout
+	.4byte RuinsOfAlph_KabutoItemRoom_Layout
+	.4byte RuinsOfAlph_AerodactylItemRoom_Layout
+	.4byte RuinsOfAlph_OmanyteItemRoom_Layout
 	.4byte SecretBase_RedCave1_Layout
 	.4byte SecretBase_BrownCave1_Layout
 	.4byte SecretBase_BlueCave1_Layout
@@ -288,7 +288,7 @@ gMapLayouts::
 	.4byte VictoryRoad_B2F_Layout
 	.4byte Route104_Prototype_Layout
 	.4byte DarkCave_StevensRoom_Layout
-	.4byte AbandonedShip_HiddenFloorCorridors_Layout
+	.4byte RuinsOfAlph_HoOhItemRoom_Layout
 	.4byte SouthernIsland_Exterior_Layout
 	.4byte SouthernIsland_Interior_Layout
 	.4byte JaggedPass_Layout
@@ -309,7 +309,7 @@ gMapLayouts::
 	.4byte SootopolisCity_House1_Layout
 	.4byte SootopolisCity_House2_Layout
 	.4byte SootopolisCity_House3_Layout
-	.4byte AbandonedShip_HiddenFloorRooms_Layout
+	.4byte RuinsOfAlph_KabutoWordRoom_Layout
 	.4byte ScorchedSlab_Layout
 	.4byte UnknownMap_0845A394_Layout
 	.4byte RustboroCity_Flat1_1F_Layout

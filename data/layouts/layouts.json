@@ -1901,64 +1901,64 @@
             "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/AbandonedShip_Rooms2_B1F/map.bin",
-            "border_filepath": "data/layouts/AbandonedShip_Rooms2_B1F/border.bin",
-            "height": 8,
-            "id": "LAYOUT_ABANDONED_SHIP_ROOMS2_B1F",
-            "name": "AbandonedShip_Rooms2_B1F_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 18
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_AerodactylChamber/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_AerodactylChamber/border.bin",
+            "height": 12,
+            "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+            "name": "RuinsOfAlph_AerodactylChamber_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/AbandonedShip_Underwater1/map.bin",
-            "border_filepath": "data/layouts/AbandonedShip_Underwater1/border.bin",
-            "height": 8,
-            "id": "LAYOUT_ABANDONED_SHIP_UNDERWATER1",
-            "name": "AbandonedShip_Underwater1_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 8
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_OmanyteChamber/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_OmanyteChamber/border.bin",
+            "height": 12,
+            "id": "LAYOUT_RUINS_OF_ALPH_OMANYTE_CHAMBER",
+            "name": "RuinsOfAlph_OmanyteChamber_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/AbandonedShip_Room_B1F/map.bin",
-            "border_filepath": "data/layouts/AbandonedShip_Room_B1F/border.bin",
-            "height": 8,
-            "id": "LAYOUT_ABANDONED_SHIP_ROOM_B1F",
-            "name": "AbandonedShip_Room_B1F_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 9
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_HoOhChamber/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_HoOhChamber/border.bin",
+            "height": 12,
+            "id": "LAYOUT_RUINS_OF_ALPH_HO_OH_CHAMBER",
+            "name": "RuinsOfAlph_HoOhChamber_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/AbandonedShip_Rooms2_1F/map.bin",
-            "border_filepath": "data/layouts/AbandonedShip_Rooms2_1F/border.bin",
-            "height": 17,
-            "id": "LAYOUT_ABANDONED_SHIP_ROOMS2_1F",
-            "name": "AbandonedShip_Rooms2_1F_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 9
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_KabutoItemRoom/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_KabutoItemRoom/border.bin",
+            "height": 12,
+            "id": "LAYOUT_RUINS_OF_ALPH_KABUTO_ITEM_ROOM",
+            "name": "RuinsOfAlph_KabutoItemRoom_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/AbandonedShip_CaptainsOffice/map.bin",
-            "border_filepath": "data/layouts/AbandonedShip_CaptainsOffice/border.bin",
-            "height": 7,
-            "id": "LAYOUT_ABANDONED_SHIP_CAPTAINS_OFFICE",
-            "name": "AbandonedShip_CaptainsOffice_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Facility",
-            "width": 9
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_AerodactylItemRoom/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_AerodactylItemRoom/border.bin",
+            "height": 12,
+            "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM",
+            "name": "RuinsOfAlph_AerodactylItemRoom_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/AbandonedShip_Underwater2/map.bin",
-            "border_filepath": "data/layouts/AbandonedShip_Underwater2/border.bin",
-            "height": 7,
-            "id": "LAYOUT_ABANDONED_SHIP_UNDERWATER2",
-            "name": "AbandonedShip_Underwater2_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 21
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_OmanyteItemRoom/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_OmanyteItemRoom/border.bin",
+            "height": 12,
+            "id": "LAYOUT_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
+            "name": "RuinsOfAlph_OmanyteItemRoom_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_RedCave1/map.bin",
@@ -2881,14 +2881,14 @@
             "width": 15
         },
         {
-            "blockdata_filepath": "data/layouts/AbandonedShip_HiddenFloorCorridors/map.bin",
-            "border_filepath": "data/layouts/AbandonedShip_HiddenFloorCorridors/border.bin",
-            "height": 11,
-            "id": "LAYOUT_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS",
-            "name": "AbandonedShip_HiddenFloorCorridors_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 13
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_HoOhItemRoom/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_HoOhItemRoom/border.bin",
+            "height": 12,
+            "id": "LAYOUT_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
+            "name": "RuinsOfAlph_HoOhItemRoom_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 11
         },
         {
             "blockdata_filepath": "data/layouts/SouthernIsland_Exterior/map.bin",
@@ -3091,14 +3091,14 @@
             "width": 8
         },
         {
-            "blockdata_filepath": "data/layouts/AbandonedShip_HiddenFloorRooms/map.bin",
-            "border_filepath": "data/layouts/AbandonedShip_HiddenFloorRooms/border.bin",
-            "height": 15,
-            "id": "LAYOUT_ABANDONED_SHIP_HIDDEN_FLOOR_ROOMS",
-            "name": "AbandonedShip_HiddenFloorRooms_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_InsideShip",
-            "width": 44
+            "blockdata_filepath": "data/layouts/RuinsOfAlph_KabutoWordRoom/map.bin",
+            "border_filepath": "data/layouts/RuinsOfAlph_KabutoWordRoom/border.bin",
+            "height": 14,
+            "id": "LAYOUT_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+            "name": "RuinsOfAlph_KabutoWordRoom_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_RuinsOfAlph",
+            "width": 21
         },
         {
             "blockdata_filepath": "data/layouts/ScorchedSlab/map.bin",

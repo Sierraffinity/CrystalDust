@@ -462,35 +462,47 @@ RuinsOfAlph_KabutoChamber_EventScript_ItemEscapeRope:: @ 829123A
 	finditem ITEM_ESCAPE_ROPE
 	end
 
-AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall:: @ 8291247
+RuinsOfAlph_AerodactylChamber_EventScript_ItemDiveBall:: @ 8291247
 	finditem ITEM_DIVE_BALL
 	end
 
-AbandonedShip_Room_B1F_EventScript_ItemTM13:: @ 8291254
+RuinsOfAlph_HoOhChamber_EventScript_ItemTM13:: @ 8291254
 	finditem ITEM_TM13
 	end
 
-AbandonedShip_Rooms2_1F_EventScript_ItemRevive:: @ 8291261
-	finditem ITEM_REVIVE
+RuinsOfAlph_KabutoItemRoom_EventScript_ItemOranBerry::
+	finditem ITEM_ORAN_BERRY
 	end
 
-AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey:: @ 829126E
+RuinsOfAlph_KabutoItemRoom_EventScript_ItemPechaBerry::
+	finditem ITEM_PECHA_BERRY
+	end
+
+RuinsOfAlph_KabutoItemRoom_EventScript_ItemHealPowder::
+	finditem ITEM_HEAL_POWDER
+	end
+
+RuinsOfAlph_KabutoItemRoom_EventScript_ItemEnergyPowder::
+	finditem ITEM_ENERGY_POWDER
+	end
+
+RuinsOfAlph_AerodactylItemRoom_EventScript_ItemStorageKey:: @ 829126E
 	finditem ITEM_STORAGE_KEY
 	end
 
-AbandonedShip_HiddenFloorRooms_EventScript_ItemLuxuryBall:: @ 829127B
+RuinsOfAlph_KabutoWordRoom_EventScript_ItemLuxuryBall:: @ 829127B
 	finditem ITEM_LUXURY_BALL
 	end
 
-AbandonedShip_HiddenFloorRooms_EventScript_ItemScanner:: @ 8291288
+RuinsOfAlph_KabutoWordRoom_EventScript_ItemScanner:: @ 8291288
 	finditem ITEM_SCANNER
 	end
 
-AbandonedShip_HiddenFloorRooms_EventScript_ItemWaterStone:: @ 8291295
+RuinsOfAlph_KabutoWordRoom_EventScript_ItemWaterStone:: @ 8291295
 	finditem ITEM_WATER_STONE
 	end
 
-AbandonedShip_HiddenFloorRooms_EventScript_ItemTM18:: @ 82912A2
+RuinsOfAlph_KabutoWordRoom_EventScript_ItemTM18:: @ 82912A2
 	finditem ITEM_TM18
 	end
 

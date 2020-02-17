@@ -430,6 +430,7 @@
 #define METATILE_RS_MossdeepGym_Switch_Up       0x238
 
 // gTileset_RuinsOfAlph
+#define METATILE_RuinsOfAlph_HoleInWall          0x2FF
 #define METATILE_RuinsOfAlph_Puzzle_Hole_Center  0x2EF
 #define METATILE_RuinsOfAlph_Puzzle_Hole_Left    0x2E7
 #define METATILE_RuinsOfAlph_Puzzle_Hole_Right   0x2F6
