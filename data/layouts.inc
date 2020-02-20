@@ -116,7 +116,7 @@
 	.include "data/layouts/EverGrandeCity_ShortHall/layout.inc"
 	.include "data/layouts/Route32_PrettyPetalFlowerShop/layout.inc"
 	.include "data/layouts/CableCarStation/layout.inc"
-	.include "data/layouts/Route114_FossilManiacsHouse/layout.inc"
+	.include "data/layouts/Route32_PokemonCenter_2F/layout.inc"
 	.include "data/layouts/Route114_FossilManiacsTunnel/layout.inc"
 	.include "data/layouts/Route114_LanettesHouse/layout.inc"
 	.include "data/layouts/Route116_TunnelersRestHouse/layout.inc"

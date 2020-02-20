@@ -118,7 +118,7 @@ gMapLayouts::
 	.4byte EverGrandeCity_ShortHall_Layout
 	.4byte Route30_MrPokemonsHouse_Layout
 	.4byte CableCarStation_Layout
-	.4byte Route114_FossilManiacsHouse_Layout
+	.4byte Route32_PokemonCenter_2F_Layout
 	.4byte Route114_FossilManiacsTunnel_Layout
 	.4byte Route114_LanettesHouse_Layout
 	.4byte Route116_TunnelersRestHouse_Layout

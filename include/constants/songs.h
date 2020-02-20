@@ -303,7 +303,7 @@
 #define MUS_ME_SHINKA 376       // Evolution Intro
 #define MUS_SHINKA 377          // Evolution
 #define MUS_ME_WASURE 378       // Move Deleted/Messed Up Appeal
-#define MUS_ENCFEMALEOLD 379    // Encounter! Tuber
+#define MUS_ENCFEMALECLASSIC 379    // Encounter! Tuber
 #define MUS_ENCMALE 380         // Encounter! Boy
 #define MUS_DARKCAVE 381        // Abandoned Ship/Southern Island
 #define MUS_MACHI_S3 382        // Fortree City/Pacifidlog Town
@@ -341,7 +341,7 @@
 #define MUS_DEMO1 414           // Opening Movie
 #define MUS_RIVALENC 415        // Encounter! May
 #define MUS_ENCSAGE 416        // Encounter! Biker
-#define MUS_ENCMALEOLD 417         // Encounter! Electric Trainer
+#define MUS_ENCMALECLASSIC 417         // Encounter! Electric Trainer
 #define MUS_MAINMENU 418        // Main Menu
 #define MUS_ENCROCKET 419           // Encounter! Team Aqua
 #define MUS_FOLLOWME 420        // Follow Me!
@@ -375,7 +375,7 @@
 #define MUS_KARAKURI 448        // Trick House
 #define MUS_HUTAGO 449          // Encounter! Kid
 #define MUS_SITENNOU 450        // Encounter! Elite Four
-#define MUS_ENCSUSPOLD 451        // Encounter! Hiker
+#define MUS_ENCSUSPICIOUSCLASSIC 451        // Encounter! Hiker
 #define MUS_CONLOBBY 452        // Contest Lobby
 #define MUS_ENCKIMONO 453         // Encounter! Gabby and Ty
 #define MUS_DAIGO 454           // Encounter! Wallace

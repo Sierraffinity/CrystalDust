@@ -54,20 +54,12 @@ SproutTower_3F_EventScript_ItemEscapeRope::
 	finditem ITEM_ESCAPE_ROPE
 	end
 
-Route32_EventScript_ItemPPUp:: @ 8290CFF
-	finditem ITEM_PP_UP
+Route32_EventScript_ItemRepel::
+	finditem ITEM_REPEL
 	end
 
-Route32_EventScript_ItemPokeBall:: @ 8290D0C
-	finditem ITEM_POKE_BALL
-	end
-
-Route32_EventScript_ItemXAccuracy:: @ 8290D19
-	finditem ITEM_X_ACCURACY
-	end
-
-Route32_EventScript_ItemPotion:: @ 8290D26
-	finditem ITEM_POTION
+Route32_EventScript_ItemGreatBall::
+	finditem ITEM_GREAT_BALL
 	end
 
 Route105_EventScript_ItemIron:: @ 8290D33

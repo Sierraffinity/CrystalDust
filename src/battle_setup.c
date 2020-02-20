@@ -1491,14 +1491,14 @@ void SetUpTrainerEncounterMusic(void)
         case TRAINER_ENCOUNTER_MUSIC_FEMALE:
             music = MUS_ENCFEMALE;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_FEMALEOLD:
-            music = MUS_ENCFEMALEOLD;
+        case TRAINER_ENCOUNTER_MUSIC_FEMALECLASSIC:
+            music = MUS_ENCFEMALECLASSIC;
             break;
         case TRAINER_ENCOUNTER_MUSIC_SAGE:
             music = MUS_ENCSAGE;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_MALEOLD:
-            music = MUS_ENCMALEOLD;
+        case TRAINER_ENCOUNTER_MUSIC_MALECLASSIC:
+            music = MUS_ENCMALECLASSIC;
             break;
         case TRAINER_ENCOUNTER_MUSIC_ROCKET:
             music = MUS_ENCROCKET;
@@ -1515,8 +1515,8 @@ void SetUpTrainerEncounterMusic(void)
         case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
             music = MUS_SITENNOU;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_SUSPOLD:
-            music = MUS_ENCSUSPOLD;
+        case TRAINER_ENCOUNTER_MUSIC_SUSPICIOUSCLASSIC:
+            music = MUS_ENCSUSPICIOUSCLASSIC;
             break;
         case TRAINER_ENCOUNTER_MUSIC_KIMONO:
             music = MUS_ENCKIMONO;

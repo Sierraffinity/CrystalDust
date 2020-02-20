@@ -62,7 +62,7 @@ Route119_WeatherInstitute_1F_EventScript_Bed:: @ 826FB18
 	end
 
 Route119_WeatherInstitute_1F_EventScript_Grunt1:: @ 826FB29
-	trainerbattle_single TRAINER_GRUNT_WEATHER_INST_1, Route119_WeatherInstitute_1F_Text_Grunt1Intro, Route119_WeatherInstitute_1F_Text_Grunt1Defeat
+	trainerbattle_single TRAINER_JUSTIN, Route119_WeatherInstitute_1F_Text_Grunt1Intro, Route119_WeatherInstitute_1F_Text_Grunt1Defeat
 	msgbox Route119_WeatherInstitute_1F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
 	end
 

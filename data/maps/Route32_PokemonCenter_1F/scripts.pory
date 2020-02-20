@@ -1,0 +1,54 @@
+mapscripts Route32_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_ROUTE32)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script Route32_PokemonCenter_1F_EventScript_Nurse {
+	setvar(VAR_0x800B, 1)
+	call(Common_EventScript_PkmnCenterNurse)
+	waitmessage
+	waitbuttonpress
+	release
+}
+
+script Route32_PokemonCenter_1F_EventScript_FishingGuru {
+    lock
+    faceplayer
+    if (!flag(FLAG_RECEIVED_OLD_ROD))
+    {
+        msgbox("This is a great fishing spot.\n"
+               "Oh, you saw people fishing?\p"
+               "How about you?\n"
+               "Would you like one of my RODS?", MSGBOX_YESNO)
+        if (var(VAR_RESULT))
+        {
+            msgbox("Heh, that's good to hear.\n"
+                   "Now you're an angler too!")
+            giveitem(ITEM_OLD_ROD)
+            msgbox("Fishing is great!\n"
+                   "If there's water, be it the sea or\l"
+                   "a stream, try out your ROD.")
+            setflag(FLAG_RECEIVED_OLD_ROD)
+        }
+        else
+        {
+            msgbox("Oh.\n"
+                   "That's rather disappointing…")
+        }
+    }
+    else
+    {
+        msgbox("Yo, kid.\n"
+               "How are they biting?")
+    }
+    release
+}
+
+script Route32_PokemonCenter_1F_EventScript_HoldItemGirl {
+    msgbox("What item should I make my\n"
+           "POKéMON hold?\p"
+           "Maybe something that increases the\n"
+           "power of its attacks…", MSGBOX_NPC)
+}

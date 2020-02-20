@@ -340,8 +340,8 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route30_MrPokemonsHouse/scripts.inc"
 	.include "data/maps/Route31_Gatehouse/scripts.inc"
 	.include "data/maps/Route32_Gatehouse/scripts.inc"
-	.include "data/maps/MtChimney_CableCarStation/scripts.inc"
-	.include "data/maps/Route114_FossilManiacsHouse/scripts.inc"
+	.include "data/maps/Route32_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/Route32_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
 	.include "data/maps/Route114_LanettesHouse/scripts.inc"
 	.include "data/maps/Route116_TunnelersRestHouse/scripts.inc"
@@ -613,7 +613,7 @@ EventScript_ResetMrBriney:: @ 8271862
 	end
 
 EventScript_MoveMrBrineyToHouse:: @ 8271884
-	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
@@ -629,7 +629,7 @@ EventScript_MoveMrBrineyToDewford:: @ 827189A
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	clearflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	end
 
@@ -638,7 +638,7 @@ EventScript_MoveMrBrineyToRoute36:: @ 82718B3
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	clearflag FLAG_HIDE_ROUTE_36_MR_BRINEY
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
@@ -656,7 +656,7 @@ Common_EventScript_UpdateBrineyLocation:: @ 82718DE
 	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
 	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
 	goto_if_unset FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
-	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, EventScript_SetBrineyLocation_Dewford
+	goto_if_unset FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN, EventScript_SetBrineyLocation_Dewford
 	goto_if_unset FLAG_HIDE_ROUTE_36_MR_BRINEY, EventScript_SetBrineyLocation_Route36
 	return
 
@@ -786,7 +786,7 @@ Movement_FerryDepart: @ 82721F0
 	step_end
 
 EventScript_HideMrBriney:: @ 82721F8
-	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT

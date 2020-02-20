@@ -969,7 +969,7 @@ void CableCarWarp(void)
     }
     else
     {
-        SetWarpDestination(MAP_GROUP(MT_CHIMNEY_CABLE_CAR_STATION), MAP_NUM(MT_CHIMNEY_CABLE_CAR_STATION), -1, 6, 4);
+        SetWarpDestination(MAP_GROUP(ROUTE32_POKEMON_CENTER_1F), MAP_NUM(ROUTE32_POKEMON_CENTER_1F), -1, 6, 4);
     }
 }
 
@@ -1094,13 +1094,9 @@ static void PCTurnOnEffect_1(s16 isPcTurnedOn, s8 dx, s8 dy)
         {
             tileId = METATILE_ID(Building, PC_Off);
         }
-        else if (gSpecialVar_0x8004 == PC_LOCATION_BRENDANS_HOUSE)
+        else if (gSpecialVar_0x8004 == PC_LOCATION_PLAYERS_HOUSE)
         {
-            tileId = 0x28F;
-        }
-        else if (gSpecialVar_0x8004 == PC_LOCATION_MAYS_HOUSE)
-        {
-            tileId = METATILE_ID(BrendansMaysHouse, MayPC_Off);
+            tileId = METATILE_ID(BrendansMaysHouse, PlayerPC_Off);
         }
     }
     else
@@ -1109,13 +1105,9 @@ static void PCTurnOnEffect_1(s16 isPcTurnedOn, s8 dx, s8 dy)
         {
             tileId = METATILE_ID(Building, PC_On);
         }
-        else if (gSpecialVar_0x8004 == PC_LOCATION_BRENDANS_HOUSE)
+        else if (gSpecialVar_0x8004 == PC_LOCATION_PLAYERS_HOUSE)
         {
-            tileId = 0x28A;
-        }
-        else if (gSpecialVar_0x8004 == PC_LOCATION_MAYS_HOUSE)
-        {
-            tileId = METATILE_ID(BrendansMaysHouse, MayPC_On);
+            tileId = METATILE_ID(BrendansMaysHouse, PlayerPC_On);
         }
     }
     MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + 7, gSaveBlock1Ptr->pos.y + dy + 7, tileId | METATILE_COLLISION_MASK);
@@ -1147,17 +1139,13 @@ static void PCTurnOffEffect(void)
             dy = -1;
             break;
     }
-    if (gSpecialVar_0x8004 == 0)
+    if (gSpecialVar_0x8004 == PC_LOCATION_OTHER)
     {
         tileId = METATILE_ID(Building, PC_Off);
     }
-    else if (gSpecialVar_0x8004 == 1)
+    else if (gSpecialVar_0x8004 == PC_LOCATION_PLAYERS_HOUSE)
     {
-        tileId = 0x28F;
-    }
-    else if (gSpecialVar_0x8004 == 2)
-    {
-        tileId = METATILE_ID(BrendansMaysHouse, MayPC_Off);
+        tileId = METATILE_ID(BrendansMaysHouse, PlayerPC_Off);
     }
     MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + 7, gSaveBlock1Ptr->pos.y + dy + 7, tileId | METATILE_COLLISION_MASK);
     DrawWholeMapView();
@@ -2034,12 +2022,13 @@ bool8 UsedPokemonCenterWarp(void)
     static const u16 sPokemonCenters[] = 
     { 
         MAP_CHERRYGROVE_CITY_POKEMON_CENTER_1F, 
+        MAP_VIOLET_CITY_POKEMON_CENTER_1F,
+        MAP_ROUTE32_POKEMON_CENTER_1F,
         MAP_DEWFORD_TOWN_POKEMON_CENTER_1F, 
         MAP_LAVARIDGE_TOWN_POKEMON_CENTER_1F, 
         MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F, 
-        MAP_VERDANTURF_TOWN_POKEMON_CENTER_1F, 
-        MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_1F, 
-        MAP_VIOLET_CITY_POKEMON_CENTER_1F, 
+        MAP_VERDANTURF_TOWN_POKEMON_CENTER_1F,
+        MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_1F,
         MAP_SLATEPORT_CITY_POKEMON_CENTER_1F, 
         MAP_MAUVILLE_CITY_POKEMON_CENTER_1F, 
         MAP_RUSTBORO_CITY_POKEMON_CENTER_1F, 
@@ -4280,12 +4269,13 @@ bool8 InPokemonCenter(void)
     static const u16 sPokemonCenters[] =
     {
         MAP_CHERRYGROVE_CITY_POKEMON_CENTER_1F,
+        MAP_VIOLET_CITY_POKEMON_CENTER_1F,
+        MAP_ROUTE32_POKEMON_CENTER_1F,
         MAP_DEWFORD_TOWN_POKEMON_CENTER_1F,
         MAP_LAVARIDGE_TOWN_POKEMON_CENTER_1F,
         MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F,
         MAP_VERDANTURF_TOWN_POKEMON_CENTER_1F,
         MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_1F,
-        MAP_VIOLET_CITY_POKEMON_CENTER_1F,
         MAP_SLATEPORT_CITY_POKEMON_CENTER_1F,
         MAP_MAUVILLE_CITY_POKEMON_CENTER_1F,
         MAP_RUSTBORO_CITY_POKEMON_CENTER_1F,

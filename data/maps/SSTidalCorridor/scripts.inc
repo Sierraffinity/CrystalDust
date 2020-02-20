@@ -132,7 +132,7 @@ SSTidalCorridor_EventScript_ExitLilycove:: @ 823C13B
 	end
 
 SSTidalCorridor_EventScript_ExitSlateport:: @ 823C15A
-	setrespawn HEAL_LOCATION_SLATEPORT_CITY
+	setrespawn HEAL_LOCATION_ROUTE32
 	msgbox SSTidalCorridor_Text_WeveArrived, MSGBOX_DEFAULT
 	call_if_set FLAG_RECEIVED_TM49, SSTidalCorridor_EventScript_HideSnatchGiver
 	warp MAP_SLATEPORT_CITY_HARBOR, 255, 8, 11

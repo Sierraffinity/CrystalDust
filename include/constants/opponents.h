@@ -15,13 +15,13 @@
 #define TRAINER_LI               11
 #define TRAINER_ABE              12
 #define TRAINER_ROD              13
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_4          14
-#define TRAINER_DECLAN           15
-#define TRAINER_GRUNT_RUSTURF_TUNNEL         16
-#define TRAINER_GRUNT_WEATHER_INST_1         17
-#define TRAINER_GRUNT_WEATHER_INST_2         18
-#define TRAINER_GRUNT_WEATHER_INST_3         19
-#define TRAINER_GRUNT_MUSEUM_1               20
+#define TRAINER_ALBERT           14
+#define TRAINER_LIZ              15
+#define TRAINER_ROLAND           16
+#define TRAINER_HENRY            17
+#define TRAINER_JUSTIN           18
+#define TRAINER_RALPH            19
+#define TRAINER_GORDON           20
 #define TRAINER_GRUNT_MUSEUM_2               21
 #define TRAINER_GRUNT_SPACE_CENTER_1         22
 #define TRAINER_GRUNT_MT_PYRE_1              23
@@ -81,7 +81,7 @@
 #define TRAINER_LEROY                        77
 #define TRAINER_WILTON_1                     78
 #define TRAINER_EDGAR                        79
-#define TRAINER_ALBERT                       80
+#define TRAINER_ALBERT_OLD                       80
 #define TRAINER_SAMUEL                       81
 #define TRAINER_VITO                         82
 #define TRAINER_OWEN                         83
@@ -161,7 +161,7 @@
 #define TRAINER_MATTHEW         157
 #define TRAINER_DAVID           158
 #define TRAINER_SPENCER         159
-#define TRAINER_ROLAND          160
+#define TRAINER_ROLAND_OLD      160
 #define TRAINER_NOLEN           161
 #define TRAINER_STAN            162
 #define TRAINER_BARRY           163
@@ -216,7 +216,7 @@
 #define TRAINER_BEAU                        212
 #define TRAINER_LARRY                       213
 #define TRAINER_SHANE                       214
-#define TRAINER_JUSTIN                      215
+#define TRAINER_JUSTIN_OLD                  215
 #define TRAINER_ETHAN_1                     216
 #define TRAINER_AUTUMN                      217
 #define TRAINER_TRAVIS                      218
@@ -669,7 +669,7 @@
 #define TRAINER_MAY_LILYCOVE_TREECKO        665
 #define TRAINER_MAY_LILYCOVE_TORCHIC        666
 #define TRAINER_JONAH                       667
-#define TRAINER_HENRY                       668
+#define TRAINER_HENRY_OLD                   668
 #define TRAINER_ROGER                       669
 #define TRAINER_ALEXA                       670
 #define TRAINER_RUBEN                       671

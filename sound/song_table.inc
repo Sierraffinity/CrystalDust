@@ -380,7 +380,7 @@ gSongTable:: @ 86B49F0
 	song mus_me_shinka, 2, 2        @ Evolution (Intro)
 	song mus_shinka, 0, 0           @ Evolution
 	song mus_me_wasure, 2, 2        @ Move Deleted
-	song mus_encfemaleold, 0, 0     @ Trainers' Eyes Meet (Tuber♀)
+	song mus_encfemaleclassic, 0, 0     @ Trainers' Eyes Meet (Tuber♀)
 	song mus_encmale, 0, 0          @ Trainers' Eyes Meet (Youngster)
 	song mus_darkcave, 0, 0         @ Dark Cave
 	song mus_machi_s3, 0, 0         @ Fortree City
@@ -418,7 +418,7 @@ gSongTable:: @ 86B49F0
 	song mus_demo1, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
 	song mus_rivalenc, 0, 0         @ Rival Arrives
 	song mus_encsage, 0, 0          @ Trainers' Eyes Meet (Psychic)
-	song mus_encmaleold, 0, 0       @ Trainers' Eyes Meet (Cooltrainer)
+	song mus_encmaleclassic, 0, 0       @ Trainers' Eyes Meet (Cooltrainer)
 	song mus_mainmenu, 0, 0         @ Main Menu
 	song mus_encrocket, 0, 0        @ Team Aqua Appears!
 	song mus_followme, 0, 0         @ Hurry Along
@@ -452,7 +452,7 @@ gSongTable:: @ 86B49F0
 	song mus_karakuri, 0, 0         @ The Trick House
 	song mus_hutago, 0, 0           @ Twins
 	song mus_sitennou, 0, 0         @ The Elite Four Appear!
-	song mus_encsuspold, 0, 0       @ Trainers' Eyes Meet (Hiker)
+	song mus_encsuspiciousclassic, 0, 0       @ Trainers' Eyes Meet (Hiker)
 	song mus_conlobby, 0, 0         @ Contest Lobby
 	song mus_enckimono, 0, 0        @ Interviewers
 	song mus_daigo, 0, 0            @ Champion Wallace

@@ -3,7 +3,7 @@
   "name": "Route113",
   "layout": "LAYOUT_ROUTE113",
   "music": "MUS_MAINMENU",
-  "region_map_section": "MAPSEC_ROUTE_113",
+  "region_map_section": "MAPSEC_ROUTE_41",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_ROUTE",
@@ -459,7 +459,7 @@
       "y": 3,
       "elevation": 3,
       "item": "ITEM_ETHER",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_113_ETHER"
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_32_SUPER_POTION"
     },
     {
       "type": "hidden_item",

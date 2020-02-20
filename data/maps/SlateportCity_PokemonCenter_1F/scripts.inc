@@ -4,7 +4,7 @@ SlateportCity_PokemonCenter_1F_MapScripts:: @ 820DABF
 	.byte 0
 
 SlateportCity_PokemonCenter_1F_OnTransition: @ 820DACA
-	setrespawn HEAL_LOCATION_SLATEPORT_CITY
+	setrespawn HEAL_LOCATION_ROUTE32
 	call Common_EventScript_UpdateBrineyLocation
 	end
 

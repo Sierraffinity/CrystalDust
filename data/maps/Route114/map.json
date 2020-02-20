@@ -3,7 +3,7 @@
   "name": "Route114",
   "layout": "LAYOUT_ROUTE114",
   "music": "MUS_ROUTE34",
-  "region_map_section": "MAPSEC_ROUTE_114",
+  "region_map_section": "MAPSEC_ROUTE_42",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_ROUTE",
@@ -416,7 +416,7 @@
       "x": 29,
       "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE114_FOSSIL_MANIACS_HOUSE",
+      "dest_map": "MAP_ROUTE32_POKEMON_CENTER_2F",
       "dest_warp_id": 0
     },
     {
@@ -515,7 +515,7 @@
       "y": 57,
       "elevation": 3,
       "item": "ITEM_CARBOS",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_114_CARBOS"
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_32_GREAT_BALL"
     },
     {
       "type": "secret_base",

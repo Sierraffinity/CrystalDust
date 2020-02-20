@@ -107,7 +107,6 @@ extern const u8 *const gRadioShowNames[];
 
 #define MAPSEC_MAHOGANY_TOWN MAPSEC_NEW_BARK_TOWN
 #define MAPSEC_LAKE_OF_RAGE MAPSEC_NEW_BARK_TOWN
-#define MAPSEC_ROUTE_43 MAPSEC_ROUTE_31
 
 void Task_PlayRadioShow(u8 taskId);
 

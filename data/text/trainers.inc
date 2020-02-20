@@ -4681,3 +4681,91 @@ VioletCity_Gym_Text_RodPostBattle::
 	.string "FALKNER's skills are for real!\n"
 	.string "Don't get cocky just because you\l"
 	.string "beat me!$"
+
+Route32_Text_AlbertIntro::
+	.string "I haven't seen you around before.\n"
+	.string "So you think you're pretty tough?$"
+
+Route32_Text_AlbertDefeat::
+	.string "You're stronger than you look!$"
+
+Route32_Text_AlbertPostBattle::
+	.string "I'm going to try to be the best\n"
+	.string "with my favorites.\p"
+	.string "I'm not using the same tough\n"
+	.string "POKéMON as everyone else.$"
+
+Route32_Text_LizIntro::
+	.string "Uh-huh.\n"
+	.string "Yeah, and you know…\p"
+	.string "Pardon? You want to battle?\n"
+	.string "I'm on the phone.\p"
+	.string "Oh, all right.\n"
+	.string "But let's make this fast.$"
+
+Route32_Text_LizDefeat::
+	.string "Oh!\n"
+	.string "I've got to relieve my anger!$"
+
+Route32_Text_LizPostBattle::
+	.string "I was having a nice chat, too.$"
+
+Route32_Text_RolandIntro::
+	.string "That glance…\n"
+	.string "It's intriguing.$"
+
+Route32_Text_RolandDefeat::
+	.string "Hmmm.\n"
+	.string "This is disappointing.$"
+
+Route32_Text_RolandPostBattle::
+	.string "If you don't want to battle, just\n"
+	.string "avoid eye contact.$"
+
+Route32_Text_HenryIntro::
+	.string "My POKéMON?\n"
+	.string "They're freshly caught!$"
+
+Route32_Text_HenryDefeat::
+	.string "SPLASH?$"
+
+Route32_Text_HenryPostBattle::
+	.string "Freshly caught POKéMON are no\n"
+	.string "match for properly raised ones.$"
+
+Route32_Text_JustinIntro::
+	.string "Whoa!\n"
+	.string "You made me lose that big fish!$"
+
+Route32_Text_JustinDefeat::
+	.string "Sploosh!$"
+
+Route32_Text_JustinPostBattle::
+	.string "Calm, collected…\n"
+	.string "The essence of fishing and POKéMON\l"
+	.string "is the same.$"
+
+Route32_Text_RalphIntro::
+	.string "I'm really good at both fishing\n"
+	.string "and POKéMON.\p"
+	.string "I'm not about to lose to any kid!$"
+
+Route32_Text_RalphDefeat::
+	.string "Tch!\n"
+	.string "I tried to rush things…$"
+
+Route32_Text_RalphPostBattle::
+	.string "Fishing is a lifelong passion.\n"
+	.string "POKéMON are lifelong friends!$"
+
+Route32_Text_GordonIntro::
+	.string "I found some good POKéMON in the\n"
+	.string "grass around here!\l"
+	.string "I think they'll do it for me!$"
+
+Route32_Text_GordonDefeat::
+	.string "Darn.\n"
+	.string "I thought I could win.$"
+
+Route32_Text_GordonPostBattle::
+	.string "The grass is full of clingy things.$"

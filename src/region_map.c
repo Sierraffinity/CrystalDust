@@ -146,16 +146,16 @@ static const u16 sRegionMap_MarineCaveMapSecIds[] =
 
 static const u16 sTerraCaveMapSectionIds[] =
 {
-    MAPSEC_ROUTE_114,
-    MAPSEC_ROUTE_114,
-    MAPSEC_ROUTE_115,
-    MAPSEC_ROUTE_115,
-    MAPSEC_ROUTE_116,
-    MAPSEC_ROUTE_116,
+    MAPSEC_ROUTE_42,
+    MAPSEC_ROUTE_42,
+    MAPSEC_ROUTE_43,
+    MAPSEC_ROUTE_43,
+    MAPSEC_ROUTE_44,
+    MAPSEC_ROUTE_44,
     MAPSEC_ROUTE_46,
     MAPSEC_ROUTE_46,
-    MAPSEC_ROUTE_105,
-    MAPSEC_ROUTE_105,
+    MAPSEC_ROUTE_33,
+    MAPSEC_ROUTE_33,
     MAPSEC_ROUTE_125,
     MAPSEC_ROUTE_125,
     MAPSEC_ROUTE_127,
@@ -315,7 +315,7 @@ static const u8 sMapHealLocations[][3] = {
     {MAP_GROUP(VERDANTURF_TOWN), MAP_NUM(VERDANTURF_TOWN), HEAL_LOCATION_VERDANTURF_TOWN},
     {MAP_GROUP(PACIFIDLOG_TOWN), MAP_NUM(PACIFIDLOG_TOWN), HEAL_LOCATION_PACIFIDLOG_TOWN},
     {MAP_GROUP(VIOLET_CITY), MAP_NUM(VIOLET_CITY), HEAL_LOCATION_VIOLET_CITY},
-    {MAP_GROUP(SLATEPORT_CITY), MAP_NUM(SLATEPORT_CITY), HEAL_LOCATION_SLATEPORT_CITY},
+    {MAP_GROUP(SLATEPORT_CITY), MAP_NUM(SLATEPORT_CITY), HEAL_LOCATION_ROUTE32},
     {MAP_GROUP(MAUVILLE_CITY), MAP_NUM(MAUVILLE_CITY), HEAL_LOCATION_MAUVILLE_CITY},
     {MAP_GROUP(RUSTBORO_CITY), MAP_NUM(RUSTBORO_CITY), HEAL_LOCATION_RUSTBORO_CITY},
     {MAP_GROUP(FORTREE_CITY), MAP_NUM(FORTREE_CITY), HEAL_LOCATION_FORTREE_CITY},
@@ -344,7 +344,7 @@ static const u8 sMapHealLocations[][3] = {
     {MAP_GROUP(ROUTE119), MAP_NUM(ROUTE119), 0},
     {MAP_GROUP(ROUTE120), MAP_NUM(ROUTE120), 0},
     {MAP_GROUP(ROUTE121), MAP_NUM(ROUTE121), 0},
-    {MAP_GROUP(ROUTE122), MAP_NUM(ROUTE122), 0},
+    {MAP_GROUP(ROUTE32), MAP_NUM(ROUTE32), HEAL_LOCATION_ROUTE32},
     {MAP_GROUP(ROUTE123), MAP_NUM(ROUTE123), 0},
     {MAP_GROUP(ROUTE124), MAP_NUM(ROUTE124), 0},
     {MAP_GROUP(ROUTE125), MAP_NUM(ROUTE125), 0},
@@ -1007,11 +1007,47 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation(void)
         // This is actually how FireRed fixes gatehouse map positions
         switch (GetCurrentRegionMapSectionId())
         {
+            case MAPSEC_ROUTE_29:
+                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE29_GATEHOUSE) &&
+                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE29_GATEHOUSE))
+                {
+                    gRegionMap->cursorPosX = 18;
+                    gRegionMap->cursorPosY = 10;
+                }
+                else
+                {
+                    RegionMap_InitializeStateBasedOnPlayerLocation_();
+                }
+                break;
             case MAPSEC_ROUTE_31:
                 if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE31_GATEHOUSE) &&
                     gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE31_GATEHOUSE))
                 {
                     gRegionMap->cursorPosX = 12;
+                    gRegionMap->cursorPosY = 5;
+                }
+                else
+                {
+                    RegionMap_InitializeStateBasedOnPlayerLocation_();
+                }
+                break;
+            case MAPSEC_ROUTE_32:
+                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE32_GATEHOUSE) &&
+                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE32_GATEHOUSE))
+                {
+                    gRegionMap->cursorPosX = 11;
+                    gRegionMap->cursorPosY = 6;
+                }
+                else
+                {
+                    RegionMap_InitializeStateBasedOnPlayerLocation_();
+                }
+                break;
+            case MAPSEC_ROUTE_36:
+                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE36_RUINS_OF_ALPH_GATEHOUSE) &&
+                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE36_RUINS_OF_ALPH_GATEHOUSE))
+                {
+                    gRegionMap->cursorPosX = 10;
                     gRegionMap->cursorPosY = 5;
                 }
                 else
@@ -1153,7 +1189,7 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation_(void)
             else if (gSaveBlock1Ptr->pos.x > 9)
                 x = 1;
             break;
-        /*case MAPSEC_ROUTE_114:
+        /*case MAPSEC_ROUTE_42:
             if (y != 0)
             {
                 x = 0;
@@ -1180,7 +1216,7 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation_(void)
                 y++;
             }
             break;
-        case MAPSEC_ROUTE_121:
+        case MAPSEC_ROUTE_28:
             x = 0;
             if (xOnMap > 14)
             {

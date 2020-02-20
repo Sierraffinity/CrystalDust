@@ -195,7 +195,7 @@ static const match_call_text_data_t sStevenTextScripts[] = {
     { MatchCall_Text_Steven3, FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
     { MatchCall_Text_Steven4, FLAG_RECEIVED_HM07, 0xFFFF },
     { MatchCall_Text_Steven5, FLAG_DEFEATED_MOSSDEEP_GYM,          0xFFFF },
-    { MatchCall_Text_Steven6, FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, 0xFFFF },
+    { MatchCall_Text_Steven6, FLAG_RECEIVED_TM05_ROAR, 0xFFFF },
     { MatchCall_Text_Steven7, FLAG_SYS_GAME_CLEAR,                 0xFFFF },
     { NULL,                   0xFFFF,                              0xFFFF },
 };
@@ -223,7 +223,7 @@ static const match_call_text_data_t sMayTextScripts[] = {
     { MatchCall_Text_May10, FLAG_RECEIVED_HM06, 0xFFFF },
     { MatchCall_Text_May11, FLAG_MADE_UNOWN_APPEAR_IN_RUINS,           0xFFFF },
     { MatchCall_Text_May12, FLAG_RECEIVED_HM07, 0xFFFF },
-    { MatchCall_Text_May13, FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, 0xFFFF },
+    { MatchCall_Text_May13, FLAG_RECEIVED_TM05_ROAR, 0xFFFF },
     { MatchCall_Text_May14, FLAG_DEFEATED_SOOTOPOLIS_GYM,        0xFFFF },
     { MatchCall_Text_May15, FLAG_SYS_GAME_CLEAR,                 0xFFFF },
     { NULL,                 0xFFFF,                              0xFFFF }
@@ -252,7 +252,7 @@ static const match_call_text_data_t sBrendanTextScripts[] = {
     { MatchCall_Text_Brendan10, FLAG_RECEIVED_HM06, 0xFFFF },
     { MatchCall_Text_Brendan11, FLAG_MADE_UNOWN_APPEAR_IN_RUINS,           0xFFFF },
     { MatchCall_Text_Brendan12, FLAG_RECEIVED_HM07, 0xFFFF },
-    { MatchCall_Text_Brendan13, FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, 0xFFFF },
+    { MatchCall_Text_Brendan13, FLAG_RECEIVED_TM05_ROAR, 0xFFFF },
     { MatchCall_Text_Brendan14, FLAG_DEFEATED_SOOTOPOLIS_GYM,        0xFFFF },
     { MatchCall_Text_Brendan15, FLAG_SYS_GAME_CLEAR,                 0xFFFF },
     { NULL,                     0xFFFF,                              0xFFFF }
@@ -274,7 +274,7 @@ static const match_call_text_data_t sWallyTextScripts[] = {
     { MatchCall_Text_Wally3, FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },
     { MatchCall_Text_Wally4, FLAG_RECEIVED_CASTFORM,              0xFFFF },
     { MatchCall_Text_Wally5, FLAG_RECEIVED_HM06, 0xFFFF },
-    { MatchCall_Text_Wally6, FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, 0xFFFF },
+    { MatchCall_Text_Wally6, FLAG_RECEIVED_TM05_ROAR, 0xFFFF },
     { MatchCall_Text_Wally7, FLAG_MET_FRIEDA_OF_FRIDAY,    0xFFFF },
     { NULL,                  0xFFFF,                              0xFFFF }
 };

@@ -1,4 +1,5 @@
 const ROADBLOCK_MAN = 1
+const SLOWPOKETAIL_MAN = 12
 
 mapscripts Route32_MapScripts { }
 
@@ -98,7 +99,6 @@ script Route32_EventScript_RoadblockMan_Common {
         else
         {
             setflag(FLAG_GOT_MIRACLE_SEED_ROUTE_32)
-            setvar(VAR_ROUTE32_STATE, 1)
             call(Route32_EventScript_RoadblockMan_AfterItem)
         }
     }
@@ -153,6 +153,150 @@ movement Route32_Movement_RoadblockMan_ManResetFromRight {
     walk_down
     walk_right
     face_left
+}
+
+script Route32_EventScript_SlowpokeTailManTrigger1 {
+    lockall
+    setvar(VAR_TEMP_1, 0)
+    goto(Route32_EventScript_SlowpokeTailManTrigger_All)
+}
+
+script Route32_EventScript_SlowpokeTailManTrigger2 {
+    lockall
+    setvar(VAR_TEMP_1, 1)
+    goto(Route32_EventScript_SlowpokeTailManTrigger_All)
+}
+
+script Route32_EventScript_SlowpokeTailManTrigger_All {
+	textcolor(MSG_COLOR_BLUE)
+    playse(SE_PIN)
+    applymovement(SLOWPOKETAIL_MAN, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(SLOWPOKETAIL_MAN, Common_Movement_Delay48)
+	waitmovement(0)
+	msgbox("Hey, kid!\n"
+		   "Hold on a sec!")
+	if (var(VAR_TEMP_1) == 0)
+	{
+		applymovement(OBJ_EVENT_ID_PLAYER, Route32_Movement_FaceUp)
+		waitmovement(0)
+	}
+	else
+	{
+		closemessage
+		applymovement(OBJ_EVENT_ID_PLAYER, Route32_Movement_StepUp)
+		waitmovement(0)
+	}
+	call(Route32_EventScript_SlowpokeTailMan_Common)
+	releaseall
+}
+
+movement Route32_Movement_FaceUp {
+	walk_in_place_fastest_up
+}
+
+movement Route32_Movement_StepUp {
+	walk_up
+}
+
+script Route32_EventScript_SlowpokeTailMan {
+	lock
+	faceplayer
+	call(Route32_EventScript_SlowpokeTailMan_Common)
+	release
+}
+
+script Route32_EventScript_SlowpokeTailMan_Common {
+	setvar(VAR_ROUTE32_STATE, 2)
+	showmoneybox(0, 0, 0)
+	msgbox("How would you like to have this\n"
+		   "tasty, nutritious SLOWPOKETAIL?\p"
+		   "For you right now, it costs just\n"
+		   "¥1,000,000!\p"
+		   "You'll want this!", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == YES)
+	{
+		hidemoneybox
+		msgbox("Tch! And here I thought kids\n"
+			   "these days were loaded…")
+	}
+	else
+	{
+		hidemoneybox
+		msgbox("You don't want it? You're sure?\n"
+			   "Then scram. Shoo!")
+	}
+}
+
+script Route32_EventScript_RoarTMGuy {
+	lock
+	faceplayer
+	if (!flag(FLAG_RECEIVED_TM05_ROAR))
+	{
+		msgbox("WROOOOAR!\p"
+			   "PEOPLE RUN WHEN I ROAR!\n"
+			   "BUT YOU CAME LOOKING!\p"
+			   "THAT PLEASES ME!\n"
+			   "NOW TAKE THIS!")
+		giveitem(ITEM_TM05)
+		if (!var(VAR_RESULT))
+		{
+			goto(Common_EventScript_ShowBagIsFull)
+		}
+		else
+		{
+			setflag(FLAG_RECEIVED_TM05_ROAR)
+		}
+	}
+	msgbox("WROOOAR!\n"
+		   "IT'S ROAR!\p"
+		   "EVEN POKéMON WILL RUN FROM A\n"
+		   "GOOD ROAR!")
+	release
+}
+
+script Route32_EventScript_Albert {
+    trainerbattle_single(TRAINER_ALBERT, Route32_Text_AlbertIntro, Route32_Text_AlbertDefeat)
+	msgbox(Route32_Text_AlbertPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Liz {
+    trainerbattle_single(TRAINER_LIZ, Route32_Text_LizIntro, Route32_Text_LizDefeat)
+	// TODO: Phone registration and calling
+	msgbox(Route32_Text_LizPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Roland {
+    trainerbattle_single(TRAINER_ROLAND, Route32_Text_RolandIntro, Route32_Text_RolandDefeat)
+	msgbox(Route32_Text_RolandPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Henry {
+    trainerbattle_single(TRAINER_HENRY, Route32_Text_HenryIntro, Route32_Text_HenryDefeat)
+	msgbox(Route32_Text_HenryPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Justin {
+    trainerbattle_single(TRAINER_JUSTIN, Route32_Text_JustinIntro, Route32_Text_JustinDefeat)
+	msgbox(Route32_Text_JustinPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Ralph {
+    trainerbattle_single(TRAINER_RALPH, Route32_Text_RalphIntro, Route32_Text_RalphDefeat)
+	// TODO: Phone registration and calling
+	msgbox(Route32_Text_RalphPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Gordon {
+    trainerbattle_single(TRAINER_GORDON, Route32_Text_GordonIntro, Route32_Text_GordonDefeat)
+	msgbox(Route32_Text_GordonPostBattle, MSGBOX_DEFAULT)
+	release
 }
 
 script Route32_EventScript_RuinsOfAlphSign {
@@ -569,7 +713,7 @@ Route32_EventScript_ArriveInDewford:: @ 81ED139
 	setobjectxyperm 2, 12, 8
 	addobject 2
 	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
-	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	clearflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	applymovement 2, Route32_Movement_BrineyExitBoat
 	waitmovement 0
 	addobject 4

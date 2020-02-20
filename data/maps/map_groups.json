@@ -204,12 +204,12 @@
     ],
     "gMapGroup20": [
         "Route32_Gatehouse",
-        "MtChimney_CableCarStation",
-        "Route114_FossilManiacsHouse",
-        "Route114_FossilManiacsTunnel",
-        "Route114_LanettesHouse"
+        "Route32_PokemonCenter_1F",
+        "Route32_PokemonCenter_2F"
     ],
     "gMapGroup21": [
+        "Route114_FossilManiacsTunnel",
+        "Route114_LanettesHouse",
         "Route116_TunnelersRestHouse"
     ],
     "gMapGroup22": [
