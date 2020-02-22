@@ -435,6 +435,10 @@ ENG = FC 16
 PAUSE_MUSIC = FC 17
 RESUME_MUSIC = FC 18
 
+@ font sizes
+
+SMALL = FC 06 00
+
 @ colors
 
 TRANSPARENT = 00

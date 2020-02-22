@@ -1522,7 +1522,7 @@ void sub_81AC644(u8 unused)
 void sub_81ACAF8(u8 a)
 {
     AddItemMenuActionTextPrinters(a, 7, 8, 1, 0, 16, gBagMenu->unk828, sItemMenuActions, gBagMenu->unk820);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(a, gBagMenu->unk828, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(a, 1, 0, 1, 16, gBagMenu->unk828, 0);
 }
 
 void sub_81ACB54(u8 a, u8 b, u8 c)

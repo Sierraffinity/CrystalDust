@@ -3089,7 +3089,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
     return MSG_COLOR_MISC;
 }
 
-u8 GetTextColorFromSelectedObjectEventGraphicsId(void)
+u8 ContextNpcGetTextColor(void)
 {
     if (gSpecialVar_TextColor == 0xFF)
     {

@@ -82,7 +82,7 @@ void CreateAvailableDecorationsMenu(u8 taskId)
             AddTextPrinterParameterized(data[3], 1, gDecorations[trader->decorIds[i]].name, 8, 16 * i + 1, 255, NULL);
     }
     AddTextPrinterParameterized(data[3], 1, gText_Exit, 8, 16 * i + 1, 255, NULL);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[3], 5, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[3], 1, 0, 1, 16, 5, 0);
     schedule_bg_copy_tilemap_to_vram(0);
 }
 

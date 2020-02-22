@@ -2486,7 +2486,7 @@ static u8 DisplaySelectionWindow(u8 windowType)
         AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
     }
 
-    InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], sPartyMenuInternal->numActions, 0, 1);
+    InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], 1, 0, 1, 16, sPartyMenuInternal->numActions, 0, 1);
     schedule_bg_copy_tilemap_to_vram(2);
 
     return sPartyMenuInternal->windowId[0];
@@ -2501,7 +2501,7 @@ static void PartyMenuPrintText(const u8 *text)
 
 static void PartyMenuDisplayYesNoMenu(void)
 {
-    CreateYesNoMenu(&sPartyMenuYesNoWindowTemplate, 0x4F, 13, 0);
+    CreateYesNoMenu(&sPartyMenuYesNoWindowTemplate, 1, 0, 2, 0x4F, 13, 0);
 }
 
 static u8 CreateLevelUpStatsWindow(void)
@@ -4538,7 +4538,7 @@ static void ShowMoveSelectWindow(u8 slot)
         if (move != MOVE_NONE)
             moveCount++;
     }
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, moveCount, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, moveCount, 0);
     schedule_bg_copy_tilemap_to_vram(2);
 }
 

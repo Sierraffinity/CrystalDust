@@ -29,7 +29,6 @@ static bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count);
 EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
 
 // rodata
-#include "data/text/item_descriptions.h"
 #include "data/items.h"
 
 // code
@@ -1077,7 +1076,7 @@ u8 ItemId_GetImportance(u16 itemId)
 // unused
 u8 ItemId_GetUnknownValue(u16 itemId)
 {
-    return gItems[SanitizeItemId(itemId)].unk19;
+    return gItems[SanitizeItemId(itemId)].exitsBagOnUse;
 }
 
 u8 ItemId_GetPocket(u16 itemId)

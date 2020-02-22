@@ -615,7 +615,7 @@ EventScript_ResetMrBriney:: @ 8271862
 EventScript_MoveMrBrineyToHouse:: @ 8271884
 	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
+	setflag FLAG_HIDE_ROUTE_32_FRIEDA
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	clearflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
@@ -623,7 +623,7 @@ EventScript_MoveMrBrineyToHouse:: @ 8271884
 	end
 
 EventScript_MoveMrBrineyToDewford:: @ 827189A
-	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
+	setflag FLAG_HIDE_ROUTE_32_FRIEDA
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
@@ -640,7 +640,7 @@ EventScript_MoveMrBrineyToRoute36:: @ 82718B3
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	clearflag FLAG_HIDE_ROUTE_36_MR_BRINEY
+	clearflag FLAG_HIDE_ROUTE_32_FRIEDA
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	end
 
@@ -657,7 +657,7 @@ Common_EventScript_UpdateBrineyLocation:: @ 82718DE
 	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
 	goto_if_unset FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
 	goto_if_unset FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN, EventScript_SetBrineyLocation_Dewford
-	goto_if_unset FLAG_HIDE_ROUTE_36_MR_BRINEY, EventScript_SetBrineyLocation_Route36
+	goto_if_unset FLAG_HIDE_ROUTE_32_FRIEDA, EventScript_SetBrineyLocation_Route36
 	return
 
 EventScript_SetBrineyLocation_House:: @ 827190C
@@ -788,7 +788,7 @@ Movement_FerryDepart: @ 82721F0
 EventScript_HideMrBriney:: @ 82721F8
 	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
+	setflag FLAG_HIDE_ROUTE_32_FRIEDA
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT

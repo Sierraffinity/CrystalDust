@@ -1867,7 +1867,7 @@ static void CreatePCMenu(u8 whichMenu, s16 *windowIdPtr)
 
     DrawStdWindowFrame(windowId, FALSE);
     PrintMenuTable(windowId, ARRAY_COUNT(gUnknown_085716C0), (void *)gUnknown_085716C0);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, ARRAY_COUNT(gUnknown_085716C0), whichMenu);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, ARRAY_COUNT(gUnknown_085716C0), whichMenu);
     *windowIdPtr = windowId;
 }
 
@@ -4426,7 +4426,7 @@ static void PrintStorageActionText(u8 id)
 
 static void ShowYesNoWindow(s8 cursorPos)
 {
-    CreateYesNoMenu(&sYesNoWindowTemplate, 11, 14, 0);
+    CreateYesNoMenu(&sYesNoWindowTemplate, 1, 0, 2, 11, 14, 0);
     Menu_MoveCursorNoWrapAround(cursorPos);
 }
 
@@ -8741,7 +8741,7 @@ static void AddMenu(void)
     ClearWindowTilemap(sPSSData->field_CB0);
     DrawStdFrameWithCustomTileAndPalette(sPSSData->field_CB0, FALSE, 11, 14);
     PrintMenuTable(sPSSData->field_CB0, sPSSData->menuItemsCount, (void*)sPSSData->menuItems);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPSSData->field_CB0, sPSSData->menuItemsCount, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPSSData->field_CB0, 1, 0, 1, 16, sPSSData->menuItemsCount, 0);
     schedule_bg_copy_tilemap_to_vram(0);
     sPSSData->field_CAE = 0;
 }

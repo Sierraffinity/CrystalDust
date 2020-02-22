@@ -4769,3 +4769,15 @@ Route32_Text_GordonDefeat::
 
 Route32_Text_GordonPostBattle::
 	.string "The grass is full of clingy things.$"
+
+Route32_Text_PeterIntro::
+	.string "That BADGE!\n"
+	.string "It's from VIOLET CITY!\l"
+	.string "You beat FALKNER?$"
+
+Route32_Text_PeterDefeat::
+	.string "I know what my weaknesses are.$"
+
+Route32_Text_PeterPostBattle::
+	.string "I should train again at the\n"
+	.string "GYM in VIOLET CITY.$"

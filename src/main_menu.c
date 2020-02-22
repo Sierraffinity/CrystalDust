@@ -2394,7 +2394,7 @@ static void NewGameOakSpeech_ShowGenderMenu(void)
     DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[1], 0xF3);
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     PrintMenuTable(1, 2, sMenuActions_Gender);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 1, 0, 1, 16, 2, 0);
     PutWindowTilemap(1);
     CopyWindowToVram(1, 3);
 }
@@ -2544,7 +2544,7 @@ void CreateYesNoMenuParameterized(u8 x, u8 y, u16 borderTileNum, u16 windowTileN
     struct WindowTemplate sp;
 
     sp = CreateWindowTemplate(0, x + 1, y + 1, 6, 4, windowPalette, windowTileNum);
-    CreateYesNoMenu(&sp, borderTileNum, borderPalette, 0);
+    CreateYesNoMenu(&sp, 1, 0, 2, borderTileNum, borderPalette, 0);
 }
 
 static void NewGameOakSpeech_ShowDialogueWindow(u8 windowId, u8 copyToVram)

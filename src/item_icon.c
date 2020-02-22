@@ -133,7 +133,7 @@ u8 AddCustomItemIconSprite(const struct SpriteTemplate *customSpriteTemplate, u1
         u8 spriteId;
         struct SpriteSheet spriteSheet;
         struct CompressedSpritePalette spritePalette;
-        struct SpriteTemplate *spriteTemplate;
+        struct SpriteTemplate spriteTemplate;
 
         LZDecompressWram(GetItemIconPicOrPalette(itemId, 0), gItemIconDecompressionBuffer);
         CopyItemIconPicTo4x4Buffer(gItemIconDecompressionBuffer, gItemIcon4x4Buffer);
@@ -146,14 +146,12 @@ u8 AddCustomItemIconSprite(const struct SpriteTemplate *customSpriteTemplate, u1
         spritePalette.tag = paletteTag;
         LoadCompressedSpritePalette(&spritePalette);
 
-        spriteTemplate = Alloc(sizeof(*spriteTemplate));
-        CpuCopy16(customSpriteTemplate, spriteTemplate, sizeof(*spriteTemplate));
-        spriteTemplate->tileTag = tilesTag;
-        spriteTemplate->paletteTag = paletteTag;
-        spriteId = CreateSprite(spriteTemplate, 0, 0, 0);
+        CpuCopy16(customSpriteTemplate, &spriteTemplate, sizeof(spriteTemplate));
+        spriteTemplate.tileTag = tilesTag;
+        spriteTemplate.paletteTag = paletteTag;
+        spriteId = CreateSprite(&spriteTemplate, 0, 0, 0);
 
         FreeItemIconTemporaryBuffers();
-        Free(spriteTemplate);
 
         return spriteId;
     }

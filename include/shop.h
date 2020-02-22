@@ -6,6 +6,7 @@ extern EWRAM_DATA struct ItemSlot gMartPurchaseHistory[3];
 enum
 {
     MART_TYPE_NORMAL, // normal mart
+    MART_TYPE_TMHM,
     MART_TYPE_DECOR,
     MART_TYPE_DECOR2,
 };
@@ -16,8 +17,7 @@ enum
     OBJ_EVENT_ID,
     X_COORD,
     Y_COORD,
-    ANIM_NUM,
-    LAYER_TYPE
+    ANIM_NUM
 };
 
 struct MartInfo
@@ -37,11 +37,12 @@ struct ShopData
     /*0x2004*/ u16 itemsShowed;
     /*0x2006*/ u16 selectedRow;
     /*0x2008*/ u16 scrollOffset;
+    /*0x2008*/ u16 buyMenuArrowScrollOffset;
     /*0x200A*/ u8 maxQuantity;
     /*0x200B*/ u8 scrollIndicatorsTaskId;
     /*0x200C*/ u8 iconSlot;
     /*0x200D*/ u8 itemSpriteIds[2];
-    /*0x2010*/ s16 viewportObjects[16][5];
+    /*0x2010*/ s16 viewportObjects[16][4];
 };
 
 void CreatePokemartMenu(const u16 *);

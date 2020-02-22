@@ -929,7 +929,7 @@ static void sub_81C5D20(u8 taskId)
 static void sub_81C5EAC(u8 windowId)
 {
     AddItemMenuActionTextPrinters(windowId, 7, 8, 1, 0, 0x10, gPyramidBagResources->menuActionsCount, sMenuActions, gPyramidBagResources->menuActionIds);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, gPyramidBagResources->menuActionsCount, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, gPyramidBagResources->menuActionsCount, 0);
 }
 
 static void sub_81C5F08(u8 windowId, u8 horizontalCount, u8 verticalCount)

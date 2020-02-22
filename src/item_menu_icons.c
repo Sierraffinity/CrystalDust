@@ -17,6 +17,8 @@ struct CompressedTilesPal
     const u32 *pal;
 };
 
+static EWRAM_DATA u8 sItemMenuIconSpriteIds[12] = {0};
+
 // this file's functions
 static void SpriteCB_BagVisualSwitchingPockets(struct Sprite *sprite);
 static void SpriteCB_ShakeBagVisual(struct Sprite *sprite);
@@ -407,6 +409,14 @@ static const struct SpriteTemplate gBerryCheckCircleSpriteTemplate =
 };
 
 // code
+void ResetItemMenuIconState(void)
+{
+    u16 i;
+
+    for (i = 0; i < NELEMS(sItemMenuIconSpriteIds); i++)
+        sItemMenuIconSpriteIds[i] = 0xFF;
+}
+
 void RemoveBagSprite(u8 id)
 {
     u8 *spriteId = &gBagMenu->spriteId[id];

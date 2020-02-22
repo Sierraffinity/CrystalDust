@@ -522,7 +522,7 @@ static void AddDecorationActionsWindow(void)
 {
     u8 windowId = AddDecorationWindow(0);
     PrintMenuTable(windowId, 4, sDecorationMainMenuActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 4, sDecorationActionsCursorPos);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, 4, sDecorationActionsCursorPos);
 }
 
 static void InitDecorationActionsWindow(void)
@@ -662,7 +662,7 @@ static void InitDecorationCategoriesWindow(u8 taskId)
 {
     u8 windowId = AddDecorationWindow(1);
     PrintDecorationCategoryMenuItems(taskId);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, DECORCAT_COUNT + 1, sCurDecorationCategory);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, DECORCAT_COUNT + 1, sCurDecorationCategory);
     gTasks[taskId].func = HandleDecorationCategoriesMenuInput;
 }
 
@@ -670,7 +670,7 @@ static void sub_8126E44(u8 taskId)
 {
     FillWindowPixelBuffer(sDecorMenuWindowIds[1], PIXEL_FILL(1));
     PrintDecorationCategoryMenuItems(taskId);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sDecorMenuWindowIds[1], DECORCAT_COUNT + 1, sCurDecorationCategory);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sDecorMenuWindowIds[1], 1, 0, 1, 16, DECORCAT_COUNT + 1, sCurDecorationCategory);
     gTasks[taskId].func = HandleDecorationCategoriesMenuInput;
 }
 

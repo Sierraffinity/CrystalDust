@@ -258,16 +258,21 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Gordon[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMuseum2[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Peter[] = {
     {
     .iv = 0,
-    .lvl = 14,
-    .species = SPECIES_ZUBAT,
+    .lvl = 6,
+    .species = SPECIES_PIDGEY,
     },
     {
     .iv = 0,
-    .lvl = 14,
-    .species = SPECIES_CARVANHA,
+    .lvl = 6,
+    .species = SPECIES_PIDGEY,
+    },
+    {
+    .iv = 0,
+    .lvl = 8,
+    .species = SPECIES_SPEAROW,
     }
 };
 

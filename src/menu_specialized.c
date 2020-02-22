@@ -852,7 +852,7 @@ bool16 MoveRelearnerRunTextPrinters(void)
 
 void MoveRelearnerCreateYesNoMenu(void)
 {
-    CreateYesNoMenu(&sMoveRelearnerYesNoMenuTemplate, 1, 0xE, 0);
+    CreateYesNoMenu(&sMoveRelearnerYesNoMenuTemplate, 1, 0, 2, 1, 0xE, 0);
 }
 
 s32 GetBoxOrPartyMonData(u16 boxId, u16 monId, s32 request, u8 *dst)

@@ -276,6 +276,21 @@ text Route32_Text_GordonPostBattle {
 	"The grass is full of clingy things."
 }
 
+text Route32_Text_PeterIntro {
+	"That BADGE!\n"
+	"It's from VIOLET CITY!\l"
+	"You beat FALKNER?"
+}
+
+text Route32_Text_PeterDefeat {
+	"I know what my weaknesses are."
+}
+
+text Route32_Text_PeterPostBattle {
+	"I should train again at the\n"
+	"GYM in VIOLET CITY."
+}
+
 raw `
 Route32_Text_GinaIntro: @ 82952BB
 	.string "GINA: Okay, let's battle with our\n"

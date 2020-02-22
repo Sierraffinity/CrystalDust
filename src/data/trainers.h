@@ -293,18 +293,18 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Gordon},
     },
 
-    [TRAINER_GRUNT_MUSEUM_2] =
+    [TRAINER_PETER] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
-        .trainerName = _("GRUNT"),
+        .trainerPic = TRAINER_PIC_BIRD_KEEPER,
+        .trainerName = _("PETER"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntMuseum2),
-        .party = {.NoItemDefaultMoves = sParty_GruntMuseum2},
+        .partySize = ARRAY_COUNT(sParty_Peter),
+        .party = {.NoItemDefaultMoves = sParty_Peter},
     },
 
     [TRAINER_GRUNT_SPACE_CENTER_1] =

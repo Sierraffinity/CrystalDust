@@ -3784,7 +3784,7 @@ static void sub_811D104(u8 arg0)
 
 static void sub_811D214(u8 initialCursorPos)
 {
-    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, 1, 14, initialCursorPos);
+    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, 1, 0, 2, 1, 14, initialCursorPos);
 }
 
 static void sub_811D230(void)

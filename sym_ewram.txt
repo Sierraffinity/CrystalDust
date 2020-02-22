@@ -68,6 +68,7 @@
 	.include "src/map_name_popup.o"
 	.include "src/item.o"
 	.include "src/contest.o"
+	.include "src/item_menu_icons.o"
 	.include "src/shop.o"
 	.include "src/fldeff_escalator.o"
 	.include "src/script_menu.o"

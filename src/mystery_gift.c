@@ -697,7 +697,7 @@ s8 mevent_message_print_and_prompt_yes_no(u8 * textState, u16 * windowId, bool8 
         {
             windowTemplate.tilemapTop = 15;
         }
-        CreateYesNoMenu(&windowTemplate, 10, 14, 0);
+        CreateYesNoMenu(&windowTemplate, 1, 0, 2, 10, 14, 0);
         (*textState)++;
         break;
     case 2:

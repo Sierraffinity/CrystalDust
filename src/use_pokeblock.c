@@ -847,7 +847,7 @@ void sub_8166D44(void)
     AddTextPrinterParameterized(2, 1, gStringVar4, 0, 1, 0, NULL);
     PutWindowTilemap(2);
     CopyWindowToVram(2, 3);
-    CreateYesNoMenu(&sUsePokeblockYesNoWinTemplate, 151, 14, 0);
+    CreateYesNoMenu(&sUsePokeblockYesNoWinTemplate, 1, 0, 2, 151, 14, 0);
 }
 
 s8 sub_8166DE4(void)

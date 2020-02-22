@@ -109,7 +109,7 @@ static void DrawMultichoiceMenu(u8 left, u8 top, u8 multichoiceId, bool8 ignoreB
     windowId = CreateWindowFromRect(left, top, newWidth, count * 2);
     SetStandardWindowBorderStyle(windowId, 0);
     PrintMenuTable(windowId, count, actions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, count, cursorPos);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, count, cursorPos);
     schedule_bg_copy_tilemap_to_vram(0);
     InitMultichoiceCheckWrap(ignoreBPress, count, windowId, multichoiceId);
 }
@@ -372,7 +372,7 @@ static void CreatePCMultichoice(void)
 
     StringExpandPlaceholders(gStringVar4, gText_PlayersPC);
     PrintPlayerNameOnWindow(windowId, gStringVar4, y, 17);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, numChoices, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, numChoices, 0);
     CopyWindowToVram(windowId, 3);
     InitMultichoiceCheckWrap(FALSE, numChoices, windowId, MULTI_PC);
 }
@@ -532,7 +532,7 @@ static void CreateLilycoveSSTidalMultichoice(void)
             }
         }
 
-        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, count, count - 1);
+        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, count, count - 1);
         CopyWindowToVram(windowId, 3);
         InitMultichoiceCheckWrap(FALSE, count, windowId, MULTI_SSTIDAL_LILYCOVE);
     }

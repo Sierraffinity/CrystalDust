@@ -2432,7 +2432,7 @@ static void sub_801FDDC(u8 left, u8 top, u8 initialCursorPos)
         AddTextPrinterParameterized(gUnknown_02022C88->unk18, 1, gText_Yes, 8, 1, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(gUnknown_02022C88->unk18, 1, gText_No, 8, 17, TEXT_SPEED_FF, NULL);
         DrawTextBorderOuter(gUnknown_02022C88->unk18, 1, 13);
-        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(gUnknown_02022C88->unk18, 2, initialCursorPos);
+        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(gUnknown_02022C88->unk18, 1, 0, 1, 16, 2, initialCursorPos);
     }
 }
 

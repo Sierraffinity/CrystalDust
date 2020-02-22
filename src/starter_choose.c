@@ -541,7 +541,7 @@ static void Task_StarterChoose4(u8 taskId)
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized(0, 1, gText_ConfirmStarterChoice, 0, 1, 0, NULL);
     schedule_bg_copy_tilemap_to_vram(0);
-    CreateYesNoMenu(&gUnknown_085B1DDC, 0x2A8, 0xD, 0);
+    CreateYesNoMenu(&gUnknown_085B1DDC, 1, 0, 2, 0x2A8, 0xD, 0);
     gTasks[taskId].func = Task_StarterChoose5;
 }
 

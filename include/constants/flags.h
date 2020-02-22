@@ -773,7 +773,7 @@
 #define FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST           0x2E2
 #define FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST         0x2E3
 #define FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN                             0x2E4
-#define FLAG_HIDE_ROUTE_36_MR_BRINEY                                0x2E5
+#define FLAG_HIDE_ROUTE_32_FRIEDA                                   0x2E5
 #define FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT                           0x2E6
 #define FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN                       0x2E7
 #define FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT                          0x2E8

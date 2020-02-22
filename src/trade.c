@@ -1380,7 +1380,7 @@ static void TradeMenuProcessInput(void)
             DrawTextBorderOuter(1, 1, 14);
             FillWindowPixelBuffer(1, PIXEL_FILL(1));
             PrintMenuTable(1, ARRAY_COUNT(sSelectTradeMonActions), sSelectTradeMonActions);
-            InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0);
+            InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 1, 0, 1, 16, 2, 0);
             PutWindowTilemap(1);
             CopyWindowToVram(1, 3);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_SELECTED_MON;
@@ -1394,7 +1394,7 @@ static void TradeMenuProcessInput(void)
         // Cursor is on Cancel
         else if (sTradeMenuData->cursorPosition == PARTY_SIZE * 2)
         {
-            CreateYesNoMenu(&sTradeYesNoWindowTemplate, 1, 14, 0);
+            CreateYesNoMenu(&sTradeYesNoWindowTemplate, 1, 0, 2, 1, 14, 0);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_CANCEL_TRADE_PROMPT;
             DrawTextWindowAndBuffer6Bytes(sTradeActionTexts[TRADE_TEXT_CANCEL_TRADE], (void *)(OBJ_VRAM0 + sTradeMenuData->bottomTextTileStart * 32), 24);
         }
@@ -1616,7 +1616,7 @@ static void DelayTradeConfirmation(void)
 
     if (sTradeMenuData->timer > 120)
     {
-        CreateYesNoMenu(&sTradeYesNoWindowTemplate, 1, 14, 0);
+        CreateYesNoMenu(&sTradeYesNoWindowTemplate, 1, 0, 2, 1, 14, 0);
         sTradeMenuData->timer = 0;
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_CONFIRM_OR_CANCEL_TRADE;
     }

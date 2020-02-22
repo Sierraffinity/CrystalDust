@@ -204,7 +204,7 @@ static void InitDebugMenu(u8 taskId)
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_MainActions), sDebugMenu_MainActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, ARRAY_COUNT(sDebugMenu_MainActions), 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, ARRAY_COUNT(sDebugMenu_MainActions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
 }
 
@@ -536,7 +536,7 @@ static void DebugMenu_Misc(u8 taskId)
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_MiscActions), sDebugMenu_MiscActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, ARRAY_COUNT(sDebugMenu_MiscActions), 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, ARRAY_COUNT(sDebugMenu_MiscActions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = DebugMenu_Misc_ProcessInput;
 }
@@ -594,7 +594,7 @@ static void DebugMenu_DN(u8 taskId)
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_DNActions), sDebugMenu_DNActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, ARRAY_COUNT(sDebugMenu_DNActions), 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, ARRAY_COUNT(sDebugMenu_DNActions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = DebugMenu_DN_ProcessInput;
 }
@@ -697,7 +697,7 @@ static void DebugMenu_Pokegear(u8 taskId)
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_PokegearActions), sDebugMenu_PokegearActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, ARRAY_COUNT(sDebugMenu_PokegearActions), 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, ARRAY_COUNT(sDebugMenu_PokegearActions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = DebugMenu_Pokegear_ProcessInput;
 }

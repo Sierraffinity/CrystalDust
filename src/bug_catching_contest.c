@@ -1214,7 +1214,7 @@ static void SwapScreenDisplayAlreadyCaughtMessage(u8 taskId)
 {
     if (!IsTextPrinterActive(sSwapScreen->textWindowId))
     {
-        CreateYesNoMenu(&sYesNoWindowTemplate, 0x214, 14, 0);
+        CreateYesNoMenu(&sYesNoWindowTemplate, 1, 0, 2, 0x214, 14, 0);
         gTasks[taskId].func = SwapScreenHandleInput;
     }
 }

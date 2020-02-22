@@ -1347,7 +1347,7 @@ static void PrintStoryList(void)
         AddTextPrinterParameterized(sStorytellerWindowId, 1, GetStoryTitleByStat(gameStatID), 8, 16 * i + 1, 0xFF, NULL);
     }
     AddTextPrinterParameterized(sStorytellerWindowId, 1, gText_Exit, 8, 16 * i + 1, 0xFF, NULL);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sStorytellerWindowId, GetFreeStorySlot() + 1, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sStorytellerWindowId, 1, 0, 1, 16, GetFreeStorySlot() + 1, 0);
     CopyWindowToVram(sStorytellerWindowId, 3);
 }
 

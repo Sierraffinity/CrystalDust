@@ -3461,7 +3461,7 @@ static void sub_802DB18(u16 left, u16 top, u8 cursorPos)
     window.paletteNum = 2;
     window.baseBlock = 0x2B;
 
-    CreateYesNoMenu(&window, 1, 0xD, a);
+    CreateYesNoMenu(&window, 1, 0, 2, 1, 0xD, a);
 }
 
 static void sub_802DB8C(void)
