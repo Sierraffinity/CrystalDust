@@ -322,7 +322,7 @@ static void sub_807DF4C(bool8 forceBlack)
 void FieldCB_DefaultWarpExit(void)
 {
     Overworld_PlaySpecialMapMusic();
-    //WarpFadeInScreen();
+    WarpFadeInScreen();
     SetUpWarpExitTask(FALSE);
     ScriptContext2_Enable();
 }

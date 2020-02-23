@@ -759,8 +759,6 @@ void SetWarpDestinationToFixedHoleWarp(s16 x, s16 y)
 {
     if (IsDummyWarp(&gFixedHoleWarp) == TRUE)
         sWarpDestination = gLastUsedWarp;
-    else if (x == -32768 && y == -32768)
-        sWarpDestination = gFixedHoleWarp;
     else
         SetWarpDestination(gFixedHoleWarp.mapGroup, gFixedHoleWarp.mapNum, -1, x, y);
 }
