@@ -438,6 +438,7 @@ RESUME_MUSIC = FC 18
 @ font sizes
 
 SMALL = FC 06 00
+BIG = FC 06 01
 
 @ colors
 

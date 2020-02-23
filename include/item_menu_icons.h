@@ -3,13 +3,14 @@
 
 extern const struct CompressedSpriteSheet gBagMaleSpriteSheet;
 extern const struct CompressedSpriteSheet gBagFemaleSpriteSheet;
-extern const struct CompressedSpritePalette gBagPaletteTable;
+extern const struct CompressedSpritePalette gBagMalePaletteTable;
+extern const struct CompressedSpritePalette gBagFemalePaletteTable;
 extern const struct CompressedSpriteSheet gBerryCheckCircleSpriteSheet;
 extern const struct CompressedSpritePalette gBerryCheckCirclePaletteTable;
 
 void RemoveBagSprite(u8 id);
 void AddBagVisualSprite(u8 bagPocketId);
-void SetBagVisualPocketId(u8 bagPocketId, bool8 isSwitchingPockets);
+void SetBagVisualPocketId(u8 bagPocketId);
 void ShakeBagVisual(void);
 void AddSwitchPocketRotatingBallSprite(s16 rotationDirection);
 void AddBagItemIconSprite(u16 itemId, u8 id);

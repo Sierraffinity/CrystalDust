@@ -14,61 +14,6 @@
 #define MAX_MONEY 999999
 
 EWRAM_DATA static u8 sMoneyBoxWindowId = 0;
-EWRAM_DATA static u8 sMoneyLabelSpriteId = 0;
-
-#define MONEY_LABEL_TAG 0x2722
-
-static const struct OamData sOamData_MoneyLabel =
-{
-    .y = 0,
-    .affineMode = ST_OAM_AFFINE_OFF,
-    .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
-    .bpp = ST_OAM_4BPP,
-    .shape = SPRITE_SHAPE(32x16),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(32x16),
-    .tileNum = 0,
-    .priority = 0,
-    .paletteNum = 0,
-    .affineParam = 0,
-};
-
-static const union AnimCmd sSpriteAnim_MoneyLabel[] =
-{
-    ANIMCMD_FRAME(0, 0),
-    ANIMCMD_END
-};
-
-static const union AnimCmd *const sSpriteAnimTable_MoneyLabel[] =
-{
-    sSpriteAnim_MoneyLabel,
-};
-
-static const struct SpriteTemplate sSpriteTemplate_MoneyLabel =
-{
-    .tileTag = MONEY_LABEL_TAG,
-    .paletteTag = MONEY_LABEL_TAG,
-    .oam = &sOamData_MoneyLabel,
-    .anims = sSpriteAnimTable_MoneyLabel,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy
-};
-
-static const struct CompressedSpriteSheet sSpriteSheet_MoneyLabel =
-{
-    .data = gMenuMoneyGfx,
-    .size = 256,
-    .tag = MONEY_LABEL_TAG,
-};
-
-static const struct CompressedSpritePalette sSpritePalette_MoneyLabel =
-{
-    .data = gMenuMoneyPal,
-    .tag = MONEY_LABEL_TAG
-};
 
 u32 GetMoney(u32* moneyPtr)
 {
@@ -188,25 +133,11 @@ void DrawMoneyBox(int amount, u8 x, u8 y)
     CopyWindowToVram(sMoneyBoxWindowId, 1);
     LoadThinWindowBorderGfx(sMoneyBoxWindowId, 0x21D, 0xD0);
     PrintMoneyAmountInMoneyBoxWithBorder(sMoneyBoxWindowId, 0x21D, 13, amount);
-    //AddMoneyLabelObject((8 * x) + 19, (8 * y) + 11);
 }
 
 void HideMoneyBox(void)
 {
-    //RemoveMoneyLabelObject();
     ClearStdWindowAndFrameToTransparent(sMoneyBoxWindowId, FALSE);
     CopyWindowToVram(sMoneyBoxWindowId, 2);
     RemoveWindow(sMoneyBoxWindowId);
-}
-
-void AddMoneyLabelObject(u16 x, u16 y)
-{
-    LoadCompressedSpriteSheet(&sSpriteSheet_MoneyLabel);
-    LoadCompressedSpritePalette(&sSpritePalette_MoneyLabel);
-    sMoneyLabelSpriteId = CreateSprite(&sSpriteTemplate_MoneyLabel, x, y, 0);
-}
-
-void RemoveMoneyLabelObject(void)
-{
-    DestroySpriteAndFreeResources(&gSprites[sMoneyLabelSpriteId]);
 }

@@ -283,11 +283,10 @@ static u8 CreateShopMenu(u8 martType)
     ScriptContext2_Enable();
     gMartInfo.martType = GetMartTypeFromItemList(martType);
 
-    if (martType == MART_TYPE_NORMAL)
+    if (martType < MART_TYPE_DECOR)
     {
         struct WindowTemplate winTemplate;
         winTemplate = sShopMenuWindowTemplates[0];
-        //winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuySellQuit, ARRAY_COUNT(sShopMenuActions_BuySellQuit));
         gMartInfo.windowId = AddWindow(&winTemplate);
         gMartInfo.menuActions = sShopMenuActions_BuySellQuit;
         numMenuItems = ARRAY_COUNT(sShopMenuActions_BuySellQuit);
@@ -464,7 +463,6 @@ static void CB2_InitBuyMenu(void)
         ResetSpriteData();
         ResetTasks();
         clear_scheduled_bg_copies_to_vram();
-        ResetItemMenuIconState();
 
         if (!InitShopData() || !BuyMenuBuildListMenuTemplate())
             return;
@@ -515,9 +513,9 @@ static bool8 InitShopData(void)
 
 static void BuyMenuFreeMemory(void)
 {
-    Free(gShopDataPtr);
-    Free(sShopMenuListMenu);
-    Free(sShopMenuItemStrings);
+    FREE_AND_SET_NULL(gShopDataPtr);
+    FREE_AND_SET_NULL(sShopMenuListMenu);
+    FREE_AND_SET_NULL(sShopMenuItemStrings);
     FreeAllWindowBuffers();
 }
 
@@ -765,7 +763,7 @@ static void BuyMenuDecompressBgGraphics(void)
         LZDecompressWram(gBuyMenuFrame_TmHmTilemap, gShopDataPtr->tilemapBuffers[0]);
 
     pal = Alloc(0x40);
-    LZDecompressWram(gMenuMoneyPal, pal);
+    LZDecompressWram(gBuyMenuFrame_Palette, pal);
     LoadPalette(pal, 0xB0, 0x20);
     LoadPalette(pal + 0x20, 0x60, 0x20);
     Free(pal);
@@ -1265,7 +1263,6 @@ static void Task_ExitBuyMenu(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        RemoveMoneyLabelObject();
         BuyMenuFreeMemory();
         SetMainCallback2(CB2_ReturnToField);
         DestroyTask(taskId);

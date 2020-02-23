@@ -296,8 +296,8 @@ const u8 *const gPocketNamesStringsTable[] =
     gText_KeyItemsPocket
 };
 
-const u8 gText_NumberVar1Clear7Var2[] = _("{NO}{STR_VAR_1}{CLEAR 0x07}{STR_VAR_2}");
-const u8 gText_ClearTo11Var1Clear5Var2[] = _("{CLEAR_TO 0x11}{STR_VAR_1}{CLEAR 0x05}{STR_VAR_2}");
+const u8 gText_NumberVar1Clear7Var2[] = _("{SMALL}{NO}{CLEAR 1}{STR_VAR_1} {BIG}{STR_VAR_2}");
+const u8 gText_ClearTo11Var1Clear5Var2[] = _("{SMALL}{CLEAR_TO 18}{NO}{CLEAR 1}{STR_VAR_1} {BIG}{STR_VAR_2}");
 const u8 gText_SizeSlash[] = _("SIZE /");
 const u8 gText_FirmSlash[] = _("FIRM /");
 const u8 gText_Var1DotVar2[] = _("{STR_VAR_1}.{STR_VAR_2}”");
@@ -358,10 +358,10 @@ const u8 gText_SpaceForVar1Full[] = _("The space for {STR_VAR_1} is full.{PAUSE_
 const u8 gText_AnythingElseICanHelp[] = _("Can I do anything else for you?");
 const u8 gText_CanIHelpWithAnythingElse[] = _("Can I help you with anything else?");
 const u8 gText_ThrowInPremierBall[] = _("I'll throw in a PREMIER BALL, too.{PAUSE_UNTIL_PRESS}");
-const u8 gText_CantBuyKeyItem[] = _("{STR_VAR_2}? Oh, no.\nI can't buy that.{PAUSE_UNTIL_PRESS}");
-const u8 gText_HowManyToSell[] = _("{STR_VAR_2}?\nHow many would you like to sell?");
-const u8 gText_ICanPayVar1[] = _("I can pay ¥{STR_VAR_1}.\nWould that be okay?");
-const u8 gText_TurnedOverVar1ForVar2[] = _("Turned over the {STR_VAR_2}\nand received ¥{STR_VAR_1}.");
+const u8 gText_CantBuyKeyItem[] = _("{STR_VAR_1}? Oh, no.\nI can't buy that.{PAUSE_UNTIL_PRESS}");
+const u8 gText_HowManyToSell[] = _("{STR_VAR_1}?\nHow many would you like to sell?");
+const u8 gText_ICanPayVar1[] = _("I can pay ¥{STR_VAR_3}.\nWould that be okay?");
+const u8 gText_TurnedOverVar1ForVar2[] = _("Turned over the {STR_VAR_1}\nand received ¥{STR_VAR_3}.");
 const u8 gText_PokedollarVar1[] = _("¥{STR_VAR_1}");
 const u8 gText_Shift[] = _("SHIFT");
 const u8 gText_SendOut[] = _("SEND OUT");

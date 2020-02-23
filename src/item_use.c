@@ -805,7 +805,7 @@ static void Task_ShowTMHMContainedMessage(u8 taskId)
 
 static void UseTMHMYesNo(u8 taskId)
 {
-    BagMenu_YesNo(taskId, 6, &sUseTMHMYesNoFuncTable);
+    BagCreateYesNoMenuBottomRight(taskId, &sUseTMHMYesNoFuncTable);
 }
 
 static void UseTMHM(u8 taskId)

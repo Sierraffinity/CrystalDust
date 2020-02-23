@@ -43,8 +43,8 @@ static const union AnimCmd *const sSpriteAnimTable_ItemIcon[] =
 
 const struct SpriteTemplate gItemIconSpriteTemplate =
 {
-    .tileTag = 0,
-    .paletteTag = 0,
+    .tileTag = 102,
+    .paletteTag = 102,
     .oam = &sOamData_ItemIcon,
     .anims = sSpriteAnimTable_ItemIcon,
     .images = NULL,
@@ -64,7 +64,7 @@ bool8 AllocItemIconTemporaryBuffers(void)
     gItemIcon4x4Buffer = AllocZeroed(0x200);
     if (gItemIcon4x4Buffer == NULL)
     {
-        Free(gItemIconDecompressionBuffer);
+        FREE_AND_SET_NULL(gItemIconDecompressionBuffer);
         return FALSE;
     }
 
@@ -73,8 +73,8 @@ bool8 AllocItemIconTemporaryBuffers(void)
 
 void FreeItemIconTemporaryBuffers(void)
 {
-    Free(gItemIconDecompressionBuffer);
-    Free(gItemIcon4x4Buffer);
+    FREE_AND_SET_NULL(gItemIconDecompressionBuffer);
+    FREE_AND_SET_NULL(gItemIcon4x4Buffer);
 }
 
 void CopyItemIconPicTo4x4Buffer(const void *src, void *dest)

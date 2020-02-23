@@ -3881,7 +3881,8 @@ extern const u8 gBagMenuHMIcon_Gfx[];
 // item menu icons graphics
 extern const u32 gBagMaleTiles[];
 extern const u32 gBagFemaleTiles[];
-extern const u32 gBagPalette[];
+extern const u32 gBagMalePalette[];
+extern const u32 gBagFemalePalette[];
 extern const u32 gBerryCheckCircle_Gfx[];
 
 //intro graphics
@@ -4071,8 +4072,7 @@ extern const u32 gStatusPal_Icons[];
 extern const u32 gBuyMenuFrame_Gfx[];
 extern const u32 gBuyMenuFrame_Tilemap[];
 extern const u32 gBuyMenuFrame_TmHmTilemap[];
-extern const u32 gMenuMoneyGfx[];
-extern const u32 gMenuMoneyPal[];
+extern const u32 gBuyMenuFrame_Palette[];
 
 extern const u32 gBattleInterface_BallStatusBarGfx[];
 extern const u8 gBattleInterface_BallDisplayGfx[];
