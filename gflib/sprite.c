@@ -569,7 +569,6 @@ u8 CreateSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16 y,
     sprite->oam = *template->oam;
     sprite->anims = template->anims;
     sprite->affineAnims = template->affineAnims;
-    sprite->template = template;
     sprite->callback = template->callback;
     sprite->pos1.x = x;
     sprite->pos1.y = y;
@@ -881,13 +880,17 @@ void ResetAllSprites(void)
 
 void FreeSpriteTiles(struct Sprite *sprite)
 {
-    if (sprite->template->tileTag != 0xFFFF)
-        FreeSpriteTilesByTag(sprite->template->tileTag);
+    /*if (sprite->template->tileTag != 0xFFFF)
+        FreeSpriteTilesByTag(sprite->template->tileTag);*/
+
+    u16 tileTag = GetSpriteTileTagByTileStart(sprite->oam.tileNum);
+    if (tileTag != 0xFFFF)
+        FreeSpriteTilesByTag(tileTag);
 }
 
 void FreeSpritePalette(struct Sprite *sprite)
 {
-    FreeSpritePaletteByTag(sprite->template->paletteTag);
+    FreeSpritePaletteByTag(GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum));
 }
 
 void FreeSpriteOamMatrix(struct Sprite *sprite)

@@ -46,9 +46,7 @@ struct BagMenuStruct
     u8 pocketScrollArrowsTask;
     u8 pocketSwitchArrowsTask;
     const u8* contextMenuItemsPtr;
-    u8 unk824;
-    u8 unk825;
-    u8 filler[2];
+    u8 unk824[4];
     u8 contextMenuNumItems;
     u8 totalItems[POCKETS_COUNT];
     u8 maxShowed[6];
