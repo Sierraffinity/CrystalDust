@@ -1741,3 +1741,7 @@ gTilesetPalOverride_General07::
 	.align 2
 gTilesetPalOverride_Petalburg08::
 	.incbin "data/tilesets/secondary/petalburg/palettes/08_over.gbapal"
+
+	.align 2
+gTilesetPalOverride_Violet08::
+	.incbin "data/tilesets/secondary/violet/palettes/08_over.gbapal"

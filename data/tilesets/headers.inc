@@ -41,7 +41,7 @@ gTileset_Violet:: @ 83DF74C
 	.2byte 0 @ padding
 	.4byte gTilesetTiles_Violet
 	.4byte gTilesetPalettes_Violet
-	.4byte NULL
+	.4byte gTilesetPalOverrides_Violet
 	.4byte gMetatiles_Violet
 	.4byte gMetatileAttributes_Violet
 	.4byte InitTilesetAnim_Violet
