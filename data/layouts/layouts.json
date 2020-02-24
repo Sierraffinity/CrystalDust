@@ -1283,12 +1283,12 @@
         {
             "blockdata_filepath": "data/layouts/RusturfTunnel/map.bin",
             "border_filepath": "data/layouts/RusturfTunnel/border.bin",
-            "height": 24,
+            "height": 40,
             "id": "LAYOUT_RUSTURF_TUNNEL",
             "name": "RusturfTunnel_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_RusturfTunnel",
-            "width": 36
+            "secondary_tileset": "gTileset_Cave",
+            "width": 24
         },
         {
             "blockdata_filepath": "data/layouts/Underwater_SootopolisCity/map.bin",
