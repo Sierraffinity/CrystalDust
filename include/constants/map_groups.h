@@ -297,7 +297,7 @@
 #define MAP_METEOR_FALLS_1F_2R                       (1 | (24 << 8))
 #define MAP_METEOR_FALLS_B1F_1R                      (2 | (24 << 8))
 #define MAP_METEOR_FALLS_B1F_2R                      (3 | (24 << 8))
-#define MAP_RUSTURF_TUNNEL                           (4 | (24 << 8))
+#define MAP_UNION_CAVE_1F                            (4 | (24 << 8))
 #define MAP_UNDERWATER_SOOTOPOLIS_CITY               (5 | (24 << 8))
 #define MAP_DESERT_RUINS                             (6 | (24 << 8))
 #define MAP_DARK_CAVE_SOUTH                          (7 | (24 << 8))

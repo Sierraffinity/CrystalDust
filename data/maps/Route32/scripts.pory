@@ -378,7 +378,7 @@ script Route32_EventScript_DirectionsSign {
            "VIOLET CITY - AZALEA TOWN", MSGBOX_SIGN)
 }
 
-script Route32_EventScript_UnionCaveSign {
+script Route32_EventScript_UnionCave_1FSign {
     msgbox("UNION CAVE\n"
 		   "AHEAD", MSGBOX_SIGN)
 }

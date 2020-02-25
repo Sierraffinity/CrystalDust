@@ -1281,11 +1281,11 @@
             "width": 11
         },
         {
-            "blockdata_filepath": "data/layouts/RusturfTunnel/map.bin",
-            "border_filepath": "data/layouts/RusturfTunnel/border.bin",
+            "blockdata_filepath": "data/layouts/UnionCave_1F/map.bin",
+            "border_filepath": "data/layouts/UnionCave_1F/border.bin",
             "height": 40,
-            "id": "LAYOUT_RUSTURF_TUNNEL",
-            "name": "RusturfTunnel_Layout",
+            "id": "LAYOUT_UNION_CAVE_1F",
+            "name": "UnionCave_1F_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
             "width": 24

@@ -3,7 +3,7 @@ Route109_SeashoreHouse_MapScripts:: @ 82693F4
 	.byte 0
 
 Route109_SeashoreHouse_OnTransition: @ 82693FA
-	setflag FLAG_LANDMARK_SEASHORE_HOUSE
+	setflag FLAG_LANDMARK_UNION_CAVE
 	end
 
 Route109_SeashoreHouse_EventScript_Owner:: @ 82693FE

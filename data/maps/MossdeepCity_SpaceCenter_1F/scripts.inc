@@ -221,7 +221,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_Grunt3:: @ 82231DA
 	end
 
 MossdeepCity_SpaceCenter_1F_EventScript_Grunt1:: @ 82231F1
-	trainerbattle_single TRAINER_GRUNT_SPACE_CENTER_1, MossdeepCity_SpaceCenter_1F_Text_Grunt1Intro, MossdeepCity_SpaceCenter_1F_Text_Grunt1Defeat
+	trainerbattle_single TRAINER_DANIEL, MossdeepCity_SpaceCenter_1F_Text_Grunt1Intro, MossdeepCity_SpaceCenter_1F_Text_Grunt1Defeat
 	msgbox MossdeepCity_SpaceCenter_1F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
 	end
 

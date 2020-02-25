@@ -1411,20 +1411,20 @@ bool8 Special_AreLeadMonEVsMaxedOut(void)
     return FALSE;
 }
 
-u8 TryUpdateRusturfTunnelState(void)
+u8 TryUpdateUnionCave_1FState(void)
 {
-    if (!FlagGet(FLAG_RUSTURF_TUNNEL_OPENED) 
-        && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(RUSTURF_TUNNEL) 
-        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(RUSTURF_TUNNEL))
+    if (!FlagGet(FLAG_UNION_CAVE_OPENED) 
+        && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(UNION_CAVE_1F) 
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(UNION_CAVE_1F))
     {
-        if (FlagGet(FLAG_HIDE_RUSTURF_TUNNEL_ROCK_1))
+        if (FlagGet(FLAG_HIDE_UNION_CAVE_ROCK_1))
         {
-            VarSet(VAR_RUSTURF_TUNNEL_STATE, 4);
+            VarSet(VAR_UNION_CAVE_STATE, 4);
             return TRUE;
         }
-        else if (FlagGet(FLAG_HIDE_RUSTURF_TUNNEL_ROCK_2))
+        else if (FlagGet(FLAG_HIDE_UNION_CAVE_ROCK_2))
         {
-            VarSet(VAR_RUSTURF_TUNNEL_STATE, 5);
+            VarSet(VAR_UNION_CAVE_STATE, 5);
             return TRUE;
         }
     }
@@ -2952,7 +2952,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_RIVAL_MAY_ACRO_BIKE] =       MSG_COLOR_RED,
         [OBJ_EVENT_GFX_RIVAL_MAY_SURFING] =         MSG_COLOR_RED,
         [OBJ_EVENT_GFX_RIVAL_MAY_FIELD_MOVE] =      MSG_COLOR_RED,
-        [OBJ_EVENT_GFX_CAMERAMAN] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_FIREBREATHER] =              MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_BRENDAN_UNDERWATER] =        MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_MAY_UNDERWATER] =            MSG_COLOR_RED,
         [OBJ_EVENT_GFX_MOVING_BOX] =                MSG_COLOR_MISC,

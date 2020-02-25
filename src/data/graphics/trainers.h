@@ -25,8 +25,8 @@ const u32 gTrainerPalette_SwimmerM[] = INCBIN_U32("graphics/trainers/palettes/sw
 const u32 gTrainerFrontPic_MagmaGruntM[] = INCBIN_U32("graphics/trainers/front_pics/magma_grunt_m_front_pic.4bpp.lz");
 const u32 gTrainerPalette_MagmaGruntM[] = INCBIN_U32("graphics/trainers/palettes/magma_grunt_m.gbapal.lz");
 
-const u32 gTrainerFrontPic_ExpertM[] = INCBIN_U32("graphics/trainers/front_pics/expert_m_front_pic.4bpp.lz");
-const u32 gTrainerPalette_ExpertM[] = INCBIN_U32("graphics/trainers/palettes/expert_m.gbapal.lz");
+const u32 gTrainerFrontPic_Firebreather[] = INCBIN_U32("graphics/trainers/front_pics/firebreather_front_pic.4bpp.lz");
+const u32 gTrainerPalette_Firebreather[] = INCBIN_U32("graphics/trainers/palettes/firebreather.gbapal.lz");
 
 const u32 gTrainerFrontPic_AquaAdminM[] = INCBIN_U32("graphics/trainers/front_pics/aqua_admin_m_front_pic.4bpp.lz");
 const u32 gTrainerPalette_AquaAdminM[] = INCBIN_U32("graphics/trainers/palettes/aqua_admin_m.gbapal.lz");

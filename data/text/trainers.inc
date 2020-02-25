@@ -73,188 +73,6 @@ Trainer_Text_Chow_See:
 Trainer_Text_Chow_Beat:
 	.string "Th-Thank you!$"
 
-Route32_Text_GinaIntro: @ 82952BB
-	.string "GINA: Okay, let's battle with our\n"
-	.string "POKéMON!$"
-
-Route32_Text_GinaDefeat: @ 82952E6
-	.string "GINA: Losing upsets me!$"
-
-Route32_Text_GinaPostBattle: @ 82952FE
-	.string "GINA: You are strong!\n"
-	.string "We have to train lots more!$"
-
-Route32_Text_GinaNotEnoughMons: @ 8295330
-	.string "GINA: Oh? Only one POKéMON?\n"
-	.string "Then, we don't battle with you.\p"
-	.string "If there's only one POKéMON, it will\n"
-	.string "be lonesome. That's not nice.$"
-
-Route32_Text_MiaIntro: @ 82953AF
-	.string "MIA: We are twins, so we battle\n"
-	.string "POKéMON together.$"
-
-Route32_Text_MiaDefeat: @ 82953E1
-	.string "MIA: We battled together, but we\n"
-	.string "both lost…$"
-
-Route32_Text_MiaPostBattle: @ 829540D
-	.string "MIA: We will train our POKéMON more\n"
-	.string "and be strong like you.$"
-
-Route32_Text_MiaNotEnoughMons: @ 8295449
-	.string "MIA: You want to battle with us?\p"
-	.string "It's a big no-no if you don't have two\n"
-	.string "POKéMON with you.\l"
-	.string "We're too strong for you!$"
-
-Route32_Text_IvanIntro: @ 82954BD
-	.string "Why keep it a secret?\n"
-	.string "I'm the WATER POKéMON expert!\p"
-	.string "Huh?\n"
-	.string "You don't know me?$"
-
-Route32_Text_IvanDefeat: @ 8295509
-	.string "I thought I wasn't too bad, if I may\n"
-	.string "say so, but I guess not… Bleah…$"
-
-Route32_Text_IvanPostBattle: @ 829554E
-	.string "I got too into fishing.\n"
-	.string "I forgot I had to raise my POKéMON…$"
-
-Route32_Text_BillyIntro: @ 829558A
-	.string "Leaving footprints in the sand is\n"
-	.string "so fun!$"
-
-Route32_Text_BillyDefeat: @ 82955B4
-	.string "Waah! I got sand in my runners!\n"
-	.string "They're all gritty!$"
-
-Route32_Text_BillyPostBattle: @ 82955E8
-	.string "I want to leave my footprints in\n"
-	.string "the sand everywhere, but they\l"
-	.string "disappear quickly…$"
-
-Route32_Text_HaleyIntro: @ 829563A
-	.string "Should I…\n"
-	.string "Or shouldn't I?\p"
-	.string "Okay, sure, I will battle!$"
-
-Route32_Text_HaleyDefeat: @ 829566F
-	.string "I shouldn't have battled…$"
-
-Route32_Text_HaleyPostBattle: @ 8295689
-	.string "If you're faced with a decision and\n"
-	.string "you let someone else choose for you,\l"
-	.string "you will regret it, however things\l"
-	.string "turn out.$"
-
-Route32_Text_HaleyRegister1: @ 82956FF
-	.string "You're strong, but should I register\n"
-	.string "you in my POKéNAV?\l"
-	.string "Maybe I shouldn't…\p"
-	.string "Okay, sure, I will register you!$"
-
-Route32_Text_HaleyRegister2: @ 829576B
-	.string "You're strong, but should I register\n"
-	.string "you in my POKéNAV?\l"
-	.string "Maybe I shouldn't…\p"
-	.string "Okay, sure, I will register you!$"
-
-Route32_Text_HaleyRematchIntro: @ 82957D7
-	.string "Come on, battle with me!$"
-
-Route32_Text_HaleyRematchDefeat: @ 82957F0
-	.string "Ohh…\n"
-	.string "I thought I could win…$"
-
-Route32_Text_HaleyPostRematch: @ 829580C
-	.string "I made the decision to battle, so\n"
-	.string "I can accept this loss with grace.\p"
-	.string "I am still upset about losing!$"
-
-Route32_Text_WinstonIntro: @ 8295870
-	.string "Oh, sure, I'll accept your challenge.\n"
-	.string "I have a lot of money.$"
-
-Route32_Text_WinstonDefeat: @ 82958AD
-	.string "Why couldn't I win?$"
-
-Route32_Text_WinstonPostBattle: @ 82958C1
-	.string "There are some things money can't buy.\n"
-	.string "That's POKéMON…$"
-
-Route32_Text_WinstonRegister1: @ 82958F8
-	.string "Hm?\n"
-	.string "Ah, you've obtained a POKéNAV.\p"
-	.string "I will gladly register you.\n"
-	.string "After all, I have plenty of money.$"
-
-Route32_Text_WinstonRegister2: @ 829595A
-	.string "Hm?\n"
-	.string "Ah, you've obtained a POKéNAV.\p"
-	.string "I will gladly register you.\n"
-	.string "After all, I have plenty of money.$"
-
-Route32_Text_WinstonRematchIntro: @ 82959BC
-	.string "After I lost to you, I learned a bunch\n"
-	.string "of things about POKéMON.$"
-
-Route32_Text_WinstonRematchDefeat: @ 82959FC
-	.string "I lost again?\n"
-	.string "Why couldn't I win?$"
-
-Route32_Text_WinstonPostRematch: @ 8295A1E
-	.string "I'm fabulously wealthy, but I can't\n"
-	.string "seem to win at POKéMON…\p"
-	.string "It's so deep, the world of POKéMON…$"
-
-Route32_Text_CindyIntro: @ 8295A7E
-	.string "We must have been fated to meet.\n"
-	.string "May I ask you for a battle?$"
-
-Route32_Text_CindyDefeat: @ 8295ABB
-	.string "Oh, my!$"
-
-Route32_Text_CindyPostBattle: @ 8295AC3
-	.string "“Hello” is the beginning of “good-bye.”\n"
-	.string "I hope we meet again.$"
-
-Route32_Text_CindyRegister1: @ 8295B01
-	.string "Hello, we meet again.\p"
-	.string "We seem to be drawn together. Let's\n"
-	.string "register each other in our POKéNAVS.$"
-
-Route32_Text_CindyRegister2: @ 8295B60
-	.string "We should commemorate how we seem\n"
-	.string "to be drawn to each other.\p"
-	.string "Let's register each other in our\n"
-	.string "POKéNAVS.$"
-
-Route32_Text_CindyRematchIntro: @ 8295BC8
-	.string "Hello, we meet again.\n"
-	.string "May I ask you for a battle?$"
-
-Route32_Text_CindyRematchDefeat: @ 8295BFA
-	.string "Oh, my…\n"
-	.string "I did the best that I could…$"
-
-Route32_Text_CindyPostRematch: @ 8295C1F
-	.string "“Hello” is the beginning of “good-bye.”\n"
-	.string "I hope we meet again.$"
-
-Route32_Text_DarianIntro: @ 8295C5D
-	.string "I fished up a tough-looking POKéMON!\p"
-	.string "It has this magical quality to it!\n"
-	.string "It surely looks tough, yes it does!$"
-
-Route32_Text_DarianDefeat: @ 8295CC9
-	.string "What the…$"
-
-Route32_Text_DarianPostBattle: @ 8295CD3
-	.string "Hey, MAGIKARP, you sure don't live up\n"
-	.string "to your name, do you?$"
-
 Route105_Text_FosterIntro: @ 8295D0F
 	.string "There's supposed to be a mystical\n"
 	.string "rock around here.\l"
@@ -4760,7 +4578,7 @@ Route32_Text_RalphPostBattle::
 
 Route32_Text_GordonIntro::
 	.string "I found some good POKéMON in the\n"
-	.string "grass around here!\l"
+	.string "grass around here!\p"
 	.string "I think they'll do it for me!$"
 
 Route32_Text_GordonDefeat::
@@ -4772,12 +4590,80 @@ Route32_Text_GordonPostBattle::
 
 Route32_Text_PeterIntro::
 	.string "That BADGE!\n"
-	.string "It's from VIOLET CITY!\l"
+	.string "It's from VIOLET CITY's GYM!\p"
 	.string "You beat FALKNER?$"
 
 Route32_Text_PeterDefeat::
 	.string "I know what my weaknesses are.$"
 
 Route32_Text_PeterPostBattle::
-	.string "I should train again at the\n"
-	.string "GYM in VIOLET CITY.$"
+	.string "I should train again at the GYM\n"
+	.string "in VIOLET CITY.$"
+
+UnionCave_1F_Text_DanielIntro::
+	.string "Whoa!\n"
+	.string "What a surprise!\p"
+	.string "I didn't expect to see anyone\n"
+	.string "else in here!$"
+
+UnionCave_1F_Text_DanielDefeat::
+	.string "Whoa!\n"
+	.string "I'm beaten big time!$"
+
+UnionCave_1F_Text_DanielPostBattle::
+	.string "I was conned into buying a\n"
+	.string "SLOWPOKETAIL from some guy.\p"
+	.string "I feel sorry for the poor POKéMON.$"
+
+UnionCave_1F_Text_LarryIntro::
+	.string "I roam far and wide in search of\n"
+	.string "POKéMON.\p"
+	.string "Are you looking for POKéMON too?\n"
+	.string "Then you're my collecting rival!$"
+
+UnionCave_1F_Text_LarryDefeat::
+	.string "Ugh.\n"
+	.string "My poor POKéMON…$"
+
+UnionCave_1F_Text_LarryPostBattle::
+	.string "Every FRIDAY, you can hear POKéMON\n"
+	.string "roars from deep inside the cave.$"
+
+UnionCave_1F_Text_RussellIntro::
+	.string "You're headed to AZALEA TOWN,\n"
+	.string "are you?\p"
+	.string "Let my POKéMON see if you're good\n"
+	.string "enough to battle.$"
+
+UnionCave_1F_Text_RussellDefeat::
+	.string "Oh, oh, oh!$"
+
+UnionCave_1F_Text_RussellPostBattle::
+	.string "All right, then!\n"
+	.string "I've decided, I'm not leaving until\l"
+	.string "my POKéMON get tougher!$"
+
+UnionCave_1F_Text_RayIntro::
+	.string "If there's light inside, a cave\n"
+	.string "isn't scary.\p"
+	.string "If you're strong inside, POKéMON\n"
+	.string "arent't scary.$"
+
+UnionCave_1F_Text_RayDefeat::
+	.string "FLASH!$"
+
+UnionCave_1F_Text_RayPostBattle::
+	.string "It's my POKéMON's fire that lights\n"
+	.string "up this cave.$"
+
+UnionCave_1F_Text_BillIntro::
+	.string "ZUBAT's SUPERSONIC keeps confusing\n"
+	.string "my POKéMON.\p"
+	.string "I'm seriously upset about that!$"
+
+UnionCave_1F_Text_BillDefeat::
+	.string "I flamed out!$"
+
+UnionCave_1F_Text_BillPostBattle::
+	.string "On weekends, you can hear strange\n"
+	.string "roars from deep in the cave.$"

@@ -115,7 +115,7 @@
       "x": 8,
       "y": 1,
       "elevation": 0,
-      "dest_map": "MAP_RUSTURF_TUNNEL",
+      "dest_map": "MAP_UNION_CAVE_1F",
       "dest_warp_id": 1
     },
     {
@@ -197,7 +197,7 @@
       "y": 3,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "VerdanturfTown_EventScript_RusturfTunnelSign"
+      "script": "VerdanturfTown_EventScript_UnionCave_1FSign"
     }
   ],
   "phone_service": true

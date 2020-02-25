@@ -136,7 +136,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route116_EventScript_ItemRepel",
-      "flag": "FLAG_ITEM_ROUTE_116_REPEL"
+      "flag": "FLAG_ITEM_UNION_CAVE_1F_GREAT_BALL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
@@ -234,7 +234,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route116_EventScript_ItemHPUp",
-      "flag": "FLAG_ITEM_ROUTE_116_HP_UP"
+      "flag": "FLAG_ITEM_UNION_CAVE_1F_X_ATTACK"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -424,7 +424,7 @@
       "x": 47,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_RUSTURF_TUNNEL",
+      "dest_map": "MAP_UNION_CAVE_1F",
       "dest_warp_id": 0
     },
     {
@@ -438,7 +438,7 @@
       "x": 65,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_RUSTURF_TUNNEL",
+      "dest_map": "MAP_UNION_CAVE_1F",
       "dest_warp_id": 2
     },
     {
@@ -482,7 +482,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route116_EventScript_RusturfTunnelSign"
+      "script": "Route116_EventScript_UnionCave_1FSign"
     },
     {
       "type": "sign",

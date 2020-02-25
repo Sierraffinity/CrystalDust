@@ -21,11 +21,11 @@
 #define TRAINER_PIC_POKEMON_BREEDER_F      2
 #define TRAINER_PIC_COOLTRAINER_M          3
 #define TRAINER_PIC_BIRD_KEEPER            4
-#define TRAINER_PIC_SAGE              5
+#define TRAINER_PIC_SAGE                   5
 #define TRAINER_PIC_AQUA_GRUNT_F           6
 #define TRAINER_PIC_SWIMMER_M              7
 #define TRAINER_PIC_MAGMA_GRUNT_M          8
-#define TRAINER_PIC_EXPERT_M               9
+#define TRAINER_PIC_FIREBREATHER               9
 #define TRAINER_PIC_AQUA_ADMIN_M          10
 #define TRAINER_PIC_BLACK_BELT            11
 #define TRAINER_PIC_AQUA_ADMIN_F          12
@@ -297,10 +297,10 @@
 #define TRAINER_CLASS_PKMN_BREEDER   0x4
 #define TRAINER_CLASS_COOLTRAINER    0x5
 #define TRAINER_CLASS_BIRD_KEEPER    0x6
-#define TRAINER_CLASS_SAGE      0x7
+#define TRAINER_CLASS_SAGE           0x7
 #define TRAINER_CLASS_SWIMMER_M      0x8
 #define TRAINER_CLASS_TEAM_MAGMA     0x9
-#define TRAINER_CLASS_EXPERT         0xa
+#define TRAINER_CLASS_FIREBREATHER   0xa
 #define TRAINER_CLASS_AQUA_ADMIN     0xb
 #define TRAINER_CLASS_BLACK_BELT     0xc
 #define TRAINER_CLASS_AQUA_LEADER    0xd

@@ -61,8 +61,8 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 	call Common_EventScript_OutOfCenterPartyHeal
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare, MSGBOX_DEFAULT
 	setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
+	clearflag FLAG_HIDE_UNION_CAVE_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_UNION_CAVE_WANDA
 	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setvar VAR_BRINEY_LOCATION, 1

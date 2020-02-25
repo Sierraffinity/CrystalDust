@@ -6002,8 +6002,8 @@
           }
         },
         {
-          "map": "MAP_RUSTURF_TUNNEL",
-          "base_label": "gRusturfTunnel",
+          "map": "MAP_UNION_CAVE_1F",
+          "base_label": "gUnionCave_1F",
           "land_mons": {
             "encounter_rate": 10,
             "mons": [

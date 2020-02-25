@@ -692,27 +692,27 @@ gTilesetPalettes_BikeShop:: @ 83643C0
 	.incbin "data/tilesets/secondary/bike_shop/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_RusturfTunnel:: @ 83645C0
-	.incbin "data/tilesets/secondary/rusturf_tunnel/tiles.4bpp.lz"
+gTilesetTiles_UnionCave_1F:: @ 83645C0
+	.incbin "data/tilesets/secondary/union_cave/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_RusturfTunnel:: @ 8365008
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/15.gbapal"
+gTilesetPalettes_UnionCave_1F:: @ 8365008
+	.incbin "data/tilesets/secondary/union_cave/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/union_cave/palettes/15.gbapal"
 
 	.align 2
 @ unused compressed copy of tiles

@@ -143,7 +143,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1",
-            "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FIREBREATHER",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -185,7 +185,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_GABBY_AND_TY_2",
-            "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FIREBREATHER",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -213,7 +213,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_GABBY_AND_TY_3",
-            "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FIREBREATHER",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",

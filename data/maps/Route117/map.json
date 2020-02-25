@@ -219,7 +219,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route117_EventScript_ItemGreatBall",
-      "flag": "FLAG_ITEM_ROUTE_117_GREAT_BALL"
+      "flag": "FLAG_ITEM_UNION_CAVE_1F_POTION"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
@@ -247,7 +247,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route117_EventScript_ItemRevive",
-      "flag": "FLAG_ITEM_ROUTE_117_REVIVE"
+      "flag": "FLAG_ITEM_UNION_CAVE_1F_AWAKENING"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_RUNNING_TRIATHLETE_F",

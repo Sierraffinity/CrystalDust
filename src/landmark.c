@@ -32,7 +32,7 @@ static const u8 LandmarkName_GlassWorkshop[] = _("GLASS WORKSHOP");
 static const u8 LandmarkName_WeatherInstitute[] = _("WEATHER INSTITUTE");
 static const u8 LandmarkName_MeteorFalls[] = _("METEOR FALLS");
 static const u8 LandmarkName_TunnelersRestHouse[] = _("TUNNELER'S RESTHOUSE");
-static const u8 LandmarkName_RusturfTunnel[] = _("RUSTURF TUNNEL");
+static const u8 LandmarkName_UnionCave_1F[] = _("RUSTURF TUNNEL");
 static const u8 LandmarkName_PokemonDayCare[] = _("POKéMON DAY CARE");
 static const u8 LandmarkName_SafariZoneEntrance[] = _("SAFARI ZONE ENTRANCE");
 static const u8 LandmarkName_MtPyre[] = _("MT. PYRE");
@@ -62,7 +62,7 @@ static const struct Landmark Landmark_FlowerShop = {LandmarkName_FlowerShop, FLA
 static const struct Landmark Landmark_PetalburgWoods = {LandmarkName_PetalburgWoods, -1};
 static const struct Landmark Landmark_MrBrineysCottage = {LandmarkName_MrBrineysCottage, FLAG_LANDMARK_SPROUT_TOWER};
 static const struct Landmark Landmark_SproutTower = {LandmarkName_SproutTower, FLAG_LANDMARK_RUINS_OF_ALPH};
-static const struct Landmark Landmark_SeashoreHouse = {LandmarkName_SeashoreHouse, FLAG_LANDMARK_SEASHORE_HOUSE};
+static const struct Landmark Landmark_SeashoreHouse = {LandmarkName_SeashoreHouse, FLAG_LANDMARK_UNION_CAVE};
 static const struct Landmark Landmark_SlateportBeach = {LandmarkName_SlateportBeach, -1};
 static const struct Landmark Landmark_CyclingRoad = {LandmarkName_CyclingRoad, -1};
 static const struct Landmark Landmark_NewMauville = {LandmarkName_NewMauville, FLAG_LANDMARK_NEW_MAUVILLE};
@@ -75,7 +75,7 @@ static const struct Landmark Landmark_GlassWorkshop = {LandmarkName_GlassWorksho
 static const struct Landmark Landmark_WeatherInstitute = {LandmarkName_WeatherInstitute, -1};
 static const struct Landmark Landmark_MeteorFalls = {LandmarkName_MeteorFalls, -1};
 static const struct Landmark Landmark_TunnelersRestHouse = {LandmarkName_TunnelersRestHouse, FLAG_LANDMARK_TUNNELERS_REST_HOUSE};
-static const struct Landmark Landmark_RusturfTunnel = {LandmarkName_RusturfTunnel, -1};
+static const struct Landmark Landmark_UnionCave_1F = {LandmarkName_UnionCave_1F, -1};
 static const struct Landmark Landmark_PokemonDayCare = {LandmarkName_PokemonDayCare, FLAG_LANDMARK_POKEMON_DAYCARE};
 static const struct Landmark Landmark_SafariZoneEntrance = {LandmarkName_SafariZoneEntrance, -1};
 static const struct Landmark Landmark_MtPyre = {LandmarkName_MtPyre, -1};
@@ -240,13 +240,13 @@ static const struct Landmark *const Landmarks_MeteorFalls[]  =
 static const struct Landmark *const Landmarks_Route116_1[]  =
 {
     &Landmark_TunnelersRestHouse,
-    &Landmark_RusturfTunnel,
+    &Landmark_UnionCave_1F,
     NULL,
 };
 
 static const struct Landmark *const Landmarks_Route116_2[]  =
 {
-    &Landmark_RusturfTunnel,
+    &Landmark_UnionCave_1F,
     NULL,
 };
 

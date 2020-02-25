@@ -13,7 +13,7 @@ $(MID_SUBDIR)/mus_ashroad.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G055 -V076
 
 $(MID_SUBDIR)/mus_encsuspicious.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G069 -V078
+	$(MID) $< $@ -E -R$(STD_REVERB) -G069 -V080
 
 $(MID_SUBDIR)/mus_b_arena.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G104 -V090

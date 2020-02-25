@@ -247,12 +247,12 @@ gMetatileAttributes_BikeShop:: @ 83BB04C
 	.incbin "data/tilesets/secondary/bike_shop/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_RusturfTunnel:: @ 83BB23C
-	.incbin "data/tilesets/secondary/rusturf_tunnel/metatiles.bin"
+gMetatiles_UnionCave_1F:: @ 83BB23C
+	.incbin "data/tilesets/secondary/union_cave/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_RusturfTunnel:: @ 83BB76C
-	.incbin "data/tilesets/secondary/rusturf_tunnel/metatile_attributes.bin"
+gMetatileAttributes_UnionCave_1F:: @ 83BB76C
+	.incbin "data/tilesets/secondary/union_cave/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_SecretBaseSecondary:: @ 83BB812

@@ -22,12 +22,12 @@
 #define TRAINER_JUSTIN           18
 #define TRAINER_RALPH            19
 #define TRAINER_GORDON           20
-#define TRAINER_PETER               21
-#define TRAINER_GRUNT_SPACE_CENTER_1         22
-#define TRAINER_GRUNT_MT_PYRE_1              23
-#define TRAINER_GRUNT_MT_PYRE_2              24
-#define TRAINER_GRUNT_MT_PYRE_3              25
-#define TRAINER_GRUNT_WEATHER_INST_4         26
+#define TRAINER_PETER            21
+#define TRAINER_DANIEL           22
+#define TRAINER_LARRY            23
+#define TRAINER_RUSSELL          24
+#define TRAINER_RAY              25
+#define TRAINER_BILL             26
 #define TRAINER_GRUNT_AQUA_HIDEOUT_5         27
 #define TRAINER_GRUNT_AQUA_HIDEOUT_6         28
 #define TRAINER_FREDRICK                     29
@@ -81,7 +81,7 @@
 #define TRAINER_LEROY                        77
 #define TRAINER_WILTON_1                     78
 #define TRAINER_EDGAR                        79
-#define TRAINER_ALBERT_OLD                       80
+#define TRAINER_ALBERT_OLD                   80
 #define TRAINER_SAMUEL                       81
 #define TRAINER_VITO                         82
 #define TRAINER_OWEN                         83
@@ -214,7 +214,7 @@
 #define TRAINER_BERNIE_5                    210
 #define TRAINER_DREW                        211
 #define TRAINER_BEAU                        212
-#define TRAINER_LARRY                       213
+#define TRAINER_LARRY_OLD                       213
 #define TRAINER_SHANE                       214
 #define TRAINER_JUSTIN_OLD                  215
 #define TRAINER_ETHAN_1                     216

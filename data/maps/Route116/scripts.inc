@@ -125,8 +125,8 @@ Route116_EventScript_RouteSignRustboro:: @ 81F2D57
 	msgbox Route116_Text_RouteSignRustboro, MSGBOX_SIGN
 	end
 
-Route116_EventScript_RusturfTunnelSign:: @ 81F2D60
-	msgbox Route116_Text_RusturfTunnelSign, MSGBOX_SIGN
+Route116_EventScript_UnionCave_1FSign:: @ 81F2D60
+	msgbox Route116_Text_UnionCave_1FSign, MSGBOX_SIGN
 	end
 
 Route116_EventScript_TunnelersRestHouseSign:: @ 81F2D69
@@ -464,7 +464,7 @@ Route116_Text_RouteSignRustboro: @ 81F379D
 	.string "ROUTE 116\n"
 	.string "{LEFT_ARROW} RUSTBORO CITY$"
 
-Route116_Text_RusturfTunnelSign: @ 81F37B7
+Route116_Text_UnionCave_1FSign: @ 81F37B7
 	.string "RUSTURF TUNNEL\n"
 	.string "“Linking RUSTBORO and VERDANTURF\p"
 	.string "“The tunnel project has been\n"

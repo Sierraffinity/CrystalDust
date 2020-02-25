@@ -93,7 +93,7 @@ PhoneScript_Mom_Violet:
 	phone_goto PhoneScript_Mom_PostLocationBanking
 
 PhoneScript_Mom_Azalea:
-	phone_buffermapsecname 1, MAPSEC_RUSTURF_TUNNEL
+	phone_buffermapsecname 1, MAPSEC_UNION_CAVE
 	phone_message Text_Pokegear_Mom_RegularCall_Landmark
 	phone_goto PhoneScript_Mom_PostLocationBanking
 

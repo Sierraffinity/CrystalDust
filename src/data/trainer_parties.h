@@ -276,48 +276,58 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Peter[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntSpaceCenter1[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Daniel[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_NUMEL,
+    .lvl = 11,
+    .species = SPECIES_ONIX,
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMtPyre1[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Larry[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_ZUBAT,
+    .lvl = 10,
+    .species = SPECIES_SLOWPOKE,
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMtPyre2[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Russell[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_CARVANHA,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMtPyre3[] = {
-    {
-    .iv = 0,
-    .lvl = 30,
-    .species = SPECIES_POOCHYENA,
+    .lvl = 4,
+    .species = SPECIES_GEODUDE,
     },
     {
     .iv = 0,
-    .lvl = 30,
-    .species = SPECIES_CARVANHA,
+    .lvl = 6,
+    .species = SPECIES_GEODUDE,
+    },
+    {
+    .iv = 0,
+    .lvl = 8,
+    .species = SPECIES_GEODUDE,
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntWeatherInst4[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Ray[] = {
     {
     .iv = 0,
-    .lvl = 28,
-    .species = SPECIES_CARVANHA,
+    .lvl = 9,
+    .species = SPECIES_VULPIX,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Bill[] = {
+    {
+    .iv = 0,
+    .lvl = 6,
+    .species = SPECIES_KOFFING,
+    },
+    {
+    .iv = 0,
+    .lvl = 6,
+    .species = SPECIES_KOFFING,
     }
 };
 
@@ -2624,7 +2634,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_Beau[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Larry[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_LarryOld[] = {
     {
     .iv = 0,
     .lvl = 18,

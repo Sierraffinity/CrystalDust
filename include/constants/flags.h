@@ -210,7 +210,7 @@
 #define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3   0xC4 //
 #define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4   0xC5 //
 #define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5   0xC6 //
-#define FLAG_RUSTURF_TUNNEL_OPENED           0xC7
+#define FLAG_UNION_CAVE_OPENED           0xC7
 #define FLAG_RECEIVED_RED_SCARF              0xC8
 #define FLAG_RECEIVED_BLUE_SCARF             0xC9
 #define FLAG_RECEIVED_PINK_SCARF             0xCA
@@ -839,7 +839,7 @@
 #define FLAG_HIDE_MAUVILLE_CITY_WALLY                               0x324
 #define FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE                        0x325
 #define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY                0x326
-#define FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND                   0x327
+#define FLAG_HIDE_UNION_CAVE_WANDAS_BOYFRIEND                   0x327
 #define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND     0x328
 #define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE         0x329
 #define FLAG_HIDE_SS_TIDAL_CORRIDOR_SCOTT                           0x32A
@@ -910,9 +910,9 @@
 #define FLAG_HIDE_ROUTE_111_PLAYER_DESCENT                          0x36B
 #define FLAG_HIDE_ROUTE_111_DESERT_FOSSIL                           0x36C
 #define FLAG_HIDE_MT_CHIMNEY_TRAINERS                               0x36D
-#define FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT                         0x36E
-#define FLAG_HIDE_RUSTURF_TUNNEL_BRINEY                             0x36F
-#define FLAG_HIDE_RUSTURF_TUNNEL_PEEKO                              0x370
+#define FLAG_HIDE_UNION_CAVE_AQUA_GRUNT                         0x36E
+#define FLAG_HIDE_UNION_CAVE_BRINEY                             0x36F
+#define FLAG_HIDE_UNION_CAVE_PEEKO                              0x370
 #define FLAG_HIDE_BRINEYS_HOUSE_PEEKO                               0x371
 #define FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA                          0x372
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS         0x373
@@ -963,8 +963,8 @@
 #define FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO                        0x3A0
 #define FLAG_HIDE_LAVARIDGE_TOWN_RIVAL                              0x3A1
 #define FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE                      0x3A2
-#define FLAG_HIDE_RUSTURF_TUNNEL_ROCK_1                             0x3A3
-#define FLAG_HIDE_RUSTURF_TUNNEL_ROCK_2                             0x3A4
+#define FLAG_HIDE_UNION_CAVE_ROCK_1                             0x3A3
+#define FLAG_HIDE_UNION_CAVE_ROCK_2                             0x3A4
 #define FLAG_HIDE_FORTREE_CITY_HOUSE_4_WINGULL                      0x3A5
 #define FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL                     0x3A6
 #define FLAG_HIDE_REGIROCK                                          0x3A7
@@ -1015,7 +1015,7 @@
 #define FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE      0x3D4
 #define FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE_VISIBLE                  0x3D5
 #define FLAG_HIDE_ROUTE_120_KECLEON_1                               0x3D6
-#define FLAG_HIDE_RUSTURF_TUNNEL_WANDA                              0x3D7
+#define FLAG_HIDE_UNION_CAVE_WANDA                              0x3D7
 #define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA                0x3D8
 #define FLAG_HIDE_ROUTE_120_KECLEON_2                               0x3D9
 #define FLAG_HIDE_ROUTE_120_KECLEON_3                               0x3DA
@@ -1054,10 +1054,10 @@
 #define FLAG_ITEM_RUINS_OF_ALPH_KABUTO_ITEM_ROOM_ENERGY_POWDER      0x3F9
 #define FLAG_ITEM_ROUTE_32_REPEL                                    0x3FA
 #define FLAG_ITEM_ROUTE_32_GREAT_BALL                                   0x3FB
-#define FLAG_ITEM_ROUTE_116_REPEL                                   0x3FC
-#define FLAG_ITEM_ROUTE_116_HP_UP                                   0x3FD
-#define FLAG_ITEM_ROUTE_117_GREAT_BALL                              0x3FE
-#define FLAG_ITEM_ROUTE_117_REVIVE                                  0x3FF
+#define FLAG_ITEM_UNION_CAVE_1F_GREAT_BALL                                   0x3FC
+#define FLAG_ITEM_UNION_CAVE_1F_X_ATTACK                                   0x3FD
+#define FLAG_ITEM_UNION_CAVE_1F_POTION                              0x3FE
+#define FLAG_ITEM_UNION_CAVE_1F_AWAKENING                                  0x3FF
 #define FLAG_ITEM_ROUTE_119_SUPER_REPEL                             0x400
 #define FLAG_ITEM_ROUTE_119_ZINC                                    0x401
 #define FLAG_ITEM_ROUTE_119_ELIXIR_1                                0x402
@@ -1084,8 +1084,8 @@
 #define FLAG_ITEM_METEOR_FALLS_1F_1R_FULL_HEAL                      0x415
 #define FLAG_ITEM_METEOR_FALLS_1F_1R_MOON_STONE                     0x416
 #define FLAG_ITEM_METEOR_FALLS_1F_1R_PP_UP                          0x417
-#define FLAG_ITEM_RUSTURF_TUNNEL_POKE_BALL                          0x418
-#define FLAG_ITEM_RUSTURF_TUNNEL_MAX_ETHER                          0x419
+#define FLAG_ITEM_UNION_CAVE_POKE_BALL                          0x418
+#define FLAG_ITEM_UNION_CAVE_MAX_ETHER                          0x419
 #define FLAG_ITEM_DARK_CAVE_SOUTH_ESCAPE_ROPE                       0x41A
 #define FLAG_ITEM_DARK_CAVE_B1F_POKE_BALL                           0x41B
 #define FLAG_ITEM_MT_PYRE_5F_LAX_INCENSE                            0x41C
@@ -1417,7 +1417,7 @@
 #define FLAG_LANDMARK_DARK_CAVE                     (SYSTEM_FLAGS + 0x3C)
 #define FLAG_LANDMARK_SPROUT_TOWER                  (SYSTEM_FLAGS + 0x3D)
 #define FLAG_LANDMARK_RUINS_OF_ALPH                 (SYSTEM_FLAGS + 0x3E)
-#define FLAG_LANDMARK_SEASHORE_HOUSE                (SYSTEM_FLAGS + 0x3F)
+#define FLAG_LANDMARK_UNION_CAVE                    (SYSTEM_FLAGS + 0x3F)
 #define FLAG_LANDMARK_NEW_MAUVILLE                  (SYSTEM_FLAGS + 0x40)
 #define FLAG_LANDMARK_OLD_LADY_REST_SHOP            (SYSTEM_FLAGS + 0x41)
 #define FLAG_LANDMARK_TRICK_HOUSE                   (SYSTEM_FLAGS + 0x42)

@@ -1,0 +1,571 @@
+mapscripts UnionCave_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_UNION_CAVE)
+    }
+}
+
+script UnionCave_1F_EventScript_Daniel {
+    trainerbattle_single(TRAINER_DANIEL, UnionCave_1F_Text_DanielIntro, UnionCave_1F_Text_DanielDefeat)
+    msgbox(UnionCave_1F_Text_DanielPostBattle)
+    release
+}
+
+script UnionCave_1F_EventScript_Larry {
+    trainerbattle_single(TRAINER_LARRY, UnionCave_1F_Text_LarryIntro, UnionCave_1F_Text_LarryDefeat)
+    msgbox(UnionCave_1F_Text_LarryPostBattle)
+    release
+}
+
+script UnionCave_1F_EventScript_Russell {
+    trainerbattle_single(TRAINER_RUSSELL, UnionCave_1F_Text_RussellIntro, UnionCave_1F_Text_RussellDefeat)
+    msgbox(UnionCave_1F_Text_RussellPostBattle)
+    release
+}
+
+script UnionCave_1F_EventScript_Ray {
+    trainerbattle_single(TRAINER_RAY, UnionCave_1F_Text_RayIntro, UnionCave_1F_Text_RayDefeat)
+    msgbox(UnionCave_1F_Text_RayPostBattle)
+    release
+}
+
+script UnionCave_1F_EventScript_Bill {
+    trainerbattle_single(TRAINER_BILL, UnionCave_1F_Text_BillIntro, UnionCave_1F_Text_BillDefeat)
+    msgbox(UnionCave_1F_Text_BillPostBattle)
+    release
+}
+
+raw `
+UnionCave_1F_OnFrame: @ 822CE32
+	map_script_2 VAR_UNION_CAVE_STATE, 4, UnionCave_1F_EventScript_ClearTunnelScene
+	map_script_2 VAR_UNION_CAVE_STATE, 5, UnionCave_1F_EventScript_ClearTunnelScene
+	.2byte 0
+
+UnionCave_1F_OnTransition: @ 822CE44
+	compare VAR_UNION_CAVE_STATE, 2
+	call_if_eq UnionCave_1F_EventScript_SetAquaGruntAndPeekoPos
+	end
+
+UnionCave_1F_EventScript_SetAquaGruntAndPeekoPos:: @ 822CE50
+	setobjectxyperm 7, 13, 4
+	setobjectxyperm 6, 13, 5
+	return
+
+UnionCave_1F_EventScript_Wanda:: @ 822CE5F
+	lock
+	faceplayer
+	msgbox UnionCave_1F_Text_BoyfriendOnOtherSideOfRock, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+UnionCave_1F_EventScript_WandasBoyfriend:: @ 822CE76
+	lock
+	faceplayer
+	goto_if_set FLAG_TEMP_1, UnionCave_1F_EventScript_AlreadySpokenTo
+	setflag FLAG_TEMP_1
+	msgbox UnionCave_1F_Text_WhyCantTheyKeepDigging, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+UnionCave_1F_EventScript_AlreadySpokenTo:: @ 822CE99
+	msgbox UnionCave_1F_Text_ToGetToVerdanturf, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+UnionCave_1F_EventScript_ClearTunnelScene:: @ 822CEAE
+	lockall
+	compare VAR_TEMP_1, 1
+	call_if_eq UnionCave_1F_EventScript_FaceWandasBoyfriend1
+	compare VAR_TEMP_1, 2
+	call_if_eq UnionCave_1F_EventScript_FaceWandasBoyfriend2
+	compare VAR_TEMP_1, 3
+	call_if_eq UnionCave_1F_EventScript_FaceWandasBoyfriend3
+	call UnionCave_1F_EventScript_WandasBoyfriendNotice
+	msgbox UnionCave_1F_Text_YouShatteredBoulderTakeHM, MSGBOX_DEFAULT
+	compare VAR_TEMP_1, 2
+	call_if_eq UnionCave_1F_EventScript_WandasBoyfriendApproachPlayer
+	compare VAR_TEMP_1, 3
+	call_if_eq UnionCave_1F_EventScript_WandasBoyfriendApproachPlayer
+	giveitem ITEM_HM04
+	setflag FLAG_RECEIVED_MAGNET_FROM_SUNNY
+	msgbox UnionCave_1F_Text_ExplainStrength, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_TEMP_1, 1
+	call_if_eq UnionCave_1F_EventScript_BoyfriendApproachWanda1
+	compare VAR_TEMP_1, 2
+	call_if_eq UnionCave_1F_EventScript_BoyfriendApproachWanda2
+	compare VAR_TEMP_1, 3
+	call_if_eq UnionCave_1F_EventScript_BoyfriendApproachWanda3
+	msgbox UnionCave_1F_Text_WandaReunion, MSGBOX_DEFAULT
+	closemessage
+	compare VAR_TEMP_1, 1
+	call_if_eq UnionCave_1F_EventScript_WandaAndBoyfriendExit1
+	compare VAR_TEMP_1, 2
+	call_if_eq UnionCave_1F_EventScript_WandaAndBoyfriendExit
+	compare VAR_TEMP_1, 3
+	call_if_eq UnionCave_1F_EventScript_WandaAndBoyfriendExit
+	call UnionCave_1F_EventScript_SetUnionCave_1FOpen
+	releaseall
+	end
+
+UnionCave_1F_EventScript_BoyfriendApproachWanda1:: @ 822CF5D
+	applymovement OBJ_EVENT_ID_PLAYER, UnionCave_1F_Movement_PlayerWatchBoyfriend1
+	applymovement 1, UnionCave_1F_Movement_BoyfriendApproachWanda1
+	waitmovement 0
+	return
+
+UnionCave_1F_EventScript_BoyfriendApproachWanda2:: @ 822CF6F
+	applymovement OBJ_EVENT_ID_PLAYER, UnionCave_1F_Movement_PlayerWatchBoyfriend
+	applymovement 1, UnionCave_1F_Movement_BoyfriendApproachWanda
+	waitmovement 0
+	applymovement 10, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	return
+
+UnionCave_1F_EventScript_BoyfriendApproachWanda3:: @ 822CF8B
+	applymovement OBJ_EVENT_ID_PLAYER, UnionCave_1F_Movement_PlayerWatchBoyfriend
+	applymovement 1, UnionCave_1F_Movement_BoyfriendApproachWanda
+	waitmovement 0
+	applymovement 10, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	return
+
+UnionCave_1F_EventScript_FaceWandasBoyfriend1:: @ 822CFA7
+	applymovement 1, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	waitmovement 0
+	return
+
+UnionCave_1F_EventScript_FaceWandasBoyfriend2:: @ 822CFBC
+	applymovement 1, UnionCave_1F_Movement_BoyfriendFaceRight
+	waitmovement 0
+	return
+
+UnionCave_1F_EventScript_FaceWandasBoyfriend3:: @ 822CFC7
+	return
+
+UnionCave_1F_EventScript_WandasBoyfriendApproachPlayer:: @ 822CFC8
+	closemessage
+	applymovement 1, UnionCave_1F_Movement_WandasBoyfriendApproachPlayer
+	waitmovement 0
+	return
+
+UnionCave_1F_EventScript_WandaAndBoyfriendExit1:: @ 822CFD4
+	applymovement 10, UnionCave_1F_Movement_WandaExit1
+	applymovement 1, UnionCave_1F_Movement_WandasBoyfriendExit1
+	waitmovement 0
+	return
+
+UnionCave_1F_EventScript_WandaAndBoyfriendExit:: @ 822CFE6
+	applymovement OBJ_EVENT_ID_PLAYER, UnionCave_1F_Movement_PlayerWatchWandaExit
+	applymovement 10, UnionCave_1F_Movement_WandaExit
+	applymovement 1, UnionCave_1F_Movement_WandasBoyfriendExit
+	waitmovement 0
+	return
+
+UnionCave_1F_EventScript_WandasBoyfriendNotice:: @ 822CFFF
+	playse SE_PIN
+	applymovement 1, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 1, Common_Movement_Delay48
+	waitmovement 0
+	return
+
+UnionCave_1F_Movement_WandaExit1: @ 822D017
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+UnionCave_1F_Movement_WandaExit: @ 822D023
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+UnionCave_1F_Movement_PlayerWatchWandaExit: @ 822D02F
+	delay_8
+	walk_in_place_fastest_up
+	delay_16
+	delay_16
+	walk_in_place_fastest_right
+	step_end
+
+UnionCave_1F_Movement_Unused1: @ 822D035
+	walk_left
+	walk_in_place_fastest_right
+	step_end
+
+UnionCave_1F_Movement_Unused2: @ 822D038
+	walk_down
+	walk_in_place_fastest_up
+	delay_8
+	walk_in_place_fastest_right
+	step_end
+
+UnionCave_1F_Movement_Unused3: @ 822D03D
+	walk_up
+	walk_in_place_fastest_down
+	delay_8
+	walk_in_place_fastest_right
+	step_end
+
+UnionCave_1F_Movement_PlayerWatchBoyfriend1: @ 822D042
+	walk_left
+	walk_in_place_fastest_right
+	step_end
+
+UnionCave_1F_Movement_PlayerWatchBoyfriend: @ 822D045
+	walk_right
+	walk_in_place_fastest_left
+	step_end
+
+UnionCave_1F_Movement_BoyfriendFaceRight: @ 822D048
+	walk_up
+	walk_in_place_fastest_right
+	step_end
+
+UnionCave_1F_Movement_WandasBoyfriendExit1: @ 822D04B
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+UnionCave_1F_Movement_WandasBoyfriendExit: @ 822D058
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+UnionCave_1F_Movement_WandasBoyfriendApproachPlayer: @ 822D065
+	walk_right
+	step_end
+
+UnionCave_1F_Movement_BoyfriendApproachWanda1: @ 822D067
+	walk_in_place_fast_up
+	walk_in_place_fast_up
+	walk_fast_up
+	walk_fast_right
+	step_end
+
+UnionCave_1F_Movement_BoyfriendApproachWanda: @ 822D06C
+	walk_in_place_fast_right
+	walk_in_place_fast_right
+	walk_fast_right
+	walk_in_place_fastest_up
+	step_end
+
+UnionCave_1F_EventScript_TunnelBlockagePos1:: @ 822D071
+	setvar VAR_TEMP_1, 1
+	end
+
+UnionCave_1F_EventScript_TunnelBlockagePos2:: @ 822D077
+	setvar VAR_TEMP_1, 2
+	end
+
+UnionCave_1F_EventScript_TunnelBlockagePos3:: @ 822D07D
+	setvar VAR_TEMP_1, 3
+	end
+
+UnionCave_1F_EventScript_AquaGruntBackUp:: @ 822D083
+	lockall
+	msgbox UnionCave_1F_Text_ComeAndGetSome, MSGBOX_DEFAULT
+	closemessage
+	applymovement 6, UnionCave_1F_Movement_GruntAndPeekoBackUp
+	applymovement 7, UnionCave_1F_Movement_GruntAndPeekoBackUp
+	waitmovement 0
+	copyobjectxytoperm 6
+	copyobjectxytoperm 7
+	setvar VAR_UNION_CAVE_STATE, 3
+	releaseall
+	end
+
+UnionCave_1F_Movement_GruntAndPeekoBackUp: @ 822D0AB
+	lock_facing_direction
+	walk_right
+	unlock_facing_direction
+	step_end
+
+UnionCave_1F_EventScript_Peeko:: @ 822D0AF
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_WINGULL, 0
+	msgbox UnionCave_1F_Text_Peeko, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+UnionCave_1F_EventScript_Grunt:: @ 822D0C2
+	lock
+	faceplayer
+	playbgm MUS_ENCROCKET, 0
+	msgbox UnionCave_1F_Text_GruntIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_ROLAND, UnionCave_1F_Text_GruntDefeat
+	msgbox UnionCave_1F_Text_GruntTakePackage, MSGBOX_DEFAULT
+	giveitem ITEM_DEVON_GOODS
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, UnionCave_1F_Movement_PushPlayerAsideForGrunt
+	applymovement 6, UnionCave_1F_Movement_GruntEscape
+	waitmovement 0
+	removeobject 6
+	delay 50
+	addobject 5
+	applymovement 5, UnionCave_1F_Movement_BrineyApproachPeeko1
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, UnionCave_1F_Movement_PlayerMoveAsideForBriney
+	applymovement 5, UnionCave_1F_Movement_BrineyApproachPeeko2
+	waitmovement 0
+	msgbox UnionCave_1F_Text_PeekoGladToSeeYouSafe, MSGBOX_DEFAULT
+	applymovement 5, Common_Movement_FacePlayer
+	waitmovement 0
+	message UnionCave_1F_Text_ThankYouLetsGoHomePeeko
+	waitmessage
+	waitse
+	playmoncry SPECIES_WINGULL, 0
+	waitbuttonpress
+	waitmoncry
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, UnionCave_1F_Movement_PlayerWatchBrineyExit
+	applymovement 5, UnionCave_1F_Movement_BrineyExit
+	applymovement 7, UnionCave_1F_Movement_PeekoExit
+	waitmovement 0
+	removeobject 5
+	removeobject 7
+	clearflag FLAG_DEVON_GOODS_STOLEN
+	setflag FLAG_RECOVERED_DEVON_GOODS
+	setvar VAR_RUSTBORO_CITY_STATE, 4
+	setvar VAR_BRINEY_HOUSE_STATE, 1
+	setflag FLAG_HIDE_ROUTE_116_MR_BRINEY
+	release
+	end
+
+UnionCave_1F_Movement_PushPlayerAsideForGrunt: @ 822D178
+	face_down
+	lock_facing_direction
+	walk_up
+	unlock_facing_direction
+	walk_in_place_fastest_left
+	step_end
+
+UnionCave_1F_Movement_PlayerMoveAsideForBriney: @ 822D17E
+	walk_down
+	walk_in_place_fastest_up
+	step_end
+
+UnionCave_1F_Movement_GruntEscape: @ 822D181
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+UnionCave_1F_Movement_BrineyApproachPeeko1: @ 822D18B
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+UnionCave_1F_Movement_BrineyExit: @ 822D193
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+UnionCave_1F_Movement_PlayerWatchBrineyExit: @ 822D19F
+	delay_16
+	delay_8
+	delay_4
+	walk_in_place_fastest_left
+	step_end
+
+UnionCave_1F_Movement_BrineyApproachPeeko2: @ 822D1A4
+	delay_16
+	walk_right
+	step_end
+
+UnionCave_1F_Movement_PeekoExit: @ 822D1A7
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+UnionCave_1F_EventScript_Mike:: @ 822D1B1
+	trainerbattle_single TRAINER_MIKE_2, UnionCave_1F_Text_MikeIntro, UnionCave_1F_Text_MikeDefeat
+	msgbox UnionCave_1F_Text_Text_MikePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+UnionCave_1F_Text_ComeAndGetSome: @ 822D1C8
+	.string "What, are you coming?\n"
+	.string "Come and get some, then!$"
+
+UnionCave_1F_Text_Peeko: @ 822D1F7
+	.string "PEEKO: Pii pihyoh!$"
+
+UnionCave_1F_Text_GruntIntro: @ 822D20A
+	.string "Grah, keelhaul it all!\p"
+	.string "That hostage POKéMON turned out to\n"
+	.string "be worthless!\p"
+	.string "And to think I made a getaway…\n"
+	.string "In this tunnel to nowhere!\p"
+	.string "Hey! You!\n"
+	.string "So you want to battle me?$"
+
+UnionCave_1F_Text_GruntDefeat: @ 822D2B0
+	.string "Urrrggh! My career in crime comes to\n"
+	.string "a dead end!$"
+
+UnionCave_1F_Text_GruntTakePackage: @ 822D2E1
+	.string "This is plain not right…\p"
+	.string "The BOSS told me this would be a\n"
+	.string "slick-and-easy job to pull.\p"
+	.string "All I had to do was steal some package\n"
+	.string "from DEVON.\p"
+	.string "Tch!\n"
+	.string "You want it back that badly, take it!$"
+
+UnionCave_1F_Text_PeekoGladToSeeYouSafe: @ 822D395
+	.string "PEEKO!\n"
+	.string "Am I glad to see you're safe!$"
+
+UnionCave_1F_Text_ThankYouLetsGoHomePeeko: @ 822D3BA
+	.string "PEEKO owes her life to you!\p"
+	.string "They call me MR. BRINEY.\n"
+	.string "And, you are?\p"
+	.string "… … … … … … … …\n"
+	.string "… … … … … … … …\p"
+	.string "Ah, so you are {PLAYER}{KUN}!\n"
+	.string "I sincerely thank you!\p"
+	.string "Now, if there's anything that troubles\n"
+	.string "you, don't hesitate to tell me!\p"
+	.string "You can usually find me in my cottage\n"
+	.string "by the sea near PETALBURG WOODS.\p"
+	.string "Come, PEEKO, we should make our way\n"
+	.string "home.\p"
+	.string "PEEKO: Pihyoh!$"
+
+UnionCave_1F_Text_WhyCantTheyKeepDigging: @ 822D510
+	.string "… …\p"
+	.string "Why can't they keep digging?\n"
+	.string "Is the bedrock too hard?\p"
+	.string "My beloved awaits me in VERDANTURF\n"
+	.string "TOWN just beyond here…\p"
+	.string "If RUSTBORO and VERDANTURF were\n"
+	.string "joined by this tunnel, I could visit\l"
+	.string "her every day…\p"
+	.string "But this…\n"
+	.string "What am I to do?$"
+
+UnionCave_1F_Text_ToGetToVerdanturf: @ 822D5F3
+	.string "To get from RUSTBORO to VERDANTURF,\n"
+	.string "you need to go to DEWFORD, then pass\l"
+	.string "through SLATEPORT and MAUVILLE…$"
+
+UnionCave_1F_Text_YouShatteredBoulderTakeHM: @ 822D65C
+	.string "Wow! You shattered that boulder\n"
+	.string "blocking the way.\p"
+	.string "To show you how much I appreciate it,\n"
+	.string "I'd like you to have this HM.$"
+
+UnionCave_1F_Text_ExplainStrength: @ 822D6D2
+	.string "That HM contains STRENGTH.\p"
+	.string "If a muscular POKéMON were to learn\n"
+	.string "that, it would be able to move even\l"
+	.string "large boulders.$"
+
+UnionCave_1F_Text_WandaReunion: @ 822D745
+	.string "WANDA!\n"
+	.string "Now I can see you anytime!\p"
+	.string "WANDA: That's…wonderful.\p"
+	.string "Please, take some rest at my home.$"
+
+UnionCave_1F_Text_BoyfriendOnOtherSideOfRock: @ 822D7A3
+	.string "On the other side of this rock…\n"
+	.string "My boyfriend is there.\p"
+	.string "He… He's not just digging the tunnel\n"
+	.string "to come see me.\p"
+	.string "He works his hands raw and rough\n"
+	.string "for the benefit of everyone.$"
+
+UnionCave_1F_Text_MikeIntro: @ 822D84D
+	.string "What do you call a wild man up in the\n"
+	.string "mountains? A mountain man, right?\p"
+	.string "So why don't they call a POKéMON in\n"
+	.string "the mountains a mountain POKéMON?$"
+
+UnionCave_1F_Text_MikeDefeat: @ 822D8DB
+	.string "My POKéMON…\n"
+	.string "Ran out of power…$"
+
+UnionCave_1F_Text_Text_MikePostBattle: @ 822D8F9
+	.string "They halted development here to\n"
+	.string "protect POKéMON, right?\l"
+	.string "There's a feel-good story!$"
+
+`

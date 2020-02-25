@@ -88,9 +88,6 @@ EventScript_SmashRock:: @ 82907FB
 	applymovement VAR_LAST_TALKED, Movement_SmashRock
 	waitmovement 0
 	removeobject VAR_LAST_TALKED
-	specialvar VAR_RESULT, TryUpdateRusturfTunnelState
-	compare VAR_RESULT, 1
-	goto_if_eq EventScript_EndSmash
 	special RockSmashWildEncounter
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_EndSmash

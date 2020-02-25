@@ -108,7 +108,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayMachBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayAcroBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMaySurfing;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayFieldMove;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cameraman;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Firebreather;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanUnderwater;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayUnderwater;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MovingBox;
@@ -357,7 +357,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_RIVAL_MAY_ACRO_BIKE] =      &gObjectEventGraphicsInfo_RivalMayAcroBike,
     [OBJ_EVENT_GFX_RIVAL_MAY_SURFING] =        &gObjectEventGraphicsInfo_RivalMaySurfing,
     [OBJ_EVENT_GFX_RIVAL_MAY_FIELD_MOVE] =     &gObjectEventGraphicsInfo_RivalMayFieldMove,
-    [OBJ_EVENT_GFX_CAMERAMAN] =                &gObjectEventGraphicsInfo_Cameraman,
+    [OBJ_EVENT_GFX_FIREBREATHER] =             &gObjectEventGraphicsInfo_Firebreather,
     [OBJ_EVENT_GFX_BRENDAN_UNDERWATER] =       &gObjectEventGraphicsInfo_BrendanUnderwater,
     [OBJ_EVENT_GFX_MAY_UNDERWATER] =           &gObjectEventGraphicsInfo_MayUnderwater,
     [OBJ_EVENT_GFX_MOVING_BOX] =               &gObjectEventGraphicsInfo_MovingBox,

@@ -128,7 +128,7 @@ gMapLayouts::
 	.4byte MeteorFalls_1F_2R_Layout
 	.4byte MeteorFalls_B1F_1R_Layout
 	.4byte MeteorFalls_B1F_2R_Layout
-	.4byte RusturfTunnel_Layout
+	.4byte UnionCave_1F_Layout
 	.4byte Underwater_SootopolisCity_Layout
 	.4byte DesertRuins_Layout
 	.4byte DarkCave_South_Layout

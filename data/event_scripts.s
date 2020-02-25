@@ -351,7 +351,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/MeteorFalls_1F_2R/scripts.inc"
 	.include "data/maps/MeteorFalls_B1F_1R/scripts.inc"
 	.include "data/maps/MeteorFalls_B1F_2R/scripts.inc"
-	.include "data/maps/RusturfTunnel/scripts.inc"
+	.include "data/maps/UnionCave_1F/scripts.inc"
 	.include "data/maps/Underwater_SootopolisCity/scripts.inc"
 	.include "data/maps/DesertRuins/scripts.inc"
 	.include "data/maps/DarkCave_South/scripts.inc"
@@ -797,13 +797,13 @@ EventScript_HideMrBriney:: @ 82721F8
 	setvar VAR_BRINEY_LOCATION, 0
 	return
 
-RusturfTunnel_EventScript_SetRusturfTunnelOpen:: @ 8272216
+UnionCave_1F_EventScript_SetUnionCave_1FOpen:: @ 8272216
 	removeobject 1
 	removeobject 10
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA
-	setvar VAR_RUSTURF_TUNNEL_STATE, 6
-	setflag FLAG_RUSTURF_TUNNEL_OPENED
+	setvar VAR_UNION_CAVE_STATE, 6
+	setflag FLAG_UNION_CAVE_OPENED
 	return
 
 EventScript_UnusedBoardFerry:: @ 827222B

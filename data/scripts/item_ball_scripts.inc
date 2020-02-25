@@ -62,6 +62,22 @@ Route32_EventScript_ItemGreatBall::
 	finditem ITEM_GREAT_BALL
 	end
 
+UnionCave_1F_EventScript_ItemGreatBall::
+	finditem ITEM_GREAT_BALL
+	end
+
+UnionCave_1F_EventScript_ItemXAttack::
+	finditem ITEM_X_ATTACK
+	end
+
+UnionCave_1F_EventScript_ItemPotion::
+	finditem ITEM_POTION
+	end
+
+UnionCave_1F_EventScript_ItemAwakening::
+	finditem ITEM_AWAKENING
+	end
+
 Route105_EventScript_ItemIron:: @ 8290D33
 	finditem ITEM_IRON
 	end
@@ -370,11 +386,11 @@ PetalburgWoods_EventScript_ItemParalyzeHeal:: @ 8291129
 	finditem ITEM_PARALYZE_HEAL
 	end
 
-RusturfTunnel_EventScript_ItemPokeBall:: @ 8291136
+UnionCave_1F_EventScript_ItemPokeBall:: @ 8291136
 	finditem ITEM_POKE_BALL
 	end
 
-RusturfTunnel_EventScript_ItemMaxEther:: @ 8291143
+UnionCave_1F_EventScript_ItemMaxEther:: @ 8291143
 	finditem ITEM_MAX_ETHER
 	end
 

@@ -181,7 +181,7 @@ $(OBJEVENTGFXDIR)/people/gameboy_kid.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/people/bug_catcher.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/cameraman.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/firebreather.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/camper.4bpp: %.4bpp: %.png

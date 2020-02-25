@@ -126,7 +126,7 @@
 	.include "data/layouts/MeteorFalls_1F_2R/layout.inc"
 	.include "data/layouts/MeteorFalls_B1F_1R/layout.inc"
 	.include "data/layouts/MeteorFalls_B1F_2R/layout.inc"
-	.include "data/layouts/RusturfTunnel/layout.inc"
+	.include "data/layouts/UnionCave_1F/layout.inc"
 	.include "data/layouts/Underwater_SootopolisCity/layout.inc"
 	.include "data/layouts/DesertRuins/layout.inc"
 	.include "data/layouts/DarkCave_South/layout.inc"
