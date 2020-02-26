@@ -402,11 +402,11 @@ DarkCave_B1F_EventScript_ItemPokeBall:: @ 829115D
 	finditem ITEM_POKE_BALL
 	end
 
-DarkCave_B2F_EventScript_ItemRepel:: @ 829116A
+UnionCave_B1F_EventScript_ItemRepel:: @ 829116A
 	finditem ITEM_REPEL
 	end
 
-DarkCave_B2F_EventScript_ItemRareCandy:: @ 8291177
+UnionCave_B1F_EventScript_ItemRareCandy:: @ 8291177
 	finditem ITEM_RARE_CANDY
 	end
 

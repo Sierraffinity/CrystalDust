@@ -1,9 +1,9 @@
 {
-  "id": "MAP_DARK_CAVE_STEVENS_ROOM",
-  "name": "DarkCave_StevensRoom",
-  "layout": "LAYOUT_DARK_CAVE_STEVENS_ROOM",
+  "id": "MAP_UNION_CAVE_B2F",
+  "name": "UnionCave_B2F",
+  "layout": "LAYOUT_UNION_CAVE_B2F",
   "music": "MUS_ILEXFOREST",
-  "region_map_section": "MAPSEC_DARK_CAVE",
+  "region_map_section": "MAPSEC_UNION_CAVE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "DarkCave_StevensRoom_EventScript_Steven",
+      "script": "UnionCave_B2F_EventScript_Steven",
       "flag": "FLAG_HIDE_DARK_CAVE_STEVEN"
     }
   ],

@@ -1,9 +1,9 @@
 {
-  "id": "MAP_DARK_CAVE_B2F",
-  "name": "DarkCave_B2F",
-  "layout": "LAYOUT_DARK_CAVE_B2F",
+  "id": "MAP_UNION_CAVE_B1F",
+  "name": "UnionCave_B1F",
+  "layout": "LAYOUT_UNION_CAVE_B1F",
   "music": "MUS_ILEXFOREST",
-  "region_map_section": "MAPSEC_DARK_CAVE",
+  "region_map_section": "MAPSEC_UNION_CAVE",
   "requires_flash": true,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
@@ -25,8 +25,8 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "DarkCave_B2F_EventScript_ItemRepel",
-      "flag": "FLAG_ITEM_DARK_CAVE_B2F_REPEL"
+      "script": "UnionCave_B1F_EventScript_ItemRepel",
+      "flag": "FLAG_ITEM_UNION_CAVE_B1F_REPEL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -39,8 +39,8 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "DarkCave_B2F_EventScript_ItemRareCandy",
-      "flag": "FLAG_ITEM_DARK_CAVE_B2F_RARE_CANDY"
+      "script": "UnionCave_B1F_EventScript_ItemRareCandy",
+      "flag": "FLAG_ITEM_UNION_CAVE_B1F_RARE_CANDY"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
@@ -186,7 +186,7 @@
       "y": 6,
       "elevation": 3,
       "item": "ITEM_EVERSTONE",
-      "flag": "FLAG_HIDDEN_ITEM_DARK_CAVE_B2F_EVERSTONE_1"
+      "flag": "FLAG_HIDDEN_ITEM_UNION_CAVE_B1F_EVERSTONE_1"
     },
     {
       "type": "hidden_item",
@@ -194,7 +194,7 @@
       "y": 11,
       "elevation": 3,
       "item": "ITEM_EVERSTONE",
-      "flag": "FLAG_HIDDEN_ITEM_DARK_CAVE_B2F_EVERSTONE_2"
+      "flag": "FLAG_HIDDEN_ITEM_UNION_CAVE_B1F_EVERSTONE_2"
     }
   ],
   "phone_service": true

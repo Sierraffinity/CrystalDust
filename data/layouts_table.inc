@@ -133,7 +133,7 @@ gMapLayouts::
 	.4byte DesertRuins_Layout
 	.4byte DarkCave_South_Layout
 	.4byte DarkCave_B1F_Layout
-	.4byte DarkCave_B2F_Layout
+	.4byte UnionCave_B1F_Layout
 	.4byte PetalburgWoods_Layout
 	.4byte MtChimney_Layout
 	.4byte MtPyre_1F_Layout
@@ -287,7 +287,7 @@ gMapLayouts::
 	.4byte VictoryRoad_B1F_Layout
 	.4byte VictoryRoad_B2F_Layout
 	.4byte Route104_Prototype_Layout
-	.4byte DarkCave_StevensRoom_Layout
+	.4byte UnionCave_B2F_Layout
 	.4byte RuinsOfAlph_HoOhItemRoom_Layout
 	.4byte SouthernIsland_Exterior_Layout
 	.4byte SouthernIsland_Interior_Layout

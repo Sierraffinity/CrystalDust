@@ -7513,8 +7513,8 @@
           }
         },
         {
-          "map": "MAP_DARK_CAVE_B2F",
-          "base_label": "gDarkCave_B2F",
+          "map": "MAP_UNION_CAVE_B1F",
+          "base_label": "gUnionCave_B1F",
           "land_mons": {
             "encounter_rate": 10,
             "mons": [
@@ -13595,8 +13595,8 @@
           }
         },
         {
-          "map": "MAP_DARK_CAVE_STEVENS_ROOM",
-          "base_label": "gDarkCave_StevensRoom",
+          "map": "MAP_UNION_CAVE_B2F",
+          "base_label": "gUnionCave_B2F",
           "land_mons": {
             "encounter_rate": 10,
             "mons": [

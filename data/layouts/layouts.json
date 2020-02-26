@@ -1331,11 +1331,11 @@
             "width": 32
         },
         {
-            "blockdata_filepath": "data/layouts/DarkCave_B2F/map.bin",
-            "border_filepath": "data/layouts/DarkCave_B2F/border.bin",
+            "blockdata_filepath": "data/layouts/UnionCave_B1F/map.bin",
+            "border_filepath": "data/layouts/UnionCave_B1F/border.bin",
             "height": 26,
-            "id": "LAYOUT_DARK_CAVE_B2F",
-            "name": "DarkCave_B2F_Layout",
+            "id": "LAYOUT_UNION_CAVE_B1F",
+            "name": "UnionCave_B1F_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
             "width": 32
@@ -2871,11 +2871,11 @@
             "width": 1
         },
         {
-            "blockdata_filepath": "data/layouts/DarkCave_StevensRoom/map.bin",
-            "border_filepath": "data/layouts/DarkCave_StevensRoom/border.bin",
+            "blockdata_filepath": "data/layouts/UnionCave_B2F/map.bin",
+            "border_filepath": "data/layouts/UnionCave_B2F/border.bin",
             "height": 14,
-            "id": "LAYOUT_DARK_CAVE_STEVENS_ROOM",
-            "name": "DarkCave_StevensRoom_Layout",
+            "id": "LAYOUT_UNION_CAVE_B2F",
+            "name": "UnionCave_B2F_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
             "width": 15
