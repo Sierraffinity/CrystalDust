@@ -179,6 +179,18 @@ static void sub_80A95F4(void)
 
     regBgcnt2 = (struct BGCntrlBitfield *)(&REG_BG2CNT);
     regBgcnt2->charBaseBlock = 0;
+    
+    EnableInterrupts(INTR_FLAG_VBLANK);
+    SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+    SetGpuReg(REG_OFFSET_BLDY, 0);
+    SetGpuReg(REG_OFFSET_WININ, 0x3F);
+    SetGpuReg(REG_OFFSET_WINOUT, 0x3F);
+    SetGpuReg(REG_OFFSET_WIN0H, 0);
+    SetGpuReg(REG_OFFSET_WIN0V, 0);
+    SetGpuReg(REG_OFFSET_WIN1H, 0);
+    SetGpuReg(REG_OFFSET_WIN1V, 0);
+    SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON | DISPCNT_OBJWIN_ON);
 }
 
 static bool8 LoadBattlerSpriteGfx(u8 battler)
