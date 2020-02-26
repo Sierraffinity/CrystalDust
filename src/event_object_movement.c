@@ -405,17 +405,17 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_5  0x1108
 #define OBJ_EVENT_PAL_TAG_6  0x1109
 #define OBJ_EVENT_PAL_TAG_7  0x110A
-#define OBJ_EVENT_PAL_TAG_8  0x1100
-#define OBJ_EVENT_PAL_TAG_9  0x1101
-#define OBJ_EVENT_PAL_TAG_10 0x1102
+#define OBJ_EVENT_PAL_TAG_8  0x1100 // Gold
+#define OBJ_EVENT_PAL_TAG_9  0x1101 // Gold reflection
+#define OBJ_EVENT_PAL_TAG_10 0x1102 // Pure blue..? Placeholder as reflection tag in player sprite object data
 #define OBJ_EVENT_PAL_TAG_11 0x1115
 #define OBJ_EVENT_PAL_TAG_12 0x110B // Elm
-#define OBJ_EVENT_PAL_TAG_13 0x110C // Unused (previously Quinty's reflection)
+#define OBJ_EVENT_PAL_TAG_13 0x110C // Silver
 #define OBJ_EVENT_PAL_TAG_14 0x110D
 #define OBJ_EVENT_PAL_TAG_15 0x110E
 #define OBJ_EVENT_PAL_TAG_16 0x110F
-#define OBJ_EVENT_PAL_TAG_17 0x1110
-#define OBJ_EVENT_PAL_TAG_18 0x1111
+#define OBJ_EVENT_PAL_TAG_17 0x1110 // Kris
+#define OBJ_EVENT_PAL_TAG_18 0x1111 // Kris reflection
 #define OBJ_EVENT_PAL_TAG_19 0x1112
 #define OBJ_EVENT_PAL_TAG_20 0x1113
 #define OBJ_EVENT_PAL_TAG_21 0x1114

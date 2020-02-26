@@ -968,7 +968,7 @@ const union AnimCmd *const gObjectEventImageAnimTable_Rayquaza2[] = {
     gObjectEventImageAnim_8509210,
 };
 
-const union AnimCmd *const gObjectEventImageAnimTable_BrendanMayNormal[] = {
+const union AnimCmd *const gObjectEventImageAnimTable_GoldKrisNormal[] = {
     gObjectEventImageAnim_FaceSouth,
     gObjectEventImageAnim_FaceNorth,
     gObjectEventImageAnim_FaceWest,
@@ -1145,7 +1145,7 @@ const struct UnkStruct_085094AC gUnknown_085094AC[] = {
         .animPos = {1, 3, 0, 2},
     },
     {
-        .anims = gObjectEventImageAnimTable_BrendanMayNormal,
+        .anims = gObjectEventImageAnimTable_GoldKrisNormal,
         .animPos = {1, 3, 0, 2},
     },
     {

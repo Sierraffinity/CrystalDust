@@ -87,7 +87,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Teala;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BreakableRock;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PushableBoulder;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MrBrineysBoat;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayNormal;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KrisNormal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayMachBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayAcroBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MaySurfing;
@@ -336,7 +336,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_BREAKABLE_ROCK] =           &gObjectEventGraphicsInfo_BreakableRock,
     [OBJ_EVENT_GFX_PUSHABLE_BOULDER] =         &gObjectEventGraphicsInfo_PushableBoulder,
     [OBJ_EVENT_GFX_MR_BRINEYS_BOAT] =          &gObjectEventGraphicsInfo_MrBrineysBoat,
-    [OBJ_EVENT_GFX_MAY_NORMAL] =               &gObjectEventGraphicsInfo_MayNormal,
+    [OBJ_EVENT_GFX_MAY_NORMAL] =               &gObjectEventGraphicsInfo_KrisNormal,
     [OBJ_EVENT_GFX_MAY_MACH_BIKE] =            &gObjectEventGraphicsInfo_MayMachBike,
     [OBJ_EVENT_GFX_MAY_ACRO_BIKE] =            &gObjectEventGraphicsInfo_MayAcroBike,
     [OBJ_EVENT_GFX_MAY_SURFING] =              &gObjectEventGraphicsInfo_MaySurfing,

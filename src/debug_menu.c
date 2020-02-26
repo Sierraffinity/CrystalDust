@@ -7,6 +7,7 @@
 #include "event_object_movement.h"
 #include "event_object_lock.h"
 #include "field_player_avatar.h"
+#include "field_screen_effect.h"
 #include "international_string_util.h"
 #include "main.h"
 #include "overworld.h"
@@ -38,6 +39,7 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId);
 static void DebugMenu_ToggleRunningShoes(u8 taskId);
 static void DebugMenu_EnableResetRTC(u8 taskId);
 static void DebugMenu_TestBattleTransition(u8 taskId);
+static void DebugMenu_SwapGender(u8 taskId);
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
 static void DebugMenu_Pokegear(u8 taskId);
@@ -62,6 +64,7 @@ static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
+static const u8 sText_GenderBender[] = _("Gender bender");
 static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
@@ -103,6 +106,7 @@ static const struct MenuAction sDebugMenu_MiscActions[] =
     { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes },
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC },
     { sText_TestBattleTransition, DebugMenu_TestBattleTransition },
+    { sText_GenderBender, DebugMenu_SwapGender },
 };
 
 static const struct WindowTemplate sDebugMenu_Window_Main = 
@@ -557,6 +561,14 @@ static void DebugMenu_EnableResetRTC(u8 taskId)
 static void DebugMenu_TestBattleTransition(u8 taskId)
 {
     TestBattleTransition(VarGet(0x4000));
+}
+
+static void DebugMenu_SwapGender(u8 taskId)
+{
+    gSaveBlock2Ptr->playerGender = !gSaveBlock2Ptr->playerGender;
+    SetWarpDestination(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1, gSaveBlock1Ptr->pos.x, gSaveBlock1Ptr->pos.y);
+    DoDiveWarp();
+    ResetInitialPlayerAvatarState();
 }
 
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId)
