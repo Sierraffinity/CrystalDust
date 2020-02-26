@@ -109,7 +109,7 @@ $(MID_SUBDIR)/mus_ilexforest.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G018 -V080
 
 $(MID_SUBDIR)/mus_darkcave.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G030 -V090
+	$(MID) $< $@ -E -R$(STD_REVERB) -G030 -V100
 
 $(MID_SUBDIR)/mus_dan03.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G037 -V080
