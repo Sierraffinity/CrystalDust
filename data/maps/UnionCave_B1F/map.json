@@ -119,21 +119,21 @@
     "show_map_name": true,
     "warp_events": [
         {
-            "dest_map": "MAP_DARK_CAVE_B1F",
-            "dest_warp_id": 2,
+            "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+            "dest_warp_id": 10,
             "elevation": 3,
             "x": 3,
             "y": 2
         },
         {
-            "dest_map": "MAP_DARK_CAVE_B1F",
-            "dest_warp_id": 3,
+            "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+            "dest_warp_id": 7,
             "elevation": 3,
             "x": 2,
             "y": 10
         },
         {
-            "dest_map": "MAP_DARK_CAVE_B1F",
+            "dest_map": "MAP_UNION_CAVE_1F",
             "dest_warp_id": 2,
             "elevation": 3,
             "x": 6,

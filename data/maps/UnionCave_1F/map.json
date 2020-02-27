@@ -161,15 +161,15 @@
             "y": 36
         },
         {
-            "dest_map": "MAP_ROUTE116",
+            "dest_map": "MAP_UNION_CAVE_B1F",
             "dest_warp_id": 2,
             "elevation": 3,
             "x": 6,
             "y": 22
         },
         {
-            "dest_map": "MAP_UNION_CAVE_1F",
-            "dest_warp_id": 0,
+            "dest_map": "MAP_UNION_CAVE_B1F",
+            "dest_warp_id": 3,
             "elevation": 0,
             "x": 2,
             "y": 38

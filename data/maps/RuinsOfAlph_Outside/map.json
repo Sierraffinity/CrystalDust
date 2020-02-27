@@ -172,8 +172,8 @@
             "y": 23
         },
         {
-            "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
-            "dest_warp_id": 0,
+            "dest_map": "MAP_UNION_CAVE_B1F",
+            "dest_warp_id": 1,
             "elevation": 0,
             "x": 9,
             "y": 36
@@ -193,7 +193,7 @@
             "y": 42
         },
         {
-            "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+            "dest_map": "MAP_UNION_CAVE_B1F",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 9,
