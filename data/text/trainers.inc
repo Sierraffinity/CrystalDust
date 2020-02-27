@@ -4667,3 +4667,59 @@ UnionCave_1F_Text_BillDefeat::
 UnionCave_1F_Text_BillPostBattle::
 	.string "On weekends, you can hear strange\n"
 	.string "roars from deep in the cave.$"
+
+UnionCave_B1F_Text_PhillipIntro::
+	.string "It's been a while since I last\n"
+	.string "saw another person.\p"
+	.string "Hey, don't be shy.\n"
+	.string "Let's battle!$"
+
+UnionCave_B1F_Text_PhillipDefeat::
+	.string "Uurggh…$"
+
+UnionCave_B1F_Text_PhillipPostBattle::
+	.string "I've been lost down here for a\n"
+	.string "long time…\p"
+	.string "I don't mind it here, but I am\n"
+	.string "soooo hungry!$"
+
+UnionCave_B1F_Text_LeonardIntro::
+	.string "Hey, what do you know!\n"
+	.string "It's a visitor!$"
+
+UnionCave_B1F_Text_LeonardDefeat::
+	.string "Wahahah!\n"
+	.string "You're a feisty one!$"
+
+UnionCave_B1F_Text_LeonardPostBattle::
+	.string "I live down here.\n"
+	.string "You can, too, if you'd like.\p"
+	.string "There's plenty of room here,\n"
+	.string "you see.$"
+
+UnionCave_B1F_Text_AndrewIntro::
+	.string "Who's there?\n"
+	.string "Leave me and my POKéMON alone!$"
+
+UnionCave_B1F_Text_AndrewDefeat::
+	.string "Go…\n"
+	.string "Go away!$"
+
+UnionCave_B1F_Text_AndrewPostBattle::
+	.string "It's just me and my POKéMON.\n"
+	.string "I'm delirious with joy.$"
+
+UnionCave_B1F_Text_CalvinIntro::
+	.string "I came all the way her to conduct\n"
+	.string "my POKéMON research.\p"
+	.string "Let me demonstrate my findings in\n"
+	.string "a real battle!$"
+
+UnionCave_B1F_Text_CalvinDefeat::
+	.string "You demonstrated on me!$"
+
+UnionCave_B1F_Text_CalvinPostBattle::
+	.string "I should compile and announce the\n"
+	.string "findings of my study.\p"
+	.string "I might even become famous like\n"
+	.string "PROF. ELM.$"

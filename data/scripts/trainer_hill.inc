@@ -60,9 +60,9 @@ TrainerHill_1F_Movement_SetInvisible:: @ 82C83EE
 	set_invisible
 	step_end
 
-@ TRAINER_PHILLIP is an actual Trainer on the SS Tidal, but is used as a placeholder here
+@ TRAINER_PHILLIP_OLD is an actual Trainer on the SS Tidal, but is used as a placeholder here
 TrainerHill_EventScript_TrainerBattle:: @ 82C83F0
-	trainerbattle TRAINER_BATTLE_HILL, TRAINER_PHILLIP, 0, BattleFacility_TrainerBattle_PlaceholderText, BattleFacility_TrainerBattle_PlaceholderText
+	trainerbattle TRAINER_BATTLE_HILL, TRAINER_PHILLIP_OLD, 0, BattleFacility_TrainerBattle_PlaceholderText, BattleFacility_TrainerBattle_PlaceholderText
 	trainerhill_postbattletext
 	waitmessage
 	waitbuttonpress

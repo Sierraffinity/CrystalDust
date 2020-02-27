@@ -36,7 +36,6 @@ static void TilesetAnim_BattleFrontierOutsideWest(u16);
 static void TilesetAnim_BattleFrontierOutsideEast(u16);
 static void TilesetAnim_Underwater(u16);
 static void TilesetAnim_SootopolisGym(u16);
-static void TilesetAnim_Cave(u16);
 static void TilesetAnim_EliteFour(u16);
 static void TilesetAnim_MauvilleGym(u16);
 static void TilesetAnim_PagodaTower(u16);
@@ -65,7 +64,6 @@ static void QueueAnimTiles_Pacifidlog_LogBridges(u8);
 static void QueueAnimTiles_Pacifidlog_WaterCurrents(u8);
 static void QueueAnimTiles_Sootopolis_StormyWater(u16);
 static void QueueAnimTiles_Underwater_Seaweed(u8);
-static void QueueAnimTiles_Cave_Lava(u16);
 static void QueueAnimTiles_BattleFrontierOutsideWest_Flag(u16);
 static void QueueAnimTiles_BattleFrontierOutsideEast_Flag(u16);
 static void QueueAnimTiles_MauvilleGym_ElectricGates(u16);
@@ -770,13 +768,6 @@ void InitTilesetAnim_SootopolisGym(void)
     sSecondaryTilesetAnimCallback = TilesetAnim_SootopolisGym;
 }
 
-void InitTilesetAnim_Cave(void)
-{
-    sSecondaryTilesetAnimCounter = 0;
-    sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
-    sSecondaryTilesetAnimCallback = TilesetAnim_Cave;
-}
-
 void InitTilesetAnim_EliteFour(void)
 {
     sSecondaryTilesetAnimCounter = 0;
@@ -916,12 +907,6 @@ static void TilesetAnim_Underwater(u16 timer)
         QueueAnimTiles_Underwater_Seaweed(timer >> 4);
 }
 
-static void TilesetAnim_Cave(u16 timer)
-{
-    if (timer % 16 == 1)
-        QueueAnimTiles_Cave_Lava(timer >> 4);
-}
-
 static void TilesetAnim_BattleFrontierOutsideWest(u16 timer)
 {
     if (timer % 8 == 0)
@@ -1004,12 +989,6 @@ static void QueueAnimTiles_EverGrande_Flowers(u16 timer_div, u8 timer_mod)
     timer_div %= 8;
 
     AppendTilesetAnimToBuffer(gTilesetAnims_EverGrande_Flowers[timer_div], gTilesetAnims_EverGrande_VDests[timer_mod], 0x80);
-}
-
-static void QueueAnimTiles_Cave_Lava(u16 timer)
-{
-    u16 i = timer % 4;
-    AppendTilesetAnimToBuffer(gTilesetAnims_Lavaridge_Cave_Lava[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 416)), 0x80);
 }
 
 static void QueueAnimTiles_Dewford_Flag(u16 timer)

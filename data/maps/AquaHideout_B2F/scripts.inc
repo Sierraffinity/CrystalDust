@@ -23,7 +23,7 @@ AquaHideout_B2F_EventScript_MattNoticePlayer:: @ 8233DE5
 	end
 
 AquaHideout_B2F_EventScript_Matt:: @ 8233E09
-	trainerbattle_single TRAINER_MATT, AquaHideout_B2F_Text_MattIntro, AquaHideout_B2F_Text_MattDefeat, AquaHideout_B2F_EventScript_SubmarineEscape
+	trainerbattle_single TRAINER_CALVIN, AquaHideout_B2F_Text_MattIntro, AquaHideout_B2F_Text_MattDefeat, AquaHideout_B2F_EventScript_SubmarineEscape
 	msgbox AquaHideout_B2F_Text_MattPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -77,7 +77,7 @@ AquaHideout_B2F_EventScript_Grunt4Defeated:: @ 8233EA5
 	end
 
 AquaHideout_B2F_EventScript_Grunt6:: @ 8233EAF
-	trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_6, AquaHideout_B2F_Text_Grunt6Intro, AquaHideout_B2F_Text_Grunt6Defeat
+	trainerbattle_single TRAINER_LEONARD, AquaHideout_B2F_Text_Grunt6Intro, AquaHideout_B2F_Text_Grunt6Defeat
 	msgbox AquaHideout_B2F_Text_Grunt6PostBattle, MSGBOX_AUTOCLOSE
 	end
 

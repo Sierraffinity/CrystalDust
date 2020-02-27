@@ -374,6 +374,74 @@ text UnionCave_1F_Text_BillPostBattle {
 	"roars from deep in the cave."
 }
 
+text UnionCave_B1F_Text_PhillipIntro {
+	"It's been a while since I last\n"
+	"saw another person.\p"
+	"Hey, don't be shy.\n"
+	"Let's battle!"
+}
+
+text UnionCave_B1F_Text_PhillipDefeat {
+	"Uurggh…"
+}
+
+text UnionCave_B1F_Text_PhillipPostBattle {
+	"I've been lost down here for a\n"
+	"long time…\p"
+	"I don't mind it here, but I am\n"
+	"soooo hungry!"
+}
+
+text UnionCave_B1F_Text_LeonardIntro {
+	"Hey, what do you know!\n"
+	"It's a visitor!"
+}
+
+text UnionCave_B1F_Text_LeonardDefeat {
+	"Wahahah!\n"
+	"You're a feisty one!"
+}
+
+text UnionCave_B1F_Text_LeonardPostBattle {
+	"I live down here.\n"
+	"You can, too, if you'd like.\p"
+	"There's plenty of room here,\n"
+	"you see."
+}
+
+text UnionCave_B1F_Text_AndrewIntro {
+	"Who's there?\n"
+	"Leave me and my POKéMON alone!"
+}
+
+text UnionCave_B1F_Text_AndrewDefeat {
+	"Go…\n"
+	"Go away!"
+}
+
+text UnionCave_B1F_Text_AndrewPostBattle {
+	"It's just me and my POKéMON.\n"
+	"I'm delirious with joy."
+}
+
+text UnionCave_B1F_Text_CalvinIntro {
+	"I came all the way her to conduct\n"
+	"my POKéMON research.\p"
+	"Let me demonstrate my findings in\n"
+	"a real battle!"
+}
+
+text UnionCave_B1F_Text_CalvinDefeat {
+	"You demonstrated on me!"
+}
+
+text UnionCave_B1F_Text_CalvinPostBattle {
+	"I should compile and announce the\n"
+	"findings of my study.\p"
+	"I might even become famous like\n"
+	"PROF. ELM."
+}
+
 raw`
 Route105_Text_FosterIntro: @ 8295D0F
 	.string "There's supposed to be a mystical\n"

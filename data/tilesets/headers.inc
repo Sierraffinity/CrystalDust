@@ -236,7 +236,7 @@ gTileset_Cave:: @ 83DF8CC
 	.4byte NULL
 	.4byte gMetatiles_Cave
 	.4byte gMetatileAttributes_Cave
-	.4byte InitTilesetAnim_Cave
+	.4byte NULL @ animation callback
 
 	.align 2
 gTileset_PokemonSchool:: @ 83DF8E4
@@ -371,15 +371,15 @@ gTileset_BikeShop:: @ 83DF9D4
 	.4byte InitTilesetAnim_BikeShop
 
 	.align 2
-gTileset_UnionCave_1F:: @ 83DF9EC
+gTileset_RusturfTunnel:: @ 83DF9EC
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_UnionCave_1F
-	.4byte gTilesetPalettes_UnionCave_1F
+	.4byte gTilesetTiles_RusturfTunnel
+	.4byte gTilesetPalettes_RusturfTunnel
 	.4byte NULL
-	.4byte gMetatiles_UnionCave_1F
-	.4byte gMetatileAttributes_UnionCave_1F
+	.4byte gMetatiles_RusturfTunnel
+	.4byte gMetatileAttributes_RusturfTunnel
 	.4byte NULL @ animation callback
 
 	.align 2

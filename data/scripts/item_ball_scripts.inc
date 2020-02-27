@@ -78,6 +78,14 @@ UnionCave_1F_EventScript_ItemAwakening::
 	finditem ITEM_AWAKENING
 	end
 
+UnionCave_B1F_EventScript_ItemTM43::
+	finditem ITEM_TM43
+	end
+
+UnionCave_B1F_EventScript_ItemXDefend::
+	finditem ITEM_X_DEFEND
+	end
+
 Route105_EventScript_ItemIron:: @ 8290D33
 	finditem ITEM_IRON
 	end
@@ -386,28 +394,12 @@ PetalburgWoods_EventScript_ItemParalyzeHeal:: @ 8291129
 	finditem ITEM_PARALYZE_HEAL
 	end
 
-UnionCave_1F_EventScript_ItemPokeBall:: @ 8291136
-	finditem ITEM_POKE_BALL
-	end
-
-UnionCave_1F_EventScript_ItemMaxEther:: @ 8291143
-	finditem ITEM_MAX_ETHER
-	end
-
 DarkCave_South_EventScript_ItemEscapeRope:: @ 8291150
 	finditem ITEM_ESCAPE_ROPE
 	end
 
 DarkCave_B1F_EventScript_ItemPokeBall:: @ 829115D
 	finditem ITEM_POKE_BALL
-	end
-
-UnionCave_B1F_EventScript_ItemRepel:: @ 829116A
-	finditem ITEM_REPEL
-	end
-
-UnionCave_B1F_EventScript_ItemRareCandy:: @ 8291177
-	finditem ITEM_RARE_CANDY
 	end
 
 JaggedPass_EventScript_ItemBurnHeal:: @ 8291184

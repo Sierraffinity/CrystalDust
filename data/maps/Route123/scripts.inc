@@ -119,7 +119,7 @@ Route123_EventScript_Kindra:: @ 81F6304
 	end
 
 Route123_EventScript_Frederick:: @ 81F631B
-	trainerbattle_single TRAINER_FREDRICK, Route123_Text_FrederickIntro, Route123_Text_FrederickDefeat
+	trainerbattle_single TRAINER_ANDREW, Route123_Text_FrederickIntro, Route123_Text_FrederickDefeat
 	msgbox Route123_Text_FrederickPostBattle, MSGBOX_AUTOCLOSE
 	end
 

@@ -1333,12 +1333,12 @@
         {
             "blockdata_filepath": "data/layouts/UnionCave_B1F/map.bin",
             "border_filepath": "data/layouts/UnionCave_B1F/border.bin",
-            "height": 26,
+            "height": 40,
             "id": "LAYOUT_UNION_CAVE_B1F",
             "name": "UnionCave_B1F_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
-            "width": 32
+            "width": 24
         },
         {
             "blockdata_filepath": "data/layouts/PetalburgWoods/map.bin",

@@ -28,10 +28,10 @@
 #define TRAINER_RUSSELL          24
 #define TRAINER_RAY              25
 #define TRAINER_BILL             26
-#define TRAINER_GRUNT_AQUA_HIDEOUT_5         27
-#define TRAINER_GRUNT_AQUA_HIDEOUT_6         28
-#define TRAINER_FREDRICK                     29
-#define TRAINER_MATT                         30
+#define TRAINER_PHILLIP         27
+#define TRAINER_LEONARD         28
+#define TRAINER_ANDREW                     29
+#define TRAINER_CALVIN                         30
 #define TRAINER_ZANDER                       31
 #define TRAINER_SHELLY_WEATHER_INSTITUTE     32
 #define TRAINER_SHELLY_SEAFLOOR_CAVERN       33
@@ -337,7 +337,7 @@
 #define TRAINER_ALLEN                       333
 #define TRAINER_TIMMY                       334
 #define TRAINER_WALLACE                     335
-#define TRAINER_ANDREW                      336
+#define TRAINER_ANDREW_OLD                      336
 #define TRAINER_IVAN                        337
 #define TRAINER_CLAUDE                      338
 #define TRAINER_ELLIOT_1                    339
@@ -495,8 +495,8 @@
 #define TRAINER_EDMOND_OLD                  491
 #define TRAINER_ERNEST_1                    492
 #define TRAINER_DWAYNE                      493
-#define TRAINER_PHILLIP                     494
-#define TRAINER_LEONARD                     495
+#define TRAINER_PHILLIP_OLD                     494
+#define TRAINER_LEONARD_OLD                     495
 #define TRAINER_DUNCAN                      496
 #define TRAINER_ERNEST_2                    497
 #define TRAINER_ERNEST_3                    498
