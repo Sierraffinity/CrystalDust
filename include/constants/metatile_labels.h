@@ -204,9 +204,9 @@
 #define METATILE_General_Door_PokeCenter       0x062
 #define METATILE_General_Door_PokeMart         0x041
 #define METATILE_General_Grass                 0x001
-#define METATILE_General_Grass_TreeLeft        0x1CE
-#define METATILE_General_Grass_TreeRight       0x1CF
-#define METATILE_General_Grass_TreeUp          0x00E
+#define METATILE_General_Grass_TreeLeft        0x00E
+#define METATILE_General_Grass_TreeRight       0x00F
+#define METATILE_General_Grass_TreeUp          0x013
 #define METATILE_General_LongGrass             0x015
 #define METATILE_General_MuddySlope_Frame0     0x0E8
 #define METATILE_General_MuddySlope_Frame1     0x0E9
@@ -226,9 +226,9 @@
 #define METATILE_General_SecretBase_VineLeft   0x036
 #define METATILE_General_SecretBase_VineRight  0x037
 #define METATILE_General_TallGrass             0x00D
-#define METATILE_General_TallGrass_TreeLeft    0x1C6
-#define METATILE_General_TallGrass_TreeRight   0x1C7
-#define METATILE_General_TallGrass_TreeUp      0x025
+#define METATILE_General_TallGrass_TreeLeft    0x00B
+#define METATILE_General_TallGrass_TreeRight   0x00C
+#define METATILE_General_TallGrass_TreeUp      0x00A
 #define METATILE_General_YellowCaveIndent      0x1A8
 #define METATILE_General_YellowCaveOpen        0x1A9
 
