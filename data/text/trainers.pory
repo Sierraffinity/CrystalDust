@@ -339,7 +339,7 @@ text UnionCave_1F_Text_RussellDefeat {
 
 text UnionCave_1F_Text_RussellPostBattle {
 	"All right, then!\n"
-	"I've decided, I'm not leaving until\l"
+	"I've decided I'm not leaving until\l"
 	"my POKéMON get tougher!"
 }
 
