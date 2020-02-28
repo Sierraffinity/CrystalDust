@@ -585,6 +585,8 @@ void MPlayOpen(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track
     mplayInfo->ident = ID_NUMBER;
 }
 
+extern void GBSInitSong(struct MusicPlayerInfo *mplayInfo, struct SongHeader *header);
+
 void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader)
 {
     s32 i;
@@ -639,6 +641,8 @@ void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader
             m4aSoundMode(songHeader->reverb);
 
         mplayInfo->ident = ID_NUMBER;
+
+        GBSInitSong(mplayInfo, songHeader);
     }
 }
 
@@ -928,7 +932,7 @@ void CgbSound(void)
     vu8 *nrx3ptr;
     vu8 *nrx4ptr;
 
-    // Most comparision operations that cast to s8 perform 'and' by 0xFF.
+    // Most comparison operations that cast to s8 perform 'and' by 0xFF.
     int mask = 0xff;
 
     if (soundInfo->c15)
@@ -1207,7 +1211,7 @@ void CgbSound(void)
 
         if (channels->mo & 1)
         {
-            REG_NR51 = (REG_NR51 & ~channels->panMask) | channels->pan;
+            // REG_NR51 = (REG_NR51 & ~channels->panMask) | channels->pan;
             if (ch == 3)
             {
                 *nrx2ptr = gCgb3Vol[channels->ev];

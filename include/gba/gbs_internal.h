@@ -124,23 +124,23 @@ struct WaveTrack
 	u8 fadeSpeed;
 	u8 unk_counter;
 	u8 padding;
-	u8 pan;
+	u8 pan; // 0x14
 	u8 modulationCountdown;
 	u8 modulationDelay;
 	u8 modulationMode;
-	u8 modulationDepth;
+	u8 modulationDepth; // 0x18
 	u8 modulationSpeedDelay;
 	u8 modulationSpeed;
 	u8 secondaryPadding[2];
-	u8 portamentoCountdown;
+	u8 portamentoCountdown; // 0x1D
 	u8 portamentoDelay;
 	u8 portamentoTarget;
-    struct SoundChannel *chan;
-	u8 portamentoSpeedDelay;
-	u8 portamentoSpeed;
-	bool8 statusFlags[NumGBPEngineFlags];
-	u8 tertiaryPadding[20];
-	u8* nextInstruction;
+    struct SoundChannel *chan; // 0x20
+	u8 portamentoSpeedDelay; // 0x24
+	u8 portamentoSpeed; // 0x25
+	bool8 statusFlags[NumGBPEngineFlags]; // 0x26
+	u8 tertiaryPadding[20]; // 0x2C
+	u8* nextInstruction; // 0x40
 	u8* returnLocation;
 	u8 quaternaryPadding[8];
 };
@@ -170,10 +170,10 @@ struct NoiseTrack
 	u8* samplePointer; // 0x18
 	bool8 noiseActive; // 0x1C
 	u8 secondaryPadding[3];
-    struct SoundChannel *chan;
-	u8 tertiaryiPadding[2];
-	bool8 statusFlags[NumGBPEngineFlags];
-	u8 tertiaryPadding[24];
+	struct SoundChannel *chan; // 0x20
+	u8 tertiaryiPadding[2]; // 0x24
+	bool8 statusFlags[NumGBPEngineFlags]; // 0x26
+	u8 tertiaryPadding[20]; // 0x2c
 	u8* nextInstruction;
 	u8* returnLocation;
 	u8 quaternaryPadding[8];

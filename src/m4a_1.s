@@ -70,6 +70,7 @@ SoundMain_4:
 	mov r2, r8
 	muls r2, r1
 	adds r5, r2
+	.global SoundMain_5
 SoundMain_5:
 	str r5, [sp, 0x8]
 	ldr r6, lt_PCM_DMA_BUF_SIZE
@@ -149,7 +150,6 @@ _081DCF36:
 	mov r12, r0
 	ldrb r0, [r4, o_SoundInfo_maxChans]
 	adds r4, o_SoundInfo_chans
-
 SoundMainRAM_ChanLoop:
 	str r0, [sp, 0x4]
 	ldr r3, [r4, o_SoundChannel_wav]
@@ -1233,6 +1233,7 @@ _081DD8E0:
 	lsrs r2, 4
 	cmp r2, 0
 	beq normalM4
+	.global GBSUpdate
 GBSUpdate:
 	adds r0, r7, 0
 	adds r1, r5, 0
@@ -1285,6 +1286,7 @@ _081DD90C:
 	cmp r0, 0
 	beq normalM4_2
 	b GBSUpdate
+	.global normalM4_2
 normalM4_2:
 	ldrb r0, [r5, o_MusicPlayerTrack_flags]
 	cmp r0, 0
@@ -1302,6 +1304,7 @@ _081DD938:
 	cmp r0, 0
 	beq normalM4_3
 	b GBSUpdate
+	.global normalM4_3
 normalM4_3:
 	ldrb r0, [r5, o_MusicPlayerTrack_wait]
 	cmp r0, 0
@@ -1386,6 +1389,7 @@ _081DD9BC:
 _081DD9C4:
 	ldrb r2, [r7, o_MusicPlayerInfo_trackCount]
 	ldr r5, [r7, o_MusicPlayerInfo_tracks]
+	.global _081DD9C8
 _081DD9C8:
 	ldrb r0, [r5, o_MusicPlayerTrack_flags]
 	movs r1, 0x80
@@ -1946,26 +1950,27 @@ _081DDD90:
 ply_gbs_switch:
 	push {r4-r7}
 	ldr r2, [r1, o_MusicPlayerTrack_cmdPtr]
-	ldrb r0, [r2, 0x0]
+	ldrb r0, [r2, 0x0]  @ gbs track identifier
 	adds r2, 1
 	adds r7, r2, 0
-	cmp r0, 3
+	cmp r0, 3  @ only 0, 1, 2, and 3 are valid gbs track identifiers
 	bhi ply_gbs_switch_skip
 	adds r6, r0, 1
 	adds r5, r1, 0
 	movs r2, 0
 	movs r4, 19
+	@ clear the MusicPlayerTrack
 ply_gbs_switch_loop_start:
 	stmia r1!, {r2}
 	subs r4, 1
 	cmp r4, 0
 	bge ply_gbs_switch_loop_start
-	lsls r6, 4
+	lsls r6, 4 @ gbsIdentifier occupies bits 4-7 of the bitfield
 	strb r6, [r5, o_MusicPlayerTrack_patternLevel]
 	str r7, [r5, o_MusicPlayerTrack_cmdPtr]
 	movs r7, 255
 	strb r7, [r5, o_MusicPlayerTrack_pan]
-	movs r7, 0xC0
+	movs r7, 0x80 @ MPT_FLG_START | MPT_FLG_EXIST
 	strb r7, [r5, o_MusicPlayerTrack_flags]
 	lsls r0, 6
 	ldr r1, =gCgbChans

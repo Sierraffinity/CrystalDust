@@ -5,6 +5,7 @@
  *      Author: Jambo51
  */
 
+#include "global.h"
 #include "gba/m4a_internal.h"
 #include "gba/gbs_internal.h"
 #include "m4a.h"
@@ -36,6 +37,26 @@ inline u16 U16LittleEndianToBigEndian(u16 input)
 	return (input >> 8) | temp;
 }
 
+inline vu16 *ToneTrackControl()
+{
+	return (vu16 *)(REG_ADDR_NR10);
+}
+
+inline vu16 *WaveTrackControl()
+{
+	return (vu16 *)(REG_ADDR_NR30);
+}
+
+inline vu16 *NoiseTrackControl()
+{
+	return (vu16 *)(REG_ADDR_NR41);
+}
+
+inline vu16 *SoundControl()
+{
+	return (vu16 *)(REG_ADDR_NR50);
+}
+
 u16 CalculateLength(u8 frameDelay, u16 tempo, u8 bitLength, u16 previousLeftover)
 {
 	return ((frameDelay * (bitLength + 1)) * tempo) + previousLeftover;
@@ -60,7 +81,7 @@ u16 ToneTrackCalculatePitch(u8 commandID, s8 keyShift, u8 octave, u16 tone)
 
 void ExecuteToneModifications(u8 commandID, u16 tempo, struct ToneTrack *track)
 {
-	struct CgbChannel *channel = (track->trackID == 2) ? &gCgbChans[1] : &gCgbChans[0];
+	vu16 *control = ToneTrackControl();
 	u16 pitch = 0;
 	u16 activationValue = 0;
 	u16 secondValue = 0;
@@ -71,18 +92,18 @@ void ExecuteToneModifications(u8 commandID, u16 tempo, struct ToneTrack *track)
 	{
 		pitch = ToneTrackCalculatePitch(commandID, track->keyShift, track->currentOctave, track->tone);
 		activationValue = pitch | 0x8000;
-		//secondValue = (currentVoice << 6) | (fadeSpeed << 8) | (((fadeSpeed == 0) ? 0 : fadeDirection) << 11) | (velocity << 12);
+		secondValue = (track->currentVoice << 6) | (track->fadeSpeed << 8) | (((track->fadeSpeed == 0) ? 0 : track->fadeDirection) << 11) | (track->velocity << 12);
 	}
-	channel->fr = pitch;
 	track->pitch = pitch;
-	if (track->trackID == 1)
+	if (track->trackID == 2)
 	{
-		channel->panMask = (FALSE) ? track->pan & 0x11 : 0x11;
+		control[4] = secondValue;
 	}
 	else
 	{
-		channel->panMask = (FALSE) ? track->pan & 0x22 : 0x22;
+		control[1] = secondValue;
 	}
+	control[((track->trackID - 1) * 4) + 2] = activationValue;
 	track->nextInstruction++;
 }
 
@@ -193,10 +214,9 @@ u8 ToneExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct ToneTr
 			case SetChannelVolume:
 				if (track->channelVolume != track->nextInstruction[1])
 				{
-					struct CgbChannel *channel = (track->trackID == 2) ? &gCgbChans[1] : &gCgbChans[0];
+					vu16 *control = SoundControl();
 					track->channelVolume = track->nextInstruction[1];
-					channel->leftVolume = track->channelVolume;
-					channel->rightVolume = track->channelVolume;
+					control[0] = (control[0] & 0xFF00) | track->channelVolume;
 				}
 				commandLength = 2;
 				break;
@@ -345,7 +365,6 @@ u16 GetToneModulationPitch(struct ToneTrack *track)
 
 void ToneModulateTrack(struct ToneTrack *track)
 {
-	struct CgbChannel *channel = (track->trackID == 2) ? &gCgbChans[1] : &gCgbChans[0];
 	if (track->statusFlags[PitchBendActivation])
 	{
 		track->pitch += track->pitchBendRate;
@@ -385,7 +404,10 @@ void ToneModulateTrack(struct ToneTrack *track)
 		{
 			if (track->modulationSpeedDelay == 0 && track->pitch != 0)
 			{
-				channel->fr = GetToneModulationPitch(track);
+				vu16 *control = ToneTrackControl();
+				u16 location = 2 + ((track->trackID - 1) * 4);
+				control[location] &= 0x8000;
+				control[location] |= GetToneModulationPitch(track);
 			}
 			else
 			{
@@ -412,7 +434,6 @@ void ResetModulationArpeggiationCounters(struct ToneTrack *track)
 
 void ArpeggiateTrack(struct ToneTrack *track)
 {
-	struct CgbChannel *channel = (track->trackID == 2) ? &gCgbChans[1] : &gCgbChans[0];
 	if (track->statusFlags[ArpeggiationActivation])
 	{
 		if (track->arpeggiationCountdown > 0)
@@ -421,8 +442,10 @@ void ArpeggiateTrack(struct ToneTrack *track)
 		}
 		else
 		{
+			vu16 *control = ToneTrackControl();
+			u16 location = (track->trackID == 1) ? 1 : 4;
 			track->arpeggiationCountdown = track->arpeggiationDelayCount;
-			//tone1Controller[location] = (tone1Controller[location] & 0xFF00) | (((statusFlags[ArpeggiationStatus])?currentVoice:arpeggiationVoice) << 6);
+			control[location] = (control[location] & 0xFF00) | (((track->statusFlags[ArpeggiationStatus]) ? track->currentVoice : track->arpeggiationVoice) << 6);
 			track->statusFlags[ArpeggiationStatus] = !track->statusFlags[ArpeggiationStatus];
 		}
 	}
@@ -533,8 +556,40 @@ const u16 freq[75] = {
 	2015,
 	2017,
 	2019,
-	2020
+	2020 // 74898
 };
+
+static const u32 wavePatterns[][4] = {
+	{ 0xCE8A4602, 0xDCEDFEFF, 0x6587A9CB, 0x11223344 },
+	{ 0xCE8A4602, 0xEEFEFFEF, 0x87A9CBDD, 0x11224365 },
+	{ 0xEEBD6913, 0xEDFFFFEE, 0xEEFFFFDE, 0x3196DBEE },
+	{ 0xCD8A4602, 0xFFDEFEEF, 0x98BADCEE, 0x10325476 },
+	{ 0x67452301, 0xF7EECD8A, 0xA8DCEE7F, 0x10325476 },
+	{ 0x33221100, 0x11223344, 0xAACCEEFF, 0xEECCAA88 },
+	{ 0xCE8A4602, 0x6587A9CB, 0xDCEDFEFF, 0x11223344 },
+	{ 0xF587A9C0, 0xDCEDFEFF, 0xF1223344, 0xCE8A4602 },
+	{ 0x1F223344, 0xCE8A4600, 0xDCEDFEF8, 0x6587A9CB },
+	{ 0x08000011, 0x9A571300, 0x98A9BAB4, 0x21436587 },
+	{ 0x2833E221, 0xEAFF22E1, 0x10DC1410, 0x735141E3 },
+	{ 0x000000FF, 0x00000000, 0x000000FF, 0x00000000 },
+	{ 0x0000FFFF, 0x00000000, 0x0000FFFF, 0x00000000 },
+	{ 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000 },
+	{ 0xFFFFFFFF, 0x0000FFFF, 0xFFFFFFFF, 0x0000FFFF }
+};
+
+void SwitchWavePattern(int patternID)
+{
+	int i;
+	vu16* control = WaveTrackControl();
+	if (patternID < ARRAY_COUNT(wavePatterns))
+	{
+		u32* mainPattern = (u32 *)(REG_ADDR_WAVE_RAM0);
+		control[0] = 0x40;
+		for (i = 0; i < 4; i++)
+			mainPattern[i] = wavePatterns[patternID][i];
+		control[0] = 0x0;
+	}
+}
 
 u16 CalculateWavePitch(u8 commandID, s8 keyShift, u8 octave, u16 tone)
 {
@@ -550,22 +605,28 @@ u16 CalculateWavePitch(u8 commandID, s8 keyShift, u8 octave, u16 tone)
 
 void ExecuteWaveModifications(u8 commandID, u16 tempo, struct WaveTrack *track)
 {
+	vu16 *control = WaveTrackControl();
 	u16 thisVelocity = 0;
+	u16 thisPitch = 0;
 	u16 activationValue = 0;
 	u16 noteLength = CalculateLength(track->frameDelay, tempo, (commandID & 0xF), track->noteLength2);
 	track->noteLength1 = (noteLength & 0xFF00) >> 8;
 	track->noteLength2 = noteLength & 0xFF;
-	if ((commandID & 0xF0) != 0)
+	if (commandID & 0xF0)
 	{
 		track->pitch = CalculateWavePitch(commandID, track->keyShift, track->currentOctave, track->tone);
+		thisVelocity = track->velocity << 13;
+		thisPitch = track->pitch | 0x8000;
+		activationValue = 0x80;
 	}
-	gCgbChans[2].panMask = (FALSE) ? track->pan & 0x44 : 0x44;
-	gCgbChans[2].ve = track->velocity;
-	gCgbChans[2].fr = track->pitch;
+	control[0] = activationValue;
+	control[1] = thisVelocity;
+	control[2] = thisPitch;
 }
 
 void ModulateWaveTrack(struct WaveTrack *track)
 {
+	vu16 *control = WaveTrackControl();
 	if (track->statusFlags[PitchBendActivation])
 	{
 		track->pitch += track->pitchBendRate;
@@ -612,7 +673,8 @@ void ModulateWaveTrack(struct WaveTrack *track)
 						break;
 				}
 				track->statusFlags[ModulationStatus] = !track->statusFlags[ModulationStatus];
-				gCgbChans[2].fr = outPitch;
+				control[2] &= 0x8000;
+				control[2] |= outPitch;
 			}
 			else
 			{
@@ -624,6 +686,7 @@ void ModulateWaveTrack(struct WaveTrack *track)
 
 bool16 ExecuteWaveCommands(u8 commandID, struct WaveTrack *track)
 {
+	u8 newVoice;
 	u8 commandLength = 1;
 	if (commandID >= SetOctave7 && commandID < SetOctave0)
 	{
@@ -645,12 +708,12 @@ bool16 ExecuteWaveCommands(u8 commandID, struct WaveTrack *track)
 					newVelocity = 1;
 				}
 				track->velocity = newVelocity;
-				newVelocity = byte2 & 0xF;
-				if (track->currentVoice != newVelocity)
+				newVoice = byte2 & 0xF;
+				if (track->currentVoice != newVoice)
 				{
-					//masterChannel.SwitchWavePattern(newVoice);
+					SwitchWavePattern(newVoice);
 				}
-				track->currentVoice = newVelocity;
+				track->currentVoice = newVoice;
 				commandLength = 3;
 				break;
 			}
@@ -674,12 +737,12 @@ bool16 ExecuteWaveCommands(u8 commandID, struct WaveTrack *track)
 					newVelocity = 1;
 				}
 				track->velocity = newVelocity;
-				newVelocity = byte2 & 0xF;
-				if (track->currentVoice != newVelocity)
+				newVoice = byte2 & 0xF;
+				if (track->currentVoice != newVoice)
 				{
-					//masterChannel.SwitchWavePattern(newVoice);
+					SwitchWavePattern(newVoice);
 				}
-				track->currentVoice = newVelocity;
+				track->currentVoice = newVoice;
 				commandLength = 2;
 				break;
 			}
@@ -946,12 +1009,14 @@ u8 ExecuteNoiseCommands(u8 commandID, struct NoiseTrack *track)
 
 void WriteNoisePattern(struct NoiseTrack *track)
 {
+	vu16 *control = NoiseTrackControl();
 	u16 value1 = (track->samplePointer[0] & 0xF);
 	u16 value2 = (track->samplePointer[1] << 8) | 0x3F;
 	u16 value3 = track->samplePointer[2] | 0x8000;
 	track->noiseFrameDelay = value1;
 	track->samplePointer += 3;
-// Investigate how m4 handles noise sampling and appropriately set up
+	control[0] = value2;
+	control[2] = value3;
 }
 
 void ExecuteNoiseModifications(u8 commandID, u16 tempo, struct NoiseTrack *track)
@@ -960,7 +1025,7 @@ void ExecuteNoiseModifications(u8 commandID, u16 tempo, struct NoiseTrack *track
 	track->noteLength1 = (noteLength & 0xFF00) >> 8;
 	track->noteLength2 = noteLength & 0xFF;
 	gCgbChans[3].panMask = (FALSE) ? track->pan & 0x88 : 0x88;
-	if ((commandID & 0xF0) != 0)
+	if (commandID & 0xF0)
 	{
 		u32 engineSet = track->noiseSet;
 		u32* location = (u32*)((u32*)noiseDataPointers)[engineSet];
@@ -971,7 +1036,9 @@ void ExecuteNoiseModifications(u8 commandID, u16 tempo, struct NoiseTrack *track
 	}
 	else
 	{
-		// Investigate how M4 handles noise sampling and appropriately cancel
+		vu16 *control = NoiseTrackControl();
+		control[0] = 0;
+		control[2] = 0;
 	}
 }
 
@@ -1047,4 +1114,18 @@ bool16 GBSChannelUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
 	track->chan->sustain = 6;
 	track->chan->release = 2;
 	return success;
+}
+
+void GBSInitSong(struct MusicPlayerInfo *mplayInfo, struct SongHeader *header)
+{
+	int i;
+	vu16 *control = SoundControl();
+
+	for (i = 0; i < header->trackCount; i++)
+	{
+		struct MusicPlayerTrack *track = &mplayInfo->tracks[i];
+	}
+
+	SwitchWavePattern(0);
+	control[0] = 0xFF77;
 }
