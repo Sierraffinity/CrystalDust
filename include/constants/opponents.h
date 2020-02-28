@@ -16,11 +16,11 @@
 #define TRAINER_ABE              12
 #define TRAINER_ROD              13
 #define TRAINER_ALBERT           14
-#define TRAINER_LIZ              15
+#define TRAINER_LIZ_1              15
 #define TRAINER_ROLAND           16
 #define TRAINER_HENRY            17
 #define TRAINER_JUSTIN           18
-#define TRAINER_RALPH            19
+#define TRAINER_RALPH_1            19
 #define TRAINER_GORDON           20
 #define TRAINER_PETER            21
 #define TRAINER_DANIEL           22
@@ -32,7 +32,7 @@
 #define TRAINER_LEONARD          28
 #define TRAINER_ANDREW           29
 #define TRAINER_CALVIN           30
-#define TRAINER_ANTHONY          31
+#define TRAINER_ANTHONY_1          31
 #define TRAINER_SHELLY_WEATHER_INSTITUTE     32
 #define TRAINER_SHELLY_SEAFLOOR_CAVERN       33
 #define TRAINER_ARCHIE                       34

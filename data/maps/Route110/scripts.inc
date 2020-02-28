@@ -207,7 +207,7 @@ Route110_EventScript_Jacob:: @ 81EF499
 	end
 
 Route110_EventScript_Anthony:: @ 81EF4B0
-	trainerbattle_single TRAINER_ANTHONY, Route110_Text_AnthonyIntro, Route110_Text_AnthonyDefeated
+	trainerbattle_single TRAINER_ANTHONY_1, Route110_Text_AnthonyIntro, Route110_Text_AnthonyDefeated
 	msgbox Route110_Text_AnthonyPostBattle, MSGBOX_AUTOCLOSE
 	end
 

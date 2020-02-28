@@ -36,7 +36,7 @@ Route119_WeatherInstitute_2F_EventScript_Grunt2:: @ 826FF7F
 	end
 
 Route119_WeatherInstitute_2F_EventScript_Grunt3:: @ 826FF96
-	trainerbattle_single TRAINER_RALPH, Route119_WeatherInstitute_2F_Text_Grunt3Intro, Route119_WeatherInstitute_2F_Text_Grunt3Defeat
+	trainerbattle_single TRAINER_RALPH_1, Route119_WeatherInstitute_2F_Text_Grunt3Intro, Route119_WeatherInstitute_2F_Text_Grunt3Defeat
 	msgbox Route119_WeatherInstitute_2F_Text_Grunt3PostBattle, MSGBOX_AUTOCLOSE
 	end
 

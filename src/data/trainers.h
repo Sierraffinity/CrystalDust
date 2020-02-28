@@ -209,7 +209,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Albert},
     },
 
-    [TRAINER_LIZ] =
+    [TRAINER_LIZ_1] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PICNICKER,
@@ -265,7 +265,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Justin},
     },
 
-    [TRAINER_RALPH] =
+    [TRAINER_RALPH_1] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_FISHERMAN,
@@ -395,7 +395,7 @@ const struct Trainer gTrainers[] = {
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_HIKER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUSCLASSIC,
         .trainerPic = TRAINER_PIC_HIKER,
         .trainerName = _("LEONARD"),
         .items = {},
@@ -433,18 +433,18 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Calvin},
     },
 
-    [TRAINER_ANTHONY] =
+    [TRAINER_ANTHONY_1] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_BLACK_BELT,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SAGE,
-        .trainerPic = TRAINER_PIC_BLACK_BELT,
-        .trainerName = _("ZANDER"),
+        .trainerClass = TRAINER_CLASS_HIKER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUSCLASSIC,
+        .trainerPic = TRAINER_PIC_HIKER,
+        .trainerName = _("ANTHONY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Zander),
-        .party = {.NoItemDefaultMoves = sParty_Zander},
+        .partySize = ARRAY_COUNT(sParty_Anthony),
+        .party = {.NoItemDefaultMoves = sParty_Anthony},
     },
 
     [TRAINER_SHELLY_WEATHER_INSTITUTE] =

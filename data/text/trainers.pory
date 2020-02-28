@@ -443,8 +443,8 @@ text UnionCave_B1F_Text_CalvinPostBattle {
 }
 
 text Route33_Text_AnthonyIntro {
-	"I came through the tunnel, but\n"
-	"I still have plenty of energy left!"
+	"I came through the tunnel, but I\n"
+	"still have plenty of energy left!"
 }
 
 text Route33_Text_AnthonyDefeat {
