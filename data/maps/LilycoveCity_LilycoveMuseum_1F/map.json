@@ -57,7 +57,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ARTIST",
+      "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
       "x": 13,
       "y": 10,
       "elevation": 3,
@@ -113,7 +113,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ARTIST",
+      "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
       "x": 19,
       "y": 3,
       "elevation": 3,

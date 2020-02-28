@@ -201,11 +201,11 @@
             "width": 28
         },
         {
-            "blockdata_filepath": "data/layouts/Route105/map.bin",
-            "border_filepath": "data/layouts/Route105/border.bin",
+            "blockdata_filepath": "data/layouts/Route33/map.bin",
+            "border_filepath": "data/layouts/Route33/border.bin",
             "height": 22,
-            "id": "LAYOUT_ROUTE105",
-            "name": "Route105_Layout",
+            "id": "LAYOUT_ROUTE33",
+            "name": "Route33_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Violet",
             "width": 26

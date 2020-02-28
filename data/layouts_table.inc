@@ -20,7 +20,7 @@ gMapLayouts::
 	.4byte Route30_Layout
 	.4byte Route31_Layout
 	.4byte Route32_Layout
-	.4byte Route105_Layout
+	.4byte Route33_Layout
 	.4byte Route106_Layout
 	.4byte Route107_Layout
 	.4byte Route36_Layout

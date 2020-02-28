@@ -347,7 +347,7 @@ text UnionCave_1F_Text_RayIntro {
 	"If there's light inside, a cave\n"
 	"isn't scary.\p"
 	"If you're strong inside, POKéMON\n"
-	"arent't scary."
+	"aren't scary."
 }
 
 text UnionCave_1F_Text_RayDefeat {
@@ -442,111 +442,126 @@ text UnionCave_B1F_Text_CalvinPostBattle {
 	"PROF. ELM."
 }
 
+text Route33_Text_AnthonyIntro {
+	"I came through the tunnel, but\n"
+	"I still have plenty of energy left!"
+}
+
+text Route33_Text_AnthonyDefeat {
+	"Whoa!\n"
+	"You've got more zip than me!"
+}
+
+text Route33_Text_AnthonyPostBattle {
+	"We HIKERS are at our best in\n"
+	"the mountains."
+}
+
 raw`
-Route105_Text_FosterIntro: @ 8295D0F
+Route33_Text_FosterIntro: @ 8295D0F
 	.string "There's supposed to be a mystical\n"
 	.string "rock around here.\l"
 	.string "Do you know anything about it?$"
 
-Route105_Text_FosterDefeated: @ 8295D62
+Route33_Text_FosterDefeated: @ 8295D62
 	.string "I was thinking too much about that\n"
 	.string "rock, while my POKéMON remained weak…$"
 
-Route105_Text_FosterPostBattle: @ 8295DAB
+Route33_Text_FosterPostBattle: @ 8295DAB
 	.string "I can spend hours and hours staring\n"
 	.string "at a nice rock without growing bored.$"
 
-Route105_Text_LuisIntro: @ 8295DF5
+Route33_Text_LuisIntro: @ 8295DF5
 	.string "Whew! I was worried that a kid was\n"
 	.string "drowning when I saw you.\p"
 	.string "You seem to be okay, so what do you\n"
 	.string "say to a battle?$"
 
-Route105_Text_LuisDefeated: @ 8295E66
+Route33_Text_LuisDefeated: @ 8295E66
 	.string "Glub… Glub…$"
 
-Route105_Text_LuisPostBattle: @ 8295E72
+Route33_Text_LuisPostBattle: @ 8295E72
 	.string "If you are drowning, the signal is to\n"
 	.string "wave one arm toward the beach.$"
 
-Route105_Text_DominikIntro: @ 8295EB7
+Route33_Text_DominikIntro: @ 8295EB7
 	.string "Swimming the deep blue sea…\n"
 	.string "It feels the greatest!$"
 
-Route105_Text_DominikDefeated: @ 8295EEA
+Route33_Text_DominikDefeated: @ 8295EEA
 	.string "I lost…\n"
 	.string "Now I'm feeling blue…$"
 
-Route105_Text_DominikPostBattle: @ 8295F08
+Route33_Text_DominikPostBattle: @ 8295F08
 	.string "Why is the sea blue?\p"
 	.string "I learned about that at the MUSEUM in\n"
 	.string "SLATEPORT, but I forgot.$"
 
-Route105_Text_BeverlyIntro: @ 8295F5C
+Route33_Text_BeverlyIntro: @ 8295F5C
 	.string "My body feels lighter in the water.\n"
 	.string "It's as if I've gotten slimmer!$"
 
-Route105_Text_BeverlyDefeated: @ 8295FA0
+Route33_Text_BeverlyDefeated: @ 8295FA0
 	.string "I'm floating…$"
 
-Route105_Text_PostBattle: @ 8295FAE
+Route33_Text_PostBattle: @ 8295FAE
 	.string "Your body weight is reduced to just\n"
 	.string "one tenth in the water.\p"
 	.string "That would make me…\n"
 	.string "Whoops! I'm not telling you my weight!$"
 
-Route105_Text_ImaniIntro: @ 8296025
+Route33_Text_ImaniIntro: @ 8296025
 	.string "The blue, blue sky…\n"
 	.string "The vast sea…\l"
 	.string "It's so peaceful…$"
 
-Route105_Text_ImaniDefeated: @ 8296059
+Route33_Text_ImaniDefeated: @ 8296059
 	.string "I lost while I was lounging!$"
 
-Route105_Text_ImaniPostBattle: @ 8296076
+Route33_Text_ImaniPostBattle: @ 8296076
 	.string "I want to be told I'm relaxing to be\n"
 	.string "with. Giggle.$"
 
-Route105_Text_AndresIntro: @ 82960A9
+Route33_Text_AndresIntro: @ 82960A9
 	.string "I'm convinced that the sea keeps\n"
 	.string "secrets from us.$"
 
-Route105_Text_AndresDefeated: @ 82960DB
+Route33_Text_AndresDefeated: @ 82960DB
 	.string "Yes…\n"
 	.string "I am no good at battling…$"
 
-Route105_Text_AndresPostBattle: @ 82960FA
+Route33_Text_AndresPostBattle: @ 82960FA
 	.string "I'm sure there are many secrets to be\n"
 	.string "discovered in the world's seas.\p"
 	.string "I mean to find them all!$"
 
-Route105_Text_AndresRegister: @ 8296159
+Route33_Text_AndresRegister: @ 8296159
 	.string "Huh? I'm so weak, but you're willing\n"
 	.string "to register me in your POKéNAV?$"
 
-Route105_Text_AndresRematchIntro: @ 829619E
+Route33_Text_AndresRematchIntro: @ 829619E
 	.string "I've told you that I'm weak…\n"
 	.string "Are you sure you want to do this?$"
 
-Route105_Text_AndresRematchDefeated: @ 82961DD
+Route33_Text_AndresRematchDefeated: @ 82961DD
 	.string "Yes…\n"
 	.string "I didn't think I could win.$"
 
-Route105_Text_AndresRematchPostBattle: @ 82961FE
+Route33_Text_AndresRematchPostBattle: @ 82961FE
 	.string "I may be weak at battling, but my\n"
 	.string "drive to explore can't be bested.\p"
 	.string "I will travel the seas all around\n"
 	.string "the world!$"
 
-Route105_Text_JosueIntro: @ 829626F
+Route33_Text_JosueIntro: @ 829626F
 	.string "I'm exhausted from swimming.\n"
 	.string "I'm just not used to it.\p"
 	.string "I need a battle for a change of pace!$"
 
-Route105_Text_JosueDefeated: @ 82962CB
+Route33_Text_JosueDefeated: @ 82962CB
 	.string "I lost because I battled at sea.$"
 
-Route105_Text_JosuePostBattle: @ 82962EC
+Route33_Text_JosuePostBattle: @ 82962EC
 	.string "Yeah, for me, the sky is a much better\n"
 	.string "match than the sea.$"
 

@@ -199,7 +199,7 @@
       "flag": "FLAG_ITEM_ROUTE_113_HYPER_POTION"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
+      "graphics_id": "OBJ_EVENT_GFX_POKEMANIAC",
       "x": 75,
       "y": 3,
       "elevation": 3,

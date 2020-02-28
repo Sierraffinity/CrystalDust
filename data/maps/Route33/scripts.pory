@@ -1,0 +1,21 @@
+mapscripts Route33_MapScripts { }
+
+script Route33_EventScript_Girl {
+    msgbox("Pant, pant…\n"
+           "I finally got through that cave.\p"
+           "It was so much bigger than I'd\n"
+           "expected.\p"
+           "I got too tired to explore the whole\n"
+           "thing, so I came outside.", MSGBOX_NPC)
+}
+
+script Route33_EventScript_Anthony {
+    trainerbattle_single(TRAINER_ANTHONY, Route33_Text_AnthonyIntro, Route33_Text_AnthonyDefeat)
+    // TODO: Phone
+    msgbox(Route33_Text_AnthonyPostBattle)
+    release
+}
+
+script Route33_EventScript_DirectionsSign {
+    msgbox("ROUTE 33", MSGBOX_SIGN)
+}

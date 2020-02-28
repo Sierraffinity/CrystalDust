@@ -86,7 +86,7 @@ UnionCave_B1F_EventScript_ItemXDefend::
 	finditem ITEM_X_DEFEND
 	end
 
-Route105_EventScript_ItemIron:: @ 8290D33
+Route33_EventScript_ItemIron:: @ 8290D33
 	finditem ITEM_IRON
 	end
 

@@ -433,7 +433,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Calvin},
     },
 
-    [TRAINER_ZANDER] =
+    [TRAINER_ANTHONY] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_BLACK_BELT,
@@ -4927,7 +4927,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Jacob},
     },
 
-    [TRAINER_ANTHONY] =
+    [TRAINER_ANTHONY_OLD] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_TRIATHLETE,
@@ -4937,8 +4937,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Anthony),
-        .party = {.NoItemDefaultMoves = sParty_Anthony},
+        .partySize = ARRAY_COUNT(sParty_AnthonyOld),
+        .party = {.NoItemDefaultMoves = sParty_AnthonyOld},
     },
 
     [TRAINER_BENJAMIN_1] =

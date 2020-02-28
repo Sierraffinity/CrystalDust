@@ -1,5 +1,6 @@
 mapscripts Route32_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_ROUTE_32_POKEMON_CENTER)
         setrespawn(HEAL_LOCATION_ROUTE32)
     }
     MAP_SCRIPT_ON_RESUME: CableClub_OnResume

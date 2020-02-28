@@ -23,7 +23,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "Route32_EventScript_UnionCave_1FSign",
+            "script": "Route32_EventScript_UnionCaveSign",
             "type": "sign",
             "x": 14,
             "y": 113
@@ -53,7 +53,7 @@
         },
         {
             "direction": "down",
-            "map": "MAP_ROUTE105",
+            "map": "MAP_ROUTE33",
             "offset": 2
         }
     ],
