@@ -36,6 +36,7 @@
 #include "tv.h"
 #include "util.h"
 #include "window.h"
+#include "constants/flags.h"
 #include "constants/game_stat.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -302,7 +303,7 @@ void sub_80F5B00(void)
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_WIRELESS)
         gPaletteFade.bufferTransferDisabled = 1;
     else
-        PlayBGM(MUS_CON_K);
+        PlayBGM(MUS_CON_K, FlagGet(FLAG_GB_PLAYER_ENABLED));
 
     SetVBlankCallback(sub_80F5C24);
 }
@@ -384,7 +385,7 @@ static void sub_80F5CE4(u8 taskId)
         case 3:
             if (IsLinkTaskFinished() == TRUE)
             {
-                PlayBGM(MUS_CON_K);
+                PlayBGM(MUS_CON_K, FlagGet(FLAG_GB_PLAYER_ENABLED));
                 gPaletteFade.bufferTransferDisabled = 0;
                 gTasks[taskId].data[0]++;
                 break;

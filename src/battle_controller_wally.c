@@ -8,6 +8,7 @@
 #include "battle_tv.h"
 #include "bg.h"
 #include "data.h"
+#include "event_data.h"
 #include "item.h"
 #include "item_menu.h"
 #include "link.h"
@@ -27,6 +28,7 @@
 #include "window.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_string_ids.h"
+#include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
@@ -691,7 +693,7 @@ static void WallyHandlePlayFanfareOrBGM(void)
     if (gBattleBufferA[gActiveBattler][3])
     {
         BattleStopLowHpSound();
-        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8));
+        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8), FlagGet(FLAG_GB_PLAYER_ENABLED));
     }
     else
     {

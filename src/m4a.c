@@ -1,5 +1,6 @@
 #include <string.h>
 #include "gba/m4a_internal.h"
+#include "constants/songs.h"
 
 extern const u8 gCgb3Vol[];
 
@@ -18,6 +19,7 @@ struct MusicPlayerInfo gMPlayInfo_BGM;
 struct MusicPlayerInfo gMPlayInfo_SE1;
 struct MusicPlayerInfo gMPlayInfo_SE2;
 struct MusicPlayerInfo gMPlayInfo_SE3;
+u8 gUsedGBChannels[4];
 u8 gMPlayMemAccArea[0x10];
 
 u32 MidiKeyToFreq(struct WaveData *wav, u8 key, u8 fineAdjust)
@@ -104,68 +106,87 @@ void m4aSoundMain(void)
     SoundMain();
 }
 
-void m4aSongNumStart(u16 n)
+const struct Song *GetSong(int songID, bool32 gbsEnabled, bool8 *isGBSSong)
 {
-    const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
-    const struct MusicPlayer *mplay = &mplayTable[song->ms];
+    *isGBSSong = FALSE;
+    if (gbsEnabled)
+    {
+        int i;
+        for (i = 0; gGBSSongTable[i].songID != 0xFFFFFFFF; i++)
+        {
+            if (gGBSSongTable[i].songID == songID)
+            {
+                *isGBSSong = TRUE;
+                return &gGBSSongTable[i].song;
+            }
+        }
+    }
 
-    MPlayStart(mplay->info, song->header);
+    return &gSongTable[songID];
 }
 
-void m4aSongNumStartOrChange(u16 n)
+void m4aSongNumStart(u16 n, bool32 gbsEnabled)
 {
+    bool8 isGBSSong;
     const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
+    const struct Song *song = GetSong(n, gbsEnabled, &isGBSSong);
+    const struct MusicPlayer *mplay = &mplayTable[song->ms];
+
+    MPlayStart(mplay->info, song->header, isGBSSong);
+}
+
+void m4aSongNumStartOrChange(u16 n, bool32 gbsEnabled)
+{
+    bool8 isGBSSong;
+    const struct MusicPlayer *mplayTable = gMPlayTable;
+    const struct Song *song = GetSong(n, gbsEnabled, &isGBSSong);
     const struct MusicPlayer *mplay = &mplayTable[song->ms];
 
     if (mplay->info->songHeader != song->header)
     {
-        MPlayStart(mplay->info, song->header);
+        MPlayStart(mplay->info, song->header, isGBSSong);
     }
     else
     {
         if ((mplay->info->status & MUSICPLAYER_STATUS_TRACK) == 0
          || (mplay->info->status & MUSICPLAYER_STATUS_PAUSE))
         {
-            MPlayStart(mplay->info, song->header);
+            MPlayStart(mplay->info, song->header, isGBSSong);
         }
     }
 }
 
-void m4aSongNumStartOrContinue(u16 n)
+void m4aSongNumStartOrContinue(u16 n, bool32 gbsEnabled)
 {
+    bool8 isGBSSong;
     const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
+    const struct Song *song = GetSong(n, gbsEnabled, &isGBSSong);
     const struct MusicPlayer *mplay = &mplayTable[song->ms];
 
     if (mplay->info->songHeader != song->header)
-        MPlayStart(mplay->info, song->header);
+        MPlayStart(mplay->info, song->header, isGBSSong);
     else if ((mplay->info->status & MUSICPLAYER_STATUS_TRACK) == 0)
-        MPlayStart(mplay->info, song->header);
+        MPlayStart(mplay->info, song->header, isGBSSong);
     else if (mplay->info->status & MUSICPLAYER_STATUS_PAUSE)
         MPlayContinue(mplay->info);
 }
 
-void m4aSongNumStop(u16 n)
+void m4aSongNumStop(u16 n, bool32 gbsEnabled)
 {
+    bool8 isGBSSong;
     const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
+    const struct Song *song = GetSong(n, gbsEnabled, &isGBSSong);
     const struct MusicPlayer *mplay = &mplayTable[song->ms];
 
     if (mplay->info->songHeader == song->header)
         m4aMPlayStop(mplay->info);
 }
 
-void m4aSongNumContinue(u16 n)
+void m4aSongNumContinue(u16 n, bool32 gbsEnabled)
 {
+    bool8 isGBSSong;
     const struct MusicPlayer *mplayTable = gMPlayTable;
-    const struct Song *songTable = gSongTable;
-    const struct Song *song = &songTable[n];
+    const struct Song *song = GetSong(n, gbsEnabled, &isGBSSong);
     const struct MusicPlayer *mplay = &mplayTable[song->ms];
 
     if (mplay->info->songHeader == song->header)
@@ -587,7 +608,7 @@ void MPlayOpen(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track
 
 extern void GBSInitSong(struct MusicPlayerInfo *mplayInfo, struct SongHeader *header);
 
-void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader)
+void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader, bool32 isGBSSong)
 {
     s32 i;
     u8 unk_B;
@@ -642,7 +663,8 @@ void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader
 
         mplayInfo->ident = ID_NUMBER;
 
-        GBSInitSong(mplayInfo, songHeader);
+        if (isGBSSong)
+            GBSInitSong(mplayInfo, songHeader);
     }
 }
 
@@ -758,6 +780,11 @@ void FadeOutBody(struct MusicPlayerInfo *mplayInfo)
 
 void TrkVolPitSet(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
 {
+    if (track->gbsIdentifier != 0)
+    {
+        return;
+    }
+
     if (track->flags & MPT_FLG_VOLSET)
     {
         s32 x;
@@ -931,9 +958,13 @@ void CgbSound(void)
     vu8 *nrx2ptr;
     vu8 *nrx3ptr;
     vu8 *nrx4ptr;
+    int i;
 
     // Most comparison operations that cast to s8 perform 'and' by 0xFF.
     int mask = 0xff;
+
+    for (i = 0; i < 4; i++)
+        gUsedGBChannels[i] = 0;
 
     if (soundInfo->c15)
         soundInfo->c15--;
@@ -945,6 +976,7 @@ void CgbSound(void)
         if (!(channels->sf & 0xc7))
             continue;
 
+        gUsedGBChannels[ch - 1] = 1;
         switch (ch)
         {
         case 1:
@@ -1211,7 +1243,7 @@ void CgbSound(void)
 
         if (channels->mo & 1)
         {
-            // REG_NR51 = (REG_NR51 & ~channels->panMask) | channels->pan;
+            REG_NR51 = (REG_NR51 & ~channels->panMask) | channels->pan;
             if (ch == 3)
             {
                 *nrx2ptr = gCgb3Vol[channels->ev];
@@ -1696,7 +1728,7 @@ start_song:
 
     mplayInfo->ident = ID_NUMBER;
 
-    MPlayStart(mplayInfo, (struct SongHeader *)(&gPokemonCrySongs[i]));
+    MPlayStart(mplayInfo, (struct SongHeader *)(&gPokemonCrySongs[i]), FALSE);
 
     return mplayInfo;
 }

@@ -10,6 +10,8 @@
 #include "gba/gbs_internal.h"
 #include "m4a.h"
 
+bool8 gShouldReloadWavePattern;
+
 const u16 CGBFreq[] = {
 	8013, 7566, 7144, 6742,
 	6362, 6005, 5666, 5346,
@@ -57,6 +59,21 @@ inline vu16 *SoundControl()
 	return (vu16 *)(REG_ADDR_NR50);
 }
 
+inline bool32 ShouldRenderSound(int trackID)
+{
+	return gUsedGBChannels[trackID] == FALSE;
+}
+
+inline bool32 ShouldRenderWaveChannel()
+{
+	return ShouldRenderSound(2);
+}
+
+inline bool32 ShouldRenderNoiseChannel()
+{
+	return ShouldRenderSound(3);
+}
+
 u16 CalculateLength(u8 frameDelay, u16 tempo, u8 bitLength, u16 previousLeftover)
 {
 	return ((frameDelay * (bitLength + 1)) * tempo) + previousLeftover;
@@ -81,7 +98,6 @@ u16 ToneTrackCalculatePitch(u8 commandID, s8 keyShift, u8 octave, u16 tone)
 
 void ExecuteToneModifications(u8 commandID, u16 tempo, struct ToneTrack *track)
 {
-	vu16 *control = ToneTrackControl();
 	u16 pitch = 0;
 	u16 activationValue = 0;
 	u16 secondValue = 0;
@@ -95,16 +111,18 @@ void ExecuteToneModifications(u8 commandID, u16 tempo, struct ToneTrack *track)
 		secondValue = (track->currentVoice << 6) | (track->fadeSpeed << 8) | (((track->fadeSpeed == 0) ? 0 : track->fadeDirection) << 11) | (track->velocity << 12);
 	}
 	track->pitch = pitch;
-	if (track->trackID == 2)
-	{
-		control[4] = secondValue;
-	}
-	else
-	{
-		control[1] = secondValue;
-	}
-	control[((track->trackID - 1) * 4) + 2] = activationValue;
 	track->nextInstruction++;
+	if (ShouldRenderSound(track->trackID - 1))
+	{
+		vu16 *control = ToneTrackControl();
+		if (track->trackID == 2)
+			control[4] = secondValue;
+		else
+			control[1] = secondValue;
+
+		control[((track->trackID - 1) * 4) + 2] = activationValue;
+
+	}
 }
 
 u8 ToneExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct ToneTrack *track)
@@ -214,9 +232,12 @@ u8 ToneExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct ToneTr
 			case SetChannelVolume:
 				if (track->channelVolume != track->nextInstruction[1])
 				{
-					vu16 *control = SoundControl();
 					track->channelVolume = track->nextInstruction[1];
-					control[0] = (control[0] & 0xFF00) | track->channelVolume;
+					if (ShouldRenderSound(track->trackID - 1))
+					{
+						vu16 *control = SoundControl();
+						control[0] = (control[0] & 0xFF00) | track->channelVolume;
+					}
 				}
 				commandLength = 2;
 				break;
@@ -402,7 +423,7 @@ void ToneModulateTrack(struct ToneTrack *track)
 	{
 		if (track->modulationCountdown == 0)
 		{
-			if (track->modulationSpeedDelay == 0 && track->pitch != 0)
+			if (track->modulationSpeedDelay == 0 && track->pitch != 0 && ShouldRenderSound(track->trackID - 1))
 			{
 				vu16 *control = ToneTrackControl();
 				u16 location = 2 + ((track->trackID - 1) * 4);
@@ -442,10 +463,13 @@ void ArpeggiateTrack(struct ToneTrack *track)
 		}
 		else
 		{
-			vu16 *control = ToneTrackControl();
 			u16 location = (track->trackID == 1) ? 1 : 4;
 			track->arpeggiationCountdown = track->arpeggiationDelayCount;
-			control[location] = (control[location] & 0xFF00) | (((track->statusFlags[ArpeggiationStatus]) ? track->currentVoice : track->arpeggiationVoice) << 6);
+			if (ShouldRenderSound(track->trackID - 1))
+			{
+				vu16 *control = ToneTrackControl();
+				control[location] = (control[location] & 0xFF00) | (((track->statusFlags[ArpeggiationStatus]) ? track->currentVoice : track->arpeggiationVoice) << 6);
+			}
 			track->statusFlags[ArpeggiationStatus] = !track->statusFlags[ArpeggiationStatus];
 		}
 	}
@@ -478,6 +502,16 @@ bool16 ToneTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 		ToneModulateTrack(toneTrack);
 		ArpeggiateTrack(toneTrack);
 	}
+
+	// TODO: This should be removed when pitch bend is implemented.
+	// This code is ensuring no pitch slide values are set, since no
+	// pokecrystal engine feature uses pitch slide except pitch bend.
+	if (ShouldRenderSound(toneTrack->trackID - 1))
+	{
+		vu16 *control = ToneTrackControl();
+		control[0] = 0;
+	}
+
 	return TRUE;
 }
 
@@ -605,7 +639,6 @@ u16 CalculateWavePitch(u8 commandID, s8 keyShift, u8 octave, u16 tone)
 
 void ExecuteWaveModifications(u8 commandID, u16 tempo, struct WaveTrack *track)
 {
-	vu16 *control = WaveTrackControl();
 	u16 thisVelocity = 0;
 	u16 thisPitch = 0;
 	u16 activationValue = 0;
@@ -619,14 +652,17 @@ void ExecuteWaveModifications(u8 commandID, u16 tempo, struct WaveTrack *track)
 		thisPitch = track->pitch | 0x8000;
 		activationValue = 0x80;
 	}
-	control[0] = activationValue;
-	control[1] = thisVelocity;
-	control[2] = thisPitch;
+	if (ShouldRenderWaveChannel())
+	{
+		vu16 *control = WaveTrackControl();
+		control[0] = activationValue;
+		control[1] = thisVelocity;
+		control[2] = thisPitch;
+	}
 }
 
 void ModulateWaveTrack(struct WaveTrack *track)
 {
-	vu16 *control = WaveTrackControl();
 	if (track->statusFlags[PitchBendActivation])
 	{
 		track->pitch += track->pitchBendRate;
@@ -673,8 +709,12 @@ void ModulateWaveTrack(struct WaveTrack *track)
 						break;
 				}
 				track->statusFlags[ModulationStatus] = !track->statusFlags[ModulationStatus];
-				control[2] &= 0x8000;
-				control[2] |= outPitch;
+				if (ShouldRenderWaveChannel())
+				{
+					vu16 *control = WaveTrackControl();
+					control[2] &= 0x8000;
+					control[2] |= outPitch;
+				}
 			}
 			else
 			{
@@ -709,7 +749,7 @@ bool16 ExecuteWaveCommands(u8 commandID, struct WaveTrack *track)
 				}
 				track->velocity = newVelocity;
 				newVoice = byte2 & 0xF;
-				if (track->currentVoice != newVoice)
+				if (track->currentVoice != newVoice && ShouldRenderWaveChannel())
 				{
 					SwitchWavePattern(newVoice);
 				}
@@ -738,7 +778,7 @@ bool16 ExecuteWaveCommands(u8 commandID, struct WaveTrack *track)
 				}
 				track->velocity = newVelocity;
 				newVoice = byte2 & 0xF;
-				if (track->currentVoice != newVoice)
+				if (track->currentVoice != newVoice && ShouldRenderWaveChannel())
 				{
 					SwitchWavePattern(newVoice);
 				}
@@ -855,6 +895,20 @@ bool16 ExecuteWaveCommands(u8 commandID, struct WaveTrack *track)
 bool16 WaveTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
 {
 	struct WaveTrack *waveTrack = (struct WaveTrack *)track;
+
+	// The M4A sound effects can change the wave pattern.
+	// We want to reload the correct wave pattern for this track when
+	// control is returned to GBS from M4A.
+	if (!ShouldRenderWaveChannel())
+	{
+		gShouldReloadWavePattern = TRUE;
+	}
+	else if (gShouldReloadWavePattern)
+	{
+		SwitchWavePattern(waveTrack->currentVoice);
+		gShouldReloadWavePattern = FALSE;
+	}
+
 	if (waveTrack->noteLength1 < 2)
 	{
 		u32 commandID = waveTrack->nextInstruction[0];
@@ -1009,14 +1063,17 @@ u8 ExecuteNoiseCommands(u8 commandID, struct NoiseTrack *track)
 
 void WriteNoisePattern(struct NoiseTrack *track)
 {
-	vu16 *control = NoiseTrackControl();
 	u16 value1 = (track->samplePointer[0] & 0xF);
 	u16 value2 = (track->samplePointer[1] << 8) | 0x3F;
 	u16 value3 = track->samplePointer[2] | 0x8000;
 	track->noiseFrameDelay = value1;
 	track->samplePointer += 3;
-	control[0] = value2;
-	control[2] = value3;
+	if (ShouldRenderNoiseChannel())
+	{
+		vu16 *control = NoiseTrackControl();
+		control[0] = value2;
+		control[2] = value3;
+	}
 }
 
 void ExecuteNoiseModifications(u8 commandID, u16 tempo, struct NoiseTrack *track)
@@ -1034,7 +1091,7 @@ void ExecuteNoiseModifications(u8 commandID, u16 tempo, struct NoiseTrack *track
 		track->noiseActive = 1;
 		WriteNoisePattern(track);
 	}
-	else
+	else if (ShouldRenderNoiseChannel())
 	{
 		vu16 *control = NoiseTrackControl();
 		control[0] = 0;
@@ -1109,11 +1166,38 @@ bool16 GBSChannelUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
 			success = ToneTrackUpdate(info, track);
 			break;
 	}
-	track->chan->attack = 0;
-	track->chan->decay = 1;
-	track->chan->sustain = 6;
-	track->chan->release = 2;
 	return success;
+}
+
+void ResetToneTrack(int trackID)
+{
+	vu16 *control = ToneTrackControl();
+	if (trackID == 0)
+	{
+		control[0] = 0;
+		control[1] = 0;
+		control[2] = 0;
+	}
+	else
+	{
+		control[4] = 0;
+		control[6] = 0;
+	}
+}
+
+void ResetWaveTrack()
+{
+	vu16 *control = WaveTrackControl();
+	control[0] = 0;
+	control[1] = 0;
+	control[2] = 0;
+}
+
+void ResetNoiseTrack()
+{
+	vu16 *control = NoiseTrackControl();
+	control[0] = 0;
+	control[2] = 0;
 }
 
 void GBSInitSong(struct MusicPlayerInfo *mplayInfo, struct SongHeader *header)
@@ -1126,6 +1210,31 @@ void GBSInitSong(struct MusicPlayerInfo *mplayInfo, struct SongHeader *header)
 		struct MusicPlayerTrack *track = &mplayInfo->tracks[i];
 	}
 
+	control[0] = 0;
+	ResetToneTrack(0);
+	ResetToneTrack(1);
+	ResetWaveTrack();
+	ResetNoiseTrack();
 	SwitchWavePattern(0);
-	control[0] = 0xFF77;
+	gShouldReloadWavePattern = FALSE;
+	control[0] |= 0xFF00;
+}
+
+void GBSTrackStop(struct MusicPlayerTrack *track)
+{
+	if (track->gbsIdentifier == 0)
+		return;
+
+	switch (track->gbsIdentifier - 1)
+	{
+		case 2:
+			ResetWaveTrack();
+			break;
+		case 3:
+			ResetNoiseTrack();
+			break;
+		default:
+			ResetToneTrack(track->gbsIdentifier - 1);
+			break;
+	}
 }

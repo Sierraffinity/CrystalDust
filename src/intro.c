@@ -907,7 +907,7 @@ static void Task_IntroGameFreakStart(u8 taskId)
     gTasks[windowTaskId].data[2] = -8;
     gTasks[taskId].func = Task_ShowGameFreakScreen;
     gIntroFrameCounter = 0;
-    m4aSongNumStart(MUS_DEMO1);
+    m4aSongNumStart(MUS_DEMO1, FALSE);
     ResetSerial();
 }
 
@@ -1543,7 +1543,7 @@ static void Task_IntroStartPart3(u8 taskId)
                                 | DISPCNT_OBJ_ON
                                 | DISPCNT_WIN0_ON);
     gIntroFrameCounter = 0;
-    //m4aSongNumStart(MUS_T_BATTLE);
+    m4aSongNumStart(MUS_T_BATTLE, FALSE);
 }
 
 static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)

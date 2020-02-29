@@ -1262,7 +1262,7 @@ static void sub_8141040(u8 taskId)
             PlaySE(SE_BOO);
         else
         {
-            m4aSongNumStart(SE_REGI);
+            m4aSongNumStart(SE_REGI, FALSE);
             gTasks[taskId].func = sub_8140FC4;
         }
     }
@@ -1432,7 +1432,7 @@ static void sub_814155C(u8 taskId)
     gTasks[taskId].data[6]++;
     gTasks[taskId].data[0x8]++;
     sub_814372C(6 - gTasks[taskId].data[6]);
-    m4aSongNumStart(SE_TAMAKORO);
+    m4aSongNumStart(SE_TAMAKORO, FALSE);
     gTasks[taskId].func = sub_81415D4;
 }
 
@@ -1565,7 +1565,7 @@ static void sub_814189C(u8 taskId)
         break;
     case 0:
     default:
-        m4aSongNumStart(SE_HAZURE);
+        m4aSongNumStart(SE_HAZURE, FALSE);
         DrawStdWindowFrame(gUnknown_0203AB8C, FALSE);
         AddTextPrinterParameterized(gUnknown_0203AB8C, 1, Roulette_Text_NothingDoing, 0, 1, TEXT_SPEED_FF, NULL);
         CopyWindowToVram(gUnknown_0203AB8C, 3);
@@ -1582,7 +1582,7 @@ static void sub_8141984(u8 taskId)
     {
     case 0:
         gTasks[taskId].data[13]++;
-        m4aSongNumStart(SE_PIN);
+        m4aSongNumStart(SE_PIN, FALSE);
         sub_8143514(gTasks[taskId].data[13]);
         if (gTasks[taskId].data[13] >= 9999)
         {
@@ -1595,7 +1595,7 @@ static void sub_8141984(u8 taskId)
         }
         break;
     case 3:
-        m4aSongNumStop(SE_PIN);
+        m4aSongNumStop(SE_PIN, FALSE);
         gTasks[taskId].data[7] = 0;
         break;
     default:
@@ -3700,7 +3700,7 @@ static void sub_8143CFC(struct Sprite *sprite)
                 sub_8143AC8(sprite);
                 sprite->data[6] = (sprite->data[6] / 30) * 30 + 15;
                 sprite->callback = sub_8143C90;
-                m4aSongNumStartOrChange(SE_HASHI);
+                m4aSongNumStartOrChange(SE_HASHI, FALSE);
                 gUnknown_0203AB88->var9C = gUnknown_0203AB88->var98 = 0.0f;
                 gUnknown_0203AB88->var8C = -1.0f;
             }
@@ -3717,7 +3717,7 @@ static void sub_8143CFC(struct Sprite *sprite)
                 sub_8143AC8(sprite);
                 sprite->data[6] = (sprite->data[6] / 30) * 30 + 15;
                 sprite->callback = sub_8143C90;
-                m4aSongNumStartOrChange(SE_HASHI);
+                m4aSongNumStartOrChange(SE_HASHI, FALSE);
                 gUnknown_0203AB88->var9C = gUnknown_0203AB88->var98 = 0.0f;
                 gUnknown_0203AB88->var8C = -1.0f;
             }
@@ -3785,7 +3785,7 @@ static void sub_8143FA4(struct Sprite *sprite)
         sub_8143AC8(sprite);
         sprite->data[6] = (sprite->data[6] / 30) * 30 + 15;
         sprite->callback = sub_8143C90;
-        m4aSongNumStartOrChange(SE_HASHI);
+        m4aSongNumStartOrChange(SE_HASHI, FALSE);
         gUnknown_0203AB88->var03_6 = TRUE;
     }
 }
@@ -3821,7 +3821,7 @@ static void sub_8144050(struct Sprite *sprite)
             sprite->animEnded = FALSE;
             sprite->data[2] = 0;
             sprite->callback = sub_8143FA4;
-            m4aSongNumStart(SE_NAGERU);
+            m4aSongNumStart(SE_NAGERU, FALSE);
         }
     }
 }
@@ -3882,12 +3882,12 @@ static void prev_quest_read_x24_hm_usage(struct Sprite *sprite)
             sub_8143AC8(sprite);
             sprite->data[6] = (sprite->data[6] / 30) * 30 + 15;
             sprite->callback = sub_8143C90;
-            m4aSongNumStartOrChange(SE_HASHI);
+            m4aSongNumStartOrChange(SE_HASHI, FALSE);
         }
         else
         {
             sprite->animPaused = TRUE;
-            m4aSongNumStart(SE_KON);
+            m4aSongNumStart(SE_KON, FALSE);
             sub_8144A24(sprite);
         }
     }
@@ -3908,13 +3908,13 @@ static void sub_8144264(struct Sprite *sprite)
         sub_8143AC8(sprite);
         sprite->data[6] = (sprite->data[6] / 30) * 30 + 15;
         sprite->callback = sub_8143C90;
-        m4aSongNumStartOrChange(SE_HASHI);
+        m4aSongNumStartOrChange(SE_HASHI, FALSE);
     }
     else
     {
         u8 t;
         u32 z;
-        m4aSongNumStart(SE_KON);
+        m4aSongNumStart(SE_KON, FALSE);
         z = Random() & 1;
         if (z)
         {
@@ -4009,7 +4009,7 @@ static void sub_81445D8(struct Sprite *sprite)
     if (gUnknown_0203AB88->var94 > 60.0f)
         return;
 
-    m4aSongNumStartOrChange(SE_TAMAKORO_E);
+    m4aSongNumStartOrChange(SE_TAMAKORO_E, FALSE);
     gUnknown_0203AB88->var98 = -(20.0f / (float)(gUnknown_0203AB88->var84));
     gUnknown_0203AB88->var90 = ((1.0f - gUnknown_0203AB88->var8C) / (float)(gUnknown_0203AB88->var84));
     sprite->animNum = 1;
@@ -4245,7 +4245,7 @@ static void sub_8144D94(struct Sprite *sprite)
         gSprites[sprite->data[6]].data[1] = -2;
         gSprites[sprite->data[5]].invisible = FALSE;
         gSprites[sprite->data[5]].callback  = sub_8144CD0;
-        m4aSongNumStart(SE_W070);
+        m4aSongNumStart(SE_W070, FALSE);
     }
 }
 
@@ -4266,7 +4266,7 @@ static void sub_8144E60(struct Sprite *sprite)
 
         sprite->invisible = FALSE;
         sprite->data[7]++;
-        m4aSongNumStart(SE_RU_HYUU);
+        m4aSongNumStart(SE_RU_HYUU, FALSE);
         gUnknown_0203AB88->var01 = 1;
         gUnknown_0203AB88->var34 = gUnknown_085B7B1A[0];
     }
@@ -4310,7 +4310,7 @@ static void sub_8144FB0(struct Sprite *sprite)
         sprite->callback = SpriteCallbackDummy;
         sprite->invisible = TRUE;
         sprite->animPaused = TRUE;
-        m4aSongNumStop(SE_BASABASA);
+        m4aSongNumStop(SE_BASABASA, FALSE);
         DestroySprite(sprite);
         FreeOamMatrix(gSprites[gUnknown_0203AB88->var3C[56]].oam.matrixNum);
         DestroySprite(&gSprites[gUnknown_0203AB88->var3C[56]]);
@@ -4341,7 +4341,7 @@ static void sub_8145030(struct Sprite *sprite)
         }
         else
         {
-            m4aSongNumStart(SE_RU_HYUU);
+            m4aSongNumStart(SE_RU_HYUU, FALSE);
             StartSpriteAnim(sprite, gUnknown_0203AB88->var38->data[0] + 4);
             sprite->callback = sub_8144FB0;
             gSprites[sprite->data[6]].affineAnimPaused = FALSE;
@@ -4382,7 +4382,7 @@ static void sub_81450D8(struct Sprite *sprite)
         }
         else
         {
-            m4aSongNumStartOrChange(SE_BASABASA);
+            m4aSongNumStartOrChange(SE_BASABASA, FALSE);
             if (gUnknown_0203AB88->var38->data[0] == 0)
                 PlayCry1(SPECIES_TAILLOW, 63);
             else
@@ -4437,5 +4437,5 @@ static void sub_8145294(struct Sprite *sprite)
     }
     gSprites[sprite->data[6]].callback = sub_8145218;
     gSprites[sprite->data[4]].callback = sub_81450D8;
-    m4aSongNumStart(SE_RU_HYUU);
+    m4aSongNumStart(SE_RU_HYUU, FALSE);
 }

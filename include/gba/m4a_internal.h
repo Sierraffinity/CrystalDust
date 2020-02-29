@@ -333,10 +333,15 @@ struct Song
     u16 me;
 };
 
+struct GBSSongItem
+{
+    u32 songID;
+    struct Song song;
+};
+
 extern const struct MusicPlayer gMPlayTable[];
 extern const struct Song gSongTable[];
-
-
+extern const struct GBSSongItem gGBSSongTable[];
 
 extern u8 gMPlayMemAccArea[];
 
@@ -386,7 +391,7 @@ void MPlayMain(void);
 void RealClearChain(void *x);
 
 void MPlayContinue(struct MusicPlayerInfo *mplayInfo);
-void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader);
+void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader, bool32 isGBS);
 void m4aMPlayStop(struct MusicPlayerInfo *mplayInfo);
 void FadeOutBody(struct MusicPlayerInfo *mplayInfo);
 void TrkVolPitSet(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track);

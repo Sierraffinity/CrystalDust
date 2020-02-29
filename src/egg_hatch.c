@@ -35,6 +35,7 @@
 #include "field_screen_effect.h"
 #include "data.h"
 #include "battle.h" // to get rid of later
+#include "constants/flags.h"
 #include "constants/rgb.h"
 
 struct EggHatchData
@@ -578,10 +579,10 @@ static void Task_EggHatchPlayBGM(u8 taskID)
         PlayRainStoppingSoundEffect();
     }
     if (gTasks[taskID].data[0] == 1)
-        PlayBGM(MUS_ME_SHINKA);
+        PlayBGM(MUS_ME_SHINKA, FlagGet(FLAG_GB_PLAYER_ENABLED));
     if (gTasks[taskID].data[0] > 60)
     {
-        PlayBGM(MUS_SHINKA);
+        PlayBGM(MUS_SHINKA, FlagGet(FLAG_GB_PLAYER_ENABLED));
         DestroyTask(taskID);
         // UB: task is destroyed, yet the value is incremented
     }

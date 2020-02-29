@@ -26,6 +26,7 @@
 #include "overworld.h"
 #include "math_util.h"
 #include "constants/battle_frontier.h"
+#include "constants/flags.h"
 #include "constants/maps.h"
 #include "constants/rgb.h"
 #include "constants/region_map_sections.h"
@@ -871,10 +872,10 @@ static void CB2_ReturnFromRecord(void)
     switch (InBattlePyramid())
     {
     case 1:
-        PlayBGM(MUS_PYRAMID);
+        PlayBGM(MUS_PYRAMID, FlagGet(FLAG_GB_PLAYER_ENABLED));
         break;
     case 2:
-        PlayBGM(MUS_PYRAMID_TOP);
+        PlayBGM(MUS_PYRAMID_TOP, FlagGet(FLAG_GB_PLAYER_ENABLED));
         break;
     default:
         Overworld_PlaySpecialMapMusic();

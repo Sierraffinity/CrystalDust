@@ -46,6 +46,7 @@
 #include "window.h"
 #include "constants/contest.h"
 #include "constants/easy_chat.h"
+#include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/region_map_sections.h"
@@ -569,7 +570,7 @@ static void CB2_CreateTradeMenu(void)
         sTradeMenuData->bg3hofs = 0;
         SetTradePartyMonsVisible();
         gMain.state++;
-        PlayBGM(MUS_P_SCHOOL);
+        PlayBGM(MUS_P_SCHOOL, FlagGet(FLAG_GB_PLAYER_ENABLED));
         break;
     case 15:
         SetTradePartyLiveStatuses(TRADE_PARTNER);

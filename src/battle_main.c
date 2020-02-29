@@ -1875,7 +1875,7 @@ static void FreeRestoreBattleData(void)
     gScanlineEffect.state = 3;
     gMain.inBattle = 0;
     ZeroEnemyPartyMons();
-    m4aSongNumStop(SE_HINSI);
+    m4aSongNumStop(SE_HINSI, FALSE);
     FreeMonSpritesGfx();
     FreeBattleSpritesData();
     FreeBattleResources();
@@ -5038,9 +5038,9 @@ static void HandleEndTurn_BattleWon(void)
         gBattlescriptCurrInstr = BattleScript_FrontierTrainerBattleWon;
 
         if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
-            PlayBGM(MUS_KACHI3);
+            PlayBGM(MUS_KACHI3, FlagGet(FLAG_GB_PLAYER_ENABLED));
         else
-            PlayBGM(MUS_KACHI1);
+            PlayBGM(MUS_KACHI1, FlagGet(FLAG_GB_PLAYER_ENABLED));
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
@@ -5051,7 +5051,7 @@ static void HandleEndTurn_BattleWon(void)
         {
         case TRAINER_CLASS_ELITE_FOUR:
         case TRAINER_CLASS_CHAMPION:
-            PlayBGM(MUS_KACHI5);
+            PlayBGM(MUS_KACHI5, FlagGet(FLAG_GB_PLAYER_ENABLED));
             break;
         case TRAINER_CLASS_TEAM_AQUA:
         case TRAINER_CLASS_TEAM_MAGMA:
@@ -5059,13 +5059,13 @@ static void HandleEndTurn_BattleWon(void)
         case TRAINER_CLASS_AQUA_LEADER:
         case TRAINER_CLASS_MAGMA_ADMIN:
         case TRAINER_CLASS_MAGMA_LEADER:
-            PlayBGM(MUS_KACHI4);
+            PlayBGM(MUS_KACHI4, FlagGet(FLAG_GB_PLAYER_ENABLED));
             break;
         case TRAINER_CLASS_LEADER:
-            PlayBGM(MUS_KACHI3);
+            PlayBGM(MUS_KACHI3, FlagGet(FLAG_GB_PLAYER_ENABLED));
             break;
         default:
-            PlayBGM(MUS_KACHI1);
+            PlayBGM(MUS_KACHI1, FlagGet(FLAG_GB_PLAYER_ENABLED));
             break;
         }
     }
@@ -5312,7 +5312,7 @@ static void ReturnFromBattleToOverworld(void)
             SetRoamerInactive();
     }
 
-    m4aSongNumStop(SE_HINSI);
+    m4aSongNumStop(SE_HINSI, FALSE);
     SetMainCallback2(gMain.savedCallback);
 }
 

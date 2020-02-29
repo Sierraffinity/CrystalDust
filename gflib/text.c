@@ -2,8 +2,10 @@
 #include "battle.h"
 #include "main.h"
 #include "m4a.h"
+#include "event_data.h"
 #include "palette.h"
 #include "sound.h"
+#include "constants/flags.h"
 #include "constants/songs.h"
 #include "string_util.h"
 #include "window.h"
@@ -1688,7 +1690,7 @@ u16 RenderText(struct TextPrinter *textPrinter)
                 textPrinter->printerTemplate.currentChar++;
                 currChar |= *textPrinter->printerTemplate.currentChar << 8;
                 textPrinter->printerTemplate.currentChar++;
-                PlayBGM(currChar);
+                PlayBGM(currChar, FlagGet(FLAG_GB_PLAYER_ENABLED));
                 return 2;
             case 12:
                 currChar = *textPrinter->printerTemplate.currentChar | 0x100;

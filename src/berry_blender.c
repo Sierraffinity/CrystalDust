@@ -37,6 +37,7 @@
 #include "save.h"
 #include "link.h"
 #include "constants/berry.h"
+#include "constants/flags.h"
 #include "constants/rgb.h"
 
 #define BLENDER_SCORE_BEST      0
@@ -1350,7 +1351,7 @@ static void sub_8080018(void)
         {
             sBerryBlenderData->field_154 = GetCurrentMapMusic();
         }
-        PlayBGM(MUS_CYCLING);
+        PlayBGM(MUS_CYCLING, FlagGet(FLAG_GB_PLAYER_ENABLED));
         break;
     }
 
@@ -1647,7 +1648,7 @@ static void sub_80808D4(void)
         if (GetCurrentMapMusic() != MUS_CYCLING)
             sBerryBlenderData->field_154 = GetCurrentMapMusic();
 
-        PlayBGM(MUS_CYCLING);
+        PlayBGM(MUS_CYCLING, FlagGet(FLAG_GB_PLAYER_ENABLED));
         PlaySE(SE_MOTER);
         Blender_ControlHitPitch();
         break;
@@ -3567,7 +3568,7 @@ static void sub_8083F3C(u8 taskId)
     }
     if (IsFanfareTaskInactive())
     {
-        PlayBGM(sBerryBlenderData->field_154);
+        PlayBGM(sBerryBlenderData->field_154, FlagGet(FLAG_GB_PLAYER_ENABLED));
         DestroyTask(taskId);
     }
 }

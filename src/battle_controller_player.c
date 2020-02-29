@@ -11,6 +11,7 @@
 #include "bug_catching_contest.h"
 #include "bg.h"
 #include "data.h"
+#include "event_data.h"
 #include "item.h"
 #include "item_menu.h"
 #include "link.h"
@@ -30,6 +31,7 @@
 #include "util.h"
 #include "window.h"
 #include "constants/battle_anim.h"
+#include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
@@ -876,7 +878,7 @@ static void sub_80586F8(void)
     {
         if (gReceivedRemoteLinkPlayers == 0)
         {
-            m4aSongNumStop(SE_HINSI);
+            m4aSongNumStop(SE_HINSI, FALSE);
             gMain.inBattle = 0;
             gMain.callback1 = gPreBattleCallback1;
             SetMainCallback2(sub_8038D64);
@@ -889,7 +891,7 @@ static void sub_80586F8(void)
     {
         if (IsLinkTaskFinished())
         {
-            m4aSongNumStop(SE_HINSI);
+            m4aSongNumStop(SE_HINSI, FALSE);
             gMain.inBattle = 0;
             gMain.callback1 = gPreBattleCallback1;
             SetMainCallback2(sub_8038D64);
@@ -918,7 +920,7 @@ void sub_80587B0(void)
         }
         else
         {
-            m4aSongNumStop(SE_HINSI);
+            m4aSongNumStop(SE_HINSI, FALSE);
             gMain.inBattle = 0;
             gMain.callback1 = gPreBattleCallback1;
             SetMainCallback2(gMain.savedCallback);
@@ -1243,7 +1245,7 @@ static void sub_8059400(u8 taskId)
             u16 species;
             s32 expOnNextLvl;
 
-            m4aSongNumStop(SE_EXP);
+            m4aSongNumStop(SE_EXP, FALSE);
             level = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
             currExp = GetMonData(&gPlayerParty[monId], MON_DATA_EXP);
             species = GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES);
@@ -2831,7 +2833,7 @@ static void PlayerHandleDMA3Transfer(void)
 
 static void PlayerHandlePlayBGM(void)
 {
-    PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8));
+    PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8), FlagGet(FLAG_GB_PLAYER_ENABLED));
     PlayerBufferExecCompleted();
 }
 
@@ -2926,7 +2928,7 @@ static void PlayerHandlePlayFanfareOrBGM(void)
     if (gBattleBufferA[gActiveBattler][3])
     {
         BattleStopLowHpSound();
-        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8));
+        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8), FlagGet(FLAG_GB_PLAYER_ENABLED));
     }
     else
     {

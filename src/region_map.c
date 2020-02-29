@@ -863,11 +863,11 @@ static u8 MoveRegionMapCursor_Full(void)
 
     if ((!sameSecondary && gRegionMap->secondaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY) || gRegionMap->primaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY)
     {
-        m4aSongNumStart(SE_Z_SCROLL);
+        m4aSongNumStart(SE_Z_SCROLL, FALSE);
     }
     else if (gRegionMap->buttonType != MAPBUTTON_NONE && gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
     {
-        m4aSongNumStart(SE_W255);
+        m4aSongNumStart(SE_W255, FALSE);
         inputEvent = INPUT_EVENT_ON_BUTTON;
     }
 
@@ -2038,14 +2038,14 @@ static void sub_8124D64(void)
                 sFlyMap->regionMap.onButton = FALSE;
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
-                    m4aSongNumStart(SE_Z_PAGE);
+                    m4aSongNumStart(SE_Z_PAGE, FALSE);
                 }
                 ShowHelpBar();
                 break;
             case INPUT_EVENT_A_BUTTON:
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
-                    m4aSongNumStart(SE_KAIFUKU);
+                    m4aSongNumStart(SE_KAIFUKU, FALSE);
                     sFlyMap->choseFlyLocation = TRUE;
                     sub_81248F4(sub_8124E0C);
                     break;
@@ -2054,7 +2054,7 @@ static void sub_8124D64(void)
                 {
                     break;
                 }
-                m4aSongNumStart(SE_W063B);
+                m4aSongNumStart(SE_W063B, FALSE);
             case INPUT_EVENT_B_BUTTON:
                 sFlyMap->choseFlyLocation = FALSE;
                 sub_81248F4(sub_8124E0C);

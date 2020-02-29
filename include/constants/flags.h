@@ -1386,7 +1386,7 @@
 #define FLAG_SYS_HAS_MAP_CARD                       (SYSTEM_FLAGS + 0x23)
 #define FLAG_SYS_HAS_RADIO_CARD                     (SYSTEM_FLAGS + 0x24)
 #define FLAG_SYS_MOM_BANKING_ENABLED                (SYSTEM_FLAGS + 0x25)
-#define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
+#define FLAG_GB_PLAYER_ENABLED                      (SYSTEM_FLAGS + 0x26)
 #define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag
 
 #define FLAG_SYS_USE_FLASH                          (SYSTEM_FLAGS + 0x28)

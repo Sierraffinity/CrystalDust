@@ -10,6 +10,7 @@
 #include "battle_tv.h"
 #include "bg.h"
 #include "data.h"
+#include "event_data.h"
 #include "link.h"
 #include "main.h"
 #include "m4a.h"
@@ -28,6 +29,7 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "recorded_battle.h"
+#include "constants/flags.h"
 
 // this file's functions
 static void LinkPartnerHandleGetMonData(void);
@@ -1494,7 +1496,7 @@ static void LinkPartnerHandlePlayFanfareOrBGM(void)
     if (gBattleBufferA[gActiveBattler][3])
     {
         BattleStopLowHpSound();
-        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8));
+        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8), FlagGet(FLAG_GB_PLAYER_ENABLED));
     }
     else
     {

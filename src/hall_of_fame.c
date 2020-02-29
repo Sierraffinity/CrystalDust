@@ -34,6 +34,7 @@
 #include "trainer_pokemon_sprites.h"
 #include "data.h"
 #include "rom_81520A8.h"
+#include "constants/flags.h"
 #include "constants/rgb.h"
 
 struct HallofFameMon
@@ -374,7 +375,7 @@ static bool8 InitHallOfFameScreen(void)
         if (!gPaletteFade.active)
         {
             SetMainCallback2(CB2_HallOfFame);
-            PlayBGM(MUS_DENDOU);
+            PlayBGM(MUS_DENDOU, FlagGet(FLAG_GB_PLAYER_ENABLED));
             return FALSE;
         }
         break;

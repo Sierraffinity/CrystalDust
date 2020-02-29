@@ -5,6 +5,7 @@
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "evolution_scene.h"
 #include "evolution_graphics.h"
 #include "gpu_regs.h"
@@ -30,6 +31,7 @@
 #include "trade.h"
 #include "util.h"
 #include "constants/battle_string_ids.h"
+#include "constants/flags.h"
 #include "constants/species.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
@@ -713,7 +715,7 @@ static void Task_EvolutionScene(u8 taskID)
         {
             StringExpandPlaceholders(gStringVar4, gText_CongratsPkmnEvolved);
             BattlePutTextOnWindow(gStringVar4, 0);
-            PlayBGM(MUS_FANFA5);
+            PlayBGM(MUS_FANFA5, FlagGet(FLAG_GB_PLAYER_ENABLED));
             gTasks[taskID].tState++;
             SetMonData(mon, MON_DATA_SPECIES, (void*)(&gTasks[taskID].tPostEvoSpecies));
             CalculateMonStats(mon);
@@ -998,7 +1000,7 @@ static void Task_TradeEvolutionScene(u8 taskID)
     case 2:
         if (IsCryFinished())
         {
-            m4aSongNumStop(MUS_SHINKA);
+            m4aSongNumStop(MUS_SHINKA, FlagGet(FLAG_GB_PLAYER_ENABLED));
             PlaySE(MUS_ME_SHINKA);
             gTasks[taskID].tState++;
         }
@@ -1006,7 +1008,7 @@ static void Task_TradeEvolutionScene(u8 taskID)
     case 3:
         if (!IsSEPlaying())
         {
-            PlayBGM(MUS_SHINKA);
+            PlayBGM(MUS_SHINKA, FlagGet(FLAG_GB_PLAYER_ENABLED));
             gTasks[taskID].tState++;
             BeginNormalPaletteFade(0x1C, 4, 0, 0x10, RGB_BLACK);
         }
@@ -1109,7 +1111,7 @@ static void Task_TradeEvolutionScene(u8 taskID)
             }
             else
             {
-                PlayBGM(MUS_SHINKA);
+                PlayBGM(MUS_SHINKA, FlagGet(FLAG_GB_PLAYER_ENABLED));
                 DrawTextOnTradeWindow(0, gText_CommunicationStandby5, 1);
                 gTasks[taskID].tState++;
             }

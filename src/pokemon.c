@@ -6300,7 +6300,7 @@ void PlayBattleBGM(void)
 {
     ResetMapMusic();
     m4aMPlayAllStop();
-    PlayBGM(GetBattleBGM());
+    PlayBGM(GetBattleBGM(), FlagGet(FLAG_GB_PLAYER_ENABLED));
 }
 
 void PlayMapChosenOrBattleBGM(u16 songId)

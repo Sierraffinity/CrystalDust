@@ -1,3 +1,5 @@
+#include "constants/songs.h"
+
 	.align 2
 
 gSongTable:: @ 86B49F0
@@ -415,7 +417,7 @@ gSongTable:: @ 86B49F0
 	song mus_deepdeep, 0, 0         @ Dive
 	song mus_kachi1, 0, 0           @ Victory! (Trainer Battle)
 	song mus_title3, 0, 0           @ Title Screen
-	song gbs_azalea_town_Header, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
+	song mus_demo1, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
 	song mus_rivalenc, 0, 0         @ Rival Arrives
 	song mus_encsage, 0, 0          @ Trainers' Eyes Meet (Psychic)
 	song mus_encmaleold, 0, 0       @ Trainers' Eyes Meet (Cooltrainer)
@@ -615,3 +617,11 @@ gSongTable:: @ 86B49F0
 	.align 2
 dummy_song_header: @ 86B5D00
 	.byte 0, 0, 0, 0
+
+	.align 2
+gGBSSongTable::
+	song_gbs MUS_ROUTE29, gbs_route29_Header,       0, 0 @ Route 29
+	song_gbs MUS_VIOLET,  gbs_azalea_town_Header,   0, 0 @ Violet City
+	song_gbs MUS_ROUTE30, gbs_route30_Header,       0, 0 @ Route 30
+	song_gbs MUS_NEWBARK, gbs_new_bark_town_Header, 0, 0 @ New Bark Town
+	.4byte 0xFFFFFFFF

@@ -173,6 +173,8 @@ gbs_azalea_town_track_0_0:
 	.byte GBP_TEMPO
 	.byte NONOTE0
 	.byte GBP_A0
+	.byte GBP_MVOL
+	.byte GBP_Fs7
 	.byte GBP_DUTYC
 	.byte NONOTE2
 	.byte GBP_PAN

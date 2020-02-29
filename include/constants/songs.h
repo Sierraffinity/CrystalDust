@@ -329,7 +329,7 @@
 #define MUS_GRANROAD 402        // Route 119
 #define MUS_CYCLING 403         // Cycling
 #define MUS_FRIENDLY 404        // Pokémart
-#define MUS_NEWBARK 405         // Littleroot Town
+#define MUS_NEWBARK 405         // New Bark Town
 #define MUS_TOZAN 406           // Sky Pillar
 #define MUS_ENCFEMALE 407         // Encounter! Girl
 #define MUS_MINAMO 408          // Lilycove City
@@ -484,6 +484,7 @@
 #define MUS_RG_T_TOWER 556      // Trainer Tower (Gym)
 #define MUS_RG_SLOWMASARA 557   // Pallet Town (Hall of Fame remix)
 #define MUS_RG_TVNOIZE 558      // Teachy TV
+
 #define PH_TRAP_BLEND 559
 #define PH_TRAP_HELD 560
 #define PH_TRAP_SOLO 561
