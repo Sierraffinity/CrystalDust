@@ -525,17 +525,19 @@ bool16 ToneTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 		ArpeggiateTrack(toneTrack);
 	}
 
-	// TODO: This should be removed when pitch bend is implemented.
-	// This code is ensuring no pitch slide values are set, since no
-	// pokecrystal engine feature uses pitch slide except pitch bend.
-	if (ShouldRenderSound(toneTrack->trackID - 1))
-	{
-		vu16 *control = ToneTrackControl();
-		control[0] = 0;
-	}
-
 	if (toneTrack->trackID == 1)
+	{
+		if (ShouldRenderSound(toneTrack->trackID - 1))
+		{
+			// TODO: This should be removed when pitch bend is implemented.
+			// This code is ensuring no pitch slide values are set, since no
+			// pokecrystal engine feature uses pitch slide except pitch bend.
+			vu16 *control = ToneTrackControl();
+			control[0] = 0;
+		}
+
 		SetMasterVolumeFromFade(toneTrack->volX);
+	}
 
 	return TRUE;
 }
