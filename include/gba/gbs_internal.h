@@ -63,8 +63,8 @@ struct ToneTrack
 {
 	u8 flags;
 	u8 noteLength1;
-    u8 patternLevel:4;
-    u8 trackID:4;
+	u8 patternLevel:4;
+	u8 trackID:4;
 	u8 loopCounter;
 	u8 noteLength2;
 	u8 currentOctave;
@@ -76,10 +76,10 @@ struct ToneTrack
 	u16 tone;
 	s8 pitchBendRate;
 	u8 currentVoice;
-	u8 channelVolume;
-	u8 fadeSpeed;
-	u8 unk_counter;
-	u8 arpeggiationVoice;
+	u8 volMR;
+	u8 volML;
+	u8 vol;
+	u8 volX;
 	u8 pan;
 	u8 modulationCountdown;
 	u8 modulationDelay;
@@ -97,7 +97,11 @@ struct ToneTrack
 	u8 portamentoSpeed;
 	bool8 statusFlags[NumGBPEngineFlags];
 	u8 fadeDirection;
-	u8 padding[19];
+	u8 channelVolume;
+	u8 fadeSpeed;
+	u8 unk_counter;
+	u8 arpeggiationVoice;
+	u8 padding[15];
 	u8* nextInstruction;
 	u8* returnLocation;
 	u8 secondaryPadding[8];
@@ -120,10 +124,10 @@ struct WaveTrack
 	u16 tone;
 	s8 pitchBendRate;
 	u8 currentVoice;
-	u8 channelVolume;
-	u8 fadeSpeed;
-	u8 unk_counter;
-	u8 padding;
+	u8 volMR;
+	u8 volML;
+	u8 vol;
+	u8 volX;
 	u8 pan; // 0x14
 	u8 modulationCountdown;
 	u8 modulationDelay;
@@ -139,7 +143,11 @@ struct WaveTrack
 	u8 portamentoSpeedDelay; // 0x24
 	u8 portamentoSpeed; // 0x25
 	bool8 statusFlags[NumGBPEngineFlags]; // 0x26
-	u8 tertiaryPadding[20]; // 0x2C
+	u8 channelVolume;
+	u8 fadeSpeed;
+	u8 unk_counter;
+	u8 padding;
+	u8 tertiaryPadding[16];
 	u8* nextInstruction; // 0x40
 	u8* returnLocation;
 	u8 quaternaryPadding[8];
@@ -162,10 +170,10 @@ struct NoiseTrack
 	u16 tone;
 	s8 pitchBendRate;
 	u8 noiseSet;
-	u8 channelVolume;
-	u8 fadeSpeed;
-	u8 unk_counter;
-	u8 noiseFrameDelay;
+	u8 volMR;
+	u8 volML;
+	u8 vol;
+	u8 volX;
 	u8 pan;			   // 0x14
 	u8* samplePointer; // 0x18
 	bool8 noiseActive; // 0x1C
@@ -173,7 +181,11 @@ struct NoiseTrack
 	struct SoundChannel *chan; // 0x20
 	u8 tertiaryiPadding[2]; // 0x24
 	bool8 statusFlags[NumGBPEngineFlags]; // 0x26
-	u8 tertiaryPadding[20]; // 0x2c
+	u8 channelVolume;
+	u8 fadeSpeed;
+	u8 unk_counter;
+	u8 noiseFrameDelay;
+	u8 tertiaryPadding[16];
 	u8* nextInstruction;
 	u8* returnLocation;
 	u8 quaternaryPadding[8];

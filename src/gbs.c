@@ -3,6 +3,8 @@
  *
  *  Created on: 21 May 2018
  *      Author: Jambo51
+ *  Revised for M4A integration in: February 2020
+ *      Author: huderlem
  */
 
 #include "global.h"
@@ -72,6 +74,26 @@ inline bool32 ShouldRenderWaveChannel()
 inline bool32 ShouldRenderNoiseChannel()
 {
 	return ShouldRenderSound(3);
+}
+
+void SetMasterVolumeFromFade(u32 volX)
+{
+	// Respect the master M4A fade control.
+	u32 masterVolume;
+	vu16 *control = SoundControl();
+	if (volX != 0)
+		masterVolume = volX / 8;
+	else
+		masterVolume = 7;
+
+	if (masterVolume > 7)
+		masterVolume = 7;
+
+	if ((control[0] & 0x7) != masterVolume)
+	{
+		control[0] &= 0xFF00;
+		control[0] |= (masterVolume << 4) | masterVolume;
+	}
 }
 
 u16 CalculateLength(u8 frameDelay, u16 tempo, u8 bitLength, u16 previousLeftover)
@@ -512,6 +534,9 @@ bool16 ToneTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 		control[0] = 0;
 	}
 
+	if (toneTrack->trackID == 1)
+		SetMasterVolumeFromFade(toneTrack->volX);
+
 	return TRUE;
 }
 
@@ -939,6 +964,7 @@ bool16 WaveTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 		waveTrack->noteLength1--;
 		ModulateWaveTrack(waveTrack);
 	}
+
 	return TRUE;
 }
 
@@ -1145,6 +1171,7 @@ bool16 NoiseTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
 			}
 		}
 	}
+
 	return TRUE;
 }
 
@@ -1166,6 +1193,7 @@ bool16 GBSChannelUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
 			success = ToneTrackUpdate(info, track);
 			break;
 	}
+
 	return success;
 }
 
