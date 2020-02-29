@@ -1262,6 +1262,13 @@ void GBSTrackStop(struct MusicPlayerTrack *track)
 			ResetNoiseTrack();
 			break;
 		default:
+			if (track->gbsIdentifier == 1)
+			{
+				// Restore the master volume of the GB Channels when a GBS song finishes.
+				vu16 *control = SoundControl();
+				control[0] |= 0x77;
+			}
+
 			ResetToneTrack(track->gbsIdentifier - 1);
 			break;
 	}
