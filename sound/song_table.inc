@@ -621,7 +621,7 @@ dummy_song_header: @ 86B5D00
 	.align 2
 gGBSSongTable::
 	song_gbs MUS_ROUTE29, gbs_route29_Header,       0, 0 @ Route 29
-	song_gbs MUS_VIOLET,  gbs_azalea_town_Header,   0, 0 @ Violet City
+	song_gbs MUS_VIOLET,  gbs_violet_city_Header,   0, 0 @ Violet City
 	song_gbs MUS_ROUTE30, gbs_route30_Header,       0, 0 @ Route 30
 	song_gbs MUS_NEWBARK, gbs_new_bark_town_Header, 0, 0 @ New Bark Town
 	.4byte 0xFFFFFFFF
