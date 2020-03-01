@@ -1536,8 +1536,6 @@ TrackStop_3:
 TrackStop_GBSReset:
 	movs r0, r5
 	bl GBSTrackStop
-	movs r0, r5
-	bl Clear64byte
 TrackStop_Done:
 	pop {r4-r6}
 	pop {r0}
