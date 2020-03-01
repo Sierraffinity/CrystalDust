@@ -93,7 +93,7 @@ Route124_EventScript_RematchRoy:: @ 81F66F0
 	end
 
 Route124_EventScript_Declan:: @ 81F670B
-	trainerbattle_single TRAINER_DECLAN, Route124_Text_DeclanIntro, Route124_Text_DeclanDefeat
+	trainerbattle_single TRAINER_LIZ_1, Route124_Text_DeclanIntro, Route124_Text_DeclanDefeat
 	msgbox Route124_Text_DeclanPostBattle, MSGBOX_AUTOCLOSE
 	end
 

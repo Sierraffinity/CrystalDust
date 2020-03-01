@@ -9,7 +9,7 @@ BattleFrontier_BattleFactoryLobby_OnWarp: @ 82583F3
 
 BattleFrontier_BattleFactoryLobby_EventScript_TurnPlayerNorth:: @ 82583FD
 	setvar VAR_TEMP_1, 1
-	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	end
 
 BattleFrontier_BattleFactoryLobby_OnFrame: @ 8258407
@@ -75,8 +75,8 @@ BattleFrontier_BattleFactoryLobby_EventScript_LostChallenge:: @ 8258506
 	waitse
 
 BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle:: @ 825853B
-	call BattleFrontier_BattleFactoryLobby_EventScript_23E8E0
-	compare VAR_RESULT, 1
+	call BattleFrontier_EventScript_GetCantRecordBattle
+	compare VAR_RESULT, TRUE
 	goto_if_eq BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
 	message BattleFrontier_BattleFactoryLobby_Text_RecordLastMatch
 	waitmessage
@@ -176,7 +176,7 @@ BattleFrontier_BattleFactoryLobby_EventScript_EnterChallenge:: @ 825871A
 	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES
 	call_if_eq BattleFrontier_BattleFactoryLobby_EventScript_TalkedToDoublesAttendant
 	applymovement VAR_LAST_TALKED, BattleFrontier_BattleFactoryLobby_Movement_AttendantEnterDoor
-	applymovement EVENT_OBJ_ID_PLAYER, BattleFrontier_BattleFactoryLobby_Movement_PlayerEnterDoor
+	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleFactoryLobby_Movement_PlayerEnterDoor
 	waitmovement 0
 	warp MAP_BATTLE_FRONTIER_BATTLE_FACTORY_PRE_BATTLE_ROOM, 255, 8, 13
 	setvar VAR_TEMP_0, 0

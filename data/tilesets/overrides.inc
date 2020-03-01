@@ -39,3 +39,16 @@ gTilesetPalOverrides_Petalburg::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
+
+	.align 2
+gTilesetPalOverrides_Violet::
+	.byte 8
+	.byte TIME_NIGHT_HOUR
+	.byte 0
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Violet08
+	.byte 0xFF
+	.byte 0
+	.byte 0
+	.byte 0 @ padding
+	.4byte NULL

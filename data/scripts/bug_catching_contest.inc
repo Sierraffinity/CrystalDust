@@ -69,7 +69,7 @@ BugContestOfficer_EnterContest::
 BugContestOfficer_GivePrizeItem::
 	bufferitemname 0, VAR_BUG_CONTEST_PRIZE
 	msgbox BugContestOfficer_Text_GivePrizeItem, MSGBOX_DEFAULT
-	giveitem_std VAR_BUG_CONTEST_PRIZE
+	giveitem VAR_BUG_CONTEST_PRIZE
 	compare VAR_RESULT, 0
 	goto_if_eq BugContestOfficer_NoRoomForPrize
 	setvar VAR_BUG_CONTEST_PRIZE, ITEM_NONE

@@ -10,9 +10,9 @@ script SproutTower_3F_EventScript_Painting {
 script SproutTower_3F_EventScript_RivalScene {
     lockall
     playse(SE_PIN)
-    applymovement(EVENT_OBJ_ID_PLAYER, Common_Movement_ExclamationMark)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
 	waitmovement(0)
-	applymovement(EVENT_OBJ_ID_PLAYER, Common_Movement_Delay48)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
     fadeoutbgm(0)
 	waitmovement(0)
 	setvar(VAR_0x8004, 2)  # vertical pan
@@ -28,7 +28,7 @@ script SproutTower_3F_EventScript_RivalScene {
 	setvar(VAR_0x8007, 4)  # shake delay
 	special(ShakeCamera)
 	waitstate
-    applymovement(EVENT_OBJ_ID_PLAYER, SproutTower_3F_Movement_PlayerToRival)
+    applymovement(OBJ_EVENT_ID_PLAYER, SproutTower_3F_Movement_PlayerToRival)
     waitmovement(0)
     applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalToSage)
     waitmovement(0)
@@ -62,7 +62,7 @@ script SproutTower_3F_EventScript_RivalScene {
            "weak POKéMON.")
     applymovement(RIVAL_ID, Common_Movement_WalkInPlaceFastestUp)
     waitmovement(0)
-    call(RestoreOriginalTextColor)
+    call(Common_RestoreOriginalTextColor)
     msgbox("{RIVAL} used the\n"
            "ESCAPE ROPE.")
     closemessage
@@ -104,8 +104,8 @@ script SproutTower_3F_EventScript_Li_PostBattle {
     msgbox("You and your POKéMON should have\n"
            "no problem using this move.\l"
            "Take this FLASH HM.")
-    giveitem_msg("{PLAYER} received HM05\n"
-                 "from the ELDER.", ITEM_HM05, 1, MUS_ME_WAZA)
+    givetmhm_msg("{PLAYER} received HM05\n"
+                 "from the ELDER.", ITEM_HM05)
     setflag(FLAG_RECEIVED_HM05)
     msgbox("FLASH illuminates even the darkest\n"
            "of all places.\p"

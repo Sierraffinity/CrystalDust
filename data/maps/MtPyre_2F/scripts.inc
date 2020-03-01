@@ -38,7 +38,7 @@ MtPyre_2F_EventScript_Leah:: @ 8231175
 	end
 
 MtPyre_2F_EventScript_Zander:: @ 823118C
-	trainerbattle_single TRAINER_ZANDER, MtPyre_2F_Text_ZanderIntro, MtPyre_2F_Text_ZanderDefeat
+	trainerbattle_single TRAINER_ANTHONY_1, MtPyre_2F_Text_ZanderIntro, MtPyre_2F_Text_ZanderDefeat
 	msgbox MtPyre_2F_Text_ZanderPostBattle, MSGBOX_AUTOCLOSE
 	end
 

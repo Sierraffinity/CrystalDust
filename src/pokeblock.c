@@ -451,7 +451,7 @@ void OpenPokeblockCase(u8 caseId, void (*callback)(void))
         sPokeblockMenu->pokeblockOptionsIds = sActionsWhenGivingToLady;
         sPokeblockMenu->optionsNo = ARRAY_COUNT(sActionsWhenGivingToLady);
         break;
-    default:
+    default: // PBLOCK_CASE_FIELD
         sPokeblockMenu->pokeblockOptionsIds = sActionsOnField;
         sPokeblockMenu->optionsNo = ARRAY_COUNT(sActionsOnField);
         break;
@@ -960,7 +960,7 @@ static void Task_FreeDataAndExitPokeblockCase(u8 taskId)
     if (!gPaletteFade.active)
     {
         if (sPokeblockMenu->caseId == PBLOCK_CASE_FEEDER || sPokeblockMenu->caseId == PBLOCK_CASE_GIVE)
-            gFieldCallback = FieldCallback_ReturnToEventScript2;
+            gFieldCallback = FieldCB_ContinueScriptHandleMusic;
 
         DestroyListMenuTask(data[0], &sSavedPokeblockData.lastItemPage, &sSavedPokeblockData.lastItemPos);
         sub_8136418();
@@ -1123,7 +1123,7 @@ static void PutPokeblockOptionsWindow(u8 taskId)
     sub_8136418();
     DrawStdFrameWithCustomTileAndPalette(data[1], 0, 1, 0xE);
     sub_81995E4(data[1], sPokeblockMenu->optionsNo, sPokeblockMenuActions, sPokeblockMenu->pokeblockOptionsIds);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[1], sPokeblockMenu->optionsNo, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[1], 1, 0, 1, 16, sPokeblockMenu->optionsNo, 0);
     PutWindowTilemap(data[1]);
     schedule_bg_copy_tilemap_to_vram(1);
 

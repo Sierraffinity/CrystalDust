@@ -23,7 +23,7 @@
 #include "window.h"
 #include "util.h"
 #include "constants/battle_ai.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
 #include "constants/items.h"
 #include "constants/layouts.h"
@@ -97,12 +97,12 @@ struct
     {TRAINER_CLASS_SWIMMER_F, TRAINER_ENCOUNTER_MUSIC_FEMALE},
     {TRAINER_CLASS_POKEFAN, TRAINER_ENCOUNTER_MUSIC_TWINS},
     {TRAINER_CLASS_DRAGON_TAMER, TRAINER_ENCOUNTER_MUSIC_SAGE},
-    {TRAINER_CLASS_COOLTRAINER, TRAINER_ENCOUNTER_MUSIC_MALEOLD},
+    {TRAINER_CLASS_COOLTRAINER, TRAINER_ENCOUNTER_MUSIC_MALECLASSIC},
     {TRAINER_CLASS_GUITARIST, TRAINER_ENCOUNTER_MUSIC_SAGE},
     {TRAINER_CLASS_SAILOR, TRAINER_ENCOUNTER_MUSIC_MALE},
     {TRAINER_CLASS_TWINS, TRAINER_ENCOUNTER_MUSIC_TWINS},
     {TRAINER_CLASS_INTERVIEWER, TRAINER_ENCOUNTER_MUSIC_KIMONO},
-    {TRAINER_CLASS_RUIN_MANIAC, TRAINER_ENCOUNTER_MUSIC_SUSPOLD},
+    {TRAINER_CLASS_RUIN_MANIAC, TRAINER_ENCOUNTER_MUSIC_SUSPICIOUSCLASSIC},
     {TRAINER_CLASS_GENTLEMAN, TRAINER_ENCOUNTER_MUSIC_RICH},
     {TRAINER_CLASS_SWIMMER_M, TRAINER_ENCOUNTER_MUSIC_FEMALE},
     {TRAINER_CLASS_POKEMANIAC, TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS},
@@ -110,7 +110,7 @@ struct
     {TRAINER_CLASS_OLD_COUPLE, TRAINER_ENCOUNTER_MUSIC_SAGE},
     {TRAINER_CLASS_BUG_MANIAC, TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS},
     {TRAINER_CLASS_CAMPER, TRAINER_ENCOUNTER_MUSIC_MALE},
-    {TRAINER_CLASS_KINDLER, TRAINER_ENCOUNTER_MUSIC_SUSPOLD},
+    {TRAINER_CLASS_KINDLER, TRAINER_ENCOUNTER_MUSIC_SUSPICIOUSCLASSIC},
     {TRAINER_CLASS_TEAM_MAGMA, TRAINER_ENCOUNTER_MUSIC_MAGMA},
     {TRAINER_CLASS_MAGMA_ADMIN, TRAINER_ENCOUNTER_MUSIC_MAGMA},
     {TRAINER_CLASS_MAGMA_LEADER, TRAINER_ENCOUNTER_MUSIC_MAGMA},
@@ -122,25 +122,25 @@ struct
     {TRAINER_CLASS_BEAUTY, TRAINER_ENCOUNTER_MUSIC_FEMALE},
     {TRAINER_CLASS_LADY, TRAINER_ENCOUNTER_MUSIC_FEMALE},
     {TRAINER_CLASS_PARASOL_LADY, TRAINER_ENCOUNTER_MUSIC_FEMALE},
-    {TRAINER_CLASS_PICNICKER, TRAINER_ENCOUNTER_MUSIC_FEMALEOLD},
+    {TRAINER_CLASS_PICNICKER, TRAINER_ENCOUNTER_MUSIC_FEMALECLASSIC},
     {TRAINER_CLASS_PKMN_BREEDER, TRAINER_ENCOUNTER_MUSIC_FEMALE},
     {TRAINER_CLASS_SAGE, TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS},
-    {TRAINER_CLASS_PKMN_RANGER, TRAINER_ENCOUNTER_MUSIC_MALEOLD},
+    {TRAINER_CLASS_PKMN_RANGER, TRAINER_ENCOUNTER_MUSIC_MALECLASSIC},
     {TRAINER_CLASS_PKMN_TRAINER_3, TRAINER_ENCOUNTER_MUSIC_MALE},
-    {TRAINER_CLASS_YOUNG_COUPLE, TRAINER_ENCOUNTER_MUSIC_FEMALEOLD},
+    {TRAINER_CLASS_YOUNG_COUPLE, TRAINER_ENCOUNTER_MUSIC_FEMALECLASSIC},
     {TRAINER_CLASS_PSYCHIC, TRAINER_ENCOUNTER_MUSIC_SAGE},
     {TRAINER_CLASS_SR_AND_JR, TRAINER_ENCOUNTER_MUSIC_TWINS},
     {TRAINER_CLASS_ELITE_FOUR, TRAINER_ENCOUNTER_MUSIC_FEMALE},
     {TRAINER_CLASS_YOUNGSTER, TRAINER_ENCOUNTER_MUSIC_MALE},
-    {TRAINER_CLASS_EXPERT, TRAINER_ENCOUNTER_MUSIC_SAGE},
+    {TRAINER_CLASS_FIREBREATHER, TRAINER_ENCOUNTER_MUSIC_SAGE},
     {TRAINER_CLASS_TRIATHLETE, TRAINER_ENCOUNTER_MUSIC_MALE},
-    {TRAINER_CLASS_BIRD_KEEPER, TRAINER_ENCOUNTER_MUSIC_MALEOLD},
-    {TRAINER_CLASS_FISHERMAN, TRAINER_ENCOUNTER_MUSIC_SUSPOLD},
+    {TRAINER_CLASS_BIRD_KEEPER, TRAINER_ENCOUNTER_MUSIC_MALECLASSIC},
+    {TRAINER_CLASS_FISHERMAN, TRAINER_ENCOUNTER_MUSIC_SUSPICIOUSCLASSIC},
     {TRAINER_CLASS_CHAMPION, TRAINER_ENCOUNTER_MUSIC_MALE},
     {TRAINER_CLASS_TUBER_M, TRAINER_ENCOUNTER_MUSIC_MALE},
-    {TRAINER_CLASS_TUBER_F, TRAINER_ENCOUNTER_MUSIC_FEMALEOLD},
+    {TRAINER_CLASS_TUBER_F, TRAINER_ENCOUNTER_MUSIC_FEMALECLASSIC},
     {TRAINER_CLASS_SIS_AND_BRO, TRAINER_ENCOUNTER_MUSIC_SWIMMER},
-    {TRAINER_CLASS_HIKER, TRAINER_ENCOUNTER_MUSIC_SUSPOLD},
+    {TRAINER_CLASS_HIKER, TRAINER_ENCOUNTER_MUSIC_SUSPICIOUSCLASSIC},
     {TRAINER_CLASS_LEADER, TRAINER_ENCOUNTER_MUSIC_FEMALE},
     {TRAINER_CLASS_SCHOOL_KID, TRAINER_ENCOUNTER_MUSIC_MALE},
 };
@@ -251,9 +251,9 @@ static const u8 *const sTagMatchStrings[] =
     gText_ExpertTagMatch,
 };
 
-static const struct EventObjectTemplate sTrainerEventObjectTemplate =
+static const struct ObjectEventTemplate sTrainerObjectEventTemplate =
 {
-    .graphicsId = EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL,
+    .graphicsId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL,
     .elevation = 3,
     .movementType = MOVEMENT_TYPE_LOOK_AROUND,
     .movementRangeX = 1,
@@ -629,25 +629,25 @@ static void SetTimerValue(u32 *dst, u32 val)
     *dst = val;
 }
 
-void LoadTrainerHillEventObjectTemplates(void)
+void LoadTrainerHillObjectEventTemplates(void)
 {
     u8 i, floorId;
-    struct EventObjectTemplate *eventTemplates = gSaveBlock1Ptr->eventObjectTemplates;
+    struct ObjectEventTemplate *eventTemplates = gSaveBlock1Ptr->objectEventTemplates;
 
-    if (!LoadTrainerHillFloorEventObjectScripts())
+    if (!LoadTrainerHillFloorObjectEventScripts())
         return;
 
     SetUpDataStruct();
     for (i = 0; i < 2; i++)
         gSaveBlock2Ptr->frontier.trainerIds[i] = 0xFFFF;
-    CpuFill32(0, gSaveBlock1Ptr->eventObjectTemplates, sizeof(gSaveBlock1Ptr->eventObjectTemplates));
+    CpuFill32(0, gSaveBlock1Ptr->objectEventTemplates, sizeof(gSaveBlock1Ptr->objectEventTemplates));
 
     floorId = GetFloorId();
     for (i = 0; i < 2; i++)
     {
         u8 bits;
 
-        eventTemplates[i] = sTrainerEventObjectTemplate;
+        eventTemplates[i] = sTrainerObjectEventTemplate;
         eventTemplates[i].localId = i + 1;
         eventTemplates[i].graphicsId = FacilityClassToGraphicsId(sHillData->floors[floorId].trainers[i].facilityClass);
         eventTemplates[i].x = sHillData->floors[floorId].display.coords[i] & 0xF;
@@ -662,7 +662,7 @@ void LoadTrainerHillEventObjectTemplates(void)
     FreeDataStruct();
 }
 
-bool32 LoadTrainerHillFloorEventObjectScripts(void)
+bool32 LoadTrainerHillFloorObjectEventScripts(void)
 {
     SetUpDataStruct();
     // Something may have been dummied here
@@ -860,10 +860,10 @@ u16 LocalIdToHillTrainerId(u8 localId)
     return gSaveBlock2Ptr->frontier.trainerIds[localId - 1];
 }
 
-bool8 GetHillTrainerFlag(u8 eventObjectId)
+bool8 GetHillTrainerFlag(u8 objectEventId)
 {
     u32 floorId = GetFloorId() * 2;
-    u8 bitId = gEventObjects[eventObjectId].localId - 1 + floorId;
+    u8 bitId = gObjectEvents[objectEventId].localId - 1 + floorId;
 
     return gSaveBlock2Ptr->frontier.trainerFlags & gBitTable[bitId];
 }

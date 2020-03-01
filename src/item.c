@@ -14,6 +14,7 @@
 #include "battle_pyramid_bag.h"
 #include "constants/items.h"
 #include "constants/hold_effects.h"
+#include "constants/tv.h"
 
 extern u16 gUnknown_0203CF30[];
 
@@ -28,7 +29,6 @@ static bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count);
 EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
 
 // rodata
-#include "data/text/item_descriptions.h"
 #include "data/items.h"
 
 // code
@@ -201,9 +201,9 @@ bool8 CheckBagHasSpace(u16 itemId, u16 count)
 
         pocket = ItemId_GetPocket(itemId) - 1;
         if (pocket != BERRIES_POCKET)
-            slotCapacity = 99;
+            slotCapacity = MAX_BAG_ITEM_CAPACITY;
         else
-            slotCapacity = 999;
+            slotCapacity = MAX_BERRY_CAPACITY;
 
         // Check space in any existing item slots that already contain this item
         for (i = 0; i < gBagPockets[pocket].capacity; i++)
@@ -421,9 +421,9 @@ bool8 AddBagItem(u16 itemId, u16 count)
         memcpy(newItems, itemPocket->itemSlots, itemPocket->capacity * sizeof(struct ItemSlot));
 
         if (pocket != BERRIES_POCKET)
-            slotCapacity = 99;
+            slotCapacity = MAX_BAG_ITEM_CAPACITY;
         else
-            slotCapacity = 999;
+            slotCapacity = MAX_BERRY_CAPACITY;
 
         for (i = 0; i < itemPocket->capacity; i++)
         {
@@ -542,7 +542,7 @@ bool8 RemoveBagItem(u16 itemId, u16 count)
 
         if (CurMapIsSecretBase() == TRUE)
         {
-            VarSet(VAR_SECRET_BASE_LOW_TV_FLAGS, VarGet(VAR_SECRET_BASE_LOW_TV_FLAGS) | 0x200);
+            VarSet(VAR_SECRET_BASE_LOW_TV_FLAGS, VarGet(VAR_SECRET_BASE_LOW_TV_FLAGS) | SECRET_BASE_USED_BAG);
             VarSet(VAR_SECRET_BASE_LAST_ITEM_USED, itemId);
         }
 
@@ -666,15 +666,15 @@ bool8 AddPCItem(u16 itemId, u16 count)
         if (newItems[i].itemId == itemId)
         {
             ownedCount = GetPCItemQuantity(&newItems[i].quantity);
-            if (ownedCount + count <= 999)
+            if (ownedCount + count <= MAX_PC_ITEM_CAPACITY)
             {
                 SetPCItemQuantity(&newItems[i].quantity, ownedCount + count);
                 memcpy(gSaveBlock1Ptr->pcItems, newItems, sizeof(gSaveBlock1Ptr->pcItems));
                 Free(newItems);
                 return TRUE;
             }
-            count += ownedCount - 999;
-            SetPCItemQuantity(&newItems[i].quantity, 999);
+            count += ownedCount - MAX_PC_ITEM_CAPACITY;
+            SetPCItemQuantity(&newItems[i].quantity, MAX_PC_ITEM_CAPACITY);
             if (count == 0)
             {
                 memcpy(gSaveBlock1Ptr->pcItems, newItems, sizeof(gSaveBlock1Ptr->pcItems));
@@ -882,10 +882,10 @@ static bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count)
     {
         if (items[i] == itemId || items[i] == ITEM_NONE)
         {
-            if (quantities[i] + count <= 99)
+            if (quantities[i] + count <= MAX_BAG_ITEM_CAPACITY)
                 return TRUE;
 
-            count = (quantities[i] + count) - 99;
+            count = (quantities[i] + count) - MAX_BAG_ITEM_CAPACITY;
             if (count == 0)
                 return TRUE;
         }
@@ -909,13 +909,13 @@ bool8 AddPyramidBagItem(u16 itemId, u16 count)
 
     for (i = 0; i < PYRAMID_BAG_ITEMS_COUNT; i++)
     {
-        if (newItems[i] == itemId && newQuantities[i] < 99)
+        if (newItems[i] == itemId && newQuantities[i] < MAX_BAG_ITEM_CAPACITY)
         {
             newQuantities[i] += count;
-            if (newQuantities[i] > 99)
+            if (newQuantities[i] > MAX_BAG_ITEM_CAPACITY)
             {
-                count = newQuantities[i] - 99;
-                newQuantities[i] = 99;
+                count = newQuantities[i] - MAX_BAG_ITEM_CAPACITY;
+                newQuantities[i] = MAX_BAG_ITEM_CAPACITY;
             }
             else
             {
@@ -935,10 +935,10 @@ bool8 AddPyramidBagItem(u16 itemId, u16 count)
             {
                 newItems[i] = itemId;
                 newQuantities[i] = count;
-                if (newQuantities[i] > 99)
+                if (newQuantities[i] > MAX_BAG_ITEM_CAPACITY)
                 {
-                    count = newQuantities[i] - 99;
-                    newQuantities[i] = 99;
+                    count = newQuantities[i] - MAX_BAG_ITEM_CAPACITY;
+                    newQuantities[i] = MAX_BAG_ITEM_CAPACITY;
                 }
                 else
                 {
@@ -1076,7 +1076,7 @@ u8 ItemId_GetImportance(u16 itemId)
 // unused
 u8 ItemId_GetUnknownValue(u16 itemId)
 {
-    return gItems[SanitizeItemId(itemId)].unk19;
+    return gItems[SanitizeItemId(itemId)].exitsBagOnUse;
 }
 
 u8 ItemId_GetPocket(u16 itemId)

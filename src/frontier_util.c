@@ -71,7 +71,7 @@ static void RestoreHeldItems(void);
 static void SaveRecordBattle(void);
 static void BufferFrontierTrainerName(void);
 static void ResetSketchedMoves(void);
-static void SetFacilityBrainEventObject(void);
+static void SetFacilityBrainObjectEvent(void);
 static void ShowTowerResultsWindow(u8);
 static void ShowDomeResultsWindow(u8);
 static void ShowPalaceResultsWindow(u8);
@@ -628,7 +628,7 @@ static void (* const sFrontierUtilFuncs[])(void) =
     [FRONTIER_UTIL_FUNC_SAVE_BATTLE]           = SaveRecordBattle,
     [FRONTIER_UTIL_FUNC_BUFFER_TRAINER_NAME]   = BufferFrontierTrainerName,
     [FRONTIER_UTIL_FUNC_RESET_SKETCH_MOVES]    = ResetSketchedMoves,
-    [FRONTIER_UTIL_FUNC_SET_BRAIN_OBJECT]      = SetFacilityBrainEventObject,
+    [FRONTIER_UTIL_FUNC_SET_BRAIN_OBJECT]      = SetFacilityBrainObjectEvent,
 };
 
 static const struct WindowTemplate sFrontierResultsWindowTemplate =
@@ -667,13 +667,13 @@ static const struct WindowTemplate sRankingHallRecordsWindowTemplate =
 // Second field - whether the character is female.
 static const u8 sFrontierBrainObjEventGfx[NUM_FRONTIER_FACILITIES][2] =
 {
-    [FRONTIER_FACILITY_TOWER]   = {EVENT_OBJ_GFX_ANABEL,  TRUE},
-    [FRONTIER_FACILITY_DOME]    = {EVENT_OBJ_GFX_TUCKER,  FALSE},
-    [FRONTIER_FACILITY_PALACE]  = {EVENT_OBJ_GFX_SPENSER, FALSE},
-    [FRONTIER_FACILITY_ARENA]   = {EVENT_OBJ_GFX_GRETA,   TRUE},
-    [FRONTIER_FACILITY_FACTORY] = {EVENT_OBJ_GFX_NOLAND,  FALSE},
-    [FRONTIER_FACILITY_PIKE]    = {EVENT_OBJ_GFX_LUCY,    TRUE},
-    [FRONTIER_FACILITY_PYRAMID] = {EVENT_OBJ_GFX_BRANDON, FALSE},
+    [FRONTIER_FACILITY_TOWER]   = {OBJ_EVENT_GFX_ANABEL,  TRUE},
+    [FRONTIER_FACILITY_DOME]    = {OBJ_EVENT_GFX_TUCKER,  FALSE},
+    [FRONTIER_FACILITY_PALACE]  = {OBJ_EVENT_GFX_SPENSER, FALSE},
+    [FRONTIER_FACILITY_ARENA]   = {OBJ_EVENT_GFX_GRETA,   TRUE},
+    [FRONTIER_FACILITY_FACTORY] = {OBJ_EVENT_GFX_NOLAND,  FALSE},
+    [FRONTIER_FACILITY_PIKE]    = {OBJ_EVENT_GFX_LUCY,    TRUE},
+    [FRONTIER_FACILITY_PYRAMID] = {OBJ_EVENT_GFX_BRANDON, FALSE},
 };
 
 const u16 gFrontierBannedSpecies[] =
@@ -840,8 +840,8 @@ static void GetFrontierData(void)
         gSpecialVar_Result = gBattleOutcome;
         gBattleOutcome = 0;
         break;
-    case FRONTIER_DATA_6:
-        gSpecialVar_Result = gSaveBlock2Ptr->frontier.field_CA9_b;
+    case FRONTIER_DATA_RECORD_DISABLED:
+        gSpecialVar_Result = gSaveBlock2Ptr->frontier.disableRecordBattle;
         break;
     case FRONTIER_DATA_HEARD_BRAIN_SPEECH:
         gSpecialVar_Result = gSaveBlock2Ptr->frontier.battledBrainFlags & sBattledBrainBitFlags[facility][hasSymbol];
@@ -875,8 +875,8 @@ static void SetFrontierData(void)
         for (i = 0; i < MAX_FRONTIER_PARTY_SIZE; i++)
             gSaveBlock2Ptr->frontier.selectedPartyMons[i] = gSelectedOrderFromParty[i];
         break;
-    case FRONTIER_DATA_6:
-        gSaveBlock2Ptr->frontier.field_CA9_b = gSpecialVar_0x8006;
+    case FRONTIER_DATA_RECORD_DISABLED:
+        gSaveBlock2Ptr->frontier.disableRecordBattle = gSpecialVar_0x8006;
         break;
     case FRONTIER_DATA_HEARD_BRAIN_SPEECH:
         gSaveBlock2Ptr->frontier.battledBrainFlags |= sBattledBrainBitFlags[facility][hasSymbol];
@@ -1701,7 +1701,7 @@ void CopyFrontierTrainerText(u8 whichText, u16 trainerId)
             FrontierSpeechToString(gSaveBlock2Ptr->frontier.ereaderTrainer.greeting);
         else if (trainerId == TRAINER_FRONTIER_BRAIN)
             CopyFrontierBrainText(FALSE);
-        else if (trainerId < TRAINER_RECORD_MIXING_FRIEND)
+        else if (trainerId < FRONTIER_TRAINERS_COUNT)
             FrontierSpeechToString(gFacilityTrainers[trainerId].speechBefore);
         else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
             FrontierSpeechToString(gSaveBlock2Ptr->frontier.towerRecords[trainerId - TRAINER_RECORD_MIXING_FRIEND].greeting);
@@ -1717,7 +1717,7 @@ void CopyFrontierTrainerText(u8 whichText, u16 trainerId)
         {
             CopyFrontierBrainText(FALSE);
         }
-        else if (trainerId < TRAINER_RECORD_MIXING_FRIEND)
+        else if (trainerId < FRONTIER_TRAINERS_COUNT)
         {
             FrontierSpeechToString(gFacilityTrainers[trainerId].speechWin);
         }
@@ -1745,7 +1745,7 @@ void CopyFrontierTrainerText(u8 whichText, u16 trainerId)
         {
             CopyFrontierBrainText(TRUE);
         }
-        else if (trainerId < TRAINER_RECORD_MIXING_FRIEND)
+        else if (trainerId < FRONTIER_TRAINERS_COUNT)
         {
             FrontierSpeechToString(gFacilityTrainers[trainerId].speechLose);
         }
@@ -2173,7 +2173,7 @@ static void RestoreHeldItems(void)
 static void SaveRecordBattle(void)
 {
     gSpecialVar_Result = MoveRecordedBattleToSaveData();
-    gSaveBlock2Ptr->frontier.field_CA9_b = 1;
+    gSaveBlock2Ptr->frontier.disableRecordBattle = TRUE;
 }
 
 static void BufferFrontierTrainerName(void)
@@ -2214,9 +2214,9 @@ static void ResetSketchedMoves(void)
     }
 }
 
-static void SetFacilityBrainEventObject(void)
+static void SetFacilityBrainObjectEvent(void)
 {
-    SetFrontierBrainEventObjGfx(VarGet(VAR_FRONTIER_FACILITY));
+    SetFrontierBrainObjEventGfx(VarGet(VAR_FRONTIER_FACILITY));
 }
 
 // Battle Frontier Ranking Hall records.
@@ -2478,7 +2478,7 @@ bool8 IsFrontierBrainFemale(void)
     return sFrontierBrainObjEventGfx[facility][1];
 }
 
-void SetFrontierBrainEventObjGfx_2(void)
+void SetFrontierBrainObjEventGfx_2(void)
 {
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
     VarSet(VAR_OBJ_GFX_ID_0, sFrontierBrainObjEventGfx[facility][0]);
@@ -2490,7 +2490,7 @@ void SetFrontierBrainEventObjGfx_2(void)
 void CreateFrontierBrainPokemon(void)
 {
     s32 i, j;
-    s32 monCountInBits;
+    s32 selectedMonBits;
     s32 monPartyId;
     s32 monLevel = 0;
     u8 friendship;
@@ -2498,16 +2498,16 @@ void CreateFrontierBrainPokemon(void)
     s32 symbol = GetFronterBrainSymbol();
 
     if (facility == FRONTIER_FACILITY_DOME)
-        monCountInBits = GetDomeTrainerMonCountInBits(TrainerIdToDomeTournamentId(TRAINER_FRONTIER_BRAIN));
+        selectedMonBits = GetDomeTrainerSelectedMons(TrainerIdToDomeTournamentId(TRAINER_FRONTIER_BRAIN));
     else
-        monCountInBits = 7;
+        selectedMonBits = (1 << FRONTIER_PARTY_SIZE) - 1; // all 3 mons selected
 
     ZeroEnemyPartyMons();
     monPartyId = 0;
     monLevel = SetFacilityPtrsGetLevel();
-    for (i = 0; i < 3; monCountInBits >>= 1, i++)
+    for (i = 0; i < FRONTIER_PARTY_SIZE; selectedMonBits >>= 1, i++)
     {
-        if (!(monCountInBits & 1))
+        if (!(selectedMonBits & 1))
             continue;
 
         do
@@ -2523,7 +2523,7 @@ void CreateFrontierBrainPokemon(void)
         SetMonData(&gEnemyParty[monPartyId], MON_DATA_HELD_ITEM, &sFrontierBrainsMons[facility][symbol][i].heldItem);
         for (j = 0; j < NUM_STATS; j++)
             SetMonData(&gEnemyParty[monPartyId], MON_DATA_HP_EV + j, &sFrontierBrainsMons[facility][symbol][i].evs[j]);
-        friendship = 0xFF;
+        friendship = MAX_FRIENDSHIP;
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             SetMonMoveSlot(&gEnemyParty[monPartyId], sFrontierBrainsMons[facility][symbol][i].moves[j], j);
@@ -2560,7 +2560,7 @@ void CreateFrontierBrainPokemon(void)
     bl TrainerIdToDomeTournamentId\n\
     lsls r0, 16\n\
     lsrs r0, 16\n\
-    bl GetDomeTrainerMonCountInBits\n\
+    bl GetDomeTrainerSelectedMons\n\
     adds r4, r0, 0\n\
     b _081A4E46\n\
     .pool\n\
@@ -2781,7 +2781,7 @@ u16 GetFrontierBrainMonSpecies(u8 monId)
     return sFrontierBrainsMons[facility][symbol][monId].species;
 }
 
-void SetFrontierBrainEventObjGfx(u8 facility)
+void SetFrontierBrainObjEventGfx(u8 facility)
 {
     gTrainerBattleOpponent_A = TRAINER_FRONTIER_BRAIN;
     VarSet(VAR_OBJ_GFX_ID_0, sFrontierBrainObjEventGfx[facility][0]);

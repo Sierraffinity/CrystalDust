@@ -222,7 +222,7 @@ static void sub_811E1A4(s8, s8);
 static void sub_811E2DC(struct Sprite *);
 static void sub_811E34C(u8, u8);
 static bool8 EasyChatIsNationalPokedexEnabled(void);
-static u16 sub_811F108(void);
+static u16 GetRandomUnlockedEasyChatPokemon(void);
 static void sub_811F2D4(void);
 static void sub_811F46C(void);
 static u8 *CopyEasyChatWordPadded(u8 *, u16, u16);
@@ -3784,7 +3784,7 @@ static void sub_811D104(u8 arg0)
 
 static void sub_811D214(u8 initialCursorPos)
 {
-    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, 1, 14, initialCursorPos);
+    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, 1, 0, 2, 1, 14, initialCursorPos);
 }
 
 static void sub_811D230(void)
@@ -4718,13 +4718,13 @@ static void sub_811E828(void)
     switch (GetDisplayedPersonType())
     {
     case EASY_CHAT_PERSON_REPORTER_MALE:
-        graphicsId = EVENT_OBJ_GFX_REPORTER_M;
+        graphicsId = OBJ_EVENT_GFX_REPORTER_M;
         break;
     case EASY_CHAT_PERSON_REPORTER_FEMALE:
-        graphicsId = EVENT_OBJ_GFX_REPORTER_F;
+        graphicsId = OBJ_EVENT_GFX_REPORTER_F;
         break;
     case EASY_CHAT_PERSON_BOY:
-        graphicsId = EVENT_OBJ_GFX_BOY_1;
+        graphicsId = OBJ_EVENT_GFX_BOY_1;
         break;
     default:
         return;
@@ -4733,15 +4733,15 @@ static void sub_811E828(void)
     if (GetEasyChatScreenFrameId() != 4)
         return;
 
-    spriteId = AddPseudoEventObject(graphicsId, SpriteCallbackDummy, 76, 40, 0);
+    spriteId = AddPseudoObjectEvent(graphicsId, SpriteCallbackDummy, 76, 40, 0);
     if (spriteId != MAX_SPRITES)
     {
         gSprites[spriteId].oam.priority = 0;
         StartSpriteAnim(&gSprites[spriteId], 2);
     }
 
-    spriteId = AddPseudoEventObject(
-        gSaveBlock2Ptr->playerGender == MALE ? EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL : EVENT_OBJ_GFX_RIVAL_MAY_NORMAL,
+    spriteId = AddPseudoObjectEvent(
+        gSaveBlock2Ptr->playerGender == MALE ? OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL : OBJ_EVENT_GFX_RIVAL_MAY_NORMAL,
         SpriteCallbackDummy,
         52,
         40,
@@ -5039,24 +5039,24 @@ static u16 GetEasyChatWordStringLength(u16 easyChatWord)
     }
 }
 
-bool8 sub_811EDC4(const u16 *easyChatWords, u8 arg1, u8 arg2, u16 arg3)
+static bool8 CanPhraseFitInXRowsYCols(const u16 *easyChatWords, u8 numRows, u8 numColumns, u16 maxLength)
 {
     u8 i, j;
 
-    for (i = 0; i < arg2; i++)
+    for (i = 0; i < numColumns; i++)
     {
-        u16 totalLength = arg1 - 1;
-        for (j = 0; j < arg1; j++)
+        u16 totalLength = numRows - 1;
+        for (j = 0; j < numRows; j++)
             totalLength += GetEasyChatWordStringLength(*(easyChatWords++));
 
-        if (totalLength > arg3)
+        if (totalLength > maxLength)
             return TRUE;
     }
 
     return FALSE;
 }
 
-u16 sub_811EE38(u16 groupId)
+u16 GetRandomEasyChatWordFromGroup(u16 groupId)
 {
     u16 index = Random() % gEasyChatGroups[groupId].numWords;
     if (groupId == EC_GROUP_POKEMON
@@ -5070,18 +5070,18 @@ u16 sub_811EE38(u16 groupId)
     return EC_WORD(groupId, index);
 }
 
-u16 sub_811EE90(u16 groupId)
+u16 GetRandomEasyChatWordFromUnlockedGroup(u16 groupId)
 {
     if (!IsEasyChatGroupUnlocked(groupId))
         return 0xFFFF;
 
     if (groupId == EC_GROUP_POKEMON)
-        return sub_811F108();
+        return GetRandomUnlockedEasyChatPokemon();
 
-    return sub_811EE38(groupId);
+    return GetRandomEasyChatWordFromGroup(groupId);
 }
 
-void sub_811EECC(void)
+void ShowEasyChatProfile(void)
 {
     u16 *easyChatWords;
     int columns, rows;
@@ -5094,7 +5094,7 @@ void sub_811EECC(void)
         break;
     case 1:
         easyChatWords = gSaveBlock1Ptr->easyChatBattleStart;
-        if (sub_811EDC4(gSaveBlock1Ptr->easyChatBattleStart, 3, 2, 18))
+        if (CanPhraseFitInXRowsYCols(gSaveBlock1Ptr->easyChatBattleStart, 3, 2, 18))
         {
             columns = 2;
             rows = 3;
@@ -5123,10 +5123,11 @@ void sub_811EECC(void)
     ShowFieldAutoScrollMessage(gStringVar4);
 }
 
-void sub_811EF6C(void)
+// The phrase that a man in Dewford Hall suggests has a "deep link" to the current trendy phrase
+void BufferDeepLinkPhrase(void)
 {
     int groupId = Random() & 1 ? EC_GROUP_HOBBIES : EC_GROUP_LIFESTYLE;
-    u16 easyChatWord = sub_811EE90(groupId);
+    u16 easyChatWord = GetRandomEasyChatWordFromUnlockedGroup(groupId);
     CopyEasyChatWord(gStringVar2, easyChatWord);
 }
 
@@ -5217,7 +5218,7 @@ static bool8 EasyChatIsNationalPokedexEnabled(void)
     return IsNationalPokedexEnabled();
 }
 
-static u16 sub_811F108(void)
+static u16 GetRandomUnlockedEasyChatPokemon(void)
 {
     u16 i;
     u16 numWords;

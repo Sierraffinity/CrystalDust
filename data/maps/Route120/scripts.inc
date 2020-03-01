@@ -145,7 +145,7 @@ Route120_EventScript_GiveIapapaBerry:: @ 81F55F6
 	end
 
 Route120_EventScript_GiveBerry:: @ 81F5601
-	giveitem_std VAR_0x8004
+	giveitem VAR_0x8004
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_DAILY_ROUTE_120_RECEIVED_BERRY
@@ -234,10 +234,10 @@ Route120_EventScript_RemoveBridgeKecleonPostBattle:: @ 81F571C
 
 Route120_EventScript_StevenGiveDeconScope:: @ 81F572C
 	applymovement 31, Common_Movement_WalkInPlaceFastestDown
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox Route120_Text_StevenGiveDevonScope, MSGBOX_DEFAULT
-	giveitem_std ITEM_DEVON_SCOPE
+	giveitem ITEM_DEVON_SCOPE
 	setflag FLAG_RECEIVED_DEVON_SCOPE
 	msgbox Route120_Text_StevenGoodbye, MSGBOX_DEFAULT
 	closemessage
@@ -258,12 +258,12 @@ Route120_EventScript_StevenGiveDeconScope:: @ 81F572C
 	end
 
 Route120_EventScript_PlayerApproachKecleonNorth:: @ 81F57A3
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	return
 
 Route120_EventScript_PlayerApproachKecleonWest:: @ 81F57AE
-	applymovement EVENT_OBJ_ID_PLAYER, Route120_Movement_ApproachKecleonWest
+	applymovement OBJ_EVENT_ID_PLAYER, Route120_Movement_ApproachKecleonWest
 	waitmovement 0
 	return
 

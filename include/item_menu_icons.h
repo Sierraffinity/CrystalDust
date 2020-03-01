@@ -3,13 +3,14 @@
 
 extern const struct CompressedSpriteSheet gBagMaleSpriteSheet;
 extern const struct CompressedSpriteSheet gBagFemaleSpriteSheet;
-extern const struct CompressedSpritePalette gBagPaletteTable;
+extern const struct CompressedSpritePalette gBagMalePaletteTable;
+extern const struct CompressedSpritePalette gBagFemalePaletteTable;
 extern const struct CompressedSpriteSheet gBerryCheckCircleSpriteSheet;
 extern const struct CompressedSpritePalette gBerryCheckCirclePaletteTable;
 
 void RemoveBagSprite(u8 id);
 void AddBagVisualSprite(u8 bagPocketId);
-void SetBagVisualPocketId(u8 bagPocketId, bool8 isSwitchingPockets);
+void SetBagVisualPocketId(u8 bagPocketId);
 void ShakeBagVisual(void);
 void AddSwitchPocketRotatingBallSprite(s16 rotationDirection);
 void AddBagItemIconSprite(u16 itemId, u8 id);
@@ -21,6 +22,7 @@ u8 CreateBerryTagSprite(u8 id, s16 x, s16 y);
 void FreeBerryTagSpritePalette(void);
 u8 LoadSpinningBerryPicGfx(u8 berryId, u8 x, u8 y, bool8 startAffine);
 u8 CreateBerryFlavorCircleSprite(s16 x);
+void ResetItemMenuIconState(void);
 
 #define TAG_BAG_GFX 100
 #define TAG_ROTATING_BALL_GFX 101

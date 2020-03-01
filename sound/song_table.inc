@@ -369,20 +369,20 @@ gSongTable:: @ 86B49F0
 	song mus_cherrygrove, 0, 0      @ Cherrygrove/Mahogany City
 	song mus_gim, 0, 0              @ Pokémon Gym
 	song mus_naminori, 0, 0         @ Surf
-	song mus_dan01, 0, 0            @ Petalburg Woods
+	song mus_ilexforest, 0, 0       @ Ilex Forest/Ruins of Alph
 	song mus_fanfa1, 2, 2           @ Level Up!
 	song mus_me_asa, 2, 2           @ Pokémon Healed
 	song mus_me_bachi, 2, 2         @ Obtained a Badge!
 	song mus_fanfa4, 2, 2           @ Obtained an Item!
 	song mus_fanfa5, 2, 2           @ Congratulations! Your Pokémon Evolved!
 	song mus_me_waza, 2, 2          @ Obtained a TM!
-	song mus_bijyutu, 0, 0          @ Museum
+	song mus_ruinsofalph, 0, 0      @ Ruins of Alph Inner Chamber
 	song mus_route30, 0, 0          @ Introductions
 	song mus_fune_kan, 0, 0         @ Oceanic Museum
 	song mus_me_shinka, 2, 2        @ Evolution (Intro)
 	song mus_shinka, 0, 0           @ Evolution
 	song mus_me_wasure, 2, 2        @ Move Deleted
-	song mus_encfemaleold, 0, 0     @ Trainers' Eyes Meet (Tuber♀)
+	song mus_encfemaleclassic, 0, 0     @ Trainers' Eyes Meet (Tuber♀)
 	song mus_encmale, 0, 0          @ Trainers' Eyes Meet (Youngster)
 	song mus_darkcave, 0, 0         @ Dark Cave
 	song mus_machi_s3, 0, 0         @ Fortree City
@@ -390,7 +390,7 @@ gSongTable:: @ 86B49F0
 	song mus_b_tower, 0, 0          @ Battle Tower (RS)
 	song mus_swimeye, 0, 0          @ Trainers' Eyes Meet (Swimmer♀)
 	song mus_dan03, 0, 0            @ Cave of Origin
-	song mus_me_kinomi, 2, 2        @ Obtained a Berry!
+	song mus_fanfareegg, 2, 2       @ Obtained an Egg!
 	song mus_me_tama, 2, 2          @ The Super-Ancient Pokémon Awaken!
 	song mus_me_b_big, 2, 2         @ Jackpot
 	song mus_me_b_small, 2, 2       @ Win
@@ -420,7 +420,7 @@ gSongTable:: @ 86B49F0
 	song mus_demo1, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
 	song mus_rivalenc, 0, 0         @ Rival Arrives
 	song mus_encsage, 0, 0          @ Trainers' Eyes Meet (Psychic)
-	song mus_encmaleold, 0, 0       @ Trainers' Eyes Meet (Cooltrainer)
+	song mus_encmaleclassic, 0, 0       @ Trainers' Eyes Meet (Cooltrainer)
 	song mus_mainmenu, 0, 0         @ Main Menu
 	song mus_encrocket, 0, 0        @ Team Aqua Appears!
 	song mus_followme, 0, 0         @ Hurry Along
@@ -454,7 +454,7 @@ gSongTable:: @ 86B49F0
 	song mus_karakuri, 0, 0         @ The Trick House
 	song mus_hutago, 0, 0           @ Twins
 	song mus_sitennou, 0, 0         @ The Elite Four Appear!
-	song mus_encsuspold, 0, 0       @ Trainers' Eyes Meet (Hiker)
+	song mus_encsuspiciousclassic, 0, 0       @ Trainers' Eyes Meet (Hiker)
 	song mus_conlobby, 0, 0         @ Contest Lobby
 	song mus_enckimono, 0, 0        @ Interviewers
 	song mus_daigo, 0, 0            @ Champion Wallace
@@ -480,7 +480,7 @@ gSongTable:: @ 86B49F0
 	song mus_btljohtowild, 0, 0     @ Battle! (Wild Pokémon)
 	song mus_battle31, 0, 0         @ Battle! (Team Aqua / Team Magma)
 	song mus_btljohtotrn, 0, 0      @ Battle! (Trainer Battle)
-	song mus_battle32, 0, 0         @ Battle! (Gym Leader)
+	song mus_btljohtoldr, 0, 0      @ Battle! (Gym Leader)
 	song mus_battle33, 0, 0         @ Battle! (Champion Wallace)
 	song mus_battle36, 0, 0         @ Battle! (Regirock/Regice/Registeel)
 	song mus_battle34, 0, 0         @ Battle! (Groudon/Kyogre)

@@ -1,0 +1,13 @@
+mapscripts Route36_RuinsOfAlphGatehouse_MapScripts { }
+
+script Route36_RuinsOfAlphGatehouse_EventScript_Officer {
+    msgbox("Don't you wonder who'd make\n"
+           "something like this? And why?", MSGBOX_NPC)
+}
+
+script Route36_RuinsOfAlphGatehouse_EventScript_OldMan {
+    msgbox("Did you see that strange tree\n"
+           "in the road?\p"
+           "That may explain why fewer people\n"
+           "are visiting the RUINS OF ALPH.", MSGBOX_NPC)
+}

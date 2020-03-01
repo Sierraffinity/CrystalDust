@@ -1027,7 +1027,7 @@ static bool32 CheckMatchCallChance(void)
 
 static bool32 MapAllowsMatchCall(void)
 {
-    return (gMapHeader.flags & 0x10) != 0;
+    return (gMapHeader.flags & MAP_HAS_PHONE_SERVICE) != 0;
 }
 
 static bool32 UpdateMatchCallStepCounter(void)
@@ -1151,7 +1151,7 @@ static void StartMatchCall(void)
     if (!gMatchCallState.triggeredFromScript)
     {
         ScriptContext2_Enable();
-        FreezeEventObjects();
+        FreezeObjectEvents();
         sub_808B864();
         sub_808BCF4();
         PhoneScriptContext_SetupPhoneScript(&gPhoneContacts[gMatchCallState.callerId], PHONE_SCRIPT_OVERWORLD);
@@ -1289,7 +1289,7 @@ static bool32 MoveMatchCallWindowToVram(u8 taskId)
     PutWindowTilemap(gPhoneCallerNameWindowId);
     DrawMatchCallTextBoxBorder(gPhoneCallWindowId, 0x270, 14);
     DrawMatchCallTextBoxBorder(gPhoneCallerNameWindowId, 0x270, 14);
-    WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 15, 4, 4, 17, 1);
+    //WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 15, 4, 4, 17, 1);
     CopyWindowToVram(gPhoneCallWindowId, 2);
     CopyWindowToVram(gPhoneCallerNameWindowId, 2);
     CopyBgTilemapBufferToVram(0);
@@ -1395,11 +1395,11 @@ bool32 CleanupAfterMatchCallHangup(void)
         ChangeBgY(0, 0, 0);
         if (!gMatchCallState.triggeredFromScript)
         {
-            sub_81973A4();
-            playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
-            EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
-            ScriptMovement_UnfreezeEventObjects();
-            UnfreezeEventObjects();
+            LoadMessageBoxAndBorderGfx();
+            playerObjectId = GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
+            ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
+            ScriptMovement_UnfreezeObjectEvents();
+            UnfreezeObjectEvents();
             ScriptContext2_Disable();
         }
         else
@@ -1905,7 +1905,7 @@ static void PopulateBattleFrontierStreak(int matchCallId, u8 *destStr)
     ConvertIntToDecimalStringN(destStr, gBattleFrontierStreakInfo.streak, STR_CONV_MODE_LEFT_ALIGN, i);
 }
 
-static const u16 sBadgeFlags[] =
+static const u16 sBadgeFlags[NUM_BADGES] =
 {
     FLAG_BADGE01_GET,
     FLAG_BADGE02_GET,
@@ -1921,7 +1921,7 @@ static int GetNumOwnedBadges(void)
 {
     u32 i;
 
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < NUM_BADGES; i++)
     {
         if (!FlagGet(sBadgeFlags[i]))
             break;

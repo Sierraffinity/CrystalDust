@@ -83,7 +83,7 @@ DewfordTown_EventScript_OldRodFisherman:: @ 81E95D5
 
 DewfordTown_EventScript_GiveOldRod:: @ 81E95FF
 	msgbox DewfordTown_Text_GiveYouOneOfMyRods, MSGBOX_DEFAULT
-	giveitem_std ITEM_OLD_ROD
+	giveitem ITEM_OLD_ROD
 	setflag FLAG_RECEIVED_OLD_ROD
 	msgbox DewfordTown_Text_ThrowInFishingAdvice, MSGBOX_DEFAULT
 	release
@@ -117,29 +117,29 @@ DewfordTown_EventScript_FishingNotSoGood:: @ 81E9656
 DewfordTown_EventScript_SailToPetalburg:: @ 81E9660
 	call EventScript_BackupMrBrineyLocation
 	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
-	setobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN, 0
+	setobjectpriority OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN, 0
 	applymovement 2, DewfordTown_Movement_BrineyBoardBoat
 	waitmovement 0
 	removeobject 2
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_PlayerBoardBoat
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_PlayerBoardBoat
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	call Common_EventScript_PlayBrineysBoatMusic
 	applymovement 4, DewfordTown_Movement_SailToPetalburg
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_SailToPetalburg
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_SailToPetalburg
 	waitmovement 0
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE32
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE32
 	call Common_EventScript_StopBrineysBoatMusic
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_ExitBoatPetalburg
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_ExitBoatPetalburg
 	waitmovement 0
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE32
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE32
+	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	clearflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	hideobjectat 4, MAP_DEWFORD_TOWN
 	setvar VAR_BOARD_BRINEY_BOAT_STATE, 2
-	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	warp MAP_ROUTE29_GATEHOUSE, 255, 5, 4
 	waitstate
 	release
@@ -148,27 +148,27 @@ DewfordTown_EventScript_SailToPetalburg:: @ 81E9660
 DewfordTown_EventScript_SailToSlateport:: @ 81E96E7
 	call EventScript_BackupMrBrineyLocation
 	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
-	setobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN, 1
+	setobjectpriority OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN, 1
 	applymovement 2, DewfordTown_Movement_BrineyBoardBoat
 	waitmovement 0
 	removeobject 2
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_PlayerBoardBoat
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_PlayerBoardBoat
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	call Common_EventScript_PlayBrineysBoatMusic
 	applymovement 4, DewfordTown_Movement_SailToSlateport
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_SailToSlateport
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_SailToSlateport
 	waitmovement 0
 	call Common_EventScript_StopBrineysBoatMusic
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE109
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_ExitBoatSlateport
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE109
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_ExitBoatSlateport
 	waitmovement 0
 	setobjectxyperm 2, 21, 26
 	addobject 2
 	setobjectpriority 2, MAP_ROUTE109, 0
 	applymovement 2, DewfordTown_Movement_BrineyExitBoat
 	waitmovement 0
-	clearflag FLAG_HIDE_ROUTE_36_MR_BRINEY
+	clearflag FLAG_HIDE_ROUTE_32_FRIEDA
 	addobject 1
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
@@ -177,7 +177,7 @@ DewfordTown_EventScript_SailToSlateport:: @ 81E96E7
 	call_if_set FLAG_DELIVERED_DEVON_GOODS, DewfordTown_EventScript_LandedSlateport
 	closemessage
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
-	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	resetobjectpriority 2, MAP_ROUTE109
 	copyobjectxytoperm 2
 	release

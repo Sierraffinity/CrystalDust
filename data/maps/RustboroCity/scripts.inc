@@ -34,7 +34,7 @@ RustboroCity_OnFrame: @ 81E070B
 RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
 	lockall
 	setvar VAR_ROUTE32_STATE, 1
-	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_PlayerWalkDown
+	applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_Movement_PlayerWalkDown
 	waitmovement 0
 	playse SE_KAIDAN
 	delay 10
@@ -46,7 +46,7 @@ RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
 	waitmovement 0
 	applymovement 15, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	applymovement 15, RustboroCity_Movement_ScientistWalkInPlaceDown
 	waitmovement 0
@@ -305,12 +305,12 @@ RustboroCity_EventScript_StolenGoodsScene:: @ 81E09CD
 	clearflag FLAG_HIDE_ROUTE_36_ARTHUR
 	setflag FLAG_DEVON_GOODS_STOLEN
 	setvar VAR_RUSTBORO_CITY_STATE, 2
-	setvar VAR_RUSTURF_TUNNEL_STATE, 2
+	setvar VAR_UNION_CAVE_STATE, 2
 	setvar VAR_ROUTE116_STATE, 1
 	clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_UNION_CAVE_PEEKO
+	clearflag FLAG_HIDE_UNION_CAVE_AQUA_GRUNT
+	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	releaseall
 	end
@@ -353,7 +353,7 @@ RustboroCity_EventScript_EmployeeApproachDown:: @ 81E0A6E
 RustboroCity_EventScript_EmployeeApproachPlayerFar:: @ 81E0A79
 	applymovement 9, RustboroCity_Movement_EmployeeApproachPlayerFar
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -523,7 +523,7 @@ RustboroCity_EventScript_EmployeeFacePlayerUp1:: @ 81E0B6F
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
 
@@ -535,7 +535,7 @@ RustboroCity_EventScript_EmployeeFacePlayerLeft1:: @ 81E0B9B
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
 	waitmovement 0
 	return
 
@@ -547,7 +547,7 @@ RustboroCity_EventScript_EmployeeFacePlayerDown1:: @ 81E0BC7
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -561,7 +561,7 @@ RustboroCity_EventScript_EmployeeApproachPlayerDown1:: @ 81E0BF3
 	waitmovement 0
 	applymovement 9, RustboroCity_Movement_EmployeeApproachPlayerDown
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -605,7 +605,7 @@ RustboroCity_EventScript_ReturnGoods:: @ 81E0C5B
 	compare VAR_TEMP_1, 4
 	call_if_eq RustboroCity_EventScript_EmployeeFacePlayerRight
 	msgbox RustboroCity_Text_YouGotItThankYou, MSGBOX_DEFAULT
-	giveitem_std ITEM_GREAT_BALL
+	giveitem ITEM_GREAT_BALL
 	compare VAR_RESULT, FALSE
 	call_if_eq RustboroCity_EventScript_BagFull
 	msgbox RustboroCity_Text_PleaseComeWithMe, MSGBOX_DEFAULT
@@ -631,7 +631,7 @@ RustboroCity_EventScript_EmployeeFacePlayerUp2:: @ 81E0CDC
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
 
@@ -643,7 +643,7 @@ RustboroCity_EventScript_EmployeeFacePlayerLeft2:: @ 81E0D08
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
 	waitmovement 0
 	return
 
@@ -655,7 +655,7 @@ RustboroCity_EventScript_EmployeeFacePlayerDown2:: @ 81E0D34
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -669,7 +669,7 @@ RustboroCity_EventScript_EmployeeApproachPlayerDown2:: @ 81E0D60
 	waitmovement 0
 	applymovement 9, RustboroCity_Movement_EmployeeApproachPlayerDown
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -718,7 +718,7 @@ RustboroCity_EventScript_RivalTrigger0:: @ 81E0DF3
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer0
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -734,7 +734,7 @@ RustboroCity_EventScript_RivalTrigger1:: @ 81E0E33
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer1
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -750,7 +750,7 @@ RustboroCity_EventScript_RivalTrigger2:: @ 81E0E73
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer2
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -766,7 +766,7 @@ RustboroCity_EventScript_RivalTrigger3:: @ 81E0EB3
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer3
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -782,7 +782,7 @@ RustboroCity_EventScript_RivalTrigger4:: @ 81E0EF3
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer4
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -798,7 +798,7 @@ RustboroCity_EventScript_RivalTrigger5:: @ 81E0F33
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer5
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -814,7 +814,7 @@ RustboroCity_EventScript_RivalTrigger6:: @ 81E0F73
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer6
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -830,7 +830,7 @@ RustboroCity_EventScript_RivalTrigger7:: @ 81E0FB3
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer7
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -896,19 +896,19 @@ RustboroCity_EventScript_RestoreBgm:: @ 81E10D6
 	return
 
 RustboroCity_EventScript_BattleMayTreecko:: @ 81E10DB
-	trainerbattle_no_intro TRAINER_MAY_14, RustboroCity_Text_MayDefeat
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO, RustboroCity_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
 	goto RustboroCity_EventScript_MayBrineyHint
 	end
 
 RustboroCity_EventScript_BattleMayTorchic:: @ 81E10EE
-	trainerbattle_no_intro TRAINER_MAY_15, RustboroCity_Text_MayDefeat
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC, RustboroCity_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
 	goto RustboroCity_EventScript_MayBrineyHint
 	end
 
 RustboroCity_EventScript_BattleMayMudkip:: @ 81E1101
-	trainerbattle_no_intro TRAINER_MAY_10, RustboroCity_Text_MayDefeat
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP, RustboroCity_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
 	goto RustboroCity_EventScript_MayBrineyHint
 	end
@@ -960,19 +960,19 @@ RustboroCity_EventScript_BrendanBrineyHint:: @ 81E11C0
 	end
 
 RustboroCity_EventScript_BattleBrendanTreecko:: @ 81E11D5
-	trainerbattle_no_intro TRAINER_BRENDAN_10, RustboroCity_Text_BrendanDefeat
+	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TREECKO, RustboroCity_Text_BrendanDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
 	goto RustboroCity_EventScript_BrendanBrineyHint
 	end
 
 RustboroCity_EventScript_BattleBrendanTorchic:: @ 81E11E8
-	trainerbattle_no_intro TRAINER_BRENDAN_12, RustboroCity_Text_BrendanDefeat
+	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TORCHIC, RustboroCity_Text_BrendanDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
 	goto RustboroCity_EventScript_BrendanBrineyHint
 	end
 
 RustboroCity_EventScript_BattleBrendanMudkip:: @ 81E11FB
-	trainerbattle_no_intro TRAINER_BRENDAN_11, RustboroCity_Text_BrendanDefeat
+	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_MUDKIP, RustboroCity_Text_BrendanDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
 	goto RustboroCity_EventScript_BrendanBrineyHint
 	end

@@ -42,8 +42,8 @@ static const struct OamData sOamData_859F4E8 =
     .matrixNum = 0,
     .size = SPRITE_SIZE(16x16),
     .tileNum = 0,
-    .priority = 0,
-    .paletteNum = 0,
+    .priority = 1,
+    .paletteNum = 1,
     .affineParam = 0
 };
 
@@ -74,18 +74,18 @@ static const union AnimCmd *const sSpriteAnimTable_859F508[] =
 
 static const struct CompressedSpriteSheet gUnknown_0859F514 =
 {
-    gBagSwapLineGfx, 0x100, 109
+    gBagSwapLineGfx, 0x100, 101
 };
 
 static const struct CompressedSpritePalette gUnknown_0859F51C =
 {
-    gBagSwapLinePal, 109
+    gBagSwapLinePal, 101
 };
 
 static const struct SpriteTemplate gUnknown_0859F524 =
 {
-    .tileTag = 109,
-    .paletteTag = 109,
+    .tileTag = 101,
+    .paletteTag = 101,
     .oam = &sOamData_859F4E8,
     .anims = sSpriteAnimTable_859F508,
     .images = NULL,
@@ -156,9 +156,9 @@ void DoYesNoFuncWithChoice(u8 taskId, const struct YesNoFuncTable *data)
     gTasks[taskId].func = Task_CallYesOrNoCallback;
 }
 
-void CreateYesNoMenuWithCallbacks(u8 taskId, const struct WindowTemplate *template, u8 arg2, u8 arg3, u8 arg4, u16 tileStart, u8 palette, const struct YesNoFuncTable *yesNo)
+void CreateYesNoMenuWithCallbacks(u8 taskId, const struct WindowTemplate *template, u8 fontId, u8 left, u8 top, u16 tileStart, u8 palette, const struct YesNoFuncTable *yesNo)
 {
-    CreateYesNoMenu(template, tileStart, palette, 0);
+    CreateYesNoMenu(template, fontId, left, top, tileStart, palette, 0);
     gUnknown_0203A138 = *yesNo;
     gTasks[taskId].func = Task_CallYesOrNoCallback;
 }
@@ -402,10 +402,18 @@ void sub_8122344(u8 *spriteIds, u8 count)
 
     for (i = 0; i < count; i++)
     {
-        spriteIds[i] = CreateSprite(&gUnknown_0859F524, i * 16, 0, 0);
-        if (i != 0)
+        spriteIds[i] = CreateSprite(&gUnknown_0859F524, i * 16 + 0x60, 7, 0);
+        switch (i)
+        {
+        case 0:
+            break;
+        case 8:
+            StartSpriteAnim(&gSprites[spriteIds[i]], 2);
+            break;
+        default:
             StartSpriteAnim(&gSprites[spriteIds[i]], 1);
-
+            break;
+        }
         gSprites[spriteIds[i]].invisible = TRUE;
     }
 }
@@ -436,16 +444,10 @@ void sub_81223FC(u8 *spriteIds, u8 count, bool8 invisible)
 void sub_8122448(u8 *spriteIds, u8 count, s16 x, u16 y)
 {
     u8 i;
-    bool8 unknownBit = count & 0x80;
-    count &= ~(0x80);
-
+    
     for (i = 0; i < count; i++)
     {
-        if (i == count - 1 && unknownBit)
-            gSprites[spriteIds[i]].pos2.x = x - 8;
-        else
-            gSprites[spriteIds[i]].pos2.x = x;
-
-        gSprites[spriteIds[i]].pos1.y = 1 + y;
+        gSprites[spriteIds[i]].pos2.x = x;
+        gSprites[spriteIds[i]].pos1.y = y + 7;
     }
 }

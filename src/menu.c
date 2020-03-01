@@ -163,7 +163,7 @@ void sub_8197200(void)
     ChangeBgX(0, 0, 0);
     ChangeBgY(0, 0, 0);
     DeactivateAllTextPrinters();
-    sub_81973A4();
+    LoadMessageBoxAndBorderGfx();
 }
 
 u16 RunTextPrintersAndIsPrinter0Active(void)
@@ -183,8 +183,8 @@ u16 AddTextPrinterParameterized2(u8 windowId, u8 fontId, const u8 *str, u8 speed
     printer.y = 1;
     printer.currentX = 0;
     printer.currentY = 1;
-    printer.letterSpacing = 0;
-    printer.lineSpacing = 0;
+    printer.letterSpacing = 1;
+    printer.lineSpacing = 1;
     printer.unk = 0;
     printer.fgColor = fgColor;
     printer.bgColor = bgColor;
@@ -200,7 +200,7 @@ void AddTextPrinterForMessage(bool8 allowSkippingDelayWithButtonPress)
 
     gTextFlags.canABSpeedUpPrint = allowSkippingDelayWithButtonPress;
 
-    switch (GetTextColorFromSelectedEventObjectGraphicsId())
+    switch (ContextNpcGetTextColor())
     {
         case MSG_COLOR_BLUE:
             AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 8, 1, 3);
@@ -226,7 +226,7 @@ void AddTextPrinterWithCustomSpeedForMessage(bool8 allowSkippingDelayWithButtonP
     AddTextPrinterParameterized2(0, 1, gStringVar4, speed, NULL, 2, 1, 3);
 }
 
-void sub_81973A4(void)
+void LoadMessageBoxAndBorderGfx(void)
 {
     LoadMessageBoxGfx(0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM * 0x10);
     LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM * 0x10);
@@ -572,19 +572,19 @@ u16 sub_81978D0(u8 colorNum)
 
 void DisplayItemMessageOnField(u8 taskId, const u8 *string, TaskFunc callback)
 {
-    sub_81973A4();
+    LoadMessageBoxAndBorderGfx();
     DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, 1, GetPlayerTextSpeedDelay(), string, callback);
     CopyWindowToVram(0, 3);
 }
 
 void DisplayYesNoMenuDefaultYes(void)
 {
-    CreateYesNoMenu(&sYesNo_WindowTemplates, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM, 0);
+    CreateYesNoMenu(&sYesNo_WindowTemplates, 1, 0, 2, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM, 0);
 }
 
 void DisplayYesNoMenuWithDefault(u8 initialCursorPos)
 {
-    CreateYesNoMenu(&sYesNo_WindowTemplates, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM, initialCursorPos);
+    CreateYesNoMenu(&sYesNo_WindowTemplates, 1, 0, 2, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM, initialCursorPos);
 }
 
 u32 GetPlayerTextSpeed(void)
@@ -1781,17 +1781,17 @@ s8 sub_8199484(void)
     return MENU_NOTHING_CHOSEN;
 }
 
-u8 InitMenuInUpperLeftCorner(u8 windowId, u8 itemCount, u8 initialCursorPos, bool8 APressMuted)
+u8 InitMenuInUpperLeftCorner(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 itemCount, u8 initialCursorPos, bool8 APressMuted)
 {
     s32 pos;
 
-    sMenu.left = 0;
-    sMenu.top = 1;
+    sMenu.left = left;
+    sMenu.top = top;
     sMenu.minCursorPos = 0;
     sMenu.maxCursorPos = itemCount - 1;
     sMenu.windowId = windowId;
-    sMenu.fontId = 1;
-    sMenu.optionHeight = 16;
+    sMenu.fontId = fontId;
+    sMenu.optionHeight = cursorHeight;
     sMenu.APressMuted = APressMuted;
 
     pos = initialCursorPos;
@@ -1804,9 +1804,9 @@ u8 InitMenuInUpperLeftCorner(u8 windowId, u8 itemCount, u8 initialCursorPos, boo
     return Menu_MoveCursor(0);
 }
 
-u8 InitMenuInUpperLeftCornerPlaySoundWhenAPressed(u8 windowId, u8 itemCount, u8 initialCursorPos)
+u8 InitMenuInUpperLeftCornerPlaySoundWhenAPressed(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 itemCount, u8 initialCursorPos)
 {
-    return InitMenuInUpperLeftCorner(windowId, itemCount, initialCursorPos, FALSE);
+    return InitMenuInUpperLeftCorner(windowId, fontId, left, top, cursorHeight, itemCount, initialCursorPos, FALSE);
 }
 
 void PrintMenuTable(u8 windowId, u8 itemCount, const struct MenuAction *strs)
@@ -1848,7 +1848,7 @@ void sub_81995E4(u8 windowId, u8 itemCount, const struct MenuAction *strs, const
     CopyWindowToVram(windowId, 2);
 }
 
-static void _CreateYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos, u8 type)
+static void _CreateYesNoMenu(const struct WindowTemplate *window, u8 fontId, u8 left, u8 top, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos, u8 type)
 {
     struct TextPrinterTemplate printer;
 
@@ -1874,31 +1874,31 @@ static void _CreateYesNoMenu(const struct WindowTemplate *window, u16 baseTileNu
 
     printer.currentChar = gText_YesNo;
     printer.windowId = sYesNoWindowId;
-    printer.fontId = 1;
-    printer.x = 8;
-    printer.y = 1;
+    printer.fontId = fontId;
+    printer.x = GetMenuCursorDimensionByFont(fontId, 0) + left;
+    printer.y = top;
     printer.currentX = printer.x;
     printer.currentY = printer.y;
-    printer.fgColor = GetFontAttribute(1, FONTATTR_COLOR_FOREGROUND);
-    printer.bgColor = GetFontAttribute(1, FONTATTR_COLOR_BACKGROUND);
-    printer.shadowColor = GetFontAttribute(1, FONTATTR_COLOR_SHADOW);
-    printer.unk = GetFontAttribute(1, FONTATTR_UNKNOWN);
-    printer.letterSpacing = 0;
-    printer.lineSpacing = 0;
+    printer.fgColor = GetFontAttribute(fontId, FONTATTR_COLOR_FOREGROUND);
+    printer.bgColor = GetFontAttribute(fontId, FONTATTR_COLOR_BACKGROUND);
+    printer.shadowColor = GetFontAttribute(fontId, FONTATTR_COLOR_SHADOW);
+    printer.unk = GetFontAttribute(fontId, FONTATTR_UNKNOWN);
+    printer.letterSpacing = GetFontAttribute(fontId, FONTATTR_LETTER_SPACING);
+    printer.lineSpacing = GetFontAttribute(fontId, FONTATTR_LINE_SPACING);
 
     AddTextPrinter(&printer, 0xFF, NULL);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sYesNoWindowId, 2, initialCursorPos);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sYesNoWindowId, fontId, left, top, GetFontAttribute(fontId, FONTATTR_MAX_LETTER_HEIGHT) + printer.lineSpacing, 2, initialCursorPos);
 }
 
-void CreateYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos)
+void CreateYesNoMenu(const struct WindowTemplate *window, u8 fontId, u8 left, u8 top, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos)
 {
-    _CreateYesNoMenu(window, baseTileNum, paletteNum, initialCursorPos, YESNO_STANDARD);
+    _CreateYesNoMenu(window, fontId, left, top, baseTileNum, paletteNum, initialCursorPos, YESNO_STANDARD);
 }
 
-void CreatePhoneYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos, bool8 fromOverworld)
+void CreatePhoneYesNoMenu(const struct WindowTemplate *window, u8 fontId, u8 left, u8 top, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos, bool8 fromOverworld)
 {
     u8 type = fromOverworld ? YESNO_PHONE_OVERWORLD : YESNO_PHONE_POKEGEAR;
-    _CreateYesNoMenu(window, baseTileNum, paletteNum, initialCursorPos, type);
+    _CreateYesNoMenu(window, fontId, left, top, baseTileNum, paletteNum, initialCursorPos, type);
 }
 
 void PrintMenuGridTable(u8 windowId, u8 optionWidth, u8 columns, u8 rows, const struct MenuAction *strs)
@@ -2366,7 +2366,7 @@ void blit_move_info_icon(u8 windowId, u8 iconId, u16 x, u16 y)
     BlitBitmapRectToWindow(windowId, gFireRedMenuElements_Gfx + gMoveMenuInfoIcons[iconId].offset * 32, 0, 0, 128, 128, x, y, gMoveMenuInfoIcons[iconId].width, gMoveMenuInfoIcons[iconId].height);
 }
 
-void sub_819A344(u8 a0, u8 *dest, u8 color)
+void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
 {
     s32 curFlag;
     s32 flagCount;
@@ -2380,28 +2380,28 @@ void sub_819A344(u8 a0, u8 *dest, u8 color)
     *(string++) = EXT_CTRL_CODE_SHADOW;
     *(string++) = color + 1;
 
-    switch (a0)
+    switch (textId)
     {
-        case 0:
+        case SAVE_MENU_NAME:
             StringCopy(string, gSaveBlock2Ptr->playerName);
             break;
-        case 1:
+        case SAVE_MENU_CAUGHT:
             if (IsNationalPokedexEnabled())
                 string = ConvertIntToDecimalStringN(string, GetNationalPokedexCount(FLAG_GET_CAUGHT), STR_CONV_MODE_LEFT_ALIGN, 3);
             else
                 string = ConvertIntToDecimalStringN(string, GetHoennPokedexCount(FLAG_GET_CAUGHT), STR_CONV_MODE_LEFT_ALIGN, 3);
             *string = EOS;
             break;
-        case 2:
+        case SAVE_MENU_PLAY_TIME:
             string = ConvertIntToDecimalStringN(string, gSaveBlock2Ptr->playTimeHours, STR_CONV_MODE_LEFT_ALIGN, 3);
             *(string++) = CHAR_COLON;
             ConvertIntToDecimalStringN(string, gSaveBlock2Ptr->playTimeMinutes, STR_CONV_MODE_LEADING_ZEROS, 2);
             break;
-        case 3:
+        case SAVE_MENU_LOCATION:
             GetMapNameGeneric(string, gMapHeader.regionMapSectionId);
             break;
-        case 4:
-            for (curFlag = FLAG_BADGE01_GET, flagCount = 0, endOfString = string + 1; curFlag <= FLAG_BADGE08_GET; curFlag++)
+        case SAVE_MENU_BADGES:
+            for (curFlag = FLAG_BADGE01_GET, flagCount = 0, endOfString = string + 1; curFlag < FLAG_BADGE01_GET + NUM_BADGES; curFlag++)
             {
                 if (FlagGet(curFlag))
                     flagCount++;

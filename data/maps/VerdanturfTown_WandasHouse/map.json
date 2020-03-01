@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_RIVAL",
+      "graphics_id": "OBJ_EVENT_GFX_RIVAL",
       "x": 14,
       "y": 5,
       "elevation": 3,
@@ -29,7 +29,7 @@
       "flag": "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
       "x": 5,
       "y": 4,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_SAGE",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE",
       "x": 7,
       "y": 2,
       "elevation": 3,
@@ -57,7 +57,7 @@
       "flag": "FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_POKEFAN_F",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
       "x": 2,
       "y": 4,
       "elevation": 3,
@@ -71,7 +71,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WOMAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "x": 5,
       "y": 5,
       "elevation": 3,

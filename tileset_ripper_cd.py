@@ -30,11 +30,11 @@ def create_pals(path, data):
 
 def create_metatiles(path, data, num_metatiles):
     # Uncomment and edit the 9 in the last row to make mass palette edits
-    '''data = bytearray(data)
+    data = bytearray(data)
     for i in range(0, num_metatiles):
         for j in range(0, 16, 2):
             if (data[(i * 16) + j + 1] >> 4) == 6:
-                data[(i * 16) + j + 1] = (data[(i * 16) + j + 1] & 3) | (9 << 4)'''
+                data[(i * 16) + j + 1] = (data[(i * 16) + j + 1] & 3) | (7 << 4)
 
     with open(os.sep.join([path, 'metatiles.bin']), 'wb+') as f:
         f.write(data)

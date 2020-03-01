@@ -17,7 +17,7 @@
         {
             "elevation": 0,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_TEALA",
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -31,7 +31,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_TEALA",
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -45,7 +45,7 @@
         {
             "elevation": 0,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_TEALA",
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -59,7 +59,7 @@
         {
             "elevation": 0,
             "flag": "FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN",
-            "graphics_id": "EVENT_OBJ_GFX_MYSTERY_GIFT_MAN",
+            "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -71,7 +71,7 @@
             "y": 2
         }
     ],
-    "phone_service": true,
+    "phone_service": false,
     "region_map_section": "MAPSEC_VIOLET_CITY",
     "requires_flash": false,
     "show_map_name": false,

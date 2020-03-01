@@ -1,0 +1,133 @@
+mapscripts VioletCity_Gym_MapScripts {
+    
+}
+
+script VioletCity_Gym_EventScript_Falkner {
+    trainerbattle_single(TRAINER_FALKNER, VioletCity_Gym_Text_FalknerPreBattle, VioletCity_Gym_Text_FalknerDefeat, VioletCity_Gym_EventScript_FalknerDefeated, NO_MUSIC)
+    if (!flag(FLAG_GOT_TM40_FROM_FALKNER))
+    {
+        goto(VioletCity_Gym_EventScript_GiveAerialAce)
+    }
+    msgbox("There are POKéMON GYMS in cities\n"
+		   "and towns ahead.\p"
+		   "You should test your skills at\n"
+		   "these GYMS.\p"
+		   "I'm going to train harder to become\n"
+		   "the greatest bird master!")
+	release
+}
+
+text VioletCity_Gym_Text_FalknerPreBattle {
+	"I'm FALKNER, the VIOLET CITY\n"
+	"POKéMON GYM LEADER!\p"
+	"People say you can clip FLYING-\n"
+	"type POKéMON's wings with a jolt\l"
+	"of electricity…\p"
+	"I won't allow such insults to\n"
+	"bird POKéMON!\p"
+	"I'll show you the real power of\n"
+	"the magnificent bird POKéMON!"
+}
+
+text VioletCity_Gym_Text_FalknerDefeat {
+	"…Darn! My dad's cherished bird\n"
+	"POKéMON…\p"
+	"All right.\n"
+	"Take this.\p"
+	"It's the official POKéMON LEAGUE\n"
+	"ZEPHYRBADGE."
+}
+
+script VioletCity_Gym_EventScript_FalknerDefeated {
+	textcolor(MSG_COLOR_MISC)
+    message("{PLAYER} received the ZEPHYRBADGE\n"
+            "from FALKNER.")
+    waitmessage
+    call(Common_EventScript_PlayGymBadgeFanfare)
+	call(Common_RestoreOriginalTextColor)
+    setflag(FLAG_DEFEATED_VIOLET_GYM)
+    setflag(FLAG_BADGE01_GET)
+    setvar(VAR_VIOLET_CITY_STATE, 1)
+    set_gym_trainers(1)
+    goto(VioletCity_Gym_EventScript_GiveAerialAce)
+}
+
+script VioletCity_Gym_EventScript_GiveAerialAce {
+    msgbox("The ZEPHYRBADGE raises the ATTACK\n"
+           "power of POKéMON.\p"
+           "It also enables POKéMON to use\n"
+           "FLASH, if they have it, anytime.\p"
+           "Here--take this too.")
+    checkitemspace(ITEM_TM40, 1)
+    if (!var(VAR_RESULT))
+	{
+        goto(Common_EventScript_ShowBagIsFull)
+	}
+	else
+	{
+		givetmhm_msg("{PLAYER} received TM40\n"
+					 "from FALKNER.", ITEM_TM40)
+		setflag(FLAG_GOT_TM40_FROM_FALKNER)
+		msgbox("By using a TM, a POKéMON will\n"
+			   "instantly learn a new move.\p"
+			   "Think before you act--a TM can\n"
+			   "be used only once.\p"
+			   "TM40 contains AERIAL ACE.\p"
+			   "It lets you attack with unparalleled\n"
+			   "speed and precision.\p"
+			   "In other words, it never misses.")
+	}
+	release
+}
+
+script VioletCity_Gym_EventScript_Abe {
+    trainerbattle_single(TRAINER_ABE, VioletCity_Gym_Text_AbeIntro, VioletCity_Gym_Text_AbeDefeat)
+	msgbox(VioletCity_Gym_Text_AbePostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script VioletCity_Gym_EventScript_Rod {
+    trainerbattle_single(TRAINER_ROD, VioletCity_Gym_Text_RodIntro, VioletCity_Gym_Text_RodDefeat)
+	msgbox(VioletCity_Gym_Text_RodPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script VioletCity_Gym_EventScript_GymStatue {
+    lockall
+    if (flag(FLAG_BADGE01_GET))
+    {
+        msgbox("VIOLET POKéMON GYM\n"
+               "LEADER: FALKNER\p"
+               "WINNING TRAINERS:\n"
+               "{PLAYER}")
+    }
+    else
+    {
+        msgbox("VIOLET POKéMON GYM")
+    }
+    releaseall
+}
+
+script VioletCity_Gym_EventScript_GymGuide {
+	lock
+	faceplayer
+    if (flag(FLAG_DEFEATED_VIOLET_GYM))
+    {
+        msgbox("Nice battle! Keep it up, and you'll\n"
+               "be the CHAMP in no time at all!")
+    }
+    else
+    {
+        msgbox("Hey! I'm no TRAINER, but I can\n"
+               "give some advice!\p"
+               "Believe me!\n"
+               "If you believe, a championship\l"
+               "dream can come true.\p"
+               "You believe?\n"
+               "Then listen.\p"
+               "GRASS-type POKéMON are weak\n"
+               "against FLYING-type POKéMON.\l"
+               "Keep this in mind.")
+    }
+	release
+}

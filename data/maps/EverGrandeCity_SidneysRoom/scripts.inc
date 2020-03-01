@@ -29,7 +29,7 @@ EverGrandeCity_SidneysRoom_OnWarp: @ 8227F3E
 	.2byte 0
 
 EverGrandeCity_SidneysRoom_EventScript_PlayerTurnNorth:: @ 8227F48
-	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	end
 
 EverGrandeCity_SidneysRoom_OnFrame: @ 8227F4D
@@ -48,7 +48,7 @@ EverGrandeCity_SidneysRoom_EventScript_Sidney:: @ 8227F64
 	faceplayer
 	goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
 	playbgm MUS_SITENNOU, 0
-	msgbox EverGrandeCity_SidneysRoom_Text_PreBattleSpeech, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeech, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
 	goto EverGrandeCity_SidneysRoom_EventScript_Defeated
 	end
@@ -65,7 +65,7 @@ EverGrandeCity_SidneysRoom_EventScript_Defeated:: @ 8227F95
 	release
 	end
 
-EverGrandeCity_SidneysRoom_Text_PreBattleSpeech: @ 8227FA7
+EverGrandeCity_SidneysRoom_Text_IntroSpeech: @ 8227FA7
 	.string "Welcome, challenger!\n"
 	.string "I'm SIDNEY of the ELITE FOUR.\p"
 	.string "I like that look you're giving me.\n"

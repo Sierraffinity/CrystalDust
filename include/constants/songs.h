@@ -290,20 +290,20 @@
 #define MUS_CHERRYGROVE 363     // Cherrygrove/Mahogany
 #define MUS_GIM 364             // Gym
 #define MUS_NAMINORI 365        // Surfing
-#define MUS_DAN01 366           // Caves and Darkness
+#define MUS_ILEXFOREST 366           // Caves and Darkness
 #define MUS_FANFA1 367          // Level Up!
 #define MUS_ME_ASA 368          // Pokémon Healed
 #define MUS_ME_BACHI 369        // Obtained a Badge!
 #define MUS_FANFA4 370          // Obtained an Item!
 #define MUS_FANFA5 371          // Your Pokémon Just Evolved!
 #define MUS_ME_WAZA 372         // Obtained a TM/HM!
-#define MUS_BIJYUTU 373         // Lilycove Museum
+#define MUS_RUINSOFALPH 373         // Lilycove Museum
 #define MUS_ROUTE30 374         // Route 122/Intro
 #define MUS_FUNE_KAN 375        // Slateport Museum
 #define MUS_ME_SHINKA 376       // Evolution Intro
 #define MUS_SHINKA 377          // Evolution
 #define MUS_ME_WASURE 378       // Move Deleted/Messed Up Appeal
-#define MUS_ENCFEMALEOLD 379    // Encounter! Tuber
+#define MUS_ENCFEMALECLASSIC 379    // Encounter! Tuber
 #define MUS_ENCMALE 380         // Encounter! Boy
 #define MUS_DARKCAVE 381        // Abandoned Ship/Southern Island
 #define MUS_MACHI_S3 382        // Fortree City/Pacifidlog Town
@@ -311,7 +311,7 @@
 #define MUS_B_TOWER 384         // Battle Tower (RS)
 #define MUS_SWIMEYE 385         // Encounter! Swimmer
 #define MUS_DAN03 386           // Meteor Falls/Cave of Origin
-#define MUS_ME_KINOMI 387       // Obtained a Berry!
+#define MUS_FANFAREEGG 387      // Obtained the Egg!
 #define MUS_ME_TAMA 388         // Awakening the Super-Ancient Pokémon
 #define MUS_ME_B_BIG 389        // Slots Jackpot!
 #define MUS_ME_B_SMALL 390      // Slots Victory!
@@ -341,7 +341,7 @@
 #define MUS_DEMO1 414           // Opening Movie
 #define MUS_RIVALENC 415        // Encounter! May
 #define MUS_ENCSAGE 416        // Encounter! Biker
-#define MUS_ENCMALEOLD 417         // Encounter! Electric Trainer
+#define MUS_ENCMALECLASSIC 417         // Encounter! Electric Trainer
 #define MUS_MAINMENU 418        // Main Menu
 #define MUS_ENCROCKET 419           // Encounter! Team Aqua
 #define MUS_FOLLOWME 420        // Follow Me!
@@ -375,7 +375,7 @@
 #define MUS_KARAKURI 448        // Trick House
 #define MUS_HUTAGO 449          // Encounter! Kid
 #define MUS_SITENNOU 450        // Encounter! Elite Four
-#define MUS_ENCSUSPOLD 451        // Encounter! Hiker
+#define MUS_ENCSUSPICIOUSCLASSIC 451        // Encounter! Hiker
 #define MUS_CONLOBBY 452        // Contest Lobby
 #define MUS_ENCKIMONO 453         // Encounter! Gabby and Ty
 #define MUS_DAIGO 454           // Encounter! Wallace
@@ -401,7 +401,7 @@
 #define MUS_BTLJOHTOWILD 474       // Battle! Wild Pokémon
 #define MUS_BATTLE31 475        // Battle! Team Aqua/Magma
 #define MUS_BTLJOHTOTRN 476        // Battle! Trainer
-#define MUS_BATTLE32 477        // Battle! Gym Leader
+#define MUS_BTLJOHTOLDR 477        // Battle! Gym Leader
 #define MUS_BATTLE33 478        // Battle! Champion
 #define MUS_BATTLE36 479        // Battle! Regi Trio
 #define MUS_BATTLE34 480        // Battle! Legendary Pokémon (dupe)

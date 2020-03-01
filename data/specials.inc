@@ -10,7 +10,7 @@
 gSpecials:: @ 81DBA64
 	def_special HealPlayerParty
 	def_special SetCableClubWarp
-	def_special sub_80AF948
+	def_special DoCableClubWarp
 	def_special ReturnFromLinkRoom
 	def_special CleanupLinkRoomState
 	def_special ExitLinkRoom
@@ -28,7 +28,7 @@ gSpecials:: @ 81DBA64
 	def_special GetSecretBaseOwnerAndState
 	def_special InitSecretBaseDecorationSprites
 	def_special SetDecoration
-	def_special sub_81297AC
+	def_special GetObjectEventLocalIdByFlag
 	def_special GetSecretBaseTypeInFrontOfPlayer
 	def_special SetSecretBaseOwnerGfxId
 	def_special sub_8129708
@@ -38,28 +38,28 @@ gSpecials:: @ 81DBA64
 	def_special RecordMixingPlayerSpotTriggered
 	def_special TryBattleLinkup
 	def_special TryTradeLinkup
-	def_special sub_80B2E74
+	def_special TryRecordMixLinkup
 	def_special sub_80B2EA8
 	def_special CloseLink
 	def_special ColosseumPlayerSpotTriggered
 	def_special PlayerEnteredTradeSeat
 	def_special CopyDayOfWeekStringToVar1
-	def_special sub_80B3254
+	def_special CableClubSaveGame
 	def_special TryBerryBlenderLinkup
 	def_special GetLinkPartnerNames
-	def_special SpawnLinkPartnerEventObject
+	def_special SpawnLinkPartnerObjectEvent
 	def_special SavePlayerParty
 	def_special LoadPlayerParty
 	def_special ChooseHalfPartyForBattle
 	def_special Script_ShowLinkTrainerCard
-	def_special EventObjectInteractionGetBerryTreeData
-	def_special EventObjectInteractionGetBerryName
-	def_special EventObjectInteractionGetBerryCountString
+	def_special ObjectEventInteractionGetBerryTreeData
+	def_special ObjectEventInteractionGetBerryName
+	def_special ObjectEventInteractionGetBerryCountString
 	def_special Bag_ChooseBerry
-	def_special EventObjectInteractionPlantBerryTree
-	def_special EventObjectInteractionPickBerryTree
-	def_special EventObjectInteractionRemoveBerryTree
-	def_special EventObjectInteractionWaterBerryTree
+	def_special ObjectEventInteractionPlantBerryTree
+	def_special ObjectEventInteractionPickBerryTree
+	def_special ObjectEventInteractionRemoveBerryTree
+	def_special ObjectEventInteractionWaterBerryTree
 	def_special PlayerHasBerries
 	def_special IsEnigmaBerryValid
 	def_special GetTrainerBattleMode
@@ -107,7 +107,7 @@ gSpecials:: @ 81DBA64
 	def_special SaveGame
 	def_special DoWateringBerryTreeAnim
 	def_special ShowEasyChatScreen
-	def_special sub_811EECC
+	def_special ShowEasyChatProfile
 	def_special ScrSpecial_GetCurrentMauvilleMan
 	def_special ScrSpecial_HasBardSongBeenChanged
 	def_special ScrSpecial_SaveBardSongLyrics
@@ -115,7 +115,7 @@ gSpecials:: @ 81DBA64
 	def_special ScrSpecial_SetHipsterSpokenFlag
 	def_special ScrSpecial_HipsterTeachWord
 	def_special ScrSpecial_PlayBardSong
-	def_special ScrSpecial_SetMauvilleOldManEventObjGfx
+	def_special ScrSpecial_SetMauvilleOldManObjEventGfx
 	def_special ScrSpecial_GenerateGiddyLine
 	def_special ScrSpecial_GiddyShouldTellAnotherTale
 	def_special ScrSpecial_StorytellerGetFreeStorySlot
@@ -139,7 +139,7 @@ gSpecials:: @ 81DBA64
 	def_special IsMonOTIDNotPlayers
 	def_special BufferTrendyPhraseString
 	def_special TrendyPhraseIsOld
-	def_special sub_811EF6C
+	def_special BufferDeepLinkPhrase
 	def_special GetDewfordHallPaintingNameIndex
 	def_special SwapRegisteredBike
 	def_special CalculatePlayerPartyCount
@@ -147,7 +147,7 @@ gSpecials:: @ 81DBA64
 	def_special CountPartyAliveNonEggMons_IgnoreVar0x8004Slot
 	def_special ShouldReadyContestArtist
 	def_special SaveMuseumContestPainting
-	def_special sub_80F8864
+	def_special DoesContestCategoryHaveWinner
 	def_special CountPlayerContestPaintings
 	def_special ShowContestWinner
 	def_special MauvilleGymSetDefaultBarriers
@@ -166,7 +166,7 @@ gSpecials:: @ 81DBA64
 	def_special CableCar
 	def_special Overworld_PlaySpecialMapMusic
 	def_special StartWallClock
-	def_special Special_ViewWallClock
+	def_special DoRuinsOfAlphPuzzle
 	def_special ChooseStarter
 	def_special StartDudeTutorialBattle
 	def_special ChangePokemonNickname
@@ -190,7 +190,7 @@ gSpecials:: @ 81DBA64
 	def_special IsTVShowInSearchOfTrainersAiring
 	def_special GabbyAndTyGetLastQuote
 	def_special GabbyAndTyGetLastBattleTrivia
-	def_special GabbyAndTySetScriptVarsToEventObjectLocalIds
+	def_special GabbyAndTySetScriptVarsToObjectEventLocalIds
 	def_special GetBattleOutcome
 	def_special GetDaycareMonNicknames
 	def_special GetDaycareState
@@ -271,8 +271,8 @@ gSpecials:: @ 81DBA64
 	def_special RetrieveLotteryNumber
 	def_special PickLotteryCornerTicket
 	def_special ShowBerryBlenderRecordWindow
-	def_special ResetTrickHouseEndRoomFlag
-	def_special SetTrickHouseEndRoomFlag
+	def_special ResetTrickHouseNuggetFlag
+	def_special SetTrickHouseNuggetFlag
 	def_special ScriptMenu_CreatePCMultichoice
 	def_special AccessHallOfFamePC
 	def_special Special_ShowDiploma
@@ -308,7 +308,7 @@ gSpecials:: @ 81DBA64
 	def_special Script_FacePlayer
 	def_special Script_ClearHeldMovement
 	def_special InitRoamer
-	def_special TryUpdateRusturfTunnelState
+	def_special TryUpdateUnionCave_1FState @unused
 	def_special IsGrassTypeInParty
 	def_special DoContestHallWarp
 	def_special PutZigzagoonInPlayerParty
@@ -317,7 +317,7 @@ gSpecials:: @ 81DBA64
 	def_special ScriptCheckFreePokemonStorageSpace
 	def_special DoSealedChamberShakingEffect1
 	def_special ShowDeptStoreElevatorFloorSelect
-	def_special GetShieldToyTVDecorationInfo
+	def_special InteractWithShieldOrTVDecoration
 	def_special IsPokerusInParty
 	def_special SetSootopolisGymCrackedIceMetatiles
 	def_special ShakeCamera
@@ -347,7 +347,7 @@ gSpecials:: @ 81DBA64
 	def_special HasAllHoennMons
 	def_special MonOTNameNotPlayer
 	def_special BufferLottoTicketNumber
-	def_special sub_81653CC
+	def_special TryHideBattleTowerReporter
 	def_special DoesPartyHaveEnigmaBerry
 	def_special ScriptRandom
 	def_special SetChampionSaveWarp
@@ -360,17 +360,17 @@ gSpecials:: @ 81DBA64
 	def_special IncrementDailyPlantedBerries
 	def_special IncrementDailyPickedBerries
 	def_special InitSecretBaseVars
-	def_special SetSecretBaseSecretsTvFlags_SandOrnament
-	def_special sub_80EB300
-	def_special sub_80EB438
-	def_special sub_80EB368
-	def_special sub_80EB3D0
-	def_special sub_80EB290
-	def_special sub_80EB2C8
-	def_special SetSecretBaseSecretsTvFlags_MiscFurnature
-	def_special SetSecretBaseSecretsTvFlags_LargeDecorationSpot
-	def_special SetSecretBaseSecretsTvFlags_SmallDecorationSpot
-	def_special SetSecretBaseSecretsTvFlags_Poster
+	def_special CheckInteractedWithFriendsSandOrnament
+	def_special DeclinedSecretBaseBattle
+	def_special DrewSecretBaseBattle
+	def_special WonSecretBaseBattle
+	def_special LostSecretBaseBattle
+	def_special CheckInteractedWithFriendsDollDecor
+	def_special CheckInteractedWithFriendsCushionDecor
+	def_special CheckInteractedWithFriendsFurnitureBottom
+	def_special CheckInteractedWithFriendsFurnitureMiddle
+	def_special CheckInteractedWithFriendsFurnitureTop
+	def_special CheckInteractedWithFriendsPosterDecor
 	def_special SetLilycoveLadyGfx
 	def_special Script_GetLilycoveLadyId
 	def_special GetFavorLadyState
@@ -443,7 +443,7 @@ gSpecials:: @ 81DBA64
 	def_special GetDeptStoreDefaultFloorChoice
 	def_special BufferVarsForIVRater
 	def_special LinkContestWaitForConnection
-	def_special sub_800B518
+	def_special GetWirelessCommType
 	def_special LinkContestTryShowWirelessIndicator
 	def_special LinkContestTryHideWirelessIndicator
 	def_special IsWirelessContest
@@ -497,7 +497,7 @@ gSpecials:: @ 81DBA64
 	def_special GetPCBoxToSendMon
 	def_special ShouldShowBoxWasFullMessage
 	def_special SetMatchCallRegisteredFlag
-	def_special sub_8175280
+	def_special DoConfettiEffect
 	def_special CreateAbnormalWeatherEvent
 	def_special GetAbnormalWeatherMapNameAndType
 	def_special GetMartEmployeeObjectEventId
@@ -512,7 +512,7 @@ gSpecials:: @ 81DBA64
 	def_special TurnOnTVScreen
 	def_special sub_81D4A90
 	def_special ShouldDistributeEonTicket
-	def_special sub_813B568
+	def_special LinkRetireStatusWithBattleTowerPartner
 	def_special sub_813B534
 	def_special CallTrainerHillFunction
 	def_special Script_DoRayquazaScene @ Listed twice
@@ -533,18 +533,18 @@ gSpecials:: @ 81DBA64
 	def_special TryPrepareSecondApproachingTrainer
 	def_special RemoveRecordsWindow
 	def_special CloseDeptStoreElevatorWindow
-	def_special sub_80B3BC4
+	def_special TrySetBattleTowerLinkType
 	def_special FieldRadio
 	def_special GetFruitTreeItem
 	def_special SetFruitTreeMetatileTakenFromId
 	def_special CopyCurrentDayOfWeekStringToVar1
 	def_special SelectBugCatchingContestMon
 	def_special EnterBugCatchingContest
-	def_special PlaceBugCatchingContestEventObjects
+	def_special PlaceBugCatchingContestObjectEvents
 	def_special DetermineBugCatchingContestStandings
 	def_special BuildBugContestPlacementString
 	def_special CopyBugContestPlacementScoreToVar1
-	def_special SetAwardsCeremonyBugContestEventObjectGraphics
+	def_special SetAwardsCeremonyBugContestObjectEventGraphics
 	def_special GetPlayerBugContestPlace
 	def_special DetermineBugCatchingContestPrize
 	def_special EndBugCatchingContest

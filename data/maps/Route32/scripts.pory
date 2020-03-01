@@ -1,0 +1,383 @@
+const ROADBLOCK_MAN = 1
+const SLOWPOKETAIL_MAN = 12
+
+mapscripts Route32_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION {
+		gettime
+		if (var(VAR_0x8003) == DAY_FRIDAY)
+		{
+			clearflag(FLAG_HIDE_ROUTE_32_FRIEDA)
+		}
+		else
+		{
+			setflag(FLAG_HIDE_ROUTE_32_FRIEDA)
+		}
+	}
+}
+
+script Route32_EventScript_RoadblockManTrigger_1 {
+    lockall
+    setvar(VAR_TEMP_1, 0)
+    goto(Route32_EventScript_RoadblockManTrigger_All)
+}
+
+script Route32_EventScript_RoadblockManTrigger_2 {
+    lockall
+    setvar(VAR_TEMP_1, 1)
+    goto(Route32_EventScript_RoadblockManTrigger_All)
+}
+
+script Route32_EventScript_RoadblockManTrigger_All {
+    playse(SE_PIN)
+    applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_NoticePlayer)
+	waitmovement(0)
+	applymovement(ROADBLOCK_MAN, Common_Movement_Delay48)
+	waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    textcolor(MSG_COLOR_BLUE)
+    msgbox("Wait up!\n"
+           "What's the hurry?")
+    closemessage
+
+    if (var(VAR_TEMP_1) == 0)
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, Route32_Movement_RoadblockMan_PlayerFromLeft)
+        applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_ManFromLeft)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, Route32_Movement_RoadblockMan_PlayerFromRight)
+        applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_ManFromRight)
+        waitmovement(0)
+    }
+
+    call(Route32_EventScript_RoadblockMan_Common)
+    closemessage
+    
+    if (var(VAR_TEMP_1) == 0)
+    {
+        applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_ManResetFromLeft)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(ROADBLOCK_MAN, Route32_Movement_RoadblockMan_ManResetFromRight)
+        waitmovement(0)
+    }
+
+    releaseall
+}
+
+script Route32_EventScript_RoadblockMan {
+    lock
+    faceplayer
+    call(Route32_EventScript_RoadblockMan_Common)
+    release
+}
+
+script Route32_EventScript_RoadblockMan_Common {
+    if (flag(FLAG_GOT_MIRACLE_SEED_ROUTE_32))
+    {
+        call(Route32_EventScript_RoadblockMan_AfterItem)
+    }
+    elif (!flag(FLAG_BADGE01_GET))
+    {
+        msgbox("Have you gone to the POKéMON\n"
+               "GYM in VIOLET yet?\p"
+               "You can test your POKéMON and\n"
+               "yourself there.\p"
+               "It's a rite of passage for all\n"
+               "TRAINERS!")
+    }
+    elif (flag(FLAG_GOT_ELMS_EGG))
+    {
+        msgbox("Looks like you have some good\n"
+               "POKéMON there.\p"
+               "It must be from the training you\n"
+               "gave them around VIOLET CITY.\p"
+               "The training at the GYM must have\n"
+               "been especially helpful.\p"
+               "As a souvenir of VIOLET CITY,\n"
+               "take this.\p"
+               "It increases the power of GRASS-\n"
+               "type moves.")
+        giveitem(ITEM_MIRACLE_SEED)
+        if (!var(VAR_RESULT))
+        {
+			goto(Common_EventScript_ShowBagIsFull)
+        }
+        else
+        {
+            setflag(FLAG_GOT_MIRACLE_SEED_ROUTE_32)
+            call(Route32_EventScript_RoadblockMan_AfterItem)
+        }
+    }
+    else
+    {
+        msgbox("{PLAYER}, right?\n"
+               "Some guy wearing glasses was\l"
+               "looking for you.\p"
+               "Go see for yourself. He's waiting\n"
+               "for you at the POKéMON CENTER.")
+    }
+}
+
+script Route32_EventScript_RoadblockMan_AfterItem {
+    msgbox("Your experiences in VIOLET CITY\n"
+           "should be useful for your journey.")
+}
+
+movement Route32_Movement_RoadblockMan_NoticePlayer {
+    emote_exclamation_mark
+    face_left
+}
+
+movement Route32_Movement_RoadblockMan_PlayerFromLeft {
+    delay_16
+    walk_up * 2
+    face_down
+}
+
+movement Route32_Movement_RoadblockMan_ManFromLeft {
+    walk_left * 2
+    walk_up
+}
+
+movement Route32_Movement_RoadblockMan_PlayerFromRight {
+    walk_up * 2
+    face_down
+}
+
+movement Route32_Movement_RoadblockMan_ManFromRight {
+    walk_left
+    walk_up
+}
+
+movement Route32_Movement_RoadblockMan_ManResetFromLeft {
+    walk_down
+    walk_right * 2
+    face_left
+}
+
+movement Route32_Movement_RoadblockMan_ManResetFromRight {
+    walk_down
+    walk_right
+    face_left
+}
+
+script Route32_EventScript_SlowpokeTailManTrigger1 {
+    lockall
+    setvar(VAR_TEMP_1, 0)
+    goto(Route32_EventScript_SlowpokeTailManTrigger_All)
+}
+
+script Route32_EventScript_SlowpokeTailManTrigger2 {
+    lockall
+    setvar(VAR_TEMP_1, 1)
+    goto(Route32_EventScript_SlowpokeTailManTrigger_All)
+}
+
+script Route32_EventScript_SlowpokeTailManTrigger_All {
+	textcolor(MSG_COLOR_BLUE)
+    playse(SE_PIN)
+    applymovement(SLOWPOKETAIL_MAN, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(SLOWPOKETAIL_MAN, Common_Movement_Delay48)
+	waitmovement(0)
+	msgbox("Hey, kid!\n"
+		   "Hold on a sec!")
+	if (var(VAR_TEMP_1) == 0)
+	{
+		applymovement(OBJ_EVENT_ID_PLAYER, Route32_Movement_FaceUp)
+		waitmovement(0)
+	}
+	else
+	{
+		closemessage
+		applymovement(OBJ_EVENT_ID_PLAYER, Route32_Movement_StepUp)
+		waitmovement(0)
+	}
+	call(Route32_EventScript_SlowpokeTailMan_Common)
+	releaseall
+}
+
+movement Route32_Movement_FaceUp {
+	walk_in_place_fastest_up
+}
+
+movement Route32_Movement_StepUp {
+	walk_up
+}
+
+script Route32_EventScript_SlowpokeTailMan {
+	lock
+	faceplayer
+	call(Route32_EventScript_SlowpokeTailMan_Common)
+	release
+}
+
+script Route32_EventScript_SlowpokeTailMan_Common {
+	setvar(VAR_ROUTE32_STATE, 2)
+	showmoneybox(0, 0, 0)
+	msgbox("How would you like to have this\n"
+		   "tasty, nutritious SLOWPOKETAIL?\p"
+		   "For you right now, it costs just\n"
+		   "¥1,000,000!\p"
+		   "You'll want this!", MSGBOX_YESNO)
+    hidemoneybox
+	if (var(VAR_RESULT) == YES)
+	{
+		msgbox("Tch! And here I thought kids these\n"
+			   "days were loaded…")
+	}
+	else
+	{
+		msgbox("You don't want it? You're sure?\n"
+			   "Then scram. Shoo!")
+	}
+}
+
+script Route32_EventScript_RoarTMGuy {
+	lock
+	faceplayer
+	if (!flag(FLAG_RECEIVED_TM05_ROAR))
+	{
+		msgbox("WROOOOAR!\p"
+			   "PEOPLE RUN WHEN I ROAR!\n"
+			   "BUT YOU CAME LOOKING!\p"
+			   "THAT PLEASES ME!\n"
+			   "NOW TAKE THIS!")
+		giveitem(ITEM_TM05)
+		if (!var(VAR_RESULT))
+		{
+			goto(Common_EventScript_ShowBagIsFull)
+		}
+		else
+		{
+			setflag(FLAG_RECEIVED_TM05_ROAR)
+		}
+	}
+	msgbox("WROOOAR!\n"
+		   "IT'S ROAR!\p"
+		   "EVEN POKéMON WILL RUN FROM A\n"
+		   "GOOD ROAR!")
+	release
+}
+
+script Route32_EventScript_Frieda {
+	lock
+	faceplayer
+	if (!flag(FLAG_RECEIVED_POISON_BARB_FROM_FRIEDA))
+	{
+		gettime
+		if (var(VAR_0x8003) == DAY_FRIDAY)
+		{
+			if (!flag(FLAG_MET_FRIEDA_OF_FRIDAY))
+			{
+				msgbox("FRIEDA: Yahoo!\n"
+                       "It's FRIDAY!\p"
+                       "I'm FRIEDA of FRIDAY!\n"
+                       "Nice to meet you!\p"
+                       "Here's a POISON BARB for you!")
+				setflag(FLAG_MET_FRIEDA_OF_FRIDAY)
+			}
+			else
+			{
+				msgbox("FRIEDA:Here's a POISON BARB\n"
+                       "for you!")
+			}
+			giveitem(ITEM_POISON_BARB)
+			if (!var(VAR_RESULT))
+			{
+				goto(Common_EventScript_ShowBagIsFull)
+			}
+			setflag(FLAG_RECEIVED_POISON_BARB_FROM_FRIEDA)
+			msgbox("FRIEDA: Give it to a POKéMON that\n"
+                   "has POISON-type moves.\p"
+                   "Oh!\n"
+                   "It's wicked!\p"
+                   "You'll be shocked how good it makes\n"
+                   "POISON-type moves!")
+		}
+		else
+		{
+			msgbox("FRIEDA: Isn't it FRIDAY today?\n"
+                   "It's so boring when it's not!")
+		}
+	}
+	else
+	{
+		msgbox("FRIEDA: Hiya!\n"
+               "What day do you like?\p"
+               "I love FRIDAY.\n"
+               "There's no doubt about it!\p"
+               "Don't you think it's great too?")
+	}
+	release
+}
+
+script Route32_EventScript_Albert {
+    trainerbattle_single(TRAINER_ALBERT, Route32_Text_AlbertIntro, Route32_Text_AlbertDefeat)
+	msgbox(Route32_Text_AlbertPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Liz {
+    trainerbattle_single(TRAINER_LIZ_1, Route32_Text_LizIntro, Route32_Text_LizDefeat)
+	// TODO: Phone registration and calling
+	msgbox(Route32_Text_LizPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Roland {
+    trainerbattle_single(TRAINER_ROLAND, Route32_Text_RolandIntro, Route32_Text_RolandDefeat)
+	msgbox(Route32_Text_RolandPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Henry {
+    trainerbattle_single(TRAINER_HENRY, Route32_Text_HenryIntro, Route32_Text_HenryDefeat)
+	msgbox(Route32_Text_HenryPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Justin {
+    trainerbattle_single(TRAINER_JUSTIN, Route32_Text_JustinIntro, Route32_Text_JustinDefeat)
+	msgbox(Route32_Text_JustinPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Ralph {
+    trainerbattle_single(TRAINER_RALPH_1, Route32_Text_RalphIntro, Route32_Text_RalphDefeat)
+	// TODO: Phone registration and calling
+	msgbox(Route32_Text_RalphPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Gordon {
+    trainerbattle_single(TRAINER_GORDON, Route32_Text_GordonIntro, Route32_Text_GordonDefeat)
+	msgbox(Route32_Text_GordonPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_Peter {
+    trainerbattle_single(TRAINER_PETER, Route32_Text_PeterIntro, Route32_Text_PeterDefeat)
+	msgbox(Route32_Text_PeterPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script Route32_EventScript_RuinsOfAlphSign {
+    msgbox("RUINS OF ALPH\n"
+           "EAST ENTRANCE", MSGBOX_SIGN)
+}
+
+script Route32_EventScript_DirectionsSign {
+    msgbox("ROUTE 32\n"
+           "VIOLET CITY - AZALEA TOWN", MSGBOX_SIGN)
+}
+
+script Route32_EventScript_UnionCaveSign {
+    msgbox("UNION CAVE AHEAD", MSGBOX_SIGN)
+}

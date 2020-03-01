@@ -414,7 +414,7 @@ static void Task_SetClock3(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
     {
-        CreateYesNoMenu(&gUnknown_085B21F4, 0x250, 13, 0);
+        CreateYesNoMenu(&gUnknown_085B21F4, 1, 0, 2, 0x250, 13, 0);
         gTasks[taskId].func = Task_SetClock4;
     }
 }

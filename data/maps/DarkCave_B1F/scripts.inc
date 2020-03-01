@@ -6,6 +6,6 @@ DarkCave_B1F_MapScripts:: @ 822DC5E
 
 DarkCave_B1F_SetHoleWarp: @ 822DC6E
 	setstepcallback 7
-	setholewarp MAP_DARK_CAVE_B2F, 255, 0, 0
+	setholewarp MAP_UNION_CAVE_B1F, 255, 0, 0
 	end
 

@@ -1258,7 +1258,7 @@ static void PhoneCard_ConfirmCall(u8 taskId)
     sPokegearStruct.phoneCallActionWindowId = AddWindow(&sConfirmWindowTemplate);
     DrawStdFrameWithCustomTileAndPalette(sPokegearStruct.phoneCallActionWindowId, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PrintMenuTable(sPokegearStruct.phoneCallActionWindowId, ARRAY_COUNT(sCallOptions), sCallOptions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, ARRAY_COUNT(sCallOptions), 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, 1, 0, 1, 16, ARRAY_COUNT(sCallOptions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = PhoneCard_ConfirmCallProcessInput;
 }
@@ -1319,7 +1319,7 @@ static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that pers
 
 static bool8 NoPhoneServiceInCurrentLocation(void)
 {
-    return (gMapHeader.flags & 0x10) == 0;
+    return (gMapHeader.flags & MAP_HAS_PHONE_SERVICE) == 0;
 }
 
 #define tPhoneCallInitState data[0]

@@ -24,7 +24,7 @@ struct BagStruct
     void (*bagCallback)(void);
     u8 location;
     u8 pocket;
-    u16 unk6;
+    bool8 bagOpen;
     u16 cursorPosition[POCKETS_COUNT];
     u16 scrollPosition[POCKETS_COUNT];
 };
@@ -36,28 +36,22 @@ struct BagMenuStruct
     void (*mainCallback2)(void);
     u8 tilemapBuffer[0x800];
     u8 spriteId[12];
-    u8 windowPointers[7];
-    u8 unk817;
-    u8 unk818;
-    u8 unk819;
-    u8 unk81A;
-    u8 unk81B:4;
-    u8 unk81B_1:2;
-    u8 unk81B_3:1;
+    u8 windowPointers[10];
+    u8 itemOriginalLocation;
+    u8 pocketSwitchMode:4;
+    u8 itemMenuIcon:2;
+    u8 inhibitItemDescriptionPrint:1;
     u8 hideCloseBagText:1;
-    u8 filler3[2];
-    u8 unk81E;
-    u8 unk81F;
-    const u8* unk820;
-    u8 unk824;
-    u8 unk825;
-    u8 filler[2];
-    u8 unk828;
-    u8 numItemStacks[POCKETS_COUNT];
-    u8 numShownItems[6];
+    u16 contextMenuSelectedItem;
+    u8 pocketScrollArrowsTask;
+    u8 pocketSwitchArrowsTask;
+    const u8* contextMenuItemsPtr;
+    u8 unk824[4];
+    u8 contextMenuNumItems;
+    u8 totalItems[POCKETS_COUNT];
+    u8 maxShowed[6];
     s16 unk834;
     u8 filler4[0xE];
-    u8 pocketNameBuffer[32][32];
     u8 filler2[4];
 };
 
@@ -74,7 +68,7 @@ void QuizLadyOpenBagMenu(void);
 void ApprenticeOpenBagMenu(void);
 void sub_81AABB0(void);
 void SetInitialScrollAndCursorPositions(u8 pocketId);
-void bag_menu_mail_related(void);
+void CB2_ReturnToBagMenuPocket(void);
 void CB2_BagMenuFromStartMenu(void);
 u8 GetItemListPosition(u8 pocketId);
 bool8 UseRegisteredKeyItemOnField(void);
@@ -84,9 +78,13 @@ void DoWallyTutorialBagMenu(void);
 void ResetBagScrollPositions(void);
 void ChooseBerrySetCallback(void (*callback)(void));
 void CB2_ChooseBerry(void);
-void unknown_ItemMenu_Confirm(u8 taskId);
-void BagMenu_YesNo(u8, u8, const struct YesNoFuncTable*);
-void sub_81AB9A8(u8 pocketId);
+void Task_FadeAndCloseBagMenu(u8 taskId);
+void BagCreateYesNoMenuBottomRight(u8, const struct YesNoFuncTable*);
+void BagMenu_InitListsMenu(u8 taskId);
+void UpdatePocketItemList(u8 pocketId);
+void DisplayItemMessage(u8 taskId, u8 fontId, const u8 *str, void ( *callback)(u8 taskId));
+void DisplayItemMessageOnField(u8 taskId, const u8 *src, TaskFunc callback);
+
 
 
 #endif //GUARD_item_menu_H

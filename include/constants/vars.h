@@ -27,7 +27,7 @@
 // object gfx id vars
 // These 0x10 vars are used to dynamically control a map object's sprite.
 // For example, the rival's sprite id is dynamically set based on the player's gender.
-// See VarGetEventObjectGraphicsId().
+// See VarGetObjectEventGraphicsId().
 #define VAR_OBJ_GFX_ID_0           0x4010
 #define VAR_OBJ_GFX_ID_1           0x4011
 #define VAR_OBJ_GFX_ID_2           0x4012
@@ -103,7 +103,7 @@
 #define VAR_CURRENT_SECRET_BASE              0x4054
 #define VAR_VERDANTURF_TOWN_STATE            0x4055 // Unused Var
 #define VAR_PACIFIDLOG_TOWN_STATE            0x4056 // Unused Var
-#define VAR_VIOLET_CITY_STATE             0x4057
+#define VAR_VIOLET_CITY_STATE                0x4057
 #define VAR_SLATEPORT_CITY_STATE             0x4058
 #define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
 #define VAR_RUSTBORO_CITY_STATE              0x405A
@@ -116,7 +116,7 @@
 #define VAR_ROUTE30_STATE                    0x4061
 #define VAR_ROUTE31_STATE                    0x4062
 #define VAR_ROUTE32_STATE                   0x4063
-#define VAR_ROUTE105_STATE                   0x4064 // Unused Var
+#define VAR_ROUTE33_STATE                   0x4064 // Unused Var
 #define VAR_ROUTE106_STATE                   0x4065 // Unused Var
 #define VAR_ROUTE107_STATE                   0x4066 // Unused Var
 #define VAR_ROUTE36_STATE                   0x4067 // Unused Var
@@ -155,7 +155,7 @@
 #define VAR_CONTEST_TYPE                     0x4088
 #define VAR_SECRET_BASE_INITIALIZED          0x4089
 #define VAR_CONTEST_PRIZE_PICKUP             0x408A
-#define VAR_UNUSED_0x408B                    0x408B // Unused Var
+#define VAR_RUINS_OF_ALPH_STATE              0x408B
 #define VAR_LITTLEROOT_HOUSES_STATE_BRENDAN  0x408C
 #define VAR_LITTLEROOT_RIVAL_STATE           0x408D
 #define VAR_BOARD_BRINEY_BOAT_STATE          0x408E
@@ -170,7 +170,7 @@
 #define VAR_INIT_SECRET_BASE                 0x4097
 #define VAR_PETALBURG_WOODS_STATE            0x4098
 #define VAR_LILYCOVE_CONTEST_LOBBY_STATE     0x4099
-#define VAR_RUSTURF_TUNNEL_STATE             0x409A
+#define VAR_UNION_CAVE_STATE             0x409A
 #define VAR_UNUSED_0x409B                    0x409B // Unused Var
 #define VAR_ELITE_4_STATE                    0x409C
 #define VAR_UNUSED_0x409D                    0x409D // Unused Var
@@ -273,7 +273,9 @@
 #define VAR_UNUSED_0x40FE                    0x40FE // Unused Var
 #define VAR_UNUSED_0x40FF                    0x40FF // Unused Var
 
-#define SPECIAL_VARS_START 0x8000
+#define VARS_END                             0x40FF
+
+#define SPECIAL_VARS_START            0x8000
 // special vars
 // They are commonly used as parameters to commands, or return values from commands.
 #define VAR_0x8000                    0x8000
@@ -300,5 +302,7 @@
 #define VAR_TEXT_COLOR_BACKUP         0x8015
 #define VAR_UNUSED_0x8014             0x8016
 #define VAR_TRAINER_BATTLE_OPPONENT_A 0x8017
+
+#define SPECIAL_VARS_END              0x8015
 
 #endif // GUARD_CONSTANTS_VARS_H

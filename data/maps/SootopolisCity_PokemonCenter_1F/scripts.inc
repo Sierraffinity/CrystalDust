@@ -21,7 +21,7 @@ SootopolisCity_PokemonCenter_1F_EventScript_Gentleman:: @ 822650E
 	faceplayer
 	compare VAR_SKY_PILLAR_STATE, 2
 	goto_if_ge SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries
-	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries
+	goto_if_unset FLAG_RECEIVED_TM05_ROAR, SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries
 	msgbox SootopolisCity_PokemonCenter_1F_Text_EveryoneTakenRefuge, MSGBOX_DEFAULT
 	release
 	end
@@ -36,7 +36,7 @@ SootopolisCity_PokemonCenter_1F_EventScript_Woman:: @ 8226538
 	faceplayer
 	compare VAR_SKY_PILLAR_STATE, 2
 	goto_if_ge SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries
-	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries
+	goto_if_unset FLAG_RECEIVED_TM05_ROAR, SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries
 	msgbox SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends, MSGBOX_DEFAULT
 	release
 	end

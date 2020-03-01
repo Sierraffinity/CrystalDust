@@ -1,0 +1,35 @@
+mapscripts UnionCave_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_UNION_CAVE)
+    }
+}
+
+script UnionCave_1F_EventScript_Daniel {
+    trainerbattle_single(TRAINER_DANIEL, UnionCave_1F_Text_DanielIntro, UnionCave_1F_Text_DanielDefeat)
+    msgbox(UnionCave_1F_Text_DanielPostBattle)
+    release
+}
+
+script UnionCave_1F_EventScript_Larry {
+    trainerbattle_single(TRAINER_LARRY, UnionCave_1F_Text_LarryIntro, UnionCave_1F_Text_LarryDefeat)
+    msgbox(UnionCave_1F_Text_LarryPostBattle)
+    release
+}
+
+script UnionCave_1F_EventScript_Russell {
+    trainerbattle_single(TRAINER_RUSSELL, UnionCave_1F_Text_RussellIntro, UnionCave_1F_Text_RussellDefeat)
+    msgbox(UnionCave_1F_Text_RussellPostBattle)
+    release
+}
+
+script UnionCave_1F_EventScript_Ray {
+    trainerbattle_single(TRAINER_RAY, UnionCave_1F_Text_RayIntro, UnionCave_1F_Text_RayDefeat)
+    msgbox(UnionCave_1F_Text_RayPostBattle)
+    release
+}
+
+script UnionCave_1F_EventScript_Bill {
+    trainerbattle_single(TRAINER_BILL, UnionCave_1F_Text_BillIntro, UnionCave_1F_Text_BillDefeat)
+    msgbox(UnionCave_1F_Text_BillPostBattle)
+    release
+}

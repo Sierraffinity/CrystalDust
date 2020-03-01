@@ -1,4 +1,4 @@
-static const union AnimCmd gAnimCmd_Gold_1[] =
+static const union AnimCmd gAnimCmd_Gold_Kris_1[] =
 {
     ANIMCMD_FRAME(1, 20),
     ANIMCMD_FRAME(2, 6),
@@ -80,7 +80,13 @@ static const union AnimCmd gAnimCmd_RubySapphireMay_1[] =
 static const union AnimCmd *const sBackAnims_Gold[] =
 {
     sAnim_GeneralFrame0,
-    gAnimCmd_Gold_1,
+    gAnimCmd_Gold_Kris_1,
+};
+
+static const union AnimCmd *const sBackAnims_Kris[] =
+{
+    sAnim_GeneralFrame0,
+    gAnimCmd_Gold_Kris_1,
 };
 
 static const union AnimCmd *const sBackAnims_Brendan[] =
@@ -134,7 +140,7 @@ static const union AnimCmd *const sBackAnims_Steven[] =
 const union AnimCmd *const *const gTrainerBackAnimsPtrTable[] =
 {
     [TRAINER_BACK_PIC_GOLD] = sBackAnims_Gold,
-    [TRAINER_BACK_PIC_KRIS] = sBackAnims_May,
+    [TRAINER_BACK_PIC_KRIS] = sBackAnims_Kris,
     [TRAINER_BACK_PIC_EMERALD_BRENDAN] = sBackAnims_Brendan,
     [TRAINER_BACK_PIC_EMERALD_MAY] = sBackAnims_May,
     [TRAINER_BACK_PIC_RED] = sBackAnims_Red,

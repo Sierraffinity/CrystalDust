@@ -142,7 +142,7 @@ Route110_TrickHouseEntrance_EventScript_TrickMasterFound:: @ 8269C15
 	addobject 1
 	showobjectat 1, MAP_ROUTE110_TRICK_HOUSE_ENTRANCE
 	turnobject 1, DIR_EAST
-	turnobject EVENT_OBJ_ID_PLAYER, DIR_WEST
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
 	end
 
 Route110_TrickHouseEntrance_EventScript_SetTrickMasterHidingSpot:: @ 8269C26
@@ -245,9 +245,9 @@ Route110_TrickHouseEntrance_EventScript_TrickMaster:: @ 8269D3B
 
 Route110_TrickHouseEntrance_EventScript_FoundTrickMaster:: @ 8269D6E
 	playse SE_PIN
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_ExclamationMark
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_Delay48
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48
 	waitmovement 0
 	compare VAR_TRICK_HOUSE_LEVEL, 0
 	call_if_eq Route110_TrickHouseEntrance_EventScript_FoundBeneathDesk
@@ -367,7 +367,7 @@ Route110_TrickHouseEntrance_EventScript_GiveReward:: @ 8269E8F
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle1Reward:: @ 8269EEF
-	giveitem_std ITEM_RARE_CANDY
+	giveitem ITEM_RARE_CANDY
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -377,7 +377,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle1Reward:: @ 8269EEF
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle2Reward:: @ 8269F1B
-	giveitem_std ITEM_TIMER_BALL
+	giveitem ITEM_TIMER_BALL
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -387,7 +387,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle2Reward:: @ 8269F1B
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle3Reward:: @ 8269F47
-	giveitem_std ITEM_HARD_STONE
+	giveitem ITEM_HARD_STONE
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -397,7 +397,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle3Reward:: @ 8269F47
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle4Reward:: @ 8269F73
-	giveitem_std ITEM_SMOKE_BALL
+	giveitem ITEM_SMOKE_BALL
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -407,7 +407,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle4Reward:: @ 8269F73
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle5Reward:: @ 8269F9F
-	giveitem_std ITEM_TM12
+	giveitem ITEM_TM12
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -417,7 +417,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle5Reward:: @ 8269F9F
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle6Reward:: @ 8269FCB
-	giveitem_std ITEM_MAGNET
+	giveitem ITEM_MAGNET
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -427,7 +427,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle6Reward:: @ 8269FCB
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle7Reward:: @ 8269FF7
-	giveitem_std ITEM_PP_MAX
+	giveitem ITEM_PP_MAX
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -464,11 +464,11 @@ Route110_TrickHouseEntrance_EventScript_ChooseTent:: @ 826A070
 	goto Route110_TrickHouseEntrance_EventScript_GiveBlueTent
 
 Route110_TrickHouseEntrance_EventScript_GiveRedTent:: @ 826A08A
-	givedecoration_std DECOR_RED_TENT
+	givedecoration DECOR_RED_TENT
 	return
 
 Route110_TrickHouseEntrance_EventScript_GiveBlueTent:: @ 826A092
-	givedecoration_std DECOR_BLUE_TENT
+	givedecoration DECOR_BLUE_TENT
 	return
 
 Route110_TrickHouseEntrance_EventScript_ReceivedTent:: @ 826A09A
@@ -513,9 +513,9 @@ Route110_TrickHouseEntrance_EventScript_EnterPuzzleRoom:: @ 826A126
 	@setmetatile 5, 1, METATILE_GenericBuilding_TrickHouse_Stairs_Down, 0
 	special DrawWholeMapView
 	delay 20
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Route110_TrickHouseEntrance_Movement_EnterRoom
+	applymovement OBJ_EVENT_ID_PLAYER, Route110_TrickHouseEntrance_Movement_EnterRoom
 	waitmovement 0
 	switch VAR_TRICK_HOUSE_LEVEL
 	case 0, Route110_TrickHouseEntrance_EventScript_EnterPuzzleRoom1

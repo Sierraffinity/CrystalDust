@@ -3,10 +3,10 @@ MossdeepCity_MapScripts:: @ 81E4A96
 	.byte 0
 
 MossdeepCity_OnTransition: @ 81E4A9C
-	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
-	clearflag FLAG_MOSSDEEP_GYM_SWITCH_2
-	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
-	clearflag FLAG_MOSSDEEP_GYM_SWITCH_4
+	clearflag FLAG_SOLVED_AERODACTYL_PUZZLE
+	clearflag FLAG_SOLVED_HOOH_PUZZLE
+	clearflag FLAG_OPENED_WALL_IN_KABUTO_CHAMBER
+	clearflag FLAG_OPENED_WALL_IN_AERODACTYL_CHAMBER
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	end
 
@@ -229,7 +229,7 @@ MossdeepCity_EventScript_KingsRockBoy:: @ 81E4C26
 	compare VAR_RESULT, NO
 	goto_if_eq MossdeepCity_EventScript_DeclineKingsRock
 	msgbox MossdeepCity_Text_YouCanKeepIt, MSGBOX_DEFAULT
-	giveitem_std ITEM_KINGS_ROCK
+	giveitem ITEM_KINGS_ROCK
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_KINGS_ROCK
@@ -265,13 +265,13 @@ MossdeepCity_EventScript_Scott:: @ 81E4C85
 	end
 
 MossdeepCity_EventScript_ScottExitNorth:: @ 81E4CB0
-	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_PlayerWatchScottExit
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Movement_PlayerWatchScottExit
 	applymovement 16, MossdeepCity_Movement_ScottExitNorth
 	waitmovement 0
 	return
 
 MossdeepCity_EventScript_ScottExitEast:: @ 81E4CC2
-	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_PlayerWatchScottExit
+	applymovement OBJ_EVENT_ID_PLAYER, MossdeepCity_Movement_PlayerWatchScottExit
 	applymovement 16, MossdeepCity_Movement_ScottExitEast
 	waitmovement 0
 	return

@@ -9,7 +9,7 @@ VerdanturfTown_BattleTentLobby_OnWarp: @ 82016DB
 
 VerdanturfTown_BattleTentLobby_EventScript_TurnPlayerNorth:: @ 82016E5
 	setvar VAR_TEMP_1, 1
-	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	end
 
 VerdanturfTown_BattleTentLobby_OnFrame: @ 82016EF
@@ -196,12 +196,12 @@ VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge:: @ 8201A3F
 
 VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor:: @ 8201A41
 	applymovement 1, VerdanturfTown_BattleTentLobby_Movement_WalkToDoor
-	applymovement EVENT_OBJ_ID_PLAYER, VerdanturfTown_BattleTentLobby_Movement_WalkToDoor
+	applymovement OBJ_EVENT_ID_PLAYER, VerdanturfTown_BattleTentLobby_Movement_WalkToDoor
 	waitmovement 0
 	opendoor 6, 1
 	waitdooranim
 	applymovement 1, VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor
-	applymovement EVENT_OBJ_ID_PLAYER, VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor
+	applymovement OBJ_EVENT_ID_PLAYER, VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor
 	waitmovement 0
 	closedoor 6, 1
 	waitdooranim
@@ -229,7 +229,7 @@ VerdanturfTown_BattleTentLobby_EventScript_AttractGiver:: @ 8201A7B
 	faceplayer
 	goto_if_set FLAG_RECEIVED_TM45, VerdanturfTown_BattleTentLobby_EventScript_ReceivedAttract
 	msgbox VerdanturfTown_BattleTentLobby_Text_AttractionRunsDeep, MSGBOX_DEFAULT
-	giveitem_std ITEM_TM45
+	giveitem ITEM_TM45
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM45

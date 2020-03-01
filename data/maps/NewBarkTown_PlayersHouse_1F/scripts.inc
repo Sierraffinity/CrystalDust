@@ -39,12 +39,12 @@ NewBarkTown_PlayersHouse_1F_MomEncounter:
 	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
 	playbgm MUS_MOMENC, 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer
 	waitmovement 0
 	delay 10
 	msgbox NewBarkTown_PlayersHouse_1F_MomElmIntro
-	call RestoreOriginalTextColor
+	call Common_RestoreOriginalTextColor
 	playfanfare MUS_FANFA4
 	message NewBarkTown_PlayersHouse_1F_PlayerGetsPokegear
 	waitfanfare

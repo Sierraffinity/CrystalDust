@@ -132,7 +132,7 @@ SSTidalCorridor_EventScript_ExitLilycove:: @ 823C13B
 	end
 
 SSTidalCorridor_EventScript_ExitSlateport:: @ 823C15A
-	setrespawn HEAL_LOCATION_SLATEPORT_CITY
+	setrespawn HEAL_LOCATION_ROUTE32
 	msgbox SSTidalCorridor_Text_WeveArrived, MSGBOX_DEFAULT
 	call_if_set FLAG_RECEIVED_TM49, SSTidalCorridor_EventScript_HideSnatchGiver
 	warp MAP_SLATEPORT_CITY_HARBOR, 255, 8, 11
@@ -174,22 +174,14 @@ SSTidalCorridor_EventScript_EnjoyYourCruise:: @ 823C1BD
 	end
 
 SSTidalCorridor_EventScript_CheckIfTrainersDefeated:: @ 823C1C7
-	checktrainerflag TRAINER_PHILLIP
-	goto_if_lt SSTidalCorridor_EventScript_TrainerNotDefeated
-	checktrainerflag TRAINER_LEONARD
-	goto_if_lt SSTidalCorridor_EventScript_TrainerNotDefeated
-	checktrainerflag TRAINER_COLTON
-	goto_if_lt SSTidalCorridor_EventScript_TrainerNotDefeated
-	checktrainerflag TRAINER_MICAH
-	goto_if_lt SSTidalCorridor_EventScript_TrainerNotDefeated
-	checktrainerflag TRAINER_THOMAS
-	goto_if_lt SSTidalCorridor_EventScript_TrainerNotDefeated
-	checktrainerflag TRAINER_LEA_AND_JED
-	goto_if_lt SSTidalCorridor_EventScript_TrainerNotDefeated
-	checktrainerflag TRAINER_GARRET
-	goto_if_lt SSTidalCorridor_EventScript_TrainerNotDefeated
-	checktrainerflag TRAINER_NAOMI
-	goto_if_lt SSTidalCorridor_EventScript_TrainerNotDefeated
+	goto_if_not_defeated TRAINER_PHILLIP_OLD, SSTidalCorridor_EventScript_TrainerNotDefeated
+	goto_if_not_defeated TRAINER_LEONARD_OLD, SSTidalCorridor_EventScript_TrainerNotDefeated
+	goto_if_not_defeated TRAINER_COLTON, SSTidalCorridor_EventScript_TrainerNotDefeated
+	goto_if_not_defeated TRAINER_MICAH, SSTidalCorridor_EventScript_TrainerNotDefeated
+	goto_if_not_defeated TRAINER_THOMAS, SSTidalCorridor_EventScript_TrainerNotDefeated
+	goto_if_not_defeated TRAINER_LEA_AND_JED, SSTidalCorridor_EventScript_TrainerNotDefeated
+	goto_if_not_defeated TRAINER_GARRET, SSTidalCorridor_EventScript_TrainerNotDefeated
+	goto_if_not_defeated TRAINER_NAOMI, SSTidalCorridor_EventScript_TrainerNotDefeated
 	setflag FLAG_DEFEATED_SS_TIDAL_TRAINERS
 	goto SSTidalCorridor_EventScript_EnjoyYourCruise
 	return
@@ -201,11 +193,11 @@ SSTidalCorridor_EventScript_ScottScene:: @ 823C219
 	lockall
 	applymovement 5, SSTidalCorridor_Movement_ScottApproachPlayer
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox SSTidalCorridor_Text_ScottBattleFrontierInvite, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, SSTidalCorridor_Movement_PlayerWatchScottExit
+	applymovement OBJ_EVENT_ID_PLAYER, SSTidalCorridor_Movement_PlayerWatchScottExit
 	applymovement 1, SSTidalCorridor_Movement_SailorMoveForScott
 	applymovement 5, SSTidalCorridor_Movement_ScottExit
 	waitmovement 0

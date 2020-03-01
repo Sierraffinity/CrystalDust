@@ -1,6 +1,6 @@
 Std_ObtainItem:: @ 8271AD3
 	textcolor MSG_COLOR_MISC
-	giveitem VAR_0x8000, VAR_0x8001
+	additem VAR_0x8000, VAR_0x8001
 	copyvar VAR_0x8007, VAR_RESULT
 	call EventScript_ObtainItemMessage
 	copyvar VAR_TEXT_COLOR, VAR_TEXT_COLOR_BACKUP
@@ -75,7 +75,7 @@ EventScript_PlayFanfareObtainedTMHM:: @ 8271BB3
 	return
 
 Std_ObtainDecoration:: @ 8271BB7
-	givedecoration VAR_0x8000
+	adddecoration VAR_0x8000
 	copyvar VAR_0x8007, VAR_RESULT
 	call EventScript_ObtainDecorationMessage
 	return
@@ -120,7 +120,7 @@ Std_FindItem:: @ 8271BFD
 
 EventScript_PickUpItem:: @ 8271C3A
 	removeobject VAR_LAST_TALKED
-	giveitem VAR_0x8004, VAR_0x8005
+	additem VAR_0x8004, VAR_0x8005
 	specialvar VAR_RESULT, BufferTMHMMoveName
 	copyvar VAR_0x8008, VAR_RESULT
 	compare VAR_0x8008, 1
@@ -170,7 +170,7 @@ EventScript_FruitTree::
 	checkitemspace VAR_0x8000, 1
 	compare VAR_RESULT, 1
 	call_if_eq FruitTree_TakeItemFromTree
-	giveitem_std VAR_0x8000
+	giveitem VAR_0x8000
 	compare VAR_RESULT, 0
 	goto_if_eq FruitTree_NotEnoughSpace
 	addvar VAR_0x8004, FLAG_FRUIT_TREES_START - 1
@@ -191,7 +191,7 @@ FruitTree_EventScript_NothingHere:
 EventScript_HiddenItemScript:: @ 8271CB7
 	lockall
 	waitse
-	giveitem VAR_0x8005, 1
+	additem VAR_0x8005
 	copyvar VAR_0x8007, VAR_RESULT
 	bufferitemnameplural 1, VAR_0x8005, 1
 	checkitemtype VAR_0x8005

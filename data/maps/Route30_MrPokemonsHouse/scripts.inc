@@ -18,10 +18,10 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_HelloHello
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PlayerToMrPokemon
+	applymovement OBJ_EVENT_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PlayerToMrPokemon
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_ThisIsWhatIWant
-	giveitem_std ITEM_MYSTERY_EGG
+	giveitem ITEM_MYSTERY_EGG
 	setflag FLAG_RECEIVED_MYSTERY_EGG
 	msgbox Route30_MrPokemonsHouse_Text_IKnowACouple
 	applymovement 1, Common_Movement_WalkInPlaceFastestRight
@@ -33,7 +33,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	msgbox Route30_MrPokemonsHouse_Text_IfMyAssumption
 	closemessage
 	playbgm MUS_RG_OHKIDO, 0
-	applymovement EVENT_OBJ_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnRight
+	applymovement OBJ_EVENT_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnRight
 	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToPlayer
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_SoYourePlayer
@@ -42,11 +42,11 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	message Route30_MrPokemonsHouse_Text_PlayerReceivedPokedex
 	waitmessage
 	waitfanfare
-	call RestoreOriginalTextColor
+	call Common_RestoreOriginalTextColor
 	setflag FLAG_SYS_POKEDEX_GET
 	msgbox Route30_MrPokemonsHouse_Text_GoMeetManyPokemon
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnDown
+	applymovement OBJ_EVENT_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnDown
 	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToDoor
 	waitmovement 0
 	delay 10
@@ -54,7 +54,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	fadedefaultbgm
 	removeobject 2
 	waitse
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_ReturningToElm
 	closemessage

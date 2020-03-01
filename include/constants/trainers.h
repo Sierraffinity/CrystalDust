@@ -2,9 +2,11 @@
 #define GUARD_TRAINERS_H
 
 #include "constants/opponents.h"
+#include "constants/battle_frontier_trainers.h"
 
 // Special Trainer Ids.
-#define TRAINER_RECORD_MIXING_FRIEND        300
+//      0-299 are frontier trainers
+#define TRAINER_RECORD_MIXING_FRIEND        FRONTIER_TRAINERS_COUNT
 #define TRAINER_RECORD_MIXING_APPRENTICE    400
 #define TRAINER_EREADER                     500
 #define TRAINER_FRONTIER_BRAIN              1022
@@ -19,11 +21,11 @@
 #define TRAINER_PIC_POKEMON_BREEDER_F      2
 #define TRAINER_PIC_COOLTRAINER_M          3
 #define TRAINER_PIC_BIRD_KEEPER            4
-#define TRAINER_PIC_SAGE              5
+#define TRAINER_PIC_SAGE                   5
 #define TRAINER_PIC_AQUA_GRUNT_F           6
 #define TRAINER_PIC_SWIMMER_M              7
 #define TRAINER_PIC_MAGMA_GRUNT_M          8
-#define TRAINER_PIC_EXPERT_M               9
+#define TRAINER_PIC_FIREBREATHER               9
 #define TRAINER_PIC_AQUA_ADMIN_M          10
 #define TRAINER_PIC_BLACK_BELT            11
 #define TRAINER_PIC_AQUA_ADMIN_F          12
@@ -54,7 +56,7 @@
 #define TRAINER_PIC_ELITE_FOUR_PHOEBE     37
 #define TRAINER_PIC_ELITE_FOUR_GLACIA     38
 #define TRAINER_PIC_ELITE_FOUR_DRAKE      39
-#define TRAINER_PIC_LEADER_ROXANNE        40
+#define TRAINER_PIC_LEADER_FALKNER        40
 #define TRAINER_PIC_LEADER_BRAWLY         41
 #define TRAINER_PIC_LEADER_WATTSON        42
 #define TRAINER_PIC_LEADER_FLANNERY       43
@@ -295,10 +297,10 @@
 #define TRAINER_CLASS_PKMN_BREEDER   0x4
 #define TRAINER_CLASS_COOLTRAINER    0x5
 #define TRAINER_CLASS_BIRD_KEEPER    0x6
-#define TRAINER_CLASS_SAGE      0x7
+#define TRAINER_CLASS_SAGE           0x7
 #define TRAINER_CLASS_SWIMMER_M      0x8
 #define TRAINER_CLASS_TEAM_MAGMA     0x9
-#define TRAINER_CLASS_EXPERT         0xa
+#define TRAINER_CLASS_FIREBREATHER   0xa
 #define TRAINER_CLASS_AQUA_ADMIN     0xb
 #define TRAINER_CLASS_BLACK_BELT     0xc
 #define TRAINER_CLASS_AQUA_LEADER    0xd
@@ -357,16 +359,16 @@
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
-#define TRAINER_ENCOUNTER_MUSIC_FEMALEOLD    2
+#define TRAINER_ENCOUNTER_MUSIC_FEMALECLASSIC    2
 #define TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS   3
 #define TRAINER_ENCOUNTER_MUSIC_SAGE         4
-#define TRAINER_ENCOUNTER_MUSIC_MALEOLD      5
+#define TRAINER_ENCOUNTER_MUSIC_MALECLASSIC      5
 #define TRAINER_ENCOUNTER_MUSIC_ROCKET       6
 #define TRAINER_ENCOUNTER_MUSIC_MAGMA        7
 #define TRAINER_ENCOUNTER_MUSIC_SWIMMER      8
 #define TRAINER_ENCOUNTER_MUSIC_TWINS        9 // used for other trainer classes too
 #define TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR  10
-#define TRAINER_ENCOUNTER_MUSIC_SUSPOLD     11
+#define TRAINER_ENCOUNTER_MUSIC_SUSPICIOUSCLASSIC     11
 #define TRAINER_ENCOUNTER_MUSIC_KIMONO      12
 #define TRAINER_ENCOUNTER_MUSIC_RICH        13 // Rich Boys and Gentlemen
 

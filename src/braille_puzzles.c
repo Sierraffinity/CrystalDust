@@ -485,3 +485,18 @@ bool8 ShouldDoBrailleRegicePuzzle(void)
 
     return FALSE;
 }
+
+bool8 ShouldDoUnownEscapeEffect(void)
+{
+    if (!FlagGet(FLAG_SYS_BRAILLE_DIG)
+        && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(RUINS_OF_ALPH_KABUTO_CHAMBER)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(RUINS_OF_ALPH_KABUTO_CHAMBER))
+    {
+        if (gSaveBlock1Ptr->pos.x == 5 && gSaveBlock1Ptr->pos.y == 2)
+        {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}

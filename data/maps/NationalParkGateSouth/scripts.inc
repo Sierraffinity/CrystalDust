@@ -24,7 +24,7 @@ NationalParkGateSouth_OnFrame_Table:
 
 NationalParkGateSouth_OnFrame_EndContestPrompt:
 	lock
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateSouth_Movement_EndContestPlayerMovement
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateSouth_Movement_EndContestPlayerMovement
 	applymovement 3, NationalParkGateSouth_Movement_EndContestOfficerMovement
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE
@@ -37,7 +37,7 @@ NationalParkGateSouth_OnFrame_EndContestPrompt:
 	goto_if_ne NationalParkGateSouth_EndContest
 	msgbox NationalParkGate_Text_GetBackOutside, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateSouth_Movement_ReEnterContest
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateSouth_Movement_ReEnterContest
 	waitmovement 0
 	warp MAP_NATIONAL_PARK_CONTEST, 0, -1, -1
 	waitstate
@@ -89,15 +89,15 @@ NationalParkGateSouth_BugContestOfficer_EnterDoor:
 	goto NationalParkGateSouth_BugContestOfficer_EnterContestFromLeft
 
 NationalParkGateSouth_BugContestOfficer_EnterContestFromBelow:
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateSouth_Movement_EnterContestFromBelow
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateSouth_Movement_EnterContestFromBelow
 	goto NationalParkGateSouth_BugContestOfficer_EnterContest
 
 NationalParkGateSouth_BugContestOfficer_EnterContestFromRight:
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateSouth_Movement_EnterContestFromRight
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateSouth_Movement_EnterContestFromRight
 	goto NationalParkGateSouth_BugContestOfficer_EnterContest
 
 NationalParkGateSouth_BugContestOfficer_EnterContestFromLeft:
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateSouth_Movement_EnterContestFromLeft
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateSouth_Movement_EnterContestFromLeft
 NationalParkGateSouth_BugContestOfficer_EnterContest:
 	waitmovement 0
 	warp MAP_NATIONAL_PARK_CONTEST, 0, -1, -1

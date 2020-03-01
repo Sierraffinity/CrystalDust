@@ -14,7 +14,7 @@
 #include "sprite.h"
 #include "task.h"
 #include "constants/event_objects.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/field_specials.h"
 #include "constants/songs.h"
 #include "constants/vars.h"
@@ -179,7 +179,7 @@ void Task_HandleTruckSequence(u8 taskId)
         data[1]++;
         if (data[1] == SECONDS(2.5))
         {
-            pal_fill_black();
+            FadeInFromBlack();
             data[1] = 0;
             data[0] = 2;
         }
@@ -249,12 +249,12 @@ void EndTruckSequence(u8 taskId)
     }
 }
 
-bool8 sub_80FB59C(void)
+bool8 TrySetPortholeWarpDestination(void)
 {
     s8 mapGroup, mapNum;
     s16 x, y;
 
-    if (GetSSTidalLocation(&mapGroup, &mapNum, &x, &y))
+    if (GetSSTidalLocation(&mapGroup, &mapNum, &x, &y) != SS_TIDAL_LOCATION_CURRENTS)
     {
         return FALSE;
     }
@@ -283,7 +283,7 @@ void Task_HandlePorthole(u8 taskId)
     case IDLE_CHECK:
         if (gMain.newKeys & A_BUTTON)
             data[1] = 1;
-        if (!ScriptMovement_IsObjectMovementFinished(EVENT_OBJ_ID_PLAYER, location->mapNum, location->mapGroup))
+        if (!ScriptMovement_IsObjectMovementFinished(OBJ_EVENT_ID_PLAYER, location->mapNum, location->mapGroup))
             return;
         if (CountSSTidalStep(1) == TRUE)
         {
@@ -305,12 +305,12 @@ void Task_HandlePorthole(u8 taskId)
 
         if (*cruiseState == SS_TIDAL_DEPART_SLATEPORT)
         {
-            ScriptMovement_StartObjectMovementScript(EVENT_OBJ_ID_PLAYER, location->mapNum, location->mapGroup, sSSTidalSailEastMovementScript);
+            ScriptMovement_StartObjectMovementScript(OBJ_EVENT_ID_PLAYER, location->mapNum, location->mapGroup, sSSTidalSailEastMovementScript);
             data[0] = IDLE_CHECK;
         }
         else
         {
-            ScriptMovement_StartObjectMovementScript(EVENT_OBJ_ID_PLAYER, location->mapNum, location->mapGroup, sSSTidalSailWestMovementScript);
+            ScriptMovement_StartObjectMovementScript(OBJ_EVENT_ID_PLAYER, location->mapNum, location->mapGroup, sSSTidalSailWestMovementScript);
             data[0] = IDLE_CHECK;
         }
         break;
@@ -326,7 +326,7 @@ void Task_HandlePorthole(u8 taskId)
 
 static void ShowSSTidalWhileSailing(void)
 {
-    u8 spriteId = AddPseudoEventObject(EVENT_OBJ_GFX_SS_TIDAL, SpriteCallbackDummy, 112, 80, 0);
+    u8 spriteId = AddPseudoObjectEvent(OBJ_EVENT_GFX_SS_TIDAL, SpriteCallbackDummy, 112, 80, 0);
 
     gSprites[spriteId].coordOffsetEnabled = FALSE;
 
@@ -336,11 +336,11 @@ static void ShowSSTidalWhileSailing(void)
         StartSpriteAnim(&gSprites[spriteId], GetFaceDirectionAnimNum(DIR_WEST));
 }
 
-void sub_80FB768(void)
+void FieldCB_ShowPortholeView(void)
 {
     ShowSSTidalWhileSailing();
-    gEventObjects[gPlayerAvatar.eventObjectId].invisible = TRUE;
-    pal_fill_black();
+    gObjectEvents[gPlayerAvatar.objectEventId].invisible = TRUE;
+    FadeInFromBlack();
     CreateTask(Task_HandlePorthole, 80);
     ScriptContext2_Enable();
 }
@@ -351,6 +351,6 @@ void LookThroughPorthole(void)
     FlagSet(FLAG_DONT_TRANSITION_MUSIC);
     FlagSet(FLAG_HIDE_MAP_NAME_POPUP);
     SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
-    sub_80FB59C();
-    sub_80AF8B8();
+    TrySetPortholeWarpDestination();
+    DoPortholeWarp();
 }

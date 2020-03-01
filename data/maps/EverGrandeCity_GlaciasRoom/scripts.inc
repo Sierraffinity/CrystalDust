@@ -9,7 +9,7 @@ EverGrandeCity_GlaciasRoom_OnWarp: @ 8228422
 	.2byte 0
 
 EverGrandeCity_GlaciasRoom_EventScript_PlayerTurnNorth:: @ 822842C
-	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	end
 
 EverGrandeCity_GlaciasRoom_OnFrame: @ 8228431
@@ -42,7 +42,7 @@ EverGrandeCity_GlaciasRoom_EventScript_Glacia:: @ 8228469
 	faceplayer
 	goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
 	playbgm MUS_SITENNOU, 0
-	msgbox EverGrandeCity_GlaciasRoom_Text_PreBattleSpeech, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_GlaciasRoom_Text_IntroSpeech, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_GlaciasRoom_Text_Defeat
 	goto EverGrandeCity_GlaciasRoom_EventScript_Defeated
 	end
@@ -59,7 +59,7 @@ EverGrandeCity_GlaciasRoom_EventScript_Defeated:: @ 822849A
 	release
 	end
 
-EverGrandeCity_GlaciasRoom_Text_PreBattleSpeech: @ 82284AC
+EverGrandeCity_GlaciasRoom_Text_IntroSpeech: @ 82284AC
 	.string "Welcome, my name is GLACIA\n"
 	.string "of the ELITE FOUR.\p"
 	.string "I've traveled from afar to HOENN\n"

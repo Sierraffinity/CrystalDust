@@ -33,10 +33,10 @@
 #include "constants/vars.h"
 #include "constants/battle_frontier.h"
 
-extern const u16 gEventObjectPalette8[];
-extern const u16 gEventObjectPalette17[];
-extern const u16 gEventObjectPalette33[];
-extern const u16 gEventObjectPalette34[];
+extern const u16 gObjectEventPalette8[];
+extern const u16 gObjectEventPalette17[];
+extern const u16 gObjectEventPalette33[];
+extern const u16 gObjectEventPalette34[];
 
 static const u8 gUnknown_0858D8EC[] = { 3, 4, 5, 14 };
 
@@ -52,6 +52,7 @@ void SetContestTrainerGfxIds(void)
     gSaveBlock1Ptr->vars[VAR_OBJ_GFX_ID_2 - VARS_START] = gContestMons[2].trainerGfxId;
 }
 
+// Unused
 void sub_80F8814(void)
 {
     u16 var1;
@@ -82,7 +83,8 @@ void BufferContestTrainerAndMonNames(void)
     BufferContestantMonSpecies();
 }
 
-void sub_80F8864(void)
+// Unused
+void DoesContestCategoryHaveWinner(void)
 {
     int contestWinner;
     switch (gSpecialVar_ContestCategory)
@@ -105,10 +107,10 @@ void sub_80F8864(void)
         break;
     }
 
-    if (!gSaveBlock1Ptr->contestWinners[contestWinner].species)
-        gSpecialVar_0x8004 = 0;
+    if (gSaveBlock1Ptr->contestWinners[contestWinner].species == SPECIES_NONE)
+        gSpecialVar_0x8004 = FALSE;
     else
-        gSpecialVar_0x8004 = 1;
+        gSpecialVar_0x8004 = TRUE;
 }
 
 void SaveMuseumContestPainting(void)
@@ -144,9 +146,10 @@ u8 CountPlayerContestPaintings(void)
     return count;
 }
 
+// Unused
 void sub_80F8970(void)
 {
-    s16 sp[4];
+    s16 conditions[CONTESTANT_COUNT];
     int i, j;
     s16 condition;
     s8 var0;
@@ -154,28 +157,27 @@ void sub_80F8970(void)
     u8 r8;
     u8 r7;
 
-    for (i = 0; i < 4; i++)
-        sp[i] = gContestMonConditions[i];
+    for (i = 0; i < CONTESTANT_COUNT; i++)
+        conditions[i] = gContestMonConditions[i];
 
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < CONTESTANT_COUNT - 1; i++)
     {
-        for (j = 3; j > i; j--)
+        for (j = CONTESTANT_COUNT - 1; j > i; j--)
         {
-            if (sp[j - 1] < sp[j])
+            if (conditions[j - 1] < conditions[j])
             {
-                int temp = sp[j];
-                sp[j] = sp[j - 1];
-                sp[j - 1] = temp;
+                int temp;
+                SWAP(conditions[j], conditions[j - 1], temp)
             }
         }
     }
 
-    condition = sp[gSpecialVar_0x8006];
+    condition = conditions[gSpecialVar_0x8006];
     var0 = 0;
     r8 = 0;
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < CONTESTANT_COUNT; i++)
     {
-        if (sp[i] == condition)
+        if (conditions[i] == condition)
         {
             var0++;
             if (i == gSpecialVar_0x8006)
@@ -183,15 +185,15 @@ void sub_80F8970(void)
         }
     }
 
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < CONTESTANT_COUNT; i++)
     {
-        if (sp[i] == condition)
+        if (conditions[i] == condition)
             break;
     }
 
     r7 = i;
     var2 = r8;
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < CONTESTANT_COUNT; i++)
     {
         if (condition == gContestMonConditions[i])
         {
@@ -247,9 +249,9 @@ void SetLinkContestPlayerGfx(void)
             if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
             {
                 if (gLinkPlayers[i].gender == MALE)
-                    gContestMons[i].trainerGfxId = EVENT_OBJ_GFX_LINK_RS_BRENDAN;
+                    gContestMons[i].trainerGfxId = OBJ_EVENT_GFX_LINK_RS_BRENDAN;
                 else
-                    gContestMons[i].trainerGfxId = EVENT_OBJ_GFX_LINK_RS_MAY;
+                    gContestMons[i].trainerGfxId = OBJ_EVENT_GFX_LINK_RS_MAY;
             }
         }
 
@@ -263,7 +265,7 @@ void SetLinkContestPlayerGfx(void)
 void LoadLinkContestPlayerPalettes(void)
 {
     int i;
-    u8 eventObjectId;
+    u8 objectEventId;
     int version;
     struct Sprite *sprite;
 
@@ -272,23 +274,23 @@ void LoadLinkContestPlayerPalettes(void)
     {
         for (i = 0; i < gNumLinkContestPlayers; i++)
         {
-            eventObjectId = GetEventObjectIdByLocalIdAndMap(gUnknown_0858D8EC[i], gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-            sprite = &gSprites[gEventObjects[eventObjectId].spriteId];
+            objectEventId = GetObjectEventIdByLocalIdAndMap(gUnknown_0858D8EC[i], gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+            sprite = &gSprites[gObjectEvents[objectEventId].spriteId];
             sprite->oam.paletteNum = 6 + i;
             version = (u8)gLinkPlayers[i].version;
             if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
             {
                 if (gLinkPlayers[i].gender == MALE)
-                    LoadPalette(gEventObjectPalette33, 0x160 + i * 0x10, 0x20);
+                    LoadPalette(gObjectEventPalette33, 0x160 + i * 0x10, 0x20);
                 else
-                    LoadPalette(gEventObjectPalette34, 0x160 + i * 0x10, 0x20);
+                    LoadPalette(gObjectEventPalette34, 0x160 + i * 0x10, 0x20);
             }
             else
             {
                 if (gLinkPlayers[i].gender == MALE)
-                    LoadPalette(gEventObjectPalette8, 0x160 + i * 0x10, 0x20);
+                    LoadPalette(gObjectEventPalette8, 0x160 + i * 0x10, 0x20);
                 else
-                    LoadPalette(gEventObjectPalette17, 0x160 + i * 0x10, 0x20);
+                    LoadPalette(gObjectEventPalette17, 0x160 + i * 0x10, 0x20);
             }
         }
     }
@@ -711,20 +713,20 @@ static void CB2_ReturnFromChooseBattleFrontierParty(void)
 
 void ReducePlayerPartyToSelectedMons(void)
 {
-    struct Pokemon party[4];
+    struct Pokemon party[MAX_FRONTIER_PARTY_SIZE];
     int i;
 
     CpuFill32(0, party, sizeof party);
 
     // copy the selected pokemon according to the order.
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < MAX_FRONTIER_PARTY_SIZE; i++)
         if (gSelectedOrderFromParty[i]) // as long as the order keeps going (did the player select 1 mon? 2? 3?), do not stop
             party[i] = gPlayerParty[gSelectedOrderFromParty[i] - 1]; // index is 0 based, not literal
 
     CpuFill32(0, gPlayerParty, sizeof gPlayerParty);
 
     // overwrite the first 4 with the order copied to.
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < MAX_FRONTIER_PARTY_SIZE; i++)
         gPlayerParty[i] = party[i];
 
     CalculatePlayerPartyCount();

@@ -1,7 +1,24 @@
 mapscripts VioletCity_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_VISITED_VIOLET_CITY)
+		if (var(VAR_VIOLET_CITY_STATE) == 1)
+		{
+			setflag(FLAG_HIDE_MAP_NAME_POPUP)
+		}
     }
+	MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_VIOLET_CITY_STATE, 1 {
+            lockall
+            pokegearcall(VioletCity_PhoneScript_ElmCall, 1)
+            waitstate
+			setflag(FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET)
+			setflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE)
+			clearflag(FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE)
+            clearflag(FLAG_HIDE_MAP_NAME_POPUP)
+            setvar(VAR_VIOLET_CITY_STATE, 2)
+            releaseall
+        }
+    ]
 }
 
 script VioletCity_Earl {
@@ -28,19 +45,19 @@ script VioletCity_Earl {
 		{
 			case DIR_SOUTH:
 				applymovement(1, VioletCity_Movement_EarlToAcademy)
-				applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademySouth)
+				applymovement(OBJ_EVENT_ID_PLAYER, VioletCity_Movement_PlayerToAcademySouth)
 				waitmovement(0)
 			case DIR_NORTH:
 				applymovement(1, VioletCity_Movement_EarlToAcademy)
-				applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademyNorth)
+				applymovement(OBJ_EVENT_ID_PLAYER, VioletCity_Movement_PlayerToAcademyNorth)
 				waitmovement(0)
 			case DIR_WEST:
 				applymovement(1, VioletCity_Movement_EarlToAcademy)
-				applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademyWest)
+				applymovement(OBJ_EVENT_ID_PLAYER, VioletCity_Movement_PlayerToAcademyWest)
 				waitmovement(0)
 			case DIR_EAST:
 				applymovement(1, VioletCity_Movement_EarlToAcademy)
-				applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_Movement_PlayerToAcademyEast)
+				applymovement(OBJ_EVENT_ID_PLAYER, VioletCity_Movement_PlayerToAcademyEast)
 				waitmovement(0)
 		}
 		applymovement(1, VioletCity_Movement_EarlSpin)

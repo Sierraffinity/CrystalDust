@@ -7,7 +7,7 @@ MauvilleCity_OnTransition: @ 81DF38B
 	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
 	clearflag FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
 	setflag FLAG_SYS_TV_START
-	clearflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
+	clearflag FLAG_SOLVED_OMANYTE_PUZZLE
 	setvar VAR_MAUVILLE_GYM_STATE, 0
 	call_if_set FLAG_GOT_TM24_FROM_WATTSON, MauvilleCity_EventScript_MoveWattsonBackToGym
 	end
@@ -53,9 +53,9 @@ MauvilleCity_EventScript_GameCornerSign:: @ 81DF3F2
 MauvilleCity_EventScript_SchoolKidM:: @ 81DF3FB
 	lock
 	faceplayer
-	goto_if_set FLAG_TV_EXPLAINED, MauvilleCity_EventScript_TVExplained
+	goto_if_set FLAG_SOLVED_KABUTO_PUZZLE, MauvilleCity_EventScript_TVExplained
 	msgbox MauvilleCity_Text_ExplainTV, MSGBOX_DEFAULT
-	setflag FLAG_TV_EXPLAINED
+	setflag FLAG_SOLVED_KABUTO_PUZZLE
 	release
 	end
 
@@ -114,19 +114,19 @@ MauvilleCity_EventScript_BattleWallyPrompt:: @ 81DF4AD
 	end
 
 MauvilleCity_EventScript_WallyAndUncleExitNorth:: @ 81DF4E0
-	applymovement EVENT_OBJ_ID_PLAYER, MauvilleCity_Movement_PlayerWatchWallyExitNorth1
+	applymovement OBJ_EVENT_ID_PLAYER, MauvilleCity_Movement_PlayerWatchWallyExitNorth1
 	applymovement 6, MauvilleCity_Movement_WallyExitNorth1
 	applymovement 7, MauvilleCity_Movement_WallysUncleExitNorth1
 	waitmovement 0
 	applymovement 6, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 30
-	applymovement EVENT_OBJ_ID_PLAYER, MauvilleCity_Movement_PlayerFaceUncleNorth
+	applymovement OBJ_EVENT_ID_PLAYER, MauvilleCity_Movement_PlayerFaceUncleNorth
 	applymovement 7, MauvilleCity_Movement_WallysUncleApproachPlayerNorth
 	waitmovement 0
 	msgbox MauvilleCity_Text_UncleVisitUsSometime, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, MauvilleCity_Movement_PlayerWatchWallyExitNorth2
+	applymovement OBJ_EVENT_ID_PLAYER, MauvilleCity_Movement_PlayerWatchWallyExitNorth2
 	applymovement 7, MauvilleCity_Movement_WallysUncleExitNorth2
 	applymovement 6, MauvilleCity_Movement_WallyExitNorth2
 	waitmovement 0
@@ -134,7 +134,7 @@ MauvilleCity_EventScript_WallyAndUncleExitNorth:: @ 81DF4E0
 	end
 
 MauvilleCity_EventScript_WallyAndUncleExitEast:: @ 81DF53D
-	applymovement EVENT_OBJ_ID_PLAYER, MauvilleCity_Movement_PlayerWatchWallyExitEast1
+	applymovement OBJ_EVENT_ID_PLAYER, MauvilleCity_Movement_PlayerWatchWallyExitEast1
 	applymovement 6, MauvilleCity_Movement_WallyExitEast1
 	applymovement 7, MauvilleCity_Movement_WallysUncleExitEast1
 	waitmovement 0
@@ -145,7 +145,7 @@ MauvilleCity_EventScript_WallyAndUncleExitEast:: @ 81DF53D
 	waitmovement 0
 	msgbox MauvilleCity_Text_UncleVisitUsSometime, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, MauvilleCity_Movement_PlayerWatchWallyExitEast2
+	applymovement OBJ_EVENT_ID_PLAYER, MauvilleCity_Movement_PlayerWatchWallyExitEast2
 	applymovement 7, MauvilleCity_Movement_WallysUncleExitEast2
 	applymovement 6, MauvilleCity_Movement_WallyExitEast2
 	waitmovement 0
@@ -164,7 +164,7 @@ MauvilleCity_EventScript_DefeatedWally:: @ 81DF593
 	call_if_eq MauvilleCity_EventScript_ScottApproachPlayerNorth
 	compare VAR_FACING, DIR_EAST
 	call_if_eq MauvilleCity_EventScript_ScottApproachPlayerEast
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	msgbox MauvilleCity_Text_ScottYouDidntHoldBack, MSGBOX_DEFAULT
 	closemessage
@@ -191,20 +191,20 @@ MauvilleCity_EventScript_ScottApproachPlayerEast:: @ 81DF601
 	return
 
 MauvilleCity_EventScript_ScottExitNorth:: @ 81DF616
-	applymovement EVENT_OBJ_ID_PLAYER, MauvilleCity_Movement_PlayerWatchScottExitNorth
+	applymovement OBJ_EVENT_ID_PLAYER, MauvilleCity_Movement_PlayerWatchScottExitNorth
 	applymovement 11, MauvilleCity_Movement_ScottExitNorth
 	waitmovement 0
 	return
 
 MauvilleCity_EventScript_ScottExitEast:: @ 81DF628
-	applymovement EVENT_OBJ_ID_PLAYER, MauvilleCity_Movement_PlayerWatchScottExitEast
+	applymovement OBJ_EVENT_ID_PLAYER, MauvilleCity_Movement_PlayerWatchScottExitEast
 	applymovement 11, MauvilleCity_Movement_ScottExitEast
 	waitmovement 0
 	return
 
 MauvilleCity_EventScript_BattleWally:: @ 81DF63A
 	msgbox MauvilleCity_Text_WallyHereICome, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_WALLY_2, MauvilleCity_Text_WallyDefeat
+	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE, MauvilleCity_Text_WallyDefeat
 	applymovement 6, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox MauvilleCity_Text_WallyIllGoBackToVerdanturf, MSGBOX_DEFAULT
@@ -425,7 +425,7 @@ MauvilleCity_EventScript_Wattson:: @ 81DF73A
 	goto_if_eq MauvilleCity_EventScript_CompletedNewMauville
 	goto_if_set FLAG_GOT_BASEMENT_KEY_FROM_WATTSON, MauvilleCity_EventScript_BegunNewMauville
 	msgbox MauvilleCity_Text_WattsonNeedFavorTakeKey, MSGBOX_DEFAULT
-	giveitem_std ITEM_BASEMENT_KEY
+	giveitem ITEM_BASEMENT_KEY
 	setflag FLAG_GOT_BASEMENT_KEY_FROM_WATTSON
 	msgbox MauvilleCity_Text_WattsonWontBeChallenge, MSGBOX_DEFAULT
 	release
@@ -438,7 +438,7 @@ MauvilleCity_EventScript_BegunNewMauville:: @ 81DF77A
 
 MauvilleCity_EventScript_CompletedNewMauville:: @ 81DF784
 	msgbox MauvilleCity_Text_WattsonThanksTakeTM, MSGBOX_DEFAULT
-	giveitem_std ITEM_TM24
+	giveitem ITEM_TM24
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_TM24_FROM_WATTSON

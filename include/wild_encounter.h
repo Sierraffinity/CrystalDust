@@ -45,5 +45,6 @@ bool8 UpdateRepelCounter(void);
 u16 GetMapWildMonFromIndex(u8, u8, u8);
 u8 ChooseWildMonIndex_Land(void);
 u8 ChooseWildMonLevelWithAbility(const struct WildPokemon *wildPokemon, bool8 useAbility);
+u8 GetUnownLetterByPersonalityLoByte(u32 personality);
 
 #endif // GUARD_WILD_ENCOUNTER_H

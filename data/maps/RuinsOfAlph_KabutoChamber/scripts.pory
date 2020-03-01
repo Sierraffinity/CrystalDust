@@ -1,0 +1,188 @@
+const SCIENTIST = 1
+
+mapscripts RuinsOfAlph_KabutoChamber_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_SYS_BRAILLE_DIG) && !flag(FLAG_OPENED_WALL_IN_KABUTO_CHAMBER))
+        {
+            setflag(FLAG_HIDE_MAP_NAME_POPUP)
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 1 {
+            lockall
+            setvar(VAR_0x8004, 1)  # vertical pan
+            setvar(VAR_0x8005, 1)  # horizontal pan
+            setvar(VAR_0x8006, 20) # num shakes
+            setvar(VAR_0x8007, 3)  # shake delay
+            special(ShakeCamera)
+            waitstate
+            playse(SE_PIN)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+            waitmovement(0)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
+            waitmovement(0)
+            delay(4)
+            setvar(VAR_0x8004, 2)  # vertical pan
+            setvar(VAR_0x8005, 2)  # horizontal pan
+            setvar(VAR_0x8006, 20) # num shakes
+            setvar(VAR_0x8007, 3)  # shake delay
+            special(ShakeCamera)
+            delay(30)
+            setmetatile(5, 1, METATILE_RuinsOfAlph_HoleInWall, FALSE)
+            special(DrawWholeMapView)
+            playse(SE_W088)
+            waitstate
+            clearflag(FLAG_HIDE_MAP_NAME_POPUP)
+            setflag(FLAG_OPENED_WALL_IN_KABUTO_CHAMBER)
+            setvar(VAR_TEMP_0, 0)
+            releaseall
+        }
+    ]
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_SOLVED_KABUTO_PUZZLE))
+        {
+            setmetatile(4, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Left, FALSE)
+            setmetatile(5, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Center, FALSE)
+            setmetatile(6, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Right, FALSE)
+        }
+        if (flag(FLAG_OPENED_WALL_IN_KABUTO_CHAMBER))
+        {
+            setmetatile(5, 1, METATILE_RuinsOfAlph_HoleInWall, FALSE)
+        }
+    }
+}
+
+script RuinsOfAlph_KabutoChamber_EventScript_KabutoDescription {
+    msgbox("A POKéMON that hid on the sea floor.\n"
+           "Eyes on its back scanned the area.", MSGBOX_SIGN)
+}
+
+script RuinsOfAlph_KabutoChamber_EventScript_BackWall {
+    lockall
+    if (flag(FLAG_OPENED_WALL_IN_KABUTO_CHAMBER))
+    {
+        msgbox("There's a big hole in the wall!", MSGBOX_SIGN)
+    }
+    else
+    {
+        message("Patterns appeared on the walls…")
+        waitmessage
+        braillemessage(RuinsOfAlph_KabutoChamber_Unown_Escape)
+        waitbuttonpress
+        closebraillemessage
+    }
+    releaseall
+}
+
+raw `
+RuinsOfAlph_KabutoChamber_Unown_Escape:
+.braille "ESCAPE$"
+`
+
+script RuinsOfAlph_KabutoChamber_EventScript_KabutoPuzzle {
+    lockall
+    setvar(VAR_0x8004, 0)
+    special(DoRuinsOfAlphPuzzle)
+    waitstate
+    if (var(VAR_RESULT) == 1)
+    {
+        setflag(FLAG_SOLVED_KABUTO_PUZZLE)
+        setflag(FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST)
+        call(RuinsOfAlph_Chambers_EventScript_SolvePuzzle)
+        setwarp(MAP_RUINS_OF_ALPH_INNER_CHAMBER, 2, 0, 0)
+        special(DoFallWarp)
+        waitstate
+    }
+    releaseall
+}
+
+script RuinsOfAlph_Chambers_EventScript_SolvePuzzle {
+    setflag(FLAG_HIDE_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS)
+    setflag(FLAG_MADE_UNOWN_APPEAR_IN_RUINS)
+    setflag(FLAG_HIDE_MAP_NAME_POPUP)
+    clearflag(FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_COWARD)
+    setvar(VAR_RUINS_OF_ALPH_STATE, 1)
+    setvar(VAR_0x8004, 1)  # vertical pan
+    setvar(VAR_0x8005, 1)  # horizontal pan
+    setvar(VAR_0x8006, 20) # num shakes
+    setvar(VAR_0x8007, 3)  # shake delay
+    special(ShakeCamera)
+    waitstate
+    playse(SE_PIN)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
+    waitmovement(0)
+    delay(4)
+    setvar(VAR_0x8004, 2)  # vertical pan
+    setvar(VAR_0x8005, 2)  # horizontal pan
+    setvar(VAR_0x8006, 20) # num shakes
+    setvar(VAR_0x8007, 3)  # shake delay
+    special(ShakeCamera)
+    delay(40)
+    setmetatile(4, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Left, FALSE)
+    setmetatile(5, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Center, FALSE)
+    setmetatile(6, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Right, FALSE)
+    special(DrawWholeMapView)
+    playse(SE_BAN)
+    waitstate
+    applymovement(OBJ_EVENT_ID_PLAYER, RuinsOfAlph_Chambers_Movement_PlayerFallsIn)
+    waitmovement(0)
+    playse(SE_RU_HYUU)
+    delay(60)
+}
+
+movement RuinsOfAlph_Chambers_Movement_PlayerFallsIn {
+    walk_in_place_fast_up * 5
+    set_invisible
+}
+
+script RuinsOfAlph_KabutoChamber_EventScript_Scientist {
+    lock
+    faceplayer
+    // TODO: Check for all Unowns seen/caught
+    if (flag(FLAG_OPENED_WALL_IN_KABUTO_CHAMBER))
+    {
+        msgbox("Ah! Here's another huge hole!\n"
+               "It's big enough to go through!")
+    }
+    else
+    {
+        if (flag(FLAG_SOLVED_KABUTO_PUZZLE))
+        {
+            msgbox("That tremor was pretty scary!\n"
+                   "But I'm more concerned about\l"
+                   "this wall here…\p"
+                   "Recently, strange, cryptic patterns\n"
+                   "have appeared.\p"
+                   "It's odd. They weren't here a\n"
+                   "little while ago…\p"
+                   "You should take a look at the\n"
+                   "walls around the RUINS.")
+        }
+        else
+        {
+            msgbox("Recently, strange, cryptic patterns\n"
+                   "have appeared.\p"
+                   "It's odd. They weren't here a\n"
+                   "little while ago…\p"
+                   "You should take a look at the\n"
+                   "walls around the RUINS.")
+        }
+        turnobject(SCIENTIST, DIR_NORTH)
+    }
+    release
+}
+
+script RuinsOfAlph_KabutoChamber_EventScript_Receptionist {
+    msgbox("Welcome to this chamber.\p"
+           "There are sliding panels that depict\n"
+           "a POKéMON drawn by the ancients.\p"
+           "Slide the panels around to form\n"
+           "the picture.\p"
+           "To the sides are descriptions of\n"
+           "the POKéMON.\p"
+           "Scientists in the back are examining\n"
+           "some newly found patterns.", MSGBOX_NPC)
+}

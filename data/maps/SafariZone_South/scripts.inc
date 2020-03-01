@@ -9,7 +9,7 @@ SafariZone_South_OnFrame: @ 823D284
 
 SafariZone_South_EventScript_EnterSafariZone:: @ 823D28E
 	lockall
-	applymovement EVENT_OBJ_ID_PLAYER, SafariZone_South_Movement_PlayerEnter
+	applymovement OBJ_EVENT_ID_PLAYER, SafariZone_South_Movement_PlayerEnter
 	waitmovement 0
 	applymovement 1, SafariZone_South_Movement_ExitAttendantBlockDoor
 	waitmovement 0
@@ -51,7 +51,7 @@ SafariZone_South_EventScript_Youngster:: @ 823D2DC
 SafariZone_South_EventScript_ExitAttendant:: @ 823D2E5
 	lock
 	faceplayer
-	goto_if_unset FLAG_GOOD_LUCK_SAFARI_ZONE, SafariZone_South_EventScript_GoodLuck
+	goto_if_unset FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET, SafariZone_South_EventScript_GoodLuck
 	msgbox SafariZone_South_Text_StillHaveTimeExit, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq SafariZone_South_EventScript_ExitEarly
@@ -60,7 +60,7 @@ SafariZone_South_EventScript_ExitAttendant:: @ 823D2E5
 	end
 
 SafariZone_South_EventScript_GoodLuck:: @ 823D30D
-	setflag FLAG_GOOD_LUCK_SAFARI_ZONE
+	setflag FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET
 	msgbox SafariZone_South_Text_GoodLuck, MSGBOX_DEFAULT
 	release
 	end
@@ -76,7 +76,7 @@ SafariZone_South_EventScript_ExitEarly:: @ 823D31A
 SafariZone_South_EventScript_ExitEarlyNorth:: @ 823D33F
 	applymovement 1, SafariZone_South_Movement_MoveExitAttendantNorth
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, SafariZone_South_Movement_PlayerExitNorth
+	applymovement OBJ_EVENT_ID_PLAYER, SafariZone_South_Movement_PlayerExitNorth
 	waitmovement 0
 	goto SafariZone_South_EventScript_Exit
 	end
@@ -84,7 +84,7 @@ SafariZone_South_EventScript_ExitEarlyNorth:: @ 823D33F
 SafariZone_South_EventScript_ExitEarlyEast:: @ 823D359
 	applymovement 1, SafariZone_South_Movement_MoveExitAttendantEast
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, SafariZone_South_Movement_PlayerExitEast
+	applymovement OBJ_EVENT_ID_PLAYER, SafariZone_South_Movement_PlayerExitEast
 	waitmovement 0
 	goto SafariZone_South_EventScript_Exit
 	end
@@ -92,7 +92,7 @@ SafariZone_South_EventScript_ExitEarlyEast:: @ 823D359
 SafariZone_South_EventScript_Exit:: @ 823D373
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
-	warpdoor MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 255, 2, 5
+	warpdoor MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE, 255, 2, 5
 	waitstate
 	end
 

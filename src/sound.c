@@ -50,7 +50,7 @@ static const struct Fanfare sFanfares[] = {
     { MUS_ME_ASA,       160 },
     { MUS_ME_BACHI,     340 },
     { MUS_ME_WASURE,    180 },
-    { MUS_ME_KINOMI,    120 },
+    { MUS_FANFAREEGG,   160 },
     { MUS_ME_TAMA,      710 },
     { MUS_ME_B_BIG,     250 },
     { MUS_ME_B_SMALL,   150 },

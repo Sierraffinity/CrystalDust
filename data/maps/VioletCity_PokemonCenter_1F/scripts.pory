@@ -59,11 +59,12 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
             delay(5)
 	        textcolor(MSG_COLOR_MISC)
             setflag(FLAG_GOT_ELMS_EGG)
-	        playfanfare(MUS_FANFA4)
-            message("{PLAYER} received the EGG.")
+	        playfanfare(MUS_FANFAREEGG)
+            message("{PLAYER} received the EGG\n"
+                    "from ELM's AIDE.")
             waitfanfare
             giveegg(SPECIES_TOGEPI)
-            call(RestoreOriginalTextColor)
+            call(Common_RestoreOriginalTextColor)
             msgbox("We discovered that a POKéMON won't\n"
                    "hatch until it grows in the EGG.\p"
                    "It also has to be with other active\n"
@@ -76,13 +77,13 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
 
             if (var(VAR_FACING) == DIR_NORTH)
             {
-                applymovement(EVENT_OBJ_ID_PLAYER, VioletCity_PokemonCenter_1F_Movement_PlayerWatchesAide)
+                applymovement(OBJ_EVENT_ID_PLAYER, VioletCity_PokemonCenter_1F_Movement_PlayerWatchesAide)
                 applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideAroundPlayer)
                 waitmovement(0)
             }
             else
             {
-                applymovement(EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown)
+                applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown)
                 applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideStraightOut)
                 waitmovement(0)
             }
@@ -90,6 +91,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
 	        playse(SE_KAIDAN)
             removeobject(ELMS_AIDE)
             clearflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE)
+            setvar(VAR_ROUTE32_STATE, 1)
         }
         else
         {

@@ -19,7 +19,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_MoveElmToPC:
 NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction:
 	lockall
 	textcolor MSG_COLOR_BLUE
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerStepToElm
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerStepToElm
 	waitmovement 0
 	playse SE_PIN
 	applymovement 2, Common_Movement_ExclamationMark
@@ -56,7 +56,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmAccepted:
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmsAcquaintance
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchElmWalk
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchElmWalk
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmWalkToPokeBalls
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_RaiseAPokemon
@@ -97,7 +97,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo::
 	turnobject 2, 1
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmWaitWhereAreYouGoing
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerComeBack
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerComeBack
 	waitmovement 0
 	releaseall
 	end
@@ -126,8 +126,8 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	textcolor MSG_COLOR_MISC
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmHandedMysteryEgg
 	closemessage
-	call RestoreOriginalTextColor
-	takeitem ITEM_MYSTERY_EGG, 1
+	call Common_RestoreOriginalTextColor
+	removeitem ITEM_MYSTERY_EGG, 1
 	delay 10
 	compare VAR_FACING, 1
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsDown
@@ -300,7 +300,7 @@ NewBarkTown_EventScript_ChoseMon:
 	hidemonpic
 	removeobject VAR_LAST_TALKED
 	msgbox NewBarkTown_ProfessorElmsLab_Text_GreatMonToo
-	call RestoreOriginalTextColor
+	call Common_RestoreOriginalTextColor
 	setflag FLAG_SYS_POKEMON_GET
 	givemon VAR_TEMP_2, 5, ITEM_ORAN_BERRY
 	copyvar VAR_STARTER_MON, VAR_TEMP_1 @ 0=Chikorita, 1=Totodile, 2=Cyndaquil
@@ -332,7 +332,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_BallFromAbove:
 
 NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromAbove:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay32FaceDown
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom83
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom83
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
 
 NewBarkTown_ProfessorElmsLab_Movement_Delay32FaceDown:
@@ -350,7 +350,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom83:
 
 NewBarkTown_ProfessorElmsLab_EventScript_TotodileFromAbove:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay48FaceDown
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom93
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom93
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
 
 NewBarkTown_ProfessorElmsLab_Movement_Delay48FaceDown:
@@ -370,7 +370,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom93:
 
 NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromAbove:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay64FaceDown
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom103
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom103
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
 
 NewBarkTown_ProfessorElmsLab_Movement_Delay64FaceDown:
@@ -392,7 +392,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom103:
 
 NewBarkTown_ProfessorElmsLab_EventScript_BallFromLeft:
 	applymovement 2, Common_Movement_WalkInPlaceFastestDown
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom74
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom74
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
 
 NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom74:
@@ -411,7 +411,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_BallFromBelow:
 
 NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromBelow:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay16FaceDown
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom85
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom85
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
 
 NewBarkTown_ProfessorElmsLab_Movement_Delay16FaceDown:
@@ -427,7 +427,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom85:
 
 NewBarkTown_ProfessorElmsLab_EventScript_TotodileFromBelow:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay32FaceDown
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom95
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom95
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
 
 NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom95:
@@ -439,7 +439,7 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom95:
 
 NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromBelow:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_Delay48FaceDown
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom105
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom105
 	goto NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet
 
 NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom105:
@@ -463,7 +463,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	delay 20
 	setflag FLAG_PHONE_CARD_ELM
 	playfanfare MUS_ME_TORE_EYE
-	call RestoreOriginalTextColor
+	call Common_RestoreOriginalTextColor
 	msgbox NewBarkTown_ProfessorElmsLab_Text_GotElmsNumber, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -525,7 +525,7 @@ NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger:
 NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain:
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_TakeThisForErrand
-	giveitem_std ITEM_POTION
+	giveitem ITEM_POTION
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy
 	closemessage
 	compare VAR_TEMP_1, 0
@@ -595,7 +595,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AideBalls3::
 NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain:
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_TakeBalls
-	giveitem_std ITEM_POKE_BALL, 5
+	giveitem ITEM_POKE_BALL, 5
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_BallExplanation
 	closemessage
 	compare VAR_TEMP_1, 0
@@ -612,7 +612,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Officer1::
 	lockall
 	setvar VAR_TEMP_1, 0
 	applymovement 3, NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeft
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromLeft
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromLeft
 	waitmovement 0
 	goto NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain
 
@@ -634,7 +634,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Officer2::
 	lockall
 	setvar VAR_TEMP_1, 1
 	applymovement 3, NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeftFromCenter
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromCenter
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromCenter
 	waitmovement 0
 	goto NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain
 
@@ -658,7 +658,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Officer3::
 	lockall
 	setvar VAR_TEMP_1, 2
 	applymovement 3, NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceRight
-	applymovement EVENT_OBJ_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromRight
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromRight
 	waitmovement 0
 	goto NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain
 

@@ -1,0 +1,53 @@
+mapscripts RuinsOfAlph_InnerChamber_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_SOLVED_KABUTO_PUZZLE))
+        {
+            setmetatile(4, 1, METATILE_RuinsOfAlph_Pillar_Green, TRUE)
+        }
+        if (flag(FLAG_SOLVED_OMANYTE_PUZZLE))
+        {
+            setmetatile(9, 1, METATILE_RuinsOfAlph_Pillar_Green, TRUE)
+        }
+        if (flag(FLAG_SOLVED_AERODACTYL_PUZZLE))
+        {
+            setmetatile(13, 1, METATILE_RuinsOfAlph_Pillar_Green, TRUE)
+        }
+        if (flag(FLAG_SOLVED_HOOH_PUZZLE))
+        {
+            setmetatile(18, 1, METATILE_RuinsOfAlph_Pillar_Green, TRUE)
+        }
+    }
+    MAP_SCRIPT_ON_TRANSITION {
+        if (var(VAR_RUINS_OF_ALPH_STATE) == 1)
+        {
+            setflag(FLAG_HIDE_MAP_NAME_POPUP)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_RUINS_OF_ALPH_STATE, 1{
+            lockall
+            delay(5)
+            msgbox("There is a strange presence here…")
+            setvar(VAR_RUINS_OF_ALPH_STATE, 0)
+            clearflag(FLAG_HIDE_MAP_NAME_POPUP)
+            releaseall
+        }
+    ]
+}
+
+script RuinsOfAlph_InnerChamber_Coward {
+    msgbox("This is a big room, but there's\n"
+           "nothing here.", MSGBOX_NPC)
+}
+
+script RuinsOfAlph_InnerChamber_Woman {
+    msgbox("This place has a mystical quality\n"
+           "to it.\p"
+           "It feels sort of ethereal, even.", MSGBOX_NPC)
+}
+
+script RuinsOfAlph_InnerChamber_OldMan {
+    msgbox("Ancient buildings are often tombs\n"
+           "of kings.\p"
+           "Like the pyramids, for instance.", MSGBOX_NPC)
+}

@@ -33,3 +33,8 @@ porymap.project.cfg
 .vscode/
 *.a
 .fuse_hidden*
+data/maps/**/scripts.inc
+data/text/trainers.inc
+src/*.s
+src/data/items.h
+src/data/wild_encounters.h

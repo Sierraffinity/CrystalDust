@@ -29,7 +29,7 @@
 #include "wild_encounter.h"
 #include "window.h"
 #include "constants/event_objects.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/maps.h"
@@ -140,7 +140,7 @@ static int CalculateLevelScore(int level, int maxLevel);
 static int CalculateIVScore(int hpIV, int attackIV, int defenseIV, int speedIV, int spAttackIV, int spDefenseIV);
 static int CalculateHPScore(int curHP, int maxHP);
 static int CalculateRarityScore(u16 species);
-static void SetAwardsCeremonyBugContestEventObjectScripts(void);
+static void SetAwardsCeremonyBugContestObjectEventScripts(void);
 static void MainCallback_BugCatchingContestSwapScreen(void);
 static void InitBugCatchingContestSwapScreen(void);
 static void VBlank_BugCatchingContestSwapScreen(void);
@@ -251,7 +251,7 @@ static const u8 sName_Cindy[] = _("CINDY");
 
 static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
     {
-        .graphicsId = EVENT_OBJ_GFX_BOY_1,
+        .graphicsId = OBJ_EVENT_GFX_BOY_1,
         .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .name = sName_Nick,
         .script = NationalParkContest_Nick,
@@ -259,7 +259,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_NickPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_SAGE,
+        .graphicsId = OBJ_EVENT_GFX_SAGE,
         .trainerClass = TRAINER_CLASS_POKEFAN,
         .name = sName_William,
         .script = NationalParkContest_William,
@@ -267,7 +267,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_WilliamPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_YOUNGSTER,
+        .graphicsId = OBJ_EVENT_GFX_YOUNGSTER,
         .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .name = sName_Samuel,
         .script = NationalParkContest_Samuel,
@@ -275,7 +275,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_SamuelPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_CAMPER,
+        .graphicsId = OBJ_EVENT_GFX_CAMPER,
         .trainerClass = TRAINER_CLASS_CAMPER,
         .name = sName_Barry,
         .script = NationalParkContest_Barry,
@@ -283,7 +283,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_BarryPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
+        .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Ed,
         .script = NationalParkContest_Ed,
@@ -291,7 +291,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_EdPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
+        .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Benny,
         .script = NationalParkContest_Benny,
@@ -299,7 +299,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_BennyPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
+        .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Josh,
         .script = NationalParkContest_Josh,
@@ -307,7 +307,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_JoshPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_BUG_CATCHER,
+        .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Don,
         .script = NationalParkContest_Don,
@@ -315,7 +315,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_DonPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_SCHOOL_KID_M,
+        .graphicsId = OBJ_EVENT_GFX_SCHOOL_KID_M,
         .trainerClass = TRAINER_CLASS_SCHOOL_KID,
         .name = sName_Kipp,
         .script = NationalParkContest_Kipp,
@@ -323,7 +323,7 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .awardsScriptPlayerLost = NationalParkGateEast_KippPlayerLost,
     },
     {
-        .graphicsId = EVENT_OBJ_GFX_PICNICKER,
+        .graphicsId = OBJ_EVENT_GFX_PICNICKER,
         .trainerClass = TRAINER_CLASS_PICNICKER,
         .name = sName_Cindy,
         .script = NationalParkContest_Cindy,
@@ -421,7 +421,7 @@ void GiveCaughtBugCatchingContestMon(void)
 void EndBugCatchingContest(void)
 {
     int i;
-    u8 eventObjectId;
+    u8 ObjectEventId;
 
     gBugCatchingContestStatus = BUG_CATCHING_CONTEST_STATUS_OFF;
     gNumParkBalls = 0;
@@ -431,8 +431,8 @@ void EndBugCatchingContest(void)
 
     for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
     {
-        if (!TryGetEventObjectIdByLocalIdAndMap(i + 1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &eventObjectId))
-            SetTrainerMovementType(&gEventObjects[eventObjectId], MOVEMENT_TYPE_LOOK_AROUND);
+        if (!TryGetObjectEventIdByLocalIdAndMap(i + 1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &ObjectEventId))
+            SetTrainerMovementType(&gObjectEvents[ObjectEventId], MOVEMENT_TYPE_LOOK_AROUND);
     }
 }
 
@@ -489,7 +489,7 @@ void DetermineBugCatchingContestStandings(void)
         }
     }
 
-    SetAwardsCeremonyBugContestEventObjectScripts();
+    SetAwardsCeremonyBugContestObjectEventScripts();
 }
 
 void BugCatchingContestQuitPrompt(void)
@@ -879,12 +879,12 @@ static int CalculateRarityScore(u16 species)
     return 80;
 }
 
-void PlaceBugCatchingContestEventObjects(void)
+void PlaceBugCatchingContestObjectEvents(void)
 {
     int i;
     u16 coordIndex;
     const struct BugCatchingContestNPCTemplate *npcTemplate;
-    struct EventObjectTemplate *events = gSaveBlock1Ptr->eventObjectTemplates;
+    struct ObjectEventTemplate *events = gSaveBlock1Ptr->objectEventTemplates;
     u8 takenCoords[ARRAY_COUNT(sBugContestNPCCoords)] = {0};
 
     for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
@@ -902,11 +902,11 @@ void PlaceBugCatchingContestEventObjects(void)
     }
 }
 
-void SetAwardsCeremonyBugContestEventObjectGraphics(void)
+void SetAwardsCeremonyBugContestObjectEventGraphics(void)
 {
     int i;
     const struct BugCatchingContestNPCTemplate *npcTemplate;
-    struct EventObjectTemplate *events = gSaveBlock1Ptr->eventObjectTemplates;
+    struct ObjectEventTemplate *events = gSaveBlock1Ptr->objectEventTemplates;
 
     for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
     {
@@ -915,12 +915,12 @@ void SetAwardsCeremonyBugContestEventObjectGraphics(void)
     }
 }
 
-static void SetAwardsCeremonyBugContestEventObjectScripts(void)
+static void SetAwardsCeremonyBugContestObjectEventScripts(void)
 {
     int i;
     const struct BugCatchingContestNPCTemplate *npcTemplate;
     int playerId = NUM_BUG_CONTEST_NPCS;
-    struct EventObjectTemplate *events = gSaveBlock1Ptr->eventObjectTemplates;
+    struct ObjectEventTemplate *events = gSaveBlock1Ptr->objectEventTemplates;
 
     for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
     {
@@ -1214,7 +1214,7 @@ static void SwapScreenDisplayAlreadyCaughtMessage(u8 taskId)
 {
     if (!IsTextPrinterActive(sSwapScreen->textWindowId))
     {
-        CreateYesNoMenu(&sYesNoWindowTemplate, 0x214, 14, 0);
+        CreateYesNoMenu(&sYesNoWindowTemplate, 1, 0, 2, 0x214, 14, 0);
         gTasks[taskId].func = SwapScreenHandleInput;
     }
 }

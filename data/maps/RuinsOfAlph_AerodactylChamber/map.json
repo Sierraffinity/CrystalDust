@@ -1,0 +1,81 @@
+{
+    "allow_bike": false,
+    "allow_escape_rope": true,
+    "allow_running": true,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+    "layout": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+    "map_type": "MAP_TYPE_UNDERGROUND",
+    "music": "MUS_ILEXFOREST",
+    "name": "RuinsOfAlph_AerodactylChamber",
+    "object_events": [
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "RuinsOfAlph_AerodactylChamber_EventScript_Camper",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "type": "original",
+            "x": 3,
+            "y": 4
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "script": "RuinsOfAlph_AerodactylChamber_EventScript_ItemDiveBall",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "type": "original",
+            "x": 13,
+            "y": 3
+        }
+    ],
+    "phone_service": true,
+    "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+    "requires_flash": false,
+    "show_map_name": true,
+    "warp_events": [
+        {
+            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+            "dest_warp_id": 1,
+            "elevation": 3,
+            "x": 4,
+            "y": 7
+        },
+        {
+            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+            "dest_warp_id": 1,
+            "elevation": 3,
+            "x": 5,
+            "y": 7
+        },
+        {
+            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 13,
+            "y": 7
+        },
+        {
+            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+            "dest_warp_id": 0,
+            "elevation": 3,
+            "x": 14,
+            "y": 7
+        }
+    ],
+    "weather": "WEATHER_NONE"
+}

@@ -10,7 +10,7 @@ VerdanturfTown_OnTransition: @ 81EB56C
 VerdanturfTown_EventScript_Twin:: @ 81EB575
 	lock
 	faceplayer
-	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_TwinTunnelOpen
+	goto_if_set FLAG_UNION_CAVE_OPENED, VerdanturfTown_EventScript_TwinTunnelOpen
 	msgbox VerdanturfTown_Text_ManTryingToDigTunnel, MSGBOX_DEFAULT
 	applymovement 2, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -35,7 +35,7 @@ VerdanturfTown_EventScript_Camper:: @ 81EB5B1
 VerdanturfTown_EventScript_Boy:: @ 81EB5BA
 	lock
 	faceplayer
-	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_BoyTunnelOpen
+	goto_if_set FLAG_UNION_CAVE_OPENED, VerdanturfTown_EventScript_BoyTunnelOpen
 	msgbox VerdanturfTown_Text_GuyTryingToBustThroughCave, MSGBOX_DEFAULT
 	release
 	end
@@ -57,8 +57,8 @@ VerdanturfTown_EventScript_BattleTentSign:: @ 81EB5EB
 	msgbox VerdanturfTown_Text_BattleTentSign, MSGBOX_SIGN
 	end
 
-VerdanturfTown_EventScript_RusturfTunnelSign:: @ 81EB5F4
-	msgbox VerdanturfTown_Text_RusturfTunnelSign, MSGBOX_SIGN
+VerdanturfTown_EventScript_UnionCave_1FSign:: @ 81EB5F4
+	msgbox VerdanturfTown_Text_UnionCave_1FSign, MSGBOX_SIGN
 	end
 
 VerdanturfTown_Text_ManTryingToDigTunnel: @ 81EB5FD
@@ -117,7 +117,7 @@ VerdanturfTown_Text_BattleTentSign: @ 81EBA1F
 	.string "BATTLE TENT VERDANTURF SITE\n"
 	.string "“Feast Your Eyes on Battles!”$"
 
-VerdanturfTown_Text_RusturfTunnelSign: @ 81EBA59
+VerdanturfTown_Text_UnionCave_1FSign: @ 81EBA59
 	.string "RUSTURF TUNNEL\n"
 	.string "“Linking RUSTBORO and VERDANTURF\p"
 	.string "“The tunnel project has been\n"

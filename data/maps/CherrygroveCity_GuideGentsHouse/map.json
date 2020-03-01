@@ -17,7 +17,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE",
-            "graphics_id": "EVENT_OBJ_GFX_OLD_MAN",
+            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",

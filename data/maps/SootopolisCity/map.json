@@ -15,7 +15,7 @@
   "connections": [],
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 31,
       "y": 18,
       "elevation": 3,
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WOMAN_4",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_4",
       "x": 47,
       "y": 33,
       "elevation": 0,
@@ -43,7 +43,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_GIRL_2",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
       "x": 9,
       "y": 43,
       "elevation": 3,
@@ -57,7 +57,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
       "x": 51,
       "y": 14,
       "elevation": 3,
@@ -71,7 +71,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "x": 43,
       "y": 26,
       "elevation": 3,
@@ -85,7 +85,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
       "x": 26,
       "y": 4,
       "elevation": 3,
@@ -99,7 +99,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_STEVEN",
+      "graphics_id": "OBJ_EVENT_GFX_STEVEN",
       "x": 20,
       "y": 36,
       "elevation": 3,
@@ -113,7 +113,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WOMAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "x": 49,
       "y": 34,
       "elevation": 3,
@@ -127,7 +127,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_GROUDON_3",
+      "graphics_id": "OBJ_EVENT_GFX_GROUDON_3",
       "x": 28,
       "y": 44,
       "elevation": 0,
@@ -141,7 +141,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_KYOGRE_3",
+      "graphics_id": "OBJ_EVENT_GFX_KYOGRE_3",
       "x": 34,
       "y": 44,
       "elevation": 1,
@@ -155,7 +155,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_RAYQUAZA_2",
+      "graphics_id": "OBJ_EVENT_GFX_RAYQUAZA_2",
       "x": 31,
       "y": 41,
       "elevation": 1,
@@ -169,7 +169,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MANIAC",
+      "graphics_id": "OBJ_EVENT_GFX_POKEMANIAC",
       "x": 17,
       "y": 44,
       "elevation": 3,
@@ -183,7 +183,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_GIRL_3",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
       "x": 14,
       "y": 42,
       "elevation": 3,
@@ -197,7 +197,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
       "x": 17,
       "y": 40,
       "elevation": 3,
@@ -211,7 +211,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_BOY_2",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
       "x": 19,
       "y": 37,
       "elevation": 3,
@@ -225,7 +225,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MAXIE",
+      "graphics_id": "OBJ_EVENT_GFX_MAXIE",
       "x": 29,
       "y": 33,
       "elevation": 3,
@@ -239,7 +239,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ARCHIE",
+      "graphics_id": "OBJ_EVENT_GFX_ARCHIE",
       "x": 31,
       "y": 33,
       "elevation": 3,
@@ -253,7 +253,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WALLACE",
+      "graphics_id": "OBJ_EVENT_GFX_WALLACE",
       "x": 31,
       "y": 18,
       "elevation": 3,

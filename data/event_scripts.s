@@ -20,7 +20,7 @@
 #include "constants/decorations.h"
 #include "constants/easy_chat.h"
 #include "constants/event_objects.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/field_effects.h"
 #include "constants/field_poison.h"
 #include "constants/field_specials.h"
@@ -128,7 +128,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route30/scripts.inc"
 	.include "data/maps/Route31/scripts.inc"
 	.include "data/maps/Route32/scripts.inc"
-	.include "data/maps/Route105/scripts.inc"
+	.include "data/maps/Route33/scripts.inc"
 	.include "data/maps/Route106/scripts.inc"
 	.include "data/maps/Route107/scripts.inc"
 	.include "data/maps/Route36/scripts.inc"
@@ -339,25 +339,25 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route30_BerryMansHouse/scripts.inc"
 	.include "data/maps/Route30_MrPokemonsHouse/scripts.inc"
 	.include "data/maps/Route31_Gatehouse/scripts.inc"
-	.include "data/maps/Route112_CableCarStation/scripts.inc"
-	.include "data/maps/MtChimney_CableCarStation/scripts.inc"
-	.include "data/maps/Route114_FossilManiacsHouse/scripts.inc"
+	.include "data/maps/Route32_Gatehouse/scripts.inc"
+	.include "data/maps/Route32_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/Route32_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
 	.include "data/maps/Route114_LanettesHouse/scripts.inc"
 	.include "data/maps/Route116_TunnelersRestHouse/scripts.inc"
 	.include "data/maps/Route117_PokemonDayCare/scripts.inc"
-	.include "data/maps/Route121_SafariZoneEntrance/scripts.inc"
+	.include "data/maps/Route36_RuinsOfAlphGatehouse/scripts.inc"
 	.include "data/maps/MeteorFalls_1F_1R/scripts.inc"
 	.include "data/maps/MeteorFalls_1F_2R/scripts.inc"
 	.include "data/maps/MeteorFalls_B1F_1R/scripts.inc"
 	.include "data/maps/MeteorFalls_B1F_2R/scripts.inc"
-	.include "data/maps/RusturfTunnel/scripts.inc"
+	.include "data/maps/UnionCave_1F/scripts.inc"
+	.include "data/maps/UnionCave_B1F/scripts.inc"
+	.include "data/maps/UnionCave_B2F/scripts.inc"
 	.include "data/maps/Underwater_SootopolisCity/scripts.inc"
 	.include "data/maps/DesertRuins/scripts.inc"
 	.include "data/maps/DarkCave_South/scripts.inc"
 	.include "data/maps/DarkCave_B1F/scripts.inc"
-	.include "data/maps/DarkCave_B2F/scripts.inc"
-	.include "data/maps/DarkCave_StevensRoom/scripts.inc"
 	.include "data/maps/PetalburgWoods/scripts.inc"
 	.include "data/maps/MtChimney/scripts.inc"
 	.include "data/maps/JaggedPass/scripts.inc"
@@ -399,21 +399,21 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/ShoalCave_LowTideLowerRoom/scripts.inc"
 	.include "data/maps/ShoalCave_HighTideEntranceRoom/scripts.inc"
 	.include "data/maps/ShoalCave_HighTideInnerRoom/scripts.inc"
-	.include "data/maps/NewMauville_Entrance/scripts.inc"
-	.include "data/maps/NewMauville_Inside/scripts.inc"
 	.include "data/maps/SproutTower_1F/scripts.inc"
 	.include "data/maps/SproutTower_2F/scripts.inc"
 	.include "data/maps/SproutTower_3F/scripts.inc"
-	.include "data/maps/AbandonedShip_Corridors_B1F/scripts.inc"
-	.include "data/maps/AbandonedShip_Rooms_B1F/scripts.inc"
-	.include "data/maps/AbandonedShip_Rooms2_B1F/scripts.inc"
-	.include "data/maps/AbandonedShip_Underwater1/scripts.inc"
-	.include "data/maps/AbandonedShip_Room_B1F/scripts.inc"
-	.include "data/maps/AbandonedShip_Rooms2_1F/scripts.inc"
-	.include "data/maps/AbandonedShip_CaptainsOffice/scripts.inc"
-	.include "data/maps/AbandonedShip_Underwater2/scripts.inc"
-	.include "data/maps/AbandonedShip_HiddenFloorCorridors/scripts.inc"
-	.include "data/maps/AbandonedShip_HiddenFloorRooms/scripts.inc"
+	.include "data/maps/RuinsOfAlph_Outside/scripts.inc"
+	.include "data/maps/RuinsOfAlph_ResearchCenter/scripts.inc"
+	.include "data/maps/RuinsOfAlph_InnerChamber/scripts.inc"
+	.include "data/maps/RuinsOfAlph_KabutoChamber/scripts.inc"
+	.include "data/maps/RuinsOfAlph_OmanyteChamber/scripts.inc"
+	.include "data/maps/RuinsOfAlph_AerodactylChamber/scripts.inc"
+	.include "data/maps/RuinsOfAlph_HoOhChamber/scripts.inc"
+	.include "data/maps/RuinsOfAlph_KabutoItemRoom/scripts.inc"
+	.include "data/maps/RuinsOfAlph_OmanyteItemRoom/scripts.inc"
+	.include "data/maps/RuinsOfAlph_AerodactylItemRoom/scripts.inc"
+	.include "data/maps/RuinsOfAlph_HoOhItemRoom/scripts.inc"
+	.include "data/maps/RuinsOfAlph_KabutoWordRoom/scripts.inc"
 	.include "data/maps/IslandCave/scripts.inc"
 	.include "data/maps/AncientTomb/scripts.inc"
 	.include "data/maps/Underwater_Route134/scripts.inc"
@@ -456,10 +456,10 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/AlteringCave/scripts.inc"
 	.include "data/maps/MeteorFalls_StevensCave/scripts.inc"
 	.include "data/scripts/shared_secret_base.inc"
-	.include "data/maps/BattleColosseum2P/scripts.inc"
+	.include "data/maps/BattleColosseum_2P/scripts.inc"
 	.include "data/maps/TradeCenter/scripts.inc"
 	.include "data/maps/RecordCorner/scripts.inc"
-	.include "data/maps/BattleColosseum4P/scripts.inc"
+	.include "data/maps/BattleColosseum_4P/scripts.inc"
 	.include "data/maps/ContestHall/scripts.inc"
 	.include "data/maps/InsideOfTruck/scripts.inc"
 	.include "data/maps/SSTidalCorridor/scripts.inc"
@@ -482,9 +482,9 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/SafariZone_Northeast/scripts.inc"
 	.include "data/maps/SafariZone_Southeast/scripts.inc"
 	.include "data/maps/BattleFrontier_OutsideEast/scripts.inc"
+	.include "data/maps/BattleFrontier_BattleTowerMultiPartnerRoom/scripts.inc"
+	.include "data/maps/BattleFrontier_BattleTowerMultiCorridor/scripts.inc"
 	.include "data/maps/BattleFrontier_BattleTowerMultiBattleRoom/scripts.inc"
-	.include "data/maps/BattleFrontier_BattleTowerCorridor2/scripts.inc"
-	.include "data/maps/BattleFrontier_BattleTowerBattleRoom2/scripts.inc"
 	.include "data/maps/BattleFrontier_BattleDomeLobby/scripts.inc"
 	.include "data/maps/BattleFrontier_BattleDomeCorridor/scripts.inc"
 	.include "data/maps/BattleFrontier_BattleDomePreBattleRoom/scripts.inc"
@@ -583,120 +583,11 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/NationalPark/scripts.inc"
 	.include "data/maps/NationalParkGateEast/scripts.inc"
 
-@ Below could be split as std_msgbox.inc but autoclose straddles trainer_battle.inc
-Std_MsgboxNPC: @ 8271315
-	lock
-	faceplayer
-	message 0x0
-	waitmessage
-	waitbuttonpress
-	release
-	return
-
-Std_MsgboxSign: @ 8271320
-	lockall
-	message 0x0
-	waitmessage
-	waitbuttonpress
-	releaseall
-	return
-
-Std_MsgboxDefault: @ 827132A
-	message 0x0
-	waitmessage
-	waitbuttonpress
-	return
-
-Std_MsgboxYesNo: @ 8271332
-	message 0x0
-	waitmessage
-	yesnobox 20, 8
-	return
-
-Std_MsgboxGetPoints: @ 827133C
-	message 0x0
-	playfanfare MUS_ME_POINTGET
-	waitfanfare
-	waitmessage
-	return
-
-Std_10: @ 8271347
-	pokegearcall 0x0, 0
-	waitmessage
-	return
-
-Std_PutItemAway::
-	bufferitemnameplural 1, VAR_0x8000, VAR_0x8001
-	checkitemtype VAR_0x8000
-	call EventScript_BufferPocketName
-	msgbox gText_PutItemInPocket
-	return
-
-EventScript_BufferPocketName::
-	switch VAR_RESULT
-	case POCKET_ITEMS, EventScript_BufferItemsPocket2
-	case POCKET_KEY_ITEMS, EventScript_BufferKeyItemsPocket2
-	case POCKET_POKE_BALLS, EventScript_BufferPokeballsPocket2
-	case POCKET_TM_HM, EventScript_BufferTMHMsPocket2
-	case POCKET_BERRIES, EventScript_BufferBerriesPocket2
-	end
-
-EventScript_BufferItemsPocket2::
-	bufferstdstring 2, STDSTRING_ITEMS
-	return
-
-EventScript_BufferKeyItemsPocket2::
-	bufferstdstring 2, STDSTRING_KEYITEMS
-	return
-
-EventScript_BufferPokeballsPocket2::
-	bufferstdstring 2, STDSTRING_POKEBALLS
-	return
-
-EventScript_BufferTMHMsPocket2::
-	bufferstdstring 2, STDSTRING_TMHMS
-	return
-
-EventScript_BufferBerriesPocket2::
-	bufferstdstring 2, STDSTRING_BERRIES
-	return
-
-Std_ReceivedItem::
-	textcolor MSG_COLOR_MISC
-	playfanfare VAR_0x8002
-	message 0x0
-	waitmessage
-	waitfanfare
-	compare VAR_0x8002, MUS_FANFA4
-	call_if_eq EventScript_ReceivedItemWaitFanfare
-	putitemaway VAR_0x8000, VAR_0x8001
-	call RestoreOriginalTextColor
-	return
-
-EventScript_ReceivedItemWaitFanfare::
-	delay 50
-	return
-
-EventScript_UnusedReturn: @ 827134E
-	return
-
-Common_EventScript_SaveGame:: @ 827134F
-	special SaveGame
-	waitstate
-	return
-
+	.include "data/scripts/std_msgbox.inc"
 	.include "data/scripts/trainer_battle.inc"
-
-Std_MsgboxAutoclose:: @ 8271494
-	message 0x0
-	waitmessage
-	waitbuttonpress
-	release
-	return
-
 	.include "data/scripts/new_game.inc"
 	
-RestoreOriginalTextColor:
+Common_RestoreOriginalTextColor:
 	copyvar VAR_TEXT_COLOR VAR_TEXT_COLOR_BACKUP
 	return
 
@@ -722,34 +613,34 @@ EventScript_ResetMrBriney:: @ 8271862
 	end
 
 EventScript_MoveMrBrineyToHouse:: @ 8271884
-	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
+	setflag FLAG_HIDE_ROUTE_32_FRIEDA
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	clearflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	end
 
 EventScript_MoveMrBrineyToDewford:: @ 827189A
-	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
+	setflag FLAG_HIDE_ROUTE_32_FRIEDA
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY
+	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	clearflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	end
 
 EventScript_MoveMrBrineyToRoute36:: @ 82718B3
-	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY
+	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	clearflag FLAG_HIDE_ROUTE_36_MR_BRINEY
+	clearflag FLAG_HIDE_ROUTE_32_FRIEDA
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	end
 
@@ -765,8 +656,8 @@ Common_EventScript_UpdateBrineyLocation:: @ 82718DE
 	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
 	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
 	goto_if_unset FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
-	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, EventScript_SetBrineyLocation_Dewford
-	goto_if_unset FLAG_HIDE_ROUTE_36_MR_BRINEY, EventScript_SetBrineyLocation_Route36
+	goto_if_unset FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN, EventScript_SetBrineyLocation_Dewford
+	goto_if_unset FLAG_HIDE_ROUTE_32_FRIEDA, EventScript_SetBrineyLocation_Route36
 	return
 
 EventScript_SetBrineyLocation_House:: @ 827190C
@@ -895,33 +786,33 @@ Movement_FerryDepart: @ 82721F0
 	step_end
 
 EventScript_HideMrBriney:: @ 82721F8
-	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	setflag FLAG_HIDE_ROUTE_36_MR_BRINEY
+	setflag FLAG_HIDE_ROUTE_32_FRIEDA
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY
+	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setvar VAR_BRINEY_LOCATION, 0
 	return
 
-RusturfTunnel_EventScript_SetRusturfTunnelOpen:: @ 8272216
+UnionCave_1F_EventScript_SetUnionCave_1FOpen:: @ 8272216
 	removeobject 1
 	removeobject 10
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA
-	setvar VAR_RUSTURF_TUNNEL_STATE, 6
-	setflag FLAG_RUSTURF_TUNNEL_OPENED
+	setvar VAR_UNION_CAVE_STATE, 6
+	setflag FLAG_UNION_CAVE_OPENED
 	return
 
 EventScript_UnusedBoardFerry:: @ 827222B
 	delay 30
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
-	showobjectat 255, MAP_VIOLET_CITY
+	showobjectat OBJ_EVENT_ID_PLAYER, 0
 	delay 30
-	applymovement EVENT_OBJ_ID_PLAYER, Movement_UnusedBoardFerry
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_UnusedBoardFerry
 	waitmovement 0
 	delay 30
 	return
@@ -936,7 +827,7 @@ Common_EventScript_FerryDepartIsland:: @ 8272250
 	compare VAR_FACING, DIR_WEST
 	call_if_eq Ferry_EventScript_DepartIslandWest
 	delay 30
-	hideobjectat 255, MAP_VIOLET_CITY
+	hideobjectat OBJ_EVENT_ID_PLAYER, 0
 	call Common_EventScript_FerryDepart
 	return
 
@@ -955,7 +846,7 @@ Common_EventScript_PlayerHandedOverTheItem:: @ 82723E4
 	message gText_PlayerHandedOverTheItem
 	waitmessage
 	waitfanfare
-	takeitem VAR_0x8004, 1
+	removeitem VAR_0x8004
 	return
 
 	.include "data/scripts/elite_four.inc"

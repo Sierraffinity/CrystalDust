@@ -5,7 +5,7 @@ AquaHideout_1F_MapScripts:: @ 8233493
 AquaHideout_1F_EventScript_HideoutEntranceGrunt1:: @ 8233494
 	lock
 	faceplayer
-	goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, AquaHideout_1F_EventScript_SlateportHint1
+	goto_if_set FLAG_RECEIVED_HM06, AquaHideout_1F_EventScript_SlateportHint1
 	goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB, AquaHideout_1F_EventScript_MagmaHideoutHint1
 	msgbox AquaHideout_1F_Text_OurBossIsSnatchingSomething, MSGBOX_DEFAULT
 	release
@@ -24,7 +24,7 @@ AquaHideout_1F_EventScript_SlateportHint1:: @ 82334BC
 AquaHideout_1F_EventScript_HideoutEntranceGrunt2:: @ 82334C6
 	lock
 	faceplayer
-	goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, AquaHideout_1F_EventScript_SlateportHint2
+	goto_if_set FLAG_RECEIVED_HM06, AquaHideout_1F_EventScript_SlateportHint2
 	goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB, AquaHideout_1F_EventScript_MagmaHideoutHint2
 	msgbox AquaHideout_1F_Text_BossIsOnRoute122, MSGBOX_DEFAULT
 	release

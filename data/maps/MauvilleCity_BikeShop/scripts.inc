@@ -4,7 +4,7 @@ MauvilleCity_BikeShop_MapScripts:: @ 820EBBB
 MauvilleCity_BikeShop_EventScript_Rydel:: @ 820EBBC
 	lock
 	faceplayer
-	goto_if_set FLAG_ROCKET_TAKEOVER, MauvilleCity_BikeShop_EventScript_AskSwitchBikes
+	@goto_if_set FLAG_ROCKET_TAKEOVER, MauvilleCity_BikeShop_EventScript_AskSwitchBikes
 	goto_if_set FLAG_LEARNED_TO_CATCH_POKEMON, MauvilleCity_BikeShop_EventScript_SkipGreeting
 	msgbox MauvilleCity_BikeShop_Text_RydelGreeting, MSGBOX_DEFAULT
 	msgbox MauvilleCity_BikeShop_Text_DidYouComeFromFarAway, MSGBOX_YESNO
@@ -38,19 +38,19 @@ MauvilleCity_BikeShop_EventScript_NotFar:: @ 820EC3D
 	end
 
 MauvilleCity_BikeShop_EventScript_YesFar:: @ 820EC4A
-	setflag FLAG_ROCKET_TAKEOVER
+	@setflag FLAG_ROCKET_TAKEOVER
 	goto MauvilleCity_BikeShop_EventScript_ChooseBike
 	end
 
 MauvilleCity_BikeShop_EventScript_GetMachBike:: @ 820EC53
 	msgbox MauvilleCity_BikeShop_Text_ChoseMachBike, MSGBOX_DEFAULT
-	giveitem_std ITEM_MACH_BIKE
+	giveitem ITEM_MACH_BIKE
 	goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
 	end
 
 MauvilleCity_BikeShop_EventScript_GetAcroBike:: @ 820EC6D
 	msgbox MauvilleCity_BikeShop_Text_ChoseAcroBike, MSGBOX_DEFAULT
-	giveitem_std ITEM_ACRO_BIKE
+	giveitem ITEM_ACRO_BIKE
 	goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
 	end
 
@@ -89,16 +89,16 @@ MauvilleCity_BikeShop_EventScript_KeepBike:: @ 820ECE5
 MauvilleCity_BikeShop_EventScript_SwitchAcroForMach:: @ 820ECEF
 	incrementgamestat GAME_STAT_TRADED_BIKES
 	msgbox MauvilleCity_BikeShop_Text_ExchangedAcroForMach, MSGBOX_DEFAULT
-	takeitem ITEM_ACRO_BIKE, 1
-	giveitem_std ITEM_MACH_BIKE
+	removeitem ITEM_ACRO_BIKE
+	giveitem ITEM_MACH_BIKE
 	goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
 	end
 
 MauvilleCity_BikeShop_EventScript_SwitchMachForAcro:: @ 820ED10
 	incrementgamestat GAME_STAT_TRADED_BIKES
 	msgbox MauvilleCity_BikeShop_Text_ExchangedMachForAcro, MSGBOX_DEFAULT
-	takeitem ITEM_MACH_BIKE, 1
-	giveitem_std ITEM_ACRO_BIKE
+	removeitem ITEM_MACH_BIKE
+	giveitem ITEM_ACRO_BIKE
 	goto MauvilleCity_BikeShop_EventScript_ComeBackToSwitchBikes
 	end
 

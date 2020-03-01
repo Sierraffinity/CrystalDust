@@ -10,7 +10,7 @@ EverGrandeCity_DrakesRoom_OnWarp: @ 82286AC
 	.2byte 0
 
 EverGrandeCity_DrakesRoom_EventScript_PlayerTurnNorth:: @ 82286B6
-	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	end
 
 EverGrandeCity_DrakesRoom_OnFrame: @ 82286BB
@@ -43,7 +43,7 @@ EverGrandeCity_DrakesRoom_EventScript_Drake:: @ 82286F3
 	faceplayer
 	goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
 	playbgm MUS_SITENNOU, 0
-	msgbox EverGrandeCity_DrakesRoom_Text_PreBattleSpeech, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_DrakesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_Defeat
 	goto EverGrandeCity_DrakesRoom_EventScript_Defeated
 	end
@@ -62,7 +62,7 @@ EverGrandeCity_DrakesRoom_EventScript_Defeated:: @ 8228724
 	release
 	end
 
-EverGrandeCity_DrakesRoom_Text_PreBattleSpeech: @ 822873E
+EverGrandeCity_DrakesRoom_Text_IntroSpeech: @ 822873E
 	.string "I am the last of the POKéMON LEAGUE\n"
 	.string "ELITE FOUR, DRAKE the DRAGON master!\p"
 	.string "In their natural state, POKéMON are\n"

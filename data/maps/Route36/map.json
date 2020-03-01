@@ -60,7 +60,7 @@
         {
             "elevation": 1,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_PSYCHIC_M",
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -74,7 +74,7 @@
         {
             "elevation": 1,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_LITTLE_BOY",
+            "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -88,7 +88,7 @@
         {
             "elevation": 1,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_SUDOWOODO",
+            "graphics_id": "OBJ_EVENT_GFX_SUDOWOODO",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -102,7 +102,7 @@
         {
             "elevation": 1,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_GIRL_1",
+            "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
             "movement_range_x": 3,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
@@ -116,7 +116,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_FAT_MAN",
+            "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -130,11 +130,11 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_36_ARTHUR",
-            "graphics_id": "EVENT_OBJ_GFX_BOY_1",
+            "graphics_id": "OBJ_EVENT_GFX_BOY_1",
             "movement_range_x": 2,
             "movement_range_y": 2,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "0",
+            "script": "Route36_EventScript_Arthur",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "0",
             "type": "original",
@@ -144,7 +144,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_ITEM_ROUTE_36_STAR_PIECE",
-            "graphics_id": "EVENT_OBJ_GFX_GIRL_2",
+            "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -169,14 +169,14 @@
             "y": 13
         },
         {
-            "dest_map": "MAP_ROUTE36",
+            "dest_map": "MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 50,
             "y": 18
         },
         {
-            "dest_map": "MAP_ROUTE36",
+            "dest_map": "MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 51,

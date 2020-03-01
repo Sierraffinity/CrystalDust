@@ -82,7 +82,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_FAT_MAN",
+            "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
             "movement_range_x": 0,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
@@ -96,7 +96,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_WOMAN_1",
+            "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -110,7 +110,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_NEW_BARK_TOWN_RIVAL",
-            "graphics_id": "EVENT_OBJ_GFX_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_RIVAL",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",

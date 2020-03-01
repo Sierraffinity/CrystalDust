@@ -19,7 +19,7 @@ RustboroCity_DevonCorp_3F_OnWarp: @ 8212455
 	.2byte 0
 
 RustboroCity_DevonCorp_3F_EventScript_PlayerFaceEast:: @ 821245F
-	turnobject EVENT_OBJ_ID_PLAYER, DIR_EAST
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
 	end
 
 RustboroCity_DevonCorp_3F_OnFrame: @ 8212464
@@ -39,16 +39,16 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 	closemessage
 	playbgm MUS_FOLLOWME, 0
 	applymovement 2, RustboroCity_DevonCorp_3F_Movement_LeadPlayerToPresident
-	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident
+	applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerFollowToPresident
 	waitmovement 0
 	msgbox RustboroCity_DevonCorp_3F_Text_PleaseGoAhead, MSGBOX_DEFAULT
 	closemessage
 	fadedefaultbgm
 	applymovement 2, RustboroCity_DevonCorp_3F_Movement_EmployeeFaceDesk
-	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk
+	applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk
 	waitmovement 0
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor, MSGBOX_DEFAULT
-	giveitem_std ITEM_LETTER
+	giveitem ITEM_LETTER
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis, MSGBOX_DEFAULT
 	playfanfare MUS_FANFA4
 	message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
@@ -61,9 +61,9 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 	call Common_EventScript_OutOfCenterPartyHeal
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare, MSGBOX_DEFAULT
 	setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_UNION_CAVE_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_UNION_CAVE_WANDA
+	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setvar VAR_BRINEY_LOCATION, 1
 	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
@@ -72,8 +72,7 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 	releaseall
 	end
 
-@ Unused
-RustboroCity_DevonCorp_3F_Movement_21252F: @ 821252F
+RustboroCity_DevonCorp_3F_Movement_Unused: @ 821252F
 	walk_up
 	walk_up
 	walk_up
@@ -162,7 +161,7 @@ RustboroCity_DevonCorp_3F_EventScript_MrStone:: @ 821256C
 
 RustboroCity_DevonCorp_3F_EventScript_GiveExpShare:: @ 8212595
 	msgbox RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter, MSGBOX_DEFAULT
-	giveitem_std ITEM_EXP_SHARE
+	giveitem ITEM_EXP_SHARE
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_EXP_SHARE

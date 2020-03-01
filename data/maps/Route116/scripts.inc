@@ -58,7 +58,7 @@ Route116_EventScript_DevonEmployee:: @ 81F2CA2
 
 Route116_EventScript_GiveRepeatBall:: @ 81F2CBB
 	setflag FLAG_MET_DEVON_EMPLOYEE
-	giveitem_std ITEM_REPEAT_BALL
+	giveitem ITEM_REPEAT_BALL
 	compare VAR_RESULT, FALSE
 	goto_if_eq Route116_EventScript_NoRoomForRepeatBall
 	msgbox Route116_Text_NewBallAvailableAtMart, MSGBOX_DEFAULT
@@ -125,8 +125,8 @@ Route116_EventScript_RouteSignRustboro:: @ 81F2D57
 	msgbox Route116_Text_RouteSignRustboro, MSGBOX_SIGN
 	end
 
-Route116_EventScript_RusturfTunnelSign:: @ 81F2D60
-	msgbox Route116_Text_RusturfTunnelSign, MSGBOX_SIGN
+Route116_EventScript_UnionCave_1FSign:: @ 81F2D60
+	msgbox Route116_Text_UnionCave_1FSign, MSGBOX_SIGN
 	end
 
 Route116_EventScript_TunnelersRestHouseSign:: @ 81F2D69
@@ -152,7 +152,7 @@ Route116_EventScript_Briney:: @ 81F2D84
 Route116_EventScript_BrineyTrigger:: @ 81F2D95
 	lockall
 	applymovement 11, Common_Movement_WalkInPlaceFastestRight
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox Route116_Text_ScoundrelMadeOffWithPeeko, MSGBOX_DEFAULT
 	setvar VAR_ROUTE116_STATE, 2
@@ -464,7 +464,7 @@ Route116_Text_RouteSignRustboro: @ 81F379D
 	.string "ROUTE 116\n"
 	.string "{LEFT_ARROW} RUSTBORO CITY$"
 
-Route116_Text_RusturfTunnelSign: @ 81F37B7
+Route116_Text_UnionCave_1FSign: @ 81F37B7
 	.string "RUSTURF TUNNEL\n"
 	.string "“Linking RUSTBORO and VERDANTURF\p"
 	.string "“The tunnel project has been\n"

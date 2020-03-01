@@ -600,27 +600,27 @@ gTilesetPalettes_PagodaTower:: @ 835F5A8
 	.incbin "data/tilesets/secondary/pagoda_tower/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_PrettyPetalFlowerShop:: @ 835F7A8
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/tiles.4bpp.lz"
+gTilesetTiles_RuinsOfAlph:: @ 835F7A8
+	.incbin "data/tilesets/secondary/ruins_of_alph/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_PrettyPetalFlowerShop:: @ 83603A0
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/pretty_petal_flower_shop/palettes/15.gbapal"
+gTilesetPalettes_RuinsOfAlph:: @ 83603A0
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/ruins_of_alph/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_PokemonDayCare:: @ 83605A0
@@ -1176,27 +1176,27 @@ gTilesetPalettes_LavaridgeGym:: @ 83762AC
 	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_PetalburgGym:: @ 83764AC
-	.incbin "data/tilesets/secondary/petalburg_gym/tiles.4bpp.lz"
+gTilesetTiles_VioletGym:: @ 83764AC
+	.incbin "data/tilesets/secondary/violet_gym/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_PetalburgGym:: @ 8376B50
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/15.gbapal"
+gTilesetPalettes_VioletGym:: @ 8376B50
+	.incbin "data/tilesets/secondary/violet_gym/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/violet_gym/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_FortreeGym:: @ 8376D50
@@ -1741,3 +1741,7 @@ gTilesetPalOverride_General07::
 	.align 2
 gTilesetPalOverride_Petalburg08::
 	.incbin "data/tilesets/secondary/petalburg/palettes/08_over.gbapal"
+
+	.align 2
+gTilesetPalOverride_Violet08::
+	.incbin "data/tilesets/secondary/violet/palettes/08_over.gbapal"

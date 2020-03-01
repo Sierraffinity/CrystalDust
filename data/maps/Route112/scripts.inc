@@ -88,7 +88,7 @@ Route112_EventScript_RematchTrent:: @ 81F1ECC
 	end
 
 Route112_EventScript_Larry:: @ 81F1EE3
-	trainerbattle_single TRAINER_LARRY, Route112_Text_LarryIntro, Route112_Text_LarryDefeat
+	trainerbattle_single TRAINER_LARRY_OLD, Route112_Text_LarryIntro, Route112_Text_LarryDefeat
 	msgbox Route112_Text_LarryPostBattle, MSGBOX_AUTOCLOSE
 	end
 

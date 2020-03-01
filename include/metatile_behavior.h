@@ -140,6 +140,7 @@ bool8 MetatileBehavior_IsHorizontalRail(u8);
 bool8 MetatileBehavior_IsSeaweed(u8);
 bool8 MetatileBehavior_IsRunningDisallowed(u8);
 bool8 MetatileBehavior_IsCuttableGrass(u8);
+bool8 MetatileBehavior_IsAncientPokemonReplica(u8);
 bool8 MetatileBehavior_IsDistinguishedStatue(u8);
 bool8 MetatileBehavior_IsPictureBookShelf(u8);
 bool8 MetatileBehavior_IsBookShelf(u8);

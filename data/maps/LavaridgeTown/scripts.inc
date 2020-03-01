@@ -5,7 +5,7 @@ LavaridgeTown_MapScripts:: @ 81EA4D3
 
 LavaridgeTown_OnTransition: @ 81EA4DE
 	setflag FLAG_VISITED_LAVARIDGE_TOWN
-	call_if_set FLAG_WHITEOUT_TO_LAVARIDGE, LavaridgeTown_EventScript_ClearLavaridgeWhiteOut
+	call_if_set FLAG_RECEIVED_SHARP_BEAK_FROM_MONICA, LavaridgeTown_EventScript_ClearLavaridgeWhiteOut
 	call_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, LavaridgeTown_EventScript_ShowMtChimneyTrainers
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId
@@ -16,7 +16,7 @@ LavaridgeTown_OnTransition: @ 81EA4DE
 	end
 
 LavaridgeTown_EventScript_ClearLavaridgeWhiteOut:: @ 81EA514
-	clearflag FLAG_WHITEOUT_TO_LAVARIDGE
+	clearflag FLAG_RECEIVED_SHARP_BEAK_FROM_MONICA
 	return
 
 LavaridgeTown_EventScript_CheckSetRivalPos:: @ 81EA518
@@ -70,7 +70,7 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles:: @ 81EA551
 
 LavaridgeTown_EventScript_MayGiveGoGoggles:: @ 81EA5B5
 	msgbox LavaridgeTown_Text_MayNiceBadgesTakeThis, MSGBOX_DEFAULT
-	giveitem_std ITEM_GO_GOGGLES
+	giveitem ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
 	msgbox LavaridgeTown_Text_MayExplainGoGogglesChallengeDad, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_RivalExit
@@ -78,7 +78,7 @@ LavaridgeTown_EventScript_MayGiveGoGoggles:: @ 81EA5B5
 
 LavaridgeTown_EventScript_BrendanGiveGoGoggles:: @ 81EA5DA
 	msgbox LavaridgeTown_Text_BrendanNiceBadgesTakeThis, MSGBOX_DEFAULT
-	giveitem_std ITEM_GO_GOGGLES
+	giveitem ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
 	msgbox LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_RivalExit
@@ -134,7 +134,7 @@ LavaridgeTown_EventScript_RivalExitHerbShop:: @ 81EA65C
 	waitmovement 0
 	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
@@ -149,7 +149,7 @@ LavaridgeTown_EventScript_RivalApproachPlayer2:: @ 81EA6AC
 	return
 
 LavaridgeTown_EventScript_RivalExit1:: @ 81EA6B7
-	applymovement EVENT_OBJ_ID_PLAYER, LavaridgeTown_Movement_PlayerWatchRivalExit
+	applymovement OBJ_EVENT_ID_PLAYER, LavaridgeTown_Movement_PlayerWatchRivalExit
 	applymovement 7, LavaridgeTown_Movement_RivalExit1
 	waitmovement 0
 	return

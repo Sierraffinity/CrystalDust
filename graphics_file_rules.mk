@@ -15,7 +15,7 @@ SLOTMACHINEGFXDIR := graphics/slot_machine
 PKNAVGFXDIR := graphics/pokenav
 PKNAVOPTIONSGFXDIR := graphics/pokenav/options
 PSSGFXDIR := graphics/pokemon_storage
-EVENTOBJGFXDIR := graphics/event_objects
+OBJEVENTGFXDIR := graphics/object_events
 MISCGFXDIR := graphics/misc
 INTROGFXDIR := graphics/intro
 DOORANIMSGFXDIR := graphics/door_anims
@@ -110,7 +110,7 @@ $(FONTGFXDIR)/font9.hwjpnfont: $(FONTGFXDIR)/font9_japanese.png
 $(FONTGFXDIR)/font2.fwjpnfont: $(FONTGFXDIR)/font2_japanese.png
 	$(GFX) $< $@
 
-$(FONTGFXDIR)/font6.fwjpnfont: $(FONTGFXDIR)/font6_braille.png
+$(FONTGFXDIR)/font6.fwjpnfont: $(FONTGFXDIR)/font6_unown.png
 	$(GFX) $< $@
 
 $(FONTGFXDIR)/unused_frlg_male.fwjpnfont: $(FONTGFXDIR)/unused_japanese_frlg_male_font.png
@@ -472,7 +472,7 @@ $(PSSGFXDIR)/ludicolo.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/ludico
 $(PSSGFXDIR)/whiscash.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/whiscash_bg.4bpp
 	@cat $^ >$@
 
-$(EVENTOBJGFXDIR)/pics/effects/unknown_4F6D38/0.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/pics/effects/unknown_4F6D38/0.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 11
 
 $(INTERFACEGFXDIR)/selector_outline.4bpp: %.4bpp: %.png
@@ -520,6 +520,3 @@ $(MISCGFXDIR)/birch_help.4bpp: $(MISCGFXDIR)/birch_bag.4bpp $(MISCGFXDIR)/birch_
 
 $(INTROGFXDIR)/intro2.4bpp: $(INTROGFXDIR)/intro2_bg3.4bpp $(INTROGFXDIR)/intro2_bg2.4bpp $(INTROGFXDIR)/intro2_bg1.4bpp
 	@cat $^ >$@
-
-$(DOORANIMSGFXDIR)/06.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 2

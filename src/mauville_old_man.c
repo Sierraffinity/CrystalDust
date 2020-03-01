@@ -137,7 +137,7 @@ void SetMauvilleOldMan(void)
             SetupGiddy();
             break;
     }
-    ScrSpecial_SetMauvilleOldManEventObjGfx();
+    ScrSpecial_SetMauvilleOldManObjEventGfx();
 }
 
 u8 GetCurrentMauvilleOldMan(void)
@@ -360,7 +360,7 @@ static void InitGiddyTaleList(void)
                     break;
             if (r1 == 6)
                 r1 = 0;
-            giddy->randomWords[i] = sub_811EE90(arr[r1][0]);
+            giddy->randomWords[i] = GetRandomEasyChatWordFromUnlockedGroup(arr[r1][0]);
         }
     }
 }
@@ -407,7 +407,7 @@ void ResetMauvilleOldManFlag(void)
         case MAUVILLE_MAN_GIDDY:
             break;
     }
-    ScrSpecial_SetMauvilleOldManEventObjGfx();
+    ScrSpecial_SetMauvilleOldManObjEventGfx();
 }
 
 
@@ -674,9 +674,9 @@ static void Task_BardSong(u8 taskId)
     RunTextPrintersAndIsPrinter0Active();
 }
 
-void ScrSpecial_SetMauvilleOldManEventObjGfx(void)
+void ScrSpecial_SetMauvilleOldManObjEventGfx(void)
 {
-    VarSet(VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_BARD);
+    VarSet(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_BARD);
 }
 
 // Language fixers?
@@ -1347,7 +1347,7 @@ static void PrintStoryList(void)
         AddTextPrinterParameterized(sStorytellerWindowId, 1, GetStoryTitleByStat(gameStatID), 8, 16 * i + 1, 0xFF, NULL);
     }
     AddTextPrinterParameterized(sStorytellerWindowId, 1, gText_Exit, 8, 16 * i + 1, 0xFF, NULL);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sStorytellerWindowId, GetFreeStorySlot() + 1, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sStorytellerWindowId, 1, 0, 1, 16, GetFreeStorySlot() + 1, 0);
     CopyWindowToVram(sStorytellerWindowId, 3);
 }
 

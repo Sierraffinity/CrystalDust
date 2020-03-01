@@ -16,7 +16,7 @@ $(MID_SUBDIR)/mus_ashroad.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G055 -V076
 
 $(MID_SUBDIR)/mus_encsuspicious.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G069 -V078
+	$(MID) $< $@ -E -R$(STD_REVERB) -G069 -V080
 
 $(MID_SUBDIR)/mus_b_arena.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G104 -V090
@@ -46,7 +46,7 @@ $(MID_SUBDIR)/mus_btljohtotrn.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G119 -V080 -P1
 
 $(MID_SUBDIR)/mus_btljohtowild.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G117 -V080 -P1
+	$(MID) $< $@ -E -R$(STD_REVERB) -G117 -V090 -P1
 
 $(MID_SUBDIR)/mus_battle30.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G126 -V080 -P1
@@ -54,7 +54,7 @@ $(MID_SUBDIR)/mus_battle30.s: %.s: %.mid
 $(MID_SUBDIR)/mus_battle31.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G118 -V080 -P1
 
-$(MID_SUBDIR)/mus_battle32.s: %.s: %.mid
+$(MID_SUBDIR)/mus_btljohtoldr.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G120 -V080 -P1
 
 $(MID_SUBDIR)/mus_battle33.s: %.s: %.mid
@@ -75,7 +75,7 @@ $(MID_SUBDIR)/mus_battle38.s: %.s: %.mid
 $(MID_SUBDIR)/mus_bd_time.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G038 -V080
 
-$(MID_SUBDIR)/mus_bijyutu.s: %.s: %.mid
+$(MID_SUBDIR)/mus_ruinsofalph.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G020 -V080
 
 $(MID_SUBDIR)/mus_rivalexit.s: %.s: %.mid
@@ -108,11 +108,11 @@ $(MID_SUBDIR)/mus_cycling.s: %.s: %.mid
 $(MID_SUBDIR)/mus_daigo.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G100 -V076
 
-$(MID_SUBDIR)/mus_dan01.s: %.s: %.mid
+$(MID_SUBDIR)/mus_ilexforest.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G018 -V080
 
 $(MID_SUBDIR)/mus_darkcave.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G030 -V072
+	$(MID) $< $@ -E -R$(STD_REVERB) -G030 -V100
 
 $(MID_SUBDIR)/mus_dan03.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G037 -V080
@@ -222,7 +222,7 @@ $(MID_SUBDIR)/mus_kachi5.s: %.s: %.mid
 $(MID_SUBDIR)/mus_kachi22.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G025 -V080
 
-$(MID_SUBDIR)/mus_encmaleold.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encmaleclassic.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G063 -V086
 
 $(MID_SUBDIR)/mus_karakuri.s: %.s: %.mid
@@ -264,7 +264,7 @@ $(MID_SUBDIR)/mus_me_b_small.s: %.s: %.mid
 $(MID_SUBDIR)/mus_me_bachi.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5
 
-$(MID_SUBDIR)/mus_me_kinomi.s: %.s: %.mid
+$(MID_SUBDIR)/mus_fanfareegg.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5
 
 $(MID_SUBDIR)/mus_me_pointget.s: %.s: %.mid
@@ -585,7 +585,7 @@ $(MID_SUBDIR)/mus_suikun.s: %.s: %.mid
 $(MID_SUBDIR)/mus_swimeye.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G036 -V080
 
-$(MID_SUBDIR)/mus_encfemaleold.s: %.s: %.mid
+$(MID_SUBDIR)/mus_encfemaleclassic.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G027 -V080
 
 $(MID_SUBDIR)/mus_t_battle.s: %.s: %.mid
@@ -633,8 +633,8 @@ $(MID_SUBDIR)/mus_vs_mew.s: %.s: %.mid
 $(MID_SUBDIR)/mus_vs_rekku.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G114 -V080 -P1
 
-$(MID_SUBDIR)/mus_encsuspold.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G097 -V076
+$(MID_SUBDIR)/mus_encsuspiciousclassic.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G097 -V096
 
 $(MID_SUBDIR)/ph_choice_blend.s: %.s: %.mid
 	$(MID) $< $@ -E -G130 -P4

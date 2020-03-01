@@ -314,17 +314,17 @@ void Task_PlayRadioShow(u8 taskId)
                 { MAPSEC_ROUTE_30, MAP_GROUP(ROUTE30), MAP_NUM(ROUTE30) },
                 { MAPSEC_ROUTE_31, MAP_GROUP(ROUTE31), MAP_NUM(ROUTE31) },
                 { MAPSEC_ROUTE_32, MAP_GROUP(ROUTE32), MAP_NUM(ROUTE32) },
-                { MAPSEC_ROUTE_110, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
-                { MAPSEC_ROUTE_111, MAP_GROUP(ROUTE111), MAP_NUM(ROUTE111) },
-                { MAPSEC_ROUTE_112, MAP_GROUP(ROUTE112), MAP_NUM(ROUTE112) },
-                { MAPSEC_ROUTE_113, MAP_GROUP(ROUTE113), MAP_NUM(ROUTE113) },
-                { MAPSEC_ROUTE_114, MAP_GROUP(ROUTE114), MAP_NUM(ROUTE114) },
-                { MAPSEC_ROUTE_115, MAP_GROUP(ROUTE116), MAP_NUM(ROUTE116) },
+                { MAPSEC_ROUTE_38, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
+                { MAPSEC_ROUTE_39, MAP_GROUP(ROUTE111), MAP_NUM(ROUTE111) },
+                { MAPSEC_ROUTE_40, MAP_GROUP(ROUTE112), MAP_NUM(ROUTE112) },
+                { MAPSEC_ROUTE_41, MAP_GROUP(ROUTE113), MAP_NUM(ROUTE113) },
+                { MAPSEC_ROUTE_42, MAP_GROUP(ROUTE114), MAP_NUM(ROUTE114) },
+                { MAPSEC_ROUTE_43, MAP_GROUP(ROUTE116), MAP_NUM(ROUTE116) },
                 { MAPSEC_ROUTE_29, MAP_GROUP(ROUTE29), MAP_NUM(ROUTE29) },
                 { MAPSEC_ROUTE_30, MAP_GROUP(ROUTE30), MAP_NUM(ROUTE30) },
                 { MAPSEC_ROUTE_31, MAP_GROUP(ROUTE31), MAP_NUM(ROUTE31) },
                 { MAPSEC_ROUTE_32, MAP_GROUP(ROUTE32), MAP_NUM(ROUTE32) },
-                { MAPSEC_ROUTE_110, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
+                { MAPSEC_ROUTE_38, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
             };
 
             u8 map = Random() % 15;
@@ -835,7 +835,7 @@ bool16 FieldRadio(void)
     if (FuncIsActiveTask(Task_FieldRadio_1) == TRUE)
         return FALSE;
 
-    sub_81973A4();
+    LoadMessageBoxAndBorderGfx();
     DrawDialogueFrame(0, 1);
     CreateTask(Task_FieldRadio_1, 3);
     return TRUE;

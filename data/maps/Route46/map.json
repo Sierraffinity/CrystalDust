@@ -109,13 +109,13 @@
     "id": "MAP_ROUTE46",
     "layout": "LAYOUT_ROUTE46",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_ROUTE_46",
+    "music": "MUS_ROUTE34",
     "name": "Route46",
     "object_events": [
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_MAN_1",
+            "graphics_id": "OBJ_EVENT_GFX_MAN_1",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -129,7 +129,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1",
-            "graphics_id": "EVENT_OBJ_GFX_REPORTER_F",
+            "graphics_id": "OBJ_EVENT_GFX_REPORTER_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -143,7 +143,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1",
-            "graphics_id": "EVENT_OBJ_GFX_CAMERAMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FIREBREATHER",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -157,7 +157,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_GIRL_2",
+            "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_NONE",
@@ -171,7 +171,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_GABBY_AND_TY_2",
-            "graphics_id": "EVENT_OBJ_GFX_REPORTER_F",
+            "graphics_id": "OBJ_EVENT_GFX_REPORTER_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -185,7 +185,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_GABBY_AND_TY_2",
-            "graphics_id": "EVENT_OBJ_GFX_CAMERAMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FIREBREATHER",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -199,7 +199,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_GABBY_AND_TY_3",
-            "graphics_id": "EVENT_OBJ_GFX_REPORTER_F",
+            "graphics_id": "OBJ_EVENT_GFX_REPORTER_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -213,7 +213,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_GABBY_AND_TY_3",
-            "graphics_id": "EVENT_OBJ_GFX_CAMERAMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FIREBREATHER",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -227,7 +227,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_TEMP_11",
-            "graphics_id": "EVENT_OBJ_GFX_CUTTABLE_TREE",
+            "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -241,7 +241,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_FISHERMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -255,7 +255,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_WOMAN_2",
+            "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -269,7 +269,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_FISHERMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -283,7 +283,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_MAN_5",
+            "graphics_id": "OBJ_EVENT_GFX_MAN_5",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_RIGHT",
@@ -297,7 +297,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_FISHERMAN",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -311,7 +311,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_MAN_5",
+            "graphics_id": "OBJ_EVENT_GFX_MAN_5",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
@@ -325,7 +325,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_46_STEVEN",
-            "graphics_id": "EVENT_OBJ_GFX_STEVEN",
+            "graphics_id": "OBJ_EVENT_GFX_STEVEN",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -339,7 +339,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_ITEM_ROUTE_46_HYPER_POTION",
-            "graphics_id": "EVENT_OBJ_GFX_ITEM_BALL",
+            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -353,7 +353,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",

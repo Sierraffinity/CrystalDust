@@ -35,7 +35,7 @@ NationalParkGateEast_OnFrame_Table:
 
 NationalParkGateEast_OnFrame_EndContestPrompt:
 	lock
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateEast_Movement_EndContestPlayerMovement
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateEast_Movement_EndContestPlayerMovement
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE
 	specialvar VAR_RESULT, CopyBugCatchingContestRemainingMinutesToVar1
@@ -47,7 +47,7 @@ NationalParkGateEast_OnFrame_EndContestPrompt:
 	goto_if_ne NationalParkGateEast_EndContest
 	msgbox NationalParkGate_Text_GetBackOutside, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateEast_Movement_EnterContest
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateEast_Movement_EnterContest
 	waitmovement 0
 	warp MAP_NATIONAL_PARK_CONTEST, 1, -1, -1
 	waitstate
@@ -59,7 +59,7 @@ NationalParkGateEast_EndContest:
 	closemessage
 	setvar VAR_BUG_CATCHING_CONTEST_STATE, 3
 	fadescreen 1
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateEast_Movement_MoveToPlayerSpot
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateEast_Movement_MoveToPlayerSpot
 	addobject 1
 	addobject 2
 	addobject 3
@@ -69,7 +69,7 @@ NationalParkGateEast_EndContest:
 	removeobject 7
 	waitmovement 0
 	special SpawnCameraObject
-	applymovement EVENT_OBJ_ID_CAMERA, NationalParkGateEast_Movement_CameraPanRight
+	applymovement OBJ_EVENT_ID_CAMERA, NationalParkGateEast_Movement_CameraPanRight
 	waitmovement 0
 	special RemoveCameraObject
 	fadescreen 0
@@ -88,10 +88,10 @@ NationalParkGateEast_Movement_MoveToPlayerSpot:
 
 NationalParkGateEast_OnFrame_EnterAwardsCeremony:
 	lock
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateEast_Movement_EnterAwardsCeremony
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateEast_Movement_EnterAwardsCeremony
 	waitmovement 0
 	special SpawnCameraObject
-	applymovement EVENT_OBJ_ID_CAMERA, NationalParkGateEast_Movement_CameraPanRight
+	applymovement OBJ_EVENT_ID_CAMERA, NationalParkGateEast_Movement_CameraPanRight
 	waitmovement 0
 	special RemoveCameraObject
 	setvar VAR_BUG_CATCHING_CONTEST_STATE, 3
@@ -169,7 +169,7 @@ NationalParkGateEast_AwardPlayerThirdPlace:
 	message NationalParkGateEast_Text_ThirdPrize
 NationalParkGateEast_GivePrize:
 	waitmessage
-	giveitem_std VAR_0x8004
+	giveitem VAR_0x8004
 	compare VAR_RESULT, 0
 	goto_if_eq NationalParkGateEast_NoRoomForPrize
 	setvar VAR_BUG_CONTEST_PRIZE, ITEM_NONE
@@ -192,7 +192,7 @@ NationalParkGateEast_ConcludeAwardsCeremony:
 	special EndBugCatchingContest
 	closemessage
 	special SpawnCameraObject
-	applymovement EVENT_OBJ_ID_CAMERA, NationalParkGateEast_Movement_CameraPanLeft
+	applymovement OBJ_EVENT_ID_CAMERA, NationalParkGateEast_Movement_CameraPanLeft
 	waitmovement 0
 	special RemoveCameraObject
 	release
@@ -222,7 +222,7 @@ NationalParkGateEast_Movement_CameraPanLeft:
 NationalParkGateEast_OnTransition:
 	compare VAR_BUG_CATCHING_CONTEST_STATE, 0
 	goto_if_eq NationalParkGateEast_OnTransition_End
-	special SetAwardsCeremonyBugContestEventObjectGraphics
+	special SetAwardsCeremonyBugContestObjectEventGraphics
 NationalParkGateEast_OnTransition_End:
 	end
 
@@ -236,7 +236,7 @@ NationalParkGateEast_BugContestOfficer::
 	end
 
 NationalParkGateEast_BugContestOfficer_EnterDoor:
-	applymovement EVENT_OBJ_ID_PLAYER, NationalParkGateEast_Movement_EnterContest
+	applymovement OBJ_EVENT_ID_PLAYER, NationalParkGateEast_Movement_EnterContest
 	waitmovement 0
 	warp MAP_NATIONAL_PARK_CONTEST, 1, -1, -1
 	waitstate

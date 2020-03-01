@@ -33,7 +33,8 @@ gReservedSpritePaletteCount:
     .space 1
     .align 4
 	.include "link.o"
-	.include "link_rfu.o"
+	.include "AgbRfu_LinkManager.o"
+	.include "link_rfu_2.o"
 	.include "rtc.o"
 	.include "battle_main.o"
 	.include "random.o"
@@ -78,4 +79,5 @@ gReservedSpritePaletteCount:
 	.include "gbs.o"
 	.include "agb_flash.o"
 	.include "librfu_stwi.o"
-	.include "librfu.o"
+	.include "librfu_rfu.o"
+	.include "librfu_sio32id.o"

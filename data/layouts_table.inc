@@ -20,7 +20,7 @@ gMapLayouts::
 	.4byte Route30_Layout
 	.4byte Route31_Layout
 	.4byte Route32_Layout
-	.4byte Route105_Layout
+	.4byte Route33_Layout
 	.4byte Route106_Layout
 	.4byte Route107_Layout
 	.4byte Route36_Layout
@@ -118,22 +118,22 @@ gMapLayouts::
 	.4byte EverGrandeCity_ShortHall_Layout
 	.4byte Route30_MrPokemonsHouse_Layout
 	.4byte CableCarStation_Layout
-	.4byte Route114_FossilManiacsHouse_Layout
+	.4byte Route32_PokemonCenter_2F_Layout
 	.4byte Route114_FossilManiacsTunnel_Layout
 	.4byte Route114_LanettesHouse_Layout
 	.4byte Route116_TunnelersRestHouse_Layout
 	.4byte Route117_PokemonDayCare_Layout
-	.4byte Route121_SafariZoneEntrance_Layout
+	.4byte Route36_RuinsOfAlphGatehouse_Layout
 	.4byte MeteorFalls_1F_1R_Layout
 	.4byte MeteorFalls_1F_2R_Layout
 	.4byte MeteorFalls_B1F_1R_Layout
 	.4byte MeteorFalls_B1F_2R_Layout
-	.4byte RusturfTunnel_Layout
+	.4byte UnionCave_1F_Layout
 	.4byte Underwater_SootopolisCity_Layout
 	.4byte DesertRuins_Layout
 	.4byte DarkCave_South_Layout
 	.4byte DarkCave_B1F_Layout
-	.4byte DarkCave_B2F_Layout
+	.4byte UnionCave_B1F_Layout
 	.4byte PetalburgWoods_Layout
 	.4byte MtChimney_Layout
 	.4byte MtPyre_1F_Layout
@@ -183,19 +183,19 @@ gMapLayouts::
 	.4byte UnknownMap_0843E84C_Layout
 	.4byte UnknownMap_0843E870_Layout
 	.4byte UnknownMap_0843E894_Layout
-	.4byte NewMauville_Entrance_Layout
-	.4byte NewMauville_Inside_Layout
+	.4byte RuinsOfAlph_Outside_Layout
+	.4byte RuinsOfAlph_InnerChamber_Layout
 	.4byte SproutTower_1F_Layout
 	.4byte SproutTower_2F_Layout
 	.4byte SproutTower_3F_Layout
-	.4byte AbandonedShip_Corridors_B1F_Layout
-	.4byte AbandonedShip_Rooms_B1F_Layout
-	.4byte AbandonedShip_Rooms2_B1F_Layout
-	.4byte AbandonedShip_Underwater1_Layout
-	.4byte AbandonedShip_Room_B1F_Layout
-	.4byte AbandonedShip_Rooms2_1F_Layout
-	.4byte AbandonedShip_CaptainsOffice_Layout
-	.4byte AbandonedShip_Underwater2_Layout
+	.4byte RuinsOfAlph_ResearchCenter_Layout
+	.4byte RuinsOfAlph_KabutoChamber_Layout
+	.4byte RuinsOfAlph_AerodactylChamber_Layout
+	.4byte RuinsOfAlph_OmanyteChamber_Layout
+	.4byte RuinsOfAlph_HoOhChamber_Layout
+	.4byte RuinsOfAlph_KabutoItemRoom_Layout
+	.4byte RuinsOfAlph_AerodactylItemRoom_Layout
+	.4byte RuinsOfAlph_OmanyteItemRoom_Layout
 	.4byte SecretBase_RedCave1_Layout
 	.4byte SecretBase_BrownCave1_Layout
 	.4byte SecretBase_BlueCave1_Layout
@@ -287,8 +287,8 @@ gMapLayouts::
 	.4byte VictoryRoad_B1F_Layout
 	.4byte VictoryRoad_B2F_Layout
 	.4byte Route104_Prototype_Layout
-	.4byte DarkCave_StevensRoom_Layout
-	.4byte AbandonedShip_HiddenFloorCorridors_Layout
+	.4byte UnionCave_B2F_Layout
+	.4byte RuinsOfAlph_HoOhItemRoom_Layout
 	.4byte SouthernIsland_Exterior_Layout
 	.4byte SouthernIsland_Interior_Layout
 	.4byte JaggedPass_Layout
@@ -309,7 +309,7 @@ gMapLayouts::
 	.4byte SootopolisCity_House1_Layout
 	.4byte SootopolisCity_House2_Layout
 	.4byte SootopolisCity_House3_Layout
-	.4byte AbandonedShip_HiddenFloorRooms_Layout
+	.4byte RuinsOfAlph_KabutoWordRoom_Layout
 	.4byte ScorchedSlab_Layout
 	.4byte UnknownMap_0845A394_Layout
 	.4byte RustboroCity_Flat1_1F_Layout

@@ -4,8 +4,8 @@ LilycoveCity_ContestLobby_EventScript_SpeakToContestReceptionist:: @ 8279CC5
 	faceplayer
 	compare VAR_CONTEST_PRIZE_PICKUP, 0
 	goto_if_ne LilycoveCity_ContestLobby_EventScript_PickUpPrize
-	call_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_ReceptionWelcome
-	call_if_unset FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_GivePokeblockCase
+	call_if_set FLAG_TALKED_TO_RUINS_COWARD, LilycoveCity_ContestLobby_EventScript_ReceptionWelcome
+	call_if_unset FLAG_TALKED_TO_RUINS_COWARD, LilycoveCity_ContestLobby_EventScript_GivePokeblockCase
 	goto LilycoveCity_ContestLobby_EventScript_AskEnterContest
 	end
 
@@ -15,8 +15,8 @@ LilycoveCity_ContestLobby_EventScript_ReceptionWelcome:: @ 8279CEA
 
 LilycoveCity_ContestLobby_EventScript_GivePokeblockCase:: @ 8279CF3
 	msgbox LilycoveCity_ContestLobby_Text_ReceptionDontHavePokeblockCase, MSGBOX_DEFAULT
-	giveitem_std ITEM_POKEBLOCK_CASE
-	setflag FLAG_RECEIVED_POKEBLOCK_CASE
+	giveitem ITEM_POKEBLOCK_CASE
+	setflag FLAG_TALKED_TO_RUINS_COWARD
 	msgbox LilycoveCity_ContestLobby_Text_NowThatWeveClearedThatUp, MSGBOX_DEFAULT
 	return
 
@@ -27,7 +27,7 @@ LilycoveCity_ContestLobby_EventScript_PickUpPrize:: @ 8279D13
 	end
 
 LilycoveCity_ContestLobby_EventScript_GiveLuxuryBallAtCounter:: @ 8279D2C
-	giveitem_std ITEM_LUXURY_BALL
+	giveitem ITEM_LUXURY_BALL
 	compare VAR_RESULT, FALSE
 	goto_if_eq LilycoveCity_ContestLobby_EventScript_NoRoomForLuxuryBallAtCounter
 	setvar VAR_CONTEST_PRIZE_PICKUP, 0
@@ -490,7 +490,7 @@ ContestHall_EventScript_AudienceReactToContestant:: @ 827A2D5
 @ For below VAR_TEMP_0 is the number of heart emotes to try to display in the audience
 @ The number of hearts to try to display is based on the condition of the presented pokemon and the rank
 @ For each heart to display a random audience member is chosen, and a new one chosen if they already displayed a heart
-@ VAR_TEMP_1 through VAR_TEMP_8 represent each of the 8 audience members that are actual event objects
+@ VAR_TEMP_1 through VAR_TEMP_8 represent each of the 8 audience members that are actual object events
 @    and are set to 9 if they havent displayed a heart yet, and 1 if they have
 ContestHall_EventScript_AudienceHeartEmotes:: @ 827A34F
 	special GetContestMonCondition
@@ -1236,7 +1236,7 @@ ContestHall_EventScript_NoRoomForLuxuryBall:: @ 827ACA8
 	return
 
 ContestHall_EventScript_GiveLuxuryBall:: @ 827ACBD
-	giveitem_std ITEM_LUXURY_BALL
+	giveitem ITEM_LUXURY_BALL
 	compare VAR_RESULT, FALSE
 	goto_if_eq ContestHall_EventScript_NoRoomForLuxuryBall
 	lockall

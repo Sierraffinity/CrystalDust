@@ -38,6 +38,7 @@ static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u8 ability, u8 *monIndex);
 static bool8 IsAbilityAllowingEncounter(u8 level);
+static u32 GenerateUnownPersonality(void);
 
 // EWRAM vars
 EWRAM_DATA static u8 sWildEncountersDisabled = 0;
@@ -356,6 +357,7 @@ static u8 PickWildMonNature(void)
 
 static void CreateWildMon(u16 species, u8 level)
 {
+    u32 personality;
     bool32 checkCuteCharm;
 
     ZeroEnemyPartyMons();
@@ -370,26 +372,78 @@ static void CreateWildMon(u16 species, u8 level)
         break;
     }
 
-    if (checkCuteCharm
-        && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
-        && GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTE_CHARM
-        && Random() % 3 != 0)
+    if (species != SPECIES_UNOWN)
     {
-        u16 leadingMonSpecies = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES);
-        u32 leadingMonPersonality = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY);
-        u8 gender = GetGenderFromSpeciesAndPersonality(leadingMonSpecies, leadingMonPersonality);
+        if (checkCuteCharm
+            && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+            && GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTE_CHARM
+            && Random() % 3 != 0)
+        {
+            u16 leadingMonSpecies = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES);
+            u32 leadingMonPersonality = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY);
+            u8 gender = GetGenderFromSpeciesAndPersonality(leadingMonSpecies, leadingMonPersonality);
 
-        // misses mon is genderless check, although no genderless mon can have cute charm as ability
-        if (gender == MON_FEMALE)
-            gender = MON_MALE;
-        else
-            gender = MON_FEMALE;
+            // misses mon is genderless check, although no genderless mon can have cute charm as ability
+            if (gender == MON_FEMALE)
+                gender = MON_MALE;
+            else
+                gender = MON_FEMALE;
 
-        CreateMonWithGenderNatureLetter(&gEnemyParty[0], species, level, 32, gender, PickWildMonNature(), 0);
-        return;
+            CreateMonWithGenderNatureLetter(&gEnemyParty[0], species, level, 32, gender, PickWildMonNature(), 0);
+            return;
+        }
+        
+        CreateMonWithNature(&gEnemyParty[0], species, level, 32, PickWildMonNature());
+    }
+    else
+    {
+        personality = GenerateUnownPersonality();
+        CreateMon(&gEnemyParty[0], species, level, 32, TRUE, personality, FALSE, 0);
+    }
+}
+
+static u32 GenerateUnownPersonality(void)
+{
+    u8 letter;
+    u32 personality;
+    bool8 allowedUnownLetters[28] = {FALSE};
+
+    if (FlagGet(FLAG_SOLVED_KABUTO_PUZZLE))
+    {
+        // Allow A-K
+        memset(&allowedUnownLetters[0], TRUE, 11);
     }
 
-    CreateMonWithNature(&gEnemyParty[0], species, level, 32, PickWildMonNature());
+    if (FlagGet(FLAG_SOLVED_OMANYTE_PUZZLE))
+    {
+        // Allow L-R
+        memset(&allowedUnownLetters[11], TRUE, 7);
+    }
+
+    if (FlagGet(FLAG_SOLVED_AERODACTYL_PUZZLE))
+    {
+        // Allow S-W
+        memset(&allowedUnownLetters[18], TRUE, 5);
+    }
+
+    if (FlagGet(FLAG_SOLVED_HOOH_PUZZLE))
+    {
+        // Allow X-Z
+        memset(&allowedUnownLetters[23], TRUE, 3);
+    }
+    // TODO: ? and !
+
+    do
+    {
+        personality = (Random() << 16) | Random();
+        letter = GetUnownLetterByPersonalityLoByte(personality);
+    } while (!allowedUnownLetters[letter]);
+    return personality;
+}
+
+u8 GetUnownLetterByPersonalityLoByte(u32 personality)
+{
+    return (((personality & 0x3000000) >> 18) | ((personality & 0x30000) >> 12) | ((personality & 0x300) >> 6) | (personality & 0x3)) % 0x1C;
 }
 
 enum
@@ -408,6 +462,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 ar
     u8 timeOfDay;
     u8 wildMonIndex = 0;
     u8 level;
+    u16 species;
 
     RtcCalcLocalTime();
     timeOfDay = GetCurrentTimeOfDay();
@@ -436,10 +491,15 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 ar
     level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[timeOfDay][wildMonIndex]);
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
         return FALSE;
+    
     if (gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
         return FALSE;
+    
+    species = wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species;
+    if (species == SPECIES_UNOWN && !FlagGet(FLAG_MADE_UNOWN_APPEAR_IN_RUINS))
+        return FALSE;
 
-    CreateWildMon(wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species, level);
+    CreateWildMon(species, level);
     return TRUE;
 }
 
@@ -581,6 +641,12 @@ bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavi
             BattleSetup_StartWildBattle();
             return TRUE;
         }
+    }
+    else if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(RUINS_OF_ALPH_INNER_CHAMBER)
+          && gSaveBlock1Ptr->location.mapNum == MAP_NUM(RUINS_OF_ALPH_INNER_CHAMBER)
+          && !FlagGet(FLAG_MADE_UNOWN_APPEAR_IN_RUINS))
+    {
+        return FALSE;
     }
     else
     {
@@ -793,6 +859,7 @@ u16 GetLocalWildMon(bool8 *isWaterMon)
 {
     u16 headerId;
     u8 timeOfDay;
+    u16 species;
 
     const struct WildPokemonInfo *landMonsInfo;
     const struct WildPokemonInfo *waterMonsInfo;
@@ -803,31 +870,45 @@ u16 GetLocalWildMon(bool8 *isWaterMon)
     *isWaterMon = FALSE;
     headerId = GetCurrentMapWildMonHeaderId();
     if (headerId == 0xFFFF)
-        return SPECIES_NONE;
-    landMonsInfo = gWildMonHeaders[headerId].landMonsInfo;
-    waterMonsInfo = gWildMonHeaders[headerId].waterMonsInfo;
-    // Neither
-    if (landMonsInfo == NULL && waterMonsInfo == NULL)
-        return SPECIES_NONE;
-    // Land Pokemon
-    else if (landMonsInfo != NULL && waterMonsInfo == NULL)
-        return landMonsInfo->wildPokemon[timeOfDay][ChooseWildMonIndex_Land()].species;
-    // Water Pokemon
-    else if (landMonsInfo == NULL && waterMonsInfo != NULL)
     {
-        *isWaterMon = TRUE;
-        return waterMonsInfo->wildPokemon[timeOfDay][ChooseWildMonIndex_WaterRock()].species;
-    }
-    // Either land or water Pokemon
-    if ((Random() % 100) < 80)
-    {
-        return landMonsInfo->wildPokemon[timeOfDay][ChooseWildMonIndex_Land()].species;
+        species = SPECIES_NONE;
     }
     else
     {
-        *isWaterMon = TRUE;
-        return waterMonsInfo->wildPokemon[timeOfDay][ChooseWildMonIndex_WaterRock()].species;
+        landMonsInfo = gWildMonHeaders[headerId].landMonsInfo;
+        waterMonsInfo = gWildMonHeaders[headerId].waterMonsInfo;
+        // Neither
+        if (landMonsInfo == NULL && waterMonsInfo == NULL)
+        {
+            species = SPECIES_NONE;
+        }
+        // Land Pokemon
+        else if (landMonsInfo != NULL && waterMonsInfo == NULL)
+        {
+            species = landMonsInfo->wildPokemon[timeOfDay][ChooseWildMonIndex_Land()].species;
+        }
+        // Water Pokemon
+        else if (landMonsInfo == NULL && waterMonsInfo != NULL)
+        {
+            *isWaterMon = TRUE;
+            species = waterMonsInfo->wildPokemon[timeOfDay][ChooseWildMonIndex_WaterRock()].species;
+        }
+        // Either land or water Pokemon
+        if ((Random() % 100) < 80)
+        {
+            species = landMonsInfo->wildPokemon[timeOfDay][ChooseWildMonIndex_Land()].species;
+        }
+        else
+        {
+            *isWaterMon = TRUE;
+            species = waterMonsInfo->wildPokemon[timeOfDay][ChooseWildMonIndex_WaterRock()].species;
+        }
     }
+
+    if (species == SPECIES_UNOWN && !FlagGet(FLAG_MADE_UNOWN_APPEAR_IN_RUINS))
+        species = SPECIES_NONE;
+    
+    return species;
 }
 
 u16 GetLocalWaterMon(void)

@@ -592,7 +592,7 @@ void TryTradeLinkup(void)
     sub_80B236C(2, 2);
 }
 
-void sub_80B2E74(void)
+void TryRecordMixLinkup(void)
 {
     gSpecialVar_Result = 0;
     gLinkType = LINKTYPE_0x3311;
@@ -784,7 +784,8 @@ static void sub_80B3220(u8 taskId)
     }
 }
 
-void sub_80B3254(void)
+// Unused
+void CableClubSaveGame(void)
 {
     SaveGame();
 }
@@ -840,7 +841,7 @@ static void sub_80B32B4(u8 taskId)
         break;
     case 5:
         if (gLinkPlayers[0].trainerId & 1)
-            PlayMapChosenOrBattleBGM(MUS_BATTLE32);
+            PlayMapChosenOrBattleBGM(MUS_BTLJOHTOLDR);
         else
             PlayMapChosenOrBattleBGM(MUS_BTLJOHTOTRN);
 
@@ -905,7 +906,7 @@ static void sub_80B33BC(u8 taskId)
         break;
     case 7:
         if (gLinkPlayers[0].trainerId & 1)
-            PlayMapChosenOrBattleBGM(MUS_BATTLE32);
+            PlayMapChosenOrBattleBGM(MUS_BTLJOHTOLDR);
         else
             PlayMapChosenOrBattleBGM(MUS_BTLJOHTOTRN);
 
@@ -1189,16 +1190,16 @@ void Script_ShowLinkTrainerCard(void)
 // color into gStringVar2.
 bool32 GetLinkTrainerCardColor(u8 linkPlayerIndex)
 {
-    u32 trainerCardColorIndex;
+    u32 numStars;
 
     gSpecialVar_0x8006 = linkPlayerIndex;
     StringCopy(gStringVar1, gLinkPlayers[linkPlayerIndex].name);
 
-    trainerCardColorIndex = GetTrainerCardStars(linkPlayerIndex);
-    if (trainerCardColorIndex == 0)
+    numStars = GetTrainerCardStars(linkPlayerIndex);
+    if (numStars == 0)
         return FALSE;
 
-    StringCopy(gStringVar2, gTrainerCardColorNames[trainerCardColorIndex - 1]);
+    StringCopy(gStringVar2, gTrainerCardColorNames[numStars - 1]);
     return TRUE;
 }
 
@@ -1298,10 +1299,10 @@ void sub_80B3AF8(u8 taskId)
     }
 }
 
-void sub_80B3BC4(void)
+void TrySetBattleTowerLinkType(void)
 {
     if (gWirelessCommType == 0)
     {
-        gLinkType = LINKTYPE_0x2288;
+        gLinkType = LINKTYPE_BATTLE_TOWER;
     }
 }

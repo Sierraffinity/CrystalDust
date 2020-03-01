@@ -541,7 +541,7 @@ static void Task_StarterChoose4(u8 taskId)
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized(0, 1, gText_ConfirmStarterChoice, 0, 1, 0, NULL);
     schedule_bg_copy_tilemap_to_vram(0);
-    CreateYesNoMenu(&gUnknown_085B1DDC, 0x2A8, 0xD, 0);
+    CreateYesNoMenu(&gUnknown_085B1DDC, 1, 0, 2, 0x2A8, 0xD, 0);
     gTasks[taskId].func = Task_StarterChoose5;
 }
 
@@ -640,7 +640,7 @@ static u8 CreatePokemonFrontSprite(u16 species, u8 x, u8 y)
 {
     u8 spriteId;
 
-    spriteId = CreatePicSprite2(species, 8, 0, 1, x, y, 0xE, 0xFFFF);
+    spriteId = CreatePicSprite2(species, SHINY_ODDS, 0, 1, x, y, 0xE, 0xFFFF);
     gSprites[spriteId].oam.priority = 0;
     return spriteId;
 }

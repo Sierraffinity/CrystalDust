@@ -1,0 +1,54 @@
+const ANNOYED_BOY = 1
+
+mapscripts RuinsOfAlph_Outside_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION { setflag(FLAG_LANDMARK_RUINS_OF_ALPH) }
+}
+
+script RuinsOfAlph_Outside_EventScript_Boy1 {
+    msgbox("There are many kinds of UNOWN, so\n"
+           "we use them for our secret codes.", MSGBOX_NPC)
+}
+
+script RuinsOfAlph_Outside_EventScript_Boy2 {
+    lock
+    msgbox("A… H… E… A… D…\n"
+           "Hm?\p"
+           "What?\n"
+           "I'm decoding this message!")
+    turnobject(ANNOYED_BOY, DIR_NORTH)
+    release
+}
+
+script RuinsOfAlph_Outside_EventScript_ScaredMan {
+    lock
+    faceplayer
+    if (flag(FLAG_TALKED_TO_RUINS_COWARD))
+    {
+        msgbox("The RUINS hide a huge secret!\n"
+               "…I think…")
+    }
+    else
+    {
+        msgbox("While exploring the RUINS, we\n"
+               "suddenly noticed an odd presence.\p"
+               "We all got scared and ran away.\n"
+               "You should be careful, too.\p"
+               "The RUINS hide a huge secret!\n"
+               "…I think…")
+    }
+    release
+}
+
+script RuinsOfAlph_Outside_EventScript_MysteryChamber {
+    msgbox("MYSTERY STONE PANEL CHAMBER", MSGBOX_SIGN)
+}
+
+script RuinsOfAlph_Outside_EventScript_Welcome {
+    msgbox("RUINS OF ALPH\n"
+           "VISITORS WELCOME", MSGBOX_SIGN)
+}
+
+script RuinsOfAlph_Outside_EventScript_ResearchCenter {
+    msgbox("RUINS OF ALPH RESEARCH CENTER\n"
+           "THE AUTHORITY ON THE RUINS OF ALPH", MSGBOX_SIGN)
+}

@@ -12,7 +12,7 @@ LilycoveCity_OnTransition: @ 81E2B47
 	end
 
 LilycoveCity_OnLoad: @ 81E2B61
-	call_if_unset FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_SetWailmerMetatiles
+	call_if_unset FLAG_RECEIVED_HM07, LilycoveCity_EventScript_SetWailmerMetatiles
 	end
 
 LilycoveCity_EventScript_SetWailmerMetatiles:: @ 81E2B6B
@@ -38,7 +38,7 @@ LilycoveCity_EventScript_BerryGentleman:: @ 81E2BD8
 	msgbox LilycoveCity_Text_BerrySuitsYou, MSGBOX_DEFAULT
 	random 10
 	addvar VAR_RESULT, FIRST_BERRY_INDEX
-	giveitem_std VAR_RESULT
+	giveitem VAR_RESULT
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_DAILY_LILYCOVE_RECEIVED_BERRY
@@ -75,7 +75,7 @@ LilycoveCity_EventScript_RichBoy:: @ 81E2C4A
 LilycoveCity_EventScript_Sailor2:: @ 81E2C53
 	lock
 	faceplayer
-	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_Sailor2AquaGone
+	goto_if_set FLAG_RECEIVED_HM07, LilycoveCity_EventScript_Sailor2AquaGone
 	msgbox LilycoveCity_Text_TeamAquaBeenTrainingWailmer, MSGBOX_DEFAULT
 	release
 	end
@@ -88,7 +88,7 @@ LilycoveCity_EventScript_Sailor2AquaGone:: @ 81E2C68
 LilycoveCity_EventScript_Woman2:: @ 81E2C72
 	lock
 	faceplayer
-	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_Woman2AquaGone
+	goto_if_set FLAG_RECEIVED_HM07, LilycoveCity_EventScript_Woman2AquaGone
 	msgbox LilycoveCity_Text_SomeoneStoleMyPokemon, MSGBOX_DEFAULT
 	release
 	end
@@ -296,32 +296,32 @@ LilycoveCity_EventScript_DeclineBrendanBattle:: @ 81E2ECD
 	end
 
 LilycoveCity_EventScript_BattleMayTreecko:: @ 81E2EDE
-	trainerbattle_no_intro TRAINER_MAY_12, LilycoveCity_Text_MayDefeat
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TREECKO, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
 LilycoveCity_EventScript_BattleMayTorchic:: @ 81E2EEE
-	trainerbattle_no_intro TRAINER_MAY_13, LilycoveCity_Text_MayDefeat
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TORCHIC, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
 LilycoveCity_EventScript_BattleMayMudkip:: @ 81E2EFE
-	trainerbattle_no_intro TRAINER_MAY_11, LilycoveCity_Text_MayDefeat
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_MUDKIP, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
 LilycoveCity_EventScript_BattleBrendanTreecko:: @ 81E2F0E
-	trainerbattle_no_intro TRAINER_BRENDAN_14, LilycoveCity_Text_BrendanDefeat
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TREECKO, LilycoveCity_Text_BrendanDefeat
 	goto LilycoveCity_EventScript_DefeatedBrendan
 	end
 
 LilycoveCity_EventScript_BattleBrendanTorchic:: @ 81E2F1E
-	trainerbattle_no_intro TRAINER_BRENDAN_15, LilycoveCity_Text_BrendanDefeat
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TORCHIC, LilycoveCity_Text_BrendanDefeat
 	goto LilycoveCity_EventScript_DefeatedBrendan
 	end
 
 LilycoveCity_EventScript_BattleBrendanMudkip:: @ 81E2F2E
-	trainerbattle_no_intro TRAINER_BRENDAN_13, LilycoveCity_Text_BrendanDefeat
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_MUDKIP, LilycoveCity_Text_BrendanDefeat
 	goto LilycoveCity_EventScript_DefeatedBrendan
 	end
 

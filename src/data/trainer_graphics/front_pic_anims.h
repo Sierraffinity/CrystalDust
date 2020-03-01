@@ -158,7 +158,7 @@ static const union AnimCmd *const sAnims_EliteFourDrake[] ={
     sAnim_GeneralFrame0,
 };
 
-static const union AnimCmd *const sAnims_LeaderRoxanne[] ={
+static const union AnimCmd *const sAnims_LeaderFalkner[] ={
     sAnim_GeneralFrame0,
 };
 
@@ -389,7 +389,7 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_AQUA_GRUNT_F] = sAnims_AquaGruntF,
     [TRAINER_PIC_SWIMMER_M] = sAnims_SwimmerM,
     [TRAINER_PIC_MAGMA_GRUNT_M] = sAnims_MagmaGruntM,
-    [TRAINER_PIC_EXPERT_M] = sAnims_ExpertM,
+    [TRAINER_PIC_FIREBREATHER] = sAnims_ExpertM,
     [TRAINER_PIC_AQUA_ADMIN_M] = sAnims_AquaAdminM,
     [TRAINER_PIC_BLACK_BELT] = sAnims_BlackBelt,
     [TRAINER_PIC_AQUA_ADMIN_F] = sAnims_AquaAdminF,
@@ -420,7 +420,7 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_ELITE_FOUR_PHOEBE] = sAnims_EliteFourPhoebe,
     [TRAINER_PIC_ELITE_FOUR_GLACIA] = sAnims_EliteFourGlacia,
     [TRAINER_PIC_ELITE_FOUR_DRAKE] = sAnims_EliteFourDrake,
-    [TRAINER_PIC_LEADER_ROXANNE] = sAnims_LeaderRoxanne,
+    [TRAINER_PIC_LEADER_FALKNER] = sAnims_LeaderFalkner,
     [TRAINER_PIC_LEADER_BRAWLY] = sAnims_LeaderBrawly,
     [TRAINER_PIC_LEADER_WATTSON] = sAnims_LeaderWattson,
     [TRAINER_PIC_LEADER_FLANNERY] = sAnims_LeaderFlannery,

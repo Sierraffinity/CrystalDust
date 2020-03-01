@@ -2,7 +2,7 @@
   "id": "MAP_LILYCOVE_CITY_LILYCOVE_MUSEUM_2F",
   "name": "LilycoveCity_LilycoveMuseum_2F",
   "layout": "LAYOUT_LILYCOVE_CITY_LILYCOVE_MUSEUM_2F",
-  "music": "MUS_BIJYUTU",
+  "music": "MUS_RUINSOFALPH",
   "region_map_section": "MAPSEC_LILYCOVE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_GENTLEMAN",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 10,
       "y": 8,
       "elevation": 3,
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_GIRL_2",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
       "x": 19,
       "y": 10,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 7,
       "y": 3,
       "elevation": 3,
@@ -57,7 +57,7 @@
       "flag": "FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_RICH_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
       "x": 14,
       "y": 6,
       "elevation": 3,

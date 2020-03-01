@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "EVENT_OBJ_GFX_MR_POKEMON",
+      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
       "x": 8,
       "y": 12,
       "elevation": 3,
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_AZURILL",
+      "graphics_id": "OBJ_EVENT_GFX_AZURILL",
       "x": 3,
       "y": 5,
       "elevation": 0,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_KIRLIA",
+      "graphics_id": "OBJ_EVENT_GFX_KIRLIA",
       "x": 12,
       "y": 6,
       "elevation": 0,
@@ -57,7 +57,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_PIKACHU",
+      "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
       "x": 15,
       "y": 5,
       "elevation": 0,
@@ -71,7 +71,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_ZIGZAGOON_2",
+      "graphics_id": "OBJ_EVENT_GFX_ZIGZAGOON_2",
       "x": 4,
       "y": 9,
       "elevation": 0,
@@ -85,7 +85,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_AZUMARILL",
+      "graphics_id": "OBJ_EVENT_GFX_AZUMARILL",
       "x": 13,
       "y": 9,
       "elevation": 0,
@@ -99,7 +99,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "EVENT_OBJ_GFX_WINGULL",
+      "graphics_id": "OBJ_EVENT_GFX_WINGULL",
       "x": 3,
       "y": 10,
       "elevation": 0,

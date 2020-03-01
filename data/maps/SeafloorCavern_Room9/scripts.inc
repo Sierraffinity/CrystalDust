@@ -7,15 +7,15 @@ SeafloorCavern_Room9_EventScript_ArchieAwakenKyogre:: @ 8234DC9
 	setvar VAR_0x8005, 3  @ Maxie
 	setvar VAR_0x8006, 4  @ Magma grunt 1
 	setvar VAR_0x8007, 5  @ Magma grunt 2
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, SeafloorCavern_Room9_Movement_Delay32
+	applymovement OBJ_EVENT_ID_PLAYER, SeafloorCavern_Room9_Movement_Delay32
 	waitmovement 0
 	playbgm MUS_ENCROCKET, 0
 	msgbox SeafloorCavern_Room9_Text_ArchieHoldItRightThere, MSGBOX_DEFAULT
 	closemessage
 	addobject VAR_0x8004
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	applymovement VAR_0x8004, SeafloorCavern_Room9_Movement_ArchieApproachPlayer
 	waitmovement 0
@@ -45,7 +45,7 @@ SeafloorCavern_Room9_EventScript_ArchieAwakenKyogre:: @ 8234DC9
 	playse SE_TAMA
 	special DoOrbEffect
 	applymovement VAR_0x8004, Common_Movement_WalkInPlaceFastestUp
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	delay 150
 	removeobject 7  @ sleeping Kyogre
@@ -79,7 +79,7 @@ SeafloorCavern_Room9_EventScript_ArchieAwakenKyogre:: @ 8234DC9
 	setvar VAR_0x8007, 5
 	msgbox SeafloorCavern_Room9_Text_ArchieWhereDidKyogreGo, MSGBOX_DEFAULT
 	playse SE_PC_LOGIN
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox SeafloorCavern_Room9_Text_ArchieAMessageFromOutside, MSGBOX_DEFAULT
 	closemessage
@@ -128,7 +128,7 @@ SeafloorCavern_Room9_EventScript_ArchieAwakenKyogre:: @ 8234DC9
 	clearflag FLAG_HIDE_ROUTE_128_ARCHIE
 	clearflag FLAG_HIDE_ROUTE_128_MAXIE
 	setflag FLAG_SYS_WEATHER_CTRL
-	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
+	setflag FLAG_RECEIVED_TM05_ROAR
 	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN
 	setvar VAR_STEVENS_HOUSE_STATE, 2
 	setvar VAR_SEAFLOOR_CAVERN_STATE, 1
@@ -153,8 +153,7 @@ SeafloorCavern_Room9_Movement_ArchieApproachPlayer: @ 823502A
 	walk_right
 	step_end
 
-@ Unused
-SeafloorCavern_Room9_Movement_235032: @ 8235032
+SeafloorCavern_Room9_Movement_Unused1: @ 8235032
 	walk_left
 	walk_left
 	step_end
@@ -164,8 +163,7 @@ SeafloorCavern_Room9_Movement_ArchieListenMessage: @ 8235035
 	delay_16
 	step_end
 
-@ Unused
-SeafloorCavern_Room9_Movement_235038: @ 8235038
+SeafloorCavern_Room9_Movement_Unused2: @ 8235038
 	walk_right
 	step_end
 

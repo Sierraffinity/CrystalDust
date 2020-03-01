@@ -1735,7 +1735,7 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
     {
     case 0:
         CreatePCMenu(task->data[1], &task->data[15]);
-        sub_81973A4();
+        LoadMessageBoxAndBorderGfx();
         DrawDialogueFrame(0, 0);
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
         AddTextPrinterParameterized2(0, 1, gUnknown_085716C0[task->data[1]].desc, TEXT_SPEED_FF, NULL, 2, 1, 3);
@@ -1855,7 +1855,7 @@ static void FieldCb_ReturnToPcMenu(void)
     gTasks[taskId].data[1] = sPreviousBoxOption;
     Task_PokemonStorageSystemPC(taskId);
     SetVBlankCallback(vblankCb);
-    pal_fill_black();
+    FadeInFromBlack();
 }
 
 static void CreatePCMenu(u8 whichMenu, s16 *windowIdPtr)
@@ -1867,7 +1867,7 @@ static void CreatePCMenu(u8 whichMenu, s16 *windowIdPtr)
 
     DrawStdWindowFrame(windowId, FALSE);
     PrintMenuTable(windowId, ARRAY_COUNT(gUnknown_085716C0), (void *)gUnknown_085716C0);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, ARRAY_COUNT(gUnknown_085716C0), whichMenu);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, ARRAY_COUNT(gUnknown_085716C0), whichMenu);
     *windowIdPtr = windowId;
 }
 
@@ -4426,7 +4426,7 @@ static void PrintStorageActionText(u8 id)
 
 static void ShowYesNoWindow(s8 cursorPos)
 {
-    CreateYesNoMenu(&sYesNoWindowTemplate, 11, 14, 0);
+    CreateYesNoMenu(&sYesNoWindowTemplate, 1, 0, 2, 11, 14, 0);
     Menu_MoveCursorNoWrapAround(cursorPos);
 }
 
@@ -6898,7 +6898,7 @@ static void SetCursorMonData(void *pokemon, u8 mode)
         *(txtPtr++) = 3;
         *(txtPtr++) = 0;
         *(txtPtr++) = CHAR_SPECIAL_F9;
-        *(txtPtr++) = 5;
+        *(txtPtr++) = CHAR_LV_2;
 
         txtPtr = ConvertIntToDecimalStringN(txtPtr, sPSSData->cursorMonLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
         txtPtr[0] = CHAR_SPACE;
@@ -8741,7 +8741,7 @@ static void AddMenu(void)
     ClearWindowTilemap(sPSSData->field_CB0);
     DrawStdFrameWithCustomTileAndPalette(sPSSData->field_CB0, FALSE, 11, 14);
     PrintMenuTable(sPSSData->field_CB0, sPSSData->menuItemsCount, (void*)sPSSData->menuItems);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPSSData->field_CB0, sPSSData->menuItemsCount, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPSSData->field_CB0, 1, 0, 1, 16, sPSSData->menuItemsCount, 0);
     schedule_bg_copy_tilemap_to_vram(0);
     sPSSData->field_CAE = 0;
 }

@@ -339,7 +339,7 @@ static void InitPlayerPCMenu(u8 taskId)
     data[4] = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(data[4], 0);
     sub_81995E4(data[4], gPcItemMenuOptionsNum, sPlayerPCMenuActions, gPcItemMenuOptionOrder);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[4], gPcItemMenuOptionsNum, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[4], 1, 0, 1, 16, gPcItemMenuOptionsNum, 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = PlayerPCProcessMenuInput;
 }
@@ -441,7 +441,7 @@ static void InitItemStorageMenu(u8 taskId, u8 var)
     data[4] = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(data[4], 0);
     PrintMenuTable(data[4], 4, gPCText_ItemPCOptionsText);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[4], 4, var);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[4], 1, 0, 1, 16, 4, var);
     schedule_bg_copy_tilemap_to_vram(0);
     ItemStorageMenuPrint(gPCText_OptionDescList[var]);
 }
@@ -502,10 +502,10 @@ void sub_816B31C(void)
 
 void Mailbox_DoRedrawMailboxMenuAfterReturn(void)
 {
-    sub_81973A4();
+    LoadMessageBoxAndBorderGfx();
     DrawDialogueFrame(0, 1);
     InitItemStorageMenu(CreateTask(ItemStorage_HandleReturnToProcessInput, 0), 1);
-    pal_fill_black();
+    FadeInFromBlack();
 }
 
 static void ItemStorage_HandleReturnToProcessInput(u8 taskId)
@@ -684,7 +684,7 @@ static void Mailbox_PrintMailOptions(u8 taskId)
 {
     u8 r4 = sub_81D1C84(2);
     PrintMenuTable(r4, 4, gMailboxMailOptions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(r4, 4, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(r4, 1, 0, 1, 16, 4, 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = Mailbox_MailOptionsProcessInput;
 }
@@ -736,13 +736,13 @@ static void pal_fill_for_maplights_or_black(void)
 {
     u8 taskId;
 
-    sub_81973A4();
+    LoadMessageBoxAndBorderGfx();
     taskId = CreateTask(Mailbox_HandleReturnToProcessInput, 0);
     if (sub_81D1C44(playerPCItemPageInfo.count) == TRUE)
         Mailbox_DrawMailboxMenu(taskId);
     else
         DestroyTask(taskId);
-    pal_fill_black();
+    FadeInFromBlack();
 }
 
 static void Mailbox_HandleReturnToProcessInput(u8 taskId)
@@ -844,12 +844,12 @@ static void Mailbox_UpdateMailListAfterDeposit(void)
        && playerPCItemPageInfo.itemsAbove != 0)
         playerPCItemPageInfo.itemsAbove--;
     ItemStorage_SetItemAndMailCount(taskId);
-    sub_81973A4();
+    LoadMessageBoxAndBorderGfx();
     if (sub_81D1C44(playerPCItemPageInfo.count) == TRUE)
         Mailbox_DrawMailboxMenu(taskId);
     else
         DestroyTask(taskId);
-    pal_fill_black();
+    FadeInFromBlack();
 }
 
 static void Mailbox_NoPokemonForMail(u8 taskId)

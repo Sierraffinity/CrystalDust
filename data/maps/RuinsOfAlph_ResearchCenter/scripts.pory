@@ -1,0 +1,74 @@
+mapscripts RuinsOfAlph_ResearchCenter_MapScripts { }
+
+script RuinsOfAlph_ResearchCenter_EventScript_Scientist1 {
+    lock
+    faceplayer
+    // TODO: Unown Dex stuff
+    if (flag(FLAG_MADE_UNOWN_APPEAR_IN_RUINS))
+    {
+        msgbox("POKéMON appeared in the RUINS?\n"
+               "That's incredible news!\l"
+               "We'll need to investigate this.")
+    }
+    else
+    {
+        msgbox("The RUINS are about 1500\n"
+               "years old.\p"
+               "But it's not known why they were\n"
+               "built--or by whom.")
+    }
+    release
+}
+
+script RuinsOfAlph_ResearchCenter_EventScript_Scientist2 {
+    lock
+    faceplayer
+    // TODO: Unown Dex stuff, unused Pokécom Center text
+    if (flag(FLAG_MADE_UNOWN_APPEAR_IN_RUINS))
+    {
+        msgbox("The strange POKéMON you saw in\n"
+               "the RUINS?\p"
+               "They appear to be very much like\n"
+               "the drawings on the walls there.\p"
+               "Hmm…\p"
+               "That must mean there are many\n"
+               "kinds of them…")
+    }
+    else
+    {
+        msgbox("There are odd patterns drawn on\n"
+               "the walls of the RUINS.\p"
+               "They must be the keys for unraveling\n"
+               "the mystery of the RUINS.")
+    }
+    release
+}
+
+script RuinsOfAlph_ResearchCenter_EventScript_Scientist3 {
+    lock
+    faceplayer
+    // TODO: Unown Dex stuff
+    msgbox("The UNOWN you catch will all be\n"
+            "recorded in the UNOWN DEX.\p"
+            "Check to see how many kinds of\n"
+            "them exist.")
+    release
+}
+
+script RuinsOfAlph_ResearchCenter_EventScript_Computer {
+    // TODO: Check for all Unowns
+    msgbox("RUINS OF ALPH\n"
+           "Exploration Year 10", MSGBOX_SIGN)
+}
+
+script RuinsOfAlph_ResearchCenter_EventScript_Bookshelf {
+    msgbox("There are many academic books on\n"
+           "the shelves.\p"
+           "Ancient Ruins…\n"
+           "Mysteries of the Ancients…", MSGBOX_SIGN)
+}
+
+script RuinsOfAlph_ResearchCenter_EventScript_Printer {
+    msgbox("Looks like an old printer.\n"
+           "It's dusty from disuse…", MSGBOX_SIGN)
+}
