@@ -42,6 +42,7 @@ static void DebugMenu_TestBattleTransition(u8 taskId);
 static void DebugMenu_SwapGender(u8 taskId);
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
+static void DebugMenu_ToggleGBSounds(u8 taskId);
 static void DebugMenu_Pokegear(u8 taskId);
 static void DebugMenu_Pokegear_ProcessInput(u8 taskId);
 static void DebugMenu_EnableMapCard(u8 taskId);
@@ -65,6 +66,7 @@ static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_GenderBender[] = _("Gender bender");
+static const u8 sText_ToggleGBSounds[] = _("Toggle GB Sounds");
 static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
@@ -107,6 +109,7 @@ static const struct MenuAction sDebugMenu_MiscActions[] =
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC },
     { sText_TestBattleTransition, DebugMenu_TestBattleTransition },
     { sText_GenderBender, DebugMenu_SwapGender },
+    { sText_ToggleGBSounds, DebugMenu_ToggleGBSounds },
 };
 
 static const struct WindowTemplate sDebugMenu_Window_Main = 
@@ -117,7 +120,7 @@ static const struct WindowTemplate sDebugMenu_Window_Main =
     .width = 0,
     .height = ARRAY_COUNT(sDebugMenu_MainActions) * 2,
     .paletteNum = 15,
-    .baseBlock = 0x120
+    .baseBlock = 1
 };
 
 static const struct WindowTemplate sDebugMenu_Window_SetFlag = 
@@ -128,7 +131,7 @@ static const struct WindowTemplate sDebugMenu_Window_SetFlag =
     .width = 10,
     .height = 4,
     .paletteNum = 15,
-    .baseBlock = 0x120
+    .baseBlock = 1
 };
 
 static const struct WindowTemplate sDebugMenu_Window_SetVar = 
@@ -139,7 +142,7 @@ static const struct WindowTemplate sDebugMenu_Window_SetVar =
     .width = 16,
     .height = 6,
     .paletteNum = 15,
-    .baseBlock = 0x120
+    .baseBlock = 1
 };
 
 static const struct WindowTemplate sDebugMenu_Window_DN = 
@@ -150,7 +153,7 @@ static const struct WindowTemplate sDebugMenu_Window_DN =
     .width = 0,
     .height = ARRAY_COUNT(sDebugMenu_DNActions) * 2,
     .paletteNum = 15,
-    .baseBlock = 0x120
+    .baseBlock = 1
 };
 
 static const struct WindowTemplate sDebugMenu_Window_TimeCycle = 
@@ -161,7 +164,7 @@ static const struct WindowTemplate sDebugMenu_Window_TimeCycle =
     .width = 10,
     .height = 2,
     .paletteNum = 15,
-    .baseBlock = 0x120
+    .baseBlock = 1
 };
 
 static const struct WindowTemplate sDebugMenu_Window_Pokegear = 
@@ -172,7 +175,7 @@ static const struct WindowTemplate sDebugMenu_Window_Pokegear =
     .width = 0,
     .height = ARRAY_COUNT(sDebugMenu_PokegearActions) * 2,
     .paletteNum = 15,
-    .baseBlock = 0x120
+    .baseBlock = 1
 };
 
 static const struct WindowTemplate sDebugMenu_Window_SetRespawn = 
@@ -183,7 +186,7 @@ static const struct WindowTemplate sDebugMenu_Window_SetRespawn =
     .width = 10,
     .height = 4,
     .paletteNum = 15,
-    .baseBlock = 0x120
+    .baseBlock = 1
 };
 
 static const struct WindowTemplate sDebugMenu_Window_Misc = 
@@ -194,7 +197,7 @@ static const struct WindowTemplate sDebugMenu_Window_Misc =
     .width = 0,
     .height = ARRAY_COUNT(sDebugMenu_MiscActions) * 2,
     .paletteNum = 15,
-    .baseBlock = 0x120
+    .baseBlock = 1
 };
 
 #define tWindowId data[0]
@@ -569,6 +572,14 @@ static void DebugMenu_SwapGender(u8 taskId)
     SetWarpDestination(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1, gSaveBlock1Ptr->pos.x, gSaveBlock1Ptr->pos.y);
     DoDiveWarp();
     ResetInitialPlayerAvatarState();
+}
+
+static void DebugMenu_ToggleGBSounds(u8 taskId)
+{
+    if (FlagGet(FLAG_GB_PLAYER_ENABLED))
+        FlagClear(FLAG_GB_PLAYER_ENABLED);
+    else
+        FlagSet(FLAG_GB_PLAYER_ENABLED);
 }
 
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId)
