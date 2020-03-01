@@ -181,7 +181,10 @@ u8 ToneExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct ToneTr
 			case SetTempo:
 				if (track->trackID == 1)
 				{
-					info->gbsTempo = U16LittleEndianToBigEndian(LoadUShortNumber(track->nextInstruction, 1));
+					// Artificially subtract 2 from the real tempo value to account for engine differences.
+					// Using the BGB emulator as a source of truth, Subtracting 2 will run about 0.2 seconds fast
+					// after a minute of playback.  Subtracting 1 will run about 0.2 seconds slow.
+					info->gbsTempo = U16LittleEndianToBigEndian(LoadUShortNumber(track->nextInstruction, 1)) - 2;
 				}
 				commandLength = 3;
 				break;
