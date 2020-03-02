@@ -351,7 +351,7 @@
 #define MUS_KACHI4 424          // Victory! Aqua/Magma Grunt
 #define MUS_ROPEWAY 425         // Cable Car
 #define MUS_CASINO 426          // Game Corner
-#define MUS_HIGHTOWN 427        // Dewford Town
+#define MUS_AZALEA 427        // Dewford Town
 #define MUS_SAFARI 428          // Safari Zone
 #define MUS_C_ROAD 429          // Victory Road
 #define MUS_AJITO 430           // Aqua/Magma Hideout

@@ -3,7 +3,7 @@
 
 static const u8 sMapName_NewBarkTown[] = _("NEW BARK TOWN");
 static const u8 sMapName_CherrygroveCity[] = _("CHERRYGROVE CITY");
-static const u8 sMapName_DewfordTown[] = _("DEWFORD TOWN");
+static const u8 sMapName_AzaleaTown[] = _("AZALEA TOWN");
 static const u8 sMapName_LavaridgeTown[] = _("LAVARIDGE TOWN");
 static const u8 sMapName_FallarborTown[] = _("FALLARBOR TOWN");
 static const u8 sMapName_VerdanturfTown[] = _("VERDANTURF TOWN");
@@ -202,7 +202,7 @@ static const u8 sMapName_TrainerHill[] = _("TRAINER HILL");
 const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_NEW_BARK_TOWN]             = {21, 10, 1, 1, sMapName_NewBarkTown},
     [MAPSEC_CHERRYGROVE_CITY]          = {15, 10, 1, 1, sMapName_CherrygroveCity},
-    [MAPSEC_AZALEA_TOWN]               = { 2, 14, 1, 1, sMapName_DewfordTown},
+    [MAPSEC_AZALEA_TOWN]               = { 9, 13, 1, 1, sMapName_AzaleaTown},
     [MAPSEC_LAVARIDGE_TOWN]            = { 5,  3, 1, 1, sMapName_LavaridgeTown},
     [MAPSEC_FALLARBOR_TOWN]            = { 3,  0, 1, 1, sMapName_FallarborTown},
     [MAPSEC_VERDANTURF_TOWN]           = { 4,  6, 1, 1, sMapName_VerdanturfTown},
@@ -220,7 +220,7 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_ROUTE_30]                  = {15,  6, 1, 4, sMapName_Route30},
     [MAPSEC_ROUTE_31]                  = {12,  5, 4, 1, sMapName_Route31},
     [MAPSEC_ROUTE_32]                  = {11,  6, 1, 7, sMapName_Route32},
-    [MAPSEC_ROUTE_33]                  = { 0, 10, 1, 3, sMapName_Route33},
+    [MAPSEC_ROUTE_33]                  = {10, 13, 2, 1, sMapName_Route33},
     [MAPSEC_ROUTE_34]                  = { 0, 13, 2, 1, sMapName_Route34},
     [MAPSEC_ROUTE_35]                  = { 3, 14, 3, 1, sMapName_Route35},
     [MAPSEC_ROUTE_36]                  = { 7,  5, 4, 1, sMapName_Route36},

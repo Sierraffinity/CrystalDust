@@ -11,7 +11,7 @@ gMapLayouts::
 	.4byte EverGrandeCity_Layout
 	.4byte NewBarkTown_Layout
 	.4byte CherrygroveCity_Layout
-	.4byte DewfordTown_Layout
+	.4byte AzaleaTown_Layout
 	.4byte LavaridgeTown_Layout
 	.4byte FallarborTown_Layout
 	.4byte VerdanturfTown_Layout
@@ -64,8 +64,8 @@ gMapLayouts::
 	.4byte PokemonCenter_2F_Layout
 	.4byte Mart_Layout
 	.4byte House3_Layout
-	.4byte DewfordTown_Gym_Layout
-	.4byte DewfordTown_Hall_Layout
+	.4byte AzaleaTown_Gym_Layout
+	.4byte AzaleaTown_Hall_Layout
 	.4byte House4_Layout
 	.4byte LavaridgeTown_HerbShop_Layout
 	.4byte LavaridgeTown_Gym_1F_Layout

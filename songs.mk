@@ -192,8 +192,8 @@ $(MID_SUBDIR)/mus_encsage.s: %.s: %.mid
 $(MID_SUBDIR)/mus_hideri.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G090 -V050
 
-$(MID_SUBDIR)/mus_hightown.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G073 -V078
+$(MID_SUBDIR)/mus_azalea.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G073 -V084
 
 $(MID_SUBDIR)/mus_hutago.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G095 -V075

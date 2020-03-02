@@ -111,13 +111,13 @@
             "width": 54
         },
         {
-            "blockdata_filepath": "data/layouts/DewfordTown/map.bin",
-            "border_filepath": "data/layouts/DewfordTown/border.bin",
-            "height": 22,
-            "id": "LAYOUT_DEWFORD_TOWN",
-            "name": "DewfordTown_Layout",
+            "blockdata_filepath": "data/layouts/AzaleaTown/map.bin",
+            "border_filepath": "data/layouts/AzaleaTown/border.bin",
+            "height": 24,
+            "id": "LAYOUT_AZALEA_TOWN",
+            "name": "AzaleaTown_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Violet",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 52
         },
         {
@@ -127,7 +127,7 @@
             "id": "LAYOUT_LAVARIDGE_TOWN",
             "name": "LavaridgeTown_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 20
         },
         {
@@ -277,7 +277,7 @@
             "id": "LAYOUT_ROUTE112",
             "name": "Route112_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 40
         },
         {
@@ -641,21 +641,21 @@
             "width": 13
         },
         {
-            "blockdata_filepath": "data/layouts/DewfordTown_Gym/map.bin",
-            "border_filepath": "data/layouts/DewfordTown_Gym/border.bin",
+            "blockdata_filepath": "data/layouts/AzaleaTown_Gym/map.bin",
+            "border_filepath": "data/layouts/AzaleaTown_Gym/border.bin",
             "height": 28,
-            "id": "LAYOUT_DEWFORD_TOWN_GYM",
-            "name": "DewfordTown_Gym_Layout",
+            "id": "LAYOUT_AZALEA_TOWN_GYM",
+            "name": "AzaleaTown_Gym_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_DewfordGym",
             "width": 18
         },
         {
-            "blockdata_filepath": "data/layouts/DewfordTown_Hall/map.bin",
-            "border_filepath": "data/layouts/DewfordTown_Hall/border.bin",
+            "blockdata_filepath": "data/layouts/AzaleaTown_Hall/map.bin",
+            "border_filepath": "data/layouts/AzaleaTown_Hall/border.bin",
             "height": 9,
-            "id": "LAYOUT_DEWFORD_TOWN_HALL",
-            "name": "DewfordTown_Hall_Layout",
+            "id": "LAYOUT_AZALEA_TOWN_HALL",
+            "name": "AzaleaTown_Hall_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_GenericBuilding",
             "width": 17
@@ -1357,7 +1357,7 @@
             "id": "LAYOUT_MT_CHIMNEY",
             "name": "MtChimney_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 40
         },
         {
@@ -2917,7 +2917,7 @@
             "id": "LAYOUT_JAGGED_PASS",
             "name": "JaggedPass_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 30
         },
         {
@@ -2927,7 +2927,7 @@
             "id": "LAYOUT_FIERY_PATH",
             "name": "FieryPath_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 35
         },
         {
@@ -3357,7 +3357,7 @@
             "id": "LAYOUT_MAGMA_HIDEOUT_1F",
             "name": "MagmaHideout_1F_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 37
         },
         {
@@ -3367,7 +3367,7 @@
             "id": "LAYOUT_MAGMA_HIDEOUT_2F_1R",
             "name": "MagmaHideout_2F_1R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 33
         },
         {
@@ -3377,7 +3377,7 @@
             "id": "LAYOUT_MAGMA_HIDEOUT_2F_2R",
             "name": "MagmaHideout_2F_2R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 49
         },
         {
@@ -3387,7 +3387,7 @@
             "id": "LAYOUT_MAGMA_HIDEOUT_3F_1R",
             "name": "MagmaHideout_3F_1R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 28
         },
         {
@@ -3397,7 +3397,7 @@
             "id": "LAYOUT_MAGMA_HIDEOUT_3F_2R",
             "name": "MagmaHideout_3F_2R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 24
         },
         {
@@ -3407,7 +3407,7 @@
             "id": "LAYOUT_MAGMA_HIDEOUT_4F",
             "name": "MagmaHideout_4F_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 59
         },
         {
@@ -3787,7 +3787,7 @@
             "id": "LAYOUT_MAGMA_HIDEOUT_3F_3R",
             "name": "MagmaHideout_3F_3R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 33
         },
         {
@@ -3797,7 +3797,7 @@
             "id": "LAYOUT_MAGMA_HIDEOUT_2F_3R",
             "name": "MagmaHideout_2F_3R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Lavaridge",
+            "secondary_tileset": "gTileset_Azalea",
             "width": 60
         },
         {

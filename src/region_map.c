@@ -309,7 +309,7 @@ static const u32 sUnknown_085A1D68[] = INCBIN_U32("graphics/region_map/fly_targe
 static const u8 sMapHealLocations[][3] = {
     {MAP_GROUP(NEW_BARK_TOWN), MAP_NUM(NEW_BARK_TOWN), HEAL_LOCATION_NEW_BARK_TOWN},
     {MAP_GROUP(CHERRYGROVE_CITY), MAP_NUM(CHERRYGROVE_CITY), HEAL_LOCATION_CHERRYGROVE_CITY},
-    {MAP_GROUP(DEWFORD_TOWN), MAP_NUM(DEWFORD_TOWN), HEAL_LOCATION_DEWFORD_TOWN},
+    {MAP_GROUP(AZALEA_TOWN), MAP_NUM(AZALEA_TOWN), HEAL_LOCATION_AZALEA_TOWN},
     {MAP_GROUP(LAVARIDGE_TOWN), MAP_NUM(LAVARIDGE_TOWN), HEAL_LOCATION_LAVARIDGE_TOWN},
     {MAP_GROUP(FALLARBOR_TOWN), MAP_NUM(FALLARBOR_TOWN), HEAL_LOCATION_FALLARBOR_TOWN},
     {MAP_GROUP(VERDANTURF_TOWN), MAP_NUM(VERDANTURF_TOWN), HEAL_LOCATION_VERDANTURF_TOWN},
@@ -1180,6 +1180,11 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation_(void)
 
     switch (gRegionMap->primaryMapSecId)
     {
+        case MAPSEC_ROUTE_33:
+            x = 0;
+            if (gSaveBlock1Ptr->pos.x > 8)
+                x = 1;
+            break;
         case MAPSEC_ROUTE_36:
             x = 0;
             if (gSaveBlock1Ptr->pos.x > 36)

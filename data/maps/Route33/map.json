@@ -14,7 +14,7 @@
         },
         {
             "elevation": 0,
-            "fruit_tree_id": "FRUIT_TREE_ROUTE_29",
+            "fruit_tree_id": "FRUIT_TREE_ROUTE_33",
             "type": "fruit_tree",
             "x": 16,
             "y": 17
@@ -28,7 +28,7 @@
         },
         {
             "direction": "left",
-            "map": "MAP_DEWFORD_TOWN",
+            "map": "MAP_AZALEA_TOWN",
             "offset": 0
         }
     ],

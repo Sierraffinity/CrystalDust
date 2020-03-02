@@ -1,7 +1,7 @@
 Common_EventScript_SetGymTrainers:: @ 8271F43
 	switch VAR_0x8008
 	case 1, VioletCity_Gym_SetGymTrainers
-	case 2, DewfordTown_Gym_SetGymTrainers
+	case 2, AzaleaTown_Gym_SetGymTrainers
 	case 3, MauvilleCity_Gym_SetGymTrainers
 	case 4, LavaridgeTown_Gym_SetGymTrainers
 	case 5, NotVioletCity_Gym_SetGymTrainers
@@ -15,7 +15,7 @@ VioletCity_Gym_SetGymTrainers:: @ 8271FA1
 	settrainerflag TRAINER_ROD
 	return
 
-DewfordTown_Gym_SetGymTrainers:: @ 8271FAB
+AzaleaTown_Gym_SetGymTrainers:: @ 8271FAB
 	settrainerflag TRAINER_TAKAO
 	settrainerflag TRAINER_JOCELYN
 	settrainerflag TRAINER_LAURA

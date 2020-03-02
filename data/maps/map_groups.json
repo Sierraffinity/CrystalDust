@@ -11,7 +11,7 @@
         "EverGrandeCity",
         "NewBarkTown",
         "CherrygroveCity",
-        "DewfordTown",
+        "AzaleaTown",
         "LavaridgeTown",
         "FallarborTown",
         "VerdanturfTown",
@@ -505,12 +505,12 @@
         "Route110_SeasideCyclingRoadSouthEntrance"
     ],
     "gMapGroup3": [
-        "DewfordTown_House1",
-        "DewfordTown_PokemonCenter_1F",
-        "DewfordTown_PokemonCenter_2F",
-        "DewfordTown_Gym",
-        "DewfordTown_Hall",
-        "DewfordTown_House2"
+        "AzaleaTown_House1",
+        "AzaleaTown_PokemonCenter_1F",
+        "AzaleaTown_PokemonCenter_2F",
+        "AzaleaTown_Gym",
+        "AzaleaTown_Hall",
+        "AzaleaTown_House2"
     ],
     "gMapGroup30": [
         "Route113_GlassWorkshop"

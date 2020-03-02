@@ -24870,8 +24870,8 @@
           }
         },
         {
-          "map": "MAP_DEWFORD_TOWN",
-          "base_label": "gDewfordTown",
+          "map": "MAP_AZALEA_TOWN",
+          "base_label": "gAzaleaTown",
           "water_mons": {
             "encounter_rate": 4,
             "mons": [

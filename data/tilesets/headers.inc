@@ -71,16 +71,16 @@ gTileset_Mauville:: @ 83DF77C
 	.4byte InitTilesetAnim_Mauville
 
 	.align 2
-gTileset_Lavaridge:: @ 83DF794
+gTileset_Azalea:: @ 83DF794
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_Lavaridge
-	.4byte gTilesetPalettes_Lavaridge
+	.4byte gTilesetTiles_Azalea
+	.4byte gTilesetPalettes_Azalea
 	.4byte NULL
-	.4byte gMetatiles_Lavaridge
-	.4byte gMetatileAttributes_Lavaridge
-	.4byte InitTilesetAnim_Lavaridge
+	.4byte gMetatiles_Azalea
+	.4byte gMetatileAttributes_Azalea
+	.4byte InitTilesetAnim_Azalea
 
 	.align 2
 gTileset_Fallarbor:: @ 83DF7AC

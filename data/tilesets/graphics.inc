@@ -114,27 +114,27 @@ gTilesetPalettes_Mauville:: @ 834172C
 	.incbin "data/tilesets/secondary/mauville/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_Lavaridge:: @ 834192C
-	.incbin "data/tilesets/secondary/lavaridge/tiles.4bpp.lz"
+gTilesetTiles_Azalea:: @ 834192C
+	.incbin "data/tilesets/secondary/azalea/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_Lavaridge:: @ 8342E28
-	.incbin "data/tilesets/secondary/lavaridge/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/15.gbapal"
+gTilesetPalettes_Azalea:: @ 8342E28
+	.incbin "data/tilesets/secondary/azalea/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/azalea/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Fallarbor:: @ 8343028

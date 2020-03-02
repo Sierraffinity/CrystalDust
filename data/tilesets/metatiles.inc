@@ -47,12 +47,12 @@ gMetatileAttributes_Mauville:: @ 839FEBE
 	.incbin "data/tilesets/secondary/mauville/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Lavaridge:: @ 83A02BA
-	.incbin "data/tilesets/secondary/lavaridge/metatiles.bin"
+gMetatiles_Azalea:: @ 83A02BA
+	.incbin "data/tilesets/secondary/azalea/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Lavaridge:: @ 83A1E4A
-	.incbin "data/tilesets/secondary/lavaridge/metatile_attributes.bin"
+gMetatileAttributes_Azalea:: @ 83A1E4A
+	.incbin "data/tilesets/secondary/azalea/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Fallarbor:: @ 83A21BC

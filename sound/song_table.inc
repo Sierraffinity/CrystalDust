@@ -418,7 +418,7 @@ gSongTable:: @ 86B49F0
 	song mus_demo1, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
 	song mus_rivalenc, 0, 0         @ Rival Arrives
 	song mus_encsage, 0, 0          @ Trainers' Eyes Meet (Psychic)
-	song mus_encmaleclassic, 0, 0       @ Trainers' Eyes Meet (Cooltrainer)
+	song mus_encmaleclassic, 0, 0   @ Trainers' Eyes Meet (Cooltrainer)
 	song mus_mainmenu, 0, 0         @ Main Menu
 	song mus_encrocket, 0, 0        @ Team Aqua Appears!
 	song mus_followme, 0, 0         @ Hurry Along
@@ -428,7 +428,7 @@ gSongTable:: @ 86B49F0
 	song mus_kachi4, 0, 0           @ Victory! (Team Aqua / Team Magma)
 	song mus_ropeway, 0, 0          @ Cable Car
 	song mus_casino, 0, 0           @ Game Corner
-	song mus_hightown, 0, 0         @ Dewford Town
+	song mus_azalea, 0, 0         	@ Azalea Town/Blackthorn City
 	song mus_safari, 0, 0           @ Safari Zone
 	song mus_c_road, 0, 0           @ Victory Road
 	song mus_ajito, 0, 0            @ Hideout

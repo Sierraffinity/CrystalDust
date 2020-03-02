@@ -16,7 +16,7 @@
   "connections": [
     {
       "direction": "right",
-      "map": "MAP_DEWFORD_TOWN",
+      "map": "MAP_AZALEA_TOWN",
       "offset": 58
     }
   ],
