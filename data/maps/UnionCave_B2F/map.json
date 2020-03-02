@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "UnionCave_B2F_EventScript_Steven",
+      "script": "0",
       "flag": "FLAG_HIDE_DARK_CAVE_STEVEN"
     }
   ],
