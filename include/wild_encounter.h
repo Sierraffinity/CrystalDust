@@ -18,7 +18,7 @@ struct WildPokemon
 struct WildPokemonInfo
 {
     u8 encounterRate;
-    const struct WildPokemon *wildPokemon[TIME_OF_DAY_COUNT];
+    const struct WildPokemon *wildPokemon[TIMES_OF_DAY_COUNT];
 };
 
 struct WildPokemonHeader

@@ -1,12 +1,12 @@
 	.align 2
 gTilesetPalOverrides_General::
 	.byte 2
-	.byte TIME_NIGHT_HOUR
+	.byte HOUR_NIGHT
 	.byte 0
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_General02
 	.byte 7
-	.byte TIME_NIGHT_HOUR
+	.byte HOUR_NIGHT
 	.byte 0
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_General07
@@ -20,17 +20,17 @@ gTilesetPalOverrides_General::
 	.align 2
 gTilesetPalOverrides_Petalburg::
 	.byte 8
-	.byte TIME_NIGHT_HOUR
+	.byte HOUR_NIGHT
 	.byte 0
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Petalburg08
 	.byte 9
-	.byte TIME_NIGHT_HOUR
+	.byte HOUR_NIGHT
 	.byte 0
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Petalburg08
 	.byte 12
-	.byte TIME_NIGHT_HOUR
+	.byte HOUR_NIGHT
 	.byte 0
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Petalburg08
@@ -43,7 +43,7 @@ gTilesetPalOverrides_Petalburg::
 	.align 2
 gTilesetPalOverrides_Violet::
 	.byte 8
-	.byte TIME_NIGHT_HOUR
+	.byte HOUR_NIGHT
 	.byte 0
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Violet08

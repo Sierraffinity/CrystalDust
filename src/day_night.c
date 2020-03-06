@@ -71,11 +71,11 @@ u8 GetCurrentTimeOfDay(void)
 
 u8 GetTimeOfDay(s8 hours)
 {
-    if (hours < TIME_MORNING_HOUR)
+    if (hours < HOUR_MORNING)
         return TIME_NIGHT;
-    else if (hours < TIME_DAY_HOUR)
+    else if (hours < HOUR_DAY)
         return TIME_MORNING;
-    else if (hours < TIME_NIGHT_HOUR)
+    else if (hours < HOUR_NIGHT)
         return TIME_DAY;
     else
         return TIME_NIGHT;

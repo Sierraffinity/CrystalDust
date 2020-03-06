@@ -519,15 +519,15 @@ static void Task_SetClock5(u8 taskId)
 
     StringCopy(dest, string);
 
-    if (gTasks[taskId].tHours < TIME_MORNING_HOUR)
+    if (gTasks[taskId].tHours < HOUR_MORNING)
     {
         string = gText_SetClock_SoDark;
     }
-    else if (gTasks[taskId].tHours < TIME_DAY_HOUR + 1)
+    else if (gTasks[taskId].tHours < HOUR_DAY + 1)
     {
         string = gText_SetClock_IOverslept;
     }
-    else if (gTasks[taskId].tHours < TIME_NIGHT_HOUR)
+    else if (gTasks[taskId].tHours < HOUR_NIGHT)
     {
         string = gText_SetClock_YikesIOverslept;
     }
