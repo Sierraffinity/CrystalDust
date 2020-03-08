@@ -349,7 +349,7 @@ static void Task_SetClock2_1(u8 taskId)
 
 static void UpdateBlinkTimer(u8 taskId)
 {
-    // tBlinkTimer's range is 1-60, to change the digit graphic a frame earlier than the blink ()
+    // tBlinkTimer's range is 1-60, to change the digit graphic a frame earlier than the blink
     if (gTasks[taskId].tBlinkTimer > 0)
     {
         if ((gTasks[taskId].tBlinkTimer % 30) == 0)
