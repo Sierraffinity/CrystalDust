@@ -213,16 +213,17 @@ void CB2_StartWallClock(void)
         89, 103, 111, 120, 134, 146
     };
 
+    RtcCalcLocalTime();
     LoadWallClockGraphics();
 
     taskId = CreateTask(Task_SetClock1, 0);
-    gTasks[taskId].tHours = 10;
-    gTasks[taskId].tMinutes = 0;
+    gTasks[taskId].tHours = gLocalTime.hours;
+    gTasks[taskId].tMinutes = gLocalTime.minutes;
     gTasks[taskId].tWhichChanging = DIGIT_HOURS;
     gTasks[taskId].tTwentyFourHourMode = FALSE;
     gTasks[taskId].tScrollTaskId = 0xFF;
     gTasks[taskId].tScrollOffset = 0xFFFF;  // dummy value to disable turning off arrows
-    gTasks[taskId].tBlinkTimer = 0;
+    gTasks[taskId].tBlinkTimer = 1;
 
     WallClockInit();
     PutWindowTilemap(2);
@@ -348,13 +349,18 @@ static void Task_SetClock2_1(u8 taskId)
 
 static void UpdateBlinkTimer(u8 taskId)
 {
-    if (gTasks[taskId].tBlinkTimer >= 60)
+    // tBlinkTimer's range is 1-60, to change the digit graphic a frame earlier than the blink ()
+    if (gTasks[taskId].tBlinkTimer > 0)
     {
-        gTasks[taskId].tBlinkTimer = 0;
-    }
-    else if (gTasks[taskId].tBlinkTimer != -1)
-    {
-        gTasks[taskId].tBlinkTimer++;
+        if ((gTasks[taskId].tBlinkTimer % 30) == 0)
+        {
+            RtcCalcLocalTime();
+            gTasks[taskId].tHours = gLocalTime.hours;
+            gTasks[taskId].tMinutes = gLocalTime.minutes;
+        }
+
+        if (gTasks[taskId].tBlinkTimer++ >= 60)
+            gTasks[taskId].tBlinkTimer = 1;
     }
 }
 
@@ -404,9 +410,9 @@ static void Task_SetClock2(u8 taskId)
         ChangeDigitWithDelta(taskId, 1);
     }
 
-    if (shouldStopBlinking && gTasks[taskId].tBlinkTimer != -1)
+    if (shouldStopBlinking && gTasks[taskId].tBlinkTimer != 0)
     {
-        gTasks[taskId].tBlinkTimer = -1;
+        gTasks[taskId].tBlinkTimer = 0;
     }
 }
 
@@ -447,7 +453,7 @@ static void Task_SetClock5(u8 taskId)
     const u8 *string = NULL;
     u8 *dest = gStringVar1;
 
-    gTasks[taskId].tBlinkTimer = -2;
+    gTasks[taskId].tBlinkTimer = -1;
 
     ShowHelpBar(gText_ANext);
     
@@ -688,14 +694,13 @@ static void SpriteCallback_SetClockDigits(struct Sprite* sprite)
     {
         sprite->invisible = TRUE;
     }
+    else if (tBlinkTimer == -1)
+    {
+        sprite->callback = SpriteCB_ClockDigits;
+    }
     else
     {
         sprite->invisible = FALSE;
-    }
-
-    if (tBlinkTimer == -2)
-    {
-        sprite->callback = SpriteCB_ClockDigits;
     }
 }
 
