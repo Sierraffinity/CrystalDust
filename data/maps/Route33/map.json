@@ -67,6 +67,13 @@
             "type": "original",
             "x": 15,
             "y": 17
+        },
+        {
+            "source_id": 7,
+            "source_map": "MAP_AZALEA_TOWN",
+            "type": "clone",
+            "x": -8,
+            "y": 9
         }
     ],
     "phone_service": true,

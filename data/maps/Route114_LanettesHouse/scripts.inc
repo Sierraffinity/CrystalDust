@@ -9,13 +9,13 @@ Route114_LanettesHouse_OnTransition: @ 822B2CE
 Route114_LanettesHouse_EventScript_Lanette:: @ 822B2D2
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_DOLL_LANETTE, Route114_LanettesHouse_EventScript_OfferAdvice
+	goto_if_set FLAG_CLEARED_SLOWPOKE_WELL, Route114_LanettesHouse_EventScript_OfferAdvice
 	setflag FLAG_SYS_PC_LANETTE
 	msgbox Route114_LanettesHouse_Text_EverythingClutteredKeepThis, MSGBOX_DEFAULT
 	givedecoration DECOR_LOTAD_DOLL
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowNoRoomForDecor
-	setflag FLAG_RECEIVED_DOLL_LANETTE
+	setflag FLAG_CLEARED_SLOWPOKE_WELL
 	release
 	end
 

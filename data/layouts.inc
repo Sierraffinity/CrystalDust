@@ -63,7 +63,7 @@
 	.include "data/layouts/Mart/layout.inc"
 	.include "data/layouts/House3/layout.inc"
 	.include "data/layouts/AzaleaTown_Gym/layout.inc"
-	.include "data/layouts/AzaleaTown_Hall/layout.inc"
+	.include "data/layouts/AzaleaTown_Mart/layout.inc"
 	.include "data/layouts/House4/layout.inc"
 	.include "data/layouts/LavaridgeTown_HerbShop/layout.inc"
 	.include "data/layouts/LavaridgeTown_Gym_1F/layout.inc"

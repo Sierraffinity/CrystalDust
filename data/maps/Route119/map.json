@@ -330,7 +330,7 @@
       "flag": "FLAG_ITEM_ROUTE_119_HYPER_POTION_1"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 13,
       "y": 33,
       "elevation": 4,
@@ -344,7 +344,7 @@
       "flag": "FLAG_HIDE_ROUTE_119_TEAM_AQUA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 13,
       "y": 34,
       "elevation": 4,
@@ -886,7 +886,7 @@
       "y": 82,
       "elevation": 3,
       "item": "ITEM_CALCIUM",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_119_CALCIUM"
+      "flag": "FLAG_HIDDEN_ITEM_AZALEA_TOWN_FULL_HEAL"
     },
     {
       "type": "hidden_item",

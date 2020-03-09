@@ -41,7 +41,7 @@
 #define OBJ_EVENT_GFX_PSYCHIC_M                   37
 #define OBJ_EVENT_GFX_SCHOOL_KID_M                38
 #define OBJ_EVENT_GFX_POKEMANIAC                      39
-#define OBJ_EVENT_GFX_HEX_MANIAC                  40
+#define OBJ_EVENT_GFX_KURT                  40
 #define OBJ_EVENT_GFX_RAYQUAZA_1                  41
 #define OBJ_EVENT_GFX_SWIMMER_M                   42
 #define OBJ_EVENT_GFX_SWIMMER_F                   43
@@ -118,8 +118,8 @@
 #define OBJ_EVENT_GFX_CABLE_CAR                  114
 #define OBJ_EVENT_GFX_OFFICER                    115
 #define OBJ_EVENT_GFX_DEVON_EMPLOYEE             116
-#define OBJ_EVENT_GFX_AQUA_MEMBER_M              117
-#define OBJ_EVENT_GFX_AQUA_MEMBER_F              118
+#define OBJ_EVENT_GFX_ROCKET_GRUNT_M              117
+#define OBJ_EVENT_GFX_ROCKET_GRUNT_F              118
 #define OBJ_EVENT_GFX_MAGMA_MEMBER_M             119
 #define OBJ_EVENT_GFX_MAGMA_MEMBER_F             120
 #define OBJ_EVENT_GFX_SIDNEY                     121
@@ -209,7 +209,7 @@
 #define OBJ_EVENT_GFX_KYOGRE_2                   205
 #define OBJ_EVENT_GFX_GROUDON_2                  206
 #define OBJ_EVENT_GFX_RAYQUAZA_2                 207
-#define OBJ_EVENT_GFX_ZIGZAGOON_2                208
+#define OBJ_EVENT_GFX_SLOWPOKE                   208
 #define OBJ_EVENT_GFX_PIKACHU                    209
 #define OBJ_EVENT_GFX_AZUMARILL                  210
 #define OBJ_EVENT_GFX_WINGULL                    211

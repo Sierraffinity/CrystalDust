@@ -325,7 +325,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 7,
       "y": 83,
       "elevation": 3,
@@ -339,7 +339,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 8,
       "y": 83,
       "elevation": 3,
@@ -353,7 +353,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 9,
       "y": 83,
       "elevation": 3,
@@ -367,7 +367,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 10,
       "y": 83,
       "elevation": 3,
@@ -381,7 +381,7 @@
       "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 8,
       "y": 82,
       "elevation": 3,

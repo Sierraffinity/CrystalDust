@@ -553,7 +553,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_AddSemifinalAudience:: @ 824C594
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 23, 13, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_HEX_MANIAC, 28, 5, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_KURT, 28, 5, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_MART_EMPLOYEE, 30, 6, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_WOMAN_5, 31, 8, 2, 3, 1
@@ -588,7 +588,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_AddFinalAudience:: @ 824C652
 	createvobject OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_FAT_MAN, 27, 3, 2, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_HEX_MANIAC, 28, 5, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_KURT, 28, 5, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_MART_EMPLOYEE, 30, 6, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_WOMAN_5, 31, 8, 2, 3, DIR_SOUTH

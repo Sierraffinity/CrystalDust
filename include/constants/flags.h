@@ -142,7 +142,7 @@
 #define FLAG_CANCEL_BATTLE_ROOM_CHALLENGE    0x80
 #define FLAG_RECEIVED_TM05_ROAR              0x81
 #define FLAG_RECEIVED_OLD_ROD                0x82
-#define FLAG_RECEIVED_DOLL_LANETTE           0x83
+#define FLAG_CLEARED_SLOWPOKE_WELL           0x83
 #define FLAG_RECEIVED_POTION_OLDALE          0x84
 #define FLAG_RECEIVED_AMULET_COIN            0x85
 #define FLAG_PENDING_DAYCARE_EGG             0x86
@@ -532,9 +532,9 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_30_POTION                     (FLAG_HIDDEN_ITEMS_START + 0x00)
 #define FLAG_HIDDEN_ITEM_DARK_CAVE_SOUTH_ELIXIR              (FLAG_HIDDEN_ITEMS_START + 0x01)
 #define FLAG_HIDDEN_ITEM_VIOLET_CITY_HYPER_POTION            (FLAG_HIDDEN_ITEMS_START + 0x02)
-#define FLAG_HIDDEN_ITEM_ROUTE_32_SUPER_POTION                     (FLAG_HIDDEN_ITEMS_START + 0x03)
-#define FLAG_HIDDEN_ITEM_ROUTE_32_GREAT_BALL                    (FLAG_HIDDEN_ITEMS_START + 0x04)
-#define FLAG_HIDDEN_ITEM_ROUTE_119_CALCIUM                   (FLAG_HIDDEN_ITEMS_START + 0x05)
+#define FLAG_HIDDEN_ITEM_ROUTE_32_SUPER_POTION               (FLAG_HIDDEN_ITEMS_START + 0x03)
+#define FLAG_HIDDEN_ITEM_ROUTE_32_GREAT_BALL                 (FLAG_HIDDEN_ITEMS_START + 0x04)
+#define FLAG_HIDDEN_ITEM_AZALEA_TOWN_FULL_HEAL               (FLAG_HIDDEN_ITEMS_START + 0x05)
 #define FLAG_HIDDEN_ITEM_ROUTE_119_ULTRA_BALL                (FLAG_HIDDEN_ITEMS_START + 0x06)
 #define FLAG_HIDDEN_ITEM_ROUTE_123_SUPER_REPEL               (FLAG_HIDDEN_ITEMS_START + 0x07)
 #define FLAG_HIDDEN_ITEM_UNDERWATER_1_CARBOS                 (FLAG_HIDDEN_ITEMS_START + 0x08)
@@ -775,11 +775,11 @@
 #define FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN                             0x2E4
 #define FLAG_HIDE_ROUTE_32_FRIEDA                                   0x2E5
 #define FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT                           0x2E6
-#define FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN                       0x2E7
-#define FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT                          0x2E8
-#define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_BRENDAN               0x2E9
-#define FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_BRENDAN                  0x2EA
-#define FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION                  0x2EB
+#define FLAG_HIDE_AZALEA_TOWN_SLOWPOKES                             0x2E7
+#define FLAG_HIDE_AZALEA_TOWN_KURT                                  0x2E8
+#define FLAG_HIDE_AZALEA_TOWN_RIVAL                                 0x2E9
+#define FLAG_HIDE_AZALEA_TOWN_SLOWPOKE_WELL_GUARD                   0x2EA
+#define FLAG_HIDE_SLOWPOKE_WELL_ROCKETS                             0x2EB
 #define FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER                0x2EC
 #define FLAG_HIDE_SLATEPORT_CITY_SCOTT                              0x2ED
 #define FLAG_HIDE_ROUTE_29_ZIGZAGOON                                0x2EE

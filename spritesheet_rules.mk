@@ -134,13 +134,13 @@ $(OBJEVENTGFXDIR)/people/ruby_sapphire_may/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 
-$(OBJEVENTGFXDIR)/people/team_aqua/aqua_member_f.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/team_rocket/rocket_grunt_f.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/team_aqua/aqua_member_m.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/team_rocket/rocket_grunt_m.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/team_aqua/archie.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/team_rocket/archie.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 
@@ -217,7 +217,7 @@ $(OBJEVENTGFXDIR)/people/girl_2.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/people/girl_3.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/hex_maniac.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/kurt.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/hiker.4bpp: %.4bpp: %.png
@@ -459,9 +459,6 @@ $(OBJEVENTGFXDIR)/pokemon/rattata.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/rayquaza.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 8
 
-$(OBJEVENTGFXDIR)/pokemon/skitty.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 2
-
 $(OBJEVENTGFXDIR)/pokemon/sudowoodo.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
@@ -471,7 +468,7 @@ $(OBJEVENTGFXDIR)/pokemon/vigoroth.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/wingull.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(OBJEVENTGFXDIR)/pokemon/zigzagoon.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/pokemon/slowpoke.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
 

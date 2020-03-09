@@ -80,7 +80,7 @@
 #define MAP_AZALEA_TOWN_POKEMON_CENTER_1F (1 | (3 << 8))
 #define MAP_AZALEA_TOWN_POKEMON_CENTER_2F (2 | (3 << 8))
 #define MAP_AZALEA_TOWN_GYM               (3 | (3 << 8))
-#define MAP_AZALEA_TOWN_HALL              (4 | (3 << 8))
+#define MAP_AZALEA_TOWN_MART              (4 | (3 << 8))
 #define MAP_AZALEA_TOWN_HOUSE2            (5 | (3 << 8))
 
 // Map Group 4

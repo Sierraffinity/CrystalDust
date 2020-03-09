@@ -180,7 +180,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/AzaleaTown_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/AzaleaTown_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/AzaleaTown_Gym/scripts.inc"
-	.include "data/maps/AzaleaTown_Hall/scripts.inc"
+	.include "data/maps/AzaleaTown_Mart/scripts.inc"
 	.include "data/maps/AzaleaTown_House2/scripts.inc"
 	.include "data/maps/LavaridgeTown_HerbShop/scripts.inc"
 	.include "data/maps/LavaridgeTown_Gym_1F/scripts.inc"
@@ -614,9 +614,9 @@ EventScript_ResetMrBriney:: @ 8271862
 
 EventScript_MoveMrBrineyToHouse:: @ 8271884
 	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	setflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKES
 	setflag FLAG_HIDE_ROUTE_32_FRIEDA
-	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_AZALEA_TOWN_KURT
 	clearflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
@@ -624,13 +624,13 @@ EventScript_MoveMrBrineyToHouse:: @ 8271884
 
 EventScript_MoveMrBrineyToDewford:: @ 827189A
 	setflag FLAG_HIDE_ROUTE_32_FRIEDA
-	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_AZALEA_TOWN_KURT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	clearflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	clearflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKES
 	end
 
 EventScript_MoveMrBrineyToRoute36:: @ 82718B3
@@ -639,9 +639,9 @@ EventScript_MoveMrBrineyToRoute36:: @ 82718B3
 	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	setflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKES
 	clearflag FLAG_HIDE_ROUTE_32_FRIEDA
-	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+	clearflag FLAG_HIDE_AZALEA_TOWN_KURT
 	end
 
 EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
@@ -787,9 +787,9 @@ Movement_FerryDepart: @ 82721F0
 
 EventScript_HideMrBriney:: @ 82721F8
 	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	setflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKES
 	setflag FLAG_HIDE_ROUTE_32_FRIEDA
-	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_AZALEA_TOWN_KURT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST

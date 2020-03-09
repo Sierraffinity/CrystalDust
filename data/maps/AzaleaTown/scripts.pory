@@ -1,90 +1,106 @@
-AzaleaTown_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, AzaleaTown_MapScripts_MAP_SCRIPT_ON_TRANSITION
-	.byte 0
+mapscripts AzaleaTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_AZALEA_TOWN)
+    }
+}
 
-AzaleaTown_MapScripts_MAP_SCRIPT_ON_TRANSITION:
-	setflag FLAG_VISITED_AZALEA_TOWN
-	return
+script AzaleaTown_EventScript_SlowpokeWellGuard {
+    msgbox("It's unsafe to go in there, so I'm\n"
+           "standing guard.\p"
+           "Aren't I a good Samaritan?", MSGBOX_NPC)
+}
 
+script AzaleaTown_EventScript_OldMan {
+    lock
+    faceplayer
+    if (flag(FLAG_CLEARED_SLOWPOKE_WELL))
+    {
+        msgbox("The SLOWPOKE have returned.\n"
+               "Knowing them, they could've just\l"
+               "been goofing off somewhere.")
+    }
+    else
+    {
+        msgbox("The SLOWPOKE have disappeared\n"
+               "from town…\n"
+               "I heard their TAILS are being\n"
+               "sold somewhere.")
+    }
+    release
+}
 
-AzaleaTown_EventScript_SlowpokeWellGuard::
-	msgbox AzaleaTown_EventScript_SlowpokeWellGuard_Text_0, MSGBOX_NPC
-	return
+script AzaleaTown_EventScript_Woman {
+    msgbox("Did you come to get KURT to make\n"
+           "some BALLS?\p"
+           "A lot of people travel to AZALEA to\n"
+           "do just that.", MSGBOX_NPC)
+}
 
+script AzaleaTown_EventScript_Youngster {
+    msgbox("Cut through AZALEA and you'll be\n"
+           "in ILEX FOREST.\p"
+           "But these skinny trees make it\n"
+           "impossible to get through.\p"
+           "The CHARCOAL MAN's POKéMON can CUT\n"
+           "down trees.", MSGBOX_NPC)
+}
 
-AzaleaTown_EventScript_OldMan::
-	lock
-	faceplayer
-	goto_if_set FLAG_CLEARED_SLOWPOKE_WELL, AzaleaTown_EventScript_OldMan_2
-	msgbox AzaleaTown_EventScript_OldMan_Text_1
-AzaleaTown_EventScript_OldMan_1:
-	release
-	return
+script AzaleaTown_EventScript_Slowpoke {
+    lock
+    faceplayer
+    message("SLOWPOKE: …\n"
+           "…… …… ……")
+    waitmessage
+    delay(60)
+    waitse
+    playmoncry(SPECIES_SLOWPOKE, 0)
+    msgbox("…… ……Yawn?")
+    waitmoncry
+    release
+}
 
-AzaleaTown_EventScript_OldMan_2:
-	msgbox AzaleaTown_EventScript_OldMan_Text_0
-	goto AzaleaTown_EventScript_OldMan_1
+script AzaleaTown_EventScript_GymRocket {
+    msgbox("Do you know about SLOWPOKETAIL?\n"
+           "I heard it's tasty!\p"
+           "Aren't you glad I told you that?", MSGBOX_NPC)
+}
 
+script AzaleaTown_EventScript_TownSign {
+    msgbox("AZALEA TOWN\n"
+           "Where People and POKéMON Live in\l"
+           "Happy Harmony", MSGBOX_SIGN)
+}
 
-AzaleaTown_EventScript_Woman::
-	msgbox AzaleaTown_EventScript_Woman_Text_0, MSGBOX_NPC
-	return
+script AzaleaTown_EventScript_KurtsHouseSign {
+    msgbox("KURT'S HOUSE", MSGBOX_SIGN)
+}
 
+script AzaleaTown_EventScript_GymSign {
+    msgbox("AZALEA TOWN POKéMON GYM\n"
+           "LEADER: BUGSY\p"
+           "The Walking BUG-type POKéMON\n"
+           "Encyclopedia", MSGBOX_SIGN)
+}
 
-AzaleaTown_EventScript_Youngster::
-	msgbox AzaleaTown_EventScript_Youngster_Text_0, MSGBOX_NPC
-	return
+script AzaleaTown_EventScript_SlowpokeWellSign {
+    msgbox("SLOWPOKE WELL\n"
+           "Also known as the RAINMAKER WELL.\p"
+           "Locals believe that a SLOWPOKE's\n"
+           "yawn summons rain.\p"
+           "Records show that a SLOWPOKE's yawn\n"
+           "ended a drought 400 years ago.", MSGBOX_SIGN)
+}
 
+script AzaleaTown_EventScript_CharcoalKilnSign {
+    msgbox("CHARCOAL KILN", MSGBOX_SIGN)
+}
 
-AzaleaTown_EventScript_Slowpoke::
-	lock
-	faceplayer
-	message AzaleaTown_EventScript_Slowpoke_Text_0
-	waitmessage
-	delay 60
-	waitse
-	playmoncry SPECIES_SLOWPOKE, 0
-	msgbox AzaleaTown_EventScript_Slowpoke_Text_1
-	waitmoncry
-	release
-	return
+script AzaleaTown_EventScript_IlexForestSign {
+    msgbox("ILEX FOREST\n"
+           "Enter through the gate.", MSGBOX_SIGN)
+}
 
-
-AzaleaTown_EventScript_GymRocket::
-	msgbox AzaleaTown_EventScript_GymRocket_Text_0, MSGBOX_NPC
-	return
-
-
-AzaleaTown_EventScript_TownSign::
-	msgbox AzaleaTown_EventScript_TownSign_Text_0, MSGBOX_SIGN
-	return
-
-
-AzaleaTown_EventScript_KurtsHouseSign::
-	msgbox AzaleaTown_EventScript_KurtsHouseSign_Text_0, MSGBOX_SIGN
-	return
-
-
-AzaleaTown_EventScript_GymSign::
-	msgbox AzaleaTown_EventScript_GymSign_Text_0, MSGBOX_SIGN
-	return
-
-
-AzaleaTown_EventScript_SlowpokeWellSign::
-	msgbox AzaleaTown_EventScript_SlowpokeWellSign_Text_0, MSGBOX_SIGN
-	return
-
-
-AzaleaTown_EventScript_CharcoalKilnSign::
-	msgbox AzaleaTown_EventScript_CharcoalKilnSign_Text_0, MSGBOX_SIGN
-	return
-
-
-AzaleaTown_EventScript_IlexForestSign::
-	msgbox AzaleaTown_EventScript_IlexForestSign_Text_0, MSGBOX_SIGN
-	return
-
-
+raw `
 AzaleaTown_EventScript_Briney:: @ 81E9511
 	lock
 	faceplayer
@@ -864,74 +880,4 @@ AzaleaTown_Text_YeahDefinitionOfInRightNow: @ 81EA491
 	.string "Yeah, absolutely right!\p"
 	.string "“{STR_VAR_1}” is the\n"
 	.string "definition of “in” right now.$"
-
-AzaleaTown_EventScript_SlowpokeWellGuard_Text_0:
-	.string "It's unsafe to go in there, so I'm\n"
-	.string "standing guard.\p"
-	.string "Aren't I a good Samaritan?$"
-
-AzaleaTown_EventScript_OldMan_Text_0:
-	.string "The SLOWPOKE have returned.\n"
-	.string "Knowing them, they could've just\l"
-	.string "been goofing off somewhere.$"
-
-AzaleaTown_EventScript_OldMan_Text_1:
-	.string "The SLOWPOKE have disappeared\n"
-	.string "from town…\n"
-	.string "I heard their TAILS are being\n"
-	.string "sold somewhere.$"
-
-AzaleaTown_EventScript_Woman_Text_0:
-	.string "Did you come to get KURT to make\n"
-	.string "some BALLS?\p"
-	.string "A lot of people travel to AZALEA to\n"
-	.string "do just that.$"
-
-AzaleaTown_EventScript_Youngster_Text_0:
-	.string "Cut through AZALEA and you'll be\n"
-	.string "in ILEX FOREST.\p"
-	.string "But these skinny trees make it\n"
-	.string "impossible to get through.\p"
-	.string "The CHARCOAL MAN's POKéMON can CUT\n"
-	.string "down trees.$"
-
-AzaleaTown_EventScript_Slowpoke_Text_0:
-	.string "SLOWPOKE: …\n"
-	.string "…… …… ……$"
-
-AzaleaTown_EventScript_Slowpoke_Text_1:
-	.string "…… ……Yawn?$"
-
-AzaleaTown_EventScript_GymRocket_Text_0:
-	.string "Do you know about SLOWPOKETAIL?\n"
-	.string "I heard it's tasty!\p"
-	.string "Aren't you glad I told you that?$"
-
-AzaleaTown_EventScript_TownSign_Text_0:
-	.string "AZALEA TOWN\n"
-	.string "Where People and POKéMON Live in\l"
-	.string "Happy Harmony$"
-
-AzaleaTown_EventScript_KurtsHouseSign_Text_0:
-	.string "KURT'S HOUSE$"
-
-AzaleaTown_EventScript_GymSign_Text_0:
-	.string "AZALEA TOWN POKéMON GYM\n"
-	.string "LEADER: BUGSY\p"
-	.string "The Walking BUG-type POKéMON\n"
-	.string "Encyclopedia$"
-
-AzaleaTown_EventScript_SlowpokeWellSign_Text_0:
-	.string "SLOWPOKE WELL\n"
-	.string "Also known as the RAINMAKER WELL.\p"
-	.string "Locals believe that a SLOWPOKE's\n"
-	.string "yawn summons rain.\p"
-	.string "Records show that a SLOWPOKE's yawn\n"
-	.string "ended a drought 400 years ago.$"
-
-AzaleaTown_EventScript_CharcoalKilnSign_Text_0:
-	.string "CHARCOAL KILN$"
-
-AzaleaTown_EventScript_IlexForestSign_Text_0:
-	.string "ILEX FOREST\n"
-	.string "Enter through the gate.$"
+`

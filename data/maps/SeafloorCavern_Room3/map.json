@@ -113,7 +113,7 @@
       "flag": "FLAG_TEMP_19"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_F",
       "x": 9,
       "y": 5,
       "elevation": 3,
@@ -127,7 +127,7 @@
       "flag": "FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 5,
       "y": 5,
       "elevation": 3,

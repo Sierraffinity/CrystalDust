@@ -1,0 +1,39 @@
+mapscripts AzaleaTown_Mart_MapScripts { }
+
+script AzaleaTown_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(AzaleaTown_Mart_Pokemart)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+raw `
+AzaleaTown_Mart_Pokemart:
+	.2byte ITEM_CHARCOAL
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ESCAPE_ROPE
+	.2byte ITEM_REPEL
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_WOOD_MAIL
+	.2byte ITEM_NONE
+`
+
+script AzaleaTown_Mart_EventScript_Cooltrainer {
+    msgbox("They don't sell GREAT BALLS here.\n"
+           "POKé BALLS will have to do.\p"
+           "I wish KURT would make me some of\n"
+           "his custom BALLS.", MSGBOX_NPC)
+}
+
+script AzaleaTown_Mart_EventScript_BugCatcher {
+    msgbox("A GREAT BALL is better for catching\n"
+           "POKéMON than a POKé BALL.\p"
+           "But KURT's might be even better\n"
+           "than those sometimes.", MSGBOX_NPC)
+}

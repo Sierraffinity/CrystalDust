@@ -38,7 +38,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BugCatcher;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PsychicM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SchoolKidM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pokemaniac;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HexManiac;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kurt;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rayquaza1;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerF;
@@ -115,8 +115,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MovingBox;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableCar;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Officer;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DevonEmployee;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_AquaMemberM;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_AquaMemberF;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketGruntM;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketGruntF;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MagmaMemberM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MagmaMemberF;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sidney;
@@ -206,7 +206,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rattata;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kyogre2;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Groudon2;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rayquaza2;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Zigzagoon;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Slowpoke;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pikachu;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Azumarill;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wingull;
@@ -287,7 +287,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_PSYCHIC_M] =                &gObjectEventGraphicsInfo_PsychicM,
     [OBJ_EVENT_GFX_SCHOOL_KID_M] =             &gObjectEventGraphicsInfo_SchoolKidM,
     [OBJ_EVENT_GFX_POKEMANIAC] =               &gObjectEventGraphicsInfo_Pokemaniac,
-    [OBJ_EVENT_GFX_HEX_MANIAC] =               &gObjectEventGraphicsInfo_HexManiac,
+    [OBJ_EVENT_GFX_KURT] =                     &gObjectEventGraphicsInfo_Kurt,
     [OBJ_EVENT_GFX_RAYQUAZA_1] =               &gObjectEventGraphicsInfo_Rayquaza1,
     [OBJ_EVENT_GFX_SWIMMER_M] =                &gObjectEventGraphicsInfo_SwimmerM,
     [OBJ_EVENT_GFX_SWIMMER_F] =                &gObjectEventGraphicsInfo_SwimmerF,
@@ -364,8 +364,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_CABLE_CAR] =                &gObjectEventGraphicsInfo_CableCar,
     [OBJ_EVENT_GFX_OFFICER] =                  &gObjectEventGraphicsInfo_Officer,
     [OBJ_EVENT_GFX_DEVON_EMPLOYEE] =           &gObjectEventGraphicsInfo_DevonEmployee,
-    [OBJ_EVENT_GFX_AQUA_MEMBER_M] =            &gObjectEventGraphicsInfo_AquaMemberM,
-    [OBJ_EVENT_GFX_AQUA_MEMBER_F] =            &gObjectEventGraphicsInfo_AquaMemberF,
+    [OBJ_EVENT_GFX_ROCKET_GRUNT_M] =           &gObjectEventGraphicsInfo_RocketGruntM,
+    [OBJ_EVENT_GFX_ROCKET_GRUNT_F] =           &gObjectEventGraphicsInfo_RocketGruntF,
     [OBJ_EVENT_GFX_MAGMA_MEMBER_M] =           &gObjectEventGraphicsInfo_MagmaMemberM,
     [OBJ_EVENT_GFX_MAGMA_MEMBER_F] =           &gObjectEventGraphicsInfo_MagmaMemberF,
     [OBJ_EVENT_GFX_SIDNEY] =                   &gObjectEventGraphicsInfo_Sidney,
@@ -455,7 +455,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_KYOGRE_2] =                 &gObjectEventGraphicsInfo_Kyogre2,
     [OBJ_EVENT_GFX_GROUDON_2] =                &gObjectEventGraphicsInfo_Groudon2,
     [OBJ_EVENT_GFX_RAYQUAZA_2] =               &gObjectEventGraphicsInfo_Rayquaza2,
-    [OBJ_EVENT_GFX_ZIGZAGOON_2] =              &gObjectEventGraphicsInfo_Zigzagoon,
+    [OBJ_EVENT_GFX_SLOWPOKE] =              &gObjectEventGraphicsInfo_Slowpoke,
     [OBJ_EVENT_GFX_PIKACHU] =                  &gObjectEventGraphicsInfo_Pikachu,
     [OBJ_EVENT_GFX_AZUMARILL] =                &gObjectEventGraphicsInfo_Azumarill,
     [OBJ_EVENT_GFX_WINGULL] =                  &gObjectEventGraphicsInfo_Wingull,

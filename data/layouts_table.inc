@@ -65,7 +65,7 @@ gMapLayouts::
 	.4byte Mart_Layout
 	.4byte House3_Layout
 	.4byte AzaleaTown_Gym_Layout
-	.4byte AzaleaTown_Hall_Layout
+	.4byte AzaleaTown_Mart_Layout
 	.4byte House4_Layout
 	.4byte LavaridgeTown_HerbShop_Layout
 	.4byte LavaridgeTown_Gym_1F_Layout
