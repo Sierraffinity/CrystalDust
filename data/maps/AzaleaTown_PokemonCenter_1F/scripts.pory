@@ -1,0 +1,35 @@
+mapscripts AzaleaTown_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_AZALEA_TOWN)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script AzaleaTown_PokemonCenter_1F_EventScript_Nurse {
+    setvar(VAR_0x800B, 1)
+	call(Common_EventScript_PkmnCenterNurse)
+	waitmessage
+	waitbuttonpress
+	release
+}
+
+script AzaleaTown_PokemonCenter_1F_EventScript_Gentleman {
+    msgbox("Do your POKéMON know HM moves?\n"
+           "Those moves can be used even if\l"
+           "your POKéMON has fainted.", MSGBOX_NPC)
+}
+
+script AzaleaTown_PokemonCenter_1F_EventScript_Fisherman {
+    msgbox("BILL's PC can store up to 20\n"
+           "POKéMON per box.", MSGBOX_NPC)
+}
+
+script AzaleaTown_PokemonCenter_1F_EventScript_Woman {
+    msgbox("Do you know about the fruits called\n"
+           "APRICORNS?\p"
+           "Crack one open, hollow it out and\n"
+           "fit it with a special device.\l"
+           "Then you can catch POKéMON with it.\p"
+           "Before POKé BALLS were invented\n"
+           "everyone used APRICORNS.", MSGBOX_NPC)
+}
