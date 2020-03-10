@@ -87,11 +87,70 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                 applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideStraightOut)
                 waitmovement(0)
             }
+            
+            playse(SE_PIN)
+            applymovement(ELMS_AIDE, Common_Movement_ExclamationMark)
+            waitmovement(0)
+            applymovement(ELMS_AIDE, Common_Movement_Delay48)
+            waitmovement(0)
+
+            switch (var(VAR_FACING))
+            {
+                case DIR_NORTH:
+                    applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideToPlayerCenter)
+                    waitmovement(0)
+                case DIR_WEST:
+                    applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideToPlayerRight)
+                    waitmovement(0)
+                case DIR_EAST:
+                    applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideToPlayerLeft)
+                    waitmovement(0)
+            }
+
+            msgbox("Oh, that's right!\n"
+                   "I have something else with me.\p"
+                   "Your mom asked me to deliver these\n"
+                   "when I saw you.")
+            
+            textcolor(MSG_COLOR_MISC)
+            playfanfare(MUS_FANFA4)
+            message("{PLAYER} received the\n"
+                    "RUNNING SHOES from the AIDE.")
+            waitmessage
+            waitfanfare
+
+            msgbox("{PLAYER} switched shoes with the\n"
+                   "RUNNING SHOES.")
+            setflag(FLAG_RECEIVED_RUNNING_SHOES)
+            
+            signmsg
+            msgbox("Press the B Button to run.\n"
+                   "But only where there's room to run!")
+            normalmsg
+            call(Common_RestoreOriginalTextColor)
+
+            msgbox("I need to head back to the lab now.\n"
+                   "Good luck with the EGG!")
+            closemessage
+
+            switch (var(VAR_FACING))
+            {
+                case DIR_NORTH:
+                    applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideFromPlayerCenter)
+                    waitmovement(0)
+                case DIR_WEST:
+                    applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideFromPlayerRight)
+                    waitmovement(0)
+                case DIR_EAST:
+                    applymovement(ELMS_AIDE, VioletCity_PokemonCenter_1F_Movement_AideFromPlayerLeft)
+                    waitmovement(0)
+            }
 
 	        playse(SE_KAIDAN)
             removeobject(ELMS_AIDE)
             clearflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE)
             setvar(VAR_ROUTE32_STATE, 1)
+            setflag(FLAG_SYS_B_DASH)
         }
         else
         {
@@ -114,13 +173,45 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
 movement VioletCity_PokemonCenter_1F_Movement_AideStraightOut {
     walk_down * 1
     walk_right
-    walk_down * 3
-    delay_4
+    walk_down * 2
 }
 
 movement VioletCity_PokemonCenter_1F_Movement_AideAroundPlayer {
     walk_right
-    walk_down * 4
+    walk_down * 3
+}
+
+movement VioletCity_PokemonCenter_1F_Movement_AideToPlayerCenter {
+    walk_up
+    walk_left
+    face_up
+}
+
+movement VioletCity_PokemonCenter_1F_Movement_AideToPlayerRight {
+    walk_up * 2
+}
+
+movement VioletCity_PokemonCenter_1F_Movement_AideToPlayerLeft {
+    walk_up * 2
+    walk_left * 2
+    face_up
+}
+
+movement VioletCity_PokemonCenter_1F_Movement_AideFromPlayerCenter {
+    walk_down
+    walk_right
+    walk_down
+    delay_4
+}
+
+movement VioletCity_PokemonCenter_1F_Movement_AideFromPlayerRight {
+    walk_down * 3
+    delay_4
+}
+
+movement VioletCity_PokemonCenter_1F_Movement_AideFromPlayerLeft {
+    walk_right * 2
+    walk_down * 3
     delay_4
 }
 

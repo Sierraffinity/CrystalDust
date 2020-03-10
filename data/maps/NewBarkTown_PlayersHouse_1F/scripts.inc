@@ -402,12 +402,12 @@ NewBarkTown_PlayersHouse_1F_TVText:
 	.string "I'd better get rolling too!$"
 
 NewBarkTown_PlayersHouse_1F_StoveText:
-	.string "It's MOM's specialty, the\n"
+	.string "It's Mom's specialty, the\n"
 	.string "CINNABAR VOLCANO BURGER!$"
 
 NewBarkTown_PlayersHouse_1F_SinkText:
 	.string "The sink is spotless.\n"
-	.string "MOM likes to keep it clean.$"
+	.string "Mom likes to keep it clean.$"
 
 NewBarkTown_PlayersHouse_1F_FridgeText:
 	.string "Let's see what's in the fridge…\p"
