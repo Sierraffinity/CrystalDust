@@ -52,3 +52,16 @@ gTilesetPalOverrides_Violet::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
+
+	.align 2
+gTilesetPalOverrides_Azalea::
+	.byte 9
+	.byte HOUR_NIGHT
+	.byte 0
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Azalea09
+	.byte 0xFF
+	.byte 0
+	.byte 0
+	.byte 0 @ padding
+	.4byte NULL

@@ -77,7 +77,7 @@ gTileset_Azalea:: @ 83DF794
 	.2byte 0 @ padding
 	.4byte gTilesetTiles_Azalea
 	.4byte gTilesetPalettes_Azalea
-	.4byte NULL
+	.4byte gTilesetPalOverrides_Azalea
 	.4byte gMetatiles_Azalea
 	.4byte gMetatileAttributes_Azalea
 	.4byte InitTilesetAnim_Azalea
