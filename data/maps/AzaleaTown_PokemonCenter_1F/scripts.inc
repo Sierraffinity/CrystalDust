@@ -1,38 +1,51 @@
-AzaleaTown_PokemonCenter_1F_MapScripts:: @ 81FC523
-	map_script MAP_SCRIPT_ON_TRANSITION, AzaleaTown_PokemonCenter_1F_OnTransition
+AzaleaTown_PokemonCenter_1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, AzaleaTown_PokemonCenter_1F_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 
-AzaleaTown_PokemonCenter_1F_OnTransition: @ 81FC52E
+AzaleaTown_PokemonCenter_1F_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 	setrespawn HEAL_LOCATION_AZALEA_TOWN
-	call Common_EventScript_UpdateBrineyLocation
-	end
+	return
 
-@ VAR_0x800B is the Nurse's object event id
-AzaleaTown_PokemonCenter_1F_EventScript_Nurse:: @ 81FC537
+
+AzaleaTown_PokemonCenter_1F_EventScript_Nurse::
 	setvar VAR_0x800B, 1
 	call Common_EventScript_PkmnCenterNurse
 	waitmessage
 	waitbuttonpress
 	release
-	end
+	return
 
-AzaleaTown_PokemonCenter_1F_EventScript_PokefanF:: @ 81FC545
-	msgbox AzaleaTown_PokemonCenter_1F_Text_StoneCavern, MSGBOX_NPC
-	end
 
-AzaleaTown_PokemonCenter_1F_EventScript_Man:: @ 81FC54E
-	msgbox AzaleaTown_PokemonCenter_1F_Text_FaintedMonCanUseHM, MSGBOX_NPC
-	end
+AzaleaTown_PokemonCenter_1F_EventScript_Gentleman::
+	msgbox AzaleaTown_PokemonCenter_1F_EventScript_Gentleman_Text_0, MSGBOX_NPC
+	return
 
-AzaleaTown_PokemonCenter_1F_Text_StoneCavern: @ 81FC557
-	.string "There's a stone cavern at the edge\n"
-	.string "of town.\p"
-	.string "I've heard you can find rare stones\n"
-	.string "there.$"
 
-AzaleaTown_PokemonCenter_1F_Text_FaintedMonCanUseHM: @ 81FC5AE
-	.string "Even if a POKéMON faints and can't\n"
-	.string "battle, it can still use a move learned\l"
-	.string "from a HIDDEN MACHINE (HM).$"
+AzaleaTown_PokemonCenter_1F_EventScript_Fisherman::
+	msgbox AzaleaTown_PokemonCenter_1F_EventScript_Fisherman_Text_0, MSGBOX_NPC
+	return
 
+
+AzaleaTown_PokemonCenter_1F_EventScript_Woman::
+	msgbox AzaleaTown_PokemonCenter_1F_EventScript_Woman_Text_0, MSGBOX_NPC
+	return
+
+
+AzaleaTown_PokemonCenter_1F_EventScript_Gentleman_Text_0:
+	.string "Do your POKéMON know HM moves?\p"
+	.string "Those moves can be used even if\n"
+	.string "your POKéMON has fainted.$"
+
+AzaleaTown_PokemonCenter_1F_EventScript_Fisherman_Text_0:
+	.string "BILL's PC can store up to 20\n"
+	.string "POKéMON per box.$"
+
+AzaleaTown_PokemonCenter_1F_EventScript_Woman_Text_0:
+	.string "Do you know about the fruits called\n"
+	.string "APRICORNS?\p"
+	.string "If you crack one open, hollow it out\n"
+	.string "and fit it with a special device,\l"
+	.string "you can catch POKéMON with it.\p"
+	.string "Before POKé BALLS were invented,\n"
+	.string "everyone used APRICORNS.$"
