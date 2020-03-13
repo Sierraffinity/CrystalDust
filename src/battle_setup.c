@@ -1503,15 +1503,6 @@ void SetUpTrainerEncounterMusic(void)
         case TRAINER_ENCOUNTER_MUSIC_ROCKET:
             music = MUS_ENCROCKET;
             break;
-        case TRAINER_ENCOUNTER_MUSIC_MAGMA:
-            music = MUS_MGM0;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_SWIMMER:
-            music = MUS_SWIMEYE;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_TWINS:
-            music = MUS_HUTAGO;
-            break;
         case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
             music = MUS_SITENNOU;
             break;
@@ -1520,9 +1511,6 @@ void SetUpTrainerEncounterMusic(void)
             break;
         case TRAINER_ENCOUNTER_MUSIC_KIMONO:
             music = MUS_ENCKIMONO;
-            break;
-        case TRAINER_ENCOUNTER_MUSIC_RICH:
-            music = MUS_TEST;
             break;
         default:
             music = MUS_ENCSUSPICIOUS;

@@ -45,17 +45,17 @@
 
 static const u16 sRadioChannelSongs[] = 
 {
-    MUS_RG_KENKYU,
-    MUS_POKECEN,
-    MUS_DUMMY,  // Music channel
-    MUS_CASINO,
-    MUS_M_BOAT,
-    MUS_FINECITY,
-    MUS_MACHUPI,
-    MUS_AJITO,
-    MUS_RG_POKEFUE,
-    MUS_RG_VS_DEO,
-    MUS_RG_VS_MYU2
+    [OAKS_POKEMON_TALK] = MUS_OAKSLAB,
+    [POKEDEX_SHOW] = MUS_POKECEN,
+    [POKEMON_MUSIC] = MUS_DUMMY,
+    [LUCKY_CHANNEL] = MUS_CASINO,
+    [BUENAS_PASSWORD] = MUS_M_BOAT,
+    [PLACES_AND_PEOPLE] = MUS_FINECITY,
+    [LETS_ALL_SING] = MUS_MACHUPI,
+    [ROCKET_RADIO] = MUS_AJITO,
+    [POKE_FLUTE_RADIO] = MUS_RG_POKEFUE,
+    [UNOWN_RADIO] = MUS_RG_VS_DEO,
+    [EVOLUTION_RADIO] = MUS_RG_VS_MYU2
 };
 
 enum {
@@ -80,6 +80,25 @@ const u8 *const gRadioShowNames[] =
     gText_PokeFlute,
     gText_FiveMarks,
     gText_FiveMarks,
+};
+
+// TODO: Proper widths
+static const struct {
+    u8 width;
+    u8 type;
+    u16 values[3];
+} sBuenasPasswords[] = {
+    { 10, PASS_SPECIES, { SPECIES_CYNDAQUIL,    SPECIES_TOTODILE,           SPECIES_CHIKORITA } },
+    { 12, PASS_ITEM,    { ITEM_FRESH_WATER,     ITEM_SODA_POP,              ITEM_LEMONADE } },
+    { 12, PASS_ITEM,    { ITEM_POTION,          ITEM_ANTIDOTE,              ITEM_PARALYZE_HEAL } },
+    { 12, PASS_ITEM,    { ITEM_POKE_BALL,       ITEM_GREAT_BALL,            ITEM_ULTRA_BALL } },
+    { 10, PASS_SPECIES, { SPECIES_PIKACHU,      SPECIES_RATTATA,            SPECIES_GEODUDE } },
+    { 10, PASS_SPECIES, { SPECIES_HOOTHOOT,     SPECIES_SPINARAK,           SPECIES_DROWZEE } },
+    { 16, PASS_MAPSEC,  { MAPSEC_NEW_BARK_TOWN, MAPSEC_CHERRYGROVE_CITY,    MAPSEC_AZALEA_TOWN } },
+    { 6,  PASS_TYPE,    { TYPE_FLYING,          TYPE_BUG,                   TYPE_GRASS } },
+    { 12, PASS_MOVE,    { MOVE_TACKLE,          MOVE_GROWL,                 MOVE_MUD_SLAP } },
+    { 12, PASS_ITEM,    { ITEM_X_ATTACK,        ITEM_X_DEFEND,              ITEM_X_SPEED } },
+    { 13, PASS_STATION, { OAKS_POKEMON_TALK,    POKEMON_MUSIC,              LUCKY_CHANNEL } }
 };
 
 #define FREQ(a) (u8)(a * 2 - 1)
@@ -119,7 +138,7 @@ static void NextRadioLine(u8 taskId, u8 nextLine, const u8 *lineToPrint, bool8 s
 {
     s16 *data = gTasks[taskId].data;
     u8 yPos = 1;
-    u8 lineHeight = GetFontAttribute(1, FONTATTR_MAX_LETTER_HEIGHT) + GetFontAttribute(1, FONTATTR_LINE_SPACING);
+    u8 lineHeight = GetFontAttribute(1, FONTATTR_MAX_LETTER_HEIGHT) + 1;
     
     if (tNumLinesPrinted != 0)
         yPos += lineHeight;
@@ -130,7 +149,7 @@ static void NextRadioLine(u8 taskId, u8 nextLine, const u8 *lineToPrint, bool8 s
     tNumLinesPrinted += lineToPrint ? 1 : 0;
     tNextLine = nextLine;
     tCurrentLine = RADIO_SCROLL;
-    tTextDelay = 100;
+    tTextDelay = 90;
     tScrollDistance = shouldScroll ? lineHeight : 0;
 }
 
@@ -148,28 +167,9 @@ const u8 *GetBuenasPassword(u8 category, u8 index)
     const u8 *string;
     u16 value;
 
-    // TODO: Proper widths
-    const struct {
-        u8 width;
-        u8 type;
-        u16 values[3];
-    } passwords[] = {
-        { 10, PASS_SPECIES, { SPECIES_CYNDAQUIL,    SPECIES_TOTODILE,           SPECIES_CHIKORITA } },
-        { 12, PASS_ITEM,    { ITEM_FRESH_WATER,     ITEM_SODA_POP,              ITEM_LEMONADE } },
-        { 12, PASS_ITEM,    { ITEM_POTION,          ITEM_ANTIDOTE,              ITEM_PARALYZE_HEAL } },
-        { 12, PASS_ITEM,    { ITEM_POKE_BALL,       ITEM_GREAT_BALL,            ITEM_ULTRA_BALL } },
-        { 10, PASS_SPECIES, { SPECIES_PIKACHU,      SPECIES_RATTATA,            SPECIES_GEODUDE } },
-        { 10, PASS_SPECIES, { SPECIES_HOOTHOOT,     SPECIES_SPINARAK,           SPECIES_DROWZEE } },
-        { 16, PASS_MAPSEC,  { MAPSEC_NEW_BARK_TOWN, MAPSEC_CHERRYGROVE_CITY,    MAPSEC_AZALEA_TOWN } },
-        { 6,  PASS_TYPE,    { TYPE_FLYING,          TYPE_BUG,                   TYPE_GRASS } },
-        { 12, PASS_MOVE,    { MOVE_TACKLE,          MOVE_GROWL,                 MOVE_MUD_SLAP } },
-        { 12, PASS_ITEM,    { ITEM_X_ATTACK,        ITEM_X_DEFEND,              ITEM_X_SPEED } },
-        { 13, PASS_STATION, { OAKS_POKEMON_TALK,    POKEMON_MUSIC,              LUCKY_CHANNEL } }
-    };
+    value = sBuenasPasswords[category].values[index];
 
-    value = passwords[category].values[index];
-
-    switch (passwords[category].type)
+    switch (sBuenasPasswords[category].type)
     {
         case PASS_SPECIES:
             string = gSpeciesNames[value];
@@ -314,23 +314,23 @@ void Task_PlayRadioShow(u8 taskId)
                 { MAPSEC_ROUTE_30, MAP_GROUP(ROUTE30), MAP_NUM(ROUTE30) },
                 { MAPSEC_ROUTE_31, MAP_GROUP(ROUTE31), MAP_NUM(ROUTE31) },
                 { MAPSEC_ROUTE_32, MAP_GROUP(ROUTE32), MAP_NUM(ROUTE32) },
+                { MAPSEC_ROUTE_34, MAP_GROUP(ROUTE106), MAP_NUM(ROUTE106) },
+                { MAPSEC_ROUTE_35, MAP_GROUP(ROUTE107), MAP_NUM(ROUTE107) },
+                { MAPSEC_ROUTE_36, MAP_GROUP(ROUTE36), MAP_NUM(ROUTE36) },
+                { MAPSEC_ROUTE_37, MAP_GROUP(ROUTE109), MAP_NUM(ROUTE109) },
                 { MAPSEC_ROUTE_38, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
                 { MAPSEC_ROUTE_39, MAP_GROUP(ROUTE111), MAP_NUM(ROUTE111) },
-                { MAPSEC_ROUTE_40, MAP_GROUP(ROUTE112), MAP_NUM(ROUTE112) },
-                { MAPSEC_ROUTE_41, MAP_GROUP(ROUTE113), MAP_NUM(ROUTE113) },
                 { MAPSEC_ROUTE_42, MAP_GROUP(ROUTE114), MAP_NUM(ROUTE114) },
-                { MAPSEC_ROUTE_43, MAP_GROUP(ROUTE116), MAP_NUM(ROUTE116) },
-                { MAPSEC_ROUTE_29, MAP_GROUP(ROUTE29), MAP_NUM(ROUTE29) },
-                { MAPSEC_ROUTE_30, MAP_GROUP(ROUTE30), MAP_NUM(ROUTE30) },
-                { MAPSEC_ROUTE_31, MAP_GROUP(ROUTE31), MAP_NUM(ROUTE31) },
-                { MAPSEC_ROUTE_32, MAP_GROUP(ROUTE32), MAP_NUM(ROUTE32) },
-                { MAPSEC_ROUTE_38, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
+                { MAPSEC_ROUTE_43, MAP_GROUP(ROUTE115), MAP_NUM(ROUTE115) },
+                { MAPSEC_ROUTE_44, MAP_GROUP(ROUTE116), MAP_NUM(ROUTE116) },
+                { MAPSEC_ROUTE_45, MAP_GROUP(ROUTE117), MAP_NUM(ROUTE117) },
+                { MAPSEC_ROUTE_46, MAP_GROUP(ROUTE46), MAP_NUM(ROUTE46) },
             };
 
-            u8 map = Random() % 15;
-            u8 timeOfDay = Random() % 3;
-            u8 monNum = Random() % 3;
-            u16 species = GetMapWildMonFromIndex(oaksTalkRoutes[map].group, oaksTalkRoutes[map].num, monNum + 1);
+            u8 map = Random() % ARRAY_COUNT(oaksTalkRoutes);
+            u8 timeOfDay = Random() % TIMES_OF_DAY_COUNT;
+            u8 monNum = Random() % 6; // choose from middle 6
+            u16 species = GetMapWildMonFromIndex(oaksTalkRoutes[map].group, oaksTalkRoutes[map].num, monNum + 4);
             
             StringCopy(gStringVar1, gSpeciesNames[species]);
             StringCopy(gStringVar2, gRegionMapEntries[oaksTalkRoutes[map].mapSec].name);
@@ -370,12 +370,12 @@ void Task_PlayRadioShow(u8 taskId)
                 gText_OPTAdverbSoFlippedOutAnd,
                 gText_OPTAdverbHeartMeltingly,
             };
-            NextRadioLine(taskId, OAKS_POKEMON_TALK_9, adverbs[Random() % 16], TRUE);
+            NextRadioLine(taskId, OAKS_POKEMON_TALK_9, adverbs[Random() % ARRAY_COUNT(adverbs)], TRUE);
         }
         break;
     case OAKS_POKEMON_TALK_9:
         {
-            static const u8 *const adverbs[] = {
+            static const u8 *const adjectives[] = {
                 gText_OPTAdjectiveCute,
                 gText_OPTAdjectiveWeird,
                 gText_OPTAdjectivePleasant,
@@ -395,12 +395,12 @@ void Task_PlayRadioShow(u8 taskId)
             };
             if (--tMiscValue > 0)
             {
-                NextRadioLine(taskId, OAKS_POKEMON_TALK_4, adverbs[Random() % 16], TRUE);
+                NextRadioLine(taskId, OAKS_POKEMON_TALK_4, adjectives[Random() % ARRAY_COUNT(adjectives)], TRUE);
             }
             else
             {
                 tMiscValue = 5;
-                NextRadioLine(taskId, PKMN_CHANNEL_INTERLUDE_1, adverbs[Random() % 16], TRUE);
+                NextRadioLine(taskId, PKMN_CHANNEL_INTERLUDE_1, adjectives[Random() % ARRAY_COUNT(adjectives)], TRUE);
                 tCurrentLine = PKMN_CHANNEL_INTERLUDE_1;
                 tNextLine = NO_RADIO_SHOW;
                 tTextDelay = 100;
@@ -417,7 +417,7 @@ void Task_PlayRadioShow(u8 taskId)
     case POKEDEX_SHOW_4:
         {
             u8 index;
-            for (index = tMiscValue; index < 0x3E8; index++)
+            for (index = tMiscValue; index < 1000; index++) // prevent possible gStringVar4 overflow
             {
                 if (gStringVar4[index] == CHAR_NEWLINE)
                 {
@@ -433,8 +433,6 @@ void Task_PlayRadioShow(u8 taskId)
                 }
             }
         }
-        break;
-    case POKEDEX_SHOW_5:
         break;
     case POKEMON_MUSIC_2:
         NextRadioLine(taskId, POKEMON_MUSIC_3, gText_PkmnMusicBen2, TRUE);
@@ -612,7 +610,7 @@ void Task_PlayRadioShow(u8 taskId)
 
                 if (!FlagGet(FLAG_BUENAS_PASSWORD))
                 {
-                    password = (Random() % 11) << 8 | (Random() % 3);
+                    password = (Random() % ARRAY_COUNT(sBuenasPasswords)) << 8 | (Random() % ARRAY_COUNT(sBuenasPasswords[0].values));
                     VarSet(VAR_BUENAS_PASSWORD, password);
                     FlagSet(FLAG_BUENAS_PASSWORD);
                 }
@@ -695,7 +693,7 @@ void Task_PlayRadioShow(u8 taskId)
         {
             if (tNumLinesPrinted > 1 && tScrollDistance)
             {
-                #define RADIO_SCROLL_SPEED 2
+                #define RADIO_SCROLL_SPEED 1
                 if (tScrollDistance < RADIO_SCROLL_SPEED)
                 {
                     ScrollWindow(tWindowId, 0, tScrollDistance, 0x11);

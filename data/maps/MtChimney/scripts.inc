@@ -33,7 +33,7 @@ MtChimney_EventScript_ArchieBusyFighting:: @ 822EE02
 
 MtChimney_EventScript_Maxie:: @ 822EE0B
 	lockall
-	playbgm MUS_MGM0, 0
+	playbgm MUS_OAKSLAB, 0
 	msgbox MtChimney_Text_MeteoriteWillActivateVolcano, MSGBOX_DEFAULT
 	applymovement 2, Common_Movement_FacePlayer
 	waitmovement 0

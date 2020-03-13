@@ -1132,21 +1132,21 @@ static bool16 IsInflitratedSpaceCenter(struct WarpData *warp)
 
 u16 GetLocationMusic(struct WarpData *warp)
 {
-    if (NoMusicInSotopolisWithLegendaries(warp) == TRUE)
+    /*if (NoMusicInSotopolisWithLegendaries(warp) == TRUE)
         return 0xFFFF;
     else if (ShouldLegendaryMusicPlayAtLocation(warp) == TRUE)
         return MUS_OOAME;
     else if (IsInflitratedSpaceCenter(warp) == TRUE)
-        return MUS_MGM0;
+        return MUS_OAKSLAB;
     else if (IsInfiltratedWeatherInstitute(warp) == TRUE)
         return MUS_TOZAN;
-    else
-        return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
+    else*/
+    return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
 }
 
 u16 GetCurrLocationDefaultMusic(void)
 {
-    u16 music;
+    /*u16 music;
 
     // Play the desert music only when the sandstorm is active on Route 111.
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE111)
@@ -1165,12 +1165,13 @@ u16 GetCurrLocationDefaultMusic(void)
             return MUS_ROUTE34;
         else
             return MUS_GRANROAD;
-    }
+    }*/
+    return GetLocationMusic(&gSaveBlock1Ptr->location);
 }
 
 u16 GetWarpDestinationMusic(void)
 {
-    u16 music = GetLocationMusic(&sWarpDestination);
+    /*u16 music = GetLocationMusic(&sWarpDestination);
     if (music != MUS_ROUTE_46)
     {
         return music;
@@ -1182,7 +1183,8 @@ u16 GetWarpDestinationMusic(void)
             return MUS_ROUTE34;
         else
             return MUS_GRANROAD;
-    }
+    }*/
+    return GetLocationMusic(&sWarpDestination);
 }
 
 void Overworld_ResetMapMusic(void)

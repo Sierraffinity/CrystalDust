@@ -365,7 +365,7 @@
 #define MUS_MABOROSI 438        // Sealed Chamber
 #define MUS_CON_FAN 439         // Obtained a Contest Ribbon!
 #define MUS_CONTEST0 440        // Pokémon Contest
-#define MUS_MGM0 441            // Encounter! Team Magma
+#define MUS_OAKSLAB 441         // Encounter! Team Magma
 #define MUS_T_BATTLE 442        // Opening Battle
 #define MUS_OOAME 443           // The Flood
 #define MUS_HIDERI 444          // The Drought
@@ -377,7 +377,7 @@
 #define MUS_SITENNOU 450        // Encounter! Elite Four
 #define MUS_ENCSUSPICIOUSCLASSIC 451        // Encounter! Hiker
 #define MUS_CONLOBBY 452        // Contest Lobby
-#define MUS_ENCKIMONO 453         // Encounter! Gabby and Ty
+#define MUS_ENCKIMONO 453       // Encounter! Gabby and Ty
 #define MUS_DAIGO 454           // Encounter! Wallace
 #define MUS_THANKFOR 455        // Credits
 #define MUS_END 456             // The End
@@ -398,10 +398,10 @@
 #define MUS_VS_FRONT 471        // Battle! Frontier Brain
 #define MUS_VS_MEW 472          // Battle! Mew
 #define MUS_B_DOME1 473         // Battle Dome Lobby
-#define MUS_BTLJOHTOWILD 474       // Battle! Wild Pokémon
+#define MUS_BTLJOHTOWILD 474    // Battle! Wild Pokémon
 #define MUS_BATTLE31 475        // Battle! Team Aqua/Magma
-#define MUS_BTLJOHTOTRN 476        // Battle! Trainer
-#define MUS_BTLJOHTOLDR 477        // Battle! Gym Leader
+#define MUS_BTLJOHTOTRN 476     // Battle! Trainer
+#define MUS_BTLJOHTOLDR 477     // Battle! Gym Leader
 #define MUS_BATTLE33 478        // Battle! Champion
 #define MUS_BATTLE36 479        // Battle! Regi Trio
 #define MUS_BATTLE34 480        // Battle! Legendary Pokémon (dupe)
@@ -535,8 +535,6 @@
 #define PH_NURSE_BLEND 607
 #define PH_NURSE_HELD 608
 #define PH_NURSE_SOLO 609
-
-#define MUS_ROUTE_46 0x7FFF  // map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 
 #define MUS_NONE 0xFFFF
 

@@ -380,7 +380,7 @@ gSongTable:: @ 86B49F0
 	song mus_me_shinka, 2, 2        @ Evolution (Intro)
 	song mus_shinka, 0, 0           @ Evolution
 	song mus_me_wasure, 2, 2        @ Move Deleted
-	song mus_encfemaleclassic, 0, 0     @ Trainers' Eyes Meet (Tuber♀)
+	song mus_encfemaleclassic, 0, 0 @ Trainers' Eyes Meet (Tuber♀)
 	song mus_encmale, 0, 0          @ Trainers' Eyes Meet (Youngster)
 	song mus_darkcave, 0, 0         @ Dark Cave
 	song mus_machi_s3, 0, 0         @ Fortree City
@@ -442,7 +442,7 @@ gSongTable:: @ 86B49F0
 	song mus_maborosi, 0, 0         @ Sealed Chamber
 	song mus_con_fan, 0, 0          @ Contest Winner
 	song mus_contest0, 0, 0         @ Pokémon Contest!
-	song mus_mgm0, 0, 0             @ Team Magma Appears!
+	song mus_oakslab, 0, 0             @ Team Magma Appears!
 	song mus_t_battle, 0, 0         @ Opening Movie: Double Battles
 	song mus_ooame, 0, 0            @ Heavy Rain
 	song mus_hideri, 0, 0           @ The Drought

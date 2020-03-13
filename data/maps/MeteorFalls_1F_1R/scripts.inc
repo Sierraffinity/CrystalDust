@@ -15,7 +15,7 @@ MeteorFalls_1F_1R_EventScript_OpenStevensCave:: @ 822BD3A
 
 MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	lockall
-	playbgm MUS_MGM0, 0
+	playbgm MUS_OAKSLAB, 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0
 	delay 30
