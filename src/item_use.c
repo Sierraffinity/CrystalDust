@@ -149,15 +149,15 @@ static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyIte
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, 1, gStringVar4, BagMenu_InitListsMenu);
         else
-            DisplayItemMessageInBattlePyramid(taskId, gText_DadsAdvice, Task_CloseBattlePyramidBagMessage);
+            DisplayItemMessageInBattlePyramid(taskId, gText_OaksAdvice, Task_CloseBattlePyramidBagMessage);
     }
     else
         DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
 }
 
-static void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
+static void DisplayOaksAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
 {
-    DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_DadsAdvice);
+    DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_OaksAdvice);
 }
 
 static void DisplayCannotDismountBikeMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
@@ -215,7 +215,7 @@ void ItemUseOutOfBattle_Bike(u8 taskId)
             SetUpItemUseOnFieldCallback(taskId);
         }
         else
-            DisplayDadsAdviceCannotUseItemMessage(taskId, tUsingRegisteredKeyItem);
+            DisplayOaksAdviceCannotUseItemMessage(taskId, tUsingRegisteredKeyItem);
     }
 }
 
@@ -268,7 +268,7 @@ void ItemUseOutOfBattle_Rod(u8 taskId)
         SetUpItemUseOnFieldCallback(taskId);
     }
     else
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayOaksAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
 static void ItemUseOnFieldCB_Rod(u8 taskId)
@@ -614,7 +614,7 @@ void ItemUseOutOfBattle_PokeblockCase(u8 taskId)
 {
     if (sub_81221AC() == TRUE) // link func
     {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayOaksAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }
     else if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
     {
@@ -711,7 +711,7 @@ void ItemUseOutOfBattle_WailmerPail(u8 taskId)
     }
     else
     {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayOaksAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }
 }
 
@@ -934,7 +934,7 @@ void ItemUseOutOfBattle_EscapeRope(u8 taskId)
     }
     else
     {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayOaksAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }
 }
 
@@ -1052,7 +1052,7 @@ void ItemUseInBattle_Escape(u8 taskId)
     }
     else
     {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayOaksAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }
 }
 
@@ -1129,7 +1129,7 @@ void ItemUseInBattle_EnigmaBerry(u8 taskId)
 
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
-    DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    DisplayOaksAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
 #undef tUsingRegisteredKeyItem
