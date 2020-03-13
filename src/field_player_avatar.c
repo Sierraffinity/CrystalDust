@@ -136,10 +136,6 @@ static u8 Fishing9(struct Task *task);
 static u8 Fishing10(struct Task *task);
 static u8 Fishing11(struct Task *task);
 static u8 Fishing12(struct Task *task);
-static u8 Fishing13(struct Task *task);
-static u8 Fishing14(struct Task *task);
-static u8 Fishing15(struct Task *task);
-static u8 Fishing16(struct Task *task);
 static void AlignFishingAnimationFrames(void);
 
 static u8 sub_808D38C(struct ObjectEvent *object, s16 *a1);
@@ -1714,10 +1710,6 @@ static bool8 (*const sFishingStateFuncs[])(struct Task *) =
     Fishing10,
     Fishing11,
     Fishing12,
-    Fishing13,
-    Fishing14,
-    Fishing15,
-    Fishing16,
 };
 
 #define tStep              data[0]
@@ -1730,11 +1722,10 @@ static bool8 (*const sFishingStateFuncs[])(struct Task *) =
 #define tFishingRod        data[15]
 
 #define FISHING_START_ROUND 3
-#define FISHING_GOT_BITE 6
-#define FISHING_ON_HOOK 9
-#define FISHING_NO_BITE 11
-#define FISHING_GOT_AWAY 12
-#define FISHING_SHOW_RESULT 13
+#define FISHING_ON_HOOK 6
+#define FISHING_NO_BITE 8
+#define FISHING_GOT_AWAY 8
+#define FISHING_SHOW_RESULT 9
 
 void StartFishing(u8 rod)
 {
@@ -1810,34 +1801,23 @@ static bool8 Fishing5(struct Task *task)
     const u8 dot[] = _("·");
 
     AlignFishingAnimationFrames();
-    task->tFrameCounter++;
-    if (gMain.newKeys & A_BUTTON)
+    if (++task->tFrameCounter >= 20)
     {
-        task->tStep = FISHING_NO_BITE;
-        if (task->tRoundsPlayed != 0)
-            task->tStep = FISHING_GOT_AWAY;
-        return TRUE;
-    }
-    else
-    {
-        if (task->tFrameCounter >= 20)
+        task->tFrameCounter = 0;
+        if (task->tNumDots >= task->tDotsRequired)
         {
-            task->tFrameCounter = 0;
-            if (task->tNumDots >= task->tDotsRequired)
-            {
+            task->tStep++;
+            if (task->tRoundsPlayed != 0)
                 task->tStep++;
-                if (task->tRoundsPlayed != 0)
-                    task->tStep++;
-                task->tRoundsPlayed++;
-            }
-            else
-            {
-                AddTextPrinterParameterized(0, 1, dot, task->tNumDots * 8, 1, 0, NULL);
-                task->tNumDots++;
-            }
+            task->tRoundsPlayed++;
         }
-        return FALSE;
+        else
+        {
+            AddTextPrinterParameterized(0, 1, dot, task->tNumDots * 8, 1, 0, NULL);
+            task->tNumDots++;
+        }
     }
+    return FALSE;
 }
 
 // Determine if fish bites
@@ -1846,7 +1826,7 @@ static bool8 Fishing6(struct Task *task)
     bool8 bite;
 
     AlignFishingAnimationFrames();
-    task->tStep++;
+    task->tStep = FISHING_ON_HOOK;
     bite = FALSE;
 
     if (!DoesCurrentMapHaveFishingMons())
@@ -1887,58 +1867,7 @@ static bool8 Fishing6(struct Task *task)
     return TRUE;
 }
 
-// Oh! A Bite!
 static bool8 Fishing7(struct Task *task)
-{
-    AlignFishingAnimationFrames();
-    AddTextPrinterParameterized(0, 1, gText_OhABite, 0, 17, 0, NULL);
-    task->tStep++;
-    task->tFrameCounter = 0;
-    return FALSE;
-}
-
-// We have a bite. Now, wait for the player to press A, or the timer to expire.
-static bool8 Fishing8(struct Task *task)
-{
-    const s16 reelTimeouts[3] = {36, 33, 30};
-
-    AlignFishingAnimationFrames();
-    task->tFrameCounter++;
-    if (task->tFrameCounter >= reelTimeouts[task->tFishingRod])
-        task->tStep = FISHING_GOT_AWAY;
-    else if (gMain.newKeys & A_BUTTON)
-        task->tStep++;
-    return FALSE;
-}
-
-// Determine if we're going to play the dot game again
-static bool8 Fishing9(struct Task *task)
-{
-    const s16 arr[][2] =
-    {
-        {0, 0},
-        {40, 10},
-        {70, 30}
-    };
-
-    AlignFishingAnimationFrames();
-    task->tStep++;
-    if (task->tRoundsPlayed < task->tMinRoundsRequired)
-    {
-        task->tStep = FISHING_START_ROUND;
-    }
-    else if (task->tRoundsPlayed < 2)
-    {
-        // probability of having to play another round
-        s16 probability = Random() % 100;
-
-        if (arr[task->tFishingRod][task->tRoundsPlayed] > probability)
-            task->tStep = FISHING_START_ROUND;
-    }
-    return FALSE;
-}
-
-static bool8 Fishing10(struct Task *task)
 {
     AlignFishingAnimationFrames();
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
@@ -1948,7 +1877,7 @@ static bool8 Fishing10(struct Task *task)
     return FALSE;
 }
 
-static bool8 Fishing11(struct Task *task)
+static bool8 Fishing8(struct Task *task)
 {
     if (task->tFrameCounter == 0)
         AlignFishingAnimationFrames();
@@ -1985,7 +1914,7 @@ static bool8 Fishing11(struct Task *task)
 }
 
 // Not even a nibble
-static bool8 Fishing12(struct Task *task)
+static bool8 Fishing9(struct Task *task)
 {
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
@@ -1995,26 +1924,15 @@ static bool8 Fishing12(struct Task *task)
     return TRUE;
 }
 
-// It got away
-static bool8 Fishing13(struct Task *task)
-{
-    AlignFishingAnimationFrames();
-    StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
-    FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized2(0, 1, gText_ItGotAway, 1, 0, 2, 1, 3);
-    task->tStep++;
-    return TRUE;
-}
-
 // Wait one second
-static bool8 Fishing14(struct Task *task)
+static bool8 Fishing10(struct Task *task)
 {
     AlignFishingAnimationFrames();
     task->tStep++;
     return FALSE;
 }
 
-static bool8 Fishing15(struct Task *task)
+static bool8 Fishing11(struct Task *task)
 {
     AlignFishingAnimationFrames();
     if (gSprites[gPlayerAvatar.spriteId].animEnded)
@@ -2032,7 +1950,7 @@ static bool8 Fishing15(struct Task *task)
     return FALSE;
 }
 
-static bool8 Fishing16(struct Task *task)
+static bool8 Fishing12(struct Task *task)
 {
     RunTextPrinters();
     if (!IsTextPrinterActive(0))
