@@ -221,7 +221,7 @@ static const struct ListMenuTemplate sPhoneCardListMenuTemplate =
     .fillValue = 0,
     .cursorShadowPal = 3,
     .lettersSpacing = 1,
-    .itemVerticalPadding = 0,
+    .itemVerticalPadding = 2,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
     .fontId = 1,
     .cursorKind = 0
@@ -467,6 +467,7 @@ static const union AnimCmd *const sSpriteAnimTable_Icons[] =
 static const struct OamData sOamData_Icons =
 {
     .size = 2,
+    .priority = 1
 };
 
 const struct SpriteTemplate sSpriteTemplate_Icons = {
@@ -964,7 +965,7 @@ static void LoadClockCard(void)
     DrawStdFrameWithCustomTileAndPalette(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PutWindowTilemap(WIN_TOP);
     //PutWindowTilemap(WIN_BOTTOM);
-    AddTextPrinterParameterized(WIN_DIALOG, 1, gText_PokegearInstructions, 0, 1, 0, NULL);
+    AddTextPrinterParameterized2(WIN_DIALOG, 1, gText_PokegearInstructions, 0, NULL, 2, 1, 3);
     AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
     //AddTextPrinterParameterized3(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
     schedule_bg_copy_tilemap_to_vram(0);
@@ -1199,7 +1200,7 @@ static void LoadPhoneCard(void)
 static void DisplayPhoneCardDefaultText(void)
 {
     DrawStdFrameWithCustomTileAndPalette(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
-    AddTextPrinterParameterized(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL);
+    AddTextPrinterParameterized5(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL, 1, 1);
     schedule_bg_copy_tilemap_to_vram(0);
 }
 
@@ -1346,7 +1347,7 @@ void InitPokegearPhoneCall(u8 taskId)
         CopyBgTilemapBufferToVram(0);
         //gPhoneCallSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
         PlaySE(SE_TOREEYE);
-        AddTextPrinterParameterized(gPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 2, 1, 4, NULL);
+        AddTextPrinterParameterized5(gPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 2, 1, 4, NULL, 1, 2);
         gTasks[taskId].tPhoneCallInitState = 2;
         break;
     case 2:
@@ -1372,7 +1373,7 @@ void InitPokegearPhoneCall(u8 taskId)
             if (str != NULL)
             {
                 StringExpandPlaceholders(gStringVar4, str);
-                AddTextPrinterParameterized(gPhoneCallWindowId, 1, gStringVar4, 2, 1, GetPlayerTextSpeedDelay(), NULL);
+                AddTextPrinterParameterized5(gPhoneCallWindowId, 1, gStringVar4, 2, 1, GetPlayerTextSpeedDelay(), NULL, 1, 1);
                 gTasks[taskId].tPhoneCallInitState = 3;
             }
             else

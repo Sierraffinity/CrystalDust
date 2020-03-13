@@ -196,7 +196,7 @@ static void AddPhoneTextPrinter(struct ScriptContext *ctx, u8 *str)
     switch (ctx->data[0])
     {
     case PHONE_SCRIPT_POKEGEAR:
-        AddTextPrinterParameterized(gPhoneCallWindowId, 1, str, 2, 1, GetPlayerTextSpeedDelay(), NULL);
+        AddTextPrinterParameterized5(gPhoneCallWindowId, 1, str, 2, 1, GetPlayerTextSpeedDelay(), NULL, 1, 1);
         SetupNativeScript(ctx, IsPokegearPhoneMessageFinished);
         break;
     case PHONE_SCRIPT_OVERWORLD:
