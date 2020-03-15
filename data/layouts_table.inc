@@ -119,8 +119,8 @@ gMapLayouts::
 	.4byte Route30_MrPokemonsHouse_Layout
 	.4byte CableCarStation_Layout
 	.4byte Route32_PokemonCenter_2F_Layout
-	.4byte Route114_FossilManiacsTunnel_Layout
-	.4byte Route114_LanettesHouse_Layout
+	.4byte Route34_IlexEastGatehouse_Layout
+	.4byte Route34_IlexNorthGatehouse_Layout
 	.4byte Route116_TunnelersRestHouse_Layout
 	.4byte Route117_PokemonDayCare_Layout
 	.4byte Route36_RuinsOfAlphGatehouse_Layout
