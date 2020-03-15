@@ -1074,7 +1074,10 @@ u16 GetMapWildMonFromIndex(u8 mapGroup, u8 mapNum, u8 index)
 
 	if (i != 0xFFFF)
 	{
-		i = gWildMonHeaders[i].landMonsInfo->wildPokemon[timeOfDay][index].species;
+        if (gWildMonHeaders[i].landMonsInfo)
+		    i = gWildMonHeaders[i].landMonsInfo->wildPokemon[timeOfDay][index].species;
+        else
+            i = 0;
 	}
 
 	return i;

@@ -572,7 +572,7 @@ void Task_PlayRadioShow(u8 taskId)
         break;
     case PKMN_CHANNEL_INTERLUDE_2:
         FillWindowPixelBuffer(tWindowId, 0x11);
-        AddTextPrinterParameterized(tWindowId, 1, gText_PokemonChannel1, 0, 1, 0, NULL);
+        AddTextPrinterParameterized5(tWindowId, 1, gText_PokemonChannel1, 0, 1, 0, NULL, 1, 1);
         PlayFanfare(MUS_ME_TAMA);
         tCurrentLine = PKMN_CHANNEL_INTERLUDE_3;
         break;
@@ -580,8 +580,9 @@ void Task_PlayRadioShow(u8 taskId)
         if (IsFanfareTaskInactive())
         {
             FillWindowPixelBuffer(tWindowId, 0x11);
-            tCurrentLine = OAKS_POKEMON_TALK;
+            tCurrentLine = OAKS_POKEMON_TALK_4;
             tNumLinesPrinted = 0;
+            PlayNewMapMusic(sRadioChannelSongs[OAKS_POKEMON_TALK]);
         }
         break;
     case BUENAS_PASSWORD_2:
