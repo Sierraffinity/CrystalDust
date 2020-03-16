@@ -1,0 +1,37 @@
+mapscripts AzaleaTown_KurtsHouse_MapScripts {
+    
+}
+
+script AzaleaTown_KurtsHouse_EventScript_Kurt {
+    lock
+    faceplayer
+    msgbox("Hi! I'm KURT.")
+    release
+}
+
+script AzaleaTown_KurtsHouse_EventScript_KurtsGranddaughter {
+    lock
+    faceplayer
+    msgbox("Hi! I'm not KURT.")
+    release
+}
+
+script AzaleaTown_KurtsHouse_EventScript_OakPhoto {
+    msgbox("…A young PROF. OAK?", MSGBOX_SIGN)
+}
+
+script AzaleaTown_KurtsHouse_EventScript_CelebiStatue {
+    msgbox("It's a statue of the forest's\n"
+           "protector.", MSGBOX_SIGN)
+}
+
+script AzaleaTown_KurtsHouse_EventScript_Slowpoke {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_SLOWPOKE, 0)
+    msgbox("SLOWPOKE: …\n"
+           "Yawn?")
+    waitmoncry
+    release
+}

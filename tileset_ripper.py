@@ -17,7 +17,7 @@ def create_image(path, data, is_compressed):
         f.write(data)
     if is_compressed:
         gbagfx([filename + ".4bpp.lz", filename + ".4bpp"])
-    gbagfx([filename + ".4bpp", filename + ".png", "-width", "16", "-palette", os.sep.join([path, "palettes/05.gbapal"])])
+    gbagfx([filename + ".4bpp", filename + ".png", "-width", "16", "-palette", os.sep.join([path, "palettes/08.gbapal"])])
 
 def create_pals(path, data):
     subdir = os.sep.join([path, 'palettes'])

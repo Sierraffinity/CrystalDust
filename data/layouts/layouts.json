@@ -651,13 +651,13 @@
             "width": 18
         },
         {
-            "blockdata_filepath": "data/layouts/DewfordTown_Hall/map.bin",
-            "border_filepath": "data/layouts/DewfordTown_Hall/border.bin",
-            "height": 9,
-            "id": "LAYOUT_DEWFORD_TOWN_HALL",
-            "name": "DewfordTown_Mart_Layout",
+            "blockdata_filepath": "data/layouts/AzaleaTown_KurtsHouse/map.bin",
+            "border_filepath": "data/layouts/AzaleaTown_KurtsHouse/border.bin",
+            "height": 10,
+            "id": "LAYOUT_AZALEA_TOWN_KURTS_HOUSE",
+            "name": "AzaleaTown_KurtsHouse_Layout",
             "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
+            "secondary_tileset": "gTileset_BikeShop",
             "width": 17
         },
         {

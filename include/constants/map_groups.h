@@ -76,12 +76,12 @@
 #define MAP_CHERRYGROVE_CITY_HOUSE2            (5 | (2 << 8))
 
 // Map Group 3
-#define MAP_AZALEA_TOWN_HOUSE1            (0 | (3 << 8))
+#define MAP_AZALEA_TOWN_KURTS_HOUSE       (0 | (3 << 8))
 #define MAP_AZALEA_TOWN_POKEMON_CENTER_1F (1 | (3 << 8))
 #define MAP_AZALEA_TOWN_POKEMON_CENTER_2F (2 | (3 << 8))
 #define MAP_AZALEA_TOWN_GYM               (3 | (3 << 8))
 #define MAP_AZALEA_TOWN_MART              (4 | (3 << 8))
-#define MAP_AZALEA_TOWN_HOUSE2            (5 | (3 << 8))
+#define MAP_AZALEA_TOWN_CHARCOAL_KILN     (5 | (3 << 8))
 
 // Map Group 4
 #define MAP_LAVARIDGE_TOWN_HERB_SHOP         (0 | (4 << 8))

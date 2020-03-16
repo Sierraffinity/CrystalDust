@@ -143,7 +143,7 @@
 #define FLAG_RECEIVED_TM05_ROAR              0x81
 #define FLAG_RECEIVED_OLD_ROD                0x82
 #define FLAG_CLEARED_SLOWPOKE_WELL           0x83
-#define FLAG_RECEIVED_POTION_OLDALE          0x84
+#define FLAG_RECEIVED_CHARCOAL_AZALEA        0x84
 #define FLAG_RECEIVED_AMULET_COIN            0x85
 #define FLAG_PENDING_DAYCARE_EGG             0x86
 #define FLAG_THANKED_FOR_PLAYING_WITH_WALLY  0x87
@@ -780,9 +780,9 @@
 #define FLAG_HIDE_AZALEA_TOWN_RIVAL                                 0x2E9
 #define FLAG_HIDE_AZALEA_TOWN_SLOWPOKE_WELL_GUARD                   0x2EA
 #define FLAG_HIDE_SLOWPOKE_WELL_ROCKETS                             0x2EB
-#define FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER                0x2EC
-#define FLAG_HIDE_SLATEPORT_CITY_SCOTT                              0x2ED
-#define FLAG_HIDE_ROUTE_29_ZIGZAGOON                                0x2EE
+#define FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_MASTER                  0x2EC
+#define FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_APPRENTICE_FARFETCHD    0x2ED
+#define FLAG_HIDE_AZALEA_TOWN_KURTS_HOUSE_KURT                      0x2EE
 #define FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY                           0x2EF
 #define FLAG_HIDE_NEW_BARK_TOWN_MOM_OUTSIDE                         0x2F0
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN              0x2F1

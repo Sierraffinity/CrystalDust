@@ -1043,6 +1043,18 @@ static void RegionMap_InitializeStateBasedOnPlayerLocation(void)
                     RegionMap_InitializeStateBasedOnPlayerLocation_();
                 }
                 break;
+            case MAPSEC_ROUTE_34:
+                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE34_ILEX_EAST_GATEHOUSE) &&
+                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE34_ILEX_EAST_GATEHOUSE))
+                {
+                    gRegionMap->cursorPosX = 8;
+                    gRegionMap->cursorPosY = 13;
+                }
+                else
+                {
+                    RegionMap_InitializeStateBasedOnPlayerLocation_();
+                }
+                break;
             case MAPSEC_ROUTE_36:
                 if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE36_RUINS_OF_ALPH_GATEHOUSE) &&
                     gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE36_RUINS_OF_ALPH_GATEHOUSE))

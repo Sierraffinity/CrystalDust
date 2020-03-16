@@ -47,7 +47,13 @@ EventScript_Blueprint:: @ 8272604
 	end
 
 EventScript_Radio1::
-	setvar VAR_0x8004, 0
+	setvar VAR_0x8004, STATION_POKEMON_CHANNEL
+	special FieldRadio
+	waitstate
+	end
+
+EventScript_Radio2::
+	setvar VAR_0x8004, STATION_LUCKY_CHANNEL
 	special FieldRadio
 	waitstate
 	end

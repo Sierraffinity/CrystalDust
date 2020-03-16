@@ -74,29 +74,7 @@
 #define METATILE_BattleTent_Door  0x26B
 
 // gTileset_BikeShop
-#define METATILE_BikeShop_Barrier_Blue_Bottom      0x2CF
-#define METATILE_BikeShop_Barrier_Blue_BottomMid   0x2C7
-#define METATILE_BikeShop_Barrier_Blue_Top         0x2B7
-#define METATILE_BikeShop_Barrier_Blue_TopMid      0x2BF
-#define METATILE_BikeShop_Barrier_Green_Bottom     0x2CE
-#define METATILE_BikeShop_Barrier_Green_BottomMid  0x2C6
-#define METATILE_BikeShop_Barrier_Green_Top        0x2B6
-#define METATILE_BikeShop_Barrier_Green_TopMid     0x2BE
-#define METATILE_BikeShop_Barrier_Hidden_Bottom    0x271
-#define METATILE_BikeShop_Barrier_Hidden_Top       0x269
-#define METATILE_BikeShop_Button_Blue              0x236
-#define METATILE_BikeShop_Button_Green             0x22E
-#define METATILE_BikeShop_Button_Pressed           0x24F
-#define METATILE_BikeShop_Floor_Shadow_Top         0x26D
-#define METATILE_BikeShop_Generator_Off_Tile0      0x2F0
-#define METATILE_BikeShop_Generator_Off_Tile1      0x2F1
-#define METATILE_BikeShop_Generator_Off_Tile2      0x2F2
-#define METATILE_BikeShop_Generator_Off_Tile3      0x2F3
-#define METATILE_BikeShop_Generator_Off_Tile4      0x2F4
-#define METATILE_BikeShop_Generator_Off_Tile5      0x2F5
-#define METATILE_BikeShop_Generator_Off_Tile6      0x2F6
-#define METATILE_BikeShop_Generator_Off_Tile7      0x2F7
-#define METATILE_BikeShop_Wall_Edge_Top            0x281
+#define METATILE_BikeShop_Wall_Edge_Top  0x281
 
 // gTileset_BrendansMaysHouse
 #define METATILE_BrendansMaysHouse_BookOnTable   0x293

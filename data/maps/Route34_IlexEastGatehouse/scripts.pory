@@ -1,0 +1,12 @@
+mapscripts Route34_IlexEastGatehouse_MapScripts { }
+
+script Route34_IlexEastGatehouse_EventScript_Officer {
+    msgbox("ILEX FOREST is big. Be careful!\n"
+           "Don't get lost.", MSGBOX_NPC)
+}
+
+script Route34_IlexEastGatehouse_EventScript_OldWoman {
+    msgbox("The FOREST is watched over by\n"
+           "its protector.\l"
+           "Stay out of mischief!", MSGBOX_NPC)
+}

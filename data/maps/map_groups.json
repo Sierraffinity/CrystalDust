@@ -505,12 +505,12 @@
         "Route110_SeasideCyclingRoadSouthEntrance"
     ],
     "gMapGroup3": [
-        "AzaleaTown_House1",
+        "AzaleaTown_KurtsHouse",
         "AzaleaTown_PokemonCenter_1F",
         "AzaleaTown_PokemonCenter_2F",
         "AzaleaTown_Gym",
         "AzaleaTown_Mart",
-        "AzaleaTown_House2"
+        "AzaleaTown_CharcoalKiln"
     ],
     "gMapGroup30": [
         "Route113_GlassWorkshop"

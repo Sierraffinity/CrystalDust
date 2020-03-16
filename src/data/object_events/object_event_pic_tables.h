@@ -925,28 +925,28 @@ const struct SpriteFrameImage gObjectEventPicTable_Truck[] = {
     obj_frame_tiles(gObjectEventPic_Truck),
 };
 
-const struct SpriteFrameImage gObjectEventPicTable_VigorothCarryingBox[] = {
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 0),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 0),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 0),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 1),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 2),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 1),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 2),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 1),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 2),
+const struct SpriteFrameImage gObjectEventPicTable_Farfetchd[] = {
+    overworld_frame(gObjectEventPic_Farfetchd, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Farfetchd, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Farfetchd, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Farfetchd, 2, 2, 3),
+    overworld_frame(gObjectEventPic_Farfetchd, 2, 2, 4),
+    overworld_frame(gObjectEventPic_Farfetchd, 2, 2, 5),
+    overworld_frame(gObjectEventPic_Farfetchd, 2, 2, 6),
+    overworld_frame(gObjectEventPic_Farfetchd, 2, 2, 7),
+    overworld_frame(gObjectEventPic_Farfetchd, 2, 2, 8),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_VigorothFacingAway[] = {
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 3),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 3),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 3),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 4),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 4),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 4),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 4),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 4),
-    overworld_frame(gObjectEventPic_Vigoroth, 4, 4, 4),
+    overworld_frame(gObjectEventPic_Farfetchd, 4, 4, 3),
+    overworld_frame(gObjectEventPic_Farfetchd, 4, 4, 3),
+    overworld_frame(gObjectEventPic_Farfetchd, 4, 4, 3),
+    overworld_frame(gObjectEventPic_Farfetchd, 4, 4, 4),
+    overworld_frame(gObjectEventPic_Farfetchd, 4, 4, 4),
+    overworld_frame(gObjectEventPic_Farfetchd, 4, 4, 4),
+    overworld_frame(gObjectEventPic_Farfetchd, 4, 4, 4),
+    overworld_frame(gObjectEventPic_Farfetchd, 4, 4, 4),
+    overworld_frame(gObjectEventPic_Farfetchd, 4, 4, 4),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_BirchsBag[] = {

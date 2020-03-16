@@ -82,7 +82,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER"
+      "flag": "FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_MASTER"
     }
   ],
   "warp_events": [
