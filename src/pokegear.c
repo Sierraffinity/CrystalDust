@@ -76,6 +76,7 @@ static EWRAM_DATA struct {
     u8 currentCard;
     bool8 canSwitchCards;
     bool8 twentyFourHourMode;
+    u8 fakeSeconds;
     u8 currentRadioStation;
     bool8 exiting;
 } sPokegearStruct = {0};
@@ -650,6 +651,7 @@ static void Task_Pokegear1(u8 taskId)
     {
         sPokegearStruct.canSwitchCards = FALSE;
         sPokegearStruct.twentyFourHourMode = FlagGet(FLAG_SYS_POKEGEAR_24HR);
+        sPokegearStruct.fakeSeconds = Random() & 0xFF; // don't always start fully on
         InitPhoneCardData();
         gTasks[taskId].tCurrentPos = CARD_SLIDE_RIGHT_X;
         gTasks[taskId].func = Task_Pokegear1_1;
@@ -792,6 +794,11 @@ static u8 ChangeCardWithDelta(s8 delta, u8 oldCard)
 
 static void Task_Pokegear3(u8 taskId)
 {
+    if (++sPokegearStruct.fakeSeconds >= 60)
+    {
+        sPokegearStruct.fakeSeconds = 0;
+    }
+
     if (sPokegearStruct.canSwitchCards)
     {
         u8 newCard = sPokegearStruct.currentCard;
@@ -979,6 +986,7 @@ static void LoadClockCard(void)
     {
         spriteId = CreateSprite(&sSpriteTemplate_Digits, clockX[i], 84, 0);
         gSprites[spriteId].tPosition = i;
+        gSprites[spriteId].tStoredVal = -1; // causes intialization
         gSprites[spriteId].callback = SpriteCB_ClockDigits;
         gTasks[newTask].data[i + 1] = spriteId;
     }
@@ -986,6 +994,8 @@ static void LoadClockCard(void)
 
 static void Task_ClockCard(u8 taskId)
 {
+    int i;
+
     RtcCalcLocalTime();
     if (gMain.newKeys & SELECT_BUTTON)
     {
@@ -995,9 +1005,15 @@ static void Task_ClockCard(u8 taskId)
             FlagSet(FLAG_SYS_POKEGEAR_24HR);
         else
             FlagClear(FLAG_SYS_POKEGEAR_24HR);
+
+        for (i = 0; i < 6; i++)
+        {
+            gSprites[gTasks[taskId].data[i + 1]].tStoredVal = -1; // queue sprites for immediate changeover
+        }
     }
 
-    if (gTasks[taskId].tDayOfWeek != gLocalTime.dayOfWeek)
+    // only change day of week on fakeSeconds boundary
+    if (sPokegearStruct.fakeSeconds == 0 && gTasks[taskId].tDayOfWeek != gLocalTime.dayOfWeek)
     {
         const u8 *dayOfWeek = GetDayOfWeekString(gLocalTime.dayOfWeek);
         gTasks[taskId].tDayOfWeek = gLocalTime.dayOfWeek;
@@ -1008,57 +1024,65 @@ static void Task_ClockCard(u8 taskId)
 
 static void SpriteCB_ClockDigits(struct Sprite* sprite)
 {
-    u8 value;
+    u8 value = sprite->tStoredVal;
 
-    switch (sprite->tPosition)
+    if (sprite->tStoredVal == -1 || sPokegearStruct.fakeSeconds == 0)
     {
-        case 0:
-            value = gLocalTime.hours;
-            if (!sPokegearStruct.twentyFourHourMode)
-            {
-                if (value > 12)
-                    value -= 12;
-                else if (value == 0)
-                    value = 12;
-            }
-            value = value / 10;
-            if (value != 0)
-                value += 1;
-            break;
-        case 1:
-            value = gLocalTime.hours;
-            if (!sPokegearStruct.twentyFourHourMode)
-            {
-                if (value > 12)
-                    value -= 12;
-                else if (value == 0)
-                    value = 12;
-            }
-            value = value % 10 + 1;
-            break;
-        case 2:
-            if (gLocalTime.seconds & 1)
-                value = 11;
-            else
-                value = 12;
-            break;
-        case 3:
-            value = gLocalTime.minutes / 10 + 1;
-            break;
-        case 4:
-            value = gLocalTime.minutes % 10 + 1;
-            break;
-        case 5:
-            if (sPokegearStruct.twentyFourHourMode)
-                value = 13;
-            else if (gLocalTime.hours < 12)
-                value = 14;
-            else
-                value = 15;
-            break;
-        default:
-            value = 0;
-            break;
+        switch (sprite->tPosition)
+        {
+            case 0:
+                value = gLocalTime.hours;
+                if (!sPokegearStruct.twentyFourHourMode)
+                {
+                    if (value > 12)
+                        value -= 12;
+                    else if (value == 0)
+                        value = 12;
+                }
+                value = value / 10;
+                if (value != 0)
+                    value += 1;
+                break;
+            case 1:
+                value = gLocalTime.hours;
+                if (!sPokegearStruct.twentyFourHourMode)
+                {
+                    if (value > 12)
+                        value -= 12;
+                    else if (value == 0)
+                        value = 12;
+                }
+                value = value % 10 + 1;
+                break;
+            case 2:
+                // handled outside of switch
+                break;
+            case 3:
+                value = gLocalTime.minutes / 10 + 1;
+                break;
+            case 4:
+                value = gLocalTime.minutes % 10 + 1;
+                break;
+            case 5:
+                if (sPokegearStruct.twentyFourHourMode)
+                    value = 13;
+                else if (gLocalTime.hours < 12)
+                    value = 14;
+                else
+                    value = 15;
+                break;
+            default:
+                value = 0;
+                break;
+        }
+    }
+
+    if (sprite->tPosition == 2)
+    {
+        if (sPokegearStruct.fakeSeconds < 30)
+            value = 12;
+        else
+            value = 11;
     }
 
     if (sprite->tStoredVal != value)
