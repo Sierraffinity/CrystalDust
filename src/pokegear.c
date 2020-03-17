@@ -79,6 +79,7 @@ static EWRAM_DATA struct {
     u8 fakeSeconds;
     u8 currentRadioStation;
     bool8 exiting;
+    struct Time cachedTime;
 } sPokegearStruct = {0};
 
 void CB2_InitPokegear(void);
@@ -652,6 +653,7 @@ static void Task_Pokegear1(u8 taskId)
         sPokegearStruct.canSwitchCards = FALSE;
         sPokegearStruct.twentyFourHourMode = FlagGet(FLAG_SYS_POKEGEAR_24HR);
         sPokegearStruct.fakeSeconds = Random() & 0xFF; // don't always start fully on
+        sPokegearStruct.cachedTime = gLocalTime; // initialize cached time
         InitPhoneCardData();
         gTasks[taskId].tCurrentPos = CARD_SLIDE_RIGHT_X;
         gTasks[taskId].func = Task_Pokegear1_1;
@@ -955,6 +957,7 @@ static void Task_ExitPokegear2(u8 taskId)
 }
 
 #define tDayOfWeek data[0]
+#define tDigitSpriteIds(n) data[n + 1]
 
 #define tPosition data[0]
 #define tStoredVal data[1]
@@ -988,15 +991,28 @@ static void LoadClockCard(void)
         gSprites[spriteId].tPosition = i;
         gSprites[spriteId].tStoredVal = -1; // causes intialization
         gSprites[spriteId].callback = SpriteCB_ClockDigits;
-        gTasks[newTask].data[i + 1] = spriteId;
+        gTasks[newTask].tDigitSpriteIds(i) = spriteId;
     }
 }
 
 static void Task_ClockCard(u8 taskId)
 {
     int i;
+    bool8 shouldForceUpdate = FALSE;
 
     RtcCalcLocalTime();
+
+    // if emulator paused on Pokégear main menu, force update
+    // don't check seconds because that just leads back to mistimed blinks again
+    // also we don't even display seconds anyway
+    if (sPokegearStruct.cachedTime.minutes != gLocalTime.minutes ||
+        sPokegearStruct.cachedTime.hours != gLocalTime.hours ||
+        sPokegearStruct.cachedTime.days != gLocalTime.days)
+    {
+        sPokegearStruct.cachedTime = gLocalTime;
+        shouldForceUpdate = TRUE;
+    }
+
     if (gMain.newKeys & SELECT_BUTTON)
     {
         PlaySE(SE_SELECT);
@@ -1006,19 +1022,24 @@ static void Task_ClockCard(u8 taskId)
         else
             FlagClear(FLAG_SYS_POKEGEAR_24HR);
 
-        for (i = 0; i < 6; i++)
-        {
-            gSprites[gTasks[taskId].data[i + 1]].tStoredVal = -1; // queue sprites for immediate changeover
-        }
+        shouldForceUpdate = TRUE;
     }
 
-    // only change day of week on fakeSeconds boundary
-    if (sPokegearStruct.fakeSeconds == 0 && gTasks[taskId].tDayOfWeek != gLocalTime.dayOfWeek)
+    // only change day of week when clock gets an update
+    if ((shouldForceUpdate || sPokegearStruct.fakeSeconds == 0) && gTasks[taskId].tDayOfWeek != gLocalTime.dayOfWeek)
     {
         const u8 *dayOfWeek = GetDayOfWeekString(gLocalTime.dayOfWeek);
         gTasks[taskId].tDayOfWeek = gLocalTime.dayOfWeek;
         FillWindowPixelBuffer(WIN_TOP, 0);
         AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
+    }
+    
+    if (shouldForceUpdate)
+    {
+        for (i = 0; i < 6; i++)
+        {
+            gSprites[gTasks[taskId].tDigitSpriteIds(i)].tStoredVal = -1; // queue sprites for immediate changeover
+        }
     }
 }
 
