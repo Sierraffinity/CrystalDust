@@ -138,7 +138,7 @@ static void FieldUpdateRegionMap(void)
     switch (sFieldRegionMapHandler->state)
     {
         case 0:
-            InitRegionMap(&sFieldRegionMapHandler->regionMap, 0);
+            InitRegionMap(&sFieldRegionMapHandler->regionMap, MAPMODE_FIELD, 0);
             CreateRegionMapPlayerIcon(0, 0);
             CreateRegionMapCursor(1, 1, TRUE);
             CreateSecondaryLayerDots(2, 2);

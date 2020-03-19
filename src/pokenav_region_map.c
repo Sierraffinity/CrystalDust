@@ -310,7 +310,7 @@ static u32 sub_81CC6F4(s32 taskState)
         SetBgMode(1);
         InitBgTemplates(gUnknown_086230D8, ARRAY_COUNT(gUnknown_086230D8) - 1);
         regionMap = GetSubstructPtr(16);
-        sub_8122CF8(regionMap, &gUnknown_086230D8[1], MAPBUTTON_NONE, 0);
+        sub_8122CF8(regionMap, &gUnknown_086230D8[1], MAPMODE_POKEGEAR, 0);
         sub_81CC9C0();
         return 0;
     case 1:

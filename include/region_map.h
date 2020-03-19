@@ -29,6 +29,13 @@ enum {
 };
 
 enum {
+    MAPPERM_CLOSE,
+    MAPPERM_SWITCH,
+    MAPPERM_LANDMARKINFO,
+    MAPPERM_FLY
+};
+
+enum {
     REGION_JOHTO,
     REGION_KANTO,
     REGION_SEVII1,
@@ -37,9 +44,9 @@ enum {
 };
 
 enum {
-    MAPBUTTON_NONE,
-    MAPBUTTON_EXIT,
-    MAPBUTTON_CHANGE
+    MAPMODE_POKEGEAR,
+    MAPMODE_FIELD,
+    MAPMODE_FLY
 };
 
 struct RegionMap {
@@ -51,7 +58,8 @@ struct RegionMap {
     u8 secondaryMapSecStatus;
     u8 posWithinMapSec;
     u8 currentRegion;
-    bool8 buttonType;
+    u8 mapMode;
+    bool8 permissions[4];
     u8 primaryMapSecName[0x14];
     u8 secondaryMapSecName[0x14];
     u8 (*inputCallback)(void);
@@ -92,8 +100,7 @@ struct RegionMap {
     bool8 bgManaged;
     s8 xOffset;
     bool8 onButton;
-    u32 alignFiller;
-    u8 cursorImage[0x100];
+    u8 __attribute__ ((aligned (4))) cursorImage[0x100];
 }; // size = 0x884
 
 struct RegionMapLocation
@@ -110,11 +117,11 @@ struct RegionMapLocation
 // Exported ROM declarations
 extern const struct RegionMapLocation gRegionMapEntries[];
 
-void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 buttonType, s8 xOffset);
+void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 mapMode, s8 xOffset);
 bool8 sub_8122DB0(bool8 shouldBuffer);
 bool8 RegionMap_InitGfx2(void);
 void UpdateRegionMapVideoRegs(void);
-void InitRegionMap(struct RegionMap *regionMap, s8 xOffset);
+void InitRegionMap(struct RegionMap *regionMap, u8 mode, s8 xOffset);
 u8 sub_81230AC(void);
 bool8 sub_8123514(void);
 void FreeRegionMapResources(void);

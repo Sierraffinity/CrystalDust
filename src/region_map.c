@@ -471,16 +471,22 @@ static const struct WindowCoords windowCoords[] = {
     },
 };
 
+static const bool8 sRegionMapPermissions[3][4] = {
+    {FALSE, TRUE , TRUE , FALSE},
+    {TRUE,  FALSE, FALSE, FALSE},
+    {TRUE,  FALSE, FALSE, TRUE }
+};
+
 // .text
 
-void InitRegionMap(struct RegionMap *regionMap, s8 xOffset)
+void InitRegionMap(struct RegionMap *regionMap, u8 mode, s8 xOffset)
 {
-    sub_8122CF8(regionMap, NULL, MAPBUTTON_EXIT, xOffset);
+    sub_8122CF8(regionMap, NULL, mode, xOffset);
     while (sub_8122DB0(gRegionMap->bgManaged));
     while (RegionMap_InitGfx2());
 }
 
-void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 buttonType, s8 xOffset)
+void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 mapMode, s8 xOffset)
 {
     u8 i;
     
@@ -488,10 +494,18 @@ void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template,
     gRegionMap->initStep = 0;
     gRegionMap->xOffset = xOffset;
     gRegionMap->currentRegion = GetCurrentRegion();
-    gRegionMap->buttonType = buttonType;
+    gRegionMap->mapMode = mapMode;
     gRegionMap->onButton = FALSE;
     gRegionMap->inputCallback = ProcessRegionMapInput_Full;
 
+    for (i = 0; i < 4; i++)
+    {
+        gRegionMap->permissions[i] = sRegionMapPermissions[gRegionMap->mapMode][i];
+    }
+
+    //TODO: Make conditional on visiting Johto once
+    gRegionMap->permissions[MAPPERM_SWITCH] = FALSE;
+    
     for (i = 0; i < sizeof(gRegionMap->spriteIds); i++)
     {
         gRegionMap->spriteIds[i] = 0xFF;
@@ -557,17 +571,17 @@ bool8 sub_8122DB0(bool8 shouldBuffer)
                 u8 x, y;
                 u16 *ptr = malloc_and_decompress(GetRegionMapTilemap(gRegionMap->currentRegion), &size);
                 
-                if (gRegionMap->buttonType == MAPBUTTON_CHANGE)
+                if (gRegionMap->permissions[MAPPERM_SWITCH])
                 {
-                    ptr[25 + 17 * 32] = 0x70F4;
+                    ptr[25 + 17 * 32] = 0x90F4;
                 }
-                else if (gRegionMap->buttonType != MAPBUTTON_EXIT)
+                else if (!gRegionMap->permissions[MAPPERM_CLOSE])
                 {
                     for (y = 16; y < 19; y++)
                     {
                         for (x = 24; x < 27; x++)
                         {
-                            ptr[x + y * 32] = 0x7096;
+                            ptr[x + y * 32] = 0x9096;
                         }
                     }
                 }
@@ -865,7 +879,7 @@ static u8 MoveRegionMapCursor_Full(void)
     {
         m4aSongNumStart(SE_Z_SCROLL);
     }
-    else if (gRegionMap->buttonType != MAPBUTTON_NONE && gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
+    else if ((gRegionMap->permissions[MAPPERM_CLOSE] || gRegionMap->permissions[MAPPERM_SWITCH]) && gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
     {
         m4aSongNumStart(SE_W255);
         inputEvent = INPUT_EVENT_ON_BUTTON;
@@ -1312,7 +1326,12 @@ static u8 get_flagnr_blue_points(u16 mapSecId)
 {
     u8 mapSecStatus = MAPSECTYPE_NONE;
 
-    if (mapSecId != MAPSEC_NONE)
+    // ensure no landmark sound on any map besides fly map
+    if (mapSecId == MAPSEC_ROUTE_32_FLYDUP && !gRegionMap->permissions[MAPPERM_FLY])
+    {
+        mapSecStatus = MAPSECTYPE_PLAIN;
+    }
+    else if (mapSecId != MAPSEC_NONE)
     {
         u16 flag = sMapSecFlags[mapSecId];
         mapSecStatus = MAPSECTYPE_PLAIN;
@@ -1856,7 +1875,7 @@ void MCB2_FlyMap(void)
             gMain.state++;
             break;
         case 4:
-            InitRegionMap(&sFlyMap->regionMap, FALSE);
+            InitRegionMap(&sFlyMap->regionMap, MAPMODE_FLY, FALSE);
             CreateRegionMapCursor(0, 0, TRUE);
             CreateRegionMapPlayerIcon(1, 1);
             CreateSecondaryLayerDots(2, 2);
