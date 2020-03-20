@@ -1601,6 +1601,7 @@ static void UpdateRadioStation(u8 taskId, u8 frequency)
     if (gTasks[taskId].tRadioShowTaskId != 0xFF)
     {
         DestroyTask(gTasks[taskId].tRadioShowTaskId);
+        gTasks[taskId].tRadioShowTaskId = 0xFF;
         ClearRadioWindows();
         PlayNewMapMusic(MUS_DUMMY);
     }
@@ -1635,7 +1636,14 @@ static void Task_RadioCard(u8 taskId)
 {
     u8 station;
     if (sPokegearStruct.exiting)
+    {
+        if (gTasks[taskId].tRadioShowTaskId != 0xFF)
+        {
+            DestroyTask(gTasks[taskId].tRadioShowTaskId);
+            gTasks[taskId].tRadioShowTaskId = 0xFF;
+        }
         return;
+    }
 
     station = sPokegearStruct.currentRadioStation;
     if (gMain.newAndRepeatedKeys & DPAD_UP)
