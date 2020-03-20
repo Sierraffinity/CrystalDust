@@ -503,7 +503,7 @@ void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template,
         gRegionMap->permissions[i] = sRegionMapPermissions[gRegionMap->mapMode][i];
     }
 
-    //TODO: Make conditional on visiting Johto once
+    //TODO: Make conditional on visiting Kanto once
     gRegionMap->permissions[MAPPERM_SWITCH] = FALSE;
     
     for (i = 0; i < sizeof(gRegionMap->spriteIds); i++)

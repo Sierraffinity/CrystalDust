@@ -2656,11 +2656,11 @@ static void InitScrollableMultichoice(void)
     gScrollableMultichoice_ListMenuTemplate.header_X = 0;
     gScrollableMultichoice_ListMenuTemplate.item_X = 8;
     gScrollableMultichoice_ListMenuTemplate.cursor_X = 0;
-    gScrollableMultichoice_ListMenuTemplate.upText_Y = 1;
+    gScrollableMultichoice_ListMenuTemplate.upText_Y = 0;
     gScrollableMultichoice_ListMenuTemplate.cursorPal = 2;
     gScrollableMultichoice_ListMenuTemplate.fillValue = 1;
     gScrollableMultichoice_ListMenuTemplate.cursorShadowPal = 3;
-    gScrollableMultichoice_ListMenuTemplate.lettersSpacing = 0;
+    gScrollableMultichoice_ListMenuTemplate.lettersSpacing = 1;
     gScrollableMultichoice_ListMenuTemplate.itemVerticalPadding = 0;
     gScrollableMultichoice_ListMenuTemplate.scrollMultiple = 0;
     gScrollableMultichoice_ListMenuTemplate.fontId = 1;

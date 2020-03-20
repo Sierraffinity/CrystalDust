@@ -59,6 +59,7 @@ void SetWindowTemplateFields(struct WindowTemplate* template, u8 priority, u8 ti
 void DrawStdFrameWithCustomTileAndPalette(u8 windowId, bool8 copyToVram, u16 tileStart, u8 palette);
 void schedule_bg_copy_tilemap_to_vram(u8 bgNum);
 void PrintMenuTable(u8 windowId, u8 itemCount, const struct MenuAction *strs);
+void MultichoiceList_PrintItems(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct MenuAction *strs, u8 letterSpacing, u8 lineSpacing);
 u8 InitMenuInUpperLeftCornerPlaySoundWhenAPressed(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 itemCount, u8 initialCursorPos);
 u8 Menu_GetCursorPos(void);
 s8 Menu_ProcessInput(void);

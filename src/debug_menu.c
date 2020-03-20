@@ -115,7 +115,7 @@ static const struct WindowTemplate sDebugMenu_Window_Main =
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 0,
-    .height = ARRAY_COUNT(sDebugMenu_MainActions) * 2,
+    .height = ARRAY_COUNT(sDebugMenu_MainActions) * 2 - 1,
     .paletteNum = 15,
     .baseBlock = 0x120
 };
@@ -192,7 +192,7 @@ static const struct WindowTemplate sDebugMenu_Window_Misc =
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 0,
-    .height = ARRAY_COUNT(sDebugMenu_MiscActions) * 2,
+    .height = ARRAY_COUNT(sDebugMenu_MiscActions) * 2 - 1,
     .paletteNum = 15,
     .baseBlock = 0x120
 };
@@ -207,8 +207,8 @@ static void InitDebugMenu(u8 taskId)
     windowTemplate.width = GetMaxWidthInMenuTable(sDebugMenu_MainActions, ARRAY_COUNT(sDebugMenu_MainActions));
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
-    PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_MainActions), sDebugMenu_MainActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, ARRAY_COUNT(sDebugMenu_MainActions), 0);
+    MultichoiceList_PrintItems(tWindowId, 1, 8, 2, 14, ARRAY_COUNT(sDebugMenu_MainActions), sDebugMenu_MainActions, 0, 2);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 14, ARRAY_COUNT(sDebugMenu_MainActions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
 }
 
@@ -539,8 +539,8 @@ static void DebugMenu_Misc(u8 taskId)
     windowTemplate.width = GetMaxWidthInMenuTable(sDebugMenu_MiscActions, ARRAY_COUNT(sDebugMenu_MiscActions));
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
-    PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_MiscActions), sDebugMenu_MiscActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, ARRAY_COUNT(sDebugMenu_MiscActions), 0);
+    MultichoiceList_PrintItems(tWindowId, 1, 8, 2, 14, ARRAY_COUNT(sDebugMenu_MiscActions), sDebugMenu_MiscActions, 0, 2);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 14, ARRAY_COUNT(sDebugMenu_MiscActions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = DebugMenu_Misc_ProcessInput;
 }
@@ -605,8 +605,8 @@ static void DebugMenu_DN(u8 taskId)
     windowTemplate.width = GetMaxWidthInMenuTable(sDebugMenu_DNActions, ARRAY_COUNT(sDebugMenu_DNActions));
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
-    PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_DNActions), sDebugMenu_DNActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, ARRAY_COUNT(sDebugMenu_DNActions), 0);
+    MultichoiceList_PrintItems(tWindowId, 1, 8, 2, 14, ARRAY_COUNT(sDebugMenu_DNActions), sDebugMenu_DNActions, 0, 2);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 14, ARRAY_COUNT(sDebugMenu_DNActions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = DebugMenu_DN_ProcessInput;
 }
@@ -708,8 +708,8 @@ static void DebugMenu_Pokegear(u8 taskId)
     windowTemplate.width = GetMaxWidthInMenuTable(sDebugMenu_PokegearActions, ARRAY_COUNT(sDebugMenu_PokegearActions));
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
-    PrintMenuTable(tWindowId, ARRAY_COUNT(sDebugMenu_PokegearActions), sDebugMenu_PokegearActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, ARRAY_COUNT(sDebugMenu_PokegearActions), 0);
+    MultichoiceList_PrintItems(tWindowId, 1, 8, 2, 14, ARRAY_COUNT(sDebugMenu_PokegearActions), sDebugMenu_PokegearActions, 0, 2);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 14, ARRAY_COUNT(sDebugMenu_PokegearActions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = DebugMenu_Pokegear_ProcessInput;
 }
