@@ -132,7 +132,7 @@
 	.include "data/layouts/DarkCave_South/layout.inc"
 	.include "data/layouts/DarkCave_B1F/layout.inc"
 	.include "data/layouts/UnionCave_B1F/layout.inc"
-	.include "data/layouts/PetalburgWoods/layout.inc"
+	.include "data/layouts/IlexForest/layout.inc"
 	.include "data/layouts/MtChimney/layout.inc"
 	.include "data/layouts/MtPyre_1F/layout.inc"
 	.include "data/layouts/MtPyre_2F/layout.inc"

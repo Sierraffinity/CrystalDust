@@ -60,7 +60,7 @@
 #define MAPSEC_MT_CHIMNEY                   0x38
 #define MAPSEC_SAFARI_ZONE                  0x39
 #define MAPSEC_BATTLE_FRONTIER              0x3A
-#define MAPSEC_PETALBURG_WOODS              0x3B
+#define MAPSEC_ILEX_FOREST              0x3B
 #define MAPSEC_UNION_CAVE               0x3C
 #define MAPSEC_SPROUT_TOWER                 0x3D
 #define MAPSEC_RUINS_OF_ALPH                 0x3E

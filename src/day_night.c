@@ -11,6 +11,7 @@
 #include "strings.h"
 #include "string_util.h"
 #include "constants/day_night.h"
+#include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 
 #define TINT_MORNING Q_8_8(0.8), Q_8_8(0.7), Q_8_8(0.9)
@@ -115,7 +116,14 @@ static void LoadPaletteOverrides(void)
         return;
 #endif
 
-    hour = gLocalTime.hours;
+    if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
+    {
+        hour = HOUR_NIGHT;
+    }
+    else
+    {
+        hour = gLocalTime.hours;
+    }
 #if DEBUG
     if (gDNHourOverride != 0)
         hour = gDNHourOverride - 1;
@@ -158,8 +166,15 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
     {
         s8 hour;
         RtcCalcLocalTimeFast();
-        
-        hour = gLocalTime.hours;
+            
+        if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
+        {
+            hour = HOUR_NIGHT;
+        }
+        else
+        {
+            hour = gLocalTime.hours;
+        }
 #if DEBUG
         if (gDNHourOverride != 0)
             hour = gDNHourOverride - 1;
@@ -203,8 +218,14 @@ void ProcessImmediateTimeEvents(void)
     {
         if (!sRetintPhase)
         {
-            hour = gLocalTime.hours;
-
+            if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
+            {
+                hour = HOUR_NIGHT;
+            }
+            else
+            {
+                hour = gLocalTime.hours;
+            }
 #if DEBUG
             if (gDNHourOverride != 0)
                 hour = gDNHourOverride - 1;

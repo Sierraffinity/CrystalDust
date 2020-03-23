@@ -16,7 +16,7 @@ struct LandmarkList
 };
 
 static const u8 LandmarkName_FlowerShop[] = _("FLOWER SHOP");
-static const u8 LandmarkName_PetalburgWoods[] = _("PETALBURG WOODS");
+static const u8 LandmarkName_IlexForest[] = _("PETALBURG WOODS");
 static const u8 LandmarkName_MrBrineysCottage[] = _("MR. BRINEY'S COTTAGE");
 static const u8 LandmarkName_SproutTower[] = _("ABANDONED SHIP");
 static const u8 LandmarkName_SeashoreHouse[] = _("SEASHORE HOUSE");
@@ -59,7 +59,7 @@ static const u8 LandmarkName_DesertUnderpass[] = _("DESERT UNDERPASS");
 static const u8 LandmarkName_TrainerHill[] = _("TRAINER HILL");
 
 static const struct Landmark Landmark_FlowerShop = {LandmarkName_FlowerShop, FLAG_LANDMARK_DARK_CAVE};
-static const struct Landmark Landmark_PetalburgWoods = {LandmarkName_PetalburgWoods, -1};
+static const struct Landmark Landmark_IlexForest = {LandmarkName_IlexForest, -1};
 static const struct Landmark Landmark_MrBrineysCottage = {LandmarkName_MrBrineysCottage, FLAG_LANDMARK_SPROUT_TOWER};
 static const struct Landmark Landmark_SproutTower = {LandmarkName_SproutTower, FLAG_LANDMARK_RUINS_OF_ALPH};
 static const struct Landmark Landmark_SeashoreHouse = {LandmarkName_SeashoreHouse, FLAG_LANDMARK_UNION_CAVE};
@@ -67,7 +67,7 @@ static const struct Landmark Landmark_SlateportBeach = {LandmarkName_SlateportBe
 static const struct Landmark Landmark_CyclingRoad = {LandmarkName_CyclingRoad, -1};
 static const struct Landmark Landmark_NewMauville = {LandmarkName_NewMauville, FLAG_LANDMARK_ROUTE_32_POKEMON_CENTER};
 static const struct Landmark Landmark_TrickHouse = {LandmarkName_TrickHouse, FLAG_LANDMARK_TRICK_HOUSE};
-static const struct Landmark Landmark_OldLadysRestShop = {LandmarkName_OldLadysRestShop, FLAG_LANDMARK_OLD_LADY_REST_SHOP};
+static const struct Landmark Landmark_OldLadysRestShop = {LandmarkName_OldLadysRestShop, FLAG_LANDMARK_ILEX_FOREST};
 static const struct Landmark Landmark_Desert = {LandmarkName_Desert, -1};
 static const struct Landmark Landmark_WinstrateFamily = {LandmarkName_WinstrateFamily, FLAG_LANDMARK_WINSTRATE_FAMILY};
 static const struct Landmark Landmark_CableCar = {LandmarkName_CableCar, -1};
@@ -114,7 +114,7 @@ static const struct Landmark *const Landmarks_Route32_0[]  =
 
 static const struct Landmark *const Landmarks_Route32_1[]  =
 {
-    &Landmark_PetalburgWoods,
+    &Landmark_IlexForest,
     &Landmark_MrBrineysCottage,
     NULL,
 };

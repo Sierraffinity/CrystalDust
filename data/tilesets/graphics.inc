@@ -692,27 +692,27 @@ gTilesetPalettes_BikeShop:: @ 83643C0
 	.incbin "data/tilesets/secondary/bike_shop/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_RusturfTunnel:: @ 83645C0
-	.incbin "data/tilesets/secondary/rusturf_tunnel/tiles.4bpp.lz"
+gTilesetTiles_Forest:: @ 83645C0
+	.incbin "data/tilesets/secondary/forest/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_RusturfTunnel:: @ 8365008
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/rusturf_tunnel/palettes/15.gbapal"
+gTilesetPalettes_Forest:: @ 8365008
+	.incbin "data/tilesets/secondary/forest/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/forest/palettes/15.gbapal"
 
 	.align 2
 @ unused compressed copy of tiles

@@ -551,6 +551,11 @@ static void Task_SetClock5(u8 taskId)
 static void Task_SetClock6(u8 taskId)
 {
     RtcCalcLocalTime();
+    if (++gTasks[taskId].tBlinkTimer >= 60)
+    {
+        gTasks[taskId].tBlinkTimer = 0;
+    }
+
     if (!RunTextPrintersAndIsPrinter0Active() && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
@@ -570,58 +575,66 @@ static void Task_SetClock7(u8 taskId)
 
 static void SpriteCB_ClockDigits(struct Sprite* sprite)
 {
-    u8 value;
+    u8 value = sprite->tStoredVal;
     s16 *data = gTasks[sprite->tTask].data;
 
-    switch (sprite->tPosition)
+    if (tBlinkTimer == 0)
     {
-        case 0:
-            value = gLocalTime.hours;
-            if (!tTwentyFourHourMode)
-            {
-                if (value > 12)
-                    value -= 12;
-                else if (value == 0)
-                    value = 12;
-            }
-            value = value / 10;
-            if (value != 0)
-                value += 1;
-            break;
-        case 1:
-            value = gLocalTime.hours;
-            if (!tTwentyFourHourMode)
-            {
-                if (value > 12)
-                    value -= 12;
-                else if (value == 0)
-                    value = 12;
-            }
-            value = value % 10 + 1;
-            break;
-        case 2:
-            if (gLocalTime.seconds & 1)
-                value = 11;
-            else
-                value = 12;
-            break;
-        case 3:
-            value = gLocalTime.minutes / 10 + 1;
-            break;
-        case 4:
-            value = gLocalTime.minutes % 10 + 1;
-            break;
-        case 5:
-            if (tTwentyFourHourMode)
-                value = 13;
-            else if (gLocalTime.hours < 12)
-                value = 14;
-            else
-                value = 15;
-            break;
-        default:
-            value = 0;
-            break;
+        switch (sprite->tPosition)
+        {
+            case 0:
+                value = gLocalTime.hours;
+                if (!tTwentyFourHourMode)
+                {
+                    if (value > 12)
+                        value -= 12;
+                    else if (value == 0)
+                        value = 12;
+                }
+                value = value / 10;
+                if (value != 0)
+                    value += 1;
+                break;
+            case 1:
+                value = gLocalTime.hours;
+                if (!tTwentyFourHourMode)
+                {
+                    if (value > 12)
+                        value -= 12;
+                    else if (value == 0)
+                        value = 12;
+                }
+                value = value % 10 + 1;
+                break;
+            case 2:
+                // handled outside of switch
+                break;
+            case 3:
+                value = gLocalTime.minutes / 10 + 1;
+                break;
+            case 4:
+                value = gLocalTime.minutes % 10 + 1;
+                break;
+            case 5:
+                if (tTwentyFourHourMode)
+                    value = 13;
+                else if (gLocalTime.hours < 12)
+                    value = 14;
+                else
+                    value = 15;
+                break;
+            default:
+                value = 0;
+                break;
+        }
+    }
+
+    if (sprite->tPosition == 2)
+    {
+        if (tBlinkTimer < 30)
+            value = 12;
+        else
+            value = 11;
     }
 
     if (sprite->tStoredVal != value)

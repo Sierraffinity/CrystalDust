@@ -1341,14 +1341,14 @@
             "width": 24
         },
         {
-            "blockdata_filepath": "data/layouts/PetalburgWoods/map.bin",
-            "border_filepath": "data/layouts/PetalburgWoods/border.bin",
-            "height": 44,
+            "blockdata_filepath": "data/layouts/IlexForest/map.bin",
+            "border_filepath": "data/layouts/IlexForest/border.bin",
+            "height": 64,
             "id": "LAYOUT_PETALBURG_WOODS",
-            "name": "PetalburgWoods_Layout",
+            "name": "IlexForest_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Rustboro",
-            "width": 48
+            "secondary_tileset": "gTileset_Forest",
+            "width": 54
         },
         {
             "blockdata_filepath": "data/layouts/MtChimney/map.bin",

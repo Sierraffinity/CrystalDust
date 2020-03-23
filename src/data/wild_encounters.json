@@ -12360,7 +12360,7 @@
                     }
                 },
                 {
-                    "base_label": "gPetalburgWoods",
+                    "base_label": "gIlexForest",
                     "land_mons": {
                         "encounter_rate": 20,
                         "mons": [

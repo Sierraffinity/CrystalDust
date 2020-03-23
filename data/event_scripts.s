@@ -358,7 +358,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/DesertRuins/scripts.inc"
 	.include "data/maps/DarkCave_South/scripts.inc"
 	.include "data/maps/DarkCave_B1F/scripts.inc"
-	.include "data/maps/PetalburgWoods/scripts.inc"
+	.include "data/maps/IlexForest/scripts.inc"
 	.include "data/maps/MtChimney/scripts.inc"
 	.include "data/maps/JaggedPass/scripts.inc"
 	.include "data/maps/FieryPath/scripts.inc"

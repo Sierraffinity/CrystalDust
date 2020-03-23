@@ -1,6 +1,5 @@
 Game intro
 Title screen
-Main menu (new game/continue)
 New Bark Town (maybe)
 Oak's Pokémon Talk
 Mom encounter
