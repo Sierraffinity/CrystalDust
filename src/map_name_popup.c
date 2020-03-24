@@ -10,6 +10,7 @@
 #include "region_map.h"
 #include "start_menu.h"
 #include "string_util.h"
+#include "strings.h"
 #include "task.h"
 #include "text.h"
 #include "constants/layouts.h"
@@ -31,6 +32,8 @@ enum MapPopUp_Themes
 static void Task_MapNamePopUpWindow(u8 taskId);
 static void ShowMapNamePopUpWindow(void);
 static void LoadMapNamePopUpWindowBg(void);
+static void MapNamePopupPrintMapNameOnWindow(u16 windowId);
+static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 flags);
 
 // EWRAM
 static EWRAM_DATA u8 sPopupTaskId = 0;
@@ -299,38 +302,67 @@ void HideMapNamePopUpWindow(void)
 
 static void ShowMapNamePopUpWindow(void)
 {
-    u8 mapDisplayHeader[24];
-    u8 *withoutPrefixPtr;
-    u8 x;
+    u16 windowId = AddMapNamePopUpWindow();
+    LoadMapNamePopUpWindowBg();
+    MapNamePopupPrintMapNameOnWindow(windowId);
+    CopyWindowToVram(windowId, 3);
+}
+
+static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
+{
+    u8 mapName[25];
+    u32 maxWidth = 112;
+    u32 xpos;
+    u8 *mapNameSuffixPtr;
+    
     const u8* mapDisplayHeaderSource;
 
     if (InBattlePyramid())
     {
         if (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_TOP)
         {
-            withoutPrefixPtr = &(mapDisplayHeader[3]);
             mapDisplayHeaderSource = gBattlePyramid_MapHeaderStrings[7];
         }
         else
         {
-            withoutPrefixPtr = &(mapDisplayHeader[3]);
             mapDisplayHeaderSource = gBattlePyramid_MapHeaderStrings[gSaveBlock2Ptr->frontier.curChallengeBattleNum];
         }
-        StringCopy(withoutPrefixPtr, mapDisplayHeaderSource);
+        mapNameSuffixPtr = StringCopy(&mapName[3], mapDisplayHeaderSource);
     }
     else
     {
-        withoutPrefixPtr = &(mapDisplayHeader[3]);
-        GetMapName(withoutPrefixPtr, gMapHeader.regionMapSectionId, 0);
+        mapNameSuffixPtr = GetMapName(&mapName[3], gMapHeader.regionMapSectionId, 0);
     }
-    AddMapNamePopUpWindow();
-    LoadMapNamePopUpWindowBg();
-    x = GetStringCenterAlignXOffset(7, withoutPrefixPtr, 80);
-    mapDisplayHeader[0] = EXT_CTRL_CODE_BEGIN;
-    mapDisplayHeader[1] = EXT_CTRL_CODE_HIGHLIGHT;
-    mapDisplayHeader[2] = TEXT_COLOR_TRANSPARENT;
-    AddTextPrinterParameterized(GetMapNamePopUpWindowId(), 7, mapDisplayHeader, x, 3, 0xFF, NULL);
-    CopyWindowToVram(GetMapNamePopUpWindowId(), 3);
+    mapName[0] = EXT_CTRL_CODE_BEGIN;
+    mapName[1] = EXT_CTRL_CODE_HIGHLIGHT;
+    mapName[2] = TEXT_COLOR_TRANSPARENT;
+
+    if (gMapHeader.floorNum)
+    {
+        mapNameSuffixPtr = MapNamePopupAppendFloorNum(mapNameSuffixPtr, gMapHeader.floorNum);
+        //maxWidth = gMapHeader.floorNum != 0x7F ? 152 : 176;
+    }
+    xpos = GetStringCenterAlignXOffset(7, &mapName[3], 80);
+    //xpos = (maxWidth - GetStringWidth(2, mapName, -1)) / 2;
+    AddTextPrinterParameterized(windowId, 7, mapName, xpos, 3, 0xFF, NULL);
+}
+
+static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 floorNum)
+{
+    if (floorNum == 0)
+        return dest;
+    *dest++ = CHAR_SPACE;
+    if (floorNum == 0x7F)
+        return StringCopy(dest, gText_Rooftop);
+    if (floorNum < 0)
+    {
+        *dest++ = CHAR_B;
+        floorNum *= -1;
+    }
+    dest = ConvertIntToDecimalStringN(dest, floorNum, STR_CONV_MODE_LEFT_ALIGN, 2);
+    *dest++ = CHAR_F;
+    *dest = EOS;
+    return dest;
 }
 
 static void sub_80D4A78(u8 bg, u8 x, u8 y, u8 deltaX, u8 deltaY, u8 unused)
