@@ -78,7 +78,7 @@ script AzaleaTown_EventScript_KurtsHouseSign {
 script AzaleaTown_EventScript_GymSign {
     msgbox("AZALEA TOWN POKéMON GYM\n"
            "LEADER: BUGSY\p"
-           "The Walking BUG-type POKéMON\n"
+           "The Walking BUG POKéMON\n"
            "Encyclopedia", MSGBOX_SIGN)
 }
 

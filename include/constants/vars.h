@@ -168,7 +168,7 @@
 #define VAR_LILYCOVE_FAN_CLUB_STATE          0x4095
 #define VAR_BRINEY_LOCATION                  0x4096
 #define VAR_INIT_SECRET_BASE                 0x4097
-#define VAR_PETALBURG_WOODS_STATE            0x4098
+#define VAR_ILEX_FOREST_STATE            0x4098
 #define VAR_LILYCOVE_CONTEST_LOBBY_STATE     0x4099
 #define VAR_UNION_CAVE_STATE             0x409A
 #define VAR_UNUSED_0x409B                    0x409B // Unused Var

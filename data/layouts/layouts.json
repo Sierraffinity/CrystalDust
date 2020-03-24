@@ -1614,7 +1614,7 @@
             "border_height": 2,
             "border_width": 3,
             "height": 64,
-            "id": "LAYOUT_PETALBURG_WOODS",
+            "id": "LAYOUT_ILEX_FOREST",
             "name": "IlexForest_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Forest",

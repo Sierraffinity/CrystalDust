@@ -116,14 +116,8 @@ static void LoadPaletteOverrides(void)
         return;
 #endif
 
-    if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
-    {
-        hour = HOUR_NIGHT;
-    }
-    else
-    {
-        hour = gLocalTime.hours;
-    }
+    hour = gLocalTime.hours;
+
 #if DEBUG
     if (gDNHourOverride != 0)
         hour = gDNHourOverride - 1;

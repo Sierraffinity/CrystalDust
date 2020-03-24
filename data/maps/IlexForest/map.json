@@ -59,7 +59,7 @@
             "elevation": 3,
             "script": "IlexForest_EventScript_DevonResearcherLeft",
             "type": "trigger",
-            "var": "VAR_PETALBURG_WOODS_STATE",
+            "var": "VAR_ILEX_FOREST_STATE",
             "var_value": "0",
             "x": 26,
             "y": 23
@@ -68,14 +68,15 @@
             "elevation": 3,
             "script": "IlexForest_EventScript_DevonResearcherRight",
             "type": "trigger",
-            "var": "VAR_PETALBURG_WOODS_STATE",
+            "var": "VAR_ILEX_FOREST_STATE",
             "var_value": "0",
             "x": 27,
             "y": 23
         }
     ],
+    "floor_number": 0,
     "id": "MAP_ILEX_FOREST",
-    "layout": "LAYOUT_PETALBURG_WOODS",
+    "layout": "LAYOUT_ILEX_FOREST",
     "map_type": "MAP_TYPE_ROUTE",
     "music": "MUS_ILEXFOREST",
     "name": "IlexForest",
@@ -311,5 +312,5 @@
             "y": 38
         }
     ],
-    "weather": "WEATHER_SHADE"
+    "weather": "WEATHER_NONE"
 }

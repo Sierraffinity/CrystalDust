@@ -113,7 +113,7 @@ IlexForest_EventScript_DevonResearcherFinish:: @ 822E18B
 
 IlexForest_EventScript_RemoveDevonResearcher:: @ 822E1A7
 	removeobject 4
-	setvar VAR_PETALBURG_WOODS_STATE, 1
+	setvar VAR_ILEX_FOREST_STATE, 1
 	releaseall
 	end
 

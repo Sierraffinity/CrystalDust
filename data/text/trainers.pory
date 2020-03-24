@@ -30,7 +30,7 @@ Trainer_Text_Mikey_After:
 	.string "to get better.$"
 
 Trainer_Text_Don_See:
-	.string "Instead of a BUG-type POKéMON,\n"
+	.string "Instead of a BUG POKéMON,\n"
 	.string "I found a TRAINER!$"
 
 Trainer_Text_Don_Beat:
