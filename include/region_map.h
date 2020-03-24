@@ -7,22 +7,23 @@
 #define CORNER_BUTTON_Y 13
 
 // Exported type declarations
+#define MAP_NAME_LENGTH 16
 
 enum
 {
-    INPUT_EVENT_NONE,
-    INPUT_EVENT_MOVE_START,
-    INPUT_EVENT_MOVE_CONT,
-    INPUT_EVENT_MOVE_END,
-    INPUT_EVENT_A_BUTTON,
-    INPUT_EVENT_B_BUTTON,
-    INPUT_EVENT_LANDMARK,
-    INPUT_EVENT_ON_BUTTON
+    MAP_INPUT_NONE,
+    MAP_INPUT_MOVE_START,
+    MAP_INPUT_MOVE_CONT,
+    MAP_INPUT_MOVE_END,
+    MAP_INPUT_A_BUTTON,
+    MAP_INPUT_B_BUTTON,
+    MAP_INPUT_LANDMARK,
+    MAP_INPUT_ON_BUTTON
 };
 
 enum {
     MAPSECTYPE_NONE,
-    MAPSECTYPE_PLAIN,
+    MAPSECTYPE_ROUTE,
     MAPSECTYPE_CITY_CANFLY,
     MAPSECTYPE_CITY_CANTFLY,
     MAPSECTYPE_BATTLE_FRONTIER
@@ -115,36 +116,34 @@ struct RegionMapLocation
 // Exported RAM declarations
 
 // Exported ROM declarations
-extern const struct RegionMapLocation gRegionMapEntries[];
-
-void sub_8122CF8(struct RegionMap *regionMap, const struct BgTemplate *template, u8 mapMode, s8 xOffset);
-bool8 sub_8122DB0(bool8 shouldBuffer);
-bool8 RegionMap_InitGfx2(void);
+void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *template, u8 mapMode, s8 xOffset);
+bool8 LoadRegionMapGfx(bool8 shouldBuffer);
+bool8 LoadRegionMapGfx_Pt2(void);
 void UpdateRegionMapVideoRegs(void);
 void InitRegionMap(struct RegionMap *regionMap, u8 mode, s8 xOffset);
-u8 sub_81230AC(void);
-bool8 sub_8123514(void);
+u8 DoRegionMapInputCallback(void);
+bool8 UpdateRegionMapZoom(void);
 void FreeRegionMapResources(void);
 u16 GetRegionMapSectionIdAt(u16 x, u16 y);
 void CreateRegionMapPlayerIcon(u16 x, u16 y);
 void CreateRegionMapCursor(u16 tileTag, u16 paletteTag, bool8 visible);
+bool32 IsEventIslandMapSecId(u8 mapSecId);
 u8 *GetMapName(u8 *, u16, u16);
-bool32 sub_8124668(u8 mapSecId);
 u8 *GetMapNameGeneric(u8 *dest, u16 mapSecId);
-u8 *sub_8124610(u8 *dest, u16 mapSecId);
+u8 *GetMapNameHandleAquaHideout(u8 *dest, u16 mapSecId);
 u8 GetCurrentRegion(void);
 void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
 void CreateRegionMapName(u16 tileTagCurve, u16 tileTagMain);
 void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag);
 u16 CorrectSpecialMapSecId(u16 mapSecId);
-void sub_8122D88(struct RegionMap *regionMap);
+void ShowRegionMapForPokedexAreaScreen(struct RegionMap *regionMap);
 void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y);
-void MCB2_FlyMap(void);
-bool8 sub_8124658(void);
-void sub_812454C(void);
-void sub_8123030(u16 a0, u32 a1);
-void sub_8123418(void);
+void CB2_OpenFlyMap(void);
+bool8 IsRegionMapZoomed(void);
+void TrySetPlayerIconBlink(void);
+void sub_8123030(u16 color, u32 coeff);
+void SetRegionMapDataForZoom(void);
 
 extern const struct RegionMapLocation gRegionMapEntries[];
 

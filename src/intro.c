@@ -30,7 +30,7 @@
 
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
 extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];
-extern const struct SpriteTemplate gUnknown_08596C10[];
+extern const struct SpriteTemplate gAncientPowerRockSpriteTemplate[];
 
 //ewram
 EWRAM_DATA u16 gUnknown_0203BCC8 = 0;

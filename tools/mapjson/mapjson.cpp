@@ -29,6 +29,7 @@ using json11::Json;
 
 #include "mapjson.h"
 
+string version;
 
 string read_text_file(string filepath) {
     ifstream in_file(filepath);
@@ -60,7 +61,7 @@ void write_text_file(string filepath, string text) {
     out_file.close();
 }
 
-string generate_map_header_text(Json map_data, Json layouts_data, string version) {
+string generate_map_header_text(Json map_data, Json layouts_data) {
     string map_layout_id = map_data["layout"].string_value();
 
     vector<Json> matched;
@@ -101,20 +102,27 @@ string generate_map_header_text(Json map_data, Json layouts_data, string version
          << "\t.byte "  << map_data["region_map_section"].string_value() << "\n"
          << "\t.byte "  << map_data["requires_flash"].bool_value() << "\n"
          << "\t.byte "  << map_data["weather"].string_value() << "\n"
-         << "\t.byte "  << map_data["map_type"].string_value() << "\n"
-         << "\t.2byte 0\n";
+         << "\t.byte "  << map_data["map_type"].string_value() << "\n";
+
+    /*if (version != "firered")
+        text << "\t.2byte 0\n";*/
 
     if (version == "ruby")
         text << "\t.byte " << map_data["show_map_name"].bool_value() << "\n";
-    else if (version == "emerald")
+    else if (version == "emerald" || version == "firered") {
         text << "\tmap_header_flags "
              << "allow_bike=" << map_data["allow_bike"].bool_value() << ", "
              << "allow_escape_rope=" << map_data["allow_escape_rope"].bool_value() << ", "
              << "allow_run=" << map_data["allow_running"].bool_value() << ", "
              << "show_map_name=" << map_data["show_map_name"].bool_value() << ", "
              << "phone_service=" << map_data["phone_service"].bool_value() << "\n";
+    }
 
-     text << "\t.byte " << map_data["battle_scene"].string_value() << "\n\n";
+    //if (version == "firered") {
+    text << "\t.byte " << map_data["floor_number"].int_value() << "\n";
+    //}
+
+    text << "\t.byte " << map_data["battle_scene"].string_value() << "\n\n";
 
     return text.str();
 }
@@ -276,7 +284,7 @@ string get_directory_name(string filename) {
     return filename.substr(0, dir_pos + 1);
 }
 
-void process_map(string map_filepath, string layouts_filepath, string version) {
+void process_map(string map_filepath, string layouts_filepath) {
     string mapdata_err, layouts_err;
 
     string mapdata_json_text = read_text_file(map_filepath);
@@ -290,7 +298,7 @@ void process_map(string map_filepath, string layouts_filepath, string version) {
     if (layouts_data == Json())
         FATAL_ERROR("%s\n", layouts_err.c_str());
 
-    string header_text = generate_map_header_text(map_data, layouts_data, version);
+    string header_text = generate_map_header_text(map_data, layouts_data);
     string events_text = generate_map_events_text(map_data);
     string connections_text = generate_map_connections_text(map_data);
 
@@ -312,7 +320,10 @@ string generate_groups_text(Json groups_data) {
         text << "\n";
     }
 
-    text << "\t.align 2\n" << "gMapGroups::\n";
+    if (version != "firered")
+        text << "\t.align 2\n";
+
+    text << "gMapGroups::\n";
     for (auto &group : groups_data["group_order"].array_items())
         text << "\t.4byte " << group.string_value() << "\n";
     text << "\n";
@@ -459,7 +470,15 @@ string generate_layout_headers_text(Json layouts_data) {
              << "\t.4byte " << border_label << "\n"
              << "\t.4byte " << blockdata_label << "\n"
              << "\t.4byte " << layout["primary_tileset"].string_value() << "\n"
-             << "\t.4byte " << layout["secondary_tileset"].string_value() << "\n\n";
+             << "\t.4byte " << layout["secondary_tileset"].string_value() << "\n";
+
+        //if (version == "firered") {
+        text << "\t.byte " << layout["border_width"].int_value() << "\n"
+             << "\t.byte " << layout["border_height"].int_value() << "\n"
+             << "\t.2byte 0\n";
+        //}
+
+        text << "\n";
     }
 
     return text.str();
@@ -515,10 +534,9 @@ int main(int argc, char *argv[]) {
     if (argc < 3)
         FATAL_ERROR("USAGE: mapjson <mode> <game-version> [options]\n");
 
-    char *version_arg = argv[2];
-    string version(version_arg);
-    if (version != "emerald" && version != "ruby")
-        FATAL_ERROR("ERROR: <game-version> must be 'emerald' or 'ruby'.\n");
+    version = argv[2];
+    if (version != "emerald" && version != "ruby" && version != "firered")
+        FATAL_ERROR("ERROR: <game-version> must be 'emerald', 'firered', or 'ruby'.\n");
 
     char *mode_arg = argv[1];
     string mode(mode_arg);
@@ -532,7 +550,7 @@ int main(int argc, char *argv[]) {
         string filepath(argv[3]);
         string layouts_filepath(argv[4]);
 
-        process_map(filepath, layouts_filepath, version);
+        process_map(filepath, layouts_filepath);
     }
     else if (mode == "groups") {
         if (argc != 4)

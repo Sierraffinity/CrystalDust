@@ -377,7 +377,7 @@ union Block
     s32 xprime;                                                        \
     s32 yprime;                                                        \
                                                                        \
-    struct MapLayout *mapLayout = gMapHeader.mapLayout;                \
+    const struct MapLayout *mapLayout = gMapHeader.mapLayout;          \
                                                                        \
     xprime = x - 7;                                                    \
     xprime += 8 * mapLayout->borderWidth;                              \

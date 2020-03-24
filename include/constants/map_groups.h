@@ -304,7 +304,7 @@
 #define MAP_DESERT_RUINS                             (8 | (24 << 8))
 #define MAP_DARK_CAVE_SOUTH                          (9 | (24 << 8))
 #define MAP_DARK_CAVE_B1F                            (10 | (24 << 8))
-#define MAP_PETALBURG_WOODS                          (11 | (24 << 8))
+#define MAP_ILEX_FOREST                              (11 | (24 << 8))
 #define MAP_MT_CHIMNEY                               (12 | (24 << 8))
 #define MAP_JAGGED_PASS                              (13 | (24 << 8))
 #define MAP_FIERY_PATH                               (14 | (24 << 8))

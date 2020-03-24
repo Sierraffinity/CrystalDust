@@ -6,7 +6,7 @@ extern const u8 Common_EventScript_ShowPokemartSign[];
 extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_TryGetTrainerScript[];
 extern const u8 EventScript_271354[];
-extern const u8 EventScript_DoTainerBattle[];
+extern const u8 EventScript_DoNoIntroTrainerBattle[];
 extern const u8 EventScript_TryDoDoubleTrainerBattle[];
 extern const u8 EventScript_TryDoNormalTrainerBattle[];
 extern const u8 EventScript_TryDoDoubleRematchBattle[];

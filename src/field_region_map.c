@@ -15,13 +15,23 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+/*
+ *  This is the type of map shown when interacting with the metatiles for
+ *  a wall-mounted Region Map (on the wall of the Pokemon Centers near the PC)
+ *  It does not zoom, and pressing A or B closes the map
+ *
+ *  For the region map in the pokenav, see pokenav_region_map.c
+ *  For the region map in the pokedex, see pokdex_area_screen.c/pokedex_area_region_map.c
+ *  For the fly map, and utility functions all of the maps use, see region_map.c
+ */
+
 // Static type declarations
 
 // Static RAM declarations
 
 static EWRAM_DATA struct {
     MainCallback callback;
-    u32 filler_004;
+    u32 unused;
     struct RegionMap regionMap;
     u16 state;
 } *sFieldRegionMapHandler = NULL;
@@ -40,7 +50,7 @@ extern const u32 gRegionMapFrameTilemapLZ[];
 
 // .rodata
 
-static const struct BgTemplate gUnknown_085E5068[] = {
+static const struct BgTemplate sFieldRegionMapBgTemplates[] = {
     {
         .bg = 0,
         .charBaseIndex = 0,
@@ -70,7 +80,7 @@ static const struct BgTemplate gUnknown_085E5068[] = {
     }
 };
 
-static const struct WindowTemplate gUnknown_085E5070[] =
+static const struct WindowTemplate sFieldRegionMapWindowTemplates[] =
 {
     {
         .bg = 0,
@@ -109,8 +119,8 @@ static void MCB2_InitRegionMapRegisters(void)
     ResetSpriteData();
     FreeAllSpritePalettes();
     ResetBgsAndClearDma3BusyFlags(0);
-    InitBgsFromTemplates(0, gUnknown_085E5068, ARRAY_COUNT(gUnknown_085E5068));
-    InitWindows(gUnknown_085E5070);
+    InitBgsFromTemplates(0, sFieldRegionMapBgTemplates, ARRAY_COUNT(sFieldRegionMapBgTemplates));
+    InitWindows(sFieldRegionMapWindowTemplates);
     DeactivateAllTextPrinters();
     clear_scheduled_bg_copies_to_vram();
     SetMainCallback2(MCB2_FieldUpdateRegionMap);
@@ -176,23 +186,23 @@ static void FieldUpdateRegionMap(void)
             }
             break;
         case 7:
-            switch (sub_81230AC())
+            switch (DoRegionMapInputCallback())
             {
-                case INPUT_EVENT_MOVE_END:
+                case MAP_INPUT_MOVE_END:
                     sFieldRegionMapHandler->regionMap.onButton = FALSE;
                     ShowHelpBar();
                     break;
-                case INPUT_EVENT_ON_BUTTON:
+                case MAP_INPUT_ON_BUTTON:
                     sFieldRegionMapHandler->regionMap.onButton = TRUE;
                     ShowHelpBar();
                     break;
-                case INPUT_EVENT_A_BUTTON:
+                case MAP_INPUT_A_BUTTON:
                     if (!sFieldRegionMapHandler->regionMap.onButton)
                     {
                         break;
                     }
                     m4aSongNumStart(SE_W063B);
-                case INPUT_EVENT_B_BUTTON:
+                case MAP_INPUT_B_BUTTON:
                     sFieldRegionMapHandler->state++;
                     break;
             }
@@ -220,7 +230,7 @@ static void ShowHelpBar(void)
 {
     const u8 color[3] = { 15, 1, 2 };
 
-    FillWindowPixelBuffer(0, 0xFF);
+    FillWindowPixelBuffer(0, PIXEL_FILL(15));
     AddTextPrinterParameterized3(0, 0, 144, 0, color, 0, gText_DpadMove);
 
     if (sFieldRegionMapHandler->regionMap.onButton)

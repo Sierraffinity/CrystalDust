@@ -856,8 +856,8 @@ static void LoadCardBgs(enum CardType newCard)
             ShowBg(2);
             LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xE000));
             sPokegearStruct.map = AllocZeroed(sizeof(struct RegionMap));
-            sub_8122CF8(sPokegearStruct.map, &sBgTemplates[2], MAPMODE_POKEGEAR, REGION_MAP_XOFF);  // TODO: Make check for button
-            while(sub_8122DB0(FALSE));
+            InitRegionMapData(sPokegearStruct.map, &sBgTemplates[2], MAPMODE_POKEGEAR, REGION_MAP_XOFF);  // TODO: Make check for button
+            while(LoadRegionMapGfx(FALSE));
             break;
         case PhoneCard:
             ShowHelpBar(gText_PhoneCardHelp1);
@@ -1159,7 +1159,7 @@ static void Task_MapCard(u8 taskId)
     switch (tState)
     {
         case 0:
-            if (!RegionMap_InitGfx2())
+            if (!LoadRegionMapGfx_Pt2())
             {
                 CreateRegionMapCursor(0, 0, FALSE);
                 CreateRegionMapPlayerIcon(1, 1);
@@ -1179,23 +1179,23 @@ static void Task_MapCard(u8 taskId)
             }
             break;
         case 2:
-            event = sub_81230AC();
+            event = DoRegionMapInputCallback();
             switch (event)
             {
-                case INPUT_EVENT_B_BUTTON:
+                case MAP_INPUT_B_BUTTON:
                     PlaySE(SE_W063B);
                     ShowHelpBar(gText_MapCardHelp1);
                     HideRegionMapCursorSprite();
                     tState--;
                     sPokegearStruct.canSwitchCards = TRUE;
                     break;
-                case INPUT_EVENT_LANDMARK:
+                case MAP_INPUT_LANDMARK:
                     helpString = gText_MapCardHelp3;
                     break;
-                case INPUT_EVENT_ON_BUTTON:
+                case MAP_INPUT_ON_BUTTON:
                     helpString = gText_MapCardHelp4;
                     break;
-                case INPUT_EVENT_MOVE_END:
+                case MAP_INPUT_MOVE_END:
                     helpString = gText_MapCardHelp2;
                     break;
             }
