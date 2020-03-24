@@ -4908,6 +4908,201 @@
                     "map": "MAP_FIERY_PATH"
                 },
                 {
+                    "base_label": "gIlexForest",
+                    "land_mons": {
+                        "encounter_rate": 20,
+                        "mons": [
+                            [
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_POOCHYENA"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_WURMPLE"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_SHROOMISH"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_POOCHYENA"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_SILCOON"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_CASCOON"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_WURMPLE"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_SHROOMISH"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_TAILLOW"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_SLAKOTH"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_TAILLOW"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_SLAKOTH"
+                                }
+                            ],
+                            [
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_POOCHYENA"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_WURMPLE"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_SHROOMISH"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_POOCHYENA"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_SILCOON"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_CASCOON"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_WURMPLE"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_SHROOMISH"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_TAILLOW"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_SLAKOTH"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_TAILLOW"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_SLAKOTH"
+                                }
+                            ],
+                            [
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_POOCHYENA"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_WURMPLE"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_SHROOMISH"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_POOCHYENA"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_SILCOON"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_CASCOON"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_WURMPLE"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_SHROOMISH"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_TAILLOW"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_SLAKOTH"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_TAILLOW"
+                                },
+                                {
+                                    "max_level": 6,
+                                    "min_level": 6,
+                                    "species": "SPECIES_SLAKOTH"
+                                }
+                            ]
+                        ]
+                    },
+                    "map": "MAP_ILEX_FOREST"
+                },
+                {
                     "base_label": "gJaggedPass",
                     "land_mons": {
                         "encounter_rate": 20,
@@ -12358,201 +12553,6 @@
                             ]
                         ]
                     }
-                },
-                {
-                    "base_label": "gIlexForest",
-                    "land_mons": {
-                        "encounter_rate": 20,
-                        "mons": [
-                            [
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_POOCHYENA"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_WURMPLE"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SHROOMISH"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_POOCHYENA"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SILCOON"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_CASCOON"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_WURMPLE"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SHROOMISH"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SLAKOTH"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SLAKOTH"
-                                }
-                            ],
-                            [
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_POOCHYENA"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_WURMPLE"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SHROOMISH"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_POOCHYENA"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SILCOON"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_CASCOON"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_WURMPLE"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SHROOMISH"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SLAKOTH"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SLAKOTH"
-                                }
-                            ],
-                            [
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_POOCHYENA"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_WURMPLE"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SHROOMISH"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_POOCHYENA"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SILCOON"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_CASCOON"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_WURMPLE"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SHROOMISH"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SLAKOTH"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SLAKOTH"
-                                }
-                            ]
-                        ]
-                    },
-                    "map": "MAP_ILEX_FOREST"
                 },
                 {
                     "base_label": "gRoute106",
