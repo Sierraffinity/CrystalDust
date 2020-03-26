@@ -73,7 +73,7 @@ $(MID_SUBDIR)/mus_bd_time.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G038 -V080
 
 $(MID_SUBDIR)/mus_ruinsofalph.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G020 -V080
+	$(MID) $< $@ -E -R$(STD_REVERB) -G020 -V090
 
 $(MID_SUBDIR)/mus_rivalexit.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G067 -V078
