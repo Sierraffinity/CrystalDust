@@ -86,8 +86,20 @@ UnionCave_B1F_EventScript_ItemXDefend::
 	finditem ITEM_X_DEFEND
 	end
 
-Route33_EventScript_ItemIron:: @ 8290D33
-	finditem ITEM_IRON
+IlexForest_EventScript_ItemRevive::
+	finditem ITEM_REVIVE
+	end
+
+IlexForest_EventScript_ItemXAttack::
+	finditem ITEM_X_ATTACK
+	end
+
+IlexForest_EventScript_ItemAntidote::
+	finditem ITEM_ANTIDOTE
+	end
+
+IlexForest_EventScript_ItemEther::
+	finditem ITEM_ETHER
 	end
 
 Route106_EventScript_ItemProtein:: @ 8290D40
@@ -376,22 +388,6 @@ LilycoveCity_EventScript_ItemMaxRepel:: @ 82910E8
 
 MossdeepCity_EventScript_ItemNetBall:: @ 82910F5
 	finditem ITEM_NET_BALL
-	end
-
-IlexForest_EventScript_ItemXAttack:: @ 8291102
-	finditem ITEM_X_ATTACK
-	end
-
-IlexForest_EventScript_ItemGreatBall:: @ 829110F
-	finditem ITEM_GREAT_BALL
-	end
-
-IlexForest_EventScript_ItemEther:: @ 829111C
-	finditem ITEM_ETHER
-	end
-
-IlexForest_EventScript_ItemParalyzeHeal:: @ 8291129
-	finditem ITEM_PARALYZE_HEAL
 	end
 
 DarkCave_South_EventScript_ItemEscapeRope:: @ 8291150

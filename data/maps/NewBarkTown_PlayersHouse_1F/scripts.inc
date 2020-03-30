@@ -44,7 +44,7 @@ NewBarkTown_PlayersHouse_1F_MomEncounter:
 	waitmovement 0
 	delay 10
 	msgbox NewBarkTown_PlayersHouse_1F_MomElmIntro
-	call Common_RestoreOriginalTextColor
+	call EventScript_RestorePrevTextColor
 	playfanfare MUS_FANFA4
 	message NewBarkTown_PlayersHouse_1F_PlayerGetsPokegear
 	waitfanfare

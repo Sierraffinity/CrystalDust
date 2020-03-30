@@ -82,6 +82,7 @@
     ],
     "coord_events": [
     ],
+    "floor_number": 0,
     "id": "MAP_AZALEA_TOWN",
     "layout": "LAYOUT_AZALEA_TOWN",
     "map_type": "MAP_TYPE_TOWN",
@@ -298,7 +299,7 @@
             "y": 11
         },
         {
-            "dest_map": "MAP_AZALEA_TOWN",
+            "dest_map": "MAP_SLOWPOKE_WELL",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 42,

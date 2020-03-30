@@ -368,7 +368,7 @@ u8 GetSSTidalLocation(s8 *mapGroup, s8 *mapNum, s16 *x, s16 *y)
 
 bool32 ShouldDoWallyCall(void)
 {
-    if (FlagGet(FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL))
+    if (FlagGet(FLAG_KURT_GAVE_LURE_BALL))
     {
         switch (gMapHeader.mapType)
         {

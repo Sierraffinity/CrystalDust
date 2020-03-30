@@ -50,7 +50,7 @@ struct CableCar
     u16 unk22[9][12];
     u8 fillerFA[0x2];
     /*0x00FC*/ u16 bgTilemapBuffers[4][0x800];
-    /*0x40FC*/ u16 *mtChimneyTilemap;
+    /*0x40FC*/ u16 *SlowpokeWellTilemap;
     /*0x4100*/ u16 *treeTilemap;
     /*0x4104*/ u16 *mountainTilemap;
     /*0x4108*/ const u16 *pylonHookTilemapEntries;
@@ -120,7 +120,7 @@ const struct BgTemplate gCableCarBgTemplates[4] = {
     },
 };
 
-const u8 gCableCarMtChimneyTilemap[] = INCBIN_U8("graphics/misc/cable_car_mt_chimney_map.bin.lz");
+const u8 gCableCarSlowpokeWellTilemap[] = INCBIN_U8("graphics/misc/cable_car_mt_chimney_map.bin.lz");
 const u8 gCableCarTreeTilemap[] = INCBIN_U8("graphics/misc/cable_car_tree_map.bin.lz");
 const u8 gCableCarMountainTilemap[] = INCBIN_U8("graphics/misc/cable_car_mountain_map.bin.lz");
 
@@ -286,7 +286,7 @@ static void CableCarMainCallback_Setup(void)
             LoadCompressedSpriteSheet(&gUnknown_085CDB54[i]);
 
         LoadSpritePalettes(gUnknown_085CDB74);
-        sCableCar->mtChimneyTilemap = malloc_and_decompress(gCableCarMtChimneyTilemap, &sizeOut);
+        sCableCar->SlowpokeWellTilemap = malloc_and_decompress(gCableCarSlowpokeWellTilemap, &sizeOut);
         sCableCar->treeTilemap = malloc_and_decompress(gCableCarTreeTilemap, &sizeOut);
         sCableCar->mountainTilemap = malloc_and_decompress(gCableCarMountainTilemap, &sizeOut);
         sCableCar->pylonStemTilemap = malloc_and_decompress(gCableCarPylonStemTilemap, &sizeOut);
@@ -331,14 +331,14 @@ static void CableCarMainCallback_Setup(void)
         break;
     case 7:
         sub_81514C8(gSpecialVar_0x8004);
-        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap +  0x48,  0, 14, 12, 3, 17);
-        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap +  0x6C, 12, 17, 12, 3, 17);
-        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap +  0x90, 24, 20, 12, 3, 17);
-        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap +   0x0,  0, 17, 12, 3, 17);
-        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap +  0x24,  0, 20, 12, 3, 17);
-        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap +   0x0, 12, 20, 12, 3, 17);
-        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap +  0x24, 12, 23, 12, 3, 17);
-        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap +   0x0, 24, 23, 12, 3, 17);
+        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->SlowpokeWellTilemap +  0x48,  0, 14, 12, 3, 17);
+        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->SlowpokeWellTilemap +  0x6C, 12, 17, 12, 3, 17);
+        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->SlowpokeWellTilemap +  0x90, 24, 20, 12, 3, 17);
+        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->SlowpokeWellTilemap +   0x0,  0, 17, 12, 3, 17);
+        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->SlowpokeWellTilemap +  0x24,  0, 20, 12, 3, 17);
+        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->SlowpokeWellTilemap +   0x0, 12, 20, 12, 3, 17);
+        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->SlowpokeWellTilemap +  0x24, 12, 23, 12, 3, 17);
+        CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->SlowpokeWellTilemap +   0x0, 24, 23, 12, 3, 17);
         gMain.state++;
         break;
     case 8:
@@ -398,7 +398,7 @@ static void CleanupCableCar(void)
     FREE_AND_SET_NULL(sCableCar->pylonStemTilemap);
     FREE_AND_SET_NULL(sCableCar->mountainTilemap);
     FREE_AND_SET_NULL(sCableCar->treeTilemap);
-    FREE_AND_SET_NULL(sCableCar->mtChimneyTilemap);
+    FREE_AND_SET_NULL(sCableCar->SlowpokeWellTilemap);
     FREE_AND_SET_NULL(sCableCar);
     DmaFillLarge16(3, 0, (void *)VRAM, VRAM_SIZE, 0x1000);
     DmaFill32Defvars(3, 0, (void *)OAM, OAM_SIZE);
@@ -820,7 +820,7 @@ static void LoadCableCarSprites(void)
             SetCurrentAndNextWeatherNoDelay(WEATHER_SUNNY);
             break;
         case 1:
-            CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap + 0x24, 24, 26, 12, 3, 17);
+            CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->SlowpokeWellTilemap + 0x24, 24, 26, 12, 3, 17);
             spriteId = AddPseudoObjectEvent(playerGraphicsIds[gSaveBlock2Ptr->playerGender], sub_8150948, 128, 39, 102);
             if (spriteId != MAX_SPRITES)
             {
@@ -902,9 +902,9 @@ void sub_8151088(void)
     {
         for (j = 0; j < 12; j++)
         {
-            sCableCar->unk22[i][j] = sCableCar->mtChimneyTilemap[offset++];
-            sCableCar->unk22[i + 3][j] = sCableCar->mtChimneyTilemap[k];
-            sCableCar->unk22[i + 6][j] = (sCableCar->mtChimneyTilemap + 0x24)[k];
+            sCableCar->unk22[i][j] = sCableCar->SlowpokeWellTilemap[offset++];
+            sCableCar->unk22[i + 3][j] = sCableCar->SlowpokeWellTilemap[k];
+            sCableCar->unk22[i + 6][j] = (sCableCar->SlowpokeWellTilemap + 0x24)[k];
             k++;
         }
     }

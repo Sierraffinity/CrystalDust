@@ -110,7 +110,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VictoryRoad_1F_EventScript_ExitWally",
-      "flag": "FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY"
+      "flag": "FLAG_HIDE_ILEX_FOREST_MASTER"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",

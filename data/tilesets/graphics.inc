@@ -505,27 +505,27 @@ gTilesetPalettes_Gatehouse:: @ 8356920
 	.incbin "data/tilesets/secondary/gatehouse/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_MeteorFalls:: @ 8356B20
-	.incbin "data/tilesets/secondary/meteor_falls/tiles.4bpp.lz"
+gTilesetTiles_RockTunnel:: @ 8356B20
+	.incbin "data/tilesets/secondary/rock_tunnel/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_MeteorFalls:: @ 8358840
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/meteor_falls/palettes/15.gbapal"
+gTilesetPalettes_RockTunnel:: @ 8358840
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/rock_tunnel/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_OceanicMuseum:: @ 8358A40

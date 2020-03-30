@@ -6,7 +6,7 @@ LavaridgeTown_MapScripts:: @ 81EA4D3
 LavaridgeTown_OnTransition: @ 81EA4DE
 	setflag FLAG_VISITED_LAVARIDGE_TOWN
 	call_if_set FLAG_RECEIVED_SHARP_BEAK_FROM_MONICA, LavaridgeTown_EventScript_ClearLavaridgeWhiteOut
-	call_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, LavaridgeTown_EventScript_ShowMtChimneyTrainers
+	call_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, LavaridgeTown_EventScript_ShowSlowpokeWellTrainers
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	compare VAR_LAVARIDGE_TOWN_STATE, 1
@@ -32,7 +32,7 @@ LavaridgeTown_EventScript_SetRivalPos:: @ 81EA529
 	clearflag FLAG_HIDE_LAVARIDGE_TOWN_RIVAL
 	return
 
-LavaridgeTown_EventScript_ShowMtChimneyTrainers:: @ 81EA53F
+LavaridgeTown_EventScript_ShowSlowpokeWellTrainers:: @ 81EA53F
 	clearflag FLAG_HIDE_MT_CHIMNEY_TRAINERS
 	return
 

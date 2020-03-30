@@ -44,7 +44,7 @@ script VioletCity_Gym_EventScript_FalknerDefeated {
             "from FALKNER.")
     waitmessage
     call(Common_EventScript_PlayGymBadgeFanfare)
-	call(Common_RestoreOriginalTextColor)
+	call(EventScript_RestorePrevTextColor)
     setflag(FLAG_DEFEATED_VIOLET_GYM)
     setflag(FLAG_BADGE01_GET)
     setvar(VAR_VIOLET_CITY_STATE, 1)

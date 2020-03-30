@@ -84,7 +84,7 @@ Std_ReceivedItem::
 	compare VAR_0x8002, MUS_FANFA4
 	call_if_eq EventScript_ReceivedItemWaitFanfare
 	putitemaway VAR_0x8000, VAR_0x8001
-	call Common_RestoreOriginalTextColor
+	call EventScript_RestorePrevTextColor
 	return
 
 EventScript_ReceivedItemWaitFanfare::

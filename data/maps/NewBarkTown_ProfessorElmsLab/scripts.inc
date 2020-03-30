@@ -126,7 +126,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	textcolor MSG_COLOR_MISC
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmHandedMysteryEgg
 	closemessage
-	call Common_RestoreOriginalTextColor
+	call EventScript_RestorePrevTextColor
 	removeitem ITEM_MYSTERY_EGG, 1
 	delay 10
 	compare VAR_FACING, 1
@@ -300,7 +300,7 @@ NewBarkTown_EventScript_ChoseMon:
 	hidemonpic
 	removeobject VAR_LAST_TALKED
 	msgbox NewBarkTown_ProfessorElmsLab_Text_GreatMonToo
-	call Common_RestoreOriginalTextColor
+	call EventScript_RestorePrevTextColor
 	setflag FLAG_SYS_POKEMON_GET
 	givemon VAR_TEMP_2, 5, ITEM_ORAN_BERRY
 	copyvar VAR_STARTER_MON, VAR_TEMP_1 @ 0=Chikorita, 1=Totodile, 2=Cyndaquil
@@ -463,7 +463,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	delay 20
 	setflag FLAG_PHONE_CARD_ELM
 	playfanfare MUS_ME_TORE_EYE
-	call Common_RestoreOriginalTextColor
+	call EventScript_RestorePrevTextColor
 	msgbox NewBarkTown_ProfessorElmsLab_Text_GotElmsNumber, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

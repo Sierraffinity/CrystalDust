@@ -227,7 +227,7 @@ MeteorFalls_1F_1R_EventScript_ProfCozmo:: @ 822BF25
 	end
 
 MeteorFalls_1F_1R_EventScript_MetCozmo:: @ 822BF3D
-	msgbox MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtMtChimney, MSGBOX_DEFAULT
+	msgbox MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtSlowpokeWell, MSGBOX_DEFAULT
 	release
 	end
 
@@ -303,7 +303,7 @@ MeteorFalls_1F_1R_Text_MeetProfCozmo: @ 822C342
 	.string "What are they going to do with that\n"
 	.string "METEORITE at MT. CHIMNEY?$"
 
-MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtMtChimney: @ 822C47D
+MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtSlowpokeWell: @ 822C47D
 	.string "PROF. COZMO: But that TEAM MAGMA…\p"
 	.string "What are they going to do with that\n"
 	.string "METEORITE at MT. CHIMNEY?$"

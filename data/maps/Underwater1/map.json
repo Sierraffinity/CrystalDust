@@ -34,7 +34,7 @@
       "y": 51,
       "elevation": 0,
       "item": "ITEM_CARBOS",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_1_CARBOS"
+      "flag": "FLAG_HIDDEN_ITEM_ILEX_FOREST_FULL_HEAL"
     },
     {
       "type": "hidden_item",

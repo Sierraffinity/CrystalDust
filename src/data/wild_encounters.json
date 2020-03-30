@@ -4916,186 +4916,186 @@
                                 {
                                     "max_level": 5,
                                     "min_level": 5,
-                                    "species": "SPECIES_POOCHYENA"
+                                    "species": "SPECIES_CATERPIE"
                                 },
                                 {
                                     "max_level": 5,
                                     "min_level": 5,
-                                    "species": "SPECIES_WURMPLE"
+                                    "species": "SPECIES_WEEDLE"
                                 },
                                 {
                                     "max_level": 5,
                                     "min_level": 5,
-                                    "species": "SPECIES_SHROOMISH"
+                                    "species": "SPECIES_CATERPIE"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_WEEDLE"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_METAPOD"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_METAPOD"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_KAKUNA"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_KAKUNA"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_PIDGEY"
                                 },
                                 {
                                     "max_level": 6,
                                     "min_level": 6,
-                                    "species": "SPECIES_POOCHYENA"
+                                    "species": "SPECIES_PARAS"
                                 },
                                 {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SILCOON"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_CASCOON"
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_PIDGEY"
                                 },
                                 {
                                     "max_level": 6,
                                     "min_level": 6,
-                                    "species": "SPECIES_WURMPLE"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SHROOMISH"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SLAKOTH"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SLAKOTH"
+                                    "species": "SPECIES_PARAS"
                                 }
                             ],
                             [
                                 {
                                     "max_level": 5,
                                     "min_level": 5,
-                                    "species": "SPECIES_POOCHYENA"
+                                    "species": "SPECIES_CATERPIE"
                                 },
                                 {
                                     "max_level": 5,
                                     "min_level": 5,
-                                    "species": "SPECIES_WURMPLE"
+                                    "species": "SPECIES_WEEDLE"
                                 },
                                 {
                                     "max_level": 5,
                                     "min_level": 5,
-                                    "species": "SPECIES_SHROOMISH"
+                                    "species": "SPECIES_CATERPIE"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_WEEDLE"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_METAPOD"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_METAPOD"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_KAKUNA"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_KAKUNA"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_PIDGEY"
                                 },
                                 {
                                     "max_level": 6,
                                     "min_level": 6,
-                                    "species": "SPECIES_POOCHYENA"
+                                    "species": "SPECIES_PARAS"
                                 },
                                 {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SILCOON"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_CASCOON"
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_PIDGEY"
                                 },
                                 {
                                     "max_level": 6,
                                     "min_level": 6,
-                                    "species": "SPECIES_WURMPLE"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SHROOMISH"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SLAKOTH"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SLAKOTH"
+                                    "species": "SPECIES_PARAS"
                                 }
                             ],
                             [
                                 {
                                     "max_level": 5,
                                     "min_level": 5,
-                                    "species": "SPECIES_POOCHYENA"
+                                    "species": "SPECIES_ODDISH"
                                 },
                                 {
                                     "max_level": 5,
                                     "min_level": 5,
-                                    "species": "SPECIES_WURMPLE"
+                                    "species": "SPECIES_VENONAT"
                                 },
                                 {
                                     "max_level": 5,
                                     "min_level": 5,
-                                    "species": "SPECIES_SHROOMISH"
+                                    "species": "SPECIES_ODDISH"
+                                },
+                                {
+                                    "max_level": 5,
+                                    "min_level": 5,
+                                    "species": "SPECIES_VENONAT"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_ODDISH"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_ODDISH"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_PSYDUCK"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_PSYDUCK"
+                                },
+                                {
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_HOOTHOOT"
                                 },
                                 {
                                     "max_level": 6,
                                     "min_level": 6,
-                                    "species": "SPECIES_POOCHYENA"
+                                    "species": "SPECIES_PARAS"
                                 },
                                 {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SILCOON"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_CASCOON"
+                                    "max_level": 7,
+                                    "min_level": 7,
+                                    "species": "SPECIES_HOOTHOOT"
                                 },
                                 {
                                     "max_level": 6,
                                     "min_level": 6,
-                                    "species": "SPECIES_WURMPLE"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SHROOMISH"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 5,
-                                    "min_level": 5,
-                                    "species": "SPECIES_SLAKOTH"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_TAILLOW"
-                                },
-                                {
-                                    "max_level": 6,
-                                    "min_level": 6,
-                                    "species": "SPECIES_SLAKOTH"
+                                    "species": "SPECIES_PARAS"
                                 }
                             ]
                         ]

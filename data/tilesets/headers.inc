@@ -275,15 +275,15 @@ gTileset_Gatehouse:: @ 83DF914
 	.4byte NULL @ animation callback
 
 	.align 2
-gTileset_MeteorFalls:: @ 83DF92C
+gTileset_RockTunnel:: @ 83DF92C
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_MeteorFalls
-	.4byte gTilesetPalettes_MeteorFalls
+	.4byte gTilesetTiles_RockTunnel
+	.4byte gTilesetPalettes_RockTunnel
 	.4byte NULL
-	.4byte gMetatiles_MeteorFalls
-	.4byte gMetatileAttributes_MeteorFalls
+	.4byte gMetatiles_RockTunnel
+	.4byte gMetatileAttributes_RockTunnel
 	.4byte NULL @ animation callback
 
 	.align 2

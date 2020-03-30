@@ -457,6 +457,23 @@ text Route33_Text_AnthonyPostBattle {
 	"the mountains."
 }
 
+text IlexForest_WayneIntro {
+	"Don't sneak up on me like that!\n"
+	"You frightened a POKéMON away!"
+}
+
+text IlexForest_WayneDefeat {
+	"I hadn't seen that POKéMON before…"
+}
+
+text IlexForest_WaynePostBattle {
+	"A POKéMON I've never seen before\n"
+	"fell out of the tree when I used\l"
+	"HEADBUTT.\p"
+	"I ought to use HEADBUTT in other\n"
+	"places too."
+}
+
 raw`
 Route33_Text_FosterIntro: @ 8295D0F
 	.string "There's supposed to be a mystical\n"

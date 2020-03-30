@@ -447,18 +447,18 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Anthony},
     },
 
-    [TRAINER_SHELLY_WEATHER_INSTITUTE] =
+    [TRAINER_WAYNE] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_AQUA_ADMIN,
-        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_ADMIN_F,
-        .trainerName = _("SHELLY"),
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BUG_CATCHER,
+        .trainerName = _("WAYNE"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_ShellyWeatherInstitute),
-        .party = {.NoItemDefaultMoves = sParty_ShellyWeatherInstitute},
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_Wayne),
+        .party = {.NoItemDefaultMoves = sParty_Wayne},
     },
 
     [TRAINER_SHELLY_SEAFLOOR_CAVERN] =
@@ -2053,8 +2053,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntMtChimney1),
-        .party = {.NoItemDefaultMoves = sParty_GruntMtChimney1},
+        .partySize = ARRAY_COUNT(sParty_GruntSlowpokeWell1),
+        .party = {.NoItemDefaultMoves = sParty_GruntSlowpokeWell1},
     },
 
     [TRAINER_STEVE_2] =
@@ -8115,8 +8115,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntMtChimney2),
-        .party = {.NoItemDefaultMoves = sParty_GruntMtChimney2},
+        .partySize = ARRAY_COUNT(sParty_GruntSlowpokeWell2),
+        .party = {.NoItemDefaultMoves = sParty_GruntSlowpokeWell2},
     },
 
     [TRAINER_CLARENCE] =
@@ -8367,8 +8367,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_TabithaMtChimney),
-        .party = {.NoItemDefaultMoves = sParty_TabithaMtChimney},
+        .partySize = ARRAY_COUNT(sParty_TabithaSlowpokeWell),
+        .party = {.NoItemDefaultMoves = sParty_TabithaSlowpokeWell},
     },
 
     [TRAINER_JONATHAN] =
@@ -8437,8 +8437,8 @@ const struct Trainer gTrainers[] = {
         .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_MaxieMtChimney),
-        .party = {.NoItemDefaultMoves = sParty_MaxieMtChimney},
+        .partySize = ARRAY_COUNT(sParty_MaxieSlowpokeWell),
+        .party = {.NoItemDefaultMoves = sParty_MaxieSlowpokeWell},
     },
 
     [TRAINER_TIANA] =
@@ -9421,7 +9421,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Koji1},
     },
 
-    [TRAINER_WAYNE] =
+    [TRAINER_WAYNE_OLD] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_FISHERMAN,
@@ -9431,8 +9431,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Wayne),
-        .party = {.NoItemDefaultMoves = sParty_Wayne},
+        .partySize = ARRAY_COUNT(sParty_WayneOld),
+        .party = {.NoItemDefaultMoves = sParty_WayneOld},
     },
 
     [TRAINER_AIDAN] =

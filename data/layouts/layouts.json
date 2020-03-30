@@ -1497,7 +1497,7 @@
             "id": "LAYOUT_METEOR_FALLS_1F_1R",
             "name": "MeteorFalls_1F_1R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_MeteorFalls",
+            "secondary_tileset": "gTileset_RockTunnel",
             "width": 30
         },
         {
@@ -1509,7 +1509,7 @@
             "id": "LAYOUT_METEOR_FALLS_1F_2R",
             "name": "MeteorFalls_1F_2R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_MeteorFalls",
+            "secondary_tileset": "gTileset_RockTunnel",
             "width": 30
         },
         {
@@ -1521,7 +1521,7 @@
             "id": "LAYOUT_METEOR_FALLS_B1F_1R",
             "name": "MeteorFalls_B1F_1R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_MeteorFalls",
+            "secondary_tileset": "gTileset_RockTunnel",
             "width": 29
         },
         {
@@ -1533,7 +1533,7 @@
             "id": "LAYOUT_METEOR_FALLS_B1F_2R",
             "name": "MeteorFalls_B1F_2R_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_MeteorFalls",
+            "secondary_tileset": "gTileset_RockTunnel",
             "width": 11
         },
         {
@@ -1613,7 +1613,7 @@
             "border_filepath": "data/layouts/IlexForest/border.bin",
             "border_height": 2,
             "border_width": 3,
-            "height": 64,
+            "height": 62,
             "id": "LAYOUT_ILEX_FOREST",
             "name": "IlexForest_Layout",
             "primary_tileset": "gTileset_General",
@@ -1621,16 +1621,16 @@
             "width": 54
         },
         {
-            "blockdata_filepath": "data/layouts/MtChimney/map.bin",
-            "border_filepath": "data/layouts/MtChimney/border.bin",
+            "blockdata_filepath": "data/layouts/SlowpokeWell/map.bin",
+            "border_filepath": "data/layouts/SlowpokeWell/border.bin",
             "border_height": 2,
             "border_width": 2,
-            "height": 47,
+            "height": 20,
             "id": "LAYOUT_MT_CHIMNEY",
-            "name": "MtChimney_Layout",
+            "name": "SlowpokeWell_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Azalea",
-            "width": 40
+            "secondary_tileset": "gTileset_RockTunnel",
+            "width": 24
         },
         {
             "blockdata_filepath": "data/layouts/MtPyre_1F/map.bin",
@@ -5169,7 +5169,7 @@
             "id": "LAYOUT_METEOR_FALLS_STEVENS_CAVE",
             "name": "MeteorFalls_StevensCave_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_MeteorFalls",
+            "secondary_tileset": "gTileset_RockTunnel",
             "width": 30
         },
         {

@@ -40,7 +40,8 @@
 #define TUTOR_MOVE_THUNDER_PUNCH   27
 #define TUTOR_MOVE_FIRE_PUNCH      28
 #define TUTOR_MOVE_FURY_CUTTER     29
-#define TUTOR_MOVE_COUNT           30
+#define TUTOR_MOVE_HEADBUTT        30
+#define TUTOR_MOVE_COUNT           31
 
 #define PARTY_LAYOUT_SINGLE          0
 #define PARTY_LAYOUT_DOUBLE          1

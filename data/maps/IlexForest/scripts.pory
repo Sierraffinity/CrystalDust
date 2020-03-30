@@ -4,6 +4,88 @@ mapscripts IlexForest_MapScripts {
     }
 }
 
+script IlexForest_EventScript_Apprentice {
+	lock
+	faceplayer
+	if (flag(FLAG_FETCHED_FARFETCHD))
+	{
+		msgbox("Wow!\n"
+			   "Thanks a whole bunch!\p"
+			   "My boss's POKéMON won't obey me\n"
+			   "because I don't have a BADGE.")
+	}
+	else
+	{
+		msgbox("Oh, man…\n"
+			   "My boss is going to be steaming…\p"
+			   "The FARFETCH'D that CUTS trees\n"
+			   "for CHARCOAL took off on me.\p"
+			   "I can't go looking for it here in\n"
+			   "the ILEX FOREST.\p"
+			   "It's too big, dark, and scary for\n"
+			   "me to go any further…")
+	}
+	release
+}
+
+script IlexForest_EventScript_Master {
+	lock
+	faceplayer
+	if (flag(FLAG_RECEIVED_HM01))
+	{
+		msgbox("Do you want to apprentice as a\n"
+			   "CHARCOAL maker with me?\p"
+			   "You'll be first-rate in ten years!")
+	}
+	else
+	{
+		msgbox("Ah! My FARFETCH'D!\n"
+			   "You found it for us, kid?\p"
+			   "Without it, we wouldn't be able\n"
+			   "to CUT trees for CHARCOAL.\p"
+			   "Thanks, kid!\n"
+			   "Now, how can I thank you…\p"
+			   "I know!\n"
+			   "Here, take this.")
+		giveitem(ITEM_HM01)
+		setflag(FLAG_RECEIVED_HM01)
+		msgbox("That's the CUT HM.\n"
+			   "Teach that to a POKéMON to clear\l"
+			   "small trees.\p"
+			   "Of course, you have to have the\n"
+			   "GYM BADGE from AZALEA to use it.")
+		setflag(FLAG_HIDE_ILEX_FOREST_MASTER)
+		setflag(FLAG_HIDE_ILEX_FOREST_APPRENTICE_FARFETCHD)
+		clearflag(FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_MASTER)
+		clearflag(FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_APPRENTICE_FARFETCHD)
+	}
+	release
+}
+
+script IlexForest_EventScript_Wayne {
+    trainerbattle_single(TRAINER_WAYNE, IlexForest_WayneIntro, IlexForest_WayneDefeat)
+    msgbox(IlexForest_WaynePostBattle)
+    release
+}
+
+script IlexForest_EventScript_Lass {
+	msgbox("Did something happen to the\n"
+		   "forest's guardian?", MSGBOX_NPC)
+}
+
+script IlexForest_EventScript_DroppedItemsSign {
+	msgbox("ILEX FOREST is so overgrown with\n"
+		   "trees that you can't see the sky.\p"
+		   "Please watch out for items that may\n"
+		   "have been dropped.", MSGBOX_SIGN)
+}
+
+script IlexForest_EventScript_Shrine {
+	msgbox("ILEX FOREST SHRINE…\p"
+		   "It's in honor of the forest's\n"
+		   "protector…", MSGBOX_SIGN)
+}
+
 raw `
 IlexForest_EventScript_DevonResearcherLeft:: @ 822DFD7
 	lockall

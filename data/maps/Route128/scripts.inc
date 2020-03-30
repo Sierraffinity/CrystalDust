@@ -229,7 +229,7 @@ Route128_EventScript_Ruben:: @ 81F6D99
 	end
 
 Route128_EventScript_Wayne:: @ 81F6DB0
-	trainerbattle_single TRAINER_WAYNE, Route128_Text_WayneIntro, Route128_Text_WayneDefeat
+	trainerbattle_single TRAINER_WAYNE_OLD, Route128_Text_WayneIntro, Route128_Text_WayneDefeat
 	msgbox Route128_Text_WaynePostBattle, MSGBOX_AUTOCLOSE
 	end
 

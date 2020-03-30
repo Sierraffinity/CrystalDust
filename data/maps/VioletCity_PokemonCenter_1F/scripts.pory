@@ -64,7 +64,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                     "from ELM's AIDE.")
             waitfanfare
             giveegg(SPECIES_TOGEPI)
-            call(Common_RestoreOriginalTextColor)
+            call(EventScript_RestorePrevTextColor)
             msgbox("We discovered that a POKéMON won't\n"
                    "hatch until it grows in the EGG.\p"
                    "It also has to be with other active\n"
@@ -127,7 +127,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
             msgbox("Press the B Button to run.\n"
                    "But only where there's room to run!")
             normalmsg
-            call(Common_RestoreOriginalTextColor)
+            call(EventScript_RestorePrevTextColor)
 
             msgbox("I need to head back to the lab now.\n"
                    "Good luck with the EGG!")
@@ -148,6 +148,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
 
 	        playse(SE_KAIDAN)
             removeobject(ELMS_AIDE)
+            waitse
             clearflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE)
             setvar(VAR_ROUTE32_STATE, 1)
             setflag(FLAG_SYS_B_DASH)

@@ -183,12 +183,12 @@ gMetatileAttributes_Gatehouse:: @ 83B4950
 	.incbin "data/tilesets/secondary/gatehouse/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_MeteorFalls:: @ 83B4954
-	.incbin "data/tilesets/secondary/meteor_falls/metatiles.bin"
+gMetatiles_RockTunnel:: @ 83B4954
+	.incbin "data/tilesets/secondary/rock_tunnel/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_MeteorFalls:: @ 83B5344
-	.incbin "data/tilesets/secondary/meteor_falls/metatile_attributes.bin"
+gMetatileAttributes_RockTunnel:: @ 83B5344
+	.incbin "data/tilesets/secondary/rock_tunnel/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_OceanicMuseum:: @ 83B5482

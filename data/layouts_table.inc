@@ -135,7 +135,7 @@ gMapLayouts::
 	.4byte DarkCave_B1F_Layout
 	.4byte UnionCave_B1F_Layout
 	.4byte IlexForest_Layout
-	.4byte MtChimney_Layout
+	.4byte SlowpokeWell_Layout
 	.4byte MtPyre_1F_Layout
 	.4byte MtPyre_2F_Layout
 	.4byte MtPyre_3F_Layout

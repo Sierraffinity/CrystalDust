@@ -396,16 +396,16 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Anthony[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_ShellyWeatherInstitute[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Wayne[] = {
     {
-    .iv = 50,
-    .lvl = 28,
-    .species = SPECIES_CARVANHA,
+    .iv = 0,
+    .lvl = 8,
+    .species = SPECIES_LEDYBA,
     },
     {
-    .iv = 50,
-    .lvl = 28,
-    .species = SPECIES_MIGHTYENA,
+    .iv = 0,
+    .lvl = 10,
+    .species = SPECIES_PARAS,
     }
 };
 
@@ -1868,7 +1868,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Mark[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMtChimney1[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntSlowpokeWell1[] = {
     {
     .iv = 0,
     .lvl = 20,
@@ -7747,7 +7747,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Harrison[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMtChimney2[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntSlowpokeWell2[] = {
     {
     .iv = 0,
     .lvl = 20,
@@ -7916,7 +7916,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_GruntWeatherInst5[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_TabithaMtChimney[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_TabithaSlowpokeWell[] = {
     {
     .iv = 50,
     .lvl = 18,
@@ -7996,7 +7996,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MaxieMagmaHideout[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_MaxieMtChimney[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_MaxieSlowpokeWell[] = {
     {
     .iv = 150,
     .lvl = 24,
@@ -9127,7 +9127,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Koji1[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Wayne[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_WayneOld[] = {
     {
     .iv = 0,
     .lvl = 31,

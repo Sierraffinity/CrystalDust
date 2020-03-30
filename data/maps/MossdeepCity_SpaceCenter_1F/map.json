@@ -166,7 +166,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_Steven",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN"
+      "flag": "FLAG_HIDE_ILEX_FOREST_KURT"
     }
   ],
   "warp_events": [

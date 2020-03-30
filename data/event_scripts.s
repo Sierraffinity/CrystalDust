@@ -359,7 +359,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/DarkCave_South/scripts.inc"
 	.include "data/maps/DarkCave_B1F/scripts.inc"
 	.include "data/maps/IlexForest/scripts.inc"
-	.include "data/maps/MtChimney/scripts.inc"
+	.include "data/maps/SlowpokeWell/scripts.inc"
 	.include "data/maps/JaggedPass/scripts.inc"
 	.include "data/maps/FieryPath/scripts.inc"
 	.include "data/maps/MtPyre_1F/scripts.inc"
@@ -587,7 +587,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/scripts/trainer_battle.inc"
 	.include "data/scripts/new_game.inc"
 	
-Common_RestoreOriginalTextColor:
+EventScript_RestorePrevTextColor:
 	copyvar VAR_TEXT_COLOR VAR_TEXT_COLOR_BACKUP
 	return
 

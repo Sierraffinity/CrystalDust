@@ -59,7 +59,7 @@ CherrygroveCity_EventScript_GuideGent::
 	message CherrygroveCity_Text_GuideGent_GetMapCard1
 	waitfanfare
 	msgbox CherrygroveCity_Text_GuideGent_GetMapCard2
-	call Common_RestoreOriginalTextColor
+	call EventScript_RestorePrevTextColor
 	msgbox CherrygroveCity_Text_GuideGent_Pokegear
 	closemessage
 	fadedefaultbgm

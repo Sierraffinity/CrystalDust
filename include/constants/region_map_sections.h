@@ -57,7 +57,7 @@
 #define MAPSEC_UNDERWATER_127               0x35
 #define MAPSEC_UNDERWATER_SOOTOPOLIS        0x36
 #define MAPSEC_DARK_CAVE                    0x37
-#define MAPSEC_MT_CHIMNEY                   0x38
+#define MAPSEC_SLOWPOKE_WELL                   0x38
 #define MAPSEC_SAFARI_ZONE                  0x39
 #define MAPSEC_BATTLE_FRONTIER              0x3A
 #define MAPSEC_ILEX_FOREST              0x3B

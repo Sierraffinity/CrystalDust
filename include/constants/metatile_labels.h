@@ -317,7 +317,7 @@
 #define METATILE_Mauville_MirageTower_TileE   0x3DD
 #define METATILE_Mauville_MirageTower_TileF   0x3E3
 
-// gTileset_MeteorFalls
+// gTileset_RockTunnel
 #define METATILE_MeteorFalls_CaveEntrance_Bottom  0x24E
 #define METATILE_MeteorFalls_CaveEntrance_Left    0x24D
 #define METATILE_MeteorFalls_CaveEntrance_Right   0x24F

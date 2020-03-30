@@ -144,10 +144,10 @@
 #define FLAG_RECEIVED_OLD_ROD                0x82
 #define FLAG_CLEARED_SLOWPOKE_WELL           0x83
 #define FLAG_RECEIVED_CHARCOAL_AZALEA        0x84
-#define FLAG_RECEIVED_AMULET_COIN            0x85
+#define FLAG_FETCHED_FARFETCHD               0x85
 #define FLAG_PENDING_DAYCARE_EGG             0x86
-#define FLAG_THANKED_FOR_PLAYING_WITH_WALLY  0x87
-#define FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL 0x88 // Set after defeating Wally outside Mauville Gym. Will activate a call later to register Wally.
+#define FLAG_MOVE_TUTOR_TAUGHT_HEADBUTT      0x87
+#define FLAG_KURT_GAVE_LURE_BALL             0x88
 #define FLAG_RECEIVED_HM01_OLD               0x89
 #define FLAG_SCOTT_CALL_FORTREE_GYM          0x8A // Triggers call from Scott after defeating Winona
 #define FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY   0x8B
@@ -164,7 +164,7 @@
 #define FLAG_RECEIVED_CONTEST_PASS           0x96 // Unused, leftover from R/S
 #define FLAG_RECEIVED_CASTFORM               0x97
 #define FLAG_RECEIVED_SUPER_ROD              0x98
-#define FLAG_VIOLET_NPC_TRADE_COMPLETED    0x99
+#define FLAG_VIOLET_NPC_TRADE_COMPLETED      0x99
 #define FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED  0x9A
 #define FLAG_FORTREE_NPC_TRADE_COMPLETED     0x9B
 #define FLAG_BATTLE_FRONTIER_TRADE_DONE      0x9C
@@ -535,9 +535,9 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_32_SUPER_POTION               (FLAG_HIDDEN_ITEMS_START + 0x03)
 #define FLAG_HIDDEN_ITEM_ROUTE_32_GREAT_BALL                 (FLAG_HIDDEN_ITEMS_START + 0x04)
 #define FLAG_HIDDEN_ITEM_AZALEA_TOWN_FULL_HEAL               (FLAG_HIDDEN_ITEMS_START + 0x05)
-#define FLAG_HIDDEN_ITEM_ROUTE_119_ULTRA_BALL                (FLAG_HIDDEN_ITEMS_START + 0x06)
-#define FLAG_HIDDEN_ITEM_ROUTE_123_SUPER_REPEL               (FLAG_HIDDEN_ITEMS_START + 0x07)
-#define FLAG_HIDDEN_ITEM_UNDERWATER_1_CARBOS                 (FLAG_HIDDEN_ITEMS_START + 0x08)
+#define FLAG_HIDDEN_ITEM_ILEX_FOREST_ETHER                   (FLAG_HIDDEN_ITEMS_START + 0x06)
+#define FLAG_HIDDEN_ITEM_ILEX_FOREST_SUPER_POTION            (FLAG_HIDDEN_ITEMS_START + 0x07)
+#define FLAG_HIDDEN_ITEM_ILEX_FOREST_FULL_HEAL               (FLAG_HIDDEN_ITEMS_START + 0x08)
 #define FLAG_HIDDEN_ITEM_UNDERWATER_1_GREEN_SHARD            (FLAG_HIDDEN_ITEMS_START + 0x09)
 #define FLAG_HIDDEN_ITEM_UNDERWATER_1_PEARL                  (FLAG_HIDDEN_ITEMS_START + 0x0A)
 #define FLAG_HIDDEN_ITEM_UNDERWATER_1_BIG_PEARL              (FLAG_HIDDEN_ITEMS_START + 0x0B)
@@ -783,10 +783,10 @@
 #define FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_MASTER                  0x2EC
 #define FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_APPRENTICE_FARFETCHD    0x2ED
 #define FLAG_HIDE_AZALEA_TOWN_KURTS_HOUSE_KURT                      0x2EE
-#define FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY                           0x2EF
-#define FLAG_HIDE_NEW_BARK_TOWN_MOM_OUTSIDE                         0x2F0
-#define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN              0x2F1
-#define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_VIGOROTH_1            0x2F2
+#define FLAG_HIDE_ILEX_FOREST_MASTER                                0x2EF
+#define FLAG_HIDE_ILEX_FOREST_APPRENTICE_FARFETCHD                  0x2F0
+#define FLAG_HIDE_ILEX_FOREST_KURT                                  0x2F1
+#define FLAG_HIDE_ILEX_FOREST_LASS                                  0x2F2
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_VIGOROTH_2            0x2F3
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA          0x2F4
 #define FLAG_HIDE_LITTLE_ROOT_TOWN_PLAYERS_BEDROOM_MOM              0x2F5
@@ -1060,10 +1060,10 @@
 #define FLAG_ITEM_UNION_CAVE_1F_AWAKENING                           0x3FF
 #define FLAG_ITEM_UNION_CAVE_B1F_TM43                               0x400
 #define FLAG_ITEM_UNION_CAVE_B1F_X_DEFEND                           0x401
-#define FLAG_ITEM_ROUTE_119_ELIXIR_1                                0x402
-#define FLAG_ITEM_ROUTE_119_LEAF_STONE                              0x403
-#define FLAG_ITEM_ROUTE_119_RARE_CANDY                              0x404
-#define FLAG_ITEM_ROUTE_119_HYPER_POTION_1                          0x405
+#define FLAG_ITEM_ILEX_FOREST_REVIVE                                0x402
+#define FLAG_ITEM_ILEX_FOREST_X_ATTACK                              0x403
+#define FLAG_ITEM_ILEX_FOREST_ANTIDOTE                              0x404
+#define FLAG_ITEM_ILEX_FOREST_ETHER                                 0x405
 #define FLAG_ITEM_ROUTE_120_NUGGET                                  0x406
 #define FLAG_ITEM_ROUTE_120_FULL_HEAL                               0x407
 #define FLAG_ITEM_ROUTE_123_CALCIUM                                 0x408
