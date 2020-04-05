@@ -33,7 +33,7 @@ MtPyre_2F_EventScript_Dez:: @ 823115A
 	end
 
 MtPyre_2F_EventScript_Leah:: @ 8231175
-	trainerbattle_single TRAINER_LEAH, MtPyre_2F_Text_LeahIntro, MtPyre_2F_Text_LeahDefeat
+	trainerbattle_single TRAINER_ROCKET_SLOWPOKE_WELL_3, MtPyre_2F_Text_LeahIntro, MtPyre_2F_Text_LeahDefeat
 	msgbox MtPyre_2F_Text_LeahPostBattle, MSGBOX_AUTOCLOSE
 	end
 

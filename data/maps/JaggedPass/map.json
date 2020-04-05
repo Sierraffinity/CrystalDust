@@ -132,14 +132,14 @@
       "x": 13,
       "y": 5,
       "elevation": 3,
-      "dest_map": "MAP_MT_CHIMNEY",
+      "dest_map": "MAP_SLOWPOKE_WELL_B1F",
       "dest_warp_id": 2
     },
     {
       "x": 14,
       "y": 5,
       "elevation": 3,
-      "dest_map": "MAP_MT_CHIMNEY",
+      "dest_map": "MAP_SLOWPOKE_WELL_B1F",
       "dest_warp_id": 3
     },
     {

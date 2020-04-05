@@ -457,21 +457,74 @@ text Route33_Text_AnthonyPostBattle {
 	"the mountains."
 }
 
-text IlexForest_WayneIntro {
+text IlexForest_Text_WayneIntro {
 	"Don't sneak up on me like that!\n"
 	"You frightened a POKéMON away!"
 }
 
-text IlexForest_WayneDefeat {
+text IlexForest_Text_WayneDefeat {
 	"I hadn't seen that POKéMON before…"
 }
 
-text IlexForest_WaynePostBattle {
+text IlexForest_Text_WaynePostBattle {
 	"A POKéMON I've never seen before\n"
 	"fell out of the tree when I used\l"
 	"HEADBUTT.\p"
 	"I ought to use HEADBUTT in other\n"
 	"places too."
+}
+
+text SlowpokeWell_B1F_Text_Rocket1Intro {
+	"Darn! I was standing guard up top\n"
+	"when some old coot yelled at me.\p"
+	"He startled me so much that I fell\n"
+	"down here.\p"
+	"I think I'll vent my anger by taking\n"
+	"it out on you!"
+}
+
+text SlowpokeWell_B1F_Text_Rocket1Defeat {
+	"Arrgh!\n"
+	"This is NOT my day!"
+}
+
+text SlowpokeWell_B1F_Text_Rocket1PostBattle {
+	"Sure, we've been hacking the tails\n"
+	"off SLOWPOKE and selling them.\l"
+	"Everything we do is for profit.\p"
+	"That's right! We're TEAM ROCKET,\n"
+	"and we'll do anything for money!"
+}
+
+text SlowpokeWell_B1F_Text_Rocket2Intro {
+	"You want us to stop taking TAILS?\n"
+	"Yeah, just try to defeat all of us!"
+}
+
+text SlowpokeWell_B1F_Text_Rocket2Defeat {
+	"You rotten brat!"
+}
+
+text SlowpokeWell_B1F_Text_Rocket2PostBattle {
+	"SLOWPOKETAILS grow back fast!\n"
+	"What's wrong with selling them?"
+}
+
+text SlowpokeWell_B1F_Text_Rocket3Intro {
+	"Quit taking SLOWPOKETAILS?\p"
+	"If we obeyed you, TEAM ROCKET's\n"
+	"rep would be ruined!"
+}
+
+text SlowpokeWell_B1F_Text_Rocket3Defeat {
+	"Just…\n"
+	"Too strong…"
+}
+
+text SlowpokeWell_B1F_Text_Rocket3PostBattle {
+	"We need the money, but selling\n"
+	"SLOWPOKETAILS?\p"
+	"It's tough being a ROCKET GRUNT!"
 }
 
 raw`

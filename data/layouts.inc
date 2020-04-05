@@ -133,7 +133,7 @@
 	.include "data/layouts/DarkCave_B1F/layout.inc"
 	.include "data/layouts/UnionCave_B1F/layout.inc"
 	.include "data/layouts/IlexForest/layout.inc"
-	.include "data/layouts/SlowpokeWell/layout.inc"
+	.include "data/layouts/SlowpokeWell_B1F/layout.inc"
 	.include "data/layouts/MtPyre_1F/layout.inc"
 	.include "data/layouts/MtPyre_2F/layout.inc"
 	.include "data/layouts/MtPyre_3F/layout.inc"

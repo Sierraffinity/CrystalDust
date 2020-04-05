@@ -102,5 +102,6 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_ILEX_FOREST_APPRENTICE_FARFETCHD
 	setflag FLAG_HIDE_ILEX_FOREST_KURT
 	setflag FLAG_HIDE_ILEX_FOREST_LASS
+	setflag FLAG_HIDE_SLOWPOKE_WELL_B1F_KURT
 	call EventScript_ResetAllBerries
 	end

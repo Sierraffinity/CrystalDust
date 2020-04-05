@@ -44,12 +44,12 @@ Route112_EventScript_MagmaGrunts:: @ 81F1DB7
 	releaseall
 	end
 
-Route112_EventScript_SlowpokeWellCableCarSign:: @ 81F1E46
-	msgbox Route112_Text_SlowpokeWellCableCarSign, MSGBOX_SIGN
+Route112_EventScript_SlowpokeWell_B1FCableCarSign:: @ 81F1E46
+	msgbox Route112_Text_SlowpokeWell_B1FCableCarSign, MSGBOX_SIGN
 	end
 
-Route112_EventScript_SlowpokeWellSign:: @ 81F1E4F
-	msgbox Route112_Text_SlowpokeWellSign, MSGBOX_SIGN
+Route112_EventScript_SlowpokeWell_B1FSign:: @ 81F1E4F
+	msgbox Route112_Text_SlowpokeWell_B1FSign, MSGBOX_SIGN
 	end
 
 Route112_EventScript_RouteSignLavaridge:: @ 81F1E58
@@ -128,11 +128,11 @@ Route112_Text_NotEasyToGetBackToLavaridge: @ 81F204E
 	.string "I went down these ledges, it'd be no\l"
 	.string "easy matter to get back to LAVARIDGE.$"
 
-Route112_Text_SlowpokeWellCableCarSign: @ 81F20C1
+Route112_Text_SlowpokeWell_B1FCableCarSign: @ 81F20C1
 	.string "MT. CHIMNEY CABLE CAR\n"
 	.string "“A short walk {UP_ARROW} way!”$"
 
-Route112_Text_SlowpokeWellSign: @ 81F20ED
+Route112_Text_SlowpokeWell_B1FSign: @ 81F20ED
 	.string "MT. CHIMNEY\p"
 	.string "“For LAVARIDGE TOWN or the summit,\n"
 	.string "please take the CABLE CAR.”$"

@@ -4,7 +4,7 @@ mapscripts AzaleaTown_MapScripts {
     }
 }
 
-script AzaleaTown_EventScript_SlowpokeWellGuard {
+script AzaleaTown_EventScript_SlowpokeWell_B1FGuard {
     msgbox("It's unsafe to go in there, so I'm\n"
            "standing guard.\p"
            "Aren't I a good Samaritan?", MSGBOX_NPC)
@@ -15,8 +15,8 @@ script AzaleaTown_EventScript_OldMan {
     faceplayer
     if (flag(FLAG_CLEARED_SLOWPOKE_WELL))
     {
-        msgbox("The SLOWPOKE have returned.\n"
-               "Knowing them, they could've just\l"
+        msgbox("The SLOWPOKE have returned.\p"
+               "Knowing them, they could've just\n"
                "been goofing off somewhere.")
     }
     else
@@ -82,7 +82,7 @@ script AzaleaTown_EventScript_GymSign {
            "Encyclopedia", MSGBOX_SIGN)
 }
 
-script AzaleaTown_EventScript_SlowpokeWellSign {
+script AzaleaTown_EventScript_SlowpokeWell_B1FSign {
     msgbox("SLOWPOKE WELL\n"
            "Also known as the RAINMAKER WELL.\p"
            "Locals believe that a SLOWPOKE's\n"

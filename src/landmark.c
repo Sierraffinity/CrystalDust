@@ -329,7 +329,7 @@ static const struct Landmark *const Landmarks_Route134_2[]  =
     NULL,
 };
 
-static const struct Landmark *const Landmarks_SlowpokeWell_2[]  =
+static const struct Landmark *const Landmarks_SlowpokeWell_B1F_2[]  =
 {
     &Landmark_CableCar,
     &Landmark_JaggedPass,
@@ -383,7 +383,7 @@ static const struct LandmarkList gLandmarkLists[] =
     {MAPSEC_ROUTE_134, 0, Landmarks_OceanCurrent},
     {MAPSEC_ROUTE_134, 1, Landmarks_OceanCurrent},
     {MAPSEC_ROUTE_134, 2, Landmarks_Route134_2},
-    {MAPSEC_SLOWPOKE_WELL, 2, Landmarks_SlowpokeWell_2},
+    {MAPSEC_SLOWPOKE_WELL, 2, Landmarks_SlowpokeWell_B1F_2},
     {MAPSEC_NONE, 0, NULL},
 };
 

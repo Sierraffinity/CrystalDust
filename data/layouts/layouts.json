@@ -1621,13 +1621,13 @@
             "width": 54
         },
         {
-            "blockdata_filepath": "data/layouts/SlowpokeWell/map.bin",
-            "border_filepath": "data/layouts/SlowpokeWell/border.bin",
+            "blockdata_filepath": "data/layouts/SlowpokeWell_B1F/map.bin",
+            "border_filepath": "data/layouts/SlowpokeWell_B1F/border.bin",
             "border_height": 2,
             "border_width": 2,
             "height": 20,
             "id": "LAYOUT_MT_CHIMNEY",
-            "name": "SlowpokeWell_Layout",
+            "name": "SlowpokeWell_B1F_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_RockTunnel",
             "width": 24

@@ -26,7 +26,7 @@ SeafloorCavern_Room9_EventScript_ArchieAwakenKyogre:: @ 8234DC9
 	applymovement VAR_0x8004, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox SeafloorCavern_Room9_Text_ArchieYouMustDisappear, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_ARCHIE, SeafloorCavern_Room9_Text_ArchieDefeat
+	trainerbattle_no_intro TRAINER_ROCKET_SLOWPOKE_WELL_2, SeafloorCavern_Room9_Text_ArchieDefeat
 	msgbox SeafloorCavern_Room9_Text_ArchieWithThisRedOrb, MSGBOX_DEFAULT
 	setweather WEATHER_NONE
 	doweather

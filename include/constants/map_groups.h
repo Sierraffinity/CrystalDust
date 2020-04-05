@@ -305,7 +305,7 @@
 #define MAP_DARK_CAVE_SOUTH                          (9 | (24 << 8))
 #define MAP_DARK_CAVE_B1F                            (10 | (24 << 8))
 #define MAP_ILEX_FOREST                              (11 | (24 << 8))
-#define MAP_SLOWPOKE_WELL                            (12 | (24 << 8))
+#define MAP_SLOWPOKE_WELL_B1F                        (12 | (24 << 8))
 #define MAP_JAGGED_PASS                              (13 | (24 << 8))
 #define MAP_FIERY_PATH                               (14 | (24 << 8))
 #define MAP_MT_PYRE_1F                               (15 | (24 << 8))

@@ -34,10 +34,10 @@
 #define TRAINER_CALVIN           30
 #define TRAINER_ANTHONY_1        31
 #define TRAINER_WAYNE            32
-#define TRAINER_SHELLY_SEAFLOOR_CAVERN       33
-#define TRAINER_ARCHIE                       34
-#define TRAINER_LEAH                         35
-#define TRAINER_DAISY                        36
+#define TRAINER_ROCKET_SLOWPOKE_WELL_1       33
+#define TRAINER_ROCKET_SLOWPOKE_WELL_2                       34
+#define TRAINER_ROCKET_SLOWPOKE_WELL_3                         35
+#define TRAINER_ROCKET_SLOWPOKE_WELL_BOSS                        36
 #define TRAINER_ROSE_1                       37
 #define TRAINER_FELIX                        38
 #define TRAINER_VIOLET                       39

@@ -381,12 +381,12 @@ const union AnimCmd *const sAnims_EmMay[] ={
 const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
 {
     [TRAINER_PIC_HIKER] = sAnims_Hiker,
-    [TRAINER_PIC_AQUA_GRUNT_M] = sAnims_AquaGruntM,
+    [TRAINER_PIC_ROCKET_GRUNT_M] = sAnims_AquaGruntM,
     [TRAINER_PIC_POKEMON_BREEDER_F] = sAnims_PokemonBreederF,
     [TRAINER_PIC_COOLTRAINER_M] = sAnims_CoolTrainerM,
     [TRAINER_PIC_BIRD_KEEPER] = sAnims_BirdKeeper,
     [TRAINER_PIC_SAGE] = sAnims_Collector,
-    [TRAINER_PIC_AQUA_GRUNT_F] = sAnims_AquaGruntF,
+    [TRAINER_PIC_ROCKET_GRUNT_F] = sAnims_AquaGruntF,
     [TRAINER_PIC_SWIMMER_M] = sAnims_SwimmerM,
     [TRAINER_PIC_MAGMA_GRUNT_M] = sAnims_MagmaGruntM,
     [TRAINER_PIC_FIREBREATHER] = sAnims_ExpertM,

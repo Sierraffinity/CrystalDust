@@ -409,55 +409,55 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Wayne[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_ShellySeafloorCavern[] = {
-    {
-    .iv = 100,
-    .lvl = 37,
-    .species = SPECIES_SHARPEDO,
-    },
-    {
-    .iv = 100,
-    .lvl = 37,
-    .species = SPECIES_MIGHTYENA,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_Archie[] = {
-    {
-    .iv = 150,
-    .lvl = 41,
-    .species = SPECIES_MIGHTYENA,
-    },
-    {
-    .iv = 150,
-    .lvl = 41,
-    .species = SPECIES_CROBAT,
-    },
-    {
-    .iv = 150,
-    .lvl = 43,
-    .species = SPECIES_SHARPEDO,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_Leah[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_RocketSlowpokeWell1[] = {
     {
     .iv = 0,
-    .lvl = 31,
-    .species = SPECIES_SPOINK,
+    .lvl = 9,
+    .species = SPECIES_RATTATA,
+    },
+    {
+    .iv = 0,
+    .lvl = 9,
+    .species = SPECIES_RATTATA,
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Daisy[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_RocketSlowpokeWell2[] = {
+    {
+    .iv = 0,
+    .lvl = 9,
+    .species = SPECIES_ZUBAT,
+    },
+    {
+    .iv = 0,
+    .lvl = 11,
+    .species = SPECIES_EKANS,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_RocketSlowpokeWell3[] = {
+    {
+    .iv = 0,
+    .lvl = 7,
+    .species = SPECIES_RATTATA,
+    },
+    {
+    .iv = 0,
+    .lvl = 9,
+    .species = SPECIES_ZUBAT,
+    },
+    {
+    .iv = 0,
+    .lvl = 9,
+    .species = SPECIES_ZUBAT,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_RocketSlowpokeWellBoss[] = {
     {
     .iv = 0,
     .lvl = 14,
-    .species = SPECIES_SHROOMISH,
-    },
-    {
-    .iv = 0,
-    .lvl = 14,
-    .species = SPECIES_ROSELIA,
+    .species = SPECIES_KOFFING,
     }
 };
 
@@ -1868,7 +1868,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Mark[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntSlowpokeWell1[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntSlowpokeWell_B1F1[] = {
     {
     .iv = 0,
     .lvl = 20,
@@ -7747,7 +7747,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Harrison[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntSlowpokeWell2[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntSlowpokeWell_B1F2[] = {
     {
     .iv = 0,
     .lvl = 20,
@@ -7916,7 +7916,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_GruntWeatherInst5[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_TabithaSlowpokeWell[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_TabithaSlowpokeWell_B1F[] = {
     {
     .iv = 50,
     .lvl = 18,
@@ -7996,7 +7996,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MaxieMagmaHideout[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_MaxieSlowpokeWell[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_MaxieSlowpokeWell_B1F[] = {
     {
     .iv = 150,
     .lvl = 24,

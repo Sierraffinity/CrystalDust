@@ -1,12 +1,12 @@
 const struct MonCoords gTrainerFrontPicCoords[] =
 {
     [TRAINER_PIC_HIKER] = {.size = 8, .y_offset = 1},
-    [TRAINER_PIC_AQUA_GRUNT_M] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_ROCKET_GRUNT_M] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_POKEMON_BREEDER_F] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_COOLTRAINER_M] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_BIRD_KEEPER] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_SAGE] = {.size = 8, .y_offset = 1},
-    [TRAINER_PIC_AQUA_GRUNT_F] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_ROCKET_GRUNT_F] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_SWIMMER_M] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_MAGMA_GRUNT_M] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_FIREBREATHER] = {.size = 8, .y_offset = 1},
@@ -100,12 +100,12 @@ const struct MonCoords gTrainerFrontPicCoords[] =
 const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
 {
     TRAINER_SPRITE(HIKER, gTrainerFrontPic_Hiker, 0x800),
-    TRAINER_SPRITE(AQUA_GRUNT_M, gTrainerFrontPic_AquaGruntM, 0x800),
+    TRAINER_SPRITE(ROCKET_GRUNT_M, gTrainerFrontPic_RocketGruntM, 0x800),
     TRAINER_SPRITE(POKEMON_BREEDER_F, gTrainerFrontPic_PokemonBreederF, 0x800),
     TRAINER_SPRITE(COOLTRAINER_M, gTrainerFrontPic_CoolTrainerM, 0x800),
     TRAINER_SPRITE(BIRD_KEEPER, gTrainerFrontPic_BirdKeeper, 0x800),
     TRAINER_SPRITE(SAGE, gTrainerFrontPic_Sage, 0x800),
-    TRAINER_SPRITE(AQUA_GRUNT_F, gTrainerFrontPic_AquaGruntF, 0x800),
+    TRAINER_SPRITE(ROCKET_GRUNT_F, gTrainerFrontPic_RocketGruntF, 0x800),
     TRAINER_SPRITE(SWIMMER_M, gTrainerFrontPic_SwimmerM, 0x800),
     TRAINER_SPRITE(MAGMA_GRUNT_M, gTrainerFrontPic_MagmaGruntM, 0x800),
     TRAINER_SPRITE(FIREBREATHER, gTrainerFrontPic_Firebreather, 0x800),
@@ -199,12 +199,12 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
 {
     TRAINER_PAL(HIKER, gTrainerPalette_Hiker),
-    TRAINER_PAL(AQUA_GRUNT_M, gTrainerPalette_AquaGruntM),
+    TRAINER_PAL(ROCKET_GRUNT_M, gTrainerPalette_RocketGruntM),
     TRAINER_PAL(POKEMON_BREEDER_F, gTrainerPalette_PokemonBreederF),
     TRAINER_PAL(COOLTRAINER_M, gTrainerPalette_CoolTrainerM),
     TRAINER_PAL(BIRD_KEEPER, gTrainerPalette_BirdKeeper),
     TRAINER_PAL(SAGE, gTrainerPalette_Sage),
-    TRAINER_PAL(AQUA_GRUNT_F, gTrainerPalette_AquaGruntF),
+    TRAINER_PAL(ROCKET_GRUNT_F, gTrainerPalette_RocketGruntF),
     TRAINER_PAL(SWIMMER_M, gTrainerPalette_SwimmerM),
     TRAINER_PAL(MAGMA_GRUNT_M, gTrainerPalette_MagmaGruntM),
     TRAINER_PAL(FIREBREATHER, gTrainerPalette_Firebreather),

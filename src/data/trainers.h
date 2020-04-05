@@ -461,60 +461,60 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Wayne},
     },
 
-    [TRAINER_SHELLY_SEAFLOOR_CAVERN] =
+    [TRAINER_ROCKET_SLOWPOKE_WELL_1] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_AQUA_ADMIN,
-        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_ADMIN_F,
-        .trainerName = _("SHELLY"),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_ShellySeafloorCavern),
-        .party = {.NoItemDefaultMoves = sParty_ShellySeafloorCavern},
-    },
-
-    [TRAINER_ARCHIE] =
-    {
-        .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_AQUA_LEADER,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_LEADER_ARCHIE,
-        .trainerName = _("ARCHIE"),
-        .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_Archie),
-        .party = {.NoItemDefaultMoves = sParty_Archie},
-    },
-
-    [TRAINER_LEAH] =
-    {
-        .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_HEX_MANIAC,
-        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
-        .trainerPic = TRAINER_PIC_HEX_MANIAC,
-        .trainerName = _("LEAH"),
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_M,
+        .trainerName = _("GRUNT"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Leah),
-        .party = {.NoItemDefaultMoves = sParty_Leah},
+        .partySize = ARRAY_COUNT(sParty_RocketSlowpokeWell1),
+        .party = {.NoItemDefaultMoves = sParty_RocketSlowpokeWell1},
     },
 
-    [TRAINER_DAISY] =
+    [TRAINER_ROCKET_SLOWPOKE_WELL_2] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_AROMA_LADY,
-        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
-        .trainerPic = TRAINER_PIC_AROMA_LADY,
-        .trainerName = _("DAISY"),
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_ROCKET,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_F,
+        .trainerName = _("GRUNT"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Daisy),
-        .party = {.NoItemDefaultMoves = sParty_Daisy},
+        .partySize = ARRAY_COUNT(sParty_RocketSlowpokeWell2),
+        .party = {.NoItemDefaultMoves = sParty_RocketSlowpokeWell2},
+    },
+
+    [TRAINER_ROCKET_SLOWPOKE_WELL_3] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_M,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_RocketSlowpokeWell3),
+        .party = {.NoItemDefaultMoves = sParty_RocketSlowpokeWell3},
+    },
+
+    [TRAINER_ROCKET_SLOWPOKE_WELL_BOSS] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_M,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_RocketSlowpokeWellBoss),
+        .party = {.NoItemDefaultMoves = sParty_RocketSlowpokeWellBoss},
     },
 
     [TRAINER_ROSE_1] =
@@ -2053,8 +2053,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntSlowpokeWell1),
-        .party = {.NoItemDefaultMoves = sParty_GruntSlowpokeWell1},
+        .partySize = ARRAY_COUNT(sParty_GruntSlowpokeWell_B1F1),
+        .party = {.NoItemDefaultMoves = sParty_GruntSlowpokeWell_B1F1},
     },
 
     [TRAINER_STEVE_2] =
@@ -2690,9 +2690,9 @@ const struct Trainer gTrainers[] = {
     [TRAINER_GRUNT_AQUA_HIDEOUT_7] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_F,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_F,
         .trainerName = _("GRUNT"),
         .items = {},
         .doubleBattle = FALSE,
@@ -2704,9 +2704,9 @@ const struct Trainer gTrainers[] = {
     [TRAINER_GRUNT_AQUA_HIDEOUT_8] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_M,
         .trainerName = _("GRUNT"),
         .items = {},
         .doubleBattle = FALSE,
@@ -7940,9 +7940,9 @@ const struct Trainer gTrainers[] = {
     [TRAINER_GRUNT_SEAFLOOR_CAVERN_5] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_M,
         .trainerName = _("GRUNT"),
         .items = {},
         .doubleBattle = FALSE,
@@ -7956,7 +7956,7 @@ const struct Trainer gTrainers[] = {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_F,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_F,
         .trainerName = _("GRUNT"),
         .items = {},
         .doubleBattle = FALSE,
@@ -7968,9 +7968,9 @@ const struct Trainer gTrainers[] = {
     [TRAINER_GRUNT_MT_PYRE_4] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_F,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_F,
         .trainerName = _("GRUNT"),
         .items = {},
         .doubleBattle = FALSE,
@@ -8115,8 +8115,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntSlowpokeWell2),
-        .party = {.NoItemDefaultMoves = sParty_GruntSlowpokeWell2},
+        .partySize = ARRAY_COUNT(sParty_GruntSlowpokeWell_B1F2),
+        .party = {.NoItemDefaultMoves = sParty_GruntSlowpokeWell_B1F2},
     },
 
     [TRAINER_CLARENCE] =
@@ -8346,9 +8346,9 @@ const struct Trainer gTrainers[] = {
     [TRAINER_GRUNT_WEATHER_INST_5] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_ROCKET,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_F,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_F,
         .trainerName = _("GRUNT"),
         .items = {},
         .doubleBattle = FALSE,
@@ -8367,8 +8367,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_TabithaSlowpokeWell),
-        .party = {.NoItemDefaultMoves = sParty_TabithaSlowpokeWell},
+        .partySize = ARRAY_COUNT(sParty_TabithaSlowpokeWell_B1F),
+        .party = {.NoItemDefaultMoves = sParty_TabithaSlowpokeWell_B1F},
     },
 
     [TRAINER_JONATHAN] =
@@ -8437,8 +8437,8 @@ const struct Trainer gTrainers[] = {
         .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_MaxieSlowpokeWell),
-        .party = {.NoItemDefaultMoves = sParty_MaxieSlowpokeWell},
+        .partySize = ARRAY_COUNT(sParty_MaxieSlowpokeWell_B1F),
+        .party = {.NoItemDefaultMoves = sParty_MaxieSlowpokeWell_B1F},
     },
 
     [TRAINER_TIANA] =

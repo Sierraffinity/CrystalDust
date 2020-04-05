@@ -779,7 +779,7 @@
 #define FLAG_HIDE_AZALEA_TOWN_KURT                                  0x2E8
 #define FLAG_HIDE_AZALEA_TOWN_RIVAL                                 0x2E9
 #define FLAG_HIDE_AZALEA_TOWN_SLOWPOKE_WELL_GUARD                   0x2EA
-#define FLAG_HIDE_SLOWPOKE_WELL_ROCKETS                             0x2EB
+#define FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS                         0x2EB
 #define FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_MASTER                  0x2EC
 #define FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_APPRENTICE_FARFETCHD    0x2ED
 #define FLAG_HIDE_AZALEA_TOWN_KURTS_HOUSE_KURT                      0x2EE
@@ -787,7 +787,7 @@
 #define FLAG_HIDE_ILEX_FOREST_APPRENTICE_FARFETCHD                  0x2F0
 #define FLAG_HIDE_ILEX_FOREST_KURT                                  0x2F1
 #define FLAG_HIDE_ILEX_FOREST_LASS                                  0x2F2
-#define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_VIGOROTH_2            0x2F3
+#define FLAG_HIDE_SLOWPOKE_WELL_B1F_KURT                            0x2F3
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA          0x2F4
 #define FLAG_HIDE_LITTLE_ROOT_TOWN_PLAYERS_BEDROOM_MOM              0x2F5
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_MOM                   0x2F6
@@ -1064,7 +1064,7 @@
 #define FLAG_ITEM_ILEX_FOREST_X_ATTACK                              0x403
 #define FLAG_ITEM_ILEX_FOREST_ANTIDOTE                              0x404
 #define FLAG_ITEM_ILEX_FOREST_ETHER                                 0x405
-#define FLAG_ITEM_ROUTE_120_NUGGET                                  0x406
+#define FLAG_ITEM_SLOWPOKE_WELL_B1F_SUPER_POTION                    0x406
 #define FLAG_ITEM_ROUTE_120_FULL_HEAL                               0x407
 #define FLAG_ITEM_ROUTE_123_CALCIUM                                 0x408
 

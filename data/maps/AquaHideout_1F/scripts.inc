@@ -31,7 +31,7 @@ AquaHideout_1F_EventScript_HideoutEntranceGrunt2:: @ 82334C6
 	end
 
 AquaHideout_1F_EventScript_MagmaHideoutHint2:: @ 82334E4
-	msgbox AquaHideout_1F_Text_TeamMagmaAtSlowpokeWell, MSGBOX_DEFAULT
+	msgbox AquaHideout_1F_Text_TeamMagmaAtSlowpokeWell_B1F, MSGBOX_DEFAULT
 	release
 	end
 
@@ -88,7 +88,7 @@ AquaHideout_1F_Text_BossIsOnRoute122: @ 8233739
 	.string "Wahaha! Do you really think I'd tell\n"
 	.string "you something that crucial?$"
 
-AquaHideout_1F_Text_TeamMagmaAtSlowpokeWell: @ 82337FA
+AquaHideout_1F_Text_TeamMagmaAtSlowpokeWell_B1F: @ 82337FA
 	.string "What? What?\n"
 	.string "Are you a TEAM MAGMA grunt?\p"
 	.string "I hear that TEAM MAGMA is after\n"

@@ -2876,12 +2876,12 @@ extern const u16 gMonIconPalettes[][16];
 
 // trainer sprites
 extern const u32 gTrainerFrontPic_Hiker[];
-extern const u32 gTrainerFrontPic_AquaGruntM[];
+extern const u32 gTrainerFrontPic_RocketGruntM[];
 extern const u32 gTrainerFrontPic_PokemonBreederF[];
 extern const u32 gTrainerFrontPic_CoolTrainerM[];
 extern const u32 gTrainerFrontPic_BirdKeeper[];
 extern const u32 gTrainerFrontPic_Sage[];
-extern const u32 gTrainerFrontPic_AquaGruntF[];
+extern const u32 gTrainerFrontPic_RocketGruntF[];
 extern const u32 gTrainerFrontPic_SwimmerM[];
 extern const u32 gTrainerFrontPic_MagmaGruntM[];
 extern const u32 gTrainerFrontPic_Firebreather[];
@@ -2970,12 +2970,12 @@ extern const u32 gTrainerFrontPic_RubySapphireBrendan[];
 extern const u32 gTrainerFrontPic_RubySapphireMay[];
 
 extern const u32 gTrainerPalette_Hiker[];
-extern const u32 gTrainerPalette_AquaGruntM[];
+extern const u32 gTrainerPalette_RocketGruntM[];
 extern const u32 gTrainerPalette_PokemonBreederF[];
 extern const u32 gTrainerPalette_CoolTrainerM[];
 extern const u32 gTrainerPalette_BirdKeeper[];
 extern const u32 gTrainerPalette_Sage[];
-extern const u32 gTrainerPalette_AquaGruntF[];
+extern const u32 gTrainerPalette_RocketGruntF[];
 extern const u32 gTrainerPalette_SwimmerM[];
 extern const u32 gTrainerPalette_MagmaGruntM[];
 extern const u32 gTrainerPalette_Firebreather[];
