@@ -48,7 +48,7 @@ $(MID_SUBDIR)/mus_btljohtowild.s: %.s: %.mid
 $(MID_SUBDIR)/mus_battle30.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G126 -V080 -P1
 
-$(MID_SUBDIR)/mus_battle31.s: %.s: %.mid
+$(MID_SUBDIR)/mus_btlrocket.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G118 -V080 -P1
 
 $(MID_SUBDIR)/mus_btljohtoldr.s: %.s: %.mid
