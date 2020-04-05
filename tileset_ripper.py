@@ -54,9 +54,11 @@ def create_behavior(path, data, num_metatiles):
             behavior = 0
         elif behavior == 0x94: # picture
             behavior = 0
+        elif behavior == 0x2A: # stairs
+            behavior = 0
         new_data[i * 2] = behavior
         bg = data[i * 4 + 3]
-        if bg == 0x20:
+        if bg & 0x20 == 0x20:
             bg = 0x10
         new_data[i * 2 + 1] = bg
 
