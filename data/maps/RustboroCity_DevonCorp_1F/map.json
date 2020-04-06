@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_DEVON_EMPLOYEE",
+      "graphics_id": "OBJ_EVENT_GFX_KURT_LYING_DOWN",
       "x": 2,
       "y": 6,
       "elevation": 3,
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_DEVON_EMPLOYEE",
+      "graphics_id": "OBJ_EVENT_GFX_KURT_LYING_DOWN",
       "x": 15,
       "y": 5,
       "elevation": 3,

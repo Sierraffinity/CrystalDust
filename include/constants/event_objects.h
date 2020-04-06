@@ -117,7 +117,7 @@
 #define OBJ_EVENT_GFX_MOVING_BOX                 113
 #define OBJ_EVENT_GFX_CABLE_CAR                  114
 #define OBJ_EVENT_GFX_OFFICER                    115
-#define OBJ_EVENT_GFX_DEVON_EMPLOYEE             116
+#define OBJ_EVENT_GFX_KURT_LYING_DOWN             116
 #define OBJ_EVENT_GFX_ROCKET_GRUNT_M              117
 #define OBJ_EVENT_GFX_ROCKET_GRUNT_F              118
 #define OBJ_EVENT_GFX_MAGMA_MEMBER_M             119

@@ -1119,16 +1119,16 @@ const struct SpriteFrameImage gObjectEventPicTable_Officer[] = {
     overworld_frame(gObjectEventPic_Officer, 2, 4, 8),
 };
 
-const struct SpriteFrameImage gObjectEventPicTable_DevonEmployee[] = {
-    overworld_frame(gObjectEventPic_DevonEmployee, 2, 4, 0),
-    overworld_frame(gObjectEventPic_DevonEmployee, 2, 4, 1),
-    overworld_frame(gObjectEventPic_DevonEmployee, 2, 4, 2),
-    overworld_frame(gObjectEventPic_DevonEmployee, 2, 4, 3),
-    overworld_frame(gObjectEventPic_DevonEmployee, 2, 4, 4),
-    overworld_frame(gObjectEventPic_DevonEmployee, 2, 4, 5),
-    overworld_frame(gObjectEventPic_DevonEmployee, 2, 4, 6),
-    overworld_frame(gObjectEventPic_DevonEmployee, 2, 4, 7),
-    overworld_frame(gObjectEventPic_DevonEmployee, 2, 4, 8),
+const struct SpriteFrameImage gObjectEventPicTable_KurtLyingDown[] = {
+    overworld_frame(gObjectEventPic_KurtLyingDown, 4, 4, 0),
+    overworld_frame(gObjectEventPic_KurtLyingDown, 4, 4, 0),
+    overworld_frame(gObjectEventPic_KurtLyingDown, 4, 4, 0),
+    overworld_frame(gObjectEventPic_KurtLyingDown, 4, 4, 0),
+    overworld_frame(gObjectEventPic_KurtLyingDown, 4, 4, 0),
+    overworld_frame(gObjectEventPic_KurtLyingDown, 4, 4, 0),
+    overworld_frame(gObjectEventPic_KurtLyingDown, 4, 4, 0),
+    overworld_frame(gObjectEventPic_KurtLyingDown, 4, 4, 0),
+    overworld_frame(gObjectEventPic_KurtLyingDown, 4, 4, 0),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_RocketGruntM[] = {

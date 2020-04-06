@@ -114,7 +114,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayUnderwater;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MovingBox;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableCar;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Officer;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DevonEmployee;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KurtLyingDown;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketGruntM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketGruntF;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MagmaMemberM;
@@ -363,7 +363,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_MOVING_BOX] =               &gObjectEventGraphicsInfo_MovingBox,
     [OBJ_EVENT_GFX_CABLE_CAR] =                &gObjectEventGraphicsInfo_CableCar,
     [OBJ_EVENT_GFX_OFFICER] =                  &gObjectEventGraphicsInfo_Officer,
-    [OBJ_EVENT_GFX_DEVON_EMPLOYEE] =           &gObjectEventGraphicsInfo_DevonEmployee,
+    [OBJ_EVENT_GFX_KURT_LYING_DOWN] =          &gObjectEventGraphicsInfo_KurtLyingDown,
     [OBJ_EVENT_GFX_ROCKET_GRUNT_M] =           &gObjectEventGraphicsInfo_RocketGruntM,
     [OBJ_EVENT_GFX_ROCKET_GRUNT_F] =           &gObjectEventGraphicsInfo_RocketGruntF,
     [OBJ_EVENT_GFX_MAGMA_MEMBER_M] =           &gObjectEventGraphicsInfo_MagmaMemberM,

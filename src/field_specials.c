@@ -2958,7 +2958,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_MOVING_BOX] =                MSG_COLOR_MISC,
         [OBJ_EVENT_GFX_CABLE_CAR] =                 MSG_COLOR_MISC,
         [OBJ_EVENT_GFX_OFFICER] =                   MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_DEVON_EMPLOYEE] =            MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_KURT_LYING_DOWN] =            MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_ROCKET_GRUNT_M] =             MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_ROCKET_GRUNT_F] =             MSG_COLOR_RED,
         [OBJ_EVENT_GFX_MAGMA_MEMBER_M] =            MSG_COLOR_BLUE,
