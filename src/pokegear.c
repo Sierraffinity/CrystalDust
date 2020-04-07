@@ -1303,7 +1303,7 @@ static void PhoneCard_ConfirmCall(u8 taskId)
     PhoneCard_RemoveScrollIndicators(taskId);
     sPokegearStruct.phoneCallActionWindowId = AddWindow(&sConfirmWindowTemplate);
     DrawStdFrameWithCustomTileAndPalette(sPokegearStruct.phoneCallActionWindowId, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
-    PrintMenuTable(sPokegearStruct.phoneCallActionWindowId, ARRAY_COUNT(sCallOptions), sCallOptions);
+    PrintTextArray(sPokegearStruct.phoneCallActionWindowId, 1, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sCallOptions), sCallOptions);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, 1, 0, 1, 16, ARRAY_COUNT(sCallOptions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = PhoneCard_ConfirmCallProcessInput;

@@ -57,13 +57,13 @@
 #define MAPSEC_UNDERWATER_127               0x35
 #define MAPSEC_UNDERWATER_SOOTOPOLIS        0x36
 #define MAPSEC_DARK_CAVE                    0x37
-#define MAPSEC_SLOWPOKE_WELL                   0x38
+#define MAPSEC_SLOWPOKE_WELL                0x38
 #define MAPSEC_SAFARI_ZONE                  0x39
 #define MAPSEC_BATTLE_FRONTIER              0x3A
-#define MAPSEC_ILEX_FOREST              0x3B
-#define MAPSEC_UNION_CAVE               0x3C
+#define MAPSEC_ILEX_FOREST                  0x3B
+#define MAPSEC_UNION_CAVE                   0x3C
 #define MAPSEC_SPROUT_TOWER                 0x3D
-#define MAPSEC_RUINS_OF_ALPH                 0x3E
+#define MAPSEC_RUINS_OF_ALPH                0x3E
 #define MAPSEC_METEOR_FALLS                 0x3F
 #define MAPSEC_METEOR_FALLS2                0x40
 #define MAPSEC_MT_PYRE                      0x41

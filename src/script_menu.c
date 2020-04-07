@@ -37,6 +37,11 @@ static bool8 IsPicboxClosed(void);
 static void CreateStartMenuForPokenavTutorial(void);
 static void InitMultichoiceNoWrap(bool8 ignoreBPress, u8 unusedCount, u8 windowId, u8 multichoiceId);
 
+static u16 GetStringTilesWide(const u8 *str)
+{
+    return (GetStringWidth(1, str, 0) + 7) / 8;
+}
+
 bool8 ScriptMenu_Multichoice(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress)
 {
     if (FuncIsActiveTask(Task_HandleMultichoiceInput) == TRUE)
@@ -157,7 +162,7 @@ static void InitMultichoiceCheckWrap(bool8 ignoreBPress, u8 count, u8 windowId, 
 {
     u8 i;
     u8 taskId;
-    sProcessInputDelay = 2;
+    sProcessInputDelay = 0;
 
     for (i = 0; i < ARRAY_COUNT(sLinkServicesMultichoiceIds); i++)
     {
@@ -358,7 +363,7 @@ bool16 ScriptMenu_CreatePCMultichoice(void)
 
 static void CreatePCMultichoice(void)
 {
-    u8 y = 8;
+    u8 x = GetMenuCursorDimensionByFont(1, 0);
     u32 pixelWidth = 0;
     u8 width;
     u8 numChoices;
@@ -370,39 +375,52 @@ static void CreatePCMultichoice(void)
         pixelWidth = DisplayTextAndGetWidth(sPCNameStrings[i], pixelWidth);
     }
 
-    if (FlagGet(FLAG_SYS_GAME_CLEAR))
+    switch (GetStringTilesWide(gText_PlayersPC))
     {
-        pixelWidth = DisplayTextAndGetWidth(gText_HallOfFame, pixelWidth);
+    default:
+        if (FlagGet(FLAG_SYS_POKEDEX_GET))
+            width = 14;
+        else
+            width = 13;
+        break;
+    case 9:
+    case 10:
+        width = 14;
+        break;
     }
-
-    width = ConvertPixelWidthToTileWidth(pixelWidth);
 
     // Include Hall of Fame option if player is champion
     if (FlagGet(FLAG_SYS_GAME_CLEAR))
     {
-        numChoices = 4;
-        windowId = CreateWindowFromRect(0, 0, width, 8);
-        SetStandardWindowBorderStyle(windowId, 0);
-        AddTextPrinterParameterized(windowId, 1, gText_HallOfFame, y, 33, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(windowId, 1, gText_LogOff, y, 49, TEXT_SPEED_FF, NULL);
+        numChoices = 5;
+        windowId = CreateWindowFromRect(0, 0, width, 10);
+        SetStandardWindowBorderStyle(windowId, FALSE);
+        AddTextPrinterParameterized(windowId, 1, gText_ProfOakSPc, x, 34, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 1, gText_HallOfFame, x, 50, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 1, gText_LogOff, x, 66, TEXT_SPEED_FF, NULL);
     }
     else
     {
-        numChoices = 3;
-        windowId = CreateWindowFromRect(0, 0, width, 6);
-        SetStandardWindowBorderStyle(windowId, 0);
-        AddTextPrinterParameterized(windowId, 1, gText_LogOff, y, 33, TEXT_SPEED_FF, NULL);
+        if (FlagGet(FLAG_SYS_POKEDEX_GET))
+            numChoices = 4;
+        else
+            numChoices = 3;
+        windowId = CreateWindowFromRect(0, 0, width, numChoices * 2);
+        SetStandardWindowBorderStyle(windowId, FALSE);
+        if (FlagGet(FLAG_SYS_POKEDEX_GET))
+            AddTextPrinterParameterized(windowId, 1, gText_ProfOakSPc, x, 34, 0xFF, NULL);
+        AddTextPrinterParameterized(windowId, 1, gText_LogOff, x, 2 + 16 * (numChoices - 1), TEXT_SPEED_FF, NULL);
     }
 
     // Change PC name if player has met Lanette
     if (FlagGet(FLAG_SYS_PC_LANETTE))
-        AddTextPrinterParameterized(windowId, 1, gText_LanettesPC, y, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 1, gText_LanettesPC, x, 2, TEXT_SPEED_FF, NULL);
     else
-        AddTextPrinterParameterized(windowId, 1, gText_SomeonesPC, y, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 1, gText_SomeonesPC, x, 2, TEXT_SPEED_FF, NULL);
 
     StringExpandPlaceholders(gStringVar4, gText_PlayersPC);
-    PrintPlayerNameOnWindow(windowId, gStringVar4, y, 17);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, numChoices, 0);
+    PrintPlayerNameOnWindow(windowId, gStringVar4, x, 18);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 2, 16, numChoices, 0);
     CopyWindowToVram(windowId, 3);
     InitMultichoiceCheckWrap(FALSE, numChoices, windowId, MULTI_PC);
 }

@@ -308,7 +308,6 @@ gSpecials:: @ 81DBA64
 	def_special Script_FacePlayer
 	def_special Script_ClearHeldMovement
 	def_special InitRoamer
-	def_special TryUpdateUnionCave_1FState @unused
 	def_special IsGrassTypeInParty
 	def_special DoContestHallWarp
 	def_special PutZigzagoonInPlayerParty
@@ -554,3 +553,4 @@ gSpecials:: @ 81DBA64
 	def_special GetWinningBugContestSpecies
 	def_special SetRivalNickname
 	def_special SwitchDSTMode
+	def_special HasAllMons

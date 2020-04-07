@@ -6,6 +6,7 @@
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_object_lock.h"
+#include "field_message_box.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
 #include "international_string_util.h"
@@ -20,6 +21,7 @@
 #include "window.h"
 #include "constants/flags.h"
 #include "constants/heal_locations.h"
+#include "constants/species.h"
 #include "constants/songs.h"
 #include "constants/vars.h"
 
@@ -42,6 +44,10 @@ static void DebugMenu_TestBattleTransition(u8 taskId);
 static void DebugMenu_SwapGender(u8 taskId);
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
+static void DebugMenu_Pokedex(u8 taskId);
+static void DebugMenu_Pokedex_ProcessInput(u8 taskId);
+static void DebugMenu_Pokedex_ProfOakRating(u8 taskId);
+static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId);
 static void DebugMenu_Pokegear(u8 taskId);
 static void DebugMenu_Pokegear_ProcessInput(u8 taskId);
 static void DebugMenu_EnableMapCard(u8 taskId);
@@ -58,6 +64,7 @@ extern s8 gDNHourOverride;
 static const u8 sText_SetFlag[] = _("Set flag");
 static const u8 sText_SetVar[] = _("Set variable");
 static const u8 sText_DayNight[] = _("Day/night");
+static const u8 sText_Pokedex[] = _("Pokédex");
 static const u8 sText_Pokegear[] = _("Pokégear");
 static const u8 sText_SetRespawn[] = _("Set respawn");
 static const u8 sText_Misc[] = _("Misc");
@@ -68,8 +75,10 @@ static const u8 sText_GenderBender[] = _("Gender bender");
 static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
+static const u8 sText_ProfOakRating[] = _("Prof. Oak rating");
 static const u8 sText_EnableMapCard[] = _("Enable map card");
 static const u8 sText_EnableRadioCard[] = _("Enable radio card");
+static const u8 sText_DexCount[] = _("Count: {STR_VAR_1}");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
 static const u8 sText_VarStatus[] = _("Var: {STR_VAR_1}\nValue: {STR_VAR_2}\nAddress: {STR_VAR_3}");
 static const u8 sText_ClockStatus[] = _("Time: {STR_VAR_1}");
@@ -77,11 +86,14 @@ static const u8 sText_RespawnStatus[] = _("Respawn point:\n{STR_VAR_1}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
 static const u8 sText_Off[] = _("{COLOR RED}OFF");
 
+extern u8 PokedexRating_EventScript_ShowRatingMessage[];
+
 static const struct MenuAction sDebugMenu_MainActions[] =
 {
     { sText_SetFlag, DebugMenu_SetFlag },
     { sText_SetVar, DebugMenu_SetVar },
     { sText_DayNight, DebugMenu_DN },
+    { sText_Pokedex, DebugMenu_Pokedex },
     { sText_Pokegear, DebugMenu_Pokegear },
     { sText_SetRespawn, DebugMenu_SetRespawn },
     { sText_Misc, DebugMenu_Misc },
@@ -92,6 +104,11 @@ static const struct MenuAction sDebugMenu_DNActions[] =
 {
     { sText_ToggleDNPalOverride, DebugMenu_ToggleOverride },
     { sText_DNTimeCycle, DebugMenu_TimeCycle },
+};
+
+static const struct MenuAction sDebugMenu_PokedexActions[] =
+{
+    { sText_ProfOakRating, DebugMenu_Pokedex_ProfOakRating },
 };
 
 static const struct MenuAction sDebugMenu_PokegearActions[] =
@@ -149,6 +166,28 @@ static const struct WindowTemplate sDebugMenu_Window_DN =
     .tilemapTop = 1,
     .width = 0,
     .height = ARRAY_COUNT(sDebugMenu_DNActions) * 2,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_Pokedex = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 0,
+    .height = ARRAY_COUNT(sDebugMenu_PokedexActions) * 2,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_SetDexCount = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 8,
+    .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x120
 };
@@ -645,8 +684,6 @@ static void DebugMenu_TimeCycle_PrintStatus(u8 windowId, u16 hour)
     AddTextPrinterParameterized(windowId, 1, gStringVar4, 0, 1, 0, NULL);
 }
 
-#define tFlagNum data[1]
-
 static void DebugMenu_TimeCycle(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
@@ -698,6 +735,161 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
         ReturnToMainMenu(taskId);
     }
 }
+
+static void DebugMenu_Pokedex(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    struct WindowTemplate windowTemplate = sDebugMenu_Window_Pokedex;
+    DebugMenu_RemoveMenu(taskId);
+
+    windowTemplate.width = GetMaxWidthInMenuTable(sDebugMenu_PokedexActions, ARRAY_COUNT(sDebugMenu_PokedexActions));
+    tWindowId = AddWindow(&windowTemplate);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    MultichoiceList_PrintItems(tWindowId, 1, 8, 2, 14, ARRAY_COUNT(sDebugMenu_PokedexActions), sDebugMenu_PokedexActions, 0, 2);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 14, ARRAY_COUNT(sDebugMenu_PokedexActions), 0);
+    schedule_bg_copy_tilemap_to_vram(0);
+    gTasks[taskId].func = DebugMenu_Pokedex_ProcessInput;
+}
+
+static void DebugMenu_Pokedex_ProcessInput(u8 taskId)
+{
+    s8 inputOptionId = Menu_ProcessInput();
+
+    switch (inputOptionId)
+    {
+        case MENU_NOTHING_CHOSEN:
+            break;
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            DebugMenu_RemoveMenu(taskId);
+            ReturnToMainMenu(taskId);
+            break;
+        default:
+            PlaySE(SE_SELECT);
+            sDebugMenu_PokedexActions[inputOptionId].func.void_u8(taskId);
+            break;
+    }
+}
+
+static void DebugMenu_Pokedex_ProfOakRating_PrintStatus(u8 windowId, u16 flagId)
+{
+    FillWindowPixelBuffer(windowId, 0x11);
+    ConvertUIntToDecimalStringN(gStringVar1, flagId, STR_CONV_MODE_LEADING_ZEROS, 3);
+
+    StringExpandPlaceholders(gStringVar4, sText_DexCount);
+    AddTextPrinterParameterized(windowId, 1, gStringVar4, 0, 1, 0, NULL);
+}
+
+#define tDexCount data[1]
+#define tWhichDigit data[2]
+
+static void DebugMenu_Pokedex_ProfOakRating(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    DebugMenu_RemoveMenu(taskId);
+
+    tWindowId = AddWindow(&sDebugMenu_Window_SetDexCount);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    DebugMenu_Pokedex_ProfOakRating_PrintStatus(tWindowId, 1);
+    schedule_bg_copy_tilemap_to_vram(0);
+    tDexCount = 1;
+    tWhichDigit = 0;
+    gTasks[taskId].func = DebugMenu_Pokedex_ProfOakRating_ProcessInput;
+}
+
+static void WaitForScript(u8 taskId)
+{
+    if (ScriptContext1_IsScriptSetUp() != TRUE)
+    {
+        PlaySE(SE_SELECT);
+        HideFieldMessageBox();
+        ScriptContext2_Enable();
+        gTasks[taskId].func = *(void **)(&gTasks[taskId].data[4]);
+    }
+}
+
+static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
+{
+    u32 temp, temp2, shifter;
+    u16 *data = gTasks[taskId].data;
+
+    static const s32 powersOfTen[] =
+    {
+        1,
+        10,
+        100,
+        1000,
+    };
+
+    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    {
+        shifter = powersOfTen[tWhichDigit];
+
+        temp = (tDexCount % powersOfTen[tWhichDigit]) + ((tDexCount / powersOfTen[tWhichDigit + 1]) * powersOfTen[tWhichDigit + 1]);
+        temp2 = ((tDexCount - temp) / shifter) + 1;
+        temp += (temp2 > 9) ? 0 : temp2 * shifter;
+        
+        if (temp >= 1 && temp <= JOHTO_DEX_COUNT)
+        {
+            PlaySE(SE_SELECT);
+            tDexCount = temp;
+            DebugMenu_Pokedex_ProfOakRating_PrintStatus(tWindowId, temp);
+        }
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    {
+        shifter = powersOfTen[tWhichDigit];
+
+        temp = (tDexCount % powersOfTen[tWhichDigit]) + ((tDexCount / powersOfTen[tWhichDigit + 1]) * powersOfTen[tWhichDigit + 1]);
+        temp2 = ((tDexCount - temp) / shifter) - 1;
+        temp += (temp2 > 9) ? 9 * shifter : temp2 * shifter;
+        
+        if (temp >= 1 && temp <= JOHTO_DEX_COUNT)
+        {
+            PlaySE(SE_SELECT);
+            tDexCount = temp;
+            DebugMenu_Pokedex_ProfOakRating_PrintStatus(tWindowId, temp);
+        }
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    {
+        if (++tWhichDigit > 2)
+            tWhichDigit = 2;
+        else
+            PlaySE(SE_SELECT);
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    {
+        if (--tWhichDigit > 2)
+            tWhichDigit = 0;
+        else
+            PlaySE(SE_SELECT);
+    }
+
+    if (gMain.newKeys & A_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        VarSet(VAR_0x8009, tDexCount);
+
+        gTasks[taskId].func = WaitForScript;
+        *(void **)(&gTasks[taskId].data[4]) = DebugMenu_Pokedex_ProfOakRating_ProcessInput;
+        ScriptContext1_SetupScript(PokedexRating_EventScript_ShowRatingMessage);
+    }
+
+    if (gMain.newKeys & B_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        DebugMenu_RemoveMenu(taskId);
+        DebugMenu_Pokedex(taskId);
+    }
+}
+
+#undef tDexCount
+#undef tWhichDigit
 
 static void DebugMenu_Pokegear(u8 taskId)
 {

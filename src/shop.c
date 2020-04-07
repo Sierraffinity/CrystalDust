@@ -302,7 +302,7 @@ static u8 CreateShopMenu(u8 martType)
     }
 
     SetStandardWindowBorderStyle(gMartInfo.windowId, 0);
-    PrintMenuTable(gMartInfo.windowId, numMenuItems, gMartInfo.menuActions);
+    PrintTextArray(gMartInfo.windowId, 1, GetMenuCursorDimensionByFont(1, 0), 2, 16, numMenuItems, gMartInfo.menuActions);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(gMartInfo.windowId, 1, 0, 2, 16, numMenuItems, 0);
     PutWindowTilemap(gMartInfo.windowId);
     CopyWindowToVram(gMartInfo.windowId, 1);

@@ -766,7 +766,7 @@ Common_EventScript_StopBrineysBoatMusic:: @ 82720A8
 	fadedefaultbgm
 	return
 
-	.include "data/scripts/prof_birch.inc"
+	.include "data/scripts/pokedex_rating.inc"
 
 @ Below could be split as ferry.inc aside from the Rusturf tunnel script
 Common_EventScript_FerryDepart:: @ 82721E2
@@ -960,6 +960,18 @@ gText_SorryRecordCornerPreparation:: @ 8273125
 gText_PlayerHandedOverTheItem:: @ 8273161
 	.string "{PLAYER} handed over the\n"
 	.string "{STR_VAR_1}.$"
+
+gText_AccessedProfOaksPC:: @ 81A5BC6
+	.string "Accessed PROF. OAK's PC…\p"
+	.string "Accessed the POKéDEX Rating\n"
+	.string "System…$"
+
+gText_HavePokedexRated:: @ 81A5C03
+	.string "Would you like to have your\n"
+	.string "POKéDEX rated?$"
+
+gText_ClosedLinkToProfOaksPC:: @ 81A5C2E
+	.string "Closed link to PROF. OAK's PC.$"
 
 gText_ThankYouForAccessingMysteryGift:: @ 8273178
 	.string "Thank you for accessing the\n"

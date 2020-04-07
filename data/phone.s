@@ -93,12 +93,12 @@ PhoneScript_Mom_Violet:
 	phone_goto PhoneScript_Mom_PostLocationBanking
 
 PhoneScript_Mom_Azalea:
-	phone_buffermapsecname 1, MAPSEC_UNION_CAVE
+	phone_buffermapsecname 1, MAPSEC_SLOWPOKE_WELL
 	phone_message Text_Pokegear_Mom_RegularCall_Landmark
 	phone_goto PhoneScript_Mom_PostLocationBanking
 
 PhoneScript_Mom_Goldenrod:
-	phone_buffermapsecname 1, MAPSEC_RUINS_OF_ALPH
+	phone_buffermapsecname 1, MAPSEC_METEOR_FALLS
 	phone_message Text_Pokegear_Mom_RegularCall_Landmark
 	phone_goto PhoneScript_Mom_PostLocationBanking
 

@@ -1411,26 +1411,6 @@ bool8 Special_AreLeadMonEVsMaxedOut(void)
     return FALSE;
 }
 
-u8 TryUpdateUnionCave_1FState(void)
-{
-    if (!FlagGet(FLAG_UNION_CAVE_OPENED) 
-        && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(UNION_CAVE_1F) 
-        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(UNION_CAVE_1F))
-    {
-        if (FlagGet(FLAG_HIDE_UNION_CAVE_ROCK_1))
-        {
-            VarSet(VAR_UNION_CAVE_STATE, 4);
-            return TRUE;
-        }
-        else if (FlagGet(FLAG_HIDE_UNION_CAVE_ROCK_2))
-        {
-            VarSet(VAR_UNION_CAVE_STATE, 5);
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
-
 void SetShoalItemFlag(u16 unused)
 {
     FlagSet(FLAG_SYS_SHOAL_ITEM);

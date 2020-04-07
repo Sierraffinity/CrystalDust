@@ -1862,12 +1862,10 @@ static void FieldCb_ReturnToPcMenu(void)
 static void CreatePCMenu(u8 whichMenu, s16 *windowIdPtr)
 {
     s16 windowId;
-    struct WindowTemplate winTemplate = gUnknown_085716E8;
-    winTemplate.width = GetMaxWidthInMenuTable((void *)gUnknown_085716C0, ARRAY_COUNT(gUnknown_085716C0));
-    windowId = AddWindow(&winTemplate);
+    windowId = AddWindow(&gUnknown_085716E8);
 
     DrawStdWindowFrame(windowId, FALSE);
-    PrintMenuTable(windowId, ARRAY_COUNT(gUnknown_085716C0), (void *)gUnknown_085716C0);
+    PrintTextArray(windowId, 1, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(gUnknown_085716C0), (void *)gUnknown_085716C0);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, ARRAY_COUNT(gUnknown_085716C0), whichMenu);
     *windowIdPtr = windowId;
 }

@@ -1,8 +1,11 @@
-Chaos Rush - trees
-MrAPT1 - Music
+Chaos Rush - Big trees
+MrAPT1 - A ton of music
 Tetra - Intro BGs
-Farore - Intro Suicunes, Oak big sprites, Gold overworld
+Farore - Intro Suicunes, Oak intro big sprites, Gold OW, Kris OW, Elm OW, Silver OW
 Spherical Ice - Apricorn trees
 ShantyTown - Phone card functionality, card flip, bug-catching contest
-Kurausukun - Route 1 song
-Bauerklos - Pallet Town song
+Kurausukun - Route 1, Dark Cave, Ruins of Alph interior
+KecleonTencho - Rocket Battle
+Alpha Remaster - Ilex Forest
+Bauerklos - Pallet Town
+ShadowOne333 - Kurt overworld

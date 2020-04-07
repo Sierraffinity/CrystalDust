@@ -437,11 +437,11 @@ static void InitItemStorageMenu(u8 taskId, u8 var)
 
     data = gTasks[taskId].data;
     windowTemplate = gUnknown_085DFF24[2];
-    windowTemplate.width = GetMaxWidthInMenuTable(gPCText_ItemPCOptionsText, 4);
+    windowTemplate.width = GetMaxWidthInMenuTable(gPCText_ItemPCOptionsText, ARRAY_COUNT(gPCText_ItemPCOptionsText));
     data[4] = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(data[4], 0);
-    PrintMenuTable(data[4], 4, gPCText_ItemPCOptionsText);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[4], 1, 0, 1, 16, 4, var);
+    PrintTextArray(data[4], 1, GetMenuCursorDimensionByFont(1, 0), 2, 16, ARRAY_COUNT(gPCText_ItemPCOptionsText), gPCText_ItemPCOptionsText);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[4], 1, 0, 1, 16, ARRAY_COUNT(gPCText_ItemPCOptionsText), var);
     schedule_bg_copy_tilemap_to_vram(0);
     ItemStorageMenuPrint(gPCText_OptionDescList[var]);
 }
@@ -683,8 +683,8 @@ static void Mailbox_ReturnToPlayerPC(u8 taskId)
 static void Mailbox_PrintMailOptions(u8 taskId)
 {
     u8 r4 = sub_81D1C84(2);
-    PrintMenuTable(r4, 4, gMailboxMailOptions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(r4, 1, 0, 1, 16, 4, 0);
+    PrintTextArray(r4, 1, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(gMailboxMailOptions), gMailboxMailOptions);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(r4, 1, 0, 1, 16, ARRAY_COUNT(gMailboxMailOptions), 0);
     schedule_bg_copy_tilemap_to_vram(0);
     gTasks[taskId].func = Mailbox_MailOptionsProcessInput;
 }
