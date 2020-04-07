@@ -398,7 +398,7 @@ gSongTable:: @ 86B49F0
 	song mus_test2, 0, 0            @ Pokémon Contest! (Multiplayer - Player 2)
 	song mus_test3, 0, 0            @ Pokémon Contest! (Multiplayer - Player 3)
 	song mus_test4, 0, 0            @ Pokémon Contest! (Multiplayer - Player 4)
-	song mus_test, 0, 0             @ Trainers' Eyes Meet (Gentleman)
+	song mus_pokemonmarch, 0, 0     @ Pokémon March
 	song mus_gomachi0, 0, 0         @ Verdanturf Town
 	song mus_gotown, 0, 0           @ Rustboro City
 	song mus_pokecen, 0, 0          @ Pokémon Center
@@ -420,7 +420,7 @@ gSongTable:: @ 86B49F0
 	song mus_encsage, 0, 0          @ Trainers' Eyes Meet (Psychic)
 	song mus_encmaleclassic, 0, 0   @ Trainers' Eyes Meet (Cooltrainer)
 	song mus_mainmenu, 0, 0         @ Main Menu
-	song mus_encrocket, 0, 0        @ Team Aqua Appears!
+	song mus_encrocket, 0, 0        @ Team Rocket Appears!
 	song mus_followme, 0, 0         @ Hurry Along
 	song mus_rivalexit, 0, 0        @ Rival Leaves
 	song mus_rainbow, 0, 0          @ Evergrande City
@@ -442,7 +442,7 @@ gSongTable:: @ 86B49F0
 	song mus_maborosi, 0, 0         @ Sealed Chamber
 	song mus_con_fan, 0, 0          @ Contest Winner
 	song mus_contest0, 0, 0         @ Pokémon Contest!
-	song mus_oakslab, 0, 0             @ Team Magma Appears!
+	song mus_oakslab, 0, 0          @ Oak's Lab
 	song mus_t_battle, 0, 0         @ Opening Movie: Double Battles
 	song mus_ooame, 0, 0            @ Heavy Rain
 	song mus_hideri, 0, 0           @ The Drought
@@ -476,7 +476,7 @@ gSongTable:: @ 86B49F0
 	song mus_vs_mew, 0, 0           @ Battle! (Mew)
 	song mus_b_dome1, 0, 0          @ Battle Dome Lobby
 	song mus_btljohtowild, 0, 0     @ Battle! (Wild Pokémon)
-	song mus_btlrocket, 0, 0         @ Battle! (Team Aqua / Team Magma)
+	song mus_btlrocket, 0, 0        @ Battle! (Team Rocket)
 	song mus_btljohtotrn, 0, 0      @ Battle! (Trainer Battle)
 	song mus_btljohtoldr, 0, 0      @ Battle! (Gym Leader)
 	song mus_battle33, 0, 0         @ Battle! (Champion Wallace)

@@ -588,7 +588,7 @@ $(MID_SUBDIR)/mus_encfemaleclassic.s: %.s: %.mid
 $(MID_SUBDIR)/mus_t_battle.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G088 -V088
 
-$(MID_SUBDIR)/mus_test.s: %.s: %.mid
+$(MID_SUBDIR)/mus_pokemonmarch.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G043 -V094
 
 $(MID_SUBDIR)/mus_test1.s: %.s: %.mid

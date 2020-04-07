@@ -47,6 +47,7 @@ static const u16 sRadioChannelSongs[] =
 {
     [OAKS_POKEMON_TALK] = MUS_OAKSLAB,
     [POKEDEX_SHOW] = MUS_POKECEN,
+    [POKEMON_MUSIC] = MUS_DUMMY,
     [LUCKY_CHANNEL] = MUS_CASINO,
     [BUENAS_PASSWORD] = MUS_M_BOAT,
     [PLACES_AND_PEOPLE] = MUS_FINECITY,
@@ -154,7 +155,7 @@ static void NextRadioLine(u8 taskId, u8 nextLine, const u8 *lineToPrint, bool8 s
 
 void PlayPokemonMusic(void)
 {
-    u16 song = MUS_ENCSUSPICIOUS;  // Sunday, Tuesday, Thursday, Saturday
+    u16 song = MUS_POKEMONMARCH;  // Sunday, Tuesday, Thursday, Saturday
     RtcCalcLocalTime();
     if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
         song = MUS_ASHROAD;

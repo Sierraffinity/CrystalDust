@@ -1919,8 +1919,8 @@ const u8 gText_PkmnMusicFern2[] = _("With DJ FERN!");
 
 const u8 gText_PkmnMusicBenFern1[] = _("Today's {STR_VAR_1},");
 const u8 gText_PkmnMusicBenFern2A[] = _("so let us jam to");
-const u8 gText_PkmnMusicBenFern2B[] = _("so chill out to");
 const u8 gText_PkmnMusicBenFern3A[] = _("POKéMON MARCH!");
+const u8 gText_PkmnMusicBenFern2B[] = _("so chill out to");
 const u8 gText_PkmnMusicBenFern3B[] = _("POKéMON LULLABY!");
 
 const u8 gText_LuckyChannel1[] = _("REED: Yeehaw! How");

@@ -321,7 +321,7 @@
 #define MUS_TEST2 394           // Contest Test 2
 #define MUS_TEST3 395           // Contest Test 3
 #define MUS_TEST4 396           // Contest Test 4
-#define MUS_TEST 397            // Encounter! Gentleman
+#define MUS_POKEMONMARCH 397            // Encounter! Gentleman
 #define MUS_GOMACHI0 398        // Verdanturf Town
 #define MUS_GOTOWN 399          // Rustboro/Mauville/Mossdeep City
 #define MUS_POKECEN 400         // Pokémon Center
