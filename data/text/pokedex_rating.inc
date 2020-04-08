@@ -8,7 +8,7 @@ gPokedexRatingText_SoYouveSeenAndCaught:: @ 82A5D2C
 	.string "on your POKéDEX is:\p"
 	.string "{STR_VAR_1} POKéMON seen and\n"
 	.string "{STR_VAR_2} POKéMON owned.\p"
-	.string "{SIZE 2}PROF. OAK's rating:$"
+	.string "PROF. OAK's rating:$"
 
 gPokedexRatingText_LessThan10:: @ 82A5D6C
 	.string "Go into every patch of grass you\n"

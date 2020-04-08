@@ -697,10 +697,7 @@ bool8 SetupBagMenu(void)
         gMain.state++;
         break;
     case 13:
-        if (gBagPositionStruct.location != RETURN_LOCATION_PC)
-            BagMenu_PrintPocketName();
-        else
-            BagDrawDepositItemTextBox();
+        BagMenu_PrintPocketName();
         gMain.state++;
         break;
     case 14:
@@ -1926,7 +1923,7 @@ void Task_ChooseHowManyToToss(u8 taskId)
 
     if (AdjustQuantityAccordingToDPadInput(&tItemCount, data[2]) == TRUE)
     {
-        PrintItemDepositAmount(gBagMenu->windowPointers[7], tItemCount);
+        UpdateQuantityToTossOrDeposit(tItemCount, 3);
     }
     else if (gMain.newKeys & A_BUTTON)
     {
@@ -1948,7 +1945,7 @@ void Task_ChooseHowManyToToss(u8 taskId)
         schedule_bg_copy_tilemap_to_vram(0);
         BagMenu_PrintCursor_(data[0], 1);
         BagDestroyPocketScrollArrowPair();
-        BagMenu_CancelToss(taskId);
+        set_callback3_to_bag(taskId);
     }
 }
 
@@ -2324,15 +2321,22 @@ void sub_81ADA7C(u8 taskId)
     else if (gMain.newKeys & A_BUTTON)
     {
         PlaySE(SE_SELECT);
-        BagMenu_RemoveWindow(7);
+        ClearWindowTilemap(GetBagWindow(6));
+        BagMenu_RemoveWindow(6);
+        BagMenu_RemoveWindow(0);
+        schedule_bg_copy_tilemap_to_vram(0);
+        BagDestroyPocketScrollArrowPair();
         Task_TryDoItemDeposit(taskId);
     }
     else if (gMain.newKeys & B_BUTTON)
     {
         PlaySE(SE_SELECT);
-        BagMenu_PrintDescription(data[1]);
+        BagMenu_RemoveWindow(6);
+        BagMenu_RemoveWindow(0);
+        PutWindowTilemap(1);
+        schedule_bg_copy_tilemap_to_vram(0);
         BagMenu_PrintCursor_(data[0], 1);
-        BagMenu_RemoveWindow(7);
+        BagDestroyPocketScrollArrowPair();
         set_callback3_to_bag(taskId);
     }
 }
@@ -2344,21 +2348,19 @@ void Task_TryDoItemDeposit(u8 taskId)
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
     if (ItemId_GetImportance(gSpecialVar_ItemId))
     {
-        BagMenu_Print(1, 1, gText_CantStoreImportantItems, 3, 1, 0, 0, 0, 0);
-        gTasks[taskId].func = sub_81ADC0C;
+        DisplayItemMessage(taskId, 1, gText_CantStoreImportantItems, sub_81ADC0C);
     }
     else if (AddPCItem(gSpecialVar_ItemId, tItemCount) == TRUE)
     {
         CopyItemName(gSpecialVar_ItemId, gStringVar1);
         ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, 3);
         StringExpandPlaceholders(gStringVar4, gText_DepositedVar2Var1s);
-        BagMenu_Print(1, 1, gStringVar4, 3, 1, 0, 0, 0, 0);
+        BagMenu_Print(BagMenu_AddWindow(6, 3), 1, gStringVar4, 0, 2, 1, 0, 0, 1);
         gTasks[taskId].func = Task_ActuallyToss;
     }
     else
     {
-        BagMenu_Print(1, 1, gText_NoRoomForItems, 3, 1, 0, 0, 0, 0);
-        gTasks[taskId].func = sub_81ADC0C;
+        DisplayItemMessage(taskId, 1, gText_NoRoomForItems, sub_81ADC0C);
     }
 }
 
@@ -2366,12 +2368,10 @@ void sub_81ADC0C(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
 
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (gMain.newKeys & A_BUTTON)
     {
         PlaySE(SE_SELECT);
-        BagMenu_PrintDescription(data[1]);
-        BagMenu_PrintCursor_(data[0], 1);
-        set_callback3_to_bag(taskId);
+        BagMenu_InitListsMenu(taskId);
     }
 }
 
