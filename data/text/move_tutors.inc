@@ -243,8 +243,8 @@ MoveTutor_Text_HeadbuttTeach::
 	.string "Here, want to try it too?$"
 
 MoveTutor_Text_HeadbuttDeclined::
-	.string "I guess you're not as hard-headed\n"
-	.string "as me!$"
+	.string "I guess you're just not as hard-\n"
+	.string "headed as I am!$"
 
 MoveTutor_Text_HeadbuttWhichMon::
 	.string "Great! Which POKéMON of yours has\n"

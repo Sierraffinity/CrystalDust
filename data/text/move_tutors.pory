@@ -6,8 +6,8 @@ text MoveTutor_Text_HeadbuttTeach {
 }
 
 text MoveTutor_Text_HeadbuttDeclined {
-    "I guess you're not as hard-headed\n"
-    "as me!"
+    "I guess you're just not as hard-\n"
+    "headed as I am!"
 }
 
 text MoveTutor_Text_HeadbuttWhichMon {
