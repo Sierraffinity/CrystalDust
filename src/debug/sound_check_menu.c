@@ -258,11 +258,11 @@ void CB2_StartSoundCheckMenu(void) // sub_080E8320
 
 static void Task_InitSoundCheckMenu_CreateWindows(u8 taskId) // SanitizeDayCareMailForRuby
 {
-    const u8 soundcheckStr[] = _("SOUND CHECK  A…PLAY  B…STOP");
-    const u8 bgmStr[] = _("BGM");
-    const u8 seStr[] = _("SE ");
-    const u8 upDownStr[] = _("L…UP R…DOWN");
-    const u8 driverStr[] = _("R…DRIVER-TEST");
+    const u8 soundcheckStr[] = _("SOUND TEST  A: PLAY  B: EXIT");
+    const u8 bgmStr[] = _("MUSIC");
+    const u8 seStr[] = _("SOUND EFFECTS");
+    const u8 upDownStr[] = _("{LEFT_ARROW}DOWN {RIGHT_ARROW}UP");
+    const u8 driverStr[] = _("R: CRY TEST");
 
     if (!gPaletteFade.active)
     {
@@ -372,7 +372,7 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
         HighlightSelectedWindow(gTasks[taskId].tWindowSelected);
         return FALSE;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
     {
         if (gTasks[taskId].tWindowSelected != TEST_MUS)
         {
@@ -390,7 +390,7 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
         }
         return TRUE;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
     {
         if (gTasks[taskId].tWindowSelected != TEST_MUS)
         {
@@ -459,7 +459,7 @@ static void PrintSoundNumber(u16 soundIndex, u8 windowId) // sub_080E8928
 {
     ConvertIntToDecimalStringN(gStringVar1, soundIndex, STR_CONV_MODE_RIGHT_ALIGN, 3);
     
-    gStringVar1[3] = CHAR_ELLIPSIS;
+    gStringVar1[3] = CHAR_COLON;
     gStringVar1[4] = EOS;
     
     AddTextPrinterParameterized(windowId, 1, gStringVar1, 0, 14, TEXT_SPEED_FF, NULL);
@@ -701,8 +701,8 @@ static void AdjustSelectedDriverParam(s8 delta) // sub_080E8FA4
         0, 65535,       // Length
         0, 255,         // Release
         0, 65535,       // Progress
-        -64, 63         // Chorus
-                        // Priority??? Why is it missing?
+        -64, 63,        // Chorus
+        0, 65535        // Priority
     };
 
     u8 cursorPos = Menu_GetCursorPos();
@@ -787,7 +787,7 @@ static const s8 gUnknown_08566E58[5] = { 0x3F, 0x00, 0xC0, 0x7F, 0x80 };
 
 static void Task_DrawPanTestMenu(u8 taskId) // sub_080E91E4
 {
-    const u8 seStr[] = _("SE");
+    const u8 seStr[] = _("SOUND EFFECT");
     const u8 panStr[] = _("PAN");
 
     AddTextPrinterParameterized(WIN_INFO, 1, seStr, 10, 14, TEXT_SPEED_FF, NULL);
@@ -883,15 +883,15 @@ static void Task_ProcessPanTestInput(u8 taskId) // sub_080E9284
     if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
     {
         sSoundTestParams[CRY_TEST_VOICE]++;
-        if (sSoundTestParams[CRY_TEST_VOICE] > 269)
-            sSoundTestParams[CRY_TEST_VOICE] = 0;
+        if (sSoundTestParams[CRY_TEST_VOICE] > SE_USSOKI)
+            sSoundTestParams[CRY_TEST_VOICE] = MUS_DUMMY;
         PrintPanTestMenuText();
     }
     else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
     {
         sSoundTestParams[CRY_TEST_VOICE]--;
-        if (sSoundTestParams[CRY_TEST_VOICE] < 0)
-            sSoundTestParams[CRY_TEST_VOICE] = 269;
+        if (sSoundTestParams[CRY_TEST_VOICE] < MUS_DUMMY)
+            sSoundTestParams[CRY_TEST_VOICE] = SE_USSOKI;
         PrintPanTestMenuText();
     }
 }
@@ -930,8 +930,8 @@ static void Task_InitSoundCheckMenu(u8 taskId) // sub_080E9410
 
 static void PrintPanTestMenuText(void) // sub_080E94B8
 {
-    u8 lrStr[] = _("  LR");
-    u8 rlStr[] = _("  RL");
+    u8 lrStr[] = _("   L");
+    u8 rlStr[] = _("   R");
 
     FillWindowPixelRect(WIN_INFO, PIXEL_FILL(1), 100, 14, 3, 28);
     PrintSignedNumber(sSoundTestParams[CRY_TEST_VOICE], 100, 14, 3);
