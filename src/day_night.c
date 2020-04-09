@@ -28,30 +28,30 @@ EWRAM_DATA s8 gDNHourOverride = 0;
 #endif
 
 static const u16 sTimeOfDayTints[][3] = {
-    {TINT_NIGHT},       // Midnight
-    {TINT_NIGHT},       // 1 AM
-    {TINT_NIGHT},       // 2 AM
-    {TINT_NIGHT},       // 3 AM
-    {Q_8_8(0.6), Q_8_8(0.6), Q_8_8(1.0)},     // 4 AM
-    {TINT_MORNING},     // 5 AM
-    {TINT_MORNING},     // 6 AM
-    {TINT_MORNING},     // 7 AM
-    {Q_8_8(0.9), Q_8_8(0.8), Q_8_8(1.0)},     // 8 AM
-    {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(1.0)},     // 9 AM
-    {TINT_DAY},     // 10 AM
-    {TINT_DAY},     // 11 AM
-    {TINT_DAY},     // 12 PM
-    {TINT_DAY},         // 1 PM
-    {TINT_DAY},         // 2 PM
-    {TINT_DAY},         // 3 PM
-    {TINT_DAY},         // 4 PM
-    {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(0.8)},   // 5 PM
-    {Q_8_8(0.9), Q_8_8(0.6), Q_8_8(0.67)},       // 6 PM
-    {Q_8_8(0.7), Q_8_8(0.6), Q_8_8(0.9)},       // 7 PM
-    {TINT_NIGHT},       // 8 PM
-    {TINT_NIGHT},       // 9 PM
-    {TINT_NIGHT},       // 10 PM
-    {TINT_NIGHT},       // 11 PM
+    [0] =   {TINT_NIGHT},
+    [1] =   {TINT_NIGHT},
+    [2] =   {TINT_NIGHT},
+    [3] =   {TINT_NIGHT},
+    [4] =   {Q_8_8(0.6), Q_8_8(0.6), Q_8_8(1.0)},
+    [5] =   {TINT_MORNING},
+    [6] =   {TINT_MORNING},
+    [7] =   {TINT_MORNING},
+    [8] =   {Q_8_8(0.9), Q_8_8(0.8), Q_8_8(1.0)},
+    [9] =   {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(1.0)},
+    [10] =  {TINT_DAY},
+    [11] =  {TINT_DAY},
+    [12] =  {TINT_DAY},
+    [13] =  {TINT_DAY},
+    [14] =  {TINT_DAY},
+    [15] =  {TINT_DAY},
+    [16] =  {TINT_DAY},
+    [17] =  {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(0.8)},
+    [18] =  {Q_8_8(0.9), Q_8_8(0.6), Q_8_8(0.67)},
+    [19] =  {Q_8_8(0.7), Q_8_8(0.6), Q_8_8(0.9)},
+    [20] =  {TINT_NIGHT},
+    [21] =  {TINT_NIGHT},
+    [22] =  {TINT_NIGHT},
+    [23] =  {TINT_NIGHT},
 };
 
 const u8 *const gDayOfWeekTable[] = 

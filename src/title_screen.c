@@ -5,6 +5,7 @@
 #include "gba/m4a_internal.h"
 #include "clear_save_data_menu.h"
 #include "decompress.h"
+#include "debug.h"
 #include "event_data.h"
 #include "intro.h"
 #include "m4a.h"
@@ -32,6 +33,7 @@
 
 #define CLEAR_SAVE_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON | DPAD_UP)
 #define RESET_RTC_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON | DPAD_LEFT)
+#define SOUND_TEST_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON | DPAD_RIGHT)
 #define BERRY_UPDATE_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON)
 #define A_B_START_SELECT (A_BUTTON | B_BUTTON | START_BUTTON | SELECT_BUTTON)
 
@@ -52,6 +54,7 @@ static void Task_TitleScreenProcessInput(u8);
 static void CB2_GoToMainMenu(void);
 static void CB2_GoToClearSaveDataScreen(void);
 static void CB2_GoToResetRtcScreen(void);
+static void CB2_GoToSoundCheckScreen(void);
 static void CB2_GoToBerryFixScreen(void);
 static void CB2_GoToCopyrightScreen(void);
 static void UpdatePressStartColor(u8);
@@ -489,6 +492,12 @@ static void Task_TitleScreenProcessInput(u8 taskId)
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_GoToResetRtcScreen);
     }
+    else if ((gMain.heldKeys & SOUND_TEST_BUTTON_COMBO) == SOUND_TEST_BUTTON_COMBO)
+    {
+        FadeOutBGM(4);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+        SetMainCallback2(CB2_GoToSoundCheckScreen);
+    }
     else if ((gMain.heldKeys & BERRY_UPDATE_BUTTON_COMBO) == BERRY_UPDATE_BUTTON_COMBO)
     {
         FadeOutBGM(4);
@@ -534,6 +543,14 @@ static void CB2_GoToResetRtcScreen(void)
 {
     if (!UpdatePaletteFade())
         SetMainCallback2(CB2_InitResetRtcScreen);
+    AnimateSprites();
+    BuildOamBuffer();
+}
+
+static void CB2_GoToSoundCheckScreen(void)
+{
+    if (!UpdatePaletteFade())
+        SetMainCallback2(CB2_StartSoundCheckMenu);
     AnimateSprites();
     BuildOamBuffer();
 }

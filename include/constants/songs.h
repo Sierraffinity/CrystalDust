@@ -274,6 +274,7 @@
 #define SE_CURTAIN1 268         // Battle Pike Curtain Close
 #define SE_USSOKI 269           // Sudowoodo
 
+
 #define MUS_TETSUJI 350         // Littleroot Town Test 'TETSUJI'
 #define MUS_FIELD13 351         // GSC - Route 38
 #define MUS_KACHI22 352         // Wild Pokémon Defeated
