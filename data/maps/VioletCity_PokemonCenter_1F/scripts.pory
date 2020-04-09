@@ -56,7 +56,6 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
         getpartysize
         if (var(VAR_RESULT) != 6)
         {
-            delay(5)
 	        textcolor(MSG_COLOR_MISC)
             setflag(FLAG_GOT_ELMS_EGG)
 	        playfanfare(MUS_FANFAREEGG)

@@ -262,7 +262,7 @@ $(MID_SUBDIR)/mus_me_bachi.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5
 
 $(MID_SUBDIR)/mus_fanfareegg.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5
+	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V080 -P5
 
 $(MID_SUBDIR)/mus_me_pointget.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G103 -V090 -P5
