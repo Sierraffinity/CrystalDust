@@ -50,7 +50,7 @@ static const struct WindowTemplate sClearSaveTextWindow[] =
         .bg = 0,
         .tilemapLeft = 3,
         .tilemapTop = 15,
-        .width = 26,
+        .width = 23,
         .height = 4,
         .paletteNum = 15,
         .baseBlock = 11,
@@ -63,8 +63,8 @@ static const struct WindowTemplate sClearSaveYesNo[] =
     {
         .bg = 0,
         .tilemapLeft = 3,
-        .tilemapTop = 2,
-        .width = 5,
+        .tilemapTop = 5,
+        .width = 6,
         .height = 4,
         .paletteNum = 15,
         .baseBlock = 115,
@@ -79,9 +79,9 @@ void CB2_InitClearSaveDataScreen(void)
 
 static void Task_DoClearSaveDataScreenYesNo(u8 taskId)
 {
-    DrawStdFrameWithCustomTileAndPalette(0, 0, 2, 14);
+    DrawStdFrameWithCustomTileAndPalette(0, 0, 2, 15);
     AddTextPrinterParameterized(0, 1, gText_ClearAllSaveData, 0, 1, 0, 0);
-    CreateYesNoMenu(sClearSaveYesNo, 1, 0, 2, 2, 14, 1);
+    CreateYesNoMenu(sClearSaveYesNo, 1, 0, 2, 2, 15, 1);
     gTasks[taskId].func = Task_ClearSaveDataScreenYesNoChoice;
 }
 
@@ -147,8 +147,8 @@ static bool8 SetupClearSaveDataScreen(void)
         ResetPaletteFade();
         gPlttBufferUnfaded[0] = RGB_WHITE;
         gPlttBufferFaded[0] = RGB_WHITE;
-        gPlttBufferUnfaded[1] = RGB(5, 10, 14);
-        gPlttBufferFaded[1] = RGB(5, 10, 14);
+        gPlttBufferUnfaded[1] = RGB(4, 22, 25);
+        gPlttBufferFaded[1] = RGB(4, 22, 25);
         for (i = 0; i < 0x10; i++)
             ((u16 *)(VRAM + 0x20))[i] = 0x1111;
 
@@ -204,6 +204,5 @@ static void InitClearSaveDataScreenWindows(void)
     InitWindows(sClearSaveTextWindow);
     DeactivateAllTextPrinters();
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
-    LoadWindowGfx(0, 0, 2, 224);
-    LoadPalette(gUnknown_0860F074, 0xF0, 0x20);
+    LoadThinWindowBorderGfx(0, 2, 0xF0);
 }
