@@ -39,7 +39,6 @@ static void TilesetAnim_SootopolisGym(u16);
 static void TilesetAnim_EliteFour(u16);
 static void TilesetAnim_MauvilleGym(u16);
 static void TilesetAnim_PagodaTower(u16);
-static void TilesetAnim_BikeShop(u16);
 static void TilesetAnim_BattlePyramid(u16);
 static void TilesetAnim_BattleDome(u16);
 static void QueueAnimTiles_General_WaterFast(u16);
@@ -52,7 +51,6 @@ static void QueueAnimTiles_Dewford_Flag(u16);
 static void QueueAnimTiles_Slateport_Balloons(u16);
 static void QueueAnimTiles_Mauville_Flowers(u16, u8);
 static void QueueAnimTiles_PagodaTower_SproutTowerPillar(u16);
-static void QueueAnimTiles_BikeShop_BlinkingLights(u16);
 static void QueueAnimTiles_BattlePyramid_Torch(u16);
 static void QueueAnimTiles_BattlePyramid_StatueShadow(u16);
 static void BlendAnimPalette_BattleDome_FloorLights(u16);
@@ -467,15 +465,6 @@ const u16 *const gTilesetAnims_PagodaTower_SproutTowerPillar[] = {
     gTilesetAnims_PagodaTower_SproutTowerPillar_Frame7,
 };
 
-const u16 gTilesetAnims_BikeShop_BlinkingLights_Frame0[] = INCBIN_U16("data/tilesets/secondary/bike_shop/anim/blinking_lights/0.4bpp");
-const u16 gTilesetAnims_BikeShop_BlinkingLights_Frame1[] = INCBIN_U16("data/tilesets/secondary/bike_shop/anim/blinking_lights/1.4bpp");
-const u16 tileset_anims_space_7[16] = {};
-
-const u16 *const gTilesetAnims_BikeShop_BlinkingLights[] = {
-    gTilesetAnims_BikeShop_BlinkingLights_Frame0,
-    gTilesetAnims_BikeShop_BlinkingLights_Frame1
-};
-
 const u16 gTilesetAnims_Sootopolis_StormyWater_Frame0[] = INCBIN_U16("data/tilesets/secondary/sootopolis/anim/stormy_water/0.4bpp");
 const u16 gTilesetAnims_Sootopolis_StormyWater_Frame1[] = INCBIN_U16("data/tilesets/secondary/sootopolis/anim/stormy_water/1.4bpp");
 const u16 gTilesetAnims_Sootopolis_StormyWater_Frame2[] = INCBIN_U16("data/tilesets/secondary/sootopolis/anim/stormy_water/2.4bpp");
@@ -789,13 +778,6 @@ void InitTilesetAnim_PagodaTower(void)
     sSecondaryTilesetAnimCallback = TilesetAnim_PagodaTower;
 }
 
-void InitTilesetAnim_BikeShop(void)
-{
-    sSecondaryTilesetAnimCounter = 0;
-    sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
-    sSecondaryTilesetAnimCallback = TilesetAnim_BikeShop;
-}
-
 void InitTilesetAnim_BattlePyramid(void)
 {
     sSecondaryTilesetAnimCounter = 0;
@@ -1041,12 +1023,6 @@ static void TilesetAnim_PagodaTower(u16 timer)
         QueueAnimTiles_PagodaTower_SproutTowerPillar(timer >> 4);
 }
 
-static void TilesetAnim_BikeShop(u16 timer)
-{
-    if (timer % 4 == 0)
-        QueueAnimTiles_BikeShop_BlinkingLights(timer >> 2);
-}
-
 static void TilesetAnim_BattlePyramid(u16 timer)
 {
     if (timer % 8 == 0)
@@ -1103,12 +1079,6 @@ static void QueueAnimTiles_PagodaTower_SproutTowerPillar(u16 timer)
 {
     u16 i = timer % 8;
     AppendTilesetAnimToBuffer(gTilesetAnims_PagodaTower_SproutTowerPillar[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 89)), 0x300);
-}
-
-static void QueueAnimTiles_BikeShop_BlinkingLights(u16 timer)
-{
-    u16 i = timer % 2;
-    AppendTilesetAnimToBuffer(gTilesetAnims_BikeShop_BlinkingLights[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 496)), 0x120);
 }
 
 static void QueueAnimTiles_Sootopolis_StormyWater(u16 timer)

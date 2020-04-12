@@ -368,7 +368,7 @@ gTileset_BikeShop:: @ 83DF9D4
 	.4byte NULL
 	.4byte gMetatiles_BikeShop
 	.4byte gMetatileAttributes_BikeShop
-	.4byte InitTilesetAnim_BikeShop
+	.4byte NULL
 
 	.align 2
 gTileset_Forest:: @ 83DF9EC

@@ -13,10 +13,10 @@ script AzaleaTown_CharcoalKiln_EventScript_Master {
     elif (flag(FLAG_CLEARED_SLOWPOKE_WELL))
     {
         msgbox("The SLOWPOKE have returned…\n"
-               "But my APPRENTICE hasn't come back\l"
-               "from ILEX FOREST.\p"
-               "WHere in the world is that\n"
-               "lazy guy?")
+               "But my APPRENTICE hasn't come\l"
+               "back from ILEX FOREST.\p"
+               "Where in the world could that\n"
+               "lazy guy be?")
     }
     else
     {
