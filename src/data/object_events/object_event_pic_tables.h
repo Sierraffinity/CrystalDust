@@ -1853,16 +1853,16 @@ const struct SpriteFrameImage gObjectEventPicTable_Pikachu[] = {
     overworld_frame(gObjectEventPic_Pikachu, 2, 2, 2),
 };
 
-const struct SpriteFrameImage gObjectEventPicTable_Azumarill[] = {
-    overworld_frame(gObjectEventPic_Azumarill, 2, 2, 0),
-    overworld_frame(gObjectEventPic_Azumarill, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Azumarill, 2, 2, 2),
-    overworld_frame(gObjectEventPic_Azumarill, 2, 2, 0),
-    overworld_frame(gObjectEventPic_Azumarill, 2, 2, 0),
-    overworld_frame(gObjectEventPic_Azumarill, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Azumarill, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Azumarill, 2, 2, 2),
-    overworld_frame(gObjectEventPic_Azumarill, 2, 2, 2),
+const struct SpriteFrameImage gObjectEventPicTable_SlowpokeTailless[] = {
+    overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 0),
+    overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 1),
+    overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 2),
+    overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 0),
+    overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 0),
+    overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 1),
+    overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 1),
+    overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 2),
+    overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 2),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_Wingull[] = {

@@ -123,7 +123,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmMrPokemon:
 
 NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThisIsTerrible
-	textcolor MSG_COLOR_MISC
+	textcolor MSG_COLOR_SYS
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmHandedMysteryEgg
 	closemessage
 	call EventScript_RestorePrevTextColor

@@ -76,7 +76,7 @@ EventScript_BufferBerriesPocket2::
 	return
 
 Std_ReceivedItem::
-	textcolor MSG_COLOR_MISC
+	textcolor MSG_COLOR_SYS
 	playfanfare VAR_0x8002
 	message 0x0
 	waitmessage

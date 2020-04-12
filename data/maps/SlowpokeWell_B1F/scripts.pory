@@ -103,8 +103,6 @@ movement SlowpokeWell_B1F_FirstSlowpokeWaitTurn {
     face_down
     delay_16 * 3
     face_left
-    delay_16 * 2
-    face_up
 }
 
 movement SlowpokeWell_B1F_SecondSlowpokeWaitTurn {

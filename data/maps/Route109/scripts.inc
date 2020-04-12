@@ -53,7 +53,7 @@ Route109_EventScript_DoSailToDewford:: @ 81EE7D5
 	clearflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
 	setflag FLAG_HIDE_AZALEA_TOWN_KURT
 	hideobjectat 1, MAP_ROUTE109
-	msgbox AzaleaTown_Text_BrineyLandedInDewford, MSGBOX_DEFAULT
+	@msgbox AzaleaTown_Text_BrineyLandedInDewford, MSGBOX_DEFAULT
 	closemessage
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
 	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_ROUTE109

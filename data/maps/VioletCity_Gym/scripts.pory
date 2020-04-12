@@ -39,7 +39,7 @@ text VioletCity_Gym_Text_FalknerDefeat {
 }
 
 script VioletCity_Gym_EventScript_FalknerDefeated {
-	textcolor(MSG_COLOR_MISC)
+	textcolor(MSG_COLOR_SYS)
     message("{PLAYER} received the ZEPHYRBADGE\n"
             "from FALKNER.")
     waitmessage

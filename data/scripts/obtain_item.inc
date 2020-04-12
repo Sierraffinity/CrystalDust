@@ -1,5 +1,5 @@
 Std_ObtainItem:: @ 8271AD3
-	textcolor MSG_COLOR_MISC
+	textcolor MSG_COLOR_SYS
 	additem VAR_0x8000, VAR_0x8001
 	copyvar VAR_0x8007, VAR_RESULT
 	call EventScript_ObtainItemMessage

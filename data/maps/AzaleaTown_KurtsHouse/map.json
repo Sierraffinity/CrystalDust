@@ -64,6 +64,7 @@
     "connections": null,
     "coord_events": [
     ],
+    "floor_number": 0,
     "id": "MAP_AZALEA_TOWN_KURTS_HOUSE",
     "layout": "LAYOUT_AZALEA_TOWN_KURTS_HOUSE",
     "map_type": "MAP_TYPE_INDOOR",
@@ -101,7 +102,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_AZALEA_TOWN_SLOWPOKES",
-            "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
+            "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE_TAILLESS",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",

@@ -56,7 +56,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
         getpartysize
         if (var(VAR_RESULT) != 6)
         {
-	        textcolor(MSG_COLOR_MISC)
+	        textcolor(MSG_COLOR_SYS)
             setflag(FLAG_GOT_ELMS_EGG)
 	        playfanfare(MUS_FANFAREEGG)
             message("{PLAYER} received the EGG\n"
@@ -111,7 +111,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                    "Your mom asked me to deliver these\n"
                    "when I saw you.")
             
-            textcolor(MSG_COLOR_MISC)
+            textcolor(MSG_COLOR_SYS)
             playfanfare(MUS_FANFA4)
             message("{PLAYER} received the\n"
                     "RUNNING SHOES from the AIDE.")

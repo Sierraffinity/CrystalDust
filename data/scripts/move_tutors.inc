@@ -325,7 +325,7 @@ MoveTutor_EventScript_OpenPartyMenu:: @ 82C8326
 	return
 
 MoveTutor_EventScript_CanOnlyBeLearnedOnce:: @ 82C832D
-	textcolor MSG_COLOR_MISC
+	textcolor MSG_COLOR_SYS
 	signmsg
 	msgbox MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO
 	normalmsg

@@ -37,7 +37,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToPlayer
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_SoYourePlayer
-	textcolor MSG_COLOR_MISC
+	textcolor MSG_COLOR_SYS
 	playfanfare MUS_RG_FAN5
 	message Route30_MrPokemonsHouse_Text_PlayerReceivedPokedex
 	waitmessage
