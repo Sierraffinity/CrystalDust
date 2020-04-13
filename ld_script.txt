@@ -341,7 +341,7 @@ SECTIONS {
         src/ruins_of_alph_puzzle.o(.text);
         src/bug_catching_contest.o(.text);
         src/phone_script.o(.text);
-        src/debug_menu.o(.text);
+        src/debug/debug_menu.o(.text);
     } =0
 
     script_data :
@@ -708,7 +708,7 @@ SECTIONS {
         src/ruins_of_alph_puzzle.o(.rodata);
         src/bug_catching_contest.o(.rodata);
         src/phone_script.o(.rodata);
-        src/debug_menu.o(.rodata);
+        src/debug/debug_menu.o(.rodata);
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);
     } =0

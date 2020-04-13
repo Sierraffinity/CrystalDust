@@ -402,8 +402,22 @@ const u32 *const gItemIconTable[][2] =
     // Emerald-only key items
     [ITEM_MAGMA_EMBLEM] = {gItemIcon_MagmaEmblem, gItemIconPalette_MagmaEmblem},
     [ITEM_OLD_SEA_MAP] = {gItemIcon_OldSeaMap, gItemIconPalette_OldSeaMap},
-    // CrystalDust-only key items
+    // CrystalDust-only items
     [ITEM_MYSTERY_EGG] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_RED_APRICORN] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_BLU_APRICORN] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_YLW_APRICORN] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_GRN_APRICORN] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_WHT_APRICORN] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_BLK_APRICORN] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_PNK_APRICORN] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_LEVEL_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_LURE_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_MOON_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_FRIEND_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_FAST_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_HEAVY_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_LOVE_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     // Return to field arrow
     [ITEM_FIELD_ARROW] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };
