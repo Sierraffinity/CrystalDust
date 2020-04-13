@@ -569,7 +569,7 @@ static void CB2_CreateTradeMenu(void)
         sTradeMenuData->bg3hofs = 0;
         SetTradePartyMonsVisible();
         gMain.state++;
-        PlayBGM(MUS_P_SCHOOL);
+        PlayBGM(MUS_OAKTHEME);
         break;
     case 15:
         SetTradePartyLiveStatuses(TRADE_PARTNER);

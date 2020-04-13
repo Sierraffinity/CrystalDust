@@ -46,7 +46,7 @@ script SproutTower_3F_EventScript_RivalScene {
     waitmovement(0)
 	applymovement(RIVAL_ID, Common_Movement_Delay48)
     waitmovement(0)
-    playbgm(MUS_RIVALENC, 0)
+    playbgm(MUS_RIVALTHEME, 0)
 	applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalToPlayer)
     waitmovement(0)
     msgbox("…\n"

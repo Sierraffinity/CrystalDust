@@ -405,7 +405,7 @@ Route110_EventScript_RivalScene:: @ 81EF76E
 	end
 
 Route110_EventScript_PlayMayMusic:: @ 81EF7E1
-	playbgm MUS_RIVALENC, 1
+	playbgm MUS_RIVALTHEME, 1
 	return
 
 Route110_EventScript_PlayBrendanMusic:: @ 81EF7E6

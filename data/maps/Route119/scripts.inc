@@ -70,7 +70,7 @@ Route119_EventScript_RivalEncounter:: @ 81F4488
 	end
 
 Route119_EventScript_PlayMayMusic:: @ 81F4501
-	playbgm MUS_RIVALENC, 1
+	playbgm MUS_RIVALTHEME, 1
 	return
 
 Route119_EventScript_PlayBrendanMusic:: @ 81F4506

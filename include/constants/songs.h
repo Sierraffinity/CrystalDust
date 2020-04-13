@@ -340,19 +340,19 @@
 #define MUS_KACHI1 412          // Victory! Trainer
 #define MUS_TITLE3 413          // Title Screen
 #define MUS_DEMO1 414           // Opening Movie
-#define MUS_RIVALENC 415        // Encounter! May
-#define MUS_ENCSAGE 416        // Encounter! Biker
-#define MUS_ENCMALECLASSIC 417         // Encounter! Electric Trainer
+#define MUS_RIVALTHEME 415      // Encounter! May
+#define MUS_ENCSAGE 416         // Encounter! Biker
+#define MUS_ENCMALECLASSIC 417  // Encounter! Electric Trainer
 #define MUS_MAINMENU 418        // Main Menu
-#define MUS_ENCROCKET 419           // Encounter! Team Aqua
+#define MUS_ENCROCKET 419       // Encounter! Team Aqua
 #define MUS_FOLLOWME 420        // Follow Me!
 #define MUS_RIVALEXIT 421       // Rival exits, stage left
 #define MUS_RAINBOW 422         // Ever Grande City
-#define MUS_ENCSUSPICIOUS 423          // Encounter! Psychic
+#define MUS_ENCSUSPICIOUS 423   // Encounter! Psychic
 #define MUS_KACHI4 424          // Victory! Aqua/Magma Grunt
 #define MUS_ROPEWAY 425         // Cable Car
 #define MUS_CASINO 426          // Game Corner
-#define MUS_AZALEA 427        // Dewford Town
+#define MUS_AZALEA 427          // Dewford Town
 #define MUS_SAFARI 428          // Safari Zone
 #define MUS_C_ROAD 429          // Victory Road
 #define MUS_AJITO 430           // Aqua/Magma Hideout
@@ -360,7 +360,7 @@
 #define MUS_SPROUTTOWER 432     // Sprout Tower
 #define MUS_FINECITY 433        // Slateport City
 #define MUS_MACHUPI 434         // Mt. Pyre (Outside)
-#define MUS_P_SCHOOL 435        // Pokémon Trainer's School
+#define MUS_OAKTHEME 435        // Pokémon Trainer's School
 #define MUS_DENDOU 436          // You're the Champion!
 #define MUS_TONEKUSA 437        // Fallarbor Town
 #define MUS_MABOROSI 438        // Sealed Chamber

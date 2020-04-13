@@ -1051,7 +1051,7 @@ SECTIONS {
         sound/songs/midi/mus_kachi1.o(.rodata);
         sound/songs/midi/mus_title3.o(.rodata);
         sound/songs/midi/mus_demo1.o(.rodata);
-        sound/songs/midi/mus_rivalenc.o(.rodata);
+        sound/songs/midi/mus_rivaltheme.o(.rodata);
         sound/songs/midi/mus_encsage.o(.rodata);
         sound/songs/midi/mus_encmaleclassic.o(.rodata);
         sound/songs/midi/mus_mainmenu.o(.rodata);
@@ -1071,7 +1071,7 @@ SECTIONS {
         sound/songs/midi/mus_sprouttower.o(.rodata);
         sound/songs/midi/mus_finecity.o(.rodata);
         sound/songs/midi/mus_machupi.o(.rodata);
-        sound/songs/midi/mus_p_school.o(.rodata);
+        sound/songs/midi/mus_oaktheme.o(.rodata);
         sound/songs/midi/mus_dendou.o(.rodata);
         sound/songs/midi/mus_tonekusa.o(.rodata);
         sound/songs/midi/mus_maborosi.o(.rodata);

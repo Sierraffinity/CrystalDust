@@ -67,7 +67,7 @@ EverGrandeCity_ChampionsRoom_EventScript_Defeated:: @ 8228A61
 	end
 
 EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic:: @ 8228ABC
-	playbgm MUS_RIVALENC, 0
+	playbgm MUS_RIVALTHEME, 0
 	return
 
 EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic:: @ 8228AC1

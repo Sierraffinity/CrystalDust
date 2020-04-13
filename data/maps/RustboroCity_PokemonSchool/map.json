@@ -2,7 +2,7 @@
   "id": "MAP_RUSTBORO_CITY_POKEMON_SCHOOL",
   "name": "RustboroCity_PokemonSchool",
   "layout": "LAYOUT_VIOLET_CITY_EARLS_ACADEMY",
-  "music": "MUS_P_SCHOOL",
+  "music": "MUS_OAKTHEME",
   "region_map_section": "MAPSEC_GOLDENROD_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

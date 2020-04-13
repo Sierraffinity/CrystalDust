@@ -384,7 +384,7 @@ gSongTable:: @ 86B49F0
 	song mus_encmale, 0, 0          @ Trainers' Eyes Meet (Youngster)
 	song mus_darkcave, 0, 0         @ Dark Cave
 	song mus_machi_s3, 0, 0         @ Fortree City
-	song mus_elmslab, 0, 0          @ Birch Pokémon Lab
+	song mus_elmslab, 0, 0          @ Elm Pokémon Lab
 	song mus_b_tower, 0, 0          @ Battle Tower (RS)
 	song mus_swimeye, 0, 0          @ Trainers' Eyes Meet (Swimmer♀)
 	song mus_dan03, 0, 0            @ Cave of Origin
@@ -416,8 +416,8 @@ gSongTable:: @ 86B49F0
 	song mus_kachi1, 0, 0           @ Victory! (Trainer Battle)
 	song mus_title3, 0, 0           @ Title Screen
 	song mus_demo1, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
-	song mus_rivalenc, 0, 0         @ Rival Arrives
-	song mus_encsage, 0, 0          @ Trainers' Eyes Meet (Psychic)
+	song mus_rivaltheme, 0, 0       @ Rival Arrives
+	song mus_encsage, 0, 0          @ Trainers' Eyes Meet (Sage)
 	song mus_encmaleclassic, 0, 0   @ Trainers' Eyes Meet (Cooltrainer)
 	song mus_mainmenu, 0, 0         @ Main Menu
 	song mus_encrocket, 0, 0        @ Team Rocket Appears!
@@ -436,7 +436,7 @@ gSongTable:: @ 86B49F0
 	song mus_sprouttower, 0, 0      @ Sprout Tower
 	song mus_finecity, 0, 0         @ Slateport City
 	song mus_machupi, 0, 0          @ Mt. Pyre Exterior
-	song mus_p_school, 0, 0         @ Trainers' School
+	song mus_oaktheme, 0, 0        @ Oak's Theme
 	song mus_dendou, 0, 0           @ The Hall of Fame
 	song mus_tonekusa, 0, 0         @ Fallarbor Town
 	song mus_maborosi, 0, 0         @ Sealed Chamber

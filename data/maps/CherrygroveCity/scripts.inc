@@ -297,7 +297,7 @@ CherrygroveCity_EventScript_RivalMain:
 	waitmovement 0
 	applymovement 2, CherrygroveCity_Movement_RivalToPlayer
 	waitmovement 0
-	playbgm MUS_RIVALENC, 0
+	playbgm MUS_RIVALTHEME, 0
 	savebgm MUS_RIVALEXIT
 	msgbox CherrygroveCity_Text_Rival_GotAMon
 	setvar VAR_LAST_TALKED, 2

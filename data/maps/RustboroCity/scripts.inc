@@ -699,7 +699,7 @@ RustboroCity_EventScript_PlayRivalMusic:: @ 81E0DD1
 	return
 
 RustboroCity_EventScript_PlayMayMusic:: @ 81E0DE9
-	playbgm MUS_RIVALENC, 1
+	playbgm MUS_RIVALTHEME, 1
 	return
 
 RustboroCity_EventScript_PlayBrendanMusic:: @ 81E0DEE

@@ -238,7 +238,7 @@ LilycoveCity_EventScript_Rival:: @ 81E2DDE
 	end
 
 LilycoveCity_EventScript_May:: @ 81E2DF8
-	playbgm MUS_RIVALENC, 1
+	playbgm MUS_RIVALTHEME, 1
 	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_MayAskToBattleAgain
 	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_MayAskToBattle
 	compare VAR_RESULT, NO
