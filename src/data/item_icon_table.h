@@ -418,6 +418,7 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_FAST_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_HEAVY_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_LOVE_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_PARK_BALL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     // Return to field arrow
     [ITEM_FIELD_ARROW] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

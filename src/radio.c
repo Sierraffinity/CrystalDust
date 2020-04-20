@@ -54,8 +54,8 @@ static const u16 sRadioChannelSongs[] =
     [LETS_ALL_SING] = MUS_MACHUPI,
     [ROCKET_RADIO] = MUS_AJITO,
     [POKE_FLUTE_RADIO] = MUS_RG_POKEFUE,
-    [UNOWN_RADIO] = MUS_RG_VS_DEO,
-    [EVOLUTION_RADIO] = MUS_RG_VS_MYU2
+    [UNOWN_RADIO] = MUS_OOAME,
+    [EVOLUTION_RADIO] = MUS_HIDERI
 };
 
 enum {

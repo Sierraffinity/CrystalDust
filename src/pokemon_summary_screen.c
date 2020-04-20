@@ -4066,10 +4066,10 @@ static void RemoveAndCreateMonMarkingsSprite(struct Pokemon *mon)
 
 static void CreateCaughtBallSprite(struct Pokemon *mon)
 {
-    u8 ball = ItemIdToBallId(GetMonData(mon, MON_DATA_POKEBALL));
+    u8 gfxId = BallIdToGfxId(GetMonData(mon, MON_DATA_POKEBALL));
 
-    LoadBallGfx(ball);
-    sMonSummaryScreen->spriteIds[1] = CreateSprite(&gBallSpriteTemplates[ball], 16, 136, 0);
+    LoadBallGfx(gfxId);
+    sMonSummaryScreen->spriteIds[1] = CreateSprite(&gBallSpriteTemplates[gfxId], 16, 136, 0);
     gSprites[sMonSummaryScreen->spriteIds[1]].callback = SpriteCallbackDummy;
     gSprites[sMonSummaryScreen->spriteIds[1]].oam.priority = 3;
 }

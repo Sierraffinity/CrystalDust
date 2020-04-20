@@ -21,6 +21,7 @@
 #include "m4a.h"
 #include "party_menu.h"
 #include "pokedex.h"
+#include "pokeball.h"
 #include "pokeblock.h"
 #include "pokemon.h"
 #include "pokemon_animation.h"
@@ -3863,6 +3864,10 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_POKEBALL:
         retVal = substruct3->pokeball;
+        if (retVal == BALL_LEVEL)
+        {
+            retVal += boxMon->altBall;
+        }
         break;
     case MON_DATA_OT_GENDER:
         retVal = substruct3->otGender;
@@ -4236,7 +4241,15 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_POKEBALL:
     {
         u8 pokeball = *data;
-        substruct3->pokeball = pokeball;
+        if (pokeball >= BALL_LEVEL)
+        {
+            substruct3->pokeball = BALL_LEVEL;
+            boxMon->altBall = pokeball - BALL_LEVEL;
+        }
+        else
+        {
+            substruct3->pokeball = pokeball;
+        }
         break;
     }
     case MON_DATA_OT_GENDER:

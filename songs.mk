@@ -106,7 +106,7 @@ $(MID_SUBDIR)/mus_daigo.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G100 -V076
 
 $(MID_SUBDIR)/mus_ilexforest.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G018 -V080
+	$(MID) $< $@ -E -R$(STD_REVERB) -G018 -V100
 
 $(MID_SUBDIR)/mus_darkcave.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G030 -V100
@@ -244,7 +244,7 @@ $(MID_SUBDIR)/mus_machi_s3.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G032 -V080
 
 $(MID_SUBDIR)/mus_cherrygrove.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G019 -V080
+	$(MID) $< $@ -E -R$(STD_REVERB) -G019 -V070
 
 $(MID_SUBDIR)/mus_machupi.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G080 -V080
@@ -316,7 +316,7 @@ $(MID_SUBDIR)/mus_ooame.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G089 -V080
 
 $(MID_SUBDIR)/mus_oaktheme.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G081 -V080
+	$(MID) $< $@ -E -R$(STD_REVERB) -G081 -V097
 
 $(MID_SUBDIR)/mus_pcc.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -V080

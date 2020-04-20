@@ -14,15 +14,15 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
     }
     elif (flag(FLAG_CLEARED_SLOWPOKE_WELL))
     {
-        msgbox("KURT: Hi, {PLAYER}\n"
-               "You handled yourself like a real\l"
+        msgbox("KURT: Hi, {PLAYER}!\p"
+               "You handled yourself like a real\n"
                "hero at the WELL.\p"
-               "I like your style!\n"
-               "I would be honored to make BALLS\l"
-               "for a TRAINER like you.\p"
+               "I like your style!\p"
+               "I would be honored to make some\n"
+               "BALLS for a TRAINER like you.\p"
                "This is all I have now, but please\n"
                "take it.")
-        giveitem(0) // TODO: Lure Ball
+        giveitem(ITEM_LURE_BALL)
         if (!var(VAR_RESULT))
         {
 			goto(Common_EventScript_ShowBagIsFull)

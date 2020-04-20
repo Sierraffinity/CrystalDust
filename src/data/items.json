@@ -6329,6 +6329,22 @@
       "battleUsage": 2,
       "battleUseFunc": "ItemUseInBattle_PokeBall",
       "secondaryId": 18
+    },
+    {
+      "english": "PARK BALL",
+      "itemId": "ITEM_PARK_BALL",
+      "price": 150,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A special POKé BALL for\\nuse in the Bug-Catching Contest.",
+      "importance": 0,
+      "exitsBagOnUse": 0,
+      "pocket": "POCKET_POKE_BALLS",
+      "type": 2,
+      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "battleUsage": 2,
+      "battleUseFunc": "ItemUseInBattle_PokeBall",
+      "secondaryId": 19
     }
   ]
 }

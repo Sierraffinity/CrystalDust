@@ -5580,9 +5580,9 @@ static void HandleAction_UseItem(void)
     ClearFuryCutterDestinyBondGrudge(gBattlerAttacker);
     gLastUsedItem = gBattleBufferB[gBattlerAttacker][1] | (gBattleBufferB[gBattlerAttacker][2] << 8);
 
-    if (gLastUsedItem <= ITEM_PREMIER_BALL) // is ball
+    if (gLastUsedItem <= ITEM_PREMIER_BALL || (gLastUsedItem >= ITEM_LEVEL_BALL && gLastUsedItem <= ITEM_PARK_BALL)) // is ball
     {
-        gBattlescriptCurrInstr = gBattlescriptsForBallThrow[gLastUsedItem];
+        gBattlescriptCurrInstr = gBattlescriptsForBallThrow[ITEM_ID_TO_BALL_ID(gLastUsedItem)];
     }
     else if (gLastUsedItem == ITEM_POKE_DOLL || gLastUsedItem == ITEM_FLUFFY_TAIL)
     {
@@ -5811,8 +5811,8 @@ static void HandleAction_ParkBallThrow(void)
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
     gNumParkBalls--;
-    gLastUsedItem = ITEM_POKE_BALL; // huderlem TODO: ITEM_PARK_BALL
-    gBattlescriptCurrInstr = BattleScript_ParkBallThrow;
+    gLastUsedItem = ITEM_PARK_BALL;
+    gBattlescriptCurrInstr = gBattlescriptsForBallThrow[ITEM_PARK_BALL];
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 
