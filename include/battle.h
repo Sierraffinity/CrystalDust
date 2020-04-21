@@ -256,7 +256,7 @@ struct BattleResults
     u16 caughtMonSpecies;     // 0x28
     u8 caughtMonNick[POKEMON_NAME_LENGTH + 1];     // 0x2A
     u8 filler35[1];           // 0x35
-    u8 catchAttempts[18];     // 0x36
+    u8 catchAttempts[19];     // 0x36
 };
 
 struct BattleTv_Side

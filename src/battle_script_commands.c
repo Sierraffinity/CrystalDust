@@ -10139,8 +10139,109 @@ static void Cmd_handleballthrow(void)
                 break;
             case BALL_LUXURY:
             case BALL_PREMIER:
+            case BALL_FRIEND:
                 ballMultiplier = 10;
                 break;
+            case BALL_HEAVY:
+            {
+                u16 weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 1);
+
+                if (weight < WEIGHT_AVERAGE)
+                {
+                    catchRate -= 20;
+                }
+                else if (weight < WEIGHT_HEAVY)
+                {
+                    // do nothing
+                }
+                else if (weight < WEIGHT_HEAVIER)
+                {
+                    catchRate += 20;
+                }
+                else if (weight < WEIGHT_HEAVIEST)
+                {
+                    catchRate += 30;
+                }
+                else
+                {
+                    catchRate += 40;
+                }
+
+                ballMultiplier = 10;
+                break;
+            }
+            case BALL_LEVEL:
+                if (gBattleMons[gBattlerTarget].level >= (gBattleMons[gActiveBattler].level * 4))
+                {
+                    ballMultiplier = 80;
+                }
+                else if (gBattleMons[gBattlerTarget].level >= (gBattleMons[gActiveBattler].level * 2))
+                {
+                    ballMultiplier = 40;
+                }
+                else if (gBattleMons[gBattlerTarget].level >= gBattleMons[gActiveBattler].level)
+                {
+                    ballMultiplier = 20;
+                }
+                else
+                {
+                    ballMultiplier = 10;
+                }
+				break;
+            case BALL_LURE:
+                if (gBattleTypeFlags & BATTLE_TYPE_FISHING)
+                {
+                    ballMultiplier = 30;
+                }
+                else
+                {
+                    ballMultiplier = 10;
+                }
+				break;
+            case BALL_FAST:
+                // HGSS behavior
+                if (gBaseStats[gBattleMons[gBattlerTarget].species].baseSpeed >= 100)
+                {
+                    ballMultiplier = 40;
+                }
+                else
+                {
+                    ballMultiplier = 10;
+                }
+				break;
+            case BALL_MOON:
+                if (GetItemEvolutionTargetSpecies(gBattleMons[gBattlerTarget].species, ITEM_MOON_STONE) != SPECIES_NONE)
+                {
+                    ballMultiplier = 40;
+                }
+                else
+                {
+                    ballMultiplier = 10;
+                }
+				break;
+            case BALL_LOVE:
+            {
+                u16 speciesAttacker = gBattleMons[gActiveBattler].species;
+                u16 speciesTarget = gBattleMons[gActiveBattler].species;
+                u32 personalityAttacker = gBattleMons[gBattlerTarget].personality;
+                u32 personalityTarget = gBattleMons[gBattlerTarget].personality;
+
+                if (speciesAttacker == speciesTarget
+                    && GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) != GetGenderFromSpeciesAndPersonality(speciesTarget, personalityTarget)
+                    && GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) != MON_GENDERLESS
+                    && GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerTarget].species, personalityTarget) != MON_GENDERLESS)
+                {
+                    ballMultiplier = 80;
+                }
+                else
+                {
+                    ballMultiplier = 10;
+                }
+				break;
+            }
+            case BALL_PARK:
+                ballMultiplier = 15;
+				break;
             }
         }
         else
@@ -10184,13 +10285,17 @@ static void Cmd_handleballthrow(void)
         {
             u8 shakes;
 
-            odds = Sqrt(Sqrt(16711680 / odds));
-            odds = 1048560 / odds;
-
-            for (shakes = 0; shakes < BALL_3_SHAKES_SUCCESS && Random() < odds; shakes++);
-
             if (ball == BALL_MASTER)
-                shakes = BALL_3_SHAKES_SUCCESS; // why calculate the shakes before that check?
+            {
+                shakes = BALL_3_SHAKES_SUCCESS;
+            }
+            else
+            {
+                odds = Sqrt(Sqrt(16711680 / odds));
+                odds = 1048560 / odds;
+
+                for (shakes = 0; shakes < BALL_3_SHAKES_SUCCESS && Random() < odds; shakes++);
+            }
 
             BtlController_EmitBallThrowAnim(0, shakes);
             MarkBattlerForControllerExec(gActiveBattler);

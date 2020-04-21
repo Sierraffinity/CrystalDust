@@ -4,6 +4,11 @@
 #define WINDOW_CLEAR            0x1
 #define WINDOW_x80              0x80
 
+#define WEIGHT_AVERAGE  1024
+#define WEIGHT_HEAVY    2048
+#define WEIGHT_HEAVIER  3072
+#define WEIGHT_HEAVIEST 4096
+
 void AI_CalcDmg(u8 battlerIdAtk, u8 battlerIdDef);
 u8 TypeCalc(u16 move, u8 battlerIdAtk, u8 battlerIdDef);
 u8 AI_TypeCalc(u16 move, u16 targetSpecies, u8 targetAbility);

@@ -6219,6 +6219,22 @@
       "secondaryId": 0
     },
     {
+      "english": "HEAVY BALL",
+      "itemId": "ITEM_HEAVY_BALL",
+      "price": 150,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A POKé BALL for catching\\nvery heavy POKéMON.",
+      "importance": 0,
+      "exitsBagOnUse": 0,
+      "pocket": "POCKET_POKE_BALLS",
+      "type": 2,
+      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "battleUsage": 2,
+      "battleUseFunc": "ItemUseInBattle_PokeBall",
+      "secondaryId": 12
+    },
+    {
       "english": "LEVEL BALL",
       "itemId": "ITEM_LEVEL_BALL",
       "price": 150,
@@ -6232,7 +6248,7 @@
       "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
       "battleUsage": 2,
       "battleUseFunc": "ItemUseInBattle_PokeBall",
-      "secondaryId": 12
+      "secondaryId": 13
     },
     {
       "english": "LURE BALL",
@@ -6248,39 +6264,7 @@
       "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
       "battleUsage": 2,
       "battleUseFunc": "ItemUseInBattle_PokeBall",
-      "secondaryId": 13
-    },
-    {
-      "english": "MOON BALL",
-      "itemId": "ITEM_MOON_BALL",
-      "price": 150,
-      "holdEffect": "HOLD_EFFECT_NONE",
-      "holdEffectParam": 0,
-      "description_english": "A POKé BALL for catching\\nPOKéMON that evolve using\\nthe MOON STONE.",
-      "importance": 0,
-      "exitsBagOnUse": 0,
-      "pocket": "POCKET_POKE_BALLS",
-      "type": 2,
-      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
-      "battleUsage": 2,
-      "battleUseFunc": "ItemUseInBattle_PokeBall",
       "secondaryId": 14
-    },
-    {
-      "english": "FRIEND BALL",
-      "itemId": "ITEM_FRIEND_BALL",
-      "price": 150,
-      "holdEffect": "HOLD_EFFECT_NONE",
-      "holdEffectParam": 0,
-      "description_english": "A POKé BALL that makes\\ncaught POKéMON more friendly.",
-      "importance": 0,
-      "exitsBagOnUse": 0,
-      "pocket": "POCKET_POKE_BALLS",
-      "type": 2,
-      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
-      "battleUsage": 2,
-      "battleUseFunc": "ItemUseInBattle_PokeBall",
-      "secondaryId": 15
     },
     {
       "english": "FAST BALL",
@@ -6296,15 +6280,31 @@
       "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
       "battleUsage": 2,
       "battleUseFunc": "ItemUseInBattle_PokeBall",
-      "secondaryId": 16
+      "secondaryId": 15
     },
     {
-      "english": "HEAVY BALL",
-      "itemId": "ITEM_HEAVY_BALL",
+      "english": "FRIEND BALL",
+      "itemId": "ITEM_FRIEND_BALL",
       "price": 150,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
-      "description_english": "A POKé BALL for catching\\nvery heavy POKéMON.",
+      "description_english": "A POKé BALL that makes\\ncaught POKéMON more friendly.",
+      "importance": 0,
+      "exitsBagOnUse": 0,
+      "pocket": "POCKET_POKE_BALLS",
+      "type": 2,
+      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "battleUsage": 2,
+      "battleUseFunc": "ItemUseInBattle_PokeBall",
+      "secondaryId": 16
+    },
+    {
+      "english": "MOON BALL",
+      "itemId": "ITEM_MOON_BALL",
+      "price": 150,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A POKé BALL for catching\\nPOKéMON that evolve using\\nthe MOON STONE.",
       "importance": 0,
       "exitsBagOnUse": 0,
       "pocket": "POCKET_POKE_BALLS",

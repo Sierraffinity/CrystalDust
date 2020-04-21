@@ -5580,7 +5580,7 @@ static void HandleAction_UseItem(void)
     ClearFuryCutterDestinyBondGrudge(gBattlerAttacker);
     gLastUsedItem = gBattleBufferB[gBattlerAttacker][1] | (gBattleBufferB[gBattlerAttacker][2] << 8);
 
-    if (gLastUsedItem <= ITEM_PREMIER_BALL || (gLastUsedItem >= ITEM_LEVEL_BALL && gLastUsedItem <= ITEM_PARK_BALL)) // is ball
+    if (gLastUsedItem <= ITEM_PREMIER_BALL || (gLastUsedItem >= ITEM_HEAVY_BALL && gLastUsedItem <= ITEM_PARK_BALL)) // is ball
     {
         gBattlescriptCurrInstr = gBattlescriptsForBallThrow[ITEM_ID_TO_BALL_ID(gLastUsedItem)];
     }

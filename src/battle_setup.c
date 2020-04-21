@@ -70,9 +70,9 @@ struct TrainerBattleParameter
 
 // this file's functions
 static void DoBattlePikeWildBattle(void);
-static void DoSafariBattle(void);
-static void DoBugCatchingContestBattle(void);
-static void DoStandardWildBattle(void);
+static void DoSafariBattle(u32 flags);
+static void DoBugCatchingContestBattle(u32 flags);
+static void DoStandardWildBattle(u32 flags);
 static void CB2_EndWildBattle(void);
 static void CB2_EndScriptedWildBattle(void);
 static u8 GetWildBattleTransition(void);
@@ -386,14 +386,14 @@ static void CreateBattleStartTask(u8 transition, u16 song)
 #undef tState
 #undef tTransition
 
-void BattleSetup_StartWildBattle(void)
+void BattleSetup_StartWildBattle(u32 flags)
 {
     if (GetSafariZoneFlag())
-        DoSafariBattle();
+        DoSafariBattle(flags);
     else if (InBugCatchingContest())
-        DoBugCatchingContestBattle();
+        DoBugCatchingContestBattle(flags);
     else
-        DoStandardWildBattle();
+        DoStandardWildBattle(flags);
 }
 
 void BattleSetup_StartBattlePikeWildBattle(void)
@@ -401,13 +401,13 @@ void BattleSetup_StartBattlePikeWildBattle(void)
     DoBattlePikeWildBattle();
 }
 
-static void DoStandardWildBattle(void)
+static void DoStandardWildBattle(u32 flags)
 {
     ScriptContext2_Enable();
     FreezeObjectEvents();
     sub_808BCF4();
     gMain.savedCallback = CB2_EndWildBattle;
-    gBattleTypeFlags = 0;
+    gBattleTypeFlags = flags;
     if (InBattlePyramid())
     {
         VarSet(VAR_TEMP_E, 0);
@@ -434,13 +434,13 @@ void BattleSetup_StartRoamerBattle(void)
     TryUpdateGymLeaderRematchFromWild();
 }
 
-static void DoSafariBattle(void)
+static void DoSafariBattle(u32 flags)
 {
     ScriptContext2_Enable();
     FreezeObjectEvents();
     sub_808BCF4();
     gMain.savedCallback = CB2_EndSafariBattle;
-    gBattleTypeFlags = BATTLE_TYPE_SAFARI;
+    gBattleTypeFlags = BATTLE_TYPE_SAFARI | flags;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
 }
 
@@ -466,13 +466,13 @@ static void DoTrainerBattle(void)
     TryUpdateGymLeaderRematchFromTrainer();
 }
 
-static void DoBugCatchingContestBattle(void)
+static void DoBugCatchingContestBattle(u32 flags)
 {
     ScriptContext2_Enable();
     FreezeObjectEvents();
     sub_808BCF4();
     gMain.savedCallback = CB2_EndBugCatchingContestBattle;
-    gBattleTypeFlags = BATTLE_TYPE_BUG_CATCHING_CONTEST;
+    gBattleTypeFlags = BATTLE_TYPE_BUG_CATCHING_CONTEST | flags;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
@@ -536,11 +536,9 @@ void BattleSetup_StartLegendaryBattle(void)
     {
     default:
     case SPECIES_GROUDON:
-        gBattleTypeFlags |= BATTLE_TYPE_GROUDON;
         CreateBattleStartTask(B_TRANSITION_GROUDON, MUS_BATTLE34);
         break;
     case SPECIES_KYOGRE:
-        gBattleTypeFlags |= BATTLE_TYPE_KYOGRE;
         CreateBattleStartTask(B_TRANSITION_KYOGRE, MUS_BATTLE34);
         break;
     case SPECIES_RAYQUAZA:
@@ -1277,11 +1275,6 @@ void BattleSetup_StartTrainerBattle(void)
         gBattleTypeFlags = (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TRAINER);
     else
         gBattleTypeFlags = (BATTLE_TYPE_TRAINER);
-    
-    // TODO: Figure out if we even need a different battle type
-    /*if (GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_WINTEXT &&
-        GetFirstBattleTutorialMode() & 3)
-        gBattleTypeFlags |= BATTLE_TYPE_FIRST_BATTLE;*/
 
     if (InBattlePyramid())
     {

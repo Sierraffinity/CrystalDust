@@ -218,12 +218,12 @@ const u8 gBallParticleAnimNums[] =
     [BALLGFX_TIMER] = 5,
     [BALLGFX_LUXURY] = 4,
     [BALLGFX_PREMIER] = 4,
+    [BALLGFX_HEAVY] = 0,
     [BALLGFX_LEVEL] = 0,
     [BALLGFX_LURE] = 0,
-    [BALLGFX_MOON] = 0,
-    [BALLGFX_FRIEND] = 0,
     [BALLGFX_FAST] = 0,
-    [BALLGFX_HEAVY] = 0,
+    [BALLGFX_FRIEND] = 0,
+    [BALLGFX_MOON] = 0,
     [BALLGFX_LOVE] = 0,
     [BALLGFX_PARK] = 0,
 };
@@ -242,12 +242,12 @@ const TaskFunc gBallParticleAnimationFuncs[] =
     [BALLGFX_TIMER] = TimerBallOpenParticleAnimation,
     [BALLGFX_LUXURY] = GreatBallOpenParticleAnimation,
     [BALLGFX_PREMIER] = PremierBallOpenParticleAnimation,
+    [BALLGFX_HEAVY] = PokeBallOpenParticleAnimation,
     [BALLGFX_LEVEL] = PokeBallOpenParticleAnimation,
     [BALLGFX_LURE] = PokeBallOpenParticleAnimation,
-    [BALLGFX_MOON] = PokeBallOpenParticleAnimation,
-    [BALLGFX_FRIEND] = PokeBallOpenParticleAnimation,
     [BALLGFX_FAST] = PokeBallOpenParticleAnimation,
-    [BALLGFX_HEAVY] = PokeBallOpenParticleAnimation,
+    [BALLGFX_FRIEND] = PokeBallOpenParticleAnimation,
+    [BALLGFX_MOON] = PokeBallOpenParticleAnimation,
     [BALLGFX_LOVE] = PokeBallOpenParticleAnimation,
     [BALLGFX_PARK] = PokeBallOpenParticleAnimation,
 };
@@ -441,12 +441,12 @@ const u16 gBallOpenFadeColors[] =
     [BALLGFX_TIMER] = RGB(29, 30, 30),
     [BALLGFX_LUXURY] = RGB(31, 17, 10),
     [BALLGFX_PREMIER] = RGB(31, 9, 10),
+    [BALLGFX_HEAVY] = RGB(31, 22, 30),
     [BALLGFX_LEVEL] = RGB(31, 22, 30),
     [BALLGFX_LURE] = RGB(31, 22, 30),
-    [BALLGFX_MOON] = RGB(31, 22, 30),
-    [BALLGFX_FRIEND] = RGB(31, 22, 30),
     [BALLGFX_FAST] = RGB(31, 22, 30),
-    [BALLGFX_HEAVY] = RGB(31, 22, 30),
+    [BALLGFX_FRIEND] = RGB(31, 22, 30),
+    [BALLGFX_MOON] = RGB(31, 22, 30),
     [BALLGFX_LOVE] = RGB(31, 22, 30),
     [BALLGFX_PARK] = RGB(31, 22, 30),
 };
@@ -804,18 +804,18 @@ u8 BallIdToGfxId(u16 ballItem)
         return BALLGFX_LUXURY;
     case BALL_PREMIER:
         return BALLGFX_PREMIER;
+    case BALL_HEAVY:
+        return BALLGFX_HEAVY;
     case BALL_LEVEL:
         return BALLGFX_LEVEL;
     case BALL_LURE:
         return BALLGFX_LURE;
-    case BALL_MOON:
-        return BALLGFX_MOON;
-    case BALL_FRIEND:
-        return BALLGFX_FRIEND;
     case BALL_FAST:
         return BALLGFX_FAST;
-    case BALL_HEAVY:
-        return BALLGFX_HEAVY;
+    case BALL_FRIEND:
+        return BALLGFX_FRIEND;
+    case BALL_MOON:
+        return BALLGFX_MOON;
     case BALL_LOVE:
         return BALLGFX_LOVE;
     case BALL_PARK:

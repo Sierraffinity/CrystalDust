@@ -3864,7 +3864,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_POKEBALL:
         retVal = substruct3->pokeball;
-        if (retVal == BALL_LEVEL)
+        if (retVal == BALL_HEAVY)
         {
             retVal += boxMon->altBall;
         }
@@ -4241,10 +4241,10 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_POKEBALL:
     {
         u8 pokeball = *data;
-        if (pokeball >= BALL_LEVEL)
+        if (pokeball >= BALL_HEAVY)
         {
-            substruct3->pokeball = BALL_LEVEL;
-            boxMon->altBall = pokeball - BALL_LEVEL;
+            substruct3->pokeball = BALL_HEAVY;
+            boxMon->altBall = pokeball - BALL_HEAVY;
         }
         else
         {
@@ -5517,16 +5517,26 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
         break;
     case 2:
     case 3:
-        for (i = 0; i < EVOS_PER_MON; i++)
-        {
-            if (gEvolutionTable[species][i].method == EVO_ITEM
-             && gEvolutionTable[species][i].param == evolutionItem)
-            {
-                targetSpecies = gEvolutionTable[species][i].targetSpecies;
-                break;
-            }
-        }
+        targetSpecies = GetItemEvolutionTargetSpecies(species, evolutionItem);
         break;
+    }
+
+    return targetSpecies;
+}
+
+u16 GetItemEvolutionTargetSpecies(u16 species, u16 evolutionItem)
+{
+    u8 i;
+    u16 targetSpecies = SPECIES_NONE;
+
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        if (gEvolutionTable[species][i].method == EVO_ITEM
+            && gEvolutionTable[species][i].param == evolutionItem)
+        {
+            targetSpecies = gEvolutionTable[species][i].targetSpecies;
+            break;
+        }
     }
 
     return targetSpecies;

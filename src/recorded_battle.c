@@ -24,7 +24,7 @@
                               | BATTLE_TYPE_DUDE_TUTORIAL | BATTLE_TYPE_ROAMER | BATTLE_TYPE_EREADER_TRAINER    \
                               | BATTLE_TYPE_BUG_CATCHING_CONTEST | BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_REGI      \
                               | BATTLE_TYPE_RECORDED | BATTLE_TYPE_TRAINER_HILL | BATTLE_TYPE_SECRET_BASE        \
-                              | BATTLE_TYPE_GROUDON | BATTLE_TYPE_KYOGRE | BATTLE_TYPE_RAYQUAZA))
+                              | BATTLE_TYPE_FISHING | BATTLE_TYPE_TREE | BATTLE_TYPE_RAYQUAZA))
 
 struct PlayerInfo
 {
