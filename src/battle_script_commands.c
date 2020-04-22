@@ -10144,42 +10144,51 @@ static void Cmd_handleballthrow(void)
                 break;
             case BALL_HEAVY:
             {
+                int newRate;
                 u16 weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 1);
 
                 if (weight < WEIGHT_AVERAGE)
                 {
-                    catchRate -= 20;
+                    newRate = catchRate - 20;
                 }
                 else if (weight < WEIGHT_HEAVY)
                 {
                     // do nothing
+                    newRate = catchRate;
                 }
                 else if (weight < WEIGHT_HEAVIER)
                 {
-                    catchRate += 20;
+                    newRate = catchRate + 20;
                 }
                 else if (weight < WEIGHT_HEAVIEST)
                 {
-                    catchRate += 30;
+                    newRate = catchRate + 30;
                 }
                 else
                 {
-                    catchRate += 40;
+                    newRate = catchRate + 40;
                 }
+
+                if (newRate < 0)
+                    catchRate = 1;
+                else if (newRate > 255)
+                    catchRate = 255;
+                else
+                    catchRate = (u8)newRate;
 
                 ballMultiplier = 10;
                 break;
             }
             case BALL_LEVEL:
-                if (gBattleMons[gBattlerTarget].level >= (gBattleMons[gActiveBattler].level * 4))
+                if (gBattleMons[gActiveBattler].level >= (gBattleMons[gBattlerTarget].level * 4))
                 {
                     ballMultiplier = 80;
                 }
-                else if (gBattleMons[gBattlerTarget].level >= (gBattleMons[gActiveBattler].level * 2))
+                else if (gBattleMons[gActiveBattler].level >= (gBattleMons[gBattlerTarget].level * 2))
                 {
                     ballMultiplier = 40;
                 }
-                else if (gBattleMons[gBattlerTarget].level >= gBattleMons[gActiveBattler].level)
+                else if (gBattleMons[gActiveBattler].level >= gBattleMons[gBattlerTarget].level)
                 {
                     ballMultiplier = 20;
                 }
@@ -10222,14 +10231,14 @@ static void Cmd_handleballthrow(void)
             case BALL_LOVE:
             {
                 u16 speciesAttacker = gBattleMons[gActiveBattler].species;
-                u16 speciesTarget = gBattleMons[gActiveBattler].species;
-                u32 personalityAttacker = gBattleMons[gBattlerTarget].personality;
-                u32 personalityTarget = gBattleMons[gBattlerTarget].personality;
+                u16 speciesTarget = gBattleMons[gBattlerTarget].species;
+                u8 genderAttacker = GetGenderFromSpeciesAndPersonality(speciesAttacker,  gBattleMons[gActiveBattler].personality);
+                u8 genderTarget = GetGenderFromSpeciesAndPersonality(speciesTarget, gBattleMons[gBattlerTarget].personality);
 
                 if (speciesAttacker == speciesTarget
-                    && GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) != GetGenderFromSpeciesAndPersonality(speciesTarget, personalityTarget)
-                    && GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) != MON_GENDERLESS
-                    && GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerTarget].species, personalityTarget) != MON_GENDERLESS)
+                    && genderAttacker != genderTarget
+                    && genderAttacker != MON_GENDERLESS
+                    && genderTarget != MON_GENDERLESS)
                 {
                     ballMultiplier = 80;
                 }
@@ -10304,6 +10313,12 @@ static void Cmd_handleballthrow(void)
             {
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &ball);
+
+                if (ball == BALL_FRIEND)
+                {
+                    u8 friendship = 200;
+                    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_FRIENDSHIP, &friendship);
+                }
 
                 if (CalculatePlayerPartyCount() == PARTY_SIZE)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;

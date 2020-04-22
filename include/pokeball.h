@@ -28,7 +28,7 @@ enum
 
 enum
 {
-    BALL_MASTER,
+    BALL_MASTER = 1,
     BALL_ULTRA,
     BALL_GREAT,
     BALL_POKE,
@@ -47,11 +47,12 @@ enum
     BALL_FRIEND,
     BALL_MOON,
     BALL_LOVE,
-    BALL_PARK,
-    POKEBALL_COUNT
+    BALL_PARK
 };
 
-#define ITEM_ID_TO_BALL_ID(x) (((x) >= ITEM_HEAVY_BALL && (x) <= ITEM_PARK_BALL) ? (((x) - ITEM_HEAVY_BALL) + BALL_HEAVY) : (x - 1))
+#define POKEBALL_COUNT BALL_PARK - BALL_MASTER
+
+#define ITEM_ID_TO_BALL_ID(x) (((x) >= ITEM_HEAVY_BALL && (x) <= ITEM_PARK_BALL) ? (((x) - ITEM_HEAVY_BALL) + BALL_HEAVY) : (x))
 
 extern const struct SpriteTemplate gBallSpriteTemplates[];
 

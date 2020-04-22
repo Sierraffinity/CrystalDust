@@ -64,13 +64,14 @@ const struct CompressedSpriteSheet gBallSpriteSheets[BALLGFX_COUNT] =
     {gInterfaceGfx_TimerBall,   384, TAG_BALL_GFX(TIMER)},
     {gInterfaceGfx_LuxuryBall,  384, TAG_BALL_GFX(LUXURY)},
     {gInterfaceGfx_PremierBall, 384, TAG_BALL_GFX(PREMIER)},
-    {gInterfaceGfx_PokeBall,    384, TAG_BALL_GFX(LEVEL)},
-    {gInterfaceGfx_PokeBall,    384, TAG_BALL_GFX(LURE)},
-    {gInterfaceGfx_PokeBall,    384, TAG_BALL_GFX(MOON)},
-    {gInterfaceGfx_PokeBall,    384, TAG_BALL_GFX(FRIEND)},
-    {gInterfaceGfx_PokeBall,    384, TAG_BALL_GFX(FAST)},
-    {gInterfaceGfx_PokeBall,    384, TAG_BALL_GFX(HEAVY)},
-    {gInterfaceGfx_PokeBall,    384, TAG_BALL_GFX(LOVE)},
+    {gInterfaceGfx_HeavyBall,   384, TAG_BALL_GFX(HEAVY)},
+    {gInterfaceGfx_LevelBall,   384, TAG_BALL_GFX(LEVEL)},
+    {gInterfaceGfx_LureBall,    384, TAG_BALL_GFX(LURE)},
+    {gInterfaceGfx_FastBall,    384, TAG_BALL_GFX(FAST)},
+    {gInterfaceGfx_FriendBall,  384, TAG_BALL_GFX(FRIEND)},
+    {gInterfaceGfx_MoonBall,    384, TAG_BALL_GFX(MOON)},
+    {gInterfaceGfx_LoveBall,    384, TAG_BALL_GFX(LOVE)},
+    {gInterfaceGfx_ParkBall,    384, TAG_BALL_GFX(PARK)},
 };
 
 const struct CompressedSpritePalette gBallSpritePalettes[BALLGFX_COUNT] =
@@ -87,13 +88,14 @@ const struct CompressedSpritePalette gBallSpritePalettes[BALLGFX_COUNT] =
     {gInterfacePal_TimerBall,   TAG_BALL_GFX(TIMER)},
     {gInterfacePal_LuxuryBall,  TAG_BALL_GFX(LUXURY)},
     {gInterfacePal_PremierBall, TAG_BALL_GFX(PREMIER)},
-    {gInterfacePal_PokeBall,    TAG_BALL_GFX(LEVEL)},
-    {gInterfacePal_PokeBall,    TAG_BALL_GFX(LURE)},
-    {gInterfacePal_PokeBall,    TAG_BALL_GFX(MOON)},
-    {gInterfacePal_PokeBall,    TAG_BALL_GFX(FRIEND)},
-    {gInterfacePal_PokeBall,    TAG_BALL_GFX(FAST)},
-    {gInterfacePal_PokeBall,    TAG_BALL_GFX(HEAVY)},
-    {gInterfacePal_PokeBall,    TAG_BALL_GFX(LOVE)},
+    {gInterfacePal_HeavyBall,   TAG_BALL_GFX(HEAVY)},
+    {gInterfacePal_LevelBall,   TAG_BALL_GFX(LEVEL)},
+    {gInterfacePal_LureBall,    TAG_BALL_GFX(LURE)},
+    {gInterfacePal_FastBall,    TAG_BALL_GFX(FAST)},
+    {gInterfacePal_FriendBall,  TAG_BALL_GFX(FRIEND)},
+    {gInterfacePal_MoonBall,    TAG_BALL_GFX(MOON)},
+    {gInterfacePal_LoveBall,    TAG_BALL_GFX(LOVE)},
+    {gInterfacePal_ParkBall,    TAG_BALL_GFX(PARK)},
 };
 
 static const struct OamData sBallOamData =
@@ -320,6 +322,15 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .callback = SpriteCB_TestBallThrow,
     },
     {
+        .tileTag = TAG_BALL_GFX(HEAVY),
+        .paletteTag = TAG_BALL_GFX(HEAVY),
+        .oam = &sBallOamData,
+        .anims = sBallAnimSequences,
+        .images = NULL,
+        .affineAnims = sBallAffineAnimSequences,
+        .callback = SpriteCB_TestBallThrow,
+    },
+    {
         .tileTag = TAG_BALL_GFX(LEVEL),
         .paletteTag = TAG_BALL_GFX(LEVEL),
         .oam = &sBallOamData,
@@ -338,8 +349,8 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .callback = SpriteCB_TestBallThrow,
     },
     {
-        .tileTag = TAG_BALL_GFX(MOON),
-        .paletteTag = TAG_BALL_GFX(MOON),
+        .tileTag = TAG_BALL_GFX(FAST),
+        .paletteTag = TAG_BALL_GFX(FAST),
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,
@@ -356,17 +367,8 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .callback = SpriteCB_TestBallThrow,
     },
     {
-        .tileTag = TAG_BALL_GFX(FAST),
-        .paletteTag = TAG_BALL_GFX(FAST),
-        .oam = &sBallOamData,
-        .anims = sBallAnimSequences,
-        .images = NULL,
-        .affineAnims = sBallAffineAnimSequences,
-        .callback = SpriteCB_TestBallThrow,
-    },
-    {
-        .tileTag = TAG_BALL_GFX(HEAVY),
-        .paletteTag = TAG_BALL_GFX(HEAVY),
+        .tileTag = TAG_BALL_GFX(MOON),
+        .paletteTag = TAG_BALL_GFX(MOON),
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,
@@ -376,6 +378,15 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
     {
         .tileTag = TAG_BALL_GFX(LOVE),
         .paletteTag = TAG_BALL_GFX(LOVE),
+        .oam = &sBallOamData,
+        .anims = sBallAnimSequences,
+        .images = NULL,
+        .affineAnims = sBallAffineAnimSequences,
+        .callback = SpriteCB_TestBallThrow,
+    },
+    {
+        .tileTag = TAG_BALL_GFX(PARK),
+        .paletteTag = TAG_BALL_GFX(PARK),
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,
@@ -1323,7 +1334,7 @@ void LoadBallGfx(u8 gfxId)
         break;
     default:
         var = GetSpriteTileStartByTag(gBallSpriteSheets[gfxId].tag);
-        LZDecompressVram(gOpenPokeballGfx, (void *)(VRAM + 0x10100 + var * 32));
+        LZDecompressVram(gOpenPokeballGfx, (void *)(OBJ_VRAM0 + 0x100 + var * 32));
         break;
     }
 }

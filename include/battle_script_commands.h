@@ -4,6 +4,7 @@
 #define WINDOW_CLEAR            0x1
 #define WINDOW_x80              0x80
 
+// Level Ball weight classes
 #define WEIGHT_AVERAGE  1024
 #define WEIGHT_HEAVY    2048
 #define WEIGHT_HEAVIER  3072

@@ -309,7 +309,7 @@ static void DrawClosedDoorTiles(const struct DoorGraphics *gfx, u32 x, u32 y)
 {
     CurrentMapDrawMetatileAt(x, y);
 
-    if (gfx->size == 1)
+    if (gfx->size >= 1)
     {
         CurrentMapDrawMetatileAt(x, y - 1);
     }
