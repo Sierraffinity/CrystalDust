@@ -254,6 +254,7 @@ const u8 gUnknown_08614047[] = {10, 9, 4};
 const u8 gUnknown_0861404B[] = {11, 4};
 const u8 gUnknown_0861404D[] = {12, 4};
 const u8 gUnknown_0861404F[] = {13, 4};
+const u8 gItemMenu_TossCancel[] = {1, 4};
 
 const TaskFunc gUnknown_08614054[] = {
     unknown_item_menu_type,
@@ -947,7 +948,7 @@ void PrintItemQuantityPlusGFX(u8 rboxId, s32 item_index_in_pocket, u8 y)
             StringExpandPlaceholders(gStringVar4, gText_xVar1);
             BagMenu_Print(rboxId, 0, gStringVar4, 110, y, 0, 0, -1, 1);
         }
-        else if (gBagPositionStruct.pocket != KEYITEMS_POCKET && ItemId_GetImportance(itemId) == FALSE)
+        else if (gBagPositionStruct.pocket != KEYITEMS_POCKET && ItemId_GetImportance(itemId) < 2)
         {
             ConvertIntToDecimalStringN(gStringVar1, itemQuantity, STR_CONV_MODE_RIGHT_ALIGN, 3);
             StringExpandPlaceholders(gStringVar4, gText_xVar1);
@@ -1658,6 +1659,11 @@ void sub_81AC644(u8 unused)
                     gBagMenu->contextMenuNumItems = ARRAY_COUNT(gUnknown_08614044);
                 }
             }
+            else if (ItemId_GetImportance(gSpecialVar_ItemId) == 1)
+            {
+                gBagMenu->contextMenuItemsPtr = gItemMenu_TossCancel;
+                gBagMenu->contextMenuNumItems = ARRAY_COUNT(gItemMenu_TossCancel);
+            }
             else
             {
                 switch (gBagPositionStruct.pocket)
@@ -2346,7 +2352,7 @@ void Task_TryDoItemDeposit(u8 taskId)
     s16* data = gTasks[taskId].data;
 
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
-    if (ItemId_GetImportance(gSpecialVar_ItemId))
+    if (ItemId_GetImportance(gSpecialVar_ItemId) > 1)
     {
         DisplayItemMessage(taskId, 1, gText_CantStoreImportantItems, sub_81ADC0C);
     }

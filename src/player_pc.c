@@ -1377,7 +1377,7 @@ static void ItemStorage_DoItemToss(u8 taskId)
 
     data = gTasks[taskId].data;
     b = (playerPCItemPageInfo.cursorPos + playerPCItemPageInfo.itemsAbove);
-    if (!ItemId_GetImportance(gSaveBlock1Ptr->pcItems[b].itemId))
+    if (ItemId_GetImportance(gSaveBlock1Ptr->pcItems[b].itemId) < 2)
     {
         CopyItemName(gSaveBlock1Ptr->pcItems[b].itemId, gStringVar1);
         ConvertIntToDecimalStringN(gStringVar2, data[2], STR_CONV_MODE_LEFT_ALIGN, 3);

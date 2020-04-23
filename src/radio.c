@@ -175,7 +175,7 @@ const u8 *GetBuenasPassword(u8 category, u8 index)
             string = gSpeciesNames[value];
             break;
         case PASS_ITEM:
-            string = gItems[value].name;
+            string = ItemId_GetName(value);
             break;
         case PASS_MAPSEC:
             string = gRegionMapEntries[value].name;
