@@ -142,6 +142,7 @@ static const u8 sMapSectionLayout_KantoPrimary[] = INCBIN_U8("graphics/region_ma
 static const u8 sMapSectionLayout_KantoSecondary[] = INCBIN_U8("graphics/region_map/mapsec_layout_kanto_secondary.bin");
 
 #include "data/region_map/region_map_entries.h"
+#include "data/region_map/region_map_names_emerald.h"
 #include "data/region_map/mapsec_to_region.h"
 #include "data/region_map/mapsec_flags.h"
 
@@ -1734,13 +1735,17 @@ u8 *GetMapName(u8 *dest, u16 regionMapId, u16 padLength)
     u8 *str;
     u16 i;
 
-    if (regionMapId == MAPSEC_SECRET_BASE)
+    if (regionMapId == MAPSEC_SECRET_BASE || regionMapId == MAPSEC_E_SECRET_BASE)
     {
         str = GetSecretBaseMapName(dest);
     }
     else if (regionMapId < MAPSEC_NONE)
     {
         str = StringCopy(dest, gRegionMapEntries[regionMapId].name);
+    }
+    else if (regionMapId >= EMERALD_MAPSEC_START && regionMapId < EMERALD_MAPSEC_END)
+    {
+        str = StringCopy(dest, gRegionMapNames_Emerald[regionMapId - EMERALD_MAPSEC_START]);
     }
     else
     {
@@ -1767,8 +1772,10 @@ u8 *GetMapNameGeneric(u8 *dest, u16 mapSecId)
     switch (mapSecId)
     {
     case MAPSEC_DYNAMIC:
+    case MAPSEC_E_DYNAMIC:
         return StringCopy(dest, gText_Ferry);
     case MAPSEC_SECRET_BASE:
+    case MAPSEC_E_SECRET_BASE:
         return StringCopy(dest, gText_SecretBase);
     default:
         return GetMapName(dest, mapSecId, 0);
@@ -1777,7 +1784,7 @@ u8 *GetMapNameGeneric(u8 *dest, u16 mapSecId)
 
 u8 *GetMapNameHandleAquaHideout(u8 *dest, u16 mapSecId)
 {
-    if (mapSecId == MAPSEC_AQUA_HIDEOUT_OLD)
+    if (mapSecId == MAPSEC_E_AQUA_HIDEOUT_OLD)
         return StringCopy(dest, gText_Hideout);
     else
         return GetMapNameGeneric(dest, mapSecId);

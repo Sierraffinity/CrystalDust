@@ -246,7 +246,9 @@ static void PrintMonTrainerMemo(void);
 static void BufferNatureString(void);
 static void GetMetLevelString(u8 *a);
 static bool8 DoesMonOTMatchOwner(void);
+static bool8 DidMonComeFromCrystalDust(void);
 static bool8 DidMonComeFromOfficialGBAGames(void);
+static bool8 DidMonComeFromAnyGBAGame(void);
 static bool8 IsInGamePartnerMon(void);
 static void PrintEggOTName(void);
 static void PrintEggOTID(void);
@@ -3089,30 +3091,38 @@ static void BufferMonTrainerMemo(void)
     }
     else
     {
+        u16 mapsecShift = MAPSEC_NEW_BARK_TOWN;
+        u16 maxMapsec = MAPSEC_NONE;
         u8 *metLevelString = Alloc(32);
         u8 *metLocationString = Alloc(32);
         GetMetLevelString(metLevelString);
 
-        if (sum->metLocation < MAPSEC_NONE)
+        if (DidMonComeFromOfficialGBAGames())
         {
-            GetMapNameHandleAquaHideout(metLocationString, sum->metLocation);
+            mapsecShift = EMERALD_MAPSEC_START;
+            maxMapsec = EMERALD_MAPSEC_END - EMERALD_MAPSEC_START;
+        }
+
+        if (sum->metLocation < maxMapsec)
+        {
+            GetMapNameHandleAquaHideout(metLocationString, sum->metLocation + mapsecShift);
             DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, metLocationString);
         }
 
         if (DoesMonOTMatchOwner() == TRUE)
         {
             if (sum->metLevel == 0)
-                text = (sum->metLocation >= MAPSEC_NONE) ? gText_XNatureHatchedSomewhereAt : gText_XNatureHatchedAtYZ;
+                text = (sum->metLocation >= maxMapsec) ? gText_XNatureHatchedSomewhereAt : gText_XNatureHatchedAtYZ;
             else
-                text = (sum->metLocation >= MAPSEC_NONE) ? gText_XNatureMetSomewhereAt : gText_XNatureMetAtYZ;
+                text = (sum->metLocation >= maxMapsec) ? gText_XNatureMetSomewhereAt : gText_XNatureMetAtYZ;
         }
         else if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
         {
             text = gText_XNatureFatefulEncounter;
         }
-        else if (sum->metLocation != METLOC_IN_GAME_TRADE && DidMonComeFromOfficialGBAGames())
+        else if (sum->metLocation != METLOC_IN_GAME_TRADE && DidMonComeFromAnyGBAGame())
         {
-            text = (sum->metLocation >= MAPSEC_NONE) ? gText_XNatureObtainedInTrade : gText_XNatureProbablyMetAt;
+            text = (sum->metLocation >= maxMapsec) ? gText_XNatureObtainedInTrade : gText_XNatureProbablyMetAt;
         }
         else
         {
