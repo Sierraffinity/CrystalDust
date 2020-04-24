@@ -1377,27 +1377,16 @@ static void sub_80A0550(u8 taskId)
 
 static void ShowSaveInfoWindow(void)
 {
-    struct WindowTemplate saveInfoWindow = sSaveInfoWindowTemplate;
-    u8 gender;
-    u8 color;
     u32 xOffset;
     u32 yOffset;
 
-    sSaveInfoWindowId = AddWindow(&saveInfoWindow);
+    sSaveInfoWindowId = AddWindow(&sSaveInfoWindowTemplate);
     LoadThinWindowBorderGfx(sSaveInfoWindowId, 0x21D, 0xD0);
     DrawStdFrameWithCustomTileAndPalette(sSaveInfoWindowId, FALSE, 0x21D, 13);
 
-    gender = gSaveBlock2Ptr->playerGender;
-    color = TEXT_COLOR_RED;  // Red when female, blue when male.
-
-    if (gender == MALE)
-    {
-        color = TEXT_COLOR_BLUE;
-    }
-
-    // Print region name
+    // Print mapsec name
     yOffset = 0;
-    BufferSaveMenuText(SAVE_MENU_LOCATION, gStringVar4, color);
+    BufferSaveMenuText(SAVE_MENU_LOCATION, gStringVar4, TEXT_COLOR_BLUE);
     xOffset = GetStringCenterAlignXOffset(1, gStringVar4, 0x70);
     AddTextPrinterParameterized(sSaveInfoWindowId, 1, gStringVar4, xOffset, yOffset, 0xFF, NULL);
 
@@ -1413,17 +1402,17 @@ static void ShowSaveInfoWindow(void)
     BufferSaveMenuText(SAVE_MENU_BADGES, gStringVar4, TEXT_COLOR_DARK_GREY);
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, 0xFF, NULL);
 
+    yOffset = 42;
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
     {
         // Print pokedex count
-        yOffset = 42;
         AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingPokedex, 2, yOffset, 0xFF, NULL);
         BufferSaveMenuText(SAVE_MENU_CAUGHT, gStringVar4, TEXT_COLOR_DARK_GREY);
         AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, 0xFF, NULL);
+        yOffset = 56;
     }
 
     // Print play time
-    yOffset += 14;
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingTime, 2, yOffset, 0xFF, NULL);
     BufferSaveMenuText(2, gStringVar4, TEXT_COLOR_DARK_GREY);
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, 0xFF, NULL);
