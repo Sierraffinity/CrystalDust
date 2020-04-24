@@ -375,7 +375,7 @@ extern const u8 gText_DefaultNameJuana[];
 extern const u8 gText_DefaultNameJodi[];
 extern const u8 gText_DefaultNameCrystal[];
 extern const u8 gText_DefaultNameMarina[];
-extern const u8 gText_DefaultNameArianna[];
+extern const u8 gText_DefaultNameSierra[];
 extern const u8 gText_DefaultNameJenny[];
 extern const u8 gText_DefaultNameLorrie[];
 extern const u8 gText_DefaultNameHannah[];

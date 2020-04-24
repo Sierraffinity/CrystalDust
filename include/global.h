@@ -461,12 +461,13 @@ struct SaveBlock2
              u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
              u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
              u16 optionsBattleSceneOff:1; // whether battle animations are disabled
-             u16 regionMapZoom:1; // whether the map is zoomed in
+             u16 daylightSavingTime:1; // whether daylight saving time is enabled
+             u16 twentyFourHourClock:1; // whether the Pokégear shows a 24 hour clock or not
     /*0x18*/ struct Pokedex pokedex;
     /*0x90*/ u8 filler_90[0x8];
     /*0x98*/ struct Time localTimeOffset;
     /*0xA0*/ struct Time lastBerryTreeUpdate;
-    /*0xA8*/ u32 field_A8; // Written to, but never read.
+    /*0xB0*/ u32 field_A8; // Written to, but never read.
     /*0xAC*/ u32 encryptionKey;
     /*0xB0*/ struct PlayersApprentice playerApprentice;
     /*0xDC*/ struct Apprentice apprentices[APPRENTICE_COUNT];
@@ -477,8 +478,7 @@ struct SaveBlock2
     /*0x57C*/ struct RankingHall2P hallRecords2P[2][3]; // From record mixing.
     /*0x624*/ u16 contestLinkResults[5][4]; // 4 positions for 5 categories.
     /*0x64C*/ struct BattleFrontier frontier;
-    /*0xF2C*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
-}; // sizeof=0xF34
+}; // sizeof=0xF
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
 
@@ -980,7 +980,8 @@ struct SaveBlock1
     /*0x3D5A*/ u8 filler3D5A[0xA];
     /*0x3D64*/ struct SaveTrainerHill trainerHill;
     /*0x3D70*/ struct WaldaPhrase waldaPhrase;
-    // sizeof: 0x3D88
+    /*0x3D88*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
+    // sizeof: 0x3D90
 };
 
 extern struct SaveBlock1* gSaveBlock1Ptr;

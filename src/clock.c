@@ -132,7 +132,7 @@ u8* WriteTimeString(u8 *dest, u8 hours, u8 minutes, bool8 twentyFourHourMode, bo
 
 void WriteCurrentTimeStringToStrVar1(void)
 {
-    WriteTimeString(gStringVar1, gLocalTime.hours, gLocalTime.minutes, FlagGet(FLAG_SYS_POKEGEAR_24HR), TRUE);
+    WriteTimeString(gStringVar1, gLocalTime.hours, gLocalTime.minutes, gSaveBlock2Ptr->twentyFourHourClock, TRUE);
 }
 
 void SetDayOfWeek(void)

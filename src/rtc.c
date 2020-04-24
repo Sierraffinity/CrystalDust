@@ -407,13 +407,23 @@ u32 GetTotalSeconds(struct Time *time)
     return time->days * 86400 + time->hours * 3600 + time->minutes * 60 + time->seconds;
 }
 
+void SetInitialDSTMode(void)
+{
+    gSaveBlock2Ptr->daylightSavingTime = !!gSpecialVar_0x8004;
+}
+
+void GetDSTMode(void)
+{
+    gSpecialVar_Result = gSaveBlock2Ptr->daylightSavingTime;
+}
+
 void SwitchDSTMode(void)
 {
-    if (FlagGet(FLAG_SYS_DAYLIGHT_SAVING))
+    if (gSaveBlock2Ptr->daylightSavingTime)
     {
         if (gLocalTime.hours > 0)
         {
-            FlagClear(FLAG_SYS_DAYLIGHT_SAVING);
+            gSaveBlock2Ptr->daylightSavingTime = FALSE;
             RtcCalcLocalTime();
             gLocalTime.hours--;
             RtcGetInfo(&sRtc);
@@ -424,7 +434,7 @@ void SwitchDSTMode(void)
     {
         if (gLocalTime.hours < 23)
         {
-            FlagSet(FLAG_SYS_DAYLIGHT_SAVING);
+            gSaveBlock2Ptr->daylightSavingTime = TRUE;
             RtcCalcLocalTime();
             gLocalTime.hours++;
             RtcGetInfo(&sRtc);

@@ -3445,8 +3445,8 @@ bool8 TryPutNameRaterShowOnTheAir(void)
 
 void SetRivalNickname(void)
 {
-    StringCopy(gSaveBlock2Ptr->rivalName, gText_DefaultNameSilver);
-    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, 0, 0, 0, CB2_ReturnToFieldContinueScriptPlayMapMusic);
+    StringCopy(gSaveBlock1Ptr->rivalName, gText_DefaultNameSilver);
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock1Ptr->rivalName, 0, 0, 0, CB2_ReturnToFieldContinueScriptPlayMapMusic);
 }
 
 void ChangePokemonNickname(void)

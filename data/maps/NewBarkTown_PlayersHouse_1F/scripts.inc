@@ -72,12 +72,14 @@ NewBarkTown_PlayersHouse_1F_MomDaylightSaving:
 	special WriteCurrentTimeStringToStrVar1
 	compare VAR_RESULT, 0
 	goto_if_eq NewBarkTown_PlayersHouse_1F_MomDaylightSavingNo
-	setflag FLAG_SYS_DAYLIGHT_SAVING
+	copyvar VAR_0x8004, VAR_RESULT
+	special SetInitialDSTMode
 	msgbox NewBarkTown_PlayersHouse_1F_DaylightSavingOn, MSGBOX_YESNO
 	goto NewBarkTown_PlayersHouse_1F_MomDaylightSavingCheck
 	
 NewBarkTown_PlayersHouse_1F_MomDaylightSavingNo:
-	clearflag FLAG_SYS_DAYLIGHT_SAVING
+	copyvar VAR_0x8004, VAR_RESULT
+	special SetInitialDSTMode
 	msgbox NewBarkTown_PlayersHouse_1F_DaylightSavingOff, MSGBOX_YESNO
 
 NewBarkTown_PlayersHouse_1F_MomDaylightSavingCheck:
@@ -158,7 +160,9 @@ NewBarkTown_PlayersHouse_1F_EventScript_MomBankingAndDST:
 	compare VAR_RESULT, 1
 	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomBank
 	gettime
-	goto_if_set FLAG_SYS_DAYLIGHT_SAVING, NewBarkTown_PlayersHouse_1F_EventScript_MomDSTCurrentlySet
+	special GetDSTMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomDSTCurrentlySet
 	compare VAR_0x8000, 23
 	goto_if_eq NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet
 	msgbox NewBarkTown_PlayersHouse_1F_Text_MomSetDST, MSGBOX_YESNO

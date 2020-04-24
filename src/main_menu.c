@@ -560,7 +560,7 @@ static const u8 *const gFemalePresetNames[] = {
     gText_DefaultNameJodi,
     gText_DefaultNameCrystal,
     gText_DefaultNameMarina,
-    gText_DefaultNameArianna,
+    gText_DefaultNameSierra,
     gText_DefaultNameJenny,
     gText_DefaultNameLorrie,
     gText_DefaultNameHannah,
@@ -2413,9 +2413,9 @@ static void NewGameOakSpeech_SetDefaultPlayerName(u8 nameId)
         name = gMalePresetNames[nameId];
     else
         name = gFemalePresetNames[nameId];
-    for (i = 0; i < 7; i++)
+    for (i = 0; i < PLAYER_NAME_LENGTH && name[i] != EOS; i++)
         gSaveBlock2Ptr->playerName[i] = name[i];
-    gSaveBlock2Ptr->playerName[7] = 0xFF;
+    gSaveBlock2Ptr->playerName[PLAYER_NAME_LENGTH] = EOS;
 }
 
 static void CreateMainMenuErrorWindow(const u8* str)

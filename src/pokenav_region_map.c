@@ -188,7 +188,7 @@ u32 PokenavCallback_Init_RegionMap(void)
 
 void FreeRegionMapSubstruct1(void)
 {
-    gSaveBlock2Ptr->regionMapZoom = IsRegionMapZoomed();
+    //gSaveBlock2Ptr->regionMapZoom = IsRegionMapZoomed();
     FreePokenavSubstruct(16);
     FreePokenavSubstruct(3);
 }
@@ -294,7 +294,8 @@ static bool8 ShouldOpenRegionMapZoomed(void)
     if (GetZoomDisabled())
         return FALSE;
 
-    return gSaveBlock2Ptr->regionMapZoom == TRUE;
+    //return gSaveBlock2Ptr->regionMapZoom == TRUE;
+    return FALSE;
 }
 
 static u32 LoopedTask_OpenRegionMap(s32 taskState)

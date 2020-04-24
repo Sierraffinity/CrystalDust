@@ -75,7 +75,6 @@ static EWRAM_DATA struct {
     u16 phoneSelectedItem;
     u8 currentCard;
     bool8 canSwitchCards;
-    bool8 twentyFourHourMode;
     u8 fakeSeconds;
     u8 currentRadioStation;
     bool8 exiting;
@@ -651,7 +650,6 @@ static void Task_Pokegear1(u8 taskId)
     if (gTasks[taskId].data[0]++ > 10)
     {
         sPokegearStruct.canSwitchCards = FALSE;
-        sPokegearStruct.twentyFourHourMode = FlagGet(FLAG_SYS_POKEGEAR_24HR);
         sPokegearStruct.fakeSeconds = Random() & 0xFF; // don't always start fully on
         sPokegearStruct.cachedTime = gLocalTime; // initialize cached time
         InitPhoneCardData();
@@ -1016,12 +1014,7 @@ static void Task_ClockCard(u8 taskId)
     if (gMain.newKeys & SELECT_BUTTON)
     {
         PlaySE(SE_SELECT);
-        sPokegearStruct.twentyFourHourMode = !sPokegearStruct.twentyFourHourMode;
-        if (sPokegearStruct.twentyFourHourMode)
-            FlagSet(FLAG_SYS_POKEGEAR_24HR);
-        else
-            FlagClear(FLAG_SYS_POKEGEAR_24HR);
-
+        gSaveBlock2Ptr->twentyFourHourClock = !gSaveBlock2Ptr->twentyFourHourClock;
         shouldForceUpdate = TRUE;
     }
 
@@ -1053,7 +1046,7 @@ static void SpriteCB_ClockDigits(struct Sprite* sprite)
         {
             case 0:
                 value = gLocalTime.hours;
-                if (!sPokegearStruct.twentyFourHourMode)
+                if (!gSaveBlock2Ptr->twentyFourHourClock)
                 {
                     if (value > 12)
                         value -= 12;
@@ -1066,7 +1059,7 @@ static void SpriteCB_ClockDigits(struct Sprite* sprite)
                 break;
             case 1:
                 value = gLocalTime.hours;
-                if (!sPokegearStruct.twentyFourHourMode)
+                if (!gSaveBlock2Ptr->twentyFourHourClock)
                 {
                     if (value > 12)
                         value -= 12;
@@ -1085,7 +1078,7 @@ static void SpriteCB_ClockDigits(struct Sprite* sprite)
                 value = gLocalTime.minutes % 10 + 1;
                 break;
             case 5:
-                if (sPokegearStruct.twentyFourHourMode)
+                if (gSaveBlock2Ptr->twentyFourHourClock)
                     value = 13;
                 else if (gLocalTime.hours < 12)
                     value = 14;

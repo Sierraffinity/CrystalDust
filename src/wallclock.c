@@ -34,10 +34,9 @@
 #define tHours              data[0]
 #define tMinutes            data[1]
 #define tWhichChanging      data[2]
-#define tTwentyFourHourMode data[3]
-#define tScrollTaskId       data[4]
-#define tScrollOffset       data[5]
-#define tBlinkTimer         data[6]
+#define tScrollTaskId       data[3]
+#define tScrollOffset       data[4]
+#define tBlinkTimer         data[5]
 
 enum {
     DIGIT_HOURS,
@@ -220,7 +219,6 @@ void CB2_StartWallClock(void)
     gTasks[taskId].tHours = gLocalTime.hours;
     gTasks[taskId].tMinutes = gLocalTime.minutes;
     gTasks[taskId].tWhichChanging = DIGIT_HOURS;
-    gTasks[taskId].tTwentyFourHourMode = FALSE;
     gTasks[taskId].tScrollTaskId = 0xFF;
     gTasks[taskId].tScrollOffset = 0xFFFF;  // dummy value to disable turning off arrows
     gTasks[taskId].tBlinkTimer = 1;
@@ -378,7 +376,7 @@ static void Task_SetClock2(u8 taskId)
 
         RemoveScrollArrows(taskId);
 
-        WriteTimeString(gStringVar1, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gTasks[taskId].tTwentyFourHourMode, TRUE);
+        WriteTimeString(gStringVar1, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gSaveBlock2Ptr->twentyFourHourClock, TRUE);
 
         ShowHelpBar(gText_UpDownPickAOk);
         FillWindowPixelBuffer(0, 0x11);
@@ -388,7 +386,7 @@ static void Task_SetClock2(u8 taskId)
     }
     else if (gMain.newKeys & SELECT_BUTTON)
     {
-        gTasks[taskId].tTwentyFourHourMode = !gTasks[taskId].tTwentyFourHourMode;
+        gSaveBlock2Ptr->twentyFourHourClock = !gSaveBlock2Ptr->twentyFourHourClock;
         PlaySE(SE_SELECT);
     }
     else if (gMain.newAndRepeatedKeys & DPAD_UP)
@@ -459,11 +457,6 @@ static void Task_SetClock5(u8 taskId)
     
     RtcInitLocalTimeOffset(gTasks[taskId].tHours, gTasks[taskId].tMinutes);
 
-    if (gTasks[taskId].tTwentyFourHourMode)
-        FlagSet(FLAG_SYS_POKEGEAR_24HR);
-    else
-        FlagClear(FLAG_SYS_POKEGEAR_24HR);
-
     FillWindowPixelBuffer(2, 0x00);
     AddTextPrinterParameterized3(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeSet);
     
@@ -481,7 +474,7 @@ static void Task_SetClock5(u8 taskId)
         {
             u8 hours = gTasks[taskId].tHours;
 
-            if (!gTasks[taskId].tTwentyFourHourMode)
+            if (!gSaveBlock2Ptr->twentyFourHourClock)
             {
                 if (hours == 0)
                 {
@@ -499,7 +492,7 @@ static void Task_SetClock5(u8 taskId)
     }
     else
     {
-        dest = WriteTimeString(dest, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gTasks[taskId].tTwentyFourHourMode, FALSE);
+        dest = WriteTimeString(dest, gTasks[taskId].tHours, gTasks[taskId].tMinutes, gSaveBlock2Ptr->twentyFourHourClock, FALSE);
         *dest++ = CHAR_SPACE;
     }
     
@@ -584,7 +577,7 @@ static void SpriteCB_ClockDigits(struct Sprite* sprite)
         {
             case 0:
                 value = gLocalTime.hours;
-                if (!tTwentyFourHourMode)
+                if (!gSaveBlock2Ptr->twentyFourHourClock)
                 {
                     if (value > 12)
                         value -= 12;
@@ -597,7 +590,7 @@ static void SpriteCB_ClockDigits(struct Sprite* sprite)
                 break;
             case 1:
                 value = gLocalTime.hours;
-                if (!tTwentyFourHourMode)
+                if (!gSaveBlock2Ptr->twentyFourHourClock)
                 {
                     if (value > 12)
                         value -= 12;
@@ -616,7 +609,7 @@ static void SpriteCB_ClockDigits(struct Sprite* sprite)
                 value = gLocalTime.minutes % 10 + 1;
                 break;
             case 5:
-                if (tTwentyFourHourMode)
+                if (gSaveBlock2Ptr->twentyFourHourClock)
                     value = 13;
                 else if (gLocalTime.hours < 12)
                     value = 14;
@@ -653,7 +646,7 @@ static void SpriteCallback_SetClockDigits(struct Sprite* sprite)
     {
         case 0:
             value = tHours;
-            if (!tTwentyFourHourMode)
+            if (!gSaveBlock2Ptr->twentyFourHourClock)
             {
                 if (value > 12)
                     value -= 12;
@@ -666,7 +659,7 @@ static void SpriteCallback_SetClockDigits(struct Sprite* sprite)
             break;
         case 1:
             value = tHours;
-            if (!tTwentyFourHourMode)
+            if (!gSaveBlock2Ptr->twentyFourHourClock)
             {
                 if (value > 12)
                     value -= 12;
@@ -685,7 +678,7 @@ static void SpriteCallback_SetClockDigits(struct Sprite* sprite)
             value = tMinutes % 10 + 1;
             break;
         case 5:
-            if (tTwentyFourHourMode)
+            if (gSaveBlock2Ptr->twentyFourHourClock)
                 value = 13;
             else if (tHours < 12)
                 value = 14;
