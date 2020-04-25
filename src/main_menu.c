@@ -312,9 +312,9 @@ static const u32 sOakIntro_OakTiles[] = INCBIN_U32("graphics/oak_speech/oak.8bpp
 #define MENU_HEIGHT_WIN5 2
 #define MENU_HEIGHT_WIN6 2
 
-#define MENU_LEFT_ERROR 2
+#define MENU_LEFT_ERROR 3
 #define MENU_TOP_ERROR 15
-#define MENU_WIDTH_ERROR 26
+#define MENU_WIDTH_ERROR 24
 #define MENU_HEIGHT_ERROR 4
 
 #define MENU_SHADOW_PADDING 2
@@ -653,7 +653,8 @@ enum
     ACTION_INVALID
 };
 
-#define MAIN_MENU_BORDER_TILE   0x1D5
+#define MAIN_MENU_BORDER_TILE       0x1D5
+#define MAIN_MENU_THIN_BORDER_TILE  0x1DE
 
 static void CB2_MainMenu(void)
 {
@@ -726,6 +727,7 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
     InitWindows(sWindowTemplates_MainMenu);
     DeactivateAllTextPrinters();
     LoadMainMenuWindowFrameTiles(0, MAIN_MENU_BORDER_TILE);
+    LoadThinWindowBorderGfx(7, MAIN_MENU_THIN_BORDER_TILE, 0xE0);
 
     SetGpuReg(REG_OFFSET_WIN0H, 0);
     SetGpuReg(REG_OFFSET_WIN0V, 0);
@@ -760,7 +762,7 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
     
-    if (sCurrItemAndOptionMenuCheck & 0x8000)    // coming back from options screen
+    if (sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG)    // coming back from options screen
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0x0000); // fade from black
     }
@@ -787,37 +789,51 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
         switch (gSaveFileStatus)
         {
             case SAVE_STATUS_OK:
+                if (!(sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG))
+                    gTasks[taskId].func = Task_MainMenuCheckBattery;
                 tMenuType = HAS_SAVED_GAME;
                 if (IsMysteryGiftEnabled())
                     tMenuType = HAS_MYSTERY_GIFT;
-                gTasks[taskId].func = Task_MainMenuCheckBattery;
                 break;
             case SAVE_STATUS_CORRUPT:
-                CreateMainMenuErrorWindow(gText_SaveFileErased);
+                if (!(sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG))
+                {
+                    CreateMainMenuErrorWindow(gText_SaveFileErased);
+                    gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
+                }
                 tMenuType = HAS_NO_SAVED_GAME;
-                gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
                 break;
             case SAVE_STATUS_ERROR:
-                CreateMainMenuErrorWindow(gText_SaveFileCorrupted);
-                gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
+                if (!(sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG))
+                {
+                    CreateMainMenuErrorWindow(gText_SaveFileCorrupted);
+                    gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
+                }
                 tMenuType = HAS_SAVED_GAME;
                 if (IsMysteryGiftEnabled() == TRUE)
                     tMenuType++;
                 break;
             case SAVE_STATUS_EMPTY:
             default:
+                if (!(sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG))
+                {
+                    gTasks[taskId].func = Task_MainMenuCheckBattery;
+                }
                 tMenuType = HAS_NO_SAVED_GAME;
-                gTasks[taskId].func = Task_MainMenuCheckBattery;
                 break;
             case SAVE_STATUS_NO_FLASH:
-                CreateMainMenuErrorWindow(gJPText_No1MSubCircuit);
+                if (!(sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG))
+                {
+                    CreateMainMenuErrorWindow(gText_No1MSubCircuit);
+                    gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
+                }
                 gTasks[taskId].tMenuType = HAS_NO_SAVED_GAME;
-                gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
                 break;
         }
         if (sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG)   // are we returning from the options menu?
         {
-            switch (tMenuType)  // if so, highlight the OPTIONS item
+            gTasks[taskId].func = Task_DisplayMainMenu; // if so, skip the save file/battery errors and highlight the OPTIONS item
+            switch (tMenuType)
             {
                 case HAS_NO_SAVED_GAME:
                 case HAS_SAVED_GAME:
@@ -831,6 +847,7 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
                     break;
             }
         }
+
         sCurrItemAndOptionMenuCheck &= CURRENT_ITEM_MASK;  // turn off the "returning from options menu" flag
         tCurrItem = sCurrItemAndOptionMenuCheck;
         tItemCount = tMenuType + 2;
@@ -2422,12 +2439,12 @@ static void NewGameOakSpeech_SetDefaultPlayerName(u8 nameId)
 static void CreateMainMenuErrorWindow(const u8* str)
 {
     FillWindowPixelBuffer(7, PIXEL_FILL(1));
-    AddTextPrinterParameterized(7, 1, str, 0, 1, 1, 0);
+    AddTextPrinterParameterized(7, 1, str, 0, 2, 2, NULL);
     PutWindowTilemap(7);
     CopyWindowToVram(7, 2);
-    DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[7], MAIN_MENU_BORDER_TILE);
-    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(10, 230));
-    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(114, 158));
+    DrawStdFrameWithCustomTileAndPalette(7, TRUE, MAIN_MENU_THIN_BORDER_TILE, 14);
+    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE( 19, 221));
+    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(115, 157));
 }
 
 static void MainMenu_FormatSavegameText(void)

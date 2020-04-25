@@ -23,6 +23,7 @@
 #include "intro.h"
 #include "main.h"
 #include "trainer_hill.h"
+#include "constants/rgb.h"
 
 static void VBlankIntr(void);
 static void HBlankIntr(void);
@@ -34,7 +35,7 @@ const u8 gGameVersion = GAME_VERSION;
 
 const u8 gGameLanguage = GAME_LANGUAGE;
 
-const char BuildDateTime[] = "2005 02 21 11:10";
+const char BuildDateTime[] = __DATE__ " " __TIME__;
 
 const IntrFunc gIntrTableTemplate[] =
 {
@@ -120,7 +121,7 @@ void AgbMain()
     RegisterRamReset(RESET_ALL);
 #endif //MODERN
 
-    *(vu16 *)BG_PLTT = 0x7FFF;
+    *(vu16 *)BG_PLTT = RGB_WHITE;
     InitGpuRegManager();
     REG_WAITCNT = WAITCNT_PREFETCH_ENABLE | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3;
     InitKeys();
@@ -140,8 +141,13 @@ void AgbMain()
 
     gSoftResetDisabled = FALSE;
 
-    if (gFlashMemoryPresent != TRUE)
-        SetMainCallback2(NULL);
+#ifdef NDEBUG
+    AGBPrintInit();
+#endif
+
+    // How about we allow the player to actually see an error instead of a white screen on boot?
+    /*if (gFlashMemoryPresent != TRUE)
+        SetMainCallback2(NULL);*/
 
     gLinkTransferringData = FALSE;
     gUnknown_03000000 = 0xFC0;
