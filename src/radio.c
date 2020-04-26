@@ -298,10 +298,10 @@ void Task_PlayRadioShow(u8 taskId)
         tNumLinesPrinted = 1;
         break;
     case OAKS_POKEMON_TALK_2:
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_3, gText_OaksPkmnTalkIntro2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_OaksPkmnTalkIntro2, TRUE);
         break;
     case OAKS_POKEMON_TALK_3:
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_4, gText_OaksPkmnTalkIntro3, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_OaksPkmnTalkIntro3, TRUE);
         break;
     case OAKS_POKEMON_TALK_4:
         {
@@ -336,19 +336,19 @@ void Task_PlayRadioShow(u8 taskId)
             StringCopy(gStringVar2, gRegionMapEntries[oaksTalkRoutes[map].mapSec].name);
             StringExpandPlaceholders(gStringVar4, gText_OaksPkmnTalk1);
 
-            NextRadioLine(taskId, OAKS_POKEMON_TALK_5, gStringVar4, TRUE);
+            NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         }
         break;
     case OAKS_POKEMON_TALK_5:
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_6, gText_OaksPkmnTalk2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_OaksPkmnTalk2, TRUE);
         break;
     case OAKS_POKEMON_TALK_6:
         StringExpandPlaceholders(gStringVar4, gText_OaksPkmnTalk3);
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_7, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         break;
     case OAKS_POKEMON_TALK_7:
         StringExpandPlaceholders(gStringVar4, gText_OaksPkmnTalk4);
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_8, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         break;
     case OAKS_POKEMON_TALK_8:
         {
@@ -370,7 +370,7 @@ void Task_PlayRadioShow(u8 taskId)
                 gText_OPTAdverbSoFlippedOutAnd,
                 gText_OPTAdverbHeartMeltingly,
             };
-            NextRadioLine(taskId, OAKS_POKEMON_TALK_9, adverbs[Random() % ARRAY_COUNT(adverbs)], TRUE);
+            NextRadioLine(taskId, tCurrentLine + 1, adverbs[Random() % ARRAY_COUNT(adverbs)], TRUE);
         }
         break;
     case OAKS_POKEMON_TALK_9:
@@ -409,7 +409,7 @@ void Task_PlayRadioShow(u8 taskId)
         break;
     case POKEDEX_SHOW_2:
         CopyMonCategoryText(tMiscValue, gStringVar4);
-        NextRadioLine(taskId, POKEDEX_SHOW_3, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         break;
     case POKEDEX_SHOW_3:
         StringCopy(gStringVar4, gPokedexEntries[tMiscValue].description);
@@ -435,15 +435,15 @@ void Task_PlayRadioShow(u8 taskId)
         }
         break;
     case POKEMON_MUSIC_2:
-        NextRadioLine(taskId, POKEMON_MUSIC_3, gText_PkmnMusicBen2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_PkmnMusicBen2, TRUE);
         break;
     case POKEMON_MUSIC_3:
-        NextRadioLine(taskId, POKEMON_MUSIC_4, gText_PkmnMusicBen3, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_PkmnMusicBen3, TRUE);
         break;
     case POKEMON_MUSIC_4:
         StringCopy(gStringVar1, GetDayOfWeekString(gLocalTime.dayOfWeek));
         StringExpandPlaceholders(gStringVar4, gText_PkmnMusicBenFern1);
-        NextRadioLine(taskId, POKEMON_MUSIC_5, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         break;
     case POKEMON_MUSIC_5:
         {
@@ -452,7 +452,7 @@ void Task_PlayRadioShow(u8 taskId)
             {
                 string = gText_PkmnMusicBenFern2B;
             }
-            NextRadioLine(taskId, POKEMON_MUSIC_6, string, TRUE);
+            NextRadioLine(taskId, tCurrentLine + 1, string, TRUE);
         }
         break;
     case POKEMON_MUSIC_6:
@@ -462,7 +462,7 @@ void Task_PlayRadioShow(u8 taskId)
             {
                 string = gText_PkmnMusicBenFern3B;
             }
-            NextRadioLine(taskId, POKEMON_MUSIC_7, string, TRUE);
+            NextRadioLine(taskId, tCurrentLine + 1, string, TRUE);
         }
         break;
     case POKEMON_MUSIC_7:
@@ -471,52 +471,47 @@ void Task_PlayRadioShow(u8 taskId)
         NextRadioLine(taskId, POKEMON_MUSIC_4, gText_PkmnMusicFern2, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_2:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_3, gText_LuckyChannel2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel2, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_3:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_4, gText_LuckyChannel3, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel3, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_4:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_5, gText_LuckyChannel4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel4, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_5:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_6, gText_LuckyChannel5, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel5, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_6:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_7, gText_LuckyChannel6, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel6, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_7:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_8, gText_LuckyChannel7, TRUE);
+    case LUCKY_NUMBER_SHOW_10:
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel7, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_8:
-        StringExpandPlaceholders(gStringVar4, gText_LuckyChannel8);
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_9, gStringVar4, TRUE);
-        break;
-    case LUCKY_NUMBER_SHOW_9:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_10, gText_LuckyChannel9, TRUE);
-        break;
-    case LUCKY_NUMBER_SHOW_10:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_11, gText_LuckyChannel7, TRUE);
-        break;
     case LUCKY_NUMBER_SHOW_11:
         StringExpandPlaceholders(gStringVar4, gText_LuckyChannel8);
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_12, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
+        break;
+    case LUCKY_NUMBER_SHOW_9:
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel9, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_12:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_13, gText_LuckyChannel10, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel10, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_13:
         {
             u8 nextLine = LUCKY_CHANNEL;
             if (Random() % 16 == 0)
             {
-                nextLine = LUCKY_NUMBER_SHOW_14;
+                nextLine = tCurrentLine + 1;
             }
             NextRadioLine(taskId, nextLine, gText_LuckyChannel11, TRUE);
         }
         break;
     case LUCKY_NUMBER_SHOW_14:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_3, gText_LuckyChannel12, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel12, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_15:
         NextRadioLine(taskId, LUCKY_CHANNEL, gText_LuckyChannel13, TRUE);
@@ -534,28 +529,28 @@ void Task_PlayRadioShow(u8 taskId)
     case PLACES_AND_PEOPLE_7:
         break;
     case ROCKET_RADIO_2:
-        NextRadioLine(taskId, ROCKET_RADIO_3, gText_RocketRadio2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio2, TRUE);
         break;
     case ROCKET_RADIO_3:
-        NextRadioLine(taskId, ROCKET_RADIO_4, gText_RocketRadio3, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio3, TRUE);
         break;
     case ROCKET_RADIO_4:
-        NextRadioLine(taskId, ROCKET_RADIO_5, gText_RocketRadio4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio4, TRUE);
         break;
     case ROCKET_RADIO_5:
-        NextRadioLine(taskId, ROCKET_RADIO_6, gText_RocketRadio5, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio5, TRUE);
         break;
     case ROCKET_RADIO_6:
-        NextRadioLine(taskId, ROCKET_RADIO_7, gText_RocketRadio6, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio6, TRUE);
         break;
     case ROCKET_RADIO_7:
-        NextRadioLine(taskId, ROCKET_RADIO_8, gText_RocketRadio7, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio7, TRUE);
         break;
     case ROCKET_RADIO_8:
-        NextRadioLine(taskId, ROCKET_RADIO_9, gText_RocketRadio8, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio8, TRUE);
         break;
     case ROCKET_RADIO_9:
-        NextRadioLine(taskId, ROCKET_RADIO_10, gText_RocketRadio9, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio9, TRUE);
         break;
     case ROCKET_RADIO_10:
         NextRadioLine(taskId, ROCKET_RADIO, gText_RocketRadio10, TRUE);
@@ -563,7 +558,7 @@ void Task_PlayRadioShow(u8 taskId)
     case PKMN_CHANNEL_INTERLUDE_1:
         if (tTextDelay == 0)
         {
-            tCurrentLine = PKMN_CHANNEL_INTERLUDE_2;
+            tCurrentLine = tCurrentLine + 1;
         }
         else
         {
@@ -574,7 +569,7 @@ void Task_PlayRadioShow(u8 taskId)
         FillWindowPixelBuffer(tWindowId, 0x11);
         AddTextPrinterParameterized5(tWindowId, 1, gText_PokemonChannel1, 0, 1, 0, NULL, 1, 1);
         PlayFanfare(MUS_ME_TAMA);
-        tCurrentLine = PKMN_CHANNEL_INTERLUDE_3;
+        tCurrentLine = tCurrentLine + 1;
         break;
     case PKMN_CHANNEL_INTERLUDE_3:
         if (IsFanfareTaskInactive())
@@ -586,11 +581,11 @@ void Task_PlayRadioShow(u8 taskId)
         }
         break;
     case BUENAS_PASSWORD_2:
-        NextRadioLine(taskId, BUENAS_PASSWORD_3, gText_BuenasPassword2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword2, TRUE);
         break;
     case BUENAS_PASSWORD_3:
         {
-            u8 nextLine = BUENAS_PASSWORD_4;
+            u8 nextLine = tCurrentLine + 1;
             if (!BuenasPassword_CheckTime())
             {
                 nextLine = BUENAS_PASSWORD_8;
@@ -622,67 +617,67 @@ void Task_PlayRadioShow(u8 taskId)
 
                 StringCopy(gStringVar1, GetBuenasPassword(password >> 8, password & 0xFF));
                 StringExpandPlaceholders(gStringVar4, gText_BuenasPassword4);
-                NextRadioLine(taskId, BUENAS_PASSWORD_5, gStringVar4, TRUE);
+                NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
             }
         }
         break;
     case BUENAS_PASSWORD_5:
-        NextRadioLine(taskId, BUENAS_PASSWORD_6, gText_BuenasPassword5, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword5, TRUE);
         break;
     case BUENAS_PASSWORD_6:
-        NextRadioLine(taskId, BUENAS_PASSWORD_7, gText_BuenasPassword6, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword6, TRUE);
         break;
     case BUENAS_PASSWORD_7:
         {
             u8 nextLine = BUENAS_PASSWORD;
             if (!BuenasPassword_CheckTime())
-                nextLine = BUENAS_PASSWORD_8;
+                nextLine = tCurrentLine + 1;
             NextRadioLine(taskId, nextLine, gText_BuenasPassword7, TRUE);
         }
         break;
     case BUENAS_PASSWORD_8:
-        NextRadioLine(taskId, BUENAS_PASSWORD_9, gText_BuenasPassword17, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword17, TRUE);
         break;
     case BUENAS_PASSWORD_9:
-        NextRadioLine(taskId, BUENAS_PASSWORD_10, gText_BuenasPassword8, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword8, TRUE);
         break;
     case BUENAS_PASSWORD_10:
-        NextRadioLine(taskId, BUENAS_PASSWORD_11, gText_BuenasPassword9, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword9, TRUE);
         break;
     case BUENAS_PASSWORD_11:
-        NextRadioLine(taskId, BUENAS_PASSWORD_12, gText_BuenasPassword10, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword10, TRUE);
         break;
     case BUENAS_PASSWORD_12:
-        NextRadioLine(taskId, BUENAS_PASSWORD_13, gText_BuenasPassword11, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword11, TRUE);
         break;
     case BUENAS_PASSWORD_13:
-        NextRadioLine(taskId, BUENAS_PASSWORD_14, gText_BuenasPassword12, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword12, TRUE);
         break;
     case BUENAS_PASSWORD_14:
-        NextRadioLine(taskId, BUENAS_PASSWORD_15, gText_BuenasPassword13, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword13, TRUE);
         break;
     case BUENAS_PASSWORD_15:
-        NextRadioLine(taskId, BUENAS_PASSWORD_16, gText_BuenasPassword14, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword14, TRUE);
         break;
     case BUENAS_PASSWORD_16:
-        NextRadioLine(taskId, BUENAS_PASSWORD_17, gText_BuenasPassword15, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword15, TRUE);
         break;
     case BUENAS_PASSWORD_17:
-        NextRadioLine(taskId, BUENAS_PASSWORD_18, gText_BuenasPassword16, FALSE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword16, FALSE);
         break;
     case BUENAS_PASSWORD_18:
         FillWindowPixelBuffer(tWindowId, 0x11);
         tNumLinesPrinted = 0;
-        NextRadioLine(taskId, BUENAS_PASSWORD_19, gText_BuenasPassword17, FALSE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword17, FALSE);
         break;
     case BUENAS_PASSWORD_19:
-        NextRadioLine(taskId, BUENAS_PASSWORD_20, NULL, FALSE);
+        NextRadioLine(taskId, tCurrentLine + 1, NULL, FALSE);
         break;
     case BUENAS_PASSWORD_20:
         gTasks[taskId].tShowNameId = NO_RADIO_SHOW;
         FlagClear(FLAG_BUENAS_PASSWORD);
         FadeOutAndPlayNewMapMusic(MUS_DUMMY, 4);
-        tCurrentLine = BUENAS_PASSWORD_21;
+        tCurrentLine = tCurrentLine + 1;
         tNumLinesPrinted = 0;
         break;
     case BUENAS_PASSWORD_21:

@@ -434,7 +434,7 @@ static void IntrDummy(void)
 static void WaitForVBlank(void)
 {
     // Emerald's loop is way less efficient than Ruby's, so why not replace it?
-    // TODO: Find out if this breaks something. It probably does.
+    // TODO: Find out if this breaks anything or if GF just hated batteries.
     gMain.intrCheck &= ~INTR_FLAG_VBLANK;
 
     /*while (!(gMain.intrCheck & INTR_FLAG_VBLANK))
