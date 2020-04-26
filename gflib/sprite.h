@@ -190,7 +190,7 @@ struct Sprite
     /*0x08*/ const union AnimCmd *const *anims;
     /*0x0C*/ const struct SpriteFrameImage *images;
     /*0x10*/ const union AffineAnimCmd *const *affineAnims;
-    /*0x14*/ const struct SpriteTemplate *template;
+    /*0x14*/ const struct SpriteTemplate *template; // should no longer be used
     /*0x18*/ const struct SubspriteTable *subspriteTables;
     /*0x1C*/ SpriteCallback callback;
 

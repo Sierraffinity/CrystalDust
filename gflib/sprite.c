@@ -569,6 +569,7 @@ u8 CreateSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16 y,
     sprite->oam = *template->oam;
     sprite->anims = template->anims;
     sprite->affineAnims = template->affineAnims;
+    sprite->template = NULL; // should no longer be used
     sprite->callback = template->callback;
     sprite->pos1.x = x;
     sprite->pos1.y = y;
@@ -890,6 +891,7 @@ void FreeSpriteTiles(struct Sprite *sprite)
 
 void FreeSpritePalette(struct Sprite *sprite)
 {
+    //FreeSpritePaletteByTag(sprite->template->paletteTag);
     FreeSpritePaletteByTag(GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum));
 }
 

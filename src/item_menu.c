@@ -914,12 +914,11 @@ void BagMenu_MoveCursorCallback(s32 itemIndex, bool8 onInit, struct ListMenu *un
     }
     if (gBagMenu->itemOriginalLocation == 0xFF)
     {
-        RemoveBagItemIconSprite(1 ^ gBagMenu->itemMenuIcon);
         if (itemIndex != LIST_CANCEL)
            AddBagItemIconSprite(BagGetItemIdByPocketPosition(gBagPositionStruct.pocket + 1, itemIndex), gBagMenu->itemMenuIcon);
         else
            AddBagItemIconSprite(-1, gBagMenu->itemMenuIcon);
-        gBagMenu->itemMenuIcon ^= 1;
+        RemoveBagItemIconSprite(gBagMenu->itemMenuIcon ^= 1);
         if (!gBagMenu->inhibitItemDescriptionPrint)
             BagMenu_PrintDescription(itemIndex);
     }
