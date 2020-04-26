@@ -141,7 +141,7 @@ void AgbMain()
 
     gSoftResetDisabled = FALSE;
 
-#ifdef NDEBUG
+#ifndef NDEBUG
     AGBPrintInit();
 #endif
 

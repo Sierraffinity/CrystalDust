@@ -1239,7 +1239,7 @@ static void Task_ScrollTreeGrassBackgrounds(u8 taskId)
         data[0]++;
         break;
     case 1:
-        ((u16)data[1]) += data[2];
+        *((u16 *)&data[1]) += data[2];
         SetGpuReg(REG_OFFSET_BG1HOFS, ((u16)data[1]) << 1);
         SetGpuReg(REG_OFFSET_BG2HOFS, ((u16)data[1]) >> 1);
         SetGpuReg(REG_OFFSET_BG3HOFS, ((u16)data[1]) >> 1);
@@ -1255,7 +1255,7 @@ static void Task_ScrollTreeGrassBackgrounds(u8 taskId)
         DestroyTask(taskId);
         break;
     case 3:
-        ((u16)data[1]) += data[2];
+        *((u16 *)&data[1]) += data[2];
         SetGpuReg(REG_OFFSET_BG1HOFS, (((u16)data[1]) << 1) + 1);
         DestroyTask(taskId);
     }
@@ -1505,8 +1505,8 @@ static void Task_ScrollTreeGrassBackgrounds2(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     
-    ((u16)data[1]) -= 20;
-    ((u16)data[2]) -= 12;
+    *((u16 *)&data[1]) -= 20;
+    *((u16 *)&data[2]) -= 12;
     SetGpuReg(REG_OFFSET_BG1HOFS, ((u16)data[1]));
     SetGpuReg(REG_OFFSET_BG2HOFS, ((u16)data[2]));
     SetGpuReg(REG_OFFSET_BG3HOFS, ((u16)data[2]));

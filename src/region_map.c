@@ -597,7 +597,7 @@ bool8 LoadRegionMapGfx(bool8 shouldBuffer)
                 LZ77UnCompVram(regionTilemap, (u16 *)BG_SCREEN_ADDR(28));
             }*/
             {
-                int size;
+                u32 size;
                 u8 x, y;
                 u16 *ptr = malloc_and_decompress(GetRegionMapTilemap(gRegionMap->currentRegion), &size);
                 
