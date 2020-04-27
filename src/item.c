@@ -7,6 +7,7 @@
 #include "malloc.h"
 #include "secret_base.h"
 #include "item_menu.h"
+#include "pokeball.h"
 #include "strings.h"
 #include "load_save.h"
 #include "item_use.h"
@@ -92,19 +93,22 @@ void CopyItemName(u16 itemId, u8 *dst)
 
 void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
-    if (itemId == ITEM_POKE_BALL)
+    if (IS_ITEM_BALL(itemId))
     {
-        if (quantity < 2)
-            StringCopy(dst, ItemId_GetName(ITEM_POKE_BALL));
-        else
-            StringCopy(dst, gText_PokeBalls);
+        dst = StringCopy(dst, ItemId_GetName(itemId));
+        if (quantity >= 2)
+        {
+            *(dst++) = CHAR_S;
+            *(dst++) = EOS;
+        }
+    }
+    else if (itemId >= ITEM_CHERI_BERRY && itemId <= ITEM_ENIGMA_BERRY)
+    {
+        GetBerryCountString(dst, gBerries[itemId - ITEM_CHERI_BERRY].name, quantity);
     }
     else
     {
-        if (itemId >= ITEM_CHERI_BERRY && itemId <= ITEM_ENIGMA_BERRY)
-            GetBerryCountString(dst, gBerries[itemId - ITEM_CHERI_BERRY].name, quantity);
-        else
-            StringCopy(dst, ItemId_GetName(itemId));
+        StringCopy(dst, ItemId_GetName(itemId));
     }
 }
 

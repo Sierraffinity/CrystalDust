@@ -100,7 +100,6 @@ extern const struct RadioStation gRadioStationData[];
 extern const u8 *const gRadioShowNames[];
 
 // TEMP
-#define FLAG_BUENAS_PASSWORD FLAG_UNUSED_0x920
 #define VAR_BUENAS_PASSWORD VAR_TEMP_0
 #define FLAG_ROCKET_TAKEOVER FLAG_TEMP_1
 

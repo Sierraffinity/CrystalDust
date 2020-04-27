@@ -395,7 +395,7 @@ bool32 ShouldDoWallyCall(void)
 
 bool32 ShouldDoScottFortreeCall(void)
 {
-    if (FlagGet(FLAG_SCOTT_CALL_FORTREE_GYM))
+    if (FlagGet(FLAG_FOREST_IS_RESTLESS))
     {
         switch (gMapHeader.mapType)
         {

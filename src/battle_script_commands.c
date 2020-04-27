@@ -10142,6 +10142,55 @@ static void Cmd_handleballthrow(void)
             case BALL_FRIEND:
                 ballMultiplier = 10;
                 break;
+            case BALL_LEVEL:
+                if (gBattleMons[gActiveBattler].level >= (gBattleMons[gBattlerTarget].level * 4))
+                {
+                    ballMultiplier = 80;
+                }
+                else if (gBattleMons[gActiveBattler].level >= (gBattleMons[gBattlerTarget].level * 2))
+                {
+                    ballMultiplier = 40;
+                }
+                else if (gBattleMons[gActiveBattler].level >= gBattleMons[gBattlerTarget].level)
+                {
+                    ballMultiplier = 20;
+                }
+                else
+                {
+                    ballMultiplier = 10;
+                }
+				break;
+            case BALL_LURE:
+                if (gBattleTypeFlags & BATTLE_TYPE_FISHING)
+                {
+                    ballMultiplier = 30;
+                }
+                else
+                {
+                    ballMultiplier = 10;
+                }
+				break;
+            case BALL_MOON:
+                if (GetItemEvolutionTargetSpecies(gBattleMons[gBattlerTarget].species, ITEM_MOON_STONE) != SPECIES_NONE)
+                {
+                    ballMultiplier = 40;
+                }
+                else
+                {
+                    ballMultiplier = 10;
+                }
+				break;
+            case BALL_FAST:
+                // HGSS behavior
+                if (gBaseStats[gBattleMons[gBattlerTarget].species].baseSpeed >= 100)
+                {
+                    ballMultiplier = 40;
+                }
+                else
+                {
+                    ballMultiplier = 10;
+                }
+				break;
             case BALL_HEAVY:
             {
                 int newRate;
@@ -10179,55 +10228,6 @@ static void Cmd_handleballthrow(void)
                 ballMultiplier = 10;
                 break;
             }
-            case BALL_LEVEL:
-                if (gBattleMons[gActiveBattler].level >= (gBattleMons[gBattlerTarget].level * 4))
-                {
-                    ballMultiplier = 80;
-                }
-                else if (gBattleMons[gActiveBattler].level >= (gBattleMons[gBattlerTarget].level * 2))
-                {
-                    ballMultiplier = 40;
-                }
-                else if (gBattleMons[gActiveBattler].level >= gBattleMons[gBattlerTarget].level)
-                {
-                    ballMultiplier = 20;
-                }
-                else
-                {
-                    ballMultiplier = 10;
-                }
-				break;
-            case BALL_LURE:
-                if (gBattleTypeFlags & BATTLE_TYPE_FISHING)
-                {
-                    ballMultiplier = 30;
-                }
-                else
-                {
-                    ballMultiplier = 10;
-                }
-				break;
-            case BALL_FAST:
-                // HGSS behavior
-                if (gBaseStats[gBattleMons[gBattlerTarget].species].baseSpeed >= 100)
-                {
-                    ballMultiplier = 40;
-                }
-                else
-                {
-                    ballMultiplier = 10;
-                }
-				break;
-            case BALL_MOON:
-                if (GetItemEvolutionTargetSpecies(gBattleMons[gBattlerTarget].species, ITEM_MOON_STONE) != SPECIES_NONE)
-                {
-                    ballMultiplier = 40;
-                }
-                else
-                {
-                    ballMultiplier = 10;
-                }
-				break;
             case BALL_LOVE:
             {
                 u16 speciesAttacker = gBattleMons[gActiveBattler].species;

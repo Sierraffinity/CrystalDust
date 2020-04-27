@@ -490,7 +490,7 @@ Route119_EventScript_ScottWonAtFortreeGymCall:: @ 81F49EC
 	lockall
 	pokegearcall Route119_Text_ScottYouWonAtFortreeGym, 0
 	waitmessage
-	clearflag FLAG_SCOTT_CALL_FORTREE_GYM
+	clearflag FLAG_FOREST_IS_RESTLESS
 	addvar VAR_SCOTT_STATE, 1
 	releaseall
 	end

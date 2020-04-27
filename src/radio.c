@@ -604,11 +604,11 @@ void Task_PlayRadioShow(u8 taskId)
                 u16 password = 0;
                 DoTimeBasedEvents();
 
-                if (!FlagGet(FLAG_BUENAS_PASSWORD))
+                if (!FlagGet(FLAG_BUENAS_PASSWORD_SET))
                 {
                     password = (Random() % ARRAY_COUNT(sBuenasPasswords)) << 8 | (Random() % ARRAY_COUNT(sBuenasPasswords[0].values));
                     VarSet(VAR_BUENAS_PASSWORD, password);
-                    FlagSet(FLAG_BUENAS_PASSWORD);
+                    FlagSet(FLAG_BUENAS_PASSWORD_SET);
                 }
                 else
                 {
@@ -675,7 +675,7 @@ void Task_PlayRadioShow(u8 taskId)
         break;
     case BUENAS_PASSWORD_20:
         gTasks[taskId].tShowNameId = NO_RADIO_SHOW;
-        FlagClear(FLAG_BUENAS_PASSWORD);
+        FlagClear(FLAG_BUENAS_PASSWORD_SET);
         FadeOutAndPlayNewMapMusic(MUS_DUMMY, 4);
         tCurrentLine = tCurrentLine + 1;
         tNumLinesPrinted = 0;

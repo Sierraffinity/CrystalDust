@@ -44,7 +44,7 @@ EverGrandeCity_HallOfFame_EventScript_ShowStevensHouseBeldum:: @ 827183F
 
 EverGrandeCity_HallOfFame_EventScript_ReadyReceiveSSTicketEvent:: @ 8271843
 	setvar VAR_PLAYER_HOUSE_STATE, 3
-	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 3
+	setvar VAR_KURT_GIVEN_APRICORN, 3
 	clearflag FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
 	return
 

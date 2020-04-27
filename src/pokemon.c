@@ -3864,7 +3864,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_POKEBALL:
         retVal = substruct3->pokeball;
-        if (retVal == BALL_HEAVY)
+        if (retVal == BALL_LEVEL)
         {
             retVal += boxMon->altBall;
         }
@@ -4241,10 +4241,10 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_POKEBALL:
     {
         u8 pokeball = *data;
-        if (pokeball >= BALL_HEAVY)
+        if (pokeball >= BALL_LEVEL)
         {
-            substruct3->pokeball = BALL_HEAVY;
-            boxMon->altBall = pokeball - BALL_HEAVY;
+            substruct3->pokeball = BALL_LEVEL;
+            boxMon->altBall = pokeball - BALL_LEVEL;
         }
         else
         {

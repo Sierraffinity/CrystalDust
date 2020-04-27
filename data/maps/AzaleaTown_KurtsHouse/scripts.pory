@@ -1,16 +1,51 @@
 const KURT = 1
+const GIRL = 2
+
+const RED_APRICORN = 1
+const BLU_APRICORN = 2
+const YLW_APRICORN = 3
+const GRN_APRICORN = 4
+const WHT_APRICORN = 5
+const BLK_APRICORN = 6
+const PNK_APRICORN = 7
 
 mapscripts AzaleaTown_KurtsHouse_MapScripts {
-    
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_CLEARED_SLOWPOKE_WELL) &&
+            //!flag(FLAG_FOREST_IS_RESTLESS) &&
+            flag(FLAG_KURT_MAKING_BALLS))
+        {
+            setobjectxyperm(KURT, 15, 3)
+            setobjectmovementtype(KURT, MOVEMENT_TYPE_FACE_UP)
+            setobjectxyperm(GIRL, 12, 4)
+            setobjectmovementtype(GIRL, MOVEMENT_TYPE_FACE_RIGHT)
+        }
+    }
 }
 
 script AzaleaTown_KurtsHouse_EventScript_Kurt {
     lock
     faceplayer
-    if (flag(FLAG_KURT_GAVE_LURE_BALL))
+    // TODO: Check GS Ball
+    if (!flag(FLAG_TEMP_1) &&
+        flag(FLAG_KURT_MAKING_BALLS))
     {
-        // TODO: Apricorn stuff
-        msgbox("Yay!")
+        if (flag(FLAG_BUGGING_KURT_TOO_MUCH))
+        {
+            msgbox("KURT: I'm working!\n"
+                   "Don't bother me!")
+        }
+        else
+        {
+            msgbox("KURT: Now that my granddaughter is\n"
+                   "helping me, I can work much faster.")
+            setflag(FLAG_BUGGING_KURT_TOO_MUCH)
+        }
+        turnobject(KURT, DIR_NORTH)
+    }
+    elif (flag(FLAG_KURT_GAVE_LURE_BALL))
+    {
+        goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks)
     }
     elif (flag(FLAG_CLEARED_SLOWPOKE_WELL))
     {
@@ -30,7 +65,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
         else
         {
             setflag(FLAG_KURT_GAVE_LURE_BALL)
-            // TODO: Apricorn stuff
+            goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks)
         }
     }
     else
@@ -77,6 +112,121 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
     release
 }
 
+// TODO: Wait for local label
+script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
+    if (flag(FLAG_TEMP_1))
+    {
+        call(AzaleaTown_KurtsHouse_EventScript_Kurt_ItllTakeADay)
+    }
+    elif (var(VAR_KURT_GIVEN_APRICORN))
+    {
+        copyvar(VAR_RESULT, VAR_KURT_GIVEN_APRICORN)
+        addvar(VAR_RESULT, ITEM_LEVEL_BALL - 1)
+        msgbox("KURT: Ah, {PLAYER}!\n"
+               "I just finished your BALL. Here!")
+        giveitem(VAR_RESULT, VAR_KURT_GIVEN_APRICORN_QTY)
+        if (var(VAR_RESULT))
+        {
+            call(AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat)
+            setvar(VAR_KURT_GIVEN_APRICORN, 0)
+            setvar(VAR_KURT_GIVEN_APRICORN_QTY, 0)
+            setflag(FLAG_TEMP_2)
+        }
+    }
+    else
+    {
+        // TODO: GS Ball stuff here
+        if (!flag(FLAG_TEMP_2) && !flag(FLAG_TEMP_3))
+        {
+            call(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement)
+        }
+
+        checkitem(ITEM_RED_APRICORN, 1)
+        if (var(VAR_RESULT))
+        {
+            goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu)
+        }
+        checkitem(ITEM_BLU_APRICORN, 1)
+        if (var(VAR_RESULT))
+        {
+            goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu)
+        }
+        checkitem(ITEM_YLW_APRICORN, 1)
+        if (var(VAR_RESULT))
+        {
+            goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu)
+        }
+        checkitem(ITEM_GRN_APRICORN, 1)
+        if (var(VAR_RESULT))
+        {
+            goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu)
+        }
+        checkitem(ITEM_WHT_APRICORN, 1)
+        if (var(VAR_RESULT))
+        {
+            goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu)
+        }
+        checkitem(ITEM_BLK_APRICORN, 1)
+        if (var(VAR_RESULT))
+        {
+            goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu)
+        }
+        checkitem(ITEM_PNK_APRICORN, 1)
+        if (var(VAR_RESULT))
+        {
+            goto(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu)
+        }
+
+        if (flag(FLAG_TEMP_2))
+        {
+            call(AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat)
+        }
+        elif (flag(FLAG_TEMP_3))
+        {
+            call(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement)
+        }
+    }
+    release
+}
+
+script AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat {
+    msgbox("KURT: That turned out great.\n"
+           "Try catching POKéMON with it.")
+}
+
+// TODO: Wait for local labels
+script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement {
+    msgbox("KURT: I make BALLS from APRICORNS.\n"
+           "Collect them from trees and bring\l"
+           "'em to me.\p"
+           "I'll make BALLS out of them.")
+}
+
+script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu {
+    msgbox("KURT: You have an APRICORN for me?\n"
+           "Fine! I'll turn it into a BALL.")
+    setflag(FLAG_TEMP_3)
+	//special(SelectApricornForKurt)
+	//waitstate
+    if (var(VAR_RESULT) != MULTI_B_PRESSED)
+    {
+        setflag(FLAG_TEMP_1)
+        setflag(FLAG_KURT_MAKING_BALLS)
+        call(AzaleaTown_KurtsHouse_EventScript_Kurt_ItllTakeADay)
+    }
+    else
+    {
+        msgbox("KURT: Oh…\n"
+               "That's a letdown.")
+    }
+    release
+}
+
+script AzaleaTown_KurtsHouse_EventScript_Kurt_ItllTakeADay {
+    msgbox("KURT: It'll take a day to make you\n"
+           "a BALL. Come back for it later.")
+}
+
 movement AzaleaTown_KurtsHouse_Movement_PlayerWatchesKurt {
     delay_8
     walk_in_place_fastest_right
@@ -98,7 +248,25 @@ movement AzaleaTown_KurtsHouse_Movement_KurtStraightOut {
 script AzaleaTown_KurtsHouse_EventScript_KurtsGranddaughter {
     lock
     faceplayer
-    if (flag(FLAG_CLEARED_SLOWPOKE_WELL))
+    if (flag(FLAG_TEMP_1) ||
+        flag(FLAG_KURT_MAKING_BALLS))
+    {
+        msgbox("I get to help Grandpa with his\n"
+               "work now!\p"
+               "We'll make good BALLS for you, so\n"
+               "please wait!")
+        if (!flag(FLAG_TEMP_1))
+        {
+            turnobject(GIRL, DIR_EAST)
+        }
+    }
+    elif (flag(FLAG_TEMP_2))
+    {
+        msgbox("It's fun to make BALLS!")
+    }
+    // TODO: After accessing Kanto she says something about her dad
+    // Maybe also make Slowpoke have a tail at that point
+    elif (flag(FLAG_CLEARED_SLOWPOKE_WELL))
     {
         msgbox("The SLOWPOKE my dad gave me came\n"
                "back! Its TAIL is growing back too!")
