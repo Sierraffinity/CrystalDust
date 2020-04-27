@@ -329,7 +329,7 @@ static void DebugMenu_InitNewSubmenu(u8 taskId, const struct DebugMenuBouncer *b
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     MultichoiceList_PrintDebugItems(tWindowId, 1, 8, 2, 16, bouncer->count, bouncer->actions, 0, 2);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 14, bouncer->count, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, bouncer->count, 0);
     schedule_bg_copy_tilemap_to_vram(0);
     SET_BOUNCER(bouncer);
     gTasks[taskId].func = DebugMenu_Submenu_ProcessInput;
