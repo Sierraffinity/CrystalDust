@@ -461,7 +461,7 @@ Route110_EventScript_BrendanBattleTorchic:: @ 81EF8A4
 	end
 
 Route110_EventScript_BrendanBattleMudkip:: @ 81EF8B4
-	trainerbattle_no_intro TRAINER_RIVAL_3, Route110_Text_BrendanDefeated
+	trainerbattle_no_intro TRAINER_RIVAL_CHERRYGROVE_TOTODILE, Route110_Text_BrendanDefeated
 	goto Route110_EventScript_BrendanDefeated
 	end
 

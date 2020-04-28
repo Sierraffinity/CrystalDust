@@ -5110,7 +5110,7 @@ static void HandleEndTurn_BattleLost(void)
         if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) &&
              GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_WINTEXT)
         {
-            if (GetFirstBattleTutorialMode() & 1)
+            if (GetFirstBattleTutorialMode() & TUTORIAL_BATTLE_HEAL_AFTER)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 1;
             else
                 gBattleCommunication[MULTISTRING_CHOOSER] = 2;

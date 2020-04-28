@@ -520,9 +520,9 @@
 #define TRAINER_EDWIN_3                     516
 #define TRAINER_EDWIN_4                     517
 #define TRAINER_EDWIN_5                     518
-#define TRAINER_RIVAL_1                     519
-#define TRAINER_RIVAL_2                     520
-#define TRAINER_RIVAL_3                     521
+#define TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL                     519
+#define TRAINER_RIVAL_CHERRYGROVE_CHIKORITA                     520
+#define TRAINER_RIVAL_CHERRYGROVE_TOTODILE                     521
 #define TRAINER_BRENDAN_ROUTE_119_MUDKIP    522
 #define TRAINER_BRENDAN_ROUTE_103_TREECKO   523
 #define TRAINER_BRENDAN_ROUTE_110_TREECKO   524

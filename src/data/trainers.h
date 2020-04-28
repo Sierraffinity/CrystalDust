@@ -7265,7 +7265,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Edwin5},
     },
 
-    [TRAINER_RIVAL_1] =
+    [TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
@@ -7279,7 +7279,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Rival1 }
     },
 
-    [TRAINER_RIVAL_2] =
+    [TRAINER_RIVAL_CHERRYGROVE_CHIKORITA] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
@@ -7293,7 +7293,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Rival2 }
     },
 
-    [TRAINER_RIVAL_3] =
+    [TRAINER_RIVAL_CHERRYGROVE_TOTODILE] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,

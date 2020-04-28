@@ -41,7 +41,7 @@ VictoryRoad_1F_EventScript_WallyEntranceBattle:: @ 8235DE1
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	msgbox VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_RIVAL_1, VictoryRoad_1F_Text_WallyEntranceDefeat
+	trainerbattle_no_intro TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL, VictoryRoad_1F_Text_WallyEntranceDefeat
 	msgbox VictoryRoad_1F_Text_WallyPostEntranceBattle, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
 	copyobjectxytoperm 4

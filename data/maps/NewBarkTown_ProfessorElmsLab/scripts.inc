@@ -1,3 +1,6 @@
+.equ PLAYER_STARTER_NUM,      VAR_TEMP_1
+.equ PLAYER_STARTER_SPECIES,  VAR_TEMP_2
+
 NewBarkTown_ProfessorElmsLab_MapScripts:: @ 81F9C91
 	map_script 3, NewBarkTown_ProfessorElmsLab_MapScript1_Type3
 	map_script 2, NewBarkTown_ProfessorElmsLab_MapScript2_Type2
@@ -241,22 +244,22 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmWithEgg:
 NewBarkTown_ProfessorElmsLab_EventScript_Chikorita::
 	lock
 	faceplayer
-	setvar VAR_TEMP_1, 0
-	setvar VAR_TEMP_2, SPECIES_CHIKORITA
+	setvar PLAYER_STARTER_NUM, STARTER_CHIKORITA
+	setvar PLAYER_STARTER_SPECIES, SPECIES_CHIKORITA
 	goto NewBarkTown_EventScript_PokeBallMain
 
 NewBarkTown_ProfessorElmsLab_EventScript_Totodile::
 	lock
 	faceplayer
-	setvar VAR_TEMP_1, 1
-	setvar VAR_TEMP_2, SPECIES_TOTODILE
+	setvar PLAYER_STARTER_NUM, STARTER_TOTODILE
+	setvar PLAYER_STARTER_SPECIES, SPECIES_TOTODILE
 	goto NewBarkTown_EventScript_PokeBallMain
 
 NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil::
 	lock
 	faceplayer
-	setvar VAR_TEMP_1, 2
-	setvar VAR_TEMP_2, SPECIES_CYNDAQUIL
+	setvar PLAYER_STARTER_NUM, STARTER_CYNDAQUIL
+	setvar PLAYER_STARTER_SPECIES, SPECIES_CYNDAQUIL
 	goto NewBarkTown_EventScript_PokeBallMain
 
 NewBarkTown_EventScript_PokeBallMain:
@@ -267,13 +270,13 @@ NewBarkTown_EventScript_PokeBallMain:
 
 NewBarkTown_EventScript_PokeBallChoice:
 	turnobject 2, 4
-	showmonpic VAR_TEMP_2, 10, 3
+	showmonpic PLAYER_STARTER_SPECIES, 10, 3
 	textcolor MSG_COLOR_BLUE
-	compare VAR_TEMP_1, 0
+	compare PLAYER_STARTER_NUM, STARTER_CHIKORITA
 	goto_if_eq NewBarkTown_EventScript_ChoosingChikorita
-	compare VAR_TEMP_1, 1
+	compare PLAYER_STARTER_NUM, STARTER_TOTODILE
 	goto_if_eq NewBarkTown_EventScript_ChoosingTotodile
-	compare VAR_TEMP_1, 2
+	compare PLAYER_STARTER_NUM, STARTER_CYNDAQUIL
 	goto_if_eq NewBarkTown_EventScript_ChoosingCyndaquil
 	end
 
@@ -303,9 +306,9 @@ NewBarkTown_EventScript_ChoseMon:
 	msgbox NewBarkTown_ProfessorElmsLab_Text_GreatMonToo
 	call EventScript_RestorePrevTextColor
 	setflag FLAG_SYS_POKEMON_GET
-	givemon VAR_TEMP_2, 5, ITEM_ORAN_BERRY
-	copyvar VAR_STARTER_MON, VAR_TEMP_1 @ 0=Chikorita, 1=Totodile, 2=Cyndaquil
-	bufferspeciesname 0, VAR_TEMP_2
+	givemon PLAYER_STARTER_SPECIES, 5, ITEM_ORAN_BERRY
+	copyvar VAR_STARTER_MON, PLAYER_STARTER_NUM @ 0=Chikorita, 1=Totodile, 2=Cyndaquil
+	bufferspeciesname 0, PLAYER_STARTER_SPECIES
 	message NewBarkTown_ProfessorElmsLab_Text_GotMonFromElm
 	waitmessage
 	playfanfare MUS_RG_FAN5
@@ -314,20 +317,20 @@ NewBarkTown_EventScript_ChoseMon:
 	compare VAR_RESULT, 1
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_Nickname
 	closemessage
-	compare VAR_FACING, 1
+	compare VAR_FACING, DIR_SOUTH
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_BallFromAbove
-	compare VAR_FACING, 2
+	compare VAR_FACING, DIR_NORTH
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_BallFromBelow
-	compare VAR_FACING, 4
+	compare VAR_FACING, DIR_EAST
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_BallFromLeft
 	end
 
 NewBarkTown_ProfessorElmsLab_EventScript_BallFromAbove:
-	compare VAR_TEMP_1, 0
+	compare PLAYER_STARTER_NUM, STARTER_CHIKORITA
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromAbove
-	compare VAR_TEMP_1, 1
+	compare PLAYER_STARTER_NUM, STARTER_TOTODILE
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_TotodileFromAbove
-	compare VAR_TEMP_1, 2
+	compare PLAYER_STARTER_NUM, STARTER_CYNDAQUIL
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromAbove
 	end
 
@@ -402,11 +405,11 @@ NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom74:
 	step_end
 
 NewBarkTown_ProfessorElmsLab_EventScript_BallFromBelow:
-	compare VAR_TEMP_1, 0
+	compare PLAYER_STARTER_NUM, 0
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaFromBelow
-	compare VAR_TEMP_1, 1
+	compare PLAYER_STARTER_NUM, 1
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_TotodileFromBelow
-	compare VAR_TEMP_1, 2
+	compare PLAYER_STARTER_NUM, 2
 	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilFromBelow
 	end
 

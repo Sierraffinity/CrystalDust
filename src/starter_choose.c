@@ -126,9 +126,9 @@ static const u8 sStarterLabelCoords[][2] =
 
 static const u16 sStarterMon[STARTER_MON_COUNT] =
 {
-    SPECIES_TREECKO,
-    SPECIES_TORCHIC,
-    SPECIES_MUDKIP,
+    SPECIES_CHIKORITA,
+    SPECIES_TOTODILE,
+    SPECIES_CYNDAQUIL,
 };
 
 static const struct BgTemplate gUnknown_085B1E00[3] =
@@ -365,7 +365,7 @@ static const struct SpriteTemplate gUnknown_085B1F40 =
 u16 GetStarterPokemon(u16 chosenStarterId)
 {
     if (chosenStarterId > STARTER_MON_COUNT)
-        chosenStarterId = 0;
+        chosenStarterId = STARTER_CHIKORITA;
     return sStarterMon[chosenStarterId];
 }
 
