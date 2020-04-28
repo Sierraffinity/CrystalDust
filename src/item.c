@@ -93,14 +93,11 @@ void CopyItemName(u16 itemId, u8 *dst)
 
 void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
-    if (IS_ITEM_BALL(itemId))
+    if (IS_ITEM_BALL(itemId) && quantity >= 2)
     {
         dst = StringCopy(dst, ItemId_GetName(itemId));
-        if (quantity >= 2)
-        {
-            *(dst++) = CHAR_S;
-            *(dst++) = EOS;
-        }
+        *(dst++) = CHAR_S;
+        *(dst++) = EOS;
     }
     else if (itemId >= ITEM_CHERI_BERRY && itemId <= ITEM_ENIGMA_BERRY)
     {

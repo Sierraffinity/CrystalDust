@@ -208,7 +208,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu {
     setflag(FLAG_TEMP_3)
 	//special(SelectApricornForKurt)
 	//waitstate
-    if (var(VAR_RESULT) != MULTI_B_PRESSED)
+    if (var(VAR_KURT_GIVEN_APRICORN) != 0)
     {
         setflag(FLAG_TEMP_1)
         setflag(FLAG_KURT_MAKING_BALLS)

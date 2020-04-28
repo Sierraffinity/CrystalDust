@@ -1331,7 +1331,7 @@ static void CB2_EndTrainerBattle(void)
         if (IsPlayerDefeated(gBattleOutcome) == TRUE)
         {
             gSpecialVar_Result = TRUE;
-            if (sFirstBattleTutorialMode & 1)
+            if (sFirstBattleTutorialMode & TUTORIAL_BATTLE_HEAL_AFTER)
             {
                 HealPlayerParty();
                 SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
