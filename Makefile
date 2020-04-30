@@ -61,21 +61,20 @@ MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 
 ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=$(MODERN)
 
+GCC_VER = $(shell $(CC) -dumpversion)
+
+ifeq ($(MODERN),0)
+CC1             := tools/agbcc/bin/agbcc$(EXE)
+override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
+ROM := CrystalDust_legacy.gba
+OBJ_DIR := build/emerald
+LIBPATH := -L ../../tools/agbcc/lib
+else
 ifeq ($(DEBUG),0)
 OPTIMIZATION_LEVEL = -O2
 else
 OPTIMIZATION_LEVEL = -Og
 endif
-
-GCC_VER = $(shell $(CC) -dumpversion)
-
-ifeq ($(MODERN),0)
-CC1             := tools/agbcc/bin/agbcc$(EXE)
-override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror $(OPTIMIZATION_LEVEL) -fhex-asm
-ROM := CrystalDust_legacy.gba
-OBJ_DIR := build/emerald
-LIBPATH := -L ../../tools/agbcc/lib
-else
 CC1              = $(shell $(CC) --print-prog-name=cc1) -quiet
 override CFLAGS += -mthumb -mthumb-interwork $(OPTIMIZATION_LEVEL) -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -fno-aggressive-loop-optimizations -Wno-pointer-to-int-cast
 ROM := CrystalDust.gba
@@ -233,7 +232,7 @@ data/%.inc: data/%.pory; $(SCRIPT) -i $< -o $@
 
 ifeq ($(MODERN),0)
 $(C_BUILDDIR)/libc.o: CC1 := tools/agbcc/bin/old_agbcc
-$(C_BUILDDIR)/libc.o: CFLAGS := $(OPTIMIZATION_LEVEL)
+$(C_BUILDDIR)/libc.o: CFLAGS := -O2
 
 $(C_BUILDDIR)/siirtc.o: CFLAGS := -mthumb-interwork
 
