@@ -14,7 +14,7 @@ Route110_TrickHouseEntrance_MapScripts:: @ 8269A50
 	@ 6: 'Trick Master' mechadoll ready to give Tent reward from final challenge (if bag was full)
 
 Route110_TrickHouseEntrance_OnTransition: @ 8269A60
-	setflag FLAG_LANDMARK_TRICK_HOUSE
+	setflag FLAG_LANDMARK_SLOWPOKE_WELL
 	compare VAR_TRICK_HOUSE_ENTER_FROM_CORRIDOR, 1
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_EnterFromCorridor
 	compare VAR_TRICK_HOUSE_PRIZE_PICKUP, 1
