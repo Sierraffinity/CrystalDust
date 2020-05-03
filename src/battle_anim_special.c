@@ -427,6 +427,15 @@ const struct SpriteTemplate gBallParticlesSpriteTemplates[] =
         .affineAnims = gDummySpriteAffineAnimTable,
         .callback = SpriteCallbackDummy,
     },
+    {
+        .tileTag = TAG_BALL_PARTICLES(PARK),
+        .paletteTag = TAG_BALL_PARTICLES(PARK),
+        .oam = &gOamData_AffineOff_ObjNormal_8x8,
+        .anims = gAnims_BallParticles,
+        .images = NULL,
+        .affineAnims = gDummySpriteAffineAnimTable,
+        .callback = SpriteCallbackDummy,
+    },
 };
 
 const u16 gBallOpenFadeColors[] =
@@ -605,8 +614,8 @@ static void LoadHealthboxPalsForLevelUp(u8 *paletteId1, u8 *paletteId2, u8 battl
     healthBoxSpriteId = gHealthboxSpriteIds[battler];
     spriteId1 = gSprites[healthBoxSpriteId].oam.affineParam;
     spriteId2 = gSprites[healthBoxSpriteId].data[5];
-    *paletteId1 = AllocSpritePalette(0xD709);
-    *paletteId2 = AllocSpritePalette(0xD70A);
+    *paletteId1 = AllocSpritePalette(55049);
+    *paletteId2 = AllocSpritePalette(55050);
 
     offset1 = (gSprites[healthBoxSpriteId].oam.paletteNum * 16) + 0x100;
     offset2 = (gSprites[spriteId2].oam.paletteNum * 16) + 0x100;
@@ -635,10 +644,10 @@ static void FreeHealthboxPalsForLevelUp(u8 battler)
     spriteId1 = gSprites[healthBoxSpriteId].oam.affineParam;
     spriteId2 = gSprites[healthBoxSpriteId].data[5];
 
-    FreeSpritePaletteByTag(0xD709);
-    FreeSpritePaletteByTag(0xD70A);
-    paletteId1 = IndexOfSpritePaletteTag(0xD6FF);
-    paletteId2 = IndexOfSpritePaletteTag(0xD704);
+    FreeSpritePaletteByTag(55049);
+    FreeSpritePaletteByTag(55050);
+    paletteId1 = IndexOfSpritePaletteTag(55040);
+    paletteId2 = IndexOfSpritePaletteTag(55044);
     gSprites[healthBoxSpriteId].oam.paletteNum = paletteId1;
     gSprites[spriteId1].oam.paletteNum = paletteId1;
     gSprites[spriteId2].oam.paletteNum = paletteId2;
@@ -666,7 +675,7 @@ static void sub_8170A38(u8 taskId)
     if (gTasks[taskId].data[0]++ >= gTasks[taskId].data[11])
     {
         gTasks[taskId].data[0] = 0;
-        paletteNum = IndexOfSpritePaletteTag(0xD709);
+        paletteNum = IndexOfSpritePaletteTag(55049);
         colorOffset = gTasks[taskId].data[10] == 0 ? 6 : 2;
         switch (gTasks[taskId].data[1])
         {

@@ -43,12 +43,12 @@ const u8 gUnknown_0831C604[] =
 
 static const struct CompressedSpriteSheet sSmokescreenImpactSpriteSheet =
 {
-    .data = gSmokescreenImpactTiles, .size = 0x180, .tag = 55019
+    .data = gSmokescreenImpactTiles, .size = 0x180, .tag = 55053
 };
 
 static const struct CompressedSpritePalette sSmokescreenImpactSpritePalette =
 {
-    .data = gSmokescreenImpactPalette, .tag = 55019
+    .data = gSmokescreenImpactPalette, .tag = 55053
 };
 
 static const struct OamData sOamData_SmokescreenImpact =
@@ -110,8 +110,8 @@ static const union AnimCmd *const sAnims_SmokescreenImpact[] =
 
 static const struct SpriteTemplate sSmokescreenImpactSpriteTemplate =
 {
-    .tileTag = 55019, 
-    .paletteTag = 55019, 
+    .tileTag = 55053, 
+    .paletteTag = 55053, 
     .oam = &sOamData_SmokescreenImpact, 
     .anims = sAnims_SmokescreenImpact, 
     .images = NULL, 
@@ -144,7 +144,7 @@ static const struct OamData gUnknown_0831C6A8 =
 const struct SpriteTemplate gSpriteTemplate_EnemyShadow =
 {
     .tileTag = 55129, 
-    .paletteTag = 55039, 
+    .paletteTag = 55040, 
     .oam = &gUnknown_0831C6A8, 
     .anims = gDummySpriteAnimTable, 
     .images = NULL, 
