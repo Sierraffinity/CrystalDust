@@ -556,3 +556,4 @@ gSpecials:: @ 81DBA64
 	def_special GetDSTMode
 	def_special SwitchDSTMode
 	def_special HasAllMons
+	def_special SelectApricornForKurt

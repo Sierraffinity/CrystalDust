@@ -1984,3 +1984,5 @@ const u8 gText_AOK[] = _("{A_BUTTON}OK");
 const u8 gText_ACancel[] = _("{A_BUTTON}CANCEL");
 
 const u8 gText_LeftRightSelectUpDownChangeAConfirm[] = _("{DPAD_LEFTRIGHT}SELECT  {DPAD_UPDOWN}CHANGE  {A_BUTTON}CONFIRM  {SELECT_BUTTON}MODE");
+
+const u8 gText_WhichApricorn[] = _("Now, which APRICORN do you want\nme to use?");

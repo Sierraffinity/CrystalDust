@@ -291,14 +291,14 @@
 #define MUS_CHERRYGROVE 363     // Cherrygrove/Mahogany
 #define MUS_GIM 364             // Gym
 #define MUS_NAMINORI 365        // Surfing
-#define MUS_ILEXFOREST 366           // Caves and Darkness
+#define MUS_ILEXFOREST 366      // Caves and Darkness
 #define MUS_FANFA1 367          // Level Up!
 #define MUS_ME_ASA 368          // Pokémon Healed
 #define MUS_ME_BACHI 369        // Obtained a Badge!
 #define MUS_FANFA4 370          // Obtained an Item!
 #define MUS_FANFA5 371          // Your Pokémon Just Evolved!
 #define MUS_ME_WAZA 372         // Obtained a TM/HM!
-#define MUS_RUINSOFALPH 373         // Lilycove Museum
+#define MUS_RUINSOFALPH 373     // Lilycove Museum
 #define MUS_ROUTE30 374         // Route 122/Intro
 #define MUS_FUNE_KAN 375        // Slateport Museum
 #define MUS_ME_SHINKA 376       // Evolution Intro
@@ -322,7 +322,7 @@
 #define MUS_TEST2 394           // Contest Test 2
 #define MUS_TEST3 395           // Contest Test 3
 #define MUS_TEST4 396           // Contest Test 4
-#define MUS_POKEMONMARCH 397            // Encounter! Gentleman
+#define MUS_POKEMONMARCH 397    // Pokémon March
 #define MUS_GOMACHI0 398        // Verdanturf Town
 #define MUS_GOTOWN 399          // Rustboro/Mauville/Mossdeep City
 #define MUS_POKECEN 400         // Pokémon Center
@@ -332,7 +332,7 @@
 #define MUS_FRIENDLY 404        // Pokémart
 #define MUS_NEWBARK 405         // Littleroot Town
 #define MUS_TOZAN 406           // Sky Pillar
-#define MUS_ENCFEMALE 407         // Encounter! Girl
+#define MUS_ENCFEMALE 407       // Encounter! Girl
 #define MUS_MINAMO 408          // Lilycove City
 #define MUS_ASHROAD 409         // Route 111
 #define MUS_MOMENC 410          // Help me!
@@ -376,7 +376,7 @@
 #define MUS_KARAKURI 448        // Trick House
 #define MUS_HUTAGO 449          // Encounter! Kid
 #define MUS_SITENNOU 450        // Encounter! Elite Four
-#define MUS_ENCSUSPICIOUSCLASSIC 451        // Encounter! Hiker
+#define MUS_ENCSUSPICIOUSCLASSIC 451    // Encounter! Hiker
 #define MUS_CONLOBBY 452        // Contest Lobby
 #define MUS_ENCKIMONO 453       // Encounter! Gabby and Ty
 #define MUS_DAIGO 454           // Encounter! Wallace

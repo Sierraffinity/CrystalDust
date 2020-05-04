@@ -121,7 +121,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
     elif (var(VAR_KURT_GIVEN_APRICORN))
     {
         copyvar(VAR_RESULT, VAR_KURT_GIVEN_APRICORN)
-        addvar(VAR_RESULT, ITEM_LEVEL_BALL - 1)
+        addvar(VAR_RESULT, ITEM_LEVEL_BALL)
         msgbox("KURT: Ah, {PLAYER}!\n"
                "I just finished your BALL. Here!")
         giveitem(VAR_RESULT, VAR_KURT_GIVEN_APRICORN_QTY)
@@ -196,18 +196,27 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat {
 
 // TODO: Wait for local labels
 script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement {
-    msgbox("KURT: I make BALLS from APRICORNS.\n"
-           "Collect them from trees and bring\l"
+    msgbox("KURT: I make BALLS from the shells\n"
+           "of APRICORNS.\p"
+           "Collect them from trees and bring\n"
            "'em to me.\p"
            "I'll make BALLS out of them.")
 }
 
 script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu {
-    msgbox("KURT: You have an APRICORN for me?\n"
-           "Fine! I'll turn it into a BALL.")
+    if (!flag(FLAG_TEMP_2) && !flag(FLAG_TEMP_3))
+    {
+        msgbox("Oh, you have an APRICORN for me?\n"
+               "Fine! I'll turn it into a BALL.")
+    }
+    else
+    {
+        msgbox("KURT: You have an APRICORN for me?\n"
+               "Fine! I'll turn it into a BALL.")
+    }
     setflag(FLAG_TEMP_3)
-	//special(SelectApricornForKurt)
-	//waitstate
+	special(SelectApricornForKurt)
+	waitstate
     if (var(VAR_KURT_GIVEN_APRICORN) != 0)
     {
         setflag(FLAG_TEMP_1)
