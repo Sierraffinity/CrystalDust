@@ -73,7 +73,7 @@ else
 ifeq ($(DEBUG),0)
 OPTIMIZATION_LEVEL = -O2
 else
-OPTIMIZATION_LEVEL = -Og
+OPTIMIZATION_LEVEL = -g
 endif
 CC1              = $(shell $(CC) --print-prog-name=cc1) -quiet
 override CFLAGS += -mthumb -mthumb-interwork $(OPTIMIZATION_LEVEL) -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -fno-aggressive-loop-optimizations -Wno-pointer-to-int-cast

@@ -661,8 +661,8 @@ static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
 static void DebugMenu_AddItem_PrintStatus(u8 windowId, u16 itemId, u16 itemCount)
 {
     FillWindowPixelBuffer(windowId, 0x11);
-    ConvertIntToHexStringN(gStringVar1, itemId, STR_CONV_MODE_LEADING_ZEROS, 4);
-    ConvertIntToHexStringN(gStringVar2, itemCount, STR_CONV_MODE_LEADING_ZEROS, 4);
+    ConvertIntToDecimalStringN(gStringVar1, itemId, STR_CONV_MODE_LEADING_ZEROS, 4);
+    ConvertIntToDecimalStringN(gStringVar2, itemCount, STR_CONV_MODE_LEADING_ZEROS, 4);
     StringExpandPlaceholders(gStringVar4, sText_ItemStatus);
     AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
@@ -686,37 +686,49 @@ static void DebugMenu_AddItem(u8 taskId)
     gTasks[taskId].func = DebugMenu_AddItem_ProcessInputNum;
 }
 
+static const s32 powersOfTen[] =
+{
+    1,
+    10,
+    100,
+    1000,
+};
+
 static void DebugMenu_AddItem_ProcessInputNum(u8 taskId)
 {
-    u32 temp, shifter;
+    u32 temp, temp2, shifter;
     u16 *data = gTasks[taskId].data;
 
     if (gMain.newAndRepeatedKeys & DPAD_UP)
     {
-        shifter = tWhichDigit * 4;
-        temp = (((tItemNum >> shifter) & 0xF) + 1) & 0xF;
-        temp = (tItemNum & ~(0xF << shifter)) | (temp << shifter);
+        shifter = powersOfTen[tWhichDigit];
 
-        if (temp >= ITEMS_COUNT)
-            temp = ITEM_NONE;
-
-        PlaySE(SE_SELECT);
-        tItemNum = temp;
-        DebugMenu_AddItem_PrintStatus(tWindowId, tItemNum, tItemCount);
+        temp = (tItemNum % powersOfTen[tWhichDigit]) + ((tItemNum / powersOfTen[tWhichDigit + 1]) * powersOfTen[tWhichDigit + 1]);
+        temp2 = ((tItemNum - temp) / shifter) + 1;
+        temp += (temp2 > 9) ? 0 : temp2 * shifter;
+        
+        if (temp <= ITEMS_COUNT)
+        {
+            PlaySE(SE_SELECT);
+            tItemNum = temp;
+            DebugMenu_AddItem_PrintStatus(tWindowId, tItemNum, tItemCount);
+        }
     }
 
     if (gMain.newAndRepeatedKeys & DPAD_DOWN)
     {
-        shifter = tWhichDigit * 4;
-        temp = (((tItemNum >> shifter) & 0xF) - 1) & 0xF;
-        temp = (tItemNum & ~(0xF << shifter)) | (temp << shifter);
+        shifter = powersOfTen[tWhichDigit];
 
-        if (temp < ITEM_NONE)
-            temp = ITEMS_COUNT - 1;
-
-        PlaySE(SE_SELECT);
-        tItemNum = temp;
-        DebugMenu_AddItem_PrintStatus(tWindowId, tItemNum, tItemCount);
+        temp = (tItemNum % powersOfTen[tWhichDigit]) + ((tItemNum / powersOfTen[tWhichDigit + 1]) * powersOfTen[tWhichDigit + 1]);
+        temp2 = ((tItemNum - temp) / shifter) - 1;
+        temp += (temp2 > 9) ? 9 * shifter : temp2 * shifter;
+        
+        if (temp <= ITEMS_COUNT)
+        {
+            PlaySE(SE_SELECT);
+            tItemNum = temp;
+            DebugMenu_AddItem_PrintStatus(tWindowId, tItemNum, tItemCount);
+        }
     }
 
     if (gMain.newAndRepeatedKeys & DPAD_LEFT)
@@ -950,14 +962,6 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
 {
     u32 temp, temp2, shifter;
     u16 *data = gTasks[taskId].data;
-
-    static const s32 powersOfTen[] =
-    {
-        1,
-        10,
-        100,
-        1000,
-    };
 
     if (gMain.newAndRepeatedKeys & DPAD_UP)
     {
