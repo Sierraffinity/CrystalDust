@@ -87,7 +87,6 @@ static void Task_AnimateWin0v(u8 taskId);
 u8 AddItemMessageWindow(u8);
 void bag_menu_RemoveBagItem_message_window(u8);
 void set_callback3_to_bag(u8);
-void PrintItemDepositAmount(u8, s16);
 u8 BagMenu_AddWindow(u8, u8);
 u8 GetSwitchBagPocketDirection(void);
 void SwitchBagPocket(u8, s16, u16);
@@ -1232,14 +1231,6 @@ void BagMenu_InitListsMenu(u8 taskId)
     set_callback3_to_bag(taskId);
 }
 
-void PrintItemDepositAmount(u8 windowId, s16 numDeposited)
-{
-    u8 numDigits = (gBagPositionStruct.pocket == BERRIES_POCKET) ? 3 : 2;
-    ConvertIntToDecimalStringN(gStringVar1, numDeposited, STR_CONV_MODE_LEADING_ZEROS, numDigits);
-    StringExpandPlaceholders(gStringVar4, gText_xVar1);
-    AddTextPrinterParameterized(windowId, 1, gStringVar4, GetStringCenterAlignXOffset(1, gStringVar4, 0x28), 2, 0, 0);
-}
-
 void PrintItemSoldAmount(int windowId, int numSold, int moneyEarned)
 {
     u8 numDigits = (gBagPositionStruct.pocket == BERRIES_POCKET) ? 3 : 2;
@@ -2321,7 +2312,7 @@ void sub_81ADA7C(u8 taskId)
 
     if (AdjustQuantityAccordingToDPadInput(&tItemCount, data[2]) == TRUE)
     {
-        PrintItemDepositAmount(gBagMenu->windowPointers[7], tItemCount);
+        UpdateQuantityToTossOrDeposit(tItemCount, 3);
     }
     else if (gMain.newKeys & A_BUTTON)
     {
