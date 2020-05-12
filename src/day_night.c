@@ -19,9 +19,9 @@
 #define TINT_NIGHT Q_8_8(0.6), Q_8_8(0.55), Q_8_8(1.0)
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
+EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 static EWRAM_DATA s8 sOldHour = 0;
 static EWRAM_DATA bool8 sRetintPhase = FALSE;
-EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 #if DEBUG
 EWRAM_DATA bool8 gPaletteOverrideDisabled = 0;
 EWRAM_DATA s8 gDNHourOverride = 0;
