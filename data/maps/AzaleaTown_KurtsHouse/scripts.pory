@@ -121,7 +121,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
     elif (var(VAR_KURT_GIVEN_APRICORN))
     {
         copyvar(VAR_RESULT, VAR_KURT_GIVEN_APRICORN)
-        addvar(VAR_RESULT, ITEM_LEVEL_BALL)
+        addvar(VAR_RESULT, APRICORN_COUNT)
         msgbox("KURT: Ah, {PLAYER}!\n"
                "I just finished your BALL. Here!")
         giveitem(VAR_RESULT, VAR_KURT_GIVEN_APRICORN_QTY)

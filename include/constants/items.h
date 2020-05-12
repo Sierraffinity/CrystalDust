@@ -517,6 +517,5 @@
 #define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= ITEM_0B2)
 
 #define APRICORN_COUNT              7
-#define ITEM_TO_APRICORN(itemId)    (((itemId) - ITEM_RED_APRICORN) + 1)
 
 #endif  // GUARD_CONSTANTS_ITEMS_H

@@ -86,30 +86,32 @@ void SetBagItemsPointers(void)
     gBagPockets[BERRIES_POCKET].capacity = BAG_BERRIES_COUNT;
 }
 
-void CopyItemName(u16 itemId, u8 *dst)
+u8 *CopyItemName(u16 itemId, u8 *dst)
 {
-    StringCopy(dst, ItemId_GetName(itemId));
+    return StringCopy(dst, ItemId_GetName(itemId));
 }
 
-void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
+u8 *CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
     if (IS_ITEM_BALL(itemId) && quantity >= 2)
     {
         dst = StringCopy(dst, ItemId_GetName(itemId));
         *(dst++) = CHAR_S;
-        *(dst++) = EOS;
+        *dst = EOS;
     }
     else if (itemId >= ITEM_CHERI_BERRY && itemId <= ITEM_ENIGMA_BERRY)
     {
-        GetBerryCountString(dst, gBerries[itemId - ITEM_CHERI_BERRY].name, quantity);
+        dst = GetBerryCountString(dst, gBerries[itemId - ITEM_CHERI_BERRY].name, quantity);
     }
     else
     {
-        StringCopy(dst, ItemId_GetName(itemId));
+        dst = StringCopy(dst, ItemId_GetName(itemId));
     }
+
+    return dst;
 }
 
-void GetBerryCountString(u8 *dst, const u8 *berryName, u32 quantity)
+u8 *GetBerryCountString(u8 *dst, const u8 *berryName, u32 quantity)
 {
     const u8 *berryString;
     u8 *txtPtr;
@@ -121,7 +123,7 @@ void GetBerryCountString(u8 *dst, const u8 *berryName, u32 quantity)
 
     txtPtr = StringCopy(dst, berryName);
     *txtPtr = CHAR_SPACE;
-    StringCopy(txtPtr + 1, berryString);
+    return StringCopy(txtPtr + 1, berryString);
 }
 
 bool8 IsBagPocketNonEmpty(u8 pocket)

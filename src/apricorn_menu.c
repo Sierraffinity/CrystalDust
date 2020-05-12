@@ -1,11 +1,14 @@
 #include "global.h"
+#include "main.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "international_string_util.h"
+#include "item.h"
 #include "item_menu.h"
 #include "list_menu.h"
 #include "malloc.h"
 #include "menu.h"
+#include "menu_helpers.h"
 #include "script.h"
 #include "sound.h"
 #include "string_util.h"
@@ -18,6 +21,7 @@
 enum {
     WIN_APRICORN,
     WIN_QUANTITY,
+    WIN_YESNO,
     WIN_COUNT
 };
 
@@ -31,6 +35,7 @@ static EWRAM_DATA struct {
     u8 count;
     u8 listMenuTaskId;
     u8 scrollIndicatorId;
+    u16 fakeIdForArrows;
     u8 windowIds[WIN_COUNT];
 } *sApricornMenu = NULL;
 
@@ -40,9 +45,18 @@ static u8 AddWindowIfNotPresent(u8 whichWindow);
 static void ApricornMenu_Main_ProcessInput(u8 taskId);
 static void ApricornMenu_ItemPrint(u8 windowId, s32 id, u8 yOffset);
 static void ApricornMenu_RefreshListMenu(void);
-static void ApricornMenu_AddScrollIndicator(void);
+static void ApricornMenu_AddMainScrollIndicator(void);
 static void ApricornMenu_Exit(u8 taskId);
 static void ApricornMenu_RemoveScrollIndicator(void);
+static void ApricornMenu_KurtAsksQuantity(u8 taskId, s32 whichApricorn);
+static void ApricornMenu_InitQuantityBox(u8 taskId);
+static void ApricornMenu_PrintQuantity(int windowId, int numToGive);
+static void ApricornMenu_MoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *unused);
+static void ApricornMenu_ChangeQuantityToGive(u8 taskId);
+static void ApricornMenu_ReturnToMain(u8 taskId);
+static void ApricornMenu_InitConfirmGive(u8 taskId);
+static void ApricornMenu_ConfirmGive(u8 taskId);
+static void ApricornMenu_GiveApricornsToKurt(u8 taskId);
 
 // const data
 static const struct WindowTemplate sApricornMenuWindows[] =
@@ -51,18 +65,35 @@ static const struct WindowTemplate sApricornMenuWindows[] =
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 1,
-        .width = 15,
+        .width = 14,
         .height = 12,
         .paletteNum = 15,
         .baseBlock = 0x0001
     },
-    DUMMY_WIN_TEMPLATE
+    {
+        .bg = 0,
+        .tilemapLeft = 24,
+        .tilemapTop = 9,
+        .width = 5,
+        .height = 4,
+        .paletteNum = 15,
+        .baseBlock = 0x242
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 23,
+        .tilemapTop = 9,
+        .width = 6,
+        .height = 4,
+        .paletteNum = 0xF,
+        .baseBlock = 0x28a
+    },
 };
 
 static const struct ListMenuTemplate sApricornListMenuTemplate =
 {
     .items = NULL,
-    .moveCursorFunc = NULL,
+    .moveCursorFunc = ApricornMenu_MoveCursor,
     .itemPrintFunc = ApricornMenu_ItemPrint,
     .totalItems = 0,
     .maxShowed = 0,
@@ -79,6 +110,8 @@ static const struct ListMenuTemplate sApricornListMenuTemplate =
     .scrollMultiple = FALSE,
     .fontId = 1
 };
+
+static const struct YesNoFuncTable sYesNoFunctions = {ApricornMenu_GiveApricornsToKurt, ApricornMenu_ReturnToMain};
 
 void SelectApricornForKurt(void)
 {
@@ -121,7 +154,7 @@ static void InitApricornMenu(u8 taskId)
 
     ApricornMenu_RefreshListMenu();
     sApricornMenu->listMenuTaskId = ListMenuInit(&gMultiuseListMenuTemplate, sApricornMenu->itemsAbove, sApricornMenu->cursorPos);
-    ApricornMenu_AddScrollIndicator();
+    ApricornMenu_AddMainScrollIndicator();
 
     gTasks[taskId].func = ApricornMenu_Main_ProcessInput;
 }
@@ -183,7 +216,7 @@ static void ApricornMenu_RefreshListMenu(void)
     gMultiuseListMenuTemplate.maxShowed = sApricornMenu->pageItems;
 }
 
-static void ApricornMenu_AddScrollIndicator(void)
+static void ApricornMenu_AddMainScrollIndicator(void)
 {
     if (sApricornMenu->scrollIndicatorId == 0xFF)
         sApricornMenu->scrollIndicatorId = AddScrollIndicatorArrowPairParameterized(SCROLL_ARROW_UP,
@@ -194,6 +227,22 @@ static void ApricornMenu_AddScrollIndicator(void)
                                                                                     5112,
                                                                                     5112,
                                                                                     &sApricornMenu->itemsAbove);
+}
+
+static void ApricornMenu_AddQuantityScrollIndicator(void)
+{
+    if (sApricornMenu->scrollIndicatorId == 0xFF)
+    {
+        sApricornMenu->fakeIdForArrows = 1;
+        sApricornMenu->scrollIndicatorId = AddScrollIndicatorArrowPairParameterized(SCROLL_ARROW_UP,
+                                                                                    212,
+                                                                                    70,
+                                                                                    106,
+                                                                                    2,
+                                                                                    5112,
+                                                                                    5112,
+                                                                                    &sApricornMenu->fakeIdForArrows);
+    }
 }
 
 static void ApricornMenu_RemoveScrollIndicator(void)
@@ -223,9 +272,8 @@ static void ApricornMenu_Main_ProcessInput(u8 taskId)
         break;
     default:
         PlaySE(SE_SELECT);
-        VarSet(VAR_KURT_GIVEN_APRICORN, sApricornMenu->apricorns[id].itemId - ITEM_RED_APRICORN);
-        VarSet(VAR_KURT_GIVEN_APRICORN_QTY, 1);
-        ApricornMenu_Exit(taskId);
+        ApricornMenu_RemoveScrollIndicator();
+        ApricornMenu_KurtAsksQuantity(taskId, sApricornMenu->itemsAbove + sApricornMenu->cursorPos);
         break;
     }
 }
@@ -236,9 +284,132 @@ static void ApricornMenu_ItemPrint(u8 windowId, s32 id, u8 yOffset)
     {
         ConvertIntToDecimalStringN(gStringVar1, sApricornMenu->apricorns[id].quantity, STR_CONV_MODE_RIGHT_ALIGN, 3);
         StringExpandPlaceholders(gStringVar4, gText_xVar1);
-        AddTextPrinterParameterized(windowId, 0, gStringVar4, GetStringRightAlignXOffset(0, gStringVar4, 120), yOffset, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 0, gStringVar4, GetStringRightAlignXOffset(0, gStringVar4, 112), yOffset, TEXT_SPEED_FF, NULL);
     }
 }
+
+void ApricornMenu_MoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *unused)
+{
+    if (onInit != TRUE)
+    {
+        PlaySE(SE_SELECT);
+    }
+}
+
+#define tApricornIdx    data[0]
+#define tItemId         data[1]
+#define tItemCount      data[2]
+
+static void ApricornMenu_KurtAsksQuantity(u8 taskId, s32 whichApricorn)
+{
+    s16 *data = gTasks[taskId].data;
+
+    tItemCount = 1;
+    tApricornIdx = whichApricorn;
+    
+    if (sApricornMenu->apricorns[whichApricorn].quantity <= 1)
+    {
+        ApricornMenu_InitConfirmGive(taskId);
+    }
+    else
+    {
+        DisplayItemMessageOnField(taskId, gText_HowManyApricorns, ApricornMenu_InitQuantityBox);
+    }
+}
+
+static void ApricornMenu_InitQuantityBox(u8 taskId)
+{
+    u8 windowId = AddWindowIfNotPresent(WIN_QUANTITY);
+    ApricornMenu_AddQuantityScrollIndicator();
+    ApricornMenu_PrintQuantity(windowId, gTasks[taskId].tItemCount);
+    gTasks[taskId].func = ApricornMenu_ChangeQuantityToGive;
+}
+
+static void ApricornMenu_ChangeQuantityToGive(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    u16 totalInBag = sApricornMenu->apricorns[tApricornIdx].quantity;
+
+    if (AdjustQuantityAccordingToDPadInput(&tItemCount, totalInBag) == TRUE)
+    {
+        ApricornMenu_PrintQuantity(sApricornMenu->windowIds[WIN_QUANTITY], tItemCount);
+    }
+    else if (gMain.newKeys & A_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        RemoveWindowIfPresent(WIN_QUANTITY);
+        ApricornMenu_RemoveScrollIndicator();
+        ApricornMenu_InitConfirmGive(taskId);
+    }
+    else if (gMain.newKeys & B_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        RemoveWindowIfPresent(WIN_QUANTITY);
+        ApricornMenu_RemoveScrollIndicator();
+        ApricornMenu_ReturnToMain(taskId);
+    }
+}
+
+static void ApricornMenu_ReturnToMain(u8 taskId)
+{
+    ApricornMenu_AddMainScrollIndicator();
+    DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, 1, 0, gText_WhichApricorn, ApricornMenu_Main_ProcessInput);
+}
+
+static void ApricornMenu_PrintQuantity(int windowId, int numToGive)
+{
+    u8 colors[] = {0, 2, 3};
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
+    ConvertIntToDecimalStringN(gStringVar1, numToGive, STR_CONV_MODE_LEADING_ZEROS, 3);
+    StringExpandPlaceholders(gStringVar4, gText_xVar1);
+    AddTextPrinterParameterized4(windowId, 0, 4, 10, 1, 0, colors, TEXT_SPEED_FF, gStringVar4);
+    CopyWindowToVram(windowId, 2);
+}
+
+static void ApricornMenu_InitConfirmGive(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    tItemCount = (tItemCount > sApricornMenu->apricorns[tApricornIdx].quantity)
+                        ? sApricornMenu->apricorns[tApricornIdx].quantity : tItemCount;
+    tItemId = sApricornMenu->apricorns[tApricornIdx].itemId;
+
+    if (tItemCount > 1)
+    {
+        u8 *name = CopyItemName(tItemId, gStringVar2);
+        *name++ = CHAR_S;
+        *name = EOS;
+        ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEFT_ALIGN, 3);
+    }
+    else
+    {
+        CopyItemName(tItemId, gStringVar2);
+        u8 *count = gStringVar1;
+        *count++ = CHAR_a;
+        *count = EOS;
+    }
+
+    StringExpandPlaceholders(gStringVar4, gText_ConfirmApricorns);
+
+    DisplayItemMessageOnField(taskId, gStringVar4, ApricornMenu_ConfirmGive);
+}
+
+static void ApricornMenu_ConfirmGive(u8 taskId)
+{
+    CreateYesNoMenuWithCallbacks(taskId, &sApricornMenuWindows[WIN_YESNO], 1, 0, 2, 532, 14, &sYesNoFunctions);
+}
+
+static void ApricornMenu_GiveApricornsToKurt(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    VarSet(VAR_KURT_GIVEN_APRICORN, tItemId);
+    VarSet(VAR_KURT_GIVEN_APRICORN_QTY, tItemCount);
+    RemoveBagItem(tItemId, tItemCount);
+    gTasks[taskId].func = ApricornMenu_Exit;
+}
+
+#undef tItemCount
+#undef tApricornIdx
 
 static void ApricornMenu_Exit(u8 taskId)
 {

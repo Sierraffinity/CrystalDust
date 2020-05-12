@@ -3094,5 +3094,7 @@ extern const u8 gText_Cuteness[];
 extern const u8 gText_Beauty3[];
 
 extern const u8 gText_WhichApricorn[];
+extern const u8 gText_HowManyApricorns[];
+extern const u8 gText_ConfirmApricorns[];
 
 #endif // GUARD_STRINGS_H
