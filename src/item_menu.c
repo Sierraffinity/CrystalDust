@@ -1713,35 +1713,11 @@ void sub_81AC644(u8 unused)
     CopyItemName(gSpecialVar_ItemId, gStringVar1);
     StringExpandPlaceholders(gStringVar4, gText_Var1IsSelected);
     BagMenu_Print(windowId, 1, gStringVar4, 0, 2, 1, 0, 0, 1);
-
-    /*if (gBagPositionStruct.pocket == TMHM_POCKET)
-    {
-        ClearWindowTilemap(1);
-        PrintTMHMMoveData(gSpecialVar_ItemId);
-        PutWindowTilemap(3);
-        PutWindowTilemap(4);
-        schedule_bg_copy_tilemap_to_vram(0);
-    }
-    else
-    {
-        CopyItemName(gSpecialVar_ItemId, gStringVar1);
-        StringExpandPlaceholders(gStringVar4, gText_Var1IsSelected);
-        FillWindowPixelBuffer(1, PIXEL_FILL(0));
-        BagMenu_Print(1, 1, gStringVar4, 3, 1, 0, 0, 0, 0);
-    }
-    if (gBagMenu->contextMenuNumItems == 1)
-        sub_81ACAF8(BagMenu_AddWindow(0, 0));
-    else if (gBagMenu->contextMenuNumItems == 2)
-        sub_81ACAF8(BagMenu_AddWindow(1, 0));
-    else if (gBagMenu->contextMenuNumItems == 4)
-        sub_81ACB54(BagMenu_AddWindow(2, 0), 2, 2);
-    else
-        sub_81ACB54(BagMenu_AddWindow(3, 0), 2, 3);*/
 }
 
-void sub_81ACAF8(u8 a)
+void sub_81ACAF8(u8 windowId)
 {
-    AddItemMenuActionTextPrinters(a, 7, 8, 1, 0, 16, gBagMenu->contextMenuNumItems, sItemMenuActions, gBagMenu->contextMenuItemsPtr);
+    AddItemMenuActionTextPrinters(windowId, 7, 8, 1, 0, 16, gBagMenu->contextMenuNumItems, sItemMenuActions, gBagMenu->contextMenuItemsPtr);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(a, 1, 0, 1, 16, gBagMenu->contextMenuNumItems, 0);
 }
 
@@ -2570,9 +2546,9 @@ void SetupBagMenu_Textboxes(void)
     memset(gBagMenu->windowPointers, 0xFF, 10);
 }
 
-void BagMenu_Print(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 h)
+void BagMenu_Print(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIndex)
 {
-    AddTextPrinterParameterized4(windowId, fontId, left, top, letterSpacing, lineSpacing, sFontColorTable[h], speed, str);
+    AddTextPrinterParameterized4(windowId, fontId, left, top, letterSpacing, lineSpacing, sFontColorTable[colorIndex], speed, str);
 }
 
 u8 GetBagWindow(u8 a)
