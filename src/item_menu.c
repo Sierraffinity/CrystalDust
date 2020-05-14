@@ -913,11 +913,14 @@ void BagMenu_MoveCursorCallback(s32 itemIndex, bool8 onInit, struct ListMenu *un
     }
     if (gBagMenu->itemOriginalLocation == 0xFF)
     {
+        // Hide current icon, remove icon from two instances ago
+        HideBagItemIconSprite(gBagMenu->itemMenuIcon ^ 1);
+        RemoveBagItemIconSprite(gBagMenu->itemMenuIcon);
         if (itemIndex != LIST_CANCEL)
            AddBagItemIconSprite(BagGetItemIdByPocketPosition(gBagPositionStruct.pocket + 1, itemIndex), gBagMenu->itemMenuIcon);
         else
            AddBagItemIconSprite(-1, gBagMenu->itemMenuIcon);
-        RemoveBagItemIconSprite(gBagMenu->itemMenuIcon ^= 1);
+        gBagMenu->itemMenuIcon ^= 1;
         if (!gBagMenu->inhibitItemDescriptionPrint)
             BagMenu_PrintDescription(itemIndex);
     }

@@ -23,6 +23,7 @@ void FreeBerryTagSpritePalette(void);
 u8 LoadSpinningBerryPicGfx(u8 berryId, u8 x, u8 y, bool8 startAffine);
 u8 CreateBerryFlavorCircleSprite(s16 x);
 void ResetItemMenuIconState(void);
+void HideBagItemIconSprite(u8 id);
 
 #define TAG_BAG_GFX 100
 #define TAG_ROTATING_BALL_GFX 101

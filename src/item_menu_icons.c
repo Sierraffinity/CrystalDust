@@ -423,6 +423,15 @@ void RemoveBagItemIconSprite(u8 id)
     RemoveBagSprite(id);
 }
 
+void HideBagItemIconSprite(u8 id)
+{
+    u8 *spriteId = &gBagMenu->spriteId[10];
+    if (spriteId[id] != 0xFF)
+    {
+        gSprites[spriteId[id]].invisible = TRUE;
+    }
+}
+
 void sub_80D4FAC(void)
 {
     sub_8122344(&gBagMenu->spriteId[1], 9);
