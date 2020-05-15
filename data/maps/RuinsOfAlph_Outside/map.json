@@ -1,6 +1,6 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": true,
+    "allow_cycling": true,
+    "allow_escaping": true,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -55,7 +55,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "RuinsOfAlph_Outside_EventScript_Boy2",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 17,
             "y": 11
@@ -69,7 +69,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "script": "RuinsOfAlph_Outside_EventScript_Boy1",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 19,
             "y": 16
@@ -83,7 +83,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 15,
             "y": 21
@@ -97,7 +97,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "RuinsOfAlph_Outside_EventScript_ScaredMan",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 19,
             "y": 22
@@ -111,7 +111,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 7,
             "y": 26

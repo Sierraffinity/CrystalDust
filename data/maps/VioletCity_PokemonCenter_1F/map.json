@@ -1,6 +1,6 @@
 {
-    "allow_bike": false,
-    "allow_escape_rope": false,
+    "allow_cycling": false,
+    "allow_escaping": false,
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -23,7 +23,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "VioletCity_PokemonCenter_1F_EventScript_Nurse",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 7,
             "y": 2
@@ -37,7 +37,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "VioletCity_PokemonCenter_1F_EventScript_Gameboy_Kid",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 11,
             "y": 5
@@ -51,7 +51,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "VioletCity_PokemonCenter_1F_EventScript_Gentleman",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 2,
             "y": 3
@@ -65,7 +65,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "VioletCity_PokemonCenter_1F_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 12,
             "y": 2
@@ -79,7 +79,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "VioletCity_PokemonCenter_1F_EventScript_Aide",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 6,
             "y": 4

@@ -368,6 +368,7 @@ static void ApricornMenu_PrintQuantity(int windowId, int numToGive)
 
 static void ApricornMenu_InitConfirmGive(u8 taskId)
 {
+    u8 *str;
     s16 *data = gTasks[taskId].data;
     tItemCount = (tItemCount > sApricornMenu->apricorns[tApricornIdx].quantity)
                         ? sApricornMenu->apricorns[tApricornIdx].quantity : tItemCount;
@@ -375,17 +376,17 @@ static void ApricornMenu_InitConfirmGive(u8 taskId)
 
     if (tItemCount > 1)
     {
-        u8 *name = CopyItemName(tItemId, gStringVar2);
-        *name++ = CHAR_S;
-        *name = EOS;
+        str = CopyItemName(tItemId, gStringVar2);
+        *str++ = CHAR_S;
+        *str = EOS;
         ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEFT_ALIGN, 3);
     }
     else
     {
         CopyItemName(tItemId, gStringVar2);
-        u8 *count = gStringVar1;
-        *count++ = CHAR_a;
-        *count = EOS;
+        str = gStringVar1;
+        *str++ = CHAR_a;
+        *str = EOS;
     }
 
     StringExpandPlaceholders(gStringVar4, gText_ConfirmApricorns);

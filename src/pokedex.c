@@ -667,10 +667,12 @@ static const union AnimCmd *const sSpriteAnimTable_DexListStartMenuCursor[] =
     sSpriteAnim_DexListStartMenuCursor
 };
 
+#define TAG_DEX_INTERFACE 4096 // Tile and pal tag used for all interface sprites.
+
 static const struct SpriteTemplate sScrollBarSpriteTemplate =
 {
-    .tileTag = 4096,
-    .paletteTag = 4096,
+    .tileTag = TAG_DEX_INTERFACE,
+    .paletteTag = TAG_DEX_INTERFACE,
     .oam = &sOamData_ScrollBar,
     .anims = sSpriteAnimTable_ScrollBar,
     .images = NULL,
@@ -680,8 +682,8 @@ static const struct SpriteTemplate sScrollBarSpriteTemplate =
 
 static const struct SpriteTemplate sScrollArrowSpriteTemplate =
 {
-    .tileTag = 4096,
-    .paletteTag = 4096,
+    .tileTag = TAG_DEX_INTERFACE,
+    .paletteTag = TAG_DEX_INTERFACE,
     .oam = &sOamData_ScrollArrow,
     .anims = sSpriteAnimTable_ScrollArrow,
     .images = NULL,
@@ -691,8 +693,8 @@ static const struct SpriteTemplate sScrollArrowSpriteTemplate =
 
 static const struct SpriteTemplate sInterfaceTextSpriteTemplate =
 {
-    .tileTag = 4096,
-    .paletteTag = 4096,
+    .tileTag = TAG_DEX_INTERFACE,
+    .paletteTag = TAG_DEX_INTERFACE,
     .oam = &sOamData_InterfaceText,
     .anims = sSpriteAnimTable_InterfaceText,
     .images = NULL,
@@ -702,8 +704,8 @@ static const struct SpriteTemplate sInterfaceTextSpriteTemplate =
 
 static const struct SpriteTemplate sRotatingPokeBallSpriteTemplate =
 {
-    .tileTag = 4096,
-    .paletteTag = 4096,
+    .tileTag = TAG_DEX_INTERFACE,
+    .paletteTag = TAG_DEX_INTERFACE,
     .oam = &sOamData_RotatingPokeBall,
     .anims = sSpriteAnimTable_RotatingPokeBall,
     .images = NULL,
@@ -713,8 +715,8 @@ static const struct SpriteTemplate sRotatingPokeBallSpriteTemplate =
 
 static const struct SpriteTemplate sSeenOwnTextSpriteTemplate =
 {
-    .tileTag = 4096,
-    .paletteTag = 4096,
+    .tileTag = TAG_DEX_INTERFACE,
+    .paletteTag = TAG_DEX_INTERFACE,
     .oam = &sOamData_SeenOwnText,
     .anims = sSpriteAnimTable_SeenOwnText,
     .images = NULL,
@@ -724,8 +726,8 @@ static const struct SpriteTemplate sSeenOwnTextSpriteTemplate =
 
 static const struct SpriteTemplate sHoennNationalTextSpriteTemplate =
 {
-    .tileTag = 4096,
-    .paletteTag = 4096,
+    .tileTag = TAG_DEX_INTERFACE,
+    .paletteTag = TAG_DEX_INTERFACE,
     .oam = &sOamData_InterfaceText,
     .anims = sSpriteAnimTable_HoennNationalText,
     .images = NULL,
@@ -735,8 +737,8 @@ static const struct SpriteTemplate sHoennNationalTextSpriteTemplate =
 
 static const struct SpriteTemplate sHoennDexSeenOwnNumberSpriteTemplate =
 {
-    .tileTag = 4096,
-    .paletteTag = 4096,
+    .tileTag = TAG_DEX_INTERFACE,
+    .paletteTag = TAG_DEX_INTERFACE,
     .oam = &sOamData_Dex8x16,
     .anims = sSpriteAnimTable_HoennSeenOwnNumber,
     .images = NULL,
@@ -746,8 +748,8 @@ static const struct SpriteTemplate sHoennDexSeenOwnNumberSpriteTemplate =
 
 static const struct SpriteTemplate sNationalDexSeenOwnNumberSpriteTemplate =
 {
-    .tileTag = 4096,
-    .paletteTag = 4096,
+    .tileTag = TAG_DEX_INTERFACE,
+    .paletteTag = TAG_DEX_INTERFACE,
     .oam = &sOamData_Dex8x16,
     .anims = sSpriteAnimTable_NationalSeenOwnNumber,
     .images = NULL,
@@ -757,8 +759,8 @@ static const struct SpriteTemplate sNationalDexSeenOwnNumberSpriteTemplate =
 
 static const struct SpriteTemplate sDexListStartMenuCursorSpriteTemplate =
 {
-    .tileTag = 4096,
-    .paletteTag = 4096,
+    .tileTag = TAG_DEX_INTERFACE,
+    .paletteTag = TAG_DEX_INTERFACE,
     .oam = &sOamData_Dex8x16,
     .anims = sSpriteAnimTable_DexListStartMenuCursor,
     .images = NULL,
@@ -768,13 +770,13 @@ static const struct SpriteTemplate sDexListStartMenuCursorSpriteTemplate =
 
 static const struct CompressedSpriteSheet sInterfaceSpriteSheet[] =
 {
-    {gPokedexInterface_Gfx, 0x2000, 4096},
+    {gPokedexInterface_Gfx, 0x2000, TAG_DEX_INTERFACE},
     {0}
 };
 
 static const struct SpritePalette sInterfaceSpritePalette[] =
 {
-    {gPokedexBgHoenn_Pal, 4096},
+    {gPokedexBgHoenn_Pal, TAG_DEX_INTERFACE},
     {0}
 };
 
@@ -894,7 +896,7 @@ static const struct BgTemplate sInfoScreen_BgTemplate[] =
 
 static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
 {
-    [WIN_INFO] = 
+    [WIN_INFO] =
     {
         .bg = 2,
         .tilemapLeft = 0,
@@ -904,7 +906,7 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 1,
     },
-    [WIN_FOOTPRINT] = 
+    [WIN_FOOTPRINT] =
     {
         .bg = 2,
         .tilemapLeft = 25,
@@ -914,7 +916,7 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
         .paletteNum = 15,
         .baseBlock = 641,
     },
-    [WIN_CRY_WAVE] = 
+    [WIN_CRY_WAVE] =
     {
         .bg = 0,
         .tilemapLeft = 0,
@@ -924,7 +926,7 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
         .paletteNum = 8,
         .baseBlock = 645,
     },
-    [WIN_VU_METER] = 
+    [WIN_VU_METER] =
     {
         .bg = 2,
         .tilemapLeft = 18,
@@ -961,7 +963,7 @@ static const struct BgTemplate sNewEntryInfoScreen_BgTemplate[] =
 
 static const struct WindowTemplate sNewEntryInfoScreen_WindowTemplates[] =
 {
-    [WIN_INFO] = 
+    [WIN_INFO] =
     {
         .bg = 2,
         .tilemapLeft = 0,
@@ -971,7 +973,7 @@ static const struct WindowTemplate sNewEntryInfoScreen_WindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 1,
     },
-    [WIN_FOOTPRINT] = 
+    [WIN_FOOTPRINT] =
     {
         .bg = 2,
         .tilemapLeft = 25,
@@ -1013,21 +1015,21 @@ static const u8 sLetterSearchRanges[][4] =
 
 static const struct SearchMenuTopBarItem sSearchMenuTopBarItems[SEARCH_TOPBAR_COUNT] =
 {
-    [SEARCH_TOPBAR_SEARCH] = 
+    [SEARCH_TOPBAR_SEARCH] =
     {
         .description = gText_SearchForPkmnBasedOnParameters,
         .highlightX = 0,
         .highlightY = 0,
         .highlightWidth = 5,
     },
-    [SEARCH_TOPBAR_SHIFT] = 
+    [SEARCH_TOPBAR_SHIFT] =
     {
         .description = gText_SwitchPokedexListings,
         .highlightX = 6,
         .highlightY = 0,
         .highlightWidth = 5,
     },
-    [SEARCH_TOPBAR_CANCEL] = 
+    [SEARCH_TOPBAR_CANCEL] =
     {
         .description = gText_ReturnToPokedex,
         .highlightX = 12,
@@ -1038,7 +1040,7 @@ static const struct SearchMenuTopBarItem sSearchMenuTopBarItems[SEARCH_TOPBAR_CO
 
 static const struct SearchMenuItem sSearchMenuItems[SEARCH_COUNT] =
 {
-    [SEARCH_NAME] = 
+    [SEARCH_NAME] =
     {
         .description = gText_ListByFirstLetter,
         .titleBgX = 0,
@@ -1048,7 +1050,7 @@ static const struct SearchMenuItem sSearchMenuItems[SEARCH_COUNT] =
         .selectionBgY = 2,
         .selectionBgWidth = 12,
     },
-    [SEARCH_COLOR] = 
+    [SEARCH_COLOR] =
     {
         .description = gText_ListByBodyColor,
         .titleBgX = 0,
@@ -1058,7 +1060,7 @@ static const struct SearchMenuItem sSearchMenuItems[SEARCH_COUNT] =
         .selectionBgY = 4,
         .selectionBgWidth = 12,
     },
-    [SEARCH_TYPE_LEFT] = 
+    [SEARCH_TYPE_LEFT] =
     {
         .description = gText_ListByType,
         .titleBgX = 0,
@@ -1068,7 +1070,7 @@ static const struct SearchMenuItem sSearchMenuItems[SEARCH_COUNT] =
         .selectionBgY = 6,
         .selectionBgWidth = 6,
     },
-    [SEARCH_TYPE_RIGHT] = 
+    [SEARCH_TYPE_RIGHT] =
     {
         .description = gText_ListByType,
         .titleBgX = 0,
@@ -1078,7 +1080,7 @@ static const struct SearchMenuItem sSearchMenuItems[SEARCH_COUNT] =
         .selectionBgY = 6,
         .selectionBgWidth = 6,
     },
-    [SEARCH_ORDER] = 
+    [SEARCH_ORDER] =
     {
         .description = gText_SelectPokedexListingMode,
         .titleBgX = 0,
@@ -1088,7 +1090,7 @@ static const struct SearchMenuItem sSearchMenuItems[SEARCH_COUNT] =
         .selectionBgY = 8,
         .selectionBgWidth = 12,
     },
-    [SEARCH_MODE] = 
+    [SEARCH_MODE] =
     {
         .description = gText_SelectPokedexMode,
         .titleBgX = 0,
@@ -1098,7 +1100,7 @@ static const struct SearchMenuItem sSearchMenuItems[SEARCH_COUNT] =
         .selectionBgY = 10,
         .selectionBgWidth = 12,
     },
-    [SEARCH_OK] = 
+    [SEARCH_OK] =
     {
         .description = gText_ExecuteSearchSwitch,
         .titleBgX = 0,
@@ -1113,52 +1115,52 @@ static const struct SearchMenuItem sSearchMenuItems[SEARCH_COUNT] =
 // Left, Right, Up, Down
 static const u8 sSearchMovementMap_SearchNatDex[SEARCH_COUNT][4] =
 {
-    [SEARCH_NAME] = 
+    [SEARCH_NAME] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF,    
+        0xFF,
+        0xFF,
+        0xFF,
         SEARCH_COLOR
     },
-    [SEARCH_COLOR] = 
+    [SEARCH_COLOR] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_NAME,    
+        0xFF,
+        0xFF,
+        SEARCH_NAME,
         SEARCH_TYPE_LEFT
     },
-    [SEARCH_TYPE_LEFT] = 
-    {   
-        0xFF,    
-        SEARCH_TYPE_RIGHT,    
-        SEARCH_COLOR,    
-        SEARCH_ORDER
-    },
-    [SEARCH_TYPE_RIGHT] = 
-    {   SEARCH_TYPE_LEFT, 
-        0xFF,    
-        SEARCH_COLOR,    
-        SEARCH_ORDER
-    },
-    [SEARCH_ORDER] = 
+    [SEARCH_TYPE_LEFT] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_TYPE_LEFT,    
+        0xFF,
+        SEARCH_TYPE_RIGHT,
+        SEARCH_COLOR,
+        SEARCH_ORDER
+    },
+    [SEARCH_TYPE_RIGHT] =
+    {   SEARCH_TYPE_LEFT,
+        0xFF,
+        SEARCH_COLOR,
+        SEARCH_ORDER
+    },
+    [SEARCH_ORDER] =
+    {
+        0xFF,
+        0xFF,
+        SEARCH_TYPE_LEFT,
         SEARCH_MODE
     },
-    [SEARCH_MODE] = 
+    [SEARCH_MODE] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_ORDER,    
+        0xFF,
+        0xFF,
+        SEARCH_ORDER,
         SEARCH_OK
     },
-    [SEARCH_OK] = 
+    [SEARCH_OK] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_MODE, 
+        0xFF,
+        0xFF,
+        SEARCH_MODE,
         0xFF
     },
 };
@@ -1166,53 +1168,53 @@ static const u8 sSearchMovementMap_SearchNatDex[SEARCH_COUNT][4] =
 // Left, Right, Up, Down
 static const u8 sSearchMovementMap_ShiftNatDex[SEARCH_COUNT][4] =
 {
-    [SEARCH_NAME] = 
+    [SEARCH_NAME] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
-    [SEARCH_COLOR] = 
+    [SEARCH_COLOR] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
-    [SEARCH_TYPE_LEFT] = 
+    [SEARCH_TYPE_LEFT] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
-    [SEARCH_TYPE_RIGHT] = 
+    [SEARCH_TYPE_RIGHT] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
-    [SEARCH_ORDER] = 
+    [SEARCH_ORDER] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF,    
+        0xFF,
+        0xFF,
+        0xFF,
         SEARCH_MODE
     },
-    [SEARCH_MODE] = 
+    [SEARCH_MODE] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_ORDER,    
+        0xFF,
+        0xFF,
+        SEARCH_ORDER,
         SEARCH_OK
     },
-    [SEARCH_OK] = 
+    [SEARCH_OK] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_MODE, 
+        0xFF,
+        0xFF,
+        SEARCH_MODE,
         0xFF
     },
 };
@@ -1220,52 +1222,52 @@ static const u8 sSearchMovementMap_ShiftNatDex[SEARCH_COUNT][4] =
 // Left, Right, Up, Down
 static const u8 sSearchMovementMap_SearchHoennDex[SEARCH_COUNT][4] =
 {
-    [SEARCH_NAME] = 
+    [SEARCH_NAME] =
     {
         0xFF,
-        0xFF, 
-        0xFF,    
+        0xFF,
+        0xFF,
         SEARCH_COLOR
     },
-    [SEARCH_COLOR] = 
+    [SEARCH_COLOR] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_NAME,    
+        0xFF,
+        0xFF,
+        SEARCH_NAME,
         SEARCH_TYPE_LEFT
     },
-    [SEARCH_TYPE_LEFT] = 
+    [SEARCH_TYPE_LEFT] =
     {
-        0xFF,    
-        SEARCH_TYPE_RIGHT,    
-        SEARCH_COLOR,    
+        0xFF,
+        SEARCH_TYPE_RIGHT,
+        SEARCH_COLOR,
         SEARCH_ORDER
     },
-    [SEARCH_TYPE_RIGHT] = 
-    {   SEARCH_TYPE_LEFT, 
-        0xFF,    
-        SEARCH_COLOR,    
+    [SEARCH_TYPE_RIGHT] =
+    {   SEARCH_TYPE_LEFT,
+        0xFF,
+        SEARCH_COLOR,
         SEARCH_ORDER
     },
     [SEARCH_ORDER] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_TYPE_LEFT,    
+        0xFF,
+        0xFF,
+        SEARCH_TYPE_LEFT,
         SEARCH_OK
     },
-    [SEARCH_MODE] = 
+    [SEARCH_MODE] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
-    [SEARCH_OK] = 
+    [SEARCH_OK] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_ORDER, 
+        0xFF,
+        0xFF,
+        SEARCH_ORDER,
         0xFF
     },
 };
@@ -1273,53 +1275,53 @@ static const u8 sSearchMovementMap_SearchHoennDex[SEARCH_COUNT][4] =
 // Left, Right, Up, Down
 static const u8 sSearchMovementMap_ShiftHoennDex[SEARCH_COUNT][4] =
 {
-    [SEARCH_NAME] = 
+    [SEARCH_NAME] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
     [SEARCH_COLOR] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
-    [SEARCH_TYPE_LEFT] = 
+    [SEARCH_TYPE_LEFT] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
-    [SEARCH_TYPE_RIGHT] = 
+    [SEARCH_TYPE_RIGHT] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
-    [SEARCH_ORDER] = 
+    [SEARCH_ORDER] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF,    
+        0xFF,
+        0xFF,
+        0xFF,
         SEARCH_OK
     },
-    [SEARCH_MODE] = 
+    [SEARCH_MODE] =
     {
-        0xFF, 
-        0xFF, 
-        0xFF, 
+        0xFF,
+        0xFF,
+        0xFF,
         0xFF
     },
-    [SEARCH_OK] = 
+    [SEARCH_OK] =
     {
-        0xFF, 
-        0xFF,    
-        SEARCH_ORDER, 
+        0xFF,
+        0xFF,
+        SEARCH_ORDER,
         0xFF
     },
 };
@@ -2839,7 +2841,7 @@ static void CreateInterfaceSprites(u8 page)
             spriteId = CreateSprite(&sHoennDexSeenOwnNumberSpriteTemplate, 40, 48, 1);
             digitNum = (sPokedexView->seenCount % 100) % 10;
             StartSpriteAnim(&gSprites[spriteId], digitNum);
-            
+
             // Owned value - 100s
             drawNextDigit = FALSE;
             spriteId = CreateSprite(&sHoennDexSeenOwnNumberSpriteTemplate, 24, 80, 1);
@@ -3860,9 +3862,7 @@ static void LoadScreenSelectBarSubmenu(u16 unused)
 {
     CopyToBgTilemapBuffer(1, gPokedexScreenSelectBarSubmenu_Tilemap, 0, 0);
 }
-#ifdef NONMATCHING
-// This doesn't match because gcc flips the naming of the r3 and r4
-// registers.
+
 static void HighlightScreenSelectBarItem(u8 selectedScreen, u16 unused)
 {
     u8 i;
@@ -3872,10 +3872,14 @@ static void HighlightScreenSelectBarItem(u8 selectedScreen, u16 unused)
     for (i = 0; i < SCREEN_COUNT; i++)
     {
         u8 row = (i * 7) + 1;
-        u16 newPalette = 0x4000;
+        u16 newPalette;
 
-        if (i == selectedScreen)
-            newPalette = 0x2000;
+        do
+        {
+            newPalette = 0x4000;
+            if (i == selectedScreen)
+                newPalette = 0x2000;
+        } while (0);
 
         for (j = 0; j < 7; j++)
         {
@@ -3885,74 +3889,7 @@ static void HighlightScreenSelectBarItem(u8 selectedScreen, u16 unused)
     }
     CopyBgTilemapBufferToVram(1);
 }
-#else
-__attribute__((naked))
-static void HighlightScreenSelectBarItem(u8 selectedScreen, u16 unused)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r8\n\
-    push {r7}\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    mov r8, r0\n\
-    movs r0, 0x1\n\
-    bl GetBgTilemapBuffer\n\
-    adds r7, r0, 0\n\
-    movs r1, 0\n\
-_080BFD22:\n\
-    lsls r0, r1, 3\n\
-    subs r0, r1\n\
-    adds r0, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r5, r0, 24\n\
-    movs r3, 0x80\n\
-    lsls r3, 7\n\
-    cmp r1, r8\n\
-    bne _080BFD38\n\
-    movs r3, 0x80\n\
-    lsls r3, 6\n\
-_080BFD38:\n\
-    movs r2, 0\n\
-    adds r6, r1, 0x1\n\
-    ldr r4, =0x00000fff\n\
-_080BFD3E:\n\
-    adds r1, r5, r2\n\
-    lsls r1, 1\n\
-    adds r1, r7\n\
-    ldrh r0, [r1]\n\
-    ands r0, r4\n\
-    orrs r0, r3\n\
-    strh r0, [r1]\n\
-    adds r1, 0x40\n\
-    ldrh r0, [r1]\n\
-    ands r0, r4\n\
-    orrs r0, r3\n\
-    strh r0, [r1]\n\
-    adds r0, r2, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r2, r0, 24\n\
-    cmp r2, 0x6\n\
-    bls _080BFD3E\n\
-    lsls r0, r6, 24\n\
-    lsrs r1, r0, 24\n\
-    cmp r1, 0x3\n\
-    bls _080BFD22\n\
-    movs r0, 0x1\n\
-    bl CopyBgTilemapBufferToVram\n\
-    pop {r3}\n\
-    mov r8, r3\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .pool\n\
-    .syntax divided\n");
-}
-#endif
 
-#ifdef NONMATCHING
-// This doesn't match because gcc flips the naming of the r3 and r4
-// registers.
 static void HighlightSubmenuScreenSelectBarItem(u8 a, u16 b)
 {
     u8 i;
@@ -3964,10 +3901,13 @@ static void HighlightSubmenuScreenSelectBarItem(u8 a, u16 b)
         u8 row = i * 7 + 1;
         u32 newPalette;
 
-        if (i == a || i == 3)
-            newPalette = 0x2000;
-        else
-            newPalette = 0x4000;
+        do
+        {
+            if (i == a || i == 3)
+                newPalette = 0x2000;
+            else
+                newPalette = 0x4000;
+        } while (0);
 
         for (j = 0; j < 7; j++)
         {
@@ -3977,75 +3917,6 @@ static void HighlightSubmenuScreenSelectBarItem(u8 a, u16 b)
     }
     CopyBgTilemapBufferToVram(1);
 }
-#else
-__attribute__((naked))
-static void HighlightSubmenuScreenSelectBarItem(u8 a, u16 b)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r8\n\
-    push {r7}\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    mov r8, r0\n\
-    movs r0, 0x1\n\
-    bl GetBgTilemapBuffer\n\
-    adds r7, r0, 0\n\
-    movs r1, 0\n\
-_080BFD92:\n\
-    lsls r0, r1, 3\n\
-    subs r0, r1\n\
-    adds r0, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    cmp r1, r8\n\
-    beq _080BFDA4\n\
-    cmp r1, 0x3\n\
-    bne _080BFDAA\n\
-_080BFDA4:\n\
-    movs r3, 0x80\n\
-    lsls r3, 6\n\
-    b _080BFDAE\n\
-_080BFDAA:\n\
-    movs r3, 0x80\n\
-    lsls r3, 7\n\
-_080BFDAE:\n\
-    movs r2, 0\n\
-    adds r5, r1, 0x1\n\
-    ldr r4, =0x00000fff\n\
-_080BFDB4:\n\
-    adds r1, r6, r2\n\
-    lsls r1, 1\n\
-    adds r1, r7\n\
-    ldrh r0, [r1]\n\
-    ands r0, r4\n\
-    orrs r0, r3\n\
-    strh r0, [r1]\n\
-    adds r1, 0x40\n\
-    ldrh r0, [r1]\n\
-    ands r0, r4\n\
-    orrs r0, r3\n\
-    strh r0, [r1]\n\
-    adds r0, r2, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r2, r0, 24\n\
-    cmp r2, 0x6\n\
-    bls _080BFDB4\n\
-    lsls r0, r5, 24\n\
-    lsrs r1, r0, 24\n\
-    cmp r1, 0x3\n\
-    bls _080BFD92\n\
-    movs r0, 0x1\n\
-    bl CopyBgTilemapBufferToVram\n\
-    pop {r3}\n\
-    mov r8, r3\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .pool\n\
-    .syntax divided\n");
-}
-#endif
 
 #define tState         data[0]
 #define tDexNum        data[1]
@@ -4316,11 +4187,12 @@ static void PrintMonHeight(u16 height, u8 left, u8 top)
     PrintInfoScreenText(buffer, left, top);
 }
 
-#ifdef NONMATCHING
-// This doesn't match because gcc manages to avoid using the stack
-// to store local variables.
 static void PrintMonWeight(u16 weight, u8 left, u8 top)
 {
+#ifndef NONMATCHING
+    asm("":::"r9");
+{
+#endif
     u8 buffer[16];
     bool8 output;
     u8 i = 0;
@@ -4376,226 +4248,10 @@ static void PrintMonWeight(u16 weight, u8 left, u8 top)
     buffer[i++] = CHAR_PERIOD;
     buffer[i++] = EOS;
     PrintInfoScreenText(buffer, left, top);
-}
-#else
-__attribute__((naked))
-static void PrintMonWeight(u16 weight, u8 left, u8 top)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r10\n\
-    mov r6, r9\n\
-    mov r5, r8\n\
-    push {r5-r7}\n\
-    sub sp, 0x14\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    lsls r1, 24\n\
-    lsrs r1, 24\n\
-    mov r10, r1\n\
-    lsls r2, 24\n\
-    lsrs r2, 24\n\
-    str r2, [sp, 0x10]\n\
-    ldr r5, =0x000186a0\n\
-    muls r0, r5\n\
-    ldr r1, =0x000011b8\n\
-    bl __divsi3\n\
-    adds r7, r0, 0\n\
-    movs r1, 0xA\n\
-    bl __umodsi3\n\
-    cmp r0, 0x4\n\
-    bls _080C0494\n\
-    adds r7, 0xA\n\
-_080C0494:\n\
-    movs r0, 0\n\
-    mov r8, r0\n\
-    mov r4, sp\n\
-    adds r0, r7, 0\n\
-    adds r1, r5, 0\n\
-    bl __udivsi3\n\
-    adds r0, 0xA1\n\
-    strb r0, [r4]\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    cmp r0, 0xA1\n\
-    bne _080C04C0\n\
-    movs r6, 0x1\n\
-    mov r1, sp\n\
-    movs r0, 0x77\n\
-    strb r0, [r1]\n\
-    b _080C04C6\n\
-    .pool\n\
-_080C04C0:\n\
-    movs r1, 0x1\n\
-    mov r8, r1\n\
-    movs r6, 0x1\n\
-_080C04C6:\n\
-    ldr r1, =0x000186a0\n\
-    adds r0, r7, 0\n\
-    bl __umodsi3\n\
-    adds r7, r0, 0\n\
-    mov r4, sp\n\
-    adds r4, 0x1\n\
-    ldr r1, =0x00002710\n\
-    bl __udivsi3\n\
-    adds r0, 0xA1\n\
-    strb r0, [r4]\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    cmp r0, 0xA1\n\
-    bne _080C0504\n\
-    mov r2, r8\n\
-    cmp r2, 0\n\
-    bne _080C0504\n\
-    adds r1, r6, 0\n\
-    adds r0, r1, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    add r1, sp\n\
-    movs r0, 0x77\n\
-    strb r0, [r1]\n\
-    b _080C050E\n\
-    .pool\n\
-_080C0504:\n\
-    movs r3, 0x1\n\
-    mov r8, r3\n\
-    adds r0, r6, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-_080C050E:\n\
-    ldr r1, =0x00002710\n\
-    adds r0, r7, 0\n\
-    bl __umodsi3\n\
-    adds r7, r0, 0\n\
-    mov r0, sp\n\
-    adds r4, r0, r6\n\
-    movs r1, 0xFA\n\
-    lsls r1, 2\n\
-    adds r0, r7, 0\n\
-    bl __udivsi3\n\
-    adds r0, 0xA1\n\
-    strb r0, [r4]\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    cmp r0, 0xA1\n\
-    bne _080C054C\n\
-    mov r1, r8\n\
-    cmp r1, 0\n\
-    bne _080C054C\n\
-    adds r1, r6, 0\n\
-    adds r0, r1, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    add r1, sp\n\
-    movs r0, 0x77\n\
-    strb r0, [r1]\n\
-    b _080C0552\n\
-    .pool\n\
-_080C054C:\n\
-    adds r0, r6, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-_080C0552:\n\
-    movs r1, 0xFA\n\
-    lsls r1, 2\n\
-    adds r0, r7, 0\n\
-    bl __umodsi3\n\
-    adds r7, r0, 0\n\
-    adds r1, r6, 0\n\
-    adds r0, r1, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    adds r5, r6, 0\n\
-    mov r2, sp\n\
-    adds r4, r2, r1\n\
-    adds r0, r7, 0\n\
-    movs r1, 0x64\n\
-    bl __udivsi3\n\
-    adds r0, 0xA1\n\
-    movs r3, 0\n\
-    mov r9, r3\n\
-    strb r0, [r4]\n\
-    adds r0, r7, 0\n\
-    movs r1, 0x64\n\
-    bl __umodsi3\n\
-    adds r7, r0, 0\n\
-    adds r0, r5, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    adds r1, r6, 0\n\
-    mov r2, sp\n\
-    adds r0, r2, r5\n\
-    movs r3, 0xAD\n\
-    mov r8, r3\n\
-    mov r2, r8\n\
-    strb r2, [r0]\n\
-    adds r0, r1, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    adds r5, r6, 0\n\
-    mov r3, sp\n\
-    adds r4, r3, r1\n\
-    adds r0, r7, 0\n\
-    movs r1, 0xA\n\
-    bl __udivsi3\n\
-    adds r0, 0xA1\n\
-    strb r0, [r4]\n\
-    adds r0, r5, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    adds r1, r6, 0\n\
-    mov r2, sp\n\
-    adds r0, r2, r5\n\
-    mov r3, r9\n\
-    strb r3, [r0]\n\
-    adds r0, r1, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    adds r2, r6, 0\n\
-    add r1, sp\n\
-    movs r0, 0xE0\n\
-    strb r0, [r1]\n\
-    adds r0, r2, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    adds r3, r6, 0\n\
-    mov r0, sp\n\
-    adds r1, r0, r2\n\
-    movs r0, 0xD6\n\
-    strb r0, [r1]\n\
-    adds r0, r3, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    adds r2, r6, 0\n\
-    mov r0, sp\n\
-    adds r1, r0, r3\n\
-    movs r0, 0xE7\n\
-    strb r0, [r1]\n\
-    adds r0, r2, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    mov r3, sp\n\
-    adds r1, r3, r2\n\
-    mov r2, r8\n\
-    strb r2, [r1]\n\
-    adds r1, r3, r0\n\
-    movs r0, 0xFF\n\
-    strb r0, [r1]\n\
-    mov r0, sp\n\
-    mov r1, r10\n\
-    ldr r2, [sp, 0x10]\n\
-    bl PrintInfoScreenText\n\
-    add sp, 0x14\n\
-    pop {r3-r5}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    mov r10, r5\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .syntax divided\n");
+#ifndef NONMATCHING
 }
 #endif
+}
 
 const u8 *GetPokedexCategoryName(u16 dexNum) // unused
 {

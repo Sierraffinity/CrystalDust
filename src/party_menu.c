@@ -152,7 +152,7 @@ EWRAM_DATA u8 gSelectedMonPartyId = 0;
 EWRAM_DATA MainCallback gPostMenuFieldCallback = NULL;
 static EWRAM_DATA u16 *sSlot1TilemapBuffer = 0; // for switching party slots
 static EWRAM_DATA u16 *sSlot2TilemapBuffer = 0; //
-EWRAM_DATA u8 gSelectedOrderFromParty[4] = {0};
+EWRAM_DATA u8 gSelectedOrderFromParty[MAX_FRONTIER_PARTY_SIZE] = {0};
 static EWRAM_DATA u16 sPartyMenuItemId = 0;
 static EWRAM_DATA u16 sUnused_0203CEFE = 0;
 EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
@@ -5655,9 +5655,9 @@ static u8 GetMaxBattleEntries(void)
     case FACILITY_BUG_CATCHING_CONTEST:
         return 1;
     case FACILITY_MULTI_OR_EREADER:
-        return 3;
+        return MULTI_PARTY_SIZE;
     case FACILITY_UNION_ROOM:
-        return 2;
+        return UNION_ROOM_PARTY_SIZE;
     default: // Battle Frontier
         return gSpecialVar_0x8005;
     }
@@ -5672,7 +5672,7 @@ static u8 GetMinBattleEntries(void)
     case FACILITY_MULTI_OR_EREADER:
         return 1;
     case FACILITY_UNION_ROOM:
-        return 2;
+        return UNION_ROOM_PARTY_SIZE;
     default: // Battle Frontier
         return gSpecialVar_0x8005;
     }
@@ -6111,7 +6111,7 @@ static void Task_MultiPartnerPartySlideIn(u8 taskId)
         SlideMultiPartyMenuBoxSpritesOneStep(taskId);
         if (tXPos == 0)
         {
-            for (i = 3; i < PARTY_SIZE; i++)
+            for (i = MULTI_PARTY_SIZE; i < PARTY_SIZE; i++)
             {
                 if (gMultiPartnerParty[i - MULTI_PARTY_SIZE].species != SPECIES_NONE)
                     AnimateSelectedPartyIcon(sPartyMenuBoxes[i].monSpriteId, 0);

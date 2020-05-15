@@ -1,6 +1,6 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": false,
+    "allow_cycling": true,
+    "allow_escaping": false,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -86,7 +86,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "VioletCity_Earl",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 18,
             "y": 18
@@ -100,7 +100,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "script": "VioletCity_GhostGirl",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 34,
             "y": 32
@@ -114,7 +114,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "script": "VioletCity_PrimeTimeGuy",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 31,
             "y": 16
@@ -128,7 +128,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
             "script": "VioletCity_Gramps",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 22,
             "y": 23
@@ -142,7 +142,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "VioletCity_TreeBoy",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 7,
             "y": 22
@@ -156,7 +156,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "VioletCity_EventScript_ItemPPUp",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 6,
             "y": 3
@@ -170,7 +170,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "VioletCity_EventScript_ItemRareCandy",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 43,
             "y": 5
@@ -184,7 +184,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 44,
             "y": 21

@@ -1,6 +1,6 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": false,
+    "allow_cycling": true,
+    "allow_escaping": false,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -134,7 +134,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "AzaleaTown_EventScript_SlowpokeWell_B1FGuard",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 42,
             "y": 9
@@ -148,7 +148,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "script": "AzaleaTown_EventScript_OldMan",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 31,
             "y": 9
@@ -162,7 +162,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
             "script": "AzaleaTown_EventScript_Woman",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 23,
             "y": 14
@@ -176,7 +176,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
             "script": "AzaleaTown_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 13,
             "y": 9
@@ -190,7 +190,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "AzaleaTown_EventScript_Slowpoke",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 22,
             "y": 20
@@ -204,7 +204,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "AzaleaTown_EventScript_Slowpoke",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 29,
             "y": 7
@@ -218,7 +218,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "AzaleaTown_EventScript_Slowpoke",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 44,
             "y": 9
@@ -232,7 +232,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "AzaleaTown_EventScript_Slowpoke",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 15,
             "y": 16
@@ -246,7 +246,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 19,
             "y": 11
@@ -260,7 +260,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "AzaleaTown_EventScript_GymRocket",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 19,
             "y": 18
@@ -274,7 +274,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 12,
             "y": 3

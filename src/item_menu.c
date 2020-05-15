@@ -1718,7 +1718,7 @@ void sub_81AC644(u8 unused)
 void sub_81ACAF8(u8 windowId)
 {
     AddItemMenuActionTextPrinters(windowId, 7, 8, 1, 0, 16, gBagMenu->contextMenuNumItems, sItemMenuActions, gBagMenu->contextMenuItemsPtr);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(a, 1, 0, 1, 16, gBagMenu->contextMenuNumItems, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, gBagMenu->contextMenuNumItems, 0);
 }
 
 void sub_81ACB54(u8 a, u8 b, u8 c)

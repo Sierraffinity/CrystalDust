@@ -1,6 +1,6 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": true,
+    "allow_cycling": true,
+    "allow_escaping": true,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -24,7 +24,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SlowpokeWell_B1F_EventScript_Rocket1",
             "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 20,
             "y": 7
@@ -38,7 +38,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SlowpokeWell_B1F_EventScript_RocketBoss",
             "trainer_sight_or_berry_tree_id": "1",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 5,
             "y": 1
@@ -52,7 +52,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "SlowpokeWell_B1F_EventScript_Rocket3",
             "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 5,
             "y": 6
@@ -66,7 +66,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "SlowpokeWell_B1F_EventScript_Rocket2",
             "trainer_sight_or_berry_tree_id": "6",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 12,
             "y": 4
@@ -80,7 +80,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "SlowpokeWell_B1F_EventScript_SlowpokeWithMail",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 8,
             "y": 4
@@ -94,7 +94,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "SlowpokeWell_B1F_EventScript_TaillessSlowpoke",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 6,
             "y": 1
@@ -108,7 +108,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SlowpokeWell_B1F_EventScript_Kurt",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 21,
             "y": 17
@@ -122,7 +122,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "EventScript_StrengthBoulder",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 3,
             "y": 1
@@ -136,7 +136,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SlowpokeWell_B1F_EventScript_ItemSuperPotion",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 11,
             "y": 2
@@ -150,7 +150,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 13,
             "y": 6

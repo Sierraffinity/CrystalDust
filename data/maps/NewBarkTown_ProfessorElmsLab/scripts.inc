@@ -142,7 +142,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostTheft:
 	call_if_eq NewBarkTown_ProfessorElmsLab_EventScript_ElmJumpsRight
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmIsThisAnEgg
 	setflag FLAG_ADVENTURE_STARTED
-	special sub_81AFDA0 @ sets up ability to connect with Colosseum/XD
+	special SetUnlockedPokedexFlags @ sets up ability to connect with Colosseum/XD
 	setflag FLAG_GAVE_MYSTERY_EGG_TO_ELM
 	setflag FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS
 	clearflag FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED

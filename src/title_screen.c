@@ -503,7 +503,7 @@ static void Task_TitleScreenProcessInput(u8 taskId)
         FadeOutBGM(4);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_GoToBerryFixScreen);
-    }
+    }   
     else
     {
         UpdatePressStartColor(taskId);

@@ -1,6 +1,6 @@
 {
-    "allow_bike": false,
-    "allow_escape_rope": false,
+    "allow_cycling": false,
+    "allow_escaping": false,
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -55,7 +55,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "NewBarkTown_PlayersHouse_1F_MomTalk",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 8,
             "y": 5
@@ -69,7 +69,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "NewBarkTown_PlayersHouse_1F_NeighborTalk",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 5,
             "y": 5

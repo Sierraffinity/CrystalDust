@@ -1,6 +1,6 @@
 {
-    "allow_bike": false,
-    "allow_escape_rope": false,
+    "allow_cycling": false,
+    "allow_escaping": false,
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -31,7 +31,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 3,
             "y": 6
@@ -45,7 +45,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 4,
             "y": 7
@@ -59,7 +59,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 5,
             "y": 6
@@ -73,7 +73,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 6,
             "y": 7
@@ -87,7 +87,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 7,
             "y": 6
@@ -101,7 +101,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "NationalParkGateEast_BehindCounterOfficer",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 4,
             "y": 3
@@ -115,7 +115,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "NationalParkGateEast_BugContestOfficer",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 1,
             "y": 4

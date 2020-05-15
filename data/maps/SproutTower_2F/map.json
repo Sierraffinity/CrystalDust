@@ -1,6 +1,6 @@
 {
-    "allow_bike": false,
-    "allow_escape_rope": true,
+    "allow_cycling": false,
+    "allow_escaping": true,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -23,7 +23,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "SproutTower_2F_EventScript_SageNico",
             "trainer_sight_or_berry_tree_id": "5",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 12,
             "y": 5
@@ -37,7 +37,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "SproutTower_2F_EventScript_SageEdmond",
             "trainer_sight_or_berry_tree_id": "7",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 10,
             "y": 16
@@ -51,7 +51,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "SproutTower_2F_EventScript_ItemXAccuracy",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 2,
             "y": 2

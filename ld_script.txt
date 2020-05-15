@@ -77,12 +77,13 @@ SECTIONS {
         src/berry_powder.o(.text);
         src/dodrio_berry_picking.o(.text);
         src/pokemon_jump.o(.text);
+        src/minigame_countdown.o(.text);
         src/rtc.o(.text);
         src/day_night.o(.text);
         src/main_menu.o(.text);
         src/battle_controllers.o(.text);
         src/decompress.o(.text);
-        src/rom_8034C54.o(.text);
+        src/digit_obj_util.o(.text);
         src/battle_bg.o(.text);
         src/battle_main.o(.text);
         src/battle_util.o(.text);
@@ -223,6 +224,7 @@ SECTIONS {
         src/time_events.o(.text);
         src/prof_pc.o(.text);
         src/hof_pc.o(.text);
+        src/apricorn_menu.o(.text);
         src/field_specials.o(.text);
         src/battle_records.o(.text);
         src/pokedex_area_screen.o(.text);
@@ -472,11 +474,12 @@ SECTIONS {
         src/berry_powder.o(.rodata);
         src/dodrio_berry_picking.o(.rodata);
         src/pokemon_jump.o(.rodata);
+        src/minigame_countdown.o(.rodata);
         src/rtc.o(.rodata);
         src/day_night.o(.rodata);
         src/main_menu.o(.rodata);
         src/battle_controllers.o(.rodata);
-        src/rom_8034C54.o(.rodata);
+        src/digit_obj_util.o(.rodata);
         src/data.o(.rodata);
         src/battle_bg.o(.rodata);
         src/battle_main.o(.rodata);
@@ -601,6 +604,7 @@ SECTIONS {
         src/pokeblock.o(.rodata);
         src/fldeff_flash.o(.rodata);
         src/time_events.o(.rodata);
+        src/apricorn_menu.o(.rodata);
         src/field_specials.o(.rodata);
         src/battle_records.o(.rodata);
         src/pokedex_area_screen.o(.rodata);

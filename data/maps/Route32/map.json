@@ -1,6 +1,6 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": false,
+    "allow_cycling": true,
+    "allow_escaping": false,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -110,7 +110,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "Route32_EventScript_RoadblockMan",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 25,
             "y": 13
@@ -124,7 +124,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "Route32_EventScript_RoarTMGuy",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 20,
             "y": 18
@@ -138,7 +138,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "Route32_EventScript_Albert",
             "trainer_sight_or_berry_tree_id": "4",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 15,
             "y": 29
@@ -152,7 +152,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "Route32_EventScript_Liz",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 13,
             "y": 37
@@ -166,7 +166,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "Route32_EventScript_ItemRepel",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 5,
             "y": 38
@@ -180,7 +180,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "Route32_EventScript_Roland",
             "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 6,
             "y": 60
@@ -194,7 +194,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "Route32_EventScript_Henry",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 9,
             "y": 64
@@ -208,7 +208,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "Route32_EventScript_Justin",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 11,
             "y": 66
@@ -222,7 +222,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "Route32_EventScript_ItemGreatBall",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 9,
             "y": 71
@@ -236,7 +236,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "Route32_EventScript_Ralph",
             "trainer_sight_or_berry_tree_id": "5",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 16,
             "y": 76
@@ -250,7 +250,7 @@
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "Route32_EventScript_Gordon",
             "trainer_sight_or_berry_tree_id": "5",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 6,
             "y": 87
@@ -264,7 +264,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "Route32_EventScript_SlowpokeTailMan",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 11,
             "y": 94
@@ -278,7 +278,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "Route32_EventScript_Frieda",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 18,
             "y": 91
@@ -292,7 +292,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "Route32_EventScript_Peter",
             "trainer_sight_or_berry_tree_id": "4",
-            "trainer_type": "1",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "type": "original",
             "x": 17,
             "y": 110
@@ -306,7 +306,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "EventScript_CutTree",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 14,
             "y": 25

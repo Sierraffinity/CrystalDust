@@ -1,6 +1,6 @@
 {
-    "allow_bike": false,
-    "allow_escape_rope": true,
+    "allow_cycling": false,
+    "allow_escaping": true,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -55,7 +55,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "RuinsOfAlph_KabutoChamber_EventScript_Scientist",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 4,
             "y": 2
@@ -69,7 +69,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "RuinsOfAlph_KabutoChamber_EventScript_Receptionist",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 7,
             "y": 7
