@@ -100,8 +100,6 @@ static const struct {
     { 13, PASS_STATION, { OAKS_POKEMON_TALK,    POKEMON_MUSIC,              LUCKY_CHANNEL } }
 };
 
-#define FREQ(a) (u8)(a * 2 - 1)
-
 u8 LoadStation_PokemonChannel(void);
 u8 LoadStation_PokemonMusic(void);
 u8 LoadStation_LuckyChannel(void);
@@ -110,12 +108,12 @@ u8 LoadStation_UnownRadio(void);
 u8 LoadStation_EvolutionRadio(void);
 
 const struct RadioStation gRadioStationData[] = {
-    { FREQ(4.5), REGION_JOHTO, LoadStation_PokemonChannel },
-    { FREQ(7.5), REGION_JOHTO, LoadStation_PokemonMusic },
-    { FREQ(8.5), REGION_JOHTO, LoadStation_LuckyChannel },
-    { FREQ(10.5), REGION_JOHTO, LoadStation_BuenasPassword },
-    { FREQ(13.5), REGION_JOHTO, LoadStation_UnownRadio },
-    { FREQ(20.5), REGION_JOHTO, LoadStation_EvolutionRadio },
+    { RADIO_FREQ(4.5), REGION_JOHTO, LoadStation_PokemonChannel },
+    { RADIO_FREQ(7.5), REGION_JOHTO, LoadStation_PokemonMusic },
+    { RADIO_FREQ(8.5), REGION_JOHTO, LoadStation_LuckyChannel },
+    { RADIO_FREQ(10.5), REGION_JOHTO, LoadStation_BuenasPassword },
+    { RADIO_FREQ(13.5), REGION_JOHTO, LoadStation_UnownRadio },
+    { RADIO_FREQ(20.5), REGION_JOHTO, LoadStation_EvolutionRadio },
     { 0xFF, 0xFF, NULL }
 };
 

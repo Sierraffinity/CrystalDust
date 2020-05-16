@@ -1,6 +1,8 @@
 #ifndef GUARD_RADIO_H
 #define GUARD_RADIO_H
 
+#define RADIO_FREQ(a) (u8)(a * 2 - 1)
+
 enum {
     OAKS_POKEMON_TALK,
 	POKEDEX_SHOW,

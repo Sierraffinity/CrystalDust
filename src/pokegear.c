@@ -809,11 +809,11 @@ static void Task_Pokegear3(u8 taskId)
             PlaySE(SE_PN_OFF);
             return;
         }
-        else if (gMain.newKeys & DPAD_LEFT)
+        else if (gMain.newKeys & START_BUTTON)
         {
             newCard = ChangeCardWithDelta(-1, sPokegearStruct.currentCard);
         }
-        else if (gMain.newKeys & DPAD_RIGHT)
+        else if (gMain.newKeys & SELECT_BUTTON)
         {
             newCard = ChangeCardWithDelta(1, sPokegearStruct.currentCard);
         }
@@ -874,11 +874,11 @@ static void Task_SwapCards(u8 taskId)
     s16 *data = gTasks[taskId].data;
     u8 newCard = tNewCard;
 
-    if (gMain.newKeys & DPAD_LEFT)
+    if (gMain.newKeys & START_BUTTON)
     {
         newCard = ChangeCardWithDelta(-1, tNewCard);
     }
-    else if (gMain.newKeys & DPAD_RIGHT)
+    else if (gMain.newKeys & SELECT_BUTTON)
     {
         newCard = ChangeCardWithDelta(1, tNewCard);
     }
@@ -1011,7 +1011,7 @@ static void Task_ClockCard(u8 taskId)
         shouldForceUpdate = TRUE;
     }
 
-    if (gMain.newKeys & SELECT_BUTTON)
+    if (gMain.newKeys & A_BUTTON)
     {
         PlaySE(SE_SELECT);
         gSaveBlock2Ptr->twentyFourHourClock = !gSaveBlock2Ptr->twentyFourHourClock;
@@ -1158,10 +1158,11 @@ static void Task_MapCard(u8 taskId)
                 CreateRegionMapPlayerIcon(1, 1);
                 CreateSecondaryLayerDots(2, 2);
                 CreateRegionMapName(3, 4);
+                ShowRegionMapCursorSprite();
                 tState++;
             }
             break;
-        case 1:
+        /*case 1:
             if (gMain.newKeys & A_BUTTON)
             {
                 PlaySE(SE_HI_TURUN);
@@ -1170,18 +1171,18 @@ static void Task_MapCard(u8 taskId)
                 sPokegearStruct.canSwitchCards = FALSE;
                 tState++;
             }
-            break;
-        case 2:
+            break;*/
+        case 1:
             event = DoRegionMapInputCallback();
             switch (event)
             {
-                case MAP_INPUT_B_BUTTON:
+                /*case MAP_INPUT_B_BUTTON:
                     PlaySE(SE_W063B);
                     ShowHelpBar(gText_MapCardHelp1);
                     HideRegionMapCursorSprite();
                     tState--;
                     sPokegearStruct.canSwitchCards = TRUE;
-                    break;
+                    break;*/
                 case MAP_INPUT_LANDMARK:
                     helpString = gText_MapCardHelp3;
                     break;
@@ -1639,16 +1640,16 @@ static void Task_RadioCard(u8 taskId)
     }
 
     station = sPokegearStruct.currentRadioStation;
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
     {
         station++;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
     {
         station--;
     }
 
-    if (station != sPokegearStruct.currentRadioStation && station <= 40) // limit station between 0.5 and 20.5
+    if (station != sPokegearStruct.currentRadioStation && station <= RADIO_FREQ(20.5)) // limit station between 0.5 and 20.5
     {
         PlaySE(SE_TB_KARA);
         UpdateRadioStation(taskId, station);
