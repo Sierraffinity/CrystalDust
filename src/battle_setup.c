@@ -259,7 +259,7 @@ static const struct TrainerBattleParameter sTrainerBContinueScriptBattleParams[]
 
 const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES] =
 {
-    [REMATCH_ROSE] = REMATCH(TRAINER_ROSE_1, TRAINER_ROSE_2, TRAINER_ROSE_3, TRAINER_ROSE_4, TRAINER_ROSE_5, ROUTE46, PHONE_CONTACT_ROSE),
+    [REMATCH_ROSE] = REMATCH(TRAINER_AMY_AND_MAY, TRAINER_ROSE_2, TRAINER_ROSE_3, TRAINER_ROSE_4, TRAINER_ROSE_5, ROUTE46, PHONE_CONTACT_ROSE),
     [REMATCH_ANDRES] = REMATCH(TRAINER_ANDRES_1, TRAINER_ANDRES_2, TRAINER_ANDRES_3, TRAINER_ANDRES_4, TRAINER_ANDRES_5, ROUTE33, PHONE_CONTACT_ANDRES),
     [REMATCH_DUSTY] = REMATCH(TRAINER_DUSTY_1, TRAINER_DUSTY_2, TRAINER_DUSTY_3, TRAINER_DUSTY_4, TRAINER_DUSTY_5, ROUTE111, PHONE_CONTACT_DUSTY),
     [REMATCH_LOLA] = REMATCH(TRAINER_LOLA_1, TRAINER_LOLA_2, TRAINER_LOLA_3, TRAINER_LOLA_4, TRAINER_LOLA_5, ROUTE109, PHONE_CONTACT_LOLA),
@@ -1192,7 +1192,7 @@ void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerSc
     gSelectedObjectEvent = trainerObjEventId;
     gSpecialVar_LastTalked = gObjectEvents[trainerObjEventId].localId;
     BattleSetup_ConfigureTrainerBattle(trainerScript + 1);
-    ScriptContext1_SetupScript(EventScript_271354);
+    ScriptContext1_SetupScript(EventScript_ShowTrainerIntro);
     ScriptContext2_Enable();
 }
 
@@ -1205,7 +1205,7 @@ void ConfigureTwoTrainersBattle(u8 trainerObjEventId, const u8 *trainerScript)
 
 void SetUpTwoTrainersBattle(void)
 {
-    ScriptContext1_SetupScript(EventScript_271354);
+    ScriptContext1_SetupScript(EventScript_ShowTrainerIntro);
     ScriptContext2_Enable();
 }
 

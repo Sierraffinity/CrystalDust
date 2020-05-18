@@ -124,7 +124,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Phoebe;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Glacia;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Drake;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Falkner;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Brawly;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bugsy;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wattson;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Flannery;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Norman;
@@ -373,7 +373,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_GLACIA] =                   &gObjectEventGraphicsInfo_Glacia,
     [OBJ_EVENT_GFX_DRAKE] =                    &gObjectEventGraphicsInfo_Drake,
     [OBJ_EVENT_GFX_FALKNER] =                  &gObjectEventGraphicsInfo_Falkner,
-    [OBJ_EVENT_GFX_BRAWLY] =                   &gObjectEventGraphicsInfo_Brawly,
+    [OBJ_EVENT_GFX_BUGSY] =                   &gObjectEventGraphicsInfo_Bugsy,
     [OBJ_EVENT_GFX_WATTSON] =                  &gObjectEventGraphicsInfo_Wattson,
     [OBJ_EVENT_GFX_FLANNERY] =                 &gObjectEventGraphicsInfo_Flannery,
     [OBJ_EVENT_GFX_NORMAN] =                   &gObjectEventGraphicsInfo_Norman,

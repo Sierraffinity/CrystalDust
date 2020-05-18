@@ -117,9 +117,9 @@
 #define OBJ_EVENT_GFX_MOVING_BOX                 113
 #define OBJ_EVENT_GFX_CABLE_CAR                  114
 #define OBJ_EVENT_GFX_OFFICER                    115
-#define OBJ_EVENT_GFX_KURT_LYING_DOWN             116
-#define OBJ_EVENT_GFX_ROCKET_GRUNT_M              117
-#define OBJ_EVENT_GFX_ROCKET_GRUNT_F              118
+#define OBJ_EVENT_GFX_KURT_LYING_DOWN            116
+#define OBJ_EVENT_GFX_ROCKET_GRUNT_M             117
+#define OBJ_EVENT_GFX_ROCKET_GRUNT_F             118
 #define OBJ_EVENT_GFX_MAGMA_MEMBER_M             119
 #define OBJ_EVENT_GFX_MAGMA_MEMBER_F             120
 #define OBJ_EVENT_GFX_SIDNEY                     121
@@ -127,7 +127,7 @@
 #define OBJ_EVENT_GFX_GLACIA                     123
 #define OBJ_EVENT_GFX_DRAKE                      124
 #define OBJ_EVENT_GFX_FALKNER                    125
-#define OBJ_EVENT_GFX_BRAWLY                     126
+#define OBJ_EVENT_GFX_BUGSY                      126
 #define OBJ_EVENT_GFX_WATTSON                    127
 #define OBJ_EVENT_GFX_FLANNERY                   128
 #define OBJ_EVENT_GFX_NORMAN                     129

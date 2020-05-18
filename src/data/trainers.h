@@ -517,7 +517,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_RocketSlowpokeWellBoss},
     },
 
-    [TRAINER_ROSE_1] =
+    [TRAINER_AMY_AND_MAY] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_AROMA_LADY,

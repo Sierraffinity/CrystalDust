@@ -186,7 +186,7 @@ Route46_Movement_StevenExit2: @ 81F3F7E
 	step_end
 
 Route46_EventScript_Rose:: @ 81F3F87
-	trainerbattle_single TRAINER_ROSE_1, Route46_Text_RoseIntro, Route46_Text_RoseDefeat, Route46_EventScript_RegisterRose
+	trainerbattle_single TRAINER_AMY_AND_MAY, Route46_Text_RoseIntro, Route46_Text_RoseDefeat, Route46_EventScript_RegisterRose
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route46_EventScript_RematchRose
@@ -198,12 +198,12 @@ Route46_EventScript_RegisterRose:: @ 81F3FB3
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route46_Text_RoseRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_ROSE_1
+	register_matchcall TRAINER_AMY_AND_MAY
 	release
 	end
 
 Route46_EventScript_RematchRose:: @ 81F3FD2
-	trainerbattle_rematch TRAINER_ROSE_1, Route46_Text_RoseRematchIntro, Route46_Text_RoseRematchDefeat
+	trainerbattle_rematch TRAINER_AMY_AND_MAY, Route46_Text_RoseRematchIntro, Route46_Text_RoseRematchDefeat
 	msgbox Route46_Text_RosePostRematch, MSGBOX_AUTOCLOSE
 	end
 

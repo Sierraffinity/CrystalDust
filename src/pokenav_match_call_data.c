@@ -141,7 +141,7 @@ static const struct MatchCallStructNPC sMrStoneMatchCallHeader =
 
 static const match_call_text_data_t sNormanTextScripts[] = {
     { MatchCall_Text_Norman1, FLAG_ENABLE_NORMAN_MATCH_CALL, 0xFFFF },
-    { MatchCall_Text_Norman2, FLAG_DEFEATED_DEWFORD_GYM,     0xFFFF },
+    { MatchCall_Text_Norman2, FLAG_DEFEATED_AZALEA_GYM,     0xFFFF },
     { MatchCall_Text_Norman3, FLAG_DEFEATED_LAVARIDGE_GYM,   0xFFFF },
     { MatchCall_Text_Norman4, FLAG_DEFEATED_PETALBURG_GYM,   0xFFFF },
     { MatchCall_Text_Norman5, FLAG_RECEIVED_RED_OR_BLUE_ORB, 0xFFFF },
@@ -212,7 +212,7 @@ static const struct MatchCallStructNPC sStevenMatchCallHeader =
 
 static const match_call_text_data_t sMayTextScripts[] = {
     { MatchCall_Text_May1,  0xFFFF,                              0xFFFF },
-    { MatchCall_Text_May2,  FLAG_DEFEATED_DEWFORD_GYM,           0xFFFF },
+    { MatchCall_Text_May2,  FLAG_DEFEATED_AZALEA_GYM,           0xFFFF },
     { MatchCall_Text_May3,  FLAG_DELIVERED_DEVON_GOODS,          0xFFFF },
     { MatchCall_Text_May4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       0xFFFF },
     { MatchCall_Text_May5,  FLAG_RECEIVED_MAGNET_FROM_SUNNY,                  0xFFFF },
@@ -241,7 +241,7 @@ static const struct MatchCallRival sMayMatchCallHeader =
 
 static const match_call_text_data_t sBrendanTextScripts[] = {
     { MatchCall_Text_Brendan1,  0xFFFF,                              0xFFFF },
-    { MatchCall_Text_Brendan2,  FLAG_DEFEATED_DEWFORD_GYM,           0xFFFF },
+    { MatchCall_Text_Brendan2,  FLAG_DEFEATED_AZALEA_GYM,           0xFFFF },
     { MatchCall_Text_Brendan3,  FLAG_DELIVERED_DEVON_GOODS,          0xFFFF },
     { MatchCall_Text_Brendan4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       0xFFFF },
     { MatchCall_Text_Brendan5,  FLAG_RECEIVED_MAGNET_FROM_SUNNY,                  0xFFFF },

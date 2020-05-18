@@ -45,6 +45,9 @@ static bool8 RevealHiddenTrainer(u8 taskId, struct Task *task, struct ObjectEven
 static bool8 PopOutOfAshHiddenTrainer(u8 taskId, struct Task *task, struct ObjectEvent *trainerObj);
 static bool8 JumpInPlaceHiddenTrainer(u8 taskId, struct Task *task, struct ObjectEvent *trainerObj);
 static bool8 WaitRevealHiddenTrainer(u8 taskId, struct Task *task, struct ObjectEvent *trainerObj);
+static bool8 TrainerSeeFunc_OffscreenAboveTrainerCreateCameraObj(u8 taskId, struct Task * task, struct ObjectEvent * trainerObj);
+static bool8 TrainerSeeFunc_OffscreenAboveTrainerCameraObjMoveUp(u8 taskId, struct Task * task, struct ObjectEvent * trainerObj);
+static bool8 TrainerSeeFunc_OffscreenAboveTrainerCameraObjMoveDown(u8 taskId, struct Task * task, struct ObjectEvent * trainerObj);
 
 static void SpriteCB_TrainerIcons(struct Sprite *sprite);
 
@@ -85,6 +88,9 @@ static bool8 (*const sTrainerSeeFuncList[])(u8 taskId, struct Task *task, struct
     PopOutOfAshHiddenTrainer,
     JumpInPlaceHiddenTrainer,
     WaitRevealHiddenTrainer,
+    TrainerSeeFunc_OffscreenAboveTrainerCreateCameraObj,
+    TrainerSeeFunc_OffscreenAboveTrainerCameraObjMoveUp,
+    TrainerSeeFunc_OffscreenAboveTrainerCameraObjMoveDown
 };
 
 static bool8 (*const sTrainerSeeFuncList2[])(u8 taskId, struct Task *task, struct ObjectEvent *trainerObj) =
@@ -415,6 +421,7 @@ static u8 CheckPathBetweenTrainerAndPlayer(struct ObjectEvent *trainerObj, u8 ap
 #define tFuncId             data[0]
 #define tTrainerRange       data[3]
 #define tOutOfAshSpriteId   data[4]
+#define tCameraMoveStep     data[5]
 #define tTrainerObjectEventId data[7]
 
 static void TrainerApproachPlayer(struct ObjectEvent *trainerObj, u8 range)
@@ -467,11 +474,18 @@ static bool8 TrainerExclamationMark(u8 taskId, struct Task *task, struct ObjectE
 {
     u8 direction;
 
-    ObjectEventGetLocalIdAndMap(trainerObj, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
-    FieldEffectStart(FLDEFF_EXCLAMATION_MARK_ICON);
-    direction = GetFaceDirectionMovementAction(trainerObj->facingDirection);
-    ObjectEventSetHeldMovement(trainerObj, direction);
-    task->tFuncId++;
+    if (trainerObj->facingDirection == DIR_SOUTH && task->tTrainerRange > 2)
+    {
+        task->tFuncId = 12;
+    }
+    else
+    {
+        ObjectEventGetLocalIdAndMap(trainerObj, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
+        FieldEffectStart(FLDEFF_EXCLAMATION_MARK_ICON);
+        direction = GetFaceDirectionMovementAction(trainerObj->facingDirection);
+        ObjectEventSetHeldMovement(trainerObj, direction);
+        task->tFuncId++;
+    }
     return TRUE;
 }
 
@@ -612,9 +626,71 @@ static bool8 WaitRevealHiddenTrainer(u8 taskId, struct Task *task, struct Object
     return FALSE;
 }
 
+// FRLG exclusive: Scroll the camera up to reveal an offscreen above trainer
+static bool8 TrainerSeeFunc_OffscreenAboveTrainerCreateCameraObj(u8 taskId, struct Task *task, struct ObjectEvent *trainerObj)
+{
+    int specialObjectId;
+    task->tCameraMoveStep = 0;
+    specialObjectId = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_YOUNGSTER, 7, OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->pos.x + 7, gSaveBlock1Ptr->pos.y + 7, 3);
+    gObjectEvents[specialObjectId].invisible = TRUE;
+    CameraObjectSetFollowedObjectId(gObjectEvents[specialObjectId].spriteId);
+    task->tFuncId++;
+    return FALSE;
+}
+
+static bool8 TrainerSeeFunc_OffscreenAboveTrainerCameraObjMoveUp(u8 taskId, struct Task *task, struct ObjectEvent *trainerObj)
+{
+    u8 specialObjectId;
+    TryGetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &specialObjectId);
+
+    if (ObjectEventIsMovementOverridden(&gObjectEvents[specialObjectId]) && !ObjectEventClearHeldMovementIfFinished(&gObjectEvents[specialObjectId]))
+        return FALSE;
+
+    if (task->tCameraMoveStep != task->tTrainerRange - 1)
+    {
+        ObjectEventSetHeldMovement(&gObjectEvents[specialObjectId], GetWalkFastMovementAction(DIR_NORTH));
+        task->tCameraMoveStep++;
+    }
+    else
+    {
+        ObjectEventGetLocalIdAndMap(trainerObj, (u8 *)&gFieldEffectArguments[0], (u8 *)&gFieldEffectArguments[1], (u8 *)&gFieldEffectArguments[2]);
+        FieldEffectStart(FLDEFF_EXCLAMATION_MARK_ICON);
+        task->tCameraMoveStep = 0;
+        task->tFuncId++;
+    }
+    return FALSE;
+}
+
+static bool8 TrainerSeeFunc_OffscreenAboveTrainerCameraObjMoveDown(u8 taskId, struct Task * task, struct ObjectEvent * trainerObj)
+{
+    u8 specialObjectId;
+    TryGetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &specialObjectId);
+
+    if (FieldEffectActiveListContains(FLDEFF_EXCLAMATION_MARK_ICON))
+        return FALSE;
+
+    if (ObjectEventIsMovementOverridden(&gObjectEvents[specialObjectId]) && !ObjectEventClearHeldMovementIfFinished(&gObjectEvents[specialObjectId]))
+        return FALSE;
+
+    if (task->tCameraMoveStep != task->tTrainerRange - 1)
+    {
+        ObjectEventSetHeldMovement(&gObjectEvents[specialObjectId], GetWalkFastMovementAction(DIR_SOUTH));
+        task->tCameraMoveStep++;
+    }
+    else
+    {
+        CameraObjectSetFollowedObjectId(GetPlayerAvatarObjectId());
+        RemoveObjectEventByLocalIdAndMap(OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+        task->tCameraMoveStep = 0;
+        task->tFuncId = 2;
+    }
+    return FALSE;
+}
+
 #undef tFuncId
 #undef tTrainerRange
 #undef tOutOfAshSpriteId
+#undef tCameraMoveStep
 #undef tTrainerObjectEventId
 
 static void sub_80B44C8(u8 taskId)

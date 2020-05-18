@@ -1,4 +1,4 @@
-EventScript_271354:: @ 8271354
+EventScript_ShowTrainerIntro:: @ 8271354
 	cmdD8
 	cmdD9
 

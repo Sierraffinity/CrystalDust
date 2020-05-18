@@ -38,7 +38,7 @@
 #define TRAINER_ROCKET_SLOWPOKE_WELL_2       34
 #define TRAINER_ROCKET_SLOWPOKE_WELL_3       35
 #define TRAINER_ROCKET_SLOWPOKE_WELL_BOSS    36
-#define TRAINER_ROSE_1                       37
+#define TRAINER_AMY_AND_MAY                  37
 #define TRAINER_FELIX                        38
 #define TRAINER_VIOLET                       39
 #define TRAINER_ROSE_2                       40

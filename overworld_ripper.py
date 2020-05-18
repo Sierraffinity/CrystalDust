@@ -14,12 +14,12 @@ def create_pal(path, data):
 def create_image(path, data):
     with open(path + ".4bpp", 'wb+') as f:
         f.write(data)
-    gbagfx([path + ".4bpp", path + ".png", "-width", "18", "-mwidth", "2", "-mheight", "2", "-palette", path + ".gbapal"])
+    gbagfx([path + ".4bpp", path + ".png", "-width", "18", "-mwidth", "2", "-mheight", "4", "-palette", path + ".gbapal"])
 
 if __name__ == '__main__':
     with open(argv[1], 'rb') as f:
         f.seek(int(argv[2], base=16))
-        image_data = f.read(32 * 4 * 9)
+        image_data = f.read(64 * 4 * 9)
         f.seek(int(argv[3], base=16))
         pal_data = f.read(32)
 

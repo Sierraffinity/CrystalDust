@@ -96,14 +96,14 @@ script VioletCity_Gym_EventScript_GymStatue {
     lockall
     if (flag(FLAG_BADGE01_GET))
     {
-        msgbox("VIOLET POKéMON GYM\n"
+        msgbox("VIOLET CITY POKéMON GYM\n"
                "LEADER: FALKNER\p"
                "WINNING TRAINERS:\n"
                "{PLAYER}")
     }
     else
     {
-        msgbox("VIOLET POKéMON GYM")
+        msgbox("VIOLET CITY POKéMON GYM")
     }
     releaseall
 }

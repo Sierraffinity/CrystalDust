@@ -527,6 +527,39 @@ text SlowpokeWell_B1F_Text_Rocket3PostBattle {
 	"It's tough being a ROCKET GRUNT!"
 }
 
+text AzaleaTown_Gym_Text_AmyIntro {
+	"AMY: Hi! Are you challenging the\n"
+	"LEADER? No way!"
+}
+
+text AzaleaTown_Gym_Text_AmyAndMayDefeat {
+	"AMY & MAY: Oh, double goodness!"
+}
+
+text AzaleaTown_Gym_Text_AmyPostBattle {
+	"AMY: You're really strong!"
+}
+
+text AzaleaTown_Gym_Text_AmyNotEnoughMons {
+	"AMY: Your POKéMON doesn't have a\n"
+	"friend to battle us with!"
+}
+
+text AzaleaTown_Gym_Text_MayIntro {
+	"MAY: You want to see the LEADER?\n"
+	"We come first!"
+}
+
+text AzaleaTown_Gym_Text_MayPostBattle {
+	"MAY: Our BUG POKéMON lost!\n"
+	"Oh, what a shame."
+}
+
+text AzaleaTown_Gym_Text_MayNotEnoughMons {
+	"MAY: Oh, you don't have another\n"
+	"POKéMON with you? What a shame…"
+}
+
 raw`
 Route33_Text_FosterIntro: @ 8295D0F
 	.string "There's supposed to be a mystical\n"

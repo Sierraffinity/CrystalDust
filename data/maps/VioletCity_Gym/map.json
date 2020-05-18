@@ -27,7 +27,7 @@
     "id": "MAP_VIOLET_CITY_GYM",
     "layout": "LAYOUT_VIOLET_CITY_GYM",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GIM",
+    "music": "MUS_GYM",
     "name": "VioletCity_Gym",
     "object_events": [
         {
