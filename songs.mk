@@ -168,8 +168,8 @@ $(MID_SUBDIR)/mus_friendly.s: %.s: %.mid
 $(MID_SUBDIR)/mus_fune_kan.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -V080
 
-$(MID_SUBDIR)/mus_gim.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G013 -V080
+$(MID_SUBDIR)/mus_gym.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G013 -V127
 
 $(MID_SUBDIR)/mus_rivaltheme.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G061 -V078

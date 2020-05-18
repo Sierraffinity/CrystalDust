@@ -289,7 +289,7 @@
 #define MUS_DOORO_X3 361        // Route 120
 #define MUS_VIOLET 362          // Violet City
 #define MUS_CHERRYGROVE 363     // Cherrygrove/Mahogany
-#define MUS_GIM 364             // Gym
+#define MUS_GYM 364             // Gym
 #define MUS_NAMINORI 365        // Surfing
 #define MUS_ILEXFOREST 366      // Caves and Darkness
 #define MUS_FANFA1 367          // Level Up!

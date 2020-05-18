@@ -365,7 +365,7 @@ gSongTable:: @ 86B49F0
 	song mus_dooro_x3, 0, 0         @ Route 120
 	song mus_violet, 0, 0           @ Violet City
 	song mus_cherrygrove, 0, 0      @ Cherrygrove/Mahogany City
-	song mus_gim, 0, 0              @ Pokémon Gym
+	song mus_gym, 0, 0              @ Pokémon Gym
 	song mus_naminori, 0, 0         @ Surf
 	song mus_ilexforest, 0, 0       @ Ilex Forest/Ruins of Alph
 	song mus_fanfa1, 2, 2           @ Level Up!
