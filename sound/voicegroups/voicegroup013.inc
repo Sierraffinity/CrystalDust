@@ -80,14 +80,14 @@ voicegroup013:: @ 8677FF0
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 867838C
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 8678398
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86783A4
-	voice_square_2_alt 1, 0, 1, 7, 1  @ 86783B0
-	voice_square_1_alt 0, 1, 0, 1, 7, 1  @ 86783BC
+	voice_square_2_alt 2, 0, 1, 7, 1  @ 86783B0
+	voice_square_1_alt 0, 2, 0, 1, 7, 1  @ 86783BC
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86783C8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86783D4
 	voice_square_2_alt 3, 0, 1, 7, 1  @ 86783E0
 	voice_square_1_alt 0, 3, 0, 1, 7, 1  @ 86783EC
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86783F8
 	voice_programmable_wave_alt ProgrammableWaveData_86B4890, 0, 7, 15, 1  @ 8678404
-	voice_square_1_alt 0, 1, 0, 0, 7, 1  @ 8678410
+	voice_square_1_alt 0, 2, 0, 0, 7, 1  @ 8678410
 	voice_square_1_alt 0, 3, 0, 0, 7, 1  @ 867841C
 
