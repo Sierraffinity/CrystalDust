@@ -2,12 +2,12 @@
 gTilesetPalOverrides_General::
 	.byte 2
 	.byte HOUR_NIGHT
-	.byte 0
+	.byte HOUR_MORNING
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_General02
 	.byte 7
 	.byte HOUR_NIGHT
-	.byte 0
+	.byte HOUR_MORNING
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_General07
 	.byte 0xFF
@@ -21,17 +21,17 @@ gTilesetPalOverrides_General::
 gTilesetPalOverrides_Petalburg::
 	.byte 8
 	.byte HOUR_NIGHT
-	.byte 0
+	.byte HOUR_MORNING
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Petalburg08
 	.byte 9
 	.byte HOUR_NIGHT
-	.byte 0
+	.byte HOUR_MORNING
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Petalburg08
 	.byte 12
 	.byte HOUR_NIGHT
-	.byte 0
+	.byte HOUR_MORNING
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Petalburg08
 	.byte 0xFF
@@ -44,7 +44,7 @@ gTilesetPalOverrides_Petalburg::
 gTilesetPalOverrides_Violet::
 	.byte 8
 	.byte HOUR_NIGHT
-	.byte 0
+	.byte HOUR_MORNING
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Violet08
 	.byte 0xFF
@@ -57,7 +57,7 @@ gTilesetPalOverrides_Violet::
 gTilesetPalOverrides_Azalea::
 	.byte 9
 	.byte HOUR_NIGHT
-	.byte 0
+	.byte HOUR_MORNING
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Azalea09
 	.byte 0xFF
