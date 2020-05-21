@@ -36,6 +36,8 @@
 #include "data.h"
 #include "battle.h" // to get rid of later
 #include "constants/rgb.h"
+#include "constants/flags.h"
+#include "constants/region_map_sections.h"
 
 struct EggHatchData
 {
@@ -357,10 +359,17 @@ static void AddHatchedMonToParty(u8 id)
     u8 mapNameID;
     struct Pokemon* mon = &gPlayerParty[id];
 
+    pokeNum = GetMonData(mon, MON_DATA_SPECIES);
+    if (pokeNum == SPECIES_TOGEPI &&
+        GetMonData(mon, MON_DATA_MET_LOCATION) == METLOC_SPECIAL_EGG &&
+        GetMonData(mon, MON_DATA_OT_ID) == T1_READ_32(gSaveBlock2Ptr->playerTrainerId))
+    {
+        FlagSet(FLAG_HATCHED_ELMS_EGG);
+    }
+
     CreatedHatchedMon(mon, &gEnemyParty[0]);
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
 
-    pokeNum = GetMonData(mon, MON_DATA_SPECIES);
     GetSpeciesName(name, pokeNum);
     SetMonData(mon, MON_DATA_NICKNAME, name);
 

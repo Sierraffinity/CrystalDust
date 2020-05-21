@@ -137,8 +137,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u8 nature; // 0x33
         u8 ppBonuses; // 0x34
         u8 sanity; // 0x35
-        u8 OTName[8]; // 0x36
-        u8 unk3E[9]; // 0x3E
+        u8 OTName[18]; // 0x36
         u32 OTID; // 0x48
     } summary;
     u16 bgTilemapBuffers[4][2][0x400];
