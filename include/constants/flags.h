@@ -149,8 +149,8 @@
 #define FLAG_MOVE_TUTOR_TAUGHT_HEADBUTT      0x87
 #define FLAG_KURT_GAVE_LURE_BALL             0x88
 #define FLAG_BUGGING_KURT_TOO_MUCH           0x89
-#define FLAG_FOREST_IS_RESTLESS              0x8A // Unused
-#define FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY   0x8B
+#define FLAG_FOREST_IS_RESTLESS              0x8A
+#define FLAG_HATCHED_ELMS_EGG                0x8B
 #define FLAG_RECEIVED_6_SODA_POP             0x8C
 #define FLAG_DEFEATED_SEASHORE_HOUSE         0x8D
 #define FLAG_DEVON_GOODS_STOLEN              0x8E

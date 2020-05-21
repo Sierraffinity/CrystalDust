@@ -542,7 +542,7 @@ text AzaleaTown_Gym_Text_AmyPostBattle {
 
 text AzaleaTown_Gym_Text_AmyNotEnoughMons {
 	"AMY: Your POKéMON doesn't have a\n"
-	"friend to battle us with!"
+	"friend to battle with!"
 }
 
 text AzaleaTown_Gym_Text_MayIntro {
@@ -558,6 +558,51 @@ text AzaleaTown_Gym_Text_MayPostBattle {
 text AzaleaTown_Gym_Text_MayNotEnoughMons {
 	"MAY: Oh, you don't have another\n"
 	"POKéMON with you? What a shame…"
+}
+
+text AzaleaTown_Gym_Text_BennyIntro {
+	"BUG POKéMON are evolve young, so\n"
+	"they get stronger that much faster."
+}
+
+text AzaleaTown_Gym_Text_BennyDefeat {
+	"Just evolving isn't enough!"
+}
+
+text AzaleaTown_Gym_Text_BennyPostBattle {
+	"POKéMON become stronger if they\n"
+	"evolve. Really!"
+}
+
+text AzaleaTown_Gym_Text_AlIntro {
+	"BUG POKéMON are cool and tough!\n"
+	"I'll prove it to you!"
+}
+
+text AzaleaTown_Gym_Text_AlDefeat {
+	"You proved how tough you are…"
+}
+
+text AzaleaTown_Gym_Text_AlPostBattle {
+	"They're so cool, but most girls\n"
+	"don't like BUG POKéMON.\l"
+	"I don't know why…"
+}
+
+text AzaleaTown_Gym_Text_JoshIntro {
+	"You saved all the SLOWPOKE?\n"
+	"Whew, you're mighty!\p"
+	"But my grown-up POKéMON are pretty\n"
+	"tough too!"
+}
+
+text AzaleaTown_Gym_Text_JoshDefeat {
+	"Urrgggh!"
+}
+
+text AzaleaTown_Gym_Text_JoshPostBattle {
+	"I guess I should teach them\n"
+	"better moves…"
 }
 
 raw`

@@ -39,9 +39,9 @@
 #define TRAINER_ROCKET_SLOWPOKE_WELL_3       35
 #define TRAINER_ROCKET_SLOWPOKE_WELL_BOSS    36
 #define TRAINER_AMY_AND_MAY                  37
-#define TRAINER_FELIX                        38
-#define TRAINER_VIOLET                       39
-#define TRAINER_ROSE_2                       40
+#define TRAINER_BENNY                        38
+#define TRAINER_AL                           39
+#define TRAINER_JOSH                         40
 #define TRAINER_ROSE_3                       41
 #define TRAINER_ROSE_4                       42
 #define TRAINER_ROSE_5                       43
@@ -321,7 +321,7 @@
 #define TRAINER_SHELBY_5                    317
 #define TRAINER_CALVIN_1                    318
 #define TRAINER_BILLY                       319
-#define TRAINER_JOSH                        320
+#define TRAINER_JOSH_OLD                        320
 #define TRAINER_TOMMY                       321
 #define TRAINER_JOEYOLD                     322
 #define TRAINER_BEN                         323
@@ -408,7 +408,7 @@
 #define TRAINER_EDWARDO                     404
 #define TRAINER_COLIN                       405
 #define TRAINER_ROBERT_1                    406
-#define TRAINER_BENNY                       407
+#define TRAINER_BENNY_OLD                       407
 #define TRAINER_CHESTER                     408
 #define TRAINER_ROBERT_2                    409
 #define TRAINER_ROBERT_3                    410

@@ -42,7 +42,7 @@ RustboroCity_Gym_EventScript_RoxanneRematch:: @ 8212FC8
 	end
 
 RustboroCity_Gym_EventScript_Josh:: @ 8212FE3
-	trainerbattle_single TRAINER_JOSH, RustboroCity_Gym_Text_JoshIntro, RustboroCity_Gym_Text_JoshDefeat
+	trainerbattle_single TRAINER_JOSH_OLD, RustboroCity_Gym_Text_JoshIntro, RustboroCity_Gym_Text_JoshDefeat
 	msgbox RustboroCity_Gym_Text_JoshPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -93,8 +93,8 @@ RustboroCity_Gym_EventScript_GymStatue:: @ 8213071
 
 RustboroCity_Gym_EventScript_RegisterRoxanne:: @ 821307B
 	lockall
-	pokegearcall RustboroCity_Gym_Text_RoxanneRegisterCall, 0
-	waitmessage
+	pokegearcall RustboroCity_Gym_PhoneScript_RoxanneRegisterCall, 0
+	waitstate
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
 	msgbox RustboroCity_Gym_Text_RegisteredRoxanne, MSGBOX_DEFAULT
@@ -233,6 +233,10 @@ RustboroCity_Gym_Text_GymStatueCertified: @ 8213A3B
 	.string "RUSTBORO CITY POKéMON GYM\p"
 	.string "ROXANNE'S CERTIFIED TRAINERS:\n"
 	.string "{PLAYER}$"
+
+RustboroCity_Gym_PhoneScript_RoxanneRegisterCall::
+	phone_stdcall RustboroCity_Gym_Text_RoxanneRegisterCall
+	phone_end
 
 RustboroCity_Gym_Text_RoxanneRegisterCall: @ 8213A76
 	.string "… … … … … …\n"

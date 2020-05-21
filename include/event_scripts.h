@@ -3,7 +3,6 @@
 
 extern const u8 Common_EventScript_ShowPokemonCenterSign[];
 extern const u8 Common_EventScript_ShowPokemartSign[];
-extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_TryGetTrainerScript[];
 extern const u8 EventScript_ShowTrainerIntro[];
 extern const u8 EventScript_DoNoIntroTrainerBattle[];
@@ -516,6 +515,7 @@ extern const u8 MauvilleCity_PokemonCenter_1F_Text_HotSpringsStory[];
 extern const u8 EventScript_PlayerPC[];
 extern const u8 EventScript_PC[];
 extern const u8 EventScript_TestSignpostMsg[];
+extern const u8 EventScript_TestObjectEventMsg[];
 extern const u8 EventScript_HiddenItemScript[];
 extern const u8 EventScript_FruitTree[];
 extern const u8 EventScript_TV[];

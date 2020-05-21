@@ -488,8 +488,8 @@ Route119_EventScript_TrainerTipsDecoration:: @ 81F49E3
 
 Route119_EventScript_ScottWonAtFortreeGymCall:: @ 81F49EC
 	lockall
-	pokegearcall Route119_Text_ScottYouWonAtFortreeGym, 0
-	waitmessage
+	pokegearcall Route119_PhoneScript_ScottYouWonAtFortreeGymCall, 0
+	waitstate
 	clearflag FLAG_FOREST_IS_RESTLESS
 	addvar VAR_SCOTT_STATE, 1
 	releaseall
@@ -567,6 +567,10 @@ Route119_Text_ScottWayToGoBeSeeingYou: @ 81F4E60
 	.string "I expect that you'll do well at the GYM.\n"
 	.string "Well, I'll be seeing you!$"
 
+
+Route119_PhoneScript_ScottYouWonAtFortreeGymCall::
+	phone_stdcall Route119_Text_ScottYouWonAtFortreeGym
+	phone_end
 
 Route119_Text_ScottYouWonAtFortreeGym: @ 81F4FBA
 	.string "… … … … … …\n"

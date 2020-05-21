@@ -299,7 +299,7 @@ static const struct MatchCallWally sWallyMatchCallHeader =
 
 static const match_call_text_data_t sScottTextScripts[] = {
     { MatchCall_Text_Scott1, 0xFFFF,                              0xFFFF },
-    { MatchCall_Text_Scott2, FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY,  0xFFFF },
+    { MatchCall_Text_Scott2, FLAG_HATCHED_ELMS_EGG,  0xFFFF },
     { MatchCall_Text_Scott3, FLAG_RECEIVED_CASTFORM,              0xFFFF },
     { MatchCall_Text_Scott4, FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
     { MatchCall_Text_Scott5, FLAG_RECEIVED_HM07, 0xFFFF },

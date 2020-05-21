@@ -116,7 +116,14 @@ static void LoadPaletteOverrides(void)
         return;
 #endif
 
-    hour = gLocalTime.hours;
+    if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
+    {
+        hour = HOUR_NIGHT;
+    }
+    else
+    {
+        hour = gLocalTime.hours;
+    }
 
 #if DEBUG
     if (gDNHourOverride != 0)
@@ -160,7 +167,7 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
     {
         s8 hour;
         RtcCalcLocalTimeFast();
-            
+
         if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
         {
             hour = HOUR_NIGHT;

@@ -453,8 +453,8 @@ MauvilleCity_EventScript_ReceivedThunderbolt:: @ 81DF7B0
 
 MauvilleCity_EventScript_RegisterWallyCall:: @ 81DF7BA
 	lockall
-	pokegearcall MauvilleCity_Text_WallyPokenavCall, 0
-	waitmessage
+	pokegearcall MauvilleCity_PhoneScript_WallyCall, 0
+	waitstate
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
 	msgbox MauvilleCity_Text_RegisteredWally, MSGBOX_DEFAULT
@@ -551,6 +551,10 @@ MauvilleCity_Text_UncleVisitUsSometime: @ 81DFD34
 	.string "sometime?\l"
 	.string "I'm sure WALLY would enjoy it.$"
 
+
+MauvilleCity_PhoneScript_WallyCall::
+	phone_stdcall MauvilleCity_Text_WallyPokenavCall
+	phone_end
 
 MauvilleCity_Text_WallyPokenavCall: @ 81DFDFB
 	.string "… … … … … …\n"
