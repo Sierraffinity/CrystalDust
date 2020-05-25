@@ -37,6 +37,7 @@ static void TilesetAnim_BattleFrontierOutsideEast(u16);
 static void TilesetAnim_Underwater(u16);
 static void TilesetAnim_SootopolisGym(u16);
 static void TilesetAnim_EliteFour(u16);
+static void TilesetAnim_AzaleaGym(u16);
 static void TilesetAnim_MauvilleGym(u16);
 static void TilesetAnim_PagodaTower(u16);
 static void TilesetAnim_BattlePyramid(u16);
@@ -64,6 +65,7 @@ static void QueueAnimTiles_Sootopolis_StormyWater(u16);
 static void QueueAnimTiles_Underwater_Seaweed(u8);
 static void QueueAnimTiles_BattleFrontierOutsideWest_Flag(u16);
 static void QueueAnimTiles_BattleFrontierOutsideEast_Flag(u16);
+static void QueueAnimTiles_AzaleaGym_Flowers(u16);
 static void QueueAnimTiles_MauvilleGym_ElectricGates(u16);
 static void QueueAnimTiles_SootopolisGym_Waterfalls(u16);
 static void QueueAnimTiles_EliteFour_GroundLights(u16);
@@ -439,9 +441,19 @@ const u16 *const gTilesetAnims_EliteFour_FloorLight[] = {
     gTilesetAnims_EliteFour_FloorLight_Frame1
 };
 
+const u16 gTilesetAnims_AzaleaGym_Flowers_Frame0[] = INCBIN_U16("data/tilesets/secondary/azalea_gym/anim/flowers/0.4bpp");
+const u16 gTilesetAnims_AzaleaGym_Flowers_Frame1[] = INCBIN_U16("data/tilesets/secondary/azalea_gym/anim/flowers/1.4bpp");
+const u16 gTilesetAnims_AzaleaGym_Flowers_Frame2[] = INCBIN_U16("data/tilesets/secondary/azalea_gym/anim/flowers/2.4bpp");
+
+const u16 *const gTilesetAnims_AzaleaGym_Flowers[] = {
+    gTilesetAnims_AzaleaGym_Flowers_Frame0,
+    gTilesetAnims_AzaleaGym_Flowers_Frame1,
+    gTilesetAnims_AzaleaGym_Flowers_Frame2,
+    gTilesetAnims_AzaleaGym_Flowers_Frame1,
+};
+
 const u16 gTilesetAnims_MauvilleGym_ElectricGates_Frame0[] = INCBIN_U16("data/tilesets/secondary/mauville_gym/anim/electric_gates/0.4bpp");
 const u16 gTilesetAnims_MauvilleGym_ElectricGates_Frame1[] = INCBIN_U16("data/tilesets/secondary/mauville_gym/anim/electric_gates/1.4bpp");
-const u16 tileset_anims_space_6[16] = {};
 
 const u16 *const gTilesetAnims_MauvilleGym_ElectricGates[] = {
     gTilesetAnims_MauvilleGym_ElectricGates_Frame0,
@@ -638,7 +650,7 @@ static void QueueAnimTiles_General_Flower(u16 timer)
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Flower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(508)), 0x80);
 }
 
-void InitTilesetAnim_Petalburg(void)
+void InitTilesetAnim_NewBark(void)
 {
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
@@ -762,6 +774,13 @@ void InitTilesetAnim_EliteFour(void)
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = 128;
     sSecondaryTilesetAnimCallback = TilesetAnim_EliteFour;
+}
+
+void InitTilesetAnim_AzaleaGym(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 256;
+    sSecondaryTilesetAnimCallback = TilesetAnim_AzaleaGym;
 }
 
 void InitTilesetAnim_MauvilleGym(void)
@@ -997,6 +1016,12 @@ static void QueueAnimTiles_Slateport_Balloons(u16 timer)
     AppendTilesetAnimToBuffer(gTilesetAnims_Slateport_Balloons[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 224)), 0x80);
 }
 
+static void TilesetAnim_AzaleaGym(u16 timer)
+{
+    if (timer % 16 == 0)
+        QueueAnimTiles_AzaleaGym_Flowers(timer >> 4);
+}
+
 static void TilesetAnim_MauvilleGym(u16 timer)
 {
     if (timer % 2 == 0)
@@ -1067,6 +1092,12 @@ static void QueueAnimTiles_EliteFour_GroundLights(u16 timer)
 {
     u16 i = timer % 2;
     AppendTilesetAnimToBuffer(gTilesetAnims_EliteFour_FloorLight[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 480)), 0x80);
+}
+
+static void QueueAnimTiles_AzaleaGym_Flowers(u16 timer)
+{
+    u16 i = timer % NELEMS(gTilesetAnims_AzaleaGym_Flowers);
+    AppendTilesetAnimToBuffer(gTilesetAnims_AzaleaGym_Flowers[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 99)), 0x80);
 }
 
 static void QueueAnimTiles_MauvilleGym_ElectricGates(u16 timer)

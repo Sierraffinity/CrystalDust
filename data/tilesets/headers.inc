@@ -11,16 +11,16 @@ gTileset_General:: @ 83DF704
 	.4byte InitTilesetAnim_General
 
 	.align 2
-gTileset_Petalburg:: @ 83DF71C
+gTileset_NewBark:: @ 83DF71C
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_Petalburg
-	.4byte gTilesetPalettes_Petalburg
-	.4byte gTilesetPalOverrides_Petalburg
-	.4byte gMetatiles_Petalburg
-	.4byte gMetatileAttributes_Petalburg
-	.4byte InitTilesetAnim_Petalburg
+	.4byte gTilesetTiles_NewBark
+	.4byte gTilesetPalettes_NewBark
+	.4byte gTilesetPalOverrides_NewBark
+	.4byte gMetatiles_NewBark
+	.4byte gMetatileAttributes_NewBark
+	.4byte InitTilesetAnim_NewBark
 
 	.align 2
 gTileset_Rustboro:: @ 83DF734
@@ -599,16 +599,16 @@ gTileset_RustboroGym:: @ 83DFB9C
 	.4byte NULL @ animation callback
 
 	.align 2
-gTileset_DewfordGym:: @ 83DFBB4
+gTileset_AzaleaGym:: @ 83DFBB4
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_DewfordGym
-	.4byte gTilesetPalettes_DewfordGym
+	.4byte gTilesetTiles_AzaleaGym
+	.4byte gTilesetPalettes_AzaleaGym
 	.4byte NULL
-	.4byte gMetatiles_DewfordGym
-	.4byte gMetatileAttributes_DewfordGym
-	.4byte NULL @ animation callback
+	.4byte gMetatiles_AzaleaGym
+	.4byte gMetatileAttributes_AzaleaGym
+	.4byte InitTilesetAnim_AzaleaGym
 
 	.align 2
 gTileset_MauvilleGym:: @ 83DFBCC

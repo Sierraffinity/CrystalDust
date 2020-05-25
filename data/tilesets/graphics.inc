@@ -1,25 +1,25 @@
 	.align 2
-gTilesetTiles_Petalburg:: @ 8339E08
-	.incbin "data/tilesets/secondary/petalburg/tiles.4bpp.lz"
+gTilesetTiles_NewBark:: @ 8339E08
+	.incbin "data/tilesets/secondary/new_bark/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_Petalburg:: @ 833A704
-	.incbin "data/tilesets/secondary/petalburg/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/15.gbapal"
+gTilesetPalettes_NewBark:: @ 833A704
+	.incbin "data/tilesets/secondary/new_bark/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/new_bark/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Rustboro:: @ 833A904
@@ -1107,27 +1107,27 @@ gTilesetPalettes_RustboroGym:: @ 8374F34
 	.incbin "data/tilesets/secondary/rustboro_gym/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_DewfordGym:: @ 8375134
-	.incbin "data/tilesets/secondary/dewford_gym/tiles.4bpp.lz"
+gTilesetTiles_AzaleaGym:: @ 8375134
+	.incbin "data/tilesets/secondary/azalea_gym/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_DewfordGym:: @ 8375400
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/15.gbapal"
+gTilesetPalettes_AzaleaGym:: @ 8375400
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/azalea_gym/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_MauvilleGym:: @ 8375600
@@ -1739,8 +1739,8 @@ gTilesetPalOverride_General07::
 	.incbin "data/tilesets/primary/general/palettes/07_over.gbapal"
 
 	.align 2
-gTilesetPalOverride_Petalburg08::
-	.incbin "data/tilesets/secondary/petalburg/palettes/08_over.gbapal"
+gTilesetPalOverride_NewBark08::
+	.incbin "data/tilesets/secondary/new_bark/palettes/08_over.gbapal"
 
 	.align 2
 gTilesetPalOverride_Violet08::

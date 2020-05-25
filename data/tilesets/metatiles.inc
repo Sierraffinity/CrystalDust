@@ -7,12 +7,12 @@ gMetatileAttributes_General:: @ 83980F0
 	.incbin "data/tilesets/primary/general/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Petalburg:: @ 83984F0
-	.incbin "data/tilesets/secondary/petalburg/metatiles.bin"
+gMetatiles_NewBark:: @ 83984F0
+	.incbin "data/tilesets/secondary/new_bark/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Petalburg:: @ 8398DF0
-	.incbin "data/tilesets/secondary/petalburg/metatile_attributes.bin"
+gMetatileAttributes_NewBark:: @ 8398DF0
+	.incbin "data/tilesets/secondary/new_bark/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Rustboro:: @ 8398F10
@@ -343,12 +343,12 @@ gMetatileAttributes_RustboroGym:: @ 83C47C6
 	.incbin "data/tilesets/secondary/rustboro_gym/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_DewfordGym:: @ 83C4836
-	.incbin "data/tilesets/secondary/dewford_gym/metatiles.bin"
+gMetatiles_AzaleaGym:: @ 83C4836
+	.incbin "data/tilesets/secondary/azalea_gym/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_DewfordGym:: @ 83C4C86
-	.incbin "data/tilesets/secondary/dewford_gym/metatile_attributes.bin"
+gMetatileAttributes_AzaleaGym:: @ 83C4C86
+	.incbin "data/tilesets/secondary/azalea_gym/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_MauvilleGym:: @ 83C4D10

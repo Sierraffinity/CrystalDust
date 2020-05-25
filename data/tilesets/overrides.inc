@@ -18,22 +18,22 @@ gTilesetPalOverrides_General::
 	.align 2
 
 	.align 2
-gTilesetPalOverrides_Petalburg::
+gTilesetPalOverrides_NewBark::
 	.byte 8
 	.byte HOUR_NIGHT
 	.byte HOUR_MORNING
 	.byte 0 @ padding
-	.4byte gTilesetPalOverride_Petalburg08
+	.4byte gTilesetPalOverride_NewBark08
 	.byte 9
 	.byte HOUR_NIGHT
 	.byte HOUR_MORNING
 	.byte 0 @ padding
-	.4byte gTilesetPalOverride_Petalburg08
+	.4byte gTilesetPalOverride_NewBark08
 	.byte 12
 	.byte HOUR_NIGHT
 	.byte HOUR_MORNING
 	.byte 0 @ padding
-	.4byte gTilesetPalOverride_Petalburg08
+	.4byte gTilesetPalOverride_NewBark08
 	.byte 0xFF
 	.byte 0
 	.byte 0

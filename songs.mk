@@ -204,7 +204,7 @@ $(MID_SUBDIR)/mus_enckimono.s: %.s: %.mid
 $(MID_SUBDIR)/mus_kachi1.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G058 -V091
 
-$(MID_SUBDIR)/mus_kachi2.s: %.s: %.mid
+$(MID_SUBDIR)/mus_wilddefeat.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G025 -V080
 
 $(MID_SUBDIR)/mus_kachi3.s: %.s: %.mid
@@ -216,7 +216,7 @@ $(MID_SUBDIR)/mus_kachi4.s: %.s: %.mid
 $(MID_SUBDIR)/mus_kachi5.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G029 -V080
 
-$(MID_SUBDIR)/mus_kachi22.s: %.s: %.mid
+$(MID_SUBDIR)/mus_wildpostcatch.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G025 -V080
 
 $(MID_SUBDIR)/mus_encmaleclassic.s: %.s: %.mid

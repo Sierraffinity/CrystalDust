@@ -362,10 +362,9 @@
 #define METATILE_PetalburgGym_SlidingDoor_Frame3  0x21B
 #define METATILE_PetalburgGym_SlidingDoor_Frame4  0x21C
 
-// gTileset_Petalburg
-#define METATILE_Petalburg_Door_BirchsLab   0x2AC
-#define METATILE_Petalburg_Door_Littleroot  0x2A3
-#define METATILE_Petalburg_Door_Oldale      0x287
+// gTileset_NewBark
+#define METATILE_NewBark_Door_ElmsLab    0x2AC
+#define METATILE_NewBark_Door_NewBark    0x2A3
 
 // gTileset_PokemonCenter
 #define METATILE_PokemonCenter_CounterBarrier           0x25D
@@ -765,5 +764,10 @@
 // gTileset_Underwater
 #define METATILE_Underwater_FloorShadow  0x228
 #define METATILE_Underwater_RockWall     0x21E
+
+// gTileset_Violet
+#define METATILE_Violet_Door_House        0x298
+#define METATILE_Violet_Door_Lab          0x323
+#define METATILE_Violet_Door_SproutTower  0x294
 
 #endif // GUARD_METATILE_LABELS_H
