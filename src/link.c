@@ -601,7 +601,7 @@ static void ProcessRecvCmds(u8 unused)
                             linkPlayer->neverRead = 0;
                             linkPlayer->progressFlags = 0;
                         }
-                        else if (linkPlayer->version & 0x3F00 > 0)
+                        else if ((linkPlayer->version & 0x3F00) > 0)
                         {
                             // if game other than standard games detected, restore it
                             linkPlayer->version = (linkPlayer->version & 0xC000) | ((linkPlayer->version & 0x3F00) >> 8);

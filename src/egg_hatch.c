@@ -264,7 +264,7 @@ static const struct WindowTemplate sYesNoWinTemplate =
     .bg = 0,
     .tilemapLeft = 21,
     .tilemapTop = 9,
-    .width = 5,
+    .width = 6,
     .height = 4,
     .paletteNum = 15,
     .baseBlock = 424
@@ -451,7 +451,7 @@ static u8 EggHatchCreateMonSprite(u8 a0, u8 switchID, u8 pokeID, u16* speciesLoc
         break;
     case 1:
         SetMultiuseSpriteTemplateToPokemon(GetMonSpritePalStruct(mon)->tag, r5);
-        spriteID = CreateSprite(&gMultiuseSpriteTemplate, 120, 75, 6);
+        spriteID = CreateSprite(&gMultiuseSpriteTemplate, 120, 70, 6);
         gSprites[spriteID].invisible = TRUE;
         gSprites[spriteID].callback = SpriteCallbackDummy;
         break;
@@ -767,7 +767,7 @@ static void SpriteCB_Egg_2(struct Sprite* sprite)
             sprite->data[0] = 0;
             species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_SPECIES);
             gSprites[sEggHatchData->pokeSpriteID].pos2.x = 0;
-            gSprites[sEggHatchData->pokeSpriteID].pos2.y = 0;
+            gSprites[sEggHatchData->pokeSpriteID].pos2.y = gMonFrontPicCoords[species].y_offset;
         }
         else
         {
@@ -871,7 +871,7 @@ static void EggHatchPrintMessage(u8 windowId, u8* string, u8 x, u8 y, u8 speed)
     sEggHatchData->textColor[0] = 0;
     sEggHatchData->textColor[1] = 5;
     sEggHatchData->textColor[2] = 6;
-    AddTextPrinterParameterized4(windowId, 1, x, y, 0, 0, sEggHatchData->textColor, speed, string);
+    AddTextPrinterParameterized4(windowId, 1, x, y, 1, 1, sEggHatchData->textColor, speed, string);
 }
 
 u8 GetEggStepsToSubtract(void)
