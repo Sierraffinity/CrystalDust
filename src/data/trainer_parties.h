@@ -3422,44 +3422,39 @@ static const struct TrainerMonItemCustomMoves sParty_Drake[] = {
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Falkner[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_Falkner[] = {
     {
     .iv = 100,
     .lvl = 9,
     .species = SPECIES_PIDGEY,
-    .heldItem = ITEM_NONE,
     .moves = {MOVE_TACKLE, MOVE_SAND_ATTACK, MOVE_NONE, MOVE_NONE}
     },
     {
-    .iv = 100,
+    .iv = 150,
     .lvl = 11,
     .species = SPECIES_PIDGEOTTO,
-    .heldItem = ITEM_NONE,
     .moves = {MOVE_TACKLE, MOVE_GUST, MOVE_AERIAL_ACE, MOVE_NONE}
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Brawly1[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_Bugsy[] = {
     {
     .iv = 100,
-    .lvl = 16,
-    .species = SPECIES_MACHOP,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_KARATE_CHOP, MOVE_LOW_KICK, MOVE_SEISMIC_TOSS, MOVE_BULK_UP}
+    .lvl = 14,
+    .species = SPECIES_METAPOD,
+    .moves = {MOVE_TACKLE, MOVE_STRING_SHOT, MOVE_HARDEN, MOVE_NONE}
     },
     {
     .iv = 100,
-    .lvl = 16,
-    .species = SPECIES_MEDITITE,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_FOCUS_PUNCH, MOVE_LIGHT_SCREEN, MOVE_REFLECT, MOVE_BULK_UP}
+    .lvl = 14,
+    .species = SPECIES_KAKUNA,
+    .moves = {MOVE_POISON_STING, MOVE_STRING_SHOT, MOVE_HARDEN, MOVE_NONE}
     },
     {
     .iv = 200,
-    .lvl = 19,
-    .species = SPECIES_MAKUHITA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_ARM_THRUST, MOVE_VITAL_THROW, MOVE_REVERSAL, MOVE_BULK_UP}
+    .lvl = 16,
+    .species = SPECIES_SCYTHER,
+    .moves = {MOVE_QUICK_ATTACK, MOVE_LEER, MOVE_STEEL_WING, MOVE_NONE}
     }
 };
 

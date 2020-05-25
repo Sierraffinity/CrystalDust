@@ -16,12 +16,10 @@ VioletCity_Gym_SetGymTrainers:: @ 8271FA1
 	return
 
 AzaleaTown_Gym_SetGymTrainers:: @ 8271FAB
-	settrainerflag TRAINER_TAKAO
-	settrainerflag TRAINER_JOCELYN
-	settrainerflag TRAINER_LAURA
-	settrainerflag TRAINER_BRENDEN
-	settrainerflag TRAINER_CRISTIAN
-	settrainerflag TRAINER_LILITH
+	settrainerflag TRAINER_BENNY
+	settrainerflag TRAINER_AL
+	settrainerflag TRAINER_JOSH
+	settrainerflag TRAINER_AMY_AND_MAY
 	return
 
 MauvilleCity_Gym_SetGymTrainers:: @ 8271FBE

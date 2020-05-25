@@ -249,7 +249,12 @@ $(C_BUILDDIR)/%.o: c_dep = $(shell [[ -f $(C_SUBDIR)/$*.c ]] && $(SCANINC) -I in
 endif
 
 ifeq ($(DINFO),1)
-override CFLAGS += -Og -g
+override CFLAGS += -g
+ifeq ($(MODERN),1)
+override CFLAGS += -Og
+else
+override CFLAGS += -O0
+endif
 else
 override CFLAGS += -O2
 endif

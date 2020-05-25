@@ -177,7 +177,7 @@
 #define FLAG_SMART_PAINTING_MADE             0xA3
 #define FLAG_TOUGH_PAINTING_MADE             0xA4
 #define FLAG_GOT_TM40_FROM_FALKNER           0xA5
-#define FLAG_RECEIVED_TM08                   0xA6
+#define FLAG_GOT_TM47_FROM_BUGSY                   0xA6
 #define FLAG_RECEIVED_TM34                   0xA7
 #define FLAG_RECEIVED_TM50                   0xA8
 #define FLAG_RECEIVED_TM42                   0xA9
@@ -1313,7 +1313,7 @@
 #define FLAG_UNUSED_0x4EF                                           0x4EF // Unused Flag
 
 #define FLAG_DEFEATED_VIOLET_GYM                                    0x4F0
-#define FLAG_DEFEATED_AZALEA_GYM                                   0x4F1
+#define FLAG_DEFEATED_AZALEA_GYM                                    0x4F1
 #define FLAG_DEFEATED_MAUVILLE_GYM                                  0x4F2
 #define FLAG_DEFEATED_LAVARIDGE_GYM                                 0x4F3
 #define FLAG_DEFEATED_PETALBURG_GYM                                 0x4F4
