@@ -7,7 +7,7 @@ script AzaleaTown_Gym_EventScript_Bugsy {
         goto(AzaleaTown_Gym_EventScript_GiveSteelWing)
     }
     msgbox("BUG POKéMON are deep. There are\n"
-	       "many mysteries to be explored.\l"
+	       "many mysteries to be explored.\p"
 		   "Study your favorites thoroughly.")
 	release
 }
@@ -46,7 +46,7 @@ script AzaleaTown_Gym_EventScript_GiveSteelWing {
     msgbox("Do you know the benefits of the\n"
 		   "HIVEBADGE?\p"
 		   "If you have it, POKéMON up to Lv.\n"
-		   "30 will obey you, even traded ones.\p"
+		   "30 will obey, even traded ones.\p"
 		   "POKéMON that know CUT will be able\n"
 		   "to use it outside of battle, too.\p"
 		   "Here, I also want you to have this.")
