@@ -39,9 +39,9 @@ static const u8 sDoorAnimTiles_ElmsLab[] = INCBIN_U8("graphics/door_anims/elms_l
 static const u8 sDoorAnimTiles_Violet[] = INCBIN_U8("graphics/door_anims/violet.4bpp");
 static const u8 sDoorAnimTiles_SproutTower[] = INCBIN_U8("graphics/door_anims/sprout_tower.4bpp");
 static const u8 sDoorAnimTiles_RuinsLab[] = INCBIN_U8("graphics/door_anims/ruins_lab.4bpp");
+static const u8 sDoorAnimTiles_Azalea[] = INCBIN_U8("graphics/door_anims/azalea.4bpp");
 static const u8 sDoorAnimTiles_Lilycove[] = INCBIN_U8("graphics/door_anims/lilycove.4bpp");
 static const u8 sDoorAnimTiles_LilycoveWooden[] = INCBIN_U8("graphics/door_anims/lilycove_wooden.4bpp");
-static const u8 sDoorAnimTiles_Oldale[] = INCBIN_U8("graphics/door_anims/oldale.4bpp");
 static const u8 sDoorAnimTiles_UnusedTops[] = INCBIN_U8("graphics/door_anims/unused_top.4bpp");
 static const u8 sDoorAnimTiles_UnusedBottoms[] = INCBIN_U8("graphics/door_anims/unused_bottom.4bpp");
 static const u8 sDoorAnimTiles_Mauville[] = INCBIN_U8("graphics/door_anims/mauville.4bpp");
@@ -146,8 +146,8 @@ static const u8 sDoorAnimPalettes_ElmsLab[] = {9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_Violet[] = {12, 12, 12, 12};
 static const u8 sDoorAnimPalettes_SproutTower[] = {9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_RuinsLab[] = {7, 7, 7, 7};
+static const u8 sDoorAnimPalettes_Azalea[] = {8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_Lilycove[] = {8, 8, 8, 8, 8, 8, 8, 8};
-static const u8 sDoorAnimPalettes_Oldale[] = {10, 10, 9, 9, 9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_Mossdeep[] = {9, 9, 1, 1, 1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_PokemonLeague[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_Pacifidlog[] = {9, 9, 9, 9, 9, 9, 9, 9};
@@ -199,7 +199,7 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_Violet_Door_House,                            DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Violet, sDoorAnimPalettes_Violet},
     {METATILE_Violet_Door_SproutTower,                      DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_SproutTower, sDoorAnimPalettes_SproutTower},
     {METATILE_Violet_Door_Lab,                              DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_RuinsLab, sDoorAnimPalettes_RuinsLab},
-    {0x287,                        DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Oldale, sDoorAnimPalettes_Oldale},
+    {METATILE_Azalea_Door,                                  DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Azalea, sDoorAnimPalettes_Azalea},
     {METATILE_Mauville_Door,                                DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Mauville, sDoorAnimPalettes_Mauville},
     {METATILE_Mauville_Door_Verdanturf,                     DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Verdanturf, sDoorAnimPalettes_Verdanturf},
     {METATILE_Slateport_Door,                               DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Slateport, sDoorAnimPalettes_Slateport},

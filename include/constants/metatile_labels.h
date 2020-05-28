@@ -1,6 +1,9 @@
 #ifndef GUARD_METATILE_LABELS_H
 #define GUARD_METATILE_LABELS_H
 
+// gTileset_Azalea
+#define METATILE_Azalea_Door  0x29B
+
 // gTileset_BattleArena
 #define METATILE_BattleArena_Door  0x21B
 
@@ -336,6 +339,10 @@
 #define METATILE_Mossdeep_Door              0x2A1
 #define METATILE_Mossdeep_Door_SpaceCenter  0x2ED
 
+// gTileset_NewBark
+#define METATILE_NewBark_Door_ElmsLab  0x2AC
+#define METATILE_NewBark_Door_NewBark  0x2A3
+
 // gTileset_Pacifidlog
 #define METATILE_Pacifidlog_Door                           0x21A
 #define METATILE_Pacifidlog_FloatingLogs_Horizontal0       0x250
@@ -361,10 +368,6 @@
 #define METATILE_PetalburgGym_SlidingDoor_Frame2  0x21A
 #define METATILE_PetalburgGym_SlidingDoor_Frame3  0x21B
 #define METATILE_PetalburgGym_SlidingDoor_Frame4  0x21C
-
-// gTileset_NewBark
-#define METATILE_NewBark_Door_ElmsLab    0x2AC
-#define METATILE_NewBark_Door_NewBark    0x2A3
 
 // gTileset_PokemonCenter
 #define METATILE_PokemonCenter_CounterBarrier           0x25D
