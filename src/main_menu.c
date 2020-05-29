@@ -1468,6 +1468,10 @@ void Task_NewGameClockSetIntro1(u8 taskId)
 {
     if (IsBGMStopped())
     {
+        // moved from new_game.c so it doesn't change up the time on us unexpectedly after setting
+        if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
+            RtcReset();
+
         gTasks[taskId].data[0] = 15;
         gTasks[taskId].func = Task_NewGameClockSetIntro2;
     }
