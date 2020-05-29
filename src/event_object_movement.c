@@ -1224,7 +1224,7 @@ static u8 InitObjectEventStateFromTemplate(struct ObjectEventTemplate *template,
     s16 cloneX = 0;
     s16 cloneY = 0;
 
-    if (template->unk2 == 0xFF)
+    if (template->inConnection == 0xFF)
     {
         isClone = TRUE;
         mapNum = template->trainerType;
@@ -1550,7 +1550,7 @@ u8 SpawnSpecialObjectEventParameterized(u8 graphicsId, u8 movementBehavior, u8 l
     y -= 7;
     objectEventTemplate.localId = localId;
     objectEventTemplate.graphicsId = graphicsId;
-    objectEventTemplate.unk2 = 0;
+    objectEventTemplate.inConnection = 0;
     objectEventTemplate.x = x;
     objectEventTemplate.y = y;
     objectEventTemplate.elevation = z;

@@ -510,7 +510,7 @@ void LoadObjEventTemplatesFromHeader(void)
 
     for (i = 0; i < gMapHeader.events->objectEventCount; i++)
     {
-        if (gMapHeader.events->objectEvents[i].unk2 == 0xFF)
+        if (gMapHeader.events->objectEvents[i].inConnection == 0xFF)
         {
             gSaveBlock1Ptr->objectEventTemplates[i] = Overworld_GetMapHeaderByGroupAndId(gMapHeader.events->objectEvents[i].trainerRange_berryTreeId, gMapHeader.events->objectEvents[i].trainerType)->events->objectEvents[gMapHeader.events->objectEvents[i].elevation - 1];
             gSaveBlock1Ptr->objectEventTemplates[i].localId = gMapHeader.events->objectEvents[i].localId;
@@ -520,7 +520,7 @@ void LoadObjEventTemplatesFromHeader(void)
             gSaveBlock1Ptr->objectEventTemplates[i].elevation = gMapHeader.events->objectEvents[i].elevation;
             gSaveBlock1Ptr->objectEventTemplates[i].trainerType = gMapHeader.events->objectEvents[i].trainerType;
             gSaveBlock1Ptr->objectEventTemplates[i].trainerRange_berryTreeId = gMapHeader.events->objectEvents[i].trainerRange_berryTreeId;
-            gSaveBlock1Ptr->objectEventTemplates[i].unk2 = 0xFF;
+            gSaveBlock1Ptr->objectEventTemplates[i].inConnection = 0xFF;
         }
         else
         {

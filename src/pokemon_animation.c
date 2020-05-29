@@ -1141,7 +1141,6 @@ static void pokemonanimfunc_04(struct Sprite *sprite)
 static void sub_817F9F4(struct Sprite *sprite)
 {
     s32 counter = sprite->data[2];
-
     if (counter > 384)
     {
         sprite->callback = SpriteCB_SetDummyOnAnimEnd;
@@ -1151,7 +1150,6 @@ static void sub_817F9F4(struct Sprite *sprite)
     else
     {
         s16 divCounter = counter / 128;
-
         switch (divCounter)
         {
         case 0:

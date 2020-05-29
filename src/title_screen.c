@@ -296,7 +296,7 @@ void CB2_InitTitleScreen(void)
         gMain.state = 1;
         break;
     case 1:
-        LZ77UnCompVram(gTitleScreenPokemonLogoGfx, (void *)VRAM);
+        LZ77UnCompVram(gTitleScreenPokemonLogoGfx, (void *)(BG_CHAR_ADDR(0)));
         LZ77UnCompVram(gTitleScreenPokemonLogoTilemap, (void *)(BG_SCREEN_ADDR(31)));
         LoadPalette(gTitleScreenBgPalettes, 0, 0x200);
         LZ77UnCompVram(sTitleScreenCloudsGfx, (void *)(BG_CHAR_ADDR(2)));

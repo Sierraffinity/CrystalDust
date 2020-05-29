@@ -2057,7 +2057,7 @@ static void Task_NewGameOakSpeech_ShrinkBG2(u8 taskId)
         oldScale = gTasks[taskId].data[2];
         gTasks[taskId].data[2] -= 0x20;
 
-        SetBgAffine(2, 120 * 0x100, 84 * 0x100, 120, 84, sub_8151624(oldScale - 8), sub_8151624(gTasks[taskId].data[2] - 16), 0);
+        SetBgAffine(2, 120 * 0x100, 84 * 0x100, 120, 84, MathUtil_Inv16(oldScale - 8), MathUtil_Inv16(gTasks[taskId].data[2] - 16), 0);
 
         if (gTasks[taskId].data[2] <= 0x60)
         {

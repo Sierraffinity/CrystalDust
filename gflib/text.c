@@ -265,7 +265,7 @@ bool16 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
 
     for (i = 0; i < 7; i++)
     {
-        gTempTextPrinter.subUnion.fields[i] = 0;
+        gTempTextPrinter.subStructFields[i] = 0;
     }
 
     gTempTextPrinter.printerTemplate = *printerTemplate;
@@ -275,7 +275,7 @@ bool16 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
     gTempTextPrinter.isInstant = 0;
 
     GenerateFontHalfRowLookupTable(printerTemplate->fgColor, printerTemplate->bgColor, printerTemplate->shadowColor);
-    if (speed != TEXT_SPEED_FF && speed != 0x0)
+    if (speed != TEXT_SPEED_FF && speed != 0)
     {
         --gTempTextPrinter.textSpeed;
         gTextPrinters[printerTemplate->windowId] = gTempTextPrinter;
@@ -314,7 +314,7 @@ void RunTextPrinters(void)
 
     if (gUnknown_03002F84 == 0)
     {
-        for (i = 0; i < 0x20; ++i)
+        for (i = 0; i < NUM_TEXT_PRINTERS; ++i)
         {
             if (gTextPrinters[i].active)
             {
@@ -1416,11 +1416,11 @@ void ClearTextSpan(struct TextPrinter *textPrinter, u32 width)
 
 u16 Font0Func(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (subStruct->hasGlyphIdBeenSet == FALSE)
     {
-        textPrinter->subUnion.sub.glyphId = 0;
+        subStruct->glyphId = 0;
         subStruct->hasGlyphIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1428,11 +1428,11 @@ u16 Font0Func(struct TextPrinter *textPrinter)
 
 u16 Font1Func(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (subStruct->hasGlyphIdBeenSet == FALSE)
     {
-        textPrinter->subUnion.sub.glyphId = 1;
+        subStruct->glyphId = 1;
         subStruct->hasGlyphIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1440,11 +1440,11 @@ u16 Font1Func(struct TextPrinter *textPrinter)
 
 u16 Font2Func(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (subStruct->hasGlyphIdBeenSet == FALSE)
     {
-        textPrinter->subUnion.sub.glyphId = 2;
+        subStruct->glyphId = 2;
         subStruct->hasGlyphIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1452,11 +1452,11 @@ u16 Font2Func(struct TextPrinter *textPrinter)
 
 u16 Font3Func(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (subStruct->hasGlyphIdBeenSet == FALSE)
     {
-        textPrinter->subUnion.sub.glyphId = 3;
+        subStruct->glyphId = 3;
         subStruct->hasGlyphIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1464,11 +1464,11 @@ u16 Font3Func(struct TextPrinter *textPrinter)
 
 u16 Font4Func(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (subStruct->hasGlyphIdBeenSet == FALSE)
     {
-        textPrinter->subUnion.sub.glyphId = 4;
+        subStruct->glyphId = 4;
         subStruct->hasGlyphIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1476,11 +1476,11 @@ u16 Font4Func(struct TextPrinter *textPrinter)
 
 u16 Font5Func(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (subStruct->hasGlyphIdBeenSet == FALSE)
     {
-        textPrinter->subUnion.sub.glyphId = 5;
+        subStruct->glyphId = 5;
         subStruct->hasGlyphIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1488,11 +1488,11 @@ u16 Font5Func(struct TextPrinter *textPrinter)
 
 u16 Font7Func(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (subStruct->hasGlyphIdBeenSet == FALSE)
     {
-        textPrinter->subUnion.sub.glyphId = 7;
+        subStruct->glyphId = 7;
         subStruct->hasGlyphIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1500,11 +1500,11 @@ u16 Font7Func(struct TextPrinter *textPrinter)
 
 u16 Font8Func(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (subStruct->hasGlyphIdBeenSet == FALSE)
     {
-        textPrinter->subUnion.sub.glyphId = 8;
+        subStruct->glyphId = 8;
         subStruct->hasGlyphIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1512,27 +1512,29 @@ u16 Font8Func(struct TextPrinter *textPrinter)
 
 void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (gTextFlags.autoScroll == 1)
+    {
         subStruct->autoScrollDelay = 0;
+    }
     else
     {
-        subStruct->downArrowYPosIdx = 0;
+        subStruct->downArrowXPosIdx = 0;
         subStruct->downArrowDelay = 0;
     }
 }
 
 void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
     const u8 *arrowTiles;
 
     if (gTextFlags.autoScroll == 0)
     {
         if (subStruct->downArrowDelay != 0)
         {
-            subStruct->downArrowDelay = ((*(u32*)&textPrinter->subUnion.sub) << 19 >> 27) - 1;    // convoluted way of getting downArrowDelay, necessary to match
+            subStruct->downArrowDelay--;
         }
         else
         {
@@ -1546,11 +1548,11 @@ void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter)
 
             switch (gTextFlags.useAlternateDownArrow)
             {
-                case 0:
+                case FALSE:
                 default:
                     arrowTiles = &gDownArrowTiles[0];
                     break;
-                case 1:
+                case TRUE:
                     arrowTiles = &gDownArrowTiles[0x100];
                     break;
             }
@@ -1558,7 +1560,7 @@ void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter)
             BlitBitmapRectToWindow(
                 textPrinter->printerTemplate.windowId,
                 arrowTiles,
-                gDownArrowXCoords[*(u32*)subStruct << 17 >> 30], // subStruct->downArrowYPosIdx but again, stupidly retrieved
+                gDownArrowXCoords[subStruct->downArrowXPosIdx],
                 0,
                 0x80,
                 0x10,
@@ -1566,10 +1568,10 @@ void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter)
                 textPrinter->printerTemplate.currentY,
                 10,
                 12);
-            CopyWindowToVram(textPrinter->printerTemplate.windowId, 0x2);
+            CopyWindowToVram(textPrinter->printerTemplate.windowId, 2);
 
-            subStruct->downArrowDelay = 0x8;
-            subStruct->downArrowYPosIdx = (*(u32*)subStruct << 17 >> 30) + 1;
+            subStruct->downArrowDelay = 8;
+            subStruct->downArrowXPosIdx++;
         }
     }
 }
@@ -1583,12 +1585,12 @@ void TextPrinterClearDownArrow(struct TextPrinter *textPrinter)
         textPrinter->printerTemplate.currentY,
         10,
         12);
-    CopyWindowToVram(textPrinter->printerTemplate.windowId, 0x2);
+    CopyWindowToVram(textPrinter->printerTemplate.windowId, 2);
 }
 
 bool8 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
     if (subStruct->autoScrollDelay == 49)
     {
@@ -1596,7 +1598,7 @@ bool8 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
     }
     else
     {
-        ++subStruct->autoScrollDelay;
+        subStruct->autoScrollDelay++;
         return FALSE;
     }
 }
@@ -1638,7 +1640,7 @@ bool16 TextPrinterWait(struct TextPrinter *textPrinter)
     return result;
 }
 
-void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *counter, u8 *yCoordIndex)
+void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *counter, u8 *xCoordIndex)
 {
     const u8 *arrowTiles;
 
@@ -1648,16 +1650,16 @@ void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *c
     }
     else
     {
-        FillWindowPixelRect(windowId, (bgColor << 4) | bgColor, x, y, 0x8, 0x10);
+        FillWindowPixelRect(windowId, (bgColor << 4) | bgColor, x, y, 10, 12);
         if (drawArrow == 0)
         {
             switch (gTextFlags.useAlternateDownArrow)
             {
-                case 0:
+                case FALSE:
                 default:
                     arrowTiles = &gDownArrowTiles[0];
                     break;
-                case 1:
+                case TRUE:
                     arrowTiles = &gDownArrowTiles[0x100];
                     break;
             }
@@ -1665,24 +1667,24 @@ void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *c
             BlitBitmapRectToWindow(
                 windowId,
                 arrowTiles,
-                gDownArrowXCoords[*yCoordIndex & 3],
+                gDownArrowXCoords[*xCoordIndex & 3],
                 0,
                 0x80,
                 0x10,
                 x,
-                y - 2,
+                y,
                 10,
                 12);
             CopyWindowToVram(windowId, 0x2);
             *counter = 8;
-            ++*yCoordIndex;
+            ++*xCoordIndex;
         }
     }
 }
 
 u16 RenderText(struct TextPrinter *textPrinter)
 {
-    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
     u16 currChar;
     s32 width;
     s32 widthHelper;
