@@ -1717,7 +1717,7 @@ static void Task_NewGameOakSpeech_PrintIsPokemonWaitForAnimation(u8 taskId)
     {
         if (gTasks[taskId].tTimer >= 96)
         {
-            // just gotta reset these back to normal after they were changed (that was a hard one to track down)
+            // HACK: just gotta reset these back to normal after they were changed (that was a hard one to track down)
             gSprites[gTasks[taskId].tWooperSpriteId].affineAnimPaused = FALSE;
             gSprites[gTasks[taskId].tWooperSpriteId].affineAnims = gUnknown_082FF694;
             gTasks[taskId].func = Task_NewGameOakSpeech_MainSpeech1;

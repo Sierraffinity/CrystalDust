@@ -2553,7 +2553,14 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 else
                 {
-                    toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;
+                    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_RIVAL)
+                    {
+                        toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
+                    }
+                    else
+                    {
+                        toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;
+                    }
                 }
                 break;
             case B_TXT_LINK_PLAYER_NAME: // link player name

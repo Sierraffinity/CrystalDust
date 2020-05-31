@@ -259,7 +259,7 @@
       "elevation": 0,
       "var": "VAR_AZALEA_TOWN_STATE",
       "var_value": "1",
-      "script": "NULL"
+      "script": "AzaleaTown_EventScript_RivalTrigger_1"
     },
     {
       "type": "trigger",
@@ -268,7 +268,7 @@
       "elevation": 0,
       "var": "VAR_AZALEA_TOWN_STATE",
       "var_value": "1",
-      "script": "NULL"
+      "script": "AzaleaTown_EventScript_RivalTrigger_2"
     },
     {
       "type": "trigger",
@@ -277,7 +277,7 @@
       "elevation": 0,
       "var": "VAR_AZALEA_TOWN_STATE",
       "var_value": "1",
-      "script": "NULL"
+      "script": "AzaleaTown_EventScript_RivalTrigger_3"
     },
     {
       "type": "trigger",
@@ -286,7 +286,7 @@
       "elevation": 0,
       "var": "VAR_AZALEA_TOWN_STATE",
       "var_value": "1",
-      "script": "NULL"
+      "script": "AzaleaTown_EventScript_RivalTrigger_4"
     }
   ],
   "bg_events": [

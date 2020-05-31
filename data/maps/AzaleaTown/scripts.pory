@@ -1,7 +1,161 @@
+const OBJ_RIVAL = 9
+
 mapscripts AzaleaTown_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_VISITED_AZALEA_TOWN)
     }
+}
+
+script AzaleaTown_EventScript_RivalTrigger_1 {
+    lockall
+    setvar(VAR_TEMP_1, 0)
+    setobjectxyperm(OBJ_RIVAL, 19, 10)
+    goto(AzaleaTown_EventScript_RivalTrigger_All)
+}
+
+script AzaleaTown_EventScript_RivalTrigger_2 {
+    lockall
+    setvar(VAR_TEMP_1, 1)
+    goto(AzaleaTown_EventScript_RivalTrigger_All)
+}
+
+script AzaleaTown_EventScript_RivalTrigger_3 {
+    lockall
+    setvar(VAR_TEMP_1, 2)
+    setobjectxyperm(OBJ_RIVAL, 19, 10)
+    goto(AzaleaTown_EventScript_RivalTrigger_All)
+}
+
+script AzaleaTown_EventScript_RivalTrigger_4 {
+    lockall
+    setvar(VAR_TEMP_1, 3)
+    goto(AzaleaTown_EventScript_RivalTrigger_All)
+}
+
+script AzaleaTown_EventScript_RivalTrigger_All {
+    addobject(OBJ_RIVAL)
+	fadenewbgm(0)
+    textcolor(MSG_COLOR_BLUE)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+	waitmovement(0)
+	playse(SE_PIN)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
+	waitmovement(0)
+
+    if (var(VAR_TEMP_1) <= 1)
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, AzaleaTown_Movement_PlayerWatchRivalDown)
+        applymovement(OBJ_RIVAL, AzaleaTown_Movement_RivalToPlayerUp)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, AzaleaTown_Movement_PlayerWatchRivalUp)
+        applymovement(OBJ_RIVAL, AzaleaTown_Movement_RivalToPlayerDown)
+        waitmovement(0)
+    }
+
+    playbgm(MUS_RIVALTHEME, 0)
+	savebgm(MUS_RIVALEXIT)
+    msgbox("…Tell me something.\p"
+           "Is it true that TEAM ROCKET has\n"
+           "returned?\p"
+           "What? You beat them?\n"
+           "Hah! Quit lying.\p"
+           "You're not joking?\n"
+           "Then let's see how good you are.")
+
+    setvar(VAR_LAST_TALKED, OBJ_RIVAL)
+
+    if (var(VAR_STARTER_MON) == STARTER_CHIKORITA)
+    {
+        trainerbattle_wintext(TRAINER_RIVAL_AZALEA_CHIKORITA, 0, AzaleaTown_Text_RivalLost, AzaleaTown_Text_RivalWon)
+    }
+    elif (var(VAR_STARTER_MON) == STARTER_TOTODILE)
+    {
+        trainerbattle_wintext(TRAINER_RIVAL_AZALEA_TOTODILE, 0, AzaleaTown_Text_RivalLost, AzaleaTown_Text_RivalWon)
+    }
+    elif (var(VAR_STARTER_MON) == STARTER_CYNDAQUIL)
+    {
+        trainerbattle_wintext(TRAINER_RIVAL_AZALEA_CYNDAQUIL, 0, AzaleaTown_Text_RivalLost, AzaleaTown_Text_RivalWon)
+    }
+
+    msgbox("I hate the weak.\p"
+           "POKéMON, TRAINERS.\n"
+           "It doesn't matter who or what.\p"
+           "I'm going to be strong and wipe\n"
+           "out the weak.\p"
+           "That goes for TEAM ROCKET too.\p"
+           "They act big and tough together, but\n"
+           "get them alone and they're weak.\p"
+           "I hate them all.\p"
+           "You stay out of my way. A weakling\n"
+           "like you is only a distraction.")
+    closemessage
+
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft)
+    if (var(VAR_TEMP_1) == 0 || var(VAR_TEMP_1) == 2)
+    {
+        applymovement(OBJ_RIVAL, AzaleaTown_Movement_RivalExitUpper)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(OBJ_RIVAL, AzaleaTown_Movement_RivalExitLower)
+        waitmovement(0)
+    }
+
+    playse(SE_KAIDAN)
+    removeobject(OBJ_RIVAL)
+    waitse
+    savebgm(MUS_DUMMY)
+	fadedefaultbgm
+    setvar(VAR_AZALEA_TOWN_STATE, 2)
+    releaseall
+}
+
+text AzaleaTown_Text_RivalLost {
+    "… Humph!\n"
+    "Useless POKéMON!\p"
+    "Listen, you. You only won because\n"
+    "my POKéMON were weak."
+}
+
+text AzaleaTown_Text_RivalWon {
+    "…Humph!\n"
+    "I knew you were lying."
+}
+
+movement AzaleaTown_Movement_PlayerWatchRivalDown {
+    delay_16 * 6
+    walk_in_place_fastest_down
+}
+
+movement AzaleaTown_Movement_PlayerWatchRivalUp {
+    delay_16 * 6
+    walk_in_place_fastest_up
+}
+
+movement AzaleaTown_Movement_RivalToPlayerUp {
+    walk_left * 8
+    walk_in_place_fastest_up
+}
+
+movement AzaleaTown_Movement_RivalToPlayerDown {
+    walk_left * 8
+    walk_in_place_fastest_down
+}
+
+movement AzaleaTown_Movement_RivalExitUpper {
+    walk_left
+    walk_down
+    walk_left * 2
+}
+
+movement AzaleaTown_Movement_RivalExitLower {
+    walk_left * 3
 }
 
 script AzaleaTown_EventScript_SlowpokeWell_B1FGuard {

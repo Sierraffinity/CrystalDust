@@ -7265,20 +7265,6 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Edwin5},
     },
 
-    [TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL] =
-    {
-        .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_RIVAL,
-        .trainerName = _("???"),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_Rival1),
-        .party = {.NoItemDefaultMoves = sParty_Rival1 }
-    },
-
     [TRAINER_RIVAL_CHERRYGROVE_CHIKORITA] =
     {
         .partyFlags = 0,
@@ -7289,8 +7275,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_Rival2),
-        .party = {.NoItemDefaultMoves = sParty_Rival2 }
+        .partySize = ARRAY_COUNT(sParty_RivalCherrygroveChikorita),
+        .party = {.NoItemDefaultMoves = sParty_RivalCherrygroveChikorita }
     },
 
     [TRAINER_RIVAL_CHERRYGROVE_TOTODILE] =
@@ -7303,50 +7289,64 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_Rival3),
-        .party = {.NoItemDefaultMoves = sParty_Rival3 }
+        .partySize = ARRAY_COUNT(sParty_RivalCherrygroveTotodile),
+        .party = {.NoItemDefaultMoves = sParty_RivalCherrygroveTotodile }
     },
 
-    [TRAINER_BRENDAN_ROUTE_119_MUDKIP] =
+    [TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_EM_BRENDAN,
-        .trainerName = _("BRENDAN"),
+        .trainerPic = TRAINER_PIC_RIVAL,
+        .trainerName = _("???"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_BrendanRoute119Mudkip),
-        .party = {.NoItemDefaultMoves = sParty_BrendanRoute119Mudkip},
+        .partySize = ARRAY_COUNT(sParty_RivalCherrygroveCyndaquil),
+        .party = {.NoItemDefaultMoves = sParty_RivalCherrygroveCyndaquil }
     },
 
-    [TRAINER_BRENDAN_ROUTE_103_TREECKO] =
+    [TRAINER_RIVAL_AZALEA_CHIKORITA] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
+        .trainerClass = TRAINER_CLASS_RIVAL,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_EM_BRENDAN,
-        .trainerName = _("BRENDAN"),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
-        .partySize = ARRAY_COUNT(sParty_BrendanRoute103Treecko),
-        .party = {.NoItemDefaultMoves = sParty_BrendanRoute103Treecko},
-    },
-
-    [TRAINER_BRENDAN_ROUTE_110_TREECKO] =
-    {
-        .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_EM_BRENDAN,
-        .trainerName = _("BRENDAN"),
+        .trainerPic = TRAINER_PIC_RIVAL,
+        .trainerName = _("SILVER"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_BrendanRoute110Treecko),
-        .party = {.NoItemDefaultMoves = sParty_BrendanRoute110Treecko},
+        .partySize = ARRAY_COUNT(sParty_RivalAzaleaChikorita),
+        .party = {.NoItemDefaultMoves = sParty_RivalAzaleaChikorita},
+    },
+
+    [TRAINER_RIVAL_AZALEA_TOTODILE] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_RIVAL,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_RIVAL,
+        .trainerName = _("SILVER"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = ARRAY_COUNT(sParty_RivalAzaleaTotodile),
+        .party = {.NoItemDefaultMoves = sParty_RivalAzaleaTotodile},
+    },
+
+    [TRAINER_RIVAL_AZALEA_CYNDAQUIL] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_RIVAL,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_RIVAL,
+        .trainerName = _("SILVER"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = ARRAY_COUNT(sParty_RivalAzaleaCyndaquil),
+        .party = {.NoItemDefaultMoves = sParty_RivalAzaleaCyndaquil},
     },
 
     [TRAINER_BRENDAN_ROUTE_119_TREECKO] =

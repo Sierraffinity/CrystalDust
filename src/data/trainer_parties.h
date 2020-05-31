@@ -6794,7 +6794,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Edwin5[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Rival1[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_RivalCherrygroveChikorita[] = {
     {
     .iv = 0,
     .lvl = 5,
@@ -6802,7 +6802,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Rival1[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Rival2[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_RivalCherrygroveTotodile[] = {
     {
     .iv = 0,
     .lvl = 5,
@@ -6810,7 +6810,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Rival2[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Rival3[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_RivalCherrygroveCyndaquil[] = {
     {
     .iv = 0,
     .lvl = 5,
@@ -6818,47 +6818,57 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Rival3[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute119Mudkip[] = {
-    {
-    .iv = 100,
-    .lvl = 29,
-    .species = SPECIES_SLUGMA,
-    },
-    {
-    .iv = 100,
-    .lvl = 29,
-    .species = SPECIES_PELIPPER,
-    },
-    {
-    .iv = 150,
-    .lvl = 31,
-    .species = SPECIES_GROVYLE,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute103Treecko[] = {
-    {
-    .iv = 0,
-    .lvl = 5,
-    .species = SPECIES_TORCHIC,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute110Treecko[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_RivalAzaleaChikorita[] = {
     {
     .iv = 50,
-    .lvl = 18,
-    .species = SPECIES_WINGULL,
+    .lvl = 12,
+    .species = SPECIES_GASTLY,
     },
     {
     .iv = 50,
-    .lvl = 18,
-    .species = SPECIES_LOMBRE,
+    .lvl = 14,
+    .species = SPECIES_ZUBAT,
     },
     {
-    .iv = 100,
-    .lvl = 20,
-    .species = SPECIES_COMBUSKEN,
+    .iv = 50,
+    .lvl = 16,
+    .species = SPECIES_QUILAVA,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_RivalAzaleaTotodile[] = {
+    {
+    .iv = 50,
+    .lvl = 12,
+    .species = SPECIES_GASTLY,
+    },
+    {
+    .iv = 50,
+    .lvl = 14,
+    .species = SPECIES_ZUBAT,
+    },
+    {
+    .iv = 50,
+    .lvl = 16,
+    .species = SPECIES_BAYLEEF,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_RivalAzaleaCyndaquil[] = {
+    {
+    .iv = 50,
+    .lvl = 12,
+    .species = SPECIES_GASTLY,
+    },
+    {
+    .iv = 50,
+    .lvl = 14,
+    .species = SPECIES_ZUBAT,
+    },
+    {
+    .iv = 50,
+    .lvl = 16,
+    .species = SPECIES_CROCONAW,
     }
 };
 
