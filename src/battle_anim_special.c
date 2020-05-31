@@ -58,6 +58,7 @@ static void DestroyBallOpenAnimationParticle(struct Sprite *);
 static void FanOutBallOpenParticles_Step1(struct Sprite *);
 static void RepeatBallOpenParticleAnimation_Step1(struct Sprite *);
 static void PremierBallOpenParticleAnimation_Step1(struct Sprite *);
+static void LureBallParticle_Step(struct Sprite *sprite);
 static void sub_8172AB0(u8);
 static void sub_8172B40(u8);
 static void sub_8172B90(u8);
@@ -78,6 +79,7 @@ static void RepeatBallOpenParticleAnimation(u8);
 static void TimerBallOpenParticleAnimation(u8);
 static void PremierBallOpenParticleAnimation(u8);
 static void LevelBallOpenParticleAnimation(u8);
+static void LureBallOpenParticleAnimation(u8);
 static void sub_817330C(struct Sprite *);
 
 struct BallCaptureSuccessStarData
@@ -110,26 +112,26 @@ static const struct BallCaptureSuccessStarData sBallCaptureSuccessStarData[] =
 
 const struct CompressedSpriteSheet gBallParticleSpritesheets[] =
 {
-    [BALLGFX_POKE]      = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(POKE)},
-    [BALLGFX_GREAT]     = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(GREAT)},
-    [BALLGFX_SAFARI]    = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(SAFARI)},
-    [BALLGFX_ULTRA]     = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(ULTRA)},
-    [BALLGFX_MASTER]    = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(MASTER)},
-    [BALLGFX_NET]       = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(NET)},
-    [BALLGFX_DIVE]      = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(DIVE)},
-    [BALLGFX_NEST]      = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(NEST)},
-    [BALLGFX_REPEAT]    = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(REPEAT)},
-    [BALLGFX_TIMER]     = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(TIMER)},
-    [BALLGFX_LUXURY]    = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(LUXURY)},
-    [BALLGFX_PREMIER]   = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(PREMIER)},
-    [BALLGFX_LEVEL]     = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(LEVEL)},
-    [BALLGFX_LURE]      = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(LURE)},
-    [BALLGFX_MOON]      = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(MOON)},
-    [BALLGFX_FRIEND]    = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(FRIEND)},
-    [BALLGFX_FAST]      = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(FAST)},
-    [BALLGFX_HEAVY]     = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(HEAVY)},
-    [BALLGFX_LOVE]      = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(LOVE)},
-    [BALLGFX_PARK]      = {gBattleAnimSpriteGfx_Particles, 0x160, TAG_BALL_PARTICLES(PARK)},
+    [BALLGFX_POKE]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(POKE)},
+    [BALLGFX_GREAT]     = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(GREAT)},
+    [BALLGFX_SAFARI]    = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(SAFARI)},
+    [BALLGFX_ULTRA]     = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(ULTRA)},
+    [BALLGFX_MASTER]    = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(MASTER)},
+    [BALLGFX_NET]       = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(NET)},
+    [BALLGFX_DIVE]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(DIVE)},
+    [BALLGFX_NEST]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(NEST)},
+    [BALLGFX_REPEAT]    = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(REPEAT)},
+    [BALLGFX_TIMER]     = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(TIMER)},
+    [BALLGFX_LUXURY]    = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(LUXURY)},
+    [BALLGFX_PREMIER]   = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(PREMIER)},
+    [BALLGFX_LEVEL]     = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(LEVEL)},
+    [BALLGFX_LURE]      = {gBattleAnimSpriteGfx_BallBubbleParticles,  0x80, TAG_BALL_PARTICLES(LURE)},
+    [BALLGFX_MOON]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(MOON)},
+    [BALLGFX_FRIEND]    = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(FRIEND)},
+    [BALLGFX_FAST]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(FAST)},
+    [BALLGFX_HEAVY]     = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(HEAVY)},
+    [BALLGFX_LOVE]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(LOVE)},
+    [BALLGFX_PARK]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(PARK)},
 };
 
 const struct CompressedSpritePalette gBallParticlePalettes[] =
@@ -247,7 +249,7 @@ const TaskFunc gBallParticleAnimationFuncs[] =
     [BALLGFX_LUXURY]    = GreatBallOpenParticleAnimation,
     [BALLGFX_PREMIER]   = PremierBallOpenParticleAnimation,
     [BALLGFX_LEVEL]     = LevelBallOpenParticleAnimation,
-    [BALLGFX_LURE]      = PokeBallOpenParticleAnimation,
+    [BALLGFX_LURE]      = LureBallOpenParticleAnimation,
     [BALLGFX_MOON]      = PokeBallOpenParticleAnimation,
     [BALLGFX_FRIEND]    = PokeBallOpenParticleAnimation,
     [BALLGFX_FAST]      = PokeBallOpenParticleAnimation,
@@ -455,7 +457,7 @@ const u16 gBallOpenFadeColors[] =
     [BALLGFX_LUXURY]    = RGB(31, 17, 10),
     [BALLGFX_PREMIER]   = RGB(31,  9, 10),
     [BALLGFX_LEVEL]     = RGB(31, 23, 23),
-    [BALLGFX_LURE]      = RGB(31, 22, 30),
+    [BALLGFX_LURE]      = RGB( 8, 16, 30),
     [BALLGFX_MOON]      = RGB(31, 22, 30),
     [BALLGFX_FRIEND]    = RGB(31, 22, 30),
     [BALLGFX_FAST]      = RGB(31, 22, 30),
@@ -2010,6 +2012,62 @@ static void LevelBallOpenParticleAnimation(u8 taskId)
     }
 
     task->data[0]++;
+}
+
+const union AnimCmd gAnim_LureBallParticle[] =
+{
+    ANIMCMD_FRAME(0, 19),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_FRAME(3, 2),
+    ANIMCMD_END,
+};
+const union AnimCmd *const gAnims_LureBallParticle[] =
+{
+    gAnim_LureBallParticle,
+};
+
+const struct SpriteTemplate gLureBallParticleSpriteTemplate =
+{
+    .tileTag = TAG_BALL_PARTICLES(LURE),
+    .paletteTag = TAG_BALL_PARTICLES(LURE),
+    .oam = &gOamData_AffineOff_ObjNormal_8x8,
+    .anims = gAnims_LureBallParticle,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = LureBallParticle_Step,
+};
+
+static void LureBallOpenParticleAnimation(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    u8 x = task->data[1];
+    u8 y = task->data[2];
+    u8 priority = task->data[3];
+    u8 subpriority = task->data[4];
+    u8 spriteId = CreateSprite(&gLureBallParticleSpriteTemplate, x, y, subpriority);
+    gSprites[spriteId].oam.priority = priority;
+    gSprites[spriteId].data[0] = Random() % 256;
+    gSprites[spriteId].data[2] = 0x70 + Random() % 0x50;
+    sub_8171E20();
+
+    if (++task->data[0] == 16)
+    {
+        if (!gMain.inBattle)
+            gSprites[spriteId].data[7] = 1;
+
+        DestroyTask(taskId);
+    }
+}
+
+static void LureBallParticle_Step(struct Sprite *sprite)
+{
+    sprite->pos2.x = Sin(sprite->data[0], (u16)sprite->data[1] >> 6);
+    sprite->pos2.y = Cos(sprite->data[0], (u16)sprite->data[1] >> 6);
+    sprite->data[1] += sprite->data[2];
+    sprite->data[2] -= 4;
+    if (++sprite->data[3] == 25)
+        DestroyBallOpenAnimationParticle(sprite);
 }
 
 static void DestroyBallOpenAnimationParticle(struct Sprite *sprite)
