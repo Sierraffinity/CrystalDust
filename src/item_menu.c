@@ -94,8 +94,8 @@ bool8 sub_81AC2C0(void);
 void BagMenu_SwapItems(u8);
 void sub_81AC10C(u8);
 void sub_81AC3C0(u8);
-void sub_81AC498(u8);
-void sub_81AC590(u8);
+void ExecuteMoveItemInPocket(u8);
+void AbortMovingItemInPocket(u8);
 void PrintTMHMMoveData(u16);
 void sub_81ACAF8(u8);
 void sub_81ACB54(u8, u8, u8);
@@ -1272,7 +1272,7 @@ void Task_BagMenu(u8 taskId)
         if (sub_81AC2C0() == 1)
         {
             ListMenuGetScrollAndRow(data[0], scrollPos, cursorPos);
-            if ((*scrollPos + *cursorPos) != gBagMenu->totalItems[gBagPositionStruct.pocket] - 1)
+            if ((*scrollPos + *cursorPos) != gBagMenu->totalItems[gBagPositionStruct.pocket])
             {
                 PlaySE(SE_SELECT);
                 BagMenu_SwapItems(taskId);
@@ -1465,8 +1465,8 @@ void BagMenu_SwapItems(u8 taskId)
     StringExpandPlaceholders(gStringVar4, gText_MoveVar1Where);
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
     BagMenu_Print(1, 1, gStringVar4, 0, 3, 2, 0, 0, 0);
-    sub_80D4FEC(data[0]);
-    sub_80D4FC8(FALSE);
+    ItemMenuIcons_MoveInsertIndicatorBar(data[0]);
+    ItemMenuIcons_ToggleInsertIndicatorBarVisibility(FALSE);
     BagDestroyPocketSwitchArrowPair();
     BagMenu_PrintCursor_(data[0], 2);
     gTasks[taskId].func = sub_81AC3C0;
@@ -1479,19 +1479,18 @@ void sub_81AC3C0(u8 taskId)
 
     if (sub_81221EC() != TRUE)
     {
+        input = ListMenu_ProcessInput(data[0]);
+        ListMenuGetScrollAndRow(data[0], &gBagPositionStruct.scrollPosition[gBagPositionStruct.pocket], &gBagPositionStruct.cursorPosition[gBagPositionStruct.pocket]);
+        ItemMenuIcons_MoveInsertIndicatorBar(data[0]);
         if (gMain.newKeys & SELECT_BUTTON)
         {
             PlaySE(SE_SELECT);
             gBagMenu->itemOriginalLocation = 0xFF;
-            sub_80D4FEC(gBagPositionStruct.cursorPosition[gBagPositionStruct.pocket]);
             ListMenuGetScrollAndRow(data[0], &gBagPositionStruct.scrollPosition[gBagPositionStruct.pocket], &gBagPositionStruct.cursorPosition[gBagPositionStruct.pocket]);
-            sub_81AC498(taskId);
+            ExecuteMoveItemInPocket(taskId);
         }
         else
         {
-            input = ListMenu_ProcessInput(data[0]);
-            ListMenuGetScrollAndRow(data[0], &gBagPositionStruct.scrollPosition[gBagPositionStruct.pocket], &gBagPositionStruct.cursorPosition[gBagPositionStruct.pocket]);
-            sub_80D4FEC(gBagPositionStruct.cursorPosition[gBagPositionStruct.pocket]);
             switch (input)
             {
                 case LIST_NOTHING_CHOSEN:
@@ -1500,20 +1499,20 @@ void sub_81AC3C0(u8 taskId)
                     PlaySE(SE_SELECT);
                     gBagMenu->itemOriginalLocation = 0xFF;
                     if (gMain.newKeys & A_BUTTON)
-                        sub_81AC498(taskId);
+                        ExecuteMoveItemInPocket(taskId);
                     else
-                        sub_81AC590(taskId);
+                        AbortMovingItemInPocket(taskId);
                     break;
                 default:
                     PlaySE(SE_SELECT);
                     gBagMenu->itemOriginalLocation = 0xFF;
-                    sub_81AC498(taskId);
+                    ExecuteMoveItemInPocket(taskId);
             }
         }
     }
 }
 
-void sub_81AC498(u8 taskId)
+void ExecuteMoveItemInPocket(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
     u16* scrollPos = &gBagPositionStruct.scrollPosition[gBagPositionStruct.pocket];
@@ -1521,7 +1520,7 @@ void sub_81AC498(u8 taskId)
     u16 realPos = (*scrollPos + *cursorPos);
 
     if (data[1] == realPos || data[1] == (realPos - 1))
-        sub_81AC590(taskId);
+        AbortMovingItemInPocket(taskId);
     else
     {
         MoveItemSlotInList(gBagPockets[gBagPositionStruct.pocket].itemSlots, data[1], realPos);
@@ -1530,13 +1529,13 @@ void sub_81AC498(u8 taskId)
             gBagPositionStruct.cursorPosition[gBagPositionStruct.pocket]--;
         LoadBagItemListBuffers(gBagPositionStruct.pocket);
         data[0] = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
-        sub_80D4FC8(1);
+        ItemMenuIcons_ToggleInsertIndicatorBarVisibility(1);
         CreatePocketSwitchArrowPair();
         gTasks[taskId].func = Task_BagMenu;
     }
 }
 
-void sub_81AC590(u8 taskId)
+void AbortMovingItemInPocket(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
     u16* scrollPos = &gBagPositionStruct.scrollPosition[gBagPositionStruct.pocket];
@@ -1547,7 +1546,7 @@ void sub_81AC590(u8 taskId)
         gBagPositionStruct.cursorPosition[gBagPositionStruct.pocket]--;
     LoadBagItemListBuffers(gBagPositionStruct.pocket);
     data[0] = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
-    sub_80D4FC8(1);
+    ItemMenuIcons_ToggleInsertIndicatorBarVisibility(1);
     CreatePocketSwitchArrowPair();
     gTasks[taskId].func = Task_BagMenu;
 }

@@ -437,12 +437,12 @@ void sub_80D4FAC(void)
     sub_8122344(&gBagMenu->spriteId[1], 9);
 }
 
-void sub_80D4FC8(u8 arg0)
+void ItemMenuIcons_ToggleInsertIndicatorBarVisibility(u8 arg0)
 {
     sub_81223FC(&gBagMenu->spriteId[1], 9, arg0);
 }
 
-void sub_80D4FEC(u8 arg0)
+void ItemMenuIcons_MoveInsertIndicatorBar(u8 arg0)
 {
     sub_8122448(&gBagMenu->spriteId[1], 9, 0, ListMenuGetYCoordForPrintingArrowCursor(arg0));
 }
