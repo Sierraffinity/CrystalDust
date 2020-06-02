@@ -1,7 +1,395 @@
+const OBJ_FARFETCHD = 1
+const OBJ_KILN_MASTER = 3
+const POS1_X = 27
+const POS1_Y = 41
+const POS2_X = 28
+const POS2_Y = 35
+const POS3_X = 38
+const POS3_Y = 34
+const POS4_X = 50
+const POS4_Y = 31
+const POS5_X = 47
+const POS5_Y = 41
+const POS6_X = 41
+const POS6_Y = 45
+const POS7_X = 39
+const POS7_Y = 41
+const POS8_X = 28
+const POS8_Y = 39
+const POS9_X = 21
+const POS9_Y = 46
+const POS10_X = 14
+const POS10_Y = 37
+
 mapscripts IlexForest_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_LANDMARK_ILEX_FOREST)
+		switch (var(VAR_ILEX_FARFETCHD_STATE))
+		{
+		default:
+			setobjectxyperm(OBJ_FARFETCHD, POS1_X, POS1_Y)
+		case 2:
+			setobjectxyperm(OBJ_FARFETCHD, POS2_X, POS2_Y)
+		case 3:
+			setobjectxyperm(OBJ_FARFETCHD, POS3_X, POS3_Y)
+		case 4:
+			setobjectxyperm(OBJ_FARFETCHD, POS4_X, POS4_Y)
+		case 5:
+			setobjectxyperm(OBJ_FARFETCHD, POS5_X, POS5_Y)
+		case 6:
+			setobjectxyperm(OBJ_FARFETCHD, POS6_X, POS6_Y)
+		case 7:
+			setobjectxyperm(OBJ_FARFETCHD, POS7_X, POS7_Y)
+		case 8:
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+		case 9:
+			setobjectxyperm(OBJ_FARFETCHD, POS9_X, POS9_Y)
+		case 10:
+			setobjectxyperm(OBJ_FARFETCHD, POS10_X, POS10_Y)
+		}
     }
+}
+
+script IlexForest_EventScript_Farfetchd {
+	lock
+	faceplayer
+	switch (var(VAR_ILEX_FARFETCHD_STATE))
+	{
+	default:
+		msgbox("It's the missing POKéMON!")
+		call(IlexForest_EventScript_FarfetchdCry)
+		applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_1to2)
+		waitmovement(0)
+		setobjectxy(OBJ_FARFETCHD, POS2_X, POS2_Y)
+		setobjectxyperm(OBJ_FARFETCHD, POS2_X, POS2_Y)
+		setvar(VAR_ILEX_FARFETCHD_STATE, 2)
+	case 2:
+		call(IlexForest_EventScript_FarfetchdCry)
+		if (var(VAR_FACING) == DIR_SOUTH)
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_2to8)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 8)
+		}
+		else
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_2to3)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS3_X, POS3_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS3_X, POS3_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 3)
+		}
+	case 3:
+		call(IlexForest_EventScript_FarfetchdCry)
+		if (var(VAR_FACING) == DIR_WEST)
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_3to2)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS2_X, POS2_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS2_X, POS2_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 2)
+		}
+		else
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_3to4)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 4)
+		}
+	case 4:
+		call(IlexForest_EventScript_FarfetchdCry)
+		if (var(VAR_FACING) == DIR_NORTH)
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_4to3)
+			delay(4)
+			playse(SE_DANSA)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS3_X, POS3_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS3_X, POS3_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 3)
+		}
+		else
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_4to5)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 5)
+		}
+	case 5:
+		call(IlexForest_EventScript_FarfetchdCry)
+		switch (var(VAR_FACING))
+		{
+		default:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_5to6)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS6_X, POS6_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS6_X, POS6_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 6)
+		case DIR_NORTH:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_5to4North)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 4)
+		case DIR_WEST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_5to7)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 7)
+		case DIR_EAST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_5to4East)
+			delay(60)
+			playse(SE_WALL_HIT)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 4)
+		}
+	case 6:
+		call(IlexForest_EventScript_FarfetchdCry)
+		if (var(VAR_FACING) == DIR_EAST)
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_6to5)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 5)
+		}
+		else
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_6to7)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 7)
+		}
+	case 7:
+		call(IlexForest_EventScript_FarfetchdCry)
+		switch (var(VAR_FACING))
+		{
+		default:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_7to8)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 8)
+		case DIR_SOUTH:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_7to5)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 5)
+		case DIR_WEST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_7to6)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS6_X, POS6_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS6_X, POS6_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 6)
+		}
+	case 8:
+		call(IlexForest_EventScript_FarfetchdCry)
+		switch (var(VAR_FACING))
+		{
+		default:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_8to9)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS9_X, POS9_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS9_X, POS9_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 9)
+		case DIR_NORTH:
+		case DIR_WEST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_8to2)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS2_X, POS2_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS2_X, POS2_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 2)
+		case DIR_EAST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_8to7)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 7)
+		}
+	case 9:
+		call(IlexForest_EventScript_FarfetchdCry)
+		switch (var(VAR_FACING))
+		{
+		default:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_9to10)
+			delay(18)
+			playse(SE_WALL_HIT)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS10_X, POS10_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS10_X, POS10_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 10)
+			addobject(OBJ_KILN_MASTER)
+			clearflag(FLAG_HIDE_ILEX_FOREST_MASTER)
+			setflag(FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_MASTER)
+			setflag(FLAG_FETCHED_FARFETCHD)
+		case DIR_SOUTH:
+		case DIR_NORTH:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_9to8NorthSouth)
+			delay(18)
+			playse(SE_WALL_HIT)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 8)
+		case DIR_EAST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_9to8East)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 8)
+		}
+	case 10:
+		// solved
+		call(IlexForest_EventScript_FarfetchdCry)
+	}
+	release
+}
+
+script IlexForest_EventScript_FarfetchdCry {
+	waitse
+    playmoncry(SPECIES_FARFETCHD, 0)
+    msgbox("FARFETCH'D: Kwaa!")
+    waitmoncry
+	closemessage
+}
+
+movement IlexForest_Movement_Farfetchd_1to2 {
+	walk_fast_up * 5
+}
+
+movement IlexForest_Movement_Farfetchd_2to3 {
+	walk_fast_up * 2
+	walk_fast_right * 8
+}
+
+movement IlexForest_Movement_Farfetchd_2to8 {
+	walk_fast_down * 4
+}
+
+movement IlexForest_Movement_Farfetchd_3to4 {
+	walk_fast_right * 8
+}
+
+movement IlexForest_Movement_Farfetchd_3to2 {
+	walk_fast_up
+	walk_fast_left * 7
+}
+
+movement IlexForest_Movement_Farfetchd_4to5 {
+	walk_fast_down * 6
+}
+
+movement IlexForest_Movement_Farfetchd_4to3 {
+	walk_fast_left
+	jump_2_left
+	walk_fast_left * 6
+}
+
+movement IlexForest_Movement_Farfetchd_5to6 {
+	walk_fast_down * 4
+	walk_fast_left * 6
+}
+
+movement IlexForest_Movement_Farfetchd_5to4North {
+	walk_fast_up
+	walk_fast_right * 3
+	walk_fast_up * 4
+}
+
+movement IlexForest_Movement_Farfetchd_5to7 {
+	walk_fast_left * 8
+}
+
+movement IlexForest_Movement_Farfetchd_5to4East {
+	walk_fast_right * 3
+	walk_in_place_fastest_up
+	delay_4
+	walk_in_place_fastest_down
+	delay_4
+	walk_in_place_fastest_up
+	delay_4
+	walk_fast_down * 2
+	lock_facing_direction
+	jump_2_up
+	delay_16
+	unlock_facing_direction
+	walk_fast_up * 6
+}
+
+movement IlexForest_Movement_Farfetchd_6to7 {
+	walk_fast_left * 3
+	walk_fast_up * 2
+	walk_fast_right
+	walk_fast_up * 2
+}
+
+movement IlexForest_Movement_Farfetchd_6to5 {
+	walk_fast_right * 6
+	walk_fast_up * 4
+}
+
+movement IlexForest_Movement_Farfetchd_7to8 {
+	walk_fast_up * 2
+	walk_fast_left * 8
+}
+
+movement IlexForest_Movement_Farfetchd_7to5 {
+	walk_fast_right * 8
+}
+
+movement IlexForest_Movement_Farfetchd_7to6 {
+	walk_fast_down * 2
+	walk_fast_left
+	walk_fast_down * 2
+	walk_fast_right * 3
+}
+
+movement IlexForest_Movement_Farfetchd_8to9 {
+	walk_fast_down
+	walk_fast_left
+	walk_fast_down * 5
+}
+
+movement IlexForest_Movement_Farfetchd_8to2 {
+	walk_fast_up * 4
+}
+
+movement IlexForest_Movement_Farfetchd_8to7 {
+	walk_fast_right * 7
+}
+
+movement IlexForest_Movement_Farfetchd_9to10 {
+	walk_fast_left * 3
+	lock_facing_direction
+	jump_2_right
+	delay_16
+	unlock_facing_direction
+	walk_fast_left * 2
+	walk_fast_up * 6
+}
+
+movement IlexForest_Movement_Farfetchd_9to8NorthSouth {
+	walk_fast_left * 3
+	lock_facing_direction
+	jump_2_right
+	delay_16
+	unlock_facing_direction
+	walk_fast_right * 7
+	walk_fast_up * 7
+}
+
+movement IlexForest_Movement_Farfetchd_9to8East {
+	walk_fast_right * 6
+	walk_fast_up * 6
 }
 
 script IlexForest_EventScript_Apprentice {
@@ -49,9 +437,8 @@ script IlexForest_EventScript_Master {
 			   "Here, take this.")
 		giveitem(ITEM_HM01)
 		setflag(FLAG_RECEIVED_HM01)
-		msgbox("That's the CUT HM.\n"
-			   "Teach that to a POKéMON to clear\l"
-			   "small trees.\p"
+		msgbox("That's the CUT HM. Teach that to a\n"
+			   "POKéMON to clear small trees.\p"
 			   "Of course, you have to have the\n"
 			   "GYM BADGE from AZALEA to use it.")
 		setflag(FLAG_HIDE_ILEX_FOREST_MASTER)
@@ -85,480 +472,3 @@ script IlexForest_EventScript_Shrine {
 		   "It's in honor of the forest's\n"
 		   "protector…", MSGBOX_SIGN)
 }
-
-raw `
-IlexForest_EventScript_DevonResearcherLeft:: @ 822DFD7
-	lockall
-	call IlexForest_EventScript_DevonResearcherIntro
-	applymovement 4, IlexForest_Movement_DevonResearcherApproachPlayerLeft
-	waitmovement 0
-	msgbox IlexForest_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
-	closemessage
-	playbgm MUS_ENCROCKET, 0
-	applymovement 3, IlexForest_Movement_AquaEntrance
-	waitmovement 0
-	msgbox IlexForest_Text_IWasGoingToAmbushYou, MSGBOX_DEFAULT
-	closemessage
-	applymovement 3, IlexForest_Movement_AquaApproachResearcherLeft
-	waitmovement 0
-	applymovement 4, Common_Movement_WalkInPlaceFastestUp
-	waitmovement 0
-	msgbox IlexForest_Text_HandOverThosePapers, MSGBOX_DEFAULT
-	closemessage
-	applymovement 4, IlexForest_Movement_DevonResearcherFleeToPlayerLeft
-	waitmovement 0
-	msgbox IlexForest_Text_YouHaveToHelpMe, MSGBOX_DEFAULT
-	closemessage
-	applymovement 3, IlexForest_Movement_AquaApproachPlayer
-	waitmovement 0
-	msgbox IlexForest_Text_NoOneCrossesTeamAqua, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_NEAL, IlexForest_Text_YoureKiddingMe
-	applymovement 3, IlexForest_Movement_AquaBackOff
-	waitmovement 0
-	call IlexForest_EventScript_DevonResearcherPostBattle
-	applymovement OBJ_EVENT_ID_PLAYER, IlexForest_Movement_WatchResearcherLeave
-	applymovement 4, IlexForest_Movement_DevonResearcherExitLeft
-	waitmovement 0
-	goto IlexForest_EventScript_RemoveDevonResearcher
-	end
-
-IlexForest_EventScript_DevonResearcherRight:: @ 822E079
-	lockall
-	call IlexForest_EventScript_DevonResearcherIntro
-	applymovement 4, IlexForest_Movement_DevonResearcherApproachPlayerRight
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
-	waitmovement 0
-	msgbox IlexForest_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
-	closemessage
-	playbgm MUS_ENCROCKET, 0
-	applymovement 3, IlexForest_Movement_AquaEntrance
-	waitmovement 0
-	msgbox IlexForest_Text_IWasGoingToAmbushYou, MSGBOX_DEFAULT
-	closemessage
-	applymovement 3, IlexForest_Movement_AquaApproachResearcherRight
-	waitmovement 0
-	applymovement 4, Common_Movement_WalkInPlaceFastestUp
-	waitmovement 0
-	msgbox IlexForest_Text_HandOverThosePapers, MSGBOX_DEFAULT
-	closemessage
-	applymovement 4, IlexForest_Movement_DevonResearcherFleeToPlayerRight
-	waitmovement 0
-	msgbox IlexForest_Text_YouHaveToHelpMe, MSGBOX_DEFAULT
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
-	waitmovement 0
-	msgbox IlexForest_Text_NoOneCrossesTeamAqua, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_NEAL, IlexForest_Text_YoureKiddingMe
-	applymovement 3, IlexForest_Movement_AquaBackOff
-	waitmovement 0
-	call IlexForest_EventScript_DevonResearcherPostBattle
-	applymovement OBJ_EVENT_ID_PLAYER, IlexForest_Movement_WatchResearcherLeave
-	applymovement 4, IlexForest_Movement_DevonResearcherExitRight
-	waitmovement 0
-	goto IlexForest_EventScript_RemoveDevonResearcher
-	end
-
-IlexForest_EventScript_DevonResearcherIntro:: @ 822E124
-	applymovement 4, IlexForest_Movement_DevonResearcherLookAround
-	waitmovement 0
-	msgbox IlexForest_Text_NotAOneToBeFound, MSGBOX_DEFAULT
-	closemessage
-	return
-
-IlexForest_EventScript_DevonResearcherPostBattle:: @ 822E138
-	msgbox IlexForest_Text_YouveGotSomeNerve, MSGBOX_DEFAULT
-	closemessage
-	applymovement 3, IlexForest_Movement_AquaRunAway
-	waitmovement 0
-	removeobject 3
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
-	waitmovement 0
-	msgbox IlexForest_Text_ThatWasAwfullyClose, MSGBOX_DEFAULT
-	giveitem ITEM_GREAT_BALL
-	compare VAR_RESULT, 0
-	goto_if_eq IlexForest_EventScript_BagFull
-	goto IlexForest_EventScript_DevonResearcherFinish
-	end
-
-IlexForest_EventScript_BagFull:: @ 822E17D
-	msgbox IlexForest_Text_YoureLoadedWithItems, MSGBOX_DEFAULT
-	goto IlexForest_EventScript_DevonResearcherFinish
-	end
-
-IlexForest_EventScript_DevonResearcherFinish:: @ 822E18B
-	msgbox IlexForest_Text_TeamAquaAfterSomethingInRustboro, MSGBOX_DEFAULT
-	applymovement 4, IlexForest_Movement_DevonResearcherStartExit
-	waitmovement 0
-	msgbox IlexForest_Text_ICantBeWastingTime, MSGBOX_DEFAULT
-	closemessage
-	return
-
-IlexForest_EventScript_RemoveDevonResearcher:: @ 822E1A7
-	removeobject 4
-	setvar VAR_ILEX_FOREST_STATE, 1
-	releaseall
-	end
-
-IlexForest_Movement_DevonResearcherLookAround: @ 822E1B1
-	face_up
-	delay_16
-	delay_4
-	face_right
-	delay_16
-	delay_8
-	face_left
-	delay_16
-	delay_8
-	face_down
-	delay_16
-	face_right
-	delay_16
-	delay_8
-	face_up
-	delay_16
-	step_end
-
-IlexForest_Movement_DevonResearcherExitLeft: @ 822E1C2
-	walk_fast_right
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	step_end
-
-IlexForest_Movement_DevonResearcherApproachPlayerLeft: @ 822E1CB
-	delay_16
-	face_player
-	walk_down
-	walk_down
-	step_end
-
-IlexForest_Movement_DevonResearcherApproachPlayerRight: @ 822E1D0
-	delay_16
-	face_player
-	walk_down
-	walk_down
-	walk_down
-	walk_in_place_fastest_right
-	step_end
-
-IlexForest_Movement_DevonResearcherExitRight: @ 822E1D7
-	walk_fast_left
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	step_end
-
-IlexForest_Movement_WatchResearcherLeave: @ 822E1E0
-	delay_16
-	delay_16
-	walk_in_place_fastest_up
-	step_end
-
-IlexForest_Movement_DevonResearcherFleeToPlayerLeft: @ 822E1E4
-	walk_fast_right
-	walk_fast_down
-	walk_fast_down
-	walk_fast_left
-	walk_in_place_fastest_up
-	step_end
-
-IlexForest_Movement_DevonResearcherFleeToPlayerRight: @ 822E1EA
-	walk_fast_down
-	walk_fast_right
-	walk_in_place_fastest_up
-	step_end
-
-IlexForest_Movement_DevonResearcherStartExit: @ 822E1EE
-	walk_in_place_fastest_down
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	face_up
-	step_end
-
-IlexForest_Movement_AquaApproachResearcherLeft: @ 822E1F6
-	walk_fast_down
-	walk_fast_down
-	step_end
-
-IlexForest_Movement_AquaBackOff: @ 822E1F9
-	lock_facing_direction
-	walk_up
-	unlock_facing_direction
-	step_end
-
-IlexForest_Movement_AquaRunAway: @ 822E1FD
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	delay_16
-	delay_16
-	step_end
-
-IlexForest_Movement_AquaApproachResearcherRight: @ 822E205
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	step_end
-
-IlexForest_Movement_AquaEntrance: @ 822E209
-	walk_down
-	walk_down
-	delay_16
-	delay_16
-	step_end
-
-IlexForest_Movement_AquaApproachPlayer: @ 822E20E
-	walk_down
-	step_end
-
-IlexForest_EventScript_Boy1:: @ 822E210
-	msgbox IlexForest_Text_StayOutOfTallGrass, MSGBOX_NPC
-	end
-
-IlexForest_EventScript_Boy2:: @ 822E219
-	msgbox IlexForest_Text_HiddenItemsExplanation, MSGBOX_NPC
-	end
-
-IlexForest_EventScript_Girl:: @ 822E222
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_MIRACLE_SEED, IlexForest_EventScript_ExplainMiracleSeed
-	msgbox IlexForest_Text_TryUsingThisItem, MSGBOX_DEFAULT
-	giveitem ITEM_MIRACLE_SEED
-	compare VAR_RESULT, 0
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_MIRACLE_SEED
-	release
-	end
-
-IlexForest_EventScript_ExplainMiracleSeed:: @ 822E251
-	msgbox IlexForest_Text_MiracleSeedExplanation, MSGBOX_DEFAULT
-	release
-	end
-
-IlexForest_EventScript_Sign1:: @ 822E25B
-	msgbox IlexForest_Text_TrainerTipsExperience, MSGBOX_SIGN
-	end
-
-IlexForest_EventScript_Sign2:: @ 822E264
-	msgbox IlexForest_Text_TrainerTipsPP, MSGBOX_SIGN
-	end
-
-IlexForest_EventScript_Lyle:: @ 822E26D
-	trainerbattle_single TRAINER_LYLE, IlexForest_Text_GoBugPokemonTeam, IlexForest_Text_ICouldntWin
-	msgbox IlexForest_Text_ImOutOfPokeBalls, MSGBOX_AUTOCLOSE
-	end
-
-IlexForest_EventScript_James:: @ 822E284
-	trainerbattle_single TRAINER_JAMES_1, IlexForest_Text_InstantlyPopularWithBugPokemon, IlexForest_Text_CantBePopularIfILose, IlexForest_EventScript_TryRegisterJames
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	compare VAR_RESULT, 1
-	goto_if_eq IlexForest_EventScript_JamesRematch
-	setvar VAR_0x8004, TRAINER_JAMES_1
-	specialvar VAR_RESULT, IsTrainerRegistered
-	compare VAR_RESULT, 0
-	goto_if_eq IlexForest_EventScript_TryRegisterJames2
-	msgbox IlexForest_Text_PeopleRespectYou, MSGBOX_DEFAULT
-	release
-	end
-
-IlexForest_EventScript_TryRegisterJames:: @ 822E2C5
-	special PlayerFaceTrainerAfterBattle
-	waitmovement 0
-	goto_if_set FLAG_HAS_MATCH_CALL, IlexForest_EventScript_RegisterJames
-	release
-	end
-
-IlexForest_EventScript_RegisterJames:: @ 822E2D6
-	msgbox IlexForest_Text_IWantRematch1, MSGBOX_DEFAULT
-	register_matchcall TRAINER_JAMES_1
-	release
-	end
-
-IlexForest_EventScript_TryRegisterJames2:: @ 822E2EF
-	goto_if_set FLAG_HAS_MATCH_CALL, IlexForest_EventScript_RegisterJames2
-	msgbox IlexForest_Text_PeopleRespectYou, MSGBOX_DEFAULT
-	release
-	end
-
-IlexForest_EventScript_RegisterJames2:: @ 822E302
-	msgbox IlexForest_Text_IWantRematch2, MSGBOX_DEFAULT
-	register_matchcall TRAINER_JAMES_1
-	release
-	end
-
-IlexForest_EventScript_JamesRematch:: @ 822E31B
-	trainerbattle_rematch TRAINER_JAMES_1, IlexForest_Text_MyPokemonHaveGrown, IlexForest_Text_CantBePopularIfLose
-	msgbox IlexForest_Text_IveBeenTrainingHard, MSGBOX_AUTOCLOSE
-	end
-
-IlexForest_Text_NotAOneToBeFound: @ 822E332
-	.string "Hmmm…\n"
-	.string "Not a one to be found…$"
-
-IlexForest_Text_HaveYouSeenShroomish: @ 822E34F
-	.string "Hello, have you seen any POKéMON\n"
-	.string "called SHROOMISH around here?\p"
-	.string "I really love that POKéMON.$"
-
-IlexForest_Text_IWasGoingToAmbushYou: @ 822E3AA
-	.string "I was going to ambush you, but you\n"
-	.string "had to dawdle in PETALBURG WOODS\l"
-	.string "forever, didn't you?\p"
-	.string "I got sick of waiting, so here I am!$"
-
-IlexForest_Text_HandOverThosePapers: @ 822E428
-	.string "You! DEVON RESEARCHER!\p"
-	.string "Hand over those papers!$"
-
-IlexForest_Text_YouHaveToHelpMe: @ 822E457
-	.string "Aiyeeeh!\p"
-	.string "You're a POKéMON TRAINER, aren't you?\n"
-	.string "You've got to help me, please!$"
-
-IlexForest_Text_NoOneCrossesTeamAqua: @ 822E4A5
-	.string "Hunh? What do you think you're doing?\n"
-	.string "What, you're going to protect him?\p"
-	.string "No one who crosses TEAM AQUA\n"
-	.string "gets any mercy, not even a kid!\p"
-	.string "Come on and battle me!$"
-
-IlexForest_Text_YoureKiddingMe: @ 822E542
-	.string "You're kidding me! You're tough!$"
-
-IlexForest_Text_YouveGotSomeNerve: @ 822E563
-	.string "Grrr… You've got some nerve\n"
-	.string "meddling with TEAM AQUA!\l"
-	.string "Come on and battle me again!\p"
-	.string "I wish I could say that, but I'm out of\n"
-	.string "POKéMON…\p"
-	.string "And, hey, we of TEAM AQUA are also\n"
-	.string "after something in RUSTBORO.\p"
-	.string "I'll let you go today!$"
-
-IlexForest_Text_ThatWasAwfullyClose: @ 822E63D
-	.string "Whew…\n"
-	.string "That was awfully close!\p"
-	.string "Thanks to you, he didn't rob me of\n"
-	.string "these important papers.\p"
-	.string "I know, I'll give you a GREAT BALL as\n"
-	.string "my thanks!$"
-
-IlexForest_Text_TeamAquaAfterSomethingInRustboro: @ 822E6C7
-	.string "Didn't that TEAM AQUA thug say\n"
-	.string "they were after something in\l"
-	.string "RUSTBORO, too?$"
-
-IlexForest_Text_ICantBeWastingTime: @ 822E712
-	.string "Uh-oh! It's a crisis!\n"
-	.string "I can't be wasting time!$"
-
-IlexForest_Text_YoureLoadedWithItems: @ 822E741
-	.string "You're loaded with items.\n"
-	.string "I can't give you this GREAT BALL.$"
-
-IlexForest_Text_GoBugPokemonTeam: @ 822E77D
-	.string "I caught a whole bunch of POKéMON!\p"
-	.string "Go, go, go!\n"
-	.string "My BUG POKéMON team!$"
-
-IlexForest_Text_ICouldntWin: @ 822E7C1
-	.string "I have all these POKéMON,\n"
-	.string "but I couldn't win…$"
-
-IlexForest_Text_ImOutOfPokeBalls: @ 822E7EF
-	.string "I caught a bunch of POKéMON.\n"
-	.string "Now I'm out of POKé BALLS.$"
-
-IlexForest_Text_InstantlyPopularWithBugPokemon: @ 822E827
-	.string "If you take BUG POKéMON to school,\n"
-	.string "you get to be instantly popular!$"
-
-IlexForest_Text_CantBePopularIfILose: @ 822E86B
-	.string "I can't be popular if I lose.$"
-
-IlexForest_Text_PeopleRespectYou: @ 822E889
-	.string "If you have a big BUG POKéMON,\n"
-	.string "people respect you for it.$"
-
-IlexForest_Text_IWantRematch1: @ 822E8C3
-	.string "I want a rematch when my BUG\n"
-	.string "POKéMON grow up!\p"
-	.string "I'm registering you in my POKéNAV!$"
-
-IlexForest_Text_IWantRematch2: @ 822E914
-	.string "I want a rematch when my BUG \n"
-	.string "POKéMON grow up!\p"
-	.string "I'm registering you in my POKéNAV!$"
-
-IlexForest_Text_MyPokemonHaveGrown: @ 822E966
-	.string "My BUG POKéMON have grown.\n"
-	.string "I'll be popular again.$"
-
-IlexForest_Text_CantBePopularIfLose: @ 822E998
-	.string "I can't be popular if I lose.$"
-
-IlexForest_Text_IveBeenTrainingHard: @ 822E9B6
-	.string "You get to be popular if you have\n"
-	.string "strong POKéMON, right?\l"
-	.string "So, I've been training hard.$"
-
-IlexForest_Text_StayOutOfTallGrass: @ 822EA0C
-	.string "Yo, there!\n"
-	.string "Your POKéMON doing okay?\p"
-	.string "If your POKéMON are weak and you want\n"
-	.string "to avoid battles, you should stay out\l"
-	.string "of tall grass.$"
-
-IlexForest_Text_HiddenItemsExplanation: @ 822EA8B
-	.string "Sometimes, there are things on the\n"
-	.string "ground even if you can't see them.\p"
-	.string "That's why I always check where I'm\n"
-	.string "walking.$"
-
-IlexForest_Text_TryUsingThisItem: @ 822EAFE
-	.string "Oh, neat!\n"
-	.string "That's the BADGE from RUSTBORO GYM!\p"
-	.string "You must be a TRAINER.\n"
-	.string "You should try using this item.$"
-
-IlexForest_Text_MiracleSeedExplanation: @ 822EB63
-	.string "It's a MIRACLE SEED.\n"
-	.string "If a POKéMON holds that item, its\l"
-	.string "GRASS-type moves become stronger.\p"
-	.string "Besides MIRACLE SEED, I think there are\n"
-	.string "other convenient items for POKéMON\l"
-	.string "to hold.$"
-
-IlexForest_Text_TrainerTipsExperience: @ 822EC10
-	.string "TRAINER TIPS\p"
-	.string "Any POKéMON that appears even once\n"
-	.string "in a battle is awarded EXP Points.\p"
-	.string "To raise a weak POKéMON, put it at the\n"
-	.string "left of the team list.\p"
-	.string "As soon as a battle starts, switch it\n"
-	.string "out. It will earn EXP Points without\l"
-	.string "being exposed to any harm.$"
-
-IlexForest_Text_TrainerTipsPP: @ 822ED07
-	.string "TRAINER TIPS\p"
-	.string "In addition to Hit Points (HP), POKéMON\n"
-	.string "have Power Points (PP) that are used to\l"
-	.string "make moves during battle.\p"
-	.string "If a POKéMON runs out of PP, it must be\n"
-	.string "taken to a POKéMON CENTER.$"
-
-`

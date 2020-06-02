@@ -35,8 +35,8 @@ script AzaleaTown_CharcoalKiln_EventScript_Apprentice {
     faceplayer
     if (flag(FLAG_RECEIVED_CHARCOAL_AZALEA))
     {
-        msgbox("The SLOWPOKE came back, and you even\n"
-               "found FARFETCH'D.\p"
+        msgbox("The SLOWPOKE came back, and you\n"
+               "even found FARFETCH'D.\p"
                "You're the coolest, man!")
     }
     elif (flag(FLAG_RECEIVED_HM01))
@@ -44,7 +44,7 @@ script AzaleaTown_CharcoalKiln_EventScript_Apprentice {
         msgbox("I'm sorry--I forgot to thank you\n"
                "for helping me with FARFETCH'D.\p"
                "This is CHARCOAL that I made.\n"
-               "FIRE-type POKéMON would be happy\n"
+               "FIRE-type POKéMON would be happy\l"
                "to hold that.")
         giveitem(ITEM_CHARCOAL)
         if (!var(VAR_RESULT))
