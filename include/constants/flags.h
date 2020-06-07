@@ -151,7 +151,7 @@
 #define FLAG_BUGGING_KURT_TOO_MUCH           0x89
 #define FLAG_FOREST_IS_RESTLESS              0x8A
 #define FLAG_HATCHED_ELMS_EGG                0x8B
-#define FLAG_RECEIVED_6_SODA_POP             0x8C
+#define FLAG_RECEIVED_TM12_TAUNT             0x8C
 #define FLAG_DEFEATED_SEASHORE_HOUSE         0x8D
 #define FLAG_DEVON_GOODS_STOLEN              0x8E
 #define FLAG_RECOVERED_DEVON_GOODS           0x8F
@@ -177,7 +177,7 @@
 #define FLAG_SMART_PAINTING_MADE             0xA3
 #define FLAG_TOUGH_PAINTING_MADE             0xA4
 #define FLAG_GOT_TM40_FROM_FALKNER           0xA5
-#define FLAG_GOT_TM47_FROM_BUGSY                   0xA6
+#define FLAG_GOT_TM47_FROM_BUGSY             0xA6
 #define FLAG_RECEIVED_TM34                   0xA7
 #define FLAG_RECEIVED_TM50                   0xA8
 #define FLAG_RECEIVED_TM42                   0xA9

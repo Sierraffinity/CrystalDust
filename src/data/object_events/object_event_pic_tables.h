@@ -1865,16 +1865,16 @@ const struct SpriteFrameImage gObjectEventPicTable_SlowpokeTailless[] = {
     overworld_frame(gObjectEventPic_SlowpokeTailless, 2, 2, 2),
 };
 
-const struct SpriteFrameImage gObjectEventPicTable_Wingull[] = {
-    overworld_frame(gObjectEventPic_Wingull, 2, 2, 0),
-    overworld_frame(gObjectEventPic_Wingull, 2, 2, 2),
-    overworld_frame(gObjectEventPic_Wingull, 2, 2, 4),
-    overworld_frame(gObjectEventPic_Wingull, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Wingull, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Wingull, 2, 2, 3),
-    overworld_frame(gObjectEventPic_Wingull, 2, 2, 3),
-    overworld_frame(gObjectEventPic_Wingull, 2, 2, 5),
-    overworld_frame(gObjectEventPic_Wingull, 2, 2, 5),
+const struct SpriteFrameImage gObjectEventPicTable_Butterfree[] = {
+    overworld_frame(gObjectEventPic_Butterfree, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Butterfree, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Butterfree, 2, 2, 4),
+    overworld_frame(gObjectEventPic_Butterfree, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Butterfree, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Butterfree, 2, 2, 3),
+    overworld_frame(gObjectEventPic_Butterfree, 2, 2, 3),
+    overworld_frame(gObjectEventPic_Butterfree, 2, 2, 5),
+    overworld_frame(gObjectEventPic_Butterfree, 2, 2, 5),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_TuberMSwimming[] = {

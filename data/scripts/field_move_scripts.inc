@@ -295,3 +295,50 @@ EventScript_FailSweetScent:: @ 8290CAE
 
 Text_FailSweetScent: @ 8290CB7
 	.string "Looks like there's nothing here…$"
+
+EventScript_HeadbuttTree::
+	lockall
+	checkpartymove MOVE_HEADBUTT
+	compare VAR_RESULT, PARTY_SIZE
+	goto_if_eq EventScript_EndHeadbutt
+	setfieldeffectargument 0, VAR_RESULT
+	bufferpartymonnick 0, VAR_RESULT
+	buffermovename 1, MOVE_HEADBUTT
+	msgbox Text_WantToHeadbutt, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_CancelHeadbutt
+	msgbox Text_MonUsedFieldMove, MSGBOX_DEFAULT
+	closemessage
+	goto EventScript_DoHeadbutt
+	end
+
+EventScript_FldEffHeadbutt::
+	lockall
+EventScript_DoHeadbutt:
+	dofieldeffect FLDEFF_USE_HEADBUTT
+	waitstate
+	waitse
+	special RockSmashWildEncounter
+	compare VAR_RESULT, 0
+	goto_if_eq EventScript_HeadbuttNothing
+	waitstate
+EventScript_EndHeadbutt:
+	releaseall
+	end
+
+EventScript_HeadbuttNothing:
+	msgbox Text_HeadbuttNothing, MSGBOX_DEFAULT
+	releaseall
+	end
+
+EventScript_CancelHeadbutt::
+	closemessage
+	releaseall
+	end
+
+Text_WantToHeadbutt:
+	.string "A POKéMON could be in this tree.\n"
+	.string "Want to HEADBUTT it?$"
+
+Text_HeadbuttNothing::
+	.string "Nope. Nothing…$"

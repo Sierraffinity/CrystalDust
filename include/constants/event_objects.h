@@ -212,7 +212,7 @@
 #define OBJ_EVENT_GFX_SLOWPOKE                   208
 #define OBJ_EVENT_GFX_PIKACHU                    209
 #define OBJ_EVENT_GFX_SLOWPOKE_TAILLESS                  210
-#define OBJ_EVENT_GFX_WINGULL                    211
+#define OBJ_EVENT_GFX_BUTTERFREE                    211
 #define OBJ_EVENT_GFX_KECLEON_2                  212
 #define OBJ_EVENT_GFX_TUBER_M_SWIMMING           213
 #define OBJ_EVENT_GFX_AZURILL                    214

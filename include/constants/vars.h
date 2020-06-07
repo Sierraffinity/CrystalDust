@@ -117,7 +117,7 @@
 #define VAR_ROUTE31_STATE                    0x4062
 #define VAR_ROUTE32_STATE                   0x4063
 #define VAR_ROUTE33_STATE                   0x4064 // Unused Var
-#define VAR_ROUTE106_STATE                   0x4065 // Unused Var
+#define VAR_ROUTE34_STATE                   0x4065 // Unused Var
 #define VAR_ROUTE107_STATE                   0x4066 // Unused Var
 #define VAR_ROUTE36_STATE                   0x4067 // Unused Var
 #define VAR_ROUTE109_STATE                   0x4068 // Unused Var

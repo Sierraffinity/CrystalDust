@@ -12624,8 +12624,8 @@
           }
         },
         {
-          "map": "MAP_ROUTE106",
-          "base_label": "gRoute106",
+          "map": "MAP_ROUTE34",
+          "base_label": "gRoute34",
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [

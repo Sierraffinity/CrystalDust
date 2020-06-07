@@ -3033,7 +3033,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_SLOWPOKE] =                  MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_PIKACHU] =                   MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_SLOWPOKE_TAILLESS] =         MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_WINGULL] =                   MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_BUTTERFREE] =                   MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_KECLEON_2] =                 MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_TUBER_M_SWIMMING] =          MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_AZURILL] =                   MSG_COLOR_BLACK,

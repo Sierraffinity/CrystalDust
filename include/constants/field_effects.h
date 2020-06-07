@@ -68,5 +68,6 @@
 #define FLDEFF_RAYQUAZA                  64
 #define FLDEFF_65                        65
 #define FLDEFF_MOVE_DEOXYS_ROCK          66
+#define FLDEFF_USE_HEADBUTT             67
 
 #endif

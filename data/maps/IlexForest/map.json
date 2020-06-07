@@ -125,10 +125,10 @@
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "in_connection": false,
-      "x": 24,
+      "x": 25,
       "y": 3,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -146,8 +146,8 @@
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "IlexForest_EventScript_ItemXAttack",
       "flag": "FLAG_ITEM_ILEX_FOREST_X_ATTACK"
     },
@@ -161,8 +161,8 @@
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "IlexForest_EventScript_ItemAntidote",
       "flag": "FLAG_ITEM_ILEX_FOREST_ANTIDOTE"
     },
@@ -206,25 +206,25 @@
       "dest_warp_id": 1
     },
     {
-      "x": 7,
-      "y": 9,
+      "x": 6,
+      "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE32",
-      "dest_warp_id": 3
+      "dest_map": "MAP_ROUTE34_ILEX_NORTH_GATEHOUSE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 7,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE34_ILEX_NORTH_GATEHOUSE",
+      "dest_warp_id": 0
     },
     {
       "x": 8,
-      "y": 9,
+      "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE32",
-      "dest_warp_id": 4
-    },
-    {
-      "x": 9,
-      "y": 9,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE32",
-      "dest_warp_id": 5
+      "dest_map": "MAP_ROUTE34_ILEX_NORTH_GATEHOUSE",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

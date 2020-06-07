@@ -377,6 +377,7 @@ extern const u8 EventScript_FldEffStrength[];
 extern const u8 EventScript_FailSweetScent[];
 extern const u8 EventScript_FldEffFlash[];
 extern const u8 EventScript_FldEffRockSmash[];
+extern const u8 EventScript_FldEffHeadbutt[];
 
 //player pc
 extern const u8 NewBarkTown_PlayersHouse_2F_EventScript_TurnOffPlayerPC[];
@@ -517,6 +518,7 @@ extern const u8 EventScript_PC[];
 extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_TestObjectEventMsg[];
 extern const u8 EventScript_HiddenItemScript[];
+extern const u8 EventScript_HeadbuttTree[];
 extern const u8 EventScript_FruitTree[];
 extern const u8 EventScript_TV[];
 extern const u8 EventScript_Window[];

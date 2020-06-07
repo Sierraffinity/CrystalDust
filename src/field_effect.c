@@ -3734,4 +3734,3 @@ static void Fldeff_MoveDeoxysRock_Step(u8 taskId)
             break;
     }
 }
-

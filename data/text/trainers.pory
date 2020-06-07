@@ -713,67 +713,67 @@ Route33_Text_JosuePostBattle: @ 82962EC
 	.string "Yeah, for me, the sky is a much better\n"
 	.string "match than the sea.$"
 
-Route106_Text_ElliotIntro: @ 8296327
+Route34_Text_ElliotIntro: @ 8296327
 	.string "Which do you prefer, fishing in the\n"
 	.string "sea or a stream?$"
 
-Route106_Text_ElliotDefeated: @ 829635C
+Route34_Text_ElliotDefeated: @ 829635C
 	.string "Like in deep-sea fishing, I lost\n"
 	.string "spectacularly!$"
 
-Route106_Text_ElliotPostBattle: @ 829638C
+Route34_Text_ElliotPostBattle: @ 829638C
 	.string "Fishing is the greatest whether it's\n"
 	.string "in the sea or a stream.\l"
 	.string "You agree with me, right?$"
 
-Route106_Text_ElliotRegister: @ 82963E3
+Route34_Text_ElliotRegister: @ 82963E3
 	.string "Fishing's great, but so is battling.\n"
 	.string "If you don't mind, can we meet again?$"
 
-Route106_Text_ElliotRematchIntro: @ 829642E
+Route34_Text_ElliotRematchIntro: @ 829642E
 	.string "I caught a bunch of POKéMON fishing.\n"
 	.string "I'll show you an impressive battle!$"
 
-Route106_Text_ElliotRematchDefeated: @ 8296477
+Route34_Text_ElliotRematchDefeated: @ 8296477
 	.string "I lost again spectacularly!$"
 
-Route106_Text_ElliotRematchPostBattle: @ 8296493
+Route34_Text_ElliotRematchPostBattle: @ 8296493
 	.string "Win or lose, POKéMON are the greatest!\n"
 	.string "You agree with me, right?$"
 
-Route106_Text_NedIntro: @ 82964D4
+Route34_Text_NedIntro: @ 82964D4
 	.string "What do people do if they need to go\n"
 	.string "to a washroom?\p"
 	.string "What if my ROD hooks a big one while\n"
 	.string "I'm in the washroom? I just can't go…$"
 
-Route106_Text_NedDefeated: @ 8296553
+Route34_Text_NedDefeated: @ 8296553
 	.string "I lost because I'm trying to not go\n"
 	.string "to the washroom…$"
 
-Route106_Text_NedPostBattle: @ 8296588
+Route34_Text_NedPostBattle: @ 8296588
 	.string "Oh, no! I've got this feeling I'll hook\n"
 	.string "a big one!$"
 
-Route106_Text_DouglasIntro: @ 82965BB
+Route34_Text_DouglasIntro: @ 82965BB
 	.string "Hahahah! I'm a lousy runner, but in\n"
 	.string "the water you can't catch me!$"
 
-Route106_Text_DouglasDefeated: @ 82965FD
+Route34_Text_DouglasDefeated: @ 82965FD
 	.string "I give up!$"
 
-Route106_Text_DouglasPostBattle: @ 8296608
+Route34_Text_DouglasPostBattle: @ 8296608
 	.string "I wouldn't lose in a swim race…$"
 
-Route106_Text_KylaIntro: @ 8296628
+Route34_Text_KylaIntro: @ 8296628
 	.string "The sea is my backyard. I'm not going\n"
 	.string "to take it easy because you're a kid!$"
 
-Route106_Text_KylaDefeated: @ 8296674
+Route34_Text_KylaDefeated: @ 8296674
 	.string "Did you take it easy on me by any\n"
 	.string "chance?$"
 
-Route106_Text_KylaPostBattle: @ 829669E
+Route34_Text_KylaPostBattle: @ 829669E
 	.string "Drifting along with the waves…\n"
 	.string "I love it! Why don't you give it a try?$"
 

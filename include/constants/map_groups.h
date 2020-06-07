@@ -23,7 +23,7 @@
 #define MAP_ROUTE31          (18 | (0 << 8))
 #define MAP_ROUTE32          (19 | (0 << 8))
 #define MAP_ROUTE33          (20 | (0 << 8))
-#define MAP_ROUTE106         (21 | (0 << 8))
+#define MAP_ROUTE34          (21 | (0 << 8))
 #define MAP_ROUTE107         (22 | (0 << 8))
 #define MAP_ROUTE36          (23 | (0 << 8))
 #define MAP_ROUTE109         (24 | (0 << 8))

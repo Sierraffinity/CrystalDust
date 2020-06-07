@@ -12,7 +12,7 @@ const PNK_APRICORN = 7
 mapscripts AzaleaTown_KurtsHouse_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         if (flag(FLAG_CLEARED_SLOWPOKE_WELL) &&
-            //!flag(FLAG_FOREST_IS_RESTLESS) &&
+            !flag(FLAG_FOREST_IS_RESTLESS) &&
             flag(FLAG_KURT_MAKING_BALLS))
         {
             setobjectxyperm(KURT, 15, 3)
