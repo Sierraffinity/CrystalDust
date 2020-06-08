@@ -1217,7 +1217,7 @@
       "id": "LAYOUT_GATEHOUSE_VERTICAL",
       "name": "GatehouseVertical_Layout",
       "width": 9,
-      "height": 11,
+      "height": 12,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
