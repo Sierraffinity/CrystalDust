@@ -28,10 +28,10 @@ struct Tileset
     /*0x01*/ bool8 isSecondary;
     /*0x04*/ void *tiles;
     /*0x08*/ void *palettes;
-    /*0x0c*/ struct PaletteOverride *paletteOverrides;
-    /*0x10*/ u16 *metatiles;
-    /*0x14*/ u16 *metatileAttributes;
-    /*0x18*/ TilesetCB callback;
+    /*0x0c*/ u16 *metatiles;
+    /*0x10*/ u16 *metatileAttributes;
+    /*0x14*/ TilesetCB callback;
+    /*0x18*/ struct PaletteOverride *paletteOverrides;
 };
 
 struct MapLayout

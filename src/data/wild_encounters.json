@@ -73,6 +73,41 @@
               9
             ]
           }
+        },
+        {
+          "type": "headbutt_mons",
+          "encounter_rates": [
+            50,
+            15,
+            15,
+            10,
+            5,
+            5,
+            50,
+            15,
+            15,
+            10,
+            5,
+            5
+          ],
+          "groups": {
+            "common": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "rare": [
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          }
         }
       ],
       "encounters": [
@@ -5166,6 +5201,197 @@
                   "min_level": 6,
                   "max_level": 6,
                   "species": "SPECIES_PARAS"
+                }
+              ]
+            ]
+          },
+          "headbutt_mons": {
+            "encounter_rate": 200,
+            "mons": [
+              [
+                {
+                  "min_level": 10,
+                  "max_level": 15,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 10,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 10,
+                  "max_level": 15,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 10,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                }
+              ],
+              [
+                {
+                  "min_level": 10,
+                  "max_level": 15,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 10,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 10,
+                  "max_level": 15,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 10,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                }
+              ],
+              [
+                {
+                  "min_level": 10,
+                  "max_level": 15,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 10,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 10,
+                  "max_level": 15,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 10,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 20,
+                  "species": "SPECIES_GEODUDE"
                 }
               ]
             ]

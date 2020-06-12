@@ -235,6 +235,32 @@ static u8 ChooseWildMonIndex_Fishing(u8 rod)
     return wildMonIndex;
 }
 
+static u8 ChooseWildMonIndex_Tree(bool32 isRare)
+{
+    u8 wildMonIndex = 0;
+    u8 rand = Random() % ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_TOTAL;
+
+    if (rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_0)
+        wildMonIndex = 0;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_0 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_1)
+        wildMonIndex = 1;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_1 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_2)
+        wildMonIndex = 2;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_2 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_3)
+        wildMonIndex = 3;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_3 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_4)
+        wildMonIndex = 4;
+    else
+        wildMonIndex = 5;
+    
+    if (isRare)
+    {
+        wildMonIndex += 6;
+    }
+    
+    return wildMonIndex;
+}
+
 static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon)
 {
     return ChooseWildMonLevelWithAbility(wildPokemon, TRUE);
@@ -451,6 +477,7 @@ enum
     WILD_AREA_WATER,
     WILD_AREA_ROCKS,
     WILD_AREA_FISHING,
+    WILD_AREA_TREE,
 };
 
 #define WILD_CHECK_REPEL    0x1
@@ -516,6 +543,21 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
 
     CreateWildMon(wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species, level);
     return wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species;
+}
+
+static void GenerateHeadbuttWildMon(const struct WildPokemonInfo *wildMonInfo, bool32 isRare)
+{
+    u8 timeOfDay;
+    u8 wildMonIndex;
+    u8 level;
+
+    RtcCalcLocalTime();
+    timeOfDay = GetCurrentTimeOfDay();
+
+    wildMonIndex = ChooseWildMonIndex_Tree(isRare);
+    level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[timeOfDay][wildMonIndex]);
+
+    CreateWildMon(wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species, level);
 }
 
 static bool8 SetUpMassOutbreakEncounter(u8 flags)
@@ -753,20 +795,22 @@ void RockSmashWildEncounter(void)
 
 void HeadbuttTreeWildEncounter(void)
 {
+    // TODO: Rarity calculation
+    bool32 isRare = FALSE;
     u16 headerId = GetCurrentMapWildMonHeaderId();
 
     if (headerId != 0xFFFF)
     {
-        const struct WildPokemonInfo *wildPokemonInfo = gWildMonHeaders[headerId].rockSmashMonsInfo;
+        const struct WildPokemonInfo *wildPokemonInfo = gWildMonHeaders[headerId].headbuttMonsInfo;
 
         if (wildPokemonInfo == NULL)
         {
             gSpecialVar_Result = FALSE;
         }
-        else if (DoWildEncounterRateTest(wildPokemonInfo->encounterRate, 1) == TRUE
-         && TryGenerateWildMon(wildPokemonInfo, 2, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+        else if (DoWildEncounterRateTest(wildPokemonInfo->encounterRate, TRUE) == TRUE)
         {
-            BattleSetup_StartWildBattle(0);
+            GenerateHeadbuttWildMon(wildPokemonInfo, isRare);
+            BattleSetup_StartWildBattle(BATTLE_TYPE_TREE);
             gSpecialVar_Result = TRUE;
         }
         else
