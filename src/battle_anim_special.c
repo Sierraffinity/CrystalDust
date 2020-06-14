@@ -59,6 +59,7 @@ static void FanOutBallOpenParticles_Step1(struct Sprite *);
 static void RepeatBallOpenParticleAnimation_Step1(struct Sprite *);
 static void PremierBallOpenParticleAnimation_Step1(struct Sprite *);
 static void LureBallParticle_Step(struct Sprite *sprite);
+static void MoonBallParticle_Step(struct Sprite *sprite);
 static void sub_8172AB0(u8);
 static void sub_8172B40(u8);
 static void sub_8172B90(u8);
@@ -80,6 +81,7 @@ static void TimerBallOpenParticleAnimation(u8);
 static void PremierBallOpenParticleAnimation(u8);
 static void LevelBallOpenParticleAnimation(u8);
 static void LureBallOpenParticleAnimation(u8);
+static void MoonBallOpenParticleAnimation(u8);
 static void sub_817330C(struct Sprite *);
 
 struct BallCaptureSuccessStarData
@@ -126,7 +128,7 @@ const struct CompressedSpriteSheet gBallParticleSpritesheets[] =
     [BALLGFX_PREMIER]   = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(PREMIER)},
     [BALLGFX_LEVEL]     = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(LEVEL)},
     [BALLGFX_LURE]      = {gBattleAnimSpriteGfx_BallBubbleParticles,  0x80, TAG_BALL_PARTICLES(LURE)},
-    [BALLGFX_MOON]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(MOON)},
+    [BALLGFX_MOON]      = {gBattleAnimSpriteGfx_BallMoonParticles,    0xC0, TAG_BALL_PARTICLES(MOON)},
     [BALLGFX_FRIEND]    = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(FRIEND)},
     [BALLGFX_FAST]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(FAST)},
     [BALLGFX_HEAVY]     = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(HEAVY)},
@@ -250,7 +252,7 @@ const TaskFunc gBallParticleAnimationFuncs[] =
     [BALLGFX_PREMIER]   = PremierBallOpenParticleAnimation,
     [BALLGFX_LEVEL]     = LevelBallOpenParticleAnimation,
     [BALLGFX_LURE]      = LureBallOpenParticleAnimation,
-    [BALLGFX_MOON]      = PokeBallOpenParticleAnimation,
+    [BALLGFX_MOON]      = MoonBallOpenParticleAnimation,
     [BALLGFX_FRIEND]    = PokeBallOpenParticleAnimation,
     [BALLGFX_FAST]      = PokeBallOpenParticleAnimation,
     [BALLGFX_HEAVY]     = PokeBallOpenParticleAnimation,
@@ -458,7 +460,7 @@ const u16 gBallOpenFadeColors[] =
     [BALLGFX_PREMIER]   = RGB(31,  9, 10),
     [BALLGFX_LEVEL]     = RGB(31, 23, 23),
     [BALLGFX_LURE]      = RGB( 8, 16, 30),
-    [BALLGFX_MOON]      = RGB(31, 22, 30),
+    [BALLGFX_MOON]      = RGB(19, 28, 22),
     [BALLGFX_FRIEND]    = RGB(31, 22, 30),
     [BALLGFX_FAST]      = RGB(31, 22, 30),
     [BALLGFX_HEAVY]     = RGB(31, 22, 30),
@@ -2067,6 +2069,75 @@ static void LureBallParticle_Step(struct Sprite *sprite)
     sprite->data[1] += sprite->data[2];
     sprite->data[2] -= 4;
     if (++sprite->data[3] == 25)
+        DestroyBallOpenAnimationParticle(sprite);
+}
+
+const union AnimCmd gAnim_MoonBallParticle_SpinningMoon[] =
+{
+    ANIMCMD_FRAME(0, 3),
+    ANIMCMD_FRAME(1, 3),
+    ANIMCMD_FRAME(2, 3),
+    ANIMCMD_FRAME(3, 3),
+    ANIMCMD_JUMP(0),
+};
+
+const union AnimCmd gAnim_MoonBallParticle_Sparkle[] =
+{
+    ANIMCMD_FRAME(4, 3),
+    ANIMCMD_FRAME(5, 3),
+    ANIMCMD_JUMP(0),
+};
+
+const union AnimCmd *const gAnims_MoonBallParticle[] =
+{
+    gAnim_MoonBallParticle_SpinningMoon,
+    gAnim_MoonBallParticle_Sparkle,
+};
+
+const struct SpriteTemplate gMoonBallParticleSpriteTemplate =
+{
+    .tileTag = TAG_BALL_PARTICLES(MOON),
+    .paletteTag = TAG_BALL_PARTICLES(MOON),
+    .oam = &gOamData_AffineOff_ObjNormal_8x8,
+    .anims = gAnims_MoonBallParticle,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = MoonBallParticle_Step,
+};
+
+static void MoonBallOpenParticleAnimation(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    u8 x = task->data[1];
+    u8 y = task->data[2];
+    u8 priority = task->data[3];
+    u8 subpriority = task->data[4];
+    u8 spriteId = CreateSprite(&gMoonBallParticleSpriteTemplate, x, y, subpriority);
+    gSprites[spriteId].oam.priority = priority;
+    gSprites[spriteId].data[0] = Random() % 256;
+    gSprites[spriteId].data[2] = 0x70 + Random() % 0x50;
+    gSprites[spriteId].data[3] = Random() % 2 == 0 ? -1 : 1;
+    gSprites[spriteId].data[4] = 1 + (Random() % 3);
+    sub_8171E20();
+    StartSpriteAnim(&gSprites[spriteId], Random() % 2);
+
+    if (++task->data[0] == 16)
+    {
+        if (!gMain.inBattle)
+            gSprites[spriteId].data[7] = 1;
+
+        DestroyTask(taskId);
+    }
+}
+
+static void MoonBallParticle_Step(struct Sprite *sprite)
+{
+    sprite->pos2.x = Sin(sprite->data[0], (u16)sprite->data[1] >> 6);
+    sprite->pos2.y = Cos(sprite->data[0], (u16)sprite->data[1] >> 6);
+    sprite->data[0] = (sprite->data[0] + sprite->data[3] * sprite->data[4]) & 0xFF;
+    sprite->data[1] += sprite->data[2];
+    sprite->data[2] -= 4;
+    if (++sprite->data[5] == 25)
         DestroyBallOpenAnimationParticle(sprite);
 }
 
