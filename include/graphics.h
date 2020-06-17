@@ -4338,6 +4338,7 @@ extern const u32 gBattleAnimSpriteGfx_Particles[];
 extern const u32 gBattleAnimSpriteGfx_BallBubbleParticles[];
 extern const u32 gBattleAnimSpriteGfx_BallMoonParticles[];
 extern const u32 gBattleAnimSpriteGfx_BallFriendParticles[];
+extern const u32 gBattleAnimSpriteGfx_BallFastParticles[];
 extern const u32 gBattleAnimSpriteGfx_CircleImpact[];
 extern const u32 gBattleAnimSpriteGfx_Scratch[];
 extern const u32 gBattleAnimSpriteGfx_Cut[];

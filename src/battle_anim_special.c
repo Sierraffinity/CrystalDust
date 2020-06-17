@@ -61,6 +61,7 @@ static void PremierBallOpenParticleAnimation_Step1(struct Sprite *);
 static void LureBallParticle_Step(struct Sprite *sprite);
 static void MoonBallParticle_Step(struct Sprite *sprite);
 static void FriendBallParticle_Step(struct Sprite *sprite);
+static void FastBallParticle_Step(struct Sprite *sprite);
 static void sub_8172AB0(u8);
 static void sub_8172B40(u8);
 static void sub_8172B90(u8);
@@ -84,6 +85,7 @@ static void LevelBallOpenParticleAnimation(u8);
 static void LureBallOpenParticleAnimation(u8);
 static void MoonBallOpenParticleAnimation(u8);
 static void FriendBallOpenParticleAnimation(u8);
+static void FastBallOpenParticleAnimation(u8);
 static void sub_817330C(struct Sprite *);
 
 struct BallCaptureSuccessStarData
@@ -131,8 +133,8 @@ const struct CompressedSpriteSheet gBallParticleSpritesheets[] =
     [BALLGFX_LEVEL]     = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(LEVEL)},
     [BALLGFX_LURE]      = {gBattleAnimSpriteGfx_BallBubbleParticles,  0x80, TAG_BALL_PARTICLES(LURE)},
     [BALLGFX_MOON]      = {gBattleAnimSpriteGfx_BallMoonParticles,    0xC0, TAG_BALL_PARTICLES(MOON)},
-    [BALLGFX_FRIEND]    = {gBattleAnimSpriteGfx_BallFriendParticles, 0x160, TAG_BALL_PARTICLES(FRIEND)},
-    [BALLGFX_FAST]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(FAST)},
+    [BALLGFX_FRIEND]    = {gBattleAnimSpriteGfx_BallFriendParticles,  0xC0, TAG_BALL_PARTICLES(FRIEND)},
+    [BALLGFX_FAST]      = {gBattleAnimSpriteGfx_BallFastParticles,    0xE0, TAG_BALL_PARTICLES(FAST)},
     [BALLGFX_HEAVY]     = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(HEAVY)},
     [BALLGFX_LOVE]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(LOVE)},
     [BALLGFX_PARK]      = {gBattleAnimSpriteGfx_Particles,           0x160, TAG_BALL_PARTICLES(PARK)},
@@ -256,7 +258,7 @@ const TaskFunc gBallParticleAnimationFuncs[] =
     [BALLGFX_LURE]      = LureBallOpenParticleAnimation,
     [BALLGFX_MOON]      = MoonBallOpenParticleAnimation,
     [BALLGFX_FRIEND]    = FriendBallOpenParticleAnimation,
-    [BALLGFX_FAST]      = PokeBallOpenParticleAnimation,
+    [BALLGFX_FAST]      = FastBallOpenParticleAnimation,
     [BALLGFX_HEAVY]     = PokeBallOpenParticleAnimation,
     [BALLGFX_LOVE]      = PokeBallOpenParticleAnimation,
     [BALLGFX_PARK]      = PokeBallOpenParticleAnimation,
@@ -464,7 +466,7 @@ const u16 gBallOpenFadeColors[] =
     [BALLGFX_LURE]      = RGB( 8, 16, 30),
     [BALLGFX_MOON]      = RGB(19, 28, 22),
     [BALLGFX_FRIEND]    = RGB( 3, 22,  7),
-    [BALLGFX_FAST]      = RGB(31, 22, 30),
+    [BALLGFX_FAST]      = RGB( 9,  8, 31),
     [BALLGFX_HEAVY]     = RGB(31, 22, 30),
     [BALLGFX_LOVE]      = RGB(31, 22, 30),
     [BALLGFX_PARK]      = RGB(31, 22, 30),
@@ -2231,6 +2233,82 @@ static void FriendBallParticle_Step(struct Sprite *sprite)
     sprite->data[2] -= sprite->data[5];
     if (++sprite->data[6] == 25)
         DestroyBallOpenAnimationParticle(sprite);
+}
+
+const union AnimCmd gAnim_FastBallParticle[] =
+{
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_FRAME(3, 2),
+    ANIMCMD_FRAME(4, 7),
+    ANIMCMD_FRAME(5, 5),
+    ANIMCMD_FRAME(6, 5),
+    ANIMCMD_FRAME(1, 3),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const gAnims_FastBallParticle[] =
+{
+    gAnim_FastBallParticle,
+};
+
+const struct SpriteTemplate gFastBallParticleSpriteTemplate =
+{
+    .tileTag = TAG_BALL_PARTICLES(FAST),
+    .paletteTag = TAG_BALL_PARTICLES(FAST),
+    .oam = &gOamData_AffineOff_ObjNormal_8x8,
+    .anims = gAnims_FastBallParticle,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = FastBallParticle_Step,
+};
+
+static void FastBallOpenParticleAnimation(u8 taskId)
+{
+    int i;
+    u8 spriteId;
+    struct Task *task = &gTasks[taskId];
+    u8 x = task->data[1];
+    u8 y = task->data[2];
+    u8 priority = task->data[3];
+    u8 subpriority = task->data[4];
+
+    for (i = 0; i < 16; i++)
+    {
+        spriteId = CreateSprite(&gFastBallParticleSpriteTemplate, x, y, subpriority);
+        gSprites[spriteId].oam.priority = priority;
+        gSprites[spriteId].data[0] = 64 + (Random() % 128);
+        gSprites[spriteId].data[2] = 0x70 + Random() % 0x50;
+        sub_8171E20();
+    }
+
+    if (!gMain.inBattle)
+        gSprites[spriteId].data[7] = 1;
+
+    DestroyTask(taskId);
+}
+
+static void FastBallParticle_Step(struct Sprite *sprite)
+{
+    if (++sprite->data[6] == 40)
+    {
+        DestroyBallOpenAnimationParticle(sprite);
+        return;
+    }
+
+    if (sprite->data[6] < 25)
+    {
+        sprite->pos2.x = Sin(sprite->data[0], (u16)sprite->data[1] >> 6);
+        sprite->pos2.y = Cos(sprite->data[0], (u16)sprite->data[1] >> 6);
+        sprite->data[1] += sprite->data[2];
+        sprite->data[2] -= 4;
+    }
+    else
+    {
+        sprite->pos2.y -= 4;
+    }
 }
 
 static void DestroyBallOpenAnimationParticle(struct Sprite *sprite)
