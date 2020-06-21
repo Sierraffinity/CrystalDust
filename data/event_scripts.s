@@ -344,7 +344,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route32_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/Route34_IlexEastGatehouse/scripts.inc"
 	.include "data/maps/Route34_IlexNorthGatehouse/scripts.inc"
-	.include "data/maps/Route116_TunnelersRestHouse/scripts.inc"
+	.include "data/maps/Route34_DayCare/scripts.inc"
 	.include "data/maps/Route117_PokemonDayCare/scripts.inc"
 	.include "data/maps/Route36_RuinsOfAlphGatehouse/scripts.inc"
 	.include "data/maps/MeteorFalls_1F_1R/scripts.inc"

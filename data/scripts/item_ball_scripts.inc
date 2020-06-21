@@ -106,8 +106,8 @@ SlowpokeWell_B1F_EventScript_ItemSuperPotion::
 	finditem ITEM_SUPER_POTION
 	end
 
-Route34_EventScript_ItemProtein:: @ 8290D40
-	finditem ITEM_PROTEIN
+Route34_EventScript_ItemNugget::
+	finditem ITEM_NUGGET
 	end
 
 Route36_EventScript_ItemStarPiece:: @ 8290D4D

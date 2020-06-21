@@ -33,7 +33,7 @@
 #define TRAINER_PIC_HEX_MANIAC            14
 #define TRAINER_PIC_AROMA_LADY            15
 #define TRAINER_PIC_RUIN_MANIAC           16
-#define TRAINER_PIC_INTERVIEWER           17
+#define TRAINER_PIC_OFFICER               17
 #define TRAINER_PIC_TUBER_F               18
 #define TRAINER_PIC_TUBER_M               19
 #define TRAINER_PIC_COOLTRAINER_F         20
@@ -293,7 +293,7 @@
 #define TRAINER_CLASS_PKMN_TRAINER_1 0x0  // Unused
 #define TRAINER_CLASS_PKMN_TRAINER_2 0x1  // Unused
 #define TRAINER_CLASS_HIKER          0x2
-#define TRAINER_CLASS_TEAM_ROCKET      0x3
+#define TRAINER_CLASS_TEAM_ROCKET    0x3
 #define TRAINER_CLASS_PKMN_BREEDER   0x4
 #define TRAINER_CLASS_COOLTRAINER    0x5
 #define TRAINER_CLASS_BIRD_KEEPER    0x6
@@ -307,7 +307,7 @@
 #define TRAINER_CLASS_HEX_MANIAC     0xe
 #define TRAINER_CLASS_AROMA_LADY     0xf
 #define TRAINER_CLASS_RUIN_MANIAC    0x10
-#define TRAINER_CLASS_INTERVIEWER    0x11
+#define TRAINER_CLASS_OFFICER        0x11
 #define TRAINER_CLASS_TUBER_F        0x12
 #define TRAINER_CLASS_TUBER_M        0x13
 #define TRAINER_CLASS_LADY           0x14

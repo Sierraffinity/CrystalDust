@@ -1,4 +1,4 @@
-Route117_EventScript_DaycareMan:: @ 8291C18
+Route34_DayCare_EventScript_DaycareMan:: @ 8291C18
 	lock
 	faceplayer
 	special GetDaycareMonNicknames
@@ -77,169 +77,169 @@ Route117_EventScript_CheckOnTwoMons:: @ 8291CE8
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_DaycareWoman:: @ 8291D11
+Route34_DayCare_EventScript_DaycareWoman:: @ 8291D11
 	lock
 	faceplayer
 	specialvar VAR_RESULT, GetDaycareState
 	compare VAR_RESULT, DAYCARE_EGG_WAITING
-	goto_if_eq Route117_PokemonDayCare_EventScript_EggWaiting
+	goto_if_eq Route34_DayCare_EventScript_EggWaiting
 	compare VAR_RESULT, DAYCARE_ONE_MON
-	goto_if_eq Route117_PokemonDayCare_EventScript_OneMonInDaycare
+	goto_if_eq Route34_DayCare_EventScript_OneMonInDaycare
 	compare VAR_RESULT, DAYCARE_TWO_MONS
-	goto_if_eq Route117_PokemonDayCare_EventScript_TwoMonsInDaycare
-	msgbox Route117_PokemonDayCare_Text_WouldYouLikeUsToRaiseAMon, MSGBOX_YESNO
+	goto_if_eq Route34_DayCare_EventScript_TwoMonsInDaycare
+	msgbox Route34_DayCare_Text_WouldYouLikeUsToRaiseAMon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Route117_PokemonDayCare_EventScript_GiveMonToRaise
-	msgbox Route117_PokemonDayCare_Text_FineThenComeAgain, MSGBOX_DEFAULT
+	goto_if_eq Route34_DayCare_EventScript_GiveMonToRaise
+	msgbox Route34_DayCare_Text_FineThenComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_GiveMonToRaise:: @ 8291D56
+Route34_DayCare_EventScript_GiveMonToRaise:: @ 8291D56
 	specialvar VAR_RESULT, CountPartyNonEggMons
 	compare VAR_RESULT, 1
-	goto_if_eq Route117_PokemonDayCare_EventScript_OnlyOneMon
+	goto_if_eq Route34_DayCare_EventScript_OnlyOneMon
 	specialvar VAR_RESULT, CountPartyAliveNonEggMons
 	compare VAR_RESULT, 2
-	goto_if_eq Route117_PokemonDayCare_EventScript_OnlyTwoAliveMons
-	msgbox Route117_PokemonDayCare_Text_WhichMonShouldWeRaise, MSGBOX_DEFAULT
+	goto_if_eq Route34_DayCare_EventScript_OnlyTwoAliveMons
+	msgbox Route34_DayCare_Text_WhichMonShouldWeRaise, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
 	special ChooseSendDaycareMon
 	waitstate
 	compare VAR_0x8004, 255
-	goto_if_eq Route117_PokemonDayCare_EventScript_ComeAgain
+	goto_if_eq Route34_DayCare_EventScript_ComeAgain
 	specialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot
 	compare VAR_RESULT, 0
-	goto_if_eq Route117_PokemonDayCare_EventScript_OnlyOneAliveMon
+	goto_if_eq Route34_DayCare_EventScript_OnlyOneAliveMon
 	specialvar VAR_0x8005, GetSelectedMonNicknameAndSpecies
 	waitse
 	playmoncry VAR_0x8005, 0
-	msgbox Route117_PokemonDayCare_Text_WellRaiseYourMon, MSGBOX_DEFAULT
+	msgbox Route34_DayCare_Text_WellRaiseYourMon, MSGBOX_DEFAULT
 	waitmoncry
 	special StoreSelectedPokemonInDaycare
 	incrementgamestat GAME_STAT_USED_DAYCARE
 	specialvar VAR_RESULT, GetDaycareState
 	compare VAR_RESULT, DAYCARE_ONE_MON
-	goto_if_eq Route117_PokemonDayCare_EventScript_CanRaiseOneMore
+	goto_if_eq Route34_DayCare_EventScript_CanRaiseOneMore
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_ComeAgain:: @ 8291DCA
-	msgbox Route117_PokemonDayCare_Text_ComeAgain, MSGBOX_DEFAULT
+Route34_DayCare_EventScript_ComeAgain:: @ 8291DCA
+	msgbox Route34_DayCare_Text_ComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_CanRaiseOneMore:: @ 8291DD4
-	msgbox Route117_PokemonDayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO
+Route34_DayCare_EventScript_CanRaiseOneMore:: @ 8291DD4
+	msgbox Route34_DayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Route117_PokemonDayCare_EventScript_GiveMonToRaise
-	goto Route117_PokemonDayCare_EventScript_ComeAgain
+	goto_if_eq Route34_DayCare_EventScript_GiveMonToRaise
+	goto Route34_DayCare_EventScript_ComeAgain
 	end
 
-Route117_PokemonDayCare_EventScript_OnlyOneMon:: @ 8291DED
-	msgbox Route117_PokemonDayCare_Text_YouHaveJustOneMon, MSGBOX_DEFAULT
+Route34_DayCare_EventScript_OnlyOneMon:: @ 8291DED
+	msgbox Route34_DayCare_Text_YouHaveJustOneMon, MSGBOX_DEFAULT
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_OnlyOneAliveMon:: @ 8291DF7
-	msgbox Route117_PokemonDayCare_Text_WhatWillYouBattleWith, MSGBOX_DEFAULT
+Route34_DayCare_EventScript_OnlyOneAliveMon:: @ 8291DF7
+	msgbox Route34_DayCare_Text_WhatWillYouBattleWith, MSGBOX_DEFAULT
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_OnlyTwoAliveMons:: @ 8291E01
-	msgbox Route117_PokemonDayCare_Text_YoullBeLeftWithJustOne, MSGBOX_DEFAULT
+Route34_DayCare_EventScript_OnlyTwoAliveMons:: @ 8291E01
+	msgbox Route34_DayCare_Text_YoullBeLeftWithJustOne, MSGBOX_DEFAULT
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_EggWaiting:: @ 8291E0B
-	msgbox Route117_PokemonDayCare_Text_HusbandWasLookingForYou, MSGBOX_DEFAULT
+Route34_DayCare_EventScript_EggWaiting:: @ 8291E0B
+	msgbox Route34_DayCare_Text_HusbandWasLookingForYou, MSGBOX_DEFAULT
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_YourMonHasGrownXLevels:: @ 8291E15
-	msgbox Route117_PokemonDayCare_Text_YourMonHasGrownXLevels, MSGBOX_DEFAULT
+Route34_DayCare_EventScript_YourMonHasGrownXLevels:: @ 8291E15
+	msgbox Route34_DayCare_Text_YourMonHasGrownXLevels, MSGBOX_DEFAULT
 	return
 
-Route117_PokemonDayCare_EventScript_DisplayLevelsGained:: @ 8291E1E
+Route34_DayCare_EventScript_DisplayLevelsGained:: @ 8291E1E
 	specialvar VAR_RESULT, GetNumLevelsGainedFromDaycare
 	compare VAR_RESULT, 0
-	call_if_ne Route117_PokemonDayCare_EventScript_YourMonHasGrownXLevels
+	call_if_ne Route34_DayCare_EventScript_YourMonHasGrownXLevels
 	return
 
-Route117_PokemonDayCare_EventScript_OneMonInDaycare:: @ 8291E2F
-	msgbox Route117_PokemonDayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT
+Route34_DayCare_EventScript_OneMonInDaycare:: @ 8291E2F
+	msgbox Route34_DayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT
 	setvar VAR_0x8004, 0
-	call Route117_PokemonDayCare_EventScript_DisplayLevelsGained
-	msgbox Route117_PokemonDayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO
+	call Route34_DayCare_EventScript_DisplayLevelsGained
+	msgbox Route34_DayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Route117_PokemonDayCare_EventScript_GiveMonToRaise
-	msgbox Route117_PokemonDayCare_Text_TakeYourMonBack, MSGBOX_YESNO
+	goto_if_eq Route34_DayCare_EventScript_GiveMonToRaise
+	msgbox Route34_DayCare_Text_TakeYourMonBack, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Route117_PokemonDayCare_EventScript_TryRetrieveMon
-	goto Route117_PokemonDayCare_EventScript_ComeAgain
+	goto_if_eq Route34_DayCare_EventScript_TryRetrieveMon
+	goto Route34_DayCare_EventScript_ComeAgain
 	end
 
-Route117_PokemonDayCare_EventScript_TryRetrieveMon:: @ 8291E6D
+Route34_DayCare_EventScript_TryRetrieveMon:: @ 8291E6D
 	specialvar VAR_RESULT, CalculatePlayerPartyCount
 	compare VAR_RESULT, PARTY_SIZE
-	goto_if_eq Route117_PokemonDayCare_EventScript_NoRoom
+	goto_if_eq Route34_DayCare_EventScript_NoRoom
 	specialvar VAR_RESULT, GetDaycareState
 	setvar VAR_0x8004, 0
 	compare VAR_RESULT, DAYCARE_ONE_MON
-	goto_if_eq Route117_PokemonDayCare_EventScript_CostPrompt
+	goto_if_eq Route34_DayCare_EventScript_CostPrompt
 	special ShowDaycareLevelMenu
 	waitstate
 	copyvar VAR_0x8004, VAR_RESULT
 	compare VAR_RESULT, DAYCARE_EXITED_LEVEL_MENU
-	goto_if_eq Route117_PokemonDayCare_EventScript_ComeAgain
-	goto Route117_PokemonDayCare_EventScript_CostPrompt
+	goto_if_eq Route34_DayCare_EventScript_ComeAgain
+	goto Route34_DayCare_EventScript_CostPrompt
 	end
 
-Route117_PokemonDayCare_EventScript_CostPrompt:: @ 8291EAC
+Route34_DayCare_EventScript_CostPrompt:: @ 8291EAC
 	special GetDaycareCost
-	msgbox Route117_PokemonDayCare_Text_ItWillCostX, MSGBOX_YESNO
+	msgbox Route34_DayCare_Text_ItWillCostX, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Route117_PokemonDayCare_EventScript_CheckEnoughMoney
-	goto Route117_PokemonDayCare_EventScript_ComeAgain
+	goto_if_eq Route34_DayCare_EventScript_CheckEnoughMoney
+	goto Route34_DayCare_EventScript_ComeAgain
 	end
 
-Route117_PokemonDayCare_EventScript_CheckEnoughMoney:: @ 8291EC8
+Route34_DayCare_EventScript_CheckEnoughMoney:: @ 8291EC8
 	specialvar VAR_RESULT, IsEnoughForCostInVar0x8005
 	compare VAR_RESULT, 1
-	goto_if_eq Route117_PokemonDayCare_EventScript_RetrieveMon
-	msgbox Route117_PokemonDayCare_Text_NotEnoughMoney, MSGBOX_DEFAULT
+	goto_if_eq Route34_DayCare_EventScript_RetrieveMon
+	msgbox Route34_DayCare_Text_NotEnoughMoney, MSGBOX_DEFAULT
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_RetrieveMon:: @ 8291EE2
-	applymovement 1, Route117_PokemonDayCare_Movement_RetrieveDaycareMon
+Route34_DayCare_EventScript_RetrieveMon:: @ 8291EE2
+	applymovement 1, Route34_DayCare_Movement_RetrieveDaycareMon
 	waitmovement 0
 	specialvar VAR_RESULT, TakePokemonFromDaycare
 	special SubtractMoneyFromVar0x8005
 	playse SE_REGI
-	msgbox Route117_PokemonDayCare_Text_HeresYourMon, MSGBOX_DEFAULT
+	msgbox Route34_DayCare_Text_HeresYourMon, MSGBOX_DEFAULT
 	waitse
 	playmoncry VAR_RESULT, 0
-	msgbox Route117_PokemonDayCare_Text_TookBackMon, MSGBOX_DEFAULT
+	msgbox Route34_DayCare_Text_TookBackMon, MSGBOX_DEFAULT
 	waitmoncry
 	specialvar VAR_RESULT, GetDaycareState
 	compare VAR_RESULT, DAYCARE_ONE_MON
-	goto_if_eq Route117_PokemonDayCare_EventScript_AskRetrieveOtherMon
-	goto Route117_PokemonDayCare_EventScript_ComeAgain
+	goto_if_eq Route34_DayCare_EventScript_AskRetrieveOtherMon
+	goto Route34_DayCare_EventScript_ComeAgain
 	end
 
-Route117_PokemonDayCare_EventScript_AskRetrieveOtherMon:: @ 8291F24
-	msgbox Route117_PokemonDayCare_Text_TakeOtherOneBackToo, MSGBOX_YESNO
+Route34_DayCare_EventScript_AskRetrieveOtherMon:: @ 8291F24
+	msgbox Route34_DayCare_Text_TakeOtherOneBackToo, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Route117_PokemonDayCare_EventScript_TryRetrieveMon
-	goto Route117_PokemonDayCare_EventScript_ComeAgain
+	goto_if_eq Route34_DayCare_EventScript_TryRetrieveMon
+	goto Route34_DayCare_EventScript_ComeAgain
 	end
 
-Route117_PokemonDayCare_EventScript_NoRoom:: @ 8291F3D
-	msgbox Route117_PokemonDayCare_Text_YourTeamIsFull, MSGBOX_DEFAULT
+Route34_DayCare_EventScript_NoRoom:: @ 8291F3D
+	msgbox Route34_DayCare_Text_YourTeamIsFull, MSGBOX_DEFAULT
 	release
 	end
 
-Route117_PokemonDayCare_Movement_RetrieveDaycareMon: @ 8291F47
+Route34_DayCare_Movement_RetrieveDaycareMon: @ 8291F47
 	delay_16
 	delay_16
 	face_left
@@ -261,33 +261,29 @@ Route117_PokemonDayCare_Movement_RetrieveDaycareMon: @ 8291F47
 	walk_slow_down
 	step_end
 
-@ Unused. Possibly a commented script, or a typo end added to the above Movement script
-Route117_PokemonDayCare_EventScript_UnusedEnd:: @ 8291F5B
-	end
-
-Route117_PokemonDayCare_EventScript_TwoMonsInDaycare:: @ 8291F5C
-	msgbox Route117_PokemonDayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT
+Route34_DayCare_EventScript_TwoMonsInDaycare:: @ 8291F5C
+	msgbox Route34_DayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT
 	setvar VAR_0x8004, 0
-	call Route117_PokemonDayCare_EventScript_DisplayLevelsGained
+	call Route34_DayCare_EventScript_DisplayLevelsGained
 	setvar VAR_0x8004, 1
-	call Route117_PokemonDayCare_EventScript_DisplayLevelsGained
-	msgbox Route117_PokemonDayCare_Text_TakeYourMonBack, MSGBOX_YESNO
+	call Route34_DayCare_EventScript_DisplayLevelsGained
+	msgbox Route34_DayCare_Text_TakeYourMonBack, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Route117_PokemonDayCare_EventScript_TryRetrieveMon
-	msgbox Route117_PokemonDayCare_Text_ComeAgain, MSGBOX_DEFAULT
+	goto_if_eq Route34_DayCare_EventScript_TryRetrieveMon
+	msgbox Route34_DayCare_Text_ComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
 @ Unused
-Route117_PokemonDayCare_EventScript_UnusedRetrieveMon:: @ 8291F95
+Route34_DayCare_EventScript_UnusedRetrieveMon:: @ 8291F95
 	special ShowDaycareLevelMenu
 	waitstate
 	compare VAR_RESULT, 2
-	goto_if_eq Route117_PokemonDayCare_EventScript_ComeAgain
+	goto_if_eq Route34_DayCare_EventScript_ComeAgain
 	copyvar VAR_0x8004, VAR_RESULT
 	specialvar VAR_RESULT, TakePokemonFromDaycare
-	msgbox Route117_PokemonDayCare_Text_HeresYourMon, MSGBOX_DEFAULT
-	msgbox Route117_PokemonDayCare_Text_ComeAgain, MSGBOX_DEFAULT
+	msgbox Route34_DayCare_Text_HeresYourMon, MSGBOX_DEFAULT
+	msgbox Route34_DayCare_Text_ComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
@@ -354,79 +350,79 @@ Route117_Text_IWillKeepDoYouWantIt: @ 82922C6
 	.string "I really will keep it.\n"
 	.string "You do want this, yes?$"
 
-Route117_PokemonDayCare_Text_WouldYouLikeUsToRaiseAMon: @ 82922F4
+Route34_DayCare_Text_WouldYouLikeUsToRaiseAMon: @ 82922F4
 	.string "I'm the DAY-CARE LADY.\p"
 	.string "We can raise POKéMON for you.\p"
 	.string "Would you like us to raise one?$"
 
-Route117_PokemonDayCare_Text_WhichMonShouldWeRaise: @ 8292349
+Route34_DayCare_Text_WhichMonShouldWeRaise: @ 8292349
 	.string "Which POKéMON should we raise for\n"
 	.string "you?$"
 
-Route117_PokemonDayCare_Text_WellRaiseYourMon: @ 8292370
+Route34_DayCare_Text_WellRaiseYourMon: @ 8292370
 	.string "Fine, we'll raise your {STR_VAR_1}\n"
 	.string "for a while.\p"
 	.string "Come back for it later.$"
 
-Route117_PokemonDayCare_Text_WeCanRaiseOneMore: @ 82923AF
+Route34_DayCare_Text_WeCanRaiseOneMore: @ 82923AF
 	.string "We can raise two of your POKéMON.\n"
 	.string "Would you like us to raise one more?$"
 
-Route117_PokemonDayCare_Text_HusbandWasLookingForYou: @ 82923F6
+Route34_DayCare_Text_HusbandWasLookingForYou: @ 82923F6
 	.string "My husband was looking for you.$"
 
-Route117_PokemonDayCare_Text_FineThenComeAgain: @ 8292416
+Route34_DayCare_Text_FineThenComeAgain: @ 8292416
 	.string "Oh, fine, then.\n"
 	.string "Come again.$"
 
-Route117_PokemonDayCare_Text_NotEnoughMoney: @ 8292432
+Route34_DayCare_Text_NotEnoughMoney: @ 8292432
 	.string "You don't have enough money…$"
 
-Route117_PokemonDayCare_Text_TakeOtherOneBackToo: @ 829244F
+Route34_DayCare_Text_TakeOtherOneBackToo: @ 829244F
 	.string "Will you take back the other one,\n"
 	.string "too?$"
 
-Route117_PokemonDayCare_Text_ComeAgain: @ 8292476
+Route34_DayCare_Text_ComeAgain: @ 8292476
 	.string "Fine.\n"
 	.string "Come again.$"
 
-Route117_PokemonDayCare_Text_GoodToSeeYou: @ 8292488
+Route34_DayCare_Text_GoodToSeeYou: @ 8292488
 	.string "Ah, it's you! Good to see you.\n"
 	.string "Your POKéMON can only be doing good!$"
 
-Route117_PokemonDayCare_Text_YourMonHasGrownXLevels: @ 82924CC
+Route34_DayCare_Text_YourMonHasGrownXLevels: @ 82924CC
 	.string "By level, your {STR_VAR_1} has\n"
 	.string "grown by {STR_VAR_2}.$"
 
-Route117_PokemonDayCare_Text_YourTeamIsFull: @ 82924EF
+Route34_DayCare_Text_YourTeamIsFull: @ 82924EF
 	.string "Your POKéMON team is full.\n"
 	.string "Make room, then come see me.$"
 
 @ Unused
-Route117_PokemonDayCare_Text_TakeBackWhichMon: @ 8292527
+Route34_DayCare_Text_TakeBackWhichMon: @ 8292527
 	.string "Which POKéMON will you take back?$"
 
-Route117_PokemonDayCare_Text_ItWillCostX: @ 8292549
+Route34_DayCare_Text_ItWillCostX: @ 8292549
 	.string "If you want your {STR_VAR_1} back,\n"
 	.string "it will cost ¥{STR_VAR_2}.$"
 
-Route117_PokemonDayCare_Text_HeresYourMon: @ 8292575
+Route34_DayCare_Text_HeresYourMon: @ 8292575
 	.string "Perfect!\n"
 	.string "Here's your POKéMON.$"
 
-Route117_PokemonDayCare_Text_TookBackMon: @ 8292593
+Route34_DayCare_Text_TookBackMon: @ 8292593
 	.string "{PLAYER} took back {STR_VAR_1} from\n"
 	.string "the DAY-CARE LADY.$"
 
-Route117_PokemonDayCare_Text_YouHaveJustOneMon: @ 82925BB
+Route34_DayCare_Text_YouHaveJustOneMon: @ 82925BB
 	.string "Oh? But you have just one\n"
 	.string "POKéMON.\p"
 	.string "Come back another time.$"
 
-Route117_PokemonDayCare_Text_TakeYourMonBack: @ 82925F6
+Route34_DayCare_Text_TakeYourMonBack: @ 82925F6
 	.string "Will you take your POKéMON back?$"
 
-Route117_PokemonDayCare_Text_WhatWillYouBattleWith: @ 8292617
+Route34_DayCare_Text_WhatWillYouBattleWith: @ 8292617
 	.string "If you leave me that POKéMON,\n"
 	.string "what will you battle with?\p"
 	.string "Come back another time.$"
@@ -434,7 +430,7 @@ Route117_PokemonDayCare_Text_WhatWillYouBattleWith: @ 8292617
 Text_EggHatchHuh: @ 8292668
 	.string "Huh?$"
 
-Route117_PokemonDayCare_Text_YoullBeLeftWithJustOne: @ 829266D
+Route34_DayCare_Text_YoullBeLeftWithJustOne: @ 829266D
 	.string "Huh?\n"
 	.string "Now, now.\p"
 	.string "If you leave that POKéMON with\n"

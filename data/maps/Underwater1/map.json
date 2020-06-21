@@ -42,7 +42,7 @@
       "y": 40,
       "elevation": 0,
       "item": "ITEM_GREEN_SHARD",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_1_GREEN_SHARD"
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_34_RARE_CANDY"
     },
     {
       "type": "hidden_item",
@@ -50,7 +50,7 @@
       "y": 34,
       "elevation": 3,
       "item": "ITEM_PEARL",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_1_PEARL"
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_34_SUPER_POTION"
     },
     {
       "type": "hidden_item",

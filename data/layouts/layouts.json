@@ -1454,16 +1454,16 @@
       "blockdata_filepath": "data/layouts/Route114_LanettesHouse/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE116_TUNNELERS_REST_HOUSE",
-      "name": "Route116_TunnelersRestHouse_Layout",
-      "width": 10,
-      "height": 9,
+      "id": "LAYOUT_ROUTE34_DAY_CARE",
+      "name": "Route34_DayCare_Layout",
+      "width": 14,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/Route116_TunnelersRestHouse/border.bin",
-      "blockdata_filepath": "data/layouts/Route116_TunnelersRestHouse/map.bin"
+      "secondary_tileset": "gTileset_PokemonDayCare",
+      "border_filepath": "data/layouts/Route34_DayCare/border.bin",
+      "blockdata_filepath": "data/layouts/Route34_DayCare/map.bin"
     },
     {
       "id": "LAYOUT_ROUTE117_POKEMON_DAY_CARE",

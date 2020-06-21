@@ -605,114 +605,142 @@ text AzaleaTown_Gym_Text_JoshPostBattle {
 	"better moves…"
 }
 
+text Route34_Text_ToddIntro {
+	"I'm confident in my ability to\n"
+	"raise POKéMON.\p"
+	"Want to see?"
+}
+
+text Route34_Text_ToddDefeated {
+	"Did I screw up my training?"
+}
+
+text Route34_Text_ToddPostBattle {
+	"Maybe I should take one to the\n"
+	"DAY-CARE nearby.\l"
+	"Or maybe use some items…"
+}
+
+text Route34_Text_SamuelIntro {
+	"This is where I do my training!"
+}
+
+text Route34_Text_SamuelDefeated {
+	"Beaten by a passsing stranger!"
+}
+
+text Route34_Text_SamuelPostBattle {
+	"Have you been to GOLDENROD CITY?\p"
+	"Weren't you amazed by how they've\n"
+	"changed the POKéMON CENTER?"
+}
+
+text Route34_Text_IanIntro {
+	"I'm the best in my class at POKéMON."
+}
+
+text Route34_Text_IanDefeated {
+	"No!\n"
+	"There are better TRAINERS…"
+}
+
+text Route34_Text_IanPostBattle {
+	"I'm trying hard so I can be the\n"
+	"star in my class."
+}
+
+text Route34_Text_GinaIntro {
+	"Are you a TRAINER?\n"
+	"Let's have a practice battle."
+}
+
+text Route34_Text_GinaDefeated {
+	"Oh, no!\n"
+	"I just can't win…"
+}
+
+text Route34_Text_GinaPostBattle {
+	"You're too strong to be a\n"
+	"practice partner."
+}
+
+text Route34_Text_KeithIntro {
+	"Who goes there?\n"
+	"What are you up to?"
+}
+
+text Route34_Text_KeithDefeated {
+	"You're a tough little kid."
+}
+
+text Route34_Text_KeithPostBattle {
+	"Yep, I see nothing wrong today.\n"
+	"You be good and stay out of trouble."
+}
+
+text Route34_Text_BrandonIntro {
+	"I just got my POKéMON back from the\n"
+	"DAY-CARE.\p"
+	"Let's see how much stronger it got!"
+}
+
+text Route34_Text_BrandonDefeated {
+	"Why does it end this way?"
+}
+
+text Route34_Text_BrandonPostBattle {
+	"My POKéMON knew moves I didn't\n"
+	"know it had.\p"
+	"That confounded me to no end!"
+}
+
+text Route34_Text_IreneIntro {
+	"IRENE: Kyaaah!\n"
+	"Someone found us!"
+}
+
+text Route34_Text_IreneDefeated {
+	"IRENE: Ohhh!\n"
+	"Too strong!"
+}
+
+text Route34_Text_IrenePostBattle {
+	"IRENE: Isn't this beach great?\n"
+	"It's our secret little getaway!"
+}
+
+text Route34_Text_JennIntro {
+	"JENN: You can't stomp in here like this\n"
+	"and go unpunished!"
+}
+
+text Route34_Text_JennDefeated {
+	"JENN: So sorry, IRENE!\n"
+	"Sis!"
+}
+
+text Route34_Text_JennPostBattle {
+	"JENN: Sunlight makes your body\n"
+	"stronger."
+}
+
+text Route34_Text_KateIntro {
+	"KATE: You sure were mean to my\n"
+	"little sisters!"
+}
+
+text Route34_Text_KateDefeated {
+	"KATE: No!\n"
+	"I can't believe I lost."
+}
+
+text Route34_Text_KatePostBattle {
+	"KATE: I'm sorry we jumped you.\p"
+	"We never expected anyone to find\n"
+	"us here. You sure startled us."
+}
+
 raw`
-Route33_Text_FosterIntro: @ 8295D0F
-	.string "There's supposed to be a mystical\n"
-	.string "rock around here.\l"
-	.string "Do you know anything about it?$"
-
-Route33_Text_FosterDefeated: @ 8295D62
-	.string "I was thinking too much about that\n"
-	.string "rock, while my POKéMON remained weak…$"
-
-Route33_Text_FosterPostBattle: @ 8295DAB
-	.string "I can spend hours and hours staring\n"
-	.string "at a nice rock without growing bored.$"
-
-Route33_Text_LuisIntro: @ 8295DF5
-	.string "Whew! I was worried that a kid was\n"
-	.string "drowning when I saw you.\p"
-	.string "You seem to be okay, so what do you\n"
-	.string "say to a battle?$"
-
-Route33_Text_LuisDefeated: @ 8295E66
-	.string "Glub… Glub…$"
-
-Route33_Text_LuisPostBattle: @ 8295E72
-	.string "If you are drowning, the signal is to\n"
-	.string "wave one arm toward the beach.$"
-
-Route33_Text_DominikIntro: @ 8295EB7
-	.string "Swimming the deep blue sea…\n"
-	.string "It feels the greatest!$"
-
-Route33_Text_DominikDefeated: @ 8295EEA
-	.string "I lost…\n"
-	.string "Now I'm feeling blue…$"
-
-Route33_Text_DominikPostBattle: @ 8295F08
-	.string "Why is the sea blue?\p"
-	.string "I learned about that at the MUSEUM in\n"
-	.string "SLATEPORT, but I forgot.$"
-
-Route33_Text_BeverlyIntro: @ 8295F5C
-	.string "My body feels lighter in the water.\n"
-	.string "It's as if I've gotten slimmer!$"
-
-Route33_Text_BeverlyDefeated: @ 8295FA0
-	.string "I'm floating…$"
-
-Route33_Text_PostBattle: @ 8295FAE
-	.string "Your body weight is reduced to just\n"
-	.string "one tenth in the water.\p"
-	.string "That would make me…\n"
-	.string "Whoops! I'm not telling you my weight!$"
-
-Route33_Text_ImaniIntro: @ 8296025
-	.string "The blue, blue sky…\n"
-	.string "The vast sea…\l"
-	.string "It's so peaceful…$"
-
-Route33_Text_ImaniDefeated: @ 8296059
-	.string "I lost while I was lounging!$"
-
-Route33_Text_ImaniPostBattle: @ 8296076
-	.string "I want to be told I'm relaxing to be\n"
-	.string "with. Giggle.$"
-
-Route33_Text_AndresIntro: @ 82960A9
-	.string "I'm convinced that the sea keeps\n"
-	.string "secrets from us.$"
-
-Route33_Text_AndresDefeated: @ 82960DB
-	.string "Yes…\n"
-	.string "I am no good at battling…$"
-
-Route33_Text_AndresPostBattle: @ 82960FA
-	.string "I'm sure there are many secrets to be\n"
-	.string "discovered in the world's seas.\p"
-	.string "I mean to find them all!$"
-
-Route33_Text_AndresRegister: @ 8296159
-	.string "Huh? I'm so weak, but you're willing\n"
-	.string "to register me in your POKéNAV?$"
-
-Route33_Text_AndresRematchIntro: @ 829619E
-	.string "I've told you that I'm weak…\n"
-	.string "Are you sure you want to do this?$"
-
-Route33_Text_AndresRematchDefeated: @ 82961DD
-	.string "Yes…\n"
-	.string "I didn't think I could win.$"
-
-Route33_Text_AndresRematchPostBattle: @ 82961FE
-	.string "I may be weak at battling, but my\n"
-	.string "drive to explore can't be bested.\p"
-	.string "I will travel the seas all around\n"
-	.string "the world!$"
-
-Route33_Text_JosueIntro: @ 829626F
-	.string "I'm exhausted from swimming.\n"
-	.string "I'm just not used to it.\p"
-	.string "I need a battle for a change of pace!$"
-
-Route33_Text_JosueDefeated: @ 82962CB
-	.string "I lost because I battled at sea.$"
-
-Route33_Text_JosuePostBattle: @ 82962EC
-	.string "Yeah, for me, the sky is a much better\n"
-	.string "match than the sea.$"
-
 Route34_Text_ElliotIntro: @ 8296327
 	.string "Which do you prefer, fishing in the\n"
 	.string "sea or a stream?$"

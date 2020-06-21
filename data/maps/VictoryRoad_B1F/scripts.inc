@@ -2,7 +2,7 @@ VictoryRoad_B1F_MapScripts:: @ 82364E4
 	.byte 0
 
 VictoryRoad_B1F_EventScript_Samuel:: @ 82364E5
-	trainerbattle_single TRAINER_SAMUEL, VictoryRoad_B1F_Text_SamuelIntro, VictoryRoad_B1F_Text_SamuelDefeat
+	trainerbattle_single TRAINER_SAMUEL_OLD, VictoryRoad_B1F_Text_SamuelIntro, VictoryRoad_B1F_Text_SamuelDefeat
 	msgbox VictoryRoad_B1F_Text_SamuelPostBattle, MSGBOX_AUTOCLOSE
 	end
 

@@ -1,0 +1,12 @@
+mapscripts Route34_DayCare_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_PENDING_DAYCARE_EGG))
+        {
+            setflag(FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE)
+        }
+        else
+        {
+            clearflag(FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE)
+        }
+    }
+}

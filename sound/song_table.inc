@@ -436,7 +436,7 @@ gSongTable:: @ 86B49F0
 	song mus_sprouttower, 0, 0      @ Sprout Tower
 	song mus_finecity, 0, 0         @ Slateport City
 	song mus_machupi, 0, 0          @ Mt. Pyre Exterior
-	song mus_oaktheme, 0, 0        @ Oak's Theme
+	song mus_oaktheme, 0, 0         @ Oak's Theme
 	song mus_dendou, 0, 0           @ The Hall of Fame
 	song mus_tonekusa, 0, 0         @ Fallarbor Town
 	song mus_maborosi, 0, 0         @ Sealed Chamber

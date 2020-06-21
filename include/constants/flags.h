@@ -152,7 +152,7 @@
 #define FLAG_FOREST_IS_RESTLESS              0x8A
 #define FLAG_HATCHED_ELMS_EGG                0x8B
 #define FLAG_RECEIVED_TM12_TAUNT             0x8C
-#define FLAG_DEFEATED_SEASHORE_HOUSE         0x8D
+#define FLAG_RECEIVED_SOFT_SAND_FROM_KATE    0x8D
 #define FLAG_DEVON_GOODS_STOLEN              0x8E
 #define FLAG_RECOVERED_DEVON_GOODS           0x8F
 #define FLAG_RETURNED_DEVON_GOODS            0x90
@@ -538,8 +538,8 @@
 #define FLAG_HIDDEN_ITEM_ILEX_FOREST_ETHER                   (FLAG_HIDDEN_ITEMS_START + 0x06)
 #define FLAG_HIDDEN_ITEM_ILEX_FOREST_SUPER_POTION            (FLAG_HIDDEN_ITEMS_START + 0x07)
 #define FLAG_HIDDEN_ITEM_ILEX_FOREST_FULL_HEAL               (FLAG_HIDDEN_ITEMS_START + 0x08)
-#define FLAG_HIDDEN_ITEM_UNDERWATER_1_GREEN_SHARD            (FLAG_HIDDEN_ITEMS_START + 0x09)
-#define FLAG_HIDDEN_ITEM_UNDERWATER_1_PEARL                  (FLAG_HIDDEN_ITEMS_START + 0x0A)
+#define FLAG_HIDDEN_ITEM_ROUTE_34_RARE_CANDY                 (FLAG_HIDDEN_ITEMS_START + 0x09)
+#define FLAG_HIDDEN_ITEM_ROUTE_34_SUPER_POTION               (FLAG_HIDDEN_ITEMS_START + 0x0A)
 #define FLAG_HIDDEN_ITEM_UNDERWATER_1_BIG_PEARL              (FLAG_HIDDEN_ITEMS_START + 0x0B)
 #define FLAG_HIDDEN_ITEM_UNDERWATER_2_BLUE_SHARD             (FLAG_HIDDEN_ITEMS_START + 0x0C)
 #define FLAG_HIDDEN_ITEM_UNDERWATER_1_HEART_SCALE_1          (FLAG_HIDDEN_ITEMS_START + 0x0D)
@@ -788,8 +788,8 @@
 #define FLAG_HIDE_ILEX_FOREST_KURT                                  0x2F1
 #define FLAG_HIDE_ILEX_FOREST_LASS                                  0x2F2
 #define FLAG_HIDE_SLOWPOKE_WELL_B1F_KURT                            0x2F3
-#define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA          0x2F4
-#define FLAG_HIDE_LITTLE_ROOT_TOWN_PLAYERS_BEDROOM_MOM              0x2F5
+#define FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE                       0x2F4
+#define FLAG_HIDE_ROUTE_34_DAYCARE_MAN_OUTSIDE                      0x2F5
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_MOM                   0x2F6
 #define FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_MOM                      0x2F7
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_BEDROOM         0x2F8
@@ -839,7 +839,7 @@
 #define FLAG_HIDE_MAUVILLE_CITY_WALLY                               0x324
 #define FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE                        0x325
 #define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY                0x326
-#define FLAG_HIDE_UNION_CAVE_WANDAS_BOYFRIEND                   0x327
+#define FLAG_HIDE_UNION_CAVE_WANDAS_BOYFRIEND                       0x327
 #define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND     0x328
 #define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE         0x329
 #define FLAG_HIDE_SS_TIDAL_CORRIDOR_SCOTT                           0x32A
@@ -1065,7 +1065,7 @@
 #define FLAG_ITEM_ILEX_FOREST_ANTIDOTE                              0x404
 #define FLAG_ITEM_ILEX_FOREST_ETHER                                 0x405
 #define FLAG_ITEM_SLOWPOKE_WELL_B1F_SUPER_POTION                    0x406
-#define FLAG_ITEM_ROUTE_120_FULL_HEAL                               0x407
+#define FLAG_ITEM_ROUTE_34_NUGGET                                   0x407
 #define FLAG_ITEM_ROUTE_123_CALCIUM                                 0x408
 
 #define FLAG_UNUSED_0x409                                           0x409 // Unused Flag

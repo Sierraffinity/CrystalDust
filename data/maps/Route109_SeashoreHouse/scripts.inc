@@ -10,7 +10,7 @@ Route109_SeashoreHouse_EventScript_Owner:: @ 82693FE
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_TM12_TAUNT, Route109_SeashoreHouse_EventScript_AlreadyReceivedSodaPop
-	goto_if_set FLAG_DEFEATED_SEASHORE_HOUSE, Route109_SeashoreHouse_EventScript_DefeatedTrainers
+	goto_if_set FLAG_RECEIVED_SOFT_SAND_FROM_KATE, Route109_SeashoreHouse_EventScript_DefeatedTrainers
 	goto_if_set FLAG_TEMP_2, Route109_SeashoreHouse_EventScript_AlreadyGaveIntroduction
 	msgbox Route109_SeashoreHouse_Text_SeashoreHouseIntro, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_2
@@ -92,7 +92,7 @@ Route109_SeashoreHouse_EventScript_CheckTrainersCompletion:: @ 8269533
 	goto_if_not_defeated TRAINER_DWAYNE, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
 	goto_if_not_defeated TRAINER_JOHANNA, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
 	goto_if_not_defeated TRAINER_SIMON, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
-	setflag FLAG_DEFEATED_SEASHORE_HOUSE
+	setflag FLAG_RECEIVED_SOFT_SAND_FROM_KATE
 	release
 	end
 

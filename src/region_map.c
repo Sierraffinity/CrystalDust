@@ -1093,6 +1093,12 @@ static void InitMapBasedOnPlayerLocation(void)
                     gRegionMap->cursorPosX = 8;
                     gRegionMap->cursorPosY = 13;
                 }
+                else if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE34_ILEX_NORTH_GATEHOUSE) &&
+                         gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE34_ILEX_NORTH_GATEHOUSE))
+                {
+                    gRegionMap->cursorPosX = 7;
+                    gRegionMap->cursorPosY = 12;
+                }
                 else
                 {
                     InitMapBasedOnPlayerLocation_();

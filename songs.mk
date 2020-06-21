@@ -220,7 +220,7 @@ $(MID_SUBDIR)/mus_wildpostcatch.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G025 -V080
 
 $(MID_SUBDIR)/mus_encmaleclassic.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G063 -V086
+	$(MID) $< $@ -E -R$(STD_REVERB) -G063 -V090
 
 $(MID_SUBDIR)/mus_karakuri.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G094 -V070

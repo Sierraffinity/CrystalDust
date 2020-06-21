@@ -111,30 +111,25 @@ script AzaleaTown_Gym_EventScript_GymStatue {
 
 script AzaleaTown_Gym_EventScript_Benny {
 	trainerbattle_single(TRAINER_BENNY, AzaleaTown_Gym_Text_BennyIntro, AzaleaTown_Gym_Text_BennyDefeat)
-	msgbox(AzaleaTown_Gym_Text_BennyPostBattle, MSGBOX_DEFAULT)
-	release
+	msgbox(AzaleaTown_Gym_Text_BennyPostBattle, MSGBOX_AUTOCLOSE)
 }
 
 script AzaleaTown_Gym_EventScript_Al {
 	trainerbattle_single(TRAINER_AL, AzaleaTown_Gym_Text_AlIntro, AzaleaTown_Gym_Text_AlDefeat)
-	msgbox(AzaleaTown_Gym_Text_AlPostBattle, MSGBOX_DEFAULT)
-	release
+	msgbox(AzaleaTown_Gym_Text_AlPostBattle, MSGBOX_AUTOCLOSE)
 }
 
 script AzaleaTown_Gym_EventScript_Josh {
 	trainerbattle_single(TRAINER_JOSH, AzaleaTown_Gym_Text_JoshIntro, AzaleaTown_Gym_Text_JoshDefeat)
-	msgbox(AzaleaTown_Gym_Text_JoshPostBattle, MSGBOX_DEFAULT)
-	release
+	msgbox(AzaleaTown_Gym_Text_JoshPostBattle, MSGBOX_AUTOCLOSE)
 }
 
 script AzaleaTown_Gym_EventScript_Amy {
 	trainerbattle_double(TRAINER_AMY_AND_MAY, AzaleaTown_Gym_Text_AmyIntro, AzaleaTown_Gym_Text_AmyAndMayDefeat, AzaleaTown_Gym_Text_AmyNotEnoughMons)
-	msgbox(AzaleaTown_Gym_Text_AmyPostBattle, MSGBOX_DEFAULT)
-	release
+	msgbox(AzaleaTown_Gym_Text_AmyPostBattle, MSGBOX_AUTOCLOSE)
 }
 
 script AzaleaTown_Gym_EventScript_May {
 	trainerbattle_double(TRAINER_AMY_AND_MAY, AzaleaTown_Gym_Text_MayIntro, AzaleaTown_Gym_Text_AmyAndMayDefeat, AzaleaTown_Gym_Text_MayNotEnoughMons)
-	msgbox(AzaleaTown_Gym_Text_MayPostBattle, MSGBOX_DEFAULT)
-	release
+	msgbox(AzaleaTown_Gym_Text_MayPostBattle, MSGBOX_AUTOCLOSE)
 }
