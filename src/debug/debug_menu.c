@@ -2,6 +2,7 @@
 #include "global.h"
 #include "battle_transition.h"
 #include "clock.h"
+#include "daycare.h"
 #include "day_night.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -115,6 +116,7 @@ static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
+static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
 static const u8 sText_GenderBender[] = _("Gender bender");
 static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
@@ -191,6 +193,7 @@ static const struct DebugMenuAction sDebugMenu_MiscActions[] =
     { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes, NULL },
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC, NULL },
     { sText_TestBattleTransition, DebugMenu_TestBattleTransition, NULL },
+    { sText_CreateDaycareEgg, TriggerPendingDaycareEgg, NULL },
 };
 
 CREATE_BOUNCER(MiscActions, MainActions);

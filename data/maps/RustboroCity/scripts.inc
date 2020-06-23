@@ -135,7 +135,7 @@ RustboroCity_Movement_ScientistLeave: @ 81E085D
 RustboroCity_EventScript_FatMan:: @ 81E085F
 	lock
 	faceplayer
-	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_EventScript_FatManSawGrunt
+	goto_if_set FLAG_RECEIVED_EGG_TICKET, RustboroCity_EventScript_FatManSawGrunt
 	msgbox RustboroCity_Text_WeShortenItToDevon, MSGBOX_DEFAULT
 	release
 	end
@@ -303,7 +303,7 @@ RustboroCity_EventScript_StolenGoodsScene:: @ 81E09CD
 	removeobject 9
 	setobjectxyperm 9, 30, 10
 	clearflag FLAG_HIDE_ROUTE_36_ARTHUR
-	setflag FLAG_DEVON_GOODS_STOLEN
+	setflag FLAG_RECEIVED_EGG_TICKET
 	setvar VAR_RUSTBORO_CITY_STATE, 2
 	setvar VAR_UNION_CAVE_STATE, 2
 	setvar VAR_ROUTE116_STATE, 1
@@ -463,7 +463,7 @@ RustboroCity_Movement_EmployeeApproachPlayerFar: @ 81E0AD5
 RustboroCity_EventScript_DevonEmployee1:: @ 81E0ADD
 	lock
 	faceplayer
-	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
+	goto_if_set FLAG_TALKED_TO_DAYCARE_LADY, RustboroCity_EventScript_ReturnGoodsSpokeToEmployee
 	msgbox RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel, MSGBOX_DEFAULT
 	release
 	end

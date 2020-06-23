@@ -1,0 +1,460 @@
+const OBJ_DAYCARE_LADY = 1
+const OBJ_DAYCARE_MAN_OUTSIDE = 7
+
+script Route34_DayCare_EventScript_DaycareManInside {
+    lock
+    faceplayer
+    clearflag(FLAG_TEMP_1)
+    goto(Route34_DayCare_EventScript_DaycareManCommon)
+}
+
+script Route34_DayCare_EventScript_DaycareManOutside {
+    lock
+    faceplayer
+    setflag(FLAG_TEMP_1)
+    goto(Route34_DayCare_EventScript_DaycareManCommon)
+}
+
+script Route34_DayCare_EventScript_DaycareManCommon {
+    if (!flag(FLAG_RECEIVED_EGG_TICKET))
+    {
+        msgbox("I'm the DAY-CARE MAN.\p"
+               "There's something new in GOLDENROD\n"
+               "called the TRADE CORNER.\p"
+               "I was given an EGG TICKET that can\n"
+               "be traded in for an ODD EGG.\p"
+               "But as we run a DAY-CARE, we don't\n"
+               "need it. You may as well have it.")
+        giveitem(ITEM_EGG_TICKET)
+        setflag(FLAG_RECEIVED_EGG_TICKET)
+    }
+    else
+    {
+        special(GetDaycareMonNicknames)
+        specialvar(VAR_RESULT, GetDaycareState)
+        switch(var(VAR_RESULT))
+        {
+        case DAYCARE_EGG_WAITING:
+            msgbox("Ah, it's you!\p"
+                   "We were raising your POKéMON, and\n"
+                   "my goodness, were we surprised!\p"
+                   "Your POKéMON had an EGG!\p"
+                   "We don't know how it got there,\n"
+                   "but your POKéMON had it.\p"
+                   "You do want it, yes?", MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                call(Route34_DayCare_EventScript_DaycareAcceptEgg)
+            }
+            else
+            {
+                msgbox("I really will keep it.\n"
+                       "You do want this, yes?", MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES)
+                {
+                    call(Route34_DayCare_EventScript_DaycareAcceptEgg)
+                }
+                else
+                {
+                    msgbox("Well then, I'll keep it.\n"
+                           "Thanks!", MSGBOX_DEFAULT)
+                    closemessage
+                    clearflag(FLAG_PENDING_DAYCARE_EGG)
+                    special(RejectEggFromDayCare)
+                    call(Route34_DayCare_EventScript_DaycareManWalkInsideAfterEggEvent)
+                }
+            }
+        case DAYCARE_ONE_MON:
+            special(GetDaycareMonNicknames)
+            msgbox("Ah, it's you! Good to see you.\n"
+                   "Your {STR_VAR_1}'s doing fine.", MSGBOX_DEFAULT)
+            setvar(VAR_0x8004, 0)
+            call(Route34_DayCare_EventScript_CheckMonReceivedMail)
+        case DAYCARE_TWO_MONS:
+            special(GetDaycareMonNicknames)
+            msgbox("Ah, it's you! Your {STR_VAR_1} and\n"
+                   "{STR_VAR_2} are doing fine.", MSGBOX_DEFAULT)
+            special(SetDaycareCompatibilityString)
+            special(ShowFieldMessageStringVar4)
+            waitmessage
+            waitbuttonpress
+            setvar(VAR_0x8004, 0)
+            call(Route34_DayCare_EventScript_CheckMonReceivedMail)
+            setvar(VAR_0x8004, 1)
+            call(Route34_DayCare_EventScript_CheckMonReceivedMail)
+        default:
+	        msgbox("I'm the DAY-CARE MAN.\p"
+                   "I help take care of the precious\n"
+                   "POKéMON of TRAINERS.\p"
+                   "If you'd like me to raise your\n"
+                   "POKéMON, have a word with my wife.", MSGBOX_DEFAULT)
+        }
+    }
+    release
+}
+
+script Route34_DayCare_EventScript_DaycareAcceptEgg {
+	specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+    if (var(VAR_RESULT) != PARTY_SIZE)
+    {
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received the EGG from\n"
+                "the DAY-CARE MAN.")
+	    call(EventScript_RestorePrevTextColor)
+        playfanfare(MUS_FANFA1)
+        waitfanfare
+        waitbuttonpress
+        msgbox("Take good care of it.", MSGBOX_DEFAULT)
+        closemessage
+        special(GiveEggFromDaycare)
+        clearflag(FLAG_PENDING_DAYCARE_EGG)
+        call(Route34_DayCare_EventScript_DaycareManWalkInsideAfterEggEvent)
+    }
+    else
+    {
+	    msgbox("You have no room for it…\n"
+               "Come back when you've made room.", MSGBOX_DEFAULT)
+    }
+}
+
+script Route34_DayCare_EventScript_DaycareManWalkInsideAfterEggEvent {
+    if (flag(FLAG_TEMP_1))
+    {
+        if (var(VAR_FACING) == DIR_WEST)
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, Route34_DayCare_Movement_WatchManWalkBackInsideWest)
+            applymovement(OBJ_DAYCARE_MAN_OUTSIDE, Route34_DayCare_Movement_WalkBackInsideWest)
+            waitmovement(0)
+        }
+        else
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, Route34_DayCare_Movement_WatchManWalkBackInsideNorth)
+            applymovement(OBJ_DAYCARE_MAN_OUTSIDE, Route34_DayCare_Movement_WalkBackInsideNorth)
+            waitmovement(0)
+        }
+        removeobject(OBJ_DAYCARE_MAN_OUTSIDE)
+        playse(SE_KAIDAN)
+        waitse
+    }
+}
+
+movement Route34_DayCare_Movement_WalkBackInsideWest {
+    walk_slow_down * 2
+    walk_slow_right
+    delay_8
+    set_invisible
+}
+
+movement Route34_DayCare_Movement_WatchManWalkBackInsideWest {
+    delay_16
+    walk_in_place_fastest_down
+}
+
+movement Route34_DayCare_Movement_WalkBackInsideNorth {
+    walk_slow_right
+    walk_slow_down * 2
+    face_right
+    delay_8
+    set_invisible
+}
+
+movement Route34_DayCare_Movement_WatchManWalkBackInsideNorth {
+    delay_16
+    delay_4
+    walk_in_place_fastest_right
+}
+
+script Route34_DayCare_EventScript_CheckMonReceivedMail {
+	specialvar(VAR_RESULT, CheckDaycareMonReceivedMail)
+    if (var(VAR_RESULT) == TRUE)
+    {
+	    msgbox("By the way, about your {STR_VAR_1},\n"
+               "it seemed to be friendly with\l"
+               "{STR_VAR_2}'s {STR_VAR_3}.\p"
+               "I may even have seen it receiving\n"
+               "a piece of MAIL.", MSGBOX_DEFAULT)
+    }
+}
+
+script Route34_DayCare_EventScript_DaycareWoman {
+    lock
+    faceplayer
+    if (!flag(FLAG_RECEIVED_EGG_TICKET))
+    {
+        msgbox("I'm the DAY-CARE LADY.\p"
+               "Have you been to GOLDENROD's new\n"
+               "POKéMON CENTER?\p"
+               "My husband went there recently\n"
+               "and got this promotional item.\p"
+               "We don't need it, since we have\n"
+               "enough on our plates already…\p"
+               "Oh, would you like it?\p"
+               "My husband should still have it,\n"
+               "so go talk to him.")
+    }
+    else
+    {
+        specialvar(VAR_RESULT, GetDaycareState)
+        switch (var(VAR_RESULT))
+        {
+        case DAYCARE_EGG_WAITING:
+            msgbox("My husband was looking for you.", MSGBOX_DEFAULT)
+        case DAYCARE_ONE_MON:
+            msgbox(Route34_DayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT)
+            setvar(VAR_0x8004, 0)
+            call(Route34_DayCare_EventScript_DisplayLevelsGained)
+            msgbox(Route34_DayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                goto(Route34_DayCare_EventScript_GiveMonToRaise)
+            }
+            msgbox(Route34_DayCare_Text_TakeYourMonBack, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                goto(Route34_DayCare_EventScript_TryRetrieveMon)
+            }
+            goto(Route34_DayCare_EventScript_ComeAgain)
+        case DAYCARE_TWO_MONS:
+            msgbox(Route34_DayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT)
+            setvar(VAR_0x8004, 0)
+            call(Route34_DayCare_EventScript_DisplayLevelsGained)
+            setvar(VAR_0x8004, 1)
+            call(Route34_DayCare_EventScript_DisplayLevelsGained)
+            msgbox(Route34_DayCare_Text_TakeYourMonBack, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                goto(Route34_DayCare_EventScript_TryRetrieveMon)
+            }
+            goto(Route34_DayCare_EventScript_ComeAgain)
+        default:
+            if (flag(FLAG_TALKED_TO_DAYCARE_LADY))
+            {
+                msgbox("I'm the DAY-CARE LADY.\p"
+                       "We can raise POKéMON for you.\p"
+                       "Would you like us to raise one?", MSGBOX_YESNO)
+            }
+            else
+            {
+                setflag(FLAG_TALKED_TO_DAYCARE_LADY)
+                msgbox("I'm the DAY-CARE LADY.\p"
+                       "Do you know about EGGS?\p"
+                       "My husband and I were raising some\n"
+                       "POKéMON, you see.\p"
+                       "We were shocked to find an EGG!\n"
+                       "How incredible could that be?\p"
+                       "We can raise POKéMON for you, too.\p"
+                       "Would you like us to raise one?", MSGBOX_YESNO)
+            }
+            if (var(VAR_RESULT) == YES)
+            {
+                goto(Route34_DayCare_EventScript_GiveMonToRaise)
+            }
+            else
+            {
+                msgbox("Oh, fine, then.\n"
+                    "Come again.", MSGBOX_DEFAULT)
+            }
+        }
+    }
+    release
+}
+
+script Route34_DayCare_EventScript_GiveMonToRaise {
+    specialvar(VAR_RESULT, CountPartyNonEggMons)
+    if (var(VAR_RESULT) == 1)
+    {
+        msgbox("Oh? But you have just one POKéMON.\n"
+               "Come back another time.", MSGBOX_DEFAULT)
+    }
+    else
+    {
+        specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
+        if (var(VAR_RESULT) == 2)
+        {
+            msgbox("Huh?\n"
+                   "Now, now.\p"
+                   "If you leave that POKéMON with\n"
+                   "me, you'll be left with just one.\p"
+                   "You will be better off if you catch\n"
+                   "some more, I dare say.", MSGBOX_DEFAULT)
+        }
+        else
+        {
+            msgbox("Which POKéMON should we raise for\n"
+                   "you?", MSGBOX_DEFAULT)
+            fadescreen(FADE_TO_BLACK)
+            special(ChooseSendDaycareMon)
+            waitstate
+            if (var(VAR_0x8004) == 0xFF)
+            {
+                goto(Route34_DayCare_EventScript_ComeAgain)
+            }
+            specialvar(VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot)
+            if (var(VAR_RESULT) == 0)
+            {
+                msgbox("If you leave me that POKéMON,\n"
+                       "what will you battle with?\p"
+                       "Come back another time.", MSGBOX_DEFAULT)
+            }
+            else
+            {
+                specialvar(VAR_0x8005, GetSelectedMonNicknameAndSpecies)
+                waitse
+                playmoncry(VAR_0x8005, 0)
+                msgbox("Fine, we'll raise your {STR_VAR_1}\n"
+                       "for a while.\p"
+                       "Come back for it later.", MSGBOX_DEFAULT)
+                waitmoncry
+                special(StoreSelectedPokemonInDaycare)
+                incrementgamestat(GAME_STAT_USED_DAYCARE)
+                specialvar(VAR_RESULT, GetDaycareState)
+                if (var(VAR_RESULT) == DAYCARE_ONE_MON)
+                {
+                    msgbox(Route34_DayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO)
+                    if (var(VAR_RESULT) == YES)
+                    {
+                        goto(Route34_DayCare_EventScript_GiveMonToRaise)
+                    }
+                    goto(Route34_DayCare_EventScript_ComeAgain)
+                }
+            }
+        }
+    }
+    release
+}
+
+script Route34_DayCare_EventScript_DisplayLevelsGained {
+	specialvar(VAR_RESULT, GetNumLevelsGainedFromDaycare)
+    if (var(VAR_RESULT) != 0)
+    {
+	    msgbox("By level, your {STR_VAR_1} has\n"
+               "grown by {STR_VAR_2}.", MSGBOX_DEFAULT)
+    }
+    else
+    {
+	    msgbox("Your {STR_VAR_1} needs a little\n"
+               "more time with us…", MSGBOX_DEFAULT)
+    }
+}
+
+script Route34_DayCare_EventScript_TryRetrieveMon {
+	specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+    if (var(VAR_RESULT) == PARTY_SIZE)
+    {
+	    msgbox("Your POKéMON team is full.\n"
+               "Make room, then come see me.", MSGBOX_DEFAULT)
+    }
+    else
+    {
+        specialvar(VAR_RESULT, GetDaycareState)
+        setvar(VAR_0x8004, 0)
+        if (var(VAR_RESULT) == DAYCARE_ONE_MON)
+        {
+            goto(Route34_DayCare_EventScript_CostPrompt)
+        }
+        special(ShowDaycareLevelMenu)
+        waitstate
+        copyvar(VAR_0x8004, VAR_RESULT)
+        if (var(VAR_RESULT) == DAYCARE_EXITED_LEVEL_MENU)
+        {
+            goto(Route34_DayCare_EventScript_ComeAgain)
+        }
+        goto(Route34_DayCare_EventScript_CostPrompt)
+    }
+    release
+}
+
+script Route34_DayCare_EventScript_CostPrompt {
+	special(GetDaycareCost)
+	msgbox("If you want your {STR_VAR_1} back,\n"
+           "it will cost ¥{STR_VAR_2}.", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        specialvar(VAR_RESULT, IsEnoughForCostInVar0x8005)
+        if (var(VAR_RESULT) == TRUE)
+        {
+            closemessage
+            applymovement(OBJ_DAYCARE_LADY, Route34_DayCare_Movement_RetrieveDaycareMon)
+            delay(128)
+            playse(SE_KAIDAN)
+            delay(72)
+            playse(SE_KAIDAN)
+            waitmovement(0)
+            specialvar(VAR_RESULT, TakePokemonFromDaycare)
+            special(SubtractMoneyFromVar0x8005)
+            playse(SE_REGI)
+            msgbox("Perfect!\n"
+                   "Here's your POKéMON.", MSGBOX_DEFAULT)
+            waitse
+            playmoncry(VAR_RESULT, 0)
+	        textcolor(MSG_COLOR_SYS)
+            msgbox("{PLAYER} took back {STR_VAR_1} from\n"
+                   "the DAY-CARE LADY.", MSGBOX_DEFAULT)
+	        call(EventScript_RestorePrevTextColor)
+            waitmoncry
+            specialvar(VAR_RESULT, GetDaycareState)
+            if (var(VAR_RESULT) == DAYCARE_ONE_MON)
+            {
+                msgbox("Will you take back the other one,\n"
+                       "too?", MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES)
+                {
+                    goto(Route34_DayCare_EventScript_TryRetrieveMon)
+                }
+            }
+            goto(Route34_DayCare_EventScript_ComeAgain)
+        }
+        else
+        {
+            msgbox("You don't have enough money…", MSGBOX_DEFAULT)
+        }
+    }
+    else
+    {
+        goto(Route34_DayCare_EventScript_ComeAgain)
+    }
+    release
+}
+
+movement Route34_DayCare_Movement_RetrieveDaycareMon {
+	delay_16 * 2
+	face_left
+	delay_16 * 2
+	face_right
+	delay_16 * 2
+	face_down
+	walk_slow_down
+	set_invisible
+	delay_16 * 5
+	face_up
+	set_visible
+	walk_slow_up
+}
+
+script Route34_DayCare_EventScript_ComeAgain {
+	msgbox("Fine.\n"
+           "Come again.", MSGBOX_DEFAULT)
+	release
+}
+
+script EventScript_EggHatch {
+	lockall
+	msgbox("Huh?", MSGBOX_DEFAULT)
+	special(EggHatch)
+	waitstate
+	releaseall
+}
+
+text Route34_DayCare_Text_WeCanRaiseOneMore {
+    "We can raise two of your POKéMON.\n"
+    "Would you like us to raise one more?"
+}
+
+text Route34_DayCare_Text_GoodToSeeYou {
+    "Ah, it's you! Good to see you.\n"
+    "Your POKéMON can only be doing good!"
+}
+
+text Route34_DayCare_Text_TakeYourMonBack {
+    "Will you take your POKéMON back?"
+}

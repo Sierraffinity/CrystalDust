@@ -153,8 +153,8 @@
 #define FLAG_HATCHED_ELMS_EGG                0x8B
 #define FLAG_RECEIVED_TM12_TAUNT             0x8C
 #define FLAG_RECEIVED_SOFT_SAND_FROM_KATE    0x8D
-#define FLAG_DEVON_GOODS_STOLEN              0x8E
-#define FLAG_RECOVERED_DEVON_GOODS           0x8F
+#define FLAG_RECEIVED_EGG_TICKET             0x8E
+#define FLAG_TALKED_TO_DAYCARE_LADY          0x8F
 #define FLAG_RETURNED_DEVON_GOODS            0x90
 #define FLAG_CAUGHT_LUGIA                    0x91
 #define FLAG_CAUGHT_HO_OH                    0x92

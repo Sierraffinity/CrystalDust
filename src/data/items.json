@@ -6345,6 +6345,22 @@
       "battleUsage": 2,
       "battleUseFunc": "ItemUseInBattle_PokeBall",
       "secondaryId": 19
+    },
+    {
+      "english": "EGG TICKET",
+      "itemId": "ITEM_EGG_TICKET",
+      "price": 0,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A ticket for use at the\\nTRADE CORNER in GOLDENROD\\nCITY.",
+      "importance": 2,
+      "exitsBagOnUse": 0,
+      "pocket": "POCKET_KEY_ITEMS",
+      "type": 4,
+      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "battleUsage": 0,
+      "battleUseFunc": "NULL",
+      "secondaryId": 0
     }
   ]
 }

@@ -774,3 +774,6 @@ const u32 gItemIconPalette_LoveBall[] = INCBIN_U32("graphics/items/icon_palettes
 
 const u32 gItemIcon_ParkBall[] = INCBIN_U32("graphics/items/icons/park_ball.4bpp.lz");
 const u32 gItemIconPalette_ParkBall[] = INCBIN_U32("graphics/items/icon_palettes/park_ball.gbapal.lz");
+
+const u32 gItemIcon_EggTicket[] = INCBIN_U32("graphics/items/icons/egg_ticket.4bpp.lz");
+const u32 gItemIconPalette_EggTicket[] = INCBIN_U32("graphics/items/icon_palettes/egg_ticket.gbapal.lz");

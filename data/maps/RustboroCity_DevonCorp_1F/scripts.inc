@@ -15,7 +15,7 @@ RustboroCity_DevonCorp_1F_EventScript_Employee:: @ 8211261
 	lock
 	faceplayer
 	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered
-	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright
+	goto_if_set FLAG_RECEIVED_EGG_TICKET, RustboroCity_DevonCorp_1F_EventScript_RobberWasntBright
 	msgbox RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct, MSGBOX_DEFAULT
 	release
 	end
@@ -34,8 +34,8 @@ RustboroCity_DevonCorp_1F_EventScript_StairGuard:: @ 8211293
 	lock
 	faceplayer
 	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome
-	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
-	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
+	goto_if_set FLAG_TALKED_TO_DAYCARE_LADY, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
+	goto_if_set FLAG_RECEIVED_EGG_TICKET, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
 	msgbox RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter, MSGBOX_DEFAULT
 	release
 	end
@@ -54,8 +54,8 @@ RustboroCity_DevonCorp_1F_EventScript_Greeter:: @ 82112CE
 	lock
 	faceplayer
 	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp
-	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
-	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
+	goto_if_set FLAG_TALKED_TO_DAYCARE_LADY, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
+	goto_if_set FLAG_RECEIVED_EGG_TICKET, RustboroCity_DevonCorp_1F_EventScript_StaffGotRobbed
 	msgbox RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp, MSGBOX_DEFAULT
 	release
 	end

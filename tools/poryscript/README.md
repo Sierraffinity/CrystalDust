@@ -56,6 +56,8 @@ Usage of poryscript:
         output script file (leave empty to write to standard output)
   -optimize
         optimize compiled script size (To disable, use '-optimize=false') (default true)
+  -s value
+        set a compile-time switch. Multiple -s options can be set. Example: -s VERSION=RUBY -s LANGUAGE=GERMAN
   -v    show version of poryscript
 ```
 
@@ -65,9 +67,9 @@ Convert a `.pory` script to a compiled `.inc` script, which can be directly incl
 ```
 
 To automatically convert your Poryscript scripts when compiling a decomp project, perform these two steps:
-1. Add the `poryscript` command-line executable tool to the `tools` directory. Also copy `font_widths.json` to the same location.
+1. Create a new `tools/poryscript/` directory, and add the `poryscript` command-line executable tool to it. Also copy `font_widths.json` to the same location.
 ```
-# For example, on Windows, place the file here.
+# For example, on Windows, place the files here.
 pokeemerald/tools/poryscript/poryscript.exe
 pokeemerald/tools/poryscript/font_widths.json
 ```
@@ -92,7 +94,11 @@ mostlyclean: tidy
 ```
 ```diff
 sound/%.bin: sound/%.aif ; $(AIF) $< $@
-+ data/%.inc: data/%.pory; $(SCRIPT) -i $< -o $@
++ data/%.inc: data/%.pory; $(SCRIPT) -i $< -o $@ -fw tools/poryscript/font_widths.json
+```
+```diff
+-TOOLDIRS := $(filter-out tools/agbcc tools/binutils,$(wildcard tools/*))
++TOOLDIRS := $(filter-out tools/agbcc tools/binutils tools/poryscript,$(wildcard tools/*))
 ```
 
 # Poryscript Syntax (How to Write Scripts)
@@ -167,8 +173,9 @@ Compound boolean expressions are also supported. This means you can use the AND 
     }
     ...
     # Group nested conditions together with another set of parentheses.
-    if (flag(FLAG_IS_CHAMPION) && (flag(FLAG_SYS_TOWER_GOLD) || flag(FLAG_SYS_DOME_GOLD))) {
-        msgbox("Wow, you're a Battle Frontier pro!)
+    if (flag(FLAG_IS_CHAMPION) && !(flag(FLAG_SYS_TOWER_GOLD) || flag(FLAG_SYS_DOME_GOLD))) {
+        msgbox("You should try to beat the\n"
+               "Battle Tower or Battle Dome!)
     }
 ```
 
@@ -227,12 +234,6 @@ if (defeated(TRAINER_GARY) == true)
 # Check if the trainer hasn't been defeated.
 if (!defeated(TRAINER_GARY))
 if (defeated(TRAINER_GARY) == false)
-
-# The NOT operator (!) can only be used directly before an
-# operator, unlike regular programming languages.
-# This code would be an error, because the NOT operator is not
-# applying directly to a single flag() operator.
-if (!(flag(FLAG_1) && flag(FLAG_2)))
 ```
 
 When not using implicit truthiness, like in the above examples, they each have different valid comparison values on the right-hand side of the condition.
@@ -408,7 +409,7 @@ script MyScript {
     msgbox("This is shorter text,\n"
            "but we can still put it\l"
            "on multiple lines.")
-    applymovement(OBJ_EVENT_ID_PLAYER, MyScript_Movement)
+    applymovement(EVENT_OBJ_ID_PLAYER, MyScript_Movement)
     waitmovement(0)
     msgbox(MyScript_LongText)
     release

@@ -3903,6 +3903,8 @@ extern const u32 gItemIcon_LoveBall[];
 extern const u32 gItemIconPalette_LoveBall[];
 extern const u32 gItemIcon_ParkBall[];
 extern const u32 gItemIconPalette_ParkBall[];
+extern const u32 gItemIcon_EggTicket[];
+extern const u32 gItemIconPalette_EggTicket[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];

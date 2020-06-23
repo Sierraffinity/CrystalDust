@@ -813,7 +813,7 @@ void InitTilesetAnim_BattleDome(void)
 
 static void TilesetAnim_Rustboro(u16 timer)
 {
-    if (timer % 8 == 0)
+    /*if (timer % 8 == 0)
     {
         QueueAnimTiles_Rustboro_WindyWater(timer >> 3, 0);
         QueueAnimTiles_Rustboro_Fountain(timer >> 3);
@@ -831,7 +831,7 @@ static void TilesetAnim_Rustboro(u16 timer)
     if (timer % 8 == 6)
         QueueAnimTiles_Rustboro_WindyWater(timer >> 3, 6);
     if (timer % 8 == 7)
-        QueueAnimTiles_Rustboro_WindyWater(timer >> 3, 7);
+        QueueAnimTiles_Rustboro_WindyWater(timer >> 3, 7);*/
 }
 
 static void TilesetAnim_Slateport(u16 timer)
