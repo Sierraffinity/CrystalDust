@@ -36,3 +36,4 @@ porymap.project.cfg
 data/text/trainers.inc
 src/*.s
 /temp/
+!build_in_docker.bat

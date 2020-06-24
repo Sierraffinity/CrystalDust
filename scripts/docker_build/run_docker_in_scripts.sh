@@ -6,5 +6,5 @@ docker build -t crystal-dust-build . || {
 }
 
 pushd ../../
-    docker run -it --rm -v $(pwd):/source crystal-dust-build $@
+    echo docker run -it --rm -v $PWD:/source -w /source/scripts crystal-dust-build $@
 popd

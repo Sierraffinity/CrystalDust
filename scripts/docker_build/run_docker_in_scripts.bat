@@ -8,5 +8,5 @@ IF %ERRORLEVEL% NEQ 0 (
 )
 
 pushd ..\..\
-    docker run -it --rm -v %CD%\:/source crystal-dust-build %*
+    docker run -it --rm -v %CD%\:/source -w /source/scripts crystal-dust-build %*
 popd
