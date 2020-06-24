@@ -2699,7 +2699,16 @@ static void SpriteCb_WildMonAnimate(struct Sprite *sprite)
 {
     if (!gPaletteFade.active)
     {
-        BattleAnimateFrontSprite(sprite, sprite->sSpeciesId, FALSE, 1);
+        bool8 noCry = FALSE;
+        u8 arg3 = 1;
+
+        if ((gBattleTypeFlags & BATTLE_TYPE_TREE) && (gBattleMons[sprite->sBattler].status1 & STATUS1_SLEEP))
+        {
+            noCry = TRUE;
+            arg3 |= 0x80;
+        }
+
+        BattleAnimateFrontSprite(sprite, sprite->sSpeciesId, noCry, arg3);
     }
 }
 

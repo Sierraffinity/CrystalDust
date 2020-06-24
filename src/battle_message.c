@@ -387,6 +387,7 @@ static const u8 sText_OpponentMon1Appeared[] = _("{B_OPPONENT_MON1_NAME} appeare
 static const u8 sText_WildPkmnAppeared[] = _("Wild {B_OPPONENT_MON1_NAME} appeared!\p");
 static const u8 sText_WildPkmnAppeared2[] = _("Wild {B_OPPONENT_MON1_NAME} appeared!\p");
 static const u8 sText_WildPkmnAppearedPause[] = _("Wild {B_OPPONENT_MON1_NAME} appeared!{PAUSE 127}");
+static const u8 sText_PkmnFellOutOfTree[] = _("Wild {B_OPPONENT_MON1_NAME} fell out\nof the tree!\p");
 static const u8 sText_TwoWildPkmnAppeared[] = _("Wild {B_OPPONENT_MON1_NAME} and\n{B_OPPONENT_MON2_NAME} appeared!\p");
 static const u8 sText_Trainer1WantsToBattle[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nwould like to battle!\p");
 static const u8 sText_LinkTrainerWantsToBattle[] = _("{B_LINK_OPPONENT1_NAME}\nwants to battle!");
@@ -2017,6 +2018,8 @@ void BufferStringBattle(u16 stringID)
                 stringPtr = sText_TwoWildPkmnAppeared;
             else if (gBattleTypeFlags & BATTLE_TYPE_DUDE_TUTORIAL)
                 stringPtr = sText_WildPkmnAppearedPause;
+            else if (gBattleTypeFlags & BATTLE_TYPE_TREE)
+                stringPtr = sText_PkmnFellOutOfTree;
             else
                 stringPtr = sText_WildPkmnAppeared;
         }

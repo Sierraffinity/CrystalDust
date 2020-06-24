@@ -548,17 +548,64 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
 
 static void GenerateHeadbuttWildMon(const struct WildPokemonInfo *wildMonInfo, bool32 isRare)
 {
+    const u16 asleepSpeciesDay[] = {
+        SPECIES_VENONAT,
+        SPECIES_HOOTHOOT,
+        SPECIES_NOCTOWL,
+        SPECIES_SPINARAK,
+        SPECIES_HERACROSS,
+        SPECIES_NONE
+    };
+
+    const u16 asleepSpeciesNight[] = {
+        SPECIES_CATERPIE,
+        SPECIES_METAPOD,
+        SPECIES_BUTTERFREE,
+        SPECIES_WEEDLE,
+        SPECIES_KAKUNA,
+        SPECIES_BEEDRILL,
+        SPECIES_SPEAROW,
+        SPECIES_EKANS,
+        SPECIES_EXEGGCUTE,
+        SPECIES_LEDYBA,
+        SPECIES_AIPOM,
+        SPECIES_NONE
+    };
+
     u8 timeOfDay;
     u8 wildMonIndex;
     u8 level;
+    const struct WildPokemon *mon;
+    const u16 *asleepSpeciesList;
 
     RtcCalcLocalTime();
     timeOfDay = GetCurrentTimeOfDay();
 
     wildMonIndex = ChooseWildMonIndex_Tree(isRare);
-    level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[timeOfDay][wildMonIndex]);
+    mon = &wildMonInfo->wildPokemon[timeOfDay][wildMonIndex];
+    level = ChooseWildMonLevel(mon);
 
-    CreateWildMon(wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species, level);
+    CreateWildMon(mon->species, level);
+
+    switch (timeOfDay)
+    {
+    case TIME_NIGHT:
+        asleepSpeciesList = asleepSpeciesNight;
+        break;
+    default:
+        asleepSpeciesList = asleepSpeciesDay;
+        break;
+    }
+
+    for (; *asleepSpeciesList != SPECIES_NONE; asleepSpeciesList++)
+    {
+        if (*asleepSpeciesList == mon->species)
+        {
+            u32 status = STATUS1_SLEEP;
+            SetMonData(&gEnemyParty[0], MON_DATA_STATUS, &status);
+            break;
+        }
+    }
 }
 
 static bool8 SetUpMassOutbreakEncounter(u8 flags)

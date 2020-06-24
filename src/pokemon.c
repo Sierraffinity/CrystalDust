@@ -4823,7 +4823,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                 retVal = FALSE;
             }
             if ((itemEffect[cmdIndex] & ITEM3_SLEEP)
-             && HealStatusConditions(mon, partyIndex, 7, battlerId) == 0)
+             && HealStatusConditions(mon, partyIndex, STATUS1_SLEEP, battlerId) == 0)
             {
                 if (battlerId != 4)
                     gBattleMons[battlerId].status2 &= ~STATUS2_NIGHTMARE;
