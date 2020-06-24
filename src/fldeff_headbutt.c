@@ -4,12 +4,37 @@
 #include "fieldmap.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
+#include "field_specials.h"
 #include "metatile_behavior.h"
 #include "party_menu.h"
 #include "script.h"
 #include "sound.h"
 #include "constants/field_effects.h"
 #include "constants/songs.h"
+
+// TODO: This is the exact formula from GSC. Should this be tweaked?
+u32 HeadbuttTreeScoreCalc(void)
+{
+    u32 treeIndex, pivot;
+
+    GetXYCoordsOneStepInFrontOfPlayer(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
+    treeIndex = (((gPlayerFacingPosition.x * gPlayerFacingPosition.y) + (gPlayerFacingPosition.x + gPlayerFacingPosition.y)) / 5) % 10;
+    pivot = GetPlayerTrainerIdOnesDigit();
+    treeIndex = (10 + treeIndex - pivot) % 10;
+
+    if (treeIndex == 0)
+    {
+        return TREEMON_SCORE_RARE;
+    }
+    else if (treeIndex < 5)
+    {
+        return TREEMON_SCORE_GOOD;
+    }
+    else
+    {
+        return TREEMON_SCORE_BAD;
+    }
+}
 
 static void FieldCallback_Headbutt(void)
 {

@@ -5,6 +5,7 @@
 #include "pokemon.h"
 #include "metatile_behavior.h"
 #include "fieldmap.h"
+#include "fldeff.h"
 #include "random.h"
 #include "field_player_avatar.h"
 #include "event_data.h"
@@ -795,21 +796,34 @@ void RockSmashWildEncounter(void)
 
 void HeadbuttTreeWildEncounter(void)
 {
-    // TODO: Rarity calculation
-    bool32 isRare = FALSE;
+    u32 treeScore = HeadbuttTreeScoreCalc();
     u16 headerId = GetCurrentMapWildMonHeaderId();
 
     if (headerId != 0xFFFF)
     {
         const struct WildPokemonInfo *wildPokemonInfo = gWildMonHeaders[headerId].headbuttMonsInfo;
+        u32 encounterRate = wildPokemonInfo->encounterRate;
+
+        switch (treeScore)
+        {
+        case TREEMON_SCORE_RARE:
+            encounterRate = encounterRate * 80 / 100;
+            break;
+        case TREEMON_SCORE_GOOD:
+            encounterRate = encounterRate * 50 / 100;
+            break;
+        default:
+            encounterRate = encounterRate * 10 / 100;
+            break;
+        }
 
         if (wildPokemonInfo == NULL)
         {
             gSpecialVar_Result = FALSE;
         }
-        else if (DoWildEncounterRateTest(wildPokemonInfo->encounterRate, TRUE) == TRUE)
+        else if (DoWildEncounterRateTest(encounterRate, TRUE) == TRUE)
         {
-            GenerateHeadbuttWildMon(wildPokemonInfo, isRare);
+            GenerateHeadbuttWildMon(wildPokemonInfo, treeScore == TREEMON_SCORE_RARE);
             BattleSetup_StartWildBattle(BATTLE_TYPE_TREE);
             gSpecialVar_Result = TRUE;
         }

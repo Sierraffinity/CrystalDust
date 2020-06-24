@@ -5083,124 +5083,124 @@
                 {
                   "min_level": 10,
                   "max_level": 15,
-                  "species": "SPECIES_AERODACTYL"
+                  "species": "SPECIES_HOOTHOOT"
                 },
                 {
                   "min_level": 5,
                   "max_level": 10,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_PINECO"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_PINECO"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_NOCTOWL"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_BUTTERFREE"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_BEEDRILL"
                 },
                 {
                   "min_level": 10,
                   "max_level": 15,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_HOOTHOOT"
                 },
                 {
                   "min_level": 5,
                   "max_level": 10,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_CATERPIE"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_WEEDLE"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_HOOTHOOT"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_METAPOD"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_KAKUNA"
                 }
               ],
               [
                 {
                   "min_level": 10,
                   "max_level": 15,
-                  "species": "SPECIES_ABRA"
+                  "species": "SPECIES_HOOTHOOT"
                 },
                 {
                   "min_level": 5,
                   "max_level": 10,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_PINECO"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_PINECO"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_NOCTOWL"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_BUTTERFREE"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_BEEDRILL"
                 },
                 {
                   "min_level": 10,
                   "max_level": 15,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_HOOTHOOT"
                 },
                 {
                   "min_level": 5,
                   "max_level": 10,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_CATERPIE"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_WEEDLE"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_HOOTHOOT"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_METAPOD"
                 },
                 {
                   "min_level": 15,
                   "max_level": 20,
-                  "species": "SPECIES_GEODUDE"
+                  "species": "SPECIES_KAKUNA"
                 }
               ]
             ]
