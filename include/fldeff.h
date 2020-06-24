@@ -60,7 +60,14 @@ bool8 SetUpFieldMove_RockSmash(void);
 bool8 FldEff_UseRockSmash(void);
 
 // headbutt
+enum {
+    TREEMON_SCORE_BAD,
+    TREEMON_SCORE_GOOD,
+    TREEMON_SCORE_RARE
+};
+
 bool8 SetUpFieldMove_Headbutt(void);
 bool8 FldEff_UseHeadbutt(void);
+u32 HeadbuttTreeScoreCalc(void);
 
 #endif // GUARD_FLDEFF_H

@@ -92,6 +92,7 @@ static void DebugMenu_EnableMapCard(u8 taskId);
 static void DebugMenu_EnableRadioCard(u8 taskId);
 static void DebugMenu_SetRespawn(u8 taskId);
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
+static void DebugMenu_CreateDaycareEgg(u8 taskId);
 static void DebugMenu_RemoveMenu(u8 taskId);
 static void DebugMenu_InitNewSubmenu(u8 taskId, const struct DebugMenuBouncer *bouncer);
 static void DebugMenu_Submenu_ProcessInput(u8 taskId);
@@ -193,7 +194,7 @@ static const struct DebugMenuAction sDebugMenu_MiscActions[] =
     { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes, NULL },
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC, NULL },
     { sText_TestBattleTransition, DebugMenu_TestBattleTransition, NULL },
-    { sText_CreateDaycareEgg, TriggerPendingDaycareEgg, NULL },
+    { sText_CreateDaycareEgg, DebugMenu_CreateDaycareEgg, NULL },
 };
 
 CREATE_BOUNCER(MiscActions, MainActions);
@@ -846,6 +847,11 @@ static void DebugMenu_EnableResetRTC(u8 taskId)
 static void DebugMenu_TestBattleTransition(u8 taskId)
 {
     TestBattleTransition(VarGet(0x4000));
+}
+
+static void DebugMenu_CreateDaycareEgg(u8 taskId)
+{
+    TriggerPendingDaycareEgg();
 }
 
 static void DebugMenu_SwapGender(u8 taskId)
