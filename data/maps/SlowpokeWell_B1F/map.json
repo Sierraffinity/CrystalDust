@@ -10,7 +10,7 @@
     ],
     "floor_number": 0,
     "id": "MAP_SLOWPOKE_WELL_B1F",
-    "layout": "LAYOUT_MT_CHIMNEY",
+    "layout": "LAYOUT_SLOWPOKE_WELL_B1F",
     "map_type": "MAP_TYPE_UNDERGROUND",
     "music": "MUS_DARKCAVE",
     "name": "SlowpokeWell_B1F",
