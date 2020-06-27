@@ -1,36 +1,41 @@
 {
-    "allow_cycling": true,
-    "allow_escaping": false,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-    ],
-    "connections": [
-        {
-            "direction": "left",
-            "map": "MAP_AZALEA_TOWN",
-            "offset": 0
-        },
-        {
-            "direction": "up",
-            "map": "MAP_ROUTE36",
-            "offset": -1
-        }
-    ],
-    "coord_events": [
-    ],
-    "id": "MAP_ROUTE107",
-    "layout": "LAYOUT_ROUTE107",
-    "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_NEXTROAD",
-    "name": "Route107",
-    "object_events": [
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_ROUTE_35",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-    ],
-    "weather": "WEATHER_SUNNY"
+  "id": "MAP_ROUTE107",
+  "name": "Route107",
+  "layout": "LAYOUT_ROUTE107",
+  "music": "MUS_NEXTROAD",
+  "region_map_section": "MAPSEC_ROUTE_35",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "up",
+      "offset": 14,
+      "map": "MAP_ROUTE36"
+    },
+    {
+      "direction": "down",
+      "offset": -9,
+      "map": "MAP_RUSTBORO_CITY"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

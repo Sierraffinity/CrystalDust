@@ -17,12 +17,12 @@
   "connections": [
     {
       "direction": "right",
-      "offset": 54,
+      "offset": 56,
       "map": "MAP_AZALEA_TOWN"
     },
     {
       "direction": "up",
-      "offset": 0,
+      "offset": -7,
       "map": "MAP_RUSTBORO_CITY"
     }
   ],

@@ -16,11 +16,6 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "direction": "down",
-      "offset": 0,
-      "map": "MAP_RUSTBORO_CITY"
-    },
-    {
       "direction": "right",
       "offset": -40,
       "map": "MAP_ROUTE114"

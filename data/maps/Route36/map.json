@@ -19,6 +19,11 @@
       "direction": "right",
       "offset": 2,
       "map": "MAP_VIOLET_CITY"
+    },
+    {
+      "direction": "down",
+      "offset": -14,
+      "map": "MAP_ROUTE107"
     }
   ],
   "object_events": [
