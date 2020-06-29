@@ -45,7 +45,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/RustboroCity/border.bin",
       "blockdata_filepath": "data/layouts/RustboroCity/map.bin"
     },
@@ -261,7 +261,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/Route34/border.bin",
       "blockdata_filepath": "data/layouts/Route34/map.bin"
     },
@@ -273,7 +273,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/Route107/border.bin",
       "blockdata_filepath": "data/layouts/Route107/map.bin"
     },
@@ -381,7 +381,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/Route116/border.bin",
       "blockdata_filepath": "data/layouts/Route116/map.bin"
     },
@@ -3441,7 +3441,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/Route104_Prototype/border.bin",
       "blockdata_filepath": "data/layouts/Route104_Prototype/map.bin"
     },
@@ -3477,7 +3477,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/SouthernIsland_Exterior/border.bin",
       "blockdata_filepath": "data/layouts/SouthernIsland_Exterior/map.bin"
     },
@@ -3489,7 +3489,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/SouthernIsland_Interior/border.bin",
       "blockdata_filepath": "data/layouts/SouthernIsland_Interior/map.bin"
     },
@@ -4821,7 +4821,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/FarawayIsland_Entrance/border.bin",
       "blockdata_filepath": "data/layouts/FarawayIsland_Entrance/map.bin"
     },

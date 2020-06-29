@@ -15,12 +15,12 @@ gMetatileAttributes_NewBark:: @ 8398DF0
 	.incbin "data/tilesets/secondary/new_bark/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Rustboro:: @ 8398F10
-	.incbin "data/tilesets/secondary/rustboro/metatiles.bin"
+gMetatiles_Goldenrod:: @ 8398F10
+	.incbin "data/tilesets/secondary/goldenrod/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Rustboro:: @ 839A4F0
-	.incbin "data/tilesets/secondary/rustboro/metatile_attributes.bin"
+gMetatileAttributes_Goldenrod:: @ 839A4F0
+	.incbin "data/tilesets/secondary/goldenrod/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Violet:: @ 839A7AC

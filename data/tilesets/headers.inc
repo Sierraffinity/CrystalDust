@@ -23,16 +23,16 @@ gTileset_NewBark:: @ 83DF71C
 	.4byte gTilesetPalOverrides_NewBark
 
 	.align 2
-gTileset_Rustboro:: @ 83DF734
+gTileset_Goldenrod:: @ 83DF734
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_Rustboro
+	.4byte gTilesetTiles_Goldenrod
 	.4byte gTilesetPalettes_Rustboro
-	.4byte gMetatiles_Rustboro
-	.4byte gMetatileAttributes_Rustboro
-	.4byte InitTilesetAnim_Rustboro
-	.4byte NULL @ palette overrides
+	.4byte gMetatiles_Goldenrod
+	.4byte gMetatileAttributes_Goldenrod
+	.4byte InitTilesetAnim_Goldenrod
+	.4byte gTilesetPalOverrides_Goldenrod
 
 	.align 2
 gTileset_Violet:: @ 83DF74C

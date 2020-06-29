@@ -22,27 +22,27 @@ gTilesetPalettes_NewBark:: @ 833A704
 	.incbin "data/tilesets/secondary/new_bark/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_Rustboro:: @ 833A904
-	.incbin "data/tilesets/secondary/rustboro/tiles.4bpp.lz"
+gTilesetTiles_Goldenrod:: @ 833A904
+	.incbin "data/tilesets/secondary/goldenrod/tiles.4bpp.lz"
 
 	.align 2
 gTilesetPalettes_Rustboro:: @ 833BEC0
-	.incbin "data/tilesets/secondary/rustboro/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/rustboro/palettes/15.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/goldenrod/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Violet:: @ 833C0C0
@@ -1749,3 +1749,19 @@ gTilesetPalOverride_Violet08::
 	.align 2
 gTilesetPalOverride_Azalea09::
 	.incbin "data/tilesets/secondary/azalea/palettes/09_over.gbapal"
+
+	.align 2
+gTilesetPalOverride_Goldenrod08::
+	.incbin "data/tilesets/secondary/goldenrod/palettes/08_over.gbapal"
+
+	.align 2
+gTilesetPalOverride_Goldenrod09::
+	.incbin "data/tilesets/secondary/goldenrod/palettes/09_over.gbapal"
+
+	.align 2
+gTilesetPalOverride_Goldenrod10::
+	.incbin "data/tilesets/secondary/goldenrod/palettes/10_over.gbapal"
+
+	.align 2
+gTilesetPalOverride_Goldenrod12::
+	.incbin "data/tilesets/secondary/goldenrod/palettes/12_over.gbapal"
