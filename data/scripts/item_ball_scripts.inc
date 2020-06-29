@@ -382,7 +382,7 @@ MauvilleCity_EventScript_ItemXSpeed:: @ 82910CE
 	finditem ITEM_X_SPEED
 	end
 
-RustboroCity_EventScript_ItemXDefend:: @ 82910DB
+GoldenrodCity_EventScript_ItemXDefend:: @ 82910DB
 	finditem ITEM_X_DEFEND
 	end
 

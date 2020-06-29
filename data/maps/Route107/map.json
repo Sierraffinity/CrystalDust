@@ -23,7 +23,7 @@
     {
       "direction": "down",
       "offset": -9,
-      "map": "MAP_RUSTBORO_CITY"
+      "map": "MAP_GOLDENROD_CITY"
     }
   ],
   "object_events": [

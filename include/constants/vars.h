@@ -106,7 +106,7 @@
 #define VAR_VIOLET_CITY_STATE                0x4057
 #define VAR_SLATEPORT_CITY_STATE             0x4058
 #define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
-#define VAR_RUSTBORO_CITY_STATE              0x405A
+#define VAR_GOLDENROD_CITY_STATE              0x405A
 #define VAR_FORTREE_CITY_STATE               0x405B // Unused Var
 #define VAR_LILYCOVE_CITY_STATE              0x405C // Unused Var
 #define VAR_MOSSDEEP_CITY_STATE              0x405D

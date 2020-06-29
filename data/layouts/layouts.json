@@ -38,16 +38,16 @@
       "blockdata_filepath": "data/layouts/MauvilleCity/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY",
-      "name": "RustboroCity_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY",
+      "name": "GoldenrodCity_Layout",
       "width": 48,
       "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Goldenrod",
-      "border_filepath": "data/layouts/RustboroCity/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity/map.bin"
     },
     {
       "id": "LAYOUT_FORTREE_CITY",
@@ -1106,76 +1106,76 @@
       "blockdata_filepath": "data/layouts/MauvilleCity_GameCorner/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_1F",
-      "name": "RustboroCity_DevonCorp_1F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_DEVON_CORP_1F",
+      "name": "GoldenrodCity_DevonCorp_1F_Layout",
       "width": 19,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/RustboroCity_DevonCorp_1F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_DevonCorp_1F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_DevonCorp_1F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DevonCorp_1F/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_2F",
-      "name": "RustboroCity_DevonCorp_2F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_DEVON_CORP_2F",
+      "name": "GoldenrodCity_DevonCorp_2F_Layout",
       "width": 19,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/RustboroCity_DevonCorp_2F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_DevonCorp_2F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_DevonCorp_2F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DevonCorp_2F/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_GYM",
-      "name": "RustboroCity_Gym_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_GYM",
+      "name": "GoldenrodCity_Gym_Layout",
       "width": 11,
       "height": 20,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_RustboroGym",
-      "border_filepath": "data/layouts/RustboroCity_Gym/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Gym/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_Gym/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Gym/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_HOUSE",
-      "name": "RustboroCity_House_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_HOUSE",
+      "name": "GoldenrodCity_House_Layout",
       "width": 12,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_House/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_House/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_House/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_House/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_HOUSE1",
-      "name": "RustboroCity_House1_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_HOUSE1",
+      "name": "GoldenrodCity_House1_Layout",
       "width": 13,
       "height": 8,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_House1/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_House1/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_House1/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_House1/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_CUTTERS_HOUSE",
-      "name": "RustboroCity_CuttersHouse_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_CUTTERS_HOUSE",
+      "name": "GoldenrodCity_CuttersHouse_Layout",
       "width": 11,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_CuttersHouse/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_CuttersHouse/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_CuttersHouse/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_CuttersHouse/map.bin"
     },
     {
       "id": "LAYOUT_FORTREE_CITY_HOUSE1",
@@ -3218,16 +3218,16 @@
       "blockdata_filepath": "data/layouts/BattleFrontier_BattleTowerBattleRoom/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_3F",
-      "name": "RustboroCity_DevonCorp_3F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_DEVON_CORP_3F",
+      "name": "GoldenrodCity_DevonCorp_3F_Layout",
       "width": 19,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/RustboroCity_DevonCorp_3F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_DevonCorp_3F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_DevonCorp_3F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DevonCorp_3F/map.bin"
     },
     {
       "id": "LAYOUT_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F",
@@ -3518,40 +3518,40 @@
       "blockdata_filepath": "data/layouts/FieryPath/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT2_1F",
-      "name": "RustboroCity_Flat2_1F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_FLAT2_1F",
+      "name": "GoldenrodCity_Flat2_1F_Layout",
       "width": 14,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat2_1F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat2_1F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_Flat2_1F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat2_1F/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT2_2F",
-      "name": "RustboroCity_Flat2_2F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_FLAT2_2F",
+      "name": "GoldenrodCity_Flat2_2F_Layout",
       "width": 14,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat2_2F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat2_2F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_Flat2_2F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat2_2F/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT2_3F",
-      "name": "RustboroCity_Flat2_3F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_FLAT2_3F",
+      "name": "GoldenrodCity_Flat2_3F_Layout",
       "width": 14,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat2_3F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat2_3F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_Flat2_3F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat2_3F/map.bin"
     },
     {
       "id": "LAYOUT_SOOTOPOLIS_CITY_LOTAD_AND_SEEDOT_HOUSE",
@@ -3746,28 +3746,28 @@
       "blockdata_filepath": "data/layouts/CaveOfOrigin_Unused_B4F_Lava/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT1_1F",
-      "name": "RustboroCity_Flat1_1F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_FLAT1_1F",
+      "name": "GoldenrodCity_Flat1_1F_Layout",
       "width": 14,
       "height": 8,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat1_1F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat1_1F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_Flat1_1F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat1_1F/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT1_2F",
-      "name": "RustboroCity_Flat1_2F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_FLAT1_2F",
+      "name": "GoldenrodCity_Flat1_2F_Layout",
       "width": 14,
       "height": 8,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat1_2F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat1_2F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_Flat1_2F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat1_2F/map.bin"
     },
     {
       "id": "LAYOUT_EVER_GRANDE_CITY_HALL4",

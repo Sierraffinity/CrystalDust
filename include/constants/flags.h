@@ -846,7 +846,7 @@
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA         0x32B
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE          0x32C
 #define FLAG_HIDE_ROUTE_116_DROPPED_GLASSES_MAN                     0x32D
-#define FLAG_HIDE_RUSTBORO_CITY_RIVAL                               0x32E
+#define FLAG_HIDE_GOLDENROD_CITY_RIVAL                               0x32E
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_SWABLU_DOLL        0x32F
 #define FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE                           0x330
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_POKE_BALL          0x331
@@ -876,7 +876,7 @@
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN               0x349
 #define FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO                         0x34A
 #define FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY                      0x34B
-#define FLAG_HIDE_RUSTBORO_CITY_SCIENTIST                           0x34C
+#define FLAG_HIDE_GOLDENROD_CITY_SCIENTIST                           0x34C
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT                  0x34D
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE                      0x34E
 #define FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD                           0x34F
@@ -981,7 +981,7 @@
 #define FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS                       0x3B2
 #define FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE                          0x3B3
 #define FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN                        0x3B4
-#define FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE              0x3B5
+#define FLAG_HIDE_GOLDENROD_CITY_DEVON_CORP_3F_EMPLOYEE              0x3B5
 #define FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY                       0x3B6
 #define FLAG_HIDE_SS_TIDAL_ROOMS_SNATCH_GIVER                       0x3B7
 #define FLAG_RECEIVED_SHOAL_SALT_1                                  0x3B8
@@ -1031,7 +1031,7 @@
 #define FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA                          0x3E4
 #define FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE                            0x3E5
 #define FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON                           0x3E6
-#define FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT                0x3E7
+#define FLAG_HIDE_GOLDENROD_CITY_POKEMON_SCHOOL_SCOTT                0x3E7
 
 // Item Ball Flags
 #define FLAG_ITEM_ROUTE_29_POTION                                   0x3E8
@@ -1373,7 +1373,7 @@
 #define FLAG_VISITED_VIOLET_CITY                    (SYSTEM_FLAGS + 0x16)
 #define FLAG_VISITED_SLATEPORT_CITY                 (SYSTEM_FLAGS + 0x17)
 #define FLAG_VISITED_MAUVILLE_CITY                  (SYSTEM_FLAGS + 0x18)
-#define FLAG_VISITED_RUSTBORO_CITY                  (SYSTEM_FLAGS + 0x19)
+#define FLAG_VISITED_GOLDENROD_CITY                  (SYSTEM_FLAGS + 0x19)
 #define FLAG_VISITED_FORTREE_CITY                   (SYSTEM_FLAGS + 0x1A)
 #define FLAG_VISITED_LILYCOVE_CITY                  (SYSTEM_FLAGS + 0x1B)
 #define FLAG_VISITED_MOSSDEEP_CITY                  (SYSTEM_FLAGS + 0x1C)
