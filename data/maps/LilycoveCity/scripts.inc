@@ -367,7 +367,7 @@ LilycoveCity_EventScript_DefeatedBrendan:: @ 81E2FAA
 	call_if_eq LilycoveCity_EventScript_BrendanCollectBadges
 	compare VAR_RESULT, TRUE
 	call_if_eq LilycoveCity_EventScript_BrendanPokemonLeague
-	clearflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_BEDROOM
+	clearflag FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER
 	clearflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_SWABLU_DOLL
 	goto LilycoveCity_EventScript_RivalFlyAway
 	end
