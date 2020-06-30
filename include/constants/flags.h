@@ -155,7 +155,7 @@
 #define FLAG_RECEIVED_SOFT_SAND_FROM_KATE    0x8D
 #define FLAG_RECEIVED_EGG_TICKET             0x8E
 #define FLAG_TALKED_TO_DAYCARE_LADY          0x8F
-#define FLAG_RETURNED_DEVON_GOODS            0x90
+#define FLAG_CLEARED_RADIO_TOWER             0x90
 #define FLAG_CAUGHT_LUGIA                    0x91
 #define FLAG_CAUGHT_HO_OH                    0x92
 #define FLAG_MR_BRINEY_SAILING_INTRO         0x93

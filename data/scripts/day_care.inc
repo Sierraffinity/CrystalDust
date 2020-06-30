@@ -498,7 +498,7 @@ Route34_DayCare_EventScript_DaycareWoman_Text_0:
 	.string "My husband went there recently\n"
 	.string "and got this promotional item.\p"
 	.string "We don't need it, since we have\n"
-	.string "enough on our plates already…\p"
+	.string "enough to do already…\p"
 	.string "Oh, would you like it?\p"
 	.string "My husband should still have it,\n"
 	.string "so go talk to him.$"
