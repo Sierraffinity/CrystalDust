@@ -218,6 +218,12 @@
 #define METATILE_GenericBuilding_TrickHouse_Door_Closed  0x21B
 #define METATILE_GenericBuilding_TrickHouse_Stairs_Down  0x219
 
+// gTileset_Goldenrod
+#define METATILE_Goldenrod_Door_DeptStore      0x35C
+#define METATILE_Goldenrod_Door_House          0x284
+#define METATILE_Goldenrod_Door_PokecomCenter  0x3C3
+#define METATILE_Goldenrod_Door_RadioTower     0x2BC
+
 // gTileset_InsideOfTruck
 #define METATILE_InsideOfTruck_DoorClosedFloor_Bottom  0x21D
 #define METATILE_InsideOfTruck_DoorClosedFloor_Mid     0x215
