@@ -400,7 +400,7 @@ gSongTable:: @ 86B49F0
 	song mus_test4, 0, 0            @ Pokémon Contest! (Multiplayer - Player 4)
 	song mus_pokemonmarch, 0, 0     @ Pokémon March
 	song mus_gomachi0, 0, 0         @ Verdanturf Town
-	song mus_gotown, 0, 0           @ Rustboro City
+	song mus_goldenrod, 0, 0           @ Rustboro City
 	song mus_pokecen, 0, 0          @ Pokémon Center
 	song mus_nextroad, 0, 0         @ Route 104
 	song mus_granroad, 0, 0         @ Route 119

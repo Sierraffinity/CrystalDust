@@ -324,7 +324,7 @@
 #define MUS_TEST4 396           // Contest Test 4
 #define MUS_POKEMONMARCH 397    // Pokémon March
 #define MUS_GOMACHI0 398        // Verdanturf Town
-#define MUS_GOTOWN 399          // Rustboro/Mauville/Mossdeep City
+#define MUS_GOLDENROD 399          // Rustboro/Mauville/Mossdeep City
 #define MUS_POKECEN 400         // Pokémon Center
 #define MUS_NEXTROAD 401        // Route 104
 #define MUS_GRANROAD 402        // Route 119

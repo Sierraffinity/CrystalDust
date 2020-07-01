@@ -180,7 +180,7 @@ $(MID_SUBDIR)/mus_encfemale.s: %.s: %.mid
 $(MID_SUBDIR)/mus_gomachi0.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G044 -V090
 
-$(MID_SUBDIR)/mus_gotown.s: %.s: %.mid
+$(MID_SUBDIR)/mus_goldenrod.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G045 -V085
 
 $(MID_SUBDIR)/mus_granroad.s: %.s: %.mid
