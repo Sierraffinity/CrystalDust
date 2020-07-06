@@ -20,11 +20,14 @@
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
-static EWRAM_DATA s8 sOldHour = 0;
 static EWRAM_DATA bool8 sRetintPhase = FALSE;
+static EWRAM_DATA u8 sTimeOfDay = TIME_NIGHT;
+static EWRAM_DATA u16 sRetintPeriod = 0;
+static EWRAM_DATA u16 sCurrTintPeriod = 0;
+static EWRAM_DATA u16 sCurrRGBTint[3] = {0};
 #if DEBUG
 EWRAM_DATA bool8 gPaletteOverrideDisabled = 0;
-EWRAM_DATA s8 gDNHourOverride = 0;
+EWRAM_DATA s16 gDNPeriodOverride = 0;
 #endif
 
 static const u16 sTimeOfDayTints[][3] = {
@@ -32,8 +35,8 @@ static const u16 sTimeOfDayTints[][3] = {
     [1] =   {TINT_NIGHT},
     [2] =   {TINT_NIGHT},
     [3] =   {TINT_NIGHT},
-    [4] =   {Q_8_8(0.6), Q_8_8(0.6), Q_8_8(1.0)},
-    [5] =   {TINT_MORNING},
+    [4] =   {TINT_NIGHT},
+    [5] =   {Q_8_8(0.6), Q_8_8(0.6), Q_8_8(1.0)},
     [6] =   {TINT_MORNING},
     [7] =   {TINT_MORNING},
     [8] =   {Q_8_8(0.9), Q_8_8(0.8), Q_8_8(1.0)},
@@ -45,10 +48,10 @@ static const u16 sTimeOfDayTints[][3] = {
     [14] =  {TINT_DAY},
     [15] =  {TINT_DAY},
     [16] =  {TINT_DAY},
-    [17] =  {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(0.8)},
-    [18] =  {Q_8_8(0.9), Q_8_8(0.6), Q_8_8(0.67)},
-    [19] =  {Q_8_8(0.7), Q_8_8(0.6), Q_8_8(0.9)},
-    [20] =  {TINT_NIGHT},
+    [17] =  {TINT_DAY},
+    [18] =  {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(0.8)},
+    [19] =  {Q_8_8(0.9), Q_8_8(0.6), Q_8_8(0.67)},
+    [20] =  {Q_8_8(0.7), Q_8_8(0.6), Q_8_8(0.9)},
     [21] =  {TINT_NIGHT},
     [22] =  {TINT_NIGHT},
     [23] =  {TINT_NIGHT},
@@ -126,8 +129,8 @@ static void LoadPaletteOverrides(void)
     }
 
 #if DEBUG
-    if (gDNHourOverride != 0)
-        hour = gDNHourOverride - 1;
+    if (gDNPeriodOverride > 0)
+        hour = (gDNPeriodOverride - 1) / TINT_PERIODS_PER_HOUR;
 #endif
 
     for (i = 0; i < ARRAY_COUNT(gPaletteOverrides); i++)
@@ -161,27 +164,69 @@ static bool8 ShouldTintOverworld(void)
     return FALSE;
 }
 
+bool32 LerpColors(u16 *rgbDest, const u16 *rgb1, const u16 *rgb2, u8 coeff)
+{
+    bool32 ret = FALSE;
+    u16 rgbTemp[3];
+
+    memcpy(rgbTemp, rgb1, sizeof(rgbTemp));
+
+    if (rgb1[0] != rgb2[0] ||
+        rgb1[1] != rgb2[1] ||
+        rgb1[2] != rgb2[2])
+    {
+        rgbTemp[0] = (((rgb2[0] - rgb1[0]) * coeff) / TINT_PERIODS_PER_HOUR) + rgb1[0];
+        rgbTemp[1] = (((rgb2[1] - rgb1[1]) * coeff) / TINT_PERIODS_PER_HOUR) + rgb1[1];
+        rgbTemp[2] = (((rgb2[2] - rgb1[2]) * coeff) / TINT_PERIODS_PER_HOUR) + rgb1[2];
+    }
+
+    if (rgbTemp[0] != rgbDest[0] ||
+        rgbTemp[1] != rgbDest[1] ||
+        rgbTemp[2] != rgbDest[2])
+    {
+        ret = TRUE;
+        memcpy(rgbDest, rgbTemp, sizeof(rgbTemp));
+    }
+
+    return ret;
+}
+
 static void TintPaletteForDayNight(u16 offset, u16 size)
 {
+    s8 hour, nextHour;
+    u8 hourPhase, period;
+
     if (ShouldTintOverworld())
     {
-        s8 hour;
         RtcCalcLocalTimeFast();
 
         if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
         {
             hour = HOUR_NIGHT;
+            hourPhase = 0;
         }
         else
         {
             hour = gLocalTime.hours;
+            hourPhase = gLocalTime.minutes / MINUTES_PER_TINT_PERIOD;
         }
 #if DEBUG
-        if (gDNHourOverride != 0)
-            hour = gDNHourOverride - 1;
+        if (gDNPeriodOverride > 0)
+        {
+            hour = (gDNPeriodOverride - 1) / TINT_PERIODS_PER_HOUR;
+            hourPhase = (gDNPeriodOverride - 1) % TINT_PERIODS_PER_HOUR;
+        }
 #endif
 
-        TintPalette_CustomToneWithCopy(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size / 2, sTimeOfDayTints[hour][0], sTimeOfDayTints[hour][1], sTimeOfDayTints[hour][2], FALSE);
+        period = (hour * TINT_PERIODS_PER_HOUR) + hourPhase;
+
+        if (sCurrTintPeriod != period)
+        {
+            sCurrTintPeriod = period;
+            LerpColors(sCurrRGBTint, sTimeOfDayTints[hour], sTimeOfDayTints[nextHour], hourPhase);
+        }
+
+        TintPalette_CustomToneWithCopy(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size / 2, sCurrRGBTint[0], sCurrRGBTint[1], sCurrRGBTint[2], FALSE);
     }
     else
     {
@@ -207,51 +252,67 @@ void LoadPaletteDayNight(const void *src, u16 offset, u16 size)
 
 void CheckClockForImmediateTimeEvents(void)
 {
-    if (ShouldTintOverworld() && !sRetintPhase)
+    if (!sRetintPhase && ShouldTintOverworld())
         RtcCalcLocalTimeFast();
 }
 
 void ProcessImmediateTimeEvents(void)
 {
-    s8 hour;
+    s8 hour, nextHour;
+    u8 hourPhase, period;
+    u8 timeOfDay = GetCurrentTimeOfDay();
 
     if (ShouldTintOverworld())
     {
-        if (!sRetintPhase)
+        if (sRetintPhase == 0)
         {
             if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
             {
                 hour = HOUR_NIGHT;
+                hourPhase = 0;
             }
             else
             {
                 hour = gLocalTime.hours;
+                hourPhase = gLocalTime.minutes / MINUTES_PER_TINT_PERIOD;
             }
 #if DEBUG
-            if (gDNHourOverride != 0)
-                hour = gDNHourOverride - 1;
+            if (gDNPeriodOverride > 0)
+            {
+                hour = (gDNPeriodOverride - 1) / TINT_PERIODS_PER_HOUR;
+                hourPhase = (gDNPeriodOverride - 1) % TINT_PERIODS_PER_HOUR;
+            }
 #endif
 
-            if (hour != sOldHour)
+            period = (hour * TINT_PERIODS_PER_HOUR) + hourPhase;
+
+            if (sRetintPeriod != period)
             {
-                sOldHour = hour;
+                sRetintPeriod = sCurrTintPeriod = period;
+
+                nextHour = (hour + 1) % 24;
+                LerpColors(sCurrRGBTint, sTimeOfDayTints[hour], sTimeOfDayTints[nextHour], hourPhase);
+                TintPalette_CustomToneWithCopy(gPlttBufferPreDN, gPlttBufferUnfaded, BG_PLTT_SIZE / 2, sCurrRGBTint[0], sCurrRGBTint[1], sCurrRGBTint[2], TRUE);
                 sRetintPhase = 1;
-                TintPalette_CustomToneWithCopy(gPlttBufferPreDN, gPlttBufferUnfaded, BG_PLTT_SIZE / 2, sTimeOfDayTints[hour][0], sTimeOfDayTints[hour][1], sTimeOfDayTints[hour][2], TRUE);
             }
         }
         else
         {
             sRetintPhase = 0;
-            TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sTimeOfDayTints[sOldHour][0], sTimeOfDayTints[sOldHour][1], sTimeOfDayTints[sOldHour][2], TRUE);
+            TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sCurrRGBTint[0], sCurrRGBTint[1], sCurrRGBTint[2], TRUE);
             LoadPaletteOverrides();
             
             if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&
                 gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)
                 CpuCopy16(gPlttBufferUnfaded, gPlttBufferFaded, PLTT_SIZE);
-
-            ChooseAmbientCrySpecies();  // so a time-of-day appropriate mon is chosen
-            ForceTimeBasedEvents();     // for misc events that should run on time of day boundaries
         }
+    }
+
+    if (sTimeOfDay != timeOfDay)
+    {
+        sTimeOfDay = timeOfDay;
+        ChooseAmbientCrySpecies();  // so a time-of-day appropriate mon is chosen
+        ForceTimeBasedEvents();     // for misc events that should run on time of day boundaries
     }
 }
 

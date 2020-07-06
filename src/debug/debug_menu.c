@@ -14,6 +14,7 @@
 #include "item.h"
 #include "main.h"
 #include "overworld.h"
+#include "region_map.h"
 #include "rtc.h"
 #include "script.h"
 #include "script_menu.h"
@@ -22,6 +23,7 @@
 #include "string_util.h"
 #include "task.h"
 #include "window.h"
+#include "constants/day_night.h"
 #include "constants/items.h"
 #include "constants/flags.h"
 #include "constants/heal_locations.h"
@@ -90,6 +92,7 @@ static void DebugMenu_Pokegear(u8 taskId);
 static void DebugMenu_Pokegear_ProcessInput(u8 taskId);
 static void DebugMenu_EnableMapCard(u8 taskId);
 static void DebugMenu_EnableRadioCard(u8 taskId);
+static void DebugMenu_FlyMenu(u8 taskId);
 static void DebugMenu_SetRespawn(u8 taskId);
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
 static void DebugMenu_CreateDaycareEgg(u8 taskId);
@@ -103,7 +106,7 @@ static void DebugMenu_AddItem_ProcessInputCount(u8 taskId);
 extern bool8 gWalkThroughWalls;
 extern bool8 gPaletteTintDisabled;
 extern bool8 gPaletteOverrideDisabled;
-extern s8 gDNHourOverride;
+extern s16 gDNPeriodOverride;
 
 static const u8 sText_PlayerInfo[] = _("Player info");
 static const u8 sText_SetFlag[] = _("Set flag");
@@ -112,7 +115,7 @@ static const u8 sText_AddItem[] = _("Add item");
 static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Pokedex[] = _("Pokédex");
 static const u8 sText_Pokegear[] = _("Pokégear");
-static const u8 sText_SetRespawn[] = _("Set respawn");
+static const u8 sText_Positional[] = _("Positional");
 static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
@@ -126,6 +129,8 @@ static const u8 sText_ProfOakRating[] = _("Prof. Oak rating");
 static const u8 sText_EnableMapCard[] = _("Enable map card");
 static const u8 sText_EnableRadioCard[] = _("Enable radio card");
 static const u8 sText_DexCount[] = _("Count: {STR_VAR_1}");
+static const u8 sText_FlyTo[] = _("Fly to…");
+static const u8 sText_SetRespawn[] = _("Set respawn");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
 static const u8 sText_VarStatus[] = _("Var: {STR_VAR_1}\nValue: {STR_VAR_2}\nAddress: {STR_VAR_3}");
 static const u8 sText_ItemStatus[] = _("Item: {STR_VAR_1}\nCount: {STR_VAR_2}");
@@ -140,16 +145,19 @@ static const struct DebugMenuBouncer sDebugMenu_Bouncer_PlayerInfoActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_DNActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_PokedexActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_PokegearActions;
+static const struct DebugMenuBouncer sDebugMenu_Bouncer_PositionalActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_MiscActions;
+
+#define SUBMENU_ACTIONS(actions) { .bounce = DebugMenu_InitNewSubmenu }, &sDebugMenu_Bouncer_##actions
 
 static const struct DebugMenuAction sDebugMenu_MainActions[] =
 {
-    { sText_PlayerInfo, { .bounce = DebugMenu_InitNewSubmenu }, &sDebugMenu_Bouncer_PlayerInfoActions },
-    { sText_DayNight, { .bounce = DebugMenu_InitNewSubmenu }, &sDebugMenu_Bouncer_DNActions },
-    { sText_Pokedex, { .bounce = DebugMenu_InitNewSubmenu }, &sDebugMenu_Bouncer_PokedexActions },
-    { sText_Pokegear, { .bounce = DebugMenu_InitNewSubmenu }, &sDebugMenu_Bouncer_PokegearActions },
-    { sText_SetRespawn, DebugMenu_SetRespawn, NULL },
-    { sText_Misc, { .bounce = DebugMenu_InitNewSubmenu }, &sDebugMenu_Bouncer_MiscActions },
+    { sText_PlayerInfo, SUBMENU_ACTIONS(PlayerInfoActions) },
+    { sText_DayNight, SUBMENU_ACTIONS(DNActions) },
+    { sText_Pokedex, SUBMENU_ACTIONS(PokedexActions) },
+    { sText_Pokegear, SUBMENU_ACTIONS(PokegearActions) },
+    { sText_Positional, SUBMENU_ACTIONS(PositionalActions) },
+    { sText_Misc, SUBMENU_ACTIONS(MiscActions) },
     { gText_MenuOptionExit, DebugMenu_Exit, NULL }
 };
 
@@ -167,8 +175,8 @@ CREATE_BOUNCER(PlayerInfoActions, MainActions);
 
 static const struct DebugMenuAction sDebugMenu_DNActions[] =
 {
-    { sText_ToggleDNPalOverride, DebugMenu_ToggleOverride, NULL },
     { sText_DNTimeCycle, DebugMenu_TimeCycle, NULL },
+    { sText_ToggleDNPalOverride, DebugMenu_ToggleOverride, NULL },
 };
 
 CREATE_BOUNCER(DNActions, MainActions);
@@ -187,6 +195,14 @@ static const struct DebugMenuAction sDebugMenu_PokegearActions[] =
 };
 
 CREATE_BOUNCER(PokegearActions, MainActions);
+
+static const struct DebugMenuAction sDebugMenu_PositionalActions[] = 
+{
+    { sText_FlyTo, DebugMenu_FlyMenu, NULL },
+    { sText_SetRespawn, DebugMenu_SetRespawn, NULL },
+};
+
+CREATE_BOUNCER(PositionalActions, MainActions);
 
 static const struct DebugMenuAction sDebugMenu_MiscActions[] =
 {
@@ -873,47 +889,78 @@ static void DebugMenu_ToggleOverride(u8 taskId)
     ProcessImmediateTimeEvents();
 }
 
-static void DebugMenu_TimeCycle_PrintStatus(u8 windowId, u16 hour)
+static void DebugMenu_TimeCycle_PrintStatus(u8 windowId, s16 timePeriod)
 {
     FillWindowPixelBuffer(windowId, 0x11);
-    WriteTimeString(gStringVar1, hour, 0, FALSE, TRUE);
+    WriteTimeString(gStringVar1,
+                    timePeriod / TINT_PERIODS_PER_HOUR,
+                    (timePeriod % TINT_PERIODS_PER_HOUR) * MINUTES_PER_TINT_PERIOD,
+                    FALSE,
+                    TRUE);
     StringExpandPlaceholders(gStringVar4, sText_ClockStatus);
     AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
 
+#define tDeltaIndex data[1]
+
 static void DebugMenu_TimeCycle(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    tDeltaIndex = 0;
 
     DebugMenu_RemoveMenu(taskId);
     tWindowId = AddWindow(&sDebugMenu_Window_TimeCycle);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
-    DebugMenu_TimeCycle_PrintStatus(tWindowId, gLocalTime.hours);
+    gDNPeriodOverride = (gLocalTime.hours * TINT_PERIODS_PER_HOUR) + (((gLocalTime.minutes / MINUTES_PER_TINT_PERIOD) / 5) * 5) + 1;
+    DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNPeriodOverride - 1);
     schedule_bg_copy_tilemap_to_vram(0);
-    gDNHourOverride = gLocalTime.hours + 1;
     gTasks[taskId].func = DebugMenu_TimeCycle_ProcessInput;
 }
 
 static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
 {
+    const u8 deltas[] = { 60, 30, 10, 5, 2, 1 };
+
     s16 *data = gTasks[taskId].data;
+
+    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    {
+        PlaySE(SE_SELECT);
+        gDNPeriodOverride += deltas[tDeltaIndex];
+
+        if (gDNPeriodOverride > TINT_PERIODS_COUNT)
+            gDNPeriodOverride -= TINT_PERIODS_COUNT;
+
+        ProcessImmediateTimeEvents();
+        DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNPeriodOverride - 1);
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    {
+        PlaySE(SE_SELECT);
+        gDNPeriodOverride -= deltas[tDeltaIndex];
+
+        if (gDNPeriodOverride < 1)
+            gDNPeriodOverride += TINT_PERIODS_COUNT;
+
+        ProcessImmediateTimeEvents();
+        DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNPeriodOverride - 1);
+    }
 
     if (gMain.newAndRepeatedKeys & DPAD_UP)
     {
         PlaySE(SE_SELECT);
-        if (++gDNHourOverride > 24)
-            gDNHourOverride = 1;
-        ProcessImmediateTimeEvents();
-        DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNHourOverride - 1);
+
+        if (++tDeltaIndex >= ARRAY_COUNT(deltas))
+            tDeltaIndex = 0;
     }
 
     if (gMain.newAndRepeatedKeys & DPAD_DOWN)
     {
         PlaySE(SE_SELECT);
-        if (--gDNHourOverride < 1)
-            gDNHourOverride = 24;
-        ProcessImmediateTimeEvents();
-        DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNHourOverride - 1);
+
+        if (--tDeltaIndex < 0)
+            tDeltaIndex = ARRAY_COUNT(deltas) - 1;
     }
 
     if (gMain.newKeys & A_BUTTON)
@@ -924,11 +971,13 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
 
     if (gMain.newKeys & B_BUTTON)
     {
-        gDNHourOverride = 0;
+        gDNPeriodOverride = -1;
         PlaySE(SE_SELECT);
         ReturnToPreviousMenu(taskId, GET_BOUNCER);
     }
 }
+
+#undef tDeltaIndex
 
 static void DebugMenu_Pokedex_ProfOakRating_PrintStatus(u8 windowId, u16 flagId)
 {
@@ -1048,6 +1097,11 @@ static void DebugMenu_EnableMapCard(u8 taskId)
 static void DebugMenu_EnableRadioCard(u8 taskId)
 {
     FlagSet(FLAG_SYS_HAS_RADIO_CARD);
+}
+
+static void DebugMenu_FlyMenu(u8 taskId)
+{
+    SetMainCallback2(CB2_OpenFlyMap);
 }
 
 static void DebugMenu_SetRespawn_PrintStatus(u8 windowId, u8 respawnPoint)
