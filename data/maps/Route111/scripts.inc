@@ -275,7 +275,7 @@ Route111_EventScript_SandstormTrigger:: @ 81F0FBD
 Route111_EventScript_Victor:: @ 81F0FC5
 	lock
 	faceplayer
-	setflag FLAG_LANDMARK_WINSTRATE_FAMILY
+	setflag FLAG_LANDMARK_RADIO_TOWER
 	msgbox Route111_Text_BattleOurFamily, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq Route111_EventScript_BattleWinstrates

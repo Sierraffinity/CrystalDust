@@ -998,28 +998,28 @@
       "blockdata_filepath": "data/layouts/SlateportCity_SternsShipyard_2F/map.bin"
     },
     {
-      "id": "LAYOUT_UNKNOWN_084294C4",
-      "name": "Unknown_084294C4_Layout",
-      "width": 1,
-      "height": 1,
+      "id": "LAYOUT_POKECOM_CENTER_1F",
+      "name": "PokecomCenter_1F_Layout",
+      "width": 35,
+      "height": 18,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/Unknown_084294C4/border.bin",
-      "blockdata_filepath": "data/layouts/Unknown_084294C4/map.bin"
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/PokecomCenter_1F/border.bin",
+      "blockdata_filepath": "data/layouts/PokecomCenter_1F/map.bin"
     },
     {
-      "id": "LAYOUT_UNKNOWN_084294E8",
-      "name": "Unknown_084294E8_Layout",
-      "width": 1,
-      "height": 1,
+      "id": "LAYOUT_POKECOM_CENTER_ADMIN_ROOM",
+      "name": "PokecomCenter_AdminRoom_Layout",
+      "width": 10,
+      "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/Unknown_084294E8/border.bin",
-      "blockdata_filepath": "data/layouts/Unknown_084294E8/map.bin"
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/PokecomCenter_AdminRoom/border.bin",
+      "blockdata_filepath": "data/layouts/PokecomCenter_AdminRoom/map.bin"
     },
     {
       "id": "LAYOUT_SLATEPORT_CITY_POKEMON_FAN_CLUB",
@@ -1490,52 +1490,52 @@
       "blockdata_filepath": "data/layouts/Route121_SafariZoneEntrance/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_1F_1R",
-      "name": "MeteorFalls_1F_1R_Layout",
-      "width": 30,
-      "height": 42,
+      "id": "LAYOUT_RADIO_TOWER_1F",
+      "name": "RadioTower_1F_Layout",
+      "width": 21,
+      "height": 13,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_1F_1R/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_1F_1R/map.bin"
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonFanClub",
+      "border_filepath": "data/layouts/RadioTower_1F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_1F/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_1F_2R",
-      "name": "MeteorFalls_1F_2R_Layout",
+      "id": "LAYOUT_RADIO_TOWER_2F",
+      "name": "RadioTower_2F_Layout",
       "width": 30,
       "height": 32,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_1F_2R/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_1F_2R/map.bin"
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonFanClub",
+      "border_filepath": "data/layouts/RadioTower_2F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_2F/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_B1F_1R",
-      "name": "MeteorFalls_B1F_1R_Layout",
+      "id": "LAYOUT_RADIO_TOWER_3F",
+      "name": "RadioTower_3F_Layout",
       "width": 29,
       "height": 38,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_B1F_1R/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_B1F_1R/map.bin"
+      "border_filepath": "data/layouts/RadioTower_3F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_3F/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_B1F_2R",
-      "name": "MeteorFalls_B1F_2R_Layout",
+      "id": "LAYOUT_RADIO_TOWER_4F",
+      "name": "RadioTower_4F_Layout",
       "width": 11,
       "height": 18,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_B1F_2R/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_B1F_2R/map.bin"
+      "border_filepath": "data/layouts/RadioTower_4F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_4F/map.bin"
     },
     {
       "id": "LAYOUT_UNION_CAVE_1F",
@@ -5162,16 +5162,16 @@
       "blockdata_filepath": "data/layouts/BattleFrontier_ScottsHouse/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_STEVENS_CAVE",
-      "name": "MeteorFalls_StevensCave_Layout",
+      "id": "LAYOUT_RADIO_TOWER_5F",
+      "name": "RadioTower_5F_Layout",
       "width": 30,
       "height": 32,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_StevensCave/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_StevensCave/map.bin"
+      "border_filepath": "data/layouts/RadioTower_5F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_5F/map.bin"
     },
     {
       "id": "LAYOUT_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB_WITH_TABLE",

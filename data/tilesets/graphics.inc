@@ -459,27 +459,27 @@ gTilesetPalettes_PokemonSchool:: @ 8355BA8
 	.incbin "data/tilesets/secondary/pokemon_school/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_PokemonFanClub:: @ 8355DA8
-	.incbin "data/tilesets/secondary/pokemon_fan_club/tiles.4bpp.lz"
+gTilesetTiles_RadioTower:: @ 8355DA8
+	.incbin "data/tilesets/secondary/radio_tower/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_PokemonFanClub:: @ 83566D4
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/pokemon_fan_club/palettes/15.gbapal"
+gTilesetPalettes_RadioTower:: @ 83566D4
+	.incbin "data/tilesets/secondary/radio_tower/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/radio_tower/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Gatehouse:: @ 83568D4

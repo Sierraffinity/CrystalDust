@@ -167,12 +167,12 @@ gMetatileAttributes_PokemonSchool:: @ 83B416C
 	.incbin "data/tilesets/secondary/pokemon_school/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_PokemonFanClub:: @ 83B41E0
-	.incbin "data/tilesets/secondary/pokemon_fan_club/metatiles.bin"
+gMetatiles_RadioTower:: @ 83B41E0
+	.incbin "data/tilesets/secondary/radio_tower/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_PokemonFanClub:: @ 83B4860
-	.incbin "data/tilesets/secondary/pokemon_fan_club/metatile_attributes.bin"
+gMetatileAttributes_RadioTower:: @ 83B4860
+	.incbin "data/tilesets/secondary/radio_tower/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Gatehouse:: @ 83B4930

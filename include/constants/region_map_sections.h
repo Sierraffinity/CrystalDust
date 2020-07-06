@@ -64,7 +64,7 @@
 #define MAPSEC_UNION_CAVE                   0x3C
 #define MAPSEC_SPROUT_TOWER                 0x3D
 #define MAPSEC_RUINS_OF_ALPH                0x3E
-#define MAPSEC_METEOR_FALLS                 0x3F
+#define MAPSEC_RADIO_TOWER                 0x3F
 #define MAPSEC_METEOR_FALLS2                0x40
 #define MAPSEC_MT_PYRE                      0x41
 #define MAPSEC_AQUA_HIDEOUT_OLD             0x42

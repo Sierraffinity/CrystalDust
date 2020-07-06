@@ -1,0 +1,149 @@
+mapscripts GoldenrodCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_GOLDENROD_CITY)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_Nurse {
+    setvar(VAR_0x800B, 1)
+    call(GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse)
+	waitmessage
+	waitbuttonpress
+	release
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse {
+    lock
+    faceplayer
+    setvar(VAR_0x8004, 0)
+    specialvar(VAR_RESULT, CountPlayerTrainerStars)
+    if (var(VAR_RESULT) == 4)
+    {
+        if (flag(FLAG_NURSE_MENTIONS_GOLD_CARD))
+        {
+            goto(EventScript_PkmnCenterNurse_AskForUsual)
+        }
+        else
+        {
+            msgbox("Hello!\p"
+                   "This is the POKéMON COMMUNICATION\n"
+                   "CENTER--or the POKéCOM CENTER.\p"
+                   "We can heal your POKéMON to\n"
+                   "perfect health.\p"
+                   "Shall we…", MSGBOX_DEFAULT)
+            playse(SE_PIN)
+            applymovement(VAR_0x800B, Common_Movement_ExclamationMark)
+            waitmovement(0)
+            applymovement(VAR_0x800B, Common_Movement_Delay48)
+            waitmovement(0)
+            msgbox(gText_NoticesGoldCard, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                goto(EventScript_PkmnCenterNurse_GoldCardHealPkmn)
+            }
+            else
+            {
+                message(gText_WeHopeToSeeYouAgain2)
+            }
+        }
+    }
+    else
+    {
+        gettime
+        switch (var(VAR_0x8002))
+        {
+            case TIME_MORNING:
+                msgbox("Good morning!\p"
+                       "This is the POKéMON COMMUNICATION\n"
+                       "CENTER--or the POKéCOM CENTER.\p"
+                       "We can heal your POKéMON to\n"
+                       "perfect health.\p"
+                       "Shall we heal your POKéMON?", MSGBOX_YESNO)
+                break
+            case TIME_DAY:
+                msgbox("Hello!\p"
+                       "This is the POKéMON COMMUNICATION\n"
+                       "CENTER--or the POKéCOM CENTER.\p"
+                       "We can heal your POKéMON to\n"
+                       "perfect health.\p"
+                       "Shall we heal your POKéMON?", MSGBOX_YESNO)
+                break
+            case TIME_NIGHT:
+                msgbox("Good to see you working so late.\p"
+                       "This is the POKéMON COMMUNICATION\n"
+                       "CENTER--or the POKéCOM CENTER.\p"
+                       "We can heal your POKéMON to\n"
+                       "perfect health.\p"
+                       "Shall we heal your POKéMON?", MSGBOX_YESNO)
+                break
+        }
+
+        if (var(VAR_RESULT) == YES)
+        {
+            goto(EventScript_PkmnCenterNurse_HealPkmn)
+        }
+        else
+        {
+            message(gText_WeHopeToSeeYouAgain)
+        }
+    }
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_OldMan {
+    msgbox("I came over here when I got word\n"
+           "that GOLDENROD's POKéMON CENTER\l"
+           "has new machines that no one's\l"
+           "ever seen before.\p"
+           "But it looks like they're still busy\n"
+           "with all their preparations…", MSGBOX_NPC)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_TypeAdvantageGirl {
+    msgbox("A higher level POKéMON doesn't\n"
+           "always win.\p"
+           "After all, it may have a type\n"
+           "disadvantage.\p"
+           "I don't think there is a single\n"
+           "POKéMON that is the toughest.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_HugeCenterBoy {
+    msgbox("Whoa, this POKéMON CENTER is huge.\n"
+           "They just built this place.\p"
+           "They installed lots of new machines\n"
+           "too.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_GameBoyKid {
+    msgbox("The COLOSSEUM upstairs is for\n"
+           "link battles.\p"
+           "Battle records are posted on the\n"
+           "wall, so I can't afford to lose.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl {
+    msgbox("They said you can trade POKéMON\n"
+           "with total strangers up here.\p"
+           "But they're still adjusting things.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_BugCatcher {
+    msgbox("The machines here can't be used\n"
+           "right now.\p"
+           "Still, it's nice coming to a trendy\n"
+           "place before other people.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_Youngster {
+    msgbox("What is the NEWS MACHINE?\p"
+           "Does it get news from a wider area\n"
+           "than the radio?", MSGBOX_NPC)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_NewsWoman {
+    msgbox("The POKéCOM CENTER will link with all\n"
+           "POKéMON CENTERS in a wireless net.\p"
+           "That must mean I'll be able to\n"
+           "link with all sorts of people.", MSGBOX_NPC)
+}

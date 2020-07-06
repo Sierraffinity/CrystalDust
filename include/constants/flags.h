@@ -158,7 +158,7 @@
 #define FLAG_CLEARED_RADIO_TOWER             0x90
 #define FLAG_CAUGHT_LUGIA                    0x91
 #define FLAG_CAUGHT_HO_OH                    0x92
-#define FLAG_MR_BRINEY_SAILING_INTRO         0x93
+#define FLAG_ROCKETS_IN_RADIO_TOWER          0x93
 #define FLAG_DOCK_REJECTED_DEVON_GOODS       0x94
 #define FLAG_DELIVERED_DEVON_GOODS           0x95
 #define FLAG_RECEIVED_CONTEST_PASS           0x96 // Unused, leftover from R/S
@@ -793,8 +793,8 @@
 #define FLAG_HIDE_GOLDENROD_CITY_CIVILIANS                          0x2F6
 #define FLAG_HIDE_GOLDENROD_CITY_ROCKET_SCOUT                       0x2F7
 #define FLAG_HIDE_GOLDENROD_CITY_MOVE_TUTOR                         0x2F8
-#define FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER                       0x2F9
-#define FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_TRUCK                    0x2FA
+#define FLAG_HIDE_GOLDENROD_CITY_ROCKET_TAKEOVER                    0x2F9
+#define FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER                       0x2FA
 #define FLAG_HIDE_DEOXYS                                            0x2FB
 #define FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE                      0x2FC
 #define FLAG_HIDE_MAUVILLE_CITY_SCOTT                               0x2FD
@@ -974,7 +974,7 @@
 #define FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA                           0x3AB
 #define FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN                      0x3AC
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT               0x3AD
-#define FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO                          0x3AE
+#define FLAG_HIDE_RADIO_TOWER_1F_COZMO                          0x3AE
 #define FLAG_HIDE_AQUA_HIDEOUT_B2F_SUBMARINE_SHADOW                 0x3AF
 #define FLAG_HIDE_ROUTE_128_ARCHIE                                  0x3B0
 #define FLAG_HIDE_ROUTE_128_MAXIE                                   0x3B1
@@ -1031,7 +1031,7 @@
 #define FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA                          0x3E4
 #define FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE                            0x3E5
 #define FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON                           0x3E6
-#define FLAG_HIDE_GOLDENROD_CITY_POKEMON_SCHOOL_SCOTT                0x3E7
+#define FLAG_HIDE_GOLDENROD_CITY_POKECOM_CENTER_ADMIN_ROOM_SCOTT                0x3E7
 
 // Item Ball Flags
 #define FLAG_ITEM_ROUTE_29_POTION                                   0x3E8
@@ -1081,9 +1081,9 @@
 #define FLAG_UNUSED_0x412                                           0x412
 #define FLAG_UNUSED_0x413                                           0x413
 #define FLAG_UNUSED_0x414                                           0x414
-#define FLAG_ITEM_METEOR_FALLS_1F_1R_FULL_HEAL                      0x415
-#define FLAG_ITEM_METEOR_FALLS_1F_1R_MOON_STONE                     0x416
-#define FLAG_ITEM_METEOR_FALLS_1F_1R_PP_UP                          0x417
+#define FLAG_ITEM_RADIO_TOWER_1F_FULL_HEAL                      0x415
+#define FLAG_ITEM_RADIO_TOWER_1F_MOON_STONE                     0x416
+#define FLAG_ITEM_RADIO_TOWER_1F_PP_UP                          0x417
 #define FLAG_ITEM_UNION_CAVE_POKE_BALL                          0x418
 #define FLAG_ITEM_UNION_CAVE_MAX_ETHER                          0x419
 #define FLAG_ITEM_DARK_CAVE_SOUTH_ESCAPE_ROPE                       0x41A
@@ -1116,7 +1116,7 @@
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_6_LUXURY_BALL    0x435
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_4_SCANNER        0x436
 #define FLAG_ITEM_SCORCHED_SLAB_TM_11                               0x437
-#define FLAG_ITEM_METEOR_FALLS_B1F_2R_TM_02                         0x438
+#define FLAG_ITEM_RADIO_TOWER_4F_TM_02                         0x438
 #define FLAG_ITEM_SHOAL_CAVE_ENTRANCE_BIG_PEARL                     0x439
 #define FLAG_ITEM_SHOAL_CAVE_INNER_ROOM_RARE_CANDY                  0x43A
 #define FLAG_ITEM_SHOAL_CAVE_STAIRS_ROOM_ICE_HEAL                   0x43B
@@ -1365,7 +1365,7 @@
 // Towns and Cities
 #define FLAG_VISITED_NEW_BARK_TOWN                  (SYSTEM_FLAGS + 0xF)
 #define FLAG_VISITED_CHERRYGROVE_CITY               (SYSTEM_FLAGS + 0x10)
-#define FLAG_VISITED_AZALEA_TOWN                   (SYSTEM_FLAGS + 0x11)
+#define FLAG_VISITED_AZALEA_TOWN                    (SYSTEM_FLAGS + 0x11)
 #define FLAG_VISITED_LAVARIDGE_TOWN                 (SYSTEM_FLAGS + 0x12)
 #define FLAG_VISITED_FALLARBOR_TOWN                 (SYSTEM_FLAGS + 0x13)
 #define FLAG_VISITED_VERDANTURF_TOWN                (SYSTEM_FLAGS + 0x14)
@@ -1373,7 +1373,7 @@
 #define FLAG_VISITED_VIOLET_CITY                    (SYSTEM_FLAGS + 0x16)
 #define FLAG_VISITED_SLATEPORT_CITY                 (SYSTEM_FLAGS + 0x17)
 #define FLAG_VISITED_MAUVILLE_CITY                  (SYSTEM_FLAGS + 0x18)
-#define FLAG_VISITED_GOLDENROD_CITY                  (SYSTEM_FLAGS + 0x19)
+#define FLAG_VISITED_GOLDENROD_CITY                 (SYSTEM_FLAGS + 0x19)
 #define FLAG_VISITED_FORTREE_CITY                   (SYSTEM_FLAGS + 0x1A)
 #define FLAG_VISITED_LILYCOVE_CITY                  (SYSTEM_FLAGS + 0x1B)
 #define FLAG_VISITED_MOSSDEEP_CITY                  (SYSTEM_FLAGS + 0x1C)
@@ -1421,7 +1421,7 @@
 #define FLAG_LANDMARK_ROUTE_32_POKEMON_CENTER       (SYSTEM_FLAGS + 0x40)
 #define FLAG_LANDMARK_ILEX_FOREST                   (SYSTEM_FLAGS + 0x41)
 #define FLAG_LANDMARK_SLOWPOKE_WELL                 (SYSTEM_FLAGS + 0x42)
-#define FLAG_LANDMARK_WINSTRATE_FAMILY              (SYSTEM_FLAGS + 0x43)
+#define FLAG_LANDMARK_RADIO_TOWER                   (SYSTEM_FLAGS + 0x43)
 #define FLAG_LANDMARK_GLASS_WORKSHOP                (SYSTEM_FLAGS + 0x44)
 #define FLAG_LANDMARK_LANETTES_HOUSE                (SYSTEM_FLAGS + 0x45)
 #define FLAG_LANDMARK_POKEMON_DAYCARE               (SYSTEM_FLAGS + 0x46)

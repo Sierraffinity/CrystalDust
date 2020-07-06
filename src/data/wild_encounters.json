@@ -7595,8 +7595,8 @@
           }
         },
         {
-          "map": "MAP_METEOR_FALLS_1F_1R",
-          "base_label": "gMeteorFalls_1F_1R",
+          "map": "MAP_RADIO_TOWER_1F",
+          "base_label": "gRadioTower_1F",
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [
@@ -8037,8 +8037,8 @@
           }
         },
         {
-          "map": "MAP_METEOR_FALLS_1F_2R",
-          "base_label": "gMeteorFalls_1F_2R",
+          "map": "MAP_RADIO_TOWER_2F",
+          "base_label": "gRadioTower_2F",
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [
@@ -8479,8 +8479,8 @@
           }
         },
         {
-          "map": "MAP_METEOR_FALLS_B1F_1R",
-          "base_label": "gMeteorFalls_B1F_1R",
+          "map": "MAP_RADIO_TOWER_3F",
+          "base_label": "gRadioTower_3F",
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [
@@ -8921,8 +8921,8 @@
           }
         },
         {
-          "map": "MAP_METEOR_FALLS_B1F_2R",
-          "base_label": "gMeteorFalls_B1F_2R",
+          "map": "MAP_RADIO_TOWER_4F",
+          "base_label": "gRadioTower_4F",
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [
@@ -9363,8 +9363,8 @@
           }
         },
         {
-          "map": "MAP_METEOR_FALLS_STEVENS_CAVE",
-          "base_label": "gMeteorFalls_StevensCave",
+          "map": "MAP_RADIO_TOWER_5F",
+          "base_label": "gRadioTower_5F",
           "land_mons": {
             "encounter_rate": 10,
             "mons": [

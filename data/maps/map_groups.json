@@ -197,7 +197,7 @@
     "GoldenrodCity_DevonCorp_2F",
     "GoldenrodCity_DevonCorp_3F",
     "GoldenrodCity_Gym",
-    "GoldenrodCity_PokemonSchool",
+    "GoldenrodCity_PokecomCenterAdminRoom",
     "GoldenrodCity_PokemonCenter_1F",
     "GoldenrodCity_PokemonCenter_2F",
     "GoldenrodCity_Mart",
@@ -328,10 +328,10 @@
     "Route36_RuinsOfAlphGatehouse"
   ],
   "gMapGroup24": [
-    "MeteorFalls_1F_1R",
-    "MeteorFalls_1F_2R",
-    "MeteorFalls_B1F_1R",
-    "MeteorFalls_B1F_2R",
+    "RadioTower_1F",
+    "RadioTower_2F",
+    "RadioTower_3F",
+    "RadioTower_4F",
     "UnionCave_1F",
     "UnionCave_B1F",
     "UnionCave_B2F",
@@ -435,7 +435,7 @@
     "TerraCave_Entrance",
     "TerraCave_End",
     "AlteringCave",
-    "MeteorFalls_StevensCave"
+    "RadioTower_5F"
   ],
   "gMapGroup25": [
     "SecretBase_RedCave1",

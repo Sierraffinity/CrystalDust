@@ -414,23 +414,23 @@ FieryPath_EventScript_ItemTM06:: @ 829119E
 	finditem ITEM_TM06
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemTM23:: @ 82911AB
+RadioTower_1F_EventScript_ItemTM23:: @ 82911AB
 	finditem ITEM_TM23
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemFullHeal:: @ 82911B8
+RadioTower_1F_EventScript_ItemFullHeal:: @ 82911B8
 	finditem ITEM_FULL_HEAL
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemMoonStone:: @ 82911C5
+RadioTower_1F_EventScript_ItemMoonStone:: @ 82911C5
 	finditem ITEM_MOON_STONE
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemPPUP:: @ 82911D2
+RadioTower_1F_EventScript_ItemPPUP:: @ 82911D2
 	finditem ITEM_PP_UP
 	end
 
-MeteorFalls_B1F_2R_EventScript_ItemTM02:: @ 82911DF
+RadioTower_4F_EventScript_ItemTM02:: @ 82911DF
 	finditem ITEM_TM02
 	end
 

@@ -160,7 +160,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_EventScript_RocketGrunt1",
-      "flag": "FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER"
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_ROCKET_TAKEOVER"
     },
     {
       "type": "original",
@@ -175,7 +175,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_EventScript_RocketGrunt2",
-      "flag": "FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER"
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_ROCKET_TAKEOVER"
     },
     {
       "type": "original",
@@ -286,14 +286,14 @@
       "x": 34,
       "y": 32,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY_POKEMON_SCHOOL",
+      "dest_map": "MAP_GOLDENROD_CITY_POKECOM_CENTER_ADMIN_ROOM",
       "dest_warp_id": 0
     },
     {
       "x": 6,
       "y": 16,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY_DEVON_CORP_1F",
+      "dest_map": "MAP_RADIO_TOWER_1F",
       "dest_warp_id": 0
     },
     {
