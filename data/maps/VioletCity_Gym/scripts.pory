@@ -24,9 +24,9 @@ text VioletCity_Gym_Text_FalknerPreBattle {
 	"type POKéMON's wings with a jolt\l"
 	"of electricity…\p"
 	"I won't allow such insults to\n"
-	"bird POKéMON!\p"
+	"BIRD POKéMON!\p"
 	"I'll show you the real power of\n"
-	"the magnificent bird POKéMON!"
+	"the magnificent BIRD POKéMON!"
 }
 
 text VioletCity_Gym_Text_FalknerDefeat {

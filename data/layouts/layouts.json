@@ -1504,8 +1504,8 @@
     {
       "id": "LAYOUT_RADIO_TOWER_2F",
       "name": "RadioTower_2F_Layout",
-      "width": 30,
-      "height": 32,
+      "width": 21,
+      "height": 13,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",

@@ -433,7 +433,8 @@ CherrygroveCity_Text_GuideGent_ItsMyHouse:
 	.string "Let me give you a small gift.$"
 
 CherrygroveCity_Text_GuideGent_GetMapCard1:
-	.string "{PLAYER} received the MAP CARD.$"
+	.string "{PLAYER} received the MAP CARD\n"
+	.string "from the GUIDE GENT.$"
 
 CherrygroveCity_Text_GuideGent_GetMapCard2:
 	.string "{PLAYER}'s POKéGEAR now has a MAP!$"

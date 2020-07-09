@@ -74,40 +74,40 @@ script RadioTower_1F_EventScript_LuckyNumberMan {
                 if (var(VAR_0x8006) == 0)
                 {
                     msgbox("Congratulations!\p"
-                        "The ID number of your team's\n"
-                        "{STR_VAR_1} matches this\l"
-                        "week's LUCKY NUMBER!")
+                           "The ID number of your team's\n"
+                           "{STR_VAR_1} matches this\l"
+                           "week's LUCKY NUMBER!")
                 }
                 elif (var(VAR_0x8006) == 1)
                 {
                     msgbox("Congratulations!\p"
-                        "The ID number of your PC-boxed\n"
-                        "{STR_VAR_1} matches this\l"
-                        "week's LUCKY NUMBER!")
+                           "The ID number of your PC-boxed\n"
+                           "{STR_VAR_1} matches this\l"
+                           "week's LUCKY NUMBER!")
                 }
                 bufferitemname(0, VAR_0x8005)
                 switch (var(VAR_0x8004))
                 {
                     case 1:
                         msgbox("Ooh, two digits matched.\p"
-                            "You've won the third prize,\l"
-                            "the {STR_VAR_1}!")
+                               "You've won the third prize,\l"
+                               "the {STR_VAR_1}!")
                         break
                     case 2:
                         msgbox("Hey! You matched three digits!.\p"
-                            "You've won the second prize,\l"
-                            "the {STR_VAR_1}!")
+                               "You've won the second prize,\l"
+                               "the {STR_VAR_1}!")
                         break
                     case 3:
                         msgbox("Nice! Four digits matched up!\p"
-                            "You've won the first prize,\l"
-                            "the {STR_VAR_1}!")
+                               "You've won the first prize,\l"
+                               "the {STR_VAR_1}!")
                         break
                     case 4:
                         msgbox("Wow! You have a perfect match\n"
-                            "of all five digits!\p"
-                            "We have a grand prize winner!\n"
-                            "You've won the {STR_VAR_1}!")
+                               "of all five digits!\p"
+                               "We have a grand prize winner!\n"
+                               "You've won the {STR_VAR_1}!")
                         break
                 }
                 giveitem(VAR_0x8005)
@@ -168,6 +168,96 @@ script RadioTower_1F_EventScript_LuckyNumberMan_NoRoomForPrize {
 script RadioTower_1F_EventScript_LuckyNumberMan_GameEnded {
     msgbox("Please come back next week for\n"
            "the next LUCKY NUMBER.")
+    release
+}
+
+script RadioTower_1F_EventScript_RadioCardWoman {
+    lock
+    faceplayer
+    if (flag(FLAG_SYS_HAS_RADIO_CARD))
+    {
+        goto(RadioTower_1F_EventScript_RadioCardWoman_EndQuiz)
+    }
+
+    msgbox("We have a special quiz campaign\n"
+            "going on right now.\p"
+            "Answer five questions correctly\n"
+            "to win a RADIO CARD.\p"
+            "Slide it into your POKéGEAR to\n"
+            "play the radio anytime, anywhere.\p"
+            "Would you like to take the quiz?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        msgbox("Question 1:\p"
+               "Is there a POKéMON that appears only\n"
+               "in the morning?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            playse(SE_PINPON)
+            waitse
+            msgbox("Correct!\n"
+                   "Question 2:\p"
+                   "Is this statement correct?\n"
+                   "“You can't buy a BERRY at a MART.”", MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                playse(SE_PINPON)
+                waitse
+                msgbox("Bull's-eye!\n"
+                       "Question 3:\p"
+                       "Does HM01 contain the move FLASH?", MSGBOX_YESNO)
+                if (var(VAR_RESULT) == NO)
+                {
+                    playse(SE_PINPON)
+                    waitse
+                    msgbox("So far so good!\n"
+                           "Question 4:\p"
+                           "Is FALKNER the VIOLET GYM LEADER\n"
+                           "who uses BIRD POKéMON?", MSGBOX_YESNO)
+                    if (var(VAR_RESULT) == YES)
+                    {
+                        playse(SE_PINPON)
+                        waitse
+                        msgbox("Wow! Right again!\n"
+                               "Here's the final question:\p"
+                               "Do GOLDENROD GAME CORNER's slots\n"
+                               "have CHARMANDER on their reels?", MSGBOX_YESNO)
+                        if (var(VAR_RESULT) == NO)
+                        {
+                            playse(SE_PINPON)
+                            waitse
+                            msgbox("Bingo! You got it!\n"
+                                   "Congratulations!\p"
+                                   "Here's your prize, a RADIO CARD!")
+                            textcolor(MSG_COLOR_BLACK)
+                            playfanfare(MUS_FANFA4)
+                            setflag(FLAG_SYS_HAS_RADIO_CARD)
+                            message("{PLAYER} received the RADIO CARD\n"
+                                    "from the receptionist.")
+                            waitfanfare
+                            msgbox("{PLAYER}'s POKéGEAR can now\n"
+                                   "double as a radio!")
+                            call(EventScript_RestorePrevTextColor)
+                            goto(RadioTower_1F_EventScript_RadioCardWoman_EndQuiz)
+                        }
+                    }
+                }
+            }
+        }
+        msgbox("Oh, dear.\n"
+               "Sorry, but you got it wrong.\l"
+               "Please try again!")
+    }
+    else
+    {
+        msgbox("Oh. I see.\n"
+               "Please see me if you change your mind.")
+    }
+    release
+}
+
+script RadioTower_1F_EventScript_RadioCardWoman_EndQuiz {
+    msgbox("Please tune in to our radio shows.")
     release
 }
 

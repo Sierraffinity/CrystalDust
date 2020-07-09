@@ -153,7 +153,7 @@ text VioletCity_Gym_Text_AbePostBattle {
 text VioletCity_Gym_Text_RodIntro {
 	"The key word is guts!\p"
 	"Those here are training night and\n"
-	"day to become bird POKéMON\l"
+	"day to become BIRD POKéMON\l"
 	"masters. Come on!"
 }
 
