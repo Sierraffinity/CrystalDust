@@ -183,14 +183,14 @@ script RadioTower_1F_EventScript_RadioCardWoman {
             "going on right now.\p"
             "Answer five questions correctly\n"
             "to win a RADIO CARD.\p"
-            "Slide it into your POKéGEAR to\n"
-            "play the radio anytime, anywhere.\p"
+            "Slide it into your POKéGEAR to play\n"
+            "the radio anytime, anywhere.\p"
             "Would you like to take the quiz?", MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES)
     {
         msgbox("Question 1:\p"
-               "Is there a POKéMON that appears only\n"
-               "in the morning?", MSGBOX_YESNO)
+               "Is there a POKéMON that appears\n"
+               "only in the morning?", MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             playse(SE_PINPON)
@@ -235,8 +235,8 @@ script RadioTower_1F_EventScript_RadioCardWoman {
                             message("{PLAYER} received the RADIO CARD\n"
                                     "from the receptionist.")
                             waitfanfare
-                            msgbox("{PLAYER}'s POKéGEAR can now\n"
-                                   "double as a radio!")
+                            msgbox("{PLAYER}'s POKéGEAR can now double\n"
+                                   "as a radio!")
                             call(EventScript_RestorePrevTextColor)
                             goto(RadioTower_1F_EventScript_RadioCardWoman_EndQuiz)
                         }
@@ -250,8 +250,10 @@ script RadioTower_1F_EventScript_RadioCardWoman {
     }
     else
     {
-        msgbox("Oh. I see.\n"
-               "Please see me if you change your mind.")
+        msgbox("Oh.\n"
+               "I see.\p"
+               "Please come back and see me if\n"
+               "you change your mind.")
     }
     release
 }

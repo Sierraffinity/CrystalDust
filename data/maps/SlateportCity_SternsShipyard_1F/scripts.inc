@@ -6,7 +6,7 @@ SlateportCity_SternsShipyard_1F_EventScript_Dock:: @ 8207F40
 	goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_SternsShipyard_1F_EventScript_FerryReady
 	goto_if_set FLAG_BADGE07_GET, SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined
 	goto_if_set FLAG_DELIVERED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran
-	goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_GoFindStern
+	goto_if_set FLAG_POKECOM_CENTER_ENABLED, SlateportCity_SternsShipyard_1F_EventScript_GoFindStern
 	msgbox SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails, MSGBOX_DEFAULT
 	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
@@ -14,7 +14,7 @@ SlateportCity_SternsShipyard_1F_EventScript_Dock:: @ 8207F40
 	closemessage
 	applymovement 1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
-	setflag FLAG_DOCK_REJECTED_DEVON_GOODS
+	setflag FLAG_POKECOM_CENTER_ENABLED
 	setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
 	releaseall
 	end

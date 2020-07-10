@@ -159,7 +159,7 @@
 #define FLAG_CAUGHT_LUGIA                    0x91
 #define FLAG_CAUGHT_HO_OH                    0x92
 #define FLAG_ROCKETS_IN_RADIO_TOWER          0x93
-#define FLAG_DOCK_REJECTED_DEVON_GOODS       0x94
+#define FLAG_POKECOM_CENTER_ENABLED          0x94
 #define FLAG_DELIVERED_DEVON_GOODS           0x95
 #define FLAG_RECEIVED_CONTEST_PASS           0x96 // Unused, leftover from R/S
 #define FLAG_RECEIVED_CASTFORM               0x97

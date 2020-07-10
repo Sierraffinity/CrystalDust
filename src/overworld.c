@@ -1141,7 +1141,28 @@ u16 GetLocationMusic(struct WarpData *warp)
     else if (IsInfiltratedWeatherInstitute(warp) == TRUE)
         return MUS_TOZAN;
     else*/
-    return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
+
+    const u16 musicOverrideList[][3] =
+    {
+        { MAP_GOLDENROD_CITY_POKEMON_CENTER_1F, FLAG_POKECOM_CENTER_ENABLED, MUS_PCC },
+        { MAP_UNDEFINED, 0, 0 }
+    };
+
+    int i;
+    u16 song = Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
+
+    for (i = 0; musicOverrideList[i][0] != MAP_UNDEFINED; i++)
+    {
+        if (warp->mapGroup == (musicOverrideList[i][0] >> 8) &&
+            warp->mapNum == (musicOverrideList[i][0] & 0xFF) &&
+            FlagGet(musicOverrideList[i][1]))
+        {
+            song = musicOverrideList[i][2];
+            break;
+        }
+    }
+
+    return song;
 }
 
 u16 GetCurrLocationDefaultMusic(void)
@@ -1272,7 +1293,7 @@ void TryFadeOutOldMapMusic(void)
     u16 warpMusic = GetWarpDestinationMusic();
     if (FlagGet(FLAG_DONT_TRANSITION_MUSIC) != TRUE && warpMusic != GetCurrentMapMusic())
     {
-        if (currentMusic == MUS_NAMINORI
+        /*if (currentMusic == MUS_NAMINORI
             && VarGet(VAR_SKY_PILLAR_STATE) == 2
             && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SOOTOPOLIS_CITY)
             && gSaveBlock1Ptr->location.mapNum == MAP_NUM(SOOTOPOLIS_CITY)
@@ -1280,7 +1301,7 @@ void TryFadeOutOldMapMusic(void)
             && sWarpDestination.mapNum == MAP_NUM(SOOTOPOLIS_CITY)
             && sWarpDestination.x == 29
             && sWarpDestination.y == 53)
-            return;
+            return;*/
         FadeOutMapMusic(GetMapMusicFadeoutSpeed());
     }
 }
