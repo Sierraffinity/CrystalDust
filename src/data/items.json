@@ -6361,6 +6361,22 @@
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
+    },
+    {
+      "english": "BLUE CARD",
+      "itemId": "ITEM_BLUE_CARD",
+      "price": 0,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A card to save points for\\nthe BUENA'S PASSWORD\\nshow.",
+      "importance": 2,
+      "exitsBagOnUse": 0,
+      "pocket": "POCKET_KEY_ITEMS",
+      "type": 4,
+      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "battleUsage": 0,
+      "battleUseFunc": "NULL",
+      "secondaryId": 0
     }
   ]
 }

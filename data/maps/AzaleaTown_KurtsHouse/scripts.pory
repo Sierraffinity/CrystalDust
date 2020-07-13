@@ -13,7 +13,7 @@ mapscripts AzaleaTown_KurtsHouse_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         if (flag(FLAG_CLEARED_SLOWPOKE_WELL) &&
             !flag(FLAG_FOREST_IS_RESTLESS) &&
-            flag(FLAG_KURT_MAKING_BALLS))
+            flag(FLAG_DAILY_KURT_MAKING_BALLS))
         {
             setobjectxyperm(KURT, 15, 3)
             setobjectmovementtype(KURT, MOVEMENT_TYPE_FACE_UP)
@@ -28,7 +28,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
     faceplayer
     // TODO: Check GS Ball
     if (!flag(FLAG_TEMP_1) &&
-        flag(FLAG_KURT_MAKING_BALLS))
+        flag(FLAG_DAILY_KURT_MAKING_BALLS))
     {
         if (flag(FLAG_BUGGING_KURT_TOO_MUCH))
         {
@@ -220,7 +220,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu {
     if (var(VAR_KURT_GIVEN_APRICORN) != 0)
     {
         setflag(FLAG_TEMP_1)
-        setflag(FLAG_KURT_MAKING_BALLS)
+        setflag(FLAG_DAILY_KURT_MAKING_BALLS)
         call(AzaleaTown_KurtsHouse_EventScript_Kurt_ItllTakeADay)
     }
     else
@@ -258,7 +258,7 @@ script AzaleaTown_KurtsHouse_EventScript_KurtsGranddaughter {
     lock
     faceplayer
     if (flag(FLAG_TEMP_1) ||
-        flag(FLAG_KURT_MAKING_BALLS))
+        flag(FLAG_DAILY_KURT_MAKING_BALLS))
     {
         msgbox("I get to help Grandpa with his\n"
                "work now!\p"

@@ -45,7 +45,7 @@ SlateportCity_OceanicMuseum_1F_EventScript_CheckMoneyForFee:: @ 820ADE8
 	end
 
 SlateportCity_OceanicMuseum_1F_EventScript_NotEnoughMoney:: @ 820AE18
-	goto_if_unset FLAG_DELIVERED_DEVON_GOODS, SlateportCity_OceanicMuseum_1F_EventScript_AllowEntranceAnyway
+	goto_if_unset FLAG_MET_BUENA, SlateportCity_OceanicMuseum_1F_EventScript_AllowEntranceAnyway
 	msgbox SlateportCity_OceanicMuseum_1F_Text_NotEnoughMoney, MSGBOX_DEFAULT
 	closemessage
 	hidemoneybox

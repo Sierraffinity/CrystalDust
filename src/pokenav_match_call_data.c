@@ -213,7 +213,7 @@ static const struct MatchCallStructNPC sStevenMatchCallHeader =
 static const match_call_text_data_t sMayTextScripts[] = {
     { MatchCall_Text_May1,  0xFFFF,                              0xFFFF },
     { MatchCall_Text_May2,  FLAG_DEFEATED_AZALEA_GYM,           0xFFFF },
-    { MatchCall_Text_May3,  FLAG_DELIVERED_DEVON_GOODS,          0xFFFF },
+    { MatchCall_Text_May3,  FLAG_MET_BUENA,          0xFFFF },
     { MatchCall_Text_May4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       0xFFFF },
     { MatchCall_Text_May5,  FLAG_RECEIVED_MAGNET_FROM_SUNNY,                  0xFFFF },
     { MatchCall_Text_May6,  FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },
@@ -242,7 +242,7 @@ static const struct MatchCallRival sMayMatchCallHeader =
 static const match_call_text_data_t sBrendanTextScripts[] = {
     { MatchCall_Text_Brendan1,  0xFFFF,                              0xFFFF },
     { MatchCall_Text_Brendan2,  FLAG_DEFEATED_AZALEA_GYM,           0xFFFF },
-    { MatchCall_Text_Brendan3,  FLAG_DELIVERED_DEVON_GOODS,          0xFFFF },
+    { MatchCall_Text_Brendan3,  FLAG_MET_BUENA,          0xFFFF },
     { MatchCall_Text_Brendan4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       0xFFFF },
     { MatchCall_Text_Brendan5,  FLAG_RECEIVED_MAGNET_FROM_SUNNY,                  0xFFFF },
     { MatchCall_Text_Brendan6,  FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },

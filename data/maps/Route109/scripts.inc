@@ -272,7 +272,7 @@ Route109_Movement_BrineyExitBoat: @ 81EE90D
 Route109_EventScript_MrBriney:: @ 81EE910
 	lock
 	faceplayer
-	goto_if_unset FLAG_DELIVERED_DEVON_GOODS, Route109_EventScript_HaveNotDeliveredDevonGood
+	goto_if_unset FLAG_MET_BUENA, Route109_EventScript_HaveNotDeliveredDevonGood
 	goto Route109_EventScript_DeliveredDevonGoods
 	end
 

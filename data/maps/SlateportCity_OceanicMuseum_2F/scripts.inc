@@ -83,7 +83,7 @@ SlateportCity_OceanicMuseum_2F_EventScript_CaptStern:: @ 820BB00
 	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
 	compare VAR_REGISTER_BIRCH_STATE, 0
 	call_if_eq SlateportCity_OceanicMuseum_2F_EventScript_ReadyRegisterBirch
-	setflag FLAG_DELIVERED_DEVON_GOODS
+	setflag FLAG_MET_BUENA
 	clearflag FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE
 	setflag FLAG_HIDE_GOLDENROD_CITY_DEVON_CORP_3F_EMPLOYEE
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1

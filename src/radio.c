@@ -28,6 +28,7 @@
 #include "constants/items.h"
 #include "constants/maps.h"
 #include "constants/moves.h"
+#include "constants/radio.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/species.h"
@@ -126,7 +127,7 @@ static void PlayStationMusic(u8 taskId)
 static bool8 BuenasPassword_CheckTime(void)
 {
     RtcCalcLocalTime();
-    if (gLocalTime.hours >= 18) // 6 PM
+    if (gLocalTime.hours >= BUENAS_PASSWORD_START_HOUR)
         return TRUE;
     return FALSE;
 }

@@ -1889,16 +1889,16 @@ const struct SpriteFrameImage gObjectEventPicTable_TuberMSwimming[] = {
     overworld_frame(gObjectEventPic_TuberMSwimming, 2, 2, 8),
 };
 
-const struct SpriteFrameImage gObjectEventPicTable_Azurill[] = {
-    overworld_frame(gObjectEventPic_Azurill, 2, 2, 0),
-    overworld_frame(gObjectEventPic_Azurill, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Azurill, 2, 2, 2),
-    overworld_frame(gObjectEventPic_Azurill, 2, 2, 0),
-    overworld_frame(gObjectEventPic_Azurill, 2, 2, 0),
-    overworld_frame(gObjectEventPic_Azurill, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Azurill, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Azurill, 2, 2, 2),
-    overworld_frame(gObjectEventPic_Azurill, 2, 2, 2),
+const struct SpriteFrameImage gObjectEventPicTable_Jigglypuff[] = {
+    overworld_frame(gObjectEventPic_Jigglypuff, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Jigglypuff, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Jigglypuff, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Jigglypuff, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Jigglypuff, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Jigglypuff, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Jigglypuff, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Jigglypuff, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Jigglypuff, 2, 2, 2),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_Mom[] = {

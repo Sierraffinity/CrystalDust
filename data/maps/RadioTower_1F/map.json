@@ -43,7 +43,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RadioTower_1F_EventScript_ItemMoonStone",
+      "script": "RadioTower_1F_EventScript_BenLoverGirl",
       "flag": "FLAG_HIDE_GOLDENROD_CITY_CIVILIANS"
     },
     {
@@ -58,7 +58,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RadioTower_1F_EventScript_ItemFullHeal",
+      "script": "RadioTower_1F_EventScript_MaryLoverBoy",
       "flag": "FLAG_HIDE_GOLDENROD_CITY_CIVILIANS"
     },
     {
@@ -73,7 +73,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "RadioTower_1F_EventScript_ItemPPUP",
+      "script": "0",
       "flag": "FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER"
     },
     {
@@ -133,7 +133,7 @@
       "y": 3,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "0x0"
+      "script": "RadioTower_1F_EventScript_LuckyChannelSign"
     },
     {
       "type": "sign",
@@ -141,7 +141,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "RadioTower_1F_EventScript_DirectorySign"
     }
   ]
 }

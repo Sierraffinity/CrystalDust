@@ -12,6 +12,7 @@
 #include "field_screen_effect.h"
 #include "international_string_util.h"
 #include "item.h"
+#include "lottery_corner.h"
 #include "main.h"
 #include "overworld.h"
 #include "region_map.h"
@@ -84,6 +85,7 @@ static void DebugMenu_ToggleRunningShoes(u8 taskId);
 static void DebugMenu_EnableResetRTC(u8 taskId);
 static void DebugMenu_TestBattleTransition(u8 taskId);
 static void DebugMenu_SwapGender(u8 taskId);
+static void DebugMenu_LottoNumber(u8 taskId);
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
 static void DebugMenu_Pokedex_ProfOakRating(u8 taskId);
@@ -102,6 +104,7 @@ static void DebugMenu_Submenu_ProcessInput(u8 taskId);
 static void ReturnToPreviousMenu(u8 taskId, const struct DebugMenuBouncer *bouncer);
 static void DebugMenu_AddItem_ProcessInputNum(u8 taskId);
 static void DebugMenu_AddItem_ProcessInputCount(u8 taskId);
+static void DebugMenu_LottoNumber_ProcessInput(u8 taskId);
 
 extern bool8 gWalkThroughWalls;
 extern bool8 gPaletteTintDisabled;
@@ -112,6 +115,8 @@ static const u8 sText_PlayerInfo[] = _("Player info");
 static const u8 sText_SetFlag[] = _("Set flag");
 static const u8 sText_SetVar[] = _("Set variable");
 static const u8 sText_AddItem[] = _("Add item");
+static const u8 sText_GenderBender[] = _("Gender bender");
+static const u8 sText_LottoNumber[] = _("Set lotto number");
 static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Pokedex[] = _("Pokédex");
 static const u8 sText_Pokegear[] = _("Pokégear");
@@ -121,7 +126,6 @@ static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
-static const u8 sText_GenderBender[] = _("Gender bender");
 static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
@@ -136,6 +140,7 @@ static const u8 sText_VarStatus[] = _("Var: {STR_VAR_1}\nValue: {STR_VAR_2}\nAdd
 static const u8 sText_ItemStatus[] = _("Item: {STR_VAR_1}\nCount: {STR_VAR_2}");
 static const u8 sText_ClockStatus[] = _("Time: {STR_VAR_1}");
 static const u8 sText_RespawnStatus[] = _("Respawn point:\n{STR_VAR_1}");
+static const u8 sText_LottoStatus[] = _("Lotto num:\n{STR_VAR_1}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
 static const u8 sText_Off[] = _("{COLOR RED}OFF");
 
@@ -169,6 +174,7 @@ static const struct DebugMenuAction sDebugMenu_PlayerInfoActions[] =
     { sText_SetVar, DebugMenu_SetVar, NULL },
     { sText_AddItem, DebugMenu_AddItem, NULL },
     { sText_GenderBender, DebugMenu_SwapGender, NULL },
+    { sText_LottoNumber, DebugMenu_LottoNumber, NULL },
 };
 
 CREATE_BOUNCER(PlayerInfoActions, MainActions);
@@ -276,6 +282,17 @@ static const struct WindowTemplate sDebugMenu_Window_SetRespawn =
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 10,
+    .height = 4,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_LottoNum = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 7,
     .height = 4,
     .paletteNum = 15,
     .baseBlock = 0x120
@@ -596,7 +613,7 @@ static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
 
     if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
     {
-        if (--tWhichDigit > 3)
+        if (--tWhichDigit < 0)
             tWhichDigit = 0;
         else
             PlaySE(SE_SELECT);
@@ -712,6 +729,7 @@ static const s32 powersOfTen[] =
     10,
     100,
     1000,
+    10000,
 };
 
 static void DebugMenu_AddItem_ProcessInputNum(u8 taskId)
@@ -877,6 +895,111 @@ static void DebugMenu_SwapGender(u8 taskId)
     DoDiveWarp();
     ResetInitialPlayerAvatarState();
 }
+
+static void DebugMenu_LottoNumber_PrintStatus(u8 windowId, u32 lottoNum)
+{
+    FillWindowPixelBuffer(windowId, 0x11);
+    ConvertIntToDecimalStringN(gStringVar1, lottoNum, STR_CONV_MODE_LEADING_ZEROS, 5);
+    StringExpandPlaceholders(gStringVar4, sText_LottoStatus);
+    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+}
+
+#define tLottoNumLow data[1]
+#define tLottoNumHi data[2]
+#define tWhichDigit data[3]
+
+#define LOTTO_NUM *((u16 *)&tLottoNumLow)
+#define SET_LOTTO_NUM(x) *((u16 *)&tLottoNumLow) = x & 0xFFFF; *((u16 *)&tLottoNumHi) = x >> 16;
+
+static void DebugMenu_LottoNumber(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    DebugMenu_RemoveMenu(taskId);
+    tWindowId = AddWindow(&sDebugMenu_Window_LottoNum);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    *((u16 *)&tLottoNumLow) = VarGet(VAR_POKELOT_RND1);
+    *((u16 *)&tLottoNumHi) = VarGet(VAR_POKELOT_RND2);
+    DebugMenu_LottoNumber_PrintStatus(tWindowId, LOTTO_NUM);
+    schedule_bg_copy_tilemap_to_vram(0);
+    tWhichDigit = 0;
+    gTasks[taskId].func = DebugMenu_LottoNumber_ProcessInput;
+}
+
+static void DebugMenu_LottoNumber_ProcessInput(u8 taskId)
+{
+    u32 lottoNum, temp, temp2, shifter;
+    u16 *data = gTasks[taskId].data;
+
+    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    {
+        shifter = powersOfTen[tWhichDigit];
+
+        lottoNum = LOTTO_NUM;
+        temp = (lottoNum % powersOfTen[tWhichDigit]) + ((lottoNum / powersOfTen[tWhichDigit + 1]) * powersOfTen[tWhichDigit + 1]);
+        temp2 = ((lottoNum - temp) / shifter) + 1;
+        temp += (temp2 > 9) ? 0 : temp2 * shifter;
+        
+        if (temp >= 0 && temp <= 99999)
+        {
+            PlaySE(SE_SELECT);
+            SET_LOTTO_NUM(temp);
+            DebugMenu_LottoNumber_PrintStatus(tWindowId, temp);
+        }
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    {
+        shifter = powersOfTen[tWhichDigit];
+
+        lottoNum = LOTTO_NUM;
+        temp = (lottoNum % powersOfTen[tWhichDigit]) + ((lottoNum / powersOfTen[tWhichDigit + 1]) * powersOfTen[tWhichDigit + 1]);
+        temp2 = ((lottoNum - temp) / shifter) - 1;
+        temp += (temp2 > 9) ? 0 : temp2 * shifter;
+        
+        if (temp >= 0 && temp <= 99999)
+        {
+            PlaySE(SE_SELECT);
+            SET_LOTTO_NUM(temp);
+            DebugMenu_LottoNumber_PrintStatus(tWindowId, temp);
+        }
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    {
+        if (++tWhichDigit > 4)
+            tWhichDigit = 4;
+        else
+            PlaySE(SE_SELECT);
+    }
+
+    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    {
+        if (--tWhichDigit < 0)
+            tWhichDigit = 0;
+        else
+            PlaySE(SE_SELECT);
+    }
+
+    if (gMain.newKeys & A_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        SetLotteryNumber(LOTTO_NUM);
+    }
+
+    if (gMain.newKeys & B_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        ReturnToPreviousMenu(taskId, GET_BOUNCER);
+    }
+}
+
+#undef tLottoNumLow
+#undef tLottoNumHi
+#undef tWhichDigit
+
+#undef LOTTO_NUM
+#undef SET_LOTTO_NUM
 
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId)
 {

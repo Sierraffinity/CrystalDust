@@ -212,7 +212,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SlowpokeTailless;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Butterfree;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kecleon2;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TuberMSwimming;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Azurill;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Jigglypuff;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mom;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LinkBrendan;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LinkMay;
@@ -461,7 +461,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_BUTTERFREE] =               &gObjectEventGraphicsInfo_Butterfree,
     [OBJ_EVENT_GFX_KECLEON_2] =                &gObjectEventGraphicsInfo_Kecleon2,
     [OBJ_EVENT_GFX_TUBER_M_SWIMMING] =         &gObjectEventGraphicsInfo_TuberMSwimming,
-    [OBJ_EVENT_GFX_AZURILL] =                  &gObjectEventGraphicsInfo_Azurill,
+    [OBJ_EVENT_GFX_JIGGLYPUFF] =               &gObjectEventGraphicsInfo_Jigglypuff,
     [OBJ_EVENT_GFX_MOM] =                      &gObjectEventGraphicsInfo_Mom,
     [OBJ_EVENT_GFX_LINK_BRENDAN] =             &gObjectEventGraphicsInfo_LinkBrendan,
     [OBJ_EVENT_GFX_LINK_MAY] =                 &gObjectEventGraphicsInfo_LinkMay,

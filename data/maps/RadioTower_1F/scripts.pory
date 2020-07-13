@@ -40,14 +40,14 @@ script RadioTower_1F_EventScript_LuckyNumberMan {
                "Want me to check the ID numbers\n"
                "of your POKéMON?\p"
                "If you get lucky, you win a prize.\n"
-               "Whaddya say?", MSGBOX_YESNO)
+               "How about it?", MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
             setflag(FLAG_DAILY_PICKED_LOTO_TICKET)
             special(RetrieveLotteryNumber)
             copyvar(VAR_0x8008, VAR_RESULT)
             special(BufferLottoTicketNumber)
-            msgbox("This week's ID number is {STR_VAR_1}.")
+            msgbox("Today's ID number is {STR_VAR_1}.")
             closemessage
             applymovement(LUCKY_NUMBER_MAN, RadioTower_1F_Movement_LuckyNumberManToPC)
             waitmovement(0)
@@ -61,12 +61,14 @@ script RadioTower_1F_EventScript_LuckyNumberMan {
             special(PickLotteryCornerTicket)
             waitmessage
             closemessage
+            playse(SE_PC_OFF)
+            waitse
             applymovement(LUCKY_NUMBER_MAN, RadioTower_1F_Movement_LuckyNumberManToPlayer)
             waitmovement(0)
             if (var(VAR_0x8004) == 0)
             {
                 msgbox("Nope, none of your ID numbers match.\n"
-                       "Please try again next week!")
+                       "Please try again tomorrow!")
             }
             else
             {
@@ -75,32 +77,34 @@ script RadioTower_1F_EventScript_LuckyNumberMan {
                 {
                     msgbox("Congratulations!\p"
                            "The ID number of your team's\n"
-                           "{STR_VAR_1} matches this\l"
-                           "week's LUCKY NUMBER!")
+                           "{STR_VAR_1} matches today's\l"
+                           "LUCKY NUMBER!")
                 }
                 elif (var(VAR_0x8006) == 1)
                 {
                     msgbox("Congratulations!\p"
                            "The ID number of your PC-boxed\n"
-                           "{STR_VAR_1} matches this\l"
-                           "week's LUCKY NUMBER!")
+                           "{STR_VAR_1} matches today's\l"
+                           "LUCKY NUMBER!")
                 }
                 bufferitemname(0, VAR_0x8005)
                 switch (var(VAR_0x8004))
                 {
                     case 1:
                         msgbox("Ooh, two digits matched.\p"
-                               "You've won the third prize,\l"
+                               "You've won the third prize,\n"
                                "the {STR_VAR_1}!")
                         break
                     case 2:
-                        msgbox("Hey! You matched three digits!.\p"
-                               "You've won the second prize,\l"
+                        msgbox("Hey!\n"
+                               "You matched three digits!\p"
+                               "You've won the second prize,\n"
                                "the {STR_VAR_1}!")
                         break
                     case 3:
-                        msgbox("Nice! Four digits matched up!\p"
-                               "You've won the first prize,\l"
+                        msgbox("Nice!\n"
+                               "Four digits matched up!\p"
+                               "You've won the first prize,\n"
                                "the {STR_VAR_1}!")
                         break
                     case 4:
@@ -166,7 +170,7 @@ script RadioTower_1F_EventScript_LuckyNumberMan_NoRoomForPrize {
 }
 
 script RadioTower_1F_EventScript_LuckyNumberMan_GameEnded {
-    msgbox("Please come back next week for\n"
+    msgbox("Please come back tomorrow for\n"
            "the next LUCKY NUMBER.")
     release
 }
@@ -263,299 +267,28 @@ script RadioTower_1F_EventScript_RadioCardWoman_EndQuiz {
     release
 }
 
-raw `
-RadioTower_1F_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
-    lockall
-    playbgm MUS_OAKSLAB, 0
-    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
-    waitmovement 0
-    delay 30
-    applymovement 5, Common_Movement_WalkInPlaceDown
-    waitmovement 0
-    msgbox RadioTower_1F_Text_WithThisMeteorite, MSGBOX_DEFAULT
-    closemessage
-    applymovement 5, Common_Movement_WalkInPlaceFastestUp
-    applymovement 6, Common_Movement_WalkInPlaceFastestUp
-    waitmovement 0
-    playse SE_PIN
-    applymovement 5, Common_Movement_ExclamationMark
-    waitmovement 0
-    applymovement 5, Common_Movement_Delay48
-    waitmovement 0
-    msgbox RadioTower_1F_Text_DontExpectMercyFromMagma, MSGBOX_DEFAULT
-    closemessage
-    applymovement 5, RadioTower_1F_Movement_MagmaGruntApproachPlayer
-    waitmovement 0
-    msgbox RadioTower_1F_Text_HoldItRightThereMagma, MSGBOX_DEFAULT
-    closemessage
-    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
-    applymovement 5, Common_Movement_WalkInPlaceFastestLeft
-    applymovement 6, Common_Movement_WalkInPlaceFastestLeft
-    waitmovement 0
-    addobject 7
-    addobject 8
-    addobject 9
-    playbgm MUS_ENCROCKET, 0
-    applymovement 7, RadioTower_1F_Movement_ArchieArrive
-    applymovement 8, RadioTower_1F_Movement_AquaGrunt1Arrive
-    applymovement 9, RadioTower_1F_Movement_AquaGrunt2Arrive
-    waitmovement 0
-    applymovement 5, Common_Movement_WalkInPlaceFastestLeft
-    applymovement 6, Common_Movement_WalkInPlaceFastestLeft
-    waitmovement 0
-    msgbox RadioTower_1F_Text_BeSeeingYouTeamAqua, MSGBOX_DEFAULT
-    closemessage
-    applymovement OBJ_EVENT_ID_PLAYER, RadioTower_1F_Movement_PushPlayerOutOfWay
-    applymovement 5, RadioTower_1F_Movement_MagmaGrunt1Exit
-    applymovement 6, RadioTower_1F_Movement_MagmaGrunt2Exit
-    waitmovement 0
-    removeobject 5
-    removeobject 6
-    applymovement 7, RadioTower_1F_Movement_ArchieApproachPlayer
-    waitmovement 0
-    msgbox RadioTower_1F_Text_ArchieSeenYouBefore, MSGBOX_DEFAULT
-    closemessage
-    applymovement 8, RadioTower_1F_Movement_AquaGrunt1ApproachArchie
-    applymovement 9, RadioTower_1F_Movement_AquaGrunt2ApproachArchie
-    waitmovement 0
-    msgbox RadioTower_1F_Text_BossWeShouldChaseMagma, MSGBOX_DEFAULT
-    applymovement 7, Common_Movement_WalkInPlaceFastestDown
-    waitmovement 0
-    msgbox RadioTower_1F_Text_ArchieYesNoTellingWhatMagmaWillDo, MSGBOX_DEFAULT
-    applymovement 7, Common_Movement_WalkInPlaceFastestLeft
-    waitmovement 0
-    msgbox RadioTower_1F_Text_ArchieFarewell, MSGBOX_DEFAULT
-    closemessage
-    applymovement 7, RadioTower_1F_Movement_ArchieExit
-    applymovement 8, RadioTower_1F_Movement_AquaGrunt1Exit
-    applymovement 9, RadioTower_1F_Movement_AquaGrunt2Exit
-    waitmovement 0
-    fadedefaultbgm
-    removeobject 7
-    removeobject 8
-    removeobject 9
-    setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
-    setflag FLAG_MET_ARCHIE_METEOR_FALLS
-    setflag FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT
-    setvar VAR_METEOR_FALLS_STATE, 1
-    releaseall
-    end
+script RadioTower_1F_EventScript_MaryLoverBoy {
+    msgbox("I love MARY, from POKéMON TALK.\p"
+           "I only know what she sounds like,\n"
+           "though.", MSGBOX_NPC)
+}
 
-RadioTower_1F_Movement_MagmaGruntApproachPlayer: @ 822BEC0
-    walk_right
-    walk_right
-    walk_in_place_fastest_up
-    step_end
+script RadioTower_1F_EventScript_BenLoverGirl {
+    msgbox("BEN is a fabulous DJ.\n"
+           "His sweet voice makes me melt!", MSGBOX_NPC)
+}
 
-RadioTower_1F_Movement_MagmaGrunt1Exit: @ 822BEC4
-    walk_fast_up
-    walk_fast_up
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    step_end
+script RadioTower_1F_EventScript_DirectorySign {
+    msgbox("1F RECEPTION\n"
+           "2F SALES\l"
+           "3F PERSONNEL\l"
+           "4F PRODUCTION\l"
+           "5F DIRECTOR'S OFFICE", MSGBOX_SIGN)
+}
 
-RadioTower_1F_Movement_MagmaGrunt2Exit: @ 822BECE
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    step_end
-
-RadioTower_1F_Movement_ArchieArrive: @ 822BED9
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-RadioTower_1F_Movement_AquaGrunt1Arrive: @ 822BEE0
-    delay_16
-    delay_16
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-RadioTower_1F_Movement_AquaGrunt2Arrive: @ 822BEE8
-    delay_16
-    delay_16
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-RadioTower_1F_Movement_ArchieExit: @ 822BEF0
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-RadioTower_1F_Movement_ArchieApproachPlayer: @ 822BEF8
-    walk_right
-    walk_right
-    walk_up
-    walk_up
-    walk_in_place_fastest_left
-    step_end
-
-RadioTower_1F_Movement_AquaGrunt1Exit: @ 822BEFE
-    walk_up
-    walk_up
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-RadioTower_1F_Movement_AquaGrunt1ApproachArchie: @ 822BF08
-    walk_right
-    walk_right
-    walk_right
-    walk_in_place_fastest_up
-    step_end
-
-RadioTower_1F_Movement_AquaGrunt2Exit: @ 822BF0D
-    walk_up
-    walk_up
-    walk_up
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-RadioTower_1F_Movement_AquaGrunt2ApproachArchie: @ 822BF18
-    walk_right
-    walk_right
-    walk_right
-    walk_in_place_fastest_up
-    step_end
-
-RadioTower_1F_Movement_PushPlayerOutOfWay: @ 822BF1D
-    walk_in_place_fastest_down
-    delay_4
-    walk_in_place_fastest_right
-    lock_facing_direction
-    walk_left
-    unlock_facing_direction
-    face_right
-    step_end
-
-RadioTower_1F_EventScript_ProfCozmo:: @ 822BF25
-    lock
-    faceplayer
-    goto_if_set FLAG_MET_PROF_COZMO, RadioTower_1F_EventScript_MetCozmo
-    setflag FLAG_MET_PROF_COZMO
-    msgbox RadioTower_1F_Text_MeetProfCozmo, MSGBOX_DEFAULT
-    release
-    end
-
-RadioTower_1F_EventScript_MetCozmo:: @ 822BF3D
-    msgbox RadioTower_1F_Text_WhatsTeamMagmaDoingAtSlowpokeWell_B1F, MSGBOX_DEFAULT
-    release
-    end
-
-RadioTower_1F_Text_WithThisMeteorite: @ 822BF47
-    .string "Hehehe!\p"
-    .string "With this METEORITE, that thing in\n"
-    .string "MT. CHIMNEY will…$"
-
-RadioTower_1F_Text_DontExpectMercyFromMagma: @ 822BF84
-    .string "Heh?\p"
-    .string "I don't know who you are, but if you get\n"
-    .string "in the way of TEAM MAGMA, don't\l"
-    .string "expect any mercy!$"
-
-RadioTower_1F_Text_HoldItRightThereMagma: @ 822BFE4
-    .string "Hold it right there, TEAM MAGMA!\p"
-    .string "You're badly mistaken if you think you\n"
-    .string "can have your way with the world!$"
-
-RadioTower_1F_Text_BeSeeingYouTeamAqua: @ 822C04E
-    .string "Hehehe!\n"
-    .string "Even TEAM AQUA joins us!\p"
-    .string "But it's too much trouble to deal with\n"
-    .string "you all…\p"
-    .string "Heh, it doesn't matter!\p"
-    .string "We've got the METEORITE, so off to\n"
-    .string "MT. CHIMNEY we go!\p"
-    .string "Hehehe! Be seeing you, you TEAM\n"
-    .string "AQUA dingbats!$"
-
-RadioTower_1F_Text_ArchieSeenYouBefore: @ 822C11C
-    .string "ARCHIE: Didn't I see you before?\n"
-    .string "At SLATEPORT's MUSEUM?\p"
-    .string "Ah, so your name is {PLAYER}.\p"
-    .string "At the time, I thought you were one\n"
-    .string "of TEAM MAGMA's goons.\p"
-    .string "Humph…\n"
-    .string "You're one odd kid.\p"
-    .string "TEAM MAGMA is a dangerous group of\n"
-    .string "total fanatics.\p"
-    .string "They engage in destruction, claiming\n"
-    .string "to expand the land mass.\p"
-    .string "They are the rivals to us,\n"
-    .string "the sea-loving TEAM AQUA!$"
-
-RadioTower_1F_Text_BossWeShouldChaseMagma: @ 822C268
-    .string "BOSS, we should give chase to\n"
-    .string "TEAM MAGMA…$"
-
-RadioTower_1F_Text_ArchieYesNoTellingWhatMagmaWillDo: @ 822C292
-    .string "ARCHIE: Yes, yes, we must!\n"
-    .string "We've got to hurry.\p"
-    .string "There's no telling what TEAM MAGMA\n"
-    .string "will do at MT. CHIMNEY!$"
-
-RadioTower_1F_Text_ArchieFarewell: @ 822C2FC
-    .string "ARCHIE: {PLAYER}, you should keep\n"
-    .string "an eye out for TEAM MAGMA, too.\p"
-    .string "Farewell!$"
-
-RadioTower_1F_Text_MeetProfCozmo: @ 822C342
-    .string "I… I'm COZMO…\n"
-    .string "I'm a PROFESSOR…\p"
-    .string "TEAM MAGMA asked me to guide them\n"
-    .string "to METEOR FALLS…\p"
-    .string "But they tricked me.\n"
-    .string "They even took my METEORITE away…\p"
-    .string "And then another similar bunch,\n"
-    .string "TEAM AQUA showed up.\p"
-    .string "After that…\n"
-    .string "I don't understand any of it.\p"
-    .string "But that TEAM MAGMA…\p"
-    .string "What are they going to do with that\n"
-    .string "METEORITE at MT. CHIMNEY?$"
-
-RadioTower_1F_Text_WhatsTeamMagmaDoingAtSlowpokeWell_B1F: @ 822C47D
-    .string "PROF. COZMO: But that TEAM MAGMA…\p"
-    .string "What are they going to do with that\n"
-    .string "METEORITE at MT. CHIMNEY?$"
-`
+script RadioTower_1F_EventScript_LuckyChannelSign {
+    msgbox("LUCKY CHANNEL!\n"
+           "Win with POKéMON ID numbers!\p"
+           "Trade your POKéMON to collect\n"
+           "different ID numbers!", MSGBOX_SIGN)
+}

@@ -106,7 +106,7 @@
 #define VAR_VIOLET_CITY_STATE                0x4057
 #define VAR_SLATEPORT_CITY_STATE             0x4058
 #define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
-#define VAR_GOLDENROD_CITY_STATE              0x405A
+#define VAR_GOLDENROD_CITY_STATE             0x405A
 #define VAR_FORTREE_CITY_STATE               0x405B // Unused Var
 #define VAR_LILYCOVE_CITY_STATE              0x405C // Unused Var
 #define VAR_MOSSDEEP_CITY_STATE              0x405D
@@ -115,11 +115,11 @@
 #define VAR_ROUTE29_STATE                    0x4060
 #define VAR_ROUTE30_STATE                    0x4061
 #define VAR_ROUTE31_STATE                    0x4062
-#define VAR_ROUTE32_STATE                   0x4063
-#define VAR_ROUTE33_STATE                   0x4064 // Unused Var
-#define VAR_ROUTE34_STATE                   0x4065 // Unused Var
+#define VAR_ROUTE32_STATE                    0x4063
+#define VAR_ROUTE33_STATE                    0x4064 // Unused Var
+#define VAR_ROUTE34_STATE                    0x4065 // Unused Var
 #define VAR_ROUTE107_STATE                   0x4066 // Unused Var
-#define VAR_ROUTE36_STATE                   0x4067 // Unused Var
+#define VAR_ROUTE36_STATE                    0x4067 // Unused Var
 #define VAR_ROUTE109_STATE                   0x4068 // Unused Var
 #define VAR_ROUTE110_STATE                   0x4069
 #define VAR_ROUTE111_STATE                   0x406A // Unused Var
@@ -129,7 +129,7 @@
 #define VAR_ROUTE115_STATE                   0x406E // Unused Var
 #define VAR_ROUTE116_STATE                   0x406F
 #define VAR_ROUTE117_STATE                   0x4070 // Unused Var
-#define VAR_ROUTE46_STATE                   0x4071
+#define VAR_ROUTE46_STATE                    0x4071
 #define VAR_ROUTE119_STATE                   0x4072
 #define VAR_ROUTE120_STATE                   0x4073 // Unused Var
 #define VAR_ROUTE121_STATE                   0x4074
@@ -170,14 +170,14 @@
 #define VAR_INIT_SECRET_BASE                 0x4097
 #define VAR_ILEX_FARFETCHD_STATE             0x4098
 #define VAR_LILYCOVE_CONTEST_LOBBY_STATE     0x4099
-#define VAR_UNION_CAVE_STATE             0x409A
+#define VAR_UNION_CAVE_STATE                 0x409A
 #define VAR_UNUSED_0x409B                    0x409B // Unused Var
 #define VAR_ELITE_4_STATE                    0x409C
 #define VAR_UNUSED_0x409D                    0x409D // Unused Var
 #define VAR_MOSSDEEP_SPACE_CENTER_STAIR_GUARD_STATE    0x409E
 #define VAR_MOSSDEEP_SPACE_CENTER_STATE      0x409F
 #define VAR_SLATEPORT_HARBOR_STATE           0x40A0
-#define VAR_UNUSED_0x40A1                    0x40A1 // Unused var
+#define VAR_BLUE_CARD_BALANCE                0x40A1
 #define VAR_SEAFLOOR_CAVERN_STATE            0x40A2
 #define VAR_CABLE_CAR_STATION_STATE          0x40A3
 #define VAR_SAFARI_ZONE_STATE                0x40A4  // 0: In or out of SZ, 1: Player exiting SZ, 2: Player entering SZ

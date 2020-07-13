@@ -160,8 +160,8 @@
 #define FLAG_CAUGHT_HO_OH                    0x92
 #define FLAG_ROCKETS_IN_RADIO_TOWER          0x93
 #define FLAG_POKECOM_CENTER_ENABLED          0x94
-#define FLAG_DELIVERED_DEVON_GOODS           0x95
-#define FLAG_RECEIVED_CONTEST_PASS           0x96 // Unused, leftover from R/S
+#define FLAG_MET_BUENA                       0x95
+#define FLAG_BUENA_OFFERED_NUMBER            0x96
 #define FLAG_RECEIVED_CASTFORM               0x97
 #define FLAG_RECEIVED_SUPER_ROD              0x98
 #define FLAG_VIOLET_NPC_TRADE_COMPLETED      0x99
@@ -1540,8 +1540,8 @@
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (DAILY_FLAGS_START + 0x21)
 #define FLAG_DAILY_SECRET_BASE                      (DAILY_FLAGS_START + 0x22)
 #define FLAG_DAILY_BUG_CATCHING_CONTEST             (DAILY_FLAGS_START + 0x23)
-#define FLAG_KURT_MAKING_BALLS                           (DAILY_FLAGS_START + 0x24)  // Unused Flag
-#define FLAG_UNUSED_0x925                           (DAILY_FLAGS_START + 0x25)  // Unused Flag
+#define FLAG_DAILY_KURT_MAKING_BALLS                (DAILY_FLAGS_START + 0x24)
+#define FLAG_DAILY_PLAYED_BUENAS_PASSWORD           (DAILY_FLAGS_START + 0x25)
 #define FLAG_UNUSED_0x926                           (DAILY_FLAGS_START + 0x26)  // Unused Flag
 #define FLAG_UNUSED_0x927                           (DAILY_FLAGS_START + 0x27)  // Unused Flag
 #define FLAG_UNUSED_0x928                           (DAILY_FLAGS_START + 0x28)  // Unused Flag

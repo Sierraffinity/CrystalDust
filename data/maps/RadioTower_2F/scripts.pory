@@ -1,0 +1,499 @@
+const GUARD = 7
+const BUENA = 9
+
+mapscripts RadioTower_2F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_GOLDENROD_CITY)
+        if (flag(FLAG_CLEARED_RADIO_TOWER))
+        {
+            setobjectxyperm(GUARD, 4, 3)
+        }
+    }
+}
+
+script RadioTower_2F_EventScript_RadioAnywhereGuy {
+    msgbox("You can listen to the radio anywhere.\n"
+           "Tune in!", MSGBOX_NPC)
+}
+
+script RadioTower_2F_EventScript_LullabyWoman {
+    lock
+    faceplayer
+    if (flag(FLAG_ROCKETS_IN_RADIO_TOWER))
+    {
+        msgbox("Why would they want to take over\n"
+               "the RADIO TOWER?")
+    }
+    else
+    {
+        msgbox("Lullabies on the radio may make\n"
+               "POKéMON sleep.")
+    }
+    release
+}
+
+script RadioTower_2F_EventScript_Guard {
+    lock
+    faceplayer
+    if (flag(FLAG_CLEARED_RADIO_TOWER))
+    {
+        msgbox("Feel free to look around anywhere.\p"
+               "The DIRECTOR is nice again, just\n"
+               "as he was before.")
+    }
+    else
+    {
+        msgbox("Sorry. Authorized perseonnel only\n"
+               "beyond this point.\p"
+               "It wasn't that way before.\p"
+               "There's something wrong with the\n"
+               "DIRECTOR…")
+    }
+    release
+}
+
+script RadioTower_2F_EventScript_Jigglypuff {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_JIGGLYPUFF, 0)
+    msgbox("JIGGLYPUFF: Jiggly…")
+    waitmoncry
+    release
+}
+
+script RadioTower_2F_EventScript_Buena {
+    lock
+    faceplayer
+    dotimebasedevents
+    gettime
+    if (flag(FLAG_ROCKETS_IN_RADIO_TOWER))
+    {
+        msgbox("BUENA: Huh?\n"
+               "Today's password?\p"
+               "HELP, of course!")
+    }
+    elif (!flag(FLAG_MET_BUENA))
+    {
+        setflag(FLAG_MET_BUENA)
+        msgbox("BUENA: Hi!\n"
+               "I'm BUENA!\p"
+               "Do you know about a radio program\n"
+               "called PASSWORD?\p"
+               "If you can tell me the password from\n"
+               "the program, you will earn points.\p"
+               "Save up those points and trade them\n"
+               "to that sweet young lady over\l"
+               "there for some choice prizes!\p"
+               "Here you go!\n"
+               "It's your very own point card!")
+        giveitem(ITEM_BLUE_CARD)
+        call(RadioTower_2F_EventScript_Buena_TuneIn)
+    }
+    elif (flag(FLAG_DAILY_PLAYED_BUENAS_PASSWORD))
+    {
+        msgbox("BUENA: Sorry…\n"
+               "You get just one chance each day.\p"
+               "Come back tomorrow for another try!")
+        call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+    }
+    elif (var(VAR_0x8000) < BUENAS_PASSWORD_START_HOUR)
+    {
+        msgbox("BUENA: Tune in to PASSWORD every\n"
+               "night from six to midnight!\p"
+               "Tune in, then drop in for a visit!")
+        call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+    }
+    elif (!flag(FLAG_BUENAS_PASSWORD_SET))
+    {
+        call(RadioTower_2F_EventScript_Buena_TuneIn)
+    }
+    else
+    {
+        checkitem(ITEM_BLUE_CARD, 1)
+        if (!var(VAR_RESULT))
+        {
+            msgbox("BUENA: Oh? You forgot to bring\n"
+                   "your BLUE CARD?\p"
+                   "I can't give you points if you\n"
+                   "don't have it.")
+            call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+        }
+        elif (var(VAR_BLUE_CARD_BALANCE) >= BUENAS_PASSWORD_MAX_POINTS)
+        {
+            msgbox("BUENA: Your BLUE CARD's full.\n"
+                   "Trade it in for a faulous prize!")
+            call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+        }
+        else
+        {
+            playbgm(MUS_M_BOAT, 0)
+            msgbox("BUENA: Hi!\n"
+                   "Did you tune in to my radio show?\p"
+                   "Do you remember today's password?", MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                msgbox("BUENA: Oh, wow! Thank you!\n"
+                       "What was your name again?\p"
+                       "…{PLAYER}, okay!\p"
+                       "Come on, {PLAYER}.\n"
+                       "Join the show!")
+                closemessage
+                applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+                waitmovement(0)
+                if (var(VAR_FACING) == DIR_EAST)
+                {
+                    applymovement(OBJ_EVENT_ID_PLAYER, RadioTower_2F_Movement_PlayerToBuenasMic)
+                    waitmovement(0)
+                }
+                else
+                {
+                    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+                    waitmovement(0)
+                }
+                msgbox("BUENA: Everyone ready?\p"
+                       "I want to hear you shout out today's\n"
+                       "password for {PLAYER}!")
+                applymovement(BUENA, Common_Movement_WalkInPlaceFastestDown)
+                waitmovement(0)
+                msgbox("BUENA: So, how about it?\n"
+                       "What's my password?")
+                // TODO: Password box thing
+                setvar(VAR_RESULT, 0)
+                setflag(FLAG_DAILY_PLAYED_BUENAS_PASSWORD)
+                if (var(VAR_RESULT) == FALSE)
+                {
+                    msgbox("BUENA: Aww…\n"
+                           "That's not it…\p"
+                           "Did you forget the password?")
+                }
+                else
+                {
+                    message("BUENA: YIPPEE!\n"
+                            "That's right!\p"
+                            "You did tune in!\n"
+                            "I'm so happy!\p"
+                            "You earned one point!\n"
+                            "Congrats!")
+                    waitmessage
+                    addvar(VAR_BLUE_CARD_BALANCE, 1)
+                    playse(SE_REGI)
+                    waitse
+                    waitbuttonpress
+                }
+                applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+                waitmovement(0)
+                msgbox("BUENA: Yup!\n"
+                       "Our contestant was {PLAYER}.\l"
+                       "Thanks for coming!\p"
+                       "I hope all you listeners will\n"
+                       "come too! I'll be waiting!")
+                fadedefaultbgm
+                closemessage
+                if (var(VAR_BLUE_CARD_BALANCE) >= BUENAS_PASSWORD_MAX_POINTS)
+                {
+                    delay(20)
+                    // TODO: Check for phone #
+                    applymovement(BUENA, Common_Movement_WalkInPlaceFastestDown)
+                    waitmovement(0)
+                    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp)
+                    waitmovement(0)
+
+                    if (!flag(FLAG_BUENA_OFFERED_NUMBER))
+                    {
+                        playse(SE_PIN)
+                        applymovement(BUENA, Common_Movement_ExclamationMark)
+                        waitmovement(0)
+                        applymovement(BUENA, Common_Movement_Delay48)
+                        waitmovement(0)
+                        setflag(FLAG_BUENA_OFFERED_NUMBER)
+                        msgbox("BUENA: Oh! Your BLUE CARD reached\n"
+                               "30 points today! That's so wild!\p"
+                               "Hmm… There isn't a prize for hitting\n"
+                               "30 points, but…\p"
+                               "You came by so often, {PLAYER}.\n"
+                               "I'll make you a special deal!\p"
+                               "How would you like my phone number?", MSGBOX_YESNO)
+                        call(RadioTower_2F_EventScript_Buena_OfferNumber)
+                    }
+                    else
+                    {
+                        call(RadioTower_2F_EventScript_Buena_OfferNumberAgain)
+                    }
+                    closemessage
+                    applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+                    waitmovement(0)
+                }
+            }
+            else
+            {
+                msgbox("BUENA: Come back after you\n"
+                       "listen to my show, okay?\p"
+                       "Catch ya later!")
+                fadedefaultbgm
+                closemessage
+                applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+                waitmovement(0)
+            }
+        }
+    }
+    release
+}
+
+movement RadioTower_2F_Movement_PlayerToBuenasMic {
+    walk_down
+    walk_right
+}
+
+script RadioTower_2F_EventScript_Buena_TuneIn {
+    msgbox("BUENA: Tune in to my PASSWORD SHOW!")
+    call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+}
+
+script RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven {
+    // TODO: Check for phone #
+    if (flag(FLAG_BUENA_OFFERED_NUMBER))
+    {
+        call(RadioTower_2F_EventScript_Buena_OfferNumberAgain)
+    }
+    closemessage
+    applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+}
+
+script RadioTower_2F_EventScript_Buena_OfferNumberAgain {
+    msgbox("BUENA: {PLAYER}, do you want to\n"
+           "register my phone number?", MSGBOX_YESNO)
+    goto(RadioTower_2F_EventScript_Buena_OfferNumber)
+}
+
+script RadioTower_2F_EventScript_Buena_OfferNumber {
+    if (var(VAR_RESULT) == NO)
+    {
+        msgbox("BUENA: Aww…\n"
+               "It's a special prize…")
+    }
+    else
+    {
+        // TODO: Registration
+    }
+}
+
+script RadioTower_2F_EventScript_BuenasAssistant {
+    lock
+    faceplayer
+    checkitem(ITEM_BLUE_CARD, 1)
+    if (var(VAR_RESULT))
+    {
+        msgbox("You can cash in your saved points\n"
+               "for a lovely prize of your choice!")
+        // TODO: Prize menu
+    }
+    else
+    {
+        msgbox("You can't trade in points without\n"
+               "your BLUE CARD.\p"
+               "Don't forget your BLUE CARD!")
+    }
+    release
+}
+
+script RadioTower_2F_EventScript_PokemonRadioSign {
+    msgbox("Anywhere, Anytime\n"
+           "POKéMON Radio", MSGBOX_SIGN)
+}
+
+script RadioTower_2F_EventScript_OaksPkmnTalkSign {
+    msgbox("PROF. OAK'S POKéMON TALK\n"
+           "The Hottest Show on the Air!", MSGBOX_SIGN)
+}
+
+script RadioTower_2F_EventScript_2FSalesSign {
+    msgbox("2F SALES", MSGBOX_SIGN)
+}
+
+raw `
+RadioTower_2F_EventScript_Nicolas:: @ 822C4DE
+	trainerbattle_single TRAINER_NICOLAS_1, RadioTower_2F_Text_NicolasIntro, RadioTower_2F_Text_NicolasDefeat, RadioTower_2F_EventScript_RegisterNicolas
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq RadioTower_2F_EventScript_RematchNicolas
+	msgbox RadioTower_2F_Text_NicolasPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+RadioTower_2F_EventScript_RegisterNicolas:: @ 822C50A
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+	msgbox RadioTower_2F_Text_NicolasRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_NICOLAS_1
+	release
+	end
+
+RadioTower_2F_EventScript_RematchNicolas:: @ 822C529
+	trainerbattle_rematch TRAINER_NICOLAS_1, RadioTower_2F_Text_NicolasRematchIntro, RadioTower_2F_Text_NicolasRematchDefeat
+	msgbox RadioTower_2F_Text_NicolasPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+RadioTower_2F_EventScript_John:: @ 822C540
+	trainerbattle_double TRAINER_JOHN_AND_JAY_1, RadioTower_2F_Text_JohnIntro, RadioTower_2F_Text_JohnDefeat, RadioTower_2F_Text_JohnNotEnoughMons, RadioTower_2F_EventScript_RegisterJohn
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq RadioTower_2F_EventScript_RematchJohn
+	msgbox RadioTower_2F_Text_JohnPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+RadioTower_2F_EventScript_RegisterJohn:: @ 822C570
+	msgbox RadioTower_2F_Text_JohnRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_JOHN_AND_JAY_1
+	release
+	end
+
+RadioTower_2F_EventScript_RematchJohn:: @ 822C589
+	trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1, RadioTower_2F_Text_JohnRematchIntro, RadioTower_2F_Text_JohnRematchDefeat, RadioTower_2F_Text_JohnRematchNotEnoughMons
+	msgbox RadioTower_2F_Text_JohnPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+RadioTower_2F_EventScript_Jay:: @ 822C5A4
+	trainerbattle_double TRAINER_JOHN_AND_JAY_1, RadioTower_2F_Text_JayIntro, RadioTower_2F_Text_JayDefeat, RadioTower_2F_Text_JayNotEnoughMons, RadioTower_2F_EventScript_RegisterJay
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	compare VAR_RESULT, TRUE
+	goto_if_eq RadioTower_2F_EventScript_RematchJay
+	msgbox RadioTower_2F_Text_JayPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+RadioTower_2F_EventScript_RegisterJay:: @ 822C5D4
+	msgbox RadioTower_2F_Text_JohnRegister, MSGBOX_DEFAULT  @ John speaks for both during register
+	register_matchcall TRAINER_JOHN_AND_JAY_1
+	release
+	end
+
+RadioTower_2F_EventScript_RematchJay:: @ 822C5ED
+	trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1, RadioTower_2F_Text_JayRematchIntro, RadioTower_2F_Text_JayRematchDefeat, RadioTower_2F_Text_JayRematchNotEnoughMons
+	msgbox RadioTower_2F_Text_JayPostRematch, MSGBOX_AUTOCLOSE
+	end
+
+RadioTower_2F_Text_NicolasIntro: @ 822C608
+	.string "This is where we DRAGON users do our\n"
+	.string "training.\p"
+	.string "The CHAMPION even visits.\n"
+	.string "Now do you see how special it is here?$"
+
+RadioTower_2F_Text_NicolasDefeat: @ 822C678
+	.string "Urgh!\n"
+	.string "I didn't expect you to be so strong!$"
+
+RadioTower_2F_Text_NicolasPostBattle: @ 822C6A3
+	.string "The road ahead remains long and harsh.\p"
+	.string "When will my POKéMON and I become\n"
+	.string "the best?$"
+
+RadioTower_2F_Text_NicolasRegister: @ 822C6F6
+	.string "I want to know more about your power.\n"
+	.string "Let me register you in my POKéNAV.$"
+
+RadioTower_2F_Text_NicolasRematchIntro: @ 822C73F
+	.string "Since we met, we have trained hard\n"
+	.string "with our sights on number one.\p"
+	.string "Help us see how much stronger we've\n"
+	.string "become!$"
+
+RadioTower_2F_Text_NicolasRematchDefeat: @ 822C7AD
+	.string "Urgh!\n"
+	.string "I didn't expect you to be so strong!$"
+
+RadioTower_2F_Text_NicolasPostRematch: @ 822C7D8
+	.string "You've obviously kept up your\n"
+	.string "POKéMON training.\p"
+	.string "So long as you remain strong, I, too,\n"
+	.string "can become stronger!$"
+
+RadioTower_2F_Text_JohnIntro: @ 822C843
+	.string "JOHN: We've always battled POKéMON\n"
+	.string "together as a twosome.\l"
+	.string "We've confidence in ourselves.$"
+
+RadioTower_2F_Text_JohnDefeat: @ 822C89C
+	.string "JOHN: Oh, my.\n"
+	.string "We've lost, dear wife.$"
+
+RadioTower_2F_Text_JohnPostBattle: @ 822C8C1
+	.string "JOHN: We've been married for\n"
+	.string "fifty years.\p"
+	.string "Come to think of it, I've yet to beat\n"
+	.string "my dear wife in a battle.$"
+
+RadioTower_2F_Text_JohnNotEnoughMons: @ 822C92B
+	.string "JOHN: Well, well, what a young TRAINER!\p"
+	.string "Will you battle with us? If so, you'll\n"
+	.string "have to return with more POKéMON.$"
+
+RadioTower_2F_Text_JohnRegister: @ 822C99C
+	.string "JOHN: Young TRAINER, if the chance\n"
+	.string "arises, will you battle with us again?$"
+
+RadioTower_2F_Text_JayIntro: @ 822C9E6
+	.string "JAY: We've been married for\n"
+	.string "fifty years.\p"
+	.string "The bond we share as a couple could\n"
+	.string "never be broken.$"
+
+RadioTower_2F_Text_JayDefeat: @ 822CA44
+	.string "JAY: Oh, dear.\n"
+	.string "We've lost, my dear husband.$"
+
+RadioTower_2F_Text_JayPostBattle: @ 822CA70
+	.string "JAY: Fifty years of marriage…\p"
+	.string "If we ever argued, we always settled\n"
+	.string "it with a POKéMON battle…$"
+
+RadioTower_2F_Text_JayNotEnoughMons: @ 822CACD
+	.string "JAY: Well, well, aren't you a young\n"
+	.string "TRAINER?\p"
+	.string "If you'd care to battle with us, you'll\n"
+	.string "have to come back with more POKéMON.$"
+
+RadioTower_2F_Text_JohnRematchIntro: @ 822CB47
+	.string "JOHN: We've always battled POKéMON\n"
+	.string "together as a twosome.\l"
+	.string "We've confidence in ourselves.$"
+
+RadioTower_2F_Text_JohnRematchDefeat: @ 822CBA0
+	.string "JOHN: Oh, my.\n"
+	.string "We've lost, dear wife.$"
+
+RadioTower_2F_Text_JohnPostRematch: @ 822CBC5
+	.string "JOHN: Married for fifty years…\p"
+	.string "On reflection, the dear wife and I,\n"
+	.string "we battled day in and day out…$"
+
+RadioTower_2F_Text_JohnRematchNotEnoughMons: @ 822CC27
+	.string "JOHN: Well, well, what a young TRAINER!\p"
+	.string "Will you battle with us? If so, you'll\n"
+	.string "have to return with more POKéMON.$"
+
+RadioTower_2F_Text_JayRematchIntro: @ 822CC98
+	.string "JAY: We've been married for\n"
+	.string "fifty years.\p"
+	.string "We've supported each other all that\n"
+	.string "time. We've made ourselves strong.$"
+
+RadioTower_2F_Text_JayRematchDefeat: @ 822CD08
+	.string "JAY: Oh, dear.\n"
+	.string "We've lost, my dear husband.$"
+
+RadioTower_2F_Text_JayPostRematch: @ 822CD34
+	.string "JAY: Fifty years of marriage…\n"
+	.string "Many things have happened.\p"
+	.string "I hope that we will continue to make\n"
+	.string "happy memories together.$"
+
+RadioTower_2F_Text_JayRematchNotEnoughMons: @ 822CDAB
+	.string "JAY: Well, well, aren't you a young\n"
+	.string "TRAINER?\p"
+	.string "If you'd care to battle with us, you'll\n"
+	.string "have to come back with more POKéMON.$"
+
+`
