@@ -9,6 +9,14 @@ enum
     CARD_TYPE_FRLG,
     CARD_TYPE_RS,
     CARD_TYPE_EMERALD,
+    CARD_TYPE_CRYSTALDUST,
+};
+
+enum
+{
+    CARD_REGION_KANTO,
+    CARD_REGION_HOENN,
+    CARD_REGION_JOHTO,
 };
 
 enum
