@@ -1701,7 +1701,11 @@ static void UnloadRadioCard(void)
         DestroySprite(&gSprites[gTasks[taskId].data[i + 1]]);
     }
 
-    DestroyTask(gTasks[taskId].tRadioShowTaskId);
+    if (gTasks[taskId].tRadioShowTaskId != 0xFF)
+    {
+        DestroyTask(gTasks[taskId].tRadioShowTaskId);
+    }
+
     DestroyTask(taskId);
 }
 
