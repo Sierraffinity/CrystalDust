@@ -156,10 +156,11 @@ script RadioTower_2F_EventScript_Buena {
                        "password for {PLAYER}!")
                 applymovement(BUENA, Common_Movement_WalkInPlaceFastestDown)
                 waitmovement(0)
-                msgbox("BUENA: So, how about it?\n"
-                       "What's my password?")
-                // TODO: Password box thing
-                setvar(VAR_RESULT, 0)
+                message("BUENA: So, how about it?\n"
+                        "What's my password?")
+                waitmessage
+                special(BuenasPasswordMultichoice)
+                waitstate
                 setflag(FLAG_DAILY_PLAYED_BUENAS_PASSWORD)
                 if (var(VAR_RESULT) == FALSE)
                 {

@@ -51,7 +51,6 @@ static void ApricornMenu_RemoveScrollIndicator(void);
 static void ApricornMenu_KurtAsksQuantity(u8 taskId, s32 whichApricorn);
 static void ApricornMenu_InitQuantityBox(u8 taskId);
 static void ApricornMenu_PrintQuantity(int windowId, int numToGive);
-static void ApricornMenu_MoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *unused);
 static void ApricornMenu_ChangeQuantityToGive(u8 taskId);
 static void ApricornMenu_ReturnToMain(u8 taskId);
 static void ApricornMenu_InitConfirmGive(u8 taskId);
@@ -93,7 +92,7 @@ static const struct WindowTemplate sApricornMenuWindows[] =
 static const struct ListMenuTemplate sApricornListMenuTemplate =
 {
     .items = NULL,
-    .moveCursorFunc = ApricornMenu_MoveCursor,
+    .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
     .itemPrintFunc = ApricornMenu_ItemPrint,
     .totalItems = 0,
     .maxShowed = 0,
@@ -285,14 +284,6 @@ static void ApricornMenu_ItemPrint(u8 windowId, s32 id, u8 yOffset)
         ConvertIntToDecimalStringN(gStringVar1, sApricornMenu->apricorns[id].quantity, STR_CONV_MODE_RIGHT_ALIGN, 3);
         StringExpandPlaceholders(gStringVar4, gText_xVar1);
         AddTextPrinterParameterized(windowId, 0, gStringVar4, GetStringRightAlignXOffset(0, gStringVar4, 112), yOffset, TEXT_SPEED_FF, NULL);
-    }
-}
-
-void ApricornMenu_MoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *unused)
-{
-    if (onInit != TRUE)
-    {
-        PlaySE(SE_SELECT);
     }
 }
 

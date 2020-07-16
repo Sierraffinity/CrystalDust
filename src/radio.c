@@ -2,6 +2,7 @@
 #include "main.h"
 #include "malloc.h"
 #include "battle_main.h"
+#include "buenas_password.h"
 #include "clock.h"
 #include "data.h"
 #include "day_night.h"
@@ -58,15 +59,6 @@ static const u16 sRadioChannelSongs[] =
     [EVOLUTION_RADIO] = MUS_HIDERI
 };
 
-enum {
-    PASS_SPECIES,
-    PASS_ITEM,
-    PASS_MAPSEC,
-    PASS_TYPE,
-    PASS_MOVE,
-    PASS_STATION
-};
-
 const u8 *const gRadioShowNames[] = 
 {
     gText_OaksPkmnTalk,
@@ -80,25 +72,6 @@ const u8 *const gRadioShowNames[] =
     gText_PokeFlute,
     gText_FiveMarks,
     gText_FiveMarks,
-};
-
-// TODO: Proper widths
-static const struct {
-    u8 width;
-    u8 type;
-    u16 values[3];
-} sBuenasPasswords[] = {
-    { 10, PASS_SPECIES, { SPECIES_CYNDAQUIL,    SPECIES_TOTODILE,           SPECIES_CHIKORITA } },
-    { 12, PASS_ITEM,    { ITEM_FRESH_WATER,     ITEM_SODA_POP,              ITEM_LEMONADE } },
-    { 12, PASS_ITEM,    { ITEM_POTION,          ITEM_ANTIDOTE,              ITEM_PARALYZE_HEAL } },
-    { 12, PASS_ITEM,    { ITEM_POKE_BALL,       ITEM_GREAT_BALL,            ITEM_ULTRA_BALL } },
-    { 10, PASS_SPECIES, { SPECIES_PIKACHU,      SPECIES_RATTATA,            SPECIES_GEODUDE } },
-    { 10, PASS_SPECIES, { SPECIES_HOOTHOOT,     SPECIES_SPINARAK,           SPECIES_DROWZEE } },
-    { 16, PASS_MAPSEC,  { MAPSEC_NEW_BARK_TOWN, MAPSEC_CHERRYGROVE_CITY,    MAPSEC_AZALEA_TOWN } },
-    { 6,  PASS_TYPE,    { TYPE_FLYING,          TYPE_BUG,                   TYPE_GRASS } },
-    { 12, PASS_MOVE,    { MOVE_TACKLE,          MOVE_GROWL,                 MOVE_MUD_SLAP } },
-    { 12, PASS_ITEM,    { ITEM_X_ATTACK,        ITEM_X_DEFEND,              ITEM_X_SPEED } },
-    { 13, PASS_STATION, { OAKS_POKEMON_TALK,    POKEMON_MUSIC,              LUCKY_CHANNEL } }
 };
 
 u8 LoadStation_PokemonChannel(void);
@@ -158,38 +131,6 @@ void PlayPokemonMusic(void)
     if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
         song = MUS_ASHROAD;
     PlayNewMapMusic(song);
-}
-
-const u8 *GetBuenasPassword(u8 category, u8 index)
-{
-    const u8 *string;
-    u16 value;
-
-    value = sBuenasPasswords[category].values[index];
-
-    switch (sBuenasPasswords[category].type)
-    {
-        case PASS_SPECIES:
-            string = gSpeciesNames[value];
-            break;
-        case PASS_ITEM:
-            string = ItemId_GetName(value);
-            break;
-        case PASS_MAPSEC:
-            string = gRegionMapEntries[value].name;
-            break;
-        case PASS_TYPE:
-            string = gTypeNames[value];
-            break;
-        case PASS_MOVE:
-            string = gMoveNames[value];
-            break;
-        case PASS_STATION:
-            string = gRadioShowNames[value];
-            break;
-    }
-
-    return string;
 }
 
 void Task_PlayRadioShow(u8 taskId)
@@ -604,7 +545,7 @@ void Task_PlayRadioShow(u8 taskId)
 
                 if (!FlagGet(FLAG_BUENAS_PASSWORD_SET))
                 {
-                    password = (Random() % ARRAY_COUNT(sBuenasPasswords)) << 8 | (Random() % ARRAY_COUNT(sBuenasPasswords[0].values));
+                    password = GenerateRandomBuenasPassword();
                     VarSet(VAR_BUENAS_PASSWORD, password);
                     FlagSet(FLAG_BUENAS_PASSWORD_SET);
                 }

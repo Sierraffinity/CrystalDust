@@ -245,7 +245,7 @@
 #define VAR_NEVER_READ_0x40E2                0x40E2 // Var is written to, but never read
 #define VAR_NEVER_READ_0x40E3                0x40E3 // Var is written to, but never read
 #define VAR_NEVER_READ_0x40E4                0x40E4 // var is written to, but never read
-#define VAR_UNUSED_0x40E5                    0x40E5 // Unused Var
+#define VAR_BUENAS_PASSWORD                  0x40E5
 #define VAR_DAILY_SLOTS                      0x40E6
 #define VAR_DAILY_WILDS                      0x40E7
 #define VAR_DAILY_BLENDER                    0x40E8
