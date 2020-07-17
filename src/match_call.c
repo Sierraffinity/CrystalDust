@@ -1090,7 +1090,7 @@ static bool8 ReceiveCallWhenOutside(void)
 static u32 GetNumRegisteredNPCs(void)
 {
     u32 i, count;
-    for (i = 0, count = 0; i < PHONE_CONTACT_COUNT; i++)
+    for (i = 0, count = 0; i < REMATCH_TABLE_ENTRIES; i++)
     {
         if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
             FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
@@ -1105,7 +1105,7 @@ static u32 GetNumRegisteredNPCs(void)
 static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 {
     u32 i;
-    for (i = 0; i < PHONE_CONTACT_COUNT; i++)
+    for (i = 0; i < REMATCH_TABLE_ENTRIES; i++)
     {
         if (gPhoneContacts[gRematchTable[i].phoneContactId].rematchTrainerId != 0xFF &&
             FlagGet(gPhoneContacts[gRematchTable[i].phoneContactId].registeredFlag))
@@ -1122,7 +1122,7 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 
 bool32 TryStartMatchCall(void)
 {
-    if (MapAllowsMatchCall() & SelectForcedPhoneCall())
+    if (MapAllowsMatchCall() && SelectForcedPhoneCall())
     {
         StartMatchCall();
         return TRUE;
