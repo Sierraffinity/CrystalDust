@@ -27,7 +27,7 @@
 
 // Scrollable Multichoice Menus
 #define SCROLL_MULTI_DAY_OF_WEEK                           0
-#define SCROLL_MULTI_GLASS_WORKSHOP_VENDOR                 1
+#define SCROLL_MULTI_BLUE_CARD_PRIZES                      1
 #define SCROLL_MULTI_POKEMON_FAN_CLUB_RATER                2
 #define SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_1     3
 #define SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_2     4

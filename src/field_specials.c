@@ -124,10 +124,10 @@ static void ScrollableMultichoice_UpdateScrollArrows(u8 taskId);
 static void ScrollableMultichoice_MoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *list);
 static void HideFrontierExchangeCornerItemIcon(u16 menu, u16 unused);
 static void ShowBattleFrontierTutorMoveDescription(u8 menu, u16 selection);
-static void CloseScrollableMultichoice(u8 taskId);
+static void DoCloseScrollableMultichoice(u8 taskId);
 static void ScrollableMultichoice_RemoveScrollArrows(u8 taskId);
-static void sub_813A600(u8 taskId);
-static void sub_813A664(u8 taskId);
+static void Task_WaitForResumeScrollableMulitichoice(u8 taskId);
+static void DoResumeScrollableMultichoice(u8 taskId);
 static void ShowFrontierExchangeCornerItemIcon(u16 item);
 static void Task_DeoxysRockInteraction(u8 taskId);
 static void ChangeDeoxysRockLevel(u8 a0);
@@ -2291,13 +2291,13 @@ void ShowScrollableMultichoice(void)
             task->tKeepOpenAfterSelect = FALSE;
             task->tTaskId = taskId;
             break;
-        case SCROLL_MULTI_GLASS_WORKSHOP_VENDOR:
-            task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN - 1;
-            task->tNumItems = 8;
-            task->tLeft = 1;
+        case SCROLL_MULTI_BLUE_CARD_PRIZES:
+            task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
+            task->tNumItems = 10;
+            task->tLeft = 11;
             task->tTop = 1;
-            task->tWidth = 9;
-            task->tHeight = 10;
+            task->tWidth = 15;
+            task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
             task->tTaskId = taskId;
             break;
@@ -2421,15 +2421,17 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_Friday,
         gText_Saturday
     },
-    [SCROLL_MULTI_GLASS_WORKSHOP_VENDOR] = 
+    [SCROLL_MULTI_BLUE_CARD_PRIZES] = 
     {
-        gText_BlueFlute,
-        gText_YellowFlute,
-        gText_RedFlute,
-        gText_WhiteFlute,
-        gText_BlackFlute,
-        gText_PrettyChair,
-        gText_PrettyDesk,
+        gText_UltraBall2Points,
+        gText_FullRestore2Points,
+        gText_Nugget3Points,
+        gText_RareCandy3Points,
+        gText_Protein5Points,
+        gText_Iron5Points,
+        gText_Carbos5Points,
+        gText_Calcium5Points,
+        gText_HPUp5Points,
         gText_Exit
     },
     [SCROLL_MULTI_POKEMON_FAN_CLUB_RATER] = 
@@ -2680,7 +2682,7 @@ static void ScrollableMultichoice_ProcessInput(u8 taskId)
         {
             gSpecialVar_Result = MULTI_B_PRESSED;
             PlaySE(SE_SELECT);
-            CloseScrollableMultichoice(taskId);
+            DoCloseScrollableMultichoice(taskId);
         }
         break;
     default:
@@ -2688,24 +2690,24 @@ static void ScrollableMultichoice_ProcessInput(u8 taskId)
         PlaySE(SE_SELECT);
         if (!task->tKeepOpenAfterSelect)
         {
-            CloseScrollableMultichoice(taskId);
+            DoCloseScrollableMultichoice(taskId);
         }
         // if selected option was the last one (Exit)
-        else if (input == task->tNumItems - 1)
+        /*else if (input == task->tNumItems - 1)
         {
-            CloseScrollableMultichoice(taskId);
-        }
+            DoCloseScrollableMultichoice(taskId);
+        }*/
         else
         {
             ScrollableMultichoice_RemoveScrollArrows(taskId);
-            task->func = sub_813A600;
+            task->func = Task_WaitForResumeScrollableMulitichoice;
             EnableBothScriptContexts();
         }
         break;
     }
 }
 
-static void CloseScrollableMultichoice(u8 taskId)
+static void DoCloseScrollableMultichoice(u8 taskId)
 {
     u16 selection;
     struct Task *task = &gTasks[taskId];
@@ -2722,8 +2724,7 @@ static void CloseScrollableMultichoice(u8 taskId)
     EnableBothScriptContexts();
 }
 
-// Functionally unused; tKeepOpenAfterSelect is only != 0 in unused functions
-static void sub_813A600(u8 taskId)
+static void Task_WaitForResumeScrollableMulitichoice(u8 taskId)
 {
     switch (gTasks[taskId].tKeepOpenAfterSelect)
     {
@@ -2732,26 +2733,28 @@ static void sub_813A600(u8 taskId)
             break;
         case 2:
             gTasks[taskId].tKeepOpenAfterSelect = 1;
-            gTasks[taskId].func = sub_813A664;
+            gTasks[taskId].func = DoResumeScrollableMultichoice;
+            break;
+        case 3:
+            DoCloseScrollableMultichoice(taskId);
             break;
     }
 }
 
-// Never called
-void sub_813A630(void)
+void ResumeScrollableMultichoice(void)
 {
-    u8 taskId = FindTaskIdByFunc(sub_813A600);
+    u8 taskId = FindTaskIdByFunc(Task_WaitForResumeScrollableMulitichoice);
     if (taskId == 0xFF)
     {
         EnableBothScriptContexts();
     }
     else
     {
-        gTasks[taskId].tKeepOpenAfterSelect++;
+        gTasks[taskId].tKeepOpenAfterSelect = 2;
     }
 }
 
-static void sub_813A664(u8 taskId)
+static void DoResumeScrollableMultichoice(u8 taskId)
 {
     ScriptContext2_Enable();
     ScrollableMultichoice_UpdateScrollArrows(taskId);
@@ -3525,11 +3528,11 @@ void CloseBattleFrontierTutorWindow(void)
 }
 
 // Never called
-void sub_813ADD4(void)
+void RedrawScrollableMultichoice(void)
 {
     u16 scrollOffset, selectedRow;
     u8 i;
-    u8 taskId = FindTaskIdByFunc(sub_813A600);
+    u8 taskId = FindTaskIdByFunc(Task_WaitForResumeScrollableMulitichoice);
     if (taskId != 0xFF)
     {
         struct Task *task = &gTasks[taskId];
@@ -3585,10 +3588,9 @@ void GetBattleFrontierTutorMoveIndex(void)
     }
 }
 
-// Never called
-void sub_813AF48(void)
+void CloseScrollableMultichoice(void)
 {
-    u8 taskId = FindTaskIdByFunc(sub_813A600);
+    u8 taskId = FindTaskIdByFunc(Task_WaitForResumeScrollableMulitichoice);
     if (taskId != 0xFF)
     {
         struct Task *task = &gTasks[taskId];

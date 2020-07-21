@@ -21,6 +21,7 @@
 #include "string_util.h"
 #include "strings.h"
 #include "task.h"
+#include "text_window.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/region_map_sections.h"
@@ -29,6 +30,7 @@
 #include "constants/vars.h"
 
 static struct ListMenuItem *sPasswordListMenuItems;
+static EWRAM_DATA u8 sPointsWindowId = 0;
 
 enum {
     PASS_SPECIES,
@@ -168,6 +170,49 @@ static void PasswordMenu_Exit(u8 taskId, s32 chosenIndex)
 #undef tIndex
 #undef tListMenuTaskId
 
+void PrintPointsString(u32 pointAmount)
+{
+    u8 windowId;
+    int width;
+
+    ConvertIntToDecimalStringN(gStringVar1, pointAmount, STR_CONV_MODE_RIGHT_ALIGN, 4);
+    StringExpandPlaceholders(gStringVar4, gText_Var1Points);
+    width = GetStringWidth(0, gStringVar4, 0);
+    windowId = sPointsWindowId;
+    AddTextPrinterParameterized(windowId, 0, gStringVar4, 64 - width, 0xC, 0, NULL);
+}
+
+void ShowPointsWindow(u32 pointAmount, u8 x, u8 y)
+{
+    struct WindowTemplate template;
+
+    SetWindowTemplateFields(&template, 0, x + 1, y + 1, 8, 3, 0xF, 0x20);
+    sPointsWindowId = AddWindow(&template);
+    FillWindowPixelBuffer(sPointsWindowId, 0);
+    PutWindowTilemap(sPointsWindowId);
+    LoadThinWindowBorderGfx(sPointsWindowId, 0x21D, 0xD0);
+    DrawStdFrameWithCustomTileAndPalette(sPointsWindowId, FALSE, 0x21D, 0xD);
+    AddTextPrinterParameterized(sPointsWindowId, 1, gText_Points, 0, 0, 0xFF, 0);
+    PrintPointsString(pointAmount);
+}
+
+void ShowPointsWindowAtTopLeft(void)
+{
+    ShowPointsWindow(VarGet(VAR_BLUE_CARD_BALANCE), 0, 0);
+}
+
+void UpdatePointsWindow(void)
+{
+    PrintPointsString(VarGet(VAR_BLUE_CARD_BALANCE));
+}
+
+void HidePointsWindow(void)
+{
+    ClearWindowTilemap(sPointsWindowId);
+    ClearStdWindowAndFrameToTransparent(sPointsWindowId, TRUE);
+    RemoveWindow(sPointsWindowId);
+}
+
 const u8 *GetBuenasPassword(u8 category, u8 index)
 {
     const u8 *string;
@@ -178,7 +223,7 @@ const u8 *GetBuenasPassword(u8 category, u8 index)
         category = 0;
     }
 
-    if (index > ARRAY_COUNT(sBuenasPasswords[0]))
+    if (index > ARRAY_COUNT(sBuenasPasswords[0].values))
     {
         index = 0;
     }

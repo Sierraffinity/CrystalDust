@@ -61,7 +61,7 @@ Route113_GlassWorkshop_EventScript_SootSackNotInBag:: @ 826ED9D
 
 Route113_GlassWorkshop_EventScript_ChooseGlassItem:: @ 826EDA7
 	setvar VAR_0x8009, 0
-	setvar VAR_0x8004, SCROLL_MULTI_GLASS_WORKSHOP_VENDOR
+	setvar VAR_0x8004, SCROLL_MULTI_BLUE_CARD_PRIZES
 	special ShowScrollableMultichoice
 	waitstate
 	switch VAR_RESULT

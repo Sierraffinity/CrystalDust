@@ -43,7 +43,7 @@ script RadioTower_2F_EventScript_Guard {
     }
     else
     {
-        msgbox("Sorry. Authorized perseonnel only\n"
+        msgbox("Sorry. Authorized personnel only\n"
                "beyond this point.\p"
                "It wasn't that way before.\p"
                "There's something wrong with the\n"
@@ -122,7 +122,7 @@ script RadioTower_2F_EventScript_Buena {
         elif (var(VAR_BLUE_CARD_BALANCE) >= BUENAS_PASSWORD_MAX_POINTS)
         {
             msgbox("BUENA: Your BLUE CARD's full.\n"
-                   "Trade it in for a faulous prize!")
+                   "Trade it in for a fabulous prize!")
             call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
         }
         else
@@ -286,9 +286,10 @@ script RadioTower_2F_EventScript_BuenasAssistant {
     checkitem(ITEM_BLUE_CARD, 1)
     if (var(VAR_RESULT))
     {
+        special(ShowPointsWindowAtTopLeft)
         msgbox("You can cash in your saved points\n"
                "for a lovely prize of your choice!")
-        // TODO: Prize menu
+        call(RadioTower_2F_EventScript_BuenasAssistantMenu)
     }
     else
     {
@@ -297,6 +298,77 @@ script RadioTower_2F_EventScript_BuenasAssistant {
                "Don't forget your BLUE CARD!")
     }
     release
+}
+
+script RadioTower_2F_EventScript_BuenasAssistantMenu {
+    message("Which prize would you like?")
+    waitmessage
+    setvar(VAR_0x8004, SCROLL_MULTI_BLUE_CARD_PRIZES)
+    special(ShowScrollableMultichoice)
+    waitstate
+    switch(var(VAR_RESULT))
+    {
+        case 0:
+            setvar(VAR_TEMP_1, ITEM_ULTRA_BALL)
+            setvar(VAR_TEMP_2, 2)
+        case 1:
+            setvar(VAR_TEMP_1, ITEM_FULL_RESTORE)
+            setvar(VAR_TEMP_2, 2)
+        case 2:
+            setvar(VAR_TEMP_1, ITEM_NUGGET)
+            setvar(VAR_TEMP_2, 3)
+        case 3:
+            setvar(VAR_TEMP_1, ITEM_RARE_CANDY)
+            setvar(VAR_TEMP_2, 3)
+        case 4:
+            setvar(VAR_TEMP_1, ITEM_PROTEIN)
+            setvar(VAR_TEMP_2, 5)
+        case 5:
+            setvar(VAR_TEMP_1, ITEM_IRON)
+            setvar(VAR_TEMP_2, 5)
+        case 6:
+            setvar(VAR_TEMP_1, ITEM_CARBOS)
+            setvar(VAR_TEMP_2, 5)
+        case 7:
+            setvar(VAR_TEMP_1, ITEM_CALCIUM)
+            setvar(VAR_TEMP_2, 5)
+        case 8:
+            setvar(VAR_TEMP_1, ITEM_HP_UP)
+            setvar(VAR_TEMP_2, 5)
+        case 9:
+        case MULTI_B_PRESSED:
+            special(HidePointsWindow)
+            msgbox("Oh.\n"
+                    "Please come back again!")
+            return
+    }
+    bufferitemname(0, VAR_TEMP_1)
+    msgbox("{STR_VAR_1}?\n"
+           "Is that right?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        if (var(VAR_BLUE_CARD_BALANCE) < VAR_TEMP_2)
+        {
+            msgbox("You don't have enough points.")
+        }
+        else
+        {
+            additem(VAR_TEMP_1)
+            if (var(VAR_RESULT) == FALSE)
+            {
+                msgbox("You have no room for it.")
+            }
+            else
+            {
+                subvar(VAR_BLUE_CARD_BALANCE, VAR_TEMP_2)
+                special(UpdatePointsWindow)
+                playse(SE_REGI)
+                msgbox("Here you go!")
+                waitse
+            }
+        }
+    }
+    goto(RadioTower_2F_EventScript_BuenasAssistantMenu)
 }
 
 script RadioTower_2F_EventScript_PokemonRadioSign {
@@ -312,189 +384,3 @@ script RadioTower_2F_EventScript_OaksPkmnTalkSign {
 script RadioTower_2F_EventScript_2FSalesSign {
     msgbox("2F SALES", MSGBOX_SIGN)
 }
-
-raw `
-RadioTower_2F_EventScript_Nicolas:: @ 822C4DE
-	trainerbattle_single TRAINER_NICOLAS_1, RadioTower_2F_Text_NicolasIntro, RadioTower_2F_Text_NicolasDefeat, RadioTower_2F_EventScript_RegisterNicolas
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	compare VAR_RESULT, TRUE
-	goto_if_eq RadioTower_2F_EventScript_RematchNicolas
-	msgbox RadioTower_2F_Text_NicolasPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-RadioTower_2F_EventScript_RegisterNicolas:: @ 822C50A
-	special PlayerFaceTrainerAfterBattle
-	waitmovement 0
-	msgbox RadioTower_2F_Text_NicolasRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_NICOLAS_1
-	release
-	end
-
-RadioTower_2F_EventScript_RematchNicolas:: @ 822C529
-	trainerbattle_rematch TRAINER_NICOLAS_1, RadioTower_2F_Text_NicolasRematchIntro, RadioTower_2F_Text_NicolasRematchDefeat
-	msgbox RadioTower_2F_Text_NicolasPostRematch, MSGBOX_AUTOCLOSE
-	end
-
-RadioTower_2F_EventScript_John:: @ 822C540
-	trainerbattle_double TRAINER_JOHN_AND_JAY_1, RadioTower_2F_Text_JohnIntro, RadioTower_2F_Text_JohnDefeat, RadioTower_2F_Text_JohnNotEnoughMons, RadioTower_2F_EventScript_RegisterJohn
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	compare VAR_RESULT, TRUE
-	goto_if_eq RadioTower_2F_EventScript_RematchJohn
-	msgbox RadioTower_2F_Text_JohnPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-RadioTower_2F_EventScript_RegisterJohn:: @ 822C570
-	msgbox RadioTower_2F_Text_JohnRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_JOHN_AND_JAY_1
-	release
-	end
-
-RadioTower_2F_EventScript_RematchJohn:: @ 822C589
-	trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1, RadioTower_2F_Text_JohnRematchIntro, RadioTower_2F_Text_JohnRematchDefeat, RadioTower_2F_Text_JohnRematchNotEnoughMons
-	msgbox RadioTower_2F_Text_JohnPostRematch, MSGBOX_AUTOCLOSE
-	end
-
-RadioTower_2F_EventScript_Jay:: @ 822C5A4
-	trainerbattle_double TRAINER_JOHN_AND_JAY_1, RadioTower_2F_Text_JayIntro, RadioTower_2F_Text_JayDefeat, RadioTower_2F_Text_JayNotEnoughMons, RadioTower_2F_EventScript_RegisterJay
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	compare VAR_RESULT, TRUE
-	goto_if_eq RadioTower_2F_EventScript_RematchJay
-	msgbox RadioTower_2F_Text_JayPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-RadioTower_2F_EventScript_RegisterJay:: @ 822C5D4
-	msgbox RadioTower_2F_Text_JohnRegister, MSGBOX_DEFAULT  @ John speaks for both during register
-	register_matchcall TRAINER_JOHN_AND_JAY_1
-	release
-	end
-
-RadioTower_2F_EventScript_RematchJay:: @ 822C5ED
-	trainerbattle_rematch_double TRAINER_JOHN_AND_JAY_1, RadioTower_2F_Text_JayRematchIntro, RadioTower_2F_Text_JayRematchDefeat, RadioTower_2F_Text_JayRematchNotEnoughMons
-	msgbox RadioTower_2F_Text_JayPostRematch, MSGBOX_AUTOCLOSE
-	end
-
-RadioTower_2F_Text_NicolasIntro: @ 822C608
-	.string "This is where we DRAGON users do our\n"
-	.string "training.\p"
-	.string "The CHAMPION even visits.\n"
-	.string "Now do you see how special it is here?$"
-
-RadioTower_2F_Text_NicolasDefeat: @ 822C678
-	.string "Urgh!\n"
-	.string "I didn't expect you to be so strong!$"
-
-RadioTower_2F_Text_NicolasPostBattle: @ 822C6A3
-	.string "The road ahead remains long and harsh.\p"
-	.string "When will my POKéMON and I become\n"
-	.string "the best?$"
-
-RadioTower_2F_Text_NicolasRegister: @ 822C6F6
-	.string "I want to know more about your power.\n"
-	.string "Let me register you in my POKéNAV.$"
-
-RadioTower_2F_Text_NicolasRematchIntro: @ 822C73F
-	.string "Since we met, we have trained hard\n"
-	.string "with our sights on number one.\p"
-	.string "Help us see how much stronger we've\n"
-	.string "become!$"
-
-RadioTower_2F_Text_NicolasRematchDefeat: @ 822C7AD
-	.string "Urgh!\n"
-	.string "I didn't expect you to be so strong!$"
-
-RadioTower_2F_Text_NicolasPostRematch: @ 822C7D8
-	.string "You've obviously kept up your\n"
-	.string "POKéMON training.\p"
-	.string "So long as you remain strong, I, too,\n"
-	.string "can become stronger!$"
-
-RadioTower_2F_Text_JohnIntro: @ 822C843
-	.string "JOHN: We've always battled POKéMON\n"
-	.string "together as a twosome.\l"
-	.string "We've confidence in ourselves.$"
-
-RadioTower_2F_Text_JohnDefeat: @ 822C89C
-	.string "JOHN: Oh, my.\n"
-	.string "We've lost, dear wife.$"
-
-RadioTower_2F_Text_JohnPostBattle: @ 822C8C1
-	.string "JOHN: We've been married for\n"
-	.string "fifty years.\p"
-	.string "Come to think of it, I've yet to beat\n"
-	.string "my dear wife in a battle.$"
-
-RadioTower_2F_Text_JohnNotEnoughMons: @ 822C92B
-	.string "JOHN: Well, well, what a young TRAINER!\p"
-	.string "Will you battle with us? If so, you'll\n"
-	.string "have to return with more POKéMON.$"
-
-RadioTower_2F_Text_JohnRegister: @ 822C99C
-	.string "JOHN: Young TRAINER, if the chance\n"
-	.string "arises, will you battle with us again?$"
-
-RadioTower_2F_Text_JayIntro: @ 822C9E6
-	.string "JAY: We've been married for\n"
-	.string "fifty years.\p"
-	.string "The bond we share as a couple could\n"
-	.string "never be broken.$"
-
-RadioTower_2F_Text_JayDefeat: @ 822CA44
-	.string "JAY: Oh, dear.\n"
-	.string "We've lost, my dear husband.$"
-
-RadioTower_2F_Text_JayPostBattle: @ 822CA70
-	.string "JAY: Fifty years of marriage…\p"
-	.string "If we ever argued, we always settled\n"
-	.string "it with a POKéMON battle…$"
-
-RadioTower_2F_Text_JayNotEnoughMons: @ 822CACD
-	.string "JAY: Well, well, aren't you a young\n"
-	.string "TRAINER?\p"
-	.string "If you'd care to battle with us, you'll\n"
-	.string "have to come back with more POKéMON.$"
-
-RadioTower_2F_Text_JohnRematchIntro: @ 822CB47
-	.string "JOHN: We've always battled POKéMON\n"
-	.string "together as a twosome.\l"
-	.string "We've confidence in ourselves.$"
-
-RadioTower_2F_Text_JohnRematchDefeat: @ 822CBA0
-	.string "JOHN: Oh, my.\n"
-	.string "We've lost, dear wife.$"
-
-RadioTower_2F_Text_JohnPostRematch: @ 822CBC5
-	.string "JOHN: Married for fifty years…\p"
-	.string "On reflection, the dear wife and I,\n"
-	.string "we battled day in and day out…$"
-
-RadioTower_2F_Text_JohnRematchNotEnoughMons: @ 822CC27
-	.string "JOHN: Well, well, what a young TRAINER!\p"
-	.string "Will you battle with us? If so, you'll\n"
-	.string "have to return with more POKéMON.$"
-
-RadioTower_2F_Text_JayRematchIntro: @ 822CC98
-	.string "JAY: We've been married for\n"
-	.string "fifty years.\p"
-	.string "We've supported each other all that\n"
-	.string "time. We've made ourselves strong.$"
-
-RadioTower_2F_Text_JayRematchDefeat: @ 822CD08
-	.string "JAY: Oh, dear.\n"
-	.string "We've lost, my dear husband.$"
-
-RadioTower_2F_Text_JayPostRematch: @ 822CD34
-	.string "JAY: Fifty years of marriage…\n"
-	.string "Many things have happened.\p"
-	.string "I hope that we will continue to make\n"
-	.string "happy memories together.$"
-
-RadioTower_2F_Text_JayRematchNotEnoughMons: @ 822CDAB
-	.string "JAY: Well, well, aren't you a young\n"
-	.string "TRAINER?\p"
-	.string "If you'd care to battle with us, you'll\n"
-	.string "have to come back with more POKéMON.$"
-
-`

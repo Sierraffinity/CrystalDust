@@ -161,6 +161,8 @@ extern const u8 gText_Confirm3[];
 extern const u8 gText_Cancel4[];
 extern const u8 gText_PkmnFainted3[];
 extern const u8 gText_Coins[];
+extern const u8 gText_Points[];
+extern const u8 gText_Var1Points[];
 extern const u8 gText_Silver[];
 extern const u8 gText_Gold[];
 
@@ -614,13 +616,15 @@ extern const u8 gText_B4F[];
 extern const u8 gText_Rooftop[];
 extern const u8 gText_ElevatorNowOn[];
 
-extern const u8 gText_BlueFlute[];
-extern const u8 gText_YellowFlute[];
-extern const u8 gText_RedFlute[];
-extern const u8 gText_WhiteFlute[];
-extern const u8 gText_BlackFlute[];
-extern const u8 gText_PrettyChair[];
-extern const u8 gText_PrettyDesk[];
+extern const u8 gText_UltraBall2Points[];
+extern const u8 gText_FullRestore2Points[];
+extern const u8 gText_Nugget3Points[];
+extern const u8 gText_RareCandy3Points[];
+extern const u8 gText_Protein5Points[];
+extern const u8 gText_Iron5Points[];
+extern const u8 gText_Carbos5Points[];
+extern const u8 gText_Calcium5Points[];
+extern const u8 gText_HPUp5Points[];
 
 extern const u8 gText_0Pts[];
 extern const u8 gText_10Pts[];
