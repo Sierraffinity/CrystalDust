@@ -29,7 +29,7 @@
 #include "constants/species.h"
 #include "constants/vars.h"
 
-static struct ListMenuItem *sPasswordListMenuItems;
+static EWRAM_DATA struct ListMenuItem *sPasswordListMenuItems;
 static EWRAM_DATA u8 sPointsWindowId = 0;
 
 enum {

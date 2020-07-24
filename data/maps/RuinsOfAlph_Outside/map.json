@@ -65,8 +65,8 @@
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "in_connection": false,
-      "x": 19,
-      "y": 22,
+      "x": 23,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -201,8 +201,8 @@
     },
     {
       "type": "sign",
-      "x": 17,
-      "y": 26,
+      "x": 19,
+      "y": 24,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "RuinsOfAlph_Outside_EventScript_Welcome"
