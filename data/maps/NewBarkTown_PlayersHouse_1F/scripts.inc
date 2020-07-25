@@ -42,7 +42,7 @@ NewBarkTown_PlayersHouse_1F_MomEncounter:
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer
 	waitmovement 0
-	delay 10
+	delay 30
 	msgbox NewBarkTown_PlayersHouse_1F_MomElmIntro
 	call EventScript_RestorePrevTextColor
 	playfanfare MUS_FANFA4

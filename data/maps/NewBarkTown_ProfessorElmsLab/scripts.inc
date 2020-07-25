@@ -461,6 +461,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Nickname:
 
 NewBarkTown_ProfessorElmsLab_EventScript_AfterMonGet:
 	waitmovement 0
+	delay 30
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmDirectionsToMrPokemon
 	closemessage
