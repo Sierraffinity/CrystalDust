@@ -294,7 +294,7 @@ ContestHall_EventScript_RandomAudienceBlackBelt:: @ 823BB19
 	return
 
 ContestHall_EventScript_RandomAudienceBeauty:: @ 823BB1F
-	setvar VAR_TEMP_1, OBJ_EVENT_GFX_BEAUTY
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_BUENA
 	return
 
 ContestHall_EventScript_RandomAudienceScientist1:: @ 823BB25
@@ -319,7 +319,7 @@ ContestHall_EventScript_CreateNormalContestAudience:: @ 823BB78
 	return
 
 ContestHall_EventScript_CreateSuperContestAudience:: @ 823BB8B
-	createvobject OBJ_EVENT_GFX_BEAUTY, 0, 2, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_BUENA, 0, 2, 3, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_MAN_5, 1, 2, 4, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_HIKER, 2, 2, 7, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 3, 2, 8, 3, DIR_EAST
@@ -332,14 +332,14 @@ ContestHall_EventScript_CreateSuperContestAudience:: @ 823BB8B
 	return
 
 ContestHall_EventScript_CreateHyperContestAudience:: @ 823BBE6
-	createvobject OBJ_EVENT_GFX_BEAUTY, 0, 2, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_BUENA, 0, 2, 3, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_MAN_5, 1, 2, 4, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_HIKER, 2, 2, 7, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_GENTLEMAN, 3, 2, 8, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_NINJA_BOY, 10, 12, 3, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_WOMAN_2, 11, 12, 4, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_WOMAN_3, 12, 12, 7, 3, DIR_WEST
-	createvobject OBJ_EVENT_GFX_BEAUTY, 13, 12, 8, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_BUENA, 13, 12, 8, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_SAGE, 20, 3, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_MAN_2, 20, 6, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_WOMAN_5, 20, 7, 2, 3, DIR_SOUTH
@@ -354,7 +354,7 @@ ContestHall_EventScript_CreateHyperContestAudience:: @ 823BBE6
 	return
 
 ContestHall_EventScript_CreateMasterContestAudience:: @ 823BC92
-	createvobject OBJ_EVENT_GFX_BEAUTY, 0, 2, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_BUENA, 0, 2, 3, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_MAN_5, 1, 2, 4, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_HIKER, 2, 2, 7, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_LITTLE_GIRL, 3, 2, 8, 3, DIR_EAST
@@ -365,7 +365,7 @@ ContestHall_EventScript_CreateMasterContestAudience:: @ 823BC92
 	createvobject OBJ_EVENT_GFX_NINJA_BOY, 10, 12, 3, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_WOMAN_2, 11, 12, 4, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_WOMAN_3, 12, 12, 7, 3, DIR_WEST
-	createvobject OBJ_EVENT_GFX_BEAUTY, 13, 12, 8, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_BUENA, 13, 12, 8, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_FISHERMAN, 14, 13, 3, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_RUNNING_TRIATHLETE_F, 15, 13, 4, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_MAN_4, 17, 13, 6, 3, DIR_WEST
@@ -384,7 +384,7 @@ ContestHall_EventScript_CreateMasterContestAudience:: @ 823BC92
 	return
 
 ContestHall_EventScript_CreateWirelessContestAudience:: @ 823BD86
-	createvobject OBJ_EVENT_GFX_BEAUTY, 0, 2, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_BUENA, 0, 2, 3, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_MAN_5, 1, 2, 4, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_HIKER, 2, 2, 7, 3, DIR_EAST
 	createvobject OBJ_EVENT_GFX_LITTLE_GIRL, 3, 2, 8, 3, DIR_EAST
@@ -395,7 +395,7 @@ ContestHall_EventScript_CreateWirelessContestAudience:: @ 823BD86
 	createvobject OBJ_EVENT_GFX_NINJA_BOY, 10, 12, 3, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_WOMAN_2, 11, 12, 4, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_WOMAN_3, 12, 12, 7, 3, DIR_WEST
-	createvobject OBJ_EVENT_GFX_BEAUTY, 13, 12, 8, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_BUENA, 13, 12, 8, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_FISHERMAN, 14, 13, 3, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_RUNNING_TRIATHLETE_F, 15, 13, 4, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_MAN_4, 17, 13, 6, 3, DIR_WEST

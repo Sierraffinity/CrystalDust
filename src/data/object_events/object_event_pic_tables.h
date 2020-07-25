@@ -574,16 +574,16 @@ const struct SpriteFrameImage gObjectEventPicTable_BlackBelt[] = {
     overworld_frame(gObjectEventPic_BlackBelt, 2, 4, 8),
 };
 
-const struct SpriteFrameImage gObjectEventPicTable_Beauty[] = {
-    overworld_frame(gObjectEventPic_Beauty, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Beauty, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Beauty, 2, 4, 2),
-    overworld_frame(gObjectEventPic_Beauty, 2, 4, 3),
-    overworld_frame(gObjectEventPic_Beauty, 2, 4, 4),
-    overworld_frame(gObjectEventPic_Beauty, 2, 4, 5),
-    overworld_frame(gObjectEventPic_Beauty, 2, 4, 6),
-    overworld_frame(gObjectEventPic_Beauty, 2, 4, 7),
-    overworld_frame(gObjectEventPic_Beauty, 2, 4, 8),
+const struct SpriteFrameImage gObjectEventPicTable_Buena[] = {
+    overworld_frame(gObjectEventPic_Buena, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Buena, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Buena, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Buena, 2, 4, 3),
+    overworld_frame(gObjectEventPic_Buena, 2, 4, 4),
+    overworld_frame(gObjectEventPic_Buena, 2, 4, 5),
+    overworld_frame(gObjectEventPic_Buena, 2, 4, 6),
+    overworld_frame(gObjectEventPic_Buena, 2, 4, 7),
+    overworld_frame(gObjectEventPic_Buena, 2, 4, 8),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_Scientist1[] = {

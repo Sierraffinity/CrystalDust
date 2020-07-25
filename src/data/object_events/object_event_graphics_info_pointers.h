@@ -43,7 +43,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rayquaza1;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerF;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BlackBelt;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Beauty;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Buena;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Scientist;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lass;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gentleman;
@@ -292,7 +292,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_SWIMMER_M] =                &gObjectEventGraphicsInfo_SwimmerM,
     [OBJ_EVENT_GFX_SWIMMER_F] =                &gObjectEventGraphicsInfo_SwimmerF,
     [OBJ_EVENT_GFX_BLACK_BELT] =               &gObjectEventGraphicsInfo_BlackBelt,
-    [OBJ_EVENT_GFX_BEAUTY] =                   &gObjectEventGraphicsInfo_Beauty,
+    [OBJ_EVENT_GFX_BUENA] =                    &gObjectEventGraphicsInfo_Buena,
     [OBJ_EVENT_GFX_SCIENTIST] =                &gObjectEventGraphicsInfo_Scientist,
     [OBJ_EVENT_GFX_LASS] =                     &gObjectEventGraphicsInfo_Lass,
     [OBJ_EVENT_GFX_GENTLEMAN] =                &gObjectEventGraphicsInfo_Gentleman,

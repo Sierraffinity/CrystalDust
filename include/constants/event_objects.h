@@ -46,7 +46,7 @@
 #define OBJ_EVENT_GFX_SWIMMER_M                   42
 #define OBJ_EVENT_GFX_SWIMMER_F                   43
 #define OBJ_EVENT_GFX_BLACK_BELT                  44
-#define OBJ_EVENT_GFX_BEAUTY                      45
+#define OBJ_EVENT_GFX_BUENA                      45
 #define OBJ_EVENT_GFX_SCIENTIST                   46
 #define OBJ_EVENT_GFX_LASS                        47
 #define OBJ_EVENT_GFX_GENTLEMAN                   48
