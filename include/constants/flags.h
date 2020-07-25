@@ -1416,7 +1416,7 @@
 
 #define FLAG_LANDMARK_DARK_CAVE                     (SYSTEM_FLAGS + 0x3C)
 #define FLAG_LANDMARK_SPROUT_TOWER                  (SYSTEM_FLAGS + 0x3D)
-#define FLAG_LANDMARK_RUINS_OF_ALPH                 (SYSTEM_FLAGS + 0x3E)
+#define FLAG_LANDMARK_ALPH_CHAMBERS                 (SYSTEM_FLAGS + 0x3E)
 #define FLAG_LANDMARK_UNION_CAVE                    (SYSTEM_FLAGS + 0x3F)
 #define FLAG_LANDMARK_ROUTE_32_POKEMON_CENTER       (SYSTEM_FLAGS + 0x40)
 #define FLAG_LANDMARK_ILEX_FOREST                   (SYSTEM_FLAGS + 0x41)
