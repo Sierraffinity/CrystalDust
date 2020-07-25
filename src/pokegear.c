@@ -1159,38 +1159,25 @@ static void Task_MapCard(u8 taskId)
                 CreateSecondaryLayerDots(2, 2);
                 CreateRegionMapName(3, 4);
                 ShowRegionMapCursorSprite();
+                if (GetCurrentMapsecStatus(TRUE))
+                {
+                    ShowHelpBar(gText_MapCardHelp2);
+                }
                 tState++;
             }
             break;
-        /*case 1:
-            if (gMain.newKeys & A_BUTTON)
-            {
-                PlaySE(SE_HI_TURUN);
-                ShowHelpBar(gText_MapCardHelp2);
-                ShowRegionMapCursorSprite();
-                sPokegearStruct.canSwitchCards = FALSE;
-                tState++;
-            }
-            break;*/
         case 1:
             event = DoRegionMapInputCallback();
             switch (event)
             {
-                /*case MAP_INPUT_B_BUTTON:
-                    PlaySE(SE_W063B);
-                    ShowHelpBar(gText_MapCardHelp1);
-                    HideRegionMapCursorSprite();
-                    tState--;
-                    sPokegearStruct.canSwitchCards = TRUE;
-                    break;*/
                 case MAP_INPUT_LANDMARK:
-                    helpString = gText_MapCardHelp3;
+                    helpString = gText_MapCardHelp2;
                     break;
                 case MAP_INPUT_ON_BUTTON:
-                    helpString = gText_MapCardHelp4;
+                    helpString = gText_MapCardHelp3;
                     break;
                 case MAP_INPUT_MOVE_END:
-                    helpString = gText_MapCardHelp2;
+                    helpString = gText_MapCardHelp1;
                     break;
             }
 

@@ -1337,6 +1337,11 @@ static u8 GetMapsecType(u16 mapSecId)
     return mapSecStatus;
 }
 
+u8 GetCurrentMapsecStatus(bool8 isSecondary)
+{
+    return GetMapsecType(GetMapSecIdAt(gRegionMap->cursorPosX, gRegionMap->cursorPosY, gRegionMap->currentRegion, isSecondary));
+}
+
 u16 GetRegionMapSectionIdAt(u16 x, u16 y)
 {
     // TODO: Region

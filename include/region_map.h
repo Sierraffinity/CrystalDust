@@ -144,6 +144,7 @@ bool8 IsRegionMapZoomed(void);
 void TrySetPlayerIconBlink(void);
 void sub_8123030(u16 color, u32 coeff);
 void SetRegionMapDataForZoom(void);
+u8 GetCurrentMapsecStatus(bool8 isSecondary);
 
 extern const struct RegionMapLocation gRegionMapEntries[];
 
