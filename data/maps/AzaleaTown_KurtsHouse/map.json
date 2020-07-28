@@ -7,7 +7,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "EventScript_DifficultBookShelf",
+            "script": "EventScript_BookShelf",
             "type": "sign",
             "x": 2,
             "y": 1
@@ -15,7 +15,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "EventScript_DifficultBookShelf",
+            "script": "EventScript_BookShelf",
             "type": "sign",
             "x": 3,
             "y": 1
@@ -23,7 +23,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "EventScript_DifficultBookShelf",
+            "script": "EventScript_BookShelf",
             "type": "sign",
             "x": 4,
             "y": 1

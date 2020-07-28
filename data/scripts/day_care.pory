@@ -32,7 +32,7 @@ script Route34_DayCare_EventScript_DaycareManCommon {
     {
         special(GetDaycareMonNicknames)
         specialvar(VAR_RESULT, GetDaycareState)
-        switch(var(VAR_RESULT))
+        switch (var(VAR_RESULT))
         {
         case DAYCARE_EGG_WAITING:
             msgbox("Ah, it's you!\p"
@@ -187,7 +187,7 @@ script Route34_DayCare_EventScript_DaycareWoman {
                "My husband went there recently\n"
                "and got this promotional item.\p"
                "We don't need it, since we have\n"
-               "enough on our plates already…\p"
+               "enough to take care of already…\p"
                "Oh, would you like it?\p"
                "My husband should still have it,\n"
                "so go talk to him.")

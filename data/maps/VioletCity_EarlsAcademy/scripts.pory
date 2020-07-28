@@ -23,7 +23,7 @@ script(local) StatusBoard_Loop {
 	message("Which topic do you want to read?")
 	waitmessage
 	multichoicegrid(8, 1, MULTI_STATUS_INFO, 3, FALSE)
-	switch(var(VAR_RESULT))
+	switch (var(VAR_RESULT))
 	{
 		case PSN:
 			msgbox("If poisoned, a POKéMON steadily\n"

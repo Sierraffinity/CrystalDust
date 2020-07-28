@@ -306,7 +306,7 @@ script RadioTower_2F_EventScript_BuenasAssistantMenu {
     setvar(VAR_0x8004, SCROLL_MULTI_BLUE_CARD_PRIZES)
     special(ShowScrollableMultichoice)
     waitstate
-    switch(var(VAR_RESULT))
+    switch (var(VAR_RESULT))
     {
         case 0:
             setvar(VAR_TEMP_1, ITEM_ULTRA_BALL)

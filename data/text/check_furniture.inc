@@ -13,14 +13,11 @@ Text_DistinguishedStatue:
 	.string "A POKéMON statue…\n"
 	.string "It looks very distinguished.$"
 
-Text_PictureBookShelf: @ 82A81E5
+Text_PictureBookShelf:
 	.string "It's a whole collection of POKéMON\n"
 	.string "picture books!$"
 
-Text_BookShelf: @ 82A820D
-	.string "It's filled with all sorts of books.$"
-
-Text_DifficultBooks:
+Text_BookShelf:
 	.string "It's full of difficult books.$"
 
 Text_PokemonCenterBookShelf: @ 82A8232

@@ -42,7 +42,7 @@ NewBarkTown_PlayersHouse_1F_MomEncounter:
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer
 	waitmovement 0
-	delay 30
+	delay 20
 	msgbox NewBarkTown_PlayersHouse_1F_MomElmIntro
 	call EventScript_RestorePrevTextColor
 	playfanfare MUS_FANFA4
@@ -245,8 +245,8 @@ NewBarkTown_PlayersHouse_1F_Fridge::
 	end
 
 NewBarkTown_PlayersHouse_1F_MomElmIntro:
-	.string "MOM: Oh, {PLAYER}…!\n"
-	.string "Our neighbor, PROF. ELM, was just\l"
+	.string "MOM: Oh, {PLAYER}…!\p"
+	.string "Our neighbor, PROF. ELM, was just\n"
 	.string "looking for you.\p"
 	.string "He said he wanted you to do\n"
 	.string "something for him.\p"
