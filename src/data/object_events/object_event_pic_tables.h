@@ -89,11 +89,11 @@ const struct SpriteFrameImage gObjectEventPicTable_BrendanUnderwater[] = {
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_BrendanFieldMove[] = {
-    overworld_frame(gObjectEventPic_BrendanFieldMove, 4, 4, 0),
-    overworld_frame(gObjectEventPic_BrendanFieldMove, 4, 4, 1),
-    overworld_frame(gObjectEventPic_BrendanFieldMove, 4, 4, 2),
-    overworld_frame(gObjectEventPic_BrendanFieldMove, 4, 4, 3),
-    overworld_frame(gObjectEventPic_BrendanFieldMove, 4, 4, 4),
+    overworld_frame(gObjectEventPic_BrendanFieldMove, 2, 4, 0),
+    overworld_frame(gObjectEventPic_BrendanFieldMove, 2, 4, 1),
+    overworld_frame(gObjectEventPic_BrendanFieldMove, 2, 4, 2),
+    overworld_frame(gObjectEventPic_BrendanFieldMove, 2, 4, 3),
+    overworld_frame(gObjectEventPic_BrendanFieldMove, 2, 4, 4),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_QuintyPlump[] = {
@@ -1080,11 +1080,11 @@ const struct SpriteFrameImage gObjectEventPicTable_MayUnderwater[] = {
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_MayFieldMove[] = {
-    overworld_frame(gObjectEventPic_MayFieldMove, 4, 4, 0),
-    overworld_frame(gObjectEventPic_MayFieldMove, 4, 4, 1),
-    overworld_frame(gObjectEventPic_MayFieldMove, 4, 4, 2),
-    overworld_frame(gObjectEventPic_MayFieldMove, 4, 4, 3),
-    overworld_frame(gObjectEventPic_MayFieldMove, 4, 4, 4),
+    overworld_frame(gObjectEventPic_MayFieldMove, 2, 4, 0),
+    overworld_frame(gObjectEventPic_MayFieldMove, 2, 4, 1),
+    overworld_frame(gObjectEventPic_MayFieldMove, 2, 4, 2),
+    overworld_frame(gObjectEventPic_MayFieldMove, 2, 4, 3),
+    overworld_frame(gObjectEventPic_MayFieldMove, 2, 4, 4),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_Firebreather[] = {
