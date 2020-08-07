@@ -271,9 +271,9 @@ gSongTable:: @ 86B49F0
 	song se_curtain, 1, 1           @ Battle Pike - Curtain Opens
 	song se_curtain1, 1, 1          @ Battle Pike - Curtain Closes
 	song se_ussoki, 1, 1            @ Sudowoodo
-	song dummy_song_header, 0, 0
-	song dummy_song_header, 0, 0
-	song dummy_song_header, 0, 0
+	song se_introunown1, 1, 1
+	song se_introunown2, 1, 1
+	song se_introunown3, 1, 1
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
@@ -376,7 +376,7 @@ gSongTable:: @ 86B49F0
 	song mus_me_waza, 2, 2          @ Obtained a TM!
 	song mus_ruinsofalph, 0, 0      @ Ruins of Alph Inner Chamber
 	song mus_route30, 0, 0          @ Introductions
-	song mus_fune_kan, 0, 0         @ Oceanic Museum
+	song mus_buena, 0, 0         @ Oceanic Museum
 	song mus_me_shinka, 2, 2        @ Evolution (Intro)
 	song mus_shinka, 0, 0           @ Evolution
 	song mus_me_wasure, 2, 2        @ Move Deleted

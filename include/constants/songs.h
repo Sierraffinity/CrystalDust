@@ -265,7 +265,7 @@
 #define SE_RG_DEOMOV 260        // Deoxys Moves
 #define SE_RG_EXCELLENT 261
 #define SE_RG_NAWAMISS 262
-// end FRLG SFX
+// Emerald SFX below
 #define SE_TOREEYE 263          // Trainer's Eye Call
 #define SE_TOREOFF 264          // Trainer's Eye Hang Up
 #define SE_HANTEI1 265          // Battle Arena Time's Up 1
@@ -273,6 +273,10 @@
 #define SE_CURTAIN 267          // Battle Pike Curtain Open
 #define SE_CURTAIN1 268         // Battle Pike Curtain Close
 #define SE_USSOKI 269           // Sudowoodo
+// CrystalDust SFX below
+#define SE_INTROUNOWN1 270           // Intro Unown low pitch
+#define SE_INTROUNOWN2 271           // Intro Unown mid pitch
+#define SE_INTROUNOWN3 272           // Intro Unown hi pitch
 
 
 #define MUS_TETSUJI 350         // Littleroot Town Test 'TETSUJI'
@@ -298,9 +302,9 @@
 #define MUS_FANFA4 370          // Obtained an Item!
 #define MUS_FANFA5 371          // Your Pokémon Just Evolved!
 #define MUS_ME_WAZA 372         // Obtained a TM/HM!
-#define MUS_RUINSOFALPH 373     // Lilycove Museum
-#define MUS_ROUTE30 374         // Route 122/Intro
-#define MUS_FUNE_KAN 375        // Slateport Museum
+#define MUS_RUINSOFALPH 373     // Ruins Interior
+#define MUS_ROUTE30 374         // Route 30/Intro
+#define MUS_BUENA 375           // Buena's Password
 #define MUS_ME_SHINKA 376       // Evolution Intro
 #define MUS_SHINKA 377          // Evolution
 #define MUS_ME_WASURE 378       // Move Deleted/Messed Up Appeal
@@ -324,13 +328,13 @@
 #define MUS_TEST4 396           // Contest Test 4
 #define MUS_POKEMONMARCH 397    // Pokémon March
 #define MUS_GOMACHI0 398        // Verdanturf Town
-#define MUS_GOLDENROD 399          // Rustboro/Mauville/Mossdeep City
+#define MUS_GOLDENROD 399       // Goldenrod City
 #define MUS_POKECEN 400         // Pokémon Center
 #define MUS_NEXTROAD 401        // Route 104
 #define MUS_GRANROAD 402        // Route 119
 #define MUS_CYCLING 403         // Cycling
 #define MUS_FRIENDLY 404        // Pokémart
-#define MUS_NEWBARK 405         // Littleroot Town
+#define MUS_NEWBARK 405         // New Bark Town
 #define MUS_TOZAN 406           // Sky Pillar
 #define MUS_ENCFEMALE 407       // Encounter! Girl
 #define MUS_MINAMO 408          // Lilycove City
@@ -340,7 +344,7 @@
 #define MUS_KACHI1 412          // Victory! Trainer
 #define MUS_TITLE3 413          // Title Screen
 #define MUS_DEMO1 414           // Opening Movie
-#define MUS_RIVALTHEME 415      // Encounter! May
+#define MUS_RIVALTHEME 415      // Encounter! Rival
 #define MUS_ENCSAGE 416         // Encounter! Biker
 #define MUS_ENCMALECLASSIC 417  // Encounter! Electric Trainer
 #define MUS_MAINMENU 418        // Main Menu

@@ -85,7 +85,7 @@ $(MID_SUBDIR)/mus_c_road.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G075 -V076
 
 $(MID_SUBDIR)/mus_casino.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G072 -V072
+	$(MID) $< $@ -E -R$(STD_REVERB) -G072 -V110
 
 $(MID_SUBDIR)/mus_con_fan.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G085 -V100
@@ -165,8 +165,8 @@ $(MID_SUBDIR)/mus_finecity.s: %.s: %.mid
 $(MID_SUBDIR)/mus_friendly.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G050 -V085
 
-$(MID_SUBDIR)/mus_fune_kan.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -V080
+$(MID_SUBDIR)/mus_buena.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -V100
 
 $(MID_SUBDIR)/mus_gym.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G013 -V127
@@ -1262,3 +1262,12 @@ $(MID_SUBDIR)/se_w043.s: %.s: %.mid
 
 $(MID_SUBDIR)/se_z_search.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G127 -v100 -P5
+
+$(MID_SUBDIR)/se_introunown1.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -v100 -P5
+
+$(MID_SUBDIR)/se_introunown2.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -v100 -P5
+
+$(MID_SUBDIR)/se_introunown3.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -v100 -P5
