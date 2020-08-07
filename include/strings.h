@@ -161,6 +161,7 @@ extern const u8 gText_Confirm3[];
 extern const u8 gText_Cancel4[];
 extern const u8 gText_PkmnFainted3[];
 extern const u8 gText_Coins[];
+extern const u8 gText_Var1Coins[];
 extern const u8 gText_Points[];
 extern const u8 gText_Var1Points[];
 extern const u8 gText_Silver[];

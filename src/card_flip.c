@@ -1342,13 +1342,13 @@ static const u8 sBetPayoutMultipliers[] = {
     3, // BET_TYPE_LEVEL_5_6
 };
 
-static u8 SanitizeNumCoinsEntry(int numCoinsEntry)
+/*static u8 SanitizeNumCoinsEntry(int numCoinsEntry)
 {
     if (numCoinsEntry <= 0)
         numCoinsEntry = 1;
 
     return numCoinsEntry;
-}
+}*/
 
 void PlayCardFlip(void)
 {
@@ -1357,7 +1357,8 @@ void PlayCardFlip(void)
     ScriptContext1_Stop();
     sCardFlip = AllocZeroed(sizeof(*sCardFlip));
     sCardFlip->returnMainCallback = CB2_ReturnToFieldContinueScriptPlayMapMusic;
-    sCardFlip->numCoinsEntry = SanitizeNumCoinsEntry(gSpecialVar_0x8004);
+    //sCardFlip->numCoinsEntry = SanitizeNumCoinsEntry(gSpecialVar_0x8004);
+    sCardFlip->numCoinsEntry = 3;
     taskId = CreateTask(FadeToCardFlipScreen, 0);
 }
 

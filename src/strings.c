@@ -219,7 +219,8 @@ const u8 gText_WhatWouldYouLike[] = _("What would you like to do?");
 const u8 gMenuText_Give2[] = _("GIVE");
 const u8 gText_xVar1[] = _("×{STR_VAR_1}");
 const u8 gText_Berry2[] = _(" BERRY"); // Unused
-const u8 gText_Coins[] = _("{STR_VAR_1} COINS");
+const u8 gText_Coins[] = _("COINS");
+const u8 gText_Var1Coins[] = _("{STR_VAR_1} COINS");
 const u8 gText_Points[] = _("POINTS");
 const u8 gText_Var1Points[] = _("{STR_VAR_1} POINTS");
 const u8 gText_CloseBag[] = _("CLOSE BAG");
@@ -1856,7 +1857,7 @@ const u8 gText_Friday[] = _("FRIDAY");
 const u8 gText_Saturday[] = _("SATURDAY");
 
 // Pokégear
-const u8 gText_PokegearInstructions[] = _("Press START and SELECT to switch.\nPress B to exit.");
+const u8 gText_PokegearInstructions[] = _("Press {START_BUTTON} and {SELECT_BUTTON} to switch.\nPress B to exit.");
 const u8 gText_PokegearWhomDoYouWantToCall[] = _("Whom do you want to call?");
 
 // Radio stations
