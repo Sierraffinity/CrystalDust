@@ -127,7 +127,7 @@ script RadioTower_2F_EventScript_Buena {
         }
         else
         {
-            playbgm(MUS_M_BOAT, 0)
+            playbgm(MUS_BUENA, 0)
             msgbox("BUENA: Hi!\n"
                    "Did you tune in to my radio show?\p"
                    "Do you remember today's password?", MSGBOX_YESNO)

@@ -455,14 +455,14 @@ gTileset_SecretBaseRedCave:: @ 83DFA7C
 	.4byte NULL @ palette overrides
 
 	.align 2
-gTileset_InsideOfTruck:: @ 83DFA94
+gTileset_MagnetTrain:: @ 83DFA94
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_InsideOfTruck
-	.4byte gTilesetPalettes_InsideOfTruck
-	.4byte gMetatiles_InsideOfTruck
-	.4byte gMetatileAttributes_InsideOfTruck
+	.4byte gTilesetTiles_MagnetTrain
+	.4byte gTilesetPalettes_MagnetTrain
+	.4byte gMetatiles_MagnetTrain
+	.4byte gMetatileAttributes_MagnetTrain
 	.4byte NULL @ animation callback
 	.4byte NULL @ palette overrides
 
@@ -575,14 +575,14 @@ gTileset_GenericBuilding:: @ 83DFB6C
 	.4byte NULL @ palette overrides
 
 	.align 2
-gTileset_MauvilleGameCorner:: @ 83DFB84
+gTileset_GameCorner:: @ 83DFB84
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_MauvilleGameCorner
-	.4byte gTilesetPalettes_MauvilleGameCorner
-	.4byte gMetatiles_MauvilleGameCorner
-	.4byte gMetatileAttributes_MauvilleGameCorner
+	.4byte gTilesetTiles_GameCorner
+	.4byte gTilesetPalettes_GameCorner
+	.4byte gMetatiles_GameCorner
+	.4byte gMetatileAttributes_GameCorner
 	.4byte NULL @ animation callback
 	.4byte NULL @ palette overrides
 

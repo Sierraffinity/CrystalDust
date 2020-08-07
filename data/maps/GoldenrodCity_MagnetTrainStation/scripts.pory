@@ -1,0 +1,20 @@
+mapscripts GoldenrodCity_MagnetTrainStation_MapScripts { }
+
+script GoldenrodCity_MagnetTrainStation_Officer {
+    lock
+    faceplayer
+    // TODO: Check for actual train stuff
+    msgbox("The train hasn't come in…\p"
+           "I know! I'll carry the passengers\n"
+           "on my back!\p"
+           "…That won't work.")
+    release
+}
+
+script GoldenrodCity_MagnetTrainStation_Gentleman {
+    msgbox("I'm the PRESIDENT.\p"
+           "My dream was to build a train that\n"
+           "is faster than any POKéMON.\p"
+           "It really brings JOHTO much closer\n"
+           "to KANTO.", MSGBOX_NPC)
+}

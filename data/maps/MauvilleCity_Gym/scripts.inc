@@ -91,7 +91,7 @@ MauvilleCity_Gym_EventScript_WattsonDefeated:: @ 820DF2B
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis, MSGBOX_DEFAULT
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
+	clearflag FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
 	setflag FLAG_BADGE03_GET
 	addvar VAR_SPROUT_TOWER_STATE, 1

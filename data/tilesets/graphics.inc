@@ -877,27 +877,27 @@ gTilesetTiles_SecretBaseRedCave:: @ 836AF80
 	.incbin "data/tilesets/secondary/secret_base/red_cave/tiles.4bpp"
 
 	.align 2
-gTilesetTiles_InsideOfTruck:: @ 836B9E0
-	.incbin "data/tilesets/secondary/inside_of_truck/tiles.4bpp.lz"
+gTilesetTiles_MagnetTrain:: @ 836B9E0
+	.incbin "data/tilesets/secondary/magnet_train/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_InsideOfTruck:: @ 836BC3C
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/inside_of_truck/palettes/15.gbapal"
+gTilesetPalettes_MagnetTrain:: @ 836BC3C
+	.incbin "data/tilesets/secondary/magnet_train/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/magnet_train/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Contest:: @ 836BE3C
@@ -1038,27 +1038,27 @@ gTilesetPalettes_GenericBuilding:: @ 83733C4
 	.incbin "data/tilesets/secondary/generic_building/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_MauvilleGameCorner:: @ 83735C4
-	.incbin "data/tilesets/secondary/mauville_game_corner/tiles.4bpp.lz"
+gTilesetTiles_GameCorner:: @ 83735C4
+	.incbin "data/tilesets/secondary/game_corner/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_MauvilleGameCorner:: @ 8374288
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/mauville_game_corner/palettes/15.gbapal"
+gTilesetPalettes_GameCorner:: @ 8374288
+	.incbin "data/tilesets/secondary/game_corner/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/game_corner/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Unused2:: @ 8374488

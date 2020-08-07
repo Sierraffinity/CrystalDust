@@ -8,7 +8,7 @@ FieryPath_OnTransition: @ 8230F2A
 	end
 
 FieryPath_EventScript_MoveScottToFallarbor:: @ 8230F37
-	setflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
+	setflag FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD
 	clearflag FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT
 	return
 

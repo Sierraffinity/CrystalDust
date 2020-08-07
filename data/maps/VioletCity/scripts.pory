@@ -288,8 +288,9 @@ script VioletCity_TownSloganSign {
 
 script VioletCity_GymSign {
     msgbox("VIOLET CITY POKéMON GYM\n"
-		   "LEADER: FALKNER\l"
-		   "The Elegant FLYING POKéMON Master", MSGBOX_SIGN)
+		   "LEADER: FALKNER\p"
+		   "The Elegant Master of FLYING\n"
+		   "POKéMON", MSGBOX_SIGN)
 }
 
 script VioletCity_SproutTowerSign {

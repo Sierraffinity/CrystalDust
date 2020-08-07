@@ -1101,33 +1101,33 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_MauvilleGameCorner",
+      "secondary_tileset": "gTileset_GameCorner",
       "border_filepath": "data/layouts/MauvilleCity_GameCorner/border.bin",
       "blockdata_filepath": "data/layouts/MauvilleCity_GameCorner/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_DEVON_CORP_1F",
-      "name": "GoldenrodCity_DevonCorp_1F_Layout",
-      "width": 19,
-      "height": 9,
+      "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_NORTH_ENTRANCE",
+      "name": "GoldenrodCity_Underground_NorthEntrance_Layout",
+      "width": 13,
+      "height": 12,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/GoldenrodCity_DevonCorp_1F/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_DevonCorp_1F/map.bin"
+      "secondary_tileset": "gTileset_Gatehouse",
+      "border_filepath": "data/layouts/GoldenrodCity_Underground_NorthEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Underground_NorthEntrance/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_DEVON_CORP_2F",
-      "name": "GoldenrodCity_DevonCorp_2F_Layout",
-      "width": 19,
-      "height": 9,
+      "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_SOUTH_ENTRANCE",
+      "name": "GoldenrodCity_Underground_SouthEntrance_Layout",
+      "width": 13,
+      "height": 12,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/GoldenrodCity_DevonCorp_2F/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_DevonCorp_2F/map.bin"
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Gatehouse",
+      "border_filepath": "data/layouts/GoldenrodCity_Underground_SouthEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Underground_SouthEntrance/map.bin"
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_GYM",
@@ -1154,28 +1154,28 @@
       "blockdata_filepath": "data/layouts/GoldenrodCity_House/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_HOUSE1",
-      "name": "GoldenrodCity_House1_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_FLOWER_SHOP",
+      "name": "GoldenrodCity_FlowerShop_Layout",
       "width": 13,
       "height": 8,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/GoldenrodCity_House1/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_House1/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_FlowerShop/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_FlowerShop/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_CUTTERS_HOUSE",
-      "name": "GoldenrodCity_CuttersHouse_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_NAME_RATERS_HOUSE",
+      "name": "GoldenrodCity_NameRatersHouse_Layout",
       "width": 11,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/GoldenrodCity_CuttersHouse/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_CuttersHouse/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_NameRatersHouse/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_NameRatersHouse/map.bin"
     },
     {
       "id": "LAYOUT_FORTREE_CITY_HOUSE1",
@@ -1408,12 +1408,12 @@
     {
       "id": "LAYOUT_CABLE_CAR_STATION",
       "name": "CableCarStation_Layout",
-      "width": 13,
-      "height": 12,
+      "width": 27,
+      "height": 20,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_MagnetTrain",
       "border_filepath": "data/layouts/CableCarStation/border.bin",
       "blockdata_filepath": "data/layouts/CableCarStation/map.bin"
     },
@@ -2841,7 +2841,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_InsideOfTruck",
+      "secondary_tileset": "gTileset_MagnetTrain",
       "border_filepath": "data/layouts/InsideOfTruck/border.bin",
       "blockdata_filepath": "data/layouts/InsideOfTruck/map.bin"
     },
@@ -3218,16 +3218,16 @@
       "blockdata_filepath": "data/layouts/BattleFrontier_BattleTowerBattleRoom/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_DEVON_CORP_3F",
-      "name": "GoldenrodCity_DevonCorp_3F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND",
+      "name": "GoldenrodCity_Underground_Layout",
       "width": 19,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/GoldenrodCity_DevonCorp_3F/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_DevonCorp_3F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_Underground/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Underground/map.bin"
     },
     {
       "id": "LAYOUT_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F",
@@ -3518,28 +3518,28 @@
       "blockdata_filepath": "data/layouts/FieryPath/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_FLAT2_1F",
-      "name": "GoldenrodCity_Flat2_1F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_HOUSE1",
+      "name": "GoldenrodCity_House1_Layout",
       "width": 14,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/GoldenrodCity_Flat2_1F/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat2_1F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_House1/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_House1/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_FLAT2_2F",
-      "name": "GoldenrodCity_Flat2_2F_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_HOUSE2",
+      "name": "GoldenrodCity_House2_Layout",
       "width": 14,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/GoldenrodCity_Flat2_2F/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat2_2F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_House2/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_House2/map.bin"
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_FLAT2_3F",
@@ -3746,28 +3746,28 @@
       "blockdata_filepath": "data/layouts/CaveOfOrigin_Unused_B4F_Lava/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_FLAT1_1F",
-      "name": "GoldenrodCity_Flat1_1F_Layout",
-      "width": 14,
-      "height": 8,
+      "id": "LAYOUT_GOLDENROD_CITY_GAME_CORNER",
+      "name": "GoldenrodCity_GameCorner_Layout",
+      "width": 20,
+      "height": 15,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/GoldenrodCity_Flat1_1F/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat1_1F/map.bin"
+      "secondary_tileset": "gTileset_GameCorner",
+      "border_filepath": "data/layouts/GoldenrodCity_GameCorner/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_GameCorner/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_FLAT1_2F",
-      "name": "GoldenrodCity_Flat1_2F_Layout",
-      "width": 14,
-      "height": 8,
+      "id": "LAYOUT_GOLDENROD_CITY_BIKE_SHOP",
+      "name": "GoldenrodCity_BikeShop_Layout",
+      "width": 11,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/GoldenrodCity_Flat1_2F/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat1_2F/map.bin"
+      "secondary_tileset": "gTileset_BikeShop",
+      "border_filepath": "data/layouts/GoldenrodCity_BikeShop/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_BikeShop/map.bin"
     },
     {
       "id": "LAYOUT_EVER_GRANDE_CITY_HALL4",

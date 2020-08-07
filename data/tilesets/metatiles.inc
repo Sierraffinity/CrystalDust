@@ -263,12 +263,12 @@ gMetatileAttributes_SecretBaseSecondary:: @ 83BCC52
 	.incbin "data/tilesets/secondary/secret_base/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_InsideOfTruck:: @ 83BCEDA
-	.incbin "data/tilesets/secondary/inside_of_truck/metatiles.bin"
+gMetatiles_MagnetTrain:: @ 83BCEDA
+	.incbin "data/tilesets/secondary/magnet_train/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_InsideOfTruck:: @ 83BD13A
-	.incbin "data/tilesets/secondary/inside_of_truck/metatile_attributes.bin"
+gMetatileAttributes_MagnetTrain:: @ 83BD13A
+	.incbin "data/tilesets/secondary/magnet_train/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Contest:: @ 83BD186
@@ -319,12 +319,12 @@ gMetatileAttributes_GenericBuilding:: @ 83C3572
 	.incbin "data/tilesets/secondary/generic_building/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_MauvilleGameCorner:: @ 83C3972
-	.incbin "data/tilesets/secondary/mauville_game_corner/metatiles.bin"
+gMetatiles_GameCorner:: @ 83C3972
+	.incbin "data/tilesets/secondary/game_corner/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_MauvilleGameCorner:: @ 83C3F72
-	.incbin "data/tilesets/secondary/mauville_game_corner/metatile_attributes.bin"
+gMetatileAttributes_GameCorner:: @ 83C3F72
+	.incbin "data/tilesets/secondary/game_corner/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Unused2:: @ 83C4032

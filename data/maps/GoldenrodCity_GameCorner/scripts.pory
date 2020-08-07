@@ -1,0 +1,384 @@
+const COINS_PRICE_50  = 50
+const COINS_PRICE_500 = 500
+
+mapscripts GoldenrodCity_GameCorner_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        gettime
+        if (var(VAR_0x8002) == TIME_MORNING)
+        {
+            setflag(FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD)
+        }
+        else
+        {
+            clearflag(FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD)
+        }
+	}
+}
+
+script GoldenrodCity_GameCorner_EventScript_CoinClerk {
+    lock
+    faceplayer
+    showmoneybox(0, 0, FALSE)
+    showcoinsbox(0, 5)
+    msgbox("Welcome to the GOLDENROD CITY\n"
+           "GAME CORNER.")
+    checkitem(ITEM_COIN_CASE, 1)
+    if (!var(VAR_RESULT))
+    {
+        msgbox("Do you need game coins?\p"
+               "Oh, you don't have a COIN CASE\n"
+               "for your coins.")
+    }
+    else
+    {
+        message("Do you need some game coins?\p"
+                "It costs ¥1000 for 50 coins.\n"
+                "Do you want some?")
+        waitmessage
+        call(GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice)
+    }
+    hidemoneybox
+    hidecoinsbox(0, 5)
+    release
+}
+
+script GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice {
+    multichoice(15, 0, MULTI_GAME_CORNER_COINS, 0)
+    switch (var(VAR_RESULT))
+    {
+        case 0:
+            checkcoins(VAR_TEMP_1)
+            if (var(VAR_TEMP_1) >= MAX_COINS + 1 - 50)
+            {
+                call(GoldenrodCity_GameCorner_EventScript_CoinClerk_NoRoom)
+            }
+            else
+            {
+                checkmoney(COINS_PRICE_50, FALSE)
+                if (var(VAR_RESULT) == FALSE)
+                {
+                    call(GoldenrodCity_GameCorner_EventScript_CoinClerk_NotEnoughMoney)
+                }
+                else
+                {
+                    addcoins(50)
+                    removemoney(COINS_PRICE_50, FALSE)
+                    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk_BoughtCoins)
+                }
+            }
+        case 1:
+            checkcoins(VAR_TEMP_1)
+            if (var(VAR_TEMP_1) >= MAX_COINS + 1 - 500)
+            {
+                call(GoldenrodCity_GameCorner_EventScript_CoinClerk_NoRoom)
+            }
+            else
+            {
+                checkmoney(COINS_PRICE_500, FALSE)
+                if (var(VAR_RESULT) == FALSE)
+                {
+                    call(GoldenrodCity_GameCorner_EventScript_CoinClerk_NotEnoughMoney)
+                }
+                else
+                {
+                    addcoins(500)
+                    removemoney(COINS_PRICE_500, FALSE)
+                    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk_BoughtCoins)
+                }
+            }
+        default:
+            msgbox("No coins for you?\n"
+                    "Come again!")
+    }
+}
+
+script GoldenrodCity_GameCorner_EventScript_CoinClerk_NoRoom {
+    msgbox("Whoops!\n"
+           "Your COIN CASE is full.")
+}
+
+script GoldenrodCity_GameCorner_EventScript_CoinClerk_NotEnoughMoney {
+    msgbox("You don't have enough money.")
+}
+
+script GoldenrodCity_GameCorner_EventScript_CoinClerk_BoughtCoins {
+    updatemoneybox(0, 0)
+    updatecoinsbox(0, 5)
+    playse(SE_RG_SHOP)
+    message("Thank you!\n"
+            "Here are your coins.")
+    waitmessage
+    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice)
+}
+
+script GoldenrodCity_GameCorner_EventScript_TMClerk {
+
+}
+
+script GoldenrodCity_GameCorner_EventScript_MonClerk {
+
+}
+
+script GoldenrodCity_GameCorner_EventScript_Nerd {
+    lock
+    faceplayer
+    msgbox("I always play this slot machine.\n"
+           "It pays out more than others, I think.")
+    call(GoldenrodCity_GameCorner_EventScript_FaceSlotMachine)
+    release
+}
+
+script GoldenrodCity_GameCorner_EventScript_PokefanM {
+    lock
+    faceplayer
+    msgbox("I just love this new slot machine.\p"
+           "It's more of a challenge than the\n"
+           "ones in CELADON.")
+    call(GoldenrodCity_GameCorner_EventScript_FaceSlotMachine)
+    release
+}
+
+script GoldenrodCity_GameCorner_EventScript_GamblinMan {
+    lock
+    faceplayer
+    msgbox("Life is a gamble.\n"
+           "I'm going to flip cards till I drop!")
+    call(GoldenrodCity_GameCorner_EventScript_FaceSlotMachine)
+    release
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlipWoman {
+    lock
+    faceplayer
+    msgbox("CARD FLIP…\p"
+           "I prefer it over the slots because\n"
+           "it's easier to figure out the odds.\p"
+           "But the payout is much lower.")
+    call(GoldenrodCity_GameCorner_EventScript_FaceSlotMachine)
+    release
+}
+
+script GoldenrodCity_GameCorner_EventScript_WontStopWoman {
+    msgbox("I won't quit until I win!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_GameCorner_EventScript_Gentleman {
+    lock
+    faceplayer
+    msgbox("I taught BLIZZARD to my POKéMON.\p"
+           "It was hard to get enough coins for\n"
+           "it, but it was worth it.")
+    call(GoldenrodCity_GameCorner_EventScript_FaceSlotMachine)
+    release
+}
+
+script GoldenrodCity_GameCorner_EventScript_CoinCaseMan {
+    msgbox("I couldn't win at the slots, and I\n"
+           "blew it on card flipping…\p"
+           "I got so furious, I tossed out my\n"
+           "COIN CASE in the UNDERGROUND.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_GameCorner_EventScript_MoveTutorInside {
+    lock
+    faceplayer
+    msgbox("Wahahah!\n"
+           "The coins keep rolling in!")
+    call(GoldenrodCity_GameCorner_EventScript_FaceSlotMachine)
+    release
+}
+
+script GoldenrodCity_GameCorner_EventScript_Drink {
+    msgbox("Someone left their drink.\n"
+           "It smells sweet.", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_GameCorner_EventScript_FaceSlotMachine {
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine0 {
+    lockall
+	setvar(VAR_0x8004, 0)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine1 {
+    lockall
+	setvar(VAR_0x8004, 1)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine2 {
+    lockall
+	setvar(VAR_0x8004, 2)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine3 {
+    lockall
+	setvar(VAR_0x8004, 3)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine4 {
+    lockall
+	setvar(VAR_0x8004, 4)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine5 {
+    lockall
+	setvar(VAR_0x8004, 5)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine6 {
+    lockall
+	setvar(VAR_0x8004, 6)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine7 {
+    lockall
+	setvar(VAR_0x8004, 7)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine8 {
+    lockall
+	setvar(VAR_0x8004, 8)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine9 {
+    lockall
+	setvar(VAR_0x8004, 9)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine10 {
+    lockall
+	setvar(VAR_0x8004, 10)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine11 {
+    lockall
+	setvar(VAR_0x8004, 11)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine12 {
+    lockall
+	setvar(VAR_0x8004, 12)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine13 {
+    lockall
+	setvar(VAR_0x8004, 13)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine14 {
+    lockall
+	setvar(VAR_0x8004, 14)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine15 {
+    lockall
+	setvar(VAR_0x8004, 15)
+	goto(GoldenrodCity_GameCorner_EventScript_SlotMachine)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip0 {
+    lockall
+	setvar(VAR_0x8004, 0)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip1 {
+    lockall
+	setvar(VAR_0x8004, 1)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip2 {
+    lockall
+	setvar(VAR_0x8004, 2)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip3 {
+    lockall
+	setvar(VAR_0x8004, 3)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip4 {
+    lockall
+	setvar(VAR_0x8004, 4)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip5 {
+    lockall
+	setvar(VAR_0x8004, 5)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip6 {
+    lockall
+	setvar(VAR_0x8004, 6)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip7 {
+    lockall
+	setvar(VAR_0x8004, 7)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip8 {
+    lockall
+	setvar(VAR_0x8004, 8)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip9 {
+    lockall
+	setvar(VAR_0x8004, 9)
+	goto(GoldenrodCity_GameCorner_EventScript_CardFlip)
+}
+
+script GoldenrodCity_GameCorner_EventScript_SlotMachine {
+    checkitem(ITEM_COIN_CASE, 1)
+    if (!var(VAR_RESULT))
+    {
+        msgbox("You can't play without a COIN CASE.")
+    }
+    else
+    {
+        specialvar(VAR_RESULT, GetSlotMachineId)
+        playslotmachine(VAR_RESULT)
+    }
+    releaseall
+}
+
+script GoldenrodCity_GameCorner_EventScript_CardFlip {
+    checkitem(ITEM_COIN_CASE, 1)
+    if (!var(VAR_RESULT))
+    {
+        msgbox("You can't play without a COIN CASE.")
+    }
+    else
+    {
+        special(PlayCardFlip)
+        waitstate
+    }
+    releaseall
+}
