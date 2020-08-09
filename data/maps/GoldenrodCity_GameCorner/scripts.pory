@@ -122,8 +122,8 @@ script GoldenrodCity_GameCorner_EventScript_MonClerk {
 script GoldenrodCity_GameCorner_EventScript_Nerd {
     lock
     faceplayer
-    msgbox("I always play this slot machine.\n"
-           "It pays out more than others, I think.")
+    msgbox("I always play this slot machine. It\n"
+           "pays out more than others, I think.")
     call(GoldenrodCity_GameCorner_EventScript_FaceSlotMachine)
     release
 }
