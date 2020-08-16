@@ -1386,38 +1386,49 @@ static void InitCardFlipScreen(void)
     {
     case 0:
         SetVBlankCallback(NULL);
-        ResetAllBgsCoordinates();
+        SetHBlankCallback(NULL);
+        CpuFill32(0, (void *)VRAM, VRAM_SIZE);
+        ResetBgsAndClearDma3BusyFlags(0);
+        InitBgsFromTemplates(0, sCardFlipBgTemplates, ARRAY_COUNT(sCardFlipBgTemplates));
+        InitWindows(sCardFlipWinTemplates);
+        DeactivateAllTextPrinters();
         gMain.state++;
         break;
     case 1:
+        DmaClearLarge16(3, (u16 *)(BG_VRAM), BG_VRAM_SIZE, 0x1000);
+        gMain.state++;
+        break;
+    case 2:
+        DmaClear16(3, (u16 *)OAM, OAM_SIZE);
         ResetVramOamAndBgCntRegs();
-        ResetBgsAndClearDma3BusyFlags(0);
-        InitBgsFromTemplates(0, sCardFlipBgTemplates, ARRAY_COUNT(sCardFlipBgTemplates));
+        ResetAllBgsCoordinates();
+        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
+        gMain.state++;
+        break;
+    case 3:
+        ResetPaletteFade();
+        ResetSpriteData();
+        FreeAllSpritePalettes();
+        ResetTasks();
+        gMain.state++;
+        break;
+    case 4:
         SetBgTilemapBuffer(CARD_FLIP_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
         DecompressAndLoadBgGfxUsingHeap(CARD_FLIP_BG_BASE, sCardFlipBaseBgGfx, 0x22E0, 0, 0);
         CopyToBgTilemapBuffer(CARD_FLIP_BG_BASE, sCardFlipBaseBgTilemap, 0, 0);
-        ResetPaletteFade();
         LoadPalette(sCardFlipBaseBgPalette, 0, sizeof(sCardFlipBaseBgPalette));
-        InitWindows(sCardFlipWinTemplates);
-        DeactivateAllTextPrinters();
         LoadMessageBoxGfx(WIN_TEXT, 0x200, 0xF0);
         LoadUserWindowBorderGfx(WIN_TEXT, 0x214, 0xE0);
         gMain.state++;
         break;
-    case 2:
-        ResetSpriteData();
-        FreeAllSpritePalettes();
-        gMain.state++;
-        break;
-    case 3:
+    case 5:
         CopyBgTilemapBufferToVram(CARD_FLIP_BG_BASE);
-        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
         ShowBg(CARD_FLIP_BG_TEXT);
         ShowBg(CARD_FLIP_BG_BET_OUTLINE);
         ShowBg(CARD_FLIP_BG_BASE);
         gMain.state++;
         break;
-    case 4:
+    case 6:
         LoadCompressedSpriteSheet(&sCoinDigitsSpriteSheet);
         LoadCompressedSpriteSheet(&sCardNumbersSpriteSheet);
         LoadCompressedSpriteSheet(&sBetOutlineHorizontalSpriteSheet);
@@ -1435,7 +1446,7 @@ static void InitCardFlipScreen(void)
         InitRoundCounterSprites();
         ShowHelpBar(sHelpBar_SelectExit);
         gMain.state++;
-    case 5:
+    case 7:
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         SetVBlankCallback(CardFlipVBlankCallback);
         SetMainCallback2(CardFlipMainCallback);
@@ -1560,12 +1571,20 @@ static void InitCardFlipTable(u8 taskId)
 static void DisplayInitialPlayMessage(void)
 {
     DrawDialogueFrame(WIN_TEXT, 0);
-    ConvertIntToDecimalStringN(gStringVar1, sCardFlip->numCoinsEntry, 0, 3);
-    StringExpandPlaceholders(gStringVar2, sPlayTheGamePromptText);
-    AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar2, 0, 1, GetPlayerTextSpeedDelay(), NULL);
 
-    CopyWindowToVram(WIN_TEXT, 3);
-    sCardFlip->state = CARD_FLIP_STATE_PLAY_PROMPT;
+    if (GetCoins() >= sCardFlip->numCoinsEntry)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, sCardFlip->numCoinsEntry, 0, 3);
+        StringExpandPlaceholders(gStringVar2, sPlayTheGamePromptText);
+        AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar2, 0, 1, 0, NULL);
+
+        CopyWindowToVram(WIN_TEXT, 3);
+        sCardFlip->state = CARD_FLIP_STATE_PLAY_PROMPT;
+    }
+    else
+    {
+        sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS;
+    }
 }
 
 static void DisplayInitialPlayPrompt(void)
@@ -1583,19 +1602,13 @@ static void ProcessPlayPromptInput(void)
     if (selection == 0)
     {
         ClearDialogWindowAndFrame(0, TRUE);
-        if (GetCoins() >= sCardFlip->numCoinsEntry)
-        {
-            ResetAndShuffleCardDeck();
-            sCardFlip->state = CARD_FLIP_STATE_PLAY_DEAL_CARDS;
-        }
-        else
-        {
-            sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS;
-        }
+        ResetAndShuffleCardDeck();
+        sCardFlip->state = CARD_FLIP_STATE_PLAY_DEAL_CARDS;
     }
     else if (selection == 1 || selection == MENU_B_PRESSED)
     {
         ClearDialogWindowAndFrame(0, TRUE);
+        PlaySE(SE_SELECT);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
     }
 }
@@ -1741,9 +1754,9 @@ static void DisplayBetOutcomeMessage(void)
         ShowHelpBar(sHelpBar_Next);
         DrawDialogueFrame(WIN_TEXT, 0);
         if (wonBet)
-            AddTextPrinterParameterized(WIN_TEXT, 1, sYeahText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+            AddTextPrinterParameterized(WIN_TEXT, 1, sYeahText, 0, 1, 0, NULL);
         else
-            AddTextPrinterParameterized(WIN_TEXT, 1, sDarnText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+            AddTextPrinterParameterized(WIN_TEXT, 1, sDarnText, 0, 1, 0, NULL);
 
         CopyWindowToVram(WIN_TEXT, 3);
         sCardFlip->state = CARD_FLIP_STATE_DISPLAY_OUTCOME_MESSAGE_INPUT;
@@ -1775,7 +1788,7 @@ static void PlayAgainMessage(void)
 {
     ShowHelpBar(sHelpBar_SelectExit);
     DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sPlayAgainText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+    AddTextPrinterParameterized(WIN_TEXT, 1, sPlayAgainText, 0, 1, 0, NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     sCardFlip->state = CARD_FLIP_STATE_PLAY_AGAIN_PROMPT;
 }
@@ -1813,6 +1826,7 @@ static void ProcessPlayAgainPromptInput(u8 taskId)
     else if (selection == 1 || selection == MENU_B_PRESSED)
     {
         ClearDialogWindowAndFrame(0, TRUE);
+        PlaySE(SE_SELECT);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
     }
 }
@@ -1820,7 +1834,7 @@ static void ProcessPlayAgainPromptInput(u8 taskId)
 static void ShuffleDeckMessage(void)
 {
     DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sShuffledCardsText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+    AddTextPrinterParameterized(WIN_TEXT, 1, sShuffledCardsText, 0, 1, 0, NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     ResetAndShuffleCardDeck();
     sCardFlip->state = CARD_FLIP_STATE_SHUFFLE_DECK_INPUT;   
@@ -1838,7 +1852,7 @@ static void ProcessShuffleDeckInput(void)
 static void DisplayNotEnoughCoinsMessage(void)
 {
     DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sNotEnoughCoinsText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+    AddTextPrinterParameterized(WIN_TEXT, 1, sNotEnoughCoinsText, 0, 1, 0, NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS_INPUT;
 }
@@ -1847,7 +1861,6 @@ static void ProcessNotEnoughCoinsInput(void)
 {
     if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
-        PlaySE(SE_SELECT);
         ClearDialogWindowAndFrame(0, TRUE);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
     }

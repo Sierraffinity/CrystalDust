@@ -1,5 +1,6 @@
-const COINS_PRICE_50  = 50
-const COINS_PRICE_500 = 500
+const COINS_PRICE_50  = 1000
+const COINS_PRICE_500 = 10000
+const TM_PRIZE_COINS  = 5500
 
 mapscripts GoldenrodCity_GameCorner_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
@@ -35,6 +36,7 @@ script GoldenrodCity_GameCorner_EventScript_CoinClerk {
                 "It costs ¥1000 for 50 coins.\n"
                 "Do you want some?")
         waitmessage
+        multichoicedefault(13, 0, MULTI_GAME_CORNER_COINS, 0, 0)
         call(GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice)
     }
     hidemoneybox
@@ -43,7 +45,6 @@ script GoldenrodCity_GameCorner_EventScript_CoinClerk {
 }
 
 script GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice {
-    multichoice(15, 0, MULTI_GAME_CORNER_COINS, 0)
     switch (var(VAR_RESULT))
     {
         case 0:
@@ -63,7 +64,14 @@ script GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice {
                 {
                     addcoins(50)
                     removemoney(COINS_PRICE_50, FALSE)
-                    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk_BoughtCoins)
+                    updatemoneybox(0, 0)
+                    updatecoinsbox(0, 5)
+                    playse(SE_RG_SHOP)
+                    message("Thank you!\n"
+                            "Here are 50 coins.")
+                    waitmessage
+                    multichoicedefault(13, 0, MULTI_GAME_CORNER_COINS, 0, 0)
+                    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice)
                 }
             }
         case 1:
@@ -83,12 +91,19 @@ script GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice {
                 {
                     addcoins(500)
                     removemoney(COINS_PRICE_500, FALSE)
-                    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk_BoughtCoins)
+                    updatemoneybox(0, 0)
+                    updatecoinsbox(0, 5)
+                    playse(SE_RG_SHOP)
+                    message("Thank you!\n"
+                            "Here are 500 coins.")
+                    waitmessage
+                    multichoicedefault(13, 0, MULTI_GAME_CORNER_COINS, 1, 0)
+                    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice)
                 }
             }
         default:
             msgbox("No coins for you?\n"
-                    "Come again!")
+                   "Come again!")
     }
 }
 
@@ -101,22 +116,224 @@ script GoldenrodCity_GameCorner_EventScript_CoinClerk_NotEnoughMoney {
     msgbox("You don't have enough money.")
 }
 
-script GoldenrodCity_GameCorner_EventScript_CoinClerk_BoughtCoins {
-    updatemoneybox(0, 0)
-    updatecoinsbox(0, 5)
-    playse(SE_RG_SHOP)
-    message("Thank you!\n"
-            "Here are your coins.")
-    waitmessage
-    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk_ShowChoice)
+script GoldenrodCity_GameCorner_EventScript_TMClerk {
+    lock
+    faceplayer
+    msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorIntro)
+    checkitem(ITEM_COIN_CASE, 1)
+    if (!var(VAR_RESULT))
+    {
+        msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorNoCoinCase)
+    }
+    else
+    {
+        message(GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize)
+        waitmessage
+        showcoinsbox(0, 0)
+        call(GoldenrodCity_GameCorner_EventScript_TMClerk_ShowChoice)
+        hidecoinsbox(0, 0)
+    }
+    release
 }
 
-script GoldenrodCity_GameCorner_EventScript_TMClerk {
+script GoldenrodCity_GameCorner_EventScript_TMClerk_ReturnToShowChoice {
+    message(GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize)
+    waitmessage
+    goto(GoldenrodCity_GameCorner_EventScript_TMClerk_ShowChoice)
+}
 
+text GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize {
+    "Which prize would you like?"
+}
+
+script GoldenrodCity_GameCorner_EventScript_TMClerk_ShowChoice {
+    multichoice(11, 0, MULTI_GAME_CORNER_TMS, 0)
+    switch (var(VAR_RESULT))
+    {
+        case 0:
+            setvar(VAR_TEMP_1, ITEM_TM25)
+            call(GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize)
+        case 1:
+            setvar(VAR_TEMP_1, ITEM_TM14)
+            call(GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize)
+        case 2:
+            setvar(VAR_TEMP_1, ITEM_TM38)
+            call(GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize)
+        default:
+            msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorOutro)
+    }
+}
+
+script GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize {
+    bufferitemname(0, VAR_TEMP_1)
+    copyvar(VAR_0x8004, VAR_TEMP_1)
+    special(BufferTMHMMoveName)
+    msgbox("So you want the {STR_VAR_1} {STR_VAR_2}.\n"
+           "Is that right?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        checkcoins(VAR_RESULT)
+        if (var(VAR_RESULT) < TM_PRIZE_COINS)
+        {
+            msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorNotEnoughCoins)
+        }
+        else
+        {
+            checkitemspace(VAR_TEMP_1, 1)
+            if (var(VAR_RESULT) == FALSE)
+            {
+                call(Common_EventScript_BagIsFull)
+                goto(GoldenrodCity_GameCorner_EventScript_TMClerk_ReturnToShowChoice)
+            }
+            else
+            {
+                removecoins(TM_PRIZE_COINS)
+                additem(VAR_TEMP_1)
+                updatecoinsbox(0, 0)
+                playse(SE_REGI)
+                msgbox(GoldenrodCity_GameCorner_EventScript_PrizeVendorHereYouGo)
+            }
+        }
+    }
+    else
+    {
+        goto(GoldenrodCity_GameCorner_EventScript_TMClerk_ReturnToShowChoice)
+    }
+}
+
+text GoldenrodCity_GameCorner_Text_PrizeVendorIntro {
+    "Welcome!\p"
+    "We exchange your game coins for\n"
+    "fabulous prizes!"
+}
+
+text GoldenrodCity_GameCorner_Text_PrizeVendorNoCoinCase {
+    "Oh?\n"
+    "You don't have a COIN CASE."
+}
+
+text GoldenrodCity_GameCorner_Text_PrizeVendorNotEnoughCoins {
+    "Sorry!\n"
+    "You need more coins than that."
+}
+
+text GoldenrodCity_GameCorner_EventScript_PrizeVendorHereYouGo {
+    "Here you go!"
+}
+
+text GoldenrodCity_GameCorner_Text_PrizeVendorOutro {
+    "Okay. Please save your coins\n"
+    "and come again!"
 }
 
 script GoldenrodCity_GameCorner_EventScript_MonClerk {
+    lock
+    faceplayer
+    msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorIntro)
+    checkitem(ITEM_COIN_CASE, 1)
+    if (!var(VAR_RESULT))
+    {
+        msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorNoCoinCase)
+    }
+    else
+    {
+        message(GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize)
+        waitmessage
+        showcoinsbox(0, 0)
+        call(GoldenrodCity_GameCorner_EventScript_MonClerk_ShowChoice)
+        hidecoinsbox(0, 0)
+    }
+    release
+}
 
+script GoldenrodCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice {
+    message(GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize)
+    waitmessage
+    goto(GoldenrodCity_GameCorner_EventScript_MonClerk_ShowChoice)
+}
+
+script GoldenrodCity_GameCorner_EventScript_MonClerk_ShowChoice {
+    multichoice(11, 0, MULTI_GAME_CORNER_MONS, 0)
+    switch (var(VAR_RESULT))
+    {
+        case 0:
+            setvar(VAR_TEMP_1, SPECIES_ABRA)
+            setvar(VAR_TEMP_2, 100)
+            call(GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize)
+        case 1:
+            setvar(VAR_TEMP_1, SPECIES_CUBONE)
+            setvar(VAR_TEMP_2, 800)
+            call(GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize)
+        case 2:
+            setvar(VAR_TEMP_1, SPECIES_WOBBUFFET)
+            setvar(VAR_TEMP_2, 1500)
+            call(GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize)
+        default:
+            msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorOutro)
+    }
+}
+
+script GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize {
+    bufferspeciesname(0, VAR_TEMP_1)
+    msgbox("So you want the {STR_VAR_1}.\n"
+           "Is that right?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        checkcoins(VAR_RESULT)
+        if (var(VAR_RESULT) < VAR_TEMP_2)
+        {
+            msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorNotEnoughCoins)
+        }
+        else
+        {
+            switch (var(VAR_TEMP_1))
+            {
+                case SPECIES_ABRA:
+                    givemon(VAR_TEMP_1, 5, ITEM_NONE)
+                default:
+                    givemon(VAR_TEMP_1, 15, ITEM_NONE)
+            }
+
+            copyvar(VAR_TEMP_3, VAR_RESULT)
+            switch (var(VAR_TEMP_3))
+            {
+                case 2: // no room anywhere
+                    call(Common_EventScript_BagIsFull)
+                    goto(GoldenrodCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice)
+                default:
+                    removecoins(VAR_TEMP_2)
+                    updatecoinsbox(0, 0)
+                    playse(SE_REGI)
+                    msgbox(GoldenrodCity_GameCorner_EventScript_PrizeVendorHereYouGo)
+                    textcolor(MSG_COLOR_SYS)
+                    bufferspeciesname(0, VAR_TEMP_1)
+                    playfanfare(MUS_FANFA1)
+                    message(gText_PlayerObtainedTheMon)
+                    waitmessage
+                    waitfanfare
+                    msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+                    switch (var(VAR_TEMP_3))
+                    {
+                        case 0: // party
+                            if (var(VAR_RESULT) == YES)
+                            {
+                                call(Common_EventScript_GetGiftMonPartySlot)
+                                call(Common_EventScript_NameReceivedPartyMon)
+                                showcoinsbox(0, 0)
+                            }
+                        case 1: // PC
+                            if (var(VAR_RESULT) == YES)
+                            {
+                                call(Common_EventScript_NameReceivedBoxMon)
+                                showcoinsbox(0, 0)
+                            }
+                            call(Common_EventScript_TransferredToPC)
+                    }
+            }
+        }
+    }
+    call(EventScript_RestorePrevTextColor)
+    goto(GoldenrodCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice)
 }
 
 script GoldenrodCity_GameCorner_EventScript_Nerd {

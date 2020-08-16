@@ -26,6 +26,10 @@ gText_NoMoreRoomForPokemon:: @ 827331C
 	.string "The POKéMON BOXES are full and\n"
 	.string "can't accept any more!$"
 
+gText_PlayerObtainedTheMon::
+    .string "{PLAYER} obtained\n"
+    .string "the {STR_VAR_1}!$"
+
 gText_NicknameThisPokemon:: @ 8273374
 	.string "Do you want to give a nickname to\n"
 	.string "this {STR_VAR_1}?$"

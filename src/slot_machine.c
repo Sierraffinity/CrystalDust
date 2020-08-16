@@ -467,7 +467,7 @@ static const struct BgTemplate gUnknown_085A7424[] =
 
 static const struct WindowTemplate gUnknown_085A7434[] =
 {
-    {0, 2, 15, 0x1B, 4, 15, 0x194},
+    {0, 2, 15, 0x1A, 4, 15, 0x194},
     DUMMY_WIN_TEMPLATE
 };
 
@@ -1034,7 +1034,7 @@ static bool8 SlotAction_AwaitPlayerInput(struct Task *task)
 static bool8 SlotAction_PrintYouDontHaveThreeCoins(struct Task *task)
 {
     DrawDialogueFrame(0, 0);
-    AddTextPrinterParameterized(0, 1, gText_YouDontHaveThreeCoins, 0, 1, 0, 0);
+    AddTextPrinterParameterized5(0, 1, gText_YouDontHaveThreeCoins, 0, 1, 0, 0, 1, 2);
     CopyWindowToVram(0, 3);
     sSlotMachine->state = 7;
     return FALSE;
@@ -1283,9 +1283,9 @@ static bool8 SlotAction_NoMatches(struct Task *task)
 static bool8 SlotAction_PrintQuitTheGame(struct Task *task)
 {
     DrawDialogueFrame(0, 0);
-    AddTextPrinterParameterized(0, 1, gText_QuitTheGame, 0, 1, 0, 0);
+    AddTextPrinterParameterized5(0, 1, gText_QuitTheGame, 0, 1, 0, 0, 1, 2);
     CopyWindowToVram(0, 3);
-    CreateYesNoMenuParameterized(0x15, 7, 0x214, 0x180, 0xE, 0xF);
+    CreateYesNoMenuParameterized(0x15, 7, 0x214, 0x170, 0xE, 0xF);
     sSlotMachine->state = 22;
     return FALSE;
 }
@@ -1313,7 +1313,7 @@ static bool8 SlotAction_SeeIfPlayerQuits(struct Task *task)
 static bool8 SlotAction_PrintMessage_9999Coins(struct Task *task)
 {
     DrawDialogueFrame(0, 0);
-    AddTextPrinterParameterized(0, 1, gText_YouveGot9999Coins, 0, 1, 0, 0);
+    AddTextPrinterParameterized5(0, 1, gText_YouveGot9999Coins, 0, 1, 0, 0, 1, 2);
     CopyWindowToVram(0, 3);
     sSlotMachine->state = 24;
     return FALSE;
@@ -1332,7 +1332,7 @@ static bool8 SlotAction_ExitMessage_9999Coins(struct Task *task)
 static bool8 SlotAction_PrintMessage_NoMoreCoins(struct Task *task)
 {
     DrawDialogueFrame(0, 0);
-    AddTextPrinterParameterized(0, 1, gText_YouveRunOutOfCoins, 0, 1, 0, 0);
+    AddTextPrinterParameterized5(0, 1, gText_YouveRunOutOfCoins, 0, 1, 0, 0, 1, 2);
     CopyWindowToVram(0, 3);
     sSlotMachine->state = 26;
     return FALSE;
@@ -6727,15 +6727,11 @@ static const struct SpriteSheet gSlotMachineSpriteSheets[] =
     { .data = gSlotMachineNumber7Tiles, .size = 0x40, .tag = 14 },
     { .data = gSlotMachineNumber8Tiles, .size = 0x40, .tag = 15 },
     { .data = gSlotMachineNumber9Tiles, .size = 0x40, .tag = 16 },
-};
-
-static const u8 sUnused1[][8] = 
-{
-    {0, 0, 0, 0, 0, 2, 18},
-    {0, 0, 0, 0, 0, 2, 19}, 
-    {0, 0, 0, 0, 0, 3, 20}, 
-    {0, 0, 0, 0, 0, 3, 21}, 
-    {0, 0, 0, 0, 0, 0,  0}
+    { .data = NULL, .size = 0x200, .tag = 18 },
+    { .data = NULL, .size = 0x200, .tag = 19 },
+    { .data = NULL, .size = 0x300, .tag = 20 },
+    { .data = NULL, .size = 0x300, .tag = 21 },
+    { NULL },
 };
 
 static const u8 *const gUnknown_083EDCDC = gUnknown_08DD19F8;

@@ -127,7 +127,7 @@ MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize:: @ 820FD20
 	goto MauvilleCity_GameCorner_EventScript_ChooseDollPrize
 
 MauvilleCity_GameCorner_EventScript_ChooseDollPrize:: @ 820FD2B
-	multichoice 12, 0, MULTI_GAME_CORNER_DOLLS, 0
+	multichoice 12, 0, MULTI_GAME_CORNER_MONS, 0
 	switch VAR_RESULT
 	case 0, MauvilleCity_GameCorner_EventScript_TreeckoDoll
 	case 1, MauvilleCity_GameCorner_EventScript_TorchicDoll
