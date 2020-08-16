@@ -405,7 +405,7 @@ gSongTable:: @ 86B49F0
 	song mus_nextroad, 0, 0         @ Route 104
 	song mus_granroad, 0, 0         @ Route 119
 	song mus_cycling, 0, 0          @ Cycling
-	song mus_friendly, 0, 0         @ Poké Mart
+	song mus_pkmnlullaby, 0, 0         @ Poké Mart
 	song mus_newbark, 0, 0          @ Littleroot Town
 	song mus_tozan, 0, 0            @ Mt. Chimney
 	song mus_encfemale, 0, 0        @ Trainers' Eyes Meet (Lass)

@@ -162,7 +162,7 @@ $(MID_SUBDIR)/mus_field13.s: %.s: %.mid
 $(MID_SUBDIR)/mus_finecity.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G079 -V070
 
-$(MID_SUBDIR)/mus_friendly.s: %.s: %.mid
+$(MID_SUBDIR)/mus_pkmnlullaby.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G050 -V085
 
 $(MID_SUBDIR)/mus_buena.s: %.s: %.mid

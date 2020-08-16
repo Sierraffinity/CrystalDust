@@ -333,7 +333,7 @@
 #define MUS_NEXTROAD 401        // Route 104
 #define MUS_GRANROAD 402        // Route 119
 #define MUS_CYCLING 403         // Cycling
-#define MUS_FRIENDLY 404        // Pokémart
+#define MUS_PKMNLULLABY 404     // Pokémon Lullaby
 #define MUS_NEWBARK 405         // New Bark Town
 #define MUS_TOZAN 406           // Sky Pillar
 #define MUS_ENCFEMALE 407       // Encounter! Girl

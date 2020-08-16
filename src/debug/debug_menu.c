@@ -2,6 +2,7 @@
 #include "global.h"
 #include "battle_transition.h"
 #include "clock.h"
+#include "coins.h"
 #include "daycare.h"
 #include "day_night.h"
 #include "event_data.h"
@@ -14,6 +15,7 @@
 #include "item.h"
 #include "lottery_corner.h"
 #include "main.h"
+#include "money.h"
 #include "overworld.h"
 #include "region_map.h"
 #include "rtc.h"
@@ -86,6 +88,8 @@ static void DebugMenu_EnableResetRTC(u8 taskId);
 static void DebugMenu_TestBattleTransition(u8 taskId);
 static void DebugMenu_SwapGender(u8 taskId);
 static void DebugMenu_LottoNumber(u8 taskId);
+static void DebugMenu_MaxMoney(u8 taskId);
+static void DebugMenu_MaxCoins(u8 taskId);
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
 static void DebugMenu_Pokedex_ProfOakRating(u8 taskId);
@@ -117,6 +121,8 @@ static const u8 sText_SetVar[] = _("Set variable");
 static const u8 sText_AddItem[] = _("Add item");
 static const u8 sText_GenderBender[] = _("Gender bender");
 static const u8 sText_LottoNumber[] = _("Set lotto number");
+static const u8 sText_MaxMoney[] = _("Max money");
+static const u8 sText_MaxCoins[] = _("Max coins");
 static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Pokedex[] = _("Pokédex");
 static const u8 sText_Pokegear[] = _("Pokégear");
@@ -175,6 +181,8 @@ static const struct DebugMenuAction sDebugMenu_PlayerInfoActions[] =
     { sText_AddItem, DebugMenu_AddItem, NULL },
     { sText_GenderBender, DebugMenu_SwapGender, NULL },
     { sText_LottoNumber, DebugMenu_LottoNumber, NULL },
+    { sText_MaxMoney, DebugMenu_MaxMoney, NULL },
+    { sText_MaxCoins, DebugMenu_MaxCoins, NULL },
 };
 
 CREATE_BOUNCER(PlayerInfoActions, MainActions);
@@ -894,6 +902,16 @@ static void DebugMenu_SwapGender(u8 taskId)
     SetWarpDestination(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1, gSaveBlock1Ptr->pos.x, gSaveBlock1Ptr->pos.y);
     DoDiveWarp();
     ResetInitialPlayerAvatarState();
+}
+
+static void DebugMenu_MaxMoney(u8 taskId)
+{
+    SetMoney(&gSaveBlock1Ptr->money, 999999);
+}
+
+static void DebugMenu_MaxCoins(u8 taskId)
+{
+    SetCoins(9999);
 }
 
 static void DebugMenu_LottoNumber_PrintStatus(u8 windowId, u32 lottoNum)

@@ -129,7 +129,7 @@ void PlayPokemonMusic(void)
     u16 song = MUS_POKEMONMARCH;  // Sunday, Tuesday, Thursday, Saturday
     RtcCalcLocalTime();
     if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
-        song = MUS_ASHROAD;
+        song = MUS_PKMNLULLABY;
     PlayNewMapMusic(song);
 }
 
