@@ -4,13 +4,13 @@ MossdeepCity_House3_MapScripts:: @ 82225C2
 MossdeepCity_House3_EventScript_SuperRodFisherman:: @ 82225C3
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_SUPER_ROD, MossdeepCity_House3_EventScript_ReceivedSuperRod
+	goto_if_set FLAG_RECEIVED_BIKE, MossdeepCity_House3_EventScript_ReceivedSuperRod
 	msgbox MossdeepCity_House3_Text_YouWantSuperRod, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq MossdeepCity_House3_EventScript_DeclineSuperRod
 	msgbox MossdeepCity_House3_Text_SuperRodIsSuper, MSGBOX_DEFAULT
 	giveitem ITEM_SUPER_ROD
-	setflag FLAG_RECEIVED_SUPER_ROD
+	setflag FLAG_RECEIVED_BIKE
 	msgbox MossdeepCity_House3_Text_TryDroppingRodInWater, MSGBOX_DEFAULT
 	release
 	end

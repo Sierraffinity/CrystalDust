@@ -5829,10 +5829,10 @@
       "exitsBagOnUse": 1,
       "pocket": "POCKET_KEY_ITEMS",
       "type": 2,
-      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "fieldUseFunc": "ItemUseOutOfBattle_Bike",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
-      "secondaryId": 0
+      "secondaryId": 2
     },
     {
       "english": "TOWN MAP",

@@ -162,8 +162,8 @@
 #define FLAG_POKECOM_CENTER_ENABLED          0x94
 #define FLAG_MET_BUENA                       0x95
 #define FLAG_BUENA_OFFERED_NUMBER            0x96
-#define FLAG_RECEIVED_CASTFORM               0x97
-#define FLAG_RECEIVED_SUPER_ROD              0x98
+#define FLAG_RECEIVED_BIKE                   0x97
+#define FLAG_BIKE_SHOP_LOAN_ACTIVE           0x98
 #define FLAG_VIOLET_NPC_TRADE_COMPLETED      0x99
 #define FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED  0x9A
 #define FLAG_FORTREE_NPC_TRADE_COMPLETED     0x9B
