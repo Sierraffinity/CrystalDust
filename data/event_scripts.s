@@ -41,6 +41,7 @@
 #include "constants/metatile_labels.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
+#include "constants/phone_contact.h"
 #include "constants/pokemon.h"
 #include "constants/radio.h"
 #include "constants/script_menu.h"
@@ -1093,3 +1094,4 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+	.include "data/scripts/phone.inc"

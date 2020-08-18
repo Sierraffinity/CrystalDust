@@ -1025,7 +1025,7 @@ static bool32 CheckMatchCallChance(void)
         return FALSE;
 }
 
-static bool32 MapAllowsMatchCall(void)
+bool32 MapAllowsMatchCall(void)
 {
     return (gMapHeader.flags & MAP_HAS_PHONE_SERVICE) != 0;
 }
@@ -1502,7 +1502,7 @@ static void InitMatchCallCallerNameTextPrinter(int windowId, const u8 *str)
     printerTemplate.currentX = 16;
     printerTemplate.currentY = 0;
     printerTemplate.letterSpacing = 0;
-    printerTemplate.lineSpacing = -4;
+    printerTemplate.lineSpacing = -2;
     printerTemplate.unk = 0;
     printerTemplate.fgColor = 10;
     printerTemplate.bgColor = 8;

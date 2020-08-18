@@ -1344,11 +1344,6 @@ static void PhoneCard_PlaceCall(u8 taskId)
 static const u8 sPhoneCallText_OutOfService[] = _("You're out of the service area.");
 static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that person!");
 
-static bool8 NoPhoneServiceInCurrentLocation(void)
-{
-    return (gMapHeader.flags & MAP_HAS_PHONE_SERVICE) == 0;
-}
-
 #define tPhoneCallInitState data[0]
 
 void InitPokegearPhoneCall(u8 taskId)
@@ -1389,7 +1384,7 @@ void InitPokegearPhoneCall(u8 taskId)
             FillWindowPixelBuffer(gPhoneCallWindowId, 0x11);
             phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
             
-            if (NoPhoneServiceInCurrentLocation())
+            if (!MapAllowsMatchCall())
                 str = sPhoneCallText_OutOfService;
             else if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
                 str = sPhoneCallText_JustGoTalkToThem;

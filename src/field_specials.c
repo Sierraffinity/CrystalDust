@@ -162,9 +162,11 @@ void Special_BeginCyclingRoadChallenge(void)
 
 u16 GetPlayerAvatarBike(void)
 {
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE))
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE) == PLAYER_AVATAR_FLAG_BIKE)
+        return 3;
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE) == PLAYER_AVATAR_FLAG_ACRO_BIKE)
         return 1;
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE))
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE) == PLAYER_AVATAR_FLAG_MACH_BIKE)
         return 2;
     return 0;
 }
@@ -376,7 +378,7 @@ bool32 ShouldDoWallyCall(void)
             case MAP_TYPE_CITY:
             case MAP_TYPE_ROUTE:
             case MAP_TYPE_OCEAN_ROUTE:
-                if (++(*GetVarPointer(VAR_WALLY_CALL_STEP_COUNTER)) < 250)
+                if (++(*GetVarPointer(VAR_BIKE_SHOP_OWNER_CALL_STEP_COUNTER)) < 250)
                 {
                     return FALSE;
                 }
@@ -393,31 +395,17 @@ bool32 ShouldDoWallyCall(void)
     return TRUE;
 }
 
-bool32 ShouldDoScottFortreeCall(void)
+bool32 ShouldDoBikeShopOwnerCall(void)
 {
-    if (FlagGet(FLAG_FOREST_IS_RESTLESS))
+    if (FlagGet(FLAG_BIKE_SHOP_LOAN_ACTIVE) && MapAllowsMatchCall() && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
     {
-        switch (gMapHeader.mapType)
+        if (++(*GetVarPointer(VAR_BIKE_SHOP_OWNER_CALL_STEP_COUNTER)) >= 1024)
         {
-            case MAP_TYPE_TOWN:
-            case MAP_TYPE_CITY:
-            case MAP_TYPE_ROUTE:
-            case MAP_TYPE_OCEAN_ROUTE:
-                if (++(*GetVarPointer(VAR_SCOTT_FORTREE_CALL_STEP_COUNTER)) < 10)
-                {
-                    return FALSE;
-                }
-                break;
-            default:
-                return FALSE;
+            return TRUE;
         }
     }
-    else
-    {
-        return FALSE;
-    }
 
-    return TRUE;
+    return FALSE;
 }
 
 bool32 ShouldDoScottBattleFrontierCall(void)

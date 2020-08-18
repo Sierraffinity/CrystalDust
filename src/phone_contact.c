@@ -7,6 +7,7 @@
 #include "international_string_util.h"
 #include "match_call.h"
 #include "phone_contact.h"
+#include "phone_scripts.h"
 #include "text.h"
 #include "strings.h"
 #include "string_util.h"
@@ -22,10 +23,7 @@ static bool8 CanAcceptRematch_MondayDaytime(s8 dayOfWeek, s8 hour);
 
 static const u8 sPhoneContactName_Mom[] = _("MOM");
 static const u8 sPhoneContactName_ProfessorElm[] = _("PROF. ELM");
-
-extern const u8 PhoneScript_Mom[];
-extern const u8 PhoneScript_Elm[];
-extern const u8 PhoneScript_StandardMatchCallTrainer[];
+static const u8 sPhoneContactName_BikeShop[] = _("BIKE SHOP");
 
 const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 {
@@ -47,6 +45,17 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
         .mapNum = MAP_NUM(NEW_BARK_TOWN_PROFESSOR_ELMS_LAB),
         .mapGroup = MAP_GROUP(NEW_BARK_TOWN_PROFESSOR_ELMS_LAB),
         .registeredFlag = FLAG_PHONE_CARD_ELM,
+        .rematchTrainerId = 0xFF,
+        .availability = PHONE_AVAILABILITY_ALWAYS,
+        .isPermanent = TRUE,
+    },
+    [PHONE_CONTACT_BIKE_SHOP] = {
+        .customDisplayName = sPhoneContactName_BikeShop,
+        .phoneScript = PhoneScript_BikeShop,
+        .canAcceptRematch = CanAcceptRematch_Always,
+        .mapNum = MAP_NUM(GOLDENROD_CITY_BIKE_SHOP),
+        .mapGroup = MAP_GROUP(GOLDENROD_CITY_BIKE_SHOP),
+        .registeredFlag = 0,
         .rematchTrainerId = 0xFF,
         .availability = PHONE_AVAILABILITY_ALWAYS,
         .isPermanent = TRUE,

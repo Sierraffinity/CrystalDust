@@ -305,3 +305,20 @@ PhoneScript_StandardMatchCallTrainer::
 	phone_callnativecontext SelectMessage_StandardMatchCallTrainer
 	phone_stdcall gStringVar4
 	phone_end
+
+PhoneScript_BikeShop::
+	phone_initcall
+	phone_message Text_BikeShopOwnerCall
+	phone_waitbuttonpress
+	phone_clearflag FLAG_BIKE_SHOP_LOAN_ACTIVE
+	phone_hangup
+	phone_end
+
+Text_BikeShopOwnerCall:
+	.string "Hi, {PLAYER}! Our BICYCLE sales\n"
+	.string "have gone through the roof!\p"
+	.string "We owe it all to your advertising\n"
+	.string "by riding around on our BICYCLE.\p"
+	.string "As our way of saying thanks, please\n"
+	.string "keep that BICYCLE.\p"
+	.string "Thanks again!$"

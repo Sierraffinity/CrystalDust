@@ -1,6 +1,8 @@
 #ifndef GUARD_PHONE_CONTACT_H
 #define GUARD_PHONE_CONTACT_H
 
+#include "constants/phone_contact.h"
+
 struct PhoneContact;
 typedef const u8 *(*PhoneContactSelectMessage)(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
 typedef bool8 (*PhoneContactAcceptRematchCB)(s8 dayOfWeek, s8 hour);
@@ -19,9 +21,7 @@ struct PhoneContact
 };
 
 enum {
-    PHONE_CONTACT_MOM,
-    PHONE_CONTACT_ELM,
-    PHONE_CONTACT_ROSE,
+    PHONE_CONTACT_ROSE = PHONE_CONTACT_NON_TRAINERS_COUNT + 1,
     PHONE_CONTACT_ANDRES,
     PHONE_CONTACT_DUSTY,
     PHONE_CONTACT_LOLA,
