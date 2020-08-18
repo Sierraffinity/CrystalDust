@@ -22,6 +22,7 @@
 #include "match_call.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
+#include "phone_scripts.h"
 #include "pokemon.h"
 #include "safari_zone.h"
 #include "script.h"
@@ -676,6 +677,11 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext1_SetupScript(IslandCave_EventScript_OpenRegiEntrance);
             return TRUE;
         }
+        if (ShouldDoBikeShopOwnerCall() == TRUE)
+        {
+            ScriptContext1_SetupScript(EventScript_Phone_BikeShopOwner);
+            return TRUE;
+        }
     }
 
     if (SafariZoneTakeStep() == TRUE)
@@ -861,7 +867,7 @@ static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, u8
         else if (IsStaircaseWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
         {
             delay = 0;
-            if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+            if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_BIKE)
             {
                 SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
                 delay = 12;

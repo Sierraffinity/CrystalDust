@@ -86,6 +86,7 @@ static void PlayerAvatarTransition_Dummy(struct ObjectEvent *a);
 static void PlayerAvatarTransition_Normal(struct ObjectEvent *a);
 static void PlayerAvatarTransition_MachBike(struct ObjectEvent *a);
 static void PlayerAvatarTransition_AcroBike(struct ObjectEvent *a);
+static void PlayerAvatarTransition_Bicycle(struct ObjectEvent *a);
 static void PlayerAvatarTransition_Surfing(struct ObjectEvent *a);
 static void PlayerAvatarTransition_Underwater(struct ObjectEvent *a);
 static void PlayerAvatarTransition_ReturnToField(struct ObjectEvent *a);
@@ -215,8 +216,8 @@ static const u8 sAcroBikeTrickCollisionTypes[] = {
 static void (*const sPlayerAvatarTransitionFuncs[])(struct ObjectEvent *) =
 {
     [PLAYER_AVATAR_STATE_NORMAL]     = PlayerAvatarTransition_Normal,
-    [PLAYER_AVATAR_STATE_MACH_BIKE]  = PlayerAvatarTransition_MachBike,
-    [PLAYER_AVATAR_STATE_ACRO_BIKE]  = PlayerAvatarTransition_AcroBike,
+    [PLAYER_AVATAR_STATE_MACH_BIKE]  = PlayerAvatarTransition_Bicycle,
+    [PLAYER_AVATAR_STATE_ACRO_BIKE]  = PlayerAvatarTransition_Bicycle,
     [PLAYER_AVATAR_STATE_SURFING]    = PlayerAvatarTransition_Surfing,
     [PLAYER_AVATAR_STATE_UNDERWATER] = PlayerAvatarTransition_Underwater,
     [PLAYER_AVATAR_STATE_FIELD_MOVE] = PlayerAvatarTransition_ReturnToField,
@@ -265,7 +266,7 @@ static const u8 sPlayerAvatarGfxToStateFlag[2][5][2] =
     [MALE] =
     {
         {OBJ_EVENT_GFX_BRENDAN_NORMAL,     PLAYER_AVATAR_FLAG_ON_FOOT},
-        {OBJ_EVENT_GFX_BRENDAN_MACH_BIKE,  PLAYER_AVATAR_FLAG_MACH_BIKE},
+        {OBJ_EVENT_GFX_BRENDAN_MACH_BIKE,  PLAYER_AVATAR_FLAG_BIKE},
         {OBJ_EVENT_GFX_BRENDAN_ACRO_BIKE,  PLAYER_AVATAR_FLAG_ACRO_BIKE},
         {OBJ_EVENT_GFX_BRENDAN_SURFING,    PLAYER_AVATAR_FLAG_SURFING},
         {OBJ_EVENT_GFX_BRENDAN_UNDERWATER, PLAYER_AVATAR_FLAG_UNDERWATER},
@@ -273,7 +274,7 @@ static const u8 sPlayerAvatarGfxToStateFlag[2][5][2] =
     [FEMALE] =
     {
         {OBJ_EVENT_GFX_MAY_NORMAL,         PLAYER_AVATAR_FLAG_ON_FOOT},
-        {OBJ_EVENT_GFX_MAY_MACH_BIKE,      PLAYER_AVATAR_FLAG_MACH_BIKE},
+        {OBJ_EVENT_GFX_MAY_MACH_BIKE,      PLAYER_AVATAR_FLAG_BIKE},
         {OBJ_EVENT_GFX_MAY_ACRO_BIKE,      PLAYER_AVATAR_FLAG_ACRO_BIKE},
         {OBJ_EVENT_GFX_MAY_SURFING,        PLAYER_AVATAR_FLAG_SURFING},
         {OBJ_EVENT_GFX_MAY_UNDERWATER,     PLAYER_AVATAR_FLAG_UNDERWATER},
@@ -387,8 +388,7 @@ static void npc_clear_strange_bits(struct ObjectEvent *objEvent)
 
 static void MovePlayerAvatarUsingKeypadInput(u8 direction, u16 newKeys, u16 heldKeys)
 {
-    if ((gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
-     || (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ACRO_BIKE))
+    if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_BIKE)
         MovePlayerOnBike(direction, newKeys, heldKeys);
     else
         MovePlayerNotOnBike(direction, heldKeys);
@@ -872,6 +872,27 @@ static void PlayerAvatarTransition_AcroBike(struct ObjectEvent *objEvent)
     Bike_HandleBumpySlopeJump();
 }
 
+static void PlayerAvatarTransition_Bicycle(struct ObjectEvent *objEvent)
+{
+    u8 flags = gPlayerAvatar.transitionFlags;
+
+    if ((flags & PLAYER_AVATAR_FLAG_BIKE) == PLAYER_AVATAR_FLAG_MACH_BIKE)
+    {
+        PlayerAvatarTransition_MachBike(&gObjectEvents[gPlayerAvatar.objectEventId]);
+    }
+    else if ((flags & PLAYER_AVATAR_FLAG_BIKE) == PLAYER_AVATAR_FLAG_ACRO_BIKE)
+    {
+        PlayerAvatarTransition_AcroBike(&gObjectEvents[gPlayerAvatar.objectEventId]);
+    }
+    else
+    {
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_MACH_BIKE));
+        ObjectEventTurn(objEvent, objEvent->movementDirection);
+        SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_BIKE);
+        BikeClearState(0, 0);
+    }
+}
+
 static void PlayerAvatarTransition_Surfing(struct ObjectEvent *objEvent)
 {
     u8 spriteId;
@@ -1240,7 +1261,7 @@ void sub_808BCF4(void)
 
     npc_clear_strange_bits(playerObjEvent);
     SetObjectEventDirection(playerObjEvent, playerObjEvent->facingDirection);
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
     {
         Bike_HandleBumpySlopeJump();
         Bike_UpdateBikeCounterSpeed(0);

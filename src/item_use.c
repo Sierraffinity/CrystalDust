@@ -205,7 +205,11 @@ void ItemUseOutOfBattle_Bike(u8 taskId)
     u8 behavior;
     PlayerGetDestCoords(&coordsX, &coordsY);
     behavior = MapGridGetMetatileBehaviorAt(coordsX, coordsY);
-    if (FlagGet(FLAG_SYS_CYCLING_ROAD) == TRUE || MetatileBehavior_IsVerticalRail(behavior) == TRUE || MetatileBehavior_IsHorizontalRail(behavior) == TRUE || MetatileBehavior_IsIsolatedVerticalRail(behavior) == TRUE || MetatileBehavior_IsIsolatedHorizontalRail(behavior) == TRUE)
+    if (FlagGet(FLAG_SYS_CYCLING_ROAD) == TRUE
+     || MetatileBehavior_IsVerticalRail(behavior) == TRUE
+     || MetatileBehavior_IsHorizontalRail(behavior) == TRUE
+     || MetatileBehavior_IsIsolatedVerticalRail(behavior) == TRUE
+     || MetatileBehavior_IsIsolatedHorizontalRail(behavior) == TRUE)
         DisplayCannotDismountBikeMessage(taskId, tUsingRegisteredKeyItem);
     else
     {
@@ -215,16 +219,22 @@ void ItemUseOutOfBattle_Bike(u8 taskId)
             SetUpItemUseOnFieldCallback(taskId);
         }
         else
+        {
             DisplayOaksAdviceCannotUseItemMessage(taskId, tUsingRegisteredKeyItem);
+        }
     }
 }
 
 static void ItemUseOnFieldCB_Bike(u8 taskId)
 {
-    if (!ItemId_GetSecondaryId(gSpecialVar_ItemId))
+    u8 whichBike = ItemId_GetSecondaryId(gSpecialVar_ItemId);
+
+    if (whichBike == 0)
         GetOnOffBike(PLAYER_AVATAR_FLAG_MACH_BIKE);
-    else
+    else if (whichBike == 1)
         GetOnOffBike(PLAYER_AVATAR_FLAG_ACRO_BIKE);
+    else if (whichBike == 2)
+        GetOnOffBike(PLAYER_AVATAR_FLAG_BIKE);
     ScriptUnfreezeObjectEvents();
     ScriptContext2_Disable();
     DestroyTask(taskId);
