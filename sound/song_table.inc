@@ -443,7 +443,7 @@ gSongTable:: @ 86B49F0
 	song mus_con_fan, 0, 0          @ Contest Winner
 	song mus_contest0, 0, 0         @ Pokémon Contest!
 	song mus_oakslab, 0, 0          @ Oak's Lab
-	song mus_t_battle, 0, 0         @ Opening Movie: Double Battles
+	song mus_rockettakeover, 0, 0         @ Opening Movie: Double Battles
 	song mus_ooame, 0, 0            @ Heavy Rain
 	song mus_hideri, 0, 0           @ The Drought
 	song mus_runecity, 0, 0         @ Sootopolis City

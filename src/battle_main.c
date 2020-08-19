@@ -5062,14 +5062,14 @@ static void HandleEndTurn_BattleWon(void)
         case TRAINER_CLASS_CHAMPION:
             PlayBGM(MUS_KACHI5);
             break;
-        case TRAINER_CLASS_TEAM_ROCKET:
+        /*case TRAINER_CLASS_TEAM_ROCKET:
         case TRAINER_CLASS_TEAM_MAGMA:
         case TRAINER_CLASS_AQUA_ADMIN:
         case TRAINER_CLASS_AQUA_LEADER:
         case TRAINER_CLASS_MAGMA_ADMIN:
         case TRAINER_CLASS_MAGMA_LEADER:
             PlayBGM(MUS_KACHI4);
-            break;
+            break;*/
         case TRAINER_CLASS_LEADER:
             PlayBGM(MUS_KACHI3);
             break;

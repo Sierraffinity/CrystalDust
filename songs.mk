@@ -7,7 +7,7 @@ $(MID_SUBDIR)/mus_ajito.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G076 -V084
 
 $(MID_SUBDIR)/mus_encrocket.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G065 -V086
+	$(MID) $< $@ -E -R$(STD_REVERB) -G065 -V080
 
 $(MID_SUBDIR)/mus_ashroad.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G055 -V076
@@ -585,8 +585,8 @@ $(MID_SUBDIR)/mus_swimeye.s: %.s: %.mid
 $(MID_SUBDIR)/mus_encfemaleclassic.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G027 -V080
 
-$(MID_SUBDIR)/mus_t_battle.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G088 -V088
+$(MID_SUBDIR)/mus_rockettakeover.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G088 -V080
 
 $(MID_SUBDIR)/mus_pokemonmarch.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G043 -V094

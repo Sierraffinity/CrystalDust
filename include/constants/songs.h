@@ -348,7 +348,7 @@
 #define MUS_ENCSAGE 416         // Encounter! Biker
 #define MUS_ENCMALECLASSIC 417  // Encounter! Electric Trainer
 #define MUS_MAINMENU 418        // Main Menu
-#define MUS_ENCROCKET 419       // Encounter! Team Aqua
+#define MUS_ENCROCKET 419       // Encounter! Team Rocket
 #define MUS_FOLLOWME 420        // Follow Me!
 #define MUS_RIVALEXIT 421       // Rival exits, stage left
 #define MUS_RAINBOW 422         // Ever Grande City
@@ -364,14 +364,14 @@
 #define MUS_SPROUTTOWER 432     // Sprout Tower
 #define MUS_FINECITY 433        // Slateport City
 #define MUS_MACHUPI 434         // Mt. Pyre (Outside)
-#define MUS_OAKTHEME 435        // Pokémon Trainer's School
+#define MUS_OAKTHEME 435        // Oak's Theme
 #define MUS_DENDOU 436          // You're the Champion!
 #define MUS_TONEKUSA 437        // Fallarbor Town
 #define MUS_MABOROSI 438        // Sealed Chamber
 #define MUS_CON_FAN 439         // Obtained a Contest Ribbon!
 #define MUS_CONTEST0 440        // Pokémon Contest
-#define MUS_OAKSLAB 441         // Encounter! Team Magma
-#define MUS_T_BATTLE 442        // Opening Battle
+#define MUS_OAKSLAB 441         // Oak's Lab/Pokémon Talk
+#define MUS_ROCKETTAKEOVER 442  // Opening Battle
 #define MUS_OOAME 443           // The Flood
 #define MUS_HIDERI 444          // The Drought
 #define MUS_RUNECITY 445        // Sootopolis City
