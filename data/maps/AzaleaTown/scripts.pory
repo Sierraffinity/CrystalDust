@@ -176,7 +176,7 @@ script AzaleaTown_EventScript_OldMan {
     else
     {
         msgbox("The SLOWPOKE have disappeared\n"
-               "from town…\n"
+               "from town…\p"
                "I heard their TAILS are being\n"
                "sold somewhere.")
     }

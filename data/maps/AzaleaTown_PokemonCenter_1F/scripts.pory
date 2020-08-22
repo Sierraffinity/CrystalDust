@@ -20,7 +20,7 @@ script AzaleaTown_PokemonCenter_1F_EventScript_Gentleman {
 }
 
 script AzaleaTown_PokemonCenter_1F_EventScript_Fisherman {
-    msgbox("BILL's PC can store up to 20\n"
+    msgbox("BILL's PC can store up to 30\n"
            "POKéMON per box.", MSGBOX_NPC)
 }
 
