@@ -7,7 +7,7 @@ $(MID_SUBDIR)/mus_ajito.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G076 -V084
 
 $(MID_SUBDIR)/mus_encrocket.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G065 -V080
+	$(MID) $< $@ -E -R$(STD_REVERB) -G065 -V070
 
 $(MID_SUBDIR)/mus_ashroad.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G055 -V076
@@ -76,7 +76,7 @@ $(MID_SUBDIR)/mus_ruinsofalph.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G020 -V090
 
 $(MID_SUBDIR)/mus_rivalexit.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G067 -V078
+	$(MID) $< $@ -E -R$(STD_REVERB) -G067 -V062
 
 $(MID_SUBDIR)/mus_encmale.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G028 -V080
@@ -172,7 +172,7 @@ $(MID_SUBDIR)/mus_gym.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G013 -V127
 
 $(MID_SUBDIR)/mus_rivaltheme.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G061 -V078
+	$(MID) $< $@ -E -R$(STD_REVERB) -G061 -V062
 
 $(MID_SUBDIR)/mus_encfemale.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G053 -V072
@@ -181,7 +181,7 @@ $(MID_SUBDIR)/mus_gomachi0.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G044 -V090
 
 $(MID_SUBDIR)/mus_goldenrod.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G045 -V085
+	$(MID) $< $@ -E -R$(STD_REVERB) -G045 -V076
 
 $(MID_SUBDIR)/mus_granroad.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G048 -V096
