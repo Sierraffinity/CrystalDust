@@ -1,8 +1,9 @@
 // multichoice lists
-static const struct MenuAction MultichoiceList_BrineyOnDewford[] =
+static const struct MenuAction MultichoiceList_MomBank[] =
 {
-    {gText_Petalburg},
-    {gText_Slateport},
+    {gText_Get},
+    {gText_Save},
+    {gText_Change},
     {gText_Exit},
 };
 
@@ -782,7 +783,7 @@ struct MultichoiceListStruct
 
 static const struct MultichoiceListStruct sMultichoiceLists[] =
 {
-    [MULTI_BRINEY_ON_DEWFORD]          = MULTICHOICE(MultichoiceList_BrineyOnDewford),
+    [MULTI_MOM_BANK]                   = MULTICHOICE(MultichoiceList_MomBank),
     [MULTI_PC]                         = MULTICHOICE(MultichoiceList_Exit),
     [MULTI_ENTERINFO]                  = MULTICHOICE(MultichoiceList_EnterInfo),
     [MULTI_CONTEST_INFO]               = MULTICHOICE(MultichoiceList_ContestInfo),

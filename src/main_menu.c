@@ -566,7 +566,7 @@ static const u8 *const gFemalePresetNames[] = {
     gText_DefaultNameHannah,
     gText_DefaultNameGina,
     gText_DefaultNameColette,
-    gText_DefaultNameMabel,
+    gText_DefaultNameKatie,
     gText_DefaultNameSarah,
     gText_DefaultNameAlyx,
     gText_DefaultNameEllie,

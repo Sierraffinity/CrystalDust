@@ -385,7 +385,7 @@ extern const u8 gText_DefaultNameLorrie[];
 extern const u8 gText_DefaultNameHannah[];
 extern const u8 gText_DefaultNameGina[];
 extern const u8 gText_DefaultNameColette[];
-extern const u8 gText_DefaultNameMabel[];
+extern const u8 gText_DefaultNameKatie[];
 extern const u8 gText_DefaultNameSarah[];
 extern const u8 gText_DefaultNameAlyx[];
 extern const u8 gText_DefaultNameEllie[];
@@ -1158,8 +1158,9 @@ extern const u8 gText_PokenavRibbons_RibbonListButtons[];
 extern const u8 gText_PokenavRibbons_RibbonCheckButtons[];
 extern const u8 gText_Number2[];
 
-extern const u8 gText_Petalburg[];
-extern const u8 gText_Slateport[];
+extern const u8 gText_Get[];
+extern const u8 gText_Save[];
+extern const u8 gText_Change[];
 extern const u8 gText_Enter2[];
 extern const u8 gText_Info2[];
 extern const u8 gText_WhatsAContest[];
@@ -3101,5 +3102,10 @@ extern const u8 gText_Beauty3[];
 extern const u8 gText_WhichApricorn[];
 extern const u8 gText_HowManyApricorns[];
 extern const u8 gText_ConfirmApricorns[];
+
+extern const u8 gText_HowMuchToTake[];
+extern const u8 gText_HowMuchToSave[];
+extern const u8 gText_DepositedMoney[];
+extern const u8 gText_HeldMoney[];
 
 #endif // GUARD_STRINGS_H

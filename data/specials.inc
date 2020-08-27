@@ -563,3 +563,4 @@ gSpecials:: @ 81DBA64
 	def_special UpdatePointsWindow
 	def_special HidePointsWindow
 	def_special PlayCardFlip
+	def_special MomBank

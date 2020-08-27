@@ -89,6 +89,7 @@ static void DebugMenu_TestBattleTransition(u8 taskId);
 static void DebugMenu_SwapGender(u8 taskId);
 static void DebugMenu_LottoNumber(u8 taskId);
 static void DebugMenu_MaxMoney(u8 taskId);
+static void DebugMenu_MaxBankedMoney(u8 taskId);
 static void DebugMenu_MaxCoins(u8 taskId);
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
@@ -122,6 +123,7 @@ static const u8 sText_AddItem[] = _("Add item");
 static const u8 sText_GenderBender[] = _("Gender bender");
 static const u8 sText_LottoNumber[] = _("Set lotto number");
 static const u8 sText_MaxMoney[] = _("Max money");
+static const u8 sText_MaxBankedMoney[] = _("Max banked money");
 static const u8 sText_MaxCoins[] = _("Max coins");
 static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Pokedex[] = _("Pokédex");
@@ -182,6 +184,7 @@ static const struct DebugMenuAction sDebugMenu_PlayerInfoActions[] =
     { sText_GenderBender, DebugMenu_SwapGender, NULL },
     { sText_LottoNumber, DebugMenu_LottoNumber, NULL },
     { sText_MaxMoney, DebugMenu_MaxMoney, NULL },
+    { sText_MaxBankedMoney, DebugMenu_MaxBankedMoney, NULL },
     { sText_MaxCoins, DebugMenu_MaxCoins, NULL },
 };
 
@@ -907,6 +910,11 @@ static void DebugMenu_SwapGender(u8 taskId)
 static void DebugMenu_MaxMoney(u8 taskId)
 {
     SetMoney(&gSaveBlock1Ptr->money, 999999);
+}
+
+static void DebugMenu_MaxBankedMoney(u8 taskId)
+{
+    SetMoney(&gSaveBlock1Ptr->bankedMoney, 999999);
 }
 
 static void DebugMenu_MaxCoins(u8 taskId)

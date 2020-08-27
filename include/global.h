@@ -982,6 +982,7 @@ struct SaveBlock1
     /*0x3D64*/ struct SaveTrainerHill trainerHill;
     /*0x3D70*/ struct WaldaPhrase waldaPhrase;
     /*0x3D88*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
+    /*0x3D90*/ u32 bankedMoney;
     // sizeof: 0x3D90
 };
 
