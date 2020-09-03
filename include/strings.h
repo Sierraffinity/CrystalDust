@@ -1158,8 +1158,8 @@ extern const u8 gText_PokenavRibbons_RibbonListButtons[];
 extern const u8 gText_PokenavRibbons_RibbonCheckButtons[];
 extern const u8 gText_Number2[];
 
-extern const u8 gText_Get[];
-extern const u8 gText_Save[];
+extern const u8 gText_Withdraw[];
+extern const u8 gText_Deposit[];
 extern const u8 gText_Change[];
 extern const u8 gText_Enter2[];
 extern const u8 gText_Info2[];

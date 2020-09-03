@@ -172,6 +172,7 @@ void NewGameInitData(void)
     ClearSecretBases();
     ClearBerryTrees();
     SetMoney(&gSaveBlock1Ptr->money, 3000);
+    SetMoney(&gSaveBlock1Ptr->bankedMoney, 0);
     SetCoins(0);
     ResetLinkContestBoolean();
     ResetGameStats();

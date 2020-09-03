@@ -1,8 +1,8 @@
 // multichoice lists
 static const struct MenuAction MultichoiceList_MomBank[] =
 {
-    {gText_Get},
-    {gText_Save},
+    {gText_Withdraw},
+    {gText_Deposit},
     {gText_Change},
     {gText_Exit},
 };

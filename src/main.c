@@ -84,7 +84,7 @@ void EnableVCountIntrAtLine150(void);
 
 #define B_START_SELECT (B_BUTTON | START_BUTTON | SELECT_BUTTON)
 
-/*#if RELEASE_ID
+#if RELEASE_ID
 void DecryptIntrMain(void)
 {
     u32 i;
@@ -95,7 +95,7 @@ void DecryptIntrMain(void)
         IntrMain_Buffer[i] ^= RELEASE_ID;
     }
 }
-#endif*/
+#endif
 
 void AgbMain()
 {
@@ -320,9 +320,9 @@ void InitIntrHandlers(void)
         gIntrTable[i] = gIntrTableTemplate[i];
 
     DmaCopy32(3, IntrMain, IntrMain_Buffer, sizeof(IntrMain_Buffer));
-//#if RELEASE_ID
-//    DecryptIntrMain();
-//#endif
+#if RELEASE_ID
+    DecryptIntrMain();
+#endif
 
     INTR_VECTOR = IntrMain_Buffer;
 

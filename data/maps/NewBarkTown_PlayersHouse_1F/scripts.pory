@@ -159,38 +159,7 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
                "Or is this about your money?", MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
-            message("What do you want to do?")
-            waitmessage
-            multichoice(0, 0, MULTI_MOM_BANK, FALSE)
-            switch (var(VAR_RESULT))
-            {
-            case 0:
-                // take
-                setvar(VAR_0x8004, 0)
-                special(MomBank)
-                waitstate
-            case 1:
-                // deposit
-                setvar(VAR_0x8004, 1)
-                special(MomBank)
-                waitstate
-            case 2:
-                msgbox("Do you want to save some money?", MSGBOX_YESNO)
-                if (var(VAR_RESULT) == YES)
-                {
-                    setflag(FLAG_SYS_MOM_BANKING_ENABLED)
-                    msgbox("Okay, I'll save your money.\n"
-                            "Trust me!\p"
-                            "{PLAYER}, stick with it!")
-                    // early exit
-                    release
-                    end
-                }
-                else
-                {
-                    clearflag(FLAG_SYS_MOM_BANKING_ENABLED)
-                }
-            }
+            goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBank)
         }
         else
         {
@@ -230,7 +199,7 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
                 }
             }
         }
-        msgbox("Just do what you can.")
+        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
     }
     elif (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
     {
@@ -274,6 +243,91 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
                "Hurry up, baby!")
     }
     release
+}
+
+text NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan {
+    "Just do what you can."
+}
+
+script NewBarkTown_PlayersHouse_1F_EventScript_MomBank {
+    message("What do you want to do?")
+    waitmessage
+    multichoice(0, 0, MULTI_MOM_BANK, FALSE)
+    switch (var(VAR_RESULT))
+    {
+    case 0:
+        // take
+        call(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
+    case 1:
+        // deposit
+        call(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
+    case 2:
+        msgbox("Do you want to save some money?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            setflag(FLAG_SYS_MOM_BANKING_ENABLED)
+            msgbox("Okay, I'll save your money.\n"
+                   "Trust me!\p"
+                   "{PLAYER}, stick with it!")
+        }
+        else
+        {
+            clearflag(FLAG_SYS_MOM_BANKING_ENABLED)
+            msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+        }
+    }
+    release
+}
+
+script NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw {
+    setvar(VAR_0x8004, 0)
+    special(MomBank)
+    waitstate
+    switch (var(VAR_RESULT))
+    {
+    case 0:
+        // withdraw success
+        waitse
+        playse(SE_REGI)
+        waitse
+        msgbox("{PLAYER}, don't give up!")
+    case 1:
+        // not enough in bank
+        msgbox("You haven't saved that much.")
+        goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
+    case 2:
+        // too much in wallet
+        msgbox("You can't take that much.")
+        goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
+    default:
+        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+    }
+}
+
+script NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit {
+    setvar(VAR_0x8004, 1)
+    special(MomBank)
+    waitstate
+    switch (var(VAR_RESULT))
+    {
+    case 0:
+        // deposit success
+        waitse
+        playse(SE_REGI)
+        waitse
+        msgbox("Your money's safe here!\n"
+                "Get going!")
+    case 1:
+        // not enough in wallet
+        msgbox("You don't have that much.")
+        goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
+    case 2:
+        // too much in bank
+        msgbox("You can't save that much.")
+        goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
+    default:
+        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+    }
 }
 
 script NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet {

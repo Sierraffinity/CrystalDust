@@ -149,7 +149,6 @@ static void InitApricornMenu(u8 taskId)
         sApricornMenu->pageItems = sApricornMenu->count + 1;
 
     FreeAndReserveObjectSpritePalettes();
-    LoadListMenuArrowsGfx();
 
     ApricornMenu_RefreshListMenu();
     sApricornMenu->listMenuTaskId = ListMenuInit(&gMultiuseListMenuTemplate, sApricornMenu->itemsAbove, sApricornMenu->cursorPos);
