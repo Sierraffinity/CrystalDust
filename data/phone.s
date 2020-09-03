@@ -58,7 +58,49 @@ PhoneScript_Mom_RegularCall:
 	phone_goto_if_eq PhoneScript_Mom_Route
 	phone_message Text_Pokegear_Mom_RegularCall_Determined
 PhoneScript_Mom_PostLocationBanking:
-	@ TODO: banking
+	phone_checkbankedmoney 1 @ Check to see if the bank has at least a dollar
+	phone_compare VAR_RESULT, TRUE
+	phone_goto_if_eq PhoneScript_MomBank_HasMoney
+	phone_goto_if_set FLAG_SYS_MOM_BANKING_ENABLED, PhoneScript_MomBank_HasNoMoneySavingEnabled
+	phone_message Text_Pokegear_MomBank_HasNoMoneySavingDisabled
+	phone_yesnobox
+	phone_compare VAR_RESULT, FALSE
+	phone_goto_if_eq PhoneScript_MomBank_WontSave
+	phone_goto PhoneScript_MomBank_WillSave
+
+PhoneScript_MomBank_HasNoMoneySavingEnabled:
+	phone_message Text_Pokegear_MomBank_HasNoMoneySavingEnabled
+	phone_yesnobox
+	phone_compare VAR_RESULT, FALSE
+	phone_goto_if_eq PhoneScript_MomBank_WontSave
+	phone_goto PhoneScript_MomBank_WillSave
+
+PhoneScript_MomBank_HasMoney:
+	phone_bufferbankedmoney 0
+	phone_goto_if_set FLAG_SYS_MOM_BANKING_ENABLED, PhoneScript_MomBank_HasMoneySavingEnabled
+	phone_message Text_Pokegear_MomBank_HasMoneySavingDisabled
+	phone_yesnobox
+	phone_compare VAR_RESULT, FALSE
+	phone_goto_if_eq PhoneScript_MomBank_WontSave
+	phone_goto PhoneScript_MomBank_WillSave
+
+PhoneScript_MomBank_HasMoneySavingEnabled:
+	phone_message Text_Pokegear_MomBank_HasMoneySavingEnabled
+	phone_yesnobox
+	phone_compare VAR_RESULT, FALSE
+	phone_goto_if_eq PhoneScript_MomBank_WontSave
+	@ fallthrough
+
+PhoneScript_MomBank_WillSave:
+	phone_setflag FLAG_SYS_MOM_BANKING_ENABLED
+	phone_message Text_Pokegear_MomBank_EnableSaving
+	phone_goto PhoneScript_Mom_PostBanking
+
+PhoneScript_MomBank_WontSave:
+	phone_clearflag FLAG_SYS_MOM_BANKING_ENABLED
+	phone_message Text_Pokegear_MomBank_DisableSaving
+	@ fallthrough
+
 PhoneScript_Mom_PostBanking:
 	phone_message Text_Pokegear_Mom_RootingForYou
 	phone_waitbuttonpress
@@ -115,12 +157,12 @@ PhoneScript_Mom_BeginPhoneBanking:
 	phone_compare VAR_RESULT, 0
 	phone_goto_if_eq PhoneScript_Mom_NoPhoneBanking
 	phone_setflag FLAG_SYS_MOM_BANKING_ENABLED
-	phone_message Text_Pokegear_Mom_PhoneBanking_Yes
+	phone_message Text_Pokegear_MomBank_EnableSaving
 	phone_goto PhoneScript_Mom_PostBanking
 
 PhoneScript_Mom_NoPhoneBanking:
 	phone_clearflag FLAG_SYS_MOM_BANKING_ENABLED
-	phone_message Text_Pokegear_Mom_PhoneBanking_No
+	phone_message Text_Pokegear_MomBank_DisableSaving
 	phone_goto PhoneScript_Mom_PostBanking
 
 PhoneScript_Mom_GaveEggToElm:
@@ -157,12 +199,6 @@ Text_Pokegear_Mom_PhoneBanking_Question:
 	.string "What about money?\n"
 	.string "Do you want me to save it?$"
 
-Text_Pokegear_Mom_PhoneBanking_Yes:
-	.string "Okay. I'll save your money.\p$"
-
-Text_Pokegear_Mom_PhoneBanking_No:
-	.string "Okay. I won't save your money.\p$"
-
 Text_Pokegear_Mom_RegularCall_WorkingHard:
 	.string "Hello?\n"
 	.string "Oh, hi, {PLAYER}! Working hard?\p$"
@@ -193,6 +229,28 @@ Text_Pokegear_Mom_RegularCall_Determined:
 	.string "That sounds really tough.\p"
 	.string "But, {PLAYER}, I know you're really\n"
 	.string "determined. You'll be okay, right?\p$"
+
+Text_Pokegear_MomBank_HasNoMoneySavingDisabled:
+	.string "Oh, {PLAYER}, you're not saving any\n"
+	.string "money. Would you like to start saving?$"
+
+Text_Pokegear_MomBank_HasNoMoneySavingEnabled:
+	.string "It's important to save your money.\n"
+	.string "Do you want to keep on saving?$"
+
+Text_Pokegear_MomBank_HasMoneySavingDisabled:
+	.string "By the way, you've saved up ¥{STR_VAR_1}.\n"
+	.string "Want to start saving again?$"
+
+Text_Pokegear_MomBank_HasMoneySavingEnabled:
+	.string "By the way, you've saved up ¥{STR_VAR_1}.\n"
+	.string "Do you want to keep on saving?$"
+
+Text_Pokegear_MomBank_EnableSaving:
+	.string "Okay, I'll save your money.\p$"
+
+Text_Pokegear_MomBank_DisableSaving:
+	.string "Okay, I won't save your money.\p$"
 
 Text_Pokegear_Mom_RootingForYou:
 	.string "{PLAYER}, keep it up!\n"

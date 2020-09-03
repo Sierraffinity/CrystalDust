@@ -6,6 +6,7 @@
 #include "main.h"
 #include "match_call.h"
 #include "menu.h"
+#include "money.h"
 #include "phone_script.h"
 #include "pokegear.h"
 #include "random.h"
@@ -17,6 +18,7 @@
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
+#include "tv.h"
 #include "constants/songs.h"
 
 typedef void (*PhoneNativeFunc)(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
@@ -633,5 +635,23 @@ bool8 PhoneScrCmd_buffermapsecname(struct ScriptContext *ctx)
 
     GetMapName(gScriptStringVars[stringVarIndex], mapSec, 0);
 
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_checkbankedmoney(struct ScriptContext *ctx)
+{
+    u32 amount = ScriptReadWord(ctx);
+
+    gSpecialVar_Result = IsEnoughMoney(&gSaveBlock1Ptr->bankedMoney, amount);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_bufferbankedmoney(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u32 num = GetMoney(&gSaveBlock1Ptr->bankedMoney);
+    u8 numDigits = CountDigits(num);
+
+    ConvertIntToDecimalStringN(gScriptStringVars[stringVarIndex], num, STR_CONV_MODE_LEFT_ALIGN, numDigits);
     return FALSE;
 }
