@@ -2946,8 +2946,13 @@ BattleScript_LocalBattleWonLoseTexts::
 	waitstate
 	printstring STRINGID_TRAINER2LOSETEXT
 BattleScript_LocalBattleWonReward::
-	getmoneyreward .+4 @ Points right after this command, so both paths lead to the same place
+	getmoneyreward BattleScript_LocalBattleWonReward_SentToMom
 	printstring STRINGID_PLAYERGOTMONEY
+	waitmessage 0x40
+	goto BattleScript_PayDayMoneyAndPickUpItems
+
+BattleScript_LocalBattleWonReward_SentToMom::
+	printstring STRINGID_PLAYERGOTMONEYSENTTOMOM
 	waitmessage 0x40
 BattleScript_PayDayMoneyAndPickUpItems::
 	givepaydaymoney

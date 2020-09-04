@@ -5903,14 +5903,23 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
 
 static void Cmd_getmoneyreward(void)
 {
-    u32 moneyReward;
+    u32 moneyReward = 0, momBankMoney = 0;
     
     if (gBattleOutcome == B_OUTCOME_WON)
     {
         moneyReward = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
             moneyReward += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
-        AddMoney(&gSaveBlock1Ptr->money, moneyReward);
+        if (FlagGet(FLAG_SYS_MOM_BANKING_ENABLED))
+        {
+            momBankMoney = moneyReward / 4;
+            AddMoney(&gSaveBlock1Ptr->bankedMoney, momBankMoney);
+            AddMoney(&gSaveBlock1Ptr->money, moneyReward - momBankMoney);
+        }
+        else
+        {
+            AddMoney(&gSaveBlock1Ptr->money, moneyReward);
+        }
     }
     else
     {
@@ -5918,7 +5927,7 @@ static void Cmd_getmoneyreward(void)
     }
 
     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, moneyReward);
-    if (moneyReward)
+    if (moneyReward != 0 && momBankMoney == 0)  // reuse pointer in case mom bank is enabled
         gBattlescriptCurrInstr += 5;
     else
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);

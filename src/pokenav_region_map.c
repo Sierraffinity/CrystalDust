@@ -531,7 +531,7 @@ static void UpdateMapSecInfoWindow(struct Pokenav5Struct_2 *state)
     /*struct RegionMap *regionMap = GetSubstructPtr(16);
     switch (regionMap->mapSecType)
     {
-    case MAPSECTYPE_CITY_CANFLY:
+    case MAPSECTYPE_VISITED:
         FillWindowPixelBuffer(state->infoWindowId, PIXEL_FILL(1));
         PutWindowRectTilemap(state->infoWindowId, 0, 0, 12, 2);
         AddTextPrinterParameterized(state->infoWindowId, 7, regionMap->mapSecName, 0, 1, TEXT_SPEED_FF, NULL);
@@ -539,7 +539,7 @@ static void UpdateMapSecInfoWindow(struct Pokenav5Struct_2 *state)
         CopyWindowToVram(state->infoWindowId, 3);
         SetCityZoomTextInvisibility(FALSE);
         break;
-    case MAPSECTYPE_CITY_CANTFLY:
+    case MAPSECTYPE_NOT_VISITED:
         FillWindowPixelBuffer(state->infoWindowId, PIXEL_FILL(1));
         PutWindowRectTilemap(state->infoWindowId, 0, 0, 12, 2);
         AddTextPrinterParameterized(state->infoWindowId, 7, regionMap->mapSecName, 0, 1, TEXT_SPEED_FF, NULL);

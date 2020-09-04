@@ -904,7 +904,7 @@ static u8 MoveRegionMapCursor_Full(void)
     sameSecondary = LoadMapLayersFromPosition(gRegionMap->cursorPosX, gRegionMap->cursorPosY);
     inputEvent = MAP_INPUT_MOVE_END;
 
-    if ((!sameSecondary && gRegionMap->secondaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY) || gRegionMap->primaryMapSecStatus >= MAPSECTYPE_CITY_CANFLY)
+    if ((!sameSecondary && gRegionMap->secondaryMapSecStatus >= MAPSECTYPE_VISITED) || gRegionMap->primaryMapSecStatus >= MAPSECTYPE_VISITED)
     {
         m4aSongNumStart(SE_Z_SCROLL);
     }
@@ -914,7 +914,7 @@ static u8 MoveRegionMapCursor_Full(void)
         inputEvent = MAP_INPUT_ON_BUTTON;
     }
 
-    if (gRegionMap->secondaryMapSecStatus == MAPSECTYPE_CITY_CANFLY)
+    if (gRegionMap->secondaryMapSecStatus == MAPSECTYPE_VISITED)
     {
         inputEvent = MAP_INPUT_LANDMARK;
     }
@@ -1326,10 +1326,10 @@ static u8 GetMapsecType(u16 mapSecId)
 
         if (flag != 0)
         {
-            mapSecStatus = MAPSECTYPE_CITY_CANTFLY;
+            mapSecStatus = MAPSECTYPE_NOT_VISITED;
             if (FlagGet(flag))
             {
-                mapSecStatus = MAPSECTYPE_CITY_CANFLY;
+                mapSecStatus = MAPSECTYPE_VISITED;
             }
         }
     }
@@ -1717,7 +1717,7 @@ void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
                 {
                     u8 offset = 0;
 
-                    if (GetMapsecType(GetMapSecIdAt(x, y, gRegionMap->currentRegion, FALSE)) >= MAPSECTYPE_CITY_CANFLY)
+                    if (GetMapsecType(GetMapSecIdAt(x, y, gRegionMap->currentRegion, FALSE)) >= MAPSECTYPE_VISITED)
                     {
                         offset = 2;
                     }
@@ -1725,7 +1725,7 @@ void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
                     spriteId = CreateSprite(&template, (x + MAPCURSOR_X_MIN + gRegionMap->xOffset) * 8 + offset + 4, (y + MAPCURSOR_Y_MIN) * 8 + offset + 4, 3);
                 }
 
-                if (GetMapsecType(secondaryMapSec) == MAPSECTYPE_CITY_CANFLY)
+                if (GetMapsecType(secondaryMapSec) == MAPSECTYPE_VISITED)
                 {
                     StartSpriteAnim(&gSprites[spriteId], 1);
                 }
@@ -1941,7 +1941,7 @@ static void ShowHelpBar(void)
     FillWindowPixelBuffer(0, PIXEL_FILL(15));
     AddTextPrinterParameterized3(0, 0, 144, 0, color, 0, gText_DpadMove);
 
-    if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
+    if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_VISITED || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
     {
         AddTextPrinterParameterized3(0, 0, 192, 0, color, 0, gText_AOK);
     }
@@ -1984,7 +1984,7 @@ static void CreateFlyDestIcons(void)
     {
         for (x = 0; x < MAP_WIDTH; x++)
         {
-            if (GetMapsecType(GetMapSecIdAt(x, y, gRegionMap->currentRegion, FALSE)) == MAPSECTYPE_CITY_CANFLY)
+            if (GetMapsecType(GetMapSecIdAt(x, y, gRegionMap->currentRegion, FALSE)) == MAPSECTYPE_VISITED)
             {
                 spriteId = CreateSprite(&template, (x + MAPCURSOR_X_MIN + gRegionMap->xOffset) * 8 + 4, (y + MAPCURSOR_Y_MIN) * 8 + 4, 1);
             }
@@ -2106,14 +2106,14 @@ static void CB_HandleFlyMapInput(void)
                 break;
             case MAP_INPUT_MOVE_END:
                 sFlyMap->regionMap.onButton = FALSE;
-                if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
+                if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_VISITED || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
                     m4aSongNumStart(SE_Z_PAGE);
                 }
                 ShowHelpBar();
                 break;
             case MAP_INPUT_A_BUTTON:
-                if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_CITY_CANFLY || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
+                if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_VISITED || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
                     m4aSongNumStart(SE_KAIFUKU);
                     sFlyMap->choseFlyLocation = TRUE;

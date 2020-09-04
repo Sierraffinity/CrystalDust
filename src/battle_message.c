@@ -77,6 +77,7 @@ static const u8 sText_ItDoesntAffect[] = _("It doesn't affect\n{B_DEF_NAME_WITH_
 static const u8 sText_AttackerFainted[] = _("{B_ATK_NAME_WITH_PREFIX}\nfainted!\p");
 static const u8 sText_TargetFainted[] = _("{B_DEF_NAME_WITH_PREFIX}\nfainted!\p");
 static const u8 sText_PlayerGotMoney[] = _("{B_PLAYER_NAME} got ¥{B_BUFF1}\nfor winning!\p");
+static const u8 sText_PlayerGotMoneySentToMom[] = _("{B_PLAYER_NAME} got ¥{B_BUFF1}\nfor winning!\lSent some to MOM!\p");
 static const u8 sText_PlayerWhiteout[] = _("{B_PLAYER_NAME} is out of\nusable POKéMON!\p");
 static const u8 sText_PlayerWhiteout2[] = _("{B_PLAYER_NAME} panicked and lost ¥{B_BUFF1}…\p… … … …\p{B_PLAYER_NAME} whited out!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayerWhiteoutTrainer[] = _("{B_PLAYER_NAME} is out of\nusable POKéMON!\pPlayer lost against\n{B_TRAINER1_CLASS} {B_TRAINER1_NAME}!{PAUSE_UNTIL_PRESS}");
@@ -892,6 +893,7 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PLAYERWHITEOUTTRAINER - 12] = sText_PlayerWhiteoutTrainer,
     [STRINGID_PLAYERWHITEOUTTRAINER2 - 12] = sText_PlayerWhiteoutTrainer2,
     [STRINGID_PLAYERWHITEDOUT - 12] = sText_PlayerWhitedOut,
+    [STRINGID_PLAYERGOTMONEYSENTTOMOM - 12] = sText_PlayerGotMoneySentToMom,
 };
 
 const u16 gMissStringIds[] =
