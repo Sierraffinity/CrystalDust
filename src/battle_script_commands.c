@@ -5903,7 +5903,7 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
 
 static void Cmd_getmoneyreward(void)
 {
-    u32 moneyReward = 0, momBankMoney = 0;
+    u32 moneyReward = 0, momBankMoney = 0, remainder = 0;
     
     if (gBattleOutcome == B_OUTCOME_WON)
     {
@@ -5912,9 +5912,14 @@ static void Cmd_getmoneyreward(void)
             moneyReward += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
         if (FlagGet(FLAG_SYS_MOM_BANKING_ENABLED))
         {
+            // Try to send a quarter of the reward to Mom.
+            // If Mom has too much banked, then keep the leftovers.
+            // If player has too much held, then send the rest to Mom.
+            // After one round of this, any more money would be lost anyway (as both have MAX_MONEY)
             momBankMoney = moneyReward / 4;
-            AddMoney(&gSaveBlock1Ptr->bankedMoney, momBankMoney);
-            AddMoney(&gSaveBlock1Ptr->money, moneyReward - momBankMoney);
+            momBankMoney -= AddMoney(&gSaveBlock1Ptr->bankedMoney, momBankMoney);
+            remainder = AddMoney(&gSaveBlock1Ptr->money, moneyReward - momBankMoney);
+            AddMoney(&gSaveBlock1Ptr->bankedMoney, remainder);
         }
         else
         {

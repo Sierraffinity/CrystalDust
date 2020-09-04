@@ -31,24 +31,22 @@ bool8 IsEnoughMoney(u32* moneyPtr, u32 cost)
         return FALSE;
 }
 
-void AddMoney(u32* moneyPtr, u32 toAdd)
+u32 AddMoney(u32* moneyPtr, u32 toAdd)
 {
-    u32 toSet = GetMoney(moneyPtr);
+    u32 remainder = 0;
+    u32 toSet = GetMoney(moneyPtr) + toAdd;
 
     // can't have more money than MAX
-    if (toSet + toAdd > MAX_MONEY)
+    // check overflow, can't have less money after you receive more
+    if ((toSet > MAX_MONEY) || (toSet < GetMoney(moneyPtr)))
     {
+        remainder = toSet - MAX_MONEY;
         toSet = MAX_MONEY;
-    }
-    else
-    {
-        toSet += toAdd;
-        // check overflow, can't have less money after you receive more
-        if (toSet < GetMoney(moneyPtr))
-            toSet = MAX_MONEY;
     }
 
     SetMoney(moneyPtr, toSet);
+
+    return remainder;
 }
 
 void RemoveMoney(u32* moneyPtr, u32 toSub)
