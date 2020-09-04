@@ -2946,7 +2946,7 @@ BattleScript_LocalBattleWonLoseTexts::
 	waitstate
 	printstring STRINGID_TRAINER2LOSETEXT
 BattleScript_LocalBattleWonReward::
-	getmoneyreward
+	getmoneyreward .+4 @ Points right after this command, so both paths lead to the same place
 	printstring STRINGID_PLAYERGOTMONEY
 	waitmessage 0x40
 BattleScript_PayDayMoneyAndPickUpItems::
@@ -2958,41 +2958,44 @@ BattleScript_LocalBattleLost::
 	jumpifbattletype BATTLE_TYPE_DOME, BattleScript_CheckDomeDrew
 	jumpifbattletype BATTLE_TYPE_FRONTIER, BattleScript_LocalBattleLostPrintTrainersWinText
 	jumpifbattletype BATTLE_TYPE_TRAINER_HILL, BattleScript_LocalBattleLostPrintTrainersWinText
-	jumpifbattletype BATTLE_TYPE_EREADER_TRAINER, BattleScript_LocalBattleLostEnd
-	jumpifhalfword CMP_EQUAL, gTrainerBattleOpponent_A, 0x400, BattleScript_LocalBattleLostEnd
-    jumpifbyte CMP_NOT_EQUAL, cMULTISTRING_CHOOSER, 0x0, BattleScript_FirstBattleLost
+	jumpifbattletype BATTLE_TYPE_EREADER_TRAINER, BattleScript_EReaderOrSecretBaseTrainerEnd
+	jumpifhalfword CMP_EQUAL, gTrainerBattleOpponent_A, 0x400, BattleScript_EReaderOrSecretBaseTrainerEnd
+    jumpifbyte CMP_NOT_EQUAL, cMULTISTRING_CHOOSER, 0x0, BattleScript_RivalBattleLost
 BattleScript_LocalBattleLostPrintWhiteOut::
-    @jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_LocalBattleLostTrainerWhiteout
+    jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_LocalBattleLostEnd
 	printstring STRINGID_PLAYERWHITEOUT
 	waitmessage 0x40
-    @cmd5d 0x1D886F	@ TODO: Find out what this does in FireRed.
-	@getmoneyreward	@ It's like getmoneyreward but not
+	getmoneyreward BattleScript_LocalBattleLostPrintWhiteOutNoMonetaryLoss
 	printstring STRINGID_PLAYERWHITEOUT2
 	waitmessage 0x40
+	goto BattleScript_EReaderOrSecretBaseTrainerEnd
+
 BattleScript_LocalBattleLostEnd::
+    printstring STRINGID_PLAYERWHITEOUTTRAINER
+    waitmessage 0x40
+	getmoneyreward BattleScript_LocalBattleLostPrintWhiteOutNoMonetaryLoss
+    printstring STRINGID_PLAYERWHITEOUTTRAINER2
+    waitmessage 0x40
+BattleScript_EReaderOrSecretBaseTrainerEnd::
 	end2
 
-BattleScript_FirstBattleLost:
-    jumpifhasnohp BS_ATTACKER, BattleScript_FirstBattleLost_SkipEnemyReturn
+BattleScript_LocalBattleLostPrintWhiteOutNoMonetaryLoss::
+	printstring STRINGID_PLAYERWHITEDOUT
+	waitmessage 0x40
+	end2
+
+BattleScript_RivalBattleLost:
+    jumpifhasnohp BS_ATTACKER, BattleScript_RivalBattleLost_SkipEnemyReturn
     printstring STRINGID_TRAINER1COMEBACK
     waitmessage 0x40
     returnatktoball
     waitstate
 
-BattleScript_FirstBattleLost_SkipEnemyReturn:
+BattleScript_RivalBattleLost_SkipEnemyReturn:
     trainerslidein BS_ATTACKER
     waitstate
     printstring STRINGID_TRAINER1WINTEXT
     jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_LocalBattleLostPrintWhiteOut
-    end2
-
-BattleScript_LocalBattleLostTrainerWhiteout:
-    printstring STRINGID_PLAYERWHITEOUTTRAINER
-    waitmessage 0x40
-    @cmd5d 0x1D886F	@ TODO: Find out what this does in FireRed.
-	getmoneyreward	@ It's like getmoneyreward but not
-    printstring STRINGID_PLAYERWHITEOUTTRAINER2
-    waitmessage 0x40
     end2
 
 BattleScript_CheckDomeDrew::

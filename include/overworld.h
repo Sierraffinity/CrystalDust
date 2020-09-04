@@ -128,6 +128,8 @@ u8 GetSavedWarpRegionMapSectionId(void);
 u8 GetCurrentRegionMapSectionId(void);
 u8 GetCurrentMapBattleScene(void);
 void CleanupOverworldWindowsAndTilemaps(void);
+u32 ComputeWhiteOutMoneyLoss(void);
+void OverworldWhiteOutGetMoneyLoss(void);
 bool32 IsUpdateLinkStateCBActive(void);
 void CB1_Overworld(void);
 void CB2_OverworldBasic(void);

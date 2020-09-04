@@ -63,6 +63,8 @@ BattleFrontier_BattlePyramidFloor_EventScript_ResetParty:: @ 8252B39
 	pyramid_resetparty
 	end
 
+BattleFrontier_BattlePyramid_EventScript_WarpToLobbyWhiteOut::
+	msgbox gText_PlayerWhitedOut
 BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost:: @ 8252B42
 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST
 	pyramid_set PYRAMID_DATA_TRAINER_FLAGS, 255

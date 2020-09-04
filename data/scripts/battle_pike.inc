@@ -227,6 +227,8 @@ BattleFrontier_BattlePikeRoomWildMons_EventScript_NoTurningBack:: @ 82C420D
 	closemessage
 	end
 
+BattleFrontier_BattlePike_EventScript_WhiteOut::
+	msgbox gText_PlayerWhitedOut
 BattleFrontier_BattlePike_EventScript_Retire:: @ 82C4222
 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST
 	warp MAP_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY, 255, 5, 6

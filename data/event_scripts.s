@@ -601,48 +601,6 @@ ClearPokepicAndTextboxForEarlyScriptExit::
 
 EventScript_WhiteOut:: @ 8271857
 	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour
-	goto EventScript_ResetMrBriney
-	end
-
-EventScript_ResetMrBriney:: @ 8271862
-	compare VAR_BRINEY_LOCATION, 1
-	goto_if_eq EventScript_MoveMrBrineyToHouse
-	compare VAR_BRINEY_LOCATION, 2
-	goto_if_eq EventScript_MoveMrBrineyToDewford
-	compare VAR_BRINEY_LOCATION, 3
-	goto_if_eq EventScript_MoveMrBrineyToRoute36
-	end
-
-EventScript_MoveMrBrineyToHouse:: @ 8271884
-	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	setflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKES
-	setflag FLAG_HIDE_ROUTE_32_FRIEDA
-	setflag FLAG_HIDE_AZALEA_TOWN_KURT
-	clearflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	end
-
-EventScript_MoveMrBrineyToDewford:: @ 827189A
-	setflag FLAG_HIDE_ROUTE_32_FRIEDA
-	setflag FLAG_HIDE_AZALEA_TOWN_KURT
-	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
-	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	clearflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKES
-	end
-
-EventScript_MoveMrBrineyToRoute36:: @ 82718B3
-	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
-	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	setflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKES
-	clearflag FLAG_HIDE_ROUTE_32_FRIEDA
-	clearflag FLAG_HIDE_AZALEA_TOWN_KURT
 	end
 
 EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
@@ -654,11 +612,11 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 	return
 
 Common_EventScript_UpdateBrineyLocation:: @ 82718DE
-	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
-	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
-	goto_if_unset FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
-	goto_if_unset FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN, EventScript_SetBrineyLocation_Dewford
-	goto_if_unset FLAG_HIDE_ROUTE_32_FRIEDA, EventScript_SetBrineyLocation_Route36
+	@goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
+	@goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
+	@goto_if_unset FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
+	@goto_if_unset FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN, EventScript_SetBrineyLocation_Dewford
+	@goto_if_unset FLAG_HIDE_ROUTE_32_FRIEDA, EventScript_SetBrineyLocation_Route36
 	return
 
 EventScript_SetBrineyLocation_House:: @ 827190C
@@ -904,9 +862,17 @@ gText_UnusedNicknameReceivedPokemon:: @ 8272DB3
 	.string "Want to give a nickname to\n"
 	.string "the {STR_VAR_2} you received?$"
 
+gText_WhitedOutLostMoney::
+	.string "{PLAYER} is out of usable\n"
+	.string "POKéMON!\p"
+	.string "{PLAYER} panicked and lost ¥{STR_VAR_1}…\p"
+	.string "… … … …\p"
+	.string "{PLAYER} whited out!$"
+
 gText_PlayerWhitedOut:: @ 8272DE3
 	.string "{PLAYER} is out of usable\n"
-	.string "POKéMON!\p{PLAYER} whited out!$"
+	.string "POKéMON!\p"
+	.string "{PLAYER} whited out!$"
 
 gText_RegisteredTrainerinPokeNav:: @ 8272E0F
 	.string "Registered {STR_VAR_1} {STR_VAR_2}\n"

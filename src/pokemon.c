@@ -6627,6 +6627,24 @@ const u8 *GetTrainerPartnerName(void)
     }
 }
 
+u8 GetPlayerPartyHighestLevel(void)
+{
+    s32 slot;
+    u8 level, monLevel;
+
+    level = 1;
+    for (slot = 0; slot < PARTY_SIZE; ++slot)
+    {
+        if (GetMonData(&gPlayerParty[slot], MON_DATA_SANITY_HAS_SPECIES, NULL) == 1 && !GetMonData(&gPlayerParty[slot], MON_DATA_SANITY_IS_EGG, NULL))
+        {
+            monLevel = GetMonData(&gPlayerParty[slot], MON_DATA_LEVEL, NULL);
+            if (monLevel > level)
+                level = monLevel;
+        }
+    }
+    return level;
+}
+
 #define READ_PTR_FROM_TASK(taskId, dataId)                      \
     (void*)(                                                    \
     ((u16)(gTasks[taskId].data[dataId]) |                       \

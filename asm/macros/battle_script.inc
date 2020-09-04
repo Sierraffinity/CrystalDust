@@ -534,8 +534,9 @@
 	.byte \battler
 	.endm
 
-	.macro getmoneyreward
+	.macro getmoneyreward addr
 	.byte 0x5d
+	.4byte \addr
 	.endm
 
 	.macro atk5E battler:req

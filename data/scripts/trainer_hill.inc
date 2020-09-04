@@ -43,6 +43,8 @@ TrainerHill_1F_EventScript_WarpSilentToEntranceCounter:: @ 82C83BF
 	waitstate
 	end
 
+TrainerHill_1F_EventScript_WhiteOut::
+	msgbox gText_PlayerWhitedOut
 TrainerHill_1F_EventScript_Lost:: @ 82C83C9
 	trainerhill_settrainerflags
 	trainerhill_lost

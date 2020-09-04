@@ -5901,18 +5901,27 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
     return moneyReward;
 }
 
-// TODO: Replicate how FireRed does this
-// sub_80258AC in FireRed
 static void Cmd_getmoneyreward(void)
 {
-    u32 moneyReward = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
-    if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
-        moneyReward += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
+    u32 moneyReward;
+    
+    if (gBattleOutcome == B_OUTCOME_WON)
+    {
+        moneyReward = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
+        if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
+            moneyReward += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
+        AddMoney(&gSaveBlock1Ptr->money, moneyReward);
+    }
+    else
+    {
+        moneyReward = ComputeWhiteOutMoneyLoss();
+    }
 
-    AddMoney(&gSaveBlock1Ptr->money, moneyReward);
     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, moneyReward);
-
-    gBattlescriptCurrInstr++;
+    if (moneyReward)
+        gBattlescriptCurrInstr += 5;
+    else
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 }
 
 static void Cmd_unknown_5E(void)

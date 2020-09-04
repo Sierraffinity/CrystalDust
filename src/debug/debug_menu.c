@@ -1,5 +1,6 @@
 #if DEBUG
 #include "global.h"
+#include "battle.h"
 #include "battle_transition.h"
 #include "clock.h"
 #include "coins.h"
@@ -17,6 +18,7 @@
 #include "main.h"
 #include "money.h"
 #include "overworld.h"
+#include "pokemon.h"
 #include "region_map.h"
 #include "rtc.h"
 #include "script.h"
@@ -103,6 +105,7 @@ static void DebugMenu_FlyMenu(u8 taskId);
 static void DebugMenu_SetRespawn(u8 taskId);
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
 static void DebugMenu_CreateDaycareEgg(u8 taskId);
+static void DebugMenu_PoisonAllMons(u8 taskId);
 static void DebugMenu_RemoveMenu(u8 taskId);
 static void DebugMenu_InitNewSubmenu(u8 taskId, const struct DebugMenuBouncer *bouncer);
 static void DebugMenu_Submenu_ProcessInput(u8 taskId);
@@ -130,11 +133,12 @@ static const u8 sText_Pokedex[] = _("Pokédex");
 static const u8 sText_Pokegear[] = _("Pokégear");
 static const u8 sText_Positional[] = _("Positional");
 static const u8 sText_Misc[] = _("Misc");
+static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
-static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
+static const u8 sText_PoisonAllMons[] = _("Poison all Pokémon");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_ProfOakRating[] = _("Prof. Oak rating");
@@ -228,6 +232,7 @@ static const struct DebugMenuAction sDebugMenu_MiscActions[] =
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC, NULL },
     { sText_TestBattleTransition, DebugMenu_TestBattleTransition, NULL },
     { sText_CreateDaycareEgg, DebugMenu_CreateDaycareEgg, NULL },
+    { sText_PoisonAllMons, DebugMenu_PoisonAllMons, NULL },
 };
 
 CREATE_BOUNCER(MiscActions, MainActions);
@@ -368,7 +373,7 @@ static void DebugMenu_InitNewSubmenu(u8 taskId, const struct DebugMenuBouncer *b
         .width = 0,
         .height = 0,
         .paletteNum = 15, 
-        .baseBlock = 0x120
+        .baseBlock = 1
     };
 
     DebugMenu_RemoveMenu(taskId);
@@ -897,6 +902,19 @@ static void DebugMenu_TestBattleTransition(u8 taskId)
 static void DebugMenu_CreateDaycareEgg(u8 taskId)
 {
     TriggerPendingDaycareEgg();
+}
+
+static void DebugMenu_PoisonAllMons(u8 taskId)
+{
+    int i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, 0))
+        {
+            u32 curStatus = STATUS1_POISON;
+            SetMonData(&gPlayerParty[i], MON_DATA_STATUS, &curStatus);
+        }
+    }
 }
 
 static void DebugMenu_SwapGender(u8 taskId)

@@ -51,6 +51,7 @@
 #include "secret_base.h"
 #include "sound.h"
 #include "start_menu.h"
+#include "string_util.h"
 #include "task.h"
 #include "tileset_anims.h"
 #include "time_events.h"
@@ -87,7 +88,6 @@
 
 // event scripts
 extern const u8 EventScript_WhiteOut[];
-extern const u8 EventScript_ResetMrBriney[];
 extern const u8 EventScript_DoLinkRoomExit[];
 extern const u8 CableClub_EventScript_TooBusyToNotice[];
 extern const u8 CableClub_EventScript_ReadTrainerCard[];
@@ -112,6 +112,7 @@ extern const struct MapHeader *const *const gMapGroups[];
 extern const int gMaxFlashLevel;
 extern const u16 gOverworldBackgroundLayerFlags[];
 
+static u8 CountBadgesForWhiteOutLossCalculation(void);
 static void Overworld_ResetStateAfterWhiteOut(void);
 static void c2_80567AC(void);
 static void CB2_LoadMap2(void);
@@ -384,15 +385,67 @@ static void (*const gMovementStatusHandler[])(struct LinkPlayerObjectEvent *, st
     MovementStatusHandler_TryAdvanceScript,
 };
 
+static const u8 sWhiteOutMoneyLossMultipliers[] = {
+     2,
+     4,
+     6,
+     9,
+    12,
+    16,
+    20,
+    25,
+    30
+};
+
+static const u16 sWhiteOutMoneyLossBadgeFlagIDs[] = {
+    FLAG_BADGE01_GET,
+    FLAG_BADGE02_GET,
+    FLAG_BADGE03_GET,
+    FLAG_BADGE04_GET,
+    FLAG_BADGE05_GET,
+    FLAG_BADGE06_GET,
+    FLAG_BADGE07_GET,
+    FLAG_BADGE08_GET
+};
+
 // code
 void DoWhiteOut(void)
 {
     ScriptContext2_RunNewScript(EventScript_WhiteOut);
-    SetMoney(&gSaveBlock1Ptr->money, GetMoney(&gSaveBlock1Ptr->money) / 2);
+    SetMoney(&gSaveBlock1Ptr->money, ComputeWhiteOutMoneyLoss());
     HealPlayerParty();
     Overworld_ResetStateAfterWhiteOut();
     SetWarpDestinationToLastHealLocation();
     WarpIntoMap();
+}
+
+u32 ComputeWhiteOutMoneyLoss(void)
+{
+    u8 nbadges = CountBadgesForWhiteOutLossCalculation();
+    u8 toplevel = GetPlayerPartyHighestLevel();
+    u32 losings = toplevel * 4 * sWhiteOutMoneyLossMultipliers[nbadges];
+    u32 money = GetMoney(&gSaveBlock1Ptr->money);
+    if (losings > money)
+        losings = money;
+    return losings;
+}
+
+void OverworldWhiteOutGetMoneyLoss(void)
+{
+    u32 losings = ComputeWhiteOutMoneyLoss();
+    ConvertIntToDecimalStringN(gStringVar1, losings, STR_CONV_MODE_LEFT_ALIGN, CountDigits(losings));
+}
+
+static u8 CountBadgesForWhiteOutLossCalculation(void)
+{
+    int i;
+    u8 nbadges = 0;
+    for (i = 0; i < NELEMS(sWhiteOutMoneyLossBadgeFlagIDs); i++)
+    {
+        if (FlagGet(sWhiteOutMoneyLossBadgeFlagIDs[i]))
+            nbadges++;
+    }
+    return nbadges;
 }
 
 void Overworld_ResetStateAfterFly(void)
@@ -413,7 +466,6 @@ void Overworld_ResetStateAfterTeleport(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
-    ScriptContext2_RunNewScript(EventScript_ResetMrBriney);
 }
 
 void Overworld_ResetStateAfterDigEscRope(void)

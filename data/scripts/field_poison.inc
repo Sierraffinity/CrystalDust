@@ -11,32 +11,31 @@ EventScript_FieldPoison:: @ 82736BC
 	releaseall
 	end
 
-EventScript_FieldWhiteOut:: @ 82736D9
-	message gText_PlayerWhitedOut
-	waitmessage
-	waitbuttonpress
-	special Script_FadeOutMapMusic
-	waitstate
-	fadescreen FADE_TO_BLACK
-	special SetCB2WhiteOut
-	waitstate
-	end
-
 EventScript_FrontierFieldWhiteOut:: @ 82736F8
-	message gText_PlayerWhitedOut
-	waitmessage
-	waitbuttonpress
 	pike_inchallenge
 	compare VAR_RESULT, TRUE
-	goto_if_eq BattleFrontier_BattlePike_EventScript_Retire
+	goto_if_eq BattleFrontier_BattlePike_EventScript_WhiteOut
 	pyramid_inchallenge
 	compare VAR_RESULT, 1  @ On Pyramid floor
-	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyWhiteOut
 	compare VAR_RESULT, 2  @ On Pyramid peak
-	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyWhiteOut
 	trainerhill_inchallenge
 	compare VAR_RESULT, TRUE
-	goto_if_eq TrainerHill_1F_EventScript_Lost
+	goto_if_eq TrainerHill_1F_EventScript_WhiteOut
+
+	@ fallthrough
+EventScript_FieldWhiteOut:: @ 82736D9
+	checkmoney 1, 0
+	compare VAR_RESULT, TRUE
+	goto_if_eq EventScript_FieldWhiteOutHasMoney
+	msgbox gText_PlayerWhitedOut
+	goto EventScript_FieldWhiteOutFade
+
+EventScript_FieldWhiteOutHasMoney::
+	special OverworldWhiteOutGetMoneyLoss
+	msgbox gText_WhitedOutLostMoney
+EventScript_FieldWhiteOutFade::
 	special Script_FadeOutMapMusic
 	waitstate
 	fadescreen FADE_TO_BLACK

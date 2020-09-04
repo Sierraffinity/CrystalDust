@@ -564,3 +564,4 @@ gSpecials:: @ 81DBA64
 	def_special HidePointsWindow
 	def_special PlayCardFlip
 	def_special MomBank
+	def_special OverworldWhiteOutGetMoneyLoss
