@@ -32,7 +32,7 @@ static void MomBank_ProcessInput(u8 taskId);
 static void MomBank_Exit(u8 taskId);
 static void MomBank_AcceptTransaction(u8 taskId);
 static void MomBank_RemoveWindows(u8 taskId);
-static void SpriteCB_ResetRtcCursor(struct Sprite *sprite);
+static void SpriteCB_DigitSelectorCursor(struct Sprite *sprite);
 
 // const data
 static const struct WindowTemplate sMomBankWindows[] =
@@ -57,7 +57,7 @@ static const struct WindowTemplate sMomBankWindows[] =
     }
 };
 
-static const struct OamData sOamData_08510464 =
+static const struct OamData sOamData_Arrow =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -74,46 +74,46 @@ static const struct OamData sOamData_08510464 =
     .affineParam = 0,
 };
 
-static const u8 sResetRtcScreen_DownArrowGfx[] = INCBIN_U8("graphics/misc/reset_rtc_screen_downarrow.4bpp");
-static const u16 sResetRtcScreen_ArrowPal[] = INCBIN_U16("graphics/misc/reset_rtc_screen_arrow.gbapal");
+static const u8 sArrowGfx[] = INCBIN_U8("graphics/misc/mom_bank_digit_selector_arrow.4bpp");
+static const u16 sArrowPal[] = INCBIN_U16("graphics/misc/mom_bank_digit_selector_arrow.gbapal");
 
-static const struct SpriteFrameImage sSpriteImageTable_85104B4[] =
+static const struct SpriteFrameImage sSpriteImageTable_Arrow[] =
 {
-    obj_frame_tiles(sResetRtcScreen_DownArrowGfx)
+    obj_frame_tiles(sArrowGfx)
 };
 
 static const struct SpritePalette sSpritePalette_Arrow =
 {
-    sResetRtcScreen_ArrowPal, 0x1000
+    sArrowPal, 0x1000
 };
 
-static const union AnimCmd sSpriteAnim_85104CC[] =
+static const union AnimCmd sSpriteAnim_ArrowDown[] =
 {
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sSpriteAnim_85104D4[] =
+static const union AnimCmd sSpriteAnim_ArrowUp[] =
 {
     ANIMCMD_FRAME(0, 30, .vFlip = TRUE),
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd *const sSpriteAnimTable_85104E4[] =
+static const union AnimCmd *const sSpriteAnimTable_Arrow[] =
 {
-    sSpriteAnim_85104CC,
-    sSpriteAnim_85104D4
+    sSpriteAnim_ArrowDown,
+    sSpriteAnim_ArrowUp
 };
 
 static const struct SpriteTemplate sSpriteTemplate_85104F0 =
 {
     .tileTag = 0xFFFF,
     .paletteTag = 0x1000,
-    .oam = &sOamData_08510464,
-    .anims = sSpriteAnimTable_85104E4,
-    .images = sSpriteImageTable_85104B4,
+    .oam = &sOamData_Arrow,
+    .anims = sSpriteAnimTable_Arrow,
+    .images = sSpriteImageTable_Arrow,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_ResetRtcCursor,
+    .callback = SpriteCB_DigitSelectorCursor,
 };
 
 #define MOM_BANK_WITHDRAW 0
@@ -203,7 +203,7 @@ static void MomBank_PrintTransactionQuantity(u8 windowId, u32 amount, bool32 isD
     CopyWindowToVram(windowId, 3);
 }
 
-static void SpriteCB_ResetRtcCursor(struct Sprite *sprite)
+static void SpriteCB_DigitSelectorCursor(struct Sprite *sprite)
 {
     int state = gTasks[sprite->spTaskId].tArrowPos;
 
@@ -231,7 +231,7 @@ static void MomBank_CreateCursor(u8 taskId)
     LoadSpritePalette(&sSpritePalette_Arrow);
 
     spriteId = CreateSpriteAtEnd(&sSpriteTemplate_85104F0, 101, 81, 0);
-    gSprites[spriteId].callback = SpriteCB_ResetRtcCursor;
+    gSprites[spriteId].callback = SpriteCB_DigitSelectorCursor;
     StartSpriteAnim(&gSprites[spriteId], 1);
     gSprites[spriteId].spTaskId = taskId;
     gSprites[spriteId].spCurPos = -1;
@@ -239,7 +239,7 @@ static void MomBank_CreateCursor(u8 taskId)
     gSprites[spriteId].spFrequency = -8;
 
     spriteId = CreateSpriteAtEnd(&sSpriteTemplate_85104F0, 101, 102, 0);
-    gSprites[spriteId].callback = SpriteCB_ResetRtcCursor;
+    gSprites[spriteId].callback = SpriteCB_DigitSelectorCursor;
     StartSpriteAnim(&gSprites[spriteId], 0);
     gSprites[spriteId].spTaskId = taskId;
     gSprites[spriteId].spCurPos = -1;
@@ -247,8 +247,9 @@ static void MomBank_CreateCursor(u8 taskId)
     gSprites[spriteId].spFrequency = 8;
 }
 
-static void FreeCursorPalette(void)
+static void MomBank_DestroyCursor(u8 taskId)
 {
+    gTasks[taskId].tArrowPos = 6;
     FreeSpritePaletteByTag(sSpritePalette_Arrow.tag);
 }
 
@@ -282,17 +283,13 @@ static void MomBank_ProcessInput(u8 taskId)
     else if (gMain.newKeys & A_BUTTON)
     {
         PlaySE(SE_SELECT);
-        MomBank_RemoveWindows(taskId);
-        data[1] = 0;
-        tArrowPos = 6;
         gTasks[taskId].func = MomBank_AcceptTransaction;
     }
     else if (gMain.newKeys & B_BUTTON)
     {
         PlaySE(SE_SELECT);
-        MomBank_RemoveWindows(taskId);
-        tArrowPos = 6;
-        gTasks[taskId].func = MomBank_Exit;
+        tMoney = 0;
+        gTasks[taskId].func = MomBank_AcceptTransaction;
     }
 }
 
@@ -363,6 +360,11 @@ static void MomBank_AcceptTransaction(u8 taskId)
             }
         }
     }
+
+    MomBank_DestroyCursor(taskId);
+    MomBank_RemoveWindows(taskId);
+
+    // Run exit/destroy on next frame, so cursor callbacks have time to run and self-destruct
     gTasks[taskId].func = MomBank_Exit;
 }
 
@@ -371,3 +373,18 @@ static void MomBank_Exit(u8 taskId)
     EnableBothScriptContexts();
     DestroyTask(taskId);
 }
+
+#undef tIsDeposit
+#undef tMainWindowId
+#undef tValueWindowId
+#undef tArrowPos
+#undef tMoneyLo
+#undef tMoneyHi
+
+#undef tMoney
+
+#undef spTaskId
+#undef spCurPos
+#undef spMultiplier
+#undef spFrequency
+#undef spSinePos

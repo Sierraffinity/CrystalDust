@@ -155,7 +155,7 @@ script NewBarkTown_PlayersHouse_1F_MomTalk {
     {
         msgbox("MOM: Hi! Welcome home!\n"
                "You're trying very hard, I see.\p"
-               "I've kept your room tidy.\n"
+               "I've kept your room tidy…\n"
                "Or is this about your money?", MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
@@ -287,7 +287,6 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw {
     {
     case 0:
         // withdraw success
-        waitse
         playse(SE_REGI)
         waitse
         msgbox("{PLAYER}, don't give up!")
@@ -312,7 +311,6 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit {
     {
     case 0:
         // deposit success
-        waitse
         playse(SE_REGI)
         waitse
         msgbox("Your money's safe here!\n"
