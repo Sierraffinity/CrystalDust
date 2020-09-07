@@ -11,6 +11,7 @@
 #include "graphics.h"
 #include "international_string_util.h"
 #include "list_menu.h"
+#include "m4a.h"
 #include "match_call.h"
 #include "menu.h"
 #include "overworld.h"
@@ -119,6 +120,7 @@ static void LoadCardSprites(u8 taskId);
 static void SpriteCB_Icons(struct Sprite* sprite);
 static void InitPhoneCardData(void);
 static void PhoneCard_ExecuteCall(u8 taskId);
+static void ClearOrDrawTopBar(bool8 clear);
 
 // .rodata
 static const u16 gBGPals[] = INCBIN_U16("graphics/pokegear/bg.gbapal");
@@ -561,6 +563,7 @@ void CB2_InitPokegear(void)
 
     gTasks[newTask].data[0] = 0;
     LoadCardSprites(newTask);
+    ClearOrDrawTopBar(FALSE);
     LoadCardBgs(ClockCard);
 
     SetGpuReg(REG_OFFSET_BG1HOFS, 512 - CARD_SLIDE_RIGHT_X);
@@ -835,8 +838,19 @@ static void ShowHelpBar(const u8 *string)
 
     FillWindowPixelBuffer(WIN_HELP, 0xFF);
     AddTextPrinterParameterized3(WIN_HELP, 0, GetStringRightAlignXOffset(0, string, 240) - 4, 0, color, 0, string);
-    PutWindowTilemap(WIN_HELP);
-    schedule_bg_copy_tilemap_to_vram(0);
+    CopyWindowToVram(WIN_HELP, 3);
+}
+
+static void ClearOrDrawTopBar(bool8 clear)
+{
+    if (!clear)
+    {
+        PutWindowTilemap(WIN_HELP);
+    }
+    else
+    {
+        ClearWindowTilemap(WIN_HELP);
+    }
 }
 
 static void LoadCardBgs(enum CardType newCard)
@@ -949,6 +963,7 @@ static void Task_ExitPokegear2(u8 taskId)
     {
         UnloadCard(sPokegearStruct.currentCard);
         FreePokegearData();
+        ClearOrDrawTopBar(TRUE);
         FreeAllWindowBuffers(); // just make sure, y'know?
         SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
     }
@@ -1133,7 +1148,6 @@ static void UnloadClockCard(void)
 #undef tStoredVal
 
 #define tState data[0]
-#define tLastEvent data[1]
 
 static void LoadMapCard(void)
 {
@@ -1146,8 +1160,6 @@ static void LoadMapCard(void)
 static void Task_MapCard(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    u8 event;
-    const u8 *helpString = NULL;
 
     switch (tState)
     {
@@ -1167,25 +1179,22 @@ static void Task_MapCard(u8 taskId)
             }
             break;
         case 1:
-            event = DoRegionMapInputCallback();
-            switch (event)
+            switch (DoRegionMapInputCallback())
             {
+                case MAP_INPUT_LANDMARK_ENTER:
+                    m4aSongNumStart(SE_Z_SCROLL);
+                    // fallthrough
                 case MAP_INPUT_LANDMARK:
-                    helpString = gText_MapCardHelp2;
+                    ShowHelpBar(gText_MapCardHelp2);
                     break;
                 case MAP_INPUT_ON_BUTTON:
-                    helpString = gText_MapCardHelp3;
+                    ShowHelpBar(gText_MapCardHelp3);
+                    m4aSongNumStart(SE_W255);
                     break;
                 case MAP_INPUT_MOVE_END:
-                    helpString = gText_MapCardHelp1;
+                    ShowHelpBar(gText_MapCardHelp1);
                     break;
             }
-
-            if (helpString != NULL && event != tLastEvent)
-            {
-                ShowHelpBar(helpString);
-            }
-            tLastEvent = event;
             break;
     }
 }

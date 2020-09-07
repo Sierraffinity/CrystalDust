@@ -906,20 +906,22 @@ static u8 MoveRegionMapCursor_Full(void)
 
     if ((!sameSecondary && gRegionMap->secondaryMapSecStatus >= MAPSECTYPE_VISITED) || gRegionMap->primaryMapSecStatus >= MAPSECTYPE_VISITED)
     {
-        m4aSongNumStart(SE_Z_SCROLL);
+        inputEvent = MAP_INPUT_LANDMARK_ENTER;
     }
     else if ((gRegionMap->permissions[MAPPERM_CLOSE] || gRegionMap->permissions[MAPPERM_SWITCH]) && gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
     {
-        m4aSongNumStart(SE_W255);
         inputEvent = MAP_INPUT_ON_BUTTON;
     }
-
-    if (gRegionMap->secondaryMapSecStatus == MAPSECTYPE_VISITED)
+    else if (gRegionMap->secondaryMapSecStatus == MAPSECTYPE_VISITED)
     {
         inputEvent = MAP_INPUT_LANDMARK;
     }
     
-    GetPositionOfCursorWithinMapSec();
+    if (gRegionMap->primaryMapSecStatus != MAPSECTYPE_NONE)
+    {
+        GetPositionOfCursorWithinMapSec();
+    }
+
     gRegionMap->inputCallback = ProcessRegionMapInput_Full;
     return inputEvent;
 }
@@ -1346,6 +1348,14 @@ u16 GetRegionMapSectionIdAt(u16 x, u16 y)
 {
     // TODO: Region
     return GetMapSecIdAt(x, y, REGION_JOHTO, FALSE);
+}
+
+static bool32 SelectedMapsecSEEnabled(void)
+{
+    if (gRegionMap->primaryMapSecId == MAPSEC_ROUTE_32_FLYDUP)
+        return FALSE;
+    else
+        return TRUE;
 }
 
 static u16 CorrectSpecialMapSecId_Internal(u16 mapSecId)
@@ -2092,9 +2102,12 @@ static void CB_FadeInFlyMap(void)
 
 static void CB_HandleFlyMapInput(void)
 {
+    u8 mapInput;
+
     if (sFlyMap->state == 0)
     {
-        switch (DoRegionMapInputCallback())
+        mapInput = DoRegionMapInputCallback();
+        switch (mapInput)
         {
             case MAP_INPUT_NONE:
             case MAP_INPUT_MOVE_START:
@@ -2102,13 +2115,20 @@ static void CB_HandleFlyMapInput(void)
                 break;
             case MAP_INPUT_ON_BUTTON:
                 sFlyMap->regionMap.onButton = TRUE;
+                m4aSongNumStart(SE_W255);
                 ShowHelpBar();
                 break;
             case MAP_INPUT_MOVE_END:
+            case MAP_INPUT_LANDMARK_ENTER:
+            case MAP_INPUT_LANDMARK:
                 sFlyMap->regionMap.onButton = FALSE;
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_VISITED || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
                     m4aSongNumStart(SE_Z_PAGE);
+                }
+                else if (mapInput == MAP_INPUT_LANDMARK_ENTER)
+                {
+                    m4aSongNumStart(SE_Z_SCROLL);
                 }
                 ShowHelpBar();
                 break;
@@ -2118,13 +2138,12 @@ static void CB_HandleFlyMapInput(void)
                     m4aSongNumStart(SE_KAIFUKU);
                     sFlyMap->choseFlyLocation = TRUE;
                     SetFlyMapCallback(CB_ExitFlyMap);
-                    break;
                 }
-                else if (!sFlyMap->regionMap.onButton)
+                else if (sFlyMap->regionMap.onButton)
                 {
-                    break;
+                    m4aSongNumStart(SE_W063B);
                 }
-                m4aSongNumStart(SE_W063B);
+                break;
             case MAP_INPUT_B_BUTTON:
                 sFlyMap->choseFlyLocation = FALSE;
                 SetFlyMapCallback(CB_ExitFlyMap);

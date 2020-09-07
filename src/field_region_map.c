@@ -188,12 +188,17 @@ static void FieldUpdateRegionMap(void)
         case 7:
             switch (DoRegionMapInputCallback())
             {
+                case MAP_INPUT_LANDMARK_ENTER:
+                    m4aSongNumStart(SE_Z_SCROLL);
+                    // fallthrough
+                case MAP_INPUT_LANDMARK:
                 case MAP_INPUT_MOVE_END:
                     sFieldRegionMapHandler->regionMap.onButton = FALSE;
                     ShowHelpBar();
                     break;
                 case MAP_INPUT_ON_BUTTON:
                     sFieldRegionMapHandler->regionMap.onButton = TRUE;
+                    m4aSongNumStart(SE_W255);
                     ShowHelpBar();
                     break;
                 case MAP_INPUT_A_BUTTON:
