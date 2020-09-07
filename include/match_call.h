@@ -14,6 +14,7 @@ s32 GetRematchIdxByTrainerIdx(s32 trainerIdx);
 void InitMatchCallCounters(void);
 bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer);
 bool32 TryStartMatchCall(void);
+bool32 TryStartForcedMatchCall(void);
 u8 HangupOverworldPhoneCall(void);
 void InitMatchCallTextPrinter(int, const u8 *);
 bool32 ExecuteMatchCallTextPrinter(int windowId);

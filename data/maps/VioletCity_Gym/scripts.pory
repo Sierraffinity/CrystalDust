@@ -47,8 +47,8 @@ script VioletCity_Gym_EventScript_FalknerDefeated {
 	call(EventScript_RestorePrevTextColor)
     setflag(FLAG_DEFEATED_VIOLET_GYM)
     setflag(FLAG_BADGE01_GET)
-    setvar(VAR_VIOLET_CITY_STATE, 1)
-    set_gym_trainers(1)
+    setflag(FLAG_ELM_FORCED_CALL_AIDE_IN_VIOLET)
+    setgymtrainers(1)
     goto(VioletCity_Gym_EventScript_GiveAerialAce)
 }
 

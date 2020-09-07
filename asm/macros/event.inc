@@ -1759,7 +1759,7 @@
 	callstd STD_RECEIVED_ITEM
 	.endm
 
-	.macro set_gym_trainers gym:req
+	.macro setgymtrainers gym:req
 	setvar VAR_0x8008, \gym
 	call Common_EventScript_SetGymTrainers
 	.endm

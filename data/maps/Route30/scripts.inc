@@ -1,20 +1,5 @@
 Route30_MapScripts:: @ 81EC0E0
-	map_script 2, Route30_MapScripts_Type2
 	.byte 0
-
-Route30_MapScripts_Type2:
-	map_script_2 VAR_ROUTE30_STATE, 1, Route30_MapScript_ElmCall
-	.2byte 0
-
-Route30_MapScript_ElmCall:
-	lockall
-	pokegearcall Route30_PhoneScript_ElmCall, 1
-	waitstate
-	setflag FLAG_ELM_CALLED_ABOUT_STOLEN_MON
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	setvar VAR_ROUTE30_STATE, 2
-	releaseall
-	end
 
 Route30_EventScript_Directions::
 	msgbox Route30_Text_Directions, MSGBOX_SIGN

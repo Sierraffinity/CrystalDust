@@ -103,7 +103,7 @@
 #define VAR_CURRENT_SECRET_BASE              0x4054
 #define VAR_VERDANTURF_TOWN_STATE            0x4055 // Unused Var
 #define VAR_PACIFIDLOG_TOWN_STATE            0x4056 // Unused Var
-#define VAR_VIOLET_CITY_STATE                0x4057
+#define VAR_VIOLET_CITY_STATE                0x4057 // Unused Var
 #define VAR_SLATEPORT_CITY_STATE             0x4058
 #define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
 #define VAR_GOLDENROD_CITY_STATE             0x405A
@@ -113,7 +113,7 @@
 #define VAR_SOOTOPOLIS_CITY_STATE            0x405E
 #define VAR_EVER_GRANDE_CITY_STATE           0x405F // Unused Var
 #define VAR_ROUTE29_STATE                    0x4060
-#define VAR_ROUTE30_STATE                    0x4061
+#define VAR_ROUTE30_STATE                    0x4061 // Unused Var
 #define VAR_ROUTE31_STATE                    0x4062
 #define VAR_ROUTE32_STATE                    0x4063
 #define VAR_ROUTE33_STATE                    0x4064 // Unused Var

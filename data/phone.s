@@ -337,6 +337,7 @@ Text_Pokegear_Elm_EggHatched::
 
 Route30_PhoneScript_ElmCall::
 	phone_stdcall Route30_Text_ElmCall
+	phone_setflag FLAG_ELM_CALLED_ABOUT_STOLEN_MON
 	phone_end
 
 Route30_Text_ElmCall:
@@ -349,6 +350,9 @@ Route30_Text_ElmCall:
 
 VioletCity_PhoneScript_ElmCall::
 	phone_stdcall VioletCity_Text_ElmCall
+	phone_setflag FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET
+	phone_setflag FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE
+	phone_clearflag FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE
 	phone_end
 
 VioletCity_Text_ElmCall:
@@ -365,11 +369,9 @@ PhoneScript_StandardMatchCallTrainer::
 	phone_end
 
 PhoneScript_BikeShop::
-	phone_initcall
-	phone_message Text_BikeShopOwnerCall
-	phone_waitbuttonpress
+	phone_stdcall Text_BikeShopOwnerCall
 	phone_clearflag FLAG_BIKE_SHOP_LOAN_ACTIVE
-	phone_hangup
+	phone_clearflag FLAG_FORCED_CALL_BIKE_SHOP
 	phone_end
 
 Text_BikeShopOwnerCall:

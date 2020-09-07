@@ -397,7 +397,9 @@ bool32 ShouldDoWallyCall(void)
 
 bool32 ShouldDoBikeShopOwnerCall(void)
 {
-    if (FlagGet(FLAG_BIKE_SHOP_LOAN_ACTIVE) && MapAllowsMatchCall() && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
+    if (FlagGet(FLAG_BIKE_SHOP_LOAN_ACTIVE) &&
+        !FlagGet(FLAG_FORCED_CALL_BIKE_SHOP) &&
+        TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
     {
         if (++(*GetVarPointer(VAR_BIKE_SHOP_OWNER_CALL_STEP_COUNTER)) >= 1024)
         {

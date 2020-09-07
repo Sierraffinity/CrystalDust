@@ -17,6 +17,7 @@
 #include "palette.h"
 #include "phone_contact.h"
 #include "phone_script.h"
+#include "phone_scripts.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "random.h"
@@ -85,6 +86,7 @@ struct ForcedPhoneCall
     u16 flag;
     u16 phoneContactId;
     bool8 (*callCondition)(void);
+    const u8 *script;
 };
 
 EWRAM_DATA struct MatchCallState gMatchCallState = {0};
@@ -976,11 +978,24 @@ static const struct MatchCallText *const sMatchCallGeneralTopics[] =
 static bool8 ReceiveCallWhenOutside(void);
 
 static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
-    /*{
-        .flag = FLAG_ELM_CALLED_ABOUT_STOLEN_MON,
+    {
+        .flag = FLAG_ELM_FORCED_CALL_STOLEN_MON,
         .phoneContactId = PHONE_CONTACT_ELM,
-        .callCondition = ReceiveCallWhenOutside
-    },*/
+        .callCondition = ReceiveCallWhenOutside,
+        .script = Route30_PhoneScript_ElmCall
+    },
+    {
+        .flag = FLAG_ELM_FORCED_CALL_AIDE_IN_VIOLET,
+        .phoneContactId = PHONE_CONTACT_ELM,
+        .callCondition = ReceiveCallWhenOutside,
+        .script = VioletCity_PhoneScript_ElmCall
+    },
+    {
+        .flag = FLAG_FORCED_CALL_BIKE_SHOP,
+        .phoneContactId = PHONE_CONTACT_BIKE_SHOP,
+        .callCondition = ReceiveCallWhenOutside,
+        .script = PhoneScript_BikeShop
+    },
 };
 
 static const struct ScanlineEffectParams sScanlineParams =
@@ -1070,9 +1085,10 @@ static bool32 SelectForcedPhoneCall(void)
     for (i = 0; i < ARRAY_COUNT(sForcedPhoneCalls); i++)
     {
         if (sForcedPhoneCalls[i].callCondition() &&
-            FlagGet(sForcedPhoneCalls[i].flag) &&
-            FlagGet(gPhoneContacts[sForcedPhoneCalls[i].phoneContactId].registeredFlag))
+            FlagGet(sForcedPhoneCalls[i].flag))
+            //FlagGet(gPhoneContacts[sForcedPhoneCalls[i].phoneContactId].registeredFlag))
         {
+            //FlagClear(sForcedPhoneCalls[i].flag);
             gMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
             gMatchCallState.forcedPhoneCallId = i + 1;
             return TRUE;
@@ -1120,13 +1136,19 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
     return REMATCH_TABLE_ENTRIES;
 }
 
-bool32 TryStartMatchCall(void)
+bool32 TryStartForcedMatchCall(void)
 {
     if (MapAllowsMatchCall() && SelectForcedPhoneCall())
     {
         StartMatchCall();
         return TRUE;
     }
+}
+
+bool32 TryStartMatchCall(void)
+{
+    if (TryStartForcedMatchCall())
+        return TRUE;
 
     if (UpdateMatchCallStepCounter() && UpdateMatchCallMinutesCounter()
      && CheckMatchCallChance() && MapAllowsMatchCall() && SelectMatchCallTrainer())
@@ -1154,7 +1176,15 @@ static void StartMatchCall(void)
         FreezeObjectEvents();
         sub_808B864();
         sub_808BCF4();
-        PhoneScriptContext_SetupPhoneScript(&gPhoneContacts[gMatchCallState.callerId], PHONE_SCRIPT_OVERWORLD);
+
+        if (gMatchCallState.forcedPhoneCallId != 0 && sForcedPhoneCalls[gMatchCallState.forcedPhoneCallId - 1].script != NULL)
+        {
+            PhoneScriptContext_SetupCustomPhoneScript(sForcedPhoneCalls[gMatchCallState.forcedPhoneCallId - 1].script, PHONE_SCRIPT_OVERWORLD);
+        }
+        else
+        {
+            PhoneScriptContext_SetupPhoneScript(&gPhoneContacts[gMatchCallState.callerId], PHONE_SCRIPT_OVERWORLD);
+        }
     }
     else
     {

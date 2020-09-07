@@ -212,6 +212,7 @@ u8 gFieldLinkPlayerCount;
 
 // EWRAM vars
 EWRAM_DATA static u8 sUnknown_020322D8 = 0;
+EWRAM_DATA bool8 gHasJustBeenWarped = FALSE;
 EWRAM_DATA struct WarpData gLastUsedWarp = {0};
 EWRAM_DATA static struct WarpData sWarpDestination = {0};  // new warp position
 EWRAM_DATA static struct WarpData gFixedDiveWarp = {0};
@@ -2281,6 +2282,7 @@ static void sub_80869DC(void)
     ResetObjectEvents();
     TrySpawnObjectEvents(0, 0);
     TryRunOnWarpIntoMapScript();
+    gHasJustBeenWarped = TRUE;
 }
 
 static void mli4_mapscripts_and_other(void)
@@ -2298,6 +2300,7 @@ static void mli4_mapscripts_and_other(void)
     ResetInitialPlayerAvatarState();
     TrySpawnObjectEvents(0, 0);
     TryRunOnWarpIntoMapScript();
+    gHasJustBeenWarped = TRUE;
 }
 
 static void sub_8086A68(void)

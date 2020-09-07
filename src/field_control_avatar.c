@@ -179,6 +179,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
 
     if (input->pressedBButton && TrySetupDiveEmergeScript() == TRUE)
         return TRUE;
+    
     if (input->tookStep)
     {
         IncrementGameStat(GAME_STAT_STEPS);
@@ -186,6 +187,14 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         if (TryStartStepBasedScript(&position, metatileBehavior, playerDirection) == TRUE)
             return TRUE;
     }
+
+    if (gHasJustBeenWarped)
+    {
+        gHasJustBeenWarped = FALSE;
+        if (TryStartForcedMatchCall())
+            return TRUE;
+    }
+
     if (input->checkStandardWildEncounter)
     {
         if (input->dpadDirection == 0 || input->dpadDirection == playerDirection)
@@ -677,10 +686,10 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext1_SetupScript(IslandCave_EventScript_OpenRegiEntrance);
             return TRUE;
         }
+        
         if (ShouldDoBikeShopOwnerCall() == TRUE)
         {
-            ScriptContext1_SetupScript(EventScript_Phone_BikeShopOwner);
-            return TRUE;
+            FlagSet(FLAG_FORCED_CALL_BIKE_SHOP);
         }
     }
 

@@ -38,7 +38,7 @@ script AzaleaTown_Gym_EventScript_BugsyDefeated {
 	call(EventScript_RestorePrevTextColor)
     setflag(FLAG_DEFEATED_AZALEA_GYM)
     setflag(FLAG_BADGE02_GET)
-    set_gym_trainers(2)
+    setgymtrainers(2)
     goto(AzaleaTown_Gym_EventScript_GiveSteelWing)
 }
 
