@@ -338,6 +338,8 @@ SECTIONS {
         src/ruins_of_alph_puzzle.o(.text);
         src/bug_catching_contest.o(.text);
         src/phone_script.o(.text);
+        src/buenas_password.o(.text);
+        src/mom_bank.o(.text);
         src/debug/debug_menu.o(.text);
     } =0
 
@@ -707,6 +709,8 @@ SECTIONS {
         src/ruins_of_alph_puzzle.o(.rodata);
         src/bug_catching_contest.o(.rodata);
         src/phone_script.o(.rodata);
+        src/buenas_password.o(.rodata);
+        src/mom_bank.o(.rodata);
         src/debug/debug_menu.o(.rodata);
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);

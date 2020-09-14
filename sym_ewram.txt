@@ -157,3 +157,4 @@
 	.include "src/ruins_of_alph_puzzle.o"
 	.include "src/bug_catching_contest.o"
 	.include "src/phone_script.o"
+	.include "src/buenas_password.o"
