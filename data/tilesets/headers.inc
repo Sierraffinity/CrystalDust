@@ -587,14 +587,14 @@ gTileset_GameCorner:: @ 83DFB84
 	.4byte NULL @ palette overrides
 
 	.align 2
-gTileset_RustboroGym:: @ 83DFB9C
+gTileset_GoldenrodGym:: @ 83DFB9C
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_RustboroGym
-	.4byte gTilesetPalettes_RustboroGym
-	.4byte gMetatiles_RustboroGym
-	.4byte gMetatileAttributes_RustboroGym
+	.4byte gTilesetTiles_GoldenrodGym
+	.4byte gTilesetPalettes_GoldenrodGym
+	.4byte gMetatiles_GoldenrodGym
+	.4byte gMetatileAttributes_GoldenrodGym
 	.4byte NULL @ animation callback
 	.4byte NULL @ palette overrides
 

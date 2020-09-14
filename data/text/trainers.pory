@@ -740,6 +740,67 @@ text Route34_Text_KatePostBattle {
 	"us here. You sure startled us."
 }
 
+text GoldenrodCity_Gym_Text_CarrieIntro {
+	"Don't let my POKéMON's cute looks\n"
+	"fool you. They can whip you!"
+}
+
+text GoldenrodCity_Gym_Text_CarrieDefeated {
+	"Darn…\n"
+	"I thought you were weak…"
+}
+
+text GoldenrodCity_Gym_Text_CarriePostBattle {
+	"Do my POKéMON think I'm cute?"
+}
+
+text GoldenrodCity_Gym_Text_BridgetIntro {
+	"I like cute POKéMON better than\n"
+	"strong POKéMON.\p"
+	"But I have strong and cute POKéMON!"
+}
+
+text GoldenrodCity_Gym_Text_BridgetDefeated {
+	"Oh, no, no, no!"
+}
+
+text GoldenrodCity_Gym_Text_BridgetPostBattle {
+	"I'm trying to beat WHITNEY, but…\n"
+	"It's depressing.\p"
+	"I'm okay! If I lose, I'll just try\n"
+	"harder next time!"
+}
+
+text GoldenrodCity_Gym_Text_VictoriaIntro {
+	"Oh, you are a cute little TRAINER!\n"
+	"I like you, but I won't hold back!"
+}
+
+text GoldenrodCity_Gym_Text_VictoriaDefeated {
+	"Let's see…\n"
+	"Oops, it's over?"
+}
+
+text GoldenrodCity_Gym_Text_VictoriaPostBattle {
+	"Wow, you must be good to beat me!\n"
+	"Keep it up!"
+}
+
+text GoldenrodCity_Gym_Text_SamanthaIntro {
+	"Give it your best shot, or I'll take\n"
+	"you down!"
+}
+
+text GoldenrodCity_Gym_Text_SamanthaDefeated {
+	"No!\n"
+	"Oh, MEOWTH, I'm so sorry!"
+}
+
+text GoldenrodCity_Gym_Text_SamanthaPostBattle {
+	"I taught MEOWTH moves for taking on\n"
+	"any type…"
+}
+
 raw`
 Route34_Text_ElliotIntro: @ 8296327
 	.string "Which do you prefer, fishing in the\n"

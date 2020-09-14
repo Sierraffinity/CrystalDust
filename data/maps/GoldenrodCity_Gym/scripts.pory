@@ -1,0 +1,181 @@
+const OBJ_EVENT_ID_BRIDGET = 3
+
+mapscripts GoldenrodCity_Gym_MapScripts { }
+
+script GoldenrodCity_Gym_EventScript_Whitney {
+    trainerbattle_single(TRAINER_WHITNEY, GoldenrodCity_Gym_Text_WhitneyPreBattle, GoldenrodCity_Gym_Text_WhitneyDefeat, GoldenrodCity_Gym_EventScript_WhitneyDefeated, NO_MUSIC)
+    if (var(VAR_GOLDENROD_GYM_STATE) < 2)
+    {
+        goto(GoldenrodCity_Gym_EventScript_WhitneyCrying)
+    }
+    elif (!flag(FLAG_BADGE03_GET))
+    {
+        msgbox("…Sniff…\p"
+               "What? What do you want?\n"
+               "A BADGE?\p"
+               "Oh, right. I forgot.\n"
+               "Here's the PLAINBADGE.")
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received the PLAINBADGE\n"
+                "from WHITNEY.")
+        waitmessage
+        call(Common_EventScript_PlayGymBadgeFanfare)
+        call(EventScript_RestorePrevTextColor)
+        setflag(FLAG_BADGE03_GET)
+        goto(GoldenrodCity_Gym_EventScript_GiveAttract)
+    }
+    elif (!flag(FLAG_GOT_TM45_FROM_WHITNEY))
+    {
+        goto(GoldenrodCity_Gym_EventScript_GiveAttract)
+    }
+    msgbox("Ah, that was a good cry!\p"
+           "Come for a visit again!\n"
+           "Bye-bye!")
+	release
+}
+
+text GoldenrodCity_Gym_Text_WhitneyPreBattle {
+	"Hi!\n"
+    "I'm WHITNEY!\p"
+    "Everyone was into POKéMON, so I got\n"
+    "into it too!\p"
+    "POKéMON are super-cute!\p"
+    "You want to battle?\n"
+    "I'm warning you--I'm good!"
+}
+
+text GoldenrodCity_Gym_Text_WhitneyDefeat {
+	"Sob…\p"
+    "…Waaaaaaah!\n"
+    "You're mean!\p"
+    "You shouldn't be so serious!\n"
+    "You… you child, you!"
+}
+
+script GoldenrodCity_Gym_EventScript_WhitneyDefeated {
+    setvar(VAR_GOLDENROD_GYM_STATE, 1)
+    setflag(FLAG_DEFEATED_GOLDENROD_GYM)
+    setgymtrainers(3)
+    goto(GoldenrodCity_Gym_EventScript_WhitneyCrying)
+}
+
+script GoldenrodCity_Gym_EventScript_WhitneyCrying {
+    msgbox("Waaaaah!\p"
+           "Waaaaah!\p"
+           "…Snivel, hic…\n"
+           "…You meanie!")
+    release
+}
+
+script GoldenrodCity_Gym_EventScript_WhitneyCries {
+    lockall
+	playse(SE_PIN)
+	applymovement(OBJ_EVENT_ID_BRIDGET, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(OBJ_EVENT_ID_BRIDGET, Common_Movement_Delay48)
+	waitmovement(0)
+    applymovement(OBJ_EVENT_ID_BRIDGET, GoldenrodCity_Gym_Movement_BridgetToPlayer)
+    waitmovement(0)
+    textcolor(MSG_COLOR_RED)
+    msgbox("Oh, no.\n"
+           "You made WHITNEY cry.\p"
+           "It's okay.\n"
+           "She'll stop soon.\l"
+           "She always cries when she loses.")
+    applymovement(OBJ_EVENT_ID_BRIDGET, GoldenrodCity_Gym_Movement_BridgetReturns)
+    waitmovement(0)
+    setvar(VAR_GOLDENROD_GYM_STATE, 2)
+    releaseall
+}
+
+movement GoldenrodCity_Gym_Movement_BridgetToPlayer
+{
+    walk_left
+    face_up
+}
+
+movement GoldenrodCity_Gym_Movement_BridgetReturns
+{
+    walk_right
+    face_left
+}
+
+script GoldenrodCity_Gym_EventScript_GiveAttract {
+    msgbox("The PLAINBADGE lets your POKéMON use\n"
+           "STRENGTH outside of battle.\p"
+           "It also boosts your POKéMON's SPEED.\p"
+           "Oh, you can have this too!")
+    checkitemspace(ITEM_TM45, 1)
+    if (!var(VAR_RESULT))
+	{
+        goto(Common_EventScript_ShowBagIsFull)
+	}
+	else
+	{
+		givetmhm_msg("{PLAYER} received TM45\n"
+					 "from WHITNEY.", ITEM_TM45)
+		setflag(FLAG_GOT_TM45_FROM_WHITNEY)
+		msgbox("It's ATTRACT! It makes full use\n"
+               "of a POKéMON's charm.\p"
+               "Isn't it just perfect for a cutie\n"
+               "like me?")
+	}
+	release
+}
+
+script GoldenrodCity_Gym_EventScript_Guide {
+    lock
+    faceplayer
+    if (flag(FLAG_DEFEATED_GOLDENROD_GYM))
+    {
+        msgbox("You won? Great!\n"
+               "I was busy admiring the ladies here.")
+    }
+    else
+    {
+        msgbox("Yo!\n"
+               "Champ in the making!\p"
+               "This GYM is home to NORMAL-type\n"
+               "POKéMON TRAINERS.\p"
+               "I recommend you use FIGHTING-type\n"
+               "POKéMON.")
+    }
+    release
+}
+
+script GoldenrodCity_Gym_EventScript_Statue {
+    lock
+    faceplayer
+    if (flag(FLAG_BADGE03_GET))
+    {
+        msgbox("GOLDENROD CITY POKéMON GYM\n"
+               "LEADER: WHITNEY\p"
+               "WINNING TRAINERS:\n"
+               "{PLAYER}")
+    }
+    else
+    {
+        msgbox("GOLDENROD CITY POKéMON GYM")
+    }
+    release
+}
+
+script GoldenrodCity_Gym_EventScript_Carrie {
+    trainerbattle_single(TRAINER_CARRIE, GoldenrodCity_Gym_Text_CarrieIntro, GoldenrodCity_Gym_Text_CarrieDefeated)
+    msgbox(GoldenrodCity_Gym_Text_CarriePostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script GoldenrodCity_Gym_EventScript_Bridget {
+    trainerbattle_single(TRAINER_BRIDGET, GoldenrodCity_Gym_Text_BridgetIntro, GoldenrodCity_Gym_Text_BridgetDefeated)
+    msgbox(GoldenrodCity_Gym_Text_BridgetPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script GoldenrodCity_Gym_EventScript_Victoria {
+    trainerbattle_single(TRAINER_VICTORIA, GoldenrodCity_Gym_Text_VictoriaIntro, GoldenrodCity_Gym_Text_VictoriaDefeated)
+    msgbox(GoldenrodCity_Gym_Text_VictoriaPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script GoldenrodCity_Gym_EventScript_Samantha {
+    trainerbattle_single(TRAINER_SAMANTHA, GoldenrodCity_Gym_Text_SamanthaIntro, GoldenrodCity_Gym_Text_SamanthaDefeated)
+    msgbox(GoldenrodCity_Gym_Text_SamanthaPostBattle, MSGBOX_AUTOCLOSE)
+}

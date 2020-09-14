@@ -227,7 +227,7 @@ MossdeepCity_Gym_EventScript_Hannah:: @ 8220B42
 	end
 
 MossdeepCity_Gym_EventScript_Samantha:: @ 8220B59
-	trainerbattle_single TRAINER_SAMANTHA, MossdeepCity_Gym_Text_SamanthaIntro, MossdeepCity_Gym_Text_SamanthaDefeat
+	trainerbattle_single TRAINER_SAMANTHA_OLD, MossdeepCity_Gym_Text_SamanthaIntro, MossdeepCity_Gym_Text_SamanthaDefeat
 	msgbox MossdeepCity_Gym_Text_SamanthaPostBattle, MSGBOX_AUTOCLOSE
 	end
 

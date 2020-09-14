@@ -22,7 +22,7 @@ SootopolisCity_Gym_B1F_EventScript_Connie:: @ 8225CD0
 	end
 
 SootopolisCity_Gym_B1F_EventScript_Bridget:: @ 8225CE7
-	trainerbattle_single TRAINER_BRIDGET, SootopolisCity_Gym_B1F_Text_BridgetIntro, SootopolisCity_Gym_B1F_Text_BridgetDefeat
+	trainerbattle_single TRAINER_BRIDGET_OLD, SootopolisCity_Gym_B1F_Text_BridgetIntro, SootopolisCity_Gym_B1F_Text_BridgetDefeat
 	msgbox SootopolisCity_Gym_B1F_Text_BridgetPostBattle, MSGBOX_AUTOCLOSE
 	end
 

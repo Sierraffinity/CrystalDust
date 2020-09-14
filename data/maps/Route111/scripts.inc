@@ -90,7 +90,7 @@ Route111_EventScript_SetWinstratesNotDefeated:: @ 81F0E26
 	setflag FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
 	setflag FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
 	cleartrainerflag TRAINER_VICTOR
-	cleartrainerflag TRAINER_VICTORIA
+	cleartrainerflag TRAINER_VICTORIA_OLD
 	cleartrainerflag TRAINER_VIVI
 	end
 
@@ -303,7 +303,7 @@ Route111_EventScript_BattleWinstrates:: @ 81F0FE7
 	waitmovement 0
 	call Route111_EventScript_CloseWinstrateDoor
 	msgbox Route111_Text_VictoriaIntro, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_VICTORIA, Route111_Text_VictoriaDefeat
+	trainerbattle_no_intro TRAINER_VICTORIA_OLD, Route111_Text_VictoriaDefeat
 	applymovement 2, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	call Route111_EventScript_OpenWinstrateDoor

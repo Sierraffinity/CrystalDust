@@ -2,7 +2,7 @@ Common_EventScript_SetGymTrainers:: @ 8271F43
 	switch VAR_0x8008
 	case 1, VioletCity_Gym_SetGymTrainers
 	case 2, AzaleaTown_Gym_SetGymTrainers
-	case 3, MauvilleCity_Gym_SetGymTrainers
+	case 3, GoldenrodCity_Gym_SetGymTrainers
 	case 4, LavaridgeTown_Gym_SetGymTrainers
 	case 5, NotVioletCity_Gym_SetGymTrainers
 	case 6, FortreeCity_Gym_SetGymTrainers
@@ -22,12 +22,11 @@ AzaleaTown_Gym_SetGymTrainers:: @ 8271FAB
 	settrainerflag TRAINER_AMY_AND_MAY
 	return
 
-MauvilleCity_Gym_SetGymTrainers:: @ 8271FBE
-	settrainerflag TRAINER_KIRK
-	settrainerflag TRAINER_SHAWN
-	settrainerflag TRAINER_BEN
-	settrainerflag TRAINER_VIVIAN
-	settrainerflag TRAINER_ANGELO
+GoldenrodCity_Gym_SetGymTrainers:: @ 8271FBE
+	settrainerflag TRAINER_CARRIE
+	settrainerflag TRAINER_BRIDGET
+	settrainerflag TRAINER_VICTORIA
+	settrainerflag TRAINER_SAMANTHA
 	return
 
 LavaridgeTown_Gym_SetGymTrainers:: @ 8271FCE
@@ -65,7 +64,7 @@ MossdeepCity_Gym_SetGymTrainers:: @ 8272010
 	settrainerflag TRAINER_VIRGIL
 	settrainerflag TRAINER_BLAKE
 	settrainerflag TRAINER_HANNAH
-	settrainerflag TRAINER_SAMANTHA
+	settrainerflag TRAINER_SAMANTHA_OLD
 	settrainerflag TRAINER_MAURA
 	settrainerflag TRAINER_SYLVIA
 	settrainerflag TRAINER_NATE
@@ -80,7 +79,7 @@ SootopolisCity_Gym_SetGymTrainers:: @ 8272035
 	settrainerflag TRAINER_CRISSY
 	settrainerflag TRAINER_BRIANNA
 	settrainerflag TRAINER_CONNIE
-	settrainerflag TRAINER_BRIDGET
+	settrainerflag TRAINER_BRIDGET_OLD
 	settrainerflag TRAINER_OLIVIA
 	settrainerflag TRAINER_TIFFANY
 	settrainerflag TRAINER_BETHANY

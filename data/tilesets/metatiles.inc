@@ -335,12 +335,12 @@ gMetatileAttributes_Unused2:: @ 83C43D2
 	.incbin "data/tilesets/secondary/unused_2/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_RustboroGym:: @ 83C4446
-	.incbin "data/tilesets/secondary/rustboro_gym/metatiles.bin"
+gMetatiles_GoldenrodGym:: @ 83C4446
+	.incbin "data/tilesets/secondary/goldenrod_gym/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_RustboroGym:: @ 83C47C6
-	.incbin "data/tilesets/secondary/rustboro_gym/metatile_attributes.bin"
+gMetatileAttributes_GoldenrodGym:: @ 83C47C6
+	.incbin "data/tilesets/secondary/goldenrod_gym/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_AzaleaGym:: @ 83C4836
