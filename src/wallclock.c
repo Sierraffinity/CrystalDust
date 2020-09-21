@@ -382,21 +382,21 @@ static void Task_SetClock2(u8 taskId)
         gSaveBlock2Ptr->twentyFourHourClock = !gSaveBlock2Ptr->twentyFourHourClock;
         PlaySE(SE_SELECT);
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_UP)
+    else if (JOY_REPEAT(DPAD_UP))
     {
         ChangeTimeWithDelta(taskId, 1);
         shouldStopBlinking = TRUE;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    else if (JOY_REPEAT(DPAD_LEFT))
     {
         ChangeDigitWithDelta(taskId, -1);
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    else if (JOY_REPEAT(DPAD_DOWN))
     {
         ChangeTimeWithDelta(taskId, -1);
         shouldStopBlinking = TRUE;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    else if (JOY_REPEAT(DPAD_RIGHT))
     {
         ChangeDigitWithDelta(taskId, 1);
     }

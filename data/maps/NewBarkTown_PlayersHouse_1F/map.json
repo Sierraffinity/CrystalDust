@@ -43,7 +43,7 @@
     "id": "MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_1F",
     "layout": "LAYOUT_NEW_BARK_TOWN_PLAYERS_HOUSE_1F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_NEWBARK",
+    "music": "MUS_NEW_BARK",
     "name": "NewBarkTown_PlayersHouse_1F",
     "object_events": [
         {

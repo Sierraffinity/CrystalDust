@@ -146,7 +146,7 @@ NewBarkTown_EventScript_Teacher3::
 
 NewBarkTown_EventScript_TeacherMain:
 	textcolor MSG_COLOR_RED
-	playbgm MUS_MOMSTHEME, 0
+	playbgm MUS_MOMS_THEME, 0
 	turnobject 2, 3
 	msgbox NewBarkTown_Text_WaitPlayer
 	closemessage

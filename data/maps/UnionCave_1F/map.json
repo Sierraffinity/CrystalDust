@@ -11,7 +11,7 @@
     "id": "MAP_UNION_CAVE_1F",
     "layout": "LAYOUT_UNION_CAVE_1F",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_ILEXFOREST",
+    "music": "MUS_ILEX_FOREST",
     "name": "UnionCave_1F",
     "object_events": [
         {

@@ -72,10 +72,10 @@ $(MID_SUBDIR)/mus_vs_elite_four.s: %.s: %.mid
 $(MID_SUBDIR)/mus_roulette.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G038 -V080
 
-$(MID_SUBDIR)/mus_ruinsofalph.s: %.s: %.mid
+$(MID_SUBDIR)/mus_ruins_of_alph.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G020 -V090
 
-$(MID_SUBDIR)/mus_rivalexit.s: %.s: %.mid
+$(MID_SUBDIR)/mus_rival_exit.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G067 -V062
 
 $(MID_SUBDIR)/mus_encounter_male.s: %.s: %.mid
@@ -105,10 +105,10 @@ $(MID_SUBDIR)/mus_cycling.s: %.s: %.mid
 $(MID_SUBDIR)/mus_encounter_champion.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G100 -V076
 
-$(MID_SUBDIR)/mus_ilexforest.s: %.s: %.mid
+$(MID_SUBDIR)/mus_ilex_forest.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G018 -V100
 
-$(MID_SUBDIR)/mus_darkcave.s: %.s: %.mid
+$(MID_SUBDIR)/mus_dark_cave.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G030 -V100
 
 $(MID_SUBDIR)/mus_cave_of_origin.s: %.s: %.mid
@@ -144,7 +144,7 @@ $(MID_SUBDIR)/mus_hall_of_fame_room.s: %.s: %.mid
 $(MID_SUBDIR)/mus_end.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G102 -V036
 
-$(MID_SUBDIR)/mus_momstheme.s: %.s: %.mid
+$(MID_SUBDIR)/mus_moms_theme.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G056 -V078
 
 $(MID_SUBDIR)/mus_level_up.s: %.s: %.mid
@@ -162,10 +162,10 @@ $(MID_SUBDIR)/mus_gsc_route38.s: %.s: %.mid
 $(MID_SUBDIR)/mus_slateport.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G079 -V070
 
-$(MID_SUBDIR)/mus_pkmnlullaby.s: %.s: %.mid
+$(MID_SUBDIR)/mus_pokemon_lullaby.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G050 -V085
 
-$(MID_SUBDIR)/mus_buena.s: %.s: %.mid
+$(MID_SUBDIR)/mus_buenas_theme.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -V100
 
 $(MID_SUBDIR)/mus_gym.s: %.s: %.mid
@@ -225,13 +225,13 @@ $(MID_SUBDIR)/mus_encounter_officer.s: %.s: %.mid
 $(MID_SUBDIR)/mus_trick_house.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G094 -V070
 
-$(MID_SUBDIR)/mus_mainmenu.s: %.s: %.mid
+$(MID_SUBDIR)/mus_main_menu.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G064 -V084
 
 $(MID_SUBDIR)/mus_sailing.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G077 -V086
 
-$(MID_SUBDIR)/mus_sprouttower.s: %.s: %.mid
+$(MID_SUBDIR)/mus_sprout_tower.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G078 -V088
 
 $(MID_SUBDIR)/mus_sealed_chamber.s: %.s: %.mid
@@ -291,13 +291,13 @@ $(MID_SUBDIR)/mus_obtain_tmhm.s: %.s: %.mid
 $(MID_SUBDIR)/mus_too_bad.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5
 
-$(MID_SUBDIR)/mus_oakslab.s: %.s: %.mid
+$(MID_SUBDIR)/mus_oaks_lab.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G087 -V075
 
 $(MID_SUBDIR)/mus_lilycove.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G054 -V085
 
-$(MID_SUBDIR)/mus_newbark.s: %.s: %.mid
+$(MID_SUBDIR)/mus_new_bark.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G051 -V100
 
 $(MID_SUBDIR)/mus_surf.s: %.s: %.mid
@@ -309,13 +309,13 @@ $(MID_SUBDIR)/mus_route104.s: %.s: %.mid
 $(MID_SUBDIR)/mus_gsc_pewter.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -V080
 
-$(MID_SUBDIR)/mus_elmslab.s: %.s: %.mid
+$(MID_SUBDIR)/mus_elms_lab.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G033 -V080
 
 $(MID_SUBDIR)/mus_abnormal_weather.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G089 -V080
 
-$(MID_SUBDIR)/mus_oakstheme.s: %.s: %.mid
+$(MID_SUBDIR)/mus_oaks_theme.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G081 -V097
 
 $(MID_SUBDIR)/mus_c_comm_center.s: %.s: %.mid
@@ -585,10 +585,10 @@ $(MID_SUBDIR)/mus_encounter_swimmer.s: %.s: %.mid
 $(MID_SUBDIR)/mus_encounter_lass.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G027 -V080
 
-$(MID_SUBDIR)/mus_rockettakeover.s: %.s: %.mid
+$(MID_SUBDIR)/mus_rocket_takeover.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G088 -V080
 
-$(MID_SUBDIR)/mus_pokemonmarch.s: %.s: %.mid
+$(MID_SUBDIR)/mus_pokemon_march.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G043 -V094
 
 $(MID_SUBDIR)/mus_link_contest_p1.s: %.s: %.mid
@@ -1263,11 +1263,11 @@ $(MID_SUBDIR)/se_m_leer.s: %.s: %.mid
 $(MID_SUBDIR)/se_dex_search.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G127 -v100 -P5
 
-$(MID_SUBDIR)/se_introunown1.s: %.s: %.mid
+$(MID_SUBDIR)/se_intro_unown1.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -v100 -P5
 
-$(MID_SUBDIR)/se_introunown2.s: %.s: %.mid
+$(MID_SUBDIR)/se_intro_unown2.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -v100 -P5
 
-$(MID_SUBDIR)/se_introunown3.s: %.s: %.mid
+$(MID_SUBDIR)/se_intro_unown3.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -v100 -P5

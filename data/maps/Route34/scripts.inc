@@ -123,48 +123,6 @@ Route34_EventScript_DaycareSign::
 	return
 
 
-Route34_EventScript_Douglas:: @ 81EE493
-	trainerbattle_single TRAINER_DOUGLAS, Route34_Text_DouglasIntro, Route34_Text_DouglasDefeated
-	msgbox Route34_Text_DouglasPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route34_EventScript_Kyla:: @ 81EE4AA
-	trainerbattle_single TRAINER_KYLA, Route34_Text_KylaIntro, Route34_Text_KylaDefeated
-	msgbox Route34_Text_KylaPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route34_EventScript_Elliot:: @ 81EE4C1
-	trainerbattle_single TRAINER_ELLIOT_1, Route34_Text_ElliotIntro, Route34_Text_ElliotDefeated, Route34_EventScript_ElliotRegisterMatchCallAfterBattle
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	compare VAR_RESULT, TRUE
-	goto_if_eq Route34_EventScript_ElliotRematch
-	msgbox Route34_Text_ElliotPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-Route34_EventScript_ElliotRegisterMatchCallAfterBattle:: @ 81EE4ED
-	special PlayerFaceTrainerAfterBattle
-	waitmovement 0
-	msgbox Route34_Text_ElliotRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_ELLIOT_1
-	release
-	end
-
-Route34_EventScript_ElliotRematch:: @ 81EE50C
-	trainerbattle_rematch TRAINER_ELLIOT_1, Route34_Text_ElliotRematchIntro, Route34_Text_ElliotRematchDefeated
-	msgbox Route34_Text_ElliotRematchPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route34_EventScript_Ned:: @ 81EE523
-	trainerbattle_single TRAINER_NED, Route34_Text_NedIntro, Route34_Text_NedDefeated
-	msgbox Route34_Text_NedPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route34_Text_TrainerTips: @ 81EE53A
-	.string "TRAINER TIPS\p"
-	.string "Advice on catching POKéMON with a ROD:\n"
-	.string "Press the A Button if you get a bite.$"
-
 Route34_EventScript_Keith_Text_0:
 	.string "I'm on patrol for suspicious\n"
 	.string "individuals.$"

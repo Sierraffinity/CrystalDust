@@ -109,7 +109,7 @@ LavaridgeTown_EventScript_PlayMayMusic:: @ 81EA630
 	return
 
 LavaridgeTown_EventScript_PlayBrendanMusic:: @ 81EA635
-	playbgm MUS_RIVALEXIT, 1
+	playbgm MUS_RIVAL_EXIT, 1
 	return
 
 LavaridgeTown_EventScript_RivalNoticePlayer:: @ 81EA63A

@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE113",
   "name": "Route113",
   "layout": "LAYOUT_ROUTE113",
-  "music": "MUS_MAINMENU",
+  "music": "MUS_MAIN_MENU",
   "region_map_section": "MAPSEC_ROUTE_41",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",

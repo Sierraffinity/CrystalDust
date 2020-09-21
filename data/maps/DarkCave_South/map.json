@@ -19,7 +19,7 @@
     "id": "MAP_DARK_CAVE_SOUTH",
     "layout": "LAYOUT_DARK_CAVE_SOUTH",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_DARKCAVE",
+    "music": "MUS_DARK_CAVE",
     "name": "DarkCave_South",
     "object_events": [
         {

@@ -11,7 +11,7 @@
     "id": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
     "layout": "LAYOUT_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
     "map_type": "MAP_TYPE_UNDERWATER",
-    "music": "MUS_ILEXFOREST",
+    "music": "MUS_ILEX_FOREST",
     "name": "RuinsOfAlph_OmanyteItemRoom",
     "object_events": [
     ],

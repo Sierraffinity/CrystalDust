@@ -1170,7 +1170,7 @@ u16 GetLocationMusic(struct WarpData *warp)
     else if (ShouldLegendaryMusicPlayAtLocation(warp) == TRUE)
         return MUS_ABNORMAL_WEATHER;
     else if (IsInflitratedSpaceCenter(warp) == TRUE)
-        return MUS_OAKSLAB;
+        return MUS_OAKS_LAB;
     else if (IsInfiltratedWeatherInstitute(warp) == TRUE)
         return MUS_MT_CHIMNEY;
     else*/

@@ -2,7 +2,7 @@
   "id": "MAP_ILEX_FOREST",
   "name": "IlexForest",
   "layout": "LAYOUT_ILEX_FOREST",
-  "music": "MUS_ILEXFOREST",
+  "music": "MUS_ILEX_FOREST",
   "region_map_section": "MAPSEC_ILEX_FOREST",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

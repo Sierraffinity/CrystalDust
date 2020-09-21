@@ -1417,7 +1417,7 @@ void InitPokegearPhoneCall(u8 taskId)
         // the phone contact not being available to talk.
         if (IsTextPrinterActive(gPhoneCallWindowId))
         {
-            if (gMain.heldKeys & A_BUTTON)
+            if (JOY_HELD(A_BUTTON))
                 gTextFlags.canABSpeedUpPrint = 1;
             else
                 gTextFlags.canABSpeedUpPrint = 0;
@@ -1631,11 +1631,11 @@ static void Task_RadioCard(u8 taskId)
     }
 
     station = sPokegearStruct.currentRadioStation;
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         station++;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    else if (JOY_REPEAT(DPAD_LEFT))
     {
         station--;
     }

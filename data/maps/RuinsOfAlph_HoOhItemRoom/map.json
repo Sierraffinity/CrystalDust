@@ -43,7 +43,7 @@
     "id": "MAP_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
     "layout": "LAYOUT_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_ILEXFOREST",
+    "music": "MUS_ILEX_FOREST",
     "name": "RuinsOfAlph_HoOhItemRoom",
     "object_events": [
     ],

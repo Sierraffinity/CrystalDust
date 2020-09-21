@@ -2,7 +2,7 @@
   "id": "MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB",
   "name": "NewBarkTown_ProfessorElmsLab",
   "layout": "LAYOUT_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB",
-  "music": "MUS_ELMSLAB",
+  "music": "MUS_ELMS_LAB",
   "region_map_section": "MAPSEC_NEW_BARK_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

@@ -788,7 +788,7 @@ static bool8 WalkingNorthOrSouthIntoSignpost(const struct MapPosition *position,
 {
     const u8 *script;
 
-    if (gMain.heldKeys & (DPAD_RIGHT | DPAD_LEFT))
+    if (JOY_HELD(DPAD_RIGHT | DPAD_LEFT))
         return FALSE;
 
     if (direction == DIR_WEST || direction == DIR_EAST)

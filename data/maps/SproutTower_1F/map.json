@@ -11,7 +11,7 @@
     "id": "MAP_SPROUT_TOWER_1F",
     "layout": "LAYOUT_SPROUT_TOWER_1F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_SPROUTTOWER",
+    "music": "MUS_SPROUT_TOWER",
     "name": "SproutTower_1F",
     "object_events": [
         {

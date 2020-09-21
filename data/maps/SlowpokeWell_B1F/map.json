@@ -12,7 +12,7 @@
     "id": "MAP_SLOWPOKE_WELL_B1F",
     "layout": "LAYOUT_SLOWPOKE_WELL_B1F",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_DARKCAVE",
+    "music": "MUS_DARK_CAVE",
     "name": "SlowpokeWell_B1F",
     "object_events": [
         {

@@ -11,7 +11,7 @@
     "id": "MAP_NATIONAL_PARK_CONTEST",
     "layout": "LAYOUT_NATIONAL_PARK_CONTEST",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_DARKCAVE",
+    "music": "MUS_DARK_CAVE",
     "name": "NationalParkContest",
     "object_events": [
         {

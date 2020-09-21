@@ -277,9 +277,9 @@
 #define SE_PIKE_CURTAIN_OPEN        268 // SE_CURTAIN1
 #define SE_SUDOWOODO_SHAKE          269 // SE_USSOKI
 // CrystalDust SFX
-#define SE_INTROUNOWN1 270           // Intro Unown low pitch
-#define SE_INTROUNOWN2 271           // Intro Unown mid pitch
-#define SE_INTROUNOWN3 272           // Intro Unown hi pitch
+#define SE_INTRO_UNOWN1 270           // Intro Unown low pitch
+#define SE_INTRO_UNOWN2 271           // Intro Unown mid pitch
+#define SE_INTRO_UNOWN3 272           // Intro Unown hi pitch
 
 // Music
 #define MUS_LITTLEROOT_TEST         350 // MUS_TETSUJI
@@ -298,24 +298,24 @@
 #define MUS_CHERRYGROVE                  363 // MUS_MACHI_S4
 #define MUS_GYM                     364 // MUS_GIM
 #define MUS_SURF                    365 // MUS_NAMINORI
-#define MUS_ILEXFOREST         366 // MUS_DAN01
+#define MUS_ILEX_FOREST         366 // MUS_DAN01
 #define MUS_LEVEL_UP                367 // MUS_FANFA1
 #define MUS_HEAL                    368 // MUS_ME_ASA
 #define MUS_OBTAIN_BADGE            369 // MUS_ME_BACHI
 #define MUS_OBTAIN_ITEM             370 // MUS_FANFA4
 #define MUS_EVOLVED                 371 // MUS_FANFA5
 #define MUS_OBTAIN_TMHM             372 // MUS_ME_WAZA
-#define MUS_RUINSOFALPH         373 // MUS_BIJYUTU
+#define MUS_RUINS_OF_ALPH         373 // MUS_BIJYUTU
 #define MUS_ROUTE30                374 // MUS_DOORO_X4
-#define MUS_BUENA          375 // MUS_FUNE_KAN
+#define MUS_BUENAS_THEME          375 // MUS_FUNE_KAN
 #define MUS_EVOLUTION_INTRO         376 // MUS_ME_SHINKA
 #define MUS_EVOLUTION               377 // MUS_SHINKA
 #define MUS_MOVE_DELETED            378 // MUS_ME_WASURE
 #define MUS_ENCOUNTER_LASS          379 // MUS_SYOUJOEYE
 #define MUS_ENCOUNTER_MALE          380 // MUS_BOYEYE
-#define MUS_DARKCAVE          381 // MUS_DAN02
+#define MUS_DARK_CAVE          381 // MUS_DAN02
 #define MUS_FORTREE                 382 // MUS_MACHI_S3
-#define MUS_ELMSLAB               383 // MUS_ODAMAKI
+#define MUS_ELMS_LAB               383 // MUS_ODAMAKI
 #define MUS_B_TOWER_RS              384 // MUS_B_TOWER
 #define MUS_ENCOUNTER_SWIMMER       385 // MUS_SWIMEYE
 #define MUS_CAVE_OF_ORIGIN          386 // MUS_DAN03
@@ -329,20 +329,20 @@
 #define MUS_LINK_CONTEST_P2         394 // MUS_TEST2
 #define MUS_LINK_CONTEST_P3         395 // MUS_TEST3
 #define MUS_LINK_CONTEST_P4         396 // MUS_TEST4
-#define MUS_POKEMONMARCH          397 // MUS_TEST
+#define MUS_POKEMON_MARCH          397 // MUS_TEST
 #define MUS_VERDANTURF              398 // MUS_GOMACHI0
 #define MUS_GOLDENROD                399 // MUS_GOTOWN
 #define MUS_POKE_CENTER             400 // MUS_POKECEN
 #define MUS_ROUTE104                401 // MUS_NEXTROAD
 #define MUS_ROUTE119                402 // MUS_GRANROAD
 #define MUS_CYCLING                 403 // MUS_CYCLING
-#define MUS_PKMNLULLABY               404 // MUS_FRIENDLY
-#define MUS_NEWBARK              405 // MUS_MISHIRO
+#define MUS_POKEMON_LULLABY               404 // MUS_FRIENDLY
+#define MUS_NEW_BARK              405 // MUS_MISHIRO
 #define MUS_MT_CHIMNEY              406 // MUS_TOZAN
 #define MUS_ENCOUNTER_FEMALE        407 // MUS_GIRLEYE
 #define MUS_LILYCOVE                408 // MUS_MINAMO
 #define MUS_ROUTE111                409 // MUS_ASHROAD
-#define MUS_MOMSTHEME                    410 // MUS_EVENT0
+#define MUS_MOMS_THEME                    410 // MUS_EVENT0
 #define MUS_UNDERWATER              411 // MUS_DEEPDEEP
 #define MUS_VICTORY_TRAINER         412 // MUS_KACHI1
 #define MUS_TITLE                   413 // MUS_TITLE3
@@ -350,10 +350,10 @@
 #define MUS_ENCOUNTER_RIVAL           415 // MUS_GIRL_SUP
 #define MUS_ENCOUNTER_SAGE       416 // MUS_HAGESHII
 #define MUS_ENCOUNTER_OFFICER          417 // MUS_KAKKOII
-#define MUS_MAINMENU                418 // MUS_KAZANBAI
+#define MUS_MAIN_MENU                418 // MUS_KAZANBAI
 #define MUS_ENCOUNTER_ROCKET          419 // MUS_AQA_0
 #define MUS_FOLLOW_ME               420 // MUS_TSURETEK
-#define MUS_RIVALEXIT       421 // MUS_BOY_SUP
+#define MUS_RIVAL_EXIT       421 // MUS_BOY_SUP
 #define MUS_EVER_GRANDE             422 // MUS_RAINBOW
 #define MUS_ENCOUNTER_SUSPICIOUS    423 // MUS_AYASII
 #define MUS_VICTORY_AQUA_MAGMA      424 // MUS_KACHI4
@@ -364,17 +364,17 @@
 #define MUS_VICTORY_ROAD            429 // MUS_C_ROAD
 #define MUS_AQUA_MAGMA_HIDEOUT      430 // MUS_AJITO
 #define MUS_SAILING                 431 // MUS_M_BOAT
-#define MUS_SPROUTTOWER                 432 // MUS_M_DUNGON
+#define MUS_SPROUT_TOWER                 432 // MUS_M_DUNGON
 #define MUS_SLATEPORT               433 // MUS_FINECITY
 #define MUS_MT_PYRE_EXTERIOR        434 // MUS_MACHUPI
-#define MUS_OAKSTHEME                  435 // MUS_P_SCHOOL
+#define MUS_OAKS_THEME                  435 // MUS_P_SCHOOL
 #define MUS_HALL_OF_FAME            436 // MUS_DENDOU
 #define MUS_FALLARBOR               437 // MUS_TONEKUSA
 #define MUS_SEALED_CHAMBER          438 // MUS_MABOROSI
 #define MUS_CONTEST_WINNER          439 // MUS_CON_FAN
 #define MUS_CONTEST                 440 // MUS_CONTEST0
-#define MUS_OAKSLAB         441 // MUS_MGM0
-#define MUS_ROCKETTAKEOVER            442 // MUS_T_BATTLE
+#define MUS_OAKS_LAB         441 // MUS_MGM0
+#define MUS_ROCKET_TAKEOVER            442 // MUS_T_BATTLE
 #define MUS_ABNORMAL_WEATHER        443 // MUS_OOAME (Replaces MUS_WEATHER_KYOGRE from R/S)
 #define MUS_WEATHER_GROUDON         444 // MUS_HIDERI (Unused, from R/S)
 #define MUS_SOOTOPOLIS              445 // MUS_RUNECITY

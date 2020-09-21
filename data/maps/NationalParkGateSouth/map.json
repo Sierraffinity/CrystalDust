@@ -2,7 +2,7 @@
   "id": "MAP_NATIONAL_PARK_GATE_SOUTH",
   "name": "NationalParkGateSouth",
   "layout": "LAYOUT_NATIONAL_PARK_GATE_SOUTH",
-  "music": "MUS_DARKCAVE",
+  "music": "MUS_DARK_CAVE",
   "region_map_section": "MAPSEC_NEW_BARK_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

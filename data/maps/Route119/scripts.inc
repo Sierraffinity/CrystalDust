@@ -78,7 +78,7 @@ Route119_EventScript_PlayMayMusic:: @ 81F4501
 	return
 
 Route119_EventScript_PlayBrendanMusic:: @ 81F4506
-	playbgm MUS_RIVALEXIT, 1
+	playbgm MUS_RIVAL_EXIT, 1
 	return
 
 Route119_EventScript_BattleMay:: @ 81F450B

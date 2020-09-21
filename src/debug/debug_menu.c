@@ -489,7 +489,7 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
     u32 temp, shifter;
     u16 *data = gTasks[taskId].data;
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         shifter = tWhichDigit * 4;
         temp = (((tFlagNum >> shifter) & 0xF) + 1) & 0xF;
@@ -503,7 +503,7 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         shifter = tWhichDigit * 4;
         temp = (((tFlagNum >> shifter) & 0xF) - 1) & 0xF;
@@ -517,7 +517,7 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
     {
         if (++tWhichDigit > 2)
             tWhichDigit = 2;
@@ -525,7 +525,7 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         if (--tWhichDigit > 2)
             tWhichDigit = 0;
@@ -589,7 +589,7 @@ static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
     u32 temp, shifter;
     u16 *data = gTasks[taskId].data;
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         shifter = tWhichDigit * 4;
         temp = (((tVarNum >> shifter) & 0xF) + 1) & 0xF;
@@ -604,7 +604,7 @@ static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         shifter = tWhichDigit * 4;
         temp = (((tVarNum >> shifter) & 0xF) - 1) & 0xF;
@@ -619,7 +619,7 @@ static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
     {
         if (++tWhichDigit > 3)
             tWhichDigit = 3;
@@ -627,7 +627,7 @@ static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         if (--tWhichDigit < 0)
             tWhichDigit = 0;
@@ -654,7 +654,7 @@ static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
     u32 temp, shifter;
     u16 *data = gTasks[taskId].data;
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         shifter = tWhichDigit * 4;
         temp = (((tVarVal >> shifter) & 0xF) + 1) & 0xF;
@@ -664,7 +664,7 @@ static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
         DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum, tVarVal);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         shifter = tWhichDigit * 4;
         temp = (((tVarVal >> shifter) & 0xF) - 1) & 0xF;
@@ -674,7 +674,7 @@ static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
         DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum, tVarVal);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
     {
         if (++tWhichDigit > 3)
             tWhichDigit = 3;
@@ -682,7 +682,7 @@ static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         if (--tWhichDigit > 3)
             tWhichDigit = 0;
@@ -753,7 +753,7 @@ static void DebugMenu_AddItem_ProcessInputNum(u8 taskId)
     u32 temp, temp2, shifter;
     u16 *data = gTasks[taskId].data;
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         shifter = powersOfTen[tWhichDigit];
 
@@ -769,7 +769,7 @@ static void DebugMenu_AddItem_ProcessInputNum(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         shifter = powersOfTen[tWhichDigit];
 
@@ -785,7 +785,7 @@ static void DebugMenu_AddItem_ProcessInputNum(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
     {
         if (++tWhichDigit > 3)
             tWhichDigit = 3;
@@ -793,7 +793,7 @@ static void DebugMenu_AddItem_ProcessInputNum(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         if (--tWhichDigit > 3)
             tWhichDigit = 0;
@@ -820,7 +820,7 @@ static void DebugMenu_AddItem_ProcessInputCount(u8 taskId)
     u32 temp, shifter;
     u16 *data = gTasks[taskId].data;
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         shifter = tWhichDigit * 4;
         temp = (((tItemCount >> shifter) & 0xF) + 1) & 0xF;
@@ -832,7 +832,7 @@ static void DebugMenu_AddItem_ProcessInputCount(u8 taskId)
         DebugMenu_AddItem_PrintStatus(tWindowId, tItemNum, tItemCount);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         shifter = tWhichDigit * 4;
         temp = (((tItemCount >> shifter) & 0xF) - 1) & 0xF;
@@ -844,7 +844,7 @@ static void DebugMenu_AddItem_ProcessInputCount(u8 taskId)
         DebugMenu_AddItem_PrintStatus(tWindowId, tItemNum, tItemCount);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
     {
         if (++tWhichDigit > 3)
             tWhichDigit = 3;
@@ -852,7 +852,7 @@ static void DebugMenu_AddItem_ProcessInputCount(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         if (--tWhichDigit > 3)
             tWhichDigit = 0;
@@ -975,7 +975,7 @@ static void DebugMenu_LottoNumber_ProcessInput(u8 taskId)
     u32 lottoNum, temp, temp2, shifter;
     u16 *data = gTasks[taskId].data;
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         shifter = powersOfTen[tWhichDigit];
 
@@ -992,7 +992,7 @@ static void DebugMenu_LottoNumber_ProcessInput(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         shifter = powersOfTen[tWhichDigit];
 
@@ -1009,7 +1009,7 @@ static void DebugMenu_LottoNumber_ProcessInput(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
     {
         if (++tWhichDigit > 4)
             tWhichDigit = 4;
@@ -1017,7 +1017,7 @@ static void DebugMenu_LottoNumber_ProcessInput(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         if (--tWhichDigit < 0)
             tWhichDigit = 0;
@@ -1025,13 +1025,13 @@ static void DebugMenu_LottoNumber_ProcessInput(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         SetLotteryNumber(LOTTO_NUM);
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         ReturnToPreviousMenu(taskId, GET_BOUNCER);
@@ -1090,7 +1090,7 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
 
     s16 *data = gTasks[taskId].data;
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         PlaySE(SE_SELECT);
         gDNPeriodOverride += deltas[tDeltaIndex];
@@ -1102,7 +1102,7 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
         DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNPeriodOverride - 1);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
     {
         PlaySE(SE_SELECT);
         gDNPeriodOverride -= deltas[tDeltaIndex];
@@ -1114,7 +1114,7 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
         DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNPeriodOverride - 1);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         PlaySE(SE_SELECT);
 
@@ -1122,7 +1122,7 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
             tDeltaIndex = 0;
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         PlaySE(SE_SELECT);
 
@@ -1188,7 +1188,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
     u32 temp, temp2, shifter;
     u16 *data = gTasks[taskId].data;
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         shifter = powersOfTen[tWhichDigit];
 
@@ -1204,7 +1204,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         shifter = powersOfTen[tWhichDigit];
 
@@ -1220,7 +1220,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
     {
         if (++tWhichDigit > 2)
             tWhichDigit = 2;
@@ -1228,7 +1228,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         if (--tWhichDigit > 2)
             tWhichDigit = 0;
@@ -1299,7 +1299,7 @@ static void DebugMenu_SetRespawn_ProcessInput(u8 taskId)
     u32 temp, shifter;
     u16 *data = gTasks[taskId].data;
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         temp = tRespawnNum + 1;
 
@@ -1311,7 +1311,7 @@ static void DebugMenu_SetRespawn_ProcessInput(u8 taskId)
         }
     }
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         temp = tRespawnNum - 1;
 

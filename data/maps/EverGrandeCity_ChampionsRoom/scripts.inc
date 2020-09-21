@@ -75,7 +75,7 @@ EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic:: @ 8228ABC
 	return
 
 EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic:: @ 8228AC1
-	playbgm MUS_RIVALEXIT, 0
+	playbgm MUS_RIVAL_EXIT, 0
 	return
 
 EverGrandeCity_ChampionsRoom_EventScript_MayAdvice:: @ 8228AC6

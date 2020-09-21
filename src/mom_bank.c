@@ -258,34 +258,34 @@ static void MomBank_ProcessInput(u8 taskId)
     u32 money;
     s16 *data = gTasks[taskId].data;
 
-    if ((gMain.newKeys & DPAD_RIGHT) && (tArrowPos > 0))
+    if (JOY_NEW(DPAD_RIGHT) && (tArrowPos > 0))
     {
         PlaySE(SE_SELECT);
         tArrowPos--;
     }
-    else if ((gMain.newKeys & DPAD_LEFT) && (tArrowPos < 5))
+    else if (JOY_NEW(DPAD_LEFT) && (tArrowPos < 5))
     {
         PlaySE(SE_SELECT);
         tArrowPos++;
     }
-    else if (gMain.newKeys & DPAD_UP)
+    else if (JOY_NEW(DPAD_UP))
     {
         PlaySE(SE_SELECT);
         tMoney = ChangeBcdDigit(tMoney, tArrowPos, 1);
         MomBank_PrintTransactionQuantity(tValueWindowId, ConvertBcdToBinary(tMoney), tIsDeposit);
     }
-    else if (gMain.newKeys & DPAD_DOWN)
+    else if (JOY_NEW(DPAD_DOWN))
     {
         PlaySE(SE_SELECT);
         tMoney = ChangeBcdDigit(tMoney, tArrowPos, -1);
         MomBank_PrintTransactionQuantity(tValueWindowId, ConvertBcdToBinary(tMoney), tIsDeposit);
     }
-    else if (gMain.newKeys & A_BUTTON)
+    else if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         gTasks[taskId].func = MomBank_AcceptTransaction;
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         tMoney = 0;

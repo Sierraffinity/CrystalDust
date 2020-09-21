@@ -1161,13 +1161,13 @@ static void Task_FadeScreenAndPulse(u8 taskId)
             switch (data[3])
             {
                 case 0:
-                    PlaySE(SE_INTROUNOWN1);
+                    PlaySE(SE_INTRO_UNOWN1);
                     break;
                 case 1:
-                    PlaySE(SE_INTROUNOWN2);
+                    PlaySE(SE_INTRO_UNOWN2);
                     break;
                 case 2:
-                    PlaySE(SE_INTROUNOWN3);
+                    PlaySE(SE_INTRO_UNOWN3);
                     break;
             }
             StartSpriteAffineAnim(&gSprites[data[1]], 1);
@@ -1355,7 +1355,7 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
     
     if (gIntroFrameCounter == 946)
     {
-        PlaySE(SE_INTROUNOWN3);
+        PlaySE(SE_INTRO_UNOWN3);
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
         StartSpriteAnim(&gSprites[data[1]], 2);
         gSprites[data[1]].pos1.x = 100;
@@ -1385,7 +1385,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 1:
         if (!gUnknown_0203BCC8)
         {
-            PlaySE(SE_INTROUNOWN2);
+            PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 3);
             gSprites[data[1]].pos1.x = 190;
             gSprites[data[1]].pos1.y = 40;
@@ -1396,7 +1396,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 3:
         if (!gUnknown_0203BCC8)
         {
-            PlaySE(SE_INTROUNOWN1);
+            PlaySE(SE_INTRO_UNOWN1);
             StartSpriteAnim(&gSprites[data[1]], 4);
             gSprites[data[1]].pos1.x = 50;
             gSprites[data[1]].pos1.y = 70;
@@ -1407,7 +1407,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 5:
         if (!gUnknown_0203BCC8)
         {
-            PlaySE(SE_INTROUNOWN2);
+            PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 5);
             gSprites[data[1]].pos1.x = 130;
             gSprites[data[1]].pos1.y = 130;
@@ -1418,7 +1418,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 7:
         if (!gUnknown_0203BCC8)
         {
-            PlaySE(SE_INTROUNOWN3);
+            PlaySE(SE_INTRO_UNOWN3);
             StartSpriteAnim(&gSprites[data[1]], 6);
             gSprites[data[1]].pos1.x = 110;
             gSprites[data[1]].pos1.y = 30;
@@ -1438,7 +1438,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 9:
         if (!gUnknown_0203BCC8)
         {
-            PlaySE(SE_INTROUNOWN2);
+            PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 7);
             gSprites[data[1]].pos1.x = 200;
             gSprites[data[1]].pos1.y = 80;
@@ -1449,7 +1449,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 11:
         if (!gUnknown_0203BCC8)
         {
-            PlaySE(SE_INTROUNOWN1);
+            PlaySE(SE_INTRO_UNOWN1);
             StartSpriteAnim(&gSprites[data[1]], 8);
             gSprites[data[1]].pos1.x = 40;
             gSprites[data[1]].pos1.y = 120;
@@ -1460,7 +1460,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 13:
         if (!gUnknown_0203BCC8)
         {
-            PlaySE(SE_INTROUNOWN2);
+            PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 9);
             gSprites[data[1]].pos1.x = 140;
             gSprites[data[1]].pos1.y = 90;

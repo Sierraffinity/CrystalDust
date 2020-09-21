@@ -11,7 +11,7 @@ MagmaHideout_4F_MapScripts:: @ 823A55F
 
 MagmaHideout_4F_EventScript_Maxie:: @ 823A560
 	lockall
-	playbgm MUS_OAKSLAB, 0
+	playbgm MUS_OAKS_LAB, 0
 	msgbox MagmaHideout_4F_Text_MaxieAwakenGroudon, MSGBOX_DEFAULT
 	closemessage
 	delay 20

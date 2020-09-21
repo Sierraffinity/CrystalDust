@@ -46,11 +46,11 @@
 
 static const u16 sRadioChannelSongs[] = 
 {
-    [OAKS_POKEMON_TALK] = MUS_OAKSLAB,
+    [OAKS_POKEMON_TALK] = MUS_OAKS_LAB,
     [POKEDEX_SHOW] = MUS_POKE_CENTER,
     [POKEMON_MUSIC] = MUS_DUMMY,
     [LUCKY_CHANNEL] = MUS_GAME_CORNER,
-    [BUENAS_PASSWORD] = MUS_BUENA,
+    [BUENAS_PASSWORD] = MUS_BUENAS_THEME,
     [PLACES_AND_PEOPLE] = MUS_SLATEPORT,
     [LETS_ALL_SING] = MUS_MT_PYRE_EXTERIOR,
     [ROCKET_RADIO] = MUS_AQUA_MAGMA_HIDEOUT,
@@ -126,10 +126,10 @@ static void NextRadioLine(u8 taskId, u8 nextLine, const u8 *lineToPrint, bool8 s
 
 void PlayPokemonMusic(void)
 {
-    u16 song = MUS_POKEMONMARCH;  // Sunday, Tuesday, Thursday, Saturday
+    u16 song = MUS_POKEMON_MARCH;  // Sunday, Tuesday, Thursday, Saturday
     RtcCalcLocalTime();
     if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
-        song = MUS_PKMNLULLABY;
+        song = MUS_POKEMON_LULLABY;
     PlayNewMapMusic(song);
 }
 

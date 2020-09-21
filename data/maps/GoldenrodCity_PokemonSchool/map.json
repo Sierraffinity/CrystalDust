@@ -2,7 +2,7 @@
   "id": "MAP_GOLDENROD_CITY_POKEMON_SCHOOL",
   "name": "GoldenrodCity_PokemonSchool",
   "layout": "LAYOUT_VIOLET_CITY_EARLS_ACADEMY",
-  "music": "MUS_OAKSTHEME",
+  "music": "MUS_OAKS_THEME",
   "region_map_section": "MAPSEC_GOLDENROD_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

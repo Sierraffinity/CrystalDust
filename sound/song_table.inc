@@ -271,9 +271,9 @@ gSongTable:: @ 86B49F0
 	song se_pike_curtain_close, 1, 1
 	song se_pike_curtain_open, 1, 1
 	song se_sudowoodo_shake, 1, 1
-	song se_introunown1, 1, 1
-	song se_introunown2, 1, 1
-	song se_introunown3, 1, 1
+	song se_intro_unown1, 1, 1
+	song se_intro_unown2, 1, 1
+	song se_intro_unown3, 1, 1
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
@@ -367,24 +367,24 @@ gSongTable:: @ 86B49F0
 	song mus_cherrygrove, 0, 0
 	song mus_gym, 0, 0
 	song mus_surf, 0, 0
-	song mus_ilexforest, 0, 0
+	song mus_ilex_forest, 0, 0
 	song mus_level_up, 2, 2
 	song mus_heal, 2, 2
 	song mus_obtain_badge, 2, 2
 	song mus_obtain_item, 2, 2
 	song mus_evolved, 2, 2
 	song mus_obtain_tmhm, 2, 2
-	song mus_ruinsofalph, 0, 0
+	song mus_ruins_of_alph, 0, 0
 	song mus_route30, 0, 0
-	song mus_buena, 0, 0
+	song mus_buenas_theme, 0, 0
 	song mus_evolution_intro, 2, 2
 	song mus_evolution, 0, 0
 	song mus_move_deleted, 2, 2
 	song mus_encounter_lass, 0, 0
 	song mus_encounter_male, 0, 0
-	song mus_darkcave, 0, 0
+	song mus_dark_cave, 0, 0
 	song mus_fortree, 0, 0
-	song mus_elmslab, 0, 0
+	song mus_elms_lab, 0, 0
 	song mus_b_tower_rs, 0, 0
 	song mus_encounter_swimmer, 0, 0
 	song mus_cave_of_origin, 0, 0
@@ -398,20 +398,20 @@ gSongTable:: @ 86B49F0
 	song mus_link_contest_p2, 0, 0
 	song mus_link_contest_p3, 0, 0
 	song mus_link_contest_p4, 0, 0
-	song mus_pokemonmarch, 0, 0
+	song mus_pokemon_march, 0, 0
 	song mus_verdanturf, 0, 0
 	song mus_goldenrod, 0, 0
 	song mus_poke_center, 0, 0
 	song mus_route104, 0, 0
 	song mus_route119, 0, 0
 	song mus_cycling, 0, 0
-	song mus_pkmnlullaby, 0, 0
-	song mus_newbark, 0, 0
+	song mus_pokemon_lullaby, 0, 0
+	song mus_new_bark, 0, 0
 	song mus_mt_chimney, 0, 0
 	song mus_encounter_female, 0, 0
 	song mus_lilycove, 0, 0
 	song mus_route111, 0, 0
-	song mus_momstheme, 0, 0
+	song mus_moms_theme, 0, 0
 	song mus_underwater, 0, 0
 	song mus_victory_trainer, 0, 0
 	song mus_title, 0, 0
@@ -419,10 +419,10 @@ gSongTable:: @ 86B49F0
 	song mus_encounter_rival, 0, 0
 	song mus_encounter_sage, 0, 0
 	song mus_encounter_officer, 0, 0
-	song mus_mainmenu, 0, 0
+	song mus_main_menu, 0, 0
 	song mus_encounter_rocket, 0, 0
 	song mus_follow_me, 0, 0
-	song mus_rivalexit, 0, 0
+	song mus_rival_exit, 0, 0
 	song mus_ever_grande, 0, 0
 	song mus_encounter_suspicious, 0, 0
 	song mus_victory_aqua_magma, 0, 0
@@ -433,17 +433,17 @@ gSongTable:: @ 86B49F0
 	song mus_victory_road, 0, 0
 	song mus_aqua_magma_hideout, 0, 0
 	song mus_sailing, 0, 0
-	song mus_sprouttower, 0, 0
+	song mus_sprout_tower, 0, 0
 	song mus_slateport, 0, 0
 	song mus_mt_pyre_exterior, 0, 0
-	song mus_oakstheme, 0, 0
+	song mus_oaks_theme, 0, 0
 	song mus_hall_of_fame, 0, 0
 	song mus_fallarbor, 0, 0
 	song mus_sealed_chamber, 0, 0
 	song mus_contest_winner, 0, 0
 	song mus_contest, 0, 0
-	song mus_oakslab, 0, 0
-	song mus_rockettakeover, 0, 0
+	song mus_oaks_lab, 0, 0
+	song mus_rocket_takeover, 0, 0
 	song mus_abnormal_weather, 0, 0
 	song mus_weather_groudon, 0, 0
 	song mus_sootopolis, 0, 0

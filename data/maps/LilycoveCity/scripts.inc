@@ -270,7 +270,7 @@ LilycoveCity_EventScript_DeclineMayBattle:: @ 81E2E5A
 	end
 
 LilycoveCity_EventScript_Brendan:: @ 81E2E6B
-	playbgm MUS_RIVALEXIT, 1
+	playbgm MUS_RIVAL_EXIT, 1
 	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattleAgain
 	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattle
 	compare VAR_RESULT, NO

@@ -11,7 +11,7 @@
     "id": "MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
     "layout": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_ILEXFOREST",
+    "music": "MUS_ILEX_FOREST",
     "name": "RuinsOfAlph_AerodactylChamber",
     "object_events": [
         {

@@ -32,7 +32,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_IfMyAssumption
 	closemessage
-	playbgm MUS_OAKSTHEME, 0
+	playbgm MUS_OAKS_THEME, 0
 	applymovement OBJ_EVENT_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnRight
 	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToPlayer
 	waitmovement 0

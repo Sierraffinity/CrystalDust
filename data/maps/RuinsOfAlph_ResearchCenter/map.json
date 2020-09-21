@@ -67,7 +67,7 @@
     "id": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
     "layout": "LAYOUT_RUINS_OF_ALPH_RESEARCH_CENTER",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_ILEXFOREST",
+    "music": "MUS_ILEX_FOREST",
     "name": "RuinsOfAlph_ResearchCenter",
     "object_events": [
         {

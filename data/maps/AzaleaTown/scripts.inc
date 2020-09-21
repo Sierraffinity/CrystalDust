@@ -55,7 +55,7 @@ AzaleaTown_EventScript_RivalTrigger_All::
 	waitmovement 0
 AzaleaTown_EventScript_RivalTrigger_All_1:
 	playbgm MUS_ENCOUNTER_RIVAL, 0
-	savebgm MUS_RIVALEXIT
+	savebgm MUS_RIVAL_EXIT
 	msgbox AzaleaTown_EventScript_RivalTrigger_All_Text_0
 	setvar VAR_LAST_TALKED, 9
 	compare VAR_STARTER_MON, STARTER_CHIKORITA

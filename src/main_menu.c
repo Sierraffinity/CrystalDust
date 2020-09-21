@@ -768,7 +768,7 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
     else if (IsBGMStopped()) // coming from title screen, waiting for music to fade
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0xFFFF); // fade from white
-        m4aSongNumStart(MUS_MAINMENU);
+        m4aSongNumStart(MUS_MAIN_MENU);
     }
     else    // egads, music is not faded yet!
     {

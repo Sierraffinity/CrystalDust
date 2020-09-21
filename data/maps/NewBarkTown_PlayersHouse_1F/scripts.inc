@@ -39,7 +39,7 @@ NewBarkTown_PlayersHouse_1F_MomEncounter::
 	waitmovement 0
 	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
-	playbgm MUS_MOMSTHEME, 0
+	playbgm MUS_MOMS_THEME, 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 1, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer
 	waitmovement 0

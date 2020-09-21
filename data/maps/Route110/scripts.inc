@@ -414,7 +414,7 @@ Route110_EventScript_PlayMayMusic:: @ 81EF7E1
 	return
 
 Route110_EventScript_PlayBrendanMusic:: @ 81EF7E6
-	playbgm MUS_RIVALEXIT, 1
+	playbgm MUS_RIVAL_EXIT, 1
 	return
 
 Route110_EventScript_MayBattle:: @ 81EF7EB
