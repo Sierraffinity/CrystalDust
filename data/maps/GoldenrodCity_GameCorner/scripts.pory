@@ -190,7 +190,7 @@ script GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize {
                 removecoins(TM_PRIZE_COINS)
                 additem(VAR_TEMP_1)
                 updatecoinsbox(0, 0)
-                playse(SE_REGI)
+                playse(SE_SHOP)
                 msgbox(GoldenrodCity_GameCorner_EventScript_PrizeVendorHereYouGo)
             }
         }
@@ -303,11 +303,11 @@ script GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize {
                 default:
                     removecoins(VAR_TEMP_2)
                     updatecoinsbox(0, 0)
-                    playse(SE_REGI)
+                    playse(SE_SHOP)
                     msgbox(GoldenrodCity_GameCorner_EventScript_PrizeVendorHereYouGo)
                     textcolor(MSG_COLOR_SYS)
                     bufferspeciesname(0, VAR_TEMP_1)
-                    playfanfare(MUS_FANFA1)
+                    playfanfare(MUS_LEVEL_UP)
                     message(gText_PlayerObtainedTheMon)
                     waitmessage
                     waitfanfare

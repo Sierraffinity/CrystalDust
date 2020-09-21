@@ -29,8 +29,6 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
-// static types
-
 #define tHours              data[0]
 #define tMinutes            data[1]
 #define tWhichChanging      data[2]
@@ -43,9 +41,7 @@ enum {
     DIGIT_MINUTES
 };
 
-// static declarations
-
-static void WallClockMainCallback(void);
+static void CB2_WallClock(void);
 static void Task_SetClock1(u8 taskId);
 static void Task_SetClock2(u8 taskId);
 static void Task_SetClock3(u8 taskId);
@@ -59,8 +55,7 @@ static void AddScrollArrows(u8 taskId);
 static void RemoveScrollArrows(u8 taskId);
 static void UpdateBlinkTimer(u8 taskId);
 
-// rodata
-static const struct WindowTemplate gUnknown_085B21DC[] = 
+static const struct WindowTemplate sWindowTemplates[] =
 {
     {
         .bg = 0,
@@ -92,7 +87,7 @@ static const struct WindowTemplate gUnknown_085B21DC[] =
     DUMMY_WIN_TEMPLATE
 };
 
-static const struct WindowTemplate gUnknown_085B21F4 =
+static const struct WindowTemplate sWindowTemplate_ConfirmYesNo =
 {
     .bg = 0,
     .tilemapLeft = 24,
@@ -103,7 +98,7 @@ static const struct WindowTemplate gUnknown_085B21F4 =
     .baseBlock = 572
 };
 
-static const struct BgTemplate gUnknown_085B21FC[] =
+static const struct BgTemplate sBgTemplates[] =
 {
     {
         .bg = 0,
@@ -125,9 +120,7 @@ static const struct BgTemplate gUnknown_085B21FC[] =
     }
 };
 
-// text
-
-static void WallClockVblankCallback(void)
+static void VBlankCB_WallClock(void)
 {
     LoadOam();
     ProcessSpriteCopyRequests();
@@ -157,16 +150,16 @@ static void LoadWallClockGraphics(void)
     LZ77UnCompVram(gSetClock_Map, (u16 *)BG_SCREEN_ADDR(8));
     //LZ77UnCompVram(gPokegear_GridMap, (u16 *)BG_SCREEN_ADDR(7));
     LoadPalette(gSetClock_Pal, 0x00, 0x20);
-    LoadPalette(stdpal_get(2), 0xB0, 0x20);
+    LoadPalette(GetTextWindowPalette(2), 0xB0, 0x20);
     gPlttBufferUnfaded[0] = RGB_BLACK;
     gPlttBufferFaded[0] = RGB_BLACK;
     ResetBgsAndClearDma3BusyFlags(0);
-    InitBgsFromTemplates(0, gUnknown_085B21FC, 3);
-    InitWindows(gUnknown_085B21DC);
+    InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
+    InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
     LoadMessageBoxGfx(0, 0x200, 0xE0);
     LoadUserWindowBorderGfx(0, 0x250, 0xd0);
-    clear_scheduled_bg_copies_to_vram();
+    ClearScheduledBgCopiesToVram();
     ScanlineEffect_Stop();
     ResetTasks();
     ResetSpriteData();
@@ -183,8 +176,8 @@ static void WallClockInit(void)
 {
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     EnableInterrupts(INTR_FLAG_VBLANK);
-    SetVBlankCallback(WallClockVblankCallback);
-    SetMainCallback2(WallClockMainCallback);
+    SetVBlankCallback(VBlankCB_WallClock);
+    SetMainCallback2(CB2_WallClock);
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
     SetGpuReg(REG_OFFSET_BLDALPHA, 0);
     SetGpuReg(REG_OFFSET_BLDY, 0);
@@ -271,12 +264,12 @@ static void RemoveScrollArrows(u8 taskId)
     }
 }
 
-static void WallClockMainCallback(void)
+static void CB2_WallClock(void)
 {
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
-    do_scheduled_bg_tilemap_copies_to_vram();
+    DoScheduledBgTilemapCopiesToVram();
     UpdatePaletteFade();
 }
 
@@ -321,7 +314,7 @@ static u8 ChangeTimeWithDelta(u8 taskId, s8 delta)
             break;
     }
 
-    PlaySE(SE_TB_KARA);
+    PlaySE(SE_BALL_TRAY_EXIT);
 }
 
 static u8 ChangeDigitWithDelta(u8 taskId, s8 delta)
@@ -368,7 +361,7 @@ static void Task_SetClock2(u8 taskId)
 
     UpdateBlinkTimer(taskId);
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         u8 *string;
         shouldStopBlinking = TRUE;
@@ -384,7 +377,7 @@ static void Task_SetClock2(u8 taskId)
         AddTextPrinterForMessage_IgnoreTextColor(1);
         gTasks[taskId].func = Task_SetClock3;
     }
-    else if (gMain.newKeys & SELECT_BUTTON)
+    else if (JOY_NEW(SELECT_BUTTON))
     {
         gSaveBlock2Ptr->twentyFourHourClock = !gSaveBlock2Ptr->twentyFourHourClock;
         PlaySE(SE_SELECT);
@@ -418,7 +411,7 @@ static void Task_SetClock3(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
     {
-        CreateYesNoMenu(&gUnknown_085B21F4, 1, 0, 2, 0x250, 13, 0);
+        CreateYesNoMenu(&sWindowTemplate_ConfirmYesNo, 1, 0, 2, 0x250, 13, 0);
         gTasks[taskId].func = Task_SetClock4;
     }
 }
@@ -549,7 +542,7 @@ static void Task_SetClock6(u8 taskId)
         gTasks[taskId].tBlinkTimer = 0;
     }
 
-    if (!RunTextPrintersAndIsPrinter0Active() && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (!RunTextPrintersAndIsPrinter0Active() && JOY_NEW(A_BUTTON | B_BUTTON))
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
         gTasks[taskId].func = Task_SetClock7;

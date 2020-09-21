@@ -118,7 +118,7 @@ static void DrawMultichoiceMenu(u8 left, u8 top, u8 multichoiceId, bool8 ignoreB
     SetStandardWindowBorderStyle(windowId, 0);
     MultichoiceList_PrintItems(windowId, 1, 8, 2, 14, count, actions, 0, 2);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 2, 14, count, cursorPos);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     InitMultichoiceCheckWrap(ignoreBPress, count, windowId, multichoiceId);
 }
 
@@ -205,7 +205,7 @@ static void Task_HandleMultichoiceInput(u8 taskId)
             else
                 selection = Menu_ProcessInput();
 
-            if (gMain.newKeys & (DPAD_UP | DPAD_DOWN))
+            if (JOY_NEW(DPAD_UP | DPAD_DOWN))
             {
                 DrawLinkServicesMultichoiceMenu(tMultichoiceId);
             }
@@ -643,7 +643,7 @@ bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y, bool8 isShiny)
         gSprites[spriteId].callback = SpriteCallbackDummy;
         gSprites[spriteId].oam.priority = 0;
         SetStandardWindowBorderStyle(gTasks[taskId].tWindowId, 1);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
         return TRUE;
     }
 }

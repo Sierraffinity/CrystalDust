@@ -164,7 +164,7 @@ static u8 AddWindowIfNotPresent(u8 whichWindow)
     {
         *windowIdPtr = AddWindow(&sApricornMenuWindows[whichWindow]);
         DrawStdFrameWithCustomTileAndPalette(*windowIdPtr, FALSE, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
     }
     return *windowIdPtr;
 }
@@ -176,7 +176,7 @@ static void RemoveWindowIfPresent(u8 a)
     {
         ClearStdWindowAndFrameToTransparent(*windowIdLoc, FALSE);
         ClearWindowTilemap(*windowIdLoc);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
         RemoveWindow(*windowIdLoc);
         *windowIdLoc = 0xFF;
     }
@@ -324,14 +324,14 @@ static void ApricornMenu_ChangeQuantityToGive(u8 taskId)
     {
         ApricornMenu_PrintQuantity(sApricornMenu->windowIds[WIN_QUANTITY], tItemCount);
     }
-    else if (gMain.newKeys & A_BUTTON)
+    else if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         RemoveWindowIfPresent(WIN_QUANTITY);
         ApricornMenu_RemoveScrollIndicator();
         ApricornMenu_InitConfirmGive(taskId);
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         RemoveWindowIfPresent(WIN_QUANTITY);

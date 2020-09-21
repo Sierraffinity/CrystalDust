@@ -219,7 +219,7 @@ static u32 HandleRegionMapInput(struct Pokenav5Struct *state)
 
 static u32 HandleRegionMapInputZoomDisabled(struct Pokenav5Struct *state)
 {
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         state->callback = GetExitRegionMapMenuId;
         return POKENAV_MAP_FUNC_EXIT;
@@ -507,7 +507,7 @@ static void LoadPokenavRegionMapGfx(struct Pokenav5Struct_2 *state)
     state->infoWindowId = AddWindow(&sMapSecInfoWindowTemplate);
     LoadUserWindowBorderGfx_(state->infoWindowId, 0x42, 0x40);
     DrawTextBorderOuter(state->infoWindowId, 0x42, 4);
-    decompress_and_copy_tile_data_to_vram(1, sRegionMapCityZoomTiles_Gfx, 0, 0, 0);
+    DecompressAndCopyTileDataToVram(1, sRegionMapCityZoomTiles_Gfx, 0, 0, 0);
     FillWindowPixelBuffer(state->infoWindowId, PIXEL_FILL(1));
     PutWindowTilemap(state->infoWindowId);
     CopyWindowToVram(state->infoWindowId, 3);
@@ -523,7 +523,7 @@ static void LoadPokenavRegionMapGfx(struct Pokenav5Struct_2 *state)
 
 static bool32 TryFreeTempTileDataBuffers(void)
 {
-    return free_temp_tile_data_buffers_if_possible();
+    return FreeTempTileDataBuffersIfPossible();
 }
 
 static void UpdateMapSecInfoWindow(struct Pokenav5Struct_2 *state)

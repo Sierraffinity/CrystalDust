@@ -47,16 +47,16 @@
 static const u16 sRadioChannelSongs[] = 
 {
     [OAKS_POKEMON_TALK] = MUS_OAKSLAB,
-    [POKEDEX_SHOW] = MUS_POKECEN,
+    [POKEDEX_SHOW] = MUS_POKE_CENTER,
     [POKEMON_MUSIC] = MUS_DUMMY,
-    [LUCKY_CHANNEL] = MUS_CASINO,
+    [LUCKY_CHANNEL] = MUS_GAME_CORNER,
     [BUENAS_PASSWORD] = MUS_BUENA,
-    [PLACES_AND_PEOPLE] = MUS_FINECITY,
-    [LETS_ALL_SING] = MUS_MACHUPI,
-    [ROCKET_RADIO] = MUS_AJITO,
-    [POKE_FLUTE_RADIO] = MUS_RG_POKEFUE,
-    [UNOWN_RADIO] = MUS_OOAME,
-    [EVOLUTION_RADIO] = MUS_HIDERI
+    [PLACES_AND_PEOPLE] = MUS_SLATEPORT,
+    [LETS_ALL_SING] = MUS_MT_PYRE_EXTERIOR,
+    [ROCKET_RADIO] = MUS_AQUA_MAGMA_HIDEOUT,
+    [POKE_FLUTE_RADIO] = MUS_RG_POKE_FLUTE,
+    [UNOWN_RADIO] = MUS_ABNORMAL_WEATHER,
+    [EVOLUTION_RADIO] = MUS_WEATHER_GROUDON
 };
 
 const u8 *const gRadioShowNames[] = 
@@ -507,7 +507,7 @@ void Task_PlayRadioShow(u8 taskId)
     case PKMN_CHANNEL_INTERLUDE_2:
         FillWindowPixelBuffer(tWindowId, 0x11);
         AddTextPrinterParameterized5(tWindowId, 1, gText_PokemonChannel1, 0, 1, 0, NULL, 1, 1);
-        PlayFanfare(MUS_ME_TAMA);
+        PlayFanfare(MUS_AWAKEN_LEGEND);
         tCurrentLine = tCurrentLine + 1;
         break;
     case PKMN_CHANNEL_INTERLUDE_3:
@@ -753,7 +753,7 @@ void Task_FieldRadio_1(u8 taskId)
 void Task_FieldRadio_2(u8 taskId)
 {
     RunTextPrinters();  // TODO: This is needed for the RADIO_PAUSE, but is this the right way to do it?
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         ClearDialogWindowAndFrame(0, TRUE);
         EnableBothScriptContexts();

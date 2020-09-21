@@ -346,7 +346,7 @@ static void InitPuzzleScreen(void)
     FreeAllSpritePalettes();
     LoadPuzzleSpriteGfx();
     InitPuzzleSprites();
-    LoadPalette(stdpal_get(2), 11 * 16, 32); // palette for ALPH_PUZZLE_WIN_HELP
+    LoadPalette(GetTextWindowPalette(2), 11 * 16, 32); // palette for ALPH_PUZZLE_WIN_HELP
     ShowHelpBar(sHelpBarGrabText);
 
     CopyBgTilemapBufferToVram(ALPH_PUZZLE_BG_BASE);
@@ -466,7 +466,7 @@ static void PuzzleMain(u8 taskId)
             break;
 
         ShowHelpBar(sHelpBarExitText);
-        PlayFanfare(MUS_ME_B_SMALL);
+        PlayFanfare(MUS_SLOTS_WIN);
         sRuinsOfAlphPuzzle->state = ALPH_PUZZLE_STATE_PROCESS_COMPLETED_INPUT;
         // fallthrough
     case ALPH_PUZZLE_STATE_PROCESS_COMPLETED_INPUT:
@@ -483,28 +483,28 @@ static void PuzzleMain(u8 taskId)
 
 static void HandleInput(void)
 {
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         UpdateCursorSelection();
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         gSpecialVar_Result = 0;
         sRuinsOfAlphPuzzle->state = ALPH_PUZZLE_STATE_START_EXIT;
     }
-    else if (gMain.newKeys & DPAD_UP)
+    else if (JOY_NEW(DPAD_UP))
     {
         MoveCursor(0);
     }
-    else if (gMain.newKeys & DPAD_RIGHT)
+    else if (JOY_NEW(DPAD_RIGHT))
     {
         MoveCursor(1);
     }
-    else if (gMain.newKeys & DPAD_DOWN)
+    else if (JOY_NEW(DPAD_DOWN))
     {
         MoveCursor(2);
     }
-    else if (gMain.newKeys & DPAD_LEFT)
+    else if (JOY_NEW(DPAD_LEFT))
     {
         MoveCursor(3);
     }
@@ -524,12 +524,12 @@ static void UpdateCursorSelection(void)
             cursorSprite->data[3] = spriteId;
             gSprites[cursorSprite->data[3]].subpriority = 2;
             StartSpriteAnim(cursorSprite, 1);
-            PlaySE(SE_TK_KASYA);
+            PlaySE(SE_CLICK);
             ShowHelpBar(sHelpBarDropText);
         }
         else
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
         }
     }
     else
@@ -541,7 +541,7 @@ static void UpdateCursorSelection(void)
             cursorSprite->data[0] = 0;
             cursorSprite->data[3] = 0xFF;
             StartSpriteAnim(cursorSprite, 0);
-            PlaySE(SE_KI_GASYAN);
+            PlaySE(SE_UNLOCK);
             if (IsPuzzleCompleted())
             {
                 DestroySprite(cursorSprite);
@@ -554,7 +554,7 @@ static void UpdateCursorSelection(void)
         }
         else
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
         }
     }
 }
@@ -595,9 +595,9 @@ static void MoveCursor(int direction)
     }
 
     if (cursorSprite->data[0])
-        PlaySE(SE_MU_PACHI);
+        PlaySE(SE_SWITCH);
     else
-        PlaySE(SE_TB_KARA);
+        PlaySE(SE_BALL_TRAY_EXIT);
 }
 
 static u8 FindPuzzlePieceSpriteIdAtCoords(int x, int y, int selectedPieceSpriteId)
@@ -689,7 +689,7 @@ static void HandleInput_PuzzleComplete(void)
 {
     if (IsFanfareTaskInactive())
     {
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+        if (JOY_NEW(A_BUTTON | B_BUTTON))
         {
             gSpecialVar_Result = 1;
             sRuinsOfAlphPuzzle->state = ALPH_PUZZLE_STATE_START_EXIT;

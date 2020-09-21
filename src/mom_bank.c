@@ -160,7 +160,7 @@ static void InitMomBankMenu(u8 taskId)
     LoadThinWindowBorderGfx(tMainWindowId, 0x21D, 0xD0);
     DrawStdFrameWithCustomTileAndPalette(tMainWindowId, FALSE, 0x21D, 13);
     DrawStdFrameWithCustomTileAndPalette(tValueWindowId, FALSE, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 
     MomBank_PrintMainWindow(tMainWindowId, GetMoney(&gSaveBlock1Ptr->bankedMoney), GetMoney(&gSaveBlock1Ptr->money));
     MomBank_PrintTransactionQuantity(tValueWindowId, ConvertBcdToBinary(tMoney), tIsDeposit);
@@ -301,7 +301,7 @@ static void MomBank_RemoveWindows(u8 taskId)
     ClearStdWindowAndFrameToTransparent(tValueWindowId, FALSE);
     RemoveWindow(tMainWindowId);
     RemoveWindow(tValueWindowId);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void MomBank_AcceptTransaction(u8 taskId)

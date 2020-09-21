@@ -85,7 +85,7 @@ NationalParkGateSouth_BugContestOfficer_ChosePokemon:
 	setvar VAR_0x8005, 4
 	special CallFrontierUtilFunc
 	msgbox BugContestOfficer_Text_HereAreTheParkBalls, MSGBOX_DEFAULT
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message BugContestOfficer_Text_ReceivedParkBalls
 	waitfanfare
 	msgbox BugContestOfficer_Text_SendOff, MSGBOX_DEFAULT

@@ -199,7 +199,7 @@ void NewGameInitData(void)
     ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
     StringCopy(gSaveBlock1Ptr->rivalName, gText_DefaultNameSilver);
     ResetMiniGamesResults();
-    copy_strings_to_sav1();
+    InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();
     ResetAllApprenticeData();
     ClearRankingHallRecords();

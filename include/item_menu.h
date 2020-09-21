@@ -4,19 +4,35 @@
 #include "item.h"
 #include "menu_helpers.h"
 
-#define RETURN_LOCATION_FIELD 0
-#define RETURN_LOCATION_BATTLE 1
-#define RETURN_LOCATION_POKEMON_LIST 2
-#define RETURN_LOCATION_SHOP 3
-#define RETURN_LOCATION_FIELD_2 4
-#define RETURN_LOCATION_FIELD_3 5
-#define RETURN_LOCATION_PC 6
-#define RETURN_LOCATION_FIELD_4 7
-#define RETURN_LOCATION_FIELD_5 8
-#define RETURN_LOCATION_FIELD_6 9
-#define RETURN_LOCATION_BATTLE_2 10
-#define RETURN_LOCATION_PC_2 11
-#define RETURN_LOCATION_UNCHANGED 12
+#define ITEMMENULOCATION_FIELD 0
+#define ITEMMENULOCATION_BATTLE 1
+#define ITEMMENULOCATION_PARTY 2
+#define ITEMMENULOCATION_SHOP 3
+#define ITEMMENULOCATION_BERRY_TREE 4
+#define ITEMMENULOCATION_BERRY_BLENDER_CRUSH 5
+#define ITEMMENULOCATION_ITEMPC 6
+#define ITEMMENULOCATION_FAVOR_LADY 7
+#define ITEMMENULOCATION_QUIZ_LADY 8
+#define ITEMMENULOCATION_APPRENTICE 9
+#define ITEMMENULOCATION_WALLY 10
+#define ITEMMENULOCATION_PCBOX 11
+#define ITEMMENULOCATION_LAST 12
+
+#define ITEMMENUACTION_USE           0
+#define ITEMMENUACTION_TOSS          1
+#define ITEMMENUACTION_REGISTER      2
+#define ITEMMENUACTION_GIVE          3
+#define ITEMMENUACTION_CANCEL        4
+#define ITEMMENUACTION_BATTLE_USE    5
+#define ITEMMENUACTION_CHECK         6
+#define ITEMMENUACTION_WALK          7
+#define ITEMMENUACTION_DESELECT      8
+#define ITEMMENUACTION_CHECK_TAG     9
+#define ITEMMENUACTION_CONFIRM      10
+#define ITEMMENUACTION_SHOW         11
+#define ITEMMENUACTION_GIVE_2       12
+#define ITEMMENUACTION_CONFIRM_2    13
+#define ITEMMENUACTION_DUMMY        14
 
 // Exported type declarations
 struct BagStruct
@@ -33,24 +49,24 @@ extern struct BagStruct gBagPositionStruct;
 
 struct BagMenuStruct
 {
-    void (*mainCallback2)(void);
+    void (*exitCallback)(void);
     u8 tilemapBuffer[0x800];
     u8 spriteId[12];
     u8 windowPointers[10];
     u8 itemOriginalLocation;
-    u8 pocketSwitchMode:4;
-    u8 itemMenuIcon:2;
+    u8 pocketSwitchDisabled:4;
+    u8 itemIconSlot:2;
     u8 inhibitItemDescriptionPrint:1;
     u8 hideCloseBagText:1;
     u16 contextMenuSelectedItem;
     u8 pocketScrollArrowsTask;
     u8 pocketSwitchArrowsTask;
     const u8* contextMenuItemsPtr;
-    u8 unk824[4];
+    u8 contextMenuItemsBuffer[4];
     u8 contextMenuNumItems;
-    u8 totalItems[POCKETS_COUNT];
-    u8 maxShowed[6];
-    s16 unk834;
+    u8 numItemStacks[POCKETS_COUNT];
+    u8 numShownItems[6];
+    s16 graphicsLoadState;
     u8 filler4[0xE];
     u8 filler2[4];
 };
@@ -62,11 +78,11 @@ extern struct BagMenuStruct *gBagMenu;
 extern u16 gSpecialVar_ItemId;
 
 // Exported ROM declarations
-void sub_81AAC14(void);
+void CB2_GoToItemDepositMenu(void);
 void FavorLadyOpenBagMenu(void);
 void QuizLadyOpenBagMenu(void);
 void ApprenticeOpenBagMenu(void);
-void sub_81AABB0(void);
+void CB2_BagMenuFromBattle(void);
 void SetInitialScrollAndCursorPositions(u8 pocketId);
 void CB2_ReturnToBagMenuPocket(void);
 void CB2_BagMenuFromStartMenu(void);
@@ -76,7 +92,7 @@ void CB2_GoToSellMenu(void);
 void GoToBagMenu(u8 bagMenuType, u8 pocketId, void ( *postExitMenuMainCallback2)());
 void DoWallyTutorialBagMenu(void);
 void ResetBagScrollPositions(void);
-void ChooseBerrySetCallback(void (*callback)(void));
+void ChooseBerryForMachine(void (*exitCallback)(void));
 void CB2_ChooseBerry(void);
 void Task_FadeAndCloseBagMenu(u8 taskId);
 void BagCreateYesNoMenuBottomRight(u8, const struct YesNoFuncTable*);

@@ -2,7 +2,7 @@
   "id": "MAP_GOLDENROD_CITY_GAME_CORNER",
   "name": "GoldenrodCity_GameCorner",
   "layout": "LAYOUT_GOLDENROD_CITY_GAME_CORNER",
-  "music": "MUS_CASINO",
+  "music": "MUS_GAME_CORNER",
   "region_map_section": "MAPSEC_GOLDENROD_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

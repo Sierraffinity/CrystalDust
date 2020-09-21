@@ -5,7 +5,7 @@
 #include "clock.h"
 #include "coins.h"
 #include "contest.h"
-#include "contest_link_80F57C4.h"
+#include "contest_util.h"
 #include "contest_painting.h"
 #include "data.h"
 #include "day_night.h"
@@ -40,7 +40,7 @@
 #include "script.h"
 #include "script_menu.h"
 #include "script_movement.h"
-#include "script_pokemon_80F8.h"
+#include "script_pokemon_util.h"
 #include "shop.h"
 #include "slot_machine.h"
 #include "sound.h"
@@ -791,8 +791,8 @@ bool8 ScrCmd_warphole(struct ScriptContext *ctx)
 {
     u8 mapGroup = ScriptReadByte(ctx);
     u8 mapNum = ScriptReadByte(ctx);
-    u16 x;
-    u16 y;
+    s16 x;
+    s16 y;
 
     PlayerGetDestCoords(&x, &y);
     if (mapGroup == 0xFF && mapNum == 0xFF)
@@ -804,6 +804,7 @@ bool8 ScrCmd_warphole(struct ScriptContext *ctx)
     return TRUE;
 }
 
+// RS mossdeep gym warp, unused in Emerald
 bool8 ScrCmd_warpteleport(struct ScriptContext *ctx)
 {
     u8 mapGroup = ScriptReadByte(ctx);
@@ -813,7 +814,7 @@ bool8 ScrCmd_warpteleport(struct ScriptContext *ctx)
     u16 y = VarGet(ScriptReadHalfword(ctx));
 
     SetWarpDestination(mapGroup, mapNum, warpId, x, y);
-    DoTeleportWarp();
+    DoTeleportTileWarp();
     ResetInitialPlayerAvatarState();
     return TRUE;
 }
@@ -1188,22 +1189,22 @@ bool8 ScrCmd_setobjectmovementtype(struct ScriptContext *ctx)
 bool8 ScrCmd_createvobject(struct ScriptContext *ctx)
 {
     u8 graphicsId = ScriptReadByte(ctx);
-    u8 v2 = ScriptReadByte(ctx);
+    u8 objectEventId = ScriptReadByte(ctx);
     u16 x = VarGet(ScriptReadHalfword(ctx));
     u32 y = VarGet(ScriptReadHalfword(ctx));
     u8 elevation = ScriptReadByte(ctx);
     u8 direction = ScriptReadByte(ctx);
 
-    sprite_new(graphicsId, v2, x, y, elevation, direction);
+    CreateObjectSprite(graphicsId, objectEventId, x, y, elevation, direction);
     return FALSE;
 }
 
 bool8 ScrCmd_turnvobject(struct ScriptContext *ctx)
 {
-    u8 v1 = ScriptReadByte(ctx);
+    u8 objectEventId = ScriptReadByte(ctx);
     u8 direction = ScriptReadByte(ctx);
 
-    sub_8097B78(v1, direction);
+    TurnObjectEventSprite(objectEventId, direction);
     return FALSE;
 }
 
@@ -1332,9 +1333,9 @@ bool8 ScrCmd_closemessage(struct ScriptContext *ctx)
 
 static bool8 WaitForAorBPress(void)
 {
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
         return TRUE;
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
         return TRUE;
     return FALSE;
 }
@@ -1479,10 +1480,12 @@ bool8 ScrCmd_hidemonpic(struct ScriptContext *ctx)
 bool8 ScrCmd_showcontestwinner(struct ScriptContext *ctx)
 {
     u8 contestWinnerId = ScriptReadByte(ctx);
-    if (contestWinnerId)
+
+    // Don't save artist's painting yet
+    if (contestWinnerId != CONTEST_WINNER_ARTIST)
         SetContestWinnerForPainting(contestWinnerId);
 
-    ShowContestWinner();
+    ShowContestWinnerPainting();
     ScriptContext1_Stop();
     return TRUE;
 }
@@ -1963,14 +1966,14 @@ bool8 ScrCmd_startcontest(struct ScriptContext *ctx)
 
 bool8 ScrCmd_showcontestresults(struct ScriptContext *ctx)
 {
-    sub_80F8484();
+    ShowContestResults();
     ScriptContext1_Stop();
     return TRUE;
 }
 
 bool8 ScrCmd_contestlinktransfer(struct ScriptContext *ctx)
 {
-    sub_80F84C4(gSpecialVar_ContestCategory);
+    ContestLinkTransfer(gSpecialVar_ContestCategory);
     ScriptContext1_Stop();
     return TRUE;
 }

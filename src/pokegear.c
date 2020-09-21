@@ -539,13 +539,13 @@ void CB2_InitPokegear(void)
     LZ77UnCompVram(gMainTiles, (void *)(VRAM + 0x0000));
     LZ77UnCompVram(gPokegear_GridMap, (void *)(VRAM + 0xC800));
     LoadPalette(gBGPals, 0, sizeof(gBGPals));
-    LoadPalette(stdpal_get(2), 0xB0, 0x20);
+    LoadPalette(GetTextWindowPalette(2), 0xB0, 0x20);
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM * 0x10);
-    clear_scheduled_bg_copies_to_vram();
+    ClearScheduledBgCopiesToVram();
     ScanlineEffect_Stop();
     ResetSpriteData();
     ResetPaletteFade();
@@ -572,7 +572,7 @@ void CB2_InitPokegear(void)
     ShowBg(1);
     ShowBg(3);
     
-    PlaySE(SE_PN_ON);
+    PlaySE(SE_POKENAV_ON);
     sPokegearStruct.exiting = FALSE;
 }
 
@@ -590,7 +590,7 @@ static void CB2_Pokegear(void)
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
-    do_scheduled_bg_tilemap_copies_to_vram();
+    DoScheduledBgTilemapCopiesToVram();
     UpdatePaletteFade();
 }
 
@@ -806,17 +806,17 @@ static void Task_Pokegear3(u8 taskId)
     {
         u8 newCard = sPokegearStruct.currentCard;
 
-        if (gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(B_BUTTON))
         {
             gTasks[taskId].func = Task_ExitPokegear1;
-            PlaySE(SE_PN_OFF);
+            PlaySE(SE_POKENAV_OFF);
             return;
         }
-        else if (gMain.newKeys & START_BUTTON)
+        else if (JOY_NEW(START_BUTTON))
         {
             newCard = ChangeCardWithDelta(-1, sPokegearStruct.currentCard);
         }
-        else if (gMain.newKeys & SELECT_BUTTON)
+        else if (JOY_NEW(SELECT_BUTTON))
         {
             newCard = ChangeCardWithDelta(1, sPokegearStruct.currentCard);
         }
@@ -888,11 +888,11 @@ static void Task_SwapCards(u8 taskId)
     s16 *data = gTasks[taskId].data;
     u8 newCard = tNewCard;
 
-    if (gMain.newKeys & START_BUTTON)
+    if (JOY_NEW(START_BUTTON))
     {
         newCard = ChangeCardWithDelta(-1, tNewCard);
     }
-    else if (gMain.newKeys & SELECT_BUTTON)
+    else if (JOY_NEW(SELECT_BUTTON))
     {
         newCard = ChangeCardWithDelta(1, tNewCard);
     }
@@ -991,7 +991,7 @@ static void LoadClockCard(void)
     AddTextPrinterParameterized2(WIN_DIALOG, 1, gText_PokegearInstructions, 0, NULL, 2, 1, 3);
     AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
     //AddTextPrinterParameterized3(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
 
@@ -1026,7 +1026,7 @@ static void Task_ClockCard(u8 taskId)
         shouldForceUpdate = TRUE;
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         gSaveBlock2Ptr->twentyFourHourClock = !gSaveBlock2Ptr->twentyFourHourClock;
@@ -1182,14 +1182,14 @@ static void Task_MapCard(u8 taskId)
             switch (DoRegionMapInputCallback())
             {
                 case MAP_INPUT_LANDMARK_ENTER:
-                    m4aSongNumStart(SE_Z_SCROLL);
+                    m4aSongNumStart(SE_DEX_SCROLL);
                     // fallthrough
                 case MAP_INPUT_LANDMARK:
                     ShowHelpBar(gText_MapCardHelp2);
                     break;
                 case MAP_INPUT_ON_BUTTON:
                     ShowHelpBar(gText_MapCardHelp3);
-                    m4aSongNumStart(SE_W255);
+                    m4aSongNumStart(SE_M_SPIT_UP);
                     break;
                 case MAP_INPUT_MOVE_END:
                     ShowHelpBar(gText_MapCardHelp1);
@@ -1236,7 +1236,7 @@ static void DisplayPhoneCardDefaultText(void)
 {
     DrawStdFrameWithCustomTileAndPalette(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     AddTextPrinterParameterized5(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL, 1, 1);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void PhoneCard_AddScrollIndicators(u8 taskId)
@@ -1295,7 +1295,7 @@ static void PhoneCard_ConfirmCall(u8 taskId)
     DrawStdFrameWithCustomTileAndPalette(sPokegearStruct.phoneCallActionWindowId, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PrintTextArray(sPokegearStruct.phoneCallActionWindowId, 1, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sCallOptions), sCallOptions);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, 1, 0, 1, 16, ARRAY_COUNT(sCallOptions), 0);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = PhoneCard_ConfirmCallProcessInput;
 }
 
@@ -1370,13 +1370,13 @@ void InitPokegearPhoneCall(u8 taskId)
         gTasks[taskId].tPhoneCallInitState = 1;
         break;
     case 1:
-        free_temp_tile_data_buffers_if_possible();
+        FreeTempTileDataBuffersIfPossible();
         PutWindowTilemap(gPhoneCallWindowId);
         DrawPhoneCallTextBoxBorder(gPhoneCallWindowId, 0x143, 14);
         CopyWindowToVram(gPhoneCallWindowId, 2);
         CopyBgTilemapBufferToVram(0);
         //gPhoneCallSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
-        PlaySE(SE_TOREEYE);
+        PlaySE(SE_POKENAV_CALL);
         AddTextPrinterParameterized5(gPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 2, 1, 4, NULL, 1, 2);
         gTasks[taskId].tPhoneCallInitState = 2;
         break;
@@ -1422,7 +1422,7 @@ void InitPokegearPhoneCall(u8 taskId)
             else
                 gTextFlags.canABSpeedUpPrint = 0;
         }
-        else if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+        else if (JOY_NEW(A_BUTTON | B_BUTTON))
         {
             gSpecialVar_Result = FALSE;
             DestroyTask(taskId);
@@ -1455,7 +1455,7 @@ void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
 
 void HangupPokegearPhoneCall(void)
 {
-    PlaySE(SE_TOREOFF);
+    PlaySE(SE_POKENAV_HANG_UP);
     ClearStdWindowAndFrameToTransparent(gPhoneCallWindowId, TRUE);
     RemoveWindow(gPhoneCallWindowId);
     /*if (gPhoneCallSpriteId != MAX_SPRITES)
@@ -1508,7 +1508,7 @@ static void LoadRadioCard(void)
     PutWindowTilemap(WIN_BOTTOM);
     FillWindowPixelBuffer(WIN_BOTTOM, 0x00);
     CopyWindowToVram(WIN_BOTTOM, 2);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
 
@@ -1642,7 +1642,7 @@ static void Task_RadioCard(u8 taskId)
 
     if (station != sPokegearStruct.currentRadioStation && station <= RADIO_FREQ(20.5)) // limit station between 0.5 and 20.5
     {
-        PlaySE(SE_TB_KARA);
+        PlaySE(SE_BALL_TRAY_EXIT);
         UpdateRadioStation(taskId, station);
         sPokegearStruct.currentRadioStation = station;
     }

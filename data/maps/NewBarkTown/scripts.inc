@@ -63,7 +63,7 @@ NewBarkTown_EventScript_Rival::
 	compare VAR_FACING, 2
 	call_if_ne NewBarkTown_EventScript_Rival_FacingRight
 	delay 10
-	playse SE_KOUKA_L
+	playse SE_NOT_EFFECTIVE
 	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalKicksPlayer
 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerJumpsBack
 	waitmovement 0
@@ -146,7 +146,7 @@ NewBarkTown_EventScript_Teacher3::
 
 NewBarkTown_EventScript_TeacherMain:
 	textcolor MSG_COLOR_RED
-	playbgm MUS_MOMENC, 0
+	playbgm MUS_MOMSTHEME, 0
 	turnobject 2, 3
 	msgbox NewBarkTown_Text_WaitPlayer
 	closemessage

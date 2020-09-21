@@ -383,7 +383,7 @@ static void DebugMenu_InitNewSubmenu(u8 taskId, const struct DebugMenuBouncer *b
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     MultichoiceList_PrintDebugItems(tWindowId, 1, 8, 2, 16, bouncer->count, bouncer->actions, 0, 2);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, bouncer->count, 0);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     SET_BOUNCER(bouncer);
     gTasks[taskId].func = DebugMenu_Submenu_ProcessInput;
 }
@@ -478,7 +478,7 @@ static void DebugMenu_SetFlag(u8 taskId)
     tWindowId = AddWindow(&sDebugMenu_Window_SetFlag);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     DebugMenu_SetFlag_PrintStatus(tWindowId, FLAG_TEMP_1);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     tFlagNum = FLAG_TEMP_1;
     tWhichDigit = 0;
     gTasks[taskId].func = DebugMenu_SetFlag_ProcessInput;
@@ -533,7 +533,7 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
 
@@ -545,7 +545,7 @@ static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
         DebugMenu_SetFlag_PrintStatus(tWindowId, tFlagNum);
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         ReturnToPreviousMenu(taskId, GET_BOUNCER);
@@ -579,7 +579,7 @@ static void DebugMenu_SetVar(u8 taskId)
     tVarNum = VAR_TEMP_0;
     tVarVal = VarGet(VAR_TEMP_0);
     DebugMenu_SetVar_PrintStatus(tWindowId, tVarNum, tVarVal);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     tWhichDigit = 0;
     gTasks[taskId].func = DebugMenu_SetVar_ProcessInputVar;
 }
@@ -635,14 +635,14 @@ static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         tWhichDigit = 0;
         gTasks[taskId].func = DebugMenu_SetVar_ProcessInputVal;
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         ReturnToPreviousMenu(taskId, GET_BOUNCER);
@@ -690,7 +690,7 @@ static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         VarSet(tVarNum, tVarVal);
@@ -699,7 +699,7 @@ static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
         gTasks[taskId].func = DebugMenu_SetVar_ProcessInputVar;
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         tWhichDigit = 0;
@@ -734,7 +734,7 @@ static void DebugMenu_AddItem(u8 taskId)
     tItemNum = ITEM_NONE;
     tItemCount = 1;
     DebugMenu_AddItem_PrintStatus(tWindowId, tItemNum, tItemCount);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     tWhichDigit = 0;
     gTasks[taskId].func = DebugMenu_AddItem_ProcessInputNum;
 }
@@ -801,14 +801,14 @@ static void DebugMenu_AddItem_ProcessInputNum(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         tWhichDigit = 0;
         gTasks[taskId].func = DebugMenu_AddItem_ProcessInputCount;
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         ReturnToPreviousMenu(taskId, GET_BOUNCER);
@@ -860,7 +860,7 @@ static void DebugMenu_AddItem_ProcessInputCount(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         AddBagItem(tItemNum, (u8)tItemCount);
@@ -869,7 +869,7 @@ static void DebugMenu_AddItem_ProcessInputCount(u8 taskId)
         gTasks[taskId].func = DebugMenu_AddItem_ProcessInputNum;
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         tWhichDigit = 0;
@@ -965,7 +965,7 @@ static void DebugMenu_LottoNumber(u8 taskId)
     *((u16 *)&tLottoNumLow) = VarGet(VAR_POKELOT_RND1);
     *((u16 *)&tLottoNumHi) = VarGet(VAR_POKELOT_RND2);
     DebugMenu_LottoNumber_PrintStatus(tWindowId, LOTTO_NUM);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     tWhichDigit = 0;
     gTasks[taskId].func = DebugMenu_LottoNumber_ProcessInput;
 }
@@ -1080,7 +1080,7 @@ static void DebugMenu_TimeCycle(u8 taskId)
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     gDNPeriodOverride = (gLocalTime.hours * TINT_PERIODS_PER_HOUR) + (((gLocalTime.minutes / MINUTES_PER_TINT_PERIOD) / 5) * 5) + 1;
     DebugMenu_TimeCycle_PrintStatus(tWindowId, gDNPeriodOverride - 1);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = DebugMenu_TimeCycle_ProcessInput;
 }
 
@@ -1130,13 +1130,13 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
             tDeltaIndex = ARRAY_COUNT(deltas) - 1;
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         ReturnToPreviousMenu(taskId, GET_BOUNCER);
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         gDNPeriodOverride = -1;
         PlaySE(SE_SELECT);
@@ -1166,7 +1166,7 @@ static void DebugMenu_Pokedex_ProfOakRating(u8 taskId)
     tWindowId = AddWindow(&sDebugMenu_Window_SetDexCount);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     DebugMenu_Pokedex_ProfOakRating_PrintStatus(tWindowId, 1);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     tDexCount = 1;
     tWhichDigit = 0;
     gTasks[taskId].func = DebugMenu_Pokedex_ProfOakRating_ProcessInput;
@@ -1236,7 +1236,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
             PlaySE(SE_SELECT);
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         VarSet(VAR_0x8009, tDexCount);
@@ -1246,7 +1246,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
         ScriptContext1_SetupScript(PokedexRating_EventScript_ShowRatingMessage);
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         ReturnToPreviousMenu(taskId, GET_BOUNCER);
@@ -1289,7 +1289,7 @@ static void DebugMenu_SetRespawn(u8 taskId)
     tWindowId = AddWindow(&sDebugMenu_Window_SetRespawn);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     DebugMenu_SetRespawn_PrintStatus(tWindowId, 1);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     tRespawnNum = HEAL_LOCATION_NEW_BARK_TOWN;
     gTasks[taskId].func = DebugMenu_SetRespawn_ProcessInput;
 }
@@ -1323,13 +1323,13 @@ static void DebugMenu_SetRespawn_ProcessInput(u8 taskId)
         }
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         SetLastHealLocationWarp(tRespawnNum);
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         ReturnToPreviousMenu(taskId, GET_BOUNCER);

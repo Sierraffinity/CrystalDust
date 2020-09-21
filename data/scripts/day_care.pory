@@ -101,7 +101,7 @@ script Route34_DayCare_EventScript_DaycareAcceptEgg {
         message("{PLAYER} received the EGG from\n"
                 "the DAY-CARE MAN.")
 	    call(EventScript_RestorePrevTextColor)
-        playfanfare(MUS_FANFA1)
+        playfanfare(MUS_LEVEL_UP)
         waitfanfare
         waitbuttonpress
         msgbox("Take good care of it.", MSGBOX_DEFAULT)
@@ -133,7 +133,7 @@ script Route34_DayCare_EventScript_DaycareManWalkInsideAfterEggEvent {
             waitmovement(0)
         }
         removeobject(OBJ_DAYCARE_MAN_OUTSIDE)
-        playse(SE_KAIDAN)
+        playse(SE_EXIT)
         waitse
     }
 }
@@ -376,13 +376,13 @@ script Route34_DayCare_EventScript_CostPrompt {
             closemessage
             applymovement(OBJ_DAYCARE_LADY, Route34_DayCare_Movement_RetrieveDaycareMon)
             delay(128)
-            playse(SE_KAIDAN)
+            playse(SE_EXIT)
             delay(72)
-            playse(SE_KAIDAN)
+            playse(SE_EXIT)
             waitmovement(0)
             specialvar(VAR_RESULT, TakePokemonFromDaycare)
             special(SubtractMoneyFromVar0x8005)
-            playse(SE_REGI)
+            playse(SE_SHOP)
             msgbox("Perfect!\n"
                    "Here's your POKéMON.", MSGBOX_DEFAULT)
             waitse

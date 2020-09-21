@@ -11,7 +11,7 @@
     "id": "MAP_ROUTE32_POKEMON_CENTER_2F",
     "layout": "LAYOUT_POKEMON_CENTER_2F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_POKECEN",
+    "music": "MUS_POKE_CENTER",
     "name": "Route32_PokemonCenter_2F",
     "object_events": [
         {

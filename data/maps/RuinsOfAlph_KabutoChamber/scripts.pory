@@ -31,7 +31,7 @@ mapscripts RuinsOfAlph_KabutoChamber_MapScripts {
             delay(30)
             setmetatile(5, 1, METATILE_RuinsOfAlph_HoleInWall, FALSE)
             special(DrawWholeMapView)
-            playse(SE_W088)
+            playse(SE_M_ROCK_THROW)
             waitstate
             clearflag(FLAG_HIDE_MAP_NAME_POPUP)
             setflag(FLAG_OPENED_WALL_IN_KABUTO_CHAMBER)
@@ -125,11 +125,11 @@ script RuinsOfAlph_Chambers_EventScript_SolvePuzzle {
     setmetatile(5, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Center, FALSE)
     setmetatile(6, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Right, FALSE)
     special(DrawWholeMapView)
-    playse(SE_BAN)
+    playse(SE_BANG)
     waitstate
     applymovement(OBJ_EVENT_ID_PLAYER, RuinsOfAlph_Chambers_Movement_PlayerFallsIn)
     waitmovement(0)
-    playse(SE_RU_HYUU)
+    playse(SE_FALL)
     delay(60)
 }
 

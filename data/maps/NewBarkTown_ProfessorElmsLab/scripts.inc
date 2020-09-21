@@ -35,7 +35,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm_2:
 NewBarkTown_ProfessorElmsLab_EventScript_Elm_3:
 	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_1
 	textcolor MSG_COLOR_SYS
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_2
 	waitmessage
 	waitfanfare
@@ -43,7 +43,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm_3:
 	call EventScript_RestorePrevTextColor
 	removeitem ITEM_MYSTERY_EGG
 	delay 10
-	playse SE_DANSA
+	playse SE_LEDGE
 	switch VAR_FACING
 	case DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_Elm_11
 	case DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_Elm_12
@@ -180,7 +180,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging::
 	msgbox NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging_Text_0
 	closemessage
 	delay 20
-	playse SE_SEIKAI
+	playse SE_SUCCESS
 	waitse
 	delay 20
 	playse SE_PIN
@@ -298,7 +298,7 @@ NewBarkTown_EventScript_PokeBallMain_5:
 	bufferspeciesname 0, VAR_TEMP_2
 	message NewBarkTown_EventScript_PokeBallMain_Text_6
 	waitmessage
-	playfanfare MUS_RG_FAN5
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
 	waitfanfare
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
@@ -317,7 +317,7 @@ NewBarkTown_EventScript_PokeBallMain_16:
 	closemessage
 	delay 20
 	setflag FLAG_PHONE_CARD_ELM
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_MATCH_CALL
 	call EventScript_RestorePrevTextColor
 	msgbox NewBarkTown_EventScript_PokeBallMain_Text_8
 	waitfanfare

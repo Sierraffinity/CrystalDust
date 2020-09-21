@@ -30,7 +30,7 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
     waitmovement(0)
     applymovement(OBJ_EVT_MOM, Common_Movement_Delay48)
     waitmovement(0)
-    playbgm(MUS_MOMENC, 0)
+    playbgm(MUS_MOMSTHEME, 0)
     applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown)
     applymovement(OBJ_EVT_MOM, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer)
     waitmovement(0)
@@ -44,7 +44,7 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
            "GEAR is back from the repair shop.\l"
            "Here you go!")
     call(EventScript_RestorePrevTextColor)
-    playfanfare(MUS_FANFA4)
+    playfanfare(MUS_OBTAIN_ITEM)
     message("{PLAYER} received the POKéGEAR.")
     waitfanfare
     setflag(FLAG_SYS_POKEGEAR_GET)
@@ -287,7 +287,7 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw {
     {
     case 0:
         // withdraw success
-        playse(SE_REGI)
+        playse(SE_SHOP)
         waitse
         msgbox("{PLAYER}, don't give up!")
     case 1:
@@ -311,7 +311,7 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit {
     {
     case 0:
         // deposit success
-        playse(SE_REGI)
+        playse(SE_SHOP)
         waitse
         msgbox("Your money's safe here!\n"
                 "Get going!")

@@ -325,7 +325,7 @@ static u32 LoopedTask_OpenMatchCall(s32 taskState)
         InitBgTemplates(gUnknown_0862278C, ARRAY_COUNT(gUnknown_0862278C));
         ChangeBgX(2, 0, 0);
         ChangeBgY(2, 0, 0);
-        decompress_and_copy_tile_data_to_vram(2, sMatchCallUI_Gfx, 0, 0, 0);
+        DecompressAndCopyTileDataToVram(2, sMatchCallUI_Gfx, 0, 0, 0);
         SetBgTilemapBuffer(2, state->unk1024);
         CopyToBgTilemapBuffer(2, sMatchCallUI_Tilemap, 0, 0);
         CopyBgTilemapBufferToVram(2);
@@ -333,7 +333,7 @@ static u32 LoopedTask_OpenMatchCall(s32 taskState)
         CopyBgTilemapBufferToVram(2);
         return LT_INC_AND_PAUSE;
     case 1:
-        if (free_temp_tile_data_buffers_if_possible())
+        if (FreeTempTileDataBuffersIfPossible())
             return LT_PAUSE;
 
         sub_8199DF0(1, 0, 0, 1);
@@ -343,16 +343,16 @@ static u32 LoopedTask_OpenMatchCall(s32 taskState)
         CopyBgTilemapBufferToVram(1);
         return LT_INC_AND_PAUSE;
     case 2:
-        if (free_temp_tile_data_buffers_if_possible())
+        if (FreeTempTileDataBuffersIfPossible())
             return LT_PAUSE;
 
         sub_81CC034(state);
-        decompress_and_copy_tile_data_to_vram(3, gUnknown_08622760, 0, 0, 0);
+        DecompressAndCopyTileDataToVram(3, gUnknown_08622760, 0, 0, 0);
         CopyPaletteIntoBufferUnfaded(gUnknown_08622700, 0x30, 0x20);
         CopyPaletteIntoBufferUnfaded(gUnknown_08622720, 0x50, 0x20);
         return LT_INC_AND_PAUSE;
     case 3:
-        if (free_temp_tile_data_buffers_if_possible() || !sub_81CAE28())
+        if (FreeTempTileDataBuffersIfPossible() || !sub_81CAE28())
             return LT_PAUSE;
 
         sub_81CBBB8();
@@ -601,7 +601,7 @@ u32 DoMatchCallMessage(s32 taskState)
             return LT_PAUSE;
 
         PrintCallingDots(state);
-        PlaySE(SE_TOREEYE);
+        PlaySE(SE_POKENAV_CALL);
         state->unkE = 0;
         return LT_INC_AND_PAUSE;
     case 2:
@@ -654,7 +654,7 @@ u32 sub_81CB888(s32 taskState)
     {
     case 0:
         if (!state->unkE)
-            PlaySE(SE_TOREOFF);
+            PlaySE(SE_POKENAV_HANG_UP);
 
         PlaySE(SE_SELECT);
         break;
@@ -1126,7 +1126,7 @@ static void PrintMatchCallMessage(struct Pokenav4Struct *state)
 
 static bool32 WaitForMatchCallMessageText(struct Pokenav4Struct *state)
 {
-    if (gMain.heldKeys & A_BUTTON)
+    if (JOY_HELD(A_BUTTON))
         gTextFlags.canABSpeedUpPrint = 1;
     else
         gTextFlags.canABSpeedUpPrint = 0;

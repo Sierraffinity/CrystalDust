@@ -105,7 +105,7 @@ script IlexForest_EventScript_Farfetchd {
 		{
 			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_4to3)
 			delay(4)
-			playse(SE_DANSA)
+			playse(SE_LEDGE)
 			waitmovement(0)
 			setobjectxy(OBJ_FARFETCHD, POS3_X, POS3_Y)
 			setobjectxyperm(OBJ_FARFETCHD, POS3_X, POS3_Y)

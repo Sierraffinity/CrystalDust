@@ -10,7 +10,6 @@
 #include "trig.h"
 #include "constants/maps.h"
 #include "overworld.h"
-#include "constants/flags.h"
 #include "event_data.h"
 #include "secret_base.h"
 #include "string_util.h"
@@ -576,7 +575,7 @@ bool8 LoadRegionMapGfx(bool8 shouldBuffer)
         case 0:
             if (shouldBuffer)
             {
-                decompress_and_copy_tile_data_to_vram(gRegionMap->bgNum, sRegionMapTileset, 0, 0, 0);
+                DecompressAndCopyTileDataToVram(gRegionMap->bgNum, sRegionMapTileset, 0, 0, 0);
             }
             else
             {
@@ -587,9 +586,9 @@ bool8 LoadRegionMapGfx(bool8 shouldBuffer)
             /*regionTilemap = GetRegionMapTilemap(gRegionMap->currentRegion);
             if (gRegionMap->bgManaged)
             {
-                if (!free_temp_tile_data_buffers_if_possible())
+                if (!FreeTempTileDataBuffersIfPossible())
                 {
-                    decompress_and_copy_tile_data_to_vram(gRegionMap->bgNum, regionTilemap, 0, 0, 1);
+                    DecompressAndCopyTileDataToVram(gRegionMap->bgNum, regionTilemap, 0, 0, 1);
                 }
             }
             else
@@ -618,7 +617,7 @@ bool8 LoadRegionMapGfx(bool8 shouldBuffer)
 
                 if (shouldBuffer)
                 {
-                    if (!free_temp_tile_data_buffers_if_possible())
+                    if (!FreeTempTileDataBuffersIfPossible())
                     {
                         copy_decompressed_tile_data_to_vram(gRegionMap->bgNum, ptr, size, gRegionMap->xOffset, 1);
                     }
@@ -632,7 +631,7 @@ bool8 LoadRegionMapGfx(bool8 shouldBuffer)
             }
             break;
         case 2:
-            //if (!free_temp_tile_data_buffers_if_possible())   // why are we checking for DMA3 being busy?
+            //if (!FreeTempTileDataBuffersIfPossible())   // why are we checking for DMA3 being busy?
             {
                 LoadPalette(sRegionMapPal, 0x70, sizeof(sRegionMapPal));
                 LoadPalette(sRegionMapTownNames_Pal, 0xE0, sizeof(sRegionMapTownNames_Pal));
@@ -703,7 +702,7 @@ bool8 LoadRegionMapGfx_Pt2(void)
             gRegionMap->secondaryMapSecId = CorrectSpecialMapSecId_Internal(gRegionMap->secondaryMapSecId);
             gRegionMap->secondaryMapSecStatus = GetMapsecType(gRegionMap->secondaryMapSecId);
 
-            schedule_bg_copy_tilemap_to_vram(0);
+            ScheduleBgCopyTilemapToVram(0);
             break;
         case 6:
             GetPositionOfCursorWithinMapSec();
@@ -789,7 +788,7 @@ void FreeRegionMapResources(void)
     CopyWindowToVram(gRegionMap->secondaryWindowId, 2);
     RemoveWindow(gRegionMap->secondaryWindowId);
 
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
     SetGpuReg(REG_OFFSET_BLDY, 0);
@@ -812,31 +811,31 @@ static u8 ProcessRegionMapInput_Full(void)
     input = MAP_INPUT_NONE;
     gRegionMap->cursorDeltaX = 0;
     gRegionMap->cursorDeltaY = 0;
-    if (gMain.heldKeys & DPAD_UP && gRegionMap->cursorPosY > 0)
+    if (JOY_HELD(DPAD_UP) && gRegionMap->cursorPosY > 0)
     {
         gRegionMap->cursorDeltaY = -1;
         input = MAP_INPUT_MOVE_START;
     }
-    if (gMain.heldKeys & DPAD_DOWN && gRegionMap->cursorPosY < MAP_HEIGHT - 1)
+    if (JOY_HELD(DPAD_DOWN) && gRegionMap->cursorPosY < MAP_HEIGHT - 1)
     {
         gRegionMap->cursorDeltaY = +1;
         input = MAP_INPUT_MOVE_START;
     }
-    if (gMain.heldKeys & DPAD_LEFT && gRegionMap->cursorPosX > 0)
+    if (JOY_HELD(DPAD_LEFT) && gRegionMap->cursorPosX > 0)
     {
         gRegionMap->cursorDeltaX = -1;
         input = MAP_INPUT_MOVE_START;
     }
-    if (gMain.heldKeys & DPAD_RIGHT && gRegionMap->cursorPosX < MAP_WIDTH - 1)
+    if (JOY_HELD(DPAD_RIGHT) && gRegionMap->cursorPosX < MAP_WIDTH - 1)
     {
         gRegionMap->cursorDeltaX = +1;
         input = MAP_INPUT_MOVE_START;
     }
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         input = MAP_INPUT_A_BUTTON;
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         input = MAP_INPUT_B_BUTTON;
     }
@@ -870,7 +869,7 @@ static bool8 LoadMapLayersFromPosition(u16 x, u16 y)
         sameSecondary = FALSE;
     }
 
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     SetupShadowBoxes(1, &windowCoords[1]);
 
     return sameSecondary;
@@ -1153,7 +1152,7 @@ static void InitMapBasedOnPlayerLocation_(void)
             mapHeight = gMapHeader.mapLayout->height;
             x = gSaveBlock1Ptr->pos.x;
             y = gSaveBlock1Ptr->pos.y;
-            if (gRegionMap->primaryMapSecId == MAPSEC_UNDERWATER_128 || gRegionMap->primaryMapSecId == MAPSEC_UNDERWATER_MARINE_CAVE)
+            if (gRegionMap->primaryMapSecId == MAPSEC_UNDERWATER_SEAFLOOR_CAVERN || gRegionMap->primaryMapSecId == MAPSEC_UNDERWATER_MARINE_CAVE)
             {
                 gRegionMap->playerIsInCave = TRUE;
             }
@@ -1876,7 +1875,7 @@ void CB2_OpenFlyMap(void)
         gMain.state++;
         break;
     case 3:
-        clear_scheduled_bg_copies_to_vram();
+        ClearScheduledBgCopiesToVram();
         gMain.state++;
         break;
     case 4:
@@ -1935,7 +1934,7 @@ static void CB2_FlyMap(void)
     sFlyMap->callback();
     AnimateSprites();
     BuildOamBuffer();
-    do_scheduled_bg_tilemap_copies_to_vram();
+    DoScheduledBgTilemapCopiesToVram();
 }
 
 static void SetFlyMapCallback(void callback(void))
@@ -2115,7 +2114,7 @@ static void CB_HandleFlyMapInput(void)
                 break;
             case MAP_INPUT_ON_BUTTON:
                 sFlyMap->regionMap.onButton = TRUE;
-                m4aSongNumStart(SE_W255);
+                m4aSongNumStart(SE_M_SPIT_UP);
                 ShowHelpBar();
                 break;
             case MAP_INPUT_MOVE_END:
@@ -2124,24 +2123,24 @@ static void CB_HandleFlyMapInput(void)
                 sFlyMap->regionMap.onButton = FALSE;
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_VISITED || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
-                    m4aSongNumStart(SE_Z_PAGE);
+                    m4aSongNumStart(SE_DEX_PAGE);
                 }
                 else if (mapInput == MAP_INPUT_LANDMARK_ENTER)
                 {
-                    m4aSongNumStart(SE_Z_SCROLL);
+                    m4aSongNumStart(SE_DEX_SCROLL);
                 }
                 ShowHelpBar();
                 break;
             case MAP_INPUT_A_BUTTON:
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_VISITED || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
-                    m4aSongNumStart(SE_KAIFUKU);
+                    m4aSongNumStart(SE_USE_ITEM);
                     sFlyMap->choseFlyLocation = TRUE;
                     SetFlyMapCallback(CB_ExitFlyMap);
                 }
                 else if (sFlyMap->regionMap.onButton)
                 {
-                    m4aSongNumStart(SE_W063B);
+                    m4aSongNumStart(SE_M_HYPER_BEAM2);
                 }
                 break;
             case MAP_INPUT_B_BUTTON:

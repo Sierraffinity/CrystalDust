@@ -118,7 +118,7 @@ NationalParkGateEast_OnFrame_AwardsCeremony:
 	special BuildBugContestPlacementString
 	message gStringVar4
 	waitmessage
-	playfanfare MUS_ME_B_SMALL
+	playfanfare MUS_SLOTS_WIN
 	waitfanfare
 	special CopyBugContestPlacementScoreToVar1
 	message NationalParkGateEast_Text_TheScoreWas
@@ -127,7 +127,7 @@ NationalParkGateEast_OnFrame_AwardsCeremony:
 	special BuildBugContestPlacementString
 	message gStringVar4
 	waitmessage
-	playfanfare MUS_ME_B_SMALL
+	playfanfare MUS_SLOTS_WIN
 	waitfanfare
 	special CopyBugContestPlacementScoreToVar1
 	message NationalParkGateEast_Text_TheScoreWas
@@ -141,7 +141,7 @@ NationalParkGateEast_OnFrame_AwardsCeremony:
 	call_if_eq NationalParkGateEast_DrawNormalMonPic
 	compare VAR_0x8005, 1
 	call_if_eq NationalParkGateEast_DrawShinyMonPic
-	playfanfare MUS_FANFA5
+	playfanfare MUS_EVOLVED
 	waitfanfare
 	special CopyBugContestPlacementScoreToVar1
 	message NationalParkGateEast_Text_TheWinningScoreWas

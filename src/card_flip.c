@@ -1437,7 +1437,7 @@ static void InitCardFlipScreen(void)
         LoadCompressedSpriteSheet(&sRoundCountersSpriteSheet);
         LoadSpritePalettes(sCardFlipSpritePalettes);
         LoadMonIconPalettes();
-        LoadPalette(stdpal_get(2), 11 * 16, 32); // palette for WIN_HELP
+        LoadPalette(GetTextWindowPalette(2), 11 * 16, 32); // palette for WIN_HELP
         LoadCardBackGfx();
         LoadCardSelectionGfx();
         InitCoinDigitSprites();
@@ -1644,7 +1644,7 @@ static void PlaceBet(void)
 {
     u8 nextBetType = 0xFF;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         if (IsValidBetType(sCardFlip->betType))
         {
@@ -1653,23 +1653,23 @@ static void PlaceBet(void)
         }
         else
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
         }
         return;
     }
 
-    if (gMain.newKeys & DPAD_UP)
+    if (JOY_NEW(DPAD_UP))
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][0];
-    else if (gMain.newKeys & DPAD_RIGHT)
+    else if (JOY_NEW(DPAD_RIGHT))
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][1];
-    else if (gMain.newKeys & DPAD_DOWN)
+    else if (JOY_NEW(DPAD_DOWN))
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][2];
-    else if (gMain.newKeys & DPAD_LEFT)
+    else if (JOY_NEW(DPAD_LEFT))
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][3];
 
     if (nextBetType != 0xFF)
     {
-        PlaySE(SE_TB_KARA);
+        PlaySE(SE_BALL_TRAY_EXIT);
         sCardFlip->betType = nextBetType;
         DrawBetType(sCardFlip->betType);
     }
@@ -1765,7 +1765,7 @@ static void DisplayBetOutcomeMessage(void)
 
 static void DisplayBetOutcomeMessage_WaitButtonPress(void)
 {
-    if (!IsTextPrinterActive(WIN_TEXT) && (gMain.newKeys & (A_BUTTON | B_BUTTON)))
+    if (!IsTextPrinterActive(WIN_TEXT) && JOY_NEW(A_BUTTON | B_BUTTON))
     {
         PlaySE(SE_SELECT);
         sCardFlip->state = CARD_FLIP_STATE_PLAY_AGAIN_MESSAGE;
@@ -1777,9 +1777,9 @@ static void AwardCoins(void)
     u8 multiplier = sBetPayoutMultipliers[sCardFlip->betType];
     int coinsToGive = sCardFlip->numCoinsEntry * multiplier;
     if (multiplier == 24)
-        PlayFanfare(MUS_ME_B_BIG);
+        PlayFanfare(MUS_SLOTS_JACKPOT);
     else
-        PlayFanfare(MUS_ME_B_SMALL);
+        PlayFanfare(MUS_SLOTS_WIN);
 
     ChangeCoinAmount(coinsToGive, 100);
 }
@@ -1842,7 +1842,7 @@ static void ShuffleDeckMessage(void)
 
 static void ProcessShuffleDeckInput(void)
 {
-    if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (!IsTextPrinterActive(WIN_TEXT) && JOY_NEW(A_BUTTON | B_BUTTON))
     {
         ClearDialogWindowAndFrame(0, TRUE);
         sCardFlip->state = CARD_FLIP_STATE_PLAY_DEAL_CARDS;
@@ -1859,7 +1859,7 @@ static void DisplayNotEnoughCoinsMessage(void)
 
 static void ProcessNotEnoughCoinsInput(void)
 {
-    if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (!IsTextPrinterActive(WIN_TEXT) && JOY_NEW(A_BUTTON | B_BUTTON))
     {
         ClearDialogWindowAndFrame(0, TRUE);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
@@ -2130,10 +2130,10 @@ static void ChooseCard_SpriteCallback(struct Sprite *sprite)
     switch (sprite->data[7])
     {
     case 0:
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             DestroyTask(sCardFlip->cardSelectionSoundTaskId);
-            PlaySE(SE_KAIFUKU);
+            PlaySE(SE_USE_ITEM);
             selectedCard = sprite->data[1];
             otherCard = (selectedCard + 1) % 2;
             DestroySprite(&gSprites[sCardFlip->cardBackSpriteIds[otherCard]]);
@@ -2150,7 +2150,7 @@ static void ChooseCard_SpriteCallback(struct Sprite *sprite)
                 sprite->pos1.y = 61;
             else
                 sprite->pos1.y = 123;
-            PlaySE(SE_KON4);
+            PlaySE(SE_BALL_BOUNCE_4);
         }
         break;
     case 1:
@@ -2247,7 +2247,7 @@ static void FlipOverCardEnd(struct Sprite *sprite)
         if (wonBet)
             AwardCoins();
         else
-            PlayFanfare(MUS_ME_ZANNEN);
+            PlayFanfare(MUS_TOO_BAD);
 
         numberSprite = &gSprites[sCardFlip->cardNumberSpriteIds[CARD_ID(sCardFlip->drawnCard)]];
         numberSprite->oam.affineMode = ST_OAM_AFFINE_DOUBLE;

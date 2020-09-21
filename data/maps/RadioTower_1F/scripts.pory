@@ -56,7 +56,7 @@ script RadioTower_1F_EventScript_LuckyNumberMan {
             playse(SE_PC_ON)
             waitse
             message("…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}")
-            playfanfare(MUS_RG_FAN2)
+            playfanfare(MUS_RG_DEX_RATING)
             waitfanfare
             special(PickLotteryCornerTicket)
             waitmessage
@@ -197,7 +197,7 @@ script RadioTower_1F_EventScript_RadioCardWoman {
                "only in the morning?", MSGBOX_YESNO)
         if (var(VAR_RESULT) == YES)
         {
-            playse(SE_PINPON)
+            playse(SE_DING_DONG)
             waitse
             msgbox("Correct!\n"
                    "Question 2:\p"
@@ -205,14 +205,14 @@ script RadioTower_1F_EventScript_RadioCardWoman {
                    "“You can't buy a BERRY at a MART.”", MSGBOX_YESNO)
             if (var(VAR_RESULT) == YES)
             {
-                playse(SE_PINPON)
+                playse(SE_DING_DONG)
                 waitse
                 msgbox("Bull's-eye!\n"
                        "Question 3:\p"
                        "Does HM01 contain the move FLASH?", MSGBOX_YESNO)
                 if (var(VAR_RESULT) == NO)
                 {
-                    playse(SE_PINPON)
+                    playse(SE_DING_DONG)
                     waitse
                     msgbox("So far so good!\n"
                            "Question 4:\p"
@@ -220,7 +220,7 @@ script RadioTower_1F_EventScript_RadioCardWoman {
                            "who uses BIRD POKéMON?", MSGBOX_YESNO)
                     if (var(VAR_RESULT) == YES)
                     {
-                        playse(SE_PINPON)
+                        playse(SE_DING_DONG)
                         waitse
                         msgbox("Wow! Right again!\n"
                                "Here's the final question:\p"
@@ -228,13 +228,13 @@ script RadioTower_1F_EventScript_RadioCardWoman {
                                "have CHARMANDER on their reels?", MSGBOX_YESNO)
                         if (var(VAR_RESULT) == NO)
                         {
-                            playse(SE_PINPON)
+                            playse(SE_DING_DONG)
                             waitse
                             msgbox("Bingo! You got it!\n"
                                    "Congratulations!\p"
                                    "Here's your prize, a RADIO CARD!")
                             textcolor(MSG_COLOR_BLACK)
-                            playfanfare(MUS_FANFA4)
+                            playfanfare(MUS_OBTAIN_ITEM)
                             setflag(FLAG_SYS_HAS_RADIO_CARD)
                             message("{PLAYER} received the RADIO CARD\n"
                                     "from the receptionist.")

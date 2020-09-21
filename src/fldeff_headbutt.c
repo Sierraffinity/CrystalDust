@@ -39,7 +39,7 @@ u32 HeadbuttTreeScoreCalc(void)
 static void FieldCallback_Headbutt(void)
 {
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    ScriptContext1_SetupScript(EventScript_FldEffHeadbutt);
+    ScriptContext1_SetupScript(EventScript_UseHeadbutt);
 }
 
 bool8 SetUpFieldMove_Headbutt(void)
@@ -60,14 +60,14 @@ bool8 SetUpFieldMove_Headbutt(void)
 
 static void StartHeadbuttFieldEffect(void)
 {
-    PlaySE(SE_USSOKI);
+    PlaySE(SE_SUDOWOODO_SHAKE);
     FieldEffectActiveListRemove(FLDEFF_USE_HEADBUTT);
     EnableBothScriptContexts();
 }
 
 bool8 FldEff_UseHeadbutt(void)
 {
-    u8 taskId = oei_task_add();
+    u8 taskId = CreateFieldMoveTask();
     gTasks[taskId].data[8] = (u32)StartHeadbuttFieldEffect >> 16;
     gTasks[taskId].data[9] = (u32)StartHeadbuttFieldEffect;
     return FALSE;

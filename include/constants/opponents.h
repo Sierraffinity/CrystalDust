@@ -82,7 +82,7 @@
 #define TRAINER_WILTON_1                     78
 #define TRAINER_EDGAR                        79
 #define TRAINER_ALBERT_OLD                   80
-#define TRAINER_SAMUEL_OLD                       81
+#define TRAINER_SAMUEL_OLD                   81
 #define TRAINER_VITO                         82
 #define TRAINER_OWEN                         83
 #define TRAINER_WILTON_2                     84
@@ -477,7 +477,7 @@
 #define TRAINER_MARTHA                      473
 #define TRAINER_DIANA_1                     474
 #define TRAINER_CEDRIC                      475
-#define TRAINER_IRENE_OLD                       476
+#define TRAINER_IRENE_OLD                   476
 #define TRAINER_DIANA_2                     477
 #define TRAINER_DIANA_3                     478
 #define TRAINER_DIANA_4                     479
@@ -812,7 +812,7 @@
 #define TRAINER_GRETA                       808
 #define TRAINER_NOLAND                      809
 #define TRAINER_LUCY                        810
-#define TRAINER_BRANDON_OLD                     811
+#define TRAINER_BRANDON_OLD                 811
 #define TRAINER_ANDRES_2                    812
 #define TRAINER_ANDRES_3                    813
 #define TRAINER_ANDRES_4                    814
@@ -859,6 +859,7 @@
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
+//       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
 #define TRAINERS_COUNT                      855
 #define MAX_TRAINERS_COUNT                  864

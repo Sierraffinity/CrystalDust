@@ -127,7 +127,7 @@ script RadioTower_2F_EventScript_Buena {
         }
         else
         {
-            playbgm(MUS_BUENA, 0)
+            playbgm(MUS_SAILING, 0)
             msgbox("BUENA: Hi!\n"
                    "Did you tune in to my radio show?\p"
                    "Do you remember today's password?", MSGBOX_YESNO)
@@ -178,7 +178,7 @@ script RadioTower_2F_EventScript_Buena {
                             "Congrats!")
                     waitmessage
                     addvar(VAR_BLUE_CARD_BALANCE, 1)
-                    playse(SE_REGI)
+                    playse(SE_SHOP)
                     waitse
                     waitbuttonpress
                 }
@@ -362,7 +362,7 @@ script RadioTower_2F_EventScript_BuenasAssistantMenu {
             {
                 subvar(VAR_BLUE_CARD_BALANCE, VAR_TEMP_2)
                 special(UpdatePointsWindow)
-                playse(SE_REGI)
+                playse(SE_SHOP)
                 msgbox("Here you go!")
                 waitse
             }

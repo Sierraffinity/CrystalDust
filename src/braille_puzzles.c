@@ -6,7 +6,6 @@
 #include "sound.h"
 #include "task.h"
 #include "constants/field_effects.h"
-#include "constants/flags.h"
 #include "constants/maps.h"
 #include "constants/songs.h"
 #include "constants/species.h"
@@ -87,14 +86,14 @@ bool8 ShouldDoBrailleDigEffect(void)
 
 void DoBrailleDigEffect(void)
 {
-    MapGridSetMetatileIdAt(16, 8, METATILE_ID(Cave, SealedChamberEntrance_TopLeft));
-    MapGridSetMetatileIdAt(17, 8, METATILE_ID(Cave, SealedChamberEntrance_TopMid));
-    MapGridSetMetatileIdAt(18, 8, METATILE_ID(Cave, SealedChamberEntrance_TopRight));
-    MapGridSetMetatileIdAt(16, 9, METATILE_ID(Cave, SealedChamberEntrance_BottomLeft) | METATILE_COLLISION_MASK);
-    MapGridSetMetatileIdAt(17, 9, METATILE_ID(Cave, SealedChamberEntrance_BottomMid));
-    MapGridSetMetatileIdAt(18, 9, METATILE_ID(Cave, SealedChamberEntrance_BottomRight) | METATILE_COLLISION_MASK);
+    MapGridSetMetatileIdAt(16, 8, METATILE_Cave_SealedChamberEntrance_TopLeft);
+    MapGridSetMetatileIdAt(17, 8, METATILE_Cave_SealedChamberEntrance_TopMid);
+    MapGridSetMetatileIdAt(18, 8, METATILE_Cave_SealedChamberEntrance_TopRight);
+    MapGridSetMetatileIdAt(16, 9, METATILE_Cave_SealedChamberEntrance_BottomLeft | METATILE_COLLISION_MASK);
+    MapGridSetMetatileIdAt(17, 9, METATILE_Cave_SealedChamberEntrance_BottomMid);
+    MapGridSetMetatileIdAt(18, 9, METATILE_Cave_SealedChamberEntrance_BottomRight | METATILE_COLLISION_MASK);
     DrawWholeMapView();
-    PlaySE(SE_BAN);
+    PlaySE(SE_BANG);
     FlagSet(FLAG_SYS_BRAILLE_DIG);
     ScriptContext2_Disable();
 }
@@ -141,7 +140,7 @@ void DoBrailleRegirockEffect(void)
     MapGridSetMetatileIdAt(15, 27, 563);
     MapGridSetMetatileIdAt(16, 27, 3636);
     DrawWholeMapView();
-    PlaySE(SE_BAN);
+    PlaySE(SE_BANG);
     FlagSet(FLAG_SYS_REGIROCK_PUZZLE_COMPLETED);
     ScriptContext2_Disable();
 }
@@ -165,7 +164,7 @@ void DoBrailleRegisteelEffect(void)
 
 bool8 FldEff_UseFlyAncientTomb(void)
 {
-    u8 taskId = oei_task_add();
+    u8 taskId = CreateFieldMoveTask();
 
     gTasks[taskId].data[8] = (u32)UseRegisteelHm_Callback >> 16;
     gTasks[taskId].data[9] = (u32)UseRegisteelHm_Callback;
@@ -187,7 +186,7 @@ void UseFlyAncientTomb_Finish(void)
     MapGridSetMetatileIdAt(15, 27, 563);
     MapGridSetMetatileIdAt(16, 27, 3636);
     DrawWholeMapView();
-    PlaySE(SE_BAN);
+    PlaySE(SE_BANG);
     FlagSet(FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED);
     ScriptContext2_Disable();
 }
@@ -280,14 +279,14 @@ void UseRegirockHm_Callback(void)
 
 void DoBrailleRegirockEffect(void)
 {
-    MapGridSetMetatileIdAt(14, 26, METATILE_ID(Cave, SealedChamberEntrance_TopLeft));
-    MapGridSetMetatileIdAt(15, 26, METATILE_ID(Cave, SealedChamberEntrance_TopMid));
-    MapGridSetMetatileIdAt(16, 26, METATILE_ID(Cave, SealedChamberEntrance_TopRight));
-    MapGridSetMetatileIdAt(14, 27, METATILE_ID(Cave, SealedChamberEntrance_BottomLeft) | METATILE_COLLISION_MASK);
-    MapGridSetMetatileIdAt(15, 27, METATILE_ID(Cave, SealedChamberEntrance_BottomMid));
-    MapGridSetMetatileIdAt(16, 27, METATILE_ID(Cave, SealedChamberEntrance_BottomRight) | METATILE_COLLISION_MASK);
+    MapGridSetMetatileIdAt(14, 26, METATILE_Cave_SealedChamberEntrance_TopLeft);
+    MapGridSetMetatileIdAt(15, 26, METATILE_Cave_SealedChamberEntrance_TopMid);
+    MapGridSetMetatileIdAt(16, 26, METATILE_Cave_SealedChamberEntrance_TopRight);
+    MapGridSetMetatileIdAt(14, 27, METATILE_Cave_SealedChamberEntrance_BottomLeft | METATILE_COLLISION_MASK);
+    MapGridSetMetatileIdAt(15, 27, METATILE_Cave_SealedChamberEntrance_BottomMid);
+    MapGridSetMetatileIdAt(16, 27, METATILE_Cave_SealedChamberEntrance_BottomRight | METATILE_COLLISION_MASK);
     DrawWholeMapView();
-    PlaySE(SE_BAN);
+    PlaySE(SE_BANG);
     FlagSet(FLAG_SYS_REGIROCK_PUZZLE_COMPLETED);
     ScriptContext2_Disable();
 }
@@ -319,14 +318,14 @@ void UseRegisteelHm_Callback(void)
 
 void DoBrailleRegisteelEffect(void)
 {
-    MapGridSetMetatileIdAt(14, 26, METATILE_ID(Cave, SealedChamberEntrance_TopLeft));
-    MapGridSetMetatileIdAt(15, 26, METATILE_ID(Cave, SealedChamberEntrance_TopMid));
-    MapGridSetMetatileIdAt(16, 26, METATILE_ID(Cave, SealedChamberEntrance_TopRight));
-    MapGridSetMetatileIdAt(14, 27, METATILE_ID(Cave, SealedChamberEntrance_BottomLeft) | METATILE_COLLISION_MASK);
-    MapGridSetMetatileIdAt(15, 27, METATILE_ID(Cave, SealedChamberEntrance_BottomMid));
-    MapGridSetMetatileIdAt(16, 27, METATILE_ID(Cave, SealedChamberEntrance_BottomRight) | METATILE_COLLISION_MASK);
+    MapGridSetMetatileIdAt(14, 26, METATILE_Cave_SealedChamberEntrance_TopLeft);
+    MapGridSetMetatileIdAt(15, 26, METATILE_Cave_SealedChamberEntrance_TopMid);
+    MapGridSetMetatileIdAt(16, 26, METATILE_Cave_SealedChamberEntrance_TopRight);
+    MapGridSetMetatileIdAt(14, 27, METATILE_Cave_SealedChamberEntrance_BottomLeft | METATILE_COLLISION_MASK);
+    MapGridSetMetatileIdAt(15, 27, METATILE_Cave_SealedChamberEntrance_BottomMid);
+    MapGridSetMetatileIdAt(16, 27, METATILE_Cave_SealedChamberEntrance_BottomRight | METATILE_COLLISION_MASK);
     DrawWholeMapView();
-    PlaySE(SE_BAN);
+    PlaySE(SE_BANG);
     FlagSet(FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED);
     ScriptContext2_Disable();
 }
@@ -401,7 +400,7 @@ bool32 BrailleWait_CheckButtonPress(void)
     if (gSaveBlock2.optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         keyMask |= L_BUTTON;
 
-    if (gMain.newKeys & keyMask)
+    if (JOY_NEW(keyMask))
         return TRUE;
     else
         return FALSE;
@@ -411,7 +410,7 @@ bool32 BrailleWait_CheckButtonPress(void)
 // this used to be FldEff_UseFlyAncientTomb . why did GF merge the 2 functions?
 bool8 FldEff_UsePuzzleEffect(void)
 {
-    u8 taskId = oei_task_add();
+    u8 taskId = CreateFieldMoveTask();
 
     if (sBraillePuzzleCallbackFlag == REGISTEEL_PUZZLE)
     {

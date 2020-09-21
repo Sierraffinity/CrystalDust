@@ -51,7 +51,7 @@ static const u16 sTextWindowFrame18_Pal[] = INCBIN_U16("graphics/text_window/18.
 static const u16 sTextWindowFrame19_Pal[] = INCBIN_U16("graphics/text_window/19.gbapal");
 static const u16 sTextWindowFrame20_Pal[] = INCBIN_U16("graphics/text_window/20.gbapal");
 
-static const u16 sUnknown_0851017C[][16] =
+static const u16 sTextWindowPalettes[][16] =
 {
     INCBIN_U16("graphics/text_window/message_box.gbapal"),
     INCBIN_U16("graphics/text_window/text_pal1.gbapal"),
@@ -96,19 +96,19 @@ const struct TilesPal *GetWindowFrameTilesPal(u8 id)
 void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x280, destOffset);
-    LoadPalette(stdpal_get(0), palOffset, 0x20);
+    LoadPalette(GetTextWindowPalette(0), palOffset, 0x20);
 }
 
 void LoadSignMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gSignMessageBox_Gfx, 0x260, destOffset);
-    LoadPalette(stdpal_get(1), palOffset, 0x20);
+    LoadPalette(GetTextWindowPalette(1), palOffset, 0x20);
 }
 
 void LoadThinWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sTextWindowFrameThin_Gfx, 0x120, destOffset);
-    LoadPalette(stdpal_get(3), palOffset, 0x20);
+    LoadPalette(GetTextWindowPalette(3), palOffset, 0x20);
 }
 
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)
@@ -174,7 +174,7 @@ void rbox_fill_rectangle(u8 windowId)
     FillBgTilemapBufferRect(bgLayer, 0, tilemapLeft - 1, tilemapTop - 1, width + 2, height + 2, 0x11);
 }
 
-const u16 *stdpal_get(u8 id)
+const u16 *GetTextWindowPalette(u8 id)
 {
     switch (id)
     {
@@ -196,7 +196,7 @@ const u16 *stdpal_get(u8 id)
         break;
     }
 
-    return (const u16 *)(sUnknown_0851017C) + id;
+    return (const u16 *)(sTextWindowPalettes) + id;
 }
 
 void sub_8098C6C(u8 bg, u16 destOffset, u8 palOffset)

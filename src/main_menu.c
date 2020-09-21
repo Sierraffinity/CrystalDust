@@ -1,7 +1,6 @@
 #include "global.h"
 #include "trainer_pokemon_sprites.h"
 #include "bg.h"
-#include "constants/flags.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/species.h"
@@ -857,7 +856,7 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
 static void Task_WaitForSaveFileErrorWindow(u8 taskId)
 {
     RunTextPrinters();
-    if (!IsTextPrinterActive(7) && (gMain.newKeys & A_BUTTON))
+    if (!IsTextPrinterActive(7) && (JOY_NEW(A_BUTTON)))
     {
         ClearWindowTilemap(7);
         ClearMainMenuWindowTilemap(&sWindowTemplates_MainMenu[7]);
@@ -891,7 +890,7 @@ static void Task_MainMenuCheckBattery(u8 taskId)
 static void Task_WaitForBatteryDryErrorWindow(u8 taskId)
 {
     RunTextPrinters();
-    if (!IsTextPrinterActive(7) && (gMain.newKeys & A_BUTTON))
+    if (!IsTextPrinterActive(7) && (JOY_NEW(A_BUTTON)))
     {
         ClearWindowTilemap(7);
         ClearMainMenuWindowTilemap(&sWindowTemplates_MainMenu[7]);
@@ -1051,14 +1050,14 @@ static bool8 HandleMainMenuInput(u8 taskId)
 
     if (!gPaletteFade.active)
     {
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
             //IsWirelessAdapterConnected();   // why bother calling this here? debug? Task_HandleMainMenuAPressed will check too
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
             gTasks[taskId].func = Task_HandleMainMenuAPressed;
         }
-        else if (gMain.newKeys & B_BUTTON)
+        else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
             FadeOutBGM(2);
@@ -1067,7 +1066,7 @@ static bool8 HandleMainMenuInput(u8 taskId)
             SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, 160));
             gTasks[taskId].func = Task_HandleMainMenuBPressed;
         }
-        else if ((gMain.newKeys & DPAD_UP) && tCurrItem > 0)
+        else if (JOY_NEW(DPAD_UP) && tCurrItem > 0)
         {
             if (tMenuType >= HAS_MYSTERY_GIFT && tCurrItem == 1)
             {
@@ -1086,7 +1085,7 @@ static bool8 HandleMainMenuInput(u8 taskId)
             sCurrItemAndOptionMenuCheck = --tCurrItem;
             return TRUE;
         }
-        else if ((gMain.newKeys & DPAD_DOWN) && tCurrItem < tItemCount - 1)
+        else if (JOY_NEW(DPAD_DOWN) && tCurrItem < tItemCount - 1)
         {
             if (tMenuType >= HAS_MYSTERY_GIFT && ((tCurrItem == 2 && tScrollCount == 0) || (tCurrItem == 3 && tScrollCount == 1)))
             {
@@ -1346,7 +1345,7 @@ static void Task_DisplayMainMenuInvalidActionError(u8 taskId)
                 gTasks[taskId].tCurrItem++;
             break;
         case 3:
-            if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+            if (JOY_NEW(A_BUTTON | B_BUTTON))
             {
                 PlaySE(SE_SELECT);
                 BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
@@ -1519,7 +1518,7 @@ void Task_NewGameClockSetIntro3(u8 taskId)
 
 void Task_NewGameClockSetIntro4(u8 taskId)
 {
-    if (!RunTextPrintersAndIsPrinter0Active() && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (!RunTextPrintersAndIsPrinter0Active() && JOY_NEW(A_BUTTON | B_BUTTON))
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, 0);
         gTasks[taskId].func = Task_NewGameClockSetIntro5;
@@ -1912,7 +1911,7 @@ static void Task_NewGameOakSpeech_StartNamingScreen(u8 taskId)
         FreeAllWindowBuffers();
         NewGameOakSpeech_SetDefaultPlayerName(Random() % 20);
         DestroyTask(taskId);
-        DoNamingScreen(0, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_NewGameOakSpeech_ReturnFromNamingScreen);
+        DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_NewGameOakSpeech_ReturnFromNamingScreen);
     }
 }
 
@@ -2051,7 +2050,7 @@ static void Task_NewGameOakSpeech_ShrinkBG2(u8 taskId)
     {
         if (gTasks[taskId].data[3] == 40)
         {
-            PlaySE(SE_TK_WARPIN);
+            PlaySE(SE_WARP_IN);
         }
 
         oldScale = gTasks[taskId].data[2];

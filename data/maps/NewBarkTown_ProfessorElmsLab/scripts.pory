@@ -30,7 +30,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
                "Oh, yes, what was MR. POKéMON's big\n"
                "discovery?")
         textcolor(MSG_COLOR_SYS)
-        playfanfare(MUS_FANFA4)
+        playfanfare(MUS_OBTAIN_ITEM)
         message("{PLAYER} handed the MYSTERY EGG to\n"
                 "PROF. ELM.")
         waitmessage
@@ -39,7 +39,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
         call(EventScript_RestorePrevTextColor)
         removeitem(ITEM_MYSTERY_EGG)
         delay(10)
-        playse(SE_DANSA)
+        playse(SE_LEDGE)
         switch (var(VAR_FACING))
         {
             case DIR_SOUTH:
@@ -210,7 +210,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging {
            "You can count on it!$")
     closemessage
     delay(20)
-    playse(SE_SEIKAI)
+    playse(SE_SUCCESS)
     waitse
     delay(20)
     playse(SE_PIN)
@@ -363,7 +363,7 @@ script NewBarkTown_EventScript_PokeBallMain {
             message("{PLAYER} received the {STR_VAR_1}\n"
                     "from PROF. ELM!")
             waitmessage
-            playfanfare(MUS_RG_FAN5)
+            playfanfare(MUS_RG_OBTAIN_KEY_ITEM)
             waitfanfare
             msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
             if (var(VAR_RESULT) == YES)
@@ -416,7 +416,7 @@ script NewBarkTown_EventScript_PokeBallMain {
             closemessage
             delay(20)
             setflag(FLAG_PHONE_CARD_ELM)
-            playfanfare(MUS_ME_TORE_EYE)
+            playfanfare(MUS_REGISTER_MATCH_CALL)
             call(EventScript_RestorePrevTextColor)
             msgbox("{PLAYER} got PROF. ELM's phone\n"
                    "number.")

@@ -23,7 +23,7 @@ script VioletCity_Earl {
 		msgbox("Is that so? Then study shall you!\n"
 			   "Follow me!")
 		closemessage
-		playbgm(MUS_FOLLOWME, 0)
+		playbgm(MUS_FOLLOW_ME, 0)
 		switch (var(VAR_FACING))
 		{
 			case DIR_SOUTH:

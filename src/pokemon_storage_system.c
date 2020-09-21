@@ -128,7 +128,7 @@ struct PokemonStorageSystemData
     u16 field_B0[528 / 2];
     u16 field_2C0;
     u16 field_2C2;
-    u8 field_2C4;
+    u8 field_2C4; // Unused
     u8 field_2C5;
     u8 showPartyMenuState;
     u8 unk_02C7;
@@ -136,21 +136,21 @@ struct PokemonStorageSystemData
     bool8 unk_02C9;
     s16 newCurrBoxId;
     u16 bg2_X;
-    s16 field_2CE;
+    s16 wallpaperScrollSpeed;
     u16 field_2D0;
     u8 field_2D2;
-    u8 field_2D3;
-    u8 field_2D4;
-    u16 field_2D6;
-    s16 field_2D8;
-    u16 field_2DA;
-    u16 field_2DC;
-    u16 field_2DE;
-    u16 field_2E0;
+    u8 field_2D3; // Written to, but never read.
+    u8 field_2D4; // Written to, but never read.
+    u16 field_2D6; // Written to, but never read.
+    s16 field_2D8; // Written to, but never read.
+    u16 field_2DA; // Written to, but never read.
+    u16 field_2DC; // Written to, but never read.
+    u16 field_2DE; // Written to, but never read.
+    u16 field_2E0; // Written to, but never read.
     u8 filler[22];
     u8 field_2F8[1024];
     u8 field_6F8;
-    u8 field_6F9;
+    u8 field_6F9; // Written to, but never read.
     u8 field_6FA;
     s8 field_6FB;
     u16 field_6FC[16];
@@ -160,14 +160,14 @@ struct PokemonStorageSystemData
     struct Sprite *field_728[2];
     struct Sprite *field_730[2];
     u32 field_738;
-    u8 field_73C[80];
-    u16 field_78C;
+    u8 field_73C[80]; // Unused
+    u16 field_78C; // Written to, but never read.
     s16 wallpaperSetId;
     s16 wallpaperId;
     u16 field_792[360];
     u8 wallpaperChangeState;
     u8 field_A63;
-    u8 field_A64;
+    u8 boxScrollDestination;
     s8 field_A65;
     u8 *wallpaperTiles;
     struct Sprite *movingMonSprite;
@@ -189,12 +189,12 @@ struct PokemonStorageSystemData
     u8 field_C68;
     s8 field_C69;
     u8 field_C6A;
-    u8 field_C6B;
+    u8 field_C6B; // Written to, but never read.
     struct WindowTemplate menuWindow;
     struct StorageMenu menuItems[7];
     u8 menuItemsCount;
     u8 menuWidth;
-    u8 field_CAE;
+    u8 field_CAE; // Written to, but never read.
     u16 field_CB0;
     struct Sprite *field_CB4;
     struct Sprite *field_CB8;
@@ -247,7 +247,7 @@ struct PokemonStorageSystemData
     u16 field_2176[8];
     u8 field_2186;
     u8 field_2187;
-    u8 field_2188;
+    u8 pokemonSummaryScreenMode;
     union
     {
         struct Pokemon *mon;
@@ -262,13 +262,13 @@ struct PokemonStorageSystemData
     struct UnkStorageStruct field_2204[3];
     u16 movingItem;
     u16 field_2236;
-    u8 field_2238;
+    u8 field_2238; // Unused
     u16 field_223A;
     u16 *field_223C;
     struct Sprite *cursorMonSprite;
     u16 field_2244[0x40];
     u8 field_22C4[0x800];
-    u8 field_2AC4[0x1800];
+    u8 field_2AC4[0x1800]; // Unused
     u8 field_42C4[0x800];
     u8 field_4AC4[0x1000];
     u8 field_5AC4[0x800];
@@ -658,7 +658,7 @@ static void SetBoxSpeciesAndPersonalities(u8 boxId);
 static void sub_80CB9D0(struct Sprite *sprite, u16 partyId);
 static void sub_80CC370(u8 taskId);
 static void sub_80CCB50(u8 boxId);
-static s8 sub_80CC644(u8 boxId);
+static s8 DetermineBoxScrollDirection(u8 boxId);
 static void sub_80CCA3C(const void *tilemap, s8 direction, u8 arg2);
 static s16 sub_80CD00C(const u8 *string);
 static bool8 MonPlaceChange_Shift(void);
@@ -1756,10 +1756,10 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
         {
         case MENU_NOTHING_CHOSEN:
             task->data[3] = task->data[1];
-            if (gMain.newKeys & DPAD_UP && --task->data[3] < 0)
+            if (JOY_NEW(DPAD_UP) && --task->data[3] < 0)
                 task->data[3] = 4;
 
-            if (gMain.newKeys & DPAD_DOWN && ++task->data[3] > 4)
+            if (JOY_NEW(DPAD_DOWN) && ++task->data[3] > 4)
                 task->data[3] = 0;
             if (task->data[1] != task->data[3])
             {
@@ -1798,13 +1798,13 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
         }
         break;
     case 3:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+        if (JOY_NEW(A_BUTTON | B_BUTTON))
         {
             FillWindowPixelBuffer(0, PIXEL_FILL(1));
             AddTextPrinterParameterized2(0, 1, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
             task->data[0] = 2;
         }
-        else if (gMain.newKeys & DPAD_UP)
+        else if (JOY_NEW(DPAD_UP))
         {
             if (--task->data[1] < 0)
                 task->data[1] = 4;
@@ -1814,7 +1814,7 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
             AddTextPrinterParameterized2(0, 1, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
             task->data[0] = 2;
         }
-        else if (gMain.newKeys & DPAD_DOWN)
+        else if (JOY_NEW(DPAD_DOWN))
         {
             if (++task->data[1] > 3)
                 task->data[1] = 0;
@@ -1974,22 +1974,22 @@ static void sub_80C78E4(void)
 
 static u8 HandleBoxChooseSelectionInput(void)
 {
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         return 201;
     }
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         return gUnknown_02039D04->curBox;
     }
-    if (gMain.newKeys & DPAD_LEFT)
+    if (JOY_NEW(DPAD_LEFT))
     {
         PlaySE(SE_SELECT);
         sub_80C7BB4();
     }
-    else if (gMain.newKeys & DPAD_RIGHT)
+    else if (JOY_NEW(DPAD_RIGHT))
     {
         PlaySE(SE_SELECT);
         sub_80C7B80();
@@ -2144,7 +2144,7 @@ static void VblankCb_PSS(void)
 static void Cb2_PSS(void)
 {
     RunTasks();
-    do_scheduled_bg_tilemap_copies_to_vram();
+    DoScheduledBgTilemapCopiesToVram();
     ScrollBackground();
     sub_80CAA14();
     AnimateSprites();
@@ -2155,7 +2155,7 @@ static void Cb2_EnterPSS(u8 boxOption)
 {
     ResetTasks();
     sCurrentBoxOption = boxOption;
-    sPSSData = Alloc(sizeof(*sPSSData));
+    sPSSData = Alloc(sizeof(struct PokemonStorageSystemData));
     if (sPSSData == NULL)
     {
         SetMainCallback2(Cb2_ExitPSS);
@@ -2175,7 +2175,7 @@ static void Cb2_EnterPSS(u8 boxOption)
 static void Cb2_ReturnToPSS(void)
 {
     ResetTasks();
-    sPSSData = Alloc(sizeof(*sPSSData));
+    sPSSData = Alloc(sizeof(struct PokemonStorageSystemData));
     if (sPSSData == NULL)
     {
         SetMainCallback2(Cb2_ExitPSS);
@@ -2212,7 +2212,7 @@ static void sub_80C7E98(void)
     gReservedSpriteTileCount = 0x280;
     sub_80D2A90(&sPSSData->unk_0020, sPSSData->unk_0028, 8);
     gKeyRepeatStartDelay = 20;
-    clear_scheduled_bg_copies_to_vram();
+    ClearScheduledBgCopiesToVram();
     sub_80D259C(3);
     sub_80D2644(0, 1, gUnknown_0857239C, 8, 4);
     sub_80D2770(0, 1, 0);
@@ -2358,11 +2358,11 @@ static void Cb_ShowPSS(u8 taskId)
     {
     case 0:
         PlaySE(SE_PC_LOGIN);
-        sub_80F9BCC(0x14, 0, 1);
+        ComputerScreenOpenEffect(20, 0, 1);
         sPSSData->state++;
         break;
     case 1:
-        if (!sub_80F9C1C())
+        if (!IsComputerScreenOpenEffectActive())
             SetPSSCallback(Cb_MainPSS);
         break;
     }
@@ -2391,7 +2391,7 @@ static void Cb_ReshowPSS(u8 taskId)
         }
         break;
     case 2:
-        if (!IsDma3ManagerBusyWithBgCopy() && gMain.newKeys & (A_BUTTON | B_BUTTON))
+        if (!IsDma3ManagerBusyWithBgCopy() && JOY_NEW(A_BUTTON | B_BUTTON))
         {
             ClearBottomWindow();
             sPSSData->state++;
@@ -2574,7 +2574,7 @@ static void Cb_MainPSS(u8 taskId)
             sPSSData->state = 7;
             break;
         case 24:
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
             break;
         }
         break;
@@ -2613,24 +2613,24 @@ static void Cb_MainPSS(u8 taskId)
         }
         break;
     case 3:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             sPSSData->state = 0;
         }
         break;
     case 4:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_LAST_POKE);
         sPSSData->state = 6;
         break;
     case 5:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_PLEASE_REMOVE_MAIL);
         sPSSData->state = 6;
         break;
     case 6:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             SetPSSCallback(Cb_MainPSS);
@@ -2841,22 +2841,22 @@ static void Cb_OnSelectedMon(u8 taskId)
         }
         break;
     case 3:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_LAST_POKE);
         sPSSData->state = 6;
         break;
     case 5:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_CANT_RELEASE_EGG);
         sPSSData->state = 6;
         break;
     case 4:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_PLEASE_REMOVE_MAIL);
         sPSSData->state = 6;
         break;
     case 6:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             SetPSSCallback(Cb_MainPSS);
@@ -2941,7 +2941,7 @@ static void Cb_WithdrawMon(u8 taskId)
         }
         break;
     case 1:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             SetPSSCallback(Cb_MainPSS);
@@ -3032,7 +3032,7 @@ static void Cb_DepositMenu(u8 taskId)
         }
         break;
     case 4:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             PrintStorageActionText(PC_TEXT_DEPOSIT_IN_WHICH_BOX);
             sPSSData->state = 1;
@@ -3093,14 +3093,14 @@ static void Cb_ReleaseMon(u8 taskId)
         sPSSData->state++;
         break;
     case 4:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             PrintStorageActionText(PC_TEXT_BYE_BYE);
             sPSSData->state++;
         }
         break;
     case 5:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             if (sInPartyMenu)
@@ -3132,14 +3132,14 @@ static void Cb_ReleaseMon(u8 taskId)
         sPSSData->state++;
         break;
     case 9:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             PrintStorageActionText(PC_TEXT_SURPRISE);
             sPSSData->state++;
         }
         break;
     case 10:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             sub_80CC064();
@@ -3155,14 +3155,14 @@ static void Cb_ReleaseMon(u8 taskId)
         }
         break;
     case 12:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             PrintStorageActionText(PC_TEXT_WORRIED);
             sPSSData->state++;
         }
         break;
     case 13:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             SetPSSCallback(Cb_MainPSS);
@@ -3255,7 +3255,7 @@ static void Cb_GiveMovingItemToMon(u8 taskId)
         }
         break;
     case 3:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             sPSSData->state++;
@@ -3275,7 +3275,7 @@ static void Cb_ItemToBag(u8 taskId)
     case 0:
         if (!AddBagItem(sPSSData->cursorMonItem, 1))
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
             PrintStorageActionText(PC_TEXT_BAG_FULL);
             sPSSData->state = 3;
         }
@@ -3294,7 +3294,7 @@ static void Cb_ItemToBag(u8 taskId)
         }
         break;
     case 2:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             sub_80CE00C();
@@ -3307,7 +3307,7 @@ static void Cb_ItemToBag(u8 taskId)
             SetPSSCallback(Cb_MainPSS);
         break;
     case 3:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             SetPSSCallback(Cb_MainPSS);
@@ -3347,7 +3347,7 @@ static void Cb_SwitchSelectedItem(u8 taskId)
         }
         break;
     case 3:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             sPSSData->state++;
@@ -3386,7 +3386,7 @@ static void Cb_ShowItemInfo(u8 taskId)
             sPSSData->state++;
         break;
     case 4:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             PlaySE(SE_WIN_OPEN);
             sPSSData->state++;
@@ -3436,7 +3436,7 @@ static void Cb_CloseBoxWhileHoldingItem(u8 taskId)
         }
         break;
     case 2:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             sPSSData->state = 5;
@@ -3492,7 +3492,7 @@ static void Cb_PrintCantStoreMail(u8 taskId)
             sPSSData->state++;
         break;
     case 2:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             sPSSData->state++;
@@ -3740,7 +3740,7 @@ static void Cb_OnCloseBoxPressed(u8 taskId)
     case 0:
         if (IsMonBeingMoved())
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
             PrintStorageActionText(PC_TEXT_HOLDING_POKE);
             sPSSData->state = 1;
         }
@@ -3757,7 +3757,7 @@ static void Cb_OnCloseBoxPressed(u8 taskId)
         }
         break;
     case 1:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             SetPSSCallback(Cb_MainPSS);
@@ -3779,11 +3779,11 @@ static void Cb_OnCloseBoxPressed(u8 taskId)
         }
         break;
     case 3:
-        sub_80F9BF4(0x14, 0, 1);
+        ComputerScreenCloseEffect(20, 0, 1);
         sPSSData->state++;
         break;
     case 4:
-        if (!sub_80F9C30())
+        if (!IsComputerScreenCloseEffectActive())
         {
             sub_80CABE0();
             gPlayerPartyCount = CalculatePlayerPartyCount();
@@ -3801,7 +3801,7 @@ static void Cb_OnBPressed(u8 taskId)
     case 0:
         if (IsMonBeingMoved())
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
             PrintStorageActionText(PC_TEXT_HOLDING_POKE);
             sPSSData->state = 1;
         }
@@ -3818,7 +3818,7 @@ static void Cb_OnBPressed(u8 taskId)
         }
         break;
     case 1:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
             SetPSSCallback(Cb_MainPSS);
@@ -3840,11 +3840,11 @@ static void Cb_OnBPressed(u8 taskId)
         }
         break;
     case 3:
-        sub_80F9BF4(0x14, 0, 0);
+        ComputerScreenCloseEffect(20, 0, 0);
         sPSSData->state++;
         break;
     case 4:
-        if (!sub_80F9C30())
+        if (!IsComputerScreenCloseEffectActive())
         {
             sub_80CABE0();
             gPlayerPartyCount = CalculatePlayerPartyCount();
@@ -3877,7 +3877,7 @@ static void Cb_ChangeScreen(u8 taskId)
         boxMons = sPSSData->field_218C.box;
         monIndex = sPSSData->field_2187;
         maxMonIndex = sPSSData->field_2186;
-        mode = sPSSData->field_2188;
+        mode = sPSSData->pokemonSummaryScreenMode;
         FreePSSData();
         if (mode == PSS_MODE_NORMAL && boxMons == &gUnknown_02039D14.box)
             ShowPokemonSummaryScreenSet40EF(mode, boxMons, monIndex, maxMonIndex, Cb2_ReturnToPSS);
@@ -3890,7 +3890,7 @@ static void Cb_ChangeScreen(u8 taskId)
         break;
     case SCREEN_CHANGE_ITEM_FROM_BAG:
         FreePSSData();
-        GoToBagMenu(11, 0, Cb2_ReturnToPSS);
+        GoToBagMenu(ITEMMENULOCATION_PCBOX, 0, Cb2_ReturnToPSS);
         break;
     }
 
@@ -3942,7 +3942,7 @@ static void LoadPSSMenuGfx(void)
     LZ77UnCompWram(gUnknown_085722A0, sPSSData->field_5AC4);
     SetBgTilemapBuffer(1, sPSSData->field_5AC4);
     ShowBg(1);
-    schedule_bg_copy_tilemap_to_vram(1);
+    ScheduleBgCopyTilemapToVram(1);
 }
 
 static bool8 InitPSSWindows(void)
@@ -4008,7 +4008,7 @@ static void RefreshCursorMonData(void)
     LoadCursorMonGfx(sPSSData->cursorMonSpecies, sPSSData->cursorMonPersonality);
     PrintCursorMonInfo();
     sub_80CA65C();
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void BoxSetMosaic(void)
@@ -4152,7 +4152,7 @@ static void sub_80CA65C(void)
     }
 
     sub_80D2918(0);
-    schedule_bg_copy_tilemap_to_vram(1);
+    ScheduleBgCopyTilemapToVram(1);
 }
 
 static void sub_80CA704(void)
@@ -4179,7 +4179,7 @@ static void sub_80CA704(void)
         sub_80D2918(2);
     }
 
-    schedule_bg_copy_tilemap_to_vram(1);
+    ScheduleBgCopyTilemapToVram(1);
     sPSSData->unk_02C7 = 0;
 }
 
@@ -4200,7 +4200,7 @@ static bool8 ShowPartyMenu(void)
     sPSSData->field_2C2++;
     sub_80D27F4(1, 3, 1);
     sub_80D2918(1);
-    schedule_bg_copy_tilemap_to_vram(1);
+    ScheduleBgCopyTilemapToVram(1);
     sub_80CBAF0(8);
     if (++sPSSData->field_2C5 == 20)
     {
@@ -4234,7 +4234,7 @@ static bool8 HidePartyMenu(void)
         sub_80CBAF0(-8);
         if (++sPSSData->field_2C5 != 20)
         {
-            schedule_bg_copy_tilemap_to_vram(1);
+            ScheduleBgCopyTilemapToVram(1);
             return TRUE;
         }
         else
@@ -4244,7 +4244,7 @@ static bool8 HidePartyMenu(void)
             CompactPartySlots();
             sub_80D27AC(2, 0, 0, 9, 2);
             sub_80D2918(2);
-            schedule_bg_copy_tilemap_to_vram(1);
+            ScheduleBgCopyTilemapToVram(1);
             return FALSE;
         }
     }
@@ -4260,7 +4260,7 @@ static void sub_80CA984(bool8 arg0)
         sub_80D27AC(2, 0, 2, 9, 2);
 
     sub_80D2918(2);
-    schedule_bg_copy_tilemap_to_vram(1);
+    ScheduleBgCopyTilemapToVram(1);
 }
 
 static void sub_80CA9C0(void)
@@ -4329,7 +4329,7 @@ static void sub_80CAB20(void)
     sub_80CAA74();
     sub_80D27AC(1, 0, 0, 12, 22);
     sub_80D2918(1);
-    schedule_bg_copy_tilemap_to_vram(1);
+    ScheduleBgCopyTilemapToVram(1);
 }
 
 static void SetUpDoShowPartyMenu(void)
@@ -4420,7 +4420,7 @@ static void PrintStorageActionText(u8 id)
     DrawTextBorderOuter(1, 2, 14);
     PutWindowTilemap(1);
     CopyWindowToVram(1, 2);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void ShowYesNoWindow(s8 cursorPos)
@@ -4432,7 +4432,7 @@ static void ShowYesNoWindow(s8 cursorPos)
 static void ClearBottomWindow(void)
 {
     ClearStdWindowAndFrameToTransparent(1, FALSE);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void AddWallpaperSetsMenu(void)
@@ -5274,9 +5274,9 @@ static void sub_80CC370(u8 taskId)
 
 static void SetUpScrollToBox(u8 boxId)
 {
-    s8 direction = sub_80CC644(boxId);
+    s8 direction = DetermineBoxScrollDirection(boxId);
 
-    sPSSData->field_2CE = (direction > 0) ? 6 : -6;
+    sPSSData->wallpaperScrollSpeed = (direction > 0) ? 6 : -6;
     sPSSData->field_2D3 = (direction > 0) ? 1 : 2;
     sPSSData->field_2D0 = 32;
     sPSSData->field_2D4 = boxId;
@@ -5286,7 +5286,7 @@ static void SetUpScrollToBox(u8 boxId)
     sPSSData->field_2DC = (direction <= 0) ? 5 : 0;
     sPSSData->field_2DE = 0;
     sPSSData->field_2E0 = 2;
-    sPSSData->field_A64 = boxId;
+    sPSSData->boxScrollDestination = boxId;
     sPSSData->field_A65 = direction;
     sPSSData->field_A63 = 0;
 }
@@ -5298,21 +5298,21 @@ static bool8 ScrollToBox(void)
     switch (sPSSData->field_A63)
     {
     case 0:
-        LoadWallpaperGfx(sPSSData->field_A64, sPSSData->field_A65);
+        LoadWallpaperGfx(sPSSData->boxScrollDestination, sPSSData->field_A65);
         sPSSData->field_A63++;
     case 1:
         if (!WaitForWallpaperGfxLoad())
             return TRUE;
 
-        sub_80CB4CC(sPSSData->field_A64, sPSSData->field_A65);
-        sub_80CCCFC(sPSSData->field_A64, sPSSData->field_A65);
+        sub_80CB4CC(sPSSData->boxScrollDestination, sPSSData->field_A65);
+        sub_80CCCFC(sPSSData->boxScrollDestination, sPSSData->field_A65);
         sub_80CD0B8(sPSSData->field_A65);
         break;
     case 2:
         var = sub_80CB584();
         if (sPSSData->field_2D0 != 0)
         {
-            sPSSData->bg2_X += sPSSData->field_2CE;
+            sPSSData->bg2_X += sPSSData->wallpaperScrollSpeed;
             if (--sPSSData->field_2D0 != 0)
                 return TRUE;
             sub_80CCEE0();
@@ -5325,7 +5325,7 @@ static bool8 ScrollToBox(void)
     return TRUE;
 }
 
-static s8 sub_80CC644(u8 boxId)
+static s8 DetermineBoxScrollDirection(u8 boxId)
 {
     u8 i;
     u8 currentBox = StorageGetCurrentBox();
@@ -5460,7 +5460,7 @@ static void sub_80CCA3C(const void *tilemap, s8 direction, u8 arg2)
 
     if (direction == 0)
         return;
-    else if (direction > 0)
+    if (direction > 0)
         x *= 1, x += 0x14; // x * 1 is needed to match, but can be safely removed as it makes no functional difference
     else
         x -= 4;
@@ -5733,7 +5733,7 @@ static void sub_80CD210(struct Sprite *sprite)
         sprite->data[0] = 3;
         break;
     case 3:
-        sprite->pos1.x -= sPSSData->field_2CE;
+        sprite->pos1.x -= sPSSData->wallpaperScrollSpeed;
         if (sprite->pos1.x < 73 || sprite->pos1.x > 247)
             sprite->invisible = TRUE;
         if (--sprite->data[1] == 0)
@@ -5744,7 +5744,7 @@ static void sub_80CD210(struct Sprite *sprite)
         }
         break;
     case 4:
-        sprite->pos1.x -= sPSSData->field_2CE;
+        sprite->pos1.x -= sPSSData->wallpaperScrollSpeed;
         break;
     }
 }
@@ -6630,21 +6630,21 @@ static void sub_80CE7E8(void)
         sPSSData->field_218C.mon = &gUnknown_02039D14;
         sPSSData->field_2187 = 0;
         sPSSData->field_2186 = 0;
-        sPSSData->field_2188 = 0;
+        sPSSData->pokemonSummaryScreenMode = PSS_MODE_NORMAL;
     }
     else if (sBoxCursorArea == CURSOR_AREA_IN_PARTY)
     {
         sPSSData->field_218C.mon = gPlayerParty;
         sPSSData->field_2187 = sBoxCursorPosition;
         sPSSData->field_2186 = CountPartyMons() - 1;
-        sPSSData->field_2188 = 0;
+        sPSSData->pokemonSummaryScreenMode = PSS_MODE_NORMAL;
     }
     else
     {
         sPSSData->field_218C.box = GetBoxedMonPtr(StorageGetCurrentBox(), 0);
         sPSSData->field_2187 = sBoxCursorPosition;
         sPSSData->field_2186 = IN_BOX_COUNT - 1;
-        sPSSData->field_2188 = 2;
+        sPSSData->pokemonSummaryScreenMode = PSS_MODE_BOX;
     }
 }
 
@@ -6867,36 +6867,36 @@ static void SetCursorMonData(void *pokemon, u8 mode)
 
         txtPtr = sPSSData->cursorMonGenderLvlText;
         *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
-        *(txtPtr)++ = 4;
+        *(txtPtr)++ = EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW;
         switch (gender)
         {
         case MON_MALE:
-            *(txtPtr)++ = 4;
-            *(txtPtr)++ = 1;
-            *(txtPtr)++ = 5;
+            *(txtPtr)++ = TEXT_COLOR_RED;
+            *(txtPtr)++ = TEXT_COLOR_WHITE;
+            *(txtPtr)++ = TEXT_COLOR_LIGHT_RED;
             *(txtPtr)++ = CHAR_MALE;
             break;
         case MON_FEMALE:
-            *(txtPtr)++ = 6;
-            *(txtPtr)++ = 1;
-            *(txtPtr)++ = 7;
+            *(txtPtr)++ = TEXT_COLOR_GREEN;
+            *(txtPtr)++ = TEXT_COLOR_WHITE;
+            *(txtPtr)++ = TEXT_COLOR_LIGHT_GREEN;
             *(txtPtr)++ = CHAR_FEMALE;
             break;
         default:
-            *(txtPtr)++ = 2;
-            *(txtPtr)++ = 1;
-            *(txtPtr)++ = 3;
-            *(txtPtr)++ = 0x77;
+            *(txtPtr)++ = TEXT_COLOR_DARK_GREY;
+            *(txtPtr)++ = TEXT_COLOR_WHITE;
+            *(txtPtr)++ = TEXT_COLOR_LIGHT_GREY;
+            *(txtPtr)++ = CHAR_UNK_SPACER;
             break;
         }
 
         *(txtPtr++) = EXT_CTRL_CODE_BEGIN;
-        *(txtPtr++) = 4;
-        *(txtPtr++) = 2;
-        *(txtPtr++) = 1;
-        *(txtPtr++) = 3;
-        *(txtPtr++) = 0;
-        *(txtPtr++) = CHAR_SPECIAL_F9;
+        *(txtPtr++) = EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW;
+        *(txtPtr++) = TEXT_COLOR_DARK_GREY;
+        *(txtPtr++) = TEXT_COLOR_WHITE;
+        *(txtPtr++) = TEXT_COLOR_LIGHT_GREY;
+        *(txtPtr++) = CHAR_SPACE;
+        *(txtPtr++) = CHAR_EXTRA_SYMBOL;
         *(txtPtr++) = CHAR_LV_2;
 
         txtPtr = ConvertIntToDecimalStringN(txtPtr, sPSSData->cursorMonLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -6938,7 +6938,7 @@ static u8 InBoxInput_Normal(void)
         sPSSData->field_CD3 = 0;
         sPSSData->field_CD7 = 0;
 
-        if (gMain.newAndRepeatedKeys & DPAD_UP)
+        if (JOY_REPEAT(DPAD_UP))
         {
             retVal = TRUE;
             if (sBoxCursorPosition >= IN_BOX_ROWS)
@@ -6952,7 +6952,7 @@ static u8 InBoxInput_Normal(void)
             }
             break;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+        else if (JOY_REPEAT(DPAD_DOWN))
         {
             retVal = TRUE;
             cursorPosition += IN_BOX_ROWS;
@@ -6966,7 +6966,7 @@ static u8 InBoxInput_Normal(void)
             }
             break;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+        else if (JOY_REPEAT(DPAD_LEFT))
         {
             retVal = TRUE;
             if (sBoxCursorPosition % IN_BOX_ROWS != 0)
@@ -6980,7 +6980,7 @@ static u8 InBoxInput_Normal(void)
             }
             break;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+        else if (JOY_REPEAT(DPAD_RIGHT))
         {
             retVal = TRUE;
             if ((sBoxCursorPosition + 1) % IN_BOX_ROWS != 0)
@@ -6994,7 +6994,7 @@ static u8 InBoxInput_Normal(void)
             }
             break;
         }
-        else if (gMain.newKeys & START_BUTTON)
+        else if (JOY_NEW(START_BUTTON))
         {
             retVal = TRUE;
             cursorArea = CURSOR_AREA_BOX;
@@ -7002,7 +7002,7 @@ static u8 InBoxInput_Normal(void)
             break;
         }
 
-        if ((gMain.newKeys & A_BUTTON) && sub_80CFA5C())
+        if ((JOY_NEW(A_BUTTON)) && sub_80CFA5C())
         {
             if (!sCanOnlyMove)
                 return 8;
@@ -7036,18 +7036,18 @@ static u8 InBoxInput_Normal(void)
             }
         }
 
-        if (gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(B_BUTTON))
             return 19;
 
         if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)
         {
-            if (gMain.heldKeys & L_BUTTON)
+            if (JOY_HELD(L_BUTTON))
                 return 10;
-            if (gMain.heldKeys & R_BUTTON)
+            if (JOY_HELD(R_BUTTON))
                 return 9;
         }
 
-        if (gMain.newKeys & SELECT_BUTTON)
+        if (JOY_NEW(SELECT_BUTTON))
         {
             sub_80CFDC4();
             return 0;
@@ -7065,9 +7065,9 @@ static u8 InBoxInput_Normal(void)
 
 static u8 InBoxInput_GrabbingMultiple(void)
 {
-    if (gMain.heldKeys & A_BUTTON)
+    if (JOY_HELD(A_BUTTON))
     {
-        if (gMain.newAndRepeatedKeys & DPAD_UP)
+        if (JOY_REPEAT(DPAD_UP))
         {
             if (sBoxCursorPosition / IN_BOX_ROWS != 0)
             {
@@ -7079,7 +7079,7 @@ static u8 InBoxInput_GrabbingMultiple(void)
                 return 24;
             }
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+        else if (JOY_REPEAT(DPAD_DOWN))
         {
             if (sBoxCursorPosition + IN_BOX_ROWS < IN_BOX_COUNT)
             {
@@ -7091,7 +7091,7 @@ static u8 InBoxInput_GrabbingMultiple(void)
                 return 24;
             }
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+        else if (JOY_REPEAT(DPAD_LEFT))
         {
             if (sBoxCursorPosition % IN_BOX_ROWS != 0)
             {
@@ -7103,7 +7103,7 @@ static u8 InBoxInput_GrabbingMultiple(void)
                 return 24;
             }
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+        else if (JOY_REPEAT(DPAD_RIGHT))
         {
             if ((sBoxCursorPosition + 1) % IN_BOX_ROWS != 0)
             {
@@ -7140,7 +7140,7 @@ static u8 InBoxInput_GrabbingMultiple(void)
 
 static u8 InBoxInput_MovingMultiple(void)
 {
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         if (sub_80D0580(0))
         {
@@ -7152,7 +7152,7 @@ static u8 InBoxInput_MovingMultiple(void)
             return 24;
         }
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    else if (JOY_REPEAT(DPAD_DOWN))
     {
         if (sub_80D0580(1))
         {
@@ -7164,7 +7164,7 @@ static u8 InBoxInput_MovingMultiple(void)
             return 24;
         }
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    else if (JOY_REPEAT(DPAD_LEFT))
     {
         if (sub_80D0580(2))
         {
@@ -7176,7 +7176,7 @@ static u8 InBoxInput_MovingMultiple(void)
             return 10;
         }
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    else if (JOY_REPEAT(DPAD_RIGHT))
     {
         if (sub_80D0580(3))
         {
@@ -7188,7 +7188,7 @@ static u8 InBoxInput_MovingMultiple(void)
             return 9;
         }
     }
-    else if (gMain.newKeys & A_BUTTON)
+    else if (JOY_NEW(A_BUTTON))
     {
         if (sub_80D0BC0())
         {
@@ -7201,7 +7201,7 @@ static u8 InBoxInput_MovingMultiple(void)
             return 24;
         }
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         return 24;
     }
@@ -7209,9 +7209,9 @@ static u8 InBoxInput_MovingMultiple(void)
     {
         if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)
         {
-            if (gMain.heldKeys & L_BUTTON)
+            if (JOY_HELD(L_BUTTON))
                 return 10;
-            if (gMain.heldKeys & R_BUTTON)
+            if (JOY_HELD(R_BUTTON))
                 return 9;
         }
 
@@ -7236,7 +7236,7 @@ static u8 HandleInput_InParty(void)
         gotoBox = FALSE;
         retVal = 0;
 
-        if (gMain.newAndRepeatedKeys & DPAD_UP)
+        if (JOY_REPEAT(DPAD_UP))
         {
             if (--cursorPosition < 0)
                 cursorPosition = PARTY_SIZE;
@@ -7244,7 +7244,7 @@ static u8 HandleInput_InParty(void)
                 retVal = 1;
             break;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+        else if (JOY_REPEAT(DPAD_DOWN))
         {
             if (++cursorPosition > PARTY_SIZE)
                 cursorPosition = 0;
@@ -7252,14 +7252,14 @@ static u8 HandleInput_InParty(void)
                 retVal = 1;
             break;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_LEFT && sBoxCursorPosition != 0)
+        else if (JOY_REPEAT(DPAD_LEFT) && sBoxCursorPosition != 0)
         {
             retVal = 1;
             sPSSData->field_CD6 = sBoxCursorPosition;
             cursorPosition = 0;
             break;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+        else if (JOY_REPEAT(DPAD_RIGHT))
         {
             if (sBoxCursorPosition == 0)
             {
@@ -7275,7 +7275,7 @@ static u8 HandleInput_InParty(void)
             break;
         }
 
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             if (sBoxCursorPosition == PARTY_SIZE)
             {
@@ -7311,7 +7311,7 @@ static u8 HandleInput_InParty(void)
             }
         }
 
-        if (gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(B_BUTTON))
         {
             if (sPSSData->boxOption == BOX_OPTION_DEPOSIT)
                 return 19;
@@ -7325,7 +7325,7 @@ static u8 HandleInput_InParty(void)
             cursorArea = CURSOR_AREA_IN_BOX;
             cursorPosition = 0;
         }
-        else if (gMain.newKeys & SELECT_BUTTON)
+        else if (JOY_NEW(SELECT_BUTTON))
         {
             sub_80CFDC4();
             return 0;
@@ -7354,7 +7354,7 @@ static u8 HandleInput_OnBox(void)
         sPSSData->field_CD2 = 0;
         sPSSData->field_CD7 = 0;
 
-        if (gMain.newAndRepeatedKeys & DPAD_UP)
+        if (JOY_REPEAT(DPAD_UP))
         {
             retVal = 1;
             cursorArea = CURSOR_AREA_BUTTONS;
@@ -7362,7 +7362,7 @@ static u8 HandleInput_OnBox(void)
             sPSSData->field_CD7 = 1;
             break;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+        else if (JOY_REPEAT(DPAD_DOWN))
         {
             retVal = 1;
             cursorArea = CURSOR_AREA_IN_BOX;
@@ -7370,30 +7370,30 @@ static u8 HandleInput_OnBox(void)
             break;
         }
 
-        if (gMain.heldKeys & DPAD_LEFT)
+        if (JOY_HELD(DPAD_LEFT))
             return 10;
-        if (gMain.heldKeys & DPAD_RIGHT)
+        if (JOY_HELD(DPAD_RIGHT))
             return 9;
 
         if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)
         {
-            if (gMain.heldKeys & L_BUTTON)
+            if (JOY_HELD(L_BUTTON))
                 return 10;
-            if (gMain.heldKeys & R_BUTTON)
+            if (JOY_HELD(R_BUTTON))
                 return 9;
         }
 
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             sub_80CD1A8(FALSE);
             AddBoxMenu();
             return 7;
         }
 
-        if (gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(B_BUTTON))
             return 19;
 
-        if (gMain.newKeys & SELECT_BUTTON)
+        if (JOY_NEW(SELECT_BUTTON))
         {
             sub_80CFDC4();
             return 0;
@@ -7427,7 +7427,7 @@ static u8 HandleInput_OnButtons(void)
         sPSSData->field_CD2 = 0;
         sPSSData->field_CD7 = 0;
 
-        if (gMain.newAndRepeatedKeys & DPAD_UP)
+        if (JOY_REPEAT(DPAD_UP))
         {
             retVal = 1;
             cursorArea = CURSOR_AREA_IN_BOX;
@@ -7439,7 +7439,8 @@ static u8 HandleInput_OnButtons(void)
             sPSSData->field_CD7 = 1;
             break;
         }
-        else if (gMain.newAndRepeatedKeys & (DPAD_DOWN | START_BUTTON))
+        
+        if (JOY_REPEAT(DPAD_DOWN | START_BUTTON))
         {
             retVal = 1;
             cursorArea = CURSOR_AREA_BOX;
@@ -7448,14 +7449,14 @@ static u8 HandleInput_OnButtons(void)
             break;
         }
 
-        if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+        if (JOY_REPEAT(DPAD_LEFT))
         {
             retVal = 1;
             if (--cursorPosition < 0)
                 cursorPosition = 1;
             break;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+        else if (JOY_REPEAT(DPAD_RIGHT))
         {
             retVal = 1;
             if (++cursorPosition > 1)
@@ -7463,12 +7464,12 @@ static u8 HandleInput_OnButtons(void)
             break;
         }
 
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
             return (cursorPosition == 0) ? 5 : 4;
-        if (gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(B_BUTTON))
             return 19;
 
-        if (gMain.newKeys & SELECT_BUTTON)
+        if (JOY_NEW(SELECT_BUTTON))
         {
             sub_80CFDC4();
             return 0;
@@ -7902,7 +7903,7 @@ static void AddMenu(void)
     DrawStdFrameWithCustomTileAndPalette(sPSSData->field_CB0, FALSE, 11, 14);
     PrintMenuTable(sPSSData->field_CB0, sPSSData->menuItemsCount, (void*)sPSSData->menuItems);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPSSData->field_CB0, 1, 0, 1, 16, sPSSData->menuItemsCount, 0);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     sPSSData->field_CAE = 0;
 }
 
@@ -7917,23 +7918,23 @@ static s16 sub_80D00AC(void)
 
     do
     {
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             textId = Menu_GetCursorPos();
             break;
         }
-        else if (gMain.newKeys & B_BUTTON)
+        else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
             textId = -1;
         }
 
-        if (gMain.newKeys & DPAD_UP)
+        if (JOY_NEW(DPAD_UP))
         {
             PlaySE(SE_SELECT);
             Menu_MoveCursor(-1);
         }
-        else if (gMain.newKeys & DPAD_DOWN)
+        else if (JOY_NEW(DPAD_DOWN))
         {
             PlaySE(SE_SELECT);
             Menu_MoveCursor(1);
@@ -8095,7 +8096,7 @@ static bool8 sub_80D0344(void)
         if (!IsDma3ManagerBusyWithBgCopy())
         {
             sub_80CFE84();
-            LoadPalette(stdpal_get(3), 0xD0, 0x20);
+            LoadPalette(GetTextWindowPalette(3), 0xD0, 0x20);
             ShowBg(0);
             return FALSE;
         }
@@ -8201,7 +8202,7 @@ static bool8 sub_80D04C8(void)
     case 3:
         if (!IsDma3ManagerBusyWithBgCopy())
         {
-            LoadPalette(stdpal_get(3), 0xD0, 0x20);
+            LoadPalette(GetTextWindowPalette(3), 0xD0, 0x20);
             sub_80CFE84();
             ShowBg(0);
             return FALSE;
@@ -9125,7 +9126,7 @@ static bool8 sub_80D18E4(void)
         sub_80D19B4(var);
 
     FillBgTilemapBufferRect(0, 0, var + 1, 12, 1, 9, 0x11);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     return TRUE;
 }
 
@@ -9139,7 +9140,7 @@ static void sub_80D19B4(u32 arg0)
     FillBgTilemapBufferRect(0, 0x13B, arg0, 0xD, 1, 7, 0xFu);
     FillBgTilemapBufferRect(0, 0x13C, arg0, 0xC, 1, 1, 0xFu);
     FillBgTilemapBufferRect(0, 0x13D, arg0, 0x14, 1, 1, 0xFu);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void sub_80D1A48(struct Sprite *sprite)

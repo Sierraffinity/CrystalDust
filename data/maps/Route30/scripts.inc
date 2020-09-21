@@ -37,13 +37,13 @@ Route30_EventScript_DirectionsBoyPostEgg:
 Route30_EventScript_BattlingYoungster::
 	lock
 	waitse
-	playbgm MUS_BTLJOHTOTRN, 0
+	playbgm MUS_VS_JOHTO_TRAINER, 0
 	msgbox Route30_Text_BattlingYoungster_UseTackle
 	closemessage
 	delay 15
 	applymovement 7, Route30_Movement_RattataTackle
 	delay 5
-	playse SE_W004
+	playse SE_M_COMET_PUNCH
 	waitmovement 0
 	faceplayer
 	msgbox Route30_Text_BattlingYoungster_LeaveMeAlone
@@ -52,7 +52,7 @@ Route30_EventScript_BattlingYoungster::
 	delay 10
 	applymovement 6, Route30_Movement_PidgeyTackle
 	delay 5
-	playse SE_W004
+	playse SE_M_COMET_PUNCH
 	waitmovement 0
 	savebgm MUS_DUMMY
 	fadedefaultbgm

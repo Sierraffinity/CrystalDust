@@ -291,7 +291,7 @@ static const u8 *const gSENames[];
 static void Task_HandleDrawingSoundCheckMenuText(u8 taskId) // sub_080E85F4
 {
     FillWindowPixelRect(WIN_MUS, PIXEL_FILL(1), 0, 14, 224, 12);
-    PrintSoundNumber(gTasks[taskId].tBgmIndex + (MUS_TETSUJI - 1), WIN_MUS); // print by BGM index
+    PrintSoundNumber(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1), WIN_MUS); // print by BGM index
     PrintPaddedString(gBGMNames[gTasks[taskId].tBgmIndex], WIN_MUS);
     FillWindowPixelRect(WIN_SE, PIXEL_FILL(1), 0, 14, 224, 12);
     PrintSoundNumber(gTasks[taskId].tSeIndex, WIN_SE);
@@ -301,19 +301,19 @@ static void Task_HandleDrawingSoundCheckMenuText(u8 taskId) // sub_080E85F4
 
 static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
 {
-    if (gMain.newKeys & R_BUTTON) // driver test
+    if (JOY_NEW(R_BUTTON)) // driver test
     {
         gTasks[taskId].tWhichSubmenu = 1;
         gTasks[taskId].tState = 0;
         gTasks[taskId].func = Task_DrawSubmenu;
     }
-    else if (gMain.newKeys & L_BUTTON)
+    else if (JOY_NEW(L_BUTTON))
     {
         gTasks[taskId].tWhichSubmenu = 0;
         gTasks[taskId].tState = 0;
         gTasks[taskId].func = Task_DrawSubmenu;
     }
-    else if (gMain.newKeys & A_BUTTON)
+    else if (JOY_NEW(A_BUTTON))
     {
         if (gTasks[taskId].tWindowSelected != TEST_MUS)
         {
@@ -343,24 +343,24 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
             {
                 if (gTasks[taskId].tBgmIndex != 0)
                 {
-                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_TETSUJI - 1));
-                    m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_TETSUJI - 1));
+                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_LITTLEROOT_TEST - 1));
+                    m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1));
                     gTasks[taskId].tBgmIndexOld = gTasks[taskId].tBgmIndex;
                 }
                 else
                 {
-                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_TETSUJI - 1));
+                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_LITTLEROOT_TEST - 1));
                     gTasks[taskId].tBgmIndexOld = 0;
                 }
             }
             else if (gTasks[taskId].tBgmIndex != 0)
             {
-                m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_TETSUJI - 1));
+                m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1));
                 gTasks[taskId].tBgmIndexOld = gTasks[taskId].tBgmIndex;
             }
         }
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         m4aSongNumStart(SE_SELECT);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB(0, 0, 0));
@@ -379,14 +379,14 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
             if (gTasks[taskId].tSeIndex > 0)
                 gTasks[taskId].tSeIndex--;
             else
-                gTasks[taskId].tSeIndex = SE_USSOKI;
+                gTasks[taskId].tSeIndex = SE_SUDOWOODO_SHAKE;
         }
         else
         {
             if (gTasks[taskId].tBgmIndex > 0)
                 gTasks[taskId].tBgmIndex--;
             else
-                gTasks[taskId].tBgmIndex = (PH_NURSE_SOLO - (MUS_TETSUJI - 1));
+                gTasks[taskId].tBgmIndex = (PH_NURSE_SOLO - (MUS_LITTLEROOT_TEST - 1));
         }
         return TRUE;
     }
@@ -394,14 +394,14 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
     {
         if (gTasks[taskId].tWindowSelected != TEST_MUS)
         {
-            if (gTasks[taskId].tSeIndex < SE_USSOKI)
+            if (gTasks[taskId].tSeIndex < SE_SUDOWOODO_SHAKE)
                 gTasks[taskId].tSeIndex++;
             else
                 gTasks[taskId].tSeIndex = 0;
         }
         else
         {
-            if (gTasks[taskId].tBgmIndex < (PH_NURSE_SOLO - (MUS_TETSUJI - 1)))
+            if (gTasks[taskId].tBgmIndex < (PH_NURSE_SOLO - (MUS_LITTLEROOT_TEST - 1)))
                 gTasks[taskId].tBgmIndex++;
             else
                 gTasks[taskId].tBgmIndex = 0;
@@ -580,7 +580,7 @@ static void Task_DrawDriverTestMenu(u8 taskId) // sub_080E8AA0
 
 static void Task_ProcessDriverTestInput(u8 taskId) // sub_080E8D68
 {
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         gTasks[taskId].tState = 0;
         gTasks[taskId].func = Task_InitSoundCheckMenu;
@@ -596,13 +596,13 @@ static void Task_ProcessDriverTestInput(u8 taskId) // sub_080E8D68
         Menu_MoveCursorNoWrapAround(1);
         return;
     }
-    if (gMain.newKeys & START_BUTTON)
+    if (JOY_NEW(START_BUTTON))
     {
         sDriverTest_Reverse ^= 1;
         PrintDriverTestMenuText();
         return;
     }
-    if (gMain.newKeys & SELECT_BUTTON)
+    if (JOY_NEW(SELECT_BUTTON))
     {
         sDriverTest_Stereo ^= 1;
         PrintDriverTestMenuText();
@@ -633,7 +633,7 @@ static void Task_ProcessDriverTestInput(u8 taskId) // sub_080E8D68
         PrintDriverTestMenuText();
         return;
     }
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         u8 divide, remaining;
 
@@ -833,13 +833,13 @@ static void Task_ProcessPanTestInput(u8 taskId) // sub_080E9284
         }
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         gTasks[taskId].tState = 0;
         gTasks[taskId].func = Task_InitSoundCheckMenu;
         return;
     }
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         s8 panpot = gUnknown_08566E58[sSoundTestParams[CRY_TEST_PANPOT]];
         if (panpot != -128)
@@ -866,14 +866,14 @@ static void Task_ProcessPanTestInput(u8 taskId) // sub_080E9284
         sSoundTestParams[CRY_TEST_PROGRESS] = 0;
         return;
     }
-    if (gMain.newKeys & L_BUTTON)
+    if (JOY_NEW(L_BUTTON))
     {
         sSoundTestParams[CRY_TEST_PANPOT]++;
         if (sSoundTestParams[CRY_TEST_PANPOT] > 4)
             sSoundTestParams[CRY_TEST_PANPOT] = 0;
         PrintPanTestMenuText();
     }
-    if (gMain.newKeys & R_BUTTON)
+    if (JOY_NEW(R_BUTTON))
     {
         sSoundTestParams[CRY_TEST_PANPOT]--;
         if (sSoundTestParams[CRY_TEST_PANPOT] < 0)
@@ -883,7 +883,7 @@ static void Task_ProcessPanTestInput(u8 taskId) // sub_080E9284
     if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
     {
         sSoundTestParams[CRY_TEST_VOICE]++;
-        if (sSoundTestParams[CRY_TEST_VOICE] > SE_USSOKI)
+        if (sSoundTestParams[CRY_TEST_VOICE] > SE_SUDOWOODO_SHAKE)
             sSoundTestParams[CRY_TEST_VOICE] = MUS_DUMMY;
         PrintPanTestMenuText();
     }
@@ -891,7 +891,7 @@ static void Task_ProcessPanTestInput(u8 taskId) // sub_080E9284
     {
         sSoundTestParams[CRY_TEST_VOICE]--;
         if (sSoundTestParams[CRY_TEST_VOICE] < MUS_DUMMY)
-            sSoundTestParams[CRY_TEST_VOICE] = SE_USSOKI;
+            sSoundTestParams[CRY_TEST_VOICE] = SE_SUDOWOODO_SHAKE;
         PrintPanTestMenuText();
     }
 }
@@ -1015,215 +1015,215 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
 
 #define SOUND_LIST_BGM \
 	X(MUS_STOP, "STOP") \
-    X(MUS_TETSUJI, "MUS-TETSUJI") \
-    X(MUS_FIELD13, "MUS-FIELD13") \
-    X(MUS_WILDPOSTCATCH, "MUS-WILDPOSTCATCH") \
-    X(MUS_WILDDEFEAT, "MUS-WILDDEFEAT") \
-    X(MUS_KACHI3, "MUS-KACHI3") \
-    X(MUS_KACHI5, "MUS-KACHI5") \
-    X(MUS_PCC, "MUS-PCC") \
-    X(MUS_NIBI, "MUS-NIBI") \
-    X(MUS_SUIKUN, "MUS-SUIKUN") \
+    X(MUS_LITTLEROOT_TEST, "MUS-TETSUJI") \
+    X(MUS_GSC_ROUTE38, "MUS-FIELD13") \
+    X(MUS_CAUGHT, "MUS-WILDPOSTCATCH") \
+    X(MUS_VICTORY_WILD, "MUS-WILDDEFEAT") \
+    X(MUS_VICTORY_GYM_LEADER, "MUS-KACHI3") \
+    X(MUS_VICTORY_LEAGUE, "MUS-KACHI5") \
+    X(MUS_C_COMM_CENTER, "MUS-PCC") \
+    X(MUS_GSC_PEWTER, "MUS-NIBI") \
+    X(MUS_C_VS_LEGEND_BEAST, "MUS-SUIKUN") \
     X(MUS_ROUTE29, "MUS-ROUTE29") \
     X(MUS_ROUTE34, "MUS-ROUTE34") \
-    X(MUS_DOORO_X3, "MUS-DOORO-X3") \
+    X(MUS_ROUTE120, "MUS-DOORO-X3") \
     X(MUS_VIOLET, "MUS-VIOLET") \
     X(MUS_CHERRYGROVE, "MUS-CHERRYGROVE") \
     X(MUS_GYM, "MUS-GYM") \
-    X(MUS_NAMINORI, "MUS-NAMINORI") \
+    X(MUS_SURF, "MUS-NAMINORI") \
     X(MUS_ILEXFOREST, "MUS-ILEXFOREST") \
-    X(MUS_FANFA1, "MUS-FANFA1") \
-    X(MUS_ME_ASA, "MUS-ME-ASA") \
-    X(MUS_ME_BACHI, "MUS-ME-BACHI") \
-    X(MUS_FANFA4, "MUS-FANFA4") \
-    X(MUS_FANFA5, "MUS-FANFA5") \
-    X(MUS_ME_WAZA, "MUS-ME-WAZA") \
+    X(MUS_LEVEL_UP, "MUS-FANFA1") \
+    X(MUS_HEAL, "MUS-ME-ASA") \
+    X(MUS_OBTAIN_BADGE, "MUS-ME-BACHI") \
+    X(MUS_OBTAIN_ITEM, "MUS-FANFA4") \
+    X(MUS_EVOLVED, "MUS-FANFA5") \
+    X(MUS_OBTAIN_TMHM, "MUS-ME-WAZA") \
     X(MUS_RUINSOFALPH, "MUS-RUINSOFALPH") \
     X(MUS_ROUTE30, "MUS-ROUTE30") \
     X(MUS_BUENA, "MUS-BUENA") \
-    X(MUS_ME_SHINKA, "MUS-ME-SHINKA") \
-    X(MUS_SHINKA, "MUS-SHINKA") \
-    X(MUS_ME_WASURE, "MUS-ME-WASURE") \
-    X(MUS_ENCFEMALECLASSIC, "MUS-ENCFEMALECLASSIC") \
-    X(MUS_ENCMALE, "MUS-ENCMALE") \
+    X(MUS_EVOLUTION_INTRO, "MUS-ME-SHINKA") \
+    X(MUS_EVOLUTION, "MUS-SHINKA") \
+    X(MUS_MOVE_DELETED, "MUS-ME-WASURE") \
+    X(MUS_ENCOUNTER_LASS, "MUS-ENCFEMALECLASSIC") \
+    X(MUS_ENCOUNTER_MALE, "MUS-ENCMALE") \
     X(MUS_DARKCAVE, "MUS-DARKCAVE") \
-    X(MUS_MACHI_S3, "MUS-MACHI-S3") \
+    X(MUS_FORTREE, "MUS-MACHI-S3") \
     X(MUS_ELMSLAB, "MUS-ELMSLAB") \
-    X(MUS_B_TOWER, "MUS-B-TOWER") \
-    X(MUS_SWIMEYE, "MUS-SWIMEYE") \
-    X(MUS_DAN03, "MUS-DAN03") \
+    X(MUS_B_TOWER_RS, "MUS-B-TOWER") \
+    X(MUS_ENCOUNTER_SWIMMER, "MUS-SWIMEYE") \
+    X(MUS_CAVE_OF_ORIGIN, "MUS-DAN03") \
     X(MUS_FANFAREEGG, "MUS-FANFAREEGG") \
-    X(MUS_ME_TAMA, "MUS-ME-TAMA") \
-    X(MUS_ME_B_BIG, "MUS-ME-B-BIG") \
-    X(MUS_ME_B_SMALL, "MUS-ME-B-SMALL") \
-    X(MUS_ME_ZANNEN, "MUS-ME-ZANNEN") \
-    X(MUS_BD_TIME, "MUS-BD-TIME") \
-    X(MUS_TEST1, "MUS-TEST1") \
-    X(MUS_TEST2, "MUS-TEST2") \
-    X(MUS_TEST3, "MUS-TEST3") \
-    X(MUS_TEST4, "MUS-TEST4") \
+    X(MUS_AWAKEN_LEGEND, "MUS-ME-TAMA") \
+    X(MUS_SLOTS_JACKPOT, "MUS-ME-B-BIG") \
+    X(MUS_SLOTS_WIN, "MUS-ME-B-SMALL") \
+    X(MUS_TOO_BAD, "MUS-ME-ZANNEN") \
+    X(MUS_ROULETTE, "MUS-BD-TIME") \
+    X(MUS_LINK_CONTEST_P1, "MUS-TEST1") \
+    X(MUS_LINK_CONTEST_P2, "MUS-TEST2") \
+    X(MUS_LINK_CONTEST_P3, "MUS-TEST3") \
+    X(MUS_LINK_CONTEST_P4, "MUS-TEST4") \
     X(MUS_POKEMONMARCH, "MUS-POKEMONMARCH") \
-    X(MUS_GOMACHI0, "MUS-GOMACHI0") \
-    X(MUS_GOLDENROD, "MUS-GOLDENROD") \
-    X(MUS_POKECEN, "MUS-POKECEN") \
-    X(MUS_NEXTROAD, "MUS-NEXTROAD") \
-    X(MUS_GRANROAD, "MUS-GRANROAD") \
+    X(MUS_VERDANTURF, "MUS-GOMACHI0") \
+    X(MUS_GOLDENROD, "MUS-GOTOWN") \
+    X(MUS_POKE_CENTER, "MUS-POKECEN") \
+    X(MUS_ROUTE104, "MUS-NEXTROAD") \
+    X(MUS_ROUTE119, "MUS-GRANROAD") \
     X(MUS_CYCLING, "MUS-CYCLING") \
     X(MUS_PKMNLULLABY, "MUS-FRIENDLY") \
     X(MUS_NEWBARK, "MUS-NEWBARK") \
-    X(MUS_TOZAN, "MUS-TOZAN") \
-    X(MUS_ENCFEMALE, "MUS-ENCFEMALE") \
-    X(MUS_MINAMO, "MUS-MINAMO") \
-    X(MUS_ASHROAD, "MUS-ASHROAD") \
-    X(MUS_MOMENC, "MUS-MOMENC") \
-    X(MUS_DEEPDEEP, "MUS-DEEPDEEP") \
-    X(MUS_KACHI1, "MUS-KACHI1") \
-    X(MUS_TITLE3, "MUS-TITLE3") \
-    X(MUS_DEMO1, "MUS-DEMO1") \
-    X(MUS_RIVALTHEME, "MUS-RIVALENC") \
-    X(MUS_ENCSAGE, "MUS-ENCSAGE") \
-    X(MUS_ENCMALECLASSIC, "MUS-ENCMALECLASSIC") \
+    X(MUS_MT_CHIMNEY, "MUS-TOZAN") \
+    X(MUS_ENCOUNTER_FEMALE, "MUS-ENCFEMALE") \
+    X(MUS_LILYCOVE, "MUS-MINAMO") \
+    X(MUS_ROUTE111, "MUS-ASHROAD") \
+    X(MUS_MOMSTHEME, "MUS-MOMENC") \
+    X(MUS_UNDERWATER, "MUS-DEEPDEEP") \
+    X(MUS_VICTORY_TRAINER, "MUS-KACHI1") \
+    X(MUS_TITLE, "MUS-TITLE3") \
+    X(MUS_INTRO, "MUS-DEMO1") \
+    X(MUS_ENCOUNTER_RIVAL, "MUS-RIVALENC") \
+    X(MUS_ENCOUNTER_SAGE, "MUS-ENCSAGE") \
+    X(MUS_ENCOUNTER_OFFICER, "MUS-ENCMALECLASSIC") \
     X(MUS_MAINMENU, "MUS-MAINMENU") \
-    X(MUS_ENCROCKET, "MUS-ENCROCKET") \
-    X(MUS_FOLLOWME, "MUS-FOLLOWME") \
+    X(MUS_ENCOUNTER_ROCKET, "MUS-ENCROCKET") \
+    X(MUS_FOLLOW_ME, "MUS-FOLLOWME") \
     X(MUS_RIVALEXIT, "MUS-RIVALEXIT") \
-    X(MUS_RAINBOW, "MUS-RAINBOW") \
-    X(MUS_ENCSUSPICIOUS, "MUS-ENCSUSPICIOUS") \
-    X(MUS_KACHI4, "MUS-KACHI4") \
-    X(MUS_ROPEWAY, "MUS-ROPEWAY") \
-    X(MUS_CASINO, "MUS-CASINO") \
+    X(MUS_EVER_GRANDE, "MUS-RAINBOW") \
+    X(MUS_ENCOUNTER_SUSPICIOUS, "MUS-ENCSUSPICIOUS") \
+    X(MUS_VICTORY_AQUA_MAGMA, "MUS-KACHI4") \
+    X(MUS_CABLE_CAR, "MUS-ROPEWAY") \
+    X(MUS_GAME_CORNER, "MUS-CASINO") \
     X(MUS_AZALEA, "MUS-AZALEA") \
-    X(MUS_SAFARI, "MUS-SAFARI") \
-    X(MUS_C_ROAD, "MUS-C-ROAD") \
-    X(MUS_AJITO, "MUS-AJITO") \
-    X(MUS_M_BOAT, "MUS-M-BOAT") \
+    X(MUS_SAFARI_ZONE, "MUS-SAFARI") \
+    X(MUS_VICTORY_ROAD, "MUS-C-ROAD") \
+    X(MUS_AQUA_MAGMA_HIDEOUT, "MUS-AJITO") \
+    X(MUS_SAILING, "MUS-M-BOAT") \
     X(MUS_SPROUTTOWER, "MUS-SPROUTTOWER") \
-    X(MUS_FINECITY, "MUS-FINECITY") \
-    X(MUS_MACHUPI, "MUS-MACHUPI") \
-    X(MUS_OAKTHEME, "MUS-OAKSTHEME") \
-    X(MUS_DENDOU, "MUS-DENDOU") \
-    X(MUS_TONEKUSA, "MUS-TONEKUSA") \
-    X(MUS_MABOROSI, "MUS-MABOROSI") \
-    X(MUS_CON_FAN, "MUS-CON-FAN") \
-    X(MUS_CONTEST0, "MUS-CONTEST0") \
+    X(MUS_SLATEPORT, "MUS-FINECITY") \
+    X(MUS_MT_PYRE_EXTERIOR, "MUS-MACHUPI") \
+    X(MUS_OAKSTHEME, "MUS-OAKSTHEME") \
+    X(MUS_HALL_OF_FAME, "MUS-DENDOU") \
+    X(MUS_FALLARBOR, "MUS-TONEKUSA") \
+    X(MUS_SEALED_CHAMBER, "MUS-MABOROSI") \
+    X(MUS_CONTEST_WINNER, "MUS-CON-FAN") \
+    X(MUS_CONTEST, "MUS-CONTEST0") \
     X(MUS_OAKSLAB, "MUS-OAKSLAB") \
     X(MUS_ROCKETTAKEOVER, "MUS-ROCKETTAKEOVER") \
-    X(MUS_OOAME, "MUS-OOAME") \
-    X(MUS_HIDERI, "MUS-HIDERI") \
-    X(MUS_RUNECITY, "MUS-RUNECITY") \
-    X(MUS_CON_K, "MUS-CON-K") \
-    X(MUS_EIKOU_R, "MUS-EIKOU-R") \
-    X(MUS_KARAKURI, "MUS-KARAKURI") \
-    X(MUS_HUTAGO, "MUS-HUTAGO") \
-    X(MUS_SITENNOU, "MUS-SITENNOU") \
-    X(MUS_ENCSUSPICIOUSCLASSIC, "MUS-ENCSUSPICIOUSCLASSIC") \
-    X(MUS_CONLOBBY, "MUS-CONLOBBY") \
-    X(MUS_ENCKIMONO, "MUS-ENCKIMONO") \
-    X(MUS_DAIGO, "MUS-DAIGO") \
-    X(MUS_THANKFOR, "MUS-THANKFOR") \
+    X(MUS_ABNORMAL_WEATHER, "MUS-OOAME") \
+    X(MUS_WEATHER_GROUDON, "MUS-HIDERI") \
+    X(MUS_SOOTOPOLIS, "MUS-RUNECITY") \
+    X(MUS_CONTEST_RESULTS, "MUS-CON-K") \
+    X(MUS_HALL_OF_FAME_ROOM, "MUS-EIKOU-R") \
+    X(MUS_TRICK_HOUSE, "MUS-KARAKURI") \
+    X(MUS_ENCOUNTER_TWINS, "MUS-HUTAGO") \
+    X(MUS_ENCOUNTER_ELITE_FOUR, "MUS-SITENNOU") \
+    X(MUS_ENCOUNTER_FISHERMAN, "MUS-ENCSUSPICIOUSCLASSIC") \
+    X(MUS_CONTEST_LOBBY, "MUS-CONLOBBY") \
+    X(MUS_ENCOUNTER_KIMONO, "MUS-ENCKIMONO") \
+    X(MUS_ENCOUNTER_CHAMPION, "MUS-DAIGO") \
+    X(MUS_CREDITS, "MUS-THANKFOR") \
     X(MUS_END, "MUS-END") \
     X(MUS_B_FRONTIER, "MUS-B-FRONTIER") \
     X(MUS_B_ARENA, "MUS-B-ARENA") \
-    X(MUS_ME_POINTGET, "MUS-ME-POINTGET") \
-    X(MUS_ME_TORE_EYE, "MUS-ME-TORE-EYE") \
-    X(MUS_PYRAMID, "MUS-PYRAMID") \
-    X(MUS_PYRAMID_TOP, "MUS-PYRAMID-TOP") \
+    X(MUS_OBTAIN_B_POINTS, "MUS-ME-POINTGET") \
+    X(MUS_REGISTER_MATCH_CALL, "MUS-ME-TORE-EYE") \
+    X(MUS_B_PYRAMID, "MUS-PYRAMID") \
+    X(MUS_B_PYRAMID_TOP, "MUS-PYRAMID-TOP") \
     X(MUS_B_PALACE, "MUS-B-PALACE") \
-    X(MUS_REKKUU_KOURIN, "MUS-REKKUU-KOURIN") \
-    X(MUS_SATTOWER, "MUS-SATTOWER") \
-    X(MUS_ME_SYMBOLGET, "MUS-ME-SYMBOLGET") \
+    X(MUS_RAYQUAZA_APPEARS, "MUS-REKKUU-KOURIN") \
+    X(MUS_B_TOWER, "MUS-SATTOWER") \
+    X(MUS_OBTAIN_SYMBOL, "MUS-ME-SYMBOLGET") \
     X(MUS_B_DOME, "MUS-B-DOME") \
-    X(MUS_B_TUBE, "MUS-B-TUBE") \
+    X(MUS_B_PIKE, "MUS-B-TUBE") \
     X(MUS_B_FACTORY, "MUS-B-FACTORY") \
-    X(MUS_VS_REKKU, "MUS-VS-REKKU") \
-    X(MUS_VS_FRONT, "MUS-VS-FRONT") \
+    X(MUS_VS_RAYQUAZA, "MUS-VS-REKKU") \
+    X(MUS_VS_FRONTIER_BRAIN, "MUS-VS-FRONT") \
     X(MUS_VS_MEW, "MUS-VS-MEW") \
-    X(MUS_B_DOME1, "MUS-B-DOME1") \
-    X(MUS_BTLJOHTOWILD, "MUS-BTLJOHTOWILD") \
-    X(MUS_BTLROCKET, "MUS-BTLROCKET") \
-    X(MUS_BTLJOHTOTRN, "MUS-BTLJOHTOTRN") \
-    X(MUS_BTLJOHTOLDR, "MUS-BTLJOHTOLDR") \
-    X(MUS_BATTLE33, "MUS-BATTLE33") \
-    X(MUS_BATTLE36, "MUS-BATTLE36") \
-    X(MUS_BATTLE34, "MUS-BATTLE34") \
-    X(MUS_BTLRIVAL, "MUS-BTLRIVAL") \
-    X(MUS_BATTLE38, "MUS-BATTLE38") \
-    X(MUS_BATTLE30, "MUS-BATTLE30") \
-    X(MUS_RG_ANNAI, "MUS-RG-ANNAI") \
-    X(MUS_RG_SLOT, "MUS-RG-SLOT") \
-    X(MUS_RG_AJITO, "MUS-RG-AJITO") \
+    X(MUS_B_DOME_LOBBY, "MUS-B-DOME1") \
+    X(MUS_VS_JOHTO_WILD, "MUS-BTLJOHTOWILD") \
+    X(MUS_VS_ROCKET, "MUS-BTLROCKET") \
+    X(MUS_VS_JOHTO_TRAINER, "MUS-BTLJOHTOTRN") \
+    X(MUS_VS_JOHTO_LEADER, "MUS-BTLJOHTOLDR") \
+    X(MUS_VS_CHAMPION, "MUS-BATTLE33") \
+    X(MUS_VS_REGI, "MUS-BATTLE36") \
+    X(MUS_VS_KYOGRE_GROUDON, "MUS-BATTLE34") \
+    X(MUS_VS_RIVAL, "MUS-BTLRIVAL") \
+    X(MUS_VS_ELITE_FOUR, "MUS-BATTLE38") \
+    X(MUS_VS_AQUA_MAGMA_LEADER, "MUS-BATTLE30") \
+    X(MUS_RG_FOLLOW_ME, "MUS-RG-ANNAI") \
+    X(MUS_RG_GAME_CORNER, "MUS-RG-SLOT") \
+    X(MUS_RG_ROCKET_HIDEOUT, "MUS-RG-AJITO") \
     X(MUS_RG_GYM, "MUS-RG-GYM") \
-    X(MUS_RG_PURIN, "MUS-RG-PURIN") \
-    X(MUS_RG_DEMO, "MUS-RG-DEMO") \
+    X(MUS_RG_JIGGLYPUFF, "MUS-RG-PURIN") \
+    X(MUS_RG_INTRO_FIGHT, "MUS-RG-DEMO") \
     X(MUS_RG_TITLE, "MUS-RG-TITLE") \
-    X(MUS_RG_GUREN, "MUS-RG-GUREN") \
-    X(MUS_RG_SHION, "MUS-RG-SHION") \
-    X(MUS_RG_KAIHUKU, "MUS-RG-KAIHUKU") \
+    X(MUS_RG_CINNABAR, "MUS-RG-GUREN") \
+    X(MUS_RG_LAVENDER, "MUS-RG-SHION") \
+    X(MUS_RG_HEAL, "MUS-RG-KAIHUKU") \
     X(MUS_RG_CYCLING, "MUS-RG-CYCLING") \
-    X(MUS_RG_ROCKET, "MUS-RG-ROCKET") \
-    X(MUS_RG_SHOUJO, "MUS-RG-SHOUJO") \
-    X(MUS_RG_SHOUNEN, "MUS-RG-SHOUNEN") \
-    X(MUS_RG_DENDOU, "MUS-RG-DENDOU") \
-    X(MUS_RG_T_MORI, "MUS-RG-T-MORI") \
-    X(MUS_RG_OTSUKIMI, "MUS-RG-OTSUKIMI") \
-    X(MUS_RG_POKEYASHI, "MUS-RG-POKEYASHI") \
-    X(MUS_RG_ENDING, "MUS-RG-ENDING") \
-    X(MUS_RG_LOAD01, "MUS-RG-LOAD01") \
-    X(MUS_RG_OPENING, "MUS-RG-OPENING") \
-    X(MUS_RG_LOAD02, "MUS-RG-LOAD02") \
-    X(MUS_RG_LOAD03, "MUS-RG-LOAD03") \
-    X(MUS_RG_CHAMP_R, "MUS-RG-CHAMP-R") \
-    X(MUS_RG_VS_GYM, "MUS-RG-VS-GYM") \
-    X(MUS_RG_VS_TORE, "MUS-RG-VS-TORE") \
-    X(MUS_RG_VS_YASEI, "MUS-RG-VS-YASEI") \
-    X(MUS_RG_VS_LAST, "MUS-RG-VS-LAST") \
-    X(MUS_RG_MASARA, "MUS-RG-MASARA") \
-    X(MUS_RG_KENKYU, "MUS-RG-KENKYU") \
-    X(MUS_RG_OHKIDO, "MUS-RG-OHKIDO") \
-    X(MUS_RG_POKECEN, "MUS-RG-POKECEN") \
-    X(MUS_RG_SANTOAN, "MUS-RG-SANTOAN") \
-    X(MUS_RG_NAMINORI, "MUS-RG-NAMINORI") \
-    X(MUS_RG_P_TOWER, "MUS-RG-P-TOWER") \
-    X(MUS_RG_SHIRUHU, "MUS-RG-SHIRUHU") \
-    X(MUS_RG_HANADA, "MUS-RG-HANADA") \
-    X(MUS_RG_TAMAMUSI, "MUS-RG-TAMAMUSI") \
-    X(MUS_RG_WIN_TRE, "MUS-RG-WIN-TRE") \
-    X(MUS_RG_WIN_YASEI, "MUS-RG-WIN-YASEI") \
-    X(MUS_RG_WIN_GYM, "MUS-RG-WIN-GYM") \
-    X(MUS_RG_KUCHIBA, "MUS-RG-KUCHIBA") \
-    X(MUS_RG_NIBI, "MUS-RG-NIBI") \
-    X(MUS_RG_RIVAL1, "MUS-RG-RIVAL1") \
-    X(MUS_RG_RIVAL2, "MUS-RG-RIVAL2") \
-    X(MUS_RG_FAN2, "MUS-RG-FAN2") \
-    X(MUS_RG_FAN5, "MUS-RG-FAN5") \
-    X(MUS_RG_FAN6, "MUS-RG-FAN6") \
-    X(MUS_ME_RG_PHOTO, "MUS-ME-RG-PHOTO") \
-    X(MUS_RG_TITLEROG, "MUS-RG-TITLEROG") \
-    X(MUS_RG_GET_YASEI, "MUS-RG-GET-YASEI") \
-    X(MUS_RG_SOUSA, "MUS-RG-SOUSA") \
-    X(MUS_RG_SEKAIKAN, "MUS-RG-SEKAIKAN") \
-    X(MUS_RG_SEIBETU, "MUS-RG-SEIBETU") \
-    X(MUS_RG_JUMP, "MUS-RG-JUMP") \
-    X(MUS_RG_UNION, "MUS-RG-UNION") \
-    X(MUS_RG_NETWORK, "MUS-RG-NETWORK") \
-    X(MUS_RG_OKURIMONO, "MUS-RG-OKURIMONO") \
-    X(MUS_RG_KINOMIKUI, "MUS-RG-KINOMIKUI") \
-    X(MUS_RG_NANADUNGEON, "MUS-RG-NANADUNGEON") \
-    X(MUS_RG_OSHIE_TV, "MUS-RG-OSHIE-TV") \
-    X(MUS_RG_NANASHIMA, "MUS-RG-NANASHIMA") \
-    X(MUS_RG_NANAISEKI, "MUS-RG-NANAISEKI") \
-    X(MUS_RG_NANA123, "MUS-RG-NANA123") \
-    X(MUS_RG_NANA45, "MUS-RG-NANA45") \
-    X(MUS_RG_NANA67, "MUS-RG-NANA67") \
-    X(MUS_RG_POKEFUE, "MUS-RG-POKEFUE") \
-    X(MUS_RG_VS_DEO, "MUS-RG-VS-DEO") \
-    X(MUS_RG_VS_MYU2, "MUS-RG-VS-MYU2") \
-    X(MUS_RG_VS_DEN, "MUS-RG-VS-DEN") \
-    X(MUS_RG_EXEYE, "MUS-RG-EXEYE") \
-    X(MUS_RG_DEOEYE, "MUS-RG-DEOEYE") \
-    X(MUS_RG_T_TOWER, "MUS-RG-T-TOWER") \
-    X(MUS_RG_SLOWMASARA, "MUS-RG-SLOWMASARA") \
-    X(MUS_RG_TVNOIZE, "MUS-RG-TVNOIZE") \
+    X(MUS_RG_ENCOUNTER_ROCKET, "MUS-RG-ROCKET") \
+    X(MUS_RG_ENCOUNTER_GIRL, "MUS-RG-SHOUJO") \
+    X(MUS_RG_ENCOUNTER_BOY, "MUS-RG-SHOUNEN") \
+    X(MUS_RG_HALL_OF_FAME, "MUS-RG-DENDOU") \
+    X(MUS_RG_VIRIDIAN_FOREST, "MUS-RG-T-MORI") \
+    X(MUS_RG_MT_MOON, "MUS-RG-OTSUKIMI") \
+    X(MUS_RG_POKE_MANSION, "MUS-RG-POKEYASHI") \
+    X(MUS_RG_CREDITS, "MUS-RG-ENDING") \
+    X(MUS_RG_ROUTE1, "MUS-RG-LOAD01") \
+    X(MUS_RG_ROUTE24, "MUS-RG-OPENING") \
+    X(MUS_RG_ROUTE3, "MUS-RG-LOAD02") \
+    X(MUS_RG_ROUTE11, "MUS-RG-LOAD03") \
+    X(MUS_RG_VICTORY_ROAD, "MUS-RG-CHAMP-R") \
+    X(MUS_RG_VS_GYM_LEADER, "MUS-RG-VS-GYM") \
+    X(MUS_RG_VS_TRAINER, "MUS-RG-VS-TORE") \
+    X(MUS_RG_VS_WILD, "MUS-RG-VS-YASEI") \
+    X(MUS_RG_VS_CHAMPION, "MUS-RG-VS-LAST") \
+    X(MUS_RG_PALLET, "MUS-RG-MASARA") \
+    X(MUS_RG_OAK_LAB, "MUS-RG-KENKYU") \
+    X(MUS_RG_OAK, "MUS-RG-OHKIDO") \
+    X(MUS_RG_POKE_CENTER, "MUS-RG-POKECEN") \
+    X(MUS_RG_SS_ANNE, "MUS-RG-SANTOAN") \
+    X(MUS_RG_SURF, "MUS-RG-NAMINORI") \
+    X(MUS_RG_POKE_TOWER, "MUS-RG-P-TOWER") \
+    X(MUS_RG_SILPH, "MUS-RG-SHIRUHU") \
+    X(MUS_RG_FUCHSIA, "MUS-RG-HANADA") \
+    X(MUS_RG_CELADON, "MUS-RG-TAMAMUSI") \
+    X(MUS_RG_VICTORY_TRAINER, "MUS-RG-WIN-TRE") \
+    X(MUS_RG_VICTORY_WILD, "MUS-RG-WIN-YASEI") \
+    X(MUS_RG_VICTORY_GYM_LEADER, "MUS-RG-WIN-GYM") \
+    X(MUS_RG_VERMILLION, "MUS-RG-KUCHIBA") \
+    X(MUS_RG_PEWTER, "MUS-RG-NIBI") \
+    X(MUS_RG_ENCOUNTER_RIVAL, "MUS-RG-RIVAL1") \
+    X(MUS_RG_RIVAL_EXIT, "MUS-RG-RIVAL2") \
+    X(MUS_RG_DEX_RATING, "MUS-RG-FAN2") \
+    X(MUS_RG_OBTAIN_KEY_ITEM, "MUS-RG-FAN5") \
+    X(MUS_RG_CAUGHT_INTRO, "MUS-RG-FAN6") \
+    X(MUS_RG_PHOTO, "MUS-ME-RG-PHOTO") \
+    X(MUS_RG_GAME_FREAK, "MUS-RG-TITLEROG") \
+    X(MUS_RG_CAUGHT, "MUS-RG-GET-YASEI") \
+    X(MUS_RG_NEW_GAME_INSTRUCT, "MUS-RG-SOUSA") \
+    X(MUS_RG_NEW_GAME_INTRO, "MUS-RG-SEKAIKAN") \
+    X(MUS_RG_NEW_GAME_EXIT, "MUS-RG-SEIBETU") \
+    X(MUS_RG_POKE_JUMP, "MUS-RG-JUMP") \
+    X(MUS_RG_UNION_ROOM, "MUS-RG-UNION") \
+    X(MUS_RG_NET_CENTER, "MUS-RG-NETWORK") \
+    X(MUS_RG_MYSTERY_GIFT, "MUS-RG-OKURIMONO") \
+    X(MUS_RG_BERRY_PICK, "MUS-RG-KINOMIKUI") \
+    X(MUS_RG_SEVII_CAVE, "MUS-RG-NANADUNGEON") \
+    X(MUS_RG_TEACHY_TV_SHOW, "MUS-RG-OSHIE-TV") \
+    X(MUS_RG_SEVII_ROUTE, "MUS-RG-NANASHIMA") \
+    X(MUS_RG_SEVII_DUNGEON, "MUS-RG-NANAISEKI") \
+    X(MUS_RG_SEVII_123, "MUS-RG-NANA123") \
+    X(MUS_RG_SEVII_45, "MUS-RG-NANA45") \
+    X(MUS_RG_SEVII_67, "MUS-RG-NANA67") \
+    X(MUS_RG_POKE_FLUTE, "MUS-RG-POKEFUE") \
+    X(MUS_RG_VS_DEOXYS, "MUS-RG-VS-DEO") \
+    X(MUS_RG_VS_MEWTWO, "MUS-RG-VS-MYU2") \
+    X(MUS_RG_VS_LEGEND, "MUS-RG-VS-DEN") \
+    X(MUS_RG_ENCOUNTER_GYM_LEADER, "MUS-RG-EXEYE") \
+    X(MUS_RG_ENCOUNTER_DEOXYS, "MUS-RG-DEOEYE") \
+    X(MUS_RG_TRAINER_TOWER, "MUS-RG-T-TOWER") \
+    X(MUS_RG_SLOW_PALLET, "MUS-RG-SLOWMASARA") \
+    X(MUS_RG_TEACHY_TV_MENU, "MUS-RG-TVNOIZE") \
     X(PH_TRAP_BLEND, "PH-TRAP-BLEND") \
     X(PH_TRAP_HELD, "PH-TRAP-HELD") \
     X(PH_TRAP_SOLO, "PH-TRAP-SOLO") \
@@ -1278,7 +1278,7 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
 
 #define SOUND_LIST_SE \
 	X(SE_STOP, "STOP") \
-    X(SE_KAIFUKU, "SE-KAIFUKU") \
+    X(SE_USE_ITEM, "SE-KAIFUKU") \
     X(SE_PC_LOGIN, "SE-PC-LOGIN") \
     X(SE_PC_OFF, "SE-PC-OFF") \
     X(SE_PC_ON, "SE-PC-ON") \
@@ -1286,267 +1286,267 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
     X(SE_WIN_OPEN, "SE-WIN-OPEN") \
     X(SE_WALL_HIT, "SE-WALL-HIT") \
     X(SE_DOOR, "SE-DOOR") \
-    X(SE_KAIDAN, "SE-KAIDAN") \
-    X(SE_DANSA, "SE-DANSA") \
-    X(SE_JITENSYA, "SE-JITENSYA") \
-    X(SE_KOUKA_L, "SE-KOUKA-L") \
-    X(SE_KOUKA_M, "SE-KOUKA-M") \
-    X(SE_KOUKA_H, "SE-KOUKA-H") \
-    X(SE_BOWA2, "SE-BOWA2") \
-    X(SE_POKE_DEAD, "SE-POKE-DEAD") \
-    X(SE_NIGERU, "SE-NIGERU") \
-    X(SE_JIDO_DOA, "SE-JIDO-DOA") \
-    X(SE_NAMINORI, "SE-NAMINORI") \
-    X(SE_BAN, "SE-BAN") \
+    X(SE_EXIT, "SE-KAIDAN") \
+    X(SE_LEDGE, "SE-DANSA") \
+    X(SE_BIKE_BELL, "SE-JITENSYA") \
+    X(SE_NOT_EFFECTIVE, "SE-KOUKA-L") \
+    X(SE_EFFECTIVE, "SE-KOUKA-M") \
+    X(SE_SUPER_EFFECTIVE, "SE-KOUKA-H") \
+    X(SE_BALL_OPEN, "SE-BOWA2") \
+    X(SE_FAINT, "SE-POKE-DEAD") \
+    X(SE_FLEE, "SE-NIGERU") \
+    X(SE_SLIDING_DOOR, "SE-JIDO-DOA") \
+    X(SE_SHIP, "SE-NAMINORI") \
+    X(SE_BANG, "SE-BAN") \
     X(SE_PIN, "SE-PIN") \
     X(SE_BOO, "SE-BOO") \
-    X(SE_BOWA, "SE-BOWA") \
-    X(SE_JYUNI, "SE-JYUNI") \
+    X(SE_BALL, "SE-BOWA") \
+    X(SE_CONTEST_PLACE, "SE-JYUNI") \
     X(SE_A, "SE-A") \
     X(SE_I, "SE-I") \
     X(SE_U, "SE-U") \
     X(SE_E, "SE-E") \
     X(SE_O, "SE-O") \
     X(SE_N, "SE-N") \
-    X(SE_SEIKAI, "SE-SEIKAI") \
-    X(SE_HAZURE, "SE-HAZURE") \
+    X(SE_SUCCESS, "SE-SEIKAI") \
+    X(SE_FAILURE, "SE-HAZURE") \
     X(SE_EXP, "SE-EXP") \
-    X(SE_JITE_PYOKO, "SE-JITE-PYOKO") \
-    X(SE_MU_PACHI, "SE-MU-PACHI") \
-    X(SE_TK_KASYA, "SE-TK-KASYA") \
+    X(SE_BIKE_HOP, "SE-JITE-PYOKO") \
+    X(SE_SWITCH, "SE-MU-PACHI") \
+    X(SE_CLICK, "SE-TK-KASYA") \
     X(SE_FU_ZAKU, "SE-FU-ZAKU") \
-    X(SE_FU_ZAKU2, "SE-FU-ZAKU2") \
-    X(SE_FU_ZUZUZU, "SE-FU-ZUZUZU") \
-    X(SE_RU_GASHIN, "SE-RU-GASHIN") \
-    X(SE_RU_GASYAN, "SE-RU-GASYAN") \
-    X(SE_RU_BARI, "SE-RU-BARI") \
-    X(SE_RU_HYUU, "SE-RU-HYUU") \
-    X(SE_KI_GASYAN, "SE-KI-GASYAN") \
-    X(SE_TK_WARPIN, "SE-TK-WARPIN") \
-    X(SE_TK_WARPOUT, "SE-TK-WARPOUT") \
-    X(SE_TU_SAA, "SE-TU-SAA") \
-    X(SE_HI_TURUN, "SE-HI-TURUN") \
-    X(SE_TRACK_MOVE, "SE-TRACK-MOVE") \
-    X(SE_TRACK_STOP, "SE-TRACK-STOP") \
-    X(SE_TRACK_HAIKI, "SE-TRACK-HAIKI") \
-    X(SE_TRACK_DOOR, "SE-TRACK-DOOR") \
-    X(SE_MOTER, "SE-MOTER") \
+    X(SE_CONTEST_CONDITION_LOSE, "SE-FU-ZAKU2") \
+    X(SE_LAVARIDGE_FALL_WARP, "SE-FU-ZUZUZU") \
+    X(SE_ICE_STAIRS, "SE-RU-GASHIN") \
+    X(SE_ICE_BREAK, "SE-RU-GASYAN") \
+    X(SE_ICE_CRACK, "SE-RU-BARI") \
+    X(SE_FALL, "SE-RU-HYUU") \
+    X(SE_UNLOCK, "SE-KI-GASYAN") \
+    X(SE_WARP_IN, "SE-TK-WARPIN") \
+    X(SE_WARP_OUT, "SE-TK-WARPOUT") \
+    X(SE_REPEL, "SE-TU-SAA") \
+    X(SE_ROTATING_GATE, "SE-HI-TURUN") \
+    X(SE_TRUCK_MOVE, "SE-TRACK-MOVE") \
+    X(SE_TRUCK_STOP, "SE-TRACK-STOP") \
+    X(SE_TRUCK_UNLOAD, "SE-TRACK-HAIKI") \
+    X(SE_TRUCK_DOOR, "SE-TRACK-DOOR") \
+    X(SE_BERRY_BLENDER, "SE-MOTER") \
     X(SE_CARD, "SE-CARD") \
     X(SE_SAVE, "SE-SAVE") \
-    X(SE_KON, "SE-KON") \
-    X(SE_KON2, "SE-KON2") \
-    X(SE_KON3, "SE-KON3") \
-    X(SE_KON4, "SE-KON4") \
-    X(SE_SUIKOMU, "SE-SUIKOMU") \
-    X(SE_NAGERU, "SE-NAGERU") \
-    X(SE_TOY_C, "SE-TOY-C") \
-    X(SE_TOY_D, "SE-TOY-D") \
-    X(SE_TOY_E, "SE-TOY-E") \
-    X(SE_TOY_F, "SE-TOY-F") \
-    X(SE_TOY_G, "SE-TOY-G") \
-    X(SE_TOY_A, "SE-TOY-A") \
-    X(SE_TOY_B, "SE-TOY-B") \
-    X(SE_TOY_C1, "SE-TOY-C1") \
-    X(SE_MIZU, "SE-MIZU") \
-    X(SE_HASHI, "SE-HASHI") \
-    X(SE_DAUGI, "SE-DAUGI") \
-    X(SE_PINPON, "SE-PINPON") \
-    X(SE_FUUSEN1, "SE-FUUSEN1") \
-    X(SE_FUUSEN2, "SE-FUUSEN2") \
-    X(SE_FUUSEN3, "SE-FUUSEN3") \
-    X(SE_TOY_KABE, "SE-TOY-KABE") \
-    X(SE_TOY_DANGO, "SE-TOY-DANGO") \
-    X(SE_DOKU, "SE-DOKU") \
-    X(SE_ESUKA, "SE-ESUKA") \
-    X(SE_T_AME, "SE-T-AME") \
-    X(SE_T_AME_E, "SE-T-AME-E") \
-    X(SE_T_OOAME, "SE-T-OOAME") \
-    X(SE_T_OOAME_E, "SE-T-OOAME-E") \
-    X(SE_T_KOAME, "SE-T-KOAME") \
-    X(SE_T_KOAME_E, "SE-T-KOAME-E") \
-    X(SE_T_KAMI, "SE-T-KAMI") \
-    X(SE_T_KAMI2, "SE-T-KAMI2") \
-    X(SE_ELEBETA, "SE-ELEBETA") \
-    X(SE_HINSI, "SE-HINSI") \
-    X(SE_EXPMAX, "SE-EXPMAX") \
-    X(SE_TAMAKORO, "SE-TAMAKORO") \
-    X(SE_TAMAKORO_E, "SE-TAMAKORO-E") \
-    X(SE_BASABASA, "SE-BASABASA") \
-    X(SE_REGI, "SE-REGI") \
-    X(SE_C_GAJI, "SE-C-GAJI") \
-    X(SE_C_MAKU_U, "SE-C-MAKU-U") \
-    X(SE_C_MAKU_D, "SE-C-MAKU-D") \
-    X(SE_C_PASI, "SE-C-PASI") \
-    X(SE_C_SYU, "SE-C-SYU") \
-    X(SE_C_PIKON, "SE-C-PIKON") \
-    X(SE_REAPOKE, "SE-REAPOKE") \
-    X(SE_OP_BASYU, "SE-OP-BASYU") \
-    X(SE_BT_START, "SE-BT-START") \
-    X(SE_DENDOU, "SE-DENDOU") \
-    X(SE_JIHANKI, "SE-JIHANKI") \
-    X(SE_TAMA, "SE-TAMA") \
-    X(SE_Z_SCROLL, "SE-Z-SCROLL") \
-    X(SE_Z_PAGE, "SE-Z-PAGE") \
-    X(SE_PN_ON, "SE-PN-ON") \
-    X(SE_PN_OFF, "SE-PN-OFF") \
-    X(SE_Z_SEARCH, "SE-Z-SEARCH") \
-    X(SE_TAMAGO, "SE-TAMAGO") \
-    X(SE_TB_START, "SE-TB-START") \
-    X(SE_TB_KON, "SE-TB-KON") \
-    X(SE_TB_KARA, "SE-TB-KARA") \
-    X(SE_BIDORO, "SE-BIDORO") \
-    X(SE_W085, "SE-W085") \
-    X(SE_W085B, "SE-W085B") \
-    X(SE_W231, "SE-W231") \
-    X(SE_W171, "SE-W171") \
-    X(SE_W233, "SE-W233") \
-    X(SE_W233B, "SE-W233B") \
-    X(SE_W145, "SE-W145") \
-    X(SE_W145B, "SE-W145B") \
-    X(SE_W145C, "SE-W145C") \
-    X(SE_W240, "SE-W240") \
-    X(SE_W015, "SE-W015") \
-    X(SE_W081, "SE-W081") \
-    X(SE_W081B, "SE-W081B") \
-    X(SE_W088, "SE-W088") \
-    X(SE_W016, "SE-W016") \
-    X(SE_W016B, "SE-W016B") \
-    X(SE_W003, "SE-W003") \
-    X(SE_W104, "SE-W104") \
-    X(SE_W013, "SE-W013") \
-    X(SE_W196, "SE-W196") \
-    X(SE_W086, "SE-W086") \
-    X(SE_W004, "SE-W004") \
-    X(SE_W025, "SE-W025") \
-    X(SE_W025B, "SE-W025B") \
-    X(SE_W152, "SE-W152") \
-    X(SE_W026, "SE-W026") \
-    X(SE_W172, "SE-W172") \
-    X(SE_W172B, "SE-W172B") \
-    X(SE_W053, "SE-W053") \
-    X(SE_W007, "SE-W007") \
-    X(SE_W092, "SE-W092") \
-    X(SE_W221, "SE-W221") \
-    X(SE_W221B, "SE-W221B") \
-    X(SE_W052, "SE-W052") \
-    X(SE_W036, "SE-W036") \
-    X(SE_W059, "SE-W059") \
-    X(SE_W059B, "SE-W059B") \
-    X(SE_W010, "SE-W010") \
-    X(SE_W011, "SE-W011") \
-    X(SE_W017, "SE-W017") \
-    X(SE_W019, "SE-W019") \
-    X(SE_W028, "SE-W028") \
-    X(SE_W013B, "SE-W013B") \
-    X(SE_W044, "SE-W044") \
-    X(SE_W029, "SE-W029") \
-    X(SE_W057, "SE-W057") \
-    X(SE_W056, "SE-W056") \
-    X(SE_W250, "SE-W250") \
-    X(SE_W030, "SE-W030") \
-    X(SE_W039, "SE-W039") \
-    X(SE_W054, "SE-W054") \
-    X(SE_W077, "SE-W077") \
-    X(SE_W020, "SE-W020") \
-    X(SE_W082, "SE-W082") \
-    X(SE_W047, "SE-W047") \
-    X(SE_W195, "SE-W195") \
-    X(SE_W006, "SE-W006") \
-    X(SE_W091, "SE-W091") \
-    X(SE_W146, "SE-W146") \
-    X(SE_W120, "SE-W120") \
-    X(SE_W153, "SE-W153") \
-    X(SE_W071B, "SE-W071B") \
-    X(SE_W071, "SE-W071") \
-    X(SE_W103, "SE-W103") \
-    X(SE_W062, "SE-W062") \
-    X(SE_W062B, "SE-W062B") \
-    X(SE_W048, "SE-W048") \
-    X(SE_W187, "SE-W187") \
-    X(SE_W118, "SE-W118") \
-    X(SE_W155, "SE-W155") \
-    X(SE_W122, "SE-W122") \
-    X(SE_W060, "SE-W060") \
-    X(SE_W185, "SE-W185") \
-    X(SE_W014, "SE-W014") \
-    X(SE_W043, "SE-W043") \
-    X(SE_W207, "SE-W207") \
-    X(SE_W207B, "SE-W207B") \
-    X(SE_W215, "SE-W215") \
-    X(SE_W109, "SE-W109") \
-    X(SE_W173, "SE-W173") \
-    X(SE_W280, "SE-W280") \
-    X(SE_W202, "SE-W202") \
-    X(SE_W060B, "SE-W060B") \
-    X(SE_W076, "SE-W076") \
-    X(SE_W080, "SE-W080") \
-    X(SE_W100, "SE-W100") \
-    X(SE_W107, "SE-W107") \
-    X(SE_W166, "SE-W166") \
-    X(SE_W129, "SE-W129") \
-    X(SE_W115, "SE-W115") \
-    X(SE_W112, "SE-W112") \
-    X(SE_W197, "SE-W197") \
-    X(SE_W199, "SE-W199") \
-    X(SE_W236, "SE-W236") \
-    X(SE_W204, "SE-W204") \
-    X(SE_W268, "SE-W268") \
-    X(SE_W070, "SE-W070") \
-    X(SE_W063, "SE-W063") \
-    X(SE_W127, "SE-W127") \
-    X(SE_W179, "SE-W179") \
-    X(SE_W151, "SE-W151") \
-    X(SE_W201, "SE-W201") \
-    X(SE_W161, "SE-W161") \
-    X(SE_W161B, "SE-W161B") \
-    X(SE_W227, "SE-W227") \
-    X(SE_W227B, "SE-W227B") \
-    X(SE_W226, "SE-W226") \
-    X(SE_W208, "SE-W208") \
-    X(SE_W213, "SE-W213") \
-    X(SE_W213B, "SE-W213B") \
-    X(SE_W234, "SE-W234") \
-    X(SE_W260, "SE-W260") \
-    X(SE_W328, "SE-W328") \
-    X(SE_W320, "SE-W320") \
-    X(SE_W255, "SE-W255") \
-    X(SE_W291, "SE-W291") \
-    X(SE_W089, "SE-W089") \
-    X(SE_W239, "SE-W239") \
-    X(SE_W230, "SE-W230") \
-    X(SE_W281, "SE-W281") \
-    X(SE_W327, "SE-W327") \
-    X(SE_W287, "SE-W287") \
-    X(SE_W257, "SE-W257") \
-    X(SE_W253, "SE-W253") \
-    X(SE_W258, "SE-W258") \
-    X(SE_W322, "SE-W322") \
-    X(SE_W298, "SE-W298") \
-    X(SE_W287B, "SE-W287B") \
-    X(SE_W114, "SE-W114") \
-    X(SE_W063B, "SE-W063B") \
-    X(SE_RG_W_DOOR, "SE-RG-W-DOOR") \
-    X(SE_RG_CARD1, "SE-RG-CARD1") \
-    X(SE_RG_CARD2, "SE-RG-CARD2") \
-    X(SE_RG_CARD3, "SE-RG-CARD3") \
-    X(SE_RG_BAG1, "SE-RG-BAG1") \
-    X(SE_RG_BAG2, "SE-RG-BAG2") \
-    X(SE_RG_GETTING, "SE-RG-GETTING") \
+    X(SE_BALL_BOUNCE_1, "SE-KON") \
+    X(SE_BALL_BOUNCE_2, "SE-KON2") \
+    X(SE_BALL_BOUNCE_3, "SE-KON3") \
+    X(SE_BALL_BOUNCE_4, "SE-KON4") \
+    X(SE_BALL_TRADE, "SE-SUIKOMU") \
+    X(SE_BALL_THROW, "SE-NAGERU") \
+    X(SE_NOTE_C, "SE-TOY-C") \
+    X(SE_NOTE_D, "SE-TOY-D") \
+    X(SE_NOTE_E, "SE-TOY-E") \
+    X(SE_NOTE_F, "SE-TOY-F") \
+    X(SE_NOTE_G, "SE-TOY-G") \
+    X(SE_NOTE_A, "SE-TOY-A") \
+    X(SE_NOTE_B, "SE-TOY-B") \
+    X(SE_NOTE_C_HIGH, "SE-TOY-C1") \
+    X(SE_PUDDLE, "SE-MIZU") \
+    X(SE_BRIDGE_WALK, "SE-HASHI") \
+    X(SE_ITEMFINDER, "SE-DAUGI") \
+    X(SE_DING_DONG, "SE-PINPON") \
+    X(SE_BALLOON_RED, "SE-FUUSEN1") \
+    X(SE_BALLOON_BLUE, "SE-FUUSEN2") \
+    X(SE_BALLOON_YELLOW, "SE-FUUSEN3") \
+    X(SE_BREAKABLE_DOOR, "SE-TOY-KABE") \
+    X(SE_MUD_BALL, "SE-TOY-DANGO") \
+    X(SE_FIELD_POISON, "SE-DOKU") \
+    X(SE_ESCALATOR, "SE-ESUKA") \
+    X(SE_THUNDERSTORM, "SE-T-AME") \
+    X(SE_THUNDERSTORM_STOP, "SE-T-AME-E") \
+    X(SE_DOWNPOUR, "SE-T-OOAME") \
+    X(SE_DOWNPOUR_STOP, "SE-T-OOAME-E") \
+    X(SE_RAIN, "SE-T-KOAME") \
+    X(SE_RAIN_STOP, "SE-T-KOAME-E") \
+    X(SE_THUNDER, "SE-T-KAMI") \
+    X(SE_THUNDER2, "SE-T-KAMI2") \
+    X(SE_ELEVATOR, "SE-ELEBETA") \
+    X(SE_LOW_HEALTH, "SE-HINSI") \
+    X(SE_EXP_MAX, "SE-EXPMAX") \
+    X(SE_ROULETTE_BALL, "SE-TAMAKORO") \
+    X(SE_ROULETTE_BALL2, "SE-TAMAKORO-E") \
+    X(SE_TAILLOW_WING_FLAP, "SE-BASABASA") \
+    X(SE_SHOP, "SE-REGI") \
+    X(SE_CONTEST_HEART, "SE-C-GAJI") \
+    X(SE_CONTEST_CURTAIN_RISE, "SE-C-MAKU-U") \
+    X(SE_CONTEST_CURTAIN_FALL, "SE-C-MAKU-D") \
+    X(SE_CONTEST_ICON_CHANGE, "SE-C-PASI") \
+    X(SE_CONTEST_ICON_CLEAR, "SE-C-SYU") \
+    X(SE_CONTEST_MONS_TURN, "SE-C-PIKON") \
+    X(SE_SHINY, "SE-REAPOKE") \
+    X(SE_INTRO_BLAST, "SE-OP-BASYU") \
+    X(SE_MUGSHOT, "SE-BT-START") \
+    X(SE_APPLAUSE, "SE-DENDOU") \
+    X(SE_VEND, "SE-JIHANKI") \
+    X(SE_ORB, "SE-TAMA") \
+    X(SE_DEX_SCROLL, "SE-Z-SCROLL") \
+    X(SE_DEX_PAGE, "SE-Z-PAGE") \
+    X(SE_POKENAV_ON, "SE-PN-ON") \
+    X(SE_POKENAV_OFF, "SE-PN-OFF") \
+    X(SE_DEX_SEARCH, "SE-Z-SEARCH") \
+    X(SE_EGG_HATCH, "SE-TAMAGO") \
+    X(SE_BALL_TRAY_ENTER, "SE-TB-START") \
+    X(SE_BALL_TRAY_BALL, "SE-TB-KON") \
+    X(SE_BALL_TRAY_EXIT, "SE-TB-KARA") \
+    X(SE_GLASS_FLUTE, "SE-BIDORO") \
+    X(SE_M_THUNDERBOLT, "SE-W085") \
+    X(SE_M_THUNDERBOLT2, "SE-W085B") \
+    X(SE_M_HARDEN, "SE-W231") \
+    X(SE_M_NIGHTMARE, "SE-W171") \
+    X(SE_M_VITAL_THROW, "SE-W233") \
+    X(SE_M_VITAL_THROW2, "SE-W233B") \
+    X(SE_M_BUBBLE, "SE-W145") \
+    X(SE_M_BUBBLE2, "SE-W145B") \
+    X(SE_M_BUBBLE3, "SE-W145C") \
+    X(SE_M_RAIN_DANCE, "SE-W240") \
+    X(SE_M_CUT, "SE-W015") \
+    X(SE_M_STRING_SHOT, "SE-W081") \
+    X(SE_M_STRING_SHOT2, "SE-W081B") \
+    X(SE_M_ROCK_THROW, "SE-W088") \
+    X(SE_M_GUST, "SE-W016") \
+    X(SE_M_GUST2, "SE-W016B") \
+    X(SE_M_DOUBLE_SLAP, "SE-W003") \
+    X(SE_M_DOUBLE_TEAM, "SE-W104") \
+    X(SE_M_RAZOR_WIND, "SE-W013") \
+    X(SE_M_ICY_WIND, "SE-W196") \
+    X(SE_M_THUNDER_WAVE, "SE-W086") \
+    X(SE_M_COMET_PUNCH, "SE-W004") \
+    X(SE_M_MEGA_KICK, "SE-W025") \
+    X(SE_M_MEGA_KICK2, "SE-W025B") \
+    X(SE_M_CRABHAMMER, "SE-W152") \
+    X(SE_M_JUMP_KICK, "SE-W026") \
+    X(SE_M_FLAME_WHEEL, "SE-W172") \
+    X(SE_M_FLAME_WHEEL2, "SE-W172B") \
+    X(SE_M_FLAMETHROWER, "SE-W053") \
+    X(SE_M_FIRE_PUNCH, "SE-W007") \
+    X(SE_M_TOXIC, "SE-W092") \
+    X(SE_M_SACRED_FIRE, "SE-W221") \
+    X(SE_M_SACRED_FIRE2, "SE-W221B") \
+    X(SE_M_EMBER, "SE-W052") \
+    X(SE_M_TAKE_DOWN, "SE-W036") \
+    X(SE_M_BLIZZARD, "SE-W059") \
+    X(SE_M_BLIZZARD2, "SE-W059B") \
+    X(SE_M_SCRATCH, "SE-W010") \
+    X(SE_M_VICEGRIP, "SE-W011") \
+    X(SE_M_WING_ATTACK, "SE-W017") \
+    X(SE_M_FLY, "SE-W019") \
+    X(SE_M_SAND_ATTACK, "SE-W028") \
+    X(SE_M_RAZOR_WIND2, "SE-W013B") \
+    X(SE_M_BITE, "SE-W044") \
+    X(SE_M_HEADBUTT, "SE-W029") \
+    X(SE_M_SURF, "SE-W057") \
+    X(SE_M_HYDRO_PUMP, "SE-W056") \
+    X(SE_M_WHIRLPOOL, "SE-W250") \
+    X(SE_M_HORN_ATTACK, "SE-W030") \
+    X(SE_M_TAIL_WHIP, "SE-W039") \
+    X(SE_M_MIST, "SE-W054") \
+    X(SE_M_POISON_POWDER, "SE-W077") \
+    X(SE_M_BIND, "SE-W020") \
+    X(SE_M_DRAGON_RAGE, "SE-W082") \
+    X(SE_M_SING, "SE-W047") \
+    X(SE_M_PERISH_SONG, "SE-W195") \
+    X(SE_M_PAY_DAY, "SE-W006") \
+    X(SE_M_DIG, "SE-W091") \
+    X(SE_M_DIZZY_PUNCH, "SE-W146") \
+    X(SE_M_SELF_DESTRUCT, "SE-W120") \
+    X(SE_M_EXPLOSION, "SE-W153") \
+    X(SE_M_ABSORB_2, "SE-W071B") \
+    X(SE_M_ABSORB, "SE-W071") \
+    X(SE_M_SCREECH, "SE-W103") \
+    X(SE_M_BUBBLE_BEAM, "SE-W062") \
+    X(SE_M_BUBBLE_BEAM2, "SE-W062B") \
+    X(SE_M_SUPERSONIC, "SE-W048") \
+    X(SE_M_BELLY_DRUM, "SE-W187") \
+    X(SE_M_METRONOME, "SE-W118") \
+    X(SE_M_BONEMERANG, "SE-W155") \
+    X(SE_M_LICK, "SE-W122") \
+    X(SE_M_PSYBEAM, "SE-W060") \
+    X(SE_M_FAINT_ATTACK, "SE-W185") \
+    X(SE_M_SWORDS_DANCE, "SE-W014") \
+    X(SE_M_LEER, "SE-W043") \
+    X(SE_M_SWAGGER, "SE-W207") \
+    X(SE_M_SWAGGER2, "SE-W207B") \
+    X(SE_M_HEAL_BELL, "SE-W215") \
+    X(SE_M_CONFUSE_RAY, "SE-W109") \
+    X(SE_M_SNORE, "SE-W173") \
+    X(SE_M_BRICK_BREAK, "SE-W280") \
+    X(SE_M_GIGA_DRAIN, "SE-W202") \
+    X(SE_M_PSYBEAM2, "SE-W060B") \
+    X(SE_M_SOLAR_BEAM, "SE-W076") \
+    X(SE_M_PETAL_DANCE, "SE-W080") \
+    X(SE_M_TELEPORT, "SE-W100") \
+    X(SE_M_MINIMIZE, "SE-W107") \
+    X(SE_M_SKETCH, "SE-W166") \
+    X(SE_M_SWIFT, "SE-W129") \
+    X(SE_M_REFLECT, "SE-W115") \
+    X(SE_M_BARRIER, "SE-W112") \
+    X(SE_M_DETECT, "SE-W197") \
+    X(SE_M_LOCK_ON, "SE-W199") \
+    X(SE_M_MOONLIGHT, "SE-W236") \
+    X(SE_M_CHARM, "SE-W204") \
+    X(SE_M_CHARGE, "SE-W268") \
+    X(SE_M_STRENGTH, "SE-W070") \
+    X(SE_M_HYPER_BEAM, "SE-W063") \
+    X(SE_M_WATERFALL, "SE-W127") \
+    X(SE_M_REVERSAL, "SE-W179") \
+    X(SE_M_ACID_ARMOR, "SE-W151") \
+    X(SE_M_SANDSTORM, "SE-W201") \
+    X(SE_M_TRI_ATTACK, "SE-W161") \
+    X(SE_M_TRI_ATTACK2, "SE-W161B") \
+    X(SE_M_ENCORE, "SE-W227") \
+    X(SE_M_ENCORE2, "SE-W227B") \
+    X(SE_M_BATON_PASS, "SE-W226") \
+    X(SE_M_MILK_DRINK, "SE-W208") \
+    X(SE_M_ATTRACT, "SE-W213") \
+    X(SE_M_ATTRACT2, "SE-W213B") \
+    X(SE_M_MORNING_SUN, "SE-W234") \
+    X(SE_M_FLATTER, "SE-W260") \
+    X(SE_M_SAND_TOMB, "SE-W328") \
+    X(SE_M_GRASSWHISTLE, "SE-W320") \
+    X(SE_M_SPIT_UP, "SE-W255") \
+    X(SE_M_DIVE, "SE-W291") \
+    X(SE_M_EARTHQUAKE, "SE-W089") \
+    X(SE_M_TWISTER, "SE-W239") \
+    X(SE_M_SWEET_SCENT, "SE-W230") \
+    X(SE_M_YAWN, "SE-W281") \
+    X(SE_M_SKY_UPPERCUT, "SE-W327") \
+    X(SE_M_STAT_INCREASE, "SE-W287") \
+    X(SE_M_HEAT_WAVE, "SE-W257") \
+    X(SE_M_UPROAR, "SE-W253") \
+    X(SE_M_HAIL, "SE-W258") \
+    X(SE_M_COSMIC_POWER, "SE-W322") \
+    X(SE_M_TEETER_DANCE, "SE-W298") \
+    X(SE_M_STAT_DECREASE, "SE-W287B") \
+    X(SE_M_HAZE, "SE-W114") \
+    X(SE_M_HYPER_BEAM2, "SE-W063B") \
+    X(SE_RG_DOOR, "SE-RG-W-DOOR") \
+    X(SE_RG_CARD_FLIP, "SE-RG-CARD1") \
+    X(SE_RG_CARD_FLIPPING, "SE-RG-CARD2") \
+    X(SE_RG_CARD_OPEN, "SE-RG-CARD3") \
+    X(SE_RG_BAG_CURSOR, "SE-RG-BAG1") \
+    X(SE_RG_BAG_POCKET, "SE-RG-BAG2") \
+    X(SE_RG_BALL_CLICK, "SE-RG-GETTING") \
     X(SE_RG_SHOP, "SE-RG-SHOP") \
-    X(SE_RG_KITEKI, "SE-RG-KITEKI") \
-    X(SE_RG_HELP_OP, "SE-RG-HELP-OP") \
-    X(SE_RG_HELP_CL, "SE-RG-HELP-CL") \
-    X(SE_RG_HELP_NG, "SE-RG-HELP-NG") \
-    X(SE_RG_DEOMOV, "SE-RG-DEOMOV") \
-    X(SE_RG_EXCELLENT, "SE-RG-EXCELLENT") \
-    X(SE_RG_NAWAMISS, "SE-RG-NAWAMISS") \
-    X(SE_TOREEYE, "SE-TOREEYE") \
-    X(SE_TOREOFF, "SE-TOREOFF") \
-    X(SE_HANTEI1, "SE-HANTEI1") \
-    X(SE_HANTEI2, "SE-HANTEI2") \
-    X(SE_CURTAIN, "SE-CURTAIN") \
-    X(SE_CURTAIN1, "SE-CURTAIN1") \
-    X(SE_USSOKI, "SE-USSOKI")
+    X(SE_RG_SS_ANNE_HORN, "SE-RG-KITEKI") \
+    X(SE_RG_HELP_OPEN, "SE-RG-HELP-OP") \
+    X(SE_RG_HELP_CLOSE, "SE-RG-HELP-CL") \
+    X(SE_RG_HELP_ERROR, "SE-RG-HELP-NG") \
+    X(SE_RG_DEOXYS_MOVE, "SE-RG-DEOMOV") \
+    X(SE_RG_POKE_JUMP_SUCCESS, "SE-RG-EXCELLENT") \
+    X(SE_RG_POKE_JUMP_FAILURE, "SE-RG-NAWAMISS") \
+    X(SE_POKENAV_CALL, "SE-TOREEYE") \
+    X(SE_POKENAV_HANG_UP, "SE-TOREOFF") \
+    X(SE_ARENA_TIMEUP1, "SE-HANTEI1") \
+    X(SE_ARENA_TIMEUP2, "SE-HANTEI2") \
+    X(SE_PIKE_CURTAIN_CLOSE, "SE-CURTAIN") \
+    X(SE_PIKE_CURTAIN_OPEN, "SE-CURTAIN1") \
+    X(SE_SUDOWOODO_SHAKE, "SE-USSOKI")
 
 // Create BGM list
 #define X(songId, name) static const u8 sBGMName_##songId[] = _(name);

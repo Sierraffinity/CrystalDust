@@ -29,7 +29,7 @@ Std_MsgboxYesNo: @ 8271332
 
 Std_MsgboxGetPoints: @ 827133C
 	message 0x0
-	playfanfare MUS_ME_POINTGET
+	playfanfare MUS_OBTAIN_B_POINTS
 	waitfanfare
 	waitmessage
 	return
@@ -81,7 +81,7 @@ Std_ReceivedItem::
 	message 0x0
 	waitmessage
 	waitfanfare
-	compare VAR_0x8002, MUS_FANFA4
+	compare VAR_0x8002, MUS_OBTAIN_ITEM
 	call_if_eq EventScript_ReceivedItemWaitFanfare
 	putitemaway VAR_0x8000, VAR_0x8001
 	call EventScript_RestorePrevTextColor

@@ -32,13 +32,13 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_IfMyAssumption
 	closemessage
-	playbgm MUS_OAKTHEME, 0
+	playbgm MUS_OAKSTHEME, 0
 	applymovement OBJ_EVENT_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnRight
 	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToPlayer
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_SoYourePlayer
 	textcolor MSG_COLOR_SYS
-	playfanfare MUS_RG_FAN5
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
 	message Route30_MrPokemonsHouse_Text_PlayerReceivedPokedex
 	waitmessage
 	waitfanfare
@@ -50,7 +50,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToDoor
 	waitmovement 0
 	delay 10
-	playse SE_KAIDAN
+	playse SE_EXIT
 	fadedefaultbgm
 	removeobject 2
 	waitse

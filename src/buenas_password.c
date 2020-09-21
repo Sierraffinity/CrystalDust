@@ -122,7 +122,7 @@ void BuenasPasswordMultichoice(void)
     gTasks[taskId].tIndex = password & 0xFF;
     gTasks[taskId].tListMenuWindowId = AddWindow(&passwordMenuWindow);
     DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tListMenuWindowId, FALSE, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 
     gMultiuseListMenuTemplate = sPasswordListMenuItemsTemplate;
     gMultiuseListMenuTemplate.windowId = gTasks[taskId].tListMenuWindowId;
@@ -161,7 +161,7 @@ static void PasswordMenu_Exit(u8 taskId, s32 chosenIndex)
     DestroyListMenuTask(tListMenuTaskId, NULL, NULL);
     ClearStdWindowAndFrameToTransparent(tListMenuWindowId, FALSE);
     ClearWindowTilemap(tListMenuWindowId);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     RemoveWindow(tListMenuWindowId);
     EnableBothScriptContexts();
     DestroyTask(taskId);

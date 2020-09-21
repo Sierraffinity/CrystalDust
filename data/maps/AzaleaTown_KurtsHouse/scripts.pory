@@ -90,7 +90,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
                "Old KURT is on his way!")
         closemessage
         setflag(FLAG_HIDE_AZALEA_TOWN_SLOWPOKE_WELL_GUARD)
-        playse(SE_NIGERU)
+        playse(SE_FLEE)
     
         if (var(VAR_FACING) == DIR_NORTH)
         {
@@ -105,7 +105,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
             waitmovement(0)
         }
         
-        playse(SE_KAIDAN)
+        playse(SE_EXIT)
         removeobject(KURT)
         waitse
     }

@@ -112,7 +112,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                    "when I saw you.")
             
             textcolor(MSG_COLOR_SYS)
-            playfanfare(MUS_FANFA4)
+            playfanfare(MUS_OBTAIN_ITEM)
             message("{PLAYER} received the\n"
                     "RUNNING SHOES from the AIDE.")
             waitmessage
@@ -145,7 +145,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                     waitmovement(0)
             }
 
-	        playse(SE_KAIDAN)
+	        playse(SE_EXIT)
             removeobject(ELMS_AIDE)
             waitse
             clearflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE)

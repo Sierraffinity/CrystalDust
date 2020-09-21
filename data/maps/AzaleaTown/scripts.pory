@@ -57,7 +57,7 @@ script AzaleaTown_EventScript_RivalTrigger_All {
         waitmovement(0)
     }
 
-    playbgm(MUS_RIVALTHEME, 0)
+    playbgm(MUS_ENCOUNTER_RIVAL, 0)
 	savebgm(MUS_RIVALEXIT)
     msgbox("…Tell me something.\p"
            "Is it true that TEAM ROCKET has\n"
@@ -107,7 +107,7 @@ script AzaleaTown_EventScript_RivalTrigger_All {
         waitmovement(0)
     }
 
-    playse(SE_KAIDAN)
+    playse(SE_EXIT)
     removeobject(OBJ_RIVAL)
     waitse
     savebgm(MUS_DUMMY)

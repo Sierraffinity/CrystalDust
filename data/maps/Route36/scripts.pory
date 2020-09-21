@@ -116,7 +116,7 @@ script Route36_EventScript_RockSmashGuy {
 script Route36_EventScript_Sudowoodo {
 	lock
 	waitse
-	playse(SE_USSOKI)
+	playse(SE_SUDOWOODO_SHAKE)
 	applymovement(SUDOWOODO, Route36_Movement_Sudowoodo)
 	waitmovement(0)
 	release

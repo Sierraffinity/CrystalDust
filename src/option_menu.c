@@ -146,7 +146,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
    },
 };
 
-static const u16 sUnknown_0855C604[] = INCBIN_U16("graphics/misc/option_menu_text.gbapal");
+static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/misc/option_menu_text.gbapal");
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -269,7 +269,7 @@ void CB2_InitOptionMenu(void)
         break;
     case 5:
         LoadPalette(sOptionMenuPalette, 0x10, 0x20);
-        LoadPalette(stdpal_get(2), 0xF0, 0x20);
+        LoadPalette(GetTextWindowPalette(2), 0xF0, 0x20);
         break;
     case 6:
         LoadThinWindowBorderGfx(0, 0x1B3, 0x30);
@@ -378,7 +378,7 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
     u16* current;
     s16 *data = gTasks[taskId].data;
 
-    if (JOY_REPT(DPAD_RIGHT))
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         current = &data[data[TD_MENUSELECTION] + TD_TEXTSPEED];
         if (*current == (sOptionMenuItemCounts[data[TD_MENUSELECTION]] - 1))
@@ -391,7 +391,7 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
         else
             return OPTION_MENU_ACTION_CHANGE_TEXT;
     }
-    else if (JOY_REPT(DPAD_LEFT))
+    else if (JOY_REPEAT(DPAD_LEFT))
     {
         current = &data[data[TD_MENUSELECTION] + TD_TEXTSPEED];
         if (*current == 0)
@@ -404,7 +404,7 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
         else
             return OPTION_MENU_ACTION_CHANGE_TEXT;
     }
-    else if (JOY_REPT(DPAD_UP))
+    else if (JOY_REPEAT(DPAD_UP))
     {
         if (data[TD_MENUSELECTION] > 0)
             data[TD_MENUSELECTION]--;
@@ -412,7 +412,7 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
             data[TD_MENUSELECTION] = MENUITEM_CANCEL;
         return OPTION_MENU_ACTION_UPDATE_DISPLAY;        
     }
-    else if (JOY_REPT(DPAD_DOWN))
+    else if (JOY_REPEAT(DPAD_DOWN))
     {
         if (data[TD_MENUSELECTION] < MENUITEM_CANCEL)
             data[TD_MENUSELECTION]++;
@@ -421,12 +421,12 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
         HighlightOptionMenuItem(data[TD_MENUSELECTION]);
         return OPTION_MENU_ACTION_UPDATE_DISPLAY;
     }
-    else if (gMain.newKeys & A_BUTTON)
+    else if (JOY_NEW(A_BUTTON))
     {
         if (data[TD_MENUSELECTION] == MENUITEM_CANCEL)
             return OPTION_MENU_ACTION_EXIT;
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         return OPTION_MENU_ACTION_EXIT;
     }

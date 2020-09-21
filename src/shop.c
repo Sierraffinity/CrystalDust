@@ -432,7 +432,7 @@ static void CB2_BuyMenu(void)
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
-    do_scheduled_bg_tilemap_copies_to_vram();
+    DoScheduledBgTilemapCopiesToVram();
     UpdatePaletteFade();
 }
 
@@ -457,15 +457,16 @@ static void CB2_InitBuyMenu(void)
         SetVBlankHBlankCallbacksToNull();
         CpuFastFill(0, (void *)OAM, OAM_SIZE);
         ScanlineEffect_Stop();
-        reset_temp_tile_data_buffers();
+        ResetTempTileDataBuffers();
         FreeAllSpritePalettes();
         ResetPaletteFade();
         ResetSpriteData();
         ResetTasks();
-        clear_scheduled_bg_copies_to_vram();
+        ClearScheduledBgCopiesToVram();
 
         if (!InitShopData() || !BuyMenuBuildListMenuTemplate())
             return;
+
         BuyMenuInitBgs();
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 0x20, 0x20);
         FillBgTilemapBufferRect_Palette0(1, 0, 0, 0, 0x20, 0x20);
@@ -476,7 +477,7 @@ static void CB2_InitBuyMenu(void)
         gMain.state++;
         break;
     case 1:
-        if (!free_temp_tile_data_buffers_if_possible())
+        if (!FreeTempTileDataBuffersIfPossible())
             gMain.state++;
         break;
     default:
@@ -754,10 +755,10 @@ static void BuyMenuInitBgs(void)
 
 static void BuyMenuDecompressBgGraphics(void)
 {
-    void* pal;
+    void *pal;
     
-    decompress_and_copy_tile_data_to_vram(1, gBuyMenuFrame_Gfx, 0x480, 0x3DC, 0);
-    if ((gMartInfo.martType) != MART_TYPE_TMHM)
+    DecompressAndCopyTileDataToVram(1, gBuyMenuFrame_Gfx, 0x480, 0x3DC, 0);
+    if (gMartInfo.martType != MART_TYPE_TMHM)
         LZDecompressWram(gBuyMenuFrame_Tilemap, gShopDataPtr->tilemapBuffers[0]);
     else
         LZDecompressWram(gBuyMenuFrame_TmHmTilemap, gShopDataPtr->tilemapBuffers[0]);
@@ -783,7 +784,7 @@ static void sub_809B10C(bool32 a0)
     else
         SetBgTilemapPalette(1, 0, 0xC, 0x1E, 8, v);
     
-    schedule_bg_copy_tilemap_to_vram(1);
+    ScheduleBgCopyTilemapToVram(1);
 }
 
 static void BuyMenuInitWindows(u8 martType)
@@ -818,7 +819,7 @@ static void BuyMenuPrint(u8 windowId, u8 font, const u8 *text, u8 x, u8 y, u8 le
 static void BuyMenuDisplayMessage(u8 taskId, const u8 *text, TaskFunc callback)
 {
     DisplayMessageAndContinueTask(taskId, 2, 19, 14, 1, GetPlayerTextSpeedDelay(), text, callback);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void BuyMenuQuantityBoxNormalBorder(u8 windowId, bool8 copyToVram)
@@ -837,10 +838,10 @@ static void BuyMenuDrawGraphics(void)
     BuyMenuCopyMenuBgToBg1TilemapBuffer();
     //AddMoneyLabelObject(19, 11);
     PrintMoneyAmountInMoneyBoxWithBorder(0, 10, 15, GetMoney(&gSaveBlock1Ptr->money));
-    schedule_bg_copy_tilemap_to_vram(0);
-    schedule_bg_copy_tilemap_to_vram(1);
-    schedule_bg_copy_tilemap_to_vram(2);
-    schedule_bg_copy_tilemap_to_vram(3);
+    ScheduleBgCopyTilemapToVram(0);
+    ScheduleBgCopyTilemapToVram(1);
+    ScheduleBgCopyTilemapToVram(2);
+    ScheduleBgCopyTilemapToVram(3);
 }
 
 static void BuyMenuDrawMapGraphics(void)
@@ -922,13 +923,14 @@ static void BuyMenuCollectObjectEventData(void)
     z = PlayerGetZCoord();
 
     for (y = 0; y < OBJECT_EVENTS_COUNT; y++)
-        gShopDataPtr->viewportObjects[y][OBJ_EVENT_ID] = 16;
+        gShopDataPtr->viewportObjects[y][OBJ_EVENT_ID] = OBJECT_EVENTS_COUNT;
     
     for (y = 0; y < 5; y++)
     {
         for (x = 0; x < 7; x++)
         {
             u8 objEventId = GetObjectEventIdByXYZ(facingX - 3 + x, facingY - 2 + y, z);
+
             if (objEventId != OBJECT_EVENTS_COUNT)
             {
                 gShopDataPtr->viewportObjects[num][OBJ_EVENT_ID] = objEventId;
@@ -963,7 +965,7 @@ static void BuyMenuDrawObjectEvents(void)
     u8 spriteId;
     const struct ObjectEventGraphicsInfo *graphicsInfo;
 
-    for (i = 0; i < OBJECT_EVENTS_COUNT; i++) // max objects?
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         if (gShopDataPtr->viewportObjects[i][OBJ_EVENT_ID] == OBJECT_EVENTS_COUNT)
             continue;
@@ -1080,7 +1082,7 @@ static void Task_BuyHowManyDialogueInit(u8 taskId)
     tItemCount = 1;
     BuyMenuQuantityBoxNormalBorder(3, 0);
     BuyMenuPrintItemQuantityAndPrice(taskId);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 
     maxQuantity = GetMoney(&gSaveBlock1Ptr->money) / gShopDataPtr->totalCost;
 
@@ -1110,7 +1112,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
     }
     else
     {
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
             BuyMenuRemoveScrollIndicatorArrows();
@@ -1124,7 +1126,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
             ConvertIntToDecimalStringN(gStringVar3, gShopDataPtr->totalCost, STR_CONV_MODE_LEFT_ALIGN, 8);
             BuyMenuDisplayMessage(taskId, gText_Var1AndYouWantedVar2, BuyMenuConfirmPurchase);
         }
-        else if (gMain.newKeys & B_BUTTON)
+        else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
             BuyMenuRemoveScrollIndicatorArrows();
@@ -1201,7 +1203,7 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         PlaySE(SE_SELECT);
         if (tItemId == ITEM_POKE_BALL && tItemCount > 9 && AddBagItem(ITEM_PREMIER_BALL, 1) == TRUE)
@@ -1217,7 +1219,7 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
 
 static void Task_ReturnToItemListAfterDecorationPurchase(u8 taskId)
 {
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         PlaySE(SE_SELECT);
         BuyMenuReturnToItemList(taskId);
@@ -1236,7 +1238,7 @@ static void BuyMenuReturnToItemList(u8 taskId)
     if (gMartInfo.martType == MART_TYPE_TMHM)
         PutWindowTilemap(6);
 
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     BuyMenuAddScrollIndicatorArrows();
     gTasks[taskId].func = Task_BuyMenu;
 }

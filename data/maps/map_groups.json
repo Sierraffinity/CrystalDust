@@ -87,13 +87,13 @@
     "Route132",
     "Route133",
     "Route134",
-    "Underwater1",
-    "Underwater2",
-    "Underwater3",
-    "Underwater4",
-    "Underwater5",
-    "Underwater6",
-    "Underwater7"
+    "Underwater_Route124",
+    "Underwater_Route126",
+    "Underwater_Route127",
+    "Underwater_Route128",
+    "Underwater_Route129",
+    "Underwater_Route105",
+    "Underwater_Route125"
   ],
   "gMapGroup1": [
     "NewBarkTown_PlayersHouse_1F",

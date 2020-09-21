@@ -122,7 +122,7 @@ static void MCB2_InitRegionMapRegisters(void)
     InitBgsFromTemplates(0, sFieldRegionMapBgTemplates, ARRAY_COUNT(sFieldRegionMapBgTemplates));
     InitWindows(sFieldRegionMapWindowTemplates);
     DeactivateAllTextPrinters();
-    clear_scheduled_bg_copies_to_vram();
+    ClearScheduledBgCopiesToVram();
     SetMainCallback2(MCB2_FieldUpdateRegionMap);
     SetVBlankCallback(VBCB_FieldUpdateRegionMap);
 }
@@ -140,7 +140,7 @@ static void MCB2_FieldUpdateRegionMap(void)
     AnimateSprites();
     BuildOamBuffer();
     UpdatePaletteFade();
-    do_scheduled_bg_tilemap_copies_to_vram();
+    DoScheduledBgTilemapCopiesToVram();
 }
 
 static void FieldUpdateRegionMap(void)
@@ -189,7 +189,7 @@ static void FieldUpdateRegionMap(void)
             switch (DoRegionMapInputCallback())
             {
                 case MAP_INPUT_LANDMARK_ENTER:
-                    m4aSongNumStart(SE_Z_SCROLL);
+                    m4aSongNumStart(SE_DEX_SCROLL);
                     // fallthrough
                 case MAP_INPUT_LANDMARK:
                 case MAP_INPUT_MOVE_END:
@@ -198,7 +198,7 @@ static void FieldUpdateRegionMap(void)
                     break;
                 case MAP_INPUT_ON_BUTTON:
                     sFieldRegionMapHandler->regionMap.onButton = TRUE;
-                    m4aSongNumStart(SE_W255);
+                    m4aSongNumStart(SE_M_SPIT_UP);
                     ShowHelpBar();
                     break;
                 case MAP_INPUT_A_BUTTON:
@@ -206,7 +206,7 @@ static void FieldUpdateRegionMap(void)
                     {
                         break;
                     }
-                    m4aSongNumStart(SE_W063B);
+                    m4aSongNumStart(SE_M_HYPER_BEAM2);
                 case MAP_INPUT_B_BUTTON:
                     sFieldRegionMapHandler->state++;
                     break;

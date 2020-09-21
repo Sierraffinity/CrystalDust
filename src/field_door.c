@@ -5,7 +5,6 @@
 #include "fieldmap.h"
 #include "metatile_behavior.h"
 #include "task.h"
-#include "constants/flags.h"
 #include "constants/maps.h"
 #include "constants/songs.h"
 #include "constants/metatile_labels.h"
@@ -520,11 +519,11 @@ u32 GetDoorSoundEffect(u32 x, u32 y)
     int sound = GetDoorSoundType(sDoorAnimGraphicsTable, x, y);
     
     if (sound == DOOR_SOUND_NORMAL)
-        return SE_RG_W_DOOR;
+        return SE_RG_DOOR;
     else if (sound == DOOR_SOUND_SLIDING)
-        return SE_JIDO_DOA;
+        return SE_SLIDING_DOOR;
     else if (sound == DOOR_SOUND_ARENA)
-        return SE_TU_SAA;
+        return SE_REPEL;
     else
         return SE_DOOR;
 }

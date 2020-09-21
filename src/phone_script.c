@@ -405,7 +405,7 @@ bool8 PhoneScrCmd_gettime(struct ScriptContext *ctx)
 
 static bool8 WaitForAorBPress(void)
 {
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
         return TRUE;
     else
         return FALSE;
