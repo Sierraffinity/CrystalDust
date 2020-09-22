@@ -1944,7 +1944,7 @@ static const u8 sHoldEffectToType[][2] =
 const struct SpriteTemplate gUnknown_08329D98[MAX_BATTLERS_COUNT] =
 {
     {   // B_POSITION_PLAYER_LEFT
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -1953,7 +1953,7 @@ const struct SpriteTemplate gUnknown_08329D98[MAX_BATTLERS_COUNT] =
         .callback = sub_8039BB4,
     },
     {   // B_POSITION_OPPONENT_LEFT
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACA8,
         .anims = NULL,
@@ -1962,7 +1962,7 @@ const struct SpriteTemplate gUnknown_08329D98[MAX_BATTLERS_COUNT] =
         .callback = SpriteCb_WildMon,
     },
     {   // B_POSITION_PLAYER_RIGHT
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -1971,7 +1971,7 @@ const struct SpriteTemplate gUnknown_08329D98[MAX_BATTLERS_COUNT] =
         .callback = sub_8039BB4,
     },
     {   // B_POSITION_OPPONENT_RIGHT
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACA8,
         .anims = NULL,
@@ -1984,7 +1984,7 @@ const struct SpriteTemplate gUnknown_08329D98[MAX_BATTLERS_COUNT] =
 static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
 {
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -1993,7 +1993,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .callback = sub_8039BB4,
     },
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -2002,7 +2002,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .callback = sub_8039BB4,
     },
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -2011,7 +2011,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .callback = sub_8039BB4,
     },
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -2020,7 +2020,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .callback = sub_8039BB4,
     },
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -2029,7 +2029,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .callback = sub_8039BB4,
     },
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -2038,7 +2038,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .callback = sub_8039BB4,
     },
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -2047,7 +2047,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .callback = sub_8039BB4,
     },
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -2056,7 +2056,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .callback = sub_8039BB4,
     },
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -2065,7 +2065,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .callback = sub_8039BB4,
     },
     {
-        .tileTag = 0xFFFF,
+        .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
@@ -2150,7 +2150,7 @@ static const struct OamData sOamData_8329F20 =
 
 static const struct SpriteTemplate gUnknown_08329F28 =
 {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = 0xFFFF,
     .oam = &sOamData_8329F20,
     .anims = gDummySpriteAnimTable,

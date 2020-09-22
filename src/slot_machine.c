@@ -5540,7 +5540,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelBackground =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimePikachu =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_REEL_TIME_PIKACHU, 
     .oam = &sOam_64x64, 
     .anims = sAnims_ReelTimePikachu, 
@@ -5551,7 +5551,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimePikachu =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimeMachineAntennae =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_REEL_TIME_MISC, 
     .oam = &sOam_8x16, 
     .anims = sAnims_SingleFrame,
@@ -5562,7 +5562,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimeMachineAntennae =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimeMachine =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_REEL_TIME_MACHINE, 
     .oam = &sOam_8x16, 
     .anims = sAnims_SingleFrame, 
@@ -5573,7 +5573,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimeMachine =
 
 static const struct SpriteTemplate sSpriteTemplate_BrokenReelTimeMachine =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_REEL_TIME_MACHINE, 
     .oam = &sOam_8x16, 
     .anims = sAnims_SingleFrame, 
@@ -5584,7 +5584,7 @@ static const struct SpriteTemplate sSpriteTemplate_BrokenReelTimeMachine =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimeNumbers =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_MISC, 
     .oam = &sOam_16x16, 
     .anims = sAnims_ReelTimeNumbers, 
@@ -5595,7 +5595,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimeNumbers =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimeShadow =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_MISC, 
     .oam = &sOam_16x16, 
     .anims = sAnims_SingleFrame, 
@@ -5606,7 +5606,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimeShadow =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimeNumberGap =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_MISC, 
     .oam = &sOam_16x16, 
     .anims = sAnims_SingleFrame, 
@@ -5617,7 +5617,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimeNumberGap =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimeBolt =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_MISC, 
     .oam = &sOam_16x32, 
     .anims = sAnims_ReelTimeBolt, 
@@ -5628,7 +5628,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimeBolt =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimePikachuAura =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_PIKA_AURA, 
     .oam = &sOam_32x64, 
     .anims = sAnims_SingleFrame, 
@@ -5639,7 +5639,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimePikachuAura =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimeExplosion =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_EXPLOSION, 
     .oam = &sOam_32x32, 
     .anims = sAnims_ReelTimeExplosion, 
@@ -5650,7 +5650,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimeExplosion =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimeDuck =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_MISC, 
     .oam = &sOam_8x8, 
     .anims = sAnims_ReelTimeDuck, 
@@ -5661,7 +5661,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimeDuck =
 
 static const struct SpriteTemplate sSpriteTemplate_ReelTimeSmoke =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_MISC, 
     .oam = &sOam_16x16, 
     .anims = sAnims_SingleFrame, 
@@ -5672,7 +5672,7 @@ static const struct SpriteTemplate sSpriteTemplate_ReelTimeSmoke =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Reel =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_8x8, 
     .anims = sAnims_SingleFrame, 
@@ -5683,7 +5683,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Reel =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Time =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_8x8, 
     .anims = sAnims_SingleFrame, 
@@ -5694,7 +5694,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Time =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Insert =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_8x8, 
     .anims = sAnims_SingleFrame, 
@@ -5716,7 +5716,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Stop =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Win =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_64x32, 
     .anims = sAnims_SingleFrame, 
@@ -5727,7 +5727,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Win =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Lose =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_64x32, 
     .anims = sAnims_SingleFrame, 
@@ -5771,7 +5771,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Reg =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_AButton =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_32x32, 
     .anims = sAnims_DigitalDisplay_AButton, 
@@ -5782,7 +5782,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_AButton =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Smoke =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_8x8, 
     .anims = sAnims_SingleFrame, 
@@ -5793,7 +5793,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Smoke =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Number =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_16x16, 
     .anims = sAnims_DigitalDisplay_Number, 
@@ -5804,7 +5804,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Number =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Pokeball =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_8x8, 
     .anims = sAnims_DigitalDisplay_Pokeball, 
@@ -5815,7 +5815,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_Pokeball =
 
 static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_DPad =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_DIG_DISPLAY, 
     .oam = &sOam_8x8, 
     .anims = sAnims_DigitalDisplay_DPad, 
@@ -5826,7 +5826,7 @@ static const struct SpriteTemplate sSpriteTemplate_DigitalDisplay_DPad =
 
 static const struct SpriteTemplate sSpriteTemplate_PikaPowerBolt =
 {
-    .tileTag = 0xFFFF, 
+    .tileTag = SPRITE_INVALID_TAG, 
     .paletteTag = PALTAG_MISC, 
     .oam = &sOam_8x8, 
     .anims = sAnims_SingleFrame, 

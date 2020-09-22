@@ -92,7 +92,7 @@ void BagDestroyPocketSwitchArrowPair(void);
 void TaskCloseBagMenu_2(u8);
 static void Task_AnimateWin0v(u8 taskId);
 u8 AddItemMessageWindow(u8);
-void BagMenu_RemoveBagItemMessageindow(u8);
+void BagMenu_RemoveBagItemMessageWindow(u8);
 void set_callback3_to_bag(u8);
 static u8 BagMenu_AddWindow(u8, u8);
 static u8 GetSwitchBagPocketDirection(void);
@@ -340,13 +340,13 @@ static const struct YesNoFuncTable sYesNoSellItemFunctions = {BagMenu_ConfirmSel
 
 static const struct ScrollArrowsTemplate sBagScrollArrowsTemplate = {
     .firstArrowType = SCROLL_ARROW_LEFT,
-    .firstX = 28,
-    .firstY = 16,
+    .firstX = 8,
+    .firstY = 72,
     .secondArrowType = SCROLL_ARROW_RIGHT,
-    .secondX = 100,
-    .secondY = 16,
-    .fullyUpThreshold = -1,
-    .fullyDownThreshold = -1,
+    .secondX = 72,
+    .secondY = 72,
+    .fullyUpThreshold = 0,
+    .fullyDownThreshold = 2,
     .tileTag = 111,
     .palTag = 111,
     .palNum = 0,
@@ -550,11 +550,11 @@ const struct WindowTemplate sContextMenuWindowTemplates[] =
 // .text
 // The items pocket has the highest capacity, + 1 for CLOSE BAG
 struct ListBuffer1 {
-    struct ListMenuItem subBuffers[BAG_ITEMS_COUNT + 1];
+    struct ListMenuItem subBuffers[MAX_POCKET_ITEMS];
 };
 
 struct ListBuffer2 {
-    s8 name[BAG_ITEMS_COUNT + 1][14 + ITEM_NAME_LENGTH];
+    s8 name[MAX_POCKET_ITEMS][ITEM_NAME_LENGTH + 5];
 };
 
 struct TempWallyStruct {
@@ -640,8 +640,6 @@ void QuizLadyOpenBagMenu(void)
 
 void GoToBagMenu(u8 location, u8 pocketId, void ( *postExitMenuMainCallback2)())
 {
-    u8 temp;
-
     NullBagMenuBufferPtrs();
     gBagMenu = AllocZeroed(sizeof(struct BagMenuStruct));
     if (gBagMenu == NULL)
@@ -656,15 +654,15 @@ void GoToBagMenu(u8 location, u8 pocketId, void ( *postExitMenuMainCallback2)())
             gBagPositionStruct.bagCallback = postExitMenuMainCallback2;
         if (pocketId < POCKETS_COUNT)
             gBagPositionStruct.pocket = pocketId;
-        temp = gBagPositionStruct.location - (POCKETS_COUNT - 1);
-        if (temp <= 1)
+        if (gBagPositionStruct.location == ITEMMENULOCATION_BERRY_TREE ||
+            gBagPositionStruct.location == ITEMMENULOCATION_BERRY_BLENDER_CRUSH)
             gBagMenu->pocketSwitchDisabled = TRUE;
         gBagMenu->exitCallback = NULL;
         gBagMenu->itemOriginalLocation = 0xFF;
         gBagMenu->itemIconSlot = 0;
         gBagMenu->inhibitItemDescriptionPrint = FALSE;
-        gBagMenu->pocketScrollArrowsTask = -1;
-        gBagMenu->pocketSwitchArrowsTask = -1;
+        gBagMenu->pocketScrollArrowsTask = 0xFF;
+        gBagMenu->pocketSwitchArrowsTask = 0xFF;
         SetMainCallback2(CB2_Bag);
     }
 }
@@ -1292,7 +1290,7 @@ void BagMenu_InitListsMenu(u8 taskId)
     s16* data = gTasks[taskId].data;
     u16* scrollPos = &gBagPositionStruct.scrollPosition[gBagPositionStruct.pocket];
     u16* cursorPos = &gBagPositionStruct.cursorPosition[gBagPositionStruct.pocket];
-    BagMenu_RemoveBagItemMessageindow(5);
+    BagMenu_RemoveBagItemMessageWindow(5);
     DestroyListMenuTask(data[0], scrollPos, cursorPos);
     UpdatePocketItemList(gBagPositionStruct.pocket);
     SetInitialScrollAndCursorPositions(gBagPositionStruct.pocket);
@@ -1742,9 +1740,11 @@ void OpenContextMenu(u8 unused)
                         memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_KeyItemsPocket, sizeof(sContextMenuItems_KeyItemsPocket));
                         if (gSaveBlock1Ptr->registeredItem == gSpecialVar_ItemId)
                             gBagMenu->contextMenuItemsBuffer[1] = ITEMMENUACTION_DESELECT;
-                        if (gSpecialVar_ItemId == ITEM_MACH_BIKE || gSpecialVar_ItemId == ITEM_ACRO_BIKE)
+                        if (gSpecialVar_ItemId == ITEM_MACH_BIKE ||
+                            gSpecialVar_ItemId == ITEM_ACRO_BIKE ||
+                            gSpecialVar_ItemId == ITEM_BICYCLE)
                         {
-                            if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+                            if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
                                 gBagMenu->contextMenuItemsBuffer[0] = ITEMMENUACTION_WALK;
                         }
                         break;
@@ -2240,7 +2240,7 @@ void BagMenu_CancelSell(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
     BagMenu_RemoveWindow(2);
-    BagMenu_RemoveBagItemMessageindow(5);
+    BagMenu_RemoveBagItemMessageWindow(5);
     PutWindowTilemap(2);
     PutWindowTilemap(0);
     PutWindowTilemap(1);
@@ -2282,7 +2282,7 @@ static void Task_SellHowManyDialogueHandleInput(u8 taskId)
         PlaySE(SE_SELECT);
         BagMenu_RemoveWindow(0);
         BagMenu_RemoveWindow(2);
-        BagMenu_RemoveBagItemMessageindow(5);
+        BagMenu_RemoveBagItemMessageWindow(5);
         PutWindowTilemap(2);
         PutWindowTilemap(0);
         PutWindowTilemap(1);
@@ -2664,7 +2664,7 @@ u8 AddItemMessageWindow(u8 which)
     return *ptr;
 }
 
-void BagMenu_RemoveBagItemMessageindow(u8 which)
+void BagMenu_RemoveBagItemMessageWindow(u8 which)
 {
     u8 *ptr = &gBagMenu->windowPointers[which];
     if (*ptr != 0xFF)

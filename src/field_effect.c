@@ -483,7 +483,7 @@ static const union AnimCmd *const sAnimTable_HofMonitor[] =
 
 static const struct SpriteTemplate sSpriteTemplate_PokeballGlow =
 {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = FLDEFF_PAL_TAG_POKEBALL_GLOW,
     .oam = &sOam_8x8,
     .anims = gSpriteAnimTable_855C2F8,
@@ -494,7 +494,7 @@ static const struct SpriteTemplate sSpriteTemplate_PokeballGlow =
 
 static const struct SpriteTemplate sSpriteTemplate_PokecenterMonitor =
 {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = FLDEFF_PAL_TAG_POKEBALL_GLOW,
     .oam = &sOam_16x16,
     .anims = gSpriteAnimTable_855C2F8,
@@ -505,7 +505,7 @@ static const struct SpriteTemplate sSpriteTemplate_PokecenterMonitor =
 
 static const struct SpriteTemplate sSpriteTemplate_HofMonitorBig =
 {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = FLDEFF_PAL_TAG_HOF_MONITOR,
     .oam = &sOam_16x16,
     .anims = sAnimTable_HofMonitor,
@@ -516,7 +516,7 @@ static const struct SpriteTemplate sSpriteTemplate_HofMonitorBig =
 
 static const struct SpriteTemplate sSpriteTemplate_HofMonitorSmall =
 {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = FLDEFF_PAL_TAG_HOF_MONITOR,
     .oam = &sOam_32x16,
     .anims = sAnimTable_HofMonitor,
@@ -3784,7 +3784,7 @@ static const union AnimCmd *const sAnims_DeoxysRockFragment[] = {
 };
 
 static const struct SpriteTemplate sSpriteTemplate_DeoxysRockFragment = {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = 4378,
     .oam = &sOam_8x8,
     .anims = sAnims_DeoxysRockFragment,

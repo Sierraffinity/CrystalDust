@@ -126,7 +126,7 @@ const struct SpritePalette gSpritePalette_CutGrass = {gFieldEffectPal_CutGrass, 
 
 static const struct SpriteTemplate sSpriteTemplate_CutGrass =
 {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = FLDEFF_PAL_TAG_CUT_GRASS,
     .oam = &sOamData_CutGrass,
     .anims = sSpriteAnimTable_CutGrass,

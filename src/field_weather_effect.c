@@ -878,7 +878,7 @@ static const union AnimCmd *const sSnowflakeAnimCmds[] =
 
 static const struct SpriteTemplate sSnowflakeSpriteTemplate =
 {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = 0x1200,
     .oam = &sSnowflakeSpriteOamData,
     .anims = sSnowflakeAnimCmds,
