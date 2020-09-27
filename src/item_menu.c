@@ -554,7 +554,7 @@ struct ListBuffer1 {
 };
 
 struct ListBuffer2 {
-    s8 name[MAX_POCKET_ITEMS][ITEM_NAME_LENGTH + 5];
+    s8 name[MAX_POCKET_ITEMS][ITEM_NAME_LENGTH + 14];
 };
 
 struct TempWallyStruct {
@@ -2611,7 +2611,7 @@ void SetupBagMenu_Textboxes(void)
         PutWindowTilemap(i);
     }
     ScheduleBgCopyTilemapToVram(0);
-    memset(gBagMenu->windowPointers, 0xFF, 10);
+    memset(gBagMenu->windowPointers, 0xFF, sizeof(gBagMenu->windowPointers));
 }
 
 void BagMenu_Print(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIndex)
