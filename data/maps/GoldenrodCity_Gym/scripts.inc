@@ -58,6 +58,7 @@ GoldenrodCity_Gym_EventScript_WhitneyCries::
 	waitmovement 0
 	textcolor MSG_COLOR_RED
 	msgbox GoldenrodCity_Gym_EventScript_WhitneyCries_Text_0
+	closemessage
 	applymovement 3, GoldenrodCity_Gym_Movement_BridgetReturns
 	waitmovement 0
 	setvar VAR_GOLDENROD_GYM_STATE, 2
@@ -174,9 +175,10 @@ GoldenrodCity_Gym_EventScript_WhitneyCries_Text_0:
 	.string "She always cries when she loses.$"
 
 GoldenrodCity_Gym_EventScript_GiveAttract_Text_0:
-	.string "The PLAINBADGE lets your POKéMON use\n"
-	.string "STRENGTH outside of battle.\p"
-	.string "It also boosts your POKéMON's SPEED.\p"
+	.string "The PLAINBADGE lets your POKéMON\n"
+	.string "use STRENGTH outside of battle.\p"
+	.string "It also boosts your POKéMON's\n"
+	.string "SPEED.\p"
 	.string "Oh, you can have this too!$"
 
 GoldenrodCity_Gym_EventScript_GiveAttract_Text_1:

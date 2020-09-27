@@ -82,6 +82,7 @@ script GoldenrodCity_Gym_EventScript_WhitneyCries {
            "It's okay.\n"
            "She'll stop soon.\l"
            "She always cries when she loses.")
+    closemessage
     applymovement(OBJ_EVENT_ID_BRIDGET, GoldenrodCity_Gym_Movement_BridgetReturns)
     waitmovement(0)
     setvar(VAR_GOLDENROD_GYM_STATE, 2)
@@ -101,9 +102,10 @@ movement GoldenrodCity_Gym_Movement_BridgetReturns
 }
 
 script GoldenrodCity_Gym_EventScript_GiveAttract {
-    msgbox("The PLAINBADGE lets your POKéMON use\n"
-           "STRENGTH outside of battle.\p"
-           "It also boosts your POKéMON's SPEED.\p"
+    msgbox("The PLAINBADGE lets your POKéMON\n"
+           "use STRENGTH outside of battle.\p"
+           "It also boosts your POKéMON's\n"
+           "SPEED.\p"
            "Oh, you can have this too!")
     checkitemspace(ITEM_TM45, 1)
     if (!var(VAR_RESULT))
