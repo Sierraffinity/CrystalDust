@@ -1014,6 +1014,7 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
 }
 
 #define SOUND_LIST_BGM \
+    X(MUS_STOP, "STOP") \
     X(MUS_LITTLEROOT_TEST, "MUS-LITTLEROOT-TEST") \
     X(MUS_GSC_ROUTE, "MUS-GSC-ROUTE") \
     X(MUS_CAUGHT, "MUS-CAUGHT") \
@@ -1276,7 +1277,7 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
     X(PH_NURSE_SOLO, "PH-NURSE-SOLO")
 
 #define SOUND_LIST_SE \
-    X(MUS_DUMMY, "MUS-DUMMY") \
+    X(SE_STOP, "STOP") \
     X(SE_USE_ITEM, "SE-USE-ITEM") \
     X(SE_PC_LOGIN, "SE-PC-LOGIN") \
     X(SE_PC_OFF, "SE-PC-OFF") \

@@ -801,6 +801,72 @@ text GoldenrodCity_Gym_Text_SamanthaPostBattle {
 	"any type…"
 }
 
+text GoldenrodCity_Underground_Text_EricIntro {
+	"I got booted out of the GAME\n"
+	"CORNER.\p"
+	"I was trying to cheat using my\n"
+	"POKéMON…"
+}
+
+text GoldenrodCity_Underground_Text_EricDefeated {
+	"…Grumble…"
+}
+
+text GoldenrodCity_Underground_Text_EricPostBattle {
+	"I guess I have to do things fair and\n"
+	"square…"
+}
+
+text GoldenrodCity_Underground_Text_TeruIntro {
+	"Do you consider type alignments in\n"
+	"battle?\p"
+	"If you know your type advantages,\n"
+	"you'll do better in battle."
+}
+
+text GoldenrodCity_Underground_Text_TeruDefeated {
+	"Ow, ow, ow!"
+}
+
+text GoldenrodCity_Underground_Text_TeruPostBattle {
+	"I know my POKéMON type alignments.\n"
+	"But I only use one type of POKéMON."
+}
+
+text GoldenrodCity_Underground_Text_IsaacIntro {
+	"My POKéMON just got a haircut!\n"
+	"I'll show you how strong it is!"
+}
+
+text GoldenrodCity_Underground_Text_IsaacDefeated {
+	"Aiyeeee!"
+}
+
+text GoldenrodCity_Underground_Text_IsaacPostBattle {
+	"Your POKéMON will like you more if\n"
+	"you give them haircuts."
+}
+
+text GoldenrodCity_Underground_Text_DonaldIntro {
+	"I think you have some rare POKéMON\n"
+	"with you.\p"
+	"Let me see them!"
+}
+
+text GoldenrodCity_Underground_Text_DonaldDefeated {
+	"Gaah! I lost!\n"
+	"That makes me mad!"
+}
+
+text GoldenrodCity_Underground_Text_DonaldPostBattle {
+	"Are you making a POKéDEX?\n"
+	"Here's a hot tip.\p"
+	"The HIKER on ROUTE 33, ANTHONY, is a\n"
+	"good guy.\p"
+	"He'll phone you if he sees any rare\n"
+	"POKéMON."
+}
+
 raw`
 Route34_Text_ElliotIntro: @ 8296327
 	.string "Which do you prefer, fishing in the\n"

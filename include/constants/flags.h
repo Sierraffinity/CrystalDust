@@ -1068,8 +1068,8 @@
 #define FLAG_ITEM_ILEX_FOREST_ETHER                                 0x405
 #define FLAG_ITEM_SLOWPOKE_WELL_B1F_SUPER_POTION                    0x406
 #define FLAG_ITEM_ROUTE_34_NUGGET                                   0x407
-#define FLAG_ITEM_ROUTE_123_CALCIUM                                 0x408
-#define FLAG_ITEM_ROUTE_123_RARE_CANDY                              0x409 // Unused Flag, leftover from R/S. In Emerald this is a hidden item and uses a different flag
+#define FLAG_ITEM_GOLDENROD_CITY_UNDERGROUND_COIN_CASE              0x408
+#define FLAG_ITEM_ROUTE_123_RARE_CANDY                              0x409
 #define FLAG_ITEM_ROUTE_127_ZINC                                    0x40A
 #define FLAG_ITEM_ROUTE_127_CARBOS                                  0x40B
 #define FLAG_ITEM_ROUTE_132_RARE_CANDY                              0x40C
@@ -1533,8 +1533,8 @@
 #define FLAG_DAILY_BUG_CATCHING_CONTEST             (DAILY_FLAGS_START + 0x23)
 #define FLAG_DAILY_KURT_MAKING_BALLS                (DAILY_FLAGS_START + 0x24)
 #define FLAG_DAILY_PLAYED_BUENAS_PASSWORD           (DAILY_FLAGS_START + 0x25)
-#define FLAG_UNUSED_0x926                           (DAILY_FLAGS_START + 0x26)  // Unused Flag
-#define FLAG_UNUSED_0x927                           (DAILY_FLAGS_START + 0x27)  // Unused Flag
+#define FLAG_DAILY_GOLDENROD_UNDERGROUND_BARGAINS   (DAILY_FLAGS_START + 0x26)
+#define FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT    (DAILY_FLAGS_START + 0x27)  // Unused Flag
 #define FLAG_UNUSED_0x928                           (DAILY_FLAGS_START + 0x28)  // Unused Flag
 #define FLAG_UNUSED_0x929                           (DAILY_FLAGS_START + 0x29)  // Unused Flag
 #define FLAG_DAILY_PICKED_LOTO_TICKET               (DAILY_FLAGS_START + 0x2A)

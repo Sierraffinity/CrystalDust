@@ -207,7 +207,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging {
            "When I announce my findings, I'm sure\n"
            "we'll delve a bit deeper into the\l"
            "many mysteries of POKéMON.\p"
-           "You can count on it!$")
+           "You can count on it!")
     closemessage
     delay(20)
     playse(SE_SUCCESS)
@@ -251,7 +251,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging {
            "You'll be that POKéMON's first\n"
            "partner, {PLAYER}!\p"
            "Go on, then.\n"
-           "Pick one!$")
+           "Pick one!")
     closemessage
     setvar(VAR_ELM_LAB_STATE, 1)
     releaseall
@@ -280,7 +280,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo {
     textcolor(MSG_COLOR_BLUE)
     turnobject(OBJ_EVENT_ID_ELM, DIR_SOUTH)
     msgbox("ELM: Wait!\n"
-           "Where are you going?$")
+           "Where are you going?")
     closemessage
     applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerComeBack)
     waitmovement(0)
@@ -319,7 +319,7 @@ script NewBarkTown_EventScript_PokeBallMain {
     if (flag(FLAG_SYS_POKEMON_GET))
     {
         msgbox("It contains a POKéMON caught by\n"
-               "PROF. ELM.$")
+               "PROF. ELM.")
     }
     else
     {
@@ -413,8 +413,6 @@ script NewBarkTown_EventScript_PokeBallMain {
                    "so you can't miss it.\p"
                    "But just in case, here's my number.\n"
                    "Call me if anything comes up!")
-            closemessage
-            delay(20)
             setflag(FLAG_PHONE_CARD_ELM)
             playfanfare(MUS_REGISTER_MATCH_CALL)
             call(EventScript_RestorePrevTextColor)
@@ -825,7 +823,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Shelf4 {
     signmsg
     msgbox("Travel Tip 4:\n"
            "Check your POKéMON moves.\l"
-           "Press the A Button to switch moves.$", MSGBOX_SIGN)
+           "Press the A Button to switch moves.", MSGBOX_SIGN)
     normalmsg
     releaseall
 }

@@ -425,7 +425,7 @@ Route109_EventScript_RickyRematch:: @ 81EEAE4
 	end
 
 Route109_EventScript_Lola:: @ 81EEAFB
-	trainerbattle_single TRAINER_LOLA_1, Route109_Text_LolaIntro, Route109_Text_LolaDefeated, Route109_EventScript_LolaRegisterMatchCallAfterBattle
+	trainerbattle_single TRAINER_DONALD, Route109_Text_LolaIntro, Route109_Text_LolaDefeated, Route109_EventScript_LolaRegisterMatchCallAfterBattle
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route109_EventScript_LolaRematch
@@ -437,12 +437,12 @@ Route109_EventScript_LolaRegisterMatchCallAfterBattle:: @ 81EEB27
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route109_Text_LolaRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_LOLA_1
+	register_matchcall TRAINER_DONALD
 	release
 	end
 
 Route109_EventScript_LolaRematch:: @ 81EEB46
-	trainerbattle_rematch TRAINER_LOLA_1, Route109_Text_LolaRematchIntro, Route109_Text_LolaRematchDefeated
+	trainerbattle_rematch TRAINER_DONALD, Route109_Text_LolaRematchIntro, Route109_Text_LolaRematchDefeated
 	msgbox Route109_Text_LolaRematchPostBattle, MSGBOX_AUTOCLOSE
 	end
 

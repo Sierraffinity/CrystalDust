@@ -55,10 +55,10 @@
 #define TRAINER_BRIDGET                      51
 #define TRAINER_VICTORIA                     52
 #define TRAINER_SAMANTHA                     53
-#define TRAINER_GABBY_AND_TY_4               54
-#define TRAINER_GABBY_AND_TY_5               55
-#define TRAINER_GABBY_AND_TY_6               56
-#define TRAINER_LOLA_1                       57
+#define TRAINER_ERIC                         54
+#define TRAINER_TERU                         55
+#define TRAINER_ISAAC                        56
+#define TRAINER_DONALD                       57
 #define TRAINER_AUSTINA                      58
 #define TRAINER_GWEN                         59
 #define TRAINER_LOLA_2                       60
@@ -225,7 +225,7 @@
 #define TRAINER_ETHAN_4                     221
 #define TRAINER_ETHAN_5                     222
 #define TRAINER_BRENT                       223
-#define TRAINER_DONALD                      224
+#define TRAINER_DONALD_OLD                      224
 #define TRAINER_TAYLOR                      225
 #define TRAINER_JEFFREY_1                   226
 #define TRAINER_DEREK                       227
@@ -633,7 +633,7 @@
 #define TRAINER_LUCAS_1                     629
 #define TRAINER_ALAN                        630
 #define TRAINER_CLARK                       631
-#define TRAINER_ERIC                        632
+#define TRAINER_ERIC_OLD                        632
 #define TRAINER_LUCAS_2                     633
 #define TRAINER_MIKE_1                      634
 #define TRAINER_MIKE_2                      635

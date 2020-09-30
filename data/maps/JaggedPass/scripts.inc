@@ -99,7 +99,7 @@ JaggedPass_EventScript_GuardDefeated:: @ 8230766
 	end
 
 JaggedPass_EventScript_Eric:: @ 8230785
-	trainerbattle_single TRAINER_ERIC, JaggedPass_Text_EricIntro, JaggedPass_Text_EricDefeat
+	trainerbattle_single TRAINER_ERIC_OLD, JaggedPass_Text_EricIntro, JaggedPass_Text_EricDefeat
 	msgbox JaggedPass_Text_EricPostBattle, MSGBOX_AUTOCLOSE
 	end
 

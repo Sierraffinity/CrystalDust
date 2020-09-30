@@ -2,7 +2,7 @@
   "id": "MAP_GOLDENROD_CITY_UNDERGROUND_NORTH_ENTRANCE",
   "name": "GoldenrodCity_Underground_NorthEntrance",
   "layout": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_NORTH_ENTRANCE",
-  "music": "MUS_GOLDENROD",
+  "music": "MUS_ILEX_FOREST",
   "region_map_section": "MAPSEC_GOLDENROD_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -18,92 +18,40 @@
   "object_events": [
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_KURT_LYING_DOWN",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "in_connection": false,
-      "x": 2,
-      "y": 6,
+      "x": 3,
+      "y": 9,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_Underground_NorthEntrance_EventScript_Employee",
-      "flag": "0"
-    },
-    {
-      "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_KURT_LYING_DOWN",
-      "in_connection": false,
-      "x": 15,
-      "y": 5,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 2,
-      "movement_range_y": 1,
-      "trainer_type": "0",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_Underground_NorthEntrance_EventScript_StairGuard",
-      "flag": "0"
-    },
-    {
-      "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
-      "in_connection": false,
-      "x": 5,
-      "y": 3,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "0",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_Underground_NorthEntrance_EventScript_Greeter",
+      "script": "GoldenrodCity_Underground_NorthEntrance_EventScript_ScaredWoman",
       "flag": "0"
     }
   ],
   "warp_events": [
     {
-      "x": 5,
-      "y": 8,
+      "x": 6,
+      "y": 10,
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY",
-      "dest_warp_id": 5
+      "dest_warp_id": 12
     },
     {
-      "x": 6,
-      "y": 8,
+      "x": 7,
+      "y": 6,
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY",
       "dest_warp_id": 6
-    },
-    {
-      "x": 14,
-      "y": 1,
-      "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_SOUTH_ENTRANCE",
-      "dest_warp_id": 0
     }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-    {
-      "type": "sign",
-      "x": 3,
-      "y": 2,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "GoldenrodCity_Underground_NorthEntrance_EventScript_ProductsDisplay"
-    },
-    {
-      "type": "sign",
-      "x": 8,
-      "y": 2,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "GoldenrodCity_Underground_NorthEntrance_EventScript_RocksMetalDisplay"
-    }
+
   ]
 }

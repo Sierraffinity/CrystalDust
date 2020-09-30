@@ -345,7 +345,7 @@ Route119_EventScript_Brent:: @ 81F4786
 	end
 
 Route119_EventScript_Donald:: @ 81F479D
-	trainerbattle_single TRAINER_DONALD, Route119_Text_DonaldIntro, Route119_Text_DonaldDefeat
+	trainerbattle_single TRAINER_DONALD_OLD, Route119_Text_DonaldIntro, Route119_Text_DonaldDefeat
 	msgbox Route119_Text_DonaldPostBattle, MSGBOX_AUTOCLOSE
 	end
 

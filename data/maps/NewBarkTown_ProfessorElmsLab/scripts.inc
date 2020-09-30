@@ -314,8 +314,6 @@ NewBarkTown_EventScript_PokeBallMain_16:
 	delay 20
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_EventScript_PokeBallMain_Text_7
-	closemessage
-	delay 20
 	setflag FLAG_PHONE_CARD_ELM
 	playfanfare MUS_REGISTER_MATCH_CALL
 	call EventScript_RestorePrevTextColor

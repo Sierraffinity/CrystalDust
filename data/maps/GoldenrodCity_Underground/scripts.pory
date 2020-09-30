@@ -1,0 +1,103 @@
+mapscripts GoldenrodCity_Underground_MapScripts {}
+
+script GoldenrodCity_Underground_EventScript_BargainMerchant {
+	lock
+	faceplayer
+	gettime
+	if (var(VAR_0x8002) == TIME_MORNING &&
+		var(VAR_0x8003) == DAY_MONDAY)
+	{
+		msgbox("We're not open today.")
+	}
+	elif (flag(FLAG_DAILY_GOLDENROD_UNDERGROUND_BARGAINS))
+	{
+		msgbox("Sorry, I'm closing up shop.\n"
+			   "Come back another time.")
+	}
+	else
+	{
+		msgbox("Hiya!\n"
+			   "Care to see some bargains?\p"
+			   "I sell rare items that nobody else\n"
+			   "carries--but only one of each item.")
+		// TODO: mart interface
+		msgbox("Come by again sometime.")
+	}
+}
+
+script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
+	gettime
+	if (var(VAR_0x8003) == DAY_TUESDAY ||
+		var(VAR_0x8003) == DAY_THURSDAY ||
+		var(VAR_0x8003) == DAY_SATURDAY)
+	{
+		if (flag(FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT))
+		{
+			msgbox("I do only one haircut a day.\n"
+				   "I'm done for today.")
+		}
+		else
+		{
+			showmoneybox(0, 0, FALSE)
+			msgbox("Welcome!\n"
+				   "I run the POKéMON SALON!\p"
+				   "I'm the old and better of the two\n"
+				   "HAIRCUT BROTHERS.\p"
+				   "I can make your POKéMON beautiful\n"
+				   "for just ¥500.\p"
+				   "Would you like me to do that?", MSGBOX_YESNO)
+			if (var(VAR_RESULT) == YES)
+			{
+				checkmoney(500, FALSE)
+				if (var(VAR_RESULT) == TRUE)
+				{
+					msgbox("Which POKéMON should I work on?")
+					special(ChoosePartyMon)
+					waitstate
+					if (var(VAR_0x8004) != 0xFF)
+            		{
+						removemoney(500, FALSE)
+						showmoneybox(0, 0, FALSE)
+                    	playse(SE_RG_SHOP)
+						msgbox("Okay!\n"
+							   "Watch it become beautiful!")
+						fadescreen(FADE_TO_BLACK)
+						playfanfare(MUS_HEAL)
+						waitfanfare
+						fadescreen(FADE_FROM_BLACK)
+						msgbox("There!\n"
+							   "All done!")
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		msgbox("We're not open today.")
+	}
+}
+
+script GoldenrodCity_Underground_EventScript_Eric {
+    trainerbattle_single(TRAINER_ERIC, GoldenrodCity_Underground_Text_EricIntro, GoldenrodCity_Underground_Text_EricDefeated)
+	msgbox(GoldenrodCity_Underground_Text_EricPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script GoldenrodCity_Underground_EventScript_Teru {
+    trainerbattle_single(TRAINER_TERU, GoldenrodCity_Underground_Text_TeruIntro, GoldenrodCity_Underground_Text_TeruDefeated)
+	msgbox(GoldenrodCity_Underground_Text_TeruPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script GoldenrodCity_Underground_EventScript_Isaac {
+    trainerbattle_single(TRAINER_ISAAC, GoldenrodCity_Underground_Text_IsaacIntro, GoldenrodCity_Underground_Text_IsaacDefeated)
+	msgbox(GoldenrodCity_Underground_Text_IsaacPostBattle, MSGBOX_DEFAULT)
+	release
+}
+
+script GoldenrodCity_Underground_EventScript_Donald {
+    trainerbattle_single(TRAINER_DONALD, GoldenrodCity_Underground_Text_DonaldIntro, GoldenrodCity_Underground_Text_DonaldDefeated)
+	msgbox(GoldenrodCity_Underground_Text_DonaldPostBattle, MSGBOX_DEFAULT)
+	release
+}

@@ -342,14 +342,14 @@
       "x": 10,
       "y": 6,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_NORTH_ENTRANCE",
       "dest_warp_id": 0
     },
     {
       "x": 11,
       "y": 32,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_SOUTH_ENTRANCE",
       "dest_warp_id": 0
     }
   ],

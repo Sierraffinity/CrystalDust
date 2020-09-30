@@ -110,6 +110,10 @@ Route34_EventScript_ItemNugget::
 	finditem ITEM_NUGGET
 	end
 
+GoldenrodCity_Undeground_EventScript_ItemCoinCase::
+	finditem ITEM_COIN_CASE
+	end
+
 Route36_EventScript_ItemStarPiece:: @ 8290D4D
 	finditem ITEM_STAR_PIECE
 	end

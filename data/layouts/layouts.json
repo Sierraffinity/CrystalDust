@@ -3220,12 +3220,12 @@
     {
       "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND",
       "name": "GoldenrodCity_Underground_Layout",
-      "width": 19,
-      "height": 9,
+      "width": 24,
+      "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Facility",
+      "secondary_tileset": "gTileset_Gatehouse",
       "border_filepath": "data/layouts/GoldenrodCity_Underground/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodCity_Underground/map.bin"
     },
