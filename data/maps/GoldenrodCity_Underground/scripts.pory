@@ -1,11 +1,67 @@
-mapscripts GoldenrodCity_Underground_MapScripts {}
+mapscripts GoldenrodCity_Underground_MapScripts {
+	MAP_SCRIPT_ON_LOAD {
+		if (!flag(FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED))
+		{
+			setmetatile(24, 9, METATILE_Underground_Door_Closed, TRUE)
+		}
+	}
+	MAP_SCRIPT_ON_TRANSITION {
+		gettime
+		switch (var(VAR_0x8003))
+		{
+		default:
+			// DAY_SUNDAY
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER)
+			clearflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER)
+			clearflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN)
+		case DAY_MONDAY:
+			if (var(VAR_0x8002) != TIME_MORNING)
+			{
+				setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN)
+			}
+			else
+			{
+				clearflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN)
+			}
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN)
+		case DAY_TUESDAY:
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN)
+			clearflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN)
+		case DAY_WEDNESDAY:
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER)
+			clearflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN)
+		case DAY_THURSDAY:
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN)
+			clearflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN)
+		case DAY_FRIDAY:
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER)
+			clearflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN)
+		case DAY_SATURDAY:
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN)
+			clearflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER)
+			setflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER)
+			clearflag(FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN)
+		}
+	}
+}
 
 script GoldenrodCity_Underground_EventScript_BargainMerchant {
 	lock
 	faceplayer
 	gettime
-	if (var(VAR_0x8002) == TIME_MORNING &&
-		var(VAR_0x8003) == DAY_MONDAY)
+	if (var(VAR_0x8002) != TIME_MORNING ||
+		var(VAR_0x8003) != DAY_MONDAY)
 	{
 		msgbox("We're not open today.")
 	}
@@ -62,13 +118,27 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
 						msgbox("Okay!\n"
 							   "Watch it become beautiful!")
 						fadescreen(FADE_TO_BLACK)
+						special(OlderHaircutBrother)
 						playfanfare(MUS_HEAL)
 						waitfanfare
 						fadescreen(FADE_FROM_BLACK)
 						msgbox("There!\n"
 							   "All done!")
+						call(GoldenrodCity_Underground_EventScript_Haircut_Result)
+					}
+					else
+					{
+						call(GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected)
 					}
 				}
+				else
+				{
+					msgbox("You'll need more money than that.")
+				}
+			}
+			else
+			{
+				call(GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected)
 			}
 		}
 	}
@@ -76,6 +146,100 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
 	{
 		msgbox("We're not open today.")
 	}
+	release
+}
+
+script GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected {
+	msgbox("Is that right?\n"
+		   "That's a shame!")
+}
+
+script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother {
+	gettime
+	if (var(VAR_0x8003) == DAY_SUNDAY ||
+		var(VAR_0x8003) == DAY_WEDNESDAY ||
+		var(VAR_0x8003) == DAY_FRIDAY)
+	{
+		if (flag(FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT))
+		{
+			msgbox("I can do only one haircut a day.\n"
+				   "Sorry, but I'm all done for today.")
+		}
+		else
+		{
+			showmoneybox(0, 0, FALSE)
+			msgbox("Welcome to the POKéMON SALON!\p"
+				   "I'm the younger and less expensive\n"
+				   "of the two HAIRCUT BROTHERS.\p"
+				   "I'll spiff up your POKéMON for\n"
+				   "just ¥300.\p"
+				   "So? How about it?", MSGBOX_YESNO)
+			if (var(VAR_RESULT) == YES)
+			{
+				checkmoney(300, FALSE)
+				if (var(VAR_RESULT) == TRUE)
+				{
+					msgbox("Okay, which POKéMON should I do?")
+					special(ChoosePartyMon)
+					waitstate
+					if (var(VAR_0x8004) != 0xFF)
+            		{
+						removemoney(300, FALSE)
+						showmoneybox(0, 0, FALSE)
+                    	playse(SE_RG_SHOP)
+						msgbox("Okay!\n"
+							   "I'll make it look cool!")
+						fadescreen(FADE_TO_BLACK)
+						special(YoungerHaircutBrother)
+						playfanfare(MUS_HEAL)
+						waitfanfare
+						fadescreen(FADE_FROM_BLACK)
+						msgbox("There we go!\n"
+							   "All done!")
+						call(GoldenrodCity_Underground_EventScript_Haircut_Result)
+					}
+					else
+					{
+						call(GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected)
+					}
+				}
+				else
+				{
+					msgbox("You're a little short on funds.")
+				}
+			}
+			else
+			{
+				call(GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected)
+			}
+		}
+	}
+	else
+	{
+		msgbox("We're not open today.")
+	}
+	release
+}
+
+script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected {
+	msgbox("No?\n"
+		   "How disappointing!")
+}
+
+script GoldenrodCity_Underground_EventScript_Haircut_Result {
+	textcolor(MSG_COLOR_SYS)
+	switch (var(VAR_RESULT))
+	{
+	case 0:
+		msgbox("{STR_VAR_1} looks a little happier.")
+	case 1:
+		msgbox("{STR_VAR_1} looks happy.")
+	case 2:
+		msgbox("{STR_VAR_1} looks delighted!")
+	}
+	special(PlayChosenMonCry)
+	waitmoncry
+	call(EventScript_RestorePrevTextColor)
 }
 
 script GoldenrodCity_Underground_EventScript_Eric {
@@ -100,4 +264,34 @@ script GoldenrodCity_Underground_EventScript_Donald {
     trainerbattle_single(TRAINER_DONALD, GoldenrodCity_Underground_Text_DonaldIntro, GoldenrodCity_Underground_Text_DonaldDefeated)
 	msgbox(GoldenrodCity_Underground_Text_DonaldPostBattle, MSGBOX_DEFAULT)
 	release
+}
+
+script GoldenrodCity_Underground_EventScript_Door {
+	lock
+	if (flag(FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED))
+	{
+		msgbox("The door is open.")
+	}
+	else
+	{
+		checkitem(ITEM_BASEMENT_KEY, 1)
+		if (var(VAR_RESULT))
+		{
+			playse(SE_CLICK) // TODO: Check sound in Crystal to see if this makes sense
+			waitse
+			msgbox("The BASEMENT KEY opened the door.")
+			setmetatile(24, 9, METATILE_Underground_Door_Open, TRUE)
+			special(DrawWholeMapView)
+			setflag(FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED)
+		}
+		else
+		{
+			msgbox("The door's locked…")
+		}
+	}
+	release
+}
+
+script GoldenrodCity_Underground_EventScript_NoEntry {
+	msgbox("NO ENTRY BEYOND THIS POINT", MSGBOX_SIGN)
 }

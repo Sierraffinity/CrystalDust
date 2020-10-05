@@ -11,17 +11,14 @@
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": false,
-  "floor_number": 0,
-  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
-      "x": 4,
-      "y": 34,
+      "x": 5,
+      "y": 36,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -29,29 +26,29 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "GoldenrodCity_Underground_EventScript_Eric",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": ""
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
-      "x": 5,
-      "y": 12,
+      "x": 6,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
+      "trainer_sight_or_berry_tree_id": "3",
       "script": "GoldenrodCity_Underground_EventScript_Teru",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": ""
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_POKEMANIAC",
-      "in_connection": false,
-      "x": 2,
-      "y": 30,
+      "x": 3,
+      "y": 31,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -59,14 +56,14 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "GoldenrodCity_Underground_EventScript_Isaac",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": ""
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_POKEMANIAC",
-      "in_connection": false,
-      "x": 0,
-      "y": 8,
+      "x": 1,
+      "y": 9,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
@@ -74,14 +71,14 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "GoldenrodCity_Underground_EventScript_Donald",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": ""
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "in_connection": false,
-      "x": 6,
-      "y": 28,
+      "x": 7,
+      "y": 29,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -89,14 +86,14 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_Undeground_EventScript_ItemCoinCase",
-      "flag": "FLAG_ITEM_GOLDENROD_CITY_UNDERGROUND_COIN_CASE"
+      "flag": "FLAG_ITEM_GOLDENROD_CITY_UNDERGROUND_COIN_CASE",
+      "in_connection": ""
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
-      "in_connection": false,
-      "x": 6,
-      "y": 14,
+      "x": 7,
+      "y": 15,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -104,28 +101,13 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_Underground_EventScript_BargainMerchant",
-      "flag": "0"
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN",
+      "in_connection": ""
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
-      "x": 6,
-      "y": 17,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
-      "x": 6,
+      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
+      "x": 7,
       "y": 18,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -133,15 +115,30 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "GoldenrodCity_Underground_EventScript_OlderHaircutBrother",
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER",
+      "in_connection": ""
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 7,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodCity_Underground_EventScript_YoungerHaircutBrother",
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER",
+      "in_connection": ""
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
-      "in_connection": false,
-      "x": 6,
-      "y": 24,
+      "x": 7,
+      "y": 25,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -149,27 +146,28 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN",
+      "in_connection": ""
     }
   ],
   "warp_events": [
     {
-      "x": 2,
-      "y": 2,
+      "x": 3,
+      "y": 4,
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_NORTH_ENTRANCE",
       "dest_warp_id": 1
     },
     {
-      "x": 2,
-      "y": 38,
+      "x": 3,
+      "y": 40,
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_SOUTH_ENTRANCE",
       "dest_warp_id": 1
     },
     {
-      "x": 21,
-      "y": 8,
+      "x": 24,
+      "y": 9,
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND",
       "dest_warp_id": 0
@@ -181,43 +179,45 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 21,
-      "y": 8,
+      "x": 24,
+      "y": 9,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "GoldenrodCity_Underground_EventScript_Door"
     },
     {
       "type": "sign",
-      "x": 22,
-      "y": 8,
+      "x": 25,
+      "y": 9,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "GoldenrodCity_Underground_EventScript_NoEntry"
     },
     {
       "type": "hidden_item",
-      "x": 5,
-      "y": 16,
+      "x": 6,
+      "y": 17,
       "elevation": 3,
-      "item": "ITEM_NONE",
-      "flag": "FLAG_TEMP_1"
+      "item": "ITEM_PARALYZE_HEAL",
+      "flag": "FLAG_HIDDEN_ITEM_GOLDENROD_CITY_UNDERGROUND_PARALYZE_HEAL"
     },
     {
       "type": "hidden_item",
-      "x": 3,
-      "y": 21,
+      "x": 4,
+      "y": 22,
       "elevation": 3,
-      "item": "ITEM_NONE",
-      "flag": "FLAG_TEMP_1"
+      "item": "ITEM_SUPER_POTION",
+      "flag": "FLAG_HIDDEN_ITEM_GOLDENROD_CITY_UNDERGROUND_SUPER_POTION"
     },
     {
       "type": "hidden_item",
-      "x": 20,
-      "y": 11,
+      "x": 23,
+      "y": 12,
       "elevation": 3,
-      "item": "ITEM_NONE",
-      "flag": "FLAG_TEMP_1"
+      "item": "ITEM_ANTIDOTE",
+      "flag": "FLAG_HIDDEN_ITEM_GOLDENROD_CITY_UNDERGROUND_ANTIDOTE"
     }
-  ]
+  ],
+  "floor_number": "",
+  "phone_service": ""
 }

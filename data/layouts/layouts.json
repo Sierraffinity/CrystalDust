@@ -1041,7 +1041,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_OceanicMuseum",
+      "secondary_tileset": "gTileset_Underground",
       "border_filepath": "data/layouts/SlateportCity_OceanicMuseum_1F/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity_OceanicMuseum_1F/map.bin"
     },
@@ -1053,7 +1053,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_OceanicMuseum",
+      "secondary_tileset": "gTileset_Underground",
       "border_filepath": "data/layouts/SlateportCity_OceanicMuseum_2F/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity_OceanicMuseum_2F/map.bin"
     },
@@ -3220,12 +3220,12 @@
     {
       "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND",
       "name": "GoldenrodCity_Underground_Layout",
-      "width": 24,
-      "height": 40,
+      "width": 28,
+      "height": 44,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Gatehouse",
+      "secondary_tileset": "gTileset_Underground",
       "border_filepath": "data/layouts/GoldenrodCity_Underground/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodCity_Underground/map.bin"
     },

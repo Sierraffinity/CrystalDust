@@ -528,27 +528,27 @@ gTilesetPalettes_RockTunnel:: @ 8358840
 	.incbin "data/tilesets/secondary/rock_tunnel/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_OceanicMuseum:: @ 8358A40
-	.incbin "data/tilesets/secondary/oceanic_museum/tiles.4bpp.lz"
+gTilesetTiles_Underground:: @ 8358A40
+	.incbin "data/tilesets/secondary/underground/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_OceanicMuseum:: @ 83599CC
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/oceanic_museum/palettes/15.gbapal"
+gTilesetPalettes_Underground:: @ 83599CC
+	.incbin "data/tilesets/secondary/underground/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/underground/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_CableClub:: @ 8359BCC

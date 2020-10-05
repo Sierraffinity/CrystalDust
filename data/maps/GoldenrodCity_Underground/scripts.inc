@@ -1,5 +1,79 @@
 GoldenrodCity_Underground_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_LOAD
+	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	.byte 0
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_LOAD:
+	goto_if_unset FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED, GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_LOAD_1
+	return
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_LOAD_1:
+	setmetatile 24, 9, METATILE_Underground_Door_Closed, TRUE
+	return
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	gettime
+	switch VAR_0x8003
+	case DAY_MONDAY, GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_2
+	case DAY_TUESDAY, GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_3
+	case DAY_WEDNESDAY, GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_4
+	case DAY_THURSDAY, GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_5
+	case DAY_FRIDAY, GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_6
+	case DAY_SATURDAY, GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_7
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN
+	return
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_2:
+	compare VAR_0x8002, TIME_MORNING
+	goto_if_ne GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_10
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_9:
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN
+	return
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_3:
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN
+	return
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_4:
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN
+	return
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_5:
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN
+	return
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_6:
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN
+	return
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_7:
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN
+	return
+
+GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_10:
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN
+	goto GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_9
 
 
 GoldenrodCity_Underground_EventScript_BargainMerchant::
@@ -7,8 +81,9 @@ GoldenrodCity_Underground_EventScript_BargainMerchant::
 	faceplayer
 	gettime
 	compare VAR_0x8002, TIME_MORNING
-	goto_if_eq GoldenrodCity_Underground_EventScript_BargainMerchant_5
-GoldenrodCity_Underground_EventScript_BargainMerchant_4:
+	goto_if_ne GoldenrodCity_Underground_EventScript_BargainMerchant_1
+	compare VAR_0x8003, DAY_MONDAY
+	goto_if_ne GoldenrodCity_Underground_EventScript_BargainMerchant_1
 	goto_if_set FLAG_DAILY_GOLDENROD_UNDERGROUND_BARGAINS, GoldenrodCity_Underground_EventScript_BargainMerchant_2
 	msgbox GoldenrodCity_Underground_EventScript_BargainMerchant_Text_2
 	msgbox GoldenrodCity_Underground_EventScript_BargainMerchant_Text_3
@@ -22,60 +97,154 @@ GoldenrodCity_Underground_EventScript_BargainMerchant_2:
 	msgbox GoldenrodCity_Underground_EventScript_BargainMerchant_Text_1
 	return
 
-GoldenrodCity_Underground_EventScript_BargainMerchant_5:
-	compare VAR_0x8003, DAY_MONDAY
-	goto_if_eq GoldenrodCity_Underground_EventScript_BargainMerchant_1
-	goto GoldenrodCity_Underground_EventScript_BargainMerchant_4
-
 
 GoldenrodCity_Underground_EventScript_OlderHaircutBrother::
 	gettime
 	compare VAR_0x8003, DAY_TUESDAY
-	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1
+	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_2
 	compare VAR_0x8003, DAY_THURSDAY
-	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1
+	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_2
 	compare VAR_0x8003, DAY_SATURDAY
-	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1
+	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_2
 	msgbox GoldenrodCity_Underground_EventScript_BargainMerchant_Text_0
+GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1:
+	release
 	return
 
-GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1:
-	goto_if_set FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT, GoldenrodCity_Underground_EventScript_OlderHaircutBrother_8
+GoldenrodCity_Underground_EventScript_OlderHaircutBrother_2:
+	goto_if_set FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT, GoldenrodCity_Underground_EventScript_OlderHaircutBrother_9
 	showmoneybox 0, 0, FALSE
 	msgbox GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_1, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_11
-	return
+	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_12
+	call GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected
+	goto GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1
 
-GoldenrodCity_Underground_EventScript_OlderHaircutBrother_8:
+GoldenrodCity_Underground_EventScript_OlderHaircutBrother_9:
 	msgbox GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_0
-	return
+	goto GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1
 
-GoldenrodCity_Underground_EventScript_OlderHaircutBrother_11:
+GoldenrodCity_Underground_EventScript_OlderHaircutBrother_12:
 	checkmoney 500, FALSE
 	compare VAR_RESULT, TRUE
-	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_13
-	return
+	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_15
+	msgbox GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_5
+	goto GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1
 
-GoldenrodCity_Underground_EventScript_OlderHaircutBrother_13:
+GoldenrodCity_Underground_EventScript_OlderHaircutBrother_15:
 	msgbox GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_2
 	special ChoosePartyMon
 	waitstate
 	compare VAR_0x8004, 0xFF
-	goto_if_ne GoldenrodCity_Underground_EventScript_OlderHaircutBrother_15
-	return
+	goto_if_ne GoldenrodCity_Underground_EventScript_OlderHaircutBrother_18
+	call GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected
+	goto GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1
 
-GoldenrodCity_Underground_EventScript_OlderHaircutBrother_15:
+GoldenrodCity_Underground_EventScript_OlderHaircutBrother_18:
 	removemoney 500, FALSE
 	showmoneybox 0, 0, FALSE
 	playse SE_RG_SHOP
 	msgbox GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_3
 	fadescreen FADE_TO_BLACK
+	special OlderHaircutBrother
 	playfanfare MUS_HEAL
 	waitfanfare
 	fadescreen FADE_FROM_BLACK
 	msgbox GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_4
+	call GoldenrodCity_Underground_EventScript_Haircut_Result
+	goto GoldenrodCity_Underground_EventScript_OlderHaircutBrother_1
+
+
+GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected::
+	msgbox GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected_Text_0
 	return
+
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother::
+	gettime
+	compare VAR_0x8003, DAY_SUNDAY
+	goto_if_eq GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_2
+	compare VAR_0x8003, DAY_WEDNESDAY
+	goto_if_eq GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_2
+	compare VAR_0x8003, DAY_FRIDAY
+	goto_if_eq GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_2
+	msgbox GoldenrodCity_Underground_EventScript_BargainMerchant_Text_0
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_1:
+	release
+	return
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_2:
+	goto_if_set FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT, GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_9
+	showmoneybox 0, 0, FALSE
+	msgbox GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_1, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_12
+	call GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected
+	goto GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_1
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_9:
+	msgbox GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_0
+	goto GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_1
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_12:
+	checkmoney 300, FALSE
+	compare VAR_RESULT, TRUE
+	goto_if_eq GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_15
+	msgbox GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_5
+	goto GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_1
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_15:
+	msgbox GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_2
+	special ChoosePartyMon
+	waitstate
+	compare VAR_0x8004, 0xFF
+	goto_if_ne GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_18
+	call GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected
+	goto GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_1
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_18:
+	removemoney 300, FALSE
+	showmoneybox 0, 0, FALSE
+	playse SE_RG_SHOP
+	msgbox GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_3
+	fadescreen FADE_TO_BLACK
+	special YoungerHaircutBrother
+	playfanfare MUS_HEAL
+	waitfanfare
+	fadescreen FADE_FROM_BLACK
+	msgbox GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_4
+	call GoldenrodCity_Underground_EventScript_Haircut_Result
+	goto GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_1
+
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected::
+	msgbox GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected_Text_0
+	return
+
+
+GoldenrodCity_Underground_EventScript_Haircut_Result::
+	textcolor MSG_COLOR_SYS
+	switch VAR_RESULT
+	case 0, GoldenrodCity_Underground_EventScript_Haircut_Result_3
+	case 1, GoldenrodCity_Underground_EventScript_Haircut_Result_4
+	case 2, GoldenrodCity_Underground_EventScript_Haircut_Result_5
+GoldenrodCity_Underground_EventScript_Haircut_Result_1:
+	special PlayChosenMonCry
+	waitmoncry
+	call EventScript_RestorePrevTextColor
+	return
+
+GoldenrodCity_Underground_EventScript_Haircut_Result_3:
+	msgbox GoldenrodCity_Underground_EventScript_Haircut_Result_Text_0
+	goto GoldenrodCity_Underground_EventScript_Haircut_Result_1
+
+GoldenrodCity_Underground_EventScript_Haircut_Result_4:
+	msgbox GoldenrodCity_Underground_EventScript_Haircut_Result_Text_1
+	goto GoldenrodCity_Underground_EventScript_Haircut_Result_1
+
+GoldenrodCity_Underground_EventScript_Haircut_Result_5:
+	msgbox GoldenrodCity_Underground_EventScript_Haircut_Result_Text_2
+	goto GoldenrodCity_Underground_EventScript_Haircut_Result_1
 
 
 GoldenrodCity_Underground_EventScript_Eric::
@@ -103,6 +272,36 @@ GoldenrodCity_Underground_EventScript_Donald::
 	trainerbattle_single TRAINER_DONALD, GoldenrodCity_Underground_Text_DonaldIntro, GoldenrodCity_Underground_Text_DonaldDefeated
 	msgbox GoldenrodCity_Underground_Text_DonaldPostBattle, MSGBOX_DEFAULT
 	release
+	return
+
+
+GoldenrodCity_Underground_EventScript_Door::
+	lock
+	goto_if_set FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED, GoldenrodCity_Underground_EventScript_Door_2
+	checkitem ITEM_BASEMENT_KEY, 1
+	compare VAR_RESULT, 0
+	goto_if_ne GoldenrodCity_Underground_EventScript_Door_5
+	msgbox GoldenrodCity_Underground_EventScript_Door_Text_2
+GoldenrodCity_Underground_EventScript_Door_1:
+	release
+	return
+
+GoldenrodCity_Underground_EventScript_Door_2:
+	msgbox GoldenrodCity_Underground_EventScript_Door_Text_0
+	goto GoldenrodCity_Underground_EventScript_Door_1
+
+GoldenrodCity_Underground_EventScript_Door_5:
+	playse SE_CLICK
+	waitse
+	msgbox GoldenrodCity_Underground_EventScript_Door_Text_1
+	setmetatile 24, 9, METATILE_Underground_Door_Open, TRUE
+	special DrawWholeMapView
+	setflag FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED
+	goto GoldenrodCity_Underground_EventScript_Door_1
+
+
+GoldenrodCity_Underground_EventScript_NoEntry::
+	msgbox GoldenrodCity_Underground_EventScript_NoEntry_Text_0, MSGBOX_SIGN
 	return
 
 
@@ -145,3 +344,61 @@ GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_3:
 GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_4:
 	.string "There!\n"
 	.string "All done!$"
+
+GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_5:
+	.string "You'll need more money than that.$"
+
+GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected_Text_0:
+	.string "Is that right?\n"
+	.string "That's a shame!$"
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_0:
+	.string "I can do only one haircut a day.\n"
+	.string "Sorry, but I'm all done for today.$"
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_1:
+	.string "Welcome to the POKéMON SALON!\p"
+	.string "I'm the younger and less expensive\n"
+	.string "of the two HAIRCUT BROTHERS.\p"
+	.string "I'll spiff up your POKéMON for\n"
+	.string "just ¥300.\p"
+	.string "So? How about it?$"
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_2:
+	.string "Okay, which POKéMON should I do?$"
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_3:
+	.string "Okay!\n"
+	.string "I'll make it look cool!$"
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_4:
+	.string "There we go!\n"
+	.string "All done!$"
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Text_5:
+	.string "You're a little short on funds.$"
+
+GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected_Text_0:
+	.string "No?\n"
+	.string "How disappointing!$"
+
+GoldenrodCity_Underground_EventScript_Haircut_Result_Text_0:
+	.string "{STR_VAR_1} looks a little happier.$"
+
+GoldenrodCity_Underground_EventScript_Haircut_Result_Text_1:
+	.string "{STR_VAR_1} looks happy.$"
+
+GoldenrodCity_Underground_EventScript_Haircut_Result_Text_2:
+	.string "{STR_VAR_1} looks delighted!$"
+
+GoldenrodCity_Underground_EventScript_Door_Text_0:
+	.string "The door is open.$"
+
+GoldenrodCity_Underground_EventScript_Door_Text_1:
+	.string "The BASEMENT KEY opened the door.$"
+
+GoldenrodCity_Underground_EventScript_Door_Text_2:
+	.string "The door's locked…$"
+
+GoldenrodCity_Underground_EventScript_NoEntry_Text_0:
+	.string "NO ENTRY BEYOND THIS POINT$"

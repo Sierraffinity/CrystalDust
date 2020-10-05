@@ -287,14 +287,14 @@ gTileset_RockTunnel:: @ 83DF92C
 	.4byte NULL @ palette overrides
 
 	.align 2
-gTileset_OceanicMuseum:: @ 83DF944
+gTileset_Underground:: @ 83DF944
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_OceanicMuseum
-	.4byte gTilesetPalettes_OceanicMuseum
-	.4byte gMetatiles_OceanicMuseum
-	.4byte gMetatileAttributes_OceanicMuseum
+	.4byte gTilesetTiles_Underground
+	.4byte gTilesetPalettes_Underground
+	.4byte gMetatiles_Underground
+	.4byte gMetatileAttributes_Underground
 	.4byte NULL @ animation callback
 	.4byte NULL @ palette overrides
 

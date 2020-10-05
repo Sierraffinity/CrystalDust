@@ -578,7 +578,7 @@ u8 CreateSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16 y,
 
     CalcCenterToCornerVec(sprite, sprite->oam.shape, sprite->oam.size, sprite->oam.affineMode);
 
-    if (template->tileTag == 0xFFFF)
+    if (sprite->tileTag == 0xFFFF)
     {
         s16 tileNum;
         sprite->images = template->images;

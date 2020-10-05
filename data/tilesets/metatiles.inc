@@ -191,12 +191,12 @@ gMetatileAttributes_RockTunnel:: @ 83B5344
 	.incbin "data/tilesets/secondary/rock_tunnel/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_OceanicMuseum:: @ 83B5482
-	.incbin "data/tilesets/secondary/oceanic_museum/metatiles.bin"
+gMetatiles_Underground:: @ 83B5482
+	.incbin "data/tilesets/secondary/underground/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_OceanicMuseum:: @ 83B5C22
-	.incbin "data/tilesets/secondary/oceanic_museum/metatile_attributes.bin"
+gMetatileAttributes_Underground:: @ 83B5C22
+	.incbin "data/tilesets/secondary/underground/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_CableClub:: @ 83B5D16

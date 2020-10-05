@@ -6,7 +6,7 @@ LilycoveCity_LilycoveMuseum_2F_MapScripts:: @ 821973A
 	.byte 0
 
 LilycoveCity_LilycoveMuseum_2F_OnLoad: @ 8219745
-	goto_if_set FLAG_COOL_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_SetCoolPainting
+	goto_if_set FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED, LilycoveCity_LilycoveMuseum_2F_EventScript_SetCoolPainting
 	goto LilycoveCity_LilycoveMuseum_2F_EventScript_CheckBeautyPainting
 	end
 
@@ -154,7 +154,7 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_ToughPainting:: @ 821993E
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_CoolPainting:: @ 8219951
 	lockall
-	goto_if_set FLAG_COOL_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowCoolPainting
+	goto_if_set FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowCoolPainting
 	msgbox LilycoveCity_LilycoveMuseum_2F_Text_ItsRedPictureFrame, MSGBOX_SIGN
 	end
 

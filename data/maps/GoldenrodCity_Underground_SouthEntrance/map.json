@@ -37,7 +37,7 @@
       "x": 6,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_NORTH_ENTRANCE",
+      "dest_map": "MAP_GOLDENROD_CITY",
       "dest_warp_id": 13
     },
     {
@@ -45,7 +45,7 @@
       "y": 6,
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND",
-      "dest_warp_id": 0
+      "dest_warp_id": 1
     }
   ],
   "coord_events": [

@@ -147,7 +147,7 @@ LilycoveCity_ContestLobby_EventScript_SetPaintingFlag:: @ 821A3B6
 	return
 
 LilycoveCity_ContestLobby_EventScript_MadeCoolPainting:: @ 821A3F3
-	setflag FLAG_COOL_PAINTING_MADE
+	setflag FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED
 	return
 
 LilycoveCity_ContestLobby_EventScript_MadeBeautyPainting:: @ 821A3F7

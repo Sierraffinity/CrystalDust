@@ -565,3 +565,6 @@ gSpecials:: @ 81DBA64
 	def_special PlayCardFlip
 	def_special MomBank
 	def_special OverworldWhiteOutGetMoneyLoss
+	def_special PlayChosenMonCry
+	def_special OlderHaircutBrother
+	def_special YoungerHaircutBrother

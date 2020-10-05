@@ -4624,3 +4624,19 @@ u8 Script_TryGainNewFanFromCounter(void)
 {
     return TryGainNewFanFromCounter(gSpecialVar_0x8004);
 }
+
+void PlayChosenMonCry(void)
+{
+    u32 species = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL);
+    PlayCry5(species, 0);
+}
+
+void OlderHaircutBrother(void)
+{
+    
+}
+
+void YoungerHaircutBrother(void)
+{
+    
+}
