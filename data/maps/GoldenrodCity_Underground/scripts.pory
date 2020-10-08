@@ -79,9 +79,12 @@ script GoldenrodCity_Underground_EventScript_BargainMerchant {
 		// TODO: mart interface
 		msgbox("Come by again sometime.")
 	}
+	release
 }
 
 script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
+	lock
+	faceplayer
 	gettime
 	if (var(VAR_0x8003) == DAY_TUESDAY ||
 		var(VAR_0x8003) == DAY_THURSDAY ||
@@ -97,7 +100,7 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
 			showmoneybox(0, 0, FALSE)
 			msgbox("Welcome!\n"
 				   "I run the POKéMON SALON!\p"
-				   "I'm the old and better of the two\n"
+				   "I'm the older and better of the two\n"
 				   "HAIRCUT BROTHERS.\p"
 				   "I can make your POKéMON beautiful\n"
 				   "for just ¥500.\p"
@@ -117,6 +120,8 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
                     	playse(SE_RG_SHOP)
 						msgbox("Okay!\n"
 							   "Watch it become beautiful!")
+						closemessage
+						hidemoneybox
 						fadescreen(FADE_TO_BLACK)
 						special(OlderHaircutBrother)
 						playfanfare(MUS_HEAL)
@@ -125,6 +130,7 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
 						msgbox("There!\n"
 							   "All done!")
 						call(GoldenrodCity_Underground_EventScript_Haircut_Result)
+						setflag(FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT)
 					}
 					else
 					{
@@ -140,6 +146,7 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
 			{
 				call(GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected)
 			}
+			hidemoneybox
 		}
 	}
 	else
@@ -155,6 +162,8 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected {
 }
 
 script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother {
+	lock
+	faceplayer
 	gettime
 	if (var(VAR_0x8003) == DAY_SUNDAY ||
 		var(VAR_0x8003) == DAY_WEDNESDAY ||
@@ -189,6 +198,8 @@ script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother {
                     	playse(SE_RG_SHOP)
 						msgbox("Okay!\n"
 							   "I'll make it look cool!")
+						closemessage
+						hidemoneybox
 						fadescreen(FADE_TO_BLACK)
 						special(YoungerHaircutBrother)
 						playfanfare(MUS_HEAL)
@@ -197,6 +208,7 @@ script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother {
 						msgbox("There we go!\n"
 							   "All done!")
 						call(GoldenrodCity_Underground_EventScript_Haircut_Result)
+						setflag(FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT)
 					}
 					else
 					{
@@ -212,6 +224,7 @@ script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother {
 			{
 				call(GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected)
 			}
+			hidemoneybox
 		}
 	}
 	else
@@ -227,6 +240,8 @@ script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected {
 }
 
 script GoldenrodCity_Underground_EventScript_Haircut_Result {
+	bufferpartymonnick(0, VAR_0x8004)
+	special(PlayChosenMonCry)
 	textcolor(MSG_COLOR_SYS)
 	switch (var(VAR_RESULT))
 	{
@@ -237,7 +252,6 @@ script GoldenrodCity_Underground_EventScript_Haircut_Result {
 	case 2:
 		msgbox("{STR_VAR_1} looks delighted!")
 	}
-	special(PlayChosenMonCry)
 	waitmoncry
 	call(EventScript_RestorePrevTextColor)
 }

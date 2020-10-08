@@ -29,6 +29,7 @@ void ShowCoinsWindow(u32 coinAmount, u8 x, u8 y)
     sCoinsWindowId = AddWindow(&template);
     FillWindowPixelBuffer(sCoinsWindowId, PIXEL_FILL(0));
     PutWindowTilemap(sCoinsWindowId);
+    CopyWindowToVram(sCoinsWindowId, 3);
     LoadThinWindowBorderGfx(sCoinsWindowId, 0x21D, 0xD0);
     DrawStdFrameWithCustomTileAndPalette(sCoinsWindowId, FALSE, 0x21D, 0xD);
     AddTextPrinterParameterized(sCoinsWindowId, 1, gText_Coins, 0, 0, 0xFF, 0);
@@ -37,8 +38,7 @@ void ShowCoinsWindow(u32 coinAmount, u8 x, u8 y)
 
 void HideCoinsWindow(void)
 {
-    ClearWindowTilemap(sCoinsWindowId);
-    ClearStdWindowAndFrame(sCoinsWindowId, TRUE);
+    ClearStdWindowAndFrameToTransparent(sCoinsWindowId, TRUE);
     RemoveWindow(sCoinsWindowId);
 }
 

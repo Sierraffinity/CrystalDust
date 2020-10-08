@@ -4633,10 +4633,28 @@ void PlayChosenMonCry(void)
 
 void OlderHaircutBrother(void)
 {
-    
+    u8 haircutLevel = 0;
+
+    u16 random = Random() % 100;
+    if (random >= 30)
+        haircutLevel++;
+    if (random >= 80)
+        haircutLevel++;
+
+    AdjustFriendship(&gPlayerParty[gSpecialVar_0x8004], FRIENDSHIP_EVENT_OLDER_HAIRCUT_BROTHER_0 + haircutLevel);
+    gSpecialVar_Result = haircutLevel;
 }
 
 void YoungerHaircutBrother(void)
 {
-    
+    u8 haircutLevel = 0;
+
+    u16 random = Random() % 100;
+    if (random >= 60)
+        haircutLevel++;
+    if (random >= 90)
+        haircutLevel++;
+
+    AdjustFriendship(&gPlayerParty[gSpecialVar_0x8004], FRIENDSHIP_EVENT_YOUNGER_HAIRCUT_BROTHER_0 + haircutLevel);
+    gSpecialVar_Result = haircutLevel;
 }
