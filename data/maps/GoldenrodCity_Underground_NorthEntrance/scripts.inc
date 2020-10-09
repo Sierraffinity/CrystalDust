@@ -2,12 +2,13 @@ GoldenrodCity_Underground_NorthEntrance_MapScripts::
 	.byte 0
 
 
-GoldenrodCity_Underground_NorthEntrance_EventScript_ScaredWoman::
-	msgbox GoldenrodCity_Underground_NorthEntrance_EventScript_ScaredWoman_Text_0, MSGBOX_NPC
+GoldenrodCity_Underground_NorthEntrance_EventScript_RoughNerd::
+	msgbox GoldenrodCity_Underground_NorthEntrance_EventScript_RoughNerd_Text_0, MSGBOX_NPC
 	return
 
 
-GoldenrodCity_Underground_NorthEntrance_EventScript_ScaredWoman_Text_0:
-	.string "There are some shops downstairs…\n"
-	.string "But there are also TRAINERS.\p"
-	.string "I'm scared to go down there.$"
+GoldenrodCity_Underground_NorthEntrance_EventScript_RoughNerd_Text_0:
+	.string "I was challenged to a battle\n"
+	.string "downstairs.\p"
+	.string "It's rough down there.\n"
+	.string "You'd better be careful.$"
