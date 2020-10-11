@@ -568,3 +568,5 @@ gSpecials:: @ 81DBA64
 	def_special PlayChosenMonCry
 	def_special OlderHaircutBrother
 	def_special YoungerHaircutBrother
+	def_special BargainShop
+	def_special HerbShop

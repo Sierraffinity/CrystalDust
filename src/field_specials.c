@@ -37,6 +37,7 @@
 #include "rtc.h"
 #include "script.h"
 #include "script_menu.h"
+#include "shop.h"
 #include "sound.h"
 #include "starter_choose.h"
 #include "string_util.h"
@@ -4657,4 +4658,41 @@ void YoungerHaircutBrother(void)
 
     AdjustFriendship(&gPlayerParty[gSpecialVar_0x8004], FRIENDSHIP_EVENT_YOUNGER_HAIRCUT_BROTHER_0 + haircutLevel);
     gSpecialVar_Result = haircutLevel;
+}
+
+void BargainShop(void)
+{
+    static const u16 bargainShopItems[] = {
+        ITEM_NUGGET,
+        ITEM_PEARL,
+        ITEM_BIG_PEARL,
+        ITEM_STARDUST,
+        ITEM_STAR_PIECE,
+        ITEM_NONE
+    };
+
+    static const u16 bargainShopItemPrices[] = {
+        4500,
+        650,
+        3500,
+        900,
+        4600
+    };
+
+    CreateBargainShopMenu(bargainShopItems, bargainShopItemPrices);
+    ScriptContext1_Stop();
+}
+
+void HerbShop(void)
+{
+    static const u16 herbShopItems[] = {
+        ITEM_ENERGY_POWDER,
+        ITEM_ENERGY_ROOT,
+        ITEM_HEAL_POWDER,
+        ITEM_REVIVAL_HERB,
+        ITEM_NONE
+    };
+
+    CreateHerbShopMenu(herbShopItems);
+    ScriptContext1_Stop();
 }

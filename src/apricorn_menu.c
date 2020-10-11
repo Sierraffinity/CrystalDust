@@ -43,7 +43,7 @@ static EWRAM_DATA struct {
 static void InitApricornMenu(u8 taskId);
 static u8 AddWindowIfNotPresent(u8 whichWindow);
 static void ApricornMenu_Main_ProcessInput(u8 taskId);
-static void ApricornMenu_ItemPrint(u8 windowId, s32 id, u8 yOffset);
+static void ApricornMenu_ItemPrint(u8 windowId, u16 index, s32 id, u8 yOffset);
 static void ApricornMenu_RefreshListMenu(void);
 static void ApricornMenu_AddMainScrollIndicator(void);
 static void ApricornMenu_Exit(u8 taskId);
@@ -276,7 +276,7 @@ static void ApricornMenu_Main_ProcessInput(u8 taskId)
     }
 }
 
-static void ApricornMenu_ItemPrint(u8 windowId, s32 id, u8 yOffset)
+static void ApricornMenu_ItemPrint(u8 windowId, u16 index, s32 id, u8 yOffset)
 {
     if (id != LIST_CANCEL)
     {

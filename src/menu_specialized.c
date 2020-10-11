@@ -255,7 +255,7 @@ static u8 sub_81D1D34(u8 a0) // unused
     return sUnknown_0203CF48[a0];
 }
 
-static void sub_81D1D44(u8 windowId, s32 itemId, u8 y)
+static void sub_81D1D44(u8 windowId, u16 index, s32 itemId, u8 y)
 {
     u8 buffer[30];
     u16 length;

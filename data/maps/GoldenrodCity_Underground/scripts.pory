@@ -2,7 +2,7 @@ mapscripts GoldenrodCity_Underground_MapScripts {
 	MAP_SCRIPT_ON_LOAD {
 		if (!flag(FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED))
 		{
-			setmetatile(24, 9, METATILE_Underground_Door_Closed, TRUE)
+			setmetatile(24, 8, METATILE_Underground_Door_Closed, TRUE)
 		}
 	}
 	MAP_SCRIPT_ON_TRANSITION {
@@ -59,6 +59,7 @@ mapscripts GoldenrodCity_Underground_MapScripts {
 script GoldenrodCity_Underground_EventScript_BargainMerchant {
 	lock
 	faceplayer
+	dotimebasedevents
 	gettime
 	if (var(VAR_0x8002) != TIME_MORNING ||
 		var(VAR_0x8003) != DAY_MONDAY)
@@ -76,8 +77,34 @@ script GoldenrodCity_Underground_EventScript_BargainMerchant {
 			   "Care to see some bargains?\p"
 			   "I sell rare items that nobody else\n"
 			   "carries--but only one of each item.")
-		// TODO: mart interface
+		special(BargainShop)
+		waitstate
 		msgbox("Come by again sometime.")
+	}
+	release
+}
+
+script GoldenrodCity_Underground_EventScript_HerbMerchant {
+	lock
+	faceplayer
+	dotimebasedevents
+	gettime
+	if (var(VAR_0x8003) == DAY_SUNDAY ||
+		var(VAR_0x8003) == DAY_SATURDAY)
+	{
+		msgbox("Hello, dear.\n"
+			   "I sell inexpensive herbal medicine.\p"
+			   "They're good but a trifle bitter.\n"
+			   "Your POKéMON may not like them.\l"
+			   "Hehehehe…")
+		special(HerbShop)
+		waitstate
+		msgbox("Come again, dear.\n"
+			   "Hehehehe…")
+	}
+	else
+	{
+		msgbox("We're not open today.")
 	}
 	release
 }
@@ -85,6 +112,7 @@ script GoldenrodCity_Underground_EventScript_BargainMerchant {
 script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
 	lock
 	faceplayer
+	dotimebasedevents
 	gettime
 	if (var(VAR_0x8003) == DAY_TUESDAY ||
 		var(VAR_0x8003) == DAY_THURSDAY ||
@@ -164,6 +192,7 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected {
 script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother {
 	lock
 	faceplayer
+	dotimebasedevents
 	gettime
 	if (var(VAR_0x8003) == DAY_SUNDAY ||
 		var(VAR_0x8003) == DAY_WEDNESDAY ||
@@ -294,7 +323,7 @@ script GoldenrodCity_Underground_EventScript_Door {
 			playse(SE_CLICK) // TODO: Check sound in Crystal to see if this makes sense
 			waitse
 			msgbox("The BASEMENT KEY opened the door.")
-			setmetatile(24, 9, METATILE_Underground_Door_Open, TRUE)
+			setmetatile(24, 8, METATILE_Underground_Door_Open, TRUE)
 			special(DrawWholeMapView)
 			setflag(FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED)
 		}

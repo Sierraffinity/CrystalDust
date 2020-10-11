@@ -8,7 +8,7 @@ GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_LOAD:
 	return
 
 GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_LOAD_1:
-	setmetatile 24, 9, METATILE_Underground_Door_Closed, TRUE
+	setmetatile 24, 8, METATILE_Underground_Door_Closed, TRUE
 	return
 
 GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION:
@@ -79,6 +79,7 @@ GoldenrodCity_Underground_MapScripts_MAP_SCRIPT_ON_TRANSITION_10:
 GoldenrodCity_Underground_EventScript_BargainMerchant::
 	lock
 	faceplayer
+	dotimebasedevents
 	gettime
 	compare VAR_0x8002, TIME_MORNING
 	goto_if_ne GoldenrodCity_Underground_EventScript_BargainMerchant_2
@@ -86,6 +87,8 @@ GoldenrodCity_Underground_EventScript_BargainMerchant::
 	goto_if_ne GoldenrodCity_Underground_EventScript_BargainMerchant_2
 	goto_if_set FLAG_DAILY_GOLDENROD_UNDERGROUND_BARGAINS, GoldenrodCity_Underground_EventScript_BargainMerchant_3
 	msgbox GoldenrodCity_Underground_EventScript_BargainMerchant_Text_2
+	special BargainShop
+	waitstate
 	msgbox GoldenrodCity_Underground_EventScript_BargainMerchant_Text_3
 GoldenrodCity_Underground_EventScript_BargainMerchant_1:
 	release
@@ -100,9 +103,32 @@ GoldenrodCity_Underground_EventScript_BargainMerchant_3:
 	goto GoldenrodCity_Underground_EventScript_BargainMerchant_1
 
 
+GoldenrodCity_Underground_EventScript_HerbMerchant::
+	lock
+	faceplayer
+	dotimebasedevents
+	gettime
+	compare VAR_0x8003, DAY_SUNDAY
+	goto_if_eq GoldenrodCity_Underground_EventScript_HerbMerchant_2
+	compare VAR_0x8003, DAY_SATURDAY
+	goto_if_eq GoldenrodCity_Underground_EventScript_HerbMerchant_2
+	msgbox GoldenrodCity_Underground_EventScript_BargainMerchant_Text_0
+GoldenrodCity_Underground_EventScript_HerbMerchant_1:
+	release
+	return
+
+GoldenrodCity_Underground_EventScript_HerbMerchant_2:
+	msgbox GoldenrodCity_Underground_EventScript_HerbMerchant_Text_0
+	special HerbShop
+	waitstate
+	msgbox GoldenrodCity_Underground_EventScript_HerbMerchant_Text_1
+	goto GoldenrodCity_Underground_EventScript_HerbMerchant_1
+
+
 GoldenrodCity_Underground_EventScript_OlderHaircutBrother::
 	lock
 	faceplayer
+	dotimebasedevents
 	gettime
 	compare VAR_0x8003, DAY_TUESDAY
 	goto_if_eq GoldenrodCity_Underground_EventScript_OlderHaircutBrother_2
@@ -172,6 +198,7 @@ GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected::
 GoldenrodCity_Underground_EventScript_YoungerHaircutBrother::
 	lock
 	faceplayer
+	dotimebasedevents
 	gettime
 	compare VAR_0x8003, DAY_SUNDAY
 	goto_if_eq GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_2
@@ -311,7 +338,7 @@ GoldenrodCity_Underground_EventScript_Door_5:
 	playse SE_CLICK
 	waitse
 	msgbox GoldenrodCity_Underground_EventScript_Door_Text_1
-	setmetatile 24, 9, METATILE_Underground_Door_Open, TRUE
+	setmetatile 24, 8, METATILE_Underground_Door_Open, TRUE
 	special DrawWholeMapView
 	setflag FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED
 	goto GoldenrodCity_Underground_EventScript_Door_1
@@ -337,6 +364,17 @@ GoldenrodCity_Underground_EventScript_BargainMerchant_Text_2:
 
 GoldenrodCity_Underground_EventScript_BargainMerchant_Text_3:
 	.string "Come by again sometime.$"
+
+GoldenrodCity_Underground_EventScript_HerbMerchant_Text_0:
+	.string "Hello, dear.\n"
+	.string "I sell inexpensive herbal medicine.\p"
+	.string "They're good but a trifle bitter.\n"
+	.string "Your POKéMON may not like them.\l"
+	.string "Hehehehe…$"
+
+GoldenrodCity_Underground_EventScript_HerbMerchant_Text_1:
+	.string "Come again, dear.\n"
+	.string "Hehehehe…$"
 
 GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Text_0:
 	.string "I do only one haircut a day.\n"

@@ -139,7 +139,7 @@ void UpdatePocketScrollPositions(void);
 u8 CreateBagInputHandlerTask(u8);
 void sub_81AC23C(u8);
 void BagMenu_MoveCursorCallback(s32 a, bool8 b, struct ListMenu*);
-void BagMenu_ItemPrintCallback(u8 windowId, s32 itemIndex, u8 a);
+void BagMenu_ItemPrintCallback(u8 windowId, u16 index, s32 itemIndex, u8 a);
 void ItemMenu_UseOutOfBattle(u8 taskId);
 void ItemMenu_Toss(u8 taskId);
 void ItemMenu_Register(u8 taskId);
@@ -989,7 +989,7 @@ void BagMenu_MoveCursorCallback(s32 itemIndex, bool8 onInit, struct ListMenu *un
     }
 }
 
-void BagMenu_ItemPrintCallback(u8 windowId, s32 itemIndex, u8 y)
+void BagMenu_ItemPrintCallback(u8 windowId, u16 index, s32 itemIndex, u8 y)
 {
     u16 itemId;
     u16 itemQuantity;
