@@ -42,7 +42,8 @@
 #define tScrollDistance data[5]
 #define tTextDelay data[6]
 #define tMiscValue data[7]
-#define tMiscPtr data[14]
+#define tPokedexSeenMonsCount data[13]
+#define tPokedexSeenMonsPtr data[14]
 
 static const u16 sRadioChannelSongs[] = 
 {
@@ -153,8 +154,8 @@ void Task_PlayRadioShow(u8 taskId)
         break;
     case POKEDEX_SHOW:
         {
-            u16 species, i;
-            u16 **caughtMons = (u16 **)&tMiscPtr;
+            u16 species = SPECIES_NONE, i = 0;
+            u16 **caughtMons = (u16 **)&tPokedexSeenMonsPtr;
             tShowNameId = tCurrentLine;
             PlayStationMusic(taskId);
             tMiscValue = SPECIES_NONE;
@@ -168,15 +169,16 @@ void Task_PlayRadioShow(u8 taskId)
                     {
                         if (GetSetPokedexFlag(species, FLAG_GET_CAUGHT))
                         {
-                            *caughtMons[i] = species;
+                            (*caughtMons)[i] = species;
                             i++;
                         }
                     }
+                    tPokedexSeenMonsCount = i;
                 }
             }
 
-            if (*caughtMons && i > 0)
-                tMiscValue = *caughtMons[Random() % i];
+            if (*caughtMons && tPokedexSeenMonsCount > 0)
+                tMiscValue = (*caughtMons)[Random() % tPokedexSeenMonsCount];
 
             StringCopy10(gStringVar4, gSpeciesNames[NationalPokedexNumToSpecies(tMiscValue)]);
             NextRadioLine(taskId, POKEDEX_SHOW_2, gStringVar4, TRUE);
