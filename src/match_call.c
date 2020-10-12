@@ -1143,6 +1143,8 @@ bool32 TryStartForcedMatchCall(void)
         StartMatchCall();
         return TRUE;
     }
+
+    return FALSE;
 }
 
 bool32 TryStartMatchCall(void)
