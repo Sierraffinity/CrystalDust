@@ -259,8 +259,8 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/GoldenrodCity_BillsHouse/scripts.inc"
 	.include "data/maps/GoldenrodCity_House1/scripts.inc"
 	.include "data/maps/GoldenrodCity_House2/scripts.inc"
-	.include "data/maps/GoldenrodCity_Flat2_3F/scripts.inc"
-	.include "data/maps/GoldenrodCity_House3/scripts.inc"
+	.include "data/maps/GoldenrodCity_DeptStore_1F/scripts.inc"
+	.include "data/maps/GoldenrodCity_DeptStore_2F/scripts.inc"
 	.include "data/maps/FortreeCity_House1/scripts.inc"
 	.include "data/maps/FortreeCity_Gym/scripts.inc"
 	.include "data/maps/FortreeCity_PokemonCenter_1F/scripts.inc"
@@ -1061,3 +1061,13 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_3F/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_4F/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_5F/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_6F/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_Rooftop/scripts.inc"

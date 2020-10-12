@@ -1143,15 +1143,15 @@
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_HOUSE",
-      "name": "GoldenrodCity_House_Layout",
-      "width": 12,
-      "height": 9,
+      "name": "GoldenrodCity_DeptStore_2F_Layout",
+      "width": 13,
+      "height": 15,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/GoldenrodCity_House/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_House/map.bin"
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_2F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_2F/map.bin"
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_FLOWER_SHOP",
@@ -3543,15 +3543,15 @@
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_FLAT2_3F",
-      "name": "GoldenrodCity_Flat2_3F_Layout",
-      "width": 14,
-      "height": 9,
+      "name": "GoldenrodCity_DeptStore_1F_Layout",
+      "width": 13,
+      "height": 16,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/GoldenrodCity_Flat2_3F/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_Flat2_3F/map.bin"
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_1F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_1F/map.bin"
     },
     {
       "id": "LAYOUT_SOOTOPOLIS_CITY_LOTAD_AND_SEEDOT_HOUSE",
@@ -5340,6 +5340,66 @@
       "secondary_tileset": "gTileset_Gatehouse",
       "border_filepath": "data/layouts/NationalParkGateEast/border.bin",
       "blockdata_filepath": "data/layouts/NationalParkGateEast/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_3F",
+      "name": "GoldenrodCity_DeptStore_3F_Layout",
+      "width": 13,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_3F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_3F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_4F",
+      "name": "GoldenrodCity_DeptStore_4F_Layout",
+      "width": 13,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_4F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_4F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_5F",
+      "name": "GoldenrodCity_DeptStore_5F_Layout",
+      "width": 13,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_5F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_5F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_6F",
+      "name": "GoldenrodCity_DeptStore_6F_Layout",
+      "width": 13,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_6F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_6F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_ROOFTOP",
+      "name": "GoldenrodCity_DeptStore_Rooftop_Layout",
+      "width": 19,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_Rooftop/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_Rooftop/map.bin"
     }
   ]
 }

@@ -327,12 +327,12 @@ gMetatileAttributes_GameCorner:: @ 83C3F72
 	.incbin "data/tilesets/secondary/game_corner/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Unused2:: @ 83C4032
-	.incbin "data/tilesets/secondary/unused_2/metatiles.bin"
+gMetatiles_DepartmentStore:: @ 83C4032
+	.incbin "data/tilesets/secondary/department_store/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Unused2:: @ 83C43D2
-	.incbin "data/tilesets/secondary/unused_2/metatile_attributes.bin"
+gMetatileAttributes_DepartmentStore:: @ 83C43D2
+	.incbin "data/tilesets/secondary/department_store/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_GoldenrodGym:: @ 83C4446

@@ -208,8 +208,13 @@
     "GoldenrodCity_BillsHouse",
     "GoldenrodCity_House1",
     "GoldenrodCity_House2",
-    "GoldenrodCity_Flat2_3F",
-    "GoldenrodCity_House3"
+    "GoldenrodCity_DeptStore_1F",
+    "GoldenrodCity_DeptStore_2F",
+    "GoldenrodCity_DeptStore_3F",
+    "GoldenrodCity_DeptStore_4F",
+    "GoldenrodCity_DeptStore_5F",
+    "GoldenrodCity_DeptStore_6F",
+    "GoldenrodCity_DeptStore_Rooftop"
   ],
   "gMapGroup12": [
     "FortreeCity_House1",

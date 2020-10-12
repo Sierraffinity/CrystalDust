@@ -467,14 +467,14 @@ gTileset_MagnetTrain:: @ 83DFA94
 	.4byte NULL @ palette overrides
 
 	.align 2
-gTileset_Unused2:: @ 83DFAAC
+gTileset_DepartmentStore:: @ 83DFAAC
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_Unused2
-	.4byte gTilesetPalettes_Unused2
-	.4byte gMetatiles_Unused2
-	.4byte gMetatileAttributes_Unused2
+	.4byte gTilesetTiles_DepartmentStore
+	.4byte gTilesetPalettes_DepartmentStore
+	.4byte gMetatiles_DepartmentStore
+	.4byte gMetatileAttributes_DepartmentStore
 	.4byte NULL @ animation callback
 	.4byte NULL @ palette overrides
 
