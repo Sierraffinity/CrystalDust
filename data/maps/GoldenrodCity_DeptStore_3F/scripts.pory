@@ -1,1 +1,41 @@
 mapscripts GoldenrodCity_DeptStore_3F_MapScripts {}
+
+script GoldenrodCity_DeptStore_3F_EventScript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(GoldenrodCity_DeptStore_3F_Pokemart_Clerk)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+raw `
+GoldenrodCity_DeptStore_3F_Pokemart_Clerk:
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_SPECIAL
+	.2byte ITEM_X_DEFEND
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_GUARD_SPEC
+	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_NONE
+`
+
+script GoldenrodCity_DeptStore_3F_EventScript_Rocker {
+    msgbox("Hey! When you battle, do you\n"
+           "use X SPECIAL?\p"
+           "It's awesome. It really jacks\n"
+           "up SP. ATK!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_3F_EventScript_ImpatientNerd {
+    msgbox("I, I, I'm really impatient!\n"
+           "I use X SPEED in battle to speed\l"
+           "up my POKéMON.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_3F_EventScript_FloorNumber {
+    msgbox("For Victory Seekers\p"
+           "3F BATTLE COLLECTION", MSGBOX_SIGN)
+}

@@ -269,6 +269,13 @@
       "dest_warp_id": 0
     },
     {
+      "x": 29,
+      "y": 30,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY_DEPT_STORE_1F",
+      "dest_warp_id": 0
+    },
+    {
       "x": 18,
       "y": 30,
       "elevation": 0,

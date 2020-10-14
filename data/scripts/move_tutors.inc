@@ -288,14 +288,12 @@ MoveTutor_EventScript_ExplosionTaught:: @ 82C831C
 	release
 	end
 
+@ Headbutt can be learned multiple times, as in Crystal you could buy more Headbutt
+@ TMs at the Goldenrod Dept. Store. This is also what HGSS do.
 IlexForest_EventScript_HeadbuttTutor::
 	lock
 	faceplayer
-	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_HEADBUTT, MoveTutor_EventScript_HeadbuttTaught
 	msgbox MoveTutor_Text_HeadbuttTeach, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq MoveTutor_EventScript_HeadbuttDeclined
-	call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 	compare VAR_RESULT, NO
 	goto_if_eq MoveTutor_EventScript_HeadbuttDeclined
 	msgbox MoveTutor_Text_HeadbuttWhichMon, MSGBOX_DEFAULT
@@ -303,17 +301,12 @@ IlexForest_EventScript_HeadbuttTutor::
 	call MoveTutor_EventScript_OpenPartyMenu
 	compare VAR_RESULT, FALSE
 	goto_if_eq MoveTutor_EventScript_HeadbuttDeclined
-	setflag FLAG_MOVE_TUTOR_TAUGHT_HEADBUTT
-	goto MoveTutor_EventScript_HeadbuttTaught
+	msgbox MoveTutor_Text_HeadbuttTaught, MSGBOX_DEFAULT
+	release
 	end
 
 MoveTutor_EventScript_HeadbuttDeclined:: @ 82C82AA
 	msgbox MoveTutor_Text_HeadbuttDeclined, MSGBOX_DEFAULT
-	release
-	end
-
-MoveTutor_EventScript_HeadbuttTaught:: @ 82C82B4
-	msgbox MoveTutor_Text_HeadbuttTaught, MSGBOX_DEFAULT
 	release
 	end
 

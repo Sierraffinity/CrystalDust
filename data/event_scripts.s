@@ -1007,6 +1007,12 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	release
 	end
 
+EventScript_ElevatorButton::
+    delay 15
+    playse SE_DING_DONG
+    waitse
+	end
+
 	.include "data/scripts/pc_transfer.inc"
 	.include "data/scripts/mevent.inc"
 	.include "data/scripts/abnormal_weather.inc"

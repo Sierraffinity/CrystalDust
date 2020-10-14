@@ -1,37 +1,86 @@
-GoldenrodCity_DeptStore_2F_MapScripts:: @ 8216190
+GoldenrodCity_DeptStore_2F_MapScripts::
 	.byte 0
 
-GoldenrodCity_DeptStore_2F_EventScript_OldMan:: @ 8216191
-	msgbox GoldenrodCity_DeptStore_2F_Text_IGivePerfectlySuitedNicknames, MSGBOX_NPC
-	end
 
-GoldenrodCity_DeptStore_2F_EventScript_OldWoman:: @ 821619A
-	msgbox GoldenrodCity_DeptStore_2F_Text_NamingPikachuPekachu, MSGBOX_NPC
-	end
-
-@ Misspelling on purpose, see nickname
-GoldenrodCity_DeptStore_2F_EventScript_Pekachu:: @ 82161A3
+GoldenrodCity_DeptStore_2F_EventScript_TopClerk::
 	lock
 	faceplayer
-	waitse
-	playmoncry SPECIES_PIKACHU, 0
-	msgbox GoldenrodCity_DeptStore_2F_Text_Pekachu, MSGBOX_DEFAULT
-	waitmoncry
+	message gText_HowMayIHelpYou
+	waitmessage
+	pokemart GoldenrodCity_DeptStore_2F_Pokemart_TopClerk
+	msgbox gText_PleaseComeAgain
 	release
-	end
+	return
 
-GoldenrodCity_DeptStore_2F_Text_IGivePerfectlySuitedNicknames: @ 82161B6
-	.string "For my own POKéMON, I give them\n"
-	.string "perfectly suited nicknames!\p"
-	.string "It's my expression of, uh…\n"
-	.string "originality, yes, that's it!$"
 
-GoldenrodCity_DeptStore_2F_Text_NamingPikachuPekachu: @ 821622A
-	.string "But giving the name PEKACHU to\n"
-	.string "a PIKACHU? It seems pointless.\p"
-	.string "I suppose it is good to use a name\n"
-	.string "that's easy to understand, but…$"
+GoldenrodCity_DeptStore_2F_Pokemart_TopClerk:
+	.2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_BURN_HEAL
+	.2byte ITEM_ICE_HEAL
+	.2byte ITEM_NONE
 
-GoldenrodCity_DeptStore_2F_Text_Pekachu: @ 82162AB
-	.string "PEKACHU: Peka!$"
+GoldenrodCity_DeptStore_2F_EventScript_LeftClerk::
+	lock
+	faceplayer
+	message gText_HowMayIHelpYou
+	waitmessage
+	pokemart GoldenrodCity_DeptStore_2F_Pokemart_LeftClerk
+	msgbox gText_PleaseComeAgain
+	release
+	return
 
+
+GoldenrodCity_DeptStore_2F_Pokemart_LeftClerk:
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_ESCAPE_ROPE
+	.2byte ITEM_REPEL
+	.2byte ITEM_REVIVE
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_POKE_DOLL
+	.2byte ITEM_FAB_MAIL
+	.2byte ITEM_NONE
+
+GoldenrodCity_DeptStore_2F_EventScript_Youngster::
+	msgbox GoldenrodCity_DeptStore_2F_EventScript_Youngster_Text_0, MSGBOX_NPC
+	return
+
+
+GoldenrodCity_DeptStore_2F_EventScript_AbraWoman::
+	msgbox GoldenrodCity_DeptStore_2F_EventScript_AbraWoman_Text_0, MSGBOX_NPC
+	return
+
+
+GoldenrodCity_DeptStore_2F_EventScript_Gentleman::
+	msgbox GoldenrodCity_DeptStore_2F_EventScript_Gentleman_Text_0, MSGBOX_NPC
+	return
+
+
+GoldenrodCity_DeptStore_2F_EventScript_FloorNumber::
+	msgbox GoldenrodCity_DeptStore_2F_EventScript_FloorNumber_Text_0, MSGBOX_SIGN
+	return
+
+
+GoldenrodCity_DeptStore_2F_EventScript_Youngster_Text_0:
+	.string "The POKéGEAR can store up to ten\n"
+	.string "phone numbers.\p"
+	.string "It's hard to decide which numbers\n"
+	.string "to keep.$"
+
+GoldenrodCity_DeptStore_2F_EventScript_AbraWoman_Text_0:
+	.string "I got my ABRA at the GAME CORNER.\n"
+	.string "Now it's my best partner.$"
+
+GoldenrodCity_DeptStore_2F_EventScript_Gentleman_Text_0:
+	.string "This DEPT. STORE makes me realize\n"
+	.string "that GOLDENROD is a big city.\p"
+	.string "The selection here is unmatched\n"
+	.string "anywhere else.$"
+
+GoldenrodCity_DeptStore_2F_EventScript_FloorNumber_Text_0:
+	.string "Your Travel Companion\p"
+	.string "2F TRAINER'S MARKET$"

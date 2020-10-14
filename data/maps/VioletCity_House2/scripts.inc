@@ -10,7 +10,7 @@ VioletCity_House2_EventScript_Man::
 VioletCity_House2_EventScript_Kyle::
 	lock
 	faceplayer
-	setvar VAR_0x8008, INGAME_TRADE_SEEDOT
+	setvar VAR_0x8008, INGAME_TRADE_ONIX
 	copyvar VAR_0x8004, VAR_0x8008
 	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
 	copyvar VAR_0x8009, VAR_RESULT
@@ -25,16 +25,18 @@ VioletCity_House2_EventScript_Kyle_2:
 	msgbox VioletCity_House2_EventScript_Kyle_Text_0, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_ne VioletCity_House2_EventScript_Kyle_5
-	goto no_trade
+	goto VioletCity_House2_EventScript_Kyle_NoTrade
 	goto VioletCity_House2_EventScript_Kyle_1
 
 VioletCity_House2_EventScript_Kyle_5:
 	special ChoosePartyMon
 	waitstate
+	lock
+	faceplayer
 	copyvar VAR_0x800A, VAR_0x8004
 	compare VAR_0x8004, 0xFF
 	goto_if_ne VioletCity_House2_EventScript_Kyle_8
-	goto no_trade
+	goto VioletCity_House2_EventScript_Kyle_NoTrade
 	goto VioletCity_House2_EventScript_Kyle_1
 
 VioletCity_House2_EventScript_Kyle_8:
@@ -59,8 +61,8 @@ VioletCity_House2_EventScript_Kyle_11:
 	goto VioletCity_House2_EventScript_Kyle_1
 
 
-no_trade:
-	msgbox no_trade_Text_0
+VioletCity_House2_EventScript_Kyle_NoTrade::
+	msgbox VioletCity_House2_EventScript_Kyle_NoTrade_Text_0
 	release
 	return
 
@@ -87,6 +89,6 @@ VioletCity_House2_EventScript_Kyle_Text_2:
 VioletCity_House2_EventScript_Kyle_Text_3:
 	.string "Hi, how's my old {STR_VAR_2} doing?$"
 
-no_trade_Text_0:
+VioletCity_House2_EventScript_Kyle_NoTrade_Text_0:
 	.string "You don't want to trade?\n"
 	.string "Aww…$"

@@ -5,7 +5,7 @@ GoldenrodCity_FlowerShop_EventScript_Trader:: @ 821593F
 	lock
 	faceplayer
 	goto_if_set FLAG_VIOLET_NPC_TRADE_COMPLETED, GoldenrodCity_FlowerShop_EventScript_TradeCompleted
-	setvar VAR_0x8008, INGAME_TRADE_SEEDOT
+	setvar VAR_0x8008, INGAME_TRADE_ONIX
 	copyvar VAR_0x8004, VAR_0x8008
 	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
 	copyvar VAR_0x8009, VAR_RESULT
