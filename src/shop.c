@@ -97,6 +97,7 @@ static bool8 InitShopData(void);
 static void BuyMenuFreeMemory(void);
 static void BuyMenuQuantityBoxNormalBorder(u8 windowId, bool8 copyToVram);
 static void BuyMenuQuantityBoxThinBorder(u8 windowId, bool8 copyToVram);
+static void LoadTmHmNameInMart(s32 item);
 
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
 {
@@ -258,6 +259,75 @@ static const struct WindowTemplate sShopBuyMenuWindowTemplates[] =
         .baseBlock = 0x1BD,
     },
     DUMMY_WIN_TEMPLATE
+};
+
+// firered uses different layout when selling TMs
+static const struct WindowTemplate sShopBuyMenuWindowTemplatesTM[] =
+{
+    {
+        .bg = 0x0,
+        .tilemapLeft = 0x1,
+        .tilemapTop = 0x1,
+        .width = 0x8,
+        .height = 0x3,
+        .paletteNum = 0xF,
+        .baseBlock = 0x27,
+    },
+    {
+        .bg = 0x0,
+        .tilemapLeft = 0x1,
+        .tilemapTop = 0xB,
+        .width = 0xD,
+        .height = 0x2,
+        .paletteNum = 0xF,
+        .baseBlock = 0x3F,
+    },
+    {
+        .bg = 0x0,
+        .tilemapLeft = 0x2,
+        .tilemapTop = 0xF,
+        .width = 0x1A,
+        .height = 0x4,
+        .paletteNum = 0xE,
+        .baseBlock = 0x59,
+    },
+    {
+        .bg = 0x0,
+        .tilemapLeft = 0x11,
+        .tilemapTop = 0x9,
+        .width = 0xC,
+        .height = 0x4,
+        .paletteNum = 0xE,
+        .baseBlock = 0xC1,
+    },
+    {
+        .bg = 0x0,
+        .tilemapLeft = 0xB,
+        .tilemapTop = 0x1,
+        .width = 0x11,
+        .height = 0xA,
+        .paletteNum = 0xE,
+        .baseBlock = 0xF1,
+    },
+    {
+        .bg = 0x0,
+        .tilemapLeft = 0xC,
+        .tilemapTop = 0xC,
+        .width = 0x12,
+        .height = 0x8,
+        .paletteNum = 0xE,
+        .baseBlock = 0x19B,
+    },
+    {
+        .bg = 0x0,
+        .tilemapLeft = 0x1,
+        .tilemapTop = 0xE,
+        .width = 0xA,
+        .height = 0x4,
+        .paletteNum = 0xE,
+        .baseBlock = 0x22B,
+    },
+    DUMMY_WIN_TEMPLATE,
 };
 
 static const struct WindowTemplate sShopBuyMenuYesNoWindowTemplates =
@@ -650,7 +720,7 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     else
     {
         FillWindowPixelBuffer(6, PIXEL_FILL(0));
-        //LoadTmHmNameInMart(item);
+        LoadTmHmNameInMart(item);
         BuyMenuPrint(5, 1, description, 2, 3, 1, 0, 0, 0);
     }
 }
@@ -692,6 +762,24 @@ static void BuyMenuPrintPriceInList(u8 windowId, u16 index, s32 item, u8 y)
             *loc++ = 0;
         StringExpandPlaceholders(loc, gText_PokedollarVar1);
         BuyMenuPrint(windowId, 0, gStringVar4, 0x69, y, 0, 0, TEXT_SPEED_FF, 1);
+    }
+}
+
+static void LoadTmHmNameInMart(s32 item)
+{
+    if (item != LIST_CANCEL)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, item - ITEM_TM01 - 1, 2, 2);
+        StringCopy(gStringVar4, gText_NumberClear01);
+        StringAppend(gStringVar4, gStringVar1);
+        BuyMenuPrint(6, 0, gStringVar4, 0, 0, 0, 0, TEXT_SPEED_FF, 1);
+        StringCopy(gStringVar4, gMoveNames[ItemIdToBattleMoveId(item)]);
+        BuyMenuPrint(6, 1, gStringVar4, 0, 0x10, 0, 0, 0, 1);
+    }
+    else
+    {
+        BuyMenuPrint(6, 0, gText_ThreeDashes, 0, 0, 0, 0, TEXT_SPEED_FF, 1);
+        BuyMenuPrint(6, 1, gText_SevenDashes, 0, 0x10, 0, 0, 0, 1);
     }
 }
 
@@ -809,19 +897,19 @@ static void BuyMenuDecompressBgGraphics(void)
     Free(pal);
 }
 
-static void sub_809B10C(bool32 a0)
+static void RecolorItemDescriptionBox(bool32 a0)
 {
-    u8 v;
+    u8 paletteNum;
     
     if (a0 == FALSE)
-        v = 0xB;
+        paletteNum = 11;
     else 
-        v = 6;
+        paletteNum = 6;
     
     if ((gMartInfo.martType) != MART_TYPE_TMHM)
-        SetBgTilemapPalette(1, 0, 0xE, 0x1E, 6, v);
+        SetBgTilemapPalette(1, 0, 14, 30, 6, paletteNum);
     else
-        SetBgTilemapPalette(1, 0, 0xC, 0x1E, 8, v);
+        SetBgTilemapPalette(1, 0, 12, 30, 8, paletteNum);
     
     ScheduleBgCopyTilemapToVram(1);
 }
@@ -834,8 +922,7 @@ static void BuyMenuInitWindows(u8 martType)
     }
     else
     {
-        // TODO
-        InitWindows(sShopBuyMenuWindowTemplates);
+        InitWindows(sShopBuyMenuWindowTemplatesTM);
     }
 
     DeactivateAllTextPrinters();
@@ -1062,7 +1149,7 @@ static void Task_BuyMenu(u8 taskId)
             ClearWindowTilemap(5);
             BuyMenuRemoveScrollIndicatorArrows();
             BuyMenuPrintCursor(tListTaskId, 2);
-            sub_809B10C(1);
+            RecolorItemDescriptionBox(1);
 
             if (gMartInfo.martType == MART_TYPE_BARGAIN &&
                (gShopDataPtr->bargainShopPurchasedItems & (1 << index)))
@@ -1347,7 +1434,7 @@ static void BuyMenuReturnToItemList(u8 taskId)
 
     ClearDialogWindowAndFrameToTransparent(2, 0);
     BuyMenuPrintCursor(tListTaskId, 1);
-    sub_809B10C(0);
+    RecolorItemDescriptionBox(0);
     PutWindowTilemap(4);
     PutWindowTilemap(5);
     if (gMartInfo.martType == MART_TYPE_TMHM)

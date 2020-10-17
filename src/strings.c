@@ -205,6 +205,7 @@ const u8 gText_Slash[] = _("/");
 const u8 gText_OneDash[] = _("-");
 const u8 gText_TwoDashes[] = _("--");
 const u8 gText_ThreeDashes[] = _("---");
+const u8 gText_SevenDashes[] = _("-------");
 const u8 gText_MaleSymbol[] = _("♂");
 const u8 gText_FemaleSymbol[] = _("♀");
 const u8 gText_LevelSymbol[] = _("{LV}");
