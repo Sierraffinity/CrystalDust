@@ -1742,30 +1742,36 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
 bool8 ScrCmd_addmoney(struct ScriptContext *ctx)
 {
     u32 amount = ScriptReadWord(ctx);
-    u8 ignore = ScriptReadByte(ctx);
+    u8 isVar = ScriptReadByte(ctx);
 
-    if (!ignore)
-        AddMoney(&gSaveBlock1Ptr->money, amount);
+    if (isVar)
+        amount = VarGet(amount);
+
+    AddMoney(&gSaveBlock1Ptr->money, amount);
     return FALSE;
 }
 
 bool8 ScrCmd_removemoney(struct ScriptContext *ctx)
 {
     u32 amount = ScriptReadWord(ctx);
-    u8 ignore = ScriptReadByte(ctx);
+    u8 isVar = ScriptReadByte(ctx);
 
-    if (!ignore)
-        RemoveMoney(&gSaveBlock1Ptr->money, amount);
+    if (isVar)
+        amount = VarGet(amount);
+
+    RemoveMoney(&gSaveBlock1Ptr->money, amount);
     return FALSE;
 }
 
 bool8 ScrCmd_checkmoney(struct ScriptContext *ctx)
 {
     u32 amount = ScriptReadWord(ctx);
-    u8 ignore = ScriptReadByte(ctx);
+    u8 isVar = ScriptReadByte(ctx);
 
-    if (!ignore)
-        gSpecialVar_Result = IsEnoughMoney(&gSaveBlock1Ptr->money, amount);
+    if (isVar)
+        amount = VarGet(amount);
+
+    gSpecialVar_Result = IsEnoughMoney(&gSaveBlock1Ptr->money, amount);
     return FALSE;
 }
 

@@ -1093,26 +1093,29 @@
 	.2byte \limit
 	.endm
 
-	@ If check is 0x00, this command adds value to the player's money.
+	@ This command adds value to the player's money. If isVar != 0, then value is used as a variable
+	@ variable number to read the amount from instead.
 	.macro addmoney value:req, check:req
 	.byte 0x90
 	.4byte \value
 	.byte \check
 	.endm
 
-	@ If check is 0x00, this command subtracts value from the player's money.
-	.macro removemoney value:req, check:req
+	@ This command subtracts value from the player's money. If isVar != 0, then value is used as a
+	@ number to read the amount from instead.
+	.macro removemoney value:req, isVar:req
 	.byte 0x91
 	.4byte \value
-	.byte \check
+	.byte \isVar
 	.endm
 
-	@ If check is 0x00, this command will check if the player has money >= value; VAR_RESULT is set to TRUE if the player 
-	@ has enough money, or FALSE if they do not.
-	.macro checkmoney value:req, check:req
+	@ This command will check if the player has money >= value; VAR_RESULT is set to TRUE if the player 
+	@ has enough money, or FALSE if they do not. If isVar != 0, then value is used as a variable number
+	@ to read the amount from instead.
+	.macro checkmoney value:req, isVar:req
 	.byte 0x92
 	.4byte \value
-	.byte \check
+	.byte \isVar
 	.endm
 
 	@ Spawns a secondary box showing how much money the player has.
