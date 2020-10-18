@@ -126,7 +126,7 @@ void DrawMoneyBox(int amount, u8 x, u8 y)
     sMoneyBoxWindowId = AddWindow(&template);
     FillWindowPixelBuffer(sMoneyBoxWindowId, PIXEL_FILL(0));
     PutWindowTilemap(sMoneyBoxWindowId);
-    CopyWindowToVram(sMoneyBoxWindowId, 3);
+    //CopyWindowToVram(sMoneyBoxWindowId, 3);
     LoadThinWindowBorderGfx(sMoneyBoxWindowId, 0x21D, 0xD0);
     PrintMoneyAmountInMoneyBoxWithBorder(sMoneyBoxWindowId, 0x21D, 13, amount);
 }
