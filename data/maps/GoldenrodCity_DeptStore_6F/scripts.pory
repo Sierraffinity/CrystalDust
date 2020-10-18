@@ -1,1 +1,88 @@
 mapscripts GoldenrodCity_DeptStore_6F_MapScripts {}
+
+script GoldenrodCity_DeptStore_6F_EventScript_VendingMachine {
+    lockall
+    message(GoldenrodCity_DeptStore_6F_Text_AVendingMachine)
+    waitmessage
+    showmoneybox(0, 0, FALSE)
+    goto(GoldenrodCity_DeptStore_6F_EventScript_ChooseDrink)
+}
+
+text GoldenrodCity_DeptStore_6F_Text_AVendingMachine {
+    "A vending machine!\n"
+    "Here's the menu."
+}
+
+script GoldenrodCity_DeptStore_6F_EventScript_ChooseDrink {
+    multichoice(16, 0, MULTI_VENDING_MACHINE, 0)
+    switch(var(VAR_RESULT))
+    {
+        case 0:
+	        setvar(VAR_TEMP_0, ITEM_FRESH_WATER)
+            setvar(VAR_TEMP_1, 200)
+        case 1:
+	        setvar(VAR_TEMP_0, ITEM_SODA_POP)
+            setvar(VAR_TEMP_1, 300)
+        case 2:
+	        setvar(VAR_TEMP_0, ITEM_LEMONADE)
+            setvar(VAR_TEMP_1, 350)
+        default:
+            goto(GoldenrodCity_DeptStore_6F_EventScript_ExitVendingMachine)
+    }
+
+    checkmoney(VAR_TEMP_1, TRUE)
+    if (var(VAR_RESULT) == FALSE)
+    {
+        msgbox("Oops, not enough money.")
+    }
+    else
+    {
+        checkitemspace(VAR_TEMP_0, 1)
+        if (var(VAR_RESULT) == FALSE)
+        {
+            msgbox("There's no more room for stuff.")
+        }
+        else
+        {
+            removemoney(VAR_TEMP_1, TRUE)
+            updatemoneybox(0, 0)
+            bufferitemname(0, VAR_TEMP_0)
+            playse(SE_VEND)
+            msgbox("Clang!\n"
+                   "A can of {STR_VAR_1} popped out!")
+            additem(VAR_TEMP_0)
+            bufferitemname(1, VAR_TEMP_0)
+            bufferstdstring(2, STDSTRING_ITEMS)
+            msgbox(gText_PutItemInPocket)
+            message(GoldenrodCity_DeptStore_6F_Text_AVendingMachine)
+            waitmessage
+            goto(GoldenrodCity_DeptStore_6F_EventScript_ChooseDrink)
+        }
+    }
+
+    hidemoneybox
+    releaseall
+}
+
+script GoldenrodCity_DeptStore_6F_EventScript_ExitVendingMachine {
+    hidemoneybox
+    releaseall
+}
+
+script GoldenrodCity_DeptStore_6F_EventScript_Boy {
+    msgbox("If you're tired, try the vending\n"
+           "machine's drinks.\p"
+           "Your POKéMON will love them too.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_6F_EventScript_Girl {
+    msgbox("Do you listen to LUCKY CHANNEL?\p"
+           "If you want to win, trade POKéMON\n"
+           "with as many people as possible to\l"
+           "get different ID numbers.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_6F_EventScript_FloorNumber {
+    msgbox("Take a Break from Shopping!\p"
+           "6F TRANQUIL SQUARE", MSGBOX_SIGN)
+}
