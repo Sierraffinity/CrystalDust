@@ -159,7 +159,7 @@
 #define VAR_KURT_GIVEN_APRICORN              0x408C
 #define VAR_KURT_GIVEN_APRICORN_QTY          0x408D
 #define VAR_GOLDENROD_GYM_STATE              0x408E
-#define VAR_DEVON_CORP_3F_STATE              0x408F
+#define VAR_GOLDENROD_DEPT_STORE_B1F_LAYOUT  0x408F
 #define VAR_BRINEY_HOUSE_STATE               0x4090
 #define VAR_UNUSED_0x4091                    0x4091 // Unused Var
 #define VAR_LITTLEROOT_INTRO_STATE           0x4092

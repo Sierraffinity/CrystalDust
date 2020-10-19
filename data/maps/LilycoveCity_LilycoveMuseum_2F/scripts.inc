@@ -11,7 +11,7 @@ LilycoveCity_LilycoveMuseum_2F_OnLoad: @ 8219745
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_CheckBeautyPainting:: @ 8219754
-	goto_if_set FLAG_BEAUTY_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_SetBeautyPainting
+	goto_if_set FLAG_VISITED_GOLDENROD_DEPT_STORE_B1F, LilycoveCity_LilycoveMuseum_2F_EventScript_SetBeautyPainting
 	goto LilycoveCity_LilycoveMuseum_2F_EventScript_CheckCutePainting
 	end
 
@@ -160,7 +160,7 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_CoolPainting:: @ 8219951
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_BeautyPainting:: @ 8219964
 	lockall
-	goto_if_set FLAG_BEAUTY_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowBeautyPainting
+	goto_if_set FLAG_VISITED_GOLDENROD_DEPT_STORE_B1F, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowBeautyPainting
 	msgbox LilycoveCity_LilycoveMuseum_2F_Text_ItsBluePictureFrame, MSGBOX_SIGN
 	end
 

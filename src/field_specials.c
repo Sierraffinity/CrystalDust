@@ -1712,38 +1712,38 @@ const u8 *const gDeptStoreFloorNames[] =
 static const u16 sElevatorWindowTiles_Ascending[][3] =
 {
     {
-        METATILE_PokemonFanClub_Elevator_Top0,
-        METATILE_PokemonFanClub_Elevator_Top1,
-        METATILE_PokemonFanClub_Elevator_Top2
+        METATILE_RadioTower_Elevator_Top0,
+        METATILE_RadioTower_Elevator_Top1,
+        METATILE_RadioTower_Elevator_Top2
     },
     {
-        METATILE_PokemonFanClub_Elevator_Mid0,
-        METATILE_PokemonFanClub_Elevator_Mid1,
-        METATILE_PokemonFanClub_Elevator_Mid2
+        METATILE_RadioTower_Elevator_Mid0,
+        METATILE_RadioTower_Elevator_Mid1,
+        METATILE_RadioTower_Elevator_Mid2
     },
     {
-        METATILE_PokemonFanClub_Elevator_Bottom0,
-        METATILE_PokemonFanClub_Elevator_Bottom1,
-        METATILE_PokemonFanClub_Elevator_Bottom2
+        METATILE_RadioTower_Elevator_Bottom0,
+        METATILE_RadioTower_Elevator_Bottom1,
+        METATILE_RadioTower_Elevator_Bottom2
     },
 };
 
 static const u16 sElevatorWindowTiles_Descending[][3] =
 {
     {
-        METATILE_PokemonFanClub_Elevator_Top0,
-        METATILE_PokemonFanClub_Elevator_Top2,
-        METATILE_PokemonFanClub_Elevator_Top1
+        METATILE_RadioTower_Elevator_Top0,
+        METATILE_RadioTower_Elevator_Top2,
+        METATILE_RadioTower_Elevator_Top1
     },
     {
-        METATILE_PokemonFanClub_Elevator_Mid0,
-        METATILE_PokemonFanClub_Elevator_Mid2,
-        METATILE_PokemonFanClub_Elevator_Mid1
+        METATILE_RadioTower_Elevator_Mid0,
+        METATILE_RadioTower_Elevator_Mid2,
+        METATILE_RadioTower_Elevator_Mid1
     },
     {
-        METATILE_PokemonFanClub_Elevator_Bottom0,
-        METATILE_PokemonFanClub_Elevator_Bottom2,
-        METATILE_PokemonFanClub_Elevator_Bottom1
+        METATILE_RadioTower_Elevator_Bottom0,
+        METATILE_RadioTower_Elevator_Bottom2,
+        METATILE_RadioTower_Elevator_Bottom1
     },
 };
 
@@ -1752,6 +1752,9 @@ void SetDeptStoreFloor(void)
     u8 deptStoreFloor;
     switch (gSaveBlock1Ptr->dynamicWarp.mapNum)
     {
+        case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_B1F):
+            deptStoreFloor = ELEVATOR_FLOORNUM_B1F;
+            break;
         case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_1F):
             deptStoreFloor = ELEVATOR_FLOORNUM_1F;
             break;
@@ -1812,6 +1815,10 @@ u16 GetDeptStoreDefaultFloorChoice(void)
             case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_1F):
                 sLilycoveDeptStore_NeverRead = 0;
                 sLilycoveDeptStore_DefaultFloorChoice = 5;
+                break;
+            case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_B1F):
+                sLilycoveDeptStore_NeverRead = 0;
+                sLilycoveDeptStore_DefaultFloorChoice = 6;
                 break;
         }
     }

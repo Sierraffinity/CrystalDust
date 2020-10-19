@@ -185,6 +185,7 @@
 #define MAP_GOLDENROD_CITY_DEPT_STORE_6F              (20 | (11 << 8))
 #define MAP_GOLDENROD_CITY_DEPT_STORE_ROOFTOP         (21 | (11 << 8))
 #define MAP_GOLDENROD_CITY_DEPT_STORE_ELEVATOR        (22 | (11 << 8))
+#define MAP_GOLDENROD_CITY_DEPT_STORE_B1F             (23 | (11 << 8))
 
 // Map Group 12
 #define MAP_FORTREE_CITY_HOUSE1            (0 | (12 << 8))

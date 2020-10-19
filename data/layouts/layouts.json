@@ -1029,7 +1029,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PokemonFanClub",
+      "secondary_tileset": "gTileset_RadioTower",
       "border_filepath": "data/layouts/SlateportCity_PokemonFanClub/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity_PokemonFanClub/map.bin"
     },
@@ -1497,7 +1497,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PokemonFanClub",
+      "secondary_tileset": "gTileset_RadioTower",
       "border_filepath": "data/layouts/RadioTower_1F/border.bin",
       "blockdata_filepath": "data/layouts/RadioTower_1F/map.bin"
     },
@@ -1509,7 +1509,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PokemonFanClub",
+      "secondary_tileset": "gTileset_RadioTower",
       "border_filepath": "data/layouts/RadioTower_2F/border.bin",
       "blockdata_filepath": "data/layouts/RadioTower_2F/map.bin"
     },
@@ -5409,9 +5409,21 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PokemonFanClub",
+      "secondary_tileset": "gTileset_RadioTower",
       "border_filepath": "data/layouts/GoldenrodCity_DeptStore_Elevator/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_Elevator/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_B1F",
+      "name": "GoldenrodCity_DeptStore_B1F_Layout",
+      "width": 24,
+      "height": 22,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_RadioTower",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_B1F/map.bin"
     }
   ]
 }

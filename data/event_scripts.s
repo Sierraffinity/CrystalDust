@@ -1079,3 +1079,5 @@ EventScript_ElevatorButton::
 	.include "data/maps/GoldenrodCity_DeptStore_Rooftop/scripts.inc"
 
 	.include "data/maps/GoldenrodCity_DeptStore_Elevator/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_B1F/scripts.inc"

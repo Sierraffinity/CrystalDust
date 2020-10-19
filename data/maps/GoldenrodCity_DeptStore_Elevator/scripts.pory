@@ -65,13 +65,13 @@ script GoldenrodCity_DeptStore_Elevator_EventScript_Keypad {
                 setvar(VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_1F)
             }
         case 6:
-            //setvar(VAR_0x8007, ELEVATOR_FLOORNUM_B1F)
-            //setdynamicwarp(MAP_GOLDENROD_CITY_DEPT_STORE_B1F, 2, 0, 0)
-            //if (var(VAR_DEPT_STORE_FLOOR) != ELEVATOR_FLOORNUM_B1F)
-            //{
-            //    call(GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator)
-            //    setvar(VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_B1F)
-            //}
+            setvar(VAR_0x8007, ELEVATOR_FLOORNUM_B1F)
+            setdynamicwarp(MAP_GOLDENROD_CITY_DEPT_STORE_B1F, 0, 0, 0)
+            if (var(VAR_DEPT_STORE_FLOOR) != ELEVATOR_FLOORNUM_B1F)
+            {
+                call(GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator)
+                setvar(VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_B1F)
+            }
     }
     special(CloseDeptStoreElevatorWindow)
 	release
@@ -84,4 +84,12 @@ script GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator {
 	special(MoveElevator)
 	waitstate
 	setflag(FLAG_TEMP_2)
+    if (flag(FLAG_VISITED_GOLDENROD_DEPT_STORE_B1F))
+    {
+        addvar(VAR_GOLDENROD_DEPT_STORE_B1F_LAYOUT, 1)
+        if (var(VAR_GOLDENROD_DEPT_STORE_B1F_LAYOUT) >= 3)
+        {
+            setvar(VAR_GOLDENROD_DEPT_STORE_B1F_LAYOUT, 0)
+        }
+    }
 }

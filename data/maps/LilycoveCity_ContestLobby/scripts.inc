@@ -151,7 +151,7 @@ LilycoveCity_ContestLobby_EventScript_MadeCoolPainting:: @ 821A3F3
 	return
 
 LilycoveCity_ContestLobby_EventScript_MadeBeautyPainting:: @ 821A3F7
-	setflag FLAG_BEAUTY_PAINTING_MADE
+	setflag FLAG_VISITED_GOLDENROD_DEPT_STORE_B1F
 	return
 
 LilycoveCity_ContestLobby_EventScript_MadeCutePainting:: @ 821A3FB

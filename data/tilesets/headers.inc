@@ -251,7 +251,7 @@ gTileset_PokemonSchool:: @ 83DF8E4
 	.4byte NULL @ palette overrides
 
 	.align 2
-gTileset_PokemonFanClub:: @ 83DF8FC
+gTileset_RadioTower:: @ 83DF8FC
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
