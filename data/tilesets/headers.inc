@@ -476,7 +476,7 @@ gTileset_DepartmentStore:: @ 83DFAAC
 	.4byte gMetatiles_DepartmentStore
 	.4byte gMetatileAttributes_DepartmentStore
 	.4byte NULL @ animation callback
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_DepartmentStore
 
 	.align 2
 gTileset_Contest:: @ 83DFAC4

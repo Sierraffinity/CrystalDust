@@ -1765,3 +1765,11 @@ gTilesetPalOverride_Goldenrod10::
 	.align 2
 gTilesetPalOverride_Goldenrod12::
 	.incbin "data/tilesets/secondary/goldenrod/palettes/12_over.gbapal"
+
+	.align 2
+gTilesetPalOverride_DeptStore09NoWin::
+	.incbin "data/tilesets/secondary/department_store/palettes/09_over_nowin.gbapal"
+
+	.align 2
+gTilesetPalOverride_DeptStore09Win::
+	.incbin "data/tilesets/secondary/department_store/palettes/09_over_win.gbapal"

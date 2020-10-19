@@ -93,3 +93,21 @@ gTilesetPalOverrides_Goldenrod::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
+
+.align 2
+gTilesetPalOverrides_DepartmentStore::
+	.byte 9
+	.byte 0
+	.byte 24
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_DeptStore09NoWin
+	.byte 9
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_DeptStore09Win
+	.byte 0xFF
+	.byte 0
+	.byte 0
+	.byte 0 @ padding
+	.4byte NULL
