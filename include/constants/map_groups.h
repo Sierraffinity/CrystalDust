@@ -1,6 +1,10 @@
 #ifndef GUARD_CONSTANTS_MAP_GROUPS_H
 #define GUARD_CONSTANTS_MAP_GROUPS_H
 
+//
+// DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json
+//
+
 // Map Group 0
 #define MAP_VIOLET_CITY         (0 | (0 << 8))
 #define MAP_SLATEPORT_CITY      (1 | (0 << 8))
@@ -180,6 +184,7 @@
 #define MAP_GOLDENROD_CITY_DEPT_STORE_5F              (19 | (11 << 8))
 #define MAP_GOLDENROD_CITY_DEPT_STORE_6F              (20 | (11 << 8))
 #define MAP_GOLDENROD_CITY_DEPT_STORE_ROOFTOP         (21 | (11 << 8))
+#define MAP_GOLDENROD_CITY_DEPT_STORE_ELEVATOR        (22 | (11 << 8))
 
 // Map Group 12
 #define MAP_FORTREE_CITY_HOUSE1            (0 | (12 << 8))

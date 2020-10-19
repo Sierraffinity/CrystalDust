@@ -127,7 +127,7 @@ script RadioTower_2F_EventScript_Buena {
         }
         else
         {
-            playbgm(MUS_SAILING, 0)
+            playbgm(MUS_BUENAS_THEME, 0)
             msgbox("BUENA: Hi!\n"
                    "Did you tune in to my radio show?\p"
                    "Do you remember today's password?", MSGBOX_YESNO)
@@ -304,6 +304,7 @@ script RadioTower_2F_EventScript_BuenasAssistantMenu {
     message("Which prize would you like?")
     waitmessage
     setvar(VAR_0x8004, SCROLL_MULTI_BLUE_CARD_PRIZES)
+    setvar(VAR_0x8005, 0)
     special(ShowScrollableMultichoice)
     waitstate
     switch (var(VAR_RESULT))

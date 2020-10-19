@@ -1,0 +1,117 @@
+GoldenrodCity_DeptStore_Elevator_MapScripts::
+	.byte 0
+
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad::
+	lock
+	goto_if_unset FLAG_TEMP_2, GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_2
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_1:
+	copyvar VAR_0x8006, VAR_DEPT_STORE_FLOOR
+	special ShowDeptStoreElevatorFloorSelect
+	message GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_Text_0
+	waitmessage
+	setvar VAR_0x8004, SCROLL_MULTI_GOLDENROD_DEPT_STORE_FLOORS
+	specialvar VAR_0x8005, GetDeptStoreDefaultFloorChoice
+	special ShowScrollableMultichoice
+	waitstate
+	switch VAR_RESULT
+	case 0, GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_6
+	case 1, GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_7
+	case 2, GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_8
+	case 3, GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_9
+	case 4, GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_10
+	case 5, GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_11
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4:
+	special CloseDeptStoreElevatorWindow
+	release
+	return
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_2:
+	special SetDeptStoreFloor
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_1
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_6:
+	setvar VAR_0x8007, ELEVATOR_FLOORNUM_6F
+	setdynamicwarp MAP_GOLDENROD_CITY_DEPT_STORE_6F, 2, 0, 0
+	compare VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_6F
+	goto_if_ne GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_12
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_7:
+	setvar VAR_0x8007, ELEVATOR_FLOORNUM_5F
+	setdynamicwarp MAP_GOLDENROD_CITY_DEPT_STORE_5F, 2, 0, 0
+	compare VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_5F
+	goto_if_ne GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_14
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_8:
+	setvar VAR_0x8007, ELEVATOR_FLOORNUM_4F
+	setdynamicwarp MAP_GOLDENROD_CITY_DEPT_STORE_4F, 2, 0, 0
+	compare VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_4F
+	goto_if_ne GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_16
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_9:
+	setvar VAR_0x8007, ELEVATOR_FLOORNUM_3F
+	setdynamicwarp MAP_GOLDENROD_CITY_DEPT_STORE_3F, 2, 0, 0
+	compare VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_3F
+	goto_if_ne GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_18
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_10:
+	setvar VAR_0x8007, ELEVATOR_FLOORNUM_2F
+	setdynamicwarp MAP_GOLDENROD_CITY_DEPT_STORE_2F, 2, 0, 0
+	compare VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_2F
+	goto_if_ne GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_20
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_11:
+	setvar VAR_0x8007, ELEVATOR_FLOORNUM_1F
+	setdynamicwarp MAP_GOLDENROD_CITY_DEPT_STORE_1F, 2, 0, 0
+	compare VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_1F
+	goto_if_ne GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_22
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_12:
+	call GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator
+	setvar VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_6F
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_14:
+	call GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator
+	setvar VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_5F
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_16:
+	call GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator
+	setvar VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_4F
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_18:
+	call GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator
+	setvar VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_3F
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_20:
+	call GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator
+	setvar VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_2F
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_22:
+	call GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator
+	setvar VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_1F
+	goto GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_4
+
+
+GoldenrodCity_DeptStore_Elevator_EventScript_MoveElevator::
+	special CloseDeptStoreElevatorWindow
+	closemessage
+	waitse
+	special MoveElevator
+	waitstate
+	setflag FLAG_TEMP_2
+	return
+
+
+GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_Text_0:
+	.string "Which floor?$"

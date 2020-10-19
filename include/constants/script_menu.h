@@ -65,7 +65,7 @@
 #define MULTI_RIGHTLEFT                    54
 #define MULTI_GAME_CORNER_TMS              55
 #define MULTI_SSTIDAL_SLATEPORT_NO_BF      56
-#define MULTI_FLOORS                       57 
+#define MULTI_GOLDENROD_DEPT_STORE_FLOORS  57
 #define MULTI_SHARDS_R                     58
 #define MULTI_SHARDS_Y                     59
 #define MULTI_SHARDS_RY                    60

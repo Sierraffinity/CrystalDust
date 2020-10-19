@@ -3094,7 +3094,7 @@ static void BufferMonTrainerMemo(void)
 
         if (sum->metLocation < maxMapsec)
         {
-            GetMapNameHandleAquaHideout(metLocationString, sum->metLocation + mapsecShift);
+            GetMapNameForSummaryScreen(metLocationString, sum->metLocation + mapsecShift);
             DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, metLocationString);
         }
 

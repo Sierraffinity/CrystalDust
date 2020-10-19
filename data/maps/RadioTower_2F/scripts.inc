@@ -253,6 +253,8 @@ RadioTower_2F_EventScript_BuenasAssistantMenu::
 	message RadioTower_2F_EventScript_BuenasAssistantMenu_Text_0
 	waitmessage
 	setvar VAR_0x8004, SCROLL_MULTI_BLUE_CARD_PRIZES
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8006, FALSE
 	special ShowScrollableMultichoice
 	waitstate
 	switch VAR_RESULT

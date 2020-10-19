@@ -1786,8 +1786,7 @@ u8 *GetMapName(u8 *dest, u16 regionMapId, u16 padLength)
     return str;
 }
 
-// TODO: probably needs a better name
-u8 *GetMapNameGeneric(u8 *dest, u16 mapSecId)
+u8 *GetMapNameHandleFerrySecretBase(u8 *dest, u16 mapSecId)
 {
     switch (mapSecId)
     {
@@ -1802,12 +1801,42 @@ u8 *GetMapNameGeneric(u8 *dest, u16 mapSecId)
     }
 }
 
-u8 *GetMapNameHandleAquaHideout(u8 *dest, u16 mapSecId)
+u8 *GetMapNameForSummaryScreen(u8 *dest, u16 mapSecId)
 {
     if (mapSecId == MAPSEC_E_AQUA_HIDEOUT_OLD)
         return StringCopy(dest, gText_Hideout);
     else
-        return GetMapNameGeneric(dest, mapSecId);
+        return GetMapNameHandleFerrySecretBase(dest, mapSecId);
+}
+
+bool8 IsGoldenrodDeptStore(u16 mapSec)
+{
+    if (mapSec != MAPSEC_GOLDENROD_CITY)
+        return FALSE;
+    if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(GOLDENROD_CITY_DEPT_STORE_1F))
+        return FALSE;
+    if (gSaveBlock1Ptr->location.mapNum != MAP_NUM(GOLDENROD_CITY_DEPT_STORE_1F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(GOLDENROD_CITY_DEPT_STORE_2F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(GOLDENROD_CITY_DEPT_STORE_3F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(GOLDENROD_CITY_DEPT_STORE_4F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(GOLDENROD_CITY_DEPT_STORE_5F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(GOLDENROD_CITY_DEPT_STORE_6F)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(GOLDENROD_CITY_DEPT_STORE_ROOFTOP)
+     && gSaveBlock1Ptr->location.mapNum != MAP_NUM(GOLDENROD_CITY_DEPT_STORE_ELEVATOR))
+        return FALSE;
+    return TRUE;
+}
+
+u8 *GetMapNameHandleSpecialMaps(u8 *dest, u16 mapSec)
+{
+    if (IsGoldenrodDeptStore(mapSec))
+    {
+        return StringCopy(dest, gText_GoldenrodDept);
+    }
+    else
+    {
+        return GetMapNameForSummaryScreen(dest, mapSec);
+    }
 }
 
 static void GetMapSecDimensions(u16 mapSecId, u16 *x, u16 *y, u16 *width, u16 *height)

@@ -573,7 +573,7 @@ LilycoveCity_PokemonTrainerFanClub_EventScript_RateTrainer:: @ 821CE4D
 	special BufferFanClubTrainerName
 	message LilycoveCity_PokemonTrainerFanClub_Text_HowStrongRateTrainer
 	waitmessage
-	setvar VAR_0x8004, SCROLL_MULTI_POKEMON_FAN_CLUB_RATER
+	setvar VAR_0x8004, SCROLL_MULTI_GOLDENROD_DEPT_STORE_FLOORS
 	special ShowScrollableMultichoice
 	waitstate
 	setvar VAR_0x8004, FANCLUB_MEMBER1

@@ -81,7 +81,6 @@ static EWRAM_DATA u8 sTutorMoveAndElevatorWindowId = 0;
 static EWRAM_DATA u16 sLilycoveDeptStore_NeverRead = 0;
 static EWRAM_DATA u16 sLilycoveDeptStore_DefaultFloorChoice = 0;
 static EWRAM_DATA struct ListMenuItem *sScrollableMultichoice_ListMenuItem = NULL;
-static EWRAM_DATA u16 sScrollableMultichoice_ScrollOffset = 0;
 static EWRAM_DATA u16 sFrontierExchangeCorner_NeverRead = 0;
 static EWRAM_DATA u8 sScrollableMultichoice_ItemSpriteId = 0;
 static EWRAM_DATA u8 sBattlePointsWindowId = 0;
@@ -1692,59 +1691,59 @@ const struct WindowTemplate gElevatorFloor_WindowTemplate =
 
 const u8 *const gDeptStoreFloorNames[] =
 {
-    [DEPT_STORE_FLOORNUM_B4F] = gText_B4F,
-    [DEPT_STORE_FLOORNUM_B3F] = gText_B3F,
-    [DEPT_STORE_FLOORNUM_B2F] = gText_B2F,
-    [DEPT_STORE_FLOORNUM_B1F] = gText_B1F,
-    [DEPT_STORE_FLOORNUM_1F] = gText_1F,
-    [DEPT_STORE_FLOORNUM_2F] = gText_2F,
-    [DEPT_STORE_FLOORNUM_3F] = gText_3F,
-    [DEPT_STORE_FLOORNUM_4F] = gText_4F,
-    [DEPT_STORE_FLOORNUM_5F] = gText_5F,
-    [DEPT_STORE_FLOORNUM_6F] = gText_6F,
-    [DEPT_STORE_FLOORNUM_7F] = gText_7F,
-    [DEPT_STORE_FLOORNUM_8F] = gText_8F,
-    [DEPT_STORE_FLOORNUM_9F] = gText_9F,
-    [DEPT_STORE_FLOORNUM_10F] = gText_10F,
-    [DEPT_STORE_FLOORNUM_11F] = gText_11F,
-    [DEPT_STORE_FLOORNUM_ROOFTOP] = gText_Rooftop
+    [ELEVATOR_FLOORNUM_B4F] = gText_B4F,
+    [ELEVATOR_FLOORNUM_B3F] = gText_B3F,
+    [ELEVATOR_FLOORNUM_B2F] = gText_B2F,
+    [ELEVATOR_FLOORNUM_B1F] = gText_B1F,
+    [ELEVATOR_FLOORNUM_1F] = gText_1F,
+    [ELEVATOR_FLOORNUM_2F] = gText_2F,
+    [ELEVATOR_FLOORNUM_3F] = gText_3F,
+    [ELEVATOR_FLOORNUM_4F] = gText_4F,
+    [ELEVATOR_FLOORNUM_5F] = gText_5F,
+    [ELEVATOR_FLOORNUM_6F] = gText_6F,
+    [ELEVATOR_FLOORNUM_7F] = gText_7F,
+    [ELEVATOR_FLOORNUM_8F] = gText_8F,
+    [ELEVATOR_FLOORNUM_9F] = gText_9F,
+    [ELEVATOR_FLOORNUM_10F] = gText_10F,
+    [ELEVATOR_FLOORNUM_11F] = gText_11F,
+    [ELEVATOR_FLOORNUM_ROOFTOP] = gText_Rooftop
 };
 
 static const u16 sElevatorWindowTiles_Ascending[][3] =
 {
     {
-        METATILE_BattleFrontier_Elevator_Top0,
-        METATILE_BattleFrontier_Elevator_Top1,
-        METATILE_BattleFrontier_Elevator_Top2
+        METATILE_PokemonFanClub_Elevator_Top0,
+        METATILE_PokemonFanClub_Elevator_Top1,
+        METATILE_PokemonFanClub_Elevator_Top2
     },
     {
-        METATILE_BattleFrontier_Elevator_Mid0,
-        METATILE_BattleFrontier_Elevator_Mid1,
-        METATILE_BattleFrontier_Elevator_Mid2
+        METATILE_PokemonFanClub_Elevator_Mid0,
+        METATILE_PokemonFanClub_Elevator_Mid1,
+        METATILE_PokemonFanClub_Elevator_Mid2
     },
     {
-        METATILE_BattleFrontier_Elevator_Bottom0,
-        METATILE_BattleFrontier_Elevator_Bottom1,
-        METATILE_BattleFrontier_Elevator_Bottom2
+        METATILE_PokemonFanClub_Elevator_Bottom0,
+        METATILE_PokemonFanClub_Elevator_Bottom1,
+        METATILE_PokemonFanClub_Elevator_Bottom2
     },
 };
 
 static const u16 sElevatorWindowTiles_Descending[][3] =
 {
     {
-        METATILE_BattleFrontier_Elevator_Top0,
-        METATILE_BattleFrontier_Elevator_Top2,
-        METATILE_BattleFrontier_Elevator_Top1
+        METATILE_PokemonFanClub_Elevator_Top0,
+        METATILE_PokemonFanClub_Elevator_Top2,
+        METATILE_PokemonFanClub_Elevator_Top1
     },
     {
-        METATILE_BattleFrontier_Elevator_Mid0,
-        METATILE_BattleFrontier_Elevator_Mid2,
-        METATILE_BattleFrontier_Elevator_Mid1
+        METATILE_PokemonFanClub_Elevator_Mid0,
+        METATILE_PokemonFanClub_Elevator_Mid2,
+        METATILE_PokemonFanClub_Elevator_Mid1
     },
     {
-        METATILE_BattleFrontier_Elevator_Bottom0,
-        METATILE_BattleFrontier_Elevator_Bottom2,
-        METATILE_BattleFrontier_Elevator_Bottom1
+        METATILE_PokemonFanClub_Elevator_Bottom0,
+        METATILE_PokemonFanClub_Elevator_Bottom2,
+        METATILE_PokemonFanClub_Elevator_Bottom1
     },
 };
 
@@ -1753,26 +1752,29 @@ void SetDeptStoreFloor(void)
     u8 deptStoreFloor;
     switch (gSaveBlock1Ptr->dynamicWarp.mapNum)
     {
-        case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_1F):
-            deptStoreFloor = DEPT_STORE_FLOORNUM_1F;
+        case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_1F):
+            deptStoreFloor = ELEVATOR_FLOORNUM_1F;
             break;
-        case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_2F):
-            deptStoreFloor = DEPT_STORE_FLOORNUM_2F;
+        case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_2F):
+            deptStoreFloor = ELEVATOR_FLOORNUM_2F;
             break;
-        case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_3F):
-            deptStoreFloor = DEPT_STORE_FLOORNUM_3F;
+        case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_3F):
+            deptStoreFloor = ELEVATOR_FLOORNUM_3F;
             break;
-        case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_4F):
-            deptStoreFloor = DEPT_STORE_FLOORNUM_4F;
+        case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_4F):
+            deptStoreFloor = ELEVATOR_FLOORNUM_4F;
             break;
-        case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_5F):
-            deptStoreFloor = DEPT_STORE_FLOORNUM_5F;
+        case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_5F):
+            deptStoreFloor = ELEVATOR_FLOORNUM_5F;
             break;
-        case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_ROOFTOP):
-            deptStoreFloor = DEPT_STORE_FLOORNUM_ROOFTOP;
+        case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_6F):
+            deptStoreFloor = ELEVATOR_FLOORNUM_6F;
+            break;
+        case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_ROOFTOP):
+            deptStoreFloor = ELEVATOR_FLOORNUM_ROOFTOP;
             break;
         default:
-            deptStoreFloor = DEPT_STORE_FLOORNUM_1F;
+            deptStoreFloor = ELEVATOR_FLOORNUM_1F;
             break;
     }
     VarSet(VAR_DEPT_STORE_FLOOR, deptStoreFloor);
@@ -1783,29 +1785,33 @@ u16 GetDeptStoreDefaultFloorChoice(void)
     sLilycoveDeptStore_NeverRead = 0;
     sLilycoveDeptStore_DefaultFloorChoice = 0;
 
-    if (gSaveBlock1Ptr->dynamicWarp.mapGroup == MAP_GROUP(LILYCOVE_CITY_DEPARTMENT_STORE_1F))
+    if (gSaveBlock1Ptr->dynamicWarp.mapGroup == MAP_GROUP(GOLDENROD_CITY_DEPT_STORE_1F))
     {
         switch (gSaveBlock1Ptr->dynamicWarp.mapNum)
         {
-            case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_5F):
+            case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_6F):
                 sLilycoveDeptStore_NeverRead = 0;
                 sLilycoveDeptStore_DefaultFloorChoice = 0;
                 break;
-            case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_4F):
+            case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_5F):
                 sLilycoveDeptStore_NeverRead = 0;
                 sLilycoveDeptStore_DefaultFloorChoice = 1;
                 break;
-            case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_3F):
+            case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_4F):
                 sLilycoveDeptStore_NeverRead = 0;
                 sLilycoveDeptStore_DefaultFloorChoice = 2;
                 break;
-            case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_2F):
+            case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_3F):
                 sLilycoveDeptStore_NeverRead = 0;
                 sLilycoveDeptStore_DefaultFloorChoice = 3;
                 break;
-            case MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_1F):
+            case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_2F):
                 sLilycoveDeptStore_NeverRead = 0;
                 sLilycoveDeptStore_DefaultFloorChoice = 4;
+                break;
+            case MAP_NUM(GOLDENROD_CITY_DEPT_STORE_1F):
+                sLilycoveDeptStore_NeverRead = 0;
+                sLilycoveDeptStore_DefaultFloorChoice = 5;
                 break;
         }
     }
@@ -1825,14 +1831,14 @@ void MoveElevator(void)
     data[4] = 1;
 
     // descending
-    if (gSpecialVar_0x8005 > gSpecialVar_0x8006)
+    if (gSpecialVar_0x8006 > gSpecialVar_0x8007)
     {
-        floorDelta = gSpecialVar_0x8005 - gSpecialVar_0x8006;
+        floorDelta = gSpecialVar_0x8006 - gSpecialVar_0x8007;
         data[6] = TRUE;
     }
     else
     {
-        floorDelta = gSpecialVar_0x8006 - gSpecialVar_0x8005;
+        floorDelta = gSpecialVar_0x8007 - gSpecialVar_0x8006;
         data[6] = FALSE;
     }
 
@@ -1878,8 +1884,8 @@ void ShowDeptStoreElevatorFloorSelect(void)
     xPos = GetStringCenterAlignXOffset(1, gText_ElevatorNowOn, 64);
     AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, gText_ElevatorNowOn, xPos, 1, TEXT_SPEED_FF, NULL);
 
-    xPos = GetStringCenterAlignXOffset(1, gDeptStoreFloorNames[gSpecialVar_0x8005], 64);
-    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, gDeptStoreFloorNames[gSpecialVar_0x8005], xPos, 17, TEXT_SPEED_FF, NULL);
+    xPos = GetStringCenterAlignXOffset(1, gDeptStoreFloorNames[gSpecialVar_0x8006], 64);
+    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, gDeptStoreFloorNames[gSpecialVar_0x8006], xPos, 17, TEXT_SPEED_FF, NULL);
 
     PutWindowTilemap(sTutorMoveAndElevatorWindowId);
     CopyWindowToVram(sTutorMoveAndElevatorWindowId, 3);
@@ -2256,6 +2262,7 @@ void BufferBattleTowerElevatorFloors(void)
 #define tKeepOpenAfterSelect data[6]
 #define tScrollOffset        data[7]
 #define tSelectedRow         data[8]
+#define tIgnoreBPress        data[9]
 #define tScrollMultiId       data[11]
 #define tScrollArrowId       data[12]
 #define tWindowId            data[13]
@@ -2279,6 +2286,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 10;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = TRUE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_BLUE_CARD_PRIZES:
@@ -2289,16 +2297,18 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 15;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
-        case SCROLL_MULTI_POKEMON_FAN_CLUB_RATER:
+        case SCROLL_MULTI_GOLDENROD_DEPT_STORE_FLOORS:
             task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
-            task->tNumItems = 12;
+            task->tNumItems = 8;
             task->tLeft = 1;
             task->tTop = 1;
             task->tWidth = 7;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_1:
@@ -2309,6 +2319,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 15;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_2:
@@ -2319,6 +2330,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 15;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_BF_EXCHANGE_CORNER_VITAMIN_VENDOR:
@@ -2329,6 +2341,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 15;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_BF_EXCHANGE_CORNER_HOLD_ITEM_VENDOR:
@@ -2339,6 +2352,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 15;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_BERRY_POWDER_VENDOR:
@@ -2349,6 +2363,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 14;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_BF_RECEPTIONIST:
@@ -2359,6 +2374,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 11;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_BF_MOVE_TUTOR_1:
@@ -2370,6 +2386,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 14;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_SS_TIDAL_DESTINATION:
@@ -2380,6 +2397,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 10;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         case SCROLL_MULTI_BATTLE_TENT_RULES:
@@ -2390,6 +2408,7 @@ void ShowScrollableMultichoice(void)
             task->tWidth = 12;
             task->tHeight = 12;
             task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
         default:
@@ -2424,20 +2443,16 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_HPUp5Points,
         gText_Exit
     },
-    [SCROLL_MULTI_POKEMON_FAN_CLUB_RATER] = 
+    [SCROLL_MULTI_GOLDENROD_DEPT_STORE_FLOORS] = 
     {
-        gText_0Pts,
-        gText_10Pts,
-        gText_20Pts,
-        gText_30Pts,
-        gText_40Pts,
-        gText_50Pts,
-        gText_60Pts,
-        gText_70Pts,
-        gText_80Pts,
-        gText_90Pts,
-        gText_100Pts,
-        gText_QuestionMark
+        gText_6F,
+        gText_5F,
+        gText_4F,
+        gText_3F,
+        gText_2F,
+        gText_1F,
+        gText_B1F,
+        gText_Exit
     },
     [SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_1] = 
     {
@@ -2571,7 +2586,6 @@ static void Task_ShowScrollableMultichoice(u8 taskId)
     struct Task *task = &gTasks[taskId];
 
     ScriptContext2_Enable();
-    sScrollableMultichoice_ScrollOffset = 0;
     sScrollableMultichoice_ItemSpriteId = MAX_SPRITES;
     FillFrontierExchangeCornerWindowAndItemIcon(task->tScrollMultiId, 0);
     ShowBattleFrontierTutorWindow(task->tScrollMultiId, 0);
@@ -2611,6 +2625,9 @@ static void Task_ShowScrollableMultichoice(u8 taskId)
     gScrollableMultichoice_ListMenuTemplate.maxShowed = task->tMaxItemsOnScreen;
     gScrollableMultichoice_ListMenuTemplate.windowId = task->tWindowId;
 
+    // TODO: Is this jank?
+    ListMenuCalculateRowIndexAndScrollOffsetFromAbsoluteIndex(&gScrollableMultichoice_ListMenuTemplate, gSpecialVar_0x8005, &task->tScrollOffset, &task->tSelectedRow);
+
     ScrollableMultichoice_UpdateScrollArrows(taskId);
     task->tListTaskId = ListMenuInit(&gScrollableMultichoice_ListMenuTemplate, task->tScrollOffset, task->tSelectedRow);
     ScheduleBgCopyTilemapToVram(0);
@@ -2649,7 +2666,7 @@ static void ScrollableMultichoice_MoveCursor(s32 itemIndex, bool8 onInit, struct
         u16 selection;
         struct Task *task = &gTasks[taskId];
         ListMenuGetScrollAndRow(task->tListTaskId, &selection, NULL);
-        sScrollableMultichoice_ScrollOffset = selection;
+        task->tScrollOffset = selection;
         ListMenuGetCurrentItemArrayId(task->tListTaskId, &selection);
         HideFrontierExchangeCornerItemIcon(task->tScrollMultiId, sFrontierExchangeCorner_NeverRead);
         FillFrontierExchangeCornerWindowAndItemIcon(task->tScrollMultiId, selection);
@@ -2668,7 +2685,7 @@ static void ScrollableMultichoice_ProcessInput(u8 taskId)
     case LIST_NOTHING_CHOSEN:
         break;
     case LIST_CANCEL:
-        if (!gSpecialVar_0x8005) // ignore B press if 8005 is set
+        if (!task->tIgnoreBPress)
         {
             gSpecialVar_Result = MULTI_B_PRESSED;
             PlaySE(SE_SELECT);
@@ -2777,7 +2794,7 @@ static void ScrollableMultichoice_UpdateScrollArrows(u8 taskId)
         template.secondY = task->tHeight * 8 + 10;
         template.fullyUpThreshold = 0;
         template.fullyDownThreshold = task->data[1] - task->tMaxItemsOnScreen;
-        task->tScrollArrowId = AddScrollIndicatorArrowPair(&template, &sScrollableMultichoice_ScrollOffset);
+        task->tScrollArrowId = AddScrollIndicatorArrowPair(&template, &task->tScrollOffset);
     }
 }
 

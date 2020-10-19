@@ -214,7 +214,8 @@
     "GoldenrodCity_DeptStore_4F",
     "GoldenrodCity_DeptStore_5F",
     "GoldenrodCity_DeptStore_6F",
-    "GoldenrodCity_DeptStore_Rooftop"
+    "GoldenrodCity_DeptStore_Rooftop",
+    "GoldenrodCity_DeptStore_Elevator"
   ],
   "gMapGroup12": [
     "FortreeCity_House1",

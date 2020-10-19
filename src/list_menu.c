@@ -791,6 +791,50 @@ static u8 ListMenuUpdateSelectedRowIndexAndScrollOffset(struct ListMenu *list, b
     return 2;
 }
 
+void ListMenuCalculateRowIndexAndScrollOffsetFromAbsoluteIndex(struct ListMenuTemplate *template, u16 absoluteIndex, u16 *scrollOffsetPtr, u16 *selectedRowPtr)
+{
+    u16 selectedRow = 0;
+    u16 scrollOffset = 0;
+    u16 scrollBoundaryRow;
+
+    if (template->maxShowed == 1)
+    {
+        scrollBoundaryRow = 0;
+    }
+    else
+    {
+        scrollBoundaryRow = ((template->maxShowed / 2) + (template->maxShowed % 2));
+    }
+
+    // make max value for absolute index the last item in list
+    if (absoluteIndex >= template->totalItems)
+    {
+        absoluteIndex = template->totalItems - 1;
+    }
+
+    while (absoluteIndex--)
+    {
+        do
+        {
+            // is the window scrolled to the bottom of the list?
+            // or should we not yet scroll the window?
+            if ((scrollOffset == template->totalItems - template->maxShowed) ||
+                (selectedRow < scrollBoundaryRow))
+            {
+                selectedRow++;
+            }
+            else
+            {
+                scrollOffset++;
+            }
+        // keep going if we're on a LIST_HEADER.
+        } while (template->items[scrollOffset + selectedRow].id == LIST_HEADER);
+    }
+
+    *selectedRowPtr = selectedRow;
+    *scrollOffsetPtr = scrollOffset;
+}
+
 static void ListMenuScroll(struct ListMenu *list, u8 count, bool8 movingDown)
 {
     if (count >= list->template.maxShowed)

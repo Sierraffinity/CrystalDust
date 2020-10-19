@@ -108,6 +108,9 @@
 #define METATILE_Contest_FloorShadow         0x261
 #define METATILE_Contest_WallShadow          0x221
 
+// gTileset_DepartmentStore
+#define METATILE_DepartmentStore_Door_Elevator  0x28D
+
 // gTileset_Dewford
 #define METATILE_Dewford_Door              0x225
 #define METATILE_Dewford_Door_BattleTower  0x25D
@@ -402,6 +405,17 @@
 #define METATILE_PokemonCenter_Floor_Plain_Alt           0x2E4
 #define METATILE_PokemonCenter_Floor_ShadowTop           0x21E
 #define METATILE_PokemonCenter_Floor_ShadowTop_Alt       0x2DC
+
+// gTileset_PokemonFanClub
+#define METATILE_PokemonFanClub_Elevator_Bottom0  0x2F8
+#define METATILE_PokemonFanClub_Elevator_Bottom1  0x2F9
+#define METATILE_PokemonFanClub_Elevator_Bottom2  0x2FA
+#define METATILE_PokemonFanClub_Elevator_Mid0     0x2F0
+#define METATILE_PokemonFanClub_Elevator_Mid1     0x2F1
+#define METATILE_PokemonFanClub_Elevator_Mid2     0x2F2
+#define METATILE_PokemonFanClub_Elevator_Top0     0x2E8
+#define METATILE_PokemonFanClub_Elevator_Top1     0x2E9
+#define METATILE_PokemonFanClub_Elevator_Top2     0x2EA
 
 // gTileset_RS
 #define METATILE_RS_MossdeepGym_RedArrow_Down   0x205

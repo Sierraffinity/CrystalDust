@@ -331,7 +331,7 @@ static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
     }
     else
     {
-        mapNameSuffixPtr = GetMapName(&mapName[3], gMapHeader.regionMapSectionId, 0);
+        mapNameSuffixPtr = GetMapNameHandleSpecialMaps(&mapName[3], gMapHeader.regionMapSectionId);
     }
     mapName[0] = EXT_CTRL_CODE_BEGIN;
     mapName[1] = EXT_CTRL_CODE_HIGHLIGHT;

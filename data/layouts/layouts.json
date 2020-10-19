@@ -5400,6 +5400,18 @@
       "secondary_tileset": "gTileset_DepartmentStore",
       "border_filepath": "data/layouts/GoldenrodCity_DeptStore_Rooftop/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_Rooftop/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_ELEVATOR",
+      "name": "GoldenrodCity_DeptStore_Elevator_Layout",
+      "width": 5,
+      "height": 7,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonFanClub",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_Elevator/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_Elevator/map.bin"
     }
   ]
 }
