@@ -44,6 +44,7 @@
 #include "strings.h"
 #include "task.h"
 #include "text.h"
+#include "text_window.h"
 #include "tv.h"
 #include "wallclock.h"
 #include "window.h"
@@ -1689,7 +1690,7 @@ const struct WindowTemplate gElevatorFloor_WindowTemplate =
     .baseBlock = 8,
 };
 
-const u8 *const gDeptStoreFloorNames[] =
+static const u8 *const sFloorNames[] =
 {
     [ELEVATOR_FLOORNUM_B4F] = gText_B4F,
     [ELEVATOR_FLOORNUM_B3F] = gText_B3F,
@@ -1881,21 +1882,36 @@ static void Task_MoveElevator(u8 taskId)
     }
 }
 
-void ShowDeptStoreElevatorFloorSelect(void)
+void DrawElevatorCurrentFloorWindow(void)
 {
     int xPos;
 
     sTutorMoveAndElevatorWindowId = AddWindow(&gElevatorFloor_WindowTemplate);
-    SetStandardWindowBorderStyle(sTutorMoveAndElevatorWindowId, 0);
+    LoadThinWindowBorderGfx(sTutorMoveAndElevatorWindowId, 0x21D, 0xD0);
+    DrawStdFrameWithCustomTileAndPalette(sTutorMoveAndElevatorWindowId, FALSE, 0x21D, 0xD);
 
     xPos = GetStringCenterAlignXOffset(1, gText_ElevatorNowOn, 64);
     AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, gText_ElevatorNowOn, xPos, 1, TEXT_SPEED_FF, NULL);
 
-    xPos = GetStringCenterAlignXOffset(1, gDeptStoreFloorNames[gSpecialVar_0x8006], 64);
-    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, gDeptStoreFloorNames[gSpecialVar_0x8006], xPos, 17, TEXT_SPEED_FF, NULL);
+    xPos = GetStringCenterAlignXOffset(1, sFloorNames[gSpecialVar_0x8006], 64);
+    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, sFloorNames[gSpecialVar_0x8006], xPos, 17, TEXT_SPEED_FF, NULL);
 
     PutWindowTilemap(sTutorMoveAndElevatorWindowId);
-    CopyWindowToVram(sTutorMoveAndElevatorWindowId, 3);
+    CopyWindowToVram(sTutorMoveAndElevatorWindowId, COPYWIN_BOTH);
+/*
+    u32 strwidth;
+
+    sTutorMoveAndElevatorWindowId = AddWindow(&gElevatorFloor_WindowTemplate);
+    LoadThinWindowBorderGfx(sTutorMoveAndElevatorWindowId, 0x21D, 0xD0);
+    DrawStdFrameWithCustomTileAndPalette(sTutorMoveAndElevatorWindowId, FALSE, 0x21D, 0xD);
+
+    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, gText_ElevatorNowOn, 0, 2, 0xFF, NULL);
+
+    strwidth = GetStringWidth(1, sFloorNames[gSpecialVar_0x8006], 0);
+    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, sFloorNames[gSpecialVar_0x8006], 56 - strwidth, 16, TEXT_SPEED_FF, NULL);
+
+    PutWindowTilemap(sTutorMoveAndElevatorWindowId);
+    CopyWindowToVram(sTutorMoveAndElevatorWindowId, COPYWIN_BOTH);*/
 }
 
 void CloseDeptStoreElevatorWindow(void)

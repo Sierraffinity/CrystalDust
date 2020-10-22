@@ -7,7 +7,7 @@ GoldenrodCity_DeptStore_Elevator_EventScript_Keypad::
 	goto_if_unset FLAG_TEMP_2, GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_2
 GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_1:
 	copyvar VAR_0x8006, VAR_DEPT_STORE_FLOOR
-	special ShowDeptStoreElevatorFloorSelect
+	special DrawElevatorCurrentFloorWindow
 	message GoldenrodCity_DeptStore_Elevator_EventScript_Keypad_Text_0
 	waitmessage
 	setvar VAR_0x8004, SCROLL_MULTI_GOLDENROD_DEPT_STORE_FLOORS

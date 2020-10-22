@@ -7,7 +7,7 @@ script GoldenrodCity_DeptStore_Elevator_EventScript_Keypad {
         special(SetDeptStoreFloor)
     }
     copyvar(VAR_0x8006, VAR_DEPT_STORE_FLOOR)
-    special(ShowDeptStoreElevatorFloorSelect)
+    special(DrawElevatorCurrentFloorWindow)
     message("Which floor?")
     waitmessage
     setvar(VAR_0x8004, SCROLL_MULTI_GOLDENROD_DEPT_STORE_FLOORS)

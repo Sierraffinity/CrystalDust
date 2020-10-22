@@ -7,7 +7,7 @@ LilycoveCity_DepartmentStoreElevator_EventScript_Attendant:: @ 8220624
 	setvar VAR_0x8004, 0
 	call_if_unset FLAG_TEMP_2, LilycoveCity_DepartmentStoreElevator_EventScript_SetFloor
 	copyvar VAR_0x8005, VAR_DEPT_STORE_FLOOR
-	special ShowDeptStoreElevatorFloorSelect
+	special DrawElevatorCurrentFloorWindow
 	message gText_WhichFloorWouldYouLike
 	waitmessage
 	setvar VAR_0x8004, 0
