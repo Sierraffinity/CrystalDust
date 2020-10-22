@@ -319,6 +319,15 @@ u8 *ConvertIntToHexStringN(u8 *dest, s32 value, enum StringConvertMode mode, u8 
     return dest;
 }
 
+u8 *ConvertQ88ToDecimalStringN(u8 *dest, s16 value, enum StringConvertMode mode, u8 n)
+{
+    dest = ConvertIntToDecimalStringN(dest, Q_8_8_TO_INT(value), mode, n);
+    *dest++ = CHAR_PERIOD;
+    dest = ConvertIntToDecimalStringN(dest, Q_8_8_FRACTIONAL(value), STR_CONV_MODE_LEADING_ZEROS, 3);
+    *dest = EOS;
+    return dest;
+}
+
 u8 *StringExpandPlaceholders(u8 *dest, const u8 *src)
 {
     for (;;)

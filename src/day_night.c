@@ -14,9 +14,9 @@
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 
-#define TINT_MORNING Q_8_8(0.8), Q_8_8(0.7), Q_8_8(0.9)
+#define TINT_MORNING Q_8_8(0.7), Q_8_8(0.7), Q_8_8(0.9)
 #define TINT_DAY Q_8_8(1.0), Q_8_8(1.0), Q_8_8(1.0)
-#define TINT_NIGHT Q_8_8(0.6), Q_8_8(0.55), Q_8_8(1.0)
+#define TINT_NIGHT Q_8_8(0.6), Q_8_8(0.6), Q_8_8(0.92)
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
@@ -28,6 +28,7 @@ static EWRAM_DATA u16 sCurrRGBTint[3] = {0};
 #if DEBUG
 EWRAM_DATA bool8 gPaletteOverrideDisabled = 0;
 EWRAM_DATA s16 gDNPeriodOverride = 0;
+EWRAM_DATA u16 gDNTintOverride[3] = {0};
 #endif
 
 static const u16 sTimeOfDayTints[][3] = {
@@ -35,11 +36,11 @@ static const u16 sTimeOfDayTints[][3] = {
     [1] =   {TINT_NIGHT},
     [2] =   {TINT_NIGHT},
     [3] =   {TINT_NIGHT},
-    [4] =   {TINT_NIGHT},
-    [5] =   {Q_8_8(0.6), Q_8_8(0.6), Q_8_8(1.0)},
+    [4] =   {Q_8_8(0.6), Q_8_8(0.65), Q_8_8(1.0)},
+    [5] =   {TINT_MORNING},
     [6] =   {TINT_MORNING},
     [7] =   {TINT_MORNING},
-    [8] =   {Q_8_8(0.9), Q_8_8(0.8), Q_8_8(1.0)},
+    [8] =   {Q_8_8(0.9), Q_8_8(0.85), Q_8_8(1.0)},
     [9] =   {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(1.0)},
     [10] =  {TINT_DAY},
     [11] =  {TINT_DAY},
@@ -48,10 +49,10 @@ static const u16 sTimeOfDayTints[][3] = {
     [14] =  {TINT_DAY},
     [15] =  {TINT_DAY},
     [16] =  {TINT_DAY},
-    [17] =  {TINT_DAY},
-    [18] =  {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(0.8)},
-    [19] =  {Q_8_8(0.9), Q_8_8(0.6), Q_8_8(0.67)},
-    [20] =  {Q_8_8(0.7), Q_8_8(0.6), Q_8_8(0.9)},
+    [17] =  {Q_8_8(1.0), Q_8_8(0.98), Q_8_8(0.9)},
+    [18] =  {Q_8_8(0.9), Q_8_8(0.7), Q_8_8(0.67)},
+    [19] =  {Q_8_8(0.67), Q_8_8(0.63), Q_8_8(0.82)},
+    [20] =  {TINT_NIGHT},
     [21] =  {TINT_NIGHT},
     [22] =  {TINT_NIGHT},
     [23] =  {TINT_NIGHT},
@@ -276,11 +277,23 @@ void ProcessImmediateTimeEvents(void)
                 hour = gLocalTime.hours;
                 hourPhase = gLocalTime.minutes / MINUTES_PER_TINT_PERIOD;
             }
+
 #if DEBUG
             if (gDNPeriodOverride > 0)
             {
                 hour = (gDNPeriodOverride - 1) / TINT_PERIODS_PER_HOUR;
                 hourPhase = (gDNPeriodOverride - 1) % TINT_PERIODS_PER_HOUR;
+            }
+            else if (gDNTintOverride[0] > 0 ||
+                     gDNTintOverride[1] > 0 ||
+                     gDNTintOverride[2] > 0)
+            {
+                sRetintPeriod = 0xFFFF; // invalidate current tint
+            
+                if (gDNTintOverride[0] == 0xFFFF) // signal to invalidate when turning off override
+                {
+                    gDNTintOverride[0] = 0;
+                }
             }
 #endif
 
@@ -289,9 +302,22 @@ void ProcessImmediateTimeEvents(void)
             if (sRetintPeriod != period)
             {
                 sRetintPeriod = sCurrTintPeriod = period;
+#if DEBUG
+                if (gDNTintOverride[0] > 0 ||
+                    gDNTintOverride[1] > 0 ||
+                    gDNTintOverride[2] > 0)
+                {
+                    sCurrRGBTint[0] = gDNTintOverride[0];
+                    sCurrRGBTint[1] = gDNTintOverride[1];
+                    sCurrRGBTint[2] = gDNTintOverride[2];
+                }
+                else
+#endif
+                {
+                    nextHour = (hour + 1) % 24;
+                    LerpColors(sCurrRGBTint, sTimeOfDayTints[hour], sTimeOfDayTints[nextHour], hourPhase);
+                }
 
-                nextHour = (hour + 1) % 24;
-                LerpColors(sCurrRGBTint, sTimeOfDayTints[hour], sTimeOfDayTints[nextHour], hourPhase);
                 TintPalette_CustomToneWithCopy(gPlttBufferPreDN, gPlttBufferUnfaded, BG_PLTT_SIZE / 2, sCurrRGBTint[0], sCurrRGBTint[1], sCurrRGBTint[2], TRUE);
                 sRetintPhase = 1;
             }

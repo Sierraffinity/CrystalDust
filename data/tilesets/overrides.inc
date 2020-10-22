@@ -15,7 +15,6 @@ gTilesetPalOverrides_General::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
-	.align 2
 
 	.align 2
 gTilesetPalOverrides_NewBark::
@@ -98,7 +97,7 @@ gTilesetPalOverrides_Goldenrod::
 gTilesetPalOverrides_DepartmentStore::
 	.byte 9
 	.byte 0
-	.byte 24
+	.byte 24 @ 24 hours a day, bby
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_DeptStore09NoWin
 	.byte 9

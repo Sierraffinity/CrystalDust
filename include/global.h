@@ -59,6 +59,9 @@
 // Converts a Q8.8 fixed-point format number to a regular integer
 #define Q_8_8_TO_INT(n) ((int)((n) / 256))
 
+// Gets the fractional part of a Q8.8 fixed-point format number as a regular integer (to four decimal places)
+#define Q_8_8_FRACTIONAL(n) ((int)((((n) & 0xFF) * 1000) / 256))
+
 // Converts a Q4.12 fixed-point format number to a regular integer
 #define Q_4_12_TO_INT(n)  ((int)((n) / 4096))
 

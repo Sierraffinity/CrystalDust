@@ -95,6 +95,8 @@ static void DebugMenu_MaxBankedMoney(u8 taskId);
 static void DebugMenu_MaxCoins(u8 taskId);
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
+static void DebugMenu_CraftDNTint(u8 taskId);
+static void DebugMenu_CraftDNTint_ProcessInput(u8 taskId);
 static void DebugMenu_Pokedex_ProfOakRating(u8 taskId);
 static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId);
 static void DebugMenu_Pokegear(u8 taskId);
@@ -118,6 +120,7 @@ extern bool8 gWalkThroughWalls;
 extern bool8 gPaletteTintDisabled;
 extern bool8 gPaletteOverrideDisabled;
 extern s16 gDNPeriodOverride;
+extern u16 gDNTintOverride[3];
 
 static const u8 sText_PlayerInfo[] = _("Player info");
 static const u8 sText_SetFlag[] = _("Set flag");
@@ -139,8 +142,9 @@ static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
 static const u8 sText_PoisonAllMons[] = _("Poison all Pokémon");
-static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
+static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
+static const u8 sText_CraftDNTintColor[] = _("Craft new tint color");
 static const u8 sText_ProfOakRating[] = _("Prof. Oak rating");
 static const u8 sText_EnableMapCard[] = _("Enable map card");
 static const u8 sText_EnableRadioCard[] = _("Enable radio card");
@@ -155,6 +159,7 @@ static const u8 sText_RespawnStatus[] = _("Respawn point:\n{STR_VAR_1}");
 static const u8 sText_LottoStatus[] = _("Lotto num:\n{STR_VAR_1}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
 static const u8 sText_Off[] = _("{COLOR RED}OFF");
+static const u8 sText_RGBValues[] = _("{COLOR RED}{STR_VAR_1}\n{COLOR GREEN}{STR_VAR_2}\n{COLOR BLUE}{STR_VAR_3}");
 
 extern u8 PokedexRating_EventScript_ShowRatingMessage[];
 
@@ -198,6 +203,7 @@ static const struct DebugMenuAction sDebugMenu_DNActions[] =
 {
     { sText_DNTimeCycle, DebugMenu_TimeCycle, NULL },
     { sText_ToggleDNPalOverride, DebugMenu_ToggleOverride, NULL },
+    { sText_CraftDNTintColor, DebugMenu_CraftDNTint, NULL },
 };
 
 CREATE_BOUNCER(DNActions, MainActions);
@@ -288,6 +294,17 @@ static const struct WindowTemplate sDebugMenu_Window_TimeCycle =
     .tilemapTop = 1,
     .width = 10,
     .height = 2,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_CraftDNTint = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 4,
+    .height = 6,
     .paletteNum = 15,
     .baseBlock = 0x120
 };
@@ -1145,6 +1162,95 @@ static void DebugMenu_TimeCycle_ProcessInput(u8 taskId)
 }
 
 #undef tDeltaIndex
+
+static void DebugMenu_CraftDNTint_PrintStatus(u8 windowId, u16 tintR, u16 tintG, u16 tintB)
+{
+    FillWindowPixelBuffer(windowId, 0x11);
+    ConvertQ88ToDecimalStringN(gStringVar1, tintR, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertQ88ToDecimalStringN(gStringVar2, tintG, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertQ88ToDecimalStringN(gStringVar3, tintB, STR_CONV_MODE_LEFT_ALIGN, 3);
+
+    StringExpandPlaceholders(gStringVar4, sText_RGBValues);
+    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+}
+
+#define TINT_R gDNTintOverride[0]
+#define TINT_G gDNTintOverride[1]
+#define TINT_B gDNTintOverride[2]
+
+#define tWhichComponent data[1]
+
+static void DebugMenu_CraftDNTint(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    TINT_R = Q_8_8(1.0);
+    TINT_G = Q_8_8(1.0);
+    TINT_B = Q_8_8(1.0);
+
+    gPaletteOverrideDisabled = TRUE;
+
+    DebugMenu_RemoveMenu(taskId);
+    tWindowId = AddWindow(&sDebugMenu_Window_CraftDNTint);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    
+    DebugMenu_CraftDNTint_PrintStatus(tWindowId, TINT_R, TINT_G, TINT_B);
+    ScheduleBgCopyTilemapToVram(0);
+    gTasks[taskId].func = DebugMenu_CraftDNTint_ProcessInput;
+}
+
+static void DebugMenu_CraftDNTint_ProcessInput(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (JOY_NEW(DPAD_UP) && tWhichComponent != 0)
+    {
+        PlaySE(SE_SELECT);
+        tWhichComponent--;
+    }
+
+    if (JOY_NEW(DPAD_DOWN) && tWhichComponent != 2)
+    {
+        PlaySE(SE_SELECT);
+        tWhichComponent++;
+    }
+
+    if (JOY_REPEAT(DPAD_LEFT) && gDNTintOverride[tWhichComponent] != Q_8_8(0.0))
+    {
+        gDNTintOverride[tWhichComponent] -= Q_8_8(0.01);
+        DebugMenu_CraftDNTint_PrintStatus(tWindowId, TINT_R, TINT_G, TINT_B);
+    }
+
+    if (JOY_REPEAT(L_BUTTON) && gDNTintOverride[tWhichComponent] != Q_8_8(0.0))
+    {
+        gDNTintOverride[tWhichComponent] -= Q_8_8(0.1);
+        DebugMenu_CraftDNTint_PrintStatus(tWindowId, TINT_R, TINT_G, TINT_B);
+    }
+
+    if (JOY_REPEAT(DPAD_RIGHT) && gDNTintOverride[tWhichComponent] != Q_8_8(2.0))
+    {
+        gDNTintOverride[tWhichComponent] += Q_8_8(0.01);
+        DebugMenu_CraftDNTint_PrintStatus(tWindowId, TINT_R, TINT_G, TINT_B);
+    }
+
+    if (JOY_REPEAT(R_BUTTON) && gDNTintOverride[tWhichComponent] != Q_8_8(2.0))
+    {
+        gDNTintOverride[tWhichComponent] += Q_8_8(0.1);
+        DebugMenu_CraftDNTint_PrintStatus(tWindowId, TINT_R, TINT_G, TINT_B);
+    }
+
+    if (JOY_NEW(B_BUTTON))
+    {
+        TINT_R = 0xFFFF;
+        TINT_G = 0;
+        TINT_B = 0;
+
+        gPaletteOverrideDisabled = FALSE;
+
+        PlaySE(SE_SELECT);
+        ReturnToPreviousMenu(taskId, GET_BOUNCER);
+    }
+}
 
 static void DebugMenu_Pokedex_ProfOakRating_PrintStatus(u8 windowId, u16 flagId)
 {

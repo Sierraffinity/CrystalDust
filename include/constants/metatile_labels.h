@@ -406,6 +406,14 @@
 #define METATILE_PokemonCenter_Floor_ShadowTop           0x21E
 #define METATILE_PokemonCenter_Floor_ShadowTop_Alt       0x2DC
 
+// gTileset_RS
+#define METATILE_RS_MossdeepGym_RedArrow_Down   0x205
+#define METATILE_RS_MossdeepGym_RedArrow_Left   0x20C
+#define METATILE_RS_MossdeepGym_RedArrow_Right  0x204
+#define METATILE_RS_MossdeepGym_RedArrow_Up     0x20D
+#define METATILE_RS_MossdeepGym_Switch_Down     0x239
+#define METATILE_RS_MossdeepGym_Switch_Up       0x238
+
 // gTileset_RadioTower
 #define METATILE_RadioTower_Elevator_Bottom0         0x2F8
 #define METATILE_RadioTower_Elevator_Bottom1         0x2F9
@@ -421,14 +429,6 @@
 #define METATILE_RadioTower_EmptyFloor_FullShadow    0x282
 #define METATILE_RadioTower_Floor_AboveLeftWallEdge  0x2B3
 #define METATILE_RadioTower_Floor_AboveWall          0x29A
-
-// gTileset_RS
-#define METATILE_RS_MossdeepGym_RedArrow_Down   0x205
-#define METATILE_RS_MossdeepGym_RedArrow_Left   0x20C
-#define METATILE_RS_MossdeepGym_RedArrow_Right  0x204
-#define METATILE_RS_MossdeepGym_RedArrow_Up     0x20D
-#define METATILE_RS_MossdeepGym_Switch_Down     0x239
-#define METATILE_RS_MossdeepGym_Switch_Up       0x238
 
 // gTileset_RuinsOfAlph
 #define METATILE_RuinsOfAlph_HoleInWall          0x2FF
