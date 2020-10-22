@@ -9,6 +9,7 @@
 #include "gfx.h"
 #include "convert_png.h"
 #include "jasc_pal.h"
+#include "act.h"
 #include "lz.h"
 #include "rl.h"
 #include "font.h"
@@ -32,6 +33,10 @@ void ConvertGbaToPng(char *inputPath, char *outputPath, struct GbaToPngOptions *
         if (strcmp(paletteFileExtension, "gbapal") == 0)
         {
             ReadGbaPalette(options->paletteFilePath, &image.palette);
+        }
+        else if (strcmp(paletteFileExtension, "act") == 0)
+        {
+            ReadActPalette(options->paletteFilePath, &image.palette);
         }
         else
         {
@@ -254,6 +259,14 @@ void HandlePngToGbaPaletteCommand(char *inputPath, char *outputPath, int argc UN
     WriteGbaPalette(outputPath, &palette);
 }
 
+void HandlePngToActPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
+{
+    struct Palette palette = {};
+
+    ReadPngPalette(inputPath, &palette);
+    WriteActPalette(outputPath, &palette);
+}
+
 void HandleGbaToJascPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
 {
     struct Palette palette = {};
@@ -297,6 +310,67 @@ void HandleJascToGbaPaletteCommand(char *inputPath, char *outputPath, int argc, 
         palette.numColors = numColors;
 
     WriteGbaPalette(outputPath, &palette);
+}
+
+void HandleGbaToActPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
+{
+    struct Palette palette = {};
+
+    ReadGbaPalette(inputPath, &palette);
+    WriteActPalette(outputPath, &palette);
+}
+
+void HandleActToGbaPaletteCommand(char *inputPath, char *outputPath, int argc, char **argv)
+{
+    int numColors = 0;
+
+    for (int i = 3; i < argc; i++)
+    {
+        char *option = argv[i];
+
+        if (strcmp(option, "-num_colors") == 0)
+        {
+            if (i + 1 >= argc)
+                FATAL_ERROR("No number of colors following \"-num_colors\".\n");
+
+            i++;
+
+            if (!ParseNumber(argv[i], NULL, 10, &numColors))
+                FATAL_ERROR("Failed to parse number of colors.\n");
+
+            if (numColors < 1)
+                FATAL_ERROR("Number of colors must be positive.\n");
+        }
+        else
+        {
+            FATAL_ERROR("Unrecognized option \"%s\".\n", option);
+        }
+    }
+
+    struct Palette palette = {};
+
+    ReadActPalette(inputPath, &palette);
+
+    if (numColors != 0)
+        palette.numColors = numColors;
+
+    WriteGbaPalette(outputPath, &palette);
+}
+
+void HandleJascToActPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
+{
+    struct Palette palette = {};
+
+    ReadJascPalette(inputPath, &palette);
+    WriteActPalette(outputPath, &palette);
+}
+
+void HandleActToJascPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
+{
+    struct Palette palette = {};
+
+    ReadActPalette(inputPath, &palette);
+    WriteJascPalette(outputPath, &palette);
 }
 
 void HandleLatinFontToPngCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
@@ -552,8 +626,13 @@ int main(int argc, char **argv)
         { "png", "8bpp", HandlePngToGbaCommand },
         { "png", "gbapal", HandlePngToGbaPaletteCommand },
         { "png", "pal", HandlePngToJascPaletteCommand },
+        { "png", "act", HandlePngToActPaletteCommand },
         { "gbapal", "pal", HandleGbaToJascPaletteCommand },
         { "pal", "gbapal", HandleJascToGbaPaletteCommand },
+        { "gbapal", "act", HandleGbaToActPaletteCommand },
+        { "act", "gbapal", HandleActToGbaPaletteCommand },
+        { "act", "pal", HandleActToJascPaletteCommand },
+        { "pal", "act", HandleJascToActPaletteCommand },
         { "latfont", "png", HandleLatinFontToPngCommand },
         { "png", "latfont", HandlePngToLatinFontCommand },
         { "hwjpnfont", "png", HandleHalfwidthJapaneseFontToPngCommand },
