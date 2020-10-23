@@ -36,3 +36,49 @@ GoldenrodCity_DeptStore_B1F_MapScripts_MAP_SCRIPT_ON_LOAD_4:
 	setmetatile 13, 17, METATILE_RadioTower_Floor_AboveWall, FALSE
 	return
 
+
+GoldenrodCity_DeptStore_B1F_EventScript_UnseenMan::
+	msgbox GoldenrodCity_DeptStore_B1F_EventScript_UnseenMan_Text_0, MSGBOX_NPC
+	return
+
+
+GoldenrodCity_DeptStore_B1F_EventScript_PassionlessMan::
+	msgbox GoldenrodCity_DeptStore_B1F_EventScript_PassionlessMan_Text_0, MSGBOX_NPC
+	return
+
+
+GoldenrodCity_DeptStore_B1F_EventScript_JunkMan::
+	msgbox GoldenrodCity_DeptStore_B1F_EventScript_JunkMan_Text_0, MSGBOX_NPC
+	return
+
+
+GoldenrodCity_DeptStore_B1F_EventScript_Machoke::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_MACHOKE, 0
+	msgbox GoldenrodCity_DeptStore_B1F_EventScript_Machoke_Text_0
+	waitmoncry
+	release
+	return
+
+
+GoldenrodCity_DeptStore_B1F_EventScript_UnseenMan_Text_0:
+	.string "Hey, kid!\n"
+	.string "You're holding us up!\p"
+	.string "Our policy is to work behind the\n"
+	.string "scenes where no one can see us!$"
+
+GoldenrodCity_DeptStore_B1F_EventScript_PassionlessMan_Text_0:
+	.string "I lose my passion for work if\n"
+	.string "someone's watching.\l"
+	.string "Come on, kid, scoot!$"
+
+GoldenrodCity_DeptStore_B1F_EventScript_JunkMan_Text_0:
+	.string "Oohah!\n"
+	.string "Oohah!\p"
+	.string "The stuff on the ground's junk.\n"
+	.string "Take it if you want it!$"
+
+GoldenrodCity_DeptStore_B1F_EventScript_Machoke_Text_0:
+	.string "MACHOKE: Maaacho!$"

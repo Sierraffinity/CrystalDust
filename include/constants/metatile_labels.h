@@ -415,6 +415,8 @@
 #define METATILE_RS_MossdeepGym_Switch_Up       0x238
 
 // gTileset_RadioTower
+#define METATILE_RadioTower_Door_Elevator_BlueWall   0x2AB
+#define METATILE_RadioTower_Door_Elevator_PinkWall   0x2E2
 #define METATILE_RadioTower_Elevator_Bottom0         0x2F8
 #define METATILE_RadioTower_Elevator_Bottom1         0x2F9
 #define METATILE_RadioTower_Elevator_Bottom2         0x2FA

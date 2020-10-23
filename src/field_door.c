@@ -63,6 +63,8 @@ static const u8 sDoorAnimTiles_AbandonedShip[] = INCBIN_U8("graphics/door_anims/
 static const u8 sDoorAnimTiles_FallarborDarkRoof[] = INCBIN_U8("graphics/door_anims/fallarbor_dark_roof.4bpp");
 static const u8 sDoorAnimTiles_AbandonedShipRoom[] = INCBIN_U8("graphics/door_anims/abandoned_ship_room.4bpp");
 static const u8 sDoorAnimTiles_DeptStoreElevator[] = INCBIN_U8("graphics/door_anims/dept_store_elevator.4bpp");
+static const u8 sDoorAnimTiles_RadioTowerElevatorBlueWall[] = INCBIN_U8("graphics/door_anims/facility_blue_wall_elevator.4bpp");
+static const u8 sDoorAnimTiles_RadioTowerElevatorPinkWall[] = INCBIN_U8("graphics/door_anims/facility_pink_wall_elevator.4bpp");
 static const u8 sDoorAnimTiles_BattleTowerOld[] = INCBIN_U8("graphics/door_anims/battle_tower_old.4bpp");
 static const u8 sDoorAnimTiles_BattleTowerElevator[] = INCBIN_U8("graphics/door_anims/battle_tower_elevator.4bpp");
 static const u8 sDoorAnimTiles_34[] = INCBIN_U8("graphics/door_anims/unknown.4bpp");
@@ -150,6 +152,9 @@ static const u8 sDoorAnimPalettes_Goldenrod[] = {10, 10, 10, 10};
 static const u8 sDoorAnimPalettes_RadioTower[] = {9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_GoldenrodDeptStore[] = {7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_Pokecomcenter[] = {7, 7, 7, 7};
+static const u8 sDoorAnimPalettes_DeptStoreElevator[] = {8, 8, 8, 8, 8, 8, 8, 8};
+static const u8 sDoorAnimPalettes_RadioTowerElevatorBlueWall[] = {12, 12, 2, 2, 2, 2, 2, 2};
+static const u8 sDoorAnimPalettes_RadioTowerElevatorPinkWall[] = {8, 8, 2, 2, 2, 2, 2, 2};
 static const u8 sDoorAnimPalettes_Mossdeep[] = {9, 9, 1, 1, 1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_PokemonLeague[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_Pacifidlog[] = {9, 9, 9, 9, 9, 9, 9, 9};
@@ -167,7 +172,6 @@ static const u8 sDoorAnimPalettes_CableClub[] = {6, 6, 6, 6, 6, 6, 6, 6};
 static const u8 sDoorAnimPalettes_AbandonedShip[] = {7, 7, 7, 7, 7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_FallarborDarkRoof[] = {11, 11, 7, 7, 7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_AbandonedShipRoom[] = {7, 7, 7, 7, 7, 7, 7, 7};
-static const u8 sDoorAnimPalettes_DeptStoreElevator[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_BattleTowerOld[] = {9, 9, 9, 9, 9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_BattleTowerElevator[] = {7, 7, 7, 7, 7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_34[] = {9, 9, 9, 9, 9, 9, 9, 9};
@@ -203,6 +207,9 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_Goldenrod_Door_RadioTower,                    DOOR_SOUND_SLIDING, 0, sDoorAnimTiles_RadioTower, sDoorAnimPalettes_RadioTower},
     {METATILE_Goldenrod_Door_DeptStore,                     DOOR_SOUND_SLIDING, 0, sDoorAnimTiles_GoldenrodDeptStore, sDoorAnimPalettes_GoldenrodDeptStore},
     {METATILE_Goldenrod_Door_PokecomCenter,                 DOOR_SOUND_SLIDING, 0, sDoorAnimTiles_PokecomCenter, sDoorAnimPalettes_Pokecomcenter},
+    {METATILE_DepartmentStore_Door_Elevator,                DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_DeptStoreElevator, sDoorAnimPalettes_DeptStoreElevator},
+    {METATILE_RadioTower_Door_Elevator_BlueWall,            DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_RadioTowerElevatorBlueWall, sDoorAnimPalettes_RadioTowerElevatorBlueWall},
+    {METATILE_RadioTower_Door_Elevator_PinkWall,            DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_RadioTowerElevatorPinkWall, sDoorAnimPalettes_RadioTowerElevatorPinkWall},
     {METATILE_Dewford_Door,                                 DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Dewford, sDoorAnimPalettes_Dewford},
     {METATILE_General_Door_Contest,                         DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_Contest, sDoorAnimPalettes_Contest},
     {METATILE_Lilycove_Door_Wooden,                         DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_LilycoveWooden, sDoorAnimPalettes_LilycoveWooden},
@@ -220,7 +227,6 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_InsideShip_IntactDoor_Bottom_Unlocked,        DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_AbandonedShip, sDoorAnimPalettes_AbandonedShip},
     {METATILE_Fallarbor_Door_DarkRoof,                      DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_FallarborDarkRoof, sDoorAnimPalettes_FallarborDarkRoof},
     {METATILE_InsideShip_IntactDoor_Bottom_Interior,        DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_AbandonedShipRoom, sDoorAnimPalettes_AbandonedShipRoom},
-    {METATILE_DepartmentStore_Door_Elevator,                DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_DeptStoreElevator, sDoorAnimPalettes_DeptStoreElevator},
     {METATILE_Dewford_Door_BattleTower,                     DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_BattleTowerOld, sDoorAnimPalettes_BattleTowerOld},
     {METATILE_BattleFrontier_Door_Elevator,                 DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_BattleTowerElevator, sDoorAnimPalettes_BattleTowerElevator},
     {0x3B0, /* TODO: Missing metatile ID */                 DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_34, sDoorAnimPalettes_34},

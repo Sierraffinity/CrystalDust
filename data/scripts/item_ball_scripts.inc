@@ -110,8 +110,24 @@ Route34_EventScript_ItemNugget::
 	finditem ITEM_NUGGET
 	end
 
-GoldenrodCity_Undeground_EventScript_ItemCoinCase::
+GoldenrodCity_Underground_EventScript_ItemCoinCase::
 	finditem ITEM_COIN_CASE
+	end
+
+GoldenrodCity_DeptStore_B1F_EventScript_ItemEther::
+	finditem ITEM_ETHER
+	end
+
+GoldenrodCity_DeptStore_B1F_EventScript_ItemAmuletCoin::
+	finditem ITEM_AMULET_COIN
+	end
+
+GoldenrodCity_DeptStore_B1F_EventScript_ItemBurnHeal::
+	finditem ITEM_BURN_HEAL
+	end
+
+GoldenrodCity_DeptStore_B1F_EventScript_ItemUltraBall::
+	finditem ITEM_ULTRA_BALL
 	end
 
 Route36_EventScript_ItemStarPiece:: @ 8290D4D

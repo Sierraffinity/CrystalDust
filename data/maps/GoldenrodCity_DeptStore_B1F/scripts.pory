@@ -26,3 +26,33 @@ mapscripts GoldenrodCity_DeptStore_B1F_MapScripts {
         }
     }
 }
+
+script GoldenrodCity_DeptStore_B1F_EventScript_UnseenMan {
+    msgbox("Hey, kid!\n"
+           "You're holding us up!\p"
+           "Our policy is to work behind the\n"
+           "scenes where no one can see us!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_B1F_EventScript_PassionlessMan {
+    msgbox("I lose my passion for work if\n"
+           "someone's watching.\l"
+           "Come on, kid, scoot!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_B1F_EventScript_JunkMan {
+    msgbox("Oohah!\n"
+           "Oohah!\p"
+           "The stuff on the ground's junk.\n"
+           "Take it if you want it!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_B1F_EventScript_Machoke {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_MACHOKE, 0)
+    msgbox("MACHOKE: Maaacho!")
+    waitmoncry
+    release
+}

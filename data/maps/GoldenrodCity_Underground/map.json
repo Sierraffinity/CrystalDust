@@ -88,7 +88,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_Undeground_EventScript_ItemCoinCase",
+      "script": "GoldenrodCity_Underground_EventScript_ItemCoinCase",
       "flag": "FLAG_ITEM_GOLDENROD_CITY_UNDERGROUND_COIN_CASE"
     },
     {

@@ -1069,10 +1069,10 @@
 #define FLAG_ITEM_SLOWPOKE_WELL_B1F_SUPER_POTION                    0x406
 #define FLAG_ITEM_ROUTE_34_NUGGET                                   0x407
 #define FLAG_ITEM_GOLDENROD_CITY_UNDERGROUND_COIN_CASE              0x408
-#define FLAG_ITEM_ROUTE_123_RARE_CANDY                              0x409
-#define FLAG_ITEM_ROUTE_127_ZINC                                    0x40A
-#define FLAG_ITEM_ROUTE_127_CARBOS                                  0x40B
-#define FLAG_ITEM_ROUTE_132_RARE_CANDY                              0x40C
+#define FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_ETHER               0x409
+#define FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_AMULET_COIN         0x40A
+#define FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_BURN_HEAL           0x40B
+#define FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_ULTRA_BALL          0x40C
 #define FLAG_ITEM_ROUTE_133_BIG_PEARL                               0x40D
 #define FLAG_ITEM_ROUTE_133_STAR_PIECE                              0x40E
 #define FLAG_UNUSED_0x40F                                           0x40F
