@@ -16,6 +16,7 @@ const struct TilesPal *GetWindowFrameTilesPal(u8 id);
 void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset);
 void LoadSignMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset);
 void LoadThinWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset);
+void LoadThinWindowBorderTiles(u8 windowId, u16 destOffset);
 void LoadUserWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset);
 void LoadWindowGfx(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset);
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset);

@@ -111,6 +111,11 @@ void LoadThinWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)
     LoadPalette(GetTextWindowPalette(3), palOffset, 0x20);
 }
 
+void LoadThinWindowBorderTiles(u8 windowId, u16 destOffset)
+{
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sTextWindowFrameThin_Gfx, 0x120, destOffset);
+}
+
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadUserWindowBorderGfx(windowId, destOffset, palOffset);

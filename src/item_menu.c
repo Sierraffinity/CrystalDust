@@ -2169,7 +2169,7 @@ bool8 UseRegisteredKeyItemOnField(void)
 
     if (InUnionRoom() == TRUE || InBattlePyramid() || InBattlePike() || InMultiPartnerRoom() == TRUE)
         return FALSE;
-    HideMapNamePopUpWindow();
+    DismissMapNamePopup();
     ChangeBgY_ScreenOff(0, 0, 0);
     if (gSaveBlock1Ptr->registeredItem != ITEM_NONE)
     {

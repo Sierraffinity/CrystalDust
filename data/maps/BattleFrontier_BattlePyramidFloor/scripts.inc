@@ -28,7 +28,7 @@ BattleFrontier_BattlePyramidFloor_EventScript_UpdateLightLoop:: @ 8252A77
 	end
 
 BattleFrontier_BattlePyramidFloor_EventScript_ShowMapName:: @ 8252A8F
-	special ShowMapNamePopup
+	special Special_ShowMapNamePopup
 	setvar VAR_TEMP_F, 0
 	end
 

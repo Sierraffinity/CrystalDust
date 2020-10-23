@@ -896,7 +896,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 
     if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER 
      || gMapHeader.regionMapSectionId != sLastMapSectionId)
-        ShowMapNamePopup();
+        ShowMapNamePopup(TRUE);
 }
 
 static void LoadMapFromWarp(bool32 a1)
@@ -1545,7 +1545,7 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
         if (ProcessPlayerFieldInput(&inputStruct) == 1)
         {
             ScriptContext2_Enable();
-            HideMapNamePopUpWindow();
+            DismissMapNamePopup();
         }
         else
         {
@@ -1798,7 +1798,7 @@ void sub_80861E8(void)
 static void sub_8086204(void)
 {
     if (SHOW_MAP_NAME_ENABLED && SecretBaseMapPopupEnabled() == TRUE)
-        ShowMapNamePopup();
+        ShowMapNamePopup(FALSE);
     FieldCB_WarpExitFadeFromBlack();
 }
 
@@ -2046,7 +2046,7 @@ static bool32 LoadMapInStepsLocal(u8 *state, bool32 a2)
         break;
     case 11:
         if (SHOW_MAP_NAME_ENABLED && SecretBaseMapPopupEnabled() == TRUE)
-            ShowMapNamePopup();
+            ShowMapNamePopup(FALSE);
         (*state)++;
         break;
     case 12:

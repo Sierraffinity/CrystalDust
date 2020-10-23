@@ -454,7 +454,7 @@ static void EnterNewlyCreatedSecretBase_StartFadeIn(void)
     s16 x, y;
 
     ScriptContext2_Enable();
-    HideMapNamePopUpWindow();
+    DismissMapNamePopup();
     FindMetatileIdMapCoords(&x, &y, METATILE_SecretBase_PC);
     x += 7;
     y += 7;

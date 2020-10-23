@@ -48,7 +48,6 @@ struct Menu
 };
 
 static EWRAM_DATA u8 sStartMenuWindowId = 0;
-static EWRAM_DATA u8 sMapNamePopupWindowId = 0;
 static EWRAM_DATA struct Menu sMenu = {0};
 static EWRAM_DATA u16 sTileNum = 0;
 static EWRAM_DATA u8 sPaletteNum = 0;
@@ -144,7 +143,6 @@ void InitStandardTextBoxWindows(void)
 {
     InitWindows(sStandardTextBox_WindowTemplates);
     sStartMenuWindowId = 0xFF;
-    sMapNamePopupWindowId = 0xFF;
 }
 
 void FreeAllOverworldWindowBuffers(void)
@@ -626,27 +624,6 @@ u16 sub_8197A30(void)
 u16 sub_8197A38(void)
 {
     return STD_WINDOW_BASE_TILE_NUM;
-}
-
-u8 AddMapNamePopUpWindow(void)
-{
-    if (sMapNamePopupWindowId == 0xFF)
-        sMapNamePopupWindowId = sub_8198AA4(0, 1, 1, 10, 3, 14, 0x107);
-    return sMapNamePopupWindowId;
-}
-
-u8 GetMapNamePopUpWindowId(void)
-{
-    return sMapNamePopupWindowId;
-}
-
-void RemoveMapNamePopUpWindow(void)
-{
-    if (sMapNamePopupWindowId != 0xFF)
-    {
-        RemoveWindow(sMapNamePopupWindowId);
-        sMapNamePopupWindowId = 0xFF;
-    }
 }
 
 void AddTextPrinterWithCallbackForMessage(bool8 a1, void (*callback)(struct TextPrinterTemplate *, u16))

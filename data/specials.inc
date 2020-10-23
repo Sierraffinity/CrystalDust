@@ -415,8 +415,7 @@ gSpecials:: @ 81DBA64
 	def_special CloseBattlePikeCurtain
 	def_special CallApprenticeFunction
 	def_special ShouldTryGetTrainerScript
-	def_special ShowMapNamePopup
-	def_special ShowMapNamePopup
+	def_special Special_ShowMapNamePopup
 	def_special DoMirageTowerCeilingCrumble
 	def_special SetMirageTowerVisibility
 	def_special StartPlayerDescendMirageTower
