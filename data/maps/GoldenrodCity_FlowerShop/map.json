@@ -18,39 +18,39 @@
   "object_events": [
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "in_connection": false,
-      "x": 6,
-      "y": 4,
+      "x": 3,
+      "y": 5,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_FlowerShop_EventScript_Trader",
+      "script": "GoldenrodCity_FlowerShop_EventScript_OlderSister",
       "flag": "0"
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
       "in_connection": false,
-      "x": 9,
-      "y": 2,
+      "x": 8,
+      "y": 7,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_FlowerShop_EventScript_Hiker",
-      "flag": "0"
+      "script": "GoldenrodCity_FlowerShop_EventScript_Floria",
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA"
     }
   ],
   "warp_events": [
     {
       "x": 5,
-      "y": 7,
+      "y": 8,
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY",
       "dest_warp_id": 10

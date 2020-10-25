@@ -175,7 +175,7 @@
 #define FLAG_VISITED_GOLDENROD_DEPT_STORE_B1F   0xA1
 #define FLAG_MET_BILL_IN_ECRUTEAK            0xA2
 #define FLAG_GOT_EEVEE_FROM_BILL             0xA3
-#define FLAG_TOUGH_PAINTING_MADE             0xA4
+#define FLAG_GOT_SQUIRTBOTTLE                0xA4
 #define FLAG_GOT_TM40_FROM_FALKNER           0xA5
 #define FLAG_GOT_TM47_FROM_BUGSY             0xA6
 #define FLAG_GOT_TM45_FROM_WHITNEY           0xA7
@@ -199,8 +199,8 @@
 #define FLAG_DECORATION_12                   0xB9
 #define FLAG_DECORATION_13                   0xBA
 #define FLAG_DECORATION_14                   0xBB
-#define FLAG_RECEIVED_POKENAV                0xBC
-#define FLAG_DELIVERED_STEVEN_LETTER         0xBD
+#define FLAG_MET_FLORIA_ROUTE_36             0xBC
+#define FLAG_TALKED_TO_FLORIA_FLOWER_SHOP    0xBD
 #define FLAG_DEFEATED_WALLY_MAUVILLE         0xBE
 #define FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F  0xBF
 #define FLAG_RECEIVED_SUN_STONE_MOSSDEEP     0xC0
@@ -808,9 +808,9 @@
 #define FLAG_HIDE_GOLDENROD_DEPT_STORE_RETURN_FRUSTRATION_LADY      0x303
 #define FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_ON              0x304
 #define FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_OFF             0x305
-#define FLAG_HIDE_GOLDENROD_CITY_BILLS_HOUSE_BILL                   0x306
-#define FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR                           0x307
-#define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1                          0x308
+#define FLAG_HIDE_GOLDENROD_CITY_BILLS_FAMILYS_HOUSE_BILL           0x306
+#define FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA                 0x307
+#define FLAG_HIDE_ROUTE_36_FLORIA                                   0x308
 #define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2                          0x309
 #define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3                          0x30A
 #define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4                          0x30B

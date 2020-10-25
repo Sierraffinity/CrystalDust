@@ -35,7 +35,7 @@ LilycoveCity_ContestLobby_OnFrame: @ 821A243
 	.2byte 0
 
 LilycoveCity_ContestLobby_EventScript_TryDoContestArtist:: @ 821A255
-	goto_if_set FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR, LilycoveCity_ContestLobby_EventScript_ContestArtist
+	goto_if_set FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA, LilycoveCity_ContestLobby_EventScript_ContestArtist
 	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
 	end
 
@@ -118,7 +118,7 @@ LilycoveCity_ContestLobby_EventScript_UpdateMuseumPatrons:: @ 821A360
 	return
 
 LilycoveCity_ContestLobby_EventScript_ShowPatron1:: @ 821A3A2
-	clearflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1
+	clearflag FLAG_HIDE_ROUTE_36_FLORIA
 	return
 
 LilycoveCity_ContestLobby_EventScript_ShowPatron2:: @ 821A3A6
@@ -163,7 +163,7 @@ LilycoveCity_ContestLobby_EventScript_MadeSmartPainting:: @ 821A3FF
 	return
 
 LilycoveCity_ContestLobby_EventScript_MadeToughPainting:: @ 821A403
-	setflag FLAG_TOUGH_PAINTING_MADE
+	setflag FLAG_GOT_SQUIRTBOTTLE
 	return
 
 LilycoveCity_ContestLobby_Movement_ArtistApproachPlayer: @ 821A407
@@ -209,7 +209,7 @@ LilycoveCity_ContestLobby_Movement_ArtistReturnToPlayer: @ 821A41E
 	step_end
 
 LilycoveCity_ContestLobby_EventScript_TryDoLinkContestArtist:: @ 821A427
-	goto_if_set FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR, LilycoveCity_ContestLobby_EventScript_LinkContestArtist
+	goto_if_set FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA, LilycoveCity_ContestLobby_EventScript_LinkContestArtist
 	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
 	end
 
@@ -364,7 +364,7 @@ LilycoveCity_ContestLobby_EventScript_SetMasterContestType:: @ 821A5C9
 
 @ Functionally unused
 LilycoveCity_ContestLobby_EventScript_SetDebug:: @ 821A5CF
-	setflag FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR
+	setflag FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA
 	copyvar VAR_LILYCOVE_MUSEUM_2F_STATE, 1
 	additem ITEM_CONTEST_PASS
 	setvar VAR_0x800B, 8

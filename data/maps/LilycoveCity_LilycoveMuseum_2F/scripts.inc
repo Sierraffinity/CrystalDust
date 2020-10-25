@@ -26,7 +26,7 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_CheckSmartPainting:: @ 8219772
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_CheckToughPainting:: @ 8219781
-	goto_if_set FLAG_TOUGH_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_SetToughPainting
+	goto_if_set FLAG_GOT_SQUIRTBOTTLE, LilycoveCity_LilycoveMuseum_2F_EventScript_SetToughPainting
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_SetCoolPainting:: @ 821978B
@@ -148,7 +148,7 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_CutePainting:: @ 821992B
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_ToughPainting:: @ 821993E
 	lockall
-	goto_if_set FLAG_TOUGH_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowToughPainting
+	goto_if_set FLAG_GOT_SQUIRTBOTTLE, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowToughPainting
 	msgbox LilycoveCity_LilycoveMuseum_2F_Text_ItsYellowPictureFrame, MSGBOX_SIGN
 	end
 

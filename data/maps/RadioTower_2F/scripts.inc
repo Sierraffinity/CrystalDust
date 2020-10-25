@@ -72,7 +72,7 @@ RadioTower_2F_EventScript_Buena::
 	goto_if_eq RadioTower_2F_EventScript_Buena_13
 	compare VAR_BLUE_CARD_BALANCE, BUENAS_PASSWORD_MAX_POINTS
 	goto_if_ge RadioTower_2F_EventScript_Buena_14
-	playbgm MUS_SAILING, 0
+	playbgm MUS_BUENAS_THEME, 0
 	msgbox RadioTower_2F_EventScript_Buena_Text_6, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq RadioTower_2F_EventScript_Buena_18
@@ -254,7 +254,6 @@ RadioTower_2F_EventScript_BuenasAssistantMenu::
 	waitmessage
 	setvar VAR_0x8004, SCROLL_MULTI_BLUE_CARD_PRIZES
 	setvar VAR_0x8005, 0
-	setvar VAR_0x8006, FALSE
 	special ShowScrollableMultichoice
 	waitstate
 	switch VAR_RESULT

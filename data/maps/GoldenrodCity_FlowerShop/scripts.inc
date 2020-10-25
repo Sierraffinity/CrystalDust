@@ -1,84 +1,116 @@
-GoldenrodCity_FlowerShop_MapScripts:: @ 821593E
+GoldenrodCity_FlowerShop_MapScripts::
 	.byte 0
 
-GoldenrodCity_FlowerShop_EventScript_Trader:: @ 821593F
+
+GoldenrodCity_FlowerShop_EventScript_OlderSister::
+	lock
+	goto_if_set FLAG_DEFEATED_SUDOWOODO, GoldenrodCity_FlowerShop_EventScript_OlderSister_2
+	goto_if_set FLAG_GOT_SQUIRTBOTTLE, GoldenrodCity_FlowerShop_EventScript_OlderSister_3
+	goto_if_unset FLAG_MET_FLORIA_ROUTE_36, GoldenrodCity_FlowerShop_EventScript_OlderSister_4
+	goto_if_unset FLAG_TALKED_TO_FLORIA_FLOWER_SHOP, GoldenrodCity_FlowerShop_EventScript_OlderSister_5
+	goto_if_unset FLAG_BADGE03_GET, GoldenrodCity_FlowerShop_EventScript_OlderSister_6
+	faceplayer
+	msgbox GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_3
+	giveitem_msg GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_4, ITEM_SQUIRTBOTTLE
+	setflag FLAG_GOT_SQUIRTBOTTLE
+	setflag FLAG_HIDE_ROUTE_36_FLORIA
+	clearflag FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA
+GoldenrodCity_FlowerShop_EventScript_OlderSister_1:
+	release
+	return
+
+GoldenrodCity_FlowerShop_EventScript_OlderSister_2:
+	call GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala
+	goto GoldenrodCity_FlowerShop_EventScript_OlderSister_1
+
+GoldenrodCity_FlowerShop_EventScript_OlderSister_3:
+	faceplayer
+	msgbox GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_0
+	goto GoldenrodCity_FlowerShop_EventScript_OlderSister_1
+
+GoldenrodCity_FlowerShop_EventScript_OlderSister_4:
+	faceplayer
+	msgbox GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_1
+	goto GoldenrodCity_FlowerShop_EventScript_OlderSister_1
+
+GoldenrodCity_FlowerShop_EventScript_OlderSister_5:
+	call GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala
+	goto GoldenrodCity_FlowerShop_EventScript_OlderSister_1
+
+GoldenrodCity_FlowerShop_EventScript_OlderSister_6:
+	faceplayer
+	msgbox GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_2
+	goto GoldenrodCity_FlowerShop_EventScript_OlderSister_1
+
+
+GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala::
+	applymovement 1, Common_Movement_WalkInPlaceFastestLeft
+	waitmovement 0
+	msgbox GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala_Text_0
+	return
+
+
+GoldenrodCity_FlowerShop_EventScript_Floria::
 	lock
 	faceplayer
-	goto_if_set FLAG_VIOLET_NPC_TRADE_COMPLETED, GoldenrodCity_FlowerShop_EventScript_TradeCompleted
-	setvar VAR_0x8008, INGAME_TRADE_ONIX
-	copyvar VAR_0x8004, VAR_0x8008
-	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
-	copyvar VAR_0x8009, VAR_RESULT
-	msgbox GoldenrodCity_FlowerShop_Text_IllTradeIfYouWant, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq GoldenrodCity_FlowerShop_EventScript_DeclineTrade
-	special ChoosePartyMon
-	waitstate
-	copyvar VAR_0x800A, VAR_0x8004
-	compare VAR_0x8004, 255
-	goto_if_eq GoldenrodCity_FlowerShop_EventScript_DeclineTrade
-	copyvar VAR_0x8005, VAR_0x800A
-	specialvar VAR_RESULT, GetTradeSpecies
-	copyvar VAR_0x800B, VAR_RESULT
-	compare VAR_RESULT, VAR_0x8009
-	goto_if_ne GoldenrodCity_FlowerShop_EventScript_NotRequestedMon
-	copyvar VAR_0x8004, VAR_0x8008
-	copyvar VAR_0x8005, VAR_0x800A
-	special CreateInGameTradePokemon
-	special DoInGameTradeScene
-	waitstate
-	msgbox GoldenrodCity_FlowerShop_Text_PleaseBeGoodToMyPokemon, MSGBOX_DEFAULT
-	setflag FLAG_VIOLET_NPC_TRADE_COMPLETED
+	goto_if_set FLAG_DEFEATED_SUDOWOODO, GoldenrodCity_FlowerShop_EventScript_Floria_2
+	goto_if_set FLAG_GOT_SQUIRTBOTTLE, GoldenrodCity_FlowerShop_EventScript_Floria_3
+	msgbox GoldenrodCity_FlowerShop_EventScript_Floria_Text_2
+	setflag FLAG_TALKED_TO_FLORIA_FLOWER_SHOP
+	setflag FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA
+	clearflag FLAG_HIDE_ROUTE_36_FLORIA
+GoldenrodCity_FlowerShop_EventScript_Floria_1:
 	release
-	end
+	return
 
-GoldenrodCity_FlowerShop_EventScript_DeclineTrade:: @ 82159BD
-	msgbox GoldenrodCity_FlowerShop_Text_YouDontWantToThatsOkay, MSGBOX_DEFAULT
-	release
-	end
+GoldenrodCity_FlowerShop_EventScript_Floria_2:
+	msgbox GoldenrodCity_FlowerShop_EventScript_Floria_Text_0
+	goto GoldenrodCity_FlowerShop_EventScript_Floria_1
 
-GoldenrodCity_FlowerShop_EventScript_NotRequestedMon:: @ 82159C7
-	bufferspeciesname 0, VAR_0x8009
-	msgbox GoldenrodCity_FlowerShop_Text_DoesntLookLikeMonToMe, MSGBOX_DEFAULT
-	release
-	end
+GoldenrodCity_FlowerShop_EventScript_Floria_3:
+	msgbox GoldenrodCity_FlowerShop_EventScript_Floria_Text_1
+	goto GoldenrodCity_FlowerShop_EventScript_Floria_1
 
-GoldenrodCity_FlowerShop_EventScript_TradeCompleted:: @ 82159D5
-	msgbox GoldenrodCity_FlowerShop_Text_AnyPokemonCanBeCute, MSGBOX_DEFAULT
-	release
-	end
 
-GoldenrodCity_FlowerShop_EventScript_Hiker:: @ 82159DF
-	msgbox GoldenrodCity_FlowerShop_Text_AllSortsOfPlaces, MSGBOX_NPC
-	end
+GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_0:
+	.string "Don't do anything too dangerous!$"
 
-GoldenrodCity_FlowerShop_Text_IllTradeIfYouWant: @ 82159E8
-	.string "Huh? My POKéMON is cute?\n"
-	.string "Sure, I knew that.\p"
-	.string "But if you really want, I'm willing\n"
-	.string "to trade it to you.\p"
-	.string "I'll trade you my {STR_VAR_2} for\n"
-	.string "a {STR_VAR_1} if you want.$"
+GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_1:
+	.string "Have you seen that wiggly tree\n"
+	.string "that's growing on ROUTE 36?\p"
+	.string "My little sister got all excited\n"
+	.string "and went to see it…\p"
+	.string "I'm worried…\n"
+	.string "Isn't it dangerous?$"
 
-GoldenrodCity_FlowerShop_Text_PleaseBeGoodToMyPokemon: @ 8215A77
-	.string "Eheheh…\n"
-	.string "Please be good to my POKéMON.$"
+GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_2:
+	.string "Do you want to borrow the water\n"
+	.string "bottle too?\p"
+	.string "I don't want you doing anything\n"
+	.string "dangerous with it.$"
 
-GoldenrodCity_FlowerShop_Text_DoesntLookLikeMonToMe: @ 8215A9D
-	.string "Huh? That doesn't look anything like\n"
-	.string "a {STR_VAR_1} to me.$"
+GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_3:
+	.string "Oh, you're better than WHITNEY…\p"
+	.string "You'll be okay, then.\n"
+	.string "Here's the SQUIRTBOTTLE.$"
 
-GoldenrodCity_FlowerShop_Text_YouDontWantToThatsOkay: @ 8215ACE
-	.string "Oh, if you don't want to, that's okay.\n"
-	.string "But my POKéMON is cute, you know…$"
+GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_4:
+	.string "{PLAYER} got the SQUIRTBOTTLE\n"
+	.string "from the lady.$"
 
-GoldenrodCity_FlowerShop_Text_AnyPokemonCanBeCute: @ 8215B17
-	.string "Any POKéMON can be cute if you raise\n"
-	.string "it with care and kindness.$"
+GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala_Text_0:
+	.string "Lalala lalalala.\n"
+	.string "Have plenty of water, my lovely!$"
 
-GoldenrodCity_FlowerShop_Text_AllSortsOfPlaces: @ 8215B57
-	.string "In all sorts of places, there are all\n"
-	.string "sorts of POKéMON and people.\p"
-	.string "I find that fascinating, so I go to all\n"
-	.string "sorts of places.$"
+GoldenrodCity_FlowerShop_EventScript_Floria_Text_0:
+	.string "So it really was a POKéMON!$"
 
+GoldenrodCity_FlowerShop_EventScript_Floria_Text_1:
+	.string "Wow, you beat WHITNEY?\n"
+	.string "Cool!$"
+
+GoldenrodCity_FlowerShop_EventScript_Floria_Text_2:
+	.string "When I told my sis about the jiggly\n"
+	.string "tree, she told me it's dangerous.\p"
+	.string "If I beat WHITNEY, I wonder if she'll\n"
+	.string "lend me her water bottle…$"

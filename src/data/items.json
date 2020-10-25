@@ -6377,6 +6377,22 @@
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
+    },
+    {
+      "english": "SQUIRTBOTTLE",
+      "itemId": "ITEM_SQUIRTBOTTLE",
+      "price": 0,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A bottle used for watering plants.\\nIt is shaped like a SQUIRTLE.",
+      "importance": 2,
+      "exitsBagOnUse": 0,
+      "pocket": "POCKET_KEY_ITEMS",
+      "type": 4,
+      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "battleUsage": 0,
+      "battleUseFunc": "NULL",
+      "secondaryId": 0
     }
   ]
 }

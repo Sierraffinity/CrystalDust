@@ -3518,7 +3518,7 @@
       "blockdata_filepath": "data/layouts/FieryPath/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_HOUSE1",
+      "id": "LAYOUT_UNUSED_GOLDENROD_CITY_HOUSE1",
       "name": "GoldenrodCity_House1_Layout",
       "width": 14,
       "height": 9,
@@ -3530,7 +3530,7 @@
       "blockdata_filepath": "data/layouts/GoldenrodCity_House1/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_HOUSE2",
+      "id": "LAYOUT_UNUSED_GOLDENROD_CITY_HOUSE2",
       "name": "GoldenrodCity_House2_Layout",
       "width": 14,
       "height": 9,

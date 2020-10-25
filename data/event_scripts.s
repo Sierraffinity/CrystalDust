@@ -613,7 +613,7 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 	return
 
 Common_EventScript_UpdateBrineyLocation:: @ 82718DE
-	@goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
+	@goto_if_unset FLAG_MET_FLORIA_ROUTE_36, Common_EventScript_NopReturn
 	@goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
 	@goto_if_unset FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
 	@goto_if_unset FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN, EventScript_SetBrineyLocation_Dewford
