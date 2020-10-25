@@ -674,7 +674,7 @@
       "blockdata_filepath": "data/layouts/NewBarkTown_ElmsHouse/map.bin"
     },
     {
-      "id": "LAYOUT_NEW_BARK_TOWN_NEIGHBORS_HOUSE",
+      "id": "LAYOUT_UNUSED_NEW_BARK_TOWN_NEIGHBORS_HOUSE",
       "name": "NewBarkTown_NeighborsHouse_Layout",
       "width": 11,
       "height": 9,
@@ -1142,7 +1142,7 @@
       "blockdata_filepath": "data/layouts/GoldenrodCity_Gym/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_HOUSE",
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_2F",
       "name": "GoldenrodCity_DeptStore_2F_Layout",
       "width": 13,
       "height": 15,

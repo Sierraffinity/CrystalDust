@@ -1,0 +1,144 @@
+mapscripts GoldenrodCity_BillsFamilysHouse_MapScripts {}
+
+script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
+    lock
+    faceplayer
+    if (flag(FLAG_GOT_EEVEE_FROM_BILL))
+    {
+        msgbox("BILL: My pop, he won't work. All he\n"
+               "does is goof off all day long.\p"
+               "He's getting to be a real headache…")
+    }
+    else
+    {
+        msgbox("BILL: Hi, {PLAYER}!\n"
+               "Do us a favor and take this EEVEE.\p"
+               "It came over when I was adjusting\n"
+               "the Network Machine uplink.\p"
+               "Someone has to take care of it,\n"
+               "but I don't like being outside.\p"
+               "Can I count on you to play with\n"
+               "it, {PLAYER}?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            msgbox("BILL: I knew you'd come through!\n"
+                   "Way to go! You're the real deal!\p"
+                   "Okay, I'm counting on you.\n"
+                   "Take good care of it!")
+            textcolor(MSG_COLOR_SYS)
+            givemon(SPECIES_EEVEE, 20, ITEM_NONE)
+            if (var(VAR_RESULT) == 0)
+            {
+                call(GoldenrodCity_BillsFamilysHouse_EventScript_ReceivedEeveeFanfare)
+                msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES)
+                {
+                    call(Common_EventScript_GetGiftMonPartySlot)
+                    call(Common_EventScript_NameReceivedPartyMon)
+                }
+            }
+            elif (var(VAR_RESULT) == 1)
+            {
+                call(GoldenrodCity_BillsFamilysHouse_EventScript_ReceivedEeveeFanfare)
+                msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES)
+                {
+                    call(Common_EventScript_NameReceivedBoxMon)
+                }
+                call(Common_EventScript_TransferredToPC)
+            }
+            else
+            {
+                goto(GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull)
+            }
+            call(EventScript_RestorePrevTextColor)
+            setflag(FLAG_GOT_EEVEE_FROM_BILL)
+            msgbox("BILL: PROF. ELM claims EEVEE may\n"
+                   "evolve in new and unknown ways.")
+        }
+        else
+        {
+            msgbox("Oh…"
+                   "Now what to do?")
+        }
+    }
+    release
+}
+
+script GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull {
+    call(EventScript_RestorePrevTextColor)
+    msgbox("Whoa, wait.\n"
+           "You can't carry any more POKéMON.")
+    release
+}
+
+script GoldenrodCity_BillsFamilysHouse_EventScript_ReceivedEeveeFanfare {
+    bufferspeciesname(0, SPECIES_EEVEE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	message("{PLAYER} received the {STR_VAR_1}\n"
+            "from BILL.")
+	waitmessage
+	waitfanfare
+}
+
+script GoldenrodCity_BillsFamilysHouse_EventScript_BillsMom {
+    lock
+    faceplayer
+    if (flag(FLAG_MET_BILL_IN_ECRUTEAK))
+    {
+        msgbox("My husband was once known as a\n"
+               "POKéMANIAC. BILL must have taken\l"
+               "after his father.")
+    }
+    else
+    {
+        msgbox("Oh, you collect POKéMON?\n"
+               "My son BILL is an expert collector.\p"
+               "He just got called to the POKéMON\n"
+               "CENTER in ECRUTEAK CITY.\p"
+               "My husband went off to the GAME\n"
+               "CORNER without being called…")
+    }
+    release
+}
+
+script GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister {
+    lock
+    faceplayer
+    if (!flag(FLAG_PHONE_CARD_BILL))
+    {
+        msgbox("Are you a TRAINER? I've got a\n"
+               "useful phone number for you.\p"
+               "Do you want it?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            waitse
+            setflag(FLAG_PHONE_CARD_BILL)
+            playfanfare(MUS_REGISTER_MATCH_CALL)
+            textcolor(MSG_COLOR_SYS)
+            msgbox("{PLAYER} recorded BILL's number.")
+            waitfanfare
+            closemessage
+            delay(10)
+            call(EventScript_RestorePrevTextColor)
+            msgbox(GoldenrodCity_BillsFamilysHouse_Text_BillsSister_AfterPhoneNumber)
+        }
+        else
+        {
+            msgbox("My brother made the PC POKéMON\n"
+                   "storage system.\p"
+                   "I was going to give you BILL's\n"
+                   "number…")
+        }
+    }
+    else
+    {
+        msgbox(GoldenrodCity_BillsFamilysHouse_Text_BillsSister_AfterPhoneNumber)
+    }
+    release
+}
+
+text GoldenrodCity_BillsFamilysHouse_Text_BillsSister_AfterPhoneNumber {
+    "My big brother BILL made the PC\n"
+    "POKéMON storage system."
+}

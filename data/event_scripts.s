@@ -256,7 +256,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/GoldenrodCity_BikeShop/scripts.inc"
 	.include "data/maps/GoldenrodCity_FlowerShop/scripts.inc"
 	.include "data/maps/GoldenrodCity_NameRatersHouse/scripts.inc"
-	.include "data/maps/GoldenrodCity_BillsHouse/scripts.inc"
+	.include "data/maps/GoldenrodCity_BillsFamilysHouse/scripts.inc"
 	.include "data/maps/GoldenrodCity_House1/scripts.inc"
 	.include "data/maps/GoldenrodCity_House2/scripts.inc"
 	.include "data/maps/GoldenrodCity_DeptStore_1F/scripts.inc"

@@ -178,7 +178,7 @@ ContestHall_EventScript_RandomAudienceNinjaBoy:: @ 823BA6B
 	return
 
 ContestHall_EventScript_RandomAudienceTwin:: @ 823BA71
-	setvar VAR_TEMP_1, OBJ_EVENT_GFX_TWIN
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_BILL
 	return
 
 ContestHall_EventScript_RandomAudienceBoy1:: @ 823BA77

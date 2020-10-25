@@ -155,11 +155,11 @@ LilycoveCity_ContestLobby_EventScript_MadeBeautyPainting:: @ 821A3F7
 	return
 
 LilycoveCity_ContestLobby_EventScript_MadeCutePainting:: @ 821A3FB
-	setflag FLAG_CUTE_PAINTING_MADE
+	setflag FLAG_MET_BILL_IN_ECRUTEAK
 	return
 
 LilycoveCity_ContestLobby_EventScript_MadeSmartPainting:: @ 821A3FF
-	setflag FLAG_SMART_PAINTING_MADE
+	setflag FLAG_GOT_EEVEE_FROM_BILL
 	return
 
 LilycoveCity_ContestLobby_EventScript_MadeToughPainting:: @ 821A403

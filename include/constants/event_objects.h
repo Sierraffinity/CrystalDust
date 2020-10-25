@@ -7,7 +7,7 @@
 #define OBJ_EVENT_GFX_BRENDAN_FIELD_MOVE           3
 #define OBJ_EVENT_GFX_QUINTY_PLUMP                 4
 #define OBJ_EVENT_GFX_NINJA_BOY                    5
-#define OBJ_EVENT_GFX_TWIN                         6
+#define OBJ_EVENT_GFX_BILL                         6
 #define OBJ_EVENT_GFX_BOY_1                        7
 #define OBJ_EVENT_GFX_GIRL_1                       8
 #define OBJ_EVENT_GFX_BOY_2                        9

@@ -4,6 +4,7 @@
 extern const u8 PhoneScript_Mom[];
 extern const u8 PhoneScript_Elm[];
 extern const u8 PhoneScript_BikeShop[];
+extern const u8 PhoneScript_Bill[];
 extern const u8 PhoneScript_StandardMatchCallTrainer[];
 extern const u8 Route30_PhoneScript_ElmCall[];
 extern const u8 VioletCity_PhoneScript_ElmCall[];

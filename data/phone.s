@@ -382,3 +382,7 @@ Text_BikeShopOwnerCall:
 	.string "As our way of saying thanks, please\n"
 	.string "keep that BICYCLE.\p"
 	.string "Thanks again!$"
+
+PhoneScript_Bill::
+	phone_stdcall Text_BikeShopOwnerCall
+	phone_end

@@ -1000,6 +1000,7 @@ extern const u8 gText_Saturday[];
 // Pokégear
 extern const u8 gText_PokegearInstructions[];
 extern const u8 gText_PokegearWhomDoYouWantToCall[];
+extern const u8 gText_PokegearDeleteThisStoredPhoneNumber[];
 
 // Radio stations
 extern const u8 gText_OaksPkmnTalk[];
@@ -3104,6 +3105,7 @@ extern const u8 gText_TrainerCloseBy[];
 extern const u8 gText_Call[];
 extern const u8 gText_Check[];
 extern const u8 gText_Cancel6[];
+extern const u8 gText_Delete[];
 
 // Pokenav Menu Handler
 extern const u8 gText_CheckMapOfHoenn[];

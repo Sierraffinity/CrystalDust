@@ -4,7 +4,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanSurfing;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanFieldMove;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_QuintyPlump;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NinjaBoy;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Twin;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bill;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Boy1;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Girl1;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Boy2;
@@ -253,7 +253,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_BRENDAN_FIELD_MOVE] =       &gObjectEventGraphicsInfo_BrendanFieldMove,
     [OBJ_EVENT_GFX_QUINTY_PLUMP] =             &gObjectEventGraphicsInfo_QuintyPlump,
     [OBJ_EVENT_GFX_NINJA_BOY] =                &gObjectEventGraphicsInfo_NinjaBoy,
-    [OBJ_EVENT_GFX_TWIN] =                     &gObjectEventGraphicsInfo_Twin,
+    [OBJ_EVENT_GFX_BILL] =                     &gObjectEventGraphicsInfo_Bill,
     [OBJ_EVENT_GFX_BOY_1] =                    &gObjectEventGraphicsInfo_Boy1,
     [OBJ_EVENT_GFX_GIRL_1] =                   &gObjectEventGraphicsInfo_Girl1,
     [OBJ_EVENT_GFX_BOY_2] =                    &gObjectEventGraphicsInfo_Boy2,

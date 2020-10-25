@@ -1007,6 +1007,7 @@ const u8 gText_PokemonFemaleLv[] = _("{DYNAMIC 0}{COLOR_HIGHLIGHT_SHADOW LIGHT_G
 const u8 gText_PokemonNoGenderLv[] = _("{DYNAMIC 0}/{LV}{DYNAMIC 1}"); // Unused
 const u8 gText_Unknown[] = _("UNKNOWN");
 const u8 gText_Call[] = _("CALL");
+const u8 gText_Delete[] = _("DELETE");
 const u8 gText_Check[] = _("CHECK");
 const u8 gText_Cancel6[] = _("CANCEL");
 const u8 gText_NumberF700[] = _("No. {DYNAMIC 0}");
@@ -1868,6 +1869,7 @@ const u8 gText_Saturday[] = _("SATURDAY");
 // Pokégear
 const u8 gText_PokegearInstructions[] = _("Press {START_BUTTON} and {SELECT_BUTTON} to switch.\nPress B to exit.");
 const u8 gText_PokegearWhomDoYouWantToCall[] = _("Whom do you want to call?");
+const u8 gText_PokegearDeleteThisStoredPhoneNumber[] = _("Delete this stored phone number?");
 
 // Radio stations
 const u8 gText_OaksPkmnTalk[] = _("OAK's {PKMN} Talk");

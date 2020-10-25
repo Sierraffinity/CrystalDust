@@ -1282,12 +1282,13 @@ void PrintTextArray(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 i
     CopyWindowToVram(windowId, 2);
 }
 
-void sub_81987BC(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct MenuAction *strs, u8 a6, u8 a7)
+void MultichoiceList_PrintItems(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct MenuAction *strs, u8 letterSpacing, u8 lineSpacing)
 {
     u8 i;
+
     for (i = 0; i < itemCount; i++)
     {
-        AddTextPrinterParameterized5(windowId, fontId, strs[i].text, left, (lineHeight * i) + top, 0xFF, NULL, a6, a7);
+        AddTextPrinterParameterized5(windowId, fontId, strs[i].text, left, (lineHeight * i) + top, 0xFF, NULL, letterSpacing, lineSpacing);
     }
     CopyWindowToVram(windowId, 2);
 }
@@ -1780,15 +1781,6 @@ void PrintMenuTable(u8 windowId, u8 itemCount, const struct MenuAction *strs)
         AddTextPrinterParameterized(windowId, 1, strs[i].text, 8, (i * 14) + 1, 0xFF, NULL);
     }
 
-    CopyWindowToVram(windowId, 2);
-}
-
-void MultichoiceList_PrintItems(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct MenuAction *strs, u8 letterSpacing, u8 lineSpacing)
-{
-    u8 i;
-
-    for (i = 0; i < itemCount; i++)
-        AddTextPrinterParameterized5(windowId, fontId, strs[i].text, left, (lineHeight * i) + top, 0xFF, NULL, letterSpacing, lineSpacing);
     CopyWindowToVram(windowId, 2);
 }
 

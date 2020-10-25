@@ -2861,7 +2861,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_BRENDAN_FIELD_MOVE] =        MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_QUINTY_PLUMP] =              MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_NINJA_BOY] =                 MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_TWIN] =                      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_BILL] =                      MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_BOY_1] =                     MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_GIRL_1] =                    MSG_COLOR_RED,
         [OBJ_EVENT_GFX_BOY_2] =                     MSG_COLOR_BLUE,

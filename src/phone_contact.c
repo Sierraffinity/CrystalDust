@@ -24,6 +24,7 @@ static bool8 CanAcceptRematch_MondayDaytime(s8 dayOfWeek, s8 hour);
 static const u8 sPhoneContactName_Mom[] = _("MOM");
 static const u8 sPhoneContactName_ProfessorElm[] = _("PROF. ELM");
 static const u8 sPhoneContactName_BikeShop[] = _("BIKE SHOP");
+static const u8 sPhoneContactName_Bill[] = _("BILL");
 
 const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
 {
@@ -60,14 +61,14 @@ const struct PhoneContact gPhoneContacts[PHONE_CONTACT_COUNT] =
         .availability = PHONE_AVAILABILITY_ALWAYS,
         .isPermanent = TRUE,
     },
-    [PHONE_CONTACT_ROSE] = {
-        .customDisplayName = NULL,
-        .phoneScript = PhoneScript_StandardMatchCallTrainer,
+    [PHONE_CONTACT_BILL] = {
+        .customDisplayName = sPhoneContactName_Bill,
+        .phoneScript = PhoneScript_Bill,
         .canAcceptRematch = CanAcceptRematch_Always,
         .mapNum = MAP_NUM(UNDEFINED),
         .mapGroup = MAP_GROUP(UNDEFINED),
-        .registeredFlag = FLAG_PHONE_CARD_ROSE,
-        .rematchTrainerId = REMATCH_ROSE,
+        .registeredFlag = FLAG_PHONE_CARD_BILL,
+        .rematchTrainerId = 0xFF,
         .availability = PHONE_AVAILABILITY_ALWAYS,
         .isPermanent = FALSE,
     },

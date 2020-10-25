@@ -16,12 +16,12 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_CheckBeautyPainting:: @ 8219754
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_CheckCutePainting:: @ 8219763
-	goto_if_set FLAG_CUTE_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_SetCutePainting
+	goto_if_set FLAG_MET_BILL_IN_ECRUTEAK, LilycoveCity_LilycoveMuseum_2F_EventScript_SetCutePainting
 	goto LilycoveCity_LilycoveMuseum_2F_EventScript_CheckSmartPainting
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_CheckSmartPainting:: @ 8219772
-	goto_if_set FLAG_SMART_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_SetSmartPainting
+	goto_if_set FLAG_GOT_EEVEE_FROM_BILL, LilycoveCity_LilycoveMuseum_2F_EventScript_SetSmartPainting
 	goto LilycoveCity_LilycoveMuseum_2F_EventScript_CheckToughPainting
 	end
 
@@ -142,7 +142,7 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_ReceivedGlassOrnament:: @ 8219921
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_CutePainting:: @ 821992B
 	lockall
-	goto_if_set FLAG_CUTE_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowCutePainting
+	goto_if_set FLAG_MET_BILL_IN_ECRUTEAK, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowCutePainting
 	msgbox LilycoveCity_LilycoveMuseum_2F_Text_ItsPinkPictureFrame, MSGBOX_SIGN
 	end
 
@@ -166,7 +166,7 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_BeautyPainting:: @ 8219964
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_SmartPainting:: @ 8219977
 	lockall
-	goto_if_set FLAG_SMART_PAINTING_MADE, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowSmartPainting
+	goto_if_set FLAG_GOT_EEVEE_FROM_BILL, LilycoveCity_LilycoveMuseum_2F_EventScript_ShowSmartPainting
 	msgbox LilycoveCity_LilycoveMuseum_2F_Text_ItsGreenPictureFrame, MSGBOX_SIGN
 	end
 
