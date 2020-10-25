@@ -145,7 +145,7 @@ GoldenrodCity_BillsFamilysHouse_EventScript_Bill_Text_3:
 	.string "evolve in new and unknown ways.$"
 
 GoldenrodCity_BillsFamilysHouse_EventScript_Bill_Text_4:
-	.string "Oh…"
+	.string "Oh…\n"
 	.string "Now what to do?$"
 
 GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull_Text_0:

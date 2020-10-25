@@ -3425,7 +3425,7 @@ bool8 TV_IsScriptShowKindAlreadyInQueue(void)
     return FALSE;
 }
 
-bool8 TryPutNameRaterShowOnTheAir(void)
+bool8 NameRaterWasNicknameChanged(void)
 {
     GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar1);
 

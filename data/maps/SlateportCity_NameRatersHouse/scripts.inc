@@ -58,7 +58,7 @@ SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT:: @ 8209B50
 SlateportCity_NameRatersHouse_EventScript_ChangeNickname:: @ 8209B5A
 	msgbox SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe, MSGBOX_DEFAULT
 	call Common_EventScript_NameReceivedPartyMon
-	specialvar VAR_RESULT, TryPutNameRaterShowOnTheAir
+	specialvar VAR_RESULT, NameRaterWasNicknameChanged
 	special BufferMonNickname
 	compare VAR_RESULT, TRUE
 	goto_if_eq SlateportCity_NameRatersHouse_EventScript_NewNameDifferent

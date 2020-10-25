@@ -58,7 +58,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
         }
         else
         {
-            msgbox("Oh…"
+            msgbox("Oh…\n"
                    "Now what to do?")
         }
     }

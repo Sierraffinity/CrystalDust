@@ -1156,17 +1156,17 @@
     {
       "id": "LAYOUT_GOLDENROD_CITY_FLOWER_SHOP",
       "name": "GoldenrodCity_FlowerShop_Layout",
-      "width": 13,
-      "height": 8,
+      "width": 12,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
+      "secondary_tileset": "gTileset_PokemonDayCare",
       "border_filepath": "data/layouts/GoldenrodCity_FlowerShop/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodCity_FlowerShop/map.bin"
     },
     {
-      "id": "LAYOUT_GOLDENROD_CITY_NAME_RATERS_HOUSE",
+      "id": "LAYOUT_UNUSED_GOLDENROD_CITY_NAME_RATERS_HOUSE",
       "name": "GoldenrodCity_NameRatersHouse_Layout",
       "width": 11,
       "height": 9,

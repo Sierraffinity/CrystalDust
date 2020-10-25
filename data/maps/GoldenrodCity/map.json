@@ -314,14 +314,14 @@
       "x": 4,
       "y": 27,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY_BILLS_HOUSE",
+      "dest_map": "MAP_GOLDENROD_CITY_BILLS_FAMILYS_HOUSE",
       "dest_warp_id": 0
     },
     {
       "x": 38,
       "y": 9,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY_BILLS_HOUSE",
+      "dest_map": "MAP_GOLDENROD_CITY_BILLS_FAMILYS_HOUSE",
       "dest_warp_id": 0
     },
     {
