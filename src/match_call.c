@@ -979,13 +979,13 @@ static bool8 ReceiveCallWhenOutside(void);
 
 static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
     {
-        .flag = FLAG_ELM_FORCED_CALL_STOLEN_MON,
+        .flag = FLAG_FORCED_CALL_ELM_STOLEN_MON,
         .phoneContactId = PHONE_CONTACT_ELM,
         .callCondition = ReceiveCallWhenOutside,
         .script = Route30_PhoneScript_ElmCall
     },
     {
-        .flag = FLAG_ELM_FORCED_CALL_AIDE_IN_VIOLET,
+        .flag = FLAG_FORCED_CALL_ELM_AIDE_IN_VIOLET,
         .phoneContactId = PHONE_CONTACT_ELM,
         .callCondition = ReceiveCallWhenOutside,
         .script = VioletCity_PhoneScript_ElmCall
@@ -995,6 +995,12 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .phoneContactId = PHONE_CONTACT_BIKE_SHOP,
         .callCondition = ReceiveCallWhenOutside,
         .script = PhoneScript_BikeShop
+    },
+    {
+        .flag = FLAG_FORCED_CALL_BILL_PC_BOXES_FULL,
+        .phoneContactId = PHONE_CONTACT_BILL,
+        .callCondition = ReceiveCallWhenOutside,
+        .script = PhoneScript_Bill_JustRanOutOfRoom
     },
 };
 
@@ -1088,7 +1094,7 @@ static bool32 SelectForcedPhoneCall(void)
             FlagGet(sForcedPhoneCalls[i].flag))
             //FlagGet(gPhoneContacts[sForcedPhoneCalls[i].phoneContactId].registeredFlag))
         {
-            //FlagClear(sForcedPhoneCalls[i].flag);
+            FlagClear(sForcedPhoneCalls[i].flag);
             gMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
             gMatchCallState.forcedPhoneCallId = i + 1;
             return TRUE;

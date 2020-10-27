@@ -193,7 +193,7 @@ u8 gFieldLinkPlayerCount;
 
 // EWRAM vars
 EWRAM_DATA static u8 sObjectEventLoadFlag = 0;
-EWRAM_DATA bool8 gHasJustBeenWarped = FALSE;
+EWRAM_DATA bool8 gRunPreStepEvents = FALSE;
 EWRAM_DATA struct WarpData gLastUsedWarp = {0};
 EWRAM_DATA static struct WarpData sWarpDestination = {0};  // new warp position
 EWRAM_DATA static struct WarpData sFixedDiveWarp = {0};
@@ -897,6 +897,8 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER 
      || gMapHeader.regionMapSectionId != sLastMapSectionId)
         ShowMapNamePopup(TRUE);
+
+    gRunPreStepEvents = TRUE;
 }
 
 static void LoadMapFromWarp(bool32 a1)
@@ -2251,6 +2253,7 @@ static void ResumeMap(bool32 a1)
         SetUpFieldTasks();
     RunOnResumeMapScript();
     TryStartMirageTowerPulseBlendEffect();
+    gRunPreStepEvents = TRUE;
 }
 
 static void InitObjectEventsLink(void)
@@ -2260,7 +2263,6 @@ static void InitObjectEventsLink(void)
     ResetObjectEvents();
     TrySpawnObjectEvents(0, 0);
     TryRunOnWarpIntoMapScript();
-    gHasJustBeenWarped = TRUE;
 }
 
 static void InitObjectEventsLocal(void)
@@ -2278,7 +2280,6 @@ static void InitObjectEventsLocal(void)
     ResetInitialPlayerAvatarState();
     TrySpawnObjectEvents(0, 0);
     TryRunOnWarpIntoMapScript();
-    gHasJustBeenWarped = TRUE;
 }
 
 static void sub_8086A68(void)

@@ -19,6 +19,7 @@
 #include "money.h"
 #include "overworld.h"
 #include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "region_map.h"
 #include "rtc.h"
 #include "script.h"
@@ -108,6 +109,7 @@ static void DebugMenu_SetRespawn(u8 taskId);
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
 static void DebugMenu_CreateDaycareEgg(u8 taskId);
 static void DebugMenu_PoisonAllMons(u8 taskId);
+static void DebugMenu_FillThePC(u8 taskId);
 static void DebugMenu_RemoveMenu(u8 taskId);
 static void DebugMenu_InitNewSubmenu(u8 taskId, const struct DebugMenuBouncer *bouncer);
 static void DebugMenu_Submenu_ProcessInput(u8 taskId);
@@ -142,6 +144,7 @@ static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
 static const u8 sText_PoisonAllMons[] = _("Poison all Pokémon");
+static const u8 sText_FillThePC[] = _("Fill the PC");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_CraftDNTintColor[] = _("Craft new tint color");
@@ -239,6 +242,7 @@ static const struct DebugMenuAction sDebugMenu_MiscActions[] =
     { sText_TestBattleTransition, DebugMenu_TestBattleTransition, NULL },
     { sText_CreateDaycareEgg, DebugMenu_CreateDaycareEgg, NULL },
     { sText_PoisonAllMons, DebugMenu_PoisonAllMons, NULL },
+    { sText_FillThePC, DebugMenu_FillThePC, NULL },
 };
 
 CREATE_BOUNCER(MiscActions, MainActions);
@@ -930,6 +934,32 @@ static void DebugMenu_PoisonAllMons(u8 taskId)
         {
             u32 curStatus = STATUS1_POISON;
             SetMonData(&gPlayerParty[i], MON_DATA_STATUS, &curStatus);
+        }
+    }
+}
+
+static void DebugMenu_FillThePC(u8 taskId)
+{
+    int boxId, boxPosition;
+
+    struct BoxPokemon boxMon;
+    CreateBoxMon(&boxMon,
+                 SPECIES_MEW,
+                 100,
+                 32,
+                 FALSE,
+                 0,
+                 OT_ID_PLAYER_ID,
+                 0);
+
+    for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
+    {
+        for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
+        {
+            if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+            {
+                gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
+            }
         }
     }
 }

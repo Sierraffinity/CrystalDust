@@ -44,23 +44,13 @@ GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse::
 	case TIME_DAY, GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_10
 	case TIME_NIGHT, GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_11
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_7:
-	compare VAR_RESULT, YES
-	goto_if_eq GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_15
-	message gText_WeHopeToSeeYouAgain
+	goto Common_EventScript_PkmnCenterNurse_Common
 	return
 
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_1:
 	goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD, GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_4
 	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_0, MSGBOX_DEFAULT
-	playse SE_PIN
-	applymovement VAR_0x800B, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement VAR_0x800B, Common_Movement_Delay48
-	waitmovement 0
-	msgbox gText_NoticesGoldCard, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_12
-	message gText_WeHopeToSeeYouAgain2
+	goto EventScript_PkmnCenterNurse_GoldCard_Notice
 	return
 
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_4:
@@ -68,24 +58,16 @@ GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_4:
 	return
 
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_9:
-	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_1, MSGBOX_YESNO
+	message GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_1
 	goto GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_7
 
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_10:
-	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_2, MSGBOX_YESNO
+	message GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_2
 	goto GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_7
 
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_11:
-	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_3, MSGBOX_YESNO
+	message GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_3
 	goto GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_7
-
-GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_12:
-	goto EventScript_PkmnCenterNurse_GoldCardHealPkmn
-	return
-
-GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_15:
-	goto EventScript_PkmnCenterNurse_HealPkmn
-	return
 
 
 GoldenrodCity_PokemonCenter_1F_EventScript_OldMan::
@@ -184,26 +166,17 @@ GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_0:
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_1:
 	.string "Good morning!\p"
 	.string "This is the POKéMON COMMUNICATION\n"
-	.string "CENTER--or the POKéCOM CENTER.\p"
-	.string "We can heal your POKéMON to\n"
-	.string "perfect health.\p"
-	.string "Shall we heal your POKéMON?$"
+	.string "CENTER--or the POKéCOM CENTER.\p$"
 
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_2:
 	.string "Hello!\p"
 	.string "This is the POKéMON COMMUNICATION\n"
-	.string "CENTER--or the POKéCOM CENTER.\p"
-	.string "We can heal your POKéMON to\n"
-	.string "perfect health.\p"
-	.string "Shall we heal your POKéMON?$"
+	.string "CENTER--or the POKéCOM CENTER.\p$"
 
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_3:
 	.string "Good to see you working so late.\p"
 	.string "This is the POKéMON COMMUNICATION\n"
-	.string "CENTER--or the POKéCOM CENTER.\p"
-	.string "We can heal your POKéMON to\n"
-	.string "perfect health.\p"
-	.string "Shall we heal your POKéMON?$"
+	.string "CENTER--or the POKéCOM CENTER.\p$"
 
 GoldenrodCity_PokemonCenter_1F_EventScript_OldMan_Text_0:
 	.string "Just seeing all these new things\n"

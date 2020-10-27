@@ -8,5 +8,6 @@ extern const u8 PhoneScript_Bill[];
 extern const u8 PhoneScript_StandardMatchCallTrainer[];
 extern const u8 Route30_PhoneScript_ElmCall[];
 extern const u8 VioletCity_PhoneScript_ElmCall[];
+extern const u8 PhoneScript_Bill_JustRanOutOfRoom[];
 
 #endif // GUARD_PHONE_SCRIPTS_H

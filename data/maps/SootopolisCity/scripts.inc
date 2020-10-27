@@ -25,9 +25,9 @@ SootopolisCity_MapScripts:: @ 81E565C
 	.byte 0
 
 SootopolisCity_OnLoad: @ 81E5676
-	call_if_unset FLAG_ELM_FORCED_CALL_AIDE_IN_VIOLET, SootopolisCity_EventScript_LockGymDoor
+	call_if_unset FLAG_FORCED_CALL_ELM_AIDE_IN_VIOLET, SootopolisCity_EventScript_LockGymDoor
 	goto_if_unset FLAG_RECEIVED_TM05_ROAR, SootopolisCity_EventScript_LegendariesNotArrived
-	call_if_unset FLAG_ELM_FORCED_CALL_AIDE_IN_VIOLET, SootopolisCity_EventScript_LockHouseDoors
+	call_if_unset FLAG_FORCED_CALL_ELM_AIDE_IN_VIOLET, SootopolisCity_EventScript_LockHouseDoors
 	end
 
 SootopolisCity_EventScript_LegendariesNotArrived:: @ 81E5692
@@ -960,7 +960,7 @@ SootopolisCity_EventScript_Steven:: @ 81E6166
 	goto_if_eq SootopolisCity_EventScript_StevenHelpedWallace
 	compare VAR_SOOTOPOLIS_CITY_STATE, 4
 	goto_if_eq SootopolisCity_EventScript_StevenHelpedWallace
-	goto_if_set FLAG_ELM_FORCED_CALL_AIDE_IN_VIOLET, SootopolisCity_EventScript_StevenMaxieArchieLeft
+	goto_if_set FLAG_FORCED_CALL_ELM_AIDE_IN_VIOLET, SootopolisCity_EventScript_StevenMaxieArchieLeft
 	msgbox SootopolisCity_Text_SoThatsRayquaza, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -1367,7 +1367,7 @@ SootopolisCity_EventScript_Wallace:: @ 81E6446
 	compare VAR_SOOTOPOLIS_CITY_STATE, 4
 	goto_if_eq SootopolisCity_EventScript_GoToSkyPillar
 	goto_if_set FLAG_RECEIVED_HM07, SootopolisCity_EventScript_GoToGym
-	goto_if_set FLAG_ELM_FORCED_CALL_AIDE_IN_VIOLET, SootopolisCity_EventScript_GiveWaterfall
+	goto_if_set FLAG_FORCED_CALL_ELM_AIDE_IN_VIOLET, SootopolisCity_EventScript_GiveWaterfall
 	msgbox SootopolisCity_Text_AquaMagmaDidntMeanHarm, MSGBOX_DEFAULT
 	release
 	end
@@ -1456,7 +1456,7 @@ SootopolisCity_EventScript_ArchieRayquaza:: @ 81E6536
 SootopolisCity_EventScript_MaxieArchieLeave:: @ 81E654C
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE
-	setflag FLAG_ELM_FORCED_CALL_AIDE_IN_VIOLET
+	setflag FLAG_FORCED_CALL_ELM_AIDE_IN_VIOLET
 	clearflag FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
 	clearflag FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
 	setvar VAR_MT_PYRE_STATE, 2

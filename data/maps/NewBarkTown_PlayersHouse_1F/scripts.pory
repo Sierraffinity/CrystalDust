@@ -346,31 +346,24 @@ script NewBarkTown_PlayersHouse_1F_NeighborTalk {
     gettime
     if (var(VAR_0x8002) == TIME_MORNING)
     {
-        msgbox("Good morning, {PLAYER}!\n"
-            "I'm visiting!\p"
-            "{PLAYER}, have you heard?\p"
-            "My daughter is adamant about\n"
-            "becoming PROF. ELM's assistant.\l"
-            "She really loves POKéMON!")
+        message("Good morning, {PLAYER}!\n"
+                "I'm visiting!\p")
     }
     elif (var(VAR_0x8002) == TIME_DAY)
     {
-        msgbox("Hello, {PLAYER}!\n"
-               "I'm visiting!\p"
-               "{PLAYER}, have you heard?\p"
-               "My daughter is adamant about\n"
-               "becoming PROF. ELM's assistant.\l"
-               "She really loves POKéMON!")
+        message("Hello, {PLAYER}!\n"
+                "I'm visiting!\p")
     }
     elif (var(VAR_0x8002) == TIME_NIGHT)
     {
-        msgbox("Good evening, {PLAYER}!\n"
-               "I'm visiting!\p"
-               "{PLAYER}, have you heard?\p"
-               "My daughter is adamant about\n"
-               "becoming PROF. ELM's assistant.\l"
-               "She really loves POKéMON!")
+        message("Good evening, {PLAYER}!\n"
+                "I'm visiting!\p")
     }
+    waitmessage
+    msgbox("{PLAYER}, have you heard?\p"
+           "My daughter is adamant about\n"
+           "becoming PROF. ELM's assistant.\l"
+           "She really loves POKéMON!")
     closemessage
     applymovement(VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestRight)
     waitmovement(0)

@@ -4736,3 +4736,8 @@ void HerbShop(void)
     CreateHerbShopMenu(herbShopItems);
     ScriptContext1_Stop();
 }
+
+void Special_GetFreePokemonStorageSpace(void)
+{
+    gSpecialVar_Result = GetFreePokemonStorageSpace();
+}

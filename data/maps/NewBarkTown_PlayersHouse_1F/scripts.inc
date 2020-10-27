@@ -329,6 +329,8 @@ NewBarkTown_PlayersHouse_1F_NeighborTalk::
 	compare VAR_0x8002, TIME_NIGHT
 	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalk_4
 NewBarkTown_PlayersHouse_1F_NeighborTalk_1:
+	waitmessage
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_3
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
@@ -336,15 +338,15 @@ NewBarkTown_PlayersHouse_1F_NeighborTalk_1:
 	return
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk_2:
-	msgbox NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_0
+	message NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_0
 	goto NewBarkTown_PlayersHouse_1F_NeighborTalk_1
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk_3:
-	msgbox NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_1
+	message NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_1
 	goto NewBarkTown_PlayersHouse_1F_NeighborTalk_1
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk_4:
-	msgbox NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_2
+	message NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_2
 	goto NewBarkTown_PlayersHouse_1F_NeighborTalk_1
 
 
@@ -524,23 +526,17 @@ NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet_Text_1:
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_0:
 	.string "Good morning, {PLAYER}!\n"
-	.string "I'm visiting!\p"
-	.string "{PLAYER}, have you heard?\p"
-	.string "My daughter is adamant about\n"
-	.string "becoming PROF. ELM's assistant.\l"
-	.string "She really loves POKéMON!$"
+	.string "I'm visiting!\p$"
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_1:
 	.string "Hello, {PLAYER}!\n"
-	.string "I'm visiting!\p"
-	.string "{PLAYER}, have you heard?\p"
-	.string "My daughter is adamant about\n"
-	.string "becoming PROF. ELM's assistant.\l"
-	.string "She really loves POKéMON!$"
+	.string "I'm visiting!\p$"
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_2:
 	.string "Good evening, {PLAYER}!\n"
-	.string "I'm visiting!\p"
+	.string "I'm visiting!\p$"
+
+NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_3:
 	.string "{PLAYER}, have you heard?\p"
 	.string "My daughter is adamant about\n"
 	.string "becoming PROF. ELM's assistant.\l"

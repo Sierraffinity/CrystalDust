@@ -6,7 +6,7 @@ Route112_MapScripts:: @ 81F1DA8
 	.byte 0
 
 Route112_OnTransition: @ 81F1DAE
-	clearflag FLAG_ELM_FORCED_CALL_STOLEN_MON
+	clearflag FLAG_FORCED_CALL_ELM_STOLEN_MON
 	setvar VAR_JAGGED_PASS_ASH_WEATHER, 0
 	end
 

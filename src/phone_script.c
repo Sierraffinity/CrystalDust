@@ -9,6 +9,7 @@
 #include "money.h"
 #include "phone_script.h"
 #include "pokegear.h"
+#include "pokemon_storage_system.h"
 #include "random.h"
 #include "region_map.h"
 #include "rtc.h"
@@ -653,5 +654,24 @@ bool8 PhoneScrCmd_bufferbankedmoney(struct ScriptContext *ctx)
     u8 numDigits = CountDigits(num);
 
     ConvertIntToDecimalStringN(gScriptStringVars[stringVarIndex], num, STR_CONV_MODE_LEFT_ALIGN, numDigits);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_buffernumberstring(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 num = VarGet(ScriptReadHalfword(ctx));
+    u8 numDigits = CountDigits(num);
+
+    ConvertIntToDecimalStringN(gScriptStringVars[stringVarIndex], num, STR_CONV_MODE_LEFT_ALIGN, numDigits);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_bufferboxname(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 boxId = VarGet(ScriptReadHalfword(ctx));
+
+    StringCopy(gScriptStringVars[stringVarIndex], GetBoxNamePtr(boxId));
     return FALSE;
 }

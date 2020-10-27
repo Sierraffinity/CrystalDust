@@ -9463,6 +9463,23 @@ bool8 CheckFreePokemonStorageSpace(void)
     return FALSE;
 }
 
+u32 GetFreePokemonStorageSpace(void)
+{
+    s32 i, j;
+    u32 count = 0;
+
+    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
+    {
+        for (j = 0; j < IN_BOX_COUNT; j++)
+        {
+            if (!GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_SANITY_HAS_SPECIES))
+                count++;
+        }
+    }
+
+    return count;
+}
+
 bool32 CheckBoxMonSanityAt(u32 boxId, u32 boxPosition)
 {
     if (boxId < TOTAL_BOXES_COUNT

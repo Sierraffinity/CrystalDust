@@ -188,9 +188,9 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
             return TRUE;
     }
 
-    if (gHasJustBeenWarped)
+    if (gRunPreStepEvents)
     {
-        gHasJustBeenWarped = FALSE;
+        gRunPreStepEvents = FALSE;
         if (TryStartForcedMatchCall())
             return TRUE;
     }

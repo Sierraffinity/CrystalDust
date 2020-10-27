@@ -363,15 +363,9 @@ VioletCity_Text_ElmCall:
 	.string "CENTER in VIOLET CITY.\l"
 	.string "Could you talk to him?$"
 
-PhoneScript_StandardMatchCallTrainer::
-	phone_callnativecontext SelectMessage_StandardMatchCallTrainer
-	phone_stdcall gStringVar4
-	phone_end
-
 PhoneScript_BikeShop::
 	phone_stdcall Text_BikeShopOwnerCall
 	phone_clearflag FLAG_BIKE_SHOP_LOAN_ACTIVE
-	phone_clearflag FLAG_FORCED_CALL_BIKE_SHOP
 	phone_end
 
 Text_BikeShopOwnerCall:
@@ -384,5 +378,154 @@ Text_BikeShopOwnerCall:
 	.string "Thanks again!$"
 
 PhoneScript_Bill::
-	phone_stdcall Text_BikeShopOwnerCall
+	phone_initcall
+	phone_end_if_not_available
+	phone_gettime
+	phone_compare VAR_0x8002, TIME_MORNING
+	phone_call_if_eq PhoneScript_Bill_Greeting_Morning
+	phone_compare VAR_0x8002, TIME_DAY
+	phone_call_if_eq PhoneScript_Bill_Greeting_Day
+	phone_compare VAR_0x8002, TIME_NIGHT
+	phone_call_if_eq PhoneScript_Bill_Greeting_Night
+	phone_message Text_Bill_WhosCalling
+	phone_callnativecontext Special_GetFreePokemonStorageSpace
+	phone_copyvar VAR_0x8000, VAR_RESULT
+	phone_compare VAR_0x8000, 0
+	phone_goto_if_eq PhoneScript_Bill_NoSpace
+	phone_bufferboxname 0, VAR_PC_BOX_TO_SEND_MON
+	phone_random 3
+	phone_compare VAR_RESULT, 0
+	phone_call_if_eq PhoneScript_Bill_StartingOnThisBox_Variant1
+	phone_compare VAR_RESULT, 1
+	phone_call_if_eq PhoneScript_Bill_StartingOnThisBox_Variant2
+	phone_compare VAR_RESULT, 2
+	phone_call_if_eq PhoneScript_Bill_StartingOnThisBox_Variant3
+	phone_buffernumberstring 1, VAR_0x8000
+	phone_compare VAR_0x8000, 6
+	phone_goto_if_lt PhoneScript_Bill_LittleSpace
+	phone_message Text_Bill_RoomRemaining
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Bill_Greeting_Morning:
+	phone_message Text_Bill_Greeting_Morning
+	phone_return
+
+PhoneScript_Bill_Greeting_Day:
+	phone_message Text_Bill_Greeting_Day
+	phone_return
+
+PhoneScript_Bill_Greeting_Night:
+	phone_message Text_Bill_Greeting_Night
+	phone_return
+
+PhoneScript_Bill_StartingOnThisBox_Variant1:
+	phone_message Text_Bill_StartingOnThisBox_Variant1
+	phone_return
+
+PhoneScript_Bill_StartingOnThisBox_Variant2:
+	phone_message Text_Bill_StartingOnThisBox_Variant2
+	phone_return
+
+PhoneScript_Bill_StartingOnThisBox_Variant3:
+	phone_message Text_Bill_StartingOnThisBox_Variant3
+	phone_return
+
+PhoneScript_Bill_LittleSpace:
+	phone_message Text_Bill_LittleRoomRemaining
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+PhoneScript_Bill_NoSpace:
+	phone_message Text_Bill_NoRoomRemaining
+	phone_waitbuttonpress
+	phone_hangup
+	phone_end
+
+Text_Bill_Greeting_Morning:
+	.string "Good morning!\p"
+	.string "This is the POKéMON STORAGE SYSTEM\n"
+	.string "ADMINISTRATION SERVICE.\p$"
+
+Text_Bill_Greeting_Day:
+	.string "Good day!\p"
+	.string "This is the POKéMON STORAGE SYSTEM\n"
+	.string "ADMINISTRATION SERVICE.\p$"
+
+Text_Bill_Greeting_Night:
+	.string "Good evening!\p"
+	.string "This is the POKéMON STORAGE SYSTEM\n"
+	.string "ADMINISTRATION SERVICE.\p$"
+
+Text_Bill_WhosCalling:
+	.string "Who's calling?\p"
+	.string "{PLAYER}, is it?\n"
+	.string "Hang on a sec…\p"
+	.string "…\n"
+	.string "…\p$"
+
+Text_Bill_StartingOnThisBox_Variant1:
+	.string "Thanks for waiting!\p"
+	.string "{PLAYER}, you're starting on the BOX\n"
+	.string "named “{STR_VAR_1}” right now.\l"
+	.string "Great name, by the way.\p$"
+
+Text_Bill_StartingOnThisBox_Variant2:
+	.string "Thanks for waiting!\p"
+	.string "Right now, {PLAYER}, you're using the\n"
+	.string "BOX named “{STR_VAR_1},” right?\l"
+	.string "That's a good name right there.\p$"
+
+Text_Bill_StartingOnThisBox_Variant3:
+	.string "Thanks for waiting!\p"
+	.string "So, {PLAYER}, your BOX is called\n"
+	.string "“{STR_VAR_1},” right?\l"
+	.string "Not just anyone would use that name.\p$"
+
+Text_Bill_RoomRemaining:
+	.string "Okay, including the space left in\n"
+	.string "“{STR_VAR_1},” you have room for {STR_VAR_2}\l"
+	.string "more POKéMON in the PC.\p"
+	.string "Get out there and keep collecting!$"
+
+Text_Bill_LittleRoomRemaining:
+	.string "Okay, including the space left in\n"
+	.string "“{STR_VAR_1},” you only have room for\l"
+	.string "{STR_VAR_2} more POKéMON in the PC.\p"
+	.string "Soon, you'll have to release some\n"
+	.string "POKéMON if you want to catch more.$"
+
+Text_Bill_NoRoomRemaining:
+	.string "Thanks for waiting!\p"
+	.string "{PLAYER}, your PC BOXES are chock-\n"
+	.string "full of POKéMON!\p"
+	.string "You'll have to release some POKéMON\n"
+	.string "if you want to catch more.\p"
+	.string "Bye now!$"
+
+Text_Bill_JustRanOutOfRoom:
+	.string "Hi, {PLAYER}? It's me, BILL!\n"
+	.string "Thanks for using my STORAGE SYSTEM.\p"
+	.string "That last POKéMON you sent filled\n"
+	.string "your PC BOXES up! Wow!\p"
+	.string "Seriously, I know a stellar collection\n"
+	.string "when I see it! Well done!\p"
+	.string "However, if you want to catch more\n"
+	.string "POKéMON, you'll have to release some…\p"
+	.string "I just don't have the storage capacity\n"
+	.string "to hold any more POKéMON for you!\p"
+	.string "Though, I know a girl named BRIGETTE\n"
+	.string "who might have some extra space…\l"
+	.string "Well, for now, you're full up!\p"
+	.string "Bye now!$"
+
+PhoneScript_Bill_JustRanOutOfRoom::
+	phone_stdcall Text_Bill_JustRanOutOfRoom
+	phone_end
+
+PhoneScript_StandardMatchCallTrainer::
+	phone_callnativecontext SelectMessage_StandardMatchCallTrainer
+	phone_stdcall gStringVar4
 	phone_end

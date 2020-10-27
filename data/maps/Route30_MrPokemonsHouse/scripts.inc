@@ -75,7 +75,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsChikorita
 	compare VAR_STARTER_MON, STARTER_CYNDAQUIL
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsTotodile
-	setflag FLAG_ELM_FORCED_CALL_STOLEN_MON
+	setflag FLAG_FORCED_CALL_ELM_STOLEN_MON
 	setvar VAR_MR_POKEMONS_HOUSE_STATE, 1
 	releaseall
 	end

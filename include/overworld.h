@@ -53,7 +53,7 @@ extern bool8 (*gFieldCallback2)(void);
 extern u8 gLocalLinkPlayerId;
 extern u8 gFieldLinkPlayerCount;
 extern bool8 gIsStaircaseWarpAnimDisabled;
-extern bool8 gHasJustBeenWarped;
+extern bool8 gRunPreStepEvents;
 
 // Exported ROM declarations
 extern const struct UCoords32 gDirectionToVectors[];

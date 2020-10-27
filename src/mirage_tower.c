@@ -325,7 +325,7 @@ void SetMirageTowerVisibility(void)
 
     rand = Random();
     visible = rand & 1;
-    if (FlagGet(FLAG_ELM_FORCED_CALL_STOLEN_MON) == TRUE)
+    if (FlagGet(FLAG_FORCED_CALL_ELM_STOLEN_MON) == TRUE)
         visible = TRUE;
 
     if (visible)

@@ -23,7 +23,7 @@ VioletCity_Gym_EventScript_FalknerDefeated::
 	call EventScript_RestorePrevTextColor
 	setflag FLAG_DEFEATED_VIOLET_GYM
 	setflag FLAG_BADGE01_GET
-	setflag FLAG_ELM_FORCED_CALL_AIDE_IN_VIOLET
+	setflag FLAG_FORCED_CALL_ELM_AIDE_IN_VIOLET
 	setgymtrainers 1
 	goto VioletCity_Gym_EventScript_GiveAerialAce
 	return

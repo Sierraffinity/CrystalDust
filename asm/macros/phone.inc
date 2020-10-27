@@ -269,6 +269,21 @@
 	.byte 0x29
 	.byte \out
 	.endm
+
+	@ Converts the value of input to a decimal string, and writes that string to the specified buffer.
+	.macro phone_buffernumberstring out:req, input:req
+	.byte 0x2a
+	.byte \out
+	.2byte \input
+	.endm
+
+	@ Writes the name of the specified (box) PC box to the specified buffer.
+	.macro phone_bufferboxname out:req, box:req
+	.byte 0x2b
+	.byte \out
+	.2byte \box
+	.endm
+
 	
 
 @ Supplementary

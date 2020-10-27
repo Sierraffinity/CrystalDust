@@ -54,20 +54,7 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse {
                    "We can heal your POKéMON to\n"
                    "perfect health.\p"
                    "Shall we…", MSGBOX_DEFAULT)
-            playse(SE_PIN)
-            applymovement(VAR_0x800B, Common_Movement_ExclamationMark)
-            waitmovement(0)
-            applymovement(VAR_0x800B, Common_Movement_Delay48)
-            waitmovement(0)
-            msgbox(gText_NoticesGoldCard, MSGBOX_YESNO)
-            if (var(VAR_RESULT) == YES)
-            {
-                goto(EventScript_PkmnCenterNurse_GoldCardHealPkmn)
-            }
-            else
-            {
-                message(gText_WeHopeToSeeYouAgain2)
-            }
+            goto(EventScript_PkmnCenterNurse_GoldCard_Notice)
         }
     }
     else
@@ -76,39 +63,23 @@ script GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse {
         switch (var(VAR_0x8002))
         {
             case TIME_MORNING:
-                msgbox("Good morning!\p"
-                       "This is the POKéMON COMMUNICATION\n"
-                       "CENTER--or the POKéCOM CENTER.\p"
-                       "We can heal your POKéMON to\n"
-                       "perfect health.\p"
-                       "Shall we heal your POKéMON?", MSGBOX_YESNO)
+                message("Good morning!\p"
+                        "This is the POKéMON COMMUNICATION\n"
+                        "CENTER--or the POKéCOM CENTER.\p")
                 break
             case TIME_DAY:
-                msgbox("Hello!\p"
-                       "This is the POKéMON COMMUNICATION\n"
-                       "CENTER--or the POKéCOM CENTER.\p"
-                       "We can heal your POKéMON to\n"
-                       "perfect health.\p"
-                       "Shall we heal your POKéMON?", MSGBOX_YESNO)
+                message("Hello!\p"
+                        "This is the POKéMON COMMUNICATION\n"
+                        "CENTER--or the POKéCOM CENTER.\p")
                 break
             case TIME_NIGHT:
-                msgbox("Good to see you working so late.\p"
-                       "This is the POKéMON COMMUNICATION\n"
-                       "CENTER--or the POKéCOM CENTER.\p"
-                       "We can heal your POKéMON to\n"
-                       "perfect health.\p"
-                       "Shall we heal your POKéMON?", MSGBOX_YESNO)
+                message("Good to see you working so late.\p"
+                        "This is the POKéMON COMMUNICATION\n"
+                        "CENTER--or the POKéCOM CENTER.\p")
                 break
         }
 
-        if (var(VAR_RESULT) == YES)
-        {
-            goto(EventScript_PkmnCenterNurse_HealPkmn)
-        }
-        else
-        {
-            message(gText_WeHopeToSeeYouAgain)
-        }
+        goto(Common_EventScript_PkmnCenterNurse_Common)
     }
 }
 

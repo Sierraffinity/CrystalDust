@@ -4418,6 +4418,8 @@ u8 SendMonToPC(struct Pokemon* mon)
                 if (GetPCBoxToSendMon() != boxNo)
                     FlagClear(FLAG_SHOWN_BOX_WAS_FULL_MESSAGE);
                 VarSet(VAR_PC_BOX_TO_SEND_MON, boxNo);
+                if (!CheckFreePokemonStorageSpace())
+                    FlagSet(FLAG_FORCED_CALL_BILL_PC_BOXES_FULL);
                 return MON_GIVEN_TO_PC;
             }
         }

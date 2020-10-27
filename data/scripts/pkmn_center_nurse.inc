@@ -12,6 +12,10 @@ Common_EventScript_PkmnCenterNurse:: @ 827191E
 	call_if_eq EventScript_PkmnCenterNurse_IntroDay
 	compare VAR_0x8002, TIME_NIGHT
 	call_if_eq EventScript_PkmnCenterNurse_IntroNight
+    @ fallthrough
+Common_EventScript_PkmnCenterNurse_Common::
+    waitmessage
+	msgbox gText_NurseIntro_Common, MSGBOX_YESNO
     compare VAR_RESULT, YES
     goto_if_eq EventScript_PkmnCenterNurse_HealPkmn
     compare VAR_RESULT, NO
@@ -19,15 +23,15 @@ Common_EventScript_PkmnCenterNurse:: @ 827191E
     end
 
 EventScript_PkmnCenterNurse_IntroMorning:
-	msgbox gText_NurseIntro_Morning, MSGBOX_YESNO
+	message gText_NurseIntro_Morning
 	return
 
 EventScript_PkmnCenterNurse_IntroDay:
-	msgbox gText_NurseIntro_Day, MSGBOX_YESNO
+	message gText_NurseIntro_Day
 	return
 
 EventScript_PkmnCenterNurse_IntroNight:
-	msgbox gText_NurseIntro_Night, MSGBOX_YESNO
+	message gText_NurseIntro_Night
 	return
 
 EventScript_PkmnCenterNurse_Goodbye:: @ 8271954
@@ -124,6 +128,7 @@ EventScript_PkmnCenterNurse_GoldCard:: @ 8271A68
     goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD, EventScript_PkmnCenterNurse_AskForUsual
     setflag FLAG_NURSE_MENTIONS_GOLD_CARD
     msgbox gText_WelcomeCutShort, MSGBOX_DEFAULT
+EventScript_PkmnCenterNurse_GoldCard_Notice::
     playse SE_PIN
     applymovement VAR_0x800B, Common_Movement_ExclamationMark
     waitmovement 0
