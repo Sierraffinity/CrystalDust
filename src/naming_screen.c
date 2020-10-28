@@ -2103,7 +2103,7 @@ static void Debug_NamingScreenNickname(void)
 static const struct NamingScreenTemplate sPlayerNamingScreenTemplate =
 {
     .copyExistingString = FALSE,
-    .maxChars = 7,
+    .maxChars = PLAYER_NAME_LENGTH,
     .iconFunction = 1,
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
@@ -2114,7 +2114,7 @@ static const struct NamingScreenTemplate sPlayerNamingScreenTemplate =
 static const struct NamingScreenTemplate sPCBoxNamingTemplate =
 {
     .copyExistingString = FALSE,
-    .maxChars = 8,
+    .maxChars = BOX_NAME_LENGTH,
     .iconFunction = 2,
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
@@ -2125,7 +2125,7 @@ static const struct NamingScreenTemplate sPCBoxNamingTemplate =
 static const struct NamingScreenTemplate sMonNamingScreenTemplate =
 {
     .copyExistingString = FALSE,
-    .maxChars = 10,
+    .maxChars = POKEMON_NAME_LENGTH,
     .iconFunction = 3,
     .addGenderIcon = TRUE,
     .initialPage = KBPAGE_LETTERS_UPPER,
@@ -2136,7 +2136,7 @@ static const struct NamingScreenTemplate sMonNamingScreenTemplate =
 static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
 {
     .copyExistingString = TRUE,
-    .maxChars = 15,
+    .maxChars = WALDA_WORDS_LENGTH,
     .iconFunction = 4,
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
@@ -2146,10 +2146,10 @@ static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
 
 static const struct NamingScreenTemplate sRivalNamingScreenTemplate =
 {
-    .copyExistingString = 0,
-    .maxChars = 7,
+    .copyExistingString = FALSE,
+    .maxChars = PLAYER_NAME_LENGTH,
     .iconFunction = 5,
-    .addGenderIcon = 0,
+    .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,
     .title = gText_RivalsName,

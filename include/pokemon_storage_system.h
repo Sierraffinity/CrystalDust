@@ -19,7 +19,7 @@ struct PokemonStorage
 {
     /*0x0000*/ u8 currentBox;
     /*0x0001*/ struct BoxPokemon boxes[TOTAL_BOXES_COUNT][IN_BOX_COUNT];
-    /*0x8344*/ u8 boxNames[TOTAL_BOXES_COUNT][9];
+    /*0x8344*/ u8 boxNames[TOTAL_BOXES_COUNT][BOX_NAME_LENGTH + 1];
     /*0x83C2*/ u8 boxWallpapers[TOTAL_BOXES_COUNT];
 };
 

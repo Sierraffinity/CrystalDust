@@ -97,9 +97,10 @@ struct UnkPSSStruct_2002370
     struct Sprite *unk_0004[4];
     u32 unk_0014[3];
     struct Sprite *unk_0020[2];
-    u8 filler_0028[0x214];
+    u8 buffer[0x200]; // passed but not used
+    u8 strbuf[20];
     u32 unk_023c;
-    u16 unk_0240;
+    u16 tilesTag;
     u16 unk_0242;
     u8 curBox;
     u8 unk_0245;
@@ -448,7 +449,7 @@ static u32 gUnknown_03000F78[98];
 
 // EWRAM DATA
 EWRAM_DATA static u8 sPreviousBoxOption = 0;
-EWRAM_DATA static struct UnkPSSStruct_2002370 *gUnknown_02039D04 = NULL;
+EWRAM_DATA static struct UnkPSSStruct_2002370 *sBoxSelectionPopupSpriteManager = NULL;
 EWRAM_DATA static struct PokemonStorageSystemData *sPSSData = NULL;
 EWRAM_DATA static bool8 sInPartyMenu = 0;
 EWRAM_DATA static u8 sCurrentBoxOption = 0;
@@ -482,7 +483,8 @@ static void sub_80C7B14(void);
 static void sub_80C7BB4(void);
 static void ScrollBackground(void);
 static void sub_80C7B80(void);
-static void sub_80C7BE4(void);
+static void PrintBoxNameAndCountToSprite(void);
+static void PrintToSpriteWithTagUnk0240(const u8 *a0, u16 x, u16 y);
 static void sub_80CAA14(void);
 static void sub_80CFDC4(void);
 static void sub_80CE790(void);
@@ -1562,7 +1564,7 @@ void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero
         txtColor[0] = zero2;
     txtColor[1] = TEXT_DYNAMIC_COLOR_6;
     txtColor[2] = TEXT_DYNAMIC_COLOR_5;
-    AddTextPrinterParameterized4(windowId, 1, 0, 1, 0, 0, txtColor, -1, string);
+    AddTextPrinterParameterized4(windowId, 1, 0, 2, 0, 0, txtColor, -1, string);
 
     tileBytesToBuffer = bytesToBuffer;
     if (tileBytesToBuffer > 6u)
@@ -1587,8 +1589,7 @@ void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero
     RemoveWindow(windowId);
 }
 
-// Unused
-void sub_80C6EAC(const u8 *string, void *dst, u16 arg2, u8 arg3, u8 clr2, u8 clr3)
+static void PrintStringToBufferCopyNow(const u8 *string, void *dst, u16 rise, u8 bgClr, u8 fgClr, u8 shClr, u8 *buffer)
 {
     u32 var;
     u8 windowId;
@@ -1600,15 +1601,15 @@ void sub_80C6EAC(const u8 *string, void *dst, u16 arg2, u8 arg3, u8 clr2, u8 clr
     winTemplate.height = 2;
     var = winTemplate.width * 32;
     windowId = AddWindow(&winTemplate);
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(arg3));
-    tileData1 = (u8*) GetWindowAttribute(windowId, WINDOW_TILE_DATA);
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(bgClr));
+    tileData1 = (u8*)GetWindowAttribute(windowId, WINDOW_TILE_DATA);
     tileData2 = (winTemplate.width * 32) + tileData1;
-    txtColor[0] = arg3;
-    txtColor[1] = clr2;
-    txtColor[2] = clr3;
+    txtColor[0] = bgClr;
+    txtColor[1] = fgClr;
+    txtColor[2] = shClr;
     AddTextPrinterParameterized4(windowId, 1, 0, 2, 0, 0, txtColor, -1, string);
     CpuCopy16(tileData1, dst, var);
-    CpuCopy16(tileData2, dst + arg2, var);
+    CpuCopy16(tileData2, dst + rise, var);
     RemoveWindow(windowId);
 }
 
@@ -1947,8 +1948,8 @@ static void sub_80C77E8(struct UnkPSSStruct_2002370 *a0, u16 tileTag, u16 palTag
         LoadSpritePalette(&palette);
 
     LoadSpriteSheets(sheets);
-    gUnknown_02039D04 = a0;
-    a0->unk_0240 = tileTag;
+    sBoxSelectionPopupSpriteManager = a0;
+    a0->tilesTag = tileTag;
     a0->unk_0242 = palTag;
     a0->unk_0246 = a3;
     a0->unk_023c = loadPal;
@@ -1956,10 +1957,10 @@ static void sub_80C77E8(struct UnkPSSStruct_2002370 *a0, u16 tileTag, u16 palTag
 
 static void sub_80C7890(void)
 {
-    if (gUnknown_02039D04->unk_023c)
-        FreeSpritePaletteByTag(gUnknown_02039D04->unk_0242);
-    FreeSpriteTilesByTag(gUnknown_02039D04->unk_0240);
-    FreeSpriteTilesByTag(gUnknown_02039D04->unk_0240 + 1);
+    if (sBoxSelectionPopupSpriteManager->unk_023c)
+        FreeSpritePaletteByTag(sBoxSelectionPopupSpriteManager->unk_0242);
+    FreeSpriteTilesByTag(sBoxSelectionPopupSpriteManager->tilesTag);
+    FreeSpriteTilesByTag(sBoxSelectionPopupSpriteManager->tilesTag + 1);
 }
 
 static void sub_80C78D4(u8 curBox)
@@ -1982,7 +1983,7 @@ static u8 HandleBoxChooseSelectionInput(void)
     if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
-        return gUnknown_02039D04->curBox;
+        return sBoxSelectionPopupSpriteManager->curBox;
     }
     if (JOY_NEW(DPAD_LEFT))
     {
@@ -2008,114 +2009,107 @@ static void sub_80C7958(u8 curBox)
     template = (struct SpriteTemplate){
         0, 0, &oamData, gDummySpriteAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
     };
+    static const u8 outOf30[] = _("/30");
 
-    gUnknown_02039D04->curBox = curBox;
-    template.tileTag = gUnknown_02039D04->unk_0240;
-    template.paletteTag = gUnknown_02039D04->unk_0242;
+    sBoxSelectionPopupSpriteManager->curBox = curBox;
+    template.tileTag = sBoxSelectionPopupSpriteManager->tilesTag;
+    template.paletteTag = sBoxSelectionPopupSpriteManager->unk_0242;
 
     spriteId = CreateSprite(&template, 160, 96, 0);
-    gUnknown_02039D04->unk_0000 = gSprites + spriteId;
+    sBoxSelectionPopupSpriteManager->unk_0000 = gSprites + spriteId;
 
     oamData.shape = SPRITE_SHAPE(8x32);
     oamData.size = SPRITE_SIZE(8x32);
-    template.tileTag = gUnknown_02039D04->unk_0240 + 1;
+    template.tileTag = sBoxSelectionPopupSpriteManager->tilesTag + 1;
     template.anims = sSpriteAnimTable_8571710;
     for (i = 0; i < 4; i++)
     {
         u16 r5;
-        spriteId = CreateSprite(&template, 124, 80, gUnknown_02039D04->unk_0246);
-        gUnknown_02039D04->unk_0004[i] = gSprites + spriteId;
+        spriteId = CreateSprite(&template, 124, 80, sBoxSelectionPopupSpriteManager->unk_0246);
+        sBoxSelectionPopupSpriteManager->unk_0004[i] = gSprites + spriteId;
         r5 = 0;
         if (i & 2)
         {
-            gUnknown_02039D04->unk_0004[i]->pos1.x = 196;
+            sBoxSelectionPopupSpriteManager->unk_0004[i]->pos1.x = 196;
             r5 = 2;
         }
         if (i & 1)
         {
-            gUnknown_02039D04->unk_0004[i]->pos1.y = 112;
-            gUnknown_02039D04->unk_0004[i]->oam.size = 0;
+            sBoxSelectionPopupSpriteManager->unk_0004[i]->pos1.y = 112;
+            sBoxSelectionPopupSpriteManager->unk_0004[i]->oam.size = 0;
             r5++;
         }
-        StartSpriteAnim(gUnknown_02039D04->unk_0004[i], r5);
+        StartSpriteAnim(sBoxSelectionPopupSpriteManager->unk_0004[i], r5);
     }
     for (i = 0; i < 2; i++)
     {
-        gUnknown_02039D04->unk_0020[i] = sub_80CD2E8(72 * i + 0x7c, 0x58, i, 0, gUnknown_02039D04->unk_0246);
-        if (gUnknown_02039D04->unk_0020[i])
+        sBoxSelectionPopupSpriteManager->unk_0020[i] = sub_80CD2E8(72 * i + 0x7c, 0x58, i, 0, sBoxSelectionPopupSpriteManager->unk_0246);
+        if (sBoxSelectionPopupSpriteManager->unk_0020[i])
         {
-            gUnknown_02039D04->unk_0020[i]->data[0] = (i == 0 ? -1 : 1);
-            gUnknown_02039D04->unk_0020[i]->callback = sub_80C7CF4;
+            sBoxSelectionPopupSpriteManager->unk_0020[i]->data[0] = (i == 0 ? -1 : 1);
+            sBoxSelectionPopupSpriteManager->unk_0020[i]->callback = sub_80C7CF4;
         }
     }
-    sub_80C7BE4();
+    PrintBoxNameAndCountToSprite();
+    PrintToSpriteWithTagUnk0240(outOf30, 5, 3);
 }
 
 static void sub_80C7B14(void)
 {
     u16 i;
-    if (gUnknown_02039D04->unk_0000)
+    if (sBoxSelectionPopupSpriteManager->unk_0000)
     {
-        DestroySprite(gUnknown_02039D04->unk_0000);
-        gUnknown_02039D04->unk_0000 = NULL;
+        DestroySprite(sBoxSelectionPopupSpriteManager->unk_0000);
+        sBoxSelectionPopupSpriteManager->unk_0000 = NULL;
     }
     for (i = 0; i < 4; i++)
     {
-        if (gUnknown_02039D04->unk_0004[i])
+        if (sBoxSelectionPopupSpriteManager->unk_0004[i])
         {
-            DestroySprite(gUnknown_02039D04->unk_0004[i]);
-            gUnknown_02039D04->unk_0004[i] = NULL;
+            DestroySprite(sBoxSelectionPopupSpriteManager->unk_0004[i]);
+            sBoxSelectionPopupSpriteManager->unk_0004[i] = NULL;
         }
     }
     for (i = 0; i < 2; i++)
     {
-        if (gUnknown_02039D04->unk_0020[i])
-            DestroySprite(gUnknown_02039D04->unk_0020[i]);
+        if (sBoxSelectionPopupSpriteManager->unk_0020[i])
+            DestroySprite(sBoxSelectionPopupSpriteManager->unk_0020[i]);
     }
 }
 
 static void sub_80C7B80(void)
 {
-    if (++gUnknown_02039D04->curBox >= TOTAL_BOXES_COUNT)
-        gUnknown_02039D04->curBox = 0;
-    sub_80C7BE4();
+    if (++sBoxSelectionPopupSpriteManager->curBox >= TOTAL_BOXES_COUNT)
+        sBoxSelectionPopupSpriteManager->curBox = 0;
+    PrintBoxNameAndCountToSprite();
 }
 
 static void sub_80C7BB4(void)
 {
-    gUnknown_02039D04->curBox = (gUnknown_02039D04->curBox == 0 ? TOTAL_BOXES_COUNT - 1 : gUnknown_02039D04->curBox - 1);
-    sub_80C7BE4();
+    sBoxSelectionPopupSpriteManager->curBox = (sBoxSelectionPopupSpriteManager->curBox == 0 ? TOTAL_BOXES_COUNT - 1 : sBoxSelectionPopupSpriteManager->curBox - 1);
+    PrintBoxNameAndCountToSprite();
 }
 
-static void sub_80C7BE4(void)
+static void PrintBoxNameAndCountToSprite(void)
 {
-    u8 numBoxMonsText[16];
-    struct WindowTemplate winTemplate;
-    u8 windowId;
-    u8 *boxName = GetBoxNamePtr(gUnknown_02039D04->curBox);
-    u8 nPokemonInBox = CountMonsInBox(gUnknown_02039D04->curBox);
-    u32 winTileData;
-    s32 center;
+    u8 nPokemonInBox = CountMonsInBox(sBoxSelectionPopupSpriteManager->curBox);
+    u8 *boxName = StringCopy(sBoxSelectionPopupSpriteManager->strbuf, GetBoxNamePtr(sBoxSelectionPopupSpriteManager->curBox));
 
-    memset(&winTemplate, 0, sizeof(winTemplate));
-    winTemplate.width = 8;
-    winTemplate.height = 4;
+    while (boxName < sBoxSelectionPopupSpriteManager->strbuf + BOX_NAME_LENGTH)
+        *boxName++ = CHAR_SPACE;
+    *boxName = EOS;
 
-    windowId = AddWindow(&winTemplate);
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(4));
+    PrintToSpriteWithTagUnk0240(sBoxSelectionPopupSpriteManager->strbuf, 0, 1);
 
-    center = GetStringCenterAlignXOffset(1, boxName, 64);
-    AddTextPrinterParameterized3(windowId, 1, center, 1, sBoxInfoTextColors, TEXT_SPEED_FF, boxName);
+    ConvertIntToDecimalStringN(sBoxSelectionPopupSpriteManager->strbuf, nPokemonInBox, STR_CONV_MODE_RIGHT_ALIGN, 2);
 
-    ConvertIntToDecimalStringN(numBoxMonsText, nPokemonInBox, STR_CONV_MODE_RIGHT_ALIGN, 2);
-    StringAppend(numBoxMonsText, sText_OutOf30);
-    center = GetStringCenterAlignXOffset(1, numBoxMonsText, 64);
-    AddTextPrinterParameterized3(windowId, 1, center, 17, sBoxInfoTextColors, TEXT_SPEED_FF, numBoxMonsText);
+    PrintToSpriteWithTagUnk0240(sBoxSelectionPopupSpriteManager->strbuf, 3, 3);
+}
 
-    winTileData = GetWindowAttribute(windowId, WINDOW_TILE_DATA);
-    CpuCopy32((void *)winTileData, (void *)OBJ_VRAM0 + 0x100 + (GetSpriteTileStartByTag(gUnknown_02039D04->unk_0240) * 32), 0x400);
-
-    RemoveWindow(windowId);
+static void PrintToSpriteWithTagUnk0240(const u8 *str, u16 x, u16 y)
+{
+    u16 tileStart = GetSpriteTileStartByTag(sBoxSelectionPopupSpriteManager->tilesTag);
+    PrintStringToBufferCopyNow(str, (void *)(OBJ_VRAM0 + tileStart * 32 + 256 * y + 32 * x), 0x100, TEXT_COLOR_RED, TEXT_DYNAMIC_COLOR_6, TEXT_DYNAMIC_COLOR_5, sBoxSelectionPopupSpriteManager->buffer);
 }
 
 static void sub_80C7CF4(struct Sprite *sprite)
@@ -4376,7 +4370,7 @@ static void sub_80CABE0(void)
 static void sub_80CAC1C(void)
 {
     SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(29));
-    LoadUserWindowBorderGfx(1, 2, 208);
+    LoadThinWindowBorderGfx(1, 2, 208);
     FillBgTilemapBufferRect(0, 0, 0, 0, 32, 20, 17);
     CopyBgTilemapBufferToVram(0);
 }
@@ -4416,8 +4410,8 @@ static void PrintStorageActionText(u8 id)
 
     DynamicPlaceholderTextUtil_ExpandPlaceholders(sPSSData->field_2190, gPCStorageActionTexts[id].text);
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    AddTextPrinterParameterized(1, 1, sPSSData->field_2190, 0, 1, TEXT_SPEED_FF, NULL);
-    DrawTextBorderOuter(1, 2, 14);
+    AddTextPrinterParameterized(1, 1, sPSSData->field_2190, 0, 2, TEXT_SPEED_FF, NULL);
+    DrawTextBorderOuter(1, 2, 13);
     PutWindowTilemap(1);
     CopyWindowToVram(1, 2);
     ScheduleBgCopyTilemapToVram(0);
@@ -7901,8 +7895,8 @@ static void AddMenu(void)
     sPSSData->field_CB0 = AddWindow(&sPSSData->menuWindow);
     ClearWindowTilemap(sPSSData->field_CB0);
     DrawStdFrameWithCustomTileAndPalette(sPSSData->field_CB0, FALSE, 11, 14);
-    PrintMenuTable(sPSSData->field_CB0, sPSSData->menuItemsCount, (void*)sPSSData->menuItems);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPSSData->field_CB0, 1, 0, 1, 16, sPSSData->menuItemsCount, 0);
+    PrintTextArray(sPSSData->field_CB0, 1, 8, 2, 16, sPSSData->menuItemsCount, (void*)sPSSData->menuItems);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPSSData->field_CB0, 1, 0, 2, 16, sPSSData->menuItemsCount, 0);
     ScheduleBgCopyTilemapToVram(0);
     sPSSData->field_CAE = 0;
 }
