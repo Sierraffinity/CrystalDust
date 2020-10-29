@@ -118,8 +118,6 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister {
             textcolor(MSG_COLOR_SYS)
             msgbox("{PLAYER} recorded BILL's number.")
             waitfanfare
-            closemessage
-            delay(10)
             call(EventScript_RestorePrevTextColor)
             msgbox(GoldenrodCity_BillsFamilysHouse_Text_BillsSister_AfterPhoneNumber)
         }

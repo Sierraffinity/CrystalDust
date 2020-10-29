@@ -112,8 +112,6 @@ GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister_5:
 	textcolor MSG_COLOR_SYS
 	msgbox GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister_Text_1
 	waitfanfare
-	closemessage
-	delay 10
 	call EventScript_RestorePrevTextColor
 	msgbox GoldenrodCity_BillsFamilysHouse_Text_BillsSister_AfterPhoneNumber
 	goto GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister_1

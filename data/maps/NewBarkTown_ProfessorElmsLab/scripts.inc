@@ -319,8 +319,6 @@ NewBarkTown_EventScript_PokeBallMain_16:
 	call EventScript_RestorePrevTextColor
 	msgbox NewBarkTown_EventScript_PokeBallMain_Text_8
 	waitfanfare
-	closemessage
-	delay 10
 	applymovement 2, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE

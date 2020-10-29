@@ -419,8 +419,6 @@ script NewBarkTown_EventScript_PokeBallMain {
             msgbox("{PLAYER} got PROF. ELM's phone\n"
                    "number.")
             waitfanfare
-            closemessage
-            delay(10)
             applymovement(OBJ_EVENT_ID_ELM, Common_Movement_WalkInPlaceFastestLeft)
             waitmovement(0)
             textcolor(MSG_COLOR_BLUE)
