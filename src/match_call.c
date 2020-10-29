@@ -48,7 +48,6 @@ struct MatchCallState
     u8 stepCounter;
     u8 triggeredFromScript:1;
     u8 forcedPhoneCallId:7;
-    u8 name[32];
     const u8 *script;
 };
 
@@ -1337,7 +1336,7 @@ static bool32 PrintMatchCallIntroEllipsis(u8 taskId)
     s16 *taskData = gTasks[taskId].data;
     if (!IsDma3ManagerBusyWithBgCopy())
     {
-        name = BuildPhoneContactDisplayNameForCall(&gPhoneContacts[gMatchCallState.callerId], gMatchCallState.name);
+        name = BuildPhoneContactDisplayNameForCall(&gPhoneContacts[gMatchCallState.callerId], gStringVar1);
         InitMatchCallTextPrinter(gPhoneCallWindowId, sText_PokenavCallEllipsis);
         InitMatchCallCallerNameTextPrinter(gPhoneCallerNameWindowId, name);
         CopyWindowToVram(gPhoneCallerNameWindowId, 3);

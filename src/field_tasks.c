@@ -1,6 +1,7 @@
 #include "global.h"
 #include "bike.h"
 #include "clock.h"
+#include "day_night.h"
 #include "event_data.h"
 #include "field_camera.h"
 #include "field_effect_helpers.h"
@@ -145,6 +146,8 @@ static void RunTimeBasedEvents(s16 *data)
 static void Task_RunTimeBasedEvents(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    
+    ProcessImmediateTimeEvents();
 
     if (!ScriptContext2_IsEnabled())
     {
