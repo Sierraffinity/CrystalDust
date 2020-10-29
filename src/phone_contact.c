@@ -977,7 +977,7 @@ const u8 *BuildPhoneContactDisplayName(const struct PhoneContact *phoneContact, 
         dest[i++] = CHAR_COLON;
         dest[i++] = EXT_CTRL_CODE_BEGIN;
         dest[i++] = EXT_CTRL_CODE_SIZE;
-        dest[i++] = 0;
+        dest[i++] = CHAR_SPACE;
 
         classXOffset = GetStringRightAlignXOffset(0, gTrainerClassNames[gTrainers[trainerId].trainerClass], 128);
         dest[i++] = EXT_CTRL_CODE_BEGIN;
@@ -1019,7 +1019,7 @@ const u8 *BuildPhoneContactDisplayNameForCall(const struct PhoneContact *phoneCo
         dest[i++] = CHAR_NEWLINE;
         dest[i++] = EXT_CTRL_CODE_BEGIN;
         dest[i++] = EXT_CTRL_CODE_SIZE;
-        dest[i++] = 0;
+        dest[i++] = CHAR_SPACE;
 
         classXOffset = GetStringRightAlignXOffset(0, gTrainerClassNames[gTrainers[trainerId].trainerClass], 76);
         dest[i++] = EXT_CTRL_CODE_BEGIN;

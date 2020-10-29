@@ -48,7 +48,7 @@ struct MatchCallState
     u8 stepCounter;
     u8 triggeredFromScript:1;
     u8 forcedPhoneCallId:7;
-    u8 name[16];
+    u8 name[32];
     const u8 *script;
 };
 
@@ -125,15 +125,6 @@ static void PopulateBattleFrontierStreak(int, u8 *);
 
 static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
 {
-    {
-        .trainerId = TRAINER_AMY_AND_MAY,
-        .unused = 0,
-        .battleTopicTextIds = { TEXT_ID(1, 8), TEXT_ID(2, 8), TEXT_ID(3, 8) },
-        .generalTextId = TEXT_ID(1, 3),
-        .battleFrontierRecordStreakTextIndex = 8,
-        .sameRouteMatchCallTextId = TEXT_ID(1, 8),
-        .differentRouteMatchCallTextId = TEXT_ID(2, 8),
-    },
     {
         .trainerId = TRAINER_ANDRES_1,
         .unused = 0,
@@ -1002,6 +993,12 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .callCondition = ReceiveCallWhenOutside,
         .script = PhoneScript_Bill_JustRanOutOfRoom
     },
+    {
+        .flag = 1,
+        .phoneContactId = PHONE_CONTACT_ANDRES,
+        .callCondition = ReceiveCallWhenOutside,
+        .script = NULL
+    },
 };
 
 static const struct ScanlineEffectParams sScanlineParams =
@@ -1223,8 +1220,8 @@ static const struct WindowTemplate sPhoneCardNameTextWindow =
     .bg = 0,
     .tilemapLeft = 1,
     .tilemapTop = 1,
-    .width = 12,
-    .height = 3,
+    .width = 14,
+    .height = 4,
     .paletteNum = 15,
     .baseBlock = 0x180
 };
@@ -1282,13 +1279,13 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
         return FALSE;
     }
 
-    /*if (!DecompressAndCopyTileDataToVram(0, sPokeNavIconGfx, 0, 0x279, 0))
+    if (!DecompressAndCopyTileDataToVram(0, sPokeNavIconGfx, 0, 0x279, 0))
     {
         RemoveWindow(gPhoneCallWindowId);
         RemoveWindow(gPhoneCallerNameWindowId);
         DestroyTask(taskId);
         return FALSE;
-    }*/
+    }
 
     FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
     FillWindowPixelBuffer(gPhoneCallerNameWindowId, PIXEL_FILL(8));
@@ -1327,7 +1324,7 @@ static bool32 MoveMatchCallWindowToVram(u8 taskId)
     PutWindowTilemap(gPhoneCallerNameWindowId);
     DrawMatchCallTextBoxBorder(gPhoneCallWindowId, 0x270, 14);
     DrawMatchCallTextBoxBorder(gPhoneCallerNameWindowId, 0x270, 14);
-    //WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 15, 4, 4, 17, 1);
+    WriteSequenceToBgTilemapBuffer(0, 0xF279, 1, 1, 4, 4, 17, 1);
     CopyWindowToVram(gPhoneCallWindowId, 2);
     CopyWindowToVram(gPhoneCallerNameWindowId, 2);
     CopyBgTilemapBufferToVram(0);
@@ -1405,7 +1402,7 @@ static void PerformHangupAnimation(u8 taskId)
     {
         gScanlineEffect.state = 3;
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 14, 30, 6);
-        FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 14, 5);
+        FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 16, 6);
         RemoveWindow(gPhoneCallWindowId);
         RemoveWindow(gPhoneCallerNameWindowId);
         CopyBgTilemapBufferToVram(0);
@@ -1514,12 +1511,12 @@ void InitMatchCallTextPrinter(int windowId, const u8 *str)
     printerTemplate.currentChar = str;
     printerTemplate.windowId = windowId;
     printerTemplate.fontId = 1;
-    printerTemplate.x = 0;
+    printerTemplate.x = 2;
     printerTemplate.y = 1;
-    printerTemplate.currentX = 0;
+    printerTemplate.currentX = 2;
     printerTemplate.currentY = 1;
-    printerTemplate.letterSpacing = 0;
-    printerTemplate.lineSpacing = 0;
+    printerTemplate.letterSpacing = 1;
+    printerTemplate.lineSpacing = 1;
     printerTemplate.style = 0;
     printerTemplate.fgColor = 10;
     printerTemplate.bgColor = 8;
@@ -1535,12 +1532,12 @@ static void InitMatchCallCallerNameTextPrinter(int windowId, const u8 *str)
     printerTemplate.currentChar = str;
     printerTemplate.windowId = windowId;
     printerTemplate.fontId = 1;
-    printerTemplate.x = 16;
-    printerTemplate.y = 0;
-    printerTemplate.currentX = 16;
-    printerTemplate.currentY = 0;
-    printerTemplate.letterSpacing = 0;
-    printerTemplate.lineSpacing = -2;
+    printerTemplate.x = 32;
+    printerTemplate.y = 2;
+    printerTemplate.currentX = 32;
+    printerTemplate.currentY = 2;
+    printerTemplate.letterSpacing = 2;
+    printerTemplate.lineSpacing = 1;
     printerTemplate.style = 0;
     printerTemplate.fgColor = 10;
     printerTemplate.bgColor = 8;

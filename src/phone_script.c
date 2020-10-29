@@ -452,7 +452,7 @@ static void HangupPhoneCall(u32 phoneContext)
 
 bool8 PhoneScrCmd_callnativecontext(struct ScriptContext *ctx)
 {
-    struct PhoneScriptExtraContext *phoneCtx = (void *)ctx->data[0];
+    //struct PhoneScriptExtraContext *phoneCtx = (void *)ctx->data[0];
 
     PhoneNativeFunc func = (PhoneNativeFunc)ScriptReadWord(ctx);
     bool8 isCallingPlayer = ctx->data[0] == PHONE_SCRIPT_OVERWORLD;
