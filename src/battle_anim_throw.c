@@ -1518,7 +1518,7 @@ static void MakeCaptureStars(struct Sprite *sprite)
         sprite->subpriority = 1;
     }
 
-    LoadBallParticleGfx(BALL_MASTER);
+    LoadBallParticleGfx(BALLGFX_MASTER);
     for (i = 0; i < ARRAY_COUNT(sCaptureStars); i++)
     {
         u8 spriteId = CreateSprite(&sBallParticleSpriteTemplates[4], sprite->pos1.x, sprite->pos1.y, subpriority);
