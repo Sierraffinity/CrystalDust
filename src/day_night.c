@@ -20,11 +20,16 @@
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
-static EWRAM_DATA bool8 sRetintPhase = FALSE;
-static EWRAM_DATA u8 sTimeOfDay = TIME_NIGHT;
-static EWRAM_DATA u16 sRetintPeriod = 0;
-static EWRAM_DATA u16 sCurrTintPeriod = 0;
-static EWRAM_DATA u16 sCurrRGBTint[3] = {0};
+
+static EWRAM_DATA struct {
+    bool8 initialized:1;
+    bool8 retintPhase:1;
+    u8 timeOfDay;
+    u16 prevTintPeriod; // tint period associated with currently drawn palettes
+    u16 currTintPeriod; // tint period associated with currRGBTint
+    u16 currRGBTint[3];
+} sDNSystemControl = {0};
+
 #if DEBUG
 EWRAM_DATA bool8 gPaletteOverrideDisabled = 0;
 EWRAM_DATA s16 gDNPeriodOverride = 0;
@@ -195,7 +200,8 @@ bool32 LerpColors(u16 *rgbDest, const u16 *rgb1, const u16 *rgb2, u8 coeff)
 static void TintPaletteForDayNight(u16 offset, u16 size)
 {
     s8 hour, nextHour;
-    u8 hourPhase, period;
+    u8 hourPhase;
+    u16 period;
 
     if (ShouldTintOverworld())
     {
@@ -221,13 +227,15 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
 
         period = (hour * TINT_PERIODS_PER_HOUR) + hourPhase;
 
-        if (sCurrTintPeriod != period)
+        if (!sDNSystemControl.initialized || sDNSystemControl.currTintPeriod != period)
         {
-            sCurrTintPeriod = period;
-            LerpColors(sCurrRGBTint, sTimeOfDayTints[hour], sTimeOfDayTints[nextHour], hourPhase);
+            sDNSystemControl.initialized = TRUE;
+            sDNSystemControl.currTintPeriod = period;
+            nextHour = (hour + 1) % 24;
+            LerpColors(sDNSystemControl.currRGBTint, sTimeOfDayTints[hour], sTimeOfDayTints[nextHour], hourPhase);
         }
 
-        TintPalette_CustomToneWithCopy(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size / 2, sCurrRGBTint[0], sCurrRGBTint[1], sCurrRGBTint[2], FALSE);
+        TintPalette_CustomToneWithCopy(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size / 2, sDNSystemControl.currRGBTint[0], sDNSystemControl.currRGBTint[1], sDNSystemControl.currRGBTint[2], FALSE);
     }
     else
     {
@@ -253,19 +261,20 @@ void LoadPaletteDayNight(const void *src, u16 offset, u16 size)
 
 void CheckClockForImmediateTimeEvents(void)
 {
-    if (!sRetintPhase && ShouldTintOverworld())
+    if (!sDNSystemControl.retintPhase && ShouldTintOverworld())
         RtcCalcLocalTimeFast();
 }
 
 void ProcessImmediateTimeEvents(void)
 {
     s8 hour, nextHour;
-    u8 hourPhase, period;
+    u8 hourPhase;
+    u16 period;
     u8 timeOfDay = GetCurrentTimeOfDay();
 
     if (ShouldTintOverworld())
     {
-        if (sRetintPhase == 0)
+        if (sDNSystemControl.retintPhase == 0)
         {
             if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
             {
@@ -288,7 +297,7 @@ void ProcessImmediateTimeEvents(void)
                      gDNTintOverride[1] > 0 ||
                      gDNTintOverride[2] > 0)
             {
-                sRetintPeriod = 0xFFFF; // invalidate current tint
+                sDNSystemControl.prevTintPeriod = 0xFFFF; // invalidate current tint
             
                 if (gDNTintOverride[0] == 0xFFFF) // signal to invalidate when turning off override
                 {
@@ -299,33 +308,34 @@ void ProcessImmediateTimeEvents(void)
 
             period = (hour * TINT_PERIODS_PER_HOUR) + hourPhase;
 
-            if (sRetintPeriod != period)
+            if (!sDNSystemControl.initialized || sDNSystemControl.prevTintPeriod != period)
             {
-                sRetintPeriod = sCurrTintPeriod = period;
+                sDNSystemControl.initialized = TRUE;
+                sDNSystemControl.prevTintPeriod = sDNSystemControl.currTintPeriod = period;
 #if DEBUG
                 if (gDNTintOverride[0] > 0 ||
                     gDNTintOverride[1] > 0 ||
                     gDNTintOverride[2] > 0)
                 {
-                    sCurrRGBTint[0] = gDNTintOverride[0];
-                    sCurrRGBTint[1] = gDNTintOverride[1];
-                    sCurrRGBTint[2] = gDNTintOverride[2];
+                    sDNSystemControl.currRGBTint[0] = gDNTintOverride[0];
+                    sDNSystemControl.currRGBTint[1] = gDNTintOverride[1];
+                    sDNSystemControl.currRGBTint[2] = gDNTintOverride[2];
                 }
                 else
 #endif
                 {
                     nextHour = (hour + 1) % 24;
-                    LerpColors(sCurrRGBTint, sTimeOfDayTints[hour], sTimeOfDayTints[nextHour], hourPhase);
+                    LerpColors(sDNSystemControl.currRGBTint, sTimeOfDayTints[hour], sTimeOfDayTints[nextHour], hourPhase);
                 }
 
-                TintPalette_CustomToneWithCopy(gPlttBufferPreDN, gPlttBufferUnfaded, BG_PLTT_SIZE / 2, sCurrRGBTint[0], sCurrRGBTint[1], sCurrRGBTint[2], TRUE);
-                sRetintPhase = 1;
+                TintPalette_CustomToneWithCopy(gPlttBufferPreDN, gPlttBufferUnfaded, BG_PLTT_SIZE / 2, sDNSystemControl.currRGBTint[0], sDNSystemControl.currRGBTint[1], sDNSystemControl.currRGBTint[2], TRUE);
+                sDNSystemControl.retintPhase = 1;
             }
         }
         else
         {
-            sRetintPhase = 0;
-            TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sCurrRGBTint[0], sCurrRGBTint[1], sCurrRGBTint[2], TRUE);
+            sDNSystemControl.retintPhase = 0;
+            TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sDNSystemControl.currRGBTint[0], sDNSystemControl.currRGBTint[1], sDNSystemControl.currRGBTint[2], TRUE);
             LoadPaletteOverrides();
             
             if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&
@@ -334,9 +344,9 @@ void ProcessImmediateTimeEvents(void)
         }
     }
 
-    if (sTimeOfDay != timeOfDay)
+    if (sDNSystemControl.timeOfDay != timeOfDay)
     {
-        sTimeOfDay = timeOfDay;
+        sDNSystemControl.timeOfDay = timeOfDay;
         ChooseAmbientCrySpecies();  // so a time-of-day appropriate mon is chosen
         ForceTimeBasedEvents();     // for misc events that should run on time of day boundaries
     }
