@@ -1457,7 +1457,7 @@
       "id": "LAYOUT_ROUTE34_DAY_CARE",
       "name": "Route34_DayCare_Layout",
       "width": 14,
-      "height": 10,
+      "height": 11,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
