@@ -98,6 +98,7 @@ static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
 static void DebugMenu_CraftDNTint(u8 taskId);
 static void DebugMenu_CraftDNTint_ProcessInput(u8 taskId);
+static void DebugMenu_Pokedex_EnableNationalDex(u8 taskId);
 static void DebugMenu_Pokedex_ProfOakRating(u8 taskId);
 static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId);
 static void DebugMenu_Pokegear(u8 taskId);
@@ -148,6 +149,7 @@ static const u8 sText_FillThePC[] = _("Fill the PC");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_CraftDNTintColor[] = _("Craft new tint color");
+static const u8 sText_EnableNationalDex[] = _("Enable national dex");
 static const u8 sText_ProfOakRating[] = _("Prof. Oak rating");
 static const u8 sText_EnableMapCard[] = _("Enable map card");
 static const u8 sText_EnableRadioCard[] = _("Enable radio card");
@@ -213,6 +215,7 @@ CREATE_BOUNCER(DNActions, MainActions);
 
 static const struct DebugMenuAction sDebugMenu_PokedexActions[] =
 {
+    { sText_EnableNationalDex, DebugMenu_Pokedex_EnableNationalDex, NULL },
     { sText_ProfOakRating, DebugMenu_Pokedex_ProfOakRating, NULL },
 };
 
@@ -1280,6 +1283,11 @@ static void DebugMenu_CraftDNTint_ProcessInput(u8 taskId)
         PlaySE(SE_SELECT);
         ReturnToPreviousMenu(taskId, GET_BOUNCER);
     }
+}
+
+static void DebugMenu_Pokedex_EnableNationalDex(u8 taskId)
+{
+    EnableNationalPokedex();
 }
 
 static void DebugMenu_Pokedex_ProfOakRating_PrintStatus(u8 windowId, u16 flagId)
