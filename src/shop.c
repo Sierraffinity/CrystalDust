@@ -374,8 +374,8 @@ static u8 CreateShopMenu(u8 martType)
     }
 
     SetStandardWindowBorderStyle(gMartInfo.windowId, 0);
-    PrintTextArray(gMartInfo.windowId, 1, GetMenuCursorDimensionByFont(1, 0), 2, 16, numMenuItems, gMartInfo.menuActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(gMartInfo.windowId, 1, 0, 2, 16, numMenuItems, 0);
+    PrintTextArray(gMartInfo.windowId, 2, GetMenuCursorDimensionByFont(1, 0), 2, 16, numMenuItems, gMartInfo.menuActions);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(gMartInfo.windowId, 2, 0, 2, 16, numMenuItems, 0);
     PutWindowTilemap(gMartInfo.windowId);
     CopyWindowToVram(gMartInfo.windowId, 1);
 
@@ -652,7 +652,7 @@ static bool8 BuyMenuBuildListMenuTemplate(void)
     gMultiuseListMenuTemplate.lettersSpacing = 0;
     gMultiuseListMenuTemplate.itemVerticalPadding = 2;
     gMultiuseListMenuTemplate.upText_Y = 2;
-    gMultiuseListMenuTemplate.fontId = 1;
+    gMultiuseListMenuTemplate.fontId = 2;
     gMultiuseListMenuTemplate.fillValue = 0;
     gMultiuseListMenuTemplate.cursorPal = GetFontAttribute(2, FONTATTR_COLOR_FOREGROUND);
     gMultiuseListMenuTemplate.cursorShadowPal = GetFontAttribute(2, FONTATTR_COLOR_SHADOW);
@@ -944,7 +944,7 @@ static void BuyMenuPrint(u8 windowId, u8 font, const u8 *text, u8 x, u8 y, u8 le
 
 static void BuyMenuDisplayMessage(u8 taskId, const u8 *text, TaskFunc callback)
 {
-    DisplayMessageAndContinueTask(taskId, 2, 19, 14, 1, GetPlayerTextSpeedDelay(), text, callback);
+    DisplayMessageAndContinueTask(taskId, 2, 19, 14, 2, GetPlayerTextSpeedDelay(), text, callback);
     ScheduleBgCopyTilemapToVram(0);
 }
 
@@ -1320,7 +1320,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
 
 static void BuyMenuConfirmPurchase(u8 taskId)
 {
-    CreateYesNoMenuWithCallbacks(taskId, &sShopBuyMenuYesNoWindowTemplates, 1, 0, 2, 1, 13, &sShopPurchaseYesNoFuncs);
+    CreateYesNoMenuWithCallbacks(taskId, &sShopBuyMenuYesNoWindowTemplates, 2, 0, 2, 1, 13, &sShopPurchaseYesNoFuncs);
 }
 
 static void BuyMenuTryMakePurchase(u8 taskId)

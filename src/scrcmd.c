@@ -1315,7 +1315,7 @@ bool8 ScrCmd_cmdDB(struct ScriptContext *ctx)
         msg = (const u8 *)ctx->data[0];
     LoadMessageBoxAndBorderGfx();
     DrawDialogueFrame(0, 1);
-    AddTextPrinterParameterized(0, 1, msg, 0, 1, 0, 0);
+    AddTextPrinterParameterized(0, 2, msg, 0, 1, 0, 0);
     return FALSE;
 }
 

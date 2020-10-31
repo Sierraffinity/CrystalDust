@@ -1608,7 +1608,7 @@ static void Task_ShowBerryCrushRankings(u8 taskId)
         DrawStdFrameWithCustomTileAndPalette(data[1], 0, 541, 13);
         break;
     case 1:
-        xPos = 96 - GetStringWidth(1, gText_BerryCrush2, -1) / 2u;
+        xPos = 96 - GetStringWidth(2, gText_BerryCrush2, -1) / 2u;
         AddTextPrinterParameterized3(
             data[1],
             1,
@@ -1618,7 +1618,7 @@ static void Task_ShowBerryCrushRankings(u8 taskId)
             0,
             gText_BerryCrush2
         );
-        xPos = 96 - GetStringWidth(1, gText_PressingSpeedRankings, -1) / 2u;
+        xPos = 96 - GetStringWidth(2, gText_PressingSpeedRankings, -1) / 2u;
         AddTextPrinterParameterized3(
             data[1],
             1,
@@ -1642,7 +1642,7 @@ static void Task_ShowBerryCrushRankings(u8 taskId)
                 0,
                 gStringVar4
             );
-            xPos = 192 - (u8)GetStringWidth(1, gText_TimesPerSec, -1);
+            xPos = 192 - (u8)GetStringWidth(2, gText_TimesPerSec, -1);
             AddTextPrinterParameterized3(
                 data[1],
                 1,
@@ -1660,7 +1660,7 @@ static void Task_ShowBerryCrushRankings(u8 taskId)
             ConvertIntToDecimalStringN(gStringVar1, (u16)data[i + 2] >> 8, STR_CONV_MODE_RIGHT_ALIGN, 3);
             ConvertIntToDecimalStringN(gStringVar2, score / 1000000, STR_CONV_MODE_LEADING_ZEROS, 2);
             StringExpandPlaceholders(gStringVar4, gText_XDotY3);
-            xPos -= GetStringWidth(1, gStringVar4, -1);
+            xPos -= GetStringWidth(2, gStringVar4, -1);
             AddTextPrinterParameterized3(
                 data[1],
                 1,
@@ -2071,11 +2071,11 @@ static u32 sub_8022D14(struct BerryCrushGame *r7, u8 *r5)
         if (r5[1] & 2)
         {
             StringExpandPlaceholders(gStringVar4, gUnknown_082F32A4[r5[0]]);
-            AddTextPrinterParameterized2(0, 1, gStringVar4, r7->unkB, 0, 2, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gStringVar4, r7->unkB, 0, 2, 1, 3);
         }
         else
         {
-            AddTextPrinterParameterized2(0, 1, gUnknown_082F32A4[r5[0]], r7->unkB, 0, 2, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gUnknown_082F32A4[r5[0]], r7->unkB, 0, 2, 1, 3);
         }
         CopyWindowToVram(0, 3);
         break;
@@ -3023,7 +3023,7 @@ static u32 sub_8024134(struct BerryCrushGame *r5, u8 *r4)
         if (!IsLinkTaskFinished())
             return 0;
         DrawDialogueFrame(0, 0);
-        AddTextPrinterParameterized2(0, 1, gText_SavingDontTurnOffPower, 0, 0, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, gText_SavingDontTurnOffPower, 0, 0, 2, 1, 3);
         CopyWindowToVram(0, 3);
         CreateTask(Task_LinkSave, 0);
         break;
@@ -3167,9 +3167,9 @@ static u32 sub_8024444(struct BerryCrushGame *r5, __attribute__((unused)) u8 *r1
     case 0:
         DrawDialogueFrame(0, 0);
         if (r5->unk14 == 3)
-            AddTextPrinterParameterized2(0, 1, gUnknown_082F32A4[5], r5->unkB, 0, 2, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gUnknown_082F32A4[5], r5->unkB, 0, 2, 1, 3);
         else
-            AddTextPrinterParameterized2(0, 1, gUnknown_082F32A4[6], r5->unkB, 0, 2, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gUnknown_082F32A4[6], r5->unkB, 0, 2, 1, 3);
         CopyWindowToVram(0, 3);
         break;
     case 1:

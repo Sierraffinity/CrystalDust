@@ -2662,7 +2662,7 @@ static void CB2_EndBlenderGame(void)
         break;
     case 9:
         sBerryBlender->yesNoAnswer = 0;
-        CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0, 2, 1, 0xD, 0);
+        CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 2, 0, 2, 1, 0xD, 0);
         sBerryBlender->gameEndState++;
         break;
     case 10:
@@ -3761,8 +3761,8 @@ void ShowBerryBlenderRecordWindow(void)
     FillWindowPixelBuffer(gRecordsWindowId, PIXEL_FILL(1));
 
     xPos = GetStringCenterAlignXOffset(1, gText_BlenderMaxSpeedRecord, 144);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_BlenderMaxSpeedRecord, xPos, 1, 0, NULL);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_234Players, 4, 41, 0, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 2, gText_BlenderMaxSpeedRecord, xPos, 1, 0, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 2, gText_234Players, 4, 41, 0, NULL);
 
     for (i = 0, yPos = 41; i < NUM_SCORE_TYPES; i++)
     {
@@ -3777,7 +3777,7 @@ void ShowBerryBlenderRecordWindow(void)
         txtPtr = StringAppend(txtPtr, sText_RPM);
 
         xPos = GetStringRightAlignXOffset(1, text, 140);
-        AddTextPrinterParameterized(gRecordsWindowId, 1, text, xPos, yPos + (i * 16), 0, NULL);
+        AddTextPrinterParameterized(gRecordsWindowId, 2, text, xPos, yPos + (i * 16), 0, NULL);
     }
 
     PutWindowTilemap(gRecordsWindowId);
@@ -3872,7 +3872,7 @@ static void Blender_AddTextPrinter(u8 windowId, const u8 *string, u8 x, u8 y, s3
         FillWindowPixelBuffer(windowId, PIXEL_FILL(txtColor[0]));
     }
 
-    AddTextPrinterParameterized4(windowId, 1, x, y, letterSpacing, 1, txtColor, speed, string);
+    AddTextPrinterParameterized4(windowId, 2, x, y, letterSpacing, 1, txtColor, speed, string);
 }
 
 static bool32 Blender_PrintText(s16 *textState, const u8 *string, s32 textSpeed)

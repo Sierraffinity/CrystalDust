@@ -937,8 +937,8 @@ static void Task_DisplayMainMenu(u8 taskId)
             default:
                 FillWindowPixelBuffer(0, PIXEL_FILL(0xA));
                 FillWindowPixelBuffer(1, PIXEL_FILL(0xA));
-                AddTextPrinterParameterized3(0, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
-                AddTextPrinterParameterized3(1, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
+                AddTextPrinterParameterized3(0, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
+                AddTextPrinterParameterized3(1, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
                 PutWindowTilemap(0);
                 PutWindowTilemap(1);
                 CopyWindowToVram(0, 2);
@@ -950,9 +950,9 @@ static void Task_DisplayMainMenu(u8 taskId)
                 FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
                 FillWindowPixelBuffer(3, PIXEL_FILL(0xA));
                 FillWindowPixelBuffer(4, PIXEL_FILL(0xA));
-                AddTextPrinterParameterized3(2, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
-                AddTextPrinterParameterized3(3, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
-                AddTextPrinterParameterized3(4, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
+                AddTextPrinterParameterized3(2, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
+                AddTextPrinterParameterized3(3, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
+                AddTextPrinterParameterized3(4, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
                 MainMenu_FormatSavegameText();
                 PutWindowTilemap(2);
                 PutWindowTilemap(3);
@@ -969,10 +969,10 @@ static void Task_DisplayMainMenu(u8 taskId)
                 FillWindowPixelBuffer(3, PIXEL_FILL(0xA));
                 FillWindowPixelBuffer(4, PIXEL_FILL(0xA));
                 FillWindowPixelBuffer(5, PIXEL_FILL(0xA));
-                AddTextPrinterParameterized3(2, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
-                AddTextPrinterParameterized3(3, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
-                AddTextPrinterParameterized3(4, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryGift);
-                AddTextPrinterParameterized3(5, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
+                AddTextPrinterParameterized3(2, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
+                AddTextPrinterParameterized3(3, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
+                AddTextPrinterParameterized3(4, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryGift);
+                AddTextPrinterParameterized3(5, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
                 MainMenu_FormatSavegameText();
                 PutWindowTilemap(2);
                 PutWindowTilemap(3);
@@ -1002,11 +1002,11 @@ static void Task_DisplayMainMenu(u8 taskId)
                 FillWindowPixelBuffer(4, PIXEL_FILL(0xA));
                 FillWindowPixelBuffer(5, PIXEL_FILL(0xA));
                 FillWindowPixelBuffer(6, PIXEL_FILL(0xA));
-                AddTextPrinterParameterized3(2, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
-                AddTextPrinterParameterized3(3, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
-                AddTextPrinterParameterized3(4, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryGift2);
-                AddTextPrinterParameterized3(5, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryEvents);
-                AddTextPrinterParameterized3(6, 1, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
+                AddTextPrinterParameterized3(2, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
+                AddTextPrinterParameterized3(3, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
+                AddTextPrinterParameterized3(4, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryGift2);
+                AddTextPrinterParameterized3(5, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryEvents);
+                AddTextPrinterParameterized3(6, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
                 MainMenu_FormatSavegameText();
                 PutWindowTilemap(2);
                 PutWindowTilemap(3);
@@ -1938,7 +1938,7 @@ static void Task_NewGameOakSpeech_CreateNameYesNo(u8 taskId)
         }
         else
         {
-            CreateYesNoMenuParameterized(1, 1, 0xF3, 0xD0, 2, 15);
+            CreateYesNoMenuParameterized(1, 2, 0xF3, 0xD0, 2, 15);
             gTasks[taskId].func = Task_NewGameOakSpeech_ProcessNameYesNoMenu;
         }
     }
@@ -2413,8 +2413,8 @@ static void NewGameOakSpeech_ShowGenderMenu(void)
 {
     DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[1], 0xF3);
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    PrintTextArray(1, 1, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sMenuActions_Gender), sMenuActions_Gender);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 1, 0, 1, 16, 2, 0);
+    PrintTextArray(1, 2, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sMenuActions_Gender), sMenuActions_Gender);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0, 1, 16, 2, 0);
     PutWindowTilemap(1);
     CopyWindowToVram(1, 3);
 }
@@ -2442,7 +2442,7 @@ static void NewGameOakSpeech_SetDefaultPlayerName(u8 nameId)
 static void CreateMainMenuErrorWindow(const u8* str)
 {
     FillWindowPixelBuffer(7, PIXEL_FILL(1));
-    AddTextPrinterParameterized(7, 1, str, 0, 2, 2, NULL);
+    AddTextPrinterParameterized(7, 2, str, 0, 2, 2, NULL);
     PutWindowTilemap(7);
     CopyWindowToVram(7, 2);
     DrawStdFrameWithCustomTileAndPalette(7, TRUE, MAIN_MENU_THIN_BORDER_TILE, 14);
@@ -2461,8 +2461,8 @@ static void MainMenu_FormatSavegameText(void)
 static void MainMenu_FormatSavegamePlayer(void)
 {
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuPlayer);
-    AddTextPrinterParameterized3(2, 1, 2, 18, sTextColor_MenuInfo, -1, gStringVar4);
-    AddTextPrinterParameterized3(2, 1, 62, 18, sTextColor_MenuInfo, -1, gSaveBlock2Ptr->playerName);
+    AddTextPrinterParameterized3(2, 2, 2, 18, sTextColor_MenuInfo, -1, gStringVar4);
+    AddTextPrinterParameterized3(2, 2, 62, 18, sTextColor_MenuInfo, -1, gSaveBlock2Ptr->playerName);
 }
 
 static void MainMenu_FormatSavegameTime(void)
@@ -2471,11 +2471,11 @@ static void MainMenu_FormatSavegameTime(void)
     u8* ptr;
 
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuTime);
-    AddTextPrinterParameterized3(2, 1, 2, 34, sTextColor_MenuInfo, -1, gStringVar4);
+    AddTextPrinterParameterized3(2, 2, 2, 34, sTextColor_MenuInfo, -1, gStringVar4);
     ptr = ConvertIntToDecimalStringN(str, gSaveBlock2Ptr->playTimeHours, STR_CONV_MODE_LEFT_ALIGN, 3);
     *ptr = CHAR_COLON;
     ConvertIntToDecimalStringN(ptr + 1, gSaveBlock2Ptr->playTimeMinutes, STR_CONV_MODE_LEADING_ZEROS, 2);
-    AddTextPrinterParameterized3(2, 1, 62, 34, sTextColor_MenuInfo, -1, str);
+    AddTextPrinterParameterized3(2, 2, 62, 34, sTextColor_MenuInfo, -1, str);
 }
 
 static void MainMenu_FormatSavegamePokedex(void)
@@ -2490,9 +2490,9 @@ static void MainMenu_FormatSavegamePokedex(void)
         else
             dexCount = GetJohtoPokedexCount(FLAG_GET_CAUGHT);
         StringExpandPlaceholders(gStringVar4, gText_ContinueMenuPokedex);
-        AddTextPrinterParameterized3(2, 1, 2, 50, sTextColor_MenuInfo, -1, gStringVar4);
+        AddTextPrinterParameterized3(2, 2, 2, 50, sTextColor_MenuInfo, -1, gStringVar4);
         ConvertIntToDecimalStringN(str, dexCount, STR_CONV_MODE_LEFT_ALIGN, 3);
-        AddTextPrinterParameterized3(2, 1, 62, 50, sTextColor_MenuInfo, -1, str);
+        AddTextPrinterParameterized3(2, 2, 62, 50, sTextColor_MenuInfo, -1, str);
     }
 }
 
@@ -2508,9 +2508,9 @@ static void MainMenu_FormatSavegameBadges(void)
             badgeCount++;
     }
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuBadges);
-    AddTextPrinterParameterized3(2, 1, 2, 66, sTextColor_MenuInfo, -1, gStringVar4);
+    AddTextPrinterParameterized3(2, 2, 2, 66, sTextColor_MenuInfo, -1, gStringVar4);
     ConvertIntToDecimalStringN(str, badgeCount, STR_CONV_MODE_LEADING_ZEROS, 1);
-    AddTextPrinterParameterized3(2, 1, 62, 66, sTextColor_MenuInfo, -1, str);
+    AddTextPrinterParameterized3(2, 2, 62, 66, sTextColor_MenuInfo, -1, str);
 }
 
 static void LoadMainMenuWindowFrameTiles(u8 bgId, u16 tileOffset)
@@ -2565,7 +2565,7 @@ void CreateYesNoMenuParameterized(u8 x, u8 y, u16 borderTileNum, u16 windowTileN
     struct WindowTemplate sp;
 
     sp = CreateWindowTemplate(0, x + 1, y + 1, 6, 4, windowPalette, windowTileNum);
-    CreateYesNoMenu(&sp, 1, 0, 2, borderTileNum, borderPalette, 0);
+    CreateYesNoMenu(&sp, 2, 0, 2, borderTileNum, borderPalette, 0);
 }
 
 static void NewGameOakSpeech_ShowDialogueWindow(u8 windowId, u8 copyToVram)

@@ -671,7 +671,7 @@ static void CB2_EggHatch_1(void)
         if (!IsTextPrinterActive(sEggHatchData->windowId))
         {
             LoadUserWindowBorderGfx(sEggHatchData->windowId, 0x140, 0xE0);
-            CreateYesNoMenu(&sYesNoWinTemplate, 1, 0, 2, 0x140, 0xE, 0);
+            CreateYesNoMenu(&sYesNoWinTemplate, 2, 0, 2, 0x140, 0xE, 0);
             sEggHatchData->CB2_state++;
         }
         break;
@@ -873,7 +873,7 @@ static void EggHatchPrintMessage(u8 windowId, u8* string, u8 x, u8 y, u8 speed)
     sEggHatchData->textColor[0] = 0;
     sEggHatchData->textColor[1] = 5;
     sEggHatchData->textColor[2] = 6;
-    AddTextPrinterParameterized4(windowId, 1, x, y, 1, 1, sEggHatchData->textColor, speed, string);
+    AddTextPrinterParameterized4(windowId, 2, x, y, 1, 1, sEggHatchData->textColor, speed, string);
 }
 
 u8 GetEggCyclesToSubtract(void)

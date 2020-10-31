@@ -1576,7 +1576,7 @@ static void DisplayInitialPlayMessage(void)
     {
         ConvertIntToDecimalStringN(gStringVar1, sCardFlip->numCoinsEntry, 0, 3);
         StringExpandPlaceholders(gStringVar2, sPlayTheGamePromptText);
-        AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar2, 0, 1, 0, NULL);
+        AddTextPrinterParameterized(WIN_TEXT, 2, gStringVar2, 0, 1, 0, NULL);
 
         CopyWindowToVram(WIN_TEXT, 3);
         sCardFlip->state = CARD_FLIP_STATE_PLAY_PROMPT;
@@ -1754,9 +1754,9 @@ static void DisplayBetOutcomeMessage(void)
         ShowHelpBar(sHelpBar_Next);
         DrawDialogueFrame(WIN_TEXT, 0);
         if (wonBet)
-            AddTextPrinterParameterized(WIN_TEXT, 1, sYeahText, 0, 1, 0, NULL);
+            AddTextPrinterParameterized(WIN_TEXT, 2, sYeahText, 0, 1, 0, NULL);
         else
-            AddTextPrinterParameterized(WIN_TEXT, 1, sDarnText, 0, 1, 0, NULL);
+            AddTextPrinterParameterized(WIN_TEXT, 2, sDarnText, 0, 1, 0, NULL);
 
         CopyWindowToVram(WIN_TEXT, 3);
         sCardFlip->state = CARD_FLIP_STATE_DISPLAY_OUTCOME_MESSAGE_INPUT;
@@ -1788,7 +1788,7 @@ static void PlayAgainMessage(void)
 {
     ShowHelpBar(sHelpBar_SelectExit);
     DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sPlayAgainText, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(WIN_TEXT, 2, sPlayAgainText, 0, 1, 0, NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     sCardFlip->state = CARD_FLIP_STATE_PLAY_AGAIN_PROMPT;
 }
@@ -1834,7 +1834,7 @@ static void ProcessPlayAgainPromptInput(u8 taskId)
 static void ShuffleDeckMessage(void)
 {
     DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sShuffledCardsText, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(WIN_TEXT, 2, sShuffledCardsText, 0, 1, 0, NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     ResetAndShuffleCardDeck();
     sCardFlip->state = CARD_FLIP_STATE_SHUFFLE_DECK_INPUT;   
@@ -1852,7 +1852,7 @@ static void ProcessShuffleDeckInput(void)
 static void DisplayNotEnoughCoinsMessage(void)
 {
     DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sNotEnoughCoinsText, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(WIN_TEXT, 2, sNotEnoughCoinsText, 0, 1, 0, NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS_INPUT;
 }

@@ -3099,7 +3099,7 @@ static void sub_802D448(void)
     {
     case 0:
         gUnknown_02022D00->unk12 = sub_802DA9C(1, 8, 20, 2);
-        AddTextPrinterParameterized(gUnknown_02022D00->unk12, 1, gText_WantToPlayAgain2, 0, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(gUnknown_02022D00->unk12, 2, gText_WantToPlayAgain2, 0, 1, TEXT_SPEED_FF, NULL);
         CopyWindowToVram(gUnknown_02022D00->unk12, 2);
         gUnknown_02022D00->unk4++;
         break;
@@ -3126,7 +3126,7 @@ static void sub_802D4F4(void)
     {
     case 0:
         gUnknown_02022D00->unk12 = sub_802DA9C(2, 7, 26, 4);
-        AddTextPrinterParameterized(gUnknown_02022D00->unk12, 1, gText_SavingDontTurnOffPower, 0, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(gUnknown_02022D00->unk12, 2, gText_SavingDontTurnOffPower, 0, 1, TEXT_SPEED_FF, NULL);
         CopyWindowToVram(gUnknown_02022D00->unk12, 2);
         gUnknown_02022D00->unk4++;
         break;
@@ -3169,7 +3169,7 @@ static void sub_802D5E4(void)
     {
     case 0:
         gUnknown_02022D00->unk12 = sub_802DA9C(2, 8, 22, 4);
-        AddTextPrinterParameterized(gUnknown_02022D00->unk12, 1, gText_SomeoneDroppedOut2, 0, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(gUnknown_02022D00->unk12, 2, gText_SomeoneDroppedOut2, 0, 1, TEXT_SPEED_FF, NULL);
         CopyWindowToVram(gUnknown_02022D00->unk12, 2);
         gUnknown_02022D00->unk4++;
         break;
@@ -3195,7 +3195,7 @@ static void sub_802D688(void)
     {
     case 0:
         gUnknown_02022D00->unk12 = sub_802DA9C(7, 10, 16, 2);
-        AddTextPrinterParameterized(gUnknown_02022D00->unk12, 1, gText_CommunicationStandby4, 0, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(gUnknown_02022D00->unk12, 2, gText_CommunicationStandby4, 0, 1, TEXT_SPEED_FF, NULL);
         CopyWindowToVram(gUnknown_02022D00->unk12, 2);
         gUnknown_02022D00->unk4++;
         break;
@@ -3273,7 +3273,7 @@ static void sub_802D7E8(u16 itemId, u16 quantity)
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, gUnknown_02022D00->txtBuff[1]);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gUnknown_02022D00->strBuff, gText_AwesomeWonF701F700);
     gUnknown_02022D00->unk12 = sub_802DA9C(4, 8, 22, 4);
-    AddTextPrinterParameterized(gUnknown_02022D00->unk12, 1, gUnknown_02022D00->strBuff, 0, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gUnknown_02022D00->unk12, 2, gUnknown_02022D00->strBuff, 0, 1, TEXT_SPEED_FF, NULL);
     CopyWindowToVram(gUnknown_02022D00->unk12, 2);
     gUnknown_02022D00->unk14 = MUS_LEVEL_UP;
     gUnknown_02022D00->unkD = 0;
@@ -3286,7 +3286,7 @@ static void sub_802D884(u16 itemId)
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gUnknown_02022D00->txtBuff[0]);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gUnknown_02022D00->strBuff, gText_FilledStorageSpace2);
     gUnknown_02022D00->unk12 = sub_802DA9C(4, 8, 22, 4);
-    AddTextPrinterParameterized(gUnknown_02022D00->unk12, 1, gUnknown_02022D00->strBuff, 0, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gUnknown_02022D00->unk12, 2, gUnknown_02022D00->strBuff, 0, 1, TEXT_SPEED_FF, NULL);
     CopyWindowToVram(gUnknown_02022D00->unk12, 2);
     gUnknown_02022D00->unk14 = 0;
     gUnknown_02022D00->unkD = 0;
@@ -3299,7 +3299,7 @@ static void sub_802D8FC(u16 itemId)
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gUnknown_02022D00->txtBuff[0]);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gUnknown_02022D00->strBuff, gText_CantHoldMore);
     gUnknown_02022D00->unk12 = sub_802DA9C(4, 9, 22, 2);
-    AddTextPrinterParameterized(gUnknown_02022D00->unk12, 1, gUnknown_02022D00->strBuff, 0, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gUnknown_02022D00->unk12, 2, gUnknown_02022D00->strBuff, 0, 1, TEXT_SPEED_FF, NULL);
     CopyWindowToVram(gUnknown_02022D00->unk12, 2);
     gUnknown_02022D00->unk14 = 0;
     gUnknown_02022D00->unkD = 0;
@@ -3410,7 +3410,7 @@ static void sub_802DB18(u16 left, u16 top, u8 cursorPos)
     window.paletteNum = 2;
     window.baseBlock = 0x2B;
 
-    CreateYesNoMenu(&window, 1, 0, 2, 1, 0xD, a);
+    CreateYesNoMenu(&window, 2, 0, 2, 1, 0xD, a);
 }
 
 static void sub_802DB8C(void)
@@ -3602,9 +3602,9 @@ static void sub_802DED8(int multiplayerId, u8 clr1, u8 clr2, u8 clr3)
     u8 colors[3] = {clr1, clr2, clr3};
 
     FillWindowPixelBuffer(gUnknown_02022D00->unk1C[multiplayerId], 0);
-    x = 64 - GetStringWidth(1, sub_802C8E8(multiplayerId), -1);
+    x = 64 - GetStringWidth(2, sub_802C8E8(multiplayerId), -1);
     x /= 2;
-    AddTextPrinterParameterized3(gUnknown_02022D00->unk1C[multiplayerId], 1, x, 1, colors, -1, sub_802C8E8(multiplayerId));
+    AddTextPrinterParameterized3(gUnknown_02022D00->unk1C[multiplayerId], 2, x, 1, colors, -1, sub_802C8E8(multiplayerId));
     CopyWindowToVram(gUnknown_02022D00->unk1C[multiplayerId], 2);
 }
 
@@ -3900,10 +3900,10 @@ static void Task_ShowPokemonJumpRecords(u8 taskId)
     {
     case 0:
         window = gUnknown_082FE270;
-        width = GetStringWidth(1, gText_PkmnJumpRecords, 0);
+        width = GetStringWidth(2, gText_PkmnJumpRecords, 0);
         for (i = 0; i < ARRAY_COUNT(gUnknown_082FE278); i++)
         {
-            widthCurr = GetStringWidth(1, gUnknown_082FE278[i], 0) + 38;
+            widthCurr = GetStringWidth(2, gUnknown_082FE278[i], 0) + 38;
             if (widthCurr > width)
                 width = widthCurr;
         }
@@ -3952,14 +3952,14 @@ static void sub_802E500(u16 windowId, int width)
     LoadUserWindowBorderGfx_(windowId, 0x21D, 0xD0);
     DrawTextBorderOuter(windowId, 0x21D, 0xD);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    AddTextPrinterParameterized(windowId, 1, gText_PkmnJumpRecords, GetStringCenterAlignXOffset(1, gText_PkmnJumpRecords, width * 8), 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_PkmnJumpRecords, GetStringCenterAlignXOffset(1, gText_PkmnJumpRecords, width * 8), 1, TEXT_SPEED_FF, NULL);
     for (i = 0; i < ARRAY_COUNT(gUnknown_082FE278); i++)
     {
-        AddTextPrinterParameterized(windowId, 1, gUnknown_082FE278[i], 0, 25 + (i * 16), TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gUnknown_082FE278[i], 0, 25 + (i * 16), TEXT_SPEED_FF, NULL);
         ConvertIntToDecimalStringN(gStringVar1, results[i], STR_CONV_MODE_LEFT_ALIGN, 5);
         TruncateToFirstWordOnly(gStringVar1);
-        x = (width * 8) - GetStringWidth(1, gStringVar1, 0);
-        AddTextPrinterParameterized(windowId, 1, gStringVar1, x, 25 + (i * 16), TEXT_SPEED_FF, NULL);
+        x = (width * 8) - GetStringWidth(2, gStringVar1, 0);
+        AddTextPrinterParameterized(windowId, 2, gStringVar1, x, 25 + (i * 16), TEXT_SPEED_FF, NULL);
     }
     PutWindowTilemap(windowId);
 }

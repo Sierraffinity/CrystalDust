@@ -378,7 +378,7 @@ void sub_801C178(u8 whichWindow)
             AddTextPrinterParameterized3(windowId, 3, x, 17, sTextColorTable[sWonderCardData->unk_0170->textPal1], 0, sWonderCardData->unk_01B4);
             if (sWonderCardData->unk_0000.unk_04 != 0)
             {
-                AddTextPrinterParameterized3(windowId, 1, 166, 17, sTextColorTable[sWonderCardData->unk_0170->textPal1], 0, sWonderCardData->unk_01DD);
+                AddTextPrinterParameterized3(windowId, 2, 166, 17, sTextColorTable[sWonderCardData->unk_0170->textPal1], 0, sWonderCardData->unk_01DD);
             }
             break;
         }

@@ -2631,10 +2631,10 @@ static void Task_ShowDodrioBerryPickingRecords(u8 taskId)
     {
     case 0:
         window = gUnknown_082F7B2C;
-        width = GetStringWidth(1, gText_BerryPickingRecords, 0);
+        width = GetStringWidth(2, gText_BerryPickingRecords, 0);
         for (i = 0; i < ARRAY_COUNT(gUnknown_082F7B34); i++)
         {
-            widthCurr = GetStringWidth(1, gUnknown_082F7B34[i], 0) + 50;
+            widthCurr = GetStringWidth(2, gUnknown_082F7B34[i], 0) + 50;
             if (widthCurr > width)
                 width = widthCurr;
         }
@@ -2682,14 +2682,14 @@ static void sub_8027BEC(u8 windowId, s32 width)
     LoadUserWindowBorderGfx_(windowId, 0x21D, 0xD0);
     DrawTextBorderOuter(windowId, 0x21D, 0xD);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    AddTextPrinterParameterized(windowId, 1, gText_BerryPickingRecords, GetStringCenterAlignXOffset(1, gText_BerryPickingRecords, width * 8), 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_BerryPickingRecords, GetStringCenterAlignXOffset(1, gText_BerryPickingRecords, width * 8), 1, TEXT_SPEED_FF, NULL);
     for (i = 0; i < 3; i++)
     {
         ConvertIntToDecimalStringN(gStringVar1, results[i], STR_CONV_MODE_LEFT_ALIGN, gUnknown_082F7B40[i]);
-        numWidth = GetStringWidth(1, gStringVar1, -1);
-        AddTextPrinterParameterized(windowId, 1, gUnknown_082F7B34[i], 0, gUnknown_082F7B44[i][0], TEXT_SPEED_FF, NULL);
+        numWidth = GetStringWidth(2, gStringVar1, -1);
+        AddTextPrinterParameterized(windowId, 2, gUnknown_082F7B34[i], 0, gUnknown_082F7B44[i][0], TEXT_SPEED_FF, NULL);
         x = (width * 8) - numWidth;
-        AddTextPrinterParameterized(windowId, 1, gStringVar1, x, gUnknown_082F7B4A[i][0], TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gStringVar1, x, gUnknown_082F7B4A[i][0], TEXT_SPEED_FF, NULL);
     }
     PutWindowTilemap(windowId);
 }
@@ -4099,7 +4099,7 @@ static void sub_8029440(void)
         {
             colorsId = 0;
             id = sub_8027A48(i);
-            left = (56 - GetStringWidth(1, sub_8027660(id), -1)) / 2u;
+            left = (56 - GetStringWidth(2, sub_8027660(id), -1)) / 2u;
             window.tilemapLeft = ptr->left;
             window.tilemapTop = ptr->top;
             gUnknown_02022CF8->unk3008[i] = AddWindow(&window);
@@ -4108,7 +4108,7 @@ static void sub_8029440(void)
             if (id == GetMultiplayerId())
                 colorsId = 2;
             name = sub_8027660(id);
-            AddTextPrinterParameterized3(gUnknown_02022CF8->unk3008[i], 1, left, 1, sTextColorTable[colorsId], -1, name);
+            AddTextPrinterParameterized3(gUnknown_02022CF8->unk3008[i], 2, left, 1, sTextColorTable[colorsId], -1, name);
             CopyWindowToVram(gUnknown_02022CF8->unk3008[i], 2);
             window.baseBlock += 0xE;
             sub_8029174(&window);
@@ -4181,22 +4181,22 @@ static void sub_80296A8(u8 playersCount_)
             structArray[i].unk0 = playersCount - 1;
     }
 
-    x = 216 - GetStringWidth(1, gText_SpacePoints, 0);
+    x = 216 - GetStringWidth(2, gText_SpacePoints, 0);
     for (i = 0; i < playersCount; i++)
     {
         u8 colorsId = 0;
         u8 id = array[i];
         u32 points = structArray[id].unk4;
 
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gUnknown_082FB3DC[structArray[id].unk0], 8, gUnknown_082FB402[i], -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gUnknown_082FB3DC[structArray[id].unk0], 8, gUnknown_082FB402[i], -1, NULL);
         if (id == GetMultiplayerId())
             colorsId = 2;
         name = sub_8027660(id);
-        AddTextPrinterParameterized3(gUnknown_02022CF8->unk3008[1], 1, 28, gUnknown_082FB402[i], sTextColorTable[colorsId], -1, name);
+        AddTextPrinterParameterized3(gUnknown_02022CF8->unk3008[1], 2, 28, gUnknown_082FB402[i], sTextColorTable[colorsId], -1, name);
         ConvertIntToDecimalStringN(numString, points, STR_CONV_MODE_LEFT_ALIGN, 7);
-        numWidth = GetStringWidth(1, numString, -1);
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, numString, x - numWidth, gUnknown_082FB402[i], -1, NULL);
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gText_SpacePoints, x, gUnknown_082FB402[i], -1, NULL);
+        numWidth = GetStringWidth(2, numString, -1);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, numString, x - numWidth, gUnknown_082FB402[i], -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gText_SpacePoints, x, gUnknown_082FB402[i], -1, NULL);
     }
 }
 
@@ -4225,10 +4225,10 @@ static void sub_802988C(void)
     case 2:
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[0], PIXEL_FILL(1));
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[1], PIXEL_FILL(1));
-        strWidth = GetStringWidth(1, gText_BerryPickingResults, -1);
+        strWidth = GetStringWidth(2, gText_BerryPickingResults, -1);
         x = (224 - strWidth) / 2;
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 1, gText_BerryPickingResults, x, 1, -1, NULL);
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gText_10P30P50P50P, 68, 17, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 2, gText_BerryPickingResults, x, 1, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gText_10P30P50P50P, 68, 17, -1, NULL);
         for (i = 0; i < playersCount; i++)
         {
             u8 colorsId = 0;
@@ -4236,7 +4236,7 @@ static void sub_802988C(void)
                 colorsId = 2;
 
             name = sub_8027660(i);
-            AddTextPrinterParameterized3(gUnknown_02022CF8->unk3008[1], 1, 0, gUnknown_082FB3F8[i], sTextColorTable[colorsId], -1, name);
+            AddTextPrinterParameterized3(gUnknown_02022CF8->unk3008[1], 2, 0, gUnknown_082FB3F8[i], sTextColorTable[colorsId], -1, name);
             for (j = 0; j < 4; j++)
             {
                 u32 width;
@@ -4244,11 +4244,11 @@ static void sub_802988C(void)
                 u16 result2 = Min(sub_802778C(j), 9999);
 
                 ConvertIntToDecimalStringN(gStringVar4, result1, STR_CONV_MODE_LEFT_ALIGN, 4);
-                width = GetStringWidth(1, gStringVar4, -1);
+                width = GetStringWidth(2, gStringVar4, -1);
                 if (result2 == result1 && result2 != 0)
-                    AddTextPrinterParameterized3(gUnknown_02022CF8->unk3008[1], 1, gUnknown_082FB3F0[j] - width, gUnknown_082FB3F8[i], sTextColorTable[1], -1, gStringVar4);
+                    AddTextPrinterParameterized3(gUnknown_02022CF8->unk3008[1], 2, gUnknown_082FB3F0[j] - width, gUnknown_082FB3F8[i], sTextColorTable[1], -1, gStringVar4);
                 else
-                    AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gStringVar4, gUnknown_082FB3F0[j] - width, gUnknown_082FB3F8[i], -1, NULL);
+                    AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gStringVar4, gUnknown_082FB3F0[j] - width, gUnknown_082FB3F8[i], -1, NULL);
             }
         }
         CopyWindowToVram(gUnknown_02022CF8->unk3008[0], 2);
@@ -4277,9 +4277,9 @@ static void sub_802988C(void)
     case 5:
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[0], PIXEL_FILL(1));
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[1], PIXEL_FILL(1));
-        strWidth = GetStringWidth(1, gText_AnnouncingRankings, -1);
+        strWidth = GetStringWidth(2, gText_AnnouncingRankings, -1);
         x = (224 - strWidth) / 2;
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 1, gText_AnnouncingRankings, x, 1, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 2, gText_AnnouncingRankings, x, 1, -1, NULL);
         gUnknown_02022CF8->state++;
         break;
     case 6:
@@ -4323,14 +4323,14 @@ static void sub_802988C(void)
         PlayNewMapMusic(MUS_LEVEL_UP);
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[0], PIXEL_FILL(1));
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[1], PIXEL_FILL(1));
-        strWidth = GetStringWidth(1, gText_AnnouncingPrizes, -1);
+        strWidth = GetStringWidth(2, gText_AnnouncingPrizes, -1);
         x = (224 - strWidth) / 2;
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 1, gText_AnnouncingPrizes, x, 1, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 2, gText_AnnouncingPrizes, x, 1, -1, NULL);
         DynamicPlaceholderTextUtil_Reset();
         CopyItemName(sub_802762C(), gStringVar1);
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_FirstPlacePrize);
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gStringVar4, 0, 1, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gStringVar4, 0, 1, -1, NULL);
         itemGiveRet = sub_80279C8();
         if (itemGiveRet != 0 && itemGiveRet != 3)
         {
@@ -4341,7 +4341,7 @@ static void sub_802988C(void)
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_CantHoldAnyMore);
             else if (itemGiveRet == 1)
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_FilledStorageSpace);
-            AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gStringVar4, 0, 41, -1, NULL);
+            AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gStringVar4, 0, 41, -1, NULL);
         }
         CopyWindowToVram(gUnknown_02022CF8->unk3008[0], 2);
         CopyWindowToVram(gUnknown_02022CF8->unk3008[1], 2);
@@ -4397,10 +4397,10 @@ static void sub_802A010(void)
     case 1:
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[0], PIXEL_FILL(1));
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[1], PIXEL_FILL(1));
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 1, gText_WantToPlayAgain, 0, 5, -1, NULL);
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gText_Yes, 8, 1, -1, NULL);
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gText_No, 8, 17, -1, NULL);
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gText_SelectorArrow2, 0, 1, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 2, gText_WantToPlayAgain, 0, 5, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gText_Yes, 8, 1, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gText_No, 8, 17, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gText_SelectorArrow2, 0, 1, -1, NULL);
         CopyWindowToVram(gUnknown_02022CF8->unk3008[0], 2);
         CopyWindowToVram(gUnknown_02022CF8->unk3008[1], 2);
         gUnknown_02022CF8->state++;
@@ -4419,9 +4419,9 @@ static void sub_802A010(void)
         if (y == 0)
             y = 1;
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[1], PIXEL_FILL(1));
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gText_Yes, 8, 1, -1, NULL);
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gText_No, 8, 17, -1, NULL);
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 1, gText_SelectorArrow2, 0, ((y - 1) * 16) + 1, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gText_Yes, 8, 1, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gText_No, 8, 17, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[1], 2, gText_SelectorArrow2, 0, ((y - 1) * 16) + 1, -1, NULL);
         CopyWindowToVram(gUnknown_02022CF8->unk3008[1], 3);
         // Increment state only if A or B button have been pressed.
         if (JOY_NEW(A_BUTTON))
@@ -4473,7 +4473,7 @@ static void sub_802A380(void)
     {
     case 0:
         DrawDialogueFrame(0, FALSE);
-        AddTextPrinterParameterized2(0, 1, gText_SavingDontTurnOffPower, 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, gText_SavingDontTurnOffPower, 0, NULL, 2, 1, 3);
         gUnknown_02022CF8->state++;
         break;
     case 1:
@@ -4511,7 +4511,7 @@ static void sub_802A454(void)
         break;
     case 1:
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[0], PIXEL_FILL(1));
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 1, gText_CommunicationStandby3, 0, 5, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 2, gText_CommunicationStandby3, 0, 5, -1, NULL);
         CopyWindowToVram(gUnknown_02022CF8->unk3008[0], 2);
         gUnknown_02022CF8->state++;
         break;
@@ -4551,7 +4551,7 @@ static void sub_802A588(void)
         break;
     case 1:
         FillWindowPixelBuffer(gUnknown_02022CF8->unk3008[0], PIXEL_FILL(1));
-        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 1, gText_SomeoneDroppedOut, 0, 5, -1, NULL);
+        AddTextPrinterParameterized(gUnknown_02022CF8->unk3008[0], 2, gText_SomeoneDroppedOut, 0, 5, -1, NULL);
         CopyWindowToVram(gUnknown_02022CF8->unk3008[0], 2);
         gUnknown_02022CF8->state++;
         break;

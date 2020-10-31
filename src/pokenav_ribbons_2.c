@@ -759,7 +759,7 @@ void sub_81D0E84(struct PokenavSub14 *structPtr)
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_RibbonsF700);
     FillWindowPixelBuffer(structPtr->field_A, PIXEL_FILL(4));
-    AddTextPrinterParameterized3(structPtr->field_A, 1, 0, 1, color, -1, gStringVar4);
+    AddTextPrinterParameterized3(structPtr->field_A, 2, 0, 1, color, -1, gStringVar4);
     CopyWindowToVram(structPtr->field_A, 2);
 }
 
@@ -773,7 +773,7 @@ void sub_81D0EFC(struct PokenavSub14 *structPtr)
     if (ribbonId < 25)
     {
         for (i = 0; i < 2; i++)
-            AddTextPrinterParameterized3(structPtr->field_A, 1, 0, (i * 16) + 1, color, -1, gRibbonDescriptionPointers[ribbonId][i]);
+            AddTextPrinterParameterized3(structPtr->field_A, 2, 0, (i * 16) + 1, color, -1, gRibbonDescriptionPointers[ribbonId][i]);
     }
     else
     {
@@ -783,7 +783,7 @@ void sub_81D0EFC(struct PokenavSub14 *structPtr)
 
         ribbonId--;
         for (i = 0; i < 2; i++)
-            AddTextPrinterParameterized3(structPtr->field_A, 1, 0, (i * 16) + 1, color, -1, gGiftRibbonDescriptionPointers[ribbonId][i]);
+            AddTextPrinterParameterized3(structPtr->field_A, 2, 0, (i * 16) + 1, color, -1, gGiftRibbonDescriptionPointers[ribbonId][i]);
     }
 
     CopyWindowToVram(structPtr->field_A, 2);
@@ -820,7 +820,7 @@ void sub_81D0FF0(struct PokenavSub14 *structPtr)
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     GetCurrMonInfo1(gStringVar3, &level, &gender);
-    AddTextPrinterParameterized(windowId, 1, gStringVar3, 0, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gStringVar3, 0, 1, TEXT_SPEED_FF, NULL);
     switch (gender)
     {
     case MON_MALE:
@@ -839,7 +839,7 @@ void sub_81D0FF0(struct PokenavSub14 *structPtr)
     *(txtPtr++) = CHAR_EXTRA_SYMBOL;
     *(txtPtr++) = CHAR_LV_2;
     ConvertIntToDecimalStringN(txtPtr, level, STR_CONV_MODE_LEFT_ALIGN, 3);
-    AddTextPrinterParameterized(windowId, 1, gStringVar1, 60, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gStringVar1, 60, 1, TEXT_SPEED_FF, NULL);
     CopyWindowToVram(windowId, 2);
 }
 
@@ -876,7 +876,7 @@ void sub_81D10D0(struct PokenavSub14 *structPtr)
     *(txtPtr++) = CHAR_SLASH;
     ConvertIntToDecimalStringN(txtPtr, count, STR_CONV_MODE_RIGHT_ALIGN, 3);
     x = GetStringCenterAlignXOffset(1, gStringVar1, 56);
-    AddTextPrinterParameterized(structPtr->field_C, 1, gStringVar1, x, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(structPtr->field_C, 2, gStringVar1, x, 1, TEXT_SPEED_FF, NULL);
     CopyWindowToVram(structPtr->field_C, 2);
 }
 

@@ -219,9 +219,9 @@ void CB2_StartWallClock(void)
     WallClockInit();
     PutWindowTilemap(2);
     FillWindowPixelBuffer(2, 0x00);
-    AddTextPrinterParameterized3(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeNotSet);
+    AddTextPrinterParameterized3(2, 2, GetStringCenterAlignXOffset(1, gText_SetClock_TimeNotSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeNotSet);
     DrawDialogueFrame(0, TRUE);
-    AddTextPrinterParameterized(0, 1, gText_SetClock_WhatTime, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(0, 2, gText_SetClock_WhatTime, 0, 1, 0, NULL);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 
@@ -411,7 +411,7 @@ static void Task_SetClock3(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
     {
-        CreateYesNoMenu(&sWindowTemplate_ConfirmYesNo, 1, 0, 2, 0x250, 13, 0);
+        CreateYesNoMenu(&sWindowTemplate_ConfirmYesNo, 2, 0, 2, 0x250, 13, 0);
         gTasks[taskId].func = Task_SetClock4;
     }
 }
@@ -451,7 +451,7 @@ static void Task_SetClock5(u8 taskId)
     RtcInitLocalTimeOffset(gTasks[taskId].tHours, gTasks[taskId].tMinutes);
 
     FillWindowPixelBuffer(2, 0x00);
-    AddTextPrinterParameterized3(2, 1, GetStringCenterAlignXOffset(1, gText_SetClock_TimeSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeSet);
+    AddTextPrinterParameterized3(2, 2, GetStringCenterAlignXOffset(1, gText_SetClock_TimeSet, 0x98), 1, sTextColor, 0, gText_SetClock_TimeSet);
     
     if (gTasks[taskId].tMinutes == 0)
     {

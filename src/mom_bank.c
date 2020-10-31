@@ -174,15 +174,15 @@ static void MomBank_PrintMainWindow(u8 windowId, u32 depositedMoney, u32 heldMon
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PrintMoneyAmount(windowId, 58, 12, depositedMoney, 0);
     PrintMoneyAmount(windowId, 58, 36, heldMoney, 0);
-    AddTextPrinterParameterized5(windowId, 1, gText_DepositedMoney, 0, 1, 0, NULL, 0, 2);
-    AddTextPrinterParameterized5(windowId, 1, gText_HeldMoney, 0, 25, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gText_DepositedMoney, 0, 1, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gText_HeldMoney, 0, 25, 0, NULL, 0, 2);
 }
 
 void MomBank_PrintMoneyAmountLeadingZeroes(u8 windowId, u8 x, u8 y, u32 amount, u8 speed)
 {
     ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEADING_ZEROS, 6);
     StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
-    AddTextPrinterParameterized(windowId, 1, gStringVar4, x, y, speed, NULL);
+    AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, speed, NULL);
 }
 
 static void MomBank_PrintTransactionQuantity(u8 windowId, u32 amount, bool32 isDeposit)

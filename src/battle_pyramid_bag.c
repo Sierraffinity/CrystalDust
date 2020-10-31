@@ -929,7 +929,7 @@ static void sub_81C5D20(u8 taskId)
 static void sub_81C5EAC(u8 windowId)
 {
     AddItemMenuActionTextPrinters(windowId, 7, 8, 1, 0, 0x10, gPyramidBagResources->menuActionsCount, sMenuActions, gPyramidBagResources->menuActionIds);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, gPyramidBagResources->menuActionsCount, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, gPyramidBagResources->menuActionsCount, 0);
 }
 
 static void sub_81C5F08(u8 windowId, u8 horizontalCount, u8 verticalCount)
@@ -1122,7 +1122,7 @@ static void sub_81C6404(void)
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
     sub_81C6CEC(3);
     x = GetStringCenterAlignXOffset(1, gStringVar4, 0x28);
-    AddTextPrinterParameterized(3, 1, gStringVar4, x, 2, 0, NULL);
+    AddTextPrinterParameterized(3, 2, gStringVar4, x, 2, 0, NULL);
 }
 
 static void sub_81C645C(s16 value)
@@ -1132,7 +1132,7 @@ static void sub_81C645C(s16 value)
     ConvertIntToDecimalStringN(gStringVar1, value, STR_CONV_MODE_LEADING_ZEROS, 2);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
     x = GetStringCenterAlignXOffset(1, gStringVar4, 0x28);
-    AddTextPrinterParameterized(3, 1, gStringVar4, x, 2, 0, NULL);
+    AddTextPrinterParameterized(3, 2, gStringVar4, x, 2, 0, NULL);
 }
 
 static void sub_81C64B4(u8 taskId)
@@ -1406,7 +1406,7 @@ static void sub_81C6BD8(void)
 
 static void PrintOnWindow_Font1(u8 windowId, const u8 *src, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorTableId)
 {
-    AddTextPrinterParameterized4(windowId, 1, x, y, letterSpacing, lineSpacing, sColorTable[colorTableId], speed, src);
+    AddTextPrinterParameterized4(windowId, 2, x, y, letterSpacing, lineSpacing, sColorTable[colorTableId], speed, src);
 }
 
 static void PrintOnWindow_Font7(u8 windowId, const u8 *src, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorTableId)
@@ -1452,13 +1452,13 @@ static void sub_81C6D6C(u8 windowArrayId)
 
 static void sub_81C6DAC(u8 taskId, const struct YesNoFuncTable *yesNoTable)
 {
-    CreateYesNoMenuWithCallbacks(taskId, &gUnknown_0861F350[4], 1, 0, 2, 1, 0xE, yesNoTable);
+    CreateYesNoMenuWithCallbacks(taskId, &gUnknown_0861F350[4], 2, 0, 2, 1, 0xE, yesNoTable);
 }
 
 void DisplayItemMessageInBattlePyramid(u8 taskId, const u8 *str, void (*callback)(u8 taskId))
 {
     FillWindowPixelBuffer(2, PIXEL_FILL(1));
-    DisplayMessageAndContinueTask(taskId, 2, 0xA, 0xD, 1, GetPlayerTextSpeedDelay(), str, callback);
+    DisplayMessageAndContinueTask(taskId, 2, 0xA, 0xD, 2, GetPlayerTextSpeedDelay(), str, callback);
     ScheduleBgCopyTilemapToVram(1);
 }
 

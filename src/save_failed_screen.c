@@ -164,7 +164,7 @@ static void SaveFailedScreenTextPrint(const u8 *text, u8 var1, u8 var2)
     color[0] = 0;
     color[1] = 15;
     color[2] = 3;
-    AddTextPrinterParameterized4(gSaveFailedWindowIds[TEXT_WIN_ID], 1, var1 * 8, var2 * 8 + 1, 0, 0, color, 0, text);
+    AddTextPrinterParameterized4(gSaveFailedWindowIds[TEXT_WIN_ID], 2, var1 * 8, var2 * 8 + 1, 0, 0, color, 0, text);
 }
 
 void DoSaveFailedScreen(u8 saveType)

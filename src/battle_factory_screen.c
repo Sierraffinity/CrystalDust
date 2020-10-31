@@ -1793,7 +1793,7 @@ static void sub_819B958(u8 windowId)
 static void Select_PrintRentalPkmnString(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
-    AddTextPrinterParameterized(0, 1, gText_RentalPkmn2, 2, 1, 0, NULL);
+    AddTextPrinterParameterized(0, 2, gText_RentalPkmn2, 2, 1, 0, NULL);
     CopyWindowToVram(0, 3);
 }
 
@@ -1807,7 +1807,7 @@ static void Select_PrintMonSpecies(void)
     species = GetMonData(&sFactorySelectScreen->mons[monId].monData, MON_DATA_SPECIES, NULL);
     StringCopy(gStringVar4, gSpeciesNames[species]);
     x = GetStringRightAlignXOffset(1, gStringVar4, 86);
-    AddTextPrinterParameterized3(1, 1, x, 1, sSpeciesNameTextColors, 0, gStringVar4);
+    AddTextPrinterParameterized3(1, 2, x, 1, sSpeciesNameTextColors, 0, gStringVar4);
     CopyWindowToVram(1, 2);
 }
 
@@ -1825,14 +1825,14 @@ static void Select_PrintSelectMonString(void)
     else
         str = gText_TheseThreePkmnOkay;
 
-    AddTextPrinterParameterized(2, 1, str, 2, 5, 0, NULL);
+    AddTextPrinterParameterized(2, 2, str, 2, 5, 0, NULL);
     CopyWindowToVram(2, 2);
 }
 
 static void Select_PrintCantSelectSameMon(void)
 {
     FillWindowPixelBuffer(2, PIXEL_FILL(0));
-    AddTextPrinterParameterized(2, 1, gText_CantSelectSamePkmn, 2, 5, 0, NULL);
+    AddTextPrinterParameterized(2, 2, gText_CantSelectSamePkmn, 2, 5, 0, NULL);
     CopyWindowToVram(2, 2);
 }
 
@@ -1842,13 +1842,13 @@ static void Select_PrintMenuOptions(void)
 
     PutWindowTilemap(3);
     FillWindowPixelBuffer(3, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(3, 1, 7, 1, sMenuOptionTextColors, 0, gText_Summary);
+    AddTextPrinterParameterized3(3, 2, 7, 1, sMenuOptionTextColors, 0, gText_Summary);
     if (selectedId != 0)
-        AddTextPrinterParameterized3(3, 1, 7, 17, sMenuOptionTextColors, 0, gText_Deselect);
+        AddTextPrinterParameterized3(3, 2, 7, 17, sMenuOptionTextColors, 0, gText_Deselect);
     else
-        AddTextPrinterParameterized3(3, 1, 7, 17, sMenuOptionTextColors, 0, gText_Rent);
+        AddTextPrinterParameterized3(3, 2, 7, 17, sMenuOptionTextColors, 0, gText_Rent);
 
-    AddTextPrinterParameterized3(3, 1, 7, 33, sMenuOptionTextColors, 0, gText_Others2);
+    AddTextPrinterParameterized3(3, 2, 7, 33, sMenuOptionTextColors, 0, gText_Others2);
     CopyWindowToVram(3, 3);
 }
 
@@ -1856,8 +1856,8 @@ static void Select_PrintYesNoOptions(void)
 {
     PutWindowTilemap(4);
     FillWindowPixelBuffer(4, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(4, 1, 7, 1, sMenuOptionTextColors, 0, gText_Yes2);
-    AddTextPrinterParameterized3(4, 1, 7, 17, sMenuOptionTextColors, 0, gText_No2);
+    AddTextPrinterParameterized3(4, 2, 7, 1, sMenuOptionTextColors, 0, gText_Yes2);
+    AddTextPrinterParameterized3(4, 2, 7, 17, sMenuOptionTextColors, 0, gText_No2);
     CopyWindowToVram(4, 3);
 }
 
@@ -1927,7 +1927,7 @@ static void Select_PrintMonCategory(void)
         species = GetMonData(&sFactorySelectScreen->mons[monId].monData, MON_DATA_SPECIES, NULL);
         CopyMonCategoryText(SpeciesToNationalPokedexNum(species), text);
         x = GetStringRightAlignXOffset(1, text, 0x76);
-        AddTextPrinterParameterized(5, 1, text, x, 1, 0, NULL);
+        AddTextPrinterParameterized(5, 2, text, x, 1, 0, NULL);
         CopyWindowToVram(5, 2);
     }
 }
@@ -3575,7 +3575,7 @@ static void sub_819EAF8(void)
 static void Swap_PrintPkmnSwap(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized(0, 1, gText_PkmnSwap, 2, 1, 0, NULL);
+    AddTextPrinterParameterized(0, 2, gText_PkmnSwap, 2, 1, 0, NULL);
     CopyWindowToVram(0, 3);
 }
 
@@ -3598,7 +3598,7 @@ static void Swap_PrintMonSpecies(void)
             species = GetMonData(&gEnemyParty[monId], MON_DATA_SPECIES, NULL);
         StringCopy(gStringVar4, gSpeciesNames[species]);
         x = GetStringRightAlignXOffset(1, gStringVar4, 86);
-        AddTextPrinterParameterized3(1, 1, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
+        AddTextPrinterParameterized3(1, 2, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
         CopyWindowToVram(1, 3);
     }
 }
@@ -3606,7 +3606,7 @@ static void Swap_PrintMonSpecies(void)
 static void Swap_PrintOnInfoWindow(const u8 *str)
 {
     FillWindowPixelBuffer(2, PIXEL_FILL(0));
-    AddTextPrinterParameterized(2, 1, str, 2, 5, 0, NULL);
+    AddTextPrinterParameterized(2, 2, str, 2, 5, 0, NULL);
     CopyWindowToVram(2, 2);
 }
 
@@ -3614,9 +3614,9 @@ static void Swap_PrintMenuOptions(void)
 {
     PutWindowTilemap(3);
     FillWindowPixelBuffer(3, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(3, 1, 15,  1, sSwapMenuOptionsTextColors, 0, gText_Summary2);
-    AddTextPrinterParameterized3(3, 1, 15, 17, sSwapMenuOptionsTextColors, 0, gText_Swap);
-    AddTextPrinterParameterized3(3, 1, 15, 33, sSwapMenuOptionsTextColors, 0, gText_Rechoose);
+    AddTextPrinterParameterized3(3, 2, 15,  1, sSwapMenuOptionsTextColors, 0, gText_Summary2);
+    AddTextPrinterParameterized3(3, 2, 15, 17, sSwapMenuOptionsTextColors, 0, gText_Swap);
+    AddTextPrinterParameterized3(3, 2, 15, 33, sSwapMenuOptionsTextColors, 0, gText_Rechoose);
     CopyWindowToVram(3, 3);
 }
 
@@ -3624,8 +3624,8 @@ static void Swap_PrintYesNoOptions(void)
 {
     PutWindowTilemap(4);
     FillWindowPixelBuffer(4, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(4, 1, 7, 1,  sSwapMenuOptionsTextColors, 0, gText_Yes3);
-    AddTextPrinterParameterized3(4, 1, 7, 17, sSwapMenuOptionsTextColors, 0, gText_No3);
+    AddTextPrinterParameterized3(4, 2, 7, 1,  sSwapMenuOptionsTextColors, 0, gText_Yes3);
+    AddTextPrinterParameterized3(4, 2, 7, 17, sSwapMenuOptionsTextColors, 0, gText_No3);
     CopyWindowToVram(4, 3);
 }
 
@@ -3706,7 +3706,7 @@ static void Swap_PrintMonSpecies2(void)
             species = GetMonData(&gEnemyParty[monId], MON_DATA_SPECIES, NULL);
         StringCopy(gStringVar4, gSpeciesNames[species]);
         x = GetStringRightAlignXOffset(1, gStringVar4, 86);
-        AddTextPrinterParameterized3(7, 1, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
+        AddTextPrinterParameterized3(7, 2, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
         CopyWindowToVram(7, 3);
     }
 }
@@ -3732,7 +3732,7 @@ static void Swap_PrintMonSpecies3(void)
             species = GetMonData(&gEnemyParty[monId], MON_DATA_SPECIES, NULL);
         StringCopy(gStringVar4, gSpeciesNames[species]);
         x = GetStringRightAlignXOffset(1, gStringVar4, 86);
-        AddTextPrinterParameterized3(1, 1, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
+        AddTextPrinterParameterized3(1, 2, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
         CopyWindowToVram(1, 3);
     }
 }
@@ -3758,7 +3758,7 @@ static void Swap_PrintMonCategory(void)
             species = GetMonData(&gEnemyParty[monId], MON_DATA_SPECIES, NULL);
         CopyMonCategoryText(SpeciesToNationalPokedexNum(species), text);
         x = GetStringRightAlignXOffset(1, text, 0x76);
-        AddTextPrinterParameterized(8, 1, text, x, 1, 0, NULL);
+        AddTextPrinterParameterized(8, 2, text, x, 1, 0, NULL);
         CopyWindowToVram(8, 2);
     }
 }

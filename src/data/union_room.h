@@ -708,7 +708,7 @@ static const struct ListMenuTemplate sListMenuTemplate_PossibleGroupMembers = {
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = 0,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 1
 };
 
@@ -768,7 +768,7 @@ static const struct ListMenuTemplate sListMenuTemplate_UnionRoomGroups = {
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = 1,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0
 };
 
@@ -806,7 +806,7 @@ static const struct ListMenuTemplate sListMenuTemplate_InviteToActivity = {
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = 0,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0
 };
 
@@ -843,7 +843,7 @@ static const struct ListMenuTemplate sListMenuTemplate_RegisterForTrade = {
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = 0,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0
 };
 
@@ -895,7 +895,7 @@ static const struct ListMenuTemplate sMenuTemplate_TradingBoardRequestType = {
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = 0,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0
 };
 
@@ -949,7 +949,7 @@ static const struct ListMenuTemplate sTradeBoardListMenuTemplate = {
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = 0,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0
 };
 
@@ -1000,7 +1000,7 @@ static const struct ListMenuTemplate sUnknownListMenuTemplate = {
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = 1,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0
 };
 

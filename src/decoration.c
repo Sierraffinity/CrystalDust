@@ -556,8 +556,8 @@ static void RemoveDecorationWindow(u8 windowIndex)
 static void AddDecorationActionsWindow(void)
 {
     u8 windowId = AddDecorationWindow(WINDOW_MAIN_MENU);
-    PrintTextArray(windowId, 1, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sDecorationMainMenuActions), sDecorationMainMenuActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, ARRAY_COUNT(sDecorationMainMenuActions), sDecorationActionsCursorPos);
+    PrintTextArray(windowId, 2, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sDecorationMainMenuActions), sDecorationMainMenuActions);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, ARRAY_COUNT(sDecorationMainMenuActions), sDecorationActionsCursorPos);
 }
 
 static void InitDecorationActionsWindow(void)
@@ -615,7 +615,7 @@ static void HandleDecorationActionsMenuInput(u8 taskId)
 static void PrintCurMainMenuDescription(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized2(0, 1, sSecretBasePCMenuItemDescriptions[sDecorationActionsCursorPos], 0, 0, 2, 1, 3);
+    AddTextPrinterParameterized2(0, 2, sSecretBasePCMenuItemDescriptions[sDecorationActionsCursorPos], 0, 0, 2, 1, 3);
 }
 
 static void DecorationMenuAction_Decorate(u8 taskId)
@@ -697,7 +697,7 @@ static void InitDecorationCategoriesWindow(u8 taskId)
 {
     u8 windowId = AddDecorationWindow(WINDOW_DECORATION_CATEGORIES);
     PrintDecorationCategoryMenuItems(taskId);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, DECORCAT_COUNT + 1, sCurDecorationCategory);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, DECORCAT_COUNT + 1, sCurDecorationCategory);
     gTasks[taskId].func = HandleDecorationCategoriesMenuInput;
 }
 
@@ -705,7 +705,7 @@ static void ReinitDecorationCategoriesWindow(u8 taskId)
 {
     FillWindowPixelBuffer(sDecorMenuWindowIds[WINDOW_DECORATION_CATEGORIES], PIXEL_FILL(1));
     PrintDecorationCategoryMenuItems(taskId);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sDecorMenuWindowIds[WINDOW_DECORATION_CATEGORIES], 1, 0, 1, 16, DECORCAT_COUNT + 1, sCurDecorationCategory);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sDecorMenuWindowIds[WINDOW_DECORATION_CATEGORIES], 2, 0, 1, 16, DECORCAT_COUNT + 1, sCurDecorationCategory);
     gTasks[taskId].func = HandleDecorationCategoriesMenuInput;
 }
 
@@ -728,7 +728,7 @@ static void PrintDecorationCategoryMenuItems(u8 taskId)
             PrintDecorationCategoryMenuItem(windowId, i, 8, i * 16, FALSE, TEXT_SPEED_FF);
     }
 
-    AddTextPrinterParameterized(windowId, 1, gTasks[taskId].tDecorationMenuCommand == DECOR_MENU_TRADE ? gText_Exit : gText_Cancel, 8, i * 16 + 1, 0, NULL);
+    AddTextPrinterParameterized(windowId, 2, gTasks[taskId].tDecorationMenuCommand == DECOR_MENU_TRADE ? gText_Exit : gText_Cancel, 8, i * 16 + 1, 0, NULL);
     ScheduleBgCopyTilemapToVram(0);
 }
 
@@ -742,12 +742,12 @@ static void PrintDecorationCategoryMenuItem(u8 winid, u8 category, u8 x, u8 y, b
     ColorMenuItemString(gStringVar4, disabled);
     str = StringLength(gStringVar4) + gStringVar4;
     StringCopy(str, sDecorationCategoryNames[category]);
-    AddTextPrinterParameterized(winid, 1, gStringVar4, x, y, speed, NULL);
+    AddTextPrinterParameterized(winid, 2, gStringVar4, x, y, speed, NULL);
     str = ConvertIntToDecimalStringN(str, GetNumOwnedDecorationsInCategory(category), STR_CONV_MODE_RIGHT_ALIGN, 2);
     *(str++) = CHAR_SLASH;
     ConvertIntToDecimalStringN(str, gDecorationInventories[category].size, STR_CONV_MODE_RIGHT_ALIGN, 2);
     x = GetStringRightAlignXOffset(1, gStringVar4, width);
-    AddTextPrinterParameterized(winid, 1, gStringVar4, x, y, speed, NULL);
+    AddTextPrinterParameterized(winid, 2, gStringVar4, x, y, speed, NULL);
 }
 
 static void ColorMenuItemString(u8 *str, bool8 disabled)
@@ -1024,7 +1024,7 @@ static void PrintDecorationItemDescription(s32 itemIndex)
     else
         str = gDecorations[gCurDecorationItems[itemIndex]].description;
 
-    AddTextPrinterParameterized(windowId, 1, str, 0, 1, 0, 0);
+    AddTextPrinterParameterized(windowId, 2, str, 0, 1, 0, 0);
 }
 
 static void RemoveDecorationItemsOtherWindows(void)

@@ -1094,10 +1094,10 @@ static void ShowAndPrintWindows(void)
     }
 
     x = GetStringCenterAlignXOffset(1, gText_SymbolsEarned, 96);
-    AddTextPrinterParameterized3(WINDOW_EARNED_SYMBOLS, 1, x, 5, sTextColors[0], 0, gText_SymbolsEarned);
+    AddTextPrinterParameterized3(WINDOW_EARNED_SYMBOLS, 2, x, 5, sTextColors[0], 0, gText_SymbolsEarned);
 
     x = GetStringCenterAlignXOffset(1, gText_BattleRecord, 96);
-    AddTextPrinterParameterized3(WINDOW_BATTLE_RECORD, 1, x, 5, sTextColors[0], 0, gText_BattleRecord);
+    AddTextPrinterParameterized3(WINDOW_BATTLE_RECORD, 2, x, 5, sTextColors[0], 0, gText_BattleRecord);
 
     AddTextPrinterParameterized3(WINDOW_BATTLE_POINTS, 8, 5, 4, sTextColors[0], 0, gText_BattlePoints);
     ConvertIntToDecimalStringN(gStringVar4, sPassData->battlePoints, STR_CONV_MODE_LEFT_ALIGN, 5);
@@ -1118,9 +1118,9 @@ static void PrintAreaDescription(u8 cursorArea)
 {
     FillWindowPixelBuffer(WINDOW_DESCRIPTION, PIXEL_FILL(0));
     if (cursorArea == CURSOR_AREA_RECORD && !sPassData->hasBattleRecord)
-        AddTextPrinterParameterized3(WINDOW_DESCRIPTION, 1, 2, 0, sTextColors[1], 0, sPassAreaDescriptions[0]);
+        AddTextPrinterParameterized3(WINDOW_DESCRIPTION, 2, 2, 0, sTextColors[1], 0, sPassAreaDescriptions[0]);
     else if (cursorArea != CURSOR_AREA_NOTHING)
-        AddTextPrinterParameterized3(WINDOW_DESCRIPTION, 1, 2, 0, sTextColors[1], 0, sPassAreaDescriptions[cursorArea]);
+        AddTextPrinterParameterized3(WINDOW_DESCRIPTION, 2, 2, 0, sTextColors[1], 0, sPassAreaDescriptions[cursorArea]);
 
     CopyWindowToVram(WINDOW_DESCRIPTION, 3);
     CopyBgTilemapBufferToVram(0);
@@ -1641,7 +1641,7 @@ static void PrintOnFrontierMap(void)
             AddTextPrinterParameterized3(MAP_WINDOW_NAME, 7, 4, (i * 16) + 1, sTextColors[1], 0, sMapLandmarks[i].name);
     }
 
-    AddTextPrinterParameterized3(MAP_WINDOW_DESCRIPTION, 1, 4, 0, sTextColors[0], 0, sMapLandmarks[sMapData->cursorPos].description);
+    AddTextPrinterParameterized3(MAP_WINDOW_DESCRIPTION, 2, 4, 0, sTextColors[0], 0, sMapLandmarks[sMapData->cursorPos].description);
 
     for (i = 0; i < MAP_WINDOW_COUNT; i++)
         CopyWindowToVram(i, 3);
@@ -1673,7 +1673,7 @@ static void HandleFrontierMapCursorMove(u8 direction)
     sMapData->mapIndicatorSprite->pos1.x = sMapLandmarks[sMapData->cursorPos].x;
     sMapData->mapIndicatorSprite->pos1.y = sMapLandmarks[sMapData->cursorPos].y;
     FillWindowPixelBuffer(MAP_WINDOW_DESCRIPTION, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(MAP_WINDOW_DESCRIPTION, 1, 4, 0, sTextColors[0], 0, sMapLandmarks[sMapData->cursorPos].description);
+    AddTextPrinterParameterized3(MAP_WINDOW_DESCRIPTION, 2, 4, 0, sTextColors[0], 0, sMapLandmarks[sMapData->cursorPos].description);
 
     for (i = 0; i < 3; i++)
         CopyWindowToVram(i, 3);

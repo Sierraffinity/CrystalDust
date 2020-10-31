@@ -1181,7 +1181,7 @@ static void InitSwapScreenWindows(void)
     *(hpStr++) = CHAR_SLASH;
     ConvertIntToDecimalStringN(hpStr, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, sStockMonText);
-    AddTextPrinterParameterized(sSwapScreen->stockMonWindowId, 1, gStringVar4, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(sSwapScreen->stockMonWindowId, 2, gStringVar4, 0, 1, 0, NULL);
 
     GetSpeciesName(gStringVar1, GetMonData(sSwapScreen->newMon, MON_DATA_SPECIES));
     ConvertIntToDecimalStringN(gStringVar2, GetMonData(sSwapScreen->newMon, MON_DATA_LEVEL), STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -1189,7 +1189,7 @@ static void InitSwapScreenWindows(void)
     *(hpStr++) = CHAR_SLASH;
     ConvertIntToDecimalStringN(hpStr, GetMonData(sSwapScreen->newMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, sNewMonText);
-    AddTextPrinterParameterized(sSwapScreen->newMonWindowId, 1, gStringVar4, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(sSwapScreen->newMonWindowId, 2, gStringVar4, 0, 1, 0, NULL);
 
     sSwapScreen->textWindowId = AddWindow(&sTextWindowTemplate);
     LoadMessageBoxGfx(sSwapScreen->textWindowId, 0x200, 0xC0);
@@ -1205,7 +1205,7 @@ static void SwapScreenWaitFadeIn(u8 taskId)
     {
         GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
         StringExpandPlaceholders(gStringVar4, sTextAlreadyCaught);
-        AddTextPrinterParameterized(sSwapScreen->textWindowId, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+        AddTextPrinterParameterized(sSwapScreen->textWindowId, 2, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
         gTasks[taskId].func = SwapScreenDisplayAlreadyCaughtMessage;
     }
 }
@@ -1214,7 +1214,7 @@ static void SwapScreenDisplayAlreadyCaughtMessage(u8 taskId)
 {
     if (!IsTextPrinterActive(sSwapScreen->textWindowId))
     {
-        CreateYesNoMenu(&sYesNoWindowTemplate, 1, 0, 2, 0x214, 14, 0);
+        CreateYesNoMenu(&sYesNoWindowTemplate, 2, 0, 2, 0x214, 14, 0);
         gTasks[taskId].func = SwapScreenHandleInput;
     }
 }
@@ -1227,7 +1227,7 @@ static void SwapScreenHandleInput(u8 taskId)
         FillWindowPixelBuffer(sSwapScreen->textWindowId, 0x11);
         GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
         StringExpandPlaceholders(gStringVar4, sTextReleasedPreviousCaughtMon);
-        AddTextPrinterParameterized(sSwapScreen->textWindowId, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+        AddTextPrinterParameterized(sSwapScreen->textWindowId, 2, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
         gCaughtBugCatchingContestMon = *sSwapScreen->newMon;
         gTasks[taskId].func = SwapScreenWaitFinalText;
     }
@@ -1236,7 +1236,7 @@ static void SwapScreenHandleInput(u8 taskId)
         FillWindowPixelBuffer(sSwapScreen->textWindowId, 0x11);
         GetSpeciesName(gStringVar1, GetMonData(sSwapScreen->newMon, MON_DATA_SPECIES));
         StringExpandPlaceholders(gStringVar4, sTextReleasedNewlyCaughtMon);
-        AddTextPrinterParameterized(sSwapScreen->textWindowId, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+        AddTextPrinterParameterized(sSwapScreen->textWindowId, 2, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
         gTasks[taskId].func = SwapScreenWaitFinalText;
     }
 }

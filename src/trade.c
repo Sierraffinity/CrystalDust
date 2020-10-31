@@ -1380,7 +1380,7 @@ static void TradeMenuProcessInput(void)
             DrawTextBorderOuter(1, 1, 14);
             FillWindowPixelBuffer(1, PIXEL_FILL(1));
             PrintMenuTable(1, ARRAY_COUNT(sSelectTradeMonActions), sSelectTradeMonActions);
-            InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 1, 0, 1, 16, 2, 0);
+            InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0, 1, 16, 2, 0);
             PutWindowTilemap(1);
             CopyWindowToVram(1, 3);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_SELECTED_MON;
@@ -1394,7 +1394,7 @@ static void TradeMenuProcessInput(void)
         // Cursor is on Cancel
         else if (sTradeMenuData->cursorPosition == PARTY_SIZE * 2)
         {
-            CreateYesNoMenu(&sTradeYesNoWindowTemplate, 1, 0, 2, 1, 14, 0);
+            CreateYesNoMenu(&sTradeYesNoWindowTemplate, 2, 0, 2, 1, 14, 0);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_CANCEL_TRADE_PROMPT;
             DrawTextWindowAndBuffer6Bytes(sTradeActionTexts[TRADE_TEXT_CANCEL_TRADE], (void *)(OBJ_VRAM0 + sTradeMenuData->bottomTextTileStart * 32), 24);
         }
@@ -1616,7 +1616,7 @@ static void DelayTradeConfirmation(void)
 
     if (sTradeMenuData->timer > 120)
     {
-        CreateYesNoMenu(&sTradeYesNoWindowTemplate, 1, 0, 2, 1, 14, 0);
+        CreateYesNoMenu(&sTradeYesNoWindowTemplate, 2, 0, 2, 1, 14, 0);
         sTradeMenuData->timer = 0;
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_CONFIRM_OR_CANCEL_TRADE;
     }
@@ -2133,7 +2133,7 @@ static void DoQueuedActions(void)
 static void PrintTradeMessage(u8 messageId)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized(0, 1, sTradeMessages[messageId], 0, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(0, 2, sTradeMessages[messageId], 0, 1, TEXT_SPEED_FF, NULL);
     DrawTextBorderOuter(0, 20, 12);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
@@ -4784,7 +4784,7 @@ void DrawTextOnTradeWindow(u8 windowId, const u8 *str, u8 speed)
     sTradeData->textColors[0] = TEXT_DYNAMIC_COLOR_6;
     sTradeData->textColors[1] = TEXT_COLOR_WHITE;
     sTradeData->textColors[2] = TEXT_COLOR_GREEN;
-    AddTextPrinterParameterized4(windowId, 1, 0, 2, 0, 0, sTradeData->textColors, speed, str);
+    AddTextPrinterParameterized4(windowId, 2, 0, 2, 0, 0, sTradeData->textColors, speed, str);
     CopyWindowToVram(windowId, 3);
 }
 

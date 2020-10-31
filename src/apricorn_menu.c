@@ -107,7 +107,7 @@ static const struct ListMenuTemplate sApricornListMenuTemplate =
     .lettersSpacing = FALSE,
     .itemVerticalPadding = 0,
     .scrollMultiple = FALSE,
-    .fontId = 1
+    .fontId = 2
 };
 
 static const struct YesNoFuncTable sYesNoFunctions = {ApricornMenu_GiveApricornsToKurt, ApricornMenu_ReturnToMain};
@@ -343,7 +343,7 @@ static void ApricornMenu_ChangeQuantityToGive(u8 taskId)
 static void ApricornMenu_ReturnToMain(u8 taskId)
 {
     ApricornMenu_AddMainScrollIndicator();
-    DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, 1, 0, gText_WhichApricorn, ApricornMenu_Main_ProcessInput);
+    DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, 2, 0, gText_WhichApricorn, ApricornMenu_Main_ProcessInput);
 }
 
 static void ApricornMenu_PrintQuantity(int windowId, int numToGive)
@@ -386,7 +386,7 @@ static void ApricornMenu_InitConfirmGive(u8 taskId)
 
 static void ApricornMenu_ConfirmGive(u8 taskId)
 {
-    CreateYesNoMenuWithCallbacks(taskId, &sApricornMenuWindows[WIN_YESNO], 1, 0, 2, 532, 14, &sYesNoFunctions);
+    CreateYesNoMenuWithCallbacks(taskId, &sApricornMenuWindows[WIN_YESNO], 2, 0, 2, 532, 14, &sYesNoFunctions);
 }
 
 static void ApricornMenu_GiveApricornsToKurt(u8 taskId)

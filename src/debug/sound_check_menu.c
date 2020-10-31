@@ -267,16 +267,16 @@ static void Task_InitSoundCheckMenu_CreateWindows(u8 taskId) // SanitizeDayCareM
     if (!gPaletteFade.active)
     {
         SetStandardWindowBorderStyle(WIN_INFO, FALSE);
-        AddTextPrinterParameterized(WIN_INFO, 1, soundcheckStr, 0, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(WIN_INFO, 1, driverStr, 100, 14, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, soundcheckStr, 0, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, driverStr, 100, 14, TEXT_SPEED_FF, NULL);
         PutWindowTilemapAndCopyWindowToVram(WIN_INFO);
         SetStandardWindowBorderStyle(WIN_MUS, FALSE);
-        AddTextPrinterParameterized(WIN_MUS, 1, bgmStr, 0, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(WIN_MUS, 1, upDownStr, 100, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_MUS, 2, bgmStr, 0, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_MUS, 2, upDownStr, 100, 0, TEXT_SPEED_FF, NULL);
         PutWindowTilemapAndCopyWindowToVram(WIN_MUS);
         SetStandardWindowBorderStyle(WIN_SE, FALSE);
-        AddTextPrinterParameterized(WIN_SE, 1, seStr, 0, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(WIN_SE, 1, upDownStr, 100, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_SE, 2, seStr, 0, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_SE, 2, upDownStr, 100, 0, TEXT_SPEED_FF, NULL);
         PutWindowTilemapAndCopyWindowToVram(WIN_SE);
         SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 239));
         SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, 48));
@@ -462,7 +462,7 @@ static void PrintSoundNumber(u16 soundIndex, u8 windowId) // sub_080E8928
     gStringVar1[3] = CHAR_COLON;
     gStringVar1[4] = EOS;
     
-    AddTextPrinterParameterized(windowId, 1, gStringVar1, 0, 14, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gStringVar1, 0, 14, TEXT_SPEED_FF, NULL);
     PutWindowTilemapAndCopyWindowToVram(windowId);
 }
 
@@ -479,7 +479,7 @@ static void PrintPaddedString(const u8 *const string, u8 windowId) // sub_080E89
     for (i = 0; string[i] != EOS && i < 31; i++)
         str[i] = string[i];
 
-    AddTextPrinterParameterized(windowId, 1, str, 40, 14, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, str, 40, 14, TEXT_SPEED_FF, NULL);
     PutWindowTilemapAndCopyWindowToVram(windowId);
 }
 
@@ -543,20 +543,20 @@ static void Task_DrawDriverTestMenu(u8 taskId) // sub_080E8AA0
     const u8 stereoStr[] = _("STEREO");
 
     SetStandardWindowBorderStyle(WIN_INFO, FALSE);
-    AddTextPrinterParameterized(WIN_INFO, 1, bbackStr, 136, 16, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, aplayStr, 136, 32, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, playingStr, 136, 80, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, reverseStr, 136, 96, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, stereoStr, 136, 112, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, voiceStr, 8, 0, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, volumeStr, 8, 16, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, panpotStr, 8, 32, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, pitchStr, 8, 48, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, lengthStr, 8, 64, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, releaseStr, 8, 80, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, progressStr, 8, 96, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, chorusStr, 8, 112, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, priorityStr, 8, 128, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, bbackStr, 136, 16, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, aplayStr, 136, 32, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, playingStr, 136, 80, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, reverseStr, 136, 96, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, stereoStr, 136, 112, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, voiceStr, 8, 0, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, volumeStr, 8, 16, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, panpotStr, 8, 32, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, pitchStr, 8, 48, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, lengthStr, 8, 64, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, releaseStr, 8, 80, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, progressStr, 8, 96, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, chorusStr, 8, 112, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, priorityStr, 8, 128, TEXT_SPEED_FF, NULL);
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, DISPLAY_WIDTH));
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, DISPLAY_HEIGHT));
     sDriverTest_IsCryPlaying = 0;
@@ -574,7 +574,7 @@ static void Task_DrawDriverTestMenu(u8 taskId) // sub_080E8AA0
     sSoundTestParams[CRY_TEST_CHORUS] = 0;
     sSoundTestParams[CRY_TEST_PRIORITY] = 2;
     PrintDriverTestMenuText();
-    sub_81983AC(WIN_INFO, 1, 0, 0, 16, 9, 0);
+    sub_81983AC(WIN_INFO, 2, 0, 0, 16, 9, 0);
     gTasks[taskId].func = Task_ProcessDriverTestInput;
 }
 
@@ -779,7 +779,7 @@ static void PrintSignedNumber(int n, u16 x, u16 y, u8 digits) // sub_080E90C0
         n %= powersOfTen[i];
     }
 
-    AddTextPrinterParameterized(WIN_INFO, 1, str, x, y, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, str, x, y, TEXT_SPEED_FF, NULL);
     PutWindowTilemapAndCopyWindowToVram(WIN_INFO);
 }
 
@@ -790,8 +790,8 @@ static void Task_DrawPanTestMenu(u8 taskId) // sub_080E91E4
     const u8 seStr[] = _("SOUND EFFECT");
     const u8 panStr[] = _("PAN");
 
-    AddTextPrinterParameterized(WIN_INFO, 1, seStr, 10, 14, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, panStr, 10, 28, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, seStr, 10, 14, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, panStr, 10, 28, TEXT_SPEED_FF, NULL);
 
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, DISPLAY_WIDTH));
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, DISPLAY_HEIGHT));
@@ -939,10 +939,10 @@ static void PrintPanTestMenuText(void) // sub_080E94B8
     switch (gUnknown_08566E58[sSoundTestParams[CRY_TEST_PANPOT]])
     {
     case 127:
-        AddTextPrinterParameterized(WIN_INFO, 1, lrStr, 100, 28, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, lrStr, 100, 28, TEXT_SPEED_FF, NULL);
         break;
     case -128:
-        AddTextPrinterParameterized(WIN_INFO, 1, rlStr, 100, 28, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, rlStr, 100, 28, TEXT_SPEED_FF, NULL);
         break;
     default:
         PrintSignedNumber(gUnknown_08566E58[sSoundTestParams[CRY_TEST_PANPOT]], 100, 28, 3);

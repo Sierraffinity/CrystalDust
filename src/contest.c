@@ -5404,7 +5404,7 @@ static void Contest_PrintTextToBg0WindowStd(u32 windowId, const u8 *b)
 
     printerTemplate.currentChar = b;
     printerTemplate.windowId = windowId;
-    printerTemplate.fontId = 1;
+    printerTemplate.fontId = 2;
     printerTemplate.x = 0;
     printerTemplate.y = 1;
     printerTemplate.currentX = 0;
@@ -5451,7 +5451,7 @@ static void Contest_StartTextPrinter(const u8 *currChar, bool32 b)
 
     printerTemplate.currentChar = currChar;
     printerTemplate.windowId = 4;
-    printerTemplate.fontId = 1;
+    printerTemplate.fontId = 2;
     printerTemplate.x = 0;
     printerTemplate.y = 1;
     printerTemplate.currentX = 0;

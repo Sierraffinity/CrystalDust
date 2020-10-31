@@ -660,7 +660,7 @@ static void sub_81D02B0(s32 windowId, s32 val1, s32 val2)
     *ptr++ = CHAR_SLASH;
     ConvertIntToDecimalStringN(ptr, val2, STR_CONV_MODE_RIGHT_ALIGN, 3);
     x = GetStringCenterAlignXOffset(1, strbuf, 56);
-    AddTextPrinterParameterized(windowId, 1, strbuf, x, 1, 0xFF, NULL);
+    AddTextPrinterParameterized(windowId, 2, strbuf, x, 1, 0xFF, NULL);
 }
 
 static void sub_81D0304(void)

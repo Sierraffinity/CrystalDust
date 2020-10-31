@@ -116,7 +116,7 @@ static void NextRadioLine(u8 taskId, u8 nextLine, const u8 *lineToPrint, bool8 s
         yPos += lineHeight;
 
     if (lineToPrint)
-        AddTextPrinterParameterized(tWindowId, 1, lineToPrint, 0, yPos, 0, NULL);
+        AddTextPrinterParameterized(tWindowId, 2, lineToPrint, 0, yPos, 0, NULL);
 
     tNumLinesPrinted += lineToPrint ? 1 : 0;
     tNextLine = nextLine;
@@ -508,7 +508,7 @@ void Task_PlayRadioShow(u8 taskId)
         break;
     case PKMN_CHANNEL_INTERLUDE_2:
         FillWindowPixelBuffer(tWindowId, 0x11);
-        AddTextPrinterParameterized5(tWindowId, 1, gText_PokemonChannel1, 0, 1, 0, NULL, 1, 1);
+        AddTextPrinterParameterized5(tWindowId, 2, gText_PokemonChannel1, 0, 1, 0, NULL, 1, 1);
         PlayFanfare(MUS_AWAKEN_LEGEND);
         tCurrentLine = tCurrentLine + 1;
         break;
@@ -733,7 +733,7 @@ void Task_FieldRadio_1(u8 taskId)
             *(str++) = CHAR_DBL_QUOT_RIGHT;
             *str = EOS;
         }
-        AddTextPrinterParameterized(0, 1, gStringVar4, 0, 1, 0, NULL);
+        AddTextPrinterParameterized(0, 2, gStringVar4, 0, 1, 0, NULL);
     }
     else if (gTasks[taskId].tTimer > 100)
     {

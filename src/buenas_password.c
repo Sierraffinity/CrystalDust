@@ -81,7 +81,7 @@ static const struct ListMenuTemplate sPasswordListMenuItemsTemplate =
     .lettersSpacing = 0,
     .itemVerticalPadding = 2,
     .scrollMultiple = FALSE,
-    .fontId = 1
+    .fontId = 2
 };
 
 #define tIndex data[0]
@@ -192,7 +192,7 @@ void ShowPointsWindow(u32 pointAmount, u8 x, u8 y)
     PutWindowTilemap(sPointsWindowId);
     LoadThinWindowBorderGfx(sPointsWindowId, 0x21D, 0xD0);
     DrawStdFrameWithCustomTileAndPalette(sPointsWindowId, FALSE, 0x21D, 0xD);
-    AddTextPrinterParameterized(sPointsWindowId, 1, gText_Points, 0, 0, 0xFF, 0);
+    AddTextPrinterParameterized(sPointsWindowId, 2, gText_Points, 0, 0, 0xFF, 0);
     PrintPointsString(pointAmount);
 }
 

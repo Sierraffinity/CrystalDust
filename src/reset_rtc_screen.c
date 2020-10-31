@@ -315,14 +315,14 @@ static void PrintTime(u8 windowId, u8 x, u8 y, u16 days, u8 hours, u8 minutes, u
     ConvertIntToDecimalStringN(gStringVar1, seconds, STR_CONV_MODE_LEADING_ZEROS, 2);
     dest = StringCopy(dest, gStringVar1);
 
-    AddTextPrinterParameterized(windowId, 1, gStringVar4, x, y, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, TEXT_SPEED_FF, NULL);
 }
 
 static void ShowChooseTimeWindow(u8 windowId, u16 days, u8 hours, u8 minutes, u8 seconds)
 {
     DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x214, 0xE);
     PrintTime(windowId, 0, 1, days, hours, minutes, seconds);
-    AddTextPrinterParameterized(windowId, 1, gText_Confirm2, 126, 1, 0, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_Confirm2, 126, 1, 0, NULL);
     ScheduleBgCopyTilemapToVram(0);
 }
 
@@ -497,7 +497,7 @@ static void VBlankCB(void)
 static void ShowMessage(const u8 *str)
 {
     DrawDialogFrameWithCustomTileAndPalette(1, FALSE, 0x200, 0xF);
-    AddTextPrinterParameterized(1, 1, str, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(1, 2, str, 0, 1, 0, NULL);
     ScheduleBgCopyTilemapToVram(0);
 }
 
@@ -509,7 +509,7 @@ static void Task_ShowResetRtcPrompt(u8 taskId)
     {
     case 0:
         DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x214, 0xE);
-        AddTextPrinterParameterized(0, 1, gText_PresentTime, 0, 1, TEXT_SPEED_FF, 0);
+        AddTextPrinterParameterized(0, 2, gText_PresentTime, 0, 1, TEXT_SPEED_FF, 0);
         PrintTime(
             0,
             0,
@@ -518,7 +518,7 @@ static void Task_ShowResetRtcPrompt(u8 taskId)
             gLocalTime.hours,
             gLocalTime.minutes,
             gLocalTime.seconds);
-        AddTextPrinterParameterized(0, 1, gText_PreviousTime, 0, 33, TEXT_SPEED_FF, 0);
+        AddTextPrinterParameterized(0, 2, gText_PreviousTime, 0, 33, TEXT_SPEED_FF, 0);
         PrintTime(
             0,
             0,

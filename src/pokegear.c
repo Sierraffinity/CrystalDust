@@ -251,7 +251,7 @@ static const struct ListMenuTemplate sPhoneCardListMenuTemplate =
     .lettersSpacing = 1,
     .itemVerticalPadding = 2,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0
 };
 
@@ -1020,9 +1020,9 @@ static void LoadClockCard(void)
     DrawStdFrameWithCustomTileAndPalette(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PutWindowTilemap(WIN_TOP);
     //PutWindowTilemap(WIN_BOTTOM);
-    AddTextPrinterParameterized2(WIN_DIALOG, 1, gText_PokegearInstructions, 0, NULL, 2, 1, 3);
-    AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
-    //AddTextPrinterParameterized3(WIN_BOTTOM, 1, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
+    AddTextPrinterParameterized2(WIN_DIALOG, 2, gText_PokegearInstructions, 0, NULL, 2, 1, 3);
+    AddTextPrinterParameterized3(WIN_TOP, 2, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
+    //AddTextPrinterParameterized3(WIN_BOTTOM, 2, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
     ScheduleBgCopyTilemapToVram(0);
     
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
@@ -1071,7 +1071,7 @@ static void Task_ClockCard(u8 taskId)
         const u8 *dayOfWeek = GetDayOfWeekString(gLocalTime.dayOfWeek);
         gTasks[taskId].tDayOfWeek = gLocalTime.dayOfWeek;
         FillWindowPixelBuffer(WIN_TOP, 0);
-        AddTextPrinterParameterized3(WIN_TOP, 1, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
+        AddTextPrinterParameterized3(WIN_TOP, 2, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
     }
     
     if (shouldForceUpdate)
@@ -1268,7 +1268,7 @@ static void LoadPhoneCard(void)
 static void DisplayPhoneCardDefaultText(void)
 {
     DrawStdFrameWithCustomTileAndPalette(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
-    AddTextPrinterParameterized5(WIN_DIALOG, 1, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL, 1, 1);
+    AddTextPrinterParameterized5(WIN_DIALOG, 2, gText_PokegearWhomDoYouWantToCall, 0, 1, 0, NULL, 1, 1);
     ScheduleBgCopyTilemapToVram(0);
 }
 
@@ -1337,15 +1337,15 @@ static void PhoneCard_ConfirmCall(u8 taskId)
     {
         sPokegearStruct.phoneCallActionWindowId = AddWindow(&sCallCancelWindowTemplate);
         DrawStdFrameWithCustomTileAndPalette(sPokegearStruct.phoneCallActionWindowId, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
-        MultichoiceList_PrintItems(sPokegearStruct.phoneCallActionWindowId, 1, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sCallOptions), sCallOptions, 0, 2);
-        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, 1, 0, 1, 16, ARRAY_COUNT(sCallOptions), 0);
+        MultichoiceList_PrintItems(sPokegearStruct.phoneCallActionWindowId, 2, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sCallOptions), sCallOptions, 0, 2);
+        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, 2, 0, 1, 16, ARRAY_COUNT(sCallOptions), 0);
     }
     else
     {
         sPokegearStruct.phoneCallActionWindowId = AddWindow(&sCallDeleteCancelWindowTemplate);
         DrawStdFrameWithCustomTileAndPalette(sPokegearStruct.phoneCallActionWindowId, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
-        MultichoiceList_PrintItems(sPokegearStruct.phoneCallActionWindowId, 1, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sCallOptionsDeletable), sCallOptionsDeletable, 0, 2);
-        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, 1, 0, 1, 16, ARRAY_COUNT(sCallOptionsDeletable), 0);
+        MultichoiceList_PrintItems(sPokegearStruct.phoneCallActionWindowId, 2, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sCallOptionsDeletable), sCallOptionsDeletable, 0, 2);
+        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPokegearStruct.phoneCallActionWindowId, 2, 0, 1, 16, ARRAY_COUNT(sCallOptionsDeletable), 0);
     }
 
     ScheduleBgCopyTilemapToVram(0);
@@ -1412,8 +1412,8 @@ static void PhoneCard_DeleteEntry(u8 taskId)
 {
     ShowHelpBar(gText_ANext);
     FillWindowPixelBuffer(WIN_DIALOG, 0x11);
-    AddTextPrinterParameterized5(WIN_DIALOG, 1, gText_PokegearDeleteThisStoredPhoneNumber, 0, 1, 0, NULL, 1, 1);
-    CreateYesNoMenu(&sYesNoWindowTemplate, 1, 0, 2, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM, 0);
+    AddTextPrinterParameterized5(WIN_DIALOG, 2, gText_PokegearDeleteThisStoredPhoneNumber, 0, 1, 0, NULL, 1, 1);
+    CreateYesNoMenu(&sYesNoWindowTemplate, 2, 0, 2, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM, 0);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = PhoneCard_ConfirmDeleteProcessInput;
 }
@@ -1475,7 +1475,7 @@ void InitPokegearPhoneCall(u8 taskId)
         CopyBgTilemapBufferToVram(0);
         //gPhoneCallSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
         PlaySE(SE_POKENAV_CALL);
-        AddTextPrinterParameterized5(gPhoneCallWindowId, 1, sPhoneCallText_Ellipsis, 2, 1, 4, NULL, 1, 2);
+        AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sPhoneCallText_Ellipsis, 2, 1, 4, NULL, 1, 2);
         gTasks[taskId].tPhoneCallInitState = 2;
         break;
     case 2:
@@ -1501,7 +1501,7 @@ void InitPokegearPhoneCall(u8 taskId)
             if (str != NULL)
             {
                 StringExpandPlaceholders(gStringVar4, str);
-                AddTextPrinterParameterized5(gPhoneCallWindowId, 1, gStringVar4, 2, 1, GetPlayerTextSpeedDelay(), NULL, 1, 1);
+                AddTextPrinterParameterized5(gPhoneCallWindowId, 2, gStringVar4, 2, 1, GetPlayerTextSpeedDelay(), NULL, 1, 1);
                 gTasks[taskId].tPhoneCallInitState = 3;
             }
             else
@@ -1754,7 +1754,7 @@ static void Task_RadioCard(u8 taskId)
             if (showNameId != NO_RADIO_SHOW)
             {
                 AddTextPrinterParameterized3(WIN_BOTTOM,
-                                             1,
+                                             2,
                                              GetStringCenterAlignXOffset(1, gRadioShowNames[showNameId], 0x70),
                                              5,
                                              sTextColor,

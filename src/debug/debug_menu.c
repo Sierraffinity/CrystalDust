@@ -370,7 +370,7 @@ static int GetMaxWidthInDebugMenuTable(const struct DebugMenuAction *str, int ar
 
     for (var = 0, i = 0; i < arg1; i++)
     {
-        int stringWidth = GetStringWidth(1, str[i].text, 0);
+        int stringWidth = GetStringWidth(2, str[i].text, 0);
         if (stringWidth > var)
             var = stringWidth;
     }
@@ -406,7 +406,7 @@ static void DebugMenu_InitNewSubmenu(u8 taskId, const struct DebugMenuBouncer *b
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
     MultichoiceList_PrintDebugItems(tWindowId, 1, 8, 2, 16, bouncer->count, bouncer->actions, 0, 2);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 1, 0, 1, 16, bouncer->count, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(tWindowId, 2, 0, 1, 16, bouncer->count, 0);
     ScheduleBgCopyTilemapToVram(0);
     SET_BOUNCER(bouncer);
     gTasks[taskId].func = DebugMenu_Submenu_ProcessInput;
@@ -488,7 +488,7 @@ static void DebugMenu_SetFlag_PrintStatus(u8 windowId, u16 flagId)
         StringCopy(gStringVar2, sText_Off);
 
     StringExpandPlaceholders(gStringVar4, sText_FlagStatus);
-    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
 
 #define tFlagNum data[1]
@@ -586,7 +586,7 @@ static void DebugMenu_SetVar_PrintStatus(u8 windowId, u16 varId, u16 varVal)
     ConvertIntToHexStringN(gStringVar2, varVal, STR_CONV_MODE_LEADING_ZEROS, 4);
     ConvertIntToHexStringN(gStringVar3, (u32)GetVarPointer(varId), STR_CONV_MODE_LEADING_ZEROS, 8);
     StringExpandPlaceholders(gStringVar4, sText_VarStatus);
-    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
 
 #define tVarNum data[1]
@@ -741,7 +741,7 @@ static void DebugMenu_AddItem_PrintStatus(u8 windowId, u16 itemId, u16 itemCount
     ConvertIntToDecimalStringN(gStringVar1, itemId, STR_CONV_MODE_LEADING_ZEROS, 4);
     ConvertIntToDecimalStringN(gStringVar2, itemCount, STR_CONV_MODE_LEADING_ZEROS, 4);
     StringExpandPlaceholders(gStringVar4, sText_ItemStatus);
-    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
 
 #define tItemNum data[1]
@@ -995,7 +995,7 @@ static void DebugMenu_LottoNumber_PrintStatus(u8 windowId, u32 lottoNum)
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertIntToDecimalStringN(gStringVar1, lottoNum, STR_CONV_MODE_LEADING_ZEROS, 5);
     StringExpandPlaceholders(gStringVar4, sText_LottoStatus);
-    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
 
 #define tLottoNumLow data[1]
@@ -1115,7 +1115,7 @@ static void DebugMenu_TimeCycle_PrintStatus(u8 windowId, s16 timePeriod)
                     FALSE,
                     TRUE);
     StringExpandPlaceholders(gStringVar4, sText_ClockStatus);
-    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
 
 #define tDeltaIndex data[1]
@@ -1204,7 +1204,7 @@ static void DebugMenu_CraftDNTint_PrintStatus(u8 windowId, u16 tintR, u16 tintG,
     ConvertQ88ToDecimalStringN(gStringVar3, tintB, STR_CONV_MODE_LEFT_ALIGN, 3);
 
     StringExpandPlaceholders(gStringVar4, sText_RGBValues);
-    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
 
 #define TINT_R gDNTintOverride[0]
@@ -1296,7 +1296,7 @@ static void DebugMenu_Pokedex_ProfOakRating_PrintStatus(u8 windowId, u16 flagId)
     ConvertUIntToDecimalStringN(gStringVar1, flagId, STR_CONV_MODE_LEADING_ZEROS, 3);
 
     StringExpandPlaceholders(gStringVar4, sText_DexCount);
-    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
 
 #define tDexCount data[1]
@@ -1420,7 +1420,7 @@ static void DebugMenu_SetRespawn_PrintStatus(u8 windowId, u8 respawnPoint)
     FillWindowPixelBuffer(windowId, 0x11);
     ConvertIntToDecimalStringN(gStringVar1, respawnPoint, STR_CONV_MODE_LEFT_ALIGN, 2);
     StringExpandPlaceholders(gStringVar4, sText_RespawnStatus);
-    AddTextPrinterParameterized5(windowId, 1, gStringVar4, 0, 1, 0, NULL, 0, 2);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
 }
 
 #define tRespawnNum data[1]

@@ -1096,7 +1096,7 @@ static bool32 IsDma3ManagerBusyWithBgCopy2(struct Pokenav4Struct *state)
 
 static void PrintCallingDots(struct Pokenav4Struct *state)
 {
-    AddTextPrinterParameterized(state->msgBoxWindowId, 1, sText_CallingDots, 32, 1, 1, NULL);
+    AddTextPrinterParameterized(state->msgBoxWindowId, 2, sText_CallingDots, 32, 1, 1, NULL);
 }
 
 static bool32 WaitForCallingDotsText(struct Pokenav4Struct *state)
@@ -1107,7 +1107,7 @@ static bool32 WaitForCallingDotsText(struct Pokenav4Struct *state)
 
 static void PrintTrainerIsCloseBy(struct Pokenav4Struct *state)
 {
-    AddTextPrinterParameterized(state->msgBoxWindowId, 1, gText_TrainerCloseBy, 0, 1, 1, NULL);
+    AddTextPrinterParameterized(state->msgBoxWindowId, 2, gText_TrainerCloseBy, 0, 1, 1, NULL);
 }
 
 static bool32 WaitForTrainerIsCloseByText(struct Pokenav4Struct *state)
@@ -1121,7 +1121,7 @@ static void PrintMatchCallMessage(struct Pokenav4Struct *state)
     int index = GetSelectedMatchCall();
     const u8 *str = GetMatchCallMessageText(index, &state->unkF);
     u8 speed = GetPlayerTextSpeedDelay();
-    AddTextPrinterParameterized(state->msgBoxWindowId, 1, str, 32, 1, speed, NULL);
+    AddTextPrinterParameterized(state->msgBoxWindowId, 2, str, 32, 1, speed, NULL);
 }
 
 static bool32 WaitForMatchCallMessageText(struct Pokenav4Struct *state)

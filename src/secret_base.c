@@ -204,7 +204,7 @@ static const struct ListMenuTemplate sRegistryListMenuTemplate =
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0,
 };
 
@@ -998,7 +998,7 @@ static void ShowRegistryMenuActions(u8 taskId)
     data[7] = AddWindow(&template);
     SetStandardWindowBorderStyle(data[7], 0);
     PrintMenuTable(data[7], 2, sRegistryMenuActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[7], 1, 0, 1, 16, 2, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[7], 2, 0, 1, 16, 2, 0);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = HandleRegistryMenuActionsInput;
 }

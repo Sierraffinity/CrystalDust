@@ -1891,10 +1891,10 @@ void DrawElevatorCurrentFloorWindow(void)
     DrawStdFrameWithCustomTileAndPalette(sTutorMoveAndElevatorWindowId, FALSE, 0x21D, 0xD);
 
     xPos = GetStringCenterAlignXOffset(1, gText_ElevatorNowOn, 64);
-    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, gText_ElevatorNowOn, xPos, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 2, gText_ElevatorNowOn, xPos, 1, TEXT_SPEED_FF, NULL);
 
     xPos = GetStringCenterAlignXOffset(1, sFloorNames[gSpecialVar_0x8006], 64);
-    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, sFloorNames[gSpecialVar_0x8006], xPos, 17, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 2, sFloorNames[gSpecialVar_0x8006], xPos, 17, TEXT_SPEED_FF, NULL);
 
     PutWindowTilemap(sTutorMoveAndElevatorWindowId);
     CopyWindowToVram(sTutorMoveAndElevatorWindowId, COPYWIN_BOTH);
@@ -1905,10 +1905,10 @@ void DrawElevatorCurrentFloorWindow(void)
     LoadThinWindowBorderGfx(sTutorMoveAndElevatorWindowId, 0x21D, 0xD0);
     DrawStdFrameWithCustomTileAndPalette(sTutorMoveAndElevatorWindowId, FALSE, 0x21D, 0xD);
 
-    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, gText_ElevatorNowOn, 0, 2, 0xFF, NULL);
+    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 2, gText_ElevatorNowOn, 0, 2, 0xFF, NULL);
 
-    strwidth = GetStringWidth(1, sFloorNames[gSpecialVar_0x8006], 0);
-    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, sFloorNames[gSpecialVar_0x8006], 56 - strwidth, 16, TEXT_SPEED_FF, NULL);
+    strwidth = GetStringWidth(2, sFloorNames[gSpecialVar_0x8006], 0);
+    AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 2, sFloorNames[gSpecialVar_0x8006], 56 - strwidth, 16, TEXT_SPEED_FF, NULL);
 
     PutWindowTilemap(sTutorMoveAndElevatorWindowId);
     CopyWindowToVram(sTutorMoveAndElevatorWindowId, COPYWIN_BOTH);*/
@@ -2675,7 +2675,7 @@ static void InitScrollableMultichoice(void)
     gScrollableMultichoice_ListMenuTemplate.lettersSpacing = 1;
     gScrollableMultichoice_ListMenuTemplate.itemVerticalPadding = 0;
     gScrollableMultichoice_ListMenuTemplate.scrollMultiple = 0;
-    gScrollableMultichoice_ListMenuTemplate.fontId = 1;
+    gScrollableMultichoice_ListMenuTemplate.fontId = 2;
     gScrollableMultichoice_ListMenuTemplate.cursorKind = 0;
 }
 
@@ -3284,7 +3284,7 @@ void UpdateBattlePointsWindow(void)
     u32 x;
     StringCopy(ConvertIntToDecimalStringN(string, gSaveBlock2Ptr->frontier.battlePoints, STR_CONV_MODE_RIGHT_ALIGN, 4), gText_BP);
     x = GetStringRightAlignXOffset(1, string, 48);
-    AddTextPrinterParameterized(sBattlePointsWindowId, 1, string, x, 1, 0, NULL);
+    AddTextPrinterParameterized(sBattlePointsWindowId, 2, string, x, 1, 0, NULL);
 }
 
 void ShowBattlePointsWindow(void)
@@ -3373,7 +3373,7 @@ static void FillFrontierExchangeCornerWindowAndItemIcon(u16 menu, u16 selection)
         switch (menu)
         {
             case SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_1:
-                AddTextPrinterParameterized2(0, 1, sFrontierExchangeCorner_Decor1Descriptions[selection], 0, NULL, 2, 1, 3);
+                AddTextPrinterParameterized2(0, 2, sFrontierExchangeCorner_Decor1Descriptions[selection], 0, NULL, 2, 1, 3);
                 if (sFrontierExchangeCorner_Decor1[selection] == 0xFFFF)
                 {
                     ShowFrontierExchangeCornerItemIcon(sFrontierExchangeCorner_Decor1[selection]);
@@ -3386,7 +3386,7 @@ static void FillFrontierExchangeCornerWindowAndItemIcon(u16 menu, u16 selection)
                 }
                 break;
             case SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_2:
-                AddTextPrinterParameterized2(0, 1, sFrontierExchangeCorner_Decor2Descriptions[selection], 0, NULL, 2, 1, 3);
+                AddTextPrinterParameterized2(0, 2, sFrontierExchangeCorner_Decor2Descriptions[selection], 0, NULL, 2, 1, 3);
                 if (sFrontierExchangeCorner_Decor2[selection] == 0xFFFF)
                 {
                     ShowFrontierExchangeCornerItemIcon(sFrontierExchangeCorner_Decor2[selection]);
@@ -3399,11 +3399,11 @@ static void FillFrontierExchangeCornerWindowAndItemIcon(u16 menu, u16 selection)
                 }
                 break;
             case SCROLL_MULTI_BF_EXCHANGE_CORNER_VITAMIN_VENDOR:
-                AddTextPrinterParameterized2(0, 1, sFrontierExchangeCorner_VitaminsDescriptions[selection], 0, NULL, 2, 1, 3);
+                AddTextPrinterParameterized2(0, 2, sFrontierExchangeCorner_VitaminsDescriptions[selection], 0, NULL, 2, 1, 3);
                 ShowFrontierExchangeCornerItemIcon(sFrontierExchangeCorner_Vitamins[selection]);
                 break;
             case SCROLL_MULTI_BF_EXCHANGE_CORNER_HOLD_ITEM_VENDOR:
-                AddTextPrinterParameterized2(0, 1, sFrontierExchangeCorner_HoldItemsDescriptions[selection], 0, NULL, 2, 1, 3);
+                AddTextPrinterParameterized2(0, 2, sFrontierExchangeCorner_HoldItemsDescriptions[selection], 0, NULL, 2, 1, 3);
                 ShowFrontierExchangeCornerItemIcon(sFrontierExchangeCorner_HoldItems[selection]);
                 break;
         }
@@ -3542,11 +3542,11 @@ static void ShowBattleFrontierTutorMoveDescription(u8 menu, u16 selection)
         FillWindowPixelRect(sTutorMoveAndElevatorWindowId, PIXEL_FILL(1), 0, 0, 96, 48);
         if (menu == SCROLL_MULTI_BF_MOVE_TUTOR_2)
         {
-            AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, sBattleFrontier_TutorMoveDescriptions2[selection], 0, 1, 0, NULL);
+            AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 2, sBattleFrontier_TutorMoveDescriptions2[selection], 0, 1, 0, NULL);
         }
         else
         {
-            AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 1, sBattleFrontier_TutorMoveDescriptions1[selection], 0, 1, 0, NULL);
+            AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 2, sBattleFrontier_TutorMoveDescriptions1[selection], 0, 1, 0, NULL);
         }
     }
 }
@@ -3571,10 +3571,10 @@ void RedrawScrollableMultichoice(void)
 
         for (i = 0; i < MAX_SCROLL_MULTI_ON_SCREEN; i++)
         {
-            AddTextPrinterParameterized5(task->tWindowId, 1, sScrollableMultichoiceOptions[gSpecialVar_0x8004][scrollOffset + i], 10, i * 16, TEXT_SPEED_FF, NULL, 0, 0);
+            AddTextPrinterParameterized5(task->tWindowId, 2, sScrollableMultichoiceOptions[gSpecialVar_0x8004][scrollOffset + i], 10, i * 16, TEXT_SPEED_FF, NULL, 0, 0);
         }
 
-        AddTextPrinterParameterized(task->tWindowId, 1, gText_SelectorArrow, 0, selectedRow * 16, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(task->tWindowId, 2, gText_SelectorArrow, 0, selectedRow * 16, TEXT_SPEED_FF, NULL);
         PutWindowTilemap(task->tWindowId);
         CopyWindowToVram(task->tWindowId, 3);
     }

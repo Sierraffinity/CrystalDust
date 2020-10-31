@@ -933,7 +933,7 @@ static void LoadPrimaryLayerMapSec(void)
 	if (gRegionMap->primaryMapSecId != MAPSEC_NONE)
     {
 		GetMapName(gRegionMap->primaryMapSecName, gRegionMap->primaryMapSecId, 0);
-		AddTextPrinterParameterized3(gRegionMap->primaryWindowId, 1, 2, 2, whiteTextColor, 0, gRegionMap->primaryMapSecName);
+		AddTextPrinterParameterized3(gRegionMap->primaryWindowId, 2, 2, 2, whiteTextColor, 0, gRegionMap->primaryMapSecName);
 		PutWindowTilemap(gRegionMap->primaryWindowId);
 		CopyWindowToVram(gRegionMap->primaryWindowId, 3);
 		SetupShadowBoxes(0, &windowCoords[0]);
@@ -959,7 +959,7 @@ static void LoadSecondaryLayerMapSec(void)
         SetShadowBoxState(1, FALSE);
 	    FillWindowPixelBuffer(gRegionMap->secondaryWindowId, 0);
 		GetMapName(gRegionMap->secondaryMapSecName, gRegionMap->secondaryMapSecId, 0);
-		AddTextPrinterParameterized3(gRegionMap->secondaryWindowId, 1, 12, 2, mapNamePalDataPointerTable[GetMapSecStatusByLayer(1) - 2], 0, gRegionMap->secondaryMapSecName);
+		AddTextPrinterParameterized3(gRegionMap->secondaryWindowId, 2, 12, 2, mapNamePalDataPointerTable[GetMapSecStatusByLayer(1) - 2], 0, gRegionMap->secondaryMapSecName);
 		PutWindowTilemap(gRegionMap->secondaryWindowId);
 		CopyWindowToVram(gRegionMap->secondaryWindowId, 3);
 	}

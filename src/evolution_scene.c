@@ -1197,7 +1197,7 @@ static void Task_TradeEvolutionScene(u8 taskID)
             if (!IsTextPrinterActive(0) && !IsSEPlaying())
             {
                 LoadUserWindowBorderGfx(0, 0xA8, 0xE0);
-                CreateYesNoMenu(&gTradeEvolutionSceneYesNoWindowTemplate, 1, 0, 2, 0xA8, 0xE, 0);
+                CreateYesNoMenu(&gTradeEvolutionSceneYesNoWindowTemplate, 2, 0, 2, 0xA8, 0xE, 0);
                 sEvoCursorPos = 0;
                 gTasks[taskID].tLearnMoveState++;
                 sEvoCursorPos = 0;

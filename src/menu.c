@@ -195,13 +195,13 @@ void AddTextPrinterForMessage(bool8 allowSkippingDelayWithButtonPress)
     switch (ContextNpcGetTextColor())
     {
         case MSG_COLOR_BLUE:
-            AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 8, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 8, 1, 3);
             break;
         case MSG_COLOR_RED:
-            AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 4, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 4, 1, 3);
             break;
         default:
-            AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 2, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 2, 1, 3);
             break;
     }
 }
@@ -209,13 +209,13 @@ void AddTextPrinterForMessage(bool8 allowSkippingDelayWithButtonPress)
 void AddTextPrinterForMessage_IgnoreTextColor(bool8 allowSkippingDelayWithButtonPress)
 {
     gTextFlags.canABSpeedUpPrint = allowSkippingDelayWithButtonPress;
-    AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 2, 1, 3);
+    AddTextPrinterParameterized2(0, 2, gStringVar4, GetPlayerTextSpeedDelay(), NULL, 2, 1, 3);
 }
 
 void AddTextPrinterWithCustomSpeedForMessage(bool8 allowSkippingDelayWithButtonPress, u8 speed)
 {
     gTextFlags.canABSpeedUpPrint = allowSkippingDelayWithButtonPress;
-    AddTextPrinterParameterized2(0, 1, gStringVar4, speed, NULL, 2, 1, 3);
+    AddTextPrinterParameterized2(0, 2, gStringVar4, speed, NULL, 2, 1, 3);
 }
 
 void LoadMessageBoxAndBorderGfx(void)
@@ -565,18 +565,18 @@ u16 sub_81978D0(u8 colorNum)
 void DisplayItemMessageOnField(u8 taskId, const u8 *string, TaskFunc callback)
 {
     LoadMessageBoxAndBorderGfx();
-    DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, 1, GetPlayerTextSpeedDelay(), string, callback);
+    DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, 2, GetPlayerTextSpeedDelay(), string, callback);
     CopyWindowToVram(0, 3);
 }
 
 void DisplayYesNoMenuDefaultYes(void)
 {
-    CreateYesNoMenu(&sYesNo_WindowTemplates, 1, 0, 2, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM, 0);
+    CreateYesNoMenu(&sYesNo_WindowTemplates, 2, 0, 2, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM, 0);
 }
 
 void DisplayYesNoMenuWithDefault(u8 initialCursorPos)
 {
-    CreateYesNoMenu(&sYesNo_WindowTemplates, 1, 0, 2, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM, initialCursorPos);
+    CreateYesNoMenu(&sYesNo_WindowTemplates, 2, 0, 2, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM, initialCursorPos);
 }
 
 u32 GetPlayerTextSpeed(void)
@@ -629,7 +629,7 @@ u16 sub_8197A38(void)
 void AddTextPrinterWithCallbackForMessage(bool8 a1, void (*callback)(struct TextPrinterTemplate *, u16))
 {
     gTextFlags.canABSpeedUpPrint = a1;
-    AddTextPrinterParameterized2(0, 1, gStringVar4, GetPlayerTextSpeedDelay(), callback, 2, 1, 3);
+    AddTextPrinterParameterized2(0, 2, gStringVar4, GetPlayerTextSpeedDelay(), callback, 2, 1, 3);
 }
 
 void sub_8197AE8(bool8 copyToVram)
@@ -1041,7 +1041,7 @@ void sub_8198204(const u8 *string, const u8 *string2, u8 a3, u8 a4, bool8 copyTo
                       0,
                       string2);
         }
-        AddTextPrinterParameterized4(sWindowId, 1, 4, 1, 0, 0, color, 0, string);
+        AddTextPrinterParameterized4(sWindowId, 2, 4, 1, 0, 0, color, 0, string);
         if (copyToVram)
             CopyWindowToVram(sWindowId, 3);
     }
@@ -1778,7 +1778,7 @@ void PrintMenuTable(u8 windowId, u8 itemCount, const struct MenuAction *strs)
 
     for (i = 0; i < itemCount; i++)
     {
-        AddTextPrinterParameterized(windowId, 1, strs[i].text, 8, (i * 14) + 1, 0xFF, NULL);
+        AddTextPrinterParameterized(windowId, 2, strs[i].text, 8, (i * 14) + 1, 0xFF, NULL);
     }
 
     CopyWindowToVram(windowId, 2);
@@ -1790,7 +1790,7 @@ void sub_81995E4(u8 windowId, u8 itemCount, const struct MenuAction *strs, const
     struct TextPrinterTemplate printer;
 
     printer.windowId = windowId;
-    printer.fontId = 1;
+    printer.fontId = 2;
     printer.fgColor = GetFontAttribute(1, FONTATTR_COLOR_FOREGROUND);
     printer.bgColor = GetFontAttribute(1, FONTATTR_COLOR_BACKGROUND);
     printer.shadowColor = GetFontAttribute(1, FONTATTR_COLOR_SHADOW);
@@ -1871,7 +1871,7 @@ void PrintMenuGridTable(u8 windowId, u8 optionWidth, u8 columns, u8 rows, const 
     for (i = 0; i < rows; i++)
     {
         for (j = 0; j < columns; j++)
-            AddTextPrinterParameterized(windowId, 1, strs[(i * columns) + j].text, (optionWidth * j) + 8, (i * 16) + 1, 0xFF, NULL);
+            AddTextPrinterParameterized(windowId, 2, strs[(i * columns) + j].text, (optionWidth * j) + 8, (i * 16) + 1, 0xFF, NULL);
     }
     CopyWindowToVram(windowId, 2);
 }
@@ -1883,7 +1883,7 @@ void sub_819983C(u8 windowId, u8 a4, u8 itemCount, u8 itemCount2, const struct M
     struct TextPrinterTemplate printer;
 
     printer.windowId = windowId;
-    printer.fontId = 1;
+    printer.fontId = 2;
     printer.fgColor = GetFontAttribute(1, FONTATTR_COLOR_FOREGROUND);
     printer.bgColor = GetFontAttribute(1, FONTATTR_COLOR_BACKGROUND);
     printer.shadowColor = GetFontAttribute(1, FONTATTR_COLOR_SHADOW);
@@ -1916,7 +1916,7 @@ u8 sub_8199944(u8 windowId, u8 optionWidth, u8 columns, u8 rows, u8 initialCurso
     sMenu.minCursorPos = 0;
     sMenu.maxCursorPos = (columns * rows) - 1;
     sMenu.windowId = windowId;
-    sMenu.fontId = 1;
+    sMenu.fontId = 2;
     sMenu.optionWidth = optionWidth;
     sMenu.optionHeight = 16;
     sMenu.columns = columns;
@@ -2214,7 +2214,7 @@ void PrintPlayerNameOnWindow(u8 windowId, const u8 *src, u16 x, u16 y)
 
     StringExpandPlaceholders(gStringVar4, src);
 
-    AddTextPrinterParameterized(windowId, 1, gStringVar4, x, y, 0xFF, 0);
+    AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, 0xFF, 0);
 }
 
 // Unused. Similar to BlitBitmapRect4Bit.

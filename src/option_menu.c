@@ -475,7 +475,7 @@ static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
     }
 
     dst[i] = EOS;
-    AddTextPrinterParameterized(WIN_OPTIONS, 1, dst, x, y + 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_OPTIONS, 2, dst, x, y + 1, TEXT_SPEED_FF, NULL);
 }
 
 static void BufferOptionMenuString(u8 taskId, u8 selection)
@@ -493,25 +493,25 @@ static void BufferOptionMenuString(u8 taskId, u8 selection)
     switch (selection)
     {
     case MENUITEM_TEXTSPEED:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sTextSpeedOptions[data[TD_TEXTSPEED]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sTextSpeedOptions[data[TD_TEXTSPEED]]);
         break;
     case MENUITEM_BATTLESCENE:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sBattleSceneOptions[data[TD_BATTLESCENE]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sBattleSceneOptions[data[TD_BATTLESCENE]]);
         break;
     case MENUITEM_BATTLESTYLE:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sBattleStyleOptions[data[TD_BATTLESTYLE]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sBattleStyleOptions[data[TD_BATTLESTYLE]]);
         break;
     case MENUITEM_SOUND:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sSoundOptions[data[TD_SOUND]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sSoundOptions[data[TD_SOUND]]);
         break;
     case MENUITEM_BUTTONMODE:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sButtonTypeOptions[data[TD_BUTTONMODE]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sButtonTypeOptions[data[TD_BUTTONMODE]]);
         break;
     case MENUITEM_FRAMETYPE:
         strEnd = StringCopy(str, gText_FrameType);
         *(strEnd++) = CHAR_SPACE;
         ConvertIntToDecimalStringN(strEnd, data[TD_FRAMETYPE] + 1, STR_CONV_MODE_LEFT_ALIGN, 2);
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, TEXT_SPEED_FF, str);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, TEXT_SPEED_FF, str);
         break;
     default:
         break;
@@ -523,7 +523,7 @@ static void BufferOptionMenuString(u8 taskId, u8 selection)
 static void DrawTextOption(void)
 {
     FillWindowPixelBuffer(WIN_TEXT_OPTION, PIXEL_FILL(1));
-    AddTextPrinterParameterized(WIN_TEXT_OPTION, 1, gText_Option, 8, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_TEXT_OPTION, 2, gText_Option, 8, 1, TEXT_SPEED_FF, NULL);
     PutWindowTilemap(WIN_TEXT_OPTION);
     CopyWindowToVram(WIN_TEXT_OPTION, COPYWIN_BOTH);
 }
@@ -535,7 +535,7 @@ static void DrawOptionMenuTexts(void)
     FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
     for (i = 0; i < MENUITEM_COUNT; i++)
     {
-        AddTextPrinterParameterized(WIN_OPTIONS, 1, sOptionMenuItemsNames[i], 8, ((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_OPTIONS, 2, sOptionMenuItemsNames[i], 8, ((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);
     }
 }
 

@@ -1197,7 +1197,7 @@ static void PrintCreditsText(const u8 *string, u8 y, bool8 isTitle)
     }
 
     x = GetStringCenterAlignXOffsetWithLetterSpacing(1, string, 0xF0, 1);
-    AddTextPrinterParameterized4(0, 1, x, y, 1, 0, color, -1, string);
+    AddTextPrinterParameterized4(0, 2, x, y, 1, 0, color, -1, string);
 }
 
 void CB2_StartCreditsSequence(void)

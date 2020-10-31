@@ -292,9 +292,9 @@ static void berry_fix_gpu_set(void)
     left = (0x70 - width) / 2;
     AddTextPrinterParameterized3(3, 0, left, 0, sGameTitleTextColors, TEXT_SPEED_FF, sText_RubySapphire);
 
-    width = GetStringWidth(1, sText_BerryProgramUpdate, 0);
+    width = GetStringWidth(2, sText_BerryProgramUpdate, 0);
     left = (0xD0 - width) / 2;
-    AddTextPrinterParameterized3(0, 1, left, 2, sBerryProgramTextColors, TEXT_SPEED_FF, sText_BerryProgramUpdate);
+    AddTextPrinterParameterized3(0, 2, left, 2, sBerryProgramTextColors, TEXT_SPEED_FF, sText_BerryProgramUpdate);
 
     CopyWindowToVram(2, 2);
     CopyWindowToVram(3, 2);
@@ -324,7 +324,7 @@ static void berry_fix_text_print(int scene)
 {
     FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 32, 32);
     FillWindowPixelBuffer(1, PIXEL_FILL(0xA));
-    AddTextPrinterParameterized3(1, 1, 0, 0, sBerryProgramTextColors, -1, sBerryProgramTexts[scene]);
+    AddTextPrinterParameterized3(1, 2, 0, 0, sBerryProgramTextColors, -1, sBerryProgramTexts[scene]);
     PutWindowTilemap(1);
     CopyWindowToVram(1, 2);
     switch (scene)

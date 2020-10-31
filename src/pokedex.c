@@ -3168,7 +3168,7 @@ static void PrintInfoScreenText(const u8* str, u8 left, u8 top)
     color[1] = TEXT_DYNAMIC_COLOR_6;
     color[2] = TEXT_COLOR_LIGHT_GREY;
 
-    AddTextPrinterParameterized4(0, 1, left, top, 0, 0, color, -1, str);
+    AddTextPrinterParameterized4(0, 2, left, top, 0, 0, color, -1, str);
 }
 
 #define tMonSpriteId data[4]
@@ -4489,7 +4489,7 @@ static void PrintInfoSubMenuText(u8 windowId, const u8 *str, u8 left, u8 top)
     color[1] = TEXT_DYNAMIC_COLOR_6;
     color[2] = TEXT_COLOR_LIGHT_GREY;
 
-    AddTextPrinterParameterized4(windowId, 1, left, top, 0, 0, color, -1, str);
+    AddTextPrinterParameterized4(windowId, 2, left, top, 0, 0, color, -1, str);
 }
 
 static void UnusedPrintNum(u8 windowId, u16 num, u8 left, u8 top)
@@ -4797,7 +4797,7 @@ static void PrintSearchText(const u8 *str, u32 x, u32 y)
     color[0] = TEXT_COLOR_TRANSPARENT;
     color[1] = TEXT_DYNAMIC_COLOR_6;
     color[2] = TEXT_COLOR_DARK_GREY;
-    AddTextPrinterParameterized4(0, 1, x, y, 0, 0, color, -1, str);
+    AddTextPrinterParameterized4(0, 2, x, y, 0, 0, color, -1, str);
 }
 
 static void ClearSearchMenuRect(u32 x, u32 y, u32 width, u32 height)

@@ -268,19 +268,19 @@ static void PrintNumPlayersWaitingForMsg(u8 windowId, u8 capacityCode, u8 string
     switch (capacityCode << 8)
     {
     case LINK_GROUP_CAPACITY(0, 2):
-        UR_AddTextPrinterParameterized(windowId, 1, sPlayersNeededOrModeTexts[0][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
+        UR_AddTextPrinterParameterized(windowId, 2, sPlayersNeededOrModeTexts[0][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
         break;
     case LINK_GROUP_CAPACITY(0, 4):
-        UR_AddTextPrinterParameterized(windowId, 1, sPlayersNeededOrModeTexts[1][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
+        UR_AddTextPrinterParameterized(windowId, 2, sPlayersNeededOrModeTexts[1][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
         break;
     case LINK_GROUP_CAPACITY(2, 5):
-        UR_AddTextPrinterParameterized(windowId, 1, sPlayersNeededOrModeTexts[2][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
+        UR_AddTextPrinterParameterized(windowId, 2, sPlayersNeededOrModeTexts[2][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
         break;
     case LINK_GROUP_CAPACITY(3, 5):
-        UR_AddTextPrinterParameterized(windowId, 1, sPlayersNeededOrModeTexts[3][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
+        UR_AddTextPrinterParameterized(windowId, 2, sPlayersNeededOrModeTexts[3][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
         break;
     case LINK_GROUP_CAPACITY(2, 4):
-        UR_AddTextPrinterParameterized(windowId, 1, sPlayersNeededOrModeTexts[4][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
+        UR_AddTextPrinterParameterized(windowId, 2, sPlayersNeededOrModeTexts[4][stringId - 1], 0, 1, UR_COLOR_DKE_WHT_LTE);
         break;
     }
 
@@ -292,10 +292,10 @@ static void PrintPlayerNameAndIdOnWindow(u8 windowId)
     u8 text[30];
     u8 *txtPtr;
 
-    UR_AddTextPrinterParameterized(windowId, 1, gSaveBlock2Ptr->playerName, 0, 1, UR_COLOR_DKE_WHT_LTE);
+    UR_AddTextPrinterParameterized(windowId, 2, gSaveBlock2Ptr->playerName, 0, 1, UR_COLOR_DKE_WHT_LTE);
     txtPtr = StringCopy(text, sText_ID);
     ConvertIntToDecimalStringN(txtPtr, ReadAsU16(gSaveBlock2Ptr->playerTrainerId), STR_CONV_MODE_LEADING_ZEROS, 5);
-    UR_AddTextPrinterParameterized(windowId, 1, text, 0, 0x11, UR_COLOR_DKE_WHT_LTE);
+    UR_AddTextPrinterParameterized(windowId, 2, text, 0, 0x11, UR_COLOR_DKE_WHT_LTE);
 }
 
 static void StringExpandPlaceholders_AwaitingCommFromAnother(u8 *dst, u8 caseId)
@@ -3616,7 +3616,7 @@ static u8 CreateTradeBoardWindow(const struct WindowTemplate * template)
     u8 windowId = AddWindow(template);
     DrawStdWindowFrame(windowId, FALSE);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(15));
-    UR_AddTextPrinterParameterized(windowId, 1, sText_NameWantedOfferLv, 8, 1, 6);
+    UR_AddTextPrinterParameterized(windowId, 2, sText_NameWantedOfferLv, 8, 1, 6);
     CopyWindowToVram(windowId, 2);
     PutWindowTilemap(windowId);
     return windowId;
@@ -3943,17 +3943,17 @@ static void PrintUnionRoomGroupOnWindow(u8 windowId, u8 x, u8 y, struct UnkStruc
 
     ConvertIntToDecimalStringN(gStringVar4, id + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
     StringAppend(gStringVar4, sText_Colon);
-    UR_AddTextPrinterParameterized(windowId, 1, gStringVar4, x, y, 0);
+    UR_AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, 0);
     x += 18;
     activity = group->gname_uname.gname.activity;
     if (group->groupScheduledAnim == UNION_ROOM_SPAWN_IN && !(activity & IN_UNION_ROOM))
     {
         IntlConvPartnerUname7(gStringVar4, group);
-        UR_AddTextPrinterParameterized(windowId, 1, gStringVar4, x, y, colorIdx);
+        UR_AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, colorIdx);
         ConvertIntToDecimalStringN(trainerId, group->gname_uname.gname.unk_00.playerTrainerId[0] | (group->gname_uname.gname.unk_00.playerTrainerId[1] << 8), STR_CONV_MODE_LEADING_ZEROS, 5);
         StringCopy(gStringVar4, sText_ID);
         StringAppend(gStringVar4, trainerId);
-        UR_AddTextPrinterParameterized(windowId, 1, gStringVar4, GetStringRightAlignXOffset(1, gStringVar4, 0x88), y, colorIdx);
+        UR_AddTextPrinterParameterized(windowId, 2, gStringVar4, GetStringRightAlignXOffset(1, gStringVar4, 0x88), y, colorIdx);
     }
 }
 
@@ -3964,11 +3964,11 @@ static void PrintGroupMemberCandidateOnWindowWithColor(u8 windowId, u8 x, u8 y, 
     if (group->groupScheduledAnim == UNION_ROOM_SPAWN_IN)
     {
         IntlConvPartnerUname7(gStringVar4, group);
-        UR_AddTextPrinterParameterized(windowId, 1, gStringVar4, x, y, colorIdx);
+        UR_AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, colorIdx);
         ConvertIntToDecimalStringN(trainerId, group->gname_uname.gname.unk_00.playerTrainerId[0] | (group->gname_uname.gname.unk_00.playerTrainerId[1] << 8), STR_CONV_MODE_LEADING_ZEROS, 5);
         StringCopy(gStringVar4, sText_ID);
         StringAppend(gStringVar4, trainerId);
-        UR_AddTextPrinterParameterized(windowId, 1, gStringVar4, GetStringRightAlignXOffset(1, gStringVar4, 0x68), y, colorIdx);
+        UR_AddTextPrinterParameterized(windowId, 2, gStringVar4, GetStringRightAlignXOffset(1, gStringVar4, 0x68), y, colorIdx);
     }
 }
 
@@ -4074,17 +4074,17 @@ static void TradeBoardPrintItemInfo(u8 windowId, u8 y, struct GFtgtGname * gname
     u8 type = gname->type;
     u8 level = gname->level;
 
-    UR_AddTextPrinterParameterized(windowId, 1, uname, 8, y, colorIdx);
+    UR_AddTextPrinterParameterized(windowId, 2, uname, 8, y, colorIdx);
     if (species == SPECIES_EGG)
     {
-        UR_AddTextPrinterParameterized(windowId, 1, sText_EggTrade, 0x44, y, colorIdx);
+        UR_AddTextPrinterParameterized(windowId, 2, sText_EggTrade, 0x44, y, colorIdx);
     }
     else
     {
         blit_move_info_icon(windowId, type + 1, 0x44, y);
-        UR_AddTextPrinterParameterized(windowId, 1, gSpeciesNames[species], 0x76, y, colorIdx);
+        UR_AddTextPrinterParameterized(windowId, 2, gSpeciesNames[species], 0x76, y, colorIdx);
         ConvertIntToDecimalStringN(levelStr, level, STR_CONV_MODE_RIGHT_ALIGN, 3);
-        UR_AddTextPrinterParameterized(windowId, 1, levelStr, 0xC6, y, colorIdx);
+        UR_AddTextPrinterParameterized(windowId, 2, levelStr, 0xC6, y, colorIdx);
     }
 }
 

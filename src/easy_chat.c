@@ -2950,7 +2950,7 @@ static bool8 sub_811C30C(void)
         else
         {
             CopyEasyChatWord(str, *ecWord);
-            stringWidth = GetStringWidth(1, str, 0);
+            stringWidth = GetStringWidth(2, str, 0);
         }
 
         trueStringWidth = stringWidth + 17;
@@ -3787,7 +3787,7 @@ static void sub_811D104(u8 arg0)
 
 static void sub_811D214(u8 initialCursorPos)
 {
-    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, 1, 0, 2, 1, 14, initialCursorPos);
+    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, 2, 0, 2, 1, 14, initialCursorPos);
 }
 
 static void sub_811D230(void)

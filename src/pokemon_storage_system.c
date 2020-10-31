@@ -1564,7 +1564,7 @@ void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero
         txtColor[0] = zero2;
     txtColor[1] = TEXT_DYNAMIC_COLOR_6;
     txtColor[2] = TEXT_DYNAMIC_COLOR_5;
-    AddTextPrinterParameterized4(windowId, 1, 0, 2, 0, 0, txtColor, -1, string);
+    AddTextPrinterParameterized4(windowId, 2, 0, 2, 0, 0, txtColor, -1, string);
 
     tileBytesToBuffer = bytesToBuffer;
     if (tileBytesToBuffer > 6u)
@@ -1607,7 +1607,7 @@ static void PrintStringToBufferCopyNow(const u8 *string, void *dst, u16 rise, u8
     txtColor[0] = bgClr;
     txtColor[1] = fgClr;
     txtColor[2] = shClr;
-    AddTextPrinterParameterized4(windowId, 1, 0, 2, 0, 0, txtColor, -1, string);
+    AddTextPrinterParameterized4(windowId, 2, 0, 2, 0, 0, txtColor, -1, string);
     CpuCopy16(tileData1, dst, var);
     CpuCopy16(tileData2, dst + rise, var);
     RemoveWindow(windowId);
@@ -1740,7 +1740,7 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
         LoadMessageBoxAndBorderGfx();
         DrawDialogueFrame(0, 0);
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, gUnknown_085716C0[task->data[1]].desc, TEXT_SPEED_FF, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, gUnknown_085716C0[task->data[1]].desc, TEXT_SPEED_FF, NULL, 2, 1, 3);
         CopyWindowToVram(0, 3);
         CopyWindowToVram(task->data[15], 3);
         task->data[0]++;
@@ -1766,7 +1766,7 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
             {
                 task->data[1] = task->data[3];
                 FillWindowPixelBuffer(0, PIXEL_FILL(1));
-                AddTextPrinterParameterized2(0, 1, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
+                AddTextPrinterParameterized2(0, 2, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
             }
             break;
         case MENU_B_PRESSED:
@@ -1781,13 +1781,13 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
             if (task->data[2] == 0 && CountPartyMons() == PARTY_SIZE)
             {
                 FillWindowPixelBuffer(0, PIXEL_FILL(1));
-                AddTextPrinterParameterized2(0, 1, gText_PartyFull, 0, NULL, 2, 1, 3);
+                AddTextPrinterParameterized2(0, 2, gText_PartyFull, 0, NULL, 2, 1, 3);
                 task->data[0] = 3;
             }
             else if (task->data[2] == 1 && CountPartyMons() == 1)
             {
                 FillWindowPixelBuffer(0, PIXEL_FILL(1));
-                AddTextPrinterParameterized2(0, 1, gText_JustOnePkmn, 0, NULL, 2, 1, 3);
+                AddTextPrinterParameterized2(0, 2, gText_JustOnePkmn, 0, NULL, 2, 1, 3);
                 task->data[0] = 3;
             }
             else
@@ -1802,7 +1802,7 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
         if (JOY_NEW(A_BUTTON | B_BUTTON))
         {
             FillWindowPixelBuffer(0, PIXEL_FILL(1));
-            AddTextPrinterParameterized2(0, 1, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
             task->data[0] = 2;
         }
         else if (JOY_NEW(DPAD_UP))
@@ -1812,7 +1812,7 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
             Menu_MoveCursor(-1);
             task->data[1] = Menu_GetCursorPos();
             FillWindowPixelBuffer(0, PIXEL_FILL(1));
-            AddTextPrinterParameterized2(0, 1, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
             task->data[0] = 2;
         }
         else if (JOY_NEW(DPAD_DOWN))
@@ -1822,7 +1822,7 @@ static void Task_PokemonStorageSystemPC(u8 taskId)
             Menu_MoveCursor(1);
             task->data[1] = Menu_GetCursorPos();
             FillWindowPixelBuffer(0, PIXEL_FILL(1));
-            AddTextPrinterParameterized2(0, 1, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
+            AddTextPrinterParameterized2(0, 2, gUnknown_085716C0[task->data[1]].desc, 0, NULL, 2, 1, 3);
             task->data[0] = 2;
         }
         break;
@@ -1866,8 +1866,8 @@ static void CreatePCMenu(u8 whichMenu, s16 *windowIdPtr)
     windowId = AddWindow(&gUnknown_085716E8);
 
     DrawStdWindowFrame(windowId, FALSE);
-    PrintTextArray(windowId, 1, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(gUnknown_085716C0), (void *)gUnknown_085716C0);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, ARRAY_COUNT(gUnknown_085716C0), whichMenu);
+    PrintTextArray(windowId, 2, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(gUnknown_085716C0), (void *)gUnknown_085716C0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, ARRAY_COUNT(gUnknown_085716C0), whichMenu);
     *windowIdPtr = windowId;
 }
 
@@ -4103,7 +4103,7 @@ static void PrintCursorMonInfo(void)
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     if (sPSSData->boxOption != BOX_OPTION_MOVE_ITEMS)
     {
-        AddTextPrinterParameterized(0, 1, sPSSData->cursorMonNickText, 6, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(0, 2, sPSSData->cursorMonNickText, 6, 0, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(0, 2, sPSSData->cursorMonSpeciesName, 6, 15, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(0, 2, sPSSData->cursorMonGenderLvlText, 10, 29, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(0, 0, sPSSData->cursorMonItemName, 6, 43, TEXT_SPEED_FF, NULL);
@@ -4111,7 +4111,7 @@ static void PrintCursorMonInfo(void)
     else
     {
         AddTextPrinterParameterized(0, 0, sPSSData->cursorMonItemName, 6, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(0, 1, sPSSData->cursorMonNickText, 6, 13, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(0, 2, sPSSData->cursorMonNickText, 6, 13, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(0, 2, sPSSData->cursorMonSpeciesName, 6, 28, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(0, 2, sPSSData->cursorMonGenderLvlText, 10, 42, TEXT_SPEED_FF, NULL);
     }
@@ -4410,7 +4410,7 @@ static void PrintStorageActionText(u8 id)
 
     DynamicPlaceholderTextUtil_ExpandPlaceholders(sPSSData->field_2190, gPCStorageActionTexts[id].text);
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    AddTextPrinterParameterized(1, 1, sPSSData->field_2190, 0, 2, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(1, 2, sPSSData->field_2190, 0, 2, TEXT_SPEED_FF, NULL);
     DrawTextBorderOuter(1, 2, 13);
     PutWindowTilemap(1);
     CopyWindowToVram(1, 2);
@@ -4419,7 +4419,7 @@ static void PrintStorageActionText(u8 id)
 
 static void ShowYesNoWindow(s8 cursorPos)
 {
-    CreateYesNoMenu(&sYesNoWindowTemplate, 1, 0, 2, 11, 14, 0);
+    CreateYesNoMenu(&sYesNoWindowTemplate, 2, 0, 2, 11, 14, 0);
     Menu_MoveCursorNoWrapAround(cursorPos);
 }
 
@@ -5618,7 +5618,7 @@ static void sub_80CCF9C(void)
 
 static s16 sub_80CD00C(const u8 *string)
 {
-    return 0xB0 - GetStringWidth(1, string, 0) / 2;
+    return 0xB0 - GetStringWidth(2, string, 0) / 2;
 }
 
 static void sub_80CD02C(void)
@@ -7895,8 +7895,8 @@ static void AddMenu(void)
     sPSSData->field_CB0 = AddWindow(&sPSSData->menuWindow);
     ClearWindowTilemap(sPSSData->field_CB0);
     DrawStdFrameWithCustomTileAndPalette(sPSSData->field_CB0, FALSE, 11, 14);
-    PrintTextArray(sPSSData->field_CB0, 1, 8, 2, 16, sPSSData->menuItemsCount, (void*)sPSSData->menuItems);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPSSData->field_CB0, 1, 0, 2, 16, sPSSData->menuItemsCount, 0);
+    PrintTextArray(sPSSData->field_CB0, 2, 8, 2, 16, sPSSData->menuItemsCount, (void*)sPSSData->menuItems);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sPSSData->field_CB0, 2, 0, 2, 16, sPSSData->menuItemsCount, 0);
     ScheduleBgCopyTilemapToVram(0);
     sPSSData->field_CAE = 0;
 }
@@ -9071,7 +9071,7 @@ static void PrintItemDescription(void)
         description = ItemId_GetDescription(sPSSData->cursorMonItem);
 
     FillWindowPixelBuffer(2, PIXEL_FILL(1));
-    AddTextPrinterParameterized5(2, 1, description, 4, 0, 0, NULL, 0, 1);
+    AddTextPrinterParameterized5(2, 2, description, 4, 0, 0, NULL, 0, 1);
 }
 
 static void sub_80D1818(void)

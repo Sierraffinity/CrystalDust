@@ -32,7 +32,7 @@ void ShowCoinsWindow(u32 coinAmount, u8 x, u8 y)
     //CopyWindowToVram(sCoinsWindowId, 3);
     LoadThinWindowBorderGfx(sCoinsWindowId, 0x21D, 0xD0);
     DrawStdFrameWithCustomTileAndPalette(sCoinsWindowId, FALSE, 0x21D, 0xD);
-    AddTextPrinterParameterized(sCoinsWindowId, 1, gText_Coins, 0, 0, 0xFF, 0);
+    AddTextPrinterParameterized(sCoinsWindowId, 2, gText_Coins, 0, 0, 0xFF, 0);
     PrintCoinsString(coinAmount);
 }
 
