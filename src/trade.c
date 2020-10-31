@@ -2356,28 +2356,34 @@ static u32 CanTradeSelectedMon(struct Pokemon *playerParty, int partyCount, int 
 
 s32 GetGameProgressForLinkTrade(void)
 {
-    // isGameFrLg could have been a bool but they use 2 and > 0 instead
-    // possible other checks (for other game versions?) were planned/removed
-    s32 isGameFrLg;
+    s32 whichGameSet;
     u16 version;
 
     if (gReceivedRemoteLinkPlayers != 0)
     {
-        isGameFrLg = 0;
+        whichGameSet = 0;
         version = (gLinkPlayers[GetMultiplayerId() ^ 1].version & 0xFF);
 
         if (version == VERSION_RUBY || version == VERSION_SAPPHIRE || version == VERSION_EMERALD)
-            isGameFrLg = 0;
+            whichGameSet = 0;
         else if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
-            isGameFrLg = 2;
+            whichGameSet = 2;
 
-        // If trading with FRLG, both players must be champion
-        if (isGameFrLg > 0)
+        if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN || version == VERSION_CRYSTAL_DUST)
+            whichGameSet = 0;
+        else if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
+            whichGameSet = 1;
+        else
+            whichGameSet = 2;
+
+        // If trading with Hoenn, more checks must be satisfied
+        if (whichGameSet > 0)
         {
             // Is player champion
             if (gLinkPlayers[GetMultiplayerId()].progressFlagsCopy & 0xF0)
             {
-                if (isGameFrLg == 2) //unnecessary check, isGameFrLg always 2 here
+                // Emerald
+                if (whichGameSet == 2)
                 {
                     // Is partner champion
                     if (gLinkPlayers[GetMultiplayerId() ^ 1].progressFlagsCopy & 0xF0)

@@ -11,11 +11,15 @@
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_LINK_RECEPTIONIST",
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_UNION_ROOM_NURSE",
+      "in_connection": false,
       "x": 10,
       "y": 5,
       "elevation": 3,
@@ -23,7 +27,6 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RecordCorner_EventScript_Attendant",
       "flag": "0"
@@ -97,6 +100,7 @@
       "script": "EventScript_RecordCenter_Spot3"
     }
   ],
-  "bg_events": [],
-  "phone_service": true
+  "bg_events": [
+
+  ]
 }

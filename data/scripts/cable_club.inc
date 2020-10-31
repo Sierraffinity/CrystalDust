@@ -150,6 +150,7 @@ CableClub_EventScript_ExitMinigameRoom:: @ 8276C9D
 CableClub_EventScript_CloseLinkAndExitLinkRoom:: @ 8276CB5
 	special CloseLink
 	setvar VAR_CABLE_CLUB_STATE, 0
+	textcolor MSG_COLOR_RED
 	compare VAR_0x8007, 0
 	goto_if_eq CableClub_EventScript_PlayerExitLinkRoom
 	applymovement VAR_0x8007, Movement_AttendantFaceLeft
@@ -173,6 +174,7 @@ CableClub_EventScript_ExitTradeCenter:: @ 8276CE7
 CableClub_EventScript_PlayerExitTradeCenter:: @ 8276CFF
 	special CloseLink
 	setvar VAR_CABLE_CLUB_STATE, 0
+	textcolor MSG_COLOR_RED
 	compare VAR_0x8007, 0
 	goto_if_eq CableClub_EventScript_PlayerExitLinkRoom
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_PlayerFaceAttendantRight
@@ -195,6 +197,7 @@ CableClub_EventScript_ExitRecordCorner:: @ 8276D2C
 CableClub_EventScript_PlayerExitRecordCorner:: @ 8276D44
 	special CloseLink
 	setvar VAR_CABLE_CLUB_STATE, 0
+	textcolor MSG_COLOR_RED
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_PlayerExitLinkRoom
 	waitmovement 0
 	compare VAR_0x8007, 0
@@ -216,6 +219,7 @@ CableClub_EventScript_ExitUnionRoom:: @ 8276D6C
 
 CableClub_EventScript_PlayerExitUnionRoom:: @ 8276D84
 	setvar VAR_CABLE_CLUB_STATE, 0
+	textcolor MSG_COLOR_RED
 	compare VAR_0x8007, 0
 	goto_if_eq CableClub_EventScript_PlayerExitLinkRoom
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_PlayerFaceAttendantRight
@@ -348,8 +352,10 @@ CableClub_EventScript_TryEnterColosseum:: @ 8276F60
 	goto_if_eq CableClub_EventScript_AbortLink
 	message gText_PleaseWaitForLink
 	waitmessage
+	textcolor MSG_COLOR_SYS
 	special TryBattleLinkup
 	waitstate
+	call EventScript_RestorePrevTextColor
 	compare VAR_RESULT, LINKUP_SUCCESS
 	goto_if_eq CableClub_EventScript_EnterColosseum
 	compare VAR_RESULT, LINKUP_SOMEONE_NOT_READY
@@ -451,8 +457,10 @@ CableClub_EventScript_TradeCenter:: @ 82770B2
 	goto_if_eq CableClub_EventScript_AbortLink
 	message gText_PleaseWaitForLink
 	waitmessage
+	textcolor MSG_COLOR_SYS
 	special TryTradeLinkup
 	waitstate
+	call EventScript_RestorePrevTextColor
 	compare VAR_RESULT, LINKUP_SUCCESS
 	goto_if_eq CableClub_EventScript_EnterTradeCenter
 	compare VAR_RESULT, LINKUP_SOMEONE_NOT_READY
@@ -713,12 +721,14 @@ EventScript_CableBoxResults:: @ 8277365
 
 EventScript_BattleColosseum_2P_PlayerSpot0:: @ 8277374
 	setvar VAR_0x8005, 0
+	textcolor MSG_COLOR_SYS
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
 
 EventScript_BattleColosseum_2P_PlayerSpot1:: @ 827737E
 	setvar VAR_0x8005, 1
+	textcolor MSG_COLOR_SYS
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
@@ -730,6 +740,7 @@ EventScript_BattleColosseum_4P_PlayerSpot0:: @ 8277388
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_BattleColosseum_4P_CancelSpotTrigger
 	setvar VAR_0x8005, 0
+	textcolor MSG_COLOR_SYS
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
@@ -741,6 +752,7 @@ EventScript_BattleColosseum_4P_PlayerSpot1:: @ 82773A3
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_BattleColosseum_4P_CancelSpotTrigger
 	setvar VAR_0x8005, 1
+	textcolor MSG_COLOR_SYS
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
@@ -752,6 +764,7 @@ EventScript_BattleColosseum_4P_PlayerSpot2:: @ 82773BE
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_BattleColosseum_4P_CancelSpotTrigger
 	setvar VAR_0x8005, 2
+	textcolor MSG_COLOR_SYS
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
@@ -763,6 +776,7 @@ EventScript_BattleColosseum_4P_PlayerSpot3:: @ 82773D9
 	compare VAR_RESULT, 0
 	goto_if_eq EventScript_BattleColosseum_4P_CancelSpotTrigger
 	setvar VAR_0x8005, 3
+	textcolor MSG_COLOR_SYS
 	special ColosseumPlayerSpotTriggered
 	waitstate
 	end
@@ -772,12 +786,14 @@ EventScript_BattleColosseum_4P_CancelSpotTrigger:: @ 82773F4
 
 EventScript_TradeCenter_Chair0:: @ 82773F5
 	setvar VAR_0x8005, 0
+	textcolor MSG_COLOR_SYS
 	special PlayerEnteredTradeSeat
 	waitstate
 	end
 
 EventScript_TradeCenter_Chair1:: @ 82773FF
 	setvar VAR_0x8005, 1
+	textcolor MSG_COLOR_SYS
 	special PlayerEnteredTradeSeat
 	waitstate
 	end
@@ -785,6 +801,7 @@ EventScript_TradeCenter_Chair1:: @ 82773FF
 /* Never used */
 EventScript_TradeCenter_Chair2:: @ 8277409
 	setvar VAR_0x8005, 2
+	textcolor MSG_COLOR_SYS
 	special PlayerEnteredTradeSeat
 	waitstate
 	end
@@ -792,6 +809,7 @@ EventScript_TradeCenter_Chair2:: @ 8277409
 /* Never used */
 EventScript_TradeCenter_Chair3:: @ 8277413
 	setvar VAR_0x8005, 3
+	textcolor MSG_COLOR_SYS
 	special PlayerEnteredTradeSeat
 	waitstate
 	end
@@ -799,6 +817,7 @@ EventScript_TradeCenter_Chair3:: @ 8277413
 @ VAR_TEMP_1 for below scripts set by ReceiveGiftItem
 EventScript_RecordCenter_Spot0:: @ 827741D
 	setvar VAR_0x8005, 0
+	textcolor MSG_COLOR_SYS
 	special RecordMixingPlayerSpotTriggered
 	waitstate
 	compare VAR_TEMP_1, ITEM_NONE
@@ -807,6 +826,7 @@ EventScript_RecordCenter_Spot0:: @ 827741D
 
 EventScript_RecordCenter_Spot1:: @ 8277432
 	setvar VAR_0x8005, 1
+	textcolor MSG_COLOR_SYS
 	special RecordMixingPlayerSpotTriggered
 	waitstate
 	compare VAR_TEMP_1, ITEM_NONE
@@ -815,6 +835,7 @@ EventScript_RecordCenter_Spot1:: @ 8277432
 
 EventScript_RecordCenter_Spot2:: @ 8277447
 	setvar VAR_0x8005, 2
+	textcolor MSG_COLOR_SYS
 	special RecordMixingPlayerSpotTriggered
 	waitstate
 	compare VAR_TEMP_1, ITEM_NONE
@@ -823,6 +844,7 @@ EventScript_RecordCenter_Spot2:: @ 8277447
 
 EventScript_RecordCenter_Spot3:: @ 827745C
 	setvar VAR_0x8005, 3
+	textcolor MSG_COLOR_SYS
 	special RecordMixingPlayerSpotTriggered
 	waitstate
 	compare VAR_TEMP_1, ITEM_NONE
@@ -838,6 +860,7 @@ RecordCorner_EventScript_ReceivedGiftItem:: @ 8277471
 	end
 
 CableClub_EventScript_ReadTrainerCard:: @ 827747E
+	textcolor MSG_COLOR_SYS
 	msgbox CableClub_Text_GotToLookAtTrainerCard, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
 	special Script_ShowLinkTrainerCard
@@ -845,6 +868,7 @@ CableClub_EventScript_ReadTrainerCard:: @ 827747E
 	end
 
 CableClub_EventScript_ReadTrainerCardColored:: @ 827748D
+	textcolor MSG_COLOR_SYS
 	msgbox CableClub_Text_GotToLookAtColoredTrainerCard, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
 	special Script_ShowLinkTrainerCard
@@ -852,11 +876,13 @@ CableClub_EventScript_ReadTrainerCardColored:: @ 827748D
 	end
 
 CableClub_EventScript_TooBusyToNotice:: @ 827749C
+	textcolor MSG_COLOR_SYS
 	msgbox CableClub_Text_TooBusyToNotice, MSGBOX_DEFAULT
 	closemessage
 	end
 
 BattleColosseum_2P_EventScript_Attendant:: @ 82774A6
+	textcolor MSG_COLOR_SYS
 	special Script_FacePlayer
 	msgbox BattleColosseum_2P_Text_TakePlaceStartBattle, MSGBOX_DEFAULT
 	special Script_ClearHeldMovement
@@ -864,6 +890,7 @@ BattleColosseum_2P_EventScript_Attendant:: @ 82774A6
 	end
 
 TradeCenter_EventScript_Attendant:: @ 82774B6
+	textcolor MSG_COLOR_SYS
 	special Script_FacePlayer
 	msgbox TradeCenter_Text_TakeSeatStartTrade, MSGBOX_DEFAULT
 	special Script_ClearHeldMovement
@@ -871,6 +898,7 @@ TradeCenter_EventScript_Attendant:: @ 82774B6
 	end
 
 RecordCorner_EventScript_Attendant:: @ 82774C6
+	textcolor MSG_COLOR_SYS
 	compare VAR_TEMP_0, 0
 	goto_if_ne RecordCorner_EventScript_AlreadyMixed
 	special Script_FacePlayer
@@ -891,6 +919,7 @@ RecordCorner_EventScript_AlreadyMixed:: @ 82774E0
 	end
 
 EventScript_ConfirmLeaveTradeRoom:: @ 82774EF
+	textcolor MSG_COLOR_SYS
 	msgbox Text_TerminateLinkConfirmation, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq EventScript_TerminateLink
@@ -1170,8 +1199,10 @@ CableClub_EventScript_SaveAndChooseLinkLeader:: @ 8277931
 	end
 
 CableClub_EventScript_ChooseLinkLeaderFrom2:: @ 8277989
+	textcolor MSG_COLOR_SYS
 	message CableClub_Text_ChooseGroupLeaderOfTwo
 	waitmessage
+	call EventScript_RestorePrevTextColor
 	multichoice 16, 6, MULTI_LINK_LEADER, 0
 	switch VAR_RESULT
 	case 0, CableClub_EventScript_TryJoinGroup2Players
@@ -1203,8 +1234,10 @@ CableClub_EventScript_TryJoinGroup2Players:: @ 82779EE
 	return
 
 CableClub_EventScript_ChooseLinkLeaderFrom4:: @ 8277A16
+	textcolor MSG_COLOR_SYS
 	message CableClub_Text_ChooseGroupLeaderOfFour
 	waitmessage
+	call EventScript_RestorePrevTextColor
 	multichoice 16, 6, MULTI_LINK_LEADER, 0
 	switch VAR_RESULT
 	case 0, CableClub_EventScript_TryJoinGroup4Players
@@ -1236,8 +1269,10 @@ CableClub_EventScript_TryJoinGroup4Players:: @ 8277A7B
 	return
 
 CableClub_EventScript_ChooseLinkLeader:: @ 8277AA3
+	textcolor MSG_COLOR_SYS
 	message CableClub_Text_ChooseGroupLeader
 	waitmessage
+	call EventScript_RestorePrevTextColor
 	multichoice 16, 6, MULTI_LINK_LEADER, 0
 	switch VAR_RESULT
 	case 0, CableClub_EventScript_TryJoinGroupXPlayers
@@ -1322,23 +1357,19 @@ CableClub_EventScript_AdapterNotConnected:: @ 8277BB4
 	releaseall
 	end
 
-CableClub_EventScript_OpenUnionRoomBarrier:: @ 8277BBE
-	setmetatile 5, 2, METATILE_PokemonCenter_Floor_ShadowTop_Alt, 0
-	setmetatile 5, 3, METATILE_PokemonCenter_Floor_Plain_Alt, 0
+CableClub_EventScript_OpenUnionRoomBarrier:: @ 81BC020
+	setmetatile 5, 3, METATILE_PokemonCenter_Floor_ShadeLeft, 0
 	return
 
-CableClub_EventScript_CloseUnionRoomBarrier:: @ 8277BD1
-	setmetatile 5, 2, METATILE_PokemonCenter_Floor_ShadowTop, 1
+CableClub_EventScript_CloseUnionRoomBarrier:: @ 81BC02A
 	setmetatile 5, 3, METATILE_PokemonCenter_CounterBarrier, 1
 	return
 
-CableClub_EventScript_OpenDirectCornerBarrier:: @ 8277BE4
-	setmetatile 9, 2, METATILE_PokemonCenter_Floor_ShadowTop_Alt, 0
-	setmetatile 9, 3, METATILE_PokemonCenter_Floor_Plain_Alt, 0
+CableClub_EventScript_OpenDirectCornerBarrier:: @ 81BC034
+	setmetatile 9, 3, METATILE_PokemonCenter_Floor_ShadeLeft, 0
 	return
 
-CableClub_EventScript_CloseDirectCornerBarrier:: @ 8277BF7
-	setmetatile 9, 2, METATILE_PokemonCenter_Floor_ShadowTop, 1
+CableClub_EventScript_CloseDirectCornerBarrier:: @ 81BC03E
 	setmetatile 9, 3, METATILE_PokemonCenter_CounterBarrier, 1
 	return
 
@@ -1442,8 +1473,10 @@ MossdeepCity_GameCorner_1F_EventScript_PlayDodrioBerryPicking:: @ 8277D35
 	end
 
 MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader:: @ 8277D81
+	textcolor MSG_COLOR_SYS
 	message CableClub_Text_ChooseGroupLeader
 	waitmessage
+	call EventScript_RestorePrevTextColor
 	multichoice 16, 6, MULTI_LINK_LEADER, 0
 	switch VAR_RESULT
 	case 0, MossdeepCity_GameCorner_1F_EventScript_TryJoinLinkGroup
