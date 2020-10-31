@@ -32,7 +32,7 @@ struct TrainerCard
     /*0x00*/ u8 gender;
     /*0x01*/ u8 stars;
     /*0x02*/ bool8 hasPokedex;
-    /*0x03*/ bool8 caughtAllHoenn;
+    /*0x03*/ bool8 caughtAllJohto;
     /*0x04*/ bool8 hasAllPaintings;
     /*0x06*/ u16 hofDebutHours;
     /*0x08*/ u16 hofDebutMinutes;
@@ -73,6 +73,6 @@ u8 GetTrainerCardStars(u8 cardId);
 void CopyTrainerCardData(struct TrainerCard *dst, u16 *src, u8 gameVersion);
 void ShowPlayerTrainerCard(void (*callback)(void));
 void ShowTrainerCardInLink(u8 arg0, void (*callback)(void));
-void TrainerCard_GenerateCardForPlayer(struct TrainerCard *);
+void TrainerCard_GenerateCardToSendInLink(struct TrainerCard *);
 
 #endif // GUARD_TRAINER_CARD_H

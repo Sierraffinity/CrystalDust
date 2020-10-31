@@ -1591,7 +1591,7 @@ static void CreateTrainerCardInBuffer(void *dest, bool32 setWonderCard)
 {
     u16 *argAsU16Ptr = dest;
 
-    TrainerCard_GenerateCardForPlayer((struct TrainerCard *)argAsU16Ptr);
+    TrainerCard_GenerateCardToSendInLink((struct TrainerCard *)argAsU16Ptr);
     if (setWonderCard)
         argAsU16Ptr[48] = GetWonderCardFlagID();
     else

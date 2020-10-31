@@ -4368,49 +4368,14 @@ u16 GetJohtoPokedexCount(u8 caseID)
     return count;
 }
 
-u16 GetKantoPokedexCount(u8 caseID)
-{
-    u16 count = 0;
-    u16 i;
-
-    for (i = 0; i < KANTO_DEX_COUNT; i++)
-    {
-        switch (caseID)
-        {
-        case FLAG_GET_SEEN:
-            if (GetSetPokedexFlag(i + 1, FLAG_GET_SEEN))
-                count++;
-            break;
-        case FLAG_GET_CAUGHT:
-            if (GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
-                count++;
-            break;
-        }
-    }
-    return count;
-}
-
-bool16 HasAllHoennMons(void)
+bool16 HasAllJohtoMons(void)
 {
     u16 i;
 
-    // -2 excludes Jirachi and Deoxys
-    for (i = 0; i < HOENN_DEX_COUNT - 2; i++)
+    // excludes Celebi
+    for (i = 1; i < JOHTO_DEX_CELEBI; i++)
     {
-        if (!GetSetPokedexFlag(JohtoToNationalOrder(i + 1), FLAG_GET_CAUGHT))
-            return FALSE;
-    }
-    return TRUE;
-}
-
-bool8 HasAllKantoMons(void)
-{
-    u16 i;
-
-    // -1 excludes Mew
-    for (i = 0; i < KANTO_DEX_COUNT - 1; i++)
-    {
-        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+        if (!GetSetPokedexFlag(JohtoToNationalOrder(i), FLAG_GET_CAUGHT))
             return FALSE;
     }
     return TRUE;
@@ -4420,24 +4385,24 @@ bool16 HasAllMons(void)
 {
     u16 i;
 
-    // -1 excludes Mew
-    for (i = 0; i < KANTO_DEX_COUNT - 1; i++)
+    // excludes Mew
+    for (i = 1; i < NATIONAL_DEX_MEW; i++)
     {
-        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+        if (!GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
             return FALSE;
     }
 
-    // -3 excludes Lugia, Ho-Oh, and Celebi
-    for (i = KANTO_DEX_COUNT; i < JOHTO_DEX_COUNT - 3; i++)
+    // excludes Celebi
+    for (i = NATIONAL_DEX_CHIKORITA; i < NATIONAL_DEX_CELEBI; i++)
     {
-        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+        if (!GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
             return FALSE;
     }
 
-    // -2 excludes Jirachi and Deoxys
-    for (i = JOHTO_DEX_COUNT; i < NATIONAL_DEX_COUNT - 2; i++)
+    // excludes Jirachi and Deoxys
+    for (i = NATIONAL_DEX_TREECKO; i < NATIONAL_DEX_JIRACHI; i++)
     {
-        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+        if (!GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
             return FALSE;
     }
     return TRUE;

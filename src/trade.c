@@ -333,7 +333,7 @@ static void InitTradeMenu(void)
         }
 
         FillBgTilemapBufferRect(0, 0, 0, 0, 30, 20, 15);
-        LoadUserWindowBorderGfx_(0, 20, 0xC0);
+        LoadThinWindowBorderGfx(0, 20, 0xC0);
         LoadUserWindowBorderGfx(2, 1, 0xE0);
         LoadMonIconPalettes();
         sTradeMenuData->bufferPartyState = 0;
@@ -1379,7 +1379,7 @@ static void TradeMenuProcessInput(void)
         {
             DrawTextBorderOuter(1, 1, 14);
             FillWindowPixelBuffer(1, PIXEL_FILL(1));
-            PrintMenuTable(1, ARRAY_COUNT(sSelectTradeMonActions), sSelectTradeMonActions);
+            PrintTextArray(1, 3, GetMenuCursorDimensionByFont(3, 0), 1, 16, ARRAY_COUNT(sSelectTradeMonActions), sSelectTradeMonActions);
             InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0, 1, 16, 2, 0);
             PutWindowTilemap(1);
             CopyWindowToVram(1, 3);
@@ -1494,7 +1494,7 @@ static u8 CheckValidityOfTradeMons(u8 *aliveMons, u8 playerPartyCount, u8 player
             return PARTNER_MON_INVALID;
     }
 
-    // Partner cant trade Egg or non-Hoenn mon if player doesn't have National Dex
+    // Partner cant trade Egg or non-Johto mon if player doesn't have National Dex
     if (!IsNationalPokedexEnabled())
     {
         if (sTradeMenuData->isEgg[TRADE_PARTNER][partnerMonIdx] || !IsSpeciesInJohtoDex(partnerSpecies))
@@ -1833,7 +1833,7 @@ static void DrawTradeMenuParty(u8 whichParty)
         nameStringWidth = GetMonNicknameWidth(nickname, selectedMonParty, partyIdx);
         AddTextPrinterParameterized3((whichParty * 2) + 14, 0, (80 - nameStringWidth) / 2, 4, sTradeTextColors, 0, nickname);
         BufferTradeMonMoves(movesString, selectedMonParty, partyIdx);
-        AddTextPrinterParameterized4((whichParty * 2) + 15, 1, 0, 0, 0, 0, sTradeTextColors, 0, movesString);
+        AddTextPrinterParameterized4((whichParty * 2) + 15, 2, 0, 0, 0, 0, sTradeTextColors, 0, movesString);
         PutWindowTilemap((whichParty * 2) + 14);
         CopyWindowToVram((whichParty * 2) + 14, 3);
         PutWindowTilemap((whichParty * 2) + 15);
@@ -2133,7 +2133,7 @@ static void DoQueuedActions(void)
 static void PrintTradeMessage(u8 messageId)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized(0, 2, sTradeMessages[messageId], 0, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(0, 3, sTradeMessages[messageId], 0, 2, TEXT_SPEED_FF, NULL);
     DrawTextBorderOuter(0, 20, 12);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
@@ -4784,7 +4784,7 @@ void DrawTextOnTradeWindow(u8 windowId, const u8 *str, u8 speed)
     sTradeData->textColors[0] = TEXT_DYNAMIC_COLOR_6;
     sTradeData->textColors[1] = TEXT_COLOR_WHITE;
     sTradeData->textColors[2] = TEXT_COLOR_GREEN;
-    AddTextPrinterParameterized4(windowId, 2, 0, 2, 0, 0, sTradeData->textColors, speed, str);
+    AddTextPrinterParameterized4(windowId, 2, 0, 2, 0, 2, sTradeData->textColors, speed, str);
     CopyWindowToVram(windowId, 3);
 }
 
