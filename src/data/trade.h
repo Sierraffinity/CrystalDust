@@ -448,9 +448,9 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
     },
     {
         .bg = 0,
-        .tilemapLeft = 19,
+        .tilemapLeft = 17,
         .tilemapTop = 15,
-        .width = 10,
+        .width = 12,
         .height = 4,
         .paletteNum = 15,
         .baseBlock = 118
@@ -462,7 +462,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 158
+        .baseBlock = 166
     },
     {
         .bg = 0,
@@ -471,7 +471,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 174
+        .baseBlock = 182
     },
     {
         .bg = 0,
@@ -480,7 +480,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 190
+        .baseBlock = 198
     },
     {
         .bg = 0,
@@ -489,7 +489,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 206
+        .baseBlock = 214
     },
     {
         .bg = 0,
@@ -498,7 +498,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 222
+        .baseBlock = 230
     },
     {
         .bg = 0,
@@ -507,7 +507,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 238
+        .baseBlock = 246
     },
     {
         .bg = 0,
@@ -516,7 +516,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 254
+        .baseBlock = 262
     },
     {
         .bg = 0,
@@ -525,7 +525,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 270
+        .baseBlock = 278
     },
     {
         .bg = 0,
@@ -534,7 +534,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 286
+        .baseBlock = 294
     },
     {
         .bg = 0,
@@ -543,7 +543,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 302
+        .baseBlock = 310
     },
     {
         .bg = 0,
@@ -552,7 +552,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 318
+        .baseBlock = 326
     },
     {
         .bg = 0,
@@ -561,7 +561,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 334
+        .baseBlock = 342
     },
     {
         .bg = 0,
@@ -570,7 +570,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 14,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 350
+        .baseBlock = 358
     },
     {
         .bg = 0,
@@ -579,7 +579,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 11,
         .height = 8,
         .paletteNum = 15,
-        .baseBlock = 378
+        .baseBlock = 386
     },
     {
         .bg = 0,
@@ -588,7 +588,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 14,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 466
+        .baseBlock = 474
     },
     {
         .bg = 0,
@@ -597,7 +597,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 11,
         .height = 8,
         .paletteNum = 15,
-        .baseBlock = 494
+        .baseBlock = 502
     },
     DUMMY_WIN_TEMPLATE,
 };

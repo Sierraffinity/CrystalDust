@@ -882,7 +882,7 @@ CableClub_EventScript_TooBusyToNotice:: @ 827749C
 	end
 
 BattleColosseum_2P_EventScript_Attendant:: @ 82774A6
-	textcolor MSG_COLOR_SYS
+	textcolor MSG_COLOR_RED
 	special Script_FacePlayer
 	msgbox BattleColosseum_2P_Text_TakePlaceStartBattle, MSGBOX_DEFAULT
 	special Script_ClearHeldMovement
@@ -890,7 +890,7 @@ BattleColosseum_2P_EventScript_Attendant:: @ 82774A6
 	end
 
 TradeCenter_EventScript_Attendant:: @ 82774B6
-	textcolor MSG_COLOR_SYS
+	textcolor MSG_COLOR_RED
 	special Script_FacePlayer
 	msgbox TradeCenter_Text_TakeSeatStartTrade, MSGBOX_DEFAULT
 	special Script_ClearHeldMovement
@@ -898,7 +898,7 @@ TradeCenter_EventScript_Attendant:: @ 82774B6
 	end
 
 RecordCorner_EventScript_Attendant:: @ 82774C6
-	textcolor MSG_COLOR_SYS
+	textcolor MSG_COLOR_RED
 	compare VAR_TEMP_0, 0
 	goto_if_ne RecordCorner_EventScript_AlreadyMixed
 	special Script_FacePlayer

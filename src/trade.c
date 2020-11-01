@@ -530,7 +530,7 @@ static void CB2_CreateTradeMenu(void)
         {
             temp = gSpriteTemplate_832DCAC;
             temp.tileTag += i;
-            CreateSprite(&temp, xPos + (i * 32) + 16, 10, 1);
+            CreateSprite(&temp, xPos + (i * 32) + 16, 9, 1);
         }
 
         xPos = GetStringCenterAlignXOffset(1, gLinkPlayers[GetMultiplayerId() ^ 1].name, 120);
@@ -538,17 +538,17 @@ static void CB2_CreateTradeMenu(void)
         {
             temp = gSpriteTemplate_832DCAC;
             temp.tileTag += i + 3;
-            CreateSprite(&temp, xPos + (i * 32) + 136, 10, 1);
+            CreateSprite(&temp, xPos + (i * 32) + 136, 9, 1);
         }
         gMain.state++;
         break;
     case 13:
         temp = gSpriteTemplate_832DCAC;
         temp.tileTag += 6;
-        CreateSprite(&temp, 215, 152, 1);
+        CreateSprite(&temp, 215, 151, 1);
         temp = gSpriteTemplate_832DCAC;
         temp.tileTag += 7;
-        CreateSprite(&temp, 247, 152, 1);
+        CreateSprite(&temp, 247, 151, 1);
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
@@ -1379,8 +1379,8 @@ static void TradeMenuProcessInput(void)
         {
             DrawTextBorderOuter(1, 1, 14);
             FillWindowPixelBuffer(1, PIXEL_FILL(1));
-            PrintTextArray(1, 3, GetMenuCursorDimensionByFont(3, 0), 1, 16, ARRAY_COUNT(sSelectTradeMonActions), sSelectTradeMonActions);
-            InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0, 1, 16, 2, 0);
+            PrintTextArray(1, 3, GetMenuCursorDimensionByFont(3, 0), 0, 16, ARRAY_COUNT(sSelectTradeMonActions), sSelectTradeMonActions);
+            InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0, 0, 16, 2, 0);
             PutWindowTilemap(1);
             CopyWindowToVram(1, 3);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_SELECTED_MON;

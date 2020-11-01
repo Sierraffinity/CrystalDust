@@ -619,34 +619,34 @@ static void CB2_InitBattleInternal(void)
     CpuFill32(0, (void*)(VRAM), VRAM_SIZE);
 
     SetGpuReg(REG_OFFSET_MOSAIC, 0);
-    SetGpuReg(REG_OFFSET_WIN0H, 240);
-    SetGpuReg(REG_OFFSET_WIN0V, 0x5051);
+    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 240));
+    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(80, 81));
     SetGpuReg(REG_OFFSET_WININ, 0);
     SetGpuReg(REG_OFFSET_WINOUT, 0);
 
-    gBattle_WIN0H = 240;
+    gBattle_WIN0H = WIN_RANGE(0, 240);
 
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId != TRAINER_STEVEN_PARTNER)
     {
-        gBattle_WIN0V = 159;
-        gBattle_WIN1H = 240;
-        gBattle_WIN1V = 32;
+        gBattle_WIN0V = WIN_RANGE(0, 159);
+        gBattle_WIN1H = WIN_RANGE(0, 240);
+        gBattle_WIN1V = WIN_RANGE(0, 32);
     }
     else
     {
-        gBattle_WIN0V = 0x5051;
+        gBattle_WIN0V = WIN_RANGE(80, 81);
         ScanlineEffect_Clear();
 
         for (i = 0; i < 80; i++)
         {
-            gScanlineEffectRegBuffers[0][i] = 0xF0;
-            gScanlineEffectRegBuffers[1][i] = 0xF0;
+            gScanlineEffectRegBuffers[0][i] = WIN_RANGE(0, 240);
+            gScanlineEffectRegBuffers[1][i] = WIN_RANGE(0, 240);
         }
 
         for (; i < 160; i++)
         {
-            gScanlineEffectRegBuffers[0][i] = 0xFF10;
-            gScanlineEffectRegBuffers[1][i] = 0xFF10;
+            gScanlineEffectRegBuffers[0][i] = WIN_RANGE(255, 16);
+            gScanlineEffectRegBuffers[1][i] = WIN_RANGE(255, 16);
         }
 
         ScanlineEffect_SetParams(sIntroScanlineParams16Bit);
