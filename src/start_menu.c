@@ -196,7 +196,7 @@ static const struct MenuAction sStartMenuItems[] =
     {gText_MenuQuit, {.u8_void = StartMenuQuitBugCatchingContestCallback}},
 };
 
-static const struct BgTemplate sUnknown_085105A8[] =
+static const struct BgTemplate sPostLinkSaveMessageBgTemplates[] =
 {
     {
         .bg = 0,
@@ -209,13 +209,27 @@ static const struct BgTemplate sUnknown_085105A8[] =
     }
 };
 
-static const struct WindowTemplate sUnknown_085105AC[] =
-{
-    {0, 2, 0xF, 0x1A, 4, 0xF, 0x194},
-    DUMMY_WIN_TEMPLATE
+static const struct WindowTemplate sPostLinkSaveMessageWindowTemplates[] = {
+    {
+        .bg = 0,
+        .tilemapLeft = 2,
+        .tilemapTop = 15,
+        .width = 26,
+        .height = 4,
+        .paletteNum = 15,
+        .baseBlock = 0x198
+    }, DUMMY_WIN_TEMPLATE
 };
 
-static const struct WindowTemplate sSaveInfoWindowTemplate = {0, 1, 1, 14, 9, 0xF, 8};
+static const struct WindowTemplate sSaveInfoWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 14,
+    .height = 9,
+    .paletteNum = 15,
+    .baseBlock = 8
+};
 
 // Local functions
 static void BuildStartMenuActions(void);
@@ -1253,8 +1267,8 @@ static bool32 InitSaveWindowAfterLinkBattle(u8 *state)
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0);
         SetVBlankCallback(NULL);
         ScanlineEffect_Stop();
-        DmaClear16(3, PLTT, PLTT_SIZE);
-        DmaFillLarge16(3, 0, (void *)(VRAM + 0x0), 0x18000, 0x1000);
+        DmaClear16(3, (void *)PLTT, PLTT_SIZE);
+        DmaFillLarge16(3, 0, (void *)VRAM, VRAM_SIZE, 0x1000);
         break;
     case 1:
         ResetSpriteData();
@@ -1263,17 +1277,16 @@ static bool32 InitSaveWindowAfterLinkBattle(u8 *state)
         ScanlineEffect_Clear();
         break;
     case 2:
-        ResetBgsAndClearDma3BusyFlags(0);
-        InitBgsFromTemplates(0, sUnknown_085105A8, ARRAY_COUNT(sUnknown_085105A8));
-        InitWindows(sUnknown_085105AC);
-        LoadUserWindowBorderGfx_(0, 8, 224);
-        Menu_LoadStdPalAt(240);
+        ResetBgsAndClearDma3BusyFlags(FALSE);
+        InitBgsFromTemplates(0, sPostLinkSaveMessageBgTemplates, ARRAY_COUNT(sPostLinkSaveMessageBgTemplates));
+        InitWindows(sPostLinkSaveMessageWindowTemplates);
+        LoadThinWindowBorderGfx(0, 8, 0xF0);
         break;
     case 3:
         ShowBg(0);
-        BlendPalettes(-1, 16, 0);
+        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
         SetVBlankCallback(sub_80A03D8);
-        EnableInterrupts(1);
+        EnableInterrupts(INTR_FLAG_VBLANK);
         break;
     case 4:
         return TRUE;
@@ -1309,16 +1322,16 @@ static void Task_SaveAfterLinkBattle(u8 taskId)
         case 0:
             FillWindowPixelBuffer(0, PIXEL_FILL(1));
             AddTextPrinterParameterized2(0,
-                                        2,
-                                        gText_SavingDontTurnOffPower,
-                                        TEXT_SPEED_FF,
-                                        NULL,
-                                        TEXT_COLOR_DARK_GREY,
-                                        TEXT_COLOR_WHITE,
-                                        TEXT_COLOR_LIGHT_GREY);
-            DrawTextBorderOuter(0, 8, 14);
+                                         2,
+                                         gText_SavingDontTurnOffPower,
+                                         TEXT_SPEED_FF,
+                                         NULL,
+                                         TEXT_COLOR_DARK_GREY,
+                                         TEXT_COLOR_WHITE,
+                                         TEXT_COLOR_LIGHT_GREY);
+            DrawTextBorderOuter(0, 8, 15);
             PutWindowTilemap(0);
-            CopyWindowToVram(0, 3);
+            CopyWindowToVram(0, COPYWIN_BOTH);
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
 
             if (gWirelessCommType != 0 && InUnionRoom())

@@ -610,7 +610,7 @@ static const struct WindowTemplate sTradeYesNoWindowTemplate =
     .width = 6,
     .height = 4,
     .paletteNum = 15,
-    .baseBlock = 582
+    .baseBlock = 590
 };
 
 static const u8 sJPText_Shedinja[] = _("ヌケニン");
