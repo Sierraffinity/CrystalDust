@@ -393,7 +393,7 @@ const struct WindowTemplate sDefaultBagWindowsStd[] =
     }, DUMMY_WIN_TEMPLATE
 };
 
-const struct WindowTemplate sDefaultBagWindowsDeposit[] =
+/*const struct WindowTemplate sDefaultBagWindowsDeposit[] =
 {
     {
         .bg = 0,
@@ -415,12 +415,12 @@ const struct WindowTemplate sDefaultBagWindowsDeposit[] =
         .bg = 0,
         .tilemapLeft = 0x01,
         .tilemapTop = 0x01,
-        .width = 0x09,
+        .width = 0x08,
         .height = 0x02,
         .paletteNum = 0x0f,
         .baseBlock = 0x01f8
     }, DUMMY_WIN_TEMPLATE
-};
+};*/
 
 const struct WindowTemplate sContextMenuWindowTemplates[] =
 {
@@ -760,6 +760,10 @@ bool8 SetupBagMenu(void)
         gMain.state++;
         break;
     case 13:
+        // You can deposit from multiple different pockets, so we need to show which pocket
+        /*if (gBagPositionStruct.location == ITEMMENULOCATION_ITEMPC)
+            BagDrawDepositItemTextBox();
+        else*/
         BagMenu_PrintPocketName();
         gMain.state++;
         break;
@@ -780,7 +784,7 @@ bool8 SetupBagMenu(void)
         gMain.state++;
         break;
     case 17:
-        sub_80D4FAC();
+        ItemMenuIcons_CreateInsertIndicatorBarHidden();
         gMain.state++;
         break;
     case 18:
@@ -1532,7 +1536,7 @@ void BagMenu_SwapItems(u8 taskId)
     StringExpandPlaceholders(gStringVar4, gText_MoveVar1Where);
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
     BagMenu_Print(1, 2, gStringVar4, 0, 3, 2, 0, 0, 0);
-    ItemMenuIcons_MoveInsertIndicatorBar(data[0]);
+    ItemMenuIcons_MoveInsertIndicatorBar(0, ListMenuGetYCoordForPrintingArrowCursor(data[0]));
     ItemMenuIcons_ToggleInsertIndicatorBarVisibility(FALSE);
     BagDestroyPocketSwitchArrowPair();
     BagMenu_PrintCursor_(data[0], 2);
@@ -1548,7 +1552,7 @@ static void Task_HandleSwappingItemsInput(u8 taskId)
     {
         input = ListMenu_ProcessInput(data[0]);
         ListMenuGetScrollAndRow(data[0], &gBagPositionStruct.scrollPosition[gBagPositionStruct.pocket], &gBagPositionStruct.cursorPosition[gBagPositionStruct.pocket]);
-        ItemMenuIcons_MoveInsertIndicatorBar(data[0]);
+        ItemMenuIcons_MoveInsertIndicatorBar(0, ListMenuGetYCoordForPrintingArrowCursor(data[0]));
         if (JOY_NEW(SELECT_BUTTON))
         {
             PlaySE(SE_SELECT);
@@ -2582,27 +2586,27 @@ void BagMenu_PrintPocketName(void)
     BagMenu_Print(2, 2, gPocketNamesStringsTable[gBagPositionStruct.pocket], offset, 1, GetFontAttribute(1, FONTATTR_LETTER_SPACING), GetFontAttribute(1, FONTATTR_LINE_SPACING), 0, 0);
 }
 
-void BagDrawDepositItemTextBox(void)
+/*void BagDrawDepositItemTextBox(void)
 {
     u32 x;
     DrawStdFrameWithCustomTileAndPalette(2, FALSE, 129, 12);
     x = GetStringCenterAlignXOffset(0, gText_DepositItem, 0x40);
     AddTextPrinterParameterized(2, 0, gText_DepositItem, x, 1, 0, NULL);
-}
+}*/
 
 void SetupBagMenu_Textboxes(void)
 {
     u8 i;
 
-    if (gBagPositionStruct.location != ITEMMENULOCATION_ITEMPC)
-        InitWindows(sDefaultBagWindowsStd);
-    else
+    /*if (gBagPositionStruct.location == ITEMMENULOCATION_ITEMPC)
         InitWindows(sDefaultBagWindowsDeposit);
+    else*/
+    InitWindows(sDefaultBagWindowsStd);
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, 100, 0xE0);
     LoadMessageBoxGfx(0, 109, 0xD0);
     LoadThinWindowBorderGfx(0, 129, 0xC0);
-    //sub_819A2BC(0xC0, 1);
+    //ListMenuLoadStdPalAt(0xC0, 1);
     LoadPalette(&sBagWindowPalF, 0xF0, 0x20);
     LoadPalette(sPal3Override, 0xF6, 0x04);
     for (i = 0; i < 3; i++)

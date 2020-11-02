@@ -35,7 +35,7 @@ struct ConditionGraph
     /*0x355*/ u8 unk355;
 };
 
-bool8 sub_81D1C44(u8 count);
+bool8 MailboxPC_InitBuffers(u8 count);
 u8 sub_81D1C84(u8 a0);
 u8 sub_81D1DC0(struct PlayerPCItemPageStruct *page);
 void sub_81D1E90(struct PlayerPCItemPageStruct *page);

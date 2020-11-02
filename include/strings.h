@@ -919,6 +919,15 @@ extern const u8 gText_Roy[];
 extern const u8 gText_Gabby[];
 extern const u8 gText_Anna[];
 
+/*extern const u8 gText_Var1IsSelected[];
+extern const u8 gOtherText_WhereShouldTheStrVar1BePlaced[];
+extern const u8 gOtherText_Powder[];
+extern const u8 gText_WithdrawHowMany[];
+extern const u8 gText_WithdrewQuantItem[];
+extern const u8 gText_WithdrawItem[];
+extern const u8 gText_Withdraw[];*/
+extern const u8 gText_ReturnToPC[];
+
 extern const u8 gText_OaksAdvice[];
 extern const u8 gText_CantDismountBike[];
 extern const u8 gText_ItemFinderNothing[];

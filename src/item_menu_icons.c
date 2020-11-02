@@ -432,7 +432,7 @@ void HideBagItemIconSprite(u8 id)
     }
 }
 
-void sub_80D4FAC(void)
+void ItemMenuIcons_CreateInsertIndicatorBarHidden(void)
 {
     sub_8122344(&gBagMenu->spriteId[1], 9);
 }
@@ -442,9 +442,9 @@ void ItemMenuIcons_ToggleInsertIndicatorBarVisibility(u8 arg0)
     sub_81223FC(&gBagMenu->spriteId[1], 9, arg0);
 }
 
-void ItemMenuIcons_MoveInsertIndicatorBar(u8 arg0)
+void ItemMenuIcons_MoveInsertIndicatorBar(s16 x, s16 y)
 {
-    sub_8122448(&gBagMenu->spriteId[1], 9, 0, ListMenuGetYCoordForPrintingArrowCursor(arg0));
+    sub_8122448(&gBagMenu->spriteId[1], 9, x, y);
 }
 
 static void sub_80D5018(void *mem0, void *mem1)

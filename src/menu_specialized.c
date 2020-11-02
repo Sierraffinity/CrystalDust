@@ -209,7 +209,7 @@ static const struct ListMenuTemplate sMoveRelearnerMovesListTemplate =
     .cursorKind = 0
 };
 
-bool8 sub_81D1C44(u8 count)
+bool8 MailboxPC_InitBuffers(u8 count)
 {
     u8 i;
 
@@ -230,7 +230,7 @@ u8 sub_81D1C84(u8 a0)
         if (a0 == 2)
         {
             struct WindowTemplate template = sUnknown_086253E8[2];
-            template.width = GetMaxWidthInMenuTable(&gMailboxMailOptions[0], 4);
+            template.width = GetMaxWidthInMenuTable(&gMenuActions_MailSubmenu[0], 4);
             sUnknown_0203CF48[2] = AddWindow(&template);
         }
         else
