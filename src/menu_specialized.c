@@ -30,7 +30,7 @@
 
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];
 
-EWRAM_DATA static u8 sUnknown_0203CF48[3] = {0};
+EWRAM_DATA static u8 sMailboxPC_WindowIds[3] = {0};
 EWRAM_DATA static struct ListMenuItem *sUnknown_0203CF4C = NULL;
 
 static void sub_81D1E7C(s32 itemIndex, bool8 onInit, struct ListMenu *list);
@@ -42,34 +42,34 @@ static void SetNextConditionSparkle(struct Sprite *sprite);
 static void SpriteCB_ConditionSparkle(struct Sprite *sprite);
 static void ShowAllConditionSparkles(struct Sprite *sprite);
 
-static const struct WindowTemplate sUnknown_086253E8[] =
+static const struct WindowTemplate sMailboxPC_WindowTemplates[] =
 {
     {
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 1,
-        .width = 8,
+        .width = 10,
         .height = 2,
         .paletteNum = 0xF,
         .baseBlock = 0x8
     },
     {
         .bg = 0,
-        .tilemapLeft = 21,
+        .tilemapLeft = 19,
         .tilemapTop = 1,
-        .width = 8,
+        .width = 10,
         .height = 18,
         .paletteNum = 0xF,
-        .baseBlock = 0x18
+        .baseBlock = 0x1C
     },
     {
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 1,
-        .width = 11,
+        .width = 15,
         .height = 8,
         .paletteNum = 0xF,
-        .baseBlock = 0x18
+        .baseBlock = 0x1C
     }
 };
 
@@ -217,42 +217,33 @@ bool8 MailboxPC_InitBuffers(u8 count)
     if (sUnknown_0203CF4C == NULL)
         return FALSE;
 
-    for (i = 0; i < ARRAY_COUNT(sUnknown_0203CF48); i++)
-        sUnknown_0203CF48[i] = 0xFF;
+    for (i = 0; i < ARRAY_COUNT(sMailboxPC_WindowIds); i++)
+        sMailboxPC_WindowIds[i] = 0xFF;
 
     return TRUE;
 }
 
-u8 sub_81D1C84(u8 a0)
+u8 MailboxPC_GetAddWindow(u8 windowIndex)
 {
-    if (sUnknown_0203CF48[a0] == 0xFF)
+    if (sMailboxPC_WindowIds[windowIndex] == 0xFF)
     {
-        if (a0 == 2)
-        {
-            struct WindowTemplate template = sUnknown_086253E8[2];
-            template.width = GetMaxWidthInMenuTable(&gMenuActions_MailSubmenu[0], 4);
-            sUnknown_0203CF48[2] = AddWindow(&template);
-        }
-        else
-        {
-            sUnknown_0203CF48[a0] = AddWindow(&sUnknown_086253E8[a0]);
-        }
-        SetStandardWindowBorderStyle(sUnknown_0203CF48[a0], 0);
+        sMailboxPC_WindowIds[windowIndex] = AddWindow(&sMailboxPC_WindowTemplates[windowIndex]);
+        SetStandardWindowBorderStyle(sMailboxPC_WindowIds[windowIndex], 0);
     }
-    return sUnknown_0203CF48[a0];
+    return sMailboxPC_WindowIds[windowIndex];
 }
 
-void sub_81D1D04(u8 a0)
+void MailboxPC_RemoveWindow(u8 windowIndex)
 {
-    ClearStdWindowAndFrameToTransparent(sUnknown_0203CF48[a0], 0);
-    ClearWindowTilemap(sUnknown_0203CF48[a0]);
-    RemoveWindow(sUnknown_0203CF48[a0]);
-    sUnknown_0203CF48[a0] = 0xFF;
+    ClearStdWindowAndFrameToTransparent(sMailboxPC_WindowIds[windowIndex], 0);
+    ClearWindowTilemap(sMailboxPC_WindowIds[windowIndex]);
+    RemoveWindow(sMailboxPC_WindowIds[windowIndex]);
+    sMailboxPC_WindowIds[windowIndex] = 0xFF;
 }
 
-static u8 sub_81D1D34(u8 a0) // unused
+static u8 MailboxPC_GetWindowId(u8 windowIndex) // unused
 {
-    return sUnknown_0203CF48[a0];
+    return sMailboxPC_WindowIds[windowIndex];
 }
 
 static void sub_81D1D44(u8 windowId, u16 index, s32 itemId, u8 y)
@@ -271,7 +262,7 @@ static void sub_81D1D44(u8 windowId, u16 index, s32 itemId, u8 y)
     AddTextPrinterParameterized4(windowId, 2, 8, y, 0, 0, sPlayerNameTextColors, -1, buffer);
 }
 
-u8 sub_81D1DC0(struct PlayerPCItemPageStruct *page)
+u8 MailboxPC_InitListMenu(struct PlayerPCItemPageStruct *page)
 {
     u16 i;
     for (i = 0; i < page->count; i++)
@@ -285,7 +276,7 @@ u8 sub_81D1DC0(struct PlayerPCItemPageStruct *page)
 
     gMultiuseListMenuTemplate.items = sUnknown_0203CF4C;
     gMultiuseListMenuTemplate.totalItems = page->count + 1;
-    gMultiuseListMenuTemplate.windowId = sUnknown_0203CF48[1];
+    gMultiuseListMenuTemplate.windowId = sMailboxPC_WindowIds[1];
     gMultiuseListMenuTemplate.header_X = 0;
     gMultiuseListMenuTemplate.item_X = 8;
     gMultiuseListMenuTemplate.cursor_X = 0;
@@ -310,12 +301,12 @@ static void sub_81D1E7C(s32 itemIndex, bool8 onInit, struct ListMenu *list)
         PlaySE(SE_SELECT);
 }
 
-void sub_81D1E90(struct PlayerPCItemPageStruct *page)
+void MailboxPC_AddScrollIndicatorArrows(struct PlayerPCItemPageStruct *page)
 {
     page->scrollIndicatorId = AddScrollIndicatorArrowPairParameterized(2, 0xC8, 12, 0x94, page->count - page->pageItems + 1, 0x6E, 0x6E, &page->itemsAbove);
 }
 
-void sub_81D1EC0(void)
+void MailboxPC_DestroyListMenuBuffer(void)
 {
     Free(sUnknown_0203CF4C);
 }

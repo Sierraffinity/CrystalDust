@@ -458,13 +458,13 @@ static void PCMailCompaction(void)
 
 static void Task_DrawMailboxPcMenu(u8 taskId)
 {
-    /*u8 windowId = MailboxPC_GetAddWindow(0);
+    u8 windowId = MailboxPC_GetAddWindow(0);
     s32 width = GetStringWidth(2, gText_Mailbox, 0);
     MailboxPC_GetAddWindow(1);
     AddTextPrinterParameterized(windowId, 2, gText_Mailbox, (80 - width) / 2, 2, 0, NULL);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].tListMenuTaskId = MailboxPC_InitListMenu(&gPlayerPcMenuManager);
-    MailboxPC_AddScrollIndicatorArrows(&gPlayerPcMenuManager);*/
+    MailboxPC_AddScrollIndicatorArrows(&gPlayerPcMenuManager);
 }
 
 static void Task_MailboxPcHandleInput(u8 taskId)
@@ -486,8 +486,8 @@ static void Task_MailboxPcHandleInput(u8 taskId)
             break;
         default:
             PlaySE(SE_SELECT);
-            /*MailboxPC_RemoveWindow(0);
-            MailboxPC_RemoveWindow(1);*/
+            MailboxPC_RemoveWindow(0);
+            MailboxPC_RemoveWindow(1);
             DestroyListMenuTask(tListMenuTaskId, &gPlayerPcMenuManager.itemsAbove, &gPlayerPcMenuManager.cursorPos);
             ScheduleBgCopyTilemapToVram(0);
             RemoveScrollIndicatorArrowPair(gPlayerPcMenuManager.scrollIndicatorId);
@@ -524,21 +524,21 @@ static void Task_PrintWhatToDoWithSelectedMail(u8 taskId)
 static void Task_DestroyMailboxPcViewAndCancel(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    /*MailboxPC_RemoveWindow(0);
-    MailboxPC_RemoveWindow(1);*/
+    MailboxPC_RemoveWindow(0);
+    MailboxPC_RemoveWindow(1);
     DestroyListMenuTask(tListMenuTaskId, NULL, NULL);
     ScheduleBgCopyTilemapToVram(0);
-    //MailboxPC_DestroyListMenuBuffer();
+    MailboxPC_DestroyListMenuBuffer();
     ReshowPlayerPC(taskId);
 }
 
 static void Task_DrawMailSubmenu(u8 taskId)
 {
-    /*u8 windowId = MailboxPC_GetAddWindow(2);
+    u8 windowId = MailboxPC_GetAddWindow(2);
     PrintTextArray(windowId, 2, GetMenuCursorDimensionByFont(2, 0), 2, 16, 4, gMenuActions_MailSubmenu);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 2, 16, 4, 0);
     ScheduleBgCopyTilemapToVram(0);
-    gTasks[taskId].func = Task_MailSubmenuHandleInput;*/
+    gTasks[taskId].func = Task_MailSubmenuHandleInput;
 }
 
 static void Task_MailSubmenuHandleInput(u8 taskId)
@@ -569,7 +569,7 @@ static void Task_WaitFadeAndReadSelectedMail(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        //MailboxPC_DestroyListMenuBuffer();
+        MailboxPC_DestroyListMenuBuffer();
         CleanupOverworldWindowsAndTilemaps();
         ReadMail(&SELECTED_MAIL, CB2_SetCbToReturnToMailbox, 1);
         DestroyTask(taskId);
@@ -673,7 +673,7 @@ static void Task_WaitFadeAndGoToPartyMenu(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        //MailboxPC_DestroyListMenuBuffer();
+        MailboxPC_DestroyListMenuBuffer();
         CleanupOverworldWindowsAndTilemaps();
         ChooseMonToGiveMailFromMailbox();
         DestroyTask(taskId);
@@ -726,7 +726,7 @@ static void Task_RedrawPlayerPcMailboxAndSetUpInputHandler(u8 taskId)
 
 static void Task_PlayerPcExitMailSubmenu(u8 taskId)
 {
-    //MailboxPC_RemoveWindow(2);
+    MailboxPC_RemoveWindow(2);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = Task_RedrawPlayerPcMailboxAndSetUpInputHandler;
 }
