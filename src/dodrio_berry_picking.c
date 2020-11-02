@@ -2682,7 +2682,7 @@ static void sub_8027BEC(u8 windowId, s32 width)
     LoadUserWindowBorderGfx_(windowId, 0x21D, 0xD0);
     DrawTextBorderOuter(windowId, 0x21D, 0xD);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    AddTextPrinterParameterized(windowId, 2, gText_BerryPickingRecords, GetStringCenterAlignXOffset(1, gText_BerryPickingRecords, width * 8), 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_BerryPickingRecords, GetStringCenterAlignXOffset(2, gText_BerryPickingRecords, width * 8), 1, TEXT_SPEED_FF, NULL);
     for (i = 0; i < 3; i++)
     {
         ConvertIntToDecimalStringN(gStringVar1, results[i], STR_CONV_MODE_LEFT_ALIGN, gUnknown_082F7B40[i]);

@@ -1121,7 +1121,7 @@ static void sub_81C6404(void)
     ConvertIntToDecimalStringN(gStringVar1, 1, STR_CONV_MODE_LEADING_ZEROS, 2);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
     sub_81C6CEC(3);
-    x = GetStringCenterAlignXOffset(1, gStringVar4, 0x28);
+    x = GetStringCenterAlignXOffset(2, gStringVar4, 0x28);
     AddTextPrinterParameterized(3, 2, gStringVar4, x, 2, 0, NULL);
 }
 
@@ -1131,7 +1131,7 @@ static void sub_81C645C(s16 value)
 
     ConvertIntToDecimalStringN(gStringVar1, value, STR_CONV_MODE_LEADING_ZEROS, 2);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
-    x = GetStringCenterAlignXOffset(1, gStringVar4, 0x28);
+    x = GetStringCenterAlignXOffset(2, gStringVar4, 0x28);
     AddTextPrinterParameterized(3, 2, gStringVar4, x, 2, 0, NULL);
 }
 

@@ -596,7 +596,7 @@ static void CreateStarterPokemonLabel(u8 selection)
     width = GetStringCenterAlignXOffset(7, categoryText, 0x68);
     AddTextPrinterParameterized3(sStarterLabelWindowId, 7, width, 1, sTextColors, 0, categoryText);
 
-    width = GetStringCenterAlignXOffset(1, speciesName, 0x68);
+    width = GetStringCenterAlignXOffset(2, speciesName, 0x68);
     AddTextPrinterParameterized3(sStarterLabelWindowId, 2, width, 17, sTextColors, 0, speciesName);
 
     PutWindowTilemap(sStarterLabelWindowId);

@@ -959,7 +959,7 @@ static bool8 IsWinStreakActive(u32 challenge)
 
 static void PrintAligned(const u8 *str, s32 y)
 {
-    s32 x = GetStringCenterAlignXOffset(1, str, 224);
+    s32 x = GetStringCenterAlignXOffset(2, str, 224);
     y = (y * 8) + 1;
     AddTextPrinterParameterized(gRecordsWindowId, 2, str, x, y, TEXT_SPEED_FF, NULL);
 }
@@ -1488,7 +1488,7 @@ static void ShowLinkContestResultsWindow(void)
     FillWindowPixelBuffer(gRecordsWindowId, PIXEL_FILL(1));
 
     StringExpandPlaceholders(gStringVar4, gText_LinkContestResults);
-    x = GetStringCenterAlignXOffset(1, gStringVar4, 208);
+    x = GetStringCenterAlignXOffset(2, gStringVar4, 208);
     AddTextPrinterParameterized(gRecordsWindowId, 2, gStringVar4, x, 1, TEXT_SPEED_FF, NULL);
 
     str = gText_1st;

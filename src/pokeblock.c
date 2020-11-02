@@ -683,7 +683,7 @@ static void PutPokeblockInfoText(void)
     u8 i;
 
     const u8 *itemName = ItemId_GetName(ITEM_POKEBLOCK_CASE);
-    PrintOnPokeblockWindow(0, itemName, GetStringCenterAlignXOffset(1, itemName, 0x48));
+    PrintOnPokeblockWindow(0, itemName, GetStringCenterAlignXOffset(2, itemName, 0x48));
 
     PrintOnPokeblockWindow(2, gText_Spicy, 0);
     PrintOnPokeblockWindow(3, gText_Dry, 0);

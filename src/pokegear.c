@@ -1021,8 +1021,8 @@ static void LoadClockCard(void)
     PutWindowTilemap(WIN_TOP);
     //PutWindowTilemap(WIN_BOTTOM);
     AddTextPrinterParameterized2(WIN_DIALOG, 2, gText_PokegearInstructions, 0, NULL, 2, 1, 3);
-    AddTextPrinterParameterized3(WIN_TOP, 2, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
-    //AddTextPrinterParameterized3(WIN_BOTTOM, 2, GetStringCenterAlignXOffset(1, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
+    AddTextPrinterParameterized3(WIN_TOP, 2, GetStringCenterAlignXOffset(2, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
+    //AddTextPrinterParameterized3(WIN_BOTTOM, 2, GetStringCenterAlignXOffset(2, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
     ScheduleBgCopyTilemapToVram(0);
     
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
@@ -1071,7 +1071,7 @@ static void Task_ClockCard(u8 taskId)
         const u8 *dayOfWeek = GetDayOfWeekString(gLocalTime.dayOfWeek);
         gTasks[taskId].tDayOfWeek = gLocalTime.dayOfWeek;
         FillWindowPixelBuffer(WIN_TOP, 0);
-        AddTextPrinterParameterized3(WIN_TOP, 2, GetStringCenterAlignXOffset(1, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
+        AddTextPrinterParameterized3(WIN_TOP, 2, GetStringCenterAlignXOffset(2, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
     }
     
     if (shouldForceUpdate)
@@ -1755,7 +1755,7 @@ static void Task_RadioCard(u8 taskId)
             {
                 AddTextPrinterParameterized3(WIN_BOTTOM,
                                              2,
-                                             GetStringCenterAlignXOffset(1, gRadioShowNames[showNameId], 0x70),
+                                             GetStringCenterAlignXOffset(2, gRadioShowNames[showNameId], 0x70),
                                              5,
                                              sTextColor,
                                              0,

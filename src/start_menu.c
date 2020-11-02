@@ -1386,7 +1386,7 @@ static void ShowSaveInfoWindow(void)
     // Print mapsec name
     yOffset = 0;
     BufferSaveMenuText(SAVE_MENU_LOCATION, gStringVar4, TEXT_COLOR_BLUE);
-    xOffset = GetStringCenterAlignXOffset(1, gStringVar4, 0x70);
+    xOffset = GetStringCenterAlignXOffset(2, gStringVar4, 0x70);
     AddTextPrinterParameterized(sSaveInfoWindowId, 2, gStringVar4, xOffset, yOffset, 0xFF, NULL);
 
     // Print player name

@@ -1609,7 +1609,7 @@ static void PrintPlayerNames(void)
 
             text[0] = EOS;
             StringCopy(text, gLinkPlayers[sBerryBlender->arrowIdToPlayerId[i]].name);
-            xPos = GetStringCenterAlignXOffset(1, text, 0x38);
+            xPos = GetStringCenterAlignXOffset(2, text, 0x38);
 
             if (playerId == sBerryBlender->arrowIdToPlayerId[i])
                 Blender_AddTextPrinter(i, text, xPos, 1, 0, 2); // Highlight player's name in red
@@ -3487,7 +3487,7 @@ static bool8 PrintBlendingResults(void)
             u16 minutes, seconds;
             u8 *txtPtr;
 
-            xPos = GetStringCenterAlignXOffset(1, sText_BlendingResults, 0xA8);
+            xPos = GetStringCenterAlignXOffset(2, sText_BlendingResults, 0xA8);
             Blender_AddTextPrinter(5, sText_BlendingResults, xPos, 1, TEXT_SPEED_FF, 0);
 
             if (sBerryBlender->numPlayers == BLENDER_MAX_PLAYERS)
@@ -3686,7 +3686,7 @@ static bool8 PrintBlendingRanking(void)
         break;
     case 3:
         DrawStdFrameWithCustomTileAndPalette(5, 0, 1, 0xD);
-        xPos = GetStringCenterAlignXOffset(1, sText_Ranking, 168);
+        xPos = GetStringCenterAlignXOffset(2, sText_Ranking, 168);
         Blender_AddTextPrinter(5, sText_Ranking, xPos, 1, TEXT_SPEED_FF, 0);
 
         sBerryBlender->scoreIconIds[SCORE_BEST] = CreateSprite(&sSpriteTemplate_ScoreSymbols, 128, 52, 0);
@@ -3760,7 +3760,7 @@ void ShowBerryBlenderRecordWindow(void)
     DrawStdWindowFrame(gRecordsWindowId, 0);
     FillWindowPixelBuffer(gRecordsWindowId, PIXEL_FILL(1));
 
-    xPos = GetStringCenterAlignXOffset(1, gText_BlenderMaxSpeedRecord, 144);
+    xPos = GetStringCenterAlignXOffset(2, gText_BlenderMaxSpeedRecord, 144);
     AddTextPrinterParameterized(gRecordsWindowId, 2, gText_BlenderMaxSpeedRecord, xPos, 1, 0, NULL);
     AddTextPrinterParameterized(gRecordsWindowId, 2, gText_234Players, 4, 41, 0, NULL);
 

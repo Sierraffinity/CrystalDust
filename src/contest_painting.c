@@ -306,7 +306,7 @@ static void PrintContestPaintingCaption(u8 contestType, bool8 arg1)
         StringExpandPlaceholders(gStringVar4, sContestPaintingDescriptionPointers[category]);
     }
 
-    x = GetStringCenterAlignXOffset(1, gStringVar4, 208);
+    x = GetStringCenterAlignXOffset(2, gStringVar4, 208);
     AddTextPrinterParameterized(gContestPaintingWindowId, 2, gStringVar4, x, 1, 0, 0);
     CopyBgTilemapBufferToVram(1);
 }

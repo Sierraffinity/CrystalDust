@@ -525,7 +525,7 @@ static void CB2_CreateTradeMenu(void)
             gMain.state++;
         break;
     case 12:
-        xPos = GetStringCenterAlignXOffset(1, gSaveBlock2Ptr->playerName, 120);
+        xPos = GetStringCenterAlignXOffset(2, gSaveBlock2Ptr->playerName, 120);
         for (i = 0; i < 3; i++)
         {
             temp = gSpriteTemplate_832DCAC;
@@ -533,7 +533,7 @@ static void CB2_CreateTradeMenu(void)
             CreateSprite(&temp, xPos + (i * 32) + 16, 9, 1);
         }
 
-        xPos = GetStringCenterAlignXOffset(1, gLinkPlayers[GetMultiplayerId() ^ 1].name, 120);
+        xPos = GetStringCenterAlignXOffset(2, gLinkPlayers[GetMultiplayerId() ^ 1].name, 120);
         for (i = 0; i < 3; i++)
         {
             temp = gSpriteTemplate_832DCAC;
@@ -712,7 +712,7 @@ static void CB2_ReturnToTradeMenu(void)
             gMain.state++;
         break;
     case 12:
-        xPos = GetStringCenterAlignXOffset(1, gSaveBlock2Ptr->playerName, 120);
+        xPos = GetStringCenterAlignXOffset(2, gSaveBlock2Ptr->playerName, 120);
         for (i = 0; i < 3; i++)
         {
             temp = gSpriteTemplate_832DCAC;
@@ -720,7 +720,7 @@ static void CB2_ReturnToTradeMenu(void)
             CreateSprite(&temp, xPos + (i * 32) + 16, 10, 1);
         }
 
-        xPos = GetStringCenterAlignXOffset(1, gLinkPlayers[GetMultiplayerId() ^ 1].name, 120);
+        xPos = GetStringCenterAlignXOffset(2, gLinkPlayers[GetMultiplayerId() ^ 1].name, 120);
         for (i = 0; i < 3; i++)
         {
             temp = gSpriteTemplate_832DCAC;

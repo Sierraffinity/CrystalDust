@@ -3952,7 +3952,7 @@ static void sub_802E500(u16 windowId, int width)
     LoadUserWindowBorderGfx_(windowId, 0x21D, 0xD0);
     DrawTextBorderOuter(windowId, 0x21D, 0xD);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    AddTextPrinterParameterized(windowId, 2, gText_PkmnJumpRecords, GetStringCenterAlignXOffset(1, gText_PkmnJumpRecords, width * 8), 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_PkmnJumpRecords, GetStringCenterAlignXOffset(2, gText_PkmnJumpRecords, width * 8), 1, TEXT_SPEED_FF, NULL);
     for (i = 0; i < ARRAY_COUNT(gUnknown_082FE278); i++)
     {
         AddTextPrinterParameterized(windowId, 2, gUnknown_082FE278[i], 0, 25 + (i * 16), TEXT_SPEED_FF, NULL);

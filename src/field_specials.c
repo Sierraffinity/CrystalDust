@@ -1890,10 +1890,10 @@ void DrawElevatorCurrentFloorWindow(void)
     LoadThinWindowBorderGfx(sTutorMoveAndElevatorWindowId, 0x21D, 0xD0);
     DrawStdFrameWithCustomTileAndPalette(sTutorMoveAndElevatorWindowId, FALSE, 0x21D, 0xD);
 
-    xPos = GetStringCenterAlignXOffset(1, gText_ElevatorNowOn, 64);
+    xPos = GetStringCenterAlignXOffset(2, gText_ElevatorNowOn, 64);
     AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 2, gText_ElevatorNowOn, xPos, 1, TEXT_SPEED_FF, NULL);
 
-    xPos = GetStringCenterAlignXOffset(1, sFloorNames[gSpecialVar_0x8006], 64);
+    xPos = GetStringCenterAlignXOffset(2, sFloorNames[gSpecialVar_0x8006], 64);
     AddTextPrinterParameterized(sTutorMoveAndElevatorWindowId, 2, sFloorNames[gSpecialVar_0x8006], xPos, 17, TEXT_SPEED_FF, NULL);
 
     PutWindowTilemap(sTutorMoveAndElevatorWindowId);

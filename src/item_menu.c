@@ -2582,7 +2582,7 @@ void BagMenu_PrintPocketName(void)
     int offset;
 
     FillWindowPixelBuffer(2, PIXEL_FILL(0));
-    offset = GetStringCenterAlignXOffset(1, gPocketNamesStringsTable[gBagPositionStruct.pocket], 0x48);
+    offset = GetStringCenterAlignXOffset(2, gPocketNamesStringsTable[gBagPositionStruct.pocket], 0x48);
     BagMenu_Print(2, 2, gPocketNamesStringsTable[gBagPositionStruct.pocket], offset, 1, GetFontAttribute(1, FONTATTR_LETTER_SPACING), GetFontAttribute(1, FONTATTR_LINE_SPACING), 0, 0);
 }
 

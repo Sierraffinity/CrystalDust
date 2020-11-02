@@ -875,7 +875,7 @@ void sub_81D10D0(struct PokenavSub14 *structPtr)
     txtPtr = ConvertIntToDecimalStringN(gStringVar1, id, STR_CONV_MODE_RIGHT_ALIGN, 3);
     *(txtPtr++) = CHAR_SLASH;
     ConvertIntToDecimalStringN(txtPtr, count, STR_CONV_MODE_RIGHT_ALIGN, 3);
-    x = GetStringCenterAlignXOffset(1, gStringVar1, 56);
+    x = GetStringCenterAlignXOffset(2, gStringVar1, 56);
     AddTextPrinterParameterized(structPtr->field_C, 2, gStringVar1, x, 1, TEXT_SPEED_FF, NULL);
     CopyWindowToVram(structPtr->field_C, 2);
 }

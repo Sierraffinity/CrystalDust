@@ -3704,9 +3704,9 @@ static void sub_811CFCC(void)
     if (!titleText)
         return;
 
-    xOffset = GetStringCenterAlignXOffset(1, titleText, 144);
+    xOffset = GetStringCenterAlignXOffset(2, titleText, 144);
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
-    sub_811D058(0, 1, titleText, xOffset, 1, 0xFF, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GREY, TEXT_COLOR_LIGHT_GREY);
+    sub_811D058(0, 2, titleText, xOffset, 1, 0xFF, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GREY, TEXT_COLOR_LIGHT_GREY);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 }
@@ -3777,10 +3777,10 @@ static void sub_811D104(u8 arg0)
 
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     if (text1)
-        sub_811D028(1, 1, text1, 0, 1, 0xFF, 0);
+        sub_811D028(1, 2, text1, 0, 1, 0xFF, 0);
 
     if (text2)
-        sub_811D028(1, 1, text2, 0, 17, 0xFF, 0);
+        sub_811D028(1, 2, text2, 0, 17, 0xFF, 0);
 
     CopyWindowToVram(1, 3);
 }
@@ -3870,7 +3870,7 @@ static void sub_811D2C8(void)
         }
 
         *str = EOS;
-        sub_811D028(sUnknown_0203A11C->windowId, 1, sUnknown_0203A11C->unkB, 0, i * 16 + 1, 0xFF, 0);
+        sub_811D028(sUnknown_0203A11C->windowId, 2, sUnknown_0203A11C->unkB, 0, i * 16 + 1, 0xFF, 0);
     }
 
     CopyWindowToVram(sUnknown_0203A11C->windowId, 3);
@@ -4008,7 +4008,7 @@ static void sub_811D6F4(void)
                 return;
             }
 
-            sub_811D028(2, 1, GetEasyChatWordGroupName(groupId), x * 84 + 10, y, 0xFF, NULL);
+            sub_811D028(2, 2, GetEasyChatWordGroupName(groupId), x * 84 + 10, y, 0xFF, NULL);
         }
 
         y += 16;
@@ -4020,7 +4020,7 @@ static void PrintEasyChatKeyboardText(void)
     u32 i;
 
     for (i = 0; i < ARRAY_COUNT(sEasyChatKeyboardText); i++)
-        sub_811D028(2, 1, sEasyChatKeyboardText[i], 10, 97 + i * 16, 0xFF, NULL);
+        sub_811D028(2, 2, sEasyChatKeyboardText[i], 10, 97 + i * 16, 0xFF, NULL);
 }
 
 static void sub_811D794(void)
@@ -4090,9 +4090,9 @@ static void sub_811D864(u8 arg0, u8 arg1)
             {
                 CopyEasyChatWordPadded(sUnknown_0203A11C->unkCC, easyChatWord, 0);
                 if (!sub_811BF88(easyChatWord))
-                    sub_811D028(2, 1, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, NULL);
+                    sub_811D028(2, 2, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, NULL);
                 else
-                    sub_811D058(2, 1, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_LIGHT_GREY);
+                    sub_811D058(2, 2, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_LIGHT_GREY);
             }
         }
 
@@ -4806,7 +4806,7 @@ static void sub_811E948(void)
         if (str)
         {
             int x = sFooterOptionXOffsets[footerId][i];
-            sub_811D028(windowId, 1, str, x, 1, 0, NULL);
+            sub_811D028(windowId, 2, str, x, 1, 0, NULL);
         }
     }
 

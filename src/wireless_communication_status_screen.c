@@ -236,7 +236,7 @@ static void PrintHeaderTexts(void)
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
     FillWindowPixelBuffer(2, PIXEL_FILL(0));
-    WCSS_AddTextPrinterParameterized(0, 2, sHeaderTexts[0], GetStringCenterAlignXOffset(1, sHeaderTexts[0], 0xC0), 6, COLORMODE_GREEN);
+    WCSS_AddTextPrinterParameterized(0, 2, sHeaderTexts[0], GetStringCenterAlignXOffset(2, sHeaderTexts[0], 0xC0), 6, COLORMODE_GREEN);
     for (i = 0; i < (int)ARRAY_COUNT(sHeaderTexts[0]) - 1; i++)
     {
         WCSS_AddTextPrinterParameterized(1, 2, sHeaderTexts[i + 1], 0, 30 * i + 8, COLORMODE_WHITE_LGRAY);

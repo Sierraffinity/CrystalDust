@@ -1093,10 +1093,10 @@ static void ShowAndPrintWindows(void)
         FillWindowPixelBuffer(i, PIXEL_FILL(0));
     }
 
-    x = GetStringCenterAlignXOffset(1, gText_SymbolsEarned, 96);
+    x = GetStringCenterAlignXOffset(2, gText_SymbolsEarned, 96);
     AddTextPrinterParameterized3(WINDOW_EARNED_SYMBOLS, 2, x, 5, sTextColors[0], 0, gText_SymbolsEarned);
 
-    x = GetStringCenterAlignXOffset(1, gText_BattleRecord, 96);
+    x = GetStringCenterAlignXOffset(2, gText_BattleRecord, 96);
     AddTextPrinterParameterized3(WINDOW_BATTLE_RECORD, 2, x, 5, sTextColors[0], 0, gText_BattleRecord);
 
     AddTextPrinterParameterized3(WINDOW_BATTLE_POINTS, 8, 5, 4, sTextColors[0], 0, gText_BattlePoints);
