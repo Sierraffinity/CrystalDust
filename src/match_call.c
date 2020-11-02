@@ -1198,8 +1198,8 @@ static void StartMatchCall(void)
 
 static const u16 sUnknown_0860EA4C[] = INCBIN_U16("graphics/unknown/unknown_60EA4C.gbapal");
 static const u8 sUnknown_0860EA6C[] = INCBIN_U8("graphics/interface/menu_border.4bpp");
-static const u16 sPokeNavIconPalette[] = INCBIN_U16("graphics/pokegear/phone_call_icon_with_bg.gbapal");
-static const u32 sPokeNavIconGfx[] = INCBIN_U32("graphics/pokegear/phone_call_icon_with_bg.4bpp.lz");
+static const u16 sPokeNavIconPalette[] = INCBIN_U16("graphics/pokegear/phone_call_icon.gbapal");
+static const u32 sPokeNavIconGfx[] = INCBIN_U32("graphics/pokegear/phone_call_icon.4bpp.lz");
 
 static const u8 sText_PokenavCallEllipsis[] = _("………………\p");
 
