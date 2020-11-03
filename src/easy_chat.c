@@ -122,6 +122,7 @@ static u8 sub_811B960(u8);
 static void sub_811B9A0(void);
 static u8 sub_811BA1C(void);
 static int DidPlayerInputMysteryGiftPhrase(void);
+static int DidPlayerInputMysteryEventPhrase(void);
 static u16 DidPlayerInputABerryMasterWifePhrase(void);
 static bool8 sub_811CE94(void);
 static void sub_811CF64(void);
@@ -521,6 +522,13 @@ static const u8 sUnknown_08597748[][7] = {
     { 7,  8,  9, 10, 11, 12,  0},
     {13, 14, 15, 16, 17, 18, 19},
     {20, 21, 22, 23, 24, 25, 26},
+};
+
+static const u16 sMysteryEventPhrase[] = {
+    EC_WORD_MYSTERY,
+    EC_WORD_EVENT,
+    EC_WORD_IS,
+    EC_WORD_EXCITING,
 };
 
 static const u16 sMysteryGiftPhrase[] = {
@@ -2732,6 +2740,8 @@ static void sub_811BE9C(void)
     case EASY_CHAT_TYPE_QUESTIONNAIRE:
         if (DidPlayerInputMysteryGiftPhrase())
             gSpecialVar_0x8004 = 2;
+        else if (DidPlayerInputMysteryEventPhrase())
+            gSpecialVar_0x8004 = 1;
         else
             gSpecialVar_0x8004 = 0;
         break;
@@ -2743,6 +2753,11 @@ static void sub_811BE9C(void)
         gSpecialVar_0x8004 = DidPlayerInputABerryMasterWifePhrase();
         break;
     }
+}
+
+static int DidPlayerInputMysteryEventPhrase(void)
+{
+    return !IsPhraseDifferentThanPlayerInput(sMysteryEventPhrase, ARRAY_COUNT(sMysteryEventPhrase));
 }
 
 static int DidPlayerInputMysteryGiftPhrase(void)
@@ -3777,10 +3792,10 @@ static void sub_811D104(u8 arg0)
 
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     if (text1)
-        sub_811D028(1, 1, text1, 0, 1, 0xFF, 0);
+        sub_811D028(1, 2, text1, 0, 1, 0xFF, 0);
 
     if (text2)
-        sub_811D028(1, 1, text2, 0, 17, 0xFF, 0);
+        sub_811D028(1, 2, text2, 0, 17, 0xFF, 0);
 
     CopyWindowToVram(1, 3);
 }
@@ -3870,7 +3885,7 @@ static void sub_811D2C8(void)
         }
 
         *str = EOS;
-        sub_811D028(sUnknown_0203A11C->windowId, 1, sUnknown_0203A11C->unkB, 0, i * 16 + 1, 0xFF, 0);
+        sub_811D028(sUnknown_0203A11C->windowId, 2, sUnknown_0203A11C->unkB, 0, i * 16 + 1, 0xFF, 0);
     }
 
     CopyWindowToVram(sUnknown_0203A11C->windowId, 3);
@@ -4008,7 +4023,7 @@ static void sub_811D6F4(void)
                 return;
             }
 
-            sub_811D028(2, 1, GetEasyChatWordGroupName(groupId), x * 84 + 10, y, 0xFF, NULL);
+            sub_811D028(2, 2, GetEasyChatWordGroupName(groupId), x * 84 + 10, y, 0xFF, NULL);
         }
 
         y += 16;
@@ -4020,7 +4035,7 @@ static void PrintEasyChatKeyboardText(void)
     u32 i;
 
     for (i = 0; i < ARRAY_COUNT(sEasyChatKeyboardText); i++)
-        sub_811D028(2, 1, sEasyChatKeyboardText[i], 10, 97 + i * 16, 0xFF, NULL);
+        sub_811D028(2, 2, sEasyChatKeyboardText[i], 10, 97 + i * 16, 0xFF, NULL);
 }
 
 static void sub_811D794(void)
@@ -4090,9 +4105,9 @@ static void sub_811D864(u8 arg0, u8 arg1)
             {
                 CopyEasyChatWordPadded(sUnknown_0203A11C->unkCC, easyChatWord, 0);
                 if (!sub_811BF88(easyChatWord))
-                    sub_811D028(2, 1, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, NULL);
+                    sub_811D028(2, 2, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, NULL);
                 else
-                    sub_811D058(2, 1, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_LIGHT_GREY);
+                    sub_811D058(2, 2, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_LIGHT_GREY);
             }
         }
 
@@ -4806,7 +4821,7 @@ static void sub_811E948(void)
         if (str)
         {
             int x = sFooterOptionXOffsets[footerId][i];
-            sub_811D028(windowId, 1, str, x, 1, 0, NULL);
+            sub_811D028(windowId, 2, str, x, 1, 0, NULL);
         }
     }
 
