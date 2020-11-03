@@ -1176,6 +1176,10 @@ const u32 gBuyMenuFrame_Palette[] = INCBIN_U32("graphics/interface/shop_menu.gba
 const u32 gBuyMenuFrame_Tilemap[] = INCBIN_U32("graphics/interface/shop_menu.bin.lz");
 const u32 gBuyMenuFrame_TmHmTilemap[] = INCBIN_U32("graphics/interface/shop_menu_tm_hm.bin.lz");
 
+const u32 gItemPcTiles[] = INCBIN_U32("graphics/item_pc/bg.4bpp.lz");
+const u32 gItemPcBgPals[] = INCBIN_U32("graphics/item_pc/bg.gbapal.lz");
+const u32 gItemPcTilemap[] = INCBIN_U32("graphics/item_pc/bg.bin.lz");
+
 // Pokeblock
 
 const u32 gMenuPokeblock_Gfx[] = INCBIN_U32("graphics/interface/pokeblock_case_frame.4bpp.lz");

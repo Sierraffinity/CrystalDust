@@ -4120,6 +4120,10 @@ extern const u32 gBuyMenuFrame_Tilemap[];
 extern const u32 gBuyMenuFrame_TmHmTilemap[];
 extern const u32 gBuyMenuFrame_Palette[];
 
+extern const u32 gItemPcTiles[];
+extern const u32 gItemPcBgPals[];
+extern const u32 gItemPcTilemap[];
+
 extern const u32 gBattleInterface_BallStatusBarGfx[];
 extern const u8 gBattleInterface_BallDisplayGfx[];
 extern const u16 gBattleInterface_BallStatusBarPal[];

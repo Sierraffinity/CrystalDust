@@ -35,12 +35,12 @@ struct ConditionGraph
     /*0x355*/ u8 unk355;
 };
 
-bool8 sub_81D1C44(u8 count);
-u8 sub_81D1C84(u8 a0);
-u8 sub_81D1DC0(struct PlayerPCItemPageStruct *page);
-void sub_81D1E90(struct PlayerPCItemPageStruct *page);
-void sub_81D1EC0(void);
-void sub_81D1D04(u8 a0);
+bool8 MailboxPC_InitBuffers(u8 count);
+u8 MailboxPC_GetAddWindow(u8 a0);
+u8 MailboxPC_InitListMenu(struct PlayerPCItemPageStruct *page);
+void MailboxPC_AddScrollIndicatorArrows(struct PlayerPCItemPageStruct *page);
+void MailboxPC_DestroyListMenuBuffer(void);
+void MailboxPC_RemoveWindow(u8 a0);
 void sub_81D1ED4(struct ConditionGraph *graph);
 void sub_81D2108(struct ConditionGraph *graph);
 void sub_81D21DC(u8 bg);

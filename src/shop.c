@@ -715,13 +715,13 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
             BuyMenuAddItemIcon(-1, gShopDataPtr->iconSlot);
 
         gShopDataPtr->iconSlot ^= 1;
-        BuyMenuPrint(5, 1, description, 0, 3, 2, 0, 0, 0);
+        BuyMenuPrint(5, 2, description, 0, 3, 2, 0, 0, 0);
     }
     else
     {
         FillWindowPixelBuffer(6, PIXEL_FILL(0));
         LoadTmHmNameInMart(item);
-        BuyMenuPrint(5, 1, description, 2, 3, 1, 0, 0, 0);
+        BuyMenuPrint(5, 2, description, 2, 3, 1, 0, 0, 0);
     }
 }
 
@@ -774,12 +774,12 @@ static void LoadTmHmNameInMart(s32 item)
         StringAppend(gStringVar4, gStringVar1);
         BuyMenuPrint(6, 0, gStringVar4, 0, 0, 0, 0, TEXT_SPEED_FF, 1);
         StringCopy(gStringVar4, gMoveNames[ItemIdToBattleMoveId(item)]);
-        BuyMenuPrint(6, 1, gStringVar4, 0, 0x10, 0, 0, 0, 1);
+        BuyMenuPrint(6, 2, gStringVar4, 0, 0x10, 0, 0, 0, 1);
     }
     else
     {
         BuyMenuPrint(6, 0, gText_ThreeDashes, 0, 0, 0, 0, TEXT_SPEED_FF, 1);
-        BuyMenuPrint(6, 1, gText_SevenDashes, 0, 0x10, 0, 0, 0, 1);
+        BuyMenuPrint(6, 2, gText_SevenDashes, 0, 0x10, 0, 0, 0, 1);
     }
 }
 
@@ -815,7 +815,7 @@ static void BuyMenuRemoveScrollIndicatorArrows(void)
 static void BuyMenuPrintCursor(u8 scrollIndicatorsTaskId, u8 colorSet)
 {
     u8 y = ListMenuGetYCoordForPrintingArrowCursor(scrollIndicatorsTaskId);
-    BuyMenuPrint(4, 1, gText_SelectorArrow2, 1, y, 0, 0, 0, colorSet);
+    BuyMenuPrint(4, 2, gText_SelectorArrow2, 1, y, 0, 0, 0, colorSet);
 }
 
 static void BuyMenuAddItemIcon(u16 item, u8 iconSlot)
@@ -1243,7 +1243,7 @@ static void Task_BuyHowManyDialogueInit(u8 taskId)
     BuyMenuQuantityBoxThinBorder(1, 0);
     ConvertIntToDecimalStringN(gStringVar1, quantityInBag, STR_CONV_MODE_RIGHT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_InBagVar1);
-    BuyMenuPrint(1, 1, gStringVar4, 0, 2, 0, 0, 0, 1);
+    BuyMenuPrint(1, 2, gStringVar4, 0, 2, 0, 0, 0, 1);
     tItemCount = 1;
     BuyMenuQuantityBoxNormalBorder(3, 0);
     BuyMenuPrintItemQuantityAndPrice(taskId);

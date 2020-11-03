@@ -30,6 +30,7 @@
 #include "international_string_util.h"
 #include "item.h"
 #include "item_menu.h"
+#include "item_pc.h"
 #include "item_use.h"
 #include "link.h"
 #include "link_rfu.h"
@@ -5305,6 +5306,12 @@ void CB2_PartyMenuFromStartMenu(void)
     InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_MON, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ReturnToFieldWithOpenMenu);
 }
 
+void CB2_PartyMenuFromItemPC(void)
+{
+    InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_GIVE_PC_ITEM, FALSE, PARTY_MSG_GIVE_TO_WHICH_MON, Task_HandleChooseMonInput, ItemPc_CB2_ReturnFromPartyMenu);
+    gPartyMenu.bagItem = ItemPc_GetItemIdBySlotId(ItemPc_GetCursorPosition());
+}
+
 // Giving an item by selecting Give from the bag menu
 // As opposted to by selecting Give in the party menu, which is handled by CursorCb_Give
 void CB2_ChooseMonToGiveItem(void)
@@ -5472,7 +5479,7 @@ static void DisplayItemMustBeRemovedFirstMessage(u8 taskId)
 
 static void RemoveItemToGiveFromBag(u16 item)
 {
-    if (gPartyMenu.action == PARTY_ACTION_GIVE_PC_ITEM) // Unused, never occurs
+    if (gPartyMenu.action == PARTY_ACTION_GIVE_PC_ITEM)
         RemovePCItem(item, 1);
     else
         RemoveBagItem(item, 1);
@@ -5499,7 +5506,7 @@ static void TryGiveMailToSelectedMon(u8 taskId)
     struct MailStruct *mail;
 
     gPartyMenuUseExitCallback = FALSE;
-    mail = &gSaveBlock1Ptr->mail[playerPCItemPageInfo.itemsAbove + 6 + playerPCItemPageInfo.cursorPos];
+    mail = &gSaveBlock1Ptr->mail[gPlayerPcMenuManager.itemsAbove + 6 + gPlayerPcMenuManager.cursorPos];
     if (GetMonData(mon, MON_DATA_HELD_ITEM) != ITEM_NONE)
     {
         DisplayPartyMenuMessage(gText_PkmnHoldingItemCantHoldMail, TRUE);

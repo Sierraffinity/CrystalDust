@@ -612,6 +612,7 @@ const u8 gText_WhatToDoWithVar1sMail[] = _("What would you like to do with\n{STR
 const u8 gText_MessageWillBeLost[] = _("The message will be lost.\nIs that okay?");
 const u8 gText_BagIsFull[] = _("The BAG is full.{PAUSE_UNTIL_PRESS}");
 const u8 gText_MailToBagMessageErased[] = _("The MAIL was returned to the BAG\nwith its message erased.{PAUSE_UNTIL_PRESS}");
+const u8 gText_ReturnToPC[] = _("Return to the PC.");
 const u8 gText_Dad[] = _("DAD");
 const u8 gText_Mom[] = _("MOM");
 const u8 gText_Wallace[] = _("WALLACE");
