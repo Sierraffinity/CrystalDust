@@ -7,6 +7,7 @@ EventScript_Questionnaire:: @ 827381B
 	call Common_ShowEasyChatScreen
 	lock
 	faceplayer
+	textcolor MSG_COLOR_BLUE
 	specialvar VAR_0x8008, GetMartEmployeeObjectEventId
 	compare VAR_0x8004, 1
 	goto_if_eq Mevent_EventScript_PlayerInputMysteryEventPhrase

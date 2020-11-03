@@ -32,6 +32,7 @@
 #include "text_window.h"
 #include "window.h"
 #include "constants/flags.h"
+#include "constants/map_types.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 
@@ -53,7 +54,9 @@
 #define PHONE_CARD_MAX_SHOWN_CONTACTS 5
 #define PHONE_CARD_MAX_NAME_LENGTH 31
 
-#define TAG_PHONE_CALL_ICON 12347
+#define TAG_DIGITS       12345
+#define TAG_ICONS        12346
+#define TAG_PHONE_SIGNAL 12347
 
 // Static RAM declarations
 
@@ -139,8 +142,8 @@ static const u32 gPhoneCardTilemap[] = INCBIN_U32("graphics/pokegear/phone.bin.l
 static const u32 gRadioCardTilemap[] = INCBIN_U32("graphics/pokegear/radio.bin.lz");
 static const u16 sPhoneCallWindowPalette[] = INCBIN_U16("graphics/unknown/unknown_60EA4C.gbapal");
 static const u8 sPhoneCallWindowGfx[] = INCBIN_U8("graphics/interface/menu_border.4bpp");
-static const u8 sPhoneCallWindowIconGfx[] = INCBIN_U8("graphics/pokegear/phone_call_icon.4bpp");
-static const u16 sPhoneCallWindowIconPalette[] = INCBIN_U16("graphics/pokegear/phone_call_icon.gbapal");
+static const u8 sPhoneSignalIconGfx[] = INCBIN_U8("graphics/pokegear/phone_signal.4bpp");
+static const u16 sPhoneSignalIconPalette[] = INCBIN_U16("graphics/pokegear/phone_signal.gbapal");
 
 static const struct BgTemplate sBgTemplates[] =
 {
@@ -259,13 +262,13 @@ const struct SpriteSheet sSpriteSheet_DigitTiles =
 {
     .data = sDigitTiles,
     .size = 2176,
-    .tag = 12345,
+    .tag = TAG_DIGITS,
 };
 
 const struct SpritePalette gSpritePalette_PokegearMenuSprites =
 {
     .data = sMenuSpritesPalette,
-    .tag = 54321
+    .tag = TAG_ICONS
 };
 
 static const union AnimCmd sSpriteAnim_Digit0[] =
@@ -409,8 +412,8 @@ static const struct OamData sOamData_Digits =
 };
 
 const struct SpriteTemplate sSpriteTemplate_Digits = {
-    .tileTag = 12345,
-    .paletteTag = 54321,
+    .tileTag = TAG_DIGITS,
+    .paletteTag = TAG_ICONS,
     .oam = &sOamData_Digits,
     .anims = sSpriteAnimTable_Digits,
     .images = NULL,
@@ -422,7 +425,7 @@ static const struct SpriteSheet sSpriteSheet_IconTiles =
 {
     .data = sIconTiles,
     .size = 0xE00,
-    .tag = 12346,
+    .tag = TAG_ICONS,
 };
 
 static const union AnimCmd sSpriteAnim_IconClock[] =
@@ -499,8 +502,8 @@ static const struct OamData sOamData_Icons =
 };
 
 const struct SpriteTemplate sSpriteTemplate_Icons = {
-    .tileTag = 12346,
-    .paletteTag = 54321,
+    .tileTag = TAG_ICONS,
+    .paletteTag = TAG_ICONS,
     .oam = &sOamData_Icons,
     .anims = sSpriteAnimTable_Icons,
     .images = NULL,
@@ -508,26 +511,67 @@ const struct SpriteTemplate sSpriteTemplate_Icons = {
     .callback = SpriteCB_Icons
 };
 
-static const struct SpriteSheet sPhoneCallIconSpriteSheet = {
-    .data = sPhoneCallWindowIconGfx,
+static const struct SpriteSheet sSpriteSheet_PhoneSignal = {
+    .data = sPhoneSignalIconGfx,
     .size = 0x200,
-    .tag = TAG_PHONE_CALL_ICON,
+    .tag = TAG_PHONE_SIGNAL,
 };
 
-const struct SpritePalette gPhoneCallIconSpritePalette = {
-    .data = sPhoneCallWindowIconPalette,
-    .tag = TAG_PHONE_CALL_ICON
+static const struct SpritePalette sSpritePalette_PhoneSignal =
+{
+    .data = sPhoneSignalIconPalette,
+    .tag = TAG_PHONE_SIGNAL
 };
 
-static const struct OamData sPhoneCallIcon_OamData = {
-    .size = 2,
+static const union AnimCmd sSpriteAnim_Signal0[] = {
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_END
 };
 
-static const struct SpriteTemplate sPhoneCallIconSpriteTemplate = {
-    .tileTag = TAG_PHONE_CALL_ICON,
-    .paletteTag = TAG_PHONE_CALL_ICON,
-    .oam = &sPhoneCallIcon_OamData,
-    .anims = gDummySpriteAnimTable,
+static const union AnimCmd sSpriteAnim_Signal1[] = {
+    ANIMCMD_FRAME(4, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_Signal2[] = {
+    ANIMCMD_FRAME(8, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sSpriteAnim_Signal3[] = {
+    ANIMCMD_FRAME(12, 5),
+    ANIMCMD_END
+};
+
+static const union AnimCmd *const sSpriteAnimTable_PhoneSignal[] =
+{
+    sSpriteAnim_Signal0,
+    sSpriteAnim_Signal1,
+    sSpriteAnim_Signal2,
+    sSpriteAnim_Signal3
+};
+
+static const struct OamData sOamData_PhoneSignal = {
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = 0,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(16x16),
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(16x16),
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const struct SpriteTemplate sSpriteTemplate_PhoneSignal = {
+    .tileTag = TAG_PHONE_SIGNAL,
+    .paletteTag = TAG_PHONE_SIGNAL,
+    .oam = &sOamData_PhoneSignal,
+    .anims = sSpriteAnimTable_PhoneSignal,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
@@ -887,13 +931,9 @@ static void LoadCardBgs(enum CardType newCard)
     switch (newCard)
     {
         case ClockCard:
-            //ShowHelpBar(gText_ClockCardHelp);
-            //ScheduleBgCopyTilemapToVram(0);
             LZ77UnCompVram(gClockCardTilemap, (void *)(VRAM + 0xE000));
             break;
         case MapCard:
-            //ShowHelpBar(gText_MapCardHelp1);
-            //ScheduleBgCopyTilemapToVram(0);
             ShowBg(2);
             LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xE000));
             sPokegearStruct.map = AllocZeroed(sizeof(struct RegionMap));
@@ -901,13 +941,9 @@ static void LoadCardBgs(enum CardType newCard)
             while(LoadRegionMapGfx(FALSE));
             break;
         case PhoneCard:
-            //ShowHelpBar(gText_PhoneCardHelp1);
-            //ScheduleBgCopyTilemapToVram(0);
             LZ77UnCompVram(gPhoneCardTilemap, (void *)(VRAM + 0xE000));
             break;
         case RadioCard:
-            //ShowHelpBar(gText_RadioCardHelp);
-            //ScheduleBgCopyTilemapToVram(0);
             LZ77UnCompVram(gRadioCardTilemap, (void *)(VRAM + 0xE000));
             break;
     }
@@ -1019,10 +1055,8 @@ static void LoadClockCard(void)
 
     DrawStdFrameWithCustomTileAndPalette(WIN_DIALOG, FALSE, MENU_FRAME_BASE_TILE_NUM, MENU_FRAME_PALETTE_NUM);
     PutWindowTilemap(WIN_TOP);
-    //PutWindowTilemap(WIN_BOTTOM);
     AddTextPrinterParameterized2(WIN_DIALOG, 2, gText_PokegearInstructions, 0, NULL, 2, 1, 3);
     AddTextPrinterParameterized3(WIN_TOP, 2, GetStringCenterAlignXOffset(2, dayOfWeek, 0x70), 1, sTextColor, 0, dayOfWeek);
-    //AddTextPrinterParameterized3(WIN_BOTTOM, 2, GetStringCenterAlignXOffset(2, gText_PokegearSelectToChangeMode, 0x70), 5, sTextColor, 0, gText_PokegearSelectToChangeMode);
     ScheduleBgCopyTilemapToVram(0);
     
     LoadSpriteSheet(&sSpriteSheet_DigitTiles);
@@ -1164,7 +1198,7 @@ static void UnloadClockCard(void)
     ClearWindowTilemap(WIN_TOP);
     CopyWindowToVram(WIN_TOP, 2);
 
-    FreeSpriteTilesByTag(12345);
+    FreeSpriteTilesByTag(TAG_DIGITS);
     
     for (i = 0; i < 6; i++)
     {
@@ -1186,7 +1220,6 @@ static void LoadMapCard(void)
     u8 newTask;
 
     newTask = CreateTask(Task_MapCard, 0);
-    //ShowHelpBar(gText_MapCardHelp1);
     gTasks[newTask].tState = 0;
 }
 
@@ -1242,7 +1275,8 @@ static void UnloadMapCard(void)
 }
 
 #define tListMenuTaskId data[0]
-#define tScrollTaskId data[2]
+#define tScrollTaskId   data[1]
+#define tSignalSpriteId data[2]
 
 static void LoadPhoneCardContactList(u8 taskId)
 {
@@ -1256,12 +1290,42 @@ static void LoadPhoneCardContactList(u8 taskId)
 static void LoadPhoneCard(void)
 {
     u8 newTask = CreateTask(Task_PhoneCard, 0);
+    s16 *data = gTasks[newTask].data;
+    u8 animNum = 3;
+
     ShowHelpBar(gText_PhoneCardHelp1);
     LoadPhoneCardContactList(newTask);
     DisplayPhoneCardDefaultText();
-    
-    gTasks[newTask].tScrollTaskId = 0xFF;
-    //gPhoneCallSpriteId = MAX_SPRITES;
+    tScrollTaskId = 0xFF;
+
+    LoadSpriteSheet(&sSpriteSheet_PhoneSignal);
+    LoadSpritePalette(&sSpritePalette_PhoneSignal);
+    tSignalSpriteId = CreateSprite(&sSpriteTemplate_PhoneSignal, 200, 25, 0);
+
+    if (!MapAllowsMatchCall())
+    {
+        animNum = 0;
+    }
+    else
+    {
+        switch (gMapHeader.mapType)
+        {
+        case MAP_TYPE_UNDERGROUND:
+        case MAP_TYPE_UNDERWATER:
+            animNum = 1;
+            break;
+        case MAP_TYPE_INDOOR:
+        case MAP_TYPE_SECRET_BASE:
+            animNum = 2;
+            break;
+        default:
+            animNum = 3;
+            break;
+        }
+    }
+
+    StartSpriteAnim(&gSprites[tSignalSpriteId], animNum);
+
     PhoneCard_AddScrollIndicators(newTask);
 }
 
@@ -1463,8 +1527,6 @@ void InitPokegearPhoneCall(u8 taskId)
         LoadBgTiles(0, sPhoneCallWindowGfx, sizeof(sPhoneCallWindowGfx), 0x143);
         FillWindowPixelBuffer(gPhoneCallWindowId, 0x11);
         LoadPalette(sPhoneCallWindowPalette, 0xE0, 0x20);
-        /*LoadSpriteSheet(&sPhoneCallIconSpriteSheet);
-        LoadSpritePalette(&gPhoneCallIconSpritePalette);*/
         gTasks[taskId].tPhoneCallInitState = 1;
         break;
     case 1:
@@ -1473,7 +1535,6 @@ void InitPokegearPhoneCall(u8 taskId)
         DrawPhoneCallTextBoxBorder(gPhoneCallWindowId, 0x143, 14);
         CopyWindowToVram(gPhoneCallWindowId, 2);
         CopyBgTilemapBufferToVram(0);
-        //gPhoneCallSpriteId = CreateSprite(&sPhoneCallIconSpriteTemplate, 24, 136, 3);
         PlaySE(SE_POKENAV_CALL);
         AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sPhoneCallText_Ellipsis, 2, 1, 4, NULL, 1, 2);
         gTasks[taskId].tPhoneCallInitState = 2;
@@ -1556,11 +1617,6 @@ void HangupPokegearPhoneCall(void)
     PlaySE(SE_POKENAV_HANG_UP);
     ClearStdWindowAndFrameToTransparent(gPhoneCallWindowId, TRUE);
     RemoveWindow(gPhoneCallWindowId);
-    /*if (gPhoneCallSpriteId != MAX_SPRITES)
-    {
-        DestroySprite(&gSprites[gPhoneCallSpriteId]);
-        gPhoneCallSpriteId = MAX_SPRITES;
-    }*/
     DisplayPhoneCardDefaultText();
 }
 
@@ -1573,14 +1629,27 @@ static void PhoneCard_ExecuteCall(u8 taskId)
 static void UnloadPhoneCard(void)
 {
     u8 taskId = FindTaskIdByFunc(Task_PhoneCard);
+    s16 *data = gTasks[taskId].data;
+
+    FreeSpriteTilesByTag(TAG_PHONE_SIGNAL);
+    FreeSpritePaletteByTag(TAG_PHONE_SIGNAL);
+    if (tSignalSpriteId != MAX_SPRITES)
+    {
+        DestroySprite(&gSprites[tSignalSpriteId]);
+        tSignalSpriteId = MAX_SPRITES;
+    }
 
     PhoneCard_RemoveScrollIndicators(taskId);
     ClearStdWindowAndFrameToTransparent(WIN_DIALOG, TRUE);
     ClearStdWindowAndFrameToTransparent(WIN_LIST, TRUE);
-    DestroyListMenuTask(gTasks[taskId].tListMenuTaskId, NULL, NULL);
+    DestroyListMenuTask(tListMenuTaskId, NULL, NULL);
 
     DestroyTask(taskId);
 }
+
+#undef tListMenuTaskId
+#undef tScrollTaskId
+#undef tSignalSpriteId
 
 #define tRadioShowTaskId data[0]
 
@@ -1784,7 +1853,7 @@ static void UnloadRadioCard(void)
     if (IsBGMStopped())
         Overworld_PlaySpecialMapMusic();
 
-    FreeSpriteTilesByTag(12345);
+    FreeSpriteTilesByTag(TAG_DIGITS);
     
     for (i = 0; i < 5; i++)
     {

@@ -122,6 +122,7 @@ static u8 sub_811B960(u8);
 static void sub_811B9A0(void);
 static u8 sub_811BA1C(void);
 static int DidPlayerInputMysteryGiftPhrase(void);
+static int DidPlayerInputMysteryEventPhrase(void);
 static u16 DidPlayerInputABerryMasterWifePhrase(void);
 static bool8 sub_811CE94(void);
 static void sub_811CF64(void);
@@ -521,6 +522,13 @@ static const u8 sUnknown_08597748[][7] = {
     { 7,  8,  9, 10, 11, 12,  0},
     {13, 14, 15, 16, 17, 18, 19},
     {20, 21, 22, 23, 24, 25, 26},
+};
+
+static const u16 sMysteryEventPhrase[] = {
+    EC_WORD_MYSTERY,
+    EC_WORD_EVENT,
+    EC_WORD_IS,
+    EC_WORD_EXCITING,
 };
 
 static const u16 sMysteryGiftPhrase[] = {
@@ -2732,6 +2740,8 @@ static void sub_811BE9C(void)
     case EASY_CHAT_TYPE_QUESTIONNAIRE:
         if (DidPlayerInputMysteryGiftPhrase())
             gSpecialVar_0x8004 = 2;
+        else if (DidPlayerInputMysteryEventPhrase())
+            gSpecialVar_0x8004 = 1;
         else
             gSpecialVar_0x8004 = 0;
         break;
@@ -2743,6 +2753,11 @@ static void sub_811BE9C(void)
         gSpecialVar_0x8004 = DidPlayerInputABerryMasterWifePhrase();
         break;
     }
+}
+
+static int DidPlayerInputMysteryEventPhrase(void)
+{
+    return !IsPhraseDifferentThanPlayerInput(sMysteryEventPhrase, ARRAY_COUNT(sMysteryEventPhrase));
 }
 
 static int DidPlayerInputMysteryGiftPhrase(void)

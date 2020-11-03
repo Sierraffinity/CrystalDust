@@ -631,7 +631,7 @@ bool8 LoadRegionMapGfx(bool8 shouldBuffer)
             }
             break;
         case 2:
-            //if (!FreeTempTileDataBuffersIfPossible())   // why are we checking for DMA3 being busy?
+            if (!FreeTempTileDataBuffersIfPossible())   // why are we checking for DMA3 being busy?
             {
                 LoadPalette(sRegionMapPal, 0x70, sizeof(sRegionMapPal));
                 LoadPalette(sRegionMapTownNames_Pal, 0xE0, sizeof(sRegionMapTownNames_Pal));
