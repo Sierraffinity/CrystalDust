@@ -40,9 +40,9 @@ AncientTomb_EventScript_HideRegiEntrance:: @ 8238FFC
 AncientTomb_EventScript_CaveEntranceMiddle:: @ 8239033
 	lockall
 	goto_if_set FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED, AncientTomb_EventScript_BigHoleInWall
-	braillemessage AncientTomb_Braille_ShineInTheMiddle
+	unownmessage AncientTomb_Braille_ShineInTheMiddle
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
@@ -53,9 +53,9 @@ AncientTomb_EventScript_BigHoleInWall:: @ 8239046
 
 AncientTomb_EventScript_CaveEntranceSide:: @ 8239050
 	lockall
-	braillemessage AncientTomb_Braille_ShineInTheMiddle
+	unownmessage AncientTomb_Braille_ShineInTheMiddle
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 

@@ -105,9 +105,10 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_ObtainDecoration        @ STD_OBTAIN_DECORATION
 	.4byte Std_RegisteredInMatchCall   @ STD_REGISTER_MATCH_CALL
 	.4byte Std_MsgboxGetPoints         @ MSGBOX_GETPOINTS
-	.4byte Std_10
+	.4byte Std_MsgboxContinue		   @ MSGBOX_CONTINUE
 	.4byte Std_PutItemAway			   @ STD_PUT_ITEM_AWAY
 	.4byte Std_ReceivedItem			   @ STD_RECEIVED_ITEM
+	.4byte Std_MsgboxContinue		   @ MSGBOX_CONTINUE
 gStdScripts_End:: @ 81DC2CC
 
 	.include "data/maps/VioletCity/scripts.inc"

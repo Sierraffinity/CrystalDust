@@ -1490,7 +1490,7 @@ bool8 ScrCmd_showcontestwinner(struct ScriptContext *ctx)
     return TRUE;
 }
 
-bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
+bool8 ScrCmd_unownmessage(struct ScriptContext *ctx)
 {
     u8 *ptr = (u8 *)ScriptReadWord(ctx);
     struct WindowTemplate winTemplate;
@@ -1541,7 +1541,7 @@ bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_closebraillemessage(struct ScriptContext *ctx)
+bool8 ScrCmd_closeunownmessage(struct ScriptContext *ctx)
 {
     CloseBrailleWindow();
     return FALSE;

@@ -1068,7 +1068,7 @@ static void LoadClockCard(void)
     {
         spriteId = CreateSprite(&sSpriteTemplate_Digits, clockX[i], 84, 0);
         gSprites[spriteId].tPosition = i;
-        gSprites[spriteId].tStoredVal = -1; // causes intialization
+        gSprites[spriteId].tStoredVal = -1; // causes initialization
         gSprites[spriteId].callback = SpriteCB_ClockDigits;
         gTasks[newTask].tDigitSpriteIds(i) = spriteId;
     }

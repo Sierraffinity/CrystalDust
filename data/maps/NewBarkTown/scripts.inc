@@ -331,9 +331,8 @@ NewBarkTown_Text_RivalText2:
 	.string "…What are you staring at?$"
 
 NewBarkTown_Text_FatMan:
-	.string "Yo, {PLAYER}!\p"
-	.string "I hear PROF. ELM discovered some\n"
-	.string "new POKéMON.$"
+	.string "Yo, {PLAYER}! I hear PROF. ELM\n"
+	.string "discovered some new POKéMON.$"
 
 NewBarkTown_Text_GearImpressive:
 	.string "Wow, your POKéGEAR is impressive!\n"

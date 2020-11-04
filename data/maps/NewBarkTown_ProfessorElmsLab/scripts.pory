@@ -19,7 +19,62 @@ mapscripts NewBarkTown_ProfessorElmsLab_MapScripts {
 script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
     lock
     faceplayer
-    if (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+    if (flag(FLAG_GOT_EVERSTONE_FROM_ELM))
+    {
+        msgbox("ELM: {PLAYER}, I'll call you if\n"
+               "anything comes up.")
+    }
+    elif (flag(FLAG_SHOWED_TOGEPI_TO_ELM))
+    {
+        call(NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone)
+    }
+    elif (flag(FLAG_GOT_ELMS_EGG))
+    {
+        if (!flag(FLAG_HATCHED_ELMS_EGG))
+        {
+            msgbox(NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched)
+        }
+        else
+        {
+            setvar(VAR_0x8004, SPECIES_TOGEPI)
+            special(IsPlayersMonOfSpeciesInParty)
+            if (!var(VAR_RESULT))
+            {
+                setvar(VAR_0x8004, SPECIES_TOGETIC)
+                special(IsPlayersMonOfSpeciesInParty)
+                if (!var(VAR_RESULT))
+                {
+                    goto(NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon)
+                }
+            }
+            msgbox("ELM: {PLAYER}, you look great!")
+            closemessage
+            playse(SE_PIN)
+            applymovement(OBJ_EVENT_ID_ELM, Common_Movement_ExclamationMark)
+            waitmovement(0)
+            applymovement(OBJ_EVENT_ID_ELM, Common_Movement_Delay48)
+            waitmovement(0)
+            msgbox("What?\n"
+                   "That POKéMON!?!\p"
+                   "The EGG hatched!\n"
+                   "So, POKéMON are born from EGGS…\l"
+                   "No, perhaps not all POKéMON are.\p"
+                   "Wow, there's still a lot of research\n"
+                   "to be done.\p", MSGBOX_CONTINUE)
+            setflag(FLAG_SHOWED_TOGEPI_TO_ELM)
+            call(NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone)
+        }
+    }
+    elif (flag(FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET))
+    {
+        msgbox("ELM: {PLAYER}?\n"
+               "Didn't you meet my assistant?\p"
+               "He should have met you with the EGG\n"
+               "at VIOLET CITY's POKéMON CENTER.\p"
+               "You must have just missed him.\n"
+               "Try to catch him there.")
+    }
+    elif (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
     {
         msgbox("ELM: Don't give up! I'll call if I\n"
                "learn anything about that EGG!")
@@ -117,6 +172,52 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
 
 text NewBarkTown_ProfessorElmsLab_Text_ElmThis {
     "ELM: This?"
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon {
+    if (flag(FLAG_CALLED_ELM_ABOUT_HATCHED_EGG))
+    {
+        msgbox("ELM: {PLAYER}?\n"
+                "I thought the EGG hatched.\l"
+                "Where is the POKéMON?")
+    }
+    else
+    {
+        msgbox(NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched)
+    }
+    release
+}
+
+text NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched {
+    "ELM: Hey, has that EGG changed any?"
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone {
+    msgbox("Thanks, {PLAYER}! You're helping\n"
+           "unravel POKéMON mysteries for us!\p"
+           "I want you to have this as a token\n"
+           "of our appreciation.")
+    checkitemspace(ITEM_EVERSTONE, 1)
+    if (!var(VAR_RESULT))
+    {
+        msgbox("Oh? You don't have any room\n"
+               "for the EVERSTONE…")
+    }
+    else
+    {
+        giveitem_msg("{PLAYER} received the EVERSTONE\n"
+                     "from PROF. ELM.", ITEM_EVERSTONE)
+        msgbox("That's an EVERSTONE.\p"
+               "Some species of POKéMON evolve\n"
+               "when they grow to certain levels.\p"
+               "A POKéMON holding the EVERSTONE\n"
+               "won't evolve.\p"
+               "Give it to a POKéMON you don't want\n"
+               "to evolve."
+        )
+        setflag(FLAG_GOT_EVERSTONE_FROM_ELM)
+    }
+    release
 }
 
 movement NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsDown {
@@ -537,7 +638,8 @@ script NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain {
     textcolor(MSG_COLOR_BLUE)
     msgbox("{PLAYER}, I want you to have this\n"
            "for your errand.")
-    giveitem(ITEM_POTION)
+    giveitem_msg("{PLAYER} received the POTION\n"
+                 "from the AIDE.", ITEM_POTION)
     msgbox(NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy)
     closemessage
     switch (var(VAR_TEMP_1))
@@ -691,7 +793,8 @@ script NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain {
     textcolor(MSG_COLOR_BLUE)
     msgbox("{PLAYER}!\n"
            "Use these on your POKéDEX quest!")
-    giveitem(ITEM_POKE_BALL, 5)
+    giveitem_msg("{PLAYER} received the POKé BALLS\n"
+                 "from the AIDE.", ITEM_POKE_BALL, 5)
     msgbox("To add to your POKéDEX, you have\n"
            "to catch POKéMON.\p"
            "Throw POKé BALLS at wild POKéMON\n"
@@ -714,7 +817,11 @@ script NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain {
 script NewBarkTown_ProfessorElmsLab_EventScript_Aide {
     lock
     faceplayer
-    if (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+    if (flag(FLAG_GOT_ELMS_EGG))
+    {
+        msgbox(NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon)
+    }
+    elif (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
     {
         msgbox("To add to your POKéDEX, you have\n"
                "to catch POKéMON.\p"
@@ -723,21 +830,25 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Aide {
     }
     elif (flag(FLAG_RECEIVED_MYSTERY_EGG))
     {
-        msgbox("There was a loud noise outside…\p"
-               "When we went to look, someone stole\n"
-               "a POKéMON off the table.\p"
-               "It's unbelievable that anyone would\n"
-               "do that!\p"
-               "…sigh… That stolen POKéMON.\n"
-               "I wonder how it's doing.\p"
-               "They say a POKéMON raised by a bad\n"
-               "person turns bad itself.")
+        msgbox(NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon)
     }
     else
     {
         msgbox(NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy)
     }
     release
+}
+
+text NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon {
+    "There was a loud noise outside…\p"
+    "When we went to look, someone stole\n"
+    "a POKéMON off the table.\p"
+    "It's unbelievable that anyone would\n"
+    "do that!\p"
+    "…sigh… That stolen POKéMON.\n"
+    "I wonder how it's doing.\p"
+    "They say a POKéMON raised by a bad\n"
+    "person turns bad itself."
 }
 
 script NewBarkTown_ProfessorElmsLab_EventScript_OpenWindow {

@@ -346,20 +346,19 @@ script NewBarkTown_PlayersHouse_1F_NeighborTalk {
     gettime
     if (var(VAR_0x8002) == TIME_MORNING)
     {
-        message("Good morning, {PLAYER}!\n"
-                "I'm visiting!\p")
+        msgbox("Good morning, {PLAYER}!\n"
+               "I'm visiting!\p", MSGBOX_CONTINUE)
     }
     elif (var(VAR_0x8002) == TIME_DAY)
     {
-        message("Hello, {PLAYER}!\n"
-                "I'm visiting!\p")
+        msgbox("Hello, {PLAYER}!\n"
+               "I'm visiting!\p", MSGBOX_CONTINUE)
     }
     elif (var(VAR_0x8002) == TIME_NIGHT)
     {
-        message("Good evening, {PLAYER}!\n"
-                "I'm visiting!\p")
+        msgbox("Good evening, {PLAYER}!\n"
+               "I'm visiting!\p", MSGBOX_CONTINUE)
     }
-    waitmessage
     msgbox("{PLAYER}, have you heard?\p"
            "My daughter is adamant about\n"
            "becoming PROF. ELM's assistant.\l"

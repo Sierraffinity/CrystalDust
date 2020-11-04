@@ -4,6 +4,7 @@
 #include "decompress.h"
 #include "event_data.h"
 #include "gpu_regs.h"
+#include "international_string_util.h"
 #include "main.h"
 #include "menu.h"
 #include "menu_helpers.h"
@@ -26,7 +27,7 @@
 //
 // ...
 // setvar VAR_0x8004, 1
-// callnative DoRuinsOfAlphPuzzle
+// special DoRuinsOfAlphPuzzle
 // waitstate
 // compare VAR_RESULT, 1
 // goto_if_eq PuzzleCompleted
@@ -717,7 +718,7 @@ static void ShowHelpBar(const u8 *str)
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(ALPH_PUZZLE_WIN_HELP, 0xFF);
-    AddTextPrinterParameterized3(ALPH_PUZZLE_WIN_HELP, 0, 0, 0, color, 0, str);
+    AddTextPrinterParameterized3(ALPH_PUZZLE_WIN_HELP, 0, GetStringRightAlignXOffset(0, str, 240) - 4, 0, color, 0, str);
     PutWindowTilemap(ALPH_PUZZLE_WIN_HELP);
     CopyWindowToVram(ALPH_PUZZLE_WIN_HELP, 3);
 }

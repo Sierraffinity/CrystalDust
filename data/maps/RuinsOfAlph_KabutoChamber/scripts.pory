@@ -68,16 +68,16 @@ script RuinsOfAlph_KabutoChamber_EventScript_BackWall {
     {
         message("Patterns appeared on the walls…")
         waitmessage
-        braillemessage(RuinsOfAlph_KabutoChamber_Unown_Escape)
+        unownmessage(RuinsOfAlph_KabutoChamber_Unown_Escape)
         waitbuttonpress
-        closebraillemessage
+        closeunownmessage
     }
     releaseall
 }
 
 raw `
 RuinsOfAlph_KabutoChamber_Unown_Escape:
-.braille "ESCAPE$"
+.unown "ESCAPE$"
 `
 
 script RuinsOfAlph_KabutoChamber_EventScript_KabutoPuzzle {

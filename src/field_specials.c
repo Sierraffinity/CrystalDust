@@ -4741,3 +4741,21 @@ void Special_GetFreePokemonStorageSpace(void)
 {
     gSpecialVar_Result = GetFreePokemonStorageSpace();
 }
+
+void IsPlayersMonOfSpeciesInParty(void)
+{
+    u8 i;
+    u16 species = gSpecialVar_0x8004;
+    u8 partyCount = CalculatePlayerPartyCount();
+
+    for (i = 0; i < partyCount; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL) == species &&
+            GetMonData(&gPlayerParty[i], MON_DATA_OT_ID) == T1_READ_32(gSaveBlock2Ptr->playerTrainerId))
+        {
+            gSpecialVar_Result = TRUE;
+            return;
+        }
+    }
+    gSpecialVar_Result = FALSE;
+}

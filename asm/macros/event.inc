@@ -934,7 +934,7 @@
 	.endm
 
 	@ Displays the string at pointer as braille text in a standard message box. The string must be formatted to use braille characters.
-	.macro braillemessage text:req
+	.macro unownmessage text:req
 	.byte 0x78
 	.4byte \text
 	.endm
@@ -1563,7 +1563,7 @@
 	.byte 0xd9
 	.endm
 
-	.macro closebraillemessage
+	.macro closeunownmessage
 	.byte 0xda
 	.endm
 
@@ -1745,6 +1745,7 @@
 	MSGBOX_YESNO = 5
 	MSGBOX_AUTOCLOSE = 6
 	MSGBOX_GETPOINTS = 9
+	MSGBOX_CONTINUE = 10
 
 	YES = 1
 	NO  = 0

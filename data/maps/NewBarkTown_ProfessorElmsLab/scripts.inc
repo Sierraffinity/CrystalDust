@@ -20,10 +20,14 @@ NewBarkTown_ProfessorElmsLab_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
 NewBarkTown_ProfessorElmsLab_EventScript_Elm::
 	lock
 	faceplayer
-	goto_if_set FLAG_GAVE_MYSTERY_EGG_TO_ELM, NewBarkTown_ProfessorElmsLab_EventScript_Elm_2
-	goto_if_set FLAG_RECEIVED_MYSTERY_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Elm_3
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_ProfessorElmsLab_EventScript_Elm_4
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_5
+	goto_if_set FLAG_GOT_EVERSTONE_FROM_ELM, NewBarkTown_ProfessorElmsLab_EventScript_Elm_2
+	goto_if_set FLAG_SHOWED_TOGEPI_TO_ELM, NewBarkTown_ProfessorElmsLab_EventScript_Elm_3
+	goto_if_set FLAG_GOT_ELMS_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Elm_4
+	goto_if_set FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET, NewBarkTown_ProfessorElmsLab_EventScript_Elm_5
+	goto_if_set FLAG_GAVE_MYSTERY_EGG_TO_ELM, NewBarkTown_ProfessorElmsLab_EventScript_Elm_6
+	goto_if_set FLAG_RECEIVED_MYSTERY_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Elm_7
+	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_ProfessorElmsLab_EventScript_Elm_8
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_9
 NewBarkTown_ProfessorElmsLab_EventScript_Elm_1:
 	release
 	return
@@ -33,10 +37,41 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm_2:
 	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_1
 
 NewBarkTown_ProfessorElmsLab_EventScript_Elm_3:
+	call NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_1
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_4:
+	goto_if_unset FLAG_HATCHED_ELMS_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Elm_17
+	setvar VAR_0x8004, SPECIES_TOGEPI
+	special IsPlayersMonOfSpeciesInParty
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_Elm_27
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_26:
 	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_1
+	closemessage
+	playse SE_PIN
+	applymovement 2, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 2, Common_Movement_Delay48
+	waitmovement 0
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_2, MSGBOX_CONTINUE
+	setflag FLAG_SHOWED_TOGEPI_TO_ELM
+	call NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_1
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_5:
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_3
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_1
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_6:
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_4
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_1
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_7:
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_5
 	textcolor MSG_COLOR_SYS
 	playfanfare MUS_OBTAIN_ITEM
-	message NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_2
+	message NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_6
 	waitmessage
 	waitfanfare
 	closemessage
@@ -45,12 +80,12 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm_3:
 	delay 10
 	playse SE_LEDGE
 	switch VAR_FACING
-	case DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_Elm_11
-	case DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_Elm_12
-	case DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_Elm_13
-	case DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_Elm_14
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_9:
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_3
+	case DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_Elm_22
+	case DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_Elm_23
+	case DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_Elm_24
+	case DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_Elm_25
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_20:
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_7
 	setflag FLAG_ADVENTURE_STARTED
 	special SetUnlockedPokedexFlags
 	setflag FLAG_GAVE_MYSTERY_EGG_TO_ELM
@@ -61,45 +96,89 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm_9:
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_1
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_4:
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_4
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_8:
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_8
 	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_1
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_11:
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_17:
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_1
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_22:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsDown
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThis
 	closemessage
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsUp
 	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_9
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_20
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_12:
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_23:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsUp
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThis
 	closemessage
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsDown
 	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_9
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_20
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_13:
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_24:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsLeft
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThis
 	closemessage
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsRight
 	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_9
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_20
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_14:
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_25:
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsRight
 	waitmovement 0
 	msgbox NewBarkTown_ProfessorElmsLab_Text_ElmThis
 	closemessage
 	applymovement 2, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsLeft
 	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_9
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_20
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_27:
+	setvar VAR_0x8004, SPECIES_TOGETIC
+	special IsPlayersMonOfSpeciesInParty
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_Elm_29
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_26
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_29:
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_26
+
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon::
+	goto_if_set FLAG_CALLED_ELM_ABOUT_HATCHED_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon_2
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon_1:
+	release
+	return
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon_2:
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon_Text_0
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon_1
+
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone::
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_Text_0
+	checkitemspace ITEM_EVERSTONE, 1
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_2
+	giveitem_msg NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_Text_2, ITEM_EVERSTONE
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_Text_3
+	setflag FLAG_GOT_EVERSTONE_FROM_ELM
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_1:
+	release
+	return
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_2:
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_Text_1
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_1
 
 
 NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsDown:
@@ -532,7 +611,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain::
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain_Text_0
-	giveitem ITEM_POTION
+	giveitem_msg NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain_Text_1, ITEM_POTION
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy
 	closemessage
 	switch VAR_TEMP_1
@@ -714,8 +793,8 @@ NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain::
 	waitmovement 0
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_0
-	giveitem ITEM_POKE_BALL, 5
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_1
+	giveitem_msg NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_1, ITEM_POKE_BALL, 5
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_2
 	closemessage
 	switch VAR_TEMP_1
 	case 0, NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_3
@@ -743,19 +822,24 @@ NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_5:
 NewBarkTown_ProfessorElmsLab_EventScript_Aide::
 	lock
 	faceplayer
-	goto_if_set FLAG_GAVE_MYSTERY_EGG_TO_ELM, NewBarkTown_ProfessorElmsLab_EventScript_Aide_2
-	goto_if_set FLAG_RECEIVED_MYSTERY_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Aide_3
+	goto_if_set FLAG_GOT_ELMS_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Aide_2
+	goto_if_set FLAG_GAVE_MYSTERY_EGG_TO_ELM, NewBarkTown_ProfessorElmsLab_EventScript_Aide_3
+	goto_if_set FLAG_RECEIVED_MYSTERY_EGG, NewBarkTown_ProfessorElmsLab_EventScript_Aide_4
 	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy
 NewBarkTown_ProfessorElmsLab_EventScript_Aide_1:
 	release
 	return
 
 NewBarkTown_ProfessorElmsLab_EventScript_Aide_2:
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_1
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon
 	goto NewBarkTown_ProfessorElmsLab_EventScript_Aide_1
 
 NewBarkTown_ProfessorElmsLab_EventScript_Aide_3:
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Aide_Text_0
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_2
+	goto NewBarkTown_ProfessorElmsLab_EventScript_Aide_1
+
+NewBarkTown_ProfessorElmsLab_EventScript_Aide_4:
+	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon
 	goto NewBarkTown_ProfessorElmsLab_EventScript_Aide_1
 
 
@@ -841,19 +925,43 @@ NewBarkTown_ProfessorElmsLab_EventScript_Shelf4::
 
 
 NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_0:
+	.string "ELM: {PLAYER}, I'll call you if\n"
+	.string "anything comes up.$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_1:
+	.string "ELM: {PLAYER}, you look great!$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_2:
+	.string "What?\n"
+	.string "That POKéMON!?!\p"
+	.string "The EGG hatched!\n"
+	.string "So, POKéMON are born from EGGS…\l"
+	.string "No, perhaps not all POKéMON are.\p"
+	.string "Wow, there's still a lot of research\n"
+	.string "to be done.\p$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_3:
+	.string "ELM: {PLAYER}?\n"
+	.string "Didn't you meet my assistant?\p"
+	.string "He should have met you with the EGG\n"
+	.string "at VIOLET CITY's POKéMON CENTER.\p"
+	.string "You must have just missed him.\n"
+	.string "Try to catch him there.$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_4:
 	.string "ELM: Don't give up! I'll call if I\n"
 	.string "learn anything about that EGG!$"
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_1:
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_5:
 	.string "ELM: {PLAYER}, this is terrible…\p"
 	.string "Oh, yes, what was MR. POKéMON's big\n"
 	.string "discovery?$"
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_2:
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_6:
 	.string "{PLAYER} handed the MYSTERY EGG to\n"
 	.string "PROF. ELM.$"
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_3:
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_7:
 	.string "But… Is it a POKéMON EGG?\n"
 	.string "If it is, it's a great discovery!\p"
 	.string "What?!?\n"
@@ -875,15 +983,43 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_3:
 	.string "Before you leave, make sure that\n"
 	.string "you talk to your mom.$"
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_4:
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_8:
 	.string "ELM: MR. POKéMON goes everywhere\n"
 	.string "and finds rarities.\p"
 	.string "Too bad they're just rare and\n"
 	.string "not very useful…$"
 
-NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_5:
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_9:
 	.string "ELM: If a wild POKéMON appears,\n"
 	.string "let your POKéMON battle it!$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon_Text_0:
+	.string "ELM: {PLAYER}?\n"
+	.string "I thought the EGG hatched.\l"
+	.string "Where is the POKéMON?$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_Text_0:
+	.string "Thanks, {PLAYER}! You're helping\n"
+	.string "unravel POKéMON mysteries for us!\p"
+	.string "I want you to have this as a token\n"
+	.string "of our appreciation.$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_Text_1:
+	.string "Oh? You don't have any room\n"
+	.string "for the EVERSTONE…$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_Text_2:
+	.string "{PLAYER} received the EVERSTONE\n"
+	.string "from PROF. ELM.$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone_Text_3:
+	.string "That's an EVERSTONE.\p"
+	.string "Some species of POKéMON evolve\n"
+	.string "when they grow to certain levels.\p"
+	.string "A POKéMON holding the EVERSTONE\n"
+	.string "won't evolve.\p"
+	.string "Give it to a POKéMON you don't want\n"
+	.string "to evolve.$"
 
 NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction_Text_0:
 	.string "ELM: {PLAYER}!\n"
@@ -1004,6 +1140,10 @@ NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain_Text_0:
 	.string "{PLAYER}, I want you to have this\n"
 	.string "for your errand.$"
 
+NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain_Text_1:
+	.string "{PLAYER} received the POTION\n"
+	.string "from the AIDE.$"
+
 NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain_Text_0:
 	.string "I heard a POKéMON was stolen from\n"
 	.string "here…\p"
@@ -1028,21 +1168,14 @@ NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_0:
 	.string "Use these on your POKéDEX quest!$"
 
 NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_1:
+	.string "{PLAYER} received the POKé BALLS\n"
+	.string "from the AIDE.$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_2:
 	.string "To add to your POKéDEX, you have\n"
 	.string "to catch POKéMON.\p"
 	.string "Throw POKé BALLS at wild POKéMON\n"
 	.string "to get them.$"
-
-NewBarkTown_ProfessorElmsLab_EventScript_Aide_Text_0:
-	.string "There was a loud noise outside…\p"
-	.string "When we went to look, someone stole\n"
-	.string "a POKéMON off the table.\p"
-	.string "It's unbelievable that anyone would\n"
-	.string "do that!\p"
-	.string "…sigh… That stolen POKéMON.\n"
-	.string "I wonder how it's doing.\p"
-	.string "They say a POKéMON raised by a bad\n"
-	.string "person turns bad itself.$"
 
 NewBarkTown_ProfessorElmsLab_EventScript_OpenWindow_Text_0:
 	.string "The window is open.\n"
@@ -1086,9 +1219,23 @@ NewBarkTown_ProfessorElmsLab_EventScript_Shelf4_Text_0:
 NewBarkTown_ProfessorElmsLab_Text_ElmThis::
 	.string "ELM: This?$"
 
+NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched::
+	.string "ELM: Hey, has that EGG changed any?$"
+
 NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy::
 	.string "There are only two of us, so we're\n"
 	.string "always busy.$"
+
+NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon::
+	.string "There was a loud noise outside…\p"
+	.string "When we went to look, someone stole\n"
+	.string "a POKéMON off the table.\p"
+	.string "It's unbelievable that anyone would\n"
+	.string "do that!\p"
+	.string "…sigh… That stolen POKéMON.\n"
+	.string "I wonder how it's doing.\p"
+	.string "They say a POKéMON raised by a bad\n"
+	.string "person turns bad itself.$"
 
 NewBarkTown_ProfessorElmsLab_Text_ShelfIntro::
 	.string "{PLAYER} opened a book.$"

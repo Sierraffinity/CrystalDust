@@ -169,7 +169,7 @@ Directive AsmFile::GetDirective()
         return Directive::Include;
     else if (CheckForDirective(".string"))
         return Directive::String;
-    else if (CheckForDirective(".braille"))
+    else if (CheckForDirective(".unown"))
         return Directive::Braille;
     else
         return Directive::Unknown;

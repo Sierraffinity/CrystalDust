@@ -41,7 +41,7 @@ script GoldenrodCity_FlowerShop_EventScript_OlderSister {
         msgbox("Oh, you're better than WHITNEY…\p"
                "You'll be okay, then.\n"
                "Here's the SQUIRTBOTTLE.")
-        giveitem_msg("{PLAYER} got the SQUIRTBOTTLE\n"
+        giveitem_msg("{PLAYER} received the SQUIRTBOTTLE\n"
                      "from the lady.", ITEM_SQUIRTBOTTLE)
         setflag(FLAG_GOT_SQUIRTBOTTLE)
         setflag(FLAG_HIDE_ROUTE_36_FLORIA)

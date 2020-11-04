@@ -34,8 +34,8 @@ Std_MsgboxGetPoints: @ 827133C
 	waitmessage
 	return
 
-Std_10: @ 8271347
-	pokegearcall 0x0, 0x0
+Std_MsgboxContinue: @ 8271347
+	message 0x0
 	waitmessage
 	return
 
@@ -89,9 +89,6 @@ Std_ReceivedItem::
 
 EventScript_ReceivedItemWaitFanfare::
 	delay 50
-	return
-
-EventScript_UnusedReturn: @ 827134E
 	return
 
 Common_EventScript_SaveGame:: @ 827134F

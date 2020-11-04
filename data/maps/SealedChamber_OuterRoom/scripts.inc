@@ -28,90 +28,90 @@ SealedChamber_OuterRoom_EventScript_CloseInnerRoomEntrance:: @ 8239135
 
 SealedChamber_OuterRoom_EventScript_BrailleABC:: @ 823916C
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_ABC
+	unownmessage SealedChamber_OuterRoom_Braille_ABC
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleGHI:: @ 8239176
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_GHI
+	unownmessage SealedChamber_OuterRoom_Braille_GHI
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleMNO:: @ 8239180
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_MNO
+	unownmessage SealedChamber_OuterRoom_Braille_MNO
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleTUV:: @ 823918A
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_TUV
+	unownmessage SealedChamber_OuterRoom_Braille_TUV
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleDEF:: @ 8239194
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_DEF
+	unownmessage SealedChamber_OuterRoom_Braille_DEF
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleJKL:: @ 823919E
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_JKL
+	unownmessage SealedChamber_OuterRoom_Braille_JKL
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BraillePQRS:: @ 82391A8
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_PQRS
+	unownmessage SealedChamber_OuterRoom_Braille_PQRS
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BraillePeriod:: @ 82391B2
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_Period
+	unownmessage SealedChamber_OuterRoom_Braille_Period
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleWXYZ:: @ 82391BC
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_WXYZ
+	unownmessage SealedChamber_OuterRoom_Braille_WXYZ
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleComma:: @ 82391C6
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_Comma
+	unownmessage SealedChamber_OuterRoom_Braille_Comma
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_InnerRoomEntranceWall:: @ 82391D0
 	lockall
 	goto_if_set FLAG_SYS_BRAILLE_DIG, SealedChamber_OuterRoom_EventScript_HoleInWall
-	braillemessage SealedChamber_OuterRoom_Braille_DigHere
+	unownmessage SealedChamber_OuterRoom_Braille_DigHere
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
@@ -122,9 +122,9 @@ SealedChamber_OuterRoom_EventScript_HoleInWall:: @ 82391E3
 
 SealedChamber_OuterRoom_EventScript_BrailleDigHere:: @ 82391ED
 	lockall
-	braillemessage SealedChamber_OuterRoom_Braille_DigHere
+	unownmessage SealedChamber_OuterRoom_Braille_DigHere
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 

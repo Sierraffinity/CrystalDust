@@ -95,7 +95,7 @@ GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_3:
 	.string "Here's the SQUIRTBOTTLE.$"
 
 GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_4:
-	.string "{PLAYER} got the SQUIRTBOTTLE\n"
+	.string "{PLAYER} received the SQUIRTBOTTLE\n"
 	.string "from the lady.$"
 
 GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala_Text_0:

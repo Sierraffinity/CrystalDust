@@ -257,6 +257,7 @@ Text_Pokegear_Mom_RootingForYou:
 	.string "I'm rooting for you, baby!$"
 
 PhoneScript_Elm::
+	phone_goto_if_set FLAG_SHOWED_TOGEPI_TO_ELM, PhoneScript_Elm_Discovery
 	phone_goto_if_unset FLAG_GOT_ELMS_EGG, PhoneScript_Elm_SkipEggCheck
 	phone_goto_if_set FLAG_HATCHED_ELMS_EGG, PhoneScript_Elm_EggHatched
 PhoneScript_Elm_SkipEggCheck:
@@ -268,8 +269,20 @@ PhoneScript_Elm_SkipEggCheck:
 	phone_stdcall Text_Pokegear_Elm_Start
 	phone_end
 
+PhoneScript_Elm_Discovery::
+	phone_random 2
+	phone_compare VAR_RESULT, 0
+	phone_goto_if_eq PhoneScript_Elm_Discovery2
+	phone_stdcall Text_Pokegear_Elm_Discovery1
+	phone_end
+
+PhoneScript_Elm_Discovery2:
+	phone_stdcall Text_Pokegear_Elm_Discovery2
+	phone_end
+
 PhoneScript_Elm_EggHatched::
 	phone_stdcall Text_Pokegear_Elm_EggHatched
+	phone_setflag FLAG_CALLED_ELM_ABOUT_HATCHED_EGG
 	phone_end
 
 PhoneScript_Elm_EggUnhatched::
@@ -334,6 +347,18 @@ Text_Pokegear_Elm_EggHatched::
 	.string "What? It hatched?\n"
 	.string "Wow! What kind of POKéMON is it?\p"
 	.string "Please come show me now!$"
+
+Text_Pokegear_Elm_Discovery1::
+	.string "Hello, {PLAYER}?\n"
+	.string "I just made a new discovery.\p"
+	.string "The time it takes for an EGG to\n"
+	.string "hatch depends on the POKéMON.$"
+
+Text_Pokegear_Elm_Discovery2::
+	.string "Hello, {PLAYER}?\p"
+	.string "It's still a mystery what kinds\n"
+	.string "of moves hatched POKéMON have.\l"
+	.string "We're investigating that now.$"
 
 Route30_PhoneScript_ElmCall::
 	phone_stdcall Route30_Text_ElmCall

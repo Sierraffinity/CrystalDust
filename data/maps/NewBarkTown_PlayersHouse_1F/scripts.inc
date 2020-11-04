@@ -329,7 +329,6 @@ NewBarkTown_PlayersHouse_1F_NeighborTalk::
 	compare VAR_0x8002, TIME_NIGHT
 	goto_if_eq NewBarkTown_PlayersHouse_1F_NeighborTalk_4
 NewBarkTown_PlayersHouse_1F_NeighborTalk_1:
-	waitmessage
 	msgbox NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_3
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestRight
@@ -338,15 +337,15 @@ NewBarkTown_PlayersHouse_1F_NeighborTalk_1:
 	return
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk_2:
-	message NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_0
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_0, MSGBOX_CONTINUE
 	goto NewBarkTown_PlayersHouse_1F_NeighborTalk_1
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk_3:
-	message NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_1
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_1, MSGBOX_CONTINUE
 	goto NewBarkTown_PlayersHouse_1F_NeighborTalk_1
 
 NewBarkTown_PlayersHouse_1F_NeighborTalk_4:
-	message NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_2
+	msgbox NewBarkTown_PlayersHouse_1F_NeighborTalk_Text_2, MSGBOX_CONTINUE
 	goto NewBarkTown_PlayersHouse_1F_NeighborTalk_1
 
 

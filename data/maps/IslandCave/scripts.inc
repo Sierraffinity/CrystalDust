@@ -54,7 +54,7 @@ IslandCave_EventScript_CaveEntranceMiddle:: @ 8238EEF
 	lockall
 	call_if_set FLAG_TEMP_3, IslandCave_EventScript_ClearSteps
 	goto_if_set FLAG_SYS_BRAILLE_REGICE_COMPLETED, IslandCave_EventScript_BigHoleInWall
-	braillemessage IslandCave_Braille_RunLapAroundWall
+	unownmessage IslandCave_Braille_RunLapAroundWall
 	setflag FLAG_TEMP_2
 	special ShouldDoBrailleRegicePuzzle
 	goto IslandCave_EventScript_CloseBrailleMsg
@@ -68,7 +68,7 @@ IslandCave_EventScript_BigHoleInWall:: @ 8238F13
 IslandCave_EventScript_CaveEntranceSide:: @ 8238F1D
 	lockall
 	call_if_set FLAG_TEMP_3, IslandCave_EventScript_ClearSteps
-	braillemessage IslandCave_Braille_RunLapAroundWall
+	unownmessage IslandCave_Braille_RunLapAroundWall
 	goto_if_set FLAG_SYS_BRAILLE_REGICE_COMPLETED, IslandCave_EventScript_CloseBrailleMsg
 	setflag FLAG_TEMP_2
 	special ShouldDoBrailleRegicePuzzle
@@ -77,7 +77,7 @@ IslandCave_EventScript_CaveEntranceSide:: @ 8238F1D
 
 IslandCave_EventScript_CloseBrailleMsg:: @ 8238F41
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 

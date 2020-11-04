@@ -78,9 +78,9 @@ RuinsOfAlph_KabutoChamber_EventScript_BackWall::
 	goto_if_set FLAG_OPENED_WALL_IN_KABUTO_CHAMBER, RuinsOfAlph_KabutoChamber_EventScript_BackWall_2
 	message RuinsOfAlph_KabutoChamber_EventScript_BackWall_Text_1
 	waitmessage
-	braillemessage RuinsOfAlph_KabutoChamber_Unown_Escape
+	unownmessage RuinsOfAlph_KabutoChamber_Unown_Escape
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 RuinsOfAlph_KabutoChamber_EventScript_BackWall_1:
 	releaseall
 	return
@@ -91,7 +91,7 @@ RuinsOfAlph_KabutoChamber_EventScript_BackWall_2:
 
 
 RuinsOfAlph_KabutoChamber_Unown_Escape:
-.braille "ESCAPE$"
+.unown "ESCAPE$"
 
 RuinsOfAlph_KabutoChamber_EventScript_KabutoPuzzle::
 	lockall

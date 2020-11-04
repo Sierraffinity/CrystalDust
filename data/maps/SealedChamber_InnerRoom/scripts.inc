@@ -3,9 +3,9 @@ SealedChamber_InnerRoom_MapScripts:: @ 82391F7
 
 SealedChamber_InnerRoom_EventScript_BrailleBackWall:: @ 82391F8
 	lockall
-	braillemessage SealedChamber_InnerRoom_Braille_FirstWailordLastRelicanth
+	unownmessage SealedChamber_InnerRoom_Braille_FirstWailordLastRelicanth
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	goto_if_set FLAG_REGI_DOORS_OPENED, SealedChamber_InnerRoom_EventScript_NoEffect
 	specialvar VAR_RESULT, CheckRelicanthWailord
 	compare VAR_RESULT, FALSE
@@ -40,49 +40,49 @@ SealedChamber_InnerRoom_EventScript_NoEffect:: @ 8239253
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart1:: @ 8239255
 	lockall
-	braillemessage SealedChamber_InnerRoom_Braille_InThisCaveWeHaveLived
+	unownmessage SealedChamber_InnerRoom_Braille_InThisCaveWeHaveLived
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart2:: @ 823925F
 	lockall
-	braillemessage SealedChamber_InnerRoom_Braille_WeOweAllToThePokemon
+	unownmessage SealedChamber_InnerRoom_Braille_WeOweAllToThePokemon
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart3:: @ 8239269
 	lockall
-	braillemessage SealedChamber_InnerRoom_Braille_ButWeSealedThePokemonAway
+	unownmessage SealedChamber_InnerRoom_Braille_ButWeSealedThePokemonAway
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart4:: @ 8239273
 	lockall
-	braillemessage SealedChamber_InnerRoom_Braille_WeFearedIt
+	unownmessage SealedChamber_InnerRoom_Braille_WeFearedIt
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart5:: @ 823927D
 	lockall
-	braillemessage SealedChamber_InnerRoom_Braille_ThoseWithCourageHope
+	unownmessage SealedChamber_InnerRoom_Braille_ThoseWithCourageHope
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart6:: @ 8239287
 	lockall
-	braillemessage SealedChamber_InnerRoom_Braille_OpenDoorEternalPokemonWaits
+	unownmessage SealedChamber_InnerRoom_Braille_OpenDoorEternalPokemonWaits
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
