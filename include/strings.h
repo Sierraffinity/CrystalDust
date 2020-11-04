@@ -1010,6 +1010,7 @@ extern const u8 gText_Saturday[];
 extern const u8 gText_PokegearInstructions[];
 extern const u8 gText_PokegearWhomDoYouWantToCall[];
 extern const u8 gText_PokegearDeleteThisStoredPhoneNumber[];
+extern const u8 gText_PokegearCallEllipsis[];
 
 // Radio stations
 extern const u8 gText_OaksPkmnTalk[];

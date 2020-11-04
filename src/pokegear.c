@@ -1509,20 +1509,19 @@ static void PhoneCard_ConfirmDeleteProcessInput(u8 taskId)
             break;
     }
 }
-
-static const u8 sPhoneCallText_Ellipsis[] = _("………………\p");
 static const u8 sPhoneCallText_NobodyAnswered[] = _("Nobody answered the call…");
+static const u8 sPhoneCallText_OutOfService_Ellipsis[] = _("…… {PAUSE 40}…… {PAUSE 40}……{PAUSE 40}");
 static const u8 sPhoneCallText_OutOfService[] = _("You're out of the service area.");
 static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that person!");
 
 #define tPhoneCallInitState data[0]
 
-void InitPokegearPhoneCall(u8 taskId)
+void Task_InitPokegearPhoneCall(u8 taskId)
 {
     switch (gTasks[taskId].tPhoneCallInitState)
     {
     case 0:
-        gSpecialVar_Result = TRUE;
+        gSpecialVar_Result = PHONE_CALL_SUCCESS;
         gPhoneCallWindowId = AddWindow(&sPhoneCallWindowTemplate);
         LoadBgTiles(0, sPhoneCallWindowGfx, sizeof(sPhoneCallWindowGfx), 0x143);
         FillWindowPixelBuffer(gPhoneCallWindowId, 0x11);
@@ -1535,9 +1534,19 @@ void InitPokegearPhoneCall(u8 taskId)
         DrawPhoneCallTextBoxBorder(gPhoneCallWindowId, 0x143, 14);
         CopyWindowToVram(gPhoneCallWindowId, 2);
         CopyBgTilemapBufferToVram(0);
-        PlaySE(SE_POKENAV_CALL);
-        AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sPhoneCallText_Ellipsis, 2, 1, 4, NULL, 1, 2);
-        gTasks[taskId].tPhoneCallInitState = 2;
+        if (!MapAllowsMatchCall())
+        {
+            // TODO: Failed call sound
+            PlaySE(SE_POKENAV_CALL);
+            AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sPhoneCallText_OutOfService_Ellipsis, 2, 1, 0, NULL, 1, 2);
+            gTasks[taskId].tPhoneCallInitState = 3;
+        }
+        else
+        {
+            PlaySE(SE_POKENAV_CALL);
+            AddTextPrinterParameterized5(gPhoneCallWindowId, 2, gText_PokegearCallEllipsis, 2, 1, 0, NULL, 1, 2);
+            gTasks[taskId].tPhoneCallInitState = 2;
+        }
         break;
     case 2:
         if (IsTextPrinterActive(gPhoneCallWindowId))
@@ -1552,9 +1561,7 @@ void InitPokegearPhoneCall(u8 taskId)
             FillWindowPixelBuffer(gPhoneCallWindowId, 0x11);
             phoneContact = &gPhoneContacts[sPokegearStruct.phoneContactIds[sPokegearStruct.phoneSelectedItem + sPokegearStruct.phoneScrollOffset]];
             
-            if (!MapAllowsMatchCall())
-                str = sPhoneCallText_OutOfService;
-            else if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
+            if (phoneContact->mapNum == gSaveBlock1Ptr->location.mapNum && phoneContact->mapGroup == gSaveBlock1Ptr->location.mapGroup)
                 str = sPhoneCallText_JustGoTalkToThem;
             else if (!IsPhoneContactAvailable(phoneContact, gLocalTime.dayOfWeek, gLocalTime.hours))
                 str = sPhoneCallText_NobodyAnswered;
@@ -1562,8 +1569,9 @@ void InitPokegearPhoneCall(u8 taskId)
             if (str != NULL)
             {
                 StringExpandPlaceholders(gStringVar4, str);
-                AddTextPrinterParameterized5(gPhoneCallWindowId, 2, gStringVar4, 2, 1, GetPlayerTextSpeedDelay(), NULL, 1, 1);
-                gTasks[taskId].tPhoneCallInitState = 3;
+                AddTextPrinterParameterized5(gPhoneCallWindowId, 2, gStringVar4, 2, 1, GetPlayerTextSpeedDelay(), NULL, 1, 2);
+                gSpecialVar_Result = PHONE_CALL_FAIL;
+                gTasks[taskId].tPhoneCallInitState = 4;
             }
             else
             {
@@ -1572,6 +1580,18 @@ void InitPokegearPhoneCall(u8 taskId)
         }
         break;
     case 3:
+        // Out of the service area
+        if (IsTextPrinterActive(gPhoneCallWindowId))
+        {
+            gTextFlags.canABSpeedUpPrint = 0;
+        }
+        else
+        {
+            AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sPhoneCallText_OutOfService, 2, 1, 0, NULL, 1, 2);
+            gSpecialVar_Result = PHONE_CALL_FAIL_SILENT;
+            gTasks[taskId].tPhoneCallInitState = 4;
+        }
+    case 4:
         // Getting to this switch case means that the phone call was unsuccessful, due to being out of range, in the same map, or 
         // the phone contact not being available to talk.
         if (IsTextPrinterActive(gPhoneCallWindowId))
@@ -1583,7 +1603,6 @@ void InitPokegearPhoneCall(u8 taskId)
         }
         else if (JOY_NEW(A_BUTTON | B_BUTTON))
         {
-            gSpecialVar_Result = FALSE;
             DestroyTask(taskId);
         }
         break;
@@ -1612,9 +1631,8 @@ void DrawPhoneCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
     FillBgTilemapBufferRect_Palette0(bg, ((paletteId << 12) & 0xF000) | (tileNum + 7), x + width, y + height, 1, 1);
 }
 
-void HangupPokegearPhoneCall(void)
+void EndPokegearPhoneCall(void)
 {
-    PlaySE(SE_POKENAV_HANG_UP);
     ClearStdWindowAndFrameToTransparent(gPhoneCallWindowId, TRUE);
     RemoveWindow(gPhoneCallWindowId);
     DisplayPhoneCardDefaultText();

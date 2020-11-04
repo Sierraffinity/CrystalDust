@@ -1872,6 +1872,7 @@ const u8 gText_Saturday[] = _("SATURDAY");
 const u8 gText_PokegearInstructions[] = _("Press {START_BUTTON} and {SELECT_BUTTON} to switch.\nPress B to exit.");
 const u8 gText_PokegearWhomDoYouWantToCall[] = _("Whom do you want to call?");
 const u8 gText_PokegearDeleteThisStoredPhoneNumber[] = _("Delete this stored phone number?");
+const u8 gText_PokegearCallEllipsis[] = _("…… {PAUSE 30}……{PAUSE 30}");
 
 // Radio stations
 const u8 gText_OaksPkmnTalk[] = _("OAK's {PKMN} Talk");
