@@ -495,7 +495,7 @@ static void Task_HangupPhoneCall(u8 taskId)
         break;
     default:
         EndPhoneCall(ctx->data[0]);
-        if (tPhoneCallState == PHONE_CALL_HANGUP_END)
+        if (tPhoneCallState == PHONE_CALL_FAIL)
         {
             StopPhoneScript(ctx);
         }
@@ -513,7 +513,7 @@ static bool8 HangupPhoneCall(struct ScriptContext *ctx, u8 phoneCallState)
 {
     u8 taskId;
 
-    if (phoneCallState != PHONE_CALL_END)
+    if (phoneCallState != PHONE_CALL_FAIL_SILENT)
     {
         u8 taskId = CreateTask(Task_HangupPhoneCall, 80);
 

@@ -17,13 +17,6 @@ enum
     PHONE_CALL_FAIL_SILENT,
 };
 
-enum
-{
-    PHONE_CALL_HANGUP,
-    PHONE_CALL_HANGUP_END,
-    PHONE_CALL_END,
-};
-
 extern u16 gPhoneCallWindowId;
 extern u16 gPhoneCallerNameWindowId;
 extern u8 gPhoneCallSpriteId;
