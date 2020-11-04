@@ -100,7 +100,7 @@ $(MID_SUBDIR)/mus_contest.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G086 -V088
 
 $(MID_SUBDIR)/mus_cycling.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G049 -V083
+	$(MID) $< $@ -E -R$(STD_REVERB) -G049 -V120
 
 $(MID_SUBDIR)/mus_encounter_champion.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G100 -V076
