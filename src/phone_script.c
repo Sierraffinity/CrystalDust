@@ -47,7 +47,7 @@ static const u8 sScriptConditionTable[6][3] =
     1, 0, 1, // !=
 };
 
-static const u8 sHangUpText[] = _("Click!\n{PAUSE 30}… {PAUSE 40}… {PAUSE 40}…{PAUSE 40}");
+static const u8 sHangUpText[] = _("Click!\n{PAUSE 20}… {PAUSE 30}… {PAUSE 30}…{PAUSE 30}");
 
 static bool8 HangupPhoneCall(struct ScriptContext *ctx, bool8 shouldEndNow);
 static bool8 WaitForHangupAnimation(void);
@@ -198,14 +198,14 @@ static bool8 IsOverworldPhoneMessageFinished(void)
 
 static void AddPhoneTextPrinter(struct ScriptContext *ctx, u8 *str)
 {
+    AddTextPrinterParameterized5(gPhoneCallWindowId, 2, str, 2, 1, GetPlayerTextSpeedDelay(), NULL, 1, 2);
+
     switch (ctx->data[0])
     {
     case PHONE_SCRIPT_POKEGEAR:
-        AddTextPrinterParameterized5(gPhoneCallWindowId, 2, str, 2, 1, GetPlayerTextSpeedDelay(), NULL, 1, 2);
         SetupNativeScript(ctx, IsPokegearPhoneMessageFinished);
         break;
     case PHONE_SCRIPT_OVERWORLD:
-        InitMatchCallTextPrinter(gPhoneCallWindowId, str, GetPlayerTextSpeedDelay());
         SetupNativeScript(ctx, IsOverworldPhoneMessageFinished);
         break;
     }
@@ -214,15 +214,7 @@ static void AddPhoneTextPrinter(struct ScriptContext *ctx, u8 *str)
 bool8 PhoneScrCmd_message(struct ScriptContext *ctx)
 {
     const u8 *str = (const u8 *)ScriptReadWord(ctx);
-    switch (ctx->data[0])
-    {
-    case PHONE_SCRIPT_POKEGEAR:
-        FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
-        break;
-    case PHONE_SCRIPT_OVERWORLD:
-        FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
-        break;
-    }
+    FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
     StringExpandPlaceholders(gStringVar4, str);
     AddPhoneTextPrinter(ctx, gStringVar4);
     return TRUE;
@@ -463,17 +455,8 @@ static void Task_HangupPhoneCall(u8 taskId)
     {
     case 0:
         PlaySE(SE_POKENAV_HANG_UP);
-        switch (ctx->data[0])
-        {
-        case PHONE_SCRIPT_POKEGEAR:
-            FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
-            AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sHangUpText, 2, 1, 0, NULL, 1, 1);
-            break;
-        case PHONE_SCRIPT_OVERWORLD:
-            FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
-            InitMatchCallTextPrinter(gPhoneCallWindowId, sHangUpText, 0);
-            break;
-        }
+        FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
+        AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sHangUpText, 2, 1, 0, NULL, 1, 1);
         tState++;
         break;
     case 1:

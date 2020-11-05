@@ -6,6 +6,9 @@ extern const u32 gSetClock_Gfx[];
 extern const u16 gSetClock_Pal[];
 extern const u32 gSetClock_Map[];
 extern const u32 gPokegear_GridMap[];
+extern const u8 gPhoneCall_WindowGfx[0x100];
+extern const u16 gPhoneCall_WindowPal[16];
+extern const u32 gPhoneCall_IconGfx[];
 
 // overworld
 extern const u32 gMessageBox_Gfx[];

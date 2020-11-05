@@ -86,8 +86,8 @@ const struct FontInfo gFontInfos[] =
 {
     {
         .fontFunction = Font0Func,
-        .maxLetterWidth = 0x5,
-        .maxLetterHeight = 0xC,
+        .maxLetterWidth = 0x8,
+        .maxLetterHeight = 0xD,
         .letterSpacing = 0x0,
         .lineSpacing = 0x0,
         .style = 0x0,
@@ -97,9 +97,9 @@ const struct FontInfo gFontInfos[] =
     },
     {
         .fontFunction = Font1Func,
-        .maxLetterWidth = 0xA,
+        .maxLetterWidth = 0x6,
         .maxLetterHeight = 0xE,
-        .letterSpacing = 0x1,
+        .letterSpacing = 0x0,
         .lineSpacing = 0x0,
         .style = 0x0,
         .fgColor = 0x2,
@@ -108,9 +108,9 @@ const struct FontInfo gFontInfos[] =
     },
     {
         .fontFunction = Font2Func,
-        .maxLetterWidth = 0x6,
+        .maxLetterWidth = 0xA,
         .maxLetterHeight = 0xE,
-        .letterSpacing = 0x0,
+        .letterSpacing = 0x1,
         .lineSpacing = 0x0,
         .style = 0x0,
         .fgColor = 0x2,
@@ -302,7 +302,14 @@ bool16 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
         }
 
         if (speed != TEXT_SPEED_FF)
+        {
             CopyWindowToVram(gTempTextPrinter.printerTemplate.windowId, 2);
+        }
+
+        if (gTempTextPrinter.state != 6)
+        {
+            gTextPrinters[printerTemplate->windowId].active = 0;
+        }
     }
     gUnknown_03002F84 = FALSE;
     return TRUE;
@@ -323,9 +330,16 @@ void RunTextPrinters(void)
                 {
                     for (j = 0; j < 0x400; ++j)
                     {
-                        if ((u32)RenderFont(&gTextPrinters[i]) == 1)
+                        u32 temp = RenderFont(&gTextPrinters[i]);
+                        if (temp == 1)
                         {
                             gTextPrinters[i].active = 0;
+                            break;
+                        }
+                        else if (temp == 3)
+                        {
+                            if (gTextPrinters[i].callback != NULL)
+                                gTextPrinters[i].callback(&gTextPrinters[i].printerTemplate, temp);
                             break;
                         }
                         
@@ -338,12 +352,12 @@ void RunTextPrinters(void)
                 }
                 else
                 {
-                    u16 temp = RenderFont(&gTextPrinters[i]);
+                    u32 temp = RenderFont(&gTextPrinters[i]);
                     switch (temp) {
                         case 0:
                             CopyWindowToVram(gTextPrinters[i].printerTemplate.windowId, 2);
                         case 3:
-                            if (gTextPrinters[i].callback != 0)
+                            if (gTextPrinters[i].callback != NULL)
                                 gTextPrinters[i].callback(&gTextPrinters[i].printerTemplate, temp);
                             break;
                         case 1:

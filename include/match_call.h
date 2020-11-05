@@ -16,7 +16,6 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer);
 bool32 TryStartMatchCall(void);
 bool32 TryStartForcedMatchCall(void);
 u8 EndOverworldPhoneCall(void);
-void InitMatchCallTextPrinter(int windowId, const u8 *str, u8 speed);
 bool32 ExecuteMatchCallTextPrinter(int windowId);
 void Task_InitOverworldPhoneCall(u8 taskId);
 void StartMatchCallFromScript(const u8 *script, u8 callerId);

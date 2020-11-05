@@ -140,8 +140,6 @@ static const u32 gClockCardTilemap[] = INCBIN_U32("graphics/pokegear/clock.bin.l
 static const u32 gMapCardTilemap[] = INCBIN_U32("graphics/pokegear/map.bin.lz");
 static const u32 gPhoneCardTilemap[] = INCBIN_U32("graphics/pokegear/phone.bin.lz");
 static const u32 gRadioCardTilemap[] = INCBIN_U32("graphics/pokegear/radio.bin.lz");
-static const u16 sPhoneCallWindowPalette[] = INCBIN_U16("graphics/unknown/unknown_60EA4C.gbapal");
-static const u8 sPhoneCallWindowGfx[] = INCBIN_U8("graphics/interface/menu_border.4bpp");
 static const u8 sPhoneSignalIconGfx[] = INCBIN_U8("graphics/pokegear/phone_signal.4bpp");
 static const u16 sPhoneSignalIconPalette[] = INCBIN_U16("graphics/pokegear/phone_signal.gbapal");
 
@@ -1523,9 +1521,9 @@ void Task_InitPokegearPhoneCall(u8 taskId)
     case 0:
         gSpecialVar_Result = PHONE_CALL_SUCCESS;
         gPhoneCallWindowId = AddWindow(&sPhoneCallWindowTemplate);
-        LoadBgTiles(0, sPhoneCallWindowGfx, sizeof(sPhoneCallWindowGfx), 0x143);
+        LoadBgTiles(0, gPhoneCall_WindowGfx, sizeof(gPhoneCall_WindowGfx), 0x143);
         FillWindowPixelBuffer(gPhoneCallWindowId, 0x11);
-        LoadPalette(sPhoneCallWindowPalette, 0xE0, 0x20);
+        LoadPalette(gPhoneCall_WindowPal, 0xE0, sizeof(gPhoneCall_WindowPal));
         gTasks[taskId].tPhoneCallInitState = 1;
         break;
     case 1:
