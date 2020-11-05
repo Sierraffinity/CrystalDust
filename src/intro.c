@@ -1,32 +1,31 @@
 #include "global.h"
 #include "main.h"
+#include "decompress.h"
+#include "gpu_regs.h"
+#include "graphics.h"
+#include "intro.h"
+#include "libgcnmultiboot.h"
+#include "link.h"
+#include "load_save.h"
+#include "m4a.h"
+#include "malloc.h"
+#include "multiboot_pokemon_colosseum.h"
+#include "new_game.h"
 #include "palette.h"
+#include "random.h"
+#include "save.h"
 #include "scanline_effect.h"
+#include "sound.h"
 #include "task.h"
 #include "title_screen.h"
-#include "libgcnmultiboot.h"
-#include "malloc.h"
-#include "gpu_regs.h"
-#include "link.h"
-#include "multiboot_pokemon_colosseum.h"
-#include "load_save.h"
-#include "save.h"
-#include "new_game.h"
-#include "m4a.h"
-#include "random.h"
-#include "decompress.h"
-#include "constants/songs.h"
-#include "intro_credits_graphics.h"
-#include "trig.h"
-#include "intro.h"
-#include "graphics.h"
-#include "sound.h"
-#include "constants/species.h"
-#include "util.h"
-#include "title_screen.h"
-#include "constants/rgb.h"
 #include "trainer_pokemon_sprites.h"
+#include "trig.h"
+#include "util.h"
 #include "constants/battle_anim.h"
+#include "constants/pokemon.h"
+#include "constants/rgb.h"
+#include "constants/songs.h"
+#include "constants/species.h"
 
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
 extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];
@@ -42,17 +41,19 @@ u32 gIntroFrameCounter;
 struct GcmbStruct gMultibootProgramStruct;
 
 //.rodata
-static const u16 gIntro1BGPals[] = INCBIN_U16("graphics/intro/intro1_logotiles.gbapal");
+static const u16 gIntro1BGPal[] = INCBIN_U16("graphics/intro/intro1_logotiles.gbapal");
+static const u16 gIntro1BGPal_Shiny[] = INCBIN_U16("graphics/intro/intro1_bg1.gbapal");
 static const u32 gIntro1BG2_Tilemap[] = INCBIN_U32("graphics/intro/intro1_bg2.bin.lz");
 static const u32 gIntro1BG2_LogoTilemap[] = INCBIN_U32("graphics/intro/intro1_bg2_logo.bin.lz");
 static const u32 gIntro1BG3_Tilemap[] = INCBIN_U32("graphics/intro/intro1_bg3.bin.lz");
 static const u32 gIntro1BG0_Tiles[] = INCBIN_U32("graphics/intro/intro1_background.4bpp.lz");
 static const u32 gIntro1BG0_LogoTiles[] = INCBIN_U32("graphics/intro/intro1_logotiles.4bpp.lz");
+static const u32 gIntro1BG1_Tiles[] = INCBIN_U32("graphics/intro/intro1_bg1.4bpp.lz");
+static const u32 gIntro1BG1_Tilemap[] = INCBIN_U32("graphics/intro/intro1_bg1.bin.lz");
 static const u32 gIntroDittoTiles[] = INCBIN_U32("graphics/intro/intro1_ditto.4bpp.lz");
-static const u32 gIntroMikachuTiles[] = INCBIN_U32("graphics/intro/intro1_mikachu.4bpp.lz");
 static const u32 gIntroPresentsTiles[] = INCBIN_U32("graphics/intro/intro1_presents.4bpp.lz");
 static const u16 gIntro1DittoPalette[] = INCBIN_U16("graphics/intro/intro1_ditto.gbapal");
-static const u16 gIntro1MikachuPalette[] = INCBIN_U16("graphics/intro/intro1_mikachu.gbapal");
+static const u16 gIntro1DittoPalette_Shiny[] = INCBIN_U16("graphics/intro/intro1_ditto_shiny.gbapal");
 static const u16 gIntro1PresentsPalette[] = INCBIN_U16("graphics/intro/intro1_presents.gbapal");
 static const u16 gIntro2BGPals[][16] = {
     INCBIN_U16("graphics/intro/intro2_bg3.gbapal"),
@@ -92,6 +93,12 @@ static const struct SpritePalette gSpritePalette_Ditto =
     .tag = 2000
 };
 
+static const struct SpritePalette gSpritePalette_Ditto_Shiny =
+{
+    .data = gIntro1DittoPalette_Shiny,
+    .tag = 2000
+};
+
 static const struct CompressedSpriteSheet gSpriteSheet_Ditto =
 {
     .data = gIntroDittoTiles,
@@ -103,7 +110,7 @@ static const struct OamData gOamData_Ditto =
 {
     .y = 160,
     .affineMode = ST_OAM_AFFINE_NORMAL,
-    .objMode = ST_OAM_OBJ_NORMAL,
+    .objMode = ST_OAM_OBJ_BLEND,
     .mosaic = TRUE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x64),
@@ -129,10 +136,10 @@ static const union AnimCmd gSpriteAnim2_Ditto[] =
     ANIMCMD_FRAME(0, 27),
     ANIMCMD_FRAME(64, 8),
     ANIMCMD_FRAME(128, 24),
-    ANIMCMD_FRAME(192, 4),
-    ANIMCMD_FRAME(256, 4),
-    ANIMCMD_FRAME(320, 4),
-    ANIMCMD_FRAME(384, 4),
+    ANIMCMD_FRAME(192, 6),
+    ANIMCMD_FRAME(256, 6),
+    ANIMCMD_FRAME(320, 6),
+    ANIMCMD_FRAME(384, 6),
     ANIMCMD_FRAME(448, 4),
     ANIMCMD_END,
 };
@@ -184,47 +191,6 @@ static const struct SpriteTemplate gSpriteTemplate_Ditto =
     .images = NULL,
     .affineAnims = gSpriteAffineAnimTable_Ditto,
     .callback = SpriteCallback_Ditto,
-};
-
-static const struct SpritePalette gSpritePalette_Mikachu =
-{
-    .data = gIntro1MikachuPalette,
-    .tag = 2010
-};
-
-static const struct CompressedSpriteSheet gSpriteSheet_Mikachu =
-{
-    .data = gIntroMikachuTiles,
-    .size = 0x800,
-    .tag  = 2010
-};
-
-static const struct OamData gOamData_Mikachu =
-{
-    .y = 0,
-    .affineMode = ST_OAM_AFFINE_OFF,
-    .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = TRUE,
-    .bpp = ST_OAM_4BPP,
-    .shape = SPRITE_SHAPE(64x64),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(64x64),
-    .tileNum = 0,
-    .priority = 3,
-    .paletteNum = 0,
-    .affineParam = 0,
-};
-
-static const struct SpriteTemplate gSpriteTemplate_Mikachu =
-{
-    .tileTag = 2010,
-    .paletteTag = 2010,
-    .oam = &gOamData_Mikachu,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
 };
 
 static const struct SpritePalette gSpritePalette_Presents =
@@ -296,7 +262,7 @@ static const struct SpritePalette gIntro2SpritePalettes[] =
     {NULL},
 };
 
-static const struct SpritePalette gSuicuneSilhouetteSpritePalettes =
+static const struct SpritePalette gSuicuneSilhouetteSpritePalette =
 {
     .data = gIntro2SuicuneSilhouettePalette,
     .tag  = 1000
@@ -837,7 +803,6 @@ static void Task_IntroLoadPart1Graphics(u8);
 static void Task_IntroGameFreakStart(u8);
 static void intro_reset_and_hide_bgs(void);
 static void Task_ShowGameFreakScreen(u8);
-static void Task_MosaicToGameFreakLogo(u8);
 static void Task_FadeInOutGameFreakText(u8);
 static void Task_WaitToStartUnownSequence(u8);
 static void Task_IntroLoadPart2Graphics(u8);
@@ -994,44 +959,57 @@ void CB2_InitCopyrightScreenAfterTitleScreen(void)
 
 static void Task_IntroLoadPart1Graphics(u8 taskId)
 {
-    u8 spriteId;
+    u8 spriteDitto;
     SetVBlankCallback(NULL);
     intro_reset_and_hide_bgs();
     SetGpuReg(REG_OFFSET_BG3VOFS, 0);
     SetGpuReg(REG_OFFSET_BG2VOFS, 0);
     LZ77UnCompVram(gIntro1BG0_Tiles, (void *)(BG_CHAR_ADDR(3)));
-    LZ77UnCompVram(gIntro1BG0_LogoTiles, (void *)(BG_CHAR_ADDR(3) + 0x200));
+    LZ77UnCompVram(gIntro1BG0_LogoTiles, (void *)(BG_CHAR_ADDR(3) + TILE_OFFSET_4BPP(16)));
+    LZ77UnCompVram(gIntro1BG1_Tiles, (void *)(BG_CHAR_ADDR(3) + TILE_OFFSET_4BPP(260)));
+    LZ77UnCompVram(gIntro1BG1_Tilemap, (void *)(BG_SCREEN_ADDR(29)));
     LZ77UnCompVram(gIntro1BG2_Tilemap, (void *)(BG_SCREEN_ADDR(30)));
     LZ77UnCompVram(gIntro1BG3_Tilemap, (void *)(BG_SCREEN_ADDR(31)));
-    LoadPalette(gIntro1BGPals, 0, sizeof(gIntro1BGPals));
     SetGpuReg(REG_OFFSET_BG3CNT, BGCNT_PRIORITY(3)
                                | BGCNT_CHARBASE(3)
                                | BGCNT_SCREENBASE(31)
                                | BGCNT_16COLOR
                                | BGCNT_TXT256x256);
-    SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2)
+    SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(1)
                                | BGCNT_CHARBASE(3)
                                | BGCNT_SCREENBASE(30)
                                | BGCNT_16COLOR
                                | BGCNT_TXT256x256);
+    SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(2)
+                               | BGCNT_CHARBASE(3)
+                               | BGCNT_SCREENBASE(29)
+                               | BGCNT_16COLOR
+                               | BGCNT_TXT256x256);
+    
+    if ((JOY_HELD(A_BUTTON | SELECT_BUTTON) == (A_BUTTON | SELECT_BUTTON)) ||
+        Random() < SHINY_ODDS)
+    {
+        LoadPalette(gIntro1BGPal_Shiny, 0, sizeof(gIntro1BGPal_Shiny));
+        LoadSpritePalette(&gSpritePalette_Ditto_Shiny);
+    }
+    else
+    {
+        LoadPalette(gIntro1BGPal, 0, sizeof(gIntro1BGPal));
+        LoadSpritePalette(&gSpritePalette_Ditto);
+    }
+
+    // fix BD color
+    gPlttBufferUnfaded[0] = RGB_BLACK;
+    gPlttBufferFaded[0] = RGB_BLACK;
+
     LoadCompressedSpriteSheet(&gSpriteSheet_Ditto);
-    LoadCompressedSpriteSheet(&gSpriteSheet_Mikachu);
     LoadCompressedSpriteSheet(&gSpriteSheet_Presents);
-    LoadSpritePalettes(&gSpritePalette_Ditto);
-    LoadSpritePalettes(&gSpritePalette_Mikachu);
-    LoadSpritePalettes(&gSpritePalette_Presents);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1F0, 0x20);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1E1, 0x1E);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1D2, 0x1C);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1C3, 0x1A);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1B4, 0x18);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1A5, 0x16);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x196, 0x14);
-    spriteId = CreateSprite(&gSpriteTemplate_Ditto, 120, -48, 0);
-    gSprites[spriteId].data[0] = 0;
-    StartSpriteAnim(&gSprites[spriteId], 1);
-    StartSpriteAffineAnim(&gSprites[spriteId], 1);
-    gTasks[taskId].data[1] = spriteId;
+    LoadSpritePalette(&gSpritePalette_Presents);
+    spriteDitto = CreateSprite(&gSpriteTemplate_Ditto, 120, -48, 0);
+    gSprites[spriteDitto].data[0] = 0;
+    StartSpriteAnim(&gSprites[spriteDitto], 1);
+    StartSpriteAffineAnim(&gSprites[spriteDitto], 1);
+    gTasks[taskId].data[1] = spriteDitto;
     gTasks[taskId].func = Task_IntroGameFreakStart;
 }
 
@@ -1078,10 +1056,19 @@ static void Task_IntroGameFreakStart(u8 taskId)
 static void Task_ShowGameFreakScreen(u8 taskId)
 {
     u8 newTaskId;
+
+    // fade from Ditto to Mikachu colors
+    if (gIntroFrameCounter == 102)
+    {
+        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG1_ON);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1
+                                   | BLDCNT_EFFECT_BLEND
+                                   | BLDCNT_TGT2_OBJ);
+        newTaskId = CreateTask(Task_FadeInOutGameFreakText, 0);
+        gTasks[newTaskId].data[1] = 0;
+    }
     
-    if (gIntroFrameCounter == 60)
-        CreateTask(Task_MosaicToGameFreakLogo, 0);
-    
+    // bring in DMA text
     if (gIntroFrameCounter == 170)
     {
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
@@ -1096,73 +1083,33 @@ static void Task_ShowGameFreakScreen(u8 taskId)
         newTaskId = CreateTask(Task_FadeInOutGameFreakText, 0);
         gTasks[newTaskId].data[1] = 0;
     }
-    
+
+    // add "Presents" text and swap Mikachu to merged text BG
     if (gIntroFrameCounter == 200)
     {
+        ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG1_ON);
         LZ77UnCompVram(gIntro1BG2_LogoTilemap, (void *)(BG_SCREEN_ADDR(30)));
         DestroySprite(&gSprites[gTasks[taskId].data[1]]);
         gTasks[taskId].data[0] = CreateSprite(&gSpriteTemplate_Presents, 104, 115, 5);
         gTasks[taskId].data[1] = CreateSprite(&gSpriteTemplate_Presents, 136, 115, 5);
         gSprites[gTasks[taskId].data[1]].oam.tileNum += 4;
     }
-    
+
+    // fade out all graphics but background
     if (gIntroFrameCounter == 320)
     {
         SetGpuRegBits(REG_OFFSET_BLDCNT, BLDCNT_TGT1_OBJ);
         newTaskId = CreateTask(Task_FadeInOutGameFreakText, 0);
         gTasks[newTaskId].data[1] = 1;
     }
-    
+
+    // fade out all to black
     if (gIntroFrameCounter == 350)
     {
         DestroySprite(&gSprites[gTasks[taskId].data[0]]);
         DestroySprite(&gSprites[gTasks[taskId].data[1]]);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_WaitToStartUnownSequence;
-    }
-}
-
-static void Task_MosaicToGameFreakLogo(u8 taskId)
-{
-    u16 temp;
-    
-    if (gIntroFrameCounter < 80)
-    {
-        temp = gTasks[taskId].data[0]++ >> 1;
-        if (temp > 20)
-            temp = 20;
-        //SetGpuReg(REG_OFFSET_MOSAIC, MOSAIC_SIZE(0, 0, temp, temp));
-        return;
-    }
-    
-    if (gIntroFrameCounter < 98)
-    {
-        if (gSprites[gTasks[taskId].data[1]].pos1.x > 118)
-            gSprites[gTasks[taskId].data[1]].pos1.x--;
-
-        if (gSprites[gTasks[taskId].data[1]].pos1.y > 71)
-            gSprites[gTasks[taskId].data[1]].pos1.y--;
-    }
-
-    if (gIntroFrameCounter == 98)
-    {
-        gSprites[gTasks[taskId].data[1]].pos1.x = 118;
-        gSprites[gTasks[taskId].data[1]].pos1.y = 71;
-    }
-    
-    if (gIntroFrameCounter < 116)
-    {
-        temp = gTasks[taskId].data[0]-- >> 1;
-        if (temp > 20)
-            temp = 20;
-        //SetGpuReg(REG_OFFSET_MOSAIC, MOSAIC_SIZE(0, 0, temp, temp));
-        return;
-    }
-    
-    if (gTasks[taskId].data[0] == 0)
-    {
-        //SetGpuReg(REG_OFFSET_MOSAIC, 0);
-        DestroyTask(taskId);
     }
 }
 
@@ -1213,6 +1160,20 @@ static void SpriteCallback_Ditto(struct Sprite *sprite)
         else
         {
             sprite->pos1.y = 80;
+            sprite->data[0]++;
+        }
+        break;
+    case 2:
+        if (sprite->pos1.y > 71)
+        {
+            // move only when new frame is going to show
+            if (!sprite->animDelayCounter)
+                sprite->pos1.y -= 2;
+            if (sprite->pos1.y < 71)
+                sprite->pos1.y = 71;
+        }
+        else
+        {
             sprite->callback = SpriteCallbackDummy;
         }
         break;
@@ -1268,7 +1229,7 @@ static void Task_IntroStartUnownSequence(u8 taskId)
     LoadCompressedSpriteSheet(&gIntro2WooperSpriteSheet);
     LoadCompressedSpriteSheet(&gIntro2PichuSpriteSheet);
     LoadSpritePalettes(gIntro2SpritePalettes);
-    LoadSpritePalette(&gSuicuneSilhouetteSpritePalettes);
+    LoadSpritePalette(&gSuicuneSilhouetteSpritePalette);
     gTasks[taskId].data[1] = CreateSprite(&gSpriteTemplate_UnownA, 120, 80, 0);
     BeginUnownFade(32, FALSE, FALSE);
     SetVBlankCallback(VBlankCB_Intro);
@@ -1718,7 +1679,7 @@ static void Task_IntroLoadPart3Graphics(u8 taskId)
         FreeAllSpritePalettes();
         
         LoadCompressedSpriteSheet(&gIntro2SuicuneSilhouetteSpriteSheet);
-        LoadSpritePalette(&gSuicuneSilhouetteSpritePalettes);
+        LoadSpritePalette(&gSuicuneSilhouetteSpritePalette);
         
         data[0] = 0;
         data[1] = CreateTask(Task_ScrollTreeGrassBackgrounds2, 0);
