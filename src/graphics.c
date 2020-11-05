@@ -994,7 +994,7 @@ const u16 gUnknown_08D856C8[] = INCBIN_U16("graphics/battle_frontier/pyramid_lig
 const u32 gUnknown_08D857A8[] = INCBIN_U32("graphics/battle_frontier/battle_tilemap1.bin.lz");
 const u32 gUnknown_08D85A1C[] = INCBIN_U32("graphics/battle_frontier/battle_tilemap2.bin.lz");
 
-#include "data/graphics/intro_scene.h"
+const u32 gIntro2FlygonGfx[] = INCBIN_U32("graphics/intro/intro2_flygon.4bpp.lz");
 
 const u32 gBattleAnimSpriteGfx_FlyingDirt[] = INCBIN_U32("graphics/battle_anims/sprites/flying_dirt.4bpp.lz");
 
