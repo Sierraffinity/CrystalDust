@@ -2364,11 +2364,6 @@ s32 GetGameProgressForLinkTrade(void)
         whichGameSet = 0;
         version = (gLinkPlayers[GetMultiplayerId() ^ 1].version & 0xFF);
 
-        if (version == VERSION_RUBY || version == VERSION_SAPPHIRE || version == VERSION_EMERALD)
-            whichGameSet = 0;
-        else if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
-            whichGameSet = 2;
-
         if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN || version == VERSION_CRYSTAL_DUST)
             whichGameSet = 0;
         else if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)

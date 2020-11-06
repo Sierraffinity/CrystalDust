@@ -170,8 +170,8 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(SAILOR, gTrainerFrontPic_Sailor, 0x800),
     TRAINER_SPRITE(MAGMA_ADMIN, gTrainerFrontPic_MagmaAdmin, 0x800),
     TRAINER_SPRITE(RIVAL, gTrainerFrontPic_Rival, 0x800),
-    TRAINER_SPRITE(GOLD, gTrainerFrontPic_Brendan, 0x800),
-    TRAINER_SPRITE(KRIS, gTrainerFrontPic_May, 0x800),
+    TRAINER_SPRITE(GOLD, gTrainerFrontPic_Gold, 0x800),
+    TRAINER_SPRITE(KRIS, gTrainerFrontPic_Kris, 0x800),
     TRAINER_SPRITE(BUG_CATCHER, gTrainerFrontPic_BugCatcher, 0x800),
     TRAINER_SPRITE(POKEMON_RANGER_M, gTrainerFrontPic_PokemonRangerM, 0x800),
     TRAINER_SPRITE(POKEMON_RANGER_F, gTrainerFrontPic_PokemonRangerF, 0x800),
@@ -192,8 +192,8 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(LEAF, gTrainerFrontPic_Leaf, 0x800),
     TRAINER_SPRITE(RS_BRENDAN, gTrainerFrontPic_RubySapphireBrendan, 0x800),
     TRAINER_SPRITE(RS_MAY, gTrainerFrontPic_RubySapphireMay, 0x800),
-    TRAINER_SPRITE(EM_BRENDAN, gTrainerFrontPic_Brendan, 0x800),
-    TRAINER_SPRITE(EM_MAY, gTrainerFrontPic_May, 0x800),
+    TRAINER_SPRITE(EM_BRENDAN, gTrainerFrontPic_EmeraldBrendan, 0x800),
+    TRAINER_SPRITE(EM_MAY, gTrainerFrontPic_EmeraldMay, 0x800),
 };
 
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
@@ -269,8 +269,8 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(SAILOR, gTrainerPalette_Sailor),
     TRAINER_PAL(MAGMA_ADMIN, gTrainerPalette_MagmaAdmin),
     TRAINER_PAL(RIVAL, gTrainerPalette_Rival),
-    TRAINER_PAL(GOLD, gTrainerPalette_Brendan),
-    TRAINER_PAL(KRIS, gTrainerPalette_May),
+    TRAINER_PAL(GOLD, gTrainerPalette_Gold),
+    TRAINER_PAL(KRIS, gTrainerPalette_Kris),
     TRAINER_PAL(BUG_CATCHER, gTrainerPalette_BugCatcher),
     TRAINER_PAL(POKEMON_RANGER_M, gTrainerPalette_PokemonRangerM),
     TRAINER_PAL(POKEMON_RANGER_F, gTrainerPalette_PokemonRangerF),
@@ -291,6 +291,6 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(LEAF, gTrainerPalette_Leaf),
     TRAINER_PAL(RS_BRENDAN, gTrainerPalette_RubySapphireBrendan),
     TRAINER_PAL(RS_MAY, gTrainerPalette_RubySapphireMay),
-    TRAINER_PAL(EM_BRENDAN, gTrainerPalette_Brendan),
-    TRAINER_PAL(EM_MAY, gTrainerPalette_May),
+    TRAINER_PAL(EM_BRENDAN, gTrainerPalette_EmeraldBrendan),
+    TRAINER_PAL(EM_MAY, gTrainerPalette_EmeraldMay),
 };

@@ -1401,20 +1401,15 @@ static void NamingScreen_NoIcon(void)
 
 static void NamingScreen_CreatePlayerIcon(void)
 {
-    u8 rivalGfxId;
-    u8 spriteId;
-
-    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(0, sNamingScreen->monSpecies);
-    spriteId = AddPseudoObjectEvent(rivalGfxId, SpriteCallbackDummy, 56, 37, 0);
+    u8 playerGfxId = GetPlayerAvatarGraphicsIdByStateIdAndGender(0, sNamingScreen->monSpecies);
+    u8 spriteId = AddPseudoObjectEvent(playerGfxId, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], 4);
 }
 
 static void NamingScreen_CreatePCIcon(void)
 {
-    u8 spriteId;
-
-    spriteId = CreateSprite(&sSpriteTemplate_PCIcon, 56, 41, 0);
+    u8 spriteId = CreateSprite(&sSpriteTemplate_PCIcon, 56, 41, 0);
     SetSubspriteTables(&gSprites[spriteId], sSubspriteTable_PCIcon);
     gSprites[spriteId].oam.priority = 3;
 }
@@ -1424,24 +1419,20 @@ static void NamingScreen_CreateMonIcon(void)
     u8 spriteId;
 
     LoadMonIconPalettes();
-    spriteId = CreateMonIcon(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, sNamingScreen->monPersonality, 1);
+    spriteId = CreateMonIcon(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, sNamingScreen->monPersonality, TRUE);
     gSprites[spriteId].oam.priority = 3;
 }
 
 static void NamingScreen_CreateWaldaDadIcon(void)
 {
-    u8 spriteId;
-
-    spriteId = AddPseudoObjectEvent(OBJ_EVENT_GFX_MAN_1, SpriteCallbackDummy, 56, 37, 0);
+    u8 spriteId = AddPseudoObjectEvent(OBJ_EVENT_GFX_MAN_1, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], 4);
 }
 
 static void NamingScreen_CreateRivalIcon(void)
 {
-    u8 spriteId;
-
-    spriteId = AddPseudoObjectEvent(OBJ_EVENT_GFX_RIVAL, SpriteCallbackDummy, 0x38, 0x25, 0);
+    u8 spriteId = AddPseudoObjectEvent(OBJ_EVENT_GFX_RIVAL, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], 4);
 }

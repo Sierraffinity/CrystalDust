@@ -2784,9 +2784,9 @@ void CreateContestMonFromParty(u8 partyIndex)
     }
     memcpy(gContestMons[gContestPlayerMonIndex].trainerName, name, 8);
     if (gSaveBlock2Ptr->playerGender == MALE)
-        gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_LINK_BRENDAN;
+        gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_EM_BRENDAN;
     else
-        gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_LINK_MAY;
+        gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_EM_MAY;
     gContestMons[gContestPlayerMonIndex].aiFlags = 0;
     gContestMons[gContestPlayerMonIndex].highestRank = 0;
     gContestMons[gContestPlayerMonIndex].species = GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES);

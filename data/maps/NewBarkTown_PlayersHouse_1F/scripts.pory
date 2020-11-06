@@ -275,6 +275,8 @@ script NewBarkTown_PlayersHouse_1F_EventScript_MomBank {
             clearflag(FLAG_SYS_MOM_BANKING_ENABLED)
             msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
         }
+    default:
+        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
     }
     release
 }

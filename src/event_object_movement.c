@@ -402,41 +402,43 @@ const u8 gInitialMovementTypeFacingDirections[] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = DIR_EAST,
 };
 
-#define OBJ_EVENT_PAL_TAG_0  0x1103
-#define OBJ_EVENT_PAL_TAG_1  0x1104
-#define OBJ_EVENT_PAL_TAG_2  0x1105
-#define OBJ_EVENT_PAL_TAG_3  0x1106
-#define OBJ_EVENT_PAL_TAG_4  0x1107
-#define OBJ_EVENT_PAL_TAG_5  0x1108
-#define OBJ_EVENT_PAL_TAG_6  0x1109
-#define OBJ_EVENT_PAL_TAG_7  0x110A
+#define OBJ_EVENT_PAL_TAG_0  0x1103 // Yellow, purple, red
+#define OBJ_EVENT_PAL_TAG_1  0x1104 // Pink, blue, gray
+#define OBJ_EVENT_PAL_TAG_2  0x1105 // Light brown, green, pink
+#define OBJ_EVENT_PAL_TAG_3  0x1106 // Dark brown, red, gray
+#define OBJ_EVENT_PAL_TAG_4  0x1107 // 0 reflection
+#define OBJ_EVENT_PAL_TAG_5  0x1108 // 1 reflection
+#define OBJ_EVENT_PAL_TAG_6  0x1109 // 2 reflection
+#define OBJ_EVENT_PAL_TAG_7  0x110A // 3 reflection
 #define OBJ_EVENT_PAL_TAG_8  0x1100 // Gold
 #define OBJ_EVENT_PAL_TAG_9  0x1101 // Gold reflection
 #define OBJ_EVENT_PAL_TAG_10 0x1102 // Pure blue..? Placeholder as reflection tag in player sprite object data
-#define OBJ_EVENT_PAL_TAG_11 0x1115
+#define OBJ_EVENT_PAL_TAG_11 0x1115 // Brendan & May underwater
 #define OBJ_EVENT_PAL_TAG_12 0x110B // Elm
 #define OBJ_EVENT_PAL_TAG_13 0x110C // Silver
-#define OBJ_EVENT_PAL_TAG_14 0x110D
-#define OBJ_EVENT_PAL_TAG_15 0x110E
-#define OBJ_EVENT_PAL_TAG_16 0x110F
+#define OBJ_EVENT_PAL_TAG_14 0x110D // Truck
+#define OBJ_EVENT_PAL_TAG_15 0x110E // Vigoroth mover
+#define OBJ_EVENT_PAL_TAG_16 0x110F // Zigzagoon
 #define OBJ_EVENT_PAL_TAG_17 0x1110 // Kris
 #define OBJ_EVENT_PAL_TAG_18 0x1111 // Kris reflection
-#define OBJ_EVENT_PAL_TAG_19 0x1112
-#define OBJ_EVENT_PAL_TAG_20 0x1113
-#define OBJ_EVENT_PAL_TAG_21 0x1114
-#define OBJ_EVENT_PAL_TAG_22 0x1116
+#define OBJ_EVENT_PAL_TAG_19 0x1112 // Moving box
+#define OBJ_EVENT_PAL_TAG_20 0x1113 // Cable car
+#define OBJ_EVENT_PAL_TAG_21 0x1114 // SS Tidal
+#define OBJ_EVENT_PAL_TAG_22 0x1116 // Kyogre
 #define OBJ_EVENT_PAL_TAG_23 0x1117
-#define OBJ_EVENT_PAL_TAG_24 0x1118
+#define OBJ_EVENT_PAL_TAG_24 0x1118 // Groudon
 #define OBJ_EVENT_PAL_TAG_25 0x1119
-#define OBJ_EVENT_PAL_TAG_26 0x111B
-#define OBJ_EVENT_PAL_TAG_27 0x111C
-#define OBJ_EVENT_PAL_TAG_28 0x111D
-#define OBJ_EVENT_PAL_TAG_29 0x111E
-#define OBJ_EVENT_PAL_TAG_30 0x111F
-#define OBJ_EVENT_PAL_TAG_31 0x1120
-#define OBJ_EVENT_PAL_TAG_32 0x1121
-#define OBJ_EVENT_PAL_TAG_33 0x1122
-#define OBJ_EVENT_PAL_TAG_34 0x1123
+#define OBJ_EVENT_PAL_TAG_26 0x111B // Submarine shadow
+#define OBJ_EVENT_PAL_TAG_27 0x111C // Poochyena
+#define OBJ_EVENT_PAL_TAG_28 0x111D // Red & Leaf
+#define OBJ_EVENT_PAL_TAG_29 0x111E // Deoxys
+#define OBJ_EVENT_PAL_TAG_30 0x111F // Birth Island stone
+#define OBJ_EVENT_PAL_TAG_31 0x1120 // Ho-Oh
+#define OBJ_EVENT_PAL_TAG_32 0x1121 // Lugia
+#define OBJ_EVENT_PAL_TAG_33 0x1122 // RS Brendan
+#define OBJ_EVENT_PAL_TAG_34 0x1123 // RS May
+#define OBJ_EVENT_PAL_TAG_35 0x1124 // Emerald Brendan
+#define OBJ_EVENT_PAL_TAG_36 0x1125 // Emerald May
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -483,6 +485,8 @@ const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPalette32, OBJ_EVENT_PAL_TAG_32},
     {gObjectEventPalette33, OBJ_EVENT_PAL_TAG_33},
     {gObjectEventPalette34, OBJ_EVENT_PAL_TAG_34},
+    {gObjectEventPalette35, OBJ_EVENT_PAL_TAG_35},
+    {gObjectEventPalette36, OBJ_EVENT_PAL_TAG_36},
     {NULL,                  0x0000},
 };
 

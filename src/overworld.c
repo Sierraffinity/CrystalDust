@@ -134,7 +134,7 @@ static s32 sub_80878E4(u8 linkPlayerId);
 static u8 GetLinkPlayerIdAt(s16 x, s16 y);
 static void SetPlayerFacingDirection(u8 linkPlayerId, u8 a2);
 static void ZeroObjectEvent(struct ObjectEvent *objEvent);
-static void SpawnLinkPlayerObjectEvent(u8 linkPlayerId, s16 x, s16 y, u8 a4);
+static void SpawnLinkPlayerObjectEvent(u8 linkPlayerId, s16 x, s16 y, u8 gender);
 static void InitLinkPlayerObjectEventPos(struct ObjectEvent *objEvent, s16 x, s16 y);
 static void sub_80877DC(u8 linkPlayerId, u8 a2);
 static void sub_808780C(u8 linkPlayerId);
@@ -3031,7 +3031,7 @@ static void ZeroObjectEvent(struct ObjectEvent *objEvent)
     memset(objEvent, 0, sizeof(struct ObjectEvent));
 }
 
-static void SpawnLinkPlayerObjectEvent(u8 linkPlayerId, s16 x, s16 y, u8 a4)
+static void SpawnLinkPlayerObjectEvent(u8 linkPlayerId, s16 x, s16 y, u8 gender)
 {
     u8 objEventId = GetFirstInactiveObjectEventId();
     struct LinkPlayerObjectEvent *linkPlayerObjEvent = &gLinkPlayerObjectEvents[linkPlayerId];
@@ -3046,7 +3046,7 @@ static void SpawnLinkPlayerObjectEvent(u8 linkPlayerId, s16 x, s16 y, u8 a4)
     linkPlayerObjEvent->movementMode = MOVEMENT_MODE_FREE;
 
     objEvent->active = 1;
-    objEvent->singleMovementActive = a4;
+    objEvent->singleMovementActive = gender;
     objEvent->range.as_byte = 2;
     objEvent->spriteId = 64;
 
@@ -3290,10 +3290,10 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
             objEvent->spriteId = AddPseudoObjectEvent(GetRSAvatarGraphicsIdByGender(objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
             break;
         case VERSION_EMERALD:
-            objEvent->spriteId = AddPseudoObjectEvent(GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
+            objEvent->spriteId = AddPseudoObjectEvent(GetEmeraldAvatarGraphicsIdByGender(objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
             break;
         case VERSION_CRYSTAL_DUST:
-            objEvent->spriteId = AddPseudoObjectEvent(GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
+            objEvent->spriteId = AddPseudoObjectEvent(GetPlayerAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
             break;
         }
 

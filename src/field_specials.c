@@ -562,9 +562,9 @@ void SpawnLinkPartnerObjectEvent(void)
                 case VERSION_RUBY:
                 case VERSION_SAPPHIRE:
                     if (gLinkPlayers[i].gender == 0)
-                        linkSpriteId = OBJ_EVENT_GFX_LINK_RS_BRENDAN;
+                        linkSpriteId = OBJ_EVENT_GFX_RS_BRENDAN;
                     else
-                        linkSpriteId = OBJ_EVENT_GFX_LINK_RS_MAY;
+                        linkSpriteId = OBJ_EVENT_GFX_RS_MAY;
                     break;
                 case VERSION_EMERALD:
                     if (gLinkPlayers[i].gender == 0)
@@ -595,8 +595,8 @@ static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEvent
     u8 adjustedPaletteNum;
     // Note: This temp var is necessary; paletteNum += 6 doesn't match.
     adjustedPaletteNum = paletteNum + 6;
-    if (graphicsId == OBJ_EVENT_GFX_LINK_RS_BRENDAN ||
-        graphicsId == OBJ_EVENT_GFX_LINK_RS_MAY ||
+    if (graphicsId == OBJ_EVENT_GFX_RS_BRENDAN ||
+        graphicsId == OBJ_EVENT_GFX_RS_MAY ||
         graphicsId == OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL ||
         graphicsId == OBJ_EVENT_GFX_RIVAL_MAY_NORMAL)
     {
@@ -609,10 +609,10 @@ static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEvent
 
             switch (graphicsId)
             {
-                case OBJ_EVENT_GFX_LINK_RS_BRENDAN:
+                case OBJ_EVENT_GFX_RS_BRENDAN:
                     LoadPalette(gObjectEventPalette33, 0x100 + (adjustedPaletteNum << 4), 0x20);
                     break;
-                case OBJ_EVENT_GFX_LINK_RS_MAY:
+                case OBJ_EVENT_GFX_RS_MAY:
                     LoadPalette(gObjectEventPalette34, 0x100 + (adjustedPaletteNum << 4), 0x20);
                     break;
                 case OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL:
@@ -2855,10 +2855,10 @@ void ShowGlassWorkshopMenu(void)
 static u8 GetTextColorFromGraphicsId(u16 graphicsId)
 {
     const u8 textColors[NUM_OBJ_EVENT_GFX] = {
-        [OBJ_EVENT_GFX_BRENDAN_NORMAL] =            MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_BRENDAN_MACH_BIKE] =         MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GOLD_NORMAL] =            MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GOLD_BIKE] =         MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_BRENDAN_SURFING] =           MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_BRENDAN_FIELD_MOVE] =        MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GOLD_FIELD_MOVE] =        MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_QUINTY_PLUMP] =              MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_NINJA_BOY] =                 MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_BILL] =                      MSG_COLOR_BLUE,
@@ -2944,11 +2944,11 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_BREAKABLE_ROCK] =            MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_PUSHABLE_BOULDER] =          MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_MR_BRINEYS_BOAT] =           MSG_COLOR_SYS,
-        [OBJ_EVENT_GFX_MAY_NORMAL] =                MSG_COLOR_RED,
-        [OBJ_EVENT_GFX_MAY_MACH_BIKE] =             MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_KRIS_NORMAL] =                MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_KRIS_BIKE] =             MSG_COLOR_RED,
         [OBJ_EVENT_GFX_MAY_ACRO_BIKE] =             MSG_COLOR_RED,
         [OBJ_EVENT_GFX_MAY_SURFING] =               MSG_COLOR_RED,
-        [OBJ_EVENT_GFX_MAY_FIELD_MOVE] =            MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_KRIS_FIELD_MOVE] =            MSG_COLOR_RED,
         [OBJ_EVENT_GFX_TRUCK] =                     MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_FARFETCHD] =                 MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_VIGOROTH_FACING_AWAY] =      MSG_COLOR_BLACK,
@@ -2992,8 +2992,8 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_STEVEN] =                    MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_RIVAL] =                     MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_LITTLE_BOY_3] =              MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_BRENDAN_FISHING] =           MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_MAY_FISHING] =               MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_GOLD_FISHING] =           MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_KRIS_FISHING] =               MSG_COLOR_RED,
         [OBJ_EVENT_GFX_HOT_SPRINGS_OLD_WOMAN] =     MSG_COLOR_RED,
         [OBJ_EVENT_GFX_SS_TIDAL] =                  MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_SUBMARINE_SHADOW] =          MSG_COLOR_SYS,
@@ -3067,12 +3067,12 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_PIKACHU] =                   MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_SLOWPOKE_TAILLESS] =         MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_BUTTERFREE] =                MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_MACHOKE] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_MACHOKE] =                   MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_TUBER_M_SWIMMING] =          MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_JIGGLYPUFF] =                MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_MOM] =                       MSG_COLOR_RED,
-        [OBJ_EVENT_GFX_LINK_BRENDAN] =              MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_LINK_MAY] =                  MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_EM_BRENDAN] =                MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_EM_MAY] =                    MSG_COLOR_RED,
         [OBJ_EVENT_GFX_JUAN] =                      MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_SCOTT] =                     MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_POOCHYENA] =                 MSG_COLOR_BLACK,
@@ -3090,8 +3090,8 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_DEOXYS] =                    MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_DEOXYS_TRIANGLE] =           MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_BRANDON] =                   MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_LINK_RS_BRENDAN] =           MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_LINK_RS_MAY] =               MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_RS_BRENDAN] =                MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_RS_MAY] =                    MSG_COLOR_RED,
         [OBJ_EVENT_GFX_LUGIA] =                     MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_HOOH] =                      MSG_COLOR_BLACK
     };
@@ -3139,7 +3139,7 @@ void SetBattleTowerLinkPlayerGfx(void)
     {
         if (gLinkPlayers[i].gender == MALE)
         {
-            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_BRENDAN_NORMAL);
+            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_GOLD_NORMAL);
         }
         else
         {
