@@ -274,7 +274,7 @@ gSongTable:: @ 86B49F0
 	song se_intro_unown1, 1, 1
 	song se_intro_unown2, 1, 1
 	song se_intro_unown3, 1, 1
-	song dummy_song_header, 0, 0
+	song se_intro_logo_ding, 1, 1
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0

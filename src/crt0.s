@@ -91,6 +91,10 @@ Init: @ 8000204
 	ldr r1, =INTR_VECTOR
 	adr r0, IntrMain
 	str r0, [r1]
+ .if MODERN
+    mov r0, #0xFF @ RESET_ALL
+    svc 0x1 << 16
+ .endif
 	ldr r1, =AgbMain + 1
 	mov lr, pc
 	bx r1

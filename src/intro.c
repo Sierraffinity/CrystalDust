@@ -1071,6 +1071,7 @@ static void Task_ShowGameFreakScreen(u8 taskId)
     // bring in DMA text
     if (gIntroFrameCounter == 170)
     {
+        PlaySE(SE_INTRO_LOGO_DING);
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2
                                    | BLDCNT_EFFECT_BLEND
