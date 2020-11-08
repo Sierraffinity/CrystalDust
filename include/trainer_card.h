@@ -52,6 +52,7 @@ struct TrainerCard
     /*0x28*/ u16 easyChatProfile[TRAINER_CARD_PROFILE_LENGTH];
     /*0x30*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     /*0x38*/ u8 version;
+    /*0x39*/ u8 realVersion;
     /*0x3A*/ bool16 hasAllFrontierSymbols;
     /*0x3C*/ u32 berryCrushPoints;
     /*0x40*/ u32 unionRoomNum;

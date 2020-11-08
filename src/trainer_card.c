@@ -771,7 +771,8 @@ static void TrainerCard_GenerateCardToShowLocally(struct TrainerCard *trainerCar
 {
     memset(trainerCard, 0, sizeof(struct TrainerCard));
     trainerCard->version = GAME_VERSION;
-    SetPlayerCardData(trainerCard, CARD_TYPE_EMERALD);
+    trainerCard->realVersion = GAME_VERSION;
+    SetPlayerCardData(trainerCard, CARD_TYPE_CRYSTALDUST);
     trainerCard->hasAllSymbols = HasAllFrontierSymbols();
     trainerCard->frontierBP = gSaveBlock2Ptr->frontier.cardBattlePoints;
     if (trainerCard->hasAllSymbols)
@@ -786,8 +787,9 @@ static void TrainerCard_GenerateCardToShowLocally(struct TrainerCard *trainerCar
 void TrainerCard_GenerateCardToSendInLink(struct TrainerCard *trainerCard)
 {
     memset(trainerCard, 0, 0x60);
-    trainerCard->version = GAME_VERSION;
-    SetPlayerCardData(trainerCard, CARD_TYPE_EMERALD);
+    trainerCard->version = VERSION_FIRE_RED;
+    trainerCard->realVersion = GAME_VERSION;
+    SetPlayerCardData(trainerCard, CARD_TYPE_CRYSTALDUST);
     trainerCard->hasAllFrontierSymbols = HasAllFrontierSymbols();
     *((u16*)&trainerCard->berryCrushPoints) = gSaveBlock2Ptr->frontier.cardBattlePoints;
     if (trainerCard->hasAllFrontierSymbols)
@@ -815,6 +817,11 @@ void CopyTrainerCardData(struct TrainerCard *dst, u16 *src, u8 gameVersion)
     case CARD_TYPE_EMERALD:
     case CARD_TYPE_CRYSTALDUST:
         memcpy(dst, src, 0x60);
+        if (dst->realVersion != 0)
+        {
+            dst->version = dst->realVersion;
+            dst->realVersion = 0;
+        }
         dst->berryCrushPoints = 0;
         dst->hasAllSymbols = src[29];
         dst->frontierBP = src[30];
