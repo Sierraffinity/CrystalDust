@@ -128,7 +128,7 @@ static const struct CaptureStar sCaptureStars[] =
 
 #define TAG_BALL_PARTICLES(x)     (55020 + BALLGFX_##x)
 
-static const struct CompressedSpriteSheet sBallParticleSpriteSheets[POKEBALL_COUNT] =
+static const struct CompressedSpriteSheet sBallParticleSpriteSheets[BALLGFX_COUNT] =
 {
     [BALLGFX_POKE]      = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_BALL_PARTICLES(POKE)},
     [BALLGFX_GREAT]     = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_BALL_PARTICLES(GREAT)},
@@ -152,7 +152,7 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[POKEBALL_COU
     [BALLGFX_PARK]      = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_BALL_PARTICLES(PARK)},
 };
 
-static const struct CompressedSpritePalette sBallParticlePalettes[POKEBALL_COUNT] =
+static const struct CompressedSpritePalette sBallParticlePalettes[BALLGFX_COUNT] =
 {
     [BALLGFX_POKE]      = {gBattleAnimSpritePal_CircleImpact, TAG_BALL_PARTICLES(POKE)},
     [BALLGFX_GREAT]     = {gBattleAnimSpritePal_CircleImpact, TAG_BALL_PARTICLES(GREAT)},
@@ -228,7 +228,7 @@ static const union AnimCmd *const sAnims_BallParticles[] =
     sAnim_UltraRepeatTimerBall,
 };
 
-static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
+static const u8 sBallParticleAnimNums[BALLGFX_COUNT] =
 {
     [BALLGFX_POKE]      = 0,
     [BALLGFX_GREAT]     = 0,
@@ -252,7 +252,7 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALLGFX_PARK]      = 0,
 };
 
-static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
+static const TaskFunc sBallParticleAnimationFuncs[BALLGFX_COUNT] =
 {
     [BALLGFX_POKE]      = PokeBallOpenParticleAnimation,
     [BALLGFX_GREAT]     = GreatBallOpenParticleAnimation,
@@ -276,7 +276,7 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALLGFX_PARK]      = PokeBallOpenParticleAnimation,
 };
 
-static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] =
+static const struct SpriteTemplate sBallParticleSpriteTemplates[BALLGFX_COUNT] =
 {
     [BALLGFX_POKE] = {
         .tileTag = TAG_BALL_PARTICLES(POKE),

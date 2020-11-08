@@ -838,13 +838,13 @@ static const u8 sTerrainToType[] =
     [BATTLE_TERRAIN_PLAIN]      = TYPE_NORMAL,
 };
 
-// - ITEM_ULTRA_BALL skips Master Ball and ITEM_NONE
+// Subtracting BALL_ULTRA skips BALL_MASTER and BALL_NONE
 static const u8 sBallCatchBonuses[] =
 {
-    [ITEM_ULTRA_BALL - ITEM_ULTRA_BALL]  = 20, 
-    [ITEM_GREAT_BALL - ITEM_ULTRA_BALL]  = 15, 
-    [ITEM_POKE_BALL - ITEM_ULTRA_BALL]   = 10, 
-    [ITEM_SAFARI_BALL - ITEM_ULTRA_BALL] = 15
+    [BALL_ULTRA - BALL_ULTRA]  = 20, 
+    [BALL_GREAT - BALL_ULTRA]  = 15, 
+    [BALL_POKE - BALL_ULTRA]   = 10, 
+    [BALL_SAFARI - BALL_ULTRA] = 15
 };
 
 // In Battle Palace, moves are chosen based on the pokemons nature rather than by the player

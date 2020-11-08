@@ -208,7 +208,7 @@
 #define FACILITY_CLASS_EM_BRENDAN            0x52
 #define FACILITY_CLASS_EM_MAY                0x53
 
-#define FACILITY_CLASSES_COUNT               0x52
+#define FACILITY_CLASSES_COUNT               0x54
 
 #define RS_FACILITY_CLASS_AQUA_LEADER_ARCHIE    0x0
 #define RS_FACILITY_CLASS_AQUA_GRUNT_M          0x1
