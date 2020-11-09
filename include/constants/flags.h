@@ -205,9 +205,9 @@
 #define FLAG_CALLED_ELM_ABOUT_HATCHED_EGG    0xBF
 #define FLAG_SHOWED_TOGEPI_TO_ELM            0xC0
 #define FLAG_GOT_EVERSTONE_FROM_ELM          0xC1
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1   0xC2 // Leftover from the RS version of Puzzle Room 7, functionally unused
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2   0xC3 //
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3   0xC4 //
+#define FLAG_GOT_HP_UP_FROM_RANDY            0xC2
+#define FLAG_GAVE_KENYA_TO_RANDYS_FRIEND     0xC3
+#define FLAG_GOT_KENYA_FROM_RANDY            0xC4
 #define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4   0xC5 //
 #define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5   0xC6 //
 #define FLAG_UNION_CAVE_OPENED               0xC7

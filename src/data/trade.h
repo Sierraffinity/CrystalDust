@@ -1011,21 +1011,21 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_ABRA
     }, 
-    [INGAME_TRADE_HORSEA] = 
+    [INGAME_TRADE_GIFT_KENYA] = 
     {
-        .nickname = _("SEASOR"),
-        .species = SPECIES_HORSEA,
+        .nickname = _("KENYA"),
+        .species = SPECIES_SPEAROW,
         .ivs = {5, 4, 4, 4, 5, 4},
         .abilityNum = 0, 
-        .otId = 46285,
+        .otId = 1001,
         .conditions = {5, 5, 5, 5, 30},
         .personality = 0x7F,
-        .heldItem = ITEM_WAVE_MAIL, 
-        .mailNum = 1,
-        .otName = _("SKYLAR"), 
-        .otGender = MALE, 
+        .heldItem = ITEM_TROPIC_MAIL, 
+        .mailNum = 0,
+        .otName = _("RANDY"), 
+        .otGender = MALE,
         .sheen = 10,
-        .requestedSpecies = SPECIES_BAGON
+        .requestedSpecies = 10 // level
     }, 
     [INGAME_TRADE_MEOWTH] = 
     {

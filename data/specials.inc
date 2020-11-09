@@ -570,3 +570,4 @@ gSpecials:: @ 81DBA64
 	def_special BargainShop
 	def_special HerbShop
 	def_special IsPlayersMonOfSpeciesInParty
+	def_special GivePlayerSpecialGiftMon

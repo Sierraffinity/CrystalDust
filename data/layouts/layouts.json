@@ -1466,14 +1466,14 @@
       "blockdata_filepath": "data/layouts/Route34_DayCare/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE117_POKEMON_DAY_CARE",
-      "name": "Route117_PokemonDayCare_Layout",
+      "id": "LAYOUT_ROUTE117_POKEMON_DAY_CARE_UNUSED",
+      "name": "Route117_PokemonDayCare_Unused_Layout",
       "width": 12,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PokemonDayCare",
+      "secondary_tileset": "gTileset_Gatehouse",
       "border_filepath": "data/layouts/Route117_PokemonDayCare/border.bin",
       "blockdata_filepath": "data/layouts/Route117_PokemonDayCare/map.bin"
     },

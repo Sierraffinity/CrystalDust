@@ -9,7 +9,7 @@
 // In-game Trade IDs
 #define INGAME_TRADE_ONIX 0
 #define INGAME_TRADE_MACHOP 1
-#define INGAME_TRADE_HORSEA 2
+#define INGAME_TRADE_GIFT_KENYA 2
 #define INGAME_TRADE_MEOWTH 3
 
 // Flag IDs for sending link data

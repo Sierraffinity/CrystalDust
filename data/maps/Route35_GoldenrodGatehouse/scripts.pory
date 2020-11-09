@@ -1,0 +1,86 @@
+mapscripts Route35_GoldenrodGatehouse_MapScripts { }
+
+script Route35_GoldenrodGatehouse_EventScript_Officer {
+    lock
+    faceplayer
+    if (flag(FLAG_GOT_HP_UP_FROM_RANDY))
+    {
+        msgbox(Route35_GoldenrodGatehouse_Text_Officer_PalWasSnoozing)
+    }
+    elif (flag(FLAG_GAVE_KENYA_TO_RANDYS_FRIEND))
+    {
+        msgbox("Thanks, kid! You made the delivery\n"
+               "for me!\p"
+               "Here's something for your trouble!")
+        giveitem(ITEM_HP_UP, 1)
+        if (!var(VAR_RESULT))
+        {
+            goto(Common_EventScript_ShowBagIsFull)
+        }
+        msgbox(Route35_GoldenrodGatehouse_Text_Officer_PalWasSnoozing)
+        setflag(FLAG_GOT_HP_UP_FROM_RANDY)
+    }
+    elif (flag(FLAG_GOT_KENYA_FROM_RANDY))
+    {
+        msgbox(Route35_GoldenrodGatehouse_Text_Officer_ReadItButDontLoseIt)
+    }
+    else
+    {
+        msgbox("Excuse me, kid!\n"
+               "Can you do a guy a favor?\p"
+               "Can you take this POKéMON with MAIL\n"
+               "to my friend? He's on ROUTE 31.", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == TRUE)
+        {
+            msgbox("You will? Perfect!\n"
+                   "Thanks, kid!\p"
+                   "My pal's a chubby guy who snoozes\n"
+                   "all the time.\p"
+                   "You'll recognize him right away!")
+            setvar(VAR_0x8004, INGAME_TRADE_GIFT_KENYA)
+            special(GivePlayerSpecialGiftMon)
+            if (!var(VAR_RESULT))
+            {
+                msgbox("You can't carry another POKéMON…")
+            }
+            else
+            {
+                textcolor(MSG_COLOR_SYS)
+                playfanfare(MUS_OBTAIN_ITEM)
+                message("{PLAYER} received a POKéMON with MAIL.")
+                waitmessage
+                waitfanfare
+	            call(EventScript_RestorePrevTextColor)
+                msgbox(Route35_GoldenrodGatehouse_Text_Officer_ReadItButDontLoseIt)
+                setflag(FLAG_GOT_KENYA_FROM_RANDY)
+            }
+        }
+        else
+        {
+            msgbox("Oh…\n"
+                   "Never mind, then…")
+        }
+    }
+    release
+}
+
+text Route35_GoldenrodGatehouse_Text_Officer_ReadItButDontLoseIt {
+    "You can read it, but don't lose it!\n"
+    "ROUTE 31!\p"
+    "Oh, yeah. There was a weird tree\n"
+    "blocking the road.\p"
+    "I wonder if it's been cleared?"
+}
+
+text Route35_GoldenrodGatehouse_Text_Officer_PalWasSnoozing {
+    "My pal was snoozing, right?\n"
+    "Heh, what'd I say?"
+}
+
+script Route35_GoldenrodGatehouse_EventScript_ConcernedWoman {
+    
+}
+
+script Route35_GoldenrodGatehouse_EventScript_CuriousMan {
+
+}

@@ -298,7 +298,7 @@
 #define MAP_ROUTE34_DAY_CARE             (2 | (21 << 8))
 
 // Map Group 22
-#define MAP_ROUTE117_POKEMON_DAY_CARE (0 | (22 << 8))
+#define MAP_ROUTE35_GOLDENROD_GATEHOUSE (0 | (22 << 8))
 
 // Map Group 23
 #define MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE (0 | (23 << 8))
