@@ -28,7 +28,7 @@
 #define MAP_ROUTE32             (19 | (0 << 8))
 #define MAP_ROUTE33             (20 | (0 << 8))
 #define MAP_ROUTE34             (21 | (0 << 8))
-#define MAP_ROUTE107            (22 | (0 << 8))
+#define MAP_ROUTE35             (22 | (0 << 8))
 #define MAP_ROUTE36             (23 | (0 << 8))
 #define MAP_ROUTE109            (24 | (0 << 8))
 #define MAP_ROUTE110            (25 | (0 << 8))

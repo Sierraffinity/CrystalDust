@@ -70,19 +70,20 @@ Route36_EventScript_RockSmashGuy::
 	lock
 	faceplayer
 	goto_if_unset FLAG_RECEIVED_HM06, Route36_EventScript_RockSmashGuy_2
+	msgbox Route36_Text_RockSmashGuy_PostHM
 Route36_EventScript_RockSmashGuy_1:
-	msgbox Route36_EventScript_RockSmashGuy_Text_2
 	release
 	return
 
 Route36_EventScript_RockSmashGuy_2:
-	goto_if_unset FLAG_DEFEATED_SUDOWOODO, Route36_EventScript_RockSmashGuy_4
+	goto_if_unset FLAG_DEFEATED_SUDOWOODO, Route36_EventScript_RockSmashGuy_5
 	msgbox Route36_EventScript_RockSmashGuy_Text_1
 	giveitem ITEM_HM06
 	setflag FLAG_RECEIVED_HM06
+	msgbox Route36_Text_RockSmashGuy_PostHM
 	goto Route36_EventScript_RockSmashGuy_1
 
-Route36_EventScript_RockSmashGuy_4:
+Route36_EventScript_RockSmashGuy_5:
 	msgbox Route36_EventScript_RockSmashGuy_Text_0
 	release
 	end
@@ -221,16 +222,16 @@ Route36_EventScript_RockSmashGuy_Text_1:
 	.string "I'm impressed!\l"
 	.string "I want you to have this.$"
 
-Route36_EventScript_RockSmashGuy_Text_2:
-	.string "That HM happens to be ROCK SMASH.\n"
-	.string "You can shatter rocks with just a\l"
-	.string "single well-aimed smack.\p"
-	.string "If any rocks are in your way, just\n"
-	.string "smash 'em up!$"
-
 Route36_EventScript_DirectionsSign_Text_0:
 	.string "ROUTE 36$"
 
 Route36_EventScript_RuinsOfAlphSign_Text_0:
 	.string "RUINS OF ALPH\n"
 	.string "NORTH ENTRANCE$"
+
+Route36_Text_RockSmashGuy_PostHM::
+	.string "That HM happens to be ROCK SMASH.\n"
+	.string "You can shatter rocks with just a\l"
+	.string "single well-aimed smack.\p"
+	.string "If any rocks are in your way, just\n"
+	.string "smash 'em up!$"

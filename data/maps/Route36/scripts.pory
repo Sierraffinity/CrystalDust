@@ -80,7 +80,6 @@ script Route36_EventScript_BlockedGirl {
 	release
 }
 
-# TODO: Clean up after inline goto
 script Route36_EventScript_RockSmashGuy {
 	lock
 	faceplayer
@@ -103,14 +102,22 @@ script Route36_EventScript_RockSmashGuy {
 				   "I want you to have this.")
 			giveitem(ITEM_HM06)
 			setflag(FLAG_RECEIVED_HM06)
+			msgbox(Route36_Text_RockSmashGuy_PostHM)
 		}
 	}
-	msgbox("That HM happens to be ROCK SMASH.\n"
-		   "You can shatter rocks with just a\l"
-		   "single well-aimed smack.\p"
-		   "If any rocks are in your way, just\n"
-		   "smash 'em up!")
+	else
+	{
+		msgbox(Route36_Text_RockSmashGuy_PostHM)
+	}
 	release
+}
+
+text Route36_Text_RockSmashGuy_PostHM {
+	"That HM happens to be ROCK SMASH.\n"
+	"You can shatter rocks with just a\l"
+	"single well-aimed smack.\p"
+	"If any rocks are in your way, just\n"
+	"smash 'em up!"
 }
 
 script Route36_EventScript_Sudowoodo {

@@ -133,7 +133,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route32/scripts.inc"
 	.include "data/maps/Route33/scripts.inc"
 	.include "data/maps/Route34/scripts.inc"
-	.include "data/maps/Route107/scripts.inc"
+	.include "data/maps/Route35/scripts.inc"
 	.include "data/maps/Route36/scripts.inc"
 	.include "data/maps/Route109/scripts.inc"
 	.include "data/maps/Route110/scripts.inc"

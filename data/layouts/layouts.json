@@ -266,16 +266,16 @@
       "blockdata_filepath": "data/layouts/Route34/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE107",
-      "name": "Route107_Layout",
-      "width": 32,
+      "id": "LAYOUT_ROUTE35",
+      "name": "Route35_Layout",
+      "width": 36,
       "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Goldenrod",
-      "border_filepath": "data/layouts/Route107/border.bin",
-      "blockdata_filepath": "data/layouts/Route107/map.bin"
+      "border_filepath": "data/layouts/Route35/border.bin",
+      "blockdata_filepath": "data/layouts/Route35/map.bin"
     },
     {
       "id": "LAYOUT_ROUTE36",

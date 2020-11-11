@@ -37,7 +37,7 @@ script Route35_GoldenrodGatehouse_EventScript_Officer {
                    "My pal's a chubby guy who snoozes\n"
                    "all the time.\p"
                    "You'll recognize him right away!")
-            setvar(VAR_0x8004, INGAME_TRADE_GIFT_KENYA)
+            setvar(VAR_0x8004, INGAME_TRADE_GIFT_SPEAROW)
             special(GivePlayerSpecialGiftMon)
             if (!var(VAR_RESULT))
             {
@@ -78,9 +78,26 @@ text Route35_GoldenrodGatehouse_Text_Officer_PalWasSnoozing {
 }
 
 script Route35_GoldenrodGatehouse_EventScript_ConcernedWoman {
-    
+	lock
+	faceplayer
+    if (!flag(FLAG_DEFEATED_SUDOWOODO))
+    {
+        msgbox("A strange tree is blocking the road.\n"
+               "It wriggles around if you go near.\p"
+               "I heard it became wild when someone\n"
+               "watered it with a SQUIRTBOTTLE.")
+    }
+    else
+    {
+        msgbox("I like the POKéMON Lullaby they play\n"
+               "on the radio.")
+    }
+	release
 }
 
 script Route35_GoldenrodGatehouse_EventScript_CuriousMan {
-
+    msgbox("I wonder how many kinds of POKéMON\n"
+           "there are in the world.\p"
+           "Three years ago, PROF. OAK said that\n"
+           "there were 150 different kinds.", MSGBOX_NPC)
 }

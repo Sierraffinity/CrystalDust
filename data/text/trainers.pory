@@ -932,117 +932,117 @@ Route34_Text_KylaPostBattle: @ 829669E
 	.string "Drifting along with the waves…\n"
 	.string "I love it! Why don't you give it a try?$"
 
-Route107_Text_DarrinIntro: @ 82966E5
+Route35_Text_DarrinIntro: @ 82966E5
 	.string "Yawn…\p"
 	.string "I must have drifted off to sleep while\n"
 	.string "I was drifting in the waves.$"
 
-Route107_Text_DarrinDefeated: @ 829672F
+Route35_Text_DarrinDefeated: @ 829672F
 	.string "Ahaha, I lost…\n"
 	.string "I'll take a snooze, I think…$"
 
-Route107_Text_DarrinPostBattle: @ 829675B
+Route35_Text_DarrinPostBattle: @ 829675B
 	.string "Floating and being rocked by\n"
 	.string "the waves--it's like sleeping in\l"
 	.string "a plush, comfy bed.$"
 
-Route107_Text_TonyIntro: @ 82967AD
+Route35_Text_TonyIntro: @ 82967AD
 	.string "The sea is like my backyard.\n"
 	.string "Let's battle!$"
 
-Route107_Text_TonyDefeated: @ 82967D8
+Route35_Text_TonyDefeated: @ 82967D8
 	.string "I lost on my home field…\n"
 	.string "I'm in shock!$"
 
-Route107_Text_TonyPostBattle: @ 82967FF
+Route35_Text_TonyPostBattle: @ 82967FF
 	.string "I swim the seas with a heart full of\n"
 	.string "dreams…\p"
 	.string "It's a song!\n"
 	.string "Anyways, I'm swimming some more.$"
 
-Route107_Text_TonyRegister: @ 829685A
+Route35_Text_TonyRegister: @ 829685A
 	.string "You've shocked me to the bone!\n"
 	.string "Well, so you won't forget me…$"
 
-Route107_Text_TonyRematchIntro: @ 8296897
+Route35_Text_TonyRematchIntro: @ 8296897
 	.string "Swimming in the big, wide sea,\n"
 	.string "my POKéMON has grown stronger!$"
 
-Route107_Text_TonyRematchDefeated: @ 82968D5
+Route35_Text_TonyRematchDefeated: @ 82968D5
 	.string "What a shock!\p"
 	.string "My POKéMON has gotten stronger, but\n"
 	.string "I stayed weak as a TRAINER!$"
 
-Route107_Text_TonyRematchPostBattle: @ 8296923
+Route35_Text_TonyRematchPostBattle: @ 8296923
 	.string "What you learn in battle makes you\n"
 	.string "a stronger TRAINER.\l"
 	.string "The waves taught me that.$"
 
-Route107_Text_DeniseIntro: @ 8296974
+Route35_Text_DeniseIntro: @ 8296974
 	.string "Do you know a little town called\n"
 	.string "DEWFORD?$"
 
-Route107_Text_DeniseDefeated: @ 829699E
+Route35_Text_DeniseDefeated: @ 829699E
 	.string "I hate this!$"
 
-Route107_Text_DenisePostBattle: @ 82969AB
+Route35_Text_DenisePostBattle: @ 82969AB
 	.string "A weird saying is getting really\n"
 	.string "trendy at DEWFORD HALL.$"
 
-Route107_Text_BethIntro: @ 82969E4
+Route35_Text_BethIntro: @ 82969E4
 	.string "Did you want to battle me?\n"
 	.string "Sure, I'll go with you!$"
 
-Route107_Text_BethDefeated: @ 8296A17
+Route35_Text_BethDefeated: @ 8296A17
 	.string "I wasn't good enough for you.$"
 
-Route107_Text_BethPostBattle: @ 8296A35
+Route35_Text_BethPostBattle: @ 8296A35
 	.string "I think you're going to keep getting\n"
 	.string "better. I'll go for it, too!$"
 
-Route107_Text_LisaIntro: @ 8296A77
+Route35_Text_LisaIntro: @ 8296A77
 	.string "LISA: We challenge you as a sister\n"
 	.string "and brother!$"
 
-Route107_Text_LisaDefeated: @ 8296AA7
+Route35_Text_LisaDefeated: @ 8296AA7
 	.string "LISA: Awesome.\n"
 	.string "You're in a different class of tough.$"
 
-Route107_Text_LisaPostBattle: @ 8296ADC
+Route35_Text_LisaPostBattle: @ 8296ADC
 	.string "LISA: Do you have any friends who\n"
 	.string "would go to the beach with you?$"
 
-Route107_Text_LisaNotEnoughPokemon: @ 8296B1E
+Route35_Text_LisaNotEnoughPokemon: @ 8296B1E
 	.string "LISA: If you want to battle with us,\n"
 	.string "bring more POKéMON.$"
 
-Route107_Text_RayIntro: @ 8296B57
+Route35_Text_RayIntro: @ 8296B57
 	.string "RAY: We always battle POKéMON,\n"
 	.string "me and my sister.\p"
 	.string "I always lose, but we can beat you\n"
 	.string "2-on-2!$"
 
-Route107_Text_RayDefeated: @ 8296BB3
+Route35_Text_RayDefeated: @ 8296BB3
 	.string "RAY: Wowee, you're at a higher level\n"
 	.string "than us!$"
 
-Route107_Text_RayPostBattle: @ 8296BE1
+Route35_Text_RayPostBattle: @ 8296BE1
 	.string "RAY: My sister gave me my POKéMON.\n"
 	.string "I raised it, and now it's my important\l"
 	.string "partner!$"
 
-Route107_Text_RayNotEnoughPokemon: @ 8296C34
+Route35_Text_RayNotEnoughPokemon: @ 8296C34
 	.string "RAY: If you want to battle us,\n"
 	.string "go bring some more POKéMON!$"
 
-Route107_Text_CamronIntro: @ 8296C6F
+Route35_Text_CamronIntro: @ 8296C6F
 	.string "I'm in the middle of a triathlon,\n"
 	.string "but I'm nowhere near tired!$"
 
-Route107_Text_CamronDefeated: @ 8296CAD
+Route35_Text_CamronDefeated: @ 8296CAD
 	.string "That exhausted me…$"
 
-Route107_Text_CamronPostBattle: @ 8296CC0
+Route35_Text_CamronPostBattle: @ 8296CC0
 	.string "I still have swimming and running left\n"
 	.string "to do after this.\p"
 	.string "Am I going to be okay?$"

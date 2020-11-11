@@ -1011,22 +1011,6 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_ABRA
     }, 
-    [INGAME_TRADE_GIFT_KENYA] = 
-    {
-        .nickname = _("KENYA"),
-        .species = SPECIES_SPEAROW,
-        .ivs = {5, 4, 4, 4, 5, 4},
-        .abilityNum = 0, 
-        .otId = 1001,
-        .conditions = {5, 5, 5, 5, 30},
-        .personality = 0x7F,
-        .heldItem = ITEM_TROPIC_MAIL, 
-        .mailNum = 0,
-        .otName = _("RANDY"), 
-        .otGender = MALE,
-        .sheen = 10,
-        .requestedSpecies = 10 // level
-    }, 
     [INGAME_TRADE_MEOWTH] = 
     {
         .nickname = _("MEOWOW"),
@@ -1042,21 +1026,37 @@ static const struct InGameTrade sIngameTrades[] =
         .otGender = FEMALE, 
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
-    }
+    },
+    [INGAME_TRADE_GIFT_SPEAROW] = 
+    {
+        .nickname = _("KENYA"),
+        .species = SPECIES_SPEAROW,
+        .ivs = {5, 4, 4, 4, 5, 4},
+        .abilityNum = 0, 
+        .otId = 1001,
+        .conditions = {5, 5, 5, 5, 30},
+        .personality = 0x7F,
+        .heldItem = ITEM_TROPIC_MAIL, 
+        .mailNum = 0,
+        .otName = _("RANDY"), 
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = 10 // level
+    },
 };
 
 static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
 {
     {
-        EC_WORD_BE,
-        EC_WORD_NICE,
-        EC_WORD_TO,
-        EC_POKEMON(PLUSLE),
-        EC_WORD_EXCL,
-        EC_POKEMON(VOLBEAT),
-        EC_WORD_WILL,
-        EC_WORD_BE,
-        EC_WORD_FANTASTIC
+        EC_WORD_DARK,
+        EC_WORD_PLACE,
+        EC_WORD_NEAR,
+        EC_WORD_YOU,
+        EC_WORD_LET_S,
+        EC_WORD_GO,
+        EC_WORD_HAVE,
+        EC_WORD_AN,
+        EC_WORD_ADVENTURE
     }, {
         EC_WORD_I,
         EC_WORD_WILL,

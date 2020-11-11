@@ -993,12 +993,6 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .callCondition = ReceiveCallWhenOutside,
         .script = PhoneScript_Bill_JustRanOutOfRoom
     },
-    {
-        .flag = 0x666,
-        .phoneContactId = PHONE_CONTACT_ANDRES,
-        .callCondition = ReceiveCallWhenOutside,
-        .script = NULL
-    },
 };
 
 static const struct ScanlineEffectParams sScanlineParams =
