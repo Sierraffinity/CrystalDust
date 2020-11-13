@@ -403,7 +403,7 @@ Route109_EventScript_Edmond:: @ 81EEA82
 	end
 
 Route109_EventScript_Ricky:: @ 81EEA99
-	trainerbattle_single TRAINER_RICKY_1, Route109_Text_RickyIntro, Route109_Text_RickyDefeated, Route109_EventScript_RickyRegisterMatchCallAfterBattle
+	trainerbattle_single TRAINER_ARNIE, Route109_Text_RickyIntro, Route109_Text_RickyDefeated, Route109_EventScript_RickyRegisterMatchCallAfterBattle
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route109_EventScript_RickyRematch
@@ -415,12 +415,12 @@ Route109_EventScript_RickyRegisterMatchCallAfterBattle:: @ 81EEAC5
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route109_Text_RickyRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_RICKY_1
+	register_matchcall TRAINER_ARNIE
 	release
 	end
 
 Route109_EventScript_RickyRematch:: @ 81EEAE4
-	trainerbattle_rematch TRAINER_RICKY_1, Route109_Text_RickyRematchIntro, Route109_Text_RickyRematchDefeated
+	trainerbattle_rematch TRAINER_ARNIE, Route109_Text_RickyRematchIntro, Route109_Text_RickyRematchDefeated
 	msgbox Route109_Text_RickyRematchPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -447,12 +447,12 @@ Route109_EventScript_LolaRematch:: @ 81EEB46
 	end
 
 Route109_EventScript_Austina:: @ 81EEB5D
-	trainerbattle_single TRAINER_AUSTINA, Route109_Text_AustinaIntro, Route109_Text_AustinaDefeated
+	trainerbattle_single TRAINER_IVAN, Route109_Text_AustinaIntro, Route109_Text_AustinaDefeated
 	msgbox Route109_Text_AustinaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route109_EventScript_Gwen:: @ 81EEB74
-	trainerbattle_single TRAINER_GWEN, Route109_Text_GwenIntro, Route109_Text_GwenDefeated
+	trainerbattle_single TRAINER_ELLIOT, Route109_Text_GwenIntro, Route109_Text_GwenDefeated
 	msgbox Route109_Text_GwenPostBattle, MSGBOX_AUTOCLOSE
 	end
 

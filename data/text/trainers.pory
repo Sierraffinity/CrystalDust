@@ -867,272 +867,143 @@ text GoldenrodCity_Underground_Text_DonaldPostBattle {
 	"POKéMON."
 }
 
+text Route35_Text_IvanIntro {
+	"I've been getting POKéMON data off\n"
+	"my radio. I think I'm good."
+}
+
+text Route35_Text_IvanDefeated {
+	"I give!"
+}
+
+text Route35_Text_IvanPostBattle {
+	"Music on the radio changes the moods\n"
+	"of wild POKéMON."
+}
+
+text Route35_Text_ElliotIntro {
+	"I'm gonna show my girlfriend I'm\n"
+	"hot stuff!"
+}
+
+text Route35_Text_ElliotDefeated {
+	"I wish you would have lost for me…"
+}
+
+text Route35_Text_ElliotPostBattle {
+	"I was humiliated in front of\n"
+	"my girlfriend…"
+}
+
+text Route35_Text_BrookeIntro {
+	"My boyfriend's weak, so I can't\n"
+	"rely on him."
+}
+
+text Route35_Text_BrookeDefeated {
+	"Oh, my!\n"
+	"You're so strong!"
+}
+
+text Route35_Text_BrookePostBattle {
+	"I can count on my POKéMON more\n"
+	"than my boyfriend."
+}
+
+text Route35_Text_KimIntro {
+	"Are you going to the GYM?\n"
+	"Me too!"
+}
+
+text Route35_Text_KimDefeated {
+	"Oh.\n"
+	"I couldn't win…"
+}
+
+text Route35_Text_KimPostBattle {
+	"The GYM BADGES are pretty.\n"
+	"I collect them."
+}
+
+text Route35_Text_BryanIntro {
+	"What kinds of POKé BALLS do\n"
+	"you use?"
+}
+
+text Route35_Text_BryanDefeated {
+	"Yikes!\n"
+	"Not fast enough!"
+}
+
+text Route35_Text_BryanPostBattle {
+	"Some POKéMON are pretty speedy.\n"
+	"Try catching them with KURT's\l"
+	"FAST BALL.\p"
+	"Whenever I find a WHT APRICORN, I\n"
+	"take it to KURT.\l"
+	"He turns it into a custom BALL."
+}
+
+text Route35_Text_WaltIntro {
+	"I'm practicing my fire breathing."
+}
+
+text Route35_Text_WaltDefeated {
+	"Ow!\n"
+	"I scorched the tip of my nose!"
+}
+
+text Route35_Text_WaltPostBattle {
+	"The POKéMON March on the radio\n"
+	"lures wild POKéMON near."
+}
+
+text Route35_Text_ArnieIntro {
+	"I'll go anywhere if BUG POKéMON\n"
+	"appear there."
+}
+
+text Route35_Text_ArnieDefeated {
+	"Huh?\n"
+	"I shouldn't have lost that…"
+}
+
+text Route35_Text_ArniePostBattle {
+	"My VENONAT won me the Bug-Catching\n"
+	"Contest at the NATIONAL PARK."
+}
+
+text Route35_Text_IrwinIntro {
+	"Behold my graceful POKé BALL\n"
+	"dexterity!"
+}
+
+text Route35_Text_IrwinDefeated {
+	"Whew!\n"
+	"That was a jolt!"
+}
+
+text Route35_Text_IrwinPostBattle {
+	"I was going to dazzle you with my\n"
+	"prize POKéMON.\p"
+	"But your prowess electrified me!"
+}
+
+text Route35_Text_DirkIntro {
+	"Danger lurks in the night!"
+}
+
+text Route35_Text_DirkDefeated {
+	"Whoops!"
+}
+
+text Route35_Text_DirkPostBattle {
+	"You know, nighttime is fun in its\n"
+	"own ways.\l"
+	"But don't overdo it, okay?"
+}
+
 raw`
-Route34_Text_ElliotIntro: @ 8296327
-	.string "Which do you prefer, fishing in the\n"
-	.string "sea or a stream?$"
-
-Route34_Text_ElliotDefeated: @ 829635C
-	.string "Like in deep-sea fishing, I lost\n"
-	.string "spectacularly!$"
-
-Route34_Text_ElliotPostBattle: @ 829638C
-	.string "Fishing is the greatest whether it's\n"
-	.string "in the sea or a stream.\l"
-	.string "You agree with me, right?$"
-
-Route34_Text_ElliotRegister: @ 82963E3
-	.string "Fishing's great, but so is battling.\n"
-	.string "If you don't mind, can we meet again?$"
-
-Route34_Text_ElliotRematchIntro: @ 829642E
-	.string "I caught a bunch of POKéMON fishing.\n"
-	.string "I'll show you an impressive battle!$"
-
-Route34_Text_ElliotRematchDefeated: @ 8296477
-	.string "I lost again spectacularly!$"
-
-Route34_Text_ElliotRematchPostBattle: @ 8296493
-	.string "Win or lose, POKéMON are the greatest!\n"
-	.string "You agree with me, right?$"
-
-Route34_Text_NedIntro: @ 82964D4
-	.string "What do people do if they need to go\n"
-	.string "to a washroom?\p"
-	.string "What if my ROD hooks a big one while\n"
-	.string "I'm in the washroom? I just can't go…$"
-
-Route34_Text_NedDefeated: @ 8296553
-	.string "I lost because I'm trying to not go\n"
-	.string "to the washroom…$"
-
-Route34_Text_NedPostBattle: @ 8296588
-	.string "Oh, no! I've got this feeling I'll hook\n"
-	.string "a big one!$"
-
-Route34_Text_DouglasIntro: @ 82965BB
-	.string "Hahahah! I'm a lousy runner, but in\n"
-	.string "the water you can't catch me!$"
-
-Route34_Text_DouglasDefeated: @ 82965FD
-	.string "I give up!$"
-
-Route34_Text_DouglasPostBattle: @ 8296608
-	.string "I wouldn't lose in a swim race…$"
-
-Route34_Text_KylaIntro: @ 8296628
-	.string "The sea is my backyard. I'm not going\n"
-	.string "to take it easy because you're a kid!$"
-
-Route34_Text_KylaDefeated: @ 8296674
-	.string "Did you take it easy on me by any\n"
-	.string "chance?$"
-
-Route34_Text_KylaPostBattle: @ 829669E
-	.string "Drifting along with the waves…\n"
-	.string "I love it! Why don't you give it a try?$"
-
-Route35_Text_DarrinIntro: @ 82966E5
-	.string "Yawn…\p"
-	.string "I must have drifted off to sleep while\n"
-	.string "I was drifting in the waves.$"
-
-Route35_Text_DarrinDefeated: @ 829672F
-	.string "Ahaha, I lost…\n"
-	.string "I'll take a snooze, I think…$"
-
-Route35_Text_DarrinPostBattle: @ 829675B
-	.string "Floating and being rocked by\n"
-	.string "the waves--it's like sleeping in\l"
-	.string "a plush, comfy bed.$"
-
-Route35_Text_TonyIntro: @ 82967AD
-	.string "The sea is like my backyard.\n"
-	.string "Let's battle!$"
-
-Route35_Text_TonyDefeated: @ 82967D8
-	.string "I lost on my home field…\n"
-	.string "I'm in shock!$"
-
-Route35_Text_TonyPostBattle: @ 82967FF
-	.string "I swim the seas with a heart full of\n"
-	.string "dreams…\p"
-	.string "It's a song!\n"
-	.string "Anyways, I'm swimming some more.$"
-
-Route35_Text_TonyRegister: @ 829685A
-	.string "You've shocked me to the bone!\n"
-	.string "Well, so you won't forget me…$"
-
-Route35_Text_TonyRematchIntro: @ 8296897
-	.string "Swimming in the big, wide sea,\n"
-	.string "my POKéMON has grown stronger!$"
-
-Route35_Text_TonyRematchDefeated: @ 82968D5
-	.string "What a shock!\p"
-	.string "My POKéMON has gotten stronger, but\n"
-	.string "I stayed weak as a TRAINER!$"
-
-Route35_Text_TonyRematchPostBattle: @ 8296923
-	.string "What you learn in battle makes you\n"
-	.string "a stronger TRAINER.\l"
-	.string "The waves taught me that.$"
-
-Route35_Text_DeniseIntro: @ 8296974
-	.string "Do you know a little town called\n"
-	.string "DEWFORD?$"
-
-Route35_Text_DeniseDefeated: @ 829699E
-	.string "I hate this!$"
-
-Route35_Text_DenisePostBattle: @ 82969AB
-	.string "A weird saying is getting really\n"
-	.string "trendy at DEWFORD HALL.$"
-
-Route35_Text_BethIntro: @ 82969E4
-	.string "Did you want to battle me?\n"
-	.string "Sure, I'll go with you!$"
-
-Route35_Text_BethDefeated: @ 8296A17
-	.string "I wasn't good enough for you.$"
-
-Route35_Text_BethPostBattle: @ 8296A35
-	.string "I think you're going to keep getting\n"
-	.string "better. I'll go for it, too!$"
-
-Route35_Text_LisaIntro: @ 8296A77
-	.string "LISA: We challenge you as a sister\n"
-	.string "and brother!$"
-
-Route35_Text_LisaDefeated: @ 8296AA7
-	.string "LISA: Awesome.\n"
-	.string "You're in a different class of tough.$"
-
-Route35_Text_LisaPostBattle: @ 8296ADC
-	.string "LISA: Do you have any friends who\n"
-	.string "would go to the beach with you?$"
-
-Route35_Text_LisaNotEnoughPokemon: @ 8296B1E
-	.string "LISA: If you want to battle with us,\n"
-	.string "bring more POKéMON.$"
-
-Route35_Text_RayIntro: @ 8296B57
-	.string "RAY: We always battle POKéMON,\n"
-	.string "me and my sister.\p"
-	.string "I always lose, but we can beat you\n"
-	.string "2-on-2!$"
-
-Route35_Text_RayDefeated: @ 8296BB3
-	.string "RAY: Wowee, you're at a higher level\n"
-	.string "than us!$"
-
-Route35_Text_RayPostBattle: @ 8296BE1
-	.string "RAY: My sister gave me my POKéMON.\n"
-	.string "I raised it, and now it's my important\l"
-	.string "partner!$"
-
-Route35_Text_RayNotEnoughPokemon: @ 8296C34
-	.string "RAY: If you want to battle us,\n"
-	.string "go bring some more POKéMON!$"
-
-Route35_Text_CamronIntro: @ 8296C6F
-	.string "I'm in the middle of a triathlon,\n"
-	.string "but I'm nowhere near tired!$"
-
-Route35_Text_CamronDefeated: @ 8296CAD
-	.string "That exhausted me…$"
-
-Route35_Text_CamronPostBattle: @ 8296CC0
-	.string "I still have swimming and running left\n"
-	.string "to do after this.\p"
-	.string "Am I going to be okay?$"
-
-Route36_Text_JeromeIntro: @ 8296D10
-	.string "My dream is to swim the world's seven\n"
-	.string "seas!$"
-
-Route36_Text_JeromeDefeated: @ 8296D3C
-	.string "I won't be able to swim the seven seas\n"
-	.string "like this…$"
-
-Route36_Text_JeromePostBattle: @ 8296D6E
-	.string "Playing with marine POKéMON is one of\n"
-	.string "the pleasures of swimming!$"
-
-Route36_Text_MatthewIntro: @ 8296DAF
-	.string "Ahoy, there! Are you going out to\n"
-	.string "the ABANDONED SHIP, too?$"
-
-Route36_Text_MatthewDefeated: @ 8296DEA
-	.string "I'm sinking!\n"
-	.string "Glub… Glub…$"
-
-Route36_Text_MatthewPostBattle: @ 8296E03
-	.string "Some people even go inside that\n"
-	.string "ABANDONED SHIP.$"
-
-Route36_Text_TaraIntro: @ 8296E33
-	.string "My liar of a boyfriend told me that\n"
-	.string "I look great in a bikini…$"
-
-Route36_Text_TaraDefeated: @ 8296E71
-	.string "Oh, boo!$"
-
-Route36_Text_TaraPostBattle: @ 8296E7A
-	.string "Even if it's a lie, I love being told\n"
-	.string "I look great…\l"
-	.string "We girls are so complex…$"
-
-Route36_Text_MissyIntro: @ 8296EC7
-	.string "I love the sea!\n"
-	.string "I forget all my worries when I swim!$"
-
-Route36_Text_MissyDefeated: @ 8296EFC
-	.string "When I lose a battle, I get all\n"
-	.string "stressed out!$"
-
-Route36_Text_MissyPostBattle: @ 8296F2A
-	.string "Work off your stress by swimming!\n"
-	.string "It's so healthy!$"
-
-Route36_Text_CoryIntro: @ 8296F5D
-	.string "I love WATER-type POKéMON.\n"
-	.string "I love other POKéMON, too!$"
-
-Route36_Text_CoryDefeated: @ 8296F93
-	.string "Waaah! I lost!\n"
-	.string "Waaah! Waaah!$"
-
-Route36_Text_CoryPostBattle: @ 8296FB0
-	.string "Shouting is good for me!\n"
-	.string "It uplifts me!$"
-
-Route36_Text_CoryRegister: @ 8296FD8
-	.string "I love tough TRAINERS, too!\n"
-	.string "Register me in your POKéNAV!$"
-
-Route36_Text_CoryRematchIntro: @ 8297011
-	.string "Win or lose, I love battling at sea!$"
-
-Route36_Text_CoryRematchDefeated: @ 8297036
-	.string "Waaah! I lost again!\n"
-	.string "Waaah! Waaah!$"
-
-Route36_Text_CoryRematchPostBattle: @ 8297059
-	.string "If you're faced with a challenge,\n"
-	.string "try shouting at the sea!$"
-
-Route36_Text_CarolinaIntro: @ 8297094
-	.string "I take huge pride in my POKéMON.\n"
-	.string "We'll show you one speedy battle!$"
-
-Route36_Text_CarolinaDefeated: @ 82970D7
-	.string "That wasn't cute at all.$"
-
-Route36_Text_CarolinaPostBattle: @ 82970F0
-	.string "Since I'm at sea like this, I wouldn't\n"
-	.string "mind putting on a pink, frilly swimsuit…$"
-
 Route109_Text_DavidIntro: @ 8297140
 	.string "Hiyah! Look at my chiseled abs!\n"
 	.string "This is what you call “cut”!$"

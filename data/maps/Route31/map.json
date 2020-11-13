@@ -146,6 +146,13 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route31_EventScript_ItemPokeBall",
       "flag": "FLAG_ITEM_ROUTE_31_POKE_BALL"
+    },
+    {
+      "type": "clone",
+      "x": 33,
+      "y": 26,
+      "source_id": 10,
+      "source_map": "MAP_ROUTE30"
     }
   ],
   "warp_events": [

@@ -18,7 +18,7 @@
 
 #define TRAINER_PIC_HIKER                  0
 #define TRAINER_PIC_ROCKET_GRUNT_M         1
-#define TRAINER_PIC_POKEMON_BREEDER_F      2
+#define TRAINER_PIC_JUGGLER                2
 #define TRAINER_PIC_COOLTRAINER_M          3
 #define TRAINER_PIC_BIRD_KEEPER            4
 #define TRAINER_PIC_SAGE                   5
@@ -294,7 +294,7 @@
 #define TRAINER_CLASS_PKMN_TRAINER_2 0x1  // Unused
 #define TRAINER_CLASS_HIKER          0x2
 #define TRAINER_CLASS_TEAM_ROCKET    0x3
-#define TRAINER_CLASS_PKMN_BREEDER   0x4
+#define TRAINER_CLASS_JUGGLER        0x4
 #define TRAINER_CLASS_COOLTRAINER    0x5
 #define TRAINER_CLASS_BIRD_KEEPER    0x6
 #define TRAINER_CLASS_SAGE           0x7

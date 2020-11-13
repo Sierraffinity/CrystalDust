@@ -306,7 +306,6 @@
   ],
   "gMapGroup17": [
     "Route29_Gatehouse",
-    "NationalParkGateSouth",
     "NationalParkContest",
     "NationalPark",
     "NationalParkGateEast"
@@ -329,7 +328,8 @@
     "Route34_DayCare"
   ],
   "gMapGroup22": [
-    "Route35_GoldenrodGatehouse"
+    "Route35_GoldenrodGatehouse",
+    "Route35_NationalParkGatehouse"
   ],
   "gMapGroup23": [
     "Route36_RuinsOfAlphGatehouse"

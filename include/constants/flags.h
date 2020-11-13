@@ -1073,7 +1073,7 @@
 #define FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_AMULET_COIN         0x40A
 #define FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_BURN_HEAL           0x40B
 #define FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_ULTRA_BALL          0x40C
-#define FLAG_ITEM_ROUTE_133_BIG_PEARL                               0x40D
+#define FLAG_ITEM_ROUTE_35_TM39                                     0x40D
 #define FLAG_ITEM_ROUTE_133_STAR_PIECE                              0x40E
 #define FLAG_UNUSED_0x40F                                           0x40F
 #define FLAG_UNUSED_0x410                                           0x410

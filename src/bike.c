@@ -1094,13 +1094,21 @@ static u8 Bike_DPadToDirection(u16 heldKeys)
 
 static u8 GetBikeCollision(u8 direction)
 {
-    u8 metatitleBehavior;
-    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
-    s16 x = playerObjEvent->currentCoords.x;
-    s16 y = playerObjEvent->currentCoords.y;
+    u8 metatileBehavior;
+    s16 x, y;
+    struct ObjectEvent *playerObjEvent;
+
+#if DEBUG
+    if (gWalkThroughWalls)
+        return COLLISION_NONE;
+#endif
+
+    playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    x = playerObjEvent->currentCoords.x;
+    y = playerObjEvent->currentCoords.y;
     MoveCoords(direction, &x, &y);
-    metatitleBehavior = MapGridGetMetatileBehaviorAt(x, y);
-    return GetBikeCollisionAt(playerObjEvent, x, y, direction, metatitleBehavior);
+    metatileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+    return GetBikeCollisionAt(playerObjEvent, x, y, direction, metatileBehavior);
 }
 
 static u8 GetBikeCollisionAt(struct ObjectEvent *objectEvent, s16 x, s16 y, u8 direction, u8 metatitleBehavior)

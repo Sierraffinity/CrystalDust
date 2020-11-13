@@ -382,7 +382,7 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
 {
     [TRAINER_PIC_HIKER] = sAnims_Hiker,
     [TRAINER_PIC_ROCKET_GRUNT_M] = sAnims_RocketGruntM,
-    [TRAINER_PIC_POKEMON_BREEDER_F] = sAnims_PokemonBreederF,
+    [TRAINER_PIC_JUGGLER] = sAnims_PokemonBreederF,
     [TRAINER_PIC_COOLTRAINER_M] = sAnims_CoolTrainerM,
     [TRAINER_PIC_BIRD_KEEPER] = sAnims_BirdKeeper,
     [TRAINER_PIC_SAGE] = sAnims_Sage,

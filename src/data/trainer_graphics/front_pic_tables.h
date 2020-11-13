@@ -2,7 +2,7 @@ const struct MonCoords gTrainerFrontPicCoords[] =
 {
     [TRAINER_PIC_HIKER] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_ROCKET_GRUNT_M] = {.size = 8, .y_offset = 1},
-    [TRAINER_PIC_POKEMON_BREEDER_F] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_JUGGLER] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_COOLTRAINER_M] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_BIRD_KEEPER] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_SAGE] = {.size = 8, .y_offset = 1},
@@ -101,7 +101,7 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
 {
     TRAINER_SPRITE(HIKER, gTrainerFrontPic_Hiker, 0x800),
     TRAINER_SPRITE(ROCKET_GRUNT_M, gTrainerFrontPic_RocketGruntM, 0x800),
-    TRAINER_SPRITE(POKEMON_BREEDER_F, gTrainerFrontPic_PokemonBreederF, 0x800),
+    TRAINER_SPRITE(JUGGLER, gTrainerFrontPic_PokemonBreederF, 0x800),
     TRAINER_SPRITE(COOLTRAINER_M, gTrainerFrontPic_CoolTrainerM, 0x800),
     TRAINER_SPRITE(BIRD_KEEPER, gTrainerFrontPic_BirdKeeper, 0x800),
     TRAINER_SPRITE(SAGE, gTrainerFrontPic_Sage, 0x800),
@@ -200,7 +200,7 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
 {
     TRAINER_PAL(HIKER, gTrainerPalette_Hiker),
     TRAINER_PAL(ROCKET_GRUNT_M, gTrainerPalette_RocketGruntM),
-    TRAINER_PAL(POKEMON_BREEDER_F, gTrainerPalette_PokemonBreederF),
+    TRAINER_PAL(JUGGLER, gTrainerPalette_PokemonBreederF),
     TRAINER_PAL(COOLTRAINER_M, gTrainerPalette_CoolTrainerM),
     TRAINER_PAL(BIRD_KEEPER, gTrainerPalette_BirdKeeper),
     TRAINER_PAL(SAGE, gTrainerPalette_Sage),

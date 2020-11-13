@@ -130,6 +130,9 @@ GoldenrodCity_DeptStore_B1F_EventScript_ItemUltraBall::
 	finditem ITEM_ULTRA_BALL
 	end
 
+Route35_EventScript_ItemTM39::
+	finditem ITEM_TM39
+
 Route36_EventScript_ItemStarPiece:: @ 8290D4D
 	finditem ITEM_STAR_PIECE
 	end

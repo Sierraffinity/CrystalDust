@@ -268,7 +268,7 @@
     {
       "id": "LAYOUT_ROUTE35",
       "name": "Route35_Layout",
-      "width": 36,
+      "width": 24,
       "height": 40,
       "border_width": 2,
       "border_height": 2,
@@ -5294,16 +5294,16 @@
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
     },
     {
-      "id": "LAYOUT_NATIONAL_PARK_GATE_SOUTH",
-      "name": "NationalParkGateSouth_Layout",
+      "id": "LAYOUT_ROUTE35_NATIONAL_PARK_GATEHOUSE",
+      "name": "Route35_NationalParkGatehouse_Layout",
       "width": 9,
       "height": 11,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Gatehouse",
-      "border_filepath": "data/layouts/NationalParkGateSouth/border.bin",
-      "blockdata_filepath": "data/layouts/NationalParkGateSouth/map.bin"
+      "border_filepath": "data/layouts/Route35_NationalParkGatehouse/border.bin",
+      "blockdata_filepath": "data/layouts/Route35_NationalParkGatehouse/map.bin"
     },
     {
       "id": "LAYOUT_NATIONAL_PARK_CONTEST",

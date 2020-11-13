@@ -1,10 +1,6 @@
 #ifndef GUARD_CONSTANTS_MAP_GROUPS_H
 #define GUARD_CONSTANTS_MAP_GROUPS_H
 
-//
-// DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json
-//
-
 // Map Group 0
 #define MAP_VIOLET_CITY         (0 | (0 << 8))
 #define MAP_SLATEPORT_CITY      (1 | (0 << 8))
@@ -274,11 +270,10 @@
 #define MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F (14 | (16 << 8))
 
 // Map Group 17
-#define MAP_ROUTE29_GATEHOUSE        (0 | (17 << 8))
-#define MAP_NATIONAL_PARK_GATE_SOUTH (1 | (17 << 8))
-#define MAP_NATIONAL_PARK_CONTEST    (2 | (17 << 8))
-#define MAP_NATIONAL_PARK            (3 | (17 << 8))
-#define MAP_NATIONAL_PARK_GATE_EAST  (4 | (17 << 8))
+#define MAP_ROUTE29_GATEHOUSE       (0 | (17 << 8))
+#define MAP_NATIONAL_PARK_CONTEST   (1 | (17 << 8))
+#define MAP_NATIONAL_PARK           (2 | (17 << 8))
+#define MAP_NATIONAL_PARK_GATE_EAST (3 | (17 << 8))
 
 // Map Group 18
 #define MAP_ROUTE30_BERRY_MANS_HOUSE  (0 | (18 << 8))
@@ -298,7 +293,8 @@
 #define MAP_ROUTE34_DAY_CARE             (2 | (21 << 8))
 
 // Map Group 22
-#define MAP_ROUTE35_GOLDENROD_GATEHOUSE (0 | (22 << 8))
+#define MAP_ROUTE35_GOLDENROD_GATEHOUSE     (0 | (22 << 8))
+#define MAP_ROUTE35_NATIONAL_PARK_GATEHOUSE (1 | (22 << 8))
 
 // Map Group 23
 #define MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE (0 | (23 << 8))

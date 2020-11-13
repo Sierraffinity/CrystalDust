@@ -76,7 +76,7 @@
 #define MAPSEC_CAVE_OF_ORIGIN               0x48
 #define MAPSEC_SOUTHERN_ISLAND              0x49
 #define MAPSEC_FIERY_PATH                   0x4A
-#define MAPSEC_FIERY_PATH2                  0x4B
+#define MAPSEC_NATIONAL_PARK                  0x4B
 #define MAPSEC_JAGGED_PASS                  0x4C
 #define MAPSEC_JAGGED_PASS2                 0x4D
 #define MAPSEC_SEALED_CHAMBER               0x4E

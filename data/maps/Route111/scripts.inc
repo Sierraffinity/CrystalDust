@@ -534,7 +534,7 @@ Route111_EventScript_RematchWilton:: @ 81F1352
 	end
 
 Route111_EventScript_Brooke:: @ 81F1369
-	trainerbattle_single TRAINER_BROOKE_1, Route111_Text_BrookeIntro, Route111_Text_BrookeDefeat, Route111_EventScript_RegisterBrooke
+	trainerbattle_single TRAINER_BROOKE_OLD_1, Route111_Text_BrookeIntro, Route111_Text_BrookeDefeat, Route111_EventScript_RegisterBrooke
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route111_EventScript_RematchBrooke
@@ -546,12 +546,12 @@ Route111_EventScript_RegisterBrooke:: @ 81F1395
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route111_Text_BrookeRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_BROOKE_1
+	register_matchcall TRAINER_BROOKE_OLD_1
 	release
 	end
 
 Route111_EventScript_RematchBrooke:: @ 81F13B4
-	trainerbattle_rematch TRAINER_BROOKE_1, Route111_Text_BrookeRematchIntro, Route111_Text_BrookeRematchDefeat
+	trainerbattle_rematch TRAINER_BROOKE_OLD_1, Route111_Text_BrookeRematchIntro, Route111_Text_BrookeRematchDefeat
 	msgbox Route111_Text_BrookePostRematch, MSGBOX_AUTOCLOSE
 	end
 
@@ -581,7 +581,7 @@ Route111_EventScript_Celia:: @ 81F1427
 	end
 
 Route111_EventScript_Bryan:: @ 81F143E
-	trainerbattle_single TRAINER_BRYAN, Route111_Text_BryanIntro, Route111_Text_BryanDefeat
+	trainerbattle_single TRAINER_BRYAN_OLD, Route111_Text_BryanIntro, Route111_Text_BryanDefeat
 	msgbox Route111_Text_BryanPostBattle, MSGBOX_AUTOCLOSE
 	end
 

@@ -1,55 +1,80 @@
-Route35_MapScripts:: @ 81EE594
+Route35_MapScripts::
 	.byte 0
 
-Route35_EventScript_Darrin:: @ 81EE595
-	trainerbattle_single TRAINER_DARRIN, Route35_Text_DarrinIntro, Route35_Text_DarrinDefeated
-	msgbox Route35_Text_DarrinPostBattle, MSGBOX_AUTOCLOSE
-	end
 
-Route35_EventScript_Tony:: @ 81EE5AC
-	trainerbattle_single TRAINER_TONY_1, Route35_Text_TonyIntro, Route35_Text_TonyDefeated, Route35_EventScript_TonyRegisterMatchCallAfterBattle
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	compare VAR_RESULT, TRUE
-	goto_if_eq Route35_EventScript_TonyRematch
-	msgbox Route35_Text_TonyPostBattle, MSGBOX_DEFAULT
+Route35_EventScript_Ivan::
+	trainerbattle_single TRAINER_IVAN, Route35_Text_IvanIntro, Route35_Text_IvanDefeated
+	msgbox Route35_Text_IvanPostBattle, MSGBOX_AUTOCLOSE
+	return
+
+
+Route35_EventScript_Elliot::
+	trainerbattle_single TRAINER_ELLIOT, Route35_Text_ElliotIntro, Route35_Text_ElliotDefeated
+	msgbox Route35_Text_ElliotPostBattle, MSGBOX_AUTOCLOSE
+	return
+
+
+Route35_EventScript_Brooke::
+	trainerbattle_single TRAINER_BROOKE, Route35_Text_BrookeIntro, Route35_Text_BrookeDefeated
+	msgbox Route35_Text_BrookePostBattle, MSGBOX_AUTOCLOSE
+	return
+
+
+Route35_EventScript_Kim::
+	trainerbattle_single TRAINER_KIM, Route35_Text_KimIntro, Route35_Text_KimDefeated
+	msgbox Route35_Text_KimPostBattle, MSGBOX_AUTOCLOSE
+	return
+
+
+Route35_EventScript_Bryan::
+	trainerbattle_single TRAINER_BRYAN, Route35_Text_BryanIntro, Route35_Text_BryanDefeated
+	msgbox Route35_Text_BryanPostBattle, MSGBOX_AUTOCLOSE
+	return
+
+
+Route35_EventScript_Walt::
+	trainerbattle_single TRAINER_WALT, Route35_Text_WaltIntro, Route35_Text_WaltDefeated
+	msgbox Route35_Text_WaltPostBattle, MSGBOX_AUTOCLOSE
+	return
+
+
+Route35_EventScript_Arnie::
+	trainerbattle_single TRAINER_ARNIE, Route35_Text_ArnieIntro, Route35_Text_ArnieDefeated
+	msgbox Route35_Text_ArniePostBattle, MSGBOX_AUTOCLOSE
+	return
+
+
+Route35_EventScript_Irwin::
+	trainerbattle_single TRAINER_IRWIN, Route35_Text_IrwinIntro, Route35_Text_IrwinDefeated
+	msgbox Route35_Text_IrwinPostBattle, MSGBOX_AUTOCLOSE
+	return
+
+
+Route35_EventScript_Dirk::
+	lock
+	faceplayer
+	gettime
+	compare VAR_0x8002, TIME_NIGHT
+	goto_if_eq Route35_EventScript_Dirk_2
+	msgbox Route35_EventScript_Dirk_Text_0
+Route35_EventScript_Dirk_1:
 	release
-	end
+	return
 
-Route35_EventScript_TonyRegisterMatchCallAfterBattle:: @ 81EE5D8
-	special PlayerFaceTrainerAfterBattle
-	waitmovement 0
-	msgbox Route35_Text_TonyRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_TONY_1
-	release
-	end
+Route35_EventScript_Dirk_2:
+	trainerbattle_single TRAINER_DIRK, Route35_Text_DirkIntro, Route35_Text_DirkDefeated
+	msgbox Route35_Text_DirkPostBattle
+	goto Route35_EventScript_Dirk_1
 
-Route35_EventScript_TonyRematch:: @ 81EE5F7
-	trainerbattle_rematch TRAINER_TONY_1, Route35_Text_TonyRematchIntro, Route35_Text_TonyRematchDefeated
-	msgbox Route35_Text_TonyRematchPostBattle, MSGBOX_AUTOCLOSE
-	end
 
-Route35_EventScript_Denise:: @ 81EE60E
-	trainerbattle_single TRAINER_DENISE, Route35_Text_DeniseIntro, Route35_Text_DeniseDefeated
-	msgbox Route35_Text_DenisePostBattle, MSGBOX_AUTOCLOSE
-	end
+Route35_EventScript_RouteSign::
+	msgbox Route35_EventScript_RouteSign_Text_0, MSGBOX_SIGN
+	return
 
-Route35_EventScript_Beth:: @ 81EE625
-	trainerbattle_single TRAINER_BETH, Route35_Text_BethIntro, Route35_Text_BethDefeated
-	msgbox Route35_Text_BethPostBattle, MSGBOX_AUTOCLOSE
-	end
 
-Route35_EventScript_Lisa:: @ 81EE63C
-	trainerbattle_double TRAINER_LISA_AND_RAY, Route35_Text_LisaIntro, Route35_Text_LisaDefeated, Route35_Text_LisaNotEnoughPokemon
-	msgbox Route35_Text_LisaPostBattle, MSGBOX_AUTOCLOSE
-	end
+Route35_EventScript_Dirk_Text_0:
+	.string "Your POKéMON look pretty tough.\n"
+	.string "You could go anywhere safely.$"
 
-Route35_EventScript_Ray:: @ 81EE657
-	trainerbattle_double TRAINER_LISA_AND_RAY, Route35_Text_RayIntro, Route35_Text_RayDefeated, Route35_Text_RayNotEnoughPokemon
-	msgbox Route35_Text_RayPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route35_EventScript_Camron:: @ 81EE672
-	trainerbattle_single TRAINER_CAMRON, Route35_Text_CamronIntro, Route35_Text_CamronDefeated
-	msgbox Route35_Text_CamronPostBattle, MSGBOX_AUTOCLOSE
-	end
-
+Route35_EventScript_RouteSign_Text_0:
+	.string "ROUTE 35$"

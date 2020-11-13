@@ -141,7 +141,7 @@
       "y": 1,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "NationalParkGate_ContestSign"
+      "script": "Route35_NationalParkGatehouse_ContestSign"
     }
   ]
 }

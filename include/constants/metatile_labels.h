@@ -187,6 +187,8 @@
 #define METATILE_General_Door_Gym              0x15B
 #define METATILE_General_Door_PokeCenter       0x062
 #define METATILE_General_Door_PokeMart         0x041
+#define METATILE_General_FruitTreeTop          0x22D
+#define METATILE_General_FruitTreeTop_NoFruit  0x22C
 #define METATILE_General_Grass                 0x001
 #define METATILE_General_Grass_TreeLeft        0x00E
 #define METATILE_General_Grass_TreeRight       0x00F

@@ -16,12 +16,12 @@
     "object_events": [
     ],
     "phone_service": true,
-    "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+    "region_map_section": "MAPSEC_NATIONAL_PARK",
     "requires_flash": false,
     "show_map_name": true,
     "warp_events": [
         {
-            "dest_map": "MAP_NATIONAL_PARK_GATE_SOUTH",
+            "dest_map": "MAP_ROUTE35_NATIONAL_PARK_GATEHOUSE",
             "dest_warp_id": 1,
             "elevation": 3,
             "x": 9,

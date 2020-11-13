@@ -33,10 +33,10 @@ const u8 gText_MatchCallCooltrainer_Cristin_Pokemon[] = _("A mix of different ty
 const u8 gText_MatchCallCooltrainer_Cristin_Intro1[] = _("I aim to become the ultimate");
 const u8 gText_MatchCallCooltrainer_Cristin_Intro2[] = _("TRAINER!");
 
-const u8 gText_MatchCallCooltrainer_Brooke_Strategy[] = _("Exploit the foe's weakness.");
-const u8 gText_MatchCallCooltrainer_Brooke_Pokemon[] = _("Balance is crucial.");
-const u8 gText_MatchCallCooltrainer_Brooke_Intro1[] = _("My goal is to become the");
-const u8 gText_MatchCallCooltrainer_Brooke_Intro2[] = _("POKéMON CHAMPION.");
+const u8 gText_MatchCallCoolTRAINER_BROOKE_OLD_Strategy[] = _("Exploit the foe's weakness.");
+const u8 gText_MatchCallCoolTRAINER_BROOKE_OLD_Pokemon[] = _("Balance is crucial.");
+const u8 gText_MatchCallCoolTRAINER_BROOKE_OLD_Intro1[] = _("My goal is to become the");
+const u8 gText_MatchCallCoolTRAINER_BROOKE_OLD_Intro2[] = _("POKéMON CHAMPION.");
 
 const u8 gText_MatchCallCooltrainer_Wilton_Strategy[] = _("Upset the opponent.");
 const u8 gText_MatchCallCooltrainer_Wilton_Pokemon[] = _("Type doesn't matter.");
@@ -396,7 +396,7 @@ const u8 *const gMatchCallFlavorTexts[REMATCH_TABLE_ENTRIES][CHECK_PAGE_ENTRY_CO
     [REMATCH_RICKY] = MCFLAVOR(Tuber_Ricky),
     [REMATCH_LILA_AND_ROY] = MCFLAVOR(SisAndBro_LilaAndRoy),
     [REMATCH_CRISTIN] = MCFLAVOR(Cooltrainer_Cristin),
-    [REMATCH_BROOKE] = MCFLAVOR(Cooltrainer_Brooke),
+    [REMATCH_BROOKE] = MCFLAVOR(CoolTRAINER_BROOKE_OLD),
     [REMATCH_WILTON] = MCFLAVOR(Cooltrainer_Wilton),
     [REMATCH_VALERIE] = MCFLAVOR(HexManiac_Valerie),
     [REMATCH_CINDY] = MCFLAVOR(Lady_Cindy),

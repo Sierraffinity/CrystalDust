@@ -60,7 +60,7 @@ BugContestOfficer_EnterContest::
 	special SelectBugCatchingContestMon
 	waitstate
 	compare VAR_RESULT, 0
-	goto_if_ne NationalParkGateSouth_BugContestOfficer_ChosePokemon
+	goto_if_ne Route35_NationalParkGatehouse_BugContestOfficer_ChosePokemon
 	special LoadPlayerParty
 	msgbox BugContestOfficer_Text_ComeSeeMeLater, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0
@@ -79,7 +79,7 @@ BugContestOfficer_NoRoomForPrize:
 	msgbox BugContestOfficer_Text_NoRoomInBag, MSGBOX_DEFAULT
 	return
 
-NationalParkGateSouth_BugContestOfficer_ChosePokemon:
+Route35_NationalParkGatehouse_BugContestOfficer_ChosePokemon:
 	special ReducePlayerPartyToSelectedMons
 	setvar VAR_0x8004, 2
 	setvar VAR_0x8005, 4

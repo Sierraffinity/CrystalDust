@@ -1039,6 +1039,20 @@ static u8 GetMapSecIdAt(s16 x, s16 y, u8 region, bool8 secondary)
 
 static void InitMapBasedOnPlayerLocation(void)
 {
+    // map group, map num, x, y
+    static const u8 cursorPosOverrides[][4] = {
+        {MAP_GROUP(ROUTE29_GATEHOUSE), MAP_NUM(ROUTE29_GATEHOUSE), 18, 10},
+        {MAP_GROUP(ROUTE31_GATEHOUSE), MAP_NUM(ROUTE31_GATEHOUSE), 12, 5},
+        {MAP_GROUP(ROUTE32_GATEHOUSE), MAP_NUM(ROUTE32_GATEHOUSE), 11, 6},
+        {MAP_GROUP(ROUTE34_ILEX_EAST_GATEHOUSE), MAP_NUM(ROUTE34_ILEX_EAST_GATEHOUSE), 8, 13},
+        {MAP_GROUP(ROUTE34_ILEX_NORTH_GATEHOUSE), MAP_NUM(ROUTE34_ILEX_NORTH_GATEHOUSE), 7, 12},
+        {MAP_GROUP(ROUTE35_GOLDENROD_GATEHOUSE), MAP_NUM(ROUTE35_GOLDENROD_GATEHOUSE), 7, 8},
+        {MAP_GROUP(ROUTE36_RUINS_OF_ALPH_GATEHOUSE), MAP_NUM(ROUTE36_RUINS_OF_ALPH_GATEHOUSE), 10, 5},
+        {MAP_GROUP(UNDEFINED), MAP_NUM(UNDEFINED), 0, 0},
+    };
+
+    int i;
+
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SS_TIDAL_CORRIDOR)
         && (gSaveBlock1Ptr->location.mapNum == MAP_NUM(SS_TIDAL_CORRIDOR)
             || gSaveBlock1Ptr->location.mapNum == MAP_NUM(SS_TIDAL_LOWER_DECK)
@@ -1048,78 +1062,20 @@ static void InitMapBasedOnPlayerLocation(void)
     }
     else
     {
-        // This is actually how FireRed fixes gatehouse map positions
-        switch (GetCurrentRegionMapSectionId())
+        for (i = 0; cursorPosOverrides[i][0] != MAP_GROUP(UNDEFINED); i++)
         {
-            case MAPSEC_ROUTE_29:
-                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE29_GATEHOUSE) &&
-                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE29_GATEHOUSE))
-                {
-                    gRegionMap->cursorPosX = 18;
-                    gRegionMap->cursorPosY = 10;
-                }
-                else
-                {
-                    InitMapBasedOnPlayerLocation_();
-                }
+            if (gSaveBlock1Ptr->location.mapGroup == cursorPosOverrides[i][0] &&
+                gSaveBlock1Ptr->location.mapNum == cursorPosOverrides[i][1])
+            {
+                gRegionMap->cursorPosX = cursorPosOverrides[i][2];
+                gRegionMap->cursorPosY = cursorPosOverrides[i][3];
                 break;
-            case MAPSEC_ROUTE_31:
-                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE31_GATEHOUSE) &&
-                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE31_GATEHOUSE))
-                {
-                    gRegionMap->cursorPosX = 12;
-                    gRegionMap->cursorPosY = 5;
-                }
-                else
-                {
-                    InitMapBasedOnPlayerLocation_();
-                }
-                break;
-            case MAPSEC_ROUTE_32:
-                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE32_GATEHOUSE) &&
-                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE32_GATEHOUSE))
-                {
-                    gRegionMap->cursorPosX = 11;
-                    gRegionMap->cursorPosY = 6;
-                }
-                else
-                {
-                    InitMapBasedOnPlayerLocation_();
-                }
-                break;
-            case MAPSEC_ROUTE_34:
-                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE34_ILEX_EAST_GATEHOUSE) &&
-                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE34_ILEX_EAST_GATEHOUSE))
-                {
-                    gRegionMap->cursorPosX = 8;
-                    gRegionMap->cursorPosY = 13;
-                }
-                else if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE34_ILEX_NORTH_GATEHOUSE) &&
-                         gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE34_ILEX_NORTH_GATEHOUSE))
-                {
-                    gRegionMap->cursorPosX = 7;
-                    gRegionMap->cursorPosY = 12;
-                }
-                else
-                {
-                    InitMapBasedOnPlayerLocation_();
-                }
-                break;
-            case MAPSEC_ROUTE_36:
-                if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE36_RUINS_OF_ALPH_GATEHOUSE) &&
-                    gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE36_RUINS_OF_ALPH_GATEHOUSE))
-                {
-                    gRegionMap->cursorPosX = 10;
-                    gRegionMap->cursorPosY = 5;
-                }
-                else
-                {
-                    InitMapBasedOnPlayerLocation_();
-                }
-                break;
-            default:
-                InitMapBasedOnPlayerLocation_();
-                break;
+            }
+        }
+
+        if (cursorPosOverrides[i][0] == MAP_GROUP(UNDEFINED))
+        {
+            InitMapBasedOnPlayerLocation_();
         }
     }
 
@@ -1243,15 +1199,6 @@ static void InitMapBasedOnPlayerLocation_(void)
         case MAPSEC_ROUTE_33:
             x = 0;
             if (gSaveBlock1Ptr->pos.x > 8)
-                x = 1;
-            break;
-        case MAPSEC_ROUTE_36:
-            x = 0;
-            if (gSaveBlock1Ptr->pos.x > 36)
-                x = 3;
-            else if (gSaveBlock1Ptr->pos.x > 16)
-                x = 2;
-            else if (gSaveBlock1Ptr->pos.x > 9)
                 x = 1;
             break;
     }

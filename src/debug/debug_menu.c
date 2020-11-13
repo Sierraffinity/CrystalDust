@@ -119,7 +119,6 @@ static void DebugMenu_AddItem_ProcessInputNum(u8 taskId);
 static void DebugMenu_AddItem_ProcessInputCount(u8 taskId);
 static void DebugMenu_LottoNumber_ProcessInput(u8 taskId);
 
-extern bool8 gWalkThroughWalls;
 extern bool8 gPaletteTintDisabled;
 extern bool8 gPaletteOverrideDisabled;
 extern s16 gDNPeriodOverride;
