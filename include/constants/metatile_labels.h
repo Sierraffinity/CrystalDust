@@ -79,11 +79,6 @@
 // gTileset_BikeShop
 #define METATILE_BikeShop_Wall_Edge_Top  0x281
 
-// gTileset_BrendansMaysHouse
-#define METATILE_BrendansMaysHouse_BookOnTable   0x293
-#define METATILE_BrendansMaysHouse_PlayerPC_Off  0x28F
-#define METATILE_BrendansMaysHouse_PlayerPC_On   0x28A
-
 // gTileset_Building
 #define METATILE_Building_PC_Off  0x062
 #define METATILE_Building_PC_On   0x063
@@ -377,6 +372,11 @@
 #define METATILE_PetalburgGym_SlidingDoor_Frame2  0x21A
 #define METATILE_PetalburgGym_SlidingDoor_Frame3  0x21B
 #define METATILE_PetalburgGym_SlidingDoor_Frame4  0x21C
+
+// gTileset_PlayersHouse
+#define METATILE_PlayersHouse_BookOnTable   0x293
+#define METATILE_PlayersHouse_PlayerPC_Off  0x28F
+#define METATILE_PlayersHouse_PlayerPC_On   0x28A
 
 // gTileset_PokemonCenter
 #define METATILE_PokemonCenter_CounterBarrier                 0x2F9

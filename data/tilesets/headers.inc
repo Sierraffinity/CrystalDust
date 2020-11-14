@@ -503,14 +503,14 @@ gTileset_LilycoveMuseum:: @ 83DFADC
 	.4byte NULL @ palette overrides
 
 	.align 2
-gTileset_BrendansMaysHouse:: @ 83DFAF4
+gTileset_PlayersHouse:: @ 83DFAF4
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_BrendansMaysHouse
-	.4byte gTilesetPalettes_BrendansMaysHouse
-	.4byte gMetatiles_BrendansMaysHouse
-	.4byte gMetatileAttributes_BrendansMaysHouse
+	.4byte gTilesetTiles_PlayersHouse
+	.4byte gTilesetPalettes_PlayersHouse
+	.4byte gMetatiles_PlayersHouse
+	.4byte gMetatileAttributes_PlayersHouse
 	.4byte NULL @ animation callback
 	.4byte NULL @ palette overrides
 
@@ -903,5 +903,17 @@ gTileset_UnionRoom:: @ 83DFDFC
 	.4byte gTilesetPalettes_UnionRoom
 	.4byte gMetatiles_UnionRoom
 	.4byte gMetatileAttributes_UnionRoom
+	.4byte NULL @ animation callback
+	.4byte NULL @ palette overrides
+
+	.align 2
+gTileset_NationalPark::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary tileset
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_NationalPark
+	.4byte gTilesetPalettes_NationalPark
+	.4byte gMetatiles_NationalPark
+	.4byte gMetatileAttributes_NationalPark
 	.4byte NULL @ animation callback
 	.4byte NULL @ palette overrides

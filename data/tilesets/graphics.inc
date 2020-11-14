@@ -946,27 +946,27 @@ gTilesetPalettes_LilycoveMuseum:: @ 836DEAC
 	.incbin "data/tilesets/secondary/lilycove_museum/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_BrendansMaysHouse:: @ 836E0AC
-	.incbin "data/tilesets/secondary/brendans_mays_house/tiles.4bpp.lz"
+gTilesetTiles_PlayersHouse:: @ 836E0AC
+	.incbin "data/tilesets/secondary/players_house/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_BrendansMaysHouse:: @ 836F178
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/brendans_mays_house/palettes/15.gbapal"
+gTilesetPalettes_PlayersHouse:: @ 836F178
+	.incbin "data/tilesets/secondary/players_house/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/players_house/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Lab:: @ 836F378
@@ -1729,6 +1729,29 @@ gTilesetPalettes_UnionRoom:: @ 8395678
 	.align 2
 gTilesetTiles_UnionRoom:: @ 8395878
 	.incbin "data/tilesets/secondary/union_room/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_NationalPark::
+	.incbin "data/tilesets/secondary/national_park/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/national_park/palettes/15.gbapal"
+
+	.align 2
+gTilesetTiles_NationalPark::
+	.incbin "data/tilesets/secondary/national_park/tiles.4bpp.lz"
 
 	.align 2
 gTilesetPalOverride_General02::
