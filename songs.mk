@@ -40,7 +40,7 @@ $(MID_SUBDIR)/mus_b_pike.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G112 -V092
 
 $(MID_SUBDIR)/mus_vs_johto_trainer.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G119 -V080 -P1
+	$(MID) $< $@ -E -R$(STD_REVERB) -G119 -V090 -P1
 
 $(MID_SUBDIR)/mus_vs_johto_wild.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G117 -V090 -P1
