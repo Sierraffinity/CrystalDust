@@ -645,7 +645,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "secondary_tileset": "gTileset_PlayersHouse",
       "border_filepath": "data/layouts/NewBarkTown_PlayersHouse_1F/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_PlayersHouse_1F/map.bin"
     },
@@ -657,7 +657,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "secondary_tileset": "gTileset_PlayersHouse",
       "border_filepath": "data/layouts/NewBarkTown_PlayersHouse_2F/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_PlayersHouse_2F/map.bin"
     },
@@ -669,7 +669,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "secondary_tileset": "gTileset_PlayersHouse",
       "border_filepath": "data/layouts/NewBarkTown_ElmsHouse/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_ElmsHouse/map.bin"
     },
@@ -681,7 +681,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "secondary_tileset": "gTileset_PlayersHouse",
       "border_filepath": "data/layouts/NewBarkTown_NeighborsHouse/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_NeighborsHouse/map.bin"
     },
