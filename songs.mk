@@ -246,8 +246,8 @@ $(MID_SUBDIR)/mus_fortree.s: %.s: %.mid
 $(MID_SUBDIR)/mus_cherrygrove.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G019 -V070
 
-$(MID_SUBDIR)/mus_mt_pyre_exterior.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G080 -V080
+$(MID_SUBDIR)/mus_national_park.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G080 -V100
 
 $(MID_SUBDIR)/mus_heal.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5

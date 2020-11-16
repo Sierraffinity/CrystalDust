@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE35_NATIONAL_PARK_GATEHOUSE",
   "name": "Route35_NationalParkGatehouse",
   "layout": "LAYOUT_ROUTE35_NATIONAL_PARK_GATEHOUSE",
-  "music": "MUS_DARK_CAVE",
+  "music": "MUS_GOLDENROD",
   "region_map_section": "MAPSEC_ROUTE_35",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

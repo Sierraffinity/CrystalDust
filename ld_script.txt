@@ -1081,7 +1081,7 @@ SECTIONS {
         sound/songs/midi/mus_sailing.o(.rodata);
         sound/songs/midi/mus_sprout_tower.o(.rodata);
         sound/songs/midi/mus_slateport.o(.rodata);
-        sound/songs/midi/mus_mt_pyre_exterior.o(.rodata);
+        sound/songs/midi/mus_national_park.o(.rodata);
         sound/songs/midi/mus_oaks_theme.o(.rodata);
         sound/songs/midi/mus_hall_of_fame.o(.rodata);
         sound/songs/midi/mus_fallarbor.o(.rodata);

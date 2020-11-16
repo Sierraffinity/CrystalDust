@@ -367,7 +367,7 @@
 #define MUS_SAILING                 431 // MUS_M_BOAT
 #define MUS_SPROUT_TOWER            432 // MUS_M_DUNGON
 #define MUS_SLATEPORT               433 // MUS_FINECITY
-#define MUS_MT_PYRE_EXTERIOR        434 // MUS_MACHUPI
+#define MUS_NATIONAL_PARK           434 // MUS_MACHUPI
 #define MUS_OAKS_THEME              435 // MUS_P_SCHOOL
 #define MUS_HALL_OF_FAME            436 // MUS_DENDOU
 #define MUS_FALLARBOR               437 // MUS_TONEKUSA

@@ -435,7 +435,7 @@ gSongTable:: @ 86B49F0
 	song mus_sailing, 0, 0
 	song mus_sprout_tower, 0, 0
 	song mus_slateport, 0, 0
-	song mus_mt_pyre_exterior, 0, 0
+	song mus_national_park, 0, 0
 	song mus_oaks_theme, 0, 0
 	song mus_hall_of_fame, 0, 0
 	song mus_fallarbor, 0, 0

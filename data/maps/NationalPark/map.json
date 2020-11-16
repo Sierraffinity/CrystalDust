@@ -2,7 +2,7 @@
   "id": "MAP_NATIONAL_PARK",
   "name": "NationalPark",
   "layout": "LAYOUT_NATIONAL_PARK",
-  "music": "MUS_DARK_CAVE",
+  "music": "MUS_NATIONAL_PARK",
   "region_map_section": "MAPSEC_NATIONAL_PARK",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -20,16 +20,23 @@
   ],
   "warp_events": [
     {
-      "x": 9,
-      "y": 19,
+      "x": 14,
+      "y": 50,
       "elevation": 3,
       "dest_map": "MAP_ROUTE35_NATIONAL_PARK_GATEHOUSE",
       "dest_warp_id": 1
     },
     {
-      "x": 19,
-      "y": 8,
+      "x": 15,
+      "y": 50,
       "elevation": 3,
+      "dest_map": "MAP_ROUTE35_NATIONAL_PARK_GATEHOUSE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 42,
+      "y": 19,
+      "elevation": 0,
       "dest_map": "MAP_NATIONAL_PARK_GATE_EAST",
       "dest_warp_id": 0
     }
