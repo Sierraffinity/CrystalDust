@@ -61,7 +61,7 @@ $(MID_SUBDIR)/mus_vs_kyogre_groudon.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G123 -V080 -P1
 
 $(MID_SUBDIR)/mus_vs_rival.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G124 -V080 -P1
+	$(MID) $< $@ -E -R$(STD_REVERB) -G124 -V090 -P1
 
 $(MID_SUBDIR)/mus_vs_regi.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G122 -V080 -P1
