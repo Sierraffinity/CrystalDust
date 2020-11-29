@@ -2,8 +2,8 @@
   "id": "MAP_NATIONAL_PARK_GATE_EAST",
   "name": "NationalParkGateEast",
   "layout": "LAYOUT_NATIONAL_PARK_GATE_EAST",
-  "music": "MUS_DARK_CAVE",
-  "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+  "music": "MUS_GOLDENROD",
+  "region_map_section": "MAPSEC_ROUTE_36",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
@@ -129,6 +129,13 @@
       "elevation": 3,
       "dest_map": "MAP_NATIONAL_PARK",
       "dest_warp_id": 1
+    },
+    {
+      "x": 10,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE36",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
