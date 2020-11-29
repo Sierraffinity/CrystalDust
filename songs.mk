@@ -52,7 +52,7 @@ $(MID_SUBDIR)/mus_vs_rocket.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G118 -V080 -P1
 
 $(MID_SUBDIR)/mus_vs_johto_leader.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G120 -V080 -P1
+	$(MID) $< $@ -E -R$(STD_REVERB) -G120 -V090 -P1
 
 $(MID_SUBDIR)/mus_vs_champion.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G121 -V080 -P1

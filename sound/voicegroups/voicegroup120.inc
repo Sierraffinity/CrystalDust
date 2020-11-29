@@ -8,7 +8,7 @@ voicegroup120:: @ 869B0B4
 	voice_directsound 60, 0, DirectSoundWaveData_sd90_classical_detuned_ep1_high, 255, 188, 103, 165  @ 86A8CF8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8D04
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8D10
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8D1C
+	voice_directsound 60, 0, DirectSoundWaveData_steinway_b_piano, 255, 50, 255, 240  @ 86A724C
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8D28
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8D34
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8D40
@@ -21,7 +21,7 @@ voicegroup120:: @ 869B0B4
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8D94
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DA0
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DAC
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DB8
+	voice_directsound 60, 0, DirectSoundWaveData_sc88_accordion, 255, 0, 255, 165  @ 86A93B8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DC4
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8DD0
 	voice_directsound 60, 0, DirectSoundWaveData_sc88_nylon_str_guitar, 128, 249, 25, 127  @ 86A8DDC
@@ -36,7 +36,7 @@ voicegroup120:: @ 869B0B4
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E48
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E54
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E60
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E6C
+	voice_directsound 60, 0, DirectSoundWaveData_unused_sc88_unison_slap, 255, 165, 180, 216  @ 86A946C
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E78
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E84
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A8E90
@@ -84,7 +84,7 @@ voicegroup120:: @ 869B0B4
 	voice_square_2_alt 3, 0, 3, 6, 2  @ 86A9088
 	voice_square_2_alt 3, 0, 2, 6, 5  @ 86A9094
 	voice_programmable_wave_alt ProgrammableWaveData_86B4890, 0, 3, 6, 5  @ 86A90A0
-	voice_square_2_alt 0, 0, 2, 6, 5  @ 86A90AC
+	voice_programmable_wave_alt ProgrammableWaveData_86B4870, 0, 7, 15, 0  @ 86A92E0
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A90B8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A90C4
 	voice_programmable_wave_alt ProgrammableWaveData_86B4850, 0, 7, 15, 1  @ 86A90D0
