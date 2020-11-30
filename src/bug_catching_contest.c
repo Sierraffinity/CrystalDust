@@ -37,36 +37,36 @@
 #include "constants/species.h"
 #include "constants/trainers.h"
 
-extern const u8 NationalParkContest_Nick[];
-extern const u8 NationalParkContest_William[];
-extern const u8 NationalParkContest_Samuel[];
-extern const u8 NationalParkContest_Barry[];
-extern const u8 NationalParkContest_Ed[];
-extern const u8 NationalParkContest_Benny[];
-extern const u8 NationalParkContest_Josh[];
-extern const u8 NationalParkContest_Don[];
-extern const u8 NationalParkContest_Kipp[];
-extern const u8 NationalParkContest_Cindy[];
-extern const u8 NationalParkGateEast_NickPlayerWon[];
-extern const u8 NationalParkGateEast_NickPlayerLost[];
-extern const u8 NationalParkGateEast_WilliamPlayerWon[];
-extern const u8 NationalParkGateEast_WilliamPlayerLost[];
-extern const u8 NationalParkGateEast_SamuelPlayerWon[];
-extern const u8 NationalParkGateEast_SamuelPlayerLost[];
-extern const u8 NationalParkGateEast_BarryPlayerWon[];
-extern const u8 NationalParkGateEast_BarryPlayerLost[];
-extern const u8 NationalParkGateEast_EdPlayerWon[];
-extern const u8 NationalParkGateEast_EdPlayerLost[];
-extern const u8 NationalParkGateEast_BennyPlayerWon[];
-extern const u8 NationalParkGateEast_BennyPlayerLost[];
-extern const u8 NationalParkGateEast_JoshPlayerWon[];
-extern const u8 NationalParkGateEast_JoshPlayerLost[];
-extern const u8 NationalParkGateEast_DonPlayerWon[];
-extern const u8 NationalParkGateEast_DonPlayerLost[];
-extern const u8 NationalParkGateEast_KippPlayerWon[];
-extern const u8 NationalParkGateEast_KippPlayerLost[];
-extern const u8 NationalParkGateEast_CindyPlayerWon[];
-extern const u8 NationalParkGateEast_CindyPlayerLost[];
+extern const u8 NationalPark_BugCatchingContest_Nick[];
+extern const u8 NationalPark_BugCatchingContest_William[];
+extern const u8 NationalPark_BugCatchingContest_Samuel[];
+extern const u8 NationalPark_BugCatchingContest_Barry[];
+extern const u8 NationalPark_BugCatchingContest_Ed[];
+extern const u8 NationalPark_BugCatchingContest_Benny[];
+extern const u8 NationalPark_BugCatchingContest_Josh[];
+extern const u8 NationalPark_BugCatchingContest_Don[];
+extern const u8 NationalPark_BugCatchingContest_Kipp[];
+extern const u8 NationalPark_BugCatchingContest_Cindy[];
+extern const u8 Route36_NationalParkGatehouse_NickPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_NickPlayerLost[];
+extern const u8 Route36_NationalParkGatehouse_WilliamPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_WilliamPlayerLost[];
+extern const u8 Route36_NationalParkGatehouse_SamuelPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_SamuelPlayerLost[];
+extern const u8 Route36_NationalParkGatehouse_BarryPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_BarryPlayerLost[];
+extern const u8 Route36_NationalParkGatehouse_EdPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_EdPlayerLost[];
+extern const u8 Route36_NationalParkGatehouse_BennyPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_BennyPlayerLost[];
+extern const u8 Route36_NationalParkGatehouse_JoshPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_JoshPlayerLost[];
+extern const u8 Route36_NationalParkGatehouse_DonPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_DonPlayerLost[];
+extern const u8 Route36_NationalParkGatehouse_KippPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_KippPlayerLost[];
+extern const u8 Route36_NationalParkGatehouse_CindyPlayerWon[];
+extern const u8 Route36_NationalParkGatehouse_CindyPlayerLost[];
 extern const u8 EventScript_BugContest_WhiteOut[];
 extern const u8 EventScript_RanOutOfParkBalls[];
 extern const u8 EventScript_BugCatchingContestTimeExpired[];
@@ -254,81 +254,81 @@ static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
         .graphicsId = OBJ_EVENT_GFX_BOY_1,
         .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .name = sName_Nick,
-        .script = NationalParkContest_Nick,
-        .awardsScriptPlayerWon = NationalParkGateEast_NickPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_NickPlayerLost,
+        .script = NationalPark_BugCatchingContest_Nick,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_NickPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_NickPlayerLost,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_SAGE,
         .trainerClass = TRAINER_CLASS_POKEFAN,
         .name = sName_William,
-        .script = NationalParkContest_William,
-        .awardsScriptPlayerWon = NationalParkGateEast_WilliamPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_WilliamPlayerLost,
+        .script = NationalPark_BugCatchingContest_William,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_WilliamPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_WilliamPlayerLost,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_YOUNGSTER,
         .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .name = sName_Samuel,
-        .script = NationalParkContest_Samuel,
-        .awardsScriptPlayerWon = NationalParkGateEast_SamuelPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_SamuelPlayerLost,
+        .script = NationalPark_BugCatchingContest_Samuel,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_SamuelPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_SamuelPlayerLost,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_CAMPER,
         .trainerClass = TRAINER_CLASS_CAMPER,
         .name = sName_Barry,
-        .script = NationalParkContest_Barry,
-        .awardsScriptPlayerWon = NationalParkGateEast_BarryPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_BarryPlayerLost,
+        .script = NationalPark_BugCatchingContest_Barry,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_BarryPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_BarryPlayerLost,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Ed,
-        .script = NationalParkContest_Ed,
-        .awardsScriptPlayerWon = NationalParkGateEast_EdPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_EdPlayerLost,
+        .script = NationalPark_BugCatchingContest_Ed,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_EdPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_EdPlayerLost,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Benny,
-        .script = NationalParkContest_Benny,
-        .awardsScriptPlayerWon = NationalParkGateEast_BennyPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_BennyPlayerLost,
+        .script = NationalPark_BugCatchingContest_Benny,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_BennyPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_BennyPlayerLost,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Josh,
-        .script = NationalParkContest_Josh,
-        .awardsScriptPlayerWon = NationalParkGateEast_JoshPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_JoshPlayerLost,
+        .script = NationalPark_BugCatchingContest_Josh,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_JoshPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_JoshPlayerLost,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Don,
-        .script = NationalParkContest_Don,
-        .awardsScriptPlayerWon = NationalParkGateEast_DonPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_DonPlayerLost,
+        .script = NationalPark_BugCatchingContest_Don,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_DonPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_DonPlayerLost,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_SCHOOL_KID_M,
         .trainerClass = TRAINER_CLASS_SCHOOL_KID,
         .name = sName_Kipp,
-        .script = NationalParkContest_Kipp,
-        .awardsScriptPlayerWon = NationalParkGateEast_KippPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_KippPlayerLost,
+        .script = NationalPark_BugCatchingContest_Kipp,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_KippPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_KippPlayerLost,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_PICNICKER,
         .trainerClass = TRAINER_CLASS_PICNICKER,
         .name = sName_Cindy,
-        .script = NationalParkContest_Cindy,
-        .awardsScriptPlayerWon = NationalParkGateEast_CindyPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_CindyPlayerLost,
+        .script = NationalPark_BugCatchingContest_Cindy,
+        .awardsScriptPlayerWon = Route36_NationalParkGatehouse_CindyPlayerWon,
+        .awardsScriptPlayerLost = Route36_NationalParkGatehouse_CindyPlayerLost,
     },
 };
 

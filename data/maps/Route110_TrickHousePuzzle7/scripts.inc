@@ -16,7 +16,7 @@ Route110_TrickHousePuzzle7_EventScript_UpdateSwitchMetatiles:: @ 826E0AC
 	call_if_set FLAG_GOT_HP_UP_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch1MetatilesOn
 	call_if_set FLAG_GAVE_KENYA_TO_RANDYS_FRIEND, Route110_TrickHousePuzzle7_EventScript_SetSwitch2MetatilesOn
 	call_if_set FLAG_GOT_KENYA_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch3MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOn
+	call_if_set FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOn
 	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_SetSwitch5MetatilesOn
 	return
 
@@ -77,7 +77,7 @@ Route110_TrickHousePuzzle7_OnTransition: @ 826E198
 	clearflag FLAG_GOT_HP_UP_FROM_RANDY
 	clearflag FLAG_GAVE_KENYA_TO_RANDYS_FRIEND
 	clearflag FLAG_GOT_KENYA_FROM_RANDY
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4
+	clearflag FLAG_GOT_QUICK_CLAW
 	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5
 	end
 
@@ -155,12 +155,12 @@ Route110_TrickHousePuzzle7_EventScript_Switch3:: @ 826E25C
 Route110_TrickHousePuzzle7_EventScript_Switch4:: @ 826E28B
 	lockall
 	delay 32
-	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOff
+	call_if_unset FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOn
+	call_if_set FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOff
 	special DrawWholeMapView
 	playse SE_CLICK
-	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4On
-	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4Off
+	goto_if_unset FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4On
+	goto_if_set FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4Off
 	end
 
 Route110_TrickHousePuzzle7_EventScript_Switch5:: @ 826E2BA
@@ -206,12 +206,12 @@ Route110_TrickHousePuzzle7_EventScript_SetSwitch3Off:: @ 826E302
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch4On:: @ 826E307
-	setflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4
+	setflag FLAG_GOT_QUICK_CLAW
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch4Off:: @ 826E30C
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4
+	clearflag FLAG_GOT_QUICK_CLAW
 	releaseall
 	end
 

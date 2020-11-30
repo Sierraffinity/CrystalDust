@@ -26,6 +26,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/maps.h"
+#include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/weather.h"
 
@@ -39,6 +40,8 @@ static void FeebasSeedRng(u16 seed);
 static bool8 IsWildLevelAllowedByRepel(u8 level);
 static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
+static void ApplyLongGrassEncounterRateMod(u32 *encRate);
+static void ApplyMusicEncounterRateMod(u32 *encRate);
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u8 ability, u8 *monIndex);
 static bool8 IsAbilityAllowingEncounter(u8 level);
 static u32 GenerateUnownPersonality(void);
@@ -640,6 +643,8 @@ static bool8 DoWildEncounterRateTest(u32 encounterRate, bool8 ignoreAbility)
         encounterRate = encounterRate * 80 / 100;
     ApplyFluteEncounterRateMod(&encounterRate);
     ApplyCleanseTagEncounterRateMod(&encounterRate);
+    ApplyLongGrassEncounterRateMod(&encounterRate);
+    ApplyMusicEncounterRateMod(&encounterRate);
     if (!ignoreAbility && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
     {
         u32 ability = GetMonAbility(&gPlayerParty[0]);
@@ -1163,6 +1168,34 @@ static void ApplyCleanseTagEncounterRateMod(u32 *encRate)
 {
     if (GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM) == ITEM_CLEANSE_TAG)
         *encRate = *encRate * 2 / 3;
+}
+
+// double encounter rate in long grass
+static void ApplyLongGrassEncounterRateMod(u32 *encRate)
+{
+    u16 tileBehavior;
+    s16 x, y;
+
+    PlayerGetDestCoords(&x, &y);
+    tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+
+    if (MetatileBehavior_IsLongGrass(tileBehavior))
+        *encRate = *encRate * 2;
+}
+
+// change encounter rate when listening to music from the radio
+static void ApplyMusicEncounterRateMod(u32 *encRate)
+{
+    switch (GetCurrentMapMusic())
+    {
+        case MUS_POKEMON_MARCH:
+        case MUS_UNOWN_RADIO:
+            *encRate = *encRate * 2;
+            break;
+        case MUS_POKEMON_LULLABY:
+            *encRate = *encRate / 2;
+            break;
+    }
 }
 
 u16 GetMapWildMonFromIndex(u8 mapGroup, u8 mapNum, u8 index)

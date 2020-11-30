@@ -39,7 +39,7 @@ Route35_NationalParkGatehouse_OnFrame_EndContestPrompt:
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_ReEnterContest
 	waitmovement 0
-	warp MAP_NATIONAL_PARK_CONTEST, 0, -1, -1
+	warp MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 0, -1, -1
 	waitstate
 	release
 	end
@@ -56,7 +56,7 @@ Route35_NationalParkGatehouse_EndContest:
 	msgbox Route35_NationalParkGatehouse_Text_WaitAtNorthGate, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_BUG_CATCHING_CONTEST_STATE, 2
-	warp MAP_NATIONAL_PARK_GATE_EAST, 0, -1, -1
+	warp MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, 0, -1, -1
 	waitstate
 	release
 	end
@@ -100,7 +100,7 @@ Route35_NationalParkGatehouse_BugContestOfficer_EnterContestFromLeft:
 	applymovement OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromLeft
 Route35_NationalParkGatehouse_BugContestOfficer_EnterContest:
 	waitmovement 0
-	warp MAP_NATIONAL_PARK_CONTEST, 0, -1, -1
+	warp MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 0, -1, -1
 	waitstate
 	release
 	end

@@ -305,10 +305,7 @@
     "EverGrandeCity_PokemonLeague_2F"
   ],
   "gMapGroup17": [
-    "Route29_Gatehouse",
-    "NationalParkContest",
-    "NationalPark",
-    "NationalParkGateEast"
+    "Route29_Gatehouse"
   ],
   "gMapGroup18": [
     "Route30_BerryMansHouse",
@@ -332,13 +329,15 @@
     "Route35_NationalParkGatehouse"
   ],
   "gMapGroup23": [
-    "Route36_RuinsOfAlphGatehouse"
+    "Route36_RuinsOfAlphGatehouse",
+    "Route36_NationalParkGatehouse"
   ],
   "gMapGroup24": [
     "RadioTower_1F",
     "RadioTower_2F",
     "RadioTower_3F",
     "RadioTower_4F",
+    "RadioTower_5F",
     "UnionCave_1F",
     "UnionCave_B1F",
     "UnionCave_B2F",
@@ -442,7 +441,8 @@
     "TerraCave_Entrance",
     "TerraCave_End",
     "AlteringCave",
-    "RadioTower_5F"
+    "NationalPark",
+    "NationalPark_BugCatchingContest"
   ],
   "gMapGroup25": [
     "SecretBase_RedCave1",

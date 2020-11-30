@@ -361,7 +361,7 @@
 #define MUS_CABLE_CAR               425 // MUS_ROPEWAY
 #define MUS_GAME_CORNER             426 // MUS_CASINO
 #define MUS_AZALEA                  427 // MUS_HIGHTOWN
-#define MUS_SAFARI_ZONE             428 // MUS_SAFARI
+#define MUS_BUG_CATCHING_CONTEST    428 // MUS_SAFARI
 #define MUS_VICTORY_ROAD            429 // MUS_C_ROAD
 #define MUS_AQUA_MAGMA_HIDEOUT      430 // MUS_AJITO
 #define MUS_SAILING                 431 // MUS_M_BOAT
@@ -382,7 +382,7 @@
 #define MUS_CONTEST_RESULTS         446 // MUS_CON_K
 #define MUS_HALL_OF_FAME_ROOM       447 // MUS_EIKOU_R
 #define MUS_TRICK_HOUSE             448 // MUS_KARAKURI
-#define MUS_ENCOUNTER_TWINS         449 // MUS_HUTAGO
+#define MUS_BUG_CONTEST_PREP        449 // MUS_HUTAGO
 #define MUS_ENCOUNTER_ELITE_FOUR    450 // MUS_SITENNOU
 #define MUS_ENCOUNTER_FISHERMAN     451 // MUS_YAMA_EYE
 #define MUS_CONTEST_LOBBY           452 // MUS_CONLOBBY
@@ -546,5 +546,11 @@
 #define PH_NURSE_SOLO               609
 
 #define MUS_NONE                    0xFFFF
+
+// temporary define for uninserted radio songs
+#define MUS_UNOWN_RADIO             MUS_ABNORMAL_WEATHER
+#define MUS_EVOLUTION_RADIO         MUS_WEATHER_GROUDON
+#define MUS_POKE_FLUTE_RADIO        MUS_RG_POKE_FLUTE
+#define MUS_PEWTER                  MUS_GSC_PEWTER
 
 #endif  // GUARD_CONSTANTS_SONGS_H

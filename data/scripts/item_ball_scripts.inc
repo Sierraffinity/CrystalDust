@@ -131,7 +131,16 @@ GoldenrodCity_DeptStore_B1F_EventScript_ItemUltraBall::
 	end
 
 Route35_EventScript_ItemTM39::
-	finditem ITEM_TM39
+	finditem ITEM_TM39_ROCK_TOMB
+	end
+
+NationalPark_EventScript_ItemParalyzeHeal::
+	finditem ITEM_PARALYZE_HEAL
+	end
+
+NationalPark_EventScript_ItemTM28::
+	finditem ITEM_TM28_DIG
+	end
 
 Route36_EventScript_ItemStarPiece:: @ 8290D4D
 	finditem ITEM_STAR_PIECE

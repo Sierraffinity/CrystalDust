@@ -195,7 +195,7 @@ $(MID_SUBDIR)/mus_weather_groudon.s: %.s: %.mid
 $(MID_SUBDIR)/mus_azalea.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G073 -V084
 
-$(MID_SUBDIR)/mus_encounter_twins.s: %.s: %.mid
+$(MID_SUBDIR)/mus_bug_contest_prep.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G095 -V075
 
 $(MID_SUBDIR)/mus_encounter_kimono.s: %.s: %.mid
@@ -564,8 +564,8 @@ $(MID_SUBDIR)/mus_cable_car.s: %.s: %.mid
 $(MID_SUBDIR)/mus_sootopolis.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G091 -V062
 
-$(MID_SUBDIR)/mus_safari_zone.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G074 -V082
+$(MID_SUBDIR)/mus_bug_catching_contest.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G074 -V110
 
 $(MID_SUBDIR)/mus_b_tower.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G110 -V100

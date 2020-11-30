@@ -5306,18 +5306,6 @@
       "blockdata_filepath": "data/layouts/Route35_NationalParkGatehouse/map.bin"
     },
     {
-      "id": "LAYOUT_NATIONAL_PARK_CONTEST",
-      "name": "NationalParkContest_Layout",
-      "width": 20,
-      "height": 20,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
-      "border_filepath": "data/layouts/NationalParkContest/border.bin",
-      "blockdata_filepath": "data/layouts/NationalParkContest/map.bin"
-    },
-    {
       "id": "LAYOUT_NATIONAL_PARK",
       "name": "NationalPark_Layout",
       "width": 48,
@@ -5330,16 +5318,16 @@
       "blockdata_filepath": "data/layouts/NationalPark/map.bin"
     },
     {
-      "id": "LAYOUT_NATIONAL_PARK_GATE_EAST",
-      "name": "NationalParkGateEast_Layout",
+      "id": "LAYOUT_ROUTE36_NATIONAL_PARK_GATEHOUSE",
+      "name": "Route36_NationalParkGatehouse_Layout",
       "width": 12,
       "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Gatehouse",
-      "border_filepath": "data/layouts/NationalParkGateEast/border.bin",
-      "blockdata_filepath": "data/layouts/NationalParkGateEast/map.bin"
+      "border_filepath": "data/layouts/Route36_NationalParkGatehouse/border.bin",
+      "blockdata_filepath": "data/layouts/Route36_NationalParkGatehouse/map.bin"
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_3F",

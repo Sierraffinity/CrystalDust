@@ -429,7 +429,7 @@ gSongTable:: @ 86B49F0
 	song mus_cable_car, 0, 0
 	song mus_game_corner, 0, 0
 	song mus_azalea, 0, 0
-	song mus_safari_zone, 0, 0
+	song mus_bug_catching_contest, 0, 0
 	song mus_victory_road, 0, 0
 	song mus_aqua_magma_hideout, 0, 0
 	song mus_sailing, 0, 0
@@ -450,7 +450,7 @@ gSongTable:: @ 86B49F0
 	song mus_contest_results, 0, 0
 	song mus_hall_of_fame_room, 0, 0
 	song mus_trick_house, 0, 0
-	song mus_encounter_twins, 0, 0
+	song mus_bug_contest_prep, 0, 0
 	song mus_encounter_elite_four, 0, 0
 	song mus_encounter_fisherman, 0, 0
 	song mus_contest_lobby, 0, 0

@@ -916,7 +916,7 @@ static void LoadMapFromWarp(bool32 a1)
         else
             LoadObjEventTemplatesFromHeader();
 
-        if (gMapHeader.mapLayoutId == LAYOUT_NATIONAL_PARK_CONTEST && VarGet(VAR_BUG_CATCHING_CONTEST_STATE) == 1)
+        if (gMapHeader.mapLayoutId == LAYOUT_NATIONAL_PARK && VarGet(VAR_BUG_CATCHING_CONTEST_STATE) == 1)
             PlaceBugCatchingContestObjectEvents();
     }
 

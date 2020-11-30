@@ -28,7 +28,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_CardsGirl",
       "flag": "0"
     },
     {
@@ -43,7 +43,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_MailWoman",
       "flag": "0"
     },
     {
@@ -58,7 +58,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_QuickClawTeacher",
       "flag": "0"
     },
     {
@@ -73,7 +73,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_Youngster1",
       "flag": "0"
     },
     {
@@ -88,7 +88,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_Youngster2",
       "flag": "0"
     },
     {
@@ -103,7 +103,7 @@
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_ScaredWoman",
       "flag": "0"
     },
     {
@@ -118,7 +118,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_Persian",
       "flag": "0"
     },
     {
@@ -133,7 +133,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_Jack",
       "flag": "0"
     },
     {
@@ -148,7 +148,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_Beverly",
       "flag": "0"
     },
     {
@@ -163,7 +163,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_William",
       "flag": "0"
     },
     {
@@ -178,7 +178,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_Krise",
       "flag": "0"
     },
     {
@@ -193,8 +193,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "NationalPark_EventScript_ItemParalyzeHeal",
+      "flag": "FLAG_ITEM_NATIONAL_PARK_PARALYZE_HEAL"
     },
     {
       "type": "original",
@@ -208,7 +208,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "NationalPark_EventScript_GameboyKid",
       "flag": "0"
     },
     {
@@ -223,8 +223,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "NationalPark_EventScript_ItemTM28",
+      "flag": "FLAG_ITEM_NATIONAL_PARK_TM28"
     }
   ],
   "warp_events": [
@@ -246,7 +246,7 @@
       "x": 40,
       "y": 19,
       "elevation": 0,
-      "dest_map": "MAP_NATIONAL_PARK_GATE_EAST",
+      "dest_map": "MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE",
       "dest_warp_id": 0
     }
   ],
@@ -260,7 +260,7 @@
       "y": 45,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "NationalPark_EventScript_RelaxationSquare"
     },
     {
       "type": "sign",
@@ -268,7 +268,7 @@
       "y": 33,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "NationalPark_EventScript_BattleNotice"
     },
     {
       "type": "sign",
@@ -276,15 +276,15 @@
       "y": 4,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "NationalPark_EventScript_TrainerTips"
     },
     {
-      "type": "sign",
+      "type": "hidden_item",
       "x": 8,
       "y": 49,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "elevation": 3,
+      "item": "ITEM_FULL_HEAL",
+      "flag": "FLAG_HIDDEN_ITEM_NATIONAL_PARK_FULL_HEAL"
     }
   ]
 }

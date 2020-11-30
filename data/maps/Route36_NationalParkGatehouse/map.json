@@ -1,7 +1,7 @@
 {
-  "id": "MAP_NATIONAL_PARK_GATE_EAST",
-  "name": "NationalParkGateEast",
-  "layout": "LAYOUT_NATIONAL_PARK_GATE_EAST",
+  "id": "MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE",
+  "name": "Route36_NationalParkGatehouse",
+  "layout": "LAYOUT_ROUTE36_NATIONAL_PARK_GATEHOUSE",
   "music": "MUS_GOLDENROD",
   "region_map_section": "MAPSEC_ROUTE_36",
   "requires_flash": false,
@@ -103,7 +103,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NationalParkGateEast_BehindCounterOfficer",
+      "script": "Route36_NationalParkGatehouse_BehindCounterOfficer",
       "flag": "FLAG_TEMP_1"
     },
     {
@@ -118,7 +118,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NationalParkGateEast_BugContestOfficer",
+      "script": "Route36_NationalParkGatehouse_BugContestOfficer",
       "flag": "FLAG_TEMP_2"
     }
   ],

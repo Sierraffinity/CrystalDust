@@ -1075,7 +1075,7 @@ SECTIONS {
         sound/songs/midi/mus_cable_car.o(.rodata);
         sound/songs/midi/mus_game_corner.o(.rodata);
         sound/songs/midi/mus_azalea.o(.rodata);
-        sound/songs/midi/mus_safari_zone.o(.rodata);
+        sound/songs/midi/mus_bug_catching_contest.o(.rodata);
         sound/songs/midi/mus_victory_road.o(.rodata);
         sound/songs/midi/mus_aqua_magma_hideout.o(.rodata);
         sound/songs/midi/mus_sailing.o(.rodata);
@@ -1096,7 +1096,7 @@ SECTIONS {
         sound/songs/midi/mus_contest_results.o(.rodata);
         sound/songs/midi/mus_hall_of_fame_room.o(.rodata);
         sound/songs/midi/mus_trick_house.o(.rodata);
-        sound/songs/midi/mus_encounter_twins.o(.rodata);
+        sound/songs/midi/mus_bug_contest_prep.o(.rodata);
         sound/songs/midi/mus_encounter_elite_four.o(.rodata);
         sound/songs/midi/mus_encounter_fisherman.o(.rodata);
         sound/songs/midi/mus_contest_lobby.o(.rodata);

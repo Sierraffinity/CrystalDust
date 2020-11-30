@@ -2,7 +2,7 @@ EventScript_BugContest_WhiteOut::
 	special HealPlayerParty
 EventScript_RanOutOfParkBalls::
 	setvar VAR_BUG_CATCHING_CONTEST_STATE, 2
-	setwarp MAP_NATIONAL_PARK_GATE_EAST, 0, -1, -1
+	setwarp MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, 0, -1, -1
 	end
 
 EventScript_CaughtButRanOutOfParkBalls::
@@ -25,7 +25,7 @@ EventScript_WarpOutOfBugCatchingContestHeal::
 	special HealPlayerParty
 EventScript_WarpOutOfBugCatchingContest::
 	setvar VAR_BUG_CATCHING_CONTEST_STATE, 2
-	warp MAP_NATIONAL_PARK_GATE_EAST, 0, -1, -1
+	warp MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, 0, -1, -1
 	waitstate
 	end
 
@@ -84,6 +84,7 @@ Route35_NationalParkGatehouse_BugContestOfficer_ChosePokemon:
 	setvar VAR_0x8004, 2
 	setvar VAR_0x8005, 4
 	special CallFrontierUtilFunc
+	playbgm MUS_BUG_CONTEST_PREP, 0
 	msgbox BugContestOfficer_Text_HereAreTheParkBalls, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_ITEM
 	message BugContestOfficer_Text_ReceivedParkBalls
