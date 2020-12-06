@@ -61,18 +61,26 @@ NationalPark_EventScript_Persian::
 
 
 NationalPark_EventScript_Jack::
+	trainerbattle_single TRAINER_JACK, NationalPark_Text_JackIntro, NationalPark_Text_JackDefeated
+	msgbox NationalPark_Text_JackPostBattle, MSGBOX_AUTOCLOSE
 	return
 
 
 NationalPark_EventScript_Beverly::
+	trainerbattle_single TRAINER_BEVERLY, NationalPark_Text_BeverlyIntro, NationalPark_Text_BeverlyDefeated
+	msgbox NationalPark_Text_BeverlyPostBattle, MSGBOX_AUTOCLOSE
 	return
 
 
 NationalPark_EventScript_William::
+	trainerbattle_single TRAINER_WILLIAM, NationalPark_Text_WilliamIntro, NationalPark_Text_WilliamDefeated
+	msgbox NationalPark_Text_WilliamPostBattle, MSGBOX_AUTOCLOSE
 	return
 
 
 NationalPark_EventScript_Krise::
+	trainerbattle_single TRAINER_KRISE, NationalPark_Text_KriseIntro, NationalPark_Text_KriseDefeated
+	msgbox NationalPark_Text_KrisePostBattle, MSGBOX_AUTOCLOSE
 	return
 
 

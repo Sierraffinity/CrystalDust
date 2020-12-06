@@ -1003,6 +1003,68 @@ text Route35_Text_DirkPostBattle {
 	"But don't overdo it, okay?"
 }
 
+text NationalPark_Text_JackIntro {
+	"The world of POKéMON is deep.\n"
+	"There are still lots of things\l"
+	"we don't know.\p"
+	"But I know more than you do!"
+}
+
+text NationalPark_Text_JackDefeated {
+	"Wha-wha-what?"
+}
+
+text NationalPark_Text_JackPostBattle {
+	"There is a lot to learn.\n"
+	"For example…\p"
+	"There are 50 kinds of TMs.\n"
+	"Traded POKéMON level up faster."
+}
+
+text NationalPark_Text_BeverlyIntro {
+	"My POKéMON are simply darling.\p"
+	"Let me tell you how proud my\n"
+	"darlings make me."
+}
+
+text NationalPark_Text_BeverlyDefeated {
+	"I can beat you in pride, but…"
+}
+
+text NationalPark_Text_BeverlyPostBattle {
+	"I must say, your POKémon are quite\n"
+	"cute, too."
+}
+
+text NationalPark_Text_WilliamIntro {
+	"We adore our POKéMON, even if they\n"
+	"dislike us.\p"
+	"That's what being a POKéFAN is about."
+}
+
+text NationalPark_Text_WilliamDefeated {
+	"M-my POKéMON!"
+}
+
+text NationalPark_Text_WilliamPostBattle {
+	"I lost the battle, but my POKéMON win\n"
+	"the prize for being most lovely."
+}
+
+text NationalPark_Text_KriseIntro {
+	"Hello? Why are you staring at me?\n"
+	"Oh, a battle?"
+}
+
+text NationalPark_Text_KriseDefeated {
+	"…Hmmm…"
+}
+
+text NationalPark_Text_KrisePostBattle {
+	"I thought you were staring at me\n"
+	"because I'm cute!"
+}
+
 raw`
 Route109_Text_DavidIntro: @ 8297140
 	.string "Hiyah! Look at my chiseled abs!\n"

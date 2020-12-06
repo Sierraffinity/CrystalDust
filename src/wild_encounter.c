@@ -15,6 +15,7 @@
 #include "battle_setup.h"
 #include "roamer.h"
 #include "rtc.h"
+#include "sound.h"
 #include "tv.h"
 #include "link.h"
 #include "script.h"

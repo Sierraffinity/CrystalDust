@@ -442,7 +442,7 @@
 #define TRAINER_MADELINE_3                  438
 #define TRAINER_MADELINE_4                  439
 #define TRAINER_MADELINE_5                  440
-#define TRAINER_BEVERLY_OLD                     441
+#define TRAINER_BEVERLY_OLD                 441
 #define TRAINER_IMANI                       442
 #define TRAINER_KYLA                        443
 #define TRAINER_DENISE                      444
