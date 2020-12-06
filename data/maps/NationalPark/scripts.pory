@@ -23,7 +23,7 @@ script NationalPark_EventScript_QuickClawTeacher {
                "…Oops, I have to quit thinking like\n"
                "a teacher all the time.\p"
                "You must be a POKéMON TRAINER.\n"
-               "Since you're working so hard, I\p"
+               "Since you're working so hard, I\l"
                "want you to have this.")
 		giveitem(ITEM_QUICK_CLAW)
 		if (!var(VAR_RESULT))
@@ -35,8 +35,9 @@ script NationalPark_EventScript_QuickClawTeacher {
 			setflag(FLAG_GOT_QUICK_CLAW)
 		}
 	}
-	msgbox("Let a POKéMON hold that QUICK CLAW.\n"
-           "Sometimes it will strike first\l"
+	msgbox("Let one of your POKéMON hold that\n"
+           "QUICK CLAW.\p"
+           "Sometimes it will strike first\n"
            "during battle.")
 	release
 }
@@ -55,7 +56,7 @@ script NationalPark_EventScript_Youngster2 {
 
 script NationalPark_EventScript_ScaredWoman {
     msgbox("I take walks in the PARK, but I\n"
-           "never go into the grass.\p"
+           "never go into the grass.\l"
            "TRAINERS always want to battle…", MSGBOX_NPC)
 }
 
@@ -94,10 +95,10 @@ script NationalPark_EventScript_Krise {
 script NationalPark_EventScript_GameboyKid {
     lock
     faceplayer
-    msgbox("Hey, do you have any clue how to\n"
-           "make my e-Reader read this card?\p"
+    msgbox("Hey, do you know how to get my\n"
+           "e-Reader to read this card?\p"
            "I keep swiping and getting read\n"
-           "errors and-oh! It read the card!")
+           "errors and-{PLAY_SE SE_INTRO_LOGO_DING}{PAUSE 30}oh! It scanned!")
     turnobject(OBJ_EVENT_ID_GAMEBOY_KID, DIR_SOUTH)
     release
 }

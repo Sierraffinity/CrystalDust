@@ -68,7 +68,7 @@ text Route35_GoldenrodGatehouse_Text_Officer_ReadItButDontLoseIt {
     "You can read it, but don't lose it!\n"
     "ROUTE 31!\p"
     "Oh, yeah. There was a weird tree\n"
-    "blocking the road.\p"
+    "blocking the road.\l"
     "I wonder if it's been cleared?"
 }
 

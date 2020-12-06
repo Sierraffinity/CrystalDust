@@ -115,12 +115,13 @@ NationalPark_EventScript_QuickClawTeacher_Text_0:
 	.string "…Oops, I have to quit thinking like\n"
 	.string "a teacher all the time.\p"
 	.string "You must be a POKéMON TRAINER.\n"
-	.string "Since you're working so hard, I\p"
+	.string "Since you're working so hard, I\l"
 	.string "want you to have this.$"
 
 NationalPark_EventScript_QuickClawTeacher_Text_1:
-	.string "Let a POKéMON hold that QUICK CLAW.\n"
-	.string "Sometimes it will strike first\l"
+	.string "Let one of your POKéMON hold that\n"
+	.string "QUICK CLAW.\p"
+	.string "Sometimes it will strike first\n"
 	.string "during battle.$"
 
 NationalPark_EventScript_Youngster1_Text_0:
@@ -135,17 +136,17 @@ NationalPark_EventScript_Youngster2_Text_0:
 
 NationalPark_EventScript_ScaredWoman_Text_0:
 	.string "I take walks in the PARK, but I\n"
-	.string "never go into the grass.\p"
+	.string "never go into the grass.\l"
 	.string "TRAINERS always want to battle…$"
 
 NationalPark_EventScript_Persian_Text_0:
 	.string "PERSIAN: Fufushaa!$"
 
 NationalPark_EventScript_GameboyKid_Text_0:
-	.string "Hey, do you have any clue how to\n"
-	.string "make my e-Reader read this card?\p"
+	.string "Hey, do you know how to get my\n"
+	.string "e-Reader to read this card?\p"
 	.string "I keep swiping and getting read\n"
-	.string "errors and-oh! It read the card!$"
+	.string "errors and-{PLAY_SE SE_INTRO_LOGO_DING}{PAUSE 30}oh! It scanned!$"
 
 NationalPark_EventScript_RelaxationSquare_Text_0:
 	.string "RELAXATION SQUARE\n"

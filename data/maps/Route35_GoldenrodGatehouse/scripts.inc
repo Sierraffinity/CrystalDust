@@ -126,7 +126,7 @@ Route35_GoldenrodGatehouse_Text_Officer_ReadItButDontLoseIt::
 	.string "You can read it, but don't lose it!\n"
 	.string "ROUTE 31!\p"
 	.string "Oh, yeah. There was a weird tree\n"
-	.string "blocking the road.\p"
+	.string "blocking the road.\l"
 	.string "I wonder if it's been cleared?$"
 
 Route35_GoldenrodGatehouse_Text_Officer_PalWasSnoozing::
