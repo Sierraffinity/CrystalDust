@@ -883,7 +883,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Jack[] = {
 static const struct TrainerMonItemDefaultMoves sParty_Beverly[] = {
     {
     .iv = 0,
-    .lvl = 30,
+    .lvl = 14,
     .species = SPECIES_SNUBBULL,
     .heldItem = ITEM_ORAN_BERRY,
     }
