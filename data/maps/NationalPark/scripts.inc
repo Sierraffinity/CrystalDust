@@ -111,8 +111,8 @@ NationalPark_EventScript_TrainerTips::
 NationalPark_EventScript_CardsGirl_Text_0:
 	.string "Look!\n"
 	.string "Check out my cards!\p"
-	.string "They have special barcodes on\n"
-	.string "them that you can scan in.$"
+	.string "They have special barcodes on them\n"
+	.string "that you can scan with the e-Reader.$"
 
 NationalPark_EventScript_MailWoman_Text_0:
 	.string "This is MAIL I got from my daughter.\n"

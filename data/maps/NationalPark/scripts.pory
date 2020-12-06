@@ -5,8 +5,8 @@ mapscripts NationalPark_MapScripts { }
 script NationalPark_EventScript_CardsGirl {
     msgbox("Look!\n"
            "Check out my cards!\p"
-           "They have special barcodes on\n"
-           "them that you can scan in.", MSGBOX_NPC)
+           "They have special barcodes on them\n"
+           "that you can scan with the e-Reader.", MSGBOX_NPC)
 }
 
 script NationalPark_EventScript_MailWoman {
