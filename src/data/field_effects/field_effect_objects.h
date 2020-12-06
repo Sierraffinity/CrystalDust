@@ -617,6 +617,13 @@ static const struct SpriteFrameImage sPicTable_LongGrass[] = {
     overworld_frame(gFieldEffectObjectPic_LongGrass, 2, 2, 3),
 };
 
+static const struct SpriteFrameImage sPicTable_LongGrassTopEdge[] = {
+    overworld_frame(gFieldEffectObjectPic_LongGrassTopEdge, 2, 2, 0),
+    overworld_frame(gFieldEffectObjectPic_LongGrassTopEdge, 2, 2, 1),
+    overworld_frame(gFieldEffectObjectPic_LongGrassTopEdge, 2, 2, 2),
+    overworld_frame(gFieldEffectObjectPic_LongGrassTopEdge, 2, 2, 3),
+};
+
 static const union AnimCmd sAnim_LongGrass[] =
 {
     ANIMCMD_FRAME(1, 3),
@@ -640,6 +647,16 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_LongGrass = {
     .oam = &gObjectEventBaseOam_16x16,
     .anims = sAnimTable_LongGrass,
     .images = sPicTable_LongGrass,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateLongGrassFieldEffect,
+};
+
+const struct SpriteTemplate gFieldEffectObjectTemplate_LongGrassTopEdge = {
+    .tileTag = SPRITE_INVALID_TAG,
+    .paletteTag = FLDEFF_PAL_TAG_GENERAL_1,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = sAnimTable_LongGrass,
+    .images = sPicTable_LongGrassTopEdge,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = UpdateLongGrassFieldEffect,
 };

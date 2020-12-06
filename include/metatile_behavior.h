@@ -84,6 +84,7 @@ bool8 MetatileBehavior_HasRipples(u8);
 bool8 MetatileBehavior_IsPuddle(u8);
 bool8 MetatileBehavior_IsTallGrass(u8);
 bool8 MetatileBehavior_IsLongGrass(u8);
+bool8 MetatileBehavior_IsLongGrassTop(u8);
 bool8 MetatileBehavior_IsBerryTreeSoil(u8);
 bool8 MetatileBehavior_IsAshGrass(u8);
 bool8 MetatileBehavior_IsFootprints(u8);
@@ -154,7 +155,7 @@ bool8 MetatileBehavior_IsBattlePyramidWarp(u8);
 bool8 MetatileBehavior_IsPlayerFacingWirelessBoxResults(u8 tile, u8 playerDir);
 bool8 MetatileBehavior_IsCableBoxResults2(u8 tile, u8 playerDir);
 bool8 MetatileBehavior_IsQuestionnaire(u8);
-bool8 MetatileBehavior_IsLongGrass_Duplicate(u8);
+bool8 MetatileBehavior_IsAnyLongGrass(u8);
 bool8 MetatileBehavior_IsLongGrassSouthEdge(u8);
 bool8 MetatileBehavior_IsTrainerHillTimer(u8);
 

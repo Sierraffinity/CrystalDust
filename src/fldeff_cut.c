@@ -585,7 +585,7 @@ static void CutGrassSpriteCallbackEnd(struct Sprite *sprite)
 void FixLongGrassMetatilesWindowTop(s16 x, s16 y)
 {
     u8 metatileBehavior = MapGridGetMetatileBehaviorAt(x, y);
-    if (MetatileBehavior_IsLongGrass_Duplicate(metatileBehavior))
+    if (MetatileBehavior_IsAnyLongGrass(metatileBehavior))
     {
         switch (GetLongGrassCaseAt(x, y + 1))
         {

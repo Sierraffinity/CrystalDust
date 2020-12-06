@@ -15,7 +15,7 @@ static const u8 sTileBitAttributes[] =
     [MB_TALL_GRASS] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
     [MB_LONG_GRASS] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
     [MB_HEADBUTT_TREE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_05] = TILE_ATTRIBUTES(FALSE, FALSE, TRUE),
+    [MB_LONG_GRASS_TOP_EDGE] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
     [MB_DEEP_SAND] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
     [MB_SHORT_GRASS] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_UNUSED_CAVE] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
@@ -535,9 +535,9 @@ bool8 MetatileBehavior_IsTrickHouseSlipperyFloor(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 Unref_MetatileBehavior_IsUnused05(u8 metatileBehavior)
+bool8 MetatileBehavior_IsLongGrassTop(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_UNUSED_05)
+    if (metatileBehavior == MB_LONG_GRASS_TOP_EDGE)
         return TRUE;
     else
         return FALSE;
@@ -1415,6 +1415,7 @@ bool8 MetatileBehavior_IsRunningDisallowed(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_NO_RUNNING
      || metatileBehavior == MB_LONG_GRASS
+     || metatileBehavior == MB_LONG_GRASS_TOP_EDGE
      || metatileBehavior == MB_HOT_SPRINGS
      || MetatileBehavior_IsPacifidlogLog(metatileBehavior) != FALSE)
         return TRUE;
@@ -1426,6 +1427,7 @@ bool8 MetatileBehavior_IsCuttableGrass(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_TALL_GRASS
      || metatileBehavior == MB_LONG_GRASS
+     || metatileBehavior == MB_LONG_GRASS_TOP_EDGE
      || metatileBehavior == MB_ASHGRASS
      || metatileBehavior == MB_LONG_GRASS_SOUTH_EDGE)
         return TRUE;
@@ -1565,9 +1567,10 @@ bool8 MetatileBehavior_IsQuestionnaire(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsLongGrass_Duplicate(u8 metatileBehavior)
+bool8 MetatileBehavior_IsAnyLongGrass(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_LONG_GRASS)
+    if (metatileBehavior == MB_LONG_GRASS ||
+        metatileBehavior == MB_LONG_GRASS_TOP_EDGE)
         return TRUE;
     else
         return FALSE;

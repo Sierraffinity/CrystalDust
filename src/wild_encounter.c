@@ -1179,7 +1179,7 @@ static void ApplyLongGrassEncounterRateMod(u32 *encRate)
     PlayerGetDestCoords(&x, &y);
     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
 
-    if (MetatileBehavior_IsLongGrass(tileBehavior))
+    if (MetatileBehavior_IsAnyLongGrass(tileBehavior))
         *encRate = *encRate * 2;
 }
 
