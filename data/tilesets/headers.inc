@@ -915,5 +915,5 @@ gTileset_NationalPark::
 	.4byte gTilesetPalettes_NationalPark
 	.4byte gMetatiles_NationalPark
 	.4byte gMetatileAttributes_NationalPark
-	.4byte NULL @ animation callback
+	.4byte InitTilesetAnim_NationalPark
 	.4byte NULL @ palette overrides
