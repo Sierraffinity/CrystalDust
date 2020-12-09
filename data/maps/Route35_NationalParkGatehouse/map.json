@@ -29,7 +29,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route35_NationalParkGatehouse_NoContestOfficer",
-      "flag": "FLAG_TEMP_1"
+      "flag": "FLAG_TEMP_11"
     },
     {
       "type": "original",
@@ -44,7 +44,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route35_NationalParkGatehouse_Youngster",
-      "flag": "FLAG_TEMP_1"
+      "flag": "FLAG_TEMP_11"
     },
     {
       "type": "original",
@@ -58,8 +58,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route35_NationalParkGatehouse_BugContestOfficer",
-      "flag": "FLAG_TEMP_2"
+      "script": "Route35_NationalParkGatehouse_EventScript_BugContestOfficer",
+      "flag": "FLAG_TEMP_12"
     }
   ],
   "warp_events": [

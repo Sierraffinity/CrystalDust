@@ -10189,7 +10189,7 @@
           "map": "MAP_NATIONAL_PARK",
           "base_label": "gNationalPark",
           "land_mons": {
-            "encounter_rate": 12,
+            "encounter_rate": 20,
             "mons": [
               [
                 {
@@ -10384,7 +10384,7 @@
           "map": "MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST",
           "base_label": "gNationalPark_BugCatchingContest",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 40,
             "mons": [
               [
                 {
@@ -11905,7 +11905,7 @@
           "map": "MAP_ROUTE35",
           "base_label": "gRoute35",
           "headbutt_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 180,
             "mons": [
               [
                 {

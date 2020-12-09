@@ -1,3 +1,4 @@
+raw `
 EventScript_BugContest_WhiteOut::
 	special HealPlayerParty
 EventScript_RanOutOfParkBalls::
@@ -186,31 +187,36 @@ BugContestOfficer_Text_GivePrizeItem:
 
 BugContestOfficer_Text_NoRoomInBag:
 	.string "Your BAG is still full…\n"
-	.string "Please make room for your prize.$"
+	.string "Please make room for your prize.$"`
 
-NationalParkGate_DoYouWantToFinishOneMinute::
-	.string "The contest is still going for\n"
-	.string "another minute or so.\p"
-	.string "Do you want to finish now?$"
+text NationalParkGate_DoYouWantToFinishOneMinute {
+    "The contest is still going for\n"
+    "another minute or so.\p"
+    "Do you want to finish now?"
+}
 
-NationalParkGate_DoYouWantToFinishMinutes::
-	.string "The contest is still going for\n"
-	.string "another {STR_VAR_1} minutes.\p"
-	.string "Do you want to finish now?$"
+text NationalParkGate_DoYouWantToFinishMinutes {
+    "The contest is still going for\n"
+    "another {STR_VAR_1} minutes.\p"
+    "Do you want to finish now?"
+}
 
-NationalParkGate_Text_GetBackOutside::
-	.string "Okay. Please get back outside and\n"
-	.string "finish up.$"
+text NationalParkGate_Text_GetBackOutside {
+    "Okay. Please get back outside and\n"
+    "finish up."
+}
 
-NationalParkGate_Text_WeHoldContests::
-	.string "We hold Contests regularly in the\n"
-	.string "PARK.\p"
-	.string "You should give it a shot.$"
+text NationalParkGate_Text_WeHoldContests {
+    "We hold Contests regularly in the\n"
+    "PARK.\p"
+    "You should give it a shot."
+}
 
-Route35_NationalParkGatehouse_Text_ContestInfo::
-	.string "The Bug-Catching Contest is held\n"
-	.string "on Tuesday, Thursday and Saturday.\p"
-	.string "Not only do you earn a prize just\n"
-	.string "for participating, you also get\l"
-	.string "to keep the bug POKéMON you caught\l"
-	.string "at the end of the contest.$"
+text Route35_NationalParkGatehouse_Text_ContestInfo {
+    "The Bug-Catching Contest is held\n"
+    "on Tuesday, Thursday and Saturday.\p"
+    "Not only do you earn a prize just\n"
+    "for participating, you also get\l"
+    "to keep the bug POKéMON you caught\l"
+    "at the end of the contest."
+}
