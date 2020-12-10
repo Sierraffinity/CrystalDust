@@ -91,7 +91,7 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
         waitmessage
         waitfanfare
         closemessage
-        call(EventScript_RestorePrevTextColor)
+        textcolor(MSG_COLOR_PREV)
         removeitem(ITEM_MYSTERY_EGG)
         delay(10)
         playse(SE_LEDGE)
@@ -426,6 +426,7 @@ script NewBarkTown_EventScript_PokeBallMain {
     {
         turnobject(OBJ_EVENT_ID_ELM, DIR_EAST)
         showmonpic(PLAYER_STARTER_SPECIES, 10, 3)
+        playmoncry(PLAYER_STARTER_SPECIES, 0)
         textcolor(MSG_COLOR_BLUE)
         switch (var(PLAYER_STARTER_NUM))
         {
@@ -456,7 +457,7 @@ script NewBarkTown_EventScript_PokeBallMain {
             removeobject(VAR_LAST_TALKED)
             msgbox("ELM: I think that's a great\n"
                    "POKéMON too!")
-            call(EventScript_RestorePrevTextColor)
+            textcolor(MSG_COLOR_PREV)
             setflag(FLAG_SYS_POKEMON_GET)
             givemon(PLAYER_STARTER_SPECIES, 5, ITEM_ORAN_BERRY)
             copyvar(VAR_STARTER_MON, PLAYER_STARTER_NUM) // 0=Chikorita, 1=Totodile, 2=Cyndaquil
@@ -516,7 +517,7 @@ script NewBarkTown_EventScript_PokeBallMain {
                    "Call me if anything comes up!")
             setflag(FLAG_PHONE_CARD_ELM)
             playfanfare(MUS_REGISTER_MATCH_CALL)
-            call(EventScript_RestorePrevTextColor)
+            textcolor(MSG_COLOR_PREV)
             msgbox("{PLAYER} got PROF. ELM's phone\n"
                    "number.")
             waitfanfare

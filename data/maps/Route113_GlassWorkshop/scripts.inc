@@ -12,7 +12,7 @@ Route113_GlassWorkshop_MapScripts:: @ 826ED03
 	.set LOWEST_ASH_PRICE,   BLUE_FLUTE_PRICE
 
 Route113_GlassWorkshop_OnTransition: @ 826ED09
-	setflag FLAG_LANDMARK_GLASS_WORKSHOP
+	setflag FLAG_LANDMARK_NATIONAL_PARK
 	compare VAR_GLASS_WORKSHOP_STATE, 1
 	call_if_eq Route113_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack
 	end

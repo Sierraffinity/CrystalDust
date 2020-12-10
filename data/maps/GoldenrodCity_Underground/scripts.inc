@@ -275,7 +275,7 @@ GoldenrodCity_Underground_EventScript_Haircut_Result::
 	case 2, GoldenrodCity_Underground_EventScript_Haircut_Result_5
 GoldenrodCity_Underground_EventScript_Haircut_Result_1:
 	waitmoncry
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	return
 
 GoldenrodCity_Underground_EventScript_Haircut_Result_3:

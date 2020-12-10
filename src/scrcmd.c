@@ -51,6 +51,7 @@
 #include "tv.h"
 #include "window.h"
 #include "constants/event_objects.h"
+#include "constants/text.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(void);
@@ -1272,8 +1273,17 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
 
 bool8 ScrCmd_textcolor(struct ScriptContext *ctx)
 {
-    gSpecialVar_TextColorBackup = gSpecialVar_TextColor;
-    gSpecialVar_TextColor = ScriptReadByte(ctx);
+    u8 textColor = ScriptReadByte(ctx);
+
+    if (textColor == MSG_COLOR_PREV)
+    {
+        gSpecialVar_TextColor = gSpecialVar_TextColorBackup;
+    }
+    else
+    {
+        gSpecialVar_TextColorBackup = gSpecialVar_TextColor;
+        gSpecialVar_TextColor = textColor;
+    }
     return FALSE;
 }
 
@@ -1463,7 +1473,6 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
     u8 isShiny = ScriptReadByte(ctx);
 
     ScriptMenu_ShowPokemonPic(species, x, y, isShiny);
-    PlayCry5(species, 0);
     return FALSE;
 }
 

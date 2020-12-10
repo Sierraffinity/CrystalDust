@@ -100,7 +100,7 @@ script Route34_DayCare_EventScript_DaycareAcceptEgg {
         textcolor(MSG_COLOR_SYS)
         message("{PLAYER} received the EGG from\n"
                 "the DAY-CARE MAN.")
-	    call(EventScript_RestorePrevTextColor)
+	    textcolor(MSG_COLOR_PREV)
         playfanfare(MUS_LEVEL_UP)
         waitfanfare
         waitbuttonpress
@@ -390,7 +390,7 @@ script Route34_DayCare_EventScript_CostPrompt {
 	        textcolor(MSG_COLOR_SYS)
             msgbox("{PLAYER} took back {STR_VAR_1} from\n"
                    "the DAY-CARE LADY.", MSGBOX_DEFAULT)
-	        call(EventScript_RestorePrevTextColor)
+	        textcolor(MSG_COLOR_PREV)
             waitmoncry
             specialvar(VAR_RESULT, GetDaycareState)
             if (var(VAR_RESULT) == DAYCARE_ONE_MON)

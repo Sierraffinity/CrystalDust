@@ -20,7 +20,7 @@ VioletCity_Gym_EventScript_FalknerDefeated::
 	message VioletCity_Gym_EventScript_FalknerDefeated_Text_0
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	setflag FLAG_DEFEATED_VIOLET_GYM
 	setflag FLAG_BADGE01_GET
 	setflag FLAG_FORCED_CALL_ELM_AIDE_IN_VIOLET

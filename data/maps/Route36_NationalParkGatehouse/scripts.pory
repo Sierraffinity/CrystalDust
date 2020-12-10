@@ -1,0 +1,462 @@
+mapscripts Route36_NationalParkGatehouse_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        gettime
+        if (var(VAR_BUG_CATCHING_CONTEST_STATE) == 2)
+        {
+            setflag(FLAG_TEMP_12)
+        }
+        elif (var(VAR_BUG_CATCHING_CONTEST_STATE) == 1 ||
+            var(VAR_0x8003) == DAY_TUESDAY ||
+            var(VAR_0x8003) == DAY_THURSDAY ||
+            var(VAR_0x8003) == DAY_SATURDAY)
+        {
+            setflag(FLAG_TEMP_11)
+            setflag(FLAG_TEMP_13)
+        }
+        else
+        {
+            setflag(FLAG_TEMP_12)
+            setflag(FLAG_TEMP_13)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_BUG_CATCHING_CONTEST_STATE, 1 {
+            lock
+            applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EndContestPlayerMovement)
+            waitmovement(0)
+            textcolor(MSG_COLOR_BLUE)
+            specialvar(VAR_RESULT, CopyBugCatchingContestRemainingMinutesToVar1)
+        
+            if (var(VAR_RESULT) == 0)
+            {
+                msgbox(BugCatchingContest_Text_Officer_DoYouWantToFinishOneMinute, MSGBOX_YESNO)
+            }
+            elif (var(VAR_RESULT) == 1)
+            {
+                msgbox(BugCatchingContest_Text_Officer_DoYouWantToFinishMinutes, MSGBOX_YESNO)
+            }
+
+            if (var(VAR_RESULT) == YES)
+            {
+                msgbox("Okay. Please wait here for the\n"
+                       "announcement of the winners.")
+                closemessage
+                setvar(VAR_BUG_CATCHING_CONTEST_STATE, 3)
+                fadescreen(1)
+                applymovement (OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_MoveToPlayerSpot)
+                addobject(1)
+                addobject(2)
+                addobject(3)
+                addobject(4)
+                addobject(5)
+                addobject(6)
+                removeobject(7)
+                waitmovement(0)
+                special(SpawnCameraObject)
+                applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRight)
+                waitmovement(0)
+                special(RemoveCameraObject)
+                fadescreen(0)
+                call(Route36_NationalParkGatehouse_EventScript_AwardsCeremony)
+            }
+            else
+            {
+                msgbox(BugCatchingContest_Text_Officer_GetBackOutside)
+                closemessage
+                applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterContest)
+                waitmovement(0)
+                warp(MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 2, -1, -1)
+                waitstate
+            }
+            release
+        }
+        VAR_BUG_CATCHING_CONTEST_STATE, 2 {
+            lock
+            applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony)
+            waitmovement(0)
+            special(SpawnCameraObject)
+            applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRight)
+            waitmovement(0)
+            special(RemoveCameraObject)
+            call(Route36_NationalParkGatehouse_EventScript_AwardsCeremony)
+        }
+    ]
+    MAP_SCRIPT_ON_TRANSITION {
+        if (var(VAR_BUG_CATCHING_CONTEST_STATE) != 0)
+        {
+            special(SetAwardsCeremonyBugContestObjectEventGraphics)
+        }
+    }
+}
+
+movement Route36_NationalParkGatehouse_Movement_EndContestPlayerMovement {
+    walk_up
+}
+
+movement Route36_NationalParkGatehouse_Movement_MoveToPlayerSpot {
+    walk_fast_down
+    walk_fast_right
+    face_up
+}
+
+movement Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony {
+    walk_right
+    face_up
+}
+
+movement Route36_NationalParkGatehouse_Movement_CameraPanRight {
+    walk_right * 2
+}
+
+script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
+    special(DetermineBugCatchingContestStandings)
+    textcolor(MSG_COLOR_BLUE)
+    message("We will now judge the POKéMON\n"
+            "you've caught.\p"
+            "…{PAUSE 0x0F}…{PAUSE 0x0F}…{PAUSE 0x0F}\n"
+            "…{PAUSE 0x0F}…{PAUSE 0x0F}…{PAUSE 0x0F}\p"
+            "We have chosen the winners!\p"
+            "Are you ready for this?\p")
+    waitmessage
+    setvar(VAR_0x8004, 3)
+    special(BuildBugContestPlacementString)
+    message(gStringVar4)
+    waitmessage
+    playfanfare(MUS_SLOTS_WIN)
+    waitfanfare
+    special(CopyBugContestPlacementScoreToVar1)
+    message(Route36_NationalParkGatehouse_Text_TheScoreWas)
+    waitmessage
+    setvar(VAR_0x8004, 2)
+    special(BuildBugContestPlacementString)
+    message(gStringVar4)
+    waitmessage
+    playfanfare(MUS_SLOTS_WIN)
+    waitfanfare
+    special(CopyBugContestPlacementScoreToVar1)
+    message(Route36_NationalParkGatehouse_Text_TheScoreWas)
+    waitmessage
+    setvar(VAR_0x8004, 1)
+    special(BuildBugContestPlacementString)
+    message(gStringVar4)
+    waitmessage
+    specialvar(VAR_RESULT, GetWinningBugContestSpecies)
+    if (var(VAR_0x8005) == 0)
+    {
+        showmonpic(VAR_RESULT, 10, 3)
+    }
+    else
+    {
+        showmonpic(VAR_RESULT, 10, 3, TRUE)
+    }
+
+    playfanfare(MUS_EVOLVED)
+    waitfanfare
+    special(CopyBugContestPlacementScoreToVar1)
+    message("The winning score was a whopping\n"
+            "{STR_VAR_1} points!")
+    waitmessage
+    hidemonpic
+    specialvar(VAR_RESULT, GetPlayerBugContestPlace)
+    switch (var(VAR_RESULT))
+    {
+        case 1:
+            setvar(VAR_BUG_CONTEST_PRIZE, ITEM_SUN_STONE)
+            bufferitemname(0, VAR_BUG_CONTEST_PRIZE)
+            msgbox("{PLAYER}, your champion, wins a\n"
+                   "fabulous {STR_VAR_1}!")
+            setflag(FLAG_TEMP_1)
+        case 2:
+            setvar(VAR_BUG_CONTEST_PRIZE, ITEM_EVERSTONE)
+            bufferitemname(0, VAR_BUG_CONTEST_PRIZE)
+            msgbox("{PLAYER}, the runner-up, wins a\n"
+                   "nifty {STR_VAR_1}!")
+        case 3:
+            setvar(VAR_BUG_CONTEST_PRIZE, ITEM_SITRUS_BERRY)
+            bufferitemname(0, VAR_BUG_CONTEST_PRIZE)
+            msgbox("{PLAYER} wins the third-place prize\n"
+                   "of a sweet {STR_VAR_1}!")
+        default:
+            setvar(VAR_BUG_CONTEST_PRIZE, ITEM_ORAN_BERRY)
+            bufferitemname(0, VAR_BUG_CONTEST_PRIZE)
+            msgbox("Everyone else gets an {STR_VAR_1}\n"
+                   "as a consolation prize!")
+    }
+
+    giveitem(VAR_BUG_CONTEST_PRIZE)
+    if (var(VAR_RESULT) == FALSE)
+    {
+        msgbox("Uh-oh… Your BAG is full.\n"
+               "We'll hold onto your prize for now.\p"
+               "Please make room in your BAG, then\n"
+               "come see me.")
+    }
+    else
+    {
+        setvar(VAR_BUG_CONTEST_PRIZE, ITEM_NONE)
+    }
+
+    specialvar(VAR_RESULT, GetPlayerBugContestPlace)
+    switch (var(VAR_RESULT))
+    {
+        case 1:
+        case 2:
+        case 3:
+            msgbox("Please join us for the next\n"
+                   "Bug-Catching Contest!")
+        default:
+            msgbox("We hope you do better next time.")
+    }
+    setvar(VAR_BUG_CATCHING_CONTEST_STATE, 0)
+
+    if (flag(FLAG_LEFT_MONS_WITH_CONTEST_OFFICER))
+    {
+        msgbox("We'll return the POKéMON we kept for\n"
+               "you. Here you go!")
+        call(EventScript_ReturnBugCatchingContestMons)
+        clearflag(FLAG_LEFT_MONS_WITH_CONTEST_OFFICER)
+    }
+
+    special(GiveCaughtBugCatchingContestMon)
+    textcolor(MSG_COLOR_SYS)
+    if (var(VAR_RESULT) == 0)
+    {
+        msgbox(Route36_NationalParkGatehouse_Text_NicknameCaughtMon, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            call(Common_EventScript_GetGiftMonPartySlot)
+            call(Common_EventScript_NameReceivedPartyMon)
+        }
+    }
+    elif (var(VAR_RESULT) == 1)
+    {
+        msgbox(Route36_NationalParkGatehouse_Text_NicknameCaughtMon, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            call(Common_EventScript_NameReceivedBoxMon)
+        }
+        call(Common_EventScript_TransferredToPC)
+    }
+
+    special(EndBugCatchingContest)
+    closemessage
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanLeft)
+    waitmovement(0)
+    special(RemoveCameraObject)
+}
+
+text Route36_NationalParkGatehouse_Text_TheScoreWas {
+    "The score was {STR_VAR_1} points!\p"
+}
+
+text Route36_NationalParkGatehouse_Text_NicknameCaughtMon {
+    "Do you want to give a nickname to\n"
+    "the {STR_VAR_1} you caught?"
+}
+
+movement Route36_NationalParkGatehouse_Movement_CameraPanLeft {
+    walk_left * 2
+}
+
+script Route36_NationalParkGatehouse_BugContestOfficer {
+    lock
+    faceplayer
+    if (var(VAR_BUG_CONTEST_PRIZE) != ITEM_NONE)
+    {
+        call(BugCatchingContest_EventScript_Officer_GivePrizeItem)
+    }
+    elif (flag(FLAG_DAILY_BUG_CATCHING_CONTEST))
+    {
+        msgbox(BugCatchingContest_Text_Officer_ContestIsOver)
+    }
+    else
+    {
+        gettime
+        if (var(VAR_0x8003) == DAY_TUESDAY ||
+            var(VAR_0x8003) == DAY_THURSDAY ||
+            var(VAR_0x8003) == DAY_SATURDAY)
+        {
+            call(BugCatchingContest_EventScript_Officer_EnterContest)
+            if (var(VAR_RESULT) == TRUE)
+            {
+                applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterContest)
+                waitmovement(0)
+                warp(MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 2, -1, -1)
+                waitstate
+            }
+        }
+        else
+        {
+            msgbox(Route36_NationalParkGatehouse_Text_Officer_NoContest)
+        }
+    }
+    release
+}
+
+text Route36_NationalParkGatehouse_Text_Officer_NoContest {
+    "Some POKéMON can only be seen in\n"
+    "the PARK."
+}
+
+movement Route36_NationalParkGatehouse_Movement_EnterContest {
+    walk_down
+    face_left
+}
+
+script Route36_NationalParkGatehouse_BehindCounterOfficer {
+    lock
+    faceplayer
+    if (var(VAR_BUG_CONTEST_PRIZE) != ITEM_NONE)
+    {
+        call(BugCatchingContest_EventScript_Officer_GivePrizeItem)
+    }
+    elif (flag(FLAG_DAILY_BUG_CATCHING_CONTEST))
+    {
+        msgbox(BugCatchingContest_Text_Officer_ContestIsOver)
+    }
+    else
+    {
+        msgbox(Route36_NationalParkGatehouse_Text_Officer_NoContest)
+    }
+    release
+}
+
+script Route36_NationalParkGatehouse_Nick {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("NICK: Well done!\n"
+               "I'm going to raise my POKéMON\l"
+               "better.", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("NICK: Maybe you get a higher score\p"
+               "for POKéMON of an unusual color.", MSGBOX_NPC)
+    }
+}
+
+script Route36_NationalParkGatehouse_William {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("WILLIAM: You're the winner?\n"
+               "What did you catch?", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("WILLIAM: Well, I'm satisfied because\n"
+               "I caught a POKéMON that I wanted.", MSGBOX_NPC)
+    }
+}
+
+script Route36_NationalParkGatehouse_Samuel {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("SAMUEL: Next time, I'm going to win.", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("SAMUEL: Next time, I think I can\n"
+               "score even higher.", MSGBOX_NPC)
+    }
+}
+
+script Route36_NationalParkGatehouse_Barry {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("BARRY: That POKéMON you caught…\n"
+               "It's awesome!", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("BARRY: It's easier to win if you get\n"
+               "a high-level BUG POKéMON.\p"
+               "But I think they also consider some\n"
+               "other points.", MSGBOX_NPC)
+    }
+}
+
+script Route36_NationalParkGatehouse_Ed {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("ED: I envy you.\n"
+               "I just couldn't do it this time.", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("ED: Maybe you win with rare POKéMON?", MSGBOX_NPC)
+    }
+}
+
+script Route36_NationalParkGatehouse_Benny {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("BENNY: Congrats!\n"
+               "You have earned my respect!", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("BENNY: I caught a SCYTHER before,\n"
+               "but I didn't win.", MSGBOX_NPC)
+    }
+}
+
+script Route36_NationalParkGatehouse_Josh {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("JOSH: I… I can't believe I\n"
+               "lost at BUG-catching…", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("JOSH: I heard that somebody won\n"
+               "with a CATERPIE!", MSGBOX_NPC)
+    }
+}
+
+script Route36_NationalParkGatehouse_JoshPlayerLost {
+}
+
+script Route36_NationalParkGatehouse_Don {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("DON: Wow, you beat me.\n"
+               "You're pretty good.", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("DON: Luck plays a big part in this.\p"
+               "You never know what POKéMON will\n"
+               "appear.", MSGBOX_NPC)
+    }
+}
+
+script Route36_NationalParkGatehouse_Kipp {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("KIPP: Could you give me some tips?\n"
+               "I want to study your style.", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("KIPP: I study a lot, but that's not\n"
+               "good enough to win.", MSGBOX_NPC)
+    }
+}
+
+script Route36_NationalParkGatehouse_KippPlayerLost {
+}
+
+script Route36_NationalParkGatehouse_Cindy {
+    if (flag(FLAG_TEMP_1))
+    {
+        msgbox("CINDY: You won?\n"
+               "That's great!\p"
+               "Do you feel like looking for more\n"
+               "BUG POKéMON with me?", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("CINDY: I really love BUG POKéMON!", MSGBOX_NPC)
+    }
+}

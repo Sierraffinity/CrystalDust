@@ -28,7 +28,7 @@ GoldenrodCity_BillsFamilysHouse_EventScript_Bill_5:
 	goto_if_eq GoldenrodCity_BillsFamilysHouse_EventScript_Bill_10
 	goto GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull
 GoldenrodCity_BillsFamilysHouse_EventScript_Bill_8:
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	setflag FLAG_GOT_EEVEE_FROM_BILL
 	msgbox GoldenrodCity_BillsFamilysHouse_EventScript_Bill_Text_3
 	goto GoldenrodCity_BillsFamilysHouse_EventScript_Bill_1
@@ -60,7 +60,7 @@ GoldenrodCity_BillsFamilysHouse_EventScript_Bill_17:
 
 
 GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull::
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	msgbox GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull_Text_0
 	release
 	return
@@ -112,7 +112,7 @@ GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister_5:
 	textcolor MSG_COLOR_SYS
 	msgbox GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister_Text_1
 	waitfanfare
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	msgbox GoldenrodCity_BillsFamilysHouse_Text_BillsSister_AfterPhoneNumber
 	goto GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister_1
 

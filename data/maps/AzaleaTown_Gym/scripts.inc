@@ -20,7 +20,7 @@ AzaleaTown_Gym_EventScript_BugsyDefeated::
 	message AzaleaTown_Gym_EventScript_BugsyDefeated_Text_0
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	setflag FLAG_DEFEATED_AZALEA_GYM
 	setflag FLAG_BADGE02_GET
 	setgymtrainers 2

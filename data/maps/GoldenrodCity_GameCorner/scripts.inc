@@ -257,7 +257,7 @@ GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize::
 	compare VAR_RESULT, YES
 	goto_if_eq GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize_2
 GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize_1:
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	goto GoldenrodCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice
 	return
 

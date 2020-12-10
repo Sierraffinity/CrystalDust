@@ -50,7 +50,7 @@ script Route35_GoldenrodGatehouse_EventScript_Officer {
                 message("{PLAYER} received a POKéMON with MAIL.")
                 waitmessage
                 waitfanfare
-	            call(EventScript_RestorePrevTextColor)
+	            textcolor(MSG_COLOR_PREV)
                 msgbox(Route35_GoldenrodGatehouse_Text_Officer_ReadItButDontLoseIt)
                 setflag(FLAG_GOT_KENYA_FROM_RANDY)
             }

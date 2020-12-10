@@ -1039,7 +1039,8 @@ text NationalPark_Text_BeverlyPostBattle {
 text NationalPark_Text_WilliamIntro {
 	"We adore our POKéMON, even if they\n"
 	"dislike us.\p"
-	"That's what being a POKéFAN is about."
+	"That's what being a POKéFAN is all\n"
+	"about."
 }
 
 text NationalPark_Text_WilliamDefeated {

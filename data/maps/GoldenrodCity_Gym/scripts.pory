@@ -20,7 +20,7 @@ script GoldenrodCity_Gym_EventScript_Whitney {
                 "from WHITNEY.")
         waitmessage
         call(Common_EventScript_PlayGymBadgeFanfare)
-        call(EventScript_RestorePrevTextColor)
+        textcolor(MSG_COLOR_PREV)
         setflag(FLAG_BADGE03_GET)
         goto(GoldenrodCity_Gym_EventScript_GiveAttract)
     }

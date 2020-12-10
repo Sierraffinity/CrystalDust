@@ -43,7 +43,7 @@ script NewBarkTown_PlayersHouse_1F_MomEncounter {
            "Oh, I almost forgot! Your POKéMON\n"
            "GEAR is back from the repair shop.\l"
            "Here you go!")
-    call(EventScript_RestorePrevTextColor)
+    textcolor(MSG_COLOR_PREV)
     playfanfare(MUS_OBTAIN_ITEM)
     message("{PLAYER} received the POKéGEAR.")
     waitfanfare

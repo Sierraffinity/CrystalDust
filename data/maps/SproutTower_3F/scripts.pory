@@ -62,7 +62,7 @@ script SproutTower_3F_EventScript_RivalScene {
            "weak POKéMON.")
     applymovement(RIVAL_ID, Common_Movement_WalkInPlaceFastestUp)
     waitmovement(0)
-    call(EventScript_RestorePrevTextColor)
+    textcolor(MSG_COLOR_PREV)
     msgbox("{RIVAL} used the\n"
            "ESCAPE ROPE.")
     closemessage

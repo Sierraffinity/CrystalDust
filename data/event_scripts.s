@@ -589,10 +589,6 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/scripts/std_msgbox.inc"
 	.include "data/scripts/trainer_battle.inc"
 	.include "data/scripts/new_game.inc"
-	
-EventScript_RestorePrevTextColor:
-	copyvar VAR_TEXT_COLOR VAR_TEXT_COLOR_BACKUP
-	return
 
 ClearPokepicAndTextboxForEarlyScriptExit::
 	special PrintNullStringAndClearPokemonPicWindow

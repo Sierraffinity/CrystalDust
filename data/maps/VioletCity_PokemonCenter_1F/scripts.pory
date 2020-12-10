@@ -63,7 +63,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                     "from ELM's AIDE.")
             waitfanfare
             giveegg(SPECIES_TOGEPI)
-            call(EventScript_RestorePrevTextColor)
+            textcolor(MSG_COLOR_PREV)
             msgbox("We discovered that a POKéMON won't\n"
                    "hatch until it grows in the EGG.\p"
                    "It also has to be with other active\n"
@@ -126,7 +126,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
             msgbox("Press the B Button to run.\n"
                    "But only where there's room to run!")
             normalmsg
-            call(EventScript_RestorePrevTextColor)
+            textcolor(MSG_COLOR_PREV)
 
             msgbox("I need to head back to the lab now.\n"
                    "Good luck with the EGG!")

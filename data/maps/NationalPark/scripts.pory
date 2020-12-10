@@ -1,6 +1,10 @@
 const OBJ_EVENT_ID_GAMEBOY_KID = 13
 
-mapscripts NationalPark_MapScripts { }
+mapscripts NationalPark_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_NATIONAL_PARK)
+    }
+}
 
 script NationalPark_EventScript_CardsGirl {
     msgbox("Look!\n"

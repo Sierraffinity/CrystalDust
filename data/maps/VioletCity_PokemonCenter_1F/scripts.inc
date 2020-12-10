@@ -64,7 +64,7 @@ VioletCity_PokemonCenter_1F_EventScript_Aide_9:
 	message VioletCity_PokemonCenter_1F_EventScript_Aide_Text_2
 	waitfanfare
 	giveegg SPECIES_TOGEPI
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	msgbox VioletCity_PokemonCenter_1F_EventScript_Aide_Text_3
 	closemessage
 	compare VAR_FACING, DIR_NORTH
@@ -94,7 +94,7 @@ VioletCity_PokemonCenter_1F_EventScript_Aide_16:
 	signmsg
 	msgbox VioletCity_PokemonCenter_1F_EventScript_Aide_Text_7
 	normalmsg
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	msgbox VioletCity_PokemonCenter_1F_EventScript_Aide_Text_8
 	closemessage
 	switch VAR_FACING

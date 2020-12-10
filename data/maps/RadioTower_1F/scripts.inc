@@ -227,7 +227,7 @@ RadioTower_1F_EventScript_RadioCardWoman_17:
 	message RadioTower_1F_EventScript_RadioCardWoman_Text_7
 	waitfanfare
 	msgbox RadioTower_1F_EventScript_RadioCardWoman_Text_8
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	goto RadioTower_1F_EventScript_RadioCardWoman_EndQuiz
 	goto RadioTower_1F_EventScript_RadioCardWoman_8
 

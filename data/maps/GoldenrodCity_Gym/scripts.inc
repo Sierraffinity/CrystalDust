@@ -23,7 +23,7 @@ GoldenrodCity_Gym_EventScript_Whitney_3:
 	message GoldenrodCity_Gym_EventScript_Whitney_Text_1
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	setflag FLAG_BADGE03_GET
 	goto GoldenrodCity_Gym_EventScript_GiveAttract
 	goto GoldenrodCity_Gym_EventScript_Whitney_1

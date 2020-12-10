@@ -449,7 +449,7 @@ static const struct WindowTemplate sDoWhatWithItemMsgWindowTemplate =
     .bg = 2,
     .tilemapLeft = 1,
     .tilemapTop = 17,
-    .width = 20,
+    .width = 19,
     .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x299,
@@ -460,7 +460,7 @@ static const struct WindowTemplate sDoWhatWithMailMsgWindowTemplate =
     .bg = 2,
     .tilemapLeft = 1,
     .tilemapTop = 17,
-    .width = 18,
+    .width = 16,
     .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x299,
@@ -471,7 +471,7 @@ static const struct WindowTemplate sWhichMoveMsgWindowTemplate =
     .bg = 2,
     .tilemapLeft = 1,
     .tilemapTop = 17,
-    .width = 16,
+    .width = 15,
     .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x299,
@@ -482,7 +482,7 @@ static const struct WindowTemplate sAlreadyHoldingOneMsgWindowTemplate =
     .bg = 2,
     .tilemapLeft = 1,
     .tilemapTop = 15,
-    .width = 20,
+    .width = 21,
     .height = 4,
     .paletteNum = 15,
     .baseBlock = 0x299,
@@ -491,34 +491,34 @@ static const struct WindowTemplate sAlreadyHoldingOneMsgWindowTemplate =
 static const struct WindowTemplate sItemGiveTakeWindowTemplate =
 {
     .bg = 2,
-    .tilemapLeft = 23,
+    .tilemapLeft = 22,
     .tilemapTop = 13,
-    .width = 6,
+    .width = 7,
     .height = 6,
     .paletteNum = 14,
-    .baseBlock = 0x39D,
+    .baseBlock = 0x373,
 };
 
 static const struct WindowTemplate sMailReadTakeWindowTemplate =
 {
     .bg = 2,
-    .tilemapLeft = 21,
+    .tilemapLeft = 19,
     .tilemapTop = 13,
-    .width = 8,
+    .width = 10,
     .height = 6,
     .paletteNum = 14,
-    .baseBlock = 0x39D,
+    .baseBlock = 0x373,
 };
 
 static const struct WindowTemplate sMoveSelectWindowTemplate =
 {
     .bg = 2,
-    .tilemapLeft = 19,
+    .tilemapLeft = 18,
     .tilemapTop = 11,
-    .width = 10,
+    .width = 11,
     .height = 8,
     .paletteNum = 14,
-    .baseBlock = 0x2E9,
+    .baseBlock = 0x2BF,
 };
 
 static const struct WindowTemplate sPartyMenuYesNoWindowTemplate =
@@ -526,10 +526,10 @@ static const struct WindowTemplate sPartyMenuYesNoWindowTemplate =
     .bg = 2,
     .tilemapLeft = 21,
     .tilemapTop = 9,
-    .width = 5,
+    .width = 6,
     .height = 4,
     .paletteNum = 14,
-    .baseBlock = 0x2E9,
+    .baseBlock = 0x2BF,
 };
 
 static const struct WindowTemplate sLevelUpStatsWindowTemplate =
@@ -540,7 +540,7 @@ static const struct WindowTemplate sLevelUpStatsWindowTemplate =
     .width = 10,
     .height = 11,
     .paletteNum = 14,
-    .baseBlock = 0x2E9,
+    .baseBlock = 0x2BF,
 };
 
 static const struct WindowTemplate sUnusedWindowTemplate_08615978 =
@@ -548,7 +548,7 @@ static const struct WindowTemplate sUnusedWindowTemplate_08615978 =
     .bg = 2,
     .tilemapLeft = 2,
     .tilemapTop = 15,
-    .width = 27,
+    .width = 26,
     .height = 4,
     .paletteNum = 14,
     .baseBlock = 0x1DF,
@@ -562,7 +562,7 @@ static const struct WindowTemplate sUnusedWindowTemplate_08615980 =
     .width = 18,
     .height = 3,
     .paletteNum = 12,
-    .baseBlock = 0x39D,
+    .baseBlock = 0x373,
 };
 
 // Tile nums

@@ -282,7 +282,7 @@ script GoldenrodCity_Underground_EventScript_Haircut_Result {
 		msgbox("{STR_VAR_1} looks delighted!")
 	}
 	waitmoncry
-	call(EventScript_RestorePrevTextColor)
+	textcolor(MSG_COLOR_PREV)
 }
 
 script GoldenrodCity_Underground_EventScript_Eric {

@@ -51,7 +51,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
             {
                 goto(GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull)
             }
-            call(EventScript_RestorePrevTextColor)
+            textcolor(MSG_COLOR_PREV)
             setflag(FLAG_GOT_EEVEE_FROM_BILL)
             msgbox("BILL: PROF. ELM claims EEVEE may\n"
                    "evolve in new and unknown ways.")
@@ -66,7 +66,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
 }
 
 script GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull {
-    call(EventScript_RestorePrevTextColor)
+    textcolor(MSG_COLOR_PREV)
     msgbox("Whoa, wait.\n"
            "You can't carry any more POKéMON.")
     release
@@ -118,7 +118,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister {
             textcolor(MSG_COLOR_SYS)
             msgbox("{PLAYER} recorded BILL's number.")
             waitfanfare
-            call(EventScript_RestorePrevTextColor)
+            textcolor(MSG_COLOR_PREV)
             msgbox(GoldenrodCity_BillsFamilysHouse_Text_BillsSister_AfterPhoneNumber)
         }
         else

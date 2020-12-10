@@ -75,7 +75,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm_7:
 	waitmessage
 	waitfanfare
 	closemessage
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	removeitem ITEM_MYSTERY_EGG
 	delay 10
 	playse SE_LEDGE
@@ -359,6 +359,7 @@ NewBarkTown_EventScript_PokeBallMain::
 	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_EventScript_PokeBallMain_2
 	turnobject 2, DIR_EAST
 	showmonpic VAR_TEMP_2, 10, 3
+	playmoncry VAR_TEMP_2, 0
 	textcolor MSG_COLOR_BLUE
 	switch VAR_TEMP_1
 	case STARTER_CHIKORITA, NewBarkTown_EventScript_PokeBallMain_7
@@ -370,7 +371,7 @@ NewBarkTown_EventScript_PokeBallMain_5:
 	goto_if_ne NewBarkTown_EventScript_PokeBallMain_10
 	removeobject VAR_LAST_TALKED
 	msgbox NewBarkTown_EventScript_PokeBallMain_Text_5
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	setflag FLAG_SYS_POKEMON_GET
 	givemon VAR_TEMP_2, 5, ITEM_ORAN_BERRY
 	copyvar VAR_STARTER_MON, VAR_TEMP_1
@@ -395,7 +396,7 @@ NewBarkTown_EventScript_PokeBallMain_16:
 	msgbox NewBarkTown_EventScript_PokeBallMain_Text_7
 	setflag FLAG_PHONE_CARD_ELM
 	playfanfare MUS_REGISTER_MATCH_CALL
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	msgbox NewBarkTown_EventScript_PokeBallMain_Text_8
 	waitfanfare
 	applymovement 2, Common_Movement_WalkInPlaceFastestLeft

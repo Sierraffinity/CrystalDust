@@ -170,7 +170,7 @@ void SelectBugCatchingContestMon(void)
 {
     gMain.savedCallback = CB2_ReturnFromChooseHalfParty;
     VarSet(VAR_FRONTIER_FACILITY, FACILITY_BUG_CATCHING_CONTEST);
-    InitChooseHalfPartyForBattle(0);
+    InitChooseMonForBugCatchingContest();
 }
 
 static void CB2_ReturnFromChooseHalfParty(void)

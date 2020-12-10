@@ -38,20 +38,20 @@ Route35_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0:
 Route35_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_1:
 	compare VAR_RESULT, YES
 	goto_if_eq Route35_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_6
-	msgbox NationalParkGate_Text_GetBackOutside
+	msgbox BugCatchingContest_Text_Officer_GetBackOutside
 	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_ReEnterContest
+	applymovement OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromRight
 	waitmovement 0
 	warp MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 0, -1, -1
 	waitstate
 	return
 
 Route35_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_2:
-	msgbox NationalParkGate_DoYouWantToFinishOneMinute, MSGBOX_YESNO
+	msgbox BugCatchingContest_Text_Officer_DoYouWantToFinishOneMinute, MSGBOX_YESNO
 	goto Route35_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_1
 
 Route35_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_3:
-	msgbox NationalParkGate_DoYouWantToFinishMinutes, MSGBOX_YESNO
+	msgbox BugCatchingContest_Text_Officer_DoYouWantToFinishMinutes, MSGBOX_YESNO
 	goto Route35_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_1
 
 Route35_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_6:
@@ -71,38 +71,56 @@ Route35_NationalParkGatehouse_Movement_EndContestOfficerMovement:
 	face_player
 	step_end
 
-Route35_NationalParkGatehouse_Movement_ReEnterContest:
-	walk_up
-	step_end
-
 Route35_NationalParkGatehouse_EventScript_BugContestOfficer::
 	lock
 	faceplayer
-	call BugContestOfficer_EnterContest
-	compare VAR_RESULT, TRUE
-	goto_if_eq Route35_NationalParkGatehouse_EventScript_BugContestOfficer_2
+	compare VAR_BUG_CONTEST_PRIZE, ITEM_NONE
+	goto_if_ne Route35_NationalParkGatehouse_EventScript_BugContestOfficer_2
+	goto_if_set FLAG_DAILY_BUG_CATCHING_CONTEST, Route35_NationalParkGatehouse_EventScript_BugContestOfficer_3
+	gettime
+	compare VAR_0x8003, DAY_TUESDAY
+	goto_if_eq Route35_NationalParkGatehouse_EventScript_BugContestOfficer_7
+	compare VAR_0x8003, DAY_THURSDAY
+	goto_if_eq Route35_NationalParkGatehouse_EventScript_BugContestOfficer_7
+	compare VAR_0x8003, DAY_SATURDAY
+	goto_if_eq Route35_NationalParkGatehouse_EventScript_BugContestOfficer_7
+	msgbox Route35_NationalParkGatehouse_Text_Officer_NoContest
 Route35_NationalParkGatehouse_EventScript_BugContestOfficer_1:
 	release
 	return
 
 Route35_NationalParkGatehouse_EventScript_BugContestOfficer_2:
+	call BugCatchingContest_EventScript_Officer_GivePrizeItem
+	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_1
+
+Route35_NationalParkGatehouse_EventScript_BugContestOfficer_3:
+	msgbox BugCatchingContest_Text_Officer_ContestIsOver
+	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_1
+
+Route35_NationalParkGatehouse_EventScript_BugContestOfficer_7:
+	call BugCatchingContest_EventScript_Officer_EnterContest
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route35_NationalParkGatehouse_EventScript_BugContestOfficer_14
+	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_1
+
+Route35_NationalParkGatehouse_EventScript_BugContestOfficer_14:
 	switch VAR_FACING
-	case DIR_NORTH, Route35_NationalParkGatehouse_EventScript_BugContestOfficer_6
-	case DIR_WEST, Route35_NationalParkGatehouse_EventScript_BugContestOfficer_7
+	case DIR_NORTH, Route35_NationalParkGatehouse_EventScript_BugContestOfficer_18
+	case DIR_WEST, Route35_NationalParkGatehouse_EventScript_BugContestOfficer_19
 	applymovement OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromLeft
-Route35_NationalParkGatehouse_EventScript_BugContestOfficer_4:
+Route35_NationalParkGatehouse_EventScript_BugContestOfficer_16:
 	waitmovement 0
 	warp MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 0, -1, -1
 	waitstate
 	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_1
 
-Route35_NationalParkGatehouse_EventScript_BugContestOfficer_6:
+Route35_NationalParkGatehouse_EventScript_BugContestOfficer_18:
 	applymovement OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromBelow
-	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_4
+	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_16
 
-Route35_NationalParkGatehouse_EventScript_BugContestOfficer_7:
+Route35_NationalParkGatehouse_EventScript_BugContestOfficer_19:
 	applymovement OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromRight
-	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_4
+	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_16
 
 
 Route35_NationalParkGatehouse_Movement_EnterContestFromBelow:
@@ -123,35 +141,39 @@ Route35_NationalParkGatehouse_Movement_EnterContestFromLeft:
 	walk_up
 	step_end
 
-Route35_NationalParkGatehouse_Youngster::
-	msgbox Route35_NationalParkGatehouse_Youngster_Text_0, MSGBOX_NPC
-	return
-
-
 Route35_NationalParkGatehouse_NoContestOfficer::
 	lock
 	faceplayer
 	compare VAR_BUG_CONTEST_PRIZE, ITEM_NONE
 	goto_if_ne Route35_NationalParkGatehouse_NoContestOfficer_2
-	msgbox NationalParkGate_Text_WeHoldContests
+	goto_if_set FLAG_DAILY_BUG_CATCHING_CONTEST, Route35_NationalParkGatehouse_NoContestOfficer_3
+	msgbox Route35_NationalParkGatehouse_Text_Officer_NoContest
 Route35_NationalParkGatehouse_NoContestOfficer_1:
 	release
 	return
 
 Route35_NationalParkGatehouse_NoContestOfficer_2:
-	call BugContestOfficer_GivePrizeItem
+	call BugCatchingContest_EventScript_Officer_GivePrizeItem
+	goto Route35_NationalParkGatehouse_NoContestOfficer_1
+
+Route35_NationalParkGatehouse_NoContestOfficer_3:
+	msgbox BugCatchingContest_Text_Officer_ContestIsOver
 	goto Route35_NationalParkGatehouse_NoContestOfficer_1
 
 
-Route35_NationalParkGatehouse_ContestSign::
-	msgbox Route35_NationalParkGatehouse_Text_ContestInfo, MSGBOX_SIGN
+Route35_NationalParkGatehouse_Youngster::
+	msgbox Route35_NationalParkGatehouse_Youngster_Text_0, MSGBOX_NPC
 	return
 
 
 Route35_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_Text_0:
 	.string "Okay. Please wait at the North Gate\n"
-	.string "for the awards ceremony.$"
+	.string "for the announcement of the winners.$"
 
 Route35_NationalParkGatehouse_Youngster_Text_0:
 	.string "When is the next Bug-Catching\n"
 	.string "Contest going to be?$"
+
+Route35_NationalParkGatehouse_Text_Officer_NoContest::
+	.string "We hold Contests regularly in the\n"
+	.string "PARK. You should give it a shot.$"

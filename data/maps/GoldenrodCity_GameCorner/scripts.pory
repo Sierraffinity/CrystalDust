@@ -332,7 +332,7 @@ script GoldenrodCity_GameCorner_EventScript_MonClerk_ConfirmPrize {
             }
         }
     }
-    call(EventScript_RestorePrevTextColor)
+    textcolor(MSG_COLOR_PREV)
     goto(GoldenrodCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice)
 }
 

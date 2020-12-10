@@ -322,5 +322,5 @@ MoveTutor_EventScript_CanOnlyBeLearnedOnce:: @ 82C832D
 	signmsg
 	msgbox MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO
 	normalmsg
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	return

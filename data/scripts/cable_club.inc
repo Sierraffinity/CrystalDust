@@ -355,7 +355,7 @@ CableClub_EventScript_TryEnterColosseum:: @ 8276F60
 	textcolor MSG_COLOR_SYS
 	special TryBattleLinkup
 	waitstate
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	compare VAR_RESULT, LINKUP_SUCCESS
 	goto_if_eq CableClub_EventScript_EnterColosseum
 	compare VAR_RESULT, LINKUP_SOMEONE_NOT_READY
@@ -460,7 +460,7 @@ CableClub_EventScript_TradeCenter:: @ 82770B2
 	textcolor MSG_COLOR_SYS
 	special TryTradeLinkup
 	waitstate
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	compare VAR_RESULT, LINKUP_SUCCESS
 	goto_if_eq CableClub_EventScript_EnterTradeCenter
 	compare VAR_RESULT, LINKUP_SOMEONE_NOT_READY
@@ -1202,7 +1202,7 @@ CableClub_EventScript_ChooseLinkLeaderFrom2:: @ 8277989
 	textcolor MSG_COLOR_SYS
 	message CableClub_Text_ChooseGroupLeaderOfTwo
 	waitmessage
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	multichoice 16, 6, MULTI_LINK_LEADER, 0
 	switch VAR_RESULT
 	case 0, CableClub_EventScript_TryJoinGroup2Players
@@ -1237,7 +1237,7 @@ CableClub_EventScript_ChooseLinkLeaderFrom4:: @ 8277A16
 	textcolor MSG_COLOR_SYS
 	message CableClub_Text_ChooseGroupLeaderOfFour
 	waitmessage
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	multichoice 16, 6, MULTI_LINK_LEADER, 0
 	switch VAR_RESULT
 	case 0, CableClub_EventScript_TryJoinGroup4Players
@@ -1272,7 +1272,7 @@ CableClub_EventScript_ChooseLinkLeader:: @ 8277AA3
 	textcolor MSG_COLOR_SYS
 	message CableClub_Text_ChooseGroupLeader
 	waitmessage
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	multichoice 16, 6, MULTI_LINK_LEADER, 0
 	switch VAR_RESULT
 	case 0, CableClub_EventScript_TryJoinGroupXPlayers
@@ -1476,7 +1476,7 @@ MossdeepCity_GameCorner_1F_EventScript_ChooseLinkLeader:: @ 8277D81
 	textcolor MSG_COLOR_SYS
 	message CableClub_Text_ChooseGroupLeader
 	waitmessage
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	multichoice 16, 6, MULTI_LINK_LEADER, 0
 	switch VAR_RESULT
 	case 0, MossdeepCity_GameCorner_1F_EventScript_TryJoinLinkGroup

@@ -46,7 +46,7 @@ SproutTower_3F_EventScript_RivalScene::
 	msgbox SproutTower_3F_EventScript_RivalScene_Text_1
 	applymovement 7, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	msgbox SproutTower_3F_EventScript_RivalScene_Text_2
 	closemessage
 	applymovement 7, SproutTower_3F_Movement_RivalSpin

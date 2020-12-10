@@ -1,5 +1,10 @@
 NationalPark_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, NationalPark_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	.byte 0
+
+NationalPark_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	setflag FLAG_LANDMARK_NATIONAL_PARK
+	return
 
 
 NationalPark_EventScript_CardsGirl::

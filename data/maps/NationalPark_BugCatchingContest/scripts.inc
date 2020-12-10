@@ -1,6 +1,10 @@
 NationalPark_BugCatchingContest_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, NationalPark_BugCatchingContest_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	.byte 0
 
+NationalPark_BugCatchingContest_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	setflag FLAG_LANDMARK_NATIONAL_PARK
+	return
 
 NationalPark_BugCatchingContest_Nick::
 	msgbox NationalPark_BugCatchingContest_Text_Nick, MSGBOX_NPC
@@ -53,10 +57,10 @@ NationalPark_BugCatchingContest_Text_William::
 
 NationalPark_BugCatchingContest_Text_Samuel::
 	.string "SAMUEL: If you've got the time to\n"
-	.string "chat, go find some bug POKéMON.$"
+	.string "chat, go find some BUG POKéMON.$"
 
 NationalPark_BugCatchingContest_Text_Barry::
-	.string "BARRY: You should weaken bug\n"
+	.string "BARRY: You should weaken BUG\n"
 	.string "POKéMON first, then throw a BALL.$"
 
 NationalPark_BugCatchingContest_Text_Ed::
@@ -69,7 +73,7 @@ NationalPark_BugCatchingContest_Text_Benny::
 	.string "I'll talk to you later.$"
 
 NationalPark_BugCatchingContest_Text_Josh::
-	.string "JOSH: I've been collecting bug\n"
+	.string "JOSH: I've been collecting BUG\n"
 	.string "POKéMON since I was just a baby.\p"
 	.string "Theres no way I'm going to lose!$"
 
@@ -78,10 +82,10 @@ NationalPark_BugCatchingContest_Text_Don::
 	.string "Don't bother me.$"
 
 NationalPark_BugCatchingContest_Text_Kipp::
-	.string "KIPP: I've studied bug POKéMON a\n"
+	.string "KIPP: I've studied BUG POKéMON a\n"
 	.string "lot.\p"
 	.string "I'm going to win for sure.$"
 
 NationalPark_BugCatchingContest_Text_Cindy::
-	.string "CINDY: I love bug POKéMON.\p"
+	.string "CINDY: I love BUG POKéMON.\p"
 	.string "I guess you must like them, too.$"

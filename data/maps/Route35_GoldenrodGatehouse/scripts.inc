@@ -49,7 +49,7 @@ Route35_GoldenrodGatehouse_EventScript_Officer_12:
 	message Route35_GoldenrodGatehouse_EventScript_Officer_Text_4
 	waitmessage
 	waitfanfare
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	msgbox Route35_GoldenrodGatehouse_Text_Officer_ReadItButDontLoseIt
 	setflag FLAG_GOT_KENYA_FROM_RANDY
 	goto Route35_GoldenrodGatehouse_EventScript_Officer_1

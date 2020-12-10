@@ -241,7 +241,7 @@ script RadioTower_1F_EventScript_RadioCardWoman {
                             waitfanfare
                             msgbox("{PLAYER}'s POKéGEAR can now double\n"
                                    "as a radio!")
-                            call(EventScript_RestorePrevTextColor)
+                            textcolor(MSG_COLOR_PREV)
                             goto(RadioTower_1F_EventScript_RadioCardWoman_EndQuiz)
                         }
                     }

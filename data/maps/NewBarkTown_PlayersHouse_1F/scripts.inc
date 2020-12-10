@@ -45,7 +45,7 @@ NewBarkTown_PlayersHouse_1F_MomEncounter::
 	waitmovement 0
 	delay 20
 	msgbox NewBarkTown_PlayersHouse_1F_MomEncounter_Text_0
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	playfanfare MUS_OBTAIN_ITEM
 	message NewBarkTown_PlayersHouse_1F_MomEncounter_Text_1
 	waitfanfare
