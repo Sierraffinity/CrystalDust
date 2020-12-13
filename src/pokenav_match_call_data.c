@@ -191,7 +191,7 @@ static const struct MatchCallStructNPC sMomMatchCallHeader =
 
 static const match_call_text_data_t sStevenTextScripts[] = {
     { MatchCall_Text_Steven1, 0xFFFF,                              0xFFFF },
-    { MatchCall_Text_Steven2, FLAG_UNION_CAVE_OPENED,          0xFFFF },
+    { MatchCall_Text_Steven2, FLAG_IN_BUG_CATCHING_CONTEST,          0xFFFF },
     { MatchCall_Text_Steven3, FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
     { MatchCall_Text_Steven4, FLAG_RECEIVED_HM07, 0xFFFF },
     { MatchCall_Text_Steven5, FLAG_DEFEATED_MOSSDEEP_GYM,          0xFFFF },
@@ -270,7 +270,7 @@ static const struct MatchCallRival sBrendanMatchCallHeader =
 
 static const match_call_text_data_t sWallyTextScripts[] = {
     { MatchCall_Text_Wally1, 0xFFFF,                              0xFFFF },
-    { MatchCall_Text_Wally2, FLAG_UNION_CAVE_OPENED,          0xFFFF },
+    { MatchCall_Text_Wally2, FLAG_IN_BUG_CATCHING_CONTEST,          0xFFFF },
     { MatchCall_Text_Wally3, FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },
     { MatchCall_Text_Wally4, FLAG_BIKE_SHOP_LOAN_ACTIVE,              0xFFFF },
     { MatchCall_Text_Wally5, FLAG_RECEIVED_HM06, 0xFFFF },

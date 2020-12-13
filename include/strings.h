@@ -259,7 +259,6 @@ extern const u8 gText_MenuOption[];
 extern const u8 gText_MenuExit[];
 extern const u8 gText_MenuRetire[];
 extern const u8 gText_MenuRest[];
-extern const u8 gText_MenuQuit[];
 extern const u8 gText_Floor1[];
 extern const u8 gText_Floor2[];
 extern const u8 gText_Floor3[];

@@ -29,7 +29,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_TEMP_3"
+      "flag": "FLAG_TEMP_13"
     },
     {
       "type": "original",
@@ -44,7 +44,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_TEMP_3"
+      "flag": "FLAG_TEMP_13"
     },
     {
       "type": "original",
@@ -59,7 +59,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_TEMP_3"
+      "flag": "FLAG_TEMP_13"
     },
     {
       "type": "original",
@@ -74,7 +74,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_TEMP_3"
+      "flag": "FLAG_TEMP_13"
     },
     {
       "type": "original",
@@ -89,7 +89,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_TEMP_3"
+      "flag": "FLAG_TEMP_13"
     },
     {
       "type": "original",
@@ -104,7 +104,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route36_NationalParkGatehouse_BehindCounterOfficer",
-      "flag": "FLAG_TEMP_1"
+      "flag": "FLAG_TEMP_11"
     },
     {
       "type": "original",
@@ -119,7 +119,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route36_NationalParkGatehouse_BugContestOfficer",
-      "flag": "FLAG_TEMP_2"
+      "flag": "FLAG_TEMP_12"
     }
   ],
   "warp_events": [
@@ -128,7 +128,7 @@
       "y": 6,
       "elevation": 3,
       "dest_map": "MAP_NATIONAL_PARK",
-      "dest_warp_id": 1
+      "dest_warp_id": 2
     },
     {
       "x": 10,

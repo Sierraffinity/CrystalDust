@@ -614,6 +614,7 @@ extern u8 gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT];
 extern u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT];
 extern u32 gBattleTypeFlags;
 extern u8 gBattleTerrain;
+extern u8 gCatchDebugStatus;
 extern u32 gUnknown_02022FF4;
 extern u8 *gUnknown_0202305C;
 extern u8 *gUnknown_02023060;

@@ -1712,13 +1712,9 @@ static void Task_NewGameOakSpeech_CreatePokeBallToReleaseWooper(u8 taskId)
 static void Task_NewGameOakSpeech_PrintIsPokemonWaitForAnimation(u8 taskId)
 {
     if (gSprites[gTasks[taskId].tWooperSpriteId].animEnded)
-    //if (IsCryFinished())
     {
         if (gTasks[taskId].tTimer >= 96)
         {
-            // HACK: just gotta reset these back to normal after they were changed (that was a hard one to track down)
-            gSprites[gTasks[taskId].tWooperSpriteId].affineAnimPaused = FALSE;
-            gSprites[gTasks[taskId].tWooperSpriteId].affineAnims = gUnknown_082FF694;
             gTasks[taskId].func = Task_NewGameOakSpeech_MainSpeech1;
         }
     }

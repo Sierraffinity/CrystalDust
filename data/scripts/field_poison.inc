@@ -44,7 +44,5 @@ EventScript_FieldWhiteOutFade::
 	end
 
 EventScript_BugCatchingContestFieldWhiteout::
-	message gText_PlayerWhitedOut
-	waitmessage
-	waitbuttonpress
+	msgbox gText_PlayerWhitedOut
 	goto EventScript_WarpOutOfBugCatchingContestHeal

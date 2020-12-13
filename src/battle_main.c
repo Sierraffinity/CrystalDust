@@ -150,6 +150,9 @@ EWRAM_DATA u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT] = {0};
 EWRAM_DATA static u32 sUnusedUnknownArray[25] = {0};
 EWRAM_DATA u32 gBattleTypeFlags = 0;
 EWRAM_DATA u8 gBattleTerrain = 0;
+#if DEBUG
+EWRAM_DATA u8 gCatchDebugStatus = 0;
+#endif
 EWRAM_DATA u32 gUnknown_02022FF4 = 0;
 EWRAM_DATA struct UnknownPokemonStruct4 gMultiPartnerParty[MULTI_PARTY_SIZE] = {0};
 EWRAM_DATA static struct UnknownPokemonStruct4* sMultiPartnerPartyBuffer = NULL;
@@ -4760,7 +4763,9 @@ static void SetActionsAndBattlersTurnOrder(void)
         }
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
         {
-            if (gChosenActionByBattler[gActiveBattler] == B_ACTION_USE_ITEM || gChosenActionByBattler[gActiveBattler] == B_ACTION_SWITCH)
+            if (gChosenActionByBattler[gActiveBattler] == B_ACTION_USE_ITEM ||
+                gChosenActionByBattler[gActiveBattler] == B_ACTION_SWITCH ||
+                gChosenActionByBattler[gActiveBattler] == B_ACTION_PARK_BALL)
             {
                 gActionsByTurnOrder[turnOrderId] = gChosenActionByBattler[gActiveBattler];
                 gBattlerByTurnOrder[turnOrderId] = gActiveBattler;
@@ -4769,7 +4774,9 @@ static void SetActionsAndBattlersTurnOrder(void)
         }
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
         {
-            if (gChosenActionByBattler[gActiveBattler] != B_ACTION_USE_ITEM && gChosenActionByBattler[gActiveBattler] != B_ACTION_SWITCH)
+            if (gChosenActionByBattler[gActiveBattler] != B_ACTION_USE_ITEM &&
+                gChosenActionByBattler[gActiveBattler] != B_ACTION_SWITCH &&
+                gChosenActionByBattler[gActiveBattler] != B_ACTION_PARK_BALL)
             {
                 gActionsByTurnOrder[turnOrderId] = gChosenActionByBattler[gActiveBattler];
                 gBattlerByTurnOrder[turnOrderId] = gActiveBattler;
@@ -4786,7 +4793,9 @@ static void SetActionsAndBattlersTurnOrder(void)
                 if (gActionsByTurnOrder[i] != B_ACTION_USE_ITEM
                     && gActionsByTurnOrder[j] != B_ACTION_USE_ITEM
                     && gActionsByTurnOrder[i] != B_ACTION_SWITCH
-                    && gActionsByTurnOrder[j] != B_ACTION_SWITCH)
+                    && gActionsByTurnOrder[j] != B_ACTION_SWITCH
+                    && gActionsByTurnOrder[i] != B_ACTION_PARK_BALL
+                    && gActionsByTurnOrder[j] != B_ACTION_PARK_BALL)
                 {
                     if (GetWhoStrikesFirst(battler1, battler2, FALSE))
                         SwapTurnOrder(i, j);

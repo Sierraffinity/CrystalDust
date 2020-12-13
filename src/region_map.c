@@ -1702,7 +1702,7 @@ u8 *GetMapName(u8 *dest, u16 regionMapId, u16 padLength)
     u8 *str;
     u16 i;
 
-    if (regionMapId == MAPSEC_SECRET_BASE || regionMapId == MAPSEC_E_SECRET_BASE)
+    if (regionMapId == MAPSEC_SECRET_BASE || regionMapId == MAPSECEM_SECRET_BASE)
     {
         str = GetSecretBaseMapName(dest);
     }
@@ -1738,10 +1738,10 @@ u8 *GetMapNameHandleFerrySecretBase(u8 *dest, u16 mapSecId)
     switch (mapSecId)
     {
     case MAPSEC_DYNAMIC:
-    case MAPSEC_E_DYNAMIC:
+    case MAPSECEM_DYNAMIC:
         return StringCopy(dest, gText_Ferry);
     case MAPSEC_SECRET_BASE:
-    case MAPSEC_E_SECRET_BASE:
+    case MAPSECEM_SECRET_BASE:
         return StringCopy(dest, gText_SecretBase);
     default:
         return GetMapName(dest, mapSecId, 0);
@@ -1750,7 +1750,7 @@ u8 *GetMapNameHandleFerrySecretBase(u8 *dest, u16 mapSecId)
 
 u8 *GetMapNameForSummaryScreen(u8 *dest, u16 mapSecId)
 {
-    if (mapSecId == MAPSEC_E_AQUA_HIDEOUT_OLD)
+    if (mapSecId == MAPSECEM_AQUA_HIDEOUT_OLD)
         return StringCopy(dest, gText_Hideout);
     else
         return GetMapNameHandleFerrySecretBase(dest, mapSecId);
@@ -2164,7 +2164,6 @@ static void CB_ExitFlyMap(void)
                         break;
                 }
                 ReturnToFieldFromFlyMapSelect();
-                TryEndBugCatchingContest();
             }
             else
             {

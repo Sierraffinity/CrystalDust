@@ -387,7 +387,7 @@ static const u8 sText_PkmnEnthralledByX[] = _("{B_OPPONENT_MON1_NAME} is enthral
 static const u8 sText_PkmnIgnoredX[] = _("{B_OPPONENT_MON1_NAME} completely ignored\nthe {B_BUFF1}!");
 static const u8 sText_ThrewPokeblockAtPkmn[] = _("{B_PLAYER_NAME} threw a {POKEBLOCK}\nat the {B_OPPONENT_MON1_NAME}!");
 static const u8 sText_OutOfSafariBalls[] = _("{PLAY_SE SE_DING_DONG}ANNOUNCER: You're out of\nSAFARI BALLS! Game over!\p");
-static const u8 sText_OutOfParkBalls[] = _("{PLAY_SE SE_DING_DONG}ANNOUNCER: You're out of\nPARK BALLS! Contest over!\p");
+static const u8 sText_OutOfParkBalls[] = _("{PLAY_SE SE_DING_DONG}ANNOUNCER: The Contest is over!\p");
 static const u8 sText_OpponentMon1Appeared[] = _("{B_OPPONENT_MON1_NAME} appeared!\p");
 static const u8 sText_WildPkmnAppeared[] = _("Wild {B_OPPONENT_MON1_NAME} appeared!\p");
 static const u8 sText_WildPkmnAppeared2[] = _("Wild {B_OPPONENT_MON1_NAME} appeared!\p");
@@ -1213,7 +1213,7 @@ const u8 gText_WhatWillTheDudeDo[] = _("What will\nthe dude do?");
 const u8 gText_LinkStandby[] = _("{PAUSE 16}Link standby…");
 const u8 gText_BattleMenu[] = _("FIGHT{CLEAR_TO 56}BAG\nPOKéMON{CLEAR_TO 56}RUN");
 const u8 gText_SafariZoneMenu[] = _("BALL{CLEAR_TO 56}{POKEBLOCK}\nGO NEAR{CLEAR_TO 56}RUN");
-const u8 gText_BugCatchingContestMenu[] = _("FIGHT{CLEAR_TO 56}{PKMN}\nBALLx{STR_VAR_1}{CLEAR_TO 56}RUN");
+const u8 gText_BugCatchingContestMenu[] = _("FIGHT{CLEAR_TO 56}BALL{FONT SMALL}×{STR_VAR_1}\n{FONT NORMAL}POKéMON{CLEAR_TO 56}RUN");
 const u8 gText_MoveInterfacePP[] = _("PP ");
 const u8 gText_MoveInterfaceType[] = _("TYPE/");
 const u8 gText_MoveInterfacePpType[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}PP\nTYPE/");
@@ -1988,7 +1988,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Arena[] =
 
 static const struct BattleWindowText *const sBattleTextOnWindowsInfo[] =
 {
-    sTextOnWindowsInfo_Normal, sTextOnWindowsInfo_Arena
+    sTextOnWindowsInfo_Normal, sTextOnWindowsInfo_Arena, sTextOnWindowsInfo_Normal
 };
 
 static const u8 sRecordedBattleTextSpeeds[] = {8, 4, 1, 0};

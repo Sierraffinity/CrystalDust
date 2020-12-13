@@ -34,7 +34,6 @@ static void FieldCallback_Dig(void)
     Overworld_ResetStateAfterDigEscRope();
     FieldEffectStart(FLDEFF_USE_DIG);
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    TryEndBugCatchingContest();
 }
 
 bool8 FldEff_UseDig(void)

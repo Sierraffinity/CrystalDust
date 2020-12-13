@@ -79,6 +79,7 @@ Route36_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_7:
 	closemessage
 	setvar VAR_BUG_CATCHING_CONTEST_STATE, 3
 	fadescreen 1
+	special SpawnCameraObject
 	applymovement OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_MoveToPlayerSpot
 	addobject 1
 	addobject 2
@@ -87,9 +88,7 @@ Route36_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_7:
 	addobject 5
 	addobject 6
 	removeobject 7
-	waitmovement 0
-	special SpawnCameraObject
-	applymovement OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRight
+	applymovement OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRightAndDown
 	waitmovement 0
 	special RemoveCameraObject
 	fadescreen 0
@@ -98,9 +97,8 @@ Route36_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_7:
 
 Route36_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_1:
 	lock
-	applymovement OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony
-	waitmovement 0
 	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony
 	applymovement OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRight
 	waitmovement 0
 	special RemoveCameraObject
@@ -123,7 +121,15 @@ Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony:
 	face_up
 	step_end
 
+Route36_NationalParkGatehouse_Movement_CameraPanRightAndDown:
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	step_end
+
 Route36_NationalParkGatehouse_Movement_CameraPanRight:
+	walk_right
 	walk_right
 	walk_right
 	step_end
@@ -131,40 +137,39 @@ Route36_NationalParkGatehouse_Movement_CameraPanRight:
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony::
 	special DetermineBugCatchingContestStandings
 	textcolor MSG_COLOR_BLUE
-	message Route36_NationalParkGatehouse_EventScript_AwardsCeremony_Text_0
-	waitmessage
+	msgbox Route36_NationalParkGatehouse_EventScript_AwardsCeremony_Text_0
 	setvar VAR_0x8004, 3
 	special BuildBugContestPlacementString
 	message gStringVar4
 	waitmessage
 	playfanfare MUS_SLOTS_WIN
 	waitfanfare
+	waitbuttonpress
 	special CopyBugContestPlacementScoreToVar1
-	message Route36_NationalParkGatehouse_Text_TheScoreWas
-	waitmessage
+	msgbox Route36_NationalParkGatehouse_Text_TheScoreWas
 	setvar VAR_0x8004, 2
 	special BuildBugContestPlacementString
 	message gStringVar4
 	waitmessage
 	playfanfare MUS_SLOTS_WIN
 	waitfanfare
+	waitbuttonpress
 	special CopyBugContestPlacementScoreToVar1
-	message Route36_NationalParkGatehouse_Text_TheScoreWas
-	waitmessage
+	msgbox Route36_NationalParkGatehouse_Text_TheScoreWas
 	setvar VAR_0x8004, 1
 	special BuildBugContestPlacementString
 	message gStringVar4
 	waitmessage
-	specialvar VAR_RESULT, GetWinningBugContestSpecies
+	special GetWinningBugContestSpecies
 	compare VAR_0x8005, 0
 	goto_if_eq Route36_NationalParkGatehouse_EventScript_AwardsCeremony_2
-	showmonpic VAR_RESULT, 10, 3, TRUE
+	showmonpic VAR_0x8004, 10, 3, TRUE
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony_1:
 	playfanfare MUS_EVOLVED
 	waitfanfare
+	waitbuttonpress
 	special CopyBugContestPlacementScoreToVar1
-	message Route36_NationalParkGatehouse_EventScript_AwardsCeremony_Text_1
-	waitmessage
+	msgbox Route36_NationalParkGatehouse_EventScript_AwardsCeremony_Text_1
 	hidemonpic
 	specialvar VAR_RESULT, GetPlayerBugContestPlace
 	switch VAR_RESULT
@@ -187,10 +192,10 @@ Route36_NationalParkGatehouse_EventScript_AwardsCeremony_11:
 	case 3, Route36_NationalParkGatehouse_EventScript_AwardsCeremony_17
 	msgbox Route36_NationalParkGatehouse_EventScript_AwardsCeremony_Text_8
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony_15:
-	setvar VAR_BUG_CATCHING_CONTEST_STATE, 0
 	goto_if_set FLAG_LEFT_MONS_WITH_CONTEST_OFFICER, Route36_NationalParkGatehouse_EventScript_AwardsCeremony_20
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony_19:
 	special GiveCaughtBugCatchingContestMon
+	bufferspeciesname 0, VAR_0x8004
 	textcolor MSG_COLOR_SYS
 	compare VAR_RESULT, 0
 	goto_if_eq Route36_NationalParkGatehouse_EventScript_AwardsCeremony_23
@@ -198,7 +203,10 @@ Route36_NationalParkGatehouse_EventScript_AwardsCeremony_19:
 	goto_if_eq Route36_NationalParkGatehouse_EventScript_AwardsCeremony_24
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony_22:
 	special EndBugCatchingContest
+	clearflag FLAG_IN_BUG_CATCHING_CONTEST
+	setvar VAR_BUG_CATCHING_CONTEST_STATE, 0
 	closemessage
+	fadedefaultbgm
 	special SpawnCameraObject
 	applymovement OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanLeft
 	waitmovement 0
@@ -206,7 +214,7 @@ Route36_NationalParkGatehouse_EventScript_AwardsCeremony_22:
 	return
 
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony_2:
-	showmonpic VAR_RESULT, 10, 3
+	showmonpic VAR_0x8004, 10, 3
 	goto Route36_NationalParkGatehouse_EventScript_AwardsCeremony_1
 
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony_7:
@@ -253,6 +261,7 @@ Route36_NationalParkGatehouse_EventScript_AwardsCeremony_24:
 	compare VAR_RESULT, YES
 	goto_if_eq Route36_NationalParkGatehouse_EventScript_AwardsCeremony_30
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony_29:
+	copyvar VAR_TEMP_1, VAR_0x8004
 	call Common_EventScript_TransferredToPC
 	goto Route36_NationalParkGatehouse_EventScript_AwardsCeremony_22
 
@@ -406,10 +415,6 @@ Route36_NationalParkGatehouse_Josh_1:
 	return
 
 
-Route36_NationalParkGatehouse_JoshPlayerLost::
-	return
-
-
 Route36_NationalParkGatehouse_Don::
 	goto_if_set FLAG_TEMP_1, Route36_NationalParkGatehouse_Don_1
 	msgbox Route36_NationalParkGatehouse_Don_Text_1, MSGBOX_NPC
@@ -430,10 +435,6 @@ Route36_NationalParkGatehouse_Kipp_1:
 	return
 
 
-Route36_NationalParkGatehouse_KippPlayerLost::
-	return
-
-
 Route36_NationalParkGatehouse_Cindy::
 	goto_if_set FLAG_TEMP_1, Route36_NationalParkGatehouse_Cindy_1
 	msgbox Route36_NationalParkGatehouse_Cindy_Text_1, MSGBOX_NPC
@@ -451,10 +452,10 @@ Route36_NationalParkGatehouse_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE_0_Text_0:
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony_Text_0:
 	.string "We will now judge the POKéMON\n"
 	.string "you've caught.\p"
-	.string "…{PAUSE 0x0F}…{PAUSE 0x0F}…{PAUSE 0x0F}\n"
-	.string "…{PAUSE 0x0F}…{PAUSE 0x0F}…{PAUSE 0x0F}\p"
+	.string "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}\n"
+	.string "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}\p"
 	.string "We have chosen the winners!\p"
-	.string "Are you ready for this?\p$"
+	.string "Are you ready for this?$"
 
 Route36_NationalParkGatehouse_EventScript_AwardsCeremony_Text_1:
 	.string "The winning score was a whopping\n"
@@ -494,12 +495,11 @@ Route36_NationalParkGatehouse_EventScript_AwardsCeremony_Text_9:
 	.string "you. Here you go!$"
 
 Route36_NationalParkGatehouse_Nick_Text_0:
-	.string "NICK: Well done!\n"
-	.string "I'm going to raise my POKéMON\l"
-	.string "better.$"
+	.string "NICK: Well done! I'm going to\n"
+	.string "raise my POKéMON better.$"
 
 Route36_NationalParkGatehouse_Nick_Text_1:
-	.string "NICK: Maybe you get a higher score\p"
+	.string "NICK: Maybe you get a higher score\n"
 	.string "for POKéMON of an unusual color.$"
 
 Route36_NationalParkGatehouse_William_Text_0:
@@ -514,8 +514,8 @@ Route36_NationalParkGatehouse_Samuel_Text_0:
 	.string "SAMUEL: Next time, I'm going to win.$"
 
 Route36_NationalParkGatehouse_Samuel_Text_1:
-	.string "SAMUEL: Next time, I think I can\n"
-	.string "score even higher.$"
+	.string "SAMUEL: Huh, that's odd…\n"
+	.string "I thought I would score higher.$"
 
 Route36_NationalParkGatehouse_Barry_Text_0:
 	.string "BARRY: That POKéMON you caught…\n"
@@ -532,7 +532,7 @@ Route36_NationalParkGatehouse_Ed_Text_0:
 	.string "I just couldn't do it this time.$"
 
 Route36_NationalParkGatehouse_Ed_Text_1:
-	.string "ED: Maybe you win with rare POKéMON?$"
+	.string "ED: Maybe you win with big POKéMON?$"
 
 Route36_NationalParkGatehouse_Benny_Text_0:
 	.string "BENNY: Congrats!\n"
@@ -570,14 +570,14 @@ Route36_NationalParkGatehouse_Kipp_Text_1:
 Route36_NationalParkGatehouse_Cindy_Text_0:
 	.string "CINDY: You won?\n"
 	.string "That's great!\p"
-	.string "Do you feel like looking for more\n"
-	.string "BUG POKéMON with me?$"
+	.string "Do you feel like looking for BUG\n"
+	.string "POKéMON with me sometime?$"
 
 Route36_NationalParkGatehouse_Cindy_Text_1:
 	.string "CINDY: I really love BUG POKéMON!$"
 
 Route36_NationalParkGatehouse_Text_TheScoreWas::
-	.string "The score was {STR_VAR_1} points!\p$"
+	.string "The score was {STR_VAR_1} points!$"
 
 Route36_NationalParkGatehouse_Text_NicknameCaughtMon::
 	.string "Do you want to give a nickname to\n"

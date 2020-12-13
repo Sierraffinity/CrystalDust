@@ -9999,6 +9999,12 @@ static void Cmd_handleballthrow(void)
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &ball);
 
+            if (ball == BALL_FRIEND)
+            {
+                u8 friendship = 200;
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_FRIENDSHIP, &friendship);
+            }
+
             if (CalculatePlayerPartyCount() == PARTY_SIZE)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
             else
@@ -10008,6 +10014,17 @@ static void Cmd_handleballthrow(void)
         {
             u8 shakes;
 
+#if DEBUG
+            if (gCatchDebugStatus == 1)
+            {
+                shakes = BALL_3_SHAKES_SUCCESS;
+            }
+            else if (gCatchDebugStatus == 2)
+            {
+                shakes = BALL_NO_SHAKES;
+            }
+            else
+#endif
             if (ball == BALL_MASTER)
             {
                 shakes = BALL_3_SHAKES_SUCCESS;

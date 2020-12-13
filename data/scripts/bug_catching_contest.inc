@@ -12,9 +12,8 @@ EventScript_RanOutOfParkBalls::
 
 EventScript_CaughtButRanOutOfParkBalls::
 	lockall
-	message EventScript_CaughtButRanOutOfParkBalls_Text_0
-	waitmessage
-	waitbuttonpress
+	playse SE_DING_DONG
+	msgbox EventScript_CaughtButRanOutOfParkBalls_Text_0
 	call EventScript_WarpOutOfBugCatchingContest
 	releaseall
 	return
@@ -22,23 +21,22 @@ EventScript_CaughtButRanOutOfParkBalls::
 
 EventScript_BugCatchingContestTimeExpired::
 	lockall
-	message EventScript_BugCatchingContestTimeExpired_Text_0
-	waitmessage
-	waitbuttonpress
-	call EventScript_WarpOutOfBugCatchingContest
-	releaseall
+	playse SE_DING_DONG
+	msgbox EventScript_BugCatchingContestTimeExpired_Text_0
+	goto EventScript_WarpOutOfBugCatchingContest
 	return
 
 
 EventScript_WarpOutOfBugCatchingContestHeal::
 	special HealPlayerParty
-	call EventScript_WarpOutOfBugCatchingContest
+	setvar VAR_BUG_CATCHING_CONTEST_STATE, 2
+	warpsilent MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, 0, -1, -1
+	waitstate
 	return
 
 
 EventScript_ReturnBugCatchingContestMons::
-	setvar VAR_0x8004, 6
-	special CallFrontierUtilFunc
+	frontier_saveparty
 	special LoadPlayerParty
 	return
 
@@ -53,7 +51,7 @@ BugCatchingContest_StartMenuPrompt_1:
 	return
 
 BugCatchingContest_StartMenuPrompt_2:
-	call EventScript_WarpOutOfBugCatchingContest
+	goto EventScript_WarpOutOfBugCatchingContest
 	goto BugCatchingContest_StartMenuPrompt_1
 
 
@@ -90,6 +88,7 @@ BugCatchingContest_EventScript_Officer_EnterContest_7:
 	msgbox BugCatchingContest_EventScript_Officer_EnterContest_Text_6
 	closemessage
 	setflag FLAG_DAILY_BUG_CATCHING_CONTEST
+	setflag FLAG_IN_BUG_CATCHING_CONTEST
 	setvar VAR_BUG_CATCHING_CONTEST_STATE, 1
 	special EnterBugCatchingContest
 	setvar VAR_RESULT, 1
@@ -150,13 +149,11 @@ BugCatchingContest_EventScript_ContestSign::
 
 
 EventScript_CaughtButRanOutOfParkBalls_Text_0:
-	.string "You ran out of PARK BALLS.$"
+	.string "ANNOUNCER: The Contest is over!$"
 
 EventScript_BugCatchingContestTimeExpired_Text_0:
-	.string "Time's up for the Bug-Catching\n"
-	.string "Contest!\p"
-	.string "All contestants should report to\n"
-	.string "to the North Gate.$"
+	.string "ANNOUNCER: BEEEP!\n"
+	.string "Time's up!$"
 
 BugCatchingContest_StartMenuPrompt_Text_0:
 	.string "Would you like to end the Bug\n"
@@ -219,12 +216,12 @@ BugCatchingContest_EventScript_Officer_GivePrizeItem_Text_1:
 	.string "Please make room for your prize.$"
 
 BugCatchingContest_EventScript_ContestSign_Text_0:
-	.string "The Bug-Catching Contest is held\n"
-	.string "on TUESDAY, THURSDAY and SATURDAY.\p"
+	.string "The Bug-Catching Contest is held on\n"
+	.string "TUESDAY, THURSDAY and SATURDAY.\p"
 	.string "Not only do you earn a prize just\n"
 	.string "for participating, you also get\l"
-	.string "to keep the BUG POKéMON you caught\l"
-	.string "at the end of the contest.$"
+	.string "to keep the BUG POKéMON you may\l"
+	.string "have at the end of the contest.$"
 
 BugCatchingContest_Text_Officer_DoYouWantToFinishOneMinute::
 	.string "The Contest is still going for\n"

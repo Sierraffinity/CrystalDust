@@ -47,5 +47,6 @@ u16 GetMapWildMonFromIndex(u8, u8, u8);
 u8 ChooseWildMonIndex_Land(void);
 u8 ChooseWildMonLevelWithAbility(const struct WildPokemon *wildPokemon, bool8 useAbility);
 u8 GetUnownLetterByPersonalityLoByte(u32 personality);
+void Debug_StartWildBattle(u16 species, u8 level, u32 flags);
 
 #endif // GUARD_WILD_ENCOUNTER_H

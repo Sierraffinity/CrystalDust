@@ -28,6 +28,7 @@
 #include "strings.h"
 #include "string_util.h"
 #include "task.h"
+#include "wild_encounter.h"
 #include "window.h"
 #include "constants/day_night.h"
 #include "constants/items.h"
@@ -105,6 +106,8 @@ static void DebugMenu_Pokegear(u8 taskId);
 static void DebugMenu_Pokegear_ProcessInput(u8 taskId);
 static void DebugMenu_EnableMapCard(u8 taskId);
 static void DebugMenu_EnableRadioCard(u8 taskId);
+static void DebugMenu_WildBattle(u8 taskId);
+static void DebugMenu_100Or0CatchRate(u8 taskId);
 static void DebugMenu_FlyMenu(u8 taskId);
 static void DebugMenu_SetRespawn(u8 taskId);
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
@@ -121,6 +124,7 @@ static void DebugMenu_LottoNumber_ProcessInput(u8 taskId);
 
 extern bool8 gPaletteTintDisabled;
 extern bool8 gPaletteOverrideDisabled;
+extern bool8 gCatchDebugStatus;
 extern s16 gDNPeriodOverride;
 extern u16 gDNTintOverride[3];
 
@@ -136,6 +140,7 @@ static const u8 sText_MaxCoins[] = _("Max coins");
 static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Pokedex[] = _("Pokédex");
 static const u8 sText_Pokegear[] = _("Pokégear");
+static const u8 sText_Pokemon[] = _("Pokémon");
 static const u8 sText_Positional[] = _("Positional");
 static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
@@ -145,6 +150,7 @@ static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
 static const u8 sText_PoisonAllMons[] = _("Poison all Pokémon");
 static const u8 sText_FillThePC[] = _("Fill the PC");
+static const u8 sText_100Or0CatchRate[] = _("Normal/100%/0% catch rate");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_CraftDNTintColor[] = _("Craft new tint color");
@@ -153,6 +159,7 @@ static const u8 sText_ProfOakRating[] = _("Prof. Oak rating");
 static const u8 sText_EnableMapCard[] = _("Enable map card");
 static const u8 sText_EnableRadioCard[] = _("Enable radio card");
 static const u8 sText_DexCount[] = _("Count: {STR_VAR_1}");
+static const u8 sText_WildBattle[] = _("Start wild battle");
 static const u8 sText_FlyTo[] = _("Fly to…");
 static const u8 sText_SetRespawn[] = _("Set respawn");
 static const u8 sText_FlagStatus[] = _("Flag: {STR_VAR_1}\nStatus: {STR_VAR_2}");
@@ -171,6 +178,7 @@ static const struct DebugMenuBouncer sDebugMenu_Bouncer_PlayerInfoActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_DNActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_PokedexActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_PokegearActions;
+static const struct DebugMenuBouncer sDebugMenu_Bouncer_PokemonActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_PositionalActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_MiscActions;
 
@@ -182,6 +190,7 @@ static const struct DebugMenuAction sDebugMenu_MainActions[] =
     { sText_DayNight, SUBMENU_ACTIONS(DNActions) },
     { sText_Pokedex, SUBMENU_ACTIONS(PokedexActions) },
     { sText_Pokegear, SUBMENU_ACTIONS(PokegearActions) },
+    { sText_Pokemon, SUBMENU_ACTIONS(PokemonActions) },
     { sText_Positional, SUBMENU_ACTIONS(PositionalActions) },
     { sText_Misc, SUBMENU_ACTIONS(MiscActions) },
     { gText_MenuOptionExit, DebugMenu_Exit, NULL }
@@ -227,6 +236,14 @@ static const struct DebugMenuAction sDebugMenu_PokegearActions[] =
 };
 
 CREATE_BOUNCER(PokegearActions, MainActions);
+
+static const struct DebugMenuAction sDebugMenu_PokemonActions[] =
+{
+    { sText_WildBattle, DebugMenu_WildBattle, NULL },
+    { sText_100Or0CatchRate, DebugMenu_100Or0CatchRate, NULL },
+};
+
+CREATE_BOUNCER(PokemonActions, MainActions);
 
 static const struct DebugMenuAction sDebugMenu_PositionalActions[] = 
 {
@@ -912,6 +929,11 @@ static void DebugMenu_ToggleRunningShoes(u8 taskId)
         FlagSet(FLAG_SYS_B_DASH);
 }
 
+static void DebugMenu_100Or0CatchRate(u8 taskId)
+{
+    gCatchDebugStatus = (gCatchDebugStatus + 1) % 3;
+}
+
 static void DebugMenu_EnableResetRTC(u8 taskId)
 {
     EnableResetRTC();
@@ -1401,6 +1423,11 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
 
 #undef tDexCount
 #undef tWhichDigit
+
+static void DebugMenu_WildBattle(u8 taskId)
+{
+    Debug_StartWildBattle(SPECIES_METAPOD, 10, BATTLE_TYPE_BUG_CATCHING_CONTEST);
+}
 
 static void DebugMenu_EnableMapCard(u8 taskId)
 {

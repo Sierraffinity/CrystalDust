@@ -43,6 +43,7 @@ mapscripts Route36_NationalParkGatehouse_MapScripts {
                 closemessage
                 setvar(VAR_BUG_CATCHING_CONTEST_STATE, 3)
                 fadescreen(1)
+                special(SpawnCameraObject)
                 applymovement (OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_MoveToPlayerSpot)
                 addobject(1)
                 addobject(2)
@@ -51,9 +52,7 @@ mapscripts Route36_NationalParkGatehouse_MapScripts {
                 addobject(5)
                 addobject(6)
                 removeobject(7)
-                waitmovement(0)
-                special(SpawnCameraObject)
-                applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRight)
+                applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRightAndDown)
                 waitmovement(0)
                 special(RemoveCameraObject)
                 fadescreen(0)
@@ -72,9 +71,8 @@ mapscripts Route36_NationalParkGatehouse_MapScripts {
         }
         VAR_BUG_CATCHING_CONTEST_STATE, 2 {
             lock
-            applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony)
-            waitmovement(0)
             special(SpawnCameraObject)
+            applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony)
             applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRight)
             waitmovement(0)
             special(RemoveCameraObject)
@@ -104,58 +102,63 @@ movement Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony {
     face_up
 }
 
+movement Route36_NationalParkGatehouse_Movement_CameraPanRightAndDown {
+    walk_right * 3
+    walk_down
+}
+
 movement Route36_NationalParkGatehouse_Movement_CameraPanRight {
-    walk_right * 2
+    walk_right * 3
 }
 
 script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
     special(DetermineBugCatchingContestStandings)
     textcolor(MSG_COLOR_BLUE)
-    message("We will now judge the POKéMON\n"
-            "you've caught.\p"
-            "…{PAUSE 0x0F}…{PAUSE 0x0F}…{PAUSE 0x0F}\n"
-            "…{PAUSE 0x0F}…{PAUSE 0x0F}…{PAUSE 0x0F}\p"
-            "We have chosen the winners!\p"
-            "Are you ready for this?\p")
-    waitmessage
+    msgbox("We will now judge the POKéMON\n"
+           "you've caught.\p"
+           "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}\n"
+           "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}\p"
+           "We have chosen the winners!\p"
+           "Are you ready for this?")
     setvar(VAR_0x8004, 3)
     special(BuildBugContestPlacementString)
     message(gStringVar4)
     waitmessage
     playfanfare(MUS_SLOTS_WIN)
     waitfanfare
+    waitbuttonpress
     special(CopyBugContestPlacementScoreToVar1)
-    message(Route36_NationalParkGatehouse_Text_TheScoreWas)
-    waitmessage
+    msgbox(Route36_NationalParkGatehouse_Text_TheScoreWas)
     setvar(VAR_0x8004, 2)
     special(BuildBugContestPlacementString)
     message(gStringVar4)
     waitmessage
     playfanfare(MUS_SLOTS_WIN)
     waitfanfare
+    waitbuttonpress
     special(CopyBugContestPlacementScoreToVar1)
-    message(Route36_NationalParkGatehouse_Text_TheScoreWas)
-    waitmessage
+    msgbox(Route36_NationalParkGatehouse_Text_TheScoreWas)
     setvar(VAR_0x8004, 1)
     special(BuildBugContestPlacementString)
     message(gStringVar4)
     waitmessage
-    specialvar(VAR_RESULT, GetWinningBugContestSpecies)
+
+    special(GetWinningBugContestSpecies)
     if (var(VAR_0x8005) == 0)
     {
-        showmonpic(VAR_RESULT, 10, 3)
+        showmonpic(VAR_0x8004, 10, 3)
     }
     else
     {
-        showmonpic(VAR_RESULT, 10, 3, TRUE)
+        showmonpic(VAR_0x8004, 10, 3, TRUE)
     }
 
     playfanfare(MUS_EVOLVED)
     waitfanfare
+    waitbuttonpress
     special(CopyBugContestPlacementScoreToVar1)
-    message("The winning score was a whopping\n"
-            "{STR_VAR_1} points!")
-    waitmessage
+    msgbox("The winning score was a whopping\n"
+           "{STR_VAR_1} points!")
     hidemonpic
     specialvar(VAR_RESULT, GetPlayerBugContestPlace)
     switch (var(VAR_RESULT))
@@ -207,7 +210,6 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
         default:
             msgbox("We hope you do better next time.")
     }
-    setvar(VAR_BUG_CATCHING_CONTEST_STATE, 0)
 
     if (flag(FLAG_LEFT_MONS_WITH_CONTEST_OFFICER))
     {
@@ -218,6 +220,7 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
     }
 
     special(GiveCaughtBugCatchingContestMon)
+	bufferspeciesname(0, VAR_0x8004)
     textcolor(MSG_COLOR_SYS)
     if (var(VAR_RESULT) == 0)
     {
@@ -235,11 +238,15 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
         {
             call(Common_EventScript_NameReceivedBoxMon)
         }
+        copyvar(VAR_TEMP_1, VAR_0x8004)
         call(Common_EventScript_TransferredToPC)
     }
 
     special(EndBugCatchingContest)
+    clearflag(FLAG_IN_BUG_CATCHING_CONTEST)
+    setvar(VAR_BUG_CATCHING_CONTEST_STATE, 0)
     closemessage
+    fadedefaultbgm
     special(SpawnCameraObject)
     applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanLeft)
     waitmovement(0)
@@ -247,7 +254,7 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
 }
 
 text Route36_NationalParkGatehouse_Text_TheScoreWas {
-    "The score was {STR_VAR_1} points!\p"
+    "The score was {STR_VAR_1} points!"
 }
 
 text Route36_NationalParkGatehouse_Text_NicknameCaughtMon {
@@ -325,13 +332,12 @@ script Route36_NationalParkGatehouse_BehindCounterOfficer {
 script Route36_NationalParkGatehouse_Nick {
     if (flag(FLAG_TEMP_1))
     {
-        msgbox("NICK: Well done!\n"
-               "I'm going to raise my POKéMON\l"
-               "better.", MSGBOX_NPC)
+        msgbox("NICK: Well done! I'm going to\n"
+               "raise my POKéMON better.", MSGBOX_NPC)
     }
     else
     {
-        msgbox("NICK: Maybe you get a higher score\p"
+        msgbox("NICK: Maybe you get a higher score\n"
                "for POKéMON of an unusual color.", MSGBOX_NPC)
     }
 }
@@ -356,8 +362,8 @@ script Route36_NationalParkGatehouse_Samuel {
     }
     else
     {
-        msgbox("SAMUEL: Next time, I think I can\n"
-               "score even higher.", MSGBOX_NPC)
+        msgbox("SAMUEL: Huh, that's odd…\n"
+               "I thought I would score higher.", MSGBOX_NPC)
     }
 }
 
@@ -384,7 +390,7 @@ script Route36_NationalParkGatehouse_Ed {
     }
     else
     {
-        msgbox("ED: Maybe you win with rare POKéMON?", MSGBOX_NPC)
+        msgbox("ED: Maybe you win with big POKéMON?", MSGBOX_NPC)
     }
 }
 
@@ -414,9 +420,6 @@ script Route36_NationalParkGatehouse_Josh {
     }
 }
 
-script Route36_NationalParkGatehouse_JoshPlayerLost {
-}
-
 script Route36_NationalParkGatehouse_Don {
     if (flag(FLAG_TEMP_1))
     {
@@ -444,16 +447,13 @@ script Route36_NationalParkGatehouse_Kipp {
     }
 }
 
-script Route36_NationalParkGatehouse_KippPlayerLost {
-}
-
 script Route36_NationalParkGatehouse_Cindy {
     if (flag(FLAG_TEMP_1))
     {
         msgbox("CINDY: You won?\n"
                "That's great!\p"
-               "Do you feel like looking for more\n"
-               "BUG POKéMON with me?", MSGBOX_NPC)
+               "Do you feel like looking for BUG\n"
+               "POKéMON with me sometime?", MSGBOX_NPC)
     }
     else
     {

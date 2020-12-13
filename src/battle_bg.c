@@ -592,10 +592,232 @@ static const struct WindowTemplate gBattleArenaWindowTemplates[] =
     DUMMY_WIN_TEMPLATE
 };
 
+static const struct WindowTemplate gBugCatchingContestBattleWindowTemplates[] =
+{
+    { // 0 Standard battle message
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 15,
+        .width = 28,
+        .height = 4,
+        .paletteNum = 0,
+        .baseBlock = 0x0090,
+    },
+    { // 1 "What will (pokemon) do?"
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 35,
+        .width = 13,
+        .height = 4,
+        .paletteNum = 0,
+        .baseBlock = 0x01c0,
+    },
+    { // 2 "Fight/Pokemon/Ball/Run"
+        .bg = 0,
+        .tilemapLeft = 16,
+        .tilemapTop = 35,
+        .width = 13,
+        .height = 4,
+        .paletteNum = 5,
+        .baseBlock = 0x0180,
+    },
+    { // 3 Top left move
+        .bg = 0,
+        .tilemapLeft = 2,
+        .tilemapTop = 55,
+        .width = 8,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0300,
+    },
+    { // 4 Top right move
+        .bg = 0,
+        .tilemapLeft = 11,
+        .tilemapTop = 55,
+        .width = 8,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0310,
+    },
+    { // 5 Bottom left move
+        .bg = 0,
+        .tilemapLeft = 2,
+        .tilemapTop = 57,
+        .width = 8,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0320,
+    },
+    { // 6 Bottom right move
+        .bg = 0,
+        .tilemapLeft = 11,
+        .tilemapTop = 57,
+        .width = 8,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0330,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 55,
+        .width = 4,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0290,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 57,
+        .width = 0,
+        .height = 0,
+        .paletteNum = 5,
+        .baseBlock = 0x0298,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 25,
+        .tilemapTop = 55,
+        .width = 4,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0298,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 57,
+        .width = 8,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x02a0,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 55,
+        .width = 8,
+        .height = 4,
+        .paletteNum = 5,
+        .baseBlock = 0x02b0,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 26,
+        .tilemapTop = 9,
+        .width = 3,
+        .height = 4,
+        .paletteNum = 5,
+        .baseBlock = 0x0100,
+    },
+    {
+        .bg = 1,
+        .tilemapLeft = 19,
+        .tilemapTop = 8,
+        .width = 10,
+        .height = 11,
+        .paletteNum = 5,
+        .baseBlock = 0x0100,
+    },
+    {
+        .bg = 2,
+        .tilemapLeft = 18,
+        .tilemapTop = 0,
+        .width = 12,
+        .height = 3,
+        .paletteNum = 6,
+        .baseBlock = 0x016e,
+    },
+    {
+        .bg = 1,
+        .tilemapLeft = 2,
+        .tilemapTop = 3,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0020,
+    },
+    {
+        .bg = 2,
+        .tilemapLeft = 2,
+        .tilemapTop = 3,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0040,
+    },
+    {
+        .bg = 1,
+        .tilemapLeft = 2,
+        .tilemapTop = 2,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0020,
+    },
+    {
+        .bg = 2,
+        .tilemapLeft = 2,
+        .tilemapTop = 2,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0040,
+    },
+    {
+        .bg = 1,
+        .tilemapLeft = 2,
+        .tilemapTop = 6,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0060,
+    },
+    {
+        .bg = 2,
+        .tilemapLeft = 2,
+        .tilemapTop = 6,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x0080,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 12,
+        .tilemapTop = 2,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 0,
+        .baseBlock = 0x00a0,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 4,
+        .tilemapTop = 2,
+        .width = 7,
+        .height = 2,
+        .paletteNum = 0,
+        .baseBlock = 0x00a0,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 19,
+        .tilemapTop = 2,
+        .width = 7,
+        .height = 2,
+        .paletteNum = 0,
+        .baseBlock = 0x00b0,
+    },
+    DUMMY_WIN_TEMPLATE
+};
+
 const struct WindowTemplate * const gBattleWindowTemplates[] =
 {
     gStandardBattleWindowTemplates,
     gBattleArenaWindowTemplates,
+    gBugCatchingContestBattleWindowTemplates
 };
 
 static const struct BattleBackground sBattleTerrainTable[] =
@@ -874,6 +1096,10 @@ void BattleInitBgsAndWindows(void)
         SetBgTilemapBuffer(1, gUnknown_02023060);
         SetBgTilemapBuffer(2, gUnknown_02023060);
     }
+    else if (gBattleTypeFlags & BATTLE_TYPE_BUG_CATCHING_CONTEST)
+    {
+        gBattleScripting.windowsType = 2;
+    }
     else
     {
         gBattleScripting.windowsType = 0;
@@ -998,10 +1224,29 @@ void DrawMainBattleBackground(void)
     }*/
 }
 
+static void DrawBattleActionsTextBorder(u8 windowId, u16 tileNum, u8 palNum)
+{
+    u8 bgLayer = GetWindowAttribute(windowId, WINDOW_BG);
+    u16 width = GetWindowAttribute(windowId, WINDOW_WIDTH) + 1;
+    u16 height = GetWindowAttribute(windowId, WINDOW_HEIGHT);
+    u16 tilemapLeft = GetWindowAttribute(windowId, WINDOW_TILEMAP_LEFT) - 1;
+    u16 tilemapTop = GetWindowAttribute(windowId, WINDOW_TILEMAP_TOP);
+
+    FillBgTilemapBufferRect(bgLayer, tileNum + 0, tilemapLeft - 1,      tilemapTop - 1,         1,      1,      palNum);
+    FillBgTilemapBufferRect(bgLayer, tileNum + 1, tilemapLeft,          tilemapTop - 1,         width,  1,      palNum);
+    FillBgTilemapBufferRect(bgLayer, tileNum + 2, tilemapLeft + width,  tilemapTop - 1,         1,      1,      palNum);
+    FillBgTilemapBufferRect(bgLayer, tileNum + 3, tilemapLeft - 1,      tilemapTop,             1,      height, palNum);
+    FillBgTilemapBufferRect(bgLayer, tileNum + 5, tilemapLeft + width,  tilemapTop,             1,      height, palNum);
+    FillBgTilemapBufferRect(bgLayer, tileNum + 6, tilemapLeft - 1,      tilemapTop + height,    1,      1,      palNum);
+    FillBgTilemapBufferRect(bgLayer, tileNum + 7, tilemapLeft,          tilemapTop + height,    width,  1,      palNum);
+    FillBgTilemapBufferRect(bgLayer, tileNum + 8, tilemapLeft + width,  tilemapTop + height,    1,      1,      palNum);
+}
+
 void LoadBattleTextboxAndBackground(void)
 {
     LZDecompressVram(gBattleTextboxTiles, (void*)(BG_CHAR_ADDR(0)));
     CopyToBgTilemapBuffer(0, gBattleTextboxTilemap, 0, 0);
+    DrawBattleActionsTextBorder(2, 18, 1);
     CopyBgTilemapBufferToVram(0);
     LoadCompressedPalette(gBattleTextboxPalette, 0, 0x40);
     LoadBattleMenuWindowGfx();

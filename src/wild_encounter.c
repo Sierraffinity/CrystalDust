@@ -1241,3 +1241,11 @@ u16 GetMapWildMonFromIndex(u8 mapGroup, u8 mapNum, u8 index)
 
 	return i;
 }
+
+#if DEBUG
+void Debug_StartWildBattle(u16 species, u8 level, u32 flags)
+{
+    CreateWildMon(species, level);
+    BattleSetup_StartWildBattle(flags);
+}
+#endif

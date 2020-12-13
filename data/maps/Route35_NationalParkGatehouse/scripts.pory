@@ -87,11 +87,13 @@ script Route35_NationalParkGatehouse_EventScript_BugContestOfficer {
                 switch (var(VAR_FACING))
                 {
                     case DIR_NORTH:
+                        applymovement(OBJ_EVENT_ID_CONTEST_OFFICER, Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromBelow)
                         applymovement(OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromBelow)
                     case DIR_WEST:
                         applymovement(OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromRight)
                     // DIR_EAST
                     default:
+                        applymovement(OBJ_EVENT_ID_CONTEST_OFFICER, Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromLeft)
                         applymovement(OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromLeft)
                 }
                 waitmovement(0)
@@ -120,6 +122,16 @@ movement Route35_NationalParkGatehouse_Movement_EnterContestFromLeft {
     walk_down
     walk_right * 2
     walk_up * 2
+}
+
+movement Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromBelow {
+    walk_in_place_fastest_right
+}
+
+movement Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromLeft {
+    walk_in_place_fastest_down
+    delay_16 * 2
+    walk_in_place_fastest_right
 }
 
 script Route35_NationalParkGatehouse_NoContestOfficer {

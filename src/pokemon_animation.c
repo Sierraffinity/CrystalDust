@@ -830,6 +830,8 @@ static const union AffineAnimCmd *const sSpriteAffineAnimTable_860AD68[] =
     sSpriteAffineAnim_860AD58
 };
 
+extern const union AffineAnimCmd *const gUnknown_082FF694[];
+
 // code
 static void MonAnimDummySpriteCallback(struct Sprite *sprite)
 {
@@ -1041,6 +1043,13 @@ static void sub_817F77C(struct Sprite *sprite)
         FreeOamMatrix(sprite->oam.matrixNum);
         sprite->oam.matrixNum |= (sprite->hFlip << 3);
         sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
+    }
+    else
+    {
+        // FIX: Reset these back to normal after they were changed so Poké Ball catch/release
+        // animations without a screen transition in between don't break
+        sprite->affineAnimPaused = FALSE;
+        sprite->affineAnims = gUnknown_082FF694;
     }
 }
 

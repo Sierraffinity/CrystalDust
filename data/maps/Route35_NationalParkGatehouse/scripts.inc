@@ -107,6 +107,7 @@ Route35_NationalParkGatehouse_EventScript_BugContestOfficer_14:
 	switch VAR_FACING
 	case DIR_NORTH, Route35_NationalParkGatehouse_EventScript_BugContestOfficer_18
 	case DIR_WEST, Route35_NationalParkGatehouse_EventScript_BugContestOfficer_19
+	applymovement 3, Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromLeft
 	applymovement OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromLeft
 Route35_NationalParkGatehouse_EventScript_BugContestOfficer_16:
 	waitmovement 0
@@ -115,6 +116,7 @@ Route35_NationalParkGatehouse_EventScript_BugContestOfficer_16:
 	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_1
 
 Route35_NationalParkGatehouse_EventScript_BugContestOfficer_18:
+	applymovement 3, Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromBelow
 	applymovement OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromBelow
 	goto Route35_NationalParkGatehouse_EventScript_BugContestOfficer_16
 
@@ -139,6 +141,17 @@ Route35_NationalParkGatehouse_Movement_EnterContestFromLeft:
 	walk_right
 	walk_up
 	walk_up
+	step_end
+
+Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromBelow:
+	walk_in_place_fastest_right
+	step_end
+
+Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromLeft:
+	walk_in_place_fastest_down
+	delay_16
+	delay_16
+	walk_in_place_fastest_right
 	step_end
 
 Route35_NationalParkGatehouse_NoContestOfficer::

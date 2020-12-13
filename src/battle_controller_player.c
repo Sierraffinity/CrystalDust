@@ -258,10 +258,10 @@ static void HandleInputChooseAction(void)
                 BtlController_EmitTwoReturnValues(1, B_ACTION_USE_MOVE, 0);
                 break;
             case 1:
-                BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+                BtlController_EmitTwoReturnValues(1, B_ACTION_PARK_BALL, 0);
                 break;
             case 2:
-                BtlController_EmitTwoReturnValues(1, B_ACTION_PARK_BALL, 0);
+                BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
                 break;
             case 3:
                 BtlController_EmitTwoReturnValues(1, B_ACTION_RUN, 0);
@@ -649,7 +649,7 @@ u32 sub_8057FBC(void) // unused
     {
         PlaySE(SE_SELECT);
         gBattle_BG0_X = 0;
-        gBattle_BG0_Y = 0x140;
+        gBattle_BG0_Y = 320;
         var = 0xFF;
     }
     if (JOY_NEW(DPAD_LEFT) && gMoveSelectionCursor[gActiveBattler] & 1)
@@ -1534,21 +1534,29 @@ static void MoveSelectionDestroyCursorAt(u8 cursorPosition)
 
 void ActionSelectionCreateCursorAt(u8 cursorPosition, u8 arg1)
 {
+    u8 xPos, yPos;
     u16 src[2];
     src[0] = 1;
     src[1] = 2;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + 16, 35 + (cursorPosition & 2), 1, 2, 0x11);
+    xPos = GetWindowAttribute(2, WINDOW_TILEMAP_LEFT) - 1;
+    yPos = GetWindowAttribute(2, WINDOW_TILEMAP_TOP);
+
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + xPos, (cursorPosition & 2) + yPos, 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
 void ActionSelectionDestroyCursorAt(u8 cursorPosition)
 {
+    u8 xPos, yPos;
     u16 src[2];
     src[0] = 0x1016;
     src[1] = 0x1016;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + 16, 35 + (cursorPosition & 2), 1, 2, 0x11);
+    xPos = GetWindowAttribute(2, WINDOW_TILEMAP_LEFT) - 1;
+    yPos = GetWindowAttribute(2, WINDOW_TILEMAP_TOP);
+
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + xPos, (cursorPosition & 2) + yPos, 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
@@ -2584,8 +2592,8 @@ static void PlayerHandleChooseAction(void)
     if (gBattleTypeFlags & BATTLE_TYPE_BUG_CATCHING_CONTEST)
     {
         ConvertIntToDecimalStringN(gStringVar1, gNumParkBalls, STR_CONV_MODE_LEFT_ALIGN, 2);
-        StringExpandPlaceholders(gStringVar2, gText_BugCatchingContestMenu);
-        BattlePutTextOnWindow(gStringVar2, 2);
+        StringExpandPlaceholders(gStringVar4, gText_BugCatchingContestMenu);
+        BattlePutTextOnWindow(gStringVar4, 2);
     }
     else
     {

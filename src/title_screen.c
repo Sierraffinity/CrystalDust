@@ -38,7 +38,7 @@
 #define A_B_START_SELECT (A_BUTTON | B_BUTTON | START_BUTTON | SELECT_BUTTON)
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
-EWRAM_DATA vu8 sVBlank_DMA = 0;
+static EWRAM_DATA vu8 sVBlank_DMA = 0;
 
 extern const u32 gTitleScreenPressStartGfx[];
 extern const u32 gTitleScreenPokemonLogoGfx[];

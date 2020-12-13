@@ -510,7 +510,7 @@ void HandleAction_SafariZoneBallThrow(void)
     gBattle_BG0_Y = 0;
     gNumSafariBalls--;
     gLastUsedItem = ITEM_SAFARI_BALL;
-    gBattlescriptCurrInstr = gBattlescriptsForBallThrow[ITEM_SAFARI_BALL];
+    gBattlescriptCurrInstr = gBattlescriptsForBallThrow[BALL_SAFARI];
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 
@@ -521,7 +521,7 @@ void HandleAction_ParkBallThrow(void)
     gBattle_BG0_Y = 0;
     gNumParkBalls--;
     gLastUsedItem = ITEM_PARK_BALL;
-    gBattlescriptCurrInstr = gBattlescriptsForBallThrow[ITEM_PARK_BALL];
+    gBattlescriptCurrInstr = gBattlescriptsForBallThrow[BALL_PARK];
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 

@@ -10384,7 +10384,7 @@
           "map": "MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST",
           "base_label": "gNationalPark_BugCatchingContest",
           "land_mons": {
-            "encounter_rate": 7,
+            "encounter_rate": 40,
             "mons": [
               [
                 {

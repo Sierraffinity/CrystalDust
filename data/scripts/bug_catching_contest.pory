@@ -10,33 +10,29 @@ script EventScript_RanOutOfParkBalls {
 
 script EventScript_CaughtButRanOutOfParkBalls {
     lockall
-    message("You ran out of PARK BALLS.")
-    waitmessage
-    waitbuttonpress
+    playse(SE_DING_DONG)
+    msgbox("ANNOUNCER: The Contest is over!")
     call(EventScript_WarpOutOfBugCatchingContest)
     releaseall
 }
 
 script EventScript_BugCatchingContestTimeExpired {
     lockall
-    message("Time's up for the Bug-Catching\n"
-            "Contest!\p"
-            "All contestants should report to\n"
-            "to the North Gate.")
-    waitmessage
-    waitbuttonpress
-    call(EventScript_WarpOutOfBugCatchingContest)
-    releaseall
+    playse(SE_DING_DONG)
+    msgbox("ANNOUNCER: BEEEP!\n"
+           "Time's up!")
+    goto(EventScript_WarpOutOfBugCatchingContest)
 }
 
 script EventScript_WarpOutOfBugCatchingContestHeal {
     special(HealPlayerParty)
-    call(EventScript_WarpOutOfBugCatchingContest)
+    setvar(VAR_BUG_CATCHING_CONTEST_STATE, 2)
+    warpsilent(MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, 0, -1, -1)
+    waitstate
 }
 
 script EventScript_ReturnBugCatchingContestMons {
-    setvar(VAR_0x8004, 6)
-    special(CallFrontierUtilFunc)
+    frontier_saveparty
     special(LoadPlayerParty)
 }
 
@@ -46,7 +42,7 @@ script BugCatchingContest_StartMenuPrompt {
            "Catching Contest right now?", MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES)
     {
-        call(EventScript_WarpOutOfBugCatchingContest)
+        goto(EventScript_WarpOutOfBugCatchingContest)
     }
     releaseall
 }
@@ -128,6 +124,7 @@ script BugCatchingContest_EventScript_Officer_EnterContest {
                    "POKéMON you can find!")
             closemessage
             setflag(FLAG_DAILY_BUG_CATCHING_CONTEST)
+            setflag(FLAG_IN_BUG_CATCHING_CONTEST)
             setvar(VAR_BUG_CATCHING_CONTEST_STATE, 1)
             special(EnterBugCatchingContest)
             setvar(VAR_RESULT, 1)
@@ -186,10 +183,10 @@ text BugCatchingContest_Text_Officer_ContestIsOver {
 }
 
 script BugCatchingContest_EventScript_ContestSign {
-    msgbox("The Bug-Catching Contest is held\n"
-           "on TUESDAY, THURSDAY and SATURDAY.\p"
+    msgbox("The Bug-Catching Contest is held on\n"
+           "TUESDAY, THURSDAY and SATURDAY.\p"
            "Not only do you earn a prize just\n"
            "for participating, you also get\l"
-           "to keep the BUG POKéMON you caught\l"
-           "at the end of the contest.", MSGBOX_SIGN)
+           "to keep the BUG POKéMON you may\l"
+           "have at the end of the contest.", MSGBOX_SIGN)
 }

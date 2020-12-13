@@ -431,6 +431,7 @@ void Overworld_ResetStateAfterFly(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
+    TryEndBugCatchingContest();
 }
 
 void Overworld_ResetStateAfterTeleport(void)
@@ -441,6 +442,7 @@ void Overworld_ResetStateAfterTeleport(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
+    TryEndBugCatchingContest();
 }
 
 void Overworld_ResetStateAfterDigEscRope(void)
@@ -451,6 +453,7 @@ void Overworld_ResetStateAfterDigEscRope(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
+    TryEndBugCatchingContest();
 }
 
 static void Overworld_ResetStateAfterWhiteOut(void)
@@ -1180,6 +1183,8 @@ u16 GetLocationMusic(struct WarpData *warp)
     const u16 musicOverrideList[][3] =
     {
         { MAP_GOLDENROD_CITY_POKEMON_CENTER_1F, FLAG_POKECOM_CENTER_ENABLED, MUS_C_COMM_CENTER },
+        { MAP_ROUTE35_NATIONAL_PARK_GATEHOUSE, FLAG_IN_BUG_CATCHING_CONTEST, MUS_BUG_CONTEST_PREP },
+        { MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, FLAG_IN_BUG_CATCHING_CONTEST, MUS_BUG_CONTEST_PREP },
         { MAP_UNDEFINED, 0, 0 }
     };
 
