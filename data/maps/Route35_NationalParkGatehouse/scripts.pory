@@ -4,9 +4,9 @@ mapscripts Route35_NationalParkGatehouse_MapScripts {
     MAP_SCRIPT_ON_LOAD {
         gettime
         if (var(VAR_BUG_CATCHING_CONTEST_STATE) == 1 ||
-            var(VAR_0x8003) == DAY_TUESDAY ||
-            var(VAR_0x8003) == DAY_THURSDAY ||
-            var(VAR_0x8003) == DAY_SATURDAY)
+            (var(VAR_0x8003) == DAY_TUESDAY ||
+             var(VAR_0x8003) == DAY_THURSDAY ||
+             var(VAR_0x8003) == DAY_SATURDAY) && !flag(FLAG_DAILY_BUG_CATCHING_CONTEST))
         {
             setflag(FLAG_TEMP_11)
         }

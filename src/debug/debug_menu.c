@@ -971,7 +971,7 @@ static void DebugMenu_FillThePC(u8 taskId)
                  SPECIES_MEW,
                  100,
                  32,
-                 FALSE,
+                 PERSONALITY_RANDOM,
                  0,
                  OT_ID_PLAYER_ID,
                  0);
@@ -1426,7 +1426,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
 
 static void DebugMenu_WildBattle(u8 taskId)
 {
-    Debug_StartWildBattle(SPECIES_METAPOD, 10, BATTLE_TYPE_BUG_CATCHING_CONTEST);
+    Debug_StartWildBattle(SPECIES_METAPOD, 10, BATTLE_TYPE_BUG_CATCHING_CONTEST, TRUE);
 }
 
 static void DebugMenu_EnableMapCard(u8 taskId)

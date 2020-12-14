@@ -186,7 +186,7 @@ script BugCatchingContest_EventScript_ContestSign {
     msgbox("The Bug-Catching Contest is held on\n"
            "TUESDAY, THURSDAY and SATURDAY.\p"
            "Not only do you earn a prize just\n"
-           "for participating, you also get\l"
-           "to keep the BUG POKéMON you may\l"
+           "for participating, you also get to\l"
+           "keep the BUG POKéMON you may\l"
            "have at the end of the contest.", MSGBOX_SIGN)
 }

@@ -45,7 +45,7 @@ static void ApplyLongGrassEncounterRateMod(u32 *encRate);
 static void ApplyMusicEncounterRateMod(u32 *encRate);
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u8 ability, u8 *monIndex);
 static bool8 IsAbilityAllowingEncounter(u8 level);
-static u32 GenerateUnownPersonality(void);
+static u32 GenerateUnownPersonality(u32 otId, bool8 forceShiny);
 
 // EWRAM vars
 EWRAM_DATA static u8 sWildEncountersDisabled = 0;
@@ -376,7 +376,7 @@ static u8 PickWildMonNature(void)
     return Random() % NUM_NATURES;
 }
 
-static void CreateWildMon(u16 species, u8 level)
+static void CreateWildMon(u16 species, u8 level, bool8 forceShiny)
 {
     u32 personality;
     bool32 checkCuteCharm;
@@ -410,20 +410,20 @@ static void CreateWildMon(u16 species, u8 level)
             else
                 gender = MON_FEMALE;
 
-            CreateMonWithGenderNatureLetter(&gEnemyParty[0], species, level, 32, gender, PickWildMonNature(), 0);
+            CreateMonWithGenderNatureLetter(&gEnemyParty[0], species, level, 32, gender, PickWildMonNature(), 0, forceShiny);
             return;
         }
         
-        CreateMonWithNature(&gEnemyParty[0], species, level, 32, PickWildMonNature());
+        CreateMonWithNature(&gEnemyParty[0], species, level, 32, PickWildMonNature(), forceShiny);
     }
     else
     {
-        personality = GenerateUnownPersonality();
-        CreateMon(&gEnemyParty[0], species, level, 32, TRUE, personality, FALSE, 0);
+        personality = GenerateUnownPersonality(T1_READ_32(gSaveBlock2Ptr->playerTrainerId), forceShiny);
+        CreateMon(&gEnemyParty[0], species, level, 32, TRUE, personality, OT_ID_PLAYER_ID, 0);
     }
 }
 
-static u32 GenerateUnownPersonality(void)
+static u32 GenerateUnownPersonality(u32 otId, bool8 forceShiny)
 {
     u8 letter;
     u32 personality;
@@ -458,7 +458,8 @@ static u32 GenerateUnownPersonality(void)
     {
         personality = (Random() << 16) | Random();
         letter = GetUnownLetterByPersonalityLoByte(personality);
-    } while (!allowedUnownLetters[letter]);
+    } while (!allowedUnownLetters[letter] ||
+             (forceShiny && !IsShinyOtIdPersonality(otId, personality)));
     return personality;
 }
 
@@ -521,7 +522,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 ar
     if (species == SPECIES_UNOWN && !FlagGet(FLAG_MADE_UNOWN_APPEAR_IN_RUINS))
         return FALSE;
 
-    CreateWildMon(species, level);
+    CreateWildMon(species, level, FALSE);
     return TRUE;
 }
 
@@ -537,7 +538,7 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
     wildMonIndex = ChooseWildMonIndex_Fishing(rod);
     level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[timeOfDay][wildMonIndex]);
 
-    CreateWildMon(wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species, level);
+    CreateWildMon(wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species, level, FALSE);
     return wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species;
 }
 
@@ -580,7 +581,7 @@ static void GenerateHeadbuttWildMon(const struct WildPokemonInfo *wildMonInfo, b
     mon = &wildMonInfo->wildPokemon[timeOfDay][wildMonIndex];
     level = ChooseWildMonLevel(mon);
 
-    CreateWildMon(mon->species, level);
+    CreateWildMon(mon->species, level, FALSE);
 
     switch (timeOfDay)
     {
@@ -610,7 +611,7 @@ static bool8 SetUpMassOutbreakEncounter(u8 flags)
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(gSaveBlock1Ptr->outbreakPokemonLevel))
         return FALSE;
 
-    CreateWildMon(gSaveBlock1Ptr->outbreakPokemonSpecies, gSaveBlock1Ptr->outbreakPokemonLevel);
+    CreateWildMon(gSaveBlock1Ptr->outbreakPokemonSpecies, gSaveBlock1Ptr->outbreakPokemonLevel, FALSE);
     for (i = 0; i < 4; i++)
         SetMonMoveSlot(&gEnemyParty[0], gSaveBlock1Ptr->outbreakPokemonMoves[i], i);
 
@@ -975,7 +976,7 @@ void FishingWildEncounter(u8 rod)
         u8 level = ChooseWildMonLevel(&gWildFeebasRoute119Data);
 
         species = gWildFeebasRoute119Data.species;
-        CreateWildMon(species, level);
+        CreateWildMon(species, level, FALSE);
     }
     else
     {
@@ -1243,9 +1244,9 @@ u16 GetMapWildMonFromIndex(u8 mapGroup, u8 mapNum, u8 index)
 }
 
 #if DEBUG
-void Debug_StartWildBattle(u16 species, u8 level, u32 flags)
+void Debug_StartWildBattle(u16 species, u8 level, u32 flags, bool8 forceShiny)
 {
-    CreateWildMon(species, level);
+    CreateWildMon(species, level, forceShiny);
     BattleSetup_StartWildBattle(flags);
 }
 #endif

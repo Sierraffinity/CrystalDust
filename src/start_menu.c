@@ -680,7 +680,8 @@ static bool8 HandleStartMenuInput(void)
     if (JOY_NEW(START_BUTTON | B_BUTTON))
     {
         RemoveExtraStartMenuWindows();
-        HideStartMenu();
+        HideStartMenuWindow();
+        PlaySE(SE_SELECT);
         return TRUE;
     }
 
@@ -798,7 +799,7 @@ static bool8 StartMenuOptionCallback(void)
 static bool8 StartMenuExitCallback(void)
 {
     RemoveExtraStartMenuWindows();
-    HideStartMenu(); // Hide start menu
+    HideStartMenuWindow(); // Hide start menu
 
     return TRUE;
 }
@@ -806,7 +807,7 @@ static bool8 StartMenuExitCallback(void)
 static bool8 StartMenuSafariZoneRetireCallback(void)
 {
     RemoveExtraStartMenuWindows();
-    HideStartMenu();
+    HideStartMenuWindow();
     SafariZoneRetirePrompt();
 
     return TRUE;
@@ -815,7 +816,7 @@ static bool8 StartMenuSafariZoneRetireCallback(void)
 static bool8 StartMenuRetireBugCatchingContestCallback(void)
 {
     RemoveExtraStartMenuWindows();
-    HideStartMenu();
+    HideStartMenuWindow();
     BugCatchingContestQuitPrompt();
 
     return TRUE;
@@ -1465,12 +1466,6 @@ static void HideStartMenuWindow(void)
     RemoveStartMenuWindow();
     ScriptUnfreezeObjectEvents();
     ScriptContext2_Disable();
-}
-
-void HideStartMenu(void)
-{
-    PlaySE(SE_SELECT);
-    HideStartMenuWindow();
 }
 
 void AppendToList(u8 *list, u8 *pos, u8 newEntry)

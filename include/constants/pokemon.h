@@ -189,6 +189,10 @@
 #define OT_ID_PRESET          1
 #define OT_ID_RANDOM_NO_SHINY 2
 
+#define PERSONALITY_RANDOM    0
+#define PERSONALITY_FIXED     1
+#define PERSONALITY_SHINY     2
+
 #define MON_GIVEN_TO_PARTY      0
 #define MON_GIVEN_TO_PC         1
 #define MON_CANT_GIVE           2

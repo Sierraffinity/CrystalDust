@@ -76,7 +76,7 @@ extern const u8 gTrainerClassNames[][13];
 
 #define NUM_BUG_CONTEST_NPCS 5
 
-// The maximum score for a mon is only 400, so shiny mmons trump normal mons.
+// The maximum score for a mon is only 400, so shiny mons trump normal mons.
 #define SHINY_SCORE_INCREASE 500
 #define BUG_CONTEST_DURATION_SECONDS 1200
 
@@ -131,8 +131,8 @@ EWRAM_DATA u32 gBugCatchingContestStartSeconds = 0;
 static void GenerateBugCatchingContestNPCMons();
 static void InitBugContestNPCs(void);
 static void GenerateBugCatchingContestNPCMon(struct BugCatchingContestNPC *npc);
-static int CalculateBugCatchingContestMonScore(struct Pokemon *mon, bool8 isNPC);
-static int GetMaxBugCatchingContestLevel(void);
+static int CalculateBugCatchingContestMonScore(struct Pokemon *mon);
+static int GetMaxBugCatchingContestLevelForSpecies(u16 species);
 static const struct WildPokemon *GetBugCatchingContestWildMons(void);
 static int CalculateLevelScore(int level, int maxLevel);
 static int CalculateIVScore(int hpIV, int attackIV, int defenseIV, int speedIV, int spAttackIV, int spDefenseIV);
@@ -472,15 +472,32 @@ void DetermineBugCatchingContestStandings(void)
 {
     int i, j;
     int playerId;
+    bool8 haveShiny = FALSE;
 
     if (gBugCatchingContestStatus == BUG_CATCHING_CONTEST_STATUS_CAUGHT)
-        gPlayerBugCatchingContestScore = CalculateBugCatchingContestMonScore(&gCaughtBugCatchingContestMon, FALSE);
+    {
+        gPlayerBugCatchingContestScore = CalculateBugCatchingContestMonScore(&gCaughtBugCatchingContestMon);
+        if (IsMonShiny(&gCaughtBugCatchingContestMon))
+        {
+            gPlayerBugCatchingContestScore += SHINY_SCORE_INCREASE;
+            haveShiny = TRUE;
+        }
+    }
     else
+    {
         gPlayerBugCatchingContestScore = 0;
+    }
 
     GenerateBugCatchingContestNPCMons();
     for (i = 0; i < ARRAY_COUNT(gBugCatchingContestStandings); i++)
+    {
+        if (!haveShiny && gBugCatchingContestNPCs[i].caughtShiny)
+        {
+            gBugCatchingContestNPCs[i].score += SHINY_SCORE_INCREASE;
+            haveShiny = TRUE;
+        }
         gBugCatchingContestStandings[i] = i;
+    }
 
     // Sort the standings based on the contestants' scores from largest to smallest.
     playerId = NUM_BUG_CONTEST_NPCS;
@@ -779,17 +796,16 @@ static void GenerateBugCatchingContestNPCMon(struct BugCatchingContestNPC *npc)
     hp = (Random() % maxHP) + 1;
     SetMonData(&mon, MON_DATA_HP, &hp);
 
-    npc->score = CalculateBugCatchingContestMonScore(&mon, TRUE);
-    if (npc->caughtShiny)
-        npc->score += SHINY_SCORE_INCREASE;
+    npc->score = CalculateBugCatchingContestMonScore(&mon);
 }
 
-static int CalculateBugCatchingContestMonScore(struct Pokemon *mon, bool8 isNPC)
+static int CalculateBugCatchingContestMonScore(struct Pokemon *mon)
 {
     int maxLevel;
-    int levelScore, ivScore, hpScore, rarityScore, shinyScore;
+    int levelScore, ivScore, hpScore, rarityScore;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
 
-    maxLevel = GetMaxBugCatchingContestLevel();
+    maxLevel = GetMaxBugCatchingContestLevelForSpecies(species);
     levelScore = CalculateLevelScore(GetMonData(mon, MON_DATA_LEVEL), maxLevel);
     ivScore = CalculateIVScore(
         GetMonData(mon, MON_DATA_HP_IV),
@@ -799,20 +815,12 @@ static int CalculateBugCatchingContestMonScore(struct Pokemon *mon, bool8 isNPC)
         GetMonData(mon, MON_DATA_SPATK_IV),
         GetMonData(mon, MON_DATA_SPDEF_IV));
     hpScore = CalculateHPScore(GetMonData(mon, MON_DATA_HP), GetMonData(mon, MON_DATA_MAX_HP));
-    rarityScore = CalculateRarityScore(GetMonData(mon, MON_DATA_SPECIES));
+    rarityScore = CalculateRarityScore(species);
 
-    // A shiny mon trumps any non-shiny mon.
-    // Can't rely on IsMonShiny() for NPC mons because it will use the
-    // player's trainer Id to do the shiny check.
-    if (!isNPC && IsMonShiny(mon))
-        shinyScore = SHINY_SCORE_INCREASE;
-    else
-        shinyScore = 0;
-
-    return levelScore + ivScore + hpScore + rarityScore + shinyScore;
+    return levelScore + ivScore + hpScore + rarityScore;
 }
 
-static int GetMaxBugCatchingContestLevel(void)
+static int GetMaxBugCatchingContestLevelForSpecies(u16 species)
 {
     int i;
     int maxLevel = -1;
@@ -822,7 +830,8 @@ static int GetMaxBugCatchingContestLevel(void)
 
     for (i = 0; i < 12; i++)
     {
-        if (wildMons[i].maxLevel > maxLevel)
+        if ((wildMons[i].species == species) &&
+            (wildMons[i].maxLevel > maxLevel))
             maxLevel = wildMons[i].maxLevel;
     }
 
@@ -1008,9 +1017,8 @@ static bool8 GetContestantCaughtShiny(int contestantId)
 
 static void BuildBugContestPlacementString_FirstPlace(void)
 {
-    static const u8 sFirstPlaceString_Part1[] = _("This Bug-Catching Contest winner is…\p{STR_VAR_1} {STR_VAR_2} who caught\n");
+    static const u8 sFirstPlaceString_Part1[] = _("Your winner for today's Bug-Catching\nContest is…\p{STR_VAR_1} {STR_VAR_2} who caught\n");
     static const u8 sFirstPlaceString_Part2[] = _("a {LV}{STR_VAR_1} {STR_VAR_2}!");
-    static const u8 sFirstPlaceString_Shiny[] = _("\pAmazing! The POKéMON has a\nrare coloration!\pI've never seen such a beautiful\nBUG POKéMON!");
     u8 *str;
     int contestantId = gBugCatchingContestStandings[0];
 
@@ -1020,8 +1028,6 @@ static void BuildBugContestPlacementString_FirstPlace(void)
     ConvertIntToDecimalStringN(gStringVar1, GetContestantCaughtLevel(contestantId), 0, 3);
     GetSpeciesName(gStringVar2, GetContestantCaughtSpecies(contestantId));
     str = StringExpandPlaceholders(str, sFirstPlaceString_Part2);
-    if (GetContestantCaughtShiny(contestantId))
-        str = StringCopy(str, sFirstPlaceString_Shiny);
 }
 
 static void BuildBugContestPlacementString_SecondPlace(void)

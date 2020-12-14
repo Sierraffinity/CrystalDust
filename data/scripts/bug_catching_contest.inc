@@ -219,8 +219,8 @@ BugCatchingContest_EventScript_ContestSign_Text_0:
 	.string "The Bug-Catching Contest is held on\n"
 	.string "TUESDAY, THURSDAY and SATURDAY.\p"
 	.string "Not only do you earn a prize just\n"
-	.string "for participating, you also get\l"
-	.string "to keep the BUG POKéMON you may\l"
+	.string "for participating, you also get to\l"
+	.string "keep the BUG POKéMON you may\l"
 	.string "have at the end of the contest.$"
 
 BugCatchingContest_Text_Officer_DoYouWantToFinishOneMinute::

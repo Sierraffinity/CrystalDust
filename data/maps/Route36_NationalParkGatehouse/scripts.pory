@@ -1,3 +1,5 @@
+const OBJ_EVENT_ID_CONTEST_OFFICER = 7
+
 mapscripts Route36_NationalParkGatehouse_MapScripts {
     MAP_SCRIPT_ON_LOAD {
         gettime
@@ -6,9 +8,9 @@ mapscripts Route36_NationalParkGatehouse_MapScripts {
             setflag(FLAG_TEMP_12)
         }
         elif (var(VAR_BUG_CATCHING_CONTEST_STATE) == 1 ||
-            var(VAR_0x8003) == DAY_TUESDAY ||
-            var(VAR_0x8003) == DAY_THURSDAY ||
-            var(VAR_0x8003) == DAY_SATURDAY)
+              (var(VAR_0x8003) == DAY_TUESDAY ||
+               var(VAR_0x8003) == DAY_THURSDAY ||
+               var(VAR_0x8003) == DAY_SATURDAY) && !flag(FLAG_DAILY_BUG_CATCHING_CONTEST))
         {
             setflag(FLAG_TEMP_11)
             setflag(FLAG_TEMP_13)
@@ -21,7 +23,7 @@ mapscripts Route36_NationalParkGatehouse_MapScripts {
     }
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_BUG_CATCHING_CONTEST_STATE, 1 {
-            lock
+            lockall
             applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EndContestPlayerMovement)
             waitmovement(0)
             textcolor(MSG_COLOR_BLUE)
@@ -52,7 +54,7 @@ mapscripts Route36_NationalParkGatehouse_MapScripts {
                 addobject(5)
                 addobject(6)
                 removeobject(7)
-                applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRightAndDown)
+                applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRight)
                 waitmovement(0)
                 special(RemoveCameraObject)
                 fadescreen(0)
@@ -62,21 +64,22 @@ mapscripts Route36_NationalParkGatehouse_MapScripts {
             {
                 msgbox(BugCatchingContest_Text_Officer_GetBackOutside)
                 closemessage
-                applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterContest)
+                applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterContestFromBelow)
                 waitmovement(0)
                 warp(MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 2, -1, -1)
                 waitstate
             }
-            release
+            releaseall
         }
         VAR_BUG_CATCHING_CONTEST_STATE, 2 {
-            lock
+            lockall
             special(SpawnCameraObject)
             applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony)
             applymovement(OBJ_EVENT_ID_CAMERA, Route36_NationalParkGatehouse_Movement_CameraPanRight)
             waitmovement(0)
             special(RemoveCameraObject)
             call(Route36_NationalParkGatehouse_EventScript_AwardsCeremony)
+            releaseall
         }
     ]
     MAP_SCRIPT_ON_TRANSITION {
@@ -88,11 +91,10 @@ mapscripts Route36_NationalParkGatehouse_MapScripts {
 }
 
 movement Route36_NationalParkGatehouse_Movement_EndContestPlayerMovement {
-    walk_up
+    face_up
 }
 
 movement Route36_NationalParkGatehouse_Movement_MoveToPlayerSpot {
-    walk_fast_down
     walk_fast_right
     face_up
 }
@@ -102,11 +104,6 @@ movement Route36_NationalParkGatehouse_Movement_EnterAwardsCeremony {
     face_up
 }
 
-movement Route36_NationalParkGatehouse_Movement_CameraPanRightAndDown {
-    walk_right * 3
-    walk_down
-}
-
 movement Route36_NationalParkGatehouse_Movement_CameraPanRight {
     walk_right * 3
 }
@@ -114,11 +111,12 @@ movement Route36_NationalParkGatehouse_Movement_CameraPanRight {
 script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
     special(DetermineBugCatchingContestStandings)
     textcolor(MSG_COLOR_BLUE)
-    msgbox("We will now judge the POKéMON\n"
-           "you've caught.\p"
-           "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}\n"
-           "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}\p"
-           "We have chosen the winners!\p"
+    message("We will now judge the POKéMON\n"
+            "you've caught.\p"
+            "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}\n"
+            "…{PAUSE 15}…{PAUSE 15}…{PAUSE 15}")
+    waitmessage
+    msgbox("We have chosen the winners!\n"
            "Are you ready for this?")
     setvar(VAR_0x8004, 3)
     special(BuildBugContestPlacementString)
@@ -144,18 +142,28 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
     waitmessage
 
     special(GetWinningBugContestSpecies)
-    if (var(VAR_0x8005) == 0)
+    // is the mon shiny?
+    if (var(VAR_0x8005) == FALSE)
     {
         showmonpic(VAR_0x8004, 10, 3)
     }
     else
     {
+        waitkeypress
+        playse(SE_SHINY)
         showmonpic(VAR_0x8004, 10, 3, TRUE)
+        waitse
+        message("Amazing! The POKéMON has an unusual\n"
+                "and rare coloration!\p"
+                "I've never seen such a beautiful\n"
+                "BUG POKéMON!")
+        waitmessage
     }
 
     playfanfare(MUS_EVOLVED)
     waitfanfare
     waitbuttonpress
+    setvar(VAR_0x8004, 1)
     special(CopyBugContestPlacementScoreToVar1)
     msgbox("The winning score was a whopping\n"
            "{STR_VAR_1} points!")
@@ -266,7 +274,7 @@ movement Route36_NationalParkGatehouse_Movement_CameraPanLeft {
     walk_left * 2
 }
 
-script Route36_NationalParkGatehouse_BugContestOfficer {
+script Route36_NationalParkGatehouse_EventScript_BugContestOfficer {
     lock
     faceplayer
     if (var(VAR_BUG_CONTEST_PRIZE) != ITEM_NONE)
@@ -287,7 +295,14 @@ script Route36_NationalParkGatehouse_BugContestOfficer {
             call(BugCatchingContest_EventScript_Officer_EnterContest)
             if (var(VAR_RESULT) == TRUE)
             {
-                applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterContest)
+                switch (var(VAR_FACING))
+                {
+                    case DIR_NORTH:
+                        applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterContestFromBelow)
+                    default:
+                        applymovement(OBJ_EVENT_ID_CONTEST_OFFICER, Route36_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromRight)
+                        applymovement(OBJ_EVENT_ID_PLAYER, Route36_NationalParkGatehouse_Movement_EnterContestFromRight)
+                }
                 waitmovement(0)
                 warp(MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 2, -1, -1)
                 waitstate
@@ -306,9 +321,17 @@ text Route36_NationalParkGatehouse_Text_Officer_NoContest {
     "the PARK."
 }
 
-movement Route36_NationalParkGatehouse_Movement_EnterContest {
-    walk_down
+movement Route36_NationalParkGatehouse_Movement_EnterContestFromBelow {
     face_left
+}
+
+movement Route36_NationalParkGatehouse_Movement_EnterContestFromRight {
+    walk_down
+    walk_left
+}
+
+movement Route36_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromRight {
+    walk_in_place_fastest_down
 }
 
 script Route36_NationalParkGatehouse_BehindCounterOfficer {
