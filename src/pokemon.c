@@ -67,6 +67,7 @@ static u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move);
 static bool8 ShouldSkipFriendshipChange(void);
 
 // EWRAM vars
+EWRAM_DATA bool8 gDebugForceShiny = 0;
 EWRAM_DATA static u8 sLearningMoveTableID = 0;
 EWRAM_DATA u8 gPlayerPartyCount = 0;
 EWRAM_DATA u8 gEnemyPartyCount = 0;
@@ -2231,25 +2232,18 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     {
         personality = fixedPersonality;
     }
-    else if ((personalityType == PERSONALITY_SHINY) &&
-             (otIdType != OT_ID_RANDOM_NO_SHINY))
+    else
     {
         if (otIdType == OT_ID_PRESET) //Pokemon has a preset OT ID
         {
             value = fixedOtId;
         }
-        else //Player is the OT
+        else // Assume player is the OT for now
         {
             value = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
         }
 
-        do {
-            personality = Random32();
-        } while (!IsShinyOtIdPersonality(value, personality));
-    }
-    else
-    {
-        personality = Random32();
+        personality = GenerateMonPersonality(value, (personalityType == PERSONALITY_SHINY) && (otIdType != OT_ID_RANDOM_NO_SHINY));
     }
 
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
@@ -2339,10 +2333,9 @@ void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV,
 
     do
     {
-        personality = Random32();
+        personality = GenerateMonPersonality(T1_READ_32(gSaveBlock2Ptr->playerTrainerId), forceShiny);
     }
-    while ((nature != GetNatureFromPersonality(personality))
-         || (forceShiny && !IsShinyOtIdPersonality(T1_READ_32(gSaveBlock2Ptr->playerTrainerId), personality)));
+    while (nature != GetNatureFromPersonality(personality));
 
     CreateMon(mon, species, level, fixedIV, PERSONALITY_FIXED, personality, OT_ID_PLAYER_ID, 0);
 }
@@ -2357,23 +2350,21 @@ void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level,
 
         do
         {
-            personality = Random32();
+            personality = GenerateMonPersonality(T1_READ_32(gSaveBlock2Ptr->playerTrainerId), forceShiny);
             actualLetter = ((((personality & 0x3000000) >> 18) | ((personality & 0x30000) >> 12) | ((personality & 0x300) >> 6) | (personality & 0x3)) % 28);
         }
         while (nature != GetNatureFromPersonality(personality)
              || gender != GetGenderFromSpeciesAndPersonality(species, personality)
-             || actualLetter != unownLetter - 1
-             || (forceShiny && !IsShinyOtIdPersonality(T1_READ_32(gSaveBlock2Ptr->playerTrainerId), personality)));
+             || actualLetter != unownLetter - 1);
     }
     else
     {
         do
         {
-            personality = Random32();
+            personality = GenerateMonPersonality(T1_READ_32(gSaveBlock2Ptr->playerTrainerId), forceShiny);
         }
         while (nature != GetNatureFromPersonality(personality)
-             || gender != GetGenderFromSpeciesAndPersonality(species, personality)
-             || (forceShiny && !IsShinyOtIdPersonality(T1_READ_32(gSaveBlock2Ptr->playerTrainerId), personality)));
+             || gender != GetGenderFromSpeciesAndPersonality(species, personality));
     }
 
     CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_PLAYER_ID, 0);
@@ -6598,13 +6589,37 @@ bool8 IsMonShiny(struct Pokemon *mon)
     return IsShinyOtIdPersonality(otId, personality);
 }
 
-inline bool8 IsShinyOtIdPersonality(u32 otId, u32 personality)
+bool8 IsShinyOtIdPersonality(u32 otId, u32 personality)
 {
     bool8 retVal = FALSE;
     u32 shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
     if (shinyValue < SHINY_ODDS)
         retVal = TRUE;
     return retVal;
+}
+
+inline u32 GenerateMonPersonality(u32 otId, bool8 forceShiny)
+{
+    u32 personality = Random32();
+
+#if DEBUG
+    if (gDebugForceShiny)
+        forceShiny = TRUE;
+#endif // DEBUG
+
+    if (forceShiny)
+    {
+        // Grab lower half of personality (random gender, ability, and nature)
+        u32 personalityLow = personality & 0xFFFF;
+        // Get OT ID component of shiny calculation
+        u16 a = HIHALF(otId) ^ LOHALF(otId);
+        // Use high half of generated PID for shininess component
+        u8 c = (personality >> 16) % 8;
+        // Recalculate upper half of personality by performing the inverse of shiny calculation
+        personality = ((personalityLow ^ a ^ c) << 16) | personalityLow;
+    }
+    
+    return personality;
 }
 
 const u8 *GetTrainerPartnerName(void)

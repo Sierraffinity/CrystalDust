@@ -1019,6 +1019,7 @@ static void BuildBugContestPlacementString_FirstPlace(void)
 {
     static const u8 sFirstPlaceString_Part1[] = _("Your winner for today's Bug-Catching\nContest is…\p{STR_VAR_1} {STR_VAR_2} who caught\n");
     static const u8 sFirstPlaceString_Part2[] = _("a {LV}{STR_VAR_1} {STR_VAR_2}!");
+    static const u8 sFirstPlaceString_Shiny[] = _("\pAnd…");
     u8 *str;
     int contestantId = gBugCatchingContestStandings[0];
 
@@ -1028,6 +1029,10 @@ static void BuildBugContestPlacementString_FirstPlace(void)
     ConvertIntToDecimalStringN(gStringVar1, GetContestantCaughtLevel(contestantId), 0, 3);
     GetSpeciesName(gStringVar2, GetContestantCaughtSpecies(contestantId));
     str = StringExpandPlaceholders(str, sFirstPlaceString_Part2);
+    if (GetContestantCaughtShiny(contestantId))
+    {
+        StringCopy(str, sFirstPlaceString_Shiny);
+    }
 }
 
 static void BuildBugContestPlacementString_SecondPlace(void)

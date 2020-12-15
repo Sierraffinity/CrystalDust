@@ -144,7 +144,6 @@ Route36_NationalParkGatehouse_EventScript_AwardsCeremony::
 	waitmessage
 	playfanfare MUS_SLOTS_WIN
 	waitfanfare
-	waitbuttonpress
 	special CopyBugContestPlacementScoreToVar1
 	msgbox Route36_NationalParkGatehouse_Text_TheScoreWas
 	setvar VAR_0x8004, 2
@@ -153,7 +152,6 @@ Route36_NationalParkGatehouse_EventScript_AwardsCeremony::
 	waitmessage
 	playfanfare MUS_SLOTS_WIN
 	waitfanfare
-	waitbuttonpress
 	special CopyBugContestPlacementScoreToVar1
 	msgbox Route36_NationalParkGatehouse_Text_TheScoreWas
 	setvar VAR_0x8004, 1
@@ -163,6 +161,7 @@ Route36_NationalParkGatehouse_EventScript_AwardsCeremony::
 	special GetWinningBugContestSpecies
 	compare VAR_0x8005, FALSE
 	goto_if_eq Route36_NationalParkGatehouse_EventScript_AwardsCeremony_2
+	delay 10
 	playse SE_SHINY
 	showmonpic VAR_0x8004, 10, 3, TRUE
 	waitse

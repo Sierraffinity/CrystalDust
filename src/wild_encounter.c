@@ -456,10 +456,9 @@ static u32 GenerateUnownPersonality(u32 otId, bool8 forceShiny)
 
     do
     {
-        personality = (Random() << 16) | Random();
+        personality = GenerateMonPersonality(otId, forceShiny);
         letter = GetUnownLetterByPersonalityLoByte(personality);
-    } while (!allowedUnownLetters[letter] ||
-             (forceShiny && !IsShinyOtIdPersonality(otId, personality)));
+    } while (!allowedUnownLetters[letter]);
     return personality;
 }
 

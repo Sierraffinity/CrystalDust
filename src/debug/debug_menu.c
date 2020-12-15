@@ -108,6 +108,7 @@ static void DebugMenu_EnableMapCard(u8 taskId);
 static void DebugMenu_EnableRadioCard(u8 taskId);
 static void DebugMenu_WildBattle(u8 taskId);
 static void DebugMenu_100Or0CatchRate(u8 taskId);
+static void DebugMenu_ToggleForceShiny(u8 taskId);
 static void DebugMenu_FlyMenu(u8 taskId);
 static void DebugMenu_SetRespawn(u8 taskId);
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
@@ -151,6 +152,7 @@ static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
 static const u8 sText_PoisonAllMons[] = _("Poison all Pokémon");
 static const u8 sText_FillThePC[] = _("Fill the PC");
 static const u8 sText_100Or0CatchRate[] = _("Normal/100%/0% catch rate");
+static const u8 sText_ToggleForceShiny[] = _("Toggle forced shinies");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_CraftDNTintColor[] = _("Craft new tint color");
@@ -241,6 +243,7 @@ static const struct DebugMenuAction sDebugMenu_PokemonActions[] =
 {
     { sText_WildBattle, DebugMenu_WildBattle, NULL },
     { sText_100Or0CatchRate, DebugMenu_100Or0CatchRate, NULL },
+    { sText_ToggleForceShiny, DebugMenu_ToggleForceShiny, NULL },
 };
 
 CREATE_BOUNCER(PokemonActions, MainActions);
@@ -1426,7 +1429,12 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
 
 static void DebugMenu_WildBattle(u8 taskId)
 {
-    Debug_StartWildBattle(SPECIES_METAPOD, 10, BATTLE_TYPE_BUG_CATCHING_CONTEST, TRUE);
+    Debug_StartWildBattle(SPECIES_METAPOD, 10, BATTLE_TYPE_BUG_CATCHING_CONTEST, FALSE);
+}
+
+static void DebugMenu_ToggleForceShiny(u8 taskId)
+{
+    gDebugForceShiny = !gDebugForceShiny;
 }
 
 static void DebugMenu_EnableMapCard(u8 taskId)

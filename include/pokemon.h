@@ -238,6 +238,7 @@ struct Evolution
     u16 targetSpecies;
 };
 
+extern bool8 gDebugForceShiny;
 extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
 extern u8 gEnemyPartyCount;
@@ -418,5 +419,6 @@ bool8 HasTwoFramesAnimation(u16 species);
 struct Unknown_806F160_Struct *sub_806F2AC(u8 id, u8 arg1);
 void sub_806F47C(u8 id);
 u8 *sub_806F4F8(u8 id, u8 arg1);
+u32 GenerateMonPersonality(u32 otId, bool8 forceShiny);
 
 #endif // GUARD_POKEMON_H

@@ -124,7 +124,6 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
     waitmessage
     playfanfare(MUS_SLOTS_WIN)
     waitfanfare
-    waitbuttonpress
     special(CopyBugContestPlacementScoreToVar1)
     msgbox(Route36_NationalParkGatehouse_Text_TheScoreWas)
     setvar(VAR_0x8004, 2)
@@ -133,7 +132,6 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
     waitmessage
     playfanfare(MUS_SLOTS_WIN)
     waitfanfare
-    waitbuttonpress
     special(CopyBugContestPlacementScoreToVar1)
     msgbox(Route36_NationalParkGatehouse_Text_TheScoreWas)
     setvar(VAR_0x8004, 1)
@@ -149,7 +147,7 @@ script Route36_NationalParkGatehouse_EventScript_AwardsCeremony {
     }
     else
     {
-        waitkeypress
+        delay(10)
         playse(SE_SHINY)
         showmonpic(VAR_0x8004, 10, 3, TRUE)
         waitse
