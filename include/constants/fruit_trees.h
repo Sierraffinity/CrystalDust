@@ -12,5 +12,6 @@
 #define FRUIT_TREE_ROUTE_33      6
 #define FRUIT_TREE_AZALEA_TOWN   7
 #define FRUIT_TREE_ROUTE_35      8
+#define FRUIT_TREE_ROUTE_36      9
 
 #endif // GUARD_CONSTANTS_FRUIT_TREES_H

@@ -156,3 +156,23 @@ script Route36_EventScript_RuinsOfAlphSign {
     msgbox("RUINS OF ALPH\n"
 		   "NORTH ENTRANCE", MSGBOX_SIGN)
 }
+
+script Route36_EventScript_TrainerTipsStatsSign {
+    msgbox("TRAINER TIPS\p"
+		   "POKéMON stats vary--even within\n"
+		   "the same species.\p"
+		   "Their stats may be similar at first.\p"
+		   "However, differences will become\n"
+		   "pronounced as the POKéMON grow.", MSGBOX_SIGN)
+}
+
+script Route36_EventScript_Mark {
+    trainerbattle_single(TRAINER_MARK, Route36_Text_MarkIntro, Route36_Text_MarkDefeated)
+    msgbox(Route36_Text_MarkPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route36_EventScript_Alan {
+	// TODO: Phone
+    trainerbattle_single(TRAINER_ALAN, Route36_Text_AlanIntro, Route36_Text_AlanDefeated)
+    msgbox(Route36_Text_AlanPostBattle, MSGBOX_AUTOCLOSE)
+}

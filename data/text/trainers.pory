@@ -1004,8 +1004,8 @@ text Route35_Text_DirkPostBattle {
 }
 
 text NationalPark_Text_JackIntro {
-	"The world of POKéMON is deep.\n"
-	"There are still lots of things\l"
+	"The world of POKéMON is deep.\p"
+	"There are still lots of things\n"
 	"we don't know.\p"
 	"But I know more than you do!"
 }
@@ -1032,7 +1032,7 @@ text NationalPark_Text_BeverlyDefeated {
 }
 
 text NationalPark_Text_BeverlyPostBattle {
-	"I must say, your POKémon are quite\n"
+	"I must say, your POKéMON are quite\n"
 	"cute, too."
 }
 

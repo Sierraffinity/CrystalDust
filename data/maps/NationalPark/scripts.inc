@@ -127,8 +127,8 @@ NationalPark_EventScript_QuickClawTeacher_Text_0:
 	.string "Pay attention, please!\p"
 	.string "…Oops, I have to quit thinking like\n"
 	.string "a teacher all the time.\p"
-	.string "You must be a POKéMON TRAINER.\n"
-	.string "Since you're working so hard, I\l"
+	.string "You must be a POKéMON TRAINER.\p"
+	.string "Since you're working so hard, I\n"
 	.string "want you to have this.$"
 
 NationalPark_EventScript_QuickClawTeacher_Text_1:
@@ -139,7 +139,7 @@ NationalPark_EventScript_QuickClawTeacher_Text_1:
 
 NationalPark_EventScript_Youngster1_Text_0:
 	.string "I'm playing with cards that have\n"
-	.string "a special stripe down the side.\p"
+	.string "a stripe down the side.\p"
 	.string "You can scan them and see POKéMON\n"
 	.string "stats on the screen!$"
 

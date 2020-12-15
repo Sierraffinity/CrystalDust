@@ -37,14 +37,14 @@
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
       "script": "0",
       "flag": "0"
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
       "in_connection": false,
       "x": 25,
       "y": 18,
@@ -52,8 +52,8 @@
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "7",
       "script": "0",
       "flag": "0"
     },
@@ -193,11 +193,18 @@
     },
     {
       "type": "sign",
-      "x": 10,
-      "y": 10,
+      "x": 13,
+      "y": 11,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "Route36_EventScript_TrainerTipsStatsSign"
+    },
+    {
+      "type": "fruit_tree",
+      "x": 13,
+      "y": 7,
+      "elevation": 0,
+      "fruit_tree_id": "FRUIT_TREE_ROUTE_29"
     }
   ]
 }

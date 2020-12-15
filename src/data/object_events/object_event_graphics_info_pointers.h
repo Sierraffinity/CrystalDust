@@ -223,7 +223,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kyogre3;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Groudon3;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MysteryEventDeliveryman;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Statue;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kirlia;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Persian;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dusclops;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnionRoomAttendant;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo;
@@ -472,7 +472,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_GROUDON_3] =                &gObjectEventGraphicsInfo_Groudon3,
     [OBJ_EVENT_GFX_MYSTERY_GIFT_MAN] =         &gObjectEventGraphicsInfo_MysteryEventDeliveryman,
     [OBJ_EVENT_GFX_TRICK_HOUSE_STATUE] =       &gObjectEventGraphicsInfo_Statue,
-    [OBJ_EVENT_GFX_KIRLIA] =                   &gObjectEventGraphicsInfo_Kirlia,
+    [OBJ_EVENT_GFX_PERSIAN] =                  &gObjectEventGraphicsInfo_Persian,
     [OBJ_EVENT_GFX_DUSCLOPS] =                 &gObjectEventGraphicsInfo_Dusclops,
     [OBJ_EVENT_GFX_UNION_ROOM_NURSE] =         &gObjectEventGraphicsInfo_UnionRoomAttendant,
     [OBJ_EVENT_GFX_SUDOWOODO] =                &gObjectEventGraphicsInfo_Sudowoodo,

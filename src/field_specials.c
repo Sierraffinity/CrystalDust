@@ -3080,7 +3080,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_GROUDON_3] =                 MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_MYSTERY_GIFT_MAN] =          MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_TRICK_HOUSE_STATUE] =        MSG_COLOR_SYS,
-        [OBJ_EVENT_GFX_KIRLIA] =                    MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_PERSIAN] =                   MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_DUSCLOPS] =                  MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_UNION_ROOM_NURSE] =          MSG_COLOR_RED,
         [OBJ_EVENT_GFX_SUDOWOODO] =                 MSG_COLOR_BLACK,
