@@ -1,6 +1,10 @@
 mapscripts GoldenrodCity_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_VISITED_GOLDENROD_CITY)
+        if (!flag(FLAG_MET_FLORIA_ROUTE_36))
+        {
+            clearflag(FLAG_HIDE_ROUTE_36_FLORIA)
+        }
     }
 }
 

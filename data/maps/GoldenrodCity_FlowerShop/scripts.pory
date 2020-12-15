@@ -51,8 +51,7 @@ script GoldenrodCity_FlowerShop_EventScript_OlderSister {
 }
 
 script GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala {
-    applymovement(OLDER_SISTER, Common_Movement_WalkInPlaceFastestLeft)
-    waitmovement(0)
+    turnobject(OLDER_SISTER, DIR_WEST)
     msgbox("Lalala lalalala.\n"
            "Have plenty of water, my lovely!")
 }

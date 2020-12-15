@@ -811,8 +811,8 @@
 #define FLAG_HIDE_GOLDENROD_CITY_BILLS_FAMILYS_HOUSE_BILL           0x306
 #define FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA                 0x307
 #define FLAG_HIDE_ROUTE_36_FLORIA                                   0x308
-#define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2                          0x309
-#define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3                          0x30A
+#define FLAG_HIDE_ROUTE_36_SUDOWOODO                                0x309
+#define FLAG_HIDE_ROUTE_36_SIERRA                                   0x30A
 #define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4                          0x30B
 #define FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS                          0x30C
 #define FLAG_HIDE_PETALBURG_GYM_GREETER                             0x30D

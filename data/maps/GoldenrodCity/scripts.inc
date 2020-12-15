@@ -4,6 +4,11 @@ GoldenrodCity_MapScripts::
 
 GoldenrodCity_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 	setflag FLAG_VISITED_GOLDENROD_CITY
+	goto_if_unset FLAG_MET_FLORIA_ROUTE_36, GoldenrodCity_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
+	return
+
+GoldenrodCity_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
+	clearflag FLAG_HIDE_ROUTE_36_FLORIA
 	return
 
 

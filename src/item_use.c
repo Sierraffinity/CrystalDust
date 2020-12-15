@@ -60,7 +60,7 @@ static void ItemUseOnFieldCB_Rod(u8);
 static void ItemUseOnFieldCB_Itemfinder(u8);
 static void ItemUseOnFieldCB_Berry(u8 taskId);
 static void ItemUseOnFieldCB_WailmerPailBerry(u8 taskId);
-static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8 taskId);
+static void ItemUseOnFieldCB_SquirtBottleSudowoodo(u8 taskId);
 static bool8 TryToWaterSudowoodo(void);
 static void BootUpSoundTMHM(u8 taskId);
 static void Task_ShowTMHMContainedMessage(u8 taskId);
@@ -705,18 +705,18 @@ static void ItemUseOnFieldCB_Berry(u8 taskId)
     DestroyTask(taskId);
 }
 
-void ItemUseOutOfBattle_WailmerPail(u8 taskId)
+void ItemUseOutOfBattle_SquirtBottle(u8 taskId)
 {
     if (TryToWaterSudowoodo() == TRUE)
     {
-        sItemUseOnFieldCB = ItemUseOnFieldCB_WailmerPailSudowoodo;
+        sItemUseOnFieldCB = ItemUseOnFieldCB_SquirtBottleSudowoodo;
         SetUpItemUseOnFieldCallback(taskId);
     }
-    else if (TryToWaterBerryTree() == TRUE)
+    /*else if (TryToWaterBerryTree() == TRUE)
     {
         sItemUseOnFieldCB = ItemUseOnFieldCB_WailmerPailBerry;
         SetUpItemUseOnFieldCallback(taskId);
-    }
+    }*/
     else
     {
         DisplayOaksAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
@@ -744,10 +744,10 @@ static bool8 TryToWaterSudowoodo(void)
         return TRUE;
 }
 
-static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8 taskId)
+static void ItemUseOnFieldCB_SquirtBottleSudowoodo(u8 taskId)
 {
     ScriptContext2_Enable();
-    ScriptContext1_SetupScript(BattleFrontier_OutsideEast_EventScript_WaterSudowoodo);
+    ScriptContext1_SetupScript(Route36_EventScript_UseSquirtbottleOnSudowoodo);
     DestroyTask(taskId);
 }
 

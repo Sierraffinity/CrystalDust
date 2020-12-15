@@ -6388,8 +6388,8 @@
       "importance": 2,
       "exitsBagOnUse": 0,
       "pocket": "POCKET_KEY_ITEMS",
-      "type": 4,
-      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "type": 2,
+      "fieldUseFunc": "ItemUseOutOfBattle_SquirtBottle",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0

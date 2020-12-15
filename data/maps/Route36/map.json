@@ -39,7 +39,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "0",
+      "script": "Route36_EventScript_Mark",
       "flag": "0"
     },
     {
@@ -54,7 +54,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "7",
-      "script": "0",
+      "script": "Route36_EventScript_Alan",
       "flag": "0"
     },
     {
@@ -68,9 +68,9 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "Route36_EventScript_Sudowoodo",
-      "flag": "0"
+      "flag": "FLAG_HIDE_ROUTE_36_SUDOWOODO"
     },
     {
       "type": "original",
@@ -124,12 +124,12 @@
       "x": 28,
       "y": 16,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route36_EventScript_ItemStarPiece",
+      "script": "Route36_EventScript_Floria",
       "flag": "FLAG_HIDE_ROUTE_36_FLORIA"
     },
     {
@@ -138,6 +138,21 @@
       "y": 32,
       "source_id": 11,
       "source_map": "MAP_ROUTE35"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
+      "in_connection": false,
+      "x": 30,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36_EventScript_Sierra",
+      "flag": "FLAG_HIDE_ROUTE_36_SIERRA"
     }
   ],
   "warp_events": [
@@ -164,7 +179,15 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_ROUTE36_STATE",
+      "var_value": "0",
+      "script": "Route36_EventScript_SierraPoopsTheParty"
+    }
   ],
   "bg_events": [
     {
@@ -204,7 +227,7 @@
       "x": 13,
       "y": 7,
       "elevation": 0,
-      "fruit_tree_id": "FRUIT_TREE_ROUTE_29"
+      "fruit_tree_id": "FRUIT_TREE_ROUTE_36"
     }
   ]
 }

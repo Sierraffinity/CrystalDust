@@ -41,8 +41,8 @@ LavaridgeTown_Gym_SetGymTrainers:: @ 8271FCE
 	return
 
 NotVioletCity_Gym_SetGymTrainers:: @ 8271FE7
-	settrainerflag TRAINER_RANDALL
-	settrainerflag TRAINER_PARKER
+	settrainerflag TRAINER_MARK
+	settrainerflag TRAINER_ALAN
 	settrainerflag TRAINER_GEORGE
 	settrainerflag TRAINER_BERKE
 	settrainerflag TRAINER_MARY

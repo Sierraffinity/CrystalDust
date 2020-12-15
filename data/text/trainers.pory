@@ -1066,6 +1066,36 @@ text NationalPark_Text_KrisePostBattle {
 	"because I'm cute!"
 }
 
+text Route36_Text_MarkIntro {
+	"I'm going to read your thoughts!"
+}
+
+text Route36_Text_MarkDefeated {
+	"I misread you!"
+}
+
+text Route36_Text_MarkPostBattle {
+	"I'd be strong if only I could tell\n"
+	"what my opponent was thinking."
+}
+
+text Route36_Text_AlanIntro {
+	"Thanks to my studies, I'm ready\n"
+	"for any POKéMON!"
+}
+
+text Route36_Text_AlanDefeated {
+	"Oops!\n"
+	"Computation error?"
+}
+
+text Route36_Text_AlanPostBattle {
+	"Darn.\n"
+	"I study five hours a day too.\p"
+	"There's more to learning than just\n"
+	"reading books."
+}
+
 raw`
 Route109_Text_DavidIntro: @ 8297140
 	.string "Hiyah! Look at my chiseled abs!\n"

@@ -992,8 +992,7 @@ Common_EventScript_RemoveStaticPokemon:: @ 827376D
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject VAR_LAST_TALKED
 	fadescreenswapbuffers FADE_FROM_BLACK
-	release
-	end
+	return
 
 Common_EventScript_LegendaryFlewAway:: @ 8273776
 	fadescreenswapbuffers FADE_TO_BLACK

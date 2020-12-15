@@ -72,8 +72,8 @@
 #define TRAINER_BEVERLY                      68
 #define TRAINER_WILLIAM                      69
 #define TRAINER_KRISE                        70
-#define TRAINER_RANDALL                      71
-#define TRAINER_PARKER                       72
+#define TRAINER_MARK                      71
+#define TRAINER_ALAN                       72
 #define TRAINER_GEORGE                       73
 #define TRAINER_BERKE                        74
 #define TRAINER_BRAXTON                      75
@@ -146,7 +146,7 @@
 #define TRAINER_WINSTON_5       142
 #define TRAINER_STEVE_1         143
 #define TRAINER_THALIA_1        144
-#define TRAINER_MARK            145
+#define TRAINER_MARK_OLD            145
 #define TRAINER_GRUNT_MT_CHIMNEY_1          146
 #define TRAINER_STEVE_2         147
 #define TRAINER_STEVE_3         148
@@ -631,7 +631,7 @@
 #define TRAINER_TRENT_1                     627
 #define TRAINER_LENNY                       628
 #define TRAINER_LUCAS_1                     629
-#define TRAINER_ALAN                        630
+#define TRAINER_ALAN_OLD                        630
 #define TRAINER_CLARK                       631
 #define TRAINER_ERIC_OLD                        632
 #define TRAINER_LUCAS_2                     633

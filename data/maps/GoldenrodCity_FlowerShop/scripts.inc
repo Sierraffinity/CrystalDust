@@ -44,8 +44,7 @@ GoldenrodCity_FlowerShop_EventScript_OlderSister_6:
 
 
 GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala::
-	applymovement 1, Common_Movement_WalkInPlaceFastestLeft
-	waitmovement 0
+	turnobject 1, DIR_WEST
 	msgbox GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala_Text_0
 	return
 
