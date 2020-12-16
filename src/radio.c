@@ -264,7 +264,7 @@ void Task_PlayRadioShow(u8 taskId)
                 { MAPSEC_ROUTE_42, MAP_GROUP(ROUTE114), MAP_NUM(ROUTE114) },
                 { MAPSEC_ROUTE_43, MAP_GROUP(ROUTE115), MAP_NUM(ROUTE115) },
                 { MAPSEC_ROUTE_44, MAP_GROUP(ROUTE116), MAP_NUM(ROUTE116) },
-                { MAPSEC_ROUTE_45, MAP_GROUP(ROUTE117), MAP_NUM(ROUTE117) },*/
+                { MAPSEC_ROUTE_45, MAP_GROUP(ROUTE45), MAP_NUM(ROUTE45) },*/
                 { MAPSEC_ROUTE_46, MAP_GROUP(ROUTE46), MAP_NUM(ROUTE46) },
             };
 

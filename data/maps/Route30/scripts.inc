@@ -83,7 +83,7 @@ Route30_Movement_PidgeyTackle:
 
 Route30_EventScript_Trainer_Joey::
 	trainerbattle_single TRAINER_JOEY_1, Trainer_Text_Joey_See, Trainer_Text_Joey_Beat
-	@TODO: Rematch
+	@TODO: Phone
 	msgbox Trainer_Text_Joey_After, MSGBOX_DEFAULT
 	release
 	end

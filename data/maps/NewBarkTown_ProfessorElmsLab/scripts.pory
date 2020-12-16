@@ -54,10 +54,9 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
             waitmovement(0)
             applymovement(OBJ_EVENT_ID_ELM, Common_Movement_Delay48)
             waitmovement(0)
-            msgbox("What?\n"
-                   "That POKéMON!?!\p"
-                   "The EGG hatched!\n"
-                   "So, POKéMON are born from EGGS…\l"
+            msgbox("What? That POKéMON!?!\n"
+                   "The EGG hatched!\p"
+                   "So, POKéMON are born from EGGS…\n"
                    "No, perhaps not all POKéMON are.\p"
                    "Wow, there's still a lot of research\n"
                    "to be done.\p", MSGBOX_CONTINUE)
@@ -820,7 +819,10 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Aide {
     faceplayer
     if (flag(FLAG_GOT_ELMS_EGG))
     {
-        msgbox(NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon)
+        msgbox("…sigh… That stolen POKéMON.\n"
+               "I wonder how it's doing.\p"
+               "They say a POKéMON raised by a bad\n"
+               "person turns bad itself.")
     }
     elif (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
     {
@@ -831,25 +833,21 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Aide {
     }
     elif (flag(FLAG_RECEIVED_MYSTERY_EGG))
     {
-        msgbox(NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon)
+        msgbox("There was a loud noise outside…\p"
+               "When we went to look, someone stole\n"
+               "a POKéMON off the table.\p"
+               "It's unbelievable that anyone would\n"
+               "do that!\p"
+               "…sigh… That stolen POKéMON.\n"
+               "I wonder how it's doing.\p"
+               "They say a POKéMON raised by a bad\n"
+               "person turns bad itself.")
     }
     else
     {
         msgbox(NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy)
     }
     release
-}
-
-text NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon {
-    "There was a loud noise outside…\p"
-    "When we went to look, someone stole\n"
-    "a POKéMON off the table.\p"
-    "It's unbelievable that anyone would\n"
-    "do that!\p"
-    "…sigh… That stolen POKéMON.\n"
-    "I wonder how it's doing.\p"
-    "They say a POKéMON raised by a bad\n"
-    "person turns bad itself."
 }
 
 script NewBarkTown_ProfessorElmsLab_EventScript_OpenWindow {
@@ -894,10 +892,10 @@ script NewBarkTown_ProfessorElmsLab_EventScript_TrashCan {
 
 script NewBarkTown_ProfessorElmsLab_EventScript_Shelf1 {
     lockall
-    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro, MSGBOX_SIGN)
+    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro)
     signmsg
     msgbox("Travel Tip 1:\n"
-           "Press START to open the MENU.", MSGBOX_SIGN)
+           "Press START to open the MENU.")
     normalmsg
     releaseall
 }
@@ -908,32 +906,32 @@ text NewBarkTown_ProfessorElmsLab_Text_ShelfIntro {
 
 script NewBarkTown_ProfessorElmsLab_EventScript_Shelf2 {
     lockall
-    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro, MSGBOX_SIGN)
+    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro)
     signmsg
     msgbox("Travel Tip 2:\n"
-           "Record your trip with SAVE!", MSGBOX_SIGN)
+           "Record your trip with SAVE!")
     normalmsg
     releaseall
 }
 
 script NewBarkTown_ProfessorElmsLab_EventScript_Shelf3 {
     lockall
-    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro, MSGBOX_SIGN)
+    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro)
     signmsg
     msgbox("Travel Tip 3:\n"
            "Open your BAG and press SELECT\l"
-           "to move items.", MSGBOX_SIGN)
+           "to move items.")
     normalmsg
     releaseall
 }
 
 script NewBarkTown_ProfessorElmsLab_EventScript_Shelf4 {
     lockall
-    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro, MSGBOX_SIGN)
+    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro)
     signmsg
     msgbox("Travel Tip 4:\n"
            "Check your POKéMON moves.\l"
-           "Press the A Button to switch moves.", MSGBOX_SIGN)
+           "Press the A Button to switch moves.")
     normalmsg
     releaseall
 }

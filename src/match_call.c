@@ -1524,7 +1524,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer)
     {
         matchCallText = GetSameRouteMatchCallText(matchCallId, str);
     }
-    // // TODO: Disable ability to ask for rematch until making decision about daily rematch flags.
+    // TODO: Disable ability to ask for rematch until making decision about daily rematch flags.
     else if (FALSE /*(!isCallingPlayer && gPhoneContacts[gRematchTable[matchCallId].phoneContactId].canAcceptRematch(gLocalTime.dayOfWeek, gLocalTime.hours))*/
           || (isCallingPlayer  && sub_8196D74(matchCallId)))
     {

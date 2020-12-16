@@ -1306,8 +1306,6 @@ static bool8 ShouldTreeOrRockObjectBeCreated(struct ObjectEventTemplate *templat
     return TRUE;
 }
 
-// in FR, radius was slightly wider; shrinking may cause popping
-// TODO: check
 #define CONNECTION_OBJECT_RADIUS_X 8
 #define CONNECTION_OBJECT_RADIUS_Y 6
 

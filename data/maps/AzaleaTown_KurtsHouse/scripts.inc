@@ -140,14 +140,14 @@ AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_3:
 	goto AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_1
 
 AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_7:
-	call AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat
+	msgbox AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat
 	setvar VAR_KURT_GIVEN_APRICORN, 0
 	setvar VAR_KURT_GIVEN_APRICORN_QTY, 0
 	setflag FLAG_TEMP_2
 	goto AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_1
 
 AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_10:
-	call AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement
+	call AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement
 	goto AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_9
 
 AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_11:
@@ -183,22 +183,12 @@ AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_33:
 	goto AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_32
 
 AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_35:
-	call AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat
+	msgbox AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat
 	goto AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_1
 
 AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_36:
-	call AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement
+	msgbox AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement
 	goto AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_1
-
-
-AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat::
-	msgbox AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat_Text_0
-	return
-
-
-AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement::
-	msgbox AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement_Text_0
-	return
 
 
 AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu::
@@ -359,17 +349,6 @@ AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks_Text_0:
 	.string "KURT: Ah, {PLAYER}!\n"
 	.string "I just finished your BALL. Here!$"
 
-AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat_Text_0:
-	.string "KURT: That turned out great.\n"
-	.string "Try catching POKéMON with it.$"
-
-AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement_Text_0:
-	.string "KURT: I make BALLS from the shells\n"
-	.string "of APRICORNS.\p"
-	.string "Collect them from trees and bring\n"
-	.string "'em to me.\p"
-	.string "I'll make BALLS out of them.$"
-
 AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu_Text_0:
 	.string "Oh, you have an APRICORN for me?\n"
 	.string "Fine! I'll turn it into a BALL.$"
@@ -417,3 +396,14 @@ AzaleaTown_KurtsHouse_EventScript_CelebiStatue_Text_0:
 AzaleaTown_KurtsHouse_EventScript_Slowpoke_Text_0:
 	.string "SLOWPOKE: …\n"
 	.string "Yawn?$"
+
+AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat::
+	.string "KURT: That turned out great.\n"
+	.string "Try catching POKéMON with it.$"
+
+AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement::
+	.string "KURT: I make BALLS from the shells\n"
+	.string "of APRICORNS.\p"
+	.string "Collect them from trees and bring\n"
+	.string "'em to me.\p"
+	.string "I'll make BALLS out of them.$"

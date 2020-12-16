@@ -143,7 +143,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route114/scripts.inc"
 	.include "data/maps/Route115/scripts.inc"
 	.include "data/maps/Route116/scripts.inc"
-	.include "data/maps/Route117/scripts.inc"
+	.include "data/maps/Route45/scripts.inc"
 	.include "data/maps/Route46/scripts.inc"
 	.include "data/maps/Route119/scripts.inc"
 	.include "data/maps/Route120/scripts.inc"

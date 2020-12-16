@@ -25,7 +25,7 @@ VioletCity_House2_EventScript_Kyle_2:
 	msgbox VioletCity_House2_EventScript_Kyle_Text_0, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_ne VioletCity_House2_EventScript_Kyle_5
-	goto VioletCity_House2_EventScript_Kyle_NoTrade
+	msgbox VioletCity_House2_Text_Kyle_NoTrade
 	goto VioletCity_House2_EventScript_Kyle_1
 
 VioletCity_House2_EventScript_Kyle_5:
@@ -36,7 +36,7 @@ VioletCity_House2_EventScript_Kyle_5:
 	copyvar VAR_0x800A, VAR_0x8004
 	compare VAR_0x8004, 0xFF
 	goto_if_ne VioletCity_House2_EventScript_Kyle_8
-	goto VioletCity_House2_EventScript_Kyle_NoTrade
+	msgbox VioletCity_House2_Text_Kyle_NoTrade
 	goto VioletCity_House2_EventScript_Kyle_1
 
 VioletCity_House2_EventScript_Kyle_8:
@@ -61,12 +61,6 @@ VioletCity_House2_EventScript_Kyle_11:
 	goto VioletCity_House2_EventScript_Kyle_1
 
 
-VioletCity_House2_EventScript_Kyle_NoTrade::
-	msgbox VioletCity_House2_EventScript_Kyle_NoTrade_Text_0
-	release
-	return
-
-
 VioletCity_House2_EventScript_Man_Text_0:
 	.string "A POKéMON you get in a trade\n"
 	.string "grows quickly.\p"
@@ -89,6 +83,6 @@ VioletCity_House2_EventScript_Kyle_Text_2:
 VioletCity_House2_EventScript_Kyle_Text_3:
 	.string "Hi, how's my old {STR_VAR_2} doing?$"
 
-VioletCity_House2_EventScript_Kyle_NoTrade_Text_0:
+VioletCity_House2_Text_Kyle_NoTrade::
 	.string "You don't want to trade?\n"
 	.string "Aww…$"

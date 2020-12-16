@@ -53,12 +53,11 @@ static void BeginAnimatingPlayerWalkOutOnStaircase(s16 behavior, s16 *a1, s16 *a
 static void SetStaircaseTargetPosValues(u8 behavior, s16 *a1, s16 *a2);
 static bool8 AnimatePlayerWalkInOnStaircase(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4);
 static void BeginAnimatingPlayerWalkInOnStaircase(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4);
-// TODO: Better names
-static void sub_807F204(u8 taskId);
-static void sub_807F0EC();
-static void sub_807F114();
-static void sub_807F2FC(u8 taskId);
-static void sub_807DF4C(bool8 a0);
+static void Task_BarnDoorWipe(u8 taskId);
+static void DoInwardBarnDoorWipe(void);
+static void DoOutwardBarnDoorWipe(void);
+static void Task_BarnDoorWipeChild(u8 taskId);
+static void StartWarpFadeIn(bool8 a0);
 
 // const
 static const u16 sFlashLevelPixelRadii[] = { 200, 72, 64, 56, 48, 40, 32, 24, 0 };
@@ -295,7 +294,7 @@ static void SetUpWarpExitTask(bool8 forceBlack)
     }
     else
     {
-        sub_807DF4C(forceBlack);
+        StartWarpFadeIn(forceBlack);
         if (MetatileBehavior_IsNonAnimDoor(behavior) == TRUE)
             func = Task_ExitNonAnimDoor;
         else if (!gIsStaircaseWarpAnimDisabled &&
@@ -308,7 +307,7 @@ static void SetUpWarpExitTask(bool8 forceBlack)
     CreateTask(func, 10);
 }
 
-static void sub_807DF4C(bool8 forceBlack)
+static void StartWarpFadeIn(bool8 forceBlack)
 {
     if (forceBlack)
         FadeInFromBlack();
@@ -371,7 +370,7 @@ static void Task_ExitDoor(u8 taskId)
     case 0:
         SetPlayerVisibility(FALSE);
         FreezeObjectEvents();
-        sub_807F114();
+        DoOutwardBarnDoorWipe();
         FadeInFromWhite();
         task->data[0] = 1;
         break;
@@ -403,7 +402,7 @@ static void Task_ExitDoor(u8 taskId)
         }
         break;
     case 4:
-        if (WaitForWeatherFadeIn() && IsPlayerStandingStill() && !FieldIsDoorAnimationRunning() && !FuncIsActiveTask(sub_807F204))
+        if (WaitForWeatherFadeIn() && IsPlayerStandingStill() && !FieldIsDoorAnimationRunning() && !FuncIsActiveTask(Task_BarnDoorWipe))
         {
             u8 eventObjId = GetObjectEventIdByLocalIdAndMap(0xFF, 0, 0);
             ObjectEventClearHeldMovementIfFinished(&gObjectEvents[eventObjId]);
@@ -1333,19 +1332,25 @@ static void Task_EnableScriptAfterMusicFade(u8 taskId)
     }
 }
 
-static void sub_807F0EC()
+#define tState data[9]
+#define tDirection data[10]
+#define DIR_WIPE_IN 0 // From edges to center.
+#define DIR_WIPE_OUT 1 // From center to edges.
+#define tChildOffset data[0]
+
+static void DoInwardBarnDoorWipe(void)
 {
-    u8 taskId = CreateTask(sub_807F204, 80);
-    gTasks[taskId].data[10] = 0;
+    u8 taskId = CreateTask(Task_BarnDoorWipe, 80);
+    gTasks[taskId].tDirection = DIR_WIPE_IN;
 }
 
-static void sub_807F114()
+static void DoOutwardBarnDoorWipe(void)
 {
-    u8 taskId = CreateTask(sub_807F204, 80);
-    gTasks[taskId].data[10] = 1;
+    u8 taskId = CreateTask(Task_BarnDoorWipe, 80);
+    gTasks[taskId].tDirection = DIR_WIPE_OUT;
 }
 
-static void sub_807F13C(u8 taskId)
+static void BarnDoorWipeSaveGpuRegs(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
@@ -1360,7 +1365,7 @@ static void sub_807F13C(u8 taskId)
     data[8] = GetGpuReg(REG_OFFSET_WIN1V);
 }
 
-static void sub_807F1A0(u8 taskId)
+static void BarnDoorWipeRestoreGpuRegs(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
@@ -1375,16 +1380,16 @@ static void sub_807F1A0(u8 taskId)
     SetGpuReg(REG_OFFSET_WIN1V, data[8]);
 }
 
-static void sub_807F204(u8 taskId)
+static void Task_BarnDoorWipe(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    switch (data[9])
+    switch (tState)
     {
         case 0:
-            sub_807F13C(taskId);
+            BarnDoorWipeSaveGpuRegs(taskId);
             SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
-            if (data[10] == 0)
+            if (tState == 0)
             {
                 SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 0));
                 SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(240, 255));
@@ -1402,36 +1407,37 @@ static void sub_807F204(u8 taskId)
             SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG_ALL |
                                          WINOUT_WIN01_OBJ |
                                          WINOUT_WIN01_CLR);
-            data[9] = 1;
+            tState++;
             break;
         case 1:
-            CreateTask(sub_807F2FC, 80);
-            data[9] = 2;
+            CreateTask(Task_BarnDoorWipeChild, 80);
+            tState++;
             break;
         case 2:
-            if (!FuncIsActiveTask(sub_807F2FC))
-                data[9] = 3;
+            if (!FuncIsActiveTask(Task_BarnDoorWipeChild))
+            {
+                tState++;
+            }
             break;
         case 3:
-            sub_807F1A0(taskId);
+            BarnDoorWipeRestoreGpuRegs(taskId);
             DestroyTask(taskId);
             break;
     }
 }
 
-static void sub_807F2FC(u8 taskId)
+static void Task_BarnDoorWipeChild(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    s16 *data2 = gTasks[FindTaskIdByFunc(sub_807F204)].data;
-    s16 val;
-    s16 val2;
+	u8 parentTaskId = FindTaskIdByFunc(Task_BarnDoorWipe);
+    s16 lhs, rhs;
 
-    if (data2[10] == 0)
+    if (gTasks[parentTaskId].tDirection == DIR_WIPE_IN)
     {
-        val = data[0];
-        val2 = 240 - data[0];
+        lhs = tChildOffset;
+        rhs = 240 - tChildOffset;
 
-        if (val > 120)
+        if (lhs > 120)
         {
             DestroyTask(taskId);
             return;
@@ -1439,24 +1445,34 @@ static void sub_807F2FC(u8 taskId)
     }
     else
     {
-        val = 120 - data[0];
-        val2 = 120 + data[0];
+        lhs = 120 - tChildOffset;
+        rhs = 120 + tChildOffset;
 
-        if (val < 0)
+        if (lhs < 0)
         {
             DestroyTask(taskId);
             return;
         }
     }
 
-    SetGpuReg(REG_OFFSET_WIN0H, val);
-    SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(val2, 240));
+    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, lhs));
+    SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(rhs, 240));
 
-    if (val < 90)
-        data[0] += 4;
+    if (lhs < 90)
+    {
+        tChildOffset += 4;
+    }
     else
-        data[0] += 2;
+    {
+        tChildOffset += 2;
+    }
 }
+
+#undef tState
+#undef tDirection
+#undef DIR_WIPE_IN
+#undef DIR_WIPE_OUT
+#undef tChildOffset
 
 static void Task_StaircaseWarpOut(u8 taskId)
 {

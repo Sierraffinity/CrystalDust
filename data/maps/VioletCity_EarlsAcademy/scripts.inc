@@ -92,33 +92,26 @@ VioletCity_EarlsAcademy_Earl::
 	compare VAR_RESULT, YES
 	goto_if_eq VioletCity_EarlsAcademy_Earl_2
 VioletCity_EarlsAcademy_Earl_1:
-	msgbox VioletCity_EarlsAcademy_Earl_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq VioletCity_EarlsAcademy_Earl_5
-	goto Earl_End
-VioletCity_EarlsAcademy_Earl_4:
 	releaseall
 	return
 
 VioletCity_EarlsAcademy_Earl_2:
 	msgbox VioletCity_EarlsAcademy_Earl_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq VioletCity_EarlsAcademy_Earl_8
+	compare VAR_RESULT, YES
+	goto_if_eq VioletCity_EarlsAcademy_Earl_4
+	msgbox VioletCity_EarlsAcademy_Text_Earl_End
 	goto VioletCity_EarlsAcademy_Earl_1
 
-VioletCity_EarlsAcademy_Earl_5:
+VioletCity_EarlsAcademy_Earl_4:
+	msgbox VioletCity_EarlsAcademy_Earl_Text_2, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq VioletCity_EarlsAcademy_Earl_7
+	msgbox VioletCity_EarlsAcademy_Text_Earl_End
+	goto VioletCity_EarlsAcademy_Earl_1
+
+VioletCity_EarlsAcademy_Earl_7:
 	msgbox VioletCity_EarlsAcademy_Earl_Text_3
-	goto VioletCity_EarlsAcademy_Earl_4
-
-VioletCity_EarlsAcademy_Earl_8:
-	goto Earl_End
 	goto VioletCity_EarlsAcademy_Earl_1
-
-
-Earl_End:
-	msgbox Earl_End_Text_0
-	releaseall
-	return
 
 
 VioletCity_EarlsAcademy_Movement_EarlSpin:
@@ -284,10 +277,6 @@ VioletCity_EarlsAcademy_Earl_Text_3:
 	.string "This way, weak POKéMON strong\n"
 	.string "become!$"
 
-Earl_End_Text_0:
-	.string "Oh! Smart student you are!\n"
-	.string "Nothing more do I teach!$"
-
 VioletCity_EarlsAcademy_EventScript_NoteTakingKid_Text_0:
 	.string "I'm taking notes of the teacher's\n"
 	.string "lecture.\p"
@@ -308,3 +297,7 @@ VioletCity_EarlsAcademy_EventScript_HeldItemsKid_Text_0:
 	.string "Many other items can be held by\n"
 	.string "POKéMON…\p"
 	.string "It sure is tough taking notes…$"
+
+VioletCity_EarlsAcademy_Text_Earl_End::
+	.string "Oh! Smart student you are!\n"
+	.string "Nothing more do I teach!$"

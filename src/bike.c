@@ -442,7 +442,7 @@ static void MachBikeTransition_TrySpeedUp(u8 direction)
     else
     {
         collision = GetBikeCollision(direction);
-        if (collision > 0 && collision < COLLISION_VERTICAL_RAIL)
+        if (collision > COLLISION_NONE && collision < COLLISION_VERTICAL_RAIL)
         {
             // we hit a solid object, but check to see if its a ledge and then jump.
             if (collision == COLLISION_LEDGE_JUMP)

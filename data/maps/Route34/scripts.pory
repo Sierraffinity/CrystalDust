@@ -13,7 +13,7 @@ mapscripts Route34_MapScripts {
 
 script Route34_EventScript_Todd {
     trainerbattle_single(TRAINER_TODD, Route34_Text_ToddIntro, Route34_Text_ToddDefeated)
-    //TODO: Phone registration
+    //TODO: Phone
     msgbox(Route34_Text_ToddPostBattle, MSGBOX_AUTOCLOSE)
 }
 
@@ -29,7 +29,7 @@ script Route34_EventScript_Ian {
 
 script Route34_EventScript_Gina {
     trainerbattle_single(TRAINER_GINA, Route34_Text_GinaIntro, Route34_Text_GinaDefeated)
-    //TODO: Phone registration
+    //TODO: Phone
     msgbox(Route34_Text_GinaPostBattle, MSGBOX_AUTOCLOSE)
 }
 

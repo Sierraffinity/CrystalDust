@@ -152,7 +152,7 @@ script Route31_EventScript_Youngster {
 
 script Route31_EventScript_Trainer_Wade {
     trainerbattle_single(TRAINER_WADE_1, Trainer_Text_Wade_See, Trainer_Text_Wade_Beat)
-    // TODO: Rematch
+    // TODO: Phone
 	msgbox(Trainer_Text_Wade_After, MSGBOX_DEFAULT)
 	release
 }

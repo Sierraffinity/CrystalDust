@@ -386,16 +386,16 @@
       "blockdata_filepath": "data/layouts/Route116/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE117",
-      "name": "Route117_Layout",
+      "id": "LAYOUT_ROUTE45",
+      "name": "Route45_Layout",
       "width": 24,
       "height": 90,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Mauville",
-      "border_filepath": "data/layouts/Route117/border.bin",
-      "blockdata_filepath": "data/layouts/Route117/map.bin"
+      "border_filepath": "data/layouts/Route45/border.bin",
+      "blockdata_filepath": "data/layouts/Route45/map.bin"
     },
     {
       "id": "LAYOUT_ROUTE46",
@@ -424,12 +424,12 @@
     {
       "id": "LAYOUT_ROUTE120",
       "name": "Route120_Layout",
-      "width": 40,
-      "height": 100,
+      "width": 100,
+      "height": 22,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Fortree",
+      "secondary_tileset": "gTileset_NewBark",
       "border_filepath": "data/layouts/Route120/border.bin",
       "blockdata_filepath": "data/layouts/Route120/map.bin"
     },
@@ -1466,7 +1466,7 @@
       "blockdata_filepath": "data/layouts/Route34_DayCare/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE117_POKEMON_DAY_CARE_UNUSED",
+      "id": "LAYOUT_ROUTE45_POKEMON_DAY_CARE_UNUSED",
       "name": "Route117_PokemonDayCare_Unused_Layout",
       "width": 12,
       "height": 9,

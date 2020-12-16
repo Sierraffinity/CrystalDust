@@ -326,7 +326,7 @@ script Route32_EventScript_Albert {
 
 script Route32_EventScript_Liz {
     trainerbattle_single(TRAINER_LIZ_1, Route32_Text_LizIntro, Route32_Text_LizDefeat)
-	// TODO: Phone registration and calling
+	// TODO: Phone
 	msgbox(Route32_Text_LizPostBattle, MSGBOX_DEFAULT)
 	release
 }
@@ -351,7 +351,7 @@ script Route32_EventScript_Justin {
 
 script Route32_EventScript_Ralph {
     trainerbattle_single(TRAINER_RALPH_1, Route32_Text_RalphIntro, Route32_Text_RalphDefeat)
-	// TODO: Phone registration and calling
+	// TODO: Phone
 	msgbox(Route32_Text_RalphPostBattle, MSGBOX_DEFAULT)
 	release
 }

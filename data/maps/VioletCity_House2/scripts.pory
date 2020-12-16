@@ -56,12 +56,12 @@ script VioletCity_House2_EventScript_Kyle {
             }
             else
             {
-                goto(VioletCity_House2_EventScript_Kyle_NoTrade)
+                msgbox(VioletCity_House2_Text_Kyle_NoTrade)
             }
         }
         else
         {
-            goto(VioletCity_House2_EventScript_Kyle_NoTrade)
+            msgbox(VioletCity_House2_Text_Kyle_NoTrade)
         }
     }
     else
@@ -73,9 +73,7 @@ script VioletCity_House2_EventScript_Kyle {
     release
 }
 
-// TODO: wait for local label processing and clean this up
-script VioletCity_House2_EventScript_Kyle_NoTrade {
-    msgbox("You don't want to trade?\n"
-           "Aww…")
-    release
+text VioletCity_House2_Text_Kyle_NoTrade {
+    "You don't want to trade?\n"
+    "Aww…"
 }

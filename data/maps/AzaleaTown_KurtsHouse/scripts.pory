@@ -189,12 +189,12 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
     release
 }
 
-script AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat {
+text AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat {
     "KURT: That turned out great.\n"
-    "Try catching POKéMON with it.")
+    "Try catching POKéMON with it."
 }
 
-script AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement {
+text AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement {
     "KURT: I make BALLS from the shells\n"
     "of APRICORNS.\p"
     "Collect them from trees and bring\n"

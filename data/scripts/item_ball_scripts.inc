@@ -254,11 +254,11 @@ Route116_EventScript_ItemPotion:: @ 8290EAC
 	finditem ITEM_POTION
 	end
 
-Route117_EventScript_ItemGreatBall:: @ 8290EB9
+Route45_EventScript_ItemGreatBall:: @ 8290EB9
 	finditem ITEM_GREAT_BALL
 	end
 
-Route117_EventScript_ItemRevive:: @ 8290EC6
+Route45_EventScript_ItemRevive:: @ 8290EC6
 	finditem ITEM_REVIVE
 	end
 

@@ -832,7 +832,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Aide_1:
 	return
 
 NewBarkTown_ProfessorElmsLab_EventScript_Aide_2:
-	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Aide_Text_0
 	goto NewBarkTown_ProfessorElmsLab_EventScript_Aide_1
 
 NewBarkTown_ProfessorElmsLab_EventScript_Aide_3:
@@ -840,7 +840,7 @@ NewBarkTown_ProfessorElmsLab_EventScript_Aide_3:
 	goto NewBarkTown_ProfessorElmsLab_EventScript_Aide_1
 
 NewBarkTown_ProfessorElmsLab_EventScript_Aide_4:
-	msgbox NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Aide_Text_1
 	goto NewBarkTown_ProfessorElmsLab_EventScript_Aide_1
 
 
@@ -887,9 +887,9 @@ NewBarkTown_ProfessorElmsLab_EventScript_TrashCan::
 
 NewBarkTown_ProfessorElmsLab_EventScript_Shelf1::
 	lockall
-	msgbox NewBarkTown_ProfessorElmsLab_Text_ShelfIntro, MSGBOX_SIGN
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ShelfIntro
 	signmsg
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Shelf1_Text_0, MSGBOX_SIGN
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Shelf1_Text_0
 	normalmsg
 	releaseall
 	return
@@ -897,9 +897,9 @@ NewBarkTown_ProfessorElmsLab_EventScript_Shelf1::
 
 NewBarkTown_ProfessorElmsLab_EventScript_Shelf2::
 	lockall
-	msgbox NewBarkTown_ProfessorElmsLab_Text_ShelfIntro, MSGBOX_SIGN
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ShelfIntro
 	signmsg
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Shelf2_Text_0, MSGBOX_SIGN
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Shelf2_Text_0
 	normalmsg
 	releaseall
 	return
@@ -907,9 +907,9 @@ NewBarkTown_ProfessorElmsLab_EventScript_Shelf2::
 
 NewBarkTown_ProfessorElmsLab_EventScript_Shelf3::
 	lockall
-	msgbox NewBarkTown_ProfessorElmsLab_Text_ShelfIntro, MSGBOX_SIGN
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ShelfIntro
 	signmsg
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Shelf3_Text_0, MSGBOX_SIGN
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Shelf3_Text_0
 	normalmsg
 	releaseall
 	return
@@ -917,9 +917,9 @@ NewBarkTown_ProfessorElmsLab_EventScript_Shelf3::
 
 NewBarkTown_ProfessorElmsLab_EventScript_Shelf4::
 	lockall
-	msgbox NewBarkTown_ProfessorElmsLab_Text_ShelfIntro, MSGBOX_SIGN
+	msgbox NewBarkTown_ProfessorElmsLab_Text_ShelfIntro
 	signmsg
-	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Shelf4_Text_0, MSGBOX_SIGN
+	msgbox NewBarkTown_ProfessorElmsLab_EventScript_Shelf4_Text_0
 	normalmsg
 	releaseall
 	return
@@ -933,10 +933,9 @@ NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_1:
 	.string "ELM: {PLAYER}, you look great!$"
 
 NewBarkTown_ProfessorElmsLab_EventScript_Elm_Text_2:
-	.string "What?\n"
-	.string "That POKéMON!?!\p"
-	.string "The EGG hatched!\n"
-	.string "So, POKéMON are born from EGGS…\l"
+	.string "What? That POKéMON!?!\n"
+	.string "The EGG hatched!\p"
+	.string "So, POKéMON are born from EGGS…\n"
 	.string "No, perhaps not all POKéMON are.\p"
 	.string "Wow, there's still a lot of research\n"
 	.string "to be done.\p$"
@@ -1178,6 +1177,23 @@ NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain_Text_2:
 	.string "Throw POKé BALLS at wild POKéMON\n"
 	.string "to get them.$"
 
+NewBarkTown_ProfessorElmsLab_EventScript_Aide_Text_0:
+	.string "…sigh… That stolen POKéMON.\n"
+	.string "I wonder how it's doing.\p"
+	.string "They say a POKéMON raised by a bad\n"
+	.string "person turns bad itself.$"
+
+NewBarkTown_ProfessorElmsLab_EventScript_Aide_Text_1:
+	.string "There was a loud noise outside…\p"
+	.string "When we went to look, someone stole\n"
+	.string "a POKéMON off the table.\p"
+	.string "It's unbelievable that anyone would\n"
+	.string "do that!\p"
+	.string "…sigh… That stolen POKéMON.\n"
+	.string "I wonder how it's doing.\p"
+	.string "They say a POKéMON raised by a bad\n"
+	.string "person turns bad itself.$"
+
 NewBarkTown_ProfessorElmsLab_EventScript_OpenWindow_Text_0:
 	.string "The window is open.\n"
 	.string "A pleasant breeze is blowing in.$"
@@ -1226,17 +1242,6 @@ NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched::
 NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy::
 	.string "There are only two of us, so we're\n"
 	.string "always busy.$"
-
-NewBarkTown_ProfessorElmsLab_Text_Aide_StolenMon::
-	.string "There was a loud noise outside…\p"
-	.string "When we went to look, someone stole\n"
-	.string "a POKéMON off the table.\p"
-	.string "It's unbelievable that anyone would\n"
-	.string "do that!\p"
-	.string "…sigh… That stolen POKéMON.\n"
-	.string "I wonder how it's doing.\p"
-	.string "They say a POKéMON raised by a bad\n"
-	.string "person turns bad itself.$"
 
 NewBarkTown_ProfessorElmsLab_Text_ShelfIntro::
 	.string "{PLAYER} opened a book.$"

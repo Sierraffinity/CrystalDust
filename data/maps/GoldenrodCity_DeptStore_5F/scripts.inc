@@ -102,7 +102,7 @@ GoldenrodCity_DeptStore_5F_EventScript_Mike_2:
 	msgbox GoldenrodCity_DeptStore_5F_EventScript_Mike_Text_0, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_ne GoldenrodCity_DeptStore_5F_EventScript_Mike_5
-	goto GoldenrodCity_DeptStore_5F_EventScript_Mike_NoTrade
+	msgbox GoldenrodCity_DeptStore_5F_Text_Mike_NoTrade
 	goto GoldenrodCity_DeptStore_5F_EventScript_Mike_1
 
 GoldenrodCity_DeptStore_5F_EventScript_Mike_5:
@@ -113,7 +113,7 @@ GoldenrodCity_DeptStore_5F_EventScript_Mike_5:
 	copyvar VAR_0x800A, VAR_0x8004
 	compare VAR_0x8004, 0xFF
 	goto_if_ne GoldenrodCity_DeptStore_5F_EventScript_Mike_8
-	goto GoldenrodCity_DeptStore_5F_EventScript_Mike_NoTrade
+	msgbox GoldenrodCity_DeptStore_5F_Text_Mike_NoTrade
 	goto GoldenrodCity_DeptStore_5F_EventScript_Mike_1
 
 GoldenrodCity_DeptStore_5F_EventScript_Mike_8:
@@ -136,12 +136,6 @@ GoldenrodCity_DeptStore_5F_EventScript_Mike_11:
 	msgbox GoldenrodCity_DeptStore_5F_EventScript_Mike_Text_1
 	setflag FLAG_GOLDENROD_NPC_TRADE_COMPLETED
 	goto GoldenrodCity_DeptStore_5F_EventScript_Mike_1
-
-
-GoldenrodCity_DeptStore_5F_EventScript_Mike_NoTrade::
-	msgbox GoldenrodCity_DeptStore_5F_EventScript_Mike_NoTrade_Text_0
-	release
-	return
 
 
 GoldenrodCity_DeptStore_5F_EventScript_Lass::
@@ -209,10 +203,6 @@ GoldenrodCity_DeptStore_5F_EventScript_Mike_Text_2:
 GoldenrodCity_DeptStore_5F_EventScript_Mike_Text_3:
 	.string "Hi, how's my old {STR_VAR_2} doing?$"
 
-GoldenrodCity_DeptStore_5F_EventScript_Mike_NoTrade_Text_0:
-	.string "You don't want to trade?\n"
-	.string "Aww…$"
-
 GoldenrodCity_DeptStore_5F_EventScript_Lass_Text_0:
 	.string "On SUNDAYS, a lady comes to check\n"
 	.string "out POKéMON.\p"
@@ -233,3 +223,7 @@ GoldenrodCity_DeptStore_5F_EventScript_MysteryGiftGirl_Text_0:
 GoldenrodCity_DeptStore_5F_EventScript_FloorNumber_Text_0:
 	.string "Customize Your POKéMON\p"
 	.string "5F TM CORNER$"
+
+GoldenrodCity_DeptStore_5F_Text_Mike_NoTrade::
+	.string "You don't want to trade?\n"
+	.string "Aww…$"

@@ -607,26 +607,20 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         if (collision == COLLISION_LEDGE_JUMP)
         {
             PlayerJumpLedge(direction);
-            return;
         }
-        // TODO: Shouldn't be rotating gate
-        else if (collision == COLLISION_ROTATING_GATE)
+        else if (collision == COLLISION_STAIRCASE)
         {
             PlayerFaceDirection(direction);
-            return;
         }
         else if (collision == COLLISION_OBJECT_EVENT && IsPlayerCollidingWithFarawayIslandMew(direction))
         {
             PlayerNotOnBikeCollideWithFarawayIslandMew(direction);
-            return;
         }
-        else
+        else if (collision < COLLISION_STOP_SURFING || collision > COLLISION_ROTATING_GATE)
         {
-            u8 adjustedCollision = collision - COLLISION_STOP_SURFING;
-            if (adjustedCollision > 3)
-                PlayerNotOnBikeCollide(direction);
-            return;
+            PlayerNotOnBikeCollide(direction);
         }
+        return;
     }
 
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
@@ -664,7 +658,7 @@ static u8 CheckForPlayerAvatarCollision(u8 direction)
     y = playerObjEvent->currentCoords.y;
 
     if (IsStaircaseWarpMetatileBehavior(MapGridGetMetatileBehaviorAt(x, y), direction))
-        return COLLISION_ROTATING_GATE;
+        return COLLISION_STAIRCASE;
 
     MoveCoords(direction, &x, &y);
     return CheckForObjectEventCollision(playerObjEvent, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));

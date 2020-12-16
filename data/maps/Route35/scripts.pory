@@ -31,13 +31,13 @@ script Route35_EventScript_Walt {
 }
 
 script Route35_EventScript_Arnie {
-    // TODO: Phone registration
+    // TODO: Phone
     trainerbattle_single(TRAINER_ARNIE, Route35_Text_ArnieIntro, Route35_Text_ArnieDefeated)
     msgbox(Route35_Text_ArniePostBattle, MSGBOX_AUTOCLOSE)
 }
 
 script Route35_EventScript_Irwin {
-    // TODO: Phone registration
+    // TODO: Phone
     trainerbattle_single(TRAINER_IRWIN, Route35_Text_IrwinIntro, Route35_Text_IrwinDefeated)
     msgbox(Route35_Text_IrwinPostBattle, MSGBOX_AUTOCLOSE)
 }

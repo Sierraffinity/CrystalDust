@@ -15397,8 +15397,8 @@
           }
         },
         {
-          "map": "MAP_ROUTE117",
-          "base_label": "gRoute117",
+          "map": "MAP_ROUTE45",
+          "base_label": "gRoute45",
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [
