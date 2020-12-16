@@ -262,8 +262,8 @@ Route117_EventScript_ItemRevive:: @ 8290EC6
 	finditem ITEM_REVIVE
 	end
 
-Route46_EventScript_ItemHyperPotion:: @ 8290ED3
-	finditem ITEM_HYPER_POTION
+Route46_EventScript_ItemXSpeed::
+	finditem ITEM_X_SPEED
 	end
 
 Route119_EventScript_ItemSuperRepel:: @ 8290EE0

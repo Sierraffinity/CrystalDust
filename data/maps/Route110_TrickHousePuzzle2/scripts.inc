@@ -90,7 +90,7 @@ Route110_TrickHousePuzzle2_EventScript_PressButton4:: @ 826BC62
 	return
 
 Route110_TrickHousePuzzle2_EventScript_Ted:: @ 826BC75
-	trainerbattle_single TRAINER_TED, Route110_TrickHousePuzzle2_Text_TedIntro, Route110_TrickHousePuzzle2_Text_TedDefeat
+	trainerbattle_single TRAINER_TED_OLD, Route110_TrickHousePuzzle2_Text_TedIntro, Route110_TrickHousePuzzle2_Text_TedDefeat
 	msgbox Route110_TrickHousePuzzle2_Text_TedPostBattle, MSGBOX_AUTOCLOSE
 	end
 

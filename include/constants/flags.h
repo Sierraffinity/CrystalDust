@@ -1076,7 +1076,7 @@
 #define FLAG_ITEM_ROUTE_35_TM39                                     0x40D
 #define FLAG_ITEM_NATIONAL_PARK_PARALYZE_HEAL                       0x40E
 #define FLAG_ITEM_NATIONAL_PARK_TM28                                0x40F
-#define FLAG_UNUSED_0x410                                           0x410
+#define FLAG_ROUTE_46_X_SPEED                                       0x410
 #define FLAG_UNUSED_0x411                                           0x411
 #define FLAG_UNUSED_0x412                                           0x412
 #define FLAG_UNUSED_0x413                                           0x413

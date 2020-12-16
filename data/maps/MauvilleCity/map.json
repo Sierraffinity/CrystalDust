@@ -11,8 +11,9 @@
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
-  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "floor_number": 0,
   "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
       "direction": "up",
@@ -32,7 +33,9 @@
   ],
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BOY_3",
+      "in_connection": false,
       "x": 29,
       "y": 16,
       "elevation": 3,
@@ -40,13 +43,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_Boy",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
+      "in_connection": false,
       "x": 24,
       "y": 10,
       "elevation": 3,
@@ -54,13 +58,14 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_RichBoy",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_POKEMANIAC",
+      "in_connection": false,
       "x": 14,
       "y": 11,
       "elevation": 3,
@@ -68,13 +73,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_Maniac",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_4",
+      "in_connection": false,
       "x": 18,
       "y": 6,
       "elevation": 3,
@@ -82,13 +88,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_Woman",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+      "in_connection": false,
       "x": 17,
       "y": 14,
       "elevation": 3,
@@ -96,13 +103,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_SchoolKidM",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_RIVAL",
+      "in_connection": false,
       "x": 8,
       "y": 6,
       "elevation": 3,
@@ -110,13 +118,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_Wally",
       "flag": "FLAG_HIDE_MAUVILLE_CITY_WALLY"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SAGE",
+      "in_connection": false,
       "x": 9,
       "y": 6,
       "elevation": 3,
@@ -124,13 +133,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_WallysUncle",
       "flag": "FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WHITNEY",
+      "in_connection": false,
       "x": 29,
       "y": 9,
       "elevation": 3,
@@ -138,13 +148,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_Wattson",
       "flag": "FLAG_HIDE_MAUVILLE_CITY_WATTSON"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 28,
       "y": 19,
       "elevation": 3,
@@ -152,13 +163,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_ItemXSpeed",
       "flag": "FLAG_ITEM_MAUVILLE_CITY_X_SPEED"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "in_connection": false,
       "x": 13,
       "y": 7,
       "elevation": 3,
@@ -166,13 +178,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MauvilleCity_EventScript_RolloutTutor",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SCOTT",
+      "in_connection": false,
       "x": 12,
       "y": 14,
       "elevation": 3,
@@ -180,7 +193,6 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_GOLDENROD_CITY_MAGNET_TRAIN_STATION_PRESIDENT"
@@ -237,7 +249,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

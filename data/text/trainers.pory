@@ -1096,6 +1096,50 @@ text Route36_Text_AlanPostBattle {
 	"reading books."
 }
 
+text Route46_Text_BaileyIntro {
+	"Awright! I'll show you the power\n"
+	"of mountain POKéMON!"
+}
+
+text Route46_Text_BaileyDefeated {
+	"Mercy!\n"
+	"You showed me your power!"
+}
+
+text Route46_Text_BaileyPostBattle {
+	"It's over. I don't mind.\n"
+	"We HIKERS are like that."
+}
+
+text Route46_Text_TedIntro {
+	"I'm raising POKéMON too!\n"
+	"Will you battle with me?"
+}
+
+text Route46_Text_TedDefeated {
+	"Wha…?"
+}
+
+text Route46_Text_TedPostBattle {
+	"I did my best but came up short.\n"
+	"No excuses--I admit I lost."
+}
+
+text Route46_Text_ErinIntro {
+	"I raise POKéMON too!\n"
+	"Will you battle with me?"
+}
+
+text Route46_Text_ErinDefeated {
+	"Oh, rats!"
+}
+
+text Route46_Text_ErinPostBattle {
+	"I've been to many GYMS, but the\n"
+	"GYM in GOLDENROD is my favorite.\p"
+	"It's filled with pretty flowers!"
+}
+
 raw`
 Route109_Text_DavidIntro: @ 8297140
 	.string "Hiyah! Look at my chiseled abs!\n"

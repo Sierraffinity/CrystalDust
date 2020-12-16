@@ -24,6 +24,8 @@ static const u16 sFruitTrees[] =
     [FRUIT_TREE_AZALEA_TOWN - 1]    = ITEM_WHT_APRICORN,
     [FRUIT_TREE_ROUTE_35 - 1]       = ITEM_LEPPA_BERRY,
     [FRUIT_TREE_ROUTE_36 - 1]       = ITEM_RAWST_BERRY,
+    [FRUIT_TREE_ROUTE_46_1 - 1]     = ITEM_ORAN_BERRY,
+    [FRUIT_TREE_ROUTE_46_2 - 1]     = ITEM_CHERI_BERRY,
 };
 
 void GetFruitTreeItem(void)

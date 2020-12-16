@@ -43,8 +43,8 @@ LavaridgeTown_Gym_SetGymTrainers:: @ 8271FCE
 NotVioletCity_Gym_SetGymTrainers:: @ 8271FE7
 	settrainerflag TRAINER_MARK
 	settrainerflag TRAINER_ALAN
-	settrainerflag TRAINER_GEORGE
-	settrainerflag TRAINER_BERKE
+	settrainerflag TRAINER_BAILEY
+	settrainerflag TRAINER_TED
 	settrainerflag TRAINER_MARY
 	settrainerflag TRAINER_ALEXIA
 	settrainerflag TRAINER_JODY
