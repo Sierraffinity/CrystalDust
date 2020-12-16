@@ -26,6 +26,7 @@
 #include "party_menu.h"
 #include "pokeball.h"
 #include "pokedex.h"
+#include "pokemon.h"
 #include "pokemon_icon.h"
 #include "pokemon_summary_screen.h"
 #include "pokemon_storage_system.h"
@@ -4534,7 +4535,90 @@ bool8 _GivePlayerSpecialGiftMon(u8 whichSpecialMon)
     }
 }
 
-static void SetInGameTradeMail(struct MailStruct *mail, const struct InGameTrade *trade) {
+static bool8 IsMonGiftMon(const struct Pokemon *mon, const struct InGameTrade *trade)
+{
+    u8 stringBuffer[17];
+
+    if (GetMonData(mon, MON_DATA_LANGUAGE) != GAME_LANGUAGE)
+        return FALSE;
+
+    GetMonData(mon, MON_DATA_OT_NAME, stringBuffer);
+
+    if (StringCompareWithoutExtCtrlCodes(stringBuffer, trade->otName))
+        return FALSE;
+
+    if (GetMonData(mon, MON_DATA_OT_GENDER, NULL) != trade->otGender)
+        return FALSE;
+
+    if (GetMonData(mon, MON_DATA_OT_ID, NULL) != trade->otId)
+        return FALSE;
+    
+    if (GetMonData(mon, MON_DATA_PERSONALITY, NULL) != trade->personality)
+        return FALSE;
+
+    GetMonData(mon, MON_DATA_NICKNAME, stringBuffer);
+
+    if (StringCompareN(stringBuffer, trade->nickname, 10))
+        return FALSE;
+
+    return TRUE;
+}
+
+static u8 _CheckForGiftMonAndTakeMail(u8 partyIdx, u8 whichGiftMon)
+{
+    const struct InGameTrade *trade = &sIngameTrades[whichGiftMon];
+    struct Pokemon *mon = &gPlayerParty[partyIdx];
+    struct MailStruct *mail;
+    u32 mailTID;
+    int i;
+    
+    if (!MonHasMail(mon))
+    {
+        return GIFTMON_NO_MAIL;
+    }
+
+    mail = &gSaveBlock1Ptr->mail[GetMonData(mon, MON_DATA_MAIL, NULL)];
+    mailTID = (mail->trainerId[0] << 24) | (mail->trainerId[1] << 16) | (mail->trainerId[2] << 8) | mail->trainerId[3];
+
+    if (mail->itemId != trade->heldItem ||
+        trade->otId != mailTID)
+    {
+        return GIFTMON_WRONG_MAIL;
+    }
+
+    for (i = 0; i < MAIL_WORDS_COUNT; i++)
+    {
+        if (mail->words[i] != sIngameTradeMail[trade->mailNum][i])
+        {
+            return GIFTMON_WRONG_MAIL;
+        }
+    }
+    
+    if (!IsMonGiftMon(mon, trade))
+    {
+        TakeMailFromMon(mon);
+        return GIFTMON_WRONG_MON;
+    }
+
+    if (CountPartyAliveNonEggMonsExcept(partyIdx) == 0)
+    {
+        return GIFTMON_LAST_MON;
+    }
+
+    TakeMailFromMon(mon);
+    ZeroMonData(mon);
+    CompactPartySlots();
+    CalculatePlayerPartyCount();
+    return GIFTMON_MATCH;
+}
+
+void CheckForGiftMonAndTakeMail(void)
+{
+    gSpecialVar_Result = _CheckForGiftMonAndTakeMail(gSpecialVar_0x8004, gSpecialVar_0x8005);
+}
+
+static void SetInGameTradeMail(struct MailStruct *mail, const struct InGameTrade *trade)
+{
     s32 i;
 
     for (i = 0; i < MAIL_WORDS_COUNT; i++)

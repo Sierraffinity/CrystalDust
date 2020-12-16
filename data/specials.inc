@@ -571,3 +571,4 @@ gSpecials:: @ 81DBA64
 	def_special HerbShop
 	def_special IsPlayersMonOfSpeciesInParty
 	def_special GivePlayerSpecialGiftMon
+	def_special CheckForGiftMonAndTakeMail

@@ -211,7 +211,7 @@
 #define FLAG_GOT_QUICK_CLAW                  0xC5
 #define FLAG_LEFT_MONS_WITH_CONTEST_OFFICER  0xC6
 #define FLAG_IN_BUG_CATCHING_CONTEST         0xC7
-#define FLAG_RECEIVED_RED_SCARF              0xC8
+#define FLAG_RECEIVED_TM44_REST              0xC8
 #define FLAG_RECEIVED_BLUE_SCARF             0xC9
 #define FLAG_RECEIVED_PINK_SCARF             0xCA
 #define FLAG_RECEIVED_GREEN_SCARF            0xCB
