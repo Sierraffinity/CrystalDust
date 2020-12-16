@@ -16,10 +16,8 @@ enum
     MAP_INPUT_MOVE_CONT,
     MAP_INPUT_MOVE_END,
     MAP_INPUT_A_BUTTON,
-    MAP_INPUT_B_BUTTON,
-    MAP_INPUT_LANDMARK_ENTER,
-    MAP_INPUT_LANDMARK,
-    MAP_INPUT_ON_BUTTON,
+    MAP_INPUT_SWITCH,
+    MAP_INPUT_CANCEL
 };
 
 enum {
@@ -51,6 +49,13 @@ enum {
     MAPMODE_FLY
 };
 
+enum {
+    LANDMARK_STATE_NONE,
+    LANDMARK_STATE_INFO,
+    LANDMARK_STATE_CLOSE,
+    LANDMARK_STATE_SWITCH
+};
+
 struct RegionMap {
     u8 primaryMapSecId;
     u8 secondaryMapSecId;
@@ -59,6 +64,7 @@ struct RegionMap {
     u8 primaryMapSecStatus;
     u8 secondaryMapSecStatus;
     u8 posWithinMapSec;
+    u8 enteredSecondary;
     u8 currentRegion;
     u8 mapMode;
     bool8 permissions[4];
@@ -146,7 +152,8 @@ bool8 IsRegionMapZoomed(void);
 void TrySetPlayerIconBlink(void);
 void sub_8123030(u16 color, u32 coeff);
 void SetRegionMapDataForZoom(void);
-u8 GetCurrentMapsecStatus(bool8 isSecondary);
+void PlaySEForSelectedMapsec(void);
+u8 GetSelectedMapsecLandmarkState(void);
 
 extern const struct RegionMapLocation gRegionMapEntries[];
 

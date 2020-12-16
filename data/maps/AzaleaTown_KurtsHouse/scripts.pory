@@ -127,7 +127,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
         giveitem(VAR_RESULT, VAR_KURT_GIVEN_APRICORN_QTY)
         if (var(VAR_RESULT))
         {
-            call(AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat)
+            msgbox(AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat)
             setvar(VAR_KURT_GIVEN_APRICORN, 0)
             setvar(VAR_KURT_GIVEN_APRICORN_QTY, 0)
             setflag(FLAG_TEMP_2)
@@ -138,7 +138,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
         // TODO: GS Ball stuff here
         if (!flag(FLAG_TEMP_2) && !flag(FLAG_TEMP_3))
         {
-            call(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement)
+            call(AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement)
         }
 
         checkitem(ITEM_RED_APRICORN, 1)
@@ -179,28 +179,27 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
 
         if (flag(FLAG_TEMP_2))
         {
-            call(AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat)
+            msgbox(AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat)
         }
         elif (flag(FLAG_TEMP_3))
         {
-            call(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement)
+            msgbox(AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement)
         }
     }
     release
 }
 
-script AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat {
-    msgbox("KURT: That turned out great.\n"
-           "Try catching POKéMON with it.")
+script AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat {
+    "KURT: That turned out great.\n"
+    "Try catching POKéMON with it.")
 }
 
-// TODO: Wait for local labels
-script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement {
-    msgbox("KURT: I make BALLS from the shells\n"
-           "of APRICORNS.\p"
-           "Collect them from trees and bring\n"
-           "'em to me.\p"
-           "I'll make BALLS out of them.")
+script AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement {
+    "KURT: I make BALLS from the shells\n"
+    "of APRICORNS.\p"
+    "Collect them from trees and bring\n"
+    "'em to me.\p"
+    "I'll make BALLS out of them."
 }
 
 script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu {

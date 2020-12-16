@@ -136,12 +136,12 @@ script GoldenrodCity_DeptStore_5F_EventScript_Mike {
             }
             else
             {
-                goto(GoldenrodCity_DeptStore_5F_EventScript_Mike_NoTrade)
+                msgbox(GoldenrodCity_DeptStore_5F_Text_Mike_NoTrade)
             }
         }
         else
         {
-            goto(GoldenrodCity_DeptStore_5F_EventScript_Mike_NoTrade)
+            msgbox(GoldenrodCity_DeptStore_5F_Text_Mike_NoTrade)
         }
     }
     else
@@ -153,11 +153,9 @@ script GoldenrodCity_DeptStore_5F_EventScript_Mike {
     release
 }
 
-// TODO: wait for local label processing and clean this up
-script GoldenrodCity_DeptStore_5F_EventScript_Mike_NoTrade {
-    msgbox("You don't want to trade?\n"
-           "Aww…")
-    release
+text GoldenrodCity_DeptStore_5F_Text_Mike_NoTrade {
+    "You don't want to trade?\n"
+    "Aww…"
 }
 
 script GoldenrodCity_DeptStore_5F_EventScript_Lass {

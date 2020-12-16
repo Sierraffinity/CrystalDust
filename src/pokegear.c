@@ -1235,9 +1235,17 @@ static void Task_MapCard(u8 taskId)
                 CreateSecondaryLayerDots(2, 2);
                 CreateRegionMapName(3, 4);
                 ShowRegionMapCursorSprite();
-                if (GetCurrentMapsecStatus(TRUE))
+                switch (GetSelectedMapsecLandmarkState())
                 {
-                    ShowHelpBar(gText_MapCardHelp2);
+                    case LANDMARK_STATE_INFO:
+                        ShowHelpBar(gText_MapCardHelp2);
+                        break;
+                    case LANDMARK_STATE_SWITCH:
+                        ShowHelpBar(gText_MapCardHelp3);
+                        break;
+                    default:
+                        ShowHelpBar(gText_MapCardHelp1);
+                        break;
                 }
                 tState++;
             }
@@ -1245,18 +1253,20 @@ static void Task_MapCard(u8 taskId)
         case 1:
             switch (DoRegionMapInputCallback())
             {
-                case MAP_INPUT_LANDMARK_ENTER:
-                    m4aSongNumStart(SE_DEX_SCROLL);
-                    // fallthrough
-                case MAP_INPUT_LANDMARK:
-                    ShowHelpBar(gText_MapCardHelp2);
-                    break;
-                case MAP_INPUT_ON_BUTTON:
-                    ShowHelpBar(gText_MapCardHelp3);
-                    m4aSongNumStart(SE_M_SPIT_UP);
-                    break;
                 case MAP_INPUT_MOVE_END:
-                    ShowHelpBar(gText_MapCardHelp1);
+                    PlaySEForSelectedMapsec();
+                    switch (GetSelectedMapsecLandmarkState())
+                    {
+                        case LANDMARK_STATE_INFO:
+                            ShowHelpBar(gText_MapCardHelp2);
+                            break;
+                        case LANDMARK_STATE_SWITCH:
+                            ShowHelpBar(gText_MapCardHelp3);
+                            break;
+                        default:
+                            ShowHelpBar(gText_MapCardHelp1);
+                            break;
+                    }
                     break;
             }
             break;

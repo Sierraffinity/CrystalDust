@@ -209,7 +209,7 @@ static u32 HandleRegionMapInput(struct Pokenav5Struct *state)
         if (!IsRegionMapZoomed())
             return POKENAV_MAP_FUNC_ZOOM_IN;
         return POKENAV_MAP_FUNC_ZOOM_OUT;
-    case MAP_INPUT_B_BUTTON:
+    case MAP_INPUT_CANCEL:
         state->callback = GetExitRegionMapMenuId;
         return POKENAV_MAP_FUNC_EXIT;
     }

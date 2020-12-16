@@ -14,6 +14,7 @@
 #include "secret_base.h"
 #include "string_util.h"
 #include "international_string_util.h"
+#include "sound.h"
 #include "strings.h"
 #include "text_window.h"
 #include "constants/songs.h"
@@ -103,7 +104,7 @@ static void SpriteCB_PlayerIcon(struct Sprite *sprite);
 static void VBlankCB_FlyMap(void);
 static void CB2_FlyMap(void);
 static void SetFlyMapCallback(void callback(void));
-static void ShowHelpBar(void);
+static void ShowHelpBar(bool8 onButton);
 static void LoadFlyDestIcons(void);
 static void CreateFlyDestIcons(void);
 static void TryCreateRedOutlineFlyDestIcons(void);
@@ -524,7 +525,6 @@ void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *tem
     gRegionMap->xOffset = xOffset;
     gRegionMap->currentRegion = GetCurrentRegion();
     gRegionMap->mapMode = mapMode;
-    gRegionMap->onButton = FALSE;
     gRegionMap->inputCallback = ProcessRegionMapInput_Full;
 
     for (i = 0; i < 4; i++)
@@ -811,34 +811,53 @@ static u8 ProcessRegionMapInput_Full(void)
     input = MAP_INPUT_NONE;
     gRegionMap->cursorDeltaX = 0;
     gRegionMap->cursorDeltaY = 0;
+
     if (JOY_HELD(DPAD_UP) && gRegionMap->cursorPosY > 0)
     {
         gRegionMap->cursorDeltaY = -1;
         input = MAP_INPUT_MOVE_START;
     }
+
     if (JOY_HELD(DPAD_DOWN) && gRegionMap->cursorPosY < MAP_HEIGHT - 1)
     {
         gRegionMap->cursorDeltaY = +1;
         input = MAP_INPUT_MOVE_START;
     }
+
     if (JOY_HELD(DPAD_LEFT) && gRegionMap->cursorPosX > 0)
     {
         gRegionMap->cursorDeltaX = -1;
         input = MAP_INPUT_MOVE_START;
     }
+
     if (JOY_HELD(DPAD_RIGHT) && gRegionMap->cursorPosX < MAP_WIDTH - 1)
     {
         gRegionMap->cursorDeltaX = +1;
         input = MAP_INPUT_MOVE_START;
     }
+
     if (JOY_NEW(A_BUTTON))
     {
         input = MAP_INPUT_A_BUTTON;
+        if (gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
+        {
+            if (gRegionMap->permissions[MAPPERM_CLOSE])
+            {
+                PlaySE(SE_M_HYPER_BEAM2);
+                input = MAP_INPUT_CANCEL;
+            }
+            else if (gRegionMap->permissions[MAPPERM_SWITCH])
+            {
+                PlaySE(SE_M_HYPER_BEAM2);
+                input = MAP_INPUT_SWITCH;
+            }
+        }
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        input = MAP_INPUT_B_BUTTON;
+        input = MAP_INPUT_CANCEL;
     }
+
     if (input == MAP_INPUT_MOVE_START)
     {
         gRegionMap->cursorMovementFrameCounter = 4;
@@ -847,13 +866,13 @@ static u8 ProcessRegionMapInput_Full(void)
     return input;
 }
 
-static bool8 LoadMapLayersFromPosition(u16 x, u16 y)
+static void LoadMapLayersFromPosition(u16 x, u16 y)
 {
-    u8 mapSecId;
-    bool8 sameSecondary = TRUE;
+    u8 mapSecId = GetMapSecIdAt(x, y, gRegionMap->currentRegion, FALSE);
 
-    mapSecId = GetMapSecIdAt(x, y, gRegionMap->currentRegion, FALSE);
+    gRegionMap->enteredSecondary = FALSE;
     gRegionMap->primaryMapSecStatus = GetMapsecType(mapSecId);
+
     if (mapSecId != gRegionMap->primaryMapSecId)
     {
         gRegionMap->primaryMapSecId = mapSecId;
@@ -865,19 +884,16 @@ static bool8 LoadMapLayersFromPosition(u16 x, u16 y)
     if (mapSecId != gRegionMap->secondaryMapSecId)
     {
         gRegionMap->secondaryMapSecId = mapSecId;
+        gRegionMap->enteredSecondary = TRUE;
         LoadSecondaryLayerMapSec();
-        sameSecondary = FALSE;
     }
 
     ScheduleBgCopyTilemapToVram(0);
     SetupShadowBoxes(1, &windowCoords[1]);
-
-    return sameSecondary;
 }
 
 static u8 MoveRegionMapCursor_Full(void)
 {
-    bool8 sameSecondary;
     u8 inputEvent;
 
     if (gRegionMap->cursorMovementFrameCounter != 0)
@@ -900,21 +916,7 @@ static u8 MoveRegionMapCursor_Full(void)
         gRegionMap->cursorPosY--;
     }
 
-    sameSecondary = LoadMapLayersFromPosition(gRegionMap->cursorPosX, gRegionMap->cursorPosY);
-    inputEvent = MAP_INPUT_MOVE_END;
-
-    if ((!sameSecondary && gRegionMap->secondaryMapSecStatus >= MAPSECTYPE_VISITED) || gRegionMap->primaryMapSecStatus >= MAPSECTYPE_VISITED)
-    {
-        inputEvent = MAP_INPUT_LANDMARK_ENTER;
-    }
-    else if ((gRegionMap->permissions[MAPPERM_CLOSE] || gRegionMap->permissions[MAPPERM_SWITCH]) && gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
-    {
-        inputEvent = MAP_INPUT_ON_BUTTON;
-    }
-    else if (gRegionMap->secondaryMapSecStatus == MAPSECTYPE_VISITED)
-    {
-        inputEvent = MAP_INPUT_LANDMARK;
-    }
+    LoadMapLayersFromPosition(gRegionMap->cursorPosX, gRegionMap->cursorPosY);
     
     if (gRegionMap->primaryMapSecStatus != MAPSECTYPE_NONE)
     {
@@ -922,7 +924,7 @@ static u8 MoveRegionMapCursor_Full(void)
     }
 
     gRegionMap->inputCallback = ProcessRegionMapInput_Full;
-    return inputEvent;
+    return MAP_INPUT_MOVE_END;
 }
 
 static void LoadPrimaryLayerMapSec(void)
@@ -1265,11 +1267,7 @@ static u8 GetMapsecType(u16 mapSecId)
     u8 mapSecStatus = MAPSECTYPE_NONE;
 
     // ensure no landmark sound on any map besides fly map
-    if (mapSecId == MAPSEC_ROUTE_32_FLYDUP && !gRegionMap->permissions[MAPPERM_FLY])
-    {
-        mapSecStatus = MAPSECTYPE_ROUTE;
-    }
-    else if (mapSecId != MAPSEC_NONE)
+    if (mapSecId != MAPSEC_NONE)
     {
         u16 flag = sMapSecFlags[mapSecId];
         mapSecStatus = MAPSECTYPE_ROUTE;
@@ -1287,23 +1285,10 @@ static u8 GetMapsecType(u16 mapSecId)
     return mapSecStatus;
 }
 
-u8 GetCurrentMapsecStatus(bool8 isSecondary)
-{
-    return GetMapsecType(GetMapSecIdAt(gRegionMap->cursorPosX, gRegionMap->cursorPosY, gRegionMap->currentRegion, isSecondary));
-}
-
 u16 GetRegionMapSectionIdAt(u16 x, u16 y)
 {
     // TODO: Region
     return GetMapSecIdAt(x, y, REGION_JOHTO, FALSE);
-}
-
-static bool32 SelectedMapsecSEEnabled(void)
-{
-    if (gRegionMap->primaryMapSecId == MAPSEC_ROUTE_32_FLYDUP)
-        return FALSE;
-    else
-        return TRUE;
 }
 
 static u16 CorrectSpecialMapSecId_Internal(u16 mapSecId)
@@ -1862,7 +1847,7 @@ void CB2_OpenFlyMap(void)
         CreateRegionMapPlayerIcon(1, 1);
         CreateSecondaryLayerDots(2, 2);
         CreateRegionMapName(3, 4);
-        ShowHelpBar();
+        ShowHelpBar(FALSE);
         sFlyMap->mapSecId = sFlyMap->regionMap.primaryMapSecId;
         gUnknown_03001180 = TRUE;
         gMain.state++;
@@ -1921,7 +1906,7 @@ static void SetFlyMapCallback(void callback(void))
     sFlyMap->state = 0;
 }
 
-static void ShowHelpBar(void)
+static void ShowHelpBar(bool8 onButton)
 {
     const u8 color[3] = { 15, 1, 2 };
 
@@ -1932,7 +1917,7 @@ static void ShowHelpBar(void)
     {
         AddTextPrinterParameterized3(0, 0, 192, 0, color, 0, gText_AOK);
     }
-    else if (sFlyMap->regionMap.onButton)
+    else if (onButton)
     {
         AddTextPrinterParameterized3(0, 0, 192, 0, color, 0, gText_ACancel);
     }
@@ -2090,38 +2075,30 @@ static void CB_HandleFlyMapInput(void)
             case MAP_INPUT_MOVE_START:
             case MAP_INPUT_MOVE_CONT:
                 break;
-            case MAP_INPUT_ON_BUTTON:
-                sFlyMap->regionMap.onButton = TRUE;
-                m4aSongNumStart(SE_M_SPIT_UP);
-                ShowHelpBar();
-                break;
             case MAP_INPUT_MOVE_END:
-            case MAP_INPUT_LANDMARK_ENTER:
-            case MAP_INPUT_LANDMARK:
-                sFlyMap->regionMap.onButton = FALSE;
-                if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_VISITED || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
+                if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_VISITED)
+                    PlaySE(SE_DEX_PAGE);
+                else
+                    PlaySEForSelectedMapsec();
+
+                if (sFlyMap->regionMap.cursorPosX == CORNER_BUTTON_X && sFlyMap->regionMap.cursorPosY == CORNER_BUTTON_Y)
                 {
-                    m4aSongNumStart(SE_DEX_PAGE);
+                    ShowHelpBar(TRUE);
                 }
-                else if (mapInput == MAP_INPUT_LANDMARK_ENTER)
+                else
                 {
-                    m4aSongNumStart(SE_DEX_SCROLL);
+                    ShowHelpBar(FALSE);
                 }
-                ShowHelpBar();
                 break;
             case MAP_INPUT_A_BUTTON:
                 if (sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_VISITED || sFlyMap->regionMap.primaryMapSecStatus == MAPSECTYPE_BATTLE_FRONTIER)
                 {
-                    m4aSongNumStart(SE_USE_ITEM);
+                    PlaySE(SE_USE_ITEM);
                     sFlyMap->choseFlyLocation = TRUE;
                     SetFlyMapCallback(CB_ExitFlyMap);
                 }
-                else if (sFlyMap->regionMap.onButton)
-                {
-                    m4aSongNumStart(SE_M_HYPER_BEAM2);
-                }
                 break;
-            case MAP_INPUT_B_BUTTON:
+            case MAP_INPUT_CANCEL:
                 sFlyMap->choseFlyLocation = FALSE;
                 SetFlyMapCallback(CB_ExitFlyMap);
                 break;
@@ -2185,4 +2162,49 @@ static void CB_ExitFlyMap(void)
 u8 GetCurrentRegion(void)
 {
     return sMapSecToRegion[gMapHeader.regionMapSectionId];
+}
+
+static bool32 SelectedMapsecSEEnabled(void)
+{
+    if (gRegionMap->primaryMapSecId == MAPSEC_ROUTE_32_FLYDUP)
+        return FALSE;
+    else
+        return TRUE;
+}
+
+void PlaySEForSelectedMapsec(void)
+{
+    if (SelectedMapsecSEEnabled())
+    {
+        if ((gRegionMap->primaryMapSecStatus != MAPSECTYPE_ROUTE && gRegionMap->primaryMapSecStatus != MAPSECTYPE_NONE) 
+         || (gRegionMap->secondaryMapSecStatus != MAPSECTYPE_ROUTE && gRegionMap->secondaryMapSecStatus != MAPSECTYPE_NONE && gRegionMap->enteredSecondary))
+            PlaySE(SE_DEX_SCROLL);
+        else if ((gRegionMap->permissions[MAPPERM_CLOSE] || gRegionMap->permissions[MAPPERM_SWITCH]) &&
+                  gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
+            PlaySE(SE_M_SPIT_UP);
+    }
+}
+
+u8 GetSelectedMapsecLandmarkState(void)
+{
+    if (gRegionMap->secondaryMapSecId != MAPSEC_NONE)
+    {
+        if (gRegionMap->permissions[MAPPERM_LANDMARKINFO] == TRUE && gRegionMap->secondaryMapSecStatus == MAPSECTYPE_VISITED)
+        {
+            return LANDMARK_STATE_INFO;
+        }
+    }
+    else if (gRegionMap->cursorPosX == CORNER_BUTTON_X && gRegionMap->cursorPosY == CORNER_BUTTON_Y)
+    {
+        if (gRegionMap->permissions[MAPPERM_SWITCH])
+        {
+            return LANDMARK_STATE_SWITCH;
+        }
+        else if (gRegionMap->permissions[MAPPERM_CLOSE])
+        {
+            return LANDMARK_STATE_CLOSE;
+        }
+    }
+
+    return LANDMARK_STATE_NONE;
 }

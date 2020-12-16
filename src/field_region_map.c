@@ -42,7 +42,7 @@ static void MCB2_InitRegionMapRegisters(void);
 static void VBCB_FieldUpdateRegionMap(void);
 static void MCB2_FieldUpdateRegionMap(void);
 static void FieldUpdateRegionMap(void);
-static void ShowHelpBar(void);
+static void ShowHelpBar(bool8 onButton);
 
 extern const u16 gRegionMapFramePal[];
 extern const u32 gRegionMapFrameGfxLZ[];
@@ -153,7 +153,7 @@ static void FieldUpdateRegionMap(void)
             CreateRegionMapCursor(1, 1, TRUE);
             CreateSecondaryLayerDots(2, 2);
             CreateRegionMapName(3, 4);
-            ShowHelpBar();
+            ShowHelpBar(FALSE);
             sFieldRegionMapHandler->state++;
             break;
         case 1:
@@ -188,26 +188,19 @@ static void FieldUpdateRegionMap(void)
         case 7:
             switch (DoRegionMapInputCallback())
             {
-                case MAP_INPUT_LANDMARK_ENTER:
-                    m4aSongNumStart(SE_DEX_SCROLL);
-                    // fallthrough
-                case MAP_INPUT_LANDMARK:
                 case MAP_INPUT_MOVE_END:
-                    sFieldRegionMapHandler->regionMap.onButton = FALSE;
-                    ShowHelpBar();
-                    break;
-                case MAP_INPUT_ON_BUTTON:
-                    sFieldRegionMapHandler->regionMap.onButton = TRUE;
-                    m4aSongNumStart(SE_M_SPIT_UP);
-                    ShowHelpBar();
-                    break;
-                case MAP_INPUT_A_BUTTON:
-                    if (!sFieldRegionMapHandler->regionMap.onButton)
+                    PlaySEForSelectedMapsec();
+                    switch (GetSelectedMapsecLandmarkState())
                     {
-                        break;
+                        case LANDMARK_STATE_CLOSE:
+                            ShowHelpBar(TRUE);
+                            break;
+                        default:
+                            ShowHelpBar(FALSE);
+                            break;
                     }
-                    m4aSongNumStart(SE_M_HYPER_BEAM2);
-                case MAP_INPUT_B_BUTTON:
+                    break;
+                case MAP_INPUT_CANCEL:
                     sFieldRegionMapHandler->state++;
                     break;
             }
@@ -231,14 +224,14 @@ static void FieldUpdateRegionMap(void)
     }
 }
 
-static void ShowHelpBar(void)
+static void ShowHelpBar(bool8 onButton)
 {
     const u8 color[3] = { 15, 1, 2 };
 
     FillWindowPixelBuffer(0, PIXEL_FILL(15));
     AddTextPrinterParameterized3(0, 0, 144, 0, color, 0, gText_DpadMove);
 
-    if (sFieldRegionMapHandler->regionMap.onButton)
+    if (onButton)
     {
         AddTextPrinterParameterized3(0, 0, 192, 0, color, 0, gText_ACancel);
     }
