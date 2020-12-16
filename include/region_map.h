@@ -19,7 +19,7 @@ enum
     MAP_INPUT_B_BUTTON,
     MAP_INPUT_LANDMARK_ENTER,
     MAP_INPUT_LANDMARK,
-    MAP_INPUT_ON_BUTTON
+    MAP_INPUT_ON_BUTTON,
 };
 
 enum {
@@ -102,7 +102,7 @@ struct RegionMap {
     bool8 bgManaged;
     s8 xOffset;
     bool8 onButton;
-    u8 __attribute__ ((aligned (4))) cursorImage[0x100];
+    u8 ALIGNED(4) cursorImage[0x100];
 }; // size = 0x884
 
 struct RegionMapLocation

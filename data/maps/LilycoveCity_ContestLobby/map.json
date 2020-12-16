@@ -3,7 +3,7 @@
   "name": "LilycoveCity_ContestLobby",
   "layout": "LAYOUT_LILYCOVE_CITY_CONTEST_LOBBY",
   "music": "MUS_CONTEST_LOBBY",
-  "region_map_section": "MAPSEC_LILYCOVE_CITY",
+  "region_map_section": "MAPSEC_BLACKTHORN_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",

@@ -3,7 +3,7 @@
   "name": "IslandCave",
   "layout": "LAYOUT_ISLAND_CAVE",
   "music": "MUS_SEALED_CHAMBER",
-  "region_map_section": "MAPSEC_ISLAND_CAVE",
+  "region_map_section": "MAPSEC_WHIRL_ISLANDS",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",

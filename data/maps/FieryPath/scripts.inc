@@ -3,8 +3,8 @@ FieryPath_MapScripts:: @ 8230F24
 	.byte 0
 
 FieryPath_OnTransition: @ 8230F2A
-	call_if_unset FLAG_LANDMARK_FIERY_PATH, FieryPath_EventScript_MoveScottToFallarbor
-	setflag FLAG_LANDMARK_FIERY_PATH
+	call_if_unset FLAG_LANDMARK_LAKE_OF_RAGE, FieryPath_EventScript_MoveScottToFallarbor
+	setflag FLAG_LANDMARK_LAKE_OF_RAGE
 	end
 
 FieryPath_EventScript_MoveScottToFallarbor:: @ 8230F37

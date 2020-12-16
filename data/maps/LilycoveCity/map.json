@@ -3,7 +3,7 @@
   "name": "LilycoveCity",
   "layout": "LAYOUT_LILYCOVE_CITY",
   "music": "MUS_LILYCOVE",
-  "region_map_section": "MAPSEC_LILYCOVE_CITY",
+  "region_map_section": "MAPSEC_BLACKTHORN_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_CITY",

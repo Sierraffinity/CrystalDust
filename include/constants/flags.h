@@ -212,7 +212,7 @@
 #define FLAG_LEFT_MONS_WITH_CONTEST_OFFICER  0xC6
 #define FLAG_IN_BUG_CATCHING_CONTEST         0xC7
 #define FLAG_RECEIVED_TM44_REST              0xC8
-#define FLAG_RECEIVED_BLUE_SCARF             0xC9
+#define FLAG_ROCKET_TAKEOVER                 0xC9
 #define FLAG_RECEIVED_PINK_SCARF             0xCA
 #define FLAG_RECEIVED_GREEN_SCARF            0xCB
 #define FLAG_RECEIVED_YELLOW_SCARF           0xCC
@@ -1412,13 +1412,13 @@
 #define FLAG_LANDMARK_ILEX_FOREST                   (SYSTEM_FLAGS + 0x41)
 #define FLAG_LANDMARK_SLOWPOKE_WELL                 (SYSTEM_FLAGS + 0x42)
 #define FLAG_LANDMARK_RADIO_TOWER                   (SYSTEM_FLAGS + 0x43)
-#define FLAG_LANDMARK_NATIONAL_PARK                (SYSTEM_FLAGS + 0x44)
-#define FLAG_LANDMARK_LANETTES_HOUSE                (SYSTEM_FLAGS + 0x45)
-#define FLAG_LANDMARK_POKEMON_DAYCARE               (SYSTEM_FLAGS + 0x46)
-#define FLAG_LANDMARK_SEAFLOOR_CAVERN               (SYSTEM_FLAGS + 0x47)
+#define FLAG_LANDMARK_NATIONAL_PARK                 (SYSTEM_FLAGS + 0x44)
+#define FLAG_LANDMARK_MT_MORTAR                     (SYSTEM_FLAGS + 0x45)
+#define FLAG_LANDMARK_LIGHTHOUSE                    (SYSTEM_FLAGS + 0x46)
+#define FLAG_LANDMARK_DRAGONS_DEN                   (SYSTEM_FLAGS + 0x47)
 #define FLAG_LANDMARK_BATTLE_FRONTIER               (SYSTEM_FLAGS + 0x48)
 #define FLAG_LANDMARK_SOUTHERN_ISLAND               (SYSTEM_FLAGS + 0x49)
-#define FLAG_LANDMARK_FIERY_PATH                    (SYSTEM_FLAGS + 0x4A)
+#define FLAG_LANDMARK_LAKE_OF_RAGE                  (SYSTEM_FLAGS + 0x4A)
 
 #define FLAG_SYS_PC_LANETTE                         (SYSTEM_FLAGS + 0x4B)
 #define FLAG_SYS_MYSTERY_EVENT_ENABLE               (SYSTEM_FLAGS + 0x4C)
@@ -1431,10 +1431,10 @@
 #define FLAG_ENABLE_SHIP_SOUTHERN_ISLAND            (SYSTEM_FLAGS + 0x53)
 
 #define FLAG_LANDMARK_POKEMON_LEAGUE                (SYSTEM_FLAGS + 0x54)
-#define FLAG_LANDMARK_ISLAND_CAVE                   (SYSTEM_FLAGS + 0x55)
-#define FLAG_LANDMARK_DESERT_RUINS                  (SYSTEM_FLAGS + 0x56)
-#define FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE          (SYSTEM_FLAGS + 0x57)
-#define FLAG_LANDMARK_SCORCHED_SLAB                 (SYSTEM_FLAGS + 0x58)
+#define FLAG_LANDMARK_ICE_PATH                      (SYSTEM_FLAGS + 0x55)
+#define FLAG_LANDMARK_SILVER_CAVE                   (SYSTEM_FLAGS + 0x56)
+#define FLAG_LANDMARK_WHIRL_ISLANDS                 (SYSTEM_FLAGS + 0x57)
+#define FLAG_LANDMARK_TIN_TOWER                     (SYSTEM_FLAGS + 0x58)
 #define FLAG_LANDMARK_ANCIENT_TOMB                  (SYSTEM_FLAGS + 0x59)
 #define FLAG_LANDMARK_TUNNELERS_REST_HOUSE          (SYSTEM_FLAGS + 0x5A)
 #define FLAG_LANDMARK_HUNTERS_HOUSE                 (SYSTEM_FLAGS + 0x5B)

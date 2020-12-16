@@ -21,7 +21,7 @@ Route46_EventScript_Erin::
 
 
 Route46_EventScript_RouteSign::
-	msgbox Route46_EventScript_RouteSign_Text_0
+	msgbox Route46_EventScript_RouteSign_Text_0, MSGBOX_SIGN
 	return
 
 

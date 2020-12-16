@@ -5,7 +5,7 @@ Underwater_SeafloorCavern_MapScripts:: @ 823433B
 	.byte 0
 
 Underwater_SeafloorCavern_OnTransition: @ 823434B
-	setflag FLAG_LANDMARK_SEAFLOOR_CAVERN
+	setflag FLAG_LANDMARK_DRAGONS_DEN
 	goto_if_set FLAG_RECEIVED_TM05_ROAR, Underwater_SeafloorCavern_EventScript_HideSubmarine
 	end
 

@@ -101,12 +101,6 @@ struct RadioStation{
 extern const struct RadioStation gRadioStationData[];
 extern const u8 *const gRadioShowNames[];
 
-// TEMP
-#define FLAG_ROCKET_TAKEOVER FLAG_TEMP_1
-
-#define MAPSEC_MAHOGANY_TOWN MAPSEC_NEW_BARK_TOWN
-#define MAPSEC_LAKE_OF_RAGE MAPSEC_NEW_BARK_TOWN
-
 void Task_PlayRadioShow(u8 taskId);
 
 #endif

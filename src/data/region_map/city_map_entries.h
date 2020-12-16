@@ -16,12 +16,12 @@ static const struct CityMapEntry sPokenavCityMaps[NUM_CITY_MAPS] =
         .tilemap = gPokenavCityMap_Dewford_0,
     },
     {
-        .mapSecId = MAPSEC_LAVARIDGE_TOWN,
+        .mapSecId = MAPSEC_CIANWOOD_CITY,
         .index = 0,
         .tilemap = gPokenavCityMap_Lavaridge_0,
     },
     {
-        .mapSecId = MAPSEC_FALLARBOR_TOWN,
+        .mapSecId = MAPSEC_MAHOGANY_TOWN,
         .index = 0,
         .tilemap = gPokenavCityMap_Fallarbor_0,
     },
@@ -41,22 +41,22 @@ static const struct CityMapEntry sPokenavCityMaps[NUM_CITY_MAPS] =
         .tilemap = gPokenavCityMap_Petalburg_0,
     },
     {
-        .mapSecId = MAPSEC_SLATEPORT_CITY,
+        .mapSecId = MAPSEC_ECRUTEAK_CITY,
         .index = 0,
         .tilemap = gPokenavCityMap_Slateport_0,
     },
     {
-        .mapSecId = MAPSEC_SLATEPORT_CITY,
+        .mapSecId = MAPSEC_ECRUTEAK_CITY,
         .index = 1,
         .tilemap = gPokenavCityMap_Slateport_1,
     },
     {
-        .mapSecId = MAPSEC_MAUVILLE_CITY,
+        .mapSecId = MAPSEC_OLIVINE_CITY,
         .index = 0,
         .tilemap = gPokenavCityMap_Mauville_0,
     },
     {
-        .mapSecId = MAPSEC_MAUVILLE_CITY,
+        .mapSecId = MAPSEC_OLIVINE_CITY,
         .index = 1,
         .tilemap = gPokenavCityMap_Mauville_1,
     },
@@ -76,12 +76,12 @@ static const struct CityMapEntry sPokenavCityMaps[NUM_CITY_MAPS] =
         .tilemap = gPokenavCityMap_Fortree_0,
     },
     {
-        .mapSecId = MAPSEC_LILYCOVE_CITY,
+        .mapSecId = MAPSEC_BLACKTHORN_CITY,
         .index = 0,
         .tilemap = gPokenavCityMap_Lilycove_0,
     },
     {
-        .mapSecId = MAPSEC_LILYCOVE_CITY,
+        .mapSecId = MAPSEC_BLACKTHORN_CITY,
         .index = 1,
         .tilemap = gPokenavCityMap_Lilycove_1,
     },

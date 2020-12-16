@@ -29,7 +29,7 @@ DesertRuins_EventScript_HideRegiEntrance:: @ 822D993
 	return
 
 DesertRuins_OnTransition: @ 822D9CA
-	setflag FLAG_LANDMARK_DESERT_RUINS
+	setflag FLAG_LANDMARK_SILVER_CAVE
 	call_if_unset FLAG_DEFEATED_REGIROCK, DesertRuins_EventScript_ShowRegirock
 	end
 

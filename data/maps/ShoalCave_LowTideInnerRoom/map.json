@@ -3,7 +3,7 @@
   "name": "ShoalCave_LowTideInnerRoom",
   "layout": "LAYOUT_SHOAL_CAVE_LOW_TIDE_INNER_ROOM",
   "music": "MUS_SPROUT_TOWER",
-  "region_map_section": "MAPSEC_SHOAL_CAVE",
+  "region_map_section": "MAPSEC_LIGHTHOUSE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",

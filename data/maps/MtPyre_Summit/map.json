@@ -3,7 +3,7 @@
   "name": "MtPyre_Summit",
   "layout": "LAYOUT_MT_PYRE_SUMMIT",
   "music": "MUS_NATIONAL_PARK",
-  "region_map_section": "MAPSEC_MT_PYRE",
+  "region_map_section": "MAPSEC_MT_MORTAR",
   "requires_flash": false,
   "weather": "WEATHER_FOG_HORIZONTAL",
   "map_type": "MAP_TYPE_ROUTE",

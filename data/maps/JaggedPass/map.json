@@ -3,7 +3,7 @@
   "name": "JaggedPass",
   "layout": "LAYOUT_JAGGED_PASS",
   "music": "MUS_ILEX_FOREST",
-  "region_map_section": "MAPSEC_JAGGED_PASS",
+  "region_map_section": "MAPSEC_ICE_PATH",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",

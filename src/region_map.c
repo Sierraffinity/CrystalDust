@@ -631,7 +631,7 @@ bool8 LoadRegionMapGfx(bool8 shouldBuffer)
             }
             break;
         case 2:
-            if (!FreeTempTileDataBuffersIfPossible())   // why are we checking for DMA3 being busy?
+            if (!FreeTempTileDataBuffersIfPossible())
             {
                 LoadPalette(sRegionMapPal, 0x70, sizeof(sRegionMapPal));
                 LoadPalette(sRegionMapTownNames_Pal, 0xE0, sizeof(sRegionMapTownNames_Pal));
@@ -1224,10 +1224,10 @@ static void RegionMap_InitializeStateBasedOnSSTidalLocation(void)
     switch (GetSSTidalLocation(&mapGroup, &mapNum, &xOnMap, &yOnMap))
     {
         case SS_TIDAL_LOCATION_SLATEPORT:
-            gRegionMap->primaryMapSecId = MAPSEC_SLATEPORT_CITY;
+            gRegionMap->primaryMapSecId = MAPSEC_ECRUTEAK_CITY;
             break;
         case SS_TIDAL_LOCATION_LILYCOVE:
-            gRegionMap->primaryMapSecId = MAPSEC_LILYCOVE_CITY;
+            gRegionMap->primaryMapSecId = MAPSEC_BLACKTHORN_CITY;
             break;
         case SS_TIDAL_LOCATION_ROUTE124:
             gRegionMap->primaryMapSecId = MAPSEC_ROUTE_124;
