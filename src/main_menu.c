@@ -812,7 +812,6 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
         switch (gSaveFileStatus)
         {
             case SAVE_STATUS_OK:
-            case SAVE_STATUS_WRONG_BUILD:
                 if (!(sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG))
                     gTasks[taskId].func = Task_MainMenuCheckBattery;
                 tMenuType = HAS_SAVED_GAME;
@@ -1245,7 +1244,7 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
     }
 
     if (action != ACTION_NEW_GAME &&
-        gSaveFileStatus == SAVE_STATUS_WRONG_BUILD)
+        (gSaveFileStatus == SAVE_STATUS_OK && !CheckBuildNumber()))
     {
         action = ACTION_CONTINUE_ERROR;
     }

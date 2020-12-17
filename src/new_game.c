@@ -13,6 +13,7 @@
 #include "load_save.h"
 #include "pokeblock.h"
 #include "dewford_trend.h"
+#include "game_build.h"
 #include "berry.h"
 #include "rtc.h"
 #include "easy_chat.h"

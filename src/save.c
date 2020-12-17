@@ -818,10 +818,6 @@ u8 Save_LoadGameData(u8 saveType)
         LoadSerializedGame();
         gSaveFileStatus = status;
         gGameContinueCallback = 0;
-        if (!CheckBuildNumber())
-        {
-            gSaveFileStatus = SAVE_STATUS_WRONG_BUILD;
-        }
         break;
     case SAVE_HALL_OF_FAME:
         status = sub_81530DC(SECTOR_ID_HOF_1, gDecompressionBuffer, SECTOR_DATA_SIZE);
