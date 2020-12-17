@@ -22,7 +22,7 @@
     },
     {
       "direction": "down",
-      "offset": -12,
+      "offset": -16,
       "map": "MAP_ROUTE35"
     }
   ],
@@ -31,7 +31,7 @@
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
       "in_connection": false,
-      "x": 12,
+      "x": 10,
       "y": 17,
       "elevation": 1,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -216,7 +216,7 @@
     },
     {
       "type": "sign",
-      "x": 13,
+      "x": 11,
       "y": 11,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
@@ -224,7 +224,7 @@
     },
     {
       "type": "fruit_tree",
-      "x": 13,
+      "x": 11,
       "y": 7,
       "elevation": 0,
       "fruit_tree_id": "FRUIT_TREE_ROUTE_36"
