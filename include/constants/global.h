@@ -27,8 +27,8 @@
 #define LANGUAGE_SPANISH  7
 #define NUM_LANGUAGES     7
 
-#define GAME_VERSION (VERSION_CRYSTAL_DUST)
-#define GAME_LANGUAGE (LANGUAGE_ENGLISH)
+#define GAME_VERSION    (VERSION_CRYSTAL_DUST)
+#define GAME_LANGUAGE   (LANGUAGE_ENGLISH)
 
 // capacities of various saveblock objects
 #define DAYCARE_MON_COUNT 2

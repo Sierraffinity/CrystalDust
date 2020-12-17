@@ -340,6 +340,7 @@ extern const u8 gText_MainMenuContinue[];
 extern const u8 gText_MainMenuMysteryGift2[];
 extern const u8 gText_MainMenuMysteryEvents[];
 extern const u8 gText_MainMenuMysteryGift[];
+extern const u8 gText_BuildVersionMismatch[];
 extern const u8 gText_WirelessNotConnected[];
 extern const u8 gText_MysteryGiftCantUse[];
 extern const u8 gText_MysteryEventsCantUse[];

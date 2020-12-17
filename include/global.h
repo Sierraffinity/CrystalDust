@@ -992,7 +992,8 @@ struct SaveBlock1
     /*0x3D70*/ struct WaldaPhrase waldaPhrase;
     /*0x3D88*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
     /*0x3D90*/ u32 bankedMoney;
-    // sizeof: 0x3D90
+    /*0x3D94*/ u32 gameBuild;
+    // sizeof: 0x3D98
 };
 
 extern struct SaveBlock1* gSaveBlock1Ptr;

@@ -208,6 +208,7 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+    SetBuildNumber();
 }
 
 static void ResetMiniGamesResults(void)
