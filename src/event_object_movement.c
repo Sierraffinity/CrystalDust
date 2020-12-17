@@ -416,7 +416,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_11 0x1115 // Brendan & May underwater
 #define OBJ_EVENT_PAL_TAG_12 0x110B // Elm
 #define OBJ_EVENT_PAL_TAG_13 0x110C // Silver
-#define OBJ_EVENT_PAL_TAG_14 0x110D // Truck
+#define OBJ_EVENT_PAL_TAG_14 0x110D // Butterfree
 #define OBJ_EVENT_PAL_TAG_15 0x110E // Vigoroth mover
 #define OBJ_EVENT_PAL_TAG_16 0x110F // Zigzagoon
 #define OBJ_EVENT_PAL_TAG_17 0x1110 // Kris
