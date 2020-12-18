@@ -420,6 +420,8 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_LOVE_BALL] = {gItemIcon_LoveBall, gItemIconPalette_LoveBall},
     [ITEM_PARK_BALL] = {gItemIcon_ParkBall, gItemIconPalette_ParkBall},
     [ITEM_EGG_TICKET] = {gItemIcon_EggTicket, gItemIconPalette_EggTicket},
+    [ITEM_BLUE_CARD] = {gItemIcon_BlueCard, gItemIconPalette_BlueCard},
+    [ITEM_SQUIRTBOTTLE] = {gItemIcon_Squirtbottle, gItemIconPalette_Squirtbottle},
     // Return to field arrow
     [ITEM_FIELD_ARROW] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

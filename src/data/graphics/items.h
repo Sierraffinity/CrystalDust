@@ -777,3 +777,9 @@ const u32 gItemIconPalette_ParkBall[] = INCBIN_U32("graphics/items/icon_palettes
 
 const u32 gItemIcon_EggTicket[] = INCBIN_U32("graphics/items/icons/egg_ticket.4bpp.lz");
 const u32 gItemIconPalette_EggTicket[] = INCBIN_U32("graphics/items/icon_palettes/egg_ticket.gbapal.lz");
+
+const u32 gItemIcon_BlueCard[] = INCBIN_U32("graphics/items/icons/blue_card.4bpp.lz");
+const u32 gItemIconPalette_BlueCard[] = INCBIN_U32("graphics/items/icon_palettes/blue_card.gbapal.lz");
+
+const u32 gItemIcon_Squirtbottle[] = INCBIN_U32("graphics/items/icons/squirtbottle.4bpp.lz");
+const u32 gItemIconPalette_Squirtbottle[] = INCBIN_U32("graphics/items/icon_palettes/squirtbottle.gbapal.lz");
