@@ -444,6 +444,13 @@ static u8 sub_8152DD0(u16 a1, const struct SaveSectionLocation *location)
         sub_8152E10(0xFFFF, location);
     }
 
+    if (status == SAVE_STATUS_OK ||
+        status == SAVE_STATUS_ERROR)
+    {
+        if (!CheckBuildNumber())
+            status = SAVE_STATUS_BUILD_MISMATCH;
+    }
+
     return status;
 }
 

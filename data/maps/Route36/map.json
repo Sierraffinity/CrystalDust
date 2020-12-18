@@ -134,7 +134,7 @@
     },
     {
       "type": "clone",
-      "x": 9,
+      "x": 5,
       "y": 32,
       "source_id": 11,
       "source_map": "MAP_ROUTE35"

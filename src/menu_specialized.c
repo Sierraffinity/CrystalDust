@@ -1510,33 +1510,35 @@ void DrawLevelUpWindowPg1(u16 windowId, u16 *statsBefore, u16 *statsAfter, u8 bg
     {
 
         AddTextPrinterParameterized3(windowId,
-                                     1,
+                                     2,
                                      0,
                                      15 * i,
                                      color,
-                                     -1,
+                                     TEXT_SPEED_FF,
                                      sLvlUpStatStrings[i]);
 
         StringCopy(text, (statsDiff[i] >= 0) ? gText_Plus : gText_Dash);
         AddTextPrinterParameterized3(windowId,
-                                     1,
+                                     2,
                                      56,
                                      15 * i,
                                      color,
-                                     -1,
+                                     TEXT_SPEED_FF,
                                      text);
-        if (abs(statsDiff[i]) <= 9)
-            x = 18;
-        else
-            x = 12;
 
-        ConvertIntToDecimalStringN(text, abs(statsDiff[i]), STR_CONV_MODE_LEFT_ALIGN, 2);
+        text[0] = CHAR_SPACE;
+        if (abs(statsDiff[i]) < 10)
+            x = 12;
+        else
+            x = 6;
+
+        ConvertIntToDecimalStringN(text + 1, abs(statsDiff[i]), STR_CONV_MODE_LEFT_ALIGN, 2);
         AddTextPrinterParameterized3(windowId,
-                                     1,
+                                     2,
                                      56 + x,
                                      15 * i,
                                      color,
-                                     -1,
+                                     TEXT_SPEED_FF,
                                      text);
     }
 }
@@ -1563,9 +1565,9 @@ void DrawLevelUpWindowPg2(u16 windowId, u16 *currStats, u8 bgClr, u8 fgClr, u8 s
 
     for (i = 0; i < NUM_STATS; i++)
     {
-        if (stats[i] > 99)
+        if (stats[i] >= 100)
             numDigits = 3;
-        else if (stats[i] > 9)
+        else if (stats[i] >= 10)
             numDigits = 2;
         else
             numDigits = 1;
@@ -1574,19 +1576,19 @@ void DrawLevelUpWindowPg2(u16 windowId, u16 *currStats, u8 bgClr, u8 fgClr, u8 s
         x = 6 * (4 - numDigits);
 
         AddTextPrinterParameterized3(windowId,
-                                     1,
+                                     2,
                                      0,
                                      15 * i,
                                      color,
-                                     -1,
+                                     TEXT_SPEED_FF,
                                      sLvlUpStatStrings[i]);
 
         AddTextPrinterParameterized3(windowId,
-                                     1,
+                                     2,
                                      56 + x,
                                      15 * i,
                                      color,
-                                     -1,
+                                     TEXT_SPEED_FF,
                                      text);
     }
 }

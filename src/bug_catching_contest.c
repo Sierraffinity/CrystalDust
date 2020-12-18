@@ -1018,7 +1018,7 @@ static bool8 GetContestantCaughtShiny(int contestantId)
 static void BuildBugContestPlacementString_FirstPlace(void)
 {
     static const u8 sFirstPlaceString_Part1[] = _("Your winner for today's Bug-Catching\nContest is…\p{STR_VAR_1} {STR_VAR_2} who caught\n");
-    static const u8 sFirstPlaceString_Part2[] = _("a {LV}{STR_VAR_1} {STR_VAR_2}!");
+    static const u8 sFirstPlaceString_Part2[] = _("a LV. {STR_VAR_1} {STR_VAR_2}!");
     static const u8 sFirstPlaceString_Shiny[] = _("\pAnd…");
     u8 *str;
     int contestantId = gBugCatchingContestStandings[0];
@@ -1038,7 +1038,7 @@ static void BuildBugContestPlacementString_FirstPlace(void)
 static void BuildBugContestPlacementString_SecondPlace(void)
 {
     static const u8 sSecondPlaceString_Part1[] = _("The runner-up was…\n{STR_VAR_1} {STR_VAR_2} who caught\l");
-    static const u8 sSecondPlaceString_Part2[] = _("a {LV}{STR_VAR_1} {STR_VAR_2}!");
+    static const u8 sSecondPlaceString_Part2[] = _("a LV. {STR_VAR_1} {STR_VAR_2}!");
     u8 *str;
     int contestantId = gBugCatchingContestStandings[1];
 
@@ -1053,7 +1053,7 @@ static void BuildBugContestPlacementString_SecondPlace(void)
 static void BuildBugContestPlacementString_ThirdPlace(void)
 {
     static const u8 sThirdPlaceString_Part1[] = _("Placing third was…\n{STR_VAR_1} {STR_VAR_2} who caught\l");
-    static const u8 sThirdPlaceString_Part2[] = _("a {LV}{STR_VAR_1} {STR_VAR_2}!");
+    static const u8 sThirdPlaceString_Part2[] = _("a LV. {STR_VAR_1} {STR_VAR_2}!");
     u8 *str;
     int contestantId = gBugCatchingContestStandings[2];
 

@@ -474,22 +474,22 @@ void MainCB_FreeAllBuffersAndReturnToInitTitleScreen(void)
 
 void PrintMysteryGiftOrEReaderTopMenu(bool8 mg_or_ereader, bool32 usePickOkCancel)
 {
-    const u8 * header;
-    const u8 * options;
+    const u8 * src;
+    s32 xPos;
     FillWindowPixelBuffer(0, 0);
-    if (mg_or_ereader == 0)
+    if (!mg_or_ereader)
     {
-        header = gText_MysteryGift;
-        options = !usePickOkCancel ? gText_PickOKExit : gText_PickOKCancel;
+        src = usePickOkCancel == TRUE ? gText_PickOKExit : gText_PickOKCancel;
+        AddTextPrinterParameterized4(0, 2, 2, 2, 0, 0, sMG_Ereader_TextColor_1, 0, gText_MysteryGift);
+        xPos = 222 - GetStringWidth(0, src, 0);
+        AddTextPrinterParameterized4(0, 0, xPos, 2, 0, 0, sMG_Ereader_TextColor_1, 0, src);
     }
     else
     {
-        header = gJPText_MysteryGift;
-        options = gJPText_DecideStop;
+        AddTextPrinterParameterized4(0, 2, 2, 2, 0, 0, sMG_Ereader_TextColor_1, 0, gJPText_MysteryGift);
+        AddTextPrinterParameterized4(0, 0, 222 - GetStringWidth(0, gJPText_DecideStop, 0), 2, 0, 0, sMG_Ereader_TextColor_1, 0, gJPText_DecideStop);
     }
 
-    AddTextPrinterParameterized4(0, 2, 4, 1, 0, 0, sMG_Ereader_TextColor_1, -1, header);
-    AddTextPrinterParameterized4(0, 0, GetStringRightAlignXOffset(0, options, 0xDE), 1, 0, 0, sMG_Ereader_TextColor_1, -1, options);
     CopyWindowToVram(0, 2);
     PutWindowTilemap(0);
 }
@@ -539,7 +539,7 @@ void AddTextPrinterToWindow1(const u8 *str)
 {
     StringExpandPlaceholders(gStringVar4, str);
     FillWindowPixelBuffer(1, 0x11);
-    AddTextPrinterParameterized4(1, 2, 0, 1, 0, 0, sMG_Ereader_TextColor_2, 0, gStringVar4);
+    AddTextPrinterParameterized4(1, 2, 0, 2, 0, 2, sMG_Ereader_TextColor_2, 0, gStringVar4);
     DrawTextBorderOuter(1, 0x001, 0xF);
     PutWindowTilemap(1);
     CopyWindowToVram(1, 3);
