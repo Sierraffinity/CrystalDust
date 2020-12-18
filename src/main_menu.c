@@ -199,7 +199,7 @@ static void ClearMainMenuWindowTilemap(const struct WindowTemplate*);
 static void Task_DisplayMainMenu(u8);
 static void Task_WaitForBatteryDryErrorWindow(u8);
 static void MainMenu_FormatSavegameText(void);
-static void HighlightSelectedMainMenuItem(u8, u8, s16);
+static void HighlightSelectedMainMenuItem(u8);
 static void Task_HandleMainMenuInput(u8);
 static void Task_HandleMainMenuAPressed(u8);
 static void Task_HandleMainMenuAPressed_(u8 taskId);
@@ -1012,13 +1012,6 @@ static void Task_DisplayMainMenu(u8 taskId)
                 DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[5], MAIN_MENU_BORDER_TILE);
                 tScrollArrowTaskId = AddScrollIndicatorArrowPair(&sScrollArrowsTemplate_MainMenu, &sCurrItemAndOptionMenuCheck);
                 gTasks[tScrollArrowTaskId].func = Task_ScrollIndicatorArrowPairOnMainMenu;
-                if (sCurrItemAndOptionMenuCheck == 3)
-                {
-                    ChangeBgY(0, 0x2000, 1);
-                    ChangeBgY(1, 0x2000, 1);
-                    tScrollCount = 1;
-                    gTasks[tScrollArrowTaskId].tArrowTaskScrollCount = 2;
-                }
                 break;
             case HAS_MYSTERY_EVENTS:
                 FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
@@ -1049,13 +1042,6 @@ static void Task_DisplayMainMenu(u8 taskId)
                 DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[6], MAIN_MENU_BORDER_TILE);
                 tScrollArrowTaskId = AddScrollIndicatorArrowPair(&sScrollArrowsTemplate_MainMenu, &sCurrItemAndOptionMenuCheck);
                 gTasks[tScrollArrowTaskId].func = Task_ScrollIndicatorArrowPairOnMainMenu;
-                if (sCurrItemAndOptionMenuCheck == 4)
-                {
-                    ChangeBgY(0, 0x4000, 1);
-                    ChangeBgY(1, 0x4000, 1);
-                    tScrollCount = 2;
-                    gTasks[tScrollArrowTaskId].tArrowTaskScrollCount = 2;
-                }
                 break;
         }
         gTasks[taskId].func = Task_HighlightSelectedMainMenuItem;
@@ -1064,7 +1050,7 @@ static void Task_DisplayMainMenu(u8 taskId)
 
 static void Task_HighlightSelectedMainMenuItem(u8 taskId)
 {
-    HighlightSelectedMainMenuItem(gTasks[taskId].tMenuType, gTasks[taskId].tCurrItem, gTasks[taskId].tScrollCount);
+    HighlightSelectedMainMenuItem(taskId);
     gTasks[taskId].func = Task_HandleMainMenuInput;
 }
 
@@ -1433,24 +1419,27 @@ static void Task_WaitForBigErrorFade(u8 taskId)
     }
 }
 
-#undef tMenuType
-#undef tCurrItem
-#undef tItemCount
-#undef tScrollArrowTaskId
-#undef tScrollCount
-#undef tWirelessAdapterConnected
-
-#undef tArrowTaskScrollCount
-
-static void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 scrollCount)
+static void HighlightSelectedMainMenuItem(u8 taskId)
 {
-    SetGpuReg(REG_OFFSET_WIN0H, MENU_WIN_HCOORDS);
+    s16 *data = gTasks[taskId].data;
 
-    switch (menuType)
+    if (tScrollCount == 2)
+    {
+        ChangeBgY(0, 0x4000, 0);
+        ChangeBgY(1, 0x4000, 0);
+    }
+    else if (tScrollCount == 1)
+    {
+        ChangeBgY(0, 0x2000, 0);
+        ChangeBgY(1, 0x2000, 0);
+    }
+
+    SetGpuReg(REG_OFFSET_WIN0H, MENU_WIN_HCOORDS);
+    switch (tMenuType)
     {
         case HAS_NO_SAVED_GAME:
         default:
-            switch (selectedMenuItem)
+            switch (tCurrItem)
             {
                 case 0:
                 default:
@@ -1462,7 +1451,7 @@ static void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 
             }
             break;
         case HAS_SAVED_GAME:
-            switch (selectedMenuItem)
+            switch (tCurrItem)
             {
                 case 0:
                 default:
@@ -1477,59 +1466,64 @@ static void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 
             }
             break;
         case HAS_MYSTERY_GIFT:
-            switch (selectedMenuItem)
+            switch (tCurrItem)
             {
                 case 0:
                 default:
                     SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN2));
                     break;
                 case 1:
-                    if (scrollCount == 1)
+                    if (tScrollCount == 1)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN3) - MENU_SCROLL_SHIFT);
                     else
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN3));
                     break;
                 case 2:
-                    if (scrollCount == 1)
+                    if (tScrollCount == 1)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN4) - MENU_SCROLL_SHIFT);
                     else
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN4));
                     break;
                 case 3:
-                    if (scrollCount == 1)
+                    if (tScrollCount == 1)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN5) - MENU_SCROLL_SHIFT);
                     else
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN5));
                     break;
             }
+
+            if (tScrollCount == 1)
+            {
+                gTasks[tScrollArrowTaskId].tArrowTaskScrollCount = 2;
+            }
             break;
         case HAS_MYSTERY_EVENTS:
-            switch (selectedMenuItem)
+            switch (tCurrItem)
             {
                 case 0:
                 default:
                     SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN2));
                     break;
                 case 1:
-                    if (scrollCount == 2)
+                    if (tScrollCount == 2)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN3) - (MENU_SCROLL_SHIFT * 2));
-                    else if (scrollCount == 1)
+                    else if (tScrollCount == 1)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN3) - MENU_SCROLL_SHIFT);
                     else
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN3));
                     break;
                 case 2:
-                    if (scrollCount == 2)
+                    if (tScrollCount == 2)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN4) - (MENU_SCROLL_SHIFT * 2));
-                    else if (scrollCount == 1)
+                    else if (tScrollCount == 1)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN4) - MENU_SCROLL_SHIFT);
                     else
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN4));
                     break;
                 case 3:
-                    if (scrollCount == 2)
+                    if (tScrollCount == 2)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN5) - (MENU_SCROLL_SHIFT * 2));
-                    else if (scrollCount == 1)
+                    else if (tScrollCount == 1)
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN5) - MENU_SCROLL_SHIFT);
                     else
                         SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN5));
@@ -1538,9 +1532,23 @@ static void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 
                     SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(WIN6) - (MENU_SCROLL_SHIFT * 2));
                     break;
             }
+
+            if (tScrollCount == 2)
+            {
+                gTasks[tScrollArrowTaskId].tArrowTaskScrollCount = 2;
+            }
             break;
     }
 }
+
+#undef tMenuType
+#undef tCurrItem
+#undef tItemCount
+#undef tScrollArrowTaskId
+#undef tScrollCount
+#undef tWirelessAdapterConnected
+
+#undef tArrowTaskScrollCount
 
 void Task_NewGameClockSetIntro1(u8 taskId)
 {
