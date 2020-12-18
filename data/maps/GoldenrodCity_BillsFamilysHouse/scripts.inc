@@ -108,7 +108,7 @@ GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister_2:
 GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister_5:
 	waitse
 	setflag FLAG_PHONE_CARD_BILL
-	playfanfare MUS_REGISTER_MATCH_CALL
+	playfanfare MUS_REGISTER_PHONE
 	textcolor MSG_COLOR_SYS
 	msgbox GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister_Text_1
 	waitfanfare

@@ -181,8 +181,8 @@ Text_Pokegear_Mom_Start:
 Text_Pokegear_Mom_GotMon:
 	.string "Hello?\n"
 	.string "Oh, hi, {PLAYER}!\p"
-	.string "You're on a big mission for\n"
-	.string "PROF. ELM? Be good!$"
+	.string "You're on a big mission for PROF. ELM?\n"
+	.string "Be good!$"
 
 Text_Pokegear_Mom_GaveEggToElm:
 	.string "Hello?\n"

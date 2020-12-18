@@ -395,7 +395,7 @@ NewBarkTown_EventScript_PokeBallMain_16:
 	textcolor MSG_COLOR_BLUE
 	msgbox NewBarkTown_EventScript_PokeBallMain_Text_7
 	setflag FLAG_PHONE_CARD_ELM
-	playfanfare MUS_REGISTER_MATCH_CALL
+	playfanfare MUS_REGISTER_PHONE
 	textcolor MSG_COLOR_PREV
 	msgbox NewBarkTown_EventScript_PokeBallMain_Text_8
 	waitfanfare
@@ -1025,9 +1025,9 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction_Text_0:
 	.string "ELM: {PLAYER}!\n"
 	.string "There you are!\l"
 	.string "I needed to ask you a favor.\p"
-	.string "I'm conducting POKéMON research right\n"
-	.string "now, and I was wondering if you\l"
-	.string "could help me with it, {PLAYER}.\p"
+	.string "I'm conducting POKéMON research\n"
+	.string "right now, and I was wondering if\l"
+	.string "you could help me with it, {PLAYER}.\p"
 	.string "You see…\p"
 	.string "I'm writing a paper that I want to\n"
 	.string "present at a conference.\p"

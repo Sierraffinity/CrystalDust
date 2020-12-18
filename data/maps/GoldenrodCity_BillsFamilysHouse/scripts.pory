@@ -114,7 +114,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_BillsSister {
         {
             waitse
             setflag(FLAG_PHONE_CARD_BILL)
-            playfanfare(MUS_REGISTER_MATCH_CALL)
+            playfanfare(MUS_REGISTER_PHONE)
             textcolor(MSG_COLOR_SYS)
             msgbox("{PLAYER} recorded BILL's number.")
             waitfanfare

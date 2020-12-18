@@ -279,7 +279,7 @@ $(MID_SUBDIR)/mus_obtain_symbol.s: %.s: %.mid
 $(MID_SUBDIR)/mus_awaken_legend.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5
 
-$(MID_SUBDIR)/mus_register_match_call.s: %.s: %.mid
+$(MID_SUBDIR)/mus_register_phone.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G105 -V110 -P5
 
 $(MID_SUBDIR)/mus_move_deleted.s: %.s: %.mid

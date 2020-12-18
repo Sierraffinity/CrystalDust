@@ -460,7 +460,7 @@ MauvilleCity_EventScript_RegisterWallyCall:: @ 81DF7BA
 	pokegearcall MauvilleCity_PhoneScript_WallyCall, 0
 	waitstate
 	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
+	playfanfare MUS_REGISTER_PHONE
 	msgbox MauvilleCity_Text_RegisteredWally, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

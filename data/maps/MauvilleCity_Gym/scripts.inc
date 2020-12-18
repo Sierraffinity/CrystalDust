@@ -105,7 +105,7 @@ MauvilleCity_Gym_EventScript_WattsonDefeated:: @ 820DF2B
 	call MauvilleCity_Gym_EventScript_GiveShockWave
 	closemessage
 	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
+	playfanfare MUS_REGISTER_PHONE
 	msgbox MauvilleCity_Gym_Text_RegisteredWattson, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

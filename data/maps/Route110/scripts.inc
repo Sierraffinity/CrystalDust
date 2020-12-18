@@ -648,7 +648,7 @@ Route110_EventScript_BirchScene:: @ 81EF9F7
 	msgbox Route110_Text_HeardYouInstallMatchCall, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
+	playfanfare MUS_REGISTER_PHONE
 	msgbox Route110_Text_RegisteredBirchInPokenav, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

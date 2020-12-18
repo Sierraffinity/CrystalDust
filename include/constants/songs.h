@@ -393,7 +393,7 @@
 #define MUS_B_FRONTIER              457 // MUS_B_FRONTIER
 #define MUS_B_ARENA                 458 // MUS_B_ARENA
 #define MUS_OBTAIN_B_POINTS         459 // MUS_ME_POINTGET
-#define MUS_REGISTER_MATCH_CALL     460 // MUS_ME_TORE_EYE
+#define MUS_REGISTER_PHONE     460 // MUS_ME_TORE_EYE
 #define MUS_B_PYRAMID               461 // MUS_PYRAMID
 #define MUS_B_PYRAMID_TOP           462 // MUS_PYRAMID_TOP
 #define MUS_B_PALACE                463 // MUS_B_PALACE

@@ -91,7 +91,7 @@ SlateportCity_EventScript_ScottScene:: @ 81DCD1C
 	msgbox SlateportCity_Text_LetsRegisterEachOther, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
+	playfanfare MUS_REGISTER_PHONE
 	msgbox SlateportCity_Text_RegisteredScott, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

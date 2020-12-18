@@ -278,9 +278,9 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction {
     msgbox("ELM: {PLAYER}!\n"
            "There you are!\l"
            "I needed to ask you a favor.\p"
-           "I'm conducting POKéMON research right\n"
-           "now, and I was wondering if you\l"
-           "could help me with it, {PLAYER}.\p"
+           "I'm conducting POKéMON research\n"
+           "right now, and I was wondering if\l"
+           "you could help me with it, {PLAYER}.\p"
            "You see…\p"
            "I'm writing a paper that I want to\n"
            "present at a conference.\p"
@@ -304,9 +304,9 @@ script NewBarkTown_ProfessorElmsLab_EventScript_ElmBeggingLoop {
 script NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging {
     msgbox("Thanks, {PLAYER}!\n"
            "You're a great help!\p"
-           "When I announce my findings, I'm sure\n"
-           "we'll delve a bit deeper into the\l"
-           "many mysteries of POKéMON.\p"
+           "When I announce my findings, I'm\n"
+           "sure we'll delve a bit deeper into\l"
+           "the many mysteries of POKéMON.\p"
            "You can count on it!")
     closemessage
     delay(20)
@@ -515,7 +515,7 @@ script NewBarkTown_EventScript_PokeBallMain {
                    "But just in case, here's my number.\n"
                    "Call me if anything comes up!")
             setflag(FLAG_PHONE_CARD_ELM)
-            playfanfare(MUS_REGISTER_MATCH_CALL)
+            playfanfare(MUS_REGISTER_PHONE)
             textcolor(MSG_COLOR_PREV)
             msgbox("{PLAYER} got PROF. ELM's phone\n"
                    "number.")

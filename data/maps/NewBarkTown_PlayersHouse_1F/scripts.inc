@@ -356,8 +356,18 @@ NewBarkTown_PlayersHouse_1F_TV::
 
 
 NewBarkTown_PlayersHouse_1F_Stove::
-	msgbox NewBarkTown_PlayersHouse_1F_Stove_Text_0, MSGBOX_SIGN
+	lock
+	random 1000
+	compare VAR_RESULT, 0
+	goto_if_eq NewBarkTown_PlayersHouse_1F_Stove_2
+	msgbox NewBarkTown_PlayersHouse_1F_Stove_Text_1
+NewBarkTown_PlayersHouse_1F_Stove_1:
+	release
 	return
+
+NewBarkTown_PlayersHouse_1F_Stove_2:
+	msgbox NewBarkTown_PlayersHouse_1F_Stove_Text_0
+	goto NewBarkTown_PlayersHouse_1F_Stove_1
 
 
 NewBarkTown_PlayersHouse_1F_Sink::
@@ -549,6 +559,10 @@ NewBarkTown_PlayersHouse_1F_TV_Text_0:
 	.string "I'd better get rolling too!$"
 
 NewBarkTown_PlayersHouse_1F_Stove_Text_0:
+	.string "A ADEPT ARRANGING FOR MOTHER\n"
+	.string "VOLCANO BAKEMEAT.$"
+
+NewBarkTown_PlayersHouse_1F_Stove_Text_1:
 	.string "It's Mom's specialty, the\n"
 	.string "CINNABAR VOLCANO BURGER!$"
 

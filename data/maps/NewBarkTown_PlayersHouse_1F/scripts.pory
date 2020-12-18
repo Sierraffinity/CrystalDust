@@ -379,8 +379,19 @@ script NewBarkTown_PlayersHouse_1F_TV {
 }
 
 script NewBarkTown_PlayersHouse_1F_Stove {
-    msgbox("It's Mom's specialty, the\n"
-           "CINNABAR VOLCANO BURGER!", MSGBOX_SIGN)
+    lock
+    random(1000)
+    if (var(VAR_RESULT) == 0)
+    {
+        msgbox("A ADEPT ARRANGING FOR MOTHER\n"
+               "VOLCANO BAKEMEAT.")
+    }
+    else
+    {
+        msgbox("It's Mom's specialty, the\n"
+               "CINNABAR VOLCANO BURGER!")
+    }
+    release
 }
 
 script NewBarkTown_PlayersHouse_1F_Sink {

@@ -285,7 +285,7 @@ const u8 *const gReturnToXStringsTable2[] =
     gText_TheField
 };
 
-const u8 gText_ReturnToVar1[] = _("Return to\n{STR_VAR_1}.");
+const u8 gText_ReturnToVar1[] = _("Return to {STR_VAR_1}.");
 const u8 gText_ItemsPocket[] = _("ITEMS");
 const u8 gText_PokeBallsPocket[] = _("POKé BALLS");
 const u8 gText_TMHMPocket[] = _("TMs & HMs");
@@ -558,7 +558,7 @@ const u8 gText_PutAway[] = _("PUT AWAY");
 const u8 gText_Toss2[] = _("TOSS");
 const u8 gText_Color161Shadow161[] = _("{COLOR 161}{SHADOW 161}");
 const u8 gText_PutOutSelectedDecorItem[] = _("Put out the selected decoration item.");
-const u8 gText_StoreChosenDecorInPC[] = _("Store the chosen decoration in the PC.");
+const u8 gText_StoreChosenDecorInPC[] = _("Store the chosen decoration.");
 const u8 gText_ThrowAwayUnwantedDecors[] = _("Throw away unwanted decorations.");
 const u8 gText_NoDecorations[] = _("There are no decorations.{PAUSE_UNTIL_PRESS}");
 const u8 gText_Desk[] = _("DESK");

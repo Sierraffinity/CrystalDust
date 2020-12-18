@@ -461,7 +461,7 @@ gSongTable:: @ 86B49F0
 	song mus_b_frontier, 0, 0
 	song mus_b_arena, 0, 0
 	song mus_obtain_b_points, 2, 2
-	song mus_register_match_call, 2, 2
+	song mus_register_phone, 2, 2
 	song mus_b_pyramid, 0, 0
 	song mus_b_pyramid_top, 0, 0
 	song mus_b_palace, 0, 0

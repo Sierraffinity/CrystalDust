@@ -58,7 +58,7 @@ static const struct Fanfare sFanfares[] = {
     { MUS_RG_DEX_RATING,       196 },
     { MUS_OBTAIN_B_POINTS,     313 },
     { MUS_OBTAIN_SYMBOL,       318 },
-    { MUS_REGISTER_MATCH_CALL, 180 },
+    { MUS_REGISTER_PHONE, 180 },
 };
 
 #define CRY_VOLUME  120 // was 125 in R/S
