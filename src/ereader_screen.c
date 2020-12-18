@@ -102,7 +102,9 @@ static bool32 sub_81D4E60(void)
     REG_IME = 0;
     *(u64 *)sp4 = *(u64 *)gLink.tempRecvBuffer;
     REG_IME = backupIME;
-    if (sp4[0] == 0xB9A0 && sp4[1] == 0xCCD0
+    // 0xCCC0 = US e-Reader
+    // 0xCCD0 = JP card-e Reader+
+    if (sp4[0] == 0xB9A0 && sp4[1] == 0xCCC0
      && sp4[2] == 0xFFFF && sp4[3] == 0xFFFF)
     {
         return TRUE;

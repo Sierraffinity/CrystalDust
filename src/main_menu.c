@@ -69,7 +69,7 @@ extern struct MusicPlayerInfo gMPlayInfo_BGM;
  *  - If there was an error loading the save file, advance to
  *    Task_WaitForSaveFileErrorWindow.
  *  - If there were no errors, advance to Task_MainMenuCheckBattery.
- *  - Note that the check to enable Mystery Events would normally happen
+ *  - Note that the check to enable Mystery Event would normally happen
  *    here, but this version of Emerald has them disabled.
  * 
  * Task_WaitForSaveFileErrorWindow
@@ -389,7 +389,7 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .paletteNum = 15,
         .baseBlock = 0x121
     },
-    // OPTION / MYSTERY EVENTS
+    // OPTION / MYSTERY EVENT
     {
         .bg = 0,
         .tilemapLeft = MENU_LEFT,
@@ -661,7 +661,7 @@ enum
     HAS_NO_SAVED_GAME,  //NEW GAME, OPTION
     HAS_SAVED_GAME,     //CONTINUE, NEW GAME, OPTION
     HAS_MYSTERY_GIFT,   //CONTINUE, NEW GAME, MYSTERY GIFT, OPTION
-    HAS_MYSTERY_EVENTS, //CONTINUE, NEW GAME, MYSTERY GIFT, MYSTERY EVENTS, OPTION
+    HAS_MYSTERY_EVENTS, //CONTINUE, NEW GAME, MYSTERY GIFT, MYSTERY EVENT, OPTION
 };
 
 enum
@@ -704,12 +704,12 @@ void CB2_ReinitMainMenu(void)
     InitMainMenu(TRUE);
 }
 
-#define tWirelessAdapterConnected data[15]
+#define tWasWirelessAdapterConnectedOnLoad data[15]
 
 static u32 InitMainMenu(bool8 returningFromOptionsMenu)
 {
     u8 taskId;
-    bool8 link;
+    bool8 link = FALSE;
     SetVBlankCallback(NULL);
 
     if (IsWirelessAdapterConnected())
@@ -767,7 +767,7 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
     ShowBg(0);
     HideBg(1);
     taskId = CreateTask(Task_MainMenuCheckSaveFile, 0);
-    gTasks[taskId].tWirelessAdapterConnected = link;
+    gTasks[taskId].tWasWirelessAdapterConnectedOnLoad = link;
 
     return 0;
 }
@@ -809,14 +809,18 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         SetGpuReg(REG_OFFSET_BLDY, 7);
 
+        //if (IsWirelessAdapterConnected())
+        //    tWasWirelessAdapterConnectedOnLoad = TRUE;
         switch (gSaveFileStatus)
         {
             case SAVE_STATUS_OK:
                 if (!(sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG))
                     gTasks[taskId].func = Task_MainMenuCheckBattery;
                 tMenuType = HAS_SAVED_GAME;
+                if (!tWasWirelessAdapterConnectedOnLoad && IsMysteryEventEnabled())
+                    tMenuType++;
                 if (IsMysteryGiftEnabled())
-                    tMenuType = HAS_MYSTERY_GIFT;
+                    tMenuType++;
                 break;
             case SAVE_STATUS_CORRUPT:
                 if (!(sCurrItemAndOptionMenuCheck & OPTION_MENU_FLAG))
@@ -833,6 +837,8 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
                     gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
                 }
                 tMenuType = HAS_SAVED_GAME;
+                if (!tWasWirelessAdapterConnectedOnLoad && IsMysteryEventEnabled())
+                    tMenuType++;
                 if (IsMysteryGiftEnabled() == TRUE)
                     tMenuType++;
                 break;
@@ -995,7 +1001,18 @@ static void Task_DisplayMainMenu(u8 taskId)
                 FillWindowPixelBuffer(5, PIXEL_FILL(0xA));
                 AddTextPrinterParameterized3(2, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuContinue);
                 AddTextPrinterParameterized3(3, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuNewGame);
-                AddTextPrinterParameterized3(4, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryGift);
+                if (tWasWirelessAdapterConnectedOnLoad)
+                {
+                    AddTextPrinterParameterized3(4, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryGift);
+                }
+                else if (IsMysteryEventEnabled())
+                {
+                    AddTextPrinterParameterized3(4, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryEvents);
+                }
+                else
+                {
+                    AddTextPrinterParameterized3(4, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuMysteryGift2);
+                }
                 AddTextPrinterParameterized3(5, 2, 2, 2, sTextColor_Headers, -1, gText_MainMenuOption);
                 MainMenu_FormatSavegameText();
                 PutWindowTilemap(2);
@@ -1169,11 +1186,41 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
                     action = ACTION_NEW_GAME;
                     break;
                 case 2:
-                    action = ACTION_MYSTERY_GIFT;
-                    if (!wirelessAdapterConnected)
+                    if (IsMysteryGiftEnabled())
                     {
-                        action = ACTION_INVALID;
-                        gTasks[taskId].tMenuType = HAS_NO_SAVED_GAME;
+                        if (gTasks[taskId].tWasWirelessAdapterConnectedOnLoad)
+                        {
+                            action = ACTION_MYSTERY_GIFT;
+                            if (!wirelessAdapterConnected)
+                            {
+                                // Wireless adapter was disconnected after loading menu, Mystery Gift now invalid
+                                action = ACTION_INVALID;
+                                gTasks[taskId].tMenuType = 0;
+                            }
+                        }
+                        else if (wirelessAdapterConnected)
+                        {
+                            // Wireless adapter was connected after loading menu, Mystery Gift-e now invalid
+                            action = ACTION_INVALID;
+                            gTasks[taskId].tMenuType = 1;
+                        }
+                        else
+                        {
+                            action = ACTION_EREADER;
+                        }
+                    }
+                    else
+                    {
+                        if (wirelessAdapterConnected)
+                        {
+                            // Wireless adapter was connected after loading menu, Mystery Event now invalid
+                            action = ACTION_INVALID;
+                            gTasks[taskId].tMenuType = 1;
+                        }
+                        else
+                        {
+                            action = ACTION_MYSTERY_EVENTS;
+                        }
                     }
                     break;
                 case 3:
@@ -1192,19 +1239,21 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
                     action = ACTION_NEW_GAME;
                     break;
                 case 2:
-                    if (gTasks[taskId].tWirelessAdapterConnected)
+                    if (gTasks[taskId].tWasWirelessAdapterConnectedOnLoad)
                     {
                         action = ACTION_MYSTERY_GIFT;
                         if (!wirelessAdapterConnected)
                         {
+                            // Wireless adapter was disconnected after loading menu, Mystery Gift now invalid
                             action = ACTION_INVALID;
-                            gTasks[taskId].tMenuType = HAS_NO_SAVED_GAME;
+                            gTasks[taskId].tMenuType = 0;
                         }
                     }
                     else if (wirelessAdapterConnected)
                     {
+                        // Wireless adapter was connected after loading menu, Mystery Gift-e now invalid
                         action = ACTION_INVALID;
-                        gTasks[taskId].tMenuType = HAS_SAVED_GAME;
+                        gTasks[taskId].tMenuType = 1;
                     }
                     else
                     {
@@ -1214,8 +1263,9 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
                 case 3:
                     if (wirelessAdapterConnected)
                     {
+                        // Wireless adapter was connected after loading menu, Mystery Event now invalid
                         action = ACTION_INVALID;
-                        gTasks[taskId].tMenuType = HAS_MYSTERY_GIFT;
+                        gTasks[taskId].tMenuType = 2;
                     }
                     else
                     {
@@ -1425,13 +1475,13 @@ static void HighlightSelectedMainMenuItem(u8 taskId)
 
     if (tScrollCount == 2)
     {
-        ChangeBgY(0, 0x4000, 0);
-        ChangeBgY(1, 0x4000, 0);
+        ChangeBgY(0, Q_8_8(64), 0);
+        ChangeBgY(1, Q_8_8(64), 0);
     }
     else if (tScrollCount == 1)
     {
-        ChangeBgY(0, 0x2000, 0);
-        ChangeBgY(1, 0x2000, 0);
+        ChangeBgY(0, Q_8_8(32), 0);
+        ChangeBgY(1, Q_8_8(32), 0);
     }
 
     SetGpuReg(REG_OFFSET_WIN0H, MENU_WIN_HCOORDS);
@@ -1546,7 +1596,7 @@ static void HighlightSelectedMainMenuItem(u8 taskId)
 #undef tItemCount
 #undef tScrollArrowTaskId
 #undef tScrollCount
-#undef tWirelessAdapterConnected
+#undef tWasWirelessAdapterConnectedOnLoad
 
 #undef tArrowTaskScrollCount
 
