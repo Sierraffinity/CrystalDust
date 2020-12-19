@@ -96,7 +96,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Truck;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Farfetchd;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_VigorothFacingAway;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BirchsBag;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EnemyZigzagoon;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wooper;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SuperNerd;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanNormal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanMachBike;
@@ -218,13 +218,13 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EmeraldBrendan;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EmeraldMay;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Juan;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Scott;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Poochyena;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Marill;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kyogre3;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Groudon3;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MysteryEventDeliveryman;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Statue;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Persian;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dusclops;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sentret;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnionRoomAttendant;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mew;
@@ -336,16 +336,16 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_BREAKABLE_ROCK] =           &gObjectEventGraphicsInfo_BreakableRock,
     [OBJ_EVENT_GFX_PUSHABLE_BOULDER] =         &gObjectEventGraphicsInfo_PushableBoulder,
     [OBJ_EVENT_GFX_MR_BRINEYS_BOAT] =          &gObjectEventGraphicsInfo_MrBrineysBoat,
-    [OBJ_EVENT_GFX_KRIS_NORMAL] =               &gObjectEventGraphicsInfo_KrisNormal,
-    [OBJ_EVENT_GFX_KRIS_BIKE] =            &gObjectEventGraphicsInfo_KrisBike,
+    [OBJ_EVENT_GFX_KRIS_NORMAL] =              &gObjectEventGraphicsInfo_KrisNormal,
+    [OBJ_EVENT_GFX_KRIS_BIKE] =                &gObjectEventGraphicsInfo_KrisBike,
     [OBJ_EVENT_GFX_MAY_ACRO_BIKE] =            &gObjectEventGraphicsInfo_MayAcroBike,
     [OBJ_EVENT_GFX_MAY_SURFING] =              &gObjectEventGraphicsInfo_MaySurfing,
-    [OBJ_EVENT_GFX_KRIS_FIELD_MOVE] =           &gObjectEventGraphicsInfo_KrisFieldMove,
+    [OBJ_EVENT_GFX_KRIS_FIELD_MOVE] =          &gObjectEventGraphicsInfo_KrisFieldMove,
     [OBJ_EVENT_GFX_TRUCK] =                    &gObjectEventGraphicsInfo_Truck,
     [OBJ_EVENT_GFX_FARFETCHD] =                &gObjectEventGraphicsInfo_Farfetchd,
     [OBJ_EVENT_GFX_VIGOROTH_FACING_AWAY] =     &gObjectEventGraphicsInfo_VigorothFacingAway,
     [OBJ_EVENT_GFX_BIRCHS_BAG] =               &gObjectEventGraphicsInfo_BirchsBag,
-    [OBJ_EVENT_GFX_ZIGZAGOON_1] =              &gObjectEventGraphicsInfo_EnemyZigzagoon,
+    [OBJ_EVENT_GFX_WOOPER] =                   &gObjectEventGraphicsInfo_Wooper,
     [OBJ_EVENT_GFX_SUPER_NERD] =               &gObjectEventGraphicsInfo_SuperNerd,
     [OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL] =     &gObjectEventGraphicsInfo_RivalBrendanNormal,
     [OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE] =  &gObjectEventGraphicsInfo_RivalBrendanMachBike,
@@ -384,8 +384,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_STEVEN] =                   &gObjectEventGraphicsInfo_Steven,
     [OBJ_EVENT_GFX_RIVAL] =                    &gObjectEventGraphicsInfo_Silver,
     [OBJ_EVENT_GFX_LITTLE_BOY_3] =             &gObjectEventGraphicsInfo_RubySapphireLittleBoy,
-    [OBJ_EVENT_GFX_GOLD_FISHING] =          &gObjectEventGraphicsInfo_BrendanFishing,
-    [OBJ_EVENT_GFX_KRIS_FISHING] =              &gObjectEventGraphicsInfo_MayFishing,
+    [OBJ_EVENT_GFX_GOLD_FISHING] =             &gObjectEventGraphicsInfo_BrendanFishing,
+    [OBJ_EVENT_GFX_KRIS_FISHING] =             &gObjectEventGraphicsInfo_MayFishing,
     [OBJ_EVENT_GFX_HOT_SPRINGS_OLD_WOMAN] =    &gObjectEventGraphicsInfo_HotSpringsOldWoman,
     [OBJ_EVENT_GFX_SS_TIDAL] =                 &gObjectEventGraphicsInfo_SSTidal,
     [OBJ_EVENT_GFX_SUBMARINE_SHADOW] =         &gObjectEventGraphicsInfo_SubmarineShadow,
@@ -467,13 +467,13 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_EM_MAY] =                   &gObjectEventGraphicsInfo_EmeraldMay,
     [OBJ_EVENT_GFX_JUAN] =                     &gObjectEventGraphicsInfo_Juan,
     [OBJ_EVENT_GFX_SCOTT] =                    &gObjectEventGraphicsInfo_Scott,
-    [OBJ_EVENT_GFX_POOCHYENA] =                &gObjectEventGraphicsInfo_Poochyena,
+    [OBJ_EVENT_GFX_MARILL] =                   &gObjectEventGraphicsInfo_Marill,
     [OBJ_EVENT_GFX_KYOGRE_3] =                 &gObjectEventGraphicsInfo_Kyogre3,
     [OBJ_EVENT_GFX_GROUDON_3] =                &gObjectEventGraphicsInfo_Groudon3,
     [OBJ_EVENT_GFX_MYSTERY_GIFT_MAN] =         &gObjectEventGraphicsInfo_MysteryEventDeliveryman,
     [OBJ_EVENT_GFX_TRICK_HOUSE_STATUE] =       &gObjectEventGraphicsInfo_Statue,
     [OBJ_EVENT_GFX_PERSIAN] =                  &gObjectEventGraphicsInfo_Persian,
-    [OBJ_EVENT_GFX_DUSCLOPS] =                 &gObjectEventGraphicsInfo_Dusclops,
+    [OBJ_EVENT_GFX_SENTRET] =                  &gObjectEventGraphicsInfo_Sentret,
     [OBJ_EVENT_GFX_UNION_ROOM_NURSE] =         &gObjectEventGraphicsInfo_UnionRoomAttendant,
     [OBJ_EVENT_GFX_SUDOWOODO] =                &gObjectEventGraphicsInfo_Sudowoodo,
     [OBJ_EVENT_GFX_MEW] =                      &gObjectEventGraphicsInfo_Mew,

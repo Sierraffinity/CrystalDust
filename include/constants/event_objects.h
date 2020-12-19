@@ -99,7 +99,7 @@
 #define OBJ_EVENT_GFX_FARFETCHD                   95
 #define OBJ_EVENT_GFX_VIGOROTH_FACING_AWAY        96
 #define OBJ_EVENT_GFX_BIRCHS_BAG                  97
-#define OBJ_EVENT_GFX_ZIGZAGOON_1                 98
+#define OBJ_EVENT_GFX_WOOPER                 98
 #define OBJ_EVENT_GFX_SUPER_NERD                  99
 #define OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL       100
 #define OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE    101
@@ -221,13 +221,13 @@
 #define OBJ_EVENT_GFX_EM_MAY                     217
 #define OBJ_EVENT_GFX_JUAN                       218
 #define OBJ_EVENT_GFX_SCOTT                      219
-#define OBJ_EVENT_GFX_POOCHYENA                  220
+#define OBJ_EVENT_GFX_MARILL                  220
 #define OBJ_EVENT_GFX_KYOGRE_3                   221
 #define OBJ_EVENT_GFX_GROUDON_3                  222
 #define OBJ_EVENT_GFX_MYSTERY_GIFT_MAN           223
 #define OBJ_EVENT_GFX_TRICK_HOUSE_STATUE         224
 #define OBJ_EVENT_GFX_PERSIAN                    225
-#define OBJ_EVENT_GFX_DUSCLOPS                   226
+#define OBJ_EVENT_GFX_SENTRET                   226
 #define OBJ_EVENT_GFX_UNION_ROOM_NURSE           227
 #define OBJ_EVENT_GFX_SUDOWOODO                  228
 #define OBJ_EVENT_GFX_MEW                        229

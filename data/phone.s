@@ -320,8 +320,8 @@ Text_Pokegear_Elm_SawMrPokemon::
 Text_Pokegear_Elm_MonWasStolen::
 	.string "{PLAYER}?\n"
 	.string "I'm very upset right now.\p"
-	.string "We had a POKéMON stolen from\n"
-	.string "here. How could anyone do that?$"
+	.string "We had a POKéMON stolen from here.\n"
+	.string "How could anyone do that?$"
 
 Text_Pokegear_Elm_CheckingEgg::
 	.string "Hello, {PLAYER}?\n"

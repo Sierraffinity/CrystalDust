@@ -134,7 +134,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_ANABEL",
+      "graphics_id": "OBJ_EVENT_GFX_SENTRET",
       "in_connection": false,
       "x": 21,
       "y": 24,
@@ -149,7 +149,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_ANABEL",
+      "graphics_id": "OBJ_EVENT_GFX_MARILL",
       "in_connection": false,
       "x": 23,
       "y": 23,
@@ -164,7 +164,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_ANABEL",
+      "graphics_id": "OBJ_EVENT_GFX_WOOPER",
       "in_connection": false,
       "x": 27,
       "y": 24,
