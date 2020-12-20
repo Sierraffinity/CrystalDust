@@ -1088,6 +1088,7 @@ static bool32 SelectForcedPhoneCall(void)
             FlagClear(sForcedPhoneCalls[i].flag);
             gMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
             gMatchCallState.forcedPhoneCallId = i + 1;
+            gMatchCallState.triggeredFromScript = 0;
             return TRUE;
         }
     }
@@ -1161,7 +1162,7 @@ bool32 TryStartMatchCall(void)
 
 void StartMatchCallFromScript(const u8 *script, u8 callerId)
 {
-    gMatchCallState.triggeredFromScript = 1;
+    gMatchCallState.triggeredFromScript = TRUE;
     gMatchCallState.callerId = callerId;
     gMatchCallState.script = script;
     StartMatchCall();
@@ -1430,6 +1431,7 @@ bool32 CleanupAfterMatchCallHangup(void)
             // this allows waitstate to continue
             EnableBothScriptContexts();
         }
+        gMatchCallState.triggeredFromScript = 0;
 
         return TRUE;
     }

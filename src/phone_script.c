@@ -571,7 +571,7 @@ static void DisplayPhoneYesNoMenu(u8 initialPos, u32 callType)
     switch (callType)
     {
     case PHONE_SCRIPT_OVERWORLD:
-        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates, 2, 0, 2, 0x270, 14, initialPos, TRUE);
+        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates, 2, 0, 2, 0x270, 15, initialPos, TRUE);
         break;
     case PHONE_SCRIPT_POKEGEAR:
         CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates, 2, 0, 2, 0x143, 14, initialPos, FALSE);
