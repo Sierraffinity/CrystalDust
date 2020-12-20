@@ -261,7 +261,7 @@ static void Task_InitSoundCheckMenu_CreateWindows(u8 taskId) // SanitizeDayCareM
     const u8 soundcheckStr[] = _("SOUND TEST  A: PLAY  B: EXIT");
     const u8 bgmStr[] = _("MUSIC");
     const u8 seStr[] = _("SOUND EFFECTS");
-    const u8 upDownStr[] = _("{LEFT_ARROW}DOWN {RIGHT_ARROW}UP");
+    const u8 upDownStr[] = _("{LEFT_ARROW}PREV {RIGHT_ARROW}NEXT");
     const u8 driverStr[] = _("R: CRY TEST");
 
     if (!gPaletteFade.active)
@@ -379,7 +379,7 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
             if (gTasks[taskId].tSeIndex > 0)
                 gTasks[taskId].tSeIndex--;
             else
-                gTasks[taskId].tSeIndex = SE_SUDOWOODO_SHAKE;
+                gTasks[taskId].tSeIndex = SE_INTRO_LOGO_DING;
         }
         else
         {
@@ -387,6 +387,10 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
                 gTasks[taskId].tBgmIndex--;
             else
                 gTasks[taskId].tBgmIndex = (PH_NURSE_SOLO - (MUS_LITTLEROOT_TEST - 1));
+            if (gTasks[taskId].tBgmIndex != 0)
+            {
+                FadeOutBGM(8);
+            }
         }
         return TRUE;
     }
@@ -394,7 +398,7 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
     {
         if (gTasks[taskId].tWindowSelected != TEST_MUS)
         {
-            if (gTasks[taskId].tSeIndex < SE_SUDOWOODO_SHAKE)
+            if (gTasks[taskId].tSeIndex < SE_INTRO_LOGO_DING)
                 gTasks[taskId].tSeIndex++;
             else
                 gTasks[taskId].tSeIndex = 0;
@@ -405,6 +409,10 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
                 gTasks[taskId].tBgmIndex++;
             else
                 gTasks[taskId].tBgmIndex = 0;
+            if (gTasks[taskId].tBgmIndex != 0)
+            {
+                FadeOutBGM(8);
+            }
         }
         return TRUE;
     }
@@ -1114,7 +1122,7 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
     X(MUS_CONTEST_RESULTS, "MUS-CONTEST-RESULTS") \
     X(MUS_HALL_OF_FAME_ROOM, "MUS-HALL-OF-FAME-ROOM") \
     X(MUS_TRICK_HOUSE, "MUS-TRICK-HOUSE") \
-    X(MUS_BUG_CONTEST_PREP, "MUS-ENCOUNTER-TWINS") \
+    X(MUS_BUG_CONTEST_PREP, "MUS-BUG-CONTEST-PREP") \
     X(MUS_ENCOUNTER_ELITE_FOUR, "MUS-ENCOUNTER-ELITE-FOUR") \
     X(MUS_ENCOUNTER_FISHERMAN, "MUS-ENCOUNTER-FISHERMAN") \
     X(MUS_CONTEST_LOBBY, "MUS-CONTEST-LOBBY") \
