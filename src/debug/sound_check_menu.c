@@ -387,10 +387,6 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
                 gTasks[taskId].tBgmIndex--;
             else
                 gTasks[taskId].tBgmIndex = (PH_NURSE_SOLO - (MUS_LITTLEROOT_TEST - 1));
-            if (gTasks[taskId].tBgmIndex != 0)
-            {
-                FadeOutBGM(8);
-            }
         }
         return TRUE;
     }
@@ -409,10 +405,6 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
                 gTasks[taskId].tBgmIndex++;
             else
                 gTasks[taskId].tBgmIndex = 0;
-            if (gTasks[taskId].tBgmIndex != 0)
-            {
-                FadeOutBGM(8);
-            }
         }
         return TRUE;
     }

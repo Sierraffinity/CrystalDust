@@ -1505,8 +1505,8 @@ static void MoveSelectionDisplayMoveType(void)
 
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
     *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
-    *(txtPtr)++ = EXT_CTRL_CODE_SIZE;
-    *(txtPtr)++ = 1;
+    *(txtPtr)++ = EXT_CTRL_CODE_FONT;
+    *(txtPtr)++ = 2;
 
     StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type]);
     BattlePutTextOnWindow(gDisplayedStringBattle, 10);
