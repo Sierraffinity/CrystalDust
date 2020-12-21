@@ -241,8 +241,8 @@ movement VioletCity_Movement_EarlIntoDoor {
 script VioletCity_GhostGirl {
     msgbox("Ghosts are rumored to appear in\n"
            "SPROUT TOWER.\p"
-           "They said NORMAL-type POKéMON moves\n"
-           "had no effect on ghosts.", MSGBOX_NPC)
+           "They said NORMAL-type POKéMON\n"
+           "moves had no effect on ghosts.", MSGBOX_NPC)
 }
 
 script VioletCity_PrimeTimeGuy {

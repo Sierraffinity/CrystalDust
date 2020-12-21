@@ -391,8 +391,8 @@ VioletCity_Earl_Text_3:
 VioletCity_GhostGirl_Text_0:
 	.string "Ghosts are rumored to appear in\n"
 	.string "SPROUT TOWER.\p"
-	.string "They said NORMAL-type POKéMON moves\n"
-	.string "had no effect on ghosts.$"
+	.string "They said NORMAL-type POKéMON\n"
+	.string "moves had no effect on ghosts.$"
 
 VioletCity_PrimeTimeGuy_Text_0:
 	.string "Hey, you're a POKéMON TRAINER?\p"
