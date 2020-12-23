@@ -225,6 +225,16 @@ $(CRY_SUBDIR)/%.bin: $(CRY_SUBDIR)/%.aif ; $(AIF) $< $@ --compress
 sound/%.bin: sound/%.aif ; $(AIF) $< $@
 data/%.inc: data/%.pory; $(SCRIPT) -i $< -o $@
 
+ifeq ($(DEBUG),1)
+override CFLAGS += -g
+ifeq ($(MODERN),1)
+override CFLAGS += -Og
+else
+override CFLAGS += -O0
+endif
+else
+override CFLAGS += -O2
+endif
 
 ifeq ($(MODERN),0)
 $(C_BUILDDIR)/libc.o: CC1 := tools/agbcc/bin/old_agbcc
@@ -243,23 +253,23 @@ $(C_BUILDDIR)/librfu_intr.o: CC1 := tools/agbcc/bin/agbcc_arm
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -O2 -mthumb-interwork -quiet
 else
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast
+
+$(C_BUILDDIR)/agb_flash.o: CPPFLAGS += -I tools/agbcc/include -I tools/agbcc
+$(C_BUILDDIR)/agb_flash.o: CC1 := tools/agbcc/bin/agbcc$(EXE)
+$(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -mthumb-interwork
+$(C_BUILDDIR)/agb_flash_1m.o: CPPFLAGS += -I tools/agbcc/include -I tools/agbcc
+$(C_BUILDDIR)/agb_flash_1m.o: CC1 := tools/agbcc/bin/agbcc$(EXE)
+$(C_BUILDDIR)/agb_flash_1m.o: CFLAGS := -O -mthumb-interwork
+$(C_BUILDDIR)/agb_flash_mx.o: CPPFLAGS += -I tools/agbcc/include -I tools/agbcc
+$(C_BUILDDIR)/agb_flash_mx.o: CC1 := tools/agbcc/bin/agbcc$(EXE)
+$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork
+
 endif
 
 ifeq ($(NODEP),1)
 $(C_BUILDDIR)/%.o: c_dep :=
 else
 $(C_BUILDDIR)/%.o: c_dep = $(shell [[ -f $(C_SUBDIR)/$*.c ]] && $(SCANINC) -I include -I tools/agbcc/include -I gflib $(C_SUBDIR)/$*.c)
-endif
-
-ifeq ($(DEBUG),1)
-override CFLAGS += -g
-ifeq ($(MODERN),1)
-override CFLAGS += -Og
-else
-override CFLAGS += -O0
-endif
-else
-override CFLAGS += -O2
 endif
 
 $(C_BUILDDIR)/%.o : $(C_SUBDIR)/%.c $$(c_dep)

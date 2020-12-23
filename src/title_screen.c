@@ -327,13 +327,31 @@ void CB2_InitTitleScreen(void)
         break;
     case 4:
         PanFadeAndZoomScreen(0x78, 0x50, 0x100, 0);
-        SetGpuReg(REG_OFFSET_WIN0H, 0);
-        SetGpuReg(REG_OFFSET_WIN0V, 160);
-        SetGpuReg(REG_OFFSET_WININ, 0x3F);
-        SetGpuReg(REG_OFFSET_WINOUT, 0x3E);
-        SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(31) | BGCNT_256COLOR | BGCNT_TXT256x256);
-        SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1) | BGCNT_CHARBASE(1) | BGCNT_SCREENBASE(29) | BGCNT_16COLOR | BGCNT_TXT256x512);
-        SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2) | BGCNT_CHARBASE(2) | BGCNT_SCREENBASE(28) | BGCNT_16COLOR | BGCNT_TXT256x256);
+        SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 0));
+        SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, 160));
+        SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL |
+                                    WININ_WIN0_OBJ |
+                                    WININ_WIN0_CLR);
+        SetGpuReg(REG_OFFSET_WINOUT, WININ_WIN0_BG1 |
+                                     WININ_WIN0_BG2 |
+                                     WININ_WIN0_BG3 |
+                                     WININ_WIN0_OBJ |
+                                     WININ_WIN0_CLR);
+        SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0) |
+                                     BGCNT_CHARBASE(0) |
+                                     BGCNT_SCREENBASE(31) |
+                                     BGCNT_256COLOR |
+                                     BGCNT_TXT256x256);
+        SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1) |
+                                     BGCNT_CHARBASE(1) |
+                                     BGCNT_SCREENBASE(29) |
+                                     BGCNT_16COLOR |
+                                     BGCNT_TXT256x512);
+        SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2) |
+                                     BGCNT_CHARBASE(2) |
+                                     BGCNT_SCREENBASE(28) |
+                                     BGCNT_16COLOR |
+                                     BGCNT_TXT256x256);
         EnableInterrupts(INTR_FLAG_VBLANK);
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0
                                     | DISPCNT_OBJ_1D_MAP
@@ -463,6 +481,7 @@ static bool8 LogoComb_Func3(struct Task *task)
 {
     DmaStop(0);
     SetGpuReg(REG_OFFSET_BG0HOFS, 3);
+    ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
     SetVBlankCallback(VBlankCB);
     SetHBlankCallback(NULL);
     DisableInterrupts(INTR_FLAG_HBLANK);

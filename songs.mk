@@ -85,7 +85,7 @@ $(MID_SUBDIR)/mus_victory_road.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G075 -V076
 
 $(MID_SUBDIR)/mus_game_corner.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G072 -V072
+	$(MID) $< $@ -E -R$(STD_REVERB) -G072 -V090
 
 $(MID_SUBDIR)/mus_contest_winner.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G085 -V100
