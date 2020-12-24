@@ -489,13 +489,21 @@ void DetermineBugCatchingContestStandings(void)
     }
 
     GenerateBugCatchingContestNPCMons();
+    if (!haveShiny)
+    {
+        for (i = 0; i < ARRAY_COUNT(gBugCatchingContestNPCs); i++)
+        {
+            if (gBugCatchingContestNPCs[i].caughtShiny)
+            {
+                gBugCatchingContestNPCs[i].score += SHINY_SCORE_INCREASE;
+                haveShiny = TRUE;
+                break;
+            }
+        }
+    }
+
     for (i = 0; i < ARRAY_COUNT(gBugCatchingContestStandings); i++)
     {
-        if (!haveShiny && gBugCatchingContestNPCs[i].caughtShiny)
-        {
-            gBugCatchingContestNPCs[i].score += SHINY_SCORE_INCREASE;
-            haveShiny = TRUE;
-        }
         gBugCatchingContestStandings[i] = i;
     }
 

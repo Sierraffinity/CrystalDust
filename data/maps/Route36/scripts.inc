@@ -304,6 +304,7 @@ Route36_EventScript_SierraPoopsTheParty::
 Route36_EventScript_SierraPoopsTheParty_1:
 	applymovement 9, Route36_Movement_SierraToPlayerBelow
 	waitmovement 0
+	setobjectxyperm 9, 30, 13
 	textcolor MSG_COLOR_RED
 	msgbox Route36_EventScript_SierraPoopsTheParty_Text_0
 	closemessage

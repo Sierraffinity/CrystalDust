@@ -315,6 +315,7 @@ script Route36_EventScript_SierraPoopsTheParty {
     }
     applymovement(OBJ_EVENT_ID_SIERRA, Route36_Movement_SierraToPlayerBelow)
     waitmovement(0)
+    setobjectxyperm(OBJ_EVENT_ID_SIERRA, 30, 13)
     textcolor(MSG_COLOR_RED)
     msgbox("SIERRA: Hey, whoa, now. The road up\n"
            "ahead is still under construction.\p"
