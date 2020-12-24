@@ -379,7 +379,7 @@
 #define MUS_CONTEST                 440 // MUS_CONTEST0
 #define MUS_OAKS_LAB                441 // MUS_MGM0
 #define MUS_ROCKET_TAKEOVER         442 // MUS_T_BATTLE
-#define MUS_ABNORMAL_WEATHER        443 // MUS_OOAME (Replaces MUS_WEATHER_KYOGRE from R/S)
+#define MUS_UNOWN_RADIO             443 // MUS_OOAME (Replaces MUS_WEATHER_KYOGRE from R/S)
 #define MUS_WEATHER_GROUDON         444 // MUS_HIDERI (Unused, from R/S)
 #define MUS_SOOTOPOLIS              445 // MUS_RUNECITY
 #define MUS_CONTEST_RESULTS         446 // MUS_CON_K
@@ -396,7 +396,7 @@
 #define MUS_B_FRONTIER              457 // MUS_B_FRONTIER
 #define MUS_B_ARENA                 458 // MUS_B_ARENA
 #define MUS_OBTAIN_B_POINTS         459 // MUS_ME_POINTGET
-#define MUS_REGISTER_PHONE     460 // MUS_ME_TORE_EYE
+#define MUS_REGISTER_PHONE          460 // MUS_ME_TORE_EYE
 #define MUS_B_PYRAMID               461 // MUS_PYRAMID
 #define MUS_B_PYRAMID_TOP           462 // MUS_PYRAMID_TOP
 #define MUS_B_PALACE                463 // MUS_B_PALACE
@@ -551,7 +551,6 @@
 #define MUS_NONE                    0xFFFF
 
 // temporary define for uninserted radio songs
-#define MUS_UNOWN_RADIO             MUS_ABNORMAL_WEATHER
 #define MUS_EVOLUTION_RADIO         MUS_WEATHER_GROUDON
 #define MUS_POKE_FLUTE_RADIO        MUS_RG_POKE_FLUTE
 #define MUS_PEWTER                  MUS_GSC_PEWTER

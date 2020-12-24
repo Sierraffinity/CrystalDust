@@ -444,7 +444,7 @@ gSongTable:: @ 86B49F0
 	song mus_contest, 0, 0
 	song mus_oaks_lab, 0, 0
 	song mus_rocket_takeover, 0, 0
-	song mus_abnormal_weather, 0, 0
+	song mus_unown_radio, 0, 0
 	song mus_weather_groudon, 0, 0
 	song mus_sootopolis, 0, 0
 	song mus_contest_results, 0, 0

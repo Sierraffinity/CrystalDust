@@ -1,67 +1,72 @@
 {
-    "allow_cycling": false,
-    "allow_escaping": true,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM",
-    "layout": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM",
-    "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_ILEX_FOREST",
-    "name": "RuinsOfAlph_AerodactylItemRoom",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "RuinsOfAlph_AerodactylItemRoom_EventScript_CaptSternAide",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "type": "original",
-            "x": 3,
-            "y": 4
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_ITEM_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM_STORAGE_KEY",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "RuinsOfAlph_AerodactylItemRoom_EventScript_ItemStorageKey",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "type": "original",
-            "x": 0,
-            "y": 6
-        }
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_RUINS_OF_ALPH",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_SPROUT_TOWER_1F",
-            "dest_warp_id": 4,
-            "elevation": 3,
-            "x": 7,
-            "y": 6
-        },
-        {
-            "dest_map": "MAP_SPROUT_TOWER_1F",
-            "dest_warp_id": 4,
-            "elevation": 3,
-            "x": 8,
-            "y": 6
-        }
-    ],
-    "weather": "WEATHER_SHADE"
+  "id": "MAP_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM",
+  "name": "RuinsOfAlph_AerodactylItemRoom",
+  "layout": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM",
+  "music": "MUS_ILEX_FOREST",
+  "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
+      "in_connection": false,
+      "x": 3,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RuinsOfAlph_AerodactylItemRoom_EventScript_CaptSternAide",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 0,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RuinsOfAlph_AerodactylItemRoom_EventScript_ItemStorageKey",
+      "flag": "FLAG_ITEM_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM_STORAGE_KEY"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 7,
+      "y": 6,
+      "elevation": 3,
+      "dest_map": "MAP_SPROUT_TOWER_1F",
+      "dest_warp_id": 4
+    },
+    {
+      "x": 8,
+      "y": 6,
+      "elevation": 3,
+      "dest_map": "MAP_SPROUT_TOWER_1F",
+      "dest_warp_id": 4
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

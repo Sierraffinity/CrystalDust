@@ -312,7 +312,7 @@ $(MID_SUBDIR)/mus_gsc_pewter.s: %.s: %.mid
 $(MID_SUBDIR)/mus_elms_lab.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G033 -V080
 
-$(MID_SUBDIR)/mus_abnormal_weather.s: %.s: %.mid
+$(MID_SUBDIR)/mus_unown_radio.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G089 -V080
 
 $(MID_SUBDIR)/mus_oaks_theme.s: %.s: %.mid

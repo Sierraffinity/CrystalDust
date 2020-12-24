@@ -1057,12 +1057,12 @@ static void Task_ShowGameFreakScreen(u8 taskId)
 {
     u8 newTaskId;
 
-    if (gIntroFrameCounter == 8)
+    if (gIntroFrameCounter == 10)
     {
         PlaySE(SE_INTRO_DITTOBOUNCE1);
     }
 
-    if (gIntroFrameCounter == 42)
+    if (gIntroFrameCounter == 44)
     {
         PlaySE(SE_INTRO_DITTOBOUNCE2);
     }
@@ -1735,6 +1735,7 @@ static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)
     
     if (gIntroFrameCounter == 96)
     {
+        PlaySE(SE_M_HYPER_BEAM);
         StartSpriteAnim(&gSprites[data[2]], 1);
         gSprites[data[2]].data[0] = -8;
         gSprites[data[2]].data[1] = -3;

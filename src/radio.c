@@ -10,6 +10,7 @@
 #include "international_string_util.h"
 #include "item.h"
 #include "lottery_corner.h"
+#include "overworld.h"
 #include "pokedex.h"
 #include "pokegear.h"
 #include "radio.h"
@@ -92,10 +93,18 @@ const struct RadioStation gRadioStationData[] = {
     { 0xFF, 0xFF, NULL }
 };
 
+static void PlayAndSaveMusic(u16 song)
+{
+    Overworld_SetSavedMusic(song);
+    PlayNewMapMusic(song);
+}
+
 static void PlayStationMusic(u8 taskId)
 {
     if (gTasks[taskId].tNumLinesPrinted == 0)
-        PlayNewMapMusic(sRadioChannelSongs[gTasks[taskId].tCurrentLine]);
+    {
+        PlayAndSaveMusic(sRadioChannelSongs[gTasks[taskId].tCurrentLine]);
+    }
 }
 
 static bool8 BuenasPassword_CheckTime(void)
@@ -131,7 +140,7 @@ void PlayPokemonMusic(void)
     RtcCalcLocalTime();
     if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
         song = MUS_POKEMON_LULLABY;
-    PlayNewMapMusic(song);
+    PlayAndSaveMusic(song);
 }
 
 void Task_PlayRadioShow(u8 taskId)
@@ -207,7 +216,7 @@ void Task_PlayRadioShow(u8 taskId)
         {
             if (tNumLinesPrinted == 0)
             {
-                PlayNewMapMusic(MUS_DUMMY);
+                PlayAndSaveMusic(MUS_DUMMY);
                 tCurrentLine = BUENAS_PASSWORD_21;
             }
             else
@@ -618,6 +627,7 @@ void Task_PlayRadioShow(u8 taskId)
         tShowNameId = NO_RADIO_SHOW;
         FlagClear(FLAG_BUENAS_PASSWORD_SET);
         FadeOutAndPlayNewMapMusic(MUS_DUMMY, 4);
+        Overworld_SetSavedMusic(MUS_DUMMY);
         tCurrentLine = tCurrentLine + 1;
         tNumLinesPrinted = 0;
         break;
@@ -657,7 +667,7 @@ void Task_PlayRadioShow(u8 taskId)
     default:
         FillWindowPixelBuffer(tWindowId, 0x11);
         CopyWindowToVram(tWindowId, 2);
-        PlayNewMapMusic(MUS_DUMMY);
+        PlayAndSaveMusic(MUS_DUMMY);
         break;
     }
 }

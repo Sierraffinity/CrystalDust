@@ -1182,7 +1182,7 @@ static void ApplyLongGrassEncounterRateMod(u32 *encRate)
     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
 
     if (MetatileBehavior_IsAnyLongGrass(tileBehavior))
-        *encRate = *encRate * 2;
+        *encRate *= 2;
 }
 
 // change encounter rate when listening to music from the radio
@@ -1192,10 +1192,10 @@ static void ApplyMusicEncounterRateMod(u32 *encRate)
     {
         case MUS_POKEMON_MARCH:
         case MUS_UNOWN_RADIO:
-            *encRate = *encRate * 2;
+            *encRate *= 2;
             break;
         case MUS_POKEMON_LULLABY:
-            *encRate = *encRate / 2;
+            *encRate /= 2;
             break;
     }
 }

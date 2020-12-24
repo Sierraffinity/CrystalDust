@@ -1,81 +1,86 @@
 {
-    "allow_cycling": false,
-    "allow_escaping": true,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
-    "layout": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
-    "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_ILEX_FOREST",
-    "name": "RuinsOfAlph_AerodactylChamber",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_CAMPER",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "RuinsOfAlph_AerodactylChamber_EventScript_Camper",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "type": "original",
-            "x": 3,
-            "y": 4
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "RuinsOfAlph_AerodactylChamber_EventScript_ItemDiveBall",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "type": "original",
-            "x": 13,
-            "y": 3
-        }
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_RUINS_OF_ALPH",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
-            "dest_warp_id": 1,
-            "elevation": 3,
-            "x": 4,
-            "y": 7
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
-            "dest_warp_id": 1,
-            "elevation": 3,
-            "x": 5,
-            "y": 7
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
-            "dest_warp_id": 0,
-            "elevation": 3,
-            "x": 13,
-            "y": 7
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
-            "dest_warp_id": 0,
-            "elevation": 3,
-            "x": 14,
-            "y": 7
-        }
-    ],
-    "weather": "WEATHER_NONE"
+  "id": "MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+  "name": "RuinsOfAlph_AerodactylChamber",
+  "layout": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+  "music": "MUS_ILEX_FOREST",
+  "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+      "in_connection": false,
+      "x": 3,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RuinsOfAlph_AerodactylChamber_EventScript_Camper",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 13,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RuinsOfAlph_AerodactylChamber_EventScript_ItemDiveBall",
+      "flag": "FLAG_ITEM_ABANDONED_SHIP_ROOMS_2_B1F_DIVE_BALL"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 5,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 13,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 14,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

@@ -1175,7 +1175,7 @@ u16 GetLocationMusic(struct WarpData *warp)
     /*if (NoMusicInSotopolisWithLegendaries(warp) == TRUE)
         return 0xFFFF;
     else if (ShouldLegendaryMusicPlayAtLocation(warp) == TRUE)
-        return MUS_ABNORMAL_WEATHER;
+        return MUS_UNOWN_RADIO;
     else if (IsInflitratedSpaceCenter(warp) == TRUE)
         return MUS_OAKS_LAB;
     else if (IsInfiltratedWeatherInstitute(warp) == TRUE)
@@ -1259,7 +1259,7 @@ void Overworld_PlaySpecialMapMusic(void)
 {
     u16 music = GetCurrLocationDefaultMusic();
 
-    if (music != MUS_ABNORMAL_WEATHER && music != 0xFFFF)
+    if (music != MUS_UNOWN_RADIO && music != 0xFFFF)
     {
         if (gSaveBlock1Ptr->savedMusic)
             music = gSaveBlock1Ptr->savedMusic;
@@ -1289,7 +1289,7 @@ static void TransitionMapMusic(void)
     {
         u16 newMusic = GetWarpDestinationMusic();
         u16 currentMusic = GetCurrentMapMusic();
-        if (newMusic != MUS_ABNORMAL_WEATHER && newMusic != 0xFFFF)
+        if (newMusic != MUS_UNOWN_RADIO && newMusic != 0xFFFF)
         {
             if (currentMusic == MUS_UNDERWATER || currentMusic == MUS_SURF)
                 return;
@@ -1316,7 +1316,7 @@ void Overworld_ChangeMusicToDefault(void)
 void Overworld_ChangeMusicTo(u16 newMusic)
 {
     u16 currentMusic = GetCurrentMapMusic();
-    if (currentMusic != newMusic && currentMusic != MUS_ABNORMAL_WEATHER)
+    if (currentMusic != newMusic && currentMusic != MUS_UNOWN_RADIO)
         FadeOutAndPlayNewMapMusic(newMusic, 8);
 }
 

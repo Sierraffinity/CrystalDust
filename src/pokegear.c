@@ -1712,6 +1712,7 @@ static void LoadRadioCard(void)
 
     UpdateRadioStation(newTask, sPokegearStruct.currentRadioStation);
     PlayNewMapMusic(MUS_DUMMY);
+    Overworld_SetSavedMusic(MUS_DUMMY);
 
     for (i = 0; i < 5; i++)
     {
@@ -1783,6 +1784,7 @@ static void UpdateRadioStation(u8 taskId, u8 frequency)
         gTasks[taskId].tRadioShowTaskId = 0xFF;
         ClearRadioWindows();
         PlayNewMapMusic(MUS_DUMMY);
+        Overworld_SetSavedMusic(MUS_DUMMY);
     }
 
     if (station->frequency != 0xFF)
