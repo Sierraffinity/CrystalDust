@@ -138,7 +138,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
         // TODO: GS Ball stuff here
         if (!flag(FLAG_TEMP_2) && !flag(FLAG_TEMP_3))
         {
-            call(AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement)
+            msgbox(AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement)
         }
 
         checkitem(ITEM_RED_APRICORN, 1)

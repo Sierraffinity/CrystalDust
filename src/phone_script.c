@@ -555,15 +555,26 @@ static void Task_HandlePhoneYesNoInput(u8 taskId)
     PhoneCard_RefreshContactList();
 }
 
-static const struct WindowTemplate sPhoneYesNo_WindowTemplates =
+static const struct WindowTemplate sPhoneYesNo_WindowTemplates[] =
 {
-    .bg = 0,
-    .tilemapLeft = 21,
-    .tilemapTop = 9,
-    .width = 6,
-    .height = 4,
-    .paletteNum = 14,
-    .baseBlock = 0x289
+    {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 9,
+        .width = 6,
+        .height = 4,
+        .paletteNum = 15,
+        .baseBlock = 0x289
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 9,
+        .width = 6,
+        .height = 4,
+        .paletteNum = 14,
+        .baseBlock = 0x289
+    }
 };
 
 static void DisplayPhoneYesNoMenu(u8 initialPos, u32 callType)
@@ -571,10 +582,10 @@ static void DisplayPhoneYesNoMenu(u8 initialPos, u32 callType)
     switch (callType)
     {
     case PHONE_SCRIPT_OVERWORLD:
-        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates, 2, 0, 2, 0x270, 15, initialPos, TRUE);
+        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates[0], 2, 0, 2, 0x270, 15, initialPos, TRUE);
         break;
     case PHONE_SCRIPT_POKEGEAR:
-        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates, 2, 0, 2, 0x143, 14, initialPos, FALSE);
+        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates[1], 2, 0, 2, 0x143, 14, initialPos, FALSE);
         break;
     }
 }

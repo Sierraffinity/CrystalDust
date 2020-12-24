@@ -561,8 +561,8 @@ text AzaleaTown_Gym_Text_MayNotEnoughMons {
 }
 
 text AzaleaTown_Gym_Text_BennyIntro {
-	"BUG POKéMON are evolve young, so\n"
-	"they get stronger that much faster."
+	"BUG POKéMON evolve young, so they\n"
+	"get stronger that much faster."
 }
 
 text AzaleaTown_Gym_Text_BennyDefeat {

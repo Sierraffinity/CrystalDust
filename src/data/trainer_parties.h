@@ -474,7 +474,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_AmyAndMay[] = {
     }
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_Benny[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Benny[] = {
     {
     .iv = 0,
     .lvl = 7,

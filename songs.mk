@@ -1272,5 +1272,14 @@ $(MID_SUBDIR)/se_intro_unown2.s: %.s: %.mid
 $(MID_SUBDIR)/se_intro_unown3.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -v100 -P5
 
+$(MID_SUBDIR)/se_intro_dittobounce1.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -v120 -P5
+
+$(MID_SUBDIR)/se_intro_dittobounce2.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -v120 -P5
+
+$(MID_SUBDIR)/se_intro_dittotransform.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -v120 -P5
+
 $(MID_SUBDIR)/se_intro_logo_ding.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -v100 -P5
+	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -v120 -P5

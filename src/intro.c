@@ -1057,6 +1057,21 @@ static void Task_ShowGameFreakScreen(u8 taskId)
 {
     u8 newTaskId;
 
+    if (gIntroFrameCounter == 8)
+    {
+        PlaySE(SE_INTRO_DITTOBOUNCE1);
+    }
+
+    if (gIntroFrameCounter == 42)
+    {
+        PlaySE(SE_INTRO_DITTOBOUNCE2);
+    }
+
+    if (gIntroFrameCounter == 74)
+    {
+        PlaySE(SE_INTRO_DITTOTRANSFORM);
+    }
+
     // fade from Ditto to Mikachu colors
     if (gIntroFrameCounter == 102)
     {
@@ -1426,6 +1441,7 @@ static void SpriteCallback_UnownPulse(struct Sprite *sprite)
         DestroySprite(sprite);
 }
 
+// TODO: Placeholder effect
 static void Task_ShakeGrass(u8 taskId)
 {
     gTasks[taskId].data[0]++;
@@ -1441,7 +1457,7 @@ static void Task_ShakeGrass(u8 taskId)
     else
         SetGpuReg(REG_OFFSET_BG2VOFS, 0);
     
-    if (gTasks[taskId].data[0] == 40)
+    if (gTasks[taskId].data[0] == 52)
         DestroyTask(taskId);
 }
 
@@ -1460,13 +1476,17 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
     if (gIntroFrameCounter == 665)
     {
         DestroyTask(data[2]);
+        PlaySE(SE_M_SAND_ATTACK);
         data[2] = CreateSprite(&gSpriteTemplate_SuicuneSilhouette, 272, 68, 0);
         gSprites[data[2]].data[0] = -10;
         gSprites[data[2]].data[1] = 0;
     }
     
-    if (gIntroFrameCounter == 710)
+    if (gIntroFrameCounter == 695)
+    {
+        PlaySE(SE_M_WING_ATTACK);
         CreateTask(Task_ShakeGrass, 0);
+    }
     
     if (gIntroFrameCounter == 738)
         data[2] = CreateSprite(&gSpriteTemplate_Wooper, 60, 135, 0);
@@ -1627,6 +1647,7 @@ static void SpriteCallback_PopUpPkmn(struct Sprite *sprite)
     switch (sprite->data[0])
     {
     case 0:
+        PlaySE(SE_BIKE_HOP);
         sprite->data[1] = 10;
         sprite->data[0]++;
     case 1:

@@ -280,7 +280,10 @@
 #define SE_INTRO_UNOWN1             270 // Intro Unown low pitch
 #define SE_INTRO_UNOWN2             271 // Intro Unown mid pitch
 #define SE_INTRO_UNOWN3             272 // Intro Unown hi pitch
-#define SE_INTRO_LOGO_DING          273 // Intro e-Reader logo ding
+#define SE_INTRO_DITTOBOUNCE1       273 // Intro Ditto bounce 1
+#define SE_INTRO_DITTOBOUNCE2       274 // Intro Ditto bounce 2
+#define SE_INTRO_DITTOTRANSFORM     275 // Intro Ditto transformation
+#define SE_INTRO_LOGO_DING          276 // Intro e-Reader logo ding
 
 // Music
 #define MUS_LITTLEROOT_TEST         350 // MUS_TETSUJI

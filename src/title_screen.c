@@ -360,6 +360,7 @@ void CB2_InitTitleScreen(void)
                                     | DISPCNT_BG2_ON
                                     | DISPCNT_OBJ_ON
                                     | DISPCNT_WIN0_ON);
+        m4aMPlayAllStop();
         m4aSongNumStart(MUS_TITLE);
         gMain.state = 5;
         break;

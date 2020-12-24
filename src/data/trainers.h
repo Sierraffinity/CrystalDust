@@ -542,7 +542,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = ARRAY_COUNT(sParty_Benny),
-        .party = {.NoItemCustomMoves = sParty_Benny},
+        .party = {.NoItemDefaultMoves = sParty_Benny},
     },
 
     [TRAINER_AL] =
