@@ -1,8 +1,6 @@
 mapscripts GoldenrodCity_Underground_NorthEntrance_MapScripts {}
 
 script GoldenrodCity_Underground_NorthEntrance_EventScript_RoughNerd {
-    special(BargainShop)
-    waitstate
     msgbox("I was challenged to a battle\n"
            "downstairs.\p"
            "It's rough down there.\n"

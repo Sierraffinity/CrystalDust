@@ -3,8 +3,6 @@ GoldenrodCity_Underground_NorthEntrance_MapScripts::
 
 
 GoldenrodCity_Underground_NorthEntrance_EventScript_RoughNerd::
-	special BargainShop
-	waitstate
 	msgbox GoldenrodCity_Underground_NorthEntrance_EventScript_RoughNerd_Text_0, MSGBOX_NPC
 	return
 
