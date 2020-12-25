@@ -2,7 +2,7 @@
   "id": "MAP_GOLDENROD_CITY_POKECOM_CENTER_ADMIN_ROOM",
   "name": "GoldenrodCity_PokecomCenterAdminRoom",
   "layout": "LAYOUT_POKECOM_CENTER_ADMIN_ROOM",
-  "music": "MUS_C_COMM_CENTER",
+  "music": "MUS_POKECOM_CENTER",
   "region_map_section": "MAPSEC_GOLDENROD_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

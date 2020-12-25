@@ -292,7 +292,7 @@
 #define MUS_VICTORY_WILD            353 // MUS_KACHI2
 #define MUS_VICTORY_GYM_LEADER      354 // MUS_KACHI3
 #define MUS_VICTORY_LEAGUE          355 // MUS_KACHI5
-#define MUS_C_COMM_CENTER           356 // MUS_PCC
+#define MUS_POKECOM_CENTER           356 // MUS_PCC
 #define MUS_GSC_PEWTER              357 // MUS_NIBI
 #define MUS_C_VS_LEGEND_BEAST       358 // MUS_SUIKUN
 #define MUS_ROUTE29                 359 // MUS_DOORO1

@@ -318,8 +318,8 @@ $(MID_SUBDIR)/mus_unown_radio.s: %.s: %.mid
 $(MID_SUBDIR)/mus_oaks_theme.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G081 -V097
 
-$(MID_SUBDIR)/mus_c_comm_center.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -V080
+$(MID_SUBDIR)/mus_pokecom_center.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G162 -V096
 
 $(MID_SUBDIR)/mus_poke_center.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G046 -V092

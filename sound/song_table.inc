@@ -357,7 +357,7 @@ gSongTable:: @ 86B49F0
 	song mus_victory_wild, 0, 0
 	song mus_victory_gym_leader, 0, 0
 	song mus_victory_league, 0, 0
-	song mus_c_comm_center, 0, 0
+	song mus_pokecom_center, 0, 0
 	song mus_gsc_pewter, 0, 0
 	song mus_c_vs_legend_beast, 0, 0
 	song mus_route29, 0, 0
