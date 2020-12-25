@@ -1770,6 +1770,10 @@ gTilesetPalOverride_Violet08::
 	.incbin "data/tilesets/secondary/violet/palettes/08_over.gbapal"
 
 	.align 2
+gTilesetPalOverride_Violet09::
+	.incbin "data/tilesets/secondary/violet/palettes/09_over.gbapal"
+
+	.align 2
 gTilesetPalOverride_Azalea09::
 	.incbin "data/tilesets/secondary/azalea/palettes/09_over.gbapal"
 

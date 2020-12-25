@@ -46,6 +46,11 @@ gTilesetPalOverrides_Violet::
 	.byte HOUR_MORNING
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Violet08
+	.byte 9
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Violet09
 	.byte 0xFF
 	.byte 0
 	.byte 0
