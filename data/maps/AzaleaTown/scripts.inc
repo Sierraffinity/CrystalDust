@@ -284,8 +284,8 @@ AzaleaTown_EventScript_OldMan_Text_1:
 AzaleaTown_EventScript_Woman_Text_0:
 	.string "Did you come to get KURT to make\n"
 	.string "some BALLS?\p"
-	.string "A lot of people travel to AZALEA to\n"
-	.string "do just that.$"
+	.string "A lot of people travel to AZALEA\n"
+	.string "to do just that.$"
 
 AzaleaTown_EventScript_Youngster_Text_0:
 	.string "Cut through AZALEA and you'll be\n"

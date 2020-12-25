@@ -120,9 +120,8 @@ script VioletCity_Gym_EventScript_GymGuide {
     {
         msgbox("Hey! I'm no TRAINER, but I can\n"
                "give some advice!\p"
-               "Believe me!\n"
-               "If you believe, a championship\l"
-               "dream can come true.\p"
+               "Believe me! If you believe, a\n"
+               "championship dream can come true.\p"
                "You believe?\n"
                "Then listen.\p"
                "GRASS-type POKéMON are weak\n"

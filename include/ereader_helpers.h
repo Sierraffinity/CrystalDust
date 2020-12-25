@@ -3,6 +3,9 @@
 
 #include "trainer_hill.h"
 
+#define EREADER_HANDSHAKE_US 0xCCC0
+#define EREADER_HANDSHAKE_JP 0xCCD0
+
 struct EReaderTrainerHillTrainer
 {
     u8 unk0;

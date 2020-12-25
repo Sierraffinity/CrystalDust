@@ -186,8 +186,8 @@ script AzaleaTown_EventScript_OldMan {
 script AzaleaTown_EventScript_Woman {
     msgbox("Did you come to get KURT to make\n"
            "some BALLS?\p"
-           "A lot of people travel to AZALEA to\n"
-           "do just that.", MSGBOX_NPC)
+           "A lot of people travel to AZALEA\n"
+           "to do just that.", MSGBOX_NPC)
 }
 
 script AzaleaTown_EventScript_Youngster {

@@ -127,7 +127,7 @@ static void LoadPaletteOverrides(void)
 
     if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
     {
-        hour = HOUR_NIGHT;
+        hour = 0;
     }
     else
     {
@@ -209,7 +209,7 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
 
         if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
         {
-            hour = HOUR_NIGHT;
+            hour = 0;
             hourPhase = 0;
         }
         else
@@ -278,7 +278,7 @@ void ProcessImmediateTimeEvents(void)
         {
             if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
             {
-                hour = HOUR_NIGHT;
+                hour = 0;
                 hourPhase = 0;
             }
             else

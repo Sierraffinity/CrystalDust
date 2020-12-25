@@ -194,7 +194,7 @@ static void Task_MainMenuCheckSaveFile(u8);
 static void Task_MainMenuCheckBattery(u8);
 static void Task_WaitForSaveFileErrorWindow(u8);
 static void CreateMainMenuErrorWindow(const u8*);
-static void CreateMainMenuBigErrorWindow(const u8*);
+static void CreateMainMenuBigErrorWindow(const u8*, const u8 *);
 static void ClearMainMenuWindowTilemap(const struct WindowTemplate*);
 static void Task_DisplayMainMenu(u8);
 static void Task_WaitForBatteryDryErrorWindow(u8);
@@ -1426,9 +1426,7 @@ static void Task_DisplayMainMenuInvalidActionError(u8 taskId)
                 GetGameVersionString(gStringVar1);
                 GetSaveVersionString(gStringVar2);
                 StringExpandPlaceholders(gStringVar4, gText_BuildVersionMismatch);
-                CreateMainMenuBigErrorWindow(gStringVar4);
-                BlitBitmapRectToWindow(8, sMainMenu_UpdateQrCode, 7, 7, 64, 64, 142, 78, 50, 50);
-                CopyWindowToVram(8, 3);
+                CreateMainMenuBigErrorWindow(gStringVar4, sMainMenu_UpdateQrCode);
             }
             gTasks[taskId].tCurrItem++;
             break;
@@ -2584,7 +2582,7 @@ static void CreateMainMenuErrorWindow(const u8* str)
     SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS_ERROR(ERROR));
 }
 
-static void CreateMainMenuBigErrorWindow(const u8* str)
+static void CreateMainMenuBigErrorWindow(const u8* str, const u8 *qr)
 {
     DrawStdFrameWithCustomTileAndPalette(8, FALSE, MAIN_MENU_THIN_BORDER_TILE, 14);
     FillWindowPixelBuffer(8, PIXEL_FILL(1));
@@ -2592,6 +2590,11 @@ static void CreateMainMenuBigErrorWindow(const u8* str)
     PutWindowTilemap(8);
     SetGpuReg(REG_OFFSET_WIN0H, MENU_WIN_HCOORDS_ERROR(BIG_ERROR));
     SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS_ERROR(BIG_ERROR));
+    if (qr != NULL)
+    {
+        BlitBitmapRectToWindow(8, qr, 7, 7, 64, 64, 142, 78, 50, 50);
+    }
+    CopyWindowToVram(8, 3);
 }
 
 static void MainMenu_FormatSavegameText(void)

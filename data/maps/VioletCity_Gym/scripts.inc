@@ -136,9 +136,8 @@ VioletCity_Gym_EventScript_GymGuide_Text_0:
 VioletCity_Gym_EventScript_GymGuide_Text_1:
 	.string "Hey! I'm no TRAINER, but I can\n"
 	.string "give some advice!\p"
-	.string "Believe me!\n"
-	.string "If you believe, a championship\l"
-	.string "dream can come true.\p"
+	.string "Believe me! If you believe, a\n"
+	.string "championship dream can come true.\p"
 	.string "You believe?\n"
 	.string "Then listen.\p"
 	.string "GRASS-type POKéMON are weak\n"
