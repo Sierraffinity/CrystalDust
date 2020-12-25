@@ -17,6 +17,7 @@
 #include "field_screen_effect.h"
 #include "field_specials.h"
 #include "field_weather.h"
+#include "gpu_regs.h"
 #include "international_string_util.h"
 #include "item_icon.h"
 #include "link.h"
@@ -60,6 +61,7 @@
 #include "constants/map_types.h"
 #include "constants/maps.h"
 #include "constants/mevent.h"
+#include "constants/rgb.h"
 #include "constants/tv.h"
 #include "constants/script_menu.h"
 #include "constants/slot_machine.h"
@@ -139,6 +141,7 @@ static u8 DidPlayerGetFirstFans(void);
 static void SetInitialFansOfPlayer(void);
 static u16 PlayerGainRandomTrainerFan(void);
 static void BufferFanClubTrainerName_(struct LinkBattleRecords *linkRecords, u8 a, u8 b);
+static void Task_MiniCredits(u8 taskId);
 
 void Special_ShowDiploma(void)
 {
@@ -2291,7 +2294,7 @@ void BufferBattleTowerElevatorFloors(void)
 #define tWindowId            data[13]
 #define tListTaskId          data[14]
 #define tTaskId              data[15]
-// data[9] and [10] unused
+// data[10] unused
 
 void ShowScrollableMultichoice(void)
 {
@@ -4759,3 +4762,231 @@ void IsPlayersMonOfSpeciesInParty(void)
     }
     gSpecialVar_Result = FALSE;
 }
+
+#define tState      data[0]
+#define tAdvance    data[1]
+#define tWindowId   data[2]
+#define tTimer      data[3]
+
+void DoMiniCredits(void)
+{
+    u8 taskId = FindTaskIdByFunc(Task_MiniCredits);
+
+    if (taskId == 0xFF)
+    {
+        taskId = CreateTask(Task_MiniCredits, 8);
+        if (taskId != 0xFF)
+        {
+            s16 *data = gTasks[taskId].data;
+            ScriptContext2_Enable();
+            tWindowId = 0xFF;
+        }
+    }
+    else
+    {
+        gTasks[taskId].tAdvance = TRUE;
+    }
+}
+
+static const struct WindowTemplate sCreditsWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 0,
+    .tilemapTop = 0,
+    .width = 30,
+    .height = 13,
+    .paletteNum = 14,
+    .baseBlock = 0x001
+};
+
+static void CreateCreditsWindow(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    tWindowId = AddWindow(&sCreditsWindowTemplate);
+    FillWindowPixelBuffer(tWindowId, PIXEL_FILL(0));
+    PutWindowTilemap(tWindowId);
+    CopyWindowToVram(tWindowId, COPYWIN_BOTH);
+}
+
+static void DestroyCreditsWindow(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (tWindowId != 0xFF)
+    {
+        FillWindowPixelBuffer(tWindowId, PIXEL_FILL(0));
+        ClearWindowTilemap(tWindowId);
+        CopyWindowToVram(tWindowId, 3);
+        RemoveWindow(tWindowId);
+        tWindowId = 0xFF;
+    }
+}
+
+static const u8 sTextColor_Header[3] = {0, 5, 2};
+static const u8 sTextColor_Regular[3] = {0, 1, 2};
+
+static bool8 Credits_OpenWindow(s8 speed, u8 topStopPos)
+{
+    u16 win0v = GetGpuReg(REG_OFFSET_WIN0V);
+    u8 win0vTop = win0v >> 8;
+    u8 win0vBottom = win0v & 0xFF;
+
+    if ((speed > 0 && win0vTop <= topStopPos) ||
+        (speed < 0 && win0vTop >= topStopPos))
+    {
+        return TRUE;
+    }
+    else
+    {
+        win0vTop -= speed;
+        win0vBottom += speed;
+        SetGpuReg(REG_OFFSET_WIN0V, (win0vTop << 8) | win0vBottom);
+    }
+    return FALSE;
+}
+
+static void Task_MiniCredits(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    switch (tState)
+    {
+    case 0:
+        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
+        SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_ALL |
+                                    WININ_WIN1_BG_ALL |
+                                    WININ_WIN1_OBJ);
+        SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG1 |
+                                     WINOUT_WIN01_BG2 |
+                                     WINOUT_WIN01_BG3 |
+                                     WINOUT_WIN01_OBJ);
+        SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 240));
+        SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(56, 56));
+        SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(0, 240));
+        SetGpuReg(REG_OFFSET_WIN1V, WIN_RANGE(112, 160));
+        tState++;
+        break;
+    case 1:
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 |
+                                     BLDCNT_TGT1_BG2 |
+                                     BLDCNT_TGT1_BG3 |
+                                     BLDCNT_TGT1_OBJ |
+                                     BLDCNT_EFFECT_DARKEN);
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 4));
+        SetGpuReg(REG_OFFSET_BLDY, 10);
+        CreateCreditsWindow(taskId);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsCrystalDustDevTeam, 240), 6, 1, 2, sTextColor_Header, 0, gString_MiniCreditsCrystalDustDevTeam);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsDevTeam1, 240), 20, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam1);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsDevTeam2, 240), 34, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam2);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsDevTeam3, 240), 48, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam3);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsDevTeam4, 240), 62, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam4);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsDevTeam5, 240), 76, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam5);
+        AddTextPrinterParameterized4(tWindowId, 0, GetStringCenterAlignXOffset(0, gString_MiniCreditsDevTeam6, 240), 90, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam6);
+        Menu_LoadStdPalAt(0xE0);
+        //gPlttBufferUnfaded[0xFF] = RGB_BLACK;
+        //gPlttBufferFaded[0xFF] = RGB_BLACK;
+        tState++;
+        break;
+    case 2:
+        if (Credits_OpenWindow(2, 4))
+        {
+            tTimer = 30;
+            tState++;
+        }
+        break;
+    case 3:
+        if (tTimer == 0)
+        {
+            EnableBothScriptContexts();
+            tState++;
+        }
+        else
+        {
+            tTimer--;
+        }
+        break;
+    case 4:
+        if (tAdvance != FALSE)
+        {
+            tAdvance = FALSE;
+            tState++;
+        }
+        break;
+    case 5:
+        if (Credits_OpenWindow(-4, 56))
+        {
+            tState++;
+        }
+        break;
+    case 6:
+        FillWindowPixelBuffer(tWindowId, PIXEL_FILL(0));
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsSpecialThanks, 240), 6, 1, 2, sTextColor_Header, 0, gString_MiniCreditsSpecialThanks);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsThanks1, 240), 20, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsThanks1);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsThanks2, 240), 34, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsThanks2);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsThanks3, 240), 48, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsThanks3);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsThanks4, 240), 62, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsThanks4);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsThanks5, 240), 76, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsThanks5);
+        AddTextPrinterParameterized4(tWindowId, 0, GetStringCenterAlignXOffset(0, gString_MiniCreditsThanks6, 240), 90, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsThanks6);
+        Menu_LoadStdPalAt(0xE0);
+        //gPlttBufferUnfaded[0xFF] = RGB_BLACK;
+        //gPlttBufferFaded[0xFF] = RGB_BLACK;
+        tState++;
+        break;
+    case 7:
+        if (Credits_OpenWindow(4, 4))
+        {
+            tTimer = 30;
+            tState++;
+        }
+        break;
+    case 8:
+        if (tTimer == 0)
+        {
+            EnableBothScriptContexts();
+            tState++;
+        }
+        else
+        {
+            tTimer--;
+        }
+        break;
+    case 9:
+        if (tAdvance != FALSE)
+        {
+            tAdvance = FALSE;
+            tState++;
+        }
+        break;
+    case 10:
+        if (Credits_OpenWindow(-2, 56))
+        {
+            tTimer = 30;
+            tState++;
+        }
+        break;
+    case 11:
+        if (tTimer == 0)
+        {
+            DestroyCreditsWindow(taskId);
+            EnableBothScriptContexts();
+            tState++;
+        }
+        else
+        {
+            tTimer--;
+        }
+        break;
+    default:
+        ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
+        SetGpuReg(REG_OFFSET_WININ, 0);
+        SetGpuReg(REG_OFFSET_WINOUT, 0);
+        SetGpuReg(REG_OFFSET_BLDCNT, 0);
+        SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+        SetGpuReg(REG_OFFSET_BLDY, 0);
+        DestroyTask(taskId);
+        break;
+    }
+}
+
+#undef tState
+#undef tWindowId

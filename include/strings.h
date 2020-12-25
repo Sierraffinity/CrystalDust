@@ -3161,4 +3161,20 @@ extern const u8 gText_HowMuchToSave[];
 extern const u8 gText_DepositedMoney[];
 extern const u8 gText_HeldMoney[];
 
+// Mini credits
+extern const u8 gString_MiniCreditsCrystalDustDevTeam[];
+extern const u8 gString_MiniCreditsDevTeam1[];
+extern const u8 gString_MiniCreditsDevTeam2[];
+extern const u8 gString_MiniCreditsDevTeam3[];
+extern const u8 gString_MiniCreditsDevTeam4[];
+extern const u8 gString_MiniCreditsDevTeam5[];
+extern const u8 gString_MiniCreditsDevTeam6[];
+extern const u8 gString_MiniCreditsSpecialThanks[];
+extern const u8 gString_MiniCreditsThanks1[];
+extern const u8 gString_MiniCreditsThanks2[];
+extern const u8 gString_MiniCreditsThanks3[];
+extern const u8 gString_MiniCreditsThanks4[];
+extern const u8 gString_MiniCreditsThanks5[];
+extern const u8 gString_MiniCreditsThanks6[];
+
 #endif // GUARD_STRINGS_H

@@ -309,6 +309,7 @@ script Route36_EventScript_SierraPoopsTheParty {
     lockall
     setobjectxyperm(OBJ_EVENT_ID_SIERRA, 25, 7)
     addobject(OBJ_EVENT_ID_SIERRA)
+    specialvar(VAR_FACING, GetPlayerFacingDirection)
     if (var(VAR_FACING) == DIR_NORTH)
     {
         applymovement(OBJ_EVENT_ID_PLAYER, Route36_Movement_NoticeSierra)
@@ -317,7 +318,7 @@ script Route36_EventScript_SierraPoopsTheParty {
     waitmovement(0)
     setobjectxyperm(OBJ_EVENT_ID_SIERRA, 30, 13)
     textcolor(MSG_COLOR_RED)
-    msgbox("SIERRA: Hey, whoa, now. The road up\n"
+    msgbox("SIERRA: Hey, hold up! The road\n"
            "ahead is still under construction.\p"
            "It's going to take a while before\n"
            "you can come through safely.\p"
@@ -340,26 +341,35 @@ script Route36_EventScript_SierraPoopsTheParty {
            "this isn't much, but I'm proud of\l"
            "what I've done so far.\p"
            "Thank you to everyone who has stuck\n"
-           "with me for the past decade!")
-    // TODO: Credits-ish
-    msgbox("A particularly big thanks to all the\n"
-           "people who have contributed to the\l"
-           "project in one way or another, be\l"
-           "it art or music or… well, anything.\p"
-           "This project would not be where it\n"
-           "is today without you.")
+           "with me for the past decade!\p"
+           "Now… let's roll the credits!")
+    special(DoMiniCredits)
+    waitstate
+    message("A particularly big thanks to all the\n"
+            "people who have contributed to the\l"
+            "project in one way or another, be\l"
+            "it art or music or… well, anything.\p"
+            "This project would not be where it\n"
+            "is today without you.\p"
+            "And…")
+    waitmessage
+    special(DoMiniCredits)
+    waitstate
     msgbox("Of course, a huge shout-out to my\n"
-           "Patrons and alpha testers, who are\l"
-           "super cool and great and such.\p"
+           "Patrons and alpha testers, past\l"
+           "and present, who are super cool.\p"
            "Thanks for putting up with my awful\n"
            "ability to get out alpha builds.")
+    special(DoMiniCredits)
+    waitstate
     msgbox("And again, to you, the player…\p"
            "{PLAYER}…\p"
            "Thank you so much-a for to playing\n"
            "my game.\p"
            "Now, for my last task…\n"
-           "To stand here, on guard.\l"
-           "Until the end of time…")
+           "To stand here, on guard.\p"
+           "Until the end of time, or so it\n"
+           "might seem…")
     closemessage
     applymovement(OBJ_EVENT_ID_SIERRA, Route36_Movement_SierraToGuardPosition)
     applymovement(OBJ_EVENT_ID_CAMERA, Route36_Movement_CameraBackToPlayer)
@@ -416,6 +426,6 @@ script Route36_EventScript_Sierra {
            "but there's probably a link you can\l"
            "click there for a Discord server\l"
            "or whatever the kids use nowadays.\p"
-           "Hopefully you don't bother the other\n"
-           "SIERRA about the release this much…", MSGBOX_NPC)
+           "And please don't bother the other\n"
+           "SIERRA about the release… okay?", MSGBOX_NPC)
 }

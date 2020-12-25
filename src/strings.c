@@ -2010,3 +2010,19 @@ const u8 gText_HowMuchToTake[] = _("How much do you want to take?");
 const u8 gText_HowMuchToSave[] = _("How much do you want to save?");
 const u8 gText_DepositedMoney[] = _("DEPOSITED MONEY");
 const u8 gText_HeldMoney[] = _("HELD MONEY");
+
+// Mini credits
+const u8 gString_MiniCreditsCrystalDustDevTeam[] = _("POKéMON CRYSTALDUST DEVELOPMENT TEAM");
+const u8 gString_MiniCreditsDevTeam1[] = _("Sierraffinity{CLEAR 10}huderlem{CLEAR 10}Jambo51{CLEAR 10}Shiro");
+const u8 gString_MiniCreditsDevTeam2[] = _("Alpha Remaster{CLEAR 10}CyanSMP64 “Furret”{CLEAR 10}Tetra");
+const u8 gString_MiniCreditsDevTeam3[] = _("Jilly Shears{CLEAR 10}Kurausukun{CLEAR 10}MrAPT1{CLEAR 10}Farore");
+const u8 gString_MiniCreditsDevTeam4[] = _("EesrekYT{CLEAR 10}KecleonTencho{CLEAR 10}PlatinumMaster");
+const u8 gString_MiniCreditsDevTeam5[] = _("ShadowOne333{CLEAR 10}Chaos Rush{CLEAR 10}Spherical Ice");
+const u8 gString_MiniCreditsDevTeam6[] = _("…and many more I'm surely forgetting…");
+const u8 gString_MiniCreditsSpecialThanks[] = _("SPECIAL THANKS");
+const u8 gString_MiniCreditsThanks1[] = _("shadowndacorner");
+const u8 gString_MiniCreditsThanks2[] = _("axipher");
+const u8 gString_MiniCreditsThanks3[] = _("Worcestershirey");
+const u8 gString_MiniCreditsThanks4[] = _("Capt'nDingPot");
+const u8 gString_MiniCreditsThanks5[] = _("Feltlikeit");
+const u8 gString_MiniCreditsThanks6[] = _("…and all those who tested v2 and below!");

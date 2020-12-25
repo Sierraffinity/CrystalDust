@@ -299,6 +299,7 @@ Route36_EventScript_SierraPoopsTheParty::
 	lockall
 	setobjectxyperm 9, 25, 7
 	addobject 9
+	specialvar VAR_FACING, GetPlayerFacingDirection
 	compare VAR_FACING, DIR_NORTH
 	goto_if_eq Route36_EventScript_SierraPoopsTheParty_2
 Route36_EventScript_SierraPoopsTheParty_1:
@@ -314,8 +315,15 @@ Route36_EventScript_SierraPoopsTheParty_1:
 	waitmovement 0
 	playbgm MUS_RG_HALL_OF_FAME, 0
 	msgbox Route36_EventScript_SierraPoopsTheParty_Text_1
-	msgbox Route36_EventScript_SierraPoopsTheParty_Text_2
+	special DoMiniCredits
+	waitstate
+	message Route36_EventScript_SierraPoopsTheParty_Text_2
+	waitmessage
+	special DoMiniCredits
+	waitstate
 	msgbox Route36_EventScript_SierraPoopsTheParty_Text_3
+	special DoMiniCredits
+	waitstate
 	msgbox Route36_EventScript_SierraPoopsTheParty_Text_4
 	closemessage
 	applymovement 9, Route36_Movement_SierraToGuardPosition
@@ -473,7 +481,7 @@ Route36_EventScript_Floria_Text_1:
 	.string "her water bottle!$"
 
 Route36_EventScript_SierraPoopsTheParty_Text_0:
-	.string "SIERRA: Hey, whoa, now. The road up\n"
+	.string "SIERRA: Hey, hold up! The road\n"
 	.string "ahead is still under construction.\p"
 	.string "It's going to take a while before\n"
 	.string "you can come through safely.\p"
@@ -492,7 +500,8 @@ Route36_EventScript_SierraPoopsTheParty_Text_1:
 	.string "this isn't much, but I'm proud of\l"
 	.string "what I've done so far.\p"
 	.string "Thank you to everyone who has stuck\n"
-	.string "with me for the past decade!$"
+	.string "with me for the past decade!\p"
+	.string "Now… let's roll the credits!$"
 
 Route36_EventScript_SierraPoopsTheParty_Text_2:
 	.string "A particularly big thanks to all the\n"
@@ -500,12 +509,13 @@ Route36_EventScript_SierraPoopsTheParty_Text_2:
 	.string "project in one way or another, be\l"
 	.string "it art or music or… well, anything.\p"
 	.string "This project would not be where it\n"
-	.string "is today without you.$"
+	.string "is today without you.\p"
+	.string "And…$"
 
 Route36_EventScript_SierraPoopsTheParty_Text_3:
 	.string "Of course, a huge shout-out to my\n"
-	.string "Patrons and alpha testers, who are\l"
-	.string "super cool and great and such.\p"
+	.string "Patrons and alpha testers, past\l"
+	.string "and present, who are super cool.\p"
 	.string "Thanks for putting up with my awful\n"
 	.string "ability to get out alpha builds.$"
 
@@ -515,8 +525,9 @@ Route36_EventScript_SierraPoopsTheParty_Text_4:
 	.string "Thank you so much-a for to playing\n"
 	.string "my game.\p"
 	.string "Now, for my last task…\n"
-	.string "To stand here, on guard.\l"
-	.string "Until the end of time…$"
+	.string "To stand here, on guard.\p"
+	.string "Until the end of time, or so it\n"
+	.string "might seem…$"
 
 Route36_EventScript_Sierra_Text_0:
 	.string "SIERRA: Hey, {PLAYER}!\n"
@@ -531,8 +542,8 @@ Route36_EventScript_Sierra_Text_0:
 	.string "but there's probably a link you can\l"
 	.string "click there for a Discord server\l"
 	.string "or whatever the kids use nowadays.\p"
-	.string "Hopefully you don't bother the other\n"
-	.string "SIERRA about the release this much…$"
+	.string "And please don't bother the other\n"
+	.string "SIERRA about the release… okay?$"
 
 Route36_Text_RockSmashGuy_PostHM::
 	.string "That HM happens to be ROCK SMASH.\n"
