@@ -261,7 +261,7 @@ $(MID_SUBDIR)/mus_slots_win.s: %.s: %.mid
 $(MID_SUBDIR)/mus_obtain_badge.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5
 
-$(MID_SUBDIR)/mus_fanfareegg.s: %.s: %.mid
+$(MID_SUBDIR)/mus_obtain_egg.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V080 -P5
 
 $(MID_SUBDIR)/mus_obtain_b_points.s: %.s: %.mid
@@ -276,8 +276,8 @@ $(MID_SUBDIR)/mus_evolution_intro.s: %.s: %.mid
 $(MID_SUBDIR)/mus_obtain_symbol.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G103 -V100 -P5
 
-$(MID_SUBDIR)/mus_awaken_legend.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5
+$(MID_SUBDIR)/mus_pkmnchannel_interlude.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G060 -V080 -P5
 
 $(MID_SUBDIR)/mus_register_phone.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G105 -V110 -P5

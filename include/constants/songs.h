@@ -323,8 +323,8 @@
 #define MUS_B_TOWER_RS              384 // MUS_B_TOWER
 #define MUS_ENCOUNTER_SWIMMER       385 // MUS_SWIMEYE
 #define MUS_CAVE_OF_ORIGIN          386 // MUS_DAN03
-#define MUS_FANFAREEGG              387 // MUS_ME_KINOMI
-#define MUS_AWAKEN_LEGEND           388 // MUS_ME_TAMA
+#define MUS_OBTAIN_EGG              387 // MUS_ME_KINOMI
+#define MUS_PKMNCHANNEL_INTERLUDE   388 // MUS_ME_TAMA
 #define MUS_SLOTS_JACKPOT           389 // MUS_ME_B_BIG
 #define MUS_SLOTS_WIN               390 // MUS_ME_B_SMALL
 #define MUS_TOO_BAD                 391 // MUS_ME_ZANNEN

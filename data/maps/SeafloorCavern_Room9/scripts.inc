@@ -48,7 +48,7 @@ SeafloorCavern_Room9_EventScript_ArchieAwakenKyogre:: @ 8234DC9
 	waitfieldeffect FLDEFF_SPARKLE
 	closemessage
 	setvar VAR_RESULT, 0
-	playfanfare MUS_AWAKEN_LEGEND
+	playfanfare MUS_PKMNCHANNEL_INTERLUDE
 	playse SE_ORB
 	special DoOrbEffect
 	applymovement VAR_0x8004, Common_Movement_WalkInPlaceFastestUp

@@ -58,7 +58,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
         {
 	        textcolor(MSG_COLOR_SYS)
             setflag(FLAG_GOT_ELMS_EGG)
-	        playfanfare(MUS_FANFAREEGG)
+	        playfanfare(MUS_OBTAIN_EGG)
             message("{PLAYER} received the EGG\n"
                     "from ELM's AIDE.")
             waitfanfare

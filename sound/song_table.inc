@@ -388,8 +388,8 @@ gSongTable:: @ 86B49F0
 	song mus_b_tower_rs, 0, 0
 	song mus_encounter_swimmer, 0, 0
 	song mus_cave_of_origin, 0, 0
-	song mus_fanfareegg, 2, 2
-	song mus_awaken_legend, 2, 2
+	song mus_obtain_egg, 2, 2
+	song mus_pkmnchannel_interlude, 2, 2
 	song mus_slots_jackpot, 2, 2
 	song mus_slots_win, 2, 2
 	song mus_too_bad, 2, 2

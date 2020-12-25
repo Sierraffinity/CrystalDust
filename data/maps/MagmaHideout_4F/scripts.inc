@@ -20,7 +20,7 @@ MagmaHideout_4F_EventScript_Maxie:: @ 823A560
 	dofieldeffectsparkle 18, 42, 0
 	waitfieldeffect FLDEFF_SPARKLE
 	setvar VAR_RESULT, 1
-	playfanfare MUS_AWAKEN_LEGEND
+	playfanfare MUS_PKMNCHANNEL_INTERLUDE
 	playse SE_ORB
 	special DoOrbEffect
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp

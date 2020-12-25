@@ -518,7 +518,7 @@ void Task_PlayRadioShow(u8 taskId)
     case PKMN_CHANNEL_INTERLUDE_2:
         FillWindowPixelBuffer(tWindowId, 0x11);
         AddTextPrinterParameterized5(tWindowId, 2, gText_PokemonChannel1, 0, 1, 0, NULL, 1, 1);
-        PlayFanfare(MUS_AWAKEN_LEGEND);
+        PlayFanfare(MUS_PKMNCHANNEL_INTERLUDE);
         tCurrentLine = tCurrentLine + 1;
         break;
     case PKMN_CHANNEL_INTERLUDE_3:

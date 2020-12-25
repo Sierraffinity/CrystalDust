@@ -1927,7 +1927,7 @@ const u8 gText_OPTAdjectiveGuarded[] = _("guarded.");
 const u8 gText_OPTAdjectiveLovely[] = _("lovely.");
 const u8 gText_OPTAdjectiveSpeedy[] = _("speedy.");
 
-const u8 gText_PokemonChannel1[] = _("{PAUSE 16}POKéMON{PAUSE 100} POKéMON\n{PAUSE 100}POKéMON CHANNEL");
+const u8 gText_PokemonChannel1[] = _("{PAUSE 16}POKéMON{PAUSE 90} POKéMON\n{PAUSE 90}POKéMON CHANNEL");
 
 const u8 gText_PkmnMusicBen1[] = _("BEN: POKéMON MUSIC");
 const u8 gText_PkmnMusicBen2[] = _("CHANNEL!");
