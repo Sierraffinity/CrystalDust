@@ -25,6 +25,7 @@
 #include "constants/species.h"
 #include "constants/tv.h"
 #include "constants/battle_frontier.h"
+#include "constants/region_map_sections.h"
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleFrontierParty(void);
@@ -90,7 +91,7 @@ u8 ScriptGiveEgg(u16 species)
     struct Pokemon mon;
     u8 isEgg;
 
-    CreateEgg(&mon, species, TRUE, FALSE);
+    CreateEgg(&mon, species, METLOC_SPECIAL_EGG, FALSE);
     isEgg = TRUE;
     SetMonData(&mon, MON_DATA_IS_EGG, &isEgg);
 

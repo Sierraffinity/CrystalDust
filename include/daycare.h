@@ -13,7 +13,7 @@ void GetDaycareCost(void);
 u8 GetNumLevelsGainedFromDaycare(void);
 void TriggerPendingDaycareEgg(void);
 void RejectEggFromDayCare(void);
-void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation, bool8 forceShiny);
+void CreateEgg(struct Pokemon *mon, u16 species, u8 metLocation, bool8 forceShiny);
 void GiveEggFromDaycare(void);
 bool8 ShouldEggHatch(void);
 u16 GetSelectedMonNicknameAndSpecies(void);

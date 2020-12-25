@@ -547,6 +547,7 @@ const u8 gText_PeculiarEggTrade[] = _("A peculiar POKéMON EGG\nobtained in a tr
 const u8 gText_EggFromElm[] = _("A POKéMON EGG obtained\nfrom PROF. ELM.");
 const u8 gText_EggFromHotSprings[] = _("A POKéMON EGG obtained\nat the hot springs.");
 const u8 gText_EggFromTraveler[] = _("An odd POKéMON EGG\nobtained from a traveler.");
+const u8 gText_EggFromPokecomCenter[] = _("An odd POKéMON EGG\nobtained at the POKéCOM\nCENTER in GOLDENROD CITY.");
 const u8 gText_ApostropheSBase[] = _("'s BASE");
 const u8 gText_OkayToDeleteFromRegistry[] = _("Is it okay to delete {STR_VAR_1}\nfrom the REGISTRY?");
 const u8 gText_RegisteredDataDeleted[] = _("The registered data was deleted.{PAUSE_UNTIL_PRESS}");

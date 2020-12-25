@@ -3274,6 +3274,10 @@ static void PrintEggMemo(void)
                 text = gText_EggFromTraveler;
             }
         }
+        else if (sum->metLocation == MAPSEC_GOLDENROD_CITY && DidMonComeFromCrystalDust())
+        {
+            text = gText_EggFromPokecomCenter;
+        }
         else
         {
             text = gText_OddEggFoundByCouple;

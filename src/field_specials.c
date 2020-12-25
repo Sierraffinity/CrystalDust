@@ -62,6 +62,7 @@
 #include "constants/map_types.h"
 #include "constants/maps.h"
 #include "constants/mevent.h"
+#include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 #include "constants/tv.h"
 #include "constants/script_menu.h"
@@ -4781,7 +4782,7 @@ void GiveOddEgg(void)
     u8 isShiny = Random() & 1; // 50% chance of shiny
     u16 species = oddEggSpeciesList[Random() % ARRAY_COUNT(oddEggSpeciesList)];
 
-    CreateEgg(&mon, species, TRUE, isShiny);
+    CreateEgg(&mon, species, MAPSEC_GOLDENROD_CITY, isShiny);
     GiveMoveToMon(&mon, MOVE_DIZZY_PUNCH);
 
     // Return value ignored (should only ever go to party)
