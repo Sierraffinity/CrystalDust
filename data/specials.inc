@@ -572,4 +572,5 @@ gSpecials:: @ 81DBA64
 	def_special IsPlayersMonOfSpeciesInParty
 	def_special GivePlayerSpecialGiftMon
 	def_special CheckForGiftMonAndTakeMail
+	def_special GiveOddEgg
 	def_special DoMiniCredits

@@ -2234,7 +2234,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else
     {
-        if (otIdType == OT_ID_PRESET) //Pokemon has a preset OT ID
+        if (otIdType == OT_ID_PRESET) // Pokemon has a preset OT ID
         {
             value = fixedOtId;
         }

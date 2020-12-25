@@ -36,6 +36,9 @@ EWRAM_DATA static u16 sHatchedEggFatherMoves[MAX_MON_MOVES] = {0};
 EWRAM_DATA static u16 sHatchedEggFinalMoves[MAX_MON_MOVES] = {0};
 EWRAM_DATA static u16 sHatchedEggEggMoves[EGG_MOVES_ARRAY_COUNT] = {0};
 EWRAM_DATA static u16 sHatchedEggMotherMoves[MAX_MON_MOVES] = {0};
+#if DEBUG
+EWRAM_DATA bool8 gDebugForceEggHatch = 0;
+#endif
 
 #include "data/pokemon/egg_moves.h"
 
@@ -823,7 +826,7 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
     RemoveEggFromDayCare(daycare);
 }
 
-void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
+void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation, bool8 forceShiny)
 {
     u8 metLevel;
     u16 ball;
@@ -831,7 +834,7 @@ void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
     u8 metLocation;
     u8 isEgg;
 
-    CreateMon(mon, species, EGG_HATCH_LEVEL, 32, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    CreateMon(mon, species, EGG_HATCH_LEVEL, 32, (forceShiny ? PERSONALITY_SHINY : PERSONALITY_RANDOM), 0, OT_ID_PLAYER_ID, 0);
     metLevel = 0;
     ball = ITEM_POKE_BALL;
     language = LANGUAGE_JAPANESE;
@@ -893,7 +896,11 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
     }
 
     // Try to hatch Egg
-    if (++daycare->stepCounter == 255)
+    if (++daycare->stepCounter == 255
+#if DEBUG
+        || gDebugForceEggHatch
+#endif //DEBUG
+        )
     {
         u32 eggCycles;
         u8 toSub = GetEggCyclesToSubtract();
@@ -906,6 +913,15 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
                 continue;
 
             eggCycles = GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP);
+
+#if DEBUG
+            if (gDebugForceEggHatch)
+            {
+                eggCycles = 0;
+                gDebugForceEggHatch = FALSE;
+            }
+#endif // DEBUG
+
             if (eggCycles != 0)
             {
                 if (eggCycles >= toSub)

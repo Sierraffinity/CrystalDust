@@ -109,6 +109,7 @@ static void DebugMenu_EnableRadioCard(u8 taskId);
 static void DebugMenu_WildBattle(u8 taskId);
 static void DebugMenu_100Or0CatchRate(u8 taskId);
 static void DebugMenu_ToggleForceShiny(u8 taskId);
+static void DebugMenu_ForcePartyEggsHatch(u8 taskId);
 static void DebugMenu_FlyMenu(u8 taskId);
 static void DebugMenu_SetRespawn(u8 taskId);
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
@@ -128,6 +129,7 @@ extern bool8 gPaletteOverrideDisabled;
 extern bool8 gCatchDebugStatus;
 extern s16 gDNPeriodOverride;
 extern u16 gDNTintOverride[3];
+extern bool8 gDebugForceEggHatch;
 
 static const u8 sText_PlayerInfo[] = _("Player info");
 static const u8 sText_SetFlag[] = _("Set flag");
@@ -153,6 +155,7 @@ static const u8 sText_PoisonAllMons[] = _("Poison all Pokémon");
 static const u8 sText_FillThePC[] = _("Fill the PC");
 static const u8 sText_100Or0CatchRate[] = _("Normal/100%/0% catch rate");
 static const u8 sText_ToggleForceShiny[] = _("Toggle forced shinies");
+static const u8 sText_ForcePartyEggsHatch[] = _("Hatch eggs in party");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_CraftDNTintColor[] = _("Craft new tint color");
@@ -243,7 +246,10 @@ static const struct DebugMenuAction sDebugMenu_PokemonActions[] =
 {
     { sText_WildBattle, DebugMenu_WildBattle, NULL },
     { sText_100Or0CatchRate, DebugMenu_100Or0CatchRate, NULL },
+    { sText_CreateDaycareEgg, DebugMenu_CreateDaycareEgg, NULL },
+    { sText_PoisonAllMons, DebugMenu_PoisonAllMons, NULL },
     { sText_ToggleForceShiny, DebugMenu_ToggleForceShiny, NULL },
+    { sText_ForcePartyEggsHatch, DebugMenu_ForcePartyEggsHatch, NULL },
 };
 
 CREATE_BOUNCER(PokemonActions, MainActions);
@@ -262,8 +268,6 @@ static const struct DebugMenuAction sDebugMenu_MiscActions[] =
     { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes, NULL },
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC, NULL },
     { sText_TestBattleTransition, DebugMenu_TestBattleTransition, NULL },
-    { sText_CreateDaycareEgg, DebugMenu_CreateDaycareEgg, NULL },
-    { sText_PoisonAllMons, DebugMenu_PoisonAllMons, NULL },
     { sText_FillThePC, DebugMenu_FillThePC, NULL },
 };
 
@@ -1435,6 +1439,11 @@ static void DebugMenu_WildBattle(u8 taskId)
 static void DebugMenu_ToggleForceShiny(u8 taskId)
 {
     gDebugForceShiny = !gDebugForceShiny;
+}
+
+static void DebugMenu_ForcePartyEggsHatch(u8 taskId)
+{
+    gDebugForceEggHatch = TRUE;
 }
 
 static void DebugMenu_EnableMapCard(u8 taskId)

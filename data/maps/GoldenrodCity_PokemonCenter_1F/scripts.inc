@@ -102,13 +102,52 @@ GoldenrodCity_PokemonCenter_1F_EventScript_GameBoyKid::
 
 GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl::
 	goto_if_set FLAG_POKECOM_CENTER_ENABLED, GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_1
-	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_Text_1, MSGBOX_NPC
+	goto_if_set FLAG_TEMP_1, GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_2
+	checkitem ITEM_EGG_TICKET, 1
+	compare VAR_RESULT, 0
+	goto_if_ne GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_6
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_Text_3, MSGBOX_NPC
 	return
 
 GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_1:
 	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_Text_0, MSGBOX_NPC
 	return
 
+GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_2:
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_Text_1, MSGBOX_NPC
+	return
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_6:
+	lock
+	faceplayer
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_Text_2
+	closemessage
+	compare VAR_FACING, DIR_WEST
+	goto_if_eq GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_10
+	applymovement VAR_LAST_TALKED, GoldenrodCity_PokemonCenter_1F_Movement_TradingGirlEast
+	waitmovement 0
+	setobjectxyperm VAR_LAST_TALKED, 20, 9
+GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_9:
+	setflag FLAG_TEMP_1
+	release
+	return
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_10:
+	applymovement VAR_LAST_TALKED, GoldenrodCity_PokemonCenter_1F_Movement_TradingGirlWest
+	waitmovement 0
+	setobjectxyperm VAR_LAST_TALKED, 18, 9
+	goto GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_9
+
+
+GoldenrodCity_PokemonCenter_1F_Movement_TradingGirlWest:
+	walk_left
+	face_right
+	step_end
+
+GoldenrodCity_PokemonCenter_1F_Movement_TradingGirlEast:
+	walk_right
+	face_left
+	step_end
 
 GoldenrodCity_PokemonCenter_1F_EventScript_BugCatcher::
 	goto_if_set FLAG_POKECOM_CENTER_ENABLED, GoldenrodCity_PokemonCenter_1F_EventScript_BugCatcher_1
@@ -153,6 +192,80 @@ GoldenrodCity_PokemonCenter_1F_EventScript_NewsMachine::
 GoldenrodCity_PokemonCenter_1F_EventScript_NewsMachine_1:
 	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_NewsMachine_Text_0, MSGBOX_SIGN
 	return
+
+
+GoldenrodCity_PokemonCenter_1F_Movement_TradeCounterNurseToPC:
+	walk_up
+	walk_right
+	step_end
+
+GoldenrodCity_PokemonCenter_1F_Movement_TradeCounterNurseToPlayer:
+	walk_left
+	walk_down
+	step_end
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse::
+	lock
+	faceplayer
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_0
+	checkitem ITEM_EGG_TICKET, 1
+	compare VAR_RESULT, 0
+	goto_if_ne GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_2
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_9
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_1:
+	release
+	return
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_2:
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_1, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_5
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_7
+	goto GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_1
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_5:
+	getpartysize
+	compare VAR_RESULT, 6
+	goto_if_ne GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_8
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_8
+	goto GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_1
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_8:
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_2
+	textcolor MSG_COLOR_SYS
+	playfanfare MUS_OBTAIN_ITEM
+	message GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_3
+	waitmessage
+	waitfanfare
+	textcolor MSG_COLOR_PREV
+	removeitem ITEM_EGG_TICKET
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_4
+	closemessage
+	applymovement VAR_LAST_TALKED, GoldenrodCity_PokemonCenter_1F_Movement_TradeCounterNurseToPC
+	waitmovement 0
+	playse SE_PC_ON
+	waitse
+	delay 20
+	playse SE_PC_LOGIN
+	waitse
+	delay 30
+	playse SE_BALL
+	waitse
+	delay 20
+	playse SE_PC_OFF
+	waitse
+	applymovement VAR_LAST_TALKED, GoldenrodCity_PokemonCenter_1F_Movement_TradeCounterNurseToPlayer
+	waitmovement 0
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_5
+	textcolor MSG_COLOR_SYS
+	setflag FLAG_GOT_ODD_EGG
+	playfanfare MUS_OBTAIN_ITEM
+	message GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_6
+	waitfanfare
+	special GiveOddEgg
+	textcolor MSG_COLOR_PREV
+	msgbox GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_7
+	goto GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_1
 
 
 GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse_Text_0:
@@ -227,6 +340,16 @@ GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_Text_0:
 	.string "That's my dad's name!$"
 
 GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_Text_1:
+	.string "I'm jealous! They stopped giving\n"
+	.string "those EGG TICKETS away earlier\l"
+	.string "because their supply ran out.$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_Text_2:
+	.string "Oh, you have an EGG TICKET?\n"
+	.string "Maybe they still have some EGGS!\l"
+	.string "Good luck!$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl_Text_3:
 	.string "They said you can trade POKéMON\n"
 	.string "with total strangers up here.\p"
 	.string "But they're still adjusting things.$"
@@ -277,3 +400,56 @@ GoldenrodCity_PokemonCenter_1F_EventScript_NewsMachine_Text_0:
 GoldenrodCity_PokemonCenter_1F_EventScript_NewsMachine_Text_1:
 	.string "It's a POKéMON NEWS MACHINE!\n"
 	.string "It's not in operation yet…$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_0:
+	.string "Hello! Welcome to the POKéCOM\n"
+	.string "CENTER TRADE CORNER.\p"
+	.string "You can trade POKéMON with other\n"
+	.string "people far away.$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_1:
+	.string "Oh!\n"
+	.string "I see you have an EGG TICKET!\p"
+	.string "It's a coupon that special people\n"
+	.string "can redeem for a special POKéMON!\p"
+	.string "We have a few left, so an ODD EGG\n"
+	.string "is available just for you.\p"
+	.string "Would you like to redeem your\n"
+	.string "EGG TICKET?$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_2:
+	.string "Great!\n"
+	.string "Let's get started.$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_3:
+	.string "{PLAYER} handed the EGG TICKET to\n"
+	.string "the receptionist.$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_4:
+	.string "Thank you! Let me retrieve the\n"
+	.string "ODD EGG from one of the rooms.\l"
+	.string "Please wait a moment.$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_5:
+	.string "Thank you for waiting.\n"
+	.string "We retrieved your ODD EGG.\p"
+	.string "Here it is!\n"
+	.string "Please raise it with loving care.$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_6:
+	.string "{PLAYER} received the ODD EGG\n"
+	.string "from the receptionist.$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_7:
+	.string "We hope to see you again.$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_8:
+	.string "Oh, you can't carry any more\n"
+	.string "POKéMON with you, it seems.\p"
+	.string "Please make room in your party,\n"
+	.string "then come see me.$"
+
+GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse_Text_9:
+	.string "…is what I'd usually say, but our\n"
+	.string "system is not yet operational…\p"
+	.string "Please try again later.$"

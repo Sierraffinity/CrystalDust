@@ -5,6 +5,7 @@
 #include "battle_tower.h"
 #include "cable_club.h"
 #include "data.h"
+#include "daycare.h"
 #include "decoration.h"
 #include "diploma.h"
 #include "event_data.h"
@@ -4763,6 +4764,30 @@ void IsPlayersMonOfSpeciesInParty(void)
     gSpecialVar_Result = FALSE;
 }
 
+void GiveOddEgg(void)
+{
+    static const u16 oddEggSpeciesList[] = {
+        SPECIES_PICHU,
+        SPECIES_CLEFFA,
+        SPECIES_IGGLYBUFF,
+        SPECIES_TYROGUE,
+        SPECIES_SMOOCHUM,
+        SPECIES_ELEKID,
+        SPECIES_MAGBY
+    };
+
+    struct Pokemon mon;
+    u32 eggCycles;
+    u8 isShiny = Random() & 1; // 50% chance of shiny
+    u16 species = oddEggSpeciesList[Random() % ARRAY_COUNT(oddEggSpeciesList)];
+
+    CreateEgg(&mon, species, TRUE, isShiny);
+    GiveMoveToMon(&mon, MOVE_DIZZY_PUNCH);
+
+    // Return value ignored (should only ever go to party)
+    GiveMonToPlayer(&mon);
+}
+
 #define tState      data[0]
 #define tAdvance    data[1]
 #define tWindowId   data[2]
@@ -4989,4 +5014,6 @@ static void Task_MiniCredits(u8 taskId)
 }
 
 #undef tState
+#undef tAdvance
 #undef tWindowId
+#undef tTimer
