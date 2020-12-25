@@ -342,6 +342,7 @@ SECTIONS {
         src/phone_script.o(.text);
         src/buenas_password.o(.text);
         src/mom_bank.o(.text);
+        src/game_build.o(.text);
         src/debug/debug_menu.o(.text);
     } =0
 

@@ -6,11 +6,17 @@
 void SetBuildNumber(void)
 {
     gSaveBlock1Ptr->gameBuild = GAME_BUILD;
+    gSaveBlock1Ptr->saveBlockMagic = SAVE_BLOCK_MAGIC;
 }
 
 bool32 CheckBuildNumber(void)
 {
     return gSaveBlock1Ptr->gameBuild == GAME_BUILD;
+}
+
+bool32 CheckSaveBlockMagic(void)
+{
+    return gSaveBlock1Ptr->saveBlockMagic == SAVE_BLOCK_MAGIC;
 }
 
 static u8 *GetVersionString(u8 *str, u32 version)

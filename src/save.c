@@ -447,8 +447,14 @@ static u8 sub_8152DD0(u16 a1, const struct SaveSectionLocation *location)
     if (status == SAVE_STATUS_OK ||
         status == SAVE_STATUS_ERROR)
     {
-        if (!CheckBuildNumber())
+        if (!CheckSaveBlockMagic())
+        {  
+            status = SAVE_STATUS_CORRUPT;
+        }
+        else if (!CheckBuildNumber())
+        {
             status = SAVE_STATUS_BUILD_MISMATCH;
+        }
     }
 
     return status;
