@@ -1423,8 +1423,7 @@ static void Task_DisplayMainMenuInvalidActionError(u8 taskId)
             }
             else
             {
-                GetGameVersionString(gStringVar1);
-                GetSaveVersionString(gStringVar2);
+                GetSaveVersionString(gStringVar1);
                 StringExpandPlaceholders(gStringVar4, gText_BuildVersionMismatch);
                 CreateMainMenuBigErrorWindow(gStringVar4, sMainMenu_UpdateQrCode);
             }
