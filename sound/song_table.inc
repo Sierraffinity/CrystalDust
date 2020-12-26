@@ -264,8 +264,8 @@ gSongTable:: @ 86B49F0
 	song se_rg_deoxys_move, 1, 1
 	song se_rg_poke_jump_success, 1, 1
 	song se_rg_poke_jump_failure, 1, 1
-	song se_pokenav_call, 1, 1
-	song se_pokenav_hang_up, 1, 1
+	song se_phone_call, 1, 1
+	song se_phone_click, 1, 1
 	song se_arena_timeup1, 1, 1
 	song se_arena_timeup2, 1, 1
 	song se_pike_curtain_close, 1, 1
@@ -278,7 +278,7 @@ gSongTable:: @ 86B49F0
 	song se_intro_dittobounce2, 1, 1
 	song se_intro_dittotransform, 1, 1
 	song se_intro_logo_ding, 1, 1
-	song dummy_song_header, 0, 0
+	song se_phone_beep, 1, 1
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0
 	song dummy_song_header, 0, 0

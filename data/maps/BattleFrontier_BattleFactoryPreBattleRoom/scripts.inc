@@ -68,7 +68,7 @@ BattleFrontier_BattleFactoryPreBattleRoom_EventScript_ReturnToRoomFromBattle:: @
 	frontier_getbrainstatus
 	compare VAR_RESULT, FRONTIER_BRAIN_NOT_READY
 	goto_if_eq BattleFrontier_BattleFactoryPreBattleRoom_EventScript_AskReadyForRegularOpponent
-	playse SE_POKENAV_CALL
+	playse SE_PHONE_CALL
 	waitse
 	msgbox BattleFrontier_BattleFactoryPreBattleRoom_Text_WaitFewMoments, MSGBOX_DEFAULT
 	closemessage

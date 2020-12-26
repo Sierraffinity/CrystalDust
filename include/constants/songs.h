@@ -269,8 +269,8 @@
 #define SE_RG_POKE_JUMP_SUCCESS     261 // SE_RG_EXCELLENT
 #define SE_RG_POKE_JUMP_FAILURE     262 // SE_RG_NAWAMISS 
 // New Emerald SFX
-#define SE_POKENAV_CALL             263 // SE_TOREEYE
-#define SE_POKENAV_HANG_UP          264 // SE_TOREOFF
+#define SE_PHONE_CALL               263 // SE_TOREEYE
+#define SE_PHONE_CLICK              264 // SE_TOREOFF
 #define SE_ARENA_TIMEUP1            265 // SE_HANTEI1
 #define SE_ARENA_TIMEUP2            266 // SE_HANTEI2
 #define SE_PIKE_CURTAIN_CLOSE       267 // SE_CURTAIN
@@ -284,6 +284,7 @@
 #define SE_INTRO_DITTOBOUNCE2       274 // Intro Ditto bounce 2
 #define SE_INTRO_DITTOTRANSFORM     275 // Intro Ditto transformation
 #define SE_INTRO_LOGO_DING          276 // Intro e-Reader logo ding
+#define SE_PHONE_BEEP               277
 
 // Music
 #define MUS_LITTLEROOT_TEST         350 // MUS_TETSUJI
@@ -292,7 +293,7 @@
 #define MUS_VICTORY_WILD            353 // MUS_KACHI2
 #define MUS_VICTORY_GYM_LEADER      354 // MUS_KACHI3
 #define MUS_VICTORY_LEAGUE          355 // MUS_KACHI5
-#define MUS_POKECOM_CENTER           356 // MUS_PCC
+#define MUS_POKECOM_CENTER          356 // MUS_PCC
 #define MUS_GSC_PEWTER              357 // MUS_NIBI
 #define MUS_C_VS_LEGEND_BEAST       358 // MUS_SUIKUN
 #define MUS_ROUTE29                 359 // MUS_DOORO1

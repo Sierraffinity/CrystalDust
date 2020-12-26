@@ -1518,7 +1518,7 @@ static void PhoneCard_ConfirmDeleteProcessInput(u8 taskId)
     }
 }
 static const u8 sPhoneCallText_NobodyAnswered[] = _("Nobody answered the call…");
-static const u8 sPhoneCallText_OutOfService_Ellipsis[] = _("…… {PAUSE 40}…… {PAUSE 40}……{PAUSE 40}");
+static const u8 sPhoneCallText_OutOfService_Ellipsis[] = _("{PAUSE 10}{PLAY_SE SE_PHONE_BEEP}…… {PAUSE 40}{PLAY_SE SE_PHONE_BEEP}…… {PAUSE 40}{PLAY_SE SE_PHONE_BEEP}……{PAUSE 40}");
 static const u8 sPhoneCallText_OutOfService[] = _("You're out of the service area.");
 static const u8 sPhoneCallText_JustGoTalkToThem[] = _("Just go talk to that person!");
 
@@ -1544,14 +1544,11 @@ void Task_InitPokegearPhoneCall(u8 taskId)
         CopyBgTilemapBufferToVram(0);
         if (!MapAllowsMatchCall())
         {
-            // TODO: Failed call sound
-            PlaySE(SE_POKENAV_CALL);
             AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sPhoneCallText_OutOfService_Ellipsis, 2, 1, 0, NULL, 1, 2);
             gTasks[taskId].tPhoneCallInitState = 3;
         }
         else
         {
-            PlaySE(SE_POKENAV_CALL);
             AddTextPrinterParameterized5(gPhoneCallWindowId, 2, gText_PokegearCallEllipsis, 2, 1, 0, NULL, 1, 2);
             gTasks[taskId].tPhoneCallInitState = 2;
         }

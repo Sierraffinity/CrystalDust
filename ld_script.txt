@@ -987,8 +987,8 @@ SECTIONS {
         sound/songs/midi/se_rg_deoxys_move.o(.rodata);
         sound/songs/midi/se_rg_poke_jump_success.o(.rodata);
         sound/songs/midi/se_rg_poke_jump_failure.o(.rodata);
-        sound/songs/midi/se_pokenav_call.o(.rodata);
-        sound/songs/midi/se_pokenav_hang_up.o(.rodata);
+        sound/songs/midi/se_phone_call.o(.rodata);
+        sound/songs/midi/se_phone_click.o(.rodata);
         sound/songs/midi/se_arena_timeup1.o(.rodata);
         sound/songs/midi/se_arena_timeup2.o(.rodata);
         sound/songs/midi/se_pike_curtain_close.o(.rodata);
@@ -998,6 +998,7 @@ SECTIONS {
         sound/songs/midi/se_intro_unown2.o(.rodata);
         sound/songs/midi/se_intro_unown3.o(.rodata);
         sound/songs/midi/se_intro_logo_ding.o(.rodata);
+        sound/songs/midi/se_phone_beep.o(.rodata);
         sound/songs/midi/mus_littleroot_test.o(.rodata);
         sound/songs/midi/mus_gsc_route38.o(.rodata);
         sound/songs/midi/mus_caught.o(.rodata);

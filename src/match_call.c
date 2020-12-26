@@ -1305,8 +1305,6 @@ static bool32 LoadMatchCallWindowGfx(u8 taskId)
     ScanlineEffect_SetParams(sScanlineParams);
 
     taskData[4] = 32;
-
-    PlaySE(SE_POKENAV_CALL);
     return TRUE;
 }
 

@@ -1131,11 +1131,14 @@ $(MID_SUBDIR)/se_warp_in.s: %.s: %.mid
 $(MID_SUBDIR)/se_warp_out.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G127 -V090 -P4
 
-$(MID_SUBDIR)/se_pokenav_call.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G129 -V120 -P5
+$(MID_SUBDIR)/se_phone_call.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -V120 -P5
 
-$(MID_SUBDIR)/se_pokenav_hang_up.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G129 -V110 -P5
+$(MID_SUBDIR)/se_phone_click.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -V120 -P5
+
+$(MID_SUBDIR)/se_phone_beep.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G023 -V120 -P5
 
 $(MID_SUBDIR)/se_note_a.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V110 -P4

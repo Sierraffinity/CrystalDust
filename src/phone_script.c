@@ -47,7 +47,7 @@ static const u8 sScriptConditionTable[6][3] =
     1, 0, 1, // !=
 };
 
-static const u8 sHangUpText[] = _("Click!\n{PAUSE 20}… {PAUSE 30}… {PAUSE 30}…{PAUSE 30}");
+static const u8 sHangUpText[] = _("{PLAY_SE SE_PHONE_CLICK}Click!\n{PAUSE 25}{PLAY_SE SE_PHONE_BEEP}… {PAUSE 40}{PLAY_SE SE_PHONE_BEEP}… {PAUSE 40}{PLAY_SE SE_PHONE_BEEP}…{PAUSE 40}");
 
 static bool8 HangupPhoneCall(struct ScriptContext *ctx, bool8 shouldEndNow);
 static bool8 WaitForHangupAnimation(void);
@@ -454,7 +454,6 @@ static void Task_HangupPhoneCall(u8 taskId)
     switch (tState)
     {
     case 0:
-        PlaySE(SE_POKENAV_HANG_UP);
         FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
         AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sHangUpText, 2, 1, 0, NULL, 1, 1);
         tState++;
