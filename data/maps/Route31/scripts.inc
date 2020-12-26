@@ -180,7 +180,7 @@ Route31_EventScript_SleepyMan_Text_7:
 Route31_EventScript_SleepyMan_Text_8:
 	.string "Let's see…\p"
 	.string "“There's a dark place near you.\n"
-	.string "Let's go have an aventure there!”\p"
+	.string "Let's go have an adventure there!”\p"
 	.string "Does he mean DARK CAVE?\n"
 	.string "That sounds like fun.\p"
 	.string "You know, I heard that cave leads\n"

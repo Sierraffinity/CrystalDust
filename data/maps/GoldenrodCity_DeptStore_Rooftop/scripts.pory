@@ -2,13 +2,13 @@ mapscripts GoldenrodCity_DeptStore_Rooftop_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         if (flag(FLAG_GOLDENROD_DEPT_STORE_SALE_HAPPENING))
         {
-            setflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_OFF)
-            clearflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_ON)
+            setflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_ON)
+            clearflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_OFF)
         }
         else
         {
-            setflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_ON)
-            clearflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_OFF)
+            setflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_OFF)
+            clearflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_ON)
         }
     }
 }
