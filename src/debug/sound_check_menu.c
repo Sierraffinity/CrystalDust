@@ -7,14 +7,15 @@
 #include "main.h"
 #include "text.h"
 #include "menu.h"
+#include "game_build.h"
 #include "gpu_regs.h"
 #include "scanline_effect.h"
 #include "string_util.h"
-#include "constants/rgb.h"
-#include "constants/songs.h"
 #include "title_screen.h"
 #include "sound.h"
 #include "trainer_pokemon_sprites.h"
+#include "constants/rgb.h"
+#include "constants/songs.h"
 
 #define tWindowSelected data[0]
 #define tBgmIndex data[1]
@@ -258,7 +259,7 @@ void CB2_StartSoundCheckMenu(void) // sub_080E8320
 
 static void Task_InitSoundCheckMenu_CreateWindows(u8 taskId) // SanitizeDayCareMailForRuby
 {
-    const u8 soundcheckStr[] = _("SOUND TEST  A: PLAY  B: EXIT");
+    const u8 soundcheckStr[] = _("SOUND TEST{CLEAR_TO 120}A: PLAY  B: EXIT");
     const u8 bgmStr[] = _("MUSIC");
     const u8 seStr[] = _("SOUND EFFECTS");
     const u8 upDownStr[] = _("{LEFT_ARROW}PREV {RIGHT_ARROW}NEXT");
@@ -266,9 +267,11 @@ static void Task_InitSoundCheckMenu_CreateWindows(u8 taskId) // SanitizeDayCareM
 
     if (!gPaletteFade.active)
     {
+        GetGameVersionString(gStringVar1);
         SetStandardWindowBorderStyle(WIN_INFO, FALSE);
         AddTextPrinterParameterized(WIN_INFO, 2, soundcheckStr, 0, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(WIN_INFO, 2, driverStr, 100, 14, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 0, gStringVar1, 0, 18, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, driverStr, 120, 14, TEXT_SPEED_FF, NULL);
         PutWindowTilemapAndCopyWindowToVram(WIN_INFO);
         SetStandardWindowBorderStyle(WIN_MUS, FALSE);
         AddTextPrinterParameterized(WIN_MUS, 2, bgmStr, 0, 0, TEXT_SPEED_FF, NULL);
