@@ -87,7 +87,7 @@ script Route31_EventScript_SleepyMan {
                     textcolor(MSG_COLOR_PREV)
                     msgbox("Let's see…\p"
                            "“There's a dark place near you.\n"
-                           "Let's go have an aventure there!”\p"
+                           "Let's go have an adventure there!”\p"
                            "Does he mean DARK CAVE?\n"
                            "That sounds like fun.\p"
                            "You know, I heard that cave leads\n"
