@@ -1043,9 +1043,9 @@ NewBarkTown_ProfessorElmsLab_EventScript_ElmBeggingLoop_Text_0:
 NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging_Text_0:
 	.string "Thanks, {PLAYER}!\n"
 	.string "You're a great help!\p"
-	.string "When I announce my findings, I'm sure\n"
-	.string "we'll delve a bit deeper into the\l"
-	.string "many mysteries of POKéMON.\p"
+	.string "When I announce my findings, I'm\n"
+	.string "sure we'll delve a bit deeper into\l"
+	.string "the many mysteries of POKéMON.\p"
 	.string "You can count on it!$"
 
 NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging_Text_1:
