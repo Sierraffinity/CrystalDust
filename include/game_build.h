@@ -10,7 +10,7 @@
 // v3.0.0-alpha.0.1
 #define GAME_VER_MAJOR      0
 #define GAME_VER_MINOR      0
-#define GAME_VER_PATCH      1
+#define GAME_VER_PATCH      2
 #define GAME_BUILD          ((GAME_VER_MAJOR << 24) | (GAME_VER_MINOR << 16) | GAME_VER_PATCH)
 
 // byteswapped CDMA
