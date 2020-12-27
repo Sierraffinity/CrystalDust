@@ -146,7 +146,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
    },
 };
 
-static const u16 sUnknown_0855C604[] = INCBIN_U16("graphics/misc/option_menu_text.gbapal");
+static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/misc/option_menu_text.gbapal");
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -269,7 +269,7 @@ void CB2_InitOptionMenu(void)
         break;
     case 5:
         LoadPalette(sOptionMenuPalette, 0x10, 0x20);
-        LoadPalette(stdpal_get(2), 0xF0, 0x20);
+        LoadPalette(GetTextWindowPalette(2), 0xF0, 0x20);
         break;
     case 6:
         LoadThinWindowBorderGfx(0, 0x1B3, 0x30);
@@ -378,7 +378,7 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
     u16* current;
     s16 *data = gTasks[taskId].data;
 
-    if (JOY_REPT(DPAD_RIGHT))
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         current = &data[data[TD_MENUSELECTION] + TD_TEXTSPEED];
         if (*current == (sOptionMenuItemCounts[data[TD_MENUSELECTION]] - 1))
@@ -391,7 +391,7 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
         else
             return OPTION_MENU_ACTION_CHANGE_TEXT;
     }
-    else if (JOY_REPT(DPAD_LEFT))
+    else if (JOY_REPEAT(DPAD_LEFT))
     {
         current = &data[data[TD_MENUSELECTION] + TD_TEXTSPEED];
         if (*current == 0)
@@ -404,7 +404,7 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
         else
             return OPTION_MENU_ACTION_CHANGE_TEXT;
     }
-    else if (JOY_REPT(DPAD_UP))
+    else if (JOY_REPEAT(DPAD_UP))
     {
         if (data[TD_MENUSELECTION] > 0)
             data[TD_MENUSELECTION]--;
@@ -412,7 +412,7 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
             data[TD_MENUSELECTION] = MENUITEM_CANCEL;
         return OPTION_MENU_ACTION_UPDATE_DISPLAY;        
     }
-    else if (JOY_REPT(DPAD_DOWN))
+    else if (JOY_REPEAT(DPAD_DOWN))
     {
         if (data[TD_MENUSELECTION] < MENUITEM_CANCEL)
             data[TD_MENUSELECTION]++;
@@ -421,12 +421,12 @@ static u8 OptionMenu_ProcessInput(u8 taskId)
         HighlightOptionMenuItem(data[TD_MENUSELECTION]);
         return OPTION_MENU_ACTION_UPDATE_DISPLAY;
     }
-    else if (gMain.newKeys & A_BUTTON)
+    else if (JOY_NEW(A_BUTTON))
     {
         if (data[TD_MENUSELECTION] == MENUITEM_CANCEL)
             return OPTION_MENU_ACTION_EXIT;
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         return OPTION_MENU_ACTION_EXIT;
     }
@@ -475,7 +475,7 @@ static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
     }
 
     dst[i] = EOS;
-    AddTextPrinterParameterized(WIN_OPTIONS, 1, dst, x, y + 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_OPTIONS, 2, dst, x, y + 1, TEXT_SPEED_FF, NULL);
 }
 
 static void BufferOptionMenuString(u8 taskId, u8 selection)
@@ -493,25 +493,25 @@ static void BufferOptionMenuString(u8 taskId, u8 selection)
     switch (selection)
     {
     case MENUITEM_TEXTSPEED:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sTextSpeedOptions[data[TD_TEXTSPEED]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sTextSpeedOptions[data[TD_TEXTSPEED]]);
         break;
     case MENUITEM_BATTLESCENE:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sBattleSceneOptions[data[TD_BATTLESCENE]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sBattleSceneOptions[data[TD_BATTLESCENE]]);
         break;
     case MENUITEM_BATTLESTYLE:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sBattleStyleOptions[data[TD_BATTLESTYLE]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sBattleStyleOptions[data[TD_BATTLESTYLE]]);
         break;
     case MENUITEM_SOUND:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sSoundOptions[data[TD_SOUND]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sSoundOptions[data[TD_SOUND]]);
         break;
     case MENUITEM_BUTTONMODE:
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, -1, sButtonTypeOptions[data[TD_BUTTONMODE]]);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, -1, sButtonTypeOptions[data[TD_BUTTONMODE]]);
         break;
     case MENUITEM_FRAMETYPE:
         strEnd = StringCopy(str, gText_FrameType);
         *(strEnd++) = CHAR_SPACE;
         ConvertIntToDecimalStringN(strEnd, data[TD_FRAMETYPE] + 1, STR_CONV_MODE_LEFT_ALIGN, 2);
-        AddTextPrinterParameterized3(1, 1, x, y, optionsColor, TEXT_SPEED_FF, str);
+        AddTextPrinterParameterized3(1, 2, x, y, optionsColor, TEXT_SPEED_FF, str);
         break;
     default:
         break;
@@ -523,7 +523,7 @@ static void BufferOptionMenuString(u8 taskId, u8 selection)
 static void DrawTextOption(void)
 {
     FillWindowPixelBuffer(WIN_TEXT_OPTION, PIXEL_FILL(1));
-    AddTextPrinterParameterized(WIN_TEXT_OPTION, 1, gText_Option, 8, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_TEXT_OPTION, 2, gText_Option, 8, 1, TEXT_SPEED_FF, NULL);
     PutWindowTilemap(WIN_TEXT_OPTION);
     CopyWindowToVram(WIN_TEXT_OPTION, COPYWIN_BOTH);
 }
@@ -535,7 +535,7 @@ static void DrawOptionMenuTexts(void)
     FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
     for (i = 0; i < MENUITEM_COUNT; i++)
     {
-        AddTextPrinterParameterized(WIN_OPTIONS, 1, sOptionMenuItemsNames[i], 8, ((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_OPTIONS, 2, sOptionMenuItemsNames[i], 8, ((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);
     }
 }
 

@@ -1,24 +1,7 @@
 mapscripts VioletCity_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_VISITED_VIOLET_CITY)
-		if (var(VAR_VIOLET_CITY_STATE) == 1)
-		{
-			setflag(FLAG_HIDE_MAP_NAME_POPUP)
-		}
     }
-	MAP_SCRIPT_ON_FRAME_TABLE [
-        VAR_VIOLET_CITY_STATE, 1 {
-            lockall
-            pokegearcall(VioletCity_PhoneScript_ElmCall, 1)
-            waitstate
-			setflag(FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET)
-			setflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE)
-			clearflag(FLAG_HIDE_VIOLET_CITY_POKEMON_CENTER_1F_ELMS_AIDE)
-            clearflag(FLAG_HIDE_MAP_NAME_POPUP)
-            setvar(VAR_VIOLET_CITY_STATE, 2)
-            releaseall
-        }
-    ]
 }
 
 script VioletCity_Earl {
@@ -40,7 +23,7 @@ script VioletCity_Earl {
 		msgbox("Is that so? Then study shall you!\n"
 			   "Follow me!")
 		closemessage
-		playbgm(MUS_FOLLOWME, 0)
+		playbgm(MUS_FOLLOW_ME, 0)
 		switch (var(VAR_FACING))
 		{
 			case DIR_SOUTH:
@@ -258,8 +241,8 @@ movement VioletCity_Movement_EarlIntoDoor {
 script VioletCity_GhostGirl {
     msgbox("Ghosts are rumored to appear in\n"
            "SPROUT TOWER.\p"
-           "They said NORMAL-type POKéMON moves\n"
-           "had no effect on ghosts.", MSGBOX_NPC)
+           "They said NORMAL-type POKéMON\n"
+           "moves had no effect on ghosts.", MSGBOX_NPC)
 }
 
 script VioletCity_PrimeTimeGuy {
@@ -288,8 +271,9 @@ script VioletCity_TownSloganSign {
 
 script VioletCity_GymSign {
     msgbox("VIOLET CITY POKéMON GYM\n"
-		   "LEADER: FALKNER\l"
-		   "The Elegant FLYING POKéMON Master", MSGBOX_SIGN)
+		   "LEADER: FALKNER\p"
+		   "The Elegant Master of FLYING\n"
+		   "POKéMON", MSGBOX_SIGN)
 }
 
 script VioletCity_SproutTowerSign {

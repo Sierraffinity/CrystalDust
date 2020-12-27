@@ -122,7 +122,7 @@ BerryTree_EventScript_PickBerry:: @ 8274448
 	special IncrementDailyPickedBerries
 	special ObjectEventInteractionRemoveBerryTree
 	message BerryTree_Text_PickedTheBerry
-	playfanfare MUS_FANFAREEGG
+	playfanfare MUS_OBTAIN_EGG
 	waitmessage
 	waitfanfare
 	waitbuttonpress

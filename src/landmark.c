@@ -61,7 +61,7 @@ static const u8 LandmarkName_TrainerHill[] = _("TRAINER HILL");
 static const struct Landmark Landmark_FlowerShop = {LandmarkName_FlowerShop, FLAG_LANDMARK_DARK_CAVE};
 static const struct Landmark Landmark_IlexForest = {LandmarkName_IlexForest, -1};
 static const struct Landmark Landmark_MrBrineysCottage = {LandmarkName_MrBrineysCottage, FLAG_LANDMARK_SPROUT_TOWER};
-static const struct Landmark Landmark_SproutTower = {LandmarkName_SproutTower, FLAG_LANDMARK_RUINS_OF_ALPH};
+static const struct Landmark Landmark_SproutTower = {LandmarkName_SproutTower, FLAG_LANDMARK_ALPH_CHAMBERS};
 static const struct Landmark Landmark_SeashoreHouse = {LandmarkName_SeashoreHouse, FLAG_LANDMARK_UNION_CAVE};
 static const struct Landmark Landmark_SlateportBeach = {LandmarkName_SlateportBeach, -1};
 static const struct Landmark Landmark_CyclingRoad = {LandmarkName_CyclingRoad, -1};
@@ -69,30 +69,30 @@ static const struct Landmark Landmark_NewMauville = {LandmarkName_NewMauville, F
 static const struct Landmark Landmark_TrickHouse = {LandmarkName_TrickHouse, FLAG_LANDMARK_SLOWPOKE_WELL};
 static const struct Landmark Landmark_OldLadysRestShop = {LandmarkName_OldLadysRestShop, FLAG_LANDMARK_ILEX_FOREST};
 static const struct Landmark Landmark_Desert = {LandmarkName_Desert, -1};
-static const struct Landmark Landmark_WinstrateFamily = {LandmarkName_WinstrateFamily, FLAG_LANDMARK_WINSTRATE_FAMILY};
+static const struct Landmark Landmark_WinstrateFamily = {LandmarkName_WinstrateFamily, FLAG_LANDMARK_RADIO_TOWER};
 static const struct Landmark Landmark_CableCar = {LandmarkName_CableCar, -1};
-static const struct Landmark Landmark_GlassWorkshop = {LandmarkName_GlassWorkshop, FLAG_LANDMARK_GLASS_WORKSHOP};
+static const struct Landmark Landmark_GlassWorkshop = {LandmarkName_GlassWorkshop, FLAG_LANDMARK_NATIONAL_PARK};
 static const struct Landmark Landmark_WeatherInstitute = {LandmarkName_WeatherInstitute, -1};
 static const struct Landmark Landmark_MeteorFalls = {LandmarkName_MeteorFalls, -1};
 static const struct Landmark Landmark_TunnelersRestHouse = {LandmarkName_TunnelersRestHouse, FLAG_LANDMARK_TUNNELERS_REST_HOUSE};
 static const struct Landmark Landmark_UnionCave = {LandmarkName_UnionCave, -1};
-static const struct Landmark Landmark_PokemonDayCare = {LandmarkName_PokemonDayCare, FLAG_LANDMARK_POKEMON_DAYCARE};
+static const struct Landmark Landmark_PokemonDayCare = {LandmarkName_PokemonDayCare, FLAG_LANDMARK_LIGHTHOUSE};
 static const struct Landmark Landmark_SafariZoneEntrance = {LandmarkName_SafariZoneEntrance, -1};
 static const struct Landmark Landmark_MtPyre = {LandmarkName_MtPyre, -1};
 static const struct Landmark Landmark_ShoalCave = {LandmarkName_ShoalCave, -1};
-static const struct Landmark Landmark_SeafloorCavern = {LandmarkName_SeafloorCavern, FLAG_LANDMARK_SEAFLOOR_CAVERN};
+static const struct Landmark Landmark_SeafloorCavern = {LandmarkName_SeafloorCavern, FLAG_LANDMARK_DRAGONS_DEN};
 static const struct Landmark Landmark_DarkCave = {LandmarkName_DarkCave, -1};
 static const struct Landmark Landmark_OceanCurrent = {LandmarkName_OceanCurrent, -1};
-static const struct Landmark Landmark_LanettesHouse = {LandmarkName_LanettesHouse, FLAG_LANDMARK_LANETTES_HOUSE};
-static const struct Landmark Landmark_FieryPath = {LandmarkName_FieryPath, FLAG_LANDMARK_FIERY_PATH};
+static const struct Landmark Landmark_LanettesHouse = {LandmarkName_LanettesHouse, FLAG_LANDMARK_MT_MORTAR};
+static const struct Landmark Landmark_FieryPath = {LandmarkName_FieryPath, FLAG_LANDMARK_LAKE_OF_RAGE};
 static const struct Landmark Landmark_JaggedPass = {LandmarkName_JaggedPass, -1};
 static const struct Landmark Landmark_BerryMastersHouse = {LandmarkName_BerryMastersHouse, FLAG_LANDMARK_BERRY_MASTERS_HOUSE};
-static const struct Landmark Landmark_IslandCave = {LandmarkName_IslandCave, FLAG_LANDMARK_ISLAND_CAVE};
-static const struct Landmark Landmark_DesertRuins = {LandmarkName_DesertRuins, FLAG_LANDMARK_DESERT_RUINS};
-static const struct Landmark Landmark_ScorchedSlab = {LandmarkName_ScorchedSlab, FLAG_LANDMARK_SCORCHED_SLAB};
+static const struct Landmark Landmark_IslandCave = {LandmarkName_IslandCave, FLAG_LANDMARK_ICE_PATH};
+static const struct Landmark Landmark_DesertRuins = {LandmarkName_DesertRuins, FLAG_LANDMARK_SILVER_CAVE};
+static const struct Landmark Landmark_ScorchedSlab = {LandmarkName_ScorchedSlab, FLAG_LANDMARK_TIN_TOWER};
 static const struct Landmark Landmark_AncientTomb = {LandmarkName_AncientTomb, FLAG_LANDMARK_ANCIENT_TOMB};
 static const struct Landmark Landmark_SealedChamber = {LandmarkName_SealedChamber, FLAG_LANDMARK_SEALED_CHAMBER};
-static const struct Landmark Landmark_FossilManiacsHouse = {LandmarkName_FossilManiacsHouse, FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE};
+static const struct Landmark Landmark_FossilManiacsHouse = {LandmarkName_FossilManiacsHouse, FLAG_LANDMARK_WHIRL_ISLANDS};
 static const struct Landmark Landmark_HuntersHouse = {LandmarkName_HuntersHouse, FLAG_LANDMARK_HUNTERS_HOUSE};
 static const struct Landmark Landmark_SkyPillar = {LandmarkName_SkyPillar, FLAG_LANDMARK_SKY_PILLAR};
 static const struct Landmark Landmark_MirageTower = {LandmarkName_MirageTower, FLAG_RECEIVED_SPELL_TAG_FROM_SANTOS};
@@ -125,7 +125,7 @@ static const struct Landmark *const Landmarks_Route33_0[]  =
     NULL,
 };
 
-static const struct Landmark *const Landmarks_Route106_1[]  =
+static const struct Landmark *const Landmarks_Route34_1[]  =
 {
     &Landmark_DarkCave,
     NULL,
@@ -250,7 +250,7 @@ static const struct Landmark *const Landmarks_Route116_2[]  =
     NULL,
 };
 
-static const struct Landmark *const Landmarks_Route117_2[]  =
+static const struct Landmark *const Landmarks_Route45_2[]  =
 {
     &Landmark_PokemonDayCare,
     NULL,
@@ -342,7 +342,7 @@ static const struct LandmarkList gLandmarkLists[] =
     {MAPSEC_ROUTE_32, 0, Landmarks_Route32_0},
     {MAPSEC_ROUTE_32, 1, Landmarks_Route32_1},
     {MAPSEC_ROUTE_33, 0, Landmarks_Route33_0},
-    {MAPSEC_ROUTE_34, 1, Landmarks_Route106_1},
+    {MAPSEC_ROUTE_34, 1, Landmarks_Route34_1},
     {MAPSEC_ROUTE_36, 0, Landmarks_Route36_0},
     {MAPSEC_ROUTE_37, 0, Landmarks_Route109_0},
     {MAPSEC_ROUTE_38, 0, Landmarks_Route110_0},
@@ -363,7 +363,7 @@ static const struct LandmarkList gLandmarkLists[] =
     {MAPSEC_ROUTE_43, 1, Landmarks_MeteorFalls},
     {MAPSEC_ROUTE_44, 1, Landmarks_Route116_1},
     {MAPSEC_ROUTE_44, 2, Landmarks_Route116_2},
-    {MAPSEC_ROUTE_45, 2, Landmarks_Route117_2},
+    {MAPSEC_ROUTE_45, 2, Landmarks_Route45_2},
     {MAPSEC_ROUTE_26, 1, Landmarks_Route119_1},
     {MAPSEC_ROUTE_27, 0, Landmarks_Route120_0},
     {MAPSEC_ROUTE_27, 2, Landmarks_Route120_2},

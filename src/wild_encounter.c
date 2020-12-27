@@ -5,6 +5,7 @@
 #include "pokemon.h"
 #include "metatile_behavior.h"
 #include "fieldmap.h"
+#include "fldeff.h"
 #include "random.h"
 #include "field_player_avatar.h"
 #include "event_data.h"
@@ -14,6 +15,7 @@
 #include "battle_setup.h"
 #include "roamer.h"
 #include "rtc.h"
+#include "sound.h"
 #include "tv.h"
 #include "link.h"
 #include "script.h"
@@ -25,6 +27,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/maps.h"
+#include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/weather.h"
 
@@ -38,9 +41,11 @@ static void FeebasSeedRng(u16 seed);
 static bool8 IsWildLevelAllowedByRepel(u8 level);
 static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
+static void ApplyLongGrassEncounterRateMod(u32 *encRate);
+static void ApplyMusicEncounterRateMod(u32 *encRate);
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u8 ability, u8 *monIndex);
 static bool8 IsAbilityAllowingEncounter(u8 level);
-static u32 GenerateUnownPersonality(void);
+static u32 GenerateUnownPersonality(u32 otId, bool8 forceShiny);
 
 // EWRAM vars
 EWRAM_DATA static u8 sWildEncountersDisabled = 0;
@@ -190,13 +195,6 @@ static u8 ChooseWildMonIndex_WaterRock(void)
         return 4;
 }
 
-enum
-{
-    OLD_ROD,
-    GOOD_ROD,
-    SUPER_ROD
-};
-
 static u8 ChooseWildMonIndex_Fishing(u8 rod)
 {
     u8 wildMonIndex = 0;
@@ -232,6 +230,32 @@ static u8 ChooseWildMonIndex_Fishing(u8 rod)
             wildMonIndex = 9;
         break;
     }
+    return wildMonIndex;
+}
+
+static u8 ChooseWildMonIndex_Tree(bool32 isRare)
+{
+    u8 wildMonIndex = 0;
+    u8 rand = Random() % ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_TOTAL;
+
+    if (rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_0)
+        wildMonIndex = 0;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_0 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_1)
+        wildMonIndex = 1;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_1 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_2)
+        wildMonIndex = 2;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_2 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_3)
+        wildMonIndex = 3;
+    else if (rand >= ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_3 && rand < ENCOUNTER_CHANCE_HEADBUTT_MONS_COMMON_SLOT_4)
+        wildMonIndex = 4;
+    else
+        wildMonIndex = 5;
+    
+    if (isRare)
+    {
+        wildMonIndex += 6;
+    }
+    
     return wildMonIndex;
 }
 
@@ -313,29 +337,27 @@ static u8 PickWildMonNature(void)
     u8 i;
     u8 j;
     struct Pokeblock *safariPokeblock;
-    u8 natures[25];
+    u8 natures[NUM_NATURES];
 
     if (GetSafariZoneFlag() == TRUE && Random() % 100 < 80)
     {
         safariPokeblock = SafariZoneGetActivePokeblock();
         if (safariPokeblock != NULL)
         {
-            for (i = 0; i < 25; i++)
+            for (i = 0; i < NUM_NATURES; i++)
                 natures[i] = i;
-            for (i = 0; i < 24; i++)
+            for (i = 0; i < NUM_NATURES - 1; i++)
             {
-                for (j = i + 1; j < 25; j++)
+                for (j = i + 1; j < NUM_NATURES; j++)
                 {
                     if (Random() & 1)
                     {
-                        u8 temp = natures[i];
-
-                        natures[i] = natures[j];
-                        natures[j] = temp;
+                        u8 temp;
+                        SWAP(natures[i], natures[j], temp);
                     }
                 }
             }
-            for (i = 0; i < 25; i++)
+            for (i = 0; i < NUM_NATURES; i++)
             {
                 if (PokeblockGetGain(natures[i], safariPokeblock) > 0)
                     return natures[i];
@@ -347,14 +369,14 @@ static u8 PickWildMonNature(void)
         && GetMonAbility(&gPlayerParty[0]) == ABILITY_SYNCHRONIZE
         && Random() % 2 == 0)
     {
-        return GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY) % 25;
+        return GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY) % NUM_NATURES;
     }
 
     // random nature
-    return Random() % 25;
+    return Random() % NUM_NATURES;
 }
 
-static void CreateWildMon(u16 species, u8 level)
+static void CreateWildMon(u16 species, u8 level, bool8 forceShiny)
 {
     u32 personality;
     bool32 checkCuteCharm;
@@ -388,20 +410,20 @@ static void CreateWildMon(u16 species, u8 level)
             else
                 gender = MON_FEMALE;
 
-            CreateMonWithGenderNatureLetter(&gEnemyParty[0], species, level, 32, gender, PickWildMonNature(), 0);
+            CreateMonWithGenderNatureLetter(&gEnemyParty[0], species, level, 32, gender, PickWildMonNature(), 0, forceShiny);
             return;
         }
         
-        CreateMonWithNature(&gEnemyParty[0], species, level, 32, PickWildMonNature());
+        CreateMonWithNature(&gEnemyParty[0], species, level, 32, PickWildMonNature(), forceShiny);
     }
     else
     {
-        personality = GenerateUnownPersonality();
-        CreateMon(&gEnemyParty[0], species, level, 32, TRUE, personality, FALSE, 0);
+        personality = GenerateUnownPersonality(T1_READ_32(gSaveBlock2Ptr->playerTrainerId), forceShiny);
+        CreateMon(&gEnemyParty[0], species, level, 32, TRUE, personality, OT_ID_PLAYER_ID, 0);
     }
 }
 
-static u32 GenerateUnownPersonality(void)
+static u32 GenerateUnownPersonality(u32 otId, bool8 forceShiny)
 {
     u8 letter;
     u32 personality;
@@ -434,7 +456,7 @@ static u32 GenerateUnownPersonality(void)
 
     do
     {
-        personality = (Random() << 16) | Random();
+        personality = GenerateMonPersonality(otId, forceShiny);
         letter = GetUnownLetterByPersonalityLoByte(personality);
     } while (!allowedUnownLetters[letter]);
     return personality;
@@ -451,6 +473,7 @@ enum
     WILD_AREA_WATER,
     WILD_AREA_ROCKS,
     WILD_AREA_FISHING,
+    WILD_AREA_TREE,
 };
 
 #define WILD_CHECK_REPEL    0x1
@@ -498,7 +521,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 ar
     if (species == SPECIES_UNOWN && !FlagGet(FLAG_MADE_UNOWN_APPEAR_IN_RUINS))
         return FALSE;
 
-    CreateWildMon(species, level);
+    CreateWildMon(species, level, FALSE);
     return TRUE;
 }
 
@@ -514,8 +537,70 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
     wildMonIndex = ChooseWildMonIndex_Fishing(rod);
     level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[timeOfDay][wildMonIndex]);
 
-    CreateWildMon(wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species, level);
+    CreateWildMon(wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species, level, FALSE);
     return wildMonInfo->wildPokemon[timeOfDay][wildMonIndex].species;
+}
+
+static void GenerateHeadbuttWildMon(const struct WildPokemonInfo *wildMonInfo, bool32 isRare)
+{
+    const u16 asleepSpeciesDay[] = {
+        SPECIES_VENONAT,
+        SPECIES_HOOTHOOT,
+        SPECIES_NOCTOWL,
+        SPECIES_SPINARAK,
+        SPECIES_HERACROSS,
+        SPECIES_NONE
+    };
+
+    const u16 asleepSpeciesNight[] = {
+        SPECIES_CATERPIE,
+        SPECIES_METAPOD,
+        SPECIES_BUTTERFREE,
+        SPECIES_WEEDLE,
+        SPECIES_KAKUNA,
+        SPECIES_BEEDRILL,
+        SPECIES_SPEAROW,
+        SPECIES_EKANS,
+        SPECIES_EXEGGCUTE,
+        SPECIES_LEDYBA,
+        SPECIES_AIPOM,
+        SPECIES_NONE
+    };
+
+    u8 timeOfDay;
+    u8 wildMonIndex;
+    u8 level;
+    const struct WildPokemon *mon;
+    const u16 *asleepSpeciesList;
+
+    RtcCalcLocalTime();
+    timeOfDay = GetCurrentTimeOfDay();
+
+    wildMonIndex = ChooseWildMonIndex_Tree(isRare);
+    mon = &wildMonInfo->wildPokemon[timeOfDay][wildMonIndex];
+    level = ChooseWildMonLevel(mon);
+
+    CreateWildMon(mon->species, level, FALSE);
+
+    switch (timeOfDay)
+    {
+    case TIME_NIGHT:
+        asleepSpeciesList = asleepSpeciesNight;
+        break;
+    default:
+        asleepSpeciesList = asleepSpeciesDay;
+        break;
+    }
+
+    for (; *asleepSpeciesList != SPECIES_NONE; asleepSpeciesList++)
+    {
+        if (*asleepSpeciesList == mon->species)
+        {
+            u32 status = STATUS1_SLEEP;
+            SetMonData(&gEnemyParty[0], MON_DATA_STATUS, &status);
+            break;
+        }
+    }
 }
 
 static bool8 SetUpMassOutbreakEncounter(u8 flags)
@@ -525,7 +610,7 @@ static bool8 SetUpMassOutbreakEncounter(u8 flags)
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(gSaveBlock1Ptr->outbreakPokemonLevel))
         return FALSE;
 
-    CreateWildMon(gSaveBlock1Ptr->outbreakPokemonSpecies, gSaveBlock1Ptr->outbreakPokemonLevel);
+    CreateWildMon(gSaveBlock1Ptr->outbreakPokemonSpecies, gSaveBlock1Ptr->outbreakPokemonLevel, FALSE);
     for (i = 0; i < 4; i++)
         SetMonMoveSlot(&gEnemyParty[0], gSaveBlock1Ptr->outbreakPokemonMoves[i], i);
 
@@ -552,13 +637,16 @@ static bool8 DoWildEncounterRateDiceRoll(u16 encounterRate)
         return FALSE;
 }
 
+// encounter rates here are out of 180
 static bool8 DoWildEncounterRateTest(u32 encounterRate, bool8 ignoreAbility)
 {
     encounterRate *= 16;
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
         encounterRate = encounterRate * 80 / 100;
     ApplyFluteEncounterRateMod(&encounterRate);
     ApplyCleanseTagEncounterRateMod(&encounterRate);
+    ApplyLongGrassEncounterRateMod(&encounterRate);
+    ApplyMusicEncounterRateMod(&encounterRate);
     if (!ignoreAbility && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
     {
         u32 ability = GetMonAbility(&gPlayerParty[0]);
@@ -751,6 +839,50 @@ void RockSmashWildEncounter(void)
     }
 }
 
+void HeadbuttTreeWildEncounter(void)
+{
+    u32 treeScore = HeadbuttTreeScoreCalc();
+    u16 headerId = GetCurrentMapWildMonHeaderId();
+
+    if (headerId != 0xFFFF)
+    {
+        const struct WildPokemonInfo *wildPokemonInfo = gWildMonHeaders[headerId].headbuttMonsInfo;
+        u32 encounterRate = wildPokemonInfo->encounterRate;
+
+        switch (treeScore)
+        {
+        case TREEMON_SCORE_RARE:
+            encounterRate = encounterRate * 80 / 100;
+            break;
+        case TREEMON_SCORE_GOOD:
+            encounterRate = encounterRate * 50 / 100;
+            break;
+        default:
+            encounterRate = encounterRate * 10 / 100;
+            break;
+        }
+
+        if (wildPokemonInfo == NULL)
+        {
+            gSpecialVar_Result = FALSE;
+        }
+        else if (DoWildEncounterRateTest(encounterRate, TRUE) == TRUE)
+        {
+            GenerateHeadbuttWildMon(wildPokemonInfo, treeScore == TREEMON_SCORE_RARE);
+            BattleSetup_StartWildBattle(BATTLE_TYPE_TREE);
+            gSpecialVar_Result = TRUE;
+        }
+        else
+        {
+            gSpecialVar_Result = FALSE;
+        }
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE;
+    }
+}
+
 bool8 SweetScentWildEncounter(void)
 {
     s16 x, y;
@@ -843,7 +975,7 @@ void FishingWildEncounter(u8 rod)
         u8 level = ChooseWildMonLevel(&gWildFeebasRoute119Data);
 
         species = gWildFeebasRoute119Data.species;
-        CreateWildMon(species, level);
+        CreateWildMon(species, level, FALSE);
     }
     else
     {
@@ -1040,6 +1172,34 @@ static void ApplyCleanseTagEncounterRateMod(u32 *encRate)
         *encRate = *encRate * 2 / 3;
 }
 
+// double encounter rate in long grass
+static void ApplyLongGrassEncounterRateMod(u32 *encRate)
+{
+    u16 tileBehavior;
+    s16 x, y;
+
+    PlayerGetDestCoords(&x, &y);
+    tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+
+    if (MetatileBehavior_IsAnyLongGrass(tileBehavior))
+        *encRate *= 2;
+}
+
+// change encounter rate when listening to music from the radio
+static void ApplyMusicEncounterRateMod(u32 *encRate)
+{
+    switch (GetCurrentMapMusic())
+    {
+        case MUS_POKEMON_MARCH:
+        case MUS_UNOWN_RADIO:
+            *encRate *= 2;
+            break;
+        case MUS_POKEMON_LULLABY:
+            *encRate /= 2;
+            break;
+    }
+}
+
 u16 GetMapWildMonFromIndex(u8 mapGroup, u8 mapNum, u8 index)
 {
     u16 i = 0xFFFF;
@@ -1081,3 +1241,11 @@ u16 GetMapWildMonFromIndex(u8 mapGroup, u8 mapNum, u8 index)
 
 	return i;
 }
+
+#if DEBUG
+void Debug_StartWildBattle(u16 species, u8 level, u32 flags, bool8 forceShiny)
+{
+    CreateWildMon(species, level, forceShiny);
+    BattleSetup_StartWildBattle(flags);
+}
+#endif

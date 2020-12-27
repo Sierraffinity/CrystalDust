@@ -14,16 +14,12 @@ EventScript_DistinguishedStatue::
 	msgbox Text_DistinguishedStatue, MSGBOX_SIGN
 	end
 
-EventScript_PictureBookShelf:: @ 82725CE
+EventScript_PictureBookShelf::
 	msgbox Text_PictureBookShelf, MSGBOX_SIGN
 	end
 
-EventScript_BookShelf:: @ 82725D7
+EventScript_BookShelf::
 	msgbox Text_BookShelf, MSGBOX_SIGN
-	end
-
-EventScript_DifficultBookShelf::
-	msgbox Text_DifficultBooks, MSGBOX_SIGN
 	end
 
 EventScript_PokemonCenterBookShelf:: @ 82725E0

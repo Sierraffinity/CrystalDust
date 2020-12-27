@@ -1,0 +1,43 @@
+mapscripts GoldenrodCity_BikeShop_MapScripts {}
+
+script GoldenrodCity_BikeShop_EventScript_Owner {
+    lock
+    faceplayer
+    if (flag(FLAG_RECEIVED_BIKE))
+    {
+        msgbox(GoldenrodCity_BikeShop_Text_OwnerPostGiveBike)
+    }
+    else
+    {
+        msgbox("…sigh… I moved here, but I can't\n"
+               "sell my BICYCLES. Why is that?\p"
+               "Could you ride a BICYCLE and\n"
+               "advertise for me?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == NO)
+        {
+            msgbox("…sigh…\n"
+                   "Oh, for the kindness of people…")
+        }
+        else
+        {
+            msgbox("Really? Great!\p"
+                   "Give me your name and phone number,\n"
+                   "and I'll loan you a BICYCLE.")
+            giveitem_msg("{PLAYER} borrowed a BICYCLE\n"
+                         "from the owner.", ITEM_BICYCLE)
+            setflag(FLAG_RECEIVED_BIKE)
+            setflag(FLAG_BIKE_SHOP_LOAN_ACTIVE)
+            msgbox(GoldenrodCity_BikeShop_Text_OwnerPostGiveBike)
+        }
+    }
+    release
+}
+
+text GoldenrodCity_BikeShop_Text_OwnerPostGiveBike {
+    "My BICYCLES are first-rate!\n"
+    "You can ride them anywhere."
+}
+
+script GoldenrodCity_BikeShop_EventScript_Bicycles {
+    msgbox("It's a shiny new BICYCLE!", MSGBOX_SIGN)
+}

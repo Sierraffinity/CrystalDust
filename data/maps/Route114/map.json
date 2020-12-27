@@ -194,7 +194,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_POOCHYENA",
+      "graphics_id": "OBJ_EVENT_GFX_MARILL",
       "x": 19,
       "y": 12,
       "elevation": 3,
@@ -409,7 +409,7 @@
       "x": 8,
       "y": 63,
       "elevation": 0,
-      "dest_map": "MAP_METEOR_FALLS_1F_1R",
+      "dest_map": "MAP_RADIO_TOWER_1F",
       "dest_warp_id": 0
     },
     {

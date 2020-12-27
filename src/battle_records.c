@@ -282,8 +282,8 @@ static void PrintLinkBattleWinsLossesDraws(struct LinkBattleRecord *records)
     ConvertIntToDecimalStringN(gStringVar3, GetGameStat(GAME_STAT_LINK_BATTLE_DRAWS), STR_CONV_MODE_LEFT_ALIGN, 4);
     StringExpandPlaceholders(gStringVar4, gText_TotalRecordWLD);
 
-    x = GetStringCenterAlignXOffset(1, gStringVar4, 0xD0);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar4, x, 0x11, 0, NULL);
+    x = GetStringCenterAlignXOffset(2, gStringVar4, 0xD0);
+    AddTextPrinterParameterized(gRecordsWindowId, 2, gStringVar4, x, 0x11, 0, NULL);
 }
 
 static void PrintLinkBattleRecord(struct LinkBattleRecord *record, u8 y, s32 language)
@@ -291,10 +291,10 @@ static void PrintLinkBattleRecord(struct LinkBattleRecord *record, u8 y, s32 lan
     if (record->wins == 0 && record->losses == 0 && record->draws == 0)
     {
         // empty slot
-        AddTextPrinterParameterized(gRecordsWindowId, 1, sText_DashesNoPlayer,   8, (y * 8) + 1, 0, NULL);
-        AddTextPrinterParameterized(gRecordsWindowId, 1, sText_DashesNoScore,  80, (y * 8) + 1, 0, NULL);
-        AddTextPrinterParameterized(gRecordsWindowId, 1, sText_DashesNoScore, 128, (y * 8) + 1, 0, NULL);
-        AddTextPrinterParameterized(gRecordsWindowId, 1, sText_DashesNoScore, 176, (y * 8) + 1, 0, NULL);
+        AddTextPrinterParameterized(gRecordsWindowId, 2, sText_DashesNoPlayer,   8, (y * 8) + 1, 0, NULL);
+        AddTextPrinterParameterized(gRecordsWindowId, 2, sText_DashesNoScore,  80, (y * 8) + 1, 0, NULL);
+        AddTextPrinterParameterized(gRecordsWindowId, 2, sText_DashesNoScore, 128, (y * 8) + 1, 0, NULL);
+        AddTextPrinterParameterized(gRecordsWindowId, 2, sText_DashesNoScore, 176, (y * 8) + 1, 0, NULL);
     }
     else
     {
@@ -302,16 +302,16 @@ static void PrintLinkBattleRecord(struct LinkBattleRecord *record, u8 y, s32 lan
         StringCopyN(gStringVar1, record->name, 7);
         ConvertInternationalString(gStringVar1, language);
 
-        AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar1, 8, (y * 8) + 1, 0, NULL);
+        AddTextPrinterParameterized(gRecordsWindowId, 2, gStringVar1, 8, (y * 8) + 1, 0, NULL);
 
         ConvertIntToDecimalStringN(gStringVar1, record->wins, STR_CONV_MODE_RIGHT_ALIGN, 4);
-        AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar1,  80, (y * 8) + 1, 0, NULL);
+        AddTextPrinterParameterized(gRecordsWindowId, 2, gStringVar1,  80, (y * 8) + 1, 0, NULL);
 
         ConvertIntToDecimalStringN(gStringVar1, record->losses, STR_CONV_MODE_RIGHT_ALIGN, 4);
-        AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar1, 128, (y * 8) + 1, 0, NULL);
+        AddTextPrinterParameterized(gRecordsWindowId, 2, gStringVar1, 128, (y * 8) + 1, 0, NULL);
 
         ConvertIntToDecimalStringN(gStringVar1, record->draws, STR_CONV_MODE_RIGHT_ALIGN, 4);
-        AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar1, 176, (y * 8) + 1, 0, NULL);
+        AddTextPrinterParameterized(gRecordsWindowId, 2, gStringVar1, 176, (y * 8) + 1, 0, NULL);
     }
 }
 
@@ -324,12 +324,12 @@ void ShowLinkBattleRecords(void)
     FillWindowPixelBuffer(gRecordsWindowId, PIXEL_FILL(1));
     StringExpandPlaceholders(gStringVar4, gText_PlayersBattleResults);
 
-    x = GetStringCenterAlignXOffset(1, gStringVar4, 208);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar4, x, 1, 0, NULL);
+    x = GetStringCenterAlignXOffset(2, gStringVar4, 208);
+    AddTextPrinterParameterized(gRecordsWindowId, 2, gStringVar4, x, 1, 0, NULL);
     PrintLinkBattleWinsLossesDraws(gSaveBlock1Ptr->linkBattleRecords.entries);
 
     StringExpandPlaceholders(gStringVar4, gText_WinLoseDraw);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar4, 0, 41, 0, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 2, gStringVar4, 0, 41, 0, NULL);
 
     for (i = 0; i < LINK_B_RECORDS_COUNT; i++)
     {
@@ -356,7 +356,7 @@ static void Task_CloseTrainerHillRecordsOnButton(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
-    if (gMain.newKeys & A_BUTTON || gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         task->func = Task_BeginPaletteFade;
@@ -485,7 +485,7 @@ static void CB2_ShowTrainerHillRecords(void)
         gMain.state++;
         break;
     case 2:
-        sTilemapBuffer = AllocZeroed(0x800);
+        sTilemapBuffer = AllocZeroed(BG_SCREEN_SIZE);
         ResetBgsAndClearDma3BusyFlags(0);
         InitBgsFromTemplates(0, sTrainerHillRecordsBgTemplates, ARRAY_COUNT(sTrainerHillRecordsBgTemplates));
         SetBgTilemapBuffer(3, sTilemapBuffer);
@@ -494,7 +494,7 @@ static void CB2_ShowTrainerHillRecords(void)
         break;
     case 3:
         LoadTrainerHillRecordsWindowGfx(3);
-        LoadPalette(stdpal_get(0), 0xF0, 0x20);
+        LoadPalette(GetTextWindowPalette(0), 0xF0, 0x20);
         gMain.state++;
         break;
     case 4:

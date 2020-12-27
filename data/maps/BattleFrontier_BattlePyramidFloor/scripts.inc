@@ -28,12 +28,12 @@ BattleFrontier_BattlePyramidFloor_EventScript_UpdateLightLoop:: @ 8252A77
 	end
 
 BattleFrontier_BattlePyramidFloor_EventScript_ShowMapName:: @ 8252A8F
-	special ShowMapNamePopup
+	special Special_ShowMapNamePopup
 	setvar VAR_TEMP_F, 0
 	end
 
 BattleFrontier_BattlePyramidFloor_EventScript_PlayPyramidMusic:: @ 8252A98
-	playbgm MUS_PYRAMID, 0
+	playbgm MUS_B_PYRAMID, 0
 	setvar VAR_TEMP_E, 1
 	end
 
@@ -63,6 +63,8 @@ BattleFrontier_BattlePyramidFloor_EventScript_ResetParty:: @ 8252B39
 	pyramid_resetparty
 	end
 
+BattleFrontier_BattlePyramid_EventScript_WarpToLobbyWhiteOut::
+	msgbox gText_PlayerWhitedOut
 BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost:: @ 8252B42
 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST
 	pyramid_set PYRAMID_DATA_TRAINER_FLAGS, 255

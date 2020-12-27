@@ -1,0 +1,102 @@
+mapscripts GoldenrodCity_NameRatersHouse_MapScripts {}
+
+script GoldenrodCity_NameRatersHouse_EventScript_NameRater {
+    lock
+    faceplayer
+    msgbox("Hello, hello!\n"
+           "I'm the NAME RATER.\p"
+           "I rate the names of POKéMON.\n"
+           "Would you like me to rate names?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        msgbox("Which POKéMON's nickname should\n"
+               "I rate for you?")
+        special(ChoosePartyMon)
+        waitstate
+        if (var(VAR_0x8004) != 0xFF)
+        {
+            specialvar(VAR_RESULT, ScriptGetPartyMonSpecies)
+            if (var(VAR_RESULT) == SPECIES_EGG)
+            {
+                msgbox("Whoa…\n"
+                       "That's just an EGG.")
+            }
+            else
+            {
+                bufferpartymonnick(0, VAR_0x8004)
+                special(IsMonOTIDNotPlayers)
+                if (var(VAR_RESULT) == TRUE)
+                {
+                    goto(GoldenrodCity_NameRatersHouse_EventScript_NameRater_OTMismatch)
+                }
+                else
+                {
+                    specialvar(VAR_RESULT, MonOTNameNotPlayer)
+                    bufferpartymonnick(0, VAR_0x8004)
+                    if (var(VAR_RESULT) == TRUE)
+                    {
+                        goto(GoldenrodCity_NameRatersHouse_EventScript_NameRater_OTMismatch)
+                    }
+                    else
+                    {
+                        msgbox("Hm… {STR_VAR_1}…\n"
+                               "That's a fairly decent name.\p"
+                               "But, how about a slightly better\n"
+                               "nickname?\p"
+                               "Want me to give it a better name?", MSGBOX_YESNO)
+                        if (var(VAR_RESULT) == YES)
+                        {
+                            msgbox("All right.\n"
+                                   "What name should we give it, then?")
+                            call(Common_EventScript_NameReceivedPartyMon)
+                            bufferpartymonnick(0, VAR_0x8004)
+                            specialvar(VAR_RESULT, NameRaterWasNicknameChanged)
+                            if (var(VAR_RESULT) == TRUE)
+                            {
+                                msgbox("Done! From now on, this POKéMON\n"
+                                       "shall be known as {STR_VAR_1}!\p"
+                                       "That's a better name than before!\n"
+                                       "Well done!")
+                            }
+                            else
+                            {
+                                msgbox("Done! From now on, this POKéMON\n"
+                                       "shall be known as {STR_VAR_1}!\p"
+                                       "It might look the same as before,\n"
+                                       "but this new name is much better!\l"
+                                       "Well done!")
+                            }
+                        }
+                        else
+                        {
+                            goto(GoldenrodCity_NameRatersHouse_EventScript_NameRater_Cancel)
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            goto(GoldenrodCity_NameRatersHouse_EventScript_NameRater_Cancel)
+        }
+    }
+    else
+    {
+        goto(GoldenrodCity_NameRatersHouse_EventScript_NameRater_Cancel)
+    }
+    release
+}
+
+script GoldenrodCity_NameRatersHouse_EventScript_NameRater_Cancel {
+    msgbox("Okay, then.\n"
+           "Come again sometime.")
+    release
+}
+
+script GoldenrodCity_NameRatersHouse_EventScript_NameRater_OTMismatch {
+    msgbox("Hm… {STR_VAR_1}?\n"
+           "What a great name!\p"
+           "It's perfect. Treat {STR_VAR_1}\n"
+           "with loving care.")
+    release
+}

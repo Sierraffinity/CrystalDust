@@ -1,0 +1,405 @@
+const OBJ_EVT_MOM = 1
+
+mapscripts NewBarkTown_PlayersHouse_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (var(VAR_PLAYER_HOUSE_STATE) != 0)
+        {
+            gettime
+            if (var(VAR_0x8002) == TIME_MORNING)
+            {
+                setobjectxyperm(OBJ_EVT_MOM, 2, 2)
+                setobjectmovementtype(OBJ_EVT_MOM, MOVEMENT_TYPE_FACE_UP)
+            }
+            elif (var(VAR_0x8002) == TIME_NIGHT)
+            {
+                setobjectxyperm(OBJ_EVT_MOM, 1, 2)
+                setobjectmovementtype(OBJ_EVT_MOM, MOVEMENT_TYPE_FACE_UP)
+            }
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_PLAYER_HOUSE_STATE, 0 : NewBarkTown_PlayersHouse_1F_MomEncounter
+    ]
+}
+
+script NewBarkTown_PlayersHouse_1F_MomEncounter {
+    lockall
+    textcolor(MSG_COLOR_RED)
+    playse(SE_PIN)
+    applymovement(OBJ_EVT_MOM, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(OBJ_EVT_MOM, Common_Movement_Delay48)
+    waitmovement(0)
+    playbgm(MUS_MOMS_THEME, 0)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown)
+    applymovement(OBJ_EVT_MOM, NewBarkTown_PlayersHouse_1F_MomWalkToPlayer)
+    waitmovement(0)
+    delay(20)
+    msgbox("MOM: Oh, {PLAYER}…!\p"
+           "Our neighbor, PROF. ELM, was just\n"
+           "looking for you.\p"
+           "He said he wanted you to do\n"
+           "something for him.\p"
+           "Oh, I almost forgot! Your POKéMON\n"
+           "GEAR is back from the repair shop.\l"
+           "Here you go!")
+    textcolor(MSG_COLOR_PREV)
+    playfanfare(MUS_OBTAIN_ITEM)
+    message("{PLAYER} received the POKéGEAR.")
+    waitfanfare
+    setflag(FLAG_SYS_POKEGEAR_GET)
+    setflag(FLAG_PHONE_CARD_MOM)
+    textcolor(MSG_COLOR_RED)
+    msgbox("POKéMON GEAR, or just POKéGEAR.\n"
+           "It's essential if you want to be\l"
+           "a good TRAINER.\p"
+           "Oh, the day of the week isn't set.\n"
+           "You mustn't forget that!")
+    call(NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek)
+    call(NewBarkTown_PlayersHouse_1F_MomDaylightSaving)
+    msgbox("Come home to adjust your clock for\n"
+           "Daylight Saving Time.\p"
+           "By the way, do you know how to\n"
+           "use the PHONE?", MSGBOX_YESNO)
+
+    if (var(VAR_RESULT) == NO)
+    {
+        msgbox("I'll read the instructions.\p"
+               "“Turn the POKéGEAR on and select\n"
+               "the PHONE icon by scrolling to it.\p"
+               "“Phone numbers are stored in memory.\n"
+               "Just choose who you want to call.”\p"
+               "Gee, isn't that convenient?")
+    }
+    else
+    {
+        msgbox("Don't you just turn the POKéGEAR on\n"
+               "and select the PHONE icon?\p"
+               "“Phone numbers are stored in memory.\n"
+               "Just choose who you want to call.”\p"
+               "Gee, isn't that convenient?")
+    }
+
+    closemessage
+    savebgm(MUS_DUMMY)
+    fadedefaultbgm
+    applymovement(OBJ_EVT_MOM, NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer)
+    waitmovement(0)
+    setvar(VAR_PLAYER_HOUSE_STATE, 1)
+    setrespawn(HEAL_LOCATION_NEW_BARK_TOWN)   // TODO: This should really be for player's room 2F, or do the FR approach
+    releaseall
+}
+
+script NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek {
+    message("What day is it?")
+    waitmessage
+    setvar(VAR_0x8004, SCROLL_MULTI_DAY_OF_WEEK)
+    setvar(VAR_0x8005, 0)
+    special(ShowScrollableMultichoice)
+    waitstate
+    copyvar(VAR_0x8004, VAR_RESULT)
+    special(CopyDayOfWeekStringToVar1)
+    msgbox("{STR_VAR_1}, is it?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO)
+    {
+        goto(NewBarkTown_PlayersHouse_1F_MomWhatDayOfWeek)
+    }
+    special(SetDayOfWeek)
+}
+
+script NewBarkTown_PlayersHouse_1F_MomDaylightSaving {
+    msgbox("Is it Daylight Saving Time now?", MSGBOX_YESNO)
+    special(WriteCurrentTimeStringToStrVar1)
+
+    if (var(VAR_RESULT) == NO)
+    {
+        copyvar(VAR_0x8004, VAR_RESULT)
+        special(SetInitialDSTMode)
+        msgbox("{STR_VAR_1}, is that correct?", MSGBOX_YESNO)
+    }
+    else
+    {
+        copyvar(VAR_0x8004, VAR_RESULT)
+        special(SetInitialDSTMode)
+        msgbox("{STR_VAR_1} DST, is that correct?", MSGBOX_YESNO)
+    }
+    
+    if (var(VAR_RESULT) == NO)
+    {
+        goto(NewBarkTown_PlayersHouse_1F_MomDaylightSaving)
+    }
+}
+
+movement NewBarkTown_PlayersHouse_1F_MomWalkToPlayer {
+    walk_up
+    walk_right
+    walk_up
+}
+
+movement NewBarkTown_PlayersHouse_1F_MomWalkAwayFromPlayer {
+    walk_down
+    walk_left
+    walk_down
+    walk_in_place_fastest_left
+}
+
+script NewBarkTown_PlayersHouse_1F_MomTalk {
+    lock
+    faceplayer
+    if (flag(FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM))
+    {
+        msgbox("MOM: {PLAYER}, do it!\n"
+               "I'm behind you all the way!")
+    }
+    elif (flag(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST))
+    {
+        msgbox("MOM: Hi! Welcome home!\n"
+               "You're trying very hard, I see.\p"
+               "I've kept your room tidy…\n"
+               "Or is this about your money?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBank)
+        }
+        else
+        {
+            gettime
+            special(GetDSTMode)
+            if (var(VAR_RESULT) == TRUE)
+            {
+                if (var(VAR_0x8000) == 0) // 12 AM
+                {
+                    call(NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet)
+                }
+                else
+                {
+                    msgbox("Is Daylight Saving Time over?", MSGBOX_YESNO)
+                    if (var(VAR_RESULT) == YES)
+                    {
+                        special(SwitchDSTMode)
+                        msgbox("I put the clock back one hour.")
+                    }
+                }
+            }
+            else
+            {
+                if (var(VAR_0x8000) == 23) // 11 PM
+                {
+                    call(NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet)
+                }
+                else
+                {
+                    msgbox("Do you want to switch to Daylight\n"
+                           "Saving Time?", MSGBOX_YESNO)
+                    if (var(VAR_RESULT) == YES)
+                    {
+                        special(SwitchDSTMode)
+                        msgbox("I set the clock forward by one hour.")
+                    }
+                }
+            }
+        }
+        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+    }
+    elif (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+    {
+        setflag(FLAG_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST)
+        setflag(FLAG_PLAYER_MUST_LEAVE_HOUSE_TO_BANK_WITH_MOM)
+        setvar(VAR_ROUTE31_STATE, 1)
+        msgbox("MOM: Wow, that's a cute POKéMON.\n"
+               "Where did you get it?\p"
+               "…\p"
+               "So, you're leaving on an adventure…\p"
+               "Okay! I'll help too.\n"
+               "But what can I do for you?\p"
+               "I know!\n"
+               "I'll save money for you.\p"
+               "On a long journey, money is very\n"
+               "important.\p"
+               "Do you want me to save your money?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            setflag(FLAG_SYS_MOM_BANKING_ENABLED)
+            msgbox("Okay, I'll take care of your money.\n"
+                   "………………")
+        }
+        msgbox("Be careful.\p"
+               "POKéMON are your friends.\n"
+               "You need to work as a team.\p"
+               "Now, go on!")
+    }
+    elif (flag(FLAG_SYS_POKEMON_GET))
+    {
+        msgbox("MOM: So, what was PROF. ELM's\n"
+               "errand?\p"
+               "…\n"
+               "That does sound challenging.\p"
+               "But, you should be proud that\n"
+               "people rely on you.")
+    }
+    else
+    {
+        msgbox("MOM: PROF. ELM is waiting for you.\n"
+               "Hurry up, baby!")
+    }
+    release
+}
+
+text NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan {
+    "Just do what you can."
+}
+
+script NewBarkTown_PlayersHouse_1F_EventScript_MomBank {
+    message("What do you want to do?")
+    waitmessage
+    multichoice(0, 0, MULTI_MOM_BANK, FALSE)
+    switch (var(VAR_RESULT))
+    {
+    case 0:
+        // take
+        call(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
+    case 1:
+        // deposit
+        call(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
+    case 2:
+        msgbox("Do you want to save some money?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            setflag(FLAG_SYS_MOM_BANKING_ENABLED)
+            msgbox("Okay, I'll save your money.\n"
+                   "Trust me!\p"
+                   "{PLAYER}, stick with it!")
+        }
+        else
+        {
+            clearflag(FLAG_SYS_MOM_BANKING_ENABLED)
+            msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+        }
+    default:
+        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+    }
+    release
+}
+
+script NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw {
+    setvar(VAR_0x8004, 0)
+    special(MomBank)
+    waitstate
+    switch (var(VAR_RESULT))
+    {
+    case 0:
+        // withdraw success
+        playse(SE_SHOP)
+        waitse
+        msgbox("{PLAYER}, don't give up!")
+    case 1:
+        // not enough in bank
+        msgbox("You haven't saved that much.")
+        goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
+    case 2:
+        // too much in wallet
+        msgbox("You can't take that much.")
+        goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankWithdraw)
+    default:
+        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+    }
+}
+
+script NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit {
+    setvar(VAR_0x8004, 1)
+    special(MomBank)
+    waitstate
+    switch (var(VAR_RESULT))
+    {
+    case 0:
+        // deposit success
+        playse(SE_SHOP)
+        waitse
+        msgbox("Your money's safe here!\n"
+                "Get going!")
+    case 1:
+        // not enough in wallet
+        msgbox("You don't have that much.")
+        goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
+    case 2:
+        // too much in bank
+        msgbox("You can't save that much.")
+        goto(NewBarkTown_PlayersHouse_1F_EventScript_MomBankDeposit)
+    default:
+        msgbox(NewBarkTown_PlayersHouse_1F_EventScript_MomJustDoWhatYouCan)
+    }
+}
+
+script NewBarkTown_PlayersHouse_1F_EventScript_MomLostBooklet {
+    msgbox("Do you want to adjust your clock for\n"
+           "Daylight Saving Time?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        msgbox("I think I lost the instruction\n"
+               "booklet for the POKéGEAR…\p"
+               "I need to go look for it.\n"
+               "Come back again in a while.")
+    }
+}
+
+script NewBarkTown_PlayersHouse_1F_NeighborTalk {
+    lock
+    faceplayer
+    gettime
+    if (var(VAR_0x8002) == TIME_MORNING)
+    {
+        msgbox("Good morning, {PLAYER}!\n"
+               "I'm visiting!\p", MSGBOX_CONTINUE)
+    }
+    elif (var(VAR_0x8002) == TIME_DAY)
+    {
+        msgbox("Hello, {PLAYER}!\n"
+               "I'm visiting!\p", MSGBOX_CONTINUE)
+    }
+    elif (var(VAR_0x8002) == TIME_NIGHT)
+    {
+        msgbox("Good evening, {PLAYER}!\n"
+               "I'm visiting!\p", MSGBOX_CONTINUE)
+    }
+    msgbox("{PLAYER}, have you heard?\p"
+           "My daughter is adamant about\n"
+           "becoming PROF. ELM's assistant.\l"
+           "She really loves POKéMON!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    release
+}
+
+script NewBarkTown_PlayersHouse_1F_TV {
+    msgbox("There's a movie on TV.\n"
+           "Stars dot the sky as two boys\l"
+           "ride on a train…\p"
+           "I'd better get rolling too!", MSGBOX_SIGN)
+}
+
+script NewBarkTown_PlayersHouse_1F_Stove {
+    lock
+    random(1000)
+    if (var(VAR_RESULT) == 0)
+    {
+        msgbox("A ADEPT ARRANGING FOR MOTHER\n"
+               "VOLCANO BAKEMEAT.")
+    }
+    else
+    {
+        msgbox("It's Mom's specialty, the\n"
+               "CINNABAR VOLCANO BURGER!")
+    }
+    release
+}
+
+script NewBarkTown_PlayersHouse_1F_Sink {
+    msgbox("The sink is spotless.\n"
+           "Mom likes to keep it clean.", MSGBOX_SIGN)
+}
+
+script NewBarkTown_PlayersHouse_1F_Fridge {
+    msgbox("Let's see what's in the fridge…\p"
+           "FRESH WATER and tasty LEMONADE!", MSGBOX_SIGN)
+}

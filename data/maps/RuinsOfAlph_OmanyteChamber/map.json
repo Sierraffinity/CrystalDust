@@ -1,39 +1,43 @@
 {
-    "allow_cycling": false,
-    "allow_escaping": true,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER",
-    "layout": "LAYOUT_RUINS_OF_ALPH_OMANYTE_CHAMBER",
-    "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_ILEXFOREST",
-    "name": "RuinsOfAlph_OmanyteChamber",
-    "object_events": [
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_RUINS_OF_ALPH",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
-            "dest_warp_id": 0,
-            "elevation": 3,
-            "x": 3,
-            "y": 7
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
-            "dest_warp_id": 0,
-            "elevation": 3,
-            "x": 4,
-            "y": 7
-        }
-    ],
-    "weather": "WEATHER_NONE"
+  "id": "MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER",
+  "name": "RuinsOfAlph_OmanyteChamber",
+  "layout": "LAYOUT_RUINS_OF_ALPH_OMANYTE_CHAMBER",
+  "music": "MUS_ILEX_FOREST",
+  "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 4,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

@@ -9,6 +9,7 @@
 #include "gfx.h"
 #include "convert_png.h"
 #include "jasc_pal.h"
+#include "act.h"
 #include "lz.h"
 #include "rl.h"
 #include "font.h"
@@ -33,6 +34,10 @@ void ConvertGbaToPng(char *inputPath, char *outputPath, struct GbaToPngOptions *
         {
             ReadGbaPalette(options->paletteFilePath, &image.palette);
         }
+        else if (strcmp(paletteFileExtension, "act") == 0)
+        {
+            ReadActPalette(options->paletteFilePath, &image.palette);
+        }
         else
         {
             ReadJascPalette(options->paletteFilePath, &image.palette);
@@ -45,7 +50,20 @@ void ConvertGbaToPng(char *inputPath, char *outputPath, struct GbaToPngOptions *
         image.hasPalette = false;
     }
 
-    // TODO: Figure out why anyone would ever invert this shit.
+    if (options->tilemapFilePath != NULL)
+    {
+        int fileSize;
+        image.tilemap.data.affine = ReadWholeFile(options->tilemapFilePath, &fileSize);
+        if (options->isAffineMap && options->bitDepth != 8)
+            FATAL_ERROR("affine maps are necessarily 8bpp\n");
+        image.isAffine = options->isAffineMap;
+        image.tilemap.size = fileSize;
+    }
+    else
+    {
+        image.tilemap.data.affine = NULL;
+    }
+
     ReadImage(inputPath, options->width, options->bitDepth, options->metatileWidth, options->metatileHeight, &image, !image.hasPalette);
 
     image.hasTransparency = options->hasTransparency;
@@ -60,6 +78,7 @@ void ConvertPngToGba(char *inputPath, char *outputPath, struct PngToGbaOptions *
     struct Image image;
 
     image.bitDepth = options->bitDepth;
+    image.tilemap.data.affine = NULL; // initialize to NULL to avoid issues in FreeImage
 
     ReadPng(inputPath, &image);
 
@@ -78,6 +97,8 @@ void HandleGbaToPngCommand(char *inputPath, char *outputPath, int argc, char **a
     options.width = 1;
     options.metatileWidth = 1;
     options.metatileHeight = 1;
+    options.tilemapFilePath = NULL;
+    options.isAffineMap = false;
 
     for (int i = 3; i < argc; i++)
     {
@@ -135,6 +156,17 @@ void HandleGbaToPngCommand(char *inputPath, char *outputPath, int argc, char **a
             if (options.metatileHeight < 1)
                 FATAL_ERROR("metatile height must be positive.\n");
         }
+        else if (strcmp(option, "-tilemap") == 0)
+        {
+            if (i + 1 >= argc)
+                FATAL_ERROR("No tilemap value following \"-tilemap\".\n");
+            i++;
+            options.tilemapFilePath = argv[i];
+        }
+        else if (strcmp(option, "-affine") == 0)
+        {
+            options.isAffineMap = true;
+        }
         else
         {
             FATAL_ERROR("Unrecognized option \"%s\".\n", option);
@@ -156,6 +188,8 @@ void HandlePngToGbaCommand(char *inputPath, char *outputPath, int argc, char **a
     options.bitDepth = bitDepth;
     options.metatileWidth = 1;
     options.metatileHeight = 1;
+    options.tilemapFilePath = NULL;
+    options.isAffineMap = false;
 
     for (int i = 3; i < argc; i++)
     {
@@ -225,6 +259,14 @@ void HandlePngToGbaPaletteCommand(char *inputPath, char *outputPath, int argc UN
     WriteGbaPalette(outputPath, &palette);
 }
 
+void HandlePngToActPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
+{
+    struct Palette palette = {};
+
+    ReadPngPalette(inputPath, &palette);
+    WriteActPalette(outputPath, &palette);
+}
+
 void HandleGbaToJascPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
 {
     struct Palette palette = {};
@@ -270,9 +312,71 @@ void HandleJascToGbaPaletteCommand(char *inputPath, char *outputPath, int argc, 
     WriteGbaPalette(outputPath, &palette);
 }
 
+void HandleGbaToActPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
+{
+    struct Palette palette = {};
+
+    ReadGbaPalette(inputPath, &palette);
+    WriteActPalette(outputPath, &palette);
+}
+
+void HandleActToGbaPaletteCommand(char *inputPath, char *outputPath, int argc, char **argv)
+{
+    int numColors = 0;
+
+    for (int i = 3; i < argc; i++)
+    {
+        char *option = argv[i];
+
+        if (strcmp(option, "-num_colors") == 0)
+        {
+            if (i + 1 >= argc)
+                FATAL_ERROR("No number of colors following \"-num_colors\".\n");
+
+            i++;
+
+            if (!ParseNumber(argv[i], NULL, 10, &numColors))
+                FATAL_ERROR("Failed to parse number of colors.\n");
+
+            if (numColors < 1)
+                FATAL_ERROR("Number of colors must be positive.\n");
+        }
+        else
+        {
+            FATAL_ERROR("Unrecognized option \"%s\".\n", option);
+        }
+    }
+
+    struct Palette palette = {};
+
+    ReadActPalette(inputPath, &palette);
+
+    if (numColors != 0)
+        palette.numColors = numColors;
+
+    WriteGbaPalette(outputPath, &palette);
+}
+
+void HandleJascToActPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
+{
+    struct Palette palette = {};
+
+    ReadJascPalette(inputPath, &palette);
+    WriteActPalette(outputPath, &palette);
+}
+
+void HandleActToJascPaletteCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
+{
+    struct Palette palette = {};
+
+    ReadActPalette(inputPath, &palette);
+    WriteJascPalette(outputPath, &palette);
+}
+
 void HandleLatinFontToPngCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
 {
     struct Image image;
+    image.tilemap.data.affine = NULL; // initialize to NULL to avoid issues in FreeImage
 
     ReadLatinFont(inputPath, &image);
     WritePng(outputPath, &image);
@@ -283,6 +387,7 @@ void HandleLatinFontToPngCommand(char *inputPath, char *outputPath, int argc UNU
 void HandlePngToLatinFontCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
 {
     struct Image image;
+    image.tilemap.data.affine = NULL; // initialize to NULL to avoid issues in FreeImage
 
     image.bitDepth = 2;
 
@@ -295,6 +400,7 @@ void HandlePngToLatinFontCommand(char *inputPath, char *outputPath, int argc UNU
 void HandleHalfwidthJapaneseFontToPngCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
 {
     struct Image image;
+    image.tilemap.data.affine = NULL; // initialize to NULL to avoid issues in FreeImage
 
     ReadHalfwidthJapaneseFont(inputPath, &image);
     WritePng(outputPath, &image);
@@ -305,6 +411,7 @@ void HandleHalfwidthJapaneseFontToPngCommand(char *inputPath, char *outputPath, 
 void HandlePngToHalfwidthJapaneseFontCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
 {
     struct Image image;
+    image.tilemap.data.affine = NULL; // initialize to NULL to avoid issues in FreeImage
 
     image.bitDepth = 2;
 
@@ -317,6 +424,7 @@ void HandlePngToHalfwidthJapaneseFontCommand(char *inputPath, char *outputPath, 
 void HandleFullwidthJapaneseFontToPngCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
 {
     struct Image image;
+    image.tilemap.data.affine = NULL; // initialize to NULL to avoid issues in FreeImage
 
     ReadFullwidthJapaneseFont(inputPath, &image);
     WritePng(outputPath, &image);
@@ -327,6 +435,7 @@ void HandleFullwidthJapaneseFontToPngCommand(char *inputPath, char *outputPath, 
 void HandlePngToFullwidthJapaneseFontCommand(char *inputPath, char *outputPath, int argc UNUSED, char **argv UNUSED)
 {
     struct Image image;
+    image.tilemap.data.affine = NULL; // initialize to NULL to avoid issues in FreeImage
 
     image.bitDepth = 2;
 
@@ -517,8 +626,13 @@ int main(int argc, char **argv)
         { "png", "8bpp", HandlePngToGbaCommand },
         { "png", "gbapal", HandlePngToGbaPaletteCommand },
         { "png", "pal", HandlePngToJascPaletteCommand },
+        { "png", "act", HandlePngToActPaletteCommand },
         { "gbapal", "pal", HandleGbaToJascPaletteCommand },
         { "pal", "gbapal", HandleJascToGbaPaletteCommand },
+        { "gbapal", "act", HandleGbaToActPaletteCommand },
+        { "act", "gbapal", HandleActToGbaPaletteCommand },
+        { "act", "pal", HandleActToJascPaletteCommand },
+        { "pal", "act", HandleJascToActPaletteCommand },
         { "latfont", "png", HandleLatinFontToPngCommand },
         { "png", "latfont", HandlePngToLatinFontCommand },
         { "hwjpnfont", "png", HandleHalfwidthJapaneseFontToPngCommand },

@@ -21,7 +21,6 @@ extern struct Time gLocalTime;
 
 void RtcDisableInterrupts(void);
 void RtcRestoreInterrupts(void);
-u32 ConvertBcdToBinary(u8 bcd);
 bool8 IsLeapYear(u32 year);
 u16 ConvertDateToDayCount(u8 year, u8 month, u8 day);
 u16 RtcGetDayCount(struct SiiRtcInfo *rtc);

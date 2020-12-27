@@ -2,7 +2,7 @@
   "id": "MAP_NEW_BARK_TOWN_ELMS_HOUSE",
   "name": "NewBarkTown_ElmsHouse",
   "layout": "LAYOUT_NEW_BARK_TOWN_ELMS_HOUSE",
-  "music": "MUS_NEWBARK",
+  "music": "MUS_NEW_BARK",
   "region_map_section": "MAPSEC_NEW_BARK_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -60,7 +60,7 @@
       "y": 1,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "EventScript_DifficultBookShelf"
+      "script": "EventScript_BookShelf"
     },
     {
       "type": "sign",
@@ -84,7 +84,7 @@
       "y": 1,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "EventScript_DifficultBookShelf"
+      "script": "EventScript_BookShelf"
     },
     {
       "type": "sign",
@@ -92,7 +92,7 @@
       "y": 1,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "EventScript_DifficultBookShelf"
+      "script": "EventScript_BookShelf"
     }
   ],
   "phone_service": true

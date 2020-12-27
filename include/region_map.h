@@ -16,16 +16,15 @@ enum
     MAP_INPUT_MOVE_CONT,
     MAP_INPUT_MOVE_END,
     MAP_INPUT_A_BUTTON,
-    MAP_INPUT_B_BUTTON,
-    MAP_INPUT_LANDMARK,
-    MAP_INPUT_ON_BUTTON
+    MAP_INPUT_SWITCH,
+    MAP_INPUT_CANCEL
 };
 
 enum {
     MAPSECTYPE_NONE,
     MAPSECTYPE_ROUTE,
-    MAPSECTYPE_CITY_CANFLY,
-    MAPSECTYPE_CITY_CANTFLY,
+    MAPSECTYPE_VISITED,
+    MAPSECTYPE_NOT_VISITED,
     MAPSECTYPE_BATTLE_FRONTIER
 };
 
@@ -50,6 +49,13 @@ enum {
     MAPMODE_FLY
 };
 
+enum {
+    LANDMARK_STATE_NONE,
+    LANDMARK_STATE_INFO,
+    LANDMARK_STATE_CLOSE,
+    LANDMARK_STATE_SWITCH
+};
+
 struct RegionMap {
     u8 primaryMapSecId;
     u8 secondaryMapSecId;
@@ -58,6 +64,7 @@ struct RegionMap {
     u8 primaryMapSecStatus;
     u8 secondaryMapSecStatus;
     u8 posWithinMapSec;
+    u8 enteredSecondary;
     u8 currentRegion;
     u8 mapMode;
     bool8 permissions[4];
@@ -101,7 +108,7 @@ struct RegionMap {
     bool8 bgManaged;
     s8 xOffset;
     bool8 onButton;
-    u8 __attribute__ ((aligned (4))) cursorImage[0x100];
+    u8 ALIGNED(4) cursorImage[0x100];
 }; // size = 0x884
 
 struct RegionMapLocation
@@ -129,8 +136,9 @@ void CreateRegionMapPlayerIcon(u16 x, u16 y);
 void CreateRegionMapCursor(u16 tileTag, u16 paletteTag, bool8 visible);
 bool32 IsEventIslandMapSecId(u8 mapSecId);
 u8 *GetMapName(u8 *, u16, u16);
-u8 *GetMapNameGeneric(u8 *dest, u16 mapSecId);
-u8 *GetMapNameHandleAquaHideout(u8 *dest, u16 mapSecId);
+u8 *GetMapNameHandleFerrySecretBase(u8 *dest, u16 mapSecId);
+u8 *GetMapNameForSummaryScreen(u8 *dest, u16 mapSecId);
+u8 *GetMapNameHandleSpecialMaps(u8 *dest, u16 mapSecId);
 u8 GetCurrentRegion(void);
 void ShowRegionMapCursorSprite(void);
 void HideRegionMapCursorSprite(void);
@@ -144,6 +152,8 @@ bool8 IsRegionMapZoomed(void);
 void TrySetPlayerIconBlink(void);
 void sub_8123030(u16 color, u32 coeff);
 void SetRegionMapDataForZoom(void);
+void PlaySEForSelectedMapsec(void);
+u8 GetSelectedMapsecLandmarkState(void);
 
 extern const struct RegionMapLocation gRegionMapEntries[];
 

@@ -23,7 +23,6 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/species.h"
-#include "constants/vars.h"
 
 #define AREA_SCREEN_WIDTH 32
 #define AREA_SCREEN_HEIGHT 20
@@ -114,7 +113,7 @@ static const u16 sFeebasData[][3] =
 static const u16 sLandmarkData[][2] =
 {
     {MAPSEC_SKY_PILLAR,       FLAG_LANDMARK_SKY_PILLAR},
-    {MAPSEC_SEAFLOOR_CAVERN,  FLAG_LANDMARK_SEAFLOOR_CAVERN},
+    {MAPSEC_DRAGONS_DEN,  FLAG_LANDMARK_DRAGONS_DEN},
     {MAPSEC_ALTERING_CAVE,    FLAG_LANDMARK_ALTERING_CAVE},
     {MAPSEC_MIRAGE_TOWER,     FLAG_RECEIVED_SPELL_TAG_FROM_SANTOS},
     {MAPSEC_DESERT_UNDERPASS, FLAG_LANDMARK_DESERT_UNDERPASS},
@@ -312,11 +311,11 @@ static bool8 DrawAreaGlow(void)
         BuildAreaGlowTilemap();
         break;
     case 2:
-        decompress_and_copy_tile_data_to_vram(2, sAreaGlow_Gfx, 0, 0, 0);
+        DecompressAndCopyTileDataToVram(2, sAreaGlow_Gfx, 0, 0, 0);
         LoadBgTilemap(2, sPokedexAreaScreen->areaGlowTilemap, 0x500, 0);
         break;
     case 3:
-        if (!free_temp_tile_data_buffers_if_possible())
+        if (!FreeTempTileDataBuffersIfPossible())
         {
             CpuCopy32(sAreaGlow_Pal, gPlttBufferUnfaded + 0xA0, 0x20);
             sPokedexAreaScreen->drawAreaGlowState++;
@@ -732,15 +731,15 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
             return;
         break;
     case 1:
-        if (gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(B_BUTTON))
         {
             gTasks[taskId].data[1] = 1;
             PlaySE(SE_PC_OFF);
         }
-        else if (gMain.newKeys & DPAD_RIGHT || (gMain.newKeys & R_BUTTON && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
+        else if (JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
         {
             gTasks[taskId].data[1] = 2;
-            PlaySE(SE_Z_PAGE);
+            PlaySE(SE_DEX_PAGE);
         }
         else
             return;

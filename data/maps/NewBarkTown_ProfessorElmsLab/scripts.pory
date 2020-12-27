@@ -1,0 +1,937 @@
+const OBJ_EVENT_ID_AIDE = 1
+const OBJ_EVENT_ID_ELM = 2
+const OBJ_EVENT_ID_OFFICER = 3
+const PLAYER_STARTER_NUM = VAR_TEMP_1
+const PLAYER_STARTER_SPECIES = VAR_TEMP_2
+
+mapscripts NewBarkTown_ProfessorElmsLab_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (var(VAR_ELM_LAB_STATE) == 0)
+        {
+            setobjectxyperm(OBJ_EVENT_ID_ELM, 4, 5)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_ELM_LAB_STATE, 0 : NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction
+    ]
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
+    lock
+    faceplayer
+    if (flag(FLAG_GOT_EVERSTONE_FROM_ELM))
+    {
+        msgbox("ELM: {PLAYER}, I'll call you if\n"
+               "anything comes up.")
+    }
+    elif (flag(FLAG_SHOWED_TOGEPI_TO_ELM))
+    {
+        call(NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone)
+    }
+    elif (flag(FLAG_GOT_ELMS_EGG))
+    {
+        if (!flag(FLAG_HATCHED_ELMS_EGG))
+        {
+            msgbox(NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched)
+        }
+        else
+        {
+            setvar(VAR_0x8004, SPECIES_TOGEPI)
+            special(IsPlayersMonOfSpeciesInParty)
+            if (!var(VAR_RESULT))
+            {
+                setvar(VAR_0x8004, SPECIES_TOGETIC)
+                special(IsPlayersMonOfSpeciesInParty)
+                if (!var(VAR_RESULT))
+                {
+                    goto(NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon)
+                }
+            }
+            msgbox("ELM: {PLAYER}, you look great!")
+            closemessage
+            playse(SE_PIN)
+            applymovement(OBJ_EVENT_ID_ELM, Common_Movement_ExclamationMark)
+            waitmovement(0)
+            applymovement(OBJ_EVENT_ID_ELM, Common_Movement_Delay48)
+            waitmovement(0)
+            msgbox("What? That POKéMON!?!\n"
+                   "The EGG hatched!\p"
+                   "So, POKéMON are born from EGGS…\n"
+                   "No, perhaps not all POKéMON are.\p"
+                   "Wow, there's still a lot of research\n"
+                   "to be done.\p", MSGBOX_CONTINUE)
+            setflag(FLAG_SHOWED_TOGEPI_TO_ELM)
+            call(NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone)
+        }
+    }
+    elif (flag(FLAG_ELM_CALLED_ABOUT_ASSISTANT_IN_VIOLET))
+    {
+        msgbox("ELM: {PLAYER}?\n"
+               "Didn't you meet my assistant?\p"
+               "He should have met you with the EGG\n"
+               "at VIOLET CITY's POKéMON CENTER.\p"
+               "You must have just missed him.\n"
+               "Try to catch him there.")
+    }
+    elif (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+    {
+        msgbox("ELM: Don't give up! I'll call if I\n"
+               "learn anything about that EGG!")
+    }
+    elif (flag(FLAG_RECEIVED_MYSTERY_EGG))
+    {
+        msgbox("ELM: {PLAYER}, this is terrible…\p"
+               "Oh, yes, what was MR. POKéMON's big\n"
+               "discovery?")
+        textcolor(MSG_COLOR_SYS)
+        playfanfare(MUS_OBTAIN_ITEM)
+        message("{PLAYER} handed the MYSTERY EGG to\n"
+                "PROF. ELM.")
+        waitmessage
+        waitfanfare
+        closemessage
+        textcolor(MSG_COLOR_PREV)
+        removeitem(ITEM_MYSTERY_EGG)
+        delay(10)
+        playse(SE_LEDGE)
+        switch (var(VAR_FACING))
+        {
+            case DIR_SOUTH:
+                applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsDown)
+                waitmovement(0)
+                msgbox(NewBarkTown_ProfessorElmsLab_Text_ElmThis)
+                closemessage
+                applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsUp)
+                waitmovement(0)
+            case DIR_NORTH:
+                applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsUp)
+                waitmovement(0)
+                msgbox(NewBarkTown_ProfessorElmsLab_Text_ElmThis)
+                closemessage
+                applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsDown)
+                waitmovement(0)
+            case DIR_WEST:
+                applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsLeft)
+                waitmovement(0)
+                msgbox(NewBarkTown_ProfessorElmsLab_Text_ElmThis)
+                closemessage
+                applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsRight)
+                waitmovement(0)
+            case DIR_EAST:
+                applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsRight)
+                waitmovement(0)
+                msgbox(NewBarkTown_ProfessorElmsLab_Text_ElmThis)
+                closemessage
+                applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmStepsLeft)
+                waitmovement(0)
+        }
+        msgbox("But… Is it a POKéMON EGG?\n"
+               "If it is, it's a great discovery!\p"
+               "What?!?\n"
+               "PROF. OAK gave you a POKéDEX?\p"
+               "{PLAYER}, is that true?\n"
+               "Th-that's incredible!\p"
+               "He is superb at seeing the potential\n"
+               "of people as TRAINERS.\p"
+               "Wow, {PLAYER}. You may have what it\n"
+               "takes to become the CHAMPION.\p"
+               "You seem to be getting on great with\n"
+               "POKéMON too.\p"
+               "You should take the POKéMON GYM\n"
+               "challenge.\p"
+               "The closest GYM would be the one in\n"
+               "VIOLET CITY.\p"
+               "…{PLAYER}. The road to the\n"
+               "championship will be a long one.\p"
+               "Before you leave, make sure that\n"
+               "you talk to your mom.")
+        setflag(FLAG_ADVENTURE_STARTED)
+        special(SetUnlockedPokedexFlags)
+        setflag(FLAG_GAVE_MYSTERY_EGG_TO_ELM)
+        setflag(FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS)
+        clearflag(FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED)
+        setvar(VAR_ROUTE29_STATE, 1)
+        setvar(VAR_ELM_LAB_STATE, 6)
+        setvar(VAR_CABLE_CLUB_TUTORIAL_STATE, 1)
+    }
+    elif (flag(FLAG_SYS_POKEMON_GET))
+    {
+        msgbox("ELM: MR. POKéMON goes everywhere\n"
+               "and finds rarities.\p"
+               "Too bad they're just rare and\n"
+               "not very useful…")
+    }
+    else
+    {
+        msgbox("ELM: If a wild POKéMON appears,\n"
+               "let your POKéMON battle it!")
+    }
+    release
+}
+
+text NewBarkTown_ProfessorElmsLab_Text_ElmThis {
+    "ELM: This?"
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon {
+    if (flag(FLAG_CALLED_ELM_ABOUT_HATCHED_EGG))
+    {
+        msgbox("ELM: {PLAYER}?\n"
+                "I thought the EGG hatched.\l"
+                "Where is the POKéMON?")
+    }
+    else
+    {
+        msgbox(NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched)
+    }
+    release
+}
+
+text NewBarkTown_ProfessorElmsLab_Text_Elm_HasThatEggHatched {
+    "ELM: Hey, has that EGG changed any?"
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Elm_GiveEverstone {
+    msgbox("Thanks, {PLAYER}! You're helping\n"
+           "unravel POKéMON mysteries for us!\p"
+           "I want you to have this as a token\n"
+           "of our appreciation.")
+    checkitemspace(ITEM_EVERSTONE, 1)
+    if (!var(VAR_RESULT))
+    {
+        msgbox("Oh? You don't have any room\n"
+               "for the EVERSTONE…")
+    }
+    else
+    {
+        giveitem_msg("{PLAYER} received the EVERSTONE\n"
+                     "from PROF. ELM.", ITEM_EVERSTONE)
+        msgbox("That's an EVERSTONE.\p"
+               "Some species of POKéMON evolve\n"
+               "when they grow to certain levels.\p"
+               "A POKéMON holding the EVERSTONE\n"
+               "won't evolve.\p"
+               "Give it to a POKéMON you don't want\n"
+               "to evolve."
+        )
+        setflag(FLAG_GOT_EVERSTONE_FROM_ELM)
+    }
+    release
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsDown {
+	lock_facing_direction
+	disable_jump_landing_ground_effect
+	jump_down
+	unlock_facing_direction
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_ElmStepsUp {
+	walk_up
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsUp {
+	lock_facing_direction
+	disable_jump_landing_ground_effect
+	jump_up
+	unlock_facing_direction
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_ElmStepsDown {
+	walk_down
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsLeft {
+	lock_facing_direction
+	disable_jump_landing_ground_effect
+	jump_left
+	unlock_facing_direction
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_ElmStepsRight {
+	walk_right
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_ElmJumpsRight {
+	lock_facing_direction
+	disable_jump_landing_ground_effect
+	jump_right
+	unlock_facing_direction
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_ElmStepsLeft {
+	walk_left
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_ElmIntroduction {
+    lockall
+    textcolor(MSG_COLOR_BLUE)
+    applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerStepToElm)
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(OBJ_EVENT_ID_ELM, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_ELM, Common_Movement_Delay48)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_ELM, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    msgbox("ELM: {PLAYER}!\n"
+           "There you are!\l"
+           "I needed to ask you a favor.\p"
+           "I'm conducting POKéMON research\n"
+           "right now, and I was wondering if\l"
+           "you could help me with it, {PLAYER}.\p"
+           "You see…\p"
+           "I'm writing a paper that I want to\n"
+           "present at a conference.\p"
+           "But there are some things I don't\n"
+           "quite understand yet.\p"
+           "So! I'd like you to raise a POKéMON\n"
+           "that I recently caught.", MSGBOX_YESNO)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_ElmBeggingLoop)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_ElmBeggingLoop {
+    if (var(VAR_RESULT) == YES)
+    {
+        goto(NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging)
+    }
+    msgbox("But…\n"
+	       "Please, I need your help!", MSGBOX_YESNO)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_ElmBeggingLoop)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_ElmPostBegging {
+    msgbox("Thanks, {PLAYER}!\n"
+           "You're a great help!\p"
+           "When I announce my findings, I'm\n"
+           "sure we'll delve a bit deeper into\l"
+           "the many mysteries of POKéMON.\p"
+           "You can count on it!")
+    closemessage
+    delay(20)
+    playse(SE_SUCCESS)
+    waitse
+    delay(20)
+    playse(SE_PIN)
+    applymovement(OBJ_EVENT_ID_ELM, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_ELM, Common_Movement_Delay48)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_ELM, Common_Movement_WalkInPlaceFastestDown)
+    waitmovement(0)
+    msgbox("Oh, hey!\n"
+           "I got an e-mail!\p"
+           "………………\n"
+           "Hm… Uh-huh…\l"
+           "Okay…")
+    closemessage
+    delay(30)
+    applymovement(OBJ_EVENT_ID_ELM, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    msgbox("Hey, listen.\p"
+           "I have an acquaintance called\n"
+           "MR. POKéMON.\p"
+           "He keeps finding weird things and\n"
+           "raving about his discoveries.\p"
+           "Anyway, I just got an e-mail from\n"
+           "him saying that this time it's real.\p"
+           "It is intriguing, but we're busy with\n"
+           "our POKéMON research…\p"
+           "Wait!\n"
+           "I know!\p"
+           "{PLAYER}, can you go in our place?")
+    closemessage
+    applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchElmWalk)
+    applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_ElmWalkToPokeBalls)
+    waitmovement(0)
+    msgbox("I want you to raise one of the\n"
+           "POKéMON contained in these\l"
+           "POKé BALLS.\p"
+           "You'll be that POKéMON's first\n"
+           "partner, {PLAYER}!\p"
+           "Go on, then.\n"
+           "Pick one!")
+    closemessage
+    setvar(VAR_ELM_LAB_STATE, 1)
+    releaseall
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_PlayerStepToElm {
+    walk_up * 7
+	walk_left
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchElmWalk {
+	delay_16
+	walk_in_place_fastest_up
+	delay_16
+	walk_in_place_fastest_right
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_ElmWalkToPokeBalls {
+	walk_up * 2
+	walk_right * 2
+	face_down
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo {
+    lockall
+    textcolor(MSG_COLOR_BLUE)
+    turnobject(OBJ_EVENT_ID_ELM, DIR_SOUTH)
+    msgbox("ELM: Wait!\n"
+           "Where are you going?")
+    closemessage
+    applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerComeBack)
+    waitmovement(0)
+    releaseall
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_PlayerComeBack {
+    walk_up
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Chikorita {
+    lock
+    faceplayer
+	setvar(PLAYER_STARTER_NUM, STARTER_CHIKORITA)
+	setvar(PLAYER_STARTER_SPECIES, SPECIES_CHIKORITA)
+    goto(NewBarkTown_EventScript_PokeBallMain)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Totodile {
+    lock
+    faceplayer
+	setvar(PLAYER_STARTER_NUM, STARTER_TOTODILE)
+	setvar(PLAYER_STARTER_SPECIES, SPECIES_TOTODILE)
+    goto(NewBarkTown_EventScript_PokeBallMain)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil {
+    lock
+    faceplayer
+	setvar(PLAYER_STARTER_NUM, STARTER_CYNDAQUIL)
+	setvar(PLAYER_STARTER_SPECIES, SPECIES_CYNDAQUIL)
+    goto(NewBarkTown_EventScript_PokeBallMain)
+}
+
+script NewBarkTown_EventScript_PokeBallMain {
+    if (flag(FLAG_SYS_POKEMON_GET))
+    {
+        msgbox("It contains a POKéMON caught by\n"
+               "PROF. ELM.")
+    }
+    else
+    {
+        turnobject(OBJ_EVENT_ID_ELM, DIR_EAST)
+        showmonpic(PLAYER_STARTER_SPECIES, 10, 3)
+        playmoncry(PLAYER_STARTER_SPECIES, 0)
+        textcolor(MSG_COLOR_BLUE)
+        switch (var(PLAYER_STARTER_NUM))
+        {
+            case STARTER_CHIKORITA:
+                msgbox("ELM: Hm! CHIKORITA is your choice.\n"
+                       "Take your time raising it.\p"
+                       "So, {PLAYER}, do you like CHIKORITA,\n"
+                       "the GRASS POKéMON?", MSGBOX_YESNO)
+            case STARTER_TOTODILE:
+                msgbox("ELM: Ah! TOTODILE is your choice.\n"
+                       "It would be rewarding to raise.\p"
+                       "So, {PLAYER}, do you want TOTODILE,\n"
+                       "the WATER POKéMON?", MSGBOX_YESNO)
+            case STARTER_CYNDAQUIL:
+                msgbox("ELM: Oh! CYNDAQUIL is your choice.\n"
+                       "Raising it would be a cinch.\p"
+                       "So, {PLAYER}, you'll take CYNDAQUIL,\n"
+                       "the FIRE POKéMON?", MSGBOX_YESNO)
+        }
+        hidemonpic
+        if (var(VAR_RESULT) != YES)
+        {
+            msgbox("ELM: Think it over carefully.\n"
+                   "Your partner is important.")
+        }
+        else
+        {
+            removeobject(VAR_LAST_TALKED)
+            msgbox("ELM: I think that's a great\n"
+                   "POKéMON too!")
+            textcolor(MSG_COLOR_PREV)
+            setflag(FLAG_SYS_POKEMON_GET)
+            givemon(PLAYER_STARTER_SPECIES, 5, ITEM_ORAN_BERRY)
+            copyvar(VAR_STARTER_MON, PLAYER_STARTER_NUM) // 0=Chikorita, 1=Totodile, 2=Cyndaquil
+            bufferspeciesname(0, PLAYER_STARTER_SPECIES)
+            message("{PLAYER} received the {STR_VAR_1}\n"
+                    "from PROF. ELM!")
+            waitmessage
+            playfanfare(MUS_RG_OBTAIN_KEY_ITEM)
+            waitfanfare
+            msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                setvar(VAR_0x8004, 0)
+                call(Common_EventScript_NameReceivedPartyMon)
+            }
+            closemessage
+            switch (var(VAR_FACING))
+            {
+                case DIR_SOUTH:
+                    switch (var(PLAYER_STARTER_NUM))
+                    {
+                        case STARTER_CHIKORITA:
+                            applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_Delay32FaceDown)
+                            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom83)
+                        case STARTER_TOTODILE:
+                            applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_Delay48FaceDown)
+                            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom93)
+                        case STARTER_CYNDAQUIL:
+                            applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_Delay64FaceDown)
+                            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom103)
+                    }
+                case DIR_NORTH:
+                    switch (var(PLAYER_STARTER_NUM))
+                    {
+                        case STARTER_CHIKORITA:
+                            applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_Delay16FaceDown)
+                            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom85)
+                        case STARTER_TOTODILE:
+                            applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_Delay32FaceDown)
+                            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom95)
+                        case STARTER_CYNDAQUIL:
+                            applymovement(OBJ_EVENT_ID_ELM, NewBarkTown_ProfessorElmsLab_Movement_Delay48FaceDown)
+                            applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom105)
+                    }
+                case DIR_EAST:
+                    applymovement(OBJ_EVENT_ID_ELM, Common_Movement_WalkInPlaceFastestDown)
+                    applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom74)
+            }
+            waitmovement(0)
+            delay(20)
+            textcolor(MSG_COLOR_BLUE)
+            msgbox("MR. POKéMON lives a bit beyond\n"
+                   "CHERRYGROVE, the next city over.\p"
+                   "It's almost a direct route there,\n"
+                   "so you can't miss it.\p"
+                   "But just in case, here's my number.\n"
+                   "Call me if anything comes up!")
+            setflag(FLAG_PHONE_CARD_ELM)
+            playfanfare(MUS_REGISTER_PHONE)
+            textcolor(MSG_COLOR_PREV)
+            msgbox("{PLAYER} got PROF. ELM's phone\n"
+                   "number.")
+            waitfanfare
+            applymovement(OBJ_EVENT_ID_ELM, Common_Movement_WalkInPlaceFastestLeft)
+            waitmovement(0)
+            textcolor(MSG_COLOR_BLUE)
+            msgbox("If your POKéMON is hurt, you should\n"
+                   "heal it with this machine.\l"
+                   "Feel free to use it anytime.")
+            applymovement(OBJ_EVENT_ID_ELM, Common_Movement_WalkInPlaceFastestDown)
+            waitmovement(0)
+            msgbox("{PLAYER}, I'm counting on you!")
+            setvar(VAR_ELM_LAB_STATE, 2)
+            setvar(VAR_NEW_BARK_TOWN_STATE, 1)
+        }
+    }
+    release
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_Delay32FaceDown {
+	delay_16 * 2
+	walk_in_place_fastest_down
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom83 {
+	walk_left
+	walk_down
+	walk_left
+	face_up
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_Delay48FaceDown {
+	delay_16 * 3
+	walk_in_place_fastest_down
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom93 {
+	walk_left * 2
+	walk_down
+	walk_left
+	face_up
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_Delay64FaceDown {
+	delay_16 * 4
+	walk_in_place_fastest_down
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom103 {
+	walk_left * 3
+	walk_down
+	walk_left
+	face_up
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom74 {
+	walk_left
+	face_up
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_Delay16FaceDown {
+	delay_16
+	walk_in_place_fastest_down
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom85 {
+	walk_left * 2
+	walk_up
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom95 {
+	walk_left * 3
+	walk_up
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_WalkToElmFrom105 {
+	walk_left * 4
+	walk_up
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1 {
+    lockall
+    setvar(VAR_TEMP_1, 0)
+    applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideToLeftTrigger)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain)
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_AideToLeftTrigger {
+	walk_right * 2
+	face_up
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2 {
+    lockall
+    setvar(VAR_TEMP_1, 1)
+    applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideToMiddleTrigger)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain)
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_AideToMiddleTrigger {
+	walk_right * 3
+	face_up
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3 {
+    lockall
+    setvar(VAR_TEMP_1, 2)
+    applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain)
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger {
+	walk_right * 4
+	face_up
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_AidePotionMain {
+    waitmovement(0)
+    textcolor(MSG_COLOR_BLUE)
+    msgbox("{PLAYER}, I want you to have this\n"
+           "for your errand.")
+    giveitem_msg("{PLAYER} received the POTION\n"
+                 "from the AIDE.", ITEM_POTION)
+    msgbox(NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy)
+    closemessage
+    switch (var(VAR_TEMP_1))
+    {
+        case 0:
+            applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideFromLeftTrigger)
+        case 1:
+            applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger)
+        case 2:
+            applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideFromRightTrigger)
+    }
+    waitmovement(0)
+    setvar(VAR_ELM_LAB_STATE, 3)
+    releaseall
+}
+
+text NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy {
+    "There are only two of us, so we're\n"
+    "always busy."
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_AideFromLeftTrigger {
+    walk_left * 2
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger {
+    walk_left * 3
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_AideFromRightTrigger {
+    walk_left * 4
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Officer1 {
+    lockall
+    setvar(VAR_TEMP_1, 0)
+    applymovement(OBJ_EVENT_ID_OFFICER, NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeft)
+    applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromLeft)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain)
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeft {
+	delay_16 * 3
+	walk_in_place_fastest_left
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromLeft {
+	walk_up * 3
+	face_right
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Officer2 {
+    lockall
+    setvar(VAR_TEMP_1, 1)
+    applymovement(OBJ_EVENT_ID_OFFICER, NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeftFromCenter)
+    applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromCenter)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain)
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceLeftFromCenter {
+	delay_16 * 4
+	walk_in_place_fastest_left
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromCenter {
+    walk_left
+	walk_up * 3
+	face_right
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Officer3 {
+    lockall
+    setvar(VAR_TEMP_1, 2)
+    applymovement(OBJ_EVENT_ID_OFFICER, NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceRight)
+    applymovement(OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromRight)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain)
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_OfficerWaitFaceRight {
+	delay_16 * 3
+	walk_in_place_fastest_right
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_PlayerToOfficerFromRight {
+	walk_up * 3
+	face_left
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_OfficerMain {
+    waitmovement(0)
+    textcolor(MSG_COLOR_BLUE)
+    msgbox("I heard a POKéMON was stolen from\n"
+           "here…\p"
+           "I was just getting some information\n"
+           "from PROF. ELM.\p"
+           "Apparently, it was a young male with\n"
+           "long, red hair…\p"
+           "What? You're saying you battled a\n"
+           "TRAINER like that?\p"
+           "Did you happen to get his name?")
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_Officer_NameRival)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Officer_NameRival {
+    fadescreen(FADE_TO_BLACK)
+    special(SetRivalNickname)
+    waitstate
+    msgbox("Let me make sure I got that right…\n"
+           "So his name is {RIVAL}?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO)
+    {
+        goto(NewBarkTown_ProfessorElmsLab_EventScript_Officer_NameRival)
+    }
+    msgbox("Okay! So {RIVAL} was his name.\n"
+           "Thanks for helping my investigation!")
+    closemessage
+    applymovement(OBJ_EVENT_ID_OFFICER, NewBarkTown_ProfessorElmsLab_Movement_OfficerLeaves)
+    waitmovement(0)
+    removeobject(OBJ_EVENT_ID_OFFICER)
+    setvar(VAR_ELM_LAB_STATE, 5)
+    releaseall
+}
+
+movement NewBarkTown_ProfessorElmsLab_Movement_OfficerLeaves {
+    walk_down * 6
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_AideBalls1 {
+    lockall
+    setvar(VAR_TEMP_1, 0)
+    applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideToLeftTrigger)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_AideBalls2 {
+    lockall
+    setvar(VAR_TEMP_1, 1)
+    applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideToMiddleTrigger)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_AideBalls3 {
+    lockall
+    setvar(VAR_TEMP_1, 2)
+    applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideToRightTrigger)
+    goto(NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_AideBallsMain {
+    waitmovement(0)
+    textcolor(MSG_COLOR_BLUE)
+    msgbox("{PLAYER}!\n"
+           "Use these on your POKéDEX quest!")
+    giveitem_msg("{PLAYER} received the POKé BALLS\n"
+                 "from the AIDE.", ITEM_POKE_BALL, 5)
+    msgbox("To add to your POKéDEX, you have\n"
+           "to catch POKéMON.\p"
+           "Throw POKé BALLS at wild POKéMON\n"
+           "to get them.")
+    closemessage
+    switch (var(VAR_TEMP_1))
+    {
+        case 0:
+            applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideFromLeftTrigger)
+        case 1:
+            applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideFromMiddleTrigger)
+        case 2:
+            applymovement(OBJ_EVENT_ID_AIDE, NewBarkTown_ProfessorElmsLab_Movement_AideFromRightTrigger)
+    }
+    waitmovement(0)
+    setvar(VAR_ELM_LAB_STATE, 7)
+    releaseall
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Aide {
+    lock
+    faceplayer
+    if (flag(FLAG_GOT_ELMS_EGG))
+    {
+        msgbox("…sigh… That stolen POKéMON.\n"
+               "I wonder how it's doing.\p"
+               "They say a POKéMON raised by a bad\n"
+               "person turns bad itself.")
+    }
+    elif (flag(FLAG_GAVE_MYSTERY_EGG_TO_ELM))
+    {
+        msgbox("To add to your POKéDEX, you have\n"
+               "to catch POKéMON.\p"
+               "Throw POKé BALLS at wild POKéMON\n"
+               "to get them.")
+    }
+    elif (flag(FLAG_RECEIVED_MYSTERY_EGG))
+    {
+        msgbox("There was a loud noise outside…\p"
+               "When we went to look, someone stole\n"
+               "a POKéMON off the table.\p"
+               "It's unbelievable that anyone would\n"
+               "do that!\p"
+               "…sigh… That stolen POKéMON.\n"
+               "I wonder how it's doing.\p"
+               "They say a POKéMON raised by a bad\n"
+               "person turns bad itself.")
+    }
+    else
+    {
+        msgbox(NewBarkTown_ProfessorElmsLab_Text_Aide_AlwaysBusy)
+    }
+    release
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_OpenWindow {
+    if (flag(FLAG_VISITED_VIOLET_CITY) || !flag(FLAG_ELM_CALLED_ABOUT_STOLEN_MON))
+    {
+        msgbox("The window is open.\n"
+               "A pleasant breeze is blowing in.", MSGBOX_SIGN)
+    }
+    else
+    {
+        msgbox("He must've broken in through here!", MSGBOX_SIGN)
+    }
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine {
+    lockall
+    if (!flag(FLAG_SYS_POKEMON_GET))
+    {
+        msgbox("Wonder what this machine does?")
+    }
+    else
+    {
+        msgbox("Would you like to heal your POKéMON?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            closemessage
+            call(Common_EventScript_OutOfCenterPartyHeal)
+        }
+    }
+    releaseall
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_ElmsPC {
+    msgbox("“OBSERVATIONS ON POKéMON\n"
+           "EVOLUTION”, it says on the screen…", MSGBOX_SIGN)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_TrashCan {
+    msgbox("The wrapper from the snack PROF.\n"
+           "ELM ate is in there…", MSGBOX_SIGN)
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Shelf1 {
+    lockall
+    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro)
+    signmsg
+    msgbox("Travel Tip 1:\n"
+           "Press START to open the MENU.")
+    normalmsg
+    releaseall
+}
+
+text NewBarkTown_ProfessorElmsLab_Text_ShelfIntro {
+    "{PLAYER} opened a book."
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Shelf2 {
+    lockall
+    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro)
+    signmsg
+    msgbox("Travel Tip 2:\n"
+           "Record your trip with SAVE!")
+    normalmsg
+    releaseall
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Shelf3 {
+    lockall
+    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro)
+    signmsg
+    msgbox("Travel Tip 3:\n"
+           "Open your BAG and press SELECT\l"
+           "to move items.")
+    normalmsg
+    releaseall
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Shelf4 {
+    lockall
+    msgbox(NewBarkTown_ProfessorElmsLab_Text_ShelfIntro)
+    signmsg
+    msgbox("Travel Tip 4:\n"
+           "Check your POKéMON moves.\l"
+           "Press the A Button to switch moves.")
+    normalmsg
+    releaseall
+}

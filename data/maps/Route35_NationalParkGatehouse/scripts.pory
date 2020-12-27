@@ -1,0 +1,163 @@
+const OBJ_EVENT_ID_CONTEST_OFFICER = 3
+
+mapscripts Route35_NationalParkGatehouse_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        gettime
+        if (var(VAR_BUG_CATCHING_CONTEST_STATE) == 1 ||
+            (var(VAR_0x8003) == DAY_TUESDAY ||
+             var(VAR_0x8003) == DAY_THURSDAY ||
+             var(VAR_0x8003) == DAY_SATURDAY) && !flag(FLAG_DAILY_BUG_CATCHING_CONTEST))
+        {
+            setflag(FLAG_TEMP_11)
+        }
+        else
+        {
+            setflag(FLAG_TEMP_12)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_BUG_CATCHING_CONTEST_STATE, 1 {
+            lock
+            applymovement(OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EndContestPlayerMovement)
+            applymovement(OBJ_EVENT_ID_CONTEST_OFFICER, Route35_NationalParkGatehouse_Movement_EndContestOfficerMovement)
+            waitmovement(0)
+            textcolor(MSG_COLOR_BLUE)
+            specialvar(VAR_RESULT, CopyBugCatchingContestRemainingMinutesToVar1)
+
+            if (var(VAR_RESULT) == 0)
+            {
+                msgbox(BugCatchingContest_Text_Officer_DoYouWantToFinishOneMinute, MSGBOX_YESNO)
+            }
+            elif (var(VAR_RESULT) == 1)
+            {
+                msgbox(BugCatchingContest_Text_Officer_DoYouWantToFinishMinutes, MSGBOX_YESNO)
+            }
+
+            if (var(VAR_RESULT) == YES)
+            {
+                msgbox("Okay. Please wait at the North Gate\n"
+                       "for the announcement of the winners.")
+                closemessage
+                setvar(VAR_BUG_CATCHING_CONTEST_STATE, 2)
+                warp(MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, 0, -1, -1)
+                waitstate
+            }
+            else
+            {
+                msgbox(BugCatchingContest_Text_Officer_GetBackOutside)
+                closemessage
+                applymovement(OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromRight)
+                waitmovement(0)
+                warp(MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 0, -1, -1)
+                waitstate
+            }
+        }
+    ]
+}
+
+movement Route35_NationalParkGatehouse_Movement_EndContestPlayerMovement {
+    face_left
+}
+
+movement Route35_NationalParkGatehouse_Movement_EndContestOfficerMovement {
+    face_player
+}
+
+script Route35_NationalParkGatehouse_EventScript_BugContestOfficer {
+    lock
+    faceplayer
+    if (var(VAR_BUG_CONTEST_PRIZE) != ITEM_NONE)
+    {
+        call(BugCatchingContest_EventScript_Officer_GivePrizeItem)
+    }
+    elif (flag(FLAG_DAILY_BUG_CATCHING_CONTEST))
+    {
+        msgbox(BugCatchingContest_Text_Officer_ContestIsOver)
+    }
+    else
+    {
+        gettime
+        if (var(VAR_0x8003) == DAY_TUESDAY ||
+            var(VAR_0x8003) == DAY_THURSDAY ||
+            var(VAR_0x8003) == DAY_SATURDAY)
+        {
+            call(BugCatchingContest_EventScript_Officer_EnterContest)
+            if (var(VAR_RESULT) == TRUE)
+            {
+                switch (var(VAR_FACING))
+                {
+                    case DIR_NORTH:
+                        applymovement(OBJ_EVENT_ID_CONTEST_OFFICER, Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromBelow)
+                        applymovement(OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromBelow)
+                    case DIR_WEST:
+                        applymovement(OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromRight)
+                    // DIR_EAST
+                    default:
+                        applymovement(OBJ_EVENT_ID_CONTEST_OFFICER, Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromLeft)
+                        applymovement(OBJ_EVENT_ID_PLAYER, Route35_NationalParkGatehouse_Movement_EnterContestFromLeft)
+                }
+                waitmovement(0)
+                warp(MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST, 0, -1, -1)
+                waitstate
+            }
+        }
+        else
+        {
+            msgbox(Route35_NationalParkGatehouse_Text_Officer_NoContest)
+        }
+    }
+    release
+}
+
+movement Route35_NationalParkGatehouse_Movement_EnterContestFromBelow {
+    walk_right
+    walk_up * 2
+}
+
+movement Route35_NationalParkGatehouse_Movement_EnterContestFromRight {
+    walk_up
+}
+
+movement Route35_NationalParkGatehouse_Movement_EnterContestFromLeft {
+    walk_down
+    walk_right * 2
+    walk_up * 2
+}
+
+movement Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromBelow {
+    walk_in_place_fastest_right
+}
+
+movement Route35_NationalParkGatehouse_Movement_OfficerWatchPlayerEnterFromLeft {
+    walk_in_place_fastest_down
+    delay_16 * 2
+    walk_in_place_fastest_right
+}
+
+script Route35_NationalParkGatehouse_NoContestOfficer {
+    lock
+    faceplayer
+    if (var(VAR_BUG_CONTEST_PRIZE) != ITEM_NONE)
+    {
+        call(BugCatchingContest_EventScript_Officer_GivePrizeItem)
+    }
+    elif (flag(FLAG_DAILY_BUG_CATCHING_CONTEST))
+    {
+        msgbox(BugCatchingContest_Text_Officer_ContestIsOver)
+    }
+    else
+    {
+        msgbox(Route35_NationalParkGatehouse_Text_Officer_NoContest)
+    }
+    release
+}
+
+script Route35_NationalParkGatehouse_Youngster {
+    msgbox("When is the next Bug-Catching\n"
+           "Contest going to be?", MSGBOX_NPC)
+}
+
+text Route35_NationalParkGatehouse_Text_Officer_NoContest {
+    "We hold Contests regularly in the\n"
+    "PARK. You should give it a shot."
+}

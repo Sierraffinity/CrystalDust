@@ -293,5 +293,6 @@ static void ApplyNewEncryptionKeyToAllEncryptedData(u32 encryptionKey)
     ApplyNewEncryptionKeyToBagItems_(encryptionKey);
     ApplyNewEncryptionKeyToBerryPowder(encryptionKey);
     ApplyNewEncryptionKeyToWord(&gSaveBlock1Ptr->money, encryptionKey);
+    ApplyNewEncryptionKeyToWord(&gSaveBlock1Ptr->bankedMoney, encryptionKey);
     ApplyNewEncryptionKeyToHword(&gSaveBlock1Ptr->coins, encryptionKey);
 }

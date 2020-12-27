@@ -29,13 +29,13 @@ Std_MsgboxYesNo: @ 8271332
 
 Std_MsgboxGetPoints: @ 827133C
 	message 0x0
-	playfanfare MUS_ME_POINTGET
+	playfanfare MUS_OBTAIN_B_POINTS
 	waitfanfare
 	waitmessage
 	return
 
-Std_10: @ 8271347
-	pokegearcall 0x0, 0x0
+Std_MsgboxContinue: @ 8271347
+	message 0x0
 	waitmessage
 	return
 
@@ -81,17 +81,14 @@ Std_ReceivedItem::
 	message 0x0
 	waitmessage
 	waitfanfare
-	compare VAR_0x8002, MUS_FANFA4
+	compare VAR_0x8002, MUS_OBTAIN_ITEM
 	call_if_eq EventScript_ReceivedItemWaitFanfare
 	putitemaway VAR_0x8000, VAR_0x8001
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	return
 
 EventScript_ReceivedItemWaitFanfare::
 	delay 50
-	return
-
-EventScript_UnusedReturn: @ 827134E
 	return
 
 Common_EventScript_SaveGame:: @ 827134F

@@ -1,7 +1,7 @@
 #ifndef GUARD_FIELD_PLAYER_AVATAR_H
 #define GUARD_FIELD_PLAYER_AVATAR_H
 
-void player_step(u8 a, u16 b, u16 c);
+void PlayerStep(u8 direction, u16 newKeys, u16 heldKeys);
 void ClearPlayerAvatarInfo(void);
 void SetPlayerAvatarExtraStateTransition(u8, u8);
 u8 GetPlayerAvatarGenderByGraphicsId(u8);
@@ -38,18 +38,20 @@ void sub_808B864(void);
 void sub_808BCF4(void);
 void sub_808D074(u8);
 void GetXYCoordsOneStepInFrontOfPlayer(s16 *xPtr, s16 *yPtr);
-u8 GetRivalAvatarGraphicsIdByStateIdAndGender(u8, u8);
-void sub_808C114(void);
+u8 GetPlayerAvatarGraphicsIdByStateIdAndGender(u8, u8);
+void SetPlayerAvatarFieldMove(void);
 u8 GetPlayerAvatarGraphicsIdByCurrentState(void);
 void SetPlayerAvatarStateMask(u8 a);
 u8 GetPlayerAvatarGraphicsIdByStateId(u8 a);
 u8 GetJumpSpecialMovementAction(u32);
 bool8 PartyHasMonWithSurf(void);
+bool8 PartyHasMonWithHeadbutt(void);
 bool8 IsPlayerFacingSurfableFishableWater(void);
 bool8 IsPlayerSurfingNorth(void);
-void sub_808C228(u8 direction);
+void SetPlayerAvatarWatering(u8 direction);
 u8 GetPlayerAvatarFlags(void);
-void sub_808B578(void);
+void UpdatePlayerAvatarTransitionState(void);
+u8 GetEmeraldAvatarGraphicsIdByGender(u8);
 u8 GetFRLGAvatarGraphicsIdByGender(u8);
 u8 GetRSAvatarGraphicsIdByGender(u8);
 void PlayerWheelieInPlace(u8 direction);
@@ -64,5 +66,7 @@ bool32 sub_808D1E8(void);
 void SetPlayerInvisibility(bool8 invisible);
 u8 player_get_pos_including_state_based_drift(s16 *x, s16 *y);
 void StartFishing(u8 rod);
+
+extern bool8 gWalkThroughWalls;
 
 #endif // GUARD_FIELD_PLAYER_AVATAR_H

@@ -24,14 +24,14 @@ struct ListMenu;
 struct ListMenuItem
 {
     const u8 *name;
-    s32 id;
+    u32 id;
 };
 
 struct ListMenuTemplate
 {
     const struct ListMenuItem *items;
     void (* moveCursorFunc)(s32 itemIndex, bool8 onInit, struct ListMenu *list);
-    void (* itemPrintFunc)(u8 windowId, s32 itemId, u8 y);
+    void (* itemPrintFunc)(u8 windowId, u16 index, s32 itemId, u8 y);
     u16 totalItems;
     u16 maxShowed;
     u8 windowId;
@@ -98,7 +98,7 @@ struct CursorStruct
 extern struct ScrollArrowsTemplate gTempScrollArrowTemplate;
 extern struct ListMenuTemplate gMultiuseListMenuTemplate;
 
-s32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const struct ListMenuTemplate *listMenuTemplate, u8 arg2, u16 tileNum, u16 palNum);
+u32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const struct ListMenuTemplate *listMenuTemplate, u8 arg2, u16 tileNum, u16 palNum);
 u8 ListMenuInit(struct ListMenuTemplate *listMenuTemplate, u16 scrollOffset, u16 selectedRow);
 u8 ListMenuInitInRect(struct ListMenuTemplate *listMenuTemplate, struct ListMenuWindowRect *arg1, u16 scrollOffset, u16 selectedRow);
 s32 ListMenu_ProcessInput(u8 listTaskId);
@@ -118,5 +118,6 @@ u8 AddScrollIndicatorArrowPair(const struct ScrollArrowsTemplate *arrowInfo, u16
 u8 AddScrollIndicatorArrowPairParameterized(u32 arrowType, s32 commonPos, s32 firstPos, s32 secondPos, s32 fullyDownThreshold, s32 tileTag, s32 palTag, u16 *currItemPtr);
 void RemoveScrollIndicatorArrowPair(u8 taskId);
 void Task_ScrollIndicatorArrowPairOnMainMenu(u8 taskId);
+void ListMenuCalculateRowIndexAndScrollOffsetFromAbsoluteIndex(struct ListMenuTemplate *template, u16 absoluteIndex, u16 *selectedRowPtr, u16 *scrollOffsetPtr);
 
 #endif //GUARD_LIST_MENU_H

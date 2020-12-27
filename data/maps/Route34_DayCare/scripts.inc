@@ -1,0 +1,13 @@
+Route34_DayCare_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route34_DayCare_MapScripts_MAP_SCRIPT_ON_TRANSITION
+	.byte 0
+
+Route34_DayCare_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	goto_if_set FLAG_PENDING_DAYCARE_EGG, Route34_DayCare_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
+	clearflag FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE
+	return
+
+Route34_DayCare_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
+	setflag FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE
+	return
+

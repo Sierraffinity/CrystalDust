@@ -5,7 +5,7 @@ Underwater_SealedChamber_Braille_GoUpHere: @ 82A6B15
 	.byte 13
 	.byte 7
 	.byte 9
-	.braille "GO UP HERE.$"
+	.unown "GO UP HERE.$"
 
 SealedChamber_OuterRoom_Braille_ABC: @ 82A6B27
 	.byte 7
@@ -14,7 +14,7 @@ SealedChamber_OuterRoom_Braille_ABC: @ 82A6B27
 	.byte 13
 	.byte 10
 	.byte 9
-	.braille "ABC$"
+	.unown "ABC$"
 
 SealedChamber_OuterRoom_Braille_GHI: @ 82A6B31
 	.byte 7
@@ -23,7 +23,7 @@ SealedChamber_OuterRoom_Braille_GHI: @ 82A6B31
 	.byte 13
 	.byte 10
 	.byte 9
-	.braille "GHI$"
+	.unown "GHI$"
 
 SealedChamber_OuterRoom_Braille_MNO: @ 82A6B3B
 	.byte 7
@@ -32,7 +32,7 @@ SealedChamber_OuterRoom_Braille_MNO: @ 82A6B3B
 	.byte 13
 	.byte 10
 	.byte 9
-	.braille "MNO$"
+	.unown "MNO$"
 
 SealedChamber_OuterRoom_Braille_TUV: @ 82A6B45
 	.byte 7
@@ -41,7 +41,7 @@ SealedChamber_OuterRoom_Braille_TUV: @ 82A6B45
 	.byte 13
 	.byte 10
 	.byte 9
-	.braille "TUV$"
+	.unown "TUV$"
 
 SealedChamber_OuterRoom_Braille_DEF: @ 82A6B4F
 	.byte 7
@@ -50,7 +50,7 @@ SealedChamber_OuterRoom_Braille_DEF: @ 82A6B4F
 	.byte 13
 	.byte 10
 	.byte 9
-	.braille "DEF$"
+	.unown "DEF$"
 
 SealedChamber_OuterRoom_Braille_JKL: @ 82A6B59
 	.byte 7
@@ -59,7 +59,7 @@ SealedChamber_OuterRoom_Braille_JKL: @ 82A6B59
 	.byte 13
 	.byte 10
 	.byte 9
-	.braille "JKL$"
+	.unown "JKL$"
 
 SealedChamber_OuterRoom_Braille_PQRS: @ 82A6B63
 	.byte 7
@@ -68,7 +68,7 @@ SealedChamber_OuterRoom_Braille_PQRS: @ 82A6B63
 	.byte 13
 	.byte 10
 	.byte 9
-	.braille "PQRS$"
+	.unown "PQRS$"
 
 SealedChamber_OuterRoom_Braille_Period: @ 82A6B6E
 	.byte 9
@@ -77,7 +77,7 @@ SealedChamber_OuterRoom_Braille_Period: @ 82A6B6E
 	.byte 13
 	.byte 12
 	.byte 9
-	.braille ".$"
+	.unown ".$"
 
 SealedChamber_OuterRoom_Braille_WXYZ: @ 82A6B76
 	.byte 7
@@ -86,7 +86,7 @@ SealedChamber_OuterRoom_Braille_WXYZ: @ 82A6B76
 	.byte 13
 	.byte 10
 	.byte 9
-	.braille "WXYZ$"
+	.unown "WXYZ$"
 
 SealedChamber_OuterRoom_Braille_Comma: @ 82A6B81
 	.byte 9
@@ -95,7 +95,7 @@ SealedChamber_OuterRoom_Braille_Comma: @ 82A6B81
 	.byte 13
 	.byte 12
 	.byte 9
-	.braille ",$"
+	.unown ",$"
 
 SealedChamber_OuterRoom_Braille_DigHere: @ 82A6B89
 	.byte 7
@@ -104,7 +104,7 @@ SealedChamber_OuterRoom_Braille_DigHere: @ 82A6B89
 	.byte 15
 	.byte 10
 	.byte 7
-	.braille "DIG HERE.$"
+	.unown "DIG HERE.$"
 
 SealedChamber_InnerRoom_Braille_FirstWailordLastRelicanth: @ 82A6B99
 	.byte 0
@@ -113,10 +113,10 @@ SealedChamber_InnerRoom_Braille_FirstWailordLastRelicanth: @ 82A6B99
 	.byte 19
 	.byte 3
 	.byte 3
-	.braille "FIRST COMES\n"
-	.braille "WAILORD.\n"
-	.braille "LAST COMES\n"
-	.braille "RELICANTH.$"
+	.unown "FIRST COMES\n"
+	.unown "WAILORD.\n"
+	.unown "LAST COMES\n"
+	.unown "RELICANTH.$"
 
 SealedChamber_InnerRoom_Braille_InThisCaveWeHaveLived: @ 82A6BCA
 	.byte 2
@@ -125,10 +125,10 @@ SealedChamber_InnerRoom_Braille_InThisCaveWeHaveLived: @ 82A6BCA
 	.byte 19
 	.byte 5
 	.byte 3
-	.braille "IN THIS\n"
-	.braille "CAVE WE\n"
-	.braille "HAVE\n"
-	.braille "LIVED.$"
+	.unown "IN THIS\n"
+	.unown "CAVE WE\n"
+	.unown "HAVE\n"
+	.unown "LIVED.$"
 
 SealedChamber_InnerRoom_Braille_WeOweAllToThePokemon: @ 82A6BEC
 	.byte 7
@@ -137,9 +137,9 @@ SealedChamber_InnerRoom_Braille_WeOweAllToThePokemon: @ 82A6BEC
 	.byte 17
 	.byte 10
 	.byte 5
-	.braille "WE OWE ALL\n"
-	.braille "TO THE\n"
-	.braille "POKEMON.$"
+	.unown "WE OWE ALL\n"
+	.unown "TO THE\n"
+	.unown "POKEMON.$"
 
 SealedChamber_InnerRoom_Braille_ButWeSealedThePokemonAway: @ 82A6C0D
 	.byte 3
@@ -148,10 +148,10 @@ SealedChamber_InnerRoom_Braille_ButWeSealedThePokemonAway: @ 82A6C0D
 	.byte 19
 	.byte 6
 	.byte 3
-	.braille "BUT, WE\n"
-	.braille "SEALED THE\n"
-	.braille "POKEMON\n"
-	.braille "AWAY.$"
+	.unown "BUT, WE\n"
+	.unown "SEALED THE\n"
+	.unown "POKEMON\n"
+	.unown "AWAY.$"
 
 SealedChamber_InnerRoom_Braille_WeFearedIt: @ 82A6C34
 	.byte 5
@@ -160,7 +160,7 @@ SealedChamber_InnerRoom_Braille_WeFearedIt: @ 82A6C34
 	.byte 13
 	.byte 8
 	.byte 9
-	.braille "WE FEARED IT.$"
+	.unown "WE FEARED IT.$"
 
 SealedChamber_InnerRoom_Braille_ThoseWithCourageHope: @ 82A6C48
 	.byte 6
@@ -169,10 +169,10 @@ SealedChamber_InnerRoom_Braille_ThoseWithCourageHope: @ 82A6C48
 	.byte 19
 	.byte 9
 	.byte 3
-	.braille "THOSE WITH\n"
-	.braille "COURAGE,\n"
-	.braille "THOSE WITH\n"
-	.braille "HOPE.$"
+	.unown "THOSE WITH\n"
+	.unown "COURAGE,\n"
+	.unown "THOSE WITH\n"
+	.unown "HOPE.$"
 
 SealedChamber_InnerRoom_Braille_OpenDoorEternalPokemonWaits: @ 82A6C73
 	.byte 3
@@ -181,10 +181,10 @@ SealedChamber_InnerRoom_Braille_OpenDoorEternalPokemonWaits: @ 82A6C73
 	.byte 17
 	.byte 6
 	.byte 5
-	.braille "OPEN A DOOR.\n"
-	.braille "AN ETERNAL\n"
-	.braille "POKEMON\n"
-	.braille "WAITS.$"
+	.unown "OPEN A DOOR.\n"
+	.unown "AN ETERNAL\n"
+	.unown "POKEMON\n"
+	.unown "WAITS.$"
 
 DesertRuins_Braille_UseRockSmash: @ 82A6CA0
 	.byte 1
@@ -193,10 +193,10 @@ DesertRuins_Braille_UseRockSmash: @ 82A6CA0
 	.byte 19
 	.byte 4
 	.byte 3
-	.braille "LEFT, LEFT,\n"
-	.braille "DOWN, DOWN.\n"
-	.braille "THEN, USE\n"
-	.braille "ROCK SMASH.$"
+	.unown "LEFT, LEFT,\n"
+	.unown "DOWN, DOWN.\n"
+	.unown "THEN, USE\n"
+	.unown "ROCK SMASH.$"
 
 IslandCave_Braille_RunLapAroundWall: @ 82A6CD4
 	.byte 5
@@ -205,10 +205,10 @@ IslandCave_Braille_RunLapAroundWall: @ 82A6CD4
 	.byte 19
 	.byte 8
 	.byte 3
-	.braille "STAY CLOSE\n"
-	.braille "TO THE WALL.\n"
-	.braille "RUN AROUND\n"
-	.braille "ONE LAP.$"
+	.unown "STAY CLOSE\n"
+	.unown "TO THE WALL.\n"
+	.unown "RUN AROUND\n"
+	.unown "ONE LAP.$"
 
 AncientTomb_Braille_ShineInTheMiddle: @ 82A6D06
 	.byte 3
@@ -217,7 +217,7 @@ AncientTomb_Braille_ShineInTheMiddle: @ 82A6D06
 	.byte 19
 	.byte 6
 	.byte 3
-	.braille "THOSE WHO\n"
-	.braille "INHERIT OUR\n"
-	.braille "WILL, SHINE\n"
-	.braille "IN THE MIDDLE.$"
+	.unown "THOSE WHO\n"
+	.unown "INHERIT OUR\n"
+	.unown "WILL, SHINE\n"
+	.unown "IN THE MIDDLE.$"

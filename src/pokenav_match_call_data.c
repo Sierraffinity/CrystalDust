@@ -117,11 +117,11 @@ static void MatchCall_GetNameAndDescByRematchIdx(u32, const u8 **, const u8 **);
 static const match_call_text_data_t sMrStoneTextScripts[] = {
     { MatchCall_Text_MrStone1,  0xFFFF,                              FLAG_ENABLE_MR_STONE_POKENAV },
     { MatchCall_Text_MrStone2,  FLAG_ENABLE_MR_STONE_POKENAV,        0xFFFF },
-    { MatchCall_Text_MrStone3,  FLAG_DELIVERED_STEVEN_LETTER,        0xFFFF },
+    { MatchCall_Text_MrStone3,  FLAG_TALKED_TO_FLORIA_FLOWER_SHOP,        0xFFFF },
     { MatchCall_Text_MrStone4,  FLAG_RECEIVED_EXP_SHARE,             0xFFFF },
     { MatchCall_Text_MrStone5,  FLAG_RECEIVED_MAGNET_FROM_SUNNY,                  0xFFFF },
     { MatchCall_Text_MrStone6,  FLAG_DEFEATED_PETALBURG_GYM,         0xFFFF },
-    { MatchCall_Text_MrStone7,  FLAG_RECEIVED_CASTFORM,              0xFFFF },
+    { MatchCall_Text_MrStone7,  FLAG_BIKE_SHOP_LOAN_ACTIVE,              0xFFFF },
     { MatchCall_Text_MrStone8,  FLAG_RECEIVED_HM06, 0xFFFF },
     { MatchCall_Text_MrStone9,  FLAG_RECEIVED_HM07, 0xFFFF },
     { MatchCall_Text_MrStone10, FLAG_DEFEATED_SOOTOPOLIS_GYM,        0xFFFF },
@@ -191,7 +191,7 @@ static const struct MatchCallStructNPC sMomMatchCallHeader =
 
 static const match_call_text_data_t sStevenTextScripts[] = {
     { MatchCall_Text_Steven1, 0xFFFF,                              0xFFFF },
-    { MatchCall_Text_Steven2, FLAG_UNION_CAVE_OPENED,          0xFFFF },
+    { MatchCall_Text_Steven2, FLAG_IN_BUG_CATCHING_CONTEST,          0xFFFF },
     { MatchCall_Text_Steven3, FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
     { MatchCall_Text_Steven4, FLAG_RECEIVED_HM07, 0xFFFF },
     { MatchCall_Text_Steven5, FLAG_DEFEATED_MOSSDEEP_GYM,          0xFFFF },
@@ -213,12 +213,12 @@ static const struct MatchCallStructNPC sStevenMatchCallHeader =
 static const match_call_text_data_t sMayTextScripts[] = {
     { MatchCall_Text_May1,  0xFFFF,                              0xFFFF },
     { MatchCall_Text_May2,  FLAG_DEFEATED_AZALEA_GYM,           0xFFFF },
-    { MatchCall_Text_May3,  FLAG_DELIVERED_DEVON_GOODS,          0xFFFF },
+    { MatchCall_Text_May3,  FLAG_MET_BUENA,          0xFFFF },
     { MatchCall_Text_May4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       0xFFFF },
     { MatchCall_Text_May5,  FLAG_RECEIVED_MAGNET_FROM_SUNNY,                  0xFFFF },
     { MatchCall_Text_May6,  FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },
     { MatchCall_Text_May7,  FLAG_DEFEATED_PETALBURG_GYM,         0xFFFF },
-    { MatchCall_Text_May8,  FLAG_RECEIVED_CASTFORM,              0xFFFF },
+    { MatchCall_Text_May8,  FLAG_BIKE_SHOP_LOAN_ACTIVE,              0xFFFF },
     { MatchCall_Text_May9,  FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
     { MatchCall_Text_May10, FLAG_RECEIVED_HM06, 0xFFFF },
     { MatchCall_Text_May11, FLAG_MADE_UNOWN_APPEAR_IN_RUINS,           0xFFFF },
@@ -242,12 +242,12 @@ static const struct MatchCallRival sMayMatchCallHeader =
 static const match_call_text_data_t sBrendanTextScripts[] = {
     { MatchCall_Text_Brendan1,  0xFFFF,                              0xFFFF },
     { MatchCall_Text_Brendan2,  FLAG_DEFEATED_AZALEA_GYM,           0xFFFF },
-    { MatchCall_Text_Brendan3,  FLAG_DELIVERED_DEVON_GOODS,          0xFFFF },
+    { MatchCall_Text_Brendan3,  FLAG_MET_BUENA,          0xFFFF },
     { MatchCall_Text_Brendan4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       0xFFFF },
     { MatchCall_Text_Brendan5,  FLAG_RECEIVED_MAGNET_FROM_SUNNY,                  0xFFFF },
     { MatchCall_Text_Brendan6,  FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },
     { MatchCall_Text_Brendan7,  FLAG_DEFEATED_PETALBURG_GYM,         0xFFFF },
-    { MatchCall_Text_Brendan8,  FLAG_RECEIVED_CASTFORM,              0xFFFF },
+    { MatchCall_Text_Brendan8,  FLAG_BIKE_SHOP_LOAN_ACTIVE,              0xFFFF },
     { MatchCall_Text_Brendan9,  FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
     { MatchCall_Text_Brendan10, FLAG_RECEIVED_HM06, 0xFFFF },
     { MatchCall_Text_Brendan11, FLAG_MADE_UNOWN_APPEAR_IN_RUINS,           0xFFFF },
@@ -270,9 +270,9 @@ static const struct MatchCallRival sBrendanMatchCallHeader =
 
 static const match_call_text_data_t sWallyTextScripts[] = {
     { MatchCall_Text_Wally1, 0xFFFF,                              0xFFFF },
-    { MatchCall_Text_Wally2, FLAG_UNION_CAVE_OPENED,          0xFFFF },
+    { MatchCall_Text_Wally2, FLAG_IN_BUG_CATCHING_CONTEST,          0xFFFF },
     { MatchCall_Text_Wally3, FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },
-    { MatchCall_Text_Wally4, FLAG_RECEIVED_CASTFORM,              0xFFFF },
+    { MatchCall_Text_Wally4, FLAG_BIKE_SHOP_LOAN_ACTIVE,              0xFFFF },
     { MatchCall_Text_Wally5, FLAG_RECEIVED_HM06, 0xFFFF },
     { MatchCall_Text_Wally6, FLAG_RECEIVED_TM05_ROAR, 0xFFFF },
     { MatchCall_Text_Wally7, FLAG_MET_FRIEDA_OF_FRIDAY,    0xFFFF },
@@ -300,7 +300,7 @@ static const struct MatchCallWally sWallyMatchCallHeader =
 static const match_call_text_data_t sScottTextScripts[] = {
     { MatchCall_Text_Scott1, 0xFFFF,                              0xFFFF },
     { MatchCall_Text_Scott2, FLAG_HATCHED_ELMS_EGG,  0xFFFF },
-    { MatchCall_Text_Scott3, FLAG_RECEIVED_CASTFORM,              0xFFFF },
+    { MatchCall_Text_Scott3, FLAG_BIKE_SHOP_LOAN_ACTIVE,              0xFFFF },
     { MatchCall_Text_Scott4, FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
     { MatchCall_Text_Scott5, FLAG_RECEIVED_HM07, 0xFFFF },
     { MatchCall_Text_Scott6, FLAG_DEFEATED_SOOTOPOLIS_GYM,        0xFFFF },
@@ -368,7 +368,7 @@ static const match_call_text_data_t sWattsonTextScripts[] = {
 static const struct MatchCallStructTrainer sWattsonMatchCallHeader =
 {
     .type = MC_TYPE_LEADER,
-    .mapSec = MAPSEC_MAUVILLE_CITY,
+    .mapSec = MAPSEC_OLIVINE_CITY,
     .flag = FLAG_ENABLE_WATTSON_MATCH_CALL,
     .rematchTableIdx = REMATCH_WATTSON,
     .desc = gText_WattsonMatchCallDesc,
@@ -387,7 +387,7 @@ static const match_call_text_data_t sFlanneryTextScripts[] = {
 static const struct MatchCallStructTrainer sFlanneryMatchCallHeader =
 {
     .type = MC_TYPE_LEADER,
-    .mapSec = MAPSEC_LAVARIDGE_TOWN,
+    .mapSec = MAPSEC_CIANWOOD_CITY,
     .flag = FLAG_ENABLE_FLANNERY_MATCH_CALL,
     .rematchTableIdx = REMATCH_FLANNERY,
     .desc = gText_FlanneryMatchCallDesc,

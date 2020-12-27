@@ -1342,13 +1342,13 @@ static const u8 sBetPayoutMultipliers[] = {
     3, // BET_TYPE_LEVEL_5_6
 };
 
-static u8 SanitizeNumCoinsEntry(int numCoinsEntry)
+/*static u8 SanitizeNumCoinsEntry(int numCoinsEntry)
 {
     if (numCoinsEntry <= 0)
         numCoinsEntry = 1;
 
     return numCoinsEntry;
-}
+}*/
 
 void PlayCardFlip(void)
 {
@@ -1357,7 +1357,8 @@ void PlayCardFlip(void)
     ScriptContext1_Stop();
     sCardFlip = AllocZeroed(sizeof(*sCardFlip));
     sCardFlip->returnMainCallback = CB2_ReturnToFieldContinueScriptPlayMapMusic;
-    sCardFlip->numCoinsEntry = SanitizeNumCoinsEntry(gSpecialVar_0x8004);
+    //sCardFlip->numCoinsEntry = SanitizeNumCoinsEntry(gSpecialVar_0x8004);
+    sCardFlip->numCoinsEntry = 3;
     taskId = CreateTask(FadeToCardFlipScreen, 0);
 }
 
@@ -1385,38 +1386,49 @@ static void InitCardFlipScreen(void)
     {
     case 0:
         SetVBlankCallback(NULL);
-        ResetAllBgsCoordinates();
+        SetHBlankCallback(NULL);
+        CpuFill32(0, (void *)VRAM, VRAM_SIZE);
+        ResetBgsAndClearDma3BusyFlags(0);
+        InitBgsFromTemplates(0, sCardFlipBgTemplates, ARRAY_COUNT(sCardFlipBgTemplates));
+        InitWindows(sCardFlipWinTemplates);
+        DeactivateAllTextPrinters();
         gMain.state++;
         break;
     case 1:
+        DmaClearLarge16(3, (u16 *)(BG_VRAM), BG_VRAM_SIZE, 0x1000);
+        gMain.state++;
+        break;
+    case 2:
+        DmaClear16(3, (u16 *)OAM, OAM_SIZE);
         ResetVramOamAndBgCntRegs();
-        ResetBgsAndClearDma3BusyFlags(0);
-        InitBgsFromTemplates(0, sCardFlipBgTemplates, ARRAY_COUNT(sCardFlipBgTemplates));
+        ResetAllBgsCoordinates();
+        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
+        gMain.state++;
+        break;
+    case 3:
+        ResetPaletteFade();
+        ResetSpriteData();
+        FreeAllSpritePalettes();
+        ResetTasks();
+        gMain.state++;
+        break;
+    case 4:
         SetBgTilemapBuffer(CARD_FLIP_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
         DecompressAndLoadBgGfxUsingHeap(CARD_FLIP_BG_BASE, sCardFlipBaseBgGfx, 0x22E0, 0, 0);
         CopyToBgTilemapBuffer(CARD_FLIP_BG_BASE, sCardFlipBaseBgTilemap, 0, 0);
-        ResetPaletteFade();
         LoadPalette(sCardFlipBaseBgPalette, 0, sizeof(sCardFlipBaseBgPalette));
-        InitWindows(sCardFlipWinTemplates);
-        DeactivateAllTextPrinters();
         LoadMessageBoxGfx(WIN_TEXT, 0x200, 0xF0);
         LoadUserWindowBorderGfx(WIN_TEXT, 0x214, 0xE0);
         gMain.state++;
         break;
-    case 2:
-        ResetSpriteData();
-        FreeAllSpritePalettes();
-        gMain.state++;
-        break;
-    case 3:
+    case 5:
         CopyBgTilemapBufferToVram(CARD_FLIP_BG_BASE);
-        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
         ShowBg(CARD_FLIP_BG_TEXT);
         ShowBg(CARD_FLIP_BG_BET_OUTLINE);
         ShowBg(CARD_FLIP_BG_BASE);
         gMain.state++;
         break;
-    case 4:
+    case 6:
         LoadCompressedSpriteSheet(&sCoinDigitsSpriteSheet);
         LoadCompressedSpriteSheet(&sCardNumbersSpriteSheet);
         LoadCompressedSpriteSheet(&sBetOutlineHorizontalSpriteSheet);
@@ -1425,7 +1437,7 @@ static void InitCardFlipScreen(void)
         LoadCompressedSpriteSheet(&sRoundCountersSpriteSheet);
         LoadSpritePalettes(sCardFlipSpritePalettes);
         LoadMonIconPalettes();
-        LoadPalette(stdpal_get(2), 11 * 16, 32); // palette for WIN_HELP
+        LoadPalette(GetTextWindowPalette(2), 11 * 16, 32); // palette for WIN_HELP
         LoadCardBackGfx();
         LoadCardSelectionGfx();
         InitCoinDigitSprites();
@@ -1434,7 +1446,7 @@ static void InitCardFlipScreen(void)
         InitRoundCounterSprites();
         ShowHelpBar(sHelpBar_SelectExit);
         gMain.state++;
-    case 5:
+    case 7:
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         SetVBlankCallback(CardFlipVBlankCallback);
         SetMainCallback2(CardFlipMainCallback);
@@ -1559,12 +1571,20 @@ static void InitCardFlipTable(u8 taskId)
 static void DisplayInitialPlayMessage(void)
 {
     DrawDialogueFrame(WIN_TEXT, 0);
-    ConvertIntToDecimalStringN(gStringVar1, sCardFlip->numCoinsEntry, 0, 3);
-    StringExpandPlaceholders(gStringVar2, sPlayTheGamePromptText);
-    AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar2, 0, 1, GetPlayerTextSpeedDelay(), NULL);
 
-    CopyWindowToVram(WIN_TEXT, 3);
-    sCardFlip->state = CARD_FLIP_STATE_PLAY_PROMPT;
+    if (GetCoins() >= sCardFlip->numCoinsEntry)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, sCardFlip->numCoinsEntry, 0, 3);
+        StringExpandPlaceholders(gStringVar2, sPlayTheGamePromptText);
+        AddTextPrinterParameterized(WIN_TEXT, 2, gStringVar2, 0, 1, 0, NULL);
+
+        CopyWindowToVram(WIN_TEXT, 3);
+        sCardFlip->state = CARD_FLIP_STATE_PLAY_PROMPT;
+    }
+    else
+    {
+        sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS;
+    }
 }
 
 static void DisplayInitialPlayPrompt(void)
@@ -1582,19 +1602,13 @@ static void ProcessPlayPromptInput(void)
     if (selection == 0)
     {
         ClearDialogWindowAndFrame(0, TRUE);
-        if (GetCoins() >= sCardFlip->numCoinsEntry)
-        {
-            ResetAndShuffleCardDeck();
-            sCardFlip->state = CARD_FLIP_STATE_PLAY_DEAL_CARDS;
-        }
-        else
-        {
-            sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS;
-        }
+        ResetAndShuffleCardDeck();
+        sCardFlip->state = CARD_FLIP_STATE_PLAY_DEAL_CARDS;
     }
     else if (selection == 1 || selection == MENU_B_PRESSED)
     {
         ClearDialogWindowAndFrame(0, TRUE);
+        PlaySE(SE_SELECT);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
     }
 }
@@ -1630,7 +1644,7 @@ static void PlaceBet(void)
 {
     u8 nextBetType = 0xFF;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         if (IsValidBetType(sCardFlip->betType))
         {
@@ -1639,23 +1653,23 @@ static void PlaceBet(void)
         }
         else
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
         }
         return;
     }
 
-    if (gMain.newKeys & DPAD_UP)
+    if (JOY_NEW(DPAD_UP))
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][0];
-    else if (gMain.newKeys & DPAD_RIGHT)
+    else if (JOY_NEW(DPAD_RIGHT))
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][1];
-    else if (gMain.newKeys & DPAD_DOWN)
+    else if (JOY_NEW(DPAD_DOWN))
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][2];
-    else if (gMain.newKeys & DPAD_LEFT)
+    else if (JOY_NEW(DPAD_LEFT))
         nextBetType = sBetTypeInputTransitions[sCardFlip->betType][3];
 
     if (nextBetType != 0xFF)
     {
-        PlaySE(SE_TB_KARA);
+        PlaySE(SE_BALL_TRAY_EXIT);
         sCardFlip->betType = nextBetType;
         DrawBetType(sCardFlip->betType);
     }
@@ -1740,9 +1754,9 @@ static void DisplayBetOutcomeMessage(void)
         ShowHelpBar(sHelpBar_Next);
         DrawDialogueFrame(WIN_TEXT, 0);
         if (wonBet)
-            AddTextPrinterParameterized(WIN_TEXT, 1, sYeahText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+            AddTextPrinterParameterized(WIN_TEXT, 2, sYeahText, 0, 1, 0, NULL);
         else
-            AddTextPrinterParameterized(WIN_TEXT, 1, sDarnText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+            AddTextPrinterParameterized(WIN_TEXT, 2, sDarnText, 0, 1, 0, NULL);
 
         CopyWindowToVram(WIN_TEXT, 3);
         sCardFlip->state = CARD_FLIP_STATE_DISPLAY_OUTCOME_MESSAGE_INPUT;
@@ -1751,7 +1765,7 @@ static void DisplayBetOutcomeMessage(void)
 
 static void DisplayBetOutcomeMessage_WaitButtonPress(void)
 {
-    if (!IsTextPrinterActive(WIN_TEXT) && (gMain.newKeys & (A_BUTTON | B_BUTTON)))
+    if (!IsTextPrinterActive(WIN_TEXT) && JOY_NEW(A_BUTTON | B_BUTTON))
     {
         PlaySE(SE_SELECT);
         sCardFlip->state = CARD_FLIP_STATE_PLAY_AGAIN_MESSAGE;
@@ -1763,9 +1777,9 @@ static void AwardCoins(void)
     u8 multiplier = sBetPayoutMultipliers[sCardFlip->betType];
     int coinsToGive = sCardFlip->numCoinsEntry * multiplier;
     if (multiplier == 24)
-        PlayFanfare(MUS_ME_B_BIG);
+        PlayFanfare(MUS_SLOTS_JACKPOT);
     else
-        PlayFanfare(MUS_ME_B_SMALL);
+        PlayFanfare(MUS_SLOTS_WIN);
 
     ChangeCoinAmount(coinsToGive, 100);
 }
@@ -1774,7 +1788,7 @@ static void PlayAgainMessage(void)
 {
     ShowHelpBar(sHelpBar_SelectExit);
     DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sPlayAgainText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+    AddTextPrinterParameterized(WIN_TEXT, 2, sPlayAgainText, 0, 1, 0, NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     sCardFlip->state = CARD_FLIP_STATE_PLAY_AGAIN_PROMPT;
 }
@@ -1812,6 +1826,7 @@ static void ProcessPlayAgainPromptInput(u8 taskId)
     else if (selection == 1 || selection == MENU_B_PRESSED)
     {
         ClearDialogWindowAndFrame(0, TRUE);
+        PlaySE(SE_SELECT);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
     }
 }
@@ -1819,7 +1834,7 @@ static void ProcessPlayAgainPromptInput(u8 taskId)
 static void ShuffleDeckMessage(void)
 {
     DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sShuffledCardsText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+    AddTextPrinterParameterized(WIN_TEXT, 2, sShuffledCardsText, 0, 1, 0, NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     ResetAndShuffleCardDeck();
     sCardFlip->state = CARD_FLIP_STATE_SHUFFLE_DECK_INPUT;   
@@ -1827,7 +1842,7 @@ static void ShuffleDeckMessage(void)
 
 static void ProcessShuffleDeckInput(void)
 {
-    if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (!IsTextPrinterActive(WIN_TEXT) && JOY_NEW(A_BUTTON | B_BUTTON))
     {
         ClearDialogWindowAndFrame(0, TRUE);
         sCardFlip->state = CARD_FLIP_STATE_PLAY_DEAL_CARDS;
@@ -1837,16 +1852,15 @@ static void ProcessShuffleDeckInput(void)
 static void DisplayNotEnoughCoinsMessage(void)
 {
     DrawDialogueFrame(WIN_TEXT, 0);
-    AddTextPrinterParameterized(WIN_TEXT, 1, sNotEnoughCoinsText, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+    AddTextPrinterParameterized(WIN_TEXT, 2, sNotEnoughCoinsText, 0, 1, 0, NULL);
     CopyWindowToVram(WIN_TEXT, 3);
     sCardFlip->state = CARD_FLIP_NOT_ENOUGH_COINS_INPUT;
 }
 
 static void ProcessNotEnoughCoinsInput(void)
 {
-    if (!IsTextPrinterActive(WIN_TEXT) && gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (!IsTextPrinterActive(WIN_TEXT) && JOY_NEW(A_BUTTON | B_BUTTON))
     {
-        PlaySE(SE_SELECT);
         ClearDialogWindowAndFrame(0, TRUE);
         sCardFlip->state = CARD_FLIP_STATE_START_EXIT;
     }
@@ -2116,10 +2130,10 @@ static void ChooseCard_SpriteCallback(struct Sprite *sprite)
     switch (sprite->data[7])
     {
     case 0:
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             DestroyTask(sCardFlip->cardSelectionSoundTaskId);
-            PlaySE(SE_KAIFUKU);
+            PlaySE(SE_USE_ITEM);
             selectedCard = sprite->data[1];
             otherCard = (selectedCard + 1) % 2;
             DestroySprite(&gSprites[sCardFlip->cardBackSpriteIds[otherCard]]);
@@ -2136,7 +2150,7 @@ static void ChooseCard_SpriteCallback(struct Sprite *sprite)
                 sprite->pos1.y = 61;
             else
                 sprite->pos1.y = 123;
-            PlaySE(SE_KON4);
+            PlaySE(SE_BALL_BOUNCE_4);
         }
         break;
     case 1:
@@ -2233,7 +2247,7 @@ static void FlipOverCardEnd(struct Sprite *sprite)
         if (wonBet)
             AwardCoins();
         else
-            PlayFanfare(MUS_ME_ZANNEN);
+            PlayFanfare(MUS_TOO_BAD);
 
         numberSprite = &gSprites[sCardFlip->cardNumberSpriteIds[CARD_ID(sCardFlip->drawnCard)]];
         numberSprite->oam.affineMode = ST_OAM_AFFINE_DOUBLE;

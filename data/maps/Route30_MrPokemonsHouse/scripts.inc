@@ -32,17 +32,17 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_IfMyAssumption
 	closemessage
-	playbgm MUS_OAKTHEME, 0
+	playbgm MUS_OAKS_THEME, 0
 	applymovement OBJ_EVENT_ID_PLAYER, Route30_MrPokemonsHouse_Movement_PauseThenTurnRight
 	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToPlayer
 	waitmovement 0
 	msgbox Route30_MrPokemonsHouse_Text_SoYourePlayer
 	textcolor MSG_COLOR_SYS
-	playfanfare MUS_RG_FAN5
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
 	message Route30_MrPokemonsHouse_Text_PlayerReceivedPokedex
 	waitmessage
 	waitfanfare
-	call EventScript_RestorePrevTextColor
+	textcolor MSG_COLOR_PREV
 	setflag FLAG_SYS_POKEDEX_GET
 	msgbox Route30_MrPokemonsHouse_Text_GoMeetManyPokemon
 	closemessage
@@ -50,7 +50,7 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	applymovement 2, Route30_MrPokemonsHouse_Movement_OakToDoor
 	waitmovement 0
 	delay 10
-	playse SE_KAIDAN
+	playse SE_EXIT
 	fadedefaultbgm
 	removeobject 2
 	waitse
@@ -75,9 +75,8 @@ Route30_MrPokemonsHouse_MapScript_MrPokemonIntro:
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsChikorita
 	compare VAR_STARTER_MON, STARTER_CYNDAQUIL
 	call_if_eq Route30_MrPokemonsHouse_EventScript_RivalGetsTotodile
-	setflag FLAG_HIDE_MAP_NAME_POPUP
+	setflag FLAG_FORCED_CALL_ELM_STOLEN_MON
 	setvar VAR_MR_POKEMONS_HOUSE_STATE, 1
-	setvar VAR_ROUTE30_STATE, 1
 	releaseall
 	end
 

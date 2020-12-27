@@ -783,7 +783,7 @@ static const u8 sBackAnimationIds[] =
     0x94, 0x95, 0x96, // 0x19
 };
 
-static const u8 sBackAnimNatureModTable[] =
+static const u8 sBackAnimNatureModTable[NUM_NATURES] =
 {
     [NATURE_HARDY] = 0x00,
     [NATURE_LONELY] = 0x02,
@@ -829,6 +829,8 @@ static const union AffineAnimCmd *const sSpriteAffineAnimTable_860AD68[] =
     sSpriteAffineAnim_860AD48,
     sSpriteAffineAnim_860AD58
 };
+
+extern const union AffineAnimCmd *const gUnknown_082FF694[];
 
 // code
 static void MonAnimDummySpriteCallback(struct Sprite *sprite)
@@ -1042,6 +1044,13 @@ static void sub_817F77C(struct Sprite *sprite)
         sprite->oam.matrixNum |= (sprite->hFlip << 3);
         sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
     }
+    else
+    {
+        // FIX: Reset these back to normal after they were changed so Poké Ball catch/release
+        // animations without a screen transition in between don't break
+        sprite->affineAnimPaused = FALSE;
+        sprite->affineAnims = gUnknown_082FF694;
+    }
 }
 
 static void pokemonanimfunc_01(struct Sprite *sprite)
@@ -1141,7 +1150,6 @@ static void pokemonanimfunc_04(struct Sprite *sprite)
 static void sub_817F9F4(struct Sprite *sprite)
 {
     s32 counter = sprite->data[2];
-
     if (counter > 384)
     {
         sprite->callback = SpriteCB_SetDummyOnAnimEnd;
@@ -1151,7 +1159,6 @@ static void sub_817F9F4(struct Sprite *sprite)
     else
     {
         s16 divCounter = counter / 128;
-
         switch (divCounter)
         {
         case 0:
@@ -2886,9 +2893,10 @@ static void sub_8181C2C(struct Sprite *sprite)
     }
     else
     {
-        register s32 var asm("r4") = sUnknown_03001240[sprite->data[0]].field_8;
 
-        sprite->pos2.x = (var << 3) * (counter % 128) / 128 - (sUnknown_03001240[sprite->data[0]].field_8 * 8);
+        const s16 var = sUnknown_03001240[sprite->data[0]].field_8;
+
+        sprite->pos2.x = var * ((counter % 128) * 8) / 128 + 8 * -var; //Should be - 8 * var instead of + 8 * -var, but that doesn't match
         sprite->pos2.y = -(Sin(counter % 128, 8));
     }
 

@@ -2,7 +2,7 @@
   "id": "MAP_MARINE_CAVE_END",
   "name": "MarineCave_End",
   "layout": "LAYOUT_MARINE_CAVE_END",
-  "music": "MUS_ILEXFOREST",
+  "music": "MUS_ILEX_FOREST",
   "region_map_section": "MAPSEC_MARINE_CAVE",
   "requires_flash": false,
   "weather": "WEATHER_FOG_HORIZONTAL",

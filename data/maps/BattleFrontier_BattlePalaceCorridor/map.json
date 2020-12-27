@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AZURILL",
+      "graphics_id": "OBJ_EVENT_GFX_JIGGLYPUFF",
       "x": 3,
       "y": 5,
       "elevation": 0,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_KIRLIA",
+      "graphics_id": "OBJ_EVENT_GFX_PERSIAN",
       "x": 12,
       "y": 6,
       "elevation": 0,
@@ -99,7 +99,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WINGULL",
+      "graphics_id": "OBJ_EVENT_GFX_BUTTERFREE",
       "x": 3,
       "y": 10,
       "elevation": 0,

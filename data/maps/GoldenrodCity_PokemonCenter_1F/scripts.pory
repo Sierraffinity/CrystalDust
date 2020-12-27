@@ -1,0 +1,364 @@
+const NURSE = 1
+const OLD_MAN = 2
+const HUGE_CENTER_BOY = 4
+const TRADE_CORNER_NURSE = 6
+const TRADE_GIRL = 7
+const BUG_CATCHER = 8
+const YOUNGSTER = 9
+const NEWS_WOMAN = 10
+
+mapscripts GoldenrodCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_GOLDENROD_CITY)
+        if (flag(FLAG_POKECOM_CENTER_ENABLED))
+        {
+            setobjectmovementtype(OLD_MAN, MOVEMENT_TYPE_FACE_LEFT)
+            setobjectxyperm(OLD_MAN, 22, 14)
+            setobjectxyperm(HUGE_CENTER_BOY, 16, 5)
+            setobjectmovementtype(TRADE_GIRL, MOVEMENT_TYPE_LOOK_AROUND)
+            setobjectxyperm(TRADE_GIRL, 21, 9)
+            setobjectmovementtype(BUG_CATCHER, MOVEMENT_TYPE_FACE_LEFT)
+            setobjectxyperm(BUG_CATCHER, 32, 4)
+            setobjectmovementtype(YOUNGSTER, MOVEMENT_TYPE_FACE_RIGHT)
+            setobjectmovementtype(NEWS_WOMAN, MOVEMENT_TYPE_FACE_LEFT)
+            setobjectxyperm(NEWS_WOMAN, 32, 8)
+        }
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_Nurse {
+    setvar(VAR_0x800B, NURSE)
+    call(GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse)
+	waitmessage
+	waitbuttonpress
+	release
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_PokecomNurse {
+    lock
+    faceplayer
+    setvar(VAR_0x8004, 0)
+    specialvar(VAR_RESULT, CountPlayerTrainerStars)
+    if (var(VAR_RESULT) == 4)
+    {
+        if (flag(FLAG_NURSE_MENTIONS_GOLD_CARD))
+        {
+            goto(EventScript_PkmnCenterNurse_AskForUsual)
+        }
+        else
+        {
+            msgbox("Hello!\p"
+                   "This is the POKéMON COMMUNICATION\n"
+                   "CENTER--or the POKéCOM CENTER.\p"
+                   "We can heal your POKéMON to\n"
+                   "perfect health.\p"
+                   "Shall we…", MSGBOX_DEFAULT)
+            goto(EventScript_PkmnCenterNurse_GoldCard_Notice)
+        }
+    }
+    else
+    {
+        gettime
+        switch (var(VAR_0x8002))
+        {
+            case TIME_MORNING:
+                message("Good morning!\p"
+                        "This is the POKéMON COMMUNICATION\n"
+                        "CENTER--or the POKéCOM CENTER.\p")
+                break
+            case TIME_DAY:
+                message("Hello!\p"
+                        "This is the POKéMON COMMUNICATION\n"
+                        "CENTER--or the POKéCOM CENTER.\p")
+                break
+            case TIME_NIGHT:
+                message("Good to see you working so late.\p"
+                        "This is the POKéMON COMMUNICATION\n"
+                        "CENTER--or the POKéCOM CENTER.\p")
+                break
+        }
+
+        goto(Common_EventScript_PkmnCenterNurse_Common)
+    }
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_OldMan {
+    if (flag(FLAG_POKECOM_CENTER_ENABLED))
+    {
+        msgbox("Just seeing all these new things\n"
+               "here makes me feel younger!", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("I came over here when I got word\n"
+               "that GOLDENROD's POKéMON CENTER\l"
+               "has new machines that no one's\l"
+               "ever seen before.\p"
+               "But it looks like they're still busy\n"
+               "with all their preparations…", MSGBOX_NPC)
+    }
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_TypeAdvantageGirl {
+    msgbox("A higher level POKéMON doesn't\n"
+           "always win.\p"
+           "After all, it may have a type\n"
+           "disadvantage.\p"
+           "I don't think there is a single\n"
+           "POKéMON that is the toughest.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_HugeCenterBoy {
+    if (flag(FLAG_POKECOM_CENTER_ENABLED))
+    {
+        msgbox("I thought up a fun new thing for\n"
+               "the TRADE CORNER!\p"
+               "I make a PIDGEY hold MAIL, then put\n"
+               "it up for trade for another one!\p"
+               "If everyone did that, MAIL could be\n"
+               "traded with all sorts of people!\p"
+               "I call it PIDGEY MAIL!\p"
+               "If it becomes popular, I might make\n"
+               "lots of new friends!", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("Whoa, this POKéMON CENTER is huge.\n"
+               "They just built this place.\p"
+               "They installed lots of new machines\n"
+               "too.", MSGBOX_NPC)
+    }
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_GameBoyKid {
+    msgbox("The COLOSSEUM upstairs is for\n"
+           "link battles.\p"
+           "Battle records are posted on the\n"
+           "wall, so I can't afford to lose.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_TradingGirl {
+    if (flag(FLAG_POKECOM_CENTER_ENABLED))
+    {
+        msgbox("I received a female HOPPIP, but\n"
+               "it's named STANLEY!\l"
+               "That's my dad's name!", MSGBOX_NPC)
+    }
+    elif (flag(FLAG_TEMP_1))
+    {
+        msgbox("I'm jealous! They stopped giving\n"
+               "those EGG TICKETS away earlier\l"
+               "because their supply ran out.", MSGBOX_NPC)
+    }
+    else
+    {
+        // TODO: This is temporary
+        checkitem(ITEM_EGG_TICKET, 1)
+        if (var(VAR_RESULT))
+        {
+            lock
+            faceplayer
+            msgbox("Oh, you have an EGG TICKET?\n"
+                   "Maybe they still have some EGGS!\l"
+                   "Good luck!")
+            closemessage
+            if (var(VAR_FACING) == DIR_WEST)
+            {
+                applymovement(VAR_LAST_TALKED, GoldenrodCity_PokemonCenter_1F_Movement_TradingGirlWest)
+                waitmovement(0)
+                setobjectxyperm(VAR_LAST_TALKED, 18, 9)
+            }
+            else
+            {
+                applymovement(VAR_LAST_TALKED, GoldenrodCity_PokemonCenter_1F_Movement_TradingGirlEast)
+                waitmovement(0)
+                setobjectxyperm(VAR_LAST_TALKED, 20, 9)
+            }
+            setflag(FLAG_TEMP_1)
+            release
+        }
+        else
+        {
+            msgbox("They said you can trade POKéMON\n"
+                   "with total strangers up here.\p"
+                   "But they're still adjusting things.", MSGBOX_NPC)
+        }
+    }
+}
+
+movement GoldenrodCity_PokemonCenter_1F_Movement_TradingGirlWest {
+    walk_left
+    face_right
+}
+
+movement GoldenrodCity_PokemonCenter_1F_Movement_TradingGirlEast {
+    walk_right
+    face_left
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_BugCatcher {
+    if (flag(FLAG_POKECOM_CENTER_ENABLED))
+    {
+        msgbox("If I get in the NEWS and become\n"
+               "famous, I bet I'll be adored.\p"
+               "I wonder how I could get myself\n"
+               "in the NEWS?", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("The machines here can't be used\n"
+               "right now.\p"
+               "Still, it's nice coming to a trendy\n"
+               "place before other people.", MSGBOX_NPC)
+    }
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_Youngster {
+    if (flag(FLAG_POKECOM_CENTER_ENABLED))
+    {
+        msgbox("My friend was in the NEWS a while\n"
+               "back. I was really surprised!", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("What is the NEWS MACHINE?\p"
+               "Does it get news from a wider area\n"
+               "than the radio?", MSGBOX_NPC)
+    }
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_NewsWoman {
+    if (flag(FLAG_POKECOM_CENTER_ENABLED))
+    {
+        msgbox("I get anxious if I don't check out\n"
+               "the latest NEWS!", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("The POKéCOM CENTER will link with all\n"
+               "POKéMON CENTERS in a wireless net.\p"
+               "That must mean I'll be able to\n"
+               "link with all sorts of people.", MSGBOX_NPC)
+    }
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_InfoSign {
+    msgbox("POKéCOM CENTER\n"
+           "1F INFORMATION\p"
+           "Left: ADMINISTRATION\n"
+           "Center: TRADE CORNER\l"
+           "Right: POKéMON NEWS", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_NewsMachine {
+    if (flag(FLAG_POKECOM_CENTER_ENABLED))
+    {
+        msgbox("It's a POKéMON NEWS MACHINE.\n"
+               "…and? Why are you here?\l"
+               "Just to suffer?", MSGBOX_SIGN)
+    }
+    else
+    {
+        msgbox("It's a POKéMON NEWS MACHINE!\n"
+               "It's not in operation yet…", MSGBOX_SIGN)
+    }
+}
+
+movement GoldenrodCity_PokemonCenter_1F_Movement_TradeCounterNurseToPC {
+    walk_up
+    walk_right
+}
+
+movement GoldenrodCity_PokemonCenter_1F_Movement_TradeCounterNurseToPlayer {
+    walk_left
+    walk_down
+}
+
+script GoldenrodCity_PokemonCenter_1F_EventScript_TradeCounterNurse {
+    lock
+    faceplayer
+    msgbox("Hello! Welcome to the POKéCOM\n"
+           "CENTER TRADE CORNER.\p"
+           "You can trade POKéMON with other\n"
+           "people far away.")
+    checkitem(ITEM_EGG_TICKET, 1)
+    if (var(VAR_RESULT))
+    {
+        msgbox("Oh!\n"
+               "I see you have an EGG TICKET!\p"
+               "It's a coupon that special people\n"
+               "can redeem for a special POKéMON!\p"
+               "We have a few left, so an ODD EGG\n"
+               "is available just for you.\p"
+               "Would you like to redeem your\n"
+               "EGG TICKET?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            getpartysize
+            if (var(VAR_RESULT) != 6)
+            {
+                msgbox("Great!\n"
+                       "Let's get started.")
+                textcolor(MSG_COLOR_SYS)
+                playfanfare(MUS_OBTAIN_ITEM)
+                message("{PLAYER} handed the EGG TICKET to\n"
+                        "the receptionist.")
+                waitmessage
+                waitfanfare
+                textcolor(MSG_COLOR_PREV)
+                removeitem(ITEM_EGG_TICKET)
+                msgbox("Thank you! Let me retrieve the\n"
+                       "ODD EGG from one of the rooms.\l"
+                       "Please wait a moment.")
+                closemessage
+                applymovement(VAR_LAST_TALKED, GoldenrodCity_PokemonCenter_1F_Movement_TradeCounterNurseToPC)
+                waitmovement(0)
+                playse(SE_PC_ON)
+                waitse
+                delay(20)
+                playse(SE_PC_LOGIN)
+                waitse
+                delay(30)
+                playse(SE_BALL)
+                waitse
+                delay(20)
+                playse(SE_PC_OFF)
+                waitse
+                applymovement(VAR_LAST_TALKED, GoldenrodCity_PokemonCenter_1F_Movement_TradeCounterNurseToPlayer)
+                waitmovement(0)
+                msgbox("Thank you for waiting.\n"
+                       "We retrieved your ODD EGG.\p"
+                       "Here it is!\n"
+                       "Please raise it with loving care.")
+                textcolor(MSG_COLOR_SYS)
+                setflag(FLAG_GOT_ODD_EGG)
+                playfanfare(MUS_OBTAIN_ITEM)
+                message("{PLAYER} received the ODD EGG\n"
+                        "from the receptionist.")
+                waitfanfare
+                special(GiveOddEgg)
+                textcolor(MSG_COLOR_PREV)
+                msgbox("We hope to see you again.")
+            }
+            else
+            {
+                msgbox("Oh, you can't carry any more\n"
+                       "POKéMON with you, it seems.\p"
+                       "Please make room in your party,\n"
+                       "then come see me.")
+            }
+        }
+        else
+        {
+            msgbox("We hope to see you again.")
+        }
+    }
+    else
+    {
+        msgbox("…is what I'd usually say, but our\n"
+               "system is not yet operational…\p"
+               "Please try again later.")
+    }
+    release
+}

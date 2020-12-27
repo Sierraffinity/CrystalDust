@@ -19,7 +19,7 @@ struct PokemonStorage
 {
     /*0x0000*/ u8 currentBox;
     /*0x0001*/ struct BoxPokemon boxes[TOTAL_BOXES_COUNT][IN_BOX_COUNT];
-    /*0x8344*/ u8 boxNames[TOTAL_BOXES_COUNT][9];
+    /*0x8344*/ u8 boxNames[TOTAL_BOXES_COUNT][BOX_NAME_LENGTH + 1];
     /*0x83C2*/ u8 boxWallpapers[TOTAL_BOXES_COUNT];
 };
 
@@ -46,7 +46,7 @@ void SetBoxMonNickAt(u8 boxId, u8 boxPosition, const u8 *nick);
 u32 GetAndCopyBoxMonDataAt(u8 boxId, u8 boxPosition, s32 request, void *dst);
 void SetBoxMonAt(u8 boxId, u8 boxPosition, struct BoxPokemon *src);
 void CopyBoxMonAt(u8 boxId, u8 boxPosition, struct BoxPokemon *dst);
-void CreateBoxMonAt(u8 boxId, u8 boxPosition, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 personality, u8 otIDType, u32 otID);
+void CreateBoxMonAt(u8 boxId, u8 boxPosition, u16 species, u8 level, u8 fixedIV, u8 personalityType, u32 personality, u8 otIDType, u32 otID);
 void ZeroBoxMonAt(u8 boxId, u8 boxPosition);
 void BoxMonAtToMon(u8 boxId, u8 boxPosition, struct Pokemon *dst);
 struct BoxPokemon *GetBoxedMonPtr(u8 boxId, u8 boxPosition);
@@ -55,6 +55,7 @@ u8 GetBoxWallpaper(u8 boxId);
 void SetBoxWallpaper(u8 boxId, u8 wallpaperId);
 s16 sub_80D214C(struct BoxPokemon *boxMons, u8 currIndex, u8 maxIndex, u8 arg3);
 bool8 CheckFreePokemonStorageSpace(void);
+u32 GetFreePokemonStorageSpace(void);
 bool32 CheckBoxMonSanityAt(u32 boxId, u32 boxPosition);
 u32 CountStorageNonEggMons(void);
 u32 CountAllStorageMons(void);

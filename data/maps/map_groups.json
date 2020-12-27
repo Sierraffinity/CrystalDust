@@ -40,7 +40,7 @@
     "VioletCity",
     "SlateportCity",
     "MauvilleCity",
-    "RustboroCity",
+    "GoldenrodCity",
     "FortreeCity",
     "LilycoveCity",
     "MossdeepCity",
@@ -58,8 +58,8 @@
     "Route31",
     "Route32",
     "Route33",
-    "Route106",
-    "Route107",
+    "Route34",
+    "Route35",
     "Route36",
     "Route109",
     "Route110",
@@ -69,7 +69,7 @@
     "Route114",
     "Route115",
     "Route116",
-    "Route117",
+    "Route45",
     "Route46",
     "Route119",
     "Route120",
@@ -87,13 +87,13 @@
     "Route132",
     "Route133",
     "Route134",
-    "Underwater1",
-    "Underwater2",
-    "Underwater3",
-    "Underwater4",
-    "Underwater5",
-    "Underwater6",
-    "Underwater7"
+    "Underwater_Route124",
+    "Underwater_Route126",
+    "Underwater_Route127",
+    "Underwater_Route128",
+    "Underwater_Route129",
+    "Underwater_Route105",
+    "Underwater_Route125"
   ],
   "gMapGroup1": [
     "NewBarkTown_PlayersHouse_1F",
@@ -193,23 +193,30 @@
     "MauvilleCity_Mart"
   ],
   "gMapGroup11": [
-    "RustboroCity_DevonCorp_1F",
-    "RustboroCity_DevonCorp_2F",
-    "RustboroCity_DevonCorp_3F",
-    "RustboroCity_Gym",
-    "RustboroCity_PokemonSchool",
-    "RustboroCity_PokemonCenter_1F",
-    "RustboroCity_PokemonCenter_2F",
-    "RustboroCity_Mart",
-    "RustboroCity_Flat1_1F",
-    "RustboroCity_Flat1_2F",
-    "RustboroCity_House1",
-    "RustboroCity_CuttersHouse",
-    "RustboroCity_House2",
-    "RustboroCity_Flat2_1F",
-    "RustboroCity_Flat2_2F",
-    "RustboroCity_Flat2_3F",
-    "RustboroCity_House3"
+    "GoldenrodCity_Underground_NorthEntrance",
+    "GoldenrodCity_Underground_SouthEntrance",
+    "GoldenrodCity_Underground",
+    "GoldenrodCity_Gym",
+    "GoldenrodCity_PokecomCenterAdminRoom",
+    "GoldenrodCity_PokemonCenter_1F",
+    "GoldenrodCity_PokemonCenter_2F",
+    "GoldenrodCity_MagnetTrainStation",
+    "GoldenrodCity_GameCorner",
+    "GoldenrodCity_BikeShop",
+    "GoldenrodCity_FlowerShop",
+    "GoldenrodCity_NameRatersHouse",
+    "GoldenrodCity_BillsFamilysHouse",
+    "GoldenrodCity_House1",
+    "GoldenrodCity_House2",
+    "GoldenrodCity_DeptStore_1F",
+    "GoldenrodCity_DeptStore_2F",
+    "GoldenrodCity_DeptStore_3F",
+    "GoldenrodCity_DeptStore_4F",
+    "GoldenrodCity_DeptStore_5F",
+    "GoldenrodCity_DeptStore_6F",
+    "GoldenrodCity_DeptStore_Rooftop",
+    "GoldenrodCity_DeptStore_Elevator",
+    "GoldenrodCity_DeptStore_B1F"
   ],
   "gMapGroup12": [
     "FortreeCity_House1",
@@ -298,11 +305,7 @@
     "EverGrandeCity_PokemonLeague_2F"
   ],
   "gMapGroup17": [
-    "Route29_Gatehouse",
-    "NationalParkGateSouth",
-    "NationalParkContest",
-    "NationalPark",
-    "NationalParkGateEast"
+    "Route29_Gatehouse"
   ],
   "gMapGroup18": [
     "Route30_BerryMansHouse",
@@ -319,19 +322,22 @@
   "gMapGroup21": [
     "Route34_IlexEastGatehouse",
     "Route34_IlexNorthGatehouse",
-    "Route116_TunnelersRestHouse"
+    "Route34_DayCare"
   ],
   "gMapGroup22": [
-    "Route117_PokemonDayCare"
+    "Route35_GoldenrodGatehouse",
+    "Route35_NationalParkGatehouse"
   ],
   "gMapGroup23": [
-    "Route36_RuinsOfAlphGatehouse"
+    "Route36_RuinsOfAlphGatehouse",
+    "Route36_NationalParkGatehouse"
   ],
   "gMapGroup24": [
-    "MeteorFalls_1F_1R",
-    "MeteorFalls_1F_2R",
-    "MeteorFalls_B1F_1R",
-    "MeteorFalls_B1F_2R",
+    "RadioTower_1F",
+    "RadioTower_2F",
+    "RadioTower_3F",
+    "RadioTower_4F",
+    "RadioTower_5F",
     "UnionCave_1F",
     "UnionCave_B1F",
     "UnionCave_B2F",
@@ -435,7 +441,8 @@
     "TerraCave_Entrance",
     "TerraCave_End",
     "AlteringCave",
-    "MeteorFalls_StevensCave"
+    "NationalPark",
+    "NationalPark_BugCatchingContest"
   ],
   "gMapGroup25": [
     "SecretBase_RedCave1",

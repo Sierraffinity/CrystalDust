@@ -24,9 +24,9 @@ text VioletCity_Gym_Text_FalknerPreBattle {
 	"type POKéMON's wings with a jolt\l"
 	"of electricity…\p"
 	"I won't allow such insults to\n"
-	"bird POKéMON!\p"
+	"BIRD POKéMON!\p"
 	"I'll show you the real power of\n"
-	"the magnificent bird POKéMON!"
+	"the magnificent BIRD POKéMON!"
 }
 
 text VioletCity_Gym_Text_FalknerDefeat {
@@ -44,11 +44,11 @@ script VioletCity_Gym_EventScript_FalknerDefeated {
             "from FALKNER.")
     waitmessage
     call(Common_EventScript_PlayGymBadgeFanfare)
-	call(EventScript_RestorePrevTextColor)
+	textcolor(MSG_COLOR_PREV)
     setflag(FLAG_DEFEATED_VIOLET_GYM)
     setflag(FLAG_BADGE01_GET)
-    setvar(VAR_VIOLET_CITY_STATE, 1)
-    set_gym_trainers(1)
+    setflag(FLAG_FORCED_CALL_ELM_AIDE_IN_VIOLET)
+    setgymtrainers(1)
     goto(VioletCity_Gym_EventScript_GiveAerialAce)
 }
 
@@ -120,9 +120,8 @@ script VioletCity_Gym_EventScript_GymGuide {
     {
         msgbox("Hey! I'm no TRAINER, but I can\n"
                "give some advice!\p"
-               "Believe me!\n"
-               "If you believe, a championship\l"
-               "dream can come true.\p"
+               "Believe me! If you believe, a\n"
+               "championship dream can come true.\p"
                "You believe?\n"
                "Then listen.\p"
                "GRASS-type POKéMON are weak\n"

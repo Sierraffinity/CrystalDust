@@ -13,6 +13,7 @@
 #include "load_save.h"
 #include "pokeblock.h"
 #include "dewford_trend.h"
+#include "game_build.h"
 #include "berry.h"
 #include "rtc.h"
 #include "easy_chat.h"
@@ -89,7 +90,7 @@ void CopyTrainerId(u8 *dst, u8 *src)
 
 static void InitPlayerTrainerId(void)
 {
-    u32 trainerId = (Random() << 0x10) | GetGeneratedTrainerIdLower();
+    u32 trainerId = (Random() << 16) | Random();
     SetTrainerId(trainerId, gSaveBlock2Ptr->playerTrainerId);
 }
 
@@ -172,6 +173,7 @@ void NewGameInitData(void)
     ClearSecretBases();
     ClearBerryTrees();
     SetMoney(&gSaveBlock1Ptr->money, 3000);
+    SetMoney(&gSaveBlock1Ptr->bankedMoney, 0);
     SetCoins(0);
     ResetLinkContestBoolean();
     ResetGameStats();
@@ -198,7 +200,7 @@ void NewGameInitData(void)
     ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
     StringCopy(gSaveBlock1Ptr->rivalName, gText_DefaultNameSilver);
     ResetMiniGamesResults();
-    copy_strings_to_sav1();
+    InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();
     ResetAllApprenticeData();
     ClearRankingHallRecords();
@@ -207,6 +209,7 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+    SetBuildNumber();
 }
 
 static void ResetMiniGamesResults(void)

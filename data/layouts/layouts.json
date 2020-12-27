@@ -38,16 +38,16 @@
       "blockdata_filepath": "data/layouts/MauvilleCity/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY",
-      "name": "RustboroCity_Layout",
-      "width": 40,
-      "height": 60,
+      "id": "LAYOUT_GOLDENROD_CITY",
+      "name": "GoldenrodCity_Layout",
+      "width": 48,
+      "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
-      "border_filepath": "data/layouts/RustboroCity/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity/map.bin"
+      "secondary_tileset": "gTileset_Goldenrod",
+      "border_filepath": "data/layouts/GoldenrodCity/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity/map.bin"
     },
     {
       "id": "LAYOUT_FORTREE_CITY",
@@ -232,7 +232,7 @@
     {
       "id": "LAYOUT_ROUTE32",
       "name": "Route32_Layout",
-      "width": 28,
+      "width": 30,
       "height": 120,
       "border_width": 2,
       "border_height": 2,
@@ -254,28 +254,28 @@
       "blockdata_filepath": "data/layouts/Route33/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE106",
-      "name": "Route106_Layout",
+      "id": "LAYOUT_ROUTE34",
+      "name": "Route34_Layout",
       "width": 32,
       "height": 70,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
-      "border_filepath": "data/layouts/Route106/border.bin",
-      "blockdata_filepath": "data/layouts/Route106/map.bin"
+      "secondary_tileset": "gTileset_Goldenrod",
+      "border_filepath": "data/layouts/Route34/border.bin",
+      "blockdata_filepath": "data/layouts/Route34/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE107",
-      "name": "Route107_Layout",
-      "width": 60,
-      "height": 20,
+      "id": "LAYOUT_ROUTE35",
+      "name": "Route35_Layout",
+      "width": 24,
+      "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Violet",
-      "border_filepath": "data/layouts/Route107/border.bin",
-      "blockdata_filepath": "data/layouts/Route107/map.bin"
+      "secondary_tileset": "gTileset_Goldenrod",
+      "border_filepath": "data/layouts/Route35/border.bin",
+      "blockdata_filepath": "data/layouts/Route35/map.bin"
     },
     {
       "id": "LAYOUT_ROUTE36",
@@ -381,21 +381,21 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/Route116/border.bin",
       "blockdata_filepath": "data/layouts/Route116/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE117",
-      "name": "Route117_Layout",
-      "width": 60,
-      "height": 20,
+      "id": "LAYOUT_ROUTE45",
+      "name": "Route45_Layout",
+      "width": 24,
+      "height": 90,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Mauville",
-      "border_filepath": "data/layouts/Route117/border.bin",
-      "blockdata_filepath": "data/layouts/Route117/map.bin"
+      "border_filepath": "data/layouts/Route45/border.bin",
+      "blockdata_filepath": "data/layouts/Route45/map.bin"
     },
     {
       "id": "LAYOUT_ROUTE46",
@@ -405,7 +405,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Mauville",
+      "secondary_tileset": "gTileset_NewBark",
       "border_filepath": "data/layouts/Route46/border.bin",
       "blockdata_filepath": "data/layouts/Route46/map.bin"
     },
@@ -424,12 +424,12 @@
     {
       "id": "LAYOUT_ROUTE120",
       "name": "Route120_Layout",
-      "width": 40,
-      "height": 100,
+      "width": 100,
+      "height": 22,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Fortree",
+      "secondary_tileset": "gTileset_NewBark",
       "border_filepath": "data/layouts/Route120/border.bin",
       "blockdata_filepath": "data/layouts/Route120/map.bin"
     },
@@ -602,40 +602,40 @@
       "blockdata_filepath": "data/layouts/Route134/map.bin"
     },
     {
-      "id": "LAYOUT_UNDERWATER2",
-      "name": "Underwater2_Layout",
+      "id": "LAYOUT_UNDERWATER_ROUTE126",
+      "name": "Underwater_Route126_Layout",
       "width": 80,
       "height": 80,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Underwater",
-      "border_filepath": "data/layouts/Underwater2/border.bin",
-      "blockdata_filepath": "data/layouts/Underwater2/map.bin"
+      "border_filepath": "data/layouts/Underwater_Route126/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_Route126/map.bin"
     },
     {
-      "id": "LAYOUT_UNDERWATER3",
-      "name": "Underwater3_Layout",
+      "id": "LAYOUT_UNDERWATER_ROUTE127",
+      "name": "Underwater_Route127_Layout",
       "width": 80,
       "height": 80,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Underwater",
-      "border_filepath": "data/layouts/Underwater3/border.bin",
-      "blockdata_filepath": "data/layouts/Underwater3/map.bin"
+      "border_filepath": "data/layouts/Underwater_Route127/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_Route127/map.bin"
     },
     {
-      "id": "LAYOUT_UNDERWATER4",
-      "name": "Underwater4_Layout",
+      "id": "LAYOUT_UNDERWATER_ROUTE128",
+      "name": "Underwater_Route128_Layout",
       "width": 120,
       "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Underwater",
-      "border_filepath": "data/layouts/Underwater4/border.bin",
-      "blockdata_filepath": "data/layouts/Underwater4/map.bin"
+      "border_filepath": "data/layouts/Underwater_Route128/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_Route128/map.bin"
     },
     {
       "id": "LAYOUT_NEW_BARK_TOWN_PLAYERS_HOUSE_1F",
@@ -645,7 +645,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "secondary_tileset": "gTileset_PlayersHouse",
       "border_filepath": "data/layouts/NewBarkTown_PlayersHouse_1F/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_PlayersHouse_1F/map.bin"
     },
@@ -657,7 +657,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "secondary_tileset": "gTileset_PlayersHouse",
       "border_filepath": "data/layouts/NewBarkTown_PlayersHouse_2F/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_PlayersHouse_2F/map.bin"
     },
@@ -669,19 +669,19 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "secondary_tileset": "gTileset_PlayersHouse",
       "border_filepath": "data/layouts/NewBarkTown_ElmsHouse/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_ElmsHouse/map.bin"
     },
     {
-      "id": "LAYOUT_NEW_BARK_TOWN_NEIGHBORS_HOUSE",
+      "id": "LAYOUT_UNUSED_NEW_BARK_TOWN_NEIGHBORS_HOUSE",
       "name": "NewBarkTown_NeighborsHouse_Layout",
       "width": 11,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "secondary_tileset": "gTileset_PlayersHouse",
       "border_filepath": "data/layouts/NewBarkTown_NeighborsHouse/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_NeighborsHouse/map.bin"
     },
@@ -998,28 +998,28 @@
       "blockdata_filepath": "data/layouts/SlateportCity_SternsShipyard_2F/map.bin"
     },
     {
-      "id": "LAYOUT_UNKNOWN_084294C4",
-      "name": "Unknown_084294C4_Layout",
-      "width": 1,
-      "height": 1,
+      "id": "LAYOUT_POKECOM_CENTER_1F",
+      "name": "PokecomCenter_1F_Layout",
+      "width": 35,
+      "height": 18,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/Unknown_084294C4/border.bin",
-      "blockdata_filepath": "data/layouts/Unknown_084294C4/map.bin"
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/PokecomCenter_1F/border.bin",
+      "blockdata_filepath": "data/layouts/PokecomCenter_1F/map.bin"
     },
     {
-      "id": "LAYOUT_UNKNOWN_084294E8",
-      "name": "Unknown_084294E8_Layout",
-      "width": 1,
-      "height": 1,
+      "id": "LAYOUT_POKECOM_CENTER_ADMIN_ROOM",
+      "name": "PokecomCenter_AdminRoom_Layout",
+      "width": 10,
+      "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/Unknown_084294E8/border.bin",
-      "blockdata_filepath": "data/layouts/Unknown_084294E8/map.bin"
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/PokecomCenter_AdminRoom/border.bin",
+      "blockdata_filepath": "data/layouts/PokecomCenter_AdminRoom/map.bin"
     },
     {
       "id": "LAYOUT_SLATEPORT_CITY_POKEMON_FAN_CLUB",
@@ -1029,7 +1029,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PokemonFanClub",
+      "secondary_tileset": "gTileset_RadioTower",
       "border_filepath": "data/layouts/SlateportCity_PokemonFanClub/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity_PokemonFanClub/map.bin"
     },
@@ -1041,7 +1041,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_OceanicMuseum",
+      "secondary_tileset": "gTileset_Underground",
       "border_filepath": "data/layouts/SlateportCity_OceanicMuseum_1F/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity_OceanicMuseum_1F/map.bin"
     },
@@ -1053,7 +1053,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_OceanicMuseum",
+      "secondary_tileset": "gTileset_Underground",
       "border_filepath": "data/layouts/SlateportCity_OceanicMuseum_2F/border.bin",
       "blockdata_filepath": "data/layouts/SlateportCity_OceanicMuseum_2F/map.bin"
     },
@@ -1101,81 +1101,81 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_MauvilleGameCorner",
+      "secondary_tileset": "gTileset_GameCorner",
       "border_filepath": "data/layouts/MauvilleCity_GameCorner/border.bin",
       "blockdata_filepath": "data/layouts/MauvilleCity_GameCorner/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_1F",
-      "name": "RustboroCity_DevonCorp_1F_Layout",
-      "width": 19,
-      "height": 9,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/RustboroCity_DevonCorp_1F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_DevonCorp_1F/map.bin"
-    },
-    {
-      "id": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_2F",
-      "name": "RustboroCity_DevonCorp_2F_Layout",
-      "width": 19,
-      "height": 9,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/RustboroCity_DevonCorp_2F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_DevonCorp_2F/map.bin"
-    },
-    {
-      "id": "LAYOUT_RUSTBORO_CITY_GYM",
-      "name": "RustboroCity_Gym_Layout",
-      "width": 11,
-      "height": 20,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_RustboroGym",
-      "border_filepath": "data/layouts/RustboroCity_Gym/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Gym/map.bin"
-    },
-    {
-      "id": "LAYOUT_RUSTBORO_CITY_HOUSE",
-      "name": "RustboroCity_House_Layout",
-      "width": 12,
-      "height": 9,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_House/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_House/map.bin"
-    },
-    {
-      "id": "LAYOUT_RUSTBORO_CITY_HOUSE1",
-      "name": "RustboroCity_House1_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_NORTH_ENTRANCE",
+      "name": "GoldenrodCity_Underground_NorthEntrance_Layout",
       "width": 13,
-      "height": 8,
+      "height": 12,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_House1/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_House1/map.bin"
+      "secondary_tileset": "gTileset_Gatehouse",
+      "border_filepath": "data/layouts/GoldenrodCity_Underground_NorthEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Underground_NorthEntrance/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_CUTTERS_HOUSE",
-      "name": "RustboroCity_CuttersHouse_Layout",
+      "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_SOUTH_ENTRANCE",
+      "name": "GoldenrodCity_Underground_SouthEntrance_Layout",
+      "width": 13,
+      "height": 12,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Gatehouse",
+      "border_filepath": "data/layouts/GoldenrodCity_Underground_SouthEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Underground_SouthEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_GYM",
+      "name": "GoldenrodCity_Gym_Layout",
+      "width": 21,
+      "height": 21,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GoldenrodGym",
+      "border_filepath": "data/layouts/GoldenrodCity_Gym/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Gym/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_2F",
+      "name": "GoldenrodCity_DeptStore_2F_Layout",
+      "width": 13,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_2F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_FLOWER_SHOP",
+      "name": "GoldenrodCity_FlowerShop_Layout",
+      "width": 12,
+      "height": 10,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonDayCare",
+      "border_filepath": "data/layouts/GoldenrodCity_FlowerShop/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_FlowerShop/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNUSED_GOLDENROD_CITY_NAME_RATERS_HOUSE",
+      "name": "GoldenrodCity_NameRatersHouse_Layout",
       "width": 11,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_CuttersHouse/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_CuttersHouse/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_NameRatersHouse/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_NameRatersHouse/map.bin"
     },
     {
       "id": "LAYOUT_FORTREE_CITY_HOUSE1",
@@ -1217,7 +1217,7 @@
       "id": "LAYOUT_GATEHOUSE_VERTICAL",
       "name": "GatehouseVertical_Layout",
       "width": 9,
-      "height": 11,
+      "height": 12,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
@@ -1408,12 +1408,12 @@
     {
       "id": "LAYOUT_CABLE_CAR_STATION",
       "name": "CableCarStation_Layout",
-      "width": 13,
-      "height": 12,
+      "width": 27,
+      "height": 20,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_MagnetTrain",
       "border_filepath": "data/layouts/CableCarStation/border.bin",
       "blockdata_filepath": "data/layouts/CableCarStation/map.bin"
     },
@@ -1454,26 +1454,26 @@
       "blockdata_filepath": "data/layouts/Route114_LanettesHouse/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE116_TUNNELERS_REST_HOUSE",
-      "name": "Route116_TunnelersRestHouse_Layout",
-      "width": 10,
-      "height": 9,
+      "id": "LAYOUT_ROUTE34_DAY_CARE",
+      "name": "Route34_DayCare_Layout",
+      "width": 14,
+      "height": 11,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/Route116_TunnelersRestHouse/border.bin",
-      "blockdata_filepath": "data/layouts/Route116_TunnelersRestHouse/map.bin"
+      "secondary_tileset": "gTileset_PokemonDayCare",
+      "border_filepath": "data/layouts/Route34_DayCare/border.bin",
+      "blockdata_filepath": "data/layouts/Route34_DayCare/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE117_POKEMON_DAY_CARE",
-      "name": "Route117_PokemonDayCare_Layout",
+      "id": "LAYOUT_ROUTE45_POKEMON_DAY_CARE_UNUSED",
+      "name": "Route117_PokemonDayCare_Unused_Layout",
       "width": 12,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_PokemonDayCare",
+      "secondary_tileset": "gTileset_Gatehouse",
       "border_filepath": "data/layouts/Route117_PokemonDayCare/border.bin",
       "blockdata_filepath": "data/layouts/Route117_PokemonDayCare/map.bin"
     },
@@ -1490,52 +1490,52 @@
       "blockdata_filepath": "data/layouts/Route121_SafariZoneEntrance/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_1F_1R",
-      "name": "MeteorFalls_1F_1R_Layout",
-      "width": 30,
-      "height": 42,
+      "id": "LAYOUT_RADIO_TOWER_1F",
+      "name": "RadioTower_1F_Layout",
+      "width": 21,
+      "height": 13,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_1F_1R/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_1F_1R/map.bin"
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_RadioTower",
+      "border_filepath": "data/layouts/RadioTower_1F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_1F/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_1F_2R",
-      "name": "MeteorFalls_1F_2R_Layout",
-      "width": 30,
-      "height": 32,
+      "id": "LAYOUT_RADIO_TOWER_2F",
+      "name": "RadioTower_2F_Layout",
+      "width": 21,
+      "height": 13,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_1F_2R/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_1F_2R/map.bin"
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_RadioTower",
+      "border_filepath": "data/layouts/RadioTower_2F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_2F/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_B1F_1R",
-      "name": "MeteorFalls_B1F_1R_Layout",
+      "id": "LAYOUT_RADIO_TOWER_3F",
+      "name": "RadioTower_3F_Layout",
       "width": 29,
       "height": 38,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_B1F_1R/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_B1F_1R/map.bin"
+      "border_filepath": "data/layouts/RadioTower_3F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_3F/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_B1F_2R",
-      "name": "MeteorFalls_B1F_2R_Layout",
+      "id": "LAYOUT_RADIO_TOWER_4F",
+      "name": "RadioTower_4F_Layout",
       "width": 11,
       "height": 18,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_B1F_2R/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_B1F_2R/map.bin"
+      "border_filepath": "data/layouts/RadioTower_4F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_4F/map.bin"
     },
     {
       "id": "LAYOUT_UNION_CAVE_1F",
@@ -1622,7 +1622,7 @@
       "blockdata_filepath": "data/layouts/IlexForest/map.bin"
     },
     {
-      "id": "LAYOUT_MT_CHIMNEY",
+      "id": "LAYOUT_SLOWPOKE_WELL_B1F",
       "name": "SlowpokeWell_B1F_Layout",
       "width": 24,
       "height": 20,
@@ -2841,7 +2841,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_InsideOfTruck",
+      "secondary_tileset": "gTileset_MagnetTrain",
       "border_filepath": "data/layouts/InsideOfTruck/border.bin",
       "blockdata_filepath": "data/layouts/InsideOfTruck/map.bin"
     },
@@ -3218,16 +3218,16 @@
       "blockdata_filepath": "data/layouts/BattleFrontier_BattleTowerBattleRoom/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_3F",
-      "name": "RustboroCity_DevonCorp_3F_Layout",
-      "width": 19,
-      "height": 9,
+      "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND",
+      "name": "GoldenrodCity_Underground_Layout",
+      "width": 28,
+      "height": 44,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/RustboroCity_DevonCorp_3F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_DevonCorp_3F/map.bin"
+      "secondary_tileset": "gTileset_Underground",
+      "border_filepath": "data/layouts/GoldenrodCity_Underground/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Underground/map.bin"
     },
     {
       "id": "LAYOUT_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F",
@@ -3278,16 +3278,16 @@
       "blockdata_filepath": "data/layouts/LilycoveCity_DepartmentStoreElevator/map.bin"
     },
     {
-      "id": "LAYOUT_UNDERWATER1",
-      "name": "Underwater1_Layout",
+      "id": "LAYOUT_UNDERWATER_ROUTE124",
+      "name": "Underwater_Route124_Layout",
       "width": 80,
       "height": 80,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Underwater",
-      "border_filepath": "data/layouts/Underwater1/border.bin",
-      "blockdata_filepath": "data/layouts/Underwater1/map.bin"
+      "border_filepath": "data/layouts/Underwater_Route124/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_Route124/map.bin"
     },
     {
       "id": "LAYOUT_MOSSDEEP_CITY_SPACE_CENTER_1F",
@@ -3441,7 +3441,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/Route104_Prototype/border.bin",
       "blockdata_filepath": "data/layouts/Route104_Prototype/map.bin"
     },
@@ -3477,7 +3477,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/SouthernIsland_Exterior/border.bin",
       "blockdata_filepath": "data/layouts/SouthernIsland_Exterior/map.bin"
     },
@@ -3489,7 +3489,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/SouthernIsland_Interior/border.bin",
       "blockdata_filepath": "data/layouts/SouthernIsland_Interior/map.bin"
     },
@@ -3518,40 +3518,40 @@
       "blockdata_filepath": "data/layouts/FieryPath/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT2_1F",
-      "name": "RustboroCity_Flat2_1F_Layout",
+      "id": "LAYOUT_UNUSED_GOLDENROD_CITY_HOUSE1",
+      "name": "GoldenrodCity_House1_Layout",
       "width": 14,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat2_1F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat2_1F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_House1/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_House1/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT2_2F",
-      "name": "RustboroCity_Flat2_2F_Layout",
+      "id": "LAYOUT_UNUSED_GOLDENROD_CITY_HOUSE2",
+      "name": "GoldenrodCity_House2_Layout",
       "width": 14,
       "height": 9,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat2_2F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat2_2F/map.bin"
+      "border_filepath": "data/layouts/GoldenrodCity_House2/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_House2/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT2_3F",
-      "name": "RustboroCity_Flat2_3F_Layout",
-      "width": 14,
-      "height": 9,
+      "id": "LAYOUT_GOLDENROD_CITY_FLAT2_3F",
+      "name": "GoldenrodCity_DeptStore_1F_Layout",
+      "width": 13,
+      "height": 16,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat2_3F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat2_3F/map.bin"
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_1F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_1F/map.bin"
     },
     {
       "id": "LAYOUT_SOOTOPOLIS_CITY_LOTAD_AND_SEEDOT_HOUSE",
@@ -3746,28 +3746,28 @@
       "blockdata_filepath": "data/layouts/CaveOfOrigin_Unused_B4F_Lava/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT1_1F",
-      "name": "RustboroCity_Flat1_1F_Layout",
-      "width": 14,
-      "height": 8,
+      "id": "LAYOUT_GOLDENROD_CITY_GAME_CORNER",
+      "name": "GoldenrodCity_GameCorner_Layout",
+      "width": 20,
+      "height": 15,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat1_1F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat1_1F/map.bin"
+      "secondary_tileset": "gTileset_GameCorner",
+      "border_filepath": "data/layouts/GoldenrodCity_GameCorner/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_GameCorner/map.bin"
     },
     {
-      "id": "LAYOUT_RUSTBORO_CITY_FLAT1_2F",
-      "name": "RustboroCity_Flat1_2F_Layout",
-      "width": 14,
-      "height": 8,
+      "id": "LAYOUT_GOLDENROD_CITY_BIKE_SHOP",
+      "name": "GoldenrodCity_BikeShop_Layout",
+      "width": 11,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/RustboroCity_Flat1_2F/border.bin",
-      "blockdata_filepath": "data/layouts/RustboroCity_Flat1_2F/map.bin"
+      "secondary_tileset": "gTileset_BikeShop",
+      "border_filepath": "data/layouts/GoldenrodCity_BikeShop/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_BikeShop/map.bin"
     },
     {
       "id": "LAYOUT_EVER_GRANDE_CITY_HALL4",
@@ -4821,7 +4821,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/FarawayIsland_Entrance/border.bin",
       "blockdata_filepath": "data/layouts/FarawayIsland_Entrance/map.bin"
     },
@@ -4910,40 +4910,40 @@
       "blockdata_filepath": "data/layouts/TerraCave_End/map.bin"
     },
     {
-      "id": "LAYOUT_UNDERWATER6",
-      "name": "Underwater6_Layout",
+      "id": "LAYOUT_UNDERWATER_ROUTE105",
+      "name": "Underwater_Route105_Layout",
       "width": 40,
       "height": 80,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Underwater",
-      "border_filepath": "data/layouts/Underwater6/border.bin",
-      "blockdata_filepath": "data/layouts/Underwater6/map.bin"
+      "border_filepath": "data/layouts/Underwater_Route105/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_Route105/map.bin"
     },
     {
-      "id": "LAYOUT_UNDERWATER7",
-      "name": "Underwater7_Layout",
+      "id": "LAYOUT_UNDERWATER_ROUTE125",
+      "name": "Underwater_Route125_Layout",
       "width": 80,
       "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Underwater",
-      "border_filepath": "data/layouts/Underwater7/border.bin",
-      "blockdata_filepath": "data/layouts/Underwater7/map.bin"
+      "border_filepath": "data/layouts/Underwater_Route125/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_Route125/map.bin"
     },
     {
-      "id": "LAYOUT_UNDERWATER5",
-      "name": "Underwater5_Layout",
+      "id": "LAYOUT_UNDERWATER_ROUTE129",
+      "name": "Underwater_Route129_Layout",
       "width": 80,
       "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Underwater",
-      "border_filepath": "data/layouts/Underwater5/border.bin",
-      "blockdata_filepath": "data/layouts/Underwater5/map.bin"
+      "border_filepath": "data/layouts/Underwater_Route129/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_Route129/map.bin"
     },
     {
       "id": "LAYOUT_MARINE_CAVE_END",
@@ -5162,16 +5162,16 @@
       "blockdata_filepath": "data/layouts/BattleFrontier_ScottsHouse/map.bin"
     },
     {
-      "id": "LAYOUT_METEOR_FALLS_STEVENS_CAVE",
-      "name": "MeteorFalls_StevensCave_Layout",
+      "id": "LAYOUT_RADIO_TOWER_5F",
+      "name": "RadioTower_5F_Layout",
       "width": 30,
       "height": 32,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_RockTunnel",
-      "border_filepath": "data/layouts/MeteorFalls_StevensCave/border.bin",
-      "blockdata_filepath": "data/layouts/MeteorFalls_StevensCave/map.bin"
+      "border_filepath": "data/layouts/RadioTower_5F/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower_5F/map.bin"
     },
     {
       "id": "LAYOUT_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB_WITH_TABLE",
@@ -5294,52 +5294,124 @@
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
     },
     {
-      "id": "LAYOUT_NATIONAL_PARK_GATE_SOUTH",
-      "name": "NationalParkGateSouth_Layout",
+      "id": "LAYOUT_ROUTE35_NATIONAL_PARK_GATEHOUSE",
+      "name": "Route35_NationalParkGatehouse_Layout",
       "width": 9,
       "height": 11,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Gatehouse",
-      "border_filepath": "data/layouts/NationalParkGateSouth/border.bin",
-      "blockdata_filepath": "data/layouts/NationalParkGateSouth/map.bin"
-    },
-    {
-      "id": "LAYOUT_NATIONAL_PARK_CONTEST",
-      "name": "NationalParkContest_Layout",
-      "width": 20,
-      "height": 20,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
-      "border_filepath": "data/layouts/NationalParkContest/border.bin",
-      "blockdata_filepath": "data/layouts/NationalParkContest/map.bin"
+      "border_filepath": "data/layouts/Route35_NationalParkGatehouse/border.bin",
+      "blockdata_filepath": "data/layouts/Route35_NationalParkGatehouse/map.bin"
     },
     {
       "id": "LAYOUT_NATIONAL_PARK",
       "name": "NationalPark_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 48,
+      "height": 56,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_NationalPark",
       "border_filepath": "data/layouts/NationalPark/border.bin",
       "blockdata_filepath": "data/layouts/NationalPark/map.bin"
     },
     {
-      "id": "LAYOUT_NATIONAL_PARK_GATE_EAST",
-      "name": "NationalParkGateEast_Layout",
+      "id": "LAYOUT_ROUTE36_NATIONAL_PARK_GATEHOUSE",
+      "name": "Route36_NationalParkGatehouse_Layout",
       "width": 12,
       "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Gatehouse",
-      "border_filepath": "data/layouts/NationalParkGateEast/border.bin",
-      "blockdata_filepath": "data/layouts/NationalParkGateEast/map.bin"
+      "border_filepath": "data/layouts/Route36_NationalParkGatehouse/border.bin",
+      "blockdata_filepath": "data/layouts/Route36_NationalParkGatehouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_3F",
+      "name": "GoldenrodCity_DeptStore_3F_Layout",
+      "width": 13,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_3F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_3F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_4F",
+      "name": "GoldenrodCity_DeptStore_4F_Layout",
+      "width": 13,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_4F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_4F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_5F",
+      "name": "GoldenrodCity_DeptStore_5F_Layout",
+      "width": 13,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_5F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_5F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_6F",
+      "name": "GoldenrodCity_DeptStore_6F_Layout",
+      "width": 13,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_6F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_6F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_ROOFTOP",
+      "name": "GoldenrodCity_DeptStore_Rooftop_Layout",
+      "width": 19,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_DepartmentStore",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_Rooftop/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_Rooftop/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_ELEVATOR",
+      "name": "GoldenrodCity_DeptStore_Elevator_Layout",
+      "width": 5,
+      "height": 7,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_RadioTower",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_Elevator/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_Elevator/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_DEPT_STORE_B1F",
+      "name": "GoldenrodCity_DeptStore_B1F_Layout",
+      "width": 24,
+      "height": 22,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_RadioTower",
+      "border_filepath": "data/layouts/GoldenrodCity_DeptStore_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_DeptStore_B1F/map.bin"
     }
   ]
 }

@@ -1,0 +1,22 @@
+mapscripts Route46_MapScripts { }
+
+script Route46_EventScript_Bailey {
+    trainerbattle_single(TRAINER_BAILEY, Route46_Text_BaileyIntro, Route46_Text_BaileyDefeated)
+    msgbox(Route46_Text_BaileyPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route46_EventScript_Ted {
+    trainerbattle_single(TRAINER_TED, Route46_Text_TedIntro, Route46_Text_TedDefeated)
+    msgbox(Route46_Text_TedPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route46_EventScript_Erin {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_ERIN, Route46_Text_ErinIntro, Route46_Text_ErinDefeated)
+    msgbox(Route46_Text_ErinPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route46_EventScript_RouteSign {
+    msgbox("ROUTE 46\n"
+           "MOUNTAIN ROAD AHEAD", MSGBOX_SIGN)
+}

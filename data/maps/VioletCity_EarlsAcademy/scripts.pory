@@ -13,103 +13,102 @@ const EXIT = 5
 mapscripts VioletCity_EarlsAcademy_MapScripts { }
 
 script VioletCity_EarlsAcademy_EventScript_StatusInfoBoard {
-	lockall
-	msgbox("The blackboard lists POKéMON\n"
-		   "status problems in battle.")
-	goto(StatusBoard_Loop)
+    lockall
+    msgbox("The blackboard lists POKéMON\n"
+           "status problems in battle.")
+    goto(StatusBoard_Loop)
 }
 
 script(local) StatusBoard_Loop {
-	message("Which topic do you want to read?")
-	waitmessage
-	multichoicegrid(8, 1, MULTI_STATUS_INFO, 3, FALSE)
-	switch(var(VAR_RESULT))
-	{
-		case PSN:
-			msgbox("If poisoned, a POKéMON steadily\n"
-				   "loses HP.\p"
-				   "Poison lingers after the battle,\n"
-				   "and HP is lost as you walk.\p"
-				   "To cure it, use an ANTIDOTE.")
-			goto(StatusBoard_Loop)
-		case PAR:
-			msgbox("Paralysis reduces SPEED and may\n"
-				   "prevent movement.\p"
-				   "It remains after battle, so use a\n"
-				   "PARALYZE HEAL.")
-			goto(StatusBoard_Loop)
-		case SLP:
-			msgbox("If asleep, your POKéMON can't make\n"
-				   "a move.\p"
-				   "A sleeping POKéMON doesn't wake up\n"
-				   "after battle, so wake it up with\l"
-				   "an AWAKENING.")
-			goto(StatusBoard_Loop)
-		case BRN:
-			msgbox("A burn steadily consumes HP.\n"
-				   "It also reduces ATTACK power.\p"
-				   "A burn lingers after battle.\n"
-				   "Use a BURN HEAL as the cure.")
-			goto(StatusBoard_Loop)
-		case FRZ:
-			msgbox("If your POKéMON is frozen, it can't\n"
-				   "do a thing.\p"
-				   "It remains frozen after battle.\n"
-				   "Thaw it out with an ICE HEAL.")
-			goto(StatusBoard_Loop)
-		case EXIT:
-		case MULTI_B_PRESSED:
-			releaseall
-			end
-	}
+    message("Which topic do you want to read?")
+    waitmessage
+    multichoicegrid(8, 1, MULTI_STATUS_INFO, 3, FALSE)
+    switch (var(VAR_RESULT))
+    {
+        case PSN:
+            msgbox("If poisoned, a POKéMON steadily\n"
+                   "loses HP.\p"
+                   "Poison lingers after the battle,\n"
+                   "and HP is lost as you walk.\p"
+                   "To cure it, use an ANTIDOTE.")
+            goto(StatusBoard_Loop)
+        case PAR:
+            msgbox("Paralysis reduces SPEED and may\n"
+                   "prevent movement.\p"
+                   "It remains after battle, so use a\n"
+                   "PARALYZE HEAL.")
+            goto(StatusBoard_Loop)
+        case SLP:
+            msgbox("If asleep, your POKéMON can't make\n"
+                   "a move.\p"
+                   "A sleeping POKéMON doesn't wake up\n"
+                   "after battle, so wake it up with\l"
+                   "an AWAKENING.")
+            goto(StatusBoard_Loop)
+        case BRN:
+            msgbox("A burn steadily consumes HP.\n"
+                   "It also reduces ATTACK power.\p"
+                   "A burn lingers after battle.\n"
+                   "Use a BURN HEAL as the cure.")
+            goto(StatusBoard_Loop)
+        case FRZ:
+            msgbox("If your POKéMON is frozen, it can't\n"
+                   "do a thing.\p"
+                   "It remains frozen after battle.\n"
+                   "Thaw it out with an ICE HEAL.")
+            goto(StatusBoard_Loop)
+        case EXIT:
+        case MULTI_B_PRESSED:
+            releaseall
+            end
+    }
 }
 
 script VioletCity_EarlsAcademy_EventScript_Notes {
-	lockall
-	msgbox("It's this kid's notebook…\p"
-		   "Catch POKéMON using POKé BALLS.\n"
-		   "Up to six can be in your party.\p"
-		   "Keep reading?", MSGBOX_YESNO)
-	if (var(VAR_RESULT) == YES)
-	{
-		msgbox("Before throwing a POKé BALL, weaken\n"
-			   "the target first.\p"
-			   "A poisoned or burned POKéMON is\n"
-			   "easier to catch.\p"
-			   "Keep reading?", MSGBOX_YESNO)
-		if (var(VAR_RESULT) == YES)
-		{
-			msgbox("Some moves may cause confusion.\p"
-				   "Confusion may make a POKéMON attack\n"
-				   "itself.\p"
-				   "Leaving battle clears up any\n"
-				   "confusion.\p"
-				   "Keep reading?", MSGBOX_YESNO)
-			if (var(VAR_RESULT) == YES)
-			{
-				msgbox("People who catch and use POKéMON\n"
-					   "in battle are POKéMON TRAINERS.\p"
-					   "They are expected to visit POKéMON\n"
-					   "GYMS and defeat other TRAINERS.\p"
-					   "The next page is…\n"
-					   "Blank!")
-				applymovement(NOTES_KID, Common_Movement_WalkInPlaceFastestUp)
-				waitmovement(0)
-				textcolor(MSG_COLOR_BLUE)
-				msgbox("BOY: Ehehe…\n"
-					   "I haven't written any more…")
-			}
-		}
-	}
-	releaseall
+    lockall
+    msgbox("It's this kid's notebook…\p"
+           "Catch POKéMON using POKé BALLS.\n"
+           "Up to six can be in your party.\p"
+           "Keep reading?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        msgbox("Before throwing a POKé BALL, weaken\n"
+               "the target first.\p"
+               "A poisoned or burned POKéMON is\n"
+               "easier to catch.\p"
+               "Keep reading?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            msgbox("Some moves may cause confusion.\p"
+                   "Confusion may make a POKéMON attack\n"
+                   "itself.\p"
+                   "Leaving battle clears up any\n"
+                   "confusion.\p"
+                   "Keep reading?", MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                msgbox("People who catch and use POKéMON\n"
+                       "in battle are POKéMON TRAINERS.\p"
+                       "They are expected to visit POKéMON\n"
+                       "GYMS and defeat other TRAINERS.\p"
+                       "The next page is…\n"
+                       "Blank!")
+                applymovement(NOTES_KID, Common_Movement_WalkInPlaceFastestUp)
+                waitmovement(0)
+                textcolor(MSG_COLOR_BLUE)
+                msgbox("BOY: Ehehe…\n"
+                       "I haven't written any more…")
+            }
+        }
+    }
+    releaseall
 }
 
-// TODO: come back and clean up when local labels have been implemented
 script VioletCity_EarlsAcademy_Earl {
-	lockall
-	applymovement(EARL, VioletCity_Movement_EarlSpin)
-	waitmovement(0)
-	faceplayer
+    lockall
+    applymovement(EARL, VioletCity_Movement_EarlSpin)
+    waitmovement(0)
+    faceplayer
     msgbox("EARL, I am!\n"
            "Wonderful are POKéMON, yes!\p"
            "Teach you I will to be a better\n"
@@ -125,100 +124,101 @@ script VioletCity_EarlsAcademy_Earl {
                "Change order in list, make battle\n"
                "easy, maybe!\p"
                "More from me you want to hear?", MSGBOX_YESNO)
-        if (var(VAR_RESULT) == NO)
+        if (var(VAR_RESULT) == YES)
         {
-            goto(Earl_End)
+            msgbox("So, want to know how to raise\n"
+                "POKéMON well?", MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                msgbox("Fine!\n"
+                       "Teach you, I will!\p"
+                       "If POKéMON come out in battle even\n"
+                       "briefly, some EXP. Points it gets.\p"
+                       "At left of list put weak POKéMON.\n"
+                       "Switch in battle quick!\p"
+                       "This way, weak POKéMON strong\n"
+                       "become!")
+            }
+            else
+            {
+                msgbox(VioletCity_EarlsAcademy_Text_Earl_End)
+            }
+        }
+        else
+        {
+            msgbox(VioletCity_EarlsAcademy_Text_Earl_End)
         }
     }
 
-    msgbox("So, want to know how to raise\n"
-           "POKéMON well?", MSGBOX_YESNO)
-    if (var(VAR_RESULT) == YES)
-    {
-        msgbox("Fine!\n"
-               "Teach you, I will!\p"
-               "If POKéMON come out in battle even\n"
-               "briefly, some EXP. Points it gets.\p"
-			   "At left of list put weak POKéMON.\n"
-			   "Switch in battle quick!\p"
-			   "This way, weak POKéMON strong\n"
-			   "become!")
-    }
-	else
-	{
-		goto(Earl_End)
-	}
-
     releaseall
 }
 
-script(local) Earl_End {
-    msgbox("Oh! Smart student you are!\n"
-           "Nothing more do I teach!")
-    releaseall
+text VioletCity_EarlsAcademy_Text_Earl_End {
+    "Oh! Smart student you are!\n"
+    "Nothing more do I teach!"
 }
 
 movement VioletCity_EarlsAcademy_Movement_EarlSpin {
-	face_down
-	delay_1
-	face_left
-	delay_1
-	face_up
-	delay_1
-	face_right
-	delay_1
-	face_down
-	delay_1
-	face_left
-	delay_1
-	face_up
-	delay_1
-	face_right
-	delay_1
-	face_down
-	delay_1
-	face_left
-	delay_1
-	face_up
-	delay_1
-	face_right
-	delay_1
-	face_down
+    face_down
+    delay_1
+    face_left
+    delay_1
+    face_up
+    delay_1
+    face_right
+    delay_1
+    face_down
+    delay_1
+    face_left
+    delay_1
+    face_up
+    delay_1
+    face_right
+    delay_1
+    face_down
+    delay_1
+    face_left
+    delay_1
+    face_up
+    delay_1
+    face_right
+    delay_1
+    face_down
 }
 
 script VioletCity_EarlsAcademy_EventScript_NoteTakingKid {
-	msgbox("I'm taking notes of the teacher's\n"
-		   "lecture.\p"
-		   "I'd better copy the stuff on the\n"
-		   "blackboard, too.", MSGBOX_NPC)
+    msgbox("I'm taking notes of the teacher's\n"
+           "lecture.\p"
+           "I'd better copy the stuff on the\n"
+           "blackboard, too.", MSGBOX_NPC)
 }
 
 script VioletCity_EarlsAcademy_EventScript_TradingKid1 {
-	lock
-	faceplayer
-	msgbox("I traded my best POKéMON to the\n"
-	 	   "guy beside me.")
-	closemessage
-	applymovement(GBKID_1, Common_Movement_WalkInPlaceFastestDown)
-	waitmovement(0)
-	release
+    lock
+    faceplayer
+    msgbox("I traded my best POKéMON to the\n"
+            "guy beside me.")
+    closemessage
+    applymovement(GBKID_1, Common_Movement_WalkInPlaceFastestDown)
+    waitmovement(0)
+    release
 }
 
 script VioletCity_EarlsAcademy_EventScript_TradingKid2 {
-	lock
-	faceplayer
-	msgbox("Huh? The POKéMON I just got is\n"
-	 	   "holding something!")
-	closemessage
-	applymovement(GBKID_2, Common_Movement_WalkInPlaceFastestDown)
-	waitmovement(0)
-	release
+    lock
+    faceplayer
+    msgbox("Huh? The POKéMON I just got is\n"
+            "holding something!")
+    closemessage
+    applymovement(GBKID_2, Common_Movement_WalkInPlaceFastestDown)
+    waitmovement(0)
+    release
 }
 
 script VioletCity_EarlsAcademy_EventScript_HeldItemsKid {
-	msgbox("A POKéMON holding a BERRY will heal\n"
-		   "itself in battle…\p"
-		   "Many other items can be held by\n"
-		   "POKéMON…\p"
-		   "It sure is tough taking notes…", MSGBOX_NPC)
+    msgbox("A POKéMON holding a BERRY will heal\n"
+           "itself in battle…\p"
+           "Many other items can be held by\n"
+           "POKéMON…\p"
+           "It sure is tough taking notes…", MSGBOX_NPC)
 }

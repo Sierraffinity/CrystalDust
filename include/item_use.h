@@ -9,7 +9,7 @@ void ItemUseOutOfBattle_PokeblockCase(u8);
 void ItemUseOutOfBattle_CoinCase(u8);
 void ItemUseOutOfBattle_PowderJar(u8);
 void ItemUseOutOfBattle_SSTicket(u8);
-void ItemUseOutOfBattle_WailmerPail(u8);
+void ItemUseOutOfBattle_SquirtBottle(u8);
 void ItemUseOutOfBattle_Medicine(u8);
 void ItemUseOutOfBattle_ReduceEV(u8);
 void ItemUseOutOfBattle_SacredAsh(u8);

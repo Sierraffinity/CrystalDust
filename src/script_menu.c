@@ -39,7 +39,7 @@ static void InitMultichoiceNoWrap(bool8 ignoreBPress, u8 unusedCount, u8 windowI
 
 static u16 GetStringTilesWide(const u8 *str)
 {
-    return (GetStringWidth(1, str, 0) + 7) / 8;
+    return (GetStringWidth(2, str, 0) + 7) / 8;
 }
 
 bool8 ScriptMenu_Multichoice(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress)
@@ -116,9 +116,9 @@ static void DrawMultichoiceMenu(u8 left, u8 top, u8 multichoiceId, bool8 ignoreB
     height = GetMultichoiceWindowHeight(count);
     windowId = CreateWindowFromRect(left, top, newWidth, height);
     SetStandardWindowBorderStyle(windowId, 0);
-    MultichoiceList_PrintItems(windowId, 1, 8, 2, 14, count, actions, 0, 2);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 2, 14, count, cursorPos);
-    schedule_bg_copy_tilemap_to_vram(0);
+    MultichoiceList_PrintItems(windowId, 2, 8, 2, 14, count, actions, 0, 2);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 2, 14, count, cursorPos);
+    ScheduleBgCopyTilemapToVram(0);
     InitMultichoiceCheckWrap(ignoreBPress, count, windowId, multichoiceId);
 }
 
@@ -205,7 +205,7 @@ static void Task_HandleMultichoiceInput(u8 taskId)
             else
                 selection = Menu_ProcessInput();
 
-            if (gMain.newKeys & (DPAD_UP | DPAD_DOWN))
+            if (JOY_NEW(DPAD_UP | DPAD_DOWN))
             {
                 DrawLinkServicesMultichoiceMenu(tMultichoiceId);
             }
@@ -395,9 +395,9 @@ static void CreatePCMultichoice(void)
         numChoices = 5;
         windowId = CreateWindowFromRect(0, 0, width, 10);
         SetStandardWindowBorderStyle(windowId, FALSE);
-        AddTextPrinterParameterized(windowId, 1, gText_ProfOakSPc, x, 34, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(windowId, 1, gText_HallOfFame, x, 50, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(windowId, 1, gText_LogOff, x, 66, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_ProfOakSPc, x, 34, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_HallOfFame, x, 50, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_LogOff, x, 66, TEXT_SPEED_FF, NULL);
     }
     else
     {
@@ -408,19 +408,19 @@ static void CreatePCMultichoice(void)
         windowId = CreateWindowFromRect(0, 0, width, numChoices * 2);
         SetStandardWindowBorderStyle(windowId, FALSE);
         if (FlagGet(FLAG_SYS_POKEDEX_GET))
-            AddTextPrinterParameterized(windowId, 1, gText_ProfOakSPc, x, 34, 0xFF, NULL);
-        AddTextPrinterParameterized(windowId, 1, gText_LogOff, x, 2 + 16 * (numChoices - 1), TEXT_SPEED_FF, NULL);
+            AddTextPrinterParameterized(windowId, 2, gText_ProfOakSPc, x, 34, 0xFF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_LogOff, x, 2 + 16 * (numChoices - 1), TEXT_SPEED_FF, NULL);
     }
 
     // Change PC name if player has met Lanette
     if (FlagGet(FLAG_SYS_PC_LANETTE))
-        AddTextPrinterParameterized(windowId, 1, gText_LanettesPC, x, 2, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_LanettesPC, x, 2, TEXT_SPEED_FF, NULL);
     else
-        AddTextPrinterParameterized(windowId, 1, gText_SomeonesPC, x, 2, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_SomeonesPC, x, 2, TEXT_SPEED_FF, NULL);
 
     StringExpandPlaceholders(gStringVar4, gText_PlayersPC);
     PrintPlayerNameOnWindow(windowId, gStringVar4, x, 18);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 2, 16, numChoices, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 2, 16, numChoices, 0);
     CopyWindowToVram(windowId, 3);
     InitMultichoiceCheckWrap(FALSE, numChoices, windowId, MULTI_PC);
 }
@@ -428,7 +428,7 @@ static void CreatePCMultichoice(void)
 void ScriptMenu_DisplayPCStartupPrompt(void)
 {
     sub_819786C(0, TRUE);
-    AddTextPrinterParameterized2(0, 1, gText_WhichPCShouldBeAccessed, 0, NULL, 2, 1, 3);
+    AddTextPrinterParameterized2(0, 2, gText_WhichPCShouldBeAccessed, 0, NULL, 2, 1, 3);
 }
 
 bool8 ScriptMenu_CreateLilycoveSSTidalMultichoice(void)
@@ -575,12 +575,12 @@ static void CreateLilycoveSSTidalMultichoice(void)
         {
             if (sLilycoveSSTidalSelections[i] != 0xFF)
             {
-                AddTextPrinterParameterized(windowId, 1, sLilycoveSSTidalDestinations[sLilycoveSSTidalSelections[i]], 8, selectionCount * 16 + 1, TEXT_SPEED_FF, NULL);
+                AddTextPrinterParameterized(windowId, 2, sLilycoveSSTidalDestinations[sLilycoveSSTidalSelections[i]], 8, selectionCount * 16 + 1, TEXT_SPEED_FF, NULL);
                 selectionCount++;
             }
         }
 
-        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, count, count - 1);
+        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, count, count - 1);
         CopyWindowToVram(windowId, 3);
         InitMultichoiceCheckWrap(FALSE, count, windowId, MULTI_SSTIDAL_LILYCOVE);
     }
@@ -643,7 +643,7 @@ bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y, bool8 isShiny)
         gSprites[spriteId].callback = SpriteCallbackDummy;
         gSprites[spriteId].oam.priority = 0;
         SetStandardWindowBorderStyle(gTasks[taskId].tWindowId, 1);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
         return TRUE;
     }
 }
@@ -713,27 +713,27 @@ static void DrawLinkServicesMultichoiceMenu(u8 multichoiceId)
     {
     case MULTI_WIRELESS_NO_BERRY:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sWirelessOptionsNoBerryCrush[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sWirelessOptionsNoBerryCrush[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_CABLE_CLUB_WITH_RECORD_MIX:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sCableClubOptions_WithRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sCableClubOptions_WithRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_WIRELESS_NO_RECORD:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sWirelessOptions_NoRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sWirelessOptions_NoRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_WIRELESS_ALL_SERVICES:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sWirelessOptions_AllServices[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sWirelessOptions_AllServices[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_WIRELESS_NO_RECORD_BERRY:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sWirelessOptions_NoRecordMixBerryCrush[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sWirelessOptions_NoRecordMixBerryCrush[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_CABLE_CLUB_NO_RECORD_MIX:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sCableClubOptions_NoRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sCableClubOptions_NoRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     }
 }
@@ -756,14 +756,14 @@ static void CreateStartMenuForPokenavTutorial(void)
 {
     u8 windowId = CreateWindowFromRect(21, 0, 7, 18);
     SetStandardWindowBorderStyle(windowId, 0);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionPokedex, 8, 9, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionPokemon, 8, 25, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionBag, 8, 41, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionPokegear, 8, 57, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gSaveBlock2Ptr->playerName, 8, 73, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionSave, 8, 89, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionOption, 8, 105, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionExit, 8, 121, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionPokedex, 8, 9, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionPokemon, 8, 25, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionBag, 8, 41, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionPokegear, 8, 57, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gSaveBlock2Ptr->playerName, 8, 73, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionSave, 8, 89, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionOption, 8, 105, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionExit, 8, 121, TEXT_SPEED_FF, NULL);
     sub_81983AC(windowId, 1, 0, 9, 16, ARRAY_COUNT(MultichoiceList_ForcedStartMenu), 0);
     InitMultichoiceNoWrap(FALSE, ARRAY_COUNT(MultichoiceList_ForcedStartMenu), windowId, MULTI_FORCED_START_MENU);
     CopyWindowToVram(windowId, 3);
@@ -795,7 +795,7 @@ static int DisplayTextAndGetWidthInternal(const u8 *str)
 {
     u8 temp[64];
     StringExpandPlaceholders(temp, str);
-    return GetStringWidth(1, temp, 0);
+    return GetStringWidth(2, temp, 0);
 }
 
 int DisplayTextAndGetWidth(const u8 *str, int prevWidth)

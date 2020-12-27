@@ -103,23 +103,23 @@
 #define VAR_CURRENT_SECRET_BASE              0x4054
 #define VAR_VERDANTURF_TOWN_STATE            0x4055 // Unused Var
 #define VAR_PACIFIDLOG_TOWN_STATE            0x4056 // Unused Var
-#define VAR_VIOLET_CITY_STATE                0x4057
+#define VAR_VIOLET_CITY_STATE                0x4057 // Unused Var
 #define VAR_SLATEPORT_CITY_STATE             0x4058
 #define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
-#define VAR_RUSTBORO_CITY_STATE              0x405A
+#define VAR_GOLDENROD_CITY_STATE             0x405A
 #define VAR_FORTREE_CITY_STATE               0x405B // Unused Var
 #define VAR_LILYCOVE_CITY_STATE              0x405C // Unused Var
 #define VAR_MOSSDEEP_CITY_STATE              0x405D
 #define VAR_SOOTOPOLIS_CITY_STATE            0x405E
 #define VAR_EVER_GRANDE_CITY_STATE           0x405F // Unused Var
 #define VAR_ROUTE29_STATE                    0x4060
-#define VAR_ROUTE30_STATE                    0x4061
+#define VAR_ROUTE30_STATE                    0x4061 // Unused Var
 #define VAR_ROUTE31_STATE                    0x4062
-#define VAR_ROUTE32_STATE                   0x4063
-#define VAR_ROUTE33_STATE                   0x4064 // Unused Var
-#define VAR_ROUTE106_STATE                   0x4065 // Unused Var
-#define VAR_ROUTE107_STATE                   0x4066 // Unused Var
-#define VAR_ROUTE36_STATE                   0x4067 // Unused Var
+#define VAR_ROUTE32_STATE                    0x4063
+#define VAR_ROUTE33_STATE                    0x4064 // Unused Var
+#define VAR_ROUTE34_STATE                    0x4065 // Unused Var
+#define VAR_ROUTE35_STATE                    0x4066 // Unused Var
+#define VAR_ROUTE36_STATE                    0x4067 // Unused Var
 #define VAR_ROUTE109_STATE                   0x4068 // Unused Var
 #define VAR_ROUTE110_STATE                   0x4069
 #define VAR_ROUTE111_STATE                   0x406A // Unused Var
@@ -128,8 +128,8 @@
 #define VAR_ROUTE114_STATE                   0x406D // Unused Var
 #define VAR_ROUTE115_STATE                   0x406E // Unused Var
 #define VAR_ROUTE116_STATE                   0x406F
-#define VAR_ROUTE117_STATE                   0x4070 // Unused Var
-#define VAR_ROUTE46_STATE                   0x4071
+#define VAR_ROUTE45_STATE                   0x4070 // Unused Var
+#define VAR_ROUTE46_STATE                    0x4071
 #define VAR_ROUTE119_STATE                   0x4072
 #define VAR_ROUTE120_STATE                   0x4073 // Unused Var
 #define VAR_ROUTE121_STATE                   0x4074
@@ -158,8 +158,8 @@
 #define VAR_RUINS_OF_ALPH_STATE              0x408B
 #define VAR_KURT_GIVEN_APRICORN              0x408C
 #define VAR_KURT_GIVEN_APRICORN_QTY          0x408D
-#define VAR_BOARD_BRINEY_BOAT_STATE          0x408E
-#define VAR_DEVON_CORP_3F_STATE              0x408F
+#define VAR_GOLDENROD_GYM_STATE              0x408E
+#define VAR_GOLDENROD_DEPT_STORE_B1F_LAYOUT  0x408F
 #define VAR_BRINEY_HOUSE_STATE               0x4090
 #define VAR_UNUSED_0x4091                    0x4091 // Unused Var
 #define VAR_LITTLEROOT_INTRO_STATE           0x4092
@@ -168,16 +168,16 @@
 #define VAR_LILYCOVE_FAN_CLUB_STATE          0x4095
 #define VAR_BRINEY_LOCATION                  0x4096
 #define VAR_INIT_SECRET_BASE                 0x4097
-#define VAR_ILEX_FOREST_STATE            0x4098
+#define VAR_ILEX_FARFETCHD_STATE             0x4098
 #define VAR_LILYCOVE_CONTEST_LOBBY_STATE     0x4099
-#define VAR_UNION_CAVE_STATE             0x409A
+#define VAR_UNION_CAVE_STATE                 0x409A
 #define VAR_UNUSED_0x409B                    0x409B // Unused Var
 #define VAR_ELITE_4_STATE                    0x409C
 #define VAR_UNUSED_0x409D                    0x409D // Unused Var
 #define VAR_MOSSDEEP_SPACE_CENTER_STAIR_GUARD_STATE    0x409E
 #define VAR_MOSSDEEP_SPACE_CENTER_STATE      0x409F
 #define VAR_SLATEPORT_HARBOR_STATE           0x40A0
-#define VAR_UNUSED_0x40A1                    0x40A1 // Unused var
+#define VAR_BLUE_CARD_BALANCE                0x40A1
 #define VAR_SEAFLOOR_CAVERN_STATE            0x40A2
 #define VAR_CABLE_CAR_STATION_STATE          0x40A3
 #define VAR_SAFARI_ZONE_STATE                0x40A4  // 0: In or out of SZ, 1: Player exiting SZ, 2: Player entering SZ
@@ -245,7 +245,7 @@
 #define VAR_NEVER_READ_0x40E2                0x40E2 // Var is written to, but never read
 #define VAR_NEVER_READ_0x40E3                0x40E3 // Var is written to, but never read
 #define VAR_NEVER_READ_0x40E4                0x40E4 // var is written to, but never read
-#define VAR_UNUSED_0x40E5                    0x40E5 // Unused Var
+#define VAR_BUENAS_PASSWORD                  0x40E5
 #define VAR_DAILY_SLOTS                      0x40E6
 #define VAR_DAILY_WILDS                      0x40E7
 #define VAR_DAILY_BLENDER                    0x40E8
@@ -258,7 +258,7 @@
 #define VAR_SECRET_BASE_HIGH_TV_FLAGS        0x40EF // Used by Secret Base TV programs
 #define VAR_SECRET_BASE_IS_NOT_LOCAL         0x40F0 // Set to TRUE while in another player's secret base.
 #define VAR_DAILY_BP                         0x40F1
-#define VAR_WALLY_CALL_STEP_COUNTER          0x40F2
+#define VAR_BIKE_SHOP_OWNER_CALL_STEP_COUNTER   0x40F2
 #define VAR_SCOTT_FORTREE_CALL_STEP_COUNTER  0x40F3
 #define VAR_ROXANNE_CALL_STEP_COUNTER        0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER       0x40F5
@@ -274,6 +274,7 @@
 #define VAR_UNUSED_0x40FF                    0x40FF // Unused Var
 
 #define VARS_END                             0x40FF
+#define VARS_COUNT                           (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000
 // special vars

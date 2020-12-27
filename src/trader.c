@@ -59,15 +59,15 @@ void CreateAvailableDecorationsMenu(u8 taskId)
     s16 * data = gTasks[taskId].data;
     struct MauvilleOldManTrader *trader = &gSaveBlock1Ptr->oldMan.trader;
     struct WindowTemplate windowTemplate = {0, 1, 1, 10, 10, 15, 1};
-    s32 windowWidth = GetStringWidth(1, gText_Exit, 0);
-    s32 fiveMarksWidth = GetStringWidth(1, gText_FiveMarks, 0);
+    s32 windowWidth = GetStringWidth(2, gText_Exit, 0);
+    s32 fiveMarksWidth = GetStringWidth(2, gText_FiveMarks, 0);
     for (i = 0; i < 4; i++)
     {
         s32 curWidth;
         if (trader->decorations[i] > NUM_DECORATIONS)
             curWidth = fiveMarksWidth;
         else
-            curWidth = GetStringWidth(1, gDecorations[trader->decorations[i]].name, 0);
+            curWidth = GetStringWidth(2, gDecorations[trader->decorations[i]].name, 0);
         if (curWidth > windowWidth)
             windowWidth = curWidth;
     }
@@ -77,13 +77,13 @@ void CreateAvailableDecorationsMenu(u8 taskId)
     for (i = 0; i < 4; i++)
     {
         if (trader->decorations[i] > NUM_DECORATIONS)
-            AddTextPrinterParameterized(data[3], 1, gText_FiveMarks, 8, 16 * i + 1, 255, NULL);
+            AddTextPrinterParameterized(data[3], 2, gText_FiveMarks, 8, 16 * i + 1, 255, NULL);
         else
-            AddTextPrinterParameterized(data[3], 1, gDecorations[trader->decorations[i]].name, 8, 16 * i + 1, 255, NULL);
+            AddTextPrinterParameterized(data[3], 2, gDecorations[trader->decorations[i]].name, 8, 16 * i + 1, 255, NULL);
     }
-    AddTextPrinterParameterized(data[3], 1, gText_Exit, 8, 16 * i + 1, 255, NULL);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[3], 1, 0, 1, 16, 5, 0);
-    schedule_bg_copy_tilemap_to_vram(0);
+    AddTextPrinterParameterized(data[3], 2, gText_Exit, 8, 16 * i + 1, 255, NULL);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[3], 2, 0, 1, 16, 5, 0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 void Task_BufferDecorSelectionAndCloseWindow(u8 taskId, u8 decorationId)
@@ -101,7 +101,7 @@ void Task_BufferDecorSelectionAndCloseWindow(u8 taskId, u8 decorationId)
     ClearStdWindowAndFrameToTransparent(data[3], FALSE);
     ClearWindowTilemap(data[3]);
     RemoveWindow(data[3]);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     DestroyTask(taskId);
     EnableBothScriptContexts();
 }

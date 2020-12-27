@@ -18,6 +18,7 @@ mapscripts RuinsOfAlph_InnerChamber_MapScripts {
         }
     }
     MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_ALPH_CHAMBERS)
         if (var(VAR_RUINS_OF_ALPH_STATE) == 1)
         {
             setflag(FLAG_HIDE_MAP_NAME_POPUP)

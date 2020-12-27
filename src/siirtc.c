@@ -134,7 +134,9 @@ bool8 SiiRtcReset(void)
     u8 result;
     struct SiiRtcInfo rtc;
 
-    if (sLocked == TRUE)
+    // Don't actually reset the RTC, so we can preserve system time on 3DS
+    // TODO: Investigate if this actually causes issues
+    /*if (sLocked == TRUE)
         return FALSE;
 
     sLocked = TRUE;
@@ -149,7 +151,7 @@ bool8 SiiRtcReset(void)
     GPIO_PORT_DATA = SCK_HI;
     GPIO_PORT_DATA = SCK_HI;
 
-    sLocked = FALSE;
+    sLocked = FALSE;*/
 
     rtc.status = SIIRTCINFO_24HOUR;
 

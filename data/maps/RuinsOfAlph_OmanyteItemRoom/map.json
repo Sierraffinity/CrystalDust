@@ -1,32 +1,36 @@
 {
-    "allow_cycling": false,
-    "allow_escaping": true,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
-    "layout": "LAYOUT_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
-    "map_type": "MAP_TYPE_UNDERWATER",
-    "music": "MUS_ILEXFOREST",
-    "name": "RuinsOfAlph_OmanyteItemRoom",
-    "object_events": [
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_RUINS_OF_ALPH",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER",
-            "dest_warp_id": 0,
-            "elevation": 3,
-            "x": 3,
-            "y": 1
-        }
-    ],
-    "weather": "WEATHER_UNDERWATER_BUBBLES"
+  "id": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
+  "name": "RuinsOfAlph_OmanyteItemRoom",
+  "layout": "LAYOUT_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
+  "music": "MUS_ILEX_FOREST",
+  "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 1,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

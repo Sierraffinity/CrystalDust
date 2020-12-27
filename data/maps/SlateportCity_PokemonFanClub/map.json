@@ -2,8 +2,8 @@
   "id": "MAP_SLATEPORT_CITY_POKEMON_FAN_CLUB",
   "name": "SlateportCity_PokemonFanClub",
   "layout": "LAYOUT_SLATEPORT_CITY_POKEMON_FAN_CLUB",
-  "music": "MUS_FINECITY",
-  "region_map_section": "MAPSEC_SLATEPORT_CITY",
+  "music": "MUS_SLATEPORT",
+  "region_map_section": "MAPSEC_ECRUTEAK_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_TWIN",
+      "graphics_id": "OBJ_EVENT_GFX_BILL",
       "x": 1,
       "y": 5,
       "elevation": 0,

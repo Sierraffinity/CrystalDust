@@ -72,7 +72,7 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated:: @ 82208D1
 	call Common_EventScript_SetGymTrainers
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
-	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+	clearflag FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
 	setvar VAR_MOSSDEEP_CITY_STATE, 1
@@ -81,7 +81,7 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated:: @ 82208D1
 	call MossdeepCity_Gym_EventScript_GiveCalmMind
 	closemessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_PHONE
 	msgbox MossdeepCity_Gym_Text_RegisteredTateAndLiza, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -92,7 +92,7 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated:: @ 82208D1
 
 MossdeepCity_Gym_EventScript_GiveCalmMind2:: @ 8220937
 	giveitem ITEM_TM04
-	compare VAR_RESULT, 0
+	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM04
@@ -101,7 +101,7 @@ MossdeepCity_Gym_EventScript_GiveCalmMind2:: @ 8220937
 
 MossdeepCity_Gym_EventScript_GiveCalmMind:: @ 822095B
 	giveitem ITEM_TM04
-	compare VAR_RESULT, 0
+	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_BagIsFull
 	msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM04
@@ -126,7 +126,7 @@ MossdeepCity_Gym_EventScript_Switch1:: @ 8220999
 
 MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed:: @ 82209C8
 	special DrawWholeMapView
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	releaseall
 	end
 
@@ -227,7 +227,7 @@ MossdeepCity_Gym_EventScript_Hannah:: @ 8220B42
 	end
 
 MossdeepCity_Gym_EventScript_Samantha:: @ 8220B59
-	trainerbattle_single TRAINER_SAMANTHA, MossdeepCity_Gym_Text_SamanthaIntro, MossdeepCity_Gym_Text_SamanthaDefeat
+	trainerbattle_single TRAINER_SAMANTHA_OLD, MossdeepCity_Gym_Text_SamanthaIntro, MossdeepCity_Gym_Text_SamanthaDefeat
 	msgbox MossdeepCity_Gym_Text_SamanthaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -308,9 +308,9 @@ MossdeepCity_Gym_EventScript_GymStatue:: @ 8220C5D
 	end
 
 MossdeepCity_Gym_EventScript_YellowFloorSwitch:: @ 8220C67
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle FALSE
 	moverotatingtileobjects 0
 	waitmovement 0
@@ -320,9 +320,9 @@ MossdeepCity_Gym_EventScript_YellowFloorSwitch:: @ 8220C67
 	end
 
 MossdeepCity_Gym_EventScript_BlueFloorSwitch:: @ 8220C7D
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle FALSE
 	moverotatingtileobjects 1
 	waitmovement 0
@@ -332,9 +332,9 @@ MossdeepCity_Gym_EventScript_BlueFloorSwitch:: @ 8220C7D
 	end
 
 MossdeepCity_Gym_EventScript_GreenFloorSwitch:: @ 8220C93
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle FALSE
 	moverotatingtileobjects 2
 	waitmovement 0
@@ -344,9 +344,9 @@ MossdeepCity_Gym_EventScript_GreenFloorSwitch:: @ 8220C93
 	end
 
 MossdeepCity_Gym_EventScript_PurpleFloorSwitch:: @ 8220CA9
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle FALSE
 	moverotatingtileobjects 3
 	waitmovement 0
@@ -356,9 +356,9 @@ MossdeepCity_Gym_EventScript_PurpleFloorSwitch:: @ 8220CA9
 	end
 
 MossdeepCity_Gym_EventScript_RedFloorSwitch:: @ 8220CBF
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle FALSE
 	moverotatingtileobjects 4
 	waitmovement 0

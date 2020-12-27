@@ -1,3 +1,6 @@
+.set LOCALID_BRINEY, 11
+.set LOCALID_WANDAS_BF_OUTSIDE, 21
+
 Route116_MapScripts:: @ 81F2C0C
 	map_script MAP_SCRIPT_ON_TRANSITION, Route116_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route116_OnLoad
@@ -5,7 +8,7 @@ Route116_MapScripts:: @ 81F2C0C
 	.byte 0
 
 Route116_OnTransition: @ 81F2C1C
-	call_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_SetWandasBoyfriendPos
+	call_if_set FLAG_TALKED_TO_DAYCARE_LADY, Route116_EventScript_SetWandasBoyfriendPos
 	compare VAR_SHOULD_END_ABNORMAL_WEATHER, 1
 	call_if_eq AbnormalWeather_EventScript_HideMapNamePopup
 	compare VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH
@@ -15,7 +18,7 @@ Route116_OnTransition: @ 81F2C1C
 	end
 
 Route116_EventScript_SetWandasBoyfriendPos:: @ 81F2C47
-	setobjectxyperm 21, 38, 10
+	setobjectxyperm LOCALID_WANDAS_BF_OUTSIDE, 38, 10
 	return
 
 Route116_OnLoad: @ 81F2C4F
@@ -32,8 +35,8 @@ Route116_OnFrame: @ 81F2C66
 Route116_EventScript_WandasBoyfriend:: @ 81F2C70
 	lock
 	faceplayer
-	goto_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_BoyfriendGruntLeftTunnel
-	goto_if_set FLAG_DEVON_GOODS_STOLEN, Route116_EventScript_BoyfriendGruntInTunnel
+	goto_if_set FLAG_TALKED_TO_DAYCARE_LADY, Route116_EventScript_BoyfriendGruntLeftTunnel
+	goto_if_set FLAG_RECEIVED_EGG_TICKET, Route116_EventScript_BoyfriendGruntInTunnel
 	msgbox Route116_Text_WantToDigTunnel, MSGBOX_DEFAULT
 	release
 	end
@@ -72,7 +75,7 @@ Route116_EventScript_GiveRepeatBall:: @ 81F2CBB
 	compare VAR_FACING, DIR_EAST
 	call_if_eq Route116_EventScript_DevonEmployeeExitEast
 	removeobject VAR_LAST_TALKED
-	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_EMPLOYEE
 	setflag FLAG_RECEIVED_REPEAT_BALL
 	release
 	end
@@ -151,7 +154,7 @@ Route116_EventScript_Briney:: @ 81F2D84
 
 Route116_EventScript_BrineyTrigger:: @ 81F2D95
 	lockall
-	applymovement 11, Common_Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_BRINEY, Common_Movement_WalkInPlaceFastestRight
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox Route116_Text_ScoundrelMadeOffWithPeeko, MSGBOX_DEFAULT

@@ -15,12 +15,12 @@ gMetatileAttributes_NewBark:: @ 8398DF0
 	.incbin "data/tilesets/secondary/new_bark/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Rustboro:: @ 8398F10
-	.incbin "data/tilesets/secondary/rustboro/metatiles.bin"
+gMetatiles_Goldenrod:: @ 8398F10
+	.incbin "data/tilesets/secondary/goldenrod/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Rustboro:: @ 839A4F0
-	.incbin "data/tilesets/secondary/rustboro/metatile_attributes.bin"
+gMetatileAttributes_Goldenrod:: @ 839A4F0
+	.incbin "data/tilesets/secondary/goldenrod/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Violet:: @ 839A7AC
@@ -167,12 +167,12 @@ gMetatileAttributes_PokemonSchool:: @ 83B416C
 	.incbin "data/tilesets/secondary/pokemon_school/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_PokemonFanClub:: @ 83B41E0
-	.incbin "data/tilesets/secondary/pokemon_fan_club/metatiles.bin"
+gMetatiles_RadioTower:: @ 83B41E0
+	.incbin "data/tilesets/secondary/radio_tower/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_PokemonFanClub:: @ 83B4860
-	.incbin "data/tilesets/secondary/pokemon_fan_club/metatile_attributes.bin"
+gMetatileAttributes_RadioTower:: @ 83B4860
+	.incbin "data/tilesets/secondary/radio_tower/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Gatehouse:: @ 83B4930
@@ -191,12 +191,12 @@ gMetatileAttributes_RockTunnel:: @ 83B5344
 	.incbin "data/tilesets/secondary/rock_tunnel/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_OceanicMuseum:: @ 83B5482
-	.incbin "data/tilesets/secondary/oceanic_museum/metatiles.bin"
+gMetatiles_Underground:: @ 83B5482
+	.incbin "data/tilesets/secondary/underground/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_OceanicMuseum:: @ 83B5C22
-	.incbin "data/tilesets/secondary/oceanic_museum/metatile_attributes.bin"
+gMetatileAttributes_Underground:: @ 83B5C22
+	.incbin "data/tilesets/secondary/underground/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_CableClub:: @ 83B5D16
@@ -263,12 +263,12 @@ gMetatileAttributes_SecretBaseSecondary:: @ 83BCC52
 	.incbin "data/tilesets/secondary/secret_base/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_InsideOfTruck:: @ 83BCEDA
-	.incbin "data/tilesets/secondary/inside_of_truck/metatiles.bin"
+gMetatiles_MagnetTrain:: @ 83BCEDA
+	.incbin "data/tilesets/secondary/magnet_train/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_InsideOfTruck:: @ 83BD13A
-	.incbin "data/tilesets/secondary/inside_of_truck/metatile_attributes.bin"
+gMetatileAttributes_MagnetTrain:: @ 83BD13A
+	.incbin "data/tilesets/secondary/magnet_train/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Contest:: @ 83BD186
@@ -287,12 +287,12 @@ gMetatileAttributes_LilycoveMuseum:: @ 83BEAD8
 	.incbin "data/tilesets/secondary/lilycove_museum/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_BrendansMaysHouse:: @ 83BEBF6
-	.incbin "data/tilesets/secondary/brendans_mays_house/metatiles.bin"
+gMetatiles_PlayersHouse:: @ 83BEBF6
+	.incbin "data/tilesets/secondary/players_house/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_BrendansMaysHouse:: @ 83BF836
-	.incbin "data/tilesets/secondary/brendans_mays_house/metatile_attributes.bin"
+gMetatileAttributes_PlayersHouse:: @ 83BF836
+	.incbin "data/tilesets/secondary/players_house/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Lab:: @ 83BF9BE
@@ -319,28 +319,28 @@ gMetatileAttributes_GenericBuilding:: @ 83C3572
 	.incbin "data/tilesets/secondary/generic_building/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_MauvilleGameCorner:: @ 83C3972
-	.incbin "data/tilesets/secondary/mauville_game_corner/metatiles.bin"
+gMetatiles_GameCorner:: @ 83C3972
+	.incbin "data/tilesets/secondary/game_corner/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_MauvilleGameCorner:: @ 83C3F72
-	.incbin "data/tilesets/secondary/mauville_game_corner/metatile_attributes.bin"
+gMetatileAttributes_GameCorner:: @ 83C3F72
+	.incbin "data/tilesets/secondary/game_corner/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Unused2:: @ 83C4032
-	.incbin "data/tilesets/secondary/unused_2/metatiles.bin"
+gMetatiles_DepartmentStore:: @ 83C4032
+	.incbin "data/tilesets/secondary/department_store/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Unused2:: @ 83C43D2
-	.incbin "data/tilesets/secondary/unused_2/metatile_attributes.bin"
+gMetatileAttributes_DepartmentStore:: @ 83C43D2
+	.incbin "data/tilesets/secondary/department_store/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_RustboroGym:: @ 83C4446
-	.incbin "data/tilesets/secondary/rustboro_gym/metatiles.bin"
+gMetatiles_GoldenrodGym:: @ 83C4446
+	.incbin "data/tilesets/secondary/goldenrod_gym/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_RustboroGym:: @ 83C47C6
-	.incbin "data/tilesets/secondary/rustboro_gym/metatile_attributes.bin"
+gMetatileAttributes_GoldenrodGym:: @ 83C47C6
+	.incbin "data/tilesets/secondary/goldenrod_gym/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_AzaleaGym:: @ 83C4836
@@ -557,3 +557,11 @@ gMetatiles_UnionRoom:: @ 83DF392
 	.align 1
 gMetatileAttributes_UnionRoom:: @ 83DF6A2
 	.incbin "data/tilesets/secondary/union_room/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_NationalPark::
+	.incbin "data/tilesets/secondary/national_park/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_NationalPark::
+	.incbin "data/tilesets/secondary/national_park/metatile_attributes.bin"

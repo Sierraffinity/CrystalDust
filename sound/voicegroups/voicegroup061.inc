@@ -36,7 +36,7 @@ voicegroup061:: @ 8686474
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AF8F8
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AF904
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AF910
-	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AF91C
+	voice_directsound 60, 0, DirectSoundWaveData_jv1080_slap_bass, 255, 235, 128, 115  @ 8675EB4
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AF928
 	voice_directsound 60, 0, DirectSoundWaveData_sc88_synth_bass, 255, 252, 0, 165  @ 86AF934
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86AF940

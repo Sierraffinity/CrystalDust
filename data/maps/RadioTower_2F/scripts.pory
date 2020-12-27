@@ -1,0 +1,387 @@
+const GUARD = 7
+const BUENA = 9
+
+mapscripts RadioTower_2F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_GOLDENROD_CITY)
+        if (flag(FLAG_CLEARED_RADIO_TOWER))
+        {
+            setobjectxyperm(GUARD, 4, 3)
+        }
+    }
+}
+
+script RadioTower_2F_EventScript_RadioAnywhereGuy {
+    msgbox("You can listen to the radio anywhere.\n"
+           "Tune in!", MSGBOX_NPC)
+}
+
+script RadioTower_2F_EventScript_LullabyWoman {
+    lock
+    faceplayer
+    if (flag(FLAG_ROCKETS_IN_RADIO_TOWER))
+    {
+        msgbox("Why would they want to take over\n"
+               "the RADIO TOWER?")
+    }
+    else
+    {
+        msgbox("Lullabies on the radio may make\n"
+               "POKéMON sleep.")
+    }
+    release
+}
+
+script RadioTower_2F_EventScript_Guard {
+    lock
+    faceplayer
+    if (flag(FLAG_CLEARED_RADIO_TOWER))
+    {
+        msgbox("Feel free to look around anywhere.\p"
+               "The DIRECTOR is nice again, just\n"
+               "as he was before.")
+    }
+    else
+    {
+        msgbox("Sorry. Authorized personnel only\n"
+               "beyond this point.\p"
+               "It wasn't that way before.\p"
+               "There's something wrong with the\n"
+               "DIRECTOR…")
+    }
+    release
+}
+
+script RadioTower_2F_EventScript_Jigglypuff {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_JIGGLYPUFF, 0)
+    msgbox("JIGGLYPUFF: Jiggly…")
+    waitmoncry
+    release
+}
+
+script RadioTower_2F_EventScript_Buena {
+    lock
+    faceplayer
+    dotimebasedevents
+    gettime
+    if (flag(FLAG_ROCKETS_IN_RADIO_TOWER))
+    {
+        msgbox("BUENA: Huh?\n"
+               "Today's password?\p"
+               "HELP, of course!")
+    }
+    elif (!flag(FLAG_MET_BUENA))
+    {
+        setflag(FLAG_MET_BUENA)
+        msgbox("BUENA: Hi!\n"
+               "I'm BUENA!\p"
+               "Do you know about a radio program\n"
+               "called PASSWORD?\p"
+               "If you can tell me the password from\n"
+               "the program, you will earn points.\p"
+               "Save up those points and trade them\n"
+               "to that sweet young lady over\l"
+               "there for some choice prizes!\p"
+               "Here you go!\n"
+               "It's your very own point card!")
+        giveitem(ITEM_BLUE_CARD)
+        call(RadioTower_2F_EventScript_Buena_TuneIn)
+    }
+    elif (flag(FLAG_DAILY_PLAYED_BUENAS_PASSWORD))
+    {
+        msgbox("BUENA: Sorry…\n"
+               "You get just one chance each day.\p"
+               "Come back tomorrow for another try!")
+        call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+    }
+    elif (var(VAR_0x8000) < BUENAS_PASSWORD_START_HOUR)
+    {
+        msgbox("BUENA: Tune in to PASSWORD every\n"
+               "night from six to midnight!\p"
+               "Tune in, then drop in for a visit!")
+        call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+    }
+    elif (!flag(FLAG_BUENAS_PASSWORD_SET))
+    {
+        call(RadioTower_2F_EventScript_Buena_TuneIn)
+    }
+    else
+    {
+        checkitem(ITEM_BLUE_CARD, 1)
+        if (!var(VAR_RESULT))
+        {
+            msgbox("BUENA: Oh? You forgot to bring\n"
+                   "your BLUE CARD?\p"
+                   "I can't give you points if you\n"
+                   "don't have it.")
+            call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+        }
+        elif (var(VAR_BLUE_CARD_BALANCE) >= BUENAS_PASSWORD_MAX_POINTS)
+        {
+            msgbox("BUENA: Your BLUE CARD's full.\n"
+                   "Trade it in for a fabulous prize!")
+            call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+        }
+        else
+        {
+            playbgm(MUS_BUENAS_THEME, 0)
+            msgbox("BUENA: Hi!\n"
+                   "Did you tune in to my radio show?\p"
+                   "Do you remember today's password?", MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                msgbox("BUENA: Oh, wow! Thank you!\n"
+                       "What was your name again?\p"
+                       "…{PLAYER}, okay!\p"
+                       "Come on, {PLAYER}.\n"
+                       "Join the show!")
+                closemessage
+                applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+                waitmovement(0)
+                if (var(VAR_FACING) == DIR_EAST)
+                {
+                    applymovement(OBJ_EVENT_ID_PLAYER, RadioTower_2F_Movement_PlayerToBuenasMic)
+                    waitmovement(0)
+                }
+                else
+                {
+                    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+                    waitmovement(0)
+                }
+                msgbox("BUENA: Everyone ready?\p"
+                       "I want to hear you shout out today's\n"
+                       "password for {PLAYER}!")
+                applymovement(BUENA, Common_Movement_WalkInPlaceFastestDown)
+                waitmovement(0)
+                message("BUENA: So, how about it?\n"
+                        "What's my password?")
+                waitmessage
+                special(BuenasPasswordMultichoice)
+                waitstate
+                setflag(FLAG_DAILY_PLAYED_BUENAS_PASSWORD)
+                if (var(VAR_RESULT) == FALSE)
+                {
+                    msgbox("BUENA: Aww…\n"
+                           "That's not it…\p"
+                           "Did you forget the password?")
+                }
+                else
+                {
+                    message("BUENA: YIPPEE!\n"
+                            "That's right!\p"
+                            "You did tune in!\n"
+                            "I'm so happy!\p"
+                            "You earned one point!\n"
+                            "Congrats!")
+                    waitmessage
+                    addvar(VAR_BLUE_CARD_BALANCE, 1)
+                    playse(SE_SHOP)
+                    waitse
+                    waitbuttonpress
+                }
+                applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+                waitmovement(0)
+                msgbox("BUENA: Yup!\n"
+                       "Our contestant was {PLAYER}.\l"
+                       "Thanks for coming!\p"
+                       "I hope all you listeners will\n"
+                       "come too! I'll be waiting!")
+                fadedefaultbgm
+                closemessage
+                if (var(VAR_BLUE_CARD_BALANCE) >= BUENAS_PASSWORD_MAX_POINTS)
+                {
+                    delay(20)
+                    // TODO: Check for phone #
+                    applymovement(BUENA, Common_Movement_WalkInPlaceFastestDown)
+                    waitmovement(0)
+                    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp)
+                    waitmovement(0)
+
+                    if (!flag(FLAG_BUENA_OFFERED_NUMBER))
+                    {
+                        playse(SE_PIN)
+                        applymovement(BUENA, Common_Movement_ExclamationMark)
+                        waitmovement(0)
+                        applymovement(BUENA, Common_Movement_Delay48)
+                        waitmovement(0)
+                        setflag(FLAG_BUENA_OFFERED_NUMBER)
+                        msgbox("BUENA: Oh! Your BLUE CARD reached\n"
+                               "30 points today! That's so wild!\p"
+                               "Hmm… There isn't a prize for hitting\n"
+                               "30 points, but…\p"
+                               "You came by so often, {PLAYER}.\n"
+                               "I'll make you a special deal!\p"
+                               "How would you like my phone number?", MSGBOX_YESNO)
+                        call(RadioTower_2F_EventScript_Buena_OfferNumber)
+                    }
+                    else
+                    {
+                        call(RadioTower_2F_EventScript_Buena_OfferNumberAgain)
+                    }
+                    closemessage
+                    applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+                    waitmovement(0)
+                }
+            }
+            else
+            {
+                msgbox("BUENA: Come back after you\n"
+                       "listen to my show, okay?\p"
+                       "Catch ya later!")
+                fadedefaultbgm
+                closemessage
+                applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+                waitmovement(0)
+            }
+        }
+    }
+    release
+}
+
+movement RadioTower_2F_Movement_PlayerToBuenasMic {
+    walk_down
+    walk_right
+}
+
+script RadioTower_2F_EventScript_Buena_TuneIn {
+    msgbox("BUENA: Tune in to my PASSWORD SHOW!")
+    call(RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven)
+}
+
+script RadioTower_2F_EventScript_Buena_OfferNumberIfNotGiven {
+    // TODO: Check for phone #
+    if (flag(FLAG_BUENA_OFFERED_NUMBER))
+    {
+        call(RadioTower_2F_EventScript_Buena_OfferNumberAgain)
+    }
+    closemessage
+    applymovement(BUENA, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+}
+
+script RadioTower_2F_EventScript_Buena_OfferNumberAgain {
+    msgbox("BUENA: {PLAYER}, do you want to\n"
+           "register my phone number?", MSGBOX_YESNO)
+    goto(RadioTower_2F_EventScript_Buena_OfferNumber)
+}
+
+script RadioTower_2F_EventScript_Buena_OfferNumber {
+    if (var(VAR_RESULT) == NO)
+    {
+        msgbox("BUENA: Aww…\n"
+               "It's a special prize…")
+    }
+    else
+    {
+        // TODO: Registration
+    }
+}
+
+script RadioTower_2F_EventScript_BuenasAssistant {
+    lock
+    faceplayer
+    checkitem(ITEM_BLUE_CARD, 1)
+    if (var(VAR_RESULT))
+    {
+        special(ShowPointsWindowAtTopLeft)
+        msgbox("You can cash in your saved points\n"
+               "for a lovely prize of your choice!")
+        call(RadioTower_2F_EventScript_BuenasAssistantMenu)
+    }
+    else
+    {
+        msgbox("You can't trade in points without\n"
+               "your BLUE CARD.\p"
+               "Don't forget your BLUE CARD!")
+    }
+    release
+}
+
+script RadioTower_2F_EventScript_BuenasAssistantMenu {
+    message("Which prize would you like?")
+    waitmessage
+    setvar(VAR_0x8004, SCROLL_MULTI_BLUE_CARD_PRIZES)
+    setvar(VAR_0x8005, 0)
+    special(ShowScrollableMultichoice)
+    waitstate
+    switch (var(VAR_RESULT))
+    {
+        case 0:
+            setvar(VAR_TEMP_1, ITEM_ULTRA_BALL)
+            setvar(VAR_TEMP_2, 2)
+        case 1:
+            setvar(VAR_TEMP_1, ITEM_FULL_RESTORE)
+            setvar(VAR_TEMP_2, 2)
+        case 2:
+            setvar(VAR_TEMP_1, ITEM_NUGGET)
+            setvar(VAR_TEMP_2, 3)
+        case 3:
+            setvar(VAR_TEMP_1, ITEM_RARE_CANDY)
+            setvar(VAR_TEMP_2, 3)
+        case 4:
+            setvar(VAR_TEMP_1, ITEM_PROTEIN)
+            setvar(VAR_TEMP_2, 5)
+        case 5:
+            setvar(VAR_TEMP_1, ITEM_IRON)
+            setvar(VAR_TEMP_2, 5)
+        case 6:
+            setvar(VAR_TEMP_1, ITEM_CARBOS)
+            setvar(VAR_TEMP_2, 5)
+        case 7:
+            setvar(VAR_TEMP_1, ITEM_CALCIUM)
+            setvar(VAR_TEMP_2, 5)
+        case 8:
+            setvar(VAR_TEMP_1, ITEM_HP_UP)
+            setvar(VAR_TEMP_2, 5)
+        case 9:
+        case MULTI_B_PRESSED:
+            special(HidePointsWindow)
+            msgbox("Oh.\n"
+                    "Please come back again!")
+            return
+    }
+    bufferitemname(0, VAR_TEMP_1)
+    msgbox("{STR_VAR_1}?\n"
+           "Is that right?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        if (var(VAR_BLUE_CARD_BALANCE) < VAR_TEMP_2)
+        {
+            msgbox("You don't have enough points.")
+        }
+        else
+        {
+            additem(VAR_TEMP_1)
+            if (var(VAR_RESULT) == FALSE)
+            {
+                msgbox("You have no room for it.")
+            }
+            else
+            {
+                subvar(VAR_BLUE_CARD_BALANCE, VAR_TEMP_2)
+                special(UpdatePointsWindow)
+                playse(SE_SHOP)
+                msgbox("Here you go!")
+                waitse
+            }
+        }
+    }
+    goto(RadioTower_2F_EventScript_BuenasAssistantMenu)
+}
+
+script RadioTower_2F_EventScript_PokemonRadioSign {
+    msgbox("Anywhere, Anytime\n"
+           "POKéMON Radio", MSGBOX_SIGN)
+}
+
+script RadioTower_2F_EventScript_OaksPkmnTalkSign {
+    msgbox("PROF. OAK'S POKéMON TALK\n"
+           "The Hottest Show on the Air!", MSGBOX_SIGN)
+}
+
+script RadioTower_2F_EventScript_2FSalesSign {
+    msgbox("2F SALES", MSGBOX_SIGN)
+}

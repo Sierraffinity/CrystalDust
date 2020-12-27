@@ -27,12 +27,11 @@ static void FieldCallback_Teleport(void)
     Overworld_ResetStateAfterTeleport();
     FieldEffectStart(FLDEFF_USE_TELEPORT);
     gFieldEffectArguments[0] = (u32)GetCursorSelectionMonId();
-    TryEndBugCatchingContest();
 }
 
 bool8 FldEff_UseTeleport(void)
 {
-    u8 taskId = oei_task_add();
+    u8 taskId = CreateFieldMoveTask();
     gTasks[taskId].data[8] = (u32)StartTeleportFieldEffect >> 16;
     gTasks[taskId].data[9] = (u32)StartTeleportFieldEffect;
     SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
@@ -42,5 +41,5 @@ bool8 FldEff_UseTeleport(void)
 static void StartTeleportFieldEffect(void)
 {
     FieldEffectActiveListRemove(FLDEFF_USE_TELEPORT);
-    CreateTeleportFieldEffectTask();
+    FldEff_TeleportWarpOut();
 }

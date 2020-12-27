@@ -1,0 +1,99 @@
+mapscripts GoldenrodCity_DeptStore_Rooftop_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_GOLDENROD_DEPT_STORE_SALE_HAPPENING))
+        {
+            setflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_ON)
+            clearflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_OFF)
+        }
+        else
+        {
+            setflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_OFF)
+            clearflag(FLAG_HIDE_GOLDENROD_DEPT_STORE_ROOFTOP_SALE_ON)
+        }
+    }
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_Clerk {
+    
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_TiredWoman {
+    msgbox("Whew, I'm tired.\p"
+           "I sometimes come up to the rooftop\n"
+           "to take a break from shopping.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_GatchaGuy {
+    lock
+    faceplayer
+    msgbox("Pardon? Who says an adult can't get\n"
+           "into this?\p"
+           "I'm going to be back every day to\n"
+           "collect all the dolls!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestUp)
+    waitmovement(0)
+    release
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_LittleGirl {
+    msgbox("They have bargain sales here every\n"
+           "so often.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_BinocularJerk {
+    lock
+    msgbox("Oh, wow!")
+    faceplayer
+    msgbox("Will you quit bothering me?")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    release
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_BerryCollector {
+    msgbox("There's something I really want, but\n"
+           "I don't have the necessary cash…\p"
+           "Maybe I'll sell off the BERRIES\n"
+           "I've collected…", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_CheapTeacher {
+    msgbox("Oh, everything is so cheap!\n"
+           "I bought so much, my BAG's crammed!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_ParalyzedBugCatcher {
+    msgbox("My POKéMON always get paralyzed or\n"
+           "poisoned when the chips are down…\l"
+           "So I came to buy some FULL HEAL.\p"
+           "I wonder if there's any left?", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars1 {
+    msgbox("These binoculars let me see far away.\n"
+           "Maybe I can see my own house.\p"
+           "Is it the one with the green roof?", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars2 {
+    msgbox("Hey! Some TRAINERS are battling on\n"
+           "the road!\p"
+           "A POKéMON fired a flurry of\n"
+           "leaves!\p"
+           "That makes me feel like battling\n"
+           "right now!", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars3 {
+    msgbox("A FISHERMAN caught a lot of MAGIKARP…\n"
+           "They're SPLASHing at the same time!\p"
+           "Look at the water going everywhere!", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_DeptStore_Rooftop_EventScript_PokeDollGachaMachine {
+    msgbox("A vending machine for POKéMON dolls?\n"
+           "Insert money, then turn the crank…\p"
+           "But it's almost empty…", MSGBOX_SIGN)
+}

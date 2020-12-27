@@ -28,7 +28,7 @@
 static void ClearDaycareMonMail(struct DayCareMail *mail);
 static void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *daycare);
 static u8 GetDaycareCompatibilityScore(struct DayCare *daycare);
-static void DaycarePrintMonInfo(u8 windowId, s32 daycareSlotId, u8 y);
+static void DaycarePrintMonInfo(u8 windowId, u16 index, s32 daycareSlotId, u8 y);
 
 // RAM buffers used to assist with BuildEggMoveset()
 EWRAM_DATA static u16 sHatchedEggLevelUpMoves[EGG_LVL_UP_MOVES_ARRAY_COUNT] = {0};
@@ -36,6 +36,9 @@ EWRAM_DATA static u16 sHatchedEggFatherMoves[MAX_MON_MOVES] = {0};
 EWRAM_DATA static u16 sHatchedEggFinalMoves[MAX_MON_MOVES] = {0};
 EWRAM_DATA static u16 sHatchedEggEggMoves[EGG_MOVES_ARRAY_COUNT] = {0};
 EWRAM_DATA static u16 sHatchedEggMotherMoves[MAX_MON_MOVES] = {0};
+#if DEBUG
+EWRAM_DATA bool8 gDebugForceEggHatch = 0;
+#endif
 
 #include "data/pokemon/egg_moves.h"
 
@@ -77,7 +80,7 @@ static const struct ListMenuTemplate sDaycareListMenuLevelTemplate =
     .lettersSpacing = 1,
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0
 };
 
@@ -823,15 +826,14 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
     RemoveEggFromDayCare(daycare);
 }
 
-void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
+void CreateEgg(struct Pokemon *mon, u16 species, u8 metLocation, bool8 forceShiny)
 {
     u8 metLevel;
     u16 ball;
     u8 language;
-    u8 metLocation;
     u8 isEgg;
 
-    CreateMon(mon, species, EGG_HATCH_LEVEL, 32, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    CreateMon(mon, species, EGG_HATCH_LEVEL, 32, (forceShiny ? PERSONALITY_SHINY : PERSONALITY_RANDOM), 0, OT_ID_PLAYER_ID, 0);
     metLevel = 0;
     ball = ITEM_POKE_BALL;
     language = LANGUAGE_JAPANESE;
@@ -840,9 +842,8 @@ void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
     SetMonData(mon, MON_DATA_FRIENDSHIP, &gBaseStats[species].eggCycles);
     SetMonData(mon, MON_DATA_MET_LEVEL, &metLevel);
     SetMonData(mon, MON_DATA_LANGUAGE, &language);
-    if (setHotSpringsLocation)
+    if (metLocation != MAPSEC_NONE)
     {
-        metLocation = METLOC_SPECIAL_EGG;
         SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);
     }
 
@@ -892,11 +893,15 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
             TriggerPendingDaycareEgg();
     }
 
-    // Hatch Egg
-    if (++daycare->stepCounter == 255)
+    // Try to hatch Egg
+    if (++daycare->stepCounter == 255
+#if DEBUG
+        || gDebugForceEggHatch
+#endif //DEBUG
+        )
     {
-        u32 steps;
-        u8 toSub = GetEggStepsToSubtract();
+        u32 eggCycles;
+        u8 toSub = GetEggCyclesToSubtract();
 
         for (i = 0; i < gPlayerPartyCount; i++)
         {
@@ -905,15 +910,24 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
             if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_BAD_EGG))
                 continue;
 
-            steps = GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP);
-            if (steps != 0)
-            {
-                if (steps >= toSub)
-                    steps -= toSub;
-                else
-                    steps -= 1;
+            eggCycles = GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP);
 
-                SetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, &steps);
+#if DEBUG
+            if (gDebugForceEggHatch)
+            {
+                eggCycles = 0;
+                gDebugForceEggHatch = FALSE;
+            }
+#endif // DEBUG
+
+            if (eggCycles != 0)
+            {
+                if (eggCycles >= toSub)
+                    eggCycles -= toSub;
+                else
+                    eggCycles -= 1;
+
+                SetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, &eggCycles);
             }
             else 
             {
@@ -1181,12 +1195,12 @@ static void DaycareAddTextPrinter(u8 windowId, const u8 *text, u32 x, u32 y)
 
     printer.currentChar = text;
     printer.windowId = windowId;
-    printer.fontId = 1;
+    printer.fontId = 2;
     printer.x = x;
     printer.y = y;
     printer.currentX = x;
     printer.currentY = y;
-    printer.unk = 0;
+    printer.style = 0;
     gTextFlags.useAlternateDownArrow = 0;
     printer.letterSpacing = 0;
     printer.lineSpacing = 1;
@@ -1221,7 +1235,7 @@ static void DaycarePrintMonLvl(struct DayCare *daycare, u8 windowId, u32 daycare
     DaycareAddTextPrinter(windowId, lvlText, x, y);
 }
 
-static void DaycarePrintMonInfo(u8 windowId, s32 daycareSlotId, u8 y)
+static void DaycarePrintMonInfo(u8 windowId, u16 index, s32 daycareSlotId, u8 y)
 {
     if (daycareSlotId < (unsigned) DAYCARE_MON_COUNT)
     {
@@ -1237,7 +1251,7 @@ static void Task_HandleDaycareLevelMenuInput(u8 taskId)
 {
     u32 input = ListMenu_ProcessInput(gTasks[taskId].tMenuListTaskId);
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         switch (input)
         {
@@ -1255,7 +1269,7 @@ static void Task_HandleDaycareLevelMenuInput(u8 taskId)
         DestroyTask(taskId);
         EnableBothScriptContexts();
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         gSpecialVar_Result = DAYCARE_EXITED_LEVEL_MENU;
         DestroyListMenuTask(gTasks[taskId].tMenuListTaskId, NULL, NULL);

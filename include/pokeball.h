@@ -1,6 +1,14 @@
 #ifndef GUARD_POKEBALL_H
 #define GUARD_POKEBALL_H
 
+enum {
+    BALL_AFFINE_ANIM_0,
+    BALL_ROTATE_RIGHT,
+    BALL_ROTATE_LEFT, 
+    BALL_AFFINE_ANIM_3,
+    BALL_AFFINE_ANIM_4
+};
+
 enum
 {
     BALLGFX_POKE,
@@ -28,7 +36,8 @@ enum
 
 enum
 {
-    BALL_MASTER = 1,
+    BALL_NONE,
+    BALL_MASTER,
     BALL_ULTRA,
     BALL_GREAT,
     BALL_POKE,
@@ -50,7 +59,7 @@ enum
     BALL_PARK
 };
 
-#define POKEBALL_COUNT BALL_PARK - BALL_MASTER
+#define POKEBALL_COUNT BALLGFX_COUNT
 #define IS_ITEM_BALL(x) ((x) <= ITEM_PREMIER_BALL || ((x) >= ITEM_LEVEL_BALL && (x) <= ITEM_PARK_BALL))
 #define ITEM_ID_TO_BALL_ID(x) (((x) >= ITEM_LEVEL_BALL && (x) <= ITEM_PARK_BALL) ? (((x) - ITEM_LEVEL_BALL) + BALL_LEVEL) : (x))
 

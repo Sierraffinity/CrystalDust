@@ -161,7 +161,7 @@ static const union AnimCmd *const sSpriteAnimTable_85104E4[] =
 
 static const struct SpriteTemplate sSpriteTemplate_85104F0 =
 {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = 0x1000,
     .oam = &sOamData_08510464,
     .anims = sSpriteAnimTable_85104E4,
@@ -293,7 +293,7 @@ static void HideChooseTimeWindow(u8 windowId)
 {
     ClearStdWindowAndFrameToTransparent(windowId, FALSE);
     RemoveWindow(windowId);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void PrintTime(u8 windowId, u8 x, u8 y, u16 days, u8 hours, u8 minutes, u8 seconds)
@@ -315,15 +315,15 @@ static void PrintTime(u8 windowId, u8 x, u8 y, u16 days, u8 hours, u8 minutes, u
     ConvertIntToDecimalStringN(gStringVar1, seconds, STR_CONV_MODE_LEADING_ZEROS, 2);
     dest = StringCopy(dest, gStringVar1);
 
-    AddTextPrinterParameterized(windowId, 1, gStringVar4, x, y, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, TEXT_SPEED_FF, NULL);
 }
 
 static void ShowChooseTimeWindow(u8 windowId, u16 days, u8 hours, u8 minutes, u8 seconds)
 {
     DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x214, 0xE);
     PrintTime(windowId, 0, 1, days, hours, minutes, seconds);
-    AddTextPrinterParameterized(windowId, 1, gText_Confirm2, 126, 1, 0, NULL);
-    schedule_bg_copy_tilemap_to_vram(0);
+    AddTextPrinterParameterized(windowId, 2, gText_Confirm2, 126, 1, 0, NULL);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static bool32 MoveTimeUpDown(s16 *val, int minVal, int maxVal, u16 keys)
@@ -380,7 +380,7 @@ static void Task_ResetRtc_1(u8 taskId)
     u8 selection = data[2];
     const struct ResetRtcStruct *selectionInfo = &sUnknown_08510428[selection - 1];
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         gTasks[taskId].func = Task_ResetRtc_2;
         data[1] = 0;
@@ -389,7 +389,7 @@ static void Task_ResetRtc_1(u8 taskId)
         return;
     }
 
-    if (gMain.newKeys & DPAD_RIGHT)
+    if (JOY_NEW(DPAD_RIGHT))
     {
         if (selectionInfo->right)
         {
@@ -399,7 +399,7 @@ static void Task_ResetRtc_1(u8 taskId)
         }
     }
 
-    if (gMain.newKeys & DPAD_LEFT)
+    if (JOY_NEW(DPAD_LEFT))
     {
         if (selectionInfo->left)
         {
@@ -411,7 +411,7 @@ static void Task_ResetRtc_1(u8 taskId)
 
     if (selection == 5)
     {
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             gLocalTime.days = data[3];
             gLocalTime.hours = data[4];
@@ -423,7 +423,7 @@ static void Task_ResetRtc_1(u8 taskId)
             data[2] = 6;
         }
     }
-    else if (MoveTimeUpDown(&data[selectionInfo->dataIndex], selectionInfo->minVal, selectionInfo->maxVal, gMain.newAndRepeatedKeys & (DPAD_UP | DPAD_DOWN)))
+    else if (MoveTimeUpDown(&data[selectionInfo->dataIndex], selectionInfo->minVal, selectionInfo->maxVal, JOY_REPEAT(DPAD_UP | DPAD_DOWN)))
     {
         PlaySE(SE_SELECT);
         PrintTime(data[8], 0, 1, data[3], data[4], data[5], data[6]);
@@ -467,10 +467,10 @@ void CB2_InitResetRtcScreen(void)
 
 static void sub_809F048(void)
 {
-    clear_scheduled_bg_copies_to_vram();
+    ClearScheduledBgCopiesToVram();
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBackgroundTemplates, ARRAY_COUNT(sBackgroundTemplates));
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
     ShowBg(0);
     InitWindows(sUnknown_08510408);
@@ -483,7 +483,7 @@ static void CB2_ResetRtcScreen(void)
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
-    do_scheduled_bg_tilemap_copies_to_vram();
+    DoScheduledBgTilemapCopiesToVram();
     UpdatePaletteFade();
 }
 
@@ -497,8 +497,8 @@ static void VBlankCB(void)
 static void ShowMessage(const u8 *str)
 {
     DrawDialogFrameWithCustomTileAndPalette(1, FALSE, 0x200, 0xF);
-    AddTextPrinterParameterized(1, 1, str, 0, 1, 0, NULL);
-    schedule_bg_copy_tilemap_to_vram(0);
+    AddTextPrinterParameterized(1, 2, str, 0, 1, 0, NULL);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void Task_ShowResetRtcPrompt(u8 taskId)
@@ -509,7 +509,7 @@ static void Task_ShowResetRtcPrompt(u8 taskId)
     {
     case 0:
         DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x214, 0xE);
-        AddTextPrinterParameterized(0, 1, gText_PresentTime, 0, 1, TEXT_SPEED_FF, 0);
+        AddTextPrinterParameterized(0, 2, gText_PresentTime, 0, 1, TEXT_SPEED_FF, 0);
         PrintTime(
             0,
             0,
@@ -518,7 +518,7 @@ static void Task_ShowResetRtcPrompt(u8 taskId)
             gLocalTime.hours,
             gLocalTime.minutes,
             gLocalTime.seconds);
-        AddTextPrinterParameterized(0, 1, gText_PreviousTime, 0, 33, TEXT_SPEED_FF, 0);
+        AddTextPrinterParameterized(0, 2, gText_PreviousTime, 0, 33, TEXT_SPEED_FF, 0);
         PrintTime(
             0,
             0,
@@ -529,15 +529,15 @@ static void Task_ShowResetRtcPrompt(u8 taskId)
             gSaveBlock2Ptr->lastBerryTreeUpdate.seconds);
         ShowMessage(gText_ResetRTCConfirmCancel);
         CopyWindowToVram(0, 2);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
         data[0]++;
     case 1:
-        if (gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(B_BUTTON))
         {
             DestroyTask(taskId);
             DoSoftReset();
         }
-        else if (gMain.newKeys & A_BUTTON)
+        else if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
             DestroyTask(taskId);
@@ -612,7 +612,7 @@ static void Task_ResetRtcScreen(u8 taskId)
         if (TrySavingData(SAVE_NORMAL) == SAVE_STATUS_OK)
         {
             ShowMessage(gText_SaveCompleted);
-            PlaySE(SE_PINPON);
+            PlaySE(SE_DING_DONG);
         }
         else
         {
@@ -621,7 +621,7 @@ static void Task_ResetRtcScreen(u8 taskId)
         }
         data[0] = 5;
     case 5:
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             BeginNormalPaletteFade(0xFFFFFFFF, 1, 0, 0x10, RGB_WHITEALPHA);
             data[0] = 6;

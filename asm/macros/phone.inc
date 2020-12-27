@@ -257,6 +257,33 @@
 	.byte \out
 	.2byte \mapsec
 	.endm
+
+	@ This command will check if the player has money >= value; VAR_RESULT is set to TRUE if the player has enough money, or FALSE if they do not.
+	.macro phone_checkbankedmoney value:req
+	.byte 0x28
+	.4byte \value
+	.endm
+
+	@ Converts the value of banked money to a decimal string, and writes that string to the specified buffer.
+	.macro phone_bufferbankedmoney out:req
+	.byte 0x29
+	.byte \out
+	.endm
+
+	@ Converts the value of input to a decimal string, and writes that string to the specified buffer.
+	.macro phone_buffernumberstring out:req, input:req
+	.byte 0x2a
+	.byte \out
+	.2byte \input
+	.endm
+
+	@ Writes the name of the specified (box) PC box to the specified buffer.
+	.macro phone_bufferboxname out:req, box:req
+	.byte 0x2b
+	.byte \out
+	.2byte \box
+	.endm
+
 	
 
 @ Supplementary

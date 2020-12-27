@@ -70,7 +70,7 @@
 #define PARTY_ACTION_USE_ITEM           3
 #define PARTY_ACTION_ABILITY_PREVENTS   4
 #define PARTY_ACTION_GIVE_ITEM          5  
-#define PARTY_ACTION_GIVE_PC_ITEM       6   // Unused. Not possible to give non-mail items directly from PC
+#define PARTY_ACTION_GIVE_PC_ITEM       6
 #define PARTY_ACTION_GIVE_MAILBOX_MAIL  7
 #define PARTY_ACTION_SWITCH             8
 #define PARTY_ACTION_SWITCHING          9

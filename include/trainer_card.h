@@ -9,6 +9,14 @@ enum
     CARD_TYPE_FRLG,
     CARD_TYPE_RS,
     CARD_TYPE_EMERALD,
+    CARD_TYPE_CRYSTALDUST,
+};
+
+enum
+{
+    CARD_REGION_KANTO,
+    CARD_REGION_HOENN,
+    CARD_REGION_JOHTO,
 };
 
 enum
@@ -24,7 +32,7 @@ struct TrainerCard
     /*0x00*/ u8 gender;
     /*0x01*/ u8 stars;
     /*0x02*/ bool8 hasPokedex;
-    /*0x03*/ bool8 caughtAllHoenn;
+    /*0x03*/ bool8 caughtAllJohto;
     /*0x04*/ bool8 hasAllPaintings;
     /*0x06*/ u16 hofDebutHours;
     /*0x08*/ u16 hofDebutMinutes;
@@ -44,6 +52,7 @@ struct TrainerCard
     /*0x28*/ u16 easyChatProfile[TRAINER_CARD_PROFILE_LENGTH];
     /*0x30*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     /*0x38*/ u8 version;
+    /*0x39*/ u8 realVersion;
     /*0x3A*/ bool16 hasAllFrontierSymbols;
     /*0x3C*/ u32 berryCrushPoints;
     /*0x40*/ u32 unionRoomNum;
@@ -65,6 +74,6 @@ u8 GetTrainerCardStars(u8 cardId);
 void CopyTrainerCardData(struct TrainerCard *dst, u16 *src, u8 gameVersion);
 void ShowPlayerTrainerCard(void (*callback)(void));
 void ShowTrainerCardInLink(u8 arg0, void (*callback)(void));
-void TrainerCard_GenerateCardForPlayer(struct TrainerCard *);
+void TrainerCard_GenerateCardToSendInLink(struct TrainerCard *);
 
 #endif // GUARD_TRAINER_CARD_H

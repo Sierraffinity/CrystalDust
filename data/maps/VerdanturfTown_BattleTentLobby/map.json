@@ -2,7 +2,7 @@
   "id": "MAP_VERDANTURF_TOWN_BATTLE_TENT_LOBBY",
   "name": "VerdanturfTown_BattleTentLobby",
   "layout": "LAYOUT_BATTLE_TENT_LOBBY",
-  "music": "MUS_B_TOWER",
+  "music": "MUS_B_TOWER_RS",
   "region_map_section": "MAPSEC_VERDANTURF_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -82,7 +82,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VerdanturfTown_BattleTentLobby_EventScript_Scott",
-      "flag": "FLAG_HIDE_VERDANTURF_TOWN_SCOTT"
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",

@@ -5,6 +5,7 @@
 
 extern const u8 gMiscBlank_Gfx[]; // unused in Emerald
 extern const u32 gBitTable[];
+extern const s32 gPowersOfTen[];
 
 u8 CreateInvisibleSpriteWithCallback(void (*)(struct Sprite *));
 void StoreWordInTwoHalfwords(u16 *, u32);
@@ -16,6 +17,8 @@ u32 CalcByteArraySum(const u8* data, u32 length);
 void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u16 blendColor);
 void DoBgAffineSet(struct BgAffineDstData *dest, u32 texX, u32 texY, s16 scrX, s16 scrY, s16 sx, s16 sy, u16 alpha);
 void CopySpriteTiles(u8 shape, u8 size, u8 *tiles, u16 *tilemap, u8 *output);
+u32 ConvertBcdToBinary(u32 bcd);
+u32 ChangeBcdDigit(u32 val, u8 which, s8 delta);
 
 
 #endif // GUARD_UTIL_H

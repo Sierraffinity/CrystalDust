@@ -646,7 +646,7 @@ static void CreateApprenticeMenu(u8 menu)
     pixelWidth = 0;
     for (i = 0; i < count; i++)
     {
-        s32 width = GetStringWidth(1, strings[i], 0);
+        s32 width = GetStringWidth(2, strings[i], 0);
         if (width > pixelWidth)
             pixelWidth = width;
     }
@@ -657,9 +657,9 @@ static void CreateApprenticeMenu(u8 menu)
     SetStandardWindowBorderStyle(windowId, 0);
 
     for (i = 0; i < count; i++)
-        AddTextPrinterParameterized(windowId, 1, strings[i], 8, (i * 16) + 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, strings[i], 8, (i * 16) + 1, TEXT_SPEED_FF, NULL);
 
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, count, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, count, 0);
     CreateChooseAnswerTask(TRUE, count, windowId);
 }
 
@@ -1297,13 +1297,13 @@ const u8 *GetApprenticeNameInLanguage(u32 apprenticeId, s32 language)
 // Functionally unused
 static void Task_SwitchToFollowupFuncAfterButtonPress(u8 taskId)
 {
-    if (gMain.newKeys & A_BUTTON || gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
         SwitchTaskToFollowupFunc(taskId);
 }
 
 static void Task_ExecuteFuncAfterButtonPress(u8 taskId)
 {
-    if (gMain.newKeys & A_BUTTON || gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
     {
         gApprenticeFunc = (void*)(u32)(((u16)gTasks[taskId].data[0] | (gTasks[taskId].data[1] << 16)));
         gApprenticeFunc();

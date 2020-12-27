@@ -42,7 +42,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route111_EventScript_Victor",
-      "flag": "FLAG_HIDE_ROUTE_111_VICTOR_WINSTRATE"
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
@@ -56,7 +56,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE"
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -70,7 +70,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE"
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
@@ -84,7 +84,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE"
+      "flag": "FLAG_HIDE_GOLDENROD_DEPT_STORE_RETURN_FRUSTRATION_LADY"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",

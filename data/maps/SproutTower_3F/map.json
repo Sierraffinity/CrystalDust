@@ -1,147 +1,155 @@
 {
-    "allow_cycling": false,
-    "allow_escaping": true,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "SproutTower_3F_EventScript_Painting",
-            "type": "sign",
-            "x": 9,
-            "y": 1
-        }
-    ],
-    "connections": null,
-    "coord_events": [
-        {
-            "elevation": 0,
-            "script": "SproutTower_3F_EventScript_RivalScene",
-            "type": "trigger",
-            "var": "VAR_SPROUT_TOWER_STATE",
-            "var_value": "0",
-            "x": 11,
-            "y": 11
-        }
-    ],
-    "id": "MAP_SPROUT_TOWER_3F",
-    "layout": "LAYOUT_SPROUT_TOWER_3F",
-    "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_SPROUTTOWER",
-    "name": "SproutTower_3F",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SAGE",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "SproutTower_3F_EventScript_SageJin",
-            "trainer_sight_or_berry_tree_id": "4",
-            "trainer_type": "TRAINER_TYPE_NORMAL",
-            "type": "original",
-            "x": 7,
-            "y": 15
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SAGE",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "SproutTower_3F_EventScript_SageTroy",
-            "trainer_sight_or_berry_tree_id": "3",
-            "trainer_type": "TRAINER_TYPE_NORMAL",
-            "type": "original",
-            "x": 7,
-            "y": 10
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SAGE",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "SproutTower_3F_EventScript_Elder",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "type": "original",
-            "x": 9,
-            "y": 3
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SAGE",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "SproutTower_3F_EventScript_SageNeal",
-            "trainer_sight_or_berry_tree_id": "4",
-            "trainer_type": "TRAINER_TYPE_NORMAL",
-            "type": "original",
-            "x": 11,
-            "y": 13
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_ITEM_SPROUT_TOWER_3F_POTION",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "SproutTower_3F_EventScript_ItemPotion",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "type": "original",
-            "x": 5,
-            "y": 16
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_ITEM_SPROUT_TOWER_3F_ESCAPE_ROPE",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "SproutTower_3F_EventScript_ItemEscapeRope",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "type": "original",
-            "x": 14,
-            "y": 2
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_SPROUT_TOWER_3F_RIVAL",
-            "graphics_id": "OBJ_EVENT_GFX_RIVAL",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "NULL",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "type": "original",
-            "x": 9,
-            "y": 5
-        }
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_SPROUT_TOWER",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_SPROUT_TOWER_2F",
-            "dest_warp_id": 3,
-            "elevation": 3,
-            "x": 10,
-            "y": 16
-        }
-    ],
-    "weather": "WEATHER_NONE"
+  "id": "MAP_SPROUT_TOWER_3F",
+  "name": "SproutTower_3F",
+  "layout": "LAYOUT_SPROUT_TOWER_3F",
+  "music": "MUS_SPROUT_TOWER",
+  "region_map_section": "MAPSEC_SPROUT_TOWER",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 3,
+  "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE",
+      "in_connection": false,
+      "x": 7,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "SproutTower_3F_EventScript_SageJin",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE",
+      "in_connection": false,
+      "x": 7,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "SproutTower_3F_EventScript_SageTroy",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE",
+      "in_connection": false,
+      "x": 9,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SproutTower_3F_EventScript_Elder",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE",
+      "in_connection": false,
+      "x": 11,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "SproutTower_3F_EventScript_SageNeal",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 5,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SproutTower_3F_EventScript_ItemPotion",
+      "flag": "FLAG_ITEM_SPROUT_TOWER_3F_POTION"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 14,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SproutTower_3F_EventScript_ItemEscapeRope",
+      "flag": "FLAG_ITEM_SPROUT_TOWER_3F_ESCAPE_ROPE"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_RIVAL",
+      "in_connection": false,
+      "x": 9,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_SPROUT_TOWER_3F_RIVAL"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 10,
+      "y": 16,
+      "elevation": 3,
+      "dest_map": "MAP_SPROUT_TOWER_2F",
+      "dest_warp_id": 3
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_SPROUT_TOWER_STATE",
+      "var_value": "0",
+      "script": "SproutTower_3F_EventScript_RivalScene"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SproutTower_3F_EventScript_Painting"
+    }
+  ]
 }

@@ -241,12 +241,12 @@ static void HandleInputChooseAction(void)
     DoBounceEffect(gActiveBattler, BOUNCE_HEALTHBOX, 7, 1);
     DoBounceEffect(gActiveBattler, BOUNCE_MON, 7, 1);
 
-    if (gMain.newAndRepeatedKeys & DPAD_ANY && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+    if (JOY_REPEAT(DPAD_ANY) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         gPlayerDpadHoldFrames++;
     else
         gPlayerDpadHoldFrames = 0;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
 
@@ -258,10 +258,10 @@ static void HandleInputChooseAction(void)
                 BtlController_EmitTwoReturnValues(1, B_ACTION_USE_MOVE, 0);
                 break;
             case 1:
-                BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+                BtlController_EmitTwoReturnValues(1, B_ACTION_PARK_BALL, 0);
                 break;
             case 2:
-                BtlController_EmitTwoReturnValues(1, B_ACTION_PARK_BALL, 0);
+                BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
                 break;
             case 3:
                 BtlController_EmitTwoReturnValues(1, B_ACTION_RUN, 0);
@@ -289,7 +289,7 @@ static void HandleInputChooseAction(void)
 
         PlayerBufferExecCompleted();
     }
-    else if (gMain.newKeys & DPAD_LEFT)
+    else if (JOY_NEW(DPAD_LEFT))
     {
         if (gActionSelectionCursor[gActiveBattler] & 1) // if is B_ACTION_USE_ITEM or B_ACTION_RUN
         {
@@ -299,7 +299,7 @@ static void HandleInputChooseAction(void)
             ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
         }
     }
-    else if (gMain.newKeys & DPAD_RIGHT)
+    else if (JOY_NEW(DPAD_RIGHT))
     {
         if (!(gActionSelectionCursor[gActiveBattler] & 1)) // if is B_ACTION_USE_MOVE or B_ACTION_SWITCH
         {
@@ -309,7 +309,7 @@ static void HandleInputChooseAction(void)
             ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
         }
     }
-    else if (gMain.newKeys & DPAD_UP)
+    else if (JOY_NEW(DPAD_UP))
     {
         if (gActionSelectionCursor[gActiveBattler] & 2) // if is B_ACTION_SWITCH or B_ACTION_RUN
         {
@@ -319,7 +319,7 @@ static void HandleInputChooseAction(void)
             ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
         }
     }
-    else if (gMain.newKeys & DPAD_DOWN)
+    else if (JOY_NEW(DPAD_DOWN))
     {
         if (!(gActionSelectionCursor[gActiveBattler] & 2)) // if is B_ACTION_USE_MOVE or B_ACTION_USE_ITEM
         {
@@ -329,7 +329,7 @@ static void HandleInputChooseAction(void)
             ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
         }
     }
-    else if (gMain.newKeys & B_BUTTON || gPlayerDpadHoldFrames > 59)
+    else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
         if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
          && GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT
@@ -349,7 +349,7 @@ static void HandleInputChooseAction(void)
             PlayerBufferExecCompleted();
         }
     }
-    else if (gMain.newKeys & START_BUTTON)
+    else if (JOY_NEW(START_BUTTON))
     {
         SwapHpBarsWithHpText();
     }
@@ -382,32 +382,32 @@ static void HandleInputChooseTarget(void)
         } while (i < gBattlersCount);
     }
 
-    if (gMain.heldKeys & DPAD_ANY && gSaveBlock2Ptr->optionsButtonMode == 2)
+    if (JOY_HELD(DPAD_ANY) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         gPlayerDpadHoldFrames++;
     else
         gPlayerDpadHoldFrames = 0;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
-        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = sub_8039B2C;
+        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_HideAsMoveTarget;
         BtlController_EmitTwoReturnValues(1, 10, gMoveSelectionCursor[gActiveBattler] | (gMultiUsePlayerCursor << 8));
         EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
         PlayerBufferExecCompleted();
     }
-    else if (gMain.newKeys & B_BUTTON || gPlayerDpadHoldFrames > 59)
+    else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
         PlaySE(SE_SELECT);
-        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = sub_8039B2C;
+        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_HideAsMoveTarget;
         gBattlerControllerFuncs[gActiveBattler] = HandleInputChooseMove;
         DoBounceEffect(gActiveBattler, BOUNCE_HEALTHBOX, 7, 1);
         DoBounceEffect(gActiveBattler, BOUNCE_MON, 7, 1);
         EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
     }
-    else if (gMain.newKeys & (DPAD_LEFT | DPAD_UP))
+    else if (JOY_NEW(DPAD_LEFT | DPAD_UP))
     {
         PlaySE(SE_SELECT);
-        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = sub_8039B2C;
+        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_HideAsMoveTarget;
 
         do
         {
@@ -444,12 +444,12 @@ static void HandleInputChooseTarget(void)
             if (gAbsentBattlerFlags & gBitTable[gMultiUsePlayerCursor])
                 i = 0;
         } while (i == 0);
-        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = sub_8039AD8;
+        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_ShowAsMoveTarget;
     }
-    else if (gMain.newKeys & (DPAD_RIGHT | DPAD_DOWN))
+    else if (JOY_NEW(DPAD_RIGHT | DPAD_DOWN))
     {
         PlaySE(SE_SELECT);
-        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = sub_8039B2C;
+        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_HideAsMoveTarget;
 
         do
         {
@@ -486,7 +486,7 @@ static void HandleInputChooseTarget(void)
             if (gAbsentBattlerFlags & gBitTable[gMultiUsePlayerCursor])
                 i = 0;
         } while (i == 0);
-        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = sub_8039AD8;
+        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_ShowAsMoveTarget;
     }
 }
 
@@ -495,12 +495,12 @@ static void HandleInputChooseMove(void)
     bool32 canSelectTarget = FALSE;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleBufferA[gActiveBattler][4]);
 
-    if (gMain.heldKeys & DPAD_ANY && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+    if (JOY_HELD(DPAD_ANY) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         gPlayerDpadHoldFrames++;
     else
         gPlayerDpadHoldFrames = 0;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         u8 moveTarget;
 
@@ -559,16 +559,16 @@ static void HandleInputChooseMove(void)
             else
                 gMultiUsePlayerCursor = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
 
-            gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = sub_8039AD8;
+            gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_ShowAsMoveTarget;
         }
     }
-    else if (gMain.newKeys & B_BUTTON || gPlayerDpadHoldFrames > 59)
+    else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
         PlaySE(SE_SELECT);
         BtlController_EmitTwoReturnValues(1, 10, 0xFFFF);
         PlayerBufferExecCompleted();
     }
-    else if (gMain.newKeys & DPAD_LEFT)
+    else if (JOY_NEW(DPAD_LEFT))
     {
         if (gMoveSelectionCursor[gActiveBattler] & 1)
         {
@@ -580,7 +580,7 @@ static void HandleInputChooseMove(void)
             MoveSelectionDisplayMoveType();
         }
     }
-    else if (gMain.newKeys & DPAD_RIGHT)
+    else if (JOY_NEW(DPAD_RIGHT))
     {
         if (!(gMoveSelectionCursor[gActiveBattler] & 1)
          && (gMoveSelectionCursor[gActiveBattler] ^ 1) < gNumberOfMovesToChoose)
@@ -593,7 +593,7 @@ static void HandleInputChooseMove(void)
             MoveSelectionDisplayMoveType();
         }
     }
-    else if (gMain.newKeys & DPAD_UP)
+    else if (JOY_NEW(DPAD_UP))
     {
         if (gMoveSelectionCursor[gActiveBattler] & 2)
         {
@@ -605,7 +605,7 @@ static void HandleInputChooseMove(void)
             MoveSelectionDisplayMoveType();
         }
     }
-    else if (gMain.newKeys & DPAD_DOWN)
+    else if (JOY_NEW(DPAD_DOWN))
     {
         if (!(gMoveSelectionCursor[gActiveBattler] & 2)
          && (gMoveSelectionCursor[gActiveBattler] ^ 2) < gNumberOfMovesToChoose)
@@ -618,7 +618,7 @@ static void HandleInputChooseMove(void)
             MoveSelectionDisplayMoveType();
         }
     }
-    else if (gMain.newKeys & SELECT_BUTTON)
+    else if (JOY_NEW(SELECT_BUTTON))
     {
         if (gNumberOfMovesToChoose > 1 && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
         {
@@ -640,26 +640,26 @@ u32 sub_8057FBC(void) // unused
 {
     u32 var = 0;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         var = 1;
     }
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         gBattle_BG0_X = 0;
-        gBattle_BG0_Y = 0x140;
+        gBattle_BG0_Y = 320;
         var = 0xFF;
     }
-    if (gMain.newKeys & DPAD_LEFT && gMoveSelectionCursor[gActiveBattler] & 1)
+    if (JOY_NEW(DPAD_LEFT) && gMoveSelectionCursor[gActiveBattler] & 1)
     {
         MoveSelectionDestroyCursorAt(gMoveSelectionCursor[gActiveBattler]);
         gMoveSelectionCursor[gActiveBattler] ^= 1;
         PlaySE(SE_SELECT);
         MoveSelectionCreateCursorAt(gMoveSelectionCursor[gActiveBattler], 0);
     }
-    if (gMain.newKeys & DPAD_RIGHT && !(gMoveSelectionCursor[gActiveBattler] & 1)
+    if (JOY_NEW(DPAD_RIGHT) && !(gMoveSelectionCursor[gActiveBattler] & 1)
         && (gMoveSelectionCursor[gActiveBattler] ^ 1) < gNumberOfMovesToChoose)
     {
         MoveSelectionDestroyCursorAt(gMoveSelectionCursor[gActiveBattler]);
@@ -667,14 +667,14 @@ u32 sub_8057FBC(void) // unused
         PlaySE(SE_SELECT);
         MoveSelectionCreateCursorAt(gMoveSelectionCursor[gActiveBattler], 0);
     }
-    if (gMain.newKeys & DPAD_UP && gMoveSelectionCursor[gActiveBattler] & 2)
+    if (JOY_NEW(DPAD_UP) && gMoveSelectionCursor[gActiveBattler] & 2)
     {
         MoveSelectionDestroyCursorAt(gMoveSelectionCursor[gActiveBattler]);
         gMoveSelectionCursor[gActiveBattler] ^= 2;
         PlaySE(SE_SELECT);
         MoveSelectionCreateCursorAt(gMoveSelectionCursor[gActiveBattler], 0);
     }
-    if (gMain.newKeys & DPAD_DOWN && !(gMoveSelectionCursor[gActiveBattler] & 2)
+    if (JOY_NEW(DPAD_DOWN) && !(gMoveSelectionCursor[gActiveBattler] & 2)
         && (gMoveSelectionCursor[gActiveBattler] ^ 2) < gNumberOfMovesToChoose)
     {
         MoveSelectionDestroyCursorAt(gMoveSelectionCursor[gActiveBattler]);
@@ -692,7 +692,7 @@ static void HandleMoveSwitching(void)
     struct ChooseMoveStruct moveStruct;
     u8 totalPPBonuses;
 
-    if (gMain.newKeys & (A_BUTTON | SELECT_BUTTON))
+    if (JOY_NEW(A_BUTTON | SELECT_BUTTON))
     {
         PlaySE(SE_SELECT);
 
@@ -786,7 +786,7 @@ static void HandleMoveSwitching(void)
         MoveSelectionDisplayPpNumber();
         MoveSelectionDisplayMoveType();
     }
-    else if (gMain.newKeys & (B_BUTTON | SELECT_BUTTON))
+    else if (JOY_NEW(B_BUTTON | SELECT_BUTTON))
     {
         PlaySE(SE_SELECT);
         MoveSelectionDestroyCursorAt(gMultiUsePlayerCursor);
@@ -796,7 +796,7 @@ static void HandleMoveSwitching(void)
         MoveSelectionDisplayPpNumber();
         MoveSelectionDisplayMoveType();
     }
-    else if (gMain.newKeys & DPAD_LEFT)
+    else if (JOY_NEW(DPAD_LEFT))
     {
         if (gMultiUsePlayerCursor & 1)
         {
@@ -814,7 +814,7 @@ static void HandleMoveSwitching(void)
                 MoveSelectionCreateCursorAt(gMultiUsePlayerCursor, 27);
         }
     }
-    else if (gMain.newKeys & DPAD_RIGHT)
+    else if (JOY_NEW(DPAD_RIGHT))
     {
         if (!(gMultiUsePlayerCursor & 1) && (gMultiUsePlayerCursor ^ 1) < gNumberOfMovesToChoose)
         {
@@ -832,7 +832,7 @@ static void HandleMoveSwitching(void)
                 MoveSelectionCreateCursorAt(gMultiUsePlayerCursor, 27);
         }
     }
-    else if (gMain.newKeys & DPAD_UP)
+    else if (JOY_NEW(DPAD_UP))
     {
         if (gMultiUsePlayerCursor & 2)
         {
@@ -850,7 +850,7 @@ static void HandleMoveSwitching(void)
                 MoveSelectionCreateCursorAt(gMultiUsePlayerCursor, 27);
         }
     }
-    else if (gMain.newKeys & DPAD_DOWN)
+    else if (JOY_NEW(DPAD_DOWN))
     {
         if (!(gMultiUsePlayerCursor & 2) && (gMultiUsePlayerCursor ^ 2) < gNumberOfMovesToChoose)
         {
@@ -876,7 +876,7 @@ static void sub_80586F8(void)
     {
         if (gReceivedRemoteLinkPlayers == 0)
         {
-            m4aSongNumStop(SE_HINSI);
+            m4aSongNumStop(SE_LOW_HEALTH);
             gMain.inBattle = 0;
             gMain.callback1 = gPreBattleCallback1;
             SetMainCallback2(sub_8038D64);
@@ -889,7 +889,7 @@ static void sub_80586F8(void)
     {
         if (IsLinkTaskFinished())
         {
-            m4aSongNumStop(SE_HINSI);
+            m4aSongNumStop(SE_LOW_HEALTH);
             gMain.inBattle = 0;
             gMain.callback1 = gPreBattleCallback1;
             SetMainCallback2(sub_8038D64);
@@ -909,16 +909,16 @@ void sub_80587B0(void)
             if (IsLinkTaskFinished())
             {
                 if (gWirelessCommType == 0)
-                    sub_800AC34();
+                    SetCloseLinkCallback();
                 else
-                    sub_800ADF8();
+                    SetLinkStandbyCallback();
 
                 gBattlerControllerFuncs[gActiveBattler] = sub_80586F8;
             }
         }
         else
         {
-            m4aSongNumStop(SE_HINSI);
+            m4aSongNumStop(SE_LOW_HEALTH);
             gMain.inBattle = 0;
             gMain.callback1 = gPreBattleCallback1;
             SetMainCallback2(gMain.savedCallback);
@@ -974,13 +974,13 @@ static void sub_805896C(void)
             var = TRUE;
     }
 
-    if (var && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].field_1_x1
-        && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].field_1_x1)
+    if (var && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim
+        && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].finishedShinyMonAnim)
     {
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].flag_x80 = 0;
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].field_1_x1 = 0;
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].flag_x80 = 0;
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].field_1_x1 = 0;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim = FALSE;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim = FALSE;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].triedShinyMonAnim = FALSE;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].finishedShinyMonAnim = FALSE;
         FreeSpriteTilesByTag(0x27F9);
         FreeSpritePaletteByTag(0x27F9);
 
@@ -999,10 +999,13 @@ static void sub_8058B40(void)
     bool32 r9 = FALSE;
     bool32 r8 = FALSE;
 
-    if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].flag_x80 && !gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].ballAnimActive)
-        sub_8172EF0(gActiveBattler, &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]]);
-    if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].flag_x80 && !gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].ballAnimActive)
-        sub_8172EF0(gActiveBattler ^ BIT_FLANK, &gPlayerParty[gBattlerPartyIndexes[gActiveBattler ^ BIT_FLANK]]);
+    if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim 
+     && !gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].ballAnimActive)
+        TryShinyAnimation(gActiveBattler, &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]]);
+
+    if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].triedShinyMonAnim 
+     && !gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].ballAnimActive)
+        TryShinyAnimation(gActiveBattler ^ BIT_FLANK, &gPlayerParty[gBattlerPartyIndexes[gActiveBattler ^ BIT_FLANK]]);
 
     if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].ballAnimActive && !gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].ballAnimActive)
     {
@@ -1073,12 +1076,12 @@ static void sub_8058B40(void)
 static void sub_8058EDC(void)
 {
     if (gSprites[gHealthboxSpriteIds[gActiveBattler]].callback == SpriteCallbackDummy
-     && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].field_1_x1
+     && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim
      && gSprites[gBattlerSpriteIds[gActiveBattler]].callback == SpriteCallbackDummy)
     {
         CopyBattleSpriteInvisibility(gActiveBattler);
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].flag_x80 = 0;
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].field_1_x1 = 0;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim = FALSE;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim = FALSE;
         FreeSpriteTilesByTag(0x27F9);
         FreeSpritePaletteByTag(0x27F9);
 
@@ -1102,11 +1105,9 @@ static void sub_8058FC0(void)
 
 static void sub_805902C(void)
 {
-    if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].flag_x80
+    if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim
         && !gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].ballAnimActive)
-    {
-        sub_8172EF0(gActiveBattler, &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]]);
-    }
+        TryShinyAnimation(gActiveBattler, &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]]);
 
     if (gSprites[gUnknown_03005D7C[gActiveBattler]].callback == SpriteCallbackDummy
      && !gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].ballAnimActive)
@@ -1384,7 +1385,7 @@ static void OpenBagAndChooseItem(void)
         gBattlerControllerFuncs[gActiveBattler] = CompleteWhenChoseItem;
         nullsub_35();
         FreeAllWindowBuffers();
-        sub_81AABB0();
+        CB2_BagMenuFromBattle();
     }
 }
 
@@ -1424,21 +1425,21 @@ static void DoHitAnimBlinkSpriteEffect(void)
 
 static void PlayerHandleUnknownYesNoInput(void)
 {
-    if (gMain.newKeys & DPAD_UP && gMultiUsePlayerCursor != 0)
+    if (JOY_NEW(DPAD_UP) && gMultiUsePlayerCursor != 0)
     {
         PlaySE(SE_SELECT);
         BattleDestroyYesNoCursorAt(gMultiUsePlayerCursor);
         gMultiUsePlayerCursor = 0;
         BattleCreateYesNoCursorAt(0);
     }
-    if (gMain.newKeys & DPAD_DOWN && gMultiUsePlayerCursor == 0)
+    if (JOY_NEW(DPAD_DOWN) && gMultiUsePlayerCursor == 0)
     {
         PlaySE(SE_SELECT);
         BattleDestroyYesNoCursorAt(gMultiUsePlayerCursor);
         gMultiUsePlayerCursor = 1;
         BattleCreateYesNoCursorAt(1);
     }
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         HandleBattleWindow(0x18, 8, 0x1D, 0xD, WINDOW_CLEAR);
         PlaySE(SE_SELECT);
@@ -1450,7 +1451,7 @@ static void PlayerHandleUnknownYesNoInput(void)
 
         PlayerBufferExecCompleted();
     }
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         HandleBattleWindow(0x18, 8, 0x1D, 0xD, WINDOW_CLEAR);
         PlaySE(SE_SELECT);
@@ -1491,8 +1492,7 @@ static void MoveSelectionDisplayPpNumber(void)
     SetPpNumbersPaletteInMoveSelection();
     moveInfo = (struct ChooseMoveStruct*)(&gBattleBufferA[gActiveBattler][4]);
     txtPtr = ConvertIntToDecimalStringN(gDisplayedStringBattle, moveInfo->currentPp[gMoveSelectionCursor[gActiveBattler]], STR_CONV_MODE_RIGHT_ALIGN, 2);
-    txtPtr[0] = CHAR_SLASH;
-    txtPtr++;
+    *(txtPtr)++ = CHAR_SLASH;
     ConvertIntToDecimalStringN(txtPtr, moveInfo->maxPp[gMoveSelectionCursor[gActiveBattler]], STR_CONV_MODE_RIGHT_ALIGN, 2);
 
     BattlePutTextOnWindow(gDisplayedStringBattle, 9);
@@ -1504,12 +1504,9 @@ static void MoveSelectionDisplayMoveType(void)
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleBufferA[gActiveBattler][4]);
 
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-    txtPtr[0] = EXT_CTRL_CODE_BEGIN;
-    txtPtr++;
-    txtPtr[0] = 6;
-    txtPtr++;
-    txtPtr[0] = 1;
-    txtPtr++;
+    *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
+    *(txtPtr)++ = EXT_CTRL_CODE_FONT;
+    *(txtPtr)++ = 2;
 
     StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type]);
     BattlePutTextOnWindow(gDisplayedStringBattle, 10);
@@ -1537,21 +1534,29 @@ static void MoveSelectionDestroyCursorAt(u8 cursorPosition)
 
 void ActionSelectionCreateCursorAt(u8 cursorPosition, u8 arg1)
 {
+    u8 xPos, yPos;
     u16 src[2];
     src[0] = 1;
     src[1] = 2;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + 16, 35 + (cursorPosition & 2), 1, 2, 0x11);
+    xPos = GetWindowAttribute(2, WINDOW_TILEMAP_LEFT) - 1;
+    yPos = GetWindowAttribute(2, WINDOW_TILEMAP_TOP);
+
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + xPos, (cursorPosition & 2) + yPos, 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
 void ActionSelectionDestroyCursorAt(u8 cursorPosition)
 {
+    u8 xPos, yPos;
     u16 src[2];
     src[0] = 0x1016;
     src[1] = 0x1016;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + 16, 35 + (cursorPosition & 2), 1, 2, 0x11);
+    xPos = GetWindowAttribute(2, WINDOW_TILEMAP_LEFT) - 1;
+    yPos = GetWindowAttribute(2, WINDOW_TILEMAP_TOP);
+
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + xPos, (cursorPosition & 2) + yPos, 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
@@ -2427,7 +2432,7 @@ static void PlayerHandleFaintAnimation(void)
         {
             gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 0;
             HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
-            PlaySE12WithPanning(SE_POKE_DEAD, SOUND_PAN_ATTACKER);
+            PlaySE12WithPanning(SE_FAINT, SOUND_PAN_ATTACKER);
             gSprites[gBattlerSpriteIds[gActiveBattler]].data[1] = 0;
             gSprites[gBattlerSpriteIds[gActiveBattler]].data[2] = 5;
             gSprites[gBattlerSpriteIds[gActiveBattler]].callback = sub_8039C00;
@@ -2587,8 +2592,8 @@ static void PlayerHandleChooseAction(void)
     if (gBattleTypeFlags & BATTLE_TYPE_BUG_CATCHING_CONTEST)
     {
         ConvertIntToDecimalStringN(gStringVar1, gNumParkBalls, STR_CONV_MODE_LEFT_ALIGN, 2);
-        StringExpandPlaceholders(gStringVar2, gText_BugCatchingContestMenu);
-        BattlePutTextOnWindow(gStringVar2, 2);
+        StringExpandPlaceholders(gStringVar4, gText_BugCatchingContestMenu);
+        BattlePutTextOnWindow(gStringVar4, 2);
     }
     else
     {

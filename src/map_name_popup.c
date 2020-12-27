@@ -13,171 +13,16 @@
 #include "strings.h"
 #include "task.h"
 #include "text.h"
+#include "text_window.h"
 #include "constants/layouts.h"
 #include "constants/region_map_sections.h"
 #include "constants/weather.h"
 
-// enums
-enum MapPopUp_Themes
-{
-    MAPPOPUP_THEME_WOOD,
-    MAPPOPUP_THEME_MARBLE,
-    MAPPOPUP_THEME_STONE,
-    MAPPOPUP_THEME_BRICK,
-    MAPPOPUP_THEME_UNDERWATER,
-    MAPPOPUP_THEME_STONE2,
-};
-
 // static functions
-static void Task_MapNamePopUpWindow(u8 taskId);
-static void ShowMapNamePopUpWindow(void);
-static void LoadMapNamePopUpWindowBg(void);
+static void Task_MapNamePopup(u8 taskId);
+static u8 MapNamePopupCreateWindow(bool32 palintoFadedBuffer);
 static void MapNamePopupPrintMapNameOnWindow(u16 windowId);
 static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 flags);
-
-// EWRAM
-static EWRAM_DATA u8 sPopupTaskId = 0;
-
-// .rodata
-static const u8 gMapPopUp_Table[][960] =
-{
-    INCBIN_U8("graphics/interface/map_popup/wood.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/marble.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/stone.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/brick.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/underwater.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/stone2.4bpp"),
-};
-
-static const u8 gMapPopUp_Outline_Table[][960] =
-{
-    INCBIN_U8("graphics/interface/map_popup/wood_outline.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/marble_outline.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/stone_outline.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/brick_outline.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/underwater_outline.4bpp"),
-    INCBIN_U8("graphics/interface/map_popup/stone2_outline.4bpp"),
-};
-
-static const u16 gMapPopUp_Palette_Table[][16] =
-{
-    INCBIN_U16("graphics/interface/map_popup/wood.gbapal"),
-    INCBIN_U16("graphics/interface/map_popup/marble_outline.gbapal"),
-    INCBIN_U16("graphics/interface/map_popup/stone_outline.gbapal"),
-    INCBIN_U16("graphics/interface/map_popup/brick_outline.gbapal"),
-    INCBIN_U16("graphics/interface/map_popup/underwater_outline.gbapal"),
-    INCBIN_U16("graphics/interface/map_popup/stone2_outline.gbapal"),
-};
-
-static const u16 gUnknown_0857F444[16] = INCBIN_U16("graphics/interface/map_popup/857F444.gbapal");
-
-static const u8 gRegionMapSectionId_To_PopUpThemeIdMapping[] =
-{
-    [MAPSEC_NEW_BARK_TOWN] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_CHERRYGROVE_CITY] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_AZALEA_TOWN] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_LAVARIDGE_TOWN] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_FALLARBOR_TOWN] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_VERDANTURF_TOWN] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_PACIFIDLOG_TOWN] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_VIOLET_CITY] = MAPPOPUP_THEME_BRICK,
-    [MAPSEC_SLATEPORT_CITY] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_MAUVILLE_CITY] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_GOLDENROD_CITY] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_FORTREE_CITY] = MAPPOPUP_THEME_BRICK,
-    [MAPSEC_LILYCOVE_CITY] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_MOSSDEEP_CITY] = MAPPOPUP_THEME_BRICK,
-    [MAPSEC_SOOTOPOLIS_CITY] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_EVER_GRANDE_CITY] = MAPPOPUP_THEME_BRICK,
-    [MAPSEC_ROUTE_29] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_30] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_31] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_32] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_33] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_34] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_35] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_36] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_37] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_38] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_39] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_40] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_41] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_42] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_43] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_44] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_45] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_46] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_26] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_27] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_28] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_32_FLYDUP] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_123] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ROUTE_124] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_125] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_126] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_127] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_128] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_129] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_130] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_131] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_132] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_133] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_ROUTE_134] = MAPPOPUP_THEME_UNDERWATER,
-    [MAPSEC_UNDERWATER_124] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_UNDERWATER_125] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_UNDERWATER_126] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_UNDERWATER_127] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_UNDERWATER_SOOTOPOLIS] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_DARK_CAVE] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_SLOWPOKE_WELL] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_SAFARI_ZONE] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_BATTLE_FRONTIER] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_ILEX_FOREST] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_UNION_CAVE] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_SPROUT_TOWER] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_RUINS_OF_ALPH] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_METEOR_FALLS] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_METEOR_FALLS2] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_MT_PYRE] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_AQUA_HIDEOUT_OLD] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_SHOAL_CAVE] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_SEAFLOOR_CAVERN] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_UNDERWATER_128] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_VICTORY_ROAD] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_MIRAGE_ISLAND] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_CAVE_OF_ORIGIN] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_SOUTHERN_ISLAND] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_FIERY_PATH] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_FIERY_PATH2] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_JAGGED_PASS] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_JAGGED_PASS2] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_SEALED_CHAMBER] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_UNDERWATER_SEALED_CHAMBER] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_SCORCHED_SLAB] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_ISLAND_CAVE] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_DESERT_RUINS] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_ANCIENT_TOMB] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_INSIDE_OF_TRUCK] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_SKY_PILLAR] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_SECRET_BASE] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_DYNAMIC] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_AQUA_HIDEOUT - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_MAGMA_HIDEOUT - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_MIRAGE_TOWER - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_BIRTH_ISLAND - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_FARAWAY_ISLAND - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ARTISAN_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_MARINE_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_UNDERWATER_MARINE_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_TERRA_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_UNDERWATER_TERRA_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_UNDERWATER_UNK1 - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_UNDERWATER_129 - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_DESERT_UNDERPASS - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_ALTERING_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_NAVEL_ROCK - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_TRAINER_HILL - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_MARBLE
-};
 
 static const u8 gText_PyramidFloor1[] = _("PYRAMID FLOOR 1");
 static const u8 gText_PyramidFloor2[] = _("PYRAMID FLOOR 2");
@@ -200,112 +45,180 @@ static const u8 * const gBattlePyramid_MapHeaderStrings[] =
     gText_Pyramid,
 };
 
-// text
-bool8 sub_80D47D4(void)
-{
-    HideStartMenu();
-    ShowMapNamePopup();
-    return TRUE;
-}
+#define tState              data[0]
+#define tTimer              data[1]
+#define tPos                data[2]
+#define tReshow             data[3]
+#define tWindowId           data[4]
+#define tWindowExists       data[5]
+#define tWindowCleared      data[6]
+#define tPalIntoFadedBuffer data[7]
 
-void ShowMapNamePopup(void)
+// text
+void ShowMapNamePopup(bool32 palIntoFadedBuffer)
 {
+    u8 taskId;
     if (FlagGet(FLAG_HIDE_MAP_NAME_POPUP) != TRUE)
     {
-        if (!FuncIsActiveTask(Task_MapNamePopUpWindow))
+        taskId = FindTaskIdByFunc(Task_MapNamePopup);
+        if (taskId == 0xFF)
         {
-            sPopupTaskId = CreateTask(Task_MapNamePopUpWindow, 90);
-            SetGpuReg(REG_OFFSET_BG0VOFS, 40);
-            gTasks[sPopupTaskId].data[0] = 6;
-            gTasks[sPopupTaskId].data[2] = 40;
+            taskId = CreateTask(Task_MapNamePopup, 90);
+            ChangeBgX(0,  0x0000, 0);
+            ChangeBgY(0, -0x1081, 0);
+            gTasks[taskId].tState = 0;
+            gTasks[taskId].tPos = 0;
+            gTasks[taskId].tPalIntoFadedBuffer = palIntoFadedBuffer;
         }
         else
         {
-            if (gTasks[sPopupTaskId].data[0] != 2)
-                gTasks[sPopupTaskId].data[0] = 2;
-            gTasks[sPopupTaskId].data[3] = 1;
+            if (gTasks[taskId].tState != 4)
+                gTasks[taskId].tState = 4;
+            gTasks[taskId].tReshow = TRUE;
         }
     }
 }
 
-static void Task_MapNamePopUpWindow(u8 taskId)
+void Special_ShowMapNamePopup(void)
+{
+    ShowMapNamePopup(TRUE);
+}
+
+static void Task_MapNamePopup(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
-    switch (task->data[0])
+    switch (task->tState)
     {
-    case 6:
-        task->data[4]++;
-        if (task->data[4] > 30)
-        {
-            task->data[0] = 0;
-            task->data[4] = 0;
-            ShowMapNamePopUpWindow();
-        }
-        break;
     case 0:
-        task->data[2] -= 2;
-        if (task->data[2] <= 0 )
-        {
-            task->data[2] = 0;
-            task->data[0] = 1;
-            gTasks[sPopupTaskId].data[1] = 0;
-        }
+        task->tWindowId = MapNamePopupCreateWindow(task->tPalIntoFadedBuffer);
+        task->tWindowExists = TRUE;
+        task->tState++;
         break;
     case 1:
-        task->data[1]++;
-        if (task->data[1] > 120 )
+        if (IsDma3ManagerBusyWithBgCopy())
+            break;
+        // fallthrough
+    case 2:
+        task->tPos -= 2;
+        if (task->tPos <= -24)
         {
-            task->data[1] = 0;
-            task->data[0] = 2;
+            task->tTimer = 0;
+            task->tState++;
         }
         break;
-    case 2:
-        task->data[2] += 2;
-        if (task->data[2] > 39)
+    case 3:
+        task->tTimer++;
+        if (task->tTimer > 120)
         {
-            task->data[2] = 40;
-            if (task->data[3])
+            task->tTimer = 0;
+            task->tState++;
+        }
+        break;
+    case 4:
+        task->tPos += 2;
+        if (task->tPos >= 0)
+        {
+            if (task->tReshow)
             {
-                task->data[0] = 6;
-                task->data[4] = 0;
-                task->data[3] = 0;
+                MapNamePopupPrintMapNameOnWindow(task->tWindowId);
+                CopyWindowToVram(task->tWindowId, COPYWIN_GFX);
+                task->tState = 1;
+                task->tReshow = FALSE;
             }
             else
             {
-                task->data[0] = 4;
+                task->tState++;
                 return;
             }
         }
         break;
-    case 4:
-        ClearStdWindowAndFrame(GetMapNamePopUpWindowId(), TRUE);
-        task->data[0] = 5;
-        break;
     case 5:
-        HideMapNamePopUpWindow();
+        if (task->tWindowExists && !task->tWindowCleared)
+        {
+            rbox_fill_rectangle(task->tWindowId);
+            CopyWindowToVram(task->tWindowId, COPYWIN_MAP);
+            task->tWindowCleared = TRUE;
+        }
+        task->tState++;
+        return;
+    case 6:
+        if (!IsDma3ManagerBusyWithBgCopy())
+        {
+            if (task->tWindowExists)
+            {
+                RemoveWindow(task->tWindowId);
+                task->tWindowExists = FALSE;
+            }
+            task->tState++;
+            ChangeBgY(0, 0, 0);
+        }
+        return;
+    case 7:
+        DestroyTask(taskId);
         return;
     }
-    SetGpuReg(REG_OFFSET_BG0VOFS, task->data[2]);
+    SetGpuReg(REG_OFFSET_BG0VOFS, task->tPos);
 }
 
-void HideMapNamePopUpWindow(void)
+void DismissMapNamePopup(void)
 {
-    if (FuncIsActiveTask(Task_MapNamePopUpWindow))
+    u8 taskId = FindTaskIdByFunc(Task_MapNamePopup);
+
+    if (taskId != 0xFF)
     {
-        ClearStdWindowAndFrame(GetMapNamePopUpWindowId(), TRUE);
-        RemoveMapNamePopUpWindow();
-        SetGpuReg_ForcedBlank(REG_OFFSET_BG0VOFS, 0);
-        DestroyTask(sPopupTaskId);
+        if (gTasks[taskId].tState < 5)
+            gTasks[taskId].tState = 5;
     }
 }
 
-static void ShowMapNamePopUpWindow(void)
+static u8 MapNamePopupCreateWindow(bool32 palintoFadedBuffer)
 {
-    u16 windowId = AddMapNamePopUpWindow();
-    LoadMapNamePopUpWindowBg();
+    struct WindowTemplate windowTemplate = {
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 29,
+        .width = 14,
+        .height = 2,
+        .paletteNum = 0xD,
+        .baseBlock = 0x001
+    };
+
+    u16 windowId;
+    u16 borderTileNum = 29;
+
+    if (gMapHeader.floorNum != 0)
+    {
+        if (gMapHeader.floorNum != 0x7F)
+        {
+            windowTemplate.width += 5;
+            borderTileNum = 39;
+        }
+        else
+        {
+            // ROOFTOP
+            windowTemplate.width += 8;
+            borderTileNum = 45;
+        }
+    }
+
+    windowId = AddWindow(&windowTemplate);
+
+    if (palintoFadedBuffer)
+    {
+        LoadPalette(GetTextWindowPalette(3), 0xD0, 0x20);
+    }
+    else
+    {
+        CpuCopy16(GetTextWindowPalette(3), &gPlttBufferUnfaded[0xD0], 0x20);
+    }
+
+    LoadThinWindowBorderTiles(windowId, borderTileNum);
+    DrawTextBorderOuter(windowId, borderTileNum, 13);
+    PutWindowTilemap(windowId);
     MapNamePopupPrintMapNameOnWindow(windowId);
-    CopyWindowToVram(windowId, 3);
+    CopyWindowToVram(windowId, COPYWIN_BOTH);
+    return windowId;
 }
 
 static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
@@ -313,7 +226,7 @@ static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
     u8 mapName[25];
     u32 maxWidth = 112;
     u32 xpos;
-    u8 *mapNameSuffixPtr;
+    u8 *ptr;
     
     const u8* mapDisplayHeaderSource;
 
@@ -327,24 +240,22 @@ static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
         {
             mapDisplayHeaderSource = gBattlePyramid_MapHeaderStrings[gSaveBlock2Ptr->frontier.curChallengeBattleNum];
         }
-        mapNameSuffixPtr = StringCopy(&mapName[3], mapDisplayHeaderSource);
+        ptr = StringCopy(mapName, mapDisplayHeaderSource);
     }
     else
     {
-        mapNameSuffixPtr = GetMapName(&mapName[3], gMapHeader.regionMapSectionId, 0);
+        ptr = GetMapNameHandleSpecialMaps(mapName, gMapHeader.regionMapSectionId);
     }
-    mapName[0] = EXT_CTRL_CODE_BEGIN;
-    mapName[1] = EXT_CTRL_CODE_HIGHLIGHT;
-    mapName[2] = TEXT_COLOR_TRANSPARENT;
 
     if (gMapHeader.floorNum)
     {
-        mapNameSuffixPtr = MapNamePopupAppendFloorNum(mapNameSuffixPtr, gMapHeader.floorNum);
-        //maxWidth = gMapHeader.floorNum != 0x7F ? 152 : 176;
+        ptr = MapNamePopupAppendFloorNum(ptr, gMapHeader.floorNum);
+        maxWidth = gMapHeader.floorNum != 0x7F ? 152 : 176;
     }
-    xpos = GetStringCenterAlignXOffset(7, &mapName[3], 80);
-    //xpos = (maxWidth - GetStringWidth(2, mapName, -1)) / 2;
-    AddTextPrinterParameterized(windowId, 7, mapName, xpos, 3, 0xFF, NULL);
+
+    xpos = (maxWidth - GetStringWidth(2, mapName, -1)) / 2;
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
+    AddTextPrinterParameterized(windowId, 2, mapName, xpos, 2, TEXT_SPEED_FF, NULL);
 }
 
 static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 floorNum)
@@ -365,47 +276,11 @@ static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 floorNum)
     return dest;
 }
 
-static void sub_80D4A78(u8 bg, u8 x, u8 y, u8 deltaX, u8 deltaY, u8 unused)
-{
-    s32 i;
-
-    for (i = 0; i < 12; i++)
-    {
-        FillBgTilemapBufferRect(bg, 0x21D + i, i - 1 + x, y - 1, 1, 1, 0xE);
-    }
-    FillBgTilemapBufferRect(bg, 0x229, x - 1, y, 1, 1, 0xE);
-    FillBgTilemapBufferRect(bg, 0x22A, deltaX + x, y, 1, 1, 0xE);
-    FillBgTilemapBufferRect(bg, 0x22B, x - 1, y + 1 , 1, 1, 0xE);
-    FillBgTilemapBufferRect(bg, 0x22C, deltaX + x, y + 1, 1, 1, 0xE);
-    FillBgTilemapBufferRect(bg, 0x22D, x - 1, y + 2, 1, 1, 0xE);
-    FillBgTilemapBufferRect(bg, 0x22E, deltaX + x, y + 2, 1, 1, 0xE);
-    for (i = 0; i < 12; i++)
-    {
-        FillBgTilemapBufferRect(bg, 0x22F + i, i - 1 + x, y + deltaY, 1, 1, 0xE);
-    }
-}
-
-static void LoadMapNamePopUpWindowBg(void)
-{
-    u8 popUpThemeId;
-    u8 popupWindowId = GetMapNamePopUpWindowId();
-    u16 regionMapSectionId = gMapHeader.regionMapSectionId;
-
-    if (regionMapSectionId >= KANTO_MAPSEC_START)
-    {
-        if (regionMapSectionId > KANTO_MAPSEC_END)
-            regionMapSectionId -= KANTO_MAPSEC_COUNT;
-        else
-            regionMapSectionId = 0; // Discard kanto region sections;
-    }
-    popUpThemeId = gRegionMapSectionId_To_PopUpThemeIdMapping[regionMapSectionId];
-
-    LoadBgTiles(GetWindowAttribute(popupWindowId, WINDOW_BG), gMapPopUp_Outline_Table[popUpThemeId], 0x400, 0x21D);
-    CallWindowFunction(popupWindowId, sub_80D4A78);
-    PutWindowTilemap(popupWindowId);
-    if (gMapHeader.weather == WEATHER_UNDERWATER_BUBBLES)
-        LoadPalette(&gUnknown_0857F444, 0xE0, 0x20);
-    else
-        LoadPalette(gMapPopUp_Palette_Table[popUpThemeId], 0xE0, 0x20);
-    BlitBitmapToWindow(popupWindowId, gMapPopUp_Table[popUpThemeId], 0, 0, 80, 24);
-}
+#undef tPalIntoFadedBuffer
+#undef tWindowCleared
+#undef tWindowExists
+#undef tWindowId
+#undef tReshow
+#undef tPos
+#undef tTimer
+#undef tState

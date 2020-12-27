@@ -106,8 +106,40 @@ SlowpokeWell_B1F_EventScript_ItemSuperPotion::
 	finditem ITEM_SUPER_POTION
 	end
 
-Route106_EventScript_ItemProtein:: @ 8290D40
-	finditem ITEM_PROTEIN
+Route34_EventScript_ItemNugget::
+	finditem ITEM_NUGGET
+	end
+
+GoldenrodCity_Underground_EventScript_ItemCoinCase::
+	finditem ITEM_COIN_CASE
+	end
+
+GoldenrodCity_DeptStore_B1F_EventScript_ItemEther::
+	finditem ITEM_ETHER
+	end
+
+GoldenrodCity_DeptStore_B1F_EventScript_ItemAmuletCoin::
+	finditem ITEM_AMULET_COIN
+	end
+
+GoldenrodCity_DeptStore_B1F_EventScript_ItemBurnHeal::
+	finditem ITEM_BURN_HEAL
+	end
+
+GoldenrodCity_DeptStore_B1F_EventScript_ItemUltraBall::
+	finditem ITEM_ULTRA_BALL
+	end
+
+Route35_EventScript_ItemTM39::
+	finditem ITEM_TM39_ROCK_TOMB
+	end
+
+NationalPark_EventScript_ItemParalyzeHeal::
+	finditem ITEM_PARALYZE_HEAL
+	end
+
+NationalPark_EventScript_ItemTM28::
+	finditem ITEM_TM28_DIG
 	end
 
 Route36_EventScript_ItemStarPiece:: @ 8290D4D
@@ -222,16 +254,16 @@ Route116_EventScript_ItemPotion:: @ 8290EAC
 	finditem ITEM_POTION
 	end
 
-Route117_EventScript_ItemGreatBall:: @ 8290EB9
+Route45_EventScript_ItemGreatBall:: @ 8290EB9
 	finditem ITEM_GREAT_BALL
 	end
 
-Route117_EventScript_ItemRevive:: @ 8290EC6
+Route45_EventScript_ItemRevive:: @ 8290EC6
 	finditem ITEM_REVIVE
 	end
 
-Route46_EventScript_ItemHyperPotion:: @ 8290ED3
-	finditem ITEM_HYPER_POTION
+Route46_EventScript_ItemXSpeed::
+	finditem ITEM_X_SPEED
 	end
 
 Route119_EventScript_ItemSuperRepel:: @ 8290EE0
@@ -382,7 +414,7 @@ MauvilleCity_EventScript_ItemXSpeed:: @ 82910CE
 	finditem ITEM_X_SPEED
 	end
 
-RustboroCity_EventScript_ItemXDefend:: @ 82910DB
+GoldenrodCity_EventScript_ItemXDefend:: @ 82910DB
 	finditem ITEM_X_DEFEND
 	end
 
@@ -414,23 +446,23 @@ FieryPath_EventScript_ItemTM06:: @ 829119E
 	finditem ITEM_TM06
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemTM23:: @ 82911AB
+RadioTower_1F_EventScript_ItemTM23:: @ 82911AB
 	finditem ITEM_TM23
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemFullHeal:: @ 82911B8
+RadioTower_1F_EventScript_ItemFullHeal:: @ 82911B8
 	finditem ITEM_FULL_HEAL
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemMoonStone:: @ 82911C5
+RadioTower_1F_EventScript_ItemMoonStone:: @ 82911C5
 	finditem ITEM_MOON_STONE
 	end
 
-MeteorFalls_1F_1R_EventScript_ItemPPUP:: @ 82911D2
+RadioTower_1F_EventScript_ItemPPUP:: @ 82911D2
 	finditem ITEM_PP_UP
 	end
 
-MeteorFalls_B1F_2R_EventScript_ItemTM02:: @ 82911DF
+RadioTower_4F_EventScript_ItemTM02:: @ 82911DF
 	finditem ITEM_TM02
 	end
 

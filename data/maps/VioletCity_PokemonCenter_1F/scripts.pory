@@ -58,12 +58,12 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
         {
 	        textcolor(MSG_COLOR_SYS)
             setflag(FLAG_GOT_ELMS_EGG)
-	        playfanfare(MUS_FANFAREEGG)
+	        playfanfare(MUS_OBTAIN_EGG)
             message("{PLAYER} received the EGG\n"
                     "from ELM's AIDE.")
             waitfanfare
             giveegg(SPECIES_TOGEPI)
-            call(EventScript_RestorePrevTextColor)
+            textcolor(MSG_COLOR_PREV)
             msgbox("We discovered that a POKéMON won't\n"
                    "hatch until it grows in the EGG.\p"
                    "It also has to be with other active\n"
@@ -112,7 +112,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                    "when I saw you.")
             
             textcolor(MSG_COLOR_SYS)
-            playfanfare(MUS_FANFA4)
+            playfanfare(MUS_OBTAIN_ITEM)
             message("{PLAYER} received the\n"
                     "RUNNING SHOES from the AIDE.")
             waitmessage
@@ -124,9 +124,9 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
             
             signmsg
             msgbox("Press the B Button to run.\n"
-                   "But only where there's room to run!")
+                   "There's always room to run!")
             normalmsg
-            call(EventScript_RestorePrevTextColor)
+            textcolor(MSG_COLOR_PREV)
 
             msgbox("I need to head back to the lab now.\n"
                    "Good luck with the EGG!")
@@ -145,7 +145,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
                     waitmovement(0)
             }
 
-	        playse(SE_KAIDAN)
+	        playse(SE_EXIT)
             removeobject(ELMS_AIDE)
             waitse
             clearflag(FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE)

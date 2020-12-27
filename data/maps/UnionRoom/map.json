@@ -2,7 +2,7 @@
   "id": "MAP_UNION_ROOM",
   "name": "UnionRoom",
   "layout": "LAYOUT_UNION_ROOM",
-  "music": "MUS_RAINBOW",
+  "music": "MUS_EVER_GRANDE",
   "region_map_section": "MAPSEC_DYNAMIC",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -11,11 +11,15 @@
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_FRONTIER",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_UNION_ROOM_NURSE",
+      "in_connection": false,
       "x": 3,
       "y": 2,
       "elevation": 3,
@@ -23,13 +27,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_Attendant",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_VAR_3",
+      "in_connection": false,
       "x": 1,
       "y": 8,
       "elevation": 3,
@@ -37,13 +42,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_Player4",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_4"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_VAR_7",
+      "in_connection": false,
       "x": 7,
       "y": 8,
       "elevation": 3,
@@ -51,13 +57,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_Player8",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_8"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_VAR_6",
+      "in_connection": false,
       "x": 1,
       "y": 4,
       "elevation": 3,
@@ -65,13 +72,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_Player7",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_7"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_VAR_5",
+      "in_connection": false,
       "x": 7,
       "y": 4,
       "elevation": 3,
@@ -79,13 +87,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_Player6",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_6"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_VAR_4",
+      "in_connection": false,
       "x": 13,
       "y": 4,
       "elevation": 3,
@@ -93,13 +102,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_Player5",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_5"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_VAR_2",
+      "in_connection": false,
       "x": 10,
       "y": 6,
       "elevation": 3,
@@ -107,13 +117,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_Player3",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_3"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_VAR_1",
+      "in_connection": false,
       "x": 13,
       "y": 8,
       "elevation": 3,
@@ -121,13 +132,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_Player2",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_2"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "in_connection": false,
       "x": 4,
       "y": 6,
       "elevation": 3,
@@ -135,7 +147,6 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "UnionRoom_EventScript_Player1",
       "flag": "FLAG_HIDE_UNION_ROOM_PLAYER_1"
@@ -148,16 +159,12 @@
       "elevation": 3,
       "dest_map": "MAP_NONE",
       "dest_warp_id": 127
-    },
-    {
-      "x": 8,
-      "y": 11,
-      "elevation": 3,
-      "dest_map": "MAP_NONE",
-      "dest_warp_id": 127
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-  "phone_service": true
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

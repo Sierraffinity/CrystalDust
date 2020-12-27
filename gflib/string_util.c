@@ -2,6 +2,7 @@
 #include "string_util.h"
 #include "text.h"
 #include "strings.h"
+#include "util.h"
 
 EWRAM_DATA u8 gStringVar1[0x100] = {0};
 EWRAM_DATA u8 gStringVar2[0x100] = {0};
@@ -10,20 +11,6 @@ EWRAM_DATA u8 gStringVar4[0x3E8] = {0};
 EWRAM_DATA static u8 sUnknownStringVar[16] = {0};
 
 static const u8 sDigits[] = __("0123456789ABCDEF");
-
-static const s32 sPowersOfTen[] =
-{
-             1,
-            10,
-           100,
-          1000,
-         10000,
-        100000,
-       1000000,
-      10000000,
-     100000000,
-    1000000000,
-};
 
 u8 *StringCopy10(u8 *dest, const u8 *src)
 {
@@ -164,7 +151,7 @@ u8 *ConvertIntToDecimalStringN(u8 *dest, s32 value, enum StringConvertMode mode,
 {
     enum { WAITING_FOR_NONZERO_DIGIT, WRITING_DIGITS, WRITING_SPACES } state;
     s32 powerOfTen;
-    s32 largestPowerOfTen = sPowersOfTen[n - 1];
+    s32 largestPowerOfTen = gPowersOfTen[n - 1];
 
     state = WAITING_FOR_NONZERO_DIGIT;
 
@@ -220,7 +207,7 @@ u8 *ConvertUIntToDecimalStringN(u8 *dest, u32 value, enum StringConvertMode mode
 {
     enum { WAITING_FOR_NONZERO_DIGIT, WRITING_DIGITS, WRITING_SPACES } state;
     s32 powerOfTen;
-    s32 largestPowerOfTen = sPowersOfTen[n - 1];
+    s32 largestPowerOfTen = gPowersOfTen[n - 1];
 
     state = WAITING_FOR_NONZERO_DIGIT;
 
@@ -332,6 +319,15 @@ u8 *ConvertIntToHexStringN(u8 *dest, s32 value, enum StringConvertMode mode, u8 
     return dest;
 }
 
+u8 *ConvertQ88ToDecimalStringN(u8 *dest, s16 value, enum StringConvertMode mode, u8 n)
+{
+    dest = ConvertIntToDecimalStringN(dest, Q_8_8_TO_INT(value), mode, n);
+    *dest++ = CHAR_PERIOD;
+    dest = ConvertIntToDecimalStringN(dest, Q_8_8_FRACTIONAL(value), STR_CONV_MODE_LEADING_ZEROS, 3);
+    *dest = EOS;
+    return dest;
+}
+
 u8 *StringExpandPlaceholders(u8 *dest, const u8 *src)
 {
     for (;;)
@@ -342,50 +338,61 @@ u8 *StringExpandPlaceholders(u8 *dest, const u8 *src)
 
         switch (c)
         {
-            case PLACEHOLDER_BEGIN:
-                placeholderId = *src++;
-                expandedString = GetExpandedPlaceholder(placeholderId);
-                dest = StringExpandPlaceholders(dest, expandedString);
-                break;
-            case EXT_CTRL_CODE_BEGIN:
-                *dest++ = c;
-                c = *src++;
-                *dest++ = c;
+        case PLACEHOLDER_BEGIN:
+            placeholderId = *src++;
+            expandedString = GetExpandedPlaceholder(placeholderId);
+            dest = StringExpandPlaceholders(dest, expandedString);
+            break;
+        case EXT_CTRL_CODE_BEGIN:
+            *dest++ = c;
+            c = *src++;
+            *dest++ = c;
 
-                switch (c)
-                {
-                    case 0x07:
-                    case 0x09:
-                    case 0x0F:
-                    case 0x15:
-                    case 0x16:
-                    case 0x17:
-                    case 0x18:
-                        break;
-                    case 0x04:
-                        *dest++ = *src++;
-                    case 0x0B:
-                        *dest++ = *src++;
-                    default:
-                        *dest++ = *src++;
-                }
+            switch (c)
+            {
+            case EXT_CTRL_CODE_RESET_SIZE:
+            case EXT_CTRL_CODE_PAUSE_UNTIL_PRESS:
+            case EXT_CTRL_CODE_FILL_WINDOW:
+            case EXT_CTRL_CODE_JPN:
+            case EXT_CTRL_CODE_ENG:
+            case EXT_CTRL_CODE_PAUSE_MUSIC:
+            case EXT_CTRL_CODE_RESUME_MUSIC:
                 break;
-            case EOS:
-                *dest = EOS;
-                return dest;
-            case CHAR_PROMPT_SCROLL:
-            case CHAR_PROMPT_CLEAR:
-            case CHAR_NEWLINE:
+            case EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW:
+                *dest++ = *src++;
+            case EXT_CTRL_CODE_PLAY_BGM:
+                *dest++ = *src++;
             default:
-                *dest++ = c;
+                *dest++ = *src++;
+            }
+            break;
+        case EOS:
+            *dest = EOS;
+            return dest;
+        case CHAR_PROMPT_SCROLL:
+        case CHAR_PROMPT_CLEAR:
+        case CHAR_NEWLINE:
+        default:
+            *dest++ = c;
         }
     }
 }
 
 u8 *StringBraille(u8 *dest, const u8 *src)
 {
-    u8 setBrailleFont[] = { EXT_CTRL_CODE_BEGIN, 0x06, 0x06, EOS };
-    u8 gotoLine2[] = { CHAR_NEWLINE, EXT_CTRL_CODE_BEGIN, 0x0E, 0x02, EOS };
+    const u8 setBrailleFont[] = { 
+        EXT_CTRL_CODE_BEGIN, 
+        EXT_CTRL_CODE_FONT, 
+        6, 
+        EOS 
+    };
+    const u8 gotoLine2[] = { 
+        CHAR_NEWLINE, 
+        EXT_CTRL_CODE_BEGIN, 
+        EXT_CTRL_CODE_SHIFT_DOWN, 
+        2, 
+        EOS 
+    };
 
     dest = StringCopy(dest, setBrailleFont);
 
@@ -395,16 +402,16 @@ u8 *StringBraille(u8 *dest, const u8 *src)
 
         switch (c)
         {
-            case EOS:
-                *dest = c;
-                return dest;
-            case CHAR_NEWLINE:
-                dest = StringCopy(dest, gotoLine2);
-                break;
-            default:
-                *dest++ = c;
-                *dest++ = c + 0x40;
-                break;
+        case EOS:
+            *dest = c;
+            return dest;
+        case CHAR_NEWLINE:
+            dest = StringCopy(dest, gotoLine2);
+            break;
+        default:
+            *dest++ = c;
+            *dest++ = c + 0x40;
+            break;
         }
     }
 }
@@ -561,7 +568,7 @@ u8 *StringCopyN_Multibyte(u8 *dest, u8 *src, u32 n)
         else
         {
             *dest++ = *src++;
-            if (*(src - 1) == CHAR_SPECIAL_F9)
+            if (*(src - 1) == CHAR_EXTRA_SYMBOL)
                 *dest++ = *src++;
         }
     }
@@ -576,7 +583,7 @@ u32 StringLength_Multibyte(const u8 *str)
 
     while (*str != EOS)
     {
-        if (*str == CHAR_SPECIAL_F9)
+        if (*str == CHAR_EXTRA_SYMBOL)
             str++;
         str++;
         length++;
@@ -593,15 +600,15 @@ u8 *WriteColorChangeControlCode(u8 *dest, u32 colorType, u8 color)
     switch (colorType)
     {
     case 0:
-        *dest = 1;
+        *dest = EXT_CTRL_CODE_COLOR;
         dest++;
         break;
     case 1:
-        *dest = 3;
+        *dest = EXT_CTRL_CODE_SHADOW;
         dest++;
         break;
     case 2:
-        *dest = 2;
+        *dest = EXT_CTRL_CODE_HIGHLIGHT;
         dest++;
         break;
     }
@@ -616,7 +623,7 @@ bool32 IsStringJapanese(u8 *str)
 {
     while (*str != EOS)
     {
-        if (*str <= 0xA0)
+        if (*str < CHAR_0)
             if (*str != CHAR_SPACE)
                 return TRUE;
         str++;
@@ -631,7 +638,7 @@ bool32 sub_800924C(u8 *str, s32 n)
 
     for (i = 0; *str != EOS && i < n; i++)
     {
-        if (*str <= 0xA0)
+        if (*str < CHAR_0)
             if (*str != CHAR_SPACE)
                 return TRUE;
         str++;
@@ -644,31 +651,31 @@ u8 GetExtCtrlCodeLength(u8 code)
 {
     static const u8 lengths[] =
     {
-        1,
-        2,
-        2,
-        2,
-        4,
-        2,
-        2,
-        1,
-        2,
-        1,
-        1,
-        3,
-        2,
-        2,
-        2,
-        1,
-        3,
-        2,
-        2,
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
+        [0]                                    = 1,
+        [EXT_CTRL_CODE_COLOR]                  = 2,
+        [EXT_CTRL_CODE_HIGHLIGHT]              = 2,
+        [EXT_CTRL_CODE_SHADOW]                 = 2,
+        [EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW] = 4,
+        [EXT_CTRL_CODE_PALETTE]                = 2,
+        [EXT_CTRL_CODE_FONT]                   = 2,
+        [EXT_CTRL_CODE_RESET_SIZE]             = 1,
+        [EXT_CTRL_CODE_PAUSE]                  = 2,
+        [EXT_CTRL_CODE_PAUSE_UNTIL_PRESS]      = 1,
+        [EXT_CTRL_CODE_WAIT_SE]                = 1,
+        [EXT_CTRL_CODE_PLAY_BGM]               = 3,
+        [EXT_CTRL_CODE_ESCAPE]                 = 2,
+        [EXT_CTRL_CODE_SHIFT_TEXT]             = 2,
+        [EXT_CTRL_CODE_SHIFT_DOWN]             = 2,
+        [EXT_CTRL_CODE_FILL_WINDOW]            = 1,
+        [EXT_CTRL_CODE_PLAY_SE]                = 3,
+        [EXT_CTRL_CODE_CLEAR]                  = 2,
+        [EXT_CTRL_CODE_SKIP]                   = 2,
+        [EXT_CTRL_CODE_CLEAR_TO]               = 2,
+        [EXT_CTRL_CODE_MIN_LETTER_SPACING]     = 2,
+        [EXT_CTRL_CODE_JPN]                    = 1,
+        [EXT_CTRL_CODE_ENG]                    = 1,
+        [EXT_CTRL_CODE_PAUSE_MUSIC]            = 1,
+        [EXT_CTRL_CODE_RESUME_MUSIC]           = 1,
     };
 
     u8 length = 0;
@@ -731,7 +738,7 @@ void ConvertInternationalString(u8 *s, u8 language)
         StripExtCtrlCodes(s);
         i = StringLength(s);
         s[i++] = EXT_CTRL_CODE_BEGIN;
-        s[i++] = 22;
+        s[i++] = EXT_CTRL_CODE_ENG;
         s[i++] = EOS;
 
         i--;
@@ -743,7 +750,7 @@ void ConvertInternationalString(u8 *s, u8 language)
         }
 
         s[0] = EXT_CTRL_CODE_BEGIN;
-        s[1] = 21;
+        s[1] = EXT_CTRL_CODE_JPN;
     }
 }
 

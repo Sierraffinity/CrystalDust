@@ -124,12 +124,12 @@ struct Pokemon
 
 struct Unknown_806F160_Struct
 {
-    u8 field_0_0:4;
-    u8 field_0_1:4;
-    u8 field_1;
-    u8 magic;
-    u8 field_3_0:4;
-    u8 field_3_1:4;
+    u32 field_0_0:4;
+    u32 field_0_1:4;
+    u32 field_1:8;
+    u16 magic:8;
+    u32 size:4;
+    u16 field_3_1:4;
     void *bytes;
     u8 **byteArrays;
     struct SpriteTemplate *templates;
@@ -238,6 +238,7 @@ struct Evolution
     u16 targetSpecies;
 };
 
+extern bool8 gDebugForceShiny;
 extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
 extern u8 gEnemyPartyCount;
@@ -255,7 +256,7 @@ extern const u16 *const gLevelUpLearnsets[];
 extern const u8 gPPUpGetMask[];
 extern const u8 gPPUpSetMask[];
 extern const u8 gPPUpAddMask[];
-extern const u8 gStatStageRatios[][2];
+extern const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2];
 extern const u16 gLinkPlayerFacilityClasses[];
 extern const struct SpriteTemplate gUnknown_08329D98[];
 extern const s8 gNatureStatTable[][5];
@@ -264,11 +265,10 @@ void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);
 void ZeroPlayerPartyMons(void);
 void ZeroEnemyPartyMons(void);
-void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId);
-void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId);
-void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 nature);
-void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 unownLetter);
-void CreateMaleMon(struct Pokemon *mon, u16 species, u8 level);
+void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 personalityType, u32 fixedPersonality, u8 otIdType, u32 fixedOtId);
+void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 personalityType, u32 fixedPersonality, u8 otIdType, u32 fixedOtId);
+void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 nature, bool8 forceShiny);
+void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 unownLetter, bool8 forceShiny);
 void CreateMonWithIVsPersonality(struct Pokemon *mon, u16 species, u8 level, u32 ivs, u32 personality);
 void CreateMonWithIVsOTID(struct Pokemon *mon, u16 species, u8 level, u8 *ivs, u32 otId);
 void CreateMonWithEVSpread(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 evSpread);
@@ -277,11 +277,11 @@ void CreateBattleTowerMon2(struct Pokemon *mon, struct BattleTowerPokemon *src, 
 void CreateApprenticeMon(struct Pokemon *mon, const struct Apprentice *src, u8 monId);
 void CreateMonWithEVSpreadNatureOTID(struct Pokemon *mon, u16 species, u8 level, u8 nature, u8 fixedIV, u8 evSpread, u32 otId);
 void sub_80686FC(struct Pokemon *mon, struct BattleTowerPokemon *dest);
-void CreateObedientMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId);
+void CreateObedientMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 personalityType, u32 fixedPersonality, u8 otIdType, u32 fixedOtId);
 bool8 sub_80688F8(u8 caseId, u8 battlerId);
 void SetDeoxysStats(void);
-u16 sub_8068B48(void);
-u16 sub_8068BB0(void);
+u16 GetUnionRoomTrainerPic(void);
+u16 GetUnionRoomTrainerClass(void);
 void CreateObedientEnemyMon(void);
 void CalculateMonStats(struct Pokemon *mon);
 void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest);
@@ -401,6 +401,7 @@ void SetWildMonHeldItem(void);
 bool8 IsMonShiny(struct Pokemon *mon);
 bool8 IsShinyOtIdPersonality(u32 otId, u32 personality);
 const u8 *GetTrainerPartnerName(void);
+u8 GetPlayerPartyHighestLevel(void);
 void BattleAnimateFrontSprite(struct Sprite* sprite, u16 species, bool8 noCry, u8 arg3);
 void DoMonFrontSpriteAnimation(struct Sprite* sprite, u16 species, bool8 noCry, u8 arg3);
 void PokemonSummaryDoMonAnimation(struct Sprite* sprite, u16 species, bool8 oneFrame);
@@ -418,5 +419,6 @@ bool8 HasTwoFramesAnimation(u16 species);
 struct Unknown_806F160_Struct *sub_806F2AC(u8 id, u8 arg1);
 void sub_806F47C(u8 id);
 u8 *sub_806F4F8(u8 id, u8 arg1);
+u32 GenerateMonPersonality(u32 otId, bool8 forceShiny);
 
 #endif // GUARD_POKEMON_H

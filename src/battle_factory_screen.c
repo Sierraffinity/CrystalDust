@@ -24,6 +24,7 @@
 #include "pokedex.h"
 #include "util.h"
 #include "trainer_pokemon_sprites.h"
+#include "starter_choose.h"
 #include "constants/battle_frontier.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
@@ -57,7 +58,7 @@
 
 struct FactorySelecteableMon
 {
-    u16 monSetId;
+    u16 monId;
     u16 spriteId;
     u8 selectedId; // 0 - not selected, 1 - first pokemon, 2 - second pokemon, 3 - third pokemon
     struct Pokemon monData;
@@ -132,8 +133,6 @@ struct FactorySwapMonsStruct
     bool8 unk30;
 };
 
-extern const u32 gUnknown_085B18AC[];
-
 // This file's functions.
 static void sub_819A44C(struct Sprite *sprite);
 static void CB2_InitSelectScreen(void);
@@ -168,7 +167,7 @@ static u8 sub_819BC9C(void);
 static u8 Select_OptionSummary(void);
 static u8 Select_OptionOthers(void);
 static u8 Select_OptionRentDeselect(void);
-static bool32 Select_AreSpeciesValid(u16 monSetId);
+static bool32 Select_AreSpeciesValid(u16 monId);
 static void Swap_DestroyAllSprites(void);
 static void Swap_ShowYesNoOptions(void);
 static void sub_819E8EC(void);
@@ -263,7 +262,7 @@ static const struct SpriteSheet gUnknown_086103BC[] =
 
 static const struct CompressedSpriteSheet gUnknown_086103E4[] =
 {
-    {gUnknown_085B18AC, 0x800, TAG_TILE_64},
+    {gPokeballSelection_Gfx, 0x800, TAG_TILE_64},
     {},
 };
 
@@ -616,7 +615,7 @@ static const struct SpriteSheet gUnknown_08610650[] =
 
 static const struct CompressedSpriteSheet gUnknown_086106A0[] =
 {
-    {gUnknown_085B18AC, 0x800, TAG_TILE_64},
+    {gPokeballSelection_Gfx, 0x800, TAG_TILE_64},
     {},
 };
 
@@ -1479,7 +1478,7 @@ static void Task_HandleSelectionScreenYesNo(u8 taskId)
             gTasks[taskId].data[0] = 5;
             break;
         case 5:
-            if (gMain.newKeys & A_BUTTON)
+            if (JOY_NEW(A_BUTTON))
             {
                 PlaySE(SE_SELECT);
                 if (sFactorySelectScreen->yesNoCursorPos == 0)
@@ -1497,7 +1496,7 @@ static void Task_HandleSelectionScreenYesNo(u8 taskId)
                     gTasks[taskId].func = Task_HandleSelectionScreenChooseMons;
                 }
             }
-            else if (gMain.newKeys & B_BUTTON)
+            else if (JOY_NEW(B_BUTTON))
             {
                 PlaySE(SE_SELECT);
                 sub_819B958(4);
@@ -1506,12 +1505,12 @@ static void Task_HandleSelectionScreenYesNo(u8 taskId)
                 gTasks[taskId].data[0] = 1;
                 gTasks[taskId].func = Task_HandleSelectionScreenChooseMons;
             }
-            else if (gMain.newAndRepeatedKeys & DPAD_UP)
+            else if (JOY_REPEAT(DPAD_UP))
             {
                 PlaySE(SE_SELECT);
                 Select_UpdateYesNoCursorPosition(-1);
             }
-            else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+            else if (JOY_REPEAT(DPAD_DOWN))
             {
                 PlaySE(SE_SELECT);
                 Select_UpdateYesNoCursorPosition(1);
@@ -1539,7 +1538,7 @@ static void Task_HandleSelectionScreenMenu(u8 taskId)
         }
         break;
     case 3:
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             u8 retVal;
             PlaySE(SE_SELECT);
@@ -1566,7 +1565,7 @@ static void Task_HandleSelectionScreenMenu(u8 taskId)
                 gTasks[taskId].func = Task_FromSelectScreenToSummaryScreen;
             }
         }
-        else if (gMain.newKeys & B_BUTTON)
+        else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
             sub_819F3F8(sFactorySelectScreen->unk294[1], &sFactorySelectScreen->unk2A0, FALSE);
@@ -1575,12 +1574,12 @@ static void Task_HandleSelectionScreenMenu(u8 taskId)
             gTasks[taskId].data[0] = 1;
             gTasks[taskId].func = Task_HandleSelectionScreenChooseMons;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_UP)
+        else if (JOY_REPEAT(DPAD_UP))
         {
             PlaySE(SE_SELECT);
             Select_UpdateMenuCursorPosition(-1);
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+        else if (JOY_REPEAT(DPAD_DOWN))
         {
             PlaySE(SE_SELECT);
             Select_UpdateMenuCursorPosition(1);
@@ -1619,21 +1618,21 @@ static void Task_HandleSelectionScreenChooseMons(u8 taskId)
             }
             break;
         case 1:
-            if (gMain.newKeys & A_BUTTON)
+            if (JOY_NEW(A_BUTTON))
             {
                 PlaySE(SE_SELECT);
                 sFactorySelectScreen->unk2A2 = FALSE;
                 gTasks[taskId].data[0] = 2;
                 gTasks[taskId].func = Task_HandleSelectionScreenMenu;
             }
-            else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+            else if (JOY_REPEAT(DPAD_LEFT))
             {
                 PlaySE(SE_SELECT);
                 Select_UpdateBallCursorPosition(-1);
                 Select_PrintMonCategory();
                 Select_PrintMonSpecies();
             }
-            else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+            else if (JOY_REPEAT(DPAD_RIGHT))
             {
                 PlaySE(SE_SELECT);
                 Select_UpdateBallCursorPosition(1);
@@ -1642,7 +1641,7 @@ static void Task_HandleSelectionScreenChooseMons(u8 taskId)
             }
             break;
         case 11:
-            if (gMain.newKeys & A_BUTTON)
+            if (JOY_NEW(A_BUTTON))
             {
                 PlaySE(SE_SELECT);
                 sub_819F3F8(sFactorySelectScreen->unk294[1], &sFactorySelectScreen->unk2A0, FALSE);
@@ -1665,7 +1664,7 @@ static void CreateFrontierFactorySelectableMons(u8 firstMonId)
     u8 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
     u8 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u8 challengeNum = gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode] / 7;
-    u8 var_28 = 0;
+    u8 rentalRank = 0;
 
     gFacilityTrainerMons = gBattleFrontierMons;
     if (gSaveBlock2Ptr->frontier.lvlMode != FRONTIER_LVL_50)
@@ -1673,29 +1672,29 @@ static void CreateFrontierFactorySelectableMons(u8 firstMonId)
     else
         level = 50;
 
-    var_28 = GetNumPastRentalsRank(battleMode, lvlMode);
+    rentalRank = GetNumPastRentalsRank(battleMode, lvlMode);
     otId = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
 
     for (i = 0; i < SELECTABLE_MONS_COUNT; i++)
     {
-        u16 monSetId = gSaveBlock2Ptr->frontier.rentalMons[i].monId;
-        sFactorySelectScreen->mons[i + firstMonId].monSetId = monSetId;
-        if (i < var_28)
+        u16 monId = gSaveBlock2Ptr->frontier.rentalMons[i].monId;
+        sFactorySelectScreen->mons[i + firstMonId].monId = monId;
+        if (i < rentalRank)
             ivs = GetFactoryMonFixedIV(challengeNum + 1, 0);
         else
             ivs = GetFactoryMonFixedIV(challengeNum, 0);
         CreateMonWithEVSpreadNatureOTID(&sFactorySelectScreen->mons[i + firstMonId].monData,
-                                             gFacilityTrainerMons[monSetId].species,
+                                             gFacilityTrainerMons[monId].species,
                                              level,
-                                             gFacilityTrainerMons[monSetId].nature,
+                                             gFacilityTrainerMons[monId].nature,
                                              ivs,
-                                             gFacilityTrainerMons[monSetId].evSpread,
+                                             gFacilityTrainerMons[monId].evSpread,
                                              otId);
         happiness = 0;
         for (j = 0; j < MAX_MON_MOVES; j++)
-            SetMonMoveAvoidReturn(&sFactorySelectScreen->mons[i + firstMonId].monData, gFacilityTrainerMons[monSetId].moves[j], j);
+            SetMonMoveAvoidReturn(&sFactorySelectScreen->mons[i + firstMonId].monData, gFacilityTrainerMons[monId].moves[j], j);
         SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_FRIENDSHIP, &happiness);
-        SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monSetId].itemTableId]);
+        SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monId].itemTableId]);
     }
 }
 
@@ -1712,20 +1711,20 @@ static void CreateTentFactorySelectableMons(u8 firstMonId)
 
     for (i = 0; i < SELECTABLE_MONS_COUNT; i++)
     {
-        u16 monSetId = gSaveBlock2Ptr->frontier.rentalMons[i].monId;
-        sFactorySelectScreen->mons[i + firstMonId].monSetId = monSetId;
+        u16 monId = gSaveBlock2Ptr->frontier.rentalMons[i].monId;
+        sFactorySelectScreen->mons[i + firstMonId].monId = monId;
         CreateMonWithEVSpreadNatureOTID(&sFactorySelectScreen->mons[i + firstMonId].monData,
-                                             gFacilityTrainerMons[monSetId].species,
+                                             gFacilityTrainerMons[monId].species,
                                              level,
-                                             gFacilityTrainerMons[monSetId].nature,
+                                             gFacilityTrainerMons[monId].nature,
                                              ivs,
-                                             gFacilityTrainerMons[monSetId].evSpread,
+                                             gFacilityTrainerMons[monId].evSpread,
                                              otId);
         happiness = 0;
         for (j = 0; j < MAX_MON_MOVES; j++)
-            SetMonMoveAvoidReturn(&sFactorySelectScreen->mons[i + firstMonId].monData, gFacilityTrainerMons[monSetId].moves[j], j);
+            SetMonMoveAvoidReturn(&sFactorySelectScreen->mons[i + firstMonId].monData, gFacilityTrainerMons[monId].moves[j], j);
         SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_FRIENDSHIP, &happiness);
-        SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monSetId].itemTableId]);
+        SetMonData(&sFactorySelectScreen->mons[i + firstMonId].monData, MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monId].itemTableId]);
     }
 }
 
@@ -1740,7 +1739,7 @@ static void Select_CopyMonsToPlayerParty(void)
             if (sFactorySelectScreen->mons[j].selectedId == i + 1)
             {
                 gPlayerParty[i] = sFactorySelectScreen->mons[j].monData;
-                gSaveBlock2Ptr->frontier.rentalMons[i].monId = sFactorySelectScreen->mons[j].monSetId;
+                gSaveBlock2Ptr->frontier.rentalMons[i].monId = sFactorySelectScreen->mons[j].monId;
                 gSaveBlock2Ptr->frontier.rentalMons[i].personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY, NULL);
                 gSaveBlock2Ptr->frontier.rentalMons[i].abilityNum = GetBoxMonData(&gPlayerParty[i].box, MON_DATA_ABILITY_NUM, NULL);
                 gSaveBlock2Ptr->frontier.rentalMons[i].ivs = GetBoxMonData(&gPlayerParty[i].box, MON_DATA_ATK_IV, NULL);
@@ -1794,7 +1793,7 @@ static void sub_819B958(u8 windowId)
 static void Select_PrintRentalPkmnString(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
-    AddTextPrinterParameterized(0, 1, gText_RentalPkmn2, 2, 1, 0, NULL);
+    AddTextPrinterParameterized(0, 2, gText_RentalPkmn2, 2, 1, 0, NULL);
     CopyWindowToVram(0, 3);
 }
 
@@ -1808,7 +1807,7 @@ static void Select_PrintMonSpecies(void)
     species = GetMonData(&sFactorySelectScreen->mons[monId].monData, MON_DATA_SPECIES, NULL);
     StringCopy(gStringVar4, gSpeciesNames[species]);
     x = GetStringRightAlignXOffset(1, gStringVar4, 86);
-    AddTextPrinterParameterized3(1, 1, x, 1, sSpeciesNameTextColors, 0, gStringVar4);
+    AddTextPrinterParameterized3(1, 2, x, 1, sSpeciesNameTextColors, 0, gStringVar4);
     CopyWindowToVram(1, 2);
 }
 
@@ -1826,14 +1825,14 @@ static void Select_PrintSelectMonString(void)
     else
         str = gText_TheseThreePkmnOkay;
 
-    AddTextPrinterParameterized(2, 1, str, 2, 5, 0, NULL);
+    AddTextPrinterParameterized(2, 2, str, 2, 5, 0, NULL);
     CopyWindowToVram(2, 2);
 }
 
 static void Select_PrintCantSelectSameMon(void)
 {
     FillWindowPixelBuffer(2, PIXEL_FILL(0));
-    AddTextPrinterParameterized(2, 1, gText_CantSelectSamePkmn, 2, 5, 0, NULL);
+    AddTextPrinterParameterized(2, 2, gText_CantSelectSamePkmn, 2, 5, 0, NULL);
     CopyWindowToVram(2, 2);
 }
 
@@ -1843,13 +1842,13 @@ static void Select_PrintMenuOptions(void)
 
     PutWindowTilemap(3);
     FillWindowPixelBuffer(3, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(3, 1, 7, 1, sMenuOptionTextColors, 0, gText_Summary);
+    AddTextPrinterParameterized3(3, 2, 7, 1, sMenuOptionTextColors, 0, gText_Summary);
     if (selectedId != 0)
-        AddTextPrinterParameterized3(3, 1, 7, 17, sMenuOptionTextColors, 0, gText_Deselect);
+        AddTextPrinterParameterized3(3, 2, 7, 17, sMenuOptionTextColors, 0, gText_Deselect);
     else
-        AddTextPrinterParameterized3(3, 1, 7, 17, sMenuOptionTextColors, 0, gText_Rent);
+        AddTextPrinterParameterized3(3, 2, 7, 17, sMenuOptionTextColors, 0, gText_Rent);
 
-    AddTextPrinterParameterized3(3, 1, 7, 33, sMenuOptionTextColors, 0, gText_Others2);
+    AddTextPrinterParameterized3(3, 2, 7, 33, sMenuOptionTextColors, 0, gText_Others2);
     CopyWindowToVram(3, 3);
 }
 
@@ -1857,8 +1856,8 @@ static void Select_PrintYesNoOptions(void)
 {
     PutWindowTilemap(4);
     FillWindowPixelBuffer(4, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(4, 1, 7, 1, sMenuOptionTextColors, 0, gText_Yes2);
-    AddTextPrinterParameterized3(4, 1, 7, 17, sMenuOptionTextColors, 0, gText_No2);
+    AddTextPrinterParameterized3(4, 2, 7, 1, sMenuOptionTextColors, 0, gText_Yes2);
+    AddTextPrinterParameterized3(4, 2, 7, 17, sMenuOptionTextColors, 0, gText_No2);
     CopyWindowToVram(4, 3);
 }
 
@@ -1871,8 +1870,8 @@ static u8 Select_RunMenuOptionFunc(void)
 static u8 Select_OptionRentDeselect(void)
 {
     u8 selectedId = sFactorySelectScreen->mons[sFactorySelectScreen->cursorPos].selectedId;
-    u16 monSetId  = sFactorySelectScreen->mons[sFactorySelectScreen->cursorPos].monSetId;
-    if (selectedId == 0 && !Select_AreSpeciesValid(monSetId))
+    u16 monId  = sFactorySelectScreen->mons[sFactorySelectScreen->cursorPos].monId;
+    if (selectedId == 0 && !Select_AreSpeciesValid(monId))
     {
         Select_PrintCantSelectSameMon();
         sub_819B958(3);
@@ -1928,7 +1927,7 @@ static void Select_PrintMonCategory(void)
         species = GetMonData(&sFactorySelectScreen->mons[monId].monData, MON_DATA_SPECIES, NULL);
         CopyMonCategoryText(SpeciesToNationalPokedexNum(species), text);
         x = GetStringRightAlignXOffset(1, text, 0x76);
-        AddTextPrinterParameterized(5, 1, text, x, 1, 0, NULL);
+        AddTextPrinterParameterized(5, 2, text, x, 1, 0, NULL);
         CopyWindowToVram(5, 2);
     }
 }
@@ -2160,10 +2159,10 @@ static void Select_SetWinRegs(s16 mWin0H, s16 nWin0H, s16 mWin0V, s16 nWin0V)
     SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0 | WINOUT_WIN01_BG1 | WINOUT_WIN01_BG2 | WINOUT_WIN01_CLR | WINOUT_WIN01_OBJ);
 }
 
-static bool32 Select_AreSpeciesValid(u16 monSetId)
+static bool32 Select_AreSpeciesValid(u16 monId)
 {
     u8 i, j;
-    u32 species = gFacilityTrainerMons[monSetId].species;
+    u32 species = gFacilityTrainerMons[monId].species;
     u8 selectState = sFactorySelectScreen->selectingMonsState;
 
     for (i = 1; i < selectState; i++)
@@ -2172,7 +2171,7 @@ static bool32 Select_AreSpeciesValid(u16 monSetId)
         {
             if (sFactorySelectScreen->mons[j].selectedId == i)
             {
-                if (gFacilityTrainerMons[sFactorySelectScreen->mons[j].monSetId].species == species)
+                if (gFacilityTrainerMons[sFactorySelectScreen->mons[j].monId].species == species)
                     return FALSE;
 
                 break;
@@ -2362,7 +2361,7 @@ static void Task_HandleSwapScreenYesNo(u8 taskId)
             gTasks[taskId].data[0] = 5;
             break;
         case 5:
-            if (gMain.newKeys & A_BUTTON)
+            if (JOY_NEW(A_BUTTON))
             {
                 PlaySE(SE_SELECT);
                 if (sFactorySwapScreen->yesNoCursorPos == 0)
@@ -2381,7 +2380,7 @@ static void Task_HandleSwapScreenYesNo(u8 taskId)
                     gTasks[taskId].func = (void*)((hiPtr << 16) | loPtr);
                 }
             }
-            else if (gMain.newKeys & B_BUTTON)
+            else if (JOY_NEW(B_BUTTON))
             {
                 PlaySE(SE_SELECT);
                 gTasks[taskId].data[1] = 0;
@@ -2390,12 +2389,12 @@ static void Task_HandleSwapScreenYesNo(u8 taskId)
                 loPtr = gTasks[taskId].data[7];
                 gTasks[taskId].func = (void*)((hiPtr << 16) | loPtr);
             }
-            else if (gMain.newAndRepeatedKeys & DPAD_UP)
+            else if (JOY_REPEAT(DPAD_UP))
             {
                 PlaySE(SE_SELECT);
                 Swap_UpdateYesNoCursorPosition(-1);
             }
-            else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+            else if (JOY_REPEAT(DPAD_DOWN))
             {
                 PlaySE(SE_SELECT);
                 Swap_UpdateYesNoCursorPosition(1);
@@ -2486,12 +2485,12 @@ static void Task_HandleSwapScreenMenu(u8 taskId)
     case 3:
         if (sFactorySwapScreen->unk30 != TRUE)
         {
-            if (gMain.newKeys & A_BUTTON)
+            if (JOY_NEW(A_BUTTON))
             {
                 PlaySE(SE_SELECT);
                 Swap_RunMenuOptionFunc(taskId);
             }
-            else if (gMain.newKeys & B_BUTTON)
+            else if (JOY_NEW(B_BUTTON))
             {
                 PlaySE(SE_SELECT);
                 sub_819F3F8(sFactorySwapScreen->unk2C, &sFactorySwapScreen->unk30, TRUE);
@@ -2502,11 +2501,11 @@ static void Task_HandleSwapScreenMenu(u8 taskId)
                 gTasks[taskId].data[5] = 1;
                 gTasks[taskId].func = sub_819D770;
             }
-            else if (gMain.newAndRepeatedKeys & DPAD_UP)
+            else if (JOY_REPEAT(DPAD_UP))
             {
                 Swap_UpdateMenuCursorPosition(-1);
             }
-            else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+            else if (JOY_REPEAT(DPAD_DOWN))
             {
                 Swap_UpdateMenuCursorPosition(1);
             }
@@ -2527,7 +2526,7 @@ static void Task_HandleSwapScreenChooseMons(u8 taskId)
         }
         break;
     case 1:
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
             sFactorySwapScreen->unk22 = FALSE;
@@ -2535,7 +2534,7 @@ static void Task_HandleSwapScreenChooseMons(u8 taskId)
             sub_819EAC0();
             Swap_RunActionFunc(taskId);
         }
-        else if (gMain.newKeys & B_BUTTON)
+        else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
             sFactorySwapScreen->unk22 = FALSE;
@@ -2547,25 +2546,25 @@ static void Task_HandleSwapScreenChooseMons(u8 taskId)
             gTasks[taskId].data[5] = 0;
             gTasks[taskId].func = sub_819D588;
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+        else if (JOY_REPEAT(DPAD_LEFT))
         {
             Swap_UpdateBallCursorPosition(-1);
             Swap_PrintMonCategory();
             Swap_PrintMonSpecies();
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+        else if (JOY_REPEAT(DPAD_RIGHT))
         {
             Swap_UpdateBallCursorPosition(1);
             Swap_PrintMonCategory();
             Swap_PrintMonSpecies();
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+        else if (JOY_REPEAT(DPAD_DOWN))
         {
             Swap_UpdateActionCursorPosition(1);
             Swap_PrintMonCategory();
             Swap_PrintMonSpecies();
         }
-        else if (gMain.newAndRepeatedKeys & DPAD_UP)
+        else if (JOY_REPEAT(DPAD_UP))
         {
             Swap_UpdateActionCursorPosition(-1);
             Swap_PrintMonCategory();
@@ -3576,7 +3575,7 @@ static void sub_819EAF8(void)
 static void Swap_PrintPkmnSwap(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized(0, 1, gText_PkmnSwap, 2, 1, 0, NULL);
+    AddTextPrinterParameterized(0, 2, gText_PkmnSwap, 2, 1, 0, NULL);
     CopyWindowToVram(0, 3);
 }
 
@@ -3599,7 +3598,7 @@ static void Swap_PrintMonSpecies(void)
             species = GetMonData(&gEnemyParty[monId], MON_DATA_SPECIES, NULL);
         StringCopy(gStringVar4, gSpeciesNames[species]);
         x = GetStringRightAlignXOffset(1, gStringVar4, 86);
-        AddTextPrinterParameterized3(1, 1, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
+        AddTextPrinterParameterized3(1, 2, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
         CopyWindowToVram(1, 3);
     }
 }
@@ -3607,7 +3606,7 @@ static void Swap_PrintMonSpecies(void)
 static void Swap_PrintOnInfoWindow(const u8 *str)
 {
     FillWindowPixelBuffer(2, PIXEL_FILL(0));
-    AddTextPrinterParameterized(2, 1, str, 2, 5, 0, NULL);
+    AddTextPrinterParameterized(2, 2, str, 2, 5, 0, NULL);
     CopyWindowToVram(2, 2);
 }
 
@@ -3615,9 +3614,9 @@ static void Swap_PrintMenuOptions(void)
 {
     PutWindowTilemap(3);
     FillWindowPixelBuffer(3, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(3, 1, 15,  1, sSwapMenuOptionsTextColors, 0, gText_Summary2);
-    AddTextPrinterParameterized3(3, 1, 15, 17, sSwapMenuOptionsTextColors, 0, gText_Swap);
-    AddTextPrinterParameterized3(3, 1, 15, 33, sSwapMenuOptionsTextColors, 0, gText_Rechoose);
+    AddTextPrinterParameterized3(3, 2, 15,  1, sSwapMenuOptionsTextColors, 0, gText_Summary2);
+    AddTextPrinterParameterized3(3, 2, 15, 17, sSwapMenuOptionsTextColors, 0, gText_Swap);
+    AddTextPrinterParameterized3(3, 2, 15, 33, sSwapMenuOptionsTextColors, 0, gText_Rechoose);
     CopyWindowToVram(3, 3);
 }
 
@@ -3625,8 +3624,8 @@ static void Swap_PrintYesNoOptions(void)
 {
     PutWindowTilemap(4);
     FillWindowPixelBuffer(4, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(4, 1, 7, 1,  sSwapMenuOptionsTextColors, 0, gText_Yes3);
-    AddTextPrinterParameterized3(4, 1, 7, 17, sSwapMenuOptionsTextColors, 0, gText_No3);
+    AddTextPrinterParameterized3(4, 2, 7, 1,  sSwapMenuOptionsTextColors, 0, gText_Yes3);
+    AddTextPrinterParameterized3(4, 2, 7, 17, sSwapMenuOptionsTextColors, 0, gText_No3);
     CopyWindowToVram(4, 3);
 }
 
@@ -3707,7 +3706,7 @@ static void Swap_PrintMonSpecies2(void)
             species = GetMonData(&gEnemyParty[monId], MON_DATA_SPECIES, NULL);
         StringCopy(gStringVar4, gSpeciesNames[species]);
         x = GetStringRightAlignXOffset(1, gStringVar4, 86);
-        AddTextPrinterParameterized3(7, 1, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
+        AddTextPrinterParameterized3(7, 2, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
         CopyWindowToVram(7, 3);
     }
 }
@@ -3733,7 +3732,7 @@ static void Swap_PrintMonSpecies3(void)
             species = GetMonData(&gEnemyParty[monId], MON_DATA_SPECIES, NULL);
         StringCopy(gStringVar4, gSpeciesNames[species]);
         x = GetStringRightAlignXOffset(1, gStringVar4, 86);
-        AddTextPrinterParameterized3(1, 1, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
+        AddTextPrinterParameterized3(1, 2, x, 1, sSwapSpeciesNameTextColors, 0, gStringVar4);
         CopyWindowToVram(1, 3);
     }
 }
@@ -3759,7 +3758,7 @@ static void Swap_PrintMonCategory(void)
             species = GetMonData(&gEnemyParty[monId], MON_DATA_SPECIES, NULL);
         CopyMonCategoryText(SpeciesToNationalPokedexNum(species), text);
         x = GetStringRightAlignXOffset(1, text, 0x76);
-        AddTextPrinterParameterized(8, 1, text, x, 1, 0, NULL);
+        AddTextPrinterParameterized(8, 2, text, x, 1, 0, NULL);
         CopyWindowToVram(8, 2);
     }
 }
@@ -3930,7 +3929,7 @@ static void Task_SwapCantHaveSameMons(u8 taskId)
         gTasks[taskId].data[0]++;
         break;
     case 1:
-        if (gMain.newKeys & A_BUTTON || gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
             sub_819F3F8(sFactorySwapScreen->unk2C, &sFactorySwapScreen->unk30, TRUE);

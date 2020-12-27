@@ -1,99 +1,102 @@
 {
-    "allow_cycling": false,
-    "allow_escaping": true,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-        {
-            "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room1Door",
-            "type": "sign",
-            "x": 3,
-            "y": 8
-        },
-        {
-            "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room2Door",
-            "type": "sign",
-            "x": 6,
-            "y": 8
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room4Door",
-            "type": "sign",
-            "x": 3,
-            "y": 4
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room6Door",
-            "type": "sign",
-            "x": 9,
-            "y": 4
-        }
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
-    "layout": "LAYOUT_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
-    "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_ILEXFOREST",
-    "name": "RuinsOfAlph_HoOhItemRoom",
-    "object_events": [
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_RUINS_OF_ALPH",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-            "dest_warp_id": 0,
-            "elevation": 3,
-            "x": 3,
-            "y": 8
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-            "dest_warp_id": 2,
-            "elevation": 3,
-            "x": 6,
-            "y": 8
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-            "dest_warp_id": 4,
-            "elevation": 3,
-            "x": 9,
-            "y": 8
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-            "dest_warp_id": 6,
-            "elevation": 3,
-            "x": 3,
-            "y": 3
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-            "dest_warp_id": 7,
-            "elevation": 3,
-            "x": 6,
-            "y": 3
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-            "dest_warp_id": 8,
-            "elevation": 3,
-            "x": 9,
-            "y": 3
-        }
-    ],
-    "weather": "WEATHER_SHADE"
+  "id": "MAP_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
+  "name": "RuinsOfAlph_HoOhItemRoom",
+  "layout": "LAYOUT_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
+  "music": "MUS_ILEX_FOREST",
+  "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 8,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 6,
+      "y": 8,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 9,
+      "y": 8,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+      "dest_warp_id": 4
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+      "dest_warp_id": 6
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+      "dest_warp_id": 7
+    },
+    {
+      "x": 9,
+      "y": 3,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+      "dest_warp_id": 8
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 8,
+      "elevation": 3,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room1Door"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 8,
+      "elevation": 3,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room2Door"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room4Door"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room6Door"
+    }
+  ]
 }

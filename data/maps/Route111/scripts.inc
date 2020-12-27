@@ -1,3 +1,10 @@
+.set LOCALID_VICTOR, 1
+.set LOCALID_VICTORIA, 2
+.set LOCALID_VIVI, 3
+.set LOCALID_VICKY, 4
+.set LOCALID_PLAYER_FALLING, 45
+.set LOCALID_ROCK_SMASH_MAN, 46
+
 Route111_MapScripts:: @ 81F0CA7
 	map_script MAP_SCRIPT_ON_LOAD, Route111_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, Route111_OnTransition
@@ -85,12 +92,12 @@ Route111_EventScript_EndCheckSetSandstorm:: @ 81F0E25
 	return
 
 Route111_EventScript_SetWinstratesNotDefeated:: @ 81F0E26
-	clearflag FLAG_HIDE_ROUTE_111_VICTOR_WINSTRATE
-	setflag FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
-	setflag FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE
-	setflag FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE
+	clearflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	setflag FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_HERB_WOMAN
+	setflag FLAG_HIDE_GOLDENROD_DEPT_STORE_RETURN_FRUSTRATION_LADY
 	cleartrainerflag TRAINER_VICTOR
-	cleartrainerflag TRAINER_VICTORIA
+	cleartrainerflag TRAINER_VICTORIA_OLD
 	cleartrainerflag TRAINER_VIVI
 	end
 
@@ -119,12 +126,12 @@ Route111_EventScript_MirageTowerDisappear:: @ 81F0E60
 	special StartMirageTowerShake
 	waitstate
 	delay 24
-	playse SE_RU_HYUU
-	addobject 45
+	playse SE_FALL
+	addobject LOCALID_PLAYER_FALLING
 	special StartPlayerDescendMirageTower
 	waitstate
 	showobjectat OBJ_EVENT_ID_PLAYER, MAP_NEW_BARK_TOWN
-	removeobject 45
+	removeobject LOCALID_PLAYER_FALLING
 	delay 16
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	delay 16
@@ -268,14 +275,14 @@ Route111_EventScript_SunTrigger:: @ 81F0FB0
 
 Route111_EventScript_SandstormTrigger:: @ 81F0FBD
 	setweather WEATHER_SANDSTORM
-	fadenewbgm MUS_ASHROAD
+	fadenewbgm MUS_ROUTE111
 	doweather
 	end
 
 Route111_EventScript_Victor:: @ 81F0FC5
 	lock
 	faceplayer
-	setflag FLAG_LANDMARK_WINSTRATE_FAMILY
+	setflag FLAG_LANDMARK_RADIO_TOWER
 	msgbox Route111_Text_BattleOurFamily, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq Route111_EventScript_BattleWinstrates
@@ -286,68 +293,68 @@ Route111_EventScript_Victor:: @ 81F0FC5
 Route111_EventScript_BattleWinstrates:: @ 81F0FE7
 	msgbox Route111_Text_VictorIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_VICTOR, Route111_Text_VictorDefeat
-	applymovement 1, Common_Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_VICTOR, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	call Route111_EventScript_OpenWinstrateDoor
 	msgbox Route111_Text_VictorPostBattle, MSGBOX_DEFAULT
 	closemessage
-	applymovement 1, Route111_Movement_WinstrateEnterHouse
+	applymovement LOCALID_VICTOR, Route111_Movement_WinstrateEnterHouse
 	waitmovement 0
-	removeobject 1
+	removeobject LOCALID_VICTOR
 	call Route111_EventScript_CloseWinstrateDoor
 	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_WaitForNextWinstrate
 	waitmovement 0
 	call Route111_EventScript_OpenWinstrateDoor
-	addobject 2
-	applymovement 2, Route111_Movement_WinstrateExitHouse
+	addobject LOCALID_VICTORIA
+	applymovement LOCALID_VICTORIA, Route111_Movement_WinstrateExitHouse
 	waitmovement 0
 	call Route111_EventScript_CloseWinstrateDoor
 	msgbox Route111_Text_VictoriaIntro, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_VICTORIA, Route111_Text_VictoriaDefeat
-	applymovement 2, Common_Movement_WalkInPlaceFastestUp
+	trainerbattle_no_intro TRAINER_VICTORIA_OLD, Route111_Text_VictoriaDefeat
+	applymovement LOCALID_VICTORIA, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	call Route111_EventScript_OpenWinstrateDoor
 	msgbox Route111_Text_VictoriaPostBattle, MSGBOX_DEFAULT
 	closemessage
-	applymovement 2, Route111_Movement_WinstrateEnterHouse
+	applymovement LOCALID_VICTORIA, Route111_Movement_WinstrateEnterHouse
 	waitmovement 0
-	removeobject 2
+	removeobject LOCALID_VICTORIA
 	call Route111_EventScript_CloseWinstrateDoor
 	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_WaitForNextWinstrate
 	waitmovement 0
 	call Route111_EventScript_OpenWinstrateDoor
-	addobject 3
-	applymovement 3, Route111_Movement_WinstrateExitHouse
+	addobject LOCALID_VIVI
+	applymovement LOCALID_VIVI, Route111_Movement_WinstrateExitHouse
 	waitmovement 0
 	call Route111_EventScript_CloseWinstrateDoor
 	msgbox Route111_Text_ViviIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_VIVI, Route111_Text_ViviDefeat
-	applymovement 3, Common_Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_VIVI, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	call Route111_EventScript_OpenWinstrateDoor
 	msgbox Route111_Text_ViviPostBattle, MSGBOX_DEFAULT
 	closemessage
-	applymovement 3, Route111_Movement_WinstrateEnterHouse
+	applymovement LOCALID_VIVI, Route111_Movement_WinstrateEnterHouse
 	waitmovement 0
-	removeobject 3
+	removeobject LOCALID_VIVI
 	call Route111_EventScript_CloseWinstrateDoor
 	applymovement OBJ_EVENT_ID_PLAYER, Route111_Movement_WaitForNextWinstrate
 	waitmovement 0
 	call Route111_EventScript_OpenWinstrateDoor
-	addobject 4
-	applymovement 4, Route111_Movement_WinstrateExitHouse
+	addobject LOCALID_VICKY
+	applymovement LOCALID_VICKY, Route111_Movement_WinstrateExitHouse
 	waitmovement 0
 	call Route111_EventScript_CloseWinstrateDoor
 	msgbox Route111_Text_VickyIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_VICKY, Route111_Text_VickyDefeat
 	msgbox Route111_Text_VickyPostBattle, MSGBOX_DEFAULT
 	closemessage
-	applymovement 4, Common_Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_VICKY, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	call Route111_EventScript_OpenWinstrateDoor
-	applymovement 4, Route111_Movement_WinstrateEnterHouse
+	applymovement LOCALID_VICKY, Route111_Movement_WinstrateEnterHouse
 	waitmovement 0
-	removeobject 4
+	removeobject LOCALID_VICKY
 	call Route111_EventScript_CloseWinstrateDoor
 	release
 	end
@@ -438,11 +445,11 @@ Route111_EventScript_HikerMirageTowerVisible:: @ 81F11DA
 
 Route111_EventScript_RockSmashTipFatMan:: @ 81F11E4
 	lockall
-	applymovement 46, Common_Movement_FacePlayer
+	applymovement LOCALID_ROCK_SMASH_MAN, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox Route111_Text_MauvilleUncleToldMeToTakeRockSmash, MSGBOX_DEFAULT
 	closemessage
-	applymovement 46, Common_Movement_FaceOriginalDirection
+	applymovement LOCALID_ROCK_SMASH_MAN, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	releaseall
 	end
@@ -468,7 +475,7 @@ Route111_EventScript_Becky:: @ 81F1249
 	end
 
 Route111_EventScript_Dusty:: @ 81F1260
-	trainerbattle_single TRAINER_DUSTY_1, Route111_Text_DustyIntro, Route111_Text_DustyDefeat, Route111_EventScript_RegisterDusty
+	trainerbattle_single TRAINER_GINA, Route111_Text_DustyIntro, Route111_Text_DustyDefeat, Route111_EventScript_RegisterDusty
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route111_EventScript_RematchDusty
@@ -480,12 +487,12 @@ Route111_EventScript_RegisterDusty:: @ 81F128C
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route111_Text_DustyRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_DUSTY_1
+	register_matchcall TRAINER_GINA
 	release
 	end
 
 Route111_EventScript_RematchDusty:: @ 81F12AB
-	trainerbattle_rematch TRAINER_DUSTY_1, Route111_Text_DustyRematchIntro, Route111_Text_DustyRematchDefeat
+	trainerbattle_rematch TRAINER_GINA, Route111_Text_DustyRematchIntro, Route111_Text_DustyRematchDefeat
 	msgbox Route111_Text_DustyPostRematch, MSGBOX_AUTOCLOSE
 	end
 
@@ -495,7 +502,7 @@ Route111_EventScript_Travis:: @ 81F12C2
 	end
 
 Route111_EventScript_Irene:: @ 81F12D9
-	trainerbattle_single TRAINER_IRENE, Route111_Text_IreneIntro, Route111_Text_IreneDefeat
+	trainerbattle_single TRAINER_IRENE_OLD, Route111_Text_IreneIntro, Route111_Text_IreneDefeat
 	msgbox Route111_Text_IrenePostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -527,7 +534,7 @@ Route111_EventScript_RematchWilton:: @ 81F1352
 	end
 
 Route111_EventScript_Brooke:: @ 81F1369
-	trainerbattle_single TRAINER_BROOKE_1, Route111_Text_BrookeIntro, Route111_Text_BrookeDefeat, Route111_EventScript_RegisterBrooke
+	trainerbattle_single TRAINER_BROOKE_OLD_1, Route111_Text_BrookeIntro, Route111_Text_BrookeDefeat, Route111_EventScript_RegisterBrooke
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route111_EventScript_RematchBrooke
@@ -539,12 +546,12 @@ Route111_EventScript_RegisterBrooke:: @ 81F1395
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route111_Text_BrookeRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_BROOKE_1
+	register_matchcall TRAINER_BROOKE_OLD_1
 	release
 	end
 
 Route111_EventScript_RematchBrooke:: @ 81F13B4
-	trainerbattle_rematch TRAINER_BROOKE_1, Route111_Text_BrookeRematchIntro, Route111_Text_BrookeRematchDefeat
+	trainerbattle_rematch TRAINER_BROOKE_OLD_1, Route111_Text_BrookeRematchIntro, Route111_Text_BrookeRematchDefeat
 	msgbox Route111_Text_BrookePostRematch, MSGBOX_AUTOCLOSE
 	end
 
@@ -574,7 +581,7 @@ Route111_EventScript_Celia:: @ 81F1427
 	end
 
 Route111_EventScript_Bryan:: @ 81F143E
-	trainerbattle_single TRAINER_BRYAN, Route111_Text_BryanIntro, Route111_Text_BryanDefeat
+	trainerbattle_single TRAINER_BRYAN_OLD, Route111_Text_BryanIntro, Route111_Text_BryanDefeat
 	msgbox Route111_Text_BryanPostBattle, MSGBOX_AUTOCLOSE
 	end
 

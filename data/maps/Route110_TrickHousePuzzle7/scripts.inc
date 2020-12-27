@@ -13,11 +13,11 @@ Route110_TrickHousePuzzle7_OnResume: @ 826E0A6
 	end
 
 Route110_TrickHousePuzzle7_EventScript_UpdateSwitchMetatiles:: @ 826E0AC
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1, Route110_TrickHousePuzzle7_EventScript_SetSwitch1MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2, Route110_TrickHousePuzzle7_EventScript_SetSwitch2MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3, Route110_TrickHousePuzzle7_EventScript_SetSwitch3MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_SetSwitch5MetatilesOn
+	call_if_set FLAG_GOT_HP_UP_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch1MetatilesOn
+	call_if_set FLAG_GAVE_KENYA_TO_RANDYS_FRIEND, Route110_TrickHousePuzzle7_EventScript_SetSwitch2MetatilesOn
+	call_if_set FLAG_GOT_KENYA_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch3MetatilesOn
+	call_if_set FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOn
+	call_if_set FLAG_LEFT_MONS_WITH_CONTEST_OFFICER, Route110_TrickHousePuzzle7_EventScript_SetSwitch5MetatilesOn
 	return
 
 @ Leftover from R/S, none of the below metatile scripts are ever called
@@ -74,11 +74,11 @@ Route110_TrickHousePuzzle7_EventScript_SetSwitch5MetatilesOff:: @ 826E185
 Route110_TrickHousePuzzle7_OnTransition: @ 826E198
 	compare VAR_TRICK_HOUSE_PUZZLE_7_STATE_2, 1
 	goto_if_eq Route110_TrickHousePuzzle7_EventScript_TeleportedTransition
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5
+	clearflag FLAG_GOT_HP_UP_FROM_RANDY
+	clearflag FLAG_GAVE_KENYA_TO_RANDYS_FRIEND
+	clearflag FLAG_GOT_KENYA_FROM_RANDY
+	clearflag FLAG_GOT_QUICK_CLAW
+	clearflag FLAG_LEFT_MONS_WITH_CONTEST_OFFICER
 	end
 
 Route110_TrickHousePuzzle7_EventScript_TeleportedTransition:: @ 826E1B3
@@ -122,114 +122,114 @@ Route110_TrickHousePuzzle7_EventScript_TeleportPad:: @ 826E1ED
 Route110_TrickHousePuzzle7_EventScript_Switch1:: @ 826E1FE
 	lockall
 	delay 32
-	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1, Route110_TrickHousePuzzle7_EventScript_SetSwitch1MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1, Route110_TrickHousePuzzle7_EventScript_SetSwitch1MetatilesOff
+	call_if_unset FLAG_GOT_HP_UP_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch1MetatilesOn
+	call_if_set FLAG_GOT_HP_UP_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch1MetatilesOff
 	special DrawWholeMapView
-	playse SE_TK_KASYA
-	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1, Route110_TrickHousePuzzle7_EventScript_SetSwitch1On
-	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1, Route110_TrickHousePuzzle7_EventScript_SetSwitch1Off
+	playse SE_CLICK
+	goto_if_unset FLAG_GOT_HP_UP_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch1On
+	goto_if_set FLAG_GOT_HP_UP_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch1Off
 	end
 
 Route110_TrickHousePuzzle7_EventScript_Switch2:: @ 826E22D
 	lockall
 	delay 32
-	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2, Route110_TrickHousePuzzle7_EventScript_SetSwitch2MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2, Route110_TrickHousePuzzle7_EventScript_SetSwitch2MetatilesOff
+	call_if_unset FLAG_GAVE_KENYA_TO_RANDYS_FRIEND, Route110_TrickHousePuzzle7_EventScript_SetSwitch2MetatilesOn
+	call_if_set FLAG_GAVE_KENYA_TO_RANDYS_FRIEND, Route110_TrickHousePuzzle7_EventScript_SetSwitch2MetatilesOff
 	special DrawWholeMapView
-	playse SE_TK_KASYA
-	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2, Route110_TrickHousePuzzle7_EventScript_SetSwitch2On
-	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2, Route110_TrickHousePuzzle7_EventScript_SetSwitch2Off
+	playse SE_CLICK
+	goto_if_unset FLAG_GAVE_KENYA_TO_RANDYS_FRIEND, Route110_TrickHousePuzzle7_EventScript_SetSwitch2On
+	goto_if_set FLAG_GAVE_KENYA_TO_RANDYS_FRIEND, Route110_TrickHousePuzzle7_EventScript_SetSwitch2Off
 	end
 
 Route110_TrickHousePuzzle7_EventScript_Switch3:: @ 826E25C
 	lockall
 	delay 32
-	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3, Route110_TrickHousePuzzle7_EventScript_SetSwitch3MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3, Route110_TrickHousePuzzle7_EventScript_SetSwitch3MetatilesOff
+	call_if_unset FLAG_GOT_KENYA_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch3MetatilesOn
+	call_if_set FLAG_GOT_KENYA_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch3MetatilesOff
 	special DrawWholeMapView
-	playse SE_TK_KASYA
-	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3, Route110_TrickHousePuzzle7_EventScript_SetSwitch3On
-	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3, Route110_TrickHousePuzzle7_EventScript_SetSwitch3Off
+	playse SE_CLICK
+	goto_if_unset FLAG_GOT_KENYA_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch3On
+	goto_if_set FLAG_GOT_KENYA_FROM_RANDY, Route110_TrickHousePuzzle7_EventScript_SetSwitch3Off
 	end
 
 Route110_TrickHousePuzzle7_EventScript_Switch4:: @ 826E28B
 	lockall
 	delay 32
-	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOff
+	call_if_unset FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOn
+	call_if_set FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4MetatilesOff
 	special DrawWholeMapView
-	playse SE_TK_KASYA
-	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4On
-	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_SetSwitch4Off
+	playse SE_CLICK
+	goto_if_unset FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4On
+	goto_if_set FLAG_GOT_QUICK_CLAW, Route110_TrickHousePuzzle7_EventScript_SetSwitch4Off
 	end
 
 Route110_TrickHousePuzzle7_EventScript_Switch5:: @ 826E2BA
 	lockall
 	delay 32
-	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_SetSwitch5MetatilesOn
-	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_SetSwitch5MetatilesOff
+	call_if_unset FLAG_LEFT_MONS_WITH_CONTEST_OFFICER, Route110_TrickHousePuzzle7_EventScript_SetSwitch5MetatilesOn
+	call_if_set FLAG_LEFT_MONS_WITH_CONTEST_OFFICER, Route110_TrickHousePuzzle7_EventScript_SetSwitch5MetatilesOff
 	special DrawWholeMapView
-	playse SE_TK_KASYA
-	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_SetSwitch5On
-	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_SetSwitch5Off
+	playse SE_CLICK
+	goto_if_unset FLAG_LEFT_MONS_WITH_CONTEST_OFFICER, Route110_TrickHousePuzzle7_EventScript_SetSwitch5On
+	goto_if_set FLAG_LEFT_MONS_WITH_CONTEST_OFFICER, Route110_TrickHousePuzzle7_EventScript_SetSwitch5Off
 	end
 
 @ All the below switch scripts are unused leftover from R/S
 Route110_TrickHousePuzzle7_EventScript_SetSwitch1On:: @ 826E2E9
-	setflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1
+	setflag FLAG_GOT_HP_UP_FROM_RANDY
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch1Off:: @ 826E2EE
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1
+	clearflag FLAG_GOT_HP_UP_FROM_RANDY
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch2On:: @ 826E2F3
-	setflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2
+	setflag FLAG_GAVE_KENYA_TO_RANDYS_FRIEND
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch2Off:: @ 826E2F8
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2
+	clearflag FLAG_GAVE_KENYA_TO_RANDYS_FRIEND
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch3On:: @ 826E2FD
-	setflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3
+	setflag FLAG_GOT_KENYA_FROM_RANDY
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch3Off:: @ 826E302
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3
+	clearflag FLAG_GOT_KENYA_FROM_RANDY
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch4On:: @ 826E307
-	setflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4
+	setflag FLAG_GOT_QUICK_CLAW
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch4Off:: @ 826E30C
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4
+	clearflag FLAG_GOT_QUICK_CLAW
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch5On:: @ 826E311
-	setflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5
+	setflag FLAG_LEFT_MONS_WITH_CONTEST_OFFICER
 	releaseall
 	end
 
 Route110_TrickHousePuzzle7_EventScript_SetSwitch5Off:: @ 826E316
-	clearflag FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5
+	clearflag FLAG_LEFT_MONS_WITH_CONTEST_OFFICER
 	releaseall
 	end
 
 @ From here is where the new, actually used puzzle scripts begin
 Route110_TrickHousePuzzle7_EventScript_YellowButton:: @ 826E31B
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle TRUE
 	moverotatingtileobjects 0
 	waitmovement 0
@@ -239,9 +239,9 @@ Route110_TrickHousePuzzle7_EventScript_YellowButton:: @ 826E31B
 	end
 
 Route110_TrickHousePuzzle7_EventScript_BlueButton:: @ 826E331
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle TRUE
 	moverotatingtileobjects 1
 	waitmovement 0
@@ -251,9 +251,9 @@ Route110_TrickHousePuzzle7_EventScript_BlueButton:: @ 826E331
 	end
 
 Route110_TrickHousePuzzle7_EventScript_GreenButton:: @ 826E347
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle TRUE
 	moverotatingtileobjects 2
 	waitmovement 0
@@ -263,9 +263,9 @@ Route110_TrickHousePuzzle7_EventScript_GreenButton:: @ 826E347
 	end
 
 Route110_TrickHousePuzzle7_EventScript_PurpleButton:: @ 826E35D
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle TRUE
 	moverotatingtileobjects 3
 	waitmovement 0
@@ -276,9 +276,9 @@ Route110_TrickHousePuzzle7_EventScript_PurpleButton:: @ 826E35D
 
 @ Unused
 Route110_TrickHousePuzzle7_EventScript_RedButton:: @ 826E373
-	playse SE_MU_PACHI
+	playse SE_SWITCH
 	waitse
-	playse SE_TU_SAA
+	playse SE_REPEL
 	initrotatingtilepuzzle TRUE
 	moverotatingtileobjects 4
 	waitmovement 0

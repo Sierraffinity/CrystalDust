@@ -1,0 +1,126 @@
+const OBJ_EVENT_ID_GAMEBOY_KID = 13
+
+mapscripts NationalPark_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_NATIONAL_PARK)
+    }
+}
+
+script NationalPark_EventScript_CardsGirl {
+    msgbox("Look!\n"
+           "Check out my cards!\p"
+           "They have special barcodes on them\n"
+           "that you can scan with the e-Reader.", MSGBOX_NPC)
+}
+
+script NationalPark_EventScript_MailWoman {
+    msgbox("This is MAIL I got from my daughter.\n"
+           "It cheers me up.", MSGBOX_NPC)
+}
+
+script NationalPark_EventScript_QuickClawTeacher {
+	lock
+	faceplayer
+    if (!flag(FLAG_GOT_QUICK_CLAW))
+	{
+		msgbox("Pay attention, please!\p"
+               "…Oops, I have to quit thinking like\n"
+               "a teacher all the time.\p"
+               "You must be a POKéMON TRAINER.\p"
+               "Since you're working so hard, I\n"
+               "want you to have this.")
+		giveitem(ITEM_QUICK_CLAW)
+		if (!var(VAR_RESULT))
+		{
+			goto(Common_EventScript_ShowBagIsFull)
+		}
+		else
+		{
+			setflag(FLAG_GOT_QUICK_CLAW)
+		}
+	}
+	msgbox("Let one of your POKéMON hold that\n"
+           "QUICK CLAW.\p"
+           "Sometimes it will strike first\n"
+           "during battle.")
+	release
+}
+
+script NationalPark_EventScript_Youngster1 {
+    msgbox("I'm playing with cards that have\n"
+           "a stripe down the side.\p"
+           "You can scan them and see POKéMON\n"
+           "stats on the screen!", MSGBOX_NPC)
+}
+
+script NationalPark_EventScript_Youngster2 {
+    msgbox("I get the other guy's POKéMON\n"
+           "cards if I win.", MSGBOX_NPC)
+}
+
+script NationalPark_EventScript_ScaredWoman {
+    msgbox("I take walks in the PARK, but I\n"
+           "never go into the grass.\l"
+           "TRAINERS always want to battle…", MSGBOX_NPC)
+}
+
+script NationalPark_EventScript_Persian {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_PERSIAN, 0)
+    msgbox("PERSIAN: Fufushaa!")
+    waitmoncry
+    release
+}
+
+script NationalPark_EventScript_Jack {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_JACK, NationalPark_Text_JackIntro, NationalPark_Text_JackDefeated)
+    msgbox(NationalPark_Text_JackPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script NationalPark_EventScript_Beverly {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_BEVERLY, NationalPark_Text_BeverlyIntro, NationalPark_Text_BeverlyDefeated)
+    msgbox(NationalPark_Text_BeverlyPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script NationalPark_EventScript_William {
+    trainerbattle_single(TRAINER_WILLIAM, NationalPark_Text_WilliamIntro, NationalPark_Text_WilliamDefeated)
+    msgbox(NationalPark_Text_WilliamPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script NationalPark_EventScript_Krise {
+    trainerbattle_single(TRAINER_KRISE, NationalPark_Text_KriseIntro, NationalPark_Text_KriseDefeated)
+    msgbox(NationalPark_Text_KrisePostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script NationalPark_EventScript_GameboyKid {
+    lock
+    faceplayer
+    msgbox("Hey, do you know how to get my\n"
+           "e-Reader to read this card?\p"
+           "I keep swiping and getting read\n"
+           "errors and-{PLAY_SE SE_INTRO_LOGO_DING}{PAUSE 30}oh! It scanned!")
+    turnobject(OBJ_EVENT_ID_GAMEBOY_KID, DIR_SOUTH)
+    release
+}
+
+script NationalPark_EventScript_RelaxationSquare {
+    msgbox("RELAXATION SQUARE\n"
+           "NATIONAL PARK", MSGBOX_SIGN)
+}
+
+script NationalPark_EventScript_BattleNotice {
+    msgbox("What is this notice?\p"
+           "Please battle only in the grass.\n"
+           "NATIONAL PARK WARDEN'S OFFICE", MSGBOX_SIGN)
+}
+
+script NationalPark_EventScript_TrainerTips {
+    msgbox("TRAINER TIPS\p"
+           "Scan cards using your e-Reader to\n"
+           "download exciting events with\l"
+           "MYSTERY EVENT.", MSGBOX_SIGN)
+}

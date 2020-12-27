@@ -1,0 +1,147 @@
+{
+  "id": "MAP_RADIO_TOWER_1F",
+  "name": "RadioTower_1F",
+  "layout": "LAYOUT_RADIO_TOWER_1F",
+  "music": "MUS_GOLDENROD",
+  "region_map_section": "MAPSEC_RADIO_TOWER",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 1,
+  "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "in_connection": false,
+      "x": 6,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RadioTower_1F_EventScript_Receptionist",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "in_connection": false,
+      "x": 19,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RadioTower_1F_EventScript_BenLoverGirl",
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_CIVILIANS"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "in_connection": false,
+      "x": 18,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RadioTower_1F_EventScript_MaryLoverBoy",
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_CIVILIANS"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
+      "in_connection": false,
+      "x": 17,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "0",
+      "flag": "FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+      "in_connection": false,
+      "x": 10,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RadioTower_1F_EventScript_LuckyNumberMan",
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_CIVILIANS"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "in_connection": false,
+      "x": 13,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RadioTower_1F_EventScript_RadioCardWoman",
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_CIVILIANS"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 11,
+      "elevation": 3,
+      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 16,
+      "y": 2,
+      "elevation": 3,
+      "dest_map": "MAP_RADIO_TOWER_2F",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RadioTower_1F_EventScript_LuckyChannelSign"
+    },
+    {
+      "type": "sign",
+      "x": 15,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RadioTower_1F_EventScript_DirectorySign"
+    }
+  ]
+}

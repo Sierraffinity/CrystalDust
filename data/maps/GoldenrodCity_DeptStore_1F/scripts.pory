@@ -1,0 +1,36 @@
+mapscripts GoldenrodCity_DeptStore_1F_MapScripts {}
+
+script GoldenrodCity_DeptStore_1F_EventScript_Receptionist {
+    msgbox("Welcome to GOLDENROD DEPT. STORE.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_1F_EventScript_RaringWoman {
+    msgbox("I'm raring to shop again today!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_1F_EventScript_ProudChild {
+    msgbox("Mom's good at bargain hunting.\n"
+           "She always buys stuff at lower\l"
+           "prices.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_1F_EventScript_Gentleman {
+    msgbox("The DEPT. STORE has a decent\n"
+           "selection.\p"
+           "But some items are only available\n"
+           "as GAME CORNER prizes.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_1F_EventScript_Directory {
+    msgbox("1F SERVICE COUNTER\p"
+           "2F TRAINER'S MARKET\p"
+           "3F BATTLE COLLECTION\p"
+           "4F MEDICINE BOX\p"
+           "5F TM CORNER\p"
+           "6F TRANQUIL SQUARE\p"
+           "ROOFTOP LOOKOUT", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_DeptStore_1F_EventScript_ServiceCounter {
+    msgbox("1F SERVICE COUNTER", MSGBOX_SIGN)
+}

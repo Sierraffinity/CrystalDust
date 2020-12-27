@@ -2354,12 +2354,12 @@ const u32 gMonShinyPalette_Duskull[] = INCBIN_U32("graphics/pokemon/duskull/shin
 const u8 gMonIcon_Duskull[] = INCBIN_U8("graphics/pokemon/duskull/icon.4bpp");
 const u8 gMonFootprint_Duskull[] = INCBIN_U8("graphics/pokemon/duskull/footprint.1bpp");
 
-const u32 gMonStillFrontPic_Dusclops[] = INCBIN_U32("graphics/pokemon/dusclops/front.4bpp.lz");
-const u32 gMonPalette_Dusclops[] = INCBIN_U32("graphics/pokemon/dusclops/normal.gbapal.lz");
-const u32 gMonBackPic_Dusclops[] = INCBIN_U32("graphics/pokemon/dusclops/back.4bpp.lz");
-const u32 gMonShinyPalette_Dusclops[] = INCBIN_U32("graphics/pokemon/dusclops/shiny.gbapal.lz");
-const u8 gMonIcon_Dusclops[] = INCBIN_U8("graphics/pokemon/dusclops/icon.4bpp");
-const u8 gMonFootprint_Dusclops[] = INCBIN_U8("graphics/pokemon/dusclops/footprint.1bpp");
+const u32 gMonStillFrontPic_Dusclops[] = INCBIN_U32("graphics/pokemon/sentret/front.4bpp.lz");
+const u32 gMonPalette_Dusclops[] = INCBIN_U32("graphics/pokemon/sentret/normal.gbapal.lz");
+const u32 gMonBackPic_Dusclops[] = INCBIN_U32("graphics/pokemon/sentret/back.4bpp.lz");
+const u32 gMonShinyPalette_Dusclops[] = INCBIN_U32("graphics/pokemon/sentret/shiny.gbapal.lz");
+const u8 gMonIcon_Dusclops[] = INCBIN_U8("graphics/pokemon/sentret/icon.4bpp");
+const u8 gMonFootprint_Dusclops[] = INCBIN_U8("graphics/pokemon/sentret/footprint.1bpp");
 
 const u32 gMonStillFrontPic_Roselia[] = INCBIN_U32("graphics/pokemon/roselia/front.4bpp.lz");
 const u32 gMonPalette_Roselia[] = INCBIN_U32("graphics/pokemon/roselia/normal.gbapal.lz");
@@ -2698,7 +2698,8 @@ const u8 gMonIcon_Deoxys[] = INCBIN_U8("graphics/pokemon/deoxys/icon.4bpp");
 const u8 gMonIcon_DeoxysSpeed[] = INCBIN_U8("graphics/pokemon/deoxys/icon_speed.4bpp");
 const u8 gMonIcon_DeoxysSpeedWide[] = INCBIN_U8("graphics/unused/deoxys_speed_icon_wide.4bpp");
 
-asm(".space 0x6800");
+// Probably the leftover space from the other Deoxys forms
+static const u8 sEmpty[0x6800] = {0};
 
 const u16 gUnknown_D437F8[] = INCBIN_U16("graphics/unknown/unknown_D437F8.bin");
 

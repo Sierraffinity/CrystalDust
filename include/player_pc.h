@@ -72,17 +72,16 @@ struct PlayerPCItemPageStruct
     u16 itemsAbove;
     u8 pageItems;
     u8 count;
-    u8 filler[3];
     u8 scrollIndicatorId;
 };
 
 // Exported type declarations
 
 // Exported RAM declarations
-extern struct PlayerPCItemPageStruct playerPCItemPageInfo;
+extern struct PlayerPCItemPageStruct gPlayerPcMenuManager;
 
 // Exported ROM declarations
-extern const struct MenuAction gMailboxMailOptions[];
+extern const struct MenuAction gMenuActions_MailSubmenu[];
 
 void ReshowPlayerPC(u8 taskId);
 void sub_816B31C(void);

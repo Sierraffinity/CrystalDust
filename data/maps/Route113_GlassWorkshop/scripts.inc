@@ -12,7 +12,7 @@ Route113_GlassWorkshop_MapScripts:: @ 826ED03
 	.set LOWEST_ASH_PRICE,   BLUE_FLUTE_PRICE
 
 Route113_GlassWorkshop_OnTransition: @ 826ED09
-	setflag FLAG_LANDMARK_GLASS_WORKSHOP
+	setflag FLAG_LANDMARK_NATIONAL_PARK
 	compare VAR_GLASS_WORKSHOP_STATE, 1
 	call_if_eq Route113_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack
 	end
@@ -61,7 +61,7 @@ Route113_GlassWorkshop_EventScript_SootSackNotInBag:: @ 826ED9D
 
 Route113_GlassWorkshop_EventScript_ChooseGlassItem:: @ 826EDA7
 	setvar VAR_0x8009, 0
-	setvar VAR_0x8004, SCROLL_MULTI_GLASS_WORKSHOP_VENDOR
+	setvar VAR_0x8004, SCROLL_MULTI_BLUE_CARD_PRIZES
 	special ShowScrollableMultichoice
 	waitstate
 	switch VAR_RESULT

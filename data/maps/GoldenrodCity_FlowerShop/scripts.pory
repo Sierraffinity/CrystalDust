@@ -1,0 +1,82 @@
+const OLDER_SISTER = 1
+
+mapscripts GoldenrodCity_FlowerShop_MapScripts { }
+
+script GoldenrodCity_FlowerShop_EventScript_OlderSister {
+    lock
+    if (flag(FLAG_DEFEATED_SUDOWOODO))
+    {
+        call(GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala)
+    }
+    elif (flag(FLAG_GOT_SQUIRTBOTTLE))
+    {
+        faceplayer
+        msgbox("Don't do anything too dangerous!")
+    }
+    elif (!flag(FLAG_MET_FLORIA_ROUTE_36))
+    {
+        faceplayer
+        msgbox("Have you seen that wiggly tree\n"
+               "that's growing on ROUTE 36?\p"
+               "My little sister got all excited\n"
+               "and went to see it…\p"
+               "I'm worried…\n"
+               "Isn't it dangerous?")
+    }
+    elif (!flag(FLAG_TALKED_TO_FLORIA_FLOWER_SHOP))
+    {
+        call(GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala)
+    }
+    elif (!flag(FLAG_BADGE03_GET))
+    {
+        faceplayer
+        msgbox("Do you want to borrow the water\n"
+               "bottle too?\p"
+               "I don't want you doing anything\n"
+               "dangerous with it.")
+    }
+    else
+    {
+        faceplayer
+        msgbox("Oh, you're better than WHITNEY…\p"
+               "You'll be okay, then.\n"
+               "Here's the SQUIRTBOTTLE.")
+        giveitem_msg("{PLAYER} received the SQUIRTBOTTLE\n"
+                     "from the lady.", ITEM_SQUIRTBOTTLE)
+        setflag(FLAG_GOT_SQUIRTBOTTLE)
+        setflag(FLAG_HIDE_ROUTE_36_FLORIA)
+        clearflag(FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA)
+    }
+    release
+}
+
+script GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala {
+    turnobject(OLDER_SISTER, DIR_WEST)
+    msgbox("Lalala lalalala.\n"
+           "Have plenty of water, my lovely!")
+}
+
+script GoldenrodCity_FlowerShop_EventScript_Floria {
+    lock
+    faceplayer
+    if (flag(FLAG_DEFEATED_SUDOWOODO))
+    {
+        msgbox("So it really was a POKéMON!")
+    }
+    elif (flag(FLAG_GOT_SQUIRTBOTTLE))
+    {
+        msgbox("Wow, you beat WHITNEY?\n"
+               "Cool!")
+    }
+    else
+    {
+        msgbox("When I told my sis about the jiggly\n"
+               "tree, she told me it's dangerous.\p"
+               "If I beat WHITNEY, I wonder if she'll\n"
+               "lend me her water bottle…")
+        setflag(FLAG_TALKED_TO_FLORIA_FLOWER_SHOP)
+        setflag(FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA)
+        clearflag(FLAG_HIDE_ROUTE_36_FLORIA)
+    }
+    release
+}

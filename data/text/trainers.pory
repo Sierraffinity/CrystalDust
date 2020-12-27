@@ -153,7 +153,7 @@ text VioletCity_Gym_Text_AbePostBattle {
 text VioletCity_Gym_Text_RodIntro {
 	"The key word is guts!\p"
 	"Those here are training night and\n"
-	"day to become bird POKéMON\l"
+	"day to become BIRD POKéMON\l"
 	"masters. Come on!"
 }
 
@@ -561,8 +561,8 @@ text AzaleaTown_Gym_Text_MayNotEnoughMons {
 }
 
 text AzaleaTown_Gym_Text_BennyIntro {
-	"BUG POKéMON are evolve young, so\n"
-	"they get stronger that much faster."
+	"BUG POKéMON evolve young, so they\n"
+	"get stronger that much faster."
 }
 
 text AzaleaTown_Gym_Text_BennyDefeat {
@@ -605,379 +605,542 @@ text AzaleaTown_Gym_Text_JoshPostBattle {
 	"better moves…"
 }
 
+text Route34_Text_ToddIntro {
+	"I'm confident in my ability to\n"
+	"raise POKéMON.\p"
+	"Want to see?"
+}
+
+text Route34_Text_ToddDefeated {
+	"Did I screw up my training?"
+}
+
+text Route34_Text_ToddPostBattle {
+	"Maybe I should take one to the\n"
+	"DAY-CARE nearby.\l"
+	"Or maybe use some items…"
+}
+
+text Route34_Text_SamuelIntro {
+	"This is where I do my training!"
+}
+
+text Route34_Text_SamuelDefeated {
+	"Beaten by a passsing stranger!"
+}
+
+text Route34_Text_SamuelPostBattle {
+	"Have you been to GOLDENROD CITY?\p"
+	"Weren't you amazed by how they've\n"
+	"changed the POKéMON CENTER?"
+}
+
+text Route34_Text_IanIntro {
+	"I'm the best in my class at POKéMON."
+}
+
+text Route34_Text_IanDefeated {
+	"No!\n"
+	"There are better TRAINERS…"
+}
+
+text Route34_Text_IanPostBattle {
+	"I'm trying hard so I can be the\n"
+	"star in my class."
+}
+
+text Route34_Text_GinaIntro {
+	"Are you a TRAINER?\n"
+	"Let's have a practice battle."
+}
+
+text Route34_Text_GinaDefeated {
+	"Oh, no!\n"
+	"I just can't win…"
+}
+
+text Route34_Text_GinaPostBattle {
+	"You're too strong to be a\n"
+	"practice partner."
+}
+
+text Route34_Text_KeithIntro {
+	"Who goes there?\n"
+	"What are you up to?"
+}
+
+text Route34_Text_KeithDefeated {
+	"You're a tough little kid."
+}
+
+text Route34_Text_KeithPostBattle {
+	"Yep, I see nothing wrong today.\n"
+	"You be good and stay out of trouble."
+}
+
+text Route34_Text_BrandonIntro {
+	"I just got my POKéMON back from the\n"
+	"DAY-CARE.\p"
+	"Let's see how much stronger it got!"
+}
+
+text Route34_Text_BrandonDefeated {
+	"Why does it end this way?"
+}
+
+text Route34_Text_BrandonPostBattle {
+	"My POKéMON knew moves I didn't\n"
+	"know it had.\p"
+	"That confounded me to no end!"
+}
+
+text Route34_Text_IreneIntro {
+	"IRENE: Kyaaah!\n"
+	"Someone found us!"
+}
+
+text Route34_Text_IreneDefeated {
+	"IRENE: Ohhh!\n"
+	"Too strong!"
+}
+
+text Route34_Text_IrenePostBattle {
+	"IRENE: Isn't this beach great?\n"
+	"It's our secret little getaway!"
+}
+
+text Route34_Text_JennIntro {
+	"JENN: You can't stomp in here like this\n"
+	"and go unpunished!"
+}
+
+text Route34_Text_JennDefeated {
+	"JENN: So sorry, IRENE!\n"
+	"Sis!"
+}
+
+text Route34_Text_JennPostBattle {
+	"JENN: Sunlight makes your body\n"
+	"stronger."
+}
+
+text Route34_Text_KateIntro {
+	"KATE: You sure were mean to my\n"
+	"little sisters!"
+}
+
+text Route34_Text_KateDefeated {
+	"KATE: No!\n"
+	"I can't believe I lost."
+}
+
+text Route34_Text_KatePostBattle {
+	"KATE: I'm sorry we jumped you.\p"
+	"We never expected anyone to find\n"
+	"us here. You sure startled us."
+}
+
+text GoldenrodCity_Gym_Text_CarrieIntro {
+	"Don't let my POKéMON's cute looks\n"
+	"fool you. They can whip you!"
+}
+
+text GoldenrodCity_Gym_Text_CarrieDefeated {
+	"Darn…\n"
+	"I thought you were weak…"
+}
+
+text GoldenrodCity_Gym_Text_CarriePostBattle {
+	"Do my POKéMON think I'm cute?"
+}
+
+text GoldenrodCity_Gym_Text_BridgetIntro {
+	"I like cute POKéMON better than\n"
+	"strong POKéMON.\p"
+	"But I have strong and cute POKéMON!"
+}
+
+text GoldenrodCity_Gym_Text_BridgetDefeated {
+	"Oh, no, no, no!"
+}
+
+text GoldenrodCity_Gym_Text_BridgetPostBattle {
+	"I'm trying to beat WHITNEY, but…\n"
+	"It's depressing.\p"
+	"I'm okay! If I lose, I'll just try\n"
+	"harder next time!"
+}
+
+text GoldenrodCity_Gym_Text_VictoriaIntro {
+	"Oh, you are a cute little TRAINER!\n"
+	"I like you, but I won't hold back!"
+}
+
+text GoldenrodCity_Gym_Text_VictoriaDefeated {
+	"Let's see…\n"
+	"Oops, it's over?"
+}
+
+text GoldenrodCity_Gym_Text_VictoriaPostBattle {
+	"Wow, you must be good to beat me!\n"
+	"Keep it up!"
+}
+
+text GoldenrodCity_Gym_Text_SamanthaIntro {
+	"Give it your best shot, or I'll take\n"
+	"you down!"
+}
+
+text GoldenrodCity_Gym_Text_SamanthaDefeated {
+	"No!\n"
+	"Oh, MEOWTH, I'm so sorry!"
+}
+
+text GoldenrodCity_Gym_Text_SamanthaPostBattle {
+	"I taught MEOWTH moves for taking on\n"
+	"any type…"
+}
+
+text GoldenrodCity_Underground_Text_EricIntro {
+	"I got booted out of the GAME\n"
+	"CORNER.\p"
+	"I was trying to cheat using my\n"
+	"POKéMON…"
+}
+
+text GoldenrodCity_Underground_Text_EricDefeated {
+	"…Grumble…"
+}
+
+text GoldenrodCity_Underground_Text_EricPostBattle {
+	"I guess I have to do things fair and\n"
+	"square…"
+}
+
+text GoldenrodCity_Underground_Text_TeruIntro {
+	"Do you consider type alignments in\n"
+	"battle?\p"
+	"If you know your type advantages,\n"
+	"you'll do better in battle."
+}
+
+text GoldenrodCity_Underground_Text_TeruDefeated {
+	"Ow, ow, ow!"
+}
+
+text GoldenrodCity_Underground_Text_TeruPostBattle {
+	"I know my POKéMON type alignments.\n"
+	"But I only use one type of POKéMON."
+}
+
+text GoldenrodCity_Underground_Text_IsaacIntro {
+	"My POKéMON just got a haircut!\n"
+	"I'll show you how strong it is!"
+}
+
+text GoldenrodCity_Underground_Text_IsaacDefeated {
+	"Aiyeeee!"
+}
+
+text GoldenrodCity_Underground_Text_IsaacPostBattle {
+	"Your POKéMON will like you more if\n"
+	"you give them haircuts."
+}
+
+text GoldenrodCity_Underground_Text_DonaldIntro {
+	"I think you have some rare POKéMON\n"
+	"with you.\p"
+	"Let me see them!"
+}
+
+text GoldenrodCity_Underground_Text_DonaldDefeated {
+	"Gaah! I lost!\n"
+	"That makes me mad!"
+}
+
+text GoldenrodCity_Underground_Text_DonaldPostBattle {
+	"Are you making a POKéDEX?\n"
+	"Here's a hot tip.\p"
+	"The HIKER on ROUTE 33, ANTHONY, is a\n"
+	"good guy.\p"
+	"He'll phone you if he sees any rare\n"
+	"POKéMON."
+}
+
+text Route35_Text_IvanIntro {
+	"I've been getting POKéMON data off\n"
+	"my radio. I think I'm good."
+}
+
+text Route35_Text_IvanDefeated {
+	"I give!"
+}
+
+text Route35_Text_IvanPostBattle {
+	"Music on the radio changes the moods\n"
+	"of wild POKéMON."
+}
+
+text Route35_Text_ElliotIntro {
+	"I'm gonna show my girlfriend I'm\n"
+	"hot stuff!"
+}
+
+text Route35_Text_ElliotDefeated {
+	"I wish you would have lost for me…"
+}
+
+text Route35_Text_ElliotPostBattle {
+	"I was humiliated in front of\n"
+	"my girlfriend…"
+}
+
+text Route35_Text_BrookeIntro {
+	"My boyfriend's weak, so I can't\n"
+	"rely on him."
+}
+
+text Route35_Text_BrookeDefeated {
+	"Oh, my!\n"
+	"You're so strong!"
+}
+
+text Route35_Text_BrookePostBattle {
+	"I can count on my POKéMON more\n"
+	"than my boyfriend."
+}
+
+text Route35_Text_KimIntro {
+	"Are you going to the GYM?\n"
+	"Me too!"
+}
+
+text Route35_Text_KimDefeated {
+	"Oh.\n"
+	"I couldn't win…"
+}
+
+text Route35_Text_KimPostBattle {
+	"The GYM BADGES are pretty.\n"
+	"I collect them."
+}
+
+text Route35_Text_BryanIntro {
+	"What kinds of POKé BALLS do\n"
+	"you use?"
+}
+
+text Route35_Text_BryanDefeated {
+	"Yikes!\n"
+	"Not fast enough!"
+}
+
+text Route35_Text_BryanPostBattle {
+	"Some POKéMON are pretty speedy.\n"
+	"Try catching them with KURT's\l"
+	"FAST BALL.\p"
+	"Whenever I find a WHT APRICORN, I\n"
+	"take it to KURT.\l"
+	"He turns it into a custom BALL."
+}
+
+text Route35_Text_WaltIntro {
+	"I'm practicing my fire breathing."
+}
+
+text Route35_Text_WaltDefeated {
+	"Ow!\n"
+	"I scorched the tip of my nose!"
+}
+
+text Route35_Text_WaltPostBattle {
+	"The POKéMON March on the radio\n"
+	"lures wild POKéMON near."
+}
+
+text Route35_Text_ArnieIntro {
+	"I'll go anywhere if BUG POKéMON\n"
+	"appear there."
+}
+
+text Route35_Text_ArnieDefeated {
+	"Huh?\n"
+	"I shouldn't have lost that…"
+}
+
+text Route35_Text_ArniePostBattle {
+	"My VENONAT won me the Bug-Catching\n"
+	"Contest at the NATIONAL PARK."
+}
+
+text Route35_Text_IrwinIntro {
+	"Behold my graceful POKé BALL\n"
+	"dexterity!"
+}
+
+text Route35_Text_IrwinDefeated {
+	"Whew!\n"
+	"That was a jolt!"
+}
+
+text Route35_Text_IrwinPostBattle {
+	"I was going to dazzle you with my\n"
+	"prize POKéMON.\p"
+	"But your prowess electrified me!"
+}
+
+text Route35_Text_DirkIntro {
+	"Danger lurks in the night!"
+}
+
+text Route35_Text_DirkDefeated {
+	"Whoops!"
+}
+
+text Route35_Text_DirkPostBattle {
+	"You know, nighttime is fun in its\n"
+	"own ways.\l"
+	"But don't overdo it, okay?"
+}
+
+text NationalPark_Text_JackIntro {
+	"The world of POKéMON is deep.\p"
+	"There are still lots of things\n"
+	"we don't know.\p"
+	"But I know more than you do!"
+}
+
+text NationalPark_Text_JackDefeated {
+	"Wha-wha-what?"
+}
+
+text NationalPark_Text_JackPostBattle {
+	"There is a lot to learn.\n"
+	"For example…\p"
+	"There are 50 kinds of TMs.\n"
+	"Traded POKéMON level up faster."
+}
+
+text NationalPark_Text_BeverlyIntro {
+	"My POKéMON are simply darling.\p"
+	"Let me tell you how proud my\n"
+	"darlings make me."
+}
+
+text NationalPark_Text_BeverlyDefeated {
+	"I can beat you in pride, but…"
+}
+
+text NationalPark_Text_BeverlyPostBattle {
+	"I must say, your POKéMON are quite\n"
+	"cute, too."
+}
+
+text NationalPark_Text_WilliamIntro {
+	"We adore our POKéMON, even if they\n"
+	"dislike us.\p"
+	"That's what being a POKéFAN is all\n"
+	"about."
+}
+
+text NationalPark_Text_WilliamDefeated {
+	"M-my POKéMON!"
+}
+
+text NationalPark_Text_WilliamPostBattle {
+	"I lost the battle, but my POKéMON win\n"
+	"the prize for being most lovely."
+}
+
+text NationalPark_Text_KriseIntro {
+	"Hello? Why are you staring at me?\n"
+	"Oh, a battle?"
+}
+
+text NationalPark_Text_KriseDefeated {
+	"…Hmmm…"
+}
+
+text NationalPark_Text_KrisePostBattle {
+	"I thought you were staring at me\n"
+	"because I'm cute!"
+}
+
+text Route36_Text_MarkIntro {
+	"I'm going to read your thoughts!"
+}
+
+text Route36_Text_MarkDefeated {
+	"I misread you!"
+}
+
+text Route36_Text_MarkPostBattle {
+	"I'd be strong if only I could tell\n"
+	"what my opponent was thinking."
+}
+
+text Route36_Text_AlanIntro {
+	"Thanks to my studies, I'm ready\n"
+	"for any POKéMON!"
+}
+
+text Route36_Text_AlanDefeated {
+	"Oops!\n"
+	"Computation error?"
+}
+
+text Route36_Text_AlanPostBattle {
+	"Darn.\n"
+	"I study five hours a day too.\p"
+	"There's more to learning than just\n"
+	"reading books."
+}
+
+text Route46_Text_BaileyIntro {
+	"Awright! I'll show you the power\n"
+	"of mountain POKéMON!"
+}
+
+text Route46_Text_BaileyDefeated {
+	"Mercy!\n"
+	"You showed me your power!"
+}
+
+text Route46_Text_BaileyPostBattle {
+	"It's over. I don't mind.\n"
+	"We HIKERS are like that."
+}
+
+text Route46_Text_TedIntro {
+	"I'm raising POKéMON too!\n"
+	"Will you battle with me?"
+}
+
+text Route46_Text_TedDefeated {
+	"Wha…?"
+}
+
+text Route46_Text_TedPostBattle {
+	"I did my best but came up short.\n"
+	"No excuses--I admit I lost."
+}
+
+text Route46_Text_ErinIntro {
+	"I raise POKéMON too!\n"
+	"Will you battle with me?"
+}
+
+text Route46_Text_ErinDefeated {
+	"Oh, rats!"
+}
+
+text Route46_Text_ErinPostBattle {
+	"I've been to many GYMS, but the\n"
+	"GYM in GOLDENROD is my favorite.\p"
+	"It's filled with pretty flowers!"
+}
+
 raw`
-Route33_Text_FosterIntro: @ 8295D0F
-	.string "There's supposed to be a mystical\n"
-	.string "rock around here.\l"
-	.string "Do you know anything about it?$"
-
-Route33_Text_FosterDefeated: @ 8295D62
-	.string "I was thinking too much about that\n"
-	.string "rock, while my POKéMON remained weak…$"
-
-Route33_Text_FosterPostBattle: @ 8295DAB
-	.string "I can spend hours and hours staring\n"
-	.string "at a nice rock without growing bored.$"
-
-Route33_Text_LuisIntro: @ 8295DF5
-	.string "Whew! I was worried that a kid was\n"
-	.string "drowning when I saw you.\p"
-	.string "You seem to be okay, so what do you\n"
-	.string "say to a battle?$"
-
-Route33_Text_LuisDefeated: @ 8295E66
-	.string "Glub… Glub…$"
-
-Route33_Text_LuisPostBattle: @ 8295E72
-	.string "If you are drowning, the signal is to\n"
-	.string "wave one arm toward the beach.$"
-
-Route33_Text_DominikIntro: @ 8295EB7
-	.string "Swimming the deep blue sea…\n"
-	.string "It feels the greatest!$"
-
-Route33_Text_DominikDefeated: @ 8295EEA
-	.string "I lost…\n"
-	.string "Now I'm feeling blue…$"
-
-Route33_Text_DominikPostBattle: @ 8295F08
-	.string "Why is the sea blue?\p"
-	.string "I learned about that at the MUSEUM in\n"
-	.string "SLATEPORT, but I forgot.$"
-
-Route33_Text_BeverlyIntro: @ 8295F5C
-	.string "My body feels lighter in the water.\n"
-	.string "It's as if I've gotten slimmer!$"
-
-Route33_Text_BeverlyDefeated: @ 8295FA0
-	.string "I'm floating…$"
-
-Route33_Text_PostBattle: @ 8295FAE
-	.string "Your body weight is reduced to just\n"
-	.string "one tenth in the water.\p"
-	.string "That would make me…\n"
-	.string "Whoops! I'm not telling you my weight!$"
-
-Route33_Text_ImaniIntro: @ 8296025
-	.string "The blue, blue sky…\n"
-	.string "The vast sea…\l"
-	.string "It's so peaceful…$"
-
-Route33_Text_ImaniDefeated: @ 8296059
-	.string "I lost while I was lounging!$"
-
-Route33_Text_ImaniPostBattle: @ 8296076
-	.string "I want to be told I'm relaxing to be\n"
-	.string "with. Giggle.$"
-
-Route33_Text_AndresIntro: @ 82960A9
-	.string "I'm convinced that the sea keeps\n"
-	.string "secrets from us.$"
-
-Route33_Text_AndresDefeated: @ 82960DB
-	.string "Yes…\n"
-	.string "I am no good at battling…$"
-
-Route33_Text_AndresPostBattle: @ 82960FA
-	.string "I'm sure there are many secrets to be\n"
-	.string "discovered in the world's seas.\p"
-	.string "I mean to find them all!$"
-
-Route33_Text_AndresRegister: @ 8296159
-	.string "Huh? I'm so weak, but you're willing\n"
-	.string "to register me in your POKéNAV?$"
-
-Route33_Text_AndresRematchIntro: @ 829619E
-	.string "I've told you that I'm weak…\n"
-	.string "Are you sure you want to do this?$"
-
-Route33_Text_AndresRematchDefeated: @ 82961DD
-	.string "Yes…\n"
-	.string "I didn't think I could win.$"
-
-Route33_Text_AndresRematchPostBattle: @ 82961FE
-	.string "I may be weak at battling, but my\n"
-	.string "drive to explore can't be bested.\p"
-	.string "I will travel the seas all around\n"
-	.string "the world!$"
-
-Route33_Text_JosueIntro: @ 829626F
-	.string "I'm exhausted from swimming.\n"
-	.string "I'm just not used to it.\p"
-	.string "I need a battle for a change of pace!$"
-
-Route33_Text_JosueDefeated: @ 82962CB
-	.string "I lost because I battled at sea.$"
-
-Route33_Text_JosuePostBattle: @ 82962EC
-	.string "Yeah, for me, the sky is a much better\n"
-	.string "match than the sea.$"
-
-Route106_Text_ElliotIntro: @ 8296327
-	.string "Which do you prefer, fishing in the\n"
-	.string "sea or a stream?$"
-
-Route106_Text_ElliotDefeated: @ 829635C
-	.string "Like in deep-sea fishing, I lost\n"
-	.string "spectacularly!$"
-
-Route106_Text_ElliotPostBattle: @ 829638C
-	.string "Fishing is the greatest whether it's\n"
-	.string "in the sea or a stream.\l"
-	.string "You agree with me, right?$"
-
-Route106_Text_ElliotRegister: @ 82963E3
-	.string "Fishing's great, but so is battling.\n"
-	.string "If you don't mind, can we meet again?$"
-
-Route106_Text_ElliotRematchIntro: @ 829642E
-	.string "I caught a bunch of POKéMON fishing.\n"
-	.string "I'll show you an impressive battle!$"
-
-Route106_Text_ElliotRematchDefeated: @ 8296477
-	.string "I lost again spectacularly!$"
-
-Route106_Text_ElliotRematchPostBattle: @ 8296493
-	.string "Win or lose, POKéMON are the greatest!\n"
-	.string "You agree with me, right?$"
-
-Route106_Text_NedIntro: @ 82964D4
-	.string "What do people do if they need to go\n"
-	.string "to a washroom?\p"
-	.string "What if my ROD hooks a big one while\n"
-	.string "I'm in the washroom? I just can't go…$"
-
-Route106_Text_NedDefeated: @ 8296553
-	.string "I lost because I'm trying to not go\n"
-	.string "to the washroom…$"
-
-Route106_Text_NedPostBattle: @ 8296588
-	.string "Oh, no! I've got this feeling I'll hook\n"
-	.string "a big one!$"
-
-Route106_Text_DouglasIntro: @ 82965BB
-	.string "Hahahah! I'm a lousy runner, but in\n"
-	.string "the water you can't catch me!$"
-
-Route106_Text_DouglasDefeated: @ 82965FD
-	.string "I give up!$"
-
-Route106_Text_DouglasPostBattle: @ 8296608
-	.string "I wouldn't lose in a swim race…$"
-
-Route106_Text_KylaIntro: @ 8296628
-	.string "The sea is my backyard. I'm not going\n"
-	.string "to take it easy because you're a kid!$"
-
-Route106_Text_KylaDefeated: @ 8296674
-	.string "Did you take it easy on me by any\n"
-	.string "chance?$"
-
-Route106_Text_KylaPostBattle: @ 829669E
-	.string "Drifting along with the waves…\n"
-	.string "I love it! Why don't you give it a try?$"
-
-Route107_Text_DarrinIntro: @ 82966E5
-	.string "Yawn…\p"
-	.string "I must have drifted off to sleep while\n"
-	.string "I was drifting in the waves.$"
-
-Route107_Text_DarrinDefeated: @ 829672F
-	.string "Ahaha, I lost…\n"
-	.string "I'll take a snooze, I think…$"
-
-Route107_Text_DarrinPostBattle: @ 829675B
-	.string "Floating and being rocked by\n"
-	.string "the waves--it's like sleeping in\l"
-	.string "a plush, comfy bed.$"
-
-Route107_Text_TonyIntro: @ 82967AD
-	.string "The sea is like my backyard.\n"
-	.string "Let's battle!$"
-
-Route107_Text_TonyDefeated: @ 82967D8
-	.string "I lost on my home field…\n"
-	.string "I'm in shock!$"
-
-Route107_Text_TonyPostBattle: @ 82967FF
-	.string "I swim the seas with a heart full of\n"
-	.string "dreams…\p"
-	.string "It's a song!\n"
-	.string "Anyways, I'm swimming some more.$"
-
-Route107_Text_TonyRegister: @ 829685A
-	.string "You've shocked me to the bone!\n"
-	.string "Well, so you won't forget me…$"
-
-Route107_Text_TonyRematchIntro: @ 8296897
-	.string "Swimming in the big, wide sea,\n"
-	.string "my POKéMON has grown stronger!$"
-
-Route107_Text_TonyRematchDefeated: @ 82968D5
-	.string "What a shock!\p"
-	.string "My POKéMON has gotten stronger, but\n"
-	.string "I stayed weak as a TRAINER!$"
-
-Route107_Text_TonyRematchPostBattle: @ 8296923
-	.string "What you learn in battle makes you\n"
-	.string "a stronger TRAINER.\l"
-	.string "The waves taught me that.$"
-
-Route107_Text_DeniseIntro: @ 8296974
-	.string "Do you know a little town called\n"
-	.string "DEWFORD?$"
-
-Route107_Text_DeniseDefeated: @ 829699E
-	.string "I hate this!$"
-
-Route107_Text_DenisePostBattle: @ 82969AB
-	.string "A weird saying is getting really\n"
-	.string "trendy at DEWFORD HALL.$"
-
-Route107_Text_BethIntro: @ 82969E4
-	.string "Did you want to battle me?\n"
-	.string "Sure, I'll go with you!$"
-
-Route107_Text_BethDefeated: @ 8296A17
-	.string "I wasn't good enough for you.$"
-
-Route107_Text_BethPostBattle: @ 8296A35
-	.string "I think you're going to keep getting\n"
-	.string "better. I'll go for it, too!$"
-
-Route107_Text_LisaIntro: @ 8296A77
-	.string "LISA: We challenge you as a sister\n"
-	.string "and brother!$"
-
-Route107_Text_LisaDefeated: @ 8296AA7
-	.string "LISA: Awesome.\n"
-	.string "You're in a different class of tough.$"
-
-Route107_Text_LisaPostBattle: @ 8296ADC
-	.string "LISA: Do you have any friends who\n"
-	.string "would go to the beach with you?$"
-
-Route107_Text_LisaNotEnoughPokemon: @ 8296B1E
-	.string "LISA: If you want to battle with us,\n"
-	.string "bring more POKéMON.$"
-
-Route107_Text_RayIntro: @ 8296B57
-	.string "RAY: We always battle POKéMON,\n"
-	.string "me and my sister.\p"
-	.string "I always lose, but we can beat you\n"
-	.string "2-on-2!$"
-
-Route107_Text_RayDefeated: @ 8296BB3
-	.string "RAY: Wowee, you're at a higher level\n"
-	.string "than us!$"
-
-Route107_Text_RayPostBattle: @ 8296BE1
-	.string "RAY: My sister gave me my POKéMON.\n"
-	.string "I raised it, and now it's my important\l"
-	.string "partner!$"
-
-Route107_Text_RayNotEnoughPokemon: @ 8296C34
-	.string "RAY: If you want to battle us,\n"
-	.string "go bring some more POKéMON!$"
-
-Route107_Text_CamronIntro: @ 8296C6F
-	.string "I'm in the middle of a triathlon,\n"
-	.string "but I'm nowhere near tired!$"
-
-Route107_Text_CamronDefeated: @ 8296CAD
-	.string "That exhausted me…$"
-
-Route107_Text_CamronPostBattle: @ 8296CC0
-	.string "I still have swimming and running left\n"
-	.string "to do after this.\p"
-	.string "Am I going to be okay?$"
-
-Route36_Text_JeromeIntro: @ 8296D10
-	.string "My dream is to swim the world's seven\n"
-	.string "seas!$"
-
-Route36_Text_JeromeDefeated: @ 8296D3C
-	.string "I won't be able to swim the seven seas\n"
-	.string "like this…$"
-
-Route36_Text_JeromePostBattle: @ 8296D6E
-	.string "Playing with marine POKéMON is one of\n"
-	.string "the pleasures of swimming!$"
-
-Route36_Text_MatthewIntro: @ 8296DAF
-	.string "Ahoy, there! Are you going out to\n"
-	.string "the ABANDONED SHIP, too?$"
-
-Route36_Text_MatthewDefeated: @ 8296DEA
-	.string "I'm sinking!\n"
-	.string "Glub… Glub…$"
-
-Route36_Text_MatthewPostBattle: @ 8296E03
-	.string "Some people even go inside that\n"
-	.string "ABANDONED SHIP.$"
-
-Route36_Text_TaraIntro: @ 8296E33
-	.string "My liar of a boyfriend told me that\n"
-	.string "I look great in a bikini…$"
-
-Route36_Text_TaraDefeated: @ 8296E71
-	.string "Oh, boo!$"
-
-Route36_Text_TaraPostBattle: @ 8296E7A
-	.string "Even if it's a lie, I love being told\n"
-	.string "I look great…\l"
-	.string "We girls are so complex…$"
-
-Route36_Text_MissyIntro: @ 8296EC7
-	.string "I love the sea!\n"
-	.string "I forget all my worries when I swim!$"
-
-Route36_Text_MissyDefeated: @ 8296EFC
-	.string "When I lose a battle, I get all\n"
-	.string "stressed out!$"
-
-Route36_Text_MissyPostBattle: @ 8296F2A
-	.string "Work off your stress by swimming!\n"
-	.string "It's so healthy!$"
-
-Route36_Text_CoryIntro: @ 8296F5D
-	.string "I love WATER-type POKéMON.\n"
-	.string "I love other POKéMON, too!$"
-
-Route36_Text_CoryDefeated: @ 8296F93
-	.string "Waaah! I lost!\n"
-	.string "Waaah! Waaah!$"
-
-Route36_Text_CoryPostBattle: @ 8296FB0
-	.string "Shouting is good for me!\n"
-	.string "It uplifts me!$"
-
-Route36_Text_CoryRegister: @ 8296FD8
-	.string "I love tough TRAINERS, too!\n"
-	.string "Register me in your POKéNAV!$"
-
-Route36_Text_CoryRematchIntro: @ 8297011
-	.string "Win or lose, I love battling at sea!$"
-
-Route36_Text_CoryRematchDefeated: @ 8297036
-	.string "Waaah! I lost again!\n"
-	.string "Waaah! Waaah!$"
-
-Route36_Text_CoryRematchPostBattle: @ 8297059
-	.string "If you're faced with a challenge,\n"
-	.string "try shouting at the sea!$"
-
-Route36_Text_CarolinaIntro: @ 8297094
-	.string "I take huge pride in my POKéMON.\n"
-	.string "We'll show you one speedy battle!$"
-
-Route36_Text_CarolinaDefeated: @ 82970D7
-	.string "That wasn't cute at all.$"
-
-Route36_Text_CarolinaPostBattle: @ 82970F0
-	.string "Since I'm at sea like this, I wouldn't\n"
-	.string "mind putting on a pink, frilly swimsuit…$"
-
 Route109_Text_DavidIntro: @ 8297140
 	.string "Hiyah! Look at my chiseled abs!\n"
 	.string "This is what you call “cut”!$"
@@ -2517,240 +2680,240 @@ Route116_Text_JohnsonPostBattle: @ 829C418
 	.string "Want to stay here and keep\n"
 	.string "me company?$"
 
-Route117_Text_IsaacIntro: @ 829C43F
+Route45_Text_IsaacIntro: @ 829C43F
 	.string "Listen, could I get you to battle\n"
 	.string "the POKéMON I'm raising?$"
 
-Route117_Text_IsaacDefeat: @ 829C47A
+Route45_Text_IsaacDefeat: @ 829C47A
 	.string "You've raised yours superbly…$"
 
-Route117_Text_IsaacPostBattle: @ 829C498
+Route45_Text_IsaacPostBattle: @ 829C498
 	.string "POKéMON isn't all about power.\p"
 	.string "Polishing a unique aspect of one's\n"
 	.string "character is another way of enjoying\l"
 	.string "POKéMON.$"
 
-Route117_Text_IsaacRegister: @ 829C508
+Route45_Text_IsaacRegister: @ 829C508
 	.string "I'm going to redouble my training.\n"
 	.string "Would you come look in on us?$"
 
-Route117_Text_IsaacRematchIntro: @ 829C549
+Route45_Text_IsaacRematchIntro: @ 829C549
 	.string "The POKéMON I've been raising are\n"
 	.string "looking good, just like before.$"
 
-Route117_Text_IsaacRematchDefeat: @ 829C58B
+Route45_Text_IsaacRematchDefeat: @ 829C58B
 	.string "You know how to raise them properly.\n"
 	.string "You might have DAY CARE skills…$"
 
-Route117_Text_IsaacPostRematch: @ 829C5D0
+Route45_Text_IsaacPostRematch: @ 829C5D0
 	.string "Your POKéMON are growing good!\n"
 	.string "You should enter them in CONTESTS.$"
 
-Route117_Text_LydiaIntro: @ 829C612
+Route45_Text_LydiaIntro: @ 829C612
 	.string "Please, allow me to evaluate if you\n"
 	.string "have raised your POKéMON properly.$"
 
-Route117_Text_LydiaDefeat: @ 829C659
+Route45_Text_LydiaDefeat: @ 829C659
 	.string "Yes, they are growing properly.$"
 
-Route117_Text_LydiaPostBattle: @ 829C679
+Route45_Text_LydiaPostBattle: @ 829C679
 	.string "Try raising POKéMON with more\n"
 	.string "attention to their character traits.$"
 
-Route117_Text_LydiaRegister: @ 829C6BC
+Route45_Text_LydiaRegister: @ 829C6BC
 	.string "I'm glad I met a superb TRAINER in you.\n"
 	.string "I hope to see you again.$"
 
-Route117_Text_LydiaRematchIntro: @ 829C6FD
+Route45_Text_LydiaRematchIntro: @ 829C6FD
 	.string "Allow me to reevaluate if you have\n"
 	.string "raised your POKéMON properly.$"
 
-Route117_Text_LydiaRematchDefeat: @ 829C73E
+Route45_Text_LydiaRematchDefeat: @ 829C73E
 	.string "They are growing admirably.$"
 
-Route117_Text_LydiaPostRematch: @ 829C75A
+Route45_Text_LydiaPostRematch: @ 829C75A
 	.string "POKéMON seem to like different kinds\n"
 	.string "of {POKEBLOCK}S, depending on their nature.$"
 
-Route117_Text_DylanIntro: @ 829C7A5
+Route45_Text_DylanIntro: @ 829C7A5
 	.string "I'm in the middle of a triathlon, but,\n"
 	.string "whatever, let's have a battle!$"
 
-Route117_Text_DylanDefeat: @ 829C7EB
+Route45_Text_DylanDefeat: @ 829C7EB
 	.string "I ran out of energy!$"
 
-Route117_Text_DylanPostBattle: @ 829C800
+Route45_Text_DylanPostBattle: @ 829C800
 	.string "I may have blown it…\p"
 	.string "I might have dropped to last during\n"
 	.string "that battle…$"
 
-Route117_Text_DylanRegister: @ 829C846
+Route45_Text_DylanRegister: @ 829C846
 	.string "POKéMON have to be strong, too?\n"
 	.string "I'd like you to train me!$"
 
-Route117_Text_DylanRematchIntro: @ 829C880
+Route45_Text_DylanRematchIntro: @ 829C880
 	.string "I'm smack in the middle of a triathlon,\n"
 	.string "but I'm comfortably ahead.\l"
 	.string "Let's make this a quick battle!$"
 
-Route117_Text_DylanRematchDefeat: @ 829C8E3
+Route45_Text_DylanRematchDefeat: @ 829C8E3
 	.string "I ran out of energy again!$"
 
-Route117_Text_DylanPostRematch: @ 829C8FE
+Route45_Text_DylanPostRematch: @ 829C8FE
 	.string "I was tops in swimming and cycling,\n"
 	.string "but I'm not quite that confident with\l"
 	.string "POKéMON yet.$"
 
-Route117_Text_MariaIntro: @ 829C955
+Route45_Text_MariaIntro: @ 829C955
 	.string "I do my triathlon training with POKéMON,\n"
 	.string "so I'm pretty confident about my speed.$"
 
-Route117_Text_MariaDefeat: @ 829C9A6
+Route45_Text_MariaDefeat: @ 829C9A6
 	.string "I need to get more practices in,\n"
 	.string "I guess.$"
 
-Route117_Text_MariaPostBattle: @ 829C9D0
+Route45_Text_MariaPostBattle: @ 829C9D0
 	.string "Training is meaningful only if you\n"
 	.string "keep it up regularly.\p"
 	.string "Okay! I'll resume my training!\n"
 	.string "Tomorrow!$"
 
-Route117_Text_MariaRegister: @ 829CA32
+Route45_Text_MariaRegister: @ 829CA32
 	.string "You appear to be training properly…\n"
 	.string "If you'd like, I'll battle you later!$"
 
-Route117_Text_MariaRematchIntro: @ 829CA7C
+Route45_Text_MariaRematchIntro: @ 829CA7C
 	.string "Are you keeping up with your training?\n"
 	.string "I sure am!\l"
 	.string "Let me show you the evidence!$"
 
-Route117_Text_MariaRematchDefeat: @ 829CACC
+Route45_Text_MariaRematchDefeat: @ 829CACC
 	.string "I need to get more practices in,\n"
 	.string "I guess.$"
 
-Route117_Text_MariaPostRematch: @ 829CAF6
+Route45_Text_MariaPostRematch: @ 829CAF6
 	.string "I'll resume training tomorrow.\n"
 	.string "Let's battle again sometime!$"
 
-Route117_Text_DerekIntro: @ 829CB32
+Route45_Text_DerekIntro: @ 829CB32
 	.string "Once a BUG CATCHER!\n"
 	.string "And now a BUG MANIAC!\p"
 	.string "But my love for POKéMON remains\n"
 	.string "unchanged!$"
 
-Route117_Text_DerekDefeat: @ 829CB87
+Route45_Text_DerekDefeat: @ 829CB87
 	.string "My ineptitude also remains\n"
 	.string "unchanged…$"
 
-Route117_Text_DerekPostBattle: @ 829CBAD
+Route45_Text_DerekPostBattle: @ 829CBAD
 	.string "All I did was follow my heart, and now\n"
 	.string "they call me a BUG MANIAC…\p"
 	.string "Still, I am an expert on BUG POKéMON,\n"
 	.string "so it's only natural that they call me\l"
 	.string "a BUG MANIAC.$"
 
-Route117_Text_AnnaIntro: @ 829CC4A
+Route45_Text_AnnaIntro: @ 829CC4A
 	.string "ANNA: I'm with my pretty junior student\n"
 	.string "partner. I have to do good!$"
 
-Route117_Text_AnnaDefeat: @ 829CC8E
+Route45_Text_AnnaDefeat: @ 829CC8E
 	.string "ANNA: I'm with my pretty junior student\n"
 	.string "partner! Let me win!$"
 
-Route117_Text_AnnaPostBattle: @ 829CCCB
+Route45_Text_AnnaPostBattle: @ 829CCCB
 	.string "ANNA: Your POKéMON have some good\n"
 	.string "combinations.\p"
 	.string "I'd say you're second only to us!$"
 
-Route117_Text_AnnaAndMegRegister: @ 829CD1D
+Route45_Text_AnnaAndMegRegister: @ 829CD1D
 	.string "ANNA: We can't take this lying down!\n"
 	.string "You will come back, won't you?$"
 
-Route117_Text_AnnaNotEnoughMons: @ 829CD61
+Route45_Text_AnnaNotEnoughMons: @ 829CD61
 	.string "ANNA: If you want to battle us,\n"
 	.string "bring two POKéMON with you.$"
 
-Route117_Text_MegIntro: @ 829CD9D
+Route45_Text_MegIntro: @ 829CD9D
 	.string "MEG: I'm going to tag up with my super\n"
 	.string "senior student partner and beat you!$"
 
-Route117_Text_MegDefeat: @ 829CDE9
+Route45_Text_MegDefeat: @ 829CDE9
 	.string "MEG: Oh, no!\n"
 	.string "I'm sorry, ANNA! I let you down…$"
 
-Route117_Text_MegPostBattle: @ 829CE17
+Route45_Text_MegPostBattle: @ 829CE17
 	.string "MEG: I dragged ANNA down…\n"
 	.string "If I didn't, she would have won!$"
 
-Route117_Text_MegNotEnoughMons: @ 829CE52
+Route45_Text_MegNotEnoughMons: @ 829CE52
 	.string "MEG: Do you only have one POKéMON?\n"
 	.string "We can't battle with you, then.\p"
 	.string "We want to have a 2-on-2 battle.$"
 
-Route117_Text_AnnaRematchIntro: @ 829CEB6
+Route45_Text_AnnaRematchIntro: @ 829CEB6
 	.string "ANNA: I can't keep losing in front of\n"
 	.string "my junior partner, right?$"
 
-Route117_Text_AnnaRematchDefeat: @ 829CEF6
+Route45_Text_AnnaRematchDefeat: @ 829CEF6
 	.string "ANNA: I couldn't get into the groove.$"
 
-Route117_Text_AnnaPostRematch: @ 829CF1C
+Route45_Text_AnnaPostRematch: @ 829CF1C
 	.string "ANNA: Your POKéMON have some good\n"
 	.string "combinations.\p"
 	.string "I'd say you're second only to us!$"
 
-Route117_Text_AnnaRematchNotEnoughMons: @ 829CF6E
+Route45_Text_AnnaRematchNotEnoughMons: @ 829CF6E
 	.string "ANNA: If you want to battle us,\n"
 	.string "bring two POKéMON with you.$"
 
-Route117_Text_MegRematchIntro: @ 829CFAA
+Route45_Text_MegRematchIntro: @ 829CFAA
 	.string "MEG: I'm going to tag up with my\n"
 	.string "senior partner and win this time!$"
 
-Route117_Text_MegRematchDefeat: @ 829CFED
+Route45_Text_MegRematchDefeat: @ 829CFED
 	.string "MEG: Too strong!$"
 
-Route117_Text_MegPostRematch: @ 829CFFE
+Route45_Text_MegPostRematch: @ 829CFFE
 	.string "MEG: I battled together with my\n"
 	.string "senior partner, but we lost…\p"
 	.string "That's so discouraging…$"
 
-Route117_Text_MegRematchNotEnoughMons: @ 829D053
+Route45_Text_MegRematchNotEnoughMons: @ 829D053
 	.string "MEG: Do you only have one POKéMON?\n"
 	.string "We can't battle with you, then.\p"
 	.string "We want to have a 2-on-2 battle.$"
 
-Route117_Text_MelinaIntro: @ 829D0B7
+Route45_Text_MelinaIntro: @ 829D0B7
 	.string "Isn't it nice? To battle while looking\n"
 	.string "at pretty flowers?$"
 
-Route117_Text_MelinaDefeat: @ 829D0F1
+Route45_Text_MelinaDefeat: @ 829D0F1
 	.string "Oh, that's quite impressive!$"
 
-Route117_Text_MelinaPostBattle: @ 829D10E
+Route45_Text_MelinaPostBattle: @ 829D10E
 	.string "It feels wonderful to go for a jog\n"
 	.string "while looking at flowers.$"
 
-Route117_Text_BrandiIntro: @ 829D14B
+Route45_Text_BrandiIntro: @ 829D14B
 	.string "Let me demonstrate the power\n"
 	.string "hidden within a PSYCHIC POKéMON!$"
 
-Route117_Text_BrandiDefeat: @ 829D189
+Route45_Text_BrandiDefeat: @ 829D189
 	.string "Astonishing!$"
 
-Route117_Text_BrandiPostBattle: @ 829D196
+Route45_Text_BrandiPostBattle: @ 829D196
 	.string "PSYCHIC POKéMON are complex.\n"
 	.string "You should try catching some.$"
 
-Route117_Text_AishaIntro: @ 829D1D1
+Route45_Text_AishaIntro: @ 829D1D1
 	.string "Concentrate on getting the win.\n"
 	.string "That's how I battle!$"
 
-Route117_Text_AishaDefeat: @ 829D206
+Route45_Text_AishaDefeat: @ 829D206
 	.string "I don't waste any time being angry\n"
 	.string "over a loss--I would rather train.$"
 
-Route117_Text_AishaPostBattle: @ 829D24C
+Route45_Text_AishaPostBattle: @ 829D24C
 	.string "I think that if you worry about losing,\n"
 	.string "you're more likely to lose.$"
 

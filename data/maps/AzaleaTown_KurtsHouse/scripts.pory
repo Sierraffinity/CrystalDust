@@ -12,8 +12,8 @@ const PNK_APRICORN = 7
 mapscripts AzaleaTown_KurtsHouse_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         if (flag(FLAG_CLEARED_SLOWPOKE_WELL) &&
-            //!flag(FLAG_FOREST_IS_RESTLESS) &&
-            flag(FLAG_KURT_MAKING_BALLS))
+            !flag(FLAG_FOREST_IS_RESTLESS) &&
+            flag(FLAG_DAILY_KURT_MAKING_BALLS))
         {
             setobjectxyperm(KURT, 15, 3)
             setobjectmovementtype(KURT, MOVEMENT_TYPE_FACE_UP)
@@ -28,7 +28,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
     faceplayer
     // TODO: Check GS Ball
     if (!flag(FLAG_TEMP_1) &&
-        flag(FLAG_KURT_MAKING_BALLS))
+        flag(FLAG_DAILY_KURT_MAKING_BALLS))
     {
         if (flag(FLAG_BUGGING_KURT_TOO_MUCH))
         {
@@ -90,7 +90,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
                "Old KURT is on his way!")
         closemessage
         setflag(FLAG_HIDE_AZALEA_TOWN_SLOWPOKE_WELL_GUARD)
-        playse(SE_NIGERU)
+        playse(SE_FLEE)
     
         if (var(VAR_FACING) == DIR_NORTH)
         {
@@ -105,7 +105,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt {
             waitmovement(0)
         }
         
-        playse(SE_KAIDAN)
+        playse(SE_EXIT)
         removeobject(KURT)
         waitse
     }
@@ -127,7 +127,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
         giveitem(VAR_RESULT, VAR_KURT_GIVEN_APRICORN_QTY)
         if (var(VAR_RESULT))
         {
-            call(AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat)
+            msgbox(AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat)
             setvar(VAR_KURT_GIVEN_APRICORN, 0)
             setvar(VAR_KURT_GIVEN_APRICORN_QTY, 0)
             setflag(FLAG_TEMP_2)
@@ -138,7 +138,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
         // TODO: GS Ball stuff here
         if (!flag(FLAG_TEMP_2) && !flag(FLAG_TEMP_3))
         {
-            call(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement)
+            msgbox(AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement)
         }
 
         checkitem(ITEM_RED_APRICORN, 1)
@@ -179,28 +179,27 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornChecks {
 
         if (flag(FLAG_TEMP_2))
         {
-            call(AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat)
+            msgbox(AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat)
         }
         elif (flag(FLAG_TEMP_3))
         {
-            call(AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement)
+            msgbox(AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement)
         }
     }
     release
 }
 
-script AzaleaTown_KurtsHouse_EventScript_Kurt_TurnedOutGreat {
-    msgbox("KURT: That turned out great.\n"
-           "Try catching POKéMON with it.")
+text AzaleaTown_KurtsHouse_Text_Kurt_TurnedOutGreat {
+    "KURT: That turned out great.\n"
+    "Try catching POKéMON with it."
 }
 
-// TODO: Wait for local labels
-script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMissionStatement {
-    msgbox("KURT: I make BALLS from the shells\n"
-           "of APRICORNS.\p"
-           "Collect them from trees and bring\n"
-           "'em to me.\p"
-           "I'll make BALLS out of them.")
+text AzaleaTown_KurtsHouse_Text_Kurt_ApricornMissionStatement {
+    "KURT: I make BALLS from the shells\n"
+    "of APRICORNS.\p"
+    "Collect them from trees and bring\n"
+    "'em to me.\p"
+    "I'll make BALLS out of them."
 }
 
 script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu {
@@ -220,7 +219,7 @@ script AzaleaTown_KurtsHouse_EventScript_Kurt_ApricornMenu {
     if (var(VAR_KURT_GIVEN_APRICORN) != 0)
     {
         setflag(FLAG_TEMP_1)
-        setflag(FLAG_KURT_MAKING_BALLS)
+        setflag(FLAG_DAILY_KURT_MAKING_BALLS)
         call(AzaleaTown_KurtsHouse_EventScript_Kurt_ItllTakeADay)
     }
     else
@@ -258,7 +257,7 @@ script AzaleaTown_KurtsHouse_EventScript_KurtsGranddaughter {
     lock
     faceplayer
     if (flag(FLAG_TEMP_1) ||
-        flag(FLAG_KURT_MAKING_BALLS))
+        flag(FLAG_DAILY_KURT_MAKING_BALLS))
     {
         msgbox("I get to help Grandpa with his\n"
                "work now!\p"

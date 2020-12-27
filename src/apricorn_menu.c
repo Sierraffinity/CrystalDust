@@ -43,7 +43,7 @@ static EWRAM_DATA struct {
 static void InitApricornMenu(u8 taskId);
 static u8 AddWindowIfNotPresent(u8 whichWindow);
 static void ApricornMenu_Main_ProcessInput(u8 taskId);
-static void ApricornMenu_ItemPrint(u8 windowId, s32 id, u8 yOffset);
+static void ApricornMenu_ItemPrint(u8 windowId, u16 index, s32 id, u8 yOffset);
 static void ApricornMenu_RefreshListMenu(void);
 static void ApricornMenu_AddMainScrollIndicator(void);
 static void ApricornMenu_Exit(u8 taskId);
@@ -51,7 +51,6 @@ static void ApricornMenu_RemoveScrollIndicator(void);
 static void ApricornMenu_KurtAsksQuantity(u8 taskId, s32 whichApricorn);
 static void ApricornMenu_InitQuantityBox(u8 taskId);
 static void ApricornMenu_PrintQuantity(int windowId, int numToGive);
-static void ApricornMenu_MoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *unused);
 static void ApricornMenu_ChangeQuantityToGive(u8 taskId);
 static void ApricornMenu_ReturnToMain(u8 taskId);
 static void ApricornMenu_InitConfirmGive(u8 taskId);
@@ -93,7 +92,7 @@ static const struct WindowTemplate sApricornMenuWindows[] =
 static const struct ListMenuTemplate sApricornListMenuTemplate =
 {
     .items = NULL,
-    .moveCursorFunc = ApricornMenu_MoveCursor,
+    .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
     .itemPrintFunc = ApricornMenu_ItemPrint,
     .totalItems = 0,
     .maxShowed = 0,
@@ -108,7 +107,7 @@ static const struct ListMenuTemplate sApricornListMenuTemplate =
     .lettersSpacing = FALSE,
     .itemVerticalPadding = 0,
     .scrollMultiple = FALSE,
-    .fontId = 1
+    .fontId = 2
 };
 
 static const struct YesNoFuncTable sYesNoFunctions = {ApricornMenu_GiveApricornsToKurt, ApricornMenu_ReturnToMain};
@@ -150,7 +149,6 @@ static void InitApricornMenu(u8 taskId)
         sApricornMenu->pageItems = sApricornMenu->count + 1;
 
     FreeAndReserveObjectSpritePalettes();
-    LoadListMenuArrowsGfx();
 
     ApricornMenu_RefreshListMenu();
     sApricornMenu->listMenuTaskId = ListMenuInit(&gMultiuseListMenuTemplate, sApricornMenu->itemsAbove, sApricornMenu->cursorPos);
@@ -166,7 +164,7 @@ static u8 AddWindowIfNotPresent(u8 whichWindow)
     {
         *windowIdPtr = AddWindow(&sApricornMenuWindows[whichWindow]);
         DrawStdFrameWithCustomTileAndPalette(*windowIdPtr, FALSE, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
     }
     return *windowIdPtr;
 }
@@ -178,7 +176,7 @@ static void RemoveWindowIfPresent(u8 a)
     {
         ClearStdWindowAndFrameToTransparent(*windowIdLoc, FALSE);
         ClearWindowTilemap(*windowIdLoc);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
         RemoveWindow(*windowIdLoc);
         *windowIdLoc = 0xFF;
     }
@@ -278,21 +276,13 @@ static void ApricornMenu_Main_ProcessInput(u8 taskId)
     }
 }
 
-static void ApricornMenu_ItemPrint(u8 windowId, s32 id, u8 yOffset)
+static void ApricornMenu_ItemPrint(u8 windowId, u16 index, s32 id, u8 yOffset)
 {
     if (id != LIST_CANCEL)
     {
         ConvertIntToDecimalStringN(gStringVar1, sApricornMenu->apricorns[id].quantity, STR_CONV_MODE_RIGHT_ALIGN, 3);
         StringExpandPlaceholders(gStringVar4, gText_xVar1);
         AddTextPrinterParameterized(windowId, 0, gStringVar4, GetStringRightAlignXOffset(0, gStringVar4, 112), yOffset, TEXT_SPEED_FF, NULL);
-    }
-}
-
-void ApricornMenu_MoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *unused)
-{
-    if (onInit != TRUE)
-    {
-        PlaySE(SE_SELECT);
     }
 }
 
@@ -334,14 +324,14 @@ static void ApricornMenu_ChangeQuantityToGive(u8 taskId)
     {
         ApricornMenu_PrintQuantity(sApricornMenu->windowIds[WIN_QUANTITY], tItemCount);
     }
-    else if (gMain.newKeys & A_BUTTON)
+    else if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         RemoveWindowIfPresent(WIN_QUANTITY);
         ApricornMenu_RemoveScrollIndicator();
         ApricornMenu_InitConfirmGive(taskId);
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         RemoveWindowIfPresent(WIN_QUANTITY);
@@ -353,7 +343,7 @@ static void ApricornMenu_ChangeQuantityToGive(u8 taskId)
 static void ApricornMenu_ReturnToMain(u8 taskId)
 {
     ApricornMenu_AddMainScrollIndicator();
-    DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, 1, 0, gText_WhichApricorn, ApricornMenu_Main_ProcessInput);
+    DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, 2, 0, gText_WhichApricorn, ApricornMenu_Main_ProcessInput);
 }
 
 static void ApricornMenu_PrintQuantity(int windowId, int numToGive)
@@ -396,7 +386,7 @@ static void ApricornMenu_InitConfirmGive(u8 taskId)
 
 static void ApricornMenu_ConfirmGive(u8 taskId)
 {
-    CreateYesNoMenuWithCallbacks(taskId, &sApricornMenuWindows[WIN_YESNO], 1, 0, 2, 532, 14, &sYesNoFunctions);
+    CreateYesNoMenuWithCallbacks(taskId, &sApricornMenuWindows[WIN_YESNO], 2, 0, 2, 532, 14, &sYesNoFunctions);
 }
 
 static void ApricornMenu_GiveApricornsToKurt(u8 taskId)

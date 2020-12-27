@@ -8,7 +8,7 @@ $(OBJEVENTGFXDIR)/people/gold/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/gold/field_move.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 4 -mheight 4
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/gold/surfing.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -85,7 +85,7 @@ $(OBJEVENTGFXDIR)/people/gym_leaders/norman.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/people/gym_leaders/falkner.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/gym_leaders/wattson.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/gym_leaders/whitney.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/gym_leaders/winona.4bpp: %.4bpp: %.png
@@ -99,7 +99,7 @@ $(OBJEVENTGFXDIR)/people/kris/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/kris/field_move.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 4 -mheight 4
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/kris/surfing.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -120,17 +120,17 @@ $(OBJEVENTGFXDIR)/people/kris/underwater.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 
-$(OBJEVENTGFXDIR)/people/ruby_sapphire_brendan/walking.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/rs_brendan.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/ruby_sapphire_brendan/running.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/rs_may.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 
-$(OBJEVENTGFXDIR)/people/ruby_sapphire_may/walking.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/emerald_brendan.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/ruby_sapphire_may/running.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/emerald_may.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 
@@ -157,7 +157,7 @@ $(OBJEVENTGFXDIR)/people/team_magma/maxie.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/people/super_nerd.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(OBJEVENTGFXDIR)/people/beauty.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/buena.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/black_belt.4bpp: %.4bpp: %.png
@@ -238,7 +238,7 @@ $(OBJEVENTGFXDIR)/people/ninja_boy.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/people/little_boy.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(OBJEVENTGFXDIR)/people/twin.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/people/bill.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/little_girl.4bpp: %.4bpp: %.png
@@ -299,6 +299,9 @@ $(OBJEVENTGFXDIR)/people/picnicker.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/prof_elm.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/prof_oak.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/psychic_m.4bpp: %.4bpp: %.png
@@ -405,17 +408,17 @@ $(OBJEVENTGFXDIR)/people/youngster.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/slowpoke_tailless.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(OBJEVENTGFXDIR)/pokemon/azurill.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/pokemon/jigglypuff.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
 $(OBJEVENTGFXDIR)/pokemon/deoxys.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(OBJEVENTGFXDIR)/pokemon/dusclops.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 4
+$(OBJEVENTGFXDIR)/pokemon/sentret.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(OBJEVENTGFXDIR)/pokemon/enemy_zigzagoon.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 4 -mheight 4
+$(OBJEVENTGFXDIR)/pokemon/wooper.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
 
 $(OBJEVENTGFXDIR)/pokemon/groudon.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -423,11 +426,11 @@ $(OBJEVENTGFXDIR)/pokemon/groudon.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/ho_oh.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(OBJEVENTGFXDIR)/pokemon/kecleon.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/pokemon/machoke.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(OBJEVENTGFXDIR)/pokemon/kirlia.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 4
+$(OBJEVENTGFXDIR)/pokemon/persian.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(OBJEVENTGFXDIR)/pokemon/kyogre.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -447,8 +450,8 @@ $(OBJEVENTGFXDIR)/pokemon/pidgey.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/pikachu.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(OBJEVENTGFXDIR)/pokemon/poochyena.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 4 -mheight 4
+$(OBJEVENTGFXDIR)/pokemon/marill.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
 
 $(OBJEVENTGFXDIR)/pokemon/rattata.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
@@ -462,7 +465,7 @@ $(OBJEVENTGFXDIR)/pokemon/sudowoodo.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/farfetchd.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(OBJEVENTGFXDIR)/pokemon/wingull.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/pokemon/butterfree.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
 $(OBJEVENTGFXDIR)/pokemon/slowpoke.4bpp: %.4bpp: %.png
@@ -582,16 +585,16 @@ $(FLDEFFGFXDIR)/arrow.4bpp: %.4bpp: %.png
 $(FLDEFFGFXDIR)/ash.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(FLDEFFGFXDIR)/berry_tree_growth_sparkle.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/sparkle.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(FLDEFFGFXDIR)/bike_hop_big_splash.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/jump_big_splash.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(FLDEFFGFXDIR)/bike_hop_small_splash.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/jump_small_splash.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 1
 
-$(FLDEFFGFXDIR)/bike_hop_tall_grass.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/jump_tall_grass.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 1
 
 $(FLDEFFGFXDIR)/bike_tire_tracks.4bpp: %.4bpp: %.png
@@ -606,10 +609,13 @@ $(FLDEFFGFXDIR)/deep_sand_footprints.4bpp: %.4bpp: %.png
 $(FLDEFFGFXDIR)/ground_impact_dust.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 1
 
-$(FLDEFFGFXDIR)/jump_out_of_ash.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/ash_puff.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
 $(FLDEFFGFXDIR)/long_grass.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+$(FLDEFFGFXDIR)/long_grass_top_edge.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
 $(FLDEFFGFXDIR)/mountain_disguise.4bpp: %.4bpp: %.png
@@ -642,23 +648,35 @@ $(FLDEFFGFXDIR)/unknown_16.4bpp: %.4bpp: %.png
 $(FLDEFFGFXDIR)/unknown_17.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(FLDEFFGFXDIR)/unknown_18.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/unused_grass_2.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(FLDEFFGFXDIR)/unknown_19.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/unused_sand.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(FLDEFFGFXDIR)/unknown_20.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/water_surfacing.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(FLDEFFGFXDIR)/unknown_29.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/sand_pile.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 1
 
-$(FLDEFFGFXDIR)/lavaridge_gym_warp.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/ash_launch.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(FLDEFFGFXDIR)/unknown_35.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/small_sparkle.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(FLDEFFGFXDIR)/unused_grass.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/unused_grass_3.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+$(FLDEFFGFXDIR)/secret_power_cave.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+$(FLDEFFGFXDIR)/secret_power_shrub.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+$(FLDEFFGFXDIR)/secret_power_tree.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+$(FLDEFFGFXDIR)/record_mix_lights.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 1

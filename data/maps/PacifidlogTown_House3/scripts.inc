@@ -4,8 +4,8 @@ PacifidlogTown_House3_MapScripts:: @ 8203C10
 PacifidlogTown_House3_EventScript_Trader:: @ 8203C11
 	lock
 	faceplayer
-	goto_if_set FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED, PacifidlogTown_House3_EventScript_TradeCompleted
-	setvar VAR_0x8008, INGAME_TRADE_HORSEA
+	goto_if_set FLAG_GOLDENROD_NPC_TRADE_COMPLETED, PacifidlogTown_House3_EventScript_TradeCompleted
+	setvar VAR_0x8008, INGAME_TRADE_GIFT_SPEAROW
 	copyvar VAR_0x8004, VAR_0x8008
 	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
 	copyvar VAR_0x8009, VAR_RESULT
@@ -29,7 +29,7 @@ PacifidlogTown_House3_EventScript_Trader:: @ 8203C11
 	waitstate
 	bufferspeciesname 0, VAR_0x8009
 	msgbox PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou, MSGBOX_DEFAULT
-	setflag FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED
+	setflag FLAG_GOLDENROD_NPC_TRADE_COMPLETED
 	release
 	end
 

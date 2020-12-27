@@ -1,0 +1,47 @@
+mapscripts GoldenrodCity_DeptStore_4F_MapScripts {}
+
+script GoldenrodCity_DeptStore_4F_EventScript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(GoldenrodCity_DeptStore_4F_Pokemart_Clerk)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+raw `
+GoldenrodCity_DeptStore_4F_Pokemart_Clerk:
+	.2byte ITEM_PROTEIN
+	.2byte ITEM_IRON
+	.2byte ITEM_CARBOS
+	.2byte ITEM_CALCIUM
+	.2byte ITEM_HP_UP
+	.2byte ITEM_NONE
+`
+
+script GoldenrodCity_DeptStore_4F_EventScript_ProteinGuy {
+    msgbox("Hey.\n"
+           "I love strong POKéMON.\p"
+           "I feed them PROTEIN to crank up\n"
+           "their ATTACK.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_4F_EventScript_BugCatcher {
+    msgbox("IRON adds to your POKéMON's\n"
+           "DEFENSE.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_4F_EventScript_GameboyKid {
+    msgbox("Some POKéMON evolve only by being\n"
+           "traded via a Wireless Adapter or\l"
+	       "a GBA Game Link cable.\p"
+           "I know of four: MACHOKE, KADABRA,\n"
+           "HAUNTER and, um, GRAVELER.\p"
+           "I heard there are others too.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_DeptStore_4F_EventScript_FloorNumber {
+    msgbox("Let Us Pump Up Your POKéMON!\p"
+           "4F MEDICINE BOX", MSGBOX_SIGN)
+}

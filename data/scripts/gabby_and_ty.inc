@@ -13,8 +13,9 @@ EventScript_UnusedRet:: @ 828CCC6
 
 @ Gabby and Ty always move to the same spots for the first 5 battles
 @ From the 6th battle onwards, they move randomly between locations 6-8
+@ Note: The local IDs of Gabby and Ty are hard-coded in GabbyAndTySetScriptVarsToObjectEventLocalIds
 GabbyAndTy_EventScript_UpdateLocation:: @ 828CCC7
-	cleartrainerflag TRAINER_GABBY_AND_TY_6
+	cleartrainerflag TRAINER_ISAAC
 	specialvar VAR_RESULT, GabbyAndTyGetBattleNum
 	switch VAR_RESULT
 	case 0, GabbyAndTy_EventScript_MoveForBattle1
@@ -137,73 +138,73 @@ GabbyAndTy_EventScript_ShowAtRoute46_3:: @ 828CDD2
 	return
 
 GabbyAndTy_EventScript_GabbyBattle1:: @ 828CDD6
-	trainerbattle_double TRAINER_GABBY_AND_TY_1, GabbyAndTy_Text_GabbyPreFirstBattle, GabbyAndTy_Text_GabbyDefeatFirstTime, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_FirstInterview
+	trainerbattle_double TRAINER_BRIDGET, GabbyAndTy_Text_GabbyPreFirstBattle, GabbyAndTy_Text_GabbyDefeatFirstTime, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_FirstInterview
 	msgbox GabbyAndTy_Text_KeepingAnEyeOutForYou, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_TyBattle1:: @ 828CDF6
-	trainerbattle_double TRAINER_GABBY_AND_TY_1, GabbyAndTy_Text_TyPreFirstBattle, GabbyAndTy_Text_TyDefeatFirstTime, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_FirstInterview
+	trainerbattle_double TRAINER_BRIDGET, GabbyAndTy_Text_TyPreFirstBattle, GabbyAndTy_Text_TyDefeatFirstTime, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_FirstInterview
 	msgbox GabbyAndTy_Text_TyPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_GabbyBattle2:: @ 828CE16
-	trainerbattle_double TRAINER_GABBY_AND_TY_2, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_VICTORIA, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_KeepingAnEyeOutForYou, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_TyBattle2:: @ 828CE36
-	trainerbattle_double TRAINER_GABBY_AND_TY_2, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_VICTORIA, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_TyPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_GabbyBattle3:: @ 828CE56
-	trainerbattle_double TRAINER_GABBY_AND_TY_3, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_SAMANTHA, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_KeepingAnEyeOutForYou, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_TyBattle3:: @ 828CE76
-	trainerbattle_double TRAINER_GABBY_AND_TY_3, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_SAMANTHA, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_TyPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_GabbyBattle4:: @ 828CE96
-	trainerbattle_double TRAINER_GABBY_AND_TY_4, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_ERIC, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_KeepingAnEyeOutForYou, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_TyBattle4:: @ 828CEB6
-	trainerbattle_double TRAINER_GABBY_AND_TY_4, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_ERIC, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_TyPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_GabbyBattle5:: @ 828CED6
-	trainerbattle_double TRAINER_GABBY_AND_TY_5, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_TERU, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_KeepingAnEyeOutForYou, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_TyBattle5:: @ 828CEF6
-	trainerbattle_double TRAINER_GABBY_AND_TY_5, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_TERU, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_TyPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_GabbyBattle6:: @ 828CF16
-	trainerbattle_double TRAINER_GABBY_AND_TY_6, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_ISAAC, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_KeepingAnEyeOutForYou, MSGBOX_DEFAULT
 	release
 	end
 
 GabbyAndTy_EventScript_TyBattle6:: @ 828CF36
-	trainerbattle_double TRAINER_GABBY_AND_TY_6, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
+	trainerbattle_double TRAINER_ISAAC, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview
 	msgbox GabbyAndTy_Text_TyPostBattle, MSGBOX_DEFAULT
 	release
 	end

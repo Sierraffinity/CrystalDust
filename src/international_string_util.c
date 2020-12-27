@@ -40,7 +40,7 @@ int GetMaxWidthInMenuTable(const struct MenuAction *str, int arg1)
 
     for (var = 0, i = 0; i < arg1; i++)
     {
-        int stringWidth = GetStringWidth(1, str[i].text, 0);
+        int stringWidth = GetStringWidth(2, str[i].text, 0);
         if (stringWidth > var)
             var = stringWidth;
     }
@@ -54,7 +54,7 @@ int sub_81DB3D8(const struct MenuAction *str, const u8* arg1, int arg2)
 
     for (var = 0, i = 0; i < arg2; i++)
     {
-        int stringWidth = GetStringWidth(1, str[arg1[i]].text, 0);
+        int stringWidth = GetStringWidth(2, str[arg1[i]].text, 0);
         if (stringWidth > var)
             var = stringWidth;
     }
@@ -136,7 +136,7 @@ void PadNameString(u8 *dest, u8 padChar)
         while (length < PLAYER_NAME_LENGTH - 1)
         {
             dest[length] = EXT_CTRL_CODE_BEGIN;
-            dest[length + 1] = EXT_CTRL_CODE_UNKNOWN_7;
+            dest[length + 1] = EXT_CTRL_CODE_RESET_SIZE;
             length += 2;
         }
     }

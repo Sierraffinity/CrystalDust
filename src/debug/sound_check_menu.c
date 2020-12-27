@@ -7,14 +7,15 @@
 #include "main.h"
 #include "text.h"
 #include "menu.h"
+#include "game_build.h"
 #include "gpu_regs.h"
 #include "scanline_effect.h"
 #include "string_util.h"
-#include "constants/rgb.h"
-#include "constants/songs.h"
 #include "title_screen.h"
 #include "sound.h"
 #include "trainer_pokemon_sprites.h"
+#include "constants/rgb.h"
+#include "constants/songs.h"
 
 #define tWindowSelected data[0]
 #define tBgmIndex data[1]
@@ -258,25 +259,27 @@ void CB2_StartSoundCheckMenu(void) // sub_080E8320
 
 static void Task_InitSoundCheckMenu_CreateWindows(u8 taskId) // SanitizeDayCareMailForRuby
 {
-    const u8 soundcheckStr[] = _("SOUND TEST  A: PLAY  B: EXIT");
+    const u8 soundcheckStr[] = _("SOUND TEST{CLEAR_TO 120}A: PLAY  B: EXIT");
     const u8 bgmStr[] = _("MUSIC");
     const u8 seStr[] = _("SOUND EFFECTS");
-    const u8 upDownStr[] = _("{LEFT_ARROW}DOWN {RIGHT_ARROW}UP");
+    const u8 upDownStr[] = _("{LEFT_ARROW}PREV {RIGHT_ARROW}NEXT");
     const u8 driverStr[] = _("R: CRY TEST");
 
     if (!gPaletteFade.active)
     {
+        GetGameVersionString(gStringVar1);
         SetStandardWindowBorderStyle(WIN_INFO, FALSE);
-        AddTextPrinterParameterized(WIN_INFO, 1, soundcheckStr, 0, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(WIN_INFO, 1, driverStr, 100, 14, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, soundcheckStr, 0, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 0, gStringVar1, 0, 18, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, driverStr, 120, 14, TEXT_SPEED_FF, NULL);
         PutWindowTilemapAndCopyWindowToVram(WIN_INFO);
         SetStandardWindowBorderStyle(WIN_MUS, FALSE);
-        AddTextPrinterParameterized(WIN_MUS, 1, bgmStr, 0, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(WIN_MUS, 1, upDownStr, 100, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_MUS, 2, bgmStr, 0, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_MUS, 2, upDownStr, 100, 0, TEXT_SPEED_FF, NULL);
         PutWindowTilemapAndCopyWindowToVram(WIN_MUS);
         SetStandardWindowBorderStyle(WIN_SE, FALSE);
-        AddTextPrinterParameterized(WIN_SE, 1, seStr, 0, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(WIN_SE, 1, upDownStr, 100, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_SE, 2, seStr, 0, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_SE, 2, upDownStr, 100, 0, TEXT_SPEED_FF, NULL);
         PutWindowTilemapAndCopyWindowToVram(WIN_SE);
         SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 239));
         SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, 48));
@@ -291,7 +294,7 @@ static const u8 *const gSENames[];
 static void Task_HandleDrawingSoundCheckMenuText(u8 taskId) // sub_080E85F4
 {
     FillWindowPixelRect(WIN_MUS, PIXEL_FILL(1), 0, 14, 224, 12);
-    PrintSoundNumber(gTasks[taskId].tBgmIndex + (MUS_TETSUJI - 1), WIN_MUS); // print by BGM index
+    PrintSoundNumber(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1), WIN_MUS); // print by BGM index
     PrintPaddedString(gBGMNames[gTasks[taskId].tBgmIndex], WIN_MUS);
     FillWindowPixelRect(WIN_SE, PIXEL_FILL(1), 0, 14, 224, 12);
     PrintSoundNumber(gTasks[taskId].tSeIndex, WIN_SE);
@@ -301,19 +304,19 @@ static void Task_HandleDrawingSoundCheckMenuText(u8 taskId) // sub_080E85F4
 
 static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
 {
-    if (gMain.newKeys & R_BUTTON) // driver test
+    if (JOY_NEW(R_BUTTON)) // driver test
     {
         gTasks[taskId].tWhichSubmenu = 1;
         gTasks[taskId].tState = 0;
         gTasks[taskId].func = Task_DrawSubmenu;
     }
-    else if (gMain.newKeys & L_BUTTON)
+    else if (JOY_NEW(L_BUTTON))
     {
         gTasks[taskId].tWhichSubmenu = 0;
         gTasks[taskId].tState = 0;
         gTasks[taskId].func = Task_DrawSubmenu;
     }
-    else if (gMain.newKeys & A_BUTTON)
+    else if (JOY_NEW(A_BUTTON))
     {
         if (gTasks[taskId].tWindowSelected != TEST_MUS)
         {
@@ -343,72 +346,72 @@ static bool8 Task_ProcessSoundCheckMenuInput(u8 taskId) // sub_080E8688
             {
                 if (gTasks[taskId].tBgmIndex != 0)
                 {
-                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_TETSUJI - 1));
-                    m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_TETSUJI - 1));
+                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_LITTLEROOT_TEST - 1));
+                    m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1));
                     gTasks[taskId].tBgmIndexOld = gTasks[taskId].tBgmIndex;
                 }
                 else
                 {
-                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_TETSUJI - 1));
+                    m4aSongNumStop(gTasks[taskId].tBgmIndexOld + (MUS_LITTLEROOT_TEST - 1));
                     gTasks[taskId].tBgmIndexOld = 0;
                 }
             }
             else if (gTasks[taskId].tBgmIndex != 0)
             {
-                m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_TETSUJI - 1));
+                m4aSongNumStart(gTasks[taskId].tBgmIndex + (MUS_LITTLEROOT_TEST - 1));
                 gTasks[taskId].tBgmIndexOld = gTasks[taskId].tBgmIndex;
             }
         }
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         m4aSongNumStart(SE_SELECT);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB(0, 0, 0));
         gTasks[taskId].func = Task_ExitToTitleScreen;
     }
-    else if (gMain.newAndRepeatedKeys & (DPAD_UP | DPAD_DOWN))
+    else if (JOY_REPEAT(DPAD_UP | DPAD_DOWN))
     {
         gTasks[taskId].tWindowSelected ^= 1;
         HighlightSelectedWindow(gTasks[taskId].tWindowSelected);
         return FALSE;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    else if (JOY_REPEAT(DPAD_LEFT))
     {
         if (gTasks[taskId].tWindowSelected != TEST_MUS)
         {
             if (gTasks[taskId].tSeIndex > 0)
                 gTasks[taskId].tSeIndex--;
             else
-                gTasks[taskId].tSeIndex = SE_USSOKI;
+                gTasks[taskId].tSeIndex = SE_INTRO_LOGO_DING;
         }
         else
         {
             if (gTasks[taskId].tBgmIndex > 0)
                 gTasks[taskId].tBgmIndex--;
             else
-                gTasks[taskId].tBgmIndex = (PH_NURSE_SOLO - (MUS_TETSUJI - 1));
+                gTasks[taskId].tBgmIndex = (PH_NURSE_SOLO - (MUS_LITTLEROOT_TEST - 1));
         }
         return TRUE;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    else if (JOY_REPEAT(DPAD_RIGHT))
     {
         if (gTasks[taskId].tWindowSelected != TEST_MUS)
         {
-            if (gTasks[taskId].tSeIndex < SE_USSOKI)
+            if (gTasks[taskId].tSeIndex < SE_INTRO_LOGO_DING)
                 gTasks[taskId].tSeIndex++;
             else
                 gTasks[taskId].tSeIndex = 0;
         }
         else
         {
-            if (gTasks[taskId].tBgmIndex < (PH_NURSE_SOLO - (MUS_TETSUJI - 1)))
+            if (gTasks[taskId].tBgmIndex < (PH_NURSE_SOLO - (MUS_LITTLEROOT_TEST - 1)))
                 gTasks[taskId].tBgmIndex++;
             else
                 gTasks[taskId].tBgmIndex = 0;
         }
         return TRUE;
     }
-    else if (gMain.heldKeys & SELECT_BUTTON)
+    else if (JOY_HELD(SELECT_BUTTON))
     {
         sIsFastForwarding = 1;
     }
@@ -462,24 +465,24 @@ static void PrintSoundNumber(u16 soundIndex, u8 windowId) // sub_080E8928
     gStringVar1[3] = CHAR_COLON;
     gStringVar1[4] = EOS;
     
-    AddTextPrinterParameterized(windowId, 1, gStringVar1, 0, 14, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gStringVar1, 0, 14, TEXT_SPEED_FF, NULL);
     PutWindowTilemapAndCopyWindowToVram(windowId);
 }
 
 static void PrintPaddedString(const u8 *const string, u8 windowId) // sub_080E8978
 {
     u8 i;
-    u8 str[16];
+    u8 str[32];
 
-    for (i = 0; i < 15; i++)
+    for (i = 0; i < 31; i++)
         str[i] = CHAR_SPACE; // pad string.
 
-    str[15] = EOS;
+    str[31] = EOS;
 
-    for (i = 0; string[i] != EOS && i < 15; i++)
+    for (i = 0; string[i] != EOS && i < 31; i++)
         str[i] = string[i];
 
-    AddTextPrinterParameterized(windowId, 1, str, 40, 14, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, str, 40, 14, TEXT_SPEED_FF, NULL);
     PutWindowTilemapAndCopyWindowToVram(windowId);
 }
 
@@ -543,20 +546,20 @@ static void Task_DrawDriverTestMenu(u8 taskId) // sub_080E8AA0
     const u8 stereoStr[] = _("STEREO");
 
     SetStandardWindowBorderStyle(WIN_INFO, FALSE);
-    AddTextPrinterParameterized(WIN_INFO, 1, bbackStr, 136, 16, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, aplayStr, 136, 32, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, playingStr, 136, 80, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, reverseStr, 136, 96, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, stereoStr, 136, 112, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, voiceStr, 8, 0, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, volumeStr, 8, 16, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, panpotStr, 8, 32, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, pitchStr, 8, 48, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, lengthStr, 8, 64, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, releaseStr, 8, 80, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, progressStr, 8, 96, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, chorusStr, 8, 112, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, priorityStr, 8, 128, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, bbackStr, 136, 16, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, aplayStr, 136, 32, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, playingStr, 136, 80, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, reverseStr, 136, 96, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, stereoStr, 136, 112, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, voiceStr, 8, 0, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, volumeStr, 8, 16, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, panpotStr, 8, 32, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, pitchStr, 8, 48, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, lengthStr, 8, 64, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, releaseStr, 8, 80, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, progressStr, 8, 96, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, chorusStr, 8, 112, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, priorityStr, 8, 128, TEXT_SPEED_FF, NULL);
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, DISPLAY_WIDTH));
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, DISPLAY_HEIGHT));
     sDriverTest_IsCryPlaying = 0;
@@ -574,66 +577,66 @@ static void Task_DrawDriverTestMenu(u8 taskId) // sub_080E8AA0
     sSoundTestParams[CRY_TEST_CHORUS] = 0;
     sSoundTestParams[CRY_TEST_PRIORITY] = 2;
     PrintDriverTestMenuText();
-    sub_81983AC(WIN_INFO, 1, 0, 0, 16, 9, 0);
+    sub_81983AC(WIN_INFO, 2, 0, 0, 16, 9, 0);
     gTasks[taskId].func = Task_ProcessDriverTestInput;
 }
 
 static void Task_ProcessDriverTestInput(u8 taskId) // sub_080E8D68
 {
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         gTasks[taskId].tState = 0;
         gTasks[taskId].func = Task_InitSoundCheckMenu;
         return;
     }
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
     {
         Menu_MoveCursorNoWrapAround(-1);
         return;
     }
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
     {
         Menu_MoveCursorNoWrapAround(1);
         return;
     }
-    if (gMain.newKeys & START_BUTTON)
+    if (JOY_NEW(START_BUTTON))
     {
         sDriverTest_Reverse ^= 1;
         PrintDriverTestMenuText();
         return;
     }
-    if (gMain.newKeys & SELECT_BUTTON)
+    if (JOY_NEW(SELECT_BUTTON))
     {
         sDriverTest_Stereo ^= 1;
         PrintDriverTestMenuText();
         SetPokemonCryStereo(sDriverTest_Stereo);
         return;
     }
-    if (gMain.newAndRepeatedKeys & R_BUTTON)
+    if (JOY_REPEAT(R_BUTTON))
     {
         AdjustSelectedDriverParam(10);
         PrintDriverTestMenuText();
         return;
     }
-    if (gMain.newAndRepeatedKeys & L_BUTTON)
+    if (JOY_REPEAT(L_BUTTON))
     {
         AdjustSelectedDriverParam(-10);
         PrintDriverTestMenuText();
         return;
     }
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
     {
         AdjustSelectedDriverParam(-1);
         PrintDriverTestMenuText();
         return;
     }
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         AdjustSelectedDriverParam(1);
         PrintDriverTestMenuText();
         return;
     }
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         u8 divide, remaining;
 
@@ -779,7 +782,7 @@ static void PrintSignedNumber(int n, u16 x, u16 y, u8 digits) // sub_080E90C0
         n %= powersOfTen[i];
     }
 
-    AddTextPrinterParameterized(WIN_INFO, 1, str, x, y, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, str, x, y, TEXT_SPEED_FF, NULL);
     PutWindowTilemapAndCopyWindowToVram(WIN_INFO);
 }
 
@@ -790,8 +793,8 @@ static void Task_DrawPanTestMenu(u8 taskId) // sub_080E91E4
     const u8 seStr[] = _("SOUND EFFECT");
     const u8 panStr[] = _("PAN");
 
-    AddTextPrinterParameterized(WIN_INFO, 1, seStr, 10, 14, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(WIN_INFO, 1, panStr, 10, 28, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, seStr, 10, 14, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_INFO, 2, panStr, 10, 28, TEXT_SPEED_FF, NULL);
 
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, DISPLAY_WIDTH));
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, DISPLAY_HEIGHT));
@@ -833,13 +836,13 @@ static void Task_ProcessPanTestInput(u8 taskId) // sub_080E9284
         }
     }
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         gTasks[taskId].tState = 0;
         gTasks[taskId].func = Task_InitSoundCheckMenu;
         return;
     }
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         s8 panpot = gUnknown_08566E58[sSoundTestParams[CRY_TEST_PANPOT]];
         if (panpot != -128)
@@ -866,32 +869,32 @@ static void Task_ProcessPanTestInput(u8 taskId) // sub_080E9284
         sSoundTestParams[CRY_TEST_PROGRESS] = 0;
         return;
     }
-    if (gMain.newKeys & L_BUTTON)
+    if (JOY_NEW(L_BUTTON))
     {
         sSoundTestParams[CRY_TEST_PANPOT]++;
         if (sSoundTestParams[CRY_TEST_PANPOT] > 4)
             sSoundTestParams[CRY_TEST_PANPOT] = 0;
         PrintPanTestMenuText();
     }
-    if (gMain.newKeys & R_BUTTON)
+    if (JOY_NEW(R_BUTTON))
     {
         sSoundTestParams[CRY_TEST_PANPOT]--;
         if (sSoundTestParams[CRY_TEST_PANPOT] < 0)
             sSoundTestParams[CRY_TEST_PANPOT] = 4;
         PrintPanTestMenuText();
     }
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
     {
         sSoundTestParams[CRY_TEST_VOICE]++;
-        if (sSoundTestParams[CRY_TEST_VOICE] > SE_USSOKI)
+        if (sSoundTestParams[CRY_TEST_VOICE] > SE_SUDOWOODO_SHAKE)
             sSoundTestParams[CRY_TEST_VOICE] = MUS_DUMMY;
         PrintPanTestMenuText();
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    else if (JOY_REPEAT(DPAD_LEFT))
     {
         sSoundTestParams[CRY_TEST_VOICE]--;
         if (sSoundTestParams[CRY_TEST_VOICE] < MUS_DUMMY)
-            sSoundTestParams[CRY_TEST_VOICE] = SE_USSOKI;
+            sSoundTestParams[CRY_TEST_VOICE] = SE_SUDOWOODO_SHAKE;
         PrintPanTestMenuText();
     }
 }
@@ -939,10 +942,10 @@ static void PrintPanTestMenuText(void) // sub_080E94B8
     switch (gUnknown_08566E58[sSoundTestParams[CRY_TEST_PANPOT]])
     {
     case 127:
-        AddTextPrinterParameterized(WIN_INFO, 1, lrStr, 100, 28, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, lrStr, 100, 28, TEXT_SPEED_FF, NULL);
         break;
     case -128:
-        AddTextPrinterParameterized(WIN_INFO, 1, rlStr, 100, 28, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_INFO, 2, rlStr, 100, 28, TEXT_SPEED_FF, NULL);
         break;
     default:
         PrintSignedNumber(gUnknown_08566E58[sSoundTestParams[CRY_TEST_PANPOT]], 100, 28, 3);
@@ -1014,216 +1017,216 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
 }
 
 #define SOUND_LIST_BGM \
-	X(MUS_STOP, "STOP") \
-    X(MUS_TETSUJI, "MUS-TETSUJI") \
-    X(MUS_FIELD13, "MUS-FIELD13") \
-    X(MUS_WILDPOSTCATCH, "MUS-WILDPOSTCATCH") \
-    X(MUS_WILDDEFEAT, "MUS-WILDDEFEAT") \
-    X(MUS_KACHI3, "MUS-KACHI3") \
-    X(MUS_KACHI5, "MUS-KACHI5") \
-    X(MUS_PCC, "MUS-PCC") \
-    X(MUS_NIBI, "MUS-NIBI") \
-    X(MUS_SUIKUN, "MUS-SUIKUN") \
+    X(MUS_STOP, "STOP") \
+    X(MUS_LITTLEROOT_TEST, "MUS-LITTLEROOT-TEST") \
+    X(MUS_GSC_ROUTE, "MUS-GSC-ROUTE") \
+    X(MUS_CAUGHT, "MUS-CAUGHT") \
+    X(MUS_VICTORY_WILD, "MUS-VICTORY-WILD") \
+    X(MUS_VICTORY_GYM_LEADER, "MUS-VICTORY-GYM-LEADER") \
+    X(MUS_VICTORY_LEAGUE, "MUS-VICTORY-LEAGUE") \
+    X(MUS_POKECOM_CENTER, "MUS-POKECOM-CENTER") \
+    X(MUS_GSC_PEWTER, "MUS-GSC-PEWTER") \
+    X(MUS_C_VS_LEGEND_BEAST, "MUS-C-VS-LEGEND-BEAST") \
     X(MUS_ROUTE29, "MUS-ROUTE29") \
     X(MUS_ROUTE34, "MUS-ROUTE34") \
-    X(MUS_DOORO_X3, "MUS-DOORO-X3") \
+    X(MUS_ROUTE120, "MUS-ROUTE120") \
     X(MUS_VIOLET, "MUS-VIOLET") \
     X(MUS_CHERRYGROVE, "MUS-CHERRYGROVE") \
     X(MUS_GYM, "MUS-GYM") \
-    X(MUS_NAMINORI, "MUS-NAMINORI") \
-    X(MUS_ILEXFOREST, "MUS-ILEXFOREST") \
-    X(MUS_FANFA1, "MUS-FANFA1") \
-    X(MUS_ME_ASA, "MUS-ME-ASA") \
-    X(MUS_ME_BACHI, "MUS-ME-BACHI") \
-    X(MUS_FANFA4, "MUS-FANFA4") \
-    X(MUS_FANFA5, "MUS-FANFA5") \
-    X(MUS_ME_WAZA, "MUS-ME-WAZA") \
-    X(MUS_RUINSOFALPH, "MUS-RUINSOFALPH") \
+    X(MUS_SURF, "MUS-SURF") \
+    X(MUS_ILEX_FOREST, "MUS-ILEX-FOREST") \
+    X(MUS_LEVEL_UP, "MUS-LEVEL-UP") \
+    X(MUS_HEAL, "MUS-HEAL") \
+    X(MUS_OBTAIN_BADGE, "MUS-OBTAIN-BADGE") \
+    X(MUS_OBTAIN_ITEM, "MUS-OBTAIN-ITEM") \
+    X(MUS_EVOLVED, "MUS-EVOLVED") \
+    X(MUS_OBTAIN_TMHM, "MUS-OBTAIN-TMHM") \
+    X(MUS_RUINS_OF_ALPH, "MUS-RUINS-OF-ALPH") \
     X(MUS_ROUTE30, "MUS-ROUTE30") \
-    X(MUS_FUNE_KAN, "MUS-FUNE-KAN") \
-    X(MUS_ME_SHINKA, "MUS-ME-SHINKA") \
-    X(MUS_SHINKA, "MUS-SHINKA") \
-    X(MUS_ME_WASURE, "MUS-ME-WASURE") \
-    X(MUS_ENCFEMALECLASSIC, "MUS-ENCFEMALECLASSIC") \
-    X(MUS_ENCMALE, "MUS-ENCMALE") \
-    X(MUS_DARKCAVE, "MUS-DARKCAVE") \
-    X(MUS_MACHI_S3, "MUS-MACHI-S3") \
-    X(MUS_ELMSLAB, "MUS-ELMSLAB") \
-    X(MUS_B_TOWER, "MUS-B-TOWER") \
-    X(MUS_SWIMEYE, "MUS-SWIMEYE") \
-    X(MUS_DAN03, "MUS-DAN03") \
-    X(MUS_FANFAREEGG, "MUS-FANFAREEGG") \
-    X(MUS_ME_TAMA, "MUS-ME-TAMA") \
-    X(MUS_ME_B_BIG, "MUS-ME-B-BIG") \
-    X(MUS_ME_B_SMALL, "MUS-ME-B-SMALL") \
-    X(MUS_ME_ZANNEN, "MUS-ME-ZANNEN") \
-    X(MUS_BD_TIME, "MUS-BD-TIME") \
-    X(MUS_TEST1, "MUS-TEST1") \
-    X(MUS_TEST2, "MUS-TEST2") \
-    X(MUS_TEST3, "MUS-TEST3") \
-    X(MUS_TEST4, "MUS-TEST4") \
-    X(MUS_POKEMONMARCH, "MUS-POKEMONMARCH") \
-    X(MUS_GOMACHI0, "MUS-GOMACHI0") \
-    X(MUS_GOTOWN, "MUS-GOTOWN") \
-    X(MUS_POKECEN, "MUS-POKECEN") \
-    X(MUS_NEXTROAD, "MUS-NEXTROAD") \
-    X(MUS_GRANROAD, "MUS-GRANROAD") \
+    X(MUS_BUENAS_THEME, "MUS-BUENA") \
+    X(MUS_EVOLUTION_INTRO, "MUS-EVOLUTION-INTRO") \
+    X(MUS_EVOLUTION, "MUS-EVOLUTION") \
+    X(MUS_MOVE_DELETED, "MUS-MOVE-DELETED") \
+    X(MUS_ENCOUNTER_LASS, "MUS-ENCOUNTER-LASS") \
+    X(MUS_ENCOUNTER_MALE, "MUS-ENCOUNTER-MALE") \
+    X(MUS_DARK_CAVE, "MUS-DARK-CAVE") \
+    X(MUS_FORTREE, "MUS-FORTREE") \
+    X(MUS_ELMS_LAB, "MUS-ELMS-LAB") \
+    X(MUS_B_TOWER_RS, "MUS-B-TOWER-RS") \
+    X(MUS_ENCOUNTER_SWIMMER, "MUS-ENCOUNTER-SWIMMER") \
+    X(MUS_CAVE_OF_ORIGIN, "MUS-CAVE-OF-ORIGIN") \
+    X(MUS_OBTAIN_EGG, "MUS-OBTAIN-EGG") \
+    X(MUS_PKMNCHANNEL_INTERLUDE, "MUS-PKMNCHANNEL-INTERLUDE") \
+    X(MUS_SLOTS_JACKPOT, "MUS-SLOTS-JACKPOT") \
+    X(MUS_SLOTS_WIN, "MUS-SLOTS-WIN") \
+    X(MUS_TOO_BAD, "MUS-TOO-BAD") \
+    X(MUS_ROULETTE, "MUS-ROULETTE") \
+    X(MUS_LINK_CONTEST_P1, "MUS-LINK-CONTEST-P1") \
+    X(MUS_LINK_CONTEST_P2, "MUS-LINK-CONTEST-P2") \
+    X(MUS_LINK_CONTEST_P3, "MUS-LINK-CONTEST-P3") \
+    X(MUS_LINK_CONTEST_P4, "MUS-LINK-CONTEST-P4") \
+    X(MUS_POKEMON_MARCH, "MUS-POKEMON-MARCH") \
+    X(MUS_VERDANTURF, "MUS-VERDANTURF") \
+    X(MUS_GOLDENROD, "MUS-GOLDENROD") \
+    X(MUS_POKE_CENTER, "MUS-POKE-CENTER") \
+    X(MUS_ROUTE104, "MUS-ROUTE104") \
+    X(MUS_ROUTE119, "MUS-ROUTE119") \
     X(MUS_CYCLING, "MUS-CYCLING") \
-    X(MUS_FRIENDLY, "MUS-FRIENDLY") \
-    X(MUS_NEWBARK, "MUS-NEWBARK") \
-    X(MUS_TOZAN, "MUS-TOZAN") \
-    X(MUS_ENCFEMALE, "MUS-ENCFEMALE") \
-    X(MUS_MINAMO, "MUS-MINAMO") \
-    X(MUS_ASHROAD, "MUS-ASHROAD") \
-    X(MUS_MOMENC, "MUS-MOMENC") \
-    X(MUS_DEEPDEEP, "MUS-DEEPDEEP") \
-    X(MUS_KACHI1, "MUS-KACHI1") \
-    X(MUS_TITLE3, "MUS-TITLE3") \
-    X(MUS_DEMO1, "MUS-DEMO1") \
-    X(MUS_RIVALTHEME, "MUS-RIVALENC") \
-    X(MUS_ENCSAGE, "MUS-ENCSAGE") \
-    X(MUS_ENCMALECLASSIC, "MUS-ENCMALECLASSIC") \
-    X(MUS_MAINMENU, "MUS-MAINMENU") \
-    X(MUS_ENCROCKET, "MUS-ENCROCKET") \
-    X(MUS_FOLLOWME, "MUS-FOLLOWME") \
-    X(MUS_RIVALEXIT, "MUS-RIVALEXIT") \
-    X(MUS_RAINBOW, "MUS-RAINBOW") \
-    X(MUS_ENCSUSPICIOUS, "MUS-ENCSUSPICIOUS") \
-    X(MUS_KACHI4, "MUS-KACHI4") \
-    X(MUS_ROPEWAY, "MUS-ROPEWAY") \
-    X(MUS_CASINO, "MUS-CASINO") \
+    X(MUS_POKEMON_LULLABY, "MUS-PKMNLULLABY") \
+    X(MUS_NEW_BARK, "MUS-NEW-BARK") \
+    X(MUS_MT_CHIMNEY, "MUS-MT-CHIMNEY") \
+    X(MUS_ENCOUNTER_FEMALE, "MUS-ENCOUNTER-FEMALE") \
+    X(MUS_LILYCOVE, "MUS-LILYCOVE") \
+    X(MUS_ROUTE111, "MUS-ROUTE111") \
+    X(MUS_MOMS_THEME, "MUS-MOMSTHEME") \
+    X(MUS_UNDERWATER, "MUS-UNDERWATER") \
+    X(MUS_VICTORY_TRAINER, "MUS-VICTORY-TRAINER") \
+    X(MUS_TITLE, "MUS-TITLE") \
+    X(MUS_INTRO, "MUS-INTRO") \
+    X(MUS_ENCOUNTER_RIVAL, "MUS-ENCOUNTER-RIVAL") \
+    X(MUS_ENCOUNTER_SAGE, "MUS-ENCOUNTER-SAGE") \
+    X(MUS_ENCOUNTER_OFFICER, "MUS-ENCOUNTER-OFFICER") \
+    X(MUS_MAIN_MENU, "MUS-MAIN-MENU") \
+    X(MUS_ENCOUNTER_ROCKET, "MUS-ENCOUNTER-ROCKET") \
+    X(MUS_FOLLOW_ME, "MUS-FOLLOW-ME") \
+    X(MUS_RIVAL_EXIT, "MUS-RIVAL-EXIT") \
+    X(MUS_EVER_GRANDE, "MUS-EVER-GRANDE") \
+    X(MUS_ENCOUNTER_SUSPICIOUS, "MUS-ENCOUNTER-SUSPICIOUS") \
+    X(MUS_VICTORY_AQUA_MAGMA, "MUS-VICTORY-AQUA-MAGMA") \
+    X(MUS_CABLE_CAR, "MUS-CABLE-CAR") \
+    X(MUS_GAME_CORNER, "MUS-GAME-CORNER") \
     X(MUS_AZALEA, "MUS-AZALEA") \
-    X(MUS_SAFARI, "MUS-SAFARI") \
-    X(MUS_C_ROAD, "MUS-C-ROAD") \
-    X(MUS_AJITO, "MUS-AJITO") \
-    X(MUS_M_BOAT, "MUS-M-BOAT") \
-    X(MUS_SPROUTTOWER, "MUS-SPROUTTOWER") \
-    X(MUS_FINECITY, "MUS-FINECITY") \
-    X(MUS_MACHUPI, "MUS-MACHUPI") \
-    X(MUS_OAKTHEME, "MUS-OAKSTHEME") \
-    X(MUS_DENDOU, "MUS-DENDOU") \
-    X(MUS_TONEKUSA, "MUS-TONEKUSA") \
-    X(MUS_MABOROSI, "MUS-MABOROSI") \
-    X(MUS_CON_FAN, "MUS-CON-FAN") \
-    X(MUS_CONTEST0, "MUS-CONTEST0") \
-    X(MUS_OAKSLAB, "MUS-OAKSLAB") \
-    X(MUS_T_BATTLE, "MUS-T-BATTLE") \
-    X(MUS_OOAME, "MUS-OOAME") \
-    X(MUS_HIDERI, "MUS-HIDERI") \
-    X(MUS_RUNECITY, "MUS-RUNECITY") \
-    X(MUS_CON_K, "MUS-CON-K") \
-    X(MUS_EIKOU_R, "MUS-EIKOU-R") \
-    X(MUS_KARAKURI, "MUS-KARAKURI") \
-    X(MUS_HUTAGO, "MUS-HUTAGO") \
-    X(MUS_SITENNOU, "MUS-SITENNOU") \
-    X(MUS_ENCSUSPICIOUSCLASSIC, "MUS-ENCSUSPICIOUSCLASSIC") \
-    X(MUS_CONLOBBY, "MUS-CONLOBBY") \
-    X(MUS_ENCKIMONO, "MUS-ENCKIMONO") \
-    X(MUS_DAIGO, "MUS-DAIGO") \
-    X(MUS_THANKFOR, "MUS-THANKFOR") \
+    X(MUS_BUG_CATCHING_CONTEST, "MUS-BUG-CATCHING-CONTEST") \
+    X(MUS_VICTORY_ROAD, "MUS-VICTORY-ROAD") \
+    X(MUS_AQUA_MAGMA_HIDEOUT, "MUS-AQUA-MAGMA-HIDEOUT") \
+    X(MUS_SAILING, "MUS-SAILING") \
+    X(MUS_SPROUT_TOWER, "MUS-SPROUT-TOWER") \
+    X(MUS_SLATEPORT, "MUS-SLATEPORT") \
+    X(MUS_NATIONAL_PARK, "MUS-NATIONAL-PARK") \
+    X(MUS_OAKS_THEME, "MUS-OAKS-THEME") \
+    X(MUS_HALL_OF_FAME, "MUS-HALL-OF-FAME") \
+    X(MUS_FALLARBOR, "MUS-FALLARBOR") \
+    X(MUS_SEALED_CHAMBER, "MUS-SEALED-CHAMBER") \
+    X(MUS_CONTEST_WINNER, "MUS-CONTEST-WINNER") \
+    X(MUS_CONTEST, "MUS-CONTEST") \
+    X(MUS_OAKS_LAB, "MUS-OAKS-LAB") \
+    X(MUS_ROCKET_TAKEOVER, "MUS-ROCKET-TAKEOVER") \
+    X(MUS_UNOWN_RADIO, "MUS-UNOWN-RADIO") \
+    X(MUS_WEATHER_GROUDON, "MUS-WEATHER-GROUDON") \
+    X(MUS_SOOTOPOLIS, "MUS-SOOTOPOLIS") \
+    X(MUS_CONTEST_RESULTS, "MUS-CONTEST-RESULTS") \
+    X(MUS_HALL_OF_FAME_ROOM, "MUS-HALL-OF-FAME-ROOM") \
+    X(MUS_TRICK_HOUSE, "MUS-TRICK-HOUSE") \
+    X(MUS_BUG_CONTEST_PREP, "MUS-BUG-CONTEST-PREP") \
+    X(MUS_ENCOUNTER_ELITE_FOUR, "MUS-ENCOUNTER-ELITE-FOUR") \
+    X(MUS_ENCOUNTER_FISHERMAN, "MUS-ENCOUNTER-FISHERMAN") \
+    X(MUS_CONTEST_LOBBY, "MUS-CONTEST-LOBBY") \
+    X(MUS_ENCOUNTER_KIMONO, "MUS-ENCOUNTER-KIMONO") \
+    X(MUS_ENCOUNTER_CHAMPION, "MUS-ENCOUNTER-CHAMPION") \
+    X(MUS_CREDITS, "MUS-CREDITS") \
     X(MUS_END, "MUS-END") \
     X(MUS_B_FRONTIER, "MUS-B-FRONTIER") \
     X(MUS_B_ARENA, "MUS-B-ARENA") \
-    X(MUS_ME_POINTGET, "MUS-ME-POINTGET") \
-    X(MUS_ME_TORE_EYE, "MUS-ME-TORE-EYE") \
-    X(MUS_PYRAMID, "MUS-PYRAMID") \
-    X(MUS_PYRAMID_TOP, "MUS-PYRAMID-TOP") \
+    X(MUS_OBTAIN_B_POINTS, "MUS-OBTAIN-B-POINTS") \
+    X(MUS_REGISTER_PHONE, "MUS-REGISTER-PHONE") \
+    X(MUS_B_PYRAMID, "MUS-B-PYRAMID") \
+    X(MUS_B_PYRAMID_TOP, "MUS-B-PYRAMID-TOP") \
     X(MUS_B_PALACE, "MUS-B-PALACE") \
-    X(MUS_REKKUU_KOURIN, "MUS-REKKUU-KOURIN") \
-    X(MUS_SATTOWER, "MUS-SATTOWER") \
-    X(MUS_ME_SYMBOLGET, "MUS-ME-SYMBOLGET") \
+    X(MUS_RAYQUAZA_APPEARS, "MUS-RAYQUAZA-APPEARS") \
+    X(MUS_B_TOWER, "MUS-B-TOWER") \
+    X(MUS_OBTAIN_SYMBOL, "MUS-OBTAIN-SYMBOL") \
     X(MUS_B_DOME, "MUS-B-DOME") \
-    X(MUS_B_TUBE, "MUS-B-TUBE") \
+    X(MUS_B_PIKE, "MUS-B-PIKE") \
     X(MUS_B_FACTORY, "MUS-B-FACTORY") \
-    X(MUS_VS_REKKU, "MUS-VS-REKKU") \
-    X(MUS_VS_FRONT, "MUS-VS-FRONT") \
+    X(MUS_VS_RAYQUAZA, "MUS-VS-RAYQUAZA") \
+    X(MUS_VS_FRONTIER_BRAIN, "MUS-VS-FRONTIER-BRAIN") \
     X(MUS_VS_MEW, "MUS-VS-MEW") \
-    X(MUS_B_DOME1, "MUS-B-DOME1") \
-    X(MUS_BTLJOHTOWILD, "MUS-BTLJOHTOWILD") \
-    X(MUS_BTLROCKET, "MUS-BTLROCKET") \
-    X(MUS_BTLJOHTOTRN, "MUS-BTLJOHTOTRN") \
-    X(MUS_BTLJOHTOLDR, "MUS-BTLJOHTOLDR") \
-    X(MUS_BATTLE33, "MUS-BATTLE33") \
-    X(MUS_BATTLE36, "MUS-BATTLE36") \
-    X(MUS_BATTLE34, "MUS-BATTLE34") \
-    X(MUS_BTLRIVAL, "MUS-BTLRIVAL") \
-    X(MUS_BATTLE38, "MUS-BATTLE38") \
-    X(MUS_BATTLE30, "MUS-BATTLE30") \
-    X(MUS_RG_ANNAI, "MUS-RG-ANNAI") \
-    X(MUS_RG_SLOT, "MUS-RG-SLOT") \
-    X(MUS_RG_AJITO, "MUS-RG-AJITO") \
+    X(MUS_B_DOME_LOBBY, "MUS-B-DOME-LOBBY") \
+    X(MUS_VS_JOHTO_WILD, "MUS-VS-JOHTO-WILD") \
+    X(MUS_VS_ROCKET, "MUS-VS-ROCKET") \
+    X(MUS_VS_JOHTO_TRAINER, "MUS-VS-JOHTO-TRAINER") \
+    X(MUS_VS_JOHTO_LEADER, "MUS-VS-JOHTO-LEADER") \
+    X(MUS_VS_CHAMPION, "MUS-VS-CHAMPION") \
+    X(MUS_VS_REGI, "MUS-VS-REGI") \
+    X(MUS_VS_KYOGRE_GROUDON, "MUS-VS-KYOGRE-GROUDON") \
+    X(MUS_VS_RIVAL, "MUS-VS-RIVAL") \
+    X(MUS_VS_ELITE_FOUR, "MUS-VS-ELITE-FOUR") \
+    X(MUS_VS_AQUA_MAGMA_LEADER, "MUS-VS-AQUA-MAGMA-LEADER") \
+    X(MUS_RG_FOLLOW_ME, "MUS-RG-FOLLOW-ME") \
+    X(MUS_RG_GAME_CORNER, "MUS-RG-GAME-CORNER") \
+    X(MUS_RG_ROCKET_HIDEOUT, "MUS-RG-ROCKET-HIDEOUT") \
     X(MUS_RG_GYM, "MUS-RG-GYM") \
-    X(MUS_RG_PURIN, "MUS-RG-PURIN") \
-    X(MUS_RG_DEMO, "MUS-RG-DEMO") \
+    X(MUS_RG_JIGGLYPUFF, "MUS-RG-JIGGLYPUFF") \
+    X(MUS_RG_INTRO_FIGHT, "MUS-RG-INTRO-FIGHT") \
     X(MUS_RG_TITLE, "MUS-RG-TITLE") \
-    X(MUS_RG_GUREN, "MUS-RG-GUREN") \
-    X(MUS_RG_SHION, "MUS-RG-SHION") \
-    X(MUS_RG_KAIHUKU, "MUS-RG-KAIHUKU") \
+    X(MUS_RG_CINNABAR, "MUS-RG-CINNABAR") \
+    X(MUS_RG_LAVENDER, "MUS-RG-LAVENDER") \
+    X(MUS_RG_HEAL, "MUS-RG-HEAL") \
     X(MUS_RG_CYCLING, "MUS-RG-CYCLING") \
-    X(MUS_RG_ROCKET, "MUS-RG-ROCKET") \
-    X(MUS_RG_SHOUJO, "MUS-RG-SHOUJO") \
-    X(MUS_RG_SHOUNEN, "MUS-RG-SHOUNEN") \
-    X(MUS_RG_DENDOU, "MUS-RG-DENDOU") \
-    X(MUS_RG_T_MORI, "MUS-RG-T-MORI") \
-    X(MUS_RG_OTSUKIMI, "MUS-RG-OTSUKIMI") \
-    X(MUS_RG_POKEYASHI, "MUS-RG-POKEYASHI") \
-    X(MUS_RG_ENDING, "MUS-RG-ENDING") \
-    X(MUS_RG_LOAD01, "MUS-RG-LOAD01") \
-    X(MUS_RG_OPENING, "MUS-RG-OPENING") \
-    X(MUS_RG_LOAD02, "MUS-RG-LOAD02") \
-    X(MUS_RG_LOAD03, "MUS-RG-LOAD03") \
-    X(MUS_RG_CHAMP_R, "MUS-RG-CHAMP-R") \
-    X(MUS_RG_VS_GYM, "MUS-RG-VS-GYM") \
-    X(MUS_RG_VS_TORE, "MUS-RG-VS-TORE") \
-    X(MUS_RG_VS_YASEI, "MUS-RG-VS-YASEI") \
-    X(MUS_RG_VS_LAST, "MUS-RG-VS-LAST") \
-    X(MUS_RG_MASARA, "MUS-RG-MASARA") \
-    X(MUS_RG_KENKYU, "MUS-RG-KENKYU") \
-    X(MUS_RG_OHKIDO, "MUS-RG-OHKIDO") \
-    X(MUS_RG_POKECEN, "MUS-RG-POKECEN") \
-    X(MUS_RG_SANTOAN, "MUS-RG-SANTOAN") \
-    X(MUS_RG_NAMINORI, "MUS-RG-NAMINORI") \
-    X(MUS_RG_P_TOWER, "MUS-RG-P-TOWER") \
-    X(MUS_RG_SHIRUHU, "MUS-RG-SHIRUHU") \
-    X(MUS_RG_HANADA, "MUS-RG-HANADA") \
-    X(MUS_RG_TAMAMUSI, "MUS-RG-TAMAMUSI") \
-    X(MUS_RG_WIN_TRE, "MUS-RG-WIN-TRE") \
-    X(MUS_RG_WIN_YASEI, "MUS-RG-WIN-YASEI") \
-    X(MUS_RG_WIN_GYM, "MUS-RG-WIN-GYM") \
-    X(MUS_RG_KUCHIBA, "MUS-RG-KUCHIBA") \
-    X(MUS_RG_NIBI, "MUS-RG-NIBI") \
-    X(MUS_RG_RIVAL1, "MUS-RG-RIVAL1") \
-    X(MUS_RG_RIVAL2, "MUS-RG-RIVAL2") \
-    X(MUS_RG_FAN2, "MUS-RG-FAN2") \
-    X(MUS_RG_FAN5, "MUS-RG-FAN5") \
-    X(MUS_RG_FAN6, "MUS-RG-FAN6") \
-    X(MUS_ME_RG_PHOTO, "MUS-ME-RG-PHOTO") \
-    X(MUS_RG_TITLEROG, "MUS-RG-TITLEROG") \
-    X(MUS_RG_GET_YASEI, "MUS-RG-GET-YASEI") \
-    X(MUS_RG_SOUSA, "MUS-RG-SOUSA") \
-    X(MUS_RG_SEKAIKAN, "MUS-RG-SEKAIKAN") \
-    X(MUS_RG_SEIBETU, "MUS-RG-SEIBETU") \
-    X(MUS_RG_JUMP, "MUS-RG-JUMP") \
-    X(MUS_RG_UNION, "MUS-RG-UNION") \
-    X(MUS_RG_NETWORK, "MUS-RG-NETWORK") \
-    X(MUS_RG_OKURIMONO, "MUS-RG-OKURIMONO") \
-    X(MUS_RG_KINOMIKUI, "MUS-RG-KINOMIKUI") \
-    X(MUS_RG_NANADUNGEON, "MUS-RG-NANADUNGEON") \
-    X(MUS_RG_OSHIE_TV, "MUS-RG-OSHIE-TV") \
-    X(MUS_RG_NANASHIMA, "MUS-RG-NANASHIMA") \
-    X(MUS_RG_NANAISEKI, "MUS-RG-NANAISEKI") \
-    X(MUS_RG_NANA123, "MUS-RG-NANA123") \
-    X(MUS_RG_NANA45, "MUS-RG-NANA45") \
-    X(MUS_RG_NANA67, "MUS-RG-NANA67") \
-    X(MUS_RG_POKEFUE, "MUS-RG-POKEFUE") \
-    X(MUS_RG_VS_DEO, "MUS-RG-VS-DEO") \
-    X(MUS_RG_VS_MYU2, "MUS-RG-VS-MYU2") \
-    X(MUS_RG_VS_DEN, "MUS-RG-VS-DEN") \
-    X(MUS_RG_EXEYE, "MUS-RG-EXEYE") \
-    X(MUS_RG_DEOEYE, "MUS-RG-DEOEYE") \
-    X(MUS_RG_T_TOWER, "MUS-RG-T-TOWER") \
-    X(MUS_RG_SLOWMASARA, "MUS-RG-SLOWMASARA") \
-    X(MUS_RG_TVNOIZE, "MUS-RG-TVNOIZE") \
+    X(MUS_RG_ENCOUNTER_ROCKET, "MUS-RG-ENCOUNTER-ROCKET") \
+    X(MUS_RG_ENCOUNTER_GIRL, "MUS-RG-ENCOUNTER-GIRL") \
+    X(MUS_RG_ENCOUNTER_BOY, "MUS-RG-ENCOUNTER-BOY") \
+    X(MUS_RG_HALL_OF_FAME, "MUS-RG-HALL-OF-FAME") \
+    X(MUS_RG_VIRIDIAN_FOREST, "MUS-RG-VIRIDIAN-FOREST") \
+    X(MUS_RG_MT_MOON, "MUS-RG-MT-MOON") \
+    X(MUS_RG_POKE_MANSION, "MUS-RG-POKE-MANSION") \
+    X(MUS_RG_CREDITS, "MUS-RG-CREDITS") \
+    X(MUS_RG_ROUTE1, "MUS-RG-ROUTE1") \
+    X(MUS_RG_ROUTE24, "MUS-RG-ROUTE24") \
+    X(MUS_RG_ROUTE3, "MUS-RG-ROUTE3") \
+    X(MUS_RG_ROUTE11, "MUS-RG-ROUTE11") \
+    X(MUS_RG_VICTORY_ROAD, "MUS-RG-VICTORY-ROAD") \
+    X(MUS_RG_VS_GYM_LEADER, "MUS-RG-VS-GYM-LEADER") \
+    X(MUS_RG_VS_TRAINER, "MUS-RG-VS-TRAINER") \
+    X(MUS_RG_VS_WILD, "MUS-RG-VS-WILD") \
+    X(MUS_RG_VS_CHAMPION, "MUS-RG-VS-CHAMPION") \
+    X(MUS_RG_PALLET, "MUS-RG-PALLET") \
+    X(MUS_RG_OAK_LAB, "MUS-RG-OAK-LAB") \
+    X(MUS_RG_OAK, "MUS-RG-OAK") \
+    X(MUS_RG_POKE_CENTER, "MUS-RG-POKE-CENTER") \
+    X(MUS_RG_SS_ANNE, "MUS-RG-SS-ANNE") \
+    X(MUS_RG_SURF, "MUS-RG-SURF") \
+    X(MUS_RG_POKE_TOWER, "MUS-RG-POKE-TOWER") \
+    X(MUS_RG_SILPH, "MUS-RG-SILPH") \
+    X(MUS_RG_FUCHSIA, "MUS-RG-FUCHSIA") \
+    X(MUS_RG_CELADON, "MUS-RG-CELADON") \
+    X(MUS_RG_VICTORY_TRAINER, "MUS-RG-VICTORY-TRAINER") \
+    X(MUS_RG_VICTORY_WILD, "MUS-RG-VICTORY-WILD") \
+    X(MUS_RG_VICTORY_GYM_LEADER, "MUS-RG-VICTORY-GYM-LEADER") \
+    X(MUS_RG_VERMILLION, "MUS-RG-VERMILLION") \
+    X(MUS_RG_PEWTER, "MUS-RG-PEWTER") \
+    X(MUS_RG_ENCOUNTER_RIVAL, "MUS-RG-ENCOUNTER-RIVAL") \
+    X(MUS_RG_RIVAL_EXIT, "MUS-RG-RIVAL-EXIT") \
+    X(MUS_RG_DEX_RATING, "MUS-RG-DEX-RATING") \
+    X(MUS_RG_OBTAIN_KEY_ITEM, "MUS-RG-OBTAIN-KEY-ITEM") \
+    X(MUS_RG_CAUGHT_INTRO, "MUS-RG-CAUGHT-INTRO") \
+    X(MUS_RG_PHOTO, "MUS-RG-PHOTO") \
+    X(MUS_RG_GAME_FREAK, "MUS-RG-GAME-FREAK") \
+    X(MUS_RG_CAUGHT, "MUS-RG-CAUGHT") \
+    X(MUS_RG_NEW_GAME_INSTRUCT, "MUS-RG-NEW-GAME-INSTRUCT") \
+    X(MUS_RG_NEW_GAME_INTRO, "MUS-RG-NEW-GAME-INTRO") \
+    X(MUS_RG_NEW_GAME_EXIT, "MUS-RG-NEW-GAME-EXIT") \
+    X(MUS_RG_POKE_JUMP, "MUS-RG-POKE-JUMP") \
+    X(MUS_RG_UNION_ROOM, "MUS-RG-UNION-ROOM") \
+    X(MUS_RG_NET_CENTER, "MUS-RG-NET-CENTER") \
+    X(MUS_RG_MYSTERY_GIFT, "MUS-RG-MYSTERY-GIFT") \
+    X(MUS_RG_BERRY_PICK, "MUS-RG-BERRY-PICK") \
+    X(MUS_RG_SEVII_CAVE, "MUS-RG-SEVII-CAVE") \
+    X(MUS_RG_TEACHY_TV_SHOW, "MUS-RG-TEACHY-TV-SHOW") \
+    X(MUS_RG_SEVII_ROUTE, "MUS-RG-SEVII-ROUTE") \
+    X(MUS_RG_SEVII_DUNGEON, "MUS-RG-SEVII-DUNGEON") \
+    X(MUS_RG_SEVII_123, "MUS-RG-SEVII-123") \
+    X(MUS_RG_SEVII_45, "MUS-RG-SEVII-45") \
+    X(MUS_RG_SEVII_67, "MUS-RG-SEVII-67") \
+    X(MUS_RG_POKE_FLUTE, "MUS-RG-POKE-FLUTE") \
+    X(MUS_RG_VS_DEOXYS, "MUS-RG-VS-DEOXYS") \
+    X(MUS_RG_VS_MEWTWO, "MUS-RG-VS-MEWTWO") \
+    X(MUS_RG_VS_LEGEND, "MUS-RG-VS-LEGEND") \
+    X(MUS_RG_ENCOUNTER_GYM_LEADER, "MUS-RG-ENCOUNTER-GYM-LEADER") \
+    X(MUS_RG_ENCOUNTER_DEOXYS, "MUS-RG-ENCOUNTER-DEOXYS") \
+    X(MUS_RG_TRAINER_TOWER, "MUS-RG-TRAINER-TOWER") \
+    X(MUS_RG_SLOW_PALLET, "MUS-RG-SLOW-PALLET") \
+    X(MUS_RG_TEACHY_TV_MENU, "MUS-RG-TEACHY-TV-MENU") \
     X(PH_TRAP_BLEND, "PH-TRAP-BLEND") \
     X(PH_TRAP_HELD, "PH-TRAP-HELD") \
     X(PH_TRAP_SOLO, "PH-TRAP-SOLO") \
@@ -1277,8 +1280,8 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
     X(PH_NURSE_SOLO, "PH-NURSE-SOLO")
 
 #define SOUND_LIST_SE \
-	X(SE_STOP, "STOP") \
-    X(SE_KAIFUKU, "SE-KAIFUKU") \
+    X(SE_STOP, "STOP") \
+    X(SE_USE_ITEM, "SE-USE-ITEM") \
     X(SE_PC_LOGIN, "SE-PC-LOGIN") \
     X(SE_PC_OFF, "SE-PC-OFF") \
     X(SE_PC_ON, "SE-PC-ON") \
@@ -1286,267 +1289,275 @@ static void DestroyWindow(u8 windowId) // sub_080E9750
     X(SE_WIN_OPEN, "SE-WIN-OPEN") \
     X(SE_WALL_HIT, "SE-WALL-HIT") \
     X(SE_DOOR, "SE-DOOR") \
-    X(SE_KAIDAN, "SE-KAIDAN") \
-    X(SE_DANSA, "SE-DANSA") \
-    X(SE_JITENSYA, "SE-JITENSYA") \
-    X(SE_KOUKA_L, "SE-KOUKA-L") \
-    X(SE_KOUKA_M, "SE-KOUKA-M") \
-    X(SE_KOUKA_H, "SE-KOUKA-H") \
-    X(SE_BOWA2, "SE-BOWA2") \
-    X(SE_POKE_DEAD, "SE-POKE-DEAD") \
-    X(SE_NIGERU, "SE-NIGERU") \
-    X(SE_JIDO_DOA, "SE-JIDO-DOA") \
-    X(SE_NAMINORI, "SE-NAMINORI") \
-    X(SE_BAN, "SE-BAN") \
+    X(SE_EXIT, "SE-EXIT") \
+    X(SE_LEDGE, "SE-LEDGE") \
+    X(SE_BIKE_BELL, "SE-BIKE-BELL") \
+    X(SE_NOT_EFFECTIVE, "SE-NOT-EFFECTIVE") \
+    X(SE_EFFECTIVE, "SE-EFFECTIVE") \
+    X(SE_SUPER_EFFECTIVE, "SE-SUPER-EFFECTIVE") \
+    X(SE_BALL_OPEN, "SE-BALL-OPEN") \
+    X(SE_FAINT, "SE-FAINT") \
+    X(SE_FLEE, "SE-FLEE") \
+    X(SE_SLIDING_DOOR, "SE-SLIDING-DOOR") \
+    X(SE_SHIP, "SE-SHIP") \
+    X(SE_BANG, "SE-BANG") \
     X(SE_PIN, "SE-PIN") \
     X(SE_BOO, "SE-BOO") \
-    X(SE_BOWA, "SE-BOWA") \
-    X(SE_JYUNI, "SE-JYUNI") \
+    X(SE_BALL, "SE-BALL") \
+    X(SE_CONTEST_PLACE, "SE-CONTEST-PLACE") \
     X(SE_A, "SE-A") \
     X(SE_I, "SE-I") \
     X(SE_U, "SE-U") \
     X(SE_E, "SE-E") \
     X(SE_O, "SE-O") \
     X(SE_N, "SE-N") \
-    X(SE_SEIKAI, "SE-SEIKAI") \
-    X(SE_HAZURE, "SE-HAZURE") \
+    X(SE_SUCCESS, "SE-SUCCESS") \
+    X(SE_FAILURE, "SE-FAILURE") \
     X(SE_EXP, "SE-EXP") \
-    X(SE_JITE_PYOKO, "SE-JITE-PYOKO") \
-    X(SE_MU_PACHI, "SE-MU-PACHI") \
-    X(SE_TK_KASYA, "SE-TK-KASYA") \
+    X(SE_BIKE_HOP, "SE-BIKE-HOP") \
+    X(SE_SWITCH, "SE-SWITCH") \
+    X(SE_CLICK, "SE-CLICK") \
     X(SE_FU_ZAKU, "SE-FU-ZAKU") \
-    X(SE_FU_ZAKU2, "SE-FU-ZAKU2") \
-    X(SE_FU_ZUZUZU, "SE-FU-ZUZUZU") \
-    X(SE_RU_GASHIN, "SE-RU-GASHIN") \
-    X(SE_RU_GASYAN, "SE-RU-GASYAN") \
-    X(SE_RU_BARI, "SE-RU-BARI") \
-    X(SE_RU_HYUU, "SE-RU-HYUU") \
-    X(SE_KI_GASYAN, "SE-KI-GASYAN") \
-    X(SE_TK_WARPIN, "SE-TK-WARPIN") \
-    X(SE_TK_WARPOUT, "SE-TK-WARPOUT") \
-    X(SE_TU_SAA, "SE-TU-SAA") \
-    X(SE_HI_TURUN, "SE-HI-TURUN") \
-    X(SE_TRACK_MOVE, "SE-TRACK-MOVE") \
-    X(SE_TRACK_STOP, "SE-TRACK-STOP") \
-    X(SE_TRACK_HAIKI, "SE-TRACK-HAIKI") \
-    X(SE_TRACK_DOOR, "SE-TRACK-DOOR") \
-    X(SE_MOTER, "SE-MOTER") \
+    X(SE_CONTEST_CONDITION_LOSE, "SE-CONTEST-CONDITION-LOSE") \
+    X(SE_LAVARIDGE_FALL_WARP, "SE-LAVARIDGE-FALL-WARP") \
+    X(SE_ICE_STAIRS, "SE-ICE-STAIRS") \
+    X(SE_ICE_BREAK, "SE-ICE-BREAK") \
+    X(SE_ICE_CRACK, "SE-ICE-CRACK") \
+    X(SE_FALL, "SE-FALL") \
+    X(SE_UNLOCK, "SE-UNLOCK") \
+    X(SE_WARP_IN, "SE-WARP-IN") \
+    X(SE_WARP_OUT, "SE-WARP-OUT") \
+    X(SE_REPEL, "SE-REPEL") \
+    X(SE_ROTATING_GATE, "SE-ROTATING-GATE") \
+    X(SE_TRUCK_MOVE, "SE-TRUCK-MOVE") \
+    X(SE_TRUCK_STOP, "SE-TRUCK-STOP") \
+    X(SE_TRUCK_UNLOAD, "SE-TRUCK-UNLOAD") \
+    X(SE_TRUCK_DOOR, "SE-TRUCK-DOOR") \
+    X(SE_BERRY_BLENDER, "SE-BERRY-BLENDER") \
     X(SE_CARD, "SE-CARD") \
     X(SE_SAVE, "SE-SAVE") \
-    X(SE_KON, "SE-KON") \
-    X(SE_KON2, "SE-KON2") \
-    X(SE_KON3, "SE-KON3") \
-    X(SE_KON4, "SE-KON4") \
-    X(SE_SUIKOMU, "SE-SUIKOMU") \
-    X(SE_NAGERU, "SE-NAGERU") \
-    X(SE_TOY_C, "SE-TOY-C") \
-    X(SE_TOY_D, "SE-TOY-D") \
-    X(SE_TOY_E, "SE-TOY-E") \
-    X(SE_TOY_F, "SE-TOY-F") \
-    X(SE_TOY_G, "SE-TOY-G") \
-    X(SE_TOY_A, "SE-TOY-A") \
-    X(SE_TOY_B, "SE-TOY-B") \
-    X(SE_TOY_C1, "SE-TOY-C1") \
-    X(SE_MIZU, "SE-MIZU") \
-    X(SE_HASHI, "SE-HASHI") \
-    X(SE_DAUGI, "SE-DAUGI") \
-    X(SE_PINPON, "SE-PINPON") \
-    X(SE_FUUSEN1, "SE-FUUSEN1") \
-    X(SE_FUUSEN2, "SE-FUUSEN2") \
-    X(SE_FUUSEN3, "SE-FUUSEN3") \
-    X(SE_TOY_KABE, "SE-TOY-KABE") \
-    X(SE_TOY_DANGO, "SE-TOY-DANGO") \
-    X(SE_DOKU, "SE-DOKU") \
-    X(SE_ESUKA, "SE-ESUKA") \
-    X(SE_T_AME, "SE-T-AME") \
-    X(SE_T_AME_E, "SE-T-AME-E") \
-    X(SE_T_OOAME, "SE-T-OOAME") \
-    X(SE_T_OOAME_E, "SE-T-OOAME-E") \
-    X(SE_T_KOAME, "SE-T-KOAME") \
-    X(SE_T_KOAME_E, "SE-T-KOAME-E") \
-    X(SE_T_KAMI, "SE-T-KAMI") \
-    X(SE_T_KAMI2, "SE-T-KAMI2") \
-    X(SE_ELEBETA, "SE-ELEBETA") \
-    X(SE_HINSI, "SE-HINSI") \
-    X(SE_EXPMAX, "SE-EXPMAX") \
-    X(SE_TAMAKORO, "SE-TAMAKORO") \
-    X(SE_TAMAKORO_E, "SE-TAMAKORO-E") \
-    X(SE_BASABASA, "SE-BASABASA") \
-    X(SE_REGI, "SE-REGI") \
-    X(SE_C_GAJI, "SE-C-GAJI") \
-    X(SE_C_MAKU_U, "SE-C-MAKU-U") \
-    X(SE_C_MAKU_D, "SE-C-MAKU-D") \
-    X(SE_C_PASI, "SE-C-PASI") \
-    X(SE_C_SYU, "SE-C-SYU") \
-    X(SE_C_PIKON, "SE-C-PIKON") \
-    X(SE_REAPOKE, "SE-REAPOKE") \
-    X(SE_OP_BASYU, "SE-OP-BASYU") \
-    X(SE_BT_START, "SE-BT-START") \
-    X(SE_DENDOU, "SE-DENDOU") \
-    X(SE_JIHANKI, "SE-JIHANKI") \
-    X(SE_TAMA, "SE-TAMA") \
-    X(SE_Z_SCROLL, "SE-Z-SCROLL") \
-    X(SE_Z_PAGE, "SE-Z-PAGE") \
-    X(SE_PN_ON, "SE-PN-ON") \
-    X(SE_PN_OFF, "SE-PN-OFF") \
-    X(SE_Z_SEARCH, "SE-Z-SEARCH") \
-    X(SE_TAMAGO, "SE-TAMAGO") \
-    X(SE_TB_START, "SE-TB-START") \
-    X(SE_TB_KON, "SE-TB-KON") \
-    X(SE_TB_KARA, "SE-TB-KARA") \
-    X(SE_BIDORO, "SE-BIDORO") \
-    X(SE_W085, "SE-W085") \
-    X(SE_W085B, "SE-W085B") \
-    X(SE_W231, "SE-W231") \
-    X(SE_W171, "SE-W171") \
-    X(SE_W233, "SE-W233") \
-    X(SE_W233B, "SE-W233B") \
-    X(SE_W145, "SE-W145") \
-    X(SE_W145B, "SE-W145B") \
-    X(SE_W145C, "SE-W145C") \
-    X(SE_W240, "SE-W240") \
-    X(SE_W015, "SE-W015") \
-    X(SE_W081, "SE-W081") \
-    X(SE_W081B, "SE-W081B") \
-    X(SE_W088, "SE-W088") \
-    X(SE_W016, "SE-W016") \
-    X(SE_W016B, "SE-W016B") \
-    X(SE_W003, "SE-W003") \
-    X(SE_W104, "SE-W104") \
-    X(SE_W013, "SE-W013") \
-    X(SE_W196, "SE-W196") \
-    X(SE_W086, "SE-W086") \
-    X(SE_W004, "SE-W004") \
-    X(SE_W025, "SE-W025") \
-    X(SE_W025B, "SE-W025B") \
-    X(SE_W152, "SE-W152") \
-    X(SE_W026, "SE-W026") \
-    X(SE_W172, "SE-W172") \
-    X(SE_W172B, "SE-W172B") \
-    X(SE_W053, "SE-W053") \
-    X(SE_W007, "SE-W007") \
-    X(SE_W092, "SE-W092") \
-    X(SE_W221, "SE-W221") \
-    X(SE_W221B, "SE-W221B") \
-    X(SE_W052, "SE-W052") \
-    X(SE_W036, "SE-W036") \
-    X(SE_W059, "SE-W059") \
-    X(SE_W059B, "SE-W059B") \
-    X(SE_W010, "SE-W010") \
-    X(SE_W011, "SE-W011") \
-    X(SE_W017, "SE-W017") \
-    X(SE_W019, "SE-W019") \
-    X(SE_W028, "SE-W028") \
-    X(SE_W013B, "SE-W013B") \
-    X(SE_W044, "SE-W044") \
-    X(SE_W029, "SE-W029") \
-    X(SE_W057, "SE-W057") \
-    X(SE_W056, "SE-W056") \
-    X(SE_W250, "SE-W250") \
-    X(SE_W030, "SE-W030") \
-    X(SE_W039, "SE-W039") \
-    X(SE_W054, "SE-W054") \
-    X(SE_W077, "SE-W077") \
-    X(SE_W020, "SE-W020") \
-    X(SE_W082, "SE-W082") \
-    X(SE_W047, "SE-W047") \
-    X(SE_W195, "SE-W195") \
-    X(SE_W006, "SE-W006") \
-    X(SE_W091, "SE-W091") \
-    X(SE_W146, "SE-W146") \
-    X(SE_W120, "SE-W120") \
-    X(SE_W153, "SE-W153") \
-    X(SE_W071B, "SE-W071B") \
-    X(SE_W071, "SE-W071") \
-    X(SE_W103, "SE-W103") \
-    X(SE_W062, "SE-W062") \
-    X(SE_W062B, "SE-W062B") \
-    X(SE_W048, "SE-W048") \
-    X(SE_W187, "SE-W187") \
-    X(SE_W118, "SE-W118") \
-    X(SE_W155, "SE-W155") \
-    X(SE_W122, "SE-W122") \
-    X(SE_W060, "SE-W060") \
-    X(SE_W185, "SE-W185") \
-    X(SE_W014, "SE-W014") \
-    X(SE_W043, "SE-W043") \
-    X(SE_W207, "SE-W207") \
-    X(SE_W207B, "SE-W207B") \
-    X(SE_W215, "SE-W215") \
-    X(SE_W109, "SE-W109") \
-    X(SE_W173, "SE-W173") \
-    X(SE_W280, "SE-W280") \
-    X(SE_W202, "SE-W202") \
-    X(SE_W060B, "SE-W060B") \
-    X(SE_W076, "SE-W076") \
-    X(SE_W080, "SE-W080") \
-    X(SE_W100, "SE-W100") \
-    X(SE_W107, "SE-W107") \
-    X(SE_W166, "SE-W166") \
-    X(SE_W129, "SE-W129") \
-    X(SE_W115, "SE-W115") \
-    X(SE_W112, "SE-W112") \
-    X(SE_W197, "SE-W197") \
-    X(SE_W199, "SE-W199") \
-    X(SE_W236, "SE-W236") \
-    X(SE_W204, "SE-W204") \
-    X(SE_W268, "SE-W268") \
-    X(SE_W070, "SE-W070") \
-    X(SE_W063, "SE-W063") \
-    X(SE_W127, "SE-W127") \
-    X(SE_W179, "SE-W179") \
-    X(SE_W151, "SE-W151") \
-    X(SE_W201, "SE-W201") \
-    X(SE_W161, "SE-W161") \
-    X(SE_W161B, "SE-W161B") \
-    X(SE_W227, "SE-W227") \
-    X(SE_W227B, "SE-W227B") \
-    X(SE_W226, "SE-W226") \
-    X(SE_W208, "SE-W208") \
-    X(SE_W213, "SE-W213") \
-    X(SE_W213B, "SE-W213B") \
-    X(SE_W234, "SE-W234") \
-    X(SE_W260, "SE-W260") \
-    X(SE_W328, "SE-W328") \
-    X(SE_W320, "SE-W320") \
-    X(SE_W255, "SE-W255") \
-    X(SE_W291, "SE-W291") \
-    X(SE_W089, "SE-W089") \
-    X(SE_W239, "SE-W239") \
-    X(SE_W230, "SE-W230") \
-    X(SE_W281, "SE-W281") \
-    X(SE_W327, "SE-W327") \
-    X(SE_W287, "SE-W287") \
-    X(SE_W257, "SE-W257") \
-    X(SE_W253, "SE-W253") \
-    X(SE_W258, "SE-W258") \
-    X(SE_W322, "SE-W322") \
-    X(SE_W298, "SE-W298") \
-    X(SE_W287B, "SE-W287B") \
-    X(SE_W114, "SE-W114") \
-    X(SE_W063B, "SE-W063B") \
-    X(SE_RG_W_DOOR, "SE-RG-W-DOOR") \
-    X(SE_RG_CARD1, "SE-RG-CARD1") \
-    X(SE_RG_CARD2, "SE-RG-CARD2") \
-    X(SE_RG_CARD3, "SE-RG-CARD3") \
-    X(SE_RG_BAG1, "SE-RG-BAG1") \
-    X(SE_RG_BAG2, "SE-RG-BAG2") \
-    X(SE_RG_GETTING, "SE-RG-GETTING") \
+    X(SE_BALL_BOUNCE_1, "SE-BALL-BOUNCE-1") \
+    X(SE_BALL_BOUNCE_2, "SE-BALL-BOUNCE-2") \
+    X(SE_BALL_BOUNCE_3, "SE-BALL-BOUNCE-3") \
+    X(SE_BALL_BOUNCE_4, "SE-BALL-BOUNCE-4") \
+    X(SE_BALL_TRADE, "SE-BALL-TRADE") \
+    X(SE_BALL_THROW, "SE-BALL-THROW") \
+    X(SE_NOTE_C, "SE-NOTE-C") \
+    X(SE_NOTE_D, "SE-NOTE-D") \
+    X(SE_NOTE_E, "SE-NOTE-E") \
+    X(SE_NOTE_F, "SE-NOTE-F") \
+    X(SE_NOTE_G, "SE-NOTE-G") \
+    X(SE_NOTE_A, "SE-NOTE-A") \
+    X(SE_NOTE_B, "SE-NOTE-B") \
+    X(SE_NOTE_C_HIGH, "SE-NOTE-C-HIGH") \
+    X(SE_PUDDLE, "SE-PUDDLE") \
+    X(SE_BRIDGE_WALK, "SE-BRIDGE-WALK") \
+    X(SE_ITEMFINDER, "SE-ITEMFINDER") \
+    X(SE_DING_DONG, "SE-DING-DONG") \
+    X(SE_BALLOON_RED, "SE-BALLOON-RED") \
+    X(SE_BALLOON_BLUE, "SE-BALLOON-BLUE") \
+    X(SE_BALLOON_YELLOW, "SE-BALLOON-YELLOW") \
+    X(SE_BREAKABLE_DOOR, "SE-BREAKABLE-DOOR") \
+    X(SE_MUD_BALL, "SE-MUD-BALL") \
+    X(SE_FIELD_POISON, "SE-FIELD-POISON") \
+    X(SE_ESCALATOR, "SE-ESCALATOR") \
+    X(SE_THUNDERSTORM, "SE-THUNDERSTORM") \
+    X(SE_THUNDERSTORM_STOP, "SE-THUNDERSTORM-STOP") \
+    X(SE_DOWNPOUR, "SE-DOWNPOUR") \
+    X(SE_DOWNPOUR_STOP, "SE-DOWNPOUR-STOP") \
+    X(SE_RAIN, "SE-RAIN") \
+    X(SE_RAIN_STOP, "SE-RAIN-STOP") \
+    X(SE_THUNDER, "SE-THUNDER") \
+    X(SE_THUNDER2, "SE-THUNDER2") \
+    X(SE_ELEVATOR, "SE-ELEVATOR") \
+    X(SE_LOW_HEALTH, "SE-LOW-HEALTH") \
+    X(SE_EXP_MAX, "SE-EXP-MAX") \
+    X(SE_ROULETTE_BALL, "SE-ROULETTE-BALL") \
+    X(SE_ROULETTE_BALL2, "SE-ROULETTE-BALL2") \
+    X(SE_TAILLOW_WING_FLAP, "SE-TAILLOW-WING-FLAP") \
+    X(SE_SHOP, "SE-SHOP") \
+    X(SE_CONTEST_HEART, "SE-CONTEST-HEART") \
+    X(SE_CONTEST_CURTAIN_RISE, "SE-CONTEST-CURTAIN-RISE") \
+    X(SE_CONTEST_CURTAIN_FALL, "SE-CONTEST-CURTAIN-FALL") \
+    X(SE_CONTEST_ICON_CHANGE, "SE-CONTEST-ICON-CHANGE") \
+    X(SE_CONTEST_ICON_CLEAR, "SE-CONTEST-ICON-CLEAR") \
+    X(SE_CONTEST_MONS_TURN, "SE-CONTEST-MONS-TURN") \
+    X(SE_SHINY, "SE-SHINY") \
+    X(SE_INTRO_BLAST, "SE-INTRO-BLAST") \
+    X(SE_MUGSHOT, "SE-MUGSHOT") \
+    X(SE_APPLAUSE, "SE-APPLAUSE") \
+    X(SE_VEND, "SE-VEND") \
+    X(SE_ORB, "SE-ORB") \
+    X(SE_DEX_SCROLL, "SE-DEX-SCROLL") \
+    X(SE_DEX_PAGE, "SE-DEX-PAGE") \
+    X(SE_POKENAV_ON, "SE-POKENAV-ON") \
+    X(SE_POKENAV_OFF, "SE-POKENAV-OFF") \
+    X(SE_DEX_SEARCH, "SE-DEX-SEARCH") \
+    X(SE_EGG_HATCH, "SE-EGG-HATCH") \
+    X(SE_BALL_TRAY_ENTER, "SE-BALL-TRAY-ENTER") \
+    X(SE_BALL_TRAY_BALL, "SE-BALL-TRAY-BALL") \
+    X(SE_BALL_TRAY_EXIT, "SE-BALL-TRAY-EXIT") \
+    X(SE_GLASS_FLUTE, "SE-GLASS-FLUTE") \
+    X(SE_M_THUNDERBOLT, "SE-M-THUNDERBOLT") \
+    X(SE_M_THUNDERBOLT2, "SE-M-THUNDERBOLT2") \
+    X(SE_M_HARDEN, "SE-M-HARDEN") \
+    X(SE_M_NIGHTMARE, "SE-M-NIGHTMARE") \
+    X(SE_M_VITAL_THROW, "SE-M-VITAL-THROW") \
+    X(SE_M_VITAL_THROW2, "SE-M-VITAL-THROW2") \
+    X(SE_M_BUBBLE, "SE-M-BUBBLE") \
+    X(SE_M_BUBBLE2, "SE-M-BUBBLE2") \
+    X(SE_M_BUBBLE3, "SE-M-BUBBLE3") \
+    X(SE_M_RAIN_DANCE, "SE-M-RAIN-DANCE") \
+    X(SE_M_CUT, "SE-M-CUT") \
+    X(SE_M_STRING_SHOT, "SE-M-STRING-SHOT") \
+    X(SE_M_STRING_SHOT2, "SE-M-STRING-SHOT2") \
+    X(SE_M_ROCK_THROW, "SE-M-ROCK-THROW") \
+    X(SE_M_GUST, "SE-M-GUST") \
+    X(SE_M_GUST2, "SE-M-GUST2") \
+    X(SE_M_DOUBLE_SLAP, "SE-M-DOUBLE-SLAP") \
+    X(SE_M_DOUBLE_TEAM, "SE-M-DOUBLE-TEAM") \
+    X(SE_M_RAZOR_WIND, "SE-M-RAZOR-WIND") \
+    X(SE_M_ICY_WIND, "SE-M-ICY-WIND") \
+    X(SE_M_THUNDER_WAVE, "SE-M-THUNDER-WAVE") \
+    X(SE_M_COMET_PUNCH, "SE-M-COMET-PUNCH") \
+    X(SE_M_MEGA_KICK, "SE-M-MEGA-KICK") \
+    X(SE_M_MEGA_KICK2, "SE-M-MEGA-KICK2") \
+    X(SE_M_CRABHAMMER, "SE-M-CRABHAMMER") \
+    X(SE_M_JUMP_KICK, "SE-M-JUMP-KICK") \
+    X(SE_M_FLAME_WHEEL, "SE-M-FLAME-WHEEL") \
+    X(SE_M_FLAME_WHEEL2, "SE-M-FLAME-WHEEL2") \
+    X(SE_M_FLAMETHROWER, "SE-M-FLAMETHROWER") \
+    X(SE_M_FIRE_PUNCH, "SE-M-FIRE-PUNCH") \
+    X(SE_M_TOXIC, "SE-M-TOXIC") \
+    X(SE_M_SACRED_FIRE, "SE-M-SACRED-FIRE") \
+    X(SE_M_SACRED_FIRE2, "SE-M-SACRED-FIRE2") \
+    X(SE_M_EMBER, "SE-M-EMBER") \
+    X(SE_M_TAKE_DOWN, "SE-M-TAKE-DOWN") \
+    X(SE_M_BLIZZARD, "SE-M-BLIZZARD") \
+    X(SE_M_BLIZZARD2, "SE-M-BLIZZARD2") \
+    X(SE_M_SCRATCH, "SE-M-SCRATCH") \
+    X(SE_M_VICEGRIP, "SE-M-VICEGRIP") \
+    X(SE_M_WING_ATTACK, "SE-M-WING-ATTACK") \
+    X(SE_M_FLY, "SE-M-FLY") \
+    X(SE_M_SAND_ATTACK, "SE-M-SAND-ATTACK") \
+    X(SE_M_RAZOR_WIND2, "SE-M-RAZOR-WIND2") \
+    X(SE_M_BITE, "SE-M-BITE") \
+    X(SE_M_HEADBUTT, "SE-M-HEADBUTT") \
+    X(SE_M_SURF, "SE-M-SURF") \
+    X(SE_M_HYDRO_PUMP, "SE-M-HYDRO-PUMP") \
+    X(SE_M_WHIRLPOOL, "SE-M-WHIRLPOOL") \
+    X(SE_M_HORN_ATTACK, "SE-M-HORN-ATTACK") \
+    X(SE_M_TAIL_WHIP, "SE-M-TAIL-WHIP") \
+    X(SE_M_MIST, "SE-M-MIST") \
+    X(SE_M_POISON_POWDER, "SE-M-POISON-POWDER") \
+    X(SE_M_BIND, "SE-M-BIND") \
+    X(SE_M_DRAGON_RAGE, "SE-M-DRAGON-RAGE") \
+    X(SE_M_SING, "SE-M-SING") \
+    X(SE_M_PERISH_SONG, "SE-M-PERISH-SONG") \
+    X(SE_M_PAY_DAY, "SE-M-PAY-DAY") \
+    X(SE_M_DIG, "SE-M-DIG") \
+    X(SE_M_DIZZY_PUNCH, "SE-M-DIZZY-PUNCH") \
+    X(SE_M_SELF_DESTRUCT, "SE-M-SELF-DESTRUCT") \
+    X(SE_M_EXPLOSION, "SE-M-EXPLOSION") \
+    X(SE_M_ABSORB_2, "SE-M-ABSORB-2") \
+    X(SE_M_ABSORB, "SE-M-ABSORB") \
+    X(SE_M_SCREECH, "SE-M-SCREECH") \
+    X(SE_M_BUBBLE_BEAM, "SE-M-BUBBLE-BEAM") \
+    X(SE_M_BUBBLE_BEAM2, "SE-M-BUBBLE-BEAM2") \
+    X(SE_M_SUPERSONIC, "SE-M-SUPERSONIC") \
+    X(SE_M_BELLY_DRUM, "SE-M-BELLY-DRUM") \
+    X(SE_M_METRONOME, "SE-M-METRONOME") \
+    X(SE_M_BONEMERANG, "SE-M-BONEMERANG") \
+    X(SE_M_LICK, "SE-M-LICK") \
+    X(SE_M_PSYBEAM, "SE-M-PSYBEAM") \
+    X(SE_M_FAINT_ATTACK, "SE-M-FAINT-ATTACK") \
+    X(SE_M_SWORDS_DANCE, "SE-M-SWORDS-DANCE") \
+    X(SE_M_LEER, "SE-M-LEER") \
+    X(SE_M_SWAGGER, "SE-M-SWAGGER") \
+    X(SE_M_SWAGGER2, "SE-M-SWAGGER2") \
+    X(SE_M_HEAL_BELL, "SE-M-HEAL-BELL") \
+    X(SE_M_CONFUSE_RAY, "SE-M-CONFUSE-RAY") \
+    X(SE_M_SNORE, "SE-M-SNORE") \
+    X(SE_M_BRICK_BREAK, "SE-M-BRICK-BREAK") \
+    X(SE_M_GIGA_DRAIN, "SE-M-GIGA-DRAIN") \
+    X(SE_M_PSYBEAM2, "SE-M-PSYBEAM2") \
+    X(SE_M_SOLAR_BEAM, "SE-M-SOLAR-BEAM") \
+    X(SE_M_PETAL_DANCE, "SE-M-PETAL-DANCE") \
+    X(SE_M_TELEPORT, "SE-M-TELEPORT") \
+    X(SE_M_MINIMIZE, "SE-M-MINIMIZE") \
+    X(SE_M_SKETCH, "SE-M-SKETCH") \
+    X(SE_M_SWIFT, "SE-M-SWIFT") \
+    X(SE_M_REFLECT, "SE-M-REFLECT") \
+    X(SE_M_BARRIER, "SE-M-BARRIER") \
+    X(SE_M_DETECT, "SE-M-DETECT") \
+    X(SE_M_LOCK_ON, "SE-M-LOCK-ON") \
+    X(SE_M_MOONLIGHT, "SE-M-MOONLIGHT") \
+    X(SE_M_CHARM, "SE-M-CHARM") \
+    X(SE_M_CHARGE, "SE-M-CHARGE") \
+    X(SE_M_STRENGTH, "SE-M-STRENGTH") \
+    X(SE_M_HYPER_BEAM, "SE-M-HYPER-BEAM") \
+    X(SE_M_WATERFALL, "SE-M-WATERFALL") \
+    X(SE_M_REVERSAL, "SE-M-REVERSAL") \
+    X(SE_M_ACID_ARMOR, "SE-M-ACID-ARMOR") \
+    X(SE_M_SANDSTORM, "SE-M-SANDSTORM") \
+    X(SE_M_TRI_ATTACK, "SE-M-TRI-ATTACK") \
+    X(SE_M_TRI_ATTACK2, "SE-M-TRI-ATTACK2") \
+    X(SE_M_ENCORE, "SE-M-ENCORE") \
+    X(SE_M_ENCORE2, "SE-M-ENCORE2") \
+    X(SE_M_BATON_PASS, "SE-M-BATON-PASS") \
+    X(SE_M_MILK_DRINK, "SE-M-MILK-DRINK") \
+    X(SE_M_ATTRACT, "SE-M-ATTRACT") \
+    X(SE_M_ATTRACT2, "SE-M-ATTRACT2") \
+    X(SE_M_MORNING_SUN, "SE-M-MORNING-SUN") \
+    X(SE_M_FLATTER, "SE-M-FLATTER") \
+    X(SE_M_SAND_TOMB, "SE-M-SAND-TOMB") \
+    X(SE_M_GRASSWHISTLE, "SE-M-GRASSWHISTLE") \
+    X(SE_M_SPIT_UP, "SE-M-SPIT-UP") \
+    X(SE_M_DIVE, "SE-M-DIVE") \
+    X(SE_M_EARTHQUAKE, "SE-M-EARTHQUAKE") \
+    X(SE_M_TWISTER, "SE-M-TWISTER") \
+    X(SE_M_SWEET_SCENT, "SE-M-SWEET-SCENT") \
+    X(SE_M_YAWN, "SE-M-YAWN") \
+    X(SE_M_SKY_UPPERCUT, "SE-M-SKY-UPPERCUT") \
+    X(SE_M_STAT_INCREASE, "SE-M-STAT-INCREASE") \
+    X(SE_M_HEAT_WAVE, "SE-M-HEAT-WAVE") \
+    X(SE_M_UPROAR, "SE-M-UPROAR") \
+    X(SE_M_HAIL, "SE-M-HAIL") \
+    X(SE_M_COSMIC_POWER, "SE-M-COSMIC-POWER") \
+    X(SE_M_TEETER_DANCE, "SE-M-TEETER-DANCE") \
+    X(SE_M_STAT_DECREASE, "SE-M-STAT-DECREASE") \
+    X(SE_M_HAZE, "SE-M-HAZE") \
+    X(SE_M_HYPER_BEAM2, "SE-M-HYPER-BEAM2") \
+    X(SE_RG_DOOR, "SE-RG-DOOR") \
+    X(SE_RG_CARD_FLIP, "SE-RG-CARD-FLIP") \
+    X(SE_RG_CARD_FLIPPING, "SE-RG-CARD-FLIPPING") \
+    X(SE_RG_CARD_OPEN, "SE-RG-CARD-OPEN") \
+    X(SE_RG_BAG_CURSOR, "SE-RG-BAG-CURSOR") \
+    X(SE_RG_BAG_POCKET, "SE-RG-BAG-POCKET") \
+    X(SE_RG_BALL_CLICK, "SE-RG-BALL-CLICK") \
     X(SE_RG_SHOP, "SE-RG-SHOP") \
-    X(SE_RG_KITEKI, "SE-RG-KITEKI") \
-    X(SE_RG_HELP_OP, "SE-RG-HELP-OP") \
-    X(SE_RG_HELP_CL, "SE-RG-HELP-CL") \
-    X(SE_RG_HELP_NG, "SE-RG-HELP-NG") \
-    X(SE_RG_DEOMOV, "SE-RG-DEOMOV") \
-    X(SE_RG_EXCELLENT, "SE-RG-EXCELLENT") \
-    X(SE_RG_NAWAMISS, "SE-RG-NAWAMISS") \
-    X(SE_TOREEYE, "SE-TOREEYE") \
-    X(SE_TOREOFF, "SE-TOREOFF") \
-    X(SE_HANTEI1, "SE-HANTEI1") \
-    X(SE_HANTEI2, "SE-HANTEI2") \
-    X(SE_CURTAIN, "SE-CURTAIN") \
-    X(SE_CURTAIN1, "SE-CURTAIN1") \
-    X(SE_USSOKI, "SE-USSOKI")
+    X(SE_RG_SS_ANNE_HORN, "SE-RG-SS-ANNE-HORN") \
+    X(SE_RG_HELP_OPEN, "SE-RG-HELP-OPEN") \
+    X(SE_RG_HELP_CLOSE, "SE-RG-HELP-CLOSE") \
+    X(SE_RG_HELP_ERROR, "SE-RG-HELP-ERROR") \
+    X(SE_RG_DEOXYS_MOVE, "SE-RG-DEOXYS-MOVE") \
+    X(SE_RG_POKE_JUMP_SUCCESS, "SE-RG-POKE-JUMP-SUCCESS") \
+    X(SE_RG_POKE_JUMP_FAILURE, "SE-RG-POKE-JUMP-FAILURE") \
+    X(SE_PHONE_CALL, "SE-PHONE-CALL") \
+    X(SE_PHONE_CLICK, "SE-PHONE-CLICK") \
+    X(SE_ARENA_TIMEUP1, "SE-ARENA-TIMEUP1") \
+    X(SE_ARENA_TIMEUP2, "SE-ARENA-TIMEUP2") \
+    X(SE_PIKE_CURTAIN_CLOSE, "SE-PIKE-CURTAIN-CLOSE") \
+    X(SE_PIKE_CURTAIN_OPEN, "SE-PIKE-CURTAIN-OPEN") \
+    X(SE_SUDOWOODO_SHAKE, "SE-SUDOWOODO-SHAKE") \
+    X(SE_INTRO_UNOWN1, "SE-INTRO-UNOWN1") \
+    X(SE_INTRO_UNOWN2, "SE-INTRO-UNOWN2") \
+    X(SE_INTRO_UNOWN3, "SE-INTRO-UNOWN3") \
+    X(SE_INTRO_DITTOBOUNCE1, "SE-INTRO-DITTOBOUNCE1") \
+    X(SE_INTRO_DITTOBOUNCE2, "SE-INTRO-DITTOBOUNCE2") \
+    X(SE_INTRO_DITTOTRANSFORM, "SE-INTRO-DITTOTRANSFORM") \
+    X(SE_INTRO_LOGO_DING, "SE-INTRO-LOGO-DING") \
+    X(SE_PHONE_BEEP, "SE-PHONE-BEEP")
 
 // Create BGM list
 #define X(songId, name) static const u8 sBGMName_##songId[] = _(name);

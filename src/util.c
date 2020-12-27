@@ -113,6 +113,20 @@ static const u16 sCrc16Table[] =
     0x7BC7, 0x6A4E, 0x58D5, 0x495C, 0x3DE3, 0x2C6A, 0x1EF1, 0x0F78,
 };
 
+const s32 gPowersOfTen[] =
+{
+             1,
+            10,
+           100,
+          1000,
+         10000,
+        100000,
+       1000000,
+      10000000,
+     100000000,
+    1000000000,
+};
+
 const u8 gMiscBlank_Gfx[] = INCBIN_U8("graphics/interface/blank.4bpp");
 
 u8 CreateInvisibleSpriteWithCallback(void (*callback)(struct Sprite *))
@@ -275,4 +289,52 @@ void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u16 blendColor)
                                 | ((g + (((data2->g - g) * coeff) >> 4)) << 5)
                                 | ((b + (((data2->b - b) * coeff) >> 4)) << 10);
     }
+}
+
+/*u32 ConvertBcdToBinary(u8 bcd)
+{
+    if (bcd > 0x9F)
+        return 0xFF;
+
+    if ((bcd & 0xF) <= 9)
+        return (10 * ((bcd >> 4) & 0xF)) + (bcd & 0xF);
+    else
+        return 0xFF;
+}*/
+
+u32 ConvertBcdToBinary(u32 bcd)
+{
+    int i;
+    u32 digit, binary = 0;
+
+    for (i = 0; i < 8; i++, bcd >>= 4)
+    {
+        digit = bcd & 0xF;
+        if (digit > 9)
+            return -1;
+        binary += digit * gPowersOfTen[i];
+    }
+
+    return binary;
+}
+
+u32 ChangeBcdDigit(u32 val, u8 which, s8 delta)
+{
+    u32 posInBits;
+    int digit;
+    posInBits = which * 4;
+    digit = ((val & (0xF << posInBits)) >> posInBits) + delta;
+
+    if (digit > 9)
+    {
+        digit = 0;
+    }
+    else if (digit < 0)
+    {
+        digit = 9;
+    }
+
+    val = (val & ~(0xF << posInBits)) | (digit << posInBits);
+
+    return val;
 }

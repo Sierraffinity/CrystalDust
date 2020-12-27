@@ -1,67 +1,71 @@
 {
-    "allow_cycling": false,
-    "allow_escaping": true,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-    "layout": "LAYOUT_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-    "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_ILEXFOREST",
-    "name": "RuinsOfAlph_KabutoWordRoom",
-    "object_events": [
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_RUINS_OF_ALPH",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM",
-            "dest_warp_id": 1,
-            "elevation": 3,
-            "x": 9,
-            "y": 6
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM",
-            "dest_warp_id": 2,
-            "elevation": 3,
-            "x": 10,
-            "y": 6
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM",
-            "dest_warp_id": 3,
-            "elevation": 3,
-            "x": 11,
-            "y": 6
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
-            "dest_warp_id": 1,
-            "elevation": 3,
-            "x": 17,
-            "y": 12
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
-            "dest_warp_id": 2,
-            "elevation": 3,
-            "x": 18,
-            "y": 12
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
-            "dest_warp_id": 3,
-            "elevation": 3,
-            "x": 19,
-            "y": 12
-        }
-    ],
-    "weather": "WEATHER_NONE"
+  "id": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+  "name": "RuinsOfAlph_KabutoWordRoom",
+  "layout": "LAYOUT_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+  "music": "MUS_ILEX_FOREST",
+  "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 9,
+      "y": 6,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 10,
+      "y": 6,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 11,
+      "y": 6,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_ITEM_ROOM",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 17,
+      "y": 12,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 18,
+      "y": 12,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 19,
+      "y": 12,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": 3
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

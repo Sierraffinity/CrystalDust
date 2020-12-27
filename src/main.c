@@ -69,7 +69,7 @@ u8 gLinkVSyncDisabled;
 u32 IntrMain_Buffer[0x200];
 s8 gPcmDmaCounter;
 
-static EWRAM_DATA u16 gTrainerId = 0;
+static EWRAM_DATA u16 sTimer1Val = 0;
 
 //EWRAM_DATA void (**gFlashTimerIntrFunc)(void) = NULL;
 
@@ -81,8 +81,6 @@ static void ReadKeys(void);
 void InitIntrHandlers(void);
 static void WaitForVBlank(void);
 void EnableVCountIntrAtLine150(void);
-
-#define B_START_SELECT (B_BUTTON | START_BUTTON | SELECT_BUTTON)
 
 #if RELEASE_ID
 void DecryptIntrMain(void)
@@ -99,25 +97,9 @@ void DecryptIntrMain(void)
 
 void AgbMain()
 {
-#if MODERN
     // Modern compilers are liberal with the stack on entry to this function,
     // so RegisterRamReset may crash if it resets IWRAM.
-    RegisterRamReset(RESET_ALL & ~RESET_IWRAM);
-    asm("mov\tr1, #0xC0\n"
-        "\tlsl\tr1, r1, #0x12\n"
-        "\tmov r2, #0xFC\n"
-        "\tlsl r2, r2, #0x7\n"
-        "\tadd\tr2, r1, r2\n"
-        "\tmov\tr0, #0\n"
-        "\tmov\tr3, r0\n"
-        "\tmov\tr4, r0\n"
-        "\tmov\tr5, r0\n"
-        ".LCU0:\n"
-        "\tstmia r1!, {r0, r3, r4, r5}\n"
-        "\tcmp\tr1, r2\n"
-        "\tbcc\t.LCU0\n"
-    );
-#else
+#if !MODERN
     RegisterRamReset(RESET_ALL);
 #endif //MODERN
 
@@ -128,7 +110,7 @@ void AgbMain()
     InitIntrHandlers();
     m4aSoundInit();
     EnableVCountIntrAtLine150();
-    sub_800E6D0();
+    InitRFU();
     RtcInit();
     CheckForFlashMemory();
     InitMainCallbacks();
@@ -156,9 +138,11 @@ void AgbMain()
     {
         ReadKeys();
 
-        if (gSoftResetDisabled == FALSE
-         && (gMain.heldKeysRaw & A_BUTTON)
-         && (gMain.heldKeysRaw & B_START_SELECT) == B_START_SELECT)
+        if (!gSoftResetDisabled
+         && JOY_HELD_RAW(A_BUTTON)
+         && JOY_HELD_RAW(B_BUTTON)
+         && JOY_HELD_RAW(START_BUTTON)
+         && JOY_HELD_RAW(SELECT_BUTTON)) //The reset key combo A + B + START + SELECT
         {
             rfu_REQ_stopMode();
             rfu_waitREQComplete();
@@ -229,17 +213,17 @@ void StartTimer1(void)
     REG_TM1CNT_H = 0x80;
 }
 
-void SeedRngAndSetTrainerId(void)
+void StopTimer1AndSeedRng(void)
 {
     u16 val = REG_TM1CNT_L;
     SeedRng(val);
     REG_TM1CNT_H = 0;
-    gTrainerId = val;
+    sTimer1Val = val;
 }
 
-u16 GetGeneratedTrainerIdLower(void)
+u16 GetTimer1Value(void)
 {
-    return gTrainerId;
+    return sTimer1Val;
 }
 
 void EnableVCountIntrAtLine150(void)
@@ -281,9 +265,7 @@ static void ReadKeys(void)
 
     if (keyInput != 0 && gMain.heldKeys == keyInput)
     {
-        gMain.keyRepeatCounter--;
-
-        if (gMain.keyRepeatCounter == 0)
+        if (--gMain.keyRepeatCounter == 0)
         {
             gMain.newAndRepeatedKeys = keyInput;
             gMain.keyRepeatCounter = gKeyRepeatContinueDelay;
@@ -299,16 +281,16 @@ static void ReadKeys(void)
     gMain.heldKeys = gMain.heldKeysRaw;
 
     // Remap L to A if the L=A option is enabled.
-    if (gSaveBlock2Ptr->optionsButtonMode == 2)
+    if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
     {
-        if (gMain.newKeys & L_BUTTON)
+        if (JOY_NEW(L_BUTTON))
             gMain.newKeys |= A_BUTTON;
 
-        if (gMain.heldKeys & L_BUTTON)
+        if (JOY_HELD(L_BUTTON))
             gMain.heldKeys |= A_BUTTON;
     }
 
-    if (gMain.newKeys & gMain.watchedKeysMask)
+    if (JOY_NEW(gMain.watchedKeysMask))
         gMain.watchedKeysPressed = TRUE;
 }
 
@@ -365,7 +347,7 @@ static void VBlankIntr(void)
 {
     if (gWirelessCommType != 0)
         RfuVSync();
-    else if (gLinkVSyncDisabled == FALSE)
+    else if (!gLinkVSyncDisabled)
         LinkVSync();
 
     gMain.vblankCounter1++;
@@ -389,7 +371,7 @@ static void VBlankIntr(void)
     if (!gMain.inBattle || !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED)))
         Random();
 
-    sub_800E174();
+    UpdateWirelessStatusIndicatorSprite();
 
     INTR_CHECK |= INTR_FLAG_VBLANK;
     gMain.intrCheck |= INTR_FLAG_VBLANK;

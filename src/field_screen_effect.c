@@ -12,6 +12,7 @@
 #include "field_special_scene.h"
 #include "field_weather.h"
 #include "gpu_regs.h"
+#include "io_reg.h"
 #include "link.h"
 #include "link_rfu.h"
 #include "load_save.h"
@@ -34,19 +35,15 @@
 #include "trainer_hill.h"
 #include "fldeff.h"
 
-extern const u16 gOrbEffectBackgroundLayerFlags[];
-
 // This file's functions.
-static void sub_8080B9C(u8);
 static void Task_ExitNonAnimDoor(u8);
 static void Task_ExitNonDoor(u8);
 static void Task_StaircaseWarpIn(u8);
-static void task0A_fade_n_map_maybe(u8);
-static void sub_808115C(u8);
+static void Task_DoContestHallWarp(u8);
 static void FillPalBufferWhite(void);
 static void Task_ExitDoor(u8);
 static bool32 WaitForWeatherFadeIn(void);
-static void task0A_mpl_807E31C(u8 taskId);
+static void Task_TeleportTileWarpExit(u8 taskId);
 static void Task_StaircaseWarpOut(u8 taskId);
 static void Task_WarpAndLoadMap(u8 taskId);
 static void Task_DoDoorWarp(u8 taskId);
@@ -56,12 +53,11 @@ static void BeginAnimatingPlayerWalkOutOnStaircase(s16 behavior, s16 *a1, s16 *a
 static void SetStaircaseTargetPosValues(u8 behavior, s16 *a1, s16 *a2);
 static bool8 AnimatePlayerWalkInOnStaircase(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4);
 static void BeginAnimatingPlayerWalkInOnStaircase(s16 *a0, s16 *a1, s16 *a2, s16 *a3, s16 *a4);
-// TODO: Better names
-static void sub_807F204(u8 taskId);
-static void sub_807F0EC();
-static void sub_807F114();
-static void sub_807F2FC(u8 taskId);
-static void sub_807DF4C(bool8 a0);
+static void Task_BarnDoorWipe(u8 taskId);
+static void DoInwardBarnDoorWipe(void);
+static void DoOutwardBarnDoorWipe(void);
+static void Task_BarnDoorWipeChild(u8 taskId);
+static void StartWarpFadeIn(bool8 a0);
 
 // const
 static const u16 sFlashLevelPixelRadii[] = { 200, 72, 64, 56, 48, 40, 32, 24, 0 };
@@ -189,7 +185,7 @@ static void Task_ReturnToFieldCableLink(u8 taskId)
     switch (task->data[0])
     {
     case 0:
-        task->data[1] = sub_80B3050();
+        task->data[1] = CreateTask_ReestablishCableClubLink();
         task->data[0]++;
         break;
     case 1:
@@ -224,14 +220,14 @@ static void Task_ReturnToFieldWirelessLink(u8 taskId)
     switch (task->data[0])
     {
     case 0:
-        sub_800ADF8();
+        SetLinkStandbyCallback();
         task->data[0]++;
         break;
     case 1:
         if (!IsLinkTaskFinished())
         {
             if (++task->data[1] > 1800)
-                sub_8011170(0x6000);
+                GetLinkmanErrorParams(0x6000);
         }
         else
         {
@@ -242,7 +238,7 @@ static void Task_ReturnToFieldWirelessLink(u8 taskId)
     case 2:
         if (WaitForWeatherFadeIn() == TRUE)
         {
-            sub_8009F18();
+            StartSendingKeysToLink();
             ScriptContext2_Disable();
             DestroyTask(taskId);
         }
@@ -257,7 +253,7 @@ void Task_ReturnToFieldRecordMixing(u8 taskId)
     switch (task->data[0])
     {
     case 0:
-        sub_800ADF8();
+        SetLinkStandbyCallback();
         task->data[0]++;
         break;
     case 1:
@@ -267,7 +263,7 @@ void Task_ReturnToFieldRecordMixing(u8 taskId)
         }
         break;
     case 2:
-        sub_8009F18();
+        StartSendingKeysToLink();
         ResetAllMultiplayerState();
         ScriptContext2_Disable();
         DestroyTask(taskId);
@@ -298,7 +294,7 @@ static void SetUpWarpExitTask(bool8 forceBlack)
     }
     else
     {
-        sub_807DF4C(forceBlack);
+        StartWarpFadeIn(forceBlack);
         if (MetatileBehavior_IsNonAnimDoor(behavior) == TRUE)
             func = Task_ExitNonAnimDoor;
         else if (!gIsStaircaseWarpAnimDisabled &&
@@ -311,7 +307,7 @@ static void SetUpWarpExitTask(bool8 forceBlack)
     CreateTask(func, 10);
 }
 
-static void sub_807DF4C(bool8 forceBlack)
+static void StartWarpFadeIn(bool8 forceBlack)
 {
     if (forceBlack)
         FadeInFromBlack();
@@ -337,19 +333,19 @@ void FieldCB_WarpExitFadeFromWhite(void)
 
 void FieldCB_WarpExitFadeFromBlack(void)
 {
-    if (!sub_81D6534()) // sub_81D6534 always returns false
+    if (!OnTrainerHillEReaderChallengeFloor()) // always false
         Overworld_PlaySpecialMapMusic();
     FadeInFromBlack();
     SetUpWarpExitTask(FALSE);
     ScriptContext2_Enable();
 }
 
-static void FieldCB_TeleportWarpExit(void)
+static void FieldCB_TeleportTileWarpExit(void)
 {
     Overworld_PlaySpecialMapMusic();
     WarpFadeInScreen();
-    PlaySE(SE_TK_WARPOUT);
-    CreateTask(task0A_mpl_807E31C, 10);
+    PlaySE(SE_WARP_OUT);
+    CreateTask(Task_TeleportTileWarpExit, 10);
     ScriptContext2_Enable();
 }
 
@@ -357,10 +353,10 @@ static void FieldCB_MossdeepGymWarpExit(void)
 {
     Overworld_PlaySpecialMapMusic();
     WarpFadeInScreen();
-    PlaySE(SE_TK_WARPOUT);
+    PlaySE(SE_WARP_OUT);
     CreateTask(Task_ExitNonDoor, 10);
     ScriptContext2_Enable();
-    sub_8085540(0xE);
+    SetObjectEventLoadFlag((~SKIP_OBJECT_EVENT_LOAD) & 0xF);
 }
 
 static void Task_ExitDoor(u8 taskId)
@@ -371,17 +367,10 @@ static void Task_ExitDoor(u8 taskId)
 
     switch (task->data[0])
     {
-    /*case 0:
-        SetPlayerVisibility(FALSE);
-        FreezeObjectEvents();
-        PlayerGetDestCoords(x, y);
-        FieldSetDoorOpened(*x, *y);
-        task->data[0] = 1;
-        break;*/
     case 0:
         SetPlayerVisibility(FALSE);
         FreezeObjectEvents();
-        sub_807F114();
+        DoOutwardBarnDoorWipe();
         FadeInFromWhite();
         task->data[0] = 1;
         break;
@@ -413,37 +402,13 @@ static void Task_ExitDoor(u8 taskId)
         }
         break;
     case 4:
-        if (WaitForWeatherFadeIn() && IsPlayerStandingStill() && !FieldIsDoorAnimationRunning() && !FuncIsActiveTask(sub_807F204))
+        if (WaitForWeatherFadeIn() && IsPlayerStandingStill() && !FieldIsDoorAnimationRunning() && !FuncIsActiveTask(Task_BarnDoorWipe))
         {
             u8 eventObjId = GetObjectEventIdByLocalIdAndMap(0xFF, 0, 0);
             ObjectEventClearHeldMovementIfFinished(&gObjectEvents[eventObjId]);
             task->data[0] = 5;
         }
         break;
-    /*case 1:
-        if (WaitForWeatherFadeIn())
-        {
-            u8 objEventId;
-            SetPlayerVisibility(TRUE);
-            objEventId = GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
-            ObjectEventSetHeldMovement(&gObjectEvents[objEventId], MOVEMENT_ACTION_WALK_NORMAL_DOWN);
-            task->data[0] = 2;
-        }
-        break;
-    case 2:
-        if (IsPlayerStandingStill())
-        {
-            u8 objEventId;
-            task->data[1] = FieldAnimateDoorClose(*x, *y);
-            objEventId = GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
-            ObjectEventClearHeldMovementIfFinished(&gObjectEvents[objEventId]);
-            task->data[0] = 3;
-        }
-        break;
-    case 3:
-        if (task->data[1] < 0 || gTasks[task->data[1]].isActive != TRUE)
-            task->data[0] = 4;
-        break;*/
     case 5:
         UnfreezeObjectEvents();
         ScriptContext2_Disable();
@@ -576,7 +541,7 @@ void DoWarp(void)
     TryFadeOutOldMapMusic();
     WarpFadeOutScreen();
     PlayRainStoppingSoundEffect();
-    PlaySE(SE_KAIDAN);
+    PlaySE(SE_EXIT);
     gFieldCallback = FieldCB_DefaultWarpExit;
     CreateTask(Task_WarpAndLoadMap, 10);
 }
@@ -640,24 +605,25 @@ void DoLavaridgeGym1FWarp(void)
     StartLavaridgeGym1FWarp(10);
 }
 
-void DoTeleportWarp(void)
+// Warp from a teleporting tile, e.g. in Aqua Hideout (For the move Teleport see FldEff_TeleportWarpOut)
+void DoTeleportTileWarp(void)
 {
     ScriptContext2_Enable();
     TryFadeOutOldMapMusic();
     WarpFadeOutScreen();
-    PlaySE(SE_TK_WARPIN);
+    PlaySE(SE_WARP_IN);
     CreateTask(Task_WarpAndLoadMap, 10);
-    gFieldCallback = FieldCB_TeleportWarpExit;
+    gFieldCallback = FieldCB_TeleportTileWarpExit;
 }
 
 void DoMossdeepGymWarp(void)
 {
-    sub_8085540(1);
+    SetObjectEventLoadFlag(SKIP_OBJECT_EVENT_LOAD);
     ScriptContext2_Enable();
     SaveObjectEvents();
     TryFadeOutOldMapMusic();
     WarpFadeOutScreen();
-    PlaySE(SE_TK_WARPIN);
+    PlaySE(SE_WARP_IN);
     CreateTask(Task_WarpAndLoadMap, 10);
     gFieldCallback = FieldCB_MossdeepGymWarpExit;
 }
@@ -670,19 +636,21 @@ void DoPortholeWarp(void)
     gFieldCallback = FieldCB_ShowPortholeView;
 }
 
-static void sub_80AF8E0(u8 taskId)
+#define tState data[0]
+
+static void Task_DoCableClubWarp(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
-    switch (task->data[0])
+    switch (task->tState)
     {
     case 0:
         ScriptContext2_Enable();
-        task->data[0]++;
+        task->tState++;
         break;
     case 1:
         if (!PaletteFadeActive() && BGMusicStopped())
-            task->data[0]++;
+            task->tState++;
         break;
     case 2:
         WarpIntoMap();
@@ -692,13 +660,15 @@ static void sub_80AF8E0(u8 taskId)
     }
 }
 
+#undef tState
+
 void DoCableClubWarp(void)
 {
     ScriptContext2_Enable();
     TryFadeOutOldMapMusic();
     WarpFadeOutScreen();
-    PlaySE(SE_KAIDAN);
-    CreateTask(sub_80AF8E0, 10);
+    PlaySE(SE_EXIT);
+    CreateTask(Task_DoCableClubWarp, 10);
 }
 
 static void Task_ReturnToWorldFromLinkRoom(u8 taskId)
@@ -711,13 +681,13 @@ static void Task_ReturnToWorldFromLinkRoom(u8 taskId)
         ClearLinkCallback_2();
         FadeScreen(FADE_TO_BLACK, 0);
         TryFadeOutOldMapMusic();
-        PlaySE(SE_KAIDAN);
+        PlaySE(SE_EXIT);
         data[0]++;
         break;
     case 1:
         if (!PaletteFadeActive() && BGMusicStopped())
         {
-            sub_800AC34();
+            SetCloseLinkCallback();
             data[0]++;
         }
         break;
@@ -821,7 +791,7 @@ static void Task_DoDoorWarp(u8 taskId)
     }
 }
 
-static void task0A_fade_n_map_maybe(u8 taskId)
+static void Task_DoContestHallWarp(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
@@ -840,7 +810,7 @@ static void task0A_fade_n_map_maybe(u8 taskId)
         break;
     case 2:
         WarpIntoMap();
-        SetMainCallback2(sub_8086024);
+        SetMainCallback2(CB2_ReturnToFieldContestHall);
         DestroyTask(taskId);
         break;
     }
@@ -852,9 +822,9 @@ void DoContestHallWarp(void)
     TryFadeOutOldMapMusic();
     WarpFadeOutScreen();
     PlayRainStoppingSoundEffect();
-    PlaySE(SE_KAIDAN);
+    PlaySE(SE_EXIT);
     gFieldCallback = FieldCB_WarpExitFadeFromBlack;
-    CreateTask(task0A_fade_n_map_maybe, 10);
+    CreateTask(Task_DoContestHallWarp, 10);
 }
 
 static void SetFlashScanlineEffectWindowBoundary(u16 *dest, u32 y, s32 left, s32 right)
@@ -1070,7 +1040,7 @@ void AnimateFlash(u8 flashLevel)
     u8 value = 0;
     if (!flashLevel)
         value = 1;
-    sub_80AFFDC(120, 80, sFlashLevelPixelRadii[curFlashLevel], sFlashLevelPixelRadii[flashLevel], value, 1);
+    sub_80AFFDC(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, sFlashLevelPixelRadii[curFlashLevel], sFlashLevelPixelRadii[flashLevel], value, 1);
     sub_80AFFB8();
     ScriptContext2_Enable();
 }
@@ -1079,18 +1049,18 @@ void WriteFlashScanlineEffectBuffer(u8 flashLevel)
 {
     if (flashLevel)
     {
-        SetFlashScanlineEffectWindowBoundaries(&gScanlineEffectRegBuffers[0][0], 120, 80, sFlashLevelPixelRadii[flashLevel]);
+        SetFlashScanlineEffectWindowBoundaries(&gScanlineEffectRegBuffers[0][0], DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, sFlashLevelPixelRadii[flashLevel]);
         CpuFastSet(&gScanlineEffectRegBuffers[0], &gScanlineEffectRegBuffers[1], 480);
     }
 }
 
 void WriteBattlePyramidViewScanlineEffectBuffer(void)
 {
-    SetFlashScanlineEffectWindowBoundaries(&gScanlineEffectRegBuffers[0][0], 120, 80, gSaveBlock2Ptr->frontier.pyramidLightRadius);
+    SetFlashScanlineEffectWindowBoundaries(&gScanlineEffectRegBuffers[0][0], DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, gSaveBlock2Ptr->frontier.pyramidLightRadius);
     CpuFastSet(&gScanlineEffectRegBuffers[0], &gScanlineEffectRegBuffers[1], 480);
 }
 
-static void task0A_mpl_807E31C(u8 taskId)
+static void Task_TeleportTileWarpExit(u8 taskId)
 {
     switch (gTasks[taskId].data[0])
     {
@@ -1120,7 +1090,7 @@ static void sub_80B01BC(u8 taskId)
     case 0:
         FreezeObjectEvents();
         ScriptContext2_Enable();
-        PlaySE(SE_TK_WARPIN);
+        PlaySE(SE_WARP_IN);
         sub_808D1C8();
         task->data[0]++;
         break;
@@ -1147,7 +1117,7 @@ void sub_80B0244(void)
 {
     ScriptContext2_Enable();
     CreateTask(Task_WarpAndLoadMap, 10);
-    gFieldCallback = FieldCB_TeleportWarpExit;
+    gFieldCallback = FieldCB_TeleportTileWarpExit;
 }
 
 void sub_80B0268(void)
@@ -1231,7 +1201,7 @@ static void Task_OrbEffect(u8 taskId)
         SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR);
         SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG1 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ);
         SetBgTilemapPalette(0, 0, 0, 0x1E, 0x14, 0xF);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
         SetOrbFlashScanlineEffectWindowBoundaries(&gScanlineEffectRegBuffers[0][0], tCenterX, tCenterY, 1);
         CpuFastSet(&gScanlineEffectRegBuffers[0], &gScanlineEffectRegBuffers[1], 480);
         ScanlineEffect_SetParams(sFlashEffectParams);
@@ -1362,19 +1332,25 @@ static void Task_EnableScriptAfterMusicFade(u8 taskId)
     }
 }
 
-static void sub_807F0EC()
+#define tState data[9]
+#define tDirection data[10]
+#define DIR_WIPE_IN 0 // From edges to center.
+#define DIR_WIPE_OUT 1 // From center to edges.
+#define tChildOffset data[0]
+
+static void DoInwardBarnDoorWipe(void)
 {
-    u8 taskId = CreateTask(sub_807F204, 80);
-    gTasks[taskId].data[10] = 0;
+    u8 taskId = CreateTask(Task_BarnDoorWipe, 80);
+    gTasks[taskId].tDirection = DIR_WIPE_IN;
 }
 
-static void sub_807F114()
+static void DoOutwardBarnDoorWipe(void)
 {
-    u8 taskId = CreateTask(sub_807F204, 80);
-    gTasks[taskId].data[10] = 1;
+    u8 taskId = CreateTask(Task_BarnDoorWipe, 80);
+    gTasks[taskId].tDirection = DIR_WIPE_OUT;
 }
 
-static void sub_807F13C(u8 taskId)
+static void BarnDoorWipeSaveGpuRegs(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
@@ -1389,7 +1365,7 @@ static void sub_807F13C(u8 taskId)
     data[8] = GetGpuReg(REG_OFFSET_WIN1V);
 }
 
-static void sub_807F1A0(u8 taskId)
+static void BarnDoorWipeRestoreGpuRegs(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
@@ -1404,16 +1380,16 @@ static void sub_807F1A0(u8 taskId)
     SetGpuReg(REG_OFFSET_WIN1V, data[8]);
 }
 
-static void sub_807F204(u8 taskId)
+static void Task_BarnDoorWipe(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    switch (data[9])
+    switch (tState)
     {
         case 0:
-            sub_807F13C(taskId);
+            BarnDoorWipeSaveGpuRegs(taskId);
             SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
-            if (data[10] == 0)
+            if (tState == 0)
             {
                 SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 0));
                 SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(240, 255));
@@ -1431,36 +1407,37 @@ static void sub_807F204(u8 taskId)
             SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG_ALL |
                                          WINOUT_WIN01_OBJ |
                                          WINOUT_WIN01_CLR);
-            data[9] = 1;
+            tState++;
             break;
         case 1:
-            CreateTask(sub_807F2FC, 80);
-            data[9] = 2;
+            CreateTask(Task_BarnDoorWipeChild, 80);
+            tState++;
             break;
         case 2:
-            if (!FuncIsActiveTask(sub_807F2FC))
-                data[9] = 3;
+            if (!FuncIsActiveTask(Task_BarnDoorWipeChild))
+            {
+                tState++;
+            }
             break;
         case 3:
-            sub_807F1A0(taskId);
+            BarnDoorWipeRestoreGpuRegs(taskId);
             DestroyTask(taskId);
             break;
     }
 }
 
-static void sub_807F2FC(u8 taskId)
+static void Task_BarnDoorWipeChild(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    s16 *data2 = gTasks[FindTaskIdByFunc(sub_807F204)].data;
-    s16 val;
-    s16 val2;
+	u8 parentTaskId = FindTaskIdByFunc(Task_BarnDoorWipe);
+    s16 lhs, rhs;
 
-    if (data2[10] == 0)
+    if (gTasks[parentTaskId].tDirection == DIR_WIPE_IN)
     {
-        val = data[0];
-        val2 = 240 - data[0];
+        lhs = tChildOffset;
+        rhs = 240 - tChildOffset;
 
-        if (val > 120)
+        if (lhs > 120)
         {
             DestroyTask(taskId);
             return;
@@ -1468,24 +1445,34 @@ static void sub_807F2FC(u8 taskId)
     }
     else
     {
-        val = 120 - data[0];
-        val2 = 120 + data[0];
+        lhs = 120 - tChildOffset;
+        rhs = 120 + tChildOffset;
 
-        if (val < 0)
+        if (lhs < 0)
         {
             DestroyTask(taskId);
             return;
         }
     }
 
-    SetGpuReg(REG_OFFSET_WIN0H, val);
-    SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(val2, 240));
+    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, lhs));
+    SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE(rhs, 240));
 
-    if (val < 90)
-        data[0] += 4;
+    if (lhs < 90)
+    {
+        tChildOffset += 4;
+    }
     else
-        data[0] += 2;
+    {
+        tChildOffset += 2;
+    }
 }
+
+#undef tState
+#undef tDirection
+#undef DIR_WIPE_IN
+#undef DIR_WIPE_OUT
+#undef tChildOffset
 
 static void Task_StaircaseWarpOut(u8 taskId)
 {
@@ -1515,7 +1502,7 @@ static void Task_StaircaseWarpOut(u8 taskId)
                 PlayRainStoppingSoundEffect();
                 sprite->oam.priority = 1;
                 BeginAnimatingPlayerWalkOutOnStaircase(data[1], &data[2], &data[3]);
-                PlaySE(SE_KAIDAN);
+                PlaySE(SE_EXIT);
                 data[0]++;
             }
         }

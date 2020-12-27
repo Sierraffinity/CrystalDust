@@ -534,8 +534,9 @@
 	.byte \battler
 	.endm
 
-	.macro getmoneyreward
+	.macro getmoneyreward addr
 	.byte 0x5d
+	.4byte \addr
 	.endm
 
 	.macro atk5E battler:req
@@ -1271,8 +1272,8 @@
 	various \battler, VARIOUS_GET_MOVE_TARGET
 	.endm
 	
-	.macro various4 battler:req
-	various \battler, 4
+	.macro getbattlerfainted battler:req
+	various \battler, VARIOUS_GET_BATTLER_FAINTED
 	.endm
 	
 	.macro resetintimidatetracebits battler:req
@@ -1287,8 +1288,8 @@
 	various \battler, 7
 	.endm
 	
-	.macro various8 battler:req
-	various \battler, 8
+	.macro palaceflavortext battler:req
+	various \battler, VARIOUS_PALACE_FLAVOR_TEXT
 	.endm
 	
 	.macro arenajudgmentwindow
@@ -1373,11 +1374,11 @@
 	.endm
 	
 	.macro chosenstatus1animation battler:req, status:req
-	chosenstatusanimation \battler 0x0 \status
+	chosenstatusanimation \battler, 0x0, \status
 	.endm
 	
 	.macro chosenstatus2animation battler:req, status:req
-	chosenstatusanimation \battler 0x1 \status
+	chosenstatusanimation \battler, 0x1, \status
 	.endm
 	
 	.macro sethword dst:req, value:req

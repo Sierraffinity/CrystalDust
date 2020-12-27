@@ -1,68 +1,80 @@
-const SUDOWOODO = 3
+const OBJ_EVENT_ID_SUDOWOODO = 3
+const OBJ_EVENT_ID_FLORIA = 7
+const OBJ_EVENT_ID_SIERRA = 9
 
 mapscripts Route36_MapScripts {
-	MAP_SCRIPT_ON_TRANSITION {
-		gettime
-		if (var(VAR_0x8003) == DAY_THURSDAY)
-		{
-			clearflag(FLAG_HIDE_ROUTE_36_ARTHUR)
-		}
-		else
-		{
-			setflag(FLAG_HIDE_ROUTE_36_ARTHUR)
-		}
-	}
+    MAP_SCRIPT_ON_TRANSITION {
+        gettime
+        if (var(VAR_0x8003) == DAY_THURSDAY)
+        {
+            clearflag(FLAG_HIDE_ROUTE_36_ARTHUR)
+        }
+        else
+        {
+            setflag(FLAG_HIDE_ROUTE_36_ARTHUR)
+        }
+    }
+    MAP_SCRIPT_ON_RESUME {
+        if (flag(FLAG_SYS_CTRL_OBJ_DELETE))
+        {
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            if (var(VAR_RESULT) == B_OUTCOME_CAUGHT)
+            {
+                removeobject(VAR_LAST_TALKED)
+            }
+        }
+    }
 }
 
 script Route36_EventScript_Arthur {
-	lock
-	faceplayer
-	if (!flag(FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR))
-	{
-		gettime
-		if (var(VAR_0x8003) == DAY_THURSDAY)
-		{
-			if (!flag(FLAG_MET_ARTHUR_OF_THURSDAY))
-			{
-				msgbox("ARTHUR: Who are you?\n"
-					   "I'm ARTHUR of THURSDAY.\p"
-					   "Here.\n"
-					   "You can have this.")
-				setflag(FLAG_MET_ARTHUR_OF_THURSDAY)
-			}
-			else
-			{
-				msgbox("ARTHUR: Here.\n"
-					   "You can have this.")
-			}
-			giveitem(ITEM_HARD_STONE)
-			if (!var(VAR_RESULT))
-			{
-				goto(Common_EventScript_ShowBagIsFull)
-			}
-			setflag(FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR)
-			msgbox("ARTHUR: A POKéMON that uses ROCK-\n"
-				   "type moves should hold onto that.\p"
-				   "It pumps up ROCK-type attacks.")
-		}
-		else
-		{
-			msgbox("ARTHUR: Today's not THURSDAY.\n"
-				   "How disappointing.")
-		}
-	}
-	else
-	{
-		msgbox("ARTHUR: I'm ARTHUR of THURSDAY.\n"
-			   "I'm the second son out of\l"
-			   "seven children.")
-	}
-	release
+    lock
+    faceplayer
+    if (!flag(FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR))
+    {
+        gettime
+        if (var(VAR_0x8003) == DAY_THURSDAY)
+        {
+            if (!flag(FLAG_MET_ARTHUR_OF_THURSDAY))
+            {
+                msgbox("ARTHUR: Who are you?\n"
+                       "I'm ARTHUR of THURSDAY.\p"
+                       "Here.\n"
+                       "You can have this.")
+                setflag(FLAG_MET_ARTHUR_OF_THURSDAY)
+            }
+            else
+            {
+                msgbox("ARTHUR: Here.\n"
+                       "You can have this.")
+            }
+            giveitem(ITEM_HARD_STONE)
+            if (!var(VAR_RESULT))
+            {
+                goto(Common_EventScript_ShowBagIsFull)
+            }
+            setflag(FLAG_RECEIVED_HARD_STONE_FROM_ARTHUR)
+            msgbox("ARTHUR: A POKéMON that uses ROCK-\n"
+                   "type moves should hold onto that.\p"
+                   "It pumps up ROCK-type attacks.")
+        }
+        else
+        {
+            msgbox("ARTHUR: Today's not THURSDAY.\n"
+                   "How disappointing.")
+        }
+    }
+    else
+    {
+        msgbox("ARTHUR: I'm ARTHUR of THURSDAY.\n"
+               "I'm the second son out of\l"
+               "seven children.")
+    }
+    release
 }
 
 script Route36_EventScript_BlockedGirl {
-	lock
-	faceplayer
+    lock
+    faceplayer
     if (!flag(FLAG_DEFEATED_SUDOWOODO))
     {
         msgbox("An odd tree is blocking the way\n"
@@ -77,68 +89,121 @@ script Route36_EventScript_BlockedGirl {
                "Oh!\n"
                "That tree was really a POKéMON?")
     }
-	release
+    release
 }
 
-# TODO: Clean up after inline goto
 script Route36_EventScript_RockSmashGuy {
-	lock
-	faceplayer
-	if (!flag(FLAG_RECEIVED_HM06))
-	{
-		if (!flag(FLAG_DEFEATED_SUDOWOODO))
-		{
-			msgbox("Wa-hey!\p"
-				   "I was going to snap that tree with\n"
-				   "my straight-arm punch.\p"
-				   "But I couldn't!\n"
-				   "I'm a failure!")
-			release
-			end
-		}
-		else
-		{
-			msgbox("Did you clear that wretched tree?\n"
-			       "I'm impressed!\l"
-				   "I want you to have this.")
-			giveitem(ITEM_HM06)
-			setflag(FLAG_RECEIVED_HM06)
-		}
-	}
-	msgbox("That HM happens to be ROCK SMASH.\n"
-		   "You can shatter rocks with just a\l"
-		   "single well-aimed smack.\p"
-		   "If any rocks are in your way, just\n"
-		   "smash 'em up!")
-	release
+    lock
+    faceplayer
+    if (!flag(FLAG_RECEIVED_HM06))
+    {
+        if (!flag(FLAG_DEFEATED_SUDOWOODO))
+        {
+            msgbox("Wa-hey!\p"
+                   "I was going to snap that tree with\n"
+                   "my straight-arm punch.\p"
+                   "But I couldn't!\n"
+                   "I'm a failure!")
+            release
+            end
+        }
+        else
+        {
+            msgbox("Did you clear that wretched tree?\n"
+                   "I'm impressed!\l"
+                   "I want you to have this.")
+            giveitem(ITEM_HM06)
+            setflag(FLAG_RECEIVED_HM06)
+            msgbox(Route36_Text_RockSmashGuy_PostHM)
+        }
+    }
+    else
+    {
+        msgbox(Route36_Text_RockSmashGuy_PostHM)
+    }
+    release
+}
+
+text Route36_Text_RockSmashGuy_PostHM {
+    "That HM happens to be ROCK SMASH.\n"
+    "You can shatter rocks with just a\l"
+    "single well-aimed smack.\p"
+    "If any rocks are in your way, just\n"
+    "smash 'em up!"
 }
 
 script Route36_EventScript_Sudowoodo {
-	lock
-	waitse
-	playse(SE_USSOKI)
-	applymovement(SUDOWOODO, Route36_Movement_Sudowoodo)
-	waitmovement(0)
-	release
+    lock
+    checkitem(ITEM_SQUIRTBOTTLE, 1)
+    if (var(VAR_RESULT) == TRUE)
+    {
+        msgbox("It's a weird tree.\n"
+               "Use the SQUIRTBOTTLE?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            goto(Route36_EventScript_UseSquirtbottleOnSudowoodo)
+        }
+    }
+    else
+    {
+        waitse
+        playse(SE_SUDOWOODO_SHAKE)
+        applymovement(OBJ_EVENT_ID_SUDOWOODO, Route36_Movement_Sudowoodo)
+        waitmovement(0)
+    }
+    release
+}
+
+script Route36_EventScript_UseSquirtbottleOnSudowoodo {
+    lock
+    msgbox("{PLAYER} used the SQUIRTBOTTLE.")
+    closemessage
+    waitse
+    playse(SE_SUDOWOODO_SHAKE)
+    applymovement(OBJ_EVENT_ID_SUDOWOODO, Route36_Movement_Sudowoodo)
+    waitmovement(0)
+    msgbox("The weird tree doesn't like the\n"
+           "SQUIRTBOTTLE!\p"
+           "The weird tree attacked!")
+    closemessage
+    waitse
+    playmoncry(SPECIES_SUDOWOODO, 2)
+    delay(40)
+    waitmoncry
+    setvar(VAR_LAST_TALKED, OBJ_EVENT_ID_SUDOWOODO)
+    setwildbattle(SPECIES_SUDOWOODO, 20, ITEM_NONE)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    switch (var(VAR_RESULT))
+    {
+        case B_OUTCOME_WON:
+        case B_OUTCOME_RAN:
+        case B_OUTCOME_PLAYER_TELEPORTED:
+            call(Common_EventScript_RemoveStaticPokemon)
+    }
+    setflag(FLAG_DEFEATED_SUDOWOODO)
+    release
 }
 
 movement Route36_Movement_Sudowoodo {
-	face_right
-	delay_8
-	face_down
-	delay_8
-	face_left
-	delay_8
-	face_down
-	delay_8
-	face_right
-	delay_8
-	face_down
-	delay_8
-	face_left
-	delay_8
-	face_down
-	step_end
+    face_right
+    delay_8
+    face_down
+    delay_8
+    face_left
+    delay_8
+    face_down
+    delay_8
+    face_right
+    delay_8
+    face_down
+    delay_8
+    face_left
+    delay_8
+    face_down
+    step_end
 }
 
 script Route36_EventScript_DirectionsSign {
@@ -147,54 +212,220 @@ script Route36_EventScript_DirectionsSign {
 
 script Route36_EventScript_RuinsOfAlphSign {
     msgbox("RUINS OF ALPH\n"
-		   "NORTH ENTRANCE", MSGBOX_SIGN)
+           "NORTH ENTRANCE", MSGBOX_SIGN)
 }
 
-raw `
-Route36_EventScript_Jerome:: @ 81EE68A
-	trainerbattle_single TRAINER_JEROME, Route36_Text_JeromeIntro, Route36_Text_JeromeDefeated
-	msgbox Route36_Text_JeromePostBattle, MSGBOX_AUTOCLOSE
-	end
+script Route36_EventScript_TrainerTipsStatsSign {
+    msgbox("TRAINER TIPS\p"
+           "POKéMON stats vary--even within\n"
+           "the same species.\p"
+           "Their stats may appear to be similar\n"
+           "at first.\p"
+           "However, differences will become\n"
+           "pronounced as the POKéMON grow.", MSGBOX_SIGN)
+}
 
-Route36_EventScript_Matthew:: @ 81EE6A1
-	trainerbattle_single TRAINER_MATTHEW, Route36_Text_MatthewIntro, Route36_Text_MatthewDefeated
-	msgbox Route36_Text_MatthewPostBattle, MSGBOX_AUTOCLOSE
-	end
+script Route36_EventScript_Mark {
+    trainerbattle_single(TRAINER_MARK, Route36_Text_MarkIntro, Route36_Text_MarkDefeated)
+    msgbox(Route36_Text_MarkPostBattle, MSGBOX_AUTOCLOSE)
+}
 
-Route36_EventScript_Tara:: @ 81EE6B8
-	trainerbattle_single TRAINER_TARA, Route36_Text_TaraIntro, Route36_Text_TaraDefeated
-	msgbox Route36_Text_TaraPostBattle, MSGBOX_AUTOCLOSE
-	end
+script Route36_EventScript_Alan {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_ALAN, Route36_Text_AlanIntro, Route36_Text_AlanDefeated)
+    msgbox(Route36_Text_AlanPostBattle, MSGBOX_AUTOCLOSE)
+}
 
-Route36_EventScript_Missy:: @ 81EE6CF
-	trainerbattle_single TRAINER_MISSY, Route36_Text_MissyIntro, Route36_Text_MissyDefeated
-	msgbox Route36_Text_MissyPostBattle, MSGBOX_AUTOCLOSE
-	end
+script Route36_EventScript_Floria {
+    lock
+    faceplayer
+    if (flag(FLAG_TALKED_TO_FLORIA_FLOWER_SHOP))
+    {
+        msgbox("When I told my sis about the jiggly\n"
+               "tree, she said it's dangerous.\p"
+               "If I beat WHITNEY, I wonder if she'll\n"
+               "lend me her water bottle…")
+    }
+    else
+    {
+        msgbox("I'm the FLOWER SHOP's FLORIA!\n"
+               "Listen, listen!\p"
+               "When I sprinkled water on that\n"
+               "wiggly tree, it jumped right up!\l"
+               "It just has to be a POKéMON.\p"
+               "I bet it would be shocked out of\n"
+               "its disguise if you soaked it!\p"
+               "I know! I'll tell my sis and borrow\n"
+               "her water bottle!")
+        closemessage
+        switch (var(VAR_FACING))
+        {
+            case DIR_EAST:
+                applymovement(OBJ_EVENT_ID_PLAYER, Route36_Movement_PlayerWatchFloriaLeftRight)
+                applymovement(OBJ_EVENT_ID_FLORIA, Route36_Movement_FloriaLeaveFromLeft)
+            case DIR_WEST:
+                applymovement(OBJ_EVENT_ID_PLAYER, Route36_Movement_PlayerWatchFloriaLeftRight)
+                applymovement(OBJ_EVENT_ID_FLORIA, Route36_Movement_FloriaLeaveFromRight)
+            // DIR_NORTH
+            default:
+                applymovement(OBJ_EVENT_ID_PLAYER, Route36_Movement_PlayerWatchFloriaFromBelow)
+                applymovement(OBJ_EVENT_ID_FLORIA, Route36_Movement_FloriaLeaveFromBelow)
+        }
+        waitmovement(0)
+        setflag(FLAG_MET_FLORIA_ROUTE_36)
+        clearflag(FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA)
+        removeobject(OBJ_EVENT_ID_FLORIA)
+    }
+    release
+}
 
-Route36_EventScript_Carolina:: @ 81EE6E6
-	trainerbattle_single TRAINER_CAROLINA, Route36_Text_CarolinaIntro, Route36_Text_CarolinaDefeated
-	msgbox Route36_Text_CarolinaPostBattle, MSGBOX_AUTOCLOSE
-	end
+movement Route36_Movement_PlayerWatchFloriaLeftRight {
+    walk_in_place_fastest_down
+}
 
-Route36_EventScript_Cory:: @ 81EE6FD
-	trainerbattle_single TRAINER_CORY_1, Route36_Text_CoryIntro, Route36_Text_CoryDefeated, Route36_EventScript_CoryRegisterMatchCallAfterBattle
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	compare VAR_RESULT, TRUE
-	goto_if_eq Route36_EventScript_CoryRematch
-	msgbox Route36_Text_CoryPostBattle, MSGBOX_DEFAULT
-	release
-	end
+movement Route36_Movement_FloriaLeaveFromLeft {
+    walk_down * 3
+    walk_left * 9
+}
 
-Route36_EventScript_CoryRegisterMatchCallAfterBattle:: @ 81EE729
-	special PlayerFaceTrainerAfterBattle
-	waitmovement 0
-	msgbox Route36_Text_CoryRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_CORY_1
-	release
-	end
+movement Route36_Movement_FloriaLeaveFromRight {
+    walk_down * 3
+    walk_left * 7
+}
 
-Route36_EventScript_CoryRematch:: @ 81EE748
-	trainerbattle_rematch TRAINER_CORY_1, Route36_Text_CoryRematchIntro, Route36_Text_CoryRematchDefeated
-	msgbox Route36_Text_CoryRematchPostBattle, MSGBOX_AUTOCLOSE
-	end
-`
+movement Route36_Movement_PlayerWatchFloriaFromBelow {
+    walk_in_place_fastest_left
+    delay_16 * 2
+    walk_in_place_fastest_down
+}
+
+movement Route36_Movement_FloriaLeaveFromBelow {
+    walk_left
+    walk_down * 3
+    walk_left * 7
+}
+
+script Route36_EventScript_SierraPoopsTheParty {
+    lockall
+    setobjectxyperm(OBJ_EVENT_ID_SIERRA, 25, 7)
+    addobject(OBJ_EVENT_ID_SIERRA)
+    specialvar(VAR_FACING, GetPlayerFacingDirection)
+    if (var(VAR_FACING) == DIR_NORTH)
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, Route36_Movement_NoticeSierra)
+    }
+    applymovement(OBJ_EVENT_ID_SIERRA, Route36_Movement_SierraToPlayerBelow)
+    waitmovement(0)
+    setobjectxyperm(OBJ_EVENT_ID_SIERRA, 30, 13)
+    textcolor(MSG_COLOR_RED)
+    msgbox("SIERRA: Hey, hold up! The road\n"
+           "ahead is still under construction.\p"
+           "It's going to take a while before\n"
+           "you can come through safely.\p"
+           "The construction crew is hard at\n"
+           "work, doing… construction-y things.\p"
+           "Taking things out of the ground…\n"
+           "Putting other things in…\l"
+           "It's a whole process.\p"
+           "Hey, don't ask me, I'm just a simple\n"
+           "programmer who do thing with code.\p"
+           "Anyway…")
+    closemessage
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_SIERRA, Route36_Movement_SierraBulliesPlayer)
+    applymovement(OBJ_EVENT_ID_PLAYER, Route36_Movement_PlayerStepsBack)
+    waitmovement(0)
+    playbgm(MUS_RG_HALL_OF_FAME, 0)
+    msgbox("Thank you so much for playing!\p"
+           "I know it's been a while, and I know\n"
+           "this isn't much, but I'm proud of\l"
+           "what I've done so far.\p"
+           "Thank you to everyone who has stuck\n"
+           "with me for the past decade!\p"
+           "Now… let's roll the credits!")
+    special(DoMiniCredits)
+    waitstate
+    message("A particularly big thanks to all the\n"
+            "people who have contributed to the\l"
+            "project in one way or another, be\l"
+            "it art or music or… well, anything.\p"
+            "This project would not be where it\n"
+            "is today without you.\p"
+            "And…")
+    waitmessage
+    special(DoMiniCredits)
+    waitstate
+    msgbox("Of course, a huge shout-out to my\n"
+           "Patrons and alpha testers, past\l"
+           "and present, who are super cool.\p"
+           "Thanks for putting up with my awful\n"
+           "ability to get out alpha builds.")
+    special(DoMiniCredits)
+    waitstate
+    msgbox("And again, to you, the player…\p"
+           "{PLAYER}…\p"
+           "Thank you so much-a for to playing\n"
+           "my game.\p"
+           "Now, for my last task…\n"
+           "To stand here, on guard.\p"
+           "Until the end of time, or so it\n"
+           "might seem…")
+    closemessage
+    applymovement(OBJ_EVENT_ID_SIERRA, Route36_Movement_SierraToGuardPosition)
+    applymovement(OBJ_EVENT_ID_CAMERA, Route36_Movement_CameraBackToPlayer)
+    waitmovement(0)
+    special(RemoveCameraObject)
+    fadedefaultbgm
+    setvar(VAR_ROUTE36_STATE, 1)
+    clearflag(FLAG_HIDE_ROUTE_36_SIERRA)
+    releaseall
+}
+
+movement Route36_Movement_NoticeSierra {
+    delay_16 * 3
+    walk_in_place_fastest_left
+}
+
+movement Route36_Movement_SierraToPlayerBelow {
+    walk_down * 4
+    walk_right * 2
+    walk_down * 2
+    walk_right * 3
+}
+
+movement Route36_Movement_SierraBulliesPlayer {
+    walk_right
+    face_down
+}
+
+movement Route36_Movement_PlayerStepsBack {
+    lock_facing_direction
+    walk_right
+    unlock_facing_direction
+}
+
+movement Route36_Movement_SierraToGuardPosition {
+    walk_left
+    face_right
+}
+
+movement Route36_Movement_CameraBackToPlayer {
+    walk_right
+}
+
+script Route36_EventScript_Sierra {
+    msgbox("SIERRA: Hey, {PLAYER}!\n"
+           "How goes the, erm, playing?\p"
+           "The construction crew is definitely\n"
+           "hard at work back here, yes.\p"
+           "If you want to know when it's done\n"
+           "as soon as possible, you should\l"
+           "check out my website!\p"
+           "https://domoreaweso.me\p"
+           "It may not be updated frequently,\n"
+           "but there's probably a link you can\l"
+           "click there for a Discord server\l"
+           "or whatever the kids use nowadays.\p"
+           "And please don't bother the other\n"
+           "SIERRA about the release… okay?", MSGBOX_NPC)
+}

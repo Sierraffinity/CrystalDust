@@ -27,17 +27,16 @@
 #define LANGUAGE_SPANISH  7
 #define NUM_LANGUAGES     7
 
-#define GAME_VERSION (VERSION_CRYSTAL_DUST)
-#define GAME_LANGUAGE (LANGUAGE_ENGLISH)
+#define GAME_VERSION    (VERSION_CRYSTAL_DUST)
+#define GAME_LANGUAGE   (LANGUAGE_ENGLISH)
 
 // capacities of various saveblock objects
 #define DAYCARE_MON_COUNT 2
 #define POKEBLOCKS_COUNT 40
 #define OBJECT_EVENTS_COUNT 16
 #define BERRY_TREES_COUNT 128
-#define FLAGS_COUNT 300
-#define VARS_COUNT 256
-#define MAIL_COUNT 16
+#define MAIL_COUNT (PARTY_SIZE + 10)
+#define PC_MAIL_NUM(i) (PARTY_SIZE + (i))
 #define SECRET_BASES_COUNT 20
 #define TV_SHOWS_COUNT 25
 #define POKE_NEWS_COUNT 16
@@ -53,6 +52,8 @@
 #define APPRENTICE_COUNT 4
 #define APPRENTICE_MAX_QUESTIONS 9
 #define MAX_REMATCH_ENTRIES 100 // only REMATCH_TABLE_ENTRIES (78) are used
+#define NUM_CONTEST_WINNERS 13
+#define UNION_ROOM_KB_ROW_COUNT 10
 
 #define PYRAMID_BAG_ITEMS_COUNT 10
 #define HALL_FACILITIES_COUNT 9 // 7 facilities for single mode + tower double mode + tower multi mode.
@@ -60,6 +61,14 @@
 #define TRAINER_ID_LENGTH 4
 #define MAX_MON_MOVES 4
 #define NUM_STATS 6
+
+#define CONTESTANT_COUNT 4
+#define CONTEST_CATEGORY_COOL     0
+#define CONTEST_CATEGORY_BEAUTY   1
+#define CONTEST_CATEGORY_CUTE     2
+#define CONTEST_CATEGORY_SMART    3
+#define CONTEST_CATEGORY_TOUGH    4
+#define CONTEST_CATEGORIES_COUNT  5
 
 // party sizes
 #define PARTY_SIZE 6
@@ -77,6 +86,8 @@
 #define MAIL_WORDS_COUNT 9
 #define EASY_CHAT_BATTLE_WORDS_COUNT 6
 #define MOVE_NAME_LENGTH 12
+#define BOX_NAME_LENGTH 8
+#define WALDA_WORDS_LENGTH 15
 
 #define MALE 0
 #define FEMALE 1

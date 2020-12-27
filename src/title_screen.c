@@ -38,7 +38,7 @@
 #define A_B_START_SELECT (A_BUTTON | B_BUTTON | START_BUTTON | SELECT_BUTTON)
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
-EWRAM_DATA vu8 sVBlank_DMA = 0;
+static EWRAM_DATA vu8 sVBlank_DMA = 0;
 
 extern const u32 gTitleScreenPressStartGfx[];
 extern const u32 gTitleScreenPokemonLogoGfx[];
@@ -296,7 +296,7 @@ void CB2_InitTitleScreen(void)
         gMain.state = 1;
         break;
     case 1:
-        LZ77UnCompVram(gTitleScreenPokemonLogoGfx, (void *)VRAM);
+        LZ77UnCompVram(gTitleScreenPokemonLogoGfx, (void *)(BG_CHAR_ADDR(0)));
         LZ77UnCompVram(gTitleScreenPokemonLogoTilemap, (void *)(BG_SCREEN_ADDR(31)));
         LoadPalette(gTitleScreenBgPalettes, 0, 0x200);
         LZ77UnCompVram(sTitleScreenCloudsGfx, (void *)(BG_CHAR_ADDR(2)));
@@ -327,13 +327,31 @@ void CB2_InitTitleScreen(void)
         break;
     case 4:
         PanFadeAndZoomScreen(0x78, 0x50, 0x100, 0);
-        SetGpuReg(REG_OFFSET_WIN0H, 0);
-        SetGpuReg(REG_OFFSET_WIN0V, 160);
-        SetGpuReg(REG_OFFSET_WININ, 0x3F);
-        SetGpuReg(REG_OFFSET_WINOUT, 0x3E);
-        SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(31) | BGCNT_256COLOR | BGCNT_TXT256x256);
-        SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1) | BGCNT_CHARBASE(1) | BGCNT_SCREENBASE(29) | BGCNT_16COLOR | BGCNT_TXT256x512);
-        SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2) | BGCNT_CHARBASE(2) | BGCNT_SCREENBASE(28) | BGCNT_16COLOR | BGCNT_TXT256x256);
+        SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 0));
+        SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, 160));
+        SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL |
+                                    WININ_WIN0_OBJ |
+                                    WININ_WIN0_CLR);
+        SetGpuReg(REG_OFFSET_WINOUT, WININ_WIN0_BG1 |
+                                     WININ_WIN0_BG2 |
+                                     WININ_WIN0_BG3 |
+                                     WININ_WIN0_OBJ |
+                                     WININ_WIN0_CLR);
+        SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0) |
+                                     BGCNT_CHARBASE(0) |
+                                     BGCNT_SCREENBASE(31) |
+                                     BGCNT_256COLOR |
+                                     BGCNT_TXT256x256);
+        SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1) |
+                                     BGCNT_CHARBASE(1) |
+                                     BGCNT_SCREENBASE(29) |
+                                     BGCNT_16COLOR |
+                                     BGCNT_TXT256x512);
+        SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2) |
+                                     BGCNT_CHARBASE(2) |
+                                     BGCNT_SCREENBASE(28) |
+                                     BGCNT_16COLOR |
+                                     BGCNT_TXT256x256);
         EnableInterrupts(INTR_FLAG_VBLANK);
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0
                                     | DISPCNT_OBJ_1D_MAP
@@ -342,7 +360,8 @@ void CB2_InitTitleScreen(void)
                                     | DISPCNT_BG2_ON
                                     | DISPCNT_OBJ_ON
                                     | DISPCNT_WIN0_ON);
-        m4aSongNumStart(MUS_TITLE3);
+        m4aMPlayAllStop();
+        m4aSongNumStart(MUS_TITLE);
         gMain.state = 5;
         break;
     case 5:
@@ -463,6 +482,7 @@ static bool8 LogoComb_Func3(struct Task *task)
 {
     DmaStop(0);
     SetGpuReg(REG_OFFSET_BG0HOFS, 3);
+    ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
     SetVBlankCallback(VBlankCB);
     SetHBlankCallback(NULL);
     DisableInterrupts(INTR_FLAG_HBLANK);
@@ -474,31 +494,31 @@ static bool8 LogoComb_Func3(struct Task *task)
 // Process title screen input
 static void Task_TitleScreenProcessInput(u8 taskId)
 {
-    if ((gMain.newKeys & A_BUTTON) || (gMain.newKeys & START_BUTTON))
+    if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(START_BUTTON)))
     {
         FadeOutBGM(4);
         BeginNormalPaletteFade(0xFFFFFFFF, 1, 0, 0x10, RGB_WHITEALPHA);
         SetMainCallback2(CB2_GoToMainMenu);
     }
-    else if ((gMain.heldKeys & CLEAR_SAVE_BUTTON_COMBO) == CLEAR_SAVE_BUTTON_COMBO)
+    else if (JOY_HELD(CLEAR_SAVE_BUTTON_COMBO) == CLEAR_SAVE_BUTTON_COMBO)
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_WHITEALPHA);
         SetMainCallback2(CB2_GoToClearSaveDataScreen);
     }
-    else if ((gMain.heldKeys & RESET_RTC_BUTTON_COMBO) == RESET_RTC_BUTTON_COMBO
+    else if (JOY_HELD(RESET_RTC_BUTTON_COMBO) == RESET_RTC_BUTTON_COMBO
       && CanResetRTC() == TRUE)
     {
         FadeOutBGM(4);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_GoToResetRtcScreen);
     }
-    else if ((gMain.heldKeys & SOUND_TEST_BUTTON_COMBO) == SOUND_TEST_BUTTON_COMBO)
+    else if (JOY_HELD(SOUND_TEST_BUTTON_COMBO) == SOUND_TEST_BUTTON_COMBO)
     {
         FadeOutBGM(4);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_GoToSoundCheckScreen);
     }
-    else if ((gMain.heldKeys & BERRY_UPDATE_BUTTON_COMBO) == BERRY_UPDATE_BUTTON_COMBO)
+    else if (JOY_HELD(BERRY_UPDATE_BUTTON_COMBO) == BERRY_UPDATE_BUTTON_COMBO)
     {
         FadeOutBGM(4);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);

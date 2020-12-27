@@ -1,0 +1,45 @@
+mapscripts GoldenrodCity_House1_MapScripts { }
+
+script GoldenrodCity_House1_EventScript_HappinessRater {
+    lock
+    faceplayer
+    bufferpartymonnick(0, 0)
+    msgbox("If you treat your POKéMON nicely,\n"
+           "they will love you in return.\p"
+           "Oh?\n"
+           "Let me see your {STR_VAR_1}…")
+    specialvar(VAR_RESULT, GetLeadMonFriendshipScore)
+    switch (var(VAR_RESULT))
+    {
+        case 6:
+            msgbox("It looks really happy!\n"
+                   "It must love you a lot.")
+        case 5:
+            msgbox("I get the feeling that it really\n"
+                   "trusts you.")
+        case 4:
+            msgbox("It's friendly toward you.\n"
+                   "It looks sort of happy.")
+        case 3:
+            msgbox("It's quite cute.")
+        case 2:
+            msgbox("You should treat it better.\n"
+                   "It's not used to you.")
+        default:
+            msgbox("It doesn't seem to like you at all.\n"
+                   "It looks mean.")
+    }
+    release
+}
+
+script GoldenrodCity_House1_EventScript_LoserWoman {
+    msgbox("I keep losing in battles, and my\n"
+           "POKéMON end up fainting…\p"
+           "Maybe that's why my POKéMON don't\n"
+           "like me much…", MSGBOX_NPC)
+}
+
+script GoldenrodCity_House1_EventScript_ItemGirl {
+    msgbox("When I use an item on my POKéMON,\n"
+           "it acts really glad!", MSGBOX_NPC)
+}

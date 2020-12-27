@@ -1,7 +1,7 @@
-
+@ Interact with cuttable tree
 EventScript_CutTree:: @ 82906BB
 	lockall
-	goto_if_unset FLAG_BADGE01_GET, EventScript_CheckTreeCantCut
+	goto_if_unset FLAG_BADGE02_GET, EventScript_CheckTreeCantCut
 	checkpartymove MOVE_CUT
 	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CheckTreeCantCut
@@ -18,7 +18,8 @@ EventScript_CutTree:: @ 82906BB
 	goto EventScript_CutTreeDown
 	end
 
-EventScript_FldEffCut:: @ 8290705
+@ Use cut from party menu
+EventScript_UseCut:: @ 8290705
 	lockall
 	dofieldeffect FLDEFF_USE_CUT_ON_TREE
 	waitstate
@@ -58,6 +59,7 @@ Text_CantCut: @ 829077D
 	.string "This tree looks like it can be CUT\n"
 	.string "down!$"
 
+@ Interact with smashable rock
 EventScript_RockSmash:: @ 82907A6
 	lockall
 	goto_if_unset FLAG_BADGE03_GET, EventScript_CantSmashRock
@@ -77,7 +79,8 @@ EventScript_RockSmash:: @ 82907A6
 	goto EventScript_SmashRock
 	end
 
-EventScript_FldEffRockSmash:: @ 82907F0
+@ Use rock smash from party menu
+EventScript_UseRockSmash:: @ 82907F0
 	lockall
 	dofieldeffect FLDEFF_USE_ROCK_SMASH
 	waitstate
@@ -89,7 +92,7 @@ EventScript_SmashRock:: @ 82907FB
 	waitmovement 0
 	removeobject VAR_LAST_TALKED
 	special RockSmashWildEncounter
-	compare VAR_RESULT, 0
+	compare VAR_RESULT, FALSE
 	goto_if_eq EventScript_EndSmash
 	waitstate
 	releaseall
@@ -138,7 +141,7 @@ EventScript_StrengthBoulder:: @ 82908BA
 	goto EventScript_ActivateStrength
 	end
 
-EventScript_FldEffStrength:: @ 82908FD
+EventScript_UseStrength:: @ 82908FD
 	lockall
 	dofieldeffect FLDEFF_USE_STRENGTH
 	waitstate
@@ -295,3 +298,50 @@ EventScript_FailSweetScent:: @ 8290CAE
 
 Text_FailSweetScent: @ 8290CB7
 	.string "Looks like there's nothing here…$"
+
+EventScript_HeadbuttTree::
+	lockall
+	checkpartymove MOVE_HEADBUTT
+	compare VAR_RESULT, PARTY_SIZE
+	goto_if_eq EventScript_EndHeadbutt
+	setfieldeffectargument 0, VAR_RESULT
+	bufferpartymonnick 0, VAR_RESULT
+	buffermovename 1, MOVE_HEADBUTT
+	msgbox Text_WantToHeadbutt, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_CancelHeadbutt
+	msgbox Text_MonUsedFieldMove, MSGBOX_DEFAULT
+	closemessage
+	goto EventScript_DoHeadbutt
+	end
+
+EventScript_UseHeadbutt::
+	lockall
+EventScript_DoHeadbutt:
+	dofieldeffect FLDEFF_USE_HEADBUTT
+	waitstate
+	waitse
+	special HeadbuttTreeWildEncounter
+	compare VAR_RESULT, 0
+	goto_if_eq EventScript_HeadbuttNothing
+	waitstate
+EventScript_EndHeadbutt:
+	releaseall
+	end
+
+EventScript_HeadbuttNothing:
+	msgbox Text_HeadbuttNothing, MSGBOX_DEFAULT
+	releaseall
+	end
+
+EventScript_CancelHeadbutt::
+	closemessage
+	releaseall
+	end
+
+Text_WantToHeadbutt:
+	.string "A POKéMON could be in this tree.\n"
+	.string "Want to HEADBUTT it?$"
+
+Text_HeadbuttNothing::
+	.string "Nope. Nothing…$"

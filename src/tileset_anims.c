@@ -42,6 +42,7 @@ static void TilesetAnim_MauvilleGym(u16);
 static void TilesetAnim_PagodaTower(u16);
 static void TilesetAnim_BattlePyramid(u16);
 static void TilesetAnim_BattleDome(u16);
+static void TilesetAnim_NationalPark(u16);
 static void QueueAnimTiles_General_WaterFast(u16);
 static void QueueAnimTiles_General_Water(u16);
 static void QueueAnimTiles_General_Flower(u16);
@@ -70,6 +71,10 @@ static void QueueAnimTiles_MauvilleGym_ElectricGates(u16);
 static void QueueAnimTiles_SootopolisGym_Waterfalls(u16);
 static void QueueAnimTiles_EliteFour_GroundLights(u16);
 static void QueueAnimTiles_EliteFour_WallLights(u16);
+static void QueueAnimTiles_NationalPark_LargeFountain(u16);
+static void QueueAnimTiles_NationalPark_SmallFountain(u16);
+static void QueueAnimTiles_NationalPark_RedFlower(u16);
+static void QueueAnimTiles_NationalPark_YellowFlower(u16);
 
 const u16 gTilesetAnims_General_WaterFast_Frame0[] = INCBIN_U16("data/tilesets/primary/general/anim/water_fast/0.4bpp");
 const u16 gTilesetAnims_General_WaterFast_Frame1[] = INCBIN_U16("data/tilesets/primary/general/anim/water_fast/1.4bpp");
@@ -257,14 +262,14 @@ const u16 *const gTilesetAnims_Mauville_Flower2_B[] = {
     gTilesetAnims_Mauville_Flower2_Frame4
 };
 
-const u16 gTilesetAnims_Rustboro_WindyWater_Frame0[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/windy_water/0.4bpp");
-const u16 gTilesetAnims_Rustboro_WindyWater_Frame1[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/windy_water/1.4bpp");
-const u16 gTilesetAnims_Rustboro_WindyWater_Frame2[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/windy_water/2.4bpp");
-const u16 gTilesetAnims_Rustboro_WindyWater_Frame3[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/windy_water/3.4bpp");
-const u16 gTilesetAnims_Rustboro_WindyWater_Frame4[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/windy_water/4.4bpp");
-const u16 gTilesetAnims_Rustboro_WindyWater_Frame5[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/windy_water/5.4bpp");
-const u16 gTilesetAnims_Rustboro_WindyWater_Frame6[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/windy_water/6.4bpp");
-const u16 gTilesetAnims_Rustboro_WindyWater_Frame7[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/windy_water/7.4bpp");
+const u16 gTilesetAnims_Rustboro_WindyWater_Frame0[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/windy_water/0.4bpp");
+const u16 gTilesetAnims_Rustboro_WindyWater_Frame1[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/windy_water/1.4bpp");
+const u16 gTilesetAnims_Rustboro_WindyWater_Frame2[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/windy_water/2.4bpp");
+const u16 gTilesetAnims_Rustboro_WindyWater_Frame3[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/windy_water/3.4bpp");
+const u16 gTilesetAnims_Rustboro_WindyWater_Frame4[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/windy_water/4.4bpp");
+const u16 gTilesetAnims_Rustboro_WindyWater_Frame5[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/windy_water/5.4bpp");
+const u16 gTilesetAnims_Rustboro_WindyWater_Frame6[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/windy_water/6.4bpp");
+const u16 gTilesetAnims_Rustboro_WindyWater_Frame7[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/windy_water/7.4bpp");
 
 u16 *const gTilesetAnims_Rustboro_WindyWater_VDests[] = {
     (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 128)),
@@ -288,8 +293,8 @@ const u16 *const gTilesetAnims_Rustboro_WindyWater[] = {
     gTilesetAnims_Rustboro_WindyWater_Frame7
 };
 
-const u16 gTilesetAnims_Rustboro_Fountain_Frame0[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/fountain/0.4bpp");
-const u16 gTilesetAnims_Rustboro_Fountain_Frame1[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/fountain/1.4bpp");
+const u16 gTilesetAnims_Rustboro_Fountain_Frame0[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/fountain/0.4bpp");
+const u16 gTilesetAnims_Rustboro_Fountain_Frame1[] = INCBIN_U16("data/tilesets/secondary/goldenrod/anim/fountain/1.4bpp");
 const u16 tileset_anims_space_2[16] = {};
 
 const u16 *const gTilesetAnims_Rustboro_Fountain[] = {
@@ -505,12 +510,6 @@ const u16 tileset_anims_space_9[16] = {};
 const u16 gTilesetAnims_BattlePyramid_StatueShadow_Frame0[] = INCBIN_U16("data/tilesets/secondary/battle_pyramid/anim/statue_shadow/0.4bpp");
 const u16 gTilesetAnims_BattlePyramid_StatueShadow_Frame1[] = INCBIN_U16("data/tilesets/secondary/battle_pyramid/anim/statue_shadow/1.4bpp");
 const u16 gTilesetAnims_BattlePyramid_StatueShadow_Frame2[] = INCBIN_U16("data/tilesets/secondary/battle_pyramid/anim/statue_shadow/2.4bpp");
-const u16 tileset_anims_space_10[7808] = {};
-
-const u16 gTilesetAnims_Unused2_Frame0[] = INCBIN_U16("data/tilesets/secondary/unused_2/0.4bpp");
-const u16 tileset_anims_space_11[224] = {};
-
-const u16 gTilesetAnims_Unused2_Frame1[] = INCBIN_U16("data/tilesets/secondary/unused_2/1.4bpp");
 
 const u16 *const gTilesetAnims_BattlePyramid_Torch[] = {
     gTilesetAnims_BattlePyramid_Torch_Frame0,
@@ -529,6 +528,54 @@ static const u16 *const gTilesetAnims_BattleDomeFloorLightPals[] = {
     gTilesetAnims_BattleDomePals0_1,
     gTilesetAnims_BattleDomePals0_2,
     gTilesetAnims_BattleDomePals0_3,
+};
+
+const u16 gTilesetAnims_NationalPark_LargeFountain_Frame0[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/large_fountain/0.4bpp");
+const u16 gTilesetAnims_NationalPark_LargeFountain_Frame1[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/large_fountain/1.4bpp");
+const u16 gTilesetAnims_NationalPark_LargeFountain_Frame2[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/large_fountain/2.4bpp");
+const u16 gTilesetAnims_NationalPark_LargeFountain_Frame3[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/large_fountain/3.4bpp");
+
+const u16 *const gTilesetAnims_NationalPark_LargeFountain[] = {
+    gTilesetAnims_NationalPark_LargeFountain_Frame0,
+    gTilesetAnims_NationalPark_LargeFountain_Frame1,
+    gTilesetAnims_NationalPark_LargeFountain_Frame2,
+    gTilesetAnims_NationalPark_LargeFountain_Frame3
+};
+
+const u16 gTilesetAnims_NationalPark_SmallFountain_Frame0[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/small_fountain/0.4bpp");
+const u16 gTilesetAnims_NationalPark_SmallFountain_Frame1[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/small_fountain/1.4bpp");
+const u16 gTilesetAnims_NationalPark_SmallFountain_Frame2[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/small_fountain/2.4bpp");
+const u16 gTilesetAnims_NationalPark_SmallFountain_Frame3[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/small_fountain/3.4bpp");
+const u16 gTilesetAnims_NationalPark_SmallFountain_Frame4[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/small_fountain/4.4bpp");
+
+const u16 *const gTilesetAnims_NationalPark_SmallFountain[] = {
+    gTilesetAnims_NationalPark_SmallFountain_Frame0,
+    gTilesetAnims_NationalPark_SmallFountain_Frame1,
+    gTilesetAnims_NationalPark_SmallFountain_Frame2,
+    gTilesetAnims_NationalPark_SmallFountain_Frame3,
+    gTilesetAnims_NationalPark_SmallFountain_Frame4
+};
+
+const u16 gTilesetAnims_NationalPark_RedFlower_Frame0[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/red_flower/0.4bpp");
+const u16 gTilesetAnims_NationalPark_RedFlower_Frame1[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/red_flower/1.4bpp");
+const u16 gTilesetAnims_NationalPark_RedFlower_Frame2[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/red_flower/2.4bpp");
+
+const u16 *const gTilesetAnims_NationalPark_RedFlower[] = {
+    gTilesetAnims_NationalPark_RedFlower_Frame0,
+    gTilesetAnims_NationalPark_RedFlower_Frame1,
+    gTilesetAnims_NationalPark_RedFlower_Frame2,
+    gTilesetAnims_NationalPark_RedFlower_Frame1
+};
+
+const u16 gTilesetAnims_NationalPark_YellowFlower_Frame0[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/yellow_flower/0.4bpp");
+const u16 gTilesetAnims_NationalPark_YellowFlower_Frame1[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/yellow_flower/1.4bpp");
+const u16 gTilesetAnims_NationalPark_YellowFlower_Frame2[] = INCBIN_U16("data/tilesets/secondary/national_park/anim/yellow_flower/2.4bpp");
+
+const u16 *const gTilesetAnims_NationalPark_YellowFlower[] = {
+    gTilesetAnims_NationalPark_YellowFlower_Frame2,
+    gTilesetAnims_NationalPark_YellowFlower_Frame1,
+    gTilesetAnims_NationalPark_YellowFlower_Frame0,
+    gTilesetAnims_NationalPark_YellowFlower_Frame1
 };
 
 static void ResetTilesetAnimBuffer(void)
@@ -657,7 +704,7 @@ void InitTilesetAnim_NewBark(void)
     sSecondaryTilesetAnimCallback = NULL;
 }
 
-void InitTilesetAnim_Rustboro(void)
+void InitTilesetAnim_Goldenrod(void)
 {
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
@@ -811,9 +858,16 @@ void InitTilesetAnim_BattleDome(void)
     sSecondaryTilesetAnimCallback = TilesetAnim_BattleDome;
 }
 
+void InitTilesetAnim_NationalPark(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 960;
+    sSecondaryTilesetAnimCallback = TilesetAnim_NationalPark;
+}
+
 static void TilesetAnim_Rustboro(u16 timer)
 {
-    if (timer % 8 == 0)
+    /*if (timer % 8 == 0)
     {
         QueueAnimTiles_Rustboro_WindyWater(timer >> 3, 0);
         QueueAnimTiles_Rustboro_Fountain(timer >> 3);
@@ -831,7 +885,7 @@ static void TilesetAnim_Rustboro(u16 timer)
     if (timer % 8 == 6)
         QueueAnimTiles_Rustboro_WindyWater(timer >> 3, 6);
     if (timer % 8 == 7)
-        QueueAnimTiles_Rustboro_WindyWater(timer >> 3, 7);
+        QueueAnimTiles_Rustboro_WindyWater(timer >> 3, 7);*/
 }
 
 static void TilesetAnim_Slateport(u16 timer)
@@ -1069,6 +1123,18 @@ static void TilesetAnim_BattleDome2(u16 timer)
         BlendAnimPalette_BattleDome_FloorLightsNoBlend(timer >> 2);
 }
 
+static void TilesetAnim_NationalPark(u16 timer)
+{
+    if (timer % 10 == 0)
+        QueueAnimTiles_NationalPark_LargeFountain(timer / 10);
+    if (timer % 12 == 1)
+        QueueAnimTiles_NationalPark_SmallFountain(timer / 12);
+    if (timer % 16 == 2)
+        QueueAnimTiles_NationalPark_RedFlower(timer / 16);
+    if (timer % 16 == 12)
+        QueueAnimTiles_NationalPark_YellowFlower(timer / 16);
+}
+
 static void QueueAnimTiles_Building_TVTurnedOn(u16 timer)
 {
     u16 i = timer % 2;
@@ -1150,4 +1216,24 @@ static void BlendAnimPalette_BattleDome_FloorLightsNoBlend(u16 timer)
         if (!--sSecondaryTilesetAnimCounterMax)
             sSecondaryTilesetAnimCallback = NULL;
     }
+}
+
+static void QueueAnimTiles_NationalPark_LargeFountain(u16 timer)
+{
+    AppendTilesetAnimToBuffer(gTilesetAnims_NationalPark_LargeFountain[timer % ARRAY_COUNT(gTilesetAnims_NationalPark_LargeFountain)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 88)), 0x100);
+}
+
+static void QueueAnimTiles_NationalPark_SmallFountain(u16 timer)
+{
+    AppendTilesetAnimToBuffer(gTilesetAnims_NationalPark_SmallFountain[timer % ARRAY_COUNT(gTilesetAnims_NationalPark_SmallFountain)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 104)), 0x100);
+}
+
+static void QueueAnimTiles_NationalPark_RedFlower(u16 timer)
+{
+    AppendTilesetAnimToBuffer(gTilesetAnims_NationalPark_RedFlower[timer % ARRAY_COUNT(gTilesetAnims_NationalPark_RedFlower)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 96)), 0x80);
+}
+
+static void QueueAnimTiles_NationalPark_YellowFlower(u16 timer)
+{
+    AppendTilesetAnimToBuffer(gTilesetAnims_NationalPark_YellowFlower[timer % ARRAY_COUNT(gTilesetAnims_NationalPark_YellowFlower)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 100)), 0x80);
 }
