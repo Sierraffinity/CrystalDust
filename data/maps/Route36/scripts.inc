@@ -221,6 +221,7 @@ Route36_EventScript_Floria::
 Route36_EventScript_Floria_5:
 	waitmovement 0
 	clearflag FLAG_FLORIA_WENT_TO_ROUTE_36
+	setflag FLAG_MET_FLORIA_ROUTE_36
 	removeobject 7
 Route36_EventScript_Floria_1:
 	release
