@@ -80,8 +80,8 @@ voicegroup119:: @ 869AC70
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9058
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9064
 	voice_square_1 0, 2, 0, 0, 15, 0  @ 86A9070
-	voice_square_1_alt 0, 1, 0, 2, 7, 2  @ 86A907C
-	voice_square_2_alt 3, 0, 3, 6, 2  @ 86A9088
+	voice_square_2_alt 1, 0, 2, 7, 2 @ 8497A38
+	voice_square_1_alt 0, 3, 0, 3, 6, 2 @ 8497A44
 	voice_square_2_alt 3, 0, 2, 6, 5  @ 86A9094
 	voice_programmable_wave_alt ProgrammableWaveData_86B4890, 0, 3, 6, 5  @ 86A90A0
 	voice_programmable_wave_alt ProgrammableWaveData_86B4870, 0, 7, 15, 0  @ 86A92E0
