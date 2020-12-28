@@ -861,8 +861,8 @@ text GoldenrodCity_Underground_Text_DonaldDefeated {
 text GoldenrodCity_Underground_Text_DonaldPostBattle {
 	"Are you making a POKéDEX?\n"
 	"Here's a hot tip.\p"
-	"The HIKER on ROUTE 33, ANTHONY, is a\n"
-	"good guy.\p"
+	"The HIKER on ROUTE 33, ANTHONY, is\n"
+	"a good guy.\p"
 	"He'll phone you if he sees any rare\n"
 	"POKéMON."
 }
