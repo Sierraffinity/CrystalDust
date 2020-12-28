@@ -290,7 +290,7 @@ bool8 HandleLinkConnection(void);
 void SetLinkDebugValues(u32 seed, u32 flags);
 void SetBerryBlenderLinkCallback(void);
 void SetSuppressLinkErrorMessage(bool8 flag);
-void sub_800B524(struct LinkPlayer *linkPlayer);
+void NormalizeLinkPlayer(struct LinkPlayer *linkPlayer);
 u8 GetSioMultiSI(void);
 void ClearSavedLinkPlayers(void);
 void BufferLinkErrorInfo(u32 status, u8 lastSendQueueCount, u8 lastRecvQueueCount, u8 unk_06);

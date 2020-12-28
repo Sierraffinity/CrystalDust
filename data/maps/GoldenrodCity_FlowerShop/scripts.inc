@@ -109,5 +109,5 @@ GoldenrodCity_FlowerShop_EventScript_Floria_Text_1:
 GoldenrodCity_FlowerShop_EventScript_Floria_Text_2:
 	.string "When I told my sis about the jiggly\n"
 	.string "tree, she told me it's dangerous.\p"
-	.string "If I beat WHITNEY, I wonder if she'll\n"
-	.string "lend me her water bottle…$"
+	.string "If I beat WHITNEY, I wonder if\n"
+	.string "she'll lend me her water bottle…$"

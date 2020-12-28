@@ -292,10 +292,10 @@ static void PrintPlayerNameAndIdOnWindow(u8 windowId)
     u8 text[30];
     u8 *txtPtr;
 
-    UR_AddTextPrinterParameterized(windowId, 2, gSaveBlock2Ptr->playerName, 0, 1, UR_COLOR_DKE_WHT_LTE);
+    UR_AddTextPrinterParameterized(windowId, 2, gSaveBlock2Ptr->playerName, 0, 2, UR_COLOR_DKE_WHT_LTE);
     txtPtr = StringCopy(text, sText_ID);
     ConvertIntToDecimalStringN(txtPtr, ReadAsU16(gSaveBlock2Ptr->playerTrainerId), STR_CONV_MODE_LEADING_ZEROS, 5);
-    UR_AddTextPrinterParameterized(windowId, 2, text, 0, 0x11, UR_COLOR_DKE_WHT_LTE);
+    UR_AddTextPrinterParameterized(windowId, 0, text, 0, 0x10, UR_COLOR_DKE_WHT_LTE);
 }
 
 static void StringExpandPlaceholders_AwaitingCommFromAnother(u8 *dst, u8 caseId)
@@ -479,7 +479,7 @@ static void Task_TryBecomeLinkLeader(u8 taskId)
         // BUG: sPlayerActivityGroupSize was meant below, not gPlayerCurrActivity
         //      This will be false for all but ACTIVITY_BATTLE_DOUBLE and ACTIVITY_DECLINE
         //      All this changes is which of two texts gets printed
-        id = (GROUP_MAX(gPlayerCurrActivity) == 2) ? 1 : 0;
+        id = (GROUP_MAX(sPlayerActivityGroupSize) == 2) ? 1 : 0;
         if (PrintOnTextbox(&data->textState, sPlayerUnavailableTexts[id]))
         {
             data->playerCount = sub_8013398(data->field_0);
@@ -1231,7 +1231,10 @@ static u32 IsTryingToTradeAcrossVersionTooSoon(struct WirelessLink_Group *data, 
 {
     struct UnkStruct_x20 *structPtr = &data->field_0->arr[id];
 
-    if (gPlayerCurrActivity == ACTIVITY_TRADE && structPtr->gname_uname.gname.unk_00.version != VERSION_EMERALD)
+    if (gPlayerCurrActivity == ACTIVITY_TRADE &&
+        structPtr->gname_uname.gname.unk_00.version != VERSION_FIRE_RED &&
+        structPtr->gname_uname.gname.unk_00.version != VERSION_LEAF_GREEN &&
+        structPtr->gname_uname.gname.unk_00.version != VERSION_CRYSTAL_DUST)
     {
         if (!(gSaveBlock2Ptr->specialSaveWarpFlags & CHAMPION_SAVEWARP))
             return UR_TRADE_PLAYER_NOT_READY;
@@ -3943,7 +3946,7 @@ static void PrintUnionRoomGroupOnWindow(u8 windowId, u8 x, u8 y, struct UnkStruc
 
     ConvertIntToDecimalStringN(gStringVar4, id + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
     StringAppend(gStringVar4, sText_Colon);
-    UR_AddTextPrinterParameterized(windowId, 2, gStringVar4, x, y, 0);
+    UR_AddTextPrinterParameterized(windowId, 0, gStringVar4, x, y, 0);
     x += 18;
     activity = group->gname_uname.gname.activity;
     if (group->groupScheduledAnim == UNION_ROOM_SPAWN_IN && !(activity & IN_UNION_ROOM))
@@ -3953,7 +3956,8 @@ static void PrintUnionRoomGroupOnWindow(u8 windowId, u8 x, u8 y, struct UnkStruc
         ConvertIntToDecimalStringN(trainerId, group->gname_uname.gname.unk_00.playerTrainerId[0] | (group->gname_uname.gname.unk_00.playerTrainerId[1] << 8), STR_CONV_MODE_LEADING_ZEROS, 5);
         StringCopy(gStringVar4, sText_ID);
         StringAppend(gStringVar4, trainerId);
-        UR_AddTextPrinterParameterized(windowId, 2, gStringVar4, GetStringRightAlignXOffset(1, gStringVar4, 0x88), y, colorIdx);
+        x += 77;
+        UR_AddTextPrinterParameterized(windowId, 0, gStringVar4, x, y, colorIdx);
     }
 }
 
@@ -3968,7 +3972,8 @@ static void PrintGroupMemberCandidateOnWindowWithColor(u8 windowId, u8 x, u8 y, 
         ConvertIntToDecimalStringN(trainerId, group->gname_uname.gname.unk_00.playerTrainerId[0] | (group->gname_uname.gname.unk_00.playerTrainerId[1] << 8), STR_CONV_MODE_LEADING_ZEROS, 5);
         StringCopy(gStringVar4, sText_ID);
         StringAppend(gStringVar4, trainerId);
-        UR_AddTextPrinterParameterized(windowId, 2, gStringVar4, GetStringRightAlignXOffset(1, gStringVar4, 0x68), y, colorIdx);
+        x += 71;
+        UR_AddTextPrinterParameterized(windowId, 0, gStringVar4, x, y, colorIdx);
     }
 }
 

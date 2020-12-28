@@ -325,9 +325,11 @@ static void InitLocalLinkPlayer(void)
     gLocalLinkPlayer.gender = gSaveBlock2Ptr->playerGender;
     gLocalLinkPlayer.linkType = gLinkType;
     gLocalLinkPlayer.language = gGameLanguage;
-    gLocalLinkPlayer.version = VERSION_FIRE_RED | (gGameVersion << 8) | 0x4000;   // fake being FireRed for vanilla games, and transfer the real version for other hacks
+    // fake being FireRed for vanilla games, and transfer the real version for other hacks
+    gLocalLinkPlayer.version = VERSION_FIRE_RED | (gGameVersion << 8) | 0x4000;
     gLocalLinkPlayer.lp_field_2 = 0x8000;
-    gLocalLinkPlayer.progressFlags = IsNationalPokedexEnabled();
+    // fake national dex so other games don't think they can't trade to us, we should be doing the only checks
+    gLocalLinkPlayer.progressFlags = (IsNationalPokedexEnabled() << 1) | 1;
     if (FlagGet(FLAG_IS_CHAMPION))
     {
         gLocalLinkPlayer.progressFlags |= 0x10;
@@ -612,12 +614,18 @@ static void ProcessRecvCmds(u8 unused)
                             linkPlayer->neverRead = 0;
                             linkPlayer->progressFlags = 0;
                         }
-                        else if ((linkPlayer->version & 0x3F00) > 0)
+                        /*else if ((linkPlayer->version & 0x3F00) > 0)
                         {
                             // if game other than standard games detected, restore it
                             linkPlayer->version = (linkPlayer->version & 0xC000) | ((linkPlayer->version & 0x3F00) >> 8);
-                        }
-                        sub_800B524(linkPlayer);
+                            if ((linkPlayer->version & 0xFF) == VERSION_CRYSTAL_DUST)
+                            {
+                                // restore real National Dex progress
+                                linkPlayer->progressFlags >>= 1;
+                                linkPlayer->progressFlagsCopy >>= 1;
+                            }
+                        }*/
+                        NormalizeLinkPlayer(linkPlayer);
                         if (strcmp(block->magic1, sASCIIGameFreakInc) != 0
                             || strcmp(block->magic2, sASCIIGameFreakInc) != 0)
                         {
@@ -1831,7 +1839,7 @@ void LinkPlayerFromBlock(u32 who)
     block = (struct LinkPlayerBlock *)gBlockRecvBuffer[who_];
     player = &gLinkPlayers[who_];
     *player = block->linkPlayer;
-    sub_800B524(player);
+    NormalizeLinkPlayer(player);
     if (strcmp(block->magic1, sASCIIGameFreakInc) != 0 || strcmp(block->magic2, sASCIIGameFreakInc) != 0)
     {
         SetMainCallback2(CB2_LinkError);
@@ -1915,8 +1923,18 @@ u8 GetWirelessCommType(void)
     return gWirelessCommType;
 }
 
-void sub_800B524(struct LinkPlayer *player)
+void NormalizeLinkPlayer(struct LinkPlayer *player)
 {
+    if ((player->version & 0x3F00) > 0)
+    {
+        // if game other than standard games detected, restore it
+        player->version = (player->version & 0xC000) | ((player->version & 0x3F00) >> 8);
+        if ((player->version & 0xFF) == VERSION_CRYSTAL_DUST)
+        {
+            // restore real National Dex progress
+            player->progressFlags >>= 1;
+        }
+    }
     player->progressFlagsCopy = player->progressFlags;
     ConvertInternationalString(player->name, player->language);
 }

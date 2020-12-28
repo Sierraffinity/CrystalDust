@@ -266,7 +266,7 @@ VioletCity_PokemonCenter_1F_EventScript_Aide_Text_6:
 
 VioletCity_PokemonCenter_1F_EventScript_Aide_Text_7:
 	.string "Press the B Button to run.\n"
-	.string "There's always room to run!$"
+	.string "There's almost always room to run!$"
 
 VioletCity_PokemonCenter_1F_EventScript_Aide_Text_8:
 	.string "I need to head back to the lab now.\n"

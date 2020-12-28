@@ -928,6 +928,7 @@ EventScript_ConfirmLeaveTradeRoom:: @ 82774EF
 	end
 
 EventScript_TerminateLink:: @ 8277509
+	textcolor MSG_COLOR_SYS
 	messageautoscroll Text_TerminateLinkPleaseWait
 	waitmessage
 	special ExitLinkRoom

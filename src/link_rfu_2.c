@@ -1780,7 +1780,7 @@ static void ReceiveRfuLinkPlayers(const struct SioInfo *sioInfo)
     for (i = 0; i < MAX_RFU_PLAYERS; i++)
     {
         gLinkPlayers[i] = sioInfo->linkPlayers[i];
-        sub_800B524(gLinkPlayers + i);
+        NormalizeLinkPlayer(gLinkPlayers + i);
     }
 }
 
@@ -1825,7 +1825,7 @@ static void Task_ExchangeLinkPlayers(u8 taskId)
             ResetBlockReceivedFlag(r4);
             r2 = (struct LinkPlayerBlock *)gBlockRecvBuffer[r4];
             gLinkPlayers[r4] = r2->linkPlayer;
-            sub_800B524(gLinkPlayers + r4);
+            NormalizeLinkPlayer(gLinkPlayers + r4);
             gTasks[taskId].data[0]++;
         }
         break;

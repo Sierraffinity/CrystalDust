@@ -124,7 +124,7 @@ script VioletCity_PokemonCenter_1F_EventScript_Aide {
             
             signmsg
             msgbox("Press the B Button to run.\n"
-                   "There's always room to run!")
+                   "There's almost always room to run!")
             normalmsg
             textcolor(MSG_COLOR_PREV)
 

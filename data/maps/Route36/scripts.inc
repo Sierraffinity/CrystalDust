@@ -466,8 +466,8 @@ Route36_EventScript_TrainerTipsStatsSign_Text_0:
 Route36_EventScript_Floria_Text_0:
 	.string "When I told my sis about the jiggly\n"
 	.string "tree, she said it's dangerous.\p"
-	.string "If I beat WHITNEY, I wonder if she'll\n"
-	.string "lend me her water bottle…$"
+	.string "If I beat WHITNEY, I wonder if\n"
+	.string "she'll lend me her water bottle…$"
 
 Route36_EventScript_Floria_Text_1:
 	.string "I'm the FLOWER SHOP's FLORIA!\n"
