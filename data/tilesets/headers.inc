@@ -319,7 +319,7 @@ gTileset_PagodaTower:: @ 83DF974
 	.4byte gTilesetPalettes_PagodaTower
 	.4byte gMetatiles_PagodaTower
 	.4byte gMetatileAttributes_PagodaTower
-	.4byte InitTilesetAnim_PagodaTower @ animation callback
+	.4byte InitTilesetAnim_PagodaTower
 	.4byte NULL @ palette overrides
 
 	.align 2
@@ -343,7 +343,7 @@ gTileset_PokemonDayCare:: @ 83DF9A4
 	.4byte gTilesetPalettes_PokemonDayCare
 	.4byte gMetatiles_PokemonDayCare
 	.4byte gMetatileAttributes_PokemonDayCare
-	.4byte NULL @ animation callback
+	.4byte InitTilesetAnim_PokemonDayCare
 	.4byte NULL @ palette overrides
 
 	.align 2
@@ -595,7 +595,7 @@ gTileset_GoldenrodGym:: @ 83DFB9C
 	.4byte gTilesetPalettes_GoldenrodGym
 	.4byte gMetatiles_GoldenrodGym
 	.4byte gMetatileAttributes_GoldenrodGym
-	.4byte NULL @ animation callback
+	.4byte InitTilesetAnim_GoldenrodGym @ animation callback
 	.4byte NULL @ palette overrides
 
 	.align 2

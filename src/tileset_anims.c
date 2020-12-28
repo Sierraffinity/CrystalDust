@@ -38,8 +38,10 @@ static void TilesetAnim_Underwater(u16);
 static void TilesetAnim_SootopolisGym(u16);
 static void TilesetAnim_EliteFour(u16);
 static void TilesetAnim_AzaleaGym(u16);
+static void TilesetAnim_GoldenrodGym(u16);
 static void TilesetAnim_MauvilleGym(u16);
 static void TilesetAnim_PagodaTower(u16);
+static void TilesetAnim_PokemonDayCare(u16);
 static void TilesetAnim_BattlePyramid(u16);
 static void TilesetAnim_BattleDome(u16);
 static void TilesetAnim_NationalPark(u16);
@@ -53,6 +55,8 @@ static void QueueAnimTiles_Dewford_Flag(u16);
 static void QueueAnimTiles_Slateport_Balloons(u16);
 static void QueueAnimTiles_Mauville_Flowers(u16, u8);
 static void QueueAnimTiles_PagodaTower_SproutTowerPillar(u16);
+static void QueueAnimTiles_PokemonDayCare_RedFlower(u16);
+static void QueueAnimTiles_PokemonDayCare_YellowFlower(u16);
 static void QueueAnimTiles_BattlePyramid_Torch(u16);
 static void QueueAnimTiles_BattlePyramid_StatueShadow(u16);
 static void BlendAnimPalette_BattleDome_FloorLights(u16);
@@ -67,6 +71,7 @@ static void QueueAnimTiles_Underwater_Seaweed(u8);
 static void QueueAnimTiles_BattleFrontierOutsideWest_Flag(u16);
 static void QueueAnimTiles_BattleFrontierOutsideEast_Flag(u16);
 static void QueueAnimTiles_AzaleaGym_Flowers(u16);
+static void QueueAnimTiles_GoldenrodGym_Flowers(u16);
 static void QueueAnimTiles_MauvilleGym_ElectricGates(u16);
 static void QueueAnimTiles_SootopolisGym_Waterfalls(u16);
 static void QueueAnimTiles_EliteFour_GroundLights(u16);
@@ -457,6 +462,17 @@ const u16 *const gTilesetAnims_AzaleaGym_Flowers[] = {
     gTilesetAnims_AzaleaGym_Flowers_Frame1,
 };
 
+const u16 gTilesetAnims_GoldenrodGym_Flowers_Frame0[] = INCBIN_U16("data/tilesets/secondary/goldenrod_gym/anim/flowers/0.4bpp");
+const u16 gTilesetAnims_GoldenrodGym_Flowers_Frame1[] = INCBIN_U16("data/tilesets/secondary/goldenrod_gym/anim/flowers/1.4bpp");
+const u16 gTilesetAnims_GoldenrodGym_Flowers_Frame2[] = INCBIN_U16("data/tilesets/secondary/goldenrod_gym/anim/flowers/2.4bpp");
+
+const u16 *const gTilesetAnims_GoldenrodGym_Flowers[] = {
+    gTilesetAnims_GoldenrodGym_Flowers_Frame0,
+    gTilesetAnims_GoldenrodGym_Flowers_Frame1,
+    gTilesetAnims_GoldenrodGym_Flowers_Frame2,
+    gTilesetAnims_GoldenrodGym_Flowers_Frame1,
+};
+
 const u16 gTilesetAnims_MauvilleGym_ElectricGates_Frame0[] = INCBIN_U16("data/tilesets/secondary/mauville_gym/anim/electric_gates/0.4bpp");
 const u16 gTilesetAnims_MauvilleGym_ElectricGates_Frame1[] = INCBIN_U16("data/tilesets/secondary/mauville_gym/anim/electric_gates/1.4bpp");
 
@@ -480,6 +496,28 @@ const u16 *const gTilesetAnims_PagodaTower_SproutTowerPillar[] = {
     gTilesetAnims_PagodaTower_SproutTowerPillar_Frame1,
     gTilesetAnims_PagodaTower_SproutTowerPillar_Frame0,
     gTilesetAnims_PagodaTower_SproutTowerPillar_Frame7,
+};
+
+const u16 gTilesetAnims_PokemonDayCare_RedFlower_Frame0[] = INCBIN_U16("data/tilesets/secondary/pokemon_day_care/anim/red_flower/0.4bpp");
+const u16 gTilesetAnims_PokemonDayCare_RedFlower_Frame1[] = INCBIN_U16("data/tilesets/secondary/pokemon_day_care/anim/red_flower/1.4bpp");
+const u16 gTilesetAnims_PokemonDayCare_RedFlower_Frame2[] = INCBIN_U16("data/tilesets/secondary/pokemon_day_care/anim/red_flower/2.4bpp");
+
+const u16 *const gTilesetAnims_PokemonDayCare_RedFlower[] = {
+    gTilesetAnims_PokemonDayCare_RedFlower_Frame0,
+    gTilesetAnims_PokemonDayCare_RedFlower_Frame1,
+    gTilesetAnims_PokemonDayCare_RedFlower_Frame2,
+    gTilesetAnims_PokemonDayCare_RedFlower_Frame1
+};
+
+const u16 gTilesetAnims_PokemonDayCare_YellowFlower_Frame0[] = INCBIN_U16("data/tilesets/secondary/pokemon_day_care/anim/yellow_flower/0.4bpp");
+const u16 gTilesetAnims_PokemonDayCare_YellowFlower_Frame1[] = INCBIN_U16("data/tilesets/secondary/pokemon_day_care/anim/yellow_flower/1.4bpp");
+const u16 gTilesetAnims_PokemonDayCare_YellowFlower_Frame2[] = INCBIN_U16("data/tilesets/secondary/pokemon_day_care/anim/yellow_flower/2.4bpp");
+
+const u16 *const gTilesetAnims_PokemonDayCare_YellowFlower[] = {
+    gTilesetAnims_PokemonDayCare_YellowFlower_Frame0,
+    gTilesetAnims_PokemonDayCare_YellowFlower_Frame1,
+    gTilesetAnims_PokemonDayCare_YellowFlower_Frame2,
+    gTilesetAnims_PokemonDayCare_YellowFlower_Frame1
 };
 
 const u16 gTilesetAnims_Sootopolis_StormyWater_Frame0[] = INCBIN_U16("data/tilesets/secondary/sootopolis/anim/stormy_water/0.4bpp");
@@ -830,6 +868,13 @@ void InitTilesetAnim_AzaleaGym(void)
     sSecondaryTilesetAnimCallback = TilesetAnim_AzaleaGym;
 }
 
+void InitTilesetAnim_GoldenrodGym(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 256;
+    sSecondaryTilesetAnimCallback = TilesetAnim_GoldenrodGym;
+}
+
 void InitTilesetAnim_MauvilleGym(void)
 {
     sSecondaryTilesetAnimCounter = 0;
@@ -842,6 +887,13 @@ void InitTilesetAnim_PagodaTower(void)
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
     sSecondaryTilesetAnimCallback = TilesetAnim_PagodaTower;
+}
+
+void InitTilesetAnim_PokemonDayCare(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 256;
+    sSecondaryTilesetAnimCallback = TilesetAnim_PokemonDayCare;
 }
 
 void InitTilesetAnim_BattlePyramid(void)
@@ -1076,6 +1128,12 @@ static void TilesetAnim_AzaleaGym(u16 timer)
         QueueAnimTiles_AzaleaGym_Flowers(timer >> 4);
 }
 
+static void TilesetAnim_GoldenrodGym(u16 timer)
+{
+    if (timer % 16 == 0)
+        QueueAnimTiles_GoldenrodGym_Flowers(timer >> 4);
+}
+
 static void TilesetAnim_MauvilleGym(u16 timer)
 {
     if (timer % 2 == 0)
@@ -1100,6 +1158,14 @@ static void TilesetAnim_PagodaTower(u16 timer)
 {
     if (timer % 16 == 0)
         QueueAnimTiles_PagodaTower_SproutTowerPillar(timer >> 4);
+}
+
+static void TilesetAnim_PokemonDayCare(u16 timer)
+{
+    if (timer % 16 == 0)
+        QueueAnimTiles_PokemonDayCare_RedFlower(timer / 16);
+    if (timer % 16 == 0)
+        QueueAnimTiles_PokemonDayCare_YellowFlower(timer / 16);
 }
 
 static void TilesetAnim_BattlePyramid(u16 timer)
@@ -1166,6 +1232,12 @@ static void QueueAnimTiles_AzaleaGym_Flowers(u16 timer)
     AppendTilesetAnimToBuffer(gTilesetAnims_AzaleaGym_Flowers[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 99)), 0x80);
 }
 
+static void QueueAnimTiles_GoldenrodGym_Flowers(u16 timer)
+{
+    u16 i = timer % NELEMS(gTilesetAnims_GoldenrodGym_Flowers);
+    AppendTilesetAnimToBuffer(gTilesetAnims_GoldenrodGym_Flowers[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 90)), 0x80);
+}
+
 static void QueueAnimTiles_MauvilleGym_ElectricGates(u16 timer)
 {
     u16 i = timer % 2;
@@ -1176,6 +1248,18 @@ static void QueueAnimTiles_PagodaTower_SproutTowerPillar(u16 timer)
 {
     u16 i = timer % 8;
     AppendTilesetAnimToBuffer(gTilesetAnims_PagodaTower_SproutTowerPillar[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 89)), 0x300);
+}
+
+static void QueueAnimTiles_PokemonDayCare_RedFlower(u16 timer)
+{
+    u16 i = timer % NELEMS(gTilesetAnims_PokemonDayCare_RedFlower);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PokemonDayCare_RedFlower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 88)), 0x80);
+}
+
+static void QueueAnimTiles_PokemonDayCare_YellowFlower(u16 timer)
+{
+    u16 i = timer % NELEMS(gTilesetAnims_PokemonDayCare_YellowFlower);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PokemonDayCare_YellowFlower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 92)), 0x80);
 }
 
 static void QueueAnimTiles_Sootopolis_StormyWater(u16 timer)
