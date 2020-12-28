@@ -3,7 +3,17 @@ mapscripts GoldenrodCity_MapScripts {
         setflag(FLAG_VISITED_GOLDENROD_CITY)
         if (!flag(FLAG_MET_FLORIA_ROUTE_36))
         {
+            setflag(FLAG_FLORIA_WENT_TO_ROUTE_36)
+        }
+        if (flag(FLAG_FLORIA_WENT_TO_ROUTE_36))
+        {
+            setflag(FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA)
             clearflag(FLAG_HIDE_ROUTE_36_FLORIA)
+        }
+        else
+        {
+            setflag(FLAG_HIDE_ROUTE_36_FLORIA)
+            clearflag(FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA)
         }
     }
 }

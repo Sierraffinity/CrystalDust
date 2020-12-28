@@ -13,8 +13,7 @@ GoldenrodCity_FlowerShop_EventScript_OlderSister::
 	msgbox GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_3
 	giveitem_msg GoldenrodCity_FlowerShop_EventScript_OlderSister_Text_4, ITEM_SQUIRTBOTTLE
 	setflag FLAG_GOT_SQUIRTBOTTLE
-	setflag FLAG_HIDE_ROUTE_36_FLORIA
-	clearflag FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA
+	clearflag FLAG_FLORIA_WENT_TO_ROUTE_36
 GoldenrodCity_FlowerShop_EventScript_OlderSister_1:
 	release
 	return
@@ -56,8 +55,7 @@ GoldenrodCity_FlowerShop_EventScript_Floria::
 	goto_if_set FLAG_GOT_SQUIRTBOTTLE, GoldenrodCity_FlowerShop_EventScript_Floria_3
 	msgbox GoldenrodCity_FlowerShop_EventScript_Floria_Text_2
 	setflag FLAG_TALKED_TO_FLORIA_FLOWER_SHOP
-	setflag FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA
-	clearflag FLAG_HIDE_ROUTE_36_FLORIA
+	setflag FLAG_FLORIA_WENT_TO_ROUTE_36
 GoldenrodCity_FlowerShop_EventScript_Floria_1:
 	release
 	return

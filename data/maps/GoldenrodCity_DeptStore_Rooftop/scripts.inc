@@ -137,7 +137,7 @@ GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars2_Text_0:
 	.string "right now!$"
 
 GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars3_Text_0:
-	.string "A FISHERMAN caught a lot of MAGIKARP…\n"
+	.string "A FISHERMAN caught many MAGIKARP…\n"
 	.string "They're SPLASHing at the same time!\p"
 	.string "Look at the water going everywhere!$"
 

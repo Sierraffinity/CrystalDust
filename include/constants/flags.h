@@ -212,7 +212,7 @@
 #define FLAG_LEFT_MONS_WITH_CONTEST_OFFICER  0xC6
 #define FLAG_IN_BUG_CATCHING_CONTEST         0xC7
 #define FLAG_RECEIVED_TM44_REST              0xC8
-#define FLAG_ROCKET_TAKEOVER                 0xC9
+#define FLAG_FLORIA_WENT_TO_ROUTE_36                 0xC9
 #define FLAG_GOT_ODD_EGG                     0xCA
 #define FLAG_RECEIVED_GREEN_SCARF            0xCB
 #define FLAG_RECEIVED_YELLOW_SCARF           0xCC

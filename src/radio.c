@@ -147,7 +147,7 @@ void Task_PlayRadioShow(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    if (tCurrentLine < UNOWN_RADIO && GetCurrentRegion() == REGION_JOHTO && FlagGet(FLAG_ROCKET_TAKEOVER))
+    if (tCurrentLine < UNOWN_RADIO && GetCurrentRegion() == REGION_JOHTO && FlagGet(FLAG_ROCKETS_IN_RADIO_TOWER))
     {
         tShowNameId = tCurrentLine; // always show show title when Rockets are taking over
         tCurrentLine = ROCKET_RADIO;

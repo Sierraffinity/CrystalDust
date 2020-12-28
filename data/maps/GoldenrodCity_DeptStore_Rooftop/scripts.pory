@@ -87,7 +87,7 @@ script GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars2 {
 }
 
 script GoldenrodCity_DeptStore_Rooftop_EventScript_Binoculars3 {
-    msgbox("A FISHERMAN caught a lot of MAGIKARP…\n"
+    msgbox("A FISHERMAN caught many MAGIKARP…\n"
            "They're SPLASHing at the same time!\p"
            "Look at the water going everywhere!", MSGBOX_SIGN)
 }

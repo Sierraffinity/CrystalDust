@@ -220,8 +220,7 @@ Route36_EventScript_Floria::
 	applymovement 7, Route36_Movement_FloriaLeaveFromBelow
 Route36_EventScript_Floria_5:
 	waitmovement 0
-	setflag FLAG_MET_FLORIA_ROUTE_36
-	clearflag FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA
+	clearflag FLAG_FLORIA_WENT_TO_ROUTE_36
 	removeobject 7
 Route36_EventScript_Floria_1:
 	release
