@@ -4345,56 +4345,56 @@
               ],
               [
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
                 },
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
                 },
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
                 },
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
                 },
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
                 }
               ],
               [
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
                 },
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
                 },
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
                 },
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
                 },
                 {
-                  "min_level": 5,
-                  "max_level": 5,
-                  "species": "SPECIES_NONE"
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
                 }
               ]
             ]

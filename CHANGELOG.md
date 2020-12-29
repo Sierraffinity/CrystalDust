@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Various link and Union Room bugs were fixed, including one where the official games would not want to trade certain Pokémon to us because they didn't like that we weren't the Champion yet.
 - Have the money the player loses upon whiteout be subtracted from the current count instead of _becoming_ the current count.
+- Fix Decamark (??????????) Pokémon appearing when using Rock Smash in Dark Cave when it's not morning.
 
 ## [v3.0.0-alpha.0.2] - 2020-12-27
 ### Added
