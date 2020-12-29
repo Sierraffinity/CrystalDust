@@ -1339,7 +1339,7 @@ static bool8 IsConnectionTreeOrRockOnScreen(struct ObjectEventTemplate *template
 
 // If object is tree or rock, and is on screen when player is on edge of map,
 // then set its template flag so it isn't shown.
-// BUG: This should check to see if it's already hidden...
+// These would have a clone anyway so this should be okay.
 static bool8 IsTreeOrRockOffScreenPostWalkTransition(struct ObjectEventTemplate *template, s16 x, s16 y)
 {
     s32 width, height;
@@ -1356,7 +1356,7 @@ static bool8 IsTreeOrRockOffScreenPostWalkTransition(struct ObjectEventTemplate 
 
     // player is at left edge of map and object is within sight to right
     if ((gSaveBlock1Ptr->pos.x == 0) &&
-        (template->x <= CONNECTION_OBJECT_RADIUS_X))
+        (x <= CONNECTION_OBJECT_RADIUS_X))
     {
         SetObjectTemplateFlagIfTemporary(template);
         return FALSE;
@@ -1364,7 +1364,7 @@ static bool8 IsTreeOrRockOffScreenPostWalkTransition(struct ObjectEventTemplate 
 
     // player is at right edge of map and object is within sight to left
     if ((gSaveBlock1Ptr->pos.x == width) &&
-        (template->x >= (width - CONNECTION_OBJECT_RADIUS_X)))
+        (x >= (width - CONNECTION_OBJECT_RADIUS_X)))
     {
         SetObjectTemplateFlagIfTemporary(template);
         return FALSE;
@@ -1372,7 +1372,7 @@ static bool8 IsTreeOrRockOffScreenPostWalkTransition(struct ObjectEventTemplate 
 
     // player is at top edge of map and object is within sight below
     if ((gSaveBlock1Ptr->pos.y == 0) &&
-        (template->y <= CONNECTION_OBJECT_RADIUS_Y))
+        (y <= CONNECTION_OBJECT_RADIUS_Y))
     {
         SetObjectTemplateFlagIfTemporary(template);
         return FALSE;
@@ -1380,7 +1380,7 @@ static bool8 IsTreeOrRockOffScreenPostWalkTransition(struct ObjectEventTemplate 
 
     // player is at bottom edge of map and object is within sight above
     if ((gSaveBlock1Ptr->pos.y == height) &&
-        (template->y >= (height - CONNECTION_OBJECT_RADIUS_Y)))
+        (y >= (height - CONNECTION_OBJECT_RADIUS_Y)))
     {
         SetObjectTemplateFlagIfTemporary(template);
         return FALSE;
