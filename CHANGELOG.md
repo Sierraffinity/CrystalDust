@@ -6,7 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [v3.0.0-alpha.0.3] - 2020-12-30
 ### Fixed
+
 - Various link and Union Room bugs were fixed, including one where the official games would not want to trade certain Pokémon to us because they didn't like that we weren't the Champion yet.
 - Have the money the player loses upon whiteout be subtracted from the current count instead of _becoming_ the current count.
 - Sprites no longer appear on top of Mr. Pokémon's computer.
@@ -22,9 +25,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Flower animations for flowers in Goldenrod City gym and Pretty Petal Flower Shop.
 
 ### Changed
+
 - Headbutt tree tile, so it doesn't look weird when layered over a wooden fence.
 
 ### Fixed
+
 - Dept. Store rooftop sale NPCs no longer appear when there isn't a sale (and right now, there is never a sale).
 - Non-modern build no longer complains about unused song files.
 - Fixed a bunch of undefined behaviors, which were causing crashes in emulators that don't know how to handle them. This fixes the game crash on staircases in My Boy!.
