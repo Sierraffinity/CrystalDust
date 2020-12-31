@@ -1226,10 +1226,9 @@ bool8 MetatileBehavior_IsTrickHousePuzzleDoor(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsRegionMap(u8 metatileBehavior, u8 playerDirection)
 {
-    if (playerDirection != DIR_NORTH || metatileBehavior == MB_REGION_MAP)
-        return TRUE;
-    else
+    if (playerDirection != DIR_NORTH || metatileBehavior != MB_REGION_MAP)
         return FALSE;
+    return TRUE;
 }
 
 bool8 MetatileBehavior_IsClosedSootopolisDoor(u8 metatileBehavior)

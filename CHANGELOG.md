@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v3.0.0-alpha.0.4] - 2020-12-30
+### Fixed
+
+- Fix all metatiles being the Town Map when not facing north.
+
 ## [v3.0.0-alpha.0.3] - 2020-12-30
 ### Fixed
 
