@@ -492,7 +492,7 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return EventScript_PokeBlockFeeder;
     if (MetatileBehavior_IsTrickHousePuzzleDoor(metatileBehavior) == TRUE)
         return Route110_TrickHousePuzzle_EventScript_Door;
-    if (MetatileBehavior_IsRegionMap(metatileBehavior) == TRUE)
+    if (MetatileBehavior_IsRegionMap(metatileBehavior, direction) == TRUE)
         return EventScript_RegionMap;
     if (MetatileBehavior_IsAncientPokemonReplica(metatileBehavior) == TRUE)
         return EventScript_AncientPokemonReplica;

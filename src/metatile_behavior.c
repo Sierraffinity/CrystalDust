@@ -1224,9 +1224,9 @@ bool8 MetatileBehavior_IsTrickHousePuzzleDoor(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsRegionMap(u8 metatileBehavior)
+bool8 MetatileBehavior_IsRegionMap(u8 metatileBehavior, u8 playerDirection)
 {
-    if (metatileBehavior == MB_REGION_MAP)
+    if (playerDirection != DIR_NORTH || metatileBehavior == MB_REGION_MAP)
         return TRUE;
     else
         return FALSE;
