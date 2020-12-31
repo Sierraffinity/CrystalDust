@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ilex Forest nighttime encounters are correct and no longer just a copy of the daytime encounters.
 - Fix Decamark (??????????) Pokémon appearing when using Rock Smash in Dark Cave when it's not morning.
 - Fix Violet City cut tree not appearing when warping in from east.
+- Fix unevolved Pokémon sprite not growing & shrinking during evolution animation.
 
 ## [v3.0.0-alpha.0.2] - 2020-12-27
 ### Added

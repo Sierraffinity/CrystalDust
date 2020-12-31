@@ -9,6 +9,7 @@
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_object_lock.h"
+#include "evolution_scene.h"
 #include "field_message_box.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
@@ -22,6 +23,7 @@
 #include "pokemon_storage_system.h"
 #include "region_map.h"
 #include "rtc.h"
+#include "save_location.h"
 #include "script.h"
 #include "script_menu.h"
 #include "sound.h"
@@ -95,6 +97,7 @@ static void DebugMenu_LottoNumber(u8 taskId);
 static void DebugMenu_MaxMoney(u8 taskId);
 static void DebugMenu_MaxBankedMoney(u8 taskId);
 static void DebugMenu_MaxCoins(u8 taskId);
+static void DebugMenu_BecomeChampion(u8 taskId);
 static void DebugMenu_ToggleWalkThroughWalls(u8 taskId);
 static void DebugMenu_ToggleOverride(u8 taskId);
 static void DebugMenu_CraftDNTint(u8 taskId);
@@ -110,6 +113,7 @@ static void DebugMenu_WildBattle(u8 taskId);
 static void DebugMenu_100Or0CatchRate(u8 taskId);
 static void DebugMenu_ToggleForceShiny(u8 taskId);
 static void DebugMenu_ForcePartyEggsHatch(u8 taskId);
+static void DebugMenu_ForceEvolution(u8 taskId);
 static void DebugMenu_FlyMenu(u8 taskId);
 static void DebugMenu_SetRespawn(u8 taskId);
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId);
@@ -140,6 +144,7 @@ static const u8 sText_LottoNumber[] = _("Set lotto number");
 static const u8 sText_MaxMoney[] = _("Max money");
 static const u8 sText_MaxBankedMoney[] = _("Max banked money");
 static const u8 sText_MaxCoins[] = _("Max coins");
+static const u8 sText_BecomeChampion[] = _("Become champion");
 static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Pokedex[] = _("Pokédex");
 static const u8 sText_Pokegear[] = _("Pokégear");
@@ -156,6 +161,7 @@ static const u8 sText_FillThePC[] = _("Fill the PC");
 static const u8 sText_100Or0CatchRate[] = _("Normal/100%/0% catch rate");
 static const u8 sText_ToggleForceShiny[] = _("Toggle forced shinies");
 static const u8 sText_ForcePartyEggsHatch[] = _("Hatch eggs in party");
+static const u8 sText_ForceEvolution[] = _("Force evolution");
 static const u8 sText_DNTimeCycle[] = _("Time cycle");
 static const u8 sText_ToggleDNPalOverride[] = _("Toggle pal override");
 static const u8 sText_CraftDNTintColor[] = _("Craft new tint color");
@@ -213,6 +219,7 @@ static const struct DebugMenuAction sDebugMenu_PlayerInfoActions[] =
     { sText_MaxMoney, DebugMenu_MaxMoney, NULL },
     { sText_MaxBankedMoney, DebugMenu_MaxBankedMoney, NULL },
     { sText_MaxCoins, DebugMenu_MaxCoins, NULL },
+    { sText_BecomeChampion, DebugMenu_BecomeChampion, NULL },
 };
 
 CREATE_BOUNCER(PlayerInfoActions, MainActions);
@@ -250,6 +257,7 @@ static const struct DebugMenuAction sDebugMenu_PokemonActions[] =
     { sText_PoisonAllMons, DebugMenu_PoisonAllMons, NULL },
     { sText_ToggleForceShiny, DebugMenu_ToggleForceShiny, NULL },
     { sText_ForcePartyEggsHatch, DebugMenu_ForcePartyEggsHatch, NULL },
+    { sText_ForceEvolution, DebugMenu_ForceEvolution, NULL },
 };
 
 CREATE_BOUNCER(PokemonActions, MainActions);
@@ -1018,6 +1026,12 @@ static void DebugMenu_MaxCoins(u8 taskId)
     SetCoins(9999);
 }
 
+static void DebugMenu_BecomeChampion(u8 taskId)
+{
+    FlagSet(FLAG_IS_CHAMPION);
+    SetChampionSaveWarp();
+}
+
 static void DebugMenu_LottoNumber_PrintStatus(u8 windowId, u32 lottoNum)
 {
     FillWindowPixelBuffer(windowId, 0x11);
@@ -1444,6 +1458,12 @@ static void DebugMenu_ToggleForceShiny(u8 taskId)
 static void DebugMenu_ForcePartyEggsHatch(u8 taskId)
 {
     gDebugForceEggHatch = TRUE;
+}
+
+static void DebugMenu_ForceEvolution(u8 taskId)
+{
+    gCB2_AfterEvolution = CB2_ReturnToField;
+    BeginEvolutionScene(NULL, SPECIES_MEW, 1, gSpecialVar_0x8004);
 }
 
 static void DebugMenu_EnableMapCard(u8 taskId)
