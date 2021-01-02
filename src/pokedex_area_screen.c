@@ -478,17 +478,17 @@ static bool8 MapHasMon(const struct WildPokemonHeader *info, u16 species)
 static bool8 MonListHasMon(const struct WildPokemonInfo *info, u16 species, u16 size)
 {
     u16 i;
-    u8 timeOfDay;
-    
-    RtcCalcLocalTime();
-    timeOfDay = GetCurrentTimeOfDay();
+    int timeOfDay;
 
     if (info != NULL)
     {
-        for (i = 0; i < size; i++)
+        for (timeOfDay = 0; timeOfDay < TIMES_OF_DAY_COUNT; timeOfDay++)
         {
-            if (info->wildPokemon[timeOfDay][i].species == species)
-                return TRUE;
+            for (i = 0; i < size; i++)
+            {
+                if (info->wildPokemon[timeOfDay][i].species == species)
+                    return TRUE;
+            }
         }
     }
     return FALSE;

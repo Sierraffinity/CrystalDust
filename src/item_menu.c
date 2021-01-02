@@ -52,7 +52,14 @@
 #include "battle_pike.h"
 #include "constants/rgb.h"
 
-#define FREE_IF_SET(ptr) ({ if (ptr) Free(ptr); })
+#define FREE_IF_SET(ptr)            \
+{                                   \
+    if (ptr)                        \
+    {                               \
+        Free(ptr);                  \
+        ptr = NULL;                 \
+    }                               \
+}
 
 enum
 {

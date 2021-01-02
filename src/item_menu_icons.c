@@ -18,6 +18,8 @@ struct CompressedTilesPal
     const u32 *pal;
 };
 
+static EWRAM_DATA u8 sItemMenuIconSpriteIds[12] = {0};
+
 // this file's functions
 static void SpriteCB_BagVisualSwitchingPockets(struct Sprite *sprite);
 static void SpriteCB_ShakeBagSprite(struct Sprite *sprite);
@@ -340,12 +342,12 @@ static const struct SpriteTemplate gBerryCheckCircleSpriteTemplate =
 // code
 void ResetItemMenuIconState(void)
 {
-    memset(gBagMenu->spriteId, 0xFF, sizeof(gBagMenu->spriteId));
+    memset(sItemMenuIconSpriteIds, 0xFF, sizeof(sItemMenuIconSpriteIds));
 }
 
 void RemoveBagSprite(u8 id)
 {
-    u8 *spriteId = &gBagMenu->spriteId[10];
+    u8 *spriteId = &sItemMenuIconSpriteIds[10];
     if (spriteId[id] != 0xFF)
     {
         DestroySpriteAndFreeResources(&gSprites[spriteId[id]]);
@@ -355,14 +357,14 @@ void RemoveBagSprite(u8 id)
 
 void AddBagVisualSprite(u8 bagPocketId)
 {
-    u8 *spriteId = &gBagMenu->spriteId[0];
+    u8 *spriteId = &sItemMenuIconSpriteIds[0];
     *spriteId = CreateSprite(&gBagSpriteTemplate, 40, 68, 0);
     SetBagVisualPocketId(bagPocketId);
 }
 
 void SetBagVisualPocketId(u8 bagPocketId)
 {
-    struct Sprite *sprite = &gSprites[gBagMenu->spriteId[0]];
+    struct Sprite *sprite = &gSprites[sItemMenuIconSpriteIds[0]];
     sprite->pos2.y = -5;
     sprite->callback = SpriteCB_BagVisualSwitchingPockets;
     StartSpriteAnim(sprite, bagPocketId);
@@ -382,7 +384,7 @@ static void SpriteCB_BagVisualSwitchingPockets(struct Sprite *sprite)
 
 void ShakeBagSprite(void)
 {
-    struct Sprite *sprite = &gSprites[gBagMenu->spriteId[0]];
+    struct Sprite *sprite = &gSprites[sItemMenuIconSpriteIds[0]];
     if (sprite->affineAnimEnded)
     {
         StartSpriteAffineAnim(sprite, 1);
@@ -401,7 +403,7 @@ static void SpriteCB_ShakeBagSprite(struct Sprite *sprite)
 
 void AddBagItemIconSprite(u16 itemId, u8 id)
 {
-    u8 *spriteId = &gBagMenu->spriteId[10];
+    u8 *spriteId = &sItemMenuIconSpriteIds[10];
     if (spriteId[id] == 0xFF)
     {
         u8 iconSpriteId;
@@ -425,7 +427,7 @@ void RemoveBagItemIconSprite(u8 id)
 
 void HideBagItemIconSprite(u8 id)
 {
-    u8 *spriteId = &gBagMenu->spriteId[10];
+    u8 *spriteId = &sItemMenuIconSpriteIds[10];
     if (spriteId[id] != 0xFF)
     {
         gSprites[spriteId[id]].invisible = TRUE;
@@ -434,17 +436,17 @@ void HideBagItemIconSprite(u8 id)
 
 void ItemMenuIcons_CreateInsertIndicatorBarHidden(void)
 {
-    sub_8122344(&gBagMenu->spriteId[1], 9);
+    sub_8122344(&sItemMenuIconSpriteIds[1], 9);
 }
 
 void ItemMenuIcons_ToggleInsertIndicatorBarVisibility(u8 arg0)
 {
-    sub_81223FC(&gBagMenu->spriteId[1], 9, arg0);
+    sub_81223FC(&sItemMenuIconSpriteIds[1], 9, arg0);
 }
 
 void ItemMenuIcons_MoveInsertIndicatorBar(s16 x, s16 y)
 {
-    sub_8122448(&gBagMenu->spriteId[1], 9, x, y);
+    sub_8122448(&sItemMenuIconSpriteIds[1], 9, x, y);
 }
 
 static void sub_80D5018(void *mem0, void *mem1)
