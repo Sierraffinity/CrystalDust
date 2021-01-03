@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Picnicker Erin on Route 46 now uses the right overworld sprite.
 - Violet City trader no longer moves after trade completes.
 
+### Changed
+
+- Made Game Corner TMs not be duplicates of Goldenrod Dept. Store TMs.
+
 ## [v3.0.0-alpha.0.4] - 2020-12-30
 ### Fixed
 

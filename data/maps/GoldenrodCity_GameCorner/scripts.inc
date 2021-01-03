@@ -146,17 +146,17 @@ GoldenrodCity_GameCorner_EventScript_TMClerk_ShowChoice::
 	return
 
 GoldenrodCity_GameCorner_EventScript_TMClerk_ShowChoice_2:
-	setvar VAR_TEMP_1, ITEM_TM25
+	setvar VAR_TEMP_1, ITEM_TM24_THUNDERBOLT
 	call GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize
 	return
 
 GoldenrodCity_GameCorner_EventScript_TMClerk_ShowChoice_3:
-	setvar VAR_TEMP_1, ITEM_TM14
+	setvar VAR_TEMP_1, ITEM_TM13_ICE_BEAM
 	call GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize
 	return
 
 GoldenrodCity_GameCorner_EventScript_TMClerk_ShowChoice_4:
-	setvar VAR_TEMP_1, ITEM_TM38
+	setvar VAR_TEMP_1, ITEM_TM35_FLAMETHROWER
 	call GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize
 	return
 
