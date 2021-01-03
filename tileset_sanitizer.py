@@ -21,6 +21,8 @@ if __name__ == '__main__':
             behavior -= 0x40
         elif behavior == 0x81: # bookshelf
             behavior = 0xE2
+        elif behavior == 0x82:  # pokemart shelf
+            behavior = 0
         elif behavior == 0x84: # signpost
             behavior = 0x7E
         elif behavior == 0x87: # pokemon center
