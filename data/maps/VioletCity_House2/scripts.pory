@@ -42,6 +42,8 @@ script VioletCity_House2_EventScript_Kyle {
                     special(CreateInGameTradePokemon)
                     special(DoInGameTradeScene)
                     waitstate
+                    lock
+                    faceplayer
                     bufferspeciesname(0, VAR_0x8009)
                     msgbox("Yay! I got myself {STR_VAR_1}!\n"
                            "Thanks!")

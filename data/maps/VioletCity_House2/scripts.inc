@@ -55,6 +55,8 @@ VioletCity_House2_EventScript_Kyle_11:
 	special CreateInGameTradePokemon
 	special DoInGameTradeScene
 	waitstate
+	lock
+	faceplayer
 	bufferspeciesname 0, VAR_0x8009
 	msgbox VioletCity_House2_EventScript_Kyle_Text_1
 	setflag FLAG_VIOLET_NPC_TRADE_COMPLETED
