@@ -328,7 +328,7 @@
       "x": 14,
       "y": 6,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_EAST",
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_WEST",
       "script": "GoldenrodCity_GameCorner_EventScript_CardFlip0"
     },
     {
