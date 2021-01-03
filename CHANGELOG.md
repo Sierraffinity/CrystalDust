@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix moving items around in the item PC.
+- Fix chair in front of the Day-Care Lady's desk.
 
 ## [v3.0.0-alpha.0.4] - 2020-12-30
 ### Fixed
