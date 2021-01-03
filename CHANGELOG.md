@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix chair in front of the Day-Care Lady's desk.
 - Fix metatile in Goldenrod Dept. Store 1F not being accessible from the right.
 - Fix top Card Flip machine in Game Corner not being usable.
+- Fix Picnicker Erin on Route 46 using Lass sprite in overworld.
 
 ## [v3.0.0-alpha.0.4] - 2020-12-30
 ### Fixed
