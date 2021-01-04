@@ -970,12 +970,6 @@ static bool8 ReceiveCallWhenOutside(void);
 
 static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
     {
-        .flag = 1,
-        .phoneContactId = PHONE_CONTACT_MOM,
-        .callCondition = ReceiveCallWhenOutside,
-        .script = NULL
-    },
-    {
         .flag = FLAG_FORCED_CALL_ELM_STOLEN_MON,
         .phoneContactId = PHONE_CONTACT_ELM,
         .callCondition = ReceiveCallWhenOutside,

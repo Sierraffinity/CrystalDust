@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Picnicker Erin on Route 46 now uses the right overworld sprite.
 - Violet City trader no longer moves after trade completes.
 - Sanitized department store tileset for incorrect metatile behaviors.
+- Mom no longer calls every time you talk to the Day-Care Man outdoors.
 
 ### Changed
 
