@@ -66,7 +66,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release, up through Sudowoodo event on Route 36
 
-[unreleased]: https://github.com/Sierraffinity/CrystalDust/compare/v3.0.0-alpha.0.2...HEAD
+[unreleased]: https://github.com/Sierraffinity/CrystalDust/compare/v3.0.0-alpha.0.5...HEAD
 [v3.0.0-alpha.0.5]: https://github.com/Sierraffinity/CrystalDust/releases/tag/v3.0.0-alpha.0.5
 [v3.0.0-alpha.0.4]: https://github.com/Sierraffinity/CrystalDust/releases/tag/v3.0.0-alpha.0.4
 [v3.0.0-alpha.0.3]: https://github.com/Sierraffinity/CrystalDust/releases/tag/v3.0.0-alpha.0.3
