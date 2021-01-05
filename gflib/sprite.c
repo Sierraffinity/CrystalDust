@@ -1079,7 +1079,7 @@ void JumpToTopOfAnimLoop(struct Sprite *sprite)
 
 void BeginAffineAnim(struct Sprite *sprite)
 {
-    if ((sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK) && sprite->affineAnims[0][0].type != 32767)
+    if ((sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK) && sprite->affineAnims[0][0].type != AFFINEANIMCMDTYPE_END)
     {
         struct AffineAnimFrameCmd frameCmd;
         u8 matrixNum = GetSpriteMatrixNum(sprite);
@@ -1111,8 +1111,8 @@ void ContinueAffineAnim(struct Sprite *sprite)
             sAffineAnimStates[matrixNum].animCmdIndex++;
             type = sprite->affineAnims[sAffineAnimStates[matrixNum].animNum][sAffineAnimStates[matrixNum].animCmdIndex].type;
             funcIndex = 3;
-            if (type >= 32765)
-                funcIndex = type - 32765;
+            if (type >= AFFINEANIMCMDTYPE_LOOP)
+                funcIndex = type - AFFINEANIMCMDTYPE_LOOP;
             sAffineAnimCmdFuncs[funcIndex](matrixNum, sprite);
         }
         if (sprite->flags_f)
@@ -1323,6 +1323,11 @@ void ApplyAffineAnimFrameRelativeAndUpdateMatrix(u8 matrixNum, struct AffineAnim
 s16 ConvertScaleParam(s16 scale)
 {
     s32 val = 0x10000;
+    // UB: possible division by zero
+#ifdef UBFIX
+    if (scale == 0)
+        return 0;
+#endif //UBFIX
     return val / scale;
 }
 

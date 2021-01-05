@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Violet City trader no longer moves after trade completes.
 - Sanitized department store tileset for incorrect metatile behaviors.
 - Mom no longer calls every time you talk to the Day-Care Man outdoors.
+- Fix a crash when Mimic is used.
 
 ### Changed
 
