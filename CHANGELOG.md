@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sanitized department store tileset for incorrect metatile behaviors.
 - Mom no longer calls every time you talk to the Day-Care Man outdoors.
 - Fix a crash when Mimic is used.
+- Fix collisions with trees on 3F and 4F of Goldenrod Dept. Store.
 
 ### Changed
 
