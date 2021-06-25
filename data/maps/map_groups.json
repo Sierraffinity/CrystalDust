@@ -88,44 +88,44 @@
     "NewBarkTown_ProfessorElmsLab"
   ],
   "gCherrygroveCityInteriors": [
-    "CherrygroveCity_House1",
-    "CherrygroveCity_GuideGentsHouse",
     "CherrygroveCity_PokemonCenter_1F",
     "CherrygroveCity_PokemonCenter_2F",
     "CherrygroveCity_Mart",
+    "CherrygroveCity_GuideGentsHouse",
+    "CherrygroveCity_House1",
     "CherrygroveCity_House2"
   ],
   "gVioletCityInteriors": [
-    "VioletCity_EarlsAcademy",
-    "VioletCity_Gym",
-    "VioletCity_House1",
-    "VioletCity_House2",
     "VioletCity_PokemonCenter_1F",
     "VioletCity_PokemonCenter_2F",
-    "VioletCity_Mart"
+    "VioletCity_Mart",
+    "VioletCity_Gym",
+    "VioletCity_EarlsAcademy",
+    "VioletCity_House1",
+    "VioletCity_House2"
   ],
   "gAzaleaTownInteriors": [
-    "AzaleaTown_KurtsHouse",
     "AzaleaTown_PokemonCenter_1F",
     "AzaleaTown_PokemonCenter_2F",
-    "AzaleaTown_Gym",
     "AzaleaTown_Mart",
+    "AzaleaTown_Gym",
+    "AzaleaTown_KurtsHouse",
     "AzaleaTown_CharcoalKiln"
   ],
   "gGoldenrodCityInteriors": [
+    "GoldenrodCity_PokemonCenter_1F",
+    "GoldenrodCity_PokemonCenter_2F",
+    "GoldenrodCity_PokecomCenterAdminRoom",
+    "GoldenrodCity_Gym",
+    "GoldenrodCity_GameCorner",
+    "GoldenrodCity_MagnetTrainStation",
+    "GoldenrodCity_NameRatersHouse",
+    "GoldenrodCity_FlowerShop",
+    "GoldenrodCity_BikeShop",
+    "GoldenrodCity_BillsFamilysHouse",
     "GoldenrodCity_Underground_NorthEntrance",
     "GoldenrodCity_Underground_SouthEntrance",
     "GoldenrodCity_Underground",
-    "GoldenrodCity_Gym",
-    "GoldenrodCity_PokecomCenterAdminRoom",
-    "GoldenrodCity_PokemonCenter_1F",
-    "GoldenrodCity_PokemonCenter_2F",
-    "GoldenrodCity_MagnetTrainStation",
-    "GoldenrodCity_GameCorner",
-    "GoldenrodCity_BikeShop",
-    "GoldenrodCity_FlowerShop",
-    "GoldenrodCity_NameRatersHouse",
-    "GoldenrodCity_BillsFamilysHouse",
     "GoldenrodCity_House1",
     "GoldenrodCity_House2",
     "GoldenrodCity_DeptStore_1F",
@@ -159,9 +159,9 @@
     "Route31_Gatehouse"
   ],
   "gRoute32Interiors": [
-    "Route32_Gatehouse",
     "Route32_PokemonCenter_1F",
-    "Route32_PokemonCenter_2F"
+    "Route32_PokemonCenter_2F",
+    "Route32_Gatehouse"
   ],
   "gRoute34Interiors": [
     "Route34_IlexEastGatehouse",
@@ -192,14 +192,14 @@
     "RuinsOfAlph_ResearchCenter",
     "RuinsOfAlph_InnerChamber",
     "RuinsOfAlph_KabutoChamber",
-    "RuinsOfAlph_OmanyteChamber",
-    "RuinsOfAlph_AerodactylChamber",
-    "RuinsOfAlph_HoOhChamber",
     "RuinsOfAlph_KabutoItemRoom",
+    "RuinsOfAlph_KabutoWordRoom",
+    "RuinsOfAlph_OmanyteChamber",
     "RuinsOfAlph_OmanyteItemRoom",
+    "RuinsOfAlph_AerodactylChamber",
     "RuinsOfAlph_AerodactylItemRoom",
-    "RuinsOfAlph_HoOhItemRoom",
-    "RuinsOfAlph_KabutoWordRoom"
+    "RuinsOfAlph_HoOhChamber",
+    "RuinsOfAlph_HoOhItemRoom"
   ],
   "gSilverCaveInteriors": [
   ],
