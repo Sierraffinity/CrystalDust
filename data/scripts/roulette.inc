@@ -1,7 +1,7 @@
 Roulette_EventScript_Table1:: @ 82A5AB1
 	checkitem ITEM_COIN_CASE, 1
 	compare VAR_RESULT, FALSE
-	goto_if_eq MauvilleCity_GameCorner_EventScript_NoCoinCase
+	goto_if_eq EventScript_NoCoinCase
 	setvar VAR_0x8004, 0
 	getpricereduction POKENEWS_GAME_CORNER
 	compare VAR_RESULT, FALSE
@@ -13,7 +13,7 @@ Roulette_EventScript_Table1:: @ 82A5AB1
 Roulette_EventScript_Table2:: @ 82A5ADF
 	checkitem ITEM_COIN_CASE, 1
 	compare VAR_RESULT, FALSE
-	goto_if_eq MauvilleCity_GameCorner_EventScript_NoCoinCase
+	goto_if_eq EventScript_NoCoinCase
 	setvar VAR_0x8004, 1
 	getpricereduction POKENEWS_GAME_CORNER
 	compare VAR_RESULT, FALSE
@@ -22,10 +22,19 @@ Roulette_EventScript_Table2:: @ 82A5ADF
 	goto Roulette_EventScript_Play
 	end
 
+EventScript_NoCoinCase:: @ 8210456
+	msgbox GameCorner_Text_CantPlayWithNoCoinCase, MSGBOX_DEFAULT
+	releaseall
+	end
+
 Roulette_EventScript_Play:: @ 82A5B0D
 	special PlayRoulette
 	waitstate
 	end
+
+GameCorner_Text_CantPlayWithNoCoinCase: @ 8210C2E
+	.string "You can't play if you don't have\n"
+	.string "a COIN CASE.$"
 	
 Roulette_Text_PlayMinimumWagerIsX:: @ 82A5B12
 	.string "The minimum wager at this table\n"

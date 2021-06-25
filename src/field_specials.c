@@ -284,6 +284,7 @@ u16 GetRecordedCyclingRoadResults(void) {
 }
 
 void UpdateCyclingRoadState(void) {
+    /*
     if (gLastUsedWarp.mapNum == MAP_NUM(ROUTE110_SEASIDE_CYCLING_ROAD_SOUTH_ENTRANCE) && gLastUsedWarp.mapGroup == MAP_GROUP(ROUTE110_SEASIDE_CYCLING_ROAD_SOUTH_ENTRANCE))
     {
         return;
@@ -294,6 +295,7 @@ void UpdateCyclingRoadState(void) {
         VarSet(VAR_CYCLING_CHALLENGE_STATE, 0);
         Overworld_SetSavedMusic(MUS_DUMMY);
     }
+    */
 }
 
 void SetSSTidalFlag(void)
@@ -337,38 +339,38 @@ u8 GetSSTidalLocation(s8 *mapGroup, s8 *mapNum, s16 *x, s16 *y)
         case SS_TIDAL_DEPART_SLATEPORT:
             if (*varCruiseStepCount < 60)
             {
-                *mapNum = MAP_NUM(ROUTE134);
+                *mapNum = MAP_NUM(NEW_BARK_TOWN);
                 *x = *varCruiseStepCount + 19;
             }
             else if (*varCruiseStepCount < 140)
             {
-                *mapNum = MAP_NUM(ROUTE133);
+                *mapNum = MAP_NUM(NEW_BARK_TOWN);
                 *x = *varCruiseStepCount - 60;
             }
             else
             {
-                *mapNum = MAP_NUM(ROUTE132);
+                *mapNum = MAP_NUM(NEW_BARK_TOWN);
                 *x = *varCruiseStepCount - 140;
             }
             break;
         case SS_TIDAL_HALFWAY_SLATEPORT:
             if (*varCruiseStepCount < 66)
             {
-                *mapNum = MAP_NUM(ROUTE132);
+                *mapNum = MAP_NUM(NEW_BARK_TOWN);
                 *x = 65 - *varCruiseStepCount;
             }
             else if (*varCruiseStepCount < 146) {
-                *mapNum = MAP_NUM(ROUTE133);
+                *mapNum = MAP_NUM(NEW_BARK_TOWN);
                 *x = 145 - *varCruiseStepCount;
             }
             else
             {
-                *mapNum = MAP_NUM(ROUTE134);
+                *mapNum = MAP_NUM(NEW_BARK_TOWN);
                 *x = 224 - *varCruiseStepCount;
             }
             break;
     }
-    *mapGroup = MAP_GROUP(ROUTE132);
+    *mapGroup = MAP_GROUP(NEW_BARK_TOWN);
     *y = 20;
     return SS_TIDAL_LOCATION_CURRENTS;
 }
@@ -2029,19 +2031,18 @@ bool8 UsedPokemonCenterWarp(void)
         MAP_VIOLET_CITY_POKEMON_CENTER_1F,
         MAP_ROUTE32_POKEMON_CENTER_1F,
         MAP_AZALEA_TOWN_POKEMON_CENTER_1F, 
-        MAP_LAVARIDGE_TOWN_POKEMON_CENTER_1F, 
-        MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F, 
-        MAP_VERDANTURF_TOWN_POKEMON_CENTER_1F,
-        MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_1F,
-        MAP_SLATEPORT_CITY_POKEMON_CENTER_1F, 
-        MAP_MAUVILLE_CITY_POKEMON_CENTER_1F, 
+        MAP_NONE, 
+        MAP_NONE, 
+        MAP_NONE,
+        MAP_NONE,
+        MAP_NONE, 
         MAP_GOLDENROD_CITY_POKEMON_CENTER_1F, 
-        MAP_FORTREE_CITY_POKEMON_CENTER_1F, 
-        MAP_LILYCOVE_CITY_POKEMON_CENTER_1F, 
-        MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F, 
-        MAP_SOOTOPOLIS_CITY_POKEMON_CENTER_1F, 
-        MAP_EVER_GRANDE_CITY_POKEMON_CENTER_1F, 
-        MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F, 
+        MAP_NONE, 
+        MAP_NONE, 
+        MAP_NONE, 
+        MAP_NONE, 
+        MAP_NONE, 
+        MAP_NONE, 
         MAP_BATTLE_FRONTIER_POKEMON_CENTER_1F, 
         MAP_UNION_ROOM, 
         0xFFFF 
@@ -3872,22 +3873,6 @@ void CreateAbnormalWeatherEvent(void)
 bool32 GetAbnormalWeatherMapNameAndType(void)
 {
     static const u8 sAbnormalWeatherMapNumbers[] = {
-        MAP_NUM(ROUTE114),
-        MAP_NUM(ROUTE114),
-        MAP_NUM(ROUTE115),
-        MAP_NUM(ROUTE115),
-        MAP_NUM(ROUTE116),
-        MAP_NUM(ROUTE116),
-        MAP_NUM(ROUTE46),
-        MAP_NUM(ROUTE46),
-        MAP_NUM(ROUTE33),
-        MAP_NUM(ROUTE33),
-        MAP_NUM(ROUTE125),
-        MAP_NUM(ROUTE125),
-        MAP_NUM(ROUTE127),
-        MAP_NUM(ROUTE127),
-        MAP_NUM(ROUTE129),
-        MAP_NUM(ROUTE129)
     };
 
     u16 abnormalWeather = VarGet(VAR_ABNORMAL_WEATHER_LOCATION);
@@ -3904,22 +3889,6 @@ bool8 AbnormalWeatherHasExpired(void)
 {
     // Duplicate array.
     static const u8 sAbnormalWeatherMapNumbers[] = {
-        MAP_NUM(ROUTE114),
-        MAP_NUM(ROUTE114),
-        MAP_NUM(ROUTE115),
-        MAP_NUM(ROUTE115),
-        MAP_NUM(ROUTE116),
-        MAP_NUM(ROUTE116),
-        MAP_NUM(ROUTE46),
-        MAP_NUM(ROUTE46),
-        MAP_NUM(ROUTE33),
-        MAP_NUM(ROUTE33),
-        MAP_NUM(ROUTE125),
-        MAP_NUM(ROUTE125),
-        MAP_NUM(ROUTE127),
-        MAP_NUM(ROUTE127),
-        MAP_NUM(ROUTE129),
-        MAP_NUM(ROUTE129)
     };
 
     u16 steps = VarGet(VAR_ABNORMAL_WEATHER_STEP_COUNTER);
@@ -3933,15 +3902,11 @@ bool8 AbnormalWeatherHasExpired(void)
     if (++steps > 999)
     {
         VarSet(VAR_ABNORMAL_WEATHER_STEP_COUNTER, 0);
-        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(UNDERWATER_MARINE_CAVE))
+        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(NONE))
         {
             switch (gSaveBlock1Ptr->location.mapNum)
             {
-                case MAP_NUM(UNDERWATER_MARINE_CAVE):
-                case MAP_NUM(MARINE_CAVE_ENTRANCE):
-                case MAP_NUM(MARINE_CAVE_END):
-                case MAP_NUM(TERRA_CAVE_ENTRANCE):
-                case MAP_NUM(TERRA_CAVE_END):
+                case MAP_NUM(NONE):
                     VarSet(VAR_SHOULD_END_ABNORMAL_WEATHER, 1);
                     return FALSE;
                 default:
@@ -3949,14 +3914,11 @@ bool8 AbnormalWeatherHasExpired(void)
             }
         }
 
-        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(UNDERWATER_ROUTE127))
+        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(NONE))
         {
             switch (gSaveBlock1Ptr->location.mapNum)
             {
-                case MAP_NUM(UNDERWATER_ROUTE127):
-                case MAP_NUM(UNDERWATER_ROUTE129):
-                case MAP_NUM(UNDERWATER_ROUTE105):
-                case MAP_NUM(UNDERWATER_ROUTE125):
+                case MAP_NUM(NONE):
                     VarSet(VAR_SHOULD_END_ABNORMAL_WEATHER, 1);
                     return FALSE;
                 default:
@@ -3990,32 +3952,6 @@ void Unused_SetWeatherSunny(void)
 // All mart employees have a local id of 1, so function always returns 1
 u32 GetMartEmployeeObjectEventId(void)
 {
-    static const u8 sPokeMarts[][3] =
-    {
-        { MAP_GROUP(CHERRYGROVE_CITY_MART), MAP_NUM(CHERRYGROVE_CITY_MART), 1 },
-        { MAP_GROUP(LAVARIDGE_TOWN_MART),   MAP_NUM(LAVARIDGE_TOWN_MART),   1 }, 
-        { MAP_GROUP(FALLARBOR_TOWN_MART),   MAP_NUM(FALLARBOR_TOWN_MART),   1 },
-        { MAP_GROUP(VERDANTURF_TOWN_MART),  MAP_NUM(VERDANTURF_TOWN_MART),  1 },
-        { MAP_GROUP(VIOLET_CITY_MART),   MAP_NUM(VIOLET_CITY_MART),   1 },
-        { MAP_GROUP(SLATEPORT_CITY_MART),   MAP_NUM(SLATEPORT_CITY_MART),   1 },
-        { MAP_GROUP(MAUVILLE_CITY_MART),    MAP_NUM(MAUVILLE_CITY_MART),    1 },
-        { MAP_GROUP(FORTREE_CITY_MART),     MAP_NUM(FORTREE_CITY_MART),     1 },
-        { MAP_GROUP(MOSSDEEP_CITY_MART),    MAP_NUM(MOSSDEEP_CITY_MART),    1 },
-        { MAP_GROUP(SOOTOPOLIS_CITY_MART),  MAP_NUM(SOOTOPOLIS_CITY_MART),  1 },
-        { MAP_GROUP(BATTLE_FRONTIER_MART),  MAP_NUM(BATTLE_FRONTIER_MART),  1 }
-    };
-
-    u8 i;
-    for (i = 0; i < ARRAY_COUNT(sPokeMarts); i++)
-    {
-        if (gSaveBlock1Ptr->location.mapGroup == sPokeMarts[i][0])
-        {
-            if (gSaveBlock1Ptr->location.mapNum == sPokeMarts[i][1])
-            {
-                return sPokeMarts[i][2];
-            }
-        }
-    }
     return 1;
 }
 
@@ -4286,19 +4222,7 @@ bool8 InPokemonCenter(void)
         MAP_VIOLET_CITY_POKEMON_CENTER_1F,
         MAP_ROUTE32_POKEMON_CENTER_1F,
         MAP_AZALEA_TOWN_POKEMON_CENTER_1F,
-        MAP_LAVARIDGE_TOWN_POKEMON_CENTER_1F,
-        MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F,
-        MAP_VERDANTURF_TOWN_POKEMON_CENTER_1F,
-        MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_1F,
-        MAP_SLATEPORT_CITY_POKEMON_CENTER_1F,
-        MAP_MAUVILLE_CITY_POKEMON_CENTER_1F,
         MAP_GOLDENROD_CITY_POKEMON_CENTER_1F,
-        MAP_FORTREE_CITY_POKEMON_CENTER_1F,
-        MAP_LILYCOVE_CITY_POKEMON_CENTER_1F,
-        MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F,
-        MAP_SOOTOPOLIS_CITY_POKEMON_CENTER_1F,
-        MAP_EVER_GRANDE_CITY_POKEMON_CENTER_1F,
-        MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F,
         MAP_BATTLE_FRONTIER_POKEMON_CENTER_1F,
         MAP_BATTLE_COLOSSEUM_2P,
         MAP_TRADE_CENTER,

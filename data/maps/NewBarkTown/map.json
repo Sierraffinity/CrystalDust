@@ -23,7 +23,7 @@
     {
       "direction": "right",
       "offset": 0,
-      "map": "MAP_ROUTE120"
+      "map": "MAP_NONE"
     }
   ],
   "object_events": [

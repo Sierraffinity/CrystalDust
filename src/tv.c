@@ -202,25 +202,25 @@ static const struct {
         .species = SPECIES_NUZLEAF,
         .moves = {MOVE_HARDEN, MOVE_GROWTH, MOVE_NATURE_POWER, MOVE_LEECH_SEED},
         .level = 15, 
-        .location = MAP_NUM(ROUTE114),
+        .location = MAP_NUM(NONE),
     },
     {
         .species = SPECIES_SEEDOT,
         .moves = {MOVE_HARDEN, MOVE_GROWTH, MOVE_NATURE_POWER, MOVE_LEECH_SEED},
         .level = 13, 
-        .location = MAP_NUM(ROUTE45),
+        .location = MAP_NUM(NONE),
     },
     {
         .species = SPECIES_SEEDOT,
         .moves = {MOVE_GIGA_DRAIN, MOVE_FRUSTRATION, MOVE_SOLAR_BEAM, MOVE_LEECH_SEED},
         .level = 25, 
-        .location = MAP_NUM(ROUTE120),
+        .location = MAP_NUM(NONE),
     },
     {
         .species = SPECIES_SKITTY,
         .moves = {MOVE_GROWL, MOVE_TACKLE, MOVE_TAIL_WHIP, MOVE_ATTRACT},
         .level = 8, 
-        .location = MAP_NUM(ROUTE116),
+        .location = MAP_NUM(NONE),
     }
 };
 
@@ -838,7 +838,7 @@ void UpdateTVScreensOnMap(int width, int height)
         case 2:
             break;
         default:
-            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LILYCOVE_CITY_COVE_LILY_MOTEL_1F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LILYCOVE_CITY_COVE_LILY_MOTEL_1F))
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(NONE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(NONE))
             {
                 SetTVMetatilesOnMap(width, height, 0x61);
             }
@@ -2801,13 +2801,13 @@ bool8 IsPriceDiscounted(u8 newsKind)
     switch (newsKind)
     {
         case POKENEWS_SLATEPORT:
-            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SLATEPORT_CITY) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(SLATEPORT_CITY) && gSpecialVar_LastTalked == 25)
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(NONE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(NONE) && gSpecialVar_LastTalked == 25)
             {
                 return TRUE;
             }
             return FALSE;
         case POKENEWS_LILYCOVE:
-            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LILYCOVE_CITY_DEPARTMENT_STORE_ROOFTOP) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LILYCOVE_CITY_DEPARTMENT_STORE_ROOFTOP))
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(NONE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(NONE))
             {
                 return TRUE;
             }
@@ -5853,17 +5853,7 @@ static void DoTVShowTodaysRivalTrainer(void)
                     sTVShowState = 8;
                     break;
                 case MAPSEC_DYNAMIC:
-                    switch (show->rivalTrainer.mapLayoutId)
-                    {
-                        case LAYOUT_SS_TIDAL_CORRIDOR:
-                        case LAYOUT_SS_TIDAL_LOWER_DECK:
-                        case LAYOUT_SS_TIDAL_ROOMS:
-                            sTVShowState = 10;
-                            break;
-                        default:
-                            sTVShowState = 9;
-                            break;
-                    }
+                    sTVShowState = 9;
                     break;
             }
             break;
@@ -6054,17 +6044,8 @@ static void DoTVShowHoennTreasureInvestigators(void)
             StringCopy(gStringVar1, ItemId_GetName(show->treasureInvestigators.item));
             if (show->treasureInvestigators.location == MAPSEC_DYNAMIC)
             {
-                switch (show->treasureInvestigators.mapLayoutId)
-                {
-                    case LAYOUT_SS_TIDAL_CORRIDOR:
-                    case LAYOUT_SS_TIDAL_LOWER_DECK:
-                    case LAYOUT_SS_TIDAL_ROOMS:
-                        sTVShowState = 2;
-                        break;
-                    default:
-                        sTVShowState = 1;
-                        break;
-                }
+                sTVShowState = 1;
+                break;
             }
             else
             {
