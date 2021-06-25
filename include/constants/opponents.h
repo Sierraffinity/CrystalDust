@@ -170,38 +170,38 @@
 #define TRAINER_CLARISSA                    166  //^
 #define TRAINER_BRAD                        167  //^
 #define TRAINER_DOUGLAS                     168  //^
-#define TRAINER_GILBERT         169
-#define TRAINER_FRANKLIN        170
-#define TRAINER_KEVIN           171
-#define TRAINER_JACK_OLD            172
-#define TRAINER_DUDLEY          173
-#define TRAINER_CHAD_OLD            174
-#define TRAINER_TONY_2          175
-#define TRAINER_TONY_3          176
-#define TRAINER_TONY_4          177
-#define TRAINER_TONY_5          178
-#define TRAINER_TAKAO           179
-#define TRAINER_HITOSHI         180
-#define TRAINER_KIYO_OLD            181
-#define TRAINER_KOICHI          182
-#define TRAINER_NOB_OLD_1           183
-#define TRAINER_NOB_OLD_2           184
-#define TRAINER_NOB_OLD_3           185
-#define TRAINER_NOB_OLD_4           186
-#define TRAINER_NOB_OLD_5           187
-#define TRAINER_YUJI            188
-#define TRAINER_DAISUKE         189
-#define TRAINER_ATSUSHI         190
-#define TRAINER_KIRK_OLD            191
-#define TRAINER_GRUNT_AQUA_HIDEOUT_7        192
-#define TRAINER_GRUNT_AQUA_HIDEOUT_8        193
-#define TRAINER_SHAWN                       194
-#define TRAINER_FERNANDO_1                  195
-#define TRAINER_DALTON_1                    196
-#define TRAINER_DALTON_2                    197
-#define TRAINER_DALTON_3                    198
-#define TRAINER_DALTON_4                    199
-#define TRAINER_DALTON_5                    200
+#define TRAINER_RADIO_TOWER_1F_GRUNT        169  //Radio Tower 1F
+#define TRAINER_RADIO_TOWER_2F_GRUNT_F      170  //Radio Tower 2F
+#define TRAINER_RADIO_TOWER_2F_GRUNT_1      171  //^
+#define TRAINER_RADIO_TOWER_2F_GRUNT_2      172  //^
+#define TRAINER_RADIO_TOWER_2F_GRUNT_3      173  //^
+#define TRAINER_RADIO_TOWER_3F_GRUNT_1      174  //Radio Tower 3F
+#define TRAINER_MARC                        175  //^
+#define TRAINER_RADIO_TOWER_3F_GRUNT_2      176  //^
+#define TRAINER_RADIO_TOWER_3F_GRUNT_3      177  //^
+#define TRAINER_RADIO_TOWER_4F_GRUNT_M      178  //Radio Tower 4F
+#define TRAINER_RICH                        179  //^
+#define TRAINER_RADIO_TOWER_4F_GRUNT_F      180  //^
+#define TRAINER_RADIO_TOWER_4F_EXECUTIVE    181  //^
+#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_1  182  //Radio Tower 5F
+#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_F  183  //^
+#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_2  184  //^
+#define TRAINER_UNDERGROUND_B2F_GRUNT_1     185  //Goldenrod Tunnel B2F
+#define TRAINER_UNDERGROUND_B2F_GRUNT_2     186  //^
+#define TRAINER_UNDERGROUND_B2F_GRUNT_3     187  //^
+#define TRAINER_EDDIE                       188  //^
+#define TRAINER_DUNCAN                      189  //^
+#define TRAINER_UNDERGROUND_B2F_GRUNT_F     190  //^
+#define TRAINER_WAREHOUSE_GRUNT_1           191  //Underground Warehouse
+#define TRAINER_WAREHOUSE_GRUNT_2           192  //^
+#define TRAINER_WAREHOUSE_GRUNT_3           193  //^
+#define TRAINER_PHIL                        194  //Route 44
+#define TRAINER_EDGAR                       195  //^
+#define TRAINER_CYBIL                       196  //^
+#define TRAINER_ALLEN                       197  //^
+#define TRAINER_ZACH                        198  //^
+#define TRAINER_WILTON                      199  //^ Has 2 Rematches
+#define TRAINER_VANCE                       200  //^ Has 2 Rematches
 #define TRAINER_COLE                        201
 #define TRAINER_JEFF                        202
 #define TRAINER_AXLE                        203
@@ -333,8 +333,8 @@
 #define TRAINER_CALVIN_3                    329
 #define TRAINER_CALVIN_4                    330
 #define TRAINER_CALVIN_5                    331
-#define TRAINER_EDDIE                       332
-#define TRAINER_ALLEN                       333
+#define TRAINER_EDDIE_OLD                       332
+#define TRAINER_ALLEN_OLD                       333
 #define TRAINER_TIMMY                       334
 #define TRAINER_WALLACE                     335
 #define TRAINER_ANDREW_OLD                      336
@@ -401,7 +401,7 @@
 #define TRAINER_AARON_OLD                       397
 #define TRAINER_PERRY                       398
 #define TRAINER_HUGH_OLD                        399
-#define TRAINER_PHIL                        400
+#define TRAINER_PHIL_OLD                        400
 #define TRAINER_JARED                       401
 #define TRAINER_HUMBERTO                    402
 #define TRAINER_PRESLEY                     403
@@ -497,7 +497,7 @@
 #define TRAINER_DWAYNE                      493
 #define TRAINER_PHILLIP_OLD                     494
 #define TRAINER_LEONARD_OLD                     495
-#define TRAINER_DUNCAN                      496
+#define TRAINER_DUNCAN_OLD                      496
 #define TRAINER_ERNEST_OLD_2                    497
 #define TRAINER_ERNEST_OLD_3                    498
 #define TRAINER_ERNEST_OLD_4                    499
@@ -529,9 +529,9 @@
 #define TRAINER_RIVAL_BURNED_TOWER_CHIKORITA 525
 #define TRAINER_RIVAL_BURNED_TOWER_TOTODILE 526
 #define TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL 527
-#define TRAINER_BRENDAN_ROUTE_119_TORCHIC   528
-#define TRAINER_MAY_ROUTE_103_MUDKIP        529
-#define TRAINER_MAY_ROUTE_110_MUDKIP        530
+#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CHIKORITA 528
+#define TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE  529
+#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CYNDAQUIL 530
 #define TRAINER_MAY_ROUTE_119_MUDKIP        531
 #define TRAINER_MAY_ROUTE_103_TREECKO       532
 #define TRAINER_MAY_ROUTE_110_TREECKO       533
@@ -572,7 +572,7 @@
 #define TRAINER_GRUNT_UNUSED                568
 #define TRAINER_GRUNT_MT_PYRE_4             569
 #define TRAINER_GRUNT_JAGGED_PASS           570
-#define TRAINER_MARC            571
+#define TRAINER_MARC_OLD                    571
 #define TRAINER_BRENDEN         572
 #define TRAINER_LILITH          573
 #define TRAINER_CRISTIAN        574

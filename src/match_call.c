@@ -261,7 +261,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
         .differentRouteMatchCallTextId = TEXT_ID(2, 5),
     },
     {
-        .trainerId = TRAINER_NOB_OLD_1,
+        .trainerId = TRAINER_RADIO_TOWER_5F_EXECUTIVE_F,
         .unused = 0,
         .battleTopicTextIds = { TEXT_ID(1, 3), TEXT_ID(2, 3), TEXT_ID(3, 3) },
         .generalTextId = TEXT_ID(1, 16),
@@ -279,7 +279,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
         .differentRouteMatchCallTextId = TEXT_ID(2, 3),
     },
     {
-        .trainerId = TRAINER_FERNANDO_1,
+        .trainerId = TRAINER_EDGAR,
         .unused = 0,
         .battleTopicTextIds = { TEXT_ID(1, 6), TEXT_ID(2, 6), TEXT_ID(3, 6) },
         .generalTextId = TEXT_ID(1, 17),
@@ -288,7 +288,7 @@ static const struct MatchCallTrainerTextInfo sMatchCallTrainers[] =
         .differentRouteMatchCallTextId = TEXT_ID(2, 6),
     },
     {
-        .trainerId = TRAINER_DALTON_1,
+        .trainerId = TRAINER_CYBIL,
         .unused = 0,
         .battleTopicTextIds = { TEXT_ID(1, 4), TEXT_ID(2, 4), TEXT_ID(3, 4) },
         .generalTextId = TEXT_ID(1, 18),

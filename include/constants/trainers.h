@@ -123,6 +123,7 @@
 #define TRAINER_PIC_SKIER                 65 //104
 #define TRAINER_PIC_BOARDER               65 //105
 #define TRAINER_PIC_LEADER_PRYCE          65 //106
+#define TRAINER_PIC_BURGLAR               65 //107
 
 #define TRAINER_BACK_PIC_GOLD                   0
 #define TRAINER_BACK_PIC_KRIS                   1
@@ -374,6 +375,7 @@
 #define TRAINER_CLASS_SCIENTIST      0x45
 #define TRAINER_CLASS_SKIER          0x46
 #define TRAINER_CLASS_BOARDER        0x47
+#define TRAINER_CLASS_BURGLAR        0x48
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
