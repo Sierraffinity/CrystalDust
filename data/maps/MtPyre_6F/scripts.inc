@@ -2,7 +2,7 @@ MtPyre_6F_MapScripts:: @ 8231D3A
 	.byte 0
 
 MtPyre_6F_EventScript_Valerie:: @ 8231D3B
-	trainerbattle_single TRAINER_VALERIE_1, MtPyre_6F_Text_ValerieIntro, MtPyre_6F_Text_ValerieDefeat, MtPyre_6F_EventScript_RegisterValerie
+	trainerbattle_single TRAINER_CONNIE, MtPyre_6F_Text_ValerieIntro, MtPyre_6F_Text_ValerieDefeat, MtPyre_6F_EventScript_RegisterValerie
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq MtPyre_6F_EventScript_RematchValerie
@@ -14,12 +14,12 @@ MtPyre_6F_EventScript_RegisterValerie:: @ 8231D67
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox MtPyre_6F_Text_ValerieRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_VALERIE_1
+	register_matchcall TRAINER_CONNIE
 	release
 	end
 
 MtPyre_6F_EventScript_RematchValerie:: @ 8231D86
-	trainerbattle_rematch TRAINER_VALERIE_1, MtPyre_6F_Text_ValerieRematchIntro, MtPyre_6F_Text_ValerieRematchDefeat
+	trainerbattle_rematch TRAINER_CONNIE, MtPyre_6F_Text_ValerieRematchIntro, MtPyre_6F_Text_ValerieRematchDefeat
 	msgbox MtPyre_6F_Text_ValeriePostRematch, MSGBOX_AUTOCLOSE
 	end
 

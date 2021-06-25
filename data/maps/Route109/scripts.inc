@@ -383,7 +383,7 @@ Route109_EventScript_TrainerTipsSign:: @ 81EEA34
 	end
 
 Route109_EventScript_David:: @ 81EEA3D
-	trainerbattle_single TRAINER_DAVID, Route109_Text_DavidIntro, Route109_Text_DavidDefeated
+	trainerbattle_single TRAINER_MAHOGANY_EXECUTIVE_F, Route109_Text_DavidIntro, Route109_Text_DavidDefeated
 	msgbox Route109_Text_DavidPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -393,7 +393,7 @@ Route109_EventScript_Alice:: @ 81EEA54
 	end
 
 Route109_EventScript_Huey:: @ 81EEA6B
-	trainerbattle_single TRAINER_HUEY, Route109_Text_HueyIntro, Route109_Text_HueyDefeated
+	trainerbattle_single TRAINER_HUEY_OLD, Route109_Text_HueyIntro, Route109_Text_HueyDefeated
 	msgbox Route109_Text_HueyPostBattle, MSGBOX_AUTOCLOSE
 	end
 

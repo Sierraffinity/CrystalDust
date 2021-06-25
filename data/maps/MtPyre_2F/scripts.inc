@@ -18,7 +18,7 @@ MtPyre_2F_EventScript_PokefanM:: @ 823111F
 	end
 
 MtPyre_2F_EventScript_Mark:: @ 8231128
-	trainerbattle_single TRAINER_MARK_OLD, MtPyre_2F_Text_MarkIntro, MtPyre_2F_Text_MarkDefeat
+	trainerbattle_single TRAINER_BRENT, MtPyre_2F_Text_MarkIntro, MtPyre_2F_Text_MarkDefeat
 	msgbox MtPyre_2F_Text_MarkPostBattle, MSGBOX_AUTOCLOSE
 	end
 

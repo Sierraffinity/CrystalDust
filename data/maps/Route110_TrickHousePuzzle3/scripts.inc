@@ -307,7 +307,7 @@ Route110_TrickHousePuzzle3_EventScript_Justin:: @ 826C5C4
 	end
 
 Route110_TrickHousePuzzle3_EventScript_Martha:: @ 826C5DB
-	trainerbattle_single TRAINER_MARTHA, Route110_TrickHousePuzzle3_Text_MarthaIntro, Route110_TrickHousePuzzle3_Text_MarthaDefeat
+	trainerbattle_single TRAINER_ALVARO, Route110_TrickHousePuzzle3_Text_MarthaIntro, Route110_TrickHousePuzzle3_Text_MarthaDefeat
 	msgbox Route110_TrickHousePuzzle3_Text_MarthaPostBattle, MSGBOX_AUTOCLOSE
 	end
 

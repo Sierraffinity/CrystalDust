@@ -7,17 +7,17 @@ Route132_EventScript_Gilbert:: @ 81F74EA
 	end
 
 Route132_EventScript_Dana:: @ 81F7501
-	trainerbattle_single TRAINER_DANA, Route132_Text_DanaIntro, Route132_Text_DanaDefeat
+	trainerbattle_single TRAINER_DANA_OLD, Route132_Text_DanaIntro, Route132_Text_DanaDefeat
 	msgbox Route132_Text_DanaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route132_EventScript_Ronald:: @ 81F7518
-	trainerbattle_single TRAINER_RONALD, Route132_Text_RonaldIntro, Route132_Text_RonaldDefeat
+	trainerbattle_single TRAINER_RONALD_OLD, Route132_Text_RonaldIntro, Route132_Text_RonaldDefeat
 	msgbox Route132_Text_RonaldPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route132_EventScript_Kiyo:: @ 81F752F
-	trainerbattle_single TRAINER_KIYO, Route132_Text_KiyoIntro, Route132_Text_KiyoDefeat
+	trainerbattle_single TRAINER_KIYO_OLD, Route132_Text_KiyoIntro, Route132_Text_KiyoDefeat
 	msgbox Route132_Text_KiyoPostBattle, MSGBOX_AUTOCLOSE
 	end
 

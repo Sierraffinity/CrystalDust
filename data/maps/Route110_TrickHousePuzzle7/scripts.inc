@@ -293,7 +293,7 @@ Route110_TrickHousePuzzle7_EventScript_Joshua:: @ 826E389
 	end
 
 Route110_TrickHousePuzzle7_EventScript_Patricia:: @ 826E3A0
-	trainerbattle_single TRAINER_PATRICIA, Route110_TrickHousePuzzle7_Text_PatriciaIntro, Route110_TrickHousePuzzle7_Text_PatriciaDefeat
+	trainerbattle_single TRAINER_THEO, Route110_TrickHousePuzzle7_Text_PatriciaIntro, Route110_TrickHousePuzzle7_Text_PatriciaDefeat
 	msgbox Route110_TrickHousePuzzle7_Text_PatriciaPostBattle, MSGBOX_AUTOCLOSE
 	end
 

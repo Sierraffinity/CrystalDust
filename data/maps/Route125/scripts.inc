@@ -26,12 +26,12 @@ Route125_OnFrame: @ 81F679A
 	.2byte 0
 
 Route125_EventScript_Nolen:: @ 81F67A4
-	trainerbattle_single TRAINER_NOLEN, Route125_Text_NolenIntro, Route125_Text_NolenDefeat
+	trainerbattle_single TRAINER_ROSS, Route125_Text_NolenIntro, Route125_Text_NolenDefeat
 	msgbox Route125_Text_NolenPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route125_EventScript_Stan:: @ 81F67BB
-	trainerbattle_single TRAINER_STAN, Route125_Text_StanIntro, Route125_Text_StanDefeat
+	trainerbattle_single TRAINER_MITCH, Route125_Text_StanIntro, Route125_Text_StanDefeat
 	msgbox Route125_Text_StanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -46,7 +46,7 @@ Route125_EventScript_Sharon:: @ 81F67E9
 	end
 
 Route125_EventScript_Ernest:: @ 81F6800
-	trainerbattle_single TRAINER_ERNEST_1, Route125_Text_ErnestIntro, Route125_Text_ErnestDefeat, Route125_EventScript_RegisterErnest
+	trainerbattle_single TRAINER_ERNEST_OLD_1, Route125_Text_ErnestIntro, Route125_Text_ErnestDefeat, Route125_EventScript_RegisterErnest
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route125_EventScript_RematchErnest
@@ -58,12 +58,12 @@ Route125_EventScript_RegisterErnest:: @ 81F682C
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route125_Text_ErnestRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_ERNEST_1
+	register_matchcall TRAINER_ERNEST_OLD_1
 	release
 	end
 
 Route125_EventScript_RematchErnest:: @ 81F684B
-	trainerbattle_rematch TRAINER_ERNEST_1, Route125_Text_ErnestRematchIntro, Route125_Text_ErnestRematchDefeat
+	trainerbattle_rematch TRAINER_ERNEST_OLD_1, Route125_Text_ErnestRematchIntro, Route125_Text_ErnestRematchDefeat
 	msgbox Route125_Text_ErnestRematchPostBattle, MSGBOX_AUTOCLOSE
 	end
 

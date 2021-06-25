@@ -242,7 +242,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_Grunt2:: @ 822321F
 	faceplayer
 	goto_if_set FLAG_CALLED_ELM_ABOUT_HATCHED_EGG, MossdeepCity_SpaceCenter_1F_EventScript_Grunt2Defeated
 	msgbox MossdeepCity_SpaceCenter_1F_Text_Grunt2Intro, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_GRUNT_SPACE_CENTER_2, MossdeepCity_SpaceCenter_1F_Text_Grunt2Defeat
+	trainerbattle_no_intro TRAINER_GEORGE, MossdeepCity_SpaceCenter_1F_Text_Grunt2Defeat
 	setflag FLAG_CALLED_ELM_ABOUT_HATCHED_EGG
 	copyobjectxytoperm LOCALID_STAIR_GRUNT
 	switch VAR_FACING

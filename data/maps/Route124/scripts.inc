@@ -11,7 +11,7 @@ Route124_EventScript_HuntersHouseSign:: @ 81F657C
 	end
 
 Route124_EventScript_Spencer:: @ 81F6585
-	trainerbattle_single TRAINER_SPENCER, Route124_Text_SpencerIntro, Route124_Text_SpencerDefeat
+	trainerbattle_single TRAINER_MAHOGANY_GRUNT_B3F_F, Route124_Text_SpencerIntro, Route124_Text_SpencerDefeat
 	msgbox Route124_Text_SpencerPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -43,12 +43,12 @@ Route124_EventScript_RematchJenny:: @ 81F65FE
 	end
 
 Route124_EventScript_Grace:: @ 81F6615
-	trainerbattle_single TRAINER_GRACE, Route124_Text_GraceIntro, Route124_Text_GraceDefeat
+	trainerbattle_single TRAINER_ALVARO , Route124_Text_GraceIntro, Route124_Text_GraceDefeat
 	msgbox Route124_Text_GracePostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route124_EventScript_Chad:: @ 81F662C
-	trainerbattle_single TRAINER_CHAD, Route124_Text_ChadIntro, Route124_Text_ChadDefeat
+	trainerbattle_single TRAINER_CHAD_OLD, Route124_Text_ChadIntro, Route124_Text_ChadDefeat
 	msgbox Route124_Text_ChadPostBattle, MSGBOX_AUTOCLOSE
 	end
 

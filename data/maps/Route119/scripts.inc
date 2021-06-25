@@ -120,7 +120,7 @@ Route119_EventScript_BattleBrendan:: @ 81F4585
 	end
 
 Route119_EventScript_BattleBrendanTreecko:: @ 81F45B4
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_TREECKO, Route119_Text_BrendanDefeat
+	trainerbattle_no_intro TRAINER_ALVARO, Route119_Text_BrendanDefeat
 	goto Route119_EventScript_DefeatedBrendan
 	end
 
@@ -340,7 +340,7 @@ Route119_EventScript_WeatherInstituteSign:: @ 81F477D
 	end
 
 Route119_EventScript_Brent:: @ 81F4786
-	trainerbattle_single TRAINER_BRENT, Route119_Text_BrentIntro, Route119_Text_BrentDefeat
+	trainerbattle_single TRAINER_BRENT_OLD, Route119_Text_BrentIntro, Route119_Text_BrentDefeat
 	msgbox Route119_Text_BrentPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -360,12 +360,12 @@ Route119_EventScript_Doug:: @ 81F47CB
 	end
 
 Route119_EventScript_Greg:: @ 81F47E2
-	trainerbattle_single TRAINER_GREG, Route119_Text_GregIntro, Route119_Text_GregDefeat
+	trainerbattle_single TRAINER_GREG_OLD, Route119_Text_GregIntro, Route119_Text_GregDefeat
 	msgbox Route119_Text_GregPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route119_EventScript_Kent:: @ 81F47F9
-	trainerbattle_single TRAINER_KENT, Route119_Text_KentIntro, Route119_Text_KentDefeat
+	trainerbattle_single TRAINER_KENT_OLD, Route119_Text_KentIntro, Route119_Text_KentDefeat
 	msgbox Route119_Text_KentPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -414,7 +414,7 @@ Route119_EventScript_RematchCatherine:: @ 81F48BD
 	end
 
 Route119_EventScript_Hugh:: @ 81F48D4
-	trainerbattle_single TRAINER_HUGH, Route119_Text_HughIntro, Route119_Text_HughDefeat
+	trainerbattle_single TRAINER_HUGH_OLD, Route119_Text_HughIntro, Route119_Text_HughDefeat
 	msgbox Route119_Text_HughPostBattle, MSGBOX_AUTOCLOSE
 	end
 

@@ -97,7 +97,7 @@ Route121_EventScript_RematchWalter:: @ 81F5ED6
 	end
 
 Route121_EventScript_Tammy:: @ 81F5EED
-	trainerbattle_single TRAINER_TAMMY, Route121_Text_TammyIntro, Route121_Text_TammyDefeat
+	trainerbattle_single TRAINER_TERRELL, Route121_Text_TammyIntro, Route121_Text_TammyDefeat
 	msgbox Route121_Text_TammyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -112,7 +112,7 @@ Route121_EventScript_Joy:: @ 81F5F1F
 	end
 
 Route121_EventScript_Jessica:: @ 81F5F3A
-	trainerbattle_single TRAINER_JESSICA_1, Route121_Text_JessicaIntro, Route121_Text_JessicaDefeat, Route121_EventScript_RegisterJessica
+	trainerbattle_single TRAINER_YOSHI, Route121_Text_JessicaIntro, Route121_Text_JessicaDefeat, Route121_EventScript_RegisterJessica
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route121_EventScript_RematchJessica
@@ -124,12 +124,12 @@ Route121_EventScript_RegisterJessica:: @ 81F5F66
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route121_Text_JessicaRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_JESSICA_1
+	register_matchcall TRAINER_YOSHI
 	release
 	end
 
 Route121_EventScript_RematchJessica:: @ 81F5F85
-	trainerbattle_rematch TRAINER_JESSICA_1, Route121_Text_JessicaRematchIntro, Route121_Text_JessicaRematchDefeat
+	trainerbattle_rematch TRAINER_YOSHI, Route121_Text_JessicaRematchIntro, Route121_Text_JessicaRematchDefeat
 	msgbox Route121_Text_JessicaPostRematch, MSGBOX_AUTOCLOSE
 	end
 

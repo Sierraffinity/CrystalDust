@@ -7,12 +7,12 @@ Route126_OnTransition: @ 81F68CC
 	end
 
 Route126_EventScript_Barry:: @ 81F68D6
-	trainerbattle_single TRAINER_BARRY, Route126_Text_BarryIntro, Route126_Text_BarryDefeat
+	trainerbattle_single TRAINER_MAHOGANY_EXECUTIVE_M, Route126_Text_BarryIntro, Route126_Text_BarryDefeat
 	msgbox Route126_Text_BarryPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route126_EventScript_Dean:: @ 81F68ED
-	trainerbattle_single TRAINER_DEAN, Route126_Text_DeanIntro, Route126_Text_DeanDefeat
+	trainerbattle_single TRAINER_ROXANNE, Route126_Text_DeanIntro, Route126_Text_DeanDefeat
 	msgbox Route126_Text_DeanPostBattle, MSGBOX_AUTOCLOSE
 	end
 

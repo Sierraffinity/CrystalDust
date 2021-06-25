@@ -111,6 +111,18 @@
 #define TRAINER_PIC_RS_MAY                92
 #define TRAINER_PIC_EM_BRENDAN            93
 #define TRAINER_PIC_EM_MAY                94
+#define TRAINER_PIC_KIMONO_GIRL           65 //95
+#define TRAINER_PIC_MEDIUM                65 //96
+#define TRAINER_PIC_LEADER_MORTY          65 //97
+#define TRAINER_PIC_LEADER_CHUCK          65 //98
+#define TRAINER_PIC_LEADER_JASMINE        65 //99
+#define TRAINER_PIC_EUSINE                65 //100
+#define TRAINER_PIC_SCIENTIST             65 //101
+#define TRAINER_PIC_EXECUTIVE_F           65 //102
+#define TRAINER_PIC_EXECUTIVE_M           65 //103
+#define TRAINER_PIC_SKIER                 65 //104
+#define TRAINER_PIC_BOARDER               65 //105
+#define TRAINER_PIC_LEADER_PRYCE          65 //106
 
 #define TRAINER_BACK_PIC_GOLD                   0
 #define TRAINER_BACK_PIC_KRIS                   1
@@ -356,6 +368,12 @@
 #define TRAINER_CLASS_PIKE_QUEEN     0x3f
 #define TRAINER_CLASS_PYRAMID_KING   0x40
 #define TRAINER_CLASS_RS_PROTAG      0x41
+#define TRAINER_CLASS_KIMONO_GIRL    0x42
+#define TRAINER_CLASS_MEDIUM         0x43
+#define TRAINER_CLASS_MYSTICALMAN    0x44
+#define TRAINER_CLASS_SCIENTIST      0x45
+#define TRAINER_CLASS_SKIER          0x46
+#define TRAINER_CLASS_BOARDER        0x47
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music

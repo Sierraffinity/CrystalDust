@@ -99,7 +99,7 @@ VictoryRoad_1F_EventScript_RematchWally:: @ 8235E5C
 	end
 
 VictoryRoad_1F_EventScript_Edgar:: @ 8235E73
-	trainerbattle_single TRAINER_EDGAR, VictoryRoad_1F_Text_EdgarIntro, VictoryRoad_1F_Text_EdgarDefeat
+	trainerbattle_single TRAINER_ALVARO, VictoryRoad_1F_Text_EdgarIntro, VictoryRoad_1F_Text_EdgarDefeat
 	msgbox VictoryRoad_1F_Text_EdgarPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -109,7 +109,7 @@ VictoryRoad_1F_EventScript_Albert:: @ 8235E8A
 	end
 
 VictoryRoad_1F_EventScript_Hope:: @ 8235EA1
-	trainerbattle_single TRAINER_HOPE, VictoryRoad_1F_Text_HopeIntro, VictoryRoad_1F_Text_HopeDefeat
+	trainerbattle_single TRAINER_CHAD, VictoryRoad_1F_Text_HopeIntro, VictoryRoad_1F_Text_HopeDefeat
 	msgbox VictoryRoad_1F_Text_HopePostBattle, MSGBOX_AUTOCLOSE
 	end
 

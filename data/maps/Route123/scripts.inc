@@ -45,7 +45,7 @@ Route123_EventScript_BerryMastersHouseSign:: @ 81F61BC
 	end
 
 Route123_EventScript_Wendy:: @ 81F61C5
-	trainerbattle_single TRAINER_WENDY, Route123_Text_WendyIntro, Route123_Text_WendyDefeat
+	trainerbattle_single TRAINER_HARRY, Route123_Text_WendyIntro, Route123_Text_WendyDefeat
 	msgbox Route123_Text_WendyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -114,7 +114,7 @@ Route123_EventScript_Yuki:: @ 81F62E9
 	end
 
 Route123_EventScript_Kindra:: @ 81F6304
-	trainerbattle_single TRAINER_KINDRA, Route123_Text_KindraIntro, Route123_Text_KindraDefeat
+	trainerbattle_single TRAINER_PRESTON, Route123_Text_KindraIntro, Route123_Text_KindraDefeat
 	msgbox Route123_Text_KindraPostBattle, MSGBOX_AUTOCLOSE
 	end
 

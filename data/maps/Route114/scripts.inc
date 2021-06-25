@@ -97,7 +97,7 @@ Route114_EventScript_Lucas:: @ 81F2657
 	end
 
 Route114_EventScript_Shane:: @ 81F266E
-	trainerbattle_single TRAINER_SHANE, Route114_Text_ShaneIntro, Route114_Text_ShaneDefeat
+	trainerbattle_single TRAINER_SHANE_OLD, Route114_Text_ShaneIntro, Route114_Text_ShaneDefeat
 	msgbox Route114_Text_ShanePostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -107,7 +107,7 @@ Route114_EventScript_Nancy:: @ 81F2685
 	end
 
 Route114_EventScript_Steve:: @ 81F269C
-	trainerbattle_single TRAINER_STEVE_1, Route114_Text_SteveIntro, Route114_Text_SteveDefeat, Route114_EventScript_RegisterSteve
+	trainerbattle_single TRAINER_MARVIN, Route114_Text_SteveIntro, Route114_Text_SteveDefeat, Route114_EventScript_RegisterSteve
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route114_EventScript_RematchSteve
@@ -119,12 +119,12 @@ Route114_EventScript_RegisterSteve:: @ 81F26C8
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route114_Text_SteveRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_STEVE_1
+	register_matchcall TRAINER_MARVIN
 	release
 	end
 
 Route114_EventScript_RematchSteve:: @ 81F26E7
-	trainerbattle_rematch TRAINER_STEVE_1, Route114_Text_SteveRematchIntro, Route114_Text_SteveRematchDefeat
+	trainerbattle_rematch TRAINER_MARVIN, Route114_Text_SteveRematchIntro, Route114_Text_SteveRematchDefeat
 	msgbox Route114_Text_StevePostRematch, MSGBOX_AUTOCLOSE
 	end
 

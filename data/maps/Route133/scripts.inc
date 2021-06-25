@@ -17,7 +17,7 @@ Route133_EventScript_Linda:: @ 81F75D1
 	end
 
 Route133_EventScript_Warren:: @ 81F75E8
-	trainerbattle_single TRAINER_WARREN, Route133_Text_WarrenIntro, Route133_Text_WarrenDefeat
+	trainerbattle_single TRAINER_ALVARO, Route133_Text_WarrenIntro, Route133_Text_WarrenDefeat
 	msgbox Route133_Text_WarrenPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -27,7 +27,7 @@ Route133_EventScript_Beck:: @ 81F75FF
 	end
 
 Route133_EventScript_Mollie:: @ 81F7616
-	trainerbattle_single TRAINER_MOLLIE, Route133_Text_MollieIntro, Route133_Text_MollieDefeat
+	trainerbattle_single TRAINER_KIYO, Route133_Text_MollieIntro, Route133_Text_MollieDefeat
 	msgbox Route133_Text_MolliePostBattle, MSGBOX_AUTOCLOSE
 	end
 

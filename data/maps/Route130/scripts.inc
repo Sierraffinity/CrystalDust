@@ -35,7 +35,7 @@ Route130_EventScript_CheckSetAbnormalWeather:: @ 81F73B5
 	return
 
 Route130_EventScript_Rodney:: @ 81F73BF
-	trainerbattle_single TRAINER_RODNEY, Route130_Text_RodneyIntro, Route130_Text_RodneyDefeat
+	trainerbattle_single TRAINER_RONALD, Route130_Text_RodneyIntro, Route130_Text_RodneyDefeat
 	msgbox Route130_Text_RodneyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -45,7 +45,7 @@ Route130_EventScript_Katie:: @ 81F73D6
 	end
 
 Route130_EventScript_Santiago:: @ 81F73ED
-	trainerbattle_single TRAINER_SANTIAGO, Route130_Text_SantiagoIntro, Route130_Text_SantiagoDefeat
+	trainerbattle_single TRAINER_DOUGLAS, Route130_Text_SantiagoIntro, Route130_Text_SantiagoDefeat
 	msgbox Route130_Text_SantiagoPostBattle, MSGBOX_AUTOCLOSE
 	end
 

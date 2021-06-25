@@ -24,7 +24,7 @@ Route110_TrickHousePuzzle4_EventScript_Yuji:: @ 826C895
 	end
 
 Route110_TrickHousePuzzle4_EventScript_Paula:: @ 826C8AC
-	trainerbattle_single TRAINER_PAULA, Route110_TrickHousePuzzle4_Text_PaulaIntro, Route110_TrickHousePuzzle4_Text_PaulaDefeat
+	trainerbattle_single TRAINER_PAULA_OLD, Route110_TrickHousePuzzle4_Text_PaulaIntro, Route110_TrickHousePuzzle4_Text_PaulaDefeat
 	msgbox Route110_TrickHousePuzzle4_Text_PaulaPostBattle, MSGBOX_AUTOCLOSE
 	end
 

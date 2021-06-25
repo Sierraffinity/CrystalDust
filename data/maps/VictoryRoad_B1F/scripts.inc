@@ -2,17 +2,17 @@ VictoryRoad_B1F_MapScripts:: @ 82364E4
 	.byte 0
 
 VictoryRoad_B1F_EventScript_Samuel:: @ 82364E5
-	trainerbattle_single TRAINER_SAMUEL_OLD, VictoryRoad_B1F_Text_SamuelIntro, VictoryRoad_B1F_Text_SamuelDefeat
+	trainerbattle_single TRAINER_ALVARO, VictoryRoad_B1F_Text_SamuelIntro, VictoryRoad_B1F_Text_SamuelDefeat
 	msgbox VictoryRoad_B1F_Text_SamuelPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 VictoryRoad_B1F_EventScript_Shannon:: @ 82364FC
-	trainerbattle_single TRAINER_SHANNON, VictoryRoad_B1F_Text_ShannonIntro, VictoryRoad_B1F_Text_ShannonDefeat
+	trainerbattle_single TRAINER_OLIVIA, VictoryRoad_B1F_Text_ShannonIntro, VictoryRoad_B1F_Text_ShannonDefeat
 	msgbox VictoryRoad_B1F_Text_ShannonPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 VictoryRoad_B1F_EventScript_Michelle:: @ 8236513
-	trainerbattle_single TRAINER_MICHELLE, VictoryRoad_B1F_Text_MichelleIntro, VictoryRoad_B1F_Text_MichelleDefeat
+	trainerbattle_single TRAINER_NORMAN, VictoryRoad_B1F_Text_MichelleIntro, VictoryRoad_B1F_Text_MichelleDefeat
 	msgbox VictoryRoad_B1F_Text_MichellePostBattle, MSGBOX_AUTOCLOSE
 	end
 

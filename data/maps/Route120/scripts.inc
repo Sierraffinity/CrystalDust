@@ -348,7 +348,7 @@ Route120_EventScript_RematchJeffrey:: @ 81F58C9
 	end
 
 Route120_EventScript_Jennifer:: @ 81F58E0
-	trainerbattle_single TRAINER_JENNIFER, Route120_Text_JenniferIntro, Route120_Text_JenniferDefeat
+	trainerbattle_single TRAINER_TOBY, Route120_Text_JenniferIntro, Route120_Text_JenniferDefeat
 	msgbox Route120_Text_JenniferPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -358,7 +358,7 @@ Route120_EventScript_Chip:: @ 81F58F7
 	end
 
 Route120_EventScript_Clarissa:: @ 81F590E
-	trainerbattle_single TRAINER_CLARISSA, Route120_Text_ClarissaIntro, Route120_Text_ClarissaDefeat
+	trainerbattle_single TRAINER_CLARISSA_OLD, Route120_Text_ClarissaIntro, Route120_Text_ClarissaDefeat
 	msgbox Route120_Text_ClarissaPostBattle, MSGBOX_AUTOCLOSE
 	end
 

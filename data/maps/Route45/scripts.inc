@@ -127,7 +127,7 @@ Route45_EventScript_RematchMaria:: @ 81F3B41
 	end
 
 Route45_EventScript_Derek:: @ 81F3B58
-	trainerbattle_single TRAINER_DEREK, Route45_Text_DerekIntro, Route45_Text_DerekDefeat
+	trainerbattle_single TRAINER_DEREK_OLD, Route45_Text_DerekIntro, Route45_Text_DerekDefeat
 	msgbox Route45_Text_DerekPostBattle, MSGBOX_AUTOCLOSE
 	end
 
