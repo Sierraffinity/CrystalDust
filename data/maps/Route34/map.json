@@ -12,7 +12,6 @@
   "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
-  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
@@ -28,7 +27,6 @@
   ],
   "object_events": [
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "in_connection": false,
       "x": 20,
@@ -40,10 +38,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "6",
       "script": "Route34_EventScript_Todd",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "in_connection": false,
       "x": 22,
@@ -55,10 +53,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route34_EventScript_Samuel",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "in_connection": false,
       "x": 18,
@@ -70,10 +68,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route34_EventScript_Ian",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 16,
@@ -85,10 +83,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route34_EventScript_Gina",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_OFFICER",
       "in_connection": false,
       "x": 15,
@@ -100,10 +98,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route34_EventScript_Keith",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_MAN_1",
       "in_connection": false,
       "x": 25,
@@ -115,10 +113,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route34_EventScript_Brandon",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
       "in_connection": false,
       "x": 18,
@@ -130,10 +128,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route34_DayCare_EventScript_DaycareManOutside",
-      "flag": "FLAG_HIDE_ROUTE_34_DAYCARE_MAN_OUTSIDE"
+      "flag": "FLAG_HIDE_ROUTE_34_DAYCARE_MAN_OUTSIDE",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SENTRET",
       "in_connection": false,
       "x": 21,
@@ -145,10 +143,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_MARILL",
       "in_connection": false,
       "x": 23,
@@ -160,10 +158,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WOOPER",
       "in_connection": false,
       "x": 27,
@@ -175,10 +173,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "in_connection": false,
       "x": 17,
@@ -190,10 +188,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "Route34_EventScript_Irene",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "in_connection": false,
       "x": 9,
@@ -205,10 +203,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route34_EventScript_Jenn",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "in_connection": false,
       "x": 12,
@@ -220,10 +218,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "Route34_EventScript_Kate",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 13,
@@ -235,7 +233,8 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route34_EventScript_ItemNugget",
-      "flag": "FLAG_ITEM_ROUTE_34_NUGGET"
+      "flag": "FLAG_ITEM_ROUTE_34_NUGGET",
+      "type": "original"
     }
   ],
   "warp_events": [
@@ -312,5 +311,6 @@
       "item": "ITEM_SUPER_POTION",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_34_SUPER_POTION"
     }
-  ]
+  ],
+  "phone_service": ""
 }

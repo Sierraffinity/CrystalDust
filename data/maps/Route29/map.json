@@ -12,7 +12,6 @@
   "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
-  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
@@ -33,7 +32,6 @@
   ],
   "object_events": [
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
       "in_connection": false,
       "x": 62,
@@ -45,10 +43,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route29_EventScript_Dude",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "in_connection": false,
       "x": 34,
@@ -60,10 +58,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route29_EventScript_Youngster",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
       "in_connection": false,
       "x": 19,
@@ -75,10 +73,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route29_EventScript_LedgeGirl",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "in_connection": false,
       "x": 31,
@@ -90,10 +88,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route29_EventScript_FatMan",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_MAN_4",
       "in_connection": false,
       "x": 16,
@@ -105,10 +103,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route29_EventScript_WaitingMan",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "in_connection": false,
       "x": 37,
@@ -120,10 +118,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route29_EventScript_Tuscany",
-      "flag": "FLAG_HIDE_ROUTE_29_TUSCANY"
+      "flag": "FLAG_HIDE_ROUTE_29_TUSCANY",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 60,
@@ -135,10 +133,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route29_EventScript_ItemPotion",
-      "flag": "FLAG_ITEM_ROUTE_29_POTION"
+      "flag": "FLAG_ITEM_ROUTE_29_POTION",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
       "in_connection": false,
       "x": 26,
@@ -150,10 +148,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TEMP_11"
+      "flag": "FLAG_TEMP_11",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
       "in_connection": false,
       "x": 39,
@@ -165,7 +163,8 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TEMP_12"
+      "flag": "FLAG_TEMP_12",
+      "type": "original"
     }
   ],
   "warp_events": [
@@ -238,13 +237,7 @@
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route29_EventScript_DirectionSign"
-    },
-    {
-      "type": "fruit_tree",
-      "x": 14,
-      "y": 4,
-      "elevation": 3,
-      "fruit_tree_id": "FRUIT_TREE_ROUTE_29"
     }
-  ]
+  ],
+  "phone_service": ""
 }

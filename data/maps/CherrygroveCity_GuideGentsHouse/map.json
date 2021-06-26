@@ -1,46 +1,50 @@
 {
-    "allow_cycling": false,
-    "allow_escaping": false,
-    "allow_running": false,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_CHERRYGROVE_CITY_GUIDE_GENTS_HOUSE",
-    "layout": "LAYOUT_HOUSE1",
-    "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_CHERRYGROVE",
-    "name": "CherrygroveCity_GuideGentsHouse",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE",
-            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "CherrygroveCity_GuideGentsHouse_EventScript_GuideGent",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "type": "original",
-            "x": 4,
-            "y": 4
-        }
-    ],
-    "region_map_section": "MAPSEC_CHERRYGROVE_CITY",
-    "requires_flash": false,
-    "show_map_name": false,
-    "warp_events": [
-        {
-            "dest_map": "MAP_CHERRYGROVE_CITY",
-            "dest_warp_id": 1,
-            "elevation": 0,
-            "x": 4,
-            "y": 7
-        }
-    ],
-    "weather": "WEATHER_NONE",
-    "phone_service": true
+  "id": "MAP_CHERRYGROVE_CITY_GUIDE_GENTS_HOUSE",
+  "name": "CherrygroveCity_GuideGentsHouse",
+  "layout": "LAYOUT_HOUSE1",
+  "music": "MUS_CHERRYGROVE",
+  "region_map_section": "MAPSEC_CHERRYGROVE_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+      "in_connection": false,
+      "x": 4,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CherrygroveCity_GuideGentsHouse_EventScript_GuideGent",
+      "flag": "FLAG_HIDE_CHERRYGROVE_CITY_GUIDE_GENT_INSIDE",
+      "type": "original"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_CHERRYGROVE_CITY",
+      "dest_warp_id": 1
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "phone_service": ""
 }
