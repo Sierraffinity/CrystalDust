@@ -218,25 +218,25 @@
 #define TRAINER_TIMOTHY                     214  //^
 #define TRAINER_MICHAEL                     215  //^
 #define TRAINER_QUENTIN                     216  //^
-#define TRAINER_AUTUMN                      217
-#define TRAINER_TRAVIS                      218
-#define TRAINER_ETHAN_2                     219
-#define TRAINER_ETHAN_3                     220
-#define TRAINER_ETHAN_4                     221
-#define TRAINER_ETHAN_5                     222
-#define TRAINER_BRENT_OLD                       223
-#define TRAINER_DONALD_OLD                      224
-#define TRAINER_TAYLOR                      225
-#define TRAINER_JEFFREY_1                   226
-#define TRAINER_DEREK_OLD                       227
-#define TRAINER_JEFFREY_2                   228
+#define TRAINER_MEGAN                       217  //Route 27
+#define TRAINER_BLAKE                       218  //^
+#define TRAINER_JOSE                        219  //^ Has 2 Rematches
+#define TRAINER_BRIAN                       220  //^
+#define TRAINER_GILBERT                     221  //^
+#define TRAINER_REENA                       222  //^ Has 2 Rematches
+#define TRAINER_SCOTT                       223  //Route 26
+#define TRAINER_RICHARD                     224  //^
+#define TRAINER_JOYCE                       225  //^
+#define TRAINER_GAVEN                       226  //^
+#define TRAINER_JAKE                        227  //^
+#define TRAINER_BETH                        228  //^ Has 2 Rematches - Last regular trainer before E4.
 #define TRAINER_JEFFREY_3                   229
 #define TRAINER_JEFFREY_4                   230
 #define TRAINER_JEFFREY_5                   231
 #define TRAINER_EDWARD                      232
 #define TRAINER_PRESTON_OLD                     233
 #define TRAINER_VIRGIL                      234
-#define TRAINER_BLAKE                       235
+#define TRAINER_BLAKE_OLD                       235
 #define TRAINER_WILLIAM_OLD                     236
 #define TRAINER_JOSHUA                      237
 #define TRAINER_CAMERON_1                   238
@@ -262,10 +262,10 @@
 #define TRAINER_WALTER_3                    258
 #define TRAINER_WALTER_4                    259
 #define TRAINER_WALTER_5                    260
-#define TRAINER_SIDNEY                      261
-#define TRAINER_PHOEBE                      262
-#define TRAINER_GLACIA                      263
-#define TRAINER_DRAKE                       264
+#define TRAINER_WILL                        261  //Elite Four
+#define TRAINER_KOGA                        262  //^
+#define TRAINER_BRUNO                       263  //^
+#define TRAINER_KAREN                       264  //^
 #define TRAINER_FALKNER                     265  //Gym Leaders
 #define TRAINER_BUGSY                       266  //^
 #define TRAINER_WHITNEY                     267  //^
@@ -336,7 +336,7 @@
 #define TRAINER_EDDIE_OLD                       332
 #define TRAINER_ALLEN_OLD                       333
 #define TRAINER_TIMMY                       334
-#define TRAINER_WALLACE                     335
+#define TRAINER_LANCE                       335  //Champion
 #define TRAINER_ANDREW_OLD                      336
 #define TRAINER_IVAN_OLD                        337
 #define TRAINER_CLAUDE                      338
@@ -446,7 +446,7 @@
 #define TRAINER_IMANI                       442
 #define TRAINER_KYLA                        443
 #define TRAINER_DENISE_OLD                      444
-#define TRAINER_BETH                        445
+#define TRAINER_BETH_OLD                        445
 #define TRAINER_TARA                        446
 #define TRAINER_MISSY                       447
 #define TRAINER_ALICE                       448
@@ -532,9 +532,9 @@
 #define TRAINER_RIVAL_GOLDENROD_TUNNEL_CHIKORITA 528
 #define TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE  529
 #define TRAINER_RIVAL_GOLDENROD_TUNNEL_CYNDAQUIL 530
-#define TRAINER_MAY_ROUTE_119_MUDKIP        531
-#define TRAINER_MAY_ROUTE_103_TREECKO       532
-#define TRAINER_MAY_ROUTE_110_TREECKO       533
+#define TRAINER_RIVAL_VICTORY_ROAD_CHIKORITA 531
+#define TRAINER_RIVAL_VICTORY_ROAD_TOTODILE 532
+#define TRAINER_RIVAL_VICTORY_ROAD_CYNDAQUIL 533
 #define TRAINER_MAY_ROUTE_119_TREECKO       534
 #define TRAINER_MAY_ROUTE_103_TORCHIC       535
 #define TRAINER_MAY_ROUTE_110_TORCHIC       536
@@ -618,7 +618,7 @@
 #define TRAINER_CRISSY                      614
 #define TRAINER_RICK                        615
 #define TRAINER_LYLE                        616
-#define TRAINER_JOSE                        617
+#define TRAINER_JOSE_OLD                        617
 #define TRAINER_DOUG                        618
 #define TRAINER_GREG_OLD                    619
 #define TRAINER_KENT_OLD                        620

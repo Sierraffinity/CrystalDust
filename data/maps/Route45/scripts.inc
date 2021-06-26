@@ -126,11 +126,6 @@ Route45_EventScript_RematchMaria:: @ 81F3B41
 	msgbox Route45_Text_MariaPostRematch, MSGBOX_AUTOCLOSE
 	end
 
-Route45_EventScript_Derek:: @ 81F3B58
-	trainerbattle_single TRAINER_DEREK_OLD, Route45_Text_DerekIntro, Route45_Text_DerekDefeat
-	msgbox Route45_Text_DerekPostBattle, MSGBOX_AUTOCLOSE
-	end
-
 Route45_EventScript_Anna:: @ 81F3B6F
 	trainerbattle_double TRAINER_ANNA_AND_MEG_1, Route45_Text_AnnaIntro, Route45_Text_AnnaDefeat, Route45_Text_AnnaNotEnoughMons, Route45_EventScript_RegisterAnna
 	specialvar VAR_RESULT, ShouldTryRematchBattle

@@ -56,7 +56,7 @@ FortreeCity_Gym_SetGymTrainers:: @ 8271FFD
 
 MossdeepCity_Gym_SetGymTrainers:: @ 8272010
 	settrainerflag TRAINER_VIRGIL
-	settrainerflag TRAINER_BLAKE
+	settrainerflag TRAINER_BLAKE_OLD
 	settrainerflag TRAINER_HANNAH
 	settrainerflag TRAINER_SAMANTHA_OLD
 	settrainerflag TRAINER_MAURA

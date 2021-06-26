@@ -124,6 +124,12 @@
 #define TRAINER_PIC_BOARDER               65 //105
 #define TRAINER_PIC_LEADER_PRYCE          65 //106
 #define TRAINER_PIC_BURGLAR               65 //107
+#define TRAINER_PIC_LEADER_CLAIR          65 //108
+#define TRAINER_PIC_ELITE_FOUR_WILL       65 //109
+#define TRAINER_PIC_ELITE_FOUR_KOGA       65 //110
+#define TRAINER_PIC_ELITE_FOUR_BRUNO      65 //110
+#define TRAINER_PIC_ELITE_FOUR_KAREN      65 //111
+#define TRAINER_PIC_CHAMPION_LANCE        65 //112
 
 #define TRAINER_BACK_PIC_GOLD                   0
 #define TRAINER_BACK_PIC_KRIS                   1
