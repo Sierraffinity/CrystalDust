@@ -30,13 +30,8 @@ GoldenrodCity_Gym_SetGymTrainers:: @ 8271FBE
 	return
 
 LavaridgeTown_Gym_SetGymTrainers:: @ 8271FCE
-	settrainerflag TRAINER_COLE
-	settrainerflag TRAINER_AXLE
-	settrainerflag TRAINER_KEEGAN
 	settrainerflag TRAINER_GERALD
 	settrainerflag TRAINER_DANIELLE
-	settrainerflag TRAINER_JACE
-	settrainerflag TRAINER_JEFF
 	settrainerflag TRAINER_ELI
 	return
 

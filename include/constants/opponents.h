@@ -202,22 +202,22 @@
 #define TRAINER_ZACH                        198  //^
 #define TRAINER_WILTON                      199  //^ Has 2 Rematches
 #define TRAINER_VANCE                       200  //^ Has 2 Rematches
-#define TRAINER_COLE                        201
-#define TRAINER_JEFF                        202
-#define TRAINER_AXLE                        203
-#define TRAINER_JACE                        204
-#define TRAINER_KEEGAN                      205
-#define TRAINER_BERNIE_1                    206
-#define TRAINER_BERNIE_2                    207
-#define TRAINER_BERNIE_3                    208
-#define TRAINER_BERNIE_4                    209
-#define TRAINER_BERNIE_5                    210
-#define TRAINER_DREW                        211
-#define TRAINER_BEAU                        212
-#define TRAINER_LARRY_OLD                       213
-#define TRAINER_SHANE_OLD                       214
-#define TRAINER_JUSTIN_OLD                  215
-#define TRAINER_ETHAN_1                     216
+#define TRAINER_PAUL                        201  //Blackthorn Gym
+#define TRAINER_FRAN                        202  //^
+#define TRAINER_CODY                        203  //^
+#define TRAINER_MIKE                        204  //^
+#define TRAINER_LOLA                        205  //^
+#define TRAINER_DARIN                       206  //Dragon's Den
+#define TRAINER_CARA                        207  //^
+#define TRAINER_LEA_AND_PIA                 208  //^
+#define TRAINER_ERIK                        209  //Route 45
+#define TRAINER_RYAN                        210  //^
+#define TRAINER_KELLY                       211  //^
+#define TRAINER_PARRY                       212  //^ Has 2 Rematches
+#define TRAINER_KENJI                       213  //^ Has 2 Rematches (GS only according to Bulbapedia, rosters remain in pokecrystal)
+#define TRAINER_TIMOTHY                     214  //^
+#define TRAINER_MICHAEL                     215  //^
+#define TRAINER_QUENTIN                     216  //^
 #define TRAINER_AUTUMN                      217
 #define TRAINER_TRAVIS                      218
 #define TRAINER_ETHAN_2                     219
@@ -273,10 +273,10 @@
 #define TRAINER_CHUCK                       269  //^
 #define TRAINER_JASMINE                     270  //^
 #define TRAINER_PRYCE                       271  //^
-#define TRAINER_JUAN_1                      272  //^
+#define TRAINER_CLAIR                       272  //^
 #define TRAINER_JERRY_1                     273
 #define TRAINER_TED_OLD                         274
-#define TRAINER_PAUL                        275
+#define TRAINER_PAUL_OLD                        275
 #define TRAINER_JERRY_2                     276
 #define TRAINER_JERRY_3                     277
 #define TRAINER_JERRY_4                     278
