@@ -139,6 +139,7 @@
 #define TRAINER_PIC_LEADER_BLAINE         65 //119
 #define TRAINER_PIC_LEADER_BLUE           65 //120
 #define TRAINER_PIC_TEACHER               65 //121
+#define TRAINER_PIC_BIKER                 65 //122
 
 #define TRAINER_BACK_PIC_GOLD                   0
 #define TRAINER_BACK_PIC_KRIS                   1
@@ -392,6 +393,7 @@
 #define TRAINER_CLASS_BOARDER        0x47
 #define TRAINER_CLASS_BURGLAR        0x48
 #define TRAINER_CLASS_TEACHER        0x49
+#define TRAINER_CLASS_BIKER          0x4a
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
