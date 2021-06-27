@@ -130,6 +130,14 @@
 #define TRAINER_PIC_ELITE_FOUR_BRUNO      65 //110
 #define TRAINER_PIC_ELITE_FOUR_KAREN      65 //111
 #define TRAINER_PIC_CHAMPION_LANCE        65 //112
+#define TRAINER_PIC_LEADER_BROCK          65 //113
+#define TRAINER_PIC_LEADER_MISTY          65 //114
+#define TRAINER_PIC_LEADER_LT_SURGE       65 //115
+#define TRAINER_PIC_LEADER_ERIKA          65 //116
+#define TRAINER_PIC_LEADER_JANINE         65 //117
+#define TRAINER_PIC_LEADER_SABRINA        65 //118
+#define TRAINER_PIC_LEADER_BLAINE         65 //119
+#define TRAINER_PIC_LEADER_BLUE           65 //120
 
 #define TRAINER_BACK_PIC_GOLD                   0
 #define TRAINER_BACK_PIC_KRIS                   1

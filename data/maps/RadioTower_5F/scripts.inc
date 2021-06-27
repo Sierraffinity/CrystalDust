@@ -13,7 +13,7 @@ RadioTower_5F_EventScript_Steven:: @ 823B182
 	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox RadioTower_5F_Text_ShouldKnowHowGoodIAmExpectWorst, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_STEVEN, RadioTower_5F_Text_StevenDefeat
+	trainerbattle_no_intro TRAINER_NONE, RadioTower_5F_Text_StevenDefeat
 	msgbox RadioTower_5F_Text_MyPredictionCameTrue, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_METEOR_FALLS_STEVEN
 	release
