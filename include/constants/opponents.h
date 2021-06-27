@@ -278,7 +278,7 @@
 #define TRAINER_JEFFREY_4                   224
 // Route 2
 #define TRAINER_JEFFREY_5                   225
-#define TRAINER_EDWARD                      226
+#define TRAINER_EDWARD_OLD                  226
 #define TRAINER_PRESTON_OLD                 227
 // Route 3
 #define TRAINER_VIRGIL                      228
@@ -324,7 +324,7 @@
 #define TRAINER_JERRY_OLD_4                 260
 #define TRAINER_JERRY_OLD_5                 261
 #define TRAINER_KAREN_1                     262
-#define TRAINER_GEORGIA                     263
+#define TRAINER_GEORGIA_OLD                 263
 // Route 14
 #define TRAINER_KAREN_2                     264
 #define TRAINER_KAREN_3                     265
@@ -357,157 +357,156 @@
 #define TRAINER_ISABEL_3                    286
 #define TRAINER_ISABEL_4                    287
 #define TRAINER_ISABEL_5                    288
-// Route 24
-#define TRAINER_TIMOTHY_1                   289 // Rocket Grunt
 // Route 25
-#define TRAINER_TIMOTHY_2                   290
-#define TRAINER_TIMOTHY_3                   291
-#define TRAINER_TIMOTHY_4                   292
-#define TRAINER_TIMOTHY_5                   293
-#define TRAINER_VICKY                       294
-#define TRAINER_SHELBY_1                    295
-#define TRAINER_SHELBY_2                    296
-#define TRAINER_SHELBY_3                    297  // 75
+#define TRAINER_TIMOTHY_2                   289
+#define TRAINER_TIMOTHY_3                   290
+#define TRAINER_TIMOTHY_4                   291
+#define TRAINER_TIMOTHY_5                   292
+#define TRAINER_VICKY                       293
+#define TRAINER_SHELBY_1                    294
+#define TRAINER_SHELBY_2                    295
+#define TRAINER_SHELBY_3                    296  // 74
 // Pewter Gym
-#define TRAINER_JERRY                       298
+#define TRAINER_JERRY                       297
 // Cerulean Gym
-#define TRAINER_PARKER                      299
-#define TRAINER_BRIANA                      300
-#define TRAINER_DIANA                       301
+#define TRAINER_PARKER                      298
+#define TRAINER_BRIANA                      299
+#define TRAINER_DIANA                       300
 // Vermilion Gym
-#define TRAINER_HORTON                      302
-#define TRAINER_VINCENT                     303
-#define TRAINER_GREGORY                     304
+#define TRAINER_HORTON                      301
+#define TRAINER_VINCENT                     302
+#define TRAINER_GREGORY                     303
 // Celadon Gym
-#define TRAINER_JO_AND_ZOE                  305
-#define TRAINER_TANYA                       306
-#define TRAINER_MICHELLE                    307
-#define TRAINER_JULIA                       308
+#define TRAINER_JO_AND_ZOE                  304
+#define TRAINER_TANYA                       305
+#define TRAINER_MICHELLE                    306
+#define TRAINER_JULIA                       307
 // Fuchsia Gym
-#define TRAINER_LINDA                       309
-#define TRAINER_CINDY                       310
-#define TRAINER_BARRY                       311
-#define TRAINER_ALICE                       312
+#define TRAINER_LINDA                       308
+#define TRAINER_CINDY                       309
+#define TRAINER_BARRY                       310
+#define TRAINER_ALICE                       311
 // Saffron Gym
-#define TRAINER_REBECCA                     313
-#define TRAINER_JARED                       314
-#define TRAINER_DORIS                       315
-#define TRAINER_FRANKLIN                    316
+#define TRAINER_REBECCA                     312
+#define TRAINER_JARED                       313
+#define TRAINER_DORIS                       314
+#define TRAINER_FRANKLIN                    315
 // Rematches
-#define TRAINER_ANDREW_OLD                  317
-#define TRAINER_IVAN_OLD                    318
-#define TRAINER_CLAUDE                      319
-#define TRAINER_ELLIOT_OLD_1                320
-#define TRAINER_NED_OLD                     321
-#define TRAINER_DALE                        322
-#define TRAINER_NOLAN                       323
-#define TRAINER_BARNY                       324
-#define TRAINER_WADE                        325
-#define TRAINER_CARTER                      326
-#define TRAINER_ELLIOT_OLD_2                327
-#define TRAINER_ELLIOT_OLD_3                328
-#define TRAINER_ELLIOT_OLD_4                329
-#define TRAINER_ELLIOT_OLD_5                330
-#define TRAINER_RONALD_OLD                  331
-#define TRAINER_JACOB                       332
-#define TRAINER_ANTHONY_OLD                 333
-#define TRAINER_BENJAMIN_OLD_1              334
-#define TRAINER_BENJAMIN_OLD_2              335
-#define TRAINER_BENJAMIN_OLD_3              336
-#define TRAINER_BENJAMIN_OLD_4              337
-#define TRAINER_BENJAMIN_OLD_5              338
-#define TRAINER_ABIGAIL_1                   339
-#define TRAINER_JASMINE_OLD                 340
-#define TRAINER_ABIGAIL_2                   341
-#define TRAINER_ABIGAIL_3                   342
-#define TRAINER_ABIGAIL_4                   343
-#define TRAINER_ABIGAIL_5                   344
-#define TRAINER_DYLAN_1                     345
-#define TRAINER_DYLAN_2                     346
-#define TRAINER_DYLAN_3                     347
-#define TRAINER_DYLAN_4                     348
-#define TRAINER_DYLAN_5                     349
-#define TRAINER_MARIA_1                     350
-#define TRAINER_MARIA_2                     351
-#define TRAINER_MARIA_3                     352
-#define TRAINER_MARIA_4                     353
-#define TRAINER_MARIA_5                     354
-#define TRAINER_CAMDEN                      355
-#define TRAINER_DEMETRIUS                   356
-#define TRAINER_ISAIAH_1                    357
-#define TRAINER_PABLO_1                     358
-#define TRAINER_CHASE                       359
-#define TRAINER_ISAIAH_2                    360
-#define TRAINER_ISAIAH_3                    361
-#define TRAINER_ISAIAH_4                    362
-#define TRAINER_ISAIAH_5                    363
-#define TRAINER_ISOBEL                      364
-#define TRAINER_DONNY                       365
-#define TRAINER_TALIA                       366
-#define TRAINER_KATELYN_1                   367
-#define TRAINER_ALLISON                     368
-#define TRAINER_KATELYN_2                   369
-#define TRAINER_KATELYN_3                   370
+#define TRAINER_ANDREW_OLD                  316
+#define TRAINER_IVAN_OLD                    317
+#define TRAINER_CLAUDE                      318
+#define TRAINER_ELLIOT_OLD_1                319
+#define TRAINER_NED_OLD                     320
+#define TRAINER_DALE                        321
+#define TRAINER_NOLAN                       322
+#define TRAINER_BARNY                       323
+#define TRAINER_WADE                        324
+#define TRAINER_CARTER                      325
+#define TRAINER_ELLIOT_OLD_2                326
+#define TRAINER_ELLIOT_OLD_3                327
+#define TRAINER_ELLIOT_OLD_4                328
+#define TRAINER_ELLIOT_OLD_5                329
+#define TRAINER_RONALD_OLD                  330
+#define TRAINER_JACOB                       331
+#define TRAINER_ANTHONY_OLD                 332
+#define TRAINER_BENJAMIN_OLD_1              333
+#define TRAINER_BENJAMIN_OLD_2              334
+#define TRAINER_BENJAMIN_OLD_3              335
+#define TRAINER_BENJAMIN_OLD_4              336
+#define TRAINER_BENJAMIN_OLD_5              337
+#define TRAINER_ABIGAIL_1                   338
+#define TRAINER_JASMINE_OLD                 339
+#define TRAINER_ABIGAIL_2                   340
+#define TRAINER_ABIGAIL_3                   341
+#define TRAINER_ABIGAIL_4                   342
+#define TRAINER_ABIGAIL_5                   343
+#define TRAINER_DYLAN_1                     344
+#define TRAINER_DYLAN_2                     345
+#define TRAINER_DYLAN_3                     346
+#define TRAINER_DYLAN_4                     347
+#define TRAINER_DYLAN_5                     348
+#define TRAINER_MARIA_1                     349
+#define TRAINER_MARIA_2                     350
+#define TRAINER_MARIA_3                     351
+#define TRAINER_MARIA_4                     352
+#define TRAINER_MARIA_5                     353
+#define TRAINER_CAMDEN                      354
+#define TRAINER_DEMETRIUS                   355
+#define TRAINER_ISAIAH_1                    356
+#define TRAINER_PABLO_1                     357
+#define TRAINER_CHASE                       358
+#define TRAINER_ISAIAH_2                    359
+#define TRAINER_ISAIAH_3                    360
+#define TRAINER_ISAIAH_4                    361
+#define TRAINER_ISAIAH_5                    362
+#define TRAINER_ISOBEL                      363
+#define TRAINER_DONNY                       364
+#define TRAINER_TALIA                       365
+#define TRAINER_KATELYN_1                   366
+#define TRAINER_ALLISON                     367
+#define TRAINER_KATELYN_2                   368
+#define TRAINER_KATELYN_3                   369
 // S.S. Aqua (Could potentially be purged, as they're rematchable)
 // S.S. Aqua (first voyage - only available once)
-#define TRAINER_KATELYN_4                   371
-#define TRAINER_KATELYN_5                   372
-#define TRAINER_NICOLAS_1                   373
-#define TRAINER_NICOLAS_2                   374
-#define TRAINER_NICOLAS_3                   375
-#define TRAINER_NICOLAS_4                   376
-#define TRAINER_NICOLAS_5                   377
-#define TRAINER_AARON_OLD                   378
+#define TRAINER_NOLAND                      370  // Upper Deck
+#define TRAINER_COLIN                       371
+#define TRAINER_MEG_AND_PEG                 372
+#define TRAINER_LYLE                        373
+#define TRAINER_STANLY                      374
+#define TRAINER_FRITZ                       375  // Lower Deck
+#define TRAINER_JEFF                        376
+#define TRAINER_DEBRA                       377
 // S.S. Aqua (Olivine -> Vermilion)
-#define TRAINER_PERRY                       379
-#define TRAINER_HUGH_OLD                    380
-#define TRAINER_PHIL_OLD                    381
-#define TRAINER_JARED_OLD                   382
-#define TRAINER_HUMBERTO                    383
-#define TRAINER_PRESLEY                     384
-#define TRAINER_EDWARDO                     385
-#define TRAINER_COLIN                       386
-#define TRAINER_ROBERT_1                    387
+#define TRAINER_EDWARD                      378  // Upper Deck
+#define TRAINER_SEAN                        379
+#define TRAINER_CAROL                       380
+#define TRAINER_SHAWN                       381
+#define TRAINER_RODNEY                      382
+#define TRAINER_CASSIE                      383  // Lower Deck
+#define TRAINER_JONAH                       384
+#define TRAINER_GARRETT                     385
+#define TRAINER_WAI                         386
 // S.S. Aqua (Vermilion -> Olivine)
-#define TRAINER_BENNY_OLD                   388
-#define TRAINER_CHESTER                     389
-#define TRAINER_ROBERT_2                    390
-#define TRAINER_ROBERT_3                    391
-#define TRAINER_ROBERT_4                    392
-#define TRAINER_ROBERT_5                    393
-#define TRAINER_ALEX                        394
-#define TRAINER_BECK                        395
-#define TRAINER_YASU                        396
-#define TRAINER_TAKASHI                     397
+#define TRAINER_COREY                       387  // Upper Deck
+#define TRAINER_ETHAN                       388
+#define TRAINER_KEN                         389
+#define TRAINER_CLYDE                       390
+#define TRAINER_GEORGIA                     391
+#define TRAINER_JEREMY                      392
+#define TRAINER_KENNETH                     393  // Lower Deck
+#define TRAINER_SHIRLEY                     394
+#define TRAINER_NATE                        395
+#define TRAINER_RICKY                       396
 // Trainers that set other flags/vars (could be purged from trainer flags)
 // Rival Fights
-#define TRAINER_RIVAL_CHERRYGROVE_CHIKORITA      398
-#define TRAINER_RIVAL_CHERRYGROVE_TOTODILE       399
-#define TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL      400
-#define TRAINER_RIVAL_AZALEA_CHIKORITA           401
-#define TRAINER_RIVAL_AZALEA_TOTODILE            402
-#define TRAINER_RIVAL_AZALEA_CYNDAQUIL           403
-#define TRAINER_RIVAL_BURNED_TOWER_CHIKORITA     404
-#define TRAINER_RIVAL_BURNED_TOWER_TOTODILE      405
-#define TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL     406
-#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CHIKORITA 407
-#define TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE  408
-#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CYNDAQUIL 409
-#define TRAINER_RIVAL_VICTORY_ROAD_CHIKORITA     410
-#define TRAINER_RIVAL_VICTORY_ROAD_TOTODILE      411
-#define TRAINER_RIVAL_VICTORY_ROAD_CYNDAQUIL     412
-#define TRAINER_RIVAL_MT_MOON_CHIKORITA          413
-#define TRAINER_RIVAL_MT_MOON_TOTODILE           414 
-#define TRAINER_RIVAL_MT_MOON_CYNDAQUIL          415
-#define TRAINER_RIVAL_REMATCH_CHIKORITA          416
-#define TRAINER_RIVAL_REMATCH_TOTODILE           417
-#define TRAINER_RIVAL_REMATCH_CYNDAQUIL          418
+#define TRAINER_RIVAL_CHERRYGROVE_CHIKORITA      397
+#define TRAINER_RIVAL_CHERRYGROVE_TOTODILE       398
+#define TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL      399
+#define TRAINER_RIVAL_AZALEA_CHIKORITA           400
+#define TRAINER_RIVAL_AZALEA_TOTODILE            401
+#define TRAINER_RIVAL_AZALEA_CYNDAQUIL           402
+#define TRAINER_RIVAL_BURNED_TOWER_CHIKORITA     403
+#define TRAINER_RIVAL_BURNED_TOWER_TOTODILE      404
+#define TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL     405
+#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CHIKORITA 406
+#define TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE  407
+#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CYNDAQUIL 408
+#define TRAINER_RIVAL_VICTORY_ROAD_CHIKORITA     409
+#define TRAINER_RIVAL_VICTORY_ROAD_TOTODILE      410
+#define TRAINER_RIVAL_VICTORY_ROAD_CYNDAQUIL     411
+#define TRAINER_RIVAL_MT_MOON_CHIKORITA          412
+#define TRAINER_RIVAL_MT_MOON_TOTODILE           413 
+#define TRAINER_RIVAL_MT_MOON_CYNDAQUIL          414
+#define TRAINER_RIVAL_REMATCH_CHIKORITA          415
+#define TRAINER_RIVAL_REMATCH_TOTODILE           416
+#define TRAINER_RIVAL_REMATCH_CYNDAQUIL          417
 // Rockets that set other flags
-#define TRAINER_ROCKET_SLOWPOKE_WELL_BOSS        419  // Ends Slowpoke Well occupation
-#define TRAINER_MAHOGANY_EXECUTIVE_M             420  // Leaves room after battle
-#define TRAINER_MAHOGANY_EXECUTIVE_F             421  // Ends Mahogany Hideout occupation
-#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_1       422  // Gives Basement Key
-#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_2       423  // Ends Radio Tower occupation
+#define TRAINER_ROCKET_SLOWPOKE_WELL_BOSS        418  // Ends Slowpoke Well occupation
+#define TRAINER_MAHOGANY_EXECUTIVE_M             419  // Leaves room after battle
+#define TRAINER_MAHOGANY_EXECUTIVE_F             420  // Ends Mahogany Hideout occupation
+#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_1       421  // Gives Basement Key
+#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_2       422  // Ends Radio Tower occupation
+#define TRAINER_ROCKET_ROUTE24                   423  // Disappears after battle
 // Cianwood City Eusine
 #define TRAINER_EUSINE                           424
 // Gym Leaders
