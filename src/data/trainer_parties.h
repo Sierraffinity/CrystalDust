@@ -4380,22 +4380,22 @@ static const struct TrainerMonNoItemCustomMoves sParty_Joey5[] = {
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Wade2[] = {
     {
-    .iv = 0,
+    .iv = 25,
     .lvl = 9,
     .species = SPECIES_METAPOD,
     },
     {
-    .iv = 0,
+    .iv = 25,
     .lvl = 9,
     .species = SPECIES_METAPOD,
     },
     {
-    .iv = 0,
+    .iv = 25,
     .lvl = 10,
     .species = SPECIES_KAKUNA,
     },
     {
-    .iv = 0,
+    .iv = 25,
     .lvl = 9,
     .species = SPECIES_METAPOD,
     }
@@ -4403,22 +4403,22 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Wade2[] = {
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Wade3[] = {
     {
-    .iv = 0,
+    .iv = 50,
     .lvl = 14,
     .species = SPECIES_BUTTERFREE,
     },
     {
-    .iv = 0,
+    .iv = 50,
     .lvl = 14,
     .species = SPECIES_BUTTERFREE,
     },
     {
-    .iv = 0,
+    .iv = 50,
     .lvl = 15,
     .species = SPECIES_BEEDRILL,
     },
     {
-    .iv = 0,
+    .iv = 50,
     .lvl = 14,
     .species = SPECIES_BUTTERFREE,
     }
@@ -4453,25 +4453,25 @@ static const struct TrainerMonNoItemCustomMoves sParty_Wade4[] = {
 
 static const struct TrainerMonNoItemCustomMoves sParty_Wade5[] = {
     {
-    .iv = 100,
+    .iv = 200,
     .lvl = 30,
     .species = SPECIES_BUTTERFREE,
     .moves = {MOVE_CONFUSION, MOVE_POISON_POWDER, MOVE_SUPERSONIC, MOVE_GUST}
     },
     {
-    .iv = 100,
+    .iv = 200,
     .lvl = 30,
     .species = SPECIES_BUTTERFREE,
     .moves = {MOVE_CONFUSION, MOVE_STUN_SPORE, MOVE_SUPERSONIC, MOVE_GUST}
     },
     {
-    .iv = 100,
+    .iv = 200,
     .lvl = 32,
     .species = SPECIES_BEEDRILL,
     .moves = {MOVE_FURY_ATTACK, MOVE_PURSUIT, MOVE_TWINEEDLE, MOVE_DOUBLE_TEAM}
     },
     {
-    .iv = 100,
+    .iv = 200,
     .lvl = 34,
     .species = SPECIES_BUTTERFREE,
     .moves = {MOVE_PSYBEAM, MOVE_SLEEP_POWDER, MOVE_GUST, MOVE_WHIRLWIND}
