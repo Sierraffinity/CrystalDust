@@ -39,7 +39,7 @@ Route35_EventScript_Walt::
 
 
 Route35_EventScript_Arnie::
-	trainerbattle_single TRAINER_ARNIE, Route35_Text_ArnieIntro, Route35_Text_ArnieDefeated
+	trainerbattle_single TRAINER_ARNIE_1, Route35_Text_ArnieIntro, Route35_Text_ArnieDefeated
 	msgbox Route35_Text_ArniePostBattle, MSGBOX_AUTOCLOSE
 	return
 

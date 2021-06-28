@@ -15,7 +15,7 @@ Route46_EventScript_Ted::
 
 
 Route46_EventScript_Erin::
-	trainerbattle_single TRAINER_ERIN, Route46_Text_ErinIntro, Route46_Text_ErinDefeated
+	trainerbattle_single TRAINER_ERIN_1, Route46_Text_ErinIntro, Route46_Text_ErinDefeated
 	msgbox Route46_Text_ErinPostBattle, MSGBOX_AUTOCLOSE
 	return
 

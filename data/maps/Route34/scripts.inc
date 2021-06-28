@@ -13,7 +13,7 @@ Route34_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
 
 
 Route34_EventScript_Todd::
-	trainerbattle_single TRAINER_TODD, Route34_Text_ToddIntro, Route34_Text_ToddDefeated
+	trainerbattle_single TRAINER_TODD_1, Route34_Text_ToddIntro, Route34_Text_ToddDefeated
 	msgbox Route34_Text_ToddPostBattle, MSGBOX_AUTOCLOSE
 	return
 
@@ -31,7 +31,7 @@ Route34_EventScript_Ian::
 
 
 Route34_EventScript_Gina::
-	trainerbattle_single TRAINER_GINA, Route34_Text_GinaIntro, Route34_Text_GinaDefeated
+	trainerbattle_single TRAINER_GINA_1, Route34_Text_GinaIntro, Route34_Text_GinaDefeated
 	msgbox Route34_Text_GinaPostBattle, MSGBOX_AUTOCLOSE
 	return
 

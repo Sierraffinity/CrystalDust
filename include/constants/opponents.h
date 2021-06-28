@@ -3,11 +3,11 @@
 
 #define TRAINER_NONE                          0
 // Route 30
-#define TRAINER_JOEY_1                        1
+#define TRAINER_JOEY_1                        1  // Has 4 rematches
 #define TRAINER_MIKEY                         2
 #define TRAINER_DON                           3
 // Route 31
-#define TRAINER_WADE_1                        4
+#define TRAINER_WADE_1                        4  // Has 4 rematches
 // Sprout Tower
 #define TRAINER_CHOW                          5  // 1F
 #define TRAINER_NICO                          6  // 2F
@@ -21,11 +21,11 @@
 #define TRAINER_ROD                          13
 // Route 32
 #define TRAINER_ALBERT                       14
-#define TRAINER_LIZ_1                        15
+#define TRAINER_LIZ_1                        15  // Has 4 rematches
 #define TRAINER_ROLAND                       16
 #define TRAINER_HENRY                        17
 #define TRAINER_JUSTIN                       18
-#define TRAINER_RALPH_1                      19
+#define TRAINER_RALPH_1                      19  // Has 4 rematches
 #define TRAINER_GORDON                       20
 #define TRAINER_PETER                        21
 // Union Cave
@@ -42,7 +42,7 @@
 #define TRAINER_GWEN                         32
 #define TRAINER_EMMA                         33
 // Route 33
-#define TRAINER_ANTHONY_1                    34
+#define TRAINER_ANTHONY_1                    34  // Has 4 rematches
 // Ilex Forest
 #define TRAINER_WAYNE                        35
 // Slowpoke Well
@@ -56,10 +56,10 @@
 #define TRAINER_AL                           41
 #define TRAINER_JOSH                         42
 // Route 34
-#define TRAINER_TODD                         43
+#define TRAINER_TODD_1                       43  // Has 4 rematches
 #define TRAINER_SAMUEL                       44
 #define TRAINER_IAN                          45
-#define TRAINER_GINA                         46
+#define TRAINER_GINA_1                       46  // Has 4 rematches
 #define TRAINER_KEITH                        47
 #define TRAINER_BRANDON                      48
 #define TRAINER_IRENE                        49
@@ -82,17 +82,17 @@
 #define TRAINER_KIM                          63
 #define TRAINER_BRYAN                        64
 #define TRAINER_WALT                         65
-#define TRAINER_ARNIE                        66
+#define TRAINER_ARNIE_1                      66  // Has 4 rematches
 #define TRAINER_IRWIN                        67
 #define TRAINER_DIRK                         68
 // National Park
-#define TRAINER_JACK                         69
+#define TRAINER_JACK_1                       69  // Has 4 rematches
 #define TRAINER_BEVERLY                      70
 #define TRAINER_WILLIAM                      71
 #define TRAINER_KRISE                        72
 // Route 36
 #define TRAINER_MARK                         73
-#define TRAINER_ALAN                         74
+#define TRAINER_ALAN_1                       74  // Has 4 rematches
 // Route 37
 #define TRAINER_ANN_AND_ANNE                 75
 #define TRAINER_GREG                         76 
@@ -116,20 +116,20 @@
 #define TRAINER_MARTHA                       90
 // Route 38
 #define TRAINER_HARRY                        91
-#define TRAINER_DANA                         92  // Has 3 Rematches
+#define TRAINER_DANA_1                       92  // Has 4 rematches
 #define TRAINER_VALERIE                      93
 #define TRAINER_TOBY                         94
-#define TRAINER_CHAD                         95  // Has 2 Rematches
+#define TRAINER_CHAD_1                       95  // Has 4 rematches
 #define TRAINER_OLIVIA                       96
 // Route 39
 #define TRAINER_NORMAN                       97
-#define TRAINER_DEREK                        98  // Has 1 Rematch (GS only according to Bulbapedia, rosters remain in pokecrystal)
+#define TRAINER_DEREK                        98  // GS-only rematches
 #define TRAINER_RUTH                         99
 #define TRAINER_EUGENE                      100
 #define TRAINER_JAIME                       101
 // Lighthouse
 #define TRAINER_ALFRED                      102  // 2F
-#define TRAINER_HUEY                        103  // Has 3 Rematches
+#define TRAINER_HUEY_1                      103  // Has 3 rematches
 #define TRAINER_THEO                        104  // 3F
 #define TRAINER_PRESTON                     105
 #define TRAINER_TERRELL                     106
@@ -159,7 +159,7 @@
 #define TRAINER_NOB                         127
 #define TRAINER_LUNG                        128
 // Route 42
-#define TRAINER_TULLY                       129  // Has 3 Rematches
+#define TRAINER_TULLY_1                     129  // Has 3 rematches
 #define TRAINER_SHANE                       130
 #define TRAINER_BENJAMIN                    131
 // Mt. Mortar
@@ -169,10 +169,10 @@
 #define TRAINER_KIYO                        135  // B1F
 // Route 43
 #define TRAINER_SPENCER                     136
-#define TRAINER_TIFFANY                     137  // Has 3 Rematches
+#define TRAINER_TIFFANY_1                   137  // Has 3 rematches
 #define TRAINER_MARVIN                      138
 #define TRAINER_RON                         139
-#define TRAINER_BRENT                       140  // Has 3 Rematches
+#define TRAINER_BRENT_1                     140  // Has 3 rematches
 #define TRAINER_BEN                         141
 // Lake of Rage
 #define TRAINER_AARON                       142
@@ -233,8 +233,8 @@
 #define TRAINER_CYBIL                       187
 #define TRAINER_ALLEN                       188
 #define TRAINER_ZACH                        189
-#define TRAINER_WILTON                      190  // Has 2 Rematches
-#define TRAINER_VANCE                       191  // Has 2 Rematches
+#define TRAINER_WILTON_1                    190  // Has 2 rematches
+#define TRAINER_VANCE_1                     191  // Has 2 rematches
 // Blackthorn Gym
 #define TRAINER_PAUL                        192
 #define TRAINER_FRAN                        193
@@ -249,29 +249,29 @@
 #define TRAINER_ERIK                        200
 #define TRAINER_RYAN                        201
 #define TRAINER_KELLY                       202
-#define TRAINER_PARRY                       203  // Has 2 Rematches
-#define TRAINER_KENJI                       204  // Has 2 Rematches (GS only according to Bulbapedia, rosters remain in pokecrystal)
+#define TRAINER_PARRY_1                     203  // Has 2 rematches
+#define TRAINER_KENJI                       204  // GS-only rematches
 #define TRAINER_TIMOTHY                     205
 #define TRAINER_MICHAEL                     206
 #define TRAINER_QUENTIN                     207
 // Route 46
 #define TRAINER_BAILEY                      208
 #define TRAINER_TED                         209
-#define TRAINER_ERIN                        210
+#define TRAINER_ERIN_1                      210  // Has 2 rematches
 // Route 27
 #define TRAINER_MEGAN                       211
 #define TRAINER_BLAKE                       212
-#define TRAINER_JOSE                        213  // Has 2 Rematches
+#define TRAINER_JOSE_1                      213  // Has 2 rematches
 #define TRAINER_BRIAN                       214
 #define TRAINER_GILBERT                     215
-#define TRAINER_REENA                       216  // Has 2 Rematches
+#define TRAINER_REENA_1                     216  // Has 2 rematches
 // Route 26
 #define TRAINER_SCOTT                       217
 #define TRAINER_RICHARD                     218
 #define TRAINER_JOYCE                       219
-#define TRAINER_GAVEN                       220
+#define TRAINER_GAVEN_1                     220  // Has 2 rematches
 #define TRAINER_JAKE                        221
-#define TRAINER_BETH                        222  // Has 2 Rematches
+#define TRAINER_BETH_1                      222  // Has 2 rematches
 // Postgame
 // Route 1
 #define TRAINER_DANNY                       223
@@ -390,172 +390,218 @@
 #define TRAINER_JARED                       312
 #define TRAINER_DORIS                       313
 #define TRAINER_FRANKLIN                    314
-// Rematches
-#define TRAINER_GEORGIA_OLD                 315
-#define TRAINER_ANDREW_OLD                  316
-#define TRAINER_IVAN_OLD                    317
-#define TRAINER_CLAUDE                      318
-#define TRAINER_ELLIOT_OLD_1                319
-#define TRAINER_NED_OLD                     320
-#define TRAINER_DALE                        321
-#define TRAINER_NOLAN                       322
-#define TRAINER_BARNY                       323
-#define TRAINER_WADE                        324
-#define TRAINER_CARTER_OLD                      325
-#define TRAINER_ELLIOT_OLD_2                326
-#define TRAINER_ELLIOT_OLD_3                327
-#define TRAINER_ELLIOT_OLD_4                328
-#define TRAINER_ELLIOT_OLD_5                329
-#define TRAINER_RONALD_OLD                  330
-#define TRAINER_JACOB                       331
-#define TRAINER_ANTHONY_OLD                 332
-#define TRAINER_BENJAMIN_OLD_1              333
-#define TRAINER_BENJAMIN_OLD_2              334
-#define TRAINER_BENJAMIN_OLD_3              335
-#define TRAINER_BENJAMIN_OLD_4              336
-#define TRAINER_BENJAMIN_OLD_5              337
-#define TRAINER_ABIGAIL_1                   338
-#define TRAINER_JASMINE_OLD                 339
-#define TRAINER_ABIGAIL_2                   340
-#define TRAINER_ABIGAIL_3                   341
-#define TRAINER_ABIGAIL_4                   342
-#define TRAINER_ABIGAIL_5                   343
-#define TRAINER_DYLAN_1                     344
-#define TRAINER_DYLAN_2                     345
-#define TRAINER_DYLAN_3                     346
-#define TRAINER_DYLAN_4                     347
-#define TRAINER_DYLAN_5                     348
-#define TRAINER_MARIA_1                     349
-#define TRAINER_MARIA_2                     350
-#define TRAINER_MARIA_3                     351
-#define TRAINER_MARIA_4                     352
-#define TRAINER_MARIA_5                     353
-#define TRAINER_CAMDEN                      354
-#define TRAINER_DEMETRIUS                   355
-#define TRAINER_ISAIAH_1                    356
-#define TRAINER_PABLO_1                     357
-#define TRAINER_CHASE                       358
-#define TRAINER_ISAIAH_2                    359
-#define TRAINER_ISAIAH_3                    360
-#define TRAINER_ISAIAH_4                    361
-#define TRAINER_ISAIAH_5                    362
-#define TRAINER_ISOBEL                      363
-#define TRAINER_DONNY                       364
-#define TRAINER_TALIA                       365
-#define TRAINER_KATELYN_1                   366
-#define TRAINER_ALLISON                     367
-#define TRAINER_KATELYN_2                   368
-#define TRAINER_KATELYN_3                   369
+// Rematches                                     // Flag that gates this roster (replace these with actual flag names)
+//      TRAINER_JOEY_1                        1     Route 30
+#define TRAINER_JOEY_2                      315  // Goldenrod Flypoint
+#define TRAINER_JOEY_3                      316  // Olivine Flypoint
+#define TRAINER_JOEY_4                      317  // Liberated Radio Tower
+#define TRAINER_JOEY_5                      318  // Become Champion
+//      TRAINER_WADE_1                        4     Route 31
+#define TRAINER_WADE_2                      319  // Goldenrod Flypoint
+#define TRAINER_WADE_3                      320  // Mahogany Flypoint
+#define TRAINER_WADE_4                      321  // Liberated Radio Tower
+#define TRAINER_WADE_5                      322  // Become Champion
+//      TRAINER_LIZ_1                        15     Route 32
+#define TRAINER_LIZ_2                       323  // Ecruteak Flypoint
+#define TRAINER_LIZ_3                       324  // Cleared Mahogany Hideout
+#define TRAINER_LIZ_4                       325  // Liberated Radio Tower
+#define TRAINER_LIZ_5                       326  // Become Champion
+//      TRAINER_RALPH_1                      19     Route 32
+#define TRAINER_RALPH_2                     327  // Ecruteak Flypoint
+#define TRAINER_RALPH_3                     328  // Lake of Rage Flypoint
+#define TRAINER_RALPH_4                     329  // Become Champion
+#define TRAINER_RALPH_5                     330  // Restore Power to Kanto
+//      TRAINER_ANTHONY_1                    34     Route 33
+#define TRAINER_ANTHONY_2                   331  // Olivine Flypoint
+#define TRAINER_ANTHONY_3                   332  // Liberated Radio Tower
+#define TRAINER_ANTHONY_4                   333  // Become Champion
+#define TRAINER_ANTHONY_5                   334  // Restore Power to Kanto
+//      TRAINER_TODD_1                       43     Route 34
+#define TRAINER_TODD_2                      335  // Cianwood Flypoint
+#define TRAINER_TODD_3                      336  // Blackthorn Flypoint
+#define TRAINER_TODD_4                      337  // Become Champion
+#define TRAINER_TODD_5                      338  // Restore Power to Kanto
+//      TRAINER_GINA_1                       46     Route 34
+#define TRAINER_GINA_2                      339  // Mahogany Flypoint
+#define TRAINER_GINA_3                      340  // Liberated Radio Tower
+#define TRAINER_GINA_4                      341  // Become Champion
+#define TRAINER_GINA_5                      342  // Restore Power to Kanto
+//      TRAINER_ARNIE_1                      66     Route 35
+#define TRAINER_ARNIE_2                     343  // Lake of Rage Flypoint
+#define TRAINER_ARNIE_3                     344  // Blackthorn Flypoint
+#define TRAINER_ARNIE_4                     345  // Become Champion
+#define TRAINER_ARNIE_5                     346  // Restore Power to Kanto
+//      TRAINER_JACK_1                       69     National Park
+#define TRAINER_JACK_2                      347  // Olivine Flypoint
+#define TRAINER_JACK_3                      348  // Liberated Radio Tower
+#define TRAINER_JACK_4                      349  // Become Champion
+#define TRAINER_JACK_5                      350  // Restore Power to Kanto
+//      TRAINER_ALAN_1                       74     Route 36
+#define TRAINER_ALAN_2                      351  // Olivine Flypoint
+#define TRAINER_ALAN_3                      352  // Blackthorn Flypoint
+#define TRAINER_ALAN_4                      353  // Become Champion
+#define TRAINER_ALAN_5                      354  // Restore Power to Kanto
+//      TRAINER_DANA_1                       92     Route 38
+#define TRAINER_DANA_2                      355  // Cianwood Flypoint
+#define TRAINER_DANA_3                      356  // Liberated Radio Tower
+#define TRAINER_DANA_4                      357  // Become Champion
+#define TRAINER_DANA_5                      358  // Restore Power to Kanto
+//      TRAINER_CHAD_1                       95     Route 38
+#define TRAINER_CHAD_2                      359  // Mahogany Flypoint
+#define TRAINER_CHAD_3                      360  // Liberated Radio Tower
+#define TRAINER_CHAD_4                      361  // Become Champion
+#define TRAINER_CHAD_5                      362  // Restore Power to Kanto
+//      TRAINER_HUEY_1                      103     Lighthouse 2F
+#define TRAINER_HUEY_2                      363  // Liberated Radio Tower
+#define TRAINER_HUEY_3                      364  // Become Champion
+#define TRAINER_HUEY_4                      365  // Restore Power to Kanto
+//      TRAINER_TULLY_1                     129     Route 42
+#define TRAINER_TULLY_2                     366  // Cleared Mahogany Hideout 
+#define TRAINER_TULLY_3                     367  // Become Champion
+#define TRAINER_TULLY_4                     368  // Restore Power to Kanto
+//      TRAINER_TIFFANY_1                   137     Route 43
+#define TRAINER_TIFFANY_2                   369  // Liberated Radio Tower
+#define TRAINER_TIFFANY_3                   370  // Become Champion
+#define TRAINER_TIFFANY_4                   371  // Restore Power to Kanto
+//      TRAINER_BRENT_1                     140     Route 43
+#define TRAINER_BRENT_2                     372  // Cleared Mahogany Hideout 
+#define TRAINER_BRENT_3                     373  // Become Champion
+#define TRAINER_BRENT_4                     374  // Restore Power to Kanto
+//      TRAINER_WILTON_1                    190     Route 44
+#define TRAINER_WILTON_2                    375  // Become Champion
+#define TRAINER_WILTON_3                    376  // Restore Power to Kanto
+//      TRAINER_VANCE_1                     191     Route 44
+#define TRAINER_VANCE_2                     377  // Become Champion
+#define TRAINER_VANCE_3                     378  // Restore Power to Kanto
+//      TRAINER_PARRY_1                     203     Route 45
+#define TRAINER_PARRY_2                     379  // Become Champion
+#define TRAINER_PARRY_3                     380  // Restore Power to Kanto
+//      TRAINER_ERIN_1                      210     Route 46
+#define TRAINER_ERIN_2                      381  // Become Champion
+#define TRAINER_ERIN_3                      382  // Restore Power to Kanto
+//      TRAINER_JOSE_1                      213     Route 27
+#define TRAINER_JOSE_2                      383  // Become Champion
+#define TRAINER_JOSE_3                      384  // Restore Power to Kanto
+//      TRAINER_REENA_1                     216     Route 27
+#define TRAINER_REENA_2                     385  // Become Champion
+#define TRAINER_REENA_3                     386  // Restore Power to Kanto
+//      TRAINER_GAVEN_1                     220     Route 26
+#define TRAINER_GAVEN_2                     387  // Become Champion
+#define TRAINER_GAVEN_3                     388  // Restore Power to Kanto
+//      TRAINER_BETH_1                      222     Route 26
+#define TRAINER_BETH_2                      389  // Become Champion
+#define TRAINER_BETH_3                      390  // Restore Power to Kanto
+
 // S.S. Aqua (Could potentially be purged, as they're rematchable)
 // S.S. Aqua (first voyage - only available once)
-#define TRAINER_NOLAND                      370  // Upper Deck
-#define TRAINER_COLIN                       371
-#define TRAINER_MEG_AND_PEG                 372
-#define TRAINER_LYLE                        373
-#define TRAINER_STANLY                      374
-#define TRAINER_FRITZ                       375  // Lower Deck
-#define TRAINER_JEFF                        376
-#define TRAINER_DEBRA                       377
+#define TRAINER_NOLAND                      391  // Upper Deck
+#define TRAINER_COLIN                       392
+#define TRAINER_MEG_AND_PEG                 393
+#define TRAINER_LYLE                        394
+#define TRAINER_STANLY                      395
+#define TRAINER_FRITZ                       396  // Lower Deck
+#define TRAINER_JEFF                        397
+#define TRAINER_DEBRA                       398
 // S.S. Aqua (Olivine -> Vermilion)
-#define TRAINER_EDWARD                      378  // Upper Deck
-#define TRAINER_SEAN                        379
-#define TRAINER_CAROL                       380
-#define TRAINER_SHAWN                       381
-#define TRAINER_RODNEY                      382
-#define TRAINER_CASSIE                      383  // Lower Deck
-#define TRAINER_JONAH                       384
-#define TRAINER_GARRETT                     385
-#define TRAINER_WAI                         386
+#define TRAINER_EDWARD                      399  // Upper Deck
+#define TRAINER_SEAN                        400
+#define TRAINER_CAROL                       401
+#define TRAINER_SHAWN                       402
+#define TRAINER_RODNEY                      403
+#define TRAINER_CASSIE                      404  // Lower Deck
+#define TRAINER_JONAH                       405
+#define TRAINER_GARRETT                     406
+#define TRAINER_WAI                         407
 // S.S. Aqua (Vermilion -> Olivine)
-#define TRAINER_COREY                       387  // Upper Deck
-#define TRAINER_ETHAN                       388
-#define TRAINER_KEN                         389
-#define TRAINER_CLYDE                       390
-#define TRAINER_GEORGIA                     391
-#define TRAINER_JEREMY                      392
-#define TRAINER_KENNETH                     393  // Lower Deck
-#define TRAINER_SHIRLEY                     394
-#define TRAINER_NATE                        395
-#define TRAINER_RICKY                       396
+#define TRAINER_COREY                       408  // Upper Deck
+#define TRAINER_ETHAN                       409
+#define TRAINER_KEN                         410
+#define TRAINER_CLYDE                       411
+#define TRAINER_GEORGIA                     412
+#define TRAINER_JEREMY                      413
+#define TRAINER_KENNETH                     414  // Lower Deck
+#define TRAINER_SHIRLEY                     415
+#define TRAINER_NATE                        416
+#define TRAINER_RICKY                       417
 // Trainers that set other flags/vars (could be purged from trainer flags)
 // Rival Fights
-#define TRAINER_RIVAL_CHERRYGROVE_CHIKORITA      397
-#define TRAINER_RIVAL_CHERRYGROVE_TOTODILE       398
-#define TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL      399
-#define TRAINER_RIVAL_AZALEA_CHIKORITA           400
-#define TRAINER_RIVAL_AZALEA_TOTODILE            401
-#define TRAINER_RIVAL_AZALEA_CYNDAQUIL           402
-#define TRAINER_RIVAL_BURNED_TOWER_CHIKORITA     403
-#define TRAINER_RIVAL_BURNED_TOWER_TOTODILE      404
-#define TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL     405
-#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CHIKORITA 406
-#define TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE  407
-#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CYNDAQUIL 408
-#define TRAINER_RIVAL_VICTORY_ROAD_CHIKORITA     409
-#define TRAINER_RIVAL_VICTORY_ROAD_TOTODILE      410
-#define TRAINER_RIVAL_VICTORY_ROAD_CYNDAQUIL     411
-#define TRAINER_RIVAL_MT_MOON_CHIKORITA          412
-#define TRAINER_RIVAL_MT_MOON_TOTODILE           413 
-#define TRAINER_RIVAL_MT_MOON_CYNDAQUIL          414
-#define TRAINER_RIVAL_REMATCH_CHIKORITA          415
-#define TRAINER_RIVAL_REMATCH_TOTODILE           416
-#define TRAINER_RIVAL_REMATCH_CYNDAQUIL          417
+#define TRAINER_RIVAL_CHERRYGROVE_CHIKORITA      418
+#define TRAINER_RIVAL_CHERRYGROVE_TOTODILE       419
+#define TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL      420
+#define TRAINER_RIVAL_AZALEA_CHIKORITA           421
+#define TRAINER_RIVAL_AZALEA_TOTODILE            422
+#define TRAINER_RIVAL_AZALEA_CYNDAQUIL           423
+#define TRAINER_RIVAL_BURNED_TOWER_CHIKORITA     424
+#define TRAINER_RIVAL_BURNED_TOWER_TOTODILE      425
+#define TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL     426
+#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CHIKORITA 427
+#define TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE  428
+#define TRAINER_RIVAL_GOLDENROD_TUNNEL_CYNDAQUIL 429
+#define TRAINER_RIVAL_VICTORY_ROAD_CHIKORITA     430
+#define TRAINER_RIVAL_VICTORY_ROAD_TOTODILE      431
+#define TRAINER_RIVAL_VICTORY_ROAD_CYNDAQUIL     432
+#define TRAINER_RIVAL_MT_MOON_CHIKORITA          433
+#define TRAINER_RIVAL_MT_MOON_TOTODILE           434
+#define TRAINER_RIVAL_MT_MOON_CYNDAQUIL          435
+#define TRAINER_RIVAL_REMATCH_CHIKORITA          436
+#define TRAINER_RIVAL_REMATCH_TOTODILE           437
+#define TRAINER_RIVAL_REMATCH_CYNDAQUIL          438
 // Rockets that set other flags
-#define TRAINER_ROCKET_SLOWPOKE_WELL_BOSS        418  // Ends Slowpoke Well occupation
-#define TRAINER_MAHOGANY_EXECUTIVE_M             419  // Leaves room after battle
-#define TRAINER_MAHOGANY_EXECUTIVE_F             420  // Ends Mahogany Hideout occupation
-#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_1       421  // Gives Basement Key
-#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_2       422  // Ends Radio Tower occupation
-#define TRAINER_ROCKET_ROUTE24                   423  // Disappears after battle
+#define TRAINER_ROCKET_SLOWPOKE_WELL_BOSS        439  // Ends Slowpoke Well occupation
+#define TRAINER_MAHOGANY_EXECUTIVE_M             440  // Leaves room after battle
+#define TRAINER_MAHOGANY_EXECUTIVE_F             441  // Ends Mahogany Hideout occupation
+#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_1       442  // Gives Basement Key
+#define TRAINER_RADIO_TOWER_5F_EXECUTIVE_2       443  // Ends Radio Tower occupation
+#define TRAINER_ROCKET_ROUTE24                   444  // Disappears after battle
 // Cianwood City Eusine
-#define TRAINER_EUSINE                           424
+#define TRAINER_EUSINE                           445
 // Gym Leaders
-#define TRAINER_FALKNER                          425
-#define TRAINER_BUGSY                            426
-#define TRAINER_WHITNEY                          427
-#define TRAINER_MORTY                            428
-#define TRAINER_CHUCK                            429
-#define TRAINER_JASMINE                          430
-#define TRAINER_PRYCE                            431
-#define TRAINER_CLAIR                            432
-#define TRAINER_BROCK                            433
-#define TRAINER_MISTY                            434
-#define TRAINER_LT_SURGE                         435
-#define TRAINER_ERIKA                            436
-#define TRAINER_JANINE                           437
-#define TRAINER_SABRINA                          438
-#define TRAINER_BLAINE                           439
-#define TRAINER_BLUE                             440
+#define TRAINER_FALKNER                          446
+#define TRAINER_BUGSY                            447
+#define TRAINER_WHITNEY                          448
+#define TRAINER_MORTY                            449
+#define TRAINER_CHUCK                            450
+#define TRAINER_JASMINE                          451
+#define TRAINER_PRYCE                            452
+#define TRAINER_CLAIR                            453
+#define TRAINER_BROCK                            454
+#define TRAINER_MISTY                            455
+#define TRAINER_LT_SURGE                         456
+#define TRAINER_ERIKA                            457
+#define TRAINER_JANINE                           458
+#define TRAINER_SABRINA                          459
+#define TRAINER_BLAINE                           460
+#define TRAINER_BLUE                             461
 // Pokemon League
-#define TRAINER_WILL                             441
-#define TRAINER_KOGA                             442
-#define TRAINER_BRUNO                            443
-#define TRAINER_KAREN                            444
-#define TRAINER_LANCE                            445
+#define TRAINER_WILL                             462
+#define TRAINER_KOGA                             463
+#define TRAINER_BRUNO                            464
+#define TRAINER_KAREN                            465
+#define TRAINER_LANCE                            466
 // Cal & Red
-#define TRAINER_CAL                              446
-#define TRAINER_MT_SILVER_RED                    447
-// 4-byte boundary. Red is the end of 56 contiguous bytes.
+#define TRAINER_CAL                              467
+#define TRAINER_MT_SILVER_RED                    468
 
 // Are these actually used? For linking perhaps? They're not referenced outside of here, trainers.h, and the rosters defined in trainer_parties.h
-#define TRAINER_RED                 448
-#define TRAINER_LEAF                449
-#define TRAINER_BRENDAN_PLACEHOLDER 450
-#define TRAINER_MAY_PLACEHOLDER     451
+#define TRAINER_RED                 469
+#define TRAINER_LEAF                470
+#define TRAINER_BRENDAN_PLACEHOLDER 471
+#define TRAINER_MAY_PLACEHOLDER     472
 // Frontier Brains (Probably should be handled elsewhere)
-#define TRAINER_ANABEL_FRONTIER     452
-#define TRAINER_TUCKER_FRONTIER     453
-#define TRAINER_SPENSER_FRONTIER    454
-#define TRAINER_GRETA_FRONTIER      455
-#define TRAINER_NOLAND_FRONTIER     456
-#define TRAINER_LUCY_FRONTIER       457
-#define TRAINER_BRANDON_FRONTIER    458
+#define TRAINER_ANABEL_FRONTIER     473
+#define TRAINER_TUCKER_FRONTIER     474
+#define TRAINER_SPENSER_FRONTIER    475
+#define TRAINER_GRETA_FRONTIER      476
+#define TRAINER_NOLAND_FRONTIER     477
+#define TRAINER_LUCY_FRONTIER       478
+#define TRAINER_BRANDON_FRONTIER    479
+// 4-byte boundary. Frontier Brain Brandon is the end of 60 contiguous bytes.
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 864 trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      459
+#define TRAINERS_COUNT                      480
 #define MAX_TRAINERS_COUNT                  864
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H
