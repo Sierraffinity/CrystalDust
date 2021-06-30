@@ -4907,7 +4907,7 @@ static void Task_MiniCredits(u8 taskId)
         AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsDevTeam3, 240), 48, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam3);
         AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsDevTeam4, 240), 62, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam4);
         AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(2, gString_MiniCreditsDevTeam5, 240), 76, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam5);
-        AddTextPrinterParameterized4(tWindowId, 0, GetStringCenterAlignXOffset(0, gString_MiniCreditsDevTeam6, 240), 90, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam6);
+        AddTextPrinterParameterized4(tWindowId, 2, GetStringCenterAlignXOffset(0, gString_MiniCreditsDevTeam6, 240), 90, 0, 0, sTextColor_Regular, 0, gString_MiniCreditsDevTeam6);
         Menu_LoadStdPalAt(0xE0);
         //gPlttBufferUnfaded[0xFF] = RGB_BLACK;
         //gPlttBufferFaded[0xFF] = RGB_BLACK;
