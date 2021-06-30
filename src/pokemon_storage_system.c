@@ -2002,6 +2002,7 @@ static void sub_80C7958(u8 curBox)
 {
     u16 i;
     u8 spriteId;
+    static const u8 outOf30[] = _("/30");
     struct SpriteTemplate template;
     struct OamData oamData = {};
     oamData.size = SPRITE_SIZE(64x64);
@@ -2009,7 +2010,6 @@ static void sub_80C7958(u8 curBox)
     template = (struct SpriteTemplate){
         0, 0, &oamData, gDummySpriteAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
     };
-    static const u8 outOf30[] = _("/30");
 
     sBoxSelectionPopupSpriteManager->curBox = curBox;
     template.tileTag = sBoxSelectionPopupSpriteManager->tilesTag;

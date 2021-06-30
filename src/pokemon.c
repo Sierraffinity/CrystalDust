@@ -6600,7 +6600,7 @@ bool8 IsShinyOtIdPersonality(u32 otId, u32 personality)
     return retVal;
 }
 
-inline u32 GenerateMonPersonality(u32 otId, bool8 forceShiny)
+u32 GenerateMonPersonality(u32 otId, bool8 forceShiny)
 {
     u32 personality = Random32();
 

@@ -542,7 +542,7 @@ static void DebugMenu_SetFlag(u8 taskId)
 static void DebugMenu_SetFlag_ProcessInput(u8 taskId)
 {
     u32 temp, shifter;
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (JOY_REPEAT(DPAD_UP))
     {
@@ -642,7 +642,7 @@ static void DebugMenu_SetVar(u8 taskId)
 static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
 {
     u32 temp, shifter;
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (JOY_REPEAT(DPAD_UP))
     {
@@ -707,7 +707,7 @@ static void DebugMenu_SetVar_ProcessInputVar(u8 taskId)
 static void DebugMenu_SetVar_ProcessInputVal(u8 taskId)
 {
     u32 temp, shifter;
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (JOY_REPEAT(DPAD_UP))
     {
@@ -806,7 +806,7 @@ static const s32 powersOfTen[] =
 static void DebugMenu_AddItem_ProcessInputNum(u8 taskId)
 {
     u32 temp, temp2, shifter;
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (JOY_REPEAT(DPAD_UP))
     {
@@ -873,7 +873,7 @@ static void DebugMenu_AddItem_ProcessInputNum(u8 taskId)
 static void DebugMenu_AddItem_ProcessInputCount(u8 taskId)
 {
     u32 temp, shifter;
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (JOY_REPEAT(DPAD_UP))
     {
@@ -1065,7 +1065,7 @@ static void DebugMenu_LottoNumber(u8 taskId)
 static void DebugMenu_LottoNumber_ProcessInput(u8 taskId)
 {
     u32 lottoNum, temp, temp2, shifter;
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (JOY_REPEAT(DPAD_UP))
     {
@@ -1375,7 +1375,7 @@ static void WaitForScript(u8 taskId)
 static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
 {
     u32 temp, temp2, shifter;
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (JOY_REPEAT(DPAD_UP))
     {
@@ -1507,7 +1507,7 @@ static void DebugMenu_SetRespawn(u8 taskId)
 static void DebugMenu_SetRespawn_ProcessInput(u8 taskId)
 {
     u32 temp, shifter;
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (JOY_REPEAT(DPAD_UP))
     {
