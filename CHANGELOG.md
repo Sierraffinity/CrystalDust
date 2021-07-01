@@ -6,29 +6,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
 
-## [v3.0.0-alpha.0.5] - 2021-01-04
+- Miscellanous files (map screenshots, concept art for new title screen) in other/.
+- New Kris, Firebreather, Rival, and female Rocket Grunt trainer sprites (credit to Momento Rori/RoryAllegory)
+
 ### Fixed
 
-- Fix moving items around in the item PC.
-- Fix chair in front of the Day-Care Lady's desk.
-- Fix metatile in Goldenrod Dept. Store 1F not being accessible from the right.
-- Fix top Card Flip machine in Game Corner not being usable.
-- Picnicker Erin on Route 46 now uses the right overworld sprite.
-- Violet City trader no longer moves after trade completes.
-- Sanitized department store tileset for incorrect metatile behaviors.
-- Mom no longer calls every time you talk to the Day-Care Man outdoors.
-- Fix a crash when Mimic is used.
-- Fix collisions with trees on 3F and 4F of Goldenrod Dept. Store.
+- Fixed Ruins of Alph rear room pedestal collisions and other minor map issues.
+- Legacy builds (i.e. using agbcc and not the modern compiler) work now.
+- Fixed a possible crash when both enemy and player Pokémon faint at the same time on certain emulators.
+- Fixed the Machop "MUSCLE" in-game trade having the wrong gender (should be female).
+- Fixed the Onix "ROCKY" in-game trade having the wrong OT (should be "KYLE").
+- Fixed the lowest trigger for the Dude catching tutorial walking the player on top of the Dude.
+- Fixed the Youngster overworld having one frame too low.
+- Fixed a typo with Youngster Samuel's defeat text ("Beaten by a pass**s**ing stranger!").
+- Fixed a bug with certain Pokémon floating after hatching.
 
+## [v3.0.0-alpha.0.5] - 2021-01-04
 ### Changed
 
 - Made Game Corner TMs not be duplicates of Goldenrod Dept. Store TMs.
 
+### Fixed
+
+- Fixed moving items around in the item PC.
+- Fixed chair in front of the Day-Care Lady's desk.
+- Fixed metatile in Goldenrod Dept. Store 1F not being accessible from the right.
+- Fixed top Card Flip machine in Game Corner not being usable.
+- Picnicker Erin on Route 46 now uses the right overworld sprite.
+- Violet City trader no longer moves after trade completes.
+- Sanitized department store tileset for incorrect metatile behaviors.
+- Mom no longer calls every time you talk to the Day-Care Man outdoors.
+- Fixed a crash when Mimic is used.
+- Fixed collisions with trees on 3F and 4F of Goldenrod Dept. Store.
+
 ## [v3.0.0-alpha.0.4] - 2020-12-30
 ### Fixed
 
-- Fix all metatiles being the Town Map when not facing north.
+- Fixed all metatiles being the Town Map when not facing north.
 
 ## [v3.0.0-alpha.0.3] - 2020-12-30
 ### Fixed
@@ -37,9 +53,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Have the money the player loses upon whiteout be subtracted from the current count instead of _becoming_ the current count.
 - Sprites no longer appear on top of Mr. Pokémon's computer.
 - Ilex Forest nighttime encounters are correct and no longer just a copy of the daytime encounters.
-- Fix Decamark (??????????) Pokémon appearing when using Rock Smash in Dark Cave when it's not morning.
-- Fix Violet City cut tree not appearing when warping in from east.
-- Fix unevolved Pokémon sprite not growing & shrinking during evolution animation.
+- Fixed Decamark (??????????) Pokémon appearing when using Rock Smash in Dark Cave when it's not morning.
+- Fixed Violet City cut tree not appearing when warping in from east.
+- Fixed unevolved Pokémon sprite not growing & shrinking during evolution animation.
 
 ## [v3.0.0-alpha.0.2] - 2020-12-27
 ### Added
