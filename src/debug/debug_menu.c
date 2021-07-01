@@ -1448,7 +1448,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
 
 static void DebugMenu_WildBattle(u8 taskId)
 {
-    Debug_StartWildBattleWithMoves(SPECIES_IGGLYBUFF, 100, 0, FALSE, MOVE_SELF_DESTRUCT, MOVE_SELF_DESTRUCT, MOVE_SELF_DESTRUCT, MOVE_SELF_DESTRUCT);
+    Debug_StartWildBattle(SPECIES_ABRA, 100, 0, FALSE);
 }
 
 static void DebugMenu_ToggleForceShiny(u8 taskId)

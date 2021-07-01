@@ -132,6 +132,8 @@ GoldenrodCity_DeptStore_5F_EventScript_Mike_11:
 	special CreateInGameTradePokemon
 	special DoInGameTradeScene
 	waitstate
+	lock
+	faceplayer
 	bufferspeciesname 0, VAR_0x8009
 	msgbox GoldenrodCity_DeptStore_5F_EventScript_Mike_Text_1
 	setflag FLAG_GOLDENROD_NPC_TRADE_COMPLETED
