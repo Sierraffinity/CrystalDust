@@ -284,7 +284,6 @@ Route29_Movement_PlayerFromBottom:
 	walk_left
 	walk_left
 	walk_down
-	walk_down
 	step_end
 
 Route29_EventScript_CatchingTutorialRejected:
