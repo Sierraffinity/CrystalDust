@@ -426,6 +426,7 @@ static u8 EggHatchCreateMonSprite(u8 a0, u8 switchID, u8 pokeID, u16* speciesLoc
 {
     u8 r5 = 0;
     u8 spriteID = 0;
+    u16 species = 0;
     struct Pokemon* mon = NULL;
 
     if (a0 == 0)
@@ -438,11 +439,12 @@ static u8 EggHatchCreateMonSprite(u8 a0, u8 switchID, u8 pokeID, u16* speciesLoc
         mon = &gPlayerParty[pokeID];
         r5 = 3;
     }
+    species = GetMonData(mon, MON_DATA_SPECIES);
+
     switch (switchID)
     {
     case 0:
         {
-            u16 species = GetMonData(mon, MON_DATA_SPECIES);
             u32 pid = GetMonData(mon, MON_DATA_PERSONALITY);
             HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[species],
                                                       gMonSpritesGfxPtr->sprites[(a0 * 2) + 1],
@@ -453,7 +455,7 @@ static u8 EggHatchCreateMonSprite(u8 a0, u8 switchID, u8 pokeID, u16* speciesLoc
         break;
     case 1:
         SetMultiuseSpriteTemplateToPokemon(GetMonSpritePalStruct(mon)->tag, r5);
-        spriteID = CreateSprite(&gMultiuseSpriteTemplate, 120, 70, 6);
+        spriteID = CreateSprite(&gMultiuseSpriteTemplate, 120, 70 + gMonFrontPicCoords[species].y_offset, 6);
         gSprites[spriteID].invisible = TRUE;
         gSprites[spriteID].callback = SpriteCallbackDummy;
         break;
@@ -769,7 +771,7 @@ static void SpriteCB_Egg_2(struct Sprite* sprite)
             sprite->data[0] = 0;
             species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_SPECIES);
             gSprites[sEggHatchData->pokeSpriteID].pos2.x = 0;
-            gSprites[sEggHatchData->pokeSpriteID].pos2.y = gMonFrontPicCoords[species].y_offset;
+            gSprites[sEggHatchData->pokeSpriteID].pos2.y = 0;
         }
         else
         {
