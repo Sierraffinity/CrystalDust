@@ -626,7 +626,7 @@ text Route34_Text_SamuelIntro {
 }
 
 text Route34_Text_SamuelDefeated {
-	"Beaten by a passsing stranger!"
+	"Beaten by a passing stranger!"
 }
 
 text Route34_Text_SamuelPostBattle {
