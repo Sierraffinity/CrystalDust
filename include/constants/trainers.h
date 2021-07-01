@@ -111,35 +111,39 @@
 #define TRAINER_PIC_RS_MAY                92
 #define TRAINER_PIC_EM_BRENDAN            93
 #define TRAINER_PIC_EM_MAY                94
-#define TRAINER_PIC_KIMONO_GIRL           65 //95
-#define TRAINER_PIC_MEDIUM                65 //96
-#define TRAINER_PIC_LEADER_MORTY          65 //97
-#define TRAINER_PIC_LEADER_CHUCK          65 //98
-#define TRAINER_PIC_LEADER_JASMINE        65 //99
-#define TRAINER_PIC_EUSINE                65 //100
-#define TRAINER_PIC_SCIENTIST             65 //101
-#define TRAINER_PIC_EXECUTIVE_F           65 //102
-#define TRAINER_PIC_EXECUTIVE_M           65 //103
-#define TRAINER_PIC_SKIER                 65 //104
-#define TRAINER_PIC_BOARDER               65 //105
-#define TRAINER_PIC_LEADER_PRYCE          65 //106
-#define TRAINER_PIC_BURGLAR               65 //107
-#define TRAINER_PIC_LEADER_CLAIR          65 //108
-#define TRAINER_PIC_ELITE_FOUR_WILL       65 //109
-#define TRAINER_PIC_ELITE_FOUR_KOGA       65 //110
-#define TRAINER_PIC_ELITE_FOUR_BRUNO      65 //110
-#define TRAINER_PIC_ELITE_FOUR_KAREN      65 //111
-#define TRAINER_PIC_CHAMPION_LANCE        65 //112
-#define TRAINER_PIC_LEADER_BROCK          65 //113
-#define TRAINER_PIC_LEADER_MISTY          65 //114
-#define TRAINER_PIC_LEADER_LT_SURGE       65 //115
-#define TRAINER_PIC_LEADER_ERIKA          65 //116
-#define TRAINER_PIC_LEADER_JANINE         65 //117
-#define TRAINER_PIC_LEADER_SABRINA        65 //118
-#define TRAINER_PIC_LEADER_BLAINE         65 //119
-#define TRAINER_PIC_LEADER_BLUE           65 //120
-#define TRAINER_PIC_TEACHER               65 //121
-#define TRAINER_PIC_BIKER                 65 //122
+#define TRAINER_PIC_KIMONO_GIRL_ESPEON    95
+#define TRAINER_PIC_MEDIUM                96
+#define TRAINER_PIC_LEADER_MORTY          97
+#define TRAINER_PIC_LEADER_CHUCK          98
+#define TRAINER_PIC_LEADER_JASMINE        99
+#define TRAINER_PIC_EUSINE                100
+#define TRAINER_PIC_SCIENTIST             101
+#define TRAINER_PIC_EXECUTIVE_F           103
+#define TRAINER_PIC_EXECUTIVE_M           103
+#define TRAINER_PIC_SKIER                 104
+#define TRAINER_PIC_BOARDER               105
+#define TRAINER_PIC_LEADER_PRYCE          106
+#define TRAINER_PIC_BURGLAR               107
+#define TRAINER_PIC_LEADER_CLAIR          108
+#define TRAINER_PIC_ELITE_FOUR_WILL       109
+#define TRAINER_PIC_ELITE_FOUR_KOGA       110
+#define TRAINER_PIC_ELITE_FOUR_BRUNO      111
+#define TRAINER_PIC_ELITE_FOUR_KAREN      112
+#define TRAINER_PIC_CHAMPION_LANCE        113
+#define TRAINER_PIC_LEADER_BROCK          114
+#define TRAINER_PIC_LEADER_MISTY          115
+#define TRAINER_PIC_LEADER_LT_SURGE       116
+#define TRAINER_PIC_LEADER_ERIKA          117
+#define TRAINER_PIC_LEADER_JANINE         118
+#define TRAINER_PIC_LEADER_SABRINA        119
+#define TRAINER_PIC_LEADER_BLAINE         120
+#define TRAINER_PIC_LEADER_BLUE           121
+#define TRAINER_PIC_TEACHER               122
+#define TRAINER_PIC_BIKER                 123
+#define TRAINER_PIC_KIMONO_GIRL_FLAREON   124
+#define TRAINER_PIC_KIMONO_GIRL_JOLTEON   125
+#define TRAINER_PIC_KIMONO_GIRL_UMBREON   126
+#define TRAINER_PIC_KIMONO_GIRL_VAPOREON  127
 
 #define TRAINER_BACK_PIC_GOLD                   0
 #define TRAINER_BACK_PIC_KRIS                   1
