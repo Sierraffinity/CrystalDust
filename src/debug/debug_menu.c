@@ -36,6 +36,7 @@
 #include "constants/items.h"
 #include "constants/flags.h"
 #include "constants/heal_locations.h"
+#include "constants/moves.h"
 #include "constants/species.h"
 #include "constants/songs.h"
 #include "constants/vars.h"
@@ -1447,7 +1448,7 @@ static void DebugMenu_Pokedex_ProfOakRating_ProcessInput(u8 taskId)
 
 static void DebugMenu_WildBattle(u8 taskId)
 {
-    Debug_StartWildBattle(SPECIES_METAPOD, 10, BATTLE_TYPE_BUG_CATCHING_CONTEST, FALSE);
+    Debug_StartWildBattleWithMoves(SPECIES_IGGLYBUFF, 100, 0, FALSE, MOVE_SELF_DESTRUCT, MOVE_SELF_DESTRUCT, MOVE_SELF_DESTRUCT, MOVE_SELF_DESTRUCT);
 }
 
 static void DebugMenu_ToggleForceShiny(u8 taskId)

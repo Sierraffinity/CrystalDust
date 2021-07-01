@@ -48,5 +48,6 @@ u8 ChooseWildMonIndex_Land(void);
 u8 ChooseWildMonLevelWithAbility(const struct WildPokemon *wildPokemon, bool8 useAbility);
 u8 GetUnownLetterByPersonalityLoByte(u32 personality);
 void Debug_StartWildBattle(u16 species, u8 level, u32 flags, bool8 forceShiny);
+void Debug_StartWildBattleWithMoves(u16 species, u8 level, u32 flags, bool8 forceShiny, u16 move1, u16 move2, u16 move3, u16 move4);
 
 #endif // GUARD_WILD_ENCOUNTER_H

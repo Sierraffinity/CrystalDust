@@ -1248,4 +1248,14 @@ void Debug_StartWildBattle(u16 species, u8 level, u32 flags, bool8 forceShiny)
     CreateWildMon(species, level, forceShiny);
     BattleSetup_StartWildBattle(flags);
 }
+
+void Debug_StartWildBattleWithMoves(u16 species, u8 level, u32 flags, bool8 forceShiny, u16 move1, u16 move2, u16 move3, u16 move4)
+{
+    CreateWildMon(species, level, forceShiny);
+    SetMonMoveSlot(&gEnemyParty[0], move1, 0);
+    SetMonMoveSlot(&gEnemyParty[0], move2, 1);
+    SetMonMoveSlot(&gEnemyParty[0], move3, 2);
+    SetMonMoveSlot(&gEnemyParty[0], move4, 3);
+    BattleSetup_StartWildBattle(flags);
+}
 #endif
