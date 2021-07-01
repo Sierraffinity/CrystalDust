@@ -2438,7 +2438,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RADIO_TOWER_4F_EXECUTIVE] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET_EXECUTIVE,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
         .trainerPic = TRAINER_PIC_EXECUTIVE_M,
         .trainerName = _("EXECUTIVE"),
@@ -2452,7 +2452,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RADIO_TOWER_5F_EXECUTIVE_F] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET_EXECUTIVE,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_ROCKET,
         .trainerPic = TRAINER_PIC_EXECUTIVE_F,
         .trainerName = _("EXECUTIVE"),
@@ -5897,7 +5897,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_AZALEA_CHIKORITA] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -5911,7 +5911,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_AZALEA_TOTODILE] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -5925,7 +5925,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_AZALEA_CYNDAQUIL] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -5939,7 +5939,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_BURNED_TOWER_CHIKORITA] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -5953,7 +5953,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_BURNED_TOWER_TOTODILE] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -5967,7 +5967,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -5981,7 +5981,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_GOLDENROD_TUNNEL_CHIKORITA] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -5995,7 +5995,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6009,7 +6009,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_GOLDENROD_TUNNEL_CYNDAQUIL] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6023,7 +6023,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_VICTORY_ROAD_CHIKORITA] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6037,7 +6037,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_VICTORY_ROAD_TOTODILE] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6051,7 +6051,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_VICTORY_ROAD_CYNDAQUIL] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6065,7 +6065,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_MT_MOON_CHIKORITA] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6079,7 +6079,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_MT_MOON_TOTODILE] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6093,7 +6093,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_MT_MOON_CYNDAQUIL] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6107,7 +6107,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_REMATCH_CHIKORITA] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6121,7 +6121,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_REMATCH_TOTODILE] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6135,7 +6135,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_REMATCH_CYNDAQUIL] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_RIVAL2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("SILVER"),
@@ -6163,7 +6163,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_MAHOGANY_EXECUTIVE_M] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET_EXECUTIVE,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
         .trainerPic = TRAINER_PIC_EXECUTIVE_M,
         .trainerName = _("EXECUTIVE"),
@@ -6177,7 +6177,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_MAHOGANY_EXECUTIVE_F] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET_EXECUTIVE,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_ROCKET,
         .trainerPic = TRAINER_PIC_EXECUTIVE_F,
         .trainerName = _("EXECUTIVE"),
@@ -6191,7 +6191,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RADIO_TOWER_5F_EXECUTIVE_1] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET_EXECUTIVE,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
         .trainerPic = TRAINER_PIC_EXECUTIVE_M,
         .trainerName = _("EXECUTIVE"),
@@ -6205,7 +6205,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RADIO_TOWER_5F_EXECUTIVE_2] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET_EXECUTIVE,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
         .trainerPic = TRAINER_PIC_EXECUTIVE_M,
         .trainerName = _("EXECUTIVE"),

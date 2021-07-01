@@ -6327,6 +6327,7 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_MAGMA_LEADER:
             return MUS_VS_AQUA_MAGMA_LEADER;
         case TRAINER_CLASS_TEAM_ROCKET:
+        case TRAINER_CLASS_TEAM_ROCKET_EXECUTIVE:
         case TRAINER_CLASS_AQUA_ADMIN:
         case TRAINER_CLASS_MAGMA_ADMIN:
             return MUS_VS_ROCKET;
@@ -6335,7 +6336,8 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_CHAMPION:
             return MUS_VS_CHAMPION;
         case TRAINER_CLASS_PKMN_TRAINER_3:
-        case TRAINER_CLASS_RIVAL:
+        case TRAINER_CLASS_RIVAL1:
+        case TRAINER_CLASS_RIVAL2:
             /*if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_VS_RIVAL;
             if (!StringCompare(gTrainers[gTrainerBattleOpponent_A].trainerName, gText_BattleWallyName))

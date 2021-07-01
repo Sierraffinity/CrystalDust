@@ -354,7 +354,7 @@
 #define TRAINER_CLASS_LEADER         0x20
 #define TRAINER_CLASS_SCHOOL_KID     0x21
 #define TRAINER_CLASS_SR_AND_JR      0x22
-#define TRAINER_CLASS_RIVAL          0x23
+#define TRAINER_CLASS_RIVAL1          0x23
 #define TRAINER_CLASS_POKEFAN        0x24
 #define TRAINER_CLASS_YOUNGSTER      0x25
 #define TRAINER_CLASS_CHAMPION       0x26
@@ -394,6 +394,8 @@
 #define TRAINER_CLASS_BURGLAR        0x48
 #define TRAINER_CLASS_TEACHER        0x49
 #define TRAINER_CLASS_BIKER          0x4a
+#define TRAINER_CLASS_RIVAL2         0x4b // Used for higher payout
+#define TRAINER_CLASS_TEAM_ROCKET_EXECUTIVE 0x4c // Used for higher payout
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
