@@ -1,1 +1,47 @@
 mapscripts EcruteakCity_Gym_MapScripts {}
+
+// TODO: Morty and the event that forces you out of the Gym if you haven't cleared out the Burned Tower first.
+
+script EcruteakCity_Gym_Eventscript_Statues{
+    if(flag(FLAG_BADGE04_GET))
+    {
+        msgbox("ECRUTEAK CITY POKéMON GYM\nLEADER: MORTY\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("ECRUTEAK CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}
+
+script EcruteakCity_Gym_Eventscript_GymGuy{
+    if(flag(FLAG_BADGE04_GET))
+    {
+        msgbox("Whew, {PLAYER}.\nYou did great!\pI was cowering in the corner out of\npure terror!", MSGBOX_NPC)
+        end
+    }
+    msgbox("The TRAINERS here have secret\nmotives.\pIf you win, they may tell you some\ndeep secrets about ECRUTEAK.", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_Gym_Eventscript_SagePing{ // upper Sage
+    trainerbattle_single(TRAINER_PING, "Can you inflict any damage on our\nPOKéMON?", "Ah! Well done!")
+    msgbox("We use only GHOST-type POKéMON.\nNo NORMAL-type attack can harm them!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script EcruteakCity_Gym_Eventscript_MediumGrace{ // lower Medium
+    trainerbattle_single(TRAINER_GRACE, "Stumped by our invisible floor?\nDefeat me if you want a hint!", "Wha-what?")
+    msgbox("Fine. I shall tell you the secret of\nthe invisible floor.\pThe path is right before our eyes!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script EcruteakCity_Gym_Eventscript_SageJeffrey{ // upper Sage
+    trainerbattle_single(TRAINER_JEFFREY, "I spent the spring with my POKéMON.\nThen summer, fall, and winter…\pThen spring came again. We have\nlived together for a long time.", "Wins and losses, I experienced both.")
+    msgbox("Where did POKéMON come from?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script EcruteakCity_Gym_Eventscript_MediumMartha{ // upper Medium
+    trainerbattle_single(TRAINER_MARTHA, "I shall win!", "I, I, I lost!")
+    msgbox("The one who wants to win most--will!", MSGBOX_AUTOCLOSE)
+    end
+}

@@ -1,1 +1,18 @@
 mapscripts EcruteakCity_PokemonCenter_1F_MapScripts {}
+
+// TODO: Bill event
+
+script EcruteakCity_Mart_Eventscript_Girl{
+    msgbox("MORTY, the GYM LEADER, is soooo cool.\nHis POKéMON are really tough too.", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_Mart_Eventscript_Man{
+    msgbox("The LAKE OF RAGE…\nThe appearance of a GYARADOS swarm…\pI smell a conspiracy.\nI know it!", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_Mart_Eventscript_Hiker{
+    msgbox("The way the KIMONO GIRLS dance is\nmarvelous. Just like the way they\luse their POKéMON.", MSGBOX_NPC)
+    end
+}

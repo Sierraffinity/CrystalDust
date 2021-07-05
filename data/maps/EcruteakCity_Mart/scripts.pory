@@ -1,1 +1,11 @@
 mapscripts EcruteakCity_Mart_MapScripts {}
+
+script EcruteakCity_Mart_Eventscript_Boy{
+    msgbox("My EEVEE evolved into an ESPEON.\pBut my friend's EEVEE turned into an\nUMBREON. I wonder why?\pWe both were raising our EEVEE in\nthe same way…", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_Mart_Eventscript_OldWoman{
+    msgbox("If you use REVIVE, a POKéMON that's\nfainted will wake right up.", MSGBOX_NPC)
+    end
+}

@@ -24,7 +24,7 @@ script LakeOfRage_Eventscript_WesleyOfWednesday {
 	if (!flag(FLAG_RECEIVED_BLACK_BELT_FROM_WESLEY))
 	{
 		gettime
-		if (var(VAR_0x8003) == DAY_MONDAY)
+		if (var(VAR_0x8003) == DAY_WEDNESDAY)
 		{
 			if (!flag(FLAG_MET_WESLEY_OF_WEDNESDAY))
 			{
