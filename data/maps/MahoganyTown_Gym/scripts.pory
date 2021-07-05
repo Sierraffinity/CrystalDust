@@ -1,1 +1,53 @@
 mapscripts MahoganyTown_Gym_MapScripts {}
+
+// TODO: PRYCE
+
+script MahoganyTown_Gym_Eventscript_Statues{
+    if(flag(FLAG_BADGE07_GET))
+    {
+        msgbox("MAHOGANY TOWN POKéMON GYM\nLEADER: PRYCE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("MAHOGANY TOWN POKéMON GYM", MSGBOX_SIGN)
+    end
+}
+
+script MahoganyTown_Gym_Eventscript_GymGuy{
+    if(flag(FLAG_BADGE07_GET))
+    {
+        msgbox("PRYCE is something, but you're\nsomething else!\pThat was a hot battle that bridged\nthe generation gap!", MSGBOX_NPC)
+        end
+    }
+    msgbox("PRYCE is a veteran who has trained\nPOKéMON for some 50 years.\pHe's said to be good at freezing\nopponents with ICE-type moves.\pThat means you should melt him with\nyour burning ambition!", MSGBOX_NPC)
+    end
+}
+// trainers from top to bottom
+script MahoganyTown_Gym_Eventscript_BoarderDouglas{
+    trainerbattle_single(TRAINER_DOUGLAS, "I know PRYCE's secret.", "Okay, I'll tell you PRYCE's secret.")
+    msgbox("The secret behind PRYCE's power…\pHe meditates under a waterfall daily\nto strengthen his mind and body.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script MahoganyTown_Gym_Eventscript_SkierRoxanne{
+    trainerbattle_single(TRAINER_ROXANNE, "To get to PRYCE, our GYM LEADER, you\nneed to think before you skate.", "I wouldn't lose to you in skiing!")
+    msgbox("If you don't skate with precision,\nyou won't get far in this GYM.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script MahoganyTown_Gym_Eventscript_BoarderBrad{
+    trainerbattle_single(TRAINER_BRAD, "This GYM has a slippery floor.\nIt's fun, isn't it?\pBut hey--we're not playing games\nhere!", "Do you see how serious we are?")
+    msgbox("This GYM is great.\nI love boarding with my POKéMON!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script MahoganyTown_Gym_Eventscript_BoarderRonald{ // bottom left corner
+    trainerbattle_single(TRAINER_RONALD, "I'll freeze your POKéMON, so you\ncan't do a thing!", "Darn. I couldn't do a thing.")
+    msgbox("I think there's a move a POKéMON can\nuse while it's frozen.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script MahoganyTown_Gym_Eventscript_SkierClarissa{ // bottom right corner
+    trainerbattle_single(TRAINER_CLARISSA, "Check out my parallel turn!", "No! You made me wipe out!")
+    msgbox("I shouldn't have been bragging about\nmy skiing…", MSGBOX_AUTOCLOSE)
+    end
+}

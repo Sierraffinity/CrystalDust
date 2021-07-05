@@ -1,1 +1,11 @@
 mapscripts MahoganyTown_House_MapScripts {}
+
+script MahoganyTown_House_Eventscript_Man{
+    msgbox("I heard that a red GYARADOS appeared\nat the LAKE.\pThat's odd, since even ordinary\nGYARADOS are rare in that lake…", MSGBOX_NPC)
+    end
+}
+
+script MahoganyTown_House_Eventscript_Woman{
+    msgbox("My favorite radio program?\nI'd say POKéMON MUSIC.", MSGBOX_NPC)
+    end
+}

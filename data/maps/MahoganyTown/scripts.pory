@@ -1,1 +1,29 @@
 mapscripts MahoganyTown_MapScripts {}
+
+// TODO: Old Man and Slowpoketail salesman
+
+script MahoganyTown_Eventscript_TownSign {
+    msgbox("MAHOGANY TOWN\nWelcome to the Home of the Ninja", MSGBOX_SIGN)
+    end
+}
+
+script MahoganyTown_Eventscript_ShopSign {
+    msgbox("While visiting MAHOGANY TOWN, try a\nRAGECANDYBAR!", MSGBOX_SIGN)
+    end
+}
+
+script MahoganyTown_Eventscript_GymSign {
+    msgbox("MAHOGANY TOWN POKéMON GYM\nLEADER: PRYCE\pThe Teacher of Winter's Harshness", MSGBOX_SIGN)
+    end
+}
+
+script MahoganyTown_Eventscript_ShopGirl{
+    msgbox("Visit Grandma's shop. She sells\nstuff that nobody else has.", MSGBOX_NPC)
+    end
+}
+
+script MahoganyTown_Eventscript_GymBlocker{
+    msgbox("Since you came this far, take the\ntime to do some sightseeing.\pYou should head north and check out\nthe LAKE OF RAGE right now.", MSGBOX_NPC)
+    end
+}
+
