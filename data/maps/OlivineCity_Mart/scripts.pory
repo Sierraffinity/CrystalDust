@@ -1,1 +1,11 @@
 mapscripts OlivineCity_Mart_MapScripts {}
+
+script OlivineCity_Mart_Eventscript_Girl1 { //uppermost
+    msgbox("Do your POKéMON already know the\nmove for carrying people on water?", MSGBOX_NPC)
+    end
+}
+
+script OlivineCity_Mart_Eventscript_Girl2 { //lowermost
+    msgbox("My BUTTERFREE came from my boyfriend\noverseas.\pIt carried some MAIL from him.\nWant to know what it says?\pLet's see… Nope!\nIt's a secret!", MSGBOX_NPC)
+    end
+}

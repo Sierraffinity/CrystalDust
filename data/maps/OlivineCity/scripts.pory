@@ -1,1 +1,49 @@
 mapscripts OlivineCity_MapScripts {}
+
+// TODO: Rival event
+
+script OlivineCity_EventScript_CitySign{
+    msgbox("OLIVINE CITY\nThe Port Closest to Foreign Lands", MSGBOX_SIGN)
+    end
+}
+
+script OlivineCity_EventScript_GymSign{
+    msgbox("OLIVINE CITY POKéMON GYM\nLEADER: JASMINE\pThe Steel-Clad Defense Girl", MSGBOX_SIGN)
+    end
+}
+
+script OlivineCity_EventScript_PortSign{
+    msgbox("OLIVINE PORT\nFAST SHIP PIER", MSGBOX_SIGN)
+    end
+}
+
+script OlivineCity_EventScript_LighthouseSign{
+    msgbox("OLIVINE LIGHTHOUSE\nAlso known as the GLITTER LIGHTHOUSE", MSGBOX_SIGN)
+    end
+}
+
+script OlivineCity_EventScript_BattleTowerSign{
+    msgbox("BATTLE TOWER AHEAD\nOpening Now!", MSGBOX_SIGN)
+    end
+}
+
+script OlivineCity_EventScript_Boy{ //northernmost NPC
+    random(2)
+    if(var(VAR_RESULT) == 0)
+    {
+        msgbox("That thing you have--it's a POKéGEAR,\nright? Wow, that's cool.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Wow, you have a POKéDEX!\nThat is just so awesome.", MSGBOX_NPC)
+    end
+}
+
+script OlivineCity_EventScript_Sailor1 { // nearest PMC
+    msgbox("The sea is sweet!\nSunsets on the sea are marvelous!\pSing with me!\nYo-ho! Blow the man down!…", MSGBOX_NPC)
+    end
+}
+
+script OlivineCity_EventScript_Sailor2 { // nearest Lighthouse
+    msgbox("Dark roads are dangerous at night.\pBut in the pitch-black of night, the\nsea is even more treacherous!\pWithout the beacon of the LIGHTHOUSE\nto guide it, no ship can sail.", MSGBOX_NPC)
+    end
+}

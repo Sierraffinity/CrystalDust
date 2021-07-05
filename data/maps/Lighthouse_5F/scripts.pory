@@ -1,1 +1,13 @@
 mapscripts Lighthouse_5F_MapScripts {}
+
+script Lighthouse_5F_EventScript_BirdKeeperDenis {
+    trainerbattle_single(TRAINER_DENIS,  "We're pretty high up here.\nMy bird POKéMON are in prime form.", "Oops… They crashed…")
+    msgbox("My POKéMON learned how to use FLY in\nCIANWOOD.\pWell, since I'm a loser, I'll FLY\nacross the sea…", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Lighthouse_5F_Eventscript_SailorErnest {
+    trainerbattle_single(TRAINER_ERNEST, "I wanted to battle JASMINE, but she's\nnot up to it now. So, how about you?", "Whoa, whoa.\nYou're overwhelming!")
+    msgbox("Being a GYM LEADER isn't just about\nbeing strong.\pA LEADER also needs to be\ncompassionate.", MSGBOX_AUTOCLOSE)
+    end
+}
