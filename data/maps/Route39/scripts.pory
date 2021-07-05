@@ -1,1 +1,63 @@
 mapscripts Route39_MapScripts {}
+
+script Route39_Eventscript_RouteSign {
+    msgbox("ROUTE 39\nOLIVINE CITY - ECRUTEAK CITY", MSGBOX_SIGN)
+    end
+}
+
+script Route39_Eventscript_FarmSign {
+    msgbox("MOOMOO FARM\nEnjoy Our Fresh and Tasty Milk", MSGBOX_SIGN)
+    end
+}
+
+script Route39_Eventscript_TrainerTipsSign {
+    msgbox("TRAINER TIPS\pUse HEADBUTT on trees to shake\nPOKéMON out.\pDifferent kinds of POKéMON drop out\nof trees.\pUse HEADBUTT on any tree you see!", MSGBOX_SIGN)
+    end
+}
+
+script Route39_Eventscript_Miltank{
+    lock
+    faceplayer
+    playmoncry(SPECIES_MILTANK, 0)
+    msgbox("MILTANK: Mooo!", MSGBOX_DEFAULT)
+    waitmoncry
+    release
+    end
+}
+
+script Route39_Eventscript_PsychicNorman {
+    trainerbattle_single(TRAINER_NORMAN, "Let me see what your POKéMON are\ncapable of!", "Ooh, your POKéMON have potential.")
+    msgbox("You know how POKéMON have different\nabilities?\pPeople are like that too.\nEveryone has different potential.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route39_Eventscript_PokefanDerek {
+    trainerbattle_single(TRAINER_DEREK, "This is a good time to brag about my\nPIKACHU!", "I had no time to show off PIKACHU…")
+    msgbox("PIKACHU is it!\nDon't you agree?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route39_Eventscript_PokefanRuth { // The one out of the tall grass
+    trainerbattle_single(TRAINER_RUTH, "Such darling POKéMON… Let's show our\nPOKéMON together at the same time.", "I don't mind losing.")
+    msgbox("Do you know about baby POKéMON?\nI bet they're just adorable!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route39_Eventscript_SailorEugene {
+    trainerbattle_single(TRAINER_EUGENE, "I just got back to OLIVINE.\nSo how about a POKéMON battle?", "Awaaargh!")
+    msgbox("My POKéMON were caught and raised\noverseas.\pThey're my companions on those long\nvoyages.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route39_Eventscript_PokefanJaime { // The one in the tall grass
+    gettime
+    if(var(VAR_0x8002) == TIME_NIGHT)
+    {
+        trainerbattle_single(TRAINER_JAIME, "You came at just the right time.\nLet's battle!", "Awaaargh!")
+        msgbox("My POKéMON were caught and raised\noverseas.\pThey're my companions on those long\nvoyages.", MSGBOX_AUTOCLOSE)
+        end
+    }
+    msgbox("Ufufufu…\nI hope it gets dark soon.", MSGBOX_NPC)
+    end
+}
+

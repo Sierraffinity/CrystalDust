@@ -1,1 +1,62 @@
 mapscripts Route41_MapScripts {}
+
+script Route41_Eventscript_SwimmerKaylee { //topmost & leftmost
+    trainerbattle_single(TRAINER_KAYLEE, "I'm on my way to the WHIRL ISLANDS.\nI'm going exploring with friends.", "Is that how you do it?")
+    msgbox("There's supposed to be a big POKéMON\ndeep beneath the WHIRL ISLANDS.\pI wonder what it could be?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route41_Eventscript_SwimmerCharlie { //topmost middle (between Kaylee & George)
+    trainerbattle_single(TRAINER_CHARLIE, "The water's warm here.\nI'm loose and limber.\pSure, I'll take you on!", "Yikes! I've got prune skin!")
+    msgbox("Isn't it relaxing just floating like\nthis?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route41_Eventscript_SwimmerGeorge { //topmost & rightmost
+    trainerbattle_single(TRAINER_GEORGE, "I'm a bit tired.\nIf I win, lend me your POKéMON.", "Pant, pant…")
+    msgbox("It's so far to CIANWOOD, but it's no\neasy return trip to OLIVINE either.\pWhat should I do?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route41_Eventscript_SwimmerSusie { //between top two islands
+    trainerbattle_single(TRAINER_SUSIE, "You look so elegant, riding your\nPOKéMON.", "I'm crushed…")
+    msgbox("Wasn't there a hit song about a boy\nriding a LAPRAS?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route41_Eventscript_SwimmerBerke { //first male south of Susie
+    trainerbattle_single(TRAINER_BERKE, "See those islands that are blocked\nby whirlpools?\pThere just has to be a secret inside!", "What's the secret to your strength?")
+    msgbox("It was a dark and stormy night…\pI saw this giant POKéMON flying from\nthe islands.\pIt was scattering feathers from its\nsilver wings.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route41_Eventscript_SwimmerKirk { //male to the right of Berke
+    trainerbattle_single(TRAINER_KIRK, "The waves are wild here.\nThey tire you out while you swim.", "I'm beat!")
+    msgbox("The currents keep me from reaching\nthat island.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route41_Eventscript_SwimmerKara { //rightmost female on map
+    trainerbattle_single(TRAINER_KARA, "If you need to rest, just tread\nwater.\pYou'll get your wind back so you can\nkeep on going strong.", "Oh! You have more energy than I do.")
+    msgbox("I heard roars from deep inside the\nISLANDS.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route41_Eventscript_SwimmerDenise { //near center ocean boulder, centrally located between all 4 islands
+    trainerbattle_single(TRAINER_DENISE, "The weather is so beautiful, I'm in\na daze!", "Ohhh!")
+    msgbox("A sunburn is the worst for skin, but\nI don't use sunblock.\pI won't pollute the water.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route41_Eventscript_SwimmerMathew { //southernmost male
+    trainerbattle_single(TRAINER_MATHEW, "Are you seeking the secrets of the\nWHIRL ISLANDS?", "Ooh, you've got great endurance!")
+    msgbox("A secret about the WHIRL ISLANDS…\nIt's pitch-black inside!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route41_Eventscript_SwimmerWendy { //southernmost female
+    trainerbattle_single(TRAINER_WENDY, "At night, STARYU gather near the\nwater's surface.", "Oh, dear…")
+    msgbox("The clusters of STARYU light up at\nthe same time.\pIts so beautiful, it's scary.", MSGBOX_AUTOCLOSE)
+    end
+}
+

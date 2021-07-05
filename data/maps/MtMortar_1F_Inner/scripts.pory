@@ -1,1 +1,13 @@
 mapscripts MtMortar_1F_Inner_MapScripts {}
+
+script MtMortar_1F_Inner_Eventscript_SuperNerdMarkus {
+    trainerbattle_single(TRAINER_MARKUS, "Hey! HUGH!", "I mistook you for someone else…")
+    msgbox("I came to explore MT. MORTAR, but I\ngot separated from my partner…\pDid you run into a TRAINER who uses\na SEADRA that knows WATERFALL?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script MtMortar_1F_Inner_Eventscript_PokemaniacMiller {
+    trainerbattle_single(TRAINER_MILLER, "I'm not losing this time!", "I lost to some kid…?")
+    msgbox("A while back, this karate dude wanted\nto battle. He was ridiculously good.\pHe just thrashed us silly.\pHe went in deeper saying it was for\nhis training. I wonder how he is?", MSGBOX_AUTOCLOSE)
+    end
+}

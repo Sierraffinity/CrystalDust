@@ -1,1 +1,49 @@
 mapscripts Route43_MapScripts {}
+
+script Route43_Eventscript_RouteSign { //used for both signs
+    msgbox("ROUTE 43\nLAKE OF RAGE - MAHOGANY TOWN", MSGBOX_SIGN)
+    end
+}
+
+script Route43_Eventscript_TrainerTipsSign {
+    msgbox("TRAINER TIPS\pAll POKéMON have pros and cons\ndepending on their types.\pIf their types differ, a higher-\nlevel POKéMON may lose in battle.\pLearn which types are strong and\nweak against your POKéMON's type.", MSGBOX_SIGN)
+    end
+}
+
+script Route43_Eventscript_CamperSpencer {
+    trainerbattle_single(TRAINER_SPENCER, "I can do so much with my POKéMON--\nit's super-fun!", "Losing isn't fun at all…")
+    msgbox("What is going on at the LAKE OF RAGE?\nWe were planning to camp there.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route43_Eventscript_PicnickerTiffany {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_TIFFANY_1, "Are you going to the LAKE OF RAGE\ntoo? Let's play for a little while!", "I played too much!")
+    msgbox("Isn't my CLEFAIRY just the most\nadorable thing?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route43_Eventscript_PokemaniacBrent {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_BRENT_1, "Hey! Do you have any rare POKéMON?", "Oh, my poor POKéMON!\nDarlings!")
+    msgbox("I'd be happy just to own a single\nrare POKéMON.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route43_Eventscript_FishermanMarvin {
+    trainerbattle_single(TRAINER_MARVIN, "I'm in a slump.\nMaybe it's the gear I'm using.\pLet's battle for a change of pace!", "I lost, but I feel better anyway.")
+    msgbox("KURT's LURE BALL is the best for\ncatching hooked POKéMON.\pIt's much more effective than an\nULTRA BALL.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route43_Eventscript_PokemaniacRon {
+    trainerbattle_single(TRAINER_RON, "Would you get this? Some {RIVAL} guy\nmade fun of my POKéMON!\pDarn it! My POKéMON's great!", "My NIDOKING did pretty right on!")
+    msgbox("It's okay for people to like\ndifferent types of POKéMON.\pPOKéMON isn't just about having the\nmost powerful one.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route43_Eventscript_PokemaniacBen {
+    trainerbattle_single(TRAINER_BEN, "I love POKéMON!\pThat's why I started--and why I'll\nkeep on collecting POKéMON!", "How could you do this to me?")
+    msgbox("What else do I like besides POKéMON?\nMARY on the radio. I bet she's cute!", MSGBOX_AUTOCLOSE)
+    end
+}

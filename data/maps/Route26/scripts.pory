@@ -1,1 +1,44 @@
 mapscripts Route26_MapScripts {}
+
+script Route26_Eventscript_Sign {
+    msgbox("ROUTE 26\nPOKéMON LEAGUE RECEPTION GATE", MSGBOX_SIGN)
+    end
+}
+// trainers from bottom to top
+script Route26_Eventscript_FishermanScott {
+    trainerbattle_single(TRAINER_SCOTT, "I'm feeling great today!\pI feel like I could boot even the\nLEAGUE CHAMP!", "No! Not in this battle!")
+    msgbox("Just like in fishing, it's all over\nin POKéMON if you give up.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route26_Eventscript_PsychicRichard {
+    trainerbattle_single(TRAINER_RICHARD, "Wow, look at all those BADGES!\nI'm impressed.\pBut you're not satisfied by just\ncollecting them, right?", "Good battle!")
+    msgbox("People and POKéMON grow from their\nexperiences.\pDon't get lazy and complacent.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route26_Eventscript_CooltrainerJoyce {
+    trainerbattle_single(TRAINER_JOYCE, "Since you've come this far, you must\nbe good.\pI'm going to give this battle\neverything I've got!", "No! I don't believe this!")
+    msgbox("I've defeated eight GYM LEADERS, so\nI was feeling confident.\pI'll have to try harder next time.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route26_Eventscript_CooltrainerGaven {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_GAVEN, "By experiencing tough battles, you\ngain power.", "Gaah! Life is even tougher!")
+    msgbox("To get to the POKéMON LEAGUE, you\nhave to get through VICTORY ROAD.\pBut VICTORY ROAD is tough.\nPractically nobody goes there!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route26_Eventscript_CooltrainerJake {
+    trainerbattle_single(TRAINER_JAKE, "I'm making my final preparations for\nthe POKéMON LEAGUE.", "I blew it!")
+    msgbox("It's going to be tough to win at the\nLEAGUE.\pI need to do some more training.\pI hear that the LEAGUE's ELITE FOUR\nare tougher than GYM LEADERS.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route26_Eventscript_CooltrainerBeth {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_BETH, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his POKéMON.", "POKéMON aren't tools of war.")
+    msgbox("POKéMON are invaluable, lifelong\npartners.", MSGBOX_AUTOCLOSE)
+    end
+}

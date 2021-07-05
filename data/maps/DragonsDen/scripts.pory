@@ -1,1 +1,32 @@
 mapscripts DragonsDen_MapScripts {}
+
+// TODO: Clair event
+
+script DragonsDen_Eventscript_Sign {
+    msgbox("DRAGON SHRINE\pA shrine honoring the dragon POKéMON\nsaid to have lived in the DRAGON'S\lDEN.", MSGBOX_SIGN)
+    end
+}
+
+script DragonsDen_Eventscript_CooltrainerDarin {
+    trainerbattle_single(TRAINER_DARIN, "You! How dare you enter uninvited!", "S-strong!")
+    msgbox("The SHRINE ahead is home to the\nMASTER of our dragon-user clan.\pYou're not allowed to just go in!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script DragonsDen_Eventscript_CooltrainerCara {
+    trainerbattle_single(TRAINER_CARA, "You shouldn't be in here!", "Oh yikes, I lost!")
+    msgbox("Soon, I'm going to get permission\nfrom our MASTER to use dragons.\pWhen I do, I'm going to become an\nadmirable dragon TRAINER and gain\lour MASTER's approval.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script DragonsDen_Eventscript_TwinTop { // top twin
+    trainerbattle_single(TRAINER_LEA_AND_PIA, "It's a stranger we don't know.", "Ouchies.")
+    msgbox("It was like having to battle LANCE.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script DragonsDen_Eventscript_TwinBottom { // bottom twin
+    trainerbattle_single(TRAINER_LEA_AND_PIA, "Who are you?", "Meanie.")
+    msgbox("We'll tell on you.\nMASTER will be angry with you.", MSGBOX_AUTOCLOSE)
+    end
+}
