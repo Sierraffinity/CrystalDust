@@ -1087,32 +1087,6 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Koji[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Ned[] = {
-    {
-    .iv = 0,
-    .lvl = 15,
-    .species = SPECIES_KOFFING,
-    },
-    {
-    .iv = 0,
-    .lvl = 16,
-    .species = SPECIES_GROWLITHE,
-    },
-    {
-    .iv = 0,
-    .lvl = 15,
-    .species = SPECIES_KOFFING,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_Dick[] = {
-    {
-    .iv = 0,
-    .lvl = 17,
-    .species = SPECIES_CHARMELEON,
-    }
-};
-
 static const struct TrainerMonNoItemDefaultMoves sParty_Ping[] = {
     {
     .iv = 100,

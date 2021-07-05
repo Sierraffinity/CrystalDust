@@ -1189,34 +1189,6 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Koji},
     },
 
-    [TRAINER_NED] =
-    {
-        .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_FIREBREATHER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
-        .trainerPic = TRAINER_PIC_FIREBREATHER,
-        .trainerName = _("NED"),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Ned),
-        .party = {.NoItemDefaultMoves = sParty_Ned},
-    },
-
-    [TRAINER_DICK] =
-    {
-        .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_FIREBREATHER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
-        .trainerPic = TRAINER_PIC_FIREBREATHER,
-        .trainerName = _("DICK"),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Dick),
-        .party = {.NoItemDefaultMoves = sParty_Dick},
-    },
-
     [TRAINER_PING] =
     {
         .partyFlags = 0,
