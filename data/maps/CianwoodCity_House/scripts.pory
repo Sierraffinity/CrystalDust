@@ -1,1 +1,16 @@
 mapscripts CianwoodCity_House_MapScripts {}
+
+script CianwoodCity_House_Eventscript_LittleGirl{
+    msgbox("I've heard that the whirlpools\naround the islands are caused by the\lsea creature.\pYou might need a special move to get\npast them.", MSGBOX_NPC)
+    end
+}
+
+script CianwoodCity_House_Eventscript_Girl{ // rightmost NPC
+    msgbox("I heard that you can only see it if\nyou have a SILVER WING.\pIt must have the same scent as the\ncreature.", MSGBOX_NPC)
+    end
+}
+
+script CianwoodCity_House_Eventscript_Woman{ // at the table
+    msgbox("You came from OLIVINE?\pDo you remember the four islands\nalong the way?\pI heard that a mythical sea creature\nis hiding in them.", MSGBOX_NPC)
+    end
+}
