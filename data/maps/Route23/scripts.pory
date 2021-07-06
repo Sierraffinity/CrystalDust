@@ -1,1 +1,6 @@
 mapscripts Route23_MapScripts {}
+
+script Route23_Eventscript_IndigoPlateauSign {
+    msgbox("INDIGO PLATEAU\nThe Ultimate Goal for TRAINERS!\pPOKéMON LEAGUE HQ", MSGBOX_SIGN)
+    end
+}

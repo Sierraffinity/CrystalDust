@@ -1,1 +1,58 @@
 mapscripts IndigoPlateau_PokemonCenter_1F_MapScripts {}
+
+// TODO: Rival Rematch
+
+script IndigoPlateau_PokemonCenter_1F_Eventscript_Guy{
+    msgbox("At the POKéMON LEAGUE, you'll get\ntested by the ELITE FOUR.\pYou have to beat them all. If you\nlose, you have to start all over!", MSGBOX_NPC)
+    end
+}
+
+script IndigoPlateau_PokemonCenter_1F_Eventscript_OldMan{
+    lock
+    faceplayer
+    msgbox("Ah! You're challenging the ELITE\nFOUR? Are you sure you're ready?\pIf you need to train some more, my\nABRA can help you.\pIt can TELEPORT you home.\nWould you like to go home now?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        msgbox("Okay, okay. The best of luck to you!", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("Okay, okay. Picture your house in\nyour mind…", MSGBOX_DEFAULT)
+    delay(16)
+    warpteleport(MAP_NEW_BARK_TOWN, 255, 16, 8)
+    waitstate
+    release
+    end
+}
+
+script IndigoPlateau_PokemonCenter_1F_Eventscript_Abra{
+    lock
+    faceplayer
+    playmoncry(SPECIES_ABRA, 0)
+    msgbox("ABRA: Aabra…", MSGBOX_DEFAULT)
+    waitmoncry
+    release
+    end
+}
+
+script IndigoPlateau_PokemonCenter_1F_EventScript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(IndigoPlateau_PokemonCenter_1F_Pokemart_Clerk)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+raw `
+IndigoPlateau_PokemonCenter_1F_Pokemart_Clerk:
+	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_MAX_POTION
+	.2byte ITEM_FULL_RESTORE
+	.2byte ITEM_REVIVE
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_NONE
+`

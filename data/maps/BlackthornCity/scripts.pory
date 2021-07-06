@@ -1,1 +1,85 @@
 mapscripts BlackthornCity_MapScripts {}
+
+// TODO: Gym guard and Dragon's Den guard
+
+script BlackthornCity_Eventscript_CitySign {
+    msgbox("BLACKTHORN CITY\nA Quiet Mountain Retreat", MSGBOX_SIGN)
+    end
+}
+
+script BlackthornCity_Eventscript_MoveDeleterSign {
+    msgbox("MOVE DELETER's HOUSE", MSGBOX_SIGN)
+    end
+}
+
+script BlackthornCity_Eventscript_TrainerTipsSign {
+    msgbox("TRAINER TIPS\pA POKéMON holding a LUM BERRY will\ncure itself of any status problem.", MSGBOX_SIGN)
+    end
+}
+
+script BlackthornCity_Eventscript_GymSign {
+    msgbox("BLACKTHORN CITY POKéMON GYM\nLEADER: CLAIR\pThe Blessed User of Dragon POKéMON", MSGBOX_SIGN)
+    end
+}
+
+script BlackthornCity_Eventscript_DragonsDenSign {
+    msgbox("DRAGON'S DEN AHEAD", MSGBOX_SIGN)
+    end
+}
+
+script BlackthornCity_Eventscript_Woman{ // nearest Ice Path
+    msgbox("Wow, you came through the ICE PATH?\nYou must be a real hotshot TRAINER!", MSGBOX_NPC)
+    end
+}
+
+script BlackthornCity_Eventscript_BlackBelt{
+    msgbox("Arooo! Voices in my head!\nHuh? I'm listening to my radio!", MSGBOX_NPC)
+    end
+}
+
+script BlackthornCity_Eventscript_Girl{ // nearest Move Deleter's house
+    msgbox("Are you going to make your POKéMON\nforget some moves?", MSGBOX_NPC)
+    end
+}
+
+script BlackthornCity_Eventscript_Boy{
+    msgbox("Dragon masters all come from the\ncity of BLACKTHORN.", MSGBOX_NPC)
+    end
+}
+
+script BlackthornCity_Eventscript_SantosOfSaturday {
+    lock
+	faceplayer
+	if (!flag(FLAG_RECEIVED_SPELL_TAG_FROM_SANTOS))
+	{
+		gettime
+		if (var(VAR_0x8003) == DAY_SATURDAY)
+		{
+			if (!flag(FLAG_MET_SANTOS_OF_SATURDAY))
+			{
+				msgbox("SANTOS: …\nIt's SATURDAY…\pI'm SANTOS of SATURDAY…\pYou can have this…")
+				setflag(FLAG_MET_SANTOS_OF_SATURDAY)
+			}
+			else
+			{
+				msgbox("SANTOS: You can have this…")
+			}
+			giveitem(ITEM_SPELL_TAG)
+			if (!var(VAR_RESULT))
+			{
+				goto(Common_EventScript_ShowBagIsFull)
+			}
+			setflag(FLAG_RECEIVED_SPELL_TAG_FROM_SANTOS)
+			msgbox("SANTOS: …\nSPELL TAG…\pGHOST-type moves get stronger…\pIt will frighten you…")
+		}
+		else
+		{
+			msgbox("SANTOS: Today's not SATURDAY…")
+		}
+	}
+	else
+	{
+		msgbox("SANTOS: …\pSee you again on another SATURDAY…\pI won't have any more gifts…")
+	}
+	release
+}

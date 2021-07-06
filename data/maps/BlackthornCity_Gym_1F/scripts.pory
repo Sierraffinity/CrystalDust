@@ -1,1 +1,41 @@
 mapscripts BlackthornCity_Gym_1F_MapScripts {}
+
+// TODO: Clair, whatever is necessary for the boulders
+
+script BlackthornCity_Gym_1F_Eventscript_Statues{
+    if(flag(FLAG_BADGE08_GET))
+    {
+        msgbox("BLACKTHORN CITY POKéMON GYM\nLEADER: CLAIR\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("BLACKTHORN CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}
+
+script BlackthornCity_Gym_1F_Eventscript_GymGuy{
+    if(flag(FLAG_BADGE08_GET))
+    {
+        msgbox("You were great to beat CLAIR!\pAll that's left is the POKéMON LEAGUE\nchallenge.\pYou're on the way to becoming the\nPOKéMON CHAMPION!", MSGBOX_NPC)
+        end
+    }
+    msgbox("Yo! CHAMP in making!\pIt's been a long journey, but we are\nalmost done! Count on me!\pCLAIR uses the mythical and sacred\nDRAGON-type POKéMON.\pYou can't damage them very easily.\pBut you know, they're supposed to be\nweak against ICE-type moves.", MSGBOX_NPC)
+    end
+}
+
+script BlackthornCity_Gym_1F_Eventscript_CooltrainerPaul{ // nearest entrance
+    trainerbattle_single(TRAINER_PAUL, "Your first battle against dragons?\nI'll show you how tough they are!", "My dragon POKéMON lost?")
+    msgbox("LANCE told you that he'd like to see\nyou again? Not a chance!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script BlackthornCity_Gym_1F_Eventscript_CooltrainerMike{ // nearest entrance
+    trainerbattle_single(TRAINER_MIKE, "My chance of losing?\nNot even one percent!", "That's odd.")
+    msgbox("I know my shortcomings now.\nThanks for showing me!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script BlackthornCity_Gym_1F_Eventscript_CooltrainerLola{ // nearest entrance
+    trainerbattle_single(TRAINER_LOLA, "Dragons are sacred POKéMON.\nThey are full of life energy.\pIf you're not serious, you won't be\nable to beat them.", "Way to go!")
+    msgbox("Dragons are weak against DRAGON-\ntype moves.", MSGBOX_AUTOCLOSE)
+    end
+}
