@@ -5,12 +5,12 @@
 // major 0: v3.0.0-alpha
 // major 1: v3.0.0-beta
 // major 2: v3.0.0-gamma
-// major 3 and beyond: v3
+// major 3 and beyond: v3, v4, etc.
 
 // v3.0.0-alpha.0.1
 #define GAME_VER_MAJOR      0
 #define GAME_VER_MINOR      0
-#define GAME_VER_PATCH      4
+#define GAME_VER_PATCH      6
 #define GAME_BUILD          ((GAME_VER_MAJOR << 24) | (GAME_VER_MINOR << 16) | GAME_VER_PATCH)
 
 // byteswapped CDMA
