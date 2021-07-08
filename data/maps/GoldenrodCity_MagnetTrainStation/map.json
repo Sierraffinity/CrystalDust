@@ -1,7 +1,7 @@
 {
   "id": "MAP_GOLDENROD_CITY_MAGNET_TRAIN_STATION",
   "name": "GoldenrodCity_MagnetTrainStation",
-  "layout": "LAYOUT_CABLE_CAR_STATION",
+  "layout": "LAYOUT_MAGNET_TRAIN_STATION",
   "music": "MUS_GOLDENROD",
   "region_map_section": "MAPSEC_GOLDENROD_CITY",
   "requires_flash": false,

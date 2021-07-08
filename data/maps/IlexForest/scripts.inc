@@ -5,51 +5,51 @@ IlexForest_MapScripts::
 IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 	setflag FLAG_LANDMARK_ILEX_FOREST
 	switch VAR_ILEX_FARFETCHD_STATE
-	case 2, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_2
-	case 3, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_3
-	case 4, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_4
-	case 5, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_5
-	case 6, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_6
-	case 7, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_7
-	case 8, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_8
-	case 9, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_9
-	case 10, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_10
+	case 2, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_3
+	case 3, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_4
+	case 4, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_5
+	case 5, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_6
+	case 6, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_7
+	case 7, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_8
+	case 8, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_9
+	case 9, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_10
+	case 10, IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_11
 	setobjectxyperm 1, 27, 41
 	return
 
-IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_2:
+IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_3:
 	setobjectxyperm 1, 28, 35
 	return
 
-IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_3:
+IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_4:
 	setobjectxyperm 1, 38, 34
 	return
 
-IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_4:
+IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_5:
 	setobjectxyperm 1, 50, 31
 	return
 
-IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_5:
+IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_6:
 	setobjectxyperm 1, 47, 41
 	return
 
-IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_6:
+IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_7:
 	setobjectxyperm 1, 41, 45
 	return
 
-IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_7:
+IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_8:
 	setobjectxyperm 1, 39, 41
 	return
 
-IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_8:
+IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_9:
 	setobjectxyperm 1, 28, 39
 	return
 
-IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_9:
+IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_10:
 	setobjectxyperm 1, 21, 46
 	return
 
-IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_10:
+IlexForest_MapScripts_MAP_SCRIPT_ON_TRANSITION_11:
 	setobjectxyperm 1, 14, 37
 	return
 
@@ -58,15 +58,15 @@ IlexForest_EventScript_Farfetchd::
 	lock
 	faceplayer
 	switch VAR_ILEX_FARFETCHD_STATE
-	case 2, IlexForest_EventScript_Farfetchd_3
-	case 3, IlexForest_EventScript_Farfetchd_4
-	case 4, IlexForest_EventScript_Farfetchd_5
-	case 5, IlexForest_EventScript_Farfetchd_6
-	case 6, IlexForest_EventScript_Farfetchd_7
-	case 7, IlexForest_EventScript_Farfetchd_8
-	case 8, IlexForest_EventScript_Farfetchd_9
-	case 9, IlexForest_EventScript_Farfetchd_10
-	case 10, IlexForest_EventScript_Farfetchd_11
+	case 2, IlexForest_EventScript_Farfetchd_4
+	case 3, IlexForest_EventScript_Farfetchd_5
+	case 4, IlexForest_EventScript_Farfetchd_6
+	case 5, IlexForest_EventScript_Farfetchd_7
+	case 6, IlexForest_EventScript_Farfetchd_8
+	case 7, IlexForest_EventScript_Farfetchd_9
+	case 8, IlexForest_EventScript_Farfetchd_10
+	case 9, IlexForest_EventScript_Farfetchd_11
+	case 10, IlexForest_EventScript_Farfetchd_12
 	msgbox IlexForest_EventScript_Farfetchd_Text_0
 	call IlexForest_EventScript_FarfetchdCry
 	applymovement 1, IlexForest_Movement_Farfetchd_1to2
@@ -78,7 +78,7 @@ IlexForest_EventScript_Farfetchd_1:
 	release
 	return
 
-IlexForest_EventScript_Farfetchd_3:
+IlexForest_EventScript_Farfetchd_4:
 	call IlexForest_EventScript_FarfetchdCry
 	compare VAR_FACING, DIR_SOUTH
 	goto_if_eq IlexForest_EventScript_Farfetchd_13
@@ -89,7 +89,7 @@ IlexForest_EventScript_Farfetchd_3:
 	setvar VAR_ILEX_FARFETCHD_STATE, 3
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_4:
+IlexForest_EventScript_Farfetchd_5:
 	call IlexForest_EventScript_FarfetchdCry
 	compare VAR_FACING, DIR_WEST
 	goto_if_eq IlexForest_EventScript_Farfetchd_16
@@ -100,7 +100,7 @@ IlexForest_EventScript_Farfetchd_4:
 	setvar VAR_ILEX_FARFETCHD_STATE, 4
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_5:
+IlexForest_EventScript_Farfetchd_6:
 	call IlexForest_EventScript_FarfetchdCry
 	compare VAR_FACING, DIR_NORTH
 	goto_if_eq IlexForest_EventScript_Farfetchd_19
@@ -111,12 +111,12 @@ IlexForest_EventScript_Farfetchd_5:
 	setvar VAR_ILEX_FARFETCHD_STATE, 5
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_6:
+IlexForest_EventScript_Farfetchd_7:
 	call IlexForest_EventScript_FarfetchdCry
 	switch VAR_FACING
-	case DIR_NORTH, IlexForest_EventScript_Farfetchd_23
-	case DIR_WEST, IlexForest_EventScript_Farfetchd_24
-	case DIR_EAST, IlexForest_EventScript_Farfetchd_25
+	case DIR_NORTH, IlexForest_EventScript_Farfetchd_24
+	case DIR_WEST, IlexForest_EventScript_Farfetchd_25
+	case DIR_EAST, IlexForest_EventScript_Farfetchd_26
 	applymovement 1, IlexForest_Movement_Farfetchd_5to6
 	waitmovement 0
 	setobjectxy 1, 41, 45
@@ -124,7 +124,7 @@ IlexForest_EventScript_Farfetchd_6:
 	setvar VAR_ILEX_FARFETCHD_STATE, 6
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_7:
+IlexForest_EventScript_Farfetchd_8:
 	call IlexForest_EventScript_FarfetchdCry
 	compare VAR_FACING, DIR_EAST
 	goto_if_eq IlexForest_EventScript_Farfetchd_27
@@ -135,11 +135,11 @@ IlexForest_EventScript_Farfetchd_7:
 	setvar VAR_ILEX_FARFETCHD_STATE, 7
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_8:
+IlexForest_EventScript_Farfetchd_9:
 	call IlexForest_EventScript_FarfetchdCry
 	switch VAR_FACING
-	case DIR_SOUTH, IlexForest_EventScript_Farfetchd_31
-	case DIR_WEST, IlexForest_EventScript_Farfetchd_32
+	case DIR_SOUTH, IlexForest_EventScript_Farfetchd_32
+	case DIR_WEST, IlexForest_EventScript_Farfetchd_33
 	applymovement 1, IlexForest_Movement_Farfetchd_7to8
 	waitmovement 0
 	setobjectxy 1, 28, 39
@@ -147,12 +147,12 @@ IlexForest_EventScript_Farfetchd_8:
 	setvar VAR_ILEX_FARFETCHD_STATE, 8
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_9:
+IlexForest_EventScript_Farfetchd_10:
 	call IlexForest_EventScript_FarfetchdCry
 	switch VAR_FACING
-	case DIR_NORTH, IlexForest_EventScript_Farfetchd_35
-	case DIR_WEST, IlexForest_EventScript_Farfetchd_35
-	case DIR_EAST, IlexForest_EventScript_Farfetchd_36
+	case DIR_NORTH, IlexForest_EventScript_Farfetchd_36
+	case DIR_WEST, IlexForest_EventScript_Farfetchd_36
+	case DIR_EAST, IlexForest_EventScript_Farfetchd_37
 	applymovement 1, IlexForest_Movement_Farfetchd_8to9
 	waitmovement 0
 	setobjectxy 1, 21, 46
@@ -160,12 +160,12 @@ IlexForest_EventScript_Farfetchd_9:
 	setvar VAR_ILEX_FARFETCHD_STATE, 9
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_10:
+IlexForest_EventScript_Farfetchd_11:
 	call IlexForest_EventScript_FarfetchdCry
 	switch VAR_FACING
-	case DIR_SOUTH, IlexForest_EventScript_Farfetchd_39
-	case DIR_NORTH, IlexForest_EventScript_Farfetchd_39
-	case DIR_EAST, IlexForest_EventScript_Farfetchd_40
+	case DIR_SOUTH, IlexForest_EventScript_Farfetchd_40
+	case DIR_NORTH, IlexForest_EventScript_Farfetchd_40
+	case DIR_EAST, IlexForest_EventScript_Farfetchd_41
 	applymovement 1, IlexForest_Movement_Farfetchd_9to10
 	delay 18
 	playse SE_WALL_HIT
@@ -179,7 +179,7 @@ IlexForest_EventScript_Farfetchd_10:
 	setflag FLAG_FETCHED_FARFETCHD
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_11:
+IlexForest_EventScript_Farfetchd_12:
 	call IlexForest_EventScript_FarfetchdCry
 	goto IlexForest_EventScript_Farfetchd_1
 
@@ -209,7 +209,7 @@ IlexForest_EventScript_Farfetchd_19:
 	setvar VAR_ILEX_FARFETCHD_STATE, 3
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_23:
+IlexForest_EventScript_Farfetchd_24:
 	applymovement 1, IlexForest_Movement_Farfetchd_5to4North
 	waitmovement 0
 	setobjectxy 1, 50, 31
@@ -217,7 +217,7 @@ IlexForest_EventScript_Farfetchd_23:
 	setvar VAR_ILEX_FARFETCHD_STATE, 4
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_24:
+IlexForest_EventScript_Farfetchd_25:
 	applymovement 1, IlexForest_Movement_Farfetchd_5to7
 	waitmovement 0
 	setobjectxy 1, 39, 41
@@ -225,7 +225,7 @@ IlexForest_EventScript_Farfetchd_24:
 	setvar VAR_ILEX_FARFETCHD_STATE, 7
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_25:
+IlexForest_EventScript_Farfetchd_26:
 	applymovement 1, IlexForest_Movement_Farfetchd_5to4East
 	delay 60
 	playse SE_WALL_HIT
@@ -243,7 +243,7 @@ IlexForest_EventScript_Farfetchd_27:
 	setvar VAR_ILEX_FARFETCHD_STATE, 5
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_31:
+IlexForest_EventScript_Farfetchd_32:
 	applymovement 1, IlexForest_Movement_Farfetchd_7to5
 	waitmovement 0
 	setobjectxy 1, 47, 41
@@ -251,7 +251,7 @@ IlexForest_EventScript_Farfetchd_31:
 	setvar VAR_ILEX_FARFETCHD_STATE, 5
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_32:
+IlexForest_EventScript_Farfetchd_33:
 	applymovement 1, IlexForest_Movement_Farfetchd_7to6
 	waitmovement 0
 	setobjectxy 1, 41, 45
@@ -259,7 +259,7 @@ IlexForest_EventScript_Farfetchd_32:
 	setvar VAR_ILEX_FARFETCHD_STATE, 6
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_35:
+IlexForest_EventScript_Farfetchd_36:
 	applymovement 1, IlexForest_Movement_Farfetchd_8to2
 	waitmovement 0
 	setobjectxy 1, 28, 35
@@ -267,7 +267,7 @@ IlexForest_EventScript_Farfetchd_35:
 	setvar VAR_ILEX_FARFETCHD_STATE, 2
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_36:
+IlexForest_EventScript_Farfetchd_37:
 	applymovement 1, IlexForest_Movement_Farfetchd_8to7
 	waitmovement 0
 	setobjectxy 1, 39, 41
@@ -275,7 +275,7 @@ IlexForest_EventScript_Farfetchd_36:
 	setvar VAR_ILEX_FARFETCHD_STATE, 7
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_39:
+IlexForest_EventScript_Farfetchd_40:
 	applymovement 1, IlexForest_Movement_Farfetchd_9to8NorthSouth
 	delay 18
 	playse SE_WALL_HIT
@@ -285,7 +285,7 @@ IlexForest_EventScript_Farfetchd_39:
 	setvar VAR_ILEX_FARFETCHD_STATE, 8
 	goto IlexForest_EventScript_Farfetchd_1
 
-IlexForest_EventScript_Farfetchd_40:
+IlexForest_EventScript_Farfetchd_41:
 	applymovement 1, IlexForest_Movement_Farfetchd_9to8East
 	waitmovement 0
 	setobjectxy 1, 28, 39

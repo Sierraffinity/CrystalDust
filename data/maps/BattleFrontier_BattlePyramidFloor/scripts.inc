@@ -113,9 +113,9 @@ BattlePyramid_WarpToTop:: @ 8252C45
 	waitstate
 	end
 
-@ TRAINER_PHILLIP_OLD is used as a placeholder
+@ TRAINER_CHOW is used as a placeholder
 BattlePyramid_TrainerBattle:: @ 8252C4F
-	trainerbattle TRAINER_BATTLE_PYRAMID, TRAINER_PHILLIP_OLD, 0, BattleFacility_TrainerBattle_PlaceholderText, BattleFacility_TrainerBattle_PlaceholderText
+	trainerbattle TRAINER_BATTLE_PYRAMID, TRAINER_CHOW, 0, BattleFacility_TrainerBattle_PlaceholderText, BattleFacility_TrainerBattle_PlaceholderText
 	pyramid_showhint
 	waitmessage
 	waitbuttonpress

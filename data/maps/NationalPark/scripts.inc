@@ -66,7 +66,7 @@ NationalPark_EventScript_Persian::
 
 
 NationalPark_EventScript_Jack::
-	trainerbattle_single TRAINER_JACK, NationalPark_Text_JackIntro, NationalPark_Text_JackDefeated
+	trainerbattle_single TRAINER_JACK_1, NationalPark_Text_JackIntro, NationalPark_Text_JackDefeated
 	msgbox NationalPark_Text_JackPostBattle, MSGBOX_AUTOCLOSE
 	return
 

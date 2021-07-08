@@ -525,7 +525,6 @@ extern const u8 EventScript_TV[];
 extern const u8 EventScript_Window[];
 extern const u8 EventScript_Radio1[];
 extern const u8 EventScript_ClosedSootopolisDoor[];
-extern const u8 SkyPillar_Outside_EventScript_ClosedDoor[];
 extern const u8 EventScript_CableBoxResults[];
 extern const u8 EventScript_PokeBlockFeeder[];
 extern const u8 Route110_TrickHousePuzzle_EventScript_Door[];
@@ -558,7 +557,6 @@ extern const u8 EventScript_Phone_BikeShopOwner[];
 extern const u8 NewBarkTown_ProfessorElmsLab_EventScript_ScottAboardSSTidalCall[];
 extern const u8 GoldenrodCity_Gym_EventScript_RegisterRoxanne[];
 extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall[];
-extern const u8 SSTidalCorridor_EventScript_ReachedStepCount[];
 extern const u8 EventScript_FallDownHoleMtPyre[];
 
 // Secret Base

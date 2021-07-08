@@ -202,7 +202,7 @@ Route36_EventScript_Mark::
 
 
 Route36_EventScript_Alan::
-	trainerbattle_single TRAINER_ALAN, Route36_Text_AlanIntro, Route36_Text_AlanDefeated
+	trainerbattle_single TRAINER_ALAN_1, Route36_Text_AlanIntro, Route36_Text_AlanDefeated
 	msgbox Route36_Text_AlanPostBattle, MSGBOX_AUTOCLOSE
 	return
 

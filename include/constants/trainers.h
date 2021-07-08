@@ -111,6 +111,39 @@
 #define TRAINER_PIC_RS_MAY                92
 #define TRAINER_PIC_EM_BRENDAN            93
 #define TRAINER_PIC_EM_MAY                94
+#define TRAINER_PIC_KIMONO_GIRL_ESPEON    95
+#define TRAINER_PIC_MEDIUM                96
+#define TRAINER_PIC_LEADER_MORTY          97
+#define TRAINER_PIC_LEADER_CHUCK          98
+#define TRAINER_PIC_LEADER_JASMINE        99
+#define TRAINER_PIC_EUSINE                100
+#define TRAINER_PIC_SCIENTIST             101
+#define TRAINER_PIC_EXECUTIVE_F           103
+#define TRAINER_PIC_EXECUTIVE_M           103
+#define TRAINER_PIC_SKIER                 104
+#define TRAINER_PIC_BOARDER               105
+#define TRAINER_PIC_LEADER_PRYCE          106
+#define TRAINER_PIC_BURGLAR               107
+#define TRAINER_PIC_LEADER_CLAIR          108
+#define TRAINER_PIC_ELITE_FOUR_WILL       109
+#define TRAINER_PIC_ELITE_FOUR_KOGA       110
+#define TRAINER_PIC_ELITE_FOUR_BRUNO      111
+#define TRAINER_PIC_ELITE_FOUR_KAREN      112
+#define TRAINER_PIC_CHAMPION_LANCE        113
+#define TRAINER_PIC_LEADER_BROCK          114
+#define TRAINER_PIC_LEADER_MISTY          115
+#define TRAINER_PIC_LEADER_LT_SURGE       116
+#define TRAINER_PIC_LEADER_ERIKA          117
+#define TRAINER_PIC_LEADER_JANINE         118
+#define TRAINER_PIC_LEADER_SABRINA        119
+#define TRAINER_PIC_LEADER_BLAINE         120
+#define TRAINER_PIC_LEADER_BLUE           121
+#define TRAINER_PIC_TEACHER               122
+#define TRAINER_PIC_BIKER                 123
+#define TRAINER_PIC_KIMONO_GIRL_FLAREON   124
+#define TRAINER_PIC_KIMONO_GIRL_JOLTEON   125
+#define TRAINER_PIC_KIMONO_GIRL_UMBREON   126
+#define TRAINER_PIC_KIMONO_GIRL_VAPOREON  127
 
 #define TRAINER_BACK_PIC_GOLD                   0
 #define TRAINER_BACK_PIC_KRIS                   1
@@ -325,7 +358,7 @@
 #define TRAINER_CLASS_LEADER         0x20
 #define TRAINER_CLASS_SCHOOL_KID     0x21
 #define TRAINER_CLASS_SR_AND_JR      0x22
-#define TRAINER_CLASS_RIVAL          0x23
+#define TRAINER_CLASS_RIVAL1          0x23
 #define TRAINER_CLASS_POKEFAN        0x24
 #define TRAINER_CLASS_YOUNGSTER      0x25
 #define TRAINER_CLASS_CHAMPION       0x26
@@ -356,6 +389,17 @@
 #define TRAINER_CLASS_PIKE_QUEEN     0x3f
 #define TRAINER_CLASS_PYRAMID_KING   0x40
 #define TRAINER_CLASS_RS_PROTAG      0x41
+#define TRAINER_CLASS_KIMONO_GIRL    0x42
+#define TRAINER_CLASS_MEDIUM         0x43
+#define TRAINER_CLASS_MYSTICALMAN    0x44
+#define TRAINER_CLASS_SCIENTIST      0x45
+#define TRAINER_CLASS_SKIER          0x46
+#define TRAINER_CLASS_BOARDER        0x47
+#define TRAINER_CLASS_BURGLAR        0x48
+#define TRAINER_CLASS_TEACHER        0x49
+#define TRAINER_CLASS_BIKER          0x4a
+#define TRAINER_CLASS_RIVAL2         0x4b // Used for higher payout
+#define TRAINER_CLASS_TEAM_ROCKET_EXECUTIVE 0x4c // Used for higher payout
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
