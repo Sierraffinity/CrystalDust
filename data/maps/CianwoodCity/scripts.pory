@@ -1,0 +1,72 @@
+mapscripts CianwoodCity_MapScripts {}
+
+// TODO: Suicune event with Eusine
+
+script CianwoodCity_Eventscript_CitySign {
+    msgbox("CIANWOOD CITY\nA Port Surrounded by Rough Seas", MSGBOX_SIGN)
+    end
+}
+
+script CianwoodCity_Eventscript_PharmacySign {
+    msgbox("500 Years of Tradition\pCIANWOOD CITY PHARMACY\nWe Await your Medicinal Queries", MSGBOX_SIGN)
+    end
+}
+
+script CianwoodCity_Eventscript_GymSign {
+    msgbox("CIANWOOD CITY POKéMON GYM\nLEADER: CHUCK\pHis Roaring Fists Do the Talking", MSGBOX_SIGN)
+    end
+}
+
+script CianwoodCity_Eventscript_StudioSign {
+    msgbox("CIANWOOD CITY PHOTO STUDIO\nTake a Snapshot as a Keepsake!", MSGBOX_SIGN)
+    end
+}
+
+script CianwoodCity_Eventscript_PokeSeerSign {
+    msgbox("THE POKé SEER AHEAD", MSGBOX_SIGN)
+    end
+}
+
+script CianwoodCity_Eventscript_FatMan{
+    msgbox("Boulders to the north of town can be\ncrushed.\pThey may be hiding something.\pYour POKéMON could use ROCK SMASH to\nbreak them.", MSGBOX_NPC)
+    end
+}
+
+script CianwoodCity_Eventscript_Boy{
+    msgbox("If you use FLY, you can get back to\nOLIVINE instantly.", MSGBOX_NPC)
+    end
+}
+
+script CianwoodCity_Eventscript_Girl{
+    msgbox("CHUCK, the GYM LEADER, spars with\nhis FIGHTING-type POKéMON.", MSGBOX_NPC)
+    end
+}
+
+script CianwoodCity_Eventscript_ChucksWife{
+    checkitem(ITEM_HM02, 1) // checking item to save a flag; HM02 cannot be discarded without cheating.
+    copyvar(VAR_0x8008, VAR_RESULT)
+    checkpcitem(ITEM_HM02, 1) // ordinarily cannot be deposited, but might as well check
+    if(var(VAR_0x8008) == TRUE || var(VAR_RESULT) == TRUE)
+    {
+        msgbox(CianwoodCity_Text_GotFly, MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("You crossed the sea to get here?\nThat must have been hard.\pIt would be much easier if your\nPOKéMON knew how to FLY…\p", MSGBOX_DEFAULT)
+    if(!flag(FLAG_BADGE05_GET))
+    {
+        msgbox("But you can't use FLY without this\ncity's GYM BADGE.\pIf you beat the GYM LEADER here,\ncome see me.\pI'll have a nice gift for you.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("That's CIANWOOD's GYM BADGE!\nThen you should take this HM.", MSGBOX_DEFAULT)
+    giveitem(ITEM_HM04)
+    message("Teach FLY to your POKéMON.\pYou will be able to FLY instantly to\nanywhere you have visited.\p")
+    waitmessage
+    msgbox(CianwoodCity_Text_GotFly, MSGBOX_DEFAULT)
+    release
+    end
+}text(local) CianwoodCity_Text_GotFly{
+    "My husband lost to you, so he needs\nto train harder.\pThat's good, since he was getting a\nlittle chubby."
+}

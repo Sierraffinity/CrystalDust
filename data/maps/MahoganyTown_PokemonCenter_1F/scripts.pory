@@ -1,0 +1,16 @@
+mapscripts MahoganyTown_PokemonCenter_1F_MapScripts {}
+
+script MahoganyTown_PokemonCenter_1F_Eventscript_Boy{
+    msgbox("I stop POKéMON from evolving too\nearly.\pI make them learn certain moves\nbefore I let them evolve.", MSGBOX_NPC)
+    end
+}
+
+script MahoganyTown_PokemonCenter_1F_Eventscript_Girl{
+    msgbox("POKéMON do become stronger when they\nevolve, but they also learn moves\lmore slowly.", MSGBOX_NPC)
+    end
+}
+
+script MahoganyTown_PokemonCenter_1F_Eventscript_Man{
+    msgbox("What's this?\nTEAM ROCKET has come back?\pI saw some men in black at the LAKE\nOF RAGE…", MSGBOX_NPC)
+    end
+}

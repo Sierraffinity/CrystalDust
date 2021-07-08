@@ -1,0 +1,87 @@
+mapscripts Route40_MapScripts {}
+
+script Route40_Eventscript_RouteSign {
+    msgbox("ROUTE 40\nCIANWOOD CITY - OLIVINE CITY", MSGBOX_SIGN)
+    end
+}
+
+script Route40_Eventscript_FenceGirl {
+    msgbox("I came to OLIVINE by ship to see the\nsights and soak up the atmosphere.\pBeing a port, it feels so different\nfrom a big city.", MSGBOX_NPC)
+    end
+}
+
+script Route40_Eventscript_GateMan {
+    msgbox("Hm! There's a big building up ahead!\nWhat is it?", MSGBOX_NPC)
+    end
+}
+
+script Route40_Eventscript_OceanBoy {
+    msgbox("Have you gone to the BATTLE TOWER?\pI think a lot of tough TRAINERS have\ngathered there already.\pBut since you have so many BADGES,\nyou shouldn't do badly at all.", MSGBOX_NPC)
+    end
+}
+
+script Route40_Eventscript_BeachGirl {
+    msgbox("Although you can't see it from here,\nCIANWOOD is across the sea.", MSGBOX_NPC)
+    end
+}
+
+script Route40_Eventscript_MonicaOfMonday {
+    lock
+	faceplayer
+	if (!flag(FLAG_RECEIVED_SHARP_BEAK_FROM_MONICA))
+	{
+		gettime
+		if (var(VAR_0x8003) == DAY_MONDAY)
+		{
+			if (!flag(FLAG_MET_MONICA_OF_MONDAY))
+			{
+				msgbox("MONICA: Glad to meet you.\nI'm MONICA of MONDAY.\pAs a token of our frendship, I have\na gift for you.")
+				setflag(FLAG_MET_MONICA_OF_MONDAY)
+			}
+			else
+			{
+				msgbox("MONICA: As a token of our frendship, I have\na gift for you.")
+			}
+			giveitem(ITEM_SHARP_BEAK)
+			if (!var(VAR_RESULT))
+			{
+				goto(Common_EventScript_ShowBagIsFull)
+			}
+			setflag(FLAG_RECEIVED_SHARP_BEAK_FROM_MONICA)
+			msgbox("MONICA: It's an item that raises the\npower of FLYING-type moves.\pYou should equip a bird POKéMON with\nthat item.")
+		}
+		else
+		{
+			msgbox("MONICA: I don't think today is\nMONDAY. How sad…")
+		}
+	}
+	else
+	{
+		msgbox("MONICA: My brothers and sisters are\nall over the place.\pSee if you can find them all!")
+	}
+	release
+}
+
+script Route39_Eventscript_SwimmerSimon { //northernmost male swimmer
+    trainerbattle_single(TRAINER_SIMON, "You have to warm up before going\ninto the water. That's basic.", "Okay! Uncle! I give!")
+    msgbox("CIANWOOD CITY is a good distance\naway from here.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route39_Eventscript_SwimmerElaine { //westernmost female swimmer
+    trainerbattle_single(TRAINER_ELAINE, "Are you going to CIANWOOD?\nHow about a quick battle first?", "I lost that one!")
+    msgbox("I'd say I'm a better swimmer than you.\nYeah!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route39_Eventscript_SwimmerPaula { //easternmost female swimmer
+    trainerbattle_single(TRAINER_PAULA, "No inner tube for me.\nI'm hanging onto a sea POKéMON!", "Ooh, I'm feeling dizzy!")
+    msgbox("While I float like this, the waves\ncarry me along.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route39_Eventscript_SwimmerRandall { //southernmost male swimmer
+    trainerbattle_single(TRAINER_RANDALL, "Hey, you're young and fit!\nDon't ride your POKéMON! Swim!", "Uh-oh. I lost…")
+    msgbox("Swimming exercises your entire body.\nIt's healthy.", MSGBOX_AUTOCLOSE)
+    end
+}

@@ -1,0 +1,26 @@
+mapscripts OlivineCity_House1_MapScripts {}
+
+script OlivineCity_House1_Eventscript_Fisherman{
+    checkitem(ITEM_GOOD_ROD, 1) // checking item to save a flag; the Good Rod cannot be discarded without cheating.
+    copyvar(VAR_0x8008, VAR_RESULT)
+    checkpcitem(ITEM_GOOD_ROD, 1) // ordinarily cannot be deposited, but might as well check
+    if(var(VAR_0x8008) == TRUE || var(VAR_RESULT) == TRUE)
+    {
+        msgbox("How are things?\nLand the big one?", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("OLIVINE is on the sea!\pAnd if it's on the sea, there are\nbound to be fish!\pI've fished here for 30 years.\pWould you like to face the sea and\nfish?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES)
+    {
+        msgbox("Ah, hahah!\nWe have ourselves a new angler!", MSGBOX_DEFAULT)
+        giveitem(ITEM_GOOD_ROD)
+        msgbox("Fish aren't found in the sea alone.\nThey go wherever there is water.", MSGBOX_AUTOCLOSE)
+        release
+        end
+    }
+    msgbox("Whaaat? You don't like to fish!?\nIncomprehensible!", MSGBOX_AUTOCLOSE)
+    release
+    end
+}

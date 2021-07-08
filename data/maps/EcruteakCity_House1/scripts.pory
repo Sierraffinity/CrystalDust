@@ -1,0 +1,11 @@
+mapscripts EcruteakCity_House1_MapScripts {}
+
+script EcruteakCity_House1_Eventscript_OldMan{
+    msgbox("This happened when I was young.\pThe sky suddenly turned black. A\ngiant flying POKéMON was blocking\lout the sun.\pI wonder what that POKéMON was?\nIt was like a bird and a dragon.", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_House1_Eventscript_Boy{
+    msgbox("Is there really a POKéMON that big?\nIf it exists, it must be powerful.", MSGBOX_NPC)
+    end
+}

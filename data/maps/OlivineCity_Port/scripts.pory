@@ -1,0 +1,25 @@
+mapscripts OlivineCity_Port_MapScripts {}
+
+// TODO: Ferry Sailor
+
+script OlivineCity_Port_Eventscript_Fisherman1{ //before HoF, rightmost
+    msgbox("How many RODS do you have?\pDifferent rods catch different\nPOKéMON.", MSGBOX_NPC)
+    end
+}
+
+script OlivineCity_Port_Eventscript_Fisherman1{ //before HoF, leftmost
+    msgbox("SHELLDER are easy to catch here.\nThey're kind of rare elsewhere.", MSGBOX_NPC)
+    end
+}
+
+script OlivineCity_Port_Eventscript_Boy{ //after HoF
+    msgbox("The S.S. AQUA uses jets to skim\nover the waves!", MSGBOX_NPC)
+    turnobject(VAR_LAST_TALKED, DIR_SOUTH)
+    end
+}
+
+script OlivineCity_Port_Eventscript_Girl{ //after HoF
+    msgbox("There are lots of POKéMON in KANTO.\nI wish I could go…", MSGBOX_NPC)
+    turnobject(VAR_LAST_TALKED, DIR_SOUTH)
+    end
+}

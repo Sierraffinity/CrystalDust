@@ -1,0 +1,37 @@
+mapscripts CianwoodCity_Gym_MapScripts {}
+
+// TODO: Chuck
+
+script CianwoodCity_Gym_Eventscript_Statues{
+    if(flag(FLAG_BADGE05_GET))
+    {
+        msgbox("CIANWOOD CITY POKéMON GYM\nLEADER: CHUCK\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("CIANWOOD CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}
+
+script CianwoodCity_Gym_Eventscript_BlackBeltYoshi{ //bottommost left
+    trainerbattle_single(TRAINER_YOSHI, "My POKéMON and I are bound together\nby friendship.\pOur bond will never be broken!", "This isn't real!")
+    msgbox("You seem to have a strong bond with\nyour POKéMON too!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script CianwoodCity_Gym_Eventscript_BlackBeltLao{ //bottommost right
+    trainerbattle_single(TRAINER_LAO, "We martial artists fear nothing!", "That's shocking!")
+    msgbox("FIGHTING-type POKéMON are afraid of\nPSYCHIC-types…", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script CianwoodCity_Gym_Eventscript_BlackBeltNob{ //under boulders
+    trainerbattle_single(TRAINER_NOB, "Words are useless.\nLet your fists do the talking!", "…")
+    msgbox("I lost!\nI'm speechless!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script CianwoodCity_Gym_Eventscript_BlackBeltLung{ //under boulders
+    trainerbattle_single(TRAINER_LUNG, "My raging fists will shatter your\nPOKéMON!", "I got shattered!")
+    msgbox("My POKéMON lost…\nMy… my pride is shattered…", MSGBOX_AUTOCLOSE)
+    end
+}

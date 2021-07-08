@@ -1,0 +1,46 @@
+mapscripts Route27_MapScripts {}
+
+// TODO: Welcome to Kanto Fat Guy
+
+script Route27_Eventscript_TohjoFallsSign {
+    msgbox("TOHJO FALLS\nTHE LINK BETWEEN KANTO AND JOHTO", MSGBOX_SIGN)
+    end
+}
+//trainers from left to right
+script Route27_Eventscript_CooltrainerMegan {
+    trainerbattle_single(TRAINER_MEGAN, "It's rare to see anyone come here.\nAre you training on your own?", "Oh! You're really strong!")
+    msgbox("I'm checking out pre- and post-\nevolution POKéMON.\pEvolution really does make POKéMON\nstronger.\pBut evolved forms also learn moves\nlater on.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route27_Eventscript_CooltrainerBlake {
+    trainerbattle_single(TRAINER_BLAKE, "You look pretty strong.\nLet me battle you!", "Yow!")
+    msgbox("If you prevail on this harsh trek,\nthe truth will be revealed!\pHeh, sorry. I just wanted to say\nsomething cool.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route27_Eventscript_CooltrainerBrian { // on bridge
+    trainerbattle_single(TRAINER_BRIAN, "Hm? You're good, aren't you?", "Just as I thought!")
+    msgbox("A good TRAINER can recognize other\ngood TRAINERS.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route27_Eventscript_BirdKeeperJose { // on bridge
+    // TODO: Phone
+    trainerbattle_single(TRAINER_JOSE_1, "Tweet! Tweet! Tetweet!", "Tweet!")
+    msgbox("BIRD KEEPERS like me mimic bird\nwhistles to command POKéMON.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route27_Eventscript_PsychicGilbert {
+    trainerbattle_single(TRAINER_GILBERT, "Don't say a thing!\nLet me guess what you're thinking.\pMmmmmmm…\pI got it! You're on the POKéMON\nLEAGUE challenge!", "You're too much!")
+    msgbox("With your skills, you'll do well at\nthe LEAGUE.\pThat's what my premonition says.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route27_Eventscript_CooltrainerReena {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the wild\nPOKéMON in these parts.", "Oh! You're much too strong!")
+    msgbox("You're just a kid, but you're not to\nbe underestimated either.", MSGBOX_AUTOCLOSE)
+    end
+}

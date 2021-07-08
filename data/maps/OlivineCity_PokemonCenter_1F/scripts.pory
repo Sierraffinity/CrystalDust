@@ -1,0 +1,28 @@
+mapscripts OlivineCity_PokemonCenter_1F_MapScripts {}
+
+script OlivineCity_PokemonCenter_1F_Eventscript_Woman{
+    msgbox("There's a person in CIANWOOD CITY\nacross the sea.\pI heard him bragging about his rare\nPOKéMON.", MSGBOX_NPC)
+    end
+}
+
+script OlivineCity_PokemonCenter_1F_Eventscript_FatMan{
+    msgbox("The SAILOR in the OLIVINE CAFE next\ndoor is really generous.\pHe taught my POKéMON STRENGTH.\nNow it can move big boulders!", MSGBOX_NPC)
+    end
+}
+
+script OlivineCity_PokemonCenter_1F_Eventscript_BugCatcher{
+    specialvar(VAR_RESULT, GetLeadMonFriendshipScore)
+    if(var(VAR_RESULT) < 2)
+    {   // unhappy
+        msgbox("You haven't tamed your POKéMON.\nIf you aren't nice, it'll pout.", MSGBOX_NPC)
+        end
+    }
+    if(var(VAR_RESULT) < 4)
+    {   // happy
+        msgbox("POKéMON get more friendly if you\nspend time with them.", MSGBOX_NPC)
+        end
+    }
+    // happiest
+    msgbox("Wow! You and your POKéMON are really\nclose!", MSGBOX_NPC)
+    end
+}

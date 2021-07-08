@@ -1,0 +1,13 @@
+mapscripts OlivineCity_Gym_MapScripts {}
+
+// TODO: Jasmine and Gym Guy (Gym Guy relies on the saved Amphy flag)
+
+script OlivineCity_Gym_Eventscript_Statues{
+    if(flag(FLAG_BADGE06_GET))
+    {
+        msgbox("OLIVINE CITY POKéMON GYM\nLEADER: JASMINE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("OLIVINE CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}

@@ -1,0 +1,40 @@
+{
+  "id": "MAP_ROUTE15",
+  "name": "Route15",
+  "layout": "LAYOUT_ROUTE15",
+  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "region_map_section": "MAPSEC_ROUTE_15",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "left",
+      "offset": -10,
+      "map": "MAP_FUCHSIA_CITY"
+    },
+    {
+      "direction": "right",
+      "offset": -40,
+      "map": "MAP_ROUTE14"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

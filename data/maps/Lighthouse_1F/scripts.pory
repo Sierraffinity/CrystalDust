@@ -1,0 +1,11 @@
+mapscripts Lighthouse_1F_MapScripts {}
+
+script Lighthouse_1F_Eventscript_Woman{
+    msgbox("In the past, POKéMON used to light\nthe sea around OLIVINE at night.\pThe LIGHTHOUSE was made in honor of\nthose POKéMON.", MSGBOX_NPC)
+    end
+}
+
+script Lighthouse_1F_Eventscript_Man{
+    msgbox("People train at this LIGHTHOUSE.\pIt's not easy to climb because of\nall the TRAINERS.", MSGBOX_NPC)
+    end
+}

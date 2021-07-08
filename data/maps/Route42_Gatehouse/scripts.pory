@@ -1,0 +1,7 @@
+mapscripts Route42_Gatehouse_MapScripts {}
+
+script Route42_Gatehouse_Eventscript_Guard{
+    msgbox("MT. MORTAR is like a maze inside.\nBe careful. Don't get lost in there.", MSGBOX_DEFAULT)
+    release
+    end
+}

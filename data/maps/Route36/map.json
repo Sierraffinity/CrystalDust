@@ -12,7 +12,6 @@
   "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
-  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
@@ -28,7 +27,6 @@
   ],
   "object_events": [
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
       "in_connection": false,
       "x": 10,
@@ -40,10 +38,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route36_EventScript_Mark",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
       "in_connection": false,
       "x": 25,
@@ -55,10 +53,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "7",
       "script": "Route36_EventScript_Alan",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SUDOWOODO",
       "in_connection": false,
       "x": 31,
@@ -70,10 +68,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route36_EventScript_Sudowoodo",
-      "flag": "FLAG_HIDE_ROUTE_36_SUDOWOODO"
+      "flag": "FLAG_HIDE_ROUTE_36_SUDOWOODO",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
       "in_connection": false,
       "x": 54,
@@ -85,10 +83,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route36_EventScript_BlockedGirl",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "in_connection": false,
       "x": 44,
@@ -100,10 +98,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route36_EventScript_RockSmashGuy",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "in_connection": false,
       "x": 47,
@@ -115,10 +113,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route36_EventScript_Arthur",
-      "flag": "FLAG_HIDE_ROUTE_36_ARTHUR"
+      "flag": "FLAG_HIDE_ROUTE_36_ARTHUR",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
       "in_connection": false,
       "x": 28,
@@ -130,17 +128,27 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route36_EventScript_Floria",
-      "flag": "FLAG_HIDE_ROUTE_36_FLORIA"
+      "flag": "FLAG_HIDE_ROUTE_36_FLORIA",
+      "type": "original"
     },
     {
-      "type": "clone",
+      "graphics_id": "",
+      "in_connection": false,
       "x": 5,
       "y": 32,
-      "source_id": 11,
-      "source_map": "MAP_ROUTE35"
+      "elevation": 0,
+      "movement_type": "",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "",
+      "trainer_sight_or_berry_tree_id": "",
+      "script": "",
+      "flag": "",
+      "source_id": "",
+      "source_map": "MAP_ROUTE35",
+      "type": "clone"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "in_connection": false,
       "x": 30,
@@ -152,7 +160,8 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route36_EventScript_Sierra",
-      "flag": "FLAG_HIDE_ROUTE_36_SIERRA"
+      "flag": "FLAG_HIDE_ROUTE_36_SIERRA",
+      "type": "original"
     }
   ],
   "warp_events": [
@@ -221,13 +230,7 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route36_EventScript_TrainerTipsStatsSign"
-    },
-    {
-      "type": "fruit_tree",
-      "x": 11,
-      "y": 7,
-      "elevation": 0,
-      "fruit_tree_id": "FRUIT_TREE_ROUTE_36"
     }
-  ]
+  ],
+  "phone_service": ""
 }

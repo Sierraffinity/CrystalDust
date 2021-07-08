@@ -1,0 +1,49 @@
+mapscripts Route38_MapScripts {}
+
+script Route38_Eventscript_RouteSign {
+    msgbox("ROUTE 38\nOLIVINE CITY - ECRUTEAK CITY", MSGBOX_SIGN)
+    end
+}
+
+script Route38_Eventscript_TrainerTipsSign {
+    msgbox("TRAINER TIPS\pIf a POKéMON is trying to evolve,\nyou can stop it.\pPress the B button during evolution.\pThat startles the POKéMON and stops\nits evolution.", MSGBOX_SIGN)
+    end
+}
+
+script Route38_Eventscript_SailorHarry {
+    trainerbattle_single(TRAINER_HARRY, "I've been overseas, so I know about\nall sorts of POKéMON!", "Your skill is world class!")
+    msgbox("All kinds of people around the world\nlive happily with POKéMON.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route38_Eventscript_LassDana {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_DANA_1, "You seem to be good at POKéMON.\pIf you are, how about giving me some\nadvice?", "I see. So you can battle that way.")
+    msgbox("I know something good!\pThe MOOMOO FARM's milk is famous for\nits flavor.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route38_Eventscript_BeautyValerie { //the one furthest to the east
+    trainerbattle_single(TRAINER_VALERIE, "Hi! Aren't you a cute TRAINER!\nMay I see your POKéMON?", "I'm glad I got to see your POKéMON!")
+    msgbox("When I see POKéMON, they seem to\nsoothe my nerves.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route38_Eventscript_BirdKeeperToby {
+    trainerbattle_single(TRAINER_TOBY, "Fly high into the sky, my beloved\nbird POKéMON!", "I feel like just flying away now.")
+    msgbox("I plan to train in CIANWOOD CITY to\nteach my POKéMON how to FLY.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route38_Eventscript_SchoolboyChad {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_CHAD_1, "Let me try something I learned today.", "I didn't study enough, I guess.")
+    msgbox("I have to take so many tests, I\ndon't have much time for POKéMON.\pSo when I do get to play, I really\nconcentrate.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route38_Eventscript_BeautyOlivia { //the one furthest to the west
+    trainerbattle_single(TRAINER_OLIVIA, "Don't you think my POKéMON and I are\nbeautiful?", "We drink MOOMOO MILK every day.")
+    msgbox("MOOMOO MILK is good for beauty and\nhealth, but inconveniently, they\lonly sell a bottle at a time.", MSGBOX_AUTOCLOSE)
+    end
+}
