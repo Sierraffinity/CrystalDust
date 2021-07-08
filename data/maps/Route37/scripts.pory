@@ -1,0 +1,61 @@
+mapscripts Route37_MapScripts {}
+
+script Route37_Eventscript_RouteSign {
+    msgbox("ROUTE 37", MSGBOX_SIGN)
+    end
+}
+
+script Route37_Eventscript_PsychicGreg{
+    trainerbattle_single(TRAINER_GREG, "POKéMON can't do a thing if they are\nasleep.\pI'll show you how scary that is!", "I lost.\nThat's pretty sad…")
+    msgbox("Putting POKéMON to sleep or paralyzing\nthem are good battle techniques.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route37_Eventscript_TwinAnn{ // left twin
+    trainerbattle_single(TRAINER_ANN_AND_ANNE, "ANN: ANNE and I are in this together!", "ANN & ANNE: Nnn…\nA little too strong.")
+    msgbox("ANN: I can tell what my sister and my\nPOKéMON are thinking.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route37_Eventscript_TwinAnne{ // right twin
+    trainerbattle_single(TRAINER_ANN_AND_ANNE, "ANNE: ANN and I are in this together!", "ANN & ANNE: Nnn…\nA little too strong.")
+    msgbox("ANNE: We share the same feelings as\nour POKéMON.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route37_Eventscript_SunnyOfSunday {
+    lock
+	faceplayer
+	if (!flag(FLAG_RECEIVED_MAGNET_FROM_SUNNY))
+	{
+		gettime
+		if (var(VAR_0x8003) == DAY_SUNDAY)
+		{
+			if (!flag(FLAG_MET_SUNNY_OF_SUNDAY))
+			{
+				msgbox("SUNNY: Hi! I'm SUNNY of SUNDAY,\nmeaning it's SUNDAY today!\pI was told to give you this if I saw\nyou!")
+				setflag(FLAG_MET_SUNNY_OF_SUNDAY)
+			}
+			else
+			{
+				msgbox("SUNNY: I was told to give you this if I saw\nyou!")
+			}
+			giveitem(ITEM_MAGNET)
+			if (!var(VAR_RESULT))
+			{
+				goto(Common_EventScript_ShowBagIsFull)
+			}
+			setflag(FLAG_RECEIVED_MAGNET_FROM_SUNNY)
+			msgbox("SUNNY: That thing…\nUm…\p…What was it now…\p…\nOh! I remember now!\pA POKéMON that knows ELECTRIC-type\nmoves should hold it.\pMy sis MONICA said it powers up\nELECTRIC-type moves!")
+		}
+		else
+		{
+			msgbox("SUNNY: Isn't today SUNDAY?\nUm… I forgot!")
+		}
+	}
+	else
+	{
+		msgbox("SUNNY: My sisters and brothers are\nMONICA, TUSCANY, WESLEY, ARTHUR,\lFRIEDA, and SANTOS.\pThey're all older than me!")
+	}
+	release
+}

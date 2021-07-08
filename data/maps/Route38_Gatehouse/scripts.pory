@@ -1,0 +1,7 @@
+mapscripts Route38_Gatehouse_MapScripts {}
+
+script Route38_Gatehouse_Eventscript_Guard{
+    msgbox("Where did you say you're from?\p…NEW BARK TOWN?\nPROF. ELM lives over there, right?\pYou've come a long way to get here.", MSGBOX_DEFAULT)
+    release
+    end
+}

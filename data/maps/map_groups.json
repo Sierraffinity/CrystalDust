@@ -68,6 +68,11 @@
     "VioletCity",
     "AzaleaTown",
     "GoldenrodCity",
+    "EcruteakCity",
+    "OlivineCity",
+    "CianwoodCity",
+    "MahoganyTown",
+    "BlackthornCity",
     "Route29",
     "Route30",
     "Route31",
@@ -76,9 +81,57 @@
     "Route34",
     "Route35",
     "Route36",
+    "Route37",
+    "Route38",
+    "Route39",
+    "Route40",
+    "Route41",
+    "Route42",
+    "Route43",
+    "Route44",
     "Route45",
     "Route46",
-    "RuinsOfAlph_Outside"
+    "LakeOfRage",
+    "RuinsOfAlph_Outside",
+    "SilverCave_Outside",
+    "PalletTown",
+    "ViridianCity",
+    "PewterCity",
+    "CeruleanCity",
+    "LavenderTown",
+    "VermilionCity",
+    "CeladonCity",
+    "FuchsiaCity",
+    "CinnabarIsland",
+    "SaffronCity",
+    "Route1",
+    "Route2",
+    "Route3",
+    "Route4",
+    "Route5",
+    "Route6",
+    "Route7",
+    "Route8",
+    "Route9",
+    "Route10",
+    "Route11",
+    "Route12",
+    "Route13",
+    "Route14",
+    "Route15",
+    "Route16",
+    "Route17",
+    "Route18",
+    "Route19",
+    "Route20",
+    "Route21",
+    "Route22",
+    "Route23",
+    "Route24",
+    "Route25",
+    "Route26",
+    "Route27",
+    "Route28"
   ],
   "gNewBarkTownInteriors": [
     "NewBarkTown_PlayersHouse_1F",
@@ -139,14 +192,54 @@
     "GoldenrodCity_DeptStore_B1F"
   ],
   "gEcruteakCityInteriors": [
+    "EcruteakCity_PokemonCenter_1F",
+    "EcruteakCity_PokemonCenter_2F",
+    "EcruteakCity_Mart",
+    "EcruteakCity_Gym",
+    "EcruteakCity_DanceTheater",
+    "EcruteakCity_TinTowerGate",
+    "EcruteakCity_WiseTriosRoom",
+    "EcruteakCity_House1",
+    "EcruteakCity_House2"
   ],
   "gOlivineCityInteriors": [
+    "OlivineCity_PokemonCenter_1F",
+    "OlivineCity_PokemonCenter_2F",
+    "OlivineCity_Mart",
+    "OlivineCity_Gym",
+    "OlivineCity_Cafe",
+    "OlivineCity_PortPassage",
+    "OlivineCity_Port",
+    "OlivineCity_House1",
+    "OlivineCity_House2",
+    "OlivineCity_House3"
   ],
   "gCianwoodCityInteriors": [
+    "CianwoodCity_PokemonCenter_1F",
+    "CianwoodCity_PokemonCenter_2F",
+    "CianwoodCity_Gym",
+    "CianwoodCity_Pharmacy",
+    "CianwoodCity_PhotoStudio",
+    "CianwoodCity_ManiasHouse",
+    "CianwoodCity_PokeSeersHouse",
+    "CianwoodCity_House"
   ],
   "gMahoganyTownInteriors": [
+    "MahoganyTown_PokemonCenter_1F",
+    "MahoganyTown_PokemonCenter_2F",
+    "MahoganyTown_Gym",
+    "MahoganyTown_Shop",
+    "MahoganyTown_House"
   ],
   "gBlackthornCityInteriors": [
+    "BlackthornCity_PokemonCenter_1F",
+    "BlackthornCity_PokemonCenter_2F",
+    "BlackthornCity_Mart",
+    "BlackthornCity_Gym_1F",
+    "BlackthornCity_Gym_2F",
+    "BlackthornCity_MoveDeletersHouse",
+    "BlackthornCity_House1",
+    "BlackthornCity_House2"
   ],
   "gRoute29Interiors": [
     "Route29_Gatehouse"
@@ -177,16 +270,25 @@
     "Route36_NationalParkGatehouse"
   ],
   "gRoute38Interiors": [
+    "Route38_Gatehouse"
   ],
   "gRoute39Interiors": [
+    "Route39_MooMooFarmHouse",
+    "Route39_MooMooFarmBarn"
   ],
   "gRoute40Interiors": [
+    "Route40_Gatehouse"
   ],
   "gRoute42Interiors": [
+    "Route42_Gatehouse"
   ],
   "gRoute43Interiors": [
+    "Route43_Gatehouse1",
+    "Route43_Gatehouse2"
   ],
   "gLakeOfRageInteriors": [
+    "LakeOfRage_HiddenPowerHouse",
+    "LakeOfRage_FishingGurusHouse"
   ],
   "gRuinsOfAlphInteriors": [
     "RuinsOfAlph_ResearchCenter",
@@ -196,12 +298,17 @@
     "RuinsOfAlph_KabutoWordRoom",
     "RuinsOfAlph_OmanyteChamber",
     "RuinsOfAlph_OmanyteItemRoom",
+    "RuinsOfAlph_OmanyteWordRoom",
     "RuinsOfAlph_AerodactylChamber",
     "RuinsOfAlph_AerodactylItemRoom",
+    "RuinsOfAlph_AerodactylWordRoom",
     "RuinsOfAlph_HoOhChamber",
-    "RuinsOfAlph_HoOhItemRoom"
+    "RuinsOfAlph_HoOhItemRoom",
+    "RuinsOfAlph_HoOhWordRoom"
   ],
   "gSilverCaveInteriors": [
+    "SilverCave_Outside_PokemonCenter_1F",
+    "SilverCave_Outside_PokemonCenter_2F"
   ],
   "gJohtoDungeons": [
     "DarkCave_South",
@@ -213,6 +320,7 @@
     "UnionCave_B1F",
     "UnionCave_B2F",
     "SlowpokeWell_B1F",
+    "SlowpokeWell_B2F",
     "IlexForest",
     "RadioTower_1F",
     "RadioTower_2F",
@@ -220,37 +328,242 @@
     "RadioTower_4F",
     "RadioTower_5F",
     "NationalPark",
-    "NationalPark_BugCatchingContest"
+    "NationalPark_BugCatchingContest",
+    "BurnedTower_1F",
+    "BurnedTower_B1F",
+    "TinTower_1F",
+    "TinTower_2F",
+    "TinTower_3F",
+    "TinTower_4F",
+    "TinTower_5F",
+    "TinTower_6F",
+    "TinTower_7F",
+    "TinTower_8F",
+    "TinTower_9F",
+    "TinTower_Roof",
+    "Lighthouse_1F",
+    "Lighthouse_2F",
+    "Lighthouse_3F",
+    "Lighthouse_4F",
+    "Lighthouse_5F",
+    "Lighthouse_6F",
+    "WhirlIslands_1F_NE",
+    "WhirlIslands_1F_NW",
+    "WhirlIslands_1F_SE",
+    "WhirlIslands_1F_SW",
+    "WhirlIslands_B1F",
+    "WhirlIslands_B2F",
+    "WhirlIslands_Cave",
+    "WhirlIslands_LugiasChamber",
+    "MtMortar_1F_Outer",
+    "MtMortar_1F_Inner",
+    "MtMortar_2F",
+    "MtMortar_B1F",
+    "TeamRocketBase_B1F",
+    "TeamRocketBase_B2F",
+    "TeamRocketBase_B3F",
+    "IcePath_1F",
+    "IcePath_B1F",
+    "IcePath_B2F_Mahogany",
+    "IcePath_B2F_Blackthorn",
+    "IcePath_B3F",
+    "DragonsDen_Entrance",
+    "DragonsDen",
+    "DragonsDen_Shrine",
+    "FastShip_1F",
+    "FastShip_B1F",
+    "FastShip_Cabins_NNW_NNE_NE",
+    "FastShip_Cabins_SE_SSE_Captains",
+    "FastShip_Cabins_SW_SSW_NW",
+    "SilverCave_Room1",
+    "SilverCave_Room2",
+    "SilverCave_Room3",
+    "SilverCave_ItemRooms"
   ],
   "gPalletTownInteriors": [
+    "PalletTown_RedsHouse_1F",
+    "PalletTown_RedsHouse_2F",
+    "PalletTown_BluesHouse",
+    "PalletTown_ProfessorOaksLab"
   ],
   "gViridianCityInteriors": [
+    "ViridianCity_PokemonCenter_1F",
+    "ViridianCity_PokemonCenter_2F",
+    "ViridianCity_Mart",
+    "ViridianCity_Gym",
+    "ViridianCity_House",
+    "ViridianCity_TrainerHouse_1F",
+    "ViridianCity_TrainerHouse_B1F"
   ],
   "gPewterCityInteriors": [
+    "PewterCity_PokemonCenter_1F",
+    "PewterCity_PokemonCenter_2F",
+    "PewterCity_Mart",
+    "PewterCity_Gym",
+    "PewterCity_House1",
+    "PewterCity_House2",
+    "PewterCity_Museum_1F",
+    "PewterCity_Museum_2F"
   ],
   "gCeruleanCityInteriors": [
+    "CeruleanCity_PokemonCenter_1F",
+    "CeruleanCity_PokemonCenter_2F",
+    "CeruleanCity_Mart",
+    "CeruleanCity_Gym",
+    "CeruleanCity_House1",
+    "CeruleanCity_House2",
+    "CeruleanCity_House3"
   ],
   "gVermilionCityInteriors": [
+    "VermilionCity_PokemonCenter_1F",
+    "VermilionCity_PokemonCenter_2F",
+    "VermilionCity_Mart",
+    "VermilionCity_Gym",
+    "VermilionCity_PokemonFanClub",
+    "VermilionCity_PortPassage",
+    "VermilionCity_Port",
+    "VermilionCity_House1",
+    "VermilionCity_House2",
+    "VermilionCity_House3"
   ],
   "gLavenderTownInteriors": [
+    "LavenderTown_PokemonCenter_1F",
+    "LavenderTown_PokemonCenter_2F",
+    "LavenderTown_Mart",
+    "LavenderTown_RadioTower_1F",
+    "LavenderTown_VolunteerPokemonHouse",
+    "LavenderTown_SoulHouse",
+    "LavenderTown_NameRatersHouse",
+    "LavenderTown_House"
   ],
   "gCeladonCityInteriors": [
+    "CeladonCity_PokemonCenter_1F",
+    "CeladonCity_PokemonCenter_2F",
+    "CeladonCity_Gym",
+    "CeladonCity_GameCorner",
+    "CeladonCity_GameCorner_PrizeRoom",
+    "CeladonCity_Restaurant",
+    "CeladonCity_Mansion_1F",
+    "CeladonCity_Mansion_2F",
+    "CeladonCity_Mansion_3F",
+    "CeladonCity_Mansion_Roof",
+    "CeladonCity_Mansion_Penthouse",
+    "CeladonCity_DepartmentStore_1F",
+    "CeladonCity_DepartmentStore_2F",
+    "CeladonCity_DepartmentStore_3F",
+    "CeladonCity_DepartmentStore_4F",
+    "CeladonCity_DepartmentStore_5F",
+    "CeladonCity_DepartmentStore_Roof",
+    "CeladonCity_DepartmentStore_Elevator"
+  ],
+  "gSaffronCityInteriors": [
+    "SaffronCity_PokemonCenter_1F",
+    "SaffronCity_PokemonCenter_2F",
+    "SaffronCity_Mart",
+    "SaffronCity_Gym",
+    "SaffronCity_Dojo",
+    "SaffronCity_CopycatsHouse_1F",
+    "SaffronCity_CopycatsHouse_2F",
+    "SaffronCity_MagnetTrainStation",
+    "SaffronCity_SilphCo_1F",
+    "SaffronCity_MrPsychicsHouse"
   ],
   "gFuchsiaCityInteriors": [
+    "FuchsiaCity_PokemonCenter_1F",
+    "FuchsiaCity_PokemonCenter_2F",
+    "FuchsiaCity_Mart",
+    "FuchsiaCity_Gym",
+    "FuchsiaCity_SafariZoneOffice",
+    "FuchsiaCity_WardensHouse",
+    "FuchsiaCity_House"
   ],
   "gCinnabarIslandInteriors": [
+    "CinnabarIsland_PokemonCenter_1F",
+    "CinnabarIsland_PokemonCenter_2F"
   ],
   "gIndigoPlateauInteriors": [
+    "IndigoPlateau_PokemonCenter_1F",
+    "IndigoPlateau_PokemonCenter_2F",
+    "IndigoPlateau_WillsRoom",
+    "IndigoPlateau_KogasRoom",
+    "IndigoPlateau_BrunosRoom",
+    "IndigoPlateau_KarensRoom",
+    "IndigoPlateau_LancesRoom",
+    "IndigoPlateau_HallOfFame"
   ],
   "gRoute2Interiors": [
+    "Route2_House",
+    "Route2_Gatehouse",
+    "Route2_ViridianForest_SouthEntrance",
+    "Route2_ViridianForest_NorthEntrance"
   ],
   "gRoute5Interiors": [
+    "Route5_House",
+    "Route5_Gatehouse",
+    "Route5_UndergroundPathEntrance"
   ],
   "gRoute6Interiors": [
+    "Route6_UndergroundPathEntrance",
+    "Route6_Gatehouse"
   ],
   "gRoute7Interiors": [
+    "Route7_Gatehouse"
   ],
   "gRoute8Interiors": [
+    "Route8_Gatehouse"
+  ],
+  "gRoute10Interiors": [
+    "Route10_PokemonCenter_1F",
+    "Route10_PokemonCenter_2F",
+    "Route10_PowerPlant"
+  ],
+  "gRoute12Interiors": [
+    "Route12_FishingHouse"
+  ],
+  "gRoute15Interiors": [
+    "Route15_Gatehouse_1F",
+    "Route15_Gatehouse_2F"
+  ],
+  "gRoute16Interiors": [
+    "Route16_House",
+    "Route16_Gatehouse_1F",
+    "Route16_Gatehouse_2F"
+  ],
+  "gRoute17Interiors": [
+    "Route17_Gatehouse_1F",
+    "Route17_Gatehouse_2F"
+  ],
+  "gRoute19Interiors": [
+    "Route19_Gatehouse"
+  ],
+  "gRoute20Interiors": [
+    "Route20_SeafoamGym"
+  ],
+  "gRoute25Interiors": [
+    "Route25_BillsHouse"
+  ],
+  "gRoute26Interiors": [
+    "Route26_House1",
+    "Route26_House2"
+  ],
+  "gRoute27Interiors": [
+    "Route27_House"
+  ],
+  "gRoute28Interiors": [
+    "Route28_House"
+  ],
+  "gKantoDungeons": [
+    "TohjoFalls",
+    "VictoryRoad_Gatehouse",
+    "VictoryRoad",
+    "DiglettsCave",
+    "MtMoon",
+    "MtMoon_Square",
+    "MtMoon_GiftShop",
+    "UndergroundPath",
+    "RockTunnel_1F",
+    "RockTunnel_B1F",
+    "ViridianForest"
   ],
   "gRoute10Interiors": [
   ],

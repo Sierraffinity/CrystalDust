@@ -1,0 +1,32 @@
+mapscripts Route42_MapScripts {}
+
+// TODO: Suicune event
+
+script Route42_Eventscript_RouteSign { //used for both easternmost and westernmost signs
+    msgbox("ROUTE 42\nECRUTEAK CITY - MAHOGANY TOWN", MSGBOX_SIGN)
+    end
+}
+
+script Route42_Eventscript_MtMortarSign { //used for both signs near the cave
+    msgbox("MT. MORTAR\nWATERFALL CAVE INSIDE", MSGBOX_SIGN)
+    end
+}
+
+script Route42_Eventscript_FishermanTully {
+    // TODO: Phone
+    trainerbattle_single(TRAINER_TULLY_1, "Let me demonstrate the power of the\nPOKéMON I caught!", "What? That's not right.")
+    msgbox("I want to become the TRAINER CHAMP\nusing the POKéMON I caught.\pThat's the best part of fishing!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route42_Eventscript_PokemaniacShane {
+    trainerbattle_single(TRAINER_SHANE, "HEY! This is my secret place!\nGet lost, you outsider!", "I should have used my MOON STONE…")
+    msgbox("You're working on a POKéDEX?\pWow, you must know some pretty rare\nPOKéMON!\pMay I please see it?\nPlease?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Route42_Eventscript_HikerBenjamin {
+    trainerbattle_single(TRAINER_BENJAMIN, "Ah, it's good to be outside!\nI feel so free!", "Gahahah!")
+    msgbox("Losing feels insignificant if you\nlook up at the big sky!", MSGBOX_AUTOCLOSE)
+    end
+}

@@ -1,0 +1,8 @@
+mapscripts EcruteakCity_TinTowerGate_MapScripts {}
+
+// TODO: Both Sages and the triggers
+
+script EcruteakCity_Mart_Eventscript_OldMan{
+    msgbox("Two towers…\nTwo POKéMON…\pBut when one burned down, both\nPOKéMON flew away, never to return.", MSGBOX_NPC)
+    end
+}

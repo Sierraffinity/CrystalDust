@@ -1,0 +1,16 @@
+mapscripts BlackthornCity_House1_MapScripts {}
+
+script BlackthornCity_House1_Eventscript_OldWoman{
+    msgbox("A clan of TRAINERS who can freely\ncommand dragons live right here in\lBLACKTHORN.\pAs a result, there are many legends\nabout dragons in this town.", MSGBOX_NPC)
+    end
+}
+
+script BlackthornCity_House1_Eventscript_Dratini{
+    lock
+    faceplayer
+    playmoncry(SPECIES_DRATINI, 0)
+    msgbox("DRATINI: Draa!", MSGBOX_DEFAULT)
+    waitmoncry
+    release
+    end
+}

@@ -1,0 +1,13 @@
+mapscripts BlackthornCity_PokemonCenter_1F_MapScripts {}
+
+script BlackthornCity_PokemonCenter_1F_Eventscript_Gentleman{
+    msgbox("Deep inside far-off INDIGO PLATEAU\nis the POKéMON LEAGUE.\pI hear the best TRAINERS gather\nthere from around the country.", MSGBOX_NPC)
+    end
+}
+
+script BlackthornCity_PokemonCenter_1F_Eventscript_LittleGirl{
+    msgbox("There was this move I just had to\nteach my POKéMON.\pSo I got the MOVE DELETER to make it\nforget an HM move.", MSGBOX_NPC)
+    end
+}
+
+// The boy should use OlivineCity_PokemonCenter_1F_Eventscript_BugCatcher as his script.

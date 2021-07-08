@@ -2118,9 +2118,6 @@ static void CB_ExitFlyMap(void)
                     case MAPSEC_BATTLE_FRONTIER:
                         SetWarpDestinationToHealLocation(HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST);
                         break;
-                    case MAPSEC_EVER_GRANDE_CITY:
-                        SetWarpDestinationToHealLocation(FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE) && sFlyMap->regionMap.posWithinMapSec == 0 ? HEAL_LOCATION_NEW_BARK_TOWN : HEAL_LOCATION_NEW_BARK_TOWN);
-                        break;
                     default:
                         if (sMapHealLocations[sFlyMap->regionMap.primaryMapSecId][2] != 0)
                         {

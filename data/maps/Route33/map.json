@@ -12,7 +12,6 @@
   "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
-  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
@@ -28,7 +27,6 @@
   ],
   "object_events": [
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "in_connection": false,
       "x": 6,
@@ -40,10 +38,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route33_EventScript_Anthony",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
       "in_connection": false,
       "x": 15,
@@ -55,14 +53,25 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route33_EventScript_Girl",
-      "flag": "0"
+      "flag": "0",
+      "type": "original"
     },
     {
-      "type": "clone",
+      "graphics_id": "",
+      "in_connection": false,
       "x": -8,
       "y": 9,
-      "source_id": 7,
-      "source_map": "MAP_AZALEA_TOWN"
+      "elevation": 0,
+      "movement_type": "",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "",
+      "trainer_sight_or_berry_tree_id": "",
+      "script": "",
+      "flag": "",
+      "source_id": "",
+      "source_map": "MAP_AZALEA_TOWN",
+      "type": "clone"
     }
   ],
   "warp_events": [
@@ -85,13 +94,7 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route33_EventScript_DirectionsSign"
-    },
-    {
-      "type": "fruit_tree",
-      "x": 16,
-      "y": 17,
-      "elevation": 0,
-      "fruit_tree_id": "FRUIT_TREE_ROUTE_33"
     }
-  ]
+  ],
+  "phone_service": ""
 }

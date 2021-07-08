@@ -12,7 +12,6 @@
   "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
-  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
@@ -32,5 +31,6 @@
   ],
   "bg_events": [
 
-  ]
+  ],
+  "phone_service": ""
 }

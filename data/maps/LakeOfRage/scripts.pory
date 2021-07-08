@@ -1,0 +1,80 @@
+mapscripts LakeOfRage_MapScripts {}
+
+// TODO: Gyarados, Lance event, Guru house sign, Old man
+
+script LakeOfRage_Eventscript_LakeSign {
+    msgbox("The LAKE OF RAGE, also known as\nGYARADOS LAKE.", MSGBOX_SIGN)
+    end
+}
+
+script LakeOfRage_Eventscript_RightLakeGuy { // beneath Cooltrainer Lois
+    msgbox("I heard this lake was made by\nrampaging GYARADOS.\pI wonder if there is any connection\nto their mass outbreak now?", MSGBOX_NPC)
+    end
+}
+
+script LakeOfRage_Eventscript_Girl { // near guru's house
+    msgbox("Did my eyes deceive me?\nI saw a red GYARADOS in the LAKE…\pBut I thought GYARADOS were usually\nblue?", MSGBOX_NPC)
+    end
+}
+
+
+script LakeOfRage_Eventscript_WesleyOfWednesday {
+    lock
+	faceplayer
+	if (!flag(FLAG_RECEIVED_BLACK_BELT_FROM_WESLEY))
+	{
+		gettime
+		if (var(VAR_0x8003) == DAY_WEDNESDAY)
+		{
+			if (!flag(FLAG_MET_WESLEY_OF_WEDNESDAY))
+			{
+				msgbox("WESLEY: Well, how do you do?\pSeeing as how it's WEDNESDAY today,\nI'm WESLEY of WEDNESDAY.\pPleased to meet you.\nPlease take a souvenir.")
+				setflag(FLAG_MET_WESLEY_OF_WEDNESDAY)
+			}
+			else
+			{
+				msgbox("WESLEY: Pleased to meet you.\nPlease take a souvenir.")
+			}
+			giveitem(ITEM_BLACK_BELT)
+			if (!var(VAR_RESULT))
+			{
+				goto(Common_EventScript_ShowBagIsFull)
+			}
+			setflag(FLAG_RECEIVED_BLACK_BELT_FROM_WESLEY)
+			msgbox("WESLEY: The BLACKBELT beefs up the\npower of FIGHTING-type moves.")
+		}
+		else
+		{
+			msgbox("WESLEY: Today's not WEDNESDAY.\nThat's too bad.")
+		}
+	}
+	else
+	{
+		msgbox("WESLEY: Since you found me, you must\nhave met my brothers and sisters.\pOr did you just get lucky?")
+	}
+	release
+}
+
+script LakeOfRage_Eventscript_CooltrainerAaron { //on left side of lake
+    trainerbattle_single(TRAINER_AARON, "If a TRAINER spots another TRAINER,\nhe has to make a challenge.\pThat is our destiny.", "Whew…\nGood battle.")
+    msgbox("POKéMON and their TRAINER become\npowerful through constant battling.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script LakeOfRage_Eventscript_CooltrainerLois {
+    trainerbattle_single(TRAINER_LOIS, "What happened to the red GYARADOS?\nIt's gone?\pOh, darn. I came here for nothing?\nI know--let's battle!", "Good going!")
+    msgbox("Come to think of it, I've seen a\npink BUTTERFREE.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script LakeOfRage_Eventscript_FishermanAndre { // the one looking left
+    trainerbattle_single(TRAINER_ANDRE, "Let me battle with the POKéMON I\njust caught!", "I might be an expert angler, but I\nstink as a POKéMON TRAINER…")
+    msgbox("I won't lose as an angler!\nI catch POKéMON all day.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script LakeOfRage_Eventscript_FishermanRaymond { // the one looking up nearest sign
+    trainerbattle_single(TRAINER_RAYMOND, "No matter what I do, all I catch are\nthe same POKéMON…", "My line's all tangled up…")
+    msgbox("Why can't I catch any good POKéMON?", MSGBOX_AUTOCLOSE)
+    end
+}

@@ -917,3 +917,290 @@ gTileset_NationalPark::
 	.4byte gMetatileAttributes_NationalPark
 	.4byte InitTilesetAnim_NationalPark
 	.4byte NULL @ palette overrides
+
+	.align 2
+gTileset_PalletTown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PalletTown
+	.4byte gTilesetPalettes_PalletTown
+	.4byte gMetatiles_PalletTown
+	.4byte gMetatileAttributes_PalletTown
+	.4byte NULL
+
+	.align 2
+gTileset_ViridianCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_ViridianCity
+	.4byte gTilesetPalettes_ViridianCity
+	.4byte gMetatiles_ViridianCity
+	.4byte gMetatileAttributes_ViridianCity
+	.4byte NULL
+
+	.align 2
+gTileset_PewterCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PewterCity
+	.4byte gTilesetPalettes_PewterCity
+	.4byte gMetatiles_PewterCity
+	.4byte gMetatileAttributes_PewterCity
+	.4byte NULL
+
+	.align 2
+gTileset_CeruleanCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_CeruleanCity
+	.4byte gTilesetPalettes_CeruleanCity
+	.4byte gMetatiles_CeruleanCity
+	.4byte gMetatileAttributes_CeruleanCity
+	.4byte NULL
+
+	.align 2
+gTileset_LavenderTown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_LavenderTown
+	.4byte gTilesetPalettes_LavenderTown
+	.4byte gMetatiles_LavenderTown
+	.4byte gMetatileAttributes_LavenderTown
+	.4byte NULL
+
+	.align 2
+gTileset_VermilionCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_VermilionCity
+	.4byte gTilesetPalettes_VermilionCity
+	.4byte gMetatiles_VermilionCity
+	.4byte gMetatileAttributes_VermilionCity
+	.4byte NULL
+
+	.align 2
+gTileset_CeladonCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_CeladonCity
+	.4byte gTilesetPalettes_CeladonCity
+	.4byte gMetatiles_CeladonCity
+	.4byte gMetatileAttributes_CeladonCity
+	.4byte NULL
+
+	.align 2
+gTileset_FuchsiaCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FuchsiaCity
+	.4byte gTilesetPalettes_FuchsiaCity
+	.4byte gMetatiles_FuchsiaCity
+	.4byte gMetatileAttributes_FuchsiaCity
+	.4byte NULL
+
+	.align 2
+gTileset_IndigoPlateau::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_IndigoPlateau
+	.4byte gTilesetPalettes_IndigoPlateau
+	.4byte gMetatiles_IndigoPlateau
+	.4byte gMetatileAttributes_IndigoPlateau
+	.4byte NULL
+
+	.align 2
+gTileset_SaffronCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SaffronCity
+	.4byte gTilesetPalettes_SaffronCity
+	.4byte gMetatiles_SaffronCity
+	.4byte gMetatileAttributes_SaffronCity
+	.4byte NULL
+
+	.align 2
+gTileset_GeneralKanto::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_GeneralKanto
+	.4byte gTilesetPalettes_GeneralKanto
+	.4byte gMetatiles_GeneralKanto
+	.4byte gMetatileAttributes_GeneralKanto
+	.4byte NULL
+
+
+	.align 2
+gTileset_RedsHouse::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RedsHouse
+	.4byte gTilesetPalettes_RedsHouse
+	.4byte gMetatiles_RedsHouse
+	.4byte gMetatileAttributes_RedsHouse
+	.4byte NULL
+
+	.align 2
+gTileset_ViridianGym::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_ViridianGym
+	.4byte gTilesetPalettes_ViridianGym
+	.4byte gMetatiles_ViridianGym
+	.4byte gMetatileAttributes_ViridianGym
+	.4byte NULL
+
+	.align 2
+gTileset_PewterGym::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PewterGym
+	.4byte gTilesetPalettes_PewterGym
+	.4byte gMetatiles_PewterGym
+	.4byte gMetatileAttributes_PewterGym
+	.4byte NULL
+
+	.align 2
+gTileset_PewterMuseum::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PewterMuseum
+	.4byte gTilesetPalettes_PewterMuseum
+	.4byte gMetatiles_PewterMuseum
+	.4byte gMetatileAttributes_PewterMuseum
+	.4byte NULL
+
+	.align 2
+gTileset_CeruleanGym::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_CeruleanGym
+	.4byte gTilesetPalettes_CeruleanGym
+	.4byte gMetatiles_CeruleanGym
+	.4byte gMetatileAttributes_CeruleanGym
+	.4byte NULL
+
+	.align 2
+gTileset_VermilionGym::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_VermilionGym
+	.4byte gTilesetPalettes_VermilionGym
+	.4byte gMetatiles_VermilionGym
+	.4byte gMetatileAttributes_VermilionGym
+	.4byte NULL
+
+	.align 2
+gTileset_SoulHouse::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SoulHouse
+	.4byte gTilesetPalettes_SoulHouse
+	.4byte gMetatiles_SoulHouse
+	.4byte gMetatileAttributes_SoulHouse
+	.4byte NULL
+
+	.align 2
+gTileset_RestaurantHotel::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RestaurantHotel
+	.4byte gTilesetPalettes_RestaurantHotel
+	.4byte gMetatiles_RestaurantHotel
+	.4byte gMetatileAttributes_RestaurantHotel
+	.4byte NULL
+
+	.align 2
+gTileset_CeladonMansion::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_CeladonMansion
+	.4byte gTilesetPalettes_CeladonMansion
+	.4byte gMetatiles_CeladonMansion
+	.4byte gMetatileAttributes_CeladonMansion
+	.4byte NULL
+
+	.align 2
+gTileset_SaffronGym::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SaffronGym
+	.4byte gTilesetPalettes_SaffronGym
+	.4byte gMetatiles_SaffronGym
+	.4byte gMetatileAttributes_SaffronGym
+	.4byte NULL
+
+	.align 2
+gTileset_SafariZoneHouse::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SafariZoneHouse
+	.4byte gTilesetPalettes_SafariZoneHouse
+	.4byte gMetatiles_SafariZoneHouse
+	.4byte gMetatileAttributes_SafariZoneHouse
+	.4byte NULL
+
+	.align 2
+gTileset_FuchsiaGym::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FuchsiaGym
+	.4byte gTilesetPalettes_FuchsiaGym
+	.4byte gMetatiles_FuchsiaGym
+	.4byte gMetatileAttributes_FuchsiaGym
+	.4byte NULL
+
+	.align 2
+gTileset_HallOfFame::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_HallOfFame
+	.4byte gTilesetPalettes_HallOfFame
+	.4byte gMetatiles_HallOfFame
+	.4byte gMetatileAttributes_HallOfFame
+	.4byte NULL
+
+	.align 2
+gTileset_PowerPlant::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PowerPlant
+	.4byte gTilesetPalettes_PowerPlant
+	.4byte gMetatiles_PowerPlant
+	.4byte gMetatileAttributes_PowerPlant
+	.4byte NULL
+
+	.align 2
+gTileset_DiglettsCave::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_DiglettsCave
+	.4byte gTilesetPalettes_DiglettsCave
+	.4byte gMetatiles_DiglettsCave
+	.4byte gMetatileAttributes_DiglettsCave
+	.4byte NULL
