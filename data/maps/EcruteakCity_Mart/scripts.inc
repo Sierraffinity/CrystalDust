@@ -1,3 +1,43 @@
 EcruteakCity_Mart_MapScripts::
 	.byte 0
 
+
+EcruteakCity_Mart_Eventscript_Boy::
+	msgbox EcruteakCity_Mart_Eventscript_Boy_Text_0, MSGBOX_NPC
+	end
+
+
+EcruteakCity_Mart_Eventscript_OldWoman::
+	msgbox EcruteakCity_Mart_Eventscript_OldWoman_Text_0, MSGBOX_NPC
+	end
+
+
+EcruteakCity_Mart_Eventscript_Clerk::
+	lock
+	faceplayer
+	message gText_HowMayIHelpYou
+	waitmessage
+	pokemart EcruteakCity_Mart_Pokemart_Clerk
+	msgbox gText_PleaseComeAgain
+	release
+	return
+
+
+EcruteakCity_Mart_Pokemart_Clerk:
+    .2byte ITEM_POKE_BALL
+    .2byte ITEM_GREAT_BALL
+	.2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+    .2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+    .2byte ITEM_AWAKENING
+    .2byte ITEM_BURN_HEAL
+	.2byte ITEM_ICE_HEAL
+    .2byte ITEM_REVIVE
+	.2byte ITEM_NONE
+
+EcruteakCity_Mart_Eventscript_Boy_Text_0:
+	.string "My EEVEE evolved into an ESPEON.\pBut my friend's EEVEE turned into an\nUMBREON. I wonder why?\pWe both were raising our EEVEE in\nthe same way…$"
+
+EcruteakCity_Mart_Eventscript_OldWoman_Text_0:
+	.string "If you use REVIVE, a POKéMON that's\nfainted will wake right up.$"

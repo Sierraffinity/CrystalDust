@@ -7,7 +7,7 @@ script OlivineCity_Port_Eventscript_Fisherman1{ //before HoF, rightmost
     end
 }
 
-script OlivineCity_Port_Eventscript_Fisherman1{ //before HoF, leftmost
+script OlivineCity_Port_Eventscript_Fisherman2{ //before HoF, leftmost
     msgbox("SHELLDER are easy to catch here.\nThey're kind of rare elsewhere.", MSGBOX_NPC)
     end
 }
