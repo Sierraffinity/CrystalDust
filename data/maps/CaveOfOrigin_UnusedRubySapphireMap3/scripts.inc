@@ -1,8 +1,0 @@
-CaveOfOrigin_UnusedRubySapphireMap3_MapScripts:: @ 8235798
-	map_script MAP_SCRIPT_ON_TRANSITION, CaveOfOrigin_UnusedRubySapphireMap3_OnTransition
-	.byte 0
-
-CaveOfOrigin_UnusedRubySapphireMap3_OnTransition: @ 823579E
-	call_if_set FLAG_RECEIVED_HM08, CaveOfOrigin_EventScript_SetTempVars
-	end
-

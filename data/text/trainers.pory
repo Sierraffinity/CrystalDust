@@ -2795,23 +2795,6 @@ Route45_Text_MariaPostRematch: @ 829CAF6
 	.string "I'll resume training tomorrow.\n"
 	.string "Let's battle again sometime!$"
 
-Route45_Text_DerekIntro: @ 829CB32
-	.string "Once a BUG CATCHER!\n"
-	.string "And now a BUG MANIAC!\p"
-	.string "But my love for POKéMON remains\n"
-	.string "unchanged!$"
-
-Route45_Text_DerekDefeat: @ 829CB87
-	.string "My ineptitude also remains\n"
-	.string "unchanged…$"
-
-Route45_Text_DerekPostBattle: @ 829CBAD
-	.string "All I did was follow my heart, and now\n"
-	.string "they call me a BUG MANIAC…\p"
-	.string "Still, I am an expert on BUG POKéMON,\n"
-	.string "so it's only natural that they call me\l"
-	.string "a BUG MANIAC.$"
-
 Route45_Text_AnnaIntro: @ 829CC4A
 	.string "ANNA: I'm with my pretty junior student\n"
 	.string "partner. I have to do good!$"

@@ -3,11 +3,19 @@ Common_EventScript_SetGymTrainers:: @ 8271F43
 	case 1, VioletCity_Gym_SetGymTrainers
 	case 2, AzaleaTown_Gym_SetGymTrainers
 	case 3, GoldenrodCity_Gym_SetGymTrainers
-	case 4, LavaridgeTown_Gym_SetGymTrainers
-	case 5, NotVioletCity_Gym_SetGymTrainers
-	case 6, FortreeCity_Gym_SetGymTrainers
-	case 7, MossdeepCity_Gym_SetGymTrainers
-	case 8, SootopolisCity_Gym_SetGymTrainers
+	case 4, EcruteakCity_Gym_SetGymTrainers
+	case 5, CianwoodCity_Gym_SetGymTrainers
+	case 6, OlivineCity_Gym_SetGymTrainers
+	case 7, MahoganyTown_Gym_SetGymTrainers
+	case 8, BlackthornCity_Gym_SetGymTrainers
+	case 9, PewterCity_Gym_SetGymTrainers
+	case 10, CeruleanCity_Gym_SetGymTrainers
+	case 11, VermilionCity_Gym_SetGymTrainers
+	case 12, CeladonCity_Gym_SetGymTrainers
+	case 13, FuchsiaCity_Gym_SetGymTrainers
+	case 14, SaffronCity_Gym_SetGymTrainers
+	case 15, SeafoamIslands_Gym_SetGymTrainers
+	case 16, ViridianCity_Gym_SetGymTrainers
 	end
 
 VioletCity_Gym_SetGymTrainers:: @ 8271FA1
@@ -29,60 +37,74 @@ GoldenrodCity_Gym_SetGymTrainers:: @ 8271FBE
 	settrainerflag TRAINER_SAMANTHA
 	return
 
-LavaridgeTown_Gym_SetGymTrainers:: @ 8271FCE
-	settrainerflag TRAINER_COLE
-	settrainerflag TRAINER_AXLE
-	settrainerflag TRAINER_KEEGAN
-	settrainerflag TRAINER_GERALD
-	settrainerflag TRAINER_DANIELLE
-	settrainerflag TRAINER_JACE
-	settrainerflag TRAINER_JEFF
-	settrainerflag TRAINER_ELI
+EcruteakCity_Gym_SetGymTrainers::
+	settrainerflag TRAINER_PING
+	settrainerflag TRAINER_GRACE
+	settrainerflag TRAINER_JEFFREY
+	settrainerflag TRAINER_MARTHA
 	return
 
-NotVioletCity_Gym_SetGymTrainers:: @ 8271FE7
-	settrainerflag TRAINER_MARK
-	settrainerflag TRAINER_ALAN
-	settrainerflag TRAINER_BAILEY
-	settrainerflag TRAINER_TED
-	settrainerflag TRAINER_MARY
-	settrainerflag TRAINER_ALEXIA
-	settrainerflag TRAINER_JODY
+CianwoodCity_Gym_SetGymTrainers::
+	settrainerflag TRAINER_YOSHI
+	settrainerflag TRAINER_LAO
+	settrainerflag TRAINER_NOB
+	settrainerflag TRAINER_LUNG
 	return
 
-FortreeCity_Gym_SetGymTrainers:: @ 8271FFD
+MahoganyTown_Gym_SetGymTrainers::
+	settrainerflag TRAINER_ROXANNE
+	settrainerflag TRAINER_RONALD
+	settrainerflag TRAINER_CLARISSA
+	settrainerflag TRAINER_BRAD
+	settrainerflag TRAINER_DOUGLAS
+	return
+
+BlackthornCity_Gym_SetGymTrainers::
+	settrainerflag TRAINER_PAUL
+	settrainerflag TRAINER_FRAN
+	settrainerflag TRAINER_CODY
+	settrainerflag TRAINER_MIKE
+	settrainerflag TRAINER_LOLA
+	return
+
+PewterCity_Gym_SetGymTrainers::
+	settrainerflag TRAINER_JERRY
+	return
+
+CeruleanCity_Gym_SetGymTrainers::
+	settrainerflag TRAINER_PARKER
+	settrainerflag TRAINER_BRIANA
+	settrainerflag TRAINER_DIANA
+	return
+	
+VermilionCity_Gym_SetGymTrainers::
+	settrainerflag TRAINER_HORTON
+	settrainerflag TRAINER_VINCENT
+	settrainerflag TRAINER_GREGORY
+	return
+	
+CeladonCity_Gym_SetGymTrainers::
+	settrainerflag TRAINER_JO_AND_ZOE
+	settrainerflag TRAINER_TANYA
+	settrainerflag TRAINER_MICHELLE
+	settrainerflag TRAINER_JULIA
+	return
+	
+FuchsiaCity_Gym_SetGymTrainers::
+	settrainerflag TRAINER_LINDA
+	settrainerflag TRAINER_CINDY
+	settrainerflag TRAINER_BARRY
+	settrainerflag TRAINER_ALICE
+	return
+	
+SaffronCity_Gym_SetGymTrainers::
+	settrainerflag TRAINER_REBECCA
 	settrainerflag TRAINER_JARED
-	settrainerflag TRAINER_FLINT
-	settrainerflag TRAINER_ASHLEY
-	settrainerflag TRAINER_EDWARDO
-	settrainerflag TRAINER_HUMBERTO
-	settrainerflag TRAINER_DARIUS
+	settrainerflag TRAINER_DORIS
+	settrainerflag TRAINER_FRANKLIN
 	return
 
-MossdeepCity_Gym_SetGymTrainers:: @ 8272010
-	settrainerflag TRAINER_PRESTON
-	settrainerflag TRAINER_VIRGIL
-	settrainerflag TRAINER_BLAKE
-	settrainerflag TRAINER_HANNAH
-	settrainerflag TRAINER_SAMANTHA_OLD
-	settrainerflag TRAINER_MAURA
-	settrainerflag TRAINER_SYLVIA
-	settrainerflag TRAINER_NATE
-	settrainerflag TRAINER_KATHLEEN
-	settrainerflag TRAINER_CLIFFORD
-	settrainerflag TRAINER_MACEY
-	settrainerflag TRAINER_NICHOLAS
-	return
-
-SootopolisCity_Gym_SetGymTrainers:: @ 8272035
-	settrainerflag TRAINER_ANDREA
-	settrainerflag TRAINER_CRISSY
-	settrainerflag TRAINER_BRIANNA
-	settrainerflag TRAINER_CONNIE
-	settrainerflag TRAINER_BRIDGET_OLD
-	settrainerflag TRAINER_OLIVIA
-	settrainerflag TRAINER_TIFFANY
-	settrainerflag TRAINER_BETHANY
-	settrainerflag TRAINER_ANNIKA
-	settrainerflag TRAINER_DAPHNE
+OlivineCity_Gym_SetGymTrainers::	
+SeafoamIslands_Gym_SetGymTrainers::
+ViridianCity_Gym_SetGymTrainers::
 	return

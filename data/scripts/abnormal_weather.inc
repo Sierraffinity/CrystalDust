@@ -394,33 +394,33 @@ AbnormalWeather_Underwater_SetupEscapeWarp:: @ 8274223
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpRoute33North:: @ 8274281
-	setescapewarp MAP_ROUTE33, 255, 11, 29
+	setescapewarp MAP_NONE, 255, 11, 29
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpRoute33South:: @ 827428A
-	setescapewarp MAP_ROUTE33, 255, 21, 54
+	setescapewarp MAP_NONE, 255, 21, 54
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpRoute125West:: @ 8274293
-	setescapewarp MAP_ROUTE125, 255, 9, 17
+	setescapewarp MAP_NONE, 255, 9, 17
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpRoute125East:: @ 827429C
-	setescapewarp MAP_ROUTE125, 255, 54, 19
+	setescapewarp MAP_NONE, 255, 54, 19
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpRoute127North:: @ 82742A5
-	setescapewarp MAP_ROUTE127, 255, 58, 10
+	setescapewarp MAP_NONE, 255, 58, 10
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpRoute127South:: @ 82742AE
-	setescapewarp MAP_ROUTE127, 255, 62, 31
+	setescapewarp MAP_NONE, 255, 62, 31
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpRoute129West:: @ 82742B7
-	setescapewarp MAP_ROUTE129, 255, 17, 15
+	setescapewarp MAP_NONE, 255, 17, 15
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpRoute129East:: @ 82742C0
-	setescapewarp MAP_ROUTE129, 255, 43, 20
+	setescapewarp MAP_NONE, 255, 43, 20
 	return

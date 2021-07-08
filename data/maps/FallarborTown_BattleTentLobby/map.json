@@ -90,14 +90,14 @@
       "x": 6,
       "y": 9,
       "elevation": 0,
-      "dest_map": "MAP_FALLARBOR_TOWN",
+      "dest_map": "MAP_NONE",
       "dest_warp_id": 1
     },
     {
       "x": 7,
       "y": 9,
       "elevation": 0,
-      "dest_map": "MAP_FALLARBOR_TOWN",
+      "dest_map": "MAP_NONE",
       "dest_warp_id": 1
     }
   ],

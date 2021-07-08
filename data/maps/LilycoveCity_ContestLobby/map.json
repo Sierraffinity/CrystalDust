@@ -370,14 +370,14 @@
       "x": 14,
       "y": 11,
       "elevation": 0,
-      "dest_map": "MAP_LILYCOVE_CITY",
+      "dest_map": "MAP_NONE",
       "dest_warp_id": 4
     },
     {
       "x": 15,
       "y": 11,
       "elevation": 0,
-      "dest_map": "MAP_LILYCOVE_CITY",
+      "dest_map": "MAP_NONE",
       "dest_warp_id": 4
     },
     {
