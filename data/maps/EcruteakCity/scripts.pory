@@ -13,11 +13,6 @@ script EcruteakCity_Eventscript_DanceTheaterSign {
     end
 }
 
-script EcruteakCity_Eventscript_DanceTheaterSign {
-    msgbox("ECRUTEAK DANCE THEATER", MSGBOX_SIGN)
-    end
-}
-
 script EcruteakCity_Eventscript_GymSign {
     msgbox("ECRUTEAK CITY POKéMON GYM\nLEADER: MORTY\pThe Mystic Seer of the Future", MSGBOX_SIGN)
     end

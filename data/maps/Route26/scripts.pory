@@ -25,7 +25,7 @@ script Route26_Eventscript_CooltrainerJoyce {
 
 script Route26_Eventscript_CooltrainerGaven {
     // TODO: Phone
-    trainerbattle_single(TRAINER_GAVEN, "By experiencing tough battles, you\ngain power.", "Gaah! Life is even tougher!")
+    trainerbattle_single(TRAINER_GAVEN_1, "By experiencing tough battles, you\ngain power.", "Gaah! Life is even tougher!")
     msgbox("To get to the POKéMON LEAGUE, you\nhave to get through VICTORY ROAD.\pBut VICTORY ROAD is tough.\nPractically nobody goes there!", MSGBOX_AUTOCLOSE)
     end
 }
@@ -38,7 +38,7 @@ script Route26_Eventscript_CooltrainerJake {
 
 script Route26_Eventscript_CooltrainerBeth {
     // TODO: Phone
-    trainerbattle_single(TRAINER_BETH, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his POKéMON.", "POKéMON aren't tools of war.")
+    trainerbattle_single(TRAINER_BETH_1, "I lost to a TRAINER named {RIVAL}.\nHe was really strong, but…\pIt was as if he absolutely had to\nwin at any cost.\pI feel sorry for his POKéMON.", "POKéMON aren't tools of war.")
     msgbox("POKéMON are invaluable, lifelong\npartners.", MSGBOX_AUTOCLOSE)
     end
 }

@@ -1,3 +1,0 @@
-OlivineCity_Mart_MapScripts::
-	.byte 0
-
