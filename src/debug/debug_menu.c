@@ -112,6 +112,7 @@ static void DebugMenu_EnableMapCard(u8 taskId);
 static void DebugMenu_EnableRadioCard(u8 taskId);
 static void DebugMenu_WildBattle(u8 taskId);
 static void DebugMenu_100Or0CatchRate(u8 taskId);
+static void DebugMenu_BattleTerrain(u8 taskId);
 static void DebugMenu_ToggleForceShiny(u8 taskId);
 static void DebugMenu_ForcePartyEggsHatch(u8 taskId);
 static void DebugMenu_ForceEvolution(u8 taskId);
@@ -128,10 +129,12 @@ static void ReturnToPreviousMenu(u8 taskId, const struct DebugMenuBouncer *bounc
 static void DebugMenu_AddItem_ProcessInputNum(u8 taskId);
 static void DebugMenu_AddItem_ProcessInputCount(u8 taskId);
 static void DebugMenu_LottoNumber_ProcessInput(u8 taskId);
+static void DebugMenu_BattleTerrain_ProcessInput(u8 taskId);
 
 extern bool8 gPaletteTintDisabled;
 extern bool8 gPaletteOverrideDisabled;
-extern bool8 gCatchDebugStatus;
+extern u8 gCatchDebugStatus;
+extern u8 gBattleTerrainOverride;
 extern s16 gDNPeriodOverride;
 extern u16 gDNTintOverride[3];
 extern bool8 gDebugForceEggHatch;
@@ -150,6 +153,7 @@ static const u8 sText_DayNight[] = _("Day/night");
 static const u8 sText_Pokedex[] = _("Pokédex");
 static const u8 sText_Pokegear[] = _("Pokégear");
 static const u8 sText_Pokemon[] = _("Pokémon");
+static const u8 sText_Battle[] = _("Battle");
 static const u8 sText_Positional[] = _("Positional");
 static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
@@ -159,6 +163,7 @@ static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
 static const u8 sText_PoisonAllMons[] = _("Poison all Pokémon");
 static const u8 sText_FillThePC[] = _("Fill the PC");
+static const u8 sText_Terrain[] = _("Override terrain");
 static const u8 sText_100Or0CatchRate[] = _("Normal/100%/0% catch rate");
 static const u8 sText_ToggleForceShiny[] = _("Toggle forced shinies");
 static const u8 sText_ForcePartyEggsHatch[] = _("Hatch eggs in party");
@@ -180,6 +185,7 @@ static const u8 sText_ItemStatus[] = _("Item: {STR_VAR_1}\nCount: {STR_VAR_2}");
 static const u8 sText_ClockStatus[] = _("Time: {STR_VAR_1}");
 static const u8 sText_RespawnStatus[] = _("Respawn point:\n{STR_VAR_1}");
 static const u8 sText_LottoStatus[] = _("Lotto num:\n{STR_VAR_1}");
+static const u8 sText_BattleTerrain[] = _("Terrain override:\n{STR_VAR_1}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
 static const u8 sText_Off[] = _("{COLOR RED}OFF");
 static const u8 sText_RGBValues[] = _("{COLOR RED}{STR_VAR_1}\n{COLOR GREEN}{STR_VAR_2}\n{COLOR BLUE}{STR_VAR_3}");
@@ -191,6 +197,7 @@ static const struct DebugMenuBouncer sDebugMenu_Bouncer_DNActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_PokedexActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_PokegearActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_PokemonActions;
+static const struct DebugMenuBouncer sDebugMenu_Bouncer_BattleActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_PositionalActions;
 static const struct DebugMenuBouncer sDebugMenu_Bouncer_MiscActions;
 
@@ -203,6 +210,7 @@ static const struct DebugMenuAction sDebugMenu_MainActions[] =
     { sText_Pokedex, SUBMENU_ACTIONS(PokedexActions) },
     { sText_Pokegear, SUBMENU_ACTIONS(PokegearActions) },
     { sText_Pokemon, SUBMENU_ACTIONS(PokemonActions) },
+    { sText_Battle, SUBMENU_ACTIONS(BattleActions) },
     { sText_Positional, SUBMENU_ACTIONS(PositionalActions) },
     { sText_Misc, SUBMENU_ACTIONS(MiscActions) },
     { gText_MenuOptionExit, DebugMenu_Exit, NULL }
@@ -252,16 +260,25 @@ CREATE_BOUNCER(PokegearActions, MainActions);
 
 static const struct DebugMenuAction sDebugMenu_PokemonActions[] =
 {
-    { sText_WildBattle, DebugMenu_WildBattle, NULL },
-    { sText_100Or0CatchRate, DebugMenu_100Or0CatchRate, NULL },
     { sText_CreateDaycareEgg, DebugMenu_CreateDaycareEgg, NULL },
     { sText_PoisonAllMons, DebugMenu_PoisonAllMons, NULL },
-    { sText_ToggleForceShiny, DebugMenu_ToggleForceShiny, NULL },
     { sText_ForcePartyEggsHatch, DebugMenu_ForcePartyEggsHatch, NULL },
     { sText_ForceEvolution, DebugMenu_ForceEvolution, NULL },
+    { sText_FillThePC, DebugMenu_FillThePC, NULL },
 };
 
 CREATE_BOUNCER(PokemonActions, MainActions);
+
+static const struct DebugMenuAction sDebugMenu_BattleActions[] =
+{
+    { sText_WildBattle, DebugMenu_WildBattle, NULL },
+    { sText_100Or0CatchRate, DebugMenu_100Or0CatchRate, NULL },
+    { sText_ToggleForceShiny, DebugMenu_ToggleForceShiny, NULL },
+    { sText_TestBattleTransition, DebugMenu_TestBattleTransition, NULL },
+    { sText_Terrain, DebugMenu_BattleTerrain, NULL },
+};
+
+CREATE_BOUNCER(BattleActions, MainActions);
 
 static const struct DebugMenuAction sDebugMenu_PositionalActions[] = 
 {
@@ -276,8 +293,6 @@ static const struct DebugMenuAction sDebugMenu_MiscActions[] =
     { sText_ToggleWalkThroughWalls, DebugMenu_ToggleWalkThroughWalls, NULL },
     { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes, NULL },
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC, NULL },
-    { sText_TestBattleTransition, DebugMenu_TestBattleTransition, NULL },
-    { sText_FillThePC, DebugMenu_FillThePC, NULL },
 };
 
 CREATE_BOUNCER(MiscActions, MainActions);
@@ -365,6 +380,17 @@ static const struct WindowTemplate sDebugMenu_Window_LottoNum =
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 7,
+    .height = 4,
+    .paletteNum = 15,
+    .baseBlock = 0x120
+};
+
+static const struct WindowTemplate sDebugMenu_Window_BattleTerrain = 
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 11,
     .height = 4,
     .paletteNum = 15,
     .baseBlock = 0x120
@@ -949,6 +975,73 @@ static void DebugMenu_100Or0CatchRate(u8 taskId)
 {
     gCatchDebugStatus = (gCatchDebugStatus + 1) % 3;
 }
+
+static void DebugMenu_BattleTerrain_PrintStatus(u8 windowId, u16 terrain)
+{
+    FillWindowPixelBuffer(windowId, 0x11);
+    if (terrain > 0)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, terrain - 1, STR_CONV_MODE_RIGHT_ALIGN, 2);
+    }
+    else
+    {
+        StringCopy(gStringVar1, gText_None);
+    }
+    StringExpandPlaceholders(gStringVar4, sText_BattleTerrain);
+    AddTextPrinterParameterized5(windowId, 2, gStringVar4, 0, 1, 0, NULL, 0, 2);
+}
+
+#define tTerrain data[1]
+
+static void DebugMenu_BattleTerrain(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    DebugMenu_RemoveMenu(taskId);
+    tWindowId = AddWindow(&sDebugMenu_Window_BattleTerrain);
+    SetStandardWindowBorderStyle(tWindowId, FALSE);
+    tTerrain = gBattleTerrainOverride;
+    DebugMenu_BattleTerrain_PrintStatus(tWindowId, tTerrain);
+    ScheduleBgCopyTilemapToVram(0);
+    gTasks[taskId].func = DebugMenu_BattleTerrain_ProcessInput;
+}
+
+static void DebugMenu_BattleTerrain_ProcessInput(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (JOY_REPEAT(DPAD_UP))
+    {
+        PlaySE(SE_SELECT);
+        tTerrain++;
+        if (tTerrain > 22)
+            tTerrain = 0;
+        DebugMenu_BattleTerrain_PrintStatus(tWindowId, tTerrain);
+    }
+
+    if (JOY_REPEAT(DPAD_DOWN))
+    {
+        PlaySE(SE_SELECT);
+        tTerrain--;
+        if (tTerrain < 0)
+            tTerrain = 22;
+        DebugMenu_BattleTerrain_PrintStatus(tWindowId, tTerrain);
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        gBattleTerrainOverride = tTerrain;
+    }
+
+    if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        ReturnToPreviousMenu(taskId, GET_BOUNCER);
+    }
+}
+
+#undef tTerrain
 
 static void DebugMenu_EnableResetRTC(u8 taskId)
 {

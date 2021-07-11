@@ -838,7 +838,7 @@ static const struct BattleBackground sBattleTerrainTable[] =
         .tilemap = gBattleTerrainTilemap_LongGrass,
         .entryTileset = gBattleTerrainAnimTiles_LongGrass,
         .entryTilemap = gBattleTerrainAnimTilemap_LongGrass,
-        .palette = {gBattleTerrainPalette_LongGrass, gBattleTerrainPalette_LongGrass, gBattleTerrainPalette_LongGrass},
+        .palette = {gBattleTerrainPalette_LongGrass_Morning, gBattleTerrainPalette_LongGrass_Day, gBattleTerrainPalette_LongGrass_Night},
     },
 
     [BATTLE_TERRAIN_SAND] =

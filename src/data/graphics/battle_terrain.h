@@ -5,7 +5,9 @@ const u32 gBattleTerrainPalette_TallGrass_Night[] = INCBIN_U32("graphics/battle_
 const u32 gBattleTerrainTilemap_TallGrass[] = INCBIN_U32("graphics/battle_terrain/tall_grass/map.bin.lz");
 
 const u32 gBattleTerrainTiles_LongGrass[] = INCBIN_U32("graphics/battle_terrain/long_grass/tiles.4bpp.lz");
-const u32 gBattleTerrainPalette_LongGrass[] = INCBIN_U32("graphics/battle_terrain/long_grass/palette.gbapal.lz");
+const u32 gBattleTerrainPalette_LongGrass_Morning[] = INCBIN_U32("graphics/battle_terrain/long_grass/morning.gbapal.lz");
+const u32 gBattleTerrainPalette_LongGrass_Day[] = INCBIN_U32("graphics/battle_terrain/long_grass/day.gbapal.lz");
+const u32 gBattleTerrainPalette_LongGrass_Night[] = INCBIN_U32("graphics/battle_terrain/long_grass/night.gbapal.lz");
 const u32 gBattleTerrainTilemap_LongGrass[] = INCBIN_U32("graphics/battle_terrain/long_grass/map.bin.lz");
 
 const u32 gBattleTerrainTiles_Sand[] = INCBIN_U32("graphics/battle_terrain/sand/tiles.4bpp.lz");

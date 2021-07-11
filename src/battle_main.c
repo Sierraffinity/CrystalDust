@@ -151,6 +151,7 @@ EWRAM_DATA static u32 sUnusedUnknownArray[25] = {0};
 EWRAM_DATA u32 gBattleTypeFlags = 0;
 EWRAM_DATA u8 gBattleTerrain = 0;
 #if DEBUG
+EWRAM_DATA u8 gBattleTerrainOverride = 0;
 EWRAM_DATA u8 gCatchDebugStatus = 0;
 #endif
 EWRAM_DATA u32 gUnknown_02022FF4 = 0;
@@ -668,6 +669,10 @@ static void CB2_InitBattleInternal(void)
     gBattleTerrain = BattleSetup_GetTerrainId();
     if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
         gBattleTerrain = BATTLE_TERRAIN_BUILDING;
+#if DEBUG
+    if (gBattleTerrainOverride)
+        gBattleTerrain = gBattleTerrainOverride - 1;
+#endif
 
     InitBattleBgsVideo();
     LoadBattleTextboxAndBackground();
