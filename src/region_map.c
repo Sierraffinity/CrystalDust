@@ -56,6 +56,12 @@ struct WindowCoords
 
 #define FLYDESTICON_RED_OUTLINE 6
 
+enum {
+    TAG_CURSOR,
+    TAG_PLAYER_ICON,
+    TAG_FLY_ICON,
+};
+
 // Static type declarations
 
 struct MultiNameFlyDest
@@ -79,7 +85,7 @@ static EWRAM_DATA struct {
     bool8 choseFlyLocation;
 } *sFlyMap = NULL;
 
-static bool32 gUnknown_03001180;
+static bool32 sDrawFlyDestTextWindow;
 
 // Static ROM declarations
 
@@ -218,13 +224,13 @@ static const union AnimCmd *const sRegionMapCursorAnimTable[] = {
 static const struct SpritePalette sRegionMapCursorSpritePalette =
 {
     .data = sRegionMapCursorPal,
-    .tag = 0
+    .tag = TAG_CURSOR
 };
 
 static const struct SpriteTemplate sRegionMapCursorSpriteTemplate =
 {
-    .tileTag = 0,
-    .paletteTag = 0,
+    .tileTag = TAG_CURSOR,
+    .paletteTag = TAG_CURSOR,
     .oam = &sRegionMapCursorOam,
     .anims = sRegionMapCursorAnimTable,
     .images = NULL,
@@ -1019,7 +1025,6 @@ void UpdateRegionMapVideoRegs(void)
 
 void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y)
 {
-
 }
 
 static u8 GetMapSecIdAt(s16 x, s16 y, u8 region, bool8 secondary)
@@ -1420,8 +1425,8 @@ static void SpriteCB_CursorMapFull(struct Sprite *sprite)
 {
     if (gRegionMap->cursorMovementFrameCounter != 0)
     {
-        sprite->pos1.x += 2 * gRegionMap->cursorDeltaX;
-        sprite->pos1.y += 2 * gRegionMap->cursorDeltaY;
+        sprite->x += 2 * gRegionMap->cursorDeltaX;
+        sprite->y += 2 * gRegionMap->cursorDeltaY;
         gRegionMap->cursorMovementFrameCounter--;
     }
 }
@@ -1455,8 +1460,8 @@ void CreateRegionMapCursor(u16 tileTag, u16 paletteTag, bool8 visible)
 
         if (visible)
         {
-            sprite->pos1.x = (gRegionMap->cursorPosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
-            sprite->pos1.y = (gRegionMap->cursorPosY + MAPCURSOR_Y_MIN) * 8 + 4;
+            sprite->x = (gRegionMap->cursorPosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
+            sprite->y = (gRegionMap->cursorPosY + MAPCURSOR_Y_MIN) * 8 + 4;
         }
         else
         {
@@ -1476,8 +1481,8 @@ void ShowRegionMapCursorSprite(void)
     {
         struct Sprite *sprite = &gSprites[gRegionMap->spriteIds[0]];
 
-        sprite->pos1.x = (gRegionMap->cursorPosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
-        sprite->pos1.y = (gRegionMap->cursorPosY + MAPCURSOR_Y_MIN) * 8 + 4;
+        sprite->x = (gRegionMap->cursorPosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
+        sprite->y = (gRegionMap->cursorPosY + MAPCURSOR_Y_MIN) * 8 + 4;
         sprite->callback = SpriteCB_CursorMapFull;
         StartSpriteAnim(sprite, 0);
         sprite->invisible = FALSE;
@@ -1532,8 +1537,8 @@ void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
     LoadSpritePalette(&palette);
     gRegionMap->spriteIds[1] = CreateSprite(&template, 0, 0, 2);
     sprite = &gSprites[gRegionMap->spriteIds[1]];
-    sprite->pos1.x = (gRegionMap->playerIconSpritePosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
-    sprite->pos1.y = (gRegionMap->playerIconSpritePosY + MAPCURSOR_Y_MIN) * 8 + 4;
+    sprite->x = (gRegionMap->playerIconSpritePosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
+    sprite->y = (gRegionMap->playerIconSpritePosY + MAPCURSOR_Y_MIN) * 8 + 4;
     //sprite->callback = SpriteCB_PlayerIcon;
 }
 
@@ -1554,10 +1559,10 @@ static void UnhideRegionMapPlayerIcon(void)
     {
         struct Sprite *sprite = &gSprites[gRegionMap->spriteIds[1]];
 
-        sprite->pos1.x = (gRegionMap->playerIconSpritePosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
-        sprite->pos1.y = (gRegionMap->playerIconSpritePosY + MAPCURSOR_Y_MIN) * 8 + 4;
-        sprite->pos2.x = 0;
-        sprite->pos2.y = 0;
+        sprite->x = (gRegionMap->playerIconSpritePosX + gRegionMap->xOffset + MAPCURSOR_X_MIN) * 8 + 4;
+        sprite->y = (gRegionMap->playerIconSpritePosY + MAPCURSOR_Y_MIN) * 8 + 4;
+        sprite->x2 = 0;
+        sprite->y2 = 0;
         //sprite->callback = SpriteCB_PlayerIcon;
         sprite->invisible = FALSE;
     }
@@ -1869,7 +1874,7 @@ void CB2_OpenFlyMap(void)
         gMain.state++;
         break;
     case 9:
-        BlendPalettes(-1, 16, 0);
+        BlendPalettes(PALETTES_ALL, 16, 0);
         SetVBlankCallback(VBlankCB_FlyMap);
         gMain.state++;
         break;
@@ -2050,7 +2055,7 @@ static void CB_FadeInFlyMap(void)
     switch (sFlyMap->state)
     {
     case 0:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         sFlyMap->state++;
         break;
     case 1:
@@ -2111,7 +2116,7 @@ static void CB_ExitFlyMap(void)
     switch (sFlyMap->state)
     {
     case 0:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         sFlyMap->state++;
         break;
     case 1:

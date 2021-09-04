@@ -195,8 +195,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanDecorating;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayDecorating;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Archie;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Maxie;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kyogre1;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Groudon1;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KyogreFront;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GroudonFront;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fossil;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Regirock;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Regice;
@@ -247,10 +247,10 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvilleOldM
 
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] = {
-    [OBJ_EVENT_GFX_GOLD_NORMAL] =           &gObjectEventGraphicsInfo_GoldNormal,
-    [OBJ_EVENT_GFX_GOLD_BIKE] =        &gObjectEventGraphicsInfo_GoldBike,
+    [OBJ_EVENT_GFX_GOLD_NORMAL] =              &gObjectEventGraphicsInfo_GoldNormal,
+    [OBJ_EVENT_GFX_GOLD_BIKE] =                &gObjectEventGraphicsInfo_GoldBike,
     [OBJ_EVENT_GFX_BRENDAN_SURFING] =          &gObjectEventGraphicsInfo_BrendanSurfing,
-    [OBJ_EVENT_GFX_GOLD_FIELD_MOVE] =       &gObjectEventGraphicsInfo_GoldFieldMove,
+    [OBJ_EVENT_GFX_GOLD_FIELD_MOVE] =          &gObjectEventGraphicsInfo_GoldFieldMove,
     [OBJ_EVENT_GFX_QUINTY_PLUMP] =             &gObjectEventGraphicsInfo_QuintyPlump,
     [OBJ_EVENT_GFX_NINJA_BOY] =                &gObjectEventGraphicsInfo_NinjaBoy,
     [OBJ_EVENT_GFX_BILL] =                     &gObjectEventGraphicsInfo_Bill,
@@ -288,7 +288,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_SCHOOL_KID_M] =             &gObjectEventGraphicsInfo_SchoolKidM,
     [OBJ_EVENT_GFX_POKEMANIAC] =               &gObjectEventGraphicsInfo_Pokemaniac,
     [OBJ_EVENT_GFX_KURT] =                     &gObjectEventGraphicsInfo_Kurt,
-    [OBJ_EVENT_GFX_RAYQUAZA_1] =               &gObjectEventGraphicsInfo_Rayquaza1,
+    [OBJ_EVENT_GFX_RAYQUAZA_STILL] =           &gObjectEventGraphicsInfo_Rayquaza1,
     [OBJ_EVENT_GFX_SWIMMER_M] =                &gObjectEventGraphicsInfo_SwimmerM,
     [OBJ_EVENT_GFX_SWIMMER_F] =                &gObjectEventGraphicsInfo_SwimmerF,
     [OBJ_EVENT_GFX_BLACK_BELT] =               &gObjectEventGraphicsInfo_BlackBelt,
@@ -444,17 +444,17 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_MAY_DECORATING] =           &gObjectEventGraphicsInfo_MayDecorating,
     [OBJ_EVENT_GFX_ARCHIE] =                   &gObjectEventGraphicsInfo_Archie,
     [OBJ_EVENT_GFX_MAXIE] =                    &gObjectEventGraphicsInfo_Maxie,
-    [OBJ_EVENT_GFX_KYOGRE_1] =                 &gObjectEventGraphicsInfo_Kyogre1,
-    [OBJ_EVENT_GFX_GROUDON_1] =                &gObjectEventGraphicsInfo_Groudon1,
+    [OBJ_EVENT_GFX_KYOGRE_FRONT] =             &gObjectEventGraphicsInfo_KyogreFront,
+    [OBJ_EVENT_GFX_GROUDON_FRONT] =            &gObjectEventGraphicsInfo_GroudonFront,
     [OBJ_EVENT_GFX_FOSSIL] =                   &gObjectEventGraphicsInfo_Fossil,
     [OBJ_EVENT_GFX_REGIROCK] =                 &gObjectEventGraphicsInfo_Regirock,
     [OBJ_EVENT_GFX_REGICE] =                   &gObjectEventGraphicsInfo_Regice,
     [OBJ_EVENT_GFX_REGISTEEL] =                &gObjectEventGraphicsInfo_Registeel,
     [OBJ_EVENT_GFX_PIDGEY] =                   &gObjectEventGraphicsInfo_Pidgey,
     [OBJ_EVENT_GFX_RATTATA] =                  &gObjectEventGraphicsInfo_Rattata,
-    [OBJ_EVENT_GFX_KYOGRE_2] =                 &gObjectEventGraphicsInfo_Kyogre2,
-    [OBJ_EVENT_GFX_GROUDON_2] =                &gObjectEventGraphicsInfo_Groudon2,
-    [OBJ_EVENT_GFX_RAYQUAZA_2] =               &gObjectEventGraphicsInfo_Rayquaza2,
+    [OBJ_EVENT_GFX_KYOGRE_ASLEEP] =            &gObjectEventGraphicsInfo_Kyogre2,
+    [OBJ_EVENT_GFX_GROUDON_ASLEEP] =           &gObjectEventGraphicsInfo_Groudon2,
+    [OBJ_EVENT_GFX_RAYQUAZA] =                 &gObjectEventGraphicsInfo_Rayquaza2,
     [OBJ_EVENT_GFX_SLOWPOKE] =                 &gObjectEventGraphicsInfo_Slowpoke,
     [OBJ_EVENT_GFX_PIKACHU] =                  &gObjectEventGraphicsInfo_Pikachu,
     [OBJ_EVENT_GFX_SLOWPOKE_TAILLESS] =        &gObjectEventGraphicsInfo_SlowpokeTailless,
@@ -468,8 +468,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_JUAN] =                     &gObjectEventGraphicsInfo_Juan,
     [OBJ_EVENT_GFX_SCOTT] =                    &gObjectEventGraphicsInfo_Scott,
     [OBJ_EVENT_GFX_MARILL] =                   &gObjectEventGraphicsInfo_Marill,
-    [OBJ_EVENT_GFX_KYOGRE_3] =                 &gObjectEventGraphicsInfo_Kyogre3,
-    [OBJ_EVENT_GFX_GROUDON_3] =                &gObjectEventGraphicsInfo_Groudon3,
+    [OBJ_EVENT_GFX_KYOGRE_SIDE] =              &gObjectEventGraphicsInfo_Kyogre3,
+    [OBJ_EVENT_GFX_GROUDON_SIDE] =             &gObjectEventGraphicsInfo_Groudon3,
     [OBJ_EVENT_GFX_MYSTERY_GIFT_MAN] =         &gObjectEventGraphicsInfo_MysteryEventDeliveryman,
     [OBJ_EVENT_GFX_TRICK_HOUSE_STATUE] =       &gObjectEventGraphicsInfo_Statue,
     [OBJ_EVENT_GFX_PERSIAN] =                  &gObjectEventGraphicsInfo_Persian,

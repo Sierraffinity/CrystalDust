@@ -80,7 +80,7 @@ struct TrainerCardData
     u8 cardTiles[0x2300];
     u16 cardTilemapBuffer[0x1000];
     u16 bgTilemapBuffer[0x1000];
-    u16 var_7CA8;
+    u16 cardTop;
     u8 language;
 };
 
@@ -113,7 +113,7 @@ static void SetPlayerCardData(struct TrainerCard*, u8);
 static void TrainerCard_GenerateCardToShowLocally(struct TrainerCard*);
 static u8 VersionToCardType(u8);
 static void SetDataFromTrainerCard(void);
-static void HandleGpuRegs(void);
+static void InitGpuRegs(void);
 static void ResetGpuRegs(void);
 static void InitBgsAndWindows(void);
 static void SetTrainerCardCb2(void);
@@ -158,20 +158,19 @@ static bool8 Task_DrawFlippedCardSide(struct Task* task);
 static bool8 Task_SetCardFlipped(struct Task* task);
 static bool8 Task_AnimateCardFlipUp(struct Task* task);
 static bool8 Task_EndCardFlip(struct Task* task);
-static void sub_80C32EC(u16);
+static void UpdateCardFlipRegs(u16);
 static void LoadMonIconGfx(void);
 
-// const rom data
-static const u32 sTrainerCardStickers_Gfx[] = INCBIN_U32("graphics/trainer_card/stickers_fr.4bpp.lz");
-static const u16 sUnused_0856F18C[] = INCBIN_U16("graphics/trainer_card/unknown_56F18C.gbapal");
-static const u16 sHoennTrainerCard1Star_Pal[] = INCBIN_U16("graphics/trainer_card/one_star.gbapal");
-static const u16 sKantoTrainerCard1Star_Pal[] = INCBIN_U16("graphics/trainer_card/one_star_fr.gbapal");
-static const u16 sHoennTrainerCard2Star_Pal[] = INCBIN_U16("graphics/trainer_card/two_stars.gbapal");
-static const u16 sKantoTrainerCard2Star_Pal[] = INCBIN_U16("graphics/trainer_card/two_stars_fr.gbapal");
-static const u16 sHoennTrainerCard3Star_Pal[] = INCBIN_U16("graphics/trainer_card/three_stars.gbapal");
-static const u16 sKantoTrainerCard3Star_Pal[] = INCBIN_U16("graphics/trainer_card/three_stars_fr.gbapal");
-static const u16 sHoennTrainerCard4Star_Pal[] = INCBIN_U16("graphics/trainer_card/four_stars.gbapal");
-static const u16 sKantoTrainerCard4Star_Pal[] = INCBIN_U16("graphics/trainer_card/four_stars_fr.gbapal");
+static const u32 sTrainerCardStickers_Gfx[]      = INCBIN_U32("graphics/trainer_card/stickers_fr.4bpp.lz");
+static const u16 sUnused_Pal[]                   = INCBIN_U16("graphics/trainer_card/unused.gbapal");
+static const u16 sHoennTrainerCard1Star_Pal[]    = INCBIN_U16("graphics/trainer_card/one_star.gbapal");
+static const u16 sKantoTrainerCard1Star_Pal[]    = INCBIN_U16("graphics/trainer_card/one_star_fr.gbapal");
+static const u16 sHoennTrainerCard2Star_Pal[]    = INCBIN_U16("graphics/trainer_card/two_stars.gbapal");
+static const u16 sKantoTrainerCard2Star_Pal[]    = INCBIN_U16("graphics/trainer_card/two_stars_fr.gbapal");
+static const u16 sHoennTrainerCard3Star_Pal[]    = INCBIN_U16("graphics/trainer_card/three_stars.gbapal");
+static const u16 sKantoTrainerCard3Star_Pal[]    = INCBIN_U16("graphics/trainer_card/three_stars_fr.gbapal");
+static const u16 sHoennTrainerCard4Star_Pal[]    = INCBIN_U16("graphics/trainer_card/four_stars.gbapal");
+static const u16 sKantoTrainerCard4Star_Pal[]    = INCBIN_U16("graphics/trainer_card/four_stars_fr.gbapal");
 static const u16 sHoennTrainerCardFemaleBg_Pal[] = INCBIN_U16("graphics/trainer_card/female_bg.gbapal");
 static const u16 sKantoTrainerCardFemaleBg_Pal[] = INCBIN_U16("graphics/trainer_card/female_bg_fr.gbapal");
 static const u16 sJohtoTrainerCardBadges_Pal[] = INCBIN_U16("graphics/trainer_card/badges_johto.gbapal");
@@ -276,7 +275,7 @@ static const u16 *const sKantoTrainerCardStarPals[] =
     sKantoTrainerCard4Star_Pal,
 };
 
-static const u8 sTrainerCardTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GREY, TEXT_COLOR_LIGHT_GREY};
+static const u8 sTrainerCardTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
 static const u8 sTrainerCardStatColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED, TEXT_COLOR_LIGHT_RED};
 static const u8 sTimeColonInvisibleTextColors[6] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_TRANSPARENT};
 
@@ -334,7 +333,6 @@ static bool8 (*const sTrainerCardFlipTasks[])(struct Task *) =
     Task_EndCardFlip,
 };
 
-// code
 static void VblankCb_TrainerCard(void)
 {
     LoadOam();
@@ -427,8 +425,8 @@ static void Task_TrainerCard(u8 taskId)
             LoadWirelessStatusIndicatorSpriteGfx();
             CreateWirelessStatusIndicatorSprite(230, 150);
         }
-        BlendPalettes(0xFFFFFFFF, 16, sData->blendColor);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, sData->blendColor);
+        BlendPalettes(PALETTES_ALL, 16, sData->blendColor);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, sData->blendColor);
         SetVBlankCallback(VblankCb_TrainerCard);
         sData->mainState++;
         break;
@@ -465,13 +463,13 @@ static void Task_TrainerCard(u8 taskId)
             }
             else
             {
-                BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, sData->blendColor);
+                BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, sData->blendColor);
                 sData->mainState = STATE_CLOSE_CARD;
             }
         }
         break;
     case STATE_WAIT_FLIP_TO_BACK:
-        if (IsCardFlipTaskActive() && sub_8087598() != TRUE)
+        if (IsCardFlipTaskActive() && Overworld_LinkRecvQueueLengthMoreThan2() != TRUE)
         {
             PlaySE(SE_RG_CARD_OPEN);
             sData->mainState = STATE_HANDLE_INPUT_BACK;
@@ -486,7 +484,7 @@ static void Task_TrainerCard(u8 taskId)
             }
             else if (gReceivedRemoteLinkPlayers)
             {
-                BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, sData->blendColor);
+                BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, sData->blendColor);
                 sData->mainState = STATE_CLOSE_CARD;
             }
             else
@@ -504,7 +502,7 @@ static void Task_TrainerCard(u8 taskId)
            }
            else
            {
-               BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, sData->blendColor);
+               BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, sData->blendColor);
                sData->mainState = STATE_CLOSE_CARD;
            }
         }
@@ -519,7 +517,7 @@ static void Task_TrainerCard(u8 taskId)
     case STATE_CLOSE_CARD_LINK:
         if (!gReceivedRemoteLinkPlayers)
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, sData->blendColor);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, sData->blendColor);
             sData->mainState = STATE_CLOSE_CARD;
         }
         break;
@@ -528,7 +526,7 @@ static void Task_TrainerCard(u8 taskId)
             CloseTrainerCard(taskId);
         break;
     case STATE_WAIT_FLIP_TO_FRONT:
-        if (IsCardFlipTaskActive() && sub_8087598() != TRUE)
+        if (IsCardFlipTaskActive() && Overworld_LinkRecvQueueLengthMoreThan2() != TRUE)
         {
             sData->mainState = STATE_HANDLE_INPUT_FRONT;
             PlaySE(SE_RG_CARD_OPEN);
@@ -635,7 +633,7 @@ static void CB2_InitTrainerCard(void)
         gMain.state++;
         break;
     case 8:
-        HandleGpuRegs();
+        InitGpuRegs();
         gMain.state++;
         break;
     case 9:
@@ -678,7 +676,7 @@ u32 CountPlayerTrainerStars(void)
         stars++;
     if (HasAllJohtoMons())
         stars++;
-    if (CountPlayerContestPaintings() > 4)
+    if (CountPlayerMuseumPaintings() >= CONTEST_CATEGORIES_COUNT)
         stars++;
     if (HasAllFrontierSymbols())
         stars++;
@@ -752,7 +750,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     case CARD_TYPE_RS:
         trainerCard->contestsWithFriends = GetCappedGameStat(GAME_STAT_WON_LINK_CONTEST, 999);
         trainerCard->pokeblocksWithFriends = GetCappedGameStat(GAME_STAT_POKEBLOCKS_WITH_FRIENDS, 0xFFFF);
-        if (CountPlayerContestPaintings() > 4)
+        if (CountPlayerMuseumPaintings() >= CONTEST_CATEGORIES_COUNT)
             trainerCard->hasAllPaintings = TRUE;
         trainerCard->stars = GetRubyTrainerStars(trainerCard);
         break;
@@ -864,7 +862,7 @@ static void SetDataFromTrainerCard(void)
     }
 }
 
-static void HandleGpuRegs(void)
+static void InitGpuRegs(void)
 {
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
     ShowBg(0);
@@ -875,24 +873,23 @@ static void HandleGpuRegs(void)
     SetGpuReg(REG_OFFSET_BLDY, 0);
     SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR);
     SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG1 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ);
-    SetGpuReg(REG_OFFSET_WIN0V, 160);
-    SetGpuReg(REG_OFFSET_WIN0H, 240);
+    SetGpuReg(REG_OFFSET_WIN0V, DISPLAY_HEIGHT);
+    SetGpuReg(REG_OFFSET_WIN0H, DISPLAY_WIDTH);
     if (gReceivedRemoteLinkPlayers)
         EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_HBLANK | INTR_FLAG_VCOUNT | INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
     else
         EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_HBLANK);
 }
 
-// Part of animating card flip
-static void sub_80C32EC(u16 arg0)
+static void UpdateCardFlipRegs(u16 cardTop)
 {
-    s8 quotient = (arg0 + 40) / 10;
+    s8 blendY = (cardTop + 40) / 10;
 
-    if (quotient <= 4)
-        quotient = 0;
-    sData->flipBlendY = quotient;
+    if (blendY <= 4)
+        blendY = 0;
+    sData->flipBlendY = blendY;
     SetGpuReg(REG_OFFSET_BLDY, sData->flipBlendY);
-    SetGpuReg(REG_OFFSET_WIN0V, (sData->var_7CA8 * 256) | (160 - sData->var_7CA8));
+    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(sData->cardTop, DISPLAY_HEIGHT - sData->cardTop));
 }
 
 static void ResetGpuRegs(void)
@@ -1627,6 +1624,7 @@ u8 GetTrainerCardStars(u8 cardId)
 }
 
 #define tFlipState data[0]
+#define tCardTop   data[1]
 
 static void FlipTrainerCard(void)
 {
@@ -1637,7 +1635,7 @@ static void FlipTrainerCard(void)
 
 static bool8 IsCardFlipTaskActive(void)
 {
-    if (FindTaskIdByFunc(Task_DoCardFlipTask) == 0xFF)
+    if (FindTaskIdByFunc(Task_DoCardFlipTask) == TASK_NONE)
         return TRUE;
     else
         return FALSE;
@@ -1657,41 +1655,43 @@ static bool8 Task_BeginCardFlip(struct Task* task)
     HideBg(3);
     ScanlineEffect_Stop();
     ScanlineEffect_Clear();
-    for (i = 0; i < 160; i++)
+    for (i = 0; i < DISPLAY_HEIGHT; i++)
         gScanlineEffectRegBuffers[1][i] = 0;
     task->tFlipState++;
     return FALSE;
 }
 
+// Note: Cannot be DISPLAY_HEIGHT / 2, or cardHeight will be 0
+#define CARD_FLIP_Y ((DISPLAY_HEIGHT / 2) - 3)
+
 static bool8 Task_AnimateCardFlipDown(struct Task* task)
 {
-    u32 r4, r5, r10, r7, r6, var_24, r9, var;
+    u32 cardHeight, r5, r10, cardTop, r6, var_24, cardBottom, var;
     s16 i;
 
     sData->allowDMACopy = FALSE;
-    if (task->data[1] >= 77)
-        task->data[1] = 77;
+    if (task->tCardTop >= CARD_FLIP_Y)
+        task->tCardTop = CARD_FLIP_Y;
     else
-        task->data[1] += 7;
+        task->tCardTop += 7;
 
-    sData->var_7CA8 = task->data[1];
-    sub_80C32EC(task->data[1]);
+    sData->cardTop = task->tCardTop;
+    UpdateCardFlipRegs(task->tCardTop);
 
-    // ???
-    r7 = task->data[1];
-    r9 = 160 - r7;
-    r4 = r9 - r7;
-    r6 = -r7 << 16;
-    r5 = 0xA00000 / r4;
-    r5 += 0xFFFF0000;
+    cardTop = task->tCardTop;
+    cardBottom = DISPLAY_HEIGHT - cardTop;
+    cardHeight = cardBottom - cardTop;
+    r6 = -cardTop << 16;
+    r5 = (DISPLAY_HEIGHT << 16) / cardHeight;
+    r5 -= 1 << 16;
     var_24 = r6;
-    var_24 += r5 * r4;
-    r10 = r5 / r4;
+    var_24 += r5 * cardHeight;
+    r10 = r5 / cardHeight;
     r5 *= 2;
 
-    for (i = 0; i < r7; i++)
+    for (i = 0; i < cardTop; i++)
         gScanlineEffectRegBuffers[0][i] = -i;
-    for (; i < (s16)(r9); i++)
+    for (; i < (s16)cardBottom; i++)
     {
         var = r6 >> 16;
         r6 += r5;
@@ -1699,11 +1699,11 @@ static bool8 Task_AnimateCardFlipDown(struct Task* task)
         gScanlineEffectRegBuffers[0][i] = var;
     }
     var = var_24 >> 16;
-    for (; i < 160; i++)
+    for (; i < DISPLAY_HEIGHT; i++)
         gScanlineEffectRegBuffers[0][i] = var;
 
     sData->allowDMACopy = TRUE;
-    if (task->data[1] >= 77)
+    if (task->tCardTop >= CARD_FLIP_Y)
         task->tFlipState++;
 
     return FALSE;
@@ -1712,7 +1712,7 @@ static bool8 Task_AnimateCardFlipDown(struct Task* task)
 static bool8 Task_DrawFlippedCardSide(struct Task* task)
 {
     sData->allowDMACopy = FALSE;
-    if (sub_8087598() == TRUE)
+    if (Overworld_LinkRecvQueueLengthMoreThan2() == TRUE)
         return FALSE;
 
     do
@@ -1785,33 +1785,32 @@ static bool8 Task_SetCardFlipped(struct Task* task)
 
 static bool8 Task_AnimateCardFlipUp(struct Task* task)
 {
-    u32 r4, r5, r10, r7, r6, var_24, r9, var;
+    u32 cardHeight, r5, r10, cardTop, r6, var_24, cardBottom, var;
     s16 i;
 
     sData->allowDMACopy = FALSE;
-    if (task->data[1] <= 5)
-        task->data[1] = 0;
+    if (task->tCardTop <= 5)
+        task->tCardTop = 0;
     else
-        task->data[1] -= 5;
+        task->tCardTop -= 5;
 
-    sData->var_7CA8 = task->data[1];
-    sub_80C32EC(task->data[1]);
+    sData->cardTop = task->tCardTop;
+    UpdateCardFlipRegs(task->tCardTop);
 
-    // ???
-    r7 = task->data[1];
-    r9 = 160 - r7;
-    r4 = r9 - r7;
-    r6 = -r7 << 16;
-    r5 = 0xA00000 / r4;
-    r5 += 0xFFFF0000;
+    cardTop = task->tCardTop;
+    cardBottom = DISPLAY_HEIGHT - cardTop;
+    cardHeight = cardBottom - cardTop;
+    r6 = -cardTop << 16;
+    r5 = (DISPLAY_HEIGHT << 16) / cardHeight;
+    r5 -= 1 << 16;
     var_24 = r6;
-    var_24 += r5 * r4;
-    r10 = r5 / r4;
+    var_24 += r5 * cardHeight;
+    r10 = r5 / cardHeight;
     r5 /= 2;
 
-    for (i = 0; i < r7; i++)
+    for (i = 0; i < cardTop; i++)
         gScanlineEffectRegBuffers[0][i] = -i;
-    for (; i < (s16)(r9); i++)
+    for (; i < (s16)cardBottom; i++)
     {
         var = r6 >> 16;
         r6 += r5;
@@ -1819,11 +1818,11 @@ static bool8 Task_AnimateCardFlipUp(struct Task* task)
         gScanlineEffectRegBuffers[0][i] = var;
     }
     var = var_24 >> 16;
-    for (; i < 160; i++)
+    for (; i < DISPLAY_HEIGHT; i++)
         gScanlineEffectRegBuffers[0][i] = var;
 
     sData->allowDMACopy = TRUE;
-    if (task->data[1] <= 0)
+    if (task->tCardTop <= 0)
         task->tFlipState++;
 
     return FALSE;

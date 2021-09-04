@@ -1,4 +1,4 @@
-EventScript_FieldPoison:: @ 82736BC
+EventScript_FieldPoison::
 	lockall
 	special TryFieldPoisonWhiteOut
 	waitstate
@@ -11,7 +11,7 @@ EventScript_FieldPoison:: @ 82736BC
 	releaseall
 	end
 
-EventScript_FrontierFieldWhiteOut:: @ 82736F8
+EventScript_FrontierFieldWhiteOut::
 	pike_inchallenge
 	compare VAR_RESULT, TRUE
 	goto_if_eq BattleFrontier_BattlePike_EventScript_WhiteOut
@@ -25,7 +25,7 @@ EventScript_FrontierFieldWhiteOut:: @ 82736F8
 	goto_if_eq TrainerHill_1F_EventScript_WhiteOut
 
 	@ fallthrough
-EventScript_FieldWhiteOut:: @ 82736D9
+EventScript_FieldWhiteOut::
 	checkmoney 1, 0
 	compare VAR_RESULT, TRUE
 	goto_if_eq EventScript_FieldWhiteOutHasMoney

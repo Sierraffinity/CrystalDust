@@ -17,6 +17,7 @@
 #include "scanline_effect.h"
 #include "sound.h"
 #include "task.h"
+#include "util.h"
 #include "title_screen.h"
 #include "trainer_pokemon_sprites.h"
 #include "trig.h"
@@ -36,7 +37,6 @@ EWRAM_DATA u16 gUnknown_0203BCC8 = 0;
 EWRAM_DATA u16 gUnknown_0203BCCA = 0;
 EWRAM_DATA u16 gUnknown_0203BCCC = 0;
 
-//iwram
 u32 gIntroFrameCounter;
 struct GcmbStruct gMultibootProgramStruct;
 
@@ -852,7 +852,7 @@ static void LoadCopyrightGraphics(u16 tilesetAddress, u16 tilemapAddress, u16 pa
 {
     LZ77UnCompVram(gIntroCopyright_Gfx, (void *)(VRAM + tilesetAddress));
     LZ77UnCompVram(gIntroCopyright_Tilemap, (void *)(VRAM + tilemapAddress));
-    LoadPalette(gIntroCopyright_Pal, paletteAddress, 0x20);
+    LoadPalette(gIntroCopyright_Pal, paletteAddress, 32);
 }
 
 static void SerialCB_CopyrightScreen(void)
@@ -862,8 +862,6 @@ static void SerialCB_CopyrightScreen(void)
 
 static u8 SetUpCopyrightScreen(void)
 {
-    u16 ime;
-
     switch (gMain.state)
     {
     case 0:
@@ -884,7 +882,7 @@ static u8 SetUpCopyrightScreen(void)
         ResetTasks();
         ResetSpriteData();
         FreeAllSpritePalettes();
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_WHITEALPHA);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_WHITEALPHA);
         SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0)
                                    | BGCNT_CHARBASE(0)
                                    | BGCNT_SCREENBASE(7)
@@ -904,24 +902,24 @@ static u8 SetUpCopyrightScreen(void)
         GameCubeMultiBoot_Main(&gMultibootProgramStruct);
         if (gMultibootProgramStruct.gcmb_field_2 != 1)
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             gMain.state++;
         }
         break;
     case 141:
         if (UpdatePaletteFade())
             break;
-        CreateTask(Task_IntroLoadPart1Graphics, 0);
+        CreateTask(Task_Scene1_Load, 0);
         SetMainCallback2(MainCB2_Intro);
         if (gMultibootProgramStruct.gcmb_field_2 != 0)
         {
             if (gMultibootProgramStruct.gcmb_field_2 == 2)
             {
                 // check the multiboot ROM header game code to see if we already did this
-                if (*(u32 *)(EWRAM_START + 0xAC) == 0x65366347) // "Gc6e" in ASCII
+                if (*(u32 *)(EWRAM_START + 0xAC) == COLOSSEUM_GAME_CODE)
                 {
                     CpuCopy16(&gMultiBootProgram_PokemonColosseum_Start, (void *)EWRAM_START, sizeof(gMultiBootProgram_PokemonColosseum_Start));
-                    *(u32 *)(EWRAM_START + 0xAC) = 0x65366347;
+                    *(u32 *)(EWRAM_START + 0xAC) = COLOSSEUM_GAME_CODE;
                 }
                 GameCubeMultiBoot_ExecuteProgram(&gMultibootProgramStruct);
             }
@@ -957,7 +955,9 @@ void CB2_InitCopyrightScreenAfterTitleScreen(void)
     SetUpCopyrightScreen();
 }
 
-static void Task_IntroLoadPart1Graphics(u8 taskId)
+#define sBigDropSpriteId data[0]
+
+static void Task_Scene1_Load(u8 taskId)
 {
     u8 spriteDitto;
     SetVBlankCallback(NULL);
@@ -1156,37 +1156,37 @@ static void SpriteCallback_Ditto(struct Sprite *sprite)
     switch (sprite->data[0])
     {
     case 0:
-        if (sprite->pos1.y < 80)
+        if (sprite->y < 80)
         {
-            sprite->pos1.y += 10;
+            sprite->y += 10;
         }
         else
         {
-            sprite->pos1.y = 79;
+            sprite->y = 79;
             sprite->data[1] = Q_8_8(-10);
             sprite->data[0]++;
         }
         break;
     case 1:
-        if (sprite->pos1.y < 80)
+        if (sprite->y < 80)
         {
-            sprite->pos1.y += Q_8_8_TO_INT(sprite->data[1]);
+            sprite->y += Q_8_8_TO_INT(sprite->data[1]);
             sprite->data[1] += Q_8_8(0.65);
         }
         else
         {
-            sprite->pos1.y = 80;
+            sprite->y = 80;
             sprite->data[0]++;
         }
         break;
     case 2:
-        if (sprite->pos1.y > 71)
+        if (sprite->y > 71)
         {
             // move only when new frame is going to show
             if (!sprite->animDelayCounter)
-                sprite->pos1.y -= 2;
-            if (sprite->pos1.y < 71)
-                sprite->pos1.y = 71;
+                sprite->y -= 2;
+            if (sprite->y < 71)
+                sprite->y = 71;
         }
         else
         {
@@ -1327,7 +1327,7 @@ static void Task_FadeScreenAndPulse(u8 taskId)
     case 2:
         if (!gUnknown_0203BCC8)
         {
-            CreateUnownPulse(gSprites[data[1]].pos1.x, gSprites[data[1]].pos1.y);
+            CreateUnownPulse(gSprites[data[1]].x, gSprites[data[1]].y);
             data[2] = BeginUnownFade(32, TRUE, FALSE);
             DestroyTask(taskId);
         }
@@ -1375,8 +1375,8 @@ static void Task_IntroDoUnownASequence(u8 taskId)
     if (gIntroFrameCounter == 434)
     {
         StartSpriteAnim(&gSprites[data[1]], 1);
-        gSprites[data[1]].pos1.x = 60;
-        gSprites[data[1]].pos1.y = 110;
+        gSprites[data[1]].x = 60;
+        gSprites[data[1]].y = 110;
         newTaskId = CreateTask(Task_FadeScreenAndPulse, 0);
         gTasks[newTaskId].data[1] = data[1];
         gTasks[newTaskId].data[3] = 0;  // low pitch pulse
@@ -1428,14 +1428,14 @@ static void Task_ScrollTreeGrassBackgrounds(u8 taskId)
 static void SpriteCallback_UnownPulse(struct Sprite *sprite)
 {
     if (sprite->hFlip)
-        sprite->pos1.x += 2;
+        sprite->x += 2;
     else
-        sprite->pos1.x -= 2;
+        sprite->x -= 2;
     
     if (sprite->vFlip)
-        sprite->pos1.y += 2;
+        sprite->y += 2;
     else
-        sprite->pos1.y -= 2;
+        sprite->y -= 2;
     
     if (sprite->animEnded)
         DestroySprite(sprite);
@@ -1513,13 +1513,17 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
         PlaySE(SE_INTRO_UNOWN3);
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
         StartSpriteAnim(&gSprites[data[1]], 2);
-        gSprites[data[1]].pos1.x = 100;
-        gSprites[data[1]].pos1.y = 74;
+        gSprites[data[1]].x = 100;
+        gSprites[data[1]].y = 74;
         gSprites[data[1]].invisible = FALSE;
         BeginUnownFade(16, FALSE, FALSE);
         gTasks[taskId].func = Task_FlashMultipleUnowns;
     }
 }
+#undef tWinPos
+#undef tScreenX
+#undef tScreenY
+#undef tZoom
 
 static void Task_FlashMultipleUnowns(u8 taskId)
 {
@@ -1542,8 +1546,8 @@ static void Task_FlashMultipleUnowns(u8 taskId)
         {
             PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 3);
-            gSprites[data[1]].pos1.x = 190;
-            gSprites[data[1]].pos1.y = 40;
+            gSprites[data[1]].x = 190;
+            gSprites[data[1]].y = 40;
             BeginUnownFade(16, FALSE, TRUE);
             data[0]++;
         }
@@ -1553,8 +1557,8 @@ static void Task_FlashMultipleUnowns(u8 taskId)
         {
             PlaySE(SE_INTRO_UNOWN1);
             StartSpriteAnim(&gSprites[data[1]], 4);
-            gSprites[data[1]].pos1.x = 50;
-            gSprites[data[1]].pos1.y = 70;
+            gSprites[data[1]].x = 50;
+            gSprites[data[1]].y = 70;
             BeginUnownFade(16, FALSE, TRUE);
             data[0]++;
         }
@@ -1564,8 +1568,8 @@ static void Task_FlashMultipleUnowns(u8 taskId)
         {
             PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 5);
-            gSprites[data[1]].pos1.x = 130;
-            gSprites[data[1]].pos1.y = 130;
+            gSprites[data[1]].x = 130;
+            gSprites[data[1]].y = 130;
             BeginUnownFade(16, FALSE, TRUE);
             data[0]++;
         }
@@ -1575,8 +1579,8 @@ static void Task_FlashMultipleUnowns(u8 taskId)
         {
             PlaySE(SE_INTRO_UNOWN3);
             StartSpriteAnim(&gSprites[data[1]], 6);
-            gSprites[data[1]].pos1.x = 110;
-            gSprites[data[1]].pos1.y = 30;
+            gSprites[data[1]].x = 110;
+            gSprites[data[1]].y = 30;
             BeginUnownFade(8, FALSE, TRUE);
             data[0]++;
         }
@@ -1595,8 +1599,8 @@ static void Task_FlashMultipleUnowns(u8 taskId)
         {
             PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 7);
-            gSprites[data[1]].pos1.x = 200;
-            gSprites[data[1]].pos1.y = 80;
+            gSprites[data[1]].x = 200;
+            gSprites[data[1]].y = 80;
             BeginUnownFade(8, FALSE, TRUE);
             data[0]++;
         }
@@ -1606,8 +1610,8 @@ static void Task_FlashMultipleUnowns(u8 taskId)
         {
             PlaySE(SE_INTRO_UNOWN1);
             StartSpriteAnim(&gSprites[data[1]], 8);
-            gSprites[data[1]].pos1.x = 40;
-            gSprites[data[1]].pos1.y = 120;
+            gSprites[data[1]].x = 40;
+            gSprites[data[1]].y = 120;
             BeginUnownFade(8, FALSE, TRUE);
             data[0]++;
         }
@@ -1617,8 +1621,8 @@ static void Task_FlashMultipleUnowns(u8 taskId)
         {
             PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 9);
-            gSprites[data[1]].pos1.x = 140;
-            gSprites[data[1]].pos1.y = 90;
+            gSprites[data[1]].x = 140;
+            gSprites[data[1]].y = 90;
             BeginUnownFade(8, FALSE, TRUE);
             data[0]++;
         }
@@ -1635,10 +1639,10 @@ static void Task_FlashMultipleUnowns(u8 taskId)
 
 static void SpriteCallback_SuicuneSilhouette(struct Sprite *sprite)
 {
-    sprite->pos1.x += sprite->data[0];
-    sprite->pos1.y += sprite->data[1];
+    sprite->x += sprite->data[0];
+    sprite->y += sprite->data[1];
     
-    if (sprite->pos1.x < -32)
+    if (sprite->x < -32)
         DestroySprite(sprite);
 }
 
@@ -1653,7 +1657,7 @@ static void SpriteCallback_PopUpPkmn(struct Sprite *sprite)
     case 1:
         if (sprite->data[1] > 4)
         {
-            sprite->pos1.y -= (sprite->data[1]--);
+            sprite->y -= (sprite->data[1]--);
             break;
         }
         else
@@ -1664,7 +1668,7 @@ static void SpriteCallback_PopUpPkmn(struct Sprite *sprite)
     case 2:
         if (sprite->data[1] > 0)
         {
-            sprite->pos1.y += (sprite->data[1]--) >> 1;
+            sprite->y += (sprite->data[1]--) >> 1;
             break;
         }
         else
@@ -1753,6 +1757,8 @@ static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)
         gTasks[taskId].func = Task_IntroWaitToSetupFallingSuicune;
     }
 }
+#undef tDelay
+#undef tTimer
 
 static void Task_IntroWaitToSetupFallingSuicune(u8 taskId)
 {
@@ -1818,7 +1824,7 @@ static void Task_IntroLoadPart3Graphics2(u8 taskId)
 
 static void Task_SlideSuicuneMugIn(u8 taskId)
 {
-    switch (gTasks[taskId].data[0])
+    switch (gTasks[taskId].tState)
     {
     case 0:
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
@@ -1903,8 +1909,8 @@ static void Task_IntroSuicuneFlyUp(u8 taskId)
     if (gIntroFrameCounter == 560)
     {
         gSprites[gTasks[taskId].data[2]].data[0] = 4;
-        gSprites[gTasks[taskId].data[2]].pos1.x = 120;
-        gSprites[gTasks[taskId].data[2]].pos1.y = 192;
+        gSprites[gTasks[taskId].data[2]].x = 120;
+        gSprites[gTasks[taskId].data[2]].y = 192;
         StartSpriteAnim(&gSprites[gTasks[taskId].data[2]], 1);
     }
     
@@ -2037,11 +2043,11 @@ static void Task_IntroFadeToTitle(u8 taskId)
 
 static void SpriteCallback_Suicune(struct Sprite *sprite)
 {
-    switch (sprite->data[0])
+    switch (sprite->sState)
     {
     case 0:
-        if (sprite->pos1.y > 88)
-            sprite->pos1.y -= 8;
+        if (sprite->y > 88)
+            sprite->y -= 8;
         else
             sprite->data[0]++;
         break;
@@ -2049,18 +2055,18 @@ static void SpriteCallback_Suicune(struct Sprite *sprite)
         if (sprite->data[1]++ > 15)
         {
             sprite->data[1] = 0;
-            sprite->pos1.y--;
+            sprite->y--;
         }
         break;
     case 2:
-        if (sprite->pos1.x < 272)
-            sprite->pos1.x += 8;
+        if (sprite->x < 272)
+            sprite->x += 8;
         else
             sprite->data[0]++;
         break;
     case 4:
-        if (sprite->pos1.y > 80)
-            sprite->pos1.y -= 2;
+        if (sprite->y > 80)
+            sprite->y -= 2;
         break;
     }
 }
@@ -2071,11 +2077,11 @@ static void SpriteCallback_UnownF(struct Sprite *sprite)
     {
     case 1:
         sprite->data[1] = (sprite->data[1] + 1) & 0xFF;
-        sprite->pos1.y = Sin(sprite->data[1]++, 4) + 60;
+        sprite->y = Sin(sprite->data[1]++, 4) + 60;
         break;
     case 2:
-        if (sprite->pos1.x > -32)
-            sprite->pos1.x -= 8;
+        if (sprite->x > -32)
+            sprite->x -= 8;
         else
             DestroySprite(sprite);
         break;

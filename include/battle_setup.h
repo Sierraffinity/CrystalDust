@@ -37,7 +37,7 @@ void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerSc
 void ConfigureTwoTrainersBattle(u8 trainerObjEventId, const u8 *trainerScript);
 void SetUpTwoTrainersBattle(void);
 bool32 GetTrainerFlagFromScriptPointer(const u8 *data);
-void SetUpTrainerMovement(void);
+void SetTrainerFacingDirection(void);
 u8 GetTrainerBattleMode(void);
 u8 GetFirstBattleTutorialMode(void);
 bool8 GetTrainerFlag(void);
@@ -50,7 +50,7 @@ void ShowTrainerIntroSpeech(void);
 const u8 *BattleSetup_GetScriptAddrAfterBattle(void);
 const u8 *BattleSetup_GetTrainerPostBattleScript(void);
 void ShowTrainerCantBattleSpeech(void);
-void SetUpTrainerEncounterMusic(void);
+void PlayTrainerEncounterMusic(void);
 const u8 *GetTrainerALoseText(void);
 const u8 *GetTrainerBLoseText(void);
 const u8 *GetTrainerWonSpeech(void);

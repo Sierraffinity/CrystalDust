@@ -30,8 +30,10 @@ static void sub_81520A8(void *dest, u16 value, u8 left, u8 top, u8 width, u8 hei
 
 static void sub_8152134(void *dest, const u16 *src, u8 left, u8 top, u8 width, u8 height) // Unused.
 {
-    u8 i, j;
-    u8 x, y;
+    u8 i;
+    u8 j;
+    u8 x;
+    u8 y;
     const u16 *_src;
 
     for (i = 0, _src = src, y = top; i < height; i++)
@@ -208,8 +210,8 @@ u8 ConfettiUtil_Remove(u8 id)
         return 0xFF;
 
     memset(&sWork->array[id], 0, sizeof(struct ConfettiUtil));
-    sWork->array[id].oam.y = 160;
-    sWork->array[id].oam.x = 240;
+    sWork->array[id].oam.y = DISPLAY_HEIGHT;
+    sWork->array[id].oam.x = DISPLAY_WIDTH;
     sWork->array[id].dummied = TRUE;
     memcpy(&gMain.oamBuffer[id + 64], &gDummyOamData, sizeof(struct OamData));
     return id;

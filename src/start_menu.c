@@ -163,7 +163,7 @@ static const struct WindowTemplate sBugCatchingContestNoneCaughtWindowTemplate =
     .baseBlock = 8,
 };
 
-static const u8* const sPyramindFloorNames[] =
+static const u8* const sPyramidFloorNames[] =
 {
     gText_Floor1,
     gText_Floor2,
@@ -196,7 +196,7 @@ static const struct MenuAction sStartMenuItems[] =
     {gText_MenuRetire, {.u8_void = StartMenuRetireBugCatchingContestCallback}},
 };
 
-static const struct BgTemplate sPostLinkSaveMessageBgTemplates[] =
+static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
 {
     {
         .bg = 0,
@@ -209,7 +209,8 @@ static const struct BgTemplate sPostLinkSaveMessageBgTemplates[] =
     }
 };
 
-static const struct WindowTemplate sPostLinkSaveMessageWindowTemplates[] = {
+static const struct WindowTemplate sWindowTemplates_LinkBattleSave[] =
+{
     {
         .bg = 0,
         .tilemapLeft = 2,
@@ -253,13 +254,13 @@ static void CreateStartMenuTask(TaskFunc followupFunc);
 static void InitSave(void);
 static u8 RunSaveCallback(void);
 static void ShowSaveMessage(const u8 *message, u8 (*saveCallback)(void));
-static void sub_80A0014(void);
+static void HideSaveMessageWindow(void);
 static void HideSaveInfoWindow(void);
 static void SaveStartTimer(void);
 static bool8 SaveSuccesTimer(void);
 static bool8 SaveErrorTimer(void);
 static void InitBattlePyramidRetire(void);
-static void sub_80A03D8(void);
+static void VBlankCB_LinkBattleSave(void);
 static bool32 InitSaveWindowAfterLinkBattle(u8 *par1);
 static void CB2_SaveAfterLinkBattle(void);
 static void ShowSaveInfoWindow(void);
@@ -467,7 +468,7 @@ static void ShowPyramidFloorWindow(void)
 
     PutWindowTilemap(sBattlePyramidFloorWindowId);
     DrawStdWindowFrame(sBattlePyramidFloorWindowId, FALSE);
-    StringCopy(gStringVar1, sPyramindFloorNames[gSaveBlock2Ptr->frontier.curChallengeBattleNum]);
+    StringCopy(gStringVar1, sPyramidFloorNames[gSaveBlock2Ptr->frontier.curChallengeBattleNum]);
     StringExpandPlaceholders(gStringVar4, gText_BattlePyramidFloor);
     AddTextPrinterParameterized(sBattlePyramidFloorWindowId, 2, gStringVar4, 0, 1, TEXT_SPEED_FF, NULL);
     CopyWindowToVram(sBattlePyramidFloorWindowId, 2);
@@ -554,7 +555,7 @@ static bool32 InitStartMenuStep(void)
         sInitStartMenuData[0]++;
         break;
     case 4:
-        if (PrintStartMenuActions((s8 *)&sInitStartMenuData[1], 2))
+        if (PrintStartMenuActions(&sInitStartMenuData[1], 2))
             sInitStartMenuData[0]++;
         break;
     case 5:
@@ -633,7 +634,7 @@ void ShowStartMenu(void)
     if (!IsUpdateLinkStateCBActive())
     {
         FreezeObjectEvents();
-        sub_808B864();
+        PlayerFreeze();
         sub_808BCF4();
     }
     CreateStartMenuTask(Task_ShowStartMenu);
@@ -937,7 +938,7 @@ static bool8 BattlePyramidRetireCallback(void)
 
 static void InitSave(void)
 {
-    save_serialize_map();
+    SaveMapView();
     sSaveDialogCallback = SaveConfirmSaveCallback;
     sSavingComplete = FALSE;
 }
@@ -990,7 +991,7 @@ static void SaveGameTask(u8 taskId)
     EnableBothScriptContexts();
 }
 
-static void sub_80A0014(void)
+static void HideSaveMessageWindow(void)
 {
     ClearDialogWindowAndFrame(0, TRUE);
 }
@@ -1085,7 +1086,7 @@ static u8 SaveConfirmInputCallback(void)
     case -1: // B Button
     case 1: // No
         HideSaveInfoWindow();
-        sub_80A0014();
+        HideSaveMessageWindow();
         return SAVE_CANCELED;
     }
 
@@ -1131,7 +1132,7 @@ static u8 SaveOverwriteInputCallback(void)
     case -1: // B Button
     case 1: // No
         HideSaveInfoWindow();
-        sub_80A0014();
+        HideSaveMessageWindow();
         return SAVE_CANCELED;
     }
 
@@ -1249,14 +1250,14 @@ static u8 BattlePyramidRetireInputCallback(void)
         return SAVE_CANCELED;
     case -1: // B Button
     case 1: // No
-        sub_80A0014();
+        HideSaveMessageWindow();
         return SAVE_SUCCESS;
     }
 
     return SAVE_IN_PROGRESS;
 }
 
-static void sub_80A03D8(void)
+static void VBlankCB_LinkBattleSave(void)
 {
     TransferPlttBuffer();
 }
@@ -1280,8 +1281,8 @@ static bool32 InitSaveWindowAfterLinkBattle(u8 *state)
         break;
     case 2:
         ResetBgsAndClearDma3BusyFlags(FALSE);
-        InitBgsFromTemplates(0, sPostLinkSaveMessageBgTemplates, ARRAY_COUNT(sPostLinkSaveMessageBgTemplates));
-        InitWindows(sPostLinkSaveMessageWindowTemplates);
+        InitBgsFromTemplates(0, sBgTemplates_LinkBattleSave, ARRAY_COUNT(sBgTemplates_LinkBattleSave));
+        InitWindows(sWindowTemplates_LinkBattleSave);
         LoadThinWindowBorderGfx(0, 8, 0xF0);
         break;
     case 3:
@@ -1324,17 +1325,17 @@ static void Task_SaveAfterLinkBattle(u8 taskId)
         case 0:
             FillWindowPixelBuffer(0, PIXEL_FILL(1));
             AddTextPrinterParameterized2(0,
-                                         2,
-                                         gText_SavingDontTurnOffPower,
-                                         TEXT_SPEED_FF,
-                                         NULL,
-                                         TEXT_COLOR_DARK_GREY,
-                                         TEXT_COLOR_WHITE,
-                                         TEXT_COLOR_LIGHT_GREY);
+                                        2,
+                                        gText_SavingDontTurnOffPower,
+                                        TEXT_SPEED_FF,
+                                        NULL,
+                                        TEXT_COLOR_DARK_GRAY,
+                                        TEXT_COLOR_WHITE,
+                                        TEXT_COLOR_LIGHT_GRAY);
             DrawTextBorderOuter(0, 8, 15);
             PutWindowTilemap(0);
-            CopyWindowToVram(0, COPYWIN_BOTH);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+            CopyWindowToVram(0, 3);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
 
             if (gWirelessCommType != 0 && InUnionRoom())
             {
@@ -1367,7 +1368,7 @@ static void Task_SaveAfterLinkBattle(u8 taskId)
             }
             break;
         case 3:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             *state = 4;
             break;
         case 4:

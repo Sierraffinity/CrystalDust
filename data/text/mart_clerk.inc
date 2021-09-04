@@ -1,10 +1,10 @@
-gText_HowMayIHelpYou:: @ 8272A21
+gText_HowMayIHelpYou::
 	.string "Welcome!\n"
 	.string "How may I help you?$"
 
-gText_PleaseComeAgain:: @ 8272A3F
+gText_PleaseComeAgain::
 	.string "Please come again!$"
 
-gText_PlayerWhatCanIDoForYou:: @ 8272A52
+gText_PlayerWhatCanIDoForYou::
 	.string "{PLAYER}{STRING 5}, welcome!\p"
 	.string "What can I do for you?$"

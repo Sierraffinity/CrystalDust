@@ -3,7 +3,6 @@
 #include "bg.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-#include "constants/species.h"
 #include "constants/trainers.h"
 #include "util.h"
 #include "clock.h"
@@ -35,7 +34,6 @@
 #include "scanline_effect.h"
 #include "sound.h"
 #include "sprite.h"
-#include "string.h"
 #include "strings.h"
 #include "string_util.h"
 #include "task.h"
@@ -278,7 +276,7 @@ static void Task_NewGameOakSpeech_FadeEverythingButPlayerAndTextbox(u8 taskId);
 static void Task_NewGameOakSpeech_StartShrinkPlayer(u8 taskId);
 static void Task_NewGameOakSpeech_WaitToFadeTextbox(u8 taskId);
 
-extern const union AffineAnimCmd *const gUnknown_082FF694[];
+extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteOpponentSide[];
 
 // .rodata
 
@@ -738,9 +736,9 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
     ResetSpriteData();
     FreeAllSpritePalettes();
     if (returningFromOptionsMenu)
-        gPlttBufferFaded[0] = RGB_BLACK;
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK); // fade to black
     else
-        gPlttBufferFaded[0] = RGB_WHITE;
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_WHITEALPHA); // fade to white
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sMainMenuBgTemplates, ARRAY_COUNT(sMainMenuBgTemplates));
     ChangeBgX(0, 0, 0);
@@ -1376,7 +1374,7 @@ static void Task_HandleMainMenuAPressed_(u8 taskId)
                 SetGpuReg(REG_OFFSET_BG1VOFS, 0);
                 SetGpuReg(REG_OFFSET_BG0HOFS, 0);
                 SetGpuReg(REG_OFFSET_BG0VOFS, 0);
-                BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+                BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
                 return;
         }
         FreeAllWindowBuffers();
@@ -1442,7 +1440,7 @@ static void Task_DisplayMainMenuInvalidActionError(u8 taskId)
             if (JOY_NEW(A_BUTTON | B_BUTTON))
             {
                 PlaySE(SE_SELECT);
-                BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+                BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
                 if (gTasks[taskId].tCurrAction == ACTION_INVALID)
                 {
                     gTasks[taskId].func = Task_HandleMainMenuBPressed;
@@ -1829,6 +1827,9 @@ static void Task_NewGameOakSpeech_PrintThisEllipsis(u8 taskId)
         AddTextPrinterForMessage_IgnoreTextColor(1);
         gTasks[taskId].func = Task_NewGameOakSpeech_CreatePokeBallToReleaseWooper;
     }
+    tState++;
+    if (gTasks[sBirchSpeechMainTaskId].tTimer < 0x4000)
+        gTasks[sBirchSpeechMainTaskId].tTimer++;
 }
 
 static void Task_NewGameOakSpeech_CreatePokeBallToReleaseWooper(u8 taskId)
@@ -1900,7 +1901,7 @@ static void Task_NewGameOakSpeech_MainSpeech2(u8 taskId)
     {
         if (tTimer < 24)
         {
-            gSprites[tWooperSpriteId].pos1.y--;
+            gSprites[tWooperSpriteId].y--;
         }
         tTimer--;
     }
@@ -2103,7 +2104,7 @@ static void Task_NewGameOakSpeech_SlidePlatformAway2(u8 taskId)
         for (i = 0; i < 3; i++)
         {
             spriteId = gTasks[taskId].data[i + 9];
-            gSprites[spriteId].pos1.x = gTasks[taskId].tSlideOffset + ((i - 1) * 32) + 120;
+            gSprites[spriteId].x = gTasks[taskId].tSlideOffset + ((i - 1) * 32) + 120;
         }
         
         ChangeBgX(2, 0x200, 1);
@@ -2351,7 +2352,7 @@ static void CB2_NewGameOakSpeech_ReturnFromNamingScreen(void)
     for (i = 0; i < 3; i++)
     {
         spriteId = gTasks[taskId].data[i + 9];
-        gSprites[spriteId].pos1.x = 148 + (i * 32);
+        gSprites[spriteId].x = 148 + (i * 32);
     }
     
     ChangeBgX(2, 60 * -0x100, 0);
@@ -2387,8 +2388,8 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *sprite)
 {
     u32 y;
 
-    y = (sprite->pos1.y << 16) + sprite->data[0] + 0xC000;
-    sprite->pos1.y = y >> 16;
+    y = (sprite->y << 16) + sprite->data[0] + 0xC000;
+    sprite->y = y >> 16;
     sprite->data[0] = y;
 }
 

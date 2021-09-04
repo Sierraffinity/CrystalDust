@@ -47,7 +47,6 @@
 #include "constants/songs.h"
 #include "constants/map_types.h"
 #include "constants/maps.h"
-#include "constants/species.h"
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
@@ -625,7 +624,7 @@ static void CB2_EndWildBattle(void)
     else
     {
         SetMainCallback2(CB2_ReturnToField);
-        gFieldCallback = sub_80AF6F0;
+        gFieldCallback = FieldCB_ReturnToFieldNoScriptCheckMusic;
     }
 }
 
@@ -1219,7 +1218,7 @@ void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerSc
     gSelectedObjectEvent = trainerObjEventId;
     gSpecialVar_LastTalked = gObjectEvents[trainerObjEventId].localId;
     BattleSetup_ConfigureTrainerBattle(trainerScript + 1);
-    ScriptContext1_SetupScript(EventScript_ShowTrainerIntro);
+    ScriptContext1_SetupScript(EventScript_StartTrainerApproach);
     ScriptContext2_Enable();
 }
 
@@ -1232,7 +1231,7 @@ void ConfigureTwoTrainersBattle(u8 trainerObjEventId, const u8 *trainerScript)
 
 void SetUpTwoTrainersBattle(void)
 {
-    ScriptContext1_SetupScript(EventScript_ShowTrainerIntro);
+    ScriptContext1_SetupScript(EventScript_StartTrainerApproach);
     ScriptContext2_Enable();
 }
 
@@ -1242,10 +1241,12 @@ bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
     return FlagGet(TRAINER_FLAGS_START + flag);
 }
 
-void SetUpTrainerMovement(void)
+// Set trainer's movement type so they stop and remain facing that direction
+// Note: Only for trainers who are spoken to directly
+//       For trainers who spot the player this is handled by PlayerFaceApproachingTrainer
+void SetTrainerFacingDirection(void)
 {
     struct ObjectEvent *objectEvent = &gObjectEvents[gSelectedObjectEvent];
-
     SetTrainerMovementType(objectEvent, GetTrainerFacingDirectionMovementType(objectEvent->facingDirection));
 }
 
@@ -1490,7 +1491,7 @@ void ShowTrainerCantBattleSpeech(void)
     ShowFieldMessage(GetTrainerCantBattleSpeech());
 }
 
-void SetUpTrainerEncounterMusic(void)
+void PlayTrainerEncounterMusic(void)
 {
     u16 trainerId;
     u16 music;
@@ -1606,8 +1607,7 @@ static s32 TrainerIdToRematchTableId(const struct RematchTrainer *table, u16 tra
     {
         for (j = 0; j < REMATCHES_COUNT; j++)
         {
-            if (table[i].trainerIds[j] == 0)
-                break;
+            if (table[i].trainerIds[j] == 0) break; // one line required to match -g
             if (table[i].trainerIds[j] == trainerId)
                 return i;
         }

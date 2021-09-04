@@ -133,7 +133,7 @@ static const struct SpritePalette sSpritePalette_Suicune[] =
 
 static const struct OamData sPokemonLogoShineOamData =
 {
-    .y = 160,
+    .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
     .mosaic = 0,
@@ -183,13 +183,13 @@ static const struct CompressedSpriteSheet sPokemonLogoShineSpriteSheet[] =
 // code
 static void SpriteCB_PokemonLogoShine(struct Sprite *sprite)
 {
-    if (sprite->pos1.x < 272)
+    if (sprite->x < DISPLAY_WIDTH + 32)
     {
         if (sprite->data[0]) // Flash background
         {
             u16 backgroundColor;
 
-            if (sprite->pos1.x < DISPLAY_WIDTH / 2)
+            if (sprite->x < DISPLAY_WIDTH / 2)
             {
                 // Brighten background color
                 if (sprite->data[1] < 31)
@@ -207,15 +207,15 @@ static void SpriteCB_PokemonLogoShine(struct Sprite *sprite)
             }
 
             backgroundColor = _RGB(sprite->data[1], sprite->data[1], sprite->data[1]);
-            if (sprite->pos1.x == DISPLAY_WIDTH / 2 + 12
-                || sprite->pos1.x == DISPLAY_WIDTH / 2 + 16
-                || sprite->pos1.x == DISPLAY_WIDTH / 2 + 20
-                || sprite->pos1.x == DISPLAY_WIDTH / 2 + 24)
+            if (sprite->x == DISPLAY_WIDTH / 2 + 12
+                || sprite->x == DISPLAY_WIDTH / 2 + 16
+                || sprite->x == DISPLAY_WIDTH / 2 + 20
+                || sprite->x == DISPLAY_WIDTH / 2 + 24)
                 gPlttBufferFaded[0] = RGB(24, 31, 12);
             else
                 gPlttBufferFaded[0] = backgroundColor;
         }
-        sprite->pos1.x += 4;
+        sprite->x += 4;
     }
     else
     {
@@ -226,8 +226,8 @@ static void SpriteCB_PokemonLogoShine(struct Sprite *sprite)
 
 static void SpriteCB_PokemonLogoShine2(struct Sprite *sprite)
 {
-    if (sprite->pos1.x < 272)
-        sprite->pos1.x += 8;
+    if (sprite->x < DISPLAY_WIDTH + 32)
+        sprite->x += 8;
     else
         DestroySprite(sprite);
 }
@@ -322,7 +322,7 @@ void CB2_InitTitleScreen(void)
         break;
     }
     case 3:
-        BeginNormalPaletteFade(0xFFFFFFFF, 1, 0x10, 0, RGB_WHITEALPHA);
+        BeginNormalPaletteFade(PALETTES_ALL, 1, 0x10, 0, RGB_WHITEALPHA);
         gMain.state = 4;
         break;
     case 4:
@@ -497,7 +497,7 @@ static void Task_TitleScreenProcessInput(u8 taskId)
     if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(START_BUTTON)))
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(0xFFFFFFFF, 1, 0, 0x10, RGB_WHITEALPHA);
+        BeginNormalPaletteFade(PALETTES_ALL, 1, 0, 0x10, RGB_WHITEALPHA);
         SetMainCallback2(CB2_GoToMainMenu);
     }
     else if (JOY_HELD(CLEAR_SAVE_BUTTON_COMBO) == CLEAR_SAVE_BUTTON_COMBO)
@@ -509,7 +509,7 @@ static void Task_TitleScreenProcessInput(u8 taskId)
       && CanResetRTC() == TRUE)
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_GoToResetRtcScreen);
     }
     else if (JOY_HELD(SOUND_TEST_BUTTON_COMBO) == SOUND_TEST_BUTTON_COMBO)
@@ -521,7 +521,7 @@ static void Task_TitleScreenProcessInput(u8 taskId)
     else if (JOY_HELD(BERRY_UPDATE_BUTTON_COMBO) == BERRY_UPDATE_BUTTON_COMBO)
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_GoToBerryFixScreen);
     }   
     else
@@ -529,7 +529,7 @@ static void Task_TitleScreenProcessInput(u8 taskId)
         UpdatePressStartColor(taskId);
         if (IsBGMStopped())
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_WHITEALPHA);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_WHITEALPHA);
             SetMainCallback2(CB2_GoToCopyrightScreen);
         }
     }

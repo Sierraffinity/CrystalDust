@@ -539,7 +539,16 @@ static void DrawOptionMenuTexts(void)
     }
 }
 
-static void sub_80BB154(void)
+#define TILE_TOP_CORNER_L 0x1A2
+#define TILE_TOP_EDGE     0x1A3
+#define TILE_TOP_CORNER_R 0x1A4
+#define TILE_LEFT_EDGE    0x1A5
+#define TILE_RIGHT_EDGE   0x1A7
+#define TILE_BOT_CORNER_L 0x1A8
+#define TILE_BOT_EDGE     0x1A9
+#define TILE_BOT_CORNER_R 0x1AA
+
+static void DrawBgWindowFrames(void)
 {
     FillBgTilemapBufferRect(1, 0x1B3, 1, 2, 1, 1, 3);
     FillBgTilemapBufferRect(1, 0x1B4, 2, 2, 27, 1, 3);

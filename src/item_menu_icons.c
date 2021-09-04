@@ -12,6 +12,15 @@
 #include "window.h"
 #include "constants/items.h"
 
+enum {
+    TAG_BAG_GFX = 100,
+    TAG_ROTATING_BALL_GFX,
+    TAG_ITEM_ICON,
+    TAG_ITEM_ICON_ALT,
+};
+#define TAG_BERRY_CHECK_CIRCLE_GFX 10000
+#define TAG_BERRY_PIC_PAL 30020
+
 struct CompressedTilesPal
 {
     const u32 *tiles;
@@ -132,7 +141,7 @@ const struct CompressedSpritePalette gBagFemalePaletteTable =
     gBagFemalePalette, TAG_BAG_GFX
 };
 
-static const struct SpriteTemplate gBagSpriteTemplate =
+static const struct SpriteTemplate sBagSpriteTemplate =
 {
     .tileTag = TAG_BAG_GFX,
     .paletteTag = TAG_BAG_GFX,
@@ -177,7 +186,7 @@ static const struct OamData sBerryPicRotatingOamData =
     .affineParam = 0
 };
 
-static const union AnimCmd sSpriteAnim_857FBD8[] =
+static const union AnimCmd sAnim_BerryPic[] =
 {
     ANIMCMD_FRAME(0, 0),
     ANIMCMD_END
@@ -185,7 +194,7 @@ static const union AnimCmd sSpriteAnim_857FBD8[] =
 
 static const union AnimCmd *const sBerryPicSpriteAnimTable[] =
 {
-    sSpriteAnim_857FBD8
+    sAnim_BerryPic
 };
 
 static const struct SpriteFrameImage sBerryPicSpriteImageTable[] =
@@ -195,7 +204,7 @@ static const struct SpriteFrameImage sBerryPicSpriteImageTable[] =
 
 static const struct SpriteTemplate gBerryPicSpriteTemplate =
 {
-    .tileTag = TAG_BERRY_PIC_TILE,
+    .tileTag = 0xFFFF,
     .paletteTag = TAG_BERRY_PIC_PAL,
     .oam = &sBerryPicOamData,
     .anims = sBerryPicSpriteAnimTable,
@@ -234,7 +243,7 @@ static const union AffineAnimCmd *const sBerryPicRotatingAnimCmds[] =
 
 static const struct SpriteTemplate gBerryPicRotatingSpriteTemplate =
 {
-    .tileTag = TAG_BERRY_PIC_TILE,
+    .tileTag = 0xFFFF,
     .paletteTag = TAG_BERRY_PIC_PAL,
     .oam = &sBerryPicRotatingOamData,
     .anims = sBerryPicSpriteAnimTable,
@@ -365,16 +374,16 @@ void AddBagVisualSprite(u8 bagPocketId)
 void SetBagVisualPocketId(u8 bagPocketId)
 {
     struct Sprite *sprite = &gSprites[sItemMenuIconSpriteIds[0]];
-    sprite->pos2.y = -5;
+    sprite->y2 = -5;
     sprite->callback = SpriteCB_BagVisualSwitchingPockets;
     StartSpriteAnim(sprite, bagPocketId);
 }
 
 static void SpriteCB_BagVisualSwitchingPockets(struct Sprite *sprite)
 {
-    if (sprite->pos2.y != 0)
+    if (sprite->y2 != 0)
     {
-        sprite->pos2.y++;
+        sprite->y2++;
     }
     else
     {
@@ -408,14 +417,15 @@ void AddBagItemIconSprite(u16 itemId, u8 id)
     {
         u8 iconSpriteId;
 
-        FreeSpriteTilesByTag(id + 102);
-        FreeSpritePaletteByTag(id + 102);
-        iconSpriteId = AddItemIconSprite(id + 102, id + 102, itemId);
+        // Either TAG_ITEM_ICON or TAG_ITEM_ICON_ALT
+        FreeSpriteTilesByTag(id + TAG_ITEM_ICON);
+        FreeSpritePaletteByTag(id + TAG_ITEM_ICON);
+        iconSpriteId = AddItemIconSprite(id + TAG_ITEM_ICON, id + TAG_ITEM_ICON, itemId);
         if (iconSpriteId != MAX_SPRITES)
         {
             spriteId[id] = iconSpriteId;
-            gSprites[iconSpriteId].pos2.x = 24;
-            gSprites[iconSpriteId].pos2.y = 140;
+            gSprites[iconSpriteId].x2 = 24;
+            gSprites[iconSpriteId].y2 = 140;
         }
     }
 }

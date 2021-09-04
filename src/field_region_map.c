@@ -206,7 +206,7 @@ static void FieldUpdateRegionMap(void)
             }
             break;
         case 8:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             sFieldRegionMapHandler->state++;
             break;
         case 9:

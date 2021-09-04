@@ -39,3 +39,4 @@ alphas/
 scripts.inc
 data/scripts/bug_catching_contest.inc
 data/text/move_tutors.inc
+*.sna

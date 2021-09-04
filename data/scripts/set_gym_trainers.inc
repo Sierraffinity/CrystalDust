@@ -1,4 +1,4 @@
-Common_EventScript_SetGymTrainers:: @ 8271F43
+Common_EventScript_SetGymTrainers::
 	switch VAR_0x8008
 	case 1, VioletCity_Gym_SetGymTrainers
 	case 2, AzaleaTown_Gym_SetGymTrainers

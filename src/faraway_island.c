@@ -38,7 +38,7 @@ static const s16 sFarawayIslandRockCoords[4][2] =
 static u8 GetMewObjectEventId(void)
 {
     u8 objectEventId;
-    TryGetObjectEventIdByLocalIdAndMap(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objectEventId);
+    TryGetObjectEventIdByLocalIdAndMap(LOCALID_FARAWAY_ISLAND_MEW, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objectEventId);
     return objectEventId;
 }
 
@@ -181,36 +181,40 @@ u32 GetMewMoveDirection(void)
     {
         if (ShouldMewMoveEast(mew, 1))
             return GetRandomMewDirectionCandidate(2);
-        if (ShouldMewMoveWest(mew, 1))
+        else if (ShouldMewMoveWest(mew, 1))
             return GetRandomMewDirectionCandidate(2);
-        return DIR_NORTH;
+        else
+            return DIR_NORTH;
     }
 
     if (ShouldMewMoveSouth(mew, 0))
     {
         if (ShouldMewMoveEast(mew, 1))
             return GetRandomMewDirectionCandidate(2);
-        if (ShouldMewMoveWest(mew, 1))
+        else if (ShouldMewMoveWest(mew, 1))
             return GetRandomMewDirectionCandidate(2);
-         return DIR_SOUTH;
+        else
+            return DIR_SOUTH;
     }
 
     if (ShouldMewMoveEast(mew, 0))
     {
         if (ShouldMewMoveNorth(mew, 1))
             return GetRandomMewDirectionCandidate(2);
-        if (ShouldMewMoveSouth(mew, 1))
+        else if (ShouldMewMoveSouth(mew, 1))
             return GetRandomMewDirectionCandidate(2);
-        return DIR_EAST;
+        else
+            return DIR_EAST;
     }
 
     if (ShouldMewMoveWest(mew, 0))
     {
         if (ShouldMewMoveNorth(mew, 1))
             return GetRandomMewDirectionCandidate(2);
-        if (ShouldMewMoveSouth(mew, 1))
+        else if (ShouldMewMoveSouth(mew, 1))
             return GetRandomMewDirectionCandidate(2);
-        return DIR_WEST;
+        else
+            return DIR_WEST;
     }
 
     // If this point is reached, Mew cannot move without getting closer to the player
@@ -311,7 +315,8 @@ static u8 GetValidMewMoveDirection(u8 ignoredDir)
 
     if (count > 1)
         return sMewDirectionCandidates[VarGet(VAR_FARAWAY_ISLAND_STEP_COUNTER) % count];
-    return sMewDirectionCandidates[0];
+    else
+        return sMewDirectionCandidates[0];
 }
 
 void UpdateFarawayIslandStepCounter(void)
@@ -367,7 +372,6 @@ void SetMewAboveGrass(void)
 {
     s16 x;
     s16 y;
-    u8 spriteId;
     struct ObjectEvent *mew = &gObjectEvents[GetMewObjectEventId()];
 
     mew->invisible = FALSE;

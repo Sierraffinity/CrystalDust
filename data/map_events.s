@@ -11,6 +11,7 @@
 #include "constants/weather.h"
 #include "constants/trainer_hill.h"
 #include "constants/trainer_types.h"
+#include "constants/berry.h"
 	.include "asm/macros.inc"
 	.include "constants/constants.inc"
 

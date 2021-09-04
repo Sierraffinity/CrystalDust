@@ -104,6 +104,7 @@ static const u8 gPlayerPC_OptionOrder[] = {
     PLAYERPC_MENU_MAILBOX,
     PLAYERPC_MENU_TURNOFF
 };
+#define NUM_PLAYER_PC_OPTIONS ARRAY_COUNT(sPlayerPC_OptionOrder)
 
 static const struct MenuAction sMenuActions_ItemPc[] = {
     { gText_WithdrawItem, Task_PlayerPcWithdrawItem },
@@ -152,6 +153,7 @@ void NewGameInitPCItems(void)
 {
     ClearItemSlots(gSaveBlock1Ptr->pcItems, ARRAY_COUNT(gSaveBlock1Ptr->pcItems));
 }
+#undef GET_QUANTITY
 
 void BedroomPC(void)
 {

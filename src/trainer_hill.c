@@ -29,7 +29,6 @@
 #include "constants/layouts.h"
 #include "constants/moves.h"
 #include "constants/maps.h"
-#include "constants/species.h"
 #include "constants/trainers.h"
 #include "constants/easy_chat.h"
 #include "constants/trainer_hill.h"
@@ -75,7 +74,7 @@ static void GetChallengeWon(void);
 static void TrainerHillSetTag(void);
 static void SetUpDataStruct(void);
 static void FreeDataStruct(void);
-static void nullsub_2(void);
+static void TrainerHillDummy(void);
 static void SetTimerValue(u32 *dst, u32 val);
 static u32 GetTimerValue(u32 *src);
 static void SetTrainerHillMonLevel(struct Pokemon *mon, u8 level);
@@ -203,7 +202,7 @@ static const u16 *const *const sPrizeListSets[] =
 };
 
 static const u16 sEReader_Pal[] = INCBIN_U16("graphics/misc/trainer_hill_ereader.gbapal");
-static const u8 sRecordWinColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GREY, TEXT_COLOR_LIGHT_GREY};
+static const u8 sRecordWinColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
 
 static const struct TrHillTag *const sDataPerTag[] =
 {
@@ -356,10 +355,10 @@ static void SetUpDataStruct(void)
 {
     if (sHillData == NULL)
     {
-        sHillData = AllocZeroed(sizeof(struct TrHillStruct2));
+        sHillData = AllocZeroed(sizeof(*sHillData));
         sHillData->floorId = gMapHeader.mapLayoutId - LAYOUT_TRAINER_HILL_1F;
         CpuCopy32(sDataPerTag[gSaveBlock1Ptr->trainerHill.tag], &sHillData->tag, sizeof(sHillData->tag) + 4 * sizeof(struct TrHillFloor));
-        nullsub_2();
+        TrainerHillDummy();
     }
 }
 
@@ -398,7 +397,7 @@ void CopyTrainerHillTrainerText(u8 which, u16 trainerId)
 
 static void TrainerHillStartChallenge(void)
 {
-    nullsub_2();
+    TrainerHillDummy();
     if (!ReadTrainerHillAndValidate())
         gSaveBlock1Ptr->trainerHill.field_3D6E_0f = 1;
     else
@@ -574,12 +573,12 @@ static void IsTrainerHillChallengeActive(void)
         gSpecialVar_Result = TRUE;
 }
 
-void nullsub_129(void)
+static void TrainerHillDummy_Unused(void)
 {
 
 }
 
-static void nullsub_2(void)
+static void TrainerHillDummy(void)
 {
 
 }
@@ -672,17 +671,17 @@ bool32 LoadTrainerHillFloorObjectEventScripts(void)
     return TRUE;
 }
 
-static u16 sub_81D5F58(u8 floorId, u32 bit, u32 arg2, u32 arg3)
+static u16 GetMetatileForFloor(u8 floorId, u32 x, u32 y, u32 stride) // stride is always 16
 {
-    u8 var0;
-    u16 var1;
-    u16 var2;
+    bool8 impassable;
+    u16 metatile;
+    u16 elevation;
 
-    var0 = (sHillData->floors[floorId].display.unk3A0[arg2] >> (15 - bit) & 1);
-    var1 = sHillData->floors[floorId].display.data[arg3 * arg2 + bit] + 0x200;
-    var2 = 0x3000;
+    impassable = (sHillData->floors[floorId].display.collisionData[y] >> (15 - x) & 1);
+    metatile = sHillData->floors[floorId].display.metatileData[stride * y + x] + NUM_METATILES_IN_PRIMARY;
+    elevation = 3 << METATILE_ELEVATION_SHIFT;
 
-    return (((var0 << 10) & 0xc00) | var2) | (var1 & 0x3ff);
+    return ((impassable << METATILE_COLLISION_SHIFT) & METATILE_COLLISION_MASK) | elevation | (metatile & METATILE_ID_MASK);
 }
 
 void GenerateTrainerHillFloorLayout(u16 *mapArg)
@@ -711,6 +710,8 @@ void GenerateTrainerHillFloorLayout(u16 *mapArg)
     gBackupMapLayout.width = 31;
     gBackupMapLayout.height = 35;
     dst = mapArg + 224;
+
+    // First 5 rows of the map (Entrance / Exit) are always the same
     for (i = 0; i < 5; i++)
     {
         for (j = 0; j < 16; j++)
@@ -719,10 +720,11 @@ void GenerateTrainerHillFloorLayout(u16 *mapArg)
         src += 16;
     }
 
+    // Load the 16x16 floor-specific layout
     for (i = 0; i < 16; i++)
     {
         for (j = 0; j < 16; j++)
-            dst[j] = sub_81D5F58(mapId, j, i, 0x10);
+            dst[j] = GetMetatileForFloor(mapId, j, i, 16);
         dst += 31;
     }
 

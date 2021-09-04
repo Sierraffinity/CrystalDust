@@ -14,7 +14,7 @@
 #include "link.h"
 #include "constants/game_stat.h"
 
-static u16 CalculateChecksum(const void *data, u16 size);
+static u16 CalculateChecksum(void *data, u16 size);
 static bool8 DoReadFlashWholeSection(u8 sector, struct SaveSection *section);
 static u8 GetSaveValidStatus(const struct SaveSectionLocation *location);
 static u8 sub_8152E10(u16 a1, const struct SaveSectionLocation *location);
@@ -23,10 +23,6 @@ static u8 TryWriteSector(u8 sector, u8 *data);
 static u8 HandleWriteSector(u16 a1, const struct SaveSectionLocation *location);
 
 // Divide save blocks into individual chunks to be written to flash sectors
-
-// Each 4 KiB flash sector contains 3968 bytes of actual data followed by a 128 byte footer
-#define SECTOR_DATA_SIZE 3968
-#define SECTOR_FOOTER_SIZE 128
 
 /*
  * Sector Layout:
@@ -635,7 +631,7 @@ static bool8 DoReadFlashWholeSection(u8 sector, struct SaveSection *section)
     return TRUE;
 }
 
-static u16 CalculateChecksum(const void *data, u16 size)
+static u16 CalculateChecksum(void *data, u16 size)
 {
     u16 i;
     u32 checksum = 0;
@@ -662,7 +658,7 @@ static void UpdateSaveAddresses(void)
         gRamSaveSectionLocations[i].size = sSaveSectionOffsets[i].size;
     }
 
-    for (; i <= SECTOR_ID_PKMN_STORAGE_END; i++) //i = SECTOR_ID_PKMN_STORAGE_START; in the initialization clause does not match
+    for (; i <= SECTOR_ID_PKMN_STORAGE_END; i++) //setting i to SECTOR_ID_PKMN_STORAGE_START does not match
     {
         gRamSaveSectionLocations[i].data = (void*)(gPokemonStoragePtr) + sSaveSectionOffsets[i].toAdd;
         gRamSaveSectionLocations[i].size = sSaveSectionOffsets[i].size;
@@ -931,7 +927,7 @@ void Task_LinkSave(u8 taskId)
         if (IsLinkTaskFinished())
         {
             if (!tPartialSave)
-                save_serialize_map();
+                SaveMapView();
             tState = 3;
         }
         break;

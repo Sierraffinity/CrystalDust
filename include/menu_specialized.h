@@ -15,6 +15,14 @@
 
 #define MAX_CONDITION_SPARKLES 10
 
+// Window IDs for the Player PC Mailbox
+enum {
+    MAILBOXWIN_TITLE,
+    MAILBOXWIN_LIST,
+    MAILBOXWIN_OPTIONS,
+    MAILBOXWIN_COUNT
+};
+
 struct UnknownSubStruct_81D1ED4
 {
     u16 unk0;
@@ -23,7 +31,7 @@ struct UnknownSubStruct_81D1ED4
 
 struct ConditionGraph
 {
-    /*0x000*/ u8 unk0[4][FLAVOR_COUNT];
+    /*0x000*/ u8 stat[4][FLAVOR_COUNT];
     /*0x014*/ struct UnknownSubStruct_81D1ED4 unk14[4][FLAVOR_COUNT];
     /*0x064*/ struct UnknownSubStruct_81D1ED4 unk64[10][FLAVOR_COUNT];
     /*0x12C*/ struct UnknownSubStruct_81D1ED4 unk12C[FLAVOR_COUNT];
@@ -32,21 +40,21 @@ struct ConditionGraph
     /*0x350*/ u16 unk350;
     /*0x352*/ u16 unk352;
     /*0x354*/ u8 unk354;
-    /*0x355*/ u8 unk355;
+    /*0x355*/ u8 state;
 };
 
-bool8 MailboxPC_InitBuffers(u8 count);
-u8 MailboxPC_GetAddWindow(u8 a0);
-u8 MailboxPC_InitListMenu(struct PlayerPCItemPageStruct *page);
-void MailboxPC_AddScrollIndicatorArrows(struct PlayerPCItemPageStruct *page);
-void MailboxPC_DestroyListMenuBuffer(void);
-void MailboxPC_RemoveWindow(u8 a0);
-void sub_81D1ED4(struct ConditionGraph *graph);
+bool8 MailboxMenu_Alloc(u8 count);
+u8 MailboxMenu_AddWindow(u8 windowIdx);
+u8 MailboxMenu_CreateList(struct PlayerPCItemPageStruct *page);
+void MailboxMenu_AddScrollArrows(struct PlayerPCItemPageStruct *page);
+void MailboxMenu_Free(void);
+void MailboxMenu_RemoveWindow(u8 windowIdx);
+void InitConditionGraphData(struct ConditionGraph *graph);
 void sub_81D2108(struct ConditionGraph *graph);
-void sub_81D21DC(u8 bg);
-void sub_81D20AC(struct ConditionGraph *graph);
+void SetConditionGraphIOWindows(u8 bg);
+void InitConditionGraphState(struct ConditionGraph *graph);
 void sub_81D2230(struct ConditionGraph *graph);
-bool8 sub_81D20BC(struct ConditionGraph *graph);
+bool8 SetupConditionGraphScanlineParams(struct ConditionGraph *graph);
 bool32 TransitionConditionGraph(struct ConditionGraph *graph);
 void sub_81D2754(u8 *arg0, struct UnknownSubStruct_81D1ED4 *arg1);
 void sub_81D1F84(struct ConditionGraph *graph, struct UnknownSubStruct_81D1ED4 *arg1, struct UnknownSubStruct_81D1ED4 *arg2);

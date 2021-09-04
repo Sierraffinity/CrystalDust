@@ -60,7 +60,7 @@ static void CreateTask_DrawFieldMessage(void)
 static void DestroyTask_DrawFieldMessage(void)
 {
     u8 taskId = FindTaskIdByFunc(Task_DrawFieldMessage);
-    if (taskId != 0xFF)
+    if (taskId != TASK_NONE)
         DestroyTask(taskId);
 }
 

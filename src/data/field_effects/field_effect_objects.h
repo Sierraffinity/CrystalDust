@@ -1280,16 +1280,16 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_SmallSparkle = {
 
 const struct SpritePalette gSpritePalette_SmallSparkle = {gFieldEffectPal_SmallSparkle, FLDEFF_PAL_TAG_SMALL_SPARKLE};
 
-static const union AnimCmd sAnim_Rayquaza[] = {
+static const union AnimCmd sAnim_RayquazaSpotlightEffect[] = {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
-static const union AnimCmd *const sAnimTable_Rayquaza[] = {
-    sAnim_Rayquaza,
+static const union AnimCmd *const sAnimTable_RayquazaSpotlightEffect[] = {
+    sAnim_RayquazaSpotlightEffect,
 };
 
-const struct SpriteFrameImage  sPicTable_Rayquaza[] = {
+const struct SpriteFrameImage  sPicTable_RayquazaSpotlightEffect[] = {
     overworld_frame(gObjectEventPic_Rayquaza, 4, 4, 0),
 };
 
@@ -1297,11 +1297,12 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_Rayquaza = {
     .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = 0xFFFF,
     .oam = &gObjectEventBaseOam_32x32,
-    .anims = sAnimTable_Rayquaza,
-    .images = sPicTable_Rayquaza,
+    .anims = sAnimTable_RayquazaSpotlightEffect,
+    .images = sPicTable_RayquazaSpotlightEffect,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = UpdateRayquazaSpotlightEffect,
 };
 
-static const struct SpritePalette gFieldEffectObjectPaletteInfoUnused = {gObjectEventPalette2, FLDEFF_PAL_TAG_UNKNOWN};
-const struct SpritePalette gFieldEffectObjectPaletteInfo11 = {gObjectEventPalette28, FLDEFF_PAL_TAG_ARROW};
+static const struct SpritePalette gFieldEffectObjectPaletteInfoUnused = {gObjectEventPal_Npc3, FLDEFF_PAL_TAG_UNKNOWN};
+const struct SpritePalette gFieldEffectObjectPaletteInfo11 = {gObjectEventPal_RedLeaf, FLDEFF_PAL_TAG_ARROW};
+static const struct SpritePalette sSpritePalette_Unused = {gObjectEventPal_Npc3, FLDEFF_PAL_TAG_UNKNOWN};
