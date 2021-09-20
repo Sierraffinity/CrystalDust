@@ -91,6 +91,7 @@
 #define BOX_NAME_LENGTH 8
 #define WALDA_WORDS_LENGTH 15
 #define NUM_QUESTIONNAIRE_WORDS 4
+#define QUIZ_QUESTION_LEN 9
 
 #define MALE 0
 #define FEMALE 1
