@@ -344,8 +344,12 @@
 #define METATILE_Mossdeep_Door_SpaceCenter  0x2ED
 
 // gTileset_NewBark
-#define METATILE_NewBark_Door_ElmsLab  0x2AC
-#define METATILE_NewBark_Door_NewBark  0x2A3
+#define METATILE_NewBark_Door_ElmsLab                0x2AC
+#define METATILE_NewBark_Door_NewBark                0x2A3
+#define METATILE_NewBark_Grass_NewBarkTreeLeft       0x30C
+#define METATILE_NewBark_Grass_NewBarkTreeRight      0x30D
+#define METATILE_NewBark_TallGrass_NewBarkTreeLeft   0x314
+#define METATILE_NewBark_TallGrass_NewBarkTreeRight  0x315
 
 // gTileset_Pacifidlog
 #define METATILE_Pacifidlog_Door                           0x21A

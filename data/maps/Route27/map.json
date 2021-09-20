@@ -3,7 +3,7 @@
   "name": "Route27",
   "layout": "LAYOUT_ROUTE27",
   "music": "MUS_AQUA_MAGMA_HIDEOUT",
-  "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+  "region_map_section": "MAPSEC_ROUTE_27",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",
@@ -19,13 +19,38 @@
       "direction": "left",
       "offset": 0,
       "map": "MAP_NEW_BARK_TOWN"
+    },
+    {
+      "direction": "right",
+      "offset": -96,
+      "map": "MAP_ROUTE26"
     }
   ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 28,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_TOHJO_FALLS",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 42,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_TOHJO_FALLS",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 37,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE27",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 
