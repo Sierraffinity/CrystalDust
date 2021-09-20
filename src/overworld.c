@@ -1776,7 +1776,7 @@ void CB2_ReturnToFieldFadeFromBlack(void)
 static void FieldCB_FadeTryShowMapPopup(void)
 {
     if (gMapHeader.showMapName == TRUE && SecretBaseMapPopupEnabled() == TRUE)
-        ShowMapNamePopup();
+        ShowMapNamePopup(FALSE);
     FieldCB_WarpExitFadeFromBlack();
 }
 
@@ -2024,7 +2024,7 @@ static bool32 LoadMapInStepsLocal(u8 *state, bool32 a2)
         break;
     case 11:
         if (gMapHeader.showMapName == TRUE && SecretBaseMapPopupEnabled() == TRUE)
-            ShowMapNamePopup();
+            ShowMapNamePopup(FALSE);
         (*state)++;
         break;
     case 12:

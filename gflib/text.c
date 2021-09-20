@@ -241,7 +241,7 @@ u16 AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 
     printerTemplate.currentY = y;
     printerTemplate.letterSpacing = gFonts[fontId].letterSpacing;
     printerTemplate.lineSpacing = gFonts[fontId].lineSpacing;
-    printerTemplate.unk = gFonts[fontId].unk;
+    printerTemplate.style = gFonts[fontId].style;
     printerTemplate.fgColor = gFonts[fontId].fgColor;
     printerTemplate.bgColor = gFonts[fontId].bgColor;
     printerTemplate.shadowColor = gFonts[fontId].shadowColor;
@@ -1696,8 +1696,8 @@ u8 GetFontAttribute(u8 fontId, u8 attributeId)
         case FONTATTR_LINE_SPACING:
             result = gFontInfos[fontId].lineSpacing;
             break;
-        case FONTATTR_UNKNOWN:
-            result = gFontInfos[fontId].unk;
+        case FONTATTR_STYLE:
+            result = gFontInfos[fontId].style;
             break;
         case FONTATTR_COLOR_FOREGROUND:
             result = gFontInfos[fontId].fgColor;

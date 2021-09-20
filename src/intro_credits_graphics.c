@@ -607,7 +607,7 @@ const struct CompressedSpriteSheet gSpriteSheet_IntroBicycle[] =
 };
 
 // In RS these were Latios/Latias. In Emerald both are replaced with Flygon and now only 1 is used
-static const struct CompressedSpriteSheet sSpriteSheet_IntroFlygon_Unused[] =
+/*static const struct CompressedSpriteSheet sSpriteSheet_IntroFlygon_Unused[] =
 {
     {
         .data = gIntroFlygon_Gfx,
@@ -625,7 +625,7 @@ const struct CompressedSpriteSheet gSpriteSheet_IntroFlygon[] =
         .tag = TAG_FLYGON_LATIAS
     },
     {}
-};
+};*/
 
 const struct SpritePalette gSpritePalettes_IntroPlayerFlygon[] = {
     {}

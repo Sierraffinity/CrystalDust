@@ -14,7 +14,7 @@ EventScript_FieldPoison::
 EventScript_FrontierFieldWhiteOut::
 	pike_inchallenge
 	compare VAR_RESULT, TRUE
-	goto_if_eq BattleFrontier_BattlePike_EventScript_WhiteOut
+	goto_if_eq BattleFrontier_BattlePike_EventScript_Retire
 	pyramid_inchallenge
 	compare VAR_RESULT, 1  @ On Pyramid floor
 	goto_if_eq BattleFrontier_BattlePyramid_EventScript_WarpToLobbyWhiteOut

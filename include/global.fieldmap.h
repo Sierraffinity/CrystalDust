@@ -153,8 +153,8 @@ struct MapHeader
     /* 0x19 */ bool8 allowCycling:1;
                bool8 allowEscaping:1; // Escape Rope and Dig
                bool8 allowRunning:1;
-               bool8 showMapName:5; // the last 4 bits are unused 
-                                    // but the 5 bit sized bitfield is required to match
+               bool8 showMapName:1; 
+               bool8 phoneService:4; // the last 3 bits are unused 
     /* 0x1A */ s8 floorNum;
     /* 0x1B */ u8 battleType;
 };

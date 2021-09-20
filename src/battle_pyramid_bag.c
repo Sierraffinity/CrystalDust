@@ -106,7 +106,7 @@ static void BagAction_Give(u8);
 static void BagAction_Cancel(u8);
 static void BagAction_UseInBattle(u8);
 static void BagCursorMoved(s32, bool8, struct ListMenu *);
-static void PrintItemQuantity(u8 windowId, u32 itemId, u8 y);
+static void PrintItemQuantity(u8 windowId, u16 index, s32 itemIndex, u8 y);
 static void TossItem(u8);
 static void DontTossItem(u8);
 
@@ -196,7 +196,7 @@ enum {
     COLORID_DARK_GRAY,
     COLORID_LIGHT_GRAY,
     COLORID_WHITE_BG,
-    COLORID_NONE = 0xFF
+    COLORID_NONE_2 = 0xFF
 };
 
 static const u8 sTextColors[][3] =
@@ -664,7 +664,7 @@ static void PrintItemQuantity(u8 windowId, u16 index, s32 itemIndex, u8 y)
         if (gPyramidBagMenu->toSwapPos == (u8)(itemIndex))
             PrintSelectorArrowAtPos(y, COLORID_LIGHT_GRAY);
         else
-            PrintSelectorArrowAtPos(y, COLORID_NONE);
+            PrintSelectorArrowAtPos(y, COLORID_NONE_2);
     }
 
     ConvertIntToDecimalStringN(gStringVar1,
@@ -848,7 +848,7 @@ static void PrintSelectorArrow(u8 listMenuTaskId, u8 colorId)
 
 static void PrintSelectorArrowAtPos(u8 y, u8 colorId)
 {
-    if (colorId == COLORID_NONE) // If 'no color', erase arrow
+    if (colorId == COLORID_NONE_2) // If 'no color', erase arrow
         FillWindowPixelRect(WIN_LIST, PIXEL_FILL(0), 0, y, GetMenuCursorDimensionByFont(1, 0), GetMenuCursorDimensionByFont(1, 1));
     else
         PrintOnWindow_Font1(WIN_LIST, gText_SelectorArrow2, 0, y, 0, 0, 0, colorId);
@@ -979,7 +979,7 @@ static void OpenContextMenu(u8 taskId)
 static void PrintMenuActionText_SingleRow(u8 windowId)
 {
     AddItemMenuActionTextPrinters(windowId, 7, 8, 1, 0, 0x10, gPyramidBagMenu->menuActionsCount, sMenuActions, gPyramidBagMenu->menuActionIds);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, gPyramidBagMenu->menuActionsCount, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, gPyramidBagMenu->menuActionsCount, 0);
 }
 
 static void PrintMenuActionText_MultiRow(u8 windowId, u8 horizontalCount, u8 verticalCount)

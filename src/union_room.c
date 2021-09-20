@@ -3765,7 +3765,7 @@ static void UR_AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str
     printerTemplate.y = y;
     printerTemplate.currentX = x;
     printerTemplate.currentY = y;
-    printerTemplate.unk = 0;
+    printerTemplate.style = 0;
 
     gTextFlags.useAlternateDownArrow = FALSE;
     switch (colorIdx)
@@ -4093,7 +4093,7 @@ static void TradeBoardPrintItemInfo(u8 windowId, u8 y, struct GFtgtGname * gname
     }
     else
     {
-        blit_move_info_icon(windowId, type + 1, 0x44, y);
+        BlitMenuInfoIcon(windowId, type + 1, 0x44, y);
         UR_AddTextPrinterParameterized(windowId, 2, gSpeciesNames[species], 0x76, y, colorIdx);
         ConvertIntToDecimalStringN(levelStr, level, STR_CONV_MODE_RIGHT_ALIGN, 3);
         UR_AddTextPrinterParameterized(windowId, 2, levelStr, 0xC6, y, colorIdx);

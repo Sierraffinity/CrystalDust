@@ -75,7 +75,7 @@ gFieldEffectScriptPointers::
 	.4byte gFieldEffectScript_UseHeadbutt				@ FLDEFF_USE_HEADBUTT
 
 gFieldEffectScript_ExclamationMarkIcon1::
-	field_eff_callnative FldEff_ExclamationMarkIcon
+	field_eff_loadfadedpalnotint_callnative gFieldEffectObjectPaletteInfo11, FldEff_ExclamationMarkIcon
 	field_eff_end
 
 gFieldEffectScript_UseCutOnTallGrass::
@@ -208,7 +208,7 @@ gFieldEffectScript_FlyIn::
 	field_eff_end
 
 gFieldEffectScript_QuestionMarkIcon::
-	field_eff_callnative FldEff_QuestionMarkIcon
+	field_eff_loadfadedpalnotint_callnative gFieldEffectObjectPaletteInfo11, FldEff_QuestionMarkIcon
 	field_eff_end
 
 gFieldEffectScript_FeetInFlowingWater::

@@ -2112,10 +2112,10 @@ static void LoadCardGfx(int cardId)
 
 static void CardEntry_SpriteCallback(struct Sprite *sprite)
 {
-    sprite->pos1.x += 5;
-    if (sprite->pos1.x >= 48)
+    sprite->x += 5;
+    if (sprite->x >= 48)
     {
-        sprite->pos1.x = 48;
+        sprite->x = 48;
         // Signal that the UI animation is complete.
         gTasks[sprite->data[0]].data[0] = 0;
         sprite->callback = SpriteCallbackDummy;
@@ -2147,9 +2147,9 @@ static void ChooseCard_SpriteCallback(struct Sprite *sprite)
         {
             sprite->data[1] ^= 1;
             if (sprite->data[1] == 0)
-                sprite->pos1.y = 61;
+                sprite->y = 61;
             else
-                sprite->pos1.y = 123;
+                sprite->y = 123;
             PlaySE(SE_BALL_BOUNCE_4);
         }
         break;
@@ -2184,22 +2184,22 @@ static void ChooseCard_SpriteCallback(struct Sprite *sprite)
 
 static void SlideBottomCardUp(struct Sprite *sprite)
 {
-    sprite->pos1.y -= 8;
-    if (sprite->pos1.y <= 61)
+    sprite->y -= 8;
+    if (sprite->y <= 61)
     {
         // Signal that the UI animation is complete.
         ShowHelpBar(sHelpBar_BetPlace);
         DrawBetType(sCardFlip->betType);
         gTasks[sprite->data[0]].data[0] = 0;
-        sprite->pos1.y = 61;
+        sprite->y = 61;
         sprite->callback = SpriteCallbackDummy;
     }
 }
 
 static void SlideOutCard(struct Sprite *sprite)
 {
-    sprite->pos1.x -= 5;
-    if (sprite->pos1.x <= -32)
+    sprite->x -= 5;
+    if (sprite->x <= -32)
     {
         // Signal that the UI animation is complete.            
         gTasks[sprite->data[0]].data[0] = 0;

@@ -1578,7 +1578,7 @@ void DrawBattleEntryBackground(void)
 static u8 GetBattleTerrainOverride(void)
 {
     u8 battleScene;
-    if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_x2000000))
+    if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_RECORDED_LINK))
     {
         return BATTLE_TERRAIN_LINK;
     }

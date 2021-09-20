@@ -740,7 +740,7 @@ static const u32 *GetRegionMapTilemap(u8 region)
     return tilemaps[region];
 }
 
-void sub_8123030(u16 color, u32 coeff)
+void BlendRegionMap(u16 color, u32 coeff)
 {
     BlendPalettes(0x380, coeff, color);
     CpuCopy16(gPlttBufferFaded + 0x70, gPlttBufferUnfaded + 0x70, 0x60);
@@ -1124,7 +1124,7 @@ static void InitMapBasedOnPlayerLocation_(void)
             break;
         case MAP_TYPE_UNDERGROUND:
         case MAP_TYPE_UNKNOWN:
-            if (gMapHeader.flags & MAP_ALLOW_ESCAPING)
+            if (gMapHeader.allowEscaping)
             {
                 mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
                 gRegionMap->primaryMapSecId = mapHeader->regionMapSectionId;
@@ -1854,7 +1854,7 @@ void CB2_OpenFlyMap(void)
         CreateRegionMapName(3, 4);
         ShowHelpBar(FALSE);
         sFlyMap->mapSecId = sFlyMap->regionMap.primaryMapSecId;
-        gUnknown_03001180 = TRUE;
+        sDrawFlyDestTextWindow = TRUE;
         gMain.state++;
         break;
     case 5:

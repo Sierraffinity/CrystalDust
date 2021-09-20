@@ -16,7 +16,7 @@ void PrintMoneyAmountInMoneyBoxWithBorder(u8 windowId, u16 tileStart, u8 pallete
 void ChangeAmountInMoneyBox(int amount);
 void DrawMoneyBox(int amount, u8 x, u8 y);
 void HideMoneyBox(void);
-void AddMoneyLabelObject(u16 x, u16 y);
-void RemoveMoneyLabelObject(void);
+//void AddMoneyLabelObject(u16 x, u16 y);
+//void RemoveMoneyLabelObject(void);
 
 #endif // GUARD_MONEY_H

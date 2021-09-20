@@ -40,6 +40,8 @@ EWRAM_DATA u16 gUnknown_0203BCCC = 0;
 u32 gIntroFrameCounter;
 struct GcmbStruct gMultibootProgramStruct;
 
+static void Task_Scene1_Load(u8 taskId);
+
 //.rodata
 static const u16 gIntro1BGPal[] = INCBIN_U16("graphics/intro/intro1_logotiles.gbapal");
 static const u16 gIntro1BGPal_Shiny[] = INCBIN_U16("graphics/intro/intro1_bg1.gbapal");
@@ -821,6 +823,8 @@ static void Task_IntroSuicuneFlyUp(u8);
 static void Task_WaitToDoCrystalDustLogo(u8);
 static void Task_DoCrystalDustLogo(u8);
 static void Task_IntroFadeToTitle(u8);
+
+#define COLOSSEUM_GAME_CODE 0x65366347 // "Gc6e" in ASCII
 
 static void VBlankCB_Intro(void)
 {
@@ -1824,7 +1828,7 @@ static void Task_IntroLoadPart3Graphics2(u8 taskId)
 
 static void Task_SlideSuicuneMugIn(u8 taskId)
 {
-    switch (gTasks[taskId].tState)
+    switch (gTasks[taskId].data[0])
     {
     case 0:
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
@@ -2043,7 +2047,7 @@ static void Task_IntroFadeToTitle(u8 taskId)
 
 static void SpriteCallback_Suicune(struct Sprite *sprite)
 {
-    switch (sprite->sState)
+    switch (sprite->data[0])
     {
     case 0:
         if (sprite->y > 88)

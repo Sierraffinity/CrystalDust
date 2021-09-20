@@ -118,10 +118,10 @@ static const struct MenuAction sItemPcSubmenuOptions[] = {
 };
 
 static const u8 sTextColors[][3] = {
-    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GREY},
-    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GREY, TEXT_COLOR_LIGHT_GREY},
-    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_GREY, TEXT_COLOR_DARK_GREY},
-    {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_1, TEXT_COLOR_DARK_GREY}
+    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY},
+    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY},
+    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_GRAY, TEXT_COLOR_DARK_GRAY},
+    {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_1, TEXT_COLOR_DARK_GRAY}
 };
 
 static const struct WindowTemplate sWindowTemplates[] = {
@@ -441,7 +441,7 @@ static bool8 ItemPc_LoadGraphics(void)
         sStateDataPtr->data[0]++;
         break;
     case 3:
-        LoadListMenuArrowsGfx();
+        LoadListMenuSwapLineGfx();
         sStateDataPtr->data[0] = 0;
         return TRUE;
     }

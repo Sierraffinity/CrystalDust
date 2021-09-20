@@ -777,7 +777,7 @@ static void LoadCardSprites(u8 taskId)
         {
             case ClockCard:
                 anim = 0;
-                gSprites[spriteId].pos1.x += 8;
+                gSprites[spriteId].x += 8;
                 break;
             case MapCard:
                 if (!FlagGet(FLAG_SYS_HAS_MAP_CARD))
@@ -804,7 +804,7 @@ static void SpriteCB_Icons(struct Sprite *sprite)
         case 0: // slide on Pokegear init
             if (sprite->tCounter < 32)
             {
-                sprite->pos1.x += ICON_SLIDE_SPEED;
+                sprite->x += ICON_SLIDE_SPEED;
                 sprite->tCounter += ICON_SLIDE_SPEED;
             }
             else
@@ -814,9 +814,9 @@ static void SpriteCB_Icons(struct Sprite *sprite)
             }
             break;
         case 1: // sliding out
-            if (sprite->pos1.x < 16)
+            if (sprite->x < 16)
             {
-                sprite->pos1.x += 2;
+                sprite->x += 2;
             }
             else
             {
@@ -824,9 +824,9 @@ static void SpriteCB_Icons(struct Sprite *sprite)
             }
             break;
         case 2: // sliding in
-            if (sprite->pos1.x > 8)
+            if (sprite->x > 8)
             {
-                sprite->pos1.x -= 2;
+                sprite->x -= 2;
             }
             else
             {
@@ -1291,7 +1291,7 @@ static void LoadPhoneCardContactList(u8 taskId)
     struct ListMenuTemplate menuTemplate = sPhoneCardListMenuTemplate;
     menuTemplate.items = sPokegearStruct.phoneContactItems;
     menuTemplate.totalItems = sPokegearStruct.phoneContactCount;
-    sub_812225C(&sPokegearStruct.phoneScrollOffset, &sPokegearStruct.phoneSelectedItem, menuTemplate.maxShowed, sPokegearStruct.phoneContactCount);
+    SetCursorWithinListBounds(&sPokegearStruct.phoneScrollOffset, &sPokegearStruct.phoneSelectedItem, menuTemplate.maxShowed, sPokegearStruct.phoneContactCount);
     gTasks[taskId].tListMenuTaskId = ListMenuInit(&menuTemplate, sPokegearStruct.phoneScrollOffset, sPokegearStruct.phoneSelectedItem);
 }
 

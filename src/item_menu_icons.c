@@ -367,7 +367,7 @@ void RemoveBagSprite(u8 id)
 void AddBagVisualSprite(u8 bagPocketId)
 {
     u8 *spriteId = &sItemMenuIconSpriteIds[0];
-    *spriteId = CreateSprite(&gBagSpriteTemplate, 40, 68, 0);
+    *spriteId = CreateSprite(&sBagSpriteTemplate, 40, 68, 0);
     SetBagVisualPocketId(bagPocketId);
 }
 
@@ -446,17 +446,17 @@ void HideBagItemIconSprite(u8 id)
 
 void ItemMenuIcons_CreateInsertIndicatorBarHidden(void)
 {
-    sub_8122344(&sItemMenuIconSpriteIds[1], 9);
+    CreateSwapLineSprites(&sItemMenuIconSpriteIds[1], 9);
 }
 
 void ItemMenuIcons_ToggleInsertIndicatorBarVisibility(u8 arg0)
 {
-    sub_81223FC(&sItemMenuIconSpriteIds[1], 9, arg0);
+    SetSwapLineSpritesInvisibility(&sItemMenuIconSpriteIds[1], 9, arg0);
 }
 
 void ItemMenuIcons_MoveInsertIndicatorBar(s16 x, s16 y)
 {
-    sub_8122448(&sItemMenuIconSpriteIds[1], 9, x, y);
+    UpdateSwapLineSpritesPos(&sItemMenuIconSpriteIds[1], 9, x, y);
 }
 
 static void sub_80D5018(void *mem0, void *mem1)

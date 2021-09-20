@@ -3,6 +3,14 @@
 
 #include "menu.h"
 
+enum
+{
+    PLAYERPC_MENU_ITEMSTORAGE,
+    PLAYERPC_MENU_MAILBOX,
+    PLAYERPC_MENU_DECORATION,
+    PLAYERPC_MENU_TURNOFF
+};
+
 struct PlayerPCItemPageStruct
 {
     u16 cursorPos;

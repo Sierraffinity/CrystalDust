@@ -220,7 +220,7 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_TestBallThrow,
+        .callback = SpriteCB_BallThrow,
     },
     {
         .tileTag = TAG_BALL_GFX(GREAT),
@@ -229,7 +229,7 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_TestBallThrow,
+        .callback = SpriteCB_BallThrow,
     },
     {
         .tileTag = TAG_BALL_GFX(SAFARI),
@@ -238,7 +238,7 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_TestBallThrow,
+        .callback = SpriteCB_BallThrow,
     },
     {
         .tileTag = TAG_BALL_GFX(ULTRA),
@@ -247,7 +247,7 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_TestBallThrow,
+        .callback = SpriteCB_BallThrow,
     },
     {
         .tileTag = TAG_BALL_GFX(MASTER),
@@ -256,7 +256,7 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_TestBallThrow,
+        .callback = SpriteCB_BallThrow,
     },
     {
         .tileTag = TAG_BALL_GFX(NET),
@@ -265,7 +265,7 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_TestBallThrow,
+        .callback = SpriteCB_BallThrow,
     },
     {
         .tileTag = TAG_BALL_GFX(DIVE),
@@ -274,7 +274,7 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_TestBallThrow,
+        .callback = SpriteCB_BallThrow,
     },
     {
         .tileTag = TAG_BALL_GFX(NEST),
@@ -283,7 +283,7 @@ const struct SpriteTemplate gBallSpriteTemplates[BALLGFX_COUNT] =
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_TestBallThrow,
+        .callback = SpriteCB_BallThrow,
     },
     {
         .tileTag = TAG_BALL_GFX(REPEAT),

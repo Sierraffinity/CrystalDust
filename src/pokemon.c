@@ -1981,7 +1981,7 @@ static const struct SpriteTemplate sTrainerBackSpriteTemplates[] =
     [TRAINER_BACK_PIC_EMERALD_BRENDAN] = {
         .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
-        .oam = &SpriteCB_BattleSpriteStartSlideLeft,
+        .oam = &gOamData_BattleSpritePlayerSide,
         .anims = NULL,
         .images = gTrainerBackPicTable_EmeraldBrendan,
         .affineAnims = gAffineAnims_BattleSpritePlayerSide,
@@ -1990,7 +1990,7 @@ static const struct SpriteTemplate sTrainerBackSpriteTemplates[] =
     [TRAINER_BACK_PIC_EMERALD_MAY] = {
         .tileTag = SPRITE_INVALID_TAG,
         .paletteTag = 0,
-        .oam = &SpriteCB_BattleSpriteStartSlideLeft,
+        .oam = &gOamData_BattleSpritePlayerSide,
         .anims = NULL,
         .images = gTrainerBackPicTable_EmeraldMay,
         .affineAnims = gAffineAnims_BattleSpritePlayerSide,
@@ -5547,6 +5547,24 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem)
     case EVO_MODE_ITEM_USE:
     case EVO_MODE_ITEM_CHECK:
         for (i = 0; i < EVOS_PER_MON; i++)
+        {
+            targetSpecies = gEvolutionTable[species][i].targetSpecies;
+            break;
+        }
+    }
+
+    return targetSpecies;
+}
+
+u16 GetItemEvolutionTargetSpecies(u16 species, u16 evolutionItem)
+{
+    u8 i;
+    u16 targetSpecies = SPECIES_NONE;
+
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        if (gEvolutionTable[species][i].method == EVO_ITEM
+            && gEvolutionTable[species][i].param == evolutionItem)
         {
             targetSpecies = gEvolutionTable[species][i].targetSpecies;
             break;

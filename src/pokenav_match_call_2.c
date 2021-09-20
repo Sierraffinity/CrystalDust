@@ -1061,14 +1061,14 @@ static void UpdateWindowsToShowCheckPage(struct Pokenav4Struct *state)
 static void sub_81CC034(struct Pokenav4Struct *state)
 {
     state->msgBoxWindowId = AddWindow(&sCallMsgBoxWindowTemplate);
-    LoadMatchCallWindowGfx(state->msgBoxWindowId, 1, 4);
+    LoadMatchCallWindowGfx2(state->msgBoxWindowId, 1, 4);
     sub_81C7B40();
 }
 
 static void DrawMsgBoxForMatchCallMsg(struct Pokenav4Struct *state)
 {
     struct Sprite *sprite;
-    LoadMatchCallWindowGfx(state->msgBoxWindowId, 1, 4);
+    LoadMatchCallWindowGfx2(state->msgBoxWindowId, 1, 4);
     DrawMatchCallTextBoxBorder(state->msgBoxWindowId, 1, 4);
     FillWindowPixelBuffer(state->msgBoxWindowId, PIXEL_FILL(1));
     PutWindowTilemap(state->msgBoxWindowId);

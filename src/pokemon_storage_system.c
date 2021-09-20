@@ -1405,8 +1405,8 @@ static void PrintStringToBufferCopyNow(const u8 *string, void *dst, u16 rise, u8
     txtColor[1] = fgClr;
     txtColor[2] = shClr;
     AddTextPrinterParameterized4(windowId, 2, 0, 2, 0, 0, txtColor, -1, string);
-    CpuCopy16(tileData1, dst, var);
-    CpuCopy16(tileData2, dst + rise, var);
+    CpuCopy16(tileData1, dst, tileSize);
+    CpuCopy16(tileData2, dst + rise, tileSize);
     RemoveWindow(windowId);
 }
 
@@ -1628,7 +1628,7 @@ static void Task_PCMainMenu(u8 taskId)
         if (JOY_NEW(A_BUTTON | B_BUTTON))
         {
             FillWindowPixelBuffer(0, PIXEL_FILL(1));
-            AddTextPrinterParameterized2(0, 21, sMainMenuTexts[task->tSelectedOption].desc, 0, NULL, 2, 1, 3);
+            AddTextPrinterParameterized2(0, 2, sMainMenuTexts[task->tSelectedOption].desc, 0, NULL, 2, 1, 3);
             task->tState = STATE_HANDLE_INPUT;
         }
         else if (JOY_NEW(DPAD_UP))
@@ -1700,8 +1700,8 @@ static void CreateMainMenu(u8 whichMenu, s16 *windowIdPtr)
     windowId = AddWindow(&template);
 
     DrawStdWindowFrame(windowId, FALSE);
-    PrintMenuTable(windowId, OPTIONS_COUNT, (void *)sMainMenuTexts);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, OPTIONS_COUNT, whichMenu);
+    PrintTextArray(windowId, 2, GetMenuCursorDimensionByFont(1, 0), 1, 16, ARRAY_COUNT(sMainMenuTexts), (void *)sMainMenuTexts);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, OPTIONS_COUNT, whichMenu);
     *windowIdPtr = windowId;
 }
 
@@ -1794,7 +1794,7 @@ static void LoadChooseBoxMenuGfx(struct ChooseBoxMenu *menu, u16 tileTag, u16 pa
 
     LoadSpriteSheets(sheets);
     sChooseBoxMenu = menu;
-    menu->tileTag = tileTag;
+    menu->tilesTag = tileTag;
     menu->paletteTag = palTag;
     menu->subpriority = subpriority;
     menu->loadedPalette = loadPal;
@@ -1804,8 +1804,8 @@ static void FreeChooseBoxMenu(void)
 {
     if (sChooseBoxMenu->loadedPalette)
         FreeSpritePaletteByTag(sChooseBoxMenu->paletteTag);
-    FreeSpriteTilesByTag(sChooseBoxMenu->tileTag);
-    FreeSpriteTilesByTag(sChooseBoxMenu->tileTag + 1);
+    FreeSpriteTilesByTag(sChooseBoxMenu->tilesTag);
+    FreeSpriteTilesByTag(sChooseBoxMenu->tilesTag + 1);
 }
 
 static void CreateChooseBoxMenuSprites(u8 curBox)
@@ -1858,7 +1858,7 @@ static void ChooseBoxMenu_CreateSprites(u8 curBox)
     };
 
     sChooseBoxMenu->curBox = curBox;
-    template.tileTag = sChooseBoxMenu->tileTag;
+    template.tileTag = sChooseBoxMenu->tilesTag;
     template.paletteTag = sChooseBoxMenu->paletteTag;
 
     spriteId = CreateSprite(&template, 160, 96, 0);
@@ -1866,7 +1866,7 @@ static void ChooseBoxMenu_CreateSprites(u8 curBox)
 
     oamData.shape = SPRITE_SHAPE(8x32);
     oamData.size = SPRITE_SIZE(8x32);
-    template.tileTag = sChooseBoxMenu->tileTag + 1;
+    template.tileTag = sChooseBoxMenu->tilesTag + 1;
     template.anims = sAnims_ChooseBoxMenu;
     for (i = 0; i < ARRAY_COUNT(sChooseBoxMenu->menuSideSprites); i++)
     {
@@ -1897,7 +1897,7 @@ static void ChooseBoxMenu_CreateSprites(u8 curBox)
         }
     }
     ChooseBoxMenu_PrintInfo();
-    PrintToSpriteWithTagUnk0240(outOf30, 5, 3);
+    //PrintToSpriteWithTagUnk0240(outOf30, 5, 3);
 }
 
 static void ChooseBoxMenu_DestroySprites(void)
@@ -1954,22 +1954,25 @@ static void ChooseBoxMenu_PrintInfo(void)
     FillWindowPixelBuffer(windowId, PIXEL_FILL(4));
 
     // Print box name
-    center = GetStringCenterAlignXOffset(1, boxName, 64);
-    AddTextPrinterParameterized3(windowId, 1, center, 1, sChooseBoxMenu_TextColors, TEXT_SPEED_FF, boxName);
+    center = GetStringCenterAlignXOffset(2, boxName, 64);
+    AddTextPrinterParameterized3(windowId, 2, center, 1, sChooseBoxMenu_TextColors, TEXT_SPEED_FF, boxName);
 
     // Print #/30 for number of Pokémon in the box
     ConvertIntToDecimalStringN(numBoxMonsText, numInBox, STR_CONV_MODE_RIGHT_ALIGN, 2);
     StringAppend(numBoxMonsText, sText_OutOf30);
-    center = GetStringCenterAlignXOffset(1, numBoxMonsText, 64);
-    AddTextPrinterParameterized3(windowId, 1, center, 17, sChooseBoxMenu_TextColors, TEXT_SPEED_FF, numBoxMonsText);
+    center = GetStringCenterAlignXOffset(2, numBoxMonsText, 64);
+    AddTextPrinterParameterized3(windowId, 2, center, 17, sChooseBoxMenu_TextColors, TEXT_SPEED_FF, numBoxMonsText);
 
     winTileData = GetWindowAttribute(windowId, WINDOW_TILE_DATA);
-    CpuCopy32((void *)winTileData, (void *)OBJ_VRAM0 + 0x100 + (GetSpriteTileStartByTag(sChooseBoxMenu->tileTag) * 32), 0x400);
+    CpuCopy32((void *)winTileData, (void *)OBJ_VRAM0 + 0x100 + (GetSpriteTileStartByTag(sChooseBoxMenu->tilesTag) * 32), 0x400);
+
+    RemoveWindow(windowId);
+}
 
 static void PrintToSpriteWithTagUnk0240(const u8 *str, u16 x, u16 y)
 {
-    u16 tileStart = GetSpriteTileStartByTag(sBoxSelectionPopupSpriteManager->tilesTag);
-    PrintStringToBufferCopyNow(str, (void *)(OBJ_VRAM0 + tileStart * 32 + 256 * y + 32 * x), 0x100, TEXT_COLOR_RED, TEXT_DYNAMIC_COLOR_6, TEXT_DYNAMIC_COLOR_5, sBoxSelectionPopupSpriteManager->buffer);
+    u16 tileStart = GetSpriteTileStartByTag(sChooseBoxMenu->tilesTag);
+    PrintStringToBufferCopyNow(str, (void *)(OBJ_VRAM0 + tileStart * 32 + 256 * y + 32 * x), 0x100, TEXT_COLOR_RED, TEXT_DYNAMIC_COLOR_6, TEXT_DYNAMIC_COLOR_5, sChooseBoxMenu->unused2);
 }
 
 static void SpriteCB_ChooseBoxArrow(struct Sprite *sprite)
@@ -8030,8 +8033,8 @@ static void AddMenu(void)
     sStorage->menuWindowId = AddWindow(&sStorage->menuWindow);
     ClearWindowTilemap(sStorage->menuWindowId);
     DrawStdFrameWithCustomTileAndPalette(sStorage->menuWindowId, FALSE, 11, 14);
-    PrintMenuTable(sStorage->menuWindowId, sStorage->menuItemsCount, (void*)sStorage->menuItems);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sStorage->menuWindowId, sStorage->menuItemsCount, 0);
+    PrintTextArray(sStorage->menuWindowId, 2, 8, 2, 16, sStorage->menuItemsCount, (void*)sStorage->menuItems);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sStorage->menuWindowId, 2, 0, 2, 16, sStorage->menuItemsCount, 0);
     ScheduleBgCopyTilemapToVram(0);
     sStorage->menuUnusedField = 0;
 }

@@ -226,7 +226,7 @@ u8 MailboxMenu_AddWindow(u8 windowIndex)
 {
     if (sMailboxWindowIds[windowIndex] == 0xFF)
     {
-        sMailboxWindowIds[windowIndex] = AddWindow(&sMailboxPC_WindowTemplates[windowIndex]);
+        sMailboxWindowIds[windowIndex] = AddWindow(&sWindowTemplates_MailboxMenu[windowIndex]);
         SetStandardWindowBorderStyle(sMailboxWindowIds[windowIndex], 0);
     }
     return sMailboxWindowIds[windowIndex];

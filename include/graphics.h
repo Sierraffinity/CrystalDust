@@ -4046,7 +4046,7 @@ extern const u32 gIntroBrendan_Gfx[];
 extern const u32 gIntroMay_Gfx[];
 extern const u16 gIntroPlayer_Pal[];
 extern const u16 gIntroFlygon_Pal[];
-extern const u32 gIntroFlygon_Gfx[];
+//extern const u32 gIntroFlygon_Gfx[];
 
 // party menu graphics
 extern const u32 gPartyMenuBg_Gfx[];
@@ -5159,8 +5159,8 @@ extern const u8 gFrontierFactorySelectMenu_Tilemap[];
 extern const u16 gFrontierFactorySelectMenu_Pal[];
 
 // Object event pals
-extern const u16 gObjectEventPal_Brendan[];
-extern const u16 gObjectEventPal_May[];
+extern const u16 gObjectEventPal_Gold[];
+extern const u16 gObjectEventPal_Kris[];
 extern const u16 gObjectEventPal_RubySapphireBrendan[];
 extern const u16 gObjectEventPal_RubySapphireMay[];
 

@@ -307,7 +307,7 @@ movement Route36_Movement_FloriaLeaveFromBelow {
 
 script Route36_EventScript_SierraPoopsTheParty {
     lockall
-    setobjectxyperm(OBJ_EVENT_ID_SIERRA, 25, 7)
+    setobjectxyperm(OBJ_EVENT_ID_SIERRA, 27, 7)
     addobject(OBJ_EVENT_ID_SIERRA)
     specialvar(VAR_FACING, GetPlayerFacingDirection)
     if (var(VAR_FACING) == DIR_NORTH)

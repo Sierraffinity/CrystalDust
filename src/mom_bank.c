@@ -207,7 +207,7 @@ static void SpriteCB_DigitSelectorCursor(struct Sprite *sprite)
 {
     int state = gTasks[sprite->spTaskId].tArrowPos;
 
-    sprite->pos2.y = (gSineTable[(u8)(sprite->spSinePos)] * sprite->spMultiplier) / 256;
+    sprite->y2 = (gSineTable[(u8)(sprite->spSinePos)] * sprite->spMultiplier) / 256;
     sprite->spSinePos += sprite->spFrequency;
 
     if (state != sprite->spCurPos)
@@ -215,7 +215,7 @@ static void SpriteCB_DigitSelectorCursor(struct Sprite *sprite)
         sprite->spCurPos = state;
         if (state < 6)
         {
-            sprite->pos1.x = 229 - (state * 6);
+            sprite->x = 229 - (state * 6);
         }
         else
         {

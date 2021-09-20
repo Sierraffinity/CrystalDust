@@ -623,39 +623,39 @@ static void MovePuzzlePiece(struct Sprite *sprite)
     int complete = 0;
     int destXCoord = sPuzzlePieceCoords[sprite->data[4]][sprite->data[5]][0];
     int destYCoord = sPuzzlePieceCoords[sprite->data[4]][sprite->data[5]][1];
-    if (sprite->pos1.y > destYCoord)
+    if (sprite->y > destYCoord)
     {
-        sprite->pos1.y -= 8;
-        if (sprite->pos1.y <= destYCoord)
+        sprite->y -= 8;
+        if (sprite->y <= destYCoord)
         {
-            sprite->pos1.y = destYCoord;
+            sprite->y = destYCoord;
             complete = 1;
         }
     }
-    else if (sprite->pos1.x < destXCoord)
+    else if (sprite->x < destXCoord)
     {
-        sprite->pos1.x += 8;
-        if (sprite->pos1.x >= destXCoord)
+        sprite->x += 8;
+        if (sprite->x >= destXCoord)
         {
-            sprite->pos1.x = destXCoord;
+            sprite->x = destXCoord;
             complete = 1;
         }
     }
-    else if (sprite->pos1.y < destYCoord)
+    else if (sprite->y < destYCoord)
     {
-        sprite->pos1.y += 8;
-        if (sprite->pos1.y >= destYCoord)
+        sprite->y += 8;
+        if (sprite->y >= destYCoord)
         {
-            sprite->pos1.y = destYCoord;
+            sprite->y = destYCoord;
             complete = 1;
         }
     }
-    else if (sprite->pos1.x > destXCoord)
+    else if (sprite->x > destXCoord)
     {
-        sprite->pos1.x -= 8;
-        if (sprite->pos1.x <= destXCoord)
+        sprite->x -= 8;
+        if (sprite->x <= destXCoord)
         {
-            sprite->pos1.x = destXCoord;
+            sprite->x = destXCoord;
             complete = 1;
         }
     }

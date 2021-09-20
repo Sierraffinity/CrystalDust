@@ -144,7 +144,7 @@ static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyIte
     if (!isUsingRegisteredKeyItemOnField)
     {
         if (!InBattlePyramid())
-            DisplayItemMessage(taskId, 2, gStringVar4, BagMenu_InitListsMenu);
+            DisplayItemMessage(taskId, 2, gStringVar4, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, gText_OaksAdvice, Task_CloseBattlePyramidBagMessage);
     }
@@ -224,9 +224,11 @@ void ItemUseOutOfBattle_Bike(u8 taskId)
 
 static void ItemUseOnFieldCB_Bike(u8 taskId)
 {
-    if (ItemId_GetSecondaryId(gSpecialVar_ItemId) == MACH_BIKE)
+    u8 whichBike = ItemId_GetSecondaryId(gSpecialVar_ItemId);
+
+    if (whichBike == 0)
         GetOnOffBike(PLAYER_AVATAR_FLAG_MACH_BIKE);
-    else // ACRO_BIKE
+    else if (whichBike == 1)
         GetOnOffBike(PLAYER_AVATAR_FLAG_ACRO_BIKE);
     else if (whichBike == 2)
         GetOnOffBike(PLAYER_AVATAR_FLAG_BIKE);
@@ -656,7 +658,7 @@ void ItemUseOutOfBattle_CoinCase(u8 taskId)
 
     if (!gTasks[taskId].tUsingRegisteredKeyItem)
     {
-        DisplayItemMessage(taskId, 2, gStringVar4, BagMenu_InitListsMenu);
+        DisplayItemMessage(taskId, 2, gStringVar4, CloseItemMessage);
     }
     else
     {
@@ -671,7 +673,7 @@ void ItemUseOutOfBattle_PowderJar(u8 taskId)
 
     if (!gTasks[taskId].tUsingRegisteredKeyItem)
     {
-        DisplayItemMessage(taskId, 2, gStringVar4, BagMenu_InitListsMenu);
+        DisplayItemMessage(taskId, 2, gStringVar4, CloseItemMessage);
     }
     else
     {
@@ -810,7 +812,7 @@ static void Task_ShowTMHMContainedMessage(u8 taskId)
 
 static void UseTMHMYesNo(u8 taskId)
 {
-    BagCreateYesNoMenuBottomRight(taskId, &sUseTMHMYesNoFuncTable);
+    BagMenu_YesNo(taskId, &sUseTMHMYesNoFuncTable);
 }
 
 static void UseTMHM(u8 taskId)
@@ -841,7 +843,7 @@ void ItemUseOutOfBattle_Repel(u8 taskId)
     if (VarGet(VAR_REPEL_STEP_COUNT) == 0)
         gTasks[taskId].func = Task_StartUseRepel;
     else if (!InBattlePyramid())
-        DisplayItemMessage(taskId, 2, gText_RepelEffectsLingered, BagMenu_InitListsMenu);
+        DisplayItemMessage(taskId, 2, gText_RepelEffectsLingered, CloseItemMessage);
     else
         DisplayItemMessageInBattlePyramid(taskId, gText_RepelEffectsLingered, Task_CloseBattlePyramidBagMessage);
 }
@@ -865,7 +867,7 @@ static void Task_UseRepel(u8 taskId)
         VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_ItemId));
         RemoveUsedItem();
         if (!InBattlePyramid())
-            DisplayItemMessage(taskId, 2, gStringVar4, BagMenu_InitListsMenu);
+            DisplayItemMessage(taskId, 2, gStringVar4, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, gStringVar4, Task_CloseBattlePyramidBagMessage);
     }
@@ -877,7 +879,7 @@ static void Task_UsedBlackWhiteFlute(u8 taskId)
     {
         PlaySE(SE_GLASS_FLUTE);
         if (!InBattlePyramid())
-            DisplayItemMessage(taskId, 2, gStringVar4, BagMenu_InitListsMenu);
+            DisplayItemMessage(taskId, 2, gStringVar4, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, gStringVar4, Task_CloseBattlePyramidBagMessage);
     }
@@ -961,7 +963,7 @@ void ItemUseInBattle_PokeBall(u8 taskId)
     }
     else if (!InBattlePyramid())
     {
-        DisplayItemMessage(taskId, 2, gText_BoxFull, BagMenu_InitListsMenu);
+        DisplayItemMessage(taskId, 2, gText_BoxFull, CloseItemMessage);
     }
     else
         DisplayItemMessageInBattlePyramid(taskId, gText_BoxFull, Task_CloseBattlePyramidBagMessage);
@@ -999,7 +1001,7 @@ void ItemUseInBattle_StatIncrease(u8 taskId)
     if (ExecuteTableBasedItemEffect(&gPlayerParty[partyId], gSpecialVar_ItemId, partyId, 0) != FALSE)
     {
         if (!InBattlePyramid())
-            DisplayItemMessage(taskId, 2, gText_WontHaveEffect, BagMenu_InitListsMenu);
+            DisplayItemMessage(taskId, 2, gText_WontHaveEffect, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, gText_WontHaveEffect, Task_CloseBattlePyramidBagMessage);
     }

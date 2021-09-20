@@ -1685,7 +1685,7 @@ bool8 ScrCmd_vbufferstring(struct ScriptContext *ctx)
     u32 addr = ScriptReadWord(ctx);
 
     const u8 *src = (u8 *)(addr - sAddressOffset);
-    u8 *dest = sScriptStringVars[stringVarIndex];
+    u8 *dest = gScriptStringVars[stringVarIndex];
     StringCopy(dest, src);
     return FALSE;
 }

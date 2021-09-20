@@ -80,7 +80,7 @@ static u8   ButtonMode_ProcessInput(u8 selection);
 static void ButtonMode_DrawChoices(u8 selection);
 static void DrawTextOption(void);
 static void DrawOptionMenuTexts(void);
-static void sub_80BB154(void);
+static void DrawBgWindowFrames(void);
 static void BufferOptionMenuString(u8 taskId, u8 selection);
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -201,7 +201,7 @@ static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
-static const u8 sOptionMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GREY};
+static const u8 sOptionMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 
 // code
 static void MainCB2(void)
@@ -278,7 +278,7 @@ void CB2_InitOptionMenu(void)
         DrawTextOption();
         break;
     case 8:
-        sub_80BB154();
+        DrawBgWindowFrames();
     case 9:
         DrawOptionMenuTexts();
         break;

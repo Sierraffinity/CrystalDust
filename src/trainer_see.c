@@ -661,7 +661,7 @@ static bool8 TrainerSeeFunc_OffscreenAboveTrainerCreateCameraObj(u8 taskId, stru
     task->tCameraMoveStep = 0;
     specialObjectId = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_YOUNGSTER, 7, OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->pos.x + 7, gSaveBlock1Ptr->pos.y + 7, 3);
     gObjectEvents[specialObjectId].invisible = TRUE;
-    CameraObjectSetFollowedObjectId(gObjectEvents[specialObjectId].spriteId);
+    CameraObjectSetFollowedSpriteId(gObjectEvents[specialObjectId].spriteId);
     task->tFuncId++;
     return FALSE;
 }
@@ -707,7 +707,7 @@ static bool8 TrainerSeeFunc_OffscreenAboveTrainerCameraObjMoveDown(u8 taskId, st
     }
     else
     {
-        CameraObjectSetFollowedObjectId(GetPlayerAvatarObjectId());
+        CameraObjectSetFollowedSpriteId(GetPlayerAvatarSpriteId());
         RemoveObjectEventByLocalIdAndMap(OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
         task->tCameraMoveStep = 0;
         task->tFuncId = 2;
@@ -715,10 +715,8 @@ static bool8 TrainerSeeFunc_OffscreenAboveTrainerCameraObjMoveDown(u8 taskId, st
     return FALSE;
 }
 
-#undef tFuncId
 #undef tTrainerRange
 #undef tOutOfAshSpriteId
-#undef tCameraMoveStep
 #undef tTrainerObjectEventId
 
 #define tObjEvent data[1]

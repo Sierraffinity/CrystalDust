@@ -111,7 +111,7 @@ script Route31_EventScript_SleepyMan {
     }
     else
     {
-        msgbox("… Hnuurg… Huh?\p"
+        msgbox("…Hnuurg… Huh?\p"
                "I walked too far today looking\n"
                "for POKéMON.\p"
                "My feet hurt and I'm sleepy…\p"

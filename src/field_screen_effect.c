@@ -1333,6 +1333,7 @@ static void Task_EnableScriptAfterMusicFade(u8 taskId)
     }
 }
 
+#undef tState
 #define tState data[9]
 #define tDirection data[10]
 #define DIR_WIPE_IN 0 // From edges to center.
@@ -1645,16 +1646,16 @@ static bool8 AnimatePlayerWalkInOnStaircase(s16 *xDelta, s16 *yDelta, s16 *x, s1
 
     if (*frame == 0)
     {
-        playersprite->x2 = 0;
-        playersprite->y2 = 0;
+        playerSprite->x2 = 0;
+        playerSprite->y2 = 0;
         return FALSE;
     }
     else
     {
         *x += *xDelta;
         *y += *yDelta;
-        playersprite->x2 = *x / 32;
-        playersprite->y2 = *y / 32;
+        playerSprite->x2 = *x / 32;
+        playerSprite->y2 = *y / 32;
         (*frame)--;
         return TRUE;
     }

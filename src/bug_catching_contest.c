@@ -561,7 +561,7 @@ void CB2_EndBugCatchingContestBattle(void)
     {
         ScriptContext2_RunNewScript(EventScript_BugContest_WhiteOut);
         WarpIntoMap();
-        gFieldCallback = sub_80AF6F0;
+        gFieldCallback = FieldCB_ReturnToFieldNoScriptCheckMusic;
         SetMainCallback2(CB2_LoadMap);
     }
     else if (gNumParkBalls > 0)
@@ -572,7 +572,7 @@ void CB2_EndBugCatchingContestBattle(void)
     {
         ScriptContext2_RunNewScript(EventScript_RanOutOfParkBalls);
         WarpIntoMap();
-        gFieldCallback = sub_80AF6F0;
+        gFieldCallback = FieldCB_ReturnToFieldNoScriptCheckMusic;
         SetMainCallback2(CB2_LoadMap);
     }
     else if (gBattleOutcome == B_OUTCOME_CAUGHT)
@@ -1325,7 +1325,7 @@ static void Task_SwapScreen_SlideChosenMonToCenter(u8 taskId)
             gScanlineEffectRegBuffers[0][i] = data[1];
         }
 
-        sSwapScreen->monIconSprites[1]->pos1.x -= 2;
+        sSwapScreen->monIconSprites[1]->x -= 2;
     }
     else
     {
@@ -1335,7 +1335,7 @@ static void Task_SwapScreen_SlideChosenMonToCenter(u8 taskId)
             gScanlineEffectRegBuffers[0][i] = -data[1];
         }
 
-        sSwapScreen->monIconSprites[0]->pos1.x += 2;
+        sSwapScreen->monIconSprites[0]->x += 2;
     }
 
     data[1] += 2;

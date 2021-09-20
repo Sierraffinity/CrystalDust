@@ -846,14 +846,14 @@ static void SetTVMetatilesOnMap(int width, int height, u16 tileId)
 
 void TurnOffTVScreen(void)
 {
-    SetTVMetatilesOnMap(gBackupMapLayout.width, gBackupMapLayout.height, METATILE_Building_TV_Off);
-    DrawWholeMapView();
+    //SetTVMetatilesOnMap(gBackupMapLayout.width, gBackupMapLayout.height, METATILE_Building_TV_Off);
+    //DrawWholeMapView();
 }
 
 void TurnOnTVScreen(void)
 {
-    SetTVMetatilesOnMap(gBackupMapLayout.width, gBackupMapLayout.height, METATILE_Building_TV_On);
-    DrawWholeMapView();
+    //SetTVMetatilesOnMap(gBackupMapLayout.width, gBackupMapLayout.height, METATILE_Building_TV_On);
+    //DrawWholeMapView();
 }
 
 // gSpecialVar_0x8004 here is set from GetRandomActiveShowIdx in EventScript_TryDoTVShow
@@ -2112,7 +2112,6 @@ void TryPutBreakingNewsOnAir(void)
         show->breakingNews.active = FALSE; // NOTE: Show is not active until passed via Record Mix.
         balls = 0;
         for (i = 0; i < ARRAY_COUNT(gBattleResults.catchAttempts); i ++)
-        {
             balls += gBattleResults.catchAttempts[i];
 
         if (gBattleResults.usedMasterBall)
@@ -5539,17 +5538,7 @@ static void DoTVShowTodaysRivalTrainer(void)
             sTVShowState = 8;
             break;
         case MAPSEC_DYNAMIC:
-            switch (show->rivalTrainer.mapLayoutId)
-            {
-            case LAYOUT_SS_TIDAL_CORRIDOR:
-            case LAYOUT_SS_TIDAL_LOWER_DECK:
-            case LAYOUT_SS_TIDAL_ROOMS:
-                sTVShowState = 10;
-                break;
-            default:
-                sTVShowState = 9;
-                break;
-            }
+            sTVShowState = 9;
             break;
         }
         break;
@@ -5699,23 +5688,9 @@ static void DoTVShowHoennTreasureInvestigators(void)
     case 0:
         StringCopy(gStringVar1, ItemId_GetName(show->treasureInvestigators.item));
         if (show->treasureInvestigators.location == MAPSEC_DYNAMIC)
-        {
-            switch (show->treasureInvestigators.mapLayoutId)
-            {
-            case LAYOUT_SS_TIDAL_CORRIDOR:
-            case LAYOUT_SS_TIDAL_LOWER_DECK:
-            case LAYOUT_SS_TIDAL_ROOMS:
-                sTVShowState = 2;
-                break;
-            default:
-                sTVShowState = 1;
-                break;
-            }
-        }
-        else
-        {
             sTVShowState = 1;
-        }
+        else
+            sTVShowState = 1;
         break;
     case 1:
         StringCopy(gStringVar1, ItemId_GetName(show->treasureInvestigators.item));

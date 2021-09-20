@@ -12,6 +12,7 @@
   "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
@@ -27,6 +28,7 @@
   ],
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "in_connection": false,
       "x": 8,
@@ -38,10 +40,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route30_EventScript_BattlingYoungster",
-      "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS",
-      "type": "original"
+      "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "in_connection": false,
       "x": 2,
@@ -53,10 +55,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "6",
       "script": "Route30_EventScript_Trainer_Joey",
-      "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED",
-      "type": "original"
+      "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "in_connection": false,
       "x": 8,
@@ -68,10 +70,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route30_EventScript_Trainer_Mikey",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "in_connection": false,
       "x": 4,
@@ -83,10 +85,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route30_EventScript_Trainer_Don",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "in_connection": false,
       "x": 10,
@@ -98,10 +100,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route30_EventScript_DirectionsBoy",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PIDGEY",
       "in_connection": false,
       "x": 8,
@@ -113,10 +115,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0",
-      "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS",
-      "type": "original"
+      "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_RATTATA",
       "in_connection": false,
       "x": 8,
@@ -128,10 +130,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0",
-      "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS",
-      "type": "original"
+      "flag": "FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
       "in_connection": false,
       "x": 5,
@@ -143,10 +145,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route30_EventScript_NotATrainerGirl",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 9,
@@ -158,10 +160,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route30_EventScript_ItemAntidote",
-      "flag": "FLAG_ITEM_ROUTE_30_ANTIDOTE",
-      "type": "original"
+      "flag": "FLAG_ITEM_ROUTE_30_ANTIDOTE"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
       "in_connection": false,
       "x": 11,
@@ -173,42 +175,21 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TEMP_11",
-      "type": "original"
+      "flag": "FLAG_TEMP_11"
     },
     {
-      "graphics_id": "",
-      "in_connection": false,
+      "type": "clone",
       "x": 3,
       "y": -5,
-      "elevation": 0,
-      "movement_type": "",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "",
-      "trainer_sight_or_berry_tree_id": "",
-      "script": "",
-      "flag": "",
-      "source_id": "",
-      "source_map": "MAP_ROUTE31",
-      "type": "clone"
+      "source_id": 3,
+      "source_map": "MAP_ROUTE31"
     },
     {
-      "graphics_id": "",
-      "in_connection": false,
+      "type": "clone",
       "x": -1,
       "y": -3,
-      "elevation": 0,
-      "movement_type": "",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "",
-      "trainer_sight_or_berry_tree_id": "",
-      "script": "",
-      "flag": "",
-      "source_id": "",
-      "source_map": "MAP_ROUTE31",
-      "type": "clone"
+      "source_id": 8,
+      "source_map": "MAP_ROUTE31"
     }
   ],
   "warp_events": [
@@ -270,7 +251,20 @@
       "elevation": 3,
       "item": "ITEM_POTION",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_30_POTION"
+    },
+    {
+      "type": "fruit_tree",
+      "x": 7,
+      "y": 45,
+      "elevation": 0,
+      "fruit_tree_id": "FRUIT_TREE_ROUTE_30_1"
+    },
+    {
+      "type": "fruit_tree",
+      "x": 14,
+      "y": 5,
+      "elevation": 0,
+      "fruit_tree_id": "FRUIT_TREE_ROUTE_30_2"
     }
-  ],
-  "phone_service": ""
+  ]
 }

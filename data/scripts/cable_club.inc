@@ -918,7 +918,7 @@ RecordCorner_EventScript_AlreadyMixed::
 	closemessage
 	end
 
-EventScript_ConfirmLeaveTradeRoom::
+EventScript_ConfirmLeaveCableClubRoom::
 	textcolor MSG_COLOR_SYS
 	msgbox Text_TerminateLinkConfirmation, MSGBOX_YESNO
 	compare VAR_RESULT, YES

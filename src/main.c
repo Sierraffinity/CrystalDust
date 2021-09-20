@@ -95,6 +95,8 @@ void DecryptIntrMain(void)
 }
 #endif
 
+#define B_START_SELECT (B_BUTTON | START_BUTTON | SELECT_BUTTON)
+
 void AgbMain()
 {
     // Modern compilers are liberal with the stack on entry to this function,

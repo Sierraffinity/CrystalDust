@@ -50,7 +50,7 @@ static struct MapConnection *GetIncomingConnection(u8 direction, int x, int y);
 static bool8 IsPosInIncomingConnectingMap(u8 direction, int x, int y, struct MapConnection *connection);
 static bool8 IsCoordInIncomingConnectingMap(int coord, int srcMax, int destMax, int offset);
 
-#define MapGridGetBorderTileAt(x, y) ({                                                            \
+/*#define MapGridGetBorderTileAt(x, y) ({                                                            \
     u16 block;                                                                                     \
     int i;                                                                                         \
     u16 *border = gMapHeader.mapLayout->border;                                                    \
@@ -59,7 +59,7 @@ static bool8 IsCoordInIncomingConnectingMap(int coord, int srcMax, int destMax, 
     i += ((y + 1) & 1) * 2;                                                                        \
                                                                                                    \
     block = gMapHeader.mapLayout->border[i] | METATILE_COLLISION_MASK;                             \
-})
+})*/
 
 #define AreCoordsWithinMapGridBounds(x, y) (x >= 0 && x < gBackupMapLayout.width && y >= 0 && y < gBackupMapLayout.height)
 
@@ -733,7 +733,6 @@ static struct MapConnection *GetIncomingConnection(u8 direction, int x, int y)
         if (connection->direction == direction && IsPosInIncomingConnectingMap(direction, x, y, connection) == TRUE)
             return connection;
     }
-#endif
     return NULL;
 }
 

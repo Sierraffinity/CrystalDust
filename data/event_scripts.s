@@ -654,6 +654,11 @@ gText_PlayerHandedOverTheItem::
 	.string "Accessed the POKéDEX Rating\n"
 	.string "System…$"
 
+gText_AccessedProfOaksPC:: @ 81A5BC6
+	.string "Accessed PROF. OAK's PC…\p"
+	.string "Accessed the POKéDEX Rating\n"
+	.string "System…$"
+
 gText_HavePokedexRated::
 	.string "Would you like to have your\n"
 	.string "POKéDEX rated?$"
@@ -663,6 +668,10 @@ gText_ClosedLinkToProfOaksPC::
 
 gText_ThankYouForAccessingMysteryGift::
 	.string "Thank you for accessing the\n"
+	.string "{PLAYER} found one {STR_VAR_1}\n"
+	.string "{STR_VAR_2}!$"
+
+gText_PlayerFoundOneTMHM::
 	.string "{PLAYER} found one {STR_VAR_1}\n"
 	.string "{STR_VAR_2}!$"
 

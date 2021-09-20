@@ -611,10 +611,10 @@ static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEvent
 
             switch (graphicsId)
             {
-            case OBJ_EVENT_GFX_LINK_RS_BRENDAN:
+            case OBJ_EVENT_GFX_RS_BRENDAN:
                 LoadPalette(gObjectEventPal_RubySapphireBrendan, 0x100 + (adjustedPaletteNum << 4), 0x20);
                 break;
-            case OBJ_EVENT_GFX_LINK_RS_MAY:
+            case OBJ_EVENT_GFX_RS_MAY:
                 LoadPalette(gObjectEventPal_RubySapphireMay, 0x100 + (adjustedPaletteNum << 4), 0x20);
                 break;
             case OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL:
@@ -2856,10 +2856,10 @@ void ShowGlassWorkshopMenu(void)
 static u8 GetTextColorFromGraphicsId(u16 graphicsId)
 {
     const u8 textColors[NUM_OBJ_EVENT_GFX] = {
-        [OBJ_EVENT_GFX_GOLD_NORMAL] =            MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_GOLD_BIKE] =         MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GOLD_NORMAL] =               MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GOLD_BIKE] =                 MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_BRENDAN_SURFING] =           MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_GOLD_FIELD_MOVE] =        MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_GOLD_FIELD_MOVE] =           MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_QUINTY_PLUMP] =              MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_NINJA_BOY] =                 MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_BILL] =                      MSG_COLOR_BLUE,
@@ -2897,11 +2897,11 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_SCHOOL_KID_M] =              MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_POKEMANIAC] =                MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_KURT] =                      MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_RAYQUAZA_STILL] =                MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_RAYQUAZA_STILL] =            MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_SWIMMER_M] =                 MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_SWIMMER_F] =                 MSG_COLOR_RED,
         [OBJ_EVENT_GFX_BLACK_BELT] =                MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_BUENA] =                    MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_BUENA] =                     MSG_COLOR_RED,
         [OBJ_EVENT_GFX_SCIENTIST] =                 MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_LASS] =                      MSG_COLOR_RED,
         [OBJ_EVENT_GFX_GENTLEMAN] =                 MSG_COLOR_BLUE,
@@ -2945,16 +2945,16 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_BREAKABLE_ROCK] =            MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_PUSHABLE_BOULDER] =          MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_MR_BRINEYS_BOAT] =           MSG_COLOR_SYS,
-        [OBJ_EVENT_GFX_KRIS_NORMAL] =                MSG_COLOR_RED,
-        [OBJ_EVENT_GFX_KRIS_BIKE] =             MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_KRIS_NORMAL] =               MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_KRIS_BIKE] =                 MSG_COLOR_RED,
         [OBJ_EVENT_GFX_MAY_ACRO_BIKE] =             MSG_COLOR_RED,
         [OBJ_EVENT_GFX_MAY_SURFING] =               MSG_COLOR_RED,
-        [OBJ_EVENT_GFX_KRIS_FIELD_MOVE] =            MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_KRIS_FIELD_MOVE] =           MSG_COLOR_RED,
         [OBJ_EVENT_GFX_TRUCK] =                     MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_FARFETCHD] =                 MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_VIGOROTH_FACING_AWAY] =      MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_BIRCHS_BAG] =                MSG_COLOR_SYS,
-        [OBJ_EVENT_GFX_WOOPER] =               MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_WOOPER] =                    MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_SUPER_NERD] =                MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL] =      MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE] =   MSG_COLOR_BLUE,
@@ -2993,8 +2993,8 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_STEVEN] =                    MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_RIVAL] =                     MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_LITTLE_BOY_3] =              MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_GOLD_FISHING] =           MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_KRIS_FISHING] =               MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_GOLD_FISHING] =              MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_KRIS_FISHING] =              MSG_COLOR_RED,
         [OBJ_EVENT_GFX_HOT_SPRINGS_OLD_WOMAN] =     MSG_COLOR_RED,
         [OBJ_EVENT_GFX_SS_TIDAL] =                  MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_SUBMARINE_SHADOW] =          MSG_COLOR_SYS,
@@ -3053,17 +3053,17 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_MAY_DECORATING] =            MSG_COLOR_RED,
         [OBJ_EVENT_GFX_ARCHIE] =                    MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_MAXIE] =                     MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_KYOGRE_1] =                  MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_GROUDON_1] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_KYOGRE_FRONT] =              MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_GROUDON_FRONT] =             MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_FOSSIL] =                    MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_REGIROCK] =                  MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_REGICE] =                    MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_REGISTEEL] =                 MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_PIDGEY] =                    MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_RATTATA] =                   MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_KYOGRE_ASLEEP] =                  MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_GROUDON_ASLEEP] =                 MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_RAYQUAZA] =                MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_KYOGRE_ASLEEP] =             MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_GROUDON_ASLEEP] =            MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_RAYQUAZA] =                  MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_SLOWPOKE] =                  MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_PIKACHU] =                   MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_SLOWPOKE_TAILLESS] =         MSG_COLOR_BLACK,
@@ -3076,13 +3076,13 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_EM_MAY] =                    MSG_COLOR_RED,
         [OBJ_EVENT_GFX_JUAN] =                      MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_SCOTT] =                     MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_MARILL] =                 MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_KYOGRE_SIDE] =                  MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_GROUDON_SIDE] =                 MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_MARILL] =                    MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_KYOGRE_SIDE] =               MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_GROUDON_SIDE] =              MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_MYSTERY_GIFT_MAN] =          MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_TRICK_HOUSE_STATUE] =        MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_PERSIAN] =                   MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_SENTRET] =                  MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_SENTRET] =                   MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_UNION_ROOM_NURSE] =          MSG_COLOR_RED,
         [OBJ_EVENT_GFX_SUDOWOODO] =                 MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_MEW] =                       MSG_COLOR_BLACK,

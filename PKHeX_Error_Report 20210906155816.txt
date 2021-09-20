@@ -1,0 +1,9 @@
+System.TypeLoadException: Could not load type 'PKHeX.Core.ProgramLanguage' from assembly 'PKHeX.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at PKHeX.WinForms.Main..ctor()
+   at PKHeX.WinForms.Program.Main()
+System.MissingMethodException: Method not found: 'Boolean PKHeX.Core.Util.IsStringListCached(System.String, System.String[] ByRef)'.
+   at PKHeX.WinForms.WinFormsTranslator.GetTranslationFile(String lang)
+   at PKHeX.WinForms.WinFormsTranslator.GetContext(String lang)
+   at PKHeX.WinForms.ErrorWindow..ctor(String lang)
+   at PKHeX.WinForms.ErrorWindow.ShowErrorDialog(String friendlyMessage, Exception ex, Boolean allowContinue)
+   at PKHeX.WinForms.Program.CurrentDomain_UnhandledException(Object sender, UnhandledExceptionEventArgs e)

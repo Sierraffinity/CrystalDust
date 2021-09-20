@@ -43,11 +43,13 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+#define TAG_ITEM_ICON_BASE 2110
+
 EWRAM_DATA struct MartInfo sMartInfo = {0};
 EWRAM_DATA struct ShopData *sShopData = NULL;
 EWRAM_DATA struct ListMenuItem *sListMenuItems = NULL;
 EWRAM_DATA u8 (*sItemNames)[16] = {0};
-EWRAM_DATA u8 gMartPurchaseHistoryId = 0;
+EWRAM_DATA u8 sPurchaseHistoryId= 0;
 EWRAM_DATA struct ItemSlot gMartPurchaseHistory[3] = {0};
 
 static void Task_ShopMenu(u8 taskId);
@@ -479,7 +481,7 @@ static void Task_HandleShopMenuQuit(u8 taskId)
 
 static void Task_HandleShopMenuQuitNoOptions(u8 taskId)
 {
-    SaveRecordedItemPurchasesForTVShow();
+    TryPutSmartShopperOnAir();
     ScriptContext2_Disable();
     DestroyTask(taskId);
 
@@ -750,7 +752,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, u16 index, s32 item, u8 y)
         {
             ConvertIntToDecimalStringN(
                 gStringVar1,
-                gDecorations[itemId].price,
+                gDecorations[item].price,
                 STR_CONV_MODE_LEFT_ALIGN,
                 5);
         }
@@ -1444,8 +1446,8 @@ static void BuyMenuPrintItemQuantityAndPrice(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    FillWindowPixelBuffer(4, PIXEL_FILL(1));
-    PrintMoneyAmount(4, 38, 1, sShopData->totalCost, TEXT_SPEED_FF);
+    FillWindowPixelBuffer(3, PIXEL_FILL(1));
+    PrintMoneyAmount(3, 54, 10, sShopData->totalCost, TEXT_SPEED_FF);
     ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, BAG_ITEM_CAPACITY_DIGITS);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
     BuyMenuPrint(3, 0, gStringVar4, 2, 10, 0, 0, 0, 1);

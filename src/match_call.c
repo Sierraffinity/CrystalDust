@@ -159,8 +159,8 @@ static u16 GetFrontierStreakInfo(u16, u32 *);
 static void PopulateMatchCallStringVars(int, const s8 *);
 static void PopulateMatchCallStringVar(int, int, u8 *);
 static bool32 LoadMatchCallWindowGfx(u8);
-static bool32 MoveMatchCallWindowToVram(u8);
-static bool32 PrintMatchCallIntroEllipsis(u8);
+static bool32 MatchCall_DrawWindow(u8);
+static bool32 MatchCall_ReadyIntro(u8);
 static bool32 SlideMatchCallWindowsOntoScreen(u8);
 static bool32 RunMatchCallIntroEllipsis(u8);
 static void PopulateTrainerName(int, u8 *);
@@ -1058,8 +1058,8 @@ extern const u8 gPokedexRatingText_OnANationwideBasis[];
 void InitMatchCallCounters(void)
 {
     RtcCalcLocalTime();
-    gMatchCallState.minutes = GetTotalMinutes(&gLocalTime) + 10;
-    gMatchCallState.stepCounter = 0;
+    sMatchCallState.minutes = GetTotalMinutes(&gLocalTime) + 10;
+    sMatchCallState.stepCounter = 0;
 }
 
 static bool32 UpdateMatchCallMinutesCounter(void)
@@ -1067,7 +1067,7 @@ static bool32 UpdateMatchCallMinutesCounter(void)
     int curMinutes;
     RtcCalcLocalTime();
     curMinutes = GetTotalMinutes(&gLocalTime);
-    if (gMatchCallState.minutes > curMinutes || curMinutes - gMatchCallState.minutes > 9)
+    if (sMatchCallState.minutes > curMinutes || curMinutes - sMatchCallState.minutes > 9)
     {
         sMatchCallState.minutes = curMinutes;
         return TRUE;
@@ -1090,7 +1090,7 @@ static bool32 CheckMatchCallChance(void)
 
 bool32 MapAllowsMatchCall(void)
 {
-    return (gMapHeader.flags & MAP_HAS_PHONE_SERVICE) != 0;
+    return (gMapHeader.phoneService) != 0;
 }
 
 static bool32 UpdateMatchCallStepCounter(void)
@@ -1113,12 +1113,12 @@ static bool32 SelectMatchCallTrainer(void)
     if (numRegistered == 0)
         return FALSE;
 
-    gMatchCallState.callerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
-    gMatchCallState.triggeredFromScript = FALSE;
-    if (gMatchCallState.callerId == PHONE_CONTACT_COUNT)
+    sMatchCallState.callerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
+    sMatchCallState.triggeredFromScript = FALSE;
+    if (sMatchCallState.callerId == PHONE_CONTACT_COUNT)
         return FALSE;
 
-    matchCallId = GetTrainerMatchCallId(gRematchTable[gPhoneContacts[gMatchCallState.callerId].rematchTrainerId].trainerIds[0]);
+    matchCallId = GetTrainerMatchCallId(gRematchTable[gPhoneContacts[sMatchCallState.callerId].rematchTrainerId].trainerIds[0]);
     if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(matchCallId))
         return FALSE;
 
@@ -1129,7 +1129,7 @@ static bool32 SelectForcedPhoneCall(void)
 {
     int i;
 
-    gMatchCallState.forcedPhoneCallId = 0;
+    sMatchCallState.forcedPhoneCallId = 0;
     for (i = 0; i < ARRAY_COUNT(sForcedPhoneCalls); i++)
     {
         if (sForcedPhoneCalls[i].callCondition() &&
@@ -1137,9 +1137,9 @@ static bool32 SelectForcedPhoneCall(void)
             //FlagGet(gPhoneContacts[sForcedPhoneCalls[i].phoneContactId].registeredFlag))
         {
             FlagClear(sForcedPhoneCalls[i].flag);
-            gMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
-            gMatchCallState.forcedPhoneCallId = i + 1;
-            gMatchCallState.triggeredFromScript = 0;
+            sMatchCallState.callerId = sForcedPhoneCalls[i].phoneContactId;
+            sMatchCallState.forcedPhoneCallId = i + 1;
+            sMatchCallState.triggeredFromScript = 0;
             return TRUE;
         }
     }
@@ -1213,9 +1213,9 @@ bool32 TryStartMatchCall(void)
 
 void StartMatchCallFromScript(const u8 *script, u8 callerId)
 {
-    gMatchCallState.triggeredFromScript = TRUE;
-    gMatchCallState.callerId = callerId;
-    gMatchCallState.script = script;
+    sMatchCallState.triggeredFromScript = TRUE;
+    sMatchCallState.callerId = callerId;
+    sMatchCallState.script = script;
     StartMatchCall();
 }
 
@@ -1228,18 +1228,18 @@ static void StartMatchCall(void)
         PlayerFreeze();
         sub_808BCF4();
 
-        if (gMatchCallState.forcedPhoneCallId != 0 && sForcedPhoneCalls[gMatchCallState.forcedPhoneCallId - 1].script != NULL)
+        if (sMatchCallState.forcedPhoneCallId != 0 && sForcedPhoneCalls[sMatchCallState.forcedPhoneCallId - 1].script != NULL)
         {
-            PhoneScriptContext_SetupCustomPhoneScript(sForcedPhoneCalls[gMatchCallState.forcedPhoneCallId - 1].script, PHONE_SCRIPT_OVERWORLD);
+            PhoneScriptContext_SetupCustomPhoneScript(sForcedPhoneCalls[sMatchCallState.forcedPhoneCallId - 1].script, PHONE_SCRIPT_OVERWORLD);
         }
         else
         {
-            PhoneScriptContext_SetupPhoneScript(&gPhoneContacts[gMatchCallState.callerId], PHONE_SCRIPT_OVERWORLD);
+            PhoneScriptContext_SetupPhoneScript(&gPhoneContacts[sMatchCallState.callerId], PHONE_SCRIPT_OVERWORLD);
         }
     }
     else
     {
-        PhoneScriptContext_SetupCustomPhoneScript(gMatchCallState.script, PHONE_SCRIPT_OVERWORLD);
+        PhoneScriptContext_SetupCustomPhoneScript(sMatchCallState.script, PHONE_SCRIPT_OVERWORLD);
     }
 }
 
@@ -1272,8 +1272,8 @@ static const struct WindowTemplate sPhoneCardNameTextWindow =
 static bool32 (*const sMatchCallTaskFuncs[])(u8) =
 {
     LoadMatchCallWindowGfx,
-    MoveMatchCallWindowToVram,
-    PrintMatchCallIntroEllipsis,
+    MatchCall_DrawWindow,
+    MatchCall_ReadyIntro,
     SlideMatchCallWindowsOntoScreen,
     RunMatchCallIntroEllipsis,
 };
@@ -1365,8 +1365,8 @@ static bool32 MatchCall_DrawWindow(u8 taskId)
 
     PutWindowTilemap(gPhoneCallWindowId);
     PutWindowTilemap(gPhoneCallerNameWindowId);
-    DrawMatchCallTextBoxBorder(gPhoneCallWindowId, 0x270, 15);
-    DrawMatchCallTextBoxBorder(gPhoneCallerNameWindowId, 0x270, 15);
+    DrawMatchCallTextBoxBorder_Internal(gPhoneCallWindowId, 0x270, 15);
+    DrawMatchCallTextBoxBorder_Internal(gPhoneCallerNameWindowId, 0x270, 15);
     WriteSequenceToBgTilemapBuffer(0, 0x279, 1, 1, 4, 4, 15, 1);
     CopyWindowToVram(gPhoneCallWindowId, 2);
     CopyWindowToVram(gPhoneCallerNameWindowId, 2);
@@ -1380,7 +1380,7 @@ static bool32 MatchCall_ReadyIntro(u8 taskId)
     s16 *taskData = gTasks[taskId].data;
     if (!IsDma3ManagerBusyWithBgCopy())
     {
-        name = BuildPhoneContactDisplayNameForCall(&gPhoneContacts[gMatchCallState.callerId], gStringVar1);
+        name = BuildPhoneContactDisplayNameForCall(&gPhoneContacts[sMatchCallState.callerId], gStringVar1);
         AddTextPrinterParameterized5(gPhoneCallerNameWindowId, 2, name, 32, 2, 0, NULL, 1, 2);
         AddTextPrinterParameterized5(gPhoneCallWindowId, 2, gText_PokegearCallEllipsis, 2, 1, 0, NULL, 2, 1);
         CopyWindowToVram(gPhoneCallerNameWindowId, 3);
@@ -1484,7 +1484,7 @@ bool32 CleanupAfterMatchCallHangup(void)
             // this allows waitstate to continue
             EnableBothScriptContexts();
         }
-        gMatchCallState.triggeredFromScript = 0;
+        sMatchCallState.triggeredFromScript = 0;
 
         return TRUE;
     }
@@ -1492,7 +1492,7 @@ bool32 CleanupAfterMatchCallHangup(void)
     return FALSE;
 }
 
-void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
+void DrawMatchCallTextBoxBorder_Internal(u32 windowId, u32 tileOffset, u32 paletteId)
 {
     int bg, x, y, width, height;
     int tileNum;
@@ -1587,7 +1587,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str, bool8 isCallingPlayer)
     }
     // TODO: Disable ability to ask for rematch until making decision about daily rematch flags.
     else if (FALSE /*(!isCallingPlayer && gPhoneContacts[gRematchTable[matchCallId].phoneContactId].canAcceptRematch(gLocalTime.dayOfWeek, gLocalTime.hours))*/
-          || (isCallingPlayer  && sub_8196D74(matchCallId)))
+          || (isCallingPlayer  && ShouldTrainerRequestBattle(matchCallId)))
     {
         matchCallText = GetDifferentRouteMatchCallText(matchCallId, str);
         retVal = TRUE;
@@ -2057,7 +2057,7 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
     return streak;
 }
 
-void LoadMatchCallWindowGfx(u32 windowId, u32 destOffset, u32 paletteId)
+void LoadMatchCallWindowGfx2(u32 windowId, u32 destOffset, u32 paletteId)
 {
     u8 bg = GetWindowAttribute(windowId, WINDOW_BG);
     LoadBgTiles(bg, gPhoneCall_WindowGfx, sizeof(gPhoneCall_WindowGfx), destOffset);

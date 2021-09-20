@@ -85,7 +85,7 @@
 	.endm
 
 	.macro bg_fruit_tree_event x, y, height, fruit_tree_id
-	bg_event \x, \y, \height, 9, \fruit_tree_id, 0, 0
+	bg_event \x, \y, \height, BG_EVENT_FRUIT_TREE, \fruit_tree_id
 	.endm
 
 	.macro map_events npcs, warps, traps, signs

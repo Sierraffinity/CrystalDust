@@ -1288,7 +1288,7 @@ static bool32 InitSaveWindowAfterLinkBattle(u8 *state)
     case 3:
         ShowBg(0);
         BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
-        SetVBlankCallback(sub_80A03D8);
+        SetVBlankCallback(VBlankCB_LinkBattleSave);
         EnableInterrupts(INTR_FLAG_VBLANK);
         break;
     case 4:
@@ -1408,13 +1408,13 @@ static void ShowSaveInfoWindow(void)
     // Print player name
     yOffset = 14;
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingPlayer, 2, yOffset, TEXT_SPEED_FF, NULL);
-    BufferSaveMenuText(SAVE_MENU_NAME, gStringVar4, TEXT_COLOR_DARK_GREY);
+    BufferSaveMenuText(SAVE_MENU_NAME, gStringVar4, TEXT_COLOR_DARK_GRAY);
     PrintPlayerNameOnWindow(sSaveInfoWindowId, gStringVar4, 60, yOffset);
 
     // Print badge count
     yOffset = 28;
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingBadges, 2, yOffset, TEXT_SPEED_FF, NULL);
-    BufferSaveMenuText(SAVE_MENU_BADGES, gStringVar4, TEXT_COLOR_DARK_GREY);
+    BufferSaveMenuText(SAVE_MENU_BADGES, gStringVar4, TEXT_COLOR_DARK_GRAY);
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, TEXT_SPEED_FF, NULL);
 
     yOffset = 42;
@@ -1422,14 +1422,14 @@ static void ShowSaveInfoWindow(void)
     {
         // Print pokedex count
         AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingPokedex, 2, yOffset, TEXT_SPEED_FF, NULL);
-        BufferSaveMenuText(SAVE_MENU_CAUGHT, gStringVar4, TEXT_COLOR_DARK_GREY);
+        BufferSaveMenuText(SAVE_MENU_CAUGHT, gStringVar4, TEXT_COLOR_DARK_GRAY);
         AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, TEXT_SPEED_FF, NULL);
         yOffset = 56;
     }
 
     // Print play time
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gText_SavingTime, 2, yOffset, TEXT_SPEED_FF, NULL);
-    BufferSaveMenuText(2, gStringVar4, TEXT_COLOR_DARK_GREY);
+    BufferSaveMenuText(2, gStringVar4, TEXT_COLOR_DARK_GRAY);
     AddTextPrinterParameterized(sSaveInfoWindowId, 0, gStringVar4, 60, yOffset, TEXT_SPEED_FF, NULL);
 
     CopyWindowToVram(sSaveInfoWindowId, 2);

@@ -1827,9 +1827,6 @@ static void Task_NewGameOakSpeech_PrintThisEllipsis(u8 taskId)
         AddTextPrinterForMessage_IgnoreTextColor(1);
         gTasks[taskId].func = Task_NewGameOakSpeech_CreatePokeBallToReleaseWooper;
     }
-    tState++;
-    if (gTasks[sBirchSpeechMainTaskId].tTimer < 0x4000)
-        gTasks[sBirchSpeechMainTaskId].tTimer++;
 }
 
 static void Task_NewGameOakSpeech_CreatePokeBallToReleaseWooper(u8 taskId)
