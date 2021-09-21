@@ -12,10 +12,12 @@
   "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "in_connection": false,
       "x": 20,
@@ -27,10 +29,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "SlowpokeWell_B1F_EventScript_Rocket1",
-      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS",
-      "type": "original"
+      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "in_connection": false,
       "x": 5,
@@ -42,10 +44,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "SlowpokeWell_B1F_EventScript_RocketBoss",
-      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS",
-      "type": "original"
+      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "in_connection": false,
       "x": 5,
@@ -57,10 +59,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "SlowpokeWell_B1F_EventScript_Rocket3",
-      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS",
-      "type": "original"
+      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_F",
       "in_connection": false,
       "x": 12,
@@ -72,10 +74,10 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "6",
       "script": "SlowpokeWell_B1F_EventScript_Rocket2",
-      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS",
-      "type": "original"
+      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE_TAILLESS",
       "in_connection": false,
       "x": 8,
@@ -87,10 +89,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlowpokeWell_B1F_EventScript_SlowpokeWithMail",
-      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS",
-      "type": "original"
+      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE_TAILLESS",
       "in_connection": false,
       "x": 6,
@@ -102,10 +104,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlowpokeWell_B1F_EventScript_TaillessSlowpoke",
-      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS",
-      "type": "original"
+      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_KURT_LYING_DOWN",
       "in_connection": false,
       "x": 21,
@@ -117,10 +119,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlowpokeWell_B1F_EventScript_Kurt",
-      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS",
-      "type": "original"
+      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
       "in_connection": false,
       "x": 3,
@@ -132,10 +134,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_StrengthBoulder",
-      "flag": "FLAG_TEMP_11",
-      "type": "original"
+      "flag": "FLAG_TEMP_11"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 11,
@@ -147,10 +149,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlowpokeWell_B1F_EventScript_ItemSuperPotion",
-      "flag": "FLAG_ITEM_SLOWPOKE_WELL_B1F_SUPER_POTION",
-      "type": "original"
+      "flag": "FLAG_ITEM_SLOWPOKE_WELL_B1F_SUPER_POTION"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_KURT",
       "in_connection": false,
       "x": 13,
@@ -162,8 +164,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_KURT",
-      "type": "original"
+      "flag": "FLAG_HIDE_SLOWPOKE_WELL_B1F_KURT"
     }
   ],
   "warp_events": [
@@ -187,6 +188,5 @@
   ],
   "bg_events": [
 
-  ],
-  "phone_service": ""
+  ]
 }

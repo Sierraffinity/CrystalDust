@@ -3,7 +3,7 @@
   "name": "Route44",
   "layout": "LAYOUT_ROUTE44",
   "music": "MUS_AQUA_MAGMA_HIDEOUT",
-  "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+  "region_map_section": "MAPSEC_ROUTE_44",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",
