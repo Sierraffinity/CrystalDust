@@ -12,10 +12,12 @@
   "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "in_connection": false,
       "x": 0,
@@ -27,10 +29,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "in_connection": false,
       "x": 1,
@@ -42,10 +44,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "in_connection": false,
       "x": 2,
@@ -57,10 +59,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "in_connection": false,
       "x": 3,
@@ -72,10 +74,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "in_connection": false,
       "x": 4,
@@ -87,10 +89,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 39,
@@ -102,10 +104,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NationalPark_EventScript_ItemParalyzeHeal",
-      "flag": "FLAG_ITEM_NATIONAL_PARK_PARALYZE_HEAL",
-      "type": "original"
+      "flag": "FLAG_ITEM_NATIONAL_PARK_PARALYZE_HEAL"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 3,
@@ -117,8 +119,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NationalPark_EventScript_ItemTM28",
-      "flag": "FLAG_ITEM_NATIONAL_PARK_TM28",
-      "type": "original"
+      "flag": "FLAG_ITEM_NATIONAL_PARK_TM28"
     }
   ],
   "warp_events": [
@@ -180,6 +181,5 @@
       "item": "ITEM_FULL_HEAL",
       "flag": "FLAG_HIDDEN_ITEM_NATIONAL_PARK_FULL_HEAL"
     }
-  ],
-  "phone_service": ""
+  ]
 }

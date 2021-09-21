@@ -11,11 +11,15 @@
   "allow_escaping": true,
   "allow_running": true,
   "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 5,
       "y": 3,
       "elevation": 3,
@@ -23,7 +27,6 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RadioTower_4F_EventScript_ItemTM02",
       "flag": "FLAG_ITEM_RADIO_TOWER_4F_TM_02"
@@ -38,7 +41,10 @@
       "dest_warp_id": 3
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-  "phone_service": true
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }
