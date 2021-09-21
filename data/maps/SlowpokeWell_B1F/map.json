@@ -147,8 +147,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlowpokeWell_B1F_EventScript_ItemSuperPotion",
+      "trainer_sight_or_berry_tree_id": "ITEM_SUPER_POTION",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_SLOWPOKE_WELL_B1F_SUPER_POTION"
     },
     {

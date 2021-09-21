@@ -27,8 +27,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "DarkCave_South_EventScript_ItemPotion",
+      "trainer_sight_or_berry_tree_id": "ITEM_POTION",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_DARK_CAVE_SOUTH_POTION"
     },
     {
@@ -42,8 +42,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "DarkCave_South_EventScript_ItemFullHeal",
+      "trainer_sight_or_berry_tree_id": "ITEM_FULL_HEAL",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_DARK_CAVE_SOUTH_FULL_HEAL"
     },
     {
@@ -57,8 +57,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "DarkCave_South_EventScript_ItemHyperPotion",
+      "trainer_sight_or_berry_tree_id": "ITEM_HYPER_POTION",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_DARK_CAVE_SOUTH_HYPER_POTION"
     },
     {
@@ -72,8 +72,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "DarkCave_South_EventScript_ItemDireHit",
+      "trainer_sight_or_berry_tree_id": "ITEM_DIRE_HIT",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_DARK_CAVE_SOUTH_DIRE_HIT"
     },
     {

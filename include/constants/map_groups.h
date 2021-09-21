@@ -1,7 +1,11 @@
 #ifndef GUARD_CONSTANTS_MAP_GROUPS_H
 #define GUARD_CONSTANTS_MAP_GROUPS_H
 
-// Map Group 0
+//
+// DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json
+//
+
+// gOverworld
 #define MAP_NEW_BARK_TOWN         (0 | (0 << 8))
 #define MAP_CHERRYGROVE_CITY      (1 | (0 << 8))
 #define MAP_VIOLET_CITY           (2 | (0 << 8))
@@ -72,14 +76,14 @@
 #define MAP_ROUTE27               (67 | (0 << 8))
 #define MAP_ROUTE28               (68 | (0 << 8))
 
-// Map Group 1
+// gNewBarkTownInteriors
 #define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_1F   (0 | (1 << 8))
 #define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F   (1 | (1 << 8))
 #define MAP_NEW_BARK_TOWN_ELMS_HOUSE         (2 | (1 << 8))
 #define MAP_NEW_BARK_TOWN_NEIGHBORS_HOUSE    (3 | (1 << 8))
 #define MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB (4 | (1 << 8))
 
-// Map Group 2
+// gCherrygroveCityInteriors
 #define MAP_CHERRYGROVE_CITY_POKEMON_CENTER_1F (0 | (2 << 8))
 #define MAP_CHERRYGROVE_CITY_POKEMON_CENTER_2F (1 | (2 << 8))
 #define MAP_CHERRYGROVE_CITY_MART              (2 | (2 << 8))
@@ -87,7 +91,7 @@
 #define MAP_CHERRYGROVE_CITY_HOUSE1            (4 | (2 << 8))
 #define MAP_CHERRYGROVE_CITY_HOUSE2            (5 | (2 << 8))
 
-// Map Group 3
+// gVioletCityInteriors
 #define MAP_VIOLET_CITY_POKEMON_CENTER_1F (0 | (3 << 8))
 #define MAP_VIOLET_CITY_POKEMON_CENTER_2F (1 | (3 << 8))
 #define MAP_VIOLET_CITY_MART              (2 | (3 << 8))
@@ -96,7 +100,7 @@
 #define MAP_VIOLET_CITY_HOUSE1            (5 | (3 << 8))
 #define MAP_VIOLET_CITY_HOUSE2            (6 | (3 << 8))
 
-// Map Group 4
+// gAzaleaTownInteriors
 #define MAP_AZALEA_TOWN_POKEMON_CENTER_1F (0 | (4 << 8))
 #define MAP_AZALEA_TOWN_POKEMON_CENTER_2F (1 | (4 << 8))
 #define MAP_AZALEA_TOWN_MART              (2 | (4 << 8))
@@ -104,7 +108,7 @@
 #define MAP_AZALEA_TOWN_KURTS_HOUSE       (4 | (4 << 8))
 #define MAP_AZALEA_TOWN_CHARCOAL_KILN     (5 | (4 << 8))
 
-// Map Group 5
+// gGoldenrodCityInteriors
 #define MAP_GOLDENROD_CITY_POKEMON_CENTER_1F          (0 | (5 << 8))
 #define MAP_GOLDENROD_CITY_POKEMON_CENTER_2F          (1 | (5 << 8))
 #define MAP_GOLDENROD_CITY_POKECOM_CENTER_ADMIN_ROOM  (2 | (5 << 8))
@@ -130,7 +134,7 @@
 #define MAP_GOLDENROD_CITY_DEPT_STORE_ELEVATOR        (22 | (5 << 8))
 #define MAP_GOLDENROD_CITY_DEPT_STORE_B1F             (23 | (5 << 8))
 
-// Map Group 6
+// gEcruteakCityInteriors
 #define MAP_ECRUTEAK_CITY_POKEMON_CENTER_1F (0 | (6 << 8))
 #define MAP_ECRUTEAK_CITY_POKEMON_CENTER_2F (1 | (6 << 8))
 #define MAP_ECRUTEAK_CITY_MART              (2 | (6 << 8))
@@ -141,7 +145,7 @@
 #define MAP_ECRUTEAK_CITY_HOUSE1            (7 | (6 << 8))
 #define MAP_ECRUTEAK_CITY_HOUSE2            (8 | (6 << 8))
 
-// Map Group 7
+// gOlivineCityInteriors
 #define MAP_OLIVINE_CITY_POKEMON_CENTER_1F (0 | (7 << 8))
 #define MAP_OLIVINE_CITY_POKEMON_CENTER_2F (1 | (7 << 8))
 #define MAP_OLIVINE_CITY_MART              (2 | (7 << 8))
@@ -153,7 +157,7 @@
 #define MAP_OLIVINE_CITY_HOUSE2            (8 | (7 << 8))
 #define MAP_OLIVINE_CITY_HOUSE3            (9 | (7 << 8))
 
-// Map Group 8
+// gCianwoodCityInteriors
 #define MAP_CIANWOOD_CITY_POKEMON_CENTER_1F (0 | (8 << 8))
 #define MAP_CIANWOOD_CITY_POKEMON_CENTER_2F (1 | (8 << 8))
 #define MAP_CIANWOOD_CITY_GYM               (2 | (8 << 8))
@@ -163,14 +167,14 @@
 #define MAP_CIANWOOD_CITY_POKE_SEERS_HOUSE  (6 | (8 << 8))
 #define MAP_CIANWOOD_CITY_HOUSE             (7 | (8 << 8))
 
-// Map Group 9
+// gMahoganyTownInteriors
 #define MAP_MAHOGANY_TOWN_POKEMON_CENTER_1F (0 | (9 << 8))
 #define MAP_MAHOGANY_TOWN_POKEMON_CENTER_2F (1 | (9 << 8))
 #define MAP_MAHOGANY_TOWN_GYM               (2 | (9 << 8))
 #define MAP_MAHOGANY_TOWN_SHOP              (3 | (9 << 8))
 #define MAP_MAHOGANY_TOWN_HOUSE             (4 | (9 << 8))
 
-// Map Group 10
+// gBlackthornCityInteriors
 #define MAP_BLACKTHORN_CITY_POKEMON_CENTER_1F   (0 | (10 << 8))
 #define MAP_BLACKTHORN_CITY_POKEMON_CENTER_2F   (1 | (10 << 8))
 #define MAP_BLACKTHORN_CITY_MART                (2 | (10 << 8))
@@ -180,56 +184,56 @@
 #define MAP_BLACKTHORN_CITY_HOUSE1              (6 | (10 << 8))
 #define MAP_BLACKTHORN_CITY_HOUSE2              (7 | (10 << 8))
 
-// Map Group 11
+// gRoute29Interiors
 #define MAP_ROUTE29_GATEHOUSE (0 | (11 << 8))
 
-// Map Group 12
+// gRoute30Interiors
 #define MAP_ROUTE30_BERRY_MANS_HOUSE  (0 | (12 << 8))
 #define MAP_ROUTE30_MR_POKEMONS_HOUSE (1 | (12 << 8))
 
-// Map Group 13
+// gRoute31Interiors
 #define MAP_ROUTE31_GATEHOUSE (0 | (13 << 8))
 
-// Map Group 14
+// gRoute32Interiors
 #define MAP_ROUTE32_POKEMON_CENTER_1F (0 | (14 << 8))
 #define MAP_ROUTE32_POKEMON_CENTER_2F (1 | (14 << 8))
 #define MAP_ROUTE32_GATEHOUSE         (2 | (14 << 8))
 
-// Map Group 15
+// gRoute34Interiors
 #define MAP_ROUTE34_ILEX_EAST_GATEHOUSE  (0 | (15 << 8))
 #define MAP_ROUTE34_ILEX_NORTH_GATEHOUSE (1 | (15 << 8))
 #define MAP_ROUTE34_DAY_CARE             (2 | (15 << 8))
 
-// Map Group 16
+// gRoute35Interiors
 #define MAP_ROUTE35_GOLDENROD_GATEHOUSE     (0 | (16 << 8))
 #define MAP_ROUTE35_NATIONAL_PARK_GATEHOUSE (1 | (16 << 8))
 
-// Map Group 17
+// gRoute36Interiors
 #define MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE (0 | (17 << 8))
 #define MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE (1 | (17 << 8))
 
-// Map Group 18
+// gRoute38Interiors
 #define MAP_ROUTE38_GATEHOUSE (0 | (18 << 8))
 
-// Map Group 19
+// gRoute39Interiors
 #define MAP_ROUTE39_MOO_MOO_FARM_HOUSE (0 | (19 << 8))
 #define MAP_ROUTE39_MOO_MOO_FARM_BARN  (1 | (19 << 8))
 
-// Map Group 20
+// gRoute40Interiors
 #define MAP_ROUTE40_GATEHOUSE (0 | (20 << 8))
 
-// Map Group 21
+// gRoute42Interiors
 #define MAP_ROUTE42_GATEHOUSE (0 | (21 << 8))
 
-// Map Group 22
+// gRoute43Interiors
 #define MAP_ROUTE43_GATEHOUSE1 (0 | (22 << 8))
 #define MAP_ROUTE43_GATEHOUSE2 (1 | (22 << 8))
 
-// Map Group 23
+// gLakeOfRageInteriors
 #define MAP_LAKE_OF_RAGE_HIDDEN_POWER_HOUSE  (0 | (23 << 8))
 #define MAP_LAKE_OF_RAGE_FISHING_GURUS_HOUSE (1 | (23 << 8))
 
-// Map Group 24
+// gRuinsOfAlphInteriors
 #define MAP_RUINS_OF_ALPH_RESEARCH_CENTER      (0 | (24 << 8))
 #define MAP_RUINS_OF_ALPH_INNER_CHAMBER        (1 | (24 << 8))
 #define MAP_RUINS_OF_ALPH_KABUTO_CHAMBER       (2 | (24 << 8))
@@ -245,11 +249,11 @@
 #define MAP_RUINS_OF_ALPH_HO_OH_ITEM_ROOM      (12 | (24 << 8))
 #define MAP_RUINS_OF_ALPH_HO_OH_WORD_ROOM      (13 | (24 << 8))
 
-// Map Group 25
+// gSilverCaveInteriors
 #define MAP_SILVER_CAVE_OUTSIDE_POKEMON_CENTER_1F (0 | (25 << 8))
 #define MAP_SILVER_CAVE_OUTSIDE_POKEMON_CENTER_2F (1 | (25 << 8))
 
-// Map Group 26
+// gJohtoDungeons
 #define MAP_DARK_CAVE_SOUTH                    (0 | (26 << 8))
 #define MAP_DARK_CAVE_B1F                      (1 | (26 << 8))
 #define MAP_SPROUT_TOWER_1F                    (2 | (26 << 8))
@@ -319,13 +323,13 @@
 #define MAP_SILVER_CAVE_ROOM3                  (66 | (26 << 8))
 #define MAP_SILVER_CAVE_ITEM_ROOMS             (67 | (26 << 8))
 
-// Map Group 27
+// gPalletTownInteriors
 #define MAP_PALLET_TOWN_REDS_HOUSE_1F      (0 | (27 << 8))
 #define MAP_PALLET_TOWN_REDS_HOUSE_2F      (1 | (27 << 8))
 #define MAP_PALLET_TOWN_BLUES_HOUSE        (2 | (27 << 8))
 #define MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB (3 | (27 << 8))
 
-// Map Group 28
+// gViridianCityInteriors
 #define MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F (0 | (28 << 8))
 #define MAP_VIRIDIAN_CITY_POKEMON_CENTER_2F (1 | (28 << 8))
 #define MAP_VIRIDIAN_CITY_MART              (2 | (28 << 8))
@@ -334,7 +338,7 @@
 #define MAP_VIRIDIAN_CITY_TRAINER_HOUSE_1F  (5 | (28 << 8))
 #define MAP_VIRIDIAN_CITY_TRAINER_HOUSE_B1F (6 | (28 << 8))
 
-// Map Group 29
+// gPewterCityInteriors
 #define MAP_PEWTER_CITY_POKEMON_CENTER_1F (0 | (29 << 8))
 #define MAP_PEWTER_CITY_POKEMON_CENTER_2F (1 | (29 << 8))
 #define MAP_PEWTER_CITY_MART              (2 | (29 << 8))
@@ -344,7 +348,7 @@
 #define MAP_PEWTER_CITY_MUSEUM_1F         (6 | (29 << 8))
 #define MAP_PEWTER_CITY_MUSEUM_2F         (7 | (29 << 8))
 
-// Map Group 30
+// gCeruleanCityInteriors
 #define MAP_CERULEAN_CITY_POKEMON_CENTER_1F (0 | (30 << 8))
 #define MAP_CERULEAN_CITY_POKEMON_CENTER_2F (1 | (30 << 8))
 #define MAP_CERULEAN_CITY_MART              (2 | (30 << 8))
@@ -353,7 +357,7 @@
 #define MAP_CERULEAN_CITY_HOUSE2            (5 | (30 << 8))
 #define MAP_CERULEAN_CITY_HOUSE3            (6 | (30 << 8))
 
-// Map Group 31
+// gVermilionCityInteriors
 #define MAP_VERMILION_CITY_POKEMON_CENTER_1F (0 | (31 << 8))
 #define MAP_VERMILION_CITY_POKEMON_CENTER_2F (1 | (31 << 8))
 #define MAP_VERMILION_CITY_MART              (2 | (31 << 8))
@@ -365,7 +369,7 @@
 #define MAP_VERMILION_CITY_HOUSE2            (8 | (31 << 8))
 #define MAP_VERMILION_CITY_HOUSE3            (9 | (31 << 8))
 
-// Map Group 32
+// gLavenderTownInteriors
 #define MAP_LAVENDER_TOWN_POKEMON_CENTER_1F       (0 | (32 << 8))
 #define MAP_LAVENDER_TOWN_POKEMON_CENTER_2F       (1 | (32 << 8))
 #define MAP_LAVENDER_TOWN_MART                    (2 | (32 << 8))
@@ -375,7 +379,7 @@
 #define MAP_LAVENDER_TOWN_NAME_RATERS_HOUSE       (6 | (32 << 8))
 #define MAP_LAVENDER_TOWN_HOUSE                   (7 | (32 << 8))
 
-// Map Group 33
+// gCeladonCityInteriors
 #define MAP_CELADON_CITY_POKEMON_CENTER_1F         (0 | (33 << 8))
 #define MAP_CELADON_CITY_POKEMON_CENTER_2F         (1 | (33 << 8))
 #define MAP_CELADON_CITY_GYM                       (2 | (33 << 8))
@@ -395,7 +399,7 @@
 #define MAP_CELADON_CITY_DEPARTMENT_STORE_ROOF     (16 | (33 << 8))
 #define MAP_CELADON_CITY_DEPARTMENT_STORE_ELEVATOR (17 | (33 << 8))
 
-// Map Group 34
+// gSaffronCityInteriors
 #define MAP_SAFFRON_CITY_POKEMON_CENTER_1F    (0 | (34 << 8))
 #define MAP_SAFFRON_CITY_POKEMON_CENTER_2F    (1 | (34 << 8))
 #define MAP_SAFFRON_CITY_MART                 (2 | (34 << 8))
@@ -407,7 +411,7 @@
 #define MAP_SAFFRON_CITY_SILPH_CO_1F          (8 | (34 << 8))
 #define MAP_SAFFRON_CITY_MR_PSYCHICS_HOUSE    (9 | (34 << 8))
 
-// Map Group 35
+// gFuchsiaCityInteriors
 #define MAP_FUCHSIA_CITY_POKEMON_CENTER_1F  (0 | (35 << 8))
 #define MAP_FUCHSIA_CITY_POKEMON_CENTER_2F  (1 | (35 << 8))
 #define MAP_FUCHSIA_CITY_MART               (2 | (35 << 8))
@@ -416,11 +420,11 @@
 #define MAP_FUCHSIA_CITY_WARDENS_HOUSE      (5 | (35 << 8))
 #define MAP_FUCHSIA_CITY_HOUSE              (6 | (35 << 8))
 
-// Map Group 36
+// gCinnabarIslandInteriors
 #define MAP_CINNABAR_ISLAND_POKEMON_CENTER_1F (0 | (36 << 8))
 #define MAP_CINNABAR_ISLAND_POKEMON_CENTER_2F (1 | (36 << 8))
 
-// Map Group 37
+// gIndigoPlateauInteriors
 #define MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F (0 | (37 << 8))
 #define MAP_INDIGO_PLATEAU_POKEMON_CENTER_2F (1 | (37 << 8))
 #define MAP_INDIGO_PLATEAU_WILLS_ROOM        (2 | (37 << 8))
@@ -430,53 +434,53 @@
 #define MAP_INDIGO_PLATEAU_LANCES_ROOM       (6 | (37 << 8))
 #define MAP_INDIGO_PLATEAU_HALL_OF_FAME      (7 | (37 << 8))
 
-// Map Group 38
+// gRoute2Interiors
 #define MAP_ROUTE2_HOUSE                          (0 | (38 << 8))
 #define MAP_ROUTE2_GATEHOUSE                      (1 | (38 << 8))
 #define MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE (2 | (38 << 8))
 #define MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE (3 | (38 << 8))
 
-// Map Group 39
+// gRoute5Interiors
 #define MAP_ROUTE5_HOUSE                     (0 | (39 << 8))
 #define MAP_ROUTE5_GATEHOUSE                 (1 | (39 << 8))
 #define MAP_ROUTE5_UNDERGROUND_PATH_ENTRANCE (2 | (39 << 8))
 
-// Map Group 40
+// gRoute6Interiors
 #define MAP_ROUTE6_UNDERGROUND_PATH_ENTRANCE (0 | (40 << 8))
 #define MAP_ROUTE6_GATEHOUSE                 (1 | (40 << 8))
 
-// Map Group 41
+// gRoute7Interiors
 #define MAP_ROUTE7_GATEHOUSE (0 | (41 << 8))
 
-// Map Group 42
+// gRoute8Interiors
 #define MAP_ROUTE8_GATEHOUSE (0 | (42 << 8))
 
-// Map Group 43
+// gRoute10Interiors
 
-// Map Group 44
+// gRoute12Interiors
 
-// Map Group 45
+// gRoute15Interiors
 
-// Map Group 46
+// gRoute16Interiors
 
-// Map Group 47
+// gRoute17Interiors
 
-// Map Group 48
+// gRoute19Interiors
 
-// Map Group 49
+// gRoute20Interiors
 
-// Map Group 50
+// gRoute25Interiors
 
-// Map Group 51
+// gRoute26Interiors
 
-// Map Group 52
+// gRoute27Interiors
 
-// Map Group 53
+// gRoute28Interiors
 
-// Map Group 54
+// gKantoDungeons
 #define MAP_TOHJO_FALLS (0 | (54 << 8))
 
-// Map Group 55
+// gBattleFrontier
 #define MAP_BATTLE_FRONTIER_OUTSIDE_WEST                    (0 | (55 << 8))
 #define MAP_BATTLE_FRONTIER_OUTSIDE_EAST                    (1 | (55 << 8))
 #define MAP_BATTLE_FRONTIER_BATTLE_TOWER_LOBBY              (2 | (55 << 8))
@@ -543,14 +547,14 @@
 #define MAP_ARTISAN_CAVE_B1F                                (63 | (55 << 8))
 #define MAP_ARTISAN_CAVE_1F                                 (64 | (55 << 8))
 
-// Map Group 56
+// gLinkRooms
 #define MAP_BATTLE_COLOSSEUM_2P (0 | (56 << 8))
 #define MAP_TRADE_CENTER        (1 | (56 << 8))
 #define MAP_RECORD_CORNER       (2 | (56 << 8))
 #define MAP_BATTLE_COLOSSEUM_4P (3 | (56 << 8))
 #define MAP_UNION_ROOM          (4 | (56 << 8))
 
-// Map Group 57
+// gSecretBase
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (57 << 8))
 #define MAP_SECRET_BASE_BROWN_CAVE1  (1 | (57 << 8))
 #define MAP_SECRET_BASE_BLUE_CAVE1   (2 | (57 << 8))
@@ -576,7 +580,7 @@
 #define MAP_SECRET_BASE_TREE4        (22 | (57 << 8))
 #define MAP_SECRET_BASE_SHRUB4       (23 | (57 << 8))
 
-// Map Group 58
+// gEventIslands
 #define MAP_SOUTHERN_ISLAND_EXTERIOR (0 | (58 << 8))
 #define MAP_SOUTHERN_ISLAND_INTERIOR (1 | (58 << 8))
 #define MAP_FARAWAY_ISLAND_ENTRANCE  (2 | (58 << 8))
@@ -606,7 +610,7 @@
 #define MAP_NAVEL_ROCK_DOWN11        (26 | (58 << 8))
 #define MAP_NAVEL_ROCK_BOTTOM        (27 | (58 << 8))
 
-// Map Group 59
+// gEmeraldLeftovers
 #define MAP_SLATEPORT_CITY_BATTLE_TENT_LOBBY         (0 | (59 << 8))
 #define MAP_SLATEPORT_CITY_BATTLE_TENT_CORRIDOR      (1 | (59 << 8))
 #define MAP_SLATEPORT_CITY_BATTLE_TENT_BATTLE_ROOM   (2 | (59 << 8))

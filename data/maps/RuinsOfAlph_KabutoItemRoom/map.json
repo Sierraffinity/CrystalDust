@@ -27,8 +27,8 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "RuinsOfAlph_KabutoItemRoom_EventScript_ItemHealPowder",
+      "trainer_sight_or_berry_tree_id": "ITEM_HEAL_POWDER",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_RUINS_OF_ALPH_KABUTO_ITEM_ROOM_HEAL_POWDER"
     },
     {
@@ -42,8 +42,8 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "RuinsOfAlph_KabutoItemRoom_EventScript_ItemEnergyPowder",
+      "trainer_sight_or_berry_tree_id": "ITEM_ENERGY_POWDER",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_RUINS_OF_ALPH_KABUTO_ITEM_ROOM_ENERGY_POWDER"
     },
     {
@@ -57,8 +57,8 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "RuinsOfAlph_KabutoItemRoom_EventScript_ItemOranBerry",
+      "trainer_sight_or_berry_tree_id": "ITEM_ORAN_BERRY",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_RUINS_OF_ALPH_KABUTO_ITEM_ROOM_ORAN_BERRY"
     },
     {
@@ -72,8 +72,8 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "RuinsOfAlph_KabutoItemRoom_EventScript_ItemPechaBerry",
+      "trainer_sight_or_berry_tree_id": "ITEM_PECHA_BERRY",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_RUINS_OF_ALPH_KABUTO_ITEM_ROOM_PECHA_BERRY"
     }
   ],

@@ -102,8 +102,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "UnionCave_1F_EventScript_ItemGreatBall",
+      "trainer_sight_or_berry_tree_id": "ITEM_GREAT_BALL",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_UNION_CAVE_1F_GREAT_BALL"
     },
     {
@@ -117,8 +117,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "UnionCave_1F_EventScript_ItemXAttack",
+      "trainer_sight_or_berry_tree_id": "ITEM_X_ATTACK",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_UNION_CAVE_1F_X_ATTACK"
     },
     {
@@ -132,8 +132,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "UnionCave_1F_EventScript_ItemPotion",
+      "trainer_sight_or_berry_tree_id": "ITEM_POTION",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_UNION_CAVE_1F_POTION"
     },
     {
@@ -147,8 +147,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "UnionCave_1F_EventScript_ItemAwakening",
+      "trainer_sight_or_berry_tree_id": "ITEM_AWAKENING",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_UNION_CAVE_1F_AWAKENING"
     }
   ],

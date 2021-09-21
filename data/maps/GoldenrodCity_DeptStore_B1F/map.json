@@ -27,8 +27,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_DeptStore_B1F_EventScript_ItemEther",
+      "trainer_sight_or_berry_tree_id": "ITEM_ETHER",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_ETHER"
     },
     {
@@ -42,8 +42,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_DeptStore_B1F_EventScript_ItemAmuletCoin",
+      "trainer_sight_or_berry_tree_id": "ITEM_AMULET_COIN",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_AMULET_COIN"
     },
     {
@@ -57,8 +57,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_DeptStore_B1F_EventScript_ItemBurnHeal",
+      "trainer_sight_or_berry_tree_id": "ITEM_BURN_HEAL",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_BURN_HEAL"
     },
     {
@@ -72,8 +72,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodCity_DeptStore_B1F_EventScript_ItemUltraBall",
+      "trainer_sight_or_berry_tree_id": "ITEM_ULTRA_BALL",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_ULTRA_BALL"
     },
     {
