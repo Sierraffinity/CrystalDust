@@ -85,7 +85,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "ITEM_X_SPEED",
       "script": "Common_EventScript_FindItem",
-      "flag": "FLAG_ROUTE_46_X_SPEED"
+      "flag": "FLAG_ITEM_ROUTE_46_X_SPEED"
     }
   ],
   "warp_events": [
