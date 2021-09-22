@@ -837,6 +837,8 @@ void CreateEgg(struct Pokemon *mon, u16 species, u8 metLocation, bool8 forceShin
     u16 ball;
     u8 language;
     u8 isEgg;
+    u32 value;
+    u8 mapNameID;
 
     CreateMon(mon, species, EGG_HATCH_LEVEL, 32, (forceShiny ? PERSONALITY_SHINY : PERSONALITY_RANDOM), 0, OT_ID_PLAYER_ID, 0);
     metLevel = 0;
@@ -847,9 +849,21 @@ void CreateEgg(struct Pokemon *mon, u16 species, u8 metLocation, bool8 forceShin
     SetMonData(mon, MON_DATA_FRIENDSHIP, &gBaseStats[species].eggCycles);
     SetMonData(mon, MON_DATA_MET_LEVEL, &metLevel);
     SetMonData(mon, MON_DATA_LANGUAGE, &language);
-    if (metLocation != MAPSEC_NONE)
+
+    mapNameID = metLocation;
+
+    if(CheckReusedMapSec(mapNameID))
     {
-        SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);
+        value = TRUE;
+        SetMonData(mon, MON_DATA_LOCATION_BIT, &value);
+    }
+
+    value = ConvertMapSectionIdToMetLocation(mapNameID);
+    if(value == 0) // not in a converted map section
+        value = mapNameID;
+    if (value != MAPSEC_NONE)
+    {
+        SetMonData(mon, MON_DATA_MET_LOCATION, &value);
     }
 
     isEgg = TRUE;

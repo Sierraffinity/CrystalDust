@@ -79,6 +79,7 @@ EWRAM_DATA struct Unknown_806F160_Struct *gUnknown_020249B4[2] = {NULL};
 
 // const rom data
 #include "data/battle_moves.h"
+#include "data/region_map/mapsec_to_met_location.h"
 
 // Used in an unreferenced function in RS.
 // Unreferenced here and in FRLG.
@@ -2201,6 +2202,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u32 personality;
     u32 value;
     u16 checksum;
+    u8 mapSectionId;
 
     ZeroBoxMonData(boxMon);
 
@@ -2255,10 +2257,22 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     SetBoxMonData(boxMon, MON_DATA_SPECIES, &species);
     SetBoxMonData(boxMon, MON_DATA_EXP, &gExperienceTables[gBaseStats[species].growthRate][level]);
     SetBoxMonData(boxMon, MON_DATA_FRIENDSHIP, &gBaseStats[species].friendship);
-    value = GetCurrentRegionMapSectionId();
+
+    mapSectionId = GetCurrentRegionMapSectionId();
+
+    if(CheckReusedMapSec(mapSectionId))
+    {
+        value = TRUE;
+        SetBoxMonData(boxMon, MON_DATA_LOCATION_BIT, &value);
+    }
+
+    value = ConvertMapSectionIdToMetLocation(mapSectionId);
+    if(value == 0) // not in a converted map section
+        value = mapSectionId;
     SetBoxMonData(boxMon, MON_DATA_MET_LOCATION, &value);
     SetBoxMonData(boxMon, MON_DATA_MET_LEVEL, &level);
-    SetBoxMonData(boxMon, MON_DATA_MET_GAME, &gGameVersion);
+    value = VERSION_EMERALD;
+    SetBoxMonData(boxMon, MON_DATA_MET_GAME, &value);
     value = ITEM_POKE_BALL;
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);
     SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
@@ -4011,6 +4025,9 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 | (substruct3->worldRibbon << 26);
         }
         break;
+    case MON_DATA_LOCATION_BIT:
+        retVal = substruct0->locationBit;
+        break;
     default:
         break;
     }
@@ -4335,6 +4352,11 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         substruct3->speedIV = (ivs >> 15) & MAX_IV_MASK;
         substruct3->spAttackIV = (ivs >> 20) & MAX_IV_MASK;
         substruct3->spDefenseIV = (ivs >> 25) & MAX_IV_MASK;
+        break;
+    }
+    case MON_DATA_LOCATION_BIT:
+    {
+        SET16(substruct0->locationBit);
         break;
     }
     default:
@@ -7057,4 +7079,30 @@ u8 *sub_806F4F8(u8 id, u8 arg1)
 
         return structPtr->byteArrays[arg1];
     }
+}
+
+u8 ConvertMapSectionIdToMetLocation(u8 mapSection)
+{
+    return sMapSecToMetLoc[mapSection];
+}
+
+bool8 CheckReusedMapSec(u8 mapSectionId)
+{
+    switch(mapSectionId)
+        {   // if in doubled-up met location mapsec
+            case MAPSEC_WHIRL_ISLANDS:
+            case MAPSEC_SILVER_CAVE:
+            case MAPSEC_TOHJO_FALLS:
+            case MAPSEC_FAST_SHIP:
+            case MAPSEC_LIGHTHOUSE:
+            case MAPSEC_ICE_PATH:
+            case MAPSEC_DRAGONS_DEN:
+            case MAPSEC_DARK_CAVE:
+            case MAPSEC_RADIO_TOWER:
+            case MAPSEC_MT_MORTAR:
+            case MAPSEC_LAKE_OF_RAGE:
+                return TRUE;
+            default:
+                return FALSE;
+        }
 }

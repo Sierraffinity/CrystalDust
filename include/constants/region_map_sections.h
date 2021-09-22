@@ -14,9 +14,9 @@
 #define MAPSEC_GOLDENROD_CITY               0x0A
 #define MAPSEC_FORTREE_CITY                 0x0B
 #define MAPSEC_BLACKTHORN_CITY              0x0C
-#define MAPSEC_MOSSDEEP_CITY                0x0D
-#define MAPSEC_SOOTOPOLIS_CITY              0x0E
-#define MAPSEC_EVER_GRANDE_CITY             0x0F
+#define MAPSEC_BURNED_TOWER                0x0D
+#define MAPSEC_TOHJO_FALLS              0x0E
+#define MAPSEC_FAST_SHIP             0x0F
 #define MAPSEC_ROUTE_29                     0x10
 #define MAPSEC_ROUTE_30                     0x11
 #define MAPSEC_ROUTE_31                     0x12
@@ -442,5 +442,9 @@
 
 #define EMERALD_MAPSEC_START                MAPSECEM_LITTLEROOT_TOWN
 #define EMERALD_MAPSEC_END                  MAPSECEM_NONE
+#define NUM_NEW_MAPSECS 50
+// For special CD Eggs handled in PrintEggMemo
+#define METLOC_VIOLET_CITY                  0xD7
+#define METLOC_GOLDENROD_CITY               0xD9
 
 #endif //GUARD_REGIONMAPSEC_H

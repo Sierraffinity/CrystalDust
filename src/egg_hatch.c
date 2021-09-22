@@ -359,6 +359,7 @@ static void AddHatchedMonToParty(u8 id)
     u16 ball;
     u16 caughtLvl;
     u8 mapNameID;
+    u32 value;
     struct Pokemon* mon = &gPlayerParty[id];
 
     pokeNum = GetMonData(mon, MON_DATA_SPECIES);
@@ -388,7 +389,17 @@ static void AddHatchedMonToParty(u8 id)
     SetMonData(mon, MON_DATA_MET_LEVEL, &caughtLvl);
 
     mapNameID = GetCurrentRegionMapSectionId();
-    SetMonData(mon, MON_DATA_MET_LOCATION, &mapNameID);
+
+    if(CheckReusedMapSec(mapNameID))
+    {
+        value = TRUE;
+        SetMonData(mon, MON_DATA_LOCATION_BIT, &value);
+    }
+
+    value = ConvertMapSectionIdToMetLocation(mapNameID);
+    if(value == 0) // not in a converted map section
+        value = mapNameID;
+    SetMonData(mon, MON_DATA_MET_LOCATION, &value);
 
     MonRestorePP(mon);
     CalculateMonStats(mon);

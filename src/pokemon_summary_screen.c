@@ -137,7 +137,9 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     {
         u16 species; // 0x0
         u16 species2; // 0x2
-        u8 isEgg; // 0x4
+        u8 isEgg:1; // 0x4
+        u8 locationBit:1;
+        u8 filler:6;
         u8 level; // 0x5
         u8 ribbonCount; // 0x6
         u8 ailment; // 0x7
@@ -1397,6 +1399,8 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
             sum->isEgg = TRUE;
         else
             sum->isEgg = GetMonData(mon, MON_DATA_IS_EGG);
+
+        sum->locationBit = GetMonData(mon, MON_DATA_LOCATION_BIT);
 
         break;
     case 1:
@@ -3082,6 +3086,7 @@ static void BufferMonTrainerMemo(void)
 {
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
     const u8 *text;
+    u16 metlocation = sum->metLocation;
 
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sMemoNatureTextColor);
@@ -3100,32 +3105,39 @@ static void BufferMonTrainerMemo(void)
         u8 *metLocationString = Alloc(32);
         GetMetLevelString(metLevelString);
 
-        if (DidMonComeFromOfficialGBAGames())
-        {
+        if (metlocation >= MAPSEC_NONE)
+        {   // johto location
+            if(sum->locationBit)
+                metlocation += 39;
+            mapsecShift = EMERALD_MAPSEC_START;
+            maxMapsec = MAPSEC_NONE + NUM_NEW_MAPSECS; // should be 0x106 and down
+        }
+        else
+        {   //mon from vanilla mapsecs
             mapsecShift = EMERALD_MAPSEC_START;
             maxMapsec = EMERALD_MAPSEC_END - EMERALD_MAPSEC_START;
         }
 
-        if (sum->metLocation < maxMapsec)
+        if (metlocation < maxMapsec)
         {
-            GetMapNameForSummaryScreen(metLocationString, sum->metLocation + mapsecShift);
+            GetMapNameForSummaryScreen(metLocationString, metlocation + mapsecShift);
             DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, metLocationString);
         }
 
         if (DoesMonOTMatchOwner() == TRUE)
         {
             if (sum->metLevel == 0)
-                text = (sum->metLocation >= maxMapsec) ? gText_XNatureHatchedSomewhereAt : gText_XNatureHatchedAtYZ;
+                text = (metlocation >= maxMapsec) ? gText_XNatureHatchedSomewhereAt : gText_XNatureHatchedAtYZ;
             else
-                text = (sum->metLocation >= maxMapsec) ? gText_XNatureMetSomewhereAt : gText_XNatureMetAtYZ;
+                text = (metlocation >= maxMapsec) ? gText_XNatureMetSomewhereAt : gText_XNatureMetAtYZ;
         }
-        else if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
+        else if (metlocation == METLOC_FATEFUL_ENCOUNTER)
         {
             text = gText_XNatureFatefulEncounter;
         }
-        else if (sum->metLocation != METLOC_IN_GAME_TRADE && DidMonComeFromAnyGBAGame())
+        else if (metlocation != METLOC_IN_GAME_TRADE && DidMonComeFromAnyGBAGame())
         {
-            text = (sum->metLocation >= maxMapsec) ? gText_XNatureObtainedInTrade : gText_XNatureProbablyMetAt;
+            text = (metlocation >= maxMapsec) ? gText_XNatureObtainedInTrade : gText_XNatureProbablyMetAt;
         }
         else
         {
@@ -3265,37 +3277,18 @@ static void PrintEggMemo(void)
 
     if (sMonSummaryScreen->summary.sanity != 1)
     {
-        if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
-        {
+       if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
             text = gText_PeculiarEggNicePlace;
-        }
         else if (DidMonComeFromAnyGBAGame() == FALSE || DoesMonOTMatchOwner() == FALSE)
-        {
             text = gText_PeculiarEggTrade;
-        }
         else if (sum->metLocation == METLOC_SPECIAL_EGG)
-        {
-            if (DidMonComeFromCrystalDust() == TRUE)
-            {
-                text = gText_EggFromElm;
-            }
-            else if (DidMonComeFromRSE() == TRUE)
-            {
-                text = gText_EggFromHotSprings;
-            }
-            else
-            {
-                text = gText_EggFromTraveler;
-            }
-        }
-        else if (sum->metLocation == MAPSEC_GOLDENROD_CITY && DidMonComeFromCrystalDust())
-        {
+            text = (DidMonComeFromRSE() == TRUE) ? gText_EggFromHotSprings : gText_EggFromTraveler;
+        else if (sum->metLocation == METLOC_GOLDENROD_CITY)
             text = gText_EggFromPokecomCenter;
-        }
+        else if (sum->metLocation == METLOC_VIOLET_CITY)
+            text = gText_EggFromElm;
         else
-        {
             text = gText_OddEggFoundByCouple;
-        }
     }
     else
     {

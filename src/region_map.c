@@ -392,7 +392,7 @@ static const struct MultiNameFlyDest sMultiNameFlyDestinations[] =
 {
     {
         .name = sEverGrandeCityNames,
-        .mapSecId = MAPSEC_EVER_GRANDE_CITY,
+        .mapSecId = MAPSEC_FAST_SHIP,
         .flag = FLAG_LANDMARK_POKEMON_LEAGUE
     }
 };
@@ -1706,6 +1706,10 @@ u8 *GetMapName(u8 *dest, u16 regionMapId, u16 padLength)
     {
         str = StringCopy(dest, gRegionMapNames_Emerald[regionMapId - EMERALD_MAPSEC_START]);
     }
+    else if (regionMapId >= EMERALD_MAPSEC_END) // Johto entries for Summary Screen
+    {
+        str = StringCopy(dest, gRegionMapNames_Johto[regionMapId - EMERALD_MAPSEC_START]);
+    }
     else
     {
         if (padLength == 0)
@@ -1967,7 +1971,7 @@ static void CreateFlyDestIcons(void)
             }
         }
     }
-    /*for (mapSecId = MAPSEC_LITTLEROOT_TOWN; mapSecId <= MAPSEC_EVER_GRANDE_CITY; mapSecId++)
+    /*for (mapSecId = MAPSEC_LITTLEROOT_TOWN; mapSecId <= MAPSEC_FAST_SHIP; mapSecId++)
     {
         GetMapSecDimensions(mapSecId, &x, &y, &width, &height);
         x = (x + MAPCURSOR_X_MIN) * 8 + 4;
@@ -2133,7 +2137,7 @@ static void CB_ExitFlyMap(void)
                     case MAPSEC_BATTLE_FRONTIER:
                         SetWarpDestinationToHealLocation(HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST);
                         break;
-                    case MAPSEC_EVER_GRANDE_CITY:
+                    case MAPSEC_FAST_SHIP:
                         SetWarpDestinationToHealLocation(FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE) && sFlyMap->regionMap.posWithinMapSec == 0 ? HEAL_LOCATION_NEW_BARK_TOWN : HEAL_LOCATION_NEW_BARK_TOWN);
                         break;
                     default:

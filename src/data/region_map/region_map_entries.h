@@ -1,6 +1,8 @@
 #ifndef GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
 #define GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
 
+#include "mapsec_to_met_location.h"
+
 static const u8 sMapName_NewBarkTown[] = _("NEW BARK TOWN");
 static const u8 sMapName_CherrygroveCity[] = _("CHERRYGROVE CITY");
 static const u8 sMapName_AzaleaTown[] = _("AZALEA TOWN");
@@ -201,6 +203,9 @@ static const u8 sMapName_MarineCave[] = _("MARINE CAVE");
 static const u8 sMapName_TerraCave[] = _("TERRA CAVE");
 static const u8 sMapName_DesertUnderpass[] = _("DESERT UNDERPASS");
 static const u8 sMapName_TrainerHill[] = _("TRAINER HILL");
+static const u8 sMapName_BurnedTower[] = _("BURNED TOWER");
+static const u8 sMapName_TohjoFalls[] = _("TOHJO FALLS");
+static const u8 sMapName_FastShip[]= _("FAST SHIP");
 
 const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_NEW_BARK_TOWN]              = {21, 10, 1, 1, sMapName_NewBarkTown},
@@ -216,9 +221,9 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_GOLDENROD_CITY]             = { 7,  9, 1, 1, sMapName_GoldenrodCity},
     [MAPSEC_FORTREE_CITY]               = {12,  0, 1, 1, sMapName_FortreeCity},
     [MAPSEC_BLACKTHORN_CITY]            = {18,  3, 1, 1, sMapName_BlackthornCity},
-    [MAPSEC_MOSSDEEP_CITY]              = {24,  5, 1, 1, sMapName_MossdeepCity},
-    [MAPSEC_SOOTOPOLIS_CITY]            = {21,  7, 1, 1, sMapName_SootopolisCity},
-    [MAPSEC_EVER_GRANDE_CITY]           = {27,  8, 1, 1, sMapName_EverGrandeCity},
+    [MAPSEC_BURNED_TOWER]               = {24,  5, 1, 1, sMapName_BurnedTower},
+    [MAPSEC_TOHJO_FALLS]                = {21,  7, 1, 1, sMapName_TohjoFalls},
+    [MAPSEC_FAST_SHIP]                  = {27,  8, 1, 1, sMapName_FastShip},
     [MAPSEC_ROUTE_29]                   = {16, 10, 5, 1, sMapName_Route29},
     [MAPSEC_ROUTE_30]                   = {15,  6, 1, 4, sMapName_Route30},
     [MAPSEC_ROUTE_31]                   = {12,  5, 4, 1, sMapName_Route31},
@@ -416,6 +421,59 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_ALTERING_CAVE]              = { 6,  8, 1, 1, sMapName_AlteringCave},
     [MAPSEC_NAVEL_ROCK]                 = { 0,  0, 1, 1, sMapName_NavelRock},
     [MAPSEC_TRAINER_HILL]               = { 8,  4, 1, 1, sMapName_TrainerHill}
+};
+
+const u8 *const gRegionMapNames_Johto[] = {
+    [METLOC_NEW_BARK_TOWN]           = sMapName_NewBarkTown,
+    [METLOC_CHERRYGROVE_CITY]        = sMapName_CherrygroveCity,
+    [METLOC_VIOLET_CITY]             = sMapName_VioletCity,
+    [METLOC_AZALEA_TOWN]             = sMapName_AzaleaTown,
+    [METLOC_GOLDENROD_CITY]          = sMapName_GoldenrodCity,
+    [METLOC_ECRUTEAK_CITY]           = sMapName_EcruteakCity,
+    [METLOC_OLIVINE_CITY]            = sMapName_OlivineCity,
+    [METLOC_CIANWOOD_CITY]           = sMapName_CianwoodCity,
+    [METLOC_MAHOGANY_TOWN]           = sMapName_MahoganyTown,
+    [METLOC_BLACKTHORN_CITY]         = sMapName_BlackthornCity,
+    [METLOC_ROUTE_26]                = sMapName_Route26,
+    [METLOC_ROUTE_27]                = sMapName_Route27,
+    [METLOC_ROUTE_28]                = sMapName_Route28,
+    [METLOC_ROUTE_29]                = sMapName_Route29,
+    [METLOC_ROUTE_30]                = sMapName_Route30,
+    [METLOC_ROUTE_31]                = sMapName_Route31,
+    [METLOC_ROUTE_32]                = sMapName_Route32,
+    [METLOC_ROUTE_33]                = sMapName_Route33,
+    [METLOC_ROUTE_34]                = sMapName_Route34,
+    [METLOC_ROUTE_35]                = sMapName_Route35,
+    [METLOC_ROUTE_36]                = sMapName_Route36,
+    [METLOC_ROUTE_37]                = sMapName_Route37,
+    [METLOC_ROUTE_38]                = sMapName_Route38,
+    [METLOC_ROUTE_39]                = sMapName_Route39,
+    [METLOC_ROUTE_40]                = sMapName_Route40,
+    [METLOC_ROUTE_41]                = sMapName_Route41,
+    [METLOC_ROUTE_42]                = sMapName_Route42,
+    [METLOC_ROUTE_43]                = sMapName_Route43,
+    [METLOC_ROUTE_44]                = sMapName_Route44,
+    [METLOC_ROUTE_45]                = sMapName_Route45,
+    [METLOC_ROUTE_46]                = sMapName_Route46,
+    [METLOC_SPROUT_TOWER]            = sMapName_SproutTower,
+    [METLOC_RUINS_OF_ALPH]           = sMapName_RuinsOfAlph,
+    [METLOC_UNION_CAVE]              = sMapName_UnionCave,
+    [METLOC_SLOWPOKE_WELL]           = sMapName_SlowpokeWell_B1F,
+    [METLOC_ILEX_FOREST]             = sMapName_IlexForest,
+    [METLOC_NATIONAL_PARK]           = sMapName_NationalPark,
+    [METLOC_TIN_TOWER]               = sMapName_TinTower,
+    [METLOC_BURNED_TOWER]            = sMapName_BurnedTower,
+    [METLOC_WHIRL_ISLAND]            = sMapName_WhirlIslands,
+    [METLOC_SILVER_CAVE]             = sMapName_SilverCave,
+    [METLOC_TOHJO_FALLS]             = sMapName_TohjoFalls,
+    [METLOC_FAST_SHIP]               = sMapName_FastShip,
+    [METLOC_LIGHTHOUSE]              = sMapName_Lighthouse,
+    [METLOC_ICE_PATH]                = sMapName_IcePath,
+    [METLOC_DRAGONS_DEN]             = sMapName_DragonsDen,
+    [METLOC_DARK_CAVE]               = sMapName_DarkCave,
+    [METLOC_RADIO_TOWER]             = sMapName_RadioTower,
+    [METLOC_MT_MORTAR]               = sMapName_MtMortar,
+    [METLOC_LAKE_OF_RAGE]            = sMapName_LakeOfRage
 };
 
 #endif //GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H

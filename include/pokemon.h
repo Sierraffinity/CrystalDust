@@ -11,7 +11,8 @@ struct PokemonSubstruct0
     u32 experience;
     u8 ppBonuses;
     u8 friendship;
-    u16 filler;
+    u16 locationBit:1;
+    u16 filler:15;
 };
 
 struct PokemonSubstruct1
@@ -430,5 +431,7 @@ struct Unknown_806F160_Struct *sub_806F2AC(u8 id, u8 arg1);
 void sub_806F47C(u8 id);
 u8 *sub_806F4F8(u8 id, u8 arg1);
 u32 GenerateMonPersonality(u32 otId, bool8 forceShiny);
+bool8 CheckReusedMapSec(u8 mapSectionId);
+u8 ConvertMapSectionIdToMetLocation(u8 mapSection);
 
 #endif // GUARD_POKEMON_H

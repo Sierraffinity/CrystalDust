@@ -86,27 +86,27 @@ static const struct CityMapEntry sPokenavCityMaps[NUM_CITY_MAPS] =
         .tilemap = gPokenavCityMap_Lilycove_1,
     },
     {
-        .mapSecId = MAPSEC_MOSSDEEP_CITY,
+        .mapSecId = MAPSEC_BURNED_TOWER,
         .index = 0,
         .tilemap = gPokenavCityMap_Mossdeep_0,
     },
     {
-        .mapSecId = MAPSEC_MOSSDEEP_CITY,
+        .mapSecId = MAPSEC_BURNED_TOWER,
         .index = 1,
         .tilemap = gPokenavCityMap_Mossdeep_1,
     },
     {
-        .mapSecId = MAPSEC_SOOTOPOLIS_CITY,
+        .mapSecId = MAPSEC_TOHJO_FALLS,
         .index = 0,
         .tilemap = gPokenavCityMap_Sootopolis_0,
     },
     {
-        .mapSecId = MAPSEC_EVER_GRANDE_CITY,
+        .mapSecId = MAPSEC_FAST_SHIP,
         .index = 0,
         .tilemap = gPokenavCityMap_EverGrande_0,
     },
     {
-        .mapSecId = MAPSEC_EVER_GRANDE_CITY,
+        .mapSecId = MAPSEC_FAST_SHIP,
         .index = 1,
         .tilemap = gPokenavCityMap_EverGrande_1,
     },
