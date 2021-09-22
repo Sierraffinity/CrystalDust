@@ -298,10 +298,10 @@ gSpecials::
 	def_special BufferEReaderTrainerName
 	def_special GetSlotMachineId
 	def_special GetPlayerFacingDirection
-	def_special FoundSproutTowerRoom1Key
-	def_special FoundSproutTowerRoom2Key
-	def_special FoundSproutTowerRoom4Key
-	def_special FoundSproutTowerRoom6Key
+	def_special FoundSproutTowerRoom1Key        // function now always returns true
+	def_special FoundSproutTowerRoom2Key        // function now always returns true
+	def_special FoundSproutTowerRoom4Key        // function now always returns true
+	def_special FoundSproutTowerRoom6Key        // function now always returns true
 	def_special LeadMonHasEffortRibbon
 	def_special GiveLeadMonEffortRibbon
 	def_special Special_AreLeadMonEVsMaxedOut
@@ -324,7 +324,7 @@ gSpecials::
 	def_special StartRegiBattle
 	def_special SetTrainerFacingDirection
 	def_special DoSealedChamberShakingEffect2
-	def_special FoundBlackGlasses
+	def_special FoundBlackGlasses				// function now always returns true
 	def_special StartDroughtWeatherBlend
 	def_special DoDiveWarp
 	def_special DoFallWarp
