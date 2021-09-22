@@ -26,6 +26,25 @@ static const u16 sFruitTrees[] =
     [FRUIT_TREE_ROUTE_36 - 1]       = ITEM_RAWST_BERRY,
     [FRUIT_TREE_ROUTE_46_1 - 1]     = ITEM_ORAN_BERRY,
     [FRUIT_TREE_ROUTE_46_2 - 1]     = ITEM_CHERI_BERRY,
+    [FRUIT_TREE_ROUTE_37_1 - 1]     = ITEM_RED_APRICORN,   // Westernmost tree
+    [FRUIT_TREE_ROUTE_37_2 - 1]     = ITEM_BLK_APRICORN,   // Middle tree
+    [FRUIT_TREE_ROUTE_37_3 - 1]     = ITEM_BLU_APRICORN,   // Easternmost tree
+    [FRUIT_TREE_ROUTE_38 - 1]       = ITEM_ORAN_BERRY,
+    [FRUIT_TREE_ROUTE_39 - 1]       = ITEM_CHESTO_BERRY,
+    [FRUIT_TREE_ROUTE_42_1 - 1]     = ITEM_PNK_APRICORN,   // Westernmost tree
+    [FRUIT_TREE_ROUTE_42_2 - 1]     = ITEM_GRN_APRICORN,   // Middle tree
+    [FRUIT_TREE_ROUTE_42_3 - 1]     = ITEM_YLW_APRICORN,   // Easternmost tree
+    [FRUIT_TREE_ROUTE_43 - 1]       = ITEM_PERSIM_BERRY,
+    [FRUIT_TREE_ROUTE_44 - 1]       = ITEM_ASPEAR_BERRY,
+    [FRUIT_TREE_ROUTE_45 - 1]       = ITEM_LEPPA_BERRY,
+    [FRUIT_TREE_PEWTER_CITY_1 - 1]  = ITEM_CHESTO_BERRY,   // Westernmost tree
+    [FRUIT_TREE_PEWTER_CITY_2 - 1]  = ITEM_RAWST_BERRY,    // Easternmost tree
+    [FRUIT_TREE_FUCHSIA_CITY - 1]   = ITEM_ASPEAR_BERRY,
+    [FRUIT_TREE_ROUTE_1 - 1]        = ITEM_PERSIM_BERRY,
+    [FRUIT_TREE_ROUTE_2 - 1]        = ITEM_PECHA_BERRY,
+    [FRUIT_TREE_ROUTE_8 - 1]        = ITEM_CHERI_BERRY,
+    [FRUIT_TREE_ROUTE_11 - 1]       = ITEM_ORAN_BERRY,
+    [FRUIT_TREE_ROUTE_26 - 1]       = ITEM_RAWST_BERRY,
 };
 
 void GetFruitTreeItem(void)
