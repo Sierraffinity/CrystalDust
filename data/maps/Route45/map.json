@@ -19,6 +19,11 @@
       "direction": "left",
       "offset": 93,
       "map": "MAP_ROUTE46"
+    },
+    {
+      "direction": "up",
+      "offset": 0,
+      "map": "MAP_BLACKTHORN_CITY"
     }
   ],
   "object_events": [

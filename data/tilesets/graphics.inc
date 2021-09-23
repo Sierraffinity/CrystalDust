@@ -2321,3 +2321,23 @@ gTilesetPalettes_DiglettsCave::
 	.align 2
 gTilesetTiles_DiglettsCave::
 	.incbin "data/tilesets/secondary/diglettscave/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_BlackthornCity::
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/blackthorncity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_BlackthornCity::
+	.incbin "data/tilesets/secondary/blackthorncity/tiles.4bpp.lz"

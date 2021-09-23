@@ -749,3 +749,10 @@ gMetatiles_DiglettsCave::
 	.align 1
 gMetatileAttributes_DiglettsCave::
 	.incbin "data/tilesets/secondary/diglettscave/metatile_attributes.bin"
+	.align 1
+gMetatiles_BlackthornCity::
+	.incbin "data/tilesets/secondary/blackthorncity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_BlackthornCity::
+	.incbin "data/tilesets/secondary/blackthorncity/metatile_attributes.bin"

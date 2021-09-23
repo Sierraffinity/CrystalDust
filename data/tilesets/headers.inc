@@ -1204,3 +1204,14 @@ gTileset_DiglettsCave::
 	.4byte gMetatiles_DiglettsCave
 	.4byte gMetatileAttributes_DiglettsCave
 	.4byte NULL
+
+	.align 2
+gTileset_BlackthornCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_BlackthornCity
+	.4byte gTilesetPalettes_BlackthornCity
+	.4byte gMetatiles_BlackthornCity
+	.4byte gMetatileAttributes_BlackthornCity
+	.4byte NULL

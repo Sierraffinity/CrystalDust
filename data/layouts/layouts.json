@@ -165,7 +165,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Mauville",
+      "secondary_tileset": "gTileset_BlackthornCity",
       "border_filepath": "data/layouts/Route45/border.bin",
       "blockdata_filepath": "data/layouts/Route45/map.bin"
     },
@@ -2632,12 +2632,12 @@
     {
       "id": "LAYOUT_BLACKTHORN_CITY",
       "name": "BlackthornCity_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 49,
+      "height": 54,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_BlackthornCity",
       "border_filepath": "data/layouts/BlackthornCity/border.bin",
       "blockdata_filepath": "data/layouts/BlackthornCity/map.bin"
     },
