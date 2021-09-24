@@ -14,12 +14,29 @@
   "floor_number": 0,
   "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "left",
+      "offset": 1,
+      "map": "MAP_MAHOGANY_TOWN"
+    },
+    {
+      "direction": "right",
+      "offset": 14,
+      "map": "MAP_BLACKTHORN_CITY"
+    }
+  ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 66,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_BLACKTHORN_CITY",
+      "dest_warp_id": 2
+    }
   ],
   "coord_events": [
 

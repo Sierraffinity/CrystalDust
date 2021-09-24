@@ -2620,12 +2620,12 @@
     {
       "id": "LAYOUT_MAHOGANY_TOWN",
       "name": "MahoganyTown_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 24,
+      "height": 27,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/MahoganyTown/border.bin",
       "blockdata_filepath": "data/layouts/MahoganyTown/map.bin"
     },
@@ -2740,12 +2740,12 @@
     {
       "id": "LAYOUT_ROUTE44",
       "name": "Route44_Layout",
-      "width": 80,
-      "height": 30,
+      "width": 76,
+      "height": 28,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/Route44/border.bin",
       "blockdata_filepath": "data/layouts/Route44/map.bin"
     },

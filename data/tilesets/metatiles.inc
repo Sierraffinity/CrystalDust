@@ -756,3 +756,10 @@ gMetatiles_BlackthornCity::
 	.align 1
 gMetatileAttributes_BlackthornCity::
 	.incbin "data/tilesets/secondary/blackthorncity/metatile_attributes.bin"
+	.align 1
+gMetatiles_MahoganyTown::
+	.incbin "data/tilesets/secondary/mahoganytown/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_MahoganyTown::
+	.incbin "data/tilesets/secondary/mahoganytown/metatile_attributes.bin"

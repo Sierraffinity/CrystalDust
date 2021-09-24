@@ -1215,3 +1215,14 @@ gTileset_BlackthornCity::
 	.4byte gMetatiles_BlackthornCity
 	.4byte gMetatileAttributes_BlackthornCity
 	.4byte NULL
+
+	.align 2
+gTileset_MahoganyTown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_MahoganyTown
+	.4byte gTilesetPalettes_MahoganyTown
+	.4byte gMetatiles_MahoganyTown
+	.4byte gMetatileAttributes_MahoganyTown
+	.4byte NULL

@@ -19,6 +19,11 @@
       "direction": "down",
       "offset": 0,
       "map": "MAP_ROUTE45"
+    },
+    {
+      "direction": "left",
+      "offset": -14,
+      "map": "MAP_ROUTE44"
     }
   ],
   "object_events": [
@@ -37,6 +42,13 @@
       "y": 41,
       "elevation": 0,
       "dest_map": "MAP_BLACKTHORN_CITY_MART",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 42,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE44",
       "dest_warp_id": 0
     }
   ],

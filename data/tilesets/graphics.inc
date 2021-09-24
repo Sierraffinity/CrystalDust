@@ -2341,3 +2341,23 @@ gTilesetPalettes_BlackthornCity::
 	.align 2
 gTilesetTiles_BlackthornCity::
 	.incbin "data/tilesets/secondary/blackthorncity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_MahoganyTown::
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/mahoganytown/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_MahoganyTown::
+	.incbin "data/tilesets/secondary/mahoganytown/tiles.4bpp.lz"
