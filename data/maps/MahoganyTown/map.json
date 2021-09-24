@@ -19,6 +19,11 @@
       "direction": "right",
       "offset": -1,
       "map": "MAP_ROUTE44"
+    },
+    {
+      "direction": "up",
+      "offset": -14,
+      "map": "MAP_ROUTE43"
     }
   ],
   "object_events": [
@@ -30,6 +35,20 @@
       "y": 18,
       "elevation": 0,
       "dest_map": "MAP_MAHOGANY_TOWN_POKEMON_CENTER_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 10,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43_GATEHOUSE1",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 11,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43_GATEHOUSE1",
       "dest_warp_id": 0
     }
   ],

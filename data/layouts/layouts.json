@@ -2644,12 +2644,12 @@
     {
       "id": "LAYOUT_LAKE_OF_RAGE",
       "name": "LakeOfRage_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 54,
+      "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/LakeOfRage/border.bin",
       "blockdata_filepath": "data/layouts/LakeOfRage/map.bin"
     },
@@ -2728,12 +2728,12 @@
     {
       "id": "LAYOUT_ROUTE43",
       "name": "Route43_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 45,
+      "height": 58,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/Route43/border.bin",
       "blockdata_filepath": "data/layouts/Route43/map.bin"
     },

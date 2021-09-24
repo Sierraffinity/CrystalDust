@@ -3,7 +3,7 @@
   "name": "Route43",
   "layout": "LAYOUT_ROUTE43",
   "music": "MUS_AQUA_MAGMA_HIDEOUT",
-  "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+  "region_map_section": "MAPSEC_ROUTE_43",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",
@@ -14,12 +14,64 @@
   "floor_number": 0,
   "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "down",
+      "offset": 14,
+      "map": "MAP_MAHOGANY_TOWN"
+    },
+    {
+      "direction": "up",
+      "offset": 3,
+      "map": "MAP_LAKE_OF_RAGE"
+    }
+  ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 24,
+      "y": 55,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43_GATEHOUSE1",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 25,
+      "y": 55,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43_GATEHOUSE1",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 34,
+      "y": 41,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43_GATEHOUSE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 35,
+      "y": 41,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43_GATEHOUSE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 34,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43_GATEHOUSE2",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 35,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE43_GATEHOUSE2",
+      "dest_warp_id": 1
+    }
   ],
   "coord_events": [
 
