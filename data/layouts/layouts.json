@@ -2716,12 +2716,12 @@
     {
       "id": "LAYOUT_ROUTE42",
       "name": "Route42_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 69,
+      "height": 32,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/Route42/border.bin",
       "blockdata_filepath": "data/layouts/Route42/map.bin"
     },
