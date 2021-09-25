@@ -2584,12 +2584,12 @@
     {
       "id": "LAYOUT_ECRUTEAK_CITY",
       "name": "EcruteakCity_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 54,
+      "height": 50,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_EcruteakCity",
       "border_filepath": "data/layouts/EcruteakCity/border.bin",
       "blockdata_filepath": "data/layouts/EcruteakCity/map.bin"
     },

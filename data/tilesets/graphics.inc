@@ -1801,6 +1801,9 @@ gTilesetPalOverride_DeptStore09NoWin::
 gTilesetPalOverride_DeptStore09Win::
 	.incbin "data/tilesets/secondary/department_store/palettes/09_over_win.gbapal"
 
+gTilesetPalOverride_EcruteakCity09::
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/09_over.gbapal"
+
 	.align 2
 gTilesetPalettes_PalletTown::
 	.incbin "data/tilesets/secondary/pallettown/palettes/00.gbapal"
@@ -2361,3 +2364,23 @@ gTilesetPalettes_MahoganyTown::
 	.align 2
 gTilesetTiles_MahoganyTown::
 	.incbin "data/tilesets/secondary/mahoganytown/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_EcruteakCity::
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/ecruteakcity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_EcruteakCity::
+	.incbin "data/tilesets/secondary/ecruteakcity/tiles.4bpp.lz"

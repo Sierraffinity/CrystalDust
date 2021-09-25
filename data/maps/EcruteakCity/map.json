@@ -3,7 +3,7 @@
   "name": "EcruteakCity",
   "layout": "LAYOUT_ECRUTEAK_CITY",
   "music": "MUS_AQUA_MAGMA_HIDEOUT",
-  "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+  "region_map_section": "MAPSEC_ECRUTEAK_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_CITY",
@@ -14,12 +14,45 @@
   "floor_number": 0,
   "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "right",
+      "offset": 28,
+      "map": "MAP_ROUTE42"
+    }
+  ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 32,
+      "y": 43,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY_POKEMON_CENTER_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 47,
+      "y": 42,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE42_GATEHOUSE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 4,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE38_GATEHOUSE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 20,
+      "y": 43,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 

@@ -763,3 +763,10 @@ gMetatiles_MahoganyTown::
 	.align 1
 gMetatileAttributes_MahoganyTown::
 	.incbin "data/tilesets/secondary/mahoganytown/metatile_attributes.bin"
+	.align 1
+gMetatiles_EcruteakCity::
+	.incbin "data/tilesets/secondary/ecruteakcity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_EcruteakCity::
+	.incbin "data/tilesets/secondary/ecruteakcity/metatile_attributes.bin"

@@ -1226,3 +1226,15 @@ gTileset_MahoganyTown::
 	.4byte gMetatiles_MahoganyTown
 	.4byte gMetatileAttributes_MahoganyTown
 	.4byte NULL
+
+	.align 2
+gTileset_EcruteakCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_EcruteakCity
+	.4byte gTilesetPalettes_EcruteakCity
+	.4byte gMetatiles_EcruteakCity
+	.4byte gMetatileAttributes_EcruteakCity
+	.4byte NULL
+	.4byte gTilesetPalOverrides_EcruteakCity

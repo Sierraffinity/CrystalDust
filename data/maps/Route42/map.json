@@ -19,13 +19,24 @@
       "direction": "right",
       "offset": 0,
       "map": "MAP_MAHOGANY_TOWN"
+    },
+    {
+      "direction": "left",
+      "offset": -28,
+      "map": "MAP_ECRUTEAK_CITY"
     }
   ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 0,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE42_GATEHOUSE",
+      "dest_warp_id": 1
+    }
   ],
   "coord_events": [
 
