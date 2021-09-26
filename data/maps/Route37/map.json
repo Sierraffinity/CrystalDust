@@ -2,8 +2,8 @@
   "id": "MAP_ROUTE37",
   "name": "Route37",
   "layout": "LAYOUT_ROUTE37",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
-  "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+  "music": "MUS_ROUTE34",
+  "region_map_section": "MAPSEC_ROUTE_37",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",
@@ -14,9 +14,79 @@
   "floor_number": 0,
   "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "down",
+      "offset": -16,
+      "map": "MAP_ROUTE36"
+    },
+    {
+      "direction": "up",
+      "offset": -16,
+      "map": "MAP_ECRUTEAK_CITY"
+    }
+  ],
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "in_connection": false,
+      "x": 4,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "Route37_Eventscript_TwinAnn",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "in_connection": false,
+      "x": 6,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "Route37_Eventscript_TwinAnne",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
+      "in_connection": false,
+      "x": 4,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "Route37_Eventscript_PsychicGreg",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
+      "in_connection": false,
+      "x": 20,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route37_Eventscript_SunnyOfSunday",
+      "flag": "FLAG_TEMP_1"
+    }
   ],
   "warp_events": [
 
@@ -25,6 +95,42 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route37_Eventscript_RouteSign"
+    },
+    {
+      "type": "fruit_tree",
+      "x": 14,
+      "y": 7,
+      "elevation": 0,
+      "fruit_tree_id": "FRUIT_TREE_ROUTE_37_1"
+    },
+    {
+      "type": "fruit_tree",
+      "x": 17,
+      "y": 9,
+      "elevation": 0,
+      "fruit_tree_id": "FRUIT_TREE_ROUTE_37_2"
+    },
+    {
+      "type": "fruit_tree",
+      "x": 19,
+      "y": 7,
+      "elevation": 0,
+      "fruit_tree_id": "FRUIT_TREE_ROUTE_37_3"
+    },
+    {
+      "type": "hidden_item",
+      "x": 2,
+      "y": 2,
+      "elevation": 3,
+      "item": "ITEM_ETHER",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_37_ETHER"
+    }
   ]
 }

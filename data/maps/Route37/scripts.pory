@@ -1,4 +1,14 @@
-mapscripts Route37_MapScripts {}
+mapscripts Route37_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION {
+		gettime
+		if(var(VAR_0x8003) != DAY_SUNDAY)
+		{
+			setflag(FLAG_TEMP_1)
+			end
+		}
+		end
+	}
+}
 
 script Route37_Eventscript_RouteSign {
     msgbox("ROUTE 37", MSGBOX_SIGN)
@@ -6,19 +16,19 @@ script Route37_Eventscript_RouteSign {
 }
 
 script Route37_Eventscript_PsychicGreg{
-    trainerbattle_single(TRAINER_GREG, "POKéMON can't do a thing if they are\nasleep.\pI'll show you how scary that is!", "I lost.\nThat's pretty sad…")
-    msgbox("Putting POKéMON to sleep or paralyzing\nthem are good battle techniques.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_GREG, "POKéMON can't do a thing if\nthey are asleep.\pI'll show you how scary that is!", "I lost.\nThat's pretty sad…")
+    msgbox("Putting POKéMON to sleep or\nparalyzing them are good battle\ltechniques.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route37_Eventscript_TwinAnn{ // left twin
-    trainerbattle_single(TRAINER_ANN_AND_ANNE, "ANN: ANNE and I are in this together!", "ANN & ANNE: Nnn…\nA little too strong.")
-    msgbox("ANN: I can tell what my sister and my\nPOKéMON are thinking.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_ANN_AND_ANNE, "ANN: ANNE and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.")
+    msgbox("ANN: I can tell what my sister and\nmy POKéMON are thinking.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route37_Eventscript_TwinAnne{ // right twin
-    trainerbattle_single(TRAINER_ANN_AND_ANNE, "ANNE: ANN and I are in this together!", "ANN & ANNE: Nnn…\nA little too strong.")
+    trainerbattle_single(TRAINER_ANN_AND_ANNE, "ANNE: ANN and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.")
     msgbox("ANNE: We share the same feelings as\nour POKéMON.", MSGBOX_AUTOCLOSE)
     end
 }
@@ -33,12 +43,12 @@ script Route37_Eventscript_SunnyOfSunday {
 		{
 			if (!flag(FLAG_MET_SUNNY_OF_SUNDAY))
 			{
-				msgbox("SUNNY: Hi! I'm SUNNY of SUNDAY,\nmeaning it's SUNDAY today!\pI was told to give you this if I saw\nyou!")
+				msgbox("SUNNY: Hi! I'm SUNNY of SUNDAY,\nmeaning it's SUNDAY today!\pI was told to give you this\nif I saw you!")
 				setflag(FLAG_MET_SUNNY_OF_SUNDAY)
 			}
 			else
 			{
-				msgbox("SUNNY: I was told to give you this if I saw\nyou!")
+				msgbox("SUNNY: I was told to give you this\nif I saw you!")
 			}
 			giveitem(ITEM_MAGNET)
 			if (!var(VAR_RESULT))

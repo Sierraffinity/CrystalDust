@@ -225,6 +225,14 @@ script Route36_EventScript_TrainerTipsStatsSign {
            "pronounced as the POKéMON grow.", MSGBOX_SIGN)
 }
 
+script Route36_EventScript_TrainerTipsDigSign {
+    msgbox("TRAINER TIPS\p"
+           "Use DIG to return to the entrance\n"
+           "of any place.\p"
+           "It is convenient for exploring\n"
+           "caves and other landmarks.", MSGBOX_SIGN)
+}
+
 script Route36_EventScript_Mark {
     trainerbattle_single(TRAINER_MARK, Route36_Text_MarkIntro, Route36_Text_MarkDefeated)
     msgbox(Route36_Text_MarkPostBattle, MSGBOX_AUTOCLOSE)

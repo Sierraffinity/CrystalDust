@@ -24,6 +24,11 @@
       "direction": "down",
       "offset": -14,
       "map": "MAP_ROUTE35"
+    },
+    {
+      "direction": "up",
+      "offset": 16,
+      "map": "MAP_ROUTE37"
     }
   ],
   "object_events": [
@@ -138,21 +143,6 @@
       "y": 32,
       "source_id": 11,
       "source_map": "MAP_ROUTE35"
-    },
-    {
-      "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
-      "in_connection": false,
-      "x": 32,
-      "y": 12,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route36_EventScript_Sierra",
-      "flag": "FLAG_HIDE_ROUTE_36_SIERRA"
     }
   ],
   "warp_events": [
@@ -179,15 +169,7 @@
     }
   ],
   "coord_events": [
-    {
-      "type": "trigger",
-      "x": 33,
-      "y": 13,
-      "elevation": 0,
-      "var": "VAR_ROUTE36_STATE",
-      "var_value": "0",
-      "script": "Route36_EventScript_SierraPoopsTheParty"
-    }
+
   ],
   "bg_events": [
     {
@@ -196,7 +178,7 @@
       "y": 2,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "Route36_EventScript_TrainerTipsDigSign"
     },
     {
       "type": "sign",
