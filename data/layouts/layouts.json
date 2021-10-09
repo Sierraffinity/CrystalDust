@@ -2680,12 +2680,12 @@
     {
       "id": "LAYOUT_ROUTE39",
       "name": "Route39_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 30,
+      "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_OlivineCity",
       "border_filepath": "data/layouts/Route39/border.bin",
       "blockdata_filepath": "data/layouts/Route39/map.bin"
     },

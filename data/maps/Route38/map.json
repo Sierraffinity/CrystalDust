@@ -5,7 +5,7 @@
   "music": "MUS_AQUA_MAGMA_HIDEOUT",
   "region_map_section": "MAPSEC_ROUTE_38",
   "requires_flash": false,
-  "weather": "WEATHER_NONE",
+  "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
@@ -19,6 +19,11 @@
       "direction": "right",
       "offset": -18,
       "map": "MAP_ECRUTEAK_CITY"
+    },
+    {
+      "direction": "left",
+      "offset": 4,
+      "map": "MAP_ROUTE39"
     }
   ],
   "object_events": [

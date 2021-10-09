@@ -770,3 +770,10 @@ gMetatiles_EcruteakCity::
 	.align 1
 gMetatileAttributes_EcruteakCity::
 	.incbin "data/tilesets/secondary/ecruteakcity/metatile_attributes.bin"
+	.align 1
+gMetatiles_OlivineCity::
+	.incbin "data/tilesets/secondary/olivinecity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_OlivineCity::
+	.incbin "data/tilesets/secondary/olivinecity/metatile_attributes.bin"

@@ -5,7 +5,7 @@
   "music": "MUS_AZALEA",
   "region_map_section": "MAPSEC_BLACKTHORN_CITY",
   "requires_flash": false,
-  "weather": "WEATHER_NONE",
+  "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_CITY",
   "allow_cycling": true,
   "allow_escaping": false,

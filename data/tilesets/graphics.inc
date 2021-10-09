@@ -2384,3 +2384,23 @@ gTilesetPalettes_EcruteakCity::
 	.align 2
 gTilesetTiles_EcruteakCity::
 	.incbin "data/tilesets/secondary/ecruteakcity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_OlivineCity::
+	.incbin "data/tilesets/secondary/olivinecity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/olivinecity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_OlivineCity::
+	.incbin "data/tilesets/secondary/olivinecity/tiles.4bpp.lz"

@@ -1238,3 +1238,14 @@ gTileset_EcruteakCity::
 	.4byte gMetatileAttributes_EcruteakCity
 	.4byte NULL
 	.4byte gTilesetPalOverrides_EcruteakCity
+
+	.align 2
+gTileset_OlivineCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_OlivineCity
+	.4byte gTilesetPalettes_OlivineCity
+	.4byte gMetatiles_OlivineCity
+	.4byte gMetatileAttributes_OlivineCity
+	.4byte NULL
