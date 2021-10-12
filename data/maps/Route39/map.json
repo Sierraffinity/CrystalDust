@@ -19,6 +19,11 @@
       "direction": "right",
       "offset": -4,
       "map": "MAP_ROUTE38"
+    },
+    {
+      "direction": "down",
+      "offset": -10,
+      "map": "MAP_OLIVINE_CITY"
     }
   ],
   "object_events": [
