@@ -19,6 +19,11 @@
       "direction": "up",
       "offset": 42,
       "map": "MAP_ROUTE40"
+    },
+    {
+      "direction": "left",
+      "offset": 0,
+      "map": "MAP_CIANWOOD_CITY"
     }
   ],
   "object_events": [

@@ -1249,3 +1249,4 @@ gTileset_OlivineCity::
 	.4byte gMetatiles_OlivineCity
 	.4byte gMetatileAttributes_OlivineCity
 	.4byte NULL
+	.4byte gTilesetPalOverrides_OlivineCity

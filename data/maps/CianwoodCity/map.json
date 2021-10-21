@@ -14,12 +14,24 @@
   "floor_number": 0,
   "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "right",
+      "offset": 0,
+      "map": "MAP_ROUTE41"
+    }
+  ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 31,
+      "y": 52,
+      "elevation": 0,
+      "dest_map": "MAP_CIANWOOD_CITY_POKEMON_CENTER_1F",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 
