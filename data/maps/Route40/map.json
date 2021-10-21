@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE40",
   "name": "Route40",
   "layout": "LAYOUT_ROUTE40",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_SEVII_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_40",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -14,7 +14,13 @@
   "floor_number": 0,
   "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "right",
+      "offset": -16,
+      "map": "MAP_OLIVINE_CITY"
+    }
+  ],
   "object_events": [
 
   ],

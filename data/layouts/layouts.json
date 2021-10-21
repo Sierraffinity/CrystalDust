@@ -2692,12 +2692,12 @@
     {
       "id": "LAYOUT_ROUTE40",
       "name": "Route40_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 31,
+      "height": 50,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_OlivineCity",
       "border_filepath": "data/layouts/Route40/border.bin",
       "blockdata_filepath": "data/layouts/Route40/map.bin"
     },
