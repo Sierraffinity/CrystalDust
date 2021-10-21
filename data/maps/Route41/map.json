@@ -14,7 +14,13 @@
   "floor_number": 0,
   "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "up",
+      "offset": 42,
+      "map": "MAP_ROUTE40"
+    }
+  ],
   "object_events": [
 
   ],
