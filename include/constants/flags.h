@@ -214,7 +214,7 @@
 #define FLAG_RECEIVED_TM44_REST              0xC8
 #define FLAG_FLORIA_WENT_TO_ROUTE_36         0xC9
 #define FLAG_GOT_ODD_EGG                     0xCA
-#define FLAG_RECEIVED_GREEN_SCARF            0xCB
+#define FLAG_GOT_TM30_FROM_MORTY             0xCB
 #define FLAG_RECEIVED_YELLOW_SCARF           0xCC
 #define FLAG_INTERACTED_WITH_STEVEN_SPACE_CENTER    0xCD
 #define FLAG_ENCOUNTERED_LATIAS_OR_LATIOS    0xCE

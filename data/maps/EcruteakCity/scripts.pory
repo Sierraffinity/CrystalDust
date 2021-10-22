@@ -44,7 +44,7 @@ script EcruteakCity_Eventscript_OldMan2{ // Under Tin Tower Gate
 }
 
 script EcruteakCity_Eventscript_OldMan3{ // Next to Dance Theater
-    msgbox("Ah, child. Have you learned to dance\nlike the KIMONO GIRLS?\pIf you go to their DANCE THEATER, an\nodd old man will give you something\lnice, I hear.", MSGBOX_NPC)
+    msgbox("Ah, child. Have you learned to\ndance like the KIMONO GIRLS?\pIf you go to their DANCE THEATER, an\nodd old man will give you something\lnice, I hear.", MSGBOX_NPC)
     end
 }
 

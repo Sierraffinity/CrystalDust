@@ -1,6 +1,83 @@
-mapscripts EcruteakCity_Gym_MapScripts {}
+mapscripts EcruteakCity_Gym_MapScripts {
+    MAP_SCRIPT_ON_LOAD{
+        if(!defeated(TRAINER_RIVAL_BURNED_TOWER_CHIKORITA) || !defeated(TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL) || !defeated(TRAINER_RIVAL_BURNED_TOWER_TOTODILE))
+        {
+            removeobject(6)
+            end
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 0: EcruteakCity_Gym_Mapscript_OldMan
+    ]
+}
+    
+script EcruteakCity_Gym_Mapscript_OldMan{
+    if(!defeated(TRAINER_RIVAL_BURNED_TOWER_CHIKORITA) || !defeated(TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL) || !defeated(TRAINER_RIVAL_BURNED_TOWER_TOTODILE))
+    {   // All the Rival battles will be set to defeated when the Burned Tower event is done.
+        applymovement(OBJ_EVENT_ID_PLAYER, EcruteakCity_Gym_Movement_PlayerUp)
+        waitmovement(0)
+        applymovement(6, EcruteakCity_Gym_Movement_OldManDown)
+        waitmovement(0)
+        textcolor(0)
+        msgbox("MORTY, the GYM LEADER, is absent.\nSorry, but you'll have to leave.\pHohohoho.", MSGBOX_DEFAULT)
+        closemessage
+        setmetatile(7, 20, 0x357, 0) // a copy of the exit mat without the warp behavior to prevent the arrow from spawning.
+        applymovement(6, EcruteakCity_Gym_Movement_OldManDown2)
+        applymovement(OBJ_EVENT_ID_PLAYER, EcruteakCity_Gym_Movement_PlayerDown)
+        waitmovement(0)
+        setvar(VAR_TEMP_0, 1)
+        warp(MAP_ECRUTEAK_CITY, 8, 0, 0)
+        release
+        end
+    }
+    removeobject(6)
+    setvar(VAR_TEMP_0, 1)
+    end
+}movement(local) EcruteakCity_Gym_Movement_PlayerUp{
+    walk_up
+    step_end
+}movement(local) EcruteakCity_Gym_Movement_OldManDown{
+    walk_slow_down
+    step_end
+}movement(local) EcruteakCity_Gym_Movement_OldManDown2{
+    walk_down
+    step_end
+}movement(local) EcruteakCity_Gym_Movement_PlayerDown{
+    lock_facing_direction
+    walk_slow_down
+    step_end
+}
 
-// TODO: Morty and the event that forces you out of the Gym if you haven't cleared out the Burned Tower first.
+script EcruteakCity_Gym_Eventscript_Morty{
+    trainerbattle_single(TRAINER_MORTY, "Good of you to have come.\pHere in ECRUTEAK, POKéMON have been\nrevered.\pIt's said that a rainbow-colored\nPOKéMON will come down to appear\lbefore a truly powerful TRAINER.\pI believed that tale, so I have\nsecretly trained here all my life.\pAs a result, I can now see what\nothers cannot.\pJust a bit more…\pWith a little more, I could see a\nfuture in which I meet the POKéMON\lof rainbow colors.\pYou're going to help me reach that\nlevel!", "I'm not good enough yet…\nAll right. This BADGE is yours.", EcruteakCity_Gym_Eventscript_MortyDefeated, NO_MUSIC)
+    if(!flag(FLAG_GOT_TM30_FROM_MORTY))
+    {
+        goto(EcruteakCity_Gym_Eventscript_GiveShadowBall)
+    }
+    msgbox("I see…\pYour journey has taken you to far-\naway places.\pAnd you have witnessed much more\nthan I.\pI envy you for that…")
+    release
+    end
+}script(local) EcruteakCity_Gym_Eventscript_MortyDefeated{
+    textcolor(MSG_COLOR_SYS)
+    message("{PLAYER} received the FOGBADGE\nfrom MORTY.")
+    call(Common_EventScript_PlayGymBadgeFanfare)
+	textcolor(MSG_COLOR_PREV)
+    setflag(FLAG_BADGE04_GET)
+    setgymtrainers(4)
+    //falls through to next script
+}script(local) EcruteakCity_Gym_Eventscript_GiveShadowBall{
+    msgbox("By having the FOGBADGE, POKéMON up\nto Lv50 will obey you.\pAlso, POKéMON that know SURF will be\nable to use that move anytime.\pI want you to have this too.")
+    checkitemspace(ITEM_TM30, 1)
+    if(!var(VAR_RESULT))
+    {
+        goto(Common_EventScript_ShowBagIsFull)
+    }
+    givetmhm_msg("{PLAYER} received TM30\nfrom MORTY.", ITEM_TM30)
+    setflag(FLAG_GOT_TM30_FROM_MORTY)
+    msgbox("It's SHADOW BALL. It causes damage\nand may reduce SP. DEF.\pUse it if it appeals to you.")
+    release
+    end
+}
 
 script EcruteakCity_Gym_Eventscript_Statues{
     if(flag(FLAG_BADGE04_GET))
@@ -22,7 +99,7 @@ script EcruteakCity_Gym_Eventscript_GymGuy{
     end
 }
 
-script EcruteakCity_Gym_Eventscript_SagePing{ // upper Sage
+script EcruteakCity_Gym_Eventscript_SagePing{ // lower Sage
     trainerbattle_single(TRAINER_PING, "Can you inflict any damage on our\nPOKéMON?", "Ah! Well done!")
     msgbox("We use only GHOST-type POKéMON.\nNo NORMAL-type attack can harm them!", MSGBOX_AUTOCLOSE)
     end

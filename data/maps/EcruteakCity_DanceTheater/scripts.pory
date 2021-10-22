@@ -6,7 +6,7 @@ script EcruteakCity_DanceTheater_Eventscript_PanelSign {
 }
 
 script EcruteakCity_DanceTheater_Eventscript_OldLady{
-    msgbox("The KIMONO GIRLS are so beautiful…\nBut they have to go through rigorous\ltraining.\pAnd they have to learn to follow\ncustoms before appearing in public.\pBut if you love something, anything\nis possible.", MSGBOX_NPC)
+    msgbox("The KIMONO GIRLS are so beautiful…\nBut they have to go through\lrigorous training.\pAnd they have to learn to follow\ncustoms before appearing in public.\pBut if you love something, anything\nis possible.", MSGBOX_NPC)
     end
 }
 
@@ -38,7 +38,7 @@ script EcruteakCity_DanceTheater_Eventscript_Gentleman{
         msgbox("I wish my POKéMON were as elegant as\nthe KIMONO GIRLS…", MSGBOX_NPC)
         end
     }
-    if(defeated(TRAINER_NAOKO) && defeated(TRAINER_SAYO) && defeated(TRAINER_ZUKI) && defeated(TRAINER_KUNI) && defeated(TRAINER_MIKI))
+    if(!(defeated(TRAINER_NAOKO) && defeated(TRAINER_SAYO) && defeated(TRAINER_ZUKI) && defeated(TRAINER_KUNI) && defeated(TRAINER_MIKI)))
     {
         checkplayergender
         if(var(VAR_RESULT) == MALE)
