@@ -49,7 +49,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL",
       "in_connection": false,
       "x": 7,
       "y": 19,
@@ -109,7 +109,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 29,
       "y": 46,

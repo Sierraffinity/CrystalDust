@@ -29,7 +29,7 @@
   "object_events": [
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
+      "graphics_id": "OBJ_EVENT_GFX_MAN",
       "in_connection": false,
       "x": 25,
       "y": 13,
@@ -209,7 +209,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "in_connection": false,
       "x": 18,
       "y": 91,
@@ -224,7 +224,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_MAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
       "in_connection": false,
       "x": 17,
       "y": 110,

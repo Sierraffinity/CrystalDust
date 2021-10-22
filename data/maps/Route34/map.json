@@ -104,7 +104,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "in_connection": false,
       "x": 25,
       "y": 36,
@@ -179,7 +179,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "in_connection": false,
       "x": 17,
       "y": 64,
@@ -194,7 +194,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "in_connection": false,
       "x": 9,
       "y": 64,
@@ -209,7 +209,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "in_connection": false,
       "x": 12,
       "y": 67,

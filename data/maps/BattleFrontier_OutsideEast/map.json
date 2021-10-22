@@ -21,7 +21,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_ZNINJA_BOY",
       "x": 20,
       "y": 17,
       "elevation": 0,
@@ -35,7 +35,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "x": 42,
       "y": 15,
       "elevation": 0,
@@ -119,7 +119,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_RUNNING_TRIATHLETE_M",
+      "graphics_id": "OBJ_EVENT_GFX_ZRUNNING_TRIATHLETE_M",
       "x": 34,
       "y": 41,
       "elevation": 0,
@@ -133,7 +133,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_ZRICH_BOY",
       "x": 45,
       "y": 47,
       "elevation": 3,
@@ -147,7 +147,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_F",
+      "graphics_id": "OBJ_EVENT_GFX_ZCYCLING_TRIATHLETE_F",
       "x": 59,
       "y": 35,
       "elevation": 0,
@@ -175,7 +175,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 17,
       "y": 40,
       "elevation": 0,
@@ -231,7 +231,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
+      "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
       "x": 51,
       "y": 53,
       "elevation": 3,
@@ -245,7 +245,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
       "x": 62,
       "y": 18,
       "elevation": 0,
@@ -259,7 +259,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "x": 11,
       "y": 21,
       "elevation": 0,
@@ -273,7 +273,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "x": 10,
       "y": 21,
       "elevation": 0,
@@ -287,7 +287,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "x": 16,
       "y": 30,
       "elevation": 0,
@@ -329,7 +329,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_4",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
       "x": 54,
       "y": 32,
       "elevation": 0,

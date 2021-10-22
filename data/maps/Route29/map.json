@@ -34,7 +34,7 @@
   "object_events": [
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
       "in_connection": false,
       "x": 62,
       "y": 15,
@@ -64,7 +64,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "in_connection": false,
       "x": 19,
       "y": 15,
@@ -94,7 +94,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
+      "graphics_id": "OBJ_EVENT_GFX_MAN",
       "in_connection": false,
       "x": 16,
       "y": 6,
@@ -109,7 +109,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
       "in_connection": false,
       "x": 37,
       "y": 14,

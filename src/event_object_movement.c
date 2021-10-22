@@ -2025,7 +2025,7 @@ const struct ObjectEventGraphicsInfo *GetObjectEventGraphicsInfo(u8 graphicsId)
     {
         graphicsId = VarGetObjectEventGraphicsId(graphicsId - OBJ_EVENT_GFX_VARS);
     }
-    if (graphicsId == OBJ_EVENT_GFX_BARD)
+    if (graphicsId == OBJ_EVENT_GFX_ZBARD)
     {
         bard = GetCurrentMauvilleOldMan();
         return gMauvilleOldManGraphicsInfoPointers[bard];
@@ -2033,7 +2033,7 @@ const struct ObjectEventGraphicsInfo *GetObjectEventGraphicsInfo(u8 graphicsId)
 
     if (graphicsId >= NUM_OBJ_EVENT_GFX)
     {
-        graphicsId = OBJ_EVENT_GFX_NINJA_BOY;
+        graphicsId = OBJ_EVENT_GFX_ZNINJA_BOY;
     }
     
     return gObjectEventGraphicsInfoPointers[graphicsId];

@@ -18,7 +18,7 @@
   "object_events": [
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 6,
       "y": 4,
@@ -33,7 +33,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_CONTEST_JUDGE",
+      "graphics_id": "OBJ_EVENT_GFX_ZCONTEST_JUDGE",
       "in_connection": false,
       "x": 7,
       "y": 4,

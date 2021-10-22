@@ -265,14 +265,14 @@ static const u8 sName_Cindy[] = _("CINDY");
 
 static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
     {
-        .graphicsId = OBJ_EVENT_GFX_PSYCHIC_M,
+        .graphicsId = OBJ_EVENT_GFX_COOLTRAINER_M,
         .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .name = sName_Nick,
         .script = NationalPark_BugCatchingContest_Nick,
         .awardsScript = Route36_NationalParkGatehouse_Nick,
     },
     {
-        .graphicsId = OBJ_EVENT_GFX_MAN_1,
+        .graphicsId = OBJ_EVENT_GFX_POKEFAN_M,
         .trainerClass = TRAINER_CLASS_POKEFAN,
         .name = sName_William,
         .script = NationalPark_BugCatchingContest_William,

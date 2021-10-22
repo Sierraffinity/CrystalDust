@@ -18,7 +18,7 @@
   "object_events": [
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 6,
       "y": 10,
@@ -33,7 +33,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "in_connection": false,
       "x": 19,
       "y": 7,
@@ -93,7 +93,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN",
       "in_connection": false,
       "x": 13,
       "y": 9,

@@ -48,7 +48,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
+      "graphics_id": "OBJ_EVENT_GFX_MAN",
       "in_connection": false,
       "x": 11,
       "y": 11,
@@ -78,7 +78,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN",
       "in_connection": false,
       "x": 0,
       "y": 3,
@@ -93,7 +93,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN",
       "in_connection": false,
       "x": 2,
       "y": 2,
@@ -108,7 +108,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN",
       "in_connection": false,
       "x": 6,
       "y": 3,
@@ -123,7 +123,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN",
       "in_connection": false,
       "x": 10,
       "y": 2,
@@ -138,7 +138,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN",
       "in_connection": false,
       "x": 12,
       "y": 3,

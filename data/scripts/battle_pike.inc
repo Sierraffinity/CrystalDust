@@ -47,8 +47,8 @@ BattleFrontier_BattlePikeRoom_OnWarp:
 	.2byte 0
 
 BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects::
-	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LINK_RECEPTIONIST
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_LINK_RECEPTIONIST
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_ZLINK_RECEPTIONIST
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_ZLINK_RECEPTIONIST
 	pike_getroomtype
 	compare VAR_RESULT, PIKE_ROOM_STATUS
 	goto_if_eq BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom

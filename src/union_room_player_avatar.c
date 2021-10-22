@@ -21,24 +21,24 @@ static void SetUnionRoomObjectFacingDirection(s32, s32, u8);
 
 static const u8 sUnionRoomObjGfxIds[GENDER_COUNT][MAX_UNION_ROOM_PLAYERS + 2] = {
     [MALE] = {
-        OBJ_EVENT_GFX_PSYCHIC_M, 
+        OBJ_EVENT_GFX_COOLTRAINER_M, 
         OBJ_EVENT_GFX_BLACK_BELT, 
         OBJ_EVENT_GFX_CAMPER, 
         OBJ_EVENT_GFX_YOUNGSTER, 
         OBJ_EVENT_GFX_BOY_1, 
         OBJ_EVENT_GFX_BUG_CATCHER, 
-        OBJ_EVENT_GFX_MAN_4, 
-        OBJ_EVENT_GFX_MAN_5
+        OBJ_EVENT_GFX_MAN, 
+        OBJ_EVENT_GFX_ROCKER
     },
     [FEMALE] = {
-        OBJ_EVENT_GFX_WOMAN_5, 
-        OBJ_EVENT_GFX_WOMAN_1, // TODO: Channeler in FR 
+        OBJ_EVENT_GFX_COOLTRAINER_F, 
+        OBJ_EVENT_GFX_WOMAN, // TODO: Channeler in FR 
         OBJ_EVENT_GFX_PICNICKER, 
-        OBJ_EVENT_GFX_GIRL_1, 
-        OBJ_EVENT_GFX_GIRL_2, 
-        OBJ_EVENT_GFX_GIRL_3, 
-        OBJ_EVENT_GFX_WOMAN_1, 
-        OBJ_EVENT_GFX_WOMAN_2
+        OBJ_EVENT_GFX_LASS, 
+        OBJ_EVENT_GFX_GIRL, 
+        OBJ_EVENT_GFX_BATTLE_GIRL, 
+        OBJ_EVENT_GFX_WOMAN, 
+        OBJ_EVENT_GFX_BEAUTY
     }
 };
 
@@ -413,7 +413,7 @@ void CreateGroupMemberSpritesInvisible(u8 * spriteIds, s32 playerIdx)
     for (direction = DIR_NONE; direction <= DIR_EAST; direction++)
     {
         s32 id = UR_PLAYER_SPRITE_ID(playerIdx, direction);
-        spriteIds[id] = CreateObjectSprite(OBJ_EVENT_GFX_MAN_4, 
+        spriteIds[id] = CreateObjectSprite(OBJ_EVENT_GFX_MAN, 
                                            id - UR_SPRITE_START_ID, 
                                            sUnionRoomPlayerCoords[playerIdx][0] + sFacingDirectionOffsets[direction][0], 
                                            sUnionRoomPlayerCoords[playerIdx][1] + sFacingDirectionOffsets[direction][1], 

@@ -25,12 +25,12 @@ SouthernIsland_Interior_OnTransition:
 	end
 
 SouthernIsland_Interior_EventScript_SetUpLatios::
-	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LATIOS
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_ZLATIOS
 	setvar VAR_TEMP_4, SPECIES_LATIOS
 	return
 
 SouthernIsland_Interior_EventScript_SetUpLatias::
-	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LATIAS
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_ZLATIAS
 	setvar VAR_TEMP_4, SPECIES_LATIAS
 	return
 

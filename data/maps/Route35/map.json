@@ -89,7 +89,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_MAN_5",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
       "in_connection": false,
       "x": 17,
       "y": 30,
@@ -134,7 +134,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
       "in_connection": false,
       "x": 8,
       "y": 11,

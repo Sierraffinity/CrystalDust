@@ -1425,7 +1425,7 @@ static void NamingScreen_CreateMonIcon(void)
 
 static void NamingScreen_CreateWaldaDadIcon(void)
 {
-    u8 spriteId = AddPseudoObjectEvent(OBJ_EVENT_GFX_MAN_1, SpriteCallbackDummy, 56, 37, 0);
+    u8 spriteId = AddPseudoObjectEvent(OBJ_EVENT_GFX_POKEFAN_M, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], 4);
 }

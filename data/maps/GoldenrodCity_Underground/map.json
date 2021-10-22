@@ -108,7 +108,7 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
+      "graphics_id": "OBJ_EVENT_GFX_MAN",
       "in_connection": false,
       "x": 7,
       "y": 18,

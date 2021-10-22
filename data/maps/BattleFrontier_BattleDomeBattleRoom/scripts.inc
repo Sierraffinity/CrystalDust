@@ -531,12 +531,12 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_AddRound1Audience::
 BattleFrontier_BattleDomeBattleRoom_EventScript_AddRound2Audience:: @ 824C530
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 1, 3, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SAGE, 4, 6, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ZNINJA_BOY, 6, 8, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 11, 13, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_MAN_5, 13, 15, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ROCKER, 13, 15, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_BUENA, 19, 7, 1, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_COOLTRAINER_F, 22, 11, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1, 3, DIR_SOUTH
@@ -545,51 +545,51 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_AddRound2Audience:: @ 824C530
 BattleFrontier_BattleDomeBattleRoom_EventScript_AddSemifinalAudience:: @ 824C594
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 1, 3, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SAGE, 4, 6, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_2, 7, 9, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ZNINJA_BOY, 6, 8, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_BEAUTY, 7, 9, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_LASS, 10, 12, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 11, 13, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_MAN_5, 13, 15, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ROCKER, 13, 15, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_GENTLEMAN, 15, 2, 1, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_NINJA_BOY, 16, 3, 1, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_2, 17, 4, 1, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ZNINJA_BOY, 16, 3, 1, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_BEAUTY, 17, 4, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_BUENA, 19, 7, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SAGE, 20, 9, 1, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_COOLTRAINER_F, 22, 11, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 23, 13, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_KURT, 28, 5, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_MART_EMPLOYEE, 30, 6, 2, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_5, 31, 8, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_COOLTRAINER_F, 31, 8, 2, 3, DIR_SOUTH
 	return
 
 BattleFrontier_BattleDomeBattleRoom_EventScript_AddFinalAudience::
-	createvobject OBJ_EVENT_GFX_NINJA_BOY, 0, 2, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ZNINJA_BOY, 0, 2, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 1, 3, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_BUENA, 2, 15, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_MAN_5, 3, 5, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ROCKER, 3, 5, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SAGE, 4, 6, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 5, 7, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_2, 7, 9, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_3, 8, 10, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ZNINJA_BOY, 6, 8, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_BEAUTY, 7, 9, 0, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_WORKER_F, 8, 10, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_LASS, 10, 12, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 11, 13, 0, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_BUENA, 12, 14, 0, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_MAN_5, 13, 15, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ROCKER, 13, 15, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_HIKER, 14, 12, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_GENTLEMAN, 15, 2, 1, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_NINJA_BOY, 16, 3, 1, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_2, 17, 4, 1, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_3, 18, 6, 1, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_ZNINJA_BOY, 16, 3, 1, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_BEAUTY, 17, 4, 1, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_WORKER_F, 18, 6, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_BUENA, 19, 7, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SAGE, 20, 9, 1, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_MAN_2, 21, 10, 1, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_GYM_GUIDE, 21, 10, 1, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_COOLTRAINER_F, 22, 11, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCIENTIST, 23, 13, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_GENTLEMAN, 24, 14, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1, 3, DIR_SOUTH
@@ -598,7 +598,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_AddFinalAudience::
 	createvobject OBJ_EVENT_GFX_KURT, 28, 5, 2, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1, 3, DIR_SOUTH
 	createvobject OBJ_EVENT_GFX_MART_EMPLOYEE, 30, 6, 2, 3, DIR_SOUTH
-	createvobject OBJ_EVENT_GFX_WOMAN_5, 31, 8, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_COOLTRAINER_F, 31, 8, 2, 3, DIR_SOUTH
 	return
 
 BattleFrontier_BattleDomeBattleRoom_Movement_SetInvisible:
