@@ -442,21 +442,21 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_PROF_ELM                0x110B
 #define OBJ_EVENT_PAL_TAG_SILVER                  0x110C
 #define OBJ_EVENT_PAL_TAG_BUTTERFREE              0x110D
-#define OBJ_EVENT_PAL_TAG_VIGOROTH                0x110E
-#define OBJ_EVENT_PAL_TAG_ZIGZAGOON               0x110F
+#define OBJ_EVENT_PAL_TAG_WILL                    0x110E
+#define OBJ_EVENT_PAL_TAG_RED_GYARADOS            0x110F
 #define OBJ_EVENT_PAL_TAG_KRIS                    0x1110
 #define OBJ_EVENT_PAL_TAG_KRIS_REFLECTION         0x1111
 #define OBJ_EVENT_PAL_TAG_MOVING_BOX              0x1112
 #define OBJ_EVENT_PAL_TAG_CABLE_CAR               0x1113
 #define OBJ_EVENT_PAL_TAG_SSTIDAL                 0x1114
 #define OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER       0x1115 // Brendan & May underwater
-#define OBJ_EVENT_PAL_TAG_KYOGRE                  0x1116
-#define OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION       0x1117
-#define OBJ_EVENT_PAL_TAG_GROUDON                 0x1118
-#define OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION      0x1119
+#define OBJ_EVENT_PAL_TAG_UNUSED_2                0x1116
+#define OBJ_EVENT_PAL_TAG_MURKROW                 0x1117
+#define OBJ_EVENT_PAL_TAG_UNUSED_4                0x1118
+#define OBJ_EVENT_PAL_TAG_UNUSED_3                0x1119
 #define OBJ_EVENT_PAL_TAG_UNUSED                  0x111A
 #define OBJ_EVENT_PAL_TAG_EUSINE                  0x111B
-#define OBJ_EVENT_PAL_TAG_POOCHYENA               0x111C
+#define OBJ_EVENT_PAL_TAG_DRAGONITE               0x111C
 #define OBJ_EVENT_PAL_TAG_RED_LEAF                0x111D
 #define OBJ_EVENT_PAL_TAG_DEOXYS                  0x111E
 #define OBJ_EVENT_PAL_TAG_BIRTH_ISLAND_STONE      0x111F
@@ -492,19 +492,16 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_ProfElm,               OBJ_EVENT_PAL_TAG_PROF_ELM},
     {gObjectEventPal_Silver,                OBJ_EVENT_PAL_TAG_SILVER},
     {gObjectEventPal_Butterfree,            OBJ_EVENT_PAL_TAG_BUTTERFREE},
-    {gObjectEventPal_Vigoroth,              OBJ_EVENT_PAL_TAG_VIGOROTH},
-    {gObjectEventPal_EnemyZigzagoon,        OBJ_EVENT_PAL_TAG_ZIGZAGOON},
+    {gObjectEventPal_Will,                  OBJ_EVENT_PAL_TAG_WILL},
+    {gObjectEventPal_RedGyarados,           OBJ_EVENT_PAL_TAG_RED_GYARADOS},
     {gObjectEventPal_Kris,                  OBJ_EVENT_PAL_TAG_KRIS},
     {gObjectEventPal_KrisReflection,        OBJ_EVENT_PAL_TAG_KRIS_REFLECTION},
     {gObjectEventPal_MovingBox,             OBJ_EVENT_PAL_TAG_MOVING_BOX},
     {gObjectEventPal_CableCar,              OBJ_EVENT_PAL_TAG_CABLE_CAR},
     {gObjectEventPal_SSTidal,               OBJ_EVENT_PAL_TAG_SSTIDAL},
-    {gObjectEventPal_Kyogre,                OBJ_EVENT_PAL_TAG_KYOGRE},
-    {gObjectEventPal_KyogreReflection,      OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION},
-    {gObjectEventPal_Groudon,               OBJ_EVENT_PAL_TAG_GROUDON},
-    {gObjectEventPal_GroudonReflection,     OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION},
+    {gObjectEventPal_Murkrow,               OBJ_EVENT_PAL_TAG_MURKROW},
     {gObjectEventPal_Eusine,                OBJ_EVENT_PAL_TAG_EUSINE},
-    {gObjectEventPal_Poochyena,             OBJ_EVENT_PAL_TAG_POOCHYENA},
+    {gObjectEventPal_Dragonite,             OBJ_EVENT_PAL_TAG_DRAGONITE},
     {gObjectEventPal_RedLeaf,               OBJ_EVENT_PAL_TAG_RED_LEAF},
     {gObjectEventPal_Deoxys,                OBJ_EVENT_PAL_TAG_DEOXYS},
     {gObjectEventPal_BirthIslandStone,      OBJ_EVENT_PAL_TAG_BIRTH_ISLAND_STONE},
@@ -567,10 +564,10 @@ static const u16 sReflectionPaletteTags_Butterfree[] = {
 };
 
 static const u16 sReflectionPaletteTags_VigorothMover[] = {
-    OBJ_EVENT_PAL_TAG_VIGOROTH,
-    OBJ_EVENT_PAL_TAG_VIGOROTH,
-    OBJ_EVENT_PAL_TAG_VIGOROTH,
-    OBJ_EVENT_PAL_TAG_VIGOROTH,
+    OBJ_EVENT_PAL_TAG_WILL,
+    OBJ_EVENT_PAL_TAG_WILL,
+    OBJ_EVENT_PAL_TAG_WILL,
+    OBJ_EVENT_PAL_TAG_WILL,
 };
 
 static const u16 sReflectionPaletteTags_MovingBox[] = {
@@ -602,17 +599,17 @@ static const u16 sReflectionPaletteTags_SubmarineShadow[] = {
 };
 
 static const u16 sReflectionPaletteTags_Kyogre[] = {
-    OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION,
-    OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION,
-    OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION,
-    OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION,
+    OBJ_EVENT_PAL_TAG_MURKROW,
+    OBJ_EVENT_PAL_TAG_MURKROW,
+    OBJ_EVENT_PAL_TAG_MURKROW,
+    OBJ_EVENT_PAL_TAG_MURKROW,
 };
 
 static const u16 sReflectionPaletteTags_Groudon[] = {
-    OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION,
-    OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION,
-    OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION,
-    OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION,
+    OBJ_EVENT_PAL_TAG_UNUSED_3,
+    OBJ_EVENT_PAL_TAG_UNUSED_3,
+    OBJ_EVENT_PAL_TAG_UNUSED_3,
+    OBJ_EVENT_PAL_TAG_UNUSED_3,
 };
 
 static const u16 sReflectionPaletteTags_Npc3[] = { // Only used by the Route 120 bridge Kecleon
@@ -635,12 +632,12 @@ static const struct PairedPalettes sSpecialObjectReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_PROF_ELM,         sElmReflectionPaletteTags},
     {OBJ_EVENT_PAL_TAG_SILVER,           sSilverReflectionPaletteTags},
     {OBJ_EVENT_PAL_TAG_BUTTERFREE,       sReflectionPaletteTags_Butterfree},
-    {OBJ_EVENT_PAL_TAG_VIGOROTH,         sReflectionPaletteTags_VigorothMover},
+    {OBJ_EVENT_PAL_TAG_WILL,         sReflectionPaletteTags_VigorothMover},
     {OBJ_EVENT_PAL_TAG_MOVING_BOX,       sReflectionPaletteTags_MovingBox},
     {OBJ_EVENT_PAL_TAG_CABLE_CAR,        sReflectionPaletteTags_CableCar},
     {OBJ_EVENT_PAL_TAG_SSTIDAL,          sReflectionPaletteTags_SSTidal},
-    {OBJ_EVENT_PAL_TAG_KYOGRE,           sReflectionPaletteTags_Kyogre},
-    {OBJ_EVENT_PAL_TAG_GROUDON,          sReflectionPaletteTags_Groudon},
+    {OBJ_EVENT_PAL_TAG_UNUSED_2,           sReflectionPaletteTags_Kyogre},
+    {OBJ_EVENT_PAL_TAG_UNUSED_4,          sReflectionPaletteTags_Groudon},
     {OBJ_EVENT_PAL_TAG_NPC_3,            sReflectionPaletteTags_Npc3},
     {OBJ_EVENT_PAL_TAG_EUSINE, sReflectionPaletteTags_SubmarineShadow},
     {OBJ_EVENT_PAL_TAG_RED_LEAF,         sReflectionPaletteTags_RedLeaf},

@@ -29,12 +29,15 @@ script EcruteakCity_House2_Eventscript_ItemfinderGuy{
 
 script EcruteakCity_House2_Eventscript_Book{
     lock
+    signmsg
     msgbox("“HISTORY OF ECRUTEAK”\nWant to read it?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES)
     {
+        signmsg
         msgbox("In ECRUTEAK, there were two\ntowers.\pEach tower was the roost of powerful\nflying POKéMON.\pBut one of the towers burned to the\nground.\pThe two POKéMON haven't been seen\nsince…\pKeep reading?", MSGBOX_YESNO)
         if(var(VAR_RESULT) == YES)
         {
+            signmsg
             msgbox("ECRUTEAK was also home to three\nPOKéMON that raced around\lthe town.\pThey were said to have been born of\nwater, lightning and fire.\pBut they could not contain their\nexcessive power.\pSo they say the three ran like the\nwind off into the grassland…", MSGBOX_DEFAULT)
             release
             end
