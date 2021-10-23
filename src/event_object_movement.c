@@ -455,7 +455,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_GROUDON                 0x1118
 #define OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION      0x1119
 #define OBJ_EVENT_PAL_TAG_UNUSED                  0x111A
-#define OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW        0x111B
+#define OBJ_EVENT_PAL_TAG_EUSINE                  0x111B
 #define OBJ_EVENT_PAL_TAG_POOCHYENA               0x111C
 #define OBJ_EVENT_PAL_TAG_RED_LEAF                0x111D
 #define OBJ_EVENT_PAL_TAG_DEOXYS                  0x111E
@@ -503,7 +503,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_KyogreReflection,      OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION},
     {gObjectEventPal_Groudon,               OBJ_EVENT_PAL_TAG_GROUDON},
     {gObjectEventPal_GroudonReflection,     OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION},
-    {gObjectEventPal_SubmarineShadow,       OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW},
+    {gObjectEventPal_Eusine,                OBJ_EVENT_PAL_TAG_EUSINE},
     {gObjectEventPal_Poochyena,             OBJ_EVENT_PAL_TAG_POOCHYENA},
     {gObjectEventPal_RedLeaf,               OBJ_EVENT_PAL_TAG_RED_LEAF},
     {gObjectEventPal_Deoxys,                OBJ_EVENT_PAL_TAG_DEOXYS},
@@ -595,10 +595,10 @@ static const u16 sReflectionPaletteTags_SSTidal[] = {
 };
 
 static const u16 sReflectionPaletteTags_SubmarineShadow[] = {
-    OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW,
-    OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW,
-    OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW,
-    OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW,
+    OBJ_EVENT_PAL_TAG_EUSINE,
+    OBJ_EVENT_PAL_TAG_EUSINE,
+    OBJ_EVENT_PAL_TAG_EUSINE,
+    OBJ_EVENT_PAL_TAG_EUSINE,
 };
 
 static const u16 sReflectionPaletteTags_Kyogre[] = {
@@ -642,7 +642,7 @@ static const struct PairedPalettes sSpecialObjectReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_KYOGRE,           sReflectionPaletteTags_Kyogre},
     {OBJ_EVENT_PAL_TAG_GROUDON,          sReflectionPaletteTags_Groudon},
     {OBJ_EVENT_PAL_TAG_NPC_3,            sReflectionPaletteTags_Npc3},
-    {OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW, sReflectionPaletteTags_SubmarineShadow},
+    {OBJ_EVENT_PAL_TAG_EUSINE, sReflectionPaletteTags_SubmarineShadow},
     {OBJ_EVENT_PAL_TAG_RED_LEAF,         sReflectionPaletteTags_RedLeaf},
     {OBJ_EVENT_PAL_TAG_NONE,             NULL},
 };
@@ -1795,8 +1795,13 @@ void RemoveObjectEventsOutsideView(void)
     }
 }
 
+#define LAYOUT_ECRUTEAK_CITY_DANCE_THEATER 270
+
 static void RemoveObjectEventIfOutsideView(struct ObjectEvent *objectEvent)
 {
+    if(gMapHeader.mapLayoutId == LAYOUT_ECRUTEAK_CITY_DANCE_THEATER) // don't remove events in the Dance Theater because of paletteSlot shenanigans
+        return;
+
     s16 left =   gSaveBlock1Ptr->pos.x - 2;
     s16 right =  gSaveBlock1Ptr->pos.x + 17;
     s16 top =    gSaveBlock1Ptr->pos.y;

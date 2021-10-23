@@ -162,7 +162,114 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 1,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots"
+    }
   ],
   "bg_events": [
     {

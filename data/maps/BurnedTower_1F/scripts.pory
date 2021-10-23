@@ -1,1 +1,13 @@
-mapscripts BurnedTower_1F_MapScripts {}
+mapscripts BurnedTower_1F_MapScripts {
+    // To manually patch in Eusine's palette since Silver
+    // is also on this map with a unique palette.
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_0, 0{
+            callnative(PatchEusinePaletteToSlot11)
+        }
+    ]
+    MAP_SCRIPT_ON_RETURN_TO_FIELD
+    {
+        callnative(PatchEusinePaletteToSlot11)
+    }
+}

@@ -1,4 +1,26 @@
-mapscripts EcruteakCity_DanceTheater_MapScripts {}
+mapscripts EcruteakCity_DanceTheater_MapScripts {
+    // Manually overwrite the palSlots with Kimono Girl's palettes
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_0, 0{
+            callnative(PatchKimonoGirlPalettesToSlots)
+        }
+    ]
+    MAP_SCRIPT_ON_RETURN_TO_FIELD
+    {
+        callnative(OverrideKimonoGirlsPaletteSlots)
+        callnative(PatchKimonoGirlPalettesToSlots)
+    }
+}
+
+// The Kimono Girl sprite is only one graphicsId so, to show the different palettes,
+// each Kimono Girl object event needs to have the palette slot its using overridden.
+// This way, we don't have to waste 4 EVENT_OBJ_GFX_IDs on their different colors.
+// The Dance Theater never has its event objects culled when offscreen to faciliate this.
+script EcruteakCity_DanceTheater_EventScript_OverrideKimonoGirlsPalSlots{
+    callnative(OverrideKimonoGirlsPaletteSlots)
+    setvar(VAR_TEMP_1, 0)
+    release
+}
 
 script EcruteakCity_DanceTheater_Eventscript_PanelSign {
     msgbox("It's a fancy panel that's decorated\nwith flowers.", MSGBOX_SIGN)

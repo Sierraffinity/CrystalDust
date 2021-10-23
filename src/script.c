@@ -492,3 +492,37 @@ void GetObjectEventTrainerRangeFromTemplate(void)
 {
     gSpecialVar_Result = gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].trainerRange_berryTreeId;
 }
+
+extern void LoadPaletteDayNight(const void *src, u16 offset, u16 size);
+extern const u16 gObjectEventPal_Eusine;
+extern u8 GetObjectEventIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroupId);
+
+void PatchEusinePaletteToSlot11(void)
+{
+    gSprites[gObjectEvents[GetObjectEventIdByLocalIdAndMap(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup)].spriteId].oam.paletteNum = 11;
+    LoadPaletteDayNight(&gObjectEventPal_Eusine, 16 * 11 + 0x100, 0x20);
+}
+
+void OverrideKimonoGirlsPaletteSlots(void)
+{
+    u8 mapNum = gSaveBlock1Ptr->location.mapNum;
+    u8 mapGroup = gSaveBlock1Ptr->location.mapGroup;
+
+    gSprites[gObjectEvents[GetObjectEventIdByLocalIdAndMap(6, mapNum, mapGroup)].spriteId].oam.paletteNum = 2; //Espeon palette
+    gSprites[gObjectEvents[GetObjectEventIdByLocalIdAndMap(7, mapNum, mapGroup)].spriteId].oam.paletteNum = 4; //Umbreon palette
+    gSprites[gObjectEvents[GetObjectEventIdByLocalIdAndMap(8, mapNum, mapGroup)].spriteId].oam.paletteNum = 11; //Vaporeon palette
+    gSprites[gObjectEvents[GetObjectEventIdByLocalIdAndMap(9, mapNum, mapGroup)].spriteId].oam.paletteNum = 10; //Joleon palette
+}
+
+extern const u16 gObjectEventPal_EspeonKimonoGirl[];
+extern const u16 gObjectEventPal_UmbreonKimonoGirl[];
+extern const u16 gObjectEventPal_VaporeonKimonoGirl[];
+extern const u16 gObjectEventPal_JolteonKimonoGirl[];
+
+void PatchKimonoGirlPalettesToSlots(void)
+{
+    LoadPaletteDayNight(&gObjectEventPal_EspeonKimonoGirl, 16 * 2 + 0x100, 0x20);
+    LoadPaletteDayNight(&gObjectEventPal_UmbreonKimonoGirl, 16 * 4 + 0x100, 0x20);
+    LoadPaletteDayNight(&gObjectEventPal_VaporeonKimonoGirl, 16 * 11 + 0x100, 0x20);
+    LoadPaletteDayNight(&gObjectEventPal_JolteonKimonoGirl, 16 * 10 + 0x100, 0x20);
+}

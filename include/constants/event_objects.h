@@ -142,7 +142,7 @@
 #define OBJ_EVENT_GFX_KRIS_FISHING               138
 #define OBJ_EVENT_GFX_ZHOT_SPRINGS_OLD_WOMAN      139
 #define OBJ_EVENT_GFX_ZSS_TIDAL                   140
-#define OBJ_EVENT_GFX_ZSUBMARINE_SHADOW           141
+#define OBJ_EVENT_GFX_EUSINE           141
 #define OBJ_EVENT_GFX_ZPICHU_DOLL                 142
 #define OBJ_EVENT_GFX_PIKACHU_DOLL               143
 #define OBJ_EVENT_GFX_ZMARILL_DOLL                144

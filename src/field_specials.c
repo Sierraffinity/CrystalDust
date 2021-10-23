@@ -2969,7 +2969,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_KRIS_FISHING] =              MSG_COLOR_RED,
         [OBJ_EVENT_GFX_ZHOT_SPRINGS_OLD_WOMAN] =     MSG_COLOR_RED,
         [OBJ_EVENT_GFX_ZSS_TIDAL] =                  MSG_COLOR_SYS,
-        [OBJ_EVENT_GFX_ZSUBMARINE_SHADOW] =          MSG_COLOR_SYS,
+        [OBJ_EVENT_GFX_EUSINE] =                     MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_ZPICHU_DOLL] =                MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_PIKACHU_DOLL] =              MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_ZMARILL_DOLL] =               MSG_COLOR_SYS,
