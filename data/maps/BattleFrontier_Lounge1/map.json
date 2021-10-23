@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ZBOY_3",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "x": 7,
       "y": 6,
       "elevation": 0,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ZBOY_2",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "x": 5,
       "y": 4,
       "elevation": 0,

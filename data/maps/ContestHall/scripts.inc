@@ -202,7 +202,7 @@ ContestHall_EventScript_RandomAudienceGirl::
 	return
 
 ContestHall_EventScript_RandomAudienceBoy3::
-	setvar VAR_TEMP_1, OBJ_EVENT_GFX_ZBOY_3
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_BLUE
 	return
 
 ContestHall_EventScript_RandomAudienceGirl3::

@@ -268,7 +268,7 @@ static const struct PikeWildMon *const *const sWildMons[2] =
 static const struct PikeRoomNPC sNPCTable[] =
 {
     {
-        .graphicsId = OBJ_EVENT_GFX_ZPOKEFAN_F,
+        .graphicsId = OBJ_EVENT_GFX_POKEFAN_F,
         .speechId1 = 3,
         .speechId2 = 5,
         .speechId3 = 6
