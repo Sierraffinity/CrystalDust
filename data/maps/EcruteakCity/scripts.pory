@@ -52,3 +52,23 @@ script EcruteakCity_Eventscript_Girl2{ // Nearest PMC
     msgbox("I'm going to practice at the DANCE\nTHEATER. Care to join me?", MSGBOX_NPC)
     end
 }
+
+script EcruteakCity_Eventscript_Girl3{ // Near Burned Tower
+    if(flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+    {
+        msgbox("Three big POKéMON ran off in\ndifferent directions. What were they?", MSGBOX_NPC)
+        end
+    }
+    msgbox("The tower that used to be here…\pMy grandma told me it used to be\nmuch taller.", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_Eventscript_FatMan{ // Near Gym
+    if(flag(FLAG_CURED_AMPHY))
+    {
+        msgbox("The POKéMON at OLIVINE LIGHTHOUSE\nhas been cured.\pBoats can safely sail out to sea at\nnight again.", MSGBOX_NPC)
+        end
+    }
+    msgbox("I heard a rumor about OLIVINE's\nLIGHTHOUSE.\pThe POKéMON that serves as the\nbeacon fell ill.\pSounds like they are in trouble.", MSGBOX_NPC)
+    end
+}

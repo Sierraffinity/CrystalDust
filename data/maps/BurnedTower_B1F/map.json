@@ -21,7 +21,7 @@
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
       "in_connection": false,
       "x": 16,
-      "y": 7,
+      "y": 10,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -36,7 +36,7 @@
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 15,
-      "y": 3,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -48,25 +48,25 @@
     },
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_ZANABEL",
+      "graphics_id": "OBJ_EVENT_GFX_EUSINE",
       "in_connection": false,
       "x": 9,
-      "y": 11,
+      "y": 14,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "BurnedTower_B1F_EventScript_Eusine",
+      "flag": "FLAG_TEMP_1"
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SUICUNE",
       "in_connection": false,
       "x": 9,
-      "y": 3,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -74,14 +74,14 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_AWAKENED_LEGENDARY_BEASTS"
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_RAIKOU",
       "in_connection": false,
       "x": 6,
-      "y": 2,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -89,14 +89,14 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_AWAKENED_LEGENDARY_BEASTS"
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ENTEI",
       "in_connection": false,
       "x": 11,
-      "y": 2,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -104,34 +104,27 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_AWAKENED_LEGENDARY_BEASTS"
     }
   ],
   "warp_events": [
     {
       "x": 6,
-      "y": 14,
+      "y": 17,
       "elevation": 0,
       "dest_map": "MAP_BURNED_TOWER_1F",
       "dest_warp_id": 2
-    },
-    {
-      "x": 9,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_BURNED_TOWER_B1F",
-      "dest_warp_id": 0
     }
   ],
   "coord_events": [
     {
       "type": "trigger",
       "x": 9,
-      "y": 5,
+      "y": 8,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_TEMP_1",
       "var_value": "0",
-      "script": "NULL"
+      "script": "BurnedTower_B1F_EventScript_Trigger"
     }
   ],
   "bg_events": [

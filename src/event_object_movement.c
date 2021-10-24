@@ -1793,10 +1793,11 @@ void RemoveObjectEventsOutsideView(void)
 }
 
 #define LAYOUT_ECRUTEAK_CITY_DANCE_THEATER 270
+#define LAYOUT_BURNED_TOWER_1F 288
 
 static void RemoveObjectEventIfOutsideView(struct ObjectEvent *objectEvent)
 {
-    if(gMapHeader.mapLayoutId == LAYOUT_ECRUTEAK_CITY_DANCE_THEATER) // don't remove events in the Dance Theater because of paletteSlot shenanigans
+    if(gMapHeader.mapLayoutId == LAYOUT_ECRUTEAK_CITY_DANCE_THEATER || gMapHeader.mapLayoutId == LAYOUT_BURNED_TOWER_1F) // don't remove events in the Dance Theater or Burned Tower 1F because of paletteSlot shenanigans
         return;
 
     s16 left =   gSaveBlock1Ptr->pos.x - 2;

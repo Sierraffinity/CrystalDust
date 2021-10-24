@@ -526,3 +526,33 @@ void PatchKimonoGirlPalettesToSlots(void)
     LoadPaletteDayNight(&gObjectEventPal_VaporeonKimonoGirl, 16 * 11 + 0x100, 0x20);
     LoadPaletteDayNight(&gObjectEventPal_JolteonKimonoGirl, 16 * 10 + 0x100, 0x20);
 }
+
+extern const u16 gObjectEventPal_EnteiAsleep[];
+extern const u16 gObjectEventPal_RaikouAsleep[];
+extern const u16 gObjectEventPal_SuicuneAsleep[];
+
+void PatchAsleepBeastsPalettesToSlots(void)
+{
+    LoadPaletteDayNight(&gObjectEventPal_EnteiAsleep, 16 * 2 + 0x100, 0x20);
+    LoadPaletteDayNight(&gObjectEventPal_RaikouAsleep, 16 * 4 + 0x100, 0x20);
+    LoadPaletteDayNight(&gObjectEventPal_SuicuneAsleep, 16 * 3 + 0x100, 0x20);
+}
+
+extern const u16 gObjectEventPal_Npc1[];
+extern const u16 gObjectEventPal_Npc2[];
+extern const u16 gObjectEventPal_Npc3[];
+
+void AwakenEntei(void)
+{
+    LoadPaletteDayNight(&gObjectEventPal_Npc1, 16 * 2 + 0x100, 0x20);
+}
+
+void AwakenRaikou(void)
+{
+    LoadPaletteDayNight(&gObjectEventPal_Npc3, 16 * 4 + 0x100, 0x20);
+}
+
+void AwakenSuicune(void)
+{
+    LoadPaletteDayNight(&gObjectEventPal_Npc2, 16 * 3 + 0x100, 0x20);
+}

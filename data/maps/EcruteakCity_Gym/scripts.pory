@@ -1,19 +1,12 @@
 mapscripts EcruteakCity_Gym_MapScripts {
-    MAP_SCRIPT_ON_LOAD{
-        if(!defeated(TRAINER_RIVAL_BURNED_TOWER_CHIKORITA) || !defeated(TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL) || !defeated(TRAINER_RIVAL_BURNED_TOWER_TOTODILE))
-        {
-            removeobject(6)
-            end
-        }
-    }
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_TEMP_0, 0: EcruteakCity_Gym_Mapscript_OldMan
     ]
 }
     
 script EcruteakCity_Gym_Mapscript_OldMan{
-    if(!defeated(TRAINER_RIVAL_BURNED_TOWER_CHIKORITA) || !defeated(TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL) || !defeated(TRAINER_RIVAL_BURNED_TOWER_TOTODILE))
-    {   // All the Rival battles will be set to defeated when the Burned Tower event is done.
+    if(!flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+    {
         applymovement(OBJ_EVENT_ID_PLAYER, EcruteakCity_Gym_Movement_PlayerUp)
         waitmovement(0)
         applymovement(6, EcruteakCity_Gym_Movement_OldManDown)
@@ -30,7 +23,6 @@ script EcruteakCity_Gym_Mapscript_OldMan{
         release
         end
     }
-    removeobject(6)
     setvar(VAR_TEMP_0, 1)
     end
 }movement(local) EcruteakCity_Gym_Movement_PlayerUp{

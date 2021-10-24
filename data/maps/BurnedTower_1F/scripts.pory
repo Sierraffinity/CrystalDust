@@ -1,13 +1,158 @@
 mapscripts BurnedTower_1F_MapScripts {
+    MAP_SCRIPT_ON_LOAD{
+        if(!flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+        {
+            setmetatile(6, 17, 0x2C1, 0)
+            setmetatile(9, 11, 0x2C1, 0)
+        }
+    }
     // To manually patch in Eusine's palette since Silver
     // is also on this map with a unique palette.
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
         VAR_TEMP_0, 0{
+            if(flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+            {   // hides Rival, Eusine, and Morty
+                setflag(FLAG_TEMP_1)
+                end
+            }
             callnative(PatchEusinePaletteToSlot11)
+            end
+        }
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_1, 0{
+            if(!flag(FLAG_MET_EUSINE))
+            {
+                lock
+                playse(SE_PIN)
+                applymovement(1, BurnedTower_1F_Movement_EusineEmotes)
+                delay(0x40)
+                applymovement(1, BurnedTower_1F_Movement_EusineToPlayer)
+                waitmovement(0)
+                textcolor(0)
+                msgbox("EUSINE: My name's EUSINE. I'm on the\ntrail of a POKéMON named SUICUNE.\pAnd you are?\n{PLAYER}? Glad to meet you!\pI heard rumors that SUICUNE is in\nthis BURNED TOWER, so I came\lto look.\pBut where exactly could it be?", MSGBOX_DEFAULT)
+                setvar(VAR_TEMP_1, 1)
+                setflag(FLAG_MET_EUSINE)
+                release
+                end
+            }
+            setvar(VAR_TEMP_1, 1)
+            end
         }
     ]
     MAP_SCRIPT_ON_RETURN_TO_FIELD
     {
         callnative(PatchEusinePaletteToSlot11)
     }
+}movement(local) BurnedTower_1F_Movement_EusineEmotes{
+    face_down
+    emote_exclamation_mark 
+}movement(local) BurnedTower_1F_Movement_EusineToPlayer{
+    walk_down
+    walk_left * 3
+    walk_down
+}
+
+script BurnedTower_1F_EventScript_RivalTrigger{
+    if(defeated(TRAINER_RIVAL_BURNED_TOWER_CHIKORITA) || defeated(TRAINER_RIVAL_BURNED_TOWER_TOTODILE) || defeated(TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL))
+    {
+        setvar(VAR_TEMP_1, 2)
+        end
+    }
+    lockall
+    applymovement(3, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    turnobject(3, DIR_EAST)
+    applymovement(OBJ_EVENT_ID_PLAYER, BurnedTower_1F_Movement_PlayerToRival)
+    waitmovement(0)
+    applymovement(3, BurnedTower_1F_Movement_RivalToPlayer)
+    waitmovement(0)
+    playbgm(MUS_ENCOUNTER_RIVAL, 0)
+	savebgm(MUS_RIVAL_EXIT)
+    textcolor(0)
+    msgbox("…… …… ……\n…Oh, it's you.\pI came looking for some legendary\nPOKéMON that they say roosts here.\pBut there's nothing here!\pNothing after all the trouble of\ncoming to this dump? No way!\pIt's all your fault!")
+    setvar(VAR_LAST_TALKED, 3)
+    if (var(VAR_STARTER_MON) == STARTER_CHIKORITA)
+    {
+        trainerbattle_wintext(TRAINER_RIVAL_BURNED_TOWER_CHIKORITA, 0, BurnedTower_1F_Text_RivalLost, BurnedTower_1F_Text_RivalWon)
+    }
+    elif (var(VAR_STARTER_MON) == STARTER_TOTODILE)
+    {
+        trainerbattle_wintext(TRAINER_RIVAL_BURNED_TOWER_TOTODILE, 0, BurnedTower_1F_Text_RivalLost, BurnedTower_1F_Text_RivalWon)
+    }
+    elif (var(VAR_STARTER_MON) == STARTER_CYNDAQUIL)
+    {
+        trainerbattle_wintext(TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL, 0, BurnedTower_1F_Text_RivalLost, BurnedTower_1F_Text_RivalWon)
+    }
+    textcolor(0)
+    msgbox("…Aw, whatever.\pYou would never be able to catch a\nlegendary POKéMON anyway.", MSGBOX_DEFAULT)
+    closemessage
+    fadeoutbgm(0)
+    playbgm(MUS_NONE, TRUE)
+    fadeinbgm(0)
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    playse(SE_PIN)
+    delay(0x40)
+    playse(SE_UNLOCK)
+    setmetatile(9, 11, 0x3B4, 0)
+    special(DrawWholeMapView)
+    delay(0x20)
+    applymovement(OBJ_EVENT_ID_PLAYER, BurnedTower_1F_Movement_PlayerScrambles)
+    waitmovement(0)
+    playse(SE_FALL)
+    waitse
+    delay(0x10)
+    applymovement(3, Common_Movement_ExclamationMark) 
+    playse(SE_PIN)
+    delay(0x40)
+    msgbox("Humph! What are you doing falling\ninto a hole?\pSome genius you are!\nServes you right!", MSGBOX_DEFAULT)
+    releaseall
+    setvar(VAR_TEMP_1, 2)
+    warphole(MAP_BURNED_TOWER_B1F)
+    waitstate
+    end
+}movement(local) BurnedTower_1F_Movement_PlayerToRival{
+    walk_left
+}movement(local) BurnedTower_1F_Movement_RivalToPlayer{
+    walk_right
+}movement(local) BurnedTower_1F_Movement_PlayerScrambles{
+    walk_in_place_fast_left * 3
+    set_invisible
+}text(local) BurnedTower_1F_Text_RivalWon{
+    "…Humph!\pThis is why I hate battling wimps.\nThere's no challenge in it."
+}text(local) BurnedTower_1F_Text_RivalLost{
+    "…Humph!\pThis is why I hate battling wimps.\nIt's just a waste of my time."
+}
+
+
+script BurnedTower_1F_EventScript_Eusine{
+    msgbox("EUSINE: I heard that SUICUNE is in\nthis BURNED TOWER, so I came to\llook.\pBut where exactly could it be?", MSGBOX_NPC)
+    end
+}
+
+script BurnedTower_1F_EventScript_Morty{
+    msgbox("MORTY: ECRUTEAK's GYM LEADER has to\nstudy what are said to be the\llegendary POKéMON--SUICUNE, ENTEI\land RAIKOU.\pEUSINE is here, so I've decided to\ninvestigate the TOWER with him.", MSGBOX_NPC)
+    end
 }

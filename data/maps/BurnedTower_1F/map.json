@@ -20,22 +20,22 @@
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_EUSINE",
       "in_connection": false,
-      "x": 10,
+      "x": 11,
       "y": 14,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "BurnedTower_1F_EventScript_Eusine",
+      "flag": "FLAG_AWAKENED_LEGENDARY_BEASTS"
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_MORTY",
       "in_connection": false,
-      "x": 12,
+      "x": 13,
       "y": 16,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
@@ -43,14 +43,14 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "BurnedTower_1F_EventScript_Morty",
+      "flag": "FLAG_AWAKENED_LEGENDARY_BEASTS"
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_RIVAL",
       "in_connection": false,
-      "x": 6,
+      "x": 7,
       "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -59,13 +59,13 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_AWAKENED_LEGENDARY_BEASTS"
     },
     {
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
-      "x": 12,
+      "x": 13,
       "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -80,7 +80,7 @@
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
       "in_connection": false,
-      "x": 13,
+      "x": 14,
       "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -94,21 +94,21 @@
   ],
   "warp_events": [
     {
-      "x": 7,
+      "x": 8,
       "y": 17,
       "elevation": 0,
       "dest_map": "MAP_ECRUTEAK_CITY",
       "dest_warp_id": 9
     },
     {
-      "x": 8,
+      "x": 9,
       "y": 11,
       "elevation": 0,
       "dest_map": "MAP_BURNED_TOWER_B1F",
       "dest_warp_id": 1
     },
     {
-      "x": 5,
+      "x": 6,
       "y": 17,
       "elevation": 0,
       "dest_map": "MAP_BURNED_TOWER_B1F",
@@ -116,12 +116,20 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "BurnedTower_1F_EventScript_RivalTrigger"
+    }
   ],
   "bg_events": [
     {
       "type": "hidden_item",
-      "x": 6,
+      "x": 7,
       "y": 9,
       "elevation": 3,
       "item": "ITEM_ETHER",
@@ -129,7 +137,7 @@
     },
     {
       "type": "hidden_item",
-      "x": 11,
+      "x": 12,
       "y": 13,
       "elevation": 3,
       "item": "ITEM_ULTRA_BALL",

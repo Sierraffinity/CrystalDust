@@ -215,10 +215,11 @@
 #define FLAG_FLORIA_WENT_TO_ROUTE_36         0xC9
 #define FLAG_GOT_ODD_EGG                     0xCA
 #define FLAG_GOT_TM30_FROM_MORTY             0xCB
-#define FLAG_RECEIVED_YELLOW_SCARF           0xCC
-#define FLAG_INTERACTED_WITH_STEVEN_SPACE_CENTER    0xCD
-#define FLAG_ENCOUNTERED_LATIAS_OR_LATIOS    0xCE
-#define FLAG_MET_ARCHIE_METEOR_FALLS         0xCF
+#define FLAG_MET_EUSINE                      0xCC
+#define FLAG_AWAKENED_LEGENDARY_BEASTS       0xCD
+#define FLAG_ENCOUNTERED_LATIAS_OR_LATIOS    0xCE // Used on Southern Island
+#define FLAG_CURED_AMPHY                     0xCF
+// STOPPED HERE
 #define FLAG_GOT_BASEMENT_KEY_FROM_WATTSON   0xD0
 #define FLAG_GOT_TM24_FROM_WATTSON           0xD1
 #define FLAG_FAN_CLUB_STRENGTH_SHARED        0xD2 // Set when you rate the strength of another trainer in Lilycove's Trainer Fan Club.

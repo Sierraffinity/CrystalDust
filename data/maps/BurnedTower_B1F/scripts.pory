@@ -1,1 +1,125 @@
-mapscripts BurnedTower_B1F_MapScripts {}
+mapscripts BurnedTower_B1F_MapScripts {
+    MAP_SCRIPT_ON_LOAD{
+        setflag(FLAG_TEMP_1)
+        if(!flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+        {
+            setmetatile(6, 17, 0x281, 0)
+            setmetatile(6, 16, 0x283, 1)
+        }
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_0, 0{
+            callnative(PatchAsleepBeastsPalettesToSlots)
+            end
+        }
+    ]
+    MAP_SCRIPT_ON_RETURN_TO_FIELD
+    {
+        callnative(PatchAsleepBeastsPalettesToSlots)
+    }
+}
+
+script BurnedTower_B1F_EventScript_Trigger{
+    if(flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+    {
+        setvar(VAR_TEMP_1, 1)
+        end
+    }
+    lockall
+    fadeoutbgm(0)
+    delay(0x60)
+    callnative(AwakenRaikou)
+    playmoncry(SPECIES_RAIKOU, 0)
+    waitmoncry
+    delay(0x10)
+    callnative(AwakenEntei)
+    playmoncry(SPECIES_ENTEI, 0)
+    waitmoncry
+    delay(0x20)
+    callnative(AwakenSuicune)
+    playmoncry(SPECIES_SUICUNE, 0)
+    waitmoncry
+    delay(0x10)
+    playse(SE_LEDGE)
+    applymovement(5, BurnedTower_B1F_Movement_RaikouExits)
+    delay(0x10)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    waitmovement(5)
+    removeobject(5) //hide Raikou
+    delay(0x20)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    playse(SE_LEDGE)
+    applymovement(6, BurnedTower_B1F_Movement_EnteiExits)
+    waitmovement(0)
+    removeobject(6) // hide Entei
+    delay(0x20)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_SuicuneCircles)
+    delay(0x10)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    delay(0x20)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    delay(0x20)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    delay(0x20)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    waitmovement(4)
+    delay(0x20)
+    playmoncry(SPECIES_SUICUNE, 0)
+    waitmoncry
+    delay(0x30)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_SuicuneExits)
+    delay(0x20)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    delay(0x10)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    waitmovement(4)
+    removeobject(4)
+    delay(0x30)
+    fadeinbgm(0)
+    addobject(3)
+    setmetatile(6, 17, 0x296, 0)
+    setmetatile(6, 16, 0x28E, 1)
+    special(DrawWholeMapView)
+    setflag(FLAG_AWAKENED_LEGENDARY_BEASTS)
+    setvar(VAR_TEMP_1, 1)
+    releaseall
+    end
+}movement(local) BurnedTower_B1F_Movement_RaikouExits{
+    walk_fast_down * 2
+    walk_fast_left * 6
+}movement(local) BurnedTower_B1F_Movement_EnteiExits{
+    walk_fast_right * 2
+    walk_fast_down * 2
+    walk_fast_right * 4
+}movement(local) BurnedTower_B1F_Movement_SuicuneCircles{
+    walk_fast_right * 2
+    walk_fast_down * 4
+    walk_fast_left * 4
+    walk_fast_up * 3
+    walk_fast_right * 2
+}movement(local) BurnedTower_B1F_Movement_SuicuneExits{
+    walk_fast_up
+    walk_fast_right * 2
+    walk_fast_down * 8
+}
+
+script BurnedTower_B1F_EventScript_Eusine{
+    lockall
+    msgbox("EUSINE: I dug a hole here, too…\nI was shocked!\pSUICUNE raced by like a blur, right\nin front of my eyes!\pFor ten years I chased SUICUNE, and\nI finally got to see it.\pI'm all choked up!\p{PLAYER}, I owe all this to you!\nThank you!\pI heard that the legendary POKéMON\nof ECRUTEAK test chosen humans by\lallowing them to get close.\pI'm going to track SUICUNE.\n{PLAYER}, let's meet again!\pFarewell!", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(3, BurnedTower_B1F_Movement_EusineExits)
+    waitmovement(0)
+    removeobject(3)
+    playse(SE_EXIT)
+    delay(0x40)
+    releaseall
+    end
+}movement(local) BurnedTower_B1F_Movement_EusineExits{
+    walk_down
+    walk_left * 4
+    walk_down * 2
+    walk_right
+}

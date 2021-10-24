@@ -342,3 +342,6 @@ const u16 gObjectEventPal_UmbreonKimonoGirl[] = INCBIN_U16("graphics/object_even
 const u16 gObjectEventPal_VaporeonKimonoGirl[] = INCBIN_U16("graphics/object_events/palettes/vaporeon_kimono_girl.gbapal");
 const u16 gObjectEventPal_JolteonKimonoGirl[] = INCBIN_U16("graphics/object_events/palettes/jolteon_kimono_girl.gbapal");
 const u16 gObjectEventPal_Will[] = INCBIN_U16("graphics/object_events/palettes/will.gbapal");
+const u16 gObjectEventPal_EnteiAsleep[] = INCBIN_U16("graphics/object_events/palettes/entei_asleep.gbapal");
+const u16 gObjectEventPal_RaikouAsleep[] = INCBIN_U16("graphics/object_events/palettes/raikou_asleep.gbapal");
+const u16 gObjectEventPal_SuicuneAsleep[] = INCBIN_U16("graphics/object_events/palettes/suicune_asleep.gbapal");
