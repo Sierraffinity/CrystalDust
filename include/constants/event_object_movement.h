@@ -241,6 +241,10 @@
 #define MOVEMENT_ACTION_FIGURE_8                        0x9B
 #define MOVEMENT_ACTION_FLY_UP                          0x9C
 #define MOVEMENT_ACTION_FLY_DOWN                        0x9D
+#define MOVEMENT_ACTION_JUMP_2_DOWN_FAST                0x9E
+#define MOVEMENT_ACTION_JUMP_2_UP_FAST                  0x9F
+#define MOVEMENT_ACTION_JUMP_2_LEFT_FAST                0xA0
+#define MOVEMENT_ACTION_JUMP_2_RIGHT_FAST               0xA1
 
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF

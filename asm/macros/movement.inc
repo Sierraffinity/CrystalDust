@@ -126,6 +126,10 @@
 	create_movement_action figure_8
 	create_movement_action fly_up
 	create_movement_action fly_down
+	create_movement_action jump_2_down_fast
+	create_movement_action jump_2_up_fast
+	create_movement_action jump_2_left_fast
+	create_movement_action jump_2_right_fast
 
 	enum_start 0xfe
 	create_movement_action step_end

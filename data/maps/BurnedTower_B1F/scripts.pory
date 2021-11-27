@@ -41,40 +41,86 @@ script BurnedTower_B1F_EventScript_Trigger{
     waitmoncry
     delay(0x10)
     playse(SE_LEDGE)
-    applymovement(5, BurnedTower_B1F_Movement_RaikouExits)
+    applymovement(5, BurnedTower_B1F_Movement_JumpDown)
     delay(0x10)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    waitmovement(5)
+    playse(SE_LEDGE)
+    applymovement(5, BurnedTower_B1F_Movement_JumpLeft)
+    waitmovement(5)
+    playse(SE_LEDGE)
+    applymovement(5, BurnedTower_B1F_Movement_JumpLeft)
+    waitmovement(5)
+    playse(SE_LEDGE)
+    applymovement(5, BurnedTower_B1F_Movement_JumpLeft)
     waitmovement(5)
     removeobject(5) //hide Raikou
     delay(0x20)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
     playse(SE_LEDGE)
-    applymovement(6, BurnedTower_B1F_Movement_EnteiExits)
+    applymovement(6, BurnedTower_B1F_Movement_JumpRight)
+    waitmovement(0)
+    playse(SE_LEDGE)
+    applymovement(6, BurnedTower_B1F_Movement_JumpDown)
+    waitmovement(0)
+    playse(SE_LEDGE)
+    applymovement(6, BurnedTower_B1F_Movement_JumpRight)
+    waitmovement(0)
+    playse(SE_LEDGE)
+    applymovement(6, BurnedTower_B1F_Movement_JumpRight)
     waitmovement(0)
     removeobject(6) // hide Entei
     delay(0x20)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
     playse(SE_LEDGE)
-    applymovement(4, BurnedTower_B1F_Movement_SuicuneCircles)
-    delay(0x10)
+    applymovement(4, BurnedTower_B1F_Movement_JumpRight)
+    waitmovement(4)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
-    delay(0x20)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpDown)
+    waitmovement(4)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpDown)
+    waitmovement(4)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
-    delay(0x20)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpLeft)
+    waitmovement(4)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpLeft)
+    waitmovement(4)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
-    delay(0x20)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpUp)
+    waitmovement(4)
+    applymovement(4, BurnedTower_B1F_Movement_WalkFastUp)
+    waitmovement(4)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpRight)
     waitmovement(4)
     delay(0x20)
     playmoncry(SPECIES_SUICUNE, 0)
     waitmoncry
     delay(0x30)
+    applymovement(4, BurnedTower_B1F_Movement_WalkFastUp)
+    waitmovement(4)
     playse(SE_LEDGE)
-    applymovement(4, BurnedTower_B1F_Movement_SuicuneExits)
-    delay(0x20)
+    applymovement(4, BurnedTower_B1F_Movement_JumpRight)
+    waitmovement(4)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpDown)
+    waitmovement(4)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
-    delay(0x10)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpDown)
+    waitmovement(4)
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpDown)
+    waitmovement(4)
+    playse(SE_LEDGE)
+    applymovement(4, BurnedTower_B1F_Movement_JumpDown)
     waitmovement(4)
     removeobject(4)
     delay(0x30)
@@ -87,23 +133,16 @@ script BurnedTower_B1F_EventScript_Trigger{
     setvar(VAR_TEMP_1, 1)
     releaseall
     end
-}movement(local) BurnedTower_B1F_Movement_RaikouExits{
-    walk_fast_down * 2
-    walk_fast_left * 6
-}movement(local) BurnedTower_B1F_Movement_EnteiExits{
-    walk_fast_right * 2
-    walk_fast_down * 2
-    walk_fast_right * 4
-}movement(local) BurnedTower_B1F_Movement_SuicuneCircles{
-    walk_fast_right * 2
-    walk_fast_down * 4
-    walk_fast_left * 4
-    walk_fast_up * 3
-    walk_fast_right * 2
-}movement(local) BurnedTower_B1F_Movement_SuicuneExits{
+}movement(local) BurnedTower_B1F_Movement_JumpDown{
+    jump_2_down_fast
+}movement(local) BurnedTower_B1F_Movement_JumpLeft{
+    jump_2_left_fast
+}movement(local) BurnedTower_B1F_Movement_JumpRight{
+    jump_2_right_fast
+}movement(local) BurnedTower_B1F_Movement_JumpUp{
+    jump_2_up_fast
+}movement(local) BurnedTower_B1F_Movement_WalkFastUp{
     walk_fast_up
-    walk_fast_right * 2
-    walk_fast_down * 8
 }
 
 script BurnedTower_B1F_EventScript_Eusine{

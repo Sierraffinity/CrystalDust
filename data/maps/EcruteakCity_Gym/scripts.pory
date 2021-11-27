@@ -27,17 +27,13 @@ script EcruteakCity_Gym_Mapscript_OldMan{
     end
 }movement(local) EcruteakCity_Gym_Movement_PlayerUp{
     walk_up
-    step_end
 }movement(local) EcruteakCity_Gym_Movement_OldManDown{
     walk_slow_down
-    step_end
 }movement(local) EcruteakCity_Gym_Movement_OldManDown2{
     walk_down
-    step_end
 }movement(local) EcruteakCity_Gym_Movement_PlayerDown{
     lock_facing_direction
     walk_slow_down
-    step_end
 }
 
 script EcruteakCity_Gym_Eventscript_Morty{
