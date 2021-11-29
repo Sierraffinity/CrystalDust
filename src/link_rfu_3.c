@@ -676,9 +676,9 @@ void InitHostRFUtgtGname(struct GFtgtGname *data, u8 activity, bool32 started, s
     data->unk_00.hasNews = FALSE;
     data->unk_00.hasCard = FALSE;
     data->unk_00.isCrystalDust = TRUE;
-    data->unk_00.isChampion = FlagGet(FLAG_IS_CHAMPION);
-    data->unk_00.hasNationalDex = IsNationalPokedexEnabled();
-    data->unk_00.gameClear = FlagGet(FLAG_SYS_GAME_CLEAR);
+    data->unk_00.isChampion = FlagGet(FLAG_SYS_TIME_CAPSULE_UNLOCKED);
+    data->unk_00.hasNationalDex = TRUE; //IsNationalPokedexEnabled();
+    data->unk_00.gameClear = FlagGet(FLAG_SYS_TIME_CAPSULE_UNLOCKED);
 }
 
 bool8 LinkRfu_GetNameIfCompatible(struct GFtgtGname *buff1, u8 *buff2, u8 idx)

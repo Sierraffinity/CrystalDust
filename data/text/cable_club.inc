@@ -144,8 +144,7 @@ CableClub_Text_HopeToSeeYouAgain:
 CableClub_Text_NotSetUpForFarAwayRegion:
 	.string "I'm awfully sorry.\p"
 	.string "We're not set up to conduct trades\n"
-	.string "with TRAINERS far away in another\l"
-	.string "region yet…$"
+	.string "with TRAINERS across time yet…$"
 
 CableClub_Text_OtherTrainerNotReady:
 	.string "The other TRAINER is not ready.$"

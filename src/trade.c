@@ -1523,11 +1523,11 @@ static u8 CheckValidityOfTradeMons(u8 *aliveMons, u8 playerPartyCount, u8 player
     }
 
     // Partner cant trade Egg or non-Johto mon if player doesn't have National Dex
-    if (!IsNationalPokedexEnabled())
+    /*if (!IsNationalPokedexEnabled())
     {
         if (sTradeMenuData->isEgg[TRADE_PARTNER][partnerMonIdx] || !IsSpeciesInJohtoDex(partnerSpecies))
             return PARTNER_MON_INVALID;
-    }
+    }*/
 
     if (hasLiveMon)
         hasLiveMon = BOTH_MONS_VALID;
@@ -2348,14 +2348,14 @@ static u32 CanTradeSelectedMon(struct Pokemon *playerParty, int partyCount, int 
     }
 
     // Cant trade Eggs or non-Hoenn mons if player doesn't have National Dex
-    if (!IsNationalPokedexEnabled())
+    /*if (!IsNationalPokedexEnabled())
     {
         if (species2[monIdx] == SPECIES_EGG)
             return CANT_TRADE_EGG_YET;
 
         if (!IsSpeciesInJohtoDex(species2[monIdx]))
             return CANT_TRADE_NATIONAL;
-    }
+    }*/
 
     player = &gLinkPlayers[GetMultiplayerId() ^ 1];
     if ((player->version & 0xFF) != VERSION_RUBY &&
@@ -2408,23 +2408,23 @@ s32 GetGameProgressForLinkTrade(void)
         whichGameSet = 0;
         version = (gLinkPlayers[GetMultiplayerId() ^ 1].version & 0xFF);
 
-        if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN || version == VERSION_CRYSTAL_DUST)
+        if (version == VERSION_CRYSTAL_DUST)
             whichGameSet = 0;
-        else if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
+        else if (version == VERSION_RUBY || version == VERSION_SAPPHIRE || version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
             whichGameSet = 1;
         else
             whichGameSet = 2;
 
-        // If trading with Hoenn, more checks must be satisfied
+        // If trading with RSEFRLG, the Time Capsule must be enabled
         if (whichGameSet > 0)
         {
-            // Is player champion
-            if (gLinkPlayers[GetMultiplayerId()].progressFlagsCopy & 0xF0)
+            // Is the Time Capsule enabled?
+            if(FlagGet(FLAG_SYS_TIME_CAPSULE_UNLOCKED))
             {
                 // Emerald
                 if (whichGameSet == 2)
                 {
-                    // Is partner champion
+                    // Is partner champion? vanilla Emerald partner will error out if it is not Champion, so this check is preserved.
                     if (gLinkPlayers[GetMultiplayerId() ^ 1].progressFlagsCopy & 0xF0)
                         return TRADE_BOTH_PLAYERS_READY;
                     else
@@ -2452,8 +2452,8 @@ static bool32 IsDeoxysOrMewUntradable(u16 species, bool8 isEventLegal)
 
 int GetUnionRoomTradeMessageId(struct GFtgtGnameSub rfuPlayer, struct GFtgtGnameSub rfuPartner, u16 playerSpecies2, u16 partnerSpecies, u8 requestedType, u16 playerSpecies, u8 isEventLegal)
 {
-    bool8 playerHasNationalDex = rfuPlayer.hasNationalDex;
-    bool8 playerIsChampion = rfuPlayer.isChampion;
+    bool8 playerHasNationalDex = TRUE; // no restrictions based on national dex
+    bool8 playerIsChampion = FlagGet(FLAG_SYS_TIME_CAPSULE_UNLOCKED);
     bool8 partnerHasNationalDex = rfuPartner.hasNationalDex;
     bool8 partnerIsChampion = rfuPartner.isChampion;
     u8 r1 = rfuPartner.version;
@@ -2523,7 +2523,7 @@ int GetUnionRoomTradeMessageId(struct GFtgtGnameSub rfuPlayer, struct GFtgtGname
 
 int CanRegisterMonForTradingBoard(struct GFtgtGnameSub rfuPlayer, u16 species2, u16 species, u8 isEventLegal)
 {
-    bool8 hasNationalDex = rfuPlayer.hasNationalDex;
+    bool8 hasNationalDex = TRUE;
 
     if (IsDeoxysOrMewUntradable(species, isEventLegal))
         return CANT_REGISTER_MON;

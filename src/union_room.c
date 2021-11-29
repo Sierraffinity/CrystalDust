@@ -1236,11 +1236,9 @@ static u32 IsTryingToTradeAcrossVersionTooSoon(struct WirelessLink_Group *data, 
     struct UnkStruct_x20 *structPtr = &data->field_0->arr[id];
 
     if (gPlayerCurrActivity == ACTIVITY_TRADE &&
-        structPtr->gname_uname.gname.unk_00.version != VERSION_FIRE_RED &&
-        structPtr->gname_uname.gname.unk_00.version != VERSION_LEAF_GREEN &&
         structPtr->gname_uname.gname.unk_00.version != VERSION_CRYSTAL_DUST)
-    {
-        if (!(gSaveBlock2Ptr->specialSaveWarpFlags & CHAMPION_SAVEWARP))
+    {   //FRLG & E, must have Time Capsule enabled to trade
+        if (!FlagGet(FLAG_SYS_TIME_CAPSULE_UNLOCKED))
             return UR_TRADE_PLAYER_NOT_READY;
         else if (structPtr->gname_uname.gname.unk_00.isChampion)
             return UR_TRADE_READY;

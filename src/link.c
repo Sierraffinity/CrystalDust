@@ -326,7 +326,7 @@ static void InitLocalLinkPlayer(void)
     gLocalLinkPlayer.lp_field_2 = 0x8000;
     // fake national dex so other games don't think they can't trade to us, we should be doing the only checks
     gLocalLinkPlayer.progressFlags = (IsNationalPokedexEnabled() << 1) | 1;
-    if (FlagGet(FLAG_IS_CHAMPION))
+    if (FlagGet(FLAG_SYS_TIME_CAPSULE_UNLOCKED))
     {
         gLocalLinkPlayer.progressFlags |= 0x10;
     }

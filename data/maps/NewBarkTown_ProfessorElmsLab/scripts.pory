@@ -146,7 +146,6 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
                "Before you leave, make sure that\n"
                "you talk to your mom.")
         setflag(FLAG_ADVENTURE_STARTED)
-        special(SetUnlockedPokedexFlags)
         setflag(FLAG_GAVE_MYSTERY_EGG_TO_ELM)
         setflag(FLAG_HIDE_ROUTE_30_YOUNGSTER_BATTLE_OBJECTS)
         clearflag(FLAG_HIDE_ROUTE_30_YOUNGSTER_DEFEATED)

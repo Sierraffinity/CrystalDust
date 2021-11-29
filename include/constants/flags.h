@@ -173,7 +173,7 @@
 #define FLAG_FORCED_CALL_BIKE_SHOP           0x9F
 #define FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED   0xA0
 #define FLAG_VISITED_GOLDENROD_DEPT_STORE_B1F   0xA1
-#define FLAG_MET_BILL_IN_ECRUTEAK            0xA2
+#define FLAG_MET_BILL_IN_ECRUTEAK            0xA2  // Queues Time Capsule unlock on the next day
 #define FLAG_GOT_EEVEE_FROM_BILL             0xA3
 #define FLAG_GOT_SQUIRTBOTTLE                0xA4
 #define FLAG_GOT_TM40_FROM_FALKNER           0xA5
@@ -1345,7 +1345,7 @@
 #define FLAG_SYS_POKEDEX_GET                         (SYSTEM_FLAGS + 0x1)
 #define FLAG_SYS_POKEGEAR_GET                        (SYSTEM_FLAGS + 0x2)
 #define FLAG_UNUSED_0x863                            (SYSTEM_FLAGS + 0x3) // Unused Flag
-#define FLAG_SYS_GAME_CLEAR                          (SYSTEM_FLAGS + 0x4)
+#define FLAG_SYS_TIME_CAPSULE_UNLOCKED               (SYSTEM_FLAGS + 0x4) // Used to be FLAG_SYS_GAME_CLEAR, set when Time Capsule unlocked
 #define FLAG_SYS_CHAT_USED                           (SYSTEM_FLAGS + 0x5)
 #define FLAG_SYS_HIPSTER_MEET                        (SYSTEM_FLAGS + 0x6)
 
@@ -1384,7 +1384,7 @@
 #define FLAG_SYS_HAS_MAP_CARD                       (SYSTEM_FLAGS + 0x21)
 #define FLAG_SYS_HAS_RADIO_CARD                     (SYSTEM_FLAGS + 0x22)
 #define FLAG_SYS_MOM_BANKING_ENABLED                (SYSTEM_FLAGS + 0x23)
-#define FLAG_UNUSED_0x884                           (SYSTEM_FLAGS + 0x24) // Unused Flag
+#define FLAG_SYS_GAME_CLEAR                         (SYSTEM_FLAGS + 0x24) // FLAG_SYS_TIME_CAPSULE_UNLOCKED took its place
 #define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag
 #define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
 #define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag

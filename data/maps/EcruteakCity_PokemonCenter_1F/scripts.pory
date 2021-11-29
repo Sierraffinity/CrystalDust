@@ -1,7 +1,7 @@
 mapscripts EcruteakCity_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setrespawn(HEAL_LOCATION_ECRUTEAK_CITY)
-        if(flag(FLAG_SYS_GAME_CLEAR)) //change to whatever flag unlocks the Time Capsule
+        if(flag(FLAG_MET_BILL_IN_ECRUTEAK))
         {
             setvar(VAR_TEMP_0, 1)
             setflag(FLAG_TEMP_1)
@@ -12,8 +12,6 @@ mapscripts EcruteakCity_PokemonCenter_1F_MapScripts {
     ]
     MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
-
-// TODO: Enable trading through Time Capsule after one day passes.
 
 script EcruteakCity_PokemonCenter_1F_Eventscript_Bill{
     lockall
@@ -44,8 +42,8 @@ script EcruteakCity_PokemonCenter_1F_Eventscript_Bill{
     playse(SE_EXIT)
     waitse
     delay(10)
-    // enable trade flags here
-    //setflag(FLAG_SYS_GAME_CLEAR_OLD)
+    // queue the enable trade flags for the next day here
+    setflag(FLAG_MET_BILL_IN_ECRUTEAK)
     setvar(VAR_TEMP_0, 1)
     releaseall
     end

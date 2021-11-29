@@ -14,5 +14,6 @@
 
 void TrySetMapSaveWarpStatus(void);
 void SetChampionSaveWarp(void);
+void SetUnlockedPokedexFlags(void);
 
 #endif // GUARD_SAVE_LOCATION_H

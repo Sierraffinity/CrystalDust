@@ -11,6 +11,7 @@
 #include "berry.h"
 #include "main.h"
 #include "overworld.h"
+#include "save_location.h"
 #include "string_util.h"
 #include "text.h"
 #include "wallclock.h"
@@ -56,6 +57,11 @@ static void UpdatePerDay(struct Time *localTime)
         UpdateFrontierGambler(daysSince);
         SetShoalItemFlag(daysSince);
         SetRandomLotteryNumber(daysSince);
+        if(FlagGet(FLAG_MET_BILL_IN_ECRUTEAK) && !FlagGet(FLAG_SYS_TIME_CAPSULE_UNLOCKED))
+        {
+            FlagSet(FLAG_SYS_TIME_CAPSULE_UNLOCKED);
+            SetUnlockedPokedexFlags();
+        }
         *days = localTime->days;
     }
 }
