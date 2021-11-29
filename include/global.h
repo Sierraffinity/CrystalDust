@@ -562,20 +562,15 @@ struct Pokeblock
 
 struct Roamer
 {
-    /*0x00*/ u32 ivs;
-    /*0x04*/ u32 personality;
-    /*0x08*/ u16 species;
-    /*0x0A*/ u16 hp;
-    /*0x0C*/ u8 level;
-    /*0x0D*/ u8 status;
-    /*0x0E*/ u8 cool;
-    /*0x0F*/ u8 beauty;
-    /*0x10*/ u8 cute;
-    /*0x11*/ u8 smart;
-    /*0x12*/ u8 tough;
-    /*0x13*/ bool8 active;
-    /*0x14*/ u8 filler[0x8];
-};
+	/*0x00*/ u32 ivs;
+	/*0x04*/ u32 personality;
+	/*0x08*/ u16 hp;           // max roamer HP at level 40 max IVs is Entei at 154HP, so this could be 8bits instead
+    /*0x0A*/ u8 status;        // could be reduced to 4 bits, but padding to word size negates the savings
+	/*0x0B*/ u8 species:2;     // 0 == Raikou, 1 == Entei
+	         u8 active:1;
+	         u8 padding:5;
+}; // 12 bytes total, old struct was 28, enough for two in the same space with 4 bytes of padding.
+
 
 struct RamScriptData
 {
@@ -1034,7 +1029,8 @@ struct SaveBlock1
     /*0x31A8*/ u8 giftRibbons[GIFT_RIBBONS_COUNT];
     /*0x31B3*/ struct ExternalEventData externalEventData;
     /*0x31C7*/ struct ExternalEventFlags externalEventFlags;
-    /*0x31DC*/ struct Roamer roamer;
+    /*0x31DC*/ struct Roamer roamer[2];
+    /*0x31F4*/ u8 padding_31F4[4];
     /*0x31F8*/ struct EnigmaBerry enigmaBerry;
     /*0x322C*/ struct MEventBuffers unk_322C;
     /*0x3598*/ u8 field_3598[0x180];

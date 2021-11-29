@@ -6322,6 +6322,8 @@ u16 GetBattleBGM(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_REGI)
         return MUS_VS_REGI;
+    if (gBattleTypeFlags & BATTLE_TYPE_ROAMER)
+        return MUS_C_VS_LEGEND_BEAST;
     else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
         return MUS_VS_JOHTO_TRAINER;
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)

@@ -341,8 +341,7 @@ static void FindMapsWithMon(u16 species)
     if (sPokedexAreaScreen->unk6E4 > 8)
         sPokedexAreaScreen->unk6E4 = 0;
 
-    roamer = &gSaveBlock1Ptr->roamer;
-    if (species != roamer->species)
+    if (species != SPECIES_RAIKOU && species != SPECIES_ENTEI)
     {
         sPokedexAreaScreen->numOverworldAreas = 0;
         sPokedexAreaScreen->numSpecialAreas = 0;
@@ -386,12 +385,16 @@ static void FindMapsWithMon(u16 species)
             }
         }
     }
-    else
+    else //roamer handling
     {
+        if(species == SPECIES_RAIKOU)
+            roamer = &gSaveBlock1Ptr->roamer[0];
+        else // Entei
+            roamer = &gSaveBlock1Ptr->roamer[1];
         sPokedexAreaScreen->numSpecialAreas = 0;
         if (roamer->active)
         {
-            GetRoamerLocation(&sPokedexAreaScreen->overworldAreasWithMons[0].mapGroup, &sPokedexAreaScreen->overworldAreasWithMons[0].mapNum);
+            GetRoamerLocation(species, &sPokedexAreaScreen->overworldAreasWithMons[0].mapGroup, &sPokedexAreaScreen->overworldAreasWithMons[0].mapNum);
             sPokedexAreaScreen->overworldAreasWithMons[0].regionMapSectionId = Overworld_GetMapHeaderByGroupAndId(sPokedexAreaScreen->overworldAreasWithMons[0].mapGroup, sPokedexAreaScreen->overworldAreasWithMons[0].mapNum)->regionMapSectionId;
             sPokedexAreaScreen->numOverworldAreas = 1;
         }

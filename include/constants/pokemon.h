@@ -355,4 +355,11 @@
 
 #define MON_PIC_SIZE (64 * 64 / 2)
 
+// Roamer Defines
+#define ROAMER_LEVEL 40
+#define ROAMER_RAIKOU 0
+#define ROAMER_ENTEI 1
+#define ROAMER_SUICUNE 2
+#define NUM_ROAMERS 2
+
 #endif // GUARD_CONSTANTS_POKEMON_H

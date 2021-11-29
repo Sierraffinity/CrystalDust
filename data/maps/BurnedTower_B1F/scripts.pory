@@ -130,6 +130,7 @@ script BurnedTower_B1F_EventScript_Trigger{
     setmetatile(6, 16, 0x28E, 1)
     special(DrawWholeMapView)
     setflag(FLAG_AWAKENED_LEGENDARY_BEASTS)
+    special(InitRoamer)
     setvar(VAR_TEMP_1, 1)
     releaseall
     end
