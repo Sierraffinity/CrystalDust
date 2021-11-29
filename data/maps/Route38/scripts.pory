@@ -6,7 +6,7 @@ script Route38_Eventscript_RouteSign {
 }
 
 script Route38_Eventscript_TrainerTipsSign {
-    msgbox("TRAINER TIPS\pIf a POKéMON is trying to evolve,\nyou can stop it.\pPress the B button during evolution.\pThat startles the POKéMON and stops\nits evolution.", MSGBOX_SIGN)
+    msgbox("TRAINER TIPS\pIf a POKéMON is trying to evolve,\nyou can stop it.\pPress the B button during\nevolution.\pThat startles the POKéMON and stops\nits evolution.", MSGBOX_SIGN)
     end
 }
 
@@ -18,7 +18,7 @@ script Route38_Eventscript_SailorHarry {
 
 script Route38_Eventscript_LassDana {
     // TODO: Phone
-    trainerbattle_single(TRAINER_DANA_1, "You seem to be good at POKéMON.\pIf you are, how about giving me some\nadvice?", "I see. So you can battle that way.")
+    trainerbattle_single(TRAINER_DANA_1, "You seem to be good at POKéMON.\pIf you are, how about giving me\nsome advice?", "I see. So you can battle that way.")
     msgbox("I know something good!\pThe MOOMOO FARM's milk is famous for\nits flavor.", MSGBOX_AUTOCLOSE)
     end
 }
