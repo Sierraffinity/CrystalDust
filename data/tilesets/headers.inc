@@ -1215,6 +1215,7 @@ gTileset_BlackthornCity::
 	.4byte gMetatiles_BlackthornCity
 	.4byte gMetatileAttributes_BlackthornCity
 	.4byte NULL
+	.4byte NULL @ palette overrides
 
 	.align 2
 gTileset_MahoganyTown::
@@ -1226,6 +1227,7 @@ gTileset_MahoganyTown::
 	.4byte gMetatiles_MahoganyTown
 	.4byte gMetatileAttributes_MahoganyTown
 	.4byte NULL
+	.4byte NULL @ palette overrides
 
 	.align 2
 gTileset_EcruteakCity::

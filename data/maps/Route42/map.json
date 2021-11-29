@@ -16,14 +16,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "direction": "right",
-      "offset": 0,
-      "map": "MAP_MAHOGANY_TOWN"
-    },
-    {
       "direction": "left",
       "offset": -28,
       "map": "MAP_ECRUTEAK_CITY"
+    },
+    {
+      "direction": "right",
+      "offset": 0,
+      "map": "MAP_MAHOGANY_TOWN"
     }
   ],
   "object_events": [
@@ -31,7 +31,7 @@
   ],
   "warp_events": [
     {
-      "x": 0,
+      "x": 2,
       "y": 14,
       "elevation": 0,
       "dest_map": "MAP_ROUTE42_GATEHOUSE",

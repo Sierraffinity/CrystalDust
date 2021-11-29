@@ -2584,7 +2584,7 @@
     {
       "id": "LAYOUT_ECRUTEAK_CITY",
       "name": "EcruteakCity_Layout",
-      "width": 54,
+      "width": 52,
       "height": 50,
       "border_width": 2,
       "border_height": 2,
@@ -2716,7 +2716,7 @@
     {
       "id": "LAYOUT_ROUTE42",
       "name": "Route42_Layout",
-      "width": 69,
+      "width": 71,
       "height": 32,
       "border_width": 2,
       "border_height": 2,
