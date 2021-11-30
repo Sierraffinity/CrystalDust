@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE41",
   "name": "Route41",
   "layout": "LAYOUT_ROUTE41",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_ROUTE34",
   "region_map_section": "MAPSEC_ROUTE_41",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -27,15 +27,198 @@
     }
   ],
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
+      "in_connection": false,
+      "x": 19,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route41_Eventscript_SwimmerKaylee",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
+      "in_connection": false,
+      "x": 44,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route41_Eventscript_SwimmerCharlie",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
+      "in_connection": false,
+      "x": 66,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route41_Eventscript_SwimmerGeorge",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
+      "in_connection": false,
+      "x": 33,
+      "y": 24,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route41_Eventscript_SwimmerSusie",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
+      "in_connection": false,
+      "x": 28,
+      "y": 32,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route41_Eventscript_SwimmerBerke",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
+      "in_connection": false,
+      "x": 46,
+      "y": 37,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route41_Eventscript_SwimmerKirk",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
+      "in_connection": false,
+      "x": 61,
+      "y": 33,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "6",
+      "script": "Route41_Eventscript_SwimmerKara",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
+      "in_connection": false,
+      "x": 36,
+      "y": 44,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route41_Eventscript_SwimmerDenise",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
+      "in_connection": false,
+      "x": 30,
+      "y": 57,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route41_Eventscript_SwimmerMathew",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
+      "in_connection": false,
+      "x": 14,
+      "y": 63,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "Route41_Eventscript_SwimmerWendy",
+      "flag": "0"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 18,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_1F_NW",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 50,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_1F_NE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 17,
+      "y": 48,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_1F_SW",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 49,
+      "y": 54,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_1F_SE",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "hidden_item",
+      "x": 13,
+      "y": 46,
+      "elevation": 3,
+      "item": "ITEM_MAX_ETHER",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_41_MAX_ETHER"
+    }
   ]
 }
