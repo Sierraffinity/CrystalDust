@@ -219,17 +219,17 @@
 #define FLAG_AWAKENED_LEGENDARY_BEASTS       0xCD
 #define FLAG_ENCOUNTERED_LATIAS_OR_LATIOS    0xCE // Used on Southern Island
 #define FLAG_CURED_AMPHY                     0xCF
-// STOPPED HERE
-#define FLAG_GOT_BASEMENT_KEY_FROM_WATTSON   0xD0
-#define FLAG_GOT_TM24_FROM_WATTSON           0xD1
+#define FLAG_MOOMOO_BERRY_1                  0xD0
+#define FLAG_MOOMOO_BERRY_2                  0xD1
 #define FLAG_FAN_CLUB_STRENGTH_SHARED        0xD2 // Set when you rate the strength of another trainer in Lilycove's Trainer Fan Club.
-#define FLAG_DEFEATED_RIVAL_RUSTBORO         0xD3
-#define FLAG_RECEIVED_RED_OR_BLUE_ORB        0xD4
-#define FLAG_RECEIVED_PREMIER_BALL_RUSTBORO  0xD5
-#define FLAG_ENABLE_WALLY_MATCH_CALL         0xD6
-#define FLAG_ENABLE_SCOTT_MATCH_CALL         0xD7
+#define FLAG_MOOMOO_BERRY_3                  0xD3
+#define FLAG_MOOMOO_BERRY_4                  0xD4
+#define FLAG_MOOMOO_BERRY_5                  0xD5
+#define FLAG_MOOMOO_BERRY_6                  0xD6
+#define FLAG_CURED_MOOMOO                    0xD7
 #define FLAG_ENABLE_MOM_MATCH_CALL           0xD8
-#define FLAG_MET_DIVING_TREASURE_HUNTER      0xD9
+#define FLAG_MET_MOOMOO_FARMER               0xD9
+// STOPPED HERE
 #define FLAG_MET_WAILMER_TRAINER             0xDA
 #define FLAG_EVIL_LEADER_PLEASE_STOP         0xDB
 
@@ -1544,7 +1544,7 @@
 #define FLAG_DAILY_GOLDENROD_UNDERGROUND_BARGAINS                   (DAILY_FLAGS_START + 0x26)
 #define FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT                    (DAILY_FLAGS_START + 0x27)
 #define FLAG_DAILY_GOLDENROD_DEPT_STORE_RETURN_FRUSTRATION_EVENT    (DAILY_FLAGS_START + 0x28)
-#define FLAG_UNUSED_0x929                                           (DAILY_FLAGS_START + 0x29)  // Unused Flag
+#define FLAG_DAILY_MOOMOO_MILK                                      (DAILY_FLAGS_START + 0x29)
 #define FLAG_DAILY_PICKED_LOTO_TICKET                               (DAILY_FLAGS_START + 0x2A)
 #define FLAG_DAILY_ROUTE_114_RECEIVED_BERRY                         (DAILY_FLAGS_START + 0x2B)
 #define FLAG_DAILY_ROUTE_111_RECEIVED_BERRY                         (DAILY_FLAGS_START + 0x2C)

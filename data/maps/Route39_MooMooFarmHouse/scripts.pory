@@ -1,1 +1,77 @@
 mapscripts Route39_MooMooFarmHouse_MapScripts {}
+
+script Route39_MooMooFarmHouse_EventScript_Man {
+    if(!flag(FLAG_CURED_MOOMOO))
+    {
+        msgbox("My MILTANK ain't givin' me milk\nn'more.\pThis here FARM's got famous milk.\nMost everyone wants a drink.\pIt'll give me lots o' milk if'n I\nfeed it lots o' BERRIES, I reckon.", MSGBOX_NPC)
+        setflag(FLAG_MET_MOOMOO_FARMER)
+        end
+    }
+    dotimebasedevents
+    if(!flag(FLAG_DAILY_MOOMOO_MILK))
+    {
+        lock
+        faceplayer
+        showmoneybox(0, 0, 0)
+        msgbox("How'd you like my MOOMOO MILK?\pIt's my pride and joy, there.\nGive it to POKéMON to restore HP!\pI'll give it to ya fer just ¥500.", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == NO)
+        {
+            msgbox("You don't want it?\nCome again, hear?", MSGBOX_AUTOCLOSE)
+            hidemoneybox
+            release
+            end
+        }
+        checkmoney(500, 0)
+        if(var(VAR_RESULT) == FALSE)
+        {
+            msgbox("Sorry, there.\nNo cash, no sale!", MSGBOX_AUTOCLOSE)
+            hidemoneybox
+            release
+            end
+        }
+        checkitemspace(ITEM_MOOMOO_MILK, 1)
+        if(var(VAR_RESULT) == FALSE) //bag full
+        {
+            msgbox("Too bad!\nThe BAG is full…", MSGBOX_AUTOCLOSE)
+            hidemoneybox
+            release
+            end
+        }
+        removemoney(500, 0)
+        updatemoneybox(0, 0)
+        playse(SE_SHOP)
+        msgbox("Here ya go!\nDrink up'n enjoy!", MSGBOX_DEFAULT)
+        giveitem(ITEM_MOOMOO_MILK, 1)
+        hidemoneybox
+        setflag(FLAG_DAILY_MOOMOO_MILK)
+        release
+        end
+    }
+    msgbox("I best go do my milkin'.", MSGBOX_NPC)
+    end
+}
+
+script Route39_MooMooFarmHouse_EventScript_Woman {
+    if(!flag(FLAG_CURED_MOOMOO))
+    {
+        msgbox("Our milk even goes out to KANTO.\pSo if our own MILTANK won't give\nus any milk, we're in trouble.", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_RECEIVED_SECRET_POWER))
+    {
+        msgbox("That there's SECRET POWER.\pIt's a rare move that changes\nbased on where the POKéMON is.\pYou best think how you ought to use\nit, hon.", MSGBOX_NPC)
+        end
+    }
+    faceplayer
+    msgbox("You fixed our MILTANK, hon.\nNow it gives MOOMOO MILK again.\pHere's somethin' fer your trouble.", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_TM43, 1)
+    if(var(VAR_RESULT) == FALSE)
+    {
+        msgbox("Too bad!\nThe BAG is full…", MSGBOX_AUTOCLOSE)
+        release
+        end
+    }
+    giveitem(ITEM_TM43, 1)
+    setflag(FLAG_RECEIVED_SECRET_POWER)
+    goto(Route39_MooMooFarmHouse_EventScript_Woman)
+}

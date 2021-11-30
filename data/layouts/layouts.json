@@ -3424,12 +3424,12 @@
     {
       "id": "LAYOUT_ROUTE39_MOO_MOO_FARM_BARN",
       "name": "Route39_MooMooFarmBarn_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 7,
+      "height": 10,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_VioletGym",
       "border_filepath": "data/layouts/Route39_MooMooFarmBarn/border.bin",
       "blockdata_filepath": "data/layouts/Route39_MooMooFarmBarn/map.bin"
     },

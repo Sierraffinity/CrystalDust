@@ -31,7 +31,7 @@ script Route39_Eventscript_PsychicNorman {
     end
 }
 
-script Route39_Eventscript_PokefanDerek {
+script Route39_Eventscript_PokefanDerek { // Can this guy give out his phone number? Bulbapedia says yes if the player has a Pikachu in their party.
     trainerbattle_single(TRAINER_DEREK, "This is a good time to brag about my\nPIKACHU!", "I had no time to show off PIKACHU…")
     msgbox("PIKACHU is it!\nDon't you agree?", MSGBOX_AUTOCLOSE)
     end
@@ -53,8 +53,8 @@ script Route39_Eventscript_PokefanJaime { // The one in the tall grass
     gettime
     if(var(VAR_0x8002) == TIME_NIGHT)
     {
-        trainerbattle_single(TRAINER_JAIME, "You came at just the right time.\nLet's battle!", "Awaaargh!")
-        msgbox("My POKéMON were caught and raised\noverseas.\pThey're my companions on those long\nvoyages.", MSGBOX_AUTOCLOSE)
+        trainerbattle_single(TRAINER_JAIME, "You came at just the right time.\nLet's battle!", "Oh, how disappointing…")
+        msgbox("I met my MEOWTH at night, right\nhere on Route 39.\pI'm not sure why, but it seems to\nlike it when I train here.\pIt seems to become friendlier by\ntraining here than anywhere else.", MSGBOX_AUTOCLOSE)
         end
     }
     msgbox("Ufufufu…\nI hope it gets dark soon.", MSGBOX_NPC)

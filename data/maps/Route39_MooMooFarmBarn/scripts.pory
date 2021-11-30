@@ -1,1 +1,105 @@
 mapscripts Route39_MooMooFarmBarn_MapScripts {}
+
+script Route39_MooMooFarmBarn_EventScript_Girls{
+    if(flag(FLAG_CURED_MOOMOO))
+    {
+        msgbox("We're feeding MOOMOO!", MSGBOX_NPC)
+        turnobject(1, DIR_WEST)
+        turnobject(3, DIR_EAST)
+        end
+    }
+    msgbox("MOOMOO is sick…\nShe needs lots of BERRIES.", MSGBOX_NPC)
+    turnobject(1, DIR_WEST)
+    turnobject(3, DIR_EAST)
+    end
+}
+
+script Route39_MooMooFarmBarn_EventScript_Moomoo{
+    if(flag(FLAG_CURED_MOOMOO))
+    {
+        goto(Route39_Eventscript_Miltank)
+    }
+    lock
+    faceplayer
+    playmoncry(SPECIES_MILTANK, 5)
+    message("MILTANK: …Mooo…")
+    waitmessage
+    waitmoncry
+    waitbuttonpress
+    if(!flag(FLAG_MET_MOOMOO_FARMER))
+    {
+        msgbox("Its cry is weak…", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("Its cry is weak…\nGive an ORAN BERRY to MILTANK?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        msgbox("{PLAYER} wouldn't give an ORAN BERRY.\nMILTANK looks sad…", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    checkitem(ITEM_ORAN_BERRY, 1)
+    if(var(VAR_RESULT) == FALSE)
+    {
+        msgbox("{PLAYER} has no BERRIES…", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    removeitem(ITEM_ORAN_BERRY, 1)
+    if(!flag(FLAG_MOOMOO_BERRY_1))
+    {
+        setflag(FLAG_MOOMOO_BERRY_1)
+        msgbox(Route39_MooMooFarmBarn_Text_PlayerGaveOranBerry, MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if(!flag(FLAG_MOOMOO_BERRY_2))
+    {
+        setflag(FLAG_MOOMOO_BERRY_2)
+        msgbox(Route39_MooMooFarmBarn_Text_PlayerGaveOranBerry, MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if(!flag(FLAG_MOOMOO_BERRY_3))
+    {
+        setflag(FLAG_MOOMOO_BERRY_3)
+        msgbox("{PLAYER} gave an ORAN BERRY to\nMILTANK.\pMILTANK became a little healthier!", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if(!flag(FLAG_MOOMOO_BERRY_4))
+    {
+        setflag(FLAG_MOOMOO_BERRY_4)
+        msgbox(Route39_MooMooFarmBarn_Text_PlayerGaveOranBerry, MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if(!flag(FLAG_MOOMOO_BERRY_5))
+    {
+        setflag(FLAG_MOOMOO_BERRY_5)
+        msgbox("{PLAYER} gave an ORAN BERRY to\nMILTANK.\pMILTANK became quite healthy!", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if(!flag(FLAG_MOOMOO_BERRY_6))
+    {
+        setflag(FLAG_MOOMOO_BERRY_6)
+        msgbox(Route39_MooMooFarmBarn_Text_PlayerGaveOranBerry, MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if(!flag(FLAG_CURED_MOOMOO))
+    {
+        setflag(FLAG_CURED_MOOMOO)
+        message(Route39_MooMooFarmBarn_Text_PlayerGaveOranBerry)
+        waitmessage
+        playfanfare(MUS_HEAL)
+        waitfanfare
+        msgbox("MILTANK became totally healthy!", MSGBOX_DEFAULT)
+        release
+        end
+    }
+}text(local) Route39_MooMooFarmBarn_Text_PlayerGaveOranBerry{
+    "{PLAYER} gave an ORAN BERRY to\nMILTANK."
+}
