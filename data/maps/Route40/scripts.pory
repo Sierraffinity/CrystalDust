@@ -1,4 +1,14 @@
-mapscripts Route40_MapScripts {}
+mapscripts Route40_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION {
+		gettime
+		if(var(VAR_0x8003) != DAY_MONDAY)
+		{
+			setflag(FLAG_TEMP_1)
+			end
+		}
+		end
+	}
+}
 
 script Route40_Eventscript_RouteSign {
     msgbox("ROUTE 40\nCIANWOOD CITY - OLIVINE CITY", MSGBOX_SIGN)
@@ -6,7 +16,7 @@ script Route40_Eventscript_RouteSign {
 }
 
 script Route40_Eventscript_FenceGirl {
-    msgbox("I came to OLIVINE by ship to see the\nsights and soak up the atmosphere.\pBeing a port, it feels so different\nfrom a big city.", MSGBOX_NPC)
+    msgbox("I came to OLIVINE by ship to see\nthe sights and soak up the\latmosphere.\pBeing a port, it feels so different\nfrom a big city.", MSGBOX_NPC)
     end
 }
 
@@ -16,7 +26,7 @@ script Route40_Eventscript_GateMan {
 }
 
 script Route40_Eventscript_OceanBoy {
-    msgbox("Have you gone to the BATTLE TOWER?\pI think a lot of tough TRAINERS have\ngathered there already.\pBut since you have so many BADGES,\nyou shouldn't do badly at all.", MSGBOX_NPC)
+    msgbox("Have you gone to the BATTLE\nTOWER?\pI think a lot of tough TRAINERS\nhave gathered there already.\pBut since you have so many BADGES,\nyou shouldn't do badly at all.", MSGBOX_NPC)
     end
 }
 
@@ -70,7 +80,7 @@ script Route39_Eventscript_SwimmerSimon { //northernmost male swimmer
 
 script Route39_Eventscript_SwimmerElaine { //westernmost female swimmer
     trainerbattle_single(TRAINER_ELAINE, "Are you going to CIANWOOD?\nHow about a quick battle first?", "I lost that one!")
-    msgbox("I'd say I'm a better swimmer than you.\nYeah!", MSGBOX_AUTOCLOSE)
+    msgbox("I'd say I'm a better swimmer than\nyou. Yeah!", MSGBOX_AUTOCLOSE)
     end
 }
 

@@ -1,7 +1,8 @@
-mapscripts EcruteakCity_MapScripts {}
-
-// TODO: Girl near Burned Tower fence. Needs the released legendary dogs flag
-// TODO: Fat Man above Gym. Needs the cured Amphy flag.
+mapscripts EcruteakCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_ECRUTEAK_CITY)
+    }
+}
 
 script EcruteakCity_Eventscript_CitySign {
     msgbox("ECRUTEAK CITY\pA Historical City Where the Past\nMeets the Present", MSGBOX_SIGN)

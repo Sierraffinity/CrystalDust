@@ -10,8 +10,14 @@
 #define INGAME_TRADE_ONIX 0
 #define INGAME_TRADE_MACHOP 1
 #define INGAME_TRADE_MEOWTH 2
+#define INGAME_TRADE_VOLTORB 3
+#define INGAME_TRADE_DODRIO 4
+#define INGAME_TRADE_AERODACTYL 5
+#define INGAME_TRADE_XATU 6
+#define INGAME_TRADE_MAGNETON 7
 // Not really trades but use the same system
-#define INGAME_TRADE_GIFT_SPEAROW 3
+#define INGAME_TRADE_GIFT_SPEAROW 8
+#define INGAME_TRADE_GIFT_SHUCKLE 9
 
 // Flag IDs for sending link data
 #define INITIATE_TRADE  1

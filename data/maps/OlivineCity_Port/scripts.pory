@@ -1,4 +1,16 @@
-mapscripts OlivineCity_Port_MapScripts {}
+mapscripts OlivineCity_Port_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_SYS_GAME_CLEAR))
+        {
+            setflag(FLAG_TEMP_1) // Hide pre-HoF objects
+        }
+        else
+        {
+            setflag(FLAG_TEMP_2) // Hide post-HoF objects
+        }
+        // Ferry man needs to be moved as well for disembarking from the SS Aqua.
+    }
+}
 
 // TODO: Ferry Sailor
 

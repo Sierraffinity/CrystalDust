@@ -1,6 +1,6 @@
 mapscripts OlivineCity_PortPassage_MapScripts {}
 
 script OlivineCity_PortPassage_Eventscript_Man{
-    msgbox("FAST SHIP S.S. AQUA sails to KANTO on\nMondays and Fridays.", MSGBOX_NPC)
+    msgbox("FAST SHIP S.S. AQUA sails to KANTO\non Mondays and Fridays.", MSGBOX_NPC)
     end
 }

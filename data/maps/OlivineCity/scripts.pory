@@ -1,6 +1,122 @@
-mapscripts OlivineCity_MapScripts {}
+mapscripts OlivineCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        // set by Rival event to save a flag. It's impossible to Fly to Olivine before this point, so setting it a little late doesn't matter.
+        if(flag(FLAG_VISITED_OLIVINE_CITY)) 
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+        setflag(FLAG_TEMP_1)
+    }
+}
 
-// TODO: Rival event
+script OlivineCity_EventScript_RivalTrigger{
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    playse(SE_PIN)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    fadeoutbgm(0) //delays long enough for the emote to finish animating
+    waitmovement(0)
+    opendoor(12, 9)
+    waitdooranim
+    addobject(4)
+    applymovement(4, OlivineCity_Movement_RivalStepsOutOfGym)
+    waitmovement(0)
+    closedoor(12, 9)
+    waitdooranim
+    getplayerxy(VAR_0x8001, VAR_RESULT)
+    if(var(VAR_RESULT) == 9)
+    {
+        applymovement(4, OlivineCity_Movement_RivalToTopPlayer)
+        waitmovement(0)
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    }
+    if(var(VAR_RESULT) == 10)
+    {
+        applymovement(4, OlivineCity_Movement_RivalToPlayer2)
+        waitmovement(0)
+    }
+    if(var(VAR_RESULT) == 11)
+    {
+        applymovement(4, OlivineCity_Movement_RivalToPlayer3)
+        waitmovement(0)
+    }
+    if(var(VAR_RESULT) == 12)
+    {
+        applymovement(4, OlivineCity_Movement_RivalToPlayer4)
+        waitmovement(0)
+    }
+    if(var(VAR_RESULT) == 13)
+    {
+        applymovement(4, OlivineCity_Movement_RivalToPlayer5)
+        waitmovement(0)
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    }
+    playbgm(MUS_ENCOUNTER_RIVAL, 0)
+    textcolor(0)
+    msgbox("…\nYou again?\pThere's no need to panic. I don't\nbother with wimps like you.\pSpeaking of weaklings, the city's\nGYM LEADER isn't here.\pSupposedly taking care of a sick\nPOKéMON at the LIGHTHOUSE.\pHumph! Boo-hoo!\nJust let sick POKéMON go!\pA POKéMON that can't battle is\nworthless!\pWhy don't you go train at the\nLIGHTHOUSE?\pWho knows?\nIt may make you a bit less weak!", MSGBOX_DEFAULT)
+    release
+    delay(10)
+    getplayerxy(VAR_0x8001, VAR_RESULT)
+    if(var(VAR_RESULT) == 9 || var(VAR_RESULT) == 13)
+    {
+        applymovement(4, OlivineCity_Movement_RivalExitsTop)
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+        waitmovement(0)
+    }
+    if(var(VAR_RESULT) == 10 || var(VAR_RESULT) == 11)
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Movement_PlayerUp)
+        waitmovement(0)
+        applymovement(4, OlivineCity_Movement_RivalExits2)
+        delay(0x14)
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+        waitmovement(0)
+    }
+    if(var(VAR_RESULT) == 12)
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Movement_PlayerDown)
+        waitmovement(0)
+        applymovement(4, OlivineCity_Movement_RivalExits2)
+        delay(0x14)
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+        waitmovement(0)
+    }
+    removeobject(4)
+    delay(0x10)
+    fadedefaultbgm
+    setflag(FLAG_VISITED_OLIVINE_CITY)
+    setvar(VAR_TEMP_0, 1)
+    release
+    end
+}movement OlivineCity_Movement_RivalStepsOutOfGym{
+    walk_down
+}movement OlivineCity_Movement_RivalToTopPlayer{
+    walk_right * 3
+    face_up
+}movement OlivineCity_Movement_RivalToPlayer2{
+    walk_right * 2
+}movement OlivineCity_Movement_RivalToPlayer3{
+    walk_down
+    walk_right * 2
+}movement OlivineCity_Movement_RivalToPlayer4{
+    walk_down * 2
+    walk_right * 2
+}movement OlivineCity_Movement_RivalToPlayer5{
+    walk_down * 2
+    walk_right * 3
+    face_down
+}movement OlivineCity_Movement_RivalExitsTop{
+    walk_right * 7
+    walk_up * 7
+}movement OlivineCity_Movement_PlayerUp{
+    walk_up
+    face_down
+}movement OlivineCity_Movement_RivalExits2{
+    walk_right * 8
+    walk_up * 7
+}movement OlivineCity_Movement_PlayerDown{
+    walk_down
+    face_up
+}
 
 script OlivineCity_EventScript_CitySign{
     msgbox("OLIVINE CITY\nThe Port Closest to Foreign Lands", MSGBOX_SIGN)
@@ -18,7 +134,8 @@ script OlivineCity_EventScript_PortSign{
 }
 
 script OlivineCity_EventScript_LighthouseSign{
-    msgbox("OLIVINE LIGHTHOUSE\nAlso known as the GLITTER LIGHTHOUSE", MSGBOX_SIGN)
+    // The original text is "OLIVINE LIGHTHOUSE\nAlso known as the GLITTER LIGHTHOUSE", but this string cuts off the E at the end.
+    msgbox("OLIVINE LIGHTHOUSE\pAlso known as the GLITTER\nLIGHTHOUSE", MSGBOX_SIGN)
     end
 }
 
@@ -31,7 +148,7 @@ script OlivineCity_EventScript_Boy{ //northernmost NPC
     random(2)
     if(var(VAR_RESULT) == 0)
     {
-        msgbox("That thing you have--it's a POKéGEAR,\nright? Wow, that's cool.", MSGBOX_NPC)
+        msgbox("That thing you have--it's a\nPOKéGEAR, right? Wow, that's cool.", MSGBOX_NPC)
         end
     }
     msgbox("Wow, you have a POKéDEX!\nThat is just so awesome.", MSGBOX_NPC)

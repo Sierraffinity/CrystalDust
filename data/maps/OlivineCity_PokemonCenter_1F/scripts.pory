@@ -1,4 +1,9 @@
-mapscripts OlivineCity_PokemonCenter_1F_MapScripts {}
+mapscripts OlivineCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_OLIVINE_CITY)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
 
 script OlivineCity_PokemonCenter_1F_Eventscript_Woman{
     msgbox("There's a person in CIANWOOD CITY\nacross the sea.\pI heard him bragging about his rare\nPOKéMON.", MSGBOX_NPC)
@@ -23,6 +28,6 @@ script OlivineCity_PokemonCenter_1F_Eventscript_BugCatcher{
         end
     }
     // happiest
-    msgbox("Wow! You and your POKéMON are really\nclose!", MSGBOX_NPC)
+    msgbox("Wow! You and your POKéMON are\nreally close!", MSGBOX_NPC)
     end
 }

@@ -19,6 +19,8 @@ script OlivineCity_Cafe_EventScript_StrengthSailor {
         msgbox("On the sea, the only thing you can\ncount on is your own good self!\pI'm so proud of my buff bod!", MSGBOX_NPC)
         end
     }
+    lock
+    faceplayer
     msgbox("Hah! Your POKéMON sure look like\nlightweights!\pThey don't have the power to move\nboulders aside.\pHere, use this and teach them\nSTRENGTH!", MSGBOX_DEFAULT)
     giveitem(ITEM_HM04)
     release

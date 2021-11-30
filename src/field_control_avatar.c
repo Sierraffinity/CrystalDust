@@ -566,7 +566,7 @@ static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metati
     if (PartyHasMonWithHeadbutt() && MetatileBehavior_IsHeadbuttTree(metatileBehavior) == TRUE)
         return EventScript_HeadbuttTree;
 
-    if (FlagGet(FLAG_BADGE05_GET) == TRUE && PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
+    if (FlagGet(FLAG_BADGE04_GET) == TRUE && PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
         return EventScript_UseSurf;
 
     if (MetatileBehavior_IsWaterfall(metatileBehavior) == TRUE)

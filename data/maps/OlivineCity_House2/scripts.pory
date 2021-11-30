@@ -1,3 +1,68 @@
 mapscripts OlivineCity_House2_MapScripts {}
 
-// this is the trade house
+script OlivineCity_House2_EventScript_Tim {
+    lock
+    faceplayer
+    setvar(VAR_0x8008, INGAME_TRADE_VOLTORB)
+    copyvar(VAR_0x8004, VAR_0x8008)
+    specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+    copyvar(VAR_0x8009, VAR_RESULT)
+
+    if (!flag(FLAG_OLIVINE_NPC_TRADE_COMPLETED))
+    {
+        msgbox("Hi, I'm looking for this POKéMON.\pIf you have {STR_VAR_1}, would\nyou trade it for my {STR_VAR_2}?", MSGBOX_YESNO)
+        
+        if (var(VAR_RESULT) != NO)
+        {
+            special(ChoosePartyMon)
+            waitstate
+            lock
+            faceplayer
+            copyvar(VAR_0x800A, VAR_0x8004)
+            
+            if (var(VAR_0x8004) != 0xFF)
+            {
+                copyvar(VAR_0x8005, VAR_0x800A)
+                specialvar(VAR_RESULT, GetTradeSpecies)
+                copyvar(VAR_0x800B, VAR_RESULT)
+
+                if (var(VAR_RESULT) == VAR_0x8009)
+                {
+                    msgbox("OK, connect the Game Link Cable.", MSGBOX_DEFAULT)
+                    copyvar(VAR_0x8004, VAR_0x8008)
+                    copyvar(VAR_0x8005, VAR_0x800A)
+                    special(CreateInGameTradePokemon)
+                    special(DoInGameTradeScene)
+                    waitstate
+                    lock
+                    faceplayer
+                    bufferspeciesname(0, VAR_0x8009)
+                    msgbox("Great! Thank you!\nI finally got {STR_VAR_1}.")
+                    setflag(FLAG_OLIVINE_NPC_TRADE_COMPLETED)
+                }
+                else
+                {
+                    bufferspeciesname(0, VAR_0x8009)
+                    msgbox("You don't have {STR_VAR_1}?\nThat's too bad, then.")
+                }
+            }
+            else
+            {
+                msgbox(OlivineCity_House2_Text_Tim_NoTrade)
+            }
+        }
+        else
+        {
+            msgbox(OlivineCity_House2_Text_Tim_NoTrade)
+        }
+    }
+    else
+    {
+        bufferspeciesname(0, VAR_0x8009)
+        msgbox("Hi! The {STR_VAR_1} you traded me is\ndoing great!")
+    }
+
+    release
+}text OlivineCity_House2_Text_Tim_NoTrade{
+    "You don't have one either?\nGee, that's really disappointing…"
+}

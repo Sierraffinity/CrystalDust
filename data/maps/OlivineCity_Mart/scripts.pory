@@ -6,7 +6,7 @@ script OlivineCity_Mart_Eventscript_Girl1 { //uppermost
 }
 
 script OlivineCity_Mart_Eventscript_Girl2 { //lowermost
-    msgbox("My BUTTERFREE came from my boyfriend\noverseas.\pIt carried some MAIL from him.\nWant to know what it says?\pLet's see… Nope!\nIt's a secret!", MSGBOX_NPC)
+    msgbox("My BUTTERFREE came from my\nboyfriend overseas.\pIt carried some MAIL from him.\nWant to know what it says?\pLet's see… Nope!\nIt's a secret!", MSGBOX_NPC)
     end
 }
 // This mart sells Surf Mail in Crystal

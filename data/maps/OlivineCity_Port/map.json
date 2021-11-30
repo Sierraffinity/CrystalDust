@@ -2,7 +2,7 @@
   "id": "MAP_OLIVINE_CITY_PORT",
   "name": "OlivineCity_Port",
   "layout": "LAYOUT_OLIVINE_CITY_PORT",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_VIOLET",
   "region_map_section": "MAPSEC_OLIVINE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,13 +12,101 @@
   "allow_running": true,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "in_connection": false,
+      "x": 9,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "in_connection": false,
+      "x": 6,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivineCity_Port_Eventscript_Boy",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
+      "in_connection": false,
+      "x": 13,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivineCity_Port_Eventscript_Girl",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "in_connection": false,
+      "x": 6,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivineCity_Port_Eventscript_Fisherman2",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "in_connection": false,
+      "x": 16,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivineCity_Port_Eventscript_Fisherman1",
+      "flag": "FLAG_TEMP_1"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 11,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_OLIVINE_CITY_PORT_PASSAGE",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 9,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_OLIVINE_CITY_PORT",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 

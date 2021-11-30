@@ -1011,8 +1011,8 @@ static const struct InGameTrade sIngameTrades[] =
         .ivs = {8, 9, 6, 6, 6, 6},
         .abilityNum = 1, 
         .otId = 48926,
-        .conditions = {30, 5, 5, 5, 5},
-        .personality = 0x84,
+        .conditions = {30, 5, 5, 5, 5}, // cool, beauty, cute, smart, tough
+        .personality = 0x66EB22D7, // Hasty Male
         .heldItem = ITEM_PERSIM_BERRY, 
         .mailNum = -1,
         .otName = _("KYLE"), 
@@ -1027,8 +1027,8 @@ static const struct InGameTrade sIngameTrades[] =
         .ivs = {12, 3, 7, 6, 6, 6},
         .abilityNum = 0,
         .otId = 37460,
-        .conditions = {5, 5, 5, 5, 30},
-        .personality = 0x2F,
+        .conditions = {5, 5, 5, 5, 30}, // cool, beauty, cute, smart, tough
+        .personality = 0x4B7EA131, // Lonely Female
         .heldItem = ITEM_SITRUS_BERRY, 
         .mailNum = -1,
         .otName = _("MIKE"), 
@@ -1043,7 +1043,7 @@ static const struct InGameTrade sIngameTrades[] =
         .ivs = {4, 5, 4, 5, 4, 4},
         .abilityNum = 0, 
         .otId = 91481,
-        .conditions = {5, 5, 5, 30, 5},
+        .conditions = {5, 5, 5, 30, 5}, // cool, beauty, cute, smart, tough
         .personality = 0x8B,
         .heldItem = ITEM_RETRO_MAIL, 
         .mailNum = 2,
@@ -1052,6 +1052,86 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
     },
+    [INGAME_TRADE_VOLTORB] = 
+    {
+        .nickname = _("VOLTY"), 
+        .species = SPECIES_VOLTORB,
+        .ivs = {8, 9, 8, 8, 8, 8},
+        .abilityNum = 1,
+        .otId = 29189,
+        .conditions = {5, 5, 30, 5, 5}, // cool, beauty, cute, smart, tough
+        .personality = 0x668ABF81, // Hardy
+        .heldItem = ITEM_CHERI_BERRY, 
+        .mailNum = -1,
+        .otName = _("TIM"), 
+        .otGender = MALE, 
+        .sheen = 10,
+        .requestedSpecies = SPECIES_KRABBY
+    }, 
+    [INGAME_TRADE_DODRIO] = 
+    {
+        .nickname = _("DORIS"), 
+        .species = SPECIES_DODRIO,
+        .ivs = {12, 7, 7, 6, 6, 6},
+        .abilityNum = 0,
+        .otId = 283,
+        .conditions = {5, 5, 5, 30, 5}, // cool, beauty, cute, smart, tough
+        .personality = 0xA84B6F04, // Impish Female
+        .heldItem = ITEM_SMOKE_BALL, 
+        .mailNum = -1,
+        .otName = _("EMY"), 
+        .otGender = FEMALE, 
+        .sheen = 10,
+        .requestedSpecies = SPECIES_DRAGONAIR
+    }, 
+    [INGAME_TRADE_AERODACTYL] = 
+    {
+        .nickname = _("AEROY"), 
+        .species = SPECIES_AERODACTYL,
+        .ivs = {8, 9, 6, 6, 6, 6},
+        .abilityNum = 0,
+        .otId = 26491,
+        .conditions = {30, 5, 5, 5, 5}, // cool, beauty, cute, smart, tough
+        .personality = 0x002978E8, // Adamant Male
+        .heldItem = ITEM_SITRUS_BERRY, 
+        .mailNum = -1,
+        .otName = _("KIM"), 
+        .otGender = FEMALE, 
+        .sheen = 10,
+        .requestedSpecies = SPECIES_CHANSEY
+    },
+    [INGAME_TRADE_XATU] = 
+    {
+        .nickname = _("PAUL"), 
+        .species = SPECIES_XATU,
+        .ivs = {8, 9, 6, 8, 6, 6},
+        .abilityNum = 0,
+        .otId = 15616,
+        .conditions = {5, 5, 5, 30, 5}, // cool, beauty, cute, smart, tough
+        .personality = 0x640D3D9C, // Modest Male
+        .heldItem = ITEM_LEPPA_BERRY, 
+        .mailNum = -1,
+        .otName = _("CHRIS"), 
+        .otGender = MALE, 
+        .sheen = 10,
+        .requestedSpecies = SPECIES_HAUNTER
+    },
+    [INGAME_TRADE_MAGNETON] = 
+    {
+        .nickname = _("MAGGIE"), 
+        .species = SPECIES_MAGNETON,
+        .ivs = {8, 9, 6, 6, 6, 6},
+        .abilityNum = 0,
+        .otId = 50082,
+        .conditions = {30, 5, 5, 5, 5}, // cool, beauty, cute, smart, tough
+        .personality = 0x9AEE0E5C, // Impish
+        .heldItem = ITEM_METAL_COAT, 
+        .mailNum = -1,
+        .otName = _("FOREST"), 
+        .otGender = MALE, 
+        .sheen = 10,
+        .requestedSpecies = SPECIES_DUGTRIO
+    },
     [INGAME_TRADE_GIFT_SPEAROW] = 
     {
         .nickname = _("KENYA"),
@@ -1059,7 +1139,7 @@ static const struct InGameTrade sIngameTrades[] =
         .ivs = {5, 4, 4, 4, 5, 4},
         .abilityNum = 0, 
         .otId = 1001,
-        .conditions = {5, 5, 5, 5, 30},
+        .conditions = {5, 5, 5, 5, 30}, // cool, beauty, cute, smart, tough
         .personality = 0x7F,
         .heldItem = ITEM_TROPIC_MAIL, 
         .mailNum = 0,
@@ -1067,6 +1147,22 @@ static const struct InGameTrade sIngameTrades[] =
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = 10 // level
+    },
+    [INGAME_TRADE_GIFT_SHUCKLE] = 
+    {
+        .nickname = _("SHUCKIE"), 
+        .species = SPECIES_SHUCKLE,
+        .ivs = {15, 15, 15, 15, 15, 15},
+        .abilityNum = 0,
+        .otId = 518,
+        .conditions = {5, 5, 30, 5, 5}, // cool, beauty, cute, smart, tough
+        .personality = 0xE47B81C6, // Careful Male
+        .heldItem = ITEM_ORAN_BERRY, 
+        .mailNum = -1,
+        .otName = _("MANIA"), 
+        .otGender = MALE, 
+        .sheen = 10,
+        .requestedSpecies = 15 // level
     },
 };
 
