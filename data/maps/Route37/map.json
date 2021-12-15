@@ -86,6 +86,13 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route37_Eventscript_SunnyOfSunday",
       "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "clone",
+      "x": 13,
+      "y": -4,
+      "source_id": 6,
+      "source_map": "MAP_ECRUTEAK_CITY"
     }
   ],
   "warp_events": [

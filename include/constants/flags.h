@@ -238,8 +238,8 @@
 #define FLAG_LEARNED_ALL_MOVES_AT_POKE_SEER  0xE0
 #define FLAG_GOT_TM31_FROM_CHUCK             0xE1
 #define FLAG_LEARNED_AMPHY_IS_SICK           0xE2
+#define FLAG_GOT_MYSTIC_WATER_IN_CHERRYGROVE 0xE3
 // STOPPED HERE
-#define FLAG_RECEIVED_GOOD_ROD               0xE3
 #define FLAG_REGI_DOORS_OPENED               0xE4
 #define FLAG_RECEIVED_TM27                   0xE5
 #define FLAG_RECEIVED_TM36                   0xE6

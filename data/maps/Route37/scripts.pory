@@ -22,13 +22,13 @@ script Route37_Eventscript_PsychicGreg{
 }
 
 script Route37_Eventscript_TwinAnn{ // left twin
-    trainerbattle_single(TRAINER_ANN_AND_ANNE, "ANN: ANNE and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.")
+    trainerbattle_double(TRAINER_ANN_AND_ANNE, "ANN: ANNE and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.", "ANN: You can't battle us with\njust one POKéMON!")
     msgbox("ANN: I can tell what my sister and\nmy POKéMON are thinking.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route37_Eventscript_TwinAnne{ // right twin
-    trainerbattle_single(TRAINER_ANN_AND_ANNE, "ANNE: ANN and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.")
+    trainerbattle_double(TRAINER_ANN_AND_ANNE, "ANNE: ANN and I are in this\ntogether!", "ANN & ANNE: Nnn…\nA little too strong.", "ANNE: We don't like to battle\nagainst lonesome POKéMON!")
     msgbox("ANNE: We share the same feelings as\nour POKéMON.", MSGBOX_AUTOCLOSE)
     end
 }

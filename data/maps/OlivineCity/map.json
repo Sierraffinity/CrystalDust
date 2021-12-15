@@ -86,6 +86,13 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "clone",
+      "x": -7,
+      "y": 29,
+      "source_id": 1,
+      "source_map": "MAP_ROUTE40"
     }
   ],
   "warp_events": [

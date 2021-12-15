@@ -392,6 +392,22 @@ CherrygroveCity_EventScript_YoungsterPostDex:
 	release
 	end
 
+CherrygroveCity_EventScript_MysticWaterGuy::
+	lock
+	faceplayer
+	checkflag FLAG_GOT_MYSTIC_WATER_IN_CHERRYGROVE
+	goto_if_eq CherrygroveCity_EventScript_MysticWaterGuyReceived
+	msgbox CherrygroveCity_Text_MysticWaterGuy, MSGBOX_DEFAULT
+	checkitemspace ITEM_MYSTIC_WATER, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	giveitem ITEM_MYSTIC_WATER, 1
+	setflag FLAG_GOT_MYSTIC_WATER_IN_CHERRYGROVE
+CherrygroveCity_EventScript_MysticWaterGuyReceived:
+	msgbox CherrygroveCity_Text_MysticWaterGuyReceived, MSGBOX_NPC
+	release
+	end
+
 CherrygroveCity_Text_GuideGent_Intro:
 	.string "You're a rookie TRAINER, aren't you?\n"
 	.string "I can tell!\p"
@@ -500,3 +516,9 @@ CherrygroveCity_Text_GuideGentsHouse:
 CherrygroveCity_Text_Slogan:
 	.string "CHERRYGROVE CITY\n"
 	.string "The City of Cute, Fragrant Flowers$"
+
+CherrygroveCity_Text_MysticWaterGuy:
+	.string "A POKéMON I caught had an item.\nI think it's MYSTIC WATER.\pI don't need it, so do you want it?$"
+
+CherrygroveCity_Text_MysticWaterGuyReceived:
+	.string "Back to fishing for me, then.$"

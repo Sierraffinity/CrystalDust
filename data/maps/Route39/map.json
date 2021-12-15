@@ -161,6 +161,13 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route39_Eventscript_PokefanJaime",
       "flag": "0"
+    },
+    {
+      "type": "clone",
+      "x": 36,
+      "y": 11,
+      "source_id": 4,
+      "source_map": "MAP_ROUTE38"
     }
   ],
   "warp_events": [
