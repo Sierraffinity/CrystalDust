@@ -291,7 +291,7 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_WAILMER_PAIL] = {gItemIcon_WailmerPail, gItemIconPalette_WailmerPail},
     [ITEM_DEVON_GOODS] = {gItemIcon_DevonGoods, gItemIconPalette_DevonGoods},
     [ITEM_SOOT_SACK] = {gItemIcon_SootSack, gItemIconPalette_SootSack},
-    [ITEM_BASEMENT_KEY] = {gItemIcon_BasementKey, gItemIconPalette_OldKey},
+    [ITEM_BASEMENT_KEY] = {gItemIcon_BasementKey, gItemIconPalette_BasementKey},
     [ITEM_ACRO_BIKE] = {gItemIcon_AcroBike, gItemIconPalette_AcroBike},
     [ITEM_POKEBLOCK_CASE] = {gItemIcon_PokeblockCase, gItemIconPalette_PokeblockCase},
     [ITEM_LETTER] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
@@ -422,6 +422,14 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_BLUE_CARD] = {gItemIcon_BlueCard, gItemIconPalette_BlueCard},
     [ITEM_SQUIRTBOTTLE] = {gItemIcon_Squirtbottle, gItemIconPalette_Squirtbottle},
     [ITEM_SECRET_POTION] = {gItemIcon_SecretPotion, gItemIconPalette_SecretPotion},
+    [ITEM_RED_SCALE] = {gItemIcon_RedScale, gItemIconPalette_RedScale},
+    [ITEM_CLEAR_BELL] = {gItemIcon_ClearBell, gItemIconPalette_ClearBell},
+    [ITEM_SILVER_WING] = {gItemIcon_SilverWing, gItemIconPalette_SilverWing},
+    [ITEM_GS_BALL] = {gItemIcon_GSBall, gItemIconPalette_GSBall},
+    [ITEM_MACHINE_PART] = {gItemIcon_MachinePart, gItemIconPalette_MachinePart},
+    [ITEM_LOST_ITEM] = {gItemIcon_LostItem, gItemIconPalette_LostItem},
+    [ITEM_PASS] = {gItemIcon_Pass, gItemIconPalette_Pass},
+    [ITEM_RAINBOW_WING] = {gItemIcon_RainbowWing, gItemIconPalette_RainbowWing},
     // Return to field arrow
     [ITEM_FIELD_ARROW] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

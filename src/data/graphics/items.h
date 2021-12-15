@@ -573,6 +573,7 @@ const u32 gItemIconPalette_SootSack[] = INCBIN_U32("graphics/items/icon_palettes
 
 const u32 gItemIcon_BasementKey[] = INCBIN_U32("graphics/items/icons/basement_key.4bpp.lz");
 const u32 gItemIconPalette_OldKey[] = INCBIN_U32("graphics/items/icon_palettes/old_key.gbapal.lz");
+const u32 gItemIconPalette_BasementKey[] = INCBIN_U32("graphics/items/icon_palettes/basement_key.gbapal.lz");
 
 const u32 gItemIcon_AcroBike[] = INCBIN_U32("graphics/items/icons/acro_bike.4bpp.lz");
 const u32 gItemIconPalette_AcroBike[] = INCBIN_U32("graphics/items/icon_palettes/acro_bike.gbapal.lz");
@@ -786,3 +787,27 @@ const u32 gItemIconPalette_Squirtbottle[] = INCBIN_U32("graphics/items/icon_pale
 
 const u32 gItemIcon_SecretPotion[] = INCBIN_U32("graphics/items/icons/secret_potion.4bpp.lz");
 const u32 gItemIconPalette_SecretPotion[] = INCBIN_U32("graphics/items/icon_palettes/secret_potion.gbapal.lz");
+
+const u32 gItemIcon_RedScale[] = INCBIN_U32("graphics/items/icons/red_scale.4bpp.lz");
+const u32 gItemIconPalette_RedScale[] = INCBIN_U32("graphics/items/icon_palettes/red_scale.gbapal.lz");
+
+const u32 gItemIcon_ClearBell[] = INCBIN_U32("graphics/items/icons/clear_bell.4bpp.lz");
+const u32 gItemIconPalette_ClearBell[] = INCBIN_U32("graphics/items/icon_palettes/clear_bell.gbapal.lz");
+
+const u32 gItemIcon_SilverWing[] = INCBIN_U32("graphics/items/icons/silver_wing.4bpp.lz");
+const u32 gItemIconPalette_SilverWing[] = INCBIN_U32("graphics/items/icon_palettes/silver_wing.gbapal.lz");
+
+const u32 gItemIcon_GSBall[] = INCBIN_U32("graphics/items/icons/gs_ball.4bpp.lz");
+const u32 gItemIconPalette_GSBall[] = INCBIN_U32("graphics/items/icon_palettes/gs_ball.gbapal.lz");
+
+const u32 gItemIcon_MachinePart[] = INCBIN_U32("graphics/items/icons/machine_part.4bpp.lz");
+const u32 gItemIconPalette_MachinePart[] = INCBIN_U32("graphics/items/icon_palettes/machine_part.gbapal.lz");
+
+const u32 gItemIcon_LostItem[] = INCBIN_U32("graphics/items/icons/lost_item.4bpp.lz");
+const u32 gItemIconPalette_LostItem[] = INCBIN_U32("graphics/items/icon_palettes/lost_item.gbapal.lz");
+
+const u32 gItemIcon_Pass[] = INCBIN_U32("graphics/items/icons/pass.4bpp.lz");
+const u32 gItemIconPalette_Pass[] = INCBIN_U32("graphics/items/icon_palettes/pass.gbapal.lz");
+
+const u32 gItemIcon_RainbowWing[] = INCBIN_U32("graphics/items/icons/rainbow_wing.4bpp.lz");
+const u32 gItemIconPalette_RainbowWing[] = INCBIN_U32("graphics/items/icon_palettes/rainbow_wing.gbapal.lz");
