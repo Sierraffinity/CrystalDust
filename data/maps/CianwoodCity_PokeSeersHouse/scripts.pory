@@ -1,1 +1,175 @@
 mapscripts CianwoodCity_PokeSeersHouse_MapScripts {}
+
+raw ` 
+.set LOCALID_POKE_SEER, 1
+
+CianwoodCity_PokeSeer_House_EventScript_StarterTutor::
+	lock
+	faceplayer
+	goto_if_set FLAG_LEARNED_ALL_MOVES_AT_POKE_SEER, PokeSeerTutor_EventScript_TaughtAllMoves
+	goto_if_set FLAG_TEMP_2, PokeSeerTutor_EventScript_MoveJustTaught
+	bufferpartymonnick 0, 0
+	msgbox Text_UltimateMoveThatMon
+	specialvar VAR_RESULT, PokeSeerGetMoveToTeachLeadPokemon
+	compare VAR_RESULT, FALSE
+	goto_if_eq PokeSeerTutor_EventScript_NoLeadStarter
+	copyvar VAR_0x8009, VAR_0x8005
+	compare VAR_FACING, DIR_NORTH
+	call_if_eq PokeSeerTutor_EventScript_JumpInPlaceDown
+	compare VAR_FACING, DIR_SOUTH
+	call_if_eq PokeSeerTutor_EventScript_JumpInPlaceUp
+	compare VAR_FACING, DIR_EAST
+	call_if_eq PokeSeerTutor_EventScript_JumpInPlaceLeft
+	compare VAR_FACING, DIR_WEST
+	call_if_eq PokeSeerTutor_EventScript_JumpInPlaceRight
+	msgbox Text_AllowMeToTeachMonUltimateMove, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq PokeSeerTutor_EventScript_DeclineMove
+	call MoveTutor_EventScript_CanOnlyBeLearnedOnce
+	compare VAR_RESULT, NO
+	goto_if_eq PokeSeerTutor_EventScript_DeclineMove
+	msgbox Text_LetMeConferUltimateMove
+	closemessage
+	fadescreen FADE_TO_BLACK
+	goto PokeSeerTutor_EventScript_ChooseMon
+
+PokeSeerTutor_EventScript_MoveJustTaught::
+	msgbox Text_MakeBestUseOfMove
+	release
+	end
+
+PokeSeerTutor_EventScript_TaughtAllMoves::
+	msgbox Text_FeelRejuvenated
+	release
+	end
+
+PokeSeerTutor_EventScript_TaughtMove::
+	copyvar VAR_0x8005, VAR_0x8009
+	specialvar VAR_RESULT, HasLearnedAllMovesFromPokeSeerTutor
+	compare VAR_RESULT, TRUE
+	goto_if_eq PokeSeerTutor_EventScript_LearnedAllMoves
+	msgbox Text_TaughtMove
+	setflag FLAG_TEMP_2
+	release
+	end
+
+PokeSeerTutor_EventScript_LearnedAllMoves::
+	msgbox Text_PassedOnEverythingIKnow
+	setflag FLAG_LEARNED_ALL_MOVES_AT_POKE_SEER
+	release
+	end
+
+PokeSeerTutor_EventScript_ChooseMon::
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq PokeSeerTutor_EventScript_DeclineMove
+	goto PokeSeerTutor_EventScript_TaughtMove
+	end
+
+PokeSeerTutor_EventScript_JumpInPlaceDown::
+	applymovement LOCALID_POKE_SEER, Movement_JumpInPlaceDown
+	waitmovement 0
+	return
+
+PokeSeerTutor_EventScript_JumpInPlaceUp::
+	applymovement LOCALID_POKE_SEER, Movement_JumpInPlaceUp
+	waitmovement 0
+	return
+
+PokeSeerTutor_EventScript_JumpInPlaceLeft::
+	applymovement LOCALID_POKE_SEER, Movement_JumpInPlaceLeft
+	waitmovement 0
+	return
+
+PokeSeerTutor_EventScript_JumpInPlaceRight::
+	applymovement LOCALID_POKE_SEER, Movement_JumpInPlaceRight
+	waitmovement 0
+	return
+
+PokeSeerTutor_EventScript_DeclineMove::
+	msgbox Text_YouRejectIt
+	release
+	end
+
+PokeSeerTutor_EventScript_NoLeadStarter::
+	msgbox Text_JustMistaken
+	release
+	end
+
+EventScript_ChooseMoveTutorMon::
+	special ChooseMonForMoveTutor
+	waitstate
+	lock
+	faceplayer
+	return
+
+Movement_JumpInPlaceDown:
+	jump_in_place_down
+	step_end
+
+Movement_JumpInPlaceUp:
+	jump_in_place_up
+	step_end
+
+Movement_JumpInPlaceLeft:
+	jump_in_place_left
+	step_end
+
+Movement_JumpInPlaceRight:
+	jump_in_place_right
+	step_end
+
+Text_UltimateMoveThatMon::
+    .string "I perfected the ultimate move of\n"
+    .string "its type…\p"
+    .string "But will no one take it for\n"
+    .string "future use?\p"
+    .string "…Hm? Hmmm!\p"
+    .string "Y-you…\n"
+    .string "Th-that {STR_VAR_1}…$"
+
+Text_JustMistaken::
+    .string "…No…\n"
+    .string "I was just mistaken.$"
+
+Text_AllowMeToTeachMonUltimateMove::
+    .string "Oh! This is the one!\n"
+    .string "This is the POKéMON!\p"
+    .string "This {STR_VAR_1} is worthy of\n"
+    .string "learning my ultimate move!\p"
+    .string "Will you allow it?\p"
+    .string "Will you allow your {STR_VAR_1} to\n"
+    .string "learn my {STR_VAR_2}?$"
+
+Text_YouRejectIt::
+    .string "Gaah! You reject it?\n"
+    .string "No, I won't be dissuaded!$"
+
+Text_LetMeConferUltimateMove::
+    .string "You will allow it?\p"
+    .string "Then, let me confer my ultimate\n"
+    .string "{STR_VAR_2} on your {STR_VAR_1}.\p"
+    .string "Ggggrah-awooo!$"
+
+Text_TaughtMove::
+    .string "Gasp, gasp, gasp…\p"
+    .string "I didn't think I could teach that\n"
+    .string "move while I still lived…$"
+
+Text_MakeBestUseOfMove::
+    .string "I implore you to make the best\n"
+    .string "use of that move and gain power!$"
+
+Text_PassedOnEverythingIKnow::
+    .string "Gasp, gasp, gasp…\p"
+    .string "I have no regrets now.\n"
+    .string "I've passed on everything I know.\p"
+    .string "Now I can live out my life knowing\n"
+    .string "my work is done.$"
+
+Text_FeelRejuvenated::
+    .string "After I passed on my knowledge to\n"
+    .string "you, I felt so much relief.\p"
+    .string "In fact, I feel rejuvenated,\n"
+    .string "as if I were younger again!$"    
+`

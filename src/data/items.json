@@ -6393,6 +6393,22 @@
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
+    },
+    {
+      "english": "SECRETPOTION",
+      "itemId": "ITEM_SECRET_POTION",
+      "price": 0,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A fantastic medicine dispensed by\\nthe pharmacy in CIANWOOD. It fully\\nheals a POKéMON of any ailment.",
+      "importance": 2,
+      "exitsBagOnUse": 0,
+      "pocket": "POCKET_KEY_ITEMS",
+      "type": 4,
+      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "battleUsage": 0,
+      "battleUseFunc": "NULL",
+      "secondaryId": 0
     }
   ]
 }

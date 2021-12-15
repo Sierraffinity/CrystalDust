@@ -8754,9 +8754,9 @@ static u8 DoJumpSpriteMovement(struct Sprite *sprite)
     u8 speedToShift[] = {0, 0, 1, 0};
     u8 result = 0;
 
-    if (sprite->sSpeed != 3)
+    if (sprite->sSpeed != 3 && sprite->sSpeed != 0)
         Step1(sprite, sprite->sDirection);
-    else
+    else if(sprite->sSpeed == 3)
         Step2(sprite, sprite->sDirection);
 
     sprite->y2 = GetJumpY(sprite->sTimer >> speedToShift[sprite->sSpeed], sprite->sJumpType);

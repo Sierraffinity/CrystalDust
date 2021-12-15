@@ -1326,16 +1326,6 @@ u16 GetSlotMachineId(void)
     return sSlotMachineIds[rnd % SLOT_MACHINE_COUNT];
 }
 
-bool8 FoundSproutTowerRoom1Key(void)
-{
-    return TRUE;
-}
-
-bool8 FoundSproutTowerRoom2Key(void)
-{
-    return TRUE;
-}
-
 bool8 FoundSproutTowerRoom4Key(void)
 {
     return TRUE;
@@ -4920,3 +4910,86 @@ static void Task_MiniCredits(u8 taskId)
 #undef tAdvance
 #undef tWindowId
 #undef tTimer
+
+static const u8 sPokeSeerCompatibleSpecies[] = {
+    SPECIES_MEGANIUM,
+    SPECIES_TYPHLOSION,
+    SPECIES_FERALIGATR
+};
+
+bool8 PokeSeerGetMoveToTeachLeadPokemon(void)
+{
+    // Returns:
+    //   8005 = Move tutor index
+    //   8006 = Num moves known by lead mon
+    //   8007 = Index of lead mon
+    //   to specialvar = whether a move can be taught in the first place
+    u8 tutorMonId = 0;
+    u8 numMovesKnown = 0;
+    u8 leadMonSlot = GetLeadMonIndex();
+    u8 i;
+    gSpecialVar_0x8007 = leadMonSlot;
+    for (i = 0; i < NELEMS(sPokeSeerCompatibleSpecies); i++)
+    {
+        if (GetMonData(&gPlayerParty[leadMonSlot], MON_DATA_SPECIES2, NULL) == sPokeSeerCompatibleSpecies[i])
+        {
+            tutorMonId = i;
+            break;
+        }
+    }
+    if (i == NELEMS(sPokeSeerCompatibleSpecies) || GetMonData(&gPlayerParty[leadMonSlot], MON_DATA_FRIENDSHIP) != 255)
+        return FALSE;
+    if (tutorMonId == 0)
+    {
+        StringCopy(gStringVar2, gMoveNames[MOVE_FRENZY_PLANT]);
+        gSpecialVar_0x8005 = TUTOR_MOVE_FRENZY_PLANT;
+        if (FlagGet(FLAG_TUTOR_FRENZY_PLANT) == TRUE)
+            return FALSE;
+    }
+    else if (tutorMonId == 1)
+    {
+        StringCopy(gStringVar2, gMoveNames[MOVE_BLAST_BURN]);
+        gSpecialVar_0x8005 = TUTOR_MOVE_BLAST_BURN;
+        if (FlagGet(FLAG_TUTOR_BLAST_BURN) == TRUE)
+            return FALSE;
+    }
+    else
+    {
+        StringCopy(gStringVar2, gMoveNames[MOVE_HYDRO_CANNON]);
+        gSpecialVar_0x8005 = TUTOR_MOVE_HYDRO_CANNON;
+        if (FlagGet(FLAG_TUTOR_HYDRO_CANNON) == TRUE)
+            return FALSE;
+    }
+    if (GetMonData(&gPlayerParty[leadMonSlot], MON_DATA_MOVE1) != MOVE_NONE)
+        numMovesKnown++;
+    if (GetMonData(&gPlayerParty[leadMonSlot], MON_DATA_MOVE2) != MOVE_NONE)
+        numMovesKnown++;
+    if (GetMonData(&gPlayerParty[leadMonSlot], MON_DATA_MOVE3) != MOVE_NONE)
+        numMovesKnown++;
+    if (GetMonData(&gPlayerParty[leadMonSlot], MON_DATA_MOVE4) != MOVE_NONE)
+        numMovesKnown++;
+    gSpecialVar_0x8006 = numMovesKnown;
+    return TRUE;
+}
+
+bool8 HasLearnedAllMovesFromPokeSeerTutor(void)
+{
+    // 8005 is set by PokeSeerGetMoveToTeachLeadPokemon
+    u8 r4 = 0;
+    if (gSpecialVar_0x8005 == TUTOR_MOVE_FRENZY_PLANT)
+        FlagSet(FLAG_TUTOR_FRENZY_PLANT);
+    else if (gSpecialVar_0x8005 == TUTOR_MOVE_BLAST_BURN)
+        FlagSet(FLAG_TUTOR_BLAST_BURN);
+    else
+        FlagSet(FLAG_TUTOR_HYDRO_CANNON);
+    if (FlagGet(FLAG_TUTOR_FRENZY_PLANT) == TRUE)
+        r4++;
+    if (FlagGet(FLAG_TUTOR_BLAST_BURN) == TRUE)
+        r4++;
+    if (FlagGet(FLAG_TUTOR_HYDRO_CANNON) == TRUE)
+        r4++;
+    if (r4 == 3)
+        return TRUE;
+    else
+        return FALSE;
+}

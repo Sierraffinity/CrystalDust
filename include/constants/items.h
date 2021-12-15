@@ -496,8 +496,9 @@
 #define ITEM_EGG_TICKET 393
 #define ITEM_BLUE_CARD 394
 #define ITEM_SQUIRTBOTTLE 395
+#define ITEM_SECRET_POTION 396
 
-#define ITEMS_COUNT 396
+#define ITEMS_COUNT 397
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // Range of berries given out by various NPCS

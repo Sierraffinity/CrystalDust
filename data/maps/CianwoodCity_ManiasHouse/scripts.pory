@@ -1,1 +1,102 @@
 mapscripts CianwoodCity_ManiasHouse_MapScripts {}
+
+script CianwoodCity_ManiasHouse_EventScript_Mania{
+    lock
+    faceplayer
+    if(!flag(FLAG_SHUCKIE_RETURNED_OR_KEPT))
+    {
+        if(!flag(FLAG_GOT_SHUCKIE))
+        {
+            msgbox("I, I'm in shock!\pA guy about your age with piercing\neyes and long hair came in.\pHe scared me into giving him my\nprized POKéMON!\pI still have one left, but what if\nhe comes back?\pYou look strong. Could you look\nafter my POKéMON for a while?", MSGBOX_YESNO)
+            if(var(VAR_RESULT) == NO)
+            {
+                msgbox("Oh, no… What'll I do if he\ncomes back?")
+                release
+                end
+            }
+            // Yes
+            setvar(VAR_0x8004, INGAME_TRADE_GIFT_SHUCKLE)
+            special(GivePlayerSpecialGiftMon)
+            if(!var(VAR_RESULT))
+            {
+                msgbox("Your POKéMON party is full.")
+                release
+                end
+            }
+            msgbox(CianwoodCity_ManiasHouse_Text_TakeCareOfShuckle, MSGBOX_DEFAULT)
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("{PLAYER} received a POKéMON!", MSGBOX_DEFAULT)
+            waitfanfare
+            release
+            setflag(FLAG_GOT_SHUCKIE)
+            setflag(FLAG_GOT_SHUCKIE_TODAY)
+            end
+        }
+        // Have Shuckie already
+        if(flag(FLAG_GOT_SHUCKIE_TODAY))
+        {   // Mania still feels unsafe
+            msgbox(CianwoodCity_ManiasHouse_Text_TakeCareOfShuckle, MSGBOX_DEFAULT)
+            release
+            end
+        }
+        // Asking to return Shuckie
+        msgbox("Hi!\nHow's my POKéMON?\pI think I'm safe now, so may\nI have it back?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == NO)
+        {
+            goto(CianwoodCity_ManiasHouse_EventScript_WontReturnShuckie)
+        }
+        // Yes
+        special(ChoosePartyMon)
+        waitstate
+        lock
+        faceplayer
+        if(var(VAR_0x8004) == 0xFF) // cancelled out of party screen
+        {
+            goto(CianwoodCity_ManiasHouse_EventScript_WontReturnShuckie)
+        }
+        copyvar(VAR_0x8005, VAR_0x8004)
+        specialvar(VAR_RESULT, GetTradeSpecies)
+        if(var(VAR_RESULT) == SPECIES_SHUCKLE)
+        {   // This is a Shuckle. Is it MANIA's Shuckle? VAR_0x8006 holds friendship if yes
+            callnative(IsMonGiftShuckle)
+            if(var(VAR_RESULT) == TRUE)
+            {
+                if(var(VAR_0x8006) >= 150)
+                {   // Shuckie is happy to stay
+                    msgbox("My POKéMON has come to like you.\pAll right, you should keep it.\nBut promise to be good to it!", MSGBOX_DEFAULT)
+                    release
+                    setflag(FLAG_SHUCKIE_RETURNED_OR_KEPT)
+                    end
+                }
+                // Shuckie not happy enough
+                copyvar(VAR_0x8004, VAR_0x8005) // copying party slot of Shuckie to 0x8004
+                specialvar(VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot)
+                if(var(VAR_RESULT) == 0)
+                {   // Shuckie is the only mon able to battle, can't give it back
+                    goto(CianwoodCity_ManiasHouse_EventScript_ShuckieReturnedOrKept)
+                }
+                msgbox("Thank you!", MSGBOX_DEFAULT)
+                callnative(ZeroMonAtSlot0x8004AndCompact)
+                release
+                setflag(FLAG_SHUCKIE_RETURNED_OR_KEPT)
+                end
+            }
+        }
+        // Selected mon wasn't Shuckie
+        msgbox("Hey, you don't have my POKéMON\nwith you.")
+        release
+        end
+    }
+    // Shuckie returned or allowed to keep
+    goto(CianwoodCity_ManiasHouse_EventScript_ShuckieReturnedOrKept)
+}script CianwoodCity_ManiasHouse_EventScript_WontReturnShuckie{
+    msgbox("Oh, no, no… That's the same\nas being robbed.")
+    release
+    end
+}script CianwoodCity_ManiasHouse_EventScript_ShuckieReturnedOrKept{
+    msgbox("For POKéMON, happiness is being\nwith a person who treats them well.", MSGBOX_DEFAULT)
+    release
+    end
+}text CianwoodCity_ManiasHouse_Text_TakeCareOfShuckle{
+    "Oh, thank you!\nTake good care of it, please!"
+}

@@ -41,7 +41,10 @@
 #define TUTOR_MOVE_FIRE_PUNCH      28
 #define TUTOR_MOVE_FURY_CUTTER     29
 #define TUTOR_MOVE_HEADBUTT        30
-#define TUTOR_MOVE_COUNT           31
+#define TUTOR_MOVE_FRENZY_PLANT    31
+#define TUTOR_MOVE_BLAST_BURN      32
+#define TUTOR_MOVE_HYDRO_CANNON    33
+#define TUTOR_MOVE_COUNT           34
 
 #define PARTY_LAYOUT_SINGLE          0
 #define PARTY_LAYOUT_DOUBLE          1

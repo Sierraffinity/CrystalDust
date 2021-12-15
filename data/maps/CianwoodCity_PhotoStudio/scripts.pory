@@ -1,1 +1,54 @@
 mapscripts CianwoodCity_PhotoStudio_MapScripts {}
+
+// This guy should print the party on the Trainer Card like in FRLG
+script CianwoodCity_PhotoStudio_EventScript_Photographer{
+    lock
+    faceplayer
+    msgbox("You have magnificent POKéMON\nwith you.\pHow about a photo for a souvenir?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        msgbox("Oh, that's too bad. I thought it\nwould be a great memento…")
+        release
+        end
+    }
+    msgbox("OK! Big smile now!", MSGBOX_AUTOCLOSE)
+    playse(MUS_RG_PHOTO)
+	//dofieldeffect(FLDEFF_UNK_45) // this is the camera flash animation from FRLG
+	delay(60)
+    showmoneybox(0, 0, 0)
+    msgbox("I can put a print of your POKéMON\non the back of your TRAINER CARD.\pI'll do it for only ¥50!\nWant to try it?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        msgbox("Oh, that's too bad. I thought it\nwould be a great memento…")
+        hidemoneybox
+        release
+        end
+    }
+    checkmoney(50, 0)
+    if(var(VAR_RESULT) == FALSE)
+    {
+        msgbox("You don't have enough money!")
+        release
+        end
+    }
+    removemoney(50, 0)
+    playse(SE_SHOP)
+    updatemoneybox(0, 0)
+    msgbox("Please choose the print type.", MSGBOX_DEFAULT)
+    multichoice(21, 0, 1, TRUE) //modify the 1 value when the multichoice is put in.
+    switch(var(VAR_RESULT)) {
+        case 0:
+            setvar(VAR_0x8004, 0) //set to value of MON_ICON_TINT_NORMAL
+	    case 1:
+            setvar(VAR_0x8004, 1) //set to value of MON_ICON_TINT_BLACK
+        case 3:
+            setvar(VAR_0x8004, 2) //set to value of MON_ICON_TINT_PINK
+        case 4:
+            setvar(VAR_0x8004, 3) //set to value of MON_ICON_TINT_SEPIA
+    }
+	//special(UpdateTrainerCardPhotoIcons)
+	msgbox("Your POKéMON print is ready!\nCheck your TRAINER CARD.")
+	hidemoneybox
+	release
+	end
+}

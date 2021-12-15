@@ -298,8 +298,8 @@ gSpecials::
 	def_special BufferEReaderTrainerName
 	def_special GetSlotMachineId
 	def_special GetPlayerFacingDirection
-	def_special FoundSproutTowerRoom1Key        // function now always returns true
-	def_special FoundSproutTowerRoom2Key        // function now always returns true
+	def_special PokeSeerGetMoveToTeachLeadPokemon
+	def_special HasLearnedAllMovesFromPokeSeerTutor
 	def_special FoundSproutTowerRoom4Key        // function now always returns true
 	def_special FoundSproutTowerRoom6Key        // function now always returns true
 	def_special LeadMonHasEffortRibbon

@@ -22,7 +22,186 @@
     }
   ],
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "in_connection": false,
+      "x": 28,
+      "y": 45,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CianwoodCity_Eventscript_Boy",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "in_connection": false,
+      "x": 24,
+      "y": 38,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CianwoodCity_Eventscript_FatMan",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+      "in_connection": false,
+      "x": 19,
+      "y": 50,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CianwoodCity_Eventscript_Girl",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "in_connection": false,
+      "x": 18,
+      "y": 29,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_11"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "in_connection": false,
+      "x": 9,
+      "y": 32,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_12"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "in_connection": false,
+      "x": 7,
+      "y": 27,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_13"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "in_connection": false,
+      "x": 7,
+      "y": 20,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_14"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "in_connection": false,
+      "x": 11,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_15"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "in_connection": false,
+      "x": 12,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_16"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+      "in_connection": false,
+      "x": 14,
+      "y": 55,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CianwoodCity_Eventscript_ChucksWife",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SUICUNE",
+      "in_connection": false,
+      "x": 15,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_EUSINE",
+      "in_connection": false,
+      "x": 17,
+      "y": 22,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    }
   ],
   "warp_events": [
     {
@@ -31,12 +210,117 @@
       "elevation": 0,
       "dest_map": "MAP_CIANWOOD_CITY_POKEMON_CENTER_1F",
       "dest_warp_id": 0
+    },
+    {
+      "x": 12,
+      "y": 52,
+      "elevation": 0,
+      "dest_map": "MAP_CIANWOOD_CITY_GYM",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 20,
+      "y": 44,
+      "elevation": 0,
+      "dest_map": "MAP_CIANWOOD_CITY_HOUSE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 20,
+      "y": 57,
+      "elevation": 0,
+      "dest_map": "MAP_CIANWOOD_CITY_PHARMACY",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 23,
+      "y": 50,
+      "elevation": 0,
+      "dest_map": "MAP_CIANWOOD_CITY_MANIAS_HOUSE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 13,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_CIANWOOD_CITY_PHOTO_STUDIO",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 8,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_CIANWOOD_CITY_POKE_SEERS_HOUSE",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "NULL"
+    }
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 28,
+      "y": 39,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CianwoodCity_Eventscript_CitySign"
+    },
+    {
+      "type": "sign",
+      "x": 23,
+      "y": 57,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CianwoodCity_Eventscript_PharmacySign"
+    },
+    {
+      "type": "sign",
+      "x": 12,
+      "y": 37,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CianwoodCity_Eventscript_StudioSign"
+    },
+    {
+      "type": "sign",
+      "x": 10,
+      "y": 53,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CianwoodCity_Eventscript_GymSign"
+    },
+    {
+      "type": "sign",
+      "x": 15,
+      "y": 25,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CianwoodCity_Eventscript_PokeSeerSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 9,
+      "y": 32,
+      "elevation": 3,
+      "item": "ITEM_MAX_ETHER",
+      "flag": "FLAG_HIDDEN_ITEM_CIANWOOD_CITY_MAX_ETHER"
+    },
+    {
+      "type": "hidden_item",
+      "x": 7,
+      "y": 20,
+      "elevation": 3,
+      "item": "ITEM_REVIVE",
+      "flag": "FLAG_HIDDEN_ITEM_CIANWOOD_CITY_REVIVE"
+    }
   ]
 }

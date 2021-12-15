@@ -1,4 +1,8 @@
-mapscripts CianwoodCity_MapScripts {}
+mapscripts CianwoodCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_CIANWOOD_CITY)
+    }
+}
 
 // TODO: Suicune event with Eusine
 
@@ -28,7 +32,7 @@ script CianwoodCity_Eventscript_PokeSeerSign {
 }
 
 script CianwoodCity_Eventscript_FatMan{
-    msgbox("Boulders to the north of town can be\ncrushed.\pThey may be hiding something.\pYour POKéMON could use ROCK SMASH to\nbreak them.", MSGBOX_NPC)
+    msgbox("Boulders to the north of town\ncan be crushed.\pThey may be hiding something.\pYour POKéMON could use ROCK SMASH\nto break them.", MSGBOX_NPC)
     end
 }
 
@@ -53,7 +57,7 @@ script CianwoodCity_Eventscript_ChucksWife{
     }
     lock
     faceplayer
-    msgbox("You crossed the sea to get here?\nThat must have been hard.\pIt would be much easier if your\nPOKéMON knew how to FLY…\p", MSGBOX_DEFAULT)
+    msgbox("You crossed the sea to get here?\nThat must have been hard.\pIt would be much easier if your\nPOKéMON knew how to FLY…", MSGBOX_DEFAULT)
     if(!flag(FLAG_BADGE05_GET))
     {
         msgbox("But you can't use FLY without this\ncity's GYM BADGE.\pIf you beat the GYM LEADER here,\ncome see me.\pI'll have a nice gift for you.", MSGBOX_DEFAULT)
@@ -61,7 +65,7 @@ script CianwoodCity_Eventscript_ChucksWife{
         end
     }
     msgbox("That's CIANWOOD's GYM BADGE!\nThen you should take this HM.", MSGBOX_DEFAULT)
-    giveitem(ITEM_HM04)
+    giveitem(ITEM_HM02)
     message("Teach FLY to your POKéMON.\pYou will be able to FLY instantly to\nanywhere you have visited.\p")
     waitmessage
     msgbox(CianwoodCity_Text_GotFly, MSGBOX_DEFAULT)

@@ -1,7 +1,7 @@
 mapscripts CianwoodCity_House_MapScripts {}
 
 script CianwoodCity_House_Eventscript_LittleGirl{
-    msgbox("I've heard that the whirlpools\naround the islands are caused by the\lsea creature.\pYou might need a special move to get\npast them.", MSGBOX_NPC)
+    msgbox("I've heard that the whirlpools\naround the islands are caused by\lthe sea creature.\pYou might need a special move\nto get past them.", MSGBOX_NPC)
     end
 }
 

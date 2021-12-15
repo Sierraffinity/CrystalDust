@@ -1,1 +1,44 @@
 mapscripts CianwoodCity_Pharmacy_MapScripts {}
+
+script CianwoodCity_Pharmacy_EventScript_Pharmacist{
+    setflag(FLAG_LEARNED_AMPHY_IS_SICK) // debug
+    checkitem(ITEM_SECRET_POTION, 1)
+    copyvar(VAR_0x8008, VAR_RESULT)
+    checkpcitem(ITEM_SECRET_POTION, 1) // ordinarily cannot be deposited, but might as well check
+    if(!var(VAR_RESULT) && !var(VAR_0x8008))
+    {
+        if(flag(FLAG_CURED_AMPHY) || !flag(FLAG_LEARNED_AMPHY_IS_SICK))
+        {
+            goto(CianwoodCity_Pharmacy_EventScript_Mart)
+        }
+        msgbox("Your POKéMON appear to be fine.\nIs something worrying you?\p…\pThe LIGHTHOUSE POKéMON is in\ntrouble? I got it!\pThis ought to do the trick.", MSGBOX_NPC)
+        checkitemspace(ITEM_SECRET_POTION, 1)
+        if (!var(VAR_RESULT))
+        {
+            goto(Common_EventScript_ShowBagIsFull)
+        }
+        givetmhm_msg("{PLAYER} received SECRETPOTION.", ITEM_SECRET_POTION)
+        msgbox("My SECRETPOTION is a tad too strong.\nI only offer it in an emergency.", MSGBOX_NPC)
+        end
+    }
+    goto(CianwoodCity_Pharmacy_EventScript_Mart)
+}script CianwoodCity_Pharmacy_EventScript_Mart {
+    lock
+    faceplayer
+    message("What's up?\nNeed some medicine?")
+    waitmessage
+    pokemart(CianwoodCity_Pharmacy_Mart)
+    msgbox("All right.\nSee you around.")
+    release
+    end
+}
+
+raw `
+CianwoodCity_Pharmacy_Mart:
+	.2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+    .2byte ITEM_HYPER_POTION
+    .2byte ITEM_FULL_HEAL
+    .2byte ITEM_REVIVE
+	.2byte ITEM_NONE
+`

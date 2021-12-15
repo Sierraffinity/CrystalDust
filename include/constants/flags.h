@@ -229,18 +229,16 @@
 #define FLAG_CURED_MOOMOO                    0xD7
 #define FLAG_ENABLE_MOM_MATCH_CALL           0xD8
 #define FLAG_MET_MOOMOO_FARMER               0xD9
+#define FLAG_GOT_SHUCKIE                     0xDA
+#define FLAG_GOT_SHUCKIE_TODAY               0xDB // This flag is cleared when daily flags are
+#define FLAG_SHUCKIE_RETURNED_OR_KEPT        0xDC
+#define FLAG_TUTOR_FRENZY_PLANT              0xDD
+#define FLAG_TUTOR_BLAST_BURN                0xDE
+#define FLAG_TUTOR_HYDRO_CANNON              0xDF
+#define FLAG_LEARNED_ALL_MOVES_AT_POKE_SEER  0xE0
+#define FLAG_GOT_TM31_FROM_CHUCK             0xE1
+#define FLAG_LEARNED_AMPHY_IS_SICK           0xE2
 // STOPPED HERE
-#define FLAG_MET_WAILMER_TRAINER             0xDA
-#define FLAG_EVIL_LEADER_PLEASE_STOP         0xDB
-
-#define FLAG_NEVER_SET_0x0DC                 0xDC // This flag is read, but never written to
-
-#define FLAG_RECEIVED_GO_GOGGLES             0xDD
-#define FLAG_WINGULL_SENT_ON_ERRAND          0xDE
-#define FLAG_RECEIVED_MENTAL_HERB            0xDF
-#define FLAG_WINGULL_DELIVERED_MAIL          0xE0
-#define FLAG_RECEIVED_20_COINS               0xE1
-#define FLAG_RECEIVED_STARTER_DOLL           0xE2
 #define FLAG_RECEIVED_GOOD_ROD               0xE3
 #define FLAG_REGI_DOORS_OPENED               0xE4
 #define FLAG_RECEIVED_TM27                   0xE5

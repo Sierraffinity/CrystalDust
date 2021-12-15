@@ -1,6 +1,66 @@
 mapscripts CianwoodCity_Gym_MapScripts {}
 
-// TODO: Chuck
+script CianwoodCity_Gym_Eventscript_Chuck{
+    lock
+    faceplayer
+    if(!flag(FLAG_BADGE05_GET))
+    {
+        msgbox("WAHAHAH!\pSo you've come this far!\nLet me tell you, I'm tough!\pMy POKéMON will crush stones\nand shatter bones!\pWatch this!", MSGBOX_DEFAULT)
+        release
+        turnobject(5, DIR_EAST)
+        msgbox("CHUCK: Urggh!\n…\pOooarrgh!", MSGBOX_DEFAULT)
+        release
+        applymovement(9, CianwoodCity_Gym_Movement_ChuckChucksBoulder)
+        delay(24)
+        playse(SE_M_ROCK_THROW)
+        setvar(VAR_0x8004, 2)  # vertical pan
+        setvar(VAR_0x8005, 2)  # horizontal pan
+        setvar(VAR_0x8006, 20) # num shakes
+        setvar(VAR_0x8007, 3)  # shake delay
+        special(ShakeCamera)
+        waitstate
+        delay(10)
+        waitmovement(0)
+        removeobject(9)
+        delay(30)
+        faceplayer
+        trainerbattle_single(TRAINER_CHUCK, "There! Scared now, are you?\pWhat?\nIt has nothing to do with POKéMON?\pThat's true!\nCome on. We shall do battle!", "Wha? Huh?\nI lost?\pHow about that!\nYou're worthy of the STORMBADGE!", CianwoodCity_Gym_EventScript_ChuckDefeated, NO_MUSIC)
+    }
+    goto(CianwoodCity_Gym_EventScript_GiveTM)
+}script CianwoodCity_Gym_EventScript_ChuckDefeated{
+    textcolor(MSG_COLOR_SYS)
+    message("{PLAYER} received the STORMBADGE.")
+    waitmessage
+    call(Common_EventScript_PlayGymBadgeFanfare)
+	textcolor(MSG_COLOR_PREV)
+    setflag(FLAG_BADGE05_GET)
+    setgymtrainers(5)
+    // set Rocket hideout event if have 7 badges
+    goto(CianwoodCity_Gym_EventScript_GiveTM)
+}script CianwoodCity_Gym_EventScript_GiveTM{
+    if(!flag(FLAG_GOT_TM31_FROM_CHUCK))
+    {
+        msgbox("STORMBADGE makes all POKéMON up to\nlevel 70 obey, even traded ones.\pIt also lets your POKéMON use FLY\nwhen you're not in a battle.\pHere, take this too!", MSGBOX_DEFAULT)
+        release
+        checkitemspace(ITEM_TM31, 1)
+        if (!var(VAR_RESULT))
+        {
+            goto(Common_EventScript_ShowBagIsFull)
+        }
+        givetmhm_msg("{PLAYER} received TM31\nfrom CHUCK.", ITEM_TM31)
+		setflag(FLAG_GOT_TM31_FROM_CHUCK)
+		msgbox("That is BRICK BREAK.\nWhen it hits, it breaks barriers like\lLIGHT SCREEN and REFLECT!", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("WAHAHAH! I enjoyed battling you!\nBut a loss is a loss!\pFrom now on, I'm going to train\n24 hours a day!", MSGBOX_NPC)
+    release
+    end
+}movement CianwoodCity_Gym_Movement_ChuckChucksBoulder{
+    walk_fast_left
+    walk_fast_up
+    jump_2_right_fast
+}
 
 script CianwoodCity_Gym_Eventscript_Statues{
     if(flag(FLAG_BADGE05_GET))

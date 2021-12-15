@@ -31,11 +31,14 @@ const u16 gTutorMoves[TUTOR_MOVE_COUNT] =
     [TUTOR_MOVE_FIRE_PUNCH] = MOVE_FIRE_PUNCH,
     [TUTOR_MOVE_FURY_CUTTER] = MOVE_FURY_CUTTER,
     [TUTOR_MOVE_HEADBUTT] = MOVE_HEADBUTT,
+    [TUTOR_MOVE_FRENZY_PLANT] = MOVE_FRENZY_PLANT,
+    [TUTOR_MOVE_BLAST_BURN] = MOVE_BLAST_BURN,
+    [TUTOR_MOVE_HYDRO_CANNON] = MOVE_HYDRO_CANNON,
 };
 
-#define TUTOR(move) (1u << (TUTOR_##move))
+#define TUTOR(move) ((u64)1 << (TUTOR_##move))
 
-static const u32 sTutorLearnsets[] =
+static const u64 sTutorLearnsets[] =
 {
     [SPECIES_NONE]             = (0),
 
@@ -2321,7 +2324,8 @@ static const u32 sTutorLearnsets[] =
                                 | TUTOR(MOVE_SWAGGER)
                                 | TUTOR(MOVE_SLEEP_TALK)
                                 | TUTOR(MOVE_FURY_CUTTER)
-                                | TUTOR(MOVE_HEADBUTT)),
+                                | TUTOR(MOVE_HEADBUTT)
+                                | TUTOR(MOVE_FRENZY_PLANT)),
 
     [SPECIES_CYNDAQUIL]        = (TUTOR(MOVE_BODY_SLAM)
                                 | TUTOR(MOVE_DOUBLE_EDGE)
@@ -2373,7 +2377,8 @@ static const u32 sTutorLearnsets[] =
                                 | TUTOR(MOVE_THUNDER_PUNCH)
                                 | TUTOR(MOVE_FIRE_PUNCH)
                                 | TUTOR(MOVE_FURY_CUTTER)
-                                | TUTOR(MOVE_HEADBUTT)),
+                                | TUTOR(MOVE_HEADBUTT)
+                                | TUTOR(MOVE_BLAST_BURN)),
 
     [SPECIES_TOTODILE]         = (TUTOR(MOVE_MEGA_PUNCH)
                                 | TUTOR(MOVE_SWORDS_DANCE)
@@ -2435,7 +2440,8 @@ static const u32 sTutorLearnsets[] =
                                 | TUTOR(MOVE_SWAGGER)
                                 | TUTOR(MOVE_SLEEP_TALK)
                                 | TUTOR(MOVE_FURY_CUTTER)
-                                | TUTOR(MOVE_HEADBUTT)),
+                                | TUTOR(MOVE_HEADBUTT)
+                                | TUTOR(MOVE_HYDRO_CANNON)),
 
     [SPECIES_SENTRET]          = (TUTOR(MOVE_BODY_SLAM)
                                 | TUTOR(MOVE_DOUBLE_EDGE)

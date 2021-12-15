@@ -1,4 +1,9 @@
-mapscripts CianwoodCity_PokemonCenter_1F_MapScripts {}
+mapscripts CianwoodCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_CIANWOOD_CITY)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
 
 script CianwoodCity_PokemonCenter_1F_Eventscript_Girl{
     msgbox("Did you meet the POKéMANIAC?\nHe's always bragging about his rare\lPOKéMON.", MSGBOX_NPC)

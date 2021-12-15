@@ -4652,6 +4652,27 @@ static bool8 IsMonGiftMon(const struct Pokemon *mon, const struct InGameTrade *t
     return TRUE;
 }
 
+void IsMonGiftShuckle(void)
+{
+    const struct InGameTrade *trade = &sIngameTrades[INGAME_TRADE_GIFT_SHUCKLE];
+    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8005];
+    gSpecialVar_Result = IsMonGiftMon(mon, trade);
+    if(gSpecialVar_Result == TRUE)
+    {
+        gSpecialVar_0x8006 = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
+    }
+    else
+    {
+        gSpecialVar_0x8006 = 0;
+    }
+}
+
+void ZeroMonAtSlot0x8004AndCompact(void)
+{
+    ZeroMonData(&gPlayerParty[gSpecialVar_0x8004]);
+    CompactPartySlots();
+}
+
 static u8 _CheckForGiftMonAndTakeMail(u8 partyIdx, u8 whichGiftMon)
 {
     const struct InGameTrade *trade = &sIngameTrades[whichGiftMon];
