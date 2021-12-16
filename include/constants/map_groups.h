@@ -456,29 +456,58 @@
 #define MAP_ROUTE8_GATEHOUSE (0 | (42 << 8))
 
 // gRoute10Interiors
+#define MAP_ROUTE10_POWER_PLANT       (0 | (43 << 8))
+#define MAP_ROUTE10_POKEMON_CENTER_1F (1 | (43 << 8))
+#define MAP_ROUTE10_POKEMON_CENTER_2F (2 | (43 << 8))
 
 // gRoute12Interiors
+#define MAP_ROUTE12_FISHING_HOUSE (0 | (44 << 8))
+#define MAP_ROUTE12_GATEHOUSE_1F  (1 | (44 << 8))
+#define MAP_ROUTE12_GATEHOUSE_2F  (2 | (44 << 8))
 
 // gRoute15Interiors
+#define MAP_ROUTE15_GATEHOUSE_1F (0 | (45 << 8))
+#define MAP_ROUTE15_GATEHOUSE_2F (1 | (45 << 8))
 
 // gRoute16Interiors
+#define MAP_ROUTE16_GATEHOUSE_1F (0 | (46 << 8))
+#define MAP_ROUTE16_GATEHOUSE_2F (1 | (46 << 8))
+#define MAP_ROUTE16_HOUSE        (2 | (46 << 8))
 
 // gRoute17Interiors
+#define MAP_ROUTE17_GATEHOUSE_1F (0 | (47 << 8))
+#define MAP_ROUTE17_GATEHOUSE_2F (1 | (47 << 8))
 
 // gRoute19Interiors
+#define MAP_ROUTE19_GATEHOUSE (0 | (48 << 8))
 
 // gRoute20Interiors
+#define MAP_ROUTE20_SEAFOAM_GYM (0 | (49 << 8))
 
 // gRoute25Interiors
+#define MAP_ROUTE25_BILLS_HOUSE (0 | (50 << 8))
 
 // gRoute26Interiors
+#define MAP_ROUTE26_HOUSE1 (0 | (51 << 8))
+#define MAP_ROUTE26_HOUSE2 (1 | (51 << 8))
 
 // gRoute27Interiors
+#define MAP_ROUTE27_HOUSE (0 | (52 << 8))
 
 // gRoute28Interiors
+#define MAP_ROUTE28_HOUSE (0 | (53 << 8))
 
 // gKantoDungeons
-#define MAP_TOHJO_FALLS (0 | (54 << 8))
+#define MAP_TOHJO_FALLS            (0 | (54 << 8))
+#define MAP_VICTORY_ROAD_GATEHOUSE (1 | (54 << 8))
+#define MAP_VICTORY_ROAD           (2 | (54 << 8))
+#define MAP_DIGLETTS_CAVE          (3 | (54 << 8))
+#define MAP_MT_MOON                (4 | (54 << 8))
+#define MAP_MT_MOON_SQUARE         (5 | (54 << 8))
+#define MAP_MT_MOON_GIFT_SHOP      (6 | (54 << 8))
+#define MAP_UNDERGROUND_PATH       (7 | (54 << 8))
+#define MAP_ROCK_TUNNEL_1F         (8 | (54 << 8))
+#define MAP_ROCK_TUNNEL_B1F        (9 | (54 << 8))
 
 // gBattleFrontier
 #define MAP_BATTLE_FRONTIER_OUTSIDE_WEST                    (0 | (55 << 8))

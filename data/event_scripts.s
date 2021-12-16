@@ -1092,3 +1092,5 @@ Common_EventScript_FindItem::
 	.include "data/maps/ViridianForest/scripts.inc"
 	.include "data/maps/Route2_ViridianForest_SouthEntrance/scripts.inc"
 	.include "data/maps/Route2_ViridianForest_NorthEntrance/scripts.inc"
+	.include "data/maps/Route12_Gatehouse_1F/scripts.inc"
+	.include "data/maps/Route12_Gatehouse_2F/scripts.inc"

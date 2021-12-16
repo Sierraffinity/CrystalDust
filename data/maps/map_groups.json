@@ -513,40 +513,58 @@
     "Route8_Gatehouse"
   ],
   "gRoute10Interiors": [
-
+    "Route10_PowerPlant",
+    "Route10_PokemonCenter_1F",
+    "Route10_PokemonCenter_2F"
   ],
   "gRoute12Interiors": [
-
+    "Route12_FishingHouse",
+    "Route12_Gatehouse_1F",
+    "Route12_Gatehouse_2F"
   ],
   "gRoute15Interiors": [
-
+    "Route15_Gatehouse_1F",
+    "Route15_Gatehouse_2F"
   ],
   "gRoute16Interiors": [
-
+    "Route16_Gatehouse_1F",
+    "Route16_Gatehouse_2F",
+    "Route16_House"
   ],
   "gRoute17Interiors": [
-
+    "Route17_Gatehouse_1F",
+    "Route17_Gatehouse_2F"
   ],
   "gRoute19Interiors": [
-
+    "Route19_Gatehouse"
   ],
   "gRoute20Interiors": [
-
+    "Route20_SeafoamGym"
   ],
   "gRoute25Interiors": [
-
+    "Route25_BillsHouse"
   ],
   "gRoute26Interiors": [
-
+    "Route26_House1",
+    "Route26_House2"
   ],
   "gRoute27Interiors": [
-
+    "Route27_House"
   ],
   "gRoute28Interiors": [
-
+    "Route28_House"
   ],
   "gKantoDungeons": [
-    "TohjoFalls"
+    "TohjoFalls",
+    "VictoryRoad_Gatehouse",
+    "VictoryRoad",
+    "DiglettsCave",
+    "MtMoon",
+    "MtMoon_Square",
+    "MtMoon_GiftShop",
+    "UndergroundPath",
+    "RockTunnel_1F",
+    "RockTunnel_B1F"
   ],
   "gBattleFrontier": [
     "BattleFrontier_OutsideWest",
