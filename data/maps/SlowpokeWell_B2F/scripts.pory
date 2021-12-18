@@ -1,1 +1,21 @@
 mapscripts SlowpokeWell_B2F_MapScripts {}
+
+script SlowpokeWell_B2F_EventScript_KingsRockGuy{
+    if(!flag(FLAG_GOT_SLOWPOKE_WELL_KINGS_ROCK))
+    {
+        lock
+        faceplayer
+        msgbox("I'm waiting to see SLOWPOKE's moment\nof evolution.\pThrough observation, I made a new\ndiscovery.\pA SLOWPOKE with a KING'S ROCK often\ngets bitten by a SHELLDER.\pHere, I'll share a KING'S ROCK with\nyou.", MSGBOX_DEFAULT)
+        checkitemspace(ITEM_KINGS_ROCK, 1)
+        if(var(VAR_RESULT) == FALSE)
+        {
+            goto(Common_EventScript_ShowBagIsFull)
+        }
+        giveitem(ITEM_KINGS_ROCK, 1)
+        setflag(FLAG_GOT_SLOWPOKE_WELL_KINGS_ROCK)
+        release
+        end
+    }
+    msgbox("I'm going to be like SLOWPOKE.\pI'll wait patiently so I can see\none evolve.", MSGBOX_NPC)
+    end
+}

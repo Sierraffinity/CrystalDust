@@ -1,1 +1,66 @@
-mapscripts UnionCave_B2F_MapScripts { }
+mapscripts UnionCave_B2F_MapScripts {
+        MAP_SCRIPT_ON_TRANSITION {
+        gettime
+        if (var(VAR_0x8003) == DAY_FRIDAY && !flag(FLAG_DAILY_FOUGHT_LAPRAS))
+        {
+            clearflag(FLAG_TEMP_1)
+        }
+        else
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+    MAP_SCRIPT_ON_RESUME {
+        if (flag(FLAG_SYS_CTRL_OBJ_DELETE))
+        {
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            if (var(VAR_RESULT) == B_OUTCOME_CAUGHT)
+            {
+                removeobject(VAR_LAST_TALKED)
+            }
+        }
+    }
+}
+
+
+script UnionCave_B2F_EventScript_Nick {
+    trainerbattle_single(TRAINER_NICK, "There are two kinds of people.\nThose who have style, and those\lwho don't.\pWhat kind of person are you?", "You've got dazzling style!")
+	msgbox("Your POKéMON style is stunning and\ncolorful, I admit.\pYou'll just keep getting better!", MSGBOX_NPC)
+    end
+}
+
+script UnionCave_B2F_EventScript_Gwen {
+    trainerbattle_single(TRAINER_GWEN, "I'm in training.\nCare for a round?", "Aww, no!\nYou're too good for me.")
+	msgbox("I'm going to train by myself\nuntil I improve.", MSGBOX_NPC)
+    end
+}
+
+script UnionCave_B2F_EventScript_Emma {
+    trainerbattle_single(TRAINER_EMMA, "If the POKéMON I liked were there,\nI'd go anywhere.\pThat's what a real trainer does.", "I'd rather pet my babies than this!")
+	msgbox("Just once a week, a POKéMON comes\nto the water's edge.\pI wanted to see that POKéMON…", MSGBOX_NPC)
+    end
+}
+
+script UnionCave_B2F_EventScript_Lapras {
+    lock
+    faceplayer
+    playmoncry(SPECIES_LAPRAS, 0)
+    delay(40)
+    waitmoncry
+    setvar(VAR_LAST_TALKED, 1)
+    setwildbattle(SPECIES_LAPRAS, 20, ITEM_NONE)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    switch (var(VAR_RESULT))
+    {
+        case B_OUTCOME_WON:
+        case B_OUTCOME_RAN:
+        case B_OUTCOME_PLAYER_TELEPORTED:
+            call(Common_EventScript_RemoveStaticPokemon)
+    }
+    setflag(FLAG_DAILY_FOUGHT_LAPRAS)
+    release
+    end
+}

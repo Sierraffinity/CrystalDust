@@ -499,8 +499,11 @@ extern u8 GetObjectEventIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroupId);
 
 void PatchEusinePaletteToSlot11(void)
 {
-    gSprites[gObjectEvents[GetObjectEventIdByLocalIdAndMap(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup)].spriteId].oam.paletteNum = 11;
-    LoadPaletteDayNight(&gObjectEventPal_Eusine, 16 * 11 + 0x100, 0x20);
+    if(!FlagGet(FLAG_AWAKENED_LEGENDARY_BEASTS))
+    {
+        gSprites[gObjectEvents[GetObjectEventIdByLocalIdAndMap(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup)].spriteId].oam.paletteNum = 11;
+        LoadPaletteDayNight(&gObjectEventPal_Eusine, 16 * 11 + 0x100, 0x20);
+    }
 }
 
 void OverrideKimonoGirlsPaletteSlots(void)

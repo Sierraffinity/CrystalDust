@@ -239,8 +239,8 @@
 #define FLAG_GOT_TM31_FROM_CHUCK             0xE1
 #define FLAG_LEARNED_AMPHY_IS_SICK           0xE2
 #define FLAG_GOT_MYSTIC_WATER_IN_CHERRYGROVE 0xE3
+#define FLAG_GOT_SLOWPOKE_WELL_KINGS_ROCK    0xE4
 // STOPPED HERE
-#define FLAG_REGI_DOORS_OPENED               0xE4
 #define FLAG_RECEIVED_TM27                   0xE5
 #define FLAG_RECEIVED_TM36                   0xE6
 #define FLAG_RECEIVED_TM05                   0xE7
@@ -1544,7 +1544,7 @@
 #define FLAG_DAILY_GOLDENROD_DEPT_STORE_RETURN_FRUSTRATION_EVENT    (DAILY_FLAGS_START + 0x28)
 #define FLAG_DAILY_MOOMOO_MILK                                      (DAILY_FLAGS_START + 0x29)
 #define FLAG_DAILY_PICKED_LOTO_TICKET                               (DAILY_FLAGS_START + 0x2A)
-#define FLAG_DAILY_ROUTE_114_RECEIVED_BERRY                         (DAILY_FLAGS_START + 0x2B)
+#define FLAG_DAILY_FOUGHT_LAPRAS                                    (DAILY_FLAGS_START + 0x2B)
 #define FLAG_DAILY_ROUTE_111_RECEIVED_BERRY                         (DAILY_FLAGS_START + 0x2C)
 #define FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY      				(DAILY_FLAGS_START + 0x2D)
 #define FLAG_DAILY_ROUTE_120_RECEIVED_BERRY         				(DAILY_FLAGS_START + 0x2E)

@@ -155,8 +155,8 @@
       "x": 22,
       "y": 34,
       "elevation": 3,
-      "dest_map": "MAP_DARK_CAVE_B1F",
-      "dest_warp_id": 6
+      "dest_map": "MAP_UNION_CAVE_B2F",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
