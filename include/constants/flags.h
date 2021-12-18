@@ -241,9 +241,9 @@
 #define FLAG_GOT_MYSTIC_WATER_IN_CHERRYGROVE 0xE3
 #define FLAG_GOT_SLOWPOKE_WELL_KINGS_ROCK    0xE4
 #define FLAG_GOT_BLACKGLASSES_IN_DARK_CAVE   0xE5
+#define FLAG_ENTERED_KANTO                   0xE6
+#define FLAG_GOT_SANDSTORM_TM_ON_ROUTE_27    0xE7
 // STOPPED HERE
-#define FLAG_RECEIVED_TM36                   0xE6
-#define FLAG_RECEIVED_TM05                   0xE7
 #define FLAG_RECEIVED_TM19                   0xE8
 
 #define FLAG_UNUSED_0x0E9                    0xE9 // Unused Flag

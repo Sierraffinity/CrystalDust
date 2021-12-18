@@ -29,6 +29,7 @@
 #include "constants/items.h"
 #include "constants/maps.h"
 #include "constants/moves.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/trainer_types.h"
 
@@ -1691,6 +1692,10 @@ static void Task_WaitStopSurfing(u8 taskId)
         ScriptContext2_Disable();
         DestroySprite(&gSprites[playerObjEvent->fieldEffectSpriteId]);
         DestroyTask(taskId);
+        if(!FlagGet(FLAG_ENTERED_KANTO) && gMapHeader.regionMapSectionId == MAPSEC_ROUTE_27)
+        {
+            VarSet(VAR_TEMP_0, 0);
+        }
     }
 }
 

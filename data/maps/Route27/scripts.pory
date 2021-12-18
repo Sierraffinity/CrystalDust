@@ -1,6 +1,41 @@
-mapscripts Route27_MapScripts {}
+mapscripts Route27_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setvar(VAR_TEMP_0, 1)
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 0 {
+            getplayerxy(VAR_RESULT, VAR_0x8001)
+            setvar(VAR_0x8001, 22)
+            subvar(VAR_0x8001, VAR_RESULT)
+            lockall
+            turnobject(1, DIR_WEST)
+            playse(SE_PIN)
+            applymovement(1, Common_Movement_ExclamationMark)
+            delay(0x40)
+            waitmovement(0)
+            while(var(VAR_0x8001) != 0)
+            {
+                applymovement(1, Route27_Movement_FatGuyToPlayer)
+                waitmovement(0)
+                subvar(VAR_0x8001, 1)
+            }
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+            textcolor(0)
+            msgbox("Hey!\pDo you know what you just did?\nYou've taken your first step into\lKANTO!\pCheck your POKéGEAR MAP and see.")
+            setvar(VAR_TEMP_0, 1)
+            setflag(FLAG_ENTERED_KANTO)
+            releaseall
+            end
+        }
+    ]
+}movement Route27_Movement_FatGuyToPlayer{
+    walk_left
+}
 
-// TODO: Welcome to Kanto Fat Guy
+script Route27_Eventscript_FatGuy {
+    msgbox("Do you know what you just did?\nYou've taken your first step into KANTO!\pCheck your POKéGEAR MAP and see.", MSGBOX_NPC)
+    end
+}
 
 script Route27_Eventscript_TohjoFallsSign {
     msgbox("TOHJO FALLS\nTHE LINK BETWEEN KANTO AND JOHTO", MSGBOX_SIGN)
@@ -25,7 +60,7 @@ script Route27_Eventscript_CooltrainerBrian { // on bridge
     end
 }
 
-script Route27_Eventscript_BirdKeeperJose { // on bridge
+script Route27_Eventscript_BirdKeeperJose {
     // TODO: Phone
     trainerbattle_single(TRAINER_JOSE_1, "Tweet! Tweet! Tetweet!", "Tweet!")
     msgbox("BIRD KEEPERS like me mimic bird\nwhistles to command POKéMON.", MSGBOX_AUTOCLOSE)
