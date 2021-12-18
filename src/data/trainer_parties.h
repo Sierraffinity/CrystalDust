@@ -7284,6 +7284,14 @@ static const struct TrainerMonNoItemCustomMoves sParty_MtSilverRed[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_Nathan[] = {
+    {
+    .iv = 0,
+    .lvl = 26,
+    .species = SPECIES_GIRAFARIG,
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Red[] = {
     {
     .iv = 0,

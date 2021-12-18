@@ -17,7 +17,7 @@
 enum
 {
     REGIROCK_PUZZLE,
-    REGISTEEL_PUZZLE
+    AERODACTYL_CHAMBER
 };
 
 EWRAM_DATA static u8 sBraillePuzzleCallbackFlag = 0;
@@ -65,6 +65,7 @@ static const u8 gRegicePathCoords[][2] =
 void SealedChamberShakingEffect(u8);
 void DoBrailleRegirockEffect(void);
 void DoBrailleRegisteelEffect(void);
+extern const u8 RuinsOfAlph_AerodactylChamber_EventScript_OpenHoleInWall[];
 
 bool8 ShouldDoBrailleDigEffect(void)
 {
@@ -290,26 +291,24 @@ void DoBrailleRegirockEffect(void)
     ScriptContext2_Disable();
 }
 
-bool8 ShouldDoBrailleRegisteelEffect(void)
+bool8 ShouldDoAerodactylChamberEffect(void)
 {
-    if (!FlagGet(FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED) && (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(NONE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(NONE)))
+    if (!FlagGet(FLAG_OPENED_WALL_IN_AERODACTYL_CHAMBER) && (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(RUINS_OF_ALPH_AERODACTYL_CHAMBER) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(RUINS_OF_ALPH_AERODACTYL_CHAMBER)))
     {
-        if (gSaveBlock1Ptr->pos.x == 8 && gSaveBlock1Ptr->pos.y == 25)
-        {
-            sBraillePuzzleCallbackFlag = REGISTEEL_PUZZLE;
-            return TRUE;
-        }
+        sBraillePuzzleCallbackFlag = AERODACTYL_CHAMBER;
+        return TRUE;
     }
     return FALSE;
 }
 
-void SetUpPuzzleEffectRegisteel(void)
+void SetUpAerodactylChamberEffect(void)
 {
+    VarSet(VAR_TEMP_0, 1);
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
     FieldEffectStart(FLDEFF_USE_TOMB_PUZZLE_EFFECT);
 }
 
-void UseRegisteelHm_Callback(void)
+void AerodactylChamberHm_Callback(void)
 {
     FieldEffectActiveListRemove(FLDEFF_USE_TOMB_PUZZLE_EFFECT);
     DoBrailleRegisteelEffect();
@@ -317,15 +316,7 @@ void UseRegisteelHm_Callback(void)
 
 void DoBrailleRegisteelEffect(void)
 {
-    MapGridSetMetatileIdAt(14, 26, METATILE_Cave_SealedChamberEntrance_TopLeft);
-    MapGridSetMetatileIdAt(15, 26, METATILE_Cave_SealedChamberEntrance_TopMid);
-    MapGridSetMetatileIdAt(16, 26, METATILE_Cave_SealedChamberEntrance_TopRight);
-    MapGridSetMetatileIdAt(14, 27, METATILE_Cave_SealedChamberEntrance_BottomLeft | METATILE_COLLISION_MASK);
-    MapGridSetMetatileIdAt(15, 27, METATILE_Cave_SealedChamberEntrance_BottomMid);
-    MapGridSetMetatileIdAt(16, 27, METATILE_Cave_SealedChamberEntrance_BottomRight | METATILE_COLLISION_MASK);
-    DrawWholeMapView();
-    PlaySE(SE_BANG);
-    FlagSet(FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED);
+    PlaySE(SE_M_REFLECT);
     ScriptContext2_Disable();
 }
 
@@ -411,10 +402,10 @@ bool8 FldEff_UsePuzzleEffect(void)
 {
     u8 taskId = CreateFieldMoveTask();
 
-    if (sBraillePuzzleCallbackFlag == REGISTEEL_PUZZLE)
+    if (sBraillePuzzleCallbackFlag == AERODACTYL_CHAMBER)
     {
-        gTasks[taskId].data[8] = (u32)UseRegisteelHm_Callback >> 16;
-        gTasks[taskId].data[9] = (u32)UseRegisteelHm_Callback;
+        gTasks[taskId].data[8] = (u32)AerodactylChamberHm_Callback >> 16;
+        gTasks[taskId].data[9] = (u32)AerodactylChamberHm_Callback;
     }
     else
     {

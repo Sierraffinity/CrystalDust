@@ -50,3 +50,10 @@ script RuinsOfAlph_Outside_EventScript_ResearchCenter {
     msgbox("RUINS OF ALPH RESEARCH CENTER\n"
            "THE AUTHORITY ON THE RUINS OF ALPH", MSGBOX_SIGN)
 }
+
+
+script RuinsOfAlph_Outside_Eventscript_PsychicNathan {
+    trainerbattle_single(TRAINER_NATHAN, "Hmmm…\nThis is a strange place.", "…")
+    msgbox("I like thinking here.", MSGBOX_AUTOCLOSE)
+    end
+}

@@ -3388,8 +3388,8 @@
     {
       "id": "LAYOUT_RUINS_OF_ALPH_OMANYTE_WORD_ROOM",
       "name": "RuinsOfAlph_OmanyteWordRoom_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 21,
+      "height": 16,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
@@ -3400,8 +3400,8 @@
     {
       "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_WORD_ROOM",
       "name": "RuinsOfAlph_AerodactylWordRoom_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 21,
+      "height": 14,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
@@ -3412,7 +3412,7 @@
     {
       "id": "LAYOUT_RUINS_OF_ALPH_HO_OH_WORD_ROOM",
       "name": "RuinsOfAlph_HoOhWordRoom_Layout",
-      "width": 20,
+      "width": 21,
       "height": 20,
       "border_width": 2,
       "border_height": 2,

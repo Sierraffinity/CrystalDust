@@ -6538,6 +6538,20 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemCustomMoves = sParty_MtSilverRed},
     },
 
+    [TRAINER_NATHAN] =
+    {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_PSYCHIC_M,
+        .trainerName = _("NATHAN"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_Nathan),
+        .party = {.NoItemCustomMoves = sParty_Nathan},
+    },
+
     [TRAINER_RED] =
     {
         .partyFlags = 0,

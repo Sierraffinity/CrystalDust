@@ -1,0 +1,89 @@
+mapscripts RuinsOfAlph_AerodactylChamber_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 1 {
+            lockall
+            waitse
+            setvar(VAR_0x8004, 1)  # vertical pan
+            setvar(VAR_0x8005, 1)  # horizontal pan
+            setvar(VAR_0x8006, 20) # num shakes
+            setvar(VAR_0x8007, 3)  # shake delay
+            special(ShakeCamera)
+            waitstate
+            playse(SE_PIN)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+            waitmovement(0)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
+            waitmovement(0)
+            delay(4)
+            setvar(VAR_0x8004, 2)  # vertical pan
+            setvar(VAR_0x8005, 2)  # horizontal pan
+            setvar(VAR_0x8006, 20) # num shakes
+            setvar(VAR_0x8007, 3)  # shake delay
+            special(ShakeCamera)
+            delay(30)
+            setmetatile(5, 1, METATILE_RuinsOfAlph_HoleInWall, FALSE)
+            special(DrawWholeMapView)
+            playse(SE_M_ROCK_THROW)
+            waitstate
+            clearflag(FLAG_HIDE_MAP_NAME_POPUP)
+            setflag(FLAG_OPENED_WALL_IN_AERODACTYL_CHAMBER)
+            setvar(VAR_TEMP_0, 0)
+            releaseall
+        }
+    ]
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_SOLVED_AERODACTYL_PUZZLE))
+        {
+            setmetatile(4, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Left, FALSE)
+            setmetatile(5, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Center, FALSE)
+            setmetatile(6, 5, METATILE_RuinsOfAlph_Puzzle_Hole_Right, FALSE)
+        }
+        if (flag(FLAG_OPENED_WALL_IN_AERODACTYL_CHAMBER))
+        {
+            setmetatile(5, 1, METATILE_RuinsOfAlph_HoleInWall, FALSE)
+        }
+    }
+}
+
+script RuinsOfAlph_AerodactylChamber_EventScript_AerodactylDescription {
+    msgbox("This flying POKéMON attacked its\n"
+           "prey with saw-like fangs.", MSGBOX_SIGN)
+}
+
+script RuinsOfAlph_AerodactylChamber_EventScript_BackWall {
+    lockall
+    if (flag(FLAG_OPENED_WALL_IN_AERODACTYL_CHAMBER))
+    {
+        msgbox("There's a big hole in the wall!", MSGBOX_SIGN)
+    }
+    else
+    {
+        message("Patterns appeared on the walls…")
+        waitmessage
+        unownmessage(RuinsOfAlph_AerodactylChamber_Unown_Light)
+        waitbuttonpress
+        closeunownmessage
+    }
+    releaseall
+}
+
+raw `
+RuinsOfAlph_AerodactylChamber_Unown_Light:
+.unown "LIGHT$"
+`
+
+script RuinsOfAlph_AerodactylChamber_EventScript_AerodactylPuzzle {
+    lockall
+    setvar(VAR_0x8004, 1)
+    special(DoRuinsOfAlphPuzzle)
+    waitstate
+    if (var(VAR_RESULT) == 1)
+    {
+        setflag(FLAG_SOLVED_AERODACTYL_PUZZLE)
+        call(RuinsOfAlph_Chambers_EventScript_SolvePuzzle)
+        setwarp(MAP_RUINS_OF_ALPH_INNER_CHAMBER, 11, 0, 0)
+        special(DoFallWarp)
+        waitstate
+    }
+    releaseall
+}

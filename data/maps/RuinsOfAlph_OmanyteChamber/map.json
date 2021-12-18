@@ -20,24 +20,76 @@
   ],
   "warp_events": [
     {
-      "x": 3,
-      "y": 7,
+      "x": 5,
+      "y": 10,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+      "dest_warp_id": 8
+    },
+    {
+      "x": 5,
+      "y": 1,
       "elevation": 3,
       "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
       "dest_warp_id": 0
     },
     {
       "x": 4,
-      "y": 7,
-      "elevation": 3,
-      "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
-      "dest_warp_id": 0
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": 7
+    },
+    {
+      "x": 5,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": 8
+    },
+    {
+      "x": 6,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": 9
     }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlph_OmanyteChamber_EventScript_OmanyteDescription"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlph_OmanyteChamber_EventScript_OmanytePuzzle"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlph_OmanyteChamber_EventScript_OmanyteDescription"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_OmanyteChamber_EventScript_BackWall"
+    }
   ]
 }

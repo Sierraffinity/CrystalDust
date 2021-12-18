@@ -578,27 +578,29 @@
 // Cal & Red
 #define TRAINER_CAL                              465
 #define TRAINER_MT_SILVER_RED                    466
+// Ruins of Alph, forgot this Trainer
+#define TRAINER_NATHAN                           467                 
 
 // Are these actually used? For linking perhaps? They're not referenced outside of here, trainers.h, and the rosters defined in trainer_parties.h
-#define TRAINER_RED                 467
-#define TRAINER_LEAF                468
-#define TRAINER_BRENDAN_PLACEHOLDER 469
-#define TRAINER_MAY_PLACEHOLDER     470
+#define TRAINER_RED                 468
+#define TRAINER_LEAF                469
+#define TRAINER_BRENDAN_PLACEHOLDER 470
+#define TRAINER_MAY_PLACEHOLDER     471
 // Frontier Brains (Probably should be handled elsewhere)
-#define TRAINER_ANABEL_FRONTIER     471
-#define TRAINER_TUCKER_FRONTIER     472
-#define TRAINER_SPENSER_FRONTIER    473
-#define TRAINER_GRETA_FRONTIER      474
-#define TRAINER_NOLAND_FRONTIER     475
-#define TRAINER_LUCY_FRONTIER       476
-#define TRAINER_BRANDON_FRONTIER    477
-// 4-byte boundary. Frontier Brain Brandon is the end of 60 contiguous bytes.
+#define TRAINER_ANABEL_FRONTIER     472
+#define TRAINER_TUCKER_FRONTIER     473
+#define TRAINER_SPENSER_FRONTIER    474
+#define TRAINER_GRETA_FRONTIER      475
+#define TRAINER_NOLAND_FRONTIER     476
+#define TRAINER_LUCY_FRONTIER       477
+// 4-byte boundary. Frontier Brain Lucy is the end of 60 contiguous bytes.
+#define TRAINER_BRANDON_FRONTIER    478
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 864 trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      478
+#define TRAINERS_COUNT                      479
 #define MAX_TRAINERS_COUNT                  864
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

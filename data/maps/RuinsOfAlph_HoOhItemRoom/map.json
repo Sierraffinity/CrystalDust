@@ -16,87 +16,101 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 3,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_SITRUS_BERRY",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_RUINS_OF_ALPH_HO_OH_ITEM_ROOM_SITRUS_BERRY"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 7,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_LEPPA_BERRY",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_RUINS_OF_ALPH_HO_OH_ITEM_ROOM_LEPPA_BERRY"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 3,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_REVIVAL_HERB",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_RUINS_OF_ALPH_HO_OH_ITEM_ROOM_REVIVAL_HERB"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 7,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_CHARCOAL",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_RUINS_OF_ALPH_HO_OH_ITEM_ROOM_CHARCOAL"
+    }
   ],
   "warp_events": [
     {
-      "x": 3,
-      "y": 8,
+      "x": 5,
+      "y": 10,
       "elevation": 3,
-      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+      "dest_map": "MAP_RUINS_OF_ALPH_HO_OH_CHAMBER",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 4,
+      "y": 2,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_HO_OH_WORD_ROOM",
       "dest_warp_id": 0
     },
     {
-      "x": 6,
-      "y": 8,
+      "x": 5,
+      "y": 2,
       "elevation": 3,
-      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+      "dest_map": "MAP_RUINS_OF_ALPH_HO_OH_WORD_ROOM",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 6,
+      "y": 2,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_HO_OH_WORD_ROOM",
       "dest_warp_id": 2
-    },
-    {
-      "x": 9,
-      "y": 8,
-      "elevation": 3,
-      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-      "dest_warp_id": 4
-    },
-    {
-      "x": 3,
-      "y": 3,
-      "elevation": 3,
-      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-      "dest_warp_id": 6
-    },
-    {
-      "x": 6,
-      "y": 3,
-      "elevation": 3,
-      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-      "dest_warp_id": 7
-    },
-    {
-      "x": 9,
-      "y": 3,
-      "elevation": 3,
-      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_WORD_ROOM",
-      "dest_warp_id": 8
     }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-    {
-      "type": "sign",
-      "x": 3,
-      "y": 8,
-      "elevation": 3,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room1Door"
-    },
-    {
-      "type": "sign",
-      "x": 6,
-      "y": 8,
-      "elevation": 3,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room2Door"
-    },
-    {
-      "type": "sign",
-      "x": 3,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room4Door"
-    },
-    {
-      "type": "sign",
-      "x": 9,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RuinsOfAlph_HoOhItemRoom_EventScript_Room6Door"
-    }
+
   ]
 }

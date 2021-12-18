@@ -559,3 +559,11 @@ void AwakenSuicune(void)
 {
     LoadPaletteDayNight(&gObjectEventPal_Npc2, 16 * 3 + 0x100, 0x20);
 }
+
+void IsHoOhInFirstInParty(void)
+{
+    if(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES2) == SPECIES_HO_OH)
+        gSpecialVar_Result = TRUE;
+    else
+        gSpecialVar_Result = FALSE;
+}

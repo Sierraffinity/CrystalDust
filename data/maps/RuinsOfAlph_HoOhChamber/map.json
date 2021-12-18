@@ -20,24 +20,76 @@
   ],
   "warp_events": [
     {
-      "x": 4,
-      "y": 7,
+      "x": 5,
+      "y": 10,
       "elevation": 3,
-      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
-      "dest_warp_id": 5
+      "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE",
+      "dest_warp_id": 6
     },
     {
       "x": 5,
-      "y": 7,
+      "y": 1,
       "elevation": 3,
-      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+      "dest_map": "MAP_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 4,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": 4
+    },
+    {
+      "x": 5,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
       "dest_warp_id": 5
+    },
+    {
+      "x": 6,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": 6
     }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlph_HoOhChamber_EventScript_HoOhDescription"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlph_HoOhChamber_EventScript_HoOhDescription"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlph_HoOhChamber_EventScript_HoOhPuzzle"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_HoOhChamber_EventScript_BackWall"
+    }
   ]
 }
