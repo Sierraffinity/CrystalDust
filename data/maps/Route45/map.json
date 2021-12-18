@@ -31,11 +31,11 @@
   ],
   "warp_events": [
     {
-      "x": 51,
+      "x": 3,
       "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE35_GOLDENROD_GATEHOUSE",
-      "dest_warp_id": 0
+      "dest_map": "MAP_DARK_CAVE_B1F",
+      "dest_warp_id": 1
     }
   ],
   "coord_events": [

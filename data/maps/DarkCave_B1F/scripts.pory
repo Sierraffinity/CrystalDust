@@ -1,0 +1,23 @@
+mapscripts DarkCave_B1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_DARK_CAVE)
+    }
+}
+
+script DarkCave_B1F_EventScript_BlackGlassesGuy{
+    if(!flag(FLAG_GOT_BLACKGLASSES_IN_DARK_CAVE))
+    {
+        lock
+        faceplayer
+        msgbox("Whoa!\nYou startled me there!\pI had my BLACKGLASSES on, so I\ndidn't notice you at all.\pWhat am I doing here?\nHey, don't you worry about it.\pI'll give you a pair of BLACKGLASSES,\nso forget you saw me, OK?", MSGBOX_DEFAULT)
+        checkitemspace(ITEM_BLACK_GLASSES, 1)
+        if(var(VAR_RESULT) == FALSE)
+        {
+            goto(Common_EventScript_ShowBagIsFull)
+        }
+        giveitem(ITEM_BLACK_GLASSES, 1)
+        setflag(FLAG_GOT_BLACKGLASSES_IN_DARK_CAVE)
+    }
+    msgbox("BLACKGLASSES ups the power of\nDARK-type moves.", MSGBOX_NPC)
+    end
+}

@@ -616,8 +616,8 @@
     {
       "id": "LAYOUT_DARK_CAVE_B1F",
       "name": "DarkCave_B1F_Layout",
-      "width": 32,
-      "height": 26,
+      "width": 48,
+      "height": 36,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",

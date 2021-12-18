@@ -240,8 +240,8 @@
 #define FLAG_LEARNED_AMPHY_IS_SICK           0xE2
 #define FLAG_GOT_MYSTIC_WATER_IN_CHERRYGROVE 0xE3
 #define FLAG_GOT_SLOWPOKE_WELL_KINGS_ROCK    0xE4
+#define FLAG_GOT_BLACKGLASSES_IN_DARK_CAVE   0xE5
 // STOPPED HERE
-#define FLAG_RECEIVED_TM27                   0xE5
 #define FLAG_RECEIVED_TM36                   0xE6
 #define FLAG_RECEIVED_TM05                   0xE7
 #define FLAG_RECEIVED_TM19                   0xE8
