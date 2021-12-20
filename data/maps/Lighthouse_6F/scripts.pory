@@ -1,1 +1,116 @@
 mapscripts Lighthouse_6F_MapScripts {}
+
+script Lighthouse_6F_Eventscript_Jasmine{
+    lock
+    faceplayer
+    checkitem(ITEM_SECRET_POTION, 1)
+    if(!var(VAR_RESULT))
+    {
+        if(!flag(FLAG_LEARNED_AMPHY_IS_SICK))
+        {
+            msgbox("JASMINE: …This POKéMON always\nkept the sea lit at night.\p…But it suddenly got sick… It's\ngasping for air…\p…I understand that there is a\nwonderful PHARMACY in CIANWOOD…\pBut that's across the sea…\nAnd I can't leave AMPHY unattended…", MSGBOX_DEFAULT)
+            setflag(FLAG_LEARNED_AMPHY_IS_SICK)
+        }
+        msgbox("…May I ask you to get some medicine\nfor me? Please?", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("JASMINE: …Will that medicine cure\nAMPHY?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        msgbox("JASMINE: …I see…", MSGBOX_DEFAULT)
+        release
+        turnobject(2, DIR_EAST)
+        delay(15)
+        turnobject(1, DIR_WEST)
+        msgbox("…AMPHY, hang on!", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    textcolor(3)
+    msgbox("{PLAYER} handed the SECRETPOTION\nto JASMINE.", MSGBOX_DEFAULT)
+    release
+    removeitem(ITEM_SECRET_POTION)
+    textcolor(1)
+    msgbox("JASMINE: …Um, please don't be\noffended…\p…AMPHY will not take anything from\nanyone but me…")
+    release
+    turnobject(2, DIR_EAST)
+    delay(15)
+    turnobject(1, DIR_WEST)
+    message("JASMINE: …\pAMPHY, how are you feeling?")
+    waitmessage
+    playfanfare(MUS_HEAL)
+    waitfanfare
+    release
+    setflag(FLAG_CURED_AMPHY)
+    special(StartDroughtWeatherBlend)
+    playmoncry(SPECIES_AMPHAROS, 0)
+    delay(10)
+    callnative(InitMapView)
+    callnative(NewInitObjectEventPalettes)
+    waitmoncry
+    delay(120)
+    textcolor(3)
+    msgbox(Lighthouse_6F_Text_AmphyHealthy, MSGBOX_DEFAULT)
+    release
+    turnobject(1, DIR_EAST)
+    delay(10)
+    turnobject(1, DIR_WEST)
+    delay(10)
+    turnobject(1, DIR_EAST)
+    delay(10)
+    turnobject(1, DIR_WEST)
+    delay(10)
+    faceplayer
+    textcolor(1)
+    msgbox("JASMINE: …Oh, I'm so relieved…\nThis is just so wonderful…\pThank you so very much.\n…I will return to the GYM…", MSGBOX_DEFAULT)
+    release
+    getplayerxy(VAR_0x8008, VAR_RESULT)
+    if(var(VAR_RESULT) == 13)
+    {   //player beneath Jasmine
+        applymovement(2, Lighthouse_6F_Movement_JasmineStartsExitUp)
+        waitmovement(0)
+    }
+    else
+    {   //player to the side or on top of Jasmine
+        applymovement(2, Lighthouse_6F_Movement_JasmineStartsExitDown)
+        waitmovement(0)
+    }
+    applymovement(2, Lighthouse_6F_Movement_JasmineExits)
+    waitmovement(0)
+    removeobject(2)
+    release
+    end
+}movement Lighthouse_6F_Movement_JasmineStartsExitUp{
+    walk_up
+}movement Lighthouse_6F_Movement_JasmineStartsExitDown{
+    walk_down
+}movement Lighthouse_6F_Movement_JasmineExits{
+    walk_right * 8
+}
+
+script Lighthouse_6F_Eventscript_Amphy{
+    faceplayer
+    if(flag(FLAG_CURED_AMPHY))
+    {
+        message(Lighthouse_6F_Text_AmphyHealthy)
+        waitmessage
+        playmoncry(SPECIES_AMPHAROS, 0)
+        waitmoncry
+        release
+        special(StartDroughtWeatherBlend)
+        delay(160)
+        end
+    }
+    message("AMPHY: …\n…Pa… paloo…")
+    waitmessage
+    playmoncry(SPECIES_AMPHAROS, 5)
+    waitmoncry
+    msgbox("Its breathing is terribly labored…", MSGBOX_DEFAULT)
+    release
+    end
+}
+
+text Lighthouse_6F_Text_AmphyHealthy{
+    "AMPHY: Palu!\nPalulu!"
+}

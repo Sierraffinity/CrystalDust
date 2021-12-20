@@ -777,3 +777,10 @@ gMetatiles_OlivineCity::
 	.align 1
 gMetatileAttributes_OlivineCity::
 	.incbin "data/tilesets/secondary/olivinecity/metatile_attributes.bin"
+	.align 1
+gMetatiles_Lighthouse::
+	.incbin "data/tilesets/secondary/lighthouse/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Lighthouse::
+	.incbin "data/tilesets/secondary/lighthouse/metatile_attributes.bin"

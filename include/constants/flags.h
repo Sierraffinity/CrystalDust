@@ -243,9 +243,8 @@
 #define FLAG_GOT_BLACKGLASSES_IN_DARK_CAVE   0xE5
 #define FLAG_ENTERED_KANTO                   0xE6
 #define FLAG_GOT_SANDSTORM_TM_ON_ROUTE_27    0xE7
+#define FLAG_GOT_TM23_FROM_JASMINE           0xE8
 // STOPPED HERE
-#define FLAG_RECEIVED_TM19                   0xE8
-
 #define FLAG_UNUSED_0x0E9                    0xE9 // Unused Flag
 
 #define FLAG_RECEIVED_TM44                   0xEA

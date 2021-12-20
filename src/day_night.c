@@ -2,6 +2,7 @@
 #include "day_night.h"
 #include "decompress.h"
 #include "event_data.h"
+#include "event_object_movement.h"
 #include "field_tasks.h"
 #include "field_weather.h"
 #include "fruit_tree.h"
@@ -11,6 +12,7 @@
 #include "strings.h"
 #include "string_util.h"
 #include "constants/day_night.h"
+#include "constants/maps.h"
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 
@@ -20,6 +22,8 @@
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
+
+void NewInitObjectEventPalettes(void);
 
 static EWRAM_DATA struct {
     bool8 initialized:1;
@@ -129,6 +133,10 @@ static void LoadPaletteOverrides(void)
     {
         hour = 0;
     }
+    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LIGHTHOUSE_6F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LIGHTHOUSE_6F) && !FlagGet(FLAG_CURED_AMPHY))
+    {
+        hour = 0;
+    }
     else
     {
         hour = gLocalTime.hours;
@@ -165,8 +173,8 @@ static bool8 ShouldTintOverworld(void)
 {
     if (IsMapTypeOutdoors(gMapHeader.mapType))
         return TRUE;
-
-    // more conditions?
+    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LIGHTHOUSE_6F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LIGHTHOUSE_6F) && !FlagGet(FLAG_CURED_AMPHY))
+        return TRUE;
     return FALSE;
 }
 
@@ -355,4 +363,9 @@ void ProcessImmediateTimeEvents(void)
 void DoLoadSpritePaletteDayNight(const u16 *src, u16 paletteOffset)
 {
     LoadPaletteDayNight(src, paletteOffset + 0x100, 32);
+}
+
+void NewInitObjectEventPalettes(void)
+{
+    InitObjectEventPalettes(0);
 }

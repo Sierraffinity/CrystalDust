@@ -1,6 +1,45 @@
-mapscripts OlivineCity_Gym_MapScripts {}
+mapscripts OlivineCity_Gym_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_CURED_AMPHY))
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+}
 
-// TODO: Jasmine and Gym Guy (Gym Guy relies on the saved Amphy flag)
+script  OlivineCity_Gym_Eventscript_Jasmine{
+    lock
+    faceplayer
+    if(!flag(FLAG_BADGE06_GET))
+    {
+        msgbox("…Thank you for your help at\nthe LIGHTHOUSE…\pBut this is different. Please\nallow me to introduce myself.\pI am JASMINE, a GYM LEADER.\nI use the STEEL type.\p…Do you know about the STEEL\ntype?\pIt's a type that was only recently\ndiscovered.\p…Um…\nMay I begin?", MSGBOX_DEFAULT)
+        release
+        trainerbattle_no_intro(TRAINER_JASMINE, "…You are a better trainer than me,\nin both skill and kindness.\pIn accordance with LEAGUE rules, I\nconfer upon you this BADGE.")
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received\nthe MINERALBADGE.")
+        call(Common_EventScript_PlayGymBadgeFanfare)
+        textcolor(MSG_COLOR_PREV)
+        setflag(FLAG_BADGE06_GET)
+        //activate Rockets if enough badges acquired
+    }
+    if(!flag(FLAG_GOT_TM23_FROM_JASMINE))
+    {
+        msgbox("The MINERALBADGE raises POKéMON's\nDEFENSE.\p…Um…\nPlease take this too…")
+        checkitemspace(ITEM_TM23, 1)
+        if(!var(VAR_RESULT))
+        {
+            goto(Common_EventScript_ShowBagIsFull)
+        }
+        giveitem(ITEM_TM23, 1)
+        setflag(FLAG_GOT_TM23_FROM_JASMINE)
+        msgbox("…You could use that TM to teach\nIRON TAIL.")
+        release
+        end
+    }
+    msgbox("Um… I don't know how to say this,\nbut good luck…")
+    release
+    end
+}
 
 script OlivineCity_Gym_Eventscript_Statues{
     if(flag(FLAG_BADGE06_GET))
@@ -9,5 +48,20 @@ script OlivineCity_Gym_Eventscript_Statues{
         end
     }
     msgbox("OLIVINE CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}
+
+script OlivineCity_Gym_Eventscript_GymGuy{
+    if(flag(FLAG_BADGE06_GET))
+    {
+        msgbox("That was awesome.\nThe STEEL type, huh?\pThat was a close encounter of an\nunknown kind!", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_CURED_AMPHY))
+    {
+        msgbox("JASMINE uses the newly-discovered \nSTEEL type.\pI don't know very much about it.", MSGBOX_NPC)
+        end
+    }
+    msgbox("JASMINE, the GYM LEADER, is at\nthe LIGHTHOUSE.\pShe's been tending to a sick\nPOKéMON.\pA strong trainer has to be\ncompassionate.", MSGBOX_NPC)
     end
 }

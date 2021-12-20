@@ -1278,3 +1278,15 @@ gTileset_OlivineCity::
 	.4byte gMetatileAttributes_OlivineCity
 	.4byte NULL
 	.4byte gTilesetPalOverrides_OlivineCity
+
+	.align 2
+gTileset_Lighthouse::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Lighthouse
+	.4byte gTilesetPalettes_Lighthouse
+	.4byte gMetatiles_Lighthouse
+	.4byte gMetatileAttributes_Lighthouse
+	.4byte NULL
+	.4byte NULL

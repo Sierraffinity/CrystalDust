@@ -2,23 +2,88 @@
   "id": "MAP_LIGHTHOUSE_6F",
   "name": "Lighthouse_6F",
   "layout": "LAYOUT_LIGHTHOUSE_6F",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_VIOLET",
   "region_map_section": "MAPSEC_LIGHTHOUSE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
   "allow_cycling": false,
-  "allow_escaping": true,
-  "allow_running": false,
+  "allow_escaping": false,
+  "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
+  "floor_number": 6,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_AMPHAROS",
+      "in_connection": false,
+      "x": 14,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Lighthouse_6F_Eventscript_Amphy",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_JASMINE",
+      "in_connection": false,
+      "x": 13,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Lighthouse_6F_Eventscript_Jasmine",
+      "flag": "FLAG_CURED_AMPHY"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 5,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_SUPER_POTION",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 13,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_LIGHTHOUSE_5F",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 25,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_LIGHTHOUSE_5F",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 26,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_LIGHTHOUSE_5F",
+      "dest_warp_id": 6
+    }
   ],
   "coord_events": [
 

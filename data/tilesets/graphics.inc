@@ -2407,3 +2407,23 @@ gTilesetPalettes_OlivineCity::
 	.align 2
 gTilesetTiles_OlivineCity::
 	.incbin "data/tilesets/secondary/olivinecity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_Lighthouse::
+	.incbin "data/tilesets/secondary/lighthouse/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/lighthouse/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_Lighthouse::
+	.incbin "data/tilesets/secondary/lighthouse/tiles.4bpp.lz"

@@ -8,7 +8,7 @@ script Lighthouse_3F_EventScript_GentlemanPreston {
 
 script Lighthouse_3F_Eventscript_SailorTerrell {
     trainerbattle_single(TRAINER_TERRELL, "SAILORS are both kind and strong.\nHow about you?", "You are both kind and strong…")
-    msgbox("Every time I come back to OLIVINE, I\nvisit the GYM.\pThe GYM LEADER's POKéMON type has\nchanged without me noticing.", MSGBOX_AUTOCLOSE)
+    msgbox("Every time I come back to OLIVINE,\nI visit the GYM.\pThe GYM LEADER's POKéMON type has\nchanged without me noticing.", MSGBOX_AUTOCLOSE)
     end
 }
 
