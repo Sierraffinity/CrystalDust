@@ -1028,9 +1028,9 @@ u32 FldEff_SurfBlob(void)
     {
         sprite = &gSprites[spriteId];
         sprite->coordOffsetEnabled = TRUE;
-        sprite->oam.paletteNum = 0;
+        //sprite->oam.paletteNum = 0;
         sprite->tPlayerObjId = gFieldEffectArguments[2];
-        sprite->data[3] = -1;
+        sprite->data[3] = 0;
         sprite->data[6] = -1;
         sprite->data[7] = -1;
     }
@@ -1129,7 +1129,7 @@ void SynchroniseSurfPosition(struct ObjectEvent *playerObj, struct Sprite *sprit
 
 static void UpdateBobbingEffect(struct ObjectEvent *playerObj, struct Sprite *playerSprite, struct Sprite *sprite)
 {
-    u16 intervals[] = {3, 7};
+    u16 intervals[] = {7, 15};
     u8 bobState = GetSurfBlob_BobState(sprite);
     if (bobState != BOB_NONE)
     {
@@ -1138,7 +1138,7 @@ static void UpdateBobbingEffect(struct ObjectEvent *playerObj, struct Sprite *pl
         {
             sprite->y2 += sprite->data[3];
         }
-        if ((sprite->data[4] & 15) == 0)
+        if ((sprite->data[4] & 0x1F) == 0)
         {
             sprite->data[3] = -sprite->data[3];
         }
@@ -1149,6 +1149,8 @@ static void UpdateBobbingEffect(struct ObjectEvent *playerObj, struct Sprite *pl
                 playerSprite->y2 = sprite->y2;
             else
                 playerSprite->y2 = sprite->tPlayerOffset + sprite->y2;
+            if (sprite->animCmdIndex != 0)
+                playerSprite->y2++;
             sprite->x = playerSprite->x;
             sprite->y = playerSprite->y + 8;
         }
