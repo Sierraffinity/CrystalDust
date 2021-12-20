@@ -175,7 +175,11 @@ EventScript_FruitTree::
 	goto_if_eq FruitTree_NotEnoughSpace
 	addvar VAR_0x8004, FLAG_FRUIT_TREES_START - 1
 	special SetHiddenItemFlag
+	releaseall
+	return
+
 FruitTree_NotEnoughSpace:
+	msgbox gText_FruitBearingTreeBagFull
 	releaseall
 	return
 

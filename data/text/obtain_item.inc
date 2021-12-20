@@ -38,3 +38,6 @@ gText_FruitBearingTreeNothingHere:
 gText_TheDecorWasTransferredToThePC::
 	.string "The {STR_VAR_2} was transferred\n"
 	.string "to the PC.$"
+
+gText_FruitBearingTreeBagFull:
+	.string "But the BAG is full…$"
