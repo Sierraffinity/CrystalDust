@@ -42,8 +42,8 @@ script EcruteakCity_PokemonCenter_1F_Eventscript_Bill{
     playse(SE_EXIT)
     waitse
     delay(10)
-    // queue the enable trade flags for the next day here
     setflag(FLAG_MET_BILL_IN_ECRUTEAK)
+    clearflag(FLAG_HIDE_GOLDENROD_CITY_BILLS_FAMILYS_HOUSE_BILL)
     setvar(VAR_TEMP_0, 1)
     releaseall
     end

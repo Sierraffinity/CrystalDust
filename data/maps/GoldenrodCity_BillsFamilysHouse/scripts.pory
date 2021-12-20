@@ -14,7 +14,7 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
         msgbox("BILL: Hi, {PLAYER}!\n"
                "Do us a favor and take this EEVEE.\p"
                "It came over when I was adjusting\n"
-               "the Network Machine uplink.\p"
+               "the TIME CAPSULE.\p"
                "Someone has to take care of it,\n"
                "but I don't like being outside.\p"
                "Can I count on you to play with\n"
@@ -26,6 +26,11 @@ script GoldenrodCity_BillsFamilysHouse_EventScript_Bill {
                    "Okay, I'm counting on you.\n"
                    "Take good care of it!")
             textcolor(MSG_COLOR_SYS)
+            specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+            if(var(VAR_RESULT) == 6)
+            {
+                goto(GoldenrodCity_BillsFamilysHouse_EventScript_Bill_PartyFull)
+            }
             givemon(SPECIES_EEVEE, 20, ITEM_NONE)
             if (var(VAR_RESULT) == 0)
             {
