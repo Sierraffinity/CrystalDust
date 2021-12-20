@@ -1,4 +1,8 @@
-mapscripts Lighthouse_1F_MapScripts {}
+mapscripts Lighthouse_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_LIGHTHOUSE)
+    }
+}
 
 script Lighthouse_1F_Eventscript_Woman{
     msgbox("In the past, POKéMON used to light\nthe sea around OLIVINE at night.\pThe LIGHTHOUSE was made in honor of\nthose POKéMON.", MSGBOX_NPC)
