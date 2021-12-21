@@ -2953,7 +2953,7 @@ BattleScript_LocalBattleLostPrintWhiteOut::
 	getmoneyreward BattleScript_LocalBattleLostPrintWhiteOutNoMonetaryLoss
 	printstring STRINGID_PLAYERWHITEOUT2
 	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_LocalBattleLostEnd
+	goto BattleScript_EReaderOrSecretBaseTrainerEnd
 
 BattleScript_LocalBattleLostEnd::
     printstring STRINGID_PLAYERWHITEOUTTRAINER
