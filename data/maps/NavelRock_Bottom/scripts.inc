@@ -6,8 +6,8 @@ NavelRock_Bottom_MapScripts::
 	.byte 0
 
 NavelRock_Bottom_OnTransition:
-	call_if_set FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_HideLugia
-	call_if_unset FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_TryShowLugia
+	call_if_set FLAG_CAUGHT_NAVEL_ROCK_LUGIA, NavelRock_Bottom_EventScript_HideLugia
+	call_if_unset FLAG_CAUGHT_NAVEL_ROCK_LUGIA, NavelRock_Bottom_EventScript_TryShowLugia
 	end
 
 NavelRock_Bottom_EventScript_HideLugia::
@@ -69,7 +69,7 @@ NavelRock_Bottom_EventScript_Lugia::
 	goto_if_eq NavelRock_Bottom_EventScript_RanFromLugia
 	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
 	goto_if_eq NavelRock_Bottom_EventScript_RanFromLugia
-	setflag FLAG_CAUGHT_LUGIA
+	setflag FLAG_CAUGHT_NAVEL_ROCK_LUGIA
 	release
 	end
 

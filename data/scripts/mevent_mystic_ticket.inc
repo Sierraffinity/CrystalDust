@@ -3,8 +3,8 @@ MysteryEventScript_MysticTicket::
 	lock
 	faceplayer
 	vgoto_if_set FLAG_RECEIVED_MYSTIC_TICKET, MysticTicket_Obtained
-	vgoto_if_set FLAG_CAUGHT_LUGIA, MysticTicket_Obtained
-	vgoto_if_set FLAG_CAUGHT_HO_OH, MysticTicket_Obtained
+	vgoto_if_set FLAG_CAUGHT_NAVEL_ROCK_LUGIA, MysticTicket_Obtained
+	vgoto_if_set FLAG_CAUGHT_NAVEL_ROCK_HO_OH, MysticTicket_Obtained
 	checkitem ITEM_MYSTIC_TICKET, 1
 	compare VAR_RESULT, TRUE
 	vgoto_if_eq MysticTicket_Obtained

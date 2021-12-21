@@ -1,6 +1,46 @@
-mapscripts Route42_MapScripts {}
+mapscripts Route42_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!(flag(FLAG_AWAKENED_LEGENDARY_BEASTS) && !flag(FLAG_SAW_SUICUNE_ON_ROUTE_42)))
+        {
+            setflag(FLAG_TEMP_1)
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+}
 
-// TODO: Suicune event
+script Route42_Eventscript_SuicuneTrigger {
+    lockall
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    playse(SE_LEDGE)
+    setmetatile(32, 21, 0x2D4, 0)
+    special(DrawWholeMapView)
+    applymovement(7, Route42_Movement_Suicune)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    waitmovement(0)
+    removeobject(7)
+    setmetatile(32, 21, 0x13, 0)
+    special(DrawWholeMapView)
+    setflag(FLAG_SAW_SUICUNE_ON_ROUTE_42)
+    clearflag(FLAG_SAW_SUICUNE_ON_ROUTE_36)
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+    end
+}movement Route42_Movement_Suicune{
+    jump_2_up_fast * 2
+    jump_2_right_fast * 3
+    set_invisible
+}
 
 script Route42_Eventscript_RouteSign { //used for both easternmost and westernmost signs
     msgbox("ROUTE 42\nECRUTEAK CITY - MAHOGANY TOWN", MSGBOX_SIGN)

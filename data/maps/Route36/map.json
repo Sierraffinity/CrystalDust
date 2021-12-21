@@ -143,6 +143,21 @@
       "y": 32,
       "source_id": 11,
       "source_map": "MAP_ROUTE35"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SUICUNE",
+      "in_connection": false,
+      "x": 13,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_1"
     }
   ],
   "warp_events": [
@@ -169,7 +184,24 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Route36_Eventscript_SuicuneTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Route36_Eventscript_SuicuneTrigger"
+    }
   ],
   "bg_events": [
     {

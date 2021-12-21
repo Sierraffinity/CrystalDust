@@ -1,10 +1,93 @@
 mapscripts CianwoodCity_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_EUSINE_IN_BURNED_TOWER_B1F) // Entering Cianwood disables Eusine at Burned Tower B1F.
         setflag(FLAG_VISITED_CIANWOOD_CITY)
+        setflag(FLAG_TEMP_2)
+        if(!(flag(FLAG_AWAKENED_LEGENDARY_BEASTS) && !flag(FLAG_SAW_SUICUNE_IN_CIANWOOD)))
+        {
+            setflag(FLAG_TEMP_1)
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+    MAP_SCRIPT_ON_RESUME {
+        if(!flag(FLAG_TEMP_2)) //if returning from Eusine battle
+        {
+            //playbgm(MUS_EUSINE, 0) //need this music
+        }
     }
 }
 
-// TODO: Suicune event with Eusine
+script CianwoodCity_Eventscript_SuicuneTrigger {
+    lockall
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    playse(SE_LEDGE)
+    applymovement(11, CianwoodCity_Movement_Suicune1)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    waitmovement(0)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    delay(15)
+    playse(SE_LEDGE)
+    applymovement(11, CianwoodCity_Movement_Suicune2)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    waitmovement(0)
+    removeobject(11)
+    delay(10)
+    setflag(FLAG_SAW_SUICUNE_IN_CIANWOOD)
+    clearflag(FLAG_SAW_SUICUNE_ON_ROUTE_42)
+    setvar(VAR_TEMP_0, 1)
+    if(!defeated(TRAINER_EUSINE))
+    {
+        //playbgm(MUS_EUSINE, 0) //need this music
+        addobject(12)
+        applymovement(12, CianwoodCity_Movement_EusineToPlayer)
+        waitmovement(0)
+        textcolor(0)
+        msgbox("EUSINE: Yo, {PLAYER}.\nWasn't that SUICUNE just now?\pI only caught a quick glimpse, but\nI thought I saw SUICUNE running on\lthe waves.\pSUICUNE is beautiful and grand.\nAnd it races through towns and\lroads at simply awesome speeds.\pIt's wonderful…\nI want to see SUICUNE up close…\pI've decided.\pI'll battle you as a trainer to earn\nSUICUNE's respect!\pCome on, {PLAYER}.\nLet's battle now!", MSGBOX_DEFAULT)
+        release
+        trainerbattle_no_intro(TRAINER_EUSINE, "I hate to admit it, but you win.")
+        textcolor(0)
+        msgbox("You're amazing, {PLAYER}! No wonder\nPOKéMON gravitate to you.\pI get it now.\pI'm going to keep searching for\nSUICUNE.\pI'm sure we'll see each other again.\nSee you around!", MSGBOX_DEFAULT)
+        release
+        applymovement(12, CianwoodCity_Movement_EusineExits)
+        waitmovement(0)
+        delay(20)
+        fadedefaultbgm
+        delay(10)
+        removeobject(12)
+        releaseall
+        end
+    }
+    releaseall
+    end
+}movement(local) CianwoodCity_Movement_Suicune1{
+    jump_2_down_fast * 2
+    jump_2_right_fast
+}movement(local) CianwoodCity_Movement_Suicune2{
+    jump_2_right_fast
+    jump_2_up_fast
+    jump_2_right_fast * 3
+    set_invisible
+}movement(local) CianwoodCity_Movement_EusineToPlayer{
+    walk_up * 5
+}movement(local) CianwoodCity_Movement_EusineExits{
+    walk_down * 5
+    set_invisible
+}
 
 script CianwoodCity_Eventscript_CitySign {
     msgbox("CIANWOOD CITY\nA Port Surrounded by Rough Seas", MSGBOX_SIGN)

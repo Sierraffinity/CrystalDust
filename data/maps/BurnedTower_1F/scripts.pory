@@ -3,20 +3,29 @@ mapscripts BurnedTower_1F_MapScripts {
         if(!flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
         {
             setmetatile(6, 17, 0x2C1, 0)
+        }
+        if(!(defeated(TRAINER_RIVAL_BURNED_TOWER_CHIKORITA) || defeated(TRAINER_RIVAL_BURNED_TOWER_TOTODILE) || defeated(TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL)))
+        {
             setmetatile(9, 11, 0x2C1, 0)
+        }
+        else
+        {
+            setflag(FLAG_TEMP_1)
         }
     }
     // To manually patch in Eusine's palette since Silver
     // is also on this map with a unique palette.
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
         VAR_TEMP_0, 0{
-            if(flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
-            {   // hides Rival, Eusine, and Morty
+            if(defeated(TRAINER_RIVAL_BURNED_TOWER_CHIKORITA) || defeated(TRAINER_RIVAL_BURNED_TOWER_TOTODILE) || defeated(TRAINER_RIVAL_BURNED_TOWER_CYNDAQUIL))
+            {
                 setflag(FLAG_TEMP_1)
+            }
+            if(!flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+            {
+                callnative(PatchEusinePaletteToSlot11)
                 end
             }
-            callnative(PatchEusinePaletteToSlot11)
-            end
         }
     ]
     MAP_SCRIPT_ON_FRAME_TABLE[

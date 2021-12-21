@@ -6,8 +6,8 @@ NavelRock_Top_MapScripts::
 	.byte 0
 
 NavelRock_Top_OnTransition:
-	call_if_set FLAG_CAUGHT_HO_OH, NavelRock_Top_EventScript_HideHoOh
-	call_if_unset FLAG_CAUGHT_HO_OH, NavelRock_Top_EventScript_TryShowHoOh
+	call_if_set FLAG_CAUGHT_NAVEL_ROCK_HO_OH, NavelRock_Top_EventScript_HideHoOh
+	call_if_unset FLAG_CAUGHT_NAVEL_ROCK_HO_OH, NavelRock_Top_EventScript_TryShowHoOh
 	end
 
 NavelRock_Top_EventScript_HideHoOh::
@@ -74,7 +74,7 @@ NavelRock_Top_EventScript_HoOh::
 	goto_if_eq NavelRock_Top_EventScript_RanFromHoOh
 	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
 	goto_if_eq NavelRock_Top_EventScript_RanFromHoOh
-	setflag FLAG_CAUGHT_HO_OH
+	setflag FLAG_CAUGHT_NAVEL_ROCK_HO_OH
 	releaseall
 	end
 

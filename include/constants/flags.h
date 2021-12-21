@@ -156,8 +156,8 @@
 #define FLAG_RECEIVED_EGG_TICKET             0x8E
 #define FLAG_TALKED_TO_DAYCARE_LADY          0x8F
 #define FLAG_CLEARED_RADIO_TOWER             0x90
-#define FLAG_CAUGHT_LUGIA                    0x91
-#define FLAG_CAUGHT_HO_OH                    0x92
+#define FLAG_CAUGHT_NAVEL_ROCK_LUGIA                    0x91
+#define FLAG_CAUGHT_NAVEL_ROCK_HO_OH                    0x92
 #define FLAG_ROCKETS_IN_RADIO_TOWER          0x93
 #define FLAG_POKECOM_CENTER_ENABLED          0x94
 #define FLAG_MET_BUENA                       0x95
@@ -244,23 +244,23 @@
 #define FLAG_ENTERED_KANTO                   0xE6
 #define FLAG_GOT_SANDSTORM_TM_ON_ROUTE_27    0xE7
 #define FLAG_GOT_TM23_FROM_JASMINE           0xE8
-// STOPPED HERE
-#define FLAG_UNUSED_0x0E9                    0xE9 // Unused Flag
-
-#define FLAG_RECEIVED_TM44                   0xEA
-#define FLAG_RECEIVED_TM45                   0xEB
-#define FLAG_RECEIVED_GLASS_ORNAMENT         0xEC
+#define FLAG_EUSINE_IN_BURNED_TOWER_B1F      0xE9
+#define FLAG_SAW_SUICUNE_IN_CIANWOOD         0xEA
+#define FLAG_SAW_SUICUNE_ON_ROUTE_42         0xEB
+#define FLAG_SAW_SUICUNE_ON_ROUTE_36         0xEC
 #define FLAG_RECEIVED_SILVER_SHIELD          0xED
 #define FLAG_RECEIVED_GOLD_SHIELD            0xEE
-#define FLAG_USED_STORAGE_KEY                0xEF
-#define FLAG_USED_ROOM_1_KEY                 0xF0
-#define FLAG_USED_ROOM_2_KEY                 0xF1
-#define FLAG_USED_ROOM_4_KEY                 0xF2
-#define FLAG_USED_ROOM_6_KEY                 0xF3
-#define FLAG_MET_PROF_COZMO                  0xF4
-#define FLAG_RECEIVED_WAILMER_DOLL           0xF5
-#define FLAG_RECEIVED_CHESTO_BERRY_ROUTE_32 0xF6
-#define FLAG_DEFEATED_SS_TIDAL_TRAINERS      0xF7
+// One-off Encounter Caught Flags. If defeated but not caught, regenerate when entering Hall of Fame
+#define FLAG_CAUGHT_SUDOWOODO                0xEF
+#define FLAG_CAUGHT_ENTEI                    0xF0
+#define FLAG_CAUGHT_RAIKOU                   0xF1
+#define FLAG_CAUGHT_SUICUNE                  0xF2
+#define FLAG_CAUGHT_RED_GYARADOS             0xF3
+#define FLAG_CAUGHT_SNORLAX                  0xF4
+#define FLAG_CAUGHT_HO_OH                    0xF5
+#define FLAG_CAUGHT_LUGIA                    0xF6
+#define FLAG_CAUGHT_CELEBI                   0xF7
+// STOPPED HERE
 #define FLAG_RECEIVED_SPELON_BERRY           0xF8
 #define FLAG_RECEIVED_PAMTRE_BERRY           0xF9
 #define FLAG_RECEIVED_WATMEL_BERRY           0xFA

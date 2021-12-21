@@ -5207,7 +5207,16 @@ static void ReturnFromBattleToOverworld(void)
     {
         UpdateRoamerHPStatus(&gEnemyParty[0]);
         // FIX: Roaming Roar Glitch
-        if ((gBattleOutcome == B_OUTCOME_WON) || (gBattleOutcome == B_OUTCOME_CAUGHT))
+        if (gBattleOutcome == B_OUTCOME_CAUGHT)
+        {
+            if(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES) == SPECIES_RAIKOU)
+                FlagSet(FLAG_CAUGHT_RAIKOU);
+            if(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES) == SPECIES_ENTEI)
+                FlagSet(FLAG_CAUGHT_ENTEI);
+
+            SetRoamerInactive(&gEnemyParty[0]);
+        }
+        if (gBattleOutcome == B_OUTCOME_WON)
             SetRoamerInactive(&gEnemyParty[0]);
     }
 

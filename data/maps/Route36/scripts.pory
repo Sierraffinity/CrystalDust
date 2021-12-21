@@ -13,6 +13,11 @@ mapscripts Route36_MapScripts {
         {
             setflag(FLAG_HIDE_ROUTE_36_ARTHUR)
         }
+        if(!(flag(FLAG_AWAKENED_LEGENDARY_BEASTS) && !flag(FLAG_SAW_SUICUNE_ON_ROUTE_36)))
+        {
+            setflag(FLAG_TEMP_1)
+            setvar(VAR_TEMP_0, 1)
+        }
     }
     MAP_SCRIPT_ON_RESUME {
         if (flag(FLAG_SYS_CTRL_OBJ_DELETE))
@@ -24,6 +29,43 @@ mapscripts Route36_MapScripts {
             }
         }
     }
+}
+
+script Route36_Eventscript_SuicuneTrigger {
+    lockall
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    playse(SE_LEDGE)
+    applymovement(9, Route36_Movement_Suicune)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    waitmovement(0)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    removeobject(9)
+    setflag(FLAG_SAW_SUICUNE_ON_ROUTE_36)
+    clearflag(FLAG_SAW_SUICUNE_IN_CIANWOOD)
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+    end
+}movement Route36_Movement_Suicune{
+    jump_2_down_fast * 3
+    jump_2_right_fast * 5
+    set_invisible
 }
 
 script Route36_EventScript_Arthur {
@@ -178,13 +220,26 @@ script Route36_EventScript_UseSquirtbottleOnSudowoodo {
     specialvar(VAR_RESULT, GetBattleOutcome)
     switch (var(VAR_RESULT))
     {
+        case B_OUTCOME_CAUGHT:
+            call(Route36_EventScript_SudowoodoCaught)
         case B_OUTCOME_WON:
+            call(Common_EventScript_RemoveStaticPokemon)
         case B_OUTCOME_RAN:
         case B_OUTCOME_PLAYER_TELEPORTED:
-            call(Common_EventScript_RemoveStaticPokemon)
+            call(Route36_EventScript_SudowoodoFlees)
     }
     setflag(FLAG_DEFEATED_SUDOWOODO)
     release
+}script Route36_EventScript_SudowoodoFlees{
+    applymovement(OBJ_EVENT_ID_SUDOWOODO, Route36_Movement_SudowoodoFlees)
+    waitmovement(0)
+    setflag(FLAG_DEFEATED_SUDOWOODO)
+    release
+    end
+}script Route36_EventScript_SudowoodoCaught{
+    setflag(FLAG_CAUGHT_SUDOWOODO)
+}movement Route36_Movement_SudowoodoFlees{
+    jump_2_up_fast * 3
 }
 
 movement Route36_Movement_Sudowoodo {
