@@ -1807,6 +1807,9 @@ gTilesetPalOverride_EcruteakCity09::
 gTilesetPalOverride_Olivine12::
 	.incbin "data/tilesets/secondary/olivinecity/palettes/12_over.gbapal"
 
+gTilesetPalOverride_Olivine10::
+	.incbin "data/tilesets/secondary/olivinecity/palettes/10_over.gbapal"
+
 	.align 2
 gTilesetPalettes_PalletTown::
 	.incbin "data/tilesets/secondary/pallettown/palettes/00.gbapal"

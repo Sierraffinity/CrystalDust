@@ -1,4 +1,13 @@
 mapscripts OlivineCity_MapScripts {
+    MAP_SCRIPT_ON_LOAD{
+        if(!flag(FLAG_CURED_AMPHY))
+        {
+            setmetatile(36, 21, 0x39F, 1)
+            setmetatile(37, 21, 0x3A0, 1)
+            setmetatile(38, 21, 0x3A1, 1)
+            setmetatile(39, 21, 0x3A2, 1)
+        }
+    }
     MAP_SCRIPT_ON_TRANSITION {
         // set by Rival event to save a flag. It's impossible to Fly to Olivine before this point, so setting it a little late doesn't matter.
         if(flag(FLAG_VISITED_OLIVINE_CITY)) 

@@ -131,6 +131,11 @@ gTilesetPalOverrides_OlivineCity::
 	.byte HOUR_MORNING
 	.byte 0 @ padding
 	.4byte gTilesetPalOverride_Olivine12
+	.byte 10
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Olivine10
 	.byte 0xFF
 	.byte 0
 	.byte 0
