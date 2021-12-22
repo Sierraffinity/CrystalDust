@@ -95,7 +95,7 @@
 #define VAR_POKELOT_RND2                     0x404C
 #define VAR_POKELOT_PRIZE_PLACE              0x404D
 #define VAR_BUG_CONTEST_PRIZE                0x404E
-#define VAR_LOTAD_SIZE_RECORD                0x404F
+#define VAR_MAGIKARP_SIZE_RECORD             0x404F
 #define VAR_NEW_BARK_TOWN_STATE              0x4050
 #define VAR_CHERRYGROVE_CITY_STATE           0x4051
 #define VAR_AZALEA_TOWN_STATE                0x4052

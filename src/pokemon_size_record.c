@@ -7,7 +7,7 @@
 #include "string_util.h"
 #include "text.h"
 
-#define DEFAULT_MAX_SIZE 0x8000 // was 0x8100 in Ruby/Sapphire
+#define DEFAULT_MAX_SIZE 0xC166 // lowest 3'6" value
 
 struct UnknownStruct
 {
@@ -44,8 +44,9 @@ static const u8 sGiftRibbonsMonDataIds[GIFT_RIBBONS_COUNT - 4] =
     MON_DATA_WORLD_RIBBON
 };
 
-extern const u8 gText_DecimalPoint[];
-extern const u8 gText_Marco[];
+extern const u8 gText_SingleTick[];
+extern const u8 gText_DoubleTick[];
+extern const u8 gText_Ralph[];
 
 #define CM_PER_INCH 2.54
 
@@ -95,14 +96,13 @@ static u32 GetMonSize(u16 species, u16 b)
 
 static void FormatMonSizeRecord(u8 *string, u32 size)
 {
-#ifdef UNITS_IMPERIAL
     //Convert size from centimeters to inches
     size = (f64)(size * 10) / (CM_PER_INCH * 10);
-#endif
 
-    string = ConvertIntToDecimalStringN(string, size / 10, STR_CONV_MODE_LEFT_ALIGN, 8);
-    string = StringAppend(string, gText_DecimalPoint);
+    string = ConvertIntToDecimalStringN(string, size / 100, STR_CONV_MODE_LEFT_ALIGN, 8);
+    string = StringAppend(string, gText_SingleTick);
     ConvertIntToDecimalStringN(string, size % 10, STR_CONV_MODE_LEFT_ALIGN, 1);
+    string = StringAppend(string, gText_DoubleTick);
 }
 
 static u8 CompareMonSize(u16 species, u16 *sizeRecord)
@@ -150,7 +150,7 @@ static void GetMonSizeRecordInfo(u16 species, u16 *sizeRecord)
     FormatMonSizeRecord(gStringVar3, size);
     StringCopy(gStringVar1, gSpeciesNames[species]);
     if (*sizeRecord == DEFAULT_MAX_SIZE)
-        StringCopy(gStringVar2, gText_Marco);
+        StringCopy(gStringVar2, gText_Ralph);
     else
         StringCopy(gStringVar2, gSaveBlock2Ptr->playerName);
 }
@@ -174,23 +174,23 @@ void CompareSeedotSize(void)
     gSpecialVar_Result = CompareMonSize(SPECIES_SEEDOT, sizeRecord);
 }
 
-void InitLotadSizeRecord(void)
+void InitMagikarpSizeRecord(void)
 {
-    VarSet(VAR_LOTAD_SIZE_RECORD, DEFAULT_MAX_SIZE);
+    VarSet(VAR_MAGIKARP_SIZE_RECORD, DEFAULT_MAX_SIZE);
 }
 
-void GetLotadSizeRecordInfo(void)
+void GetMagikarpSizeRecordInfo(void)
 {
-    u16 *sizeRecord = GetVarPointer(VAR_LOTAD_SIZE_RECORD);
+    u16 *sizeRecord = GetVarPointer(VAR_MAGIKARP_SIZE_RECORD);
 
-    GetMonSizeRecordInfo(SPECIES_LOTAD, sizeRecord);
+    GetMonSizeRecordInfo(SPECIES_MAGIKARP, sizeRecord);
 }
 
-void CompareLotadSize(void)
+void CompareMagikarpSize(void)
 {
-    u16 *sizeRecord = GetVarPointer(VAR_LOTAD_SIZE_RECORD);
+    u16 *sizeRecord = GetVarPointer(VAR_MAGIKARP_SIZE_RECORD);
 
-    gSpecialVar_Result = CompareMonSize(SPECIES_LOTAD, sizeRecord);
+    gSpecialVar_Result = CompareMonSize(SPECIES_MAGIKARP, sizeRecord);
 }
 
 void GiveGiftRibbonToParty(u8 index, u8 ribbonId)

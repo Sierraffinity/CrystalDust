@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE43",
   "name": "Route43",
   "layout": "LAYOUT_ROUTE43",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_SEVII_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_43",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",

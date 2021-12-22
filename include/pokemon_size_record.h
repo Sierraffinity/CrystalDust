@@ -5,7 +5,7 @@ void InitSeedotSizeRecord(void);
 void GetSeedotSizeRecordInfo(void);
 void CompareSeedotSize(void);
 
-void InitLotadSizeRecord(void);
+void InitMagikarpSizeRecord(void);
 void GetLotadSizeRecordInfo(void);
 void CompareLotadSize(void);
 

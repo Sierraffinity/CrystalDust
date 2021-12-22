@@ -1802,7 +1802,7 @@ static void RemoveObjectEventIfOutsideView(struct ObjectEvent *objectEvent)
 
     s16 left =   gSaveBlock1Ptr->pos.x - 2;
     s16 right =  gSaveBlock1Ptr->pos.x + 17;
-    s16 top =    gSaveBlock1Ptr->pos.y;
+    s16 top =    gSaveBlock1Ptr->pos.y - 8;
     s16 bottom = gSaveBlock1Ptr->pos.y + 16;
 
     if (objectEvent->currentCoords.x >= left && objectEvent->currentCoords.x <= right
@@ -7661,7 +7661,7 @@ static void UpdateObjectEventOffscreen(struct ObjectEvent *objectEvent, struct S
     if ((s16)x >= DISPLAY_WIDTH + 16 || (s16)x2 < -16)
         objectEvent->offScreen = TRUE;
 
-    if ((s16)y >= DISPLAY_HEIGHT + 16 || (s16)y2 < -16)
+    if ((s16)y >= DISPLAY_HEIGHT + 16 || (s16)y2 < -32)
         objectEvent->offScreen = TRUE;
 }
 

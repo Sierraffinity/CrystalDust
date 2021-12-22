@@ -132,8 +132,8 @@ gSpecials::
 	def_special ScrSpecial_TraderDoDecorationTrade
 	def_special GetSeedotSizeRecordInfo
 	def_special CompareSeedotSize
-	def_special GetLotadSizeRecordInfo
-	def_special CompareLotadSize
+	def_special GetMagikarpSizeRecordInfo
+	def_special CompareMagikarpSize
 	def_special NameRaterWasNicknameChanged
 	def_special BufferMonNickname
 	def_special IsMonOTIDNotPlayers

@@ -2140,6 +2140,9 @@ static void CB_ExitFlyMap(void)
                     case MAPSEC_FAST_SHIP:
                         SetWarpDestinationToHealLocation(FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE) && sFlyMap->regionMap.posWithinMapSec == 0 ? HEAL_LOCATION_NEW_BARK_TOWN : HEAL_LOCATION_NEW_BARK_TOWN);
                         break;
+                    case MAPSEC_LAKE_OF_RAGE:
+                        SetWarpDestinationToHealLocation(HEAL_LOCATION_LAKE_OF_RAGE);
+                        break;
                     default:
                         if (sMapHealLocations[sFlyMap->regionMap.primaryMapSecId][2] != 0)
                         {

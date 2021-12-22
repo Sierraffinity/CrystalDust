@@ -181,7 +181,7 @@ void NewGameInitData(void)
     ClearAllContestWinnerPics();
     ClearPlayerLinkBattleRecords();
     InitSeedotSizeRecord();
-    InitLotadSizeRecord();
+    InitMagikarpSizeRecord();
     gPlayerPartyCount = 0;
     ZeroPlayerPartyMons();
     ResetPokemonStorageSystem();

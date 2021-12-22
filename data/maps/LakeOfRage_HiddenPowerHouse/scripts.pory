@@ -1,1 +1,23 @@
 mapscripts LakeOfRage_HiddenPowerHouse_MapScripts {}
+
+script LakeOfRage_HiddenPowerHouse_FatGuy{
+    if(flag(FLAG_GOT_TM10_HIDDEN_POWER))
+    {
+        msgbox("I am meditating…", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("…You have strayed far…\pHere I have meditated. Inside me,\na new power has been awakened.\pLet me share my power with your\nPOKéMON. Take this, child.", MSGBOX_DEFAULT)
+    closemessage
+    checkitemspace(ITEM_TM10, 1)
+    if(!var(VAR_RESULT))
+    {
+        goto(Common_EventScript_BagIsFull)
+    }
+    giveitem(ITEM_TM10, 1)
+    setflag(FLAG_GOT_TM10_HIDDEN_POWER)
+    msgbox("Do you see it?\nIt is HIDDEN POWER!\pIt draws out the power of POKéMON\nfor attacking.\pRemember this: its type and power\ndepend on the POKéMON using it.", MSGBOX_DEFAULT)
+    release
+    end
+}

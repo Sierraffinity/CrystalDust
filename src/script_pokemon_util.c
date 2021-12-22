@@ -23,6 +23,7 @@
 #include "tv.h"
 #include "constants/items.h"
 #include "constants/battle_frontier.h"
+#include "constants/maps.h"
 #include "constants/region_map_sections.h"
 
 static void CB2_ReturnFromChooseHalfParty(void);
@@ -139,7 +140,10 @@ void CreateScriptedWildMon(u16 species, u8 level, u16 item)
     u8 heldItem[2];
 
     ZeroEnemyPartyMons();
-    CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, 0, 0, OT_ID_PLAYER_ID, 0);
+    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LAKE_OF_RAGE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LAKE_OF_RAGE))
+        CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, PERSONALITY_SHINY, 0, OT_ID_PLAYER_ID, 0);
+    else
+        CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, 0, 0, OT_ID_PLAYER_ID, 0);
     if (item)
     {
         heldItem[0] = item;

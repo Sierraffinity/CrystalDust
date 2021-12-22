@@ -233,7 +233,7 @@ static const struct MatchCallRival sMayMatchCallHeader =
 {
     .type = MC_TYPE_RIVAL,
     .playerGender = MALE,
-    .flag = FLAG_ENABLE_RIVAL_MATCH_CALL,
+    .flag = 0xFFFF,
     .desc = gText_MayBrendanMatchCallDesc,
     .name = gText_ExpandedPlaceholder_May,
     .textData = sMayTextScripts
@@ -262,7 +262,7 @@ static const struct MatchCallRival sBrendanMatchCallHeader =
 {
     .type = MC_TYPE_RIVAL,
     .playerGender = FEMALE,
-    .flag = FLAG_ENABLE_RIVAL_MATCH_CALL,
+    .flag = 0xFFFF,
     .desc = gText_MayBrendanMatchCallDesc,
     .name = gText_ExpandedPlaceholder_Brendan,
     .textData = sBrendanTextScripts

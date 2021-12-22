@@ -1,1 +1,76 @@
 mapscripts LakeOfRage_FishingGurusHouse_MapScripts {}
+
+script LakeOfRage_FishingGurusHouse_EventScript_FishingGuru{
+    lock
+    faceplayer
+    if(flag(FLAG_MAGIKARP_LENGTH_ELIXIR_ON_STANDBY))
+    {
+        msgbox("Wow!\nThis one is outstanding!\pI tip my hat to you!\nTake this as a memento!", MSGBOX_DEFAULT)
+        closemessage
+        checkitemspace(ITEM_ELIXIR, 1)
+        if(!var(VAR_RESULT))
+        {
+            goto(Common_EventScript_BagIsFull)
+        }
+        giveitem(ITEM_ELIXIR, 1)
+        msgbox("The record is the important thing.\nThink of that as a bonus!", MSGBOX_NPC)
+        clearflag(FLAG_MAGIKARP_LENGTH_ELIXIR_ON_STANDBY)
+        end
+    }
+    if(flag(FLAG_MAGIKARP_LENGTH_ASKED_FOR_MAGIKARP))
+    {
+        setvar(VAR_0x8004, SPECIES_MAGIKARP)
+        special(IsPlayersMonOfSpeciesInParty)
+        if(!var(VAR_RESULT))
+        {
+            goto(LakeOfRage_FishingGurusHouse_EventScript_FishingGuruSearchForMagikarp)
+        }
+        msgbox("Ah, you have a MAGIKARP! Let's\nsee how big that baby is.", MSGBOX_DEFAULT)
+        closemessage
+        special(ChoosePartyMon)
+        waitstate
+        copyvar(VAR_RESULT, VAR_0x8004)
+        if(var(VAR_RESULT) == 0xFF)
+        {
+            msgbox("Oh… So you didn't get on good\nenough to show me? Maybe next time.", MSGBOX_DEFAULT)
+            release
+            end
+        }
+        special(CompareMagikarpSize)
+        switch(var(VAR_RESULT))
+        {
+            case 1: // not Magikarp
+                msgbox("What?\nThat's not a MAGIKARP!", MSGBOX_DEFAULT)
+                closemessage
+                release
+                end
+            case 2: // no record
+                msgbox("Wow! This one is outstanding!\p…I wish I could say that, but I've\nseen a bigger one before.", MSGBOX_DEFAULT)
+                closemessage
+                release
+                end
+            case 3: // record
+                setflag(FLAG_MAGIKARP_LENGTH_ELIXIR_ON_STANDBY)
+                goto(LakeOfRage_FishingGurusHouse_EventScript_FishingGuru)
+        }
+    }
+    if(flag(FLAG_CLEARED_ROCKET_HIDEOUT))
+    {
+        goto(LakeOfRage_FishingGurusHouse_EventScript_FishingGuruSearchForMagikarp)
+    }
+    if(flag(FLAG_MAGIKARP_LENGTH_EXPLAINED_WEIRD_MAGIKARP))
+    {
+        msgbox("The LAKE hasn't been normal since\nthose men wearing black arrived.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("LAKE OF RAGE is actually a crater\nmade by rampaging GYARADOS.\pThe crater filled up with rainwater\nand the LAKE was formed.\pThat's the story passed on from my\ngrandpa's great-great-grandpa.\pIt used to be that you could catch\nlively MAGIKARP there, but…\lI don't understand what's happening.", MSGBOX_DEFAULT)
+    setflag(FLAG_MAGIKARP_LENGTH_EXPLAINED_WEIRD_MAGIKARP)
+    release
+    end
+}script LakeOfRage_FishingGurusHouse_EventScript_FishingGuruSearchForMagikarp{
+    msgbox("LAKE OF RAGE is back to normal.\nThe MAGIKARP have returned.\pI may yet realize my dream of seeing\nthe world's largest MAGIKARP.\pDo you have a ROD?\nPlease help me if you do.")
+    setflag(FLAG_MAGIKARP_LENGTH_ASKED_FOR_MAGIKARP)
+    release
+    end
+}
