@@ -10,6 +10,7 @@
 #include "sound.h"
 #include "frontier_pass.h"
 #include "overworld.h"
+#include "mail.h"
 #include "menu.h"
 #include "text.h"
 #include "event_data.h"
@@ -780,6 +781,15 @@ static void TrainerCard_GenerateCardToShowLocally(struct TrainerCard *trainerCar
         trainerCard->facilityClass = gLinkPlayerFacilityClasses[(trainerCard->trainerId % NUM_FEMALE_LINK_FACILITY_CLASSES) + NUM_MALE_LINK_FACILITY_CLASSES];
     else
         trainerCard->facilityClass = gLinkPlayerFacilityClasses[trainerCard->trainerId % NUM_MALE_LINK_FACILITY_CLASSES];
+
+    trainerCard->monIconTint = VarGet(VAR_TRAINER_CARD_MON_ICON_TINT_IDX);
+
+    trainerCard->monSpecies[0] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_1));
+    trainerCard->monSpecies[1] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_2));
+    trainerCard->monSpecies[2] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_3));
+    trainerCard->monSpecies[3] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_4));
+    trainerCard->monSpecies[4] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_5));
+    trainerCard->monSpecies[5] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_6));
 }
 
 void TrainerCard_GenerateCardToSendInLink(struct TrainerCard *trainerCard)
@@ -797,6 +807,15 @@ void TrainerCard_GenerateCardToSendInLink(struct TrainerCard *trainerCard)
         trainerCard->facilityClass = gLinkPlayerFacilityClasses[(trainerCard->trainerId % NUM_FEMALE_LINK_FACILITY_CLASSES) + NUM_MALE_LINK_FACILITY_CLASSES];
     else
         trainerCard->facilityClass = gLinkPlayerFacilityClasses[trainerCard->trainerId % NUM_MALE_LINK_FACILITY_CLASSES];
+
+    trainerCard->monIconTint = VarGet(VAR_TRAINER_CARD_MON_ICON_TINT_IDX);
+
+    trainerCard->monSpecies[0] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_1));
+    trainerCard->monSpecies[1] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_2));
+    trainerCard->monSpecies[2] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_3));
+    trainerCard->monSpecies[3] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_4));
+    trainerCard->monSpecies[4] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_5));
+    trainerCard->monSpecies[5] = GetIconSpeciesNoPersonality(VarGet(VAR_TRAINER_CARD_MON_ICON_6));
 }
 
 void CopyTrainerCardData(struct TrainerCard *dst, u16 *src, u8 gameVersion)

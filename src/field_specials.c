@@ -24,6 +24,7 @@
 #include "item_icon.h"
 #include "link.h"
 #include "list_menu.h"
+#include "mail.h"
 #include "main.h"
 #include "mevent.h"
 #include "match_call.h"
@@ -1988,18 +1989,12 @@ bool8 UsedPokemonCenterWarp(void)
         MAP_VIOLET_CITY_POKEMON_CENTER_1F,
         MAP_ROUTE32_POKEMON_CENTER_1F,
         MAP_AZALEA_TOWN_POKEMON_CENTER_1F, 
-        MAP_NONE, 
-        MAP_NONE, 
-        MAP_NONE,
-        MAP_NONE,
-        MAP_NONE, 
         MAP_GOLDENROD_CITY_POKEMON_CENTER_1F, 
-        MAP_NONE, 
-        MAP_NONE, 
-        MAP_NONE, 
-        MAP_NONE, 
-        MAP_NONE, 
-        MAP_NONE, 
+        MAP_ECRUTEAK_CITY_POKEMON_CENTER_1F,
+        MAP_OLIVINE_CITY_POKEMON_CENTER_1F,
+        MAP_CIANWOOD_CITY_POKEMON_CENTER_1F,
+        MAP_MAHOGANY_TOWN_POKEMON_CENTER_1F,
+        MAP_BLACKTHORN_CITY_POKEMON_CENTER_1F,
         MAP_BATTLE_FRONTIER_POKEMON_CENTER_1F, 
         MAP_UNION_ROOM, 
         0xFFFF 
@@ -4191,6 +4186,11 @@ bool8 InPokemonCenter(void)
         MAP_ROUTE32_POKEMON_CENTER_1F,
         MAP_AZALEA_TOWN_POKEMON_CENTER_1F,
         MAP_GOLDENROD_CITY_POKEMON_CENTER_1F,
+        MAP_ECRUTEAK_CITY_POKEMON_CENTER_1F,
+        MAP_OLIVINE_CITY_POKEMON_CENTER_1F,
+        MAP_CIANWOOD_CITY_POKEMON_CENTER_1F,
+        MAP_MAHOGANY_TOWN_POKEMON_CENTER_1F,
+        MAP_BLACKTHORN_CITY_POKEMON_CENTER_1F,
         MAP_BATTLE_FRONTIER_POKEMON_CENTER_1F,
         MAP_BATTLE_COLOSSEUM_2P,
         MAP_TRADE_CENTER,
@@ -4992,4 +4992,27 @@ bool8 HasLearnedAllMovesFromPokeSeerTutor(void)
         return TRUE;
     else
         return FALSE;
+}
+
+void UpdateTrainerCardPhotoIcons(void)
+{
+    u16 species[PARTY_SIZE];
+    u32 personality[PARTY_SIZE];
+    u32 i;
+    u8 partyCount;
+    for (i = 0; i < PARTY_SIZE; i++)
+        species[i] = SPECIES_NONE;
+    partyCount = CalculatePlayerPartyCount();
+    for (i = 0; i < partyCount; i++)
+    {
+        species[i] = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL);
+        personality[i] = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY, NULL);
+    }
+    VarSet(VAR_TRAINER_CARD_MON_ICON_1, SpeciesToMailSpecies(species[0], personality[0]));
+    VarSet(VAR_TRAINER_CARD_MON_ICON_2, SpeciesToMailSpecies(species[1], personality[1]));
+    VarSet(VAR_TRAINER_CARD_MON_ICON_3, SpeciesToMailSpecies(species[2], personality[2]));
+    VarSet(VAR_TRAINER_CARD_MON_ICON_4, SpeciesToMailSpecies(species[3], personality[3]));
+    VarSet(VAR_TRAINER_CARD_MON_ICON_5, SpeciesToMailSpecies(species[4], personality[4]));
+    VarSet(VAR_TRAINER_CARD_MON_ICON_6, SpeciesToMailSpecies(species[5], personality[5]));
+    VarSet(VAR_TRAINER_CARD_MON_ICON_TINT_IDX, gSpecialVar_0x8004);
 }

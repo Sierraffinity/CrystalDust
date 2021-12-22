@@ -25,6 +25,20 @@
       "elevation": 0,
       "dest_map": "MAP_MAHOGANY_TOWN_POKEMON_CENTER_1F",
       "dest_warp_id": 1
+    },
+    {
+      "x": 5,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_ROOM",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 9,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_TRADE_CENTER",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

@@ -3896,3 +3896,19 @@ static void Task_MoveDeoxysRock(u8 taskId)
             break;
     }
 }
+
+static void Task_CameraFlash(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        FieldEffectActiveListRemove(FLDEFF_CAMERA_FLASH);
+        DestroyTask(taskId);
+    }
+}
+
+u32 FldEff_CameraFlash(void)
+{
+    BlendPalettes(0xFFFFFFFF, 0x10, RGB_WHITE);
+    BeginNormalPaletteFade(0xFFFFFFFF, -1, 0x0F, 0x00, RGB_WHITE);
+    CreateTask(Task_CameraFlash, 90);
+}

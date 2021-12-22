@@ -2029,3 +2029,7 @@ const u8 gString_MiniCreditsThanks3[] = _("Worcestershirey");
 const u8 gString_MiniCreditsThanks4[] = _("Capt'nDingPot");
 const u8 gString_MiniCreditsThanks5[] = _("Feltlikeit");
 const u8 gString_MiniCreditsThanks6[] = _("…and all those who tested v2 and below!");
+
+const u8 gText_Black[] = _("BLACK");
+const u8 gText_Pink[] = _("PINK");
+const u8 gText_Sepia[] = _("SEPIA");

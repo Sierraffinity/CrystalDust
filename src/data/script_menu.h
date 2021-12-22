@@ -772,6 +772,14 @@ static const struct MenuAction MultichoiceList_TagMatchType[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_TrainerCardIconsTint[] =
+{
+    { gText_Normal },
+    { gText_Black },
+    { gText_Pink },
+    { gText_Sepia }
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -899,6 +907,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_SLATEPORT_TENT_RULES]       = MULTICHOICE(MultichoiceList_SlateportTentRules),
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
+    [MULTI_TRAINER_CARD_ICON_TINT]     = MULTICHOICE(MultichoiceList_TrainerCardIconsTint),
 };
 
 const u8 *const gStdStrings[] =

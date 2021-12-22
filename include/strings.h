@@ -3186,6 +3186,10 @@ extern const u8 gString_MiniCreditsThanks4[];
 extern const u8 gString_MiniCreditsThanks5[];
 extern const u8 gString_MiniCreditsThanks6[];
 
+extern const u8 gText_Black[];
+extern const u8 gText_Pink[];
+extern const u8 gText_Sepia[];
+
 // Battle Factory Screen
 extern const u8 gText_RentalPkmn2[];
 extern const u8 gText_SelectFirstPkmn[];

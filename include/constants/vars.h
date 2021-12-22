@@ -133,13 +133,13 @@
 #define VAR_ROUTE119_STATE                   0x4072
 #define VAR_ROUTE120_STATE                   0x4073 // Unused Var
 #define VAR_ROUTE121_STATE                   0x4074
-#define VAR_ROUTE122_STATE                   0x4075 // Unused Var
-#define VAR_ROUTE123_STATE                   0x4076 // Unused Var
-#define VAR_ROUTE124_STATE                   0x4077 // Unused Var
-#define VAR_ROUTE125_STATE                   0x4078 // Unused Var
-#define VAR_ROUTE126_STATE                   0x4079 // Unused Var
-#define VAR_ROUTE127_STATE                   0x407A // Unused Var
-#define VAR_ROUTE128_STATE                   0x407B
+#define VAR_TRAINER_CARD_MON_ICON_TINT_IDX   0x4075
+#define VAR_TRAINER_CARD_MON_ICON_1          0x4076
+#define VAR_TRAINER_CARD_MON_ICON_2          0x4077
+#define VAR_TRAINER_CARD_MON_ICON_3          0x4078
+#define VAR_TRAINER_CARD_MON_ICON_4          0x4079
+#define VAR_TRAINER_CARD_MON_ICON_5          0x407A
+#define VAR_TRAINER_CARD_MON_ICON_6          0x407B
 #define VAR_ROUTE129_STATE                   0x407C // Unused Var
 #define VAR_ROUTE130_STATE                   0x407D // Unused Var
 #define VAR_ROUTE131_STATE                   0x407E // Unused Var
