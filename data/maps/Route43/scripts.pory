@@ -12,7 +12,7 @@ script Route43_Eventscript_TrainerTipsSign {
 
 script Route43_Eventscript_CamperSpencer {
     trainerbattle_single(TRAINER_SPENCER, "I can do so much with my POKéMON--\nit's super-fun!", "Losing isn't fun at all…")
-    msgbox("What is going on at the LAKE OF RAGE?\nWe were planning to camp there.", MSGBOX_AUTOCLOSE)
+    msgbox("What is going on at the\nLAKE OF RAGE?\lWe were planning to camp there.", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -37,7 +37,7 @@ script Route43_Eventscript_FishermanMarvin {
 }
 
 script Route43_Eventscript_PokemaniacRon {
-    trainerbattle_single(TRAINER_RON, "Would you get this? Some {RIVAL} guy\nmade fun of my POKéMON!\pDarn it! My POKéMON's great!", "My NIDOKING did pretty right on!")
+    trainerbattle_single(TRAINER_RON, "Would you get this? Some {RIVAL}\nguy made fun of my POKéMON!\pDarn it! My POKéMON's great!", "My NIDOKING did pretty right on!")
     msgbox("It's okay for people to like\ndifferent types of POKéMON.\pPOKéMON isn't just about having the\nmost powerful one.", MSGBOX_AUTOCLOSE)
     end
 }

@@ -1,1 +1,11 @@
 mapscripts Route43_Gatehouse1_MapScripts {}
+
+script Route43_Gatehouse1_Eventscript_Officer{
+    if(flag(FLAG_CLEARED_ROCKET_HIDEOUT))
+    {
+        msgbox("Nobody goes up to LAKE OF RAGE\nthese days.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Only people headed up to LAKE OF\nRAGE have been through here lately.", MSGBOX_NPC)
+    end
+}

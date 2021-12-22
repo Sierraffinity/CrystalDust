@@ -260,9 +260,10 @@
 #define FLAG_CAUGHT_HO_OH                    0xF5
 #define FLAG_CAUGHT_LUGIA                    0xF6
 #define FLAG_CAUGHT_CELEBI                   0xF7
+// end of encounter flags
+#define FLAG_CLEARED_ROCKET_HIDEOUT          0xF8
+#define FLAG_GOT_TM36_SLUDGE_BOMB            0xF9
 // STOPPED HERE
-#define FLAG_RECEIVED_SPELON_BERRY           0xF8
-#define FLAG_RECEIVED_PAMTRE_BERRY           0xF9
 #define FLAG_RECEIVED_WATMEL_BERRY           0xFA
 #define FLAG_RECEIVED_DURIN_BERRY            0xFB
 #define FLAG_RECEIVED_BELUE_BERRY            0xFC
