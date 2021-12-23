@@ -2430,3 +2430,23 @@ gTilesetPalettes_Lighthouse::
 	.align 2
 gTilesetTiles_Lighthouse::
 	.incbin "data/tilesets/secondary/lighthouse/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_RocketHideout::
+	.incbin "data/tilesets/secondary/rockethideout/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/rockethideout/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_RocketHideout::
+	.incbin "data/tilesets/secondary/rockethideout/tiles.4bpp.lz"

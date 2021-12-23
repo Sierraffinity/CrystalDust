@@ -12,13 +12,41 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 36,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_MAHOGANY_TOWN_SHOP",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 2,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_TEAM_ROCKET_BASE_B2F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 6,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_TEAM_ROCKET_BASE_B1F",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 34,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_TEAM_ROCKET_BASE_B1F",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 

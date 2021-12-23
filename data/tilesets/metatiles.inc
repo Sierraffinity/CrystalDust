@@ -784,3 +784,10 @@ gMetatiles_Lighthouse::
 	.align 1
 gMetatileAttributes_Lighthouse::
 	.incbin "data/tilesets/secondary/lighthouse/metatile_attributes.bin"
+	.align 1
+gMetatiles_RocketHideout::
+	.incbin "data/tilesets/secondary/rockethideout/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_RocketHideout::
+	.incbin "data/tilesets/secondary/rockethideout/metatile_attributes.bin"

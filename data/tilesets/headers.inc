@@ -1290,3 +1290,15 @@ gTileset_Lighthouse::
 	.4byte gMetatileAttributes_Lighthouse
 	.4byte NULL
 	.4byte NULL
+
+	.align 2
+gTileset_RocketHideout::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RocketHideout
+	.4byte gTilesetPalettes_RocketHideout
+	.4byte gMetatiles_RocketHideout
+	.4byte gMetatileAttributes_RocketHideout
+	.4byte NULL
+	.4byte NULL @ palette overrides
