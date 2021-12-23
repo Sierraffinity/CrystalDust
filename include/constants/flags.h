@@ -156,8 +156,8 @@
 #define FLAG_RECEIVED_EGG_TICKET             0x8E
 #define FLAG_TALKED_TO_DAYCARE_LADY          0x8F
 #define FLAG_CLEARED_RADIO_TOWER             0x90
-#define FLAG_CAUGHT_NAVEL_ROCK_LUGIA                    0x91
-#define FLAG_CAUGHT_NAVEL_ROCK_HO_OH                    0x92
+#define FLAG_CAUGHT_NAVEL_ROCK_LUGIA         0x91
+#define FLAG_CAUGHT_NAVEL_ROCK_HO_OH         0x92
 #define FLAG_ROCKETS_IN_RADIO_TOWER          0x93
 #define FLAG_POKECOM_CENTER_ENABLED          0x94
 #define FLAG_MET_BUENA                       0x95
@@ -270,8 +270,8 @@
 #define FLAG_MAGIKARP_LENGTH_ASKED_FOR_MAGIKARP 0xFE
 #define FLAG_MAGIKARP_LENGTH_EXPLAINED_WEIRD_MAGIKARP 0xFF
 #define FLAG_GOT_TM10_HIDDEN_POWER           0x100
+#define FLAG_OPENED_ROCKET_HIDEOUT           0x101
 // STOPPED HERE
-#define FLAG_RECEIVED_OLD_ROD_OLD            0x101
 #define FLAG_RECEIVED_COIN_CASE              0x102
 #define FLAG_RETURNED_RED_OR_BLUE_ORB        0x103
 #define FLAG_RECEIVED_TM49                   0x104

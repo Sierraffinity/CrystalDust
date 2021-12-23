@@ -811,3 +811,9 @@ const u32 gItemIconPalette_Pass[] = INCBIN_U32("graphics/items/icon_palettes/pas
 
 const u32 gItemIcon_RainbowWing[] = INCBIN_U32("graphics/items/icons/rainbow_wing.4bpp.lz");
 const u32 gItemIconPalette_RainbowWing[] = INCBIN_U32("graphics/items/icon_palettes/rainbow_wing.gbapal.lz");
+
+const u32 gItemIcon_RageCandyBar[] = INCBIN_U32("graphics/items/icons/rage_candy_bar.4bpp.lz");
+const u32 gItemIconPalette_RageCandyBar[] = INCBIN_U32("graphics/items/icon_palettes/rage_candy_bar.gbapal.lz");
+
+const u32 gItemIcon_SlowpokeTail[] = INCBIN_U32("graphics/items/icons/slowpoke_tail.4bpp.lz");
+const u32 gItemIconPalette_SlowpokeTail[] = INCBIN_U32("graphics/items/icon_palettes/slowpoke_tail.gbapal.lz");

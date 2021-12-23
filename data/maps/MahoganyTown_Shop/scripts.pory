@@ -1,1 +1,182 @@
-mapscripts MahoganyTown_Shop_MapScripts {}
+mapscripts MahoganyTown_Shop_MapScripts {
+    MAP_SCRIPT_ON_LOAD{
+        if(!flag(FLAG_OPENED_ROCKET_HIDEOUT))
+        {
+            setmetatile(6, 5, 0x2E0, 0)
+            setmetatile(7, 5, 0x2C3, 0)
+            setmetatile(8, 5, 0x2E1, 0)
+            setmetatile(6, 4, 0x29E, 0)
+            setmetatile(7, 4, 0x29E, 0)
+            setmetatile(8, 4, 0x29E, 0)
+            setmetatile(6, 3, 0x2E2, 0)
+            setmetatile(7, 3, 0x2E2, 0)
+            setmetatile(8, 3, 0x29F, 0)
+        }
+    }
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_CLEARED_RADIO_TOWER))
+        {   // hide old lady
+            setflag(FLAG_TEMP_1)
+        }
+        if(!flag(FLAG_DECIDED_TO_HELP_LANCE) || flag(FLAG_OPENED_ROCKET_HIDEOUT))
+        {   // hide Lance and Dragonite
+            setflag(FLAG_TEMP_2)
+            setvar(VAR_TEMP_0, 1)
+        }
+        if(var(VAR_TEMP_0) == 0)
+        {
+            setobjectxyperm(1, 4, 5)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 0{
+            lockall
+            delay(15)
+            textcolor(0)
+            msgbox("LANCE: DRAGONITE, HYPER BEAM.")
+            delay(15)
+            release
+            playse(SE_SUPER_EFFECTIVE)
+            applymovement(5, MahoganyTown_Shop_Movement_Tackle)
+            applymovement(2, MahoganyTown_Shop_Movement_KnockedBack)
+            waitmovement(0)
+            waitse
+            delay(15)
+            removeobject(5)
+            delay(15)
+            turnobject(4, DIR_SOUTH)
+            msgbox("What took you, {PLAYER}?\pJust as I thought, that strange\nradio signal is coming from here.", MSGBOX_DEFAULT)
+            release
+            applymovement(4, MahoganyTown_Shop_Movement_LanceToClerk)
+            applymovement(OBJ_EVENT_ID_PLAYER, MahoganyTown_Shop_Movement_LanceToClerk)
+            waitmovement(0)
+            playse(SE_NOT_EFFECTIVE)
+            applymovement(1, MahoganyTown_Shop_Movement_ClerkShoved)
+            applymovement(4, MahoganyTown_Shop_Movement_LanceToStairs)
+            applymovement(OBJ_EVENT_ID_PLAYER, MahoganyTown_Shop_Movement_PlayerToStairs)
+            waitmovement(0)
+            message("The stairs are right here.")
+            waitmessage
+            waitbuttonpress
+            applymovement(1, Common_Movement_ExclamationMark)
+            playse(SE_PIN)
+            delay(0x40)
+            release
+            setmetatile(6, 5, 0x2DE, 0)
+            setmetatile(7, 5, 0x2DD, 1)
+            setmetatile(8, 5, 0x2DC, 1)
+            setmetatile(6, 4, 0x2DF, 0)
+            setmetatile(7, 4, 0x2DA, 1)
+            setmetatile(8, 4, 0x2DB, 1)
+            setmetatile(6, 3, 0x2D9, 0)
+            setmetatile(7, 3, 0x2D8, 1)
+            setmetatile(8, 3, 0x2D7, 1)
+            special(DrawWholeMapView)
+            playse(SE_UNLOCK)
+            waitse
+            setflag(FLAG_OPENED_ROCKET_HIDEOUT)
+            turnobject(4, DIR_WEST)
+            msgbox("LANCE: {PLAYER}, we should split up\nto check this place. I'll go first.", MSGBOX_DEFAULT)
+            release
+            applymovement(4, MahoganyTown_Shop_Movement_LanceDownStairs)
+            waitmovement(0)
+            playse(SE_EXIT)
+            removeobject(4)
+            setvar(VAR_TEMP_0, 1)
+            waitse
+            releaseall
+            end
+        }
+    ]
+}movement MahoganyTown_Shop_Movement_Tackle{
+    walk_fast_left
+    lock_facing_direction
+    walk_fast_right
+    unlock_facing_direction
+}movement MahoganyTown_Shop_Movement_KnockedBack{
+    delay_8
+    lock_facing_direction
+    walk_fast_left
+    unlock_facing_direction
+    face_down
+    delay_2
+    face_left
+    delay_2
+    face_up
+    delay_2
+    face_right
+}movement MahoganyTown_Shop_Movement_LanceToClerk{
+    walk_up * 2
+}movement MahoganyTown_Shop_Movement_ClerkShoved{
+    lock_facing_direction
+    walk_fast_left
+    unlock_facing_direction
+}movement MahoganyTown_Shop_Movement_LanceToStairs{
+    walk_up * 2
+    walk_right * 2
+}movement MahoganyTown_Shop_Movement_PlayerToStairs{
+    walk_up * 3
+    walk_right
+}movement MahoganyTown_Shop_Movement_LanceDownStairs{
+    walk_right
+}
+
+script MahoganyTown_Shop_BlackBelt {
+    if(!flag(FLAG_OPENED_ROCKET_HIDEOUT))
+    {
+        msgbox("Heheh!\nThe experiment worked like a charm.\pMAGIKARP are just worthless, but\nGYARADOS are big moneymakers.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Urrgh…\nThat guy's dragon POKéMON are tough…", MSGBOX_NPC)
+    end
+}
+
+script MahoganyTown_Shop_RocketClerk {
+    if(flag(FLAG_OPENED_ROCKET_HIDEOUT))
+    {
+        msgbox("Arrgh…\nYou found the secret stairway…", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(MahoganyTown_Shop_Rocket_Pokemart)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+raw `
+.align 2
+MahoganyTown_Shop_Rocket_Pokemart:
+	.2byte ITEM_TINY_MUSHROOM
+    .2byte ITEM_SLOWPOKE_TAIL
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_POTION
+	.2byte ITEM_NONE
+`
+
+script MahoganyTown_Shop_OldLady {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(MahoganyTown_Shop_Pokemart)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+raw `
+.align 2
+MahoganyTown_Shop_Pokemart:
+	.2byte ITEM_RAGE_CANDY_BAR
+	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_SUPER_REPEL
+    .2byte ITEM_REVIVE
+    .2byte ITEM_TROPIC_MAIL
+	.2byte ITEM_NONE
+`

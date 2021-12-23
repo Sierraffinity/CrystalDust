@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE42_GATEHOUSE",
   "name": "Route42_Gatehouse",
   "layout": "LAYOUT_GATEHOUSE_HORIZONTAL",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_SEVII_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_42",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

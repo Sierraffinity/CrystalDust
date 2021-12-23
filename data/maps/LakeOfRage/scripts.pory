@@ -104,6 +104,7 @@ script LakeOfRage_EventScript_RedGyarados {
     setflag(FLAG_DEFEATED_RED_GYARADOS)
     giveitem(ITEM_RED_SCALE, 1)
 	addobject(10)
+	clearflag(FLAG_TEMP_3)
 	release
 	end
 }script LakeOfRage_EventScript_RedGyaradosCaught{

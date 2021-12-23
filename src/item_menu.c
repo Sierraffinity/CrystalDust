@@ -1738,7 +1738,7 @@ static void ItemMenu_Give(u8 taskId)
     CopyWindowToVram(0, 1);
     if (!IsWritingMailAllowed(gSpecialVar_ItemId))
         DisplayItemMessage(taskId, 2, gText_CantWriteMail, HandleErrorMessage);
-    else if (!ItemId_GetImportance(gSpecialVar_ItemId))
+    else if (!ItemId_GetImportance(gSpecialVar_ItemId) && (gSpecialVar_ItemId != ITEM_SLOWPOKE_TAIL && gSpecialVar_ItemId != ITEM_RAGE_CANDY_BAR))
     {
         if (CalculatePlayerPartyCount())
         {
@@ -1786,7 +1786,7 @@ void CloseItemMessage(u8 taskId)
     LoadBagItemListBuffers(gBagPosition.pocket);
     tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, *scrollPos, *cursorPos);
     ScheduleBgCopyTilemapToVram(0);
-    BagMenu_PrintCursorAtPos(tListTaskId, COLORID_NORMAL);
+    //BagMenu_PrintCursorAtPos(tListTaskId, COLORID_NORMAL);
     ReturnToItemList(taskId);
 }
 
@@ -1833,7 +1833,8 @@ static void Task_ItemContext_GiveToParty(u8 taskId)
         StringExpandPlaceholders(gStringVar4, gText_Var1CantBeHeldHere);
         DisplayItemMessage(taskId, 2, gStringVar4, HandleErrorMessage);
     }
-    else if (gBagPosition.pocket != KEYITEMS_POCKET && !ItemId_GetImportance(gSpecialVar_ItemId))
+    else if ((gBagPosition.pocket != KEYITEMS_POCKET && !ItemId_GetImportance(gSpecialVar_ItemId))
+             && (gSpecialVar_ItemId != ITEM_SLOWPOKE_TAIL && gSpecialVar_ItemId != ITEM_RAGE_CANDY_BAR))
     {
         Bag_BeginCloseWin0Animation();
         gTasks[taskId].func = Task_FadeAndCloseBagMenu;
@@ -1880,7 +1881,8 @@ static void Task_ItemContext_PcBoxGive(u8 taskId)
 {
     if (ItemIsMail(gSpecialVar_ItemId))
         DisplayItemMessage(taskId, 2, gText_CantWriteMail, HandleErrorMessage);
-    else if (gBagPosition.pocket != KEYITEMS_POCKET && !ItemId_GetImportance(gSpecialVar_ItemId))
+    else if ((gBagPosition.pocket != KEYITEMS_POCKET && !ItemId_GetImportance(gSpecialVar_ItemId))
+             && (gSpecialVar_ItemId != ITEM_SLOWPOKE_TAIL && gSpecialVar_ItemId != ITEM_RAGE_CANDY_BAR))
     {
         Bag_BeginCloseWin0Animation();
         gTasks[taskId].func = Task_FadeAndCloseBagMenu;

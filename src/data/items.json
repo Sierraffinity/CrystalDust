@@ -6537,6 +6537,38 @@
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
+    },
+    {
+      "english": "RAGECANDYBAR",
+      "itemId": "ITEM_RAGE_CANDY_BAR",
+      "price": 300,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 20,
+      "description_english": "A famous MAHOGANY TOWN candy that\\ntourists like. It restores the HP\\nof one POKéMON by 20 points.",
+      "importance": 0,
+      "exitsBagOnUse": 0,
+      "pocket": "POCKET_ITEMS",
+      "type": 1,
+      "fieldUseFunc": "ItemUseOutOfBattle_Medicine",
+      "battleUsage": 1,
+      "battleUseFunc": "ItemUseInBattle_Medicine",
+      "secondaryId": 0
+    },
+    {
+      "english": "SLOWPOKETAIL",
+      "itemId": "ITEM_SLOWPOKE_TAIL",
+      "price": 9800,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A very tasty tail of something.\\nIt can be sold at a high price.",
+      "importance": 0,
+      "exitsBagOnUse": 0,
+      "pocket": "POCKET_ITEMS",
+      "type": 4,
+      "fieldUseFunc": "ItemUseOutOfBattle_CannotUse",
+      "battleUsage": 0,
+      "battleUseFunc": "NULL",
+      "secondaryId": 0
     }
   ]
 }

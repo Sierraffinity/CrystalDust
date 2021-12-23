@@ -567,3 +567,15 @@ void IsHoOhInFirstInParty(void)
     else
         gSpecialVar_Result = FALSE;
 }
+
+void CountBadges(void)
+{
+    u32 i;
+    u32 numBadges = 0;
+    for(i = 0; i < 8; i++)
+    {
+        if(FlagGet(FLAG_BADGE01_GET + i))
+            numBadges++;
+    }
+    gSpecialVar_Result = numBadges;
+}

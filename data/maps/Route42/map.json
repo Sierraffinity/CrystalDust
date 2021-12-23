@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE42",
   "name": "Route42",
   "layout": "LAYOUT_ROUTE42",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_SEVII_ROUTE",
   "region_map_section": "MAPSEC_ROUTE_42",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -131,6 +131,13 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "clone",
+      "x": 77,
+      "y": 13,
+      "source_id": 4,
+      "source_map": "MAP_MAHOGANY_TOWN"
     }
   ],
   "warp_events": [

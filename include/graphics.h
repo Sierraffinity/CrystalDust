@@ -4004,6 +4004,10 @@ extern const u32 gItemIcon_Pass[];
 extern const u32 gItemIconPalette_Pass[];
 extern const u32 gItemIcon_RainbowWing[];
 extern const u32 gItemIconPalette_RainbowWing[];
+extern const u32 gItemIcon_RageCandyBar[];
+extern const u32 gItemIconPalette_RageCandyBar[];
+extern const u32 gItemIcon_SlowpokeTail[];
+extern const u32 gItemIconPalette_SlowpokeTail[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];

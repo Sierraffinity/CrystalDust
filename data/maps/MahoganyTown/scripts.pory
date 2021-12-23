@@ -1,6 +1,136 @@
-mapscripts MahoganyTown_MapScripts {}
+mapscripts MahoganyTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_MAHOGANY_TOWN)
+        callnative(CountBadges)
+        if(var(VAR_RESULT) >= 7)
+        {   // hide merchant & disable triggers
+            setflag(FLAG_TEMP_2)
+            setvar(VAR_TEMP_0, 1)
+        }
+        if(!flag(FLAG_CLEARED_RADIO_TOWER))
+        {   // hide shop girl
+            setflag(FLAG_TEMP_1)
+        }
+    }
+}
 
-// TODO: Old Man and Slowpoketail salesman
+script MahoganyTown_Eventscript_RageCandyBarMerchantTriggers{
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    applymovement(2, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_0x8008) != 13)
+    {
+        applymovement(2, MahoganyTown_Movement_MerchantBlocksNear)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(2, MahoganyTown_Movement_MerchantBlocksFar)
+        waitmovement(0)
+    }
+    applymovement(2, MahoganyTown_Movement_MerchantBlocksWhereverYouAre)
+    applymovement(OBJ_EVENT_ID_PLAYER, MahoganyTown_Movement_PlayerStepsBack)
+    waitmovement(0)
+    setvar(VAR_LAST_TALKED, 2)
+    goto(MahoganyTown_Eventscript_RageCandyBarMerchant)
+}movement MahoganyTown_Movement_MerchantBlocksNear{
+    walk_right
+    walk_down
+}movement MahoganyTown_Movement_MerchantBlocksFar{
+    walk_right
+    walk_down * 2
+}movement MahoganyTown_Movement_MerchantBlocksWhereverYouAre{
+    walk_left
+}movement MahoganyTown_Movement_PlayerStepsBack{
+    lock_facing_direction
+    walk_left
+    unlock_facing_direction
+}script MahoganyTown_Eventscript_RageCandyBarMerchant{
+    textcolor(0)
+    lock
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_RESULT) == 22 && var(VAR_0x8008) == 11)
+    {
+        turnobject(2, DIR_WEST)
+    }
+    if(flag(FLAG_CLEARED_ROCKET_HIDEOUT))
+    {
+        msgbox("RAGECANDYBAR's sold out.\pI'm packing up.\nDon't bother me, kiddo.", MSGBOX_DEFAULT)
+        release
+        goto(MahoganyTown_Eventscript_RageCandyBarMerchantReturnToSpot)
+    }
+    message("Hiya, kid!\nI see you're new in MAHOGANY TOWN.\pSince you're new, you should try a\nyummy RAGECANDYBAR!\pRight now, it can be yours for just\n¥300! Want one?")
+    waitmessage
+    showmoneybox(20, 0, 0)
+    yesnobox(22, 10)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Oh, fine then…")
+        hidemoneybox
+        release
+        goto(MahoganyTown_Eventscript_RageCandyBarMerchantReturnToSpot)
+    }
+    checkmoney(300, 0)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("You don't have enough money.", MSGBOX_DEFAULT)
+        release
+        goto(MahoganyTown_Eventscript_RageCandyBarMerchantReturnToSpot)
+    }
+    checkitemspace(ITEM_RAGE_CANDY_BAR, 1)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("You don't have room for this.")
+        release
+        goto(MahoganyTown_Eventscript_RageCandyBarMerchantReturnToSpot)
+    }
+    removemoney(300, 0)
+    playse(SE_SHOP)
+    updatemoneybox(0, 0)
+    waitse
+    msgbox("Good! Savor it!", MSGBOX_DEFAULT)
+    additem(ITEM_RAGE_CANDY_BAR, 1)
+    release
+    hidemoneybox
+    goto(MahoganyTown_Eventscript_RageCandyBarMerchantReturnToSpot)
+}script MahoganyTown_Eventscript_RageCandyBarMerchantReturnToSpot{
+    setvar(VAR_0x8008, 0)
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_0x8008) == 13)
+    {
+        applymovement(2, MahoganyTown_Movement_MerchantReturnsFar)
+        waitmovement(0)
+        setvar(VAR_0x8008, 0)
+        release
+        end
+    }
+    elif(var(VAR_0x8008) == 12)
+    {
+        applymovement(2, MahoganyTown_Movement_MerchantReturnsNear)
+        waitmovement(0)
+    }
+    setvar(VAR_0x8008, 0)
+    release
+    end
+}movement MahoganyTown_Movement_MerchantReturnsFar{
+    walk_up * 2
+    face_down
+}movement MahoganyTown_Movement_MerchantReturnsNear{
+    walk_up
+    face_down
+}
+
+script MahoganyTown_Eventscript_OldMan {
+    if(flag(FLAG_CLEARED_ROCKET_HIDEOUT))
+    {
+        msgbox("MAGIKARP have returned to the\nLAKE OF RAGE.\pThat should be good news for the\nanglers there.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Are you off to see the GYARADOS\nrampage at the lake?", MSGBOX_NPC)
+    end
+}
 
 script MahoganyTown_Eventscript_TownSign {
     msgbox("MAHOGANY TOWN\nWelcome to the Home of the Ninja", MSGBOX_SIGN)
