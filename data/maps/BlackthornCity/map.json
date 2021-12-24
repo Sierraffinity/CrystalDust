@@ -50,6 +50,20 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE44",
       "dest_warp_id": 0
+    },
+    {
+      "x": 21,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_BLACKTHORN_CITY",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 24,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_DRAGONS_DEN_ENTRANCE",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
