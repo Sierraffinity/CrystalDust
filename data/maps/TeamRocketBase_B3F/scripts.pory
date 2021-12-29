@@ -1,1 +1,226 @@
-mapscripts TeamRocketBase_B3F_MapScripts {}
+mapscripts TeamRocketBase_B3F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_TEMP_1)
+        if(flag(FLAG_LANCE_TOLD_ABOUT_PASSWORDS))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+        if(flag(FLAG_MET_RIVAL_IN_ROCKET_HIDEOUT))
+        {
+            setvar(VAR_TEMP_0, 2)
+        }
+        if(defeated(TRAINER_MAHOGANY_EXECUTIVE_M))
+        {
+            setvar(VAR_TEMP_0, 3)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0 {
+            lockall
+            applymovement(2, TeamRocketBase_B3F_Movement_LanceToPlayer)
+            waitmovement(0)
+            textcolor(0)
+            msgbox("LANCE: It takes two passwords to\nget into the boss's quarters.\pThose passwords are known only\nto a few ROCKETS.\pThat ROCKET there very graciously\ntold me so.\p{PLAYER}, let's go get the passwords.", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(2, TeamRocketBase_B3F_Movement_LanceExits)
+            waitmovement(0)
+            removeobject(2)
+            setflag(FLAG_LANCE_TOLD_ABOUT_PASSWORDS)
+            setvar(VAR_TEMP_0, 1)
+            releaseall
+            end
+        }
+    ]
+    MAP_SCRIPT_ON_LOAD{
+        if(flag(FLAG_HIDEOUT_BOSS_ROOM_OPENED))
+        {
+            setmetatile(13, 10, 0x282, 0)
+            setmetatile(13, 9, 0x282, 0)
+            setmetatile(14, 10, 0x281, 0)
+            setmetatile(14, 9 0x281, 0)
+        }
+    }
+}movement(local) TeamRocketBase_B3F_Movement_LanceToPlayer{
+    walk_down * 2
+    walk_right * 2
+}movement(local) TeamRocketBase_B3F_Movement_LanceExits{
+    walk_left * 7
+}
+
+script TeamRocketBase_B3F_EventScript_DefeatedRocket{
+    msgbox("Urrggh… The guy in the cape is\nincredibly tough…", MSGBOX_NPC)
+    end
+}
+
+script TeamRocketBase_B3F_EventScript_GruntF{
+    trainerbattle_single(TRAINER_MAHOGANY_GRUNT_B3F_F, "Do I know the password?\pMaybe.\nBut no weakling's going to get it!", "All right. Stop.\nI'll tell you.")
+    msgbox("The password to the boss's room\nis SLOWPOKETAIL.\pBut it's useless unless you\nhave two passwords.", MSGBOX_AUTOCLOSE)
+    setflag(FLAG_LEARNED_SLOWPOKETAIL_PASSWORD)
+    end
+}
+
+script TeamRocketBase_B3F_EventScript_GruntM{
+    trainerbattle_single(TRAINER_MAHOGANY_GRUNT_B3F_M, "Hyuck-hyuck-hyuck!\pYou're challenging me to a battle?\nHah!\lYou're nuts, but you have guts!\pI like that!\pIf you can beat me, I'll tell you\na password to the boss's room!", "Hyuck-hyuck-hyuck!\nYou're good!")
+    msgbox("Hyuck-hyuck-hyuck!\pThe password to the boss's room…\nUh…, I think it is RATICATE TAIL.", MSGBOX_AUTOCLOSE)
+    setflag(FLAG_LEARNED_RATICATETAIL_PASSWORD)
+    end
+}
+
+script TeamRocketBase_B3F_EventScript_ScientistRoss{
+    trainerbattle_single(TRAINER_ROSS, "I used to work for SILPH, but now I\nrun research for TEAM ROCKET.\pA meddlesome child like you needs\nto be punished.", "A mere tactical error cost me…")
+    msgbox("A radio signal that drives\nPOKéMON mad…\pMy experiment is a complete success.\nMy promotion is assured.\lThis loss means absolutely nothing.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script TeamRocketBase_B3F_EventScript_ScientistMitch{
+    trainerbattle_single(TRAINER_MITCH, "I don't care that POKéMON are hurt\nby our experiment.", "Thinking is my strong suit,\nnot battling.")
+    msgbox("If we turn up the power of our radio\nsignal for broadcast nationwide…\pThe very thought excites me!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script TeamRocketBase_B3F_EventScript_Murkrow{
+    msgbox("MURKROW: The password is…\nHAIL GIOVANNI.", MSGBOX_NPC)
+    setflag(FLAG_LEARNED_HAIL_GIOVANNI_PASSWORD)
+    end
+}
+
+script TeamRocketBase_B3F_EventScript_Door{
+    if(flag(FLAG_HIDEOUT_BOSS_ROOM_OPENED))
+    {
+        msgbox("The doors are open!", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    else
+    {
+        if(flag(FLAG_LEARNED_SLOWPOKETAIL_PASSWORD) && flag(FLAG_LEARNED_RATICATETAIL_PASSWORD))
+        {
+            msgbox("The door's closed…\p{PLAYER} entered the two passwords.\nThe door opened!", MSGBOX_DEFAULT)
+            closemessage
+            setflag(FLAG_HIDEOUT_BOSS_ROOM_OPENED)
+            setmetatile(13, 10, 0x282, 0)
+            setmetatile(13, 9, 0x282, 0)
+            setmetatile(14, 10, 0x281, 0)
+            setmetatile(14, 9 0x281, 0)
+            playse(SE_UNLOCK)
+            special(DrawWholeMapView)
+            waitse
+            release
+            end
+        }
+        msgbox("The door's closed…\pIt needs two passwords to open.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+}
+
+script TeamRocketBase_B3F_EventScript_RivalTriggers{
+    lock
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    getplayerxy(VAR_0x8008, VAR_RESULT)
+    if(var(VAR_RESULT) == 12)
+    {
+        setobjectxyperm(12, 5, 6)
+    }
+    else
+    {
+        setobjectxyperm(12, 5, 5)
+    }
+    addobject(12)
+    applymovement(12, TeamRocketBase_B3F_Movement_RivalToPlayer)
+    //fadeoutbgm(0)
+    playbgm(MUS_NONE, 0)
+    waitmovement(0)
+    playbgm(MUS_ENCOUNTER_RIVAL, 0)
+    textcolor(0)
+    msgbox("…\pDidn't I tell you that I was going\nto destroy TEAM ROCKET?\p…Tell me, who was the guy in the\ncape who used dragon POKéMON?\lMy POKéMON were no match at all.\pI don't care that I lost. I can beat\nhim by getting stronger POKéMON.\pIt's what he said that bothers me…\pHe told me that I don't love and\ntrust my POKéMON enough.\pI'm furious that I lost to a bleeding\nheart like him.\p…Humph! I don't have time for\nthe likes of you!", MSGBOX_DEFAULT)
+    closemessage
+    delay(10)
+	playse(SE_NOT_EFFECTIVE)
+    applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B3F_Movement_PlayerShoved)
+    applymovement(12, TeamRocketBase_B3F_Movement_RivalExits)
+    waitmovement(0)
+    removeobject(12)
+    fadedefaultbgm
+    setflag(FLAG_MET_RIVAL_IN_ROCKET_HIDEOUT)
+    setvar(VAR_TEMP_0, 2)
+    callnative(PatchMurkrowPaletteToSlot10)
+    release
+    end
+}movement(local) TeamRocketBase_B3F_Movement_RivalToPlayer{
+    walk_down * 6
+    walk_right * 5
+}movement(local) TeamRocketBase_B3F_Movement_PlayerShoved{
+    lock_facing_direction
+    walk_fast_right
+    unlock_facing_direction
+}movement(local) TeamRocketBase_B3F_Movement_RivalExits{
+    delay_8
+    walk_left * 4
+    walk_up * 6
+}
+
+script TeamRocketBase_B3F_EventScript_OfficeTriggers{
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_RESULT) == 13)
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B3F_Movement_LeftPlayerToExec)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B3F_Movement_RightPlayerToExec)
+        waitmovement(0)
+    }
+    delay(30)
+    applymovement(14, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    playbgm(MUS_ENCOUNTER_ROCKET, 0)
+    turnobject(14, DIR_SOUTH)
+    textcolor(0)
+    msgbox("What? Who are you?\pThis is the office of our leader\nGIOVANNI.\pSince disbanding TEAM ROCKET three\nyears ago, he has been in training.\pBut we're certain he will be back\nsome day to assume command again.\pThat's why we're standing guard.\nI won't let anyone disturb this place!", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(14, TeamRocketBase_B2F_Movement_LanceWalksDown)
+    waitmovement(0)
+    fadedefaultbgm
+    trainerbattle_no_intro(TRAINER_MAHOGANY_EXECUTIVE_M, "I… I couldn't do a thing…\nGIOVANNI, please forgive me…")
+    msgbox("No, I can't let this affect me.\nI have to inform the others…", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(14, TeamRocketBase_B3F_Movement_ExecHitsTable)
+    waitmovement(0)
+    playse(SE_NOT_EFFECTIVE)
+    applymovement(14, TeamRocketBase_B3F_Movement_ExecHitsExits)
+    waitmovement(0)
+    playse(SE_EXIT)
+    removeobject(14)
+    setvar(VAR_TEMP_0, 3)
+    release
+    end
+}movement(local) TeamRocketBase_B3F_Movement_LeftPlayerToExec{
+    walk_up * 2
+    walk_left * 2
+    face_up
+}movement(local) TeamRocketBase_B3F_Movement_RightPlayerToExec{
+    walk_up * 2
+    walk_left * 3
+    face_up
+}movement(local) TeamRocketBase_B3F_Movement_ExecHitsTable{
+    walk_fast_right * 2
+}movement(local) TeamRocketBase_B3F_Movement_ExecHitsExits{
+    lock_facing_direction
+    jump_2_left_fast
+    unlock_facing_direction
+    delay_16
+    walk_slow_right
+    walk_fast_down * 3
+    walk_fast_right
+    walk_fast_down * 3
+    walk_fast_left * 8
+    walk_fast_up * 9
+    walk_fast_right
+    set_invisible
+}

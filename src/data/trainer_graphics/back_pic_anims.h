@@ -131,10 +131,10 @@ static const union AnimCmd *const sBackAnims_Dude[] =
     gAnimCmd_Dude_1,
 };
 
-static const union AnimCmd *const sBackAnims_Steven[] =
+static const union AnimCmd *const sBackAnims_Lance[] =
 {
-    sAnim_GeneralFrame3,
-    gAnimCmd_May_Steven_1,
+    sAnim_GeneralFrame0,
+    gAnimCmd_Dude_1,
 };
 
 const union AnimCmd *const *const gTrainerBackAnimsPtrTable[] =
@@ -148,5 +148,5 @@ const union AnimCmd *const *const gTrainerBackAnimsPtrTable[] =
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN] = sBackAnims_RubySapphireBrendan,
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] = sBackAnims_RubySapphireMay,
     [TRAINER_BACK_PIC_DUDE] = sBackAnims_Dude,
-    [TRAINER_BACK_PIC_STEVEN] = sBackAnims_Steven,
+    [TRAINER_BACK_PIC_LANCE] = sBackAnims_Lance,
 };

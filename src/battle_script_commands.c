@@ -3504,7 +3504,7 @@ static void Cmd_unknown_24(void)
     if (gBattleControllerExecFlags)
         return;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId == TRAINER_STEVEN_PARTNER)
+    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId == TRAINER_LANCE_PARTNER)
     {
         for (i = 0; i < MULTI_PARTY_SIZE; i++)
         {

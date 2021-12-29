@@ -4,6 +4,7 @@
 #include "mevent.h"
 #include "util.h"
 #include "constants/map_scripts.h"
+#include "constants/moves.h"
 
 #define RAM_SCRIPT_MAGIC 51
 
@@ -578,4 +579,17 @@ void CountBadges(void)
             numBadges++;
     }
     gSpecialVar_Result = numBadges;
+}
+
+void GiveEnemyMonSelfdestruct(void)
+{
+    u16 move = MOVE_SELF_DESTRUCT;
+    SetMonData(&gEnemyParty[0], MON_DATA_MOVE1, &move);
+}
+
+extern const u16 gObjectEventPal_Murkrow;
+
+void PatchMurkrowPaletteToSlot10(void)
+{
+    LoadPaletteDayNight(&gObjectEventPal_Murkrow, 16 * 10 + 0x100, 0x20);
 }

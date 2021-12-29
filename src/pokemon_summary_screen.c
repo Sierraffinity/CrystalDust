@@ -41,6 +41,7 @@
 #include "tv.h"
 #include "window.h"
 #include "constants/items.h"
+#include "constants/layouts.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 #include "constants/region_map_sections.h"
@@ -3226,7 +3227,7 @@ static bool8 DidMonComeFromRSE(void)
 
 static bool8 IsInGamePartnerMon(void)
 {
-    if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) && gMain.inBattle)
+    if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) && gMain.inBattle && gMapHeader.mapLayoutId != LAYOUT_TEAM_ROCKET_BASE_B2F)
     {
         if (sMonSummaryScreen->curMonIndex == 1 || sMonSummaryScreen->curMonIndex == 4 || sMonSummaryScreen->curMonIndex == 5)
             return TRUE;

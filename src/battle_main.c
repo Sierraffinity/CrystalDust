@@ -636,7 +636,7 @@ static void CB2_InitBattleInternal(void)
 
     gBattle_WIN0H = DISPLAY_WIDTH;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId != TRAINER_STEVEN_PARTNER)
+    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId != TRAINER_LANCE_PARTNER)
     {
         gBattle_WIN0V = DISPLAY_HEIGHT - 1;
         gBattle_WIN1H = DISPLAY_WIDTH;
@@ -3970,11 +3970,11 @@ u8 IsRunningFromBattleImpossible(void)
 
     gPotentialItemEffectBattler = gActiveBattler;
 
-    if (holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN)
+    if (holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN && !FlagGet(FLAG_SYS_CANT_RUN_FROM_BATTLE))
         return 0;
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
         return 0;
-    if (gBattleMons[gActiveBattler].ability == ABILITY_RUN_AWAY)
+    if (gBattleMons[gActiveBattler].ability == ABILITY_RUN_AWAY && !FlagGet(FLAG_SYS_CANT_RUN_FROM_BATTLE))
         return 0;
 
     side = GetBattlerSide(gActiveBattler);
@@ -4009,7 +4009,7 @@ u8 IsRunningFromBattleImpossible(void)
         return 2;
     }
     if ((gBattleMons[gActiveBattler].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED))
-        || (gStatuses3[gActiveBattler] & STATUS3_ROOTED))
+        || (gStatuses3[gActiveBattler] & STATUS3_ROOTED) || FlagGet(FLAG_SYS_CANT_RUN_FROM_BATTLE))
     {
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CANT_ESCAPE;
         return 1;
@@ -5200,6 +5200,7 @@ static void ReturnFromBattleToOverworld(void)
         return;
 
     gSpecialVar_Result = gBattleOutcome;
+    FlagClear(FLAG_SYS_CANT_RUN_FROM_BATTLE);
     gMain.inBattle = 0;
     gMain.callback1 = gPreBattleCallback1;
 

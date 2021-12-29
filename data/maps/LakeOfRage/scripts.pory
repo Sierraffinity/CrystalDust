@@ -85,7 +85,7 @@ script LakeOfRage_EventScript_RedGyarados {
 	waitmoncry
     closemessage
     setvar(VAR_LAST_TALKED, 9)
-	//make shiny
+	setflag(FLAG_SYS_CANT_RUN_FROM_BATTLE)
     setwildbattle(SPECIES_GYARADOS, 30, ITEM_NONE)
     setflag(FLAG_SYS_CTRL_OBJ_DELETE)
     dowildbattle

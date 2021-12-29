@@ -7292,6 +7292,19 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Nathan[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_RocketExecPartner[] = {
+    {
+    .iv = 0,
+    .lvl = 18,
+    .species = SPECIES_DROWZEE,
+    },
+    {
+    .iv = 0,
+    .lvl = 20,
+    .species = SPECIES_GRIMER,
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Red[] = {
     {
     .iv = 0,

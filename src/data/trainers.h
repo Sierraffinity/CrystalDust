@@ -6540,7 +6540,7 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_NATHAN] =
     {
-        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_PSYCHIC_M,
@@ -6550,6 +6550,20 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = ARRAY_COUNT(sParty_Nathan),
         .party = {.NoItemDefaultMoves = sParty_Nathan},
+    },
+
+    [TRAINER_ROCKET_EXEC_PARTNER] = 
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_TEAM_ROCKET,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ROCKET,
+        .trainerPic = TRAINER_PIC_ROCKET_GRUNT_M,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_RocketExecPartner),
+        .party = {.NoItemDefaultMoves = sParty_RocketExecPartner},
     },
 
     [TRAINER_RED] =

@@ -707,9 +707,10 @@ u8 LoadStation_UnownRadio(void)
 
 u8 LoadStation_EvolutionRadio(void)
 {
-    if (gMapHeader.regionMapSectionId == MAPSEC_MAHOGANY_TOWN ||
+    if ((gMapHeader.regionMapSectionId == MAPSEC_MAHOGANY_TOWN ||
         gMapHeader.regionMapSectionId == MAPSEC_ROUTE_43 ||
-        gMapHeader.regionMapSectionId == MAPSEC_LAKE_OF_RAGE)
+        gMapHeader.regionMapSectionId == MAPSEC_LAKE_OF_RAGE) &&
+        !FlagGet(FLAG_CLEARED_ROCKET_HIDEOUT))
     {
         return EVOLUTION_RADIO;
     }

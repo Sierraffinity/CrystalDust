@@ -3162,13 +3162,14 @@ extern const u8 gTrainerBackPic_Leaf[];
 extern const u8 gTrainerBackPic_RubySapphireBrendan[];
 extern const u8 gTrainerBackPic_RubySapphireMay[];
 extern const u8 gTrainerBackPic_Dude[];
-extern const u8 gTrainerBackPic_Steven[];
+extern const u8 gTrainerBackPic_Lance[];
 
 extern const u32 gTrainerBackPicPalette_Gold[];
 extern const u32 gTrainerBackPicPalette_Kris[];
 extern const u32 gTrainerBackPicPalette_Red[];
 extern const u32 gTrainerBackPicPalette_Leaf[];
 extern const u32 gTrainerBackPicPalette_Dude[];
+extern const u32 gTrainerBackPicPalette_Lance[];
 
 // pokeblock
 extern const u32 gMenuPokeblock_Gfx[];

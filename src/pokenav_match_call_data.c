@@ -115,10 +115,10 @@ static void MatchCall_GetNameAndDescByRematchIdx(u32, const u8 **, const u8 **);
 // .rodata
 
 static const match_call_text_data_t sMrStoneTextScripts[] = {
-    { MatchCall_Text_MrStone1,  0xFFFF,                              FLAG_ENABLE_MR_STONE_POKENAV },
-    { MatchCall_Text_MrStone2,  FLAG_ENABLE_MR_STONE_POKENAV,        0xFFFF },
+    { MatchCall_Text_MrStone1,  0xFFFF, 0xFFFF },
+    { MatchCall_Text_MrStone2,  0xFFFF, 0xFFFF },
     { MatchCall_Text_MrStone3,  FLAG_TALKED_TO_FLORIA_FLOWER_SHOP,        0xFFFF },
-    { MatchCall_Text_MrStone4,  FLAG_RECEIVED_EXP_SHARE,             0xFFFF },
+    { MatchCall_Text_MrStone4,  0xFFFF,             0xFFFF },
     { MatchCall_Text_MrStone5,  FLAG_RECEIVED_MAGNET_FROM_SUNNY,                  0xFFFF },
     { MatchCall_Text_MrStone6,  FLAG_DEFEATED_PETALBURG_GYM,         0xFFFF },
     { MatchCall_Text_MrStone7,  FLAG_BIKE_SHOP_LOAN_ACTIVE,              0xFFFF },

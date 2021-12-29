@@ -15,7 +15,7 @@
 // VAR_FRONTIER_FACILITY is re-used for the below facilities as well
 #define FACILITY_LINK_CONTEST      7
 #define FACILITY_UNION_ROOM        8
-#define FACILITY_MULTI_OR_EREADER  9  // Direct Corner multi battles, multi battle with Steven, and e-Reader battles
+#define FACILITY_MULTI_OR_EREADER  9  // Direct Corner multi battles, multi battle with Lance, and e-Reader battles
 #define FACILITY_BUG_CATCHING_CONTEST 10
 
 // Battle Frontier lvl modes.
@@ -45,7 +45,7 @@
 #define SPECIAL_BATTLE_ARENA 5
 #define SPECIAL_BATTLE_FACTORY 6
 #define SPECIAL_BATTLE_PIKE_SINGLE 7
-#define SPECIAL_BATTLE_STEVEN 8
+#define SPECIAL_BATTLE_LANCE 8
 #define SPECIAL_BATTLE_PIKE_DOUBLE 9
 #define SPECIAL_BATTLE_PYRAMID 10
 

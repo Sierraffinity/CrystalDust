@@ -1,1 +1,576 @@
-mapscripts TeamRocketBase_B2F_MapScripts {}
+mapscripts TeamRocketBase_B2F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_TEMP_1)
+        if(flag(FLAG_HIDEOUT_LANCE_HEALED_MONS))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+        if(defeated(TRAINER_MAHOGANY_EXECUTIVE_F))
+        {
+            setvar(VAR_TEMP_0, 2)
+        }
+        if(flag(FLAG_CLEARED_ROCKET_HIDEOUT))
+        {
+            setvar(VAR_TEMP_0, 3)
+        }
+    }
+    MAP_SCRIPT_ON_LOAD {
+        if(flag(FLAG_HIDEOUT_TRANSMITTER_ROOM_OPENED))
+        {
+            setmetatile(18, 24, 0x282, 0)
+            setmetatile(18, 23, 0x282, 0)
+            setmetatile(19, 24, 0x281, 0)
+            setmetatile(19, 23, 0x281, 0)
+            setmetatile(20, 24, 0x281, 0)
+            setmetatile(20, 23, 0x281, 0)
+        }
+    }
+    MAP_SCRIPT_ON_RESUME {
+        removeobject(14)
+        if (flag(FLAG_SYS_CTRL_OBJ_DELETE))
+        {
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            if (var(VAR_RESULT) == B_OUTCOME_CAUGHT)
+            {
+                removeobject(VAR_LAST_TALKED)
+            }
+        }
+    }
+}
+
+script TeamRocketBase_B2F_EventScript_Grunt1{
+    trainerbattle_single(TRAINER_MAHOGANY_GRUNT_B2F_1, "You rotten little pest!", "Grrrr…")
+    msgbox("Heh, only the boss knows the\npassword for that door.\pWhere's the boss? Who knows?\nGo look for yourself.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script TeamRocketBase_B2F_EventScript_Grunt2{
+    trainerbattle_single(TRAINER_MAHOGANY_GRUNT_B2F_2, "The door won't open?\nWell, duh.\pIt has to have a password that\nonly TEAM ROCKET knows.", "What? I lost?")
+    msgbox("Heh, I'm just a GRUNT.\pI don't know the password.\nToo bad for you.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script TeamRocketBase_B2F_EventScript_Grunt3{
+    trainerbattle_single(TRAINER_MAHOGANY_GRUNT_B2F_3, "Oh, a kid? I don't really like this,\nbut eliminate you I must.", "I knew I'd lose…")
+    msgbox("I got wiped out on the last\nmission by a kid too.\pWhen we were abducting POKéMON,\nthis kid with long red hair and\lmean-looking eyes just creamed me…", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script TeamRocketBase_B2F_EventScript_RadioTransmitter{
+    if(flag(FLAG_CLEARED_ROCKET_HIDEOUT))
+    {
+        msgbox("The radio transmitter has finally\nstopped its evil broadcast.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("It's the radio transmitter that's\nsending the sinister signal.\pIt's working at full capacity.", MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script TeamRocketBase_B2F_EventScript_Electrode_1{
+    lock
+    faceplayer
+	playmoncry(SPECIES_ELECTRODE, 0)
+	waitmoncry
+    closemessage
+    setvar(VAR_LAST_TALKED, 6)
+    setwildbattle(SPECIES_ELECTRODE, 23, ITEM_NONE)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    switch (var(VAR_RESULT))
+    {
+        case B_OUTCOME_WON:
+            call(Common_EventScript_RemoveStaticPokemon)
+            setflag(FLAG_HIDEOUT_ELECTRODE_1)
+    }
+    if(flag(FLAG_HIDEOUT_ELECTRODE_1) && flag(FLAG_HIDEOUT_ELECTRODE_2) && flag(FLAG_HIDEOUT_ELECTRODE_3))
+    {
+        getplayerxy(VAR_0x8008, VAR_RESULT)
+        if(var(VAR_RESULT) == 11)
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_Electrode1ToFrontDown)
+            waitmovement(0)
+        }
+        else
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_Electrode1ToFrontRight)
+            waitmovement(0)
+        }
+        applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_Electrode1ToFrontContinue)
+        waitmovement(0)
+        goto(TeamRocketBase_B2F_EventScript_RendevousWithLanceAfterElectrodes)
+    }
+    release
+    end
+}movement(local) TeamRocketBase_B2F_Movement_Electrode1ToFrontDown{
+    walk_right * 3
+}movement(local) TeamRocketBase_B2F_Movement_Electrode1ToFrontRight{
+    walk_right * 2
+    walk_down
+}movement(local) TeamRocketBase_B2F_Movement_Electrode1ToFrontContinue{
+    walk_down * 10
+    walk_right * 6
+}
+
+script TeamRocketBase_B2F_EventScript_Electrode_2{
+    lock
+    faceplayer
+	playmoncry(SPECIES_ELECTRODE, 0)
+	waitmoncry
+    closemessage
+    setvar(VAR_LAST_TALKED, 7)
+    setwildbattle(SPECIES_ELECTRODE, 23, ITEM_NONE)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    switch (var(VAR_RESULT))
+    {
+        case B_OUTCOME_WON:
+            call(Common_EventScript_RemoveStaticPokemon)
+            setflag(FLAG_HIDEOUT_ELECTRODE_2)
+    }
+    if(flag(FLAG_HIDEOUT_ELECTRODE_1) && flag(FLAG_HIDEOUT_ELECTRODE_2) && flag(FLAG_HIDEOUT_ELECTRODE_3))
+    {
+       getplayerxy(VAR_0x8008, VAR_RESULT)
+        if(var(VAR_RESULT) == 15)
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_Electrode1ToFrontDown)
+            waitmovement(0)
+        }
+        else
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_Electrode1ToFrontRight)
+            waitmovement(0)
+        }
+        applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_Electrode2ToFrontContinue)
+        waitmovement(0)
+        goto(TeamRocketBase_B2F_EventScript_RendevousWithLanceAfterElectrodes)
+    }
+    release
+    end
+}movement(local) TeamRocketBase_B2F_Movement_Electrode2ToFrontContinue{
+    walk_down * 6
+    walk_right * 6
+}
+
+script TeamRocketBase_B2F_EventScript_Electrode_3{
+    lock
+    faceplayer
+	playmoncry(SPECIES_ELECTRODE, 0)
+	waitmoncry
+    closemessage
+    setvar(VAR_LAST_TALKED, 8)
+    setwildbattle(SPECIES_ELECTRODE, 23, ITEM_NONE)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    switch (var(VAR_RESULT))
+    {
+        case B_OUTCOME_WON:
+            call(Common_EventScript_RemoveStaticPokemon)
+            setflag(FLAG_HIDEOUT_ELECTRODE_3)
+    }
+    if(flag(FLAG_HIDEOUT_ELECTRODE_1) && flag(FLAG_HIDEOUT_ELECTRODE_2) && flag(FLAG_HIDEOUT_ELECTRODE_3))
+    {
+       getplayerxy(VAR_0x8008, VAR_RESULT)
+        if(var(VAR_RESULT) == 19)
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_Electrode1ToFrontDown)
+            waitmovement(0)
+        }
+        else
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_Electrode1ToFrontRight)
+            waitmovement(0)
+        }
+        applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_Electrode3ToFrontContinue)
+        waitmovement(0)
+        goto(TeamRocketBase_B2F_EventScript_RendevousWithLanceAfterElectrodes)
+    }
+    release
+    end
+}movement(local) TeamRocketBase_B2F_Movement_Electrode3ToFrontContinue{
+    walk_down * 2
+    walk_right * 6
+}
+
+script TeamRocketBase_B2F_EventScript_RendevousWithLanceAfterElectrodes{
+    setobjectxyperm(15, 24, 15)
+    addobject(15)
+    applymovement(15, TeamRocketBase_B2F_Movement_LanceRendevous)
+    waitmovement(0)
+    textcolor(0)
+    msgbox("LANCE: That odd signal has\nfinally stopped.\lThe LAKE should be back to normal.\pYou're the hero! Let me thank you\non behalf of all the POKéMON.\pOh, yes.\nYou should take this.\pI found it here, but I don't have\nany need for it.", MSGBOX_DEFAULT)
+    textcolor(3)
+    giveitem(ITEM_HM06, 1)
+    textcolor(0)
+    msgbox("That's WHIRLPOOL.\nTeach it to a POKéMON to get\lacross wild water.\pBut keep this in mind.\pYou can use that out of battle only\nwith the BADGE from MAHOGANY GYM.", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(15, DIR_SOUTH)
+    msgbox("{PLAYER}…\pThe journey to becoming the POKéMON\nMASTER is long and difficult.\pKnowing that, will you keep going?\p…\pI see.\nNo, you're right.\pIf you would give up that easily,\nyou would have never chased that\ldream in the first place.\pI look forward to seeing you again!", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    applymovement(15, TeamRocketBase_B2F_Movement_LanceLeaves)
+    waitmovement(0)
+    removeobject(15)
+    setflag(FLAG_CLEARED_ROCKET_HIDEOUT)
+    setvar(VAR_TEMP_0, 3)
+    release
+    end
+}movement(local) TeamRocketBase_B2F_Movement_LanceRendevous{
+    walk_down * 6
+    walk_left * 5
+}movement(local) TeamRocketBase_B2F_Movement_LanceLeaves{
+    walk_down * 4
+    walk_left * 9
+}
+
+script TeamRocketBase_B2F_EventScript_Door{
+    if(flag(FLAG_HIDEOUT_TRANSMITTER_ROOM_OPENED))
+    {
+        msgbox("The doors are open!", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    else
+    {
+        if(flag(FLAG_LEARNED_SLOWPOKETAIL_PASSWORD) && flag(FLAG_LEARNED_RATICATETAIL_PASSWORD))
+        {
+            msgbox("The door's closed…\p{PLAYER} entered the password.\nThe door opened!", MSGBOX_DEFAULT)
+            closemessage
+            setflag(FLAG_HIDEOUT_TRANSMITTER_ROOM_OPENED)
+            setmetatile(18, 24, 0x282, 0)
+            setmetatile(18, 23, 0x282, 0)
+            setmetatile(19, 24, 0x281, 0)
+            setmetatile(19, 23, 0x281, 0)
+            setmetatile(20, 24, 0x281, 0)
+            setmetatile(20, 23, 0x281, 0)
+            playse(SE_UNLOCK)
+            special(DrawWholeMapView)
+            waitse
+            release
+            end
+        }
+        msgbox("The door's closed…\pIt needs a password to open.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+}
+
+script TeamRocketBase_B2F_EventScript_BossTriggers{
+    lockall
+    textcolor(1)
+    msgbox("Hold it right there!", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_PlayerToHallway)
+    waitmovement(0)
+    playbgm(MUS_ENCOUNTER_ROCKET, TRUE)
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    switch(var(VAR_RESULT))
+    {
+        case 18:
+            setobjectxyperm(12, 26, 30)
+            addobject(12)
+            applymovement(12, TeamRocketBase_B2F_Movement_ExecToPlayer)
+            waitmovement(0)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+            setobjectxyperm(13, 26, 30)
+            addobject(13)
+            applymovement(13, TeamRocketBase_B2F_Movement_GruntToPlayer)
+            waitmovement(0)
+            setobjectxyperm(14, 10, 25)
+            setobjectxyperm(15, 10, 25)
+        case 19:
+            setobjectxyperm(12, 27, 30)
+            addobject(12)
+            applymovement(12, TeamRocketBase_B2F_Movement_ExecToPlayer)
+            waitmovement(0)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+            setobjectxyperm(13, 27, 30)
+            addobject(13)
+            applymovement(13, TeamRocketBase_B2F_Movement_GruntToPlayer)
+            waitmovement(0)
+            setobjectxyperm(14, 11, 25)
+            setobjectxyperm(15, 11, 25)
+        case 20:
+            setobjectxyperm(12, 28, 30)
+            addobject(12)
+            applymovement(12, TeamRocketBase_B2F_Movement_ExecToPlayer)
+            waitmovement(0)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+            setobjectxyperm(13, 28, 30)
+            addobject(13)
+            applymovement(13, TeamRocketBase_B2F_Movement_GruntToPlayer)
+            waitmovement(0)
+            setobjectxyperm(14, 12, 25)
+            setobjectxyperm(15, 12, 25)
+    }
+    msgbox("We can't have a brat like you on\nthe loose.\pIt's harmful to TEAM ROCKET's\npride, you see.\pHowever strong you may be, you can't\ntake both of us at the same time.\pSorry, baby.\nNow get ready to be thrashed.", MSGBOX_DEFAULT)
+    closemessage
+    playmoncry(SPECIES_DRAGONITE, 0)
+    waitmoncry
+    turnobject(12, DIR_WEST)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    addobject(14)
+    applymovement(14, TeamRocketBase_B2F_Movement_DragoniteToExec)
+    waitmovement(0)
+    playse(SE_SUPER_EFFECTIVE)
+    applymovement(12, TeamRocketBase_B2F_Movement_ExecStruck)
+    waitmovement(0)
+    applymovement(13, TeamRocketBase_B2F_Movement_GruntProtects)
+    waitmovement(0)
+    addobject(15)
+    applymovement(15, TeamRocketBase_B2F_Movement_LanceEnters)
+    waitmovement(0)
+    textcolor(0)
+    msgbox("Hey! Don't be so selfish.\nSpread the fun around.", MSGBOX_DEFAULT)
+    closemessage
+    textcolor(1)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    applymovement(12, TeamRocketBase_B2F_Movement_ExecMovesDown)
+    waitmovement(0)
+    msgbox("What? You had an accomplice?\nWhere is your sense of honor?\pAs the interim boss in place of\nGIOVANNI, I'll show you how wrong\lit is to meddle with TEAM ROCKET!", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(13, TeamRocketBase_B2F_Movement_RocketsAttack)
+    waitmovement(0)
+    applymovement(12, TeamRocketBase_B2F_Movement_RocketsAttack)
+    waitmovement(0)
+    special(SavePlayerParty)
+    fadescreen(FADE_TO_BLACK)
+    goto(TeamRocketBase_B2F_EventScript_PrepareMultiBattle)
+}movement(local) TeamRocketBase_B2F_Movement_PlayerToHallway{
+    walk_down * 4
+    face_right
+}movement(local) TeamRocketBase_B2F_Movement_ExecToPlayer{
+    walk_fast_left * 2
+    walk_fast_up * 5
+    walk_fast_left * 6
+    face_down
+}movement(local) TeamRocketBase_B2F_Movement_GruntToPlayer{
+    walk_fast_left * 2
+    walk_fast_up * 4
+    walk_fast_left * 4
+}movement(local) TeamRocketBase_B2F_Movement_DragoniteToExec{
+    walk_fast_right * 7
+}movement(local) TeamRocketBase_B2F_Movement_ExecStruck{
+    delay_8
+    lock_facing_direction
+    jump_2_right
+    unlock_facing_direction
+}movement(local) TeamRocketBase_B2F_Movement_GruntProtects{
+    walk_fast_left
+    walk_fast_up
+    face_left
+}movement(local) TeamRocketBase_B2F_Movement_LanceEnters{
+    walk_right * 6
+}movement(local) TeamRocketBase_B2F_Movement_ExecMovesDown{
+    walk_slow_down
+    face_left
+}movement(local) TeamRocketBase_B2F_Movement_RocketsAttack{
+    walk_fast_left
+}
+
+//used only to grab the enemy roster in battle_tower.c
+script TeamRocketBase_B2F_EventScript_ExecTrainer{
+    trainerbattle(TRAINER_BATTLE_SET_TRAINER_A, TRAINER_MAHOGANY_EXECUTIVE_F, 0, TeamRocketBase_B2F_Text_ExecutiveLoss, TeamRocketBase_B2F_Text_ExecutiveLoss)
+}text(local) TeamRocketBase_B2F_Text_ExecutiveLoss{
+    "Tch, you really are strong.\nIt's too bad.\pIf you were to join TEAM ROCKET,\nyou could become an EXECUTIVE."
+}
+
+script TeamRocketBase_B2F_EventScript_ExecPartnerTrainer{
+    trainerbattle(TRAINER_BATTLE_SET_TRAINER_B, TRAINER_ROCKET_EXEC_PARTNER, 0, TeamRocketBase_B2F_Text_ExecutivePartnerLoss, TeamRocketBase_B2F_Text_ExecutivePartnerLoss)
+}text(local) TeamRocketBase_B2F_Text_ExecutivePartnerLoss{
+    "…"
+}
+
+script TeamRocketBase_B2F_EventScript_PrepareMultiBattle{
+    special(ChooseHalfPartyForBattle)
+	waitstate
+    if(var(VAR_RESULT) == 0)
+    {
+        special(LoadPlayerParty)
+        goto(TeamRocketBase_B2F_EventScript_PrepareMultiBattle)
+    }
+    special(ReducePlayerPartyToSelectedMons)
+    frontier_set(FRONTIER_DATA_SELECTED_MON_ORDER)
+    setvar(VAR_0x8004, SPECIAL_BATTLE_LANCE)
+    setvar(VAR_0x8005, 0)
+    savebgm(MUS_AQUA_MAGMA_HIDEOUT) // TODO: Replace with proper song when music is inserted
+    special(DoSpecialTrainerBattle)
+    waitstate
+    frontier_saveparty
+    special(LoadPlayerParty)
+    if(var(VAR_RESULT) != 1)
+    {
+        fadescreen(FADE_TO_BLACK)
+        special(SetCB2WhiteOut)
+        waitstate
+        end
+    }
+    textcolor(1)
+    msgbox("…This hideout is done for…\pBut that's fine. The broadcast\nexperiment was a total success.\pIt doesn't matter what happens\nto this hideout now.\pWe have much bigger plans.\pYou'll come to appreciate TEAM\nROCKET's true power soon enough.\pEnjoy yourself while you can…\nFufufufu…", MSGBOX_DEFAULT)
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    settrainerflag(TRAINER_MAHOGANY_EXECUTIVE_F)
+    removeobject(12)
+    removeobject(13)
+    removeobject(2)
+    setflag(FLAG_ROCKET_HIDOUT_SECURITY_CAM_1)
+    setflag(FLAG_ROCKET_HIDOUT_SECURITY_CAM_2)
+    setflag(FLAG_ROCKET_HIDOUT_SECURITY_CAM_3)
+    setflag(FLAG_ROCKET_HIDOUT_SECURITY_CAM_4)
+    setflag(FLAG_ROCKET_HIDOUT_SECURITY_CAM_5)
+    playse(SE_EXIT)
+    delay(15)
+    fadescreen(FADE_FROM_BLACK)
+    turnobject(15, DIR_SOUTH)
+    textcolor(0)
+    msgbox("LANCE: That did it.\nWe defeated all the ROCKETS here.\pBut I'm concerned about the young\nguy I battled in the process…", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(15, TeamRocketBase_B2F_Movement_LanceToPlayer)
+    waitmovement(0)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    msgbox("Sorry, {PLAYER}.\nI saw how well you were doing,\lso I just hung back.\pNow all there is left to do is to\nturn off that odd radio signal.", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(15, TeamRocketBase_B2F_Movement_ToMachine)
+    applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_ToMachine)
+    waitmovement(0)
+    applymovement(15, TeamRocketBase_B2F_Movement_LancePaces)
+    waitmovement(0)
+    msgbox("It's this machine that's causing\nall the problems.\pI don't see a switch on it…\pWe have no choice. We have to make\nall the ELECTRODE faint.\pThat should stop this machine from\ntransmitting that strange signal.\pIt's no fault of the POKéMON, so it\nmakes me feel guilty.\p{PLAYER}, let's split the job.", MSGBOX_DEFAULT)
+    closemessage
+    setvar(VAR_TEMP_0, 2)
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    switch(var(VAR_RESULT))
+    {
+        case 18:
+            applymovement(15, TeamRocketBase_B2F_Movement_LanceToElectrodeLeft)
+            waitmovement(0)
+            removeobject(15)
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_PlayerToElectrodeLeft)
+            waitmovement(0)
+        case 19:
+            applymovement(15, TeamRocketBase_B2F_Movement_LanceToElectrodeMid)
+            waitmovement(0)
+            removeobject(15)
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_PlayerToElectrodeMid)
+            waitmovement(0)
+        case 20:
+            applymovement(15, TeamRocketBase_B2F_Movement_LanceToElectrodeRight)
+            waitmovement(0)
+            removeobject(15)
+            applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_PlayerToElectrodeRight)
+            waitmovement(0)
+    }
+    releaseall
+    end
+}movement(local) TeamRocketBase_B2F_Movement_LanceToPlayer{
+    walk_right * 2
+    face_down
+}movement(local) TeamRocketBase_B2F_Movement_ToMachine{
+    walk_up * 4
+}movement(local) TeamRocketBase_B2F_Movement_LancePaces{
+    delay_8
+    walk_left * 3
+    face_up
+    delay_8
+    walk_right * 6
+    face_up
+    delay_8
+    walk_left * 3
+    face_down
+}movement(local) TeamRocketBase_B2F_Movement_LanceToElectrodeLeft{
+    walk_right * 6
+    walk_up * 5
+}movement(local) TeamRocketBase_B2F_Movement_LanceToElectrodeMid{
+    walk_right * 5
+    walk_up * 5
+}movement(local) TeamRocketBase_B2F_Movement_LanceToElectrodeRight{
+    walk_right * 4
+    walk_up * 5
+}movement(local) TeamRocketBase_B2F_Movement_PlayerToElectrodeLeft{
+    walk_up
+    walk_left * 6
+    face_up
+}movement(local) TeamRocketBase_B2F_Movement_PlayerToElectrodeMid{
+    walk_up
+    walk_left * 7
+    face_up
+}movement(local) TeamRocketBase_B2F_Movement_PlayerToElectrodeRight{
+    walk_up
+    walk_left * 8
+    face_up
+}
+
+script TeamRocketBase_B2F_EventScript_ElectrodeTriggers{
+    lock
+    textcolor(0)
+    msgbox("LANCE: Leave this side to me.", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(OBJ_EVENT_ID_PLAYER, TeamRocketBase_B2F_Movement_PlayerLeft)
+    waitmovement(0)
+    release
+    end
+}movement(local) TeamRocketBase_B2F_Movement_PlayerLeft{
+    walk_left
+}
+
+script TeamRocketBase_B2F_EventScript_LanceTriggers{
+    lockall
+    getplayerxy(VAR_0x8008, VAR_RESULT)
+    if(var(VAR_0x8008) == 6) // to left of Lance
+    {
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+        turnobject(1, DIR_WEST)
+    }
+    elif(var(VAR_RESULT) == 27)
+    {
+        applymovement(1, TeamRocketBase_B2F_Movement_LanceWalksDown)
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+        waitmovement(0)
+    }
+    else
+    {
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    }
+    textcolor(0)
+    msgbox("LANCE: Are you all right?\nYour POKéMON are hurt and tired.\pHere, give them some of my\nmedicine.", MSGBOX_DEFAULT)
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+	playse(SE_USE_ITEM)
+	waitse
+	special(HealPlayerParty)
+	fadescreen(FADE_FROM_BLACK)
+	msgbox("LANCE: {PLAYER}, let's give it our\nbest for POKéMON.", MSGBOX_DEFAULT)
+    closemessage
+    setflag(FLAG_HIDEOUT_LANCE_HEALED_MONS)
+    setvar(VAR_TEMP_0, 1)
+    if(var(VAR_0x8008) == 6) // to left of Lance
+    {
+        applymovement(1, TeamRocketBase_B2F_Movement_LanceExits1)
+        waitmovement(0)
+        removeobject(1)
+        releaseall
+        end
+    }
+    applymovement(1, TeamRocketBase_B2F_Movement_LanceExits2)
+    waitmovement(0)
+    removeobject(1)
+    releaseall
+    end
+}movement TeamRocketBase_B2F_Movement_LanceWalksDown{
+    walk_down
+}movement(local) TeamRocketBase_B2F_Movement_LanceExits1{
+    walk_right * 7
+}movement(local) TeamRocketBase_B2F_Movement_LanceExits2{
+    walk_right * 8
+}

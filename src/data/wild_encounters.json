@@ -2705,92 +2705,6 @@
         {
           "map": "MAP_DARK_CAVE_SOUTH",
           "base_label": "gDarkCave_South",
-          "rock_smash_mons": {
-            "encounter_rate": 20,
-            "mons": [
-              [
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                }
-              ],
-              [
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                }
-              ],
-              [
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                }
-              ]
-            ]
-          },
           "fishing_mons": {
             "encounter_rate": 10,
             "mons": [
@@ -3139,6 +3053,92 @@
                   "min_level": 4,
                   "max_level": 4,
                   "species": "SPECIES_DUNSPARCE"
+                }
+              ]
+            ]
+          },
+          "rock_smash_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              [
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                }
+              ],
+              [
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                }
+              ],
+              [
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
                 }
               ]
             ]
@@ -14225,92 +14225,6 @@
         {
           "map": "MAP_CIANWOOD_CITY",
           "base_label": "gCianwoodCity",
-          "rock_smash_mons": {
-            "encounter_rate": 20,
-            "mons": [
-              [
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                }
-              ],
-              [
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                }
-              ],
-              [
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                }
-              ]
-            ]
-          },
           "fishing_mons": {
             "encounter_rate": 10,
             "mons": [
@@ -14468,6 +14382,92 @@
                   "min_level": 40,
                   "max_level": 40,
                   "species": "SPECIES_KINGLER"
+                }
+              ]
+            ]
+          },
+          "rock_smash_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              [
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                }
+              ],
+              [
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                }
+              ],
+              [
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
                 }
               ]
             ]
@@ -14562,92 +14562,6 @@
         {
           "map": "MAP_ROUTE40",
           "base_label": "gRoute40",
-          "rock_smash_mons": {
-            "encounter_rate": 20,
-            "mons": [
-              [
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                }
-              ],
-              [
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                }
-              ],
-              [
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_KRABBY"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                },
-                {
-                  "min_level": 15,
-                  "max_level": 15,
-                  "species": "SPECIES_SHUCKLE"
-                }
-              ]
-            ]
-          },
           "fishing_mons": {
             "encounter_rate": 10,
             "mons": [
@@ -14805,6 +14719,92 @@
                   "min_level": 40,
                   "max_level": 40,
                   "species": "SPECIES_KINGLER"
+                }
+              ]
+            ]
+          },
+          "rock_smash_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              [
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                }
+              ],
+              [
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                }
+              ],
+              [
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KRABBY"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_SHUCKLE"
                 }
               ]
             ]

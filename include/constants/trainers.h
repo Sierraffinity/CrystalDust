@@ -14,7 +14,7 @@
 #define TRAINER_SECRET_BASE                 1024
 #define TRAINER_LINK_OPPONENT               2048
 #define TRAINER_UNION_ROOM                  3072
-#define TRAINER_STEVEN_PARTNER              3075
+#define TRAINER_LANCE_PARTNER              3075
 
 #define TRAINER_PIC_HIKER                  0
 #define TRAINER_PIC_ROCKET_GRUNT_M         1
@@ -118,7 +118,7 @@
 #define TRAINER_PIC_LEADER_JASMINE        99
 #define TRAINER_PIC_EUSINE                100
 #define TRAINER_PIC_SCIENTIST             101
-#define TRAINER_PIC_EXECUTIVE_F           103
+#define TRAINER_PIC_EXECUTIVE_F           102
 #define TRAINER_PIC_EXECUTIVE_M           103
 #define TRAINER_PIC_SKIER                 104
 #define TRAINER_PIC_BOARDER               105
@@ -154,7 +154,7 @@
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN  6
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      7
 #define TRAINER_BACK_PIC_DUDE                  8
-#define TRAINER_BACK_PIC_STEVEN                 9
+#define TRAINER_BACK_PIC_LANCE                 9
 
 #define FACILITY_CLASS_HIKER                 0x0
 #define FACILITY_CLASS_AQUA_GRUNT_M          0x1

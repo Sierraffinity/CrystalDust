@@ -32,12 +32,14 @@
 #include "constants/battle_tower.h"
 #include "constants/frontier_util.h"
 #include "constants/items.h"
+#include "constants/region_map_sections.h"
 #include "constants/trainers.h"
 #include "constants/event_objects.h"
 #include "constants/moves.h"
 #include "constants/easy_chat.h"
 
-extern const u8 Route30_EventScript_Trainer_Joey[];
+extern const u8 TeamRocketBase_B2F_EventScript_ExecTrainer[];
+extern const u8 TeamRocketBase_B2F_EventScript_ExecPartnerTrainer[];
 
 // EWRAM vars.
 EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
@@ -769,31 +771,31 @@ struct
     u8 nature;
     u8 evs[NUM_STATS];
     u16 moves[MAX_MON_MOVES];
-} const sStevenMons[MULTI_PARTY_SIZE] =
+} const sLanceMons[MULTI_PARTY_SIZE] =
 {
     {
-        .species = SPECIES_METANG,
+        .species = SPECIES_DRAGONITE,
         .fixedIV = MAX_PER_STAT_IVS,
-        .level = 42,
+        .level = 40,
         .nature = NATURE_BRAVE,
-        .evs = {0, 252, 252, 0, 6, 0},
-        .moves = {MOVE_LIGHT_SCREEN, MOVE_PSYCHIC, MOVE_REFLECT, MOVE_METAL_CLAW}
+        .evs = {0, 0, 0, 0, 0, 0},
+        .moves = {MOVE_FLY, MOVE_TWISTER, MOVE_THUNDER, MOVE_EXTREME_SPEED}
     },
     {
-        .species = SPECIES_SKARMORY,
-        .fixedIV = MAX_PER_STAT_IVS,
-        .level = 43,
-        .nature = NATURE_IMPISH,
-        .evs = {252, 0, 0, 0, 6, 252},
-        .moves = {MOVE_TOXIC, MOVE_AERIAL_ACE, MOVE_PROTECT, MOVE_STEEL_WING}
+        .species = SPECIES_NONE,
+        .fixedIV = 0,
+        .level = 0,
+        .nature = NATURE_HARDY,
+        .evs = {0, 0, 0, 0, 0, 0},
+        .moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
     },
     {
-        .species = SPECIES_AGGRON,
-        .fixedIV = MAX_PER_STAT_IVS,
-        .level = 44,
-        .nature = NATURE_ADAMANT,
-        .evs = {0, 252, 0, 0, 252, 6},
-        .moves = {MOVE_THUNDER, MOVE_PROTECT, MOVE_SOLAR_BEAM, MOVE_DRAGON_CLAW}
+        .species = SPECIES_NONE,
+        .fixedIV = 0,
+        .level = 0,
+        .nature = NATURE_HARDY,
+        .evs = {0, 0, 0, 0, 0, 0},
+        .moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
     }
 };
 
@@ -1447,9 +1449,9 @@ u8 GetFrontierOpponentClass(u16 trainerId)
     {
         return GetFrontierBrainTrainerClass();
     }
-    else if (trainerId == TRAINER_STEVEN_PARTNER)
+    else if (trainerId == TRAINER_LANCE_PARTNER)
     {
-        trainerClass = gTrainers[TRAINER_LANCE].trainerClass;
+        trainerClass = gTrainers[TRAINER_RED].trainerClass;
     }
     else if (trainerId < FRONTIER_TRAINERS_COUNT)
     {
@@ -1527,7 +1529,7 @@ void GetFrontierTrainerName(u8 *dst, u16 trainerId)
         CopyFrontierBrainTrainerName(dst);
         return;
     }
-    else if (trainerId == TRAINER_STEVEN_PARTNER)
+    else if (trainerId == TRAINER_LANCE_PARTNER)
     {
         for (i = 0; i < PLAYER_NAME_LENGTH; i++)
             dst[i] = gTrainers[TRAINER_LANCE].trainerName[i];
@@ -2108,17 +2110,17 @@ void DoSpecialTrainerBattle(void)
         PlayMapChosenOrBattleBGM(0);
         BattleTransition_StartOnField(GetSpecialBattleTransition(7));
         break;
-    case SPECIAL_BATTLE_STEVEN:
+    case SPECIAL_BATTLE_LANCE:
         gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER;
-        FillPartnerParty(TRAINER_STEVEN_PARTNER);
+        FillPartnerParty(TRAINER_LANCE_PARTNER);
         gApproachingTrainerId = 0;
-        BattleSetup_ConfigureTrainerBattle(Route30_EventScript_Trainer_Joey + 1);
+        BattleSetup_ConfigureTrainerBattle(TeamRocketBase_B2F_EventScript_ExecTrainer + 1);
         gApproachingTrainerId = 1;
-        BattleSetup_ConfigureTrainerBattle(Route30_EventScript_Trainer_Joey + 1);
-        gPartnerTrainerId = TRAINER_STEVEN_PARTNER;
+        BattleSetup_ConfigureTrainerBattle(TeamRocketBase_B2F_EventScript_ExecPartnerTrainer + 1);
+        gPartnerTrainerId = TRAINER_LANCE_PARTNER;
         CreateTask(Task_StartBattleAfterTransition, 1);
         PlayMapChosenOrBattleBGM(0);
-        BattleTransition_StartOnField(B_TRANSITION_MAGMA);
+        BattleTransition_StartOnField(B_TRANSITION_ROCKET);
         break;
     }
 }
@@ -2943,7 +2945,7 @@ void TryHideBattleTowerReporter(void)
     }
 }
 
-#define STEVEN_OTID 61226
+#define LANCE_OTID 149
 
 static void FillPartnerParty(u16 trainerId)
 {
@@ -2955,32 +2957,34 @@ static void FillPartnerParty(u16 trainerId)
     u8 trainerName[PLAYER_NAME_LENGTH + 1];
     SetFacilityPtrsGetLevel();
 
-    if (trainerId == TRAINER_STEVEN_PARTNER)
+    if (trainerId == TRAINER_LANCE_PARTNER)
     {
-        for (i = 0; i < MULTI_PARTY_SIZE; i++)
+        for (i = 0; i < 1; i++)
         {
             do
             {
                 j = Random32();
-            } while (IsShinyOtIdPersonality(STEVEN_OTID, j) || sStevenMons[i].nature != GetNatureFromPersonality(j));
+            } while (IsShinyOtIdPersonality(LANCE_OTID, j) || sLanceMons[i].nature != GetNatureFromPersonality(j) || GetGenderFromSpeciesAndPersonality(sLanceMons[i].species, j) != MON_MALE);
             CreateMon(&gPlayerParty[MULTI_PARTY_SIZE + i],
-                      sStevenMons[i].species,
-                      sStevenMons[i].level,
-                      sStevenMons[i].fixedIV,
-                      TRUE, 
-                      #ifdef BUGFIX
+                      sLanceMons[i].species,
+                      sLanceMons[i].level,
+                      sLanceMons[i].fixedIV,
+                      TRUE,
                       j,
-                      #else
-                      i, // BUG: personality was stored in the 'j' variable. As a result, Steven's pokemon do not have the intended natures.
-                      #endif
-                      OT_ID_PRESET, STEVEN_OTID);
+                      OT_ID_PRESET, LANCE_OTID);
             for (j = 0; j < PARTY_SIZE; j++)
-                SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_HP_EV + j, &sStevenMons[i].evs[j]);
+                SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_HP_EV + j, &sLanceMons[i].evs[j]);
             for (j = 0; j < MAX_MON_MOVES; j++)
-                SetMonMoveSlot(&gPlayerParty[MULTI_PARTY_SIZE + i], sStevenMons[i].moves[j], j);
+                SetMonMoveSlot(&gPlayerParty[MULTI_PARTY_SIZE + i], sLanceMons[i].moves[j], j);
             SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_OT_NAME, gTrainers[TRAINER_LANCE].trainerName);
             j = MALE;
             SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_OT_GENDER, &j);
+            j = ConvertMapSectionIdToMetLocation(MAPSEC_DRAGONS_DEN);
+            SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_MET_LOCATION, &j);
+            j = 15;
+            SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_MET_LEVEL, &j);
+            j = 1;
+            SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_LOCATION_BIT, &j);
             CalculateMonStats(&gPlayerParty[MULTI_PARTY_SIZE + i]);
         }
     }
