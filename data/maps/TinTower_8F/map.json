@@ -11,15 +11,70 @@
   "allow_escaping": true,
   "allow_running": false,
   "show_map_name": true,
-  "floor_number": 0,
+  "floor_number": 8,
   "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 0,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_FULL_RESTORE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_TIN_TOWER_8F_FULL_RESTORE"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 14,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_9F",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 5,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_9F",
+      "dest_warp_id": 6
+    },
+    {
+      "x": 1,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_7F",
+      "dest_warp_id": 4
+    },
+    {
+      "x": 1,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_9F",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 17,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_9F",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 9,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_9F",
+      "dest_warp_id": 4
+    }
   ],
   "coord_events": [
 

@@ -11,7 +11,7 @@
   "allow_escaping": true,
   "allow_running": false,
   "show_map_name": true,
-  "floor_number": 0,
+  "floor_number": 4,
   "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
@@ -19,7 +19,34 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 17,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_3F",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 1,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_5F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 1,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_5F",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 17,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_5F",
+      "dest_warp_id": 2
+    }
   ],
   "coord_events": [
 
