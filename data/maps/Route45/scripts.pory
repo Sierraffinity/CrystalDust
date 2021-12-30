@@ -6,31 +6,32 @@ script Route45_Eventscript_RouteSign {
 }
 
 script Route45_Eventscript_HikerErik { // uppermost Hiker
-    trainerbattle_single(TRAINER_ERIK, "Be prepared for anything!\pLet me see if your POKéMON have been\nraised properly!", "Oh, I lost that!")
-    msgbox("I'll head back to BLACKTHORN's ICE\nPATH and train some more.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_ERIK, "Be prepared for anything!\pLet me see if your POKéMON have\nbeen raised properly!", "Oh, I lost that!")
+    msgbox("I'll head back to BLACKTHORN's\nICE PATH and train some more.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route45_Eventscript_CooltrainerRyan {
-    trainerbattle_single(TRAINER_RYAN, "What are your thoughts on raising\nPOKéMON?", "You've won my respect.")
-    msgbox("I see you're raising your POKéMON\nwith care.\pThe bond you build will save you in\ntough situations.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_RYAN, "What are your thoughts on\nraising POKéMON?", "You've won my respect.")
+    msgbox("I see you're raising your POKéMON\nwith care.\pThe bond you build will save you\nin tough situations.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route44_Eventscript_HikerParry { // middle, above Cooltrainer Kelly
     // TODO: Phone
-    trainerbattle_single(TRAINER_PARRY_1, "My POKéMON are power packed!", "Wahahah! I'm the big loser!")
+    trainerbattle_single(TRAINER_PARRY_1, "My POKéMON are power packed!", "Wahahah!\nI'm the big loser!")
     msgbox("I'm not much good at thinking, see?\nSo, I just plow ahead with power!", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route45_Eventscript_CooltrainerKelly {
-    trainerbattle_single(TRAINER_KELLY, "What is your battle strategy?\pIt is foolish to use strong moves\nindiscriminately.", "Fine. I lost.")
+    trainerbattle_single(TRAINER_KELLY, "What is your battle strategy?\pIt is foolish to use strong moves\nindiscriminately.", "Fine.\nI lost.")
     msgbox("I'm not in favor of overly powerful\nmoves.\pI want to win, but I also don't want\nto harm POKéMON.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route45_Eventscript_BlackBeltKenji {
+    // TODO: Phone
     trainerbattle_single(TRAINER_KENJI, "I was training here alone.\nBehold the fruits of my labor!", "Waaaargh!")
     msgbox("This calls for extreme measures.\pI must take to the hills and train\nin solitude.", MSGBOX_AUTOCLOSE)
     end
@@ -44,7 +45,7 @@ script Route45_Eventscript_HikerTimothy { // lower & leftmost
 
 script Route45_Eventscript_HikerMichael { // lower & rightmost
     trainerbattle_single(TRAINER_MICHAEL, "Yo! You're spunky!\nBut you know what?\pWhen it comes to sheer spunkiness,\nI'm the man!", "My POKéMON weren't spunky enough!")
-    msgbox("Boy, do I love HP UP! Mmmm, yum!\pI keep drinking my POKéMON's!\nI can't help it!", MSGBOX_AUTOCLOSE)
+    msgbox("Boy, do I love HP UP!\nMmmm, yum!\pI keep drinking my POKéMON's!\nI can't help it!", MSGBOX_AUTOCLOSE)
     end
 }
 
