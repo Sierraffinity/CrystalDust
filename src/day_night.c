@@ -12,6 +12,7 @@
 #include "strings.h"
 #include "string_util.h"
 #include "constants/day_night.h"
+#include "constants/layouts.h"
 #include "constants/maps.h"
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
@@ -129,7 +130,7 @@ static void LoadPaletteOverrides(void)
         return;
 #endif
 
-    if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST)
+    if (gMapHeader.regionMapSectionId == MAPSEC_ILEX_FOREST || gMapHeader.mapLayoutId == LAYOUT_DRAGONS_DEN)
     {
         hour = 0;
     }
@@ -171,7 +172,7 @@ static void LoadPaletteOverrides(void)
 
 static bool8 ShouldTintOverworld(void)
 {
-    if (IsMapTypeOutdoors(gMapHeader.mapType))
+    if (IsMapTypeOutdoors(gMapHeader.mapType) || gMapHeader.mapLayoutId == LAYOUT_DRAGONS_DEN)
         return TRUE;
     if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LIGHTHOUSE_6F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LIGHTHOUSE_6F) && !FlagGet(FLAG_CURED_AMPHY))
         return TRUE;

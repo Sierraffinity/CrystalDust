@@ -4748,8 +4748,15 @@ static void SetInGameTradeMail(struct MailStruct *mail, const struct InGameTrade
 
 u16 GetTradeSpecies(void)
 {
+    u32 gender;
     if (GetMonData(&gPlayerParty[gSpecialVar_0x8005], MON_DATA_IS_EGG))
         return SPECIES_NONE;
+    if(GetMonData(&gPlayerParty[gSpecialVar_0x8005], MON_DATA_SPECIES) == SPECIES_DRAGONAIR)
+    {
+        gender = GetMonGender(&gPlayerParty[gSpecialVar_0x8005]);
+        if(gender != MON_FEMALE)
+            return SPECIES_NONE;
+    }
     return GetMonData(&gPlayerParty[gSpecialVar_0x8005], MON_DATA_SPECIES);
 }
 

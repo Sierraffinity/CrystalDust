@@ -1,6 +1,47 @@
-mapscripts BlackthornCity_MapScripts {}
+mapscripts BlackthornCity_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION {
+		setflag(FLAG_VISITED_BLACKTHORN_CITY)
+		gettime
+		if(var(VAR_0x8003) != DAY_SATURDAY)
+		{
+			setflag(FLAG_TEMP_1)
+		}
+		if(!flag(FLAG_CLEARED_RADIO_TOWER))
+		{
+			setobjectxyperm(6, 21, 19)
+		}
+		if(!defeated(TRAINER_CLAIR))
+		{
+			setobjectmovementtype(7, MOVEMENT_TYPE_FACE_DOWN)
+			setobjectxyperm(7, 24, 6)
+		}
+	}
+}
 
-// TODO: Gym guard and Dragon's Den guard
+script BlackthornCity_Eventscript_DragonsDenGuard {
+	if(!defeated(TRAINER_CLAIR))
+	{
+		msgbox("No.\nOnly chosen trainers may train here.\pPlease leave.", MSGBOX_NPC)
+		end
+	}
+	msgbox("If CLAIR allows it, her grandfather--\nour MASTER--will also.\pYou may enter.", MSGBOX_NPC)
+	end
+}
+
+script BlackthornCity_Eventscript_GymGuard {
+	if(defeated(TRAINER_CLAIR))
+	{
+		msgbox("You defeated CLAIR?\nThat's amazing!\pI've never heard of her losing to\nanyone other than LANCE.", MSGBOX_NPC)
+		end
+	}
+	if(flag(FLAG_CLEARED_RADIO_TOWER))
+	{
+		msgbox("CLAIR, our GYM LEADER, is waiting\nfor you.\pHowever, it would be impossible for\na run-of-the-mill trainer to win.", MSGBOX_NPC)
+		end
+	}
+	msgbox("I am sorry.\pCLAIR, our GYM LEADER, entered\nthe DRAGON'S DEN behind the GYM.\pI have no idea when our LEADER\nwill return.", MSGBOX_NPC)
+	end
+}
 
 script BlackthornCity_Eventscript_CitySign {
     msgbox("BLACKTHORN CITY\nA Quiet Mountain Retreat", MSGBOX_SIGN)
