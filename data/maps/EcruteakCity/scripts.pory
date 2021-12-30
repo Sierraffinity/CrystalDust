@@ -25,7 +25,7 @@ script EcruteakCity_Eventscript_BurnedTowerSign {
 }
 
 script EcruteakCity_Eventscript_TinTowerSign {
-    msgbox("TIN TOWER\pA legendary POKéMON is said to roost\nhere.", MSGBOX_SIGN)
+    msgbox("TIN TOWER\pA legendary POKéMON is said to\nroost here.", MSGBOX_SIGN)
     end
 }
 
