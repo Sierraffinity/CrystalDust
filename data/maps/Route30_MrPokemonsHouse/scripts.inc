@@ -125,15 +125,31 @@ Route30_MrPokemonsHouse_Movement_OakToDoor:
 Route30_MrPokemonsHouse_EventScript_MrPokemon::
 	lock
 	faceplayer
-	@checkitem ITEM_RED_SCALE, 1
-	@goto_if_true Route30_MrPokemonsHouse_EventScript_MrPokemon_RedScale
+	checkitem ITEM_RED_SCALE, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route30_MrPokemonsHouse_EventScript_MrPokemon_RedScale
 	goto_if_set FLAG_ADVENTURE_STARTED, Route30_MrPokemonsHouse_EventScript_MrPokemon_AlwaysNewDiscoveries
 	msgbox Route30_MrPokemonsHouse_Text_DependingOnYou
 	release
 	end
 
+Route30_MrPokemonsHouse_EventScript_MrPokemon_RedScale:
+	msgbox Route30_MrPokemonsHouse_Text_GimmeTheScale, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Route30_MrPokemonsHouse_EventScript_MrPokemon_RedScaleDeclined
+	checkitemspace ITEM_EXP_SHARE, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_BagIsFull
+	giveitem ITEM_EXP_SHARE, 1
+	removeitem ITEM_RED_SCALE, 1
 Route30_MrPokemonsHouse_EventScript_MrPokemon_AlwaysNewDiscoveries:
 	msgbox Route30_MrPokemonsHouse_Text_AlwaysNewDiscoveries
+	release
+	end
+
+
+Route30_MrPokemonsHouse_EventScript_MrPokemon_RedScaleDeclined:
+	msgbox Route30_MrPokemonsHouse_Text_Disappointed
 	release
 	end
 
@@ -237,3 +253,17 @@ Route30_MrPokemonsHouse_Text_BrokenComputer:
 Route30_MrPokemonsHouse_Text_StrangeCoins:
 	.string "It's a whole pile of strange coins.\n"
 	.string "Maybe they're from another country…$"
+
+Route30_MrPokemonsHouse_Text_GimmeTheScale:
+	.string "Hm? That SCALE!\n"
+	.string "What's that? A red GYARADOS?\p"
+	.string "That's rare!\n"
+	.string "I, I want it…\p"
+	.string "{PLAYER}, would you care to\n"
+	.string "trade it?\p"
+	.string "I can offer this EXP. SHARE I got\n"
+	.string "from PROF. OAK.$"
+
+Route30_MrPokemonsHouse_Text_Disappointed:
+	.string "That's disappointing.\n"
+	.string "That happens to be very rare.$"
