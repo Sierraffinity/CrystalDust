@@ -11,8 +11,8 @@ script Route44_Eventscript_IcePathSign {
 }
 
 script Route44_Eventscript_PsychicPhil {
-    trainerbattle_single(TRAINER_PHIL, "I'm gonna win, for sure!", "Arrgh… That's a shocking loss…")
-    msgbox("It's important to have conviction on\nyour side.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_PHIL, "I'm gonna win, for sure!", "Arrgh…\nThat's a shocking loss…")
+    msgbox("It's important to have conviction\non your side.", MSGBOX_AUTOCLOSE)
     end
 }
 
@@ -30,26 +30,26 @@ script Route44_Eventscript_FishermanWilton { // upper one
 }
 
 script Route44_Eventscript_CooltrainerCybil {
-    trainerbattle_single(TRAINER_CYBIL, "You look strong. Good TRAINERS seek\ntough opponents instinctively.", "Nope! This won't do at all.")
-    msgbox("We all get better by experiencing\nmany battles.\pI battled a lot to become what I am\ntoday--an elite.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_CYBIL, "You look strong. Good TRAINERS seek\ntough opponents instinctively.", "Nope!\nThis won't do at all.")
+    msgbox("We all get better by experiencing\nmany battles.\pI battled a lot to become\nwhat I am today--an elite.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route44_Eventscript_CooltrainerAllen {
-    trainerbattle_single(TRAINER_ALLEN, "I can tell you're a good TRAINER by\nlooking at you.\pI'm good at POKéMON, and I can see\nthat you are too.", "Tch! It's a total loss on my part.")
-    msgbox("Wow. You have a lot of BADGES.\nNo wonder you're so tough.\pI wonder if ECRUTEAK GYM's MORTY is\nstill in training?\pHe really hammered me.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_ALLEN, "I can tell you're a good TRAINER\nby looking at you.\pI'm good at POKéMON, and I can\nsee that you are too.", "Tch!\nIt's a total loss on my part.")
+    msgbox("Wow. You have a lot of BADGES.\nNo wonder you're so tough.\pI wonder if ECRUTEAK GYM's MORTY\nis still in training?\pHe really hammered me.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route44_Eventscript_PokemaniacZach {
-    trainerbattle_single(TRAINER_ZACH, "I'll do anything to get my hands on\nrare POKéMON!", "Oooh, your POKéMON are so appealing.")
-    msgbox("If a POKéMON has different colors\nthan usual, it's more valuable.\pWhat? You mean that's not true?", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_ZACH, "I'll do anything to get my hands\non rare POKéMON!", "Oooh, your POKéMON are so appealing.")
+    msgbox("If a POKéMON has different colors\nthan usual, it's more valuable.\pWhat?\nYou mean that's not true?", MSGBOX_AUTOCLOSE)
     end
 }
 
 script Route44_Eventscript_BirdKeeperVance {
     // TODO: Phone
-    trainerbattle_single(TRAINER_VANCE_1, "Do you know about the legendary bird\nPOKéMON?", "Whew! You're hot stuff.")
+    trainerbattle_single(TRAINER_VANCE_1, "Do you know about the legendary\nbird POKéMON?", "Whew!\nYou're hot stuff.")
     msgbox("ARTICUNO, ZAPDOS, and MOLTRES are\nthe three legendary bird POKéMON.\pI heard there are other legendary\nbirds, though.", MSGBOX_AUTOCLOSE)
     end
 }
