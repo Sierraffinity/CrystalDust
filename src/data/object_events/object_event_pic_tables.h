@@ -1330,7 +1330,15 @@ static const struct SpriteFrameImage sPicTable_Clair[] = {
 };
 
 static const struct SpriteFrameImage sPicTable_Pryce[] = {
-    obj_frame_tiles(gObjectEventPic_Pryce),
+    overworld_frame(gObjectEventPic_Pryce, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Pryce, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Pryce, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Pryce, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Pryce, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Pryce, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Pryce, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Pryce, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Pryce, 2, 4, 0),
 };
 
 static const struct SpriteFrameImage sPicTable_Dragonite[] = {

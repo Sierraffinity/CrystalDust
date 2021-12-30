@@ -3340,12 +3340,12 @@
     {
       "id": "LAYOUT_MAHOGANY_TOWN_GYM",
       "name": "MahoganyTown_Gym_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 13,
+      "height": 22,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_IcePath",
       "border_filepath": "data/layouts/MahoganyTown_Gym/border.bin",
       "blockdata_filepath": "data/layouts/MahoganyTown_Gym/map.bin"
     },

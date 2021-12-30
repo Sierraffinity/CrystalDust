@@ -1302,3 +1302,15 @@ gTileset_RocketHideout::
 	.4byte gMetatileAttributes_RocketHideout
 	.4byte NULL
 	.4byte NULL @ palette overrides
+
+	.align 2
+gTileset_IcePath::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_IcePath
+	.4byte gTilesetPalettes_IcePath
+	.4byte gMetatiles_IcePath
+	.4byte gMetatileAttributes_IcePath
+	.4byte NULL
+	.4byte NULL @ palette overrides

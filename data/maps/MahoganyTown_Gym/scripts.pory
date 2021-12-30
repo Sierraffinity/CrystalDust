@@ -1,6 +1,39 @@
 mapscripts MahoganyTown_Gym_MapScripts {}
 
-// TODO: PRYCE
+script MahoganyTown_Gym_Eventscript_Pryce{
+    lock
+    faceplayer
+    if(!flag(FLAG_BADGE07_GET))
+    {
+        msgbox("POKéMON have many experiences in\ntheir lives, just like we do.\pI, too, have seen and suffered\nmuch in my life.\pSince I am your elder, let me\nshow you what I mean.\pI have been with POKéMON since\nbefore you were born.\pI do not lose easily.\pI, PRYCE--the winter trainer--shall\ndemonstrate my power!")
+        release
+        trainerbattle_no_intro(TRAINER_PRYCE, "Ah, I am impressed by your prowess.\pWith your strong will, I know you\nwill overcome all life's obstacles.\pYou are worthy of this BADGE!")
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received\nthe GLACIERBADGE.")
+        call(Common_EventScript_PlayGymBadgeFanfare)
+        textcolor(MSG_COLOR_PREV)
+        setflag(FLAG_BADGE07_GET)
+        setgymtrainers(7)
+        //activate Rockets if enough badges acquired
+    }
+    if(!flag(FLAG_GOT_TM07_FROM_PRYCE))
+    {
+        msgbox("That BADGE will raise the SPECIAL\nstats of POKéMON.\pIt also lets your POKéMON use WHIRL-\nPOOL to get across real whirlpools.\pAnd this…\nThis is a gift from me!")
+        checkitemspace(ITEM_TM07, 1)
+        if(!var(VAR_RESULT))
+        {
+            goto(Common_EventScript_ShowBagIsFull)
+        }
+        giveitem(ITEM_TM07, 1)
+        setflag(FLAG_GOT_TM07_FROM_PRYCE)
+        msgbox("That TM contains HAIL.\pIt summons a hailstorm that lasts\nfor five turns.\pThe hailstorm damages all types\nexcept ICE.")
+        release
+        end
+    }
+    msgbox("When the ice and snow melt,\nspring arrives.\pYou and your POKéMON will be\ntogether for many years to come.\lCherish your time together!")
+    release
+    end
+}
 
 script MahoganyTown_Gym_Eventscript_Statues{
     if(flag(FLAG_BADGE07_GET))
@@ -29,7 +62,7 @@ script MahoganyTown_Gym_Eventscript_BoarderDouglas{
 }
 
 script MahoganyTown_Gym_Eventscript_SkierRoxanne{
-    trainerbattle_single(TRAINER_ROXANNE, "To get to PRYCE, our GYM LEADER, you\nneed to think before you skate.", "I wouldn't lose to you in skiing!")
+    trainerbattle_single(TRAINER_ROXANNE, "To get to PRYCE, our GYM LEADER,\nyou need to think before you skate.", "I wouldn't lose to you in skiing!")
     msgbox("If you don't skate with precision,\nyou won't get far in this GYM.", MSGBOX_AUTOCLOSE)
     end
 }
@@ -41,13 +74,13 @@ script MahoganyTown_Gym_Eventscript_BoarderBrad{
 }
 
 script MahoganyTown_Gym_Eventscript_BoarderRonald{ // bottom left corner
-    trainerbattle_single(TRAINER_RONALD, "I'll freeze your POKéMON, so you\ncan't do a thing!", "Darn. I couldn't do a thing.")
-    msgbox("I think there's a move a POKéMON can\nuse while it's frozen.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_RONALD, "I'll freeze your POKéMON, so you\ncan't do a thing!", "Darn.\nI couldn't do a thing.")
+    msgbox("I think there's a move a POKéMON\ncan use while it's frozen.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script MahoganyTown_Gym_Eventscript_SkierClarissa{ // bottom right corner
-    trainerbattle_single(TRAINER_CLARISSA, "Check out my parallel turn!", "No! You made me wipe out!")
-    msgbox("I shouldn't have been bragging about\nmy skiing…", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_CLARISSA, "Check out my parallel turn!", "No!\nYou made me wipe out!")
+    msgbox("I shouldn't have been bragging\nabout my skiing…", MSGBOX_AUTOCLOSE)
     end
 }

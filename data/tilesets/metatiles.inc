@@ -791,3 +791,10 @@ gMetatiles_RocketHideout::
 	.align 1
 gMetatileAttributes_RocketHideout::
 	.incbin "data/tilesets/secondary/rockethideout/metatile_attributes.bin"
+	.align 1
+gMetatiles_IcePath::
+	.incbin "data/tilesets/secondary/icepath/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_IcePath::
+	.incbin "data/tilesets/secondary/icepath/metatile_attributes.bin"

@@ -2450,3 +2450,23 @@ gTilesetPalettes_RocketHideout::
 	.align 2
 gTilesetTiles_RocketHideout::
 	.incbin "data/tilesets/secondary/rockethideout/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_IcePath::
+	.incbin "data/tilesets/secondary/icepath/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/icepath/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_IcePath::
+	.incbin "data/tilesets/secondary/icepath/tiles.4bpp.lz"
