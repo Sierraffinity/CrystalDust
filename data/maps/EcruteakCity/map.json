@@ -215,6 +215,20 @@
       "elevation": 0,
       "dest_map": "MAP_TIN_TOWER_1F",
       "dest_warp_id": 0
+    },
+    {
+      "x": 25,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY_WISE_TRIOS_ROOM",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 25,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY_WISE_TRIOS_ROOM",
+      "dest_warp_id": 3
     }
   ],
   "coord_events": [

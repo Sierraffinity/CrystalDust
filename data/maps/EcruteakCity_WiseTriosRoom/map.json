@@ -19,7 +19,34 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 7,
+      "y": 17,
+      "elevation": 4,
+      "dest_map": "MAP_ECRUTEAK_CITY_TIN_TOWER_GATE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 7,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY_WISE_TRIOS_ROOM",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 20,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY_WISE_TRIOS_ROOM",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 25,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY",
+      "dest_warp_id": 11
+    }
   ],
   "coord_events": [
 
