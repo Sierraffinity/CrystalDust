@@ -798,3 +798,10 @@ gMetatiles_IcePath::
 	.align 1
 gMetatileAttributes_IcePath::
 	.incbin "data/tilesets/secondary/icepath/metatile_attributes.bin"
+	.align 1
+gMetatiles_WhirlIslands::
+	.incbin "data/tilesets/secondary/whirlislands/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_WhirlIslands::
+	.incbin "data/tilesets/secondary/whirlislands/metatile_attributes.bin"

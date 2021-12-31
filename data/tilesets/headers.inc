@@ -1314,3 +1314,15 @@ gTileset_IcePath::
 	.4byte gMetatileAttributes_IcePath
 	.4byte NULL
 	.4byte NULL @ palette overrides
+
+	.align 2
+gTileset_WhirlIslands::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_WhirlIslands
+	.4byte gTilesetPalettes_WhirlIslands
+	.4byte gMetatiles_WhirlIslands
+	.4byte gMetatileAttributes_WhirlIslands
+	.4byte NULL
+	.4byte NULL @ palette overrides

@@ -2470,3 +2470,23 @@ gTilesetPalettes_IcePath::
 	.align 2
 gTilesetTiles_IcePath::
 	.incbin "data/tilesets/secondary/icepath/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_WhirlIslands::
+	.incbin "data/tilesets/secondary/whirlislands/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/whirlislands/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_WhirlIslands::
+	.incbin "data/tilesets/secondary/whirlislands/tiles.4bpp.lz"

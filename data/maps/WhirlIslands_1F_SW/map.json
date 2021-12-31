@@ -2,9 +2,9 @@
   "id": "MAP_WHIRL_ISLANDS_1F_SW",
   "name": "WhirlIslands_1F_SW",
   "layout": "LAYOUT_WHIRL_ISLANDS_1F_SW",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_ILEX_FOREST",
   "region_map_section": "MAPSEC_WHIRL_ISLANDS",
-  "requires_flash": false,
+  "requires_flash": true,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
   "allow_cycling": true,
@@ -16,10 +16,58 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 22,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_ULTRA_BALL",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_WHIRL_ISLAND_1F_SW_ULTRA_BALL"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 8,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE41",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 5,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_B1F",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 24,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_B1F",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 25,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_B2F",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 6,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_1F_NW",
+      "dest_warp_id": 2
+    }
   ],
   "coord_events": [
 

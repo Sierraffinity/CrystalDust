@@ -2,9 +2,9 @@
   "id": "MAP_WHIRL_ISLANDS_CAVE",
   "name": "WhirlIslands_Cave",
   "layout": "LAYOUT_WHIRL_ISLANDS_CAVE",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_ILEX_FOREST",
   "region_map_section": "MAPSEC_WHIRL_ISLANDS",
-  "requires_flash": false,
+  "requires_flash": true,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
   "allow_cycling": true,
@@ -19,7 +19,20 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 8,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_1F_NW",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 12,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_WHIRL_ISLANDS_B1F",
+      "dest_warp_id": 8
+    }
   ],
   "coord_events": [
 

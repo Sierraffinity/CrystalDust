@@ -1,1 +1,57 @@
-mapscripts WhirlIslands_LugiasChamber_MapScripts {}
+mapscripts WhirlIslands_LugiasChamber_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if(flag(FLAG_DEFEATED_LUGIA))
+        {
+            setflag(FLAG_TEMP_1)
+            end
+        }
+        checkitem(ITEM_SILVER_WING, 1)
+        if(!var(VAR_RESULT))
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+    MAP_SCRIPT_ON_RESUME {
+        if (flag(FLAG_SYS_CTRL_OBJ_DELETE))
+        {
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            if (var(VAR_RESULT) == B_OUTCOME_CAUGHT)
+            {
+                removeobject(VAR_LAST_TALKED)
+            }
+        }
+    }
+}
+
+script WhirlIslands_LugiasChamber_EventScript_Lugia {
+    message("Gyaaas!")
+	waitmessage
+	playmoncry(SPECIES_LUGIA, 2)
+	waitmoncry
+    closemessage
+    setvar(VAR_LAST_TALKED, 1)
+    setvar(VAR_0x8004, SPECIES_LUGIA)
+	setvar(VAR_0x8005, 60) // level
+	setvar(VAR_0x8006, ITEM_NONE)
+	special(CreateEventLegalEnemyMon)
+	setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	special(BattleSetup_StartLegendaryBattle)
+	waitstate
+	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    switch (var(VAR_RESULT))
+    {
+        case B_OUTCOME_CAUGHT:
+            call(WhirlIslands_LugiasChamber_EventScript_LugiaCaught)
+        case B_OUTCOME_WON:
+            call(Common_EventScript_RemoveStaticPokemon)
+        case B_OUTCOME_RAN:
+        case B_OUTCOME_PLAYER_TELEPORTED:
+            call(Common_EventScript_RemoveStaticPokemon)
+    }
+    setflag(FLAG_DEFEATED_LUGIA)
+	release
+	end
+}script WhirlIslands_LugiasChamber_EventScript_LugiaCaught{
+	setflag(FLAG_CAUGHT_LUGIA)
+}
