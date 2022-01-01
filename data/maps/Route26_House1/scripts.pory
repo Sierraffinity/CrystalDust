@@ -5,6 +5,6 @@ script Route26_House1_Eventscript_Woman{
     faceplayer
     msgbox("Your POKéMON look a little tired.\nYou should rest them a while.", MSGBOX_NPC)
     call(Common_EventScript_OutOfCenterPartyHeal)
-    msgbox("There! Your POKéMON are looking good!\nKeep at it!", MSGBOX_NPC)
+    msgbox("There! Your POKéMON are looking\ngood! Keep at it!", MSGBOX_NPC)
     end
 }

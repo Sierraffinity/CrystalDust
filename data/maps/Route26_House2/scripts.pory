@@ -4,7 +4,7 @@ script Route26_House2_Eventscript_Book {
     msgbox("There's something written here.\nRead it?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES)
     {
-        msgbox("To my brothers and sisters:\pWe take pride in serving POKéMON\nTRAINERS.\pWhen TRAINERS talk to you, give them\nsomething useful.\pLove,\nMONICA\pKeep reading?", MSGBOX_YESNO)
+        msgbox("To my brothers and sisters:\pWe take pride in serving POKéMON\nTRAINERS.\pWhen TRAINERS talk to you, give\nthem something useful.\pLove,\nMONICA\pKeep reading?", MSGBOX_YESNO)
         if(var(VAR_RESULT) == YES)
         {
             msgbox("MONDAY, MONICA\nROUTE 40\pTUESDAY, TUSCANY\nROUTE 29\pWEDNESDAY, WESLEY\nLAKE OF RAGE\pTHURSDAY, ARTHUR\nROUTE 36\pFRIDAY, FRIEDA\nROUTE 32\pSATURDAY, SANTOS\nBLACKTHORN CITY\pSUNDAY, SUNNY\nROUTE 37", MSGBOX_AUTOCLOSE)
