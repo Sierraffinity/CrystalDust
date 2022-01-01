@@ -1,1 +1,5 @@
-mapscripts TinTower_Roof_MapScripts {}
+mapscripts TinTower_Roof_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setescapewarp(MAP_ECRUTEAK_CITY, 255, 41, 11)
+    }
+}

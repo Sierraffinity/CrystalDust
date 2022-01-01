@@ -1,1 +1,6 @@
-mapscripts TinTower_1F_MapScripts {}
+mapscripts TinTower_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_TIN_TOWER)
+        setescapewarp(MAP_ECRUTEAK_CITY, 255, 41, 11)
+    }
+}

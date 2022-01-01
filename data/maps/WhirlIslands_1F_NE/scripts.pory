@@ -1,1 +1,5 @@
-mapscripts WhirlIslands_1F_NE_MapScripts {}
+mapscripts WhirlIslands_1F_NE_MapScripts {
+     MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_WHIRL_ISLANDS)
+     }
+}
