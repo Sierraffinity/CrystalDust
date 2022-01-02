@@ -320,8 +320,8 @@
 #define FLAG_HIDEOUT_ELECTRODE_2             0x12E
 #define FLAG_HIDEOUT_ELECTRODE_3             0x12F
 #define FLAG_GOT_TM07_FROM_PRYCE             0x130
+#define FLAG_BADGES_CHECKED                  0x131
 // STOPPED HERE
-#define FLAG_REGISTERED_STEVEN_POKENAV       0x131
 #define FLAG_ENABLE_NORMAN_MATCH_CALL        0x132
 #define FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN 0x133 // Set after you follow Steven to the entrance of the Cave of Origin.
 #define FLAG_MET_ARCHIE_SOOTOPOLIS           0x134

@@ -1,9 +1,39 @@
-mapscripts VictoryRoad_Gatehouse_MapScripts {}
+mapscripts VictoryRoad_Gatehouse_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if(flag(FLAG_BADGES_CHECKED))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+        // TODO: Set FLAG_TEMP_2 when Snorlax has been fought to remove the right guard.
+        // TODO: Set FLAG_TEMP_1 when Mt. Silver is unlocked to remove the left guard.
+    }
+}
 
-// TODO: Badge check triggers
+script VictoryRoad_Gatehouse_Eventscript_BadgeCheckTrigger{
+    lock
+    setvar(VAR_LAST_TALKED, 1)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    textcolor(0)
+    callnative(CountBadges)
+    if(var(VAR_RESULT) < 8)
+    {
+        msgbox("Only trainers who have proven\nthemselves may pass.\pYou don't have all the GYM BADGES\nof JOHTO.\pI'm sorry, but I can't let you\ngo through.", MSGBOX_DEFAULT)
+        closemessage
+        applymovement(OBJ_EVENT_ID_PLAYER, VictoryRoad_Gatehouse_Movement_BadgeCheckFailed)
+        waitmovement(0)
+        release
+        end
+    }
+    goto(VictoryRoad_Gatehouse_Eventscript_BadgeCheckGuard)
+    end
+}movement VictoryRoad_Gatehouse_Movement_BadgeCheckFailed{
+    walk_down
+}
 
 script VictoryRoad_Gatehouse_Eventscript_BadgeCheckGuard{
     msgbox("Only TRAINERS who have proven\nthemselves may pass.\pOh! The eight BADGES of JOHTO!\nPlease, go right on through!", MSGBOX_NPC)
+    setflag(FLAG_BADGES_CHECKED)
+    setvar(VAR_TEMP_0, 1)
     end
 }
 
@@ -13,6 +43,6 @@ script VictoryRoad_Gatehouse_Eventscript_LeftBlackBelt{
 }
 
 script VictoryRoad_Gatehouse_Eventscript_RightBlackBelt{
-    msgbox("Off to the POKéMON LEAGUE, are you?\pThe ELITE FOUR are so strong it's\nscary, and they're ready for you!", MSGBOX_NPC)
+    msgbox("Off to the POKéMON LEAGUE,\nare you?\pThe ELITE FOUR are so strong it's\nscary, and they're ready for you!", MSGBOX_NPC)
     end
 }
