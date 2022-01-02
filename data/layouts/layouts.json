@@ -3184,7 +3184,7 @@
     {
       "id": "LAYOUT_ROUTE23",
       "name": "Route23_Layout",
-      "width": 24,
+      "width": 23,
       "height": 39,
       "border_width": 2,
       "border_height": 2,
@@ -4708,8 +4708,8 @@
     {
       "id": "LAYOUT_INDIGO_PLATEAU_POKEMON_CENTER_1F",
       "name": "IndigoPlateau_PokemonCenter_1F_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 29,
+      "height": 14,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",

@@ -1,4 +1,9 @@
-mapscripts IndigoPlateau_PokemonCenter_1F_MapScripts {}
+mapscripts IndigoPlateau_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setrespawn(HEAL_LOCATION_ROUTE23)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
 
 // TODO: Rival Rematch
 
@@ -13,11 +18,11 @@ script IndigoPlateau_PokemonCenter_1F_Eventscript_OldMan{
     msgbox("Ah! You're challenging the ELITE\nFOUR? Are you sure you're ready?\pIf you need to train some more, my\nABRA can help you.\pIt can TELEPORT you home.\nWould you like to go home now?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == NO)
     {
-        msgbox("Okay, okay. The best of luck to you!", MSGBOX_DEFAULT)
+        msgbox("Okay, okay.\nThe best of luck to you!", MSGBOX_DEFAULT)
         release
         end
     }
-    msgbox("Okay, okay. Picture your house in\nyour mind…", MSGBOX_DEFAULT)
+    msgbox("Okay, okay.\nPicture your house in your mind…", MSGBOX_DEFAULT)
     delay(16)
     warpteleport(MAP_NEW_BARK_TOWN, 255, 16, 8)
     waitstate
@@ -46,6 +51,7 @@ script IndigoPlateau_PokemonCenter_1F_EventScript_Clerk {
 }
 
 raw `
+.align 2
 IndigoPlateau_PokemonCenter_1F_Pokemart_Clerk:
 	.2byte ITEM_ULTRA_BALL
 	.2byte ITEM_MAX_REPEL
