@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE23",
   "name": "Route23",
   "layout": "LAYOUT_ROUTE23",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_VICTORY_ROAD",
   "region_map_section": "MAPSEC_ROUTE_23",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -19,12 +19,56 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 11,
+      "y": 33,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD",
+      "dest_warp_id": 8
+    },
+    {
+      "x": 11,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Route23_Eventscript_IndigoPlateauSign"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Route23_Eventscript_IndigoPlateauSign"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Route23_Eventscript_IndigoPlateauSign"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Route23_Eventscript_IndigoPlateauSign"
+    }
   ]
 }

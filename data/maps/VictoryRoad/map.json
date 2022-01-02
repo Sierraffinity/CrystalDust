@@ -2,7 +2,7 @@
   "id": "MAP_VICTORY_ROAD",
   "name": "VictoryRoad",
   "layout": "LAYOUT_VICTORY_ROAD",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_VICTORY_ROAD",
   "region_map_section": "MAPSEC_VICTORY_ROAD",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -19,7 +19,76 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 15,
+      "y": 59,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 5,
+      "y": 40,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 35,
+      "y": 40,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 24,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 36,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 42,
+      "y": 40,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD",
+      "dest_warp_id": 4
+    },
+    {
+      "x": 9,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD",
+      "dest_warp_id": 7
+    },
+    {
+      "x": 9,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD",
+      "dest_warp_id": 6
+    },
+    {
+      "x": 26,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE23",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 23,
+      "y": 77,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD_GATEHOUSE",
+      "dest_warp_id": 1
+    }
   ],
   "coord_events": [
 
