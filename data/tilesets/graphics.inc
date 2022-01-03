@@ -2510,3 +2510,23 @@ gTilesetPalettes_PokemonLeague::
 	.align 2
 gTilesetTiles_PokemonLeague::
 	.incbin "data/tilesets/secondary/pokemonleague/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_ChampionsRoom::
+	.incbin "data/tilesets/secondary/championsroom/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/championsroom/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_ChampionsRoom::
+	.incbin "data/tilesets/secondary/championsroom/tiles.4bpp.lz"

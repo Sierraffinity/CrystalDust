@@ -812,3 +812,10 @@ gMetatiles_PokemonLeague::
 	.align 1
 gMetatileAttributes_PokemonLeague::
 	.incbin "data/tilesets/secondary/pokemonleague/metatile_attributes.bin"
+	.align 1
+gMetatiles_ChampionsRoom::
+	.incbin "data/tilesets/secondary/championsroom/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_ChampionsRoom::
+	.incbin "data/tilesets/secondary/championsroom/metatile_attributes.bin"
