@@ -805,3 +805,10 @@ gMetatiles_WhirlIslands::
 	.align 1
 gMetatileAttributes_WhirlIslands::
 	.incbin "data/tilesets/secondary/whirlislands/metatile_attributes.bin"
+	.align 1
+gMetatiles_PokemonLeague::
+	.incbin "data/tilesets/secondary/pokemonleague/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_PokemonLeague::
+	.incbin "data/tilesets/secondary/pokemonleague/metatile_attributes.bin"

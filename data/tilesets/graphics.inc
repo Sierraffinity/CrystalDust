@@ -2490,3 +2490,23 @@ gTilesetPalettes_WhirlIslands::
 	.align 2
 gTilesetTiles_WhirlIslands::
 	.incbin "data/tilesets/secondary/whirlislands/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_PokemonLeague::
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/pokemonleague/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_PokemonLeague::
+	.incbin "data/tilesets/secondary/pokemonleague/tiles.4bpp.lz"
