@@ -444,6 +444,9 @@ $(OBJEVENTGFXDIR)/pokemon/electrode.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/lapras.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
+$(OBJEVENTGFXDIR)/pokemon/meowth.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
 $(OBJEVENTGFXDIR)/pokemon/rhydon.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 

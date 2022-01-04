@@ -1,0 +1,123 @@
+mapscripts RadioTower_3F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if(!flag(FLAG_OPENED_RADIO_TOWER_CARD_KEY_DOOR))
+        {
+            setmetatile(16, 6, 0x3C0, 1)
+            setmetatile(17, 6, 0x3C1, 1)
+            setmetatile(16, 7, 0x3C2, 1)
+            setmetatile(17, 7, 0x3C3, 1)
+            setmetatile(16, 8, 0x3D4, 1)
+            setmetatile(17, 8, 0x3C3, 1)
+            setmetatile(16, 9, 0x3C4, 1)
+            setmetatile(17, 9, 0x3C5, 1)
+        }
+    }
+}
+
+script RadioTower_3F_EventScript_RocketM1 {
+    trainerbattle_single(TRAINER_RADIO_TOWER_3F_GRUNT_1, "I've been given strict orders.\pI'm to crush anyone who challenges\nTEAM ROCKET!", "What?!")
+    msgbox("I failed in my duties…\nI'll be docked pay for this…")
+    release
+}
+
+script RadioTower_3F_EventScript_RocketM2 {
+    trainerbattle_single(TRAINER_RADIO_TOWER_3F_GRUNT_2, "It feels great ordering POKéMON\nto commit crimes.", "You're kidding!")
+    msgbox("I feel lousy over losing!\nDarn it! I hate useless POKéMON!")
+    release
+}
+
+script RadioTower_3F_EventScript_RocketM3 {
+    trainerbattle_single(TRAINER_RADIO_TOWER_3F_GRUNT_3, "Why did the shutter open?\pDid you have something to do\nwith this?", "I'm done for!")
+    msgbox("What?! You made it past our men in\nthe UNDERGROUND?\pHow could you?")
+    release
+}
+
+script RadioTower_3F_EventScript_ScientistMarc {
+    trainerbattle_single(TRAINER_MARC, "An unknown child wandering here?\nWho are you?", "Tch!\nI took you too lightly!")
+    msgbox("Bwahahaha…\pI can transmit as strong a signal as\nI need from here.")
+    release
+}
+
+script RadioTower_3F_EventScript_CardKeySlot{
+    checkitem(ITEM_CARD_KEY, 1)
+    if(flag(FLAG_OPENED_RADIO_TOWER_CARD_KEY_DOOR) || !var(VAR_RESULT))
+    {
+        msgbox("It's the CARD KEY slot.", MSGBOX_SIGN)
+        release
+        end
+    }
+    if(var(VAR_RESULT))
+    {
+        lock
+        message("It's the CARD KEY slot.\p{PLAYER} inserted the CARD KEY.")
+        waitmessage
+        setmetatile(16, 6, 0x338, 1)
+        setmetatile(17, 6, 0x346, 1)
+        setmetatile(16, 7, 0x335, 0)
+        setmetatile(17, 7, 0x335, 0)
+        setmetatile(16, 8, 0x334, 0)
+        setmetatile(17, 8, 0x334, 0)
+        setmetatile(16, 9, 0x332, 0)
+        setmetatile(17, 9, 0x33A, 0)
+        playse(SE_UNLOCK)
+        special(DrawWholeMapView)
+        setflag(FLAG_OPENED_RADIO_TOWER_CARD_KEY_DOOR)
+        waitse
+        release
+        end
+    }
+}
+
+script RadioTower_3F_EventScript_FloorSign {
+    msgbox("3F PERSONNEL", MSGBOX_SIGN)
+}
+
+script RadioTower_3F_EventScript_PokemonMusicAd {
+    msgbox("POKéMON MUSIC with Host DJ BEN", MSGBOX_SIGN)
+}
+
+script RadioTower_3F_EventScript_SuperNerd {
+    if(flag(FLAG_CLEARED_RADIO_TOWER))
+    {
+        msgbox("We run 24 hours a day to broadcast\nentertaining programs.\pI'll do my best to run around the\nclock too!", MSGBOX_NPC)
+        end
+    }
+    msgbox("To trainers, POKéMON are their\nbeloved partners.\pIt's terrible how TEAM ROCKET\nis trying to control POKéMON.", MSGBOX_NPC)
+    end
+}
+
+script RadioTower_3F_EventScript_WorkerF {
+    if(flag(FLAG_GOT_TM11_SUNNY_DAY_FROM_RADIO_TOWER))
+    {
+        msgbox("You were simply marvelous!", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_CLEARED_RADIO_TOWER))
+    {
+        lock
+        faceplayer
+        msgbox("Thank you!\nYou're my hero!\pThis is a token of my appreciation.")
+        checkitemspace(ITEM_TM11, 1)
+        if(!var(VAR_RESULT))
+        {
+            goto(Common_EventScript_BagIsFull)
+        }
+        giveitem(ITEM_TM11, 1)
+        msgbox("It's SUNNY DAY.\pIt powers up FIRE-type moves for\na while.")
+        setflag(FLAG_GOT_TM11_SUNNY_DAY_FROM_RADIO_TOWER)
+        release
+        end
+    }
+    if(flag(FLAG_OPENED_RADIO_TOWER_CARD_KEY_DOOR))
+    {
+        msgbox("Is the DIRECTOR safe?", MSGBOX_NPC)
+        end
+    }
+    msgbox("The TEAM ROCKET boss has locked\nhimself in.\pBut the DIRECTOR can open it.\nHe's up on the fifth floor.\pPlease save him!", MSGBOX_NPC)
+    end
+}
+
+script RadioTower_3F_EventScript_Boy {
+    msgbox("We have recordings of the cries of\nall POKéMON that have been found.\lWe must have about 200 kinds.", MSGBOX_NPC)
+    end
+}

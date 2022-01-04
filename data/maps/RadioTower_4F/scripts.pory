@@ -1,0 +1,73 @@
+mapscripts RadioTower_4F_MapScripts {}
+
+script RadioTower_4F_EventScript_FloorSign {
+    msgbox("4F PRODUCTION", MSGBOX_SIGN)
+}
+
+script RadioTower_4F_EventScript_StudioSign {
+    msgbox("4F STUDIO 2", MSGBOX_SIGN)
+}
+
+script RadioTower_4F_EventScript_RocketM {
+    trainerbattle_single(TRAINER_RADIO_TOWER_4F_GRUNT_M, "You plan to rescue the DIRECTOR?\pThat won't be possible because I'm\ngoing to beat you!", "No!\nUnbelievable!")
+    msgbox("I don't believe it!\nI was beaten!")
+    release
+}
+
+script RadioTower_4F_EventScript_ScientistRich {
+    trainerbattle_single(TRAINER_RICH, "Most excellent.\pThis RADIO TOWER will fulfill\nour grand design.", "Hmmm…\nAll grand plans come with snags.")
+    msgbox("Do you honestly believe you can\nstop TEAM ROCKET?")
+    release
+}
+
+script RadioTower_4F_EventScript_RocketExecutive {
+    trainerbattle_single(TRAINER_RADIO_TOWER_4F_EXECUTIVE, "Stop! I'm known as the TEAM ROCKET\nfortress!\pYou're not taking another step!", "The fortress came down!")
+    msgbox("You've earned my respect,\nso here's some advice.\pIt's not too late.\nYou can still turn back.")
+    release
+}
+
+script RadioTower_4F_EventScript_RocketF {
+    trainerbattle_single(TRAINER_RADIO_TOWER_4F_GRUNT_F, "Don't I think POKéMON are cute?\pI'll think my POKéMON are cute--\nafter they beat yours!", "Oh, no!\nThey're so useless!")
+    msgbox("I love my beautiful self!\nWho cares about POKéMON?")
+    release
+}
+
+script RadioTower_4F_EventScript_Meowth{
+    lock
+    faceplayer
+    playmoncry(SPECIES_MEOWTH, 0)
+    msgbox("MEOWTH: Meowth…", MSGBOX_DEFAULT)
+    waitmoncry
+    release
+    end
+}
+script RadioTower_4F_EventScript_FatMan{
+    msgbox("I listened to the radio while I was\nat the RUINS.\pI heard a strange broadcast there.", MSGBOX_NPC)
+    end
+}
+
+script RadioTower_4F_EventScript_DJMary {
+    if(flag(FLAG_GOT_SILK_SCARF_FROM_DJ_MARY))
+    {
+        msgbox("MARY: Please tune into me on\nPROF. OAK'S POKéMON TALK show.", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_CLEARED_RADIO_TOWER))
+    {
+        lock
+        faceplayer
+        msgbox("MARY: Oh! You're my little savior!\nWill you take this as my thanks?")
+        checkitemspace(ITEM_SILK_SCARF, 1)
+        if(!var(VAR_RESULT))
+        {
+            goto(Common_EventScript_BagIsFull)
+        }
+        giveitem(ITEM_SILK_SCARF, 1)
+        msgbox("MARY: It's just right for POKéMON\nthat know NORMAL-type moves.")
+        setflag(FLAG_GOT_SILK_SCARF_FROM_DJ_MARY)
+        release
+        end
+    }
+    msgbox("MARY: Why? Why do I have to suffer\nthrough this?\pMEOWTH, help me!", MSGBOX_NPC)
+    end
+}

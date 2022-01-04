@@ -2841,7 +2841,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_SAGE] =                      MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_POKEFAN_F] =                 MSG_COLOR_RED,
         [OBJ_EVENT_GFX_COOK] =                      MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_ZLINK_RECEPTIONIST] =        MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_MEOWTH] =                    MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_OLD_MAN] =                   MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_OLD_WOMAN] =                 MSG_COLOR_RED,
         [OBJ_EVENT_GFX_CAMPER] =                    MSG_COLOR_BLUE,

@@ -26,7 +26,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Woman3;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sage;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Woman4;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cook;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LinkReceptionist;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Meowth;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldMan;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldWoman;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Camper;
@@ -275,7 +275,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_SAGE] =                     &gObjectEventGraphicsInfo_Sage,
     [OBJ_EVENT_GFX_POKEFAN_F] =                &gObjectEventGraphicsInfo_Woman4,
     [OBJ_EVENT_GFX_COOK] =                     &gObjectEventGraphicsInfo_Cook,
-    [OBJ_EVENT_GFX_ZLINK_RECEPTIONIST] =       &gObjectEventGraphicsInfo_LinkReceptionist,
+    [OBJ_EVENT_GFX_MEOWTH] =                   &gObjectEventGraphicsInfo_Meowth,
     [OBJ_EVENT_GFX_OLD_MAN] =                  &gObjectEventGraphicsInfo_OldMan,
     [OBJ_EVENT_GFX_OLD_WOMAN] =                &gObjectEventGraphicsInfo_OldWoman,
     [OBJ_EVENT_GFX_CAMPER] =                   &gObjectEventGraphicsInfo_Camper,

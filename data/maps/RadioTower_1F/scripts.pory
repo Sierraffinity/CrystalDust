@@ -6,6 +6,12 @@ mapscripts RadioTower_1F_MapScripts {
     }
 }
 
+script RadioTower_1F_EventScript_Rocket {
+    trainerbattle_single(TRAINER_RADIO_TOWER_1F_GRUNT, "We've finally taken over the\nRADIO TOWER!\pNow everyone will get to experience\nthe true terror of TEAM ROCKET!\pWe'll show you how scary we are!", "Too strong!\nWe must watch you…")
+    msgbox("You're too strong.\pOur plan could be ruined.\nI must warn the others…")
+    release
+}
+
 script RadioTower_1F_EventScript_Receptionist {
     lock
     faceplayer

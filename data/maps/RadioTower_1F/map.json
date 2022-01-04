@@ -73,7 +73,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "0",
+      "script": "RadioTower_1F_EventScript_Rocket",
       "flag": "FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER"
     },
     {

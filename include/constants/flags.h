@@ -320,12 +320,12 @@
 #define FLAG_HIDEOUT_ELECTRODE_2             0x12E
 #define FLAG_HIDEOUT_ELECTRODE_3             0x12F
 #define FLAG_GOT_TM07_FROM_PRYCE             0x130
-#define FLAG_BADGES_CHECKED                  0x131
+#define FLAG_BADGES_CHECKED                  0x131 
 #define FLAG_FORCED_CALL_RADIO_TOWER_TAKEOVER 0x132
+#define FLAG_GOT_TM11_SUNNY_DAY_FROM_RADIO_TOWER 0x133
+#define FLAG_OPENED_RADIO_TOWER_CARD_KEY_DOOR 0x134
+#define FLAG_GOT_SILK_SCARF_FROM_DJ_MARY     0x135
 // STOPPED HERE
-#define FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN 0x133 // Set after you follow Steven to the entrance of the Cave of Origin.
-#define FLAG_MET_ARCHIE_SOOTOPOLIS           0x134
-#define FLAG_MET_MAXIE_SOOTOPOLIS            0x135
 #define FLAG_MET_SCOTT_RUSTBORO              0x136
 #define FLAG_WALLACE_GOES_TO_SKY_PILLAR      0x137 // Set after speaking to Wallace within the Cave of Origin.
 #define FLAG_RECEIVED_HM07_OLD               0x138

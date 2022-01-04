@@ -11,6 +11,30 @@ mapscripts RadioTower_2F_MapScripts {
     }
 }
 
+script RadioTower_2F_EventScript_RocketF {
+    trainerbattle_single(TRAINER_RADIO_TOWER_2F_GRUNT_F, "Hahaha!\pHow boring. It was far too\neasy to take over this place!\pCome on, keep me amused!", "Wh-who are you?")
+    msgbox("You beat me, and I won't\nforget it!")
+    release
+}
+
+script RadioTower_2F_EventScript_RocketM3 {
+    trainerbattle_single(TRAINER_RADIO_TOWER_2F_GRUNT_3, "Hey, hey!\nKeep out of our way!", "Arggh.\nI give up.")
+    msgbox("Our EXECUTIVES are trying to take\nthis place over.\pThey have some big plan.\nI wonder what that is?")
+    release
+}
+
+script RadioTower_2F_EventScript_RocketM1 {
+    trainerbattle_single(TRAINER_RADIO_TOWER_2F_GRUNT_1, "We're TEAM ROCKET, the exploiters\nof POKéMON!\pWe love being evil!\nScared?", "You think you're a hero?")
+    msgbox("We're not always evil.\nWe just do whatever we like.")
+    release
+}
+
+script RadioTower_2F_EventScript_RocketM2 {
+    trainerbattle_single(TRAINER_RADIO_TOWER_2F_GRUNT_2, "Three years ago, TEAM ROCKET was\nforced to disband.\pBut we're making a comeback here!", "Gwah!\nDon't get cute!")
+    msgbox("We won't let you ruin our plans\nfor our comeback!")
+    release
+}
+
 script RadioTower_2F_EventScript_RadioAnywhereGuy {
     msgbox("You can listen to the radio anywhere.\n"
            "Tune in!", MSGBOX_NPC)

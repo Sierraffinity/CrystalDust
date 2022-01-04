@@ -1,0 +1,140 @@
+mapscripts RadioTower_5F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(flag(FLAG_CLEARED_RADIO_TOWER))
+        {
+            setvar(VAR_TEMP_0, 2)
+            end
+        }
+        if(defeated(TRAINER_RADIO_TOWER_5F_EXECUTIVE_1))
+        {
+            setvar(VAR_TEMP_0, 1)
+            end
+        }
+    }
+}
+
+script RadioTower_5F_EventScript_DirectorsOfficeSign{
+    msgbox("5F DIRECTOR'S OFFICE", MSGBOX_SIGN)
+    end
+}
+
+script RadioTower_5F_EventScript_StudioSign{
+    msgbox("5F STUDIO 1", MSGBOX_SIGN)
+    end
+}
+
+script RadioTower_5F_EventScript_FakeDirectorTriggers{
+    lockall
+    turnobject(1, DIR_NORTH)
+    applymovement(1, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    textcolor(0)
+    msgbox("Y-you!\nYou came to rescue me?")
+    closemessage
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_RESULT) == 0)
+    {
+        applymovement(1, RadioTower_5F_Movement_FakeDirectorToPlayerLong)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(1, RadioTower_5F_Movement_FakeDirectorToPlayer)
+        waitmovement(0)
+    }
+    playbgm(MUS_ENCOUNTER_ROCKET, FALSE)
+    msgbox("Is that what you were expecting?\nWrong! I'm an imposter!\pI pretended to be the real thing to\nprepare for our takeover.\pDo you want to know where we\nhid the real DIRECTOR?\pSure, I'll tell you.\nBut only if you can beat me!")
+    closemessage
+    trainerbattle_no_intro(TRAINER_RADIO_TOWER_5F_EXECUTIVE_1, "OK, OK.\nI'll tell you where he is.")
+    msgbox(RadioTower_5F_Text_FakeDirectorAfterBattle)
+    giveitem(ITEM_BASEMENT_KEY, 1)
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+    end
+}movement RadioTower_5F_Movement_FakeDirectorToPlayerLong{
+    walk_left * 5
+    walk_up * 2
+}movement RadioTower_5F_Movement_FakeDirectorToPlayer{
+    walk_left * 4
+    walk_up * 2
+}text RadioTower_5F_Text_FakeDirectorAfterBattle{
+    "We stashed the real DIRECTOR in\nthe UNDERGROUND WAREHOUSE.\pIt's at the far end of the\nUNDERGROUND.\pBut I doubt you'll get that far."
+}
+
+script RadioTower_5F_EventScript_RocketExecutiveF {
+    trainerbattle_single(TRAINER_RADIO_TOWER_5F_EXECUTIVE_F, "Remember me from the HIDEOUT\nin MAHOGANY TOWN?\pI lost then, but I won't this time.", "This can't be happening!\nI fought hard, but I still lost…", RadioTower_5F_EventScript_RocketExecutiveF)
+    msgbox("{PLAYER}, isn't it?\pA brat like you won't appreciate\nthe magnificence of TEAM ROCKET.\pThat's too bad.\nI really admire your power.")
+    release
+}
+
+script RadioTower_5F_EventScript_FinalExecutiveTrigger{
+    lockall
+    applymovement(OBJ_EVENT_ID_PLAYER, RadioTower_5F_Movement_PlayerToExecutive)
+    waitmovement(0)
+    playbgm(MUS_ENCOUNTER_ROCKET, FALSE)
+    turnobject(4, DIR_EAST)
+    textcolor(0)
+    msgbox("Oh? You managed to get this far?\nYou must be quite the trainer.\pWe intend to take over this RADIO\nSTATION and announce our comeback.\pThis should bring our boss GIOVANNI\nback from his solo training.\pWe are going to regain our\nformer glory.\pI won't allow you to interfere\nwith our plans.")
+    trainerbattle_no_intro(TRAINER_RADIO_TOWER_5F_EXECUTIVE_2, "No!\nForgive me GIOVANNI!")
+    msgbox("How could this be?\pOur dreams have come to naught.\nI wasn't up to the task after all.\pLike GIOVANNI did before me, I will\ndisband TEAM ROCKET here today.\pFarewell.")
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    playse(SE_EXIT)
+    setvar(VAR_TEMP_0, 2)
+    setflag(FLAG_CLEARED_RADIO_TOWER)
+    setflag(FLAG_HIDE_GOLDENROD_CITY_ROCKET_SCOUT)
+    setflag(FLAG_HIDE_GOLDENROD_CITY_ROCKET_TAKEOVER)
+    setflag(FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER)
+    clearflag(FLAG_HIDE_GOLDENROD_CITY_CIVILIANS)
+    clearflag(FLAG_ROCKETS_IN_RADIO_TOWER)
+    removeobject(3)
+    removeobject(4)
+    setobjectxyperm(2, 0xFF, 0xFF)
+    waitse
+    playbgm(MUS_GOLDENROD, TRUE)
+    fadescreen(FADE_FROM_BLACK)
+    removeobject(1)
+    setobjectxyperm(1, 15, 3)
+    addobject(1)
+    applymovement(1, RadioTower_5F_Movement_DirectorToPlayer)
+    waitmovement(0)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    msgbox("DIRECTOR: {PLAYER}, thank you!\pYour courageous actions have saved\nPOKéMON nationwide.\pI know it's not much, but please\ntake this.")
+    giveitem(ITEM_CLEAR_BELL, 1)
+    msgbox("There used to be a tower right\nhere in GOLDENROD CITY.\lBut it was old and creaky.\pSo we replaced it with our\nRADIO TOWER.\pWe dug up that bell during\nconstruction.\pI heard that all sorts of POKéMON\nlived in GOLDENROD in the past.\pPerhaps…\pThat bell has some connection to the\nTIN TOWER in ECRUTEAK CITY…\pAh!\pThat reminds me… I overheard\nTEAM ROCKET whispering.\pApparently, something is going on\nat the TIN TOWER.\pI have no idea what is happening,\nbut you might look into it.\pOK, I better go to my office.")
+    closemessage
+    applymovement(1, RadioTower_5F_Movement_DirectorExits)
+    waitmovement(0)
+    removeobject(1)
+    releaseall
+    end
+}movement RadioTower_5F_Movement_PlayerToExecutive {
+    walk_left * 2
+}movement RadioTower_5F_Movement_DirectorToPlayer {
+    walk_down * 2
+    walk_right * 3
+    walk_down * 4
+    walk_left
+}movement RadioTower_5F_Movement_DirectorExits {
+    walk_right
+    walk_up * 4
+    walk_left * 3
+    walk_up * 2
+    set_invisible
+}
+
+script RadioTower_5F_EventScript_Ben {
+    msgbox("BEN: Do you listen to our music?", MSGBOX_NPC)
+    end
+}
+
+script RadioTower_5F_EventScript_Director{
+    if(flag(FLAG_CLEARED_RADIO_TOWER))
+    {
+        msgbox("DIRECTOR: Hello, {PLAYER}!\nYou know, I love POKéMON.\pI built this RADIO TOWER so I could\nexpress my love of POKéMON.\pIt would be nice if people enjoyed\nour programs.", MSGBOX_NPC)
+        end
+    }
+    msgbox(RadioTower_5F_Text_FakeDirectorAfterBattle, MSGBOX_NPC)
+    end
+}

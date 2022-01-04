@@ -58,7 +58,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "NULL",
+      "script": "RadioTower_2F_EventScript_RocketM2",
       "flag": "FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER"
     },
     {
@@ -73,7 +73,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "NULL",
+      "script": "RadioTower_2F_EventScript_RocketM1",
       "flag": "FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER"
     },
     {
@@ -88,7 +88,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "NULL",
+      "script": "RadioTower_2F_EventScript_RocketM3",
       "flag": "FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER"
     },
     {
@@ -103,7 +103,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "NULL",
+      "script": "RadioTower_2F_EventScript_RocketF",
       "flag": "FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER"
     },
     {
