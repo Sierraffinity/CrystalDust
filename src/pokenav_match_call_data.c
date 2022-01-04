@@ -140,7 +140,7 @@ static const struct MatchCallStructNPC sMrStoneMatchCallHeader =
 };
 
 static const match_call_text_data_t sNormanTextScripts[] = {
-    { MatchCall_Text_Norman1, FLAG_ENABLE_NORMAN_MATCH_CALL, 0xFFFF },
+    { MatchCall_Text_Norman1, 0xFFF, 0xFFFF },
     { MatchCall_Text_Norman2, FLAG_DEFEATED_AZALEA_GYM,     0xFFFF },
     { MatchCall_Text_Norman3, FLAG_DEFEATED_LAVARIDGE_GYM,   0xFFFF },
     { MatchCall_Text_Norman4, FLAG_DEFEATED_PETALBURG_GYM,   0xFFFF },
@@ -156,7 +156,7 @@ static const struct MatchCallStructTrainer sNormanMatchCallHeader =
 {
     .type = MC_TYPE_LEADER,
     .mapSec = MAPSEC_VIOLET_CITY,
-    .flag = FLAG_ENABLE_NORMAN_MATCH_CALL,
+    .flag = 0xFFF,
     .rematchTableIdx = REMATCH_NORMAN,
     .desc = gText_NormanMatchCallDesc,
     .name = gText_NormanMatchCallName,

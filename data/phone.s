@@ -554,3 +554,17 @@ PhoneScript_StandardMatchCallTrainer::
 	phone_callnativecontext SelectMessage_StandardMatchCallTrainer
 	phone_stdcall gStringVar4
 	phone_end
+
+RadioTower_PhoneScript_ElmCall::
+	phone_stdcall RadioTower_Text_ElmCall
+	phone_end
+
+RadioTower_Text_ElmCall:
+	.string "{PLAYER}, how are things going?\p"
+	.string "I called because something weird is\n"
+	.string "happening with the radio broadcasts.\p"
+	.string "They were talking about TEAM ROCKET.\p"
+	.string "Maybe TEAM ROCKET has returned.\n"
+	.string "No, that just can't be true.\p"
+	.string "Sorry to bug you.\n"
+	.string "Take care!$"

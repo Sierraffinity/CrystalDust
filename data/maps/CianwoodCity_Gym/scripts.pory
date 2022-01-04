@@ -35,7 +35,11 @@ script CianwoodCity_Gym_Eventscript_Chuck{
 	textcolor(MSG_COLOR_PREV)
     setflag(FLAG_BADGE05_GET)
     setgymtrainers(5)
-    // set Rocket hideout event if have 7 badges
+    callnative(CountBadges)
+    if(var(VAR_RESULT) >= 6)
+    {
+        call(Common_EventScript_ActivateSixthBadgeRockets)
+    }
     goto(CianwoodCity_Gym_EventScript_GiveTM)
 }script CianwoodCity_Gym_EventScript_GiveTM{
     if(!flag(FLAG_GOT_TM31_FROM_CHUCK))

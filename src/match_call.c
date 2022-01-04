@@ -1043,6 +1043,11 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .phoneContactId = PHONE_CONTACT_BILL,
         .callCondition = ReceiveCallWhenOutside,
         .script = PhoneScript_Bill_JustRanOutOfRoom
+    },{
+        .flag = FLAG_FORCED_CALL_RADIO_TOWER_TAKEOVER,
+        .phoneContactId = PHONE_CONTACT_ELM,
+        .callCondition = ReceiveCallWhenOutside,
+        .script = RadioTower_PhoneScript_ElmCall
     },
 };
 

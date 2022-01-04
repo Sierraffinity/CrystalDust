@@ -9,5 +9,6 @@ extern const u8 PhoneScript_StandardMatchCallTrainer[];
 extern const u8 Route30_PhoneScript_ElmCall[];
 extern const u8 VioletCity_PhoneScript_ElmCall[];
 extern const u8 PhoneScript_Bill_JustRanOutOfRoom[];
+extern const u8 RadioTower_PhoneScript_ElmCall[];
 
 #endif // GUARD_PHONE_SCRIPTS_H

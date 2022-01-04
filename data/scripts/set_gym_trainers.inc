@@ -108,3 +108,17 @@ OlivineCity_Gym_SetGymTrainers::
 SeafoamIslands_Gym_SetGymTrainers::
 ViridianCity_Gym_SetGymTrainers::
 	return
+
+Common_EventScript_ActivateSixthBadgeRockets::
+	clearflag(FLAG_HIDE_GOLDENROD_CITY_ROCKET_TAKEOVER)
+	callnative CountBadges
+	compare VAR_RESULT, 7
+	goto_if_eq Common_EventScript_ActivateRadioTowerTakeover
+	return
+
+Common_EventScript_ActivateRadioTowerTakeover::
+	clearflag(FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER)
+	setflag(FLAG_HIDE_GOLDENROD_CITY_CIVILIANS)
+	setflag(FLAG_ROCKETS_IN_RADIO_TOWER)
+	setflag(FLAG_FORCED_CALL_RADIO_TOWER_TAKEOVER)
+	return
