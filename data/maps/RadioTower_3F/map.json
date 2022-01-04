@@ -2,16 +2,16 @@
   "id": "MAP_RADIO_TOWER_3F",
   "name": "RadioTower_3F",
   "layout": "LAYOUT_RADIO_TOWER_3F",
-  "music": "MUS_CAVE_OF_ORIGIN",
+  "music": "MUS_GOLDENROD",
   "region_map_section": "MAPSEC_RADIO_TOWER",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_UNDERGROUND",
-  "allow_cycling": true,
-  "allow_escaping": true,
-  "allow_running": true,
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
   "show_map_name": true,
-  "floor_number": 0,
+  "floor_number": 3,
   "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
@@ -20,38 +20,24 @@
   ],
   "warp_events": [
     {
-      "x": 5,
-      "y": 6,
-      "elevation": 4,
+      "x": 3,
+      "y": 2,
+      "elevation": 3,
       "dest_map": "MAP_RADIO_TOWER_2F",
       "dest_warp_id": 1
     },
     {
-      "x": 7,
-      "y": 11,
-      "elevation": 5,
-      "dest_map": "MAP_RADIO_TOWER_2F",
+      "x": 13,
+      "y": 2,
+      "elevation": 3,
+      "dest_map": "MAP_RADIO_TOWER_4F",
       "dest_warp_id": 2
     },
     {
-      "x": 18,
-      "y": 15,
-      "elevation": 4,
-      "dest_map": "MAP_RADIO_TOWER_2F",
-      "dest_warp_id": 3
-    },
-    {
-      "x": 17,
-      "y": 3,
+      "x": 20,
+      "y": 2,
       "elevation": 3,
       "dest_map": "MAP_RADIO_TOWER_4F",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 3,
-      "y": 23,
-      "elevation": 5,
-      "dest_map": "MAP_RADIO_TOWER_1F",
       "dest_warp_id": 3
     },
     {

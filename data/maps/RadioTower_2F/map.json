@@ -110,7 +110,7 @@
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_OFFICER",
       "in_connection": false,
-      "x": 4,
+      "x": 5,
       "y": 2,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -179,7 +179,7 @@
       "x": 4,
       "y": 2,
       "elevation": 0,
-      "dest_map": "MAP_RADIO_TOWER_2F",
+      "dest_map": "MAP_RADIO_TOWER_3F",
       "dest_warp_id": 0
     }
   ],
