@@ -4944,6 +4944,30 @@
       "secondary_tileset": "gTileset_Gatehouse",
       "border_filepath": "data/layouts/Route12_NorthEntrance_1F/border.bin",
       "blockdata_filepath": "data/layouts/Route12_NorthEntrance_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_SWITCH_ROOM",
+      "name": "GoldenrodCity_Underground_SwitchRoom_Layout",
+      "width": 33,
+      "height": 32,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Underground",
+      "border_filepath": "data/layouts/GoldenrodCity_Underground_SwitchRoom/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Underground_SwitchRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_WAREHOUSE",
+      "name": "GoldenrodCity_Underground_Warehouse_Layout",
+      "width": 31,
+      "height": 26,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Underground",
+      "border_filepath": "data/layouts/GoldenrodCity_Underground_Warehouse/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Underground_Warehouse/map.bin"
     }
   ]
 }

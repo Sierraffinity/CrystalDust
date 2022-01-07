@@ -171,8 +171,8 @@
       "x": 24,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND",
-      "dest_warp_id": 0
+      "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_SWITCH_ROOM",
+      "dest_warp_id": 2
     }
   ],
   "coord_events": [

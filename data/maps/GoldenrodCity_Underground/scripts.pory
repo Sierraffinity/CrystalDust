@@ -320,7 +320,7 @@ script GoldenrodCity_Underground_EventScript_Door {
 		checkitem(ITEM_BASEMENT_KEY, 1)
 		if (var(VAR_RESULT))
 		{
-			playse(SE_CLICK) // TODO: Check sound in Crystal to see if this makes sense
+			playse(SE_UNLOCK)
 			waitse
 			msgbox("The BASEMENT KEY opened the door.")
 			setmetatile(24, 8, METATILE_Underground_Door_Open, TRUE)

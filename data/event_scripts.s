@@ -1093,3 +1093,5 @@ Common_EventScript_FindItem::
 	.include "data/maps/Route2_ViridianForest_NorthEntrance/scripts.inc"
 	.include "data/maps/Route12_Gatehouse_1F/scripts.inc"
 	.include "data/maps/Route12_Gatehouse_2F/scripts.inc"
+	.include "data/maps/GoldenrodCity_Underground_SwitchRoom/scripts.inc"
+	.include "data/maps/GoldenrodCity_Underground_Warehouse/scripts.inc"

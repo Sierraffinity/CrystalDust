@@ -1,0 +1,43 @@
+{
+  "id": "MAP_GOLDENROD_CITY_UNDERGROUND_WAREHOUSE",
+  "name": "GoldenrodCity_Underground_Warehouse",
+  "layout": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_WAREHOUSE",
+  "music": "MUS_ILEX_FOREST",
+  "region_map_section": "MAPSEC_GOLDENROD_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_SWITCH_ROOM",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 27,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY_DEPT_STORE_B1F",
+      "dest_warp_id": 1
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}
