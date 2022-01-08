@@ -1,1 +1,612 @@
-mapscripts GoldenrodCity_Underground_SwitchRoom_MapScripts {}
+const VAR_SHUTTERS = VAR_TEMP_1
+const FLAG_SWITCH_1_ON = FLAG_TEMP_2
+const FLAG_SWITCH_2_ON = FLAG_TEMP_3
+const FLAG_SWITCH_3_ON = FLAG_TEMP_4
+const FLAG_SWITCH_E_ON = FLAG_TEMP_5
+const FLAG_SWITCH_4 = FLAG_TEMP_6
+const FLAG_SWITCH_5 = FLAG_TEMP_7
+const FLAG_SWITCH_6 = FLAG_TEMP_8
+const FLAG_SWITCH_7 = FLAG_TEMP_9
+const FLAG_SWITCH_8 = FLAG_TEMP_A
+const FLAG_SWITCH_9 = FLAG_TEMP_B
+const FLAG_SWITCH_10 = FLAG_TEMP_C
+const FLAG_SWITCH_11 = FLAG_TEMP_D
+const FLAG_SWITCH_12 = FLAG_TEMP_E
+const FLAG_SWITCH_13 = FLAG_TEMP_F
+const FLAG_SWITCH_14 = FLAG_TEMP_10
+
+mapscripts GoldenrodCity_Underground_SwitchRoom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_TEMP_1)
+        if(defeated(TRAINER_RIVAL_GOLDENROD_TUNNEL_CHIKORITA) || defeated(TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE) || defeated(TRAINER_RIVAL_GOLDENROD_TUNNEL_CYNDAQUIL))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_RivalTriggers {
+    lockall
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playbgm(MUS_NONE, 0)
+    playse(SE_PIN)
+    delay(0x40)
+    playse(SE_EXIT)
+    addobject(1)
+    getplayerxy(VAR_0x8008, VAR_RESULT)
+    switch(var(VAR_RESULT))
+    {
+        case 5:
+            applymovement(1, GoldenrodCity_Underground_SwitchRoom_Movement_RivalToPlayerTop)
+            waitmovement(0)
+        case 6:
+            applymovement(1, GoldenrodCity_Underground_SwitchRoom_Movement_RivalToPlayerMiddle)
+            waitmovement(0)
+        case 7:
+            applymovement(1, GoldenrodCity_Underground_SwitchRoom_Movement_RivalToPlayerBottom)
+            waitmovement(0)
+    }
+    playbgm(MUS_ENCOUNTER_RIVAL, 0)
+    savebgm(MUS_RIVAL_EXIT)
+    textcolor(0)
+    msgbox("Hold it!\pI saw you, so I tailed you.\pI don't need you underfoot while I\ntake care of TEAM ROCKET.\p…Wait a second.\nYou beat me before, didn't you?\pThat was just a fluke.\nBut I repay my debts!", MSGBOX_DEFAULT)
+    closemessage
+    switch(var(VAR_STARTER_MON))
+    {
+        case STARTER_CHIKORITA:
+            trainerbattle_wintext(TRAINER_RIVAL_GOLDENROD_TUNNEL_CHIKORITA, 0, GoldenrodCity_Underground_SwitchRoom_Text_RivalLost, GoldenrodCity_Underground_SwitchRoom_Text_RivalWon)
+        case STARTER_CYNDAQUIL:
+            trainerbattle_wintext(TRAINER_RIVAL_GOLDENROD_TUNNEL_CYNDAQUIL, 0, GoldenrodCity_Underground_SwitchRoom_Text_RivalLost, GoldenrodCity_Underground_SwitchRoom_Text_RivalWon)
+        case STARTER_TOTODILE:
+            trainerbattle_wintext(TRAINER_RIVAL_GOLDENROD_TUNNEL_TOTODILE, 0, GoldenrodCity_Underground_SwitchRoom_Text_RivalLost, GoldenrodCity_Underground_SwitchRoom_Text_RivalWon)
+    }
+    msgbox("…I don't understand…\pIs what that LANCE guy said true?\nThat I don't treat POKéMON\lproperly?\pLove…\pTrust…\pAre they really waht I lack?\nAre they keeping me from winning?\pI… I just don't understand.\nBut it's not going to end here.\pNot now.\nNot because of this.\pI won't give up my dream of becoming\nthe world's best POKéMON trainer!", MSGBOX_DEFAULT)
+    closemessage
+    getplayerxy(VAR_0x8008, VAR_RESULT)
+    switch(var(VAR_RESULT))
+    {
+        case 5:
+            applymovement(1, GoldenrodCity_Underground_SwitchRoom_Movement_RivalToExitTop)
+            waitmovement(0)
+        case 6:
+            applymovement(1, GoldenrodCity_Underground_SwitchRoom_Movement_RivalToExitMiddle)
+            waitmovement(0)
+        case 7:
+            applymovement(1, GoldenrodCity_Underground_SwitchRoom_Movement_RivalToExitBottom)
+            waitmovement(0)
+    }
+    removeobject(1)
+    playse(SE_EXIT)
+    fadedefaultbgm
+    setvar(VAR_TEMP_0, 1)
+    release
+    end
+}movement(local) GoldenrodCity_Underground_SwitchRoom_Movement_RivalToPlayerTop{
+    walk_left
+    walk_down * 2
+    walk_left * 4
+}movement(local) GoldenrodCity_Underground_SwitchRoom_Movement_RivalToPlayerMiddle{
+    walk_left
+    walk_down * 3
+    walk_left * 4
+}movement(local) GoldenrodCity_Underground_SwitchRoom_Movement_RivalToPlayerBottom{
+    walk_left
+    walk_down * 4
+    walk_left * 4
+}text(local) GoldenrodCity_Underground_SwitchRoom_Text_RivalLost{
+    "…Why…\nWhy do I lose?\pI've assembled the toughest POKéMON.\nI didn't ease up on the gas.\pSo why do I lose?"
+}text(local) GoldenrodCity_Underground_SwitchRoom_Text_RivalWon{
+    "Humph.\nThis is my real power, wimp.\lI'll make TEAM ROCKET history.\pAnd I'm going to grind that LANCE\nunder my heels."
+}movement(local) GoldenrodCity_Underground_SwitchRoom_Movement_RivalToExitTop{
+    walk_right * 4
+    walk_up * 2
+    walk_right
+}movement(local) GoldenrodCity_Underground_SwitchRoom_Movement_RivalToExitMiddle{
+    walk_right * 4
+    walk_up * 3
+    walk_right
+}movement(local) GoldenrodCity_Underground_SwitchRoom_Movement_RivalToExitBottom{
+    walk_right * 4
+    walk_up * 4
+    walk_right
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_Grunt1{
+    trainerbattle_single(TRAINER_UNDERGROUND_B2F_GRUNT_1, "I don't care if you're lost.\pYou show up here, you're nothing\nbut a victim!", "Urk!\nYeah, think you're cool, huh?")
+    msgbox("You must have ice in your veins\nto dis TEAM ROCKET.")
+    release
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_Grunt2{
+    trainerbattle_single(TRAINER_UNDERGROUND_B2F_GRUNT_2, "Open one shutter, another closes.\nBet you can't get where you want!", "Drat!\nI was sunk by indecision!")
+    msgbox("I'm confused too…\pThe switch on the end is the one to\npress first, but…")
+    release
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_Grunt3{
+    trainerbattle_single(TRAINER_UNDERGROUND_B2F_GRUNT_3, "Kwahaha! Confounded by the shutters,\nare we?\pI'll let you in on a secret if you\ncan beat me!", "Uwww…\nI blew it.")
+    msgbox("All right. A hint!\nChange the order of switching.\pThat'll change the ways the shutters\nopen and close.")
+    release
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_BurglarDuncan{
+    trainerbattle_single(TRAINER_DUNCAN, "Fork over your goodies!", "Mercy!")
+    msgbox("Steal and sell!\nThat's basic in crime, kid.")
+    release
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_BurglarEddie{
+    trainerbattle_single(TRAINER_EDDIE, "They ditched this project before\nthey finished.\lI'm searching for leftover loot.", "Over the top!")
+    msgbox("UNDERGROUND WAREHOSE?\pWhat do you want to go there for?\nThere's nothing down there.")
+    release
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_GruntF{
+    trainerbattle_single(TRAINER_UNDERGROUND_B2F_GRUNT_F, "Are you lost? No, you can't be.\nYou don't have that scared look.\pI'll give you something to be\nscared about!", "How could you?")
+    msgbox("Go wherever you'd like! Get lost!\nSee if I care!")
+    release
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_Switch1{
+    lockall
+    if(flag(FLAG_SWITCH_1_ON))
+    {
+        msgbox("It's labeled SWITCH 1.\pIt's ON.\nTurn it OFF?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == NO)
+        {
+            releaseall
+            end
+        }
+        subvar(VAR_SHUTTERS, 1)
+        clearflag(FLAG_SWITCH_1_ON)
+        goto(GoldenrodCity_Underground_SwitchRoom_EventScript_UpdateDoors)
+        end
+    }
+    msgbox("It's labeled SWITCH 1.\pIt's OFF.\nTurn it ON?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        releaseall
+        end
+    }
+    addvar(VAR_SHUTTERS, 1)
+    setflag(FLAG_SWITCH_1_ON)
+    goto(GoldenrodCity_Underground_SwitchRoom_EventScript_UpdateDoors)
+    end
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_Switch2{
+    lockall
+    if(flag(FLAG_SWITCH_2_ON))
+    {
+        msgbox("It's labeled SWITCH 2.\pIt's ON.\nTurn it OFF?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == NO)
+        {
+            releaseall
+            end
+        }
+        subvar(VAR_SHUTTERS, 2)
+        clearflag(FLAG_SWITCH_2_ON)
+        goto(GoldenrodCity_Underground_SwitchRoom_EventScript_UpdateDoors)
+        end
+    }
+    msgbox("It's labeled SWITCH 2.\pIt's OFF.\nTurn it ON?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        releaseall
+        end
+    }
+    addvar(VAR_SHUTTERS, 2)
+    setflag(FLAG_SWITCH_2_ON)
+    goto(GoldenrodCity_Underground_SwitchRoom_EventScript_UpdateDoors)
+    end
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_Switch3{
+    lockall
+    if(flag(FLAG_SWITCH_3_ON))
+    {
+        msgbox("It's labeled SWITCH 3.\pIt's ON.\nTurn it OFF?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == NO)
+        {
+            releaseall
+            end
+        }
+        subvar(VAR_SHUTTERS, 3)
+        clearflag(FLAG_SWITCH_3_ON)
+        goto(GoldenrodCity_Underground_SwitchRoom_EventScript_UpdateDoors)
+        end
+    }
+    msgbox("It's labeled SWITCH 3.\pIt's OFF.\nTurn it ON?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        releaseall
+        end
+    }
+    addvar(VAR_SHUTTERS, 3)
+    setflag(FLAG_SWITCH_3_ON)
+    goto(GoldenrodCity_Underground_SwitchRoom_EventScript_UpdateDoors)
+    end
+}
+
+script GoldenrodCity_Underground_SwitchRoom_EventScript_EmergencySwitch{
+    lockall
+    if(flag(FLAG_SWITCH_E_ON))
+    {
+        msgbox("It's labeled EMERGENCY.\pIt's ON.\nTurn it OFF?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == NO)
+        {
+            releaseall
+            end
+        }
+        setvar(VAR_SHUTTERS, 0)
+        clearflag(FLAG_SWITCH_E_ON)
+        clearflag(FLAG_SWITCH_1_ON)
+        clearflag(FLAG_SWITCH_2_ON)
+        clearflag(FLAG_SWITCH_3_ON)
+        goto(GoldenrodCity_Underground_SwitchRoom_EventScript_UpdateDoors)
+        end
+    }
+    msgbox("It's labeled EMERGENCY.\pIt's OFF.\nTurn it ON?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        releaseall
+        end
+    }
+    setvar(VAR_SHUTTERS, 7)
+    setflag(FLAG_SWITCH_E_ON)
+    setflag(FLAG_SWITCH_1_ON)
+    setflag(FLAG_SWITCH_2_ON)
+    setflag(FLAG_SWITCH_3_ON)
+    goto(GoldenrodCity_Underground_SwitchRoom_EventScript_UpdateDoors)
+    end
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_UpdateDoors{
+    waitse
+    playse(SE_UNLOCK)
+    switch(var(VAR_SHUTTERS))
+    {
+        case 0:
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear4)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear5)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear6)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear7)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear8)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear9)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear10)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear11)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear12)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear13)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear14)
+            special(DrawWholeMapView)
+            waitse
+            releaseall
+            end
+        case 1:
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set4)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set10)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set13)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear9)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear11)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear12)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear14)
+            special(DrawWholeMapView)
+            waitse
+            releaseall
+            end
+        case 2:
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set5)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set11)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set12)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear8)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear10)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear13)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear14)
+            special(DrawWholeMapView)
+            waitse
+            releaseall
+            end
+        case 3:
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set6)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set10)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set13)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear7)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear11)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear12)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear14)
+            special(DrawWholeMapView)
+            waitse
+            releaseall
+            end
+        case 4:
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set7)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set11)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set12)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear6)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear10)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear13)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear14)
+            special(DrawWholeMapView)
+            waitse
+            releaseall
+            end
+        case 5:
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set8)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set10)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set13)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear5)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear11)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear12)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear14)
+            special(DrawWholeMapView)
+            waitse
+            releaseall
+            end
+        case 6:
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set9)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set11)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set12)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set14)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear4)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear10)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear13)
+            special(DrawWholeMapView)
+            waitse
+            releaseall
+            end
+        case 7:
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear4)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear5)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set6)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear7)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set8)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set9)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear10)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set11)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set12)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Clear13)
+            call(GoldenrodCity_Underground_SwitchRoom_EventScript_Set14)
+            special(DrawWholeMapView)
+            waitse
+            releaseall
+            end
+    }
+}
+
+////////////////////////////////////
+//  Switch Labelling Diagram
+//  ________________________
+//  Solid lines are shutters.
+//  Dotted lines are walls.
+//
+//  ----_1_--_2_--_3_----
+//  --     |    |    ----
+//  --     4    5    ----
+//  --     |    |    ----
+//  ----_6_--_7_--_8_----
+//  --     |    |    |
+//  --     9    10   11
+//  --     |    |    |
+//  ---------------------
+////////////////////////////////////
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear4{
+    // Switch 3 - Horizontal: Row 1, Rightmost
+    setmetatile(19,  9, 0x2DD, 1)
+    setmetatile(20,  9, 0x2DE, 1)
+    setmetatile(19, 10, 0x2E5, 1)
+    setmetatile(20, 10, 0x302, 1)
+    clearflag(FLAG_SWITCH_4)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear5{
+    // Switch 2 - Horizontal: Row 1, Middle
+    setmetatile(11,  9, 0x2DD, 1)
+    setmetatile(12,  9, 0x2DE, 1)
+    setmetatile(11, 10, 0x2E5, 1)
+    setmetatile(12, 10, 0x2E6, 1)
+    clearflag(FLAG_SWITCH_5)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear6{
+    // Switch 1 - Horizontal: Row 1, Leftmost
+    setmetatile(3,  9, 0x2DD, 1)
+    setmetatile(4,  9, 0x2DE, 1)
+    setmetatile(3, 10, 0x2E5, 1)
+    setmetatile(4, 10, 0x2E6, 1)
+    clearflag(FLAG_SWITCH_6)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear7{
+    // Switch 6 - Horizontal: Row 3, Leftmost
+    setmetatile(3, 15, 0x2DD, 1)
+    setmetatile(4, 15, 0x2DE, 1)
+    setmetatile(3, 16, 0x2E5, 1)
+    setmetatile(4, 16, 0x2E6, 1)
+    clearflag(FLAG_SWITCH_7)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear8{
+    // Switch 7 - Horizontal: Row 3, Middle
+    setmetatile(11, 15, 0x2DD, 1)
+    setmetatile(12, 15, 0x2DE, 1)
+    setmetatile(11, 16, 0x2E5, 1)
+    setmetatile(12, 16, 0x2E6, 1)
+    clearflag(FLAG_SWITCH_8)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear9{
+    // Switch 8 - Horizontal: Row 3, Rightmost
+    setmetatile(19, 15, 0x2DD, 1)
+    setmetatile(20, 15, 0x2DE, 1)
+    setmetatile(19, 16, 0x2E5, 1)
+    setmetatile(20, 16, 0x2E6, 1)
+    clearflag(FLAG_SWITCH_9)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear10{
+    // Switch 5 - Vertical: Row 2, Rightmost
+    setmetatile(15, 10, 0x2EA, 1)
+    setmetatile(15, 11, 0x2EB, 1)
+    setmetatile(15, 12, 0x2E9, 1)
+    setmetatile(15, 13, 0x2E4, 1)
+    clearflag(FLAG_SWITCH_10)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear11{
+    // Switch 4 - Vertical: Row 2, Leftmost
+    setmetatile( 7, 10, 0x2EA, 1)
+    setmetatile( 7, 11, 0x2EB, 1)
+    setmetatile( 7, 12, 0x2E9, 1)
+    setmetatile( 7, 13, 0x2E4, 1)
+    clearflag(FLAG_SWITCH_11)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear12{
+    // Switch 10 - Vertical: Row 4, Middle
+    setmetatile(15, 16, 0x2EA, 1)
+    setmetatile(15, 17, 0x2EB, 1)
+    setmetatile(15, 18, 0x2E9, 1)
+    setmetatile(15, 19, 0x2E4, 1)
+    clearflag(FLAG_SWITCH_12)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear13{
+    // Switch 9 - Vertical: Row 4, Leftmost
+    setmetatile( 7, 16, 0x2EA, 1)
+    setmetatile( 7, 17, 0x2EB, 1)
+    setmetatile( 7, 18, 0x2E9, 1)
+    setmetatile( 7, 19, 0x2E4, 1)
+    clearflag(FLAG_SWITCH_13)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Clear14{
+    // Switch 11 - Vertical: Row 4, Rightmost (Near Female Rocket)
+    setmetatile(21, 16, 0x2DF, 1)
+    setmetatile(21, 17, 0x2E7, 1)
+    setmetatile(21, 18, 0x2E9, 1)
+    setmetatile(21, 19, 0x2E4, 1)
+    clearflag(FLAG_SWITCH_14)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set4{
+    // Switch 3 - Horizontal: Row 1, Rightmost
+    setmetatile(19,  9, 0x288, 0)
+    setmetatile(20,  9, 0x28A, 0)
+    setmetatile(19, 10, 0x2E3, 0)
+    setmetatile(20, 10, 0x28A, 0)
+    setflag(FLAG_SWITCH_4)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set5{
+    // Switch 2 - Horizontal: Row 1, Middle
+    setmetatile(11,  9, 0x288, 0)
+    setmetatile(12,  9, 0x28A, 0)
+    setmetatile(11, 10, 0x2E3, 0)
+    setmetatile(12, 10, 0x2CF, 0)
+    setflag(FLAG_SWITCH_5)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set6{
+    // Switch 1 - Horizontal: Row 1, Leftmost
+    setmetatile(3,  9, 0x288, 0)
+    setmetatile(4,  9, 0x28A, 0)
+    setmetatile(3, 10, 0x2E3, 0)
+    setmetatile(4, 10, 0x2CF, 0)
+    setflag(FLAG_SWITCH_6)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set7{
+    // Switch 6 - Horizontal: Row 3, Leftmost
+    setmetatile(3, 15, 0x288, 0)
+    setmetatile(4, 15, 0x28A, 0)
+    setmetatile(3, 16, 0x2E3, 0)
+    setmetatile(4, 16, 0x2CF, 0)
+    setflag(FLAG_SWITCH_7)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set8{
+    // Switch 7 - Horizontal: Row 3, Middle
+    setmetatile(11, 15, 0x288, 0)
+    setmetatile(12, 15, 0x28A, 0)
+    setmetatile(11, 16, 0x2E3, 0)
+    setmetatile(12, 16, 0x2CF, 0)
+    setflag(FLAG_SWITCH_8)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set9{
+    // Switch 8 - Horizontal: Row 3, Rightmost
+    setmetatile(19, 15, 0x288, 0)
+    setmetatile(20, 15, 0x28A, 0)
+    setmetatile(19, 16, 0x2E3, 0)
+    setmetatile(20, 16, 0x2CF, 0)
+    setflag(FLAG_SWITCH_9)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set10{
+    // Switch 5 - Vertical: Row 2, Rightmost
+    setmetatile(15, 10, 0x28D, 0)
+    setmetatile(15, 11, 0x295, 0)
+    setmetatile(15, 12, 0x299, 0)
+    setmetatile(15, 13, 0x289, 0)
+    setflag(FLAG_SWITCH_10)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set11{
+    // Switch 4 - Vertical: Row 2, Leftmost
+    setmetatile( 7, 10, 0x28D, 0)
+    setmetatile( 7, 11, 0x295, 0)
+    setmetatile( 7, 12, 0x299, 0)
+    setmetatile( 7, 13, 0x289, 0)
+    setflag(FLAG_SWITCH_11)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set12{
+    // Switch 10 - Vertical: Row 4, Middle
+    setmetatile(15, 16, 0x28D, 0)
+    setmetatile(15, 17, 0x295, 0)
+    setmetatile(15, 18, 0x299, 0)
+    setmetatile(15, 19, 0x289, 0)
+    setflag(FLAG_SWITCH_12)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set13{
+    // Switch 9 - Vertical: Row 4, Leftmost
+    setmetatile( 7, 16, 0x28D, 0)
+    setmetatile( 7, 17, 0x295, 0)
+    setmetatile( 7, 18, 0x299, 0)
+    setmetatile( 7, 19, 0x289, 0)
+    setflag(FLAG_SWITCH_13)
+    return
+}
+
+script(local) GoldenrodCity_Underground_SwitchRoom_EventScript_Set14{
+    // Switch 11 - Vertical: Row 4, Rightmost (Near Female Rocket)
+    setmetatile(21, 16, 0x2D6, 0)
+    setmetatile(21, 17, 0x2D7, 0)
+    setmetatile(21, 18, 0x299, 0)
+    setmetatile(21, 19, 0x289, 0)
+    setflag(FLAG_SWITCH_14)
+    return
+}

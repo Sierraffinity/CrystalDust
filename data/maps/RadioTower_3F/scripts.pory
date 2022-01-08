@@ -59,6 +59,8 @@ script RadioTower_3F_EventScript_CardKeySlot{
         setmetatile(17, 8, 0x334, 0)
         setmetatile(16, 9, 0x332, 0)
         setmetatile(17, 9, 0x33A, 0)
+        waitbuttonpress
+        closemessage
         playse(SE_UNLOCK)
         special(DrawWholeMapView)
         setflag(FLAG_OPENED_RADIO_TOWER_CARD_KEY_DOOR)

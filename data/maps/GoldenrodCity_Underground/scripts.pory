@@ -320,9 +320,12 @@ script GoldenrodCity_Underground_EventScript_Door {
 		checkitem(ITEM_BASEMENT_KEY, 1)
 		if (var(VAR_RESULT))
 		{
+			message("The BASEMENT KEY opened the door.")
+			waitmessage
 			playse(SE_UNLOCK)
 			waitse
-			msgbox("The BASEMENT KEY opened the door.")
+			waitbuttonpress
+			closemessage
 			setmetatile(24, 8, METATILE_Underground_Door_Open, TRUE)
 			special(DrawWholeMapView)
 			setflag(FLAG_GOLDENROD_CITY_UNDERGROUND_DOOR_UNLOCKED)

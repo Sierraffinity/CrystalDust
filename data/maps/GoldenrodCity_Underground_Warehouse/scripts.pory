@@ -1,1 +1,36 @@
 mapscripts GoldenrodCity_Underground_Warehouse_MapScripts {}
+
+script GoldenrodCity_Underground_Warehouse_EventScript_Grunt1{
+    trainerbattle_single(TRAINER_WAREHOUSE_GRUNT_1, "You're not going any farther!\pI don't show mercy to my enemies,\nnot even brats!", "Blast it!")
+    msgbox("I lost…\nPlease forgive me, GIOVANNI!")
+    release
+}
+
+script GoldenrodCity_Underground_Warehouse_EventScript_Grunt2{
+    trainerbattle_single(TRAINER_WAREHOUSE_GRUNT_2, "Hyuck-hyuck-hyuck! I remember you!\nYou got me good at our hideout!", "Hyuck-hyuck-hyuck!\nSo, that's how?")
+    msgbox("Hyuck-hyuck-hyuck!\nThat was a blast! I'll remember you!")
+    release
+}
+
+script GoldenrodCity_Underground_Warehouse_EventScript_Grunt3{
+    trainerbattle_single(TRAINER_WAREHOUSE_GRUNT_3, "How did you get this far?\pI guess it can't be helped.\nI'll dispose of you.", "I got disposed of…")
+    msgbox("TEAM ROCKET will keep going,\nwaiting for the return of GIOVANNI.\pWe'll do whatever it takes.")
+    release
+}
+
+script GoldenrodCity_Underground_Warehouse_EventScript_Director{
+    checkitem(ITEM_CARD_KEY, 1)
+    if(var(VAR_RESULT))
+    {
+        msgbox("I'm begging you to help.\pThere's no telling what they'll do if\nthey control the transmitter.\pThey may even be able to control\nPOKéMON using a special signal!\pYou're the only one I can call on.\nPlease save the RADIO TOWER…\lAnd all POKéMON nationwide!", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("DIRECTOR: Who? What?\nYou came to rescue me?\pThank you!\pThe RADIO TOWER!\nWhat's happening there?\pTaken over by TEAM ROCKET?\nHere. Take this CARD KEY.")
+    closemessage
+    giveitem(ITEM_CARD_KEY, 1)
+    setvar(VAR_GOLDENROD_DEPT_STORE_B1F_LAYOUT, 0)
+    msgbox("DIRECTOR: Use that to open the\nshutters on 3F.")
+    goto(GoldenrodCity_Underground_Warehouse_EventScript_Director)
+}

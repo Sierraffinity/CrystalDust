@@ -24,6 +24,16 @@ mapscripts GoldenrodCity_DeptStore_B1F_MapScripts {
                 setmetatile(12, 17, METATILE_RadioTower_Floor_AboveWall, FALSE)
                 setmetatile(13, 17, METATILE_RadioTower_Floor_AboveWall, FALSE)
         }
+        checkitem(ITEM_CARD_KEY, 1)
+        if(var(VAR_RESULT))
+        {
+            setmetatile(18, 5, 0x282, 0)
+            setmetatile(18, 6, 0x282, 0)
+            setmetatile(19, 5, 0x281, 0)
+            setmetatile(19, 6, 0x281, 0)
+            setmetatile(20, 5, 0x281, 0)
+            setmetatile(20, 6, 0x281, 0)
+        }
     }
 }
 

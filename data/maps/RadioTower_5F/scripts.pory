@@ -63,7 +63,7 @@ script RadioTower_5F_EventScript_FakeDirectorTriggers{
 }
 
 script RadioTower_5F_EventScript_RocketExecutiveF {
-    trainerbattle_single(TRAINER_RADIO_TOWER_5F_EXECUTIVE_F, "Remember me from the HIDEOUT\nin MAHOGANY TOWN?\pI lost then, but I won't this time.", "This can't be happening!\nI fought hard, but I still lost…", RadioTower_5F_EventScript_RocketExecutiveF)
+    trainerbattle_single(TRAINER_RADIO_TOWER_5F_EXECUTIVE_F, "Remember me from the HIDEOUT\nin MAHOGANY TOWN?\pI lost then, but I won't this time.", "This can't be happening!\nI fought hard, but I still lost…")
     msgbox("{PLAYER}, isn't it?\pA brat like you won't appreciate\nthe magnificence of TEAM ROCKET.\pThat's too bad.\nI really admire your power.")
     release
 }
