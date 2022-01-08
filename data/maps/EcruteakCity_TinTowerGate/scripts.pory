@@ -1,8 +1,169 @@
-mapscripts EcruteakCity_TinTowerGate_MapScripts {}
+const VAR_SAGE_POSITION = VAR_TEMP_1
+const POS_LEFT = 4
+const POS_MID = 5
+const POS_RIGHT = 6
 
-// TODO: Both Sages and the triggers
+mapscripts EcruteakCity_TinTowerGate_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setvar(VAR_SAGE_POSITION, POS_MID)
+        if(flag(FLAG_FOUGHT_SUICUNE))
+        {
+            setvar(VAR_TEMP_0, 1)
+            end
+        }
+        if(defeated(TRAINER_KOJI))
+        {
+            setvar(VAR_TEMP_0, 1)
+            end
+        }
+        if(flag(FLAG_RANG_CLEAR_BELL))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+        if(flag(FLAG_CLEARED_RADIO_TOWER))
+        {
+            setflag(FLAG_TEMP_1)
+            end
+        }
+        if(flag(FLAG_BADGE04_GET))
+        {
+            setvar(VAR_TEMP_0, 1)
+            setflag(FLAG_TEMP_2)
+            end
+        }
+    }
+}
 
-script EcruteakCity_Mart_Eventscript_OldMan{
+script EcruteakCity_TinTowerGate_Eventscript_SageGuard{
+    if(flag(FLAG_CLEARED_RADIO_TOWER))
+    {
+        if(defeated(TRAINER_KOJI))
+        {
+            msgbox("Please, do go on.", MSGBOX_NPC)
+            end
+        }
+        if(flag(FLAG_TEMP_2))
+        {
+            msgbox("That bell's chime is indicative of\nthe bearer's soul.\pYou…\pYou may be able to make it through\nTIN TOWER.\pPlease, do go on.", MSGBOX_NPC)
+            end
+        }
+        checkitem(ITEM_CLEAR_BELL, 1)
+        if(var(VAR_RESULT))
+        {
+            msgbox("A momentous event has occurred.\pI beg your pardon, but I must ask\nyou to leave.\p… … … … … …\pAh!\nThe sound of that CLEAR BELL!\pIt's…\nIt's sublime!\pI've never heard so beautiful a\nsound before!\pThat bell's chime is indicative of\nthe bearer's soul.\pYou…\pYou may be able to make it through\nTIN TOWER.\pPlease, do go on.", MSGBOX_NPC)
+            setflag(FLAG_TEMP_2)
+            setflag(FLAG_RANG_CLEAR_BELL)
+            setvar(VAR_TEMP_0, 1)
+            end
+        }
+        else // the Clear Bell can't be lost once acquired, so this is never reached without cheating.
+        {
+            msgbox("A momentous event has occurred.\pI beg your pardon, but I must ask\nyou to leave.\p…What soothes the soul…\pThe WISE TRIO say things that are so\nvery difficult to understand…", MSGBOX_NPC)
+            end
+        }
+    }
+    if(flag(FLAG_BADGE04_GET))
+    {
+        msgbox("TIN TOWER is off limits to anyone\nwithout ECRUTEAK GYM's BADGE.\pAh!\pECRUTEAK'S GYM BADGE!\nPlease, go right through.", MSGBOX_NPC)
+        end
+    }
+    msgbox("TIN TOWER is off limits to anyone\nwithout ECRUTEAK GYM's BADGE.\pSorry, but you'll have to leave.", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_TinTowerGate_Eventscript_Triggers{
+    lock
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    switch(var(VAR_RESULT))
+    {
+        case POS_LEFT:
+            switch(var(VAR_SAGE_POSITION))
+            {
+                case POS_LEFT:
+                    release
+                    end
+                case POS_MID:
+                    applymovement(3, EcruteakCity_TinTowerGate_Movement_Sage1Left)
+                    waitmovement(0)
+                    setvar(VAR_SAGE_POSITION, POS_LEFT)
+                    release
+                    end
+                case POS_RIGHT:
+                    applymovement(3, EcruteakCity_TinTowerGate_Movement_Sage2Left)
+                    waitmovement(0)
+                    setvar(VAR_SAGE_POSITION, POS_LEFT)
+                    release
+                    end
+            }
+        case POS_MID:
+            switch(var(VAR_SAGE_POSITION))
+            {
+                case POS_LEFT:
+                    applymovement(3, EcruteakCity_TinTowerGate_Movement_Sage1Right)
+                    waitmovement(0)
+                    setvar(VAR_SAGE_POSITION, POS_MID)
+                    release
+                    end
+                case POS_MID:
+                    release
+                    end
+                case POS_RIGHT:
+                    applymovement(3, EcruteakCity_TinTowerGate_Movement_Sage1Left)
+                    waitmovement(0)
+                    setvar(VAR_SAGE_POSITION, POS_MID)
+                    release
+                    end
+            }
+        case POS_RIGHT:
+            switch(var(VAR_SAGE_POSITION))
+            {
+                case POS_LEFT:
+                    applymovement(3, EcruteakCity_TinTowerGate_Movement_Sage2Right)
+                    waitmovement(0)
+                    setvar(VAR_SAGE_POSITION, POS_RIGHT)
+                    release
+                    end
+                case POS_MID:
+                    applymovement(3, EcruteakCity_TinTowerGate_Movement_Sage1Right)
+                    waitmovement(0)
+                    setvar(VAR_SAGE_POSITION, POS_RIGHT)
+                    release
+                    end
+                case POS_RIGHT:
+                    release
+                    end
+            }
+    }
+}movement(local) EcruteakCity_TinTowerGate_Movement_Sage1Left{
+    lock_facing_direction
+    walk_left
+    unlock_facing_direction
+}movement(local) EcruteakCity_TinTowerGate_Movement_Sage2Left{
+    lock_facing_direction
+    walk_fast_left * 2
+    unlock_facing_direction
+}movement(local) EcruteakCity_TinTowerGate_Movement_Sage1Right{
+    lock_facing_direction
+    walk_right
+    unlock_facing_direction
+}movement(local) EcruteakCity_TinTowerGate_Movement_Sage2Right{
+    lock_facing_direction
+    walk_fast_right * 2
+    unlock_facing_direction
+}
+
+script EcruteakCity_TinTowerGate_Eventscript_OldMan{
     msgbox("Two towers…\nTwo POKéMON…\pBut when one burned down, both\nPOKéMON flew away, never to return.", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_TinTowerGate_Eventscript_WanderingSage{
+    checkitem(ITEM_CLEAR_BELL, 1)
+    if(var(VAR_RESULT))
+    {
+        msgbox("The TIN TOWER shook!\nA POKéMON must have returned to the top!", MSGBOX_NPC)
+        end
+    }
+    msgbox("The TIN TOWER ahead is a nine-tier\ntower of divine beauty.\pIt soothes the souls of all who\nsee it.", MSGBOX_NPC)
     end
 }

@@ -1,1 +1,107 @@
-mapscripts EcruteakCity_WiseTriosRoom_MapScripts {}
+mapscripts EcruteakCity_WiseTriosRoom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(flag(FLAG_FOUGHT_SUICUNE))
+        {
+            setflag(FLAG_TEMP_1)
+            setflag(FLAG_TEMP_2)
+            end
+        }
+        if(defeated(TRAINER_KOJI))
+        {
+            setflag(FLAG_TEMP_1)
+            setvar(VAR_TEMP_0, 1)
+            setobjectxyperm(6, 24, 6)
+            end
+        }
+        checkitem(ITEM_CLEAR_BELL, 1)
+        if(var(VAR_RESULT))
+        {
+            setflag(FLAG_TEMP_1)
+            end
+        }
+        setflag(FLAG_TEMP_2)
+    }
+    MAP_SCRIPT_ON_LOAD{
+        if(flag(FLAG_TEMP_2))
+        {
+            setmetatile(25, 5, 0x37C, 0)
+        }
+    }
+}
+
+script EcruteakCity_WiseTriosRoom_EventScript_SageGaku{
+    trainerbattle_single(TRAINER_GAKU, "Legend has it that upon the\nemergence of a trainer who has the\lability to touch the souls of\lPOKéMON, a POKéMON will come forth\lto put that trainer to test at the\lTIN TOWER.\pThe legend has come true!\nThe legendary POKéMON SUICUNE\lhas arrived!\pWe, the WISE TRIO shall test your\nworthiness to go inside!", "Stronger than we thought?\nPerhaps…", EcruteakCity_WiseTriosRoom_EventScript_SageGaku)
+    msgbox("Ah, so it is you who claim to have\nseen SUICUNE, ENTEI and RAIKOU\lwhile they slept?\pUnbelievable!\pLegend has it that they can't be\nseen while they sleep…")
+    release
+}
+
+script EcruteakCity_WiseTriosRoom_EventScript_SageMasa{
+    trainerbattle_single(TRAINER_MASA, "Can you be trusted with the truth?\nI must ascertain your worthiness.", "…I will tell you the truth…", EcruteakCity_WiseTriosRoom_EventScript_SageMasa)
+    msgbox("In the past, there were two\nnine-tier towers here.\pThe BRASS TOWER, which was said to\nawaken POKéMON, and the TIN TOWER,\lwhere POKéMON were said to rest.\pThe view from the tops of the TOWERS\nmust have been magnificent.\pAt the time, an immense,\nsilver-colored POKéMON was said\lto make its roost atop the BRASS\lTOWER.\pHowever…\pAbout 150 years go, a lightning\nbolt struck one of the TOWERS.\pIt was engulfed in flames that raged\nfor three days.\pA sudden downpour finally put out\nthe blaze.\pAnd that is how the BURNED TOWER\ncame to be.")
+    release
+}
+
+script EcruteakCity_WiseTriosRoom_EventScript_SageKoji {
+    trainerbattle_single(TRAINER_KOJI, "Let me see your power!", "Too strong!\nWhy?", EcruteakCity_WiseTriosRoom_EventScript_SageKoji2)
+    goto(EcruteakCity_WiseTriosRoom_EventScript_SageKoji2)
+    end
+}
+script EcruteakCity_WiseTriosRoom_EventScript_SageKoji2{
+    if(defeated(TRAINER_KOJI))
+    {
+        msgbox("Please, do go on.\nSUICUNE will put you to the test.", MSGBOX_NPC)
+        end
+    }
+    msgbox("You… Are you the trainer who is\nawaited by the legendary POKéMON?\pI see…\pWe, the WISE TRIO, have been given\nthe responsibility of protecting the\llegendary POKéMON.\pWe are to allow passage only to\nthose people who possess the power\land soul of truth.\pPlease, do go on and enter the\nTIN TOWER ahead.\pSUICUNE will put you to the test.")
+    closemessage
+    applymovement(6, EcruteakCity_WiseTriosRoom_Movement_KojiUnblocks)
+    waitmovement(0)
+    settrainerflag(TRAINER_KOJI) // this flag is not set after the battle
+    setvar(VAR_TEMP_0, 1)
+    release
+}movement(local) EcruteakCity_WiseTriosRoom_Movement_KojiUnblocks{
+    walk_right
+    walk_down
+    face_left
+}
+
+script EcruteakCity_WiseTriosRoom_EventScript_Sage1 {
+    msgbox("Astounding…\pSUICUNE, ENTEI and RAIKOU have\narisen from their sleep…\pIs the legend coming true?", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_WiseTriosRoom_EventScript_Sage2 {
+    msgbox("We train at the BURNED TOWER, but\nwe've never heard of a hole opening\lup there before.\pIt must have been deliberately\nmade by someone.", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_WiseTriosRoom_EventScript_Sage3 {
+    msgbox("We, the WISE TRIO, are the\nprotectors of the legendary POKéMON.", MSGBOX_NPC)
+    end
+}
+
+script EcruteakCity_WiseTriosRoom_EventScript_Trigger {
+    turnobject(3, DIR_NORTH)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    applymovement(3, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    applymovement(3, EcruteakCity_WiseTriosRoom_Movement_BlockPlayer)
+    applymovement(OBJ_EVENT_ID_PLAYER, EcruteakCity_WiseTriosRoom_Movement_PlayerBlocked)
+    waitmovement(0)
+    textcolor(0)
+    msgbox("TIN TOWER may be entered by those\nbearing ECRUTEAK's GYM BADGE.\pHowever, now that SUICUNE, RAIKOU\nand ENTEI have arisen, I ask you\lto refrain from entering!")
+    closemessage
+    applymovement(3, EcruteakCity_WiseTriosRoom_Movement_SageReturns)
+    waitmovement(0)
+}movement(local) EcruteakCity_WiseTriosRoom_Movement_BlockPlayer{
+    walk_up
+    walk_left
+}movement(local) EcruteakCity_WiseTriosRoom_Movement_PlayerBlocked{
+    walk_left * 2
+    face_right
+}movement(local) EcruteakCity_WiseTriosRoom_Movement_SageReturns{
+    walk_right
+    walk_down
+    face_left
+}

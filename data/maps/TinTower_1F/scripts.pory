@@ -1,6 +1,311 @@
+const FLAG_HIDE_EUSINE = FLAG_TEMP_2
+const FLAG_HIDE_SAGES = FLAG_TEMP_1
+
 mapscripts TinTower_1F_MapScripts {
+    MAP_SCRIPT_ON_LOAD{
+        checkitem(ITEM_RAINBOW_WING, 1)
+        if(!var(VAR_RESULT))
+        {
+            setmetatile(9, 2, 0x2A8, 1)
+            setmetatile(9, 3, 0x283, 0)
+        }
+    }
     MAP_SCRIPT_ON_TRANSITION{
         setflag(FLAG_LANDMARK_TIN_TOWER)
         setescapewarp(MAP_ECRUTEAK_CITY, 255, 41, 11)
+        setflag(FLAG_HIDE_EUSINE)
+        if(!flag(FLAG_FOUGHT_SUICUNE))
+        {
+            setflag(FLAG_HIDE_MAP_NAME_POPUP)
+            setobjectxyperm(4, 9, 17)
+            setobjectxyperm(5, 9, 17)
+            setobjectxyperm(6, 9, 17)
+            setobjectxyperm(7, 9, 17)
+            callnative(IsRaikouRoaming)
+            if(!var(VAR_RESULT))
+            {
+                setobjectxyperm(2, 0xFF, 0xFF)
+            }
+            callnative(IsEnteiRoaming)
+            if(!var(VAR_RESULT))
+            {
+                setobjectxyperm(3, 0xFF, 0xFF)
+            }
+            setflag(FLAG_HIDE_SAGES)
+            end
+        }
+        setvar(VAR_TEMP_0, 1)
+        checkitem(ITEM_RAINBOW_WING, 1)
+        if(var(VAR_RESULT))
+        {   // checking this to avoid doing the expensive beasts check
+            goto(TinTower_1F_MapScript_MoveSagesToTop)
+        }
+        else
+        {
+            if(flag(FLAG_SYS_GAME_CLEAR))
+            {
+                callnative(CheckOwnAllBeasts)
+                if(var(VAR_RESULT))
+                {
+                    goto(TinTower_1F_MapScript_MoveSagesToTop)
+                }
+            }
+        }
+        if(flag(FLAG_DEFEATED_HO_OH))
+        {
+            clearflag(FLAG_HIDE_EUSINE)
+        }
     }
+    MAP_SCRIPT_ON_RESUME {
+        if (flag(FLAG_SYS_CTRL_OBJ_DELETE))
+        {
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH) //causes music stutter? The player comes back from the Suicune Battle facing up for some unknown reason, so this is necessary...
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            if (var(VAR_RESULT) == B_OUTCOME_CAUGHT)
+            {
+                removeobject(VAR_LAST_TALKED)
+            }
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0 {
+            lockall
+            applymovement(OBJ_EVENT_ID_PLAYER, TinTower_1F_Movement_PlayerToSuicune)
+            waitmovement(0)
+            delay(15)
+            callnative(IsRaikouRoaming)
+            if(var(VAR_RESULT))
+            {
+                playse(SE_LEDGE)
+                applymovement(2, BurnedTower_B1F_Movement_JumpDown)
+                waitmovement(0)
+                turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+                playmoncry(SPECIES_RAIKOU, 0)
+                waitmoncry
+                playse(SE_LEDGE)
+                applymovement(2, BurnedTower_B1F_Movement_JumpDown)
+                waitmovement(0)
+                playse(SE_LEDGE)
+                applymovement(2, BurnedTower_B1F_Movement_JumpRight)
+                waitmovement(0)
+                playse(SE_LEDGE)
+                applymovement(2, BurnedTower_B1F_Movement_JumpDown)
+                waitmovement(0)
+                removeobject(2)
+                playse(SE_EXIT)
+                waitse
+            }
+            callnative(IsEnteiRoaming)
+            if(var(VAR_RESULT))
+            {
+                playse(SE_LEDGE)
+                applymovement(3, BurnedTower_B1F_Movement_JumpDown)
+                waitmovement(0)
+                turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+                playmoncry(SPECIES_ENTEI, 0)
+                waitmoncry
+                playse(SE_LEDGE)
+                applymovement(3, BurnedTower_B1F_Movement_JumpDown)
+                waitmovement(0)
+                playse(SE_LEDGE)
+                applymovement(3, BurnedTower_B1F_Movement_JumpLeft)
+                waitmovement(0)
+                playse(SE_LEDGE)
+                applymovement(3, BurnedTower_B1F_Movement_JumpDown)
+                waitmovement(0)
+                removeobject(3)
+                playse(SE_EXIT)
+                waitse
+            }
+            setvar(VAR_LAST_TALKED, 1)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+            applymovement(OBJ_EVENT_ID_PLAYER, TinTower_1F_Movement_PlayerBacksUp)
+            applymovement(1, BurnedTower_B1F_Movement_JumpDown)
+            waitmovement(0)
+            playmoncry(SPECIES_SUICUNE, 0)
+            waitmoncry
+            setflag(FLAG_SYS_CANT_RUN_FROM_BATTLE)
+            setwildbattle(SPECIES_SUICUNE, 40, ITEM_NONE)
+            setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+            dowildbattle
+            clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            switch(var(VAR_RESULT))
+            {
+                case B_OUTCOME_CAUGHT:
+                    call(TinTower_1F_EventScript_SuicuneCaught)
+                case B_OUTCOME_WON:
+                    call(Common_EventScript_RemoveStaticPokemon)
+                case B_OUTCOME_RAN:
+                case B_OUTCOME_PLAYER_TELEPORTED:
+                    call(Common_EventScript_RemoveStaticPokemon)
+            }
+            setflag(FLAG_DEFEATED_SUICUNE)
+            setflag(FLAG_FOUGHT_SUICUNE)
+            setflag(FLAG_SAW_SUICUNE_IN_CIANWOOD)
+            setflag(FLAG_SAW_SUICUNE_ON_ROUTE_42)
+            setflag(FLAG_SAW_SUICUNE_ON_ROUTE_36)
+            clearflag(FLAG_HIDE_MAP_NAME_POPUP)
+            delay(20)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+            //playbgm(MUS_) // Mysticalman encounter
+            playse(SE_EXIT)
+            addobject(7)
+            applymovement(7, TinTower_1F_Movement_EusineToPlayer)
+            waitmovement(0)
+            playse(SE_EXIT)
+            addobject(4)
+            applymovement(4, TinTower_1F_Movement_Sage1ToSpot)
+            waitmovement(0)
+            playse(SE_EXIT)
+            addobject(5)
+            applymovement(5, TinTower_1F_Movement_Sage2ToSpot)
+            waitmovement(0)
+            playse(SE_EXIT)
+            addobject(6)
+            applymovement(6, TinTower_1F_Movement_Sage3ToSpot)
+            waitmovement(0)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+            textcolor(0)
+            msgbox("EUSINE: Awesome!\nToo awesome, even!\pI've never seen a battle that great.\nThat was truly inspiring to see.\pSUICUNE was tough, but you were\neven more incredible, {PLAYER}.\pI heard SUICUNE's mystic power\nsummons a rainbow-colored POKéMON.\pMaybe, just maybe, what went on\ntoday will cause that POKéMON to\lappear.\pI'm going to study the legends more.\nThanks for showing me that fantastic\lbattle.\pLater, {PLAYER}!")
+            closemessage
+            applymovement(7, TinTower_1F_Movement_EusineExits)
+            waitmovement(0)
+            playse(SE_EXIT)
+            removeobject(7)
+            fadedefaultbgm
+            setvar(VAR_TEMP_0, 1)
+            clearflag(FLAG_HIDE_SAGES)
+            setobjectxyperm(4, 7, 15)
+            setobjectxyperm(5, 9, 15)
+            setobjectxyperm(6, 11, 15)
+            releaseall
+            end
+        }
+    ]
+}movement(local) TinTower_1F_Movement_PlayerToSuicune{
+    walk_slow_up * 4
+}movement(local) TinTower_1F_Movement_PlayerBacksUp{
+    lock_facing_direction
+    walk_fast_down
+    unlock_facing_direction
+}script(local) TinTower_1F_EventScript_SuicuneCaught{
+    setflag(FLAG_CAUGHT_SUICUNE)
+}movement(local) TinTower_1F_Movement_EusineToPlayer{
+    walk_up
+    walk_right
+    walk_up * 2
+    face_left
+}movement(local) TinTower_1F_Movement_Sage1ToSpot{
+    walk_up * 2
+    walk_left * 2
+    face_up
+}movement(local) TinTower_1F_Movement_Sage2ToSpot{
+    walk_up * 2
+}movement(local) TinTower_1F_Movement_Sage3ToSpot{
+    walk_up
+    walk_right * 2
+    walk_up
+}movement(local) TinTower_1F_Movement_EusineExits{
+    walk_down * 2
+    walk_left
+    walk_down
+}
+
+script TinTower_1F_MapScript_MoveSagesToTop{
+    setflag(FLAG_TEMP_3)
+    setobjectxyperm(4, 3, 4)
+    setobjectmovementtype(4, MOVEMENT_TYPE_WANDER_UP_AND_DOWN)
+    setobjectxyperm(5, 8, 3)
+    setobjectmovementtype(5, MOVEMENT_TYPE_FACE_DOWN)
+    setobjectxyperm(6, 14, 4)
+    setobjectmovementtype(6, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT)
+    end
+}
+
+script TinTower_1F_EventScript_Sage1{
+    if(flag(FLAG_TEMP_3))
+    {
+        if(!flag(FLAG_DEFEATED_HO_OH))
+        {
+            msgbox("HO-OH appears to have descended\nupon this, the TIN TOWER!", MSGBOX_NPC)
+            end
+        }
+        msgbox("The legendary POKéMON are said\nto embody three powers…\pThe lightning that struck the TOWER.\pThe fire that burned the TOWER.\pAnd the rain that put out the fire…")
+        end
+    }
+    msgbox("According to legend…\pWhen the souls of POKéMON and humans\ncommune, from the heavens descends\la POKéMON of rainbow colors…\pCould it mean the legendary POKéMON\nare testing us humans?", MSGBOX_NPC)
+    end
+}
+
+script TinTower_1F_EventScript_Sage2{
+    if(flag(FLAG_TEMP_3))
+    {
+        if(flag(FLAG_DEFEATED_HO_OH))
+        {
+            msgbox("When the legendary POKéMON appeared…\pThey struck terror in those who saw\ntheir rise.\pAnd…\nSome even took to futile attacks.\pThe legendary POKéMON, knowing\ntheir own power, fled, ignoring\lthe frightened people.", MSGBOX_NPC)
+            end
+        }
+        checkitem(ITEM_RAINBOW_WING, 1)
+        if(var(VAR_RESULT))
+        {
+            msgbox("Now, go.", MSGBOX_NPC)
+            end
+        }
+        else
+        {
+            lock
+            faceplayer
+            msgbox("This will protect you.\nTake it.")
+            giveitem(ITEM_RAINBOW_WING, 1)
+            closemessage
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            special(DoSealedChamberShakingEffect2)
+            waitstate
+            playse(SE_M_ROCK_THROW)
+            setmetatile(9, 2, 0x320, 1)
+            setmetatile(9, 3, 0x2B0, 0)
+            special(DrawWholeMapView)
+            waitse
+            goto(TinTower_1F_EventScript_Sage2)
+        }
+    }
+    msgbox("When the BRASS TOWER burned down,\nthree nameless POKéMON were said\lto have perished. It was tragic.\pHowever…\pA rainbow-colored POKéMON…\nIn other words…\pHO-OH descended from the sky\nand gave new life to the three\lPOKéMON.\pThey are…\pSUICUNE, ENTEI, and RAIKOU.\nThat is what they say.", MSGBOX_NPC)
+    end
+}
+
+script TinTower_1F_EventScript_Sage3{
+    if(flag(FLAG_TEMP_3))
+    {
+        if(!flag(FLAG_DEFEATED_HO_OH))
+        {
+            msgbox("I believe you are being tested.\pFree your mind from uncertainty,\nand advance.", MSGBOX_NPC)
+            end
+        }
+        msgbox("Of the legendary POKéMON, SUICUNE\nis said to be the closest to HO-OH.\pI hear there may also be a link to\nPOKéMON known as UNOWN.\pThe POKéMON UNOWN must be sharing a\ncooperative bond with SUICUNE.")
+        end
+    }
+    msgbox("The two TOWERS are said to have\nbeen built to foster friendship and\lhope between POKéMON and people.\pThat was 700 years ago, but the\nideal still remains important today.", MSGBOX_NPC)
+    end
 }

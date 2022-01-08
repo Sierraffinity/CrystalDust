@@ -17,6 +17,7 @@
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
 #include "constants/field_effects.h"
+#include "constants/layouts.h"
 #include "constants/trainer_types.h"
 
 // this file's functions
@@ -243,7 +244,7 @@ bool8 CheckForTrainersWantingBattle(void)
 
         if (gNoOfApproachingTrainers > 1)
             break;
-        if (GetMonsStateToDoubles_2() != 0) // one trainer found and cant have a double battle
+        if (GetMonsStateToDoubles_2() != 0 || gMapHeader.mapLayoutId == LAYOUT_ECRUTEAK_CITY_WISE_TRIOS_ROOM) // one trainer found and cant have a double battle
             break;
     }
 

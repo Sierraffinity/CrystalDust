@@ -139,11 +139,11 @@ script BurnedTower_B1F_EventScript_Trigger{
     setflag(FLAG_SAW_SUICUNE_ON_ROUTE_36)
     releaseall
     end
-}movement(local) BurnedTower_B1F_Movement_JumpDown{
+}movement BurnedTower_B1F_Movement_JumpDown{
     jump_2_down_fast
-}movement(local) BurnedTower_B1F_Movement_JumpLeft{
+}movement BurnedTower_B1F_Movement_JumpLeft{
     jump_2_left_fast
-}movement(local) BurnedTower_B1F_Movement_JumpRight{
+}movement BurnedTower_B1F_Movement_JumpRight{
     jump_2_right_fast
 }movement(local) BurnedTower_B1F_Movement_JumpUp{
     jump_2_up_fast

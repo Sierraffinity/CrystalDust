@@ -521,7 +521,10 @@ void BattleSetup_StartScriptedWildBattle(void)
     ScriptContext2_Enable();
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = 0;
-    CreateBattleStartTask(GetWildBattleTransition(), 0);
+    if(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES) == SPECIES_SUICUNE)
+        CreateBattleStartTask(GetWildBattleTransition(), MUS_C_VS_LEGEND_BEAST);
+    else
+        CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
     IncrementDailyWildBattles();
@@ -1274,7 +1277,8 @@ static void SetBattledTrainersFlags(void)
 {
     if (gTrainerBattleOpponent_B != 0)
         FlagSet(GetTrainerBFlag());
-    FlagSet(GetTrainerAFlag());
+    if(GetTrainerAFlag() - TRAINER_FLAGS_START != TRAINER_KOJI)
+        FlagSet(GetTrainerAFlag());
 }
 
 static void SetBattledTrainerFlag(void)

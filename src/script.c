@@ -2,6 +2,9 @@
 #include "script.h"
 #include "event_data.h"
 #include "mevent.h"
+#include "pokemon_storage_system.h"
+#include "string_util.h"
+#include "tv.h"
 #include "util.h"
 #include "constants/map_scripts.h"
 #include "constants/moves.h"
@@ -592,4 +595,85 @@ extern const u16 gObjectEventPal_Murkrow;
 void PatchMurkrowPaletteToSlot10(void)
 {
     LoadPaletteDayNight(&gObjectEventPal_Murkrow, 16 * 10 + 0x100, 0x20);
+}
+
+void IsRaikouRoaming(void)
+{
+    gSpecialVar_Result = (&gSaveBlock1Ptr->roamer[0])->active;
+}
+
+void IsEnteiRoaming(void)
+{
+    gSpecialVar_Result = (&gSaveBlock1Ptr->roamer[1])->active;
+}
+
+static bool32 MonHasPlayersOT(struct Pokemon mon)
+{
+    if (GetMonData(&mon, MON_DATA_LANGUAGE) != GAME_LANGUAGE)
+        return FALSE;
+
+    GetMonData(&mon, MON_DATA_OT_NAME, gStringVar1);
+
+    if (!StringCompare(gSaveBlock2Ptr->playerName, gStringVar1))
+        return FALSE;
+
+    if (GetPlayerIDAsU32() != GetMonData(&mon, MON_DATA_OT_ID, NULL))
+        return FALSE;
+
+    return TRUE;
+}
+
+void CheckOwnAllBeasts(void)
+{
+    u32 i;
+    u32 j;
+    u32 k;
+    u16 species = SPECIES_BLISSEY; //incremented in k loop to Raikou to start
+    bool32 hasRaikou = FALSE;
+    bool32 hasEntei = FALSE;
+    bool32 hasSuicune = FALSE;
+    bool32 hasMon = FALSE;
+    struct Pokemon tempMon;
+
+    for(k = 0; k < 3; k++)
+    {
+        if(k == 1)
+            hasRaikou = hasMon;
+        if(k == 2)
+            hasEntei = hasMon;
+        species++;
+
+        // check party for species
+        for(i = 0; i < PARTY_SIZE && !hasMon; i++)
+        {
+
+            if(species == GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, 0))
+            {
+                hasMon = MonHasPlayersOT(gPlayerParty[i]);
+            }
+        }
+        // check boxes for species
+        for(i = 0; i < TOTAL_BOXES_COUNT && !hasMon; i++)
+        {
+            for(j = 0; j < IN_BOX_COUNT && !hasMon; j++)
+            {
+                if(GetBoxMonDataAt(i, j, MON_DATA_SPECIES) == species)
+                {
+                    BoxMonToMon(GetBoxedMonPtr(i, j), &tempMon);
+                    hasMon = MonHasPlayersOT(tempMon);
+                }
+            }
+        }
+    }
+    hasSuicune = hasMon;
+    if(hasRaikou && hasEntei && hasSuicune)
+    {
+        gSpecialVar_Result = TRUE;
+        return;
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE;
+        return;
+    }  
 }

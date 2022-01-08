@@ -325,10 +325,10 @@
 #define FLAG_GOT_TM11_SUNNY_DAY_FROM_RADIO_TOWER 0x133
 #define FLAG_OPENED_RADIO_TOWER_CARD_KEY_DOOR 0x134
 #define FLAG_GOT_SILK_SCARF_FROM_DJ_MARY     0x135
+#define FLAG_FOUGHT_SUICUNE                  0x136 // Used to end the encounter in Tin Tower
+#define FLAG_DEFEATED_SUICUNE                0x137 // Used as the flag to regenerate if not caught
+#define FLAG_RANG_CLEAR_BELL                 0x138 // At Tin Tower Gate
 // STOPPED HERE
-#define FLAG_MET_SCOTT_RUSTBORO              0x136
-#define FLAG_WALLACE_GOES_TO_SKY_PILLAR      0x137 // Set after speaking to Wallace within the Cave of Origin.
-#define FLAG_RECEIVED_HM07_OLD               0x138
 #define FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS    0x139
 #define FLAG_RECEIVED_AURORA_TICKET          0x13A
 #define FLAG_RECEIVED_MYSTIC_TICKET          0x13B
