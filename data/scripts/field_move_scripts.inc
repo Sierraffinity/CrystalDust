@@ -345,3 +345,84 @@ Text_WantToHeadbutt:
 
 Text_HeadbuttNothing::
 	.string "Nope. Nothing…$"
+
+EventScript_UseWhirlpool::
+	lockall
+	checkpartymove MOVE_WHIRLPOOL
+	compare VAR_RESULT, PARTY_SIZE
+	goto_if_eq EventScript_CantWhirlpool
+	bufferpartymonnick 0, VAR_RESULT
+	setfieldeffectargument 0, VAR_RESULT
+	msgbox Text_WantToWhirlpool, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_EndWhirlpool
+
+EventScript_UseWhirlpoolFromPartyMenu::
+	lockall
+	msgbox Text_MonUsedWhirlpool, MSGBOX_DEFAULT
+	closemessage
+	dofieldeffect FLDEFF_USE_WHIRLPOOL
+	goto EventScript_DisperseWhirlpool
+
+EventScript_CannotUseWhirlpool::
+	lockall
+
+EventScript_CantWhirlpool::
+	msgbox Text_CantWhirlpool, MSGBOX_DEFAULT
+	releaseall
+	end
+
+EventScript_DisperseWhirlpool::
+	delay 110
+	playse SE_M_WHIRLPOOL
+	waitse
+	specialvar VAR_FACING, GetPlayerFacingDirection
+	getplayerxy VAR_0x8008, VAR_RESULT
+	switch VAR_FACING
+	case DIR_SOUTH, EventScript_DisperseWhirlpoolSouth
+	case DIR_NORTH, EventScript_DisperseWhirlpoolNorth
+	case DIR_EAST, EventScript_DisperseWhirlpoolEast
+	case DIR_WEST, EventScript_DisperseWhirlpoolWest
+	releaseall
+	end
+
+EventScript_DisperseWhirlpoolSouth:
+	addvar VAR_RESULT, 1
+	setmetatile VAR_0x8008, VAR_RESULT, 0x12B, 0
+	special DrawWholeMapView
+	releaseall
+	end
+
+EventScript_DisperseWhirlpoolNorth:
+	subvar VAR_RESULT, 1
+	setmetatile VAR_0x8008, VAR_RESULT, 0x12B, 0
+	special DrawWholeMapView
+	releaseall
+	end
+
+EventScript_DisperseWhirlpoolEast:
+	addvar VAR_0x8008, 1
+	setmetatile VAR_0x8008, VAR_RESULT, 0x12B, 0
+	special DrawWholeMapView
+	releaseall
+	end
+
+EventScript_DisperseWhirlpoolWest:
+	subvar VAR_0x8008, 1
+	setmetatile VAR_0x8008, VAR_RESULT, 0x12B, 0
+	special DrawWholeMapView
+	releaseall
+	end
+
+EventScript_EndWhirlpool::
+	releaseall
+	end
+
+Text_WantToWhirlpool:
+	.string "A whirlpool is in the way.\nWant to use WHIRLPOOL?$"
+
+Text_CantWhirlpool:
+	.string "It's a vicious whirlpool!\nA POKéMON may be able to pass it.$"
+
+Text_MonUsedWhirlpool:
+	.string "{STR_VAR_1} used WHIRLPOOL.$"

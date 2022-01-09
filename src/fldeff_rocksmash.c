@@ -4,9 +4,11 @@
 #include "event_object_movement.h"
 #include "event_scripts.h"
 #include "field_effect.h"
+#include "fieldmap.h"
 #include "field_player_avatar.h"
 #include "fldeff.h"
 #include "item_use.h"
+#include "metatile_behavior.h"
 #include "overworld.h"
 #include "party_menu.h"
 #include "script.h"
@@ -27,6 +29,9 @@ static void Task_DoFieldMove_RunFunc(u8 taskId);
 
 static void FieldCallback_RockSmash(void);
 static void FieldMove_RockSmash(void);
+
+static void FieldCallback_Whirlpool(void);
+static void FieldMove_Whirlpool(void);
 
 // text
 bool8 CheckObjectGraphicsInFrontOfPlayer(u8 graphicsId)
@@ -164,5 +169,44 @@ static void FieldMove_RockSmash(void)
 {
     PlaySE(SE_M_ROCK_THROW);
     FieldEffectActiveListRemove(FLDEFF_USE_ROCK_SMASH);
+    EnableBothScriptContexts();
+}
+
+// Called when Whirlpool is used from the party menu
+bool8 SetUpFieldMove_Whirlpool(void)
+{
+    s16 x, y;
+    GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
+    if (MetatileBehavior_IsWhirlpool(MapGridGetMetatileBehaviorAt(x, y)) == TRUE)
+    {
+        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
+        gPostMenuFieldCallback = FieldCallback_Whirlpool;
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+static void FieldCallback_Whirlpool(void)
+{
+    gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    ScriptContext1_SetupScript(EventScript_UseWhirlpoolFromPartyMenu);
+}
+
+bool8 FldEff_UseWhirlpool(void)
+{
+    u8 taskId = CreateFieldMoveTask();
+    gTasks[taskId].data[8] = (u32)FieldMove_Whirlpool >> 16;
+    gTasks[taskId].data[9] = (u32)FieldMove_Whirlpool;
+    return FALSE;
+}
+
+// The actual whirlpooling is handled by EventScript_UseWhirlpool, so this function does very little
+static void FieldMove_Whirlpool(void)
+{
+    //PlaySE(SE_M_WHIRLPOOL);
+    FieldEffectActiveListRemove(FLDEFF_USE_WHIRLPOOL);
     EnableBothScriptContexts();
 }

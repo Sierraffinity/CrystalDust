@@ -67,6 +67,7 @@ static bool8 ForcedMovement_SlideEast(void);
 static bool8 ForcedMovement_MatJump(void);
 static bool8 ForcedMovement_MatSpin(void);
 static bool8 ForcedMovement_MuddySlope(void);
+static bool8 ForcedMovement_Whirlpool(void);
 
 static void MovePlayerNotOnBike(u8, u16);
 static u8 CheckMovementInputNotOnBike(u8);
@@ -121,6 +122,13 @@ static bool8 PlayerAvatar_SecretBaseMatSpinStep1(struct Task *task, struct Objec
 static bool8 PlayerAvatar_SecretBaseMatSpinStep2(struct Task *task, struct ObjectEvent *objectEvent);
 static bool8 PlayerAvatar_SecretBaseMatSpinStep3(struct Task *task, struct ObjectEvent *objectEvent);
 
+static void DoPlayerWhirlpoolSpin(void);
+static void PlayerAvatar_DoWhirlpoolSpin(u8 taskId);
+static bool8 PlayerAvatar_WhirlpoolSpinStep0(struct Task *task, struct ObjectEvent *objectEvent);
+static bool8 PlayerAvatar_WhirlpoolSpinStep1(struct Task *task, struct ObjectEvent *objectEvent);
+static bool8 PlayerAvatar_WhirlpoolSpinStep2(struct Task *task, struct ObjectEvent *objectEvent);
+static bool8 PlayerAvatar_WhirlpoolSpinStep3(struct Task *task, struct ObjectEvent *objectEvent);
+
 static void CreateStopSurfingTask(u8);
 static void Task_StopSurfingInit(u8 taskId);
 static void Task_WaitStopSurfing(u8 taskId);
@@ -164,6 +172,7 @@ static bool8 (*const sForcedMovementTestFuncs[])(u8) =
     MetatileBehavior_IsSecretBaseJumpMat,
     MetatileBehavior_IsSecretBaseSpinMat,
     MetatileBehavior_IsMuddySlope,
+    MetatileBehavior_IsWhirlpool
 };
 
 static bool8 (*const sForcedMovementFuncs[])(void) =
@@ -187,6 +196,7 @@ static bool8 (*const sForcedMovementFuncs[])(void) =
     ForcedMovement_MatJump,
     ForcedMovement_MatSpin,
     ForcedMovement_MuddySlope,
+    ForcedMovement_Whirlpool
 };
 
 static void (*const gUnknown_08497490[])(u8, u16) =
@@ -297,6 +307,14 @@ static bool8 (*const sPlayerAvatarSecretBaseMatSpin[])(struct Task *, struct Obj
     PlayerAvatar_SecretBaseMatSpinStep3,
 };
 
+static bool8 (*const sPlayerAvatarWhirlpoolSpin[])(struct Task *, struct ObjectEvent *) =
+{
+    PlayerAvatar_WhirlpoolSpinStep0,
+    PlayerAvatar_WhirlpoolSpinStep1,
+    PlayerAvatar_WhirlpoolSpinStep2,
+    PlayerAvatar_WhirlpoolSpinStep3,
+};
+
 // .text
 
 void MovementType_Player(struct Sprite *sprite)
@@ -397,7 +415,7 @@ static u8 GetForcedMovementByMetatileBehavior(void)
     {
         u8 metatileBehavior = gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior;
 
-        for (i = 0; i < 18; i++)
+        for (i = 0; i < 19; i++)
         {
             if (sForcedMovementTestFuncs[i](metatileBehavior))
                 return i + 1;
@@ -1322,6 +1340,20 @@ bool8 PartyHasMonWithSurf(void)
     return FALSE;
 }
 
+bool8 PartyHasMonWithWhirlpool(void)
+{
+    u8 i;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == SPECIES_NONE)
+            break;
+        if (MonKnowsMove(&gPlayerParty[i], MOVE_WHIRLPOOL))
+            return TRUE;
+    }
+    return FALSE;
+}
+
 bool8 IsPlayerSurfingNorth(void)
 {
     if (GetPlayerMovementDirection() == DIR_NORTH && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
@@ -2167,4 +2199,94 @@ static u8 TrySpinPlayerForWarp(struct ObjectEvent *object, s16 *delayTimer)
     ObjectEventForceSetHeldMovement(object, GetFaceDirectionMovementAction(sSpinDirections[object->facingDirection]));
     *delayTimer = 0;
     return sSpinDirections[object->facingDirection];
+}
+
+static bool8 ForcedMovement_Whirlpool(void)
+{
+    u8 initialFacingDirection = GetPlayerFacingDirection();
+
+    DoPlayerWhirlpoolSpin();
+    /*
+    switch(initialFacingDirection)
+    {
+        case DIR_SOUTH:
+            return DoForcedMovement(DIR_NORTH, PlayerGoSpeed2);
+        case DIR_NORTH:
+            return DoForcedMovement(DIR_SOUTH, PlayerGoSpeed2);
+        case DIR_WEST:
+            return DoForcedMovement(DIR_EAST, PlayerGoSpeed2); 
+        case DIR_EAST:
+            return DoForcedMovement(DIR_WEST, PlayerGoSpeed2);
+    }*/
+}
+
+static void DoPlayerWhirlpoolSpin(void)
+{
+    u8 taskId = CreateTask(PlayerAvatar_DoWhirlpoolSpin, 0xFF);
+
+    PlayerAvatar_DoWhirlpoolSpin(taskId);
+}
+
+static void PlayerAvatar_DoWhirlpoolSpin(u8 taskId)
+{
+    while (sPlayerAvatarWhirlpoolSpin[gTasks[taskId].data[0]](&gTasks[taskId], &gObjectEvents[gPlayerAvatar.objectEventId]))
+        ;
+}
+
+static bool8 PlayerAvatar_WhirlpoolSpinStep0(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    task->data[0]++;
+    task->data[1] = objectEvent->movementDirection;
+    gPlayerAvatar.preventStep = TRUE;
+    ScriptContext2_Enable();
+    //PlaySE(SE_WARP_IN);
+    return TRUE;
+}
+
+static bool8 PlayerAvatar_WhirlpoolSpinStep1(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    u8 directions[] = {DIR_WEST, DIR_EAST, DIR_NORTH, DIR_SOUTH};
+
+    if (ObjectEventClearHeldMovementIfFinished(objectEvent))
+    {
+        u8 direction;
+
+        ObjectEventSetHeldMovement(objectEvent, GetFaceDirectionMovementAction(direction = directions[objectEvent->movementDirection - 1]));
+        if (direction == (u8)task->data[1])
+            task->data[2]++;
+        task->data[0]++;
+        if (task->data[2] > 3 && direction == GetOppositeDirection(task->data[1]))
+            task->data[0]++;
+    }
+    return FALSE;
+}
+
+static bool8 PlayerAvatar_WhirlpoolSpinStep2(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    const u8 actions[] = {
+        MOVEMENT_ACTION_DELAY_1,
+        MOVEMENT_ACTION_DELAY_1,
+        MOVEMENT_ACTION_DELAY_2,
+        MOVEMENT_ACTION_DELAY_4,
+        MOVEMENT_ACTION_DELAY_8,
+    };
+
+    if (ObjectEventClearHeldMovementIfFinished(objectEvent))
+    {
+        ObjectEventSetHeldMovement(objectEvent, actions[task->data[2]]);
+        task->data[0] = 1;
+    }
+    return FALSE;
+}
+
+static bool8 PlayerAvatar_WhirlpoolSpinStep3(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    if (ObjectEventClearHeldMovementIfFinished(objectEvent))
+    {
+        ObjectEventSetHeldMovement(objectEvent, GetWalkSlowMovementAction(GetOppositeDirection(task->data[1])));
+        ScriptContext2_Disable();
+        gPlayerAvatar.preventStep = FALSE;
+        DestroyTask(FindTaskIdByFunc(PlayerAvatar_DoWhirlpoolSpin));
+    }
+    return FALSE;
 }

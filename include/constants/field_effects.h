@@ -70,6 +70,7 @@
 #define FLDEFF_MOVE_DEOXYS_ROCK          66
 #define FLDEFF_USE_HEADBUTT              67
 #define FLDEFF_CAMERA_FLASH              68
+#define FLDEFF_USE_WHIRLPOOL             69
 
 #define FLDEFFOBJ_SHADOW_S              0
 #define FLDEFFOBJ_SHADOW_M              1

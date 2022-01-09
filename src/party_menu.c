@@ -405,6 +405,7 @@ static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
+static bool32 HaveBadgeForHM(u8 fieldMove);
 
 // static const data
 #include "data/pokemon/tutor_learnsets.h"
@@ -3672,8 +3673,8 @@ static void CursorCb_FieldMove(u8 taskId)
     }
     else
     {
-        // All field moves before WATERFALL are HMs.
-        if (fieldMove <= FIELD_MOVE_WATERFALL && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
+        // All field moves before WHIRLPOOL are HMs.
+        if (fieldMove <= FIELD_MOVE_WHIRLPOOL && HaveBadgeForHM(fieldMove) != TRUE)
         {
             DisplayPartyMenuMessage(gText_CantUseUntilNewBadge, TRUE);
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
@@ -6399,5 +6400,46 @@ void IsLastMonThatKnowsSurf(void)
         }
         if (AnyStorageMonWithMove(move) != TRUE)
             gSpecialVar_Result = TRUE;
+    }
+}
+
+static bool32 HaveBadgeForHM(u8 fieldMove)
+{
+    switch(fieldMove)
+    {
+        case FIELD_MOVE_FLASH:
+            if(FlagGet(FLAG_BADGE01_GET))
+                return TRUE;
+            return FALSE;
+        case FIELD_MOVE_CUT:
+            if(FlagGet(FLAG_BADGE02_GET))
+                return TRUE;
+            return FALSE;
+        case FIELD_MOVE_STRENGTH:
+            if(FlagGet(FLAG_BADGE03_GET))
+                return TRUE;
+            return FALSE;
+        case FIELD_MOVE_SURF:
+            if(FlagGet(FLAG_BADGE04_GET))
+                return TRUE;
+            return FALSE;
+        case FIELD_MOVE_FLY:
+            if(FlagGet(FLAG_BADGE05_GET))
+                return TRUE;
+            return FALSE;
+        case FIELD_MOVE_ROCK_SMASH: // Rock Smash has no Badge requirement in GSC; in HGSS it requires Zephyr Badge
+            return TRUE;
+        case FIELD_MOVE_DIVE: // Will this ever be used?
+            return FALSE; 
+        case FIELD_MOVE_WATERFALL:
+            if(FlagGet(FLAG_BADGE08_GET))
+                return TRUE;
+            return FALSE;
+        case FIELD_MOVE_WHIRLPOOL:
+            if(FlagGet(FLAG_BADGE07_GET))
+                return TRUE;
+            return FALSE;
+        default:
+            return FALSE;
     }
 }

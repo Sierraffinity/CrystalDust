@@ -576,6 +576,14 @@ static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metati
         else
             return EventScript_CannotUseWaterfall;
     }
+
+    if (MetatileBehavior_IsWhirlpool(metatileBehavior) == TRUE)
+    {
+        if (FlagGet(FLAG_BADGE07_GET) == TRUE && PartyHasMonWithWhirlpool() == TRUE)
+            return EventScript_UseWhirlpool;
+        else
+            return EventScript_CannotUseWhirlpool;
+    }
     return NULL;
 }
 

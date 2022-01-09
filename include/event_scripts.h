@@ -558,6 +558,9 @@ extern const u8 NewBarkTown_ProfessorElmsLab_EventScript_ScottAboardSSTidalCall[
 extern const u8 GoldenrodCity_Gym_EventScript_RegisterRoxanne[];
 extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall[];
 extern const u8 EventScript_FallDownHoleMtPyre[];
+extern const u8 EventScript_UseWhirlpool[];
+extern const u8 EventScript_CannotUseWhirlpool[];
+extern const u8 EventScript_UseWhirlpoolFromPartyMenu[];
 
 // Secret Base
 extern const u8 SecretBase_EventScript_PC[];

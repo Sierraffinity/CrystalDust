@@ -48,6 +48,7 @@ static void TilesetAnim_NationalPark(u16);
 static void QueueAnimTiles_General_WaterFast(u16);
 static void QueueAnimTiles_General_Water(u16);
 static void QueueAnimTiles_General_Flower(u16);
+static void QueueAnimTiles_General_Whirlpool(u16);
 static void QueueAnimTiles_Building_TVTurnedOn(u16);
 static void QueueAnimTiles_Rustboro_WindyWater(u16, u8);
 static void QueueAnimTiles_Rustboro_Fountain(u16);
@@ -132,6 +133,18 @@ const u16 *const gTilesetAnims_General_Flower[] = {
     gTilesetAnims_General_Flower_Frame2,
     gTilesetAnims_General_Flower_Frame3,
     gTilesetAnims_General_Flower_Frame4
+};
+
+const u16 gTilesetAnims_General_Whirlpool_Frame0[] = INCBIN_U16("data/tilesets/primary/general/anim/whirlpool/0.4bpp");
+const u16 gTilesetAnims_General_Whirlpool_Frame1[] = INCBIN_U16("data/tilesets/primary/general/anim/whirlpool/1.4bpp");
+const u16 gTilesetAnims_General_Whirlpool_Frame2[] = INCBIN_U16("data/tilesets/primary/general/anim/whirlpool/2.4bpp");
+const u16 gTilesetAnims_General_Whirlpool_Frame3[] = INCBIN_U16("data/tilesets/primary/general/anim/whirlpool/3.4bpp");
+
+const u16 *const gTilesetAnims_General_Whirlpool[] = {
+    gTilesetAnims_General_Whirlpool_Frame0,
+    gTilesetAnims_General_Whirlpool_Frame1,
+    gTilesetAnims_General_Whirlpool_Frame2,
+    gTilesetAnims_General_Whirlpool_Frame3
 };
 
 const u16 gTilesetAnims_Lavaridge_Steam_Frame0[] = INCBIN_U16("data/tilesets/secondary/azalea/anim/steam/0.4bpp");
@@ -709,6 +722,8 @@ static void TilesetAnim_General(u16 timer)
         QueueAnimTiles_General_Water(timer >> 4);
     if (timer % 16 == 2)
         QueueAnimTiles_General_Flower(timer >> 4);
+    if (timer % 16 == 4)
+        QueueAnimTiles_General_Whirlpool(timer >> 4);
 }
 
 static void TilesetAnim_Building(u16 timer)
@@ -733,6 +748,12 @@ static void QueueAnimTiles_General_Flower(u16 timer)
 {
     u16 i = timer % 5;
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Flower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(508)), 0x80);
+}
+
+static void QueueAnimTiles_General_Whirlpool(u16 timer)
+{
+    u16 i = timer % 4;
+    AppendTilesetAnimToBuffer(gTilesetAnims_General_Whirlpool[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(488)), 0x80);
 }
 
 void InitTilesetAnim_NewBark(void)

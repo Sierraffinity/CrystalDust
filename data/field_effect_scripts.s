@@ -74,6 +74,7 @@ gFieldEffectScriptPointers::
 	.4byte gFieldEffectScript_MoveDeoxysRock            @ FLDEFF_MOVE_DEOXYS_ROCK
 	.4byte gFieldEffectScript_UseHeadbutt				@ FLDEFF_USE_HEADBUTT
 	.4byte gFieldEffectScript_CameraFlash				@ FLDEFF_CAMERA_FLASH
+	.4byte gFieldEffectScript_UseWhirlpool				@ FLDEFF_USE_WHIRLPOOL
 
 gFieldEffectScript_ExclamationMarkIcon1::
 	field_eff_loadfadedpalnotint_callnative gFieldEffectObjectPaletteInfo11, FldEff_ExclamationMarkIcon
@@ -352,4 +353,8 @@ gFieldEffectScript_UseHeadbutt::
 
 gFieldEffectScript_CameraFlash::
 	field_eff_callnative FldEff_CameraFlash
+	field_eff_end
+
+gFieldEffectScript_UseWhirlpool::
+	field_eff_callnative FldEff_UseWhirlpool
 	field_eff_end

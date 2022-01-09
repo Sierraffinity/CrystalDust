@@ -50,6 +50,10 @@ u8 CreateFieldMoveTask(void);
 bool8 SetUpFieldMove_RockSmash(void);
 bool8 FldEff_UseRockSmash(void);
 
+// whirlpool
+bool8 SetUpFieldMove_Whirlpool(void);
+bool8 FldEff_UseWhirlpool(void);
+
 // headbutt
 enum {
     TREEMON_SCORE_BAD,
