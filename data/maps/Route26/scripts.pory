@@ -18,8 +18,8 @@ script Route26_Eventscript_PsychicRichard {
 }
 
 script Route26_Eventscript_CooltrainerJoyce {
-    trainerbattle_single(TRAINER_JOYCE, "Since you've come this far, you must\nbe good.\pI'm going to give this battle\neverything I've got!", "No! I don't believe this!")
-    msgbox("I've defeated eight GYM LEADERS, so\nI was feeling confident.\pI'll have to try harder next time.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_JOYCE, "Since you've come this far,\nyou must be good.\pI'm going to give this battle\neverything I've got!", "No!\nI don't believe this!")
+    msgbox("I've defeated eight GYM LEADERS,\nso I was feeling confident.\pI'll have to try harder next time.", MSGBOX_AUTOCLOSE)
     end
 }
 

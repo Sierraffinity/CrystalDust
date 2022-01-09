@@ -43,7 +43,7 @@ script Route27_Eventscript_TohjoFallsSign {
 }
 //trainers from left to right
 script Route27_Eventscript_CooltrainerMegan {
-    trainerbattle_single(TRAINER_MEGAN, "It's rare to see anyone come here.\nAre you training on your own?", "Oh! You're really strong!")
+    trainerbattle_single(TRAINER_MEGAN, "It's rare to see anyone come here.\nAre you training on your own?", "Oh!\nYou're really strong!")
     msgbox("I'm checking out pre- and post-\nevolution POKéMON.\pEvolution really does make POKéMON\nstronger.\pBut evolved forms also learn moves\nlater on.", MSGBOX_AUTOCLOSE)
     end
 }
@@ -55,7 +55,7 @@ script Route27_Eventscript_CooltrainerBlake {
 }
 
 script Route27_Eventscript_CooltrainerBrian { // on bridge
-    trainerbattle_single(TRAINER_BRIAN, "Hm? You're good, aren't you?", "Just as I thought!")
+    trainerbattle_single(TRAINER_BRIAN, "Hm?\nYou're good, aren't you?", "Just as I thought!")
     msgbox("A good TRAINER can recognize other\ngood TRAINERS.", MSGBOX_AUTOCLOSE)
     end
 }
@@ -75,7 +75,7 @@ script Route27_Eventscript_PsychicGilbert {
 
 script Route27_Eventscript_CooltrainerReena {
     // TODO: Phone
-    trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the wild\nPOKéMON in these parts.", "Oh! You're much too strong!")
-    msgbox("You're just a kid, but you're not to\nbe underestimated either.", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_REENA_1, "You shouldn't underestimate the wild\nPOKéMON in these parts.", "Oh!\nYou're much too strong!")
+    msgbox("You're just a kid, but you're not\nto be underestimated either.", MSGBOX_AUTOCLOSE)
     end
 }

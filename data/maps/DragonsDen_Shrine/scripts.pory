@@ -260,7 +260,21 @@ script DragonsDen_Shrine_EventScript_DragonMaster {
         subvar(VAR_RESULT, 1)
         if(!flag(FLAG_DRAGONS_SHRINE_TEST_FAILED))
         {
-            setmonmove(VAR_RESULT, 3, MOVE_EXTREME_SPEED)
+            switch(var(VAR_RESULT))
+            {
+                case 0: // can't happen without cheating
+                    setmonmove(0, 3, MOVE_EXTREME_SPEED)
+                case 1:
+                    setmonmove(1, 3, MOVE_EXTREME_SPEED)
+                case 2:
+                    setmonmove(2, 3, MOVE_EXTREME_SPEED)
+                case 3:
+                    setmonmove(3, 3, MOVE_EXTREME_SPEED)
+                case 4:
+                    setmonmove(4, 3, MOVE_EXTREME_SPEED)
+                case 5:
+                    setmonmove(5, 3, MOVE_EXTREME_SPEED)
+            } 
         }
         setflag(FLAG_GOT_DRATINI_FROM_DRAGON_SHRINE)
         setflag(FLAG_TEMP_3)

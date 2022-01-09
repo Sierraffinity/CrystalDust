@@ -3,7 +3,7 @@
   "name": "TohjoFalls",
   "layout": "LAYOUT_TOHJO_FALLS",
   "music": "MUS_AQUA_MAGMA_HIDEOUT",
-  "region_map_section": "MAPSEC_TANOBY_KEY",
+  "region_map_section": "MAPSEC_TOHJO_FALLS",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",

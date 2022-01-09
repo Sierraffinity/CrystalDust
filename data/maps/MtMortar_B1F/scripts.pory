@@ -1,1 +1,45 @@
 mapscripts MtMortar_B1F_MapScripts {}
+
+script MtMortar_B1F_EventScript_Kiyo{
+    if(flag(FLAG_GOT_TYROGUE_FROM_KIYO))
+    {
+        msgbox("TYROGUE is a FIGHTING-type.\nIt evolves into a tougher POKéMON.\pKeep up the hard work.\nI'll keep training too.\pFarewell!", MSGBOX_NPC)
+        end
+    }
+    if(defeated(TRAINER_KIYO))
+    {
+        lock
+        faceplayer
+        msgbox("I…\nI'm crushed…\pMy training is still not enough…\nBut a loss is a loss. I admit it.\pAs proof that you defeated me, I'll\ngive you a rare fighting POKéMON.", MSGBOX_DEFAULT)
+        specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+        if(var(VAR_RESULT) == 6)
+        {
+            msgbox("You have no room in your party!", MSGBOX_DEFAULT)
+            release
+            end
+        }
+        textcolor(MSG_COLOR_SYS)
+        bufferspeciesname(0, SPECIES_TYROGUE)
+        playfanfare(MUS_OBTAIN_ITEM)
+        message("{PLAYER} received TYROGUE.")
+        waitmessage
+        waitfanfare
+        givemon(SPECIES_TYROGUE, 10, ITEM_NONE)
+        msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            call(Common_EventScript_GetGiftMonPartySlot)
+            call(Common_EventScript_NameReceivedPartyMon)
+        }
+        textcolor(0)
+        closemessage
+        setflag(FLAG_GOT_TYROGUE_FROM_KIYO)
+        goto(MtMortar_B1F_EventScript_Kiyo)
+    }
+    lock
+    faceplayer
+    msgbox("Hey!\nI am the KARATE KING!\pI train alone here in the dark!\nYou! Battle with me!\pHwaaarggh!", MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_KIYO, "Waaaarggh!\nI'm beaten!")
+    goto(MtMortar_B1F_EventScript_Kiyo)
+}

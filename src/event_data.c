@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_setup.h"
 #include "event_data.h"
 #include "pokedex.h"
 
@@ -58,6 +59,9 @@ void ClearDailyFlags(void)
 {
     memset(gSaveBlock1Ptr->flags + (DAILY_FLAGS_START / 8), 0, DAILY_FLAGS_SIZE);
     FlagClear(FLAG_GOT_SHUCKIE_TODAY);
+    ClearTrainerFlag(TRAINER_RIVAL_REMATCH_CHIKORITA);
+    ClearTrainerFlag(TRAINER_RIVAL_REMATCH_CYNDAQUIL);
+    ClearTrainerFlag(TRAINER_RIVAL_REMATCH_TOTODILE);
 }
 
 void DisableNationalPokedex(void)

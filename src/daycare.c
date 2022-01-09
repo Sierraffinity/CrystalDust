@@ -858,8 +858,9 @@ void CreateEgg(struct Pokemon *mon, u16 species, u8 metLocation, bool8 forceShin
         SetMonData(mon, MON_DATA_LOCATION_BIT, &value);
     }
 
-    value = ConvertMapSectionIdToMetLocation(mapNameID);
-    if(value == 0) // not in a converted map section
+    if(CheckNewMapSec(mapNameID))
+        value = ConvertMapSectionIdToMetLocation(mapNameID);
+    else // not in a converted map section
         value = mapNameID;
     if (value != MAPSEC_NONE)
     {

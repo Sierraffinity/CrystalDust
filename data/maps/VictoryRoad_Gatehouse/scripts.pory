@@ -15,7 +15,7 @@ script VictoryRoad_Gatehouse_Eventscript_BadgeCheckTrigger{
     turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
     textcolor(0)
     callnative(CountBadges)
-    if(!(var(VAR_RESULT) < 8))
+    if(var(VAR_RESULT) < 8)
     {
         msgbox("Only trainers who have proven\nthemselves may pass.\pYou don't have all the GYM BADGES\nof JOHTO.\pI'm sorry, but I can't let you\ngo through.", MSGBOX_DEFAULT)
         closemessage

@@ -90,6 +90,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_Guy",
       "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_RIVAL",
+      "in_connection": false,
+      "x": 22,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_1"
     }
   ],
   "warp_events": [
@@ -116,7 +131,33 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 23,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "IndigoPlateau_PokemonCenter_1F_Eventscript_RivalRematchTriggers"
+    }
   ],
   "bg_events": [
 

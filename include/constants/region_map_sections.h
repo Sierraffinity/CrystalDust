@@ -14,9 +14,9 @@
 #define MAPSEC_GOLDENROD_CITY               0x0A
 #define MAPSEC_FORTREE_CITY                 0x0B
 #define MAPSEC_BLACKTHORN_CITY              0x0C
-#define MAPSEC_BURNED_TOWER                0x0D
-#define MAPSEC_TOHJO_FALLS              0x0E
-#define MAPSEC_FAST_SHIP             0x0F
+#define MAPSEC_BURNED_TOWER                 0x0D
+#define MAPSEC_TOHJO_FALLS                  0x0E
+#define MAPSEC_FAST_SHIP                    0x0F
 #define MAPSEC_ROUTE_29                     0x10
 #define MAPSEC_ROUTE_30                     0x11
 #define MAPSEC_ROUTE_31                     0x12

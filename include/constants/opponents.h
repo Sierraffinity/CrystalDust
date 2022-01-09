@@ -540,9 +540,9 @@
 #define TRAINER_RIVAL_MT_MOON_CHIKORITA          431
 #define TRAINER_RIVAL_MT_MOON_TOTODILE           432
 #define TRAINER_RIVAL_MT_MOON_CYNDAQUIL          433
-#define TRAINER_RIVAL_REMATCH_CHIKORITA          434
-#define TRAINER_RIVAL_REMATCH_TOTODILE           435
-#define TRAINER_RIVAL_REMATCH_CYNDAQUIL          436
+#define TRAINER_RIVAL_REMATCH_CHIKORITA          434  // Reset daily
+#define TRAINER_RIVAL_REMATCH_TOTODILE           435  // ^
+#define TRAINER_RIVAL_REMATCH_CYNDAQUIL          436  // ^
 // Rockets that set other flags
 #define TRAINER_ROCKET_SLOWPOKE_WELL_BOSS        437  // Ends Slowpoke Well occupation
 #define TRAINER_MAHOGANY_EXECUTIVE_M             438  // Leaves room after battle

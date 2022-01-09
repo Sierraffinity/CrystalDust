@@ -433,5 +433,6 @@ u8 *sub_806F4F8(u8 id, u8 arg1);
 u32 GenerateMonPersonality(u32 otId, bool8 forceShiny);
 bool8 CheckReusedMapSec(u8 mapSectionId);
 u8 ConvertMapSectionIdToMetLocation(u8 mapSection);
+bool8 CheckNewMapSec(u8 mapSectionId);
 
 #endif // GUARD_POKEMON_H

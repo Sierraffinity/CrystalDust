@@ -2266,8 +2266,9 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_LOCATION_BIT, &value);
     }
 
-    value = ConvertMapSectionIdToMetLocation(mapSectionId);
-    if(value == 0) // not in a converted map section
+    if(CheckNewMapSec(mapSectionId))
+        value = ConvertMapSectionIdToMetLocation(mapSectionId);
+    else // not in a converted map section
         value = mapSectionId;
     SetBoxMonData(boxMon, MON_DATA_MET_LOCATION, &value);
     SetBoxMonData(boxMon, MON_DATA_MET_LEVEL, &level);
@@ -7107,4 +7108,21 @@ bool8 CheckReusedMapSec(u8 mapSectionId)
             default:
                 return FALSE;
         }
+}
+
+bool8 CheckNewMapSec(u8 mapSectionId)
+{
+    switch(mapSectionId)
+    {
+        case MAPSEC_NEW_BARK_TOWN ... MAPSEC_MAHOGANY_TOWN:
+        case MAPSEC_VIOLET_CITY ... MAPSEC_GOLDENROD_CITY:
+        case MAPSEC_BLACKTHORN_CITY ... MAPSEC_ROUTE_32_FLYDUP:
+        case MAPSEC_DARK_CAVE ... MAPSEC_MT_MORTAR: // includes Battle Frontier and Hoenn Safari Zone
+        case MAPSEC_LIGHTHOUSE ... MAPSEC_DRAGONS_DEN:
+        case MAPSEC_LAKE_OF_RAGE ... MAPSEC_SILVER_CAVE:
+        case MAPSEC_WHIRL_ISLANDS ... MAPSEC_TIN_TOWER:
+            return TRUE;
+        default:
+            return FALSE;
+    }
 }

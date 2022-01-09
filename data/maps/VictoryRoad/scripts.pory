@@ -1,1 +1,101 @@
-mapscripts VictoryRoad_MapScripts {}
+mapscripts VictoryRoad_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        //setflag(FLAG_LANDMARK_VICTORY_ROAD)
+        setflag(FLAG_TEMP_1)
+        if(defeated(TRAINER_RIVAL_VICTORY_ROAD_CHIKORITA) || defeated(TRAINER_RIVAL_VICTORY_ROAD_CYNDAQUIL) || defeated(TRAINER_RIVAL_VICTORY_ROAD_TOTODILE))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+}
+
+script VictoryRoad_EventScript_RivalTriggers {
+    lockall
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_RESULT) == 25)
+    {
+        setobjectxyperm(6, 33, 11)
+    }
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    fadeoutbgm(0)
+    delay(15)
+    addobject(6)
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    switch(var(VAR_RESULT))
+    {
+        case 25:
+            applymovement(6, VictoryRoad_Movement_RivalToPlayerLeft)
+            waitmovement(0)
+        case 26:
+            applymovement(6, VictoryRoad_Movement_RivalToPlayerMid)
+            waitmovement(0)
+        case 27:
+            applymovement(6, VictoryRoad_Movement_RivalToPlayerRight)
+            waitmovement(0)
+    }
+    playbgm(MUS_ENCOUNTER_RIVAL, 0)
+    savebgm(MUS_RIVAL_EXIT)
+    textcolor(0)
+    msgbox("Hold it.\p…Are you going to take the POKéMON\nLEAGUE challenge?\p…Don't make me laugh.\pYou're so much weaker than I am.\nI'm not like I was before.\pI now have the best and strongest\nPOKéMON with me.\lI'm invincible!\p{PLAYER}!\nI challenge you!", MSGBOX_DEFAULT)
+    closemessage
+    switch(var(VAR_STARTER_MON))
+    {
+        case STARTER_CHIKORITA:
+            trainerbattle_wintext(TRAINER_RIVAL_VICTORY_ROAD_CHIKORITA, 0, VictoryRoad_Text_RivalLost, VictoryRoad_Text_RivalWon)
+        case STARTER_CYNDAQUIL:
+            trainerbattle_wintext(TRAINER_RIVAL_VICTORY_ROAD_CYNDAQUIL, 0, VictoryRoad_Text_RivalLost, VictoryRoad_Text_RivalWon)
+        case STARTER_TOTODILE:
+            trainerbattle_wintext(TRAINER_RIVAL_VICTORY_ROAD_TOTODILE, 0, VictoryRoad_Text_RivalLost, VictoryRoad_Text_RivalWon)
+    }
+    msgbox("…I haven't given up on becoming the\ngreatest trainer…\pI'm going to find out why I can't\nwin and become stronger…\pWhen I do, I will challenge you.\pAnd I'll beat you down with all my\npower.\p…Humph!\nYou keep at it until then.", MSGBOX_DEFAULT)
+    closemessage
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    switch(var(VAR_RESULT))
+    {
+        case 25:
+            applymovement(6, VictoryRoad_Movement_RivalExitsLeft)
+            waitmovement(0)
+        case 26:
+            applymovement(6, VictoryRoad_Movement_RivalExitsMid)
+            waitmovement(0)
+        case 27:
+            applymovement(6, VictoryRoad_Movement_RivalExitsRight)
+            waitmovement(0)
+    }
+    removeobject(6)
+    setflag(FLAG_TEMP_1)
+    savebgm(MUS_RG_VICTORY_ROAD)
+    fadedefaultbgm
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+    end
+}movement(local) VictoryRoad_Movement_RivalToPlayerLeft{
+    walk_left * 8
+    walk_up * 2
+}movement(local) VictoryRoad_Movement_RivalToPlayerMid{
+    walk_up * 3
+    walk_left * 7
+    walk_up * 2
+}movement(local) VictoryRoad_Movement_RivalToPlayerRight{
+    walk_up * 3
+    walk_left * 6
+    walk_up * 2
+}text(local) VictoryRoad_Text_RivalLost{
+    "…I couldn't win…\pI gave it everything I had…\nWhat you possess and what I lack…\pI'm beginning to understand what\nthat dragon master said to me…"
+}text(local) VictoryRoad_Text_RivalWon{
+    "…Humph!\pWhen it comes down to it,\nnothing can beat power.\pI don't need anything else."
+}movement(local) VictoryRoad_Movement_RivalExitsLeft{
+    walk_down * 2
+    walk_right * 8
+}movement(local) VictoryRoad_Movement_RivalExitsMid{
+    walk_down * 2
+    walk_right * 7
+    walk_down * 3
+}movement(local) VictoryRoad_Movement_RivalExitsRight{
+    walk_down * 2
+    walk_right * 6
+    walk_down * 3
+}

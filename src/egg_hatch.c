@@ -396,8 +396,9 @@ static void AddHatchedMonToParty(u8 id)
         SetMonData(mon, MON_DATA_LOCATION_BIT, &value);
     }
 
-    value = ConvertMapSectionIdToMetLocation(mapNameID);
-    if(value == 0) // not in a converted map section
+    if(CheckNewMapSec(mapNameID))
+        value = ConvertMapSectionIdToMetLocation(mapNameID);
+    else // not in a converted map section
         value = mapNameID;
     SetMonData(mon, MON_DATA_MET_LOCATION, &value);
 
