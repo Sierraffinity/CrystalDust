@@ -1048,6 +1048,11 @@ static const struct ForcedPhoneCall sForcedPhoneCalls[] = {
         .phoneContactId = PHONE_CONTACT_ELM,
         .callCondition = ReceiveCallWhenOutside,
         .script = RadioTower_PhoneScript_ElmCall
+    },{
+        .flag = FLAG_FORCED_CALL_MASTER_BALL,
+        .phoneContactId = PHONE_CONTACT_ELM,
+        .callCondition = ReceiveCallWhenOutside,
+        .script = MasterBall_PhoneScript_ElmCall
     },
 };
 

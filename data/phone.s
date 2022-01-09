@@ -568,3 +568,13 @@ RadioTower_Text_ElmCall:
 	.string "No, that just can't be true.\p"
 	.string "Sorry to bug you.\n"
 	.string "Take care!$"
+
+MasterBall_PhoneScript_ElmCall::
+	phone_stdcall MasterBall_Text_ElmCall
+	phone_end
+
+MasterBall_Text_ElmCall:
+	.string "Hello, {PLAYER}?\p"
+	.string "I have something here for you.\n"
+	.string "Could you swing by my LAB?\p"
+	.string "See you later!$"

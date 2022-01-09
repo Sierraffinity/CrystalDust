@@ -780,6 +780,41 @@ static const struct MenuAction MultichoiceList_TrainerCardIconsTint[] =
     { gText_Sepia }
 };
 
+static const struct MenuAction MultichoiceList_DragonShrineQuestion1[] =
+{
+    { gText_Pal },
+    { gText_Underling },
+    { gText_Friend }
+};
+
+static const struct MenuAction MultichoiceList_DragonShrineQuestion2[] =
+{
+    { gText_Strategy },
+    { gText_Raising },
+    { gText_Cheating }
+};
+
+static const struct MenuAction MultichoiceList_DragonShrineQuestion3[] =
+{
+    { gText_WeakPerson },
+    { gText_ToughPerson },
+    { gText_Anybody }
+};
+
+static const struct MenuAction MultichoiceList_DragonShrineQuestion4[] =
+{
+    { gText_LoveShrine },
+    { gText_Violence },
+    { gText_Knowledge }
+};
+
+static const struct MenuAction MultichoiceList_DragonShrineQuestion5[] =
+{
+    { gText_ToughShrine },
+    { gText_Both },
+    { gText_Weak }
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -908,6 +943,11 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_TRAINER_CARD_ICON_TINT]     = MULTICHOICE(MultichoiceList_TrainerCardIconsTint),
+    [MULTI_DRAGON_SHRINE_QUESTION_1]   = MULTICHOICE(MultichoiceList_DragonShrineQuestion1),
+    [MULTI_DRAGON_SHRINE_QUESTION_2]   = MULTICHOICE(MultichoiceList_DragonShrineQuestion2),
+    [MULTI_DRAGON_SHRINE_QUESTION_3]   = MULTICHOICE(MultichoiceList_DragonShrineQuestion3),
+    [MULTI_DRAGON_SHRINE_QUESTION_4]   = MULTICHOICE(MultichoiceList_DragonShrineQuestion4),
+    [MULTI_DRAGON_SHRINE_QUESTION_5]   = MULTICHOICE(MultichoiceList_DragonShrineQuestion5),
 };
 
 const u8 *const gStdStrings[] =

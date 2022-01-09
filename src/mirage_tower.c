@@ -265,7 +265,7 @@ bool8 IsMirageTowerVisible(void)
 {
     if (!(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(NONE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(NONE)))
         return FALSE;
-    return FlagGet(FLAG_MIRAGE_TOWER_VISIBLE);
+    return FlagGet(0xFFFF);
 }
 
 static void UpdateMirageTowerPulseBlend(u8 taskId)
@@ -288,7 +288,7 @@ void TryStartMirageTowerPulseBlendEffect(void)
 
     if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(NONE)
      || gSaveBlock1Ptr->location.mapNum != MAP_NUM(NONE)
-     || !FlagGet(FLAG_MIRAGE_TOWER_VISIBLE))
+     || !FlagGet(0xFFFF))
         return;
 
     sMirageTowerPulseBlend = AllocZeroed(sizeof(*sMirageTowerPulseBlend));
@@ -302,7 +302,7 @@ void ClearMirageTowerPulseBlendEffect(void)
 {
     if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(NONE)
      || gSaveBlock1Ptr->location.mapNum   != MAP_NUM(NONE)
-     || !FlagGet(FLAG_MIRAGE_TOWER_VISIBLE)
+     || !FlagGet(0xFFFF)
      || sMirageTowerPulseBlend == NULL)
         return;
 
@@ -322,7 +322,7 @@ void SetMirageTowerVisibility(void)
     if (VarGet(VAR_MIRAGE_TOWER_STATE))
     {
         // Mirage Tower event has already been completed, hide it
-        FlagClear(FLAG_MIRAGE_TOWER_VISIBLE);
+        FlagClear(0xFFFF);
         return;
     }
 
@@ -333,12 +333,12 @@ void SetMirageTowerVisibility(void)
 
     if (visible)
     {
-        FlagSet(FLAG_MIRAGE_TOWER_VISIBLE);
+        FlagSet(0xFFFF);
         TryStartMirageTowerPulseBlendEffect();
         return;
     }
 
-    FlagClear(FLAG_MIRAGE_TOWER_VISIBLE);*/
+    FlagClear(0xFFFF);*/
 }
 
 void StartPlayerDescendMirageTower(void)

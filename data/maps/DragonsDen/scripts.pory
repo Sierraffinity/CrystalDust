@@ -1,6 +1,104 @@
-mapscripts DragonsDen_MapScripts {}
+const FLAG_HIDE_CLAIR = FLAG_TEMP_1
+const FLAG_HIDE_RIVAL = FLAG_TEMP_2
+const FLAG_TALKED_TO_RIVAL = FLAG_TEMP_3
+const VAR_CLAIR_SCENE = VAR_TEMP_0
+const SCENE_FINISHED = 1
 
-// TODO: Clair event; Rival training
+mapscripts DragonsDen_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_HIDE_CLAIR)
+        // The Clair scene will continually play as long as the player
+        // didn't get TM02 and is exiting the Dragon's Shrine with
+        // the Rising Badge. This is to account for fainting from
+        // poison damage in the shrine before this scene plays.
+        // Not having room for the TM when this scene plays
+        // disables it.
+        if(!flag(FLAG_QUEUE_CLAIR_IN_DRAGONS_DEN))
+        {
+            setvar(VAR_CLAIR_SCENE, SCENE_FINISHED)
+        }
+        else // only do Clair event if leaving the Dragon's Shrine
+        {
+            getplayerxy(VAR_0x8008, VAR_RESULT)
+            if(!(var(VAR_0x8008) == 32 && var(VAR_RESULT) == 38))
+            {
+                setvar(VAR_CLAIR_SCENE, SCENE_FINISHED)
+            }
+            else
+            {
+                clearflag(FLAG_HIDE_CLAIR)
+            }
+        }
+        if(!(defeated(TRAINER_RIVAL_MT_MOON_CHIKORITA) || defeated(TRAINER_RIVAL_MT_MOON_TOTODILE) || defeated(TRAINER_RIVAL_MT_MOON_CYNDAQUIL)))
+        {
+            gettime
+            if(!(var(VAR_0x8003) == DAY_TUESDAY || var(VAR_0x8003) == DAY_THURSDAY))
+            {
+                setflag(FLAG_HIDE_RIVAL)
+                end
+            }
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_CLAIR_SCENE, 0 {
+            lockall
+            textcolor(1)
+            msgbox("Wait!", MSGBOX_DEFAULT)
+            delay(30)
+            releaseall
+            lockall
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+            playse(SE_PIN)
+            delay(0x40)
+            //playbgm(MUS_) //MUSIC_CLAIR in pokecrystal
+            applymovement(9, DragonsDen_Movement_ClairToPlayer)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+            waitmovement(0)
+            msgbox("CLAIR: I'm sorry about this.\nHere, take this as my apology.", MSGBOX_DEFAULT)
+            checkitemspace(ITEM_TM02, 1)
+            if(!var(VAR_RESULT))
+            {
+                msgbox("Oh?\nYou don't have any room for this.\pI'm going back to the GYM, so make\nroom, then come see me there.", MSGBOX_DEFAULT)
+                goto(DragonsDen_Eventscript_ClairLeaves)
+            }
+            giveitem(ITEM_TM02, 1)
+            setflag(FLAG_GOT_TM02_FROM_CLAIR)
+            msgbox("That contains DRAGON CLAW.\pNo, it doesn't have anything\nto do with my nails.\pIf you don't want it, you don't\nhave to take it.\pWhat's the matter?\pAren't you going on to the\nPOKéMON LEAGUE?\pDo you know how to get there?\nFrom here, go to NEW BARK TOWN.\pThen SURF east to POKéMON LEAGUE.\nThe route there is very tough.\pDon't you dare lose at the\nPOKéMON LEAGUE!\pIf you do, I'll feel even worse\nabout having lost to you!\pGive it everything you've got.", MSGBOX_DEFAULT)
+            closemessage
+            goto(DragonsDen_Eventscript_ClairLeaves)
+        }
+    ]
+}movement(local) DragonsDen_Movement_ClairToPlayer{
+    walk_slow_right * 5
+}script DragonsDen_Eventscript_ClairLeaves{
+    applymovement(9, DragonsDen_Movement_ClairExits)
+    waitmovement(0)
+    removeobject(9)
+    setflag(FLAG_HIDE_CLAIR)
+    clearflag(FLAG_QUEUE_CLAIR_IN_DRAGONS_DEN)
+    setvar(VAR_CLAIR_SCENE, SCENE_FINISHED)
+    fadedefaultbgm
+    releaseall
+    end
+}movement(local) DragonsDen_Movement_ClairExits{
+    walk_slow_left * 8
+}
+
+// TODO: Clair event
+
+script DragonsDen_Eventscript_Rival {
+    playbgm(MUS_ENCOUNTER_RIVAL, 0)
+    if(flag(FLAG_TALKED_TO_RIVAL))
+    {
+        msgbox("…\nWhew…\pLearn to stay out of my way…", MSGBOX_NPC)
+        fadedefaultbgm
+        end
+    }
+    msgbox("…\nWhat? {PLAYER}?\p…No, I won't battle you now…\pMy POKéMON aren't ready to beat you.\nI can't push them too hard now.\pI have to be disciplined to become\nthe greatest POKéMON trainer…", MSGBOX_NPC)
+    setflag(FLAG_TALKED_TO_RIVAL)
+    fadedefaultbgm
+    end
+}
 
 script DragonsDen_Eventscript_Sign {
     msgbox("DRAGON SHRINE\pA shrine honoring the dragon POKéMON\nsaid to have lived in the DRAGON'S\lDEN.", MSGBOX_SIGN)
@@ -8,7 +106,7 @@ script DragonsDen_Eventscript_Sign {
 }
 
 script DragonsDen_Eventscript_CooltrainerDarin {
-    trainerbattle_single(TRAINER_DARIN, "You! How dare you enter uninvited!", "S-strong!")
+    trainerbattle_single(TRAINER_DARIN, "You!\nHow dare you enter uninvited!", "S-strong!")
     msgbox("The SHRINE ahead is home to the\nMASTER of our dragon-user clan.\pYou're not allowed to just go in!", MSGBOX_AUTOCLOSE)
     end
 }

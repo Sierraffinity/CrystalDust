@@ -1,1 +1,5 @@
-mapscripts DragonsDen_Entrance_MapScripts {}
+mapscripts DragonsDen_Entrance_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_DRAGONS_DEN)
+    }
+}

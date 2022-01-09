@@ -19,6 +19,22 @@ mapscripts NewBarkTown_ProfessorElmsLab_MapScripts {
 script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
     lock
     faceplayer
+    checkitem(ITEM_SS_TICKET, 1)
+    if(var(VAR_RESULT))
+    {
+        call(NewBarkTown_ProfessorElmsLab_EventScript_Elm_CheckMasterBall)
+    }
+    checkitem(ITEM_SS_TICKET, 1)
+    if(flag(FLAG_SYS_GAME_CLEAR) && !var(VAR_RESULT))
+    {
+        msgbox("ELM: {PLAYER}!\nThere you are!\pI called because I have something\nfor you.\pSee? It's an S.S. Ticket.\nNow you can catch POKéMON in KANTO.", MSGBOX_DEFAULT)
+        giveitem(ITEM_SS_TICKET, 1)
+        msgbox("The ship departs from OLIVINE CITY.\nBut you knew that already, {PLAYER}.\pAfter all, you've traveled all over\nwith your POKéMON.\pGive my regards to PROF. OAK in KANTO!", MSGBOX_DEFAULT)
+        closemessage
+        release
+        end
+    }
+    call(NewBarkTown_ProfessorElmsLab_EventScript_Elm_CheckMasterBall)
     if (flag(FLAG_GOT_EVERSTONE_FROM_ELM))
     {
         msgbox("ELM: {PLAYER}, I'll call you if\n"
@@ -170,6 +186,24 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
 
 text NewBarkTown_ProfessorElmsLab_Text_ElmThis {
     "ELM: This?"
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_Elm_CheckMasterBall {
+    if(flag(FLAG_GOT_MASTER_BALL_FROM_ELM) || !flag(FLAG_BADGE08_GET))
+    {
+        return
+    }
+    msgbox("ELM: Hi, {PLAYER}!\pThanks to you, my research is\ngoing great!\pTake this as a token of my\nappreciation.", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_MASTER_BALL, 1)
+    if(!var(VAR_RESULT))
+    {
+        goto(Common_EventScript_BagIsFull)
+    }
+    giveitem(ITEM_MASTER_BALL, 1)
+    msgbox("The MASTER BALL is the best!\nIt's the ultimate BALL!\pIt'll catch any POKéMON without\nfail.\pIt's given only to recognized POKéMON\nresearchers.\pI think you can make much better\nuse of it than I can, {PLAYER}!", MSGBOX_DEFAULT)
+    setflag(FLAG_GOT_MASTER_BALL_FROM_ELM)
+    release
+    end
 }
 
 script NewBarkTown_ProfessorElmsLab_EventScript_Elm_NoHatchedEggMon {

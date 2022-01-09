@@ -3190,6 +3190,22 @@ extern const u8 gText_Black[];
 extern const u8 gText_Pink[];
 extern const u8 gText_Sepia[];
 
+// Dragon Shrine Quiz
+extern const u8 gText_Pal[];
+extern const u8 gText_Underling[];
+extern const u8 gText_Strategy[];
+extern const u8 gText_Raising[];
+extern const u8 gText_Cheating[];
+extern const u8 gText_WeakPerson[];
+extern const u8 gText_ToughPerson[];
+extern const u8 gText_Anybody[];
+extern const u8 gText_LoveShrine[];
+extern const u8 gText_Violence[];
+extern const u8 gText_Knowledge[];
+extern const u8 gText_ToughShrine[];
+extern const u8 gText_Both[];
+extern const u8 gText_Weak[];
+
 // Battle Factory Screen
 extern const u8 gText_RentalPkmn2[];
 extern const u8 gText_SelectFirstPkmn[];

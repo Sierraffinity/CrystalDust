@@ -1,1 +1,286 @@
-mapscripts DragonsDen_Shrine_MapScripts {}
+const VAR_QUESTION_NUM = VAR_TEMP_1
+const VAR_ANSWER = VAR_TEMP_2
+const RIGHT_ANSWER = 1
+const WRONG_ANSWER = 2
+
+mapscripts DragonsDen_Shrine_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_TEMP_1)
+        if(flag(FLAG_BADGE08_GET))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0{
+            lockall
+            applymovement(OBJ_EVENT_ID_PLAYER, DragonsDen_Shrine_Movement_PlayerToElder)
+            waitmovement(0)
+            applymovement(1, DragonsDen_Shrine_Movement_ElderStepsDown)
+            waitmovement(0)
+            textcolor(0)
+            msgbox("Hm…\nGood to see you here.\pNo need to explain why you came.\nCLAIR sent you here, didn't she?\pThat girl is a handful…\nI am sorry, but I must test you.\pNot to worry, you are to answer\nonly a few questions.\pReady?", MSGBOX_DEFAULT)
+            closemessage
+            setvar(VAR_QUESTION_NUM, 1)
+            call(DragonsDen_Shrine_EventScript_Questions)
+            msgbox("Hm…\nI see…\pYou care deeply for POKéMON.\nVery commendable.\pThat conviction is what is important!\n{PLAYER} don't lose that belief.\pIt will see you through at the\nPOKéMON LEAGUE.", MSGBOX_DEFAULT)
+            closemessage
+            addobject(2)
+            playse(SE_EXIT)
+            waitse
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+            //playbgm(MUS_) //MUSIC_CLAIR in pokecrystal
+            playse(SE_PIN)
+            delay(0x40)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+            delay(30)
+            applymovement(2, DragonsDen_Shrine_Movement_ClairToPlayer)
+            waitmovement(0)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+            turnobject(1, DIR_WEST)
+            textcolor(1)
+            msgbox("So, how did it go?\nI guess there's no point in asking.\pYou did fail?\p… … … … … … … … … … … …\p…What\nYou passed?")
+            closemessage
+            fadeoutbgm(0)
+            applymovement(2, DragonsDen_Shrine_Movement_ClairStaggers)
+            waitmovement(0)
+            msgbox("That can't be!", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(2, DragonsDen_Shrine_Movement_ClairStepsBack)
+            waitmovement(0)
+            msgbox("You're lying!\nEven I haven't been approved!", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(1, DragonsDen_Shrine_Movement_ElderToClair)
+            waitmovement(0)
+            turnobject(2, DIR_NORTH)
+            textcolor(0)
+            msgbox("CLAIR!\pThis child is impeccable, in skill\nand spirit!\pAdmit defeat and confer the\nRISINGBADGE!\p…Or must I inform LANCE of this?", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(2, Common_Movement_ExclamationMark)
+            playse(SE_PIN)
+            delay(0x40)
+            textcolor(1)
+            msgbox("I-I understand…", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(2, DragonsDen_Shrine_Movement_ClairReturnsToPlayer)
+            waitmovement(0)
+            msgbox("Here, this is the RISINGBADGE…\nHurry up! Take it!")
+            closemessage
+            textcolor(MSG_COLOR_SYS)
+            message("{PLAYER} received the RISINGBADGE.")
+            waitmessage
+            call(Common_EventScript_PlayGymBadgeFanfare)
+            setflag(FLAG_FORCED_CALL_MASTER_BALL)
+            fadeinbgm(0)
+            textcolor(1)
+            setflag(FLAG_BADGE08_GET)
+            msgbox("The RISINGBADGE will enable your\nPOKéMON to use the move for\lclimbing waterfalls.\pAlso, all POKéMON will recognize you\nas a trainer and obey your every\lcommand without question.", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(1, DragonsDen_Shrine_Movement_ClairReturnsToPlayer)
+            waitmovement(0)
+            turnobject(2, DIR_NORTH)
+            applymovement(1, DragonsDen_Shrine_Movement_ElderBackToSpot)
+            waitmovement(0)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+            textcolor(0)
+            msgbox("CLAIR…\pReflect upon what it is that you\nlack and this child has.", MSGBOX_DEFAULT)
+            closemessage
+            textcolor(1)
+            msgbox("… … … … … … … … … … … …", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(2, DragonsDen_Shrine_Movement_ClairExits)
+            waitmovement(0)
+            playse(SE_EXIT)
+            removeobject(2)
+            setflag(FLAG_TEMP_1)
+            setflag(FLAG_QUEUE_CLAIR_IN_DRAGONS_DEN)
+            setflag(FLAG_TEMP_2)
+            setvar(VAR_TEMP_0, 1)
+            releaseall
+            end
+        }
+    ]
+}movement(local) DragonsDen_Shrine_Movement_PlayerToElder{
+    walk_slow_up * 5
+}movement(local) DragonsDen_Shrine_Movement_ElderStepsDown{
+    walk_slow_down
+}movement(local) DragonsDen_Shrine_Movement_ClairToPlayer{
+    walk_slow_up * 3
+    walk_slow_left
+    walk_slow_up * 2
+    face_right
+}movement(local) DragonsDen_Shrine_Movement_ClairStaggers{
+    lock_facing_direction
+    walk_fast_left
+    unlock_facing_direction
+}movement(local) DragonsDen_Shrine_Movement_ClairStepsBack{
+    lock_facing_direction
+    walk_slow_left
+    unlock_facing_direction
+}movement(local) DragonsDen_Shrine_Movement_ElderToClair{
+    walk_slow_left * 3
+    face_down
+}movement(local) DragonsDen_Shrine_Movement_ClairReturnsToPlayer{
+    walk_slow_right * 2
+}movement(local) DragonsDen_Shrine_Movement_ElderBackToSpot{
+    walk_slow_right
+    face_down
+}movement(local) DragonsDen_Shrine_Movement_ClairExits{
+    walk_down * 3
+    walk_right
+    walk_down * 2
+    set_invisible
+}
+
+script DragonsDen_Shrine_EventScript_Questions{
+    switch(var(VAR_QUESTION_NUM))
+    {
+        case 1:
+            message("What are POKéMON to you?")
+            waitmessage
+            multichoice(19, 6, MULTI_DRAGON_SHRINE_QUESTION_1, TRUE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                case 2:
+                    setvar(VAR_ANSWER, RIGHT_ANSWER)
+                case 1:
+                    setvar(VAR_ANSWER, WRONG_ANSWER)
+            }
+        case 2:
+            message("What helps you to win battles?")
+            waitmessage
+            multichoice(19, 6, MULTI_DRAGON_SHRINE_QUESTION_2, TRUE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                case 1:
+                    setvar(VAR_ANSWER, RIGHT_ANSWER)
+                case 2:
+                    setvar(VAR_ANSWER, WRONG_ANSWER)
+            }
+        case 3:
+            message("What kind of trainer do you\nwish to battle?")
+            waitmessage
+            multichoice(19, 6, MULTI_DRAGON_SHRINE_QUESTION_3, TRUE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_ANSWER, WRONG_ANSWER)
+                case 1:
+                case 2:
+                    setvar(VAR_ANSWER, RIGHT_ANSWER)
+            }
+        case 4:
+            message("What is most important for\nraising POKéMON?")
+            waitmessage
+            multichoice(19, 6, MULTI_DRAGON_SHRINE_QUESTION_4, TRUE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                case 2:
+                    setvar(VAR_ANSWER, RIGHT_ANSWER)
+                case 1:
+                    setvar(VAR_ANSWER, WRONG_ANSWER)
+            }
+        case 5:
+            message("Strong POKéMON. Weak POKéMON.\nWhich is more important?")
+            waitmessage
+            multichoice(19, 6, MULTI_DRAGON_SHRINE_QUESTION_5, TRUE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                case 2:
+                    setvar(VAR_ANSWER, WRONG_ANSWER)
+                case 1:
+                    setvar(VAR_ANSWER, RIGHT_ANSWER)
+            }
+    }
+    if(var(VAR_ANSWER) == WRONG_ANSWER)
+    {
+        setflag(FLAG_DRAGONS_SHRINE_TEST_FAILED)
+        turnobject(1, DIR_WEST)
+        msgbox("Hah?\nI didn't quite catch that…", MSGBOX_DEFAULT)
+        closemessage
+        turnobject(1, DIR_SOUTH)
+        msgbox("What was it you said?", MSGBOX_DEFAULT)
+        closemessage
+        goto(DragonsDen_Shrine_EventScript_Questions)
+    }
+    // RIGHT_ANSWER
+    addvar(VAR_QUESTION_NUM, 1)
+    if(var(VAR_QUESTION_NUM) == 6)
+    {
+        return
+    }
+    msgbox("Oh, I understand…", MSGBOX_DEFAULT)
+    closemessage
+    goto(DragonsDen_Shrine_EventScript_Questions)
+}
+
+script DragonsDen_Shrine_EventScript_DragonMaster {
+    if(flag(FLAG_TEMP_2))
+    {
+        msgbox("Come again, if you so desire.", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_TEMP_3))
+    {
+        msgbox("Dragon POKéMON are symbolic of\nour clan.\pYou have shown that you can be\nentrusted with one.", MSGBOX_NPC)
+        end
+    }
+    if(!flag(FLAG_GOT_DRATINI_FROM_DRAGON_SHRINE))
+    {
+        lock
+        faceplayer
+        msgbox("Hm…\nGood to see you here.\pYour arrival is most fortunate.\nI have something for you.\pTake this DRATINI as proof that I\nhave recognized your worth.", MSGBOX_DEFAULT)
+        specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+        if(var(VAR_RESULT) == 6)
+        {
+            msgbox("Hm?\nYour POKéMON party is full.", MSGBOX_DEFAULT)
+            release
+            end
+        }
+        textcolor(MSG_COLOR_SYS)
+        bufferspeciesname(0, SPECIES_DRATINI)
+        playfanfare(MUS_OBTAIN_ITEM)
+        message("{PLAYER} received DRATINI!")
+        waitmessage
+        waitfanfare
+        givemon(SPECIES_DRATINI, 15, ITEM_NONE)
+        msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            call(Common_EventScript_GetGiftMonPartySlot)
+            call(Common_EventScript_NameReceivedPartyMon)
+        }
+        textcolor(0)
+        closemessage
+        specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+        subvar(VAR_RESULT, 1)
+        if(!flag(FLAG_DRAGONS_SHRINE_TEST_FAILED))
+        {
+            setmonmove(VAR_RESULT, 3, MOVE_EXTREME_SPEED)
+        }
+        setflag(FLAG_GOT_DRATINI_FROM_DRAGON_SHRINE)
+        setflag(FLAG_TEMP_3)
+        goto(DragonsDen_Shrine_EventScript_DragonMaster)
+    }
+    if(defeated(TRAINER_RIVAL_MT_MOON_CHIKORITA) || defeated(TRAINER_RIVAL_MT_MOON_TOTODILE) || defeated(TRAINER_RIVAL_MT_MOON_CYNDAQUIL))
+    {
+        msgbox("A boy close to your age is in\ntraining here.\pHe is much like CLAIR when she was\nyounger. It is a lttle worrisome…", MSGBOX_NPC)
+        end
+    }
+    msgbox("CLAIR appears to have learned an\ninvaluable lesson from you.\pI thank you as her grandfather.", MSGBOX_NPC)
+    end
+}
+
+script DragonsDen_Shrine_EventScript_LeftElder{
+    msgbox("It's been quite some time since\na trainer has gained our MASTER's\lrare approval.\pIn fact, not since Master LANCE.", MSGBOX_NPC)
+    end
+}
+
+script DragonsDen_Shrine_EventScript_RightElder{
+    msgbox("You know young Master LANCE?\pHe looks so much like our MASTER\ndid in his youth.\pIt's in their blood.", MSGBOX_NPC)
+    end
+}

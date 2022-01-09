@@ -2035,3 +2035,25 @@ const u8 gString_MiniCreditsThanks6[] = _("…and all those who tested v2 and be
 const u8 gText_Black[] = _("BLACK");
 const u8 gText_Pink[] = _("PINK");
 const u8 gText_Sepia[] = _("SEPIA");
+
+// Dragon Shrine Quiz Options
+// Question 1
+const u8 gText_Pal[] = _("Pal");
+const u8 gText_Underling[] = _("Underling");
+// Friend is the third option and already defined
+// Question 2
+const u8 gText_Strategy[] = _("Strategy");
+const u8 gText_Raising[] = _("Raising");
+const u8 gText_Cheating[] = _("Cheating");
+// Question 3
+const u8 gText_WeakPerson[] = _("Weak person");
+const u8 gText_ToughPerson[] = _("Tough person");
+const u8 gText_Anybody[] = _("Anybody");
+// Question 4
+const u8 gText_LoveShrine[] = _("Love");
+const u8 gText_Violence[] = _("Violence");
+const u8 gText_Knowledge[] = _("Knowledge");
+// Question 5
+const u8 gText_ToughShrine[] = _("Tough");
+const u8 gText_Both[] = _("Both");
+const u8 gText_Weak[] = _("Weak");

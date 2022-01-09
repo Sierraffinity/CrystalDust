@@ -3,13 +3,13 @@ mapscripts BlackthornCity_Gym_2F_MapScripts {}
 // TODO: whatever is necessary for the boulders
 
 script BlackthornCity_Gym_2F_Eventscript_CooltrainerCody{
-    trainerbattle_single(TRAINER_CODY, "It's not as if we all use DRAGON-\ntype POKéMON.", "Rats! If only I had a dragon!")
+    trainerbattle_single(TRAINER_CODY, "It's not as if we all use\nDRAGON-type POKéMON.", "Rats!\nIf only I had a dragon!")
     msgbox("Members of our dragon-user clan can\nuse dragon POKéMON only after our\lMASTER allows it.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script BlackthornCity_Gym_2F_Eventscript_CooltrainerFran{
-    trainerbattle_single(TRAINER_FRAN, "I can't allow a nameless TRAINER\npast me!\pCLAIR would be livid if I did!", "Awww… I lost…")
-    msgbox("Uh-oh… CLAIR is going to be mad…", MSGBOX_AUTOCLOSE)
+    trainerbattle_single(TRAINER_FRAN, "I can't allow a nameless TRAINER\npast me!\pCLAIR would be livid if I did!", "Awww…\nI lost…")
+    msgbox("Uh-oh…\nCLAIR is going to be mad…", MSGBOX_AUTOCLOSE)
     end
 }
