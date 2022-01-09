@@ -1350,3 +1350,15 @@ gTileset_ChampionsRoom::
 	.4byte gMetatileAttributes_ChampionsRoom
 	.4byte NULL
 	.4byte NULL @ palette overrides
+
+	.align 2
+gTileset_BlackthornGym::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_BlackthornGym
+	.4byte gTilesetPalettes_BlackthornGym
+	.4byte gMetatiles_BlackthornGym
+	.4byte gMetatileAttributes_BlackthornGym
+	.4byte NULL
+	.4byte NULL @ palette overrides

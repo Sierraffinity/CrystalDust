@@ -819,3 +819,10 @@ gMetatiles_ChampionsRoom::
 	.align 1
 gMetatileAttributes_ChampionsRoom::
 	.incbin "data/tilesets/secondary/championsroom/metatile_attributes.bin"
+	.align 1
+gMetatiles_BlackthornGym::
+	.incbin "data/tilesets/secondary/blackthorngym/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_BlackthornGym::
+	.incbin "data/tilesets/secondary/blackthorngym/metatile_attributes.bin"

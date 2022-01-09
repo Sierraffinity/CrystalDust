@@ -28,13 +28,13 @@ script BlackthornCity_Gym_1F_Eventscript_CooltrainerPaul{ // nearest entrance
     end
 }
 
-script BlackthornCity_Gym_1F_Eventscript_CooltrainerMike{ // nearest entrance
+script BlackthornCity_Gym_1F_Eventscript_CooltrainerMike{ // middle island
     trainerbattle_single(TRAINER_MIKE, "My chance of losing?\nNot even one percent!", "That's odd.")
     msgbox("I know my shortcomings now.\nThanks for showing me!", MSGBOX_AUTOCLOSE)
     end
 }
 
-script BlackthornCity_Gym_1F_Eventscript_CooltrainerLola{ // nearest entrance
+script BlackthornCity_Gym_1F_Eventscript_CooltrainerLola{
     trainerbattle_single(TRAINER_LOLA, "Dragons are sacred POKéMON.\nThey are full of life energy.\pIf you're not serious, you won't be\nable to beat them.", "Way to go!")
     msgbox("Dragons are weak against DRAGON-\ntype moves.", MSGBOX_AUTOCLOSE)
     end

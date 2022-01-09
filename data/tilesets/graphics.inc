@@ -2530,3 +2530,23 @@ gTilesetPalettes_ChampionsRoom::
 	.align 2
 gTilesetTiles_ChampionsRoom::
 	.incbin "data/tilesets/secondary/championsroom/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_BlackthornGym::
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/blackthorngym/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_BlackthornGym::
+	.incbin "data/tilesets/secondary/blackthorngym/tiles.4bpp.lz"
