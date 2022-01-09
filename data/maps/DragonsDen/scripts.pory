@@ -1,6 +1,6 @@
 mapscripts DragonsDen_MapScripts {}
 
-// TODO: Clair event
+// TODO: Clair event; Rival training
 
 script DragonsDen_Eventscript_Sign {
     msgbox("DRAGON SHRINE\pA shrine honoring the dragon POKéMON\nsaid to have lived in the DRAGON'S\lDEN.", MSGBOX_SIGN)
@@ -20,13 +20,13 @@ script DragonsDen_Eventscript_CooltrainerCara {
 }
 
 script DragonsDen_Eventscript_TwinTop { // top twin
-    trainerbattle_single(TRAINER_LEA_AND_PIA, "It's a stranger we don't know.", "Ouchies.")
+    trainerbattle_double(TRAINER_LEA_AND_PIA, "It's a stranger we don't know.", "Ouchies.", "We don't battle strangers with\nonly one POKéMON.")
     msgbox("It was like having to battle LANCE.", MSGBOX_AUTOCLOSE)
     end
 }
 
 script DragonsDen_Eventscript_TwinBottom { // bottom twin
-    trainerbattle_single(TRAINER_LEA_AND_PIA, "Who are you?", "Meanie.")
+    trainerbattle_double(TRAINER_LEA_AND_PIA, "Who are you?", "Meanie.", "Your POKéMON looks lonely without\na friend to battle with.")
     msgbox("We'll tell on you.\nMASTER will be angry with you.", MSGBOX_AUTOCLOSE)
     end
 }
