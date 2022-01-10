@@ -38,7 +38,7 @@ mapscripts TinTower_1F_MapScripts {
         checkitem(ITEM_RAINBOW_WING, 1)
         if(var(VAR_RESULT))
         {   // checking this to avoid doing the expensive beasts check
-            goto(TinTower_1F_MapScript_MoveSagesToTop)
+            call(TinTower_1F_MapScript_MoveSagesToTop)
         }
         else
         {
@@ -47,7 +47,7 @@ mapscripts TinTower_1F_MapScripts {
                 callnative(CheckOwnAllBeasts)
                 if(var(VAR_RESULT))
                 {
-                    goto(TinTower_1F_MapScript_MoveSagesToTop)
+                    call(TinTower_1F_MapScript_MoveSagesToTop)
                 }
             }
         }
@@ -220,7 +220,7 @@ script TinTower_1F_MapScript_MoveSagesToTop{
     setobjectmovementtype(5, MOVEMENT_TYPE_FACE_DOWN)
     setobjectxyperm(6, 14, 4)
     setobjectmovementtype(6, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT)
-    end
+    return
 }
 
 script TinTower_1F_EventScript_Sage1{
@@ -231,7 +231,7 @@ script TinTower_1F_EventScript_Sage1{
             msgbox("HO-OH appears to have descended\nupon this, the TIN TOWER!", MSGBOX_NPC)
             end
         }
-        msgbox("The legendary POKéMON are said\nto embody three powers…\pThe lightning that struck the TOWER.\pThe fire that burned the TOWER.\pAnd the rain that put out the fire…")
+        msgbox("The legendary POKéMON are said\nto embody three powers…\pThe lightning that struck the\nTOWER.\pThe fire that burned the TOWER.\pAnd the rain that put out the fire…", MSGBOX_NPC)
         end
     }
     msgbox("According to legend…\pWhen the souls of POKéMON and humans\ncommune, from the heavens descends\la POKéMON of rainbow colors…\pCould it mean the legendary POKéMON\nare testing us humans?", MSGBOX_NPC)
@@ -243,7 +243,7 @@ script TinTower_1F_EventScript_Sage2{
     {
         if(flag(FLAG_DEFEATED_HO_OH))
         {
-            msgbox("When the legendary POKéMON appeared…\pThey struck terror in those who saw\ntheir rise.\pAnd…\nSome even took to futile attacks.\pThe legendary POKéMON, knowing\ntheir own power, fled, ignoring\lthe frightened people.", MSGBOX_NPC)
+            msgbox("When the legendary POKéMON\nappeared…\pThey struck terror in those who saw\ntheir rise.\pAnd…\nSome even took to futile attacks.\pThe legendary POKéMON, knowing\ntheir own power, fled, ignoring\lthe frightened people.", MSGBOX_NPC)
             end
         }
         checkitem(ITEM_RAINBOW_WING, 1)
@@ -303,9 +303,14 @@ script TinTower_1F_EventScript_Sage3{
             msgbox("I believe you are being tested.\pFree your mind from uncertainty,\nand advance.", MSGBOX_NPC)
             end
         }
-        msgbox("Of the legendary POKéMON, SUICUNE\nis said to be the closest to HO-OH.\pI hear there may also be a link to\nPOKéMON known as UNOWN.\pThe POKéMON UNOWN must be sharing a\ncooperative bond with SUICUNE.")
+        msgbox("Of the legendary POKéMON, SUICUNE\nis said to be the closest to HO-OH.\pI hear there may also be a link to\nPOKéMON known as UNOWN.\pThe POKéMON UNOWN must be sharing a\ncooperative bond with SUICUNE.", MSGBOX_NPC)
         end
     }
     msgbox("The two TOWERS are said to have\nbeen built to foster friendship and\lhope between POKéMON and people.\pThat was 700 years ago, but the\nideal still remains important today.", MSGBOX_NPC)
+    end
+}
+
+script TinTower_1F_EventScript_Eusine {
+    msgbox("I knew it.\pI knew you'd get to see the POKéMON\nof rainbow colors, {PLAYER}.\pIt happened just as I envisioned.\nMy research isn't bad, I might say.\pI'm going to keep studying POKéMON\nto become a famous POKéMANIAC!", MSGBOX_NPC)
     end
 }
