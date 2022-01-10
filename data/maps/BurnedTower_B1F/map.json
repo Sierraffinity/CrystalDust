@@ -20,7 +20,7 @@
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
       "in_connection": false,
-      "x": 16,
+      "x": 17,
       "y": 10,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -35,7 +35,7 @@
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
-      "x": 15,
+      "x": 16,
       "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -95,7 +95,7 @@
       "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ENTEI",
       "in_connection": false,
-      "x": 11,
+      "x": 12,
       "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -105,6 +105,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_AWAKENED_LEGENDARY_BEASTS"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SUICUNE",
+      "in_connection": false,
+      "x": 9,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BurnedTower_B1F_EventScript_RegeneratedSuicune",
+      "flag": "FLAG_TEMP_2"
     }
   ],
   "warp_events": [

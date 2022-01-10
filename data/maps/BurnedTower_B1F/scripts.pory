@@ -1,4 +1,15 @@
 mapscripts BurnedTower_B1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_SYS_GAME_CLEAR) || flag(FLAG_DEFEATED_SUICUNE) || !flag(FLAG_FOUGHT_SUICUNE))
+        {
+            setflag(FLAG_TEMP_2)
+            setvar(VAR_TEMP_0, 1)
+        }
+        if(flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+        {
+            setvar(VAR_TEMP_1, 1)
+        }
+    }
     MAP_SCRIPT_ON_LOAD{
         if(!flag(FLAG_AWAKENED_LEGENDARY_BEASTS) || flag(FLAG_EUSINE_IN_BURNED_TOWER_B1F))
         {
@@ -12,14 +23,57 @@ mapscripts BurnedTower_B1F_MapScripts {
     }
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
         VAR_TEMP_0, 0{
-            callnative(PatchAsleepBeastsPalettesToSlots)
-            end
+            if(!flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+            {
+                callnative(PatchAsleepBeastsPalettesToSlots)
+                end
+            }
         }
     ]
     MAP_SCRIPT_ON_RETURN_TO_FIELD
     {
-        callnative(PatchAsleepBeastsPalettesToSlots)
+        if(!flag(FLAG_AWAKENED_LEGENDARY_BEASTS))
+        {
+            callnative(PatchAsleepBeastsPalettesToSlots)
+        }
     }
+    MAP_SCRIPT_ON_RESUME {
+        if (flag(FLAG_SYS_CTRL_OBJ_DELETE))
+        {
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            if (var(VAR_RESULT) == B_OUTCOME_CAUGHT)
+            {
+                removeobject(VAR_LAST_TALKED)
+            }
+        }
+    }
+}
+
+script BurnedTower_B1F_EventScript_RegeneratedSuicune {
+	playmoncry(SPECIES_SUICUNE, 0)
+    waitmoncry
+    setvar(VAR_LAST_TALKED, 7)
+	setflag(FLAG_SYS_CANT_RUN_FROM_BATTLE)
+    setwildbattle(SPECIES_SUICUNE, 40, ITEM_NONE)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    switch (var(VAR_RESULT))
+    {
+        case B_OUTCOME_CAUGHT:
+            call(BurnedTower_B1F_EventScript_RegeneratedSuicuneCaught)
+        case B_OUTCOME_WON:
+            call(Common_EventScript_RemoveStaticPokemon)
+        case B_OUTCOME_RAN:
+        case B_OUTCOME_PLAYER_TELEPORTED:
+            call(Common_EventScript_RemoveStaticPokemon)
+    }
+    setflag(FLAG_DEFEATED_SUICUNE)
+	release
+	end
+}script BurnedTower_B1F_EventScript_RegeneratedSuicuneCaught{
+	setflag(FLAG_CAUGHT_SUICUNE)
 }
 
 script BurnedTower_B1F_EventScript_Trigger{
