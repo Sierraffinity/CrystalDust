@@ -102,9 +102,12 @@ script LakeOfRage_EventScript_RedGyarados {
             call(Common_EventScript_RemoveStaticPokemon)
     }
     setflag(FLAG_DEFEATED_RED_GYARADOS)
-    giveitem(ITEM_RED_SCALE, 1)
-	addobject(10)
-	clearflag(FLAG_TEMP_3)
+	if(!flag(FLAG_DECIDED_TO_HELP_LANCE))
+	{
+		giveitem(ITEM_RED_SCALE, 1)
+		addobject(10)
+		clearflag(FLAG_TEMP_3)
+	}
 	release
 	end
 }script LakeOfRage_EventScript_RedGyaradosCaught{
@@ -192,9 +195,25 @@ script LakeOfRage_Eventscript_CooltrainerAaron { //on left side of lake
     end
 }
 
+// Has to have separate handling as she can be battled with a regenerated red Gyarados
+// in the lake and her GSC dialogue doesn't make sense with a red Gyarados present.
 script LakeOfRage_Eventscript_CooltrainerLois {
-    trainerbattle_single(TRAINER_LOIS, "What happened to the red GYARADOS?\nIt's gone?\pOh, darn. I came here for nothing?\nI know--let's battle!", "Good going!")
-    msgbox("Come to think of it, I've seen a\npink BUTTERFREE.", MSGBOX_AUTOCLOSE)
+	if(!defeated(TRAINER_LOIS))
+	{
+		playbgm(MUS_ENCOUNTER_FEMALE, 0)
+		if(!flag(FLAG_DEFEATED_RED_GYARADOS)) // Gyarados present. In GSC, this trainer was hidden before beating the Rocket Hideout.
+		{
+			msgbox("The red GYARADOS left for a while,\nbut now it's back!\pNow that I've seen it, I'm bored.\nI know--let's battle!", MSGBOX_NPC)
+		}
+		else
+		{
+			msgbox("What happened to the red GYARADOS?\nIt's gone?\pOh, darn. I came here for nothing?\nI know--let's battle!", MSGBOX_NPC)
+		}
+		trainerbattle_no_intro(TRAINER_LOIS, "Good going!")
+		release
+		end
+	}
+    msgbox("Come to think of it, I've seen a\npink BUTTERFREE.", MSGBOX_NPC)
     end
 }
 

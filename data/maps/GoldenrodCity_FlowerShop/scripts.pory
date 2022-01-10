@@ -4,7 +4,7 @@ mapscripts GoldenrodCity_FlowerShop_MapScripts { }
 
 script GoldenrodCity_FlowerShop_EventScript_OlderSister {
     lock
-    if (flag(FLAG_DEFEATED_SUDOWOODO))
+    if (flag(FLAG_DEFEATED_SUDOWOODO) || flag(FLAG_SYS_GAME_CLEAR))
     {
         call(GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala)
     }
@@ -58,7 +58,7 @@ script GoldenrodCity_FlowerShop_EventScript_OlderSister_Lalala {
 script GoldenrodCity_FlowerShop_EventScript_Floria {
     lock
     faceplayer
-    if (flag(FLAG_DEFEATED_SUDOWOODO))
+    if (flag(FLAG_DEFEATED_SUDOWOODO) || flag(FLAG_SYS_GAME_CLEAR))
     {
         msgbox("So it really was a POKéMON!")
     }

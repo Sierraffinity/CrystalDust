@@ -231,15 +231,41 @@ script Route36_EventScript_UseSquirtbottleOnSudowoodo {
     setflag(FLAG_DEFEATED_SUDOWOODO)
     release
 }script Route36_EventScript_SudowoodoFlees{
+    setmetatile(33, 11, 0x2F0, 1) // Changed to tiles that will be covered by Sudowoodo
+    setmetatile(33, 10, 0x2F0, 1)
+    setmetatile(33, 9, 0x2F8, 1)
+    setmetatile(33, 8, 0x2F9, 1)
+    special(DrawWholeMapView)
+    playse(SE_LEDGE)
     applymovement(OBJ_EVENT_ID_SUDOWOODO, Route36_Movement_SudowoodoFlees)
+    waitse
+    playse(SE_LEDGE)
+    waitse
+    playse(SE_LEDGE)
+    waitse
     waitmovement(0)
     setflag(FLAG_DEFEATED_SUDOWOODO)
+    setmetatile(33, 11, 0x12, 1) // Changed back
+    setmetatile(33, 10, 0x12, 1)
+    setmetatile(33, 9, 0x1B, 1)
+    setmetatile(33, 8, 0x1D, 1)
+    special(DrawWholeMapView)
     release
     end
 }script Route36_EventScript_SudowoodoCaught{
     setflag(FLAG_CAUGHT_SUDOWOODO)
 }movement Route36_Movement_SudowoodoFlees{
-    jump_2_up_fast * 3
+    face_left
+    lock_facing_direction
+    jump_2_up_fast
+    unlock_facing_direction
+    face_right
+    lock_facing_direction
+    jump_2_up_fast
+    unlock_facing_direction
+    face_left
+    lock_facing_direction
+    jump_2_up_fast
 }
 
 movement Route36_Movement_Sudowoodo {

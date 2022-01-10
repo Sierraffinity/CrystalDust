@@ -75,10 +75,7 @@ script IndigoPlateau_HallOfFame_EventScript_ResetDefeatedOneOffs {
     if(!flag(FLAG_CAUGHT_SUDOWOODO))
     {
         clearflag(FLAG_DEFEATED_SUDOWOODO)
-    }
-    if(!flag(FLAG_CAUGHT_SUDOWOODO))
-    {
-        clearflag(FLAG_DEFEATED_SUDOWOODO)
+        clearflag(FLAG_HIDE_ROUTE_36_SUDOWOODO)
     }
     if(!flag(FLAG_CAUGHT_CELEBI))
     {
