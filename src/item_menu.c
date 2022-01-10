@@ -817,7 +817,7 @@ void BagMenu_ItemPrintCallback(u8 windowId, u16 index, s32 itemIndex, u8 y)
         itemQuantity = BagGetQuantityByPocketPosition(gBagPosition.pocket + 1, itemIndex);
 
         // Draw HM icon
-        if (itemId >= ITEM_HM01 && itemId <= ITEM_HM08)
+        if (itemId >= ITEM_HM01 && itemId <= ITEM_HM09)
             BlitBitmapToWindow(windowId, gBagMenuHMIcon_Gfx, 9, y, 16, 12);
 
         if (gBagPosition.pocket == BERRIES_POCKET || (gBagPosition.pocket != KEYITEMS_POCKET && ItemId_GetImportance(itemId) < 2))

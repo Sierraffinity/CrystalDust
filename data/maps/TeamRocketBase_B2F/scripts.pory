@@ -207,7 +207,7 @@ script TeamRocketBase_B2F_EventScript_RendevousWithLanceAfterElectrodes{
     textcolor(0)
     msgbox("LANCE: That odd signal has\nfinally stopped.\lThe LAKE should be back to normal.\pYou're the hero! Let me thank you\non behalf of all the POKéMON.\pOh, yes.\nYou should take this.\pI found it here, but I don't have\nany need for it.", MSGBOX_DEFAULT)
     textcolor(3)
-    giveitem(ITEM_HM06, 1)
+    giveitem(ITEM_HM08, 1)
     textcolor(0)
     msgbox("That's WHIRLPOOL.\nTeach it to a POKéMON to get\lacross wild water.\pBut keep this in mind.\pYou can use that out of battle only\nwith the BADGE from MAHOGANY GYM.", MSGBOX_DEFAULT)
     closemessage
