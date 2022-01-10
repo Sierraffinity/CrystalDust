@@ -1,1 +1,141 @@
-mapscripts IndigoPlateau_WillsRoom_MapScripts {}
+mapscripts IndigoPlateau_WillsRoom_MapScripts {
+    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffect
+    MAP_SCRIPT_ON_LOAD{
+        if(defeated(TRAINER_WILL))
+        {
+            call(PokemonLeague_EventScript_SetDoorOpen)
+        }
+        if(var(VAR_TEMP_0) == 1)
+        {
+            call(PokemonLeague_EventScript_CloseEntry)
+        }
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_1, 0: PokemonLeague_EventScript_TurnPlayerNorth
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0: PokemonLeague_EventScript_EnterEliteFourRoom
+    ]
+}movement PokemonLeague_Movement_EnterEliteFourRoom{
+    walk_up * 5
+}
+
+script PokemonLeague_EventScript_DoLightingEffect{
+    setvar(VAR_0x8004, 0)
+	//special(DoPokemonLeagueLightingEffect)
+	return
+}
+
+script PokemonLeague_EventScript_SetDoorOpen{
+    setmetatile(6, 1, 0x28E, 1)
+    setmetatile(6, 2, 0x296, 0)
+}
+
+script PokemonLeague_EventScript_CloseEntry{
+    if(!defeated(TRAINER_KAREN) || flag(FLAG_TEMP_5))
+    {
+        //top
+        setmetatile(5, 17, 0x29D, 1)
+        setmetatile(6, 17, 0x29E, 1)
+        setmetatile(7, 17, 0x29F, 1)
+        //bottom
+        setmetatile(5, 18, 0x2A5, 1)
+        setmetatile(6, 18, 0x2A6, 1)
+        setmetatile(7, 18, 0x2A7, 1)
+    }
+    else //Lance's room
+    {
+        //top
+        setmetatile(5, 26, 0x29D, 1)
+        setmetatile(6, 26, 0x29E, 1)
+        setmetatile(7, 26, 0x29F, 1)
+        //bottom
+        setmetatile(5, 27, 0x2A5, 1)
+        setmetatile(6, 27, 0x2A6, 1)
+        setmetatile(7, 27, 0x2A7, 1)
+    }
+    //floor
+    if(!defeated(TRAINER_WILL) || flag(FLAG_TEMP_2))
+    {
+        setmetatile(6, 19, 0x2F1, 0)
+        setmetatile(7, 19, 0x2F1, 0)
+        return
+    }
+    if(!defeated(TRAINER_KOGA) || flag(FLAG_TEMP_3))
+    {
+        setmetatile(6, 19, 0x2A9, 0)
+        setmetatile(7, 19, 0x2A9, 0)
+        return
+    }
+    if(!defeated(TRAINER_BRUNO) || flag(FLAG_TEMP_4))
+    {
+        setmetatile(6, 19, 0x2D1, 0)
+        setmetatile(7, 19, 0x2D1, 0)
+        return
+    }
+    if(!defeated(TRAINER_KAREN) || flag(FLAG_TEMP_5))
+    {
+        setmetatile(6, 19, 0x311, 0)
+        setmetatile(7, 19, 0x311, 0)
+        return
+    }
+    if(!defeated(TRAINER_LANCE) || flag(FLAG_TEMP_6))
+    {
+        setmetatile(6, 28, 0x299, 0)
+        setmetatile(7, 28, 0x299, 0)
+        return
+    }
+}
+
+script PokemonLeague_EventScript_TurnPlayerNorth {
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    return
+}
+
+script PokemonLeague_EventScript_EnterEliteFourRoom {
+    applymovement(OBJ_EVENT_ID_PLAYER, PokemonLeague_Movement_EnterEliteFourRoom)
+    waitmovement(0)
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    special(DoSealedChamberShakingEffect2)
+    waitstate
+    call(PokemonLeague_EventScript_CloseEntry)
+    playse(SE_DOOR)
+    special(DrawWholeMapView)
+    waitse
+    setvar(VAR_TEMP_0, 1)
+    release
+    end
+}
+
+script IndigoPlateau_WillsRoom_EventScript_Will {
+    lock
+    faceplayer
+    if(defeated(TRAINER_WILL))
+    {
+        msgbox(IndigoPlateau_WillsRoom_Text_WillAfterBattle, MSGBOX_NPC)
+        end
+    }
+    msgbox("Welcome to the POKéMON LEAGUE,\n{PLAYER}.\pAllow me to introduce myself.\nI am WILL.\pI have trained all around the\nworld, making my psychic POKéMON\lmore powerful.\pAnd, at last, I've been accepted\ninto the ELITE FOUR.\pI can only keep getting better!\nLosing is not an option!", MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_WILL, "I…\nI can't… believe it…")
+    setflag(FLAG_TEMP_2)
+    msgbox(IndigoPlateau_WillsRoom_Text_WillAfterBattle, MSGBOX_DEFAULT)
+    closemessage
+    call(PokemonLeague_EventScript_SetDoorOpen)
+    playse(SE_UNLOCK)
+    special(DrawWholeMapView)
+    waitse
+    release
+    end
+}text(local) IndigoPlateau_WillsRoom_Text_WillAfterBattle{
+    "Even though I was defeated,\nI won't change my course.\pI will continue battling until\nI stand above all trainers!\pNow, {PLAYER}, move on and experience\nthe true ferocity of the ELITE FOUR."
+}

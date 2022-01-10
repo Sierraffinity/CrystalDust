@@ -87,6 +87,40 @@ void InitRoamer(void)
     CreateInitialRoamerMon();
 }
 
+void RegenerateRaikou(void)
+{
+    struct Pokemon *mon;
+    struct Roamer *roamer = &gSaveBlock1Ptr->roamer[ROAMER_RAIKOU];
+
+    CreateMonWithIVsPersonality(mon, SPECIES_RAIKOU, 40, roamer->ivs, roamer->personality);
+
+    roamer->hp = GetMonData(&mon, MON_DATA_MAX_HP);
+    roamer->status = 0;
+    roamer->active = TRUE;
+}
+
+void RegenerateEntei(void)
+{
+    struct Pokemon *mon;
+    struct Roamer *roamer = &gSaveBlock1Ptr->roamer[ROAMER_ENTEI];
+
+    CreateMonWithIVsPersonality(mon, SPECIES_ENTEI, 40, roamer->ivs, roamer->personality);
+
+    roamer->hp = GetMonData(&mon, MON_DATA_MAX_HP);
+    roamer->status = 0;
+    roamer->active = TRUE;
+}
+
+void IsRaikouActive(void)
+{
+    gSpecialVar_Result = gSaveBlock1Ptr->roamer[ROAMER_RAIKOU].active;
+}
+
+void IsEnteiActive(void)
+{
+    gSpecialVar_Result = gSaveBlock1Ptr->roamer[ROAMER_ENTEI].active;
+}
+
 void UpdateLocationHistoryForRoamer(void)
 {
     u32 i;

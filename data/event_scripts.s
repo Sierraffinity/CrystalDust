@@ -329,8 +329,6 @@ ClearPokepicAndTextboxForEarlyScriptExit::
 	release
 	end
 
-	.include "data/scripts/hall_of_fame.inc"
-
 EventScript_WhiteOut::
 	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour
 	end

@@ -1,1 +1,159 @@
-mapscripts IndigoPlateau_LancesRoom_MapScripts {}
+mapscripts IndigoPlateau_LancesRoom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_TEMP_1)
+    }
+    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffect
+    MAP_SCRIPT_ON_LOAD{
+        if(var(VAR_TEMP_0) == 1)
+        {
+            call(PokemonLeague_EventScript_CloseEntry)
+        }
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_1, 0: PokemonLeague_EventScript_TurnPlayerNorth
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0: PokemonLeague_EventScript_EnterEliteFourRoom
+    ]
+} //^ All map scripts in Will's Room's poryscript
+
+script IndigoPlateau_LancesRoom_EventScript_StairTriggers{
+    lockall
+    savebgm(MUS_NONE)
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    switch(var(VAR_RESULT))
+    {
+        case 5:
+            applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_LancesRoom_Movement_PlayerToLanceLeft)
+            fadeoutbgm(0)
+            waitmovement(0)
+        case 6:
+            applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_LancesRoom_Movement_PlayerToLanceMid)
+            fadeoutbgm(0)
+            waitmovement(0)
+        case 7:
+            applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_LancesRoom_Movement_PlayerToLanceRight)
+            fadeoutbgm(0)
+            waitmovement(0)
+    }
+    turnobject(1, DIR_WEST)
+    textcolor(0)
+    msgbox("LANCE: I've been waiting for you.\p{PLAYER}!\pI knew that you, with your skills,\nwould eventually reach me here.\pThere's no need for words now.\pWe will battle to determine who is\nthe stronger of the two of us.\pAs the most powerful trainer and as\nthe POKéMON LEAGUE CHAMPION…\pI, LANCE, the dragon master,\naccept your challenge!")
+    closemessage
+    trainerbattle_no_intro(TRAINER_LANCE, "…It's over.\nBut it's an odd feeling.\pI'm not angry that I lost.\nIn fact, I feel happy.\pHappy that I witnessed the rise\nof a great new CHAMPION!")
+    applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_LancesRoom_Movement_PlayerToLanceAfterBattle)
+    waitmovement(0)
+    msgbox("…Whew.\pYou have become truly powerful,\n{PLAYER}.\pYour POKéMON have responded to your\nstrong and upstanding nature.\pAs a trainer, you will continue to\ngrow strong with your POKéMON.")
+    closemessage
+    playse(SE_UNLOCK)
+    setmetatile(6, 2, 0x28E, 1)
+    setmetatile(6, 3, 0x296, 0)
+    special(DrawWholeMapView)
+    waitse
+    turnobject(1, DIR_SOUTH)
+    applymovement(1, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    playbgm(MUS_ENCOUNTER_FEMALE, 0)
+    addobject(2)
+    applymovement(2, IndigoPlateau_LancesRoom_Movement_MaryToPlayer1)
+    waitmovement(0)
+    textcolor(1)
+    msgbox("MARY: Oh, no! It's all over!\nPROF. OAK, if you weren't so slow…", MSGBOX_DEFAULT)
+    closemessage
+    addobject(3)
+    applymovement(3, IndigoPlateau_LancesRoom_Movement_OakEnters)
+    waitmovement(0)
+    applymovement(2, IndigoPlateau_LancesRoom_Movement_MaryStepsAside)
+    applymovement(3, IndigoPlateau_LancesRoom_Movement_OakToPlayer)
+    waitmovement(0)
+    turnobject(1, DIR_WEST)
+    textcolor(0)
+    msgbox("PROF. OAK: Ah, {PLAYER}!\pIt's been a long while.\nYou certainly look more impressive.\pYour conquest of the LEAGUE is just\nfantastic!\pYour dedication, trust and love for\nyour POKéMON made this happen.\lYour POKéMON were outstanding too.\pBecause they believed in you as\na trainer, they persevered.\pCongratulations, {PLAYER}!", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(2, IndigoPlateau_LancesRoom_Movement_MaryToPlayer2)
+    waitmovement(0)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    textcolor(1)
+    msgbox("MARY: Let's interview the brand new\nCHAMPION!", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(1, IndigoPlateau_LancesRoom_Movement_LanceRepositions)
+    waitmovement(0)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    textcolor(0)
+    msgbox("LANCE: This is getting to be\na bit too noisy…\p{PLAYER}, could you come with me?", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(2, DIR_NORTH)
+    applymovement(1, IndigoPlateau_LancesRoom_Movement_LanceExits)
+    applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_LancesRoom_Movement_LanceExits)
+    waitmovement(0)
+    hideobjectat(1, MAP_INDIGO_PLATEAU_LANCES_ROOM)
+    playse(SE_EXIT)
+    applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_LancesRoom_Movement_LanceExits)
+    waitmovement(0)
+    hideobjectat(OBJ_EVENT_ID_PLAYER, MAP_INDIGO_PLATEAU_LANCES_ROOM)
+    playse(SE_EXIT)
+    waitse
+    applymovement(2, IndigoPlateau_LancesRoom_Movement_MaryToHallOfFameDoor)
+    waitmovement(0)
+    applymovement(2, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    textcolor(1)
+    message("MARY: Oh, wait!\nWe haven't done the interview!")
+    waitmessage
+    delay(30)
+    closemessage
+    applymovement(2, IndigoPlateau_LancesRoom_Movement_MaryPaces)
+    waitmovement(0)
+    delay(15)
+    warpsilent(MAP_INDIGO_PLATEAU_HALL_OF_FAME, 0, 0xFF, 0xFF)
+    waitstate
+    releaseall
+    end
+}movement(local) IndigoPlateau_LancesRoom_Movement_PlayerToLanceLeft{
+    walk_up * 3
+    face_right
+}movement(local) IndigoPlateau_LancesRoom_Movement_PlayerToLanceMid{
+    walk_up * 2
+    walk_left
+    walk_up
+    face_right
+}movement(local) IndigoPlateau_LancesRoom_Movement_PlayerToLanceRight{
+    walk_up * 2
+    walk_left * 2
+    walk_up
+    face_right
+}movement(local) IndigoPlateau_LancesRoom_Movement_PlayerToLanceAfterBattle{
+    walk_right
+}movement(local) IndigoPlateau_LancesRoom_Movement_MaryToPlayer1{
+    walk_fastest_up * 5
+    face_down
+}movement(local) IndigoPlateau_LancesRoom_Movement_OakEnters{
+    walk_up * 4
+}movement(local) IndigoPlateau_LancesRoom_Movement_MaryStepsAside{
+    walk_left
+    face_right
+}movement(local) IndigoPlateau_LancesRoom_Movement_OakToPlayer{
+    walk_up
+}movement(local) IndigoPlateau_LancesRoom_Movement_MaryToPlayer2{
+    walk_fast_up
+    face_right
+}movement(local) IndigoPlateau_LancesRoom_Movement_LanceRepositions{
+    walk_up
+    walk_left
+    face_down
+}movement(local) IndigoPlateau_LancesRoom_Movement_LanceExits{
+    walk_up
+}movement(local) IndigoPlateau_LancesRoom_Movement_MaryToHallOfFameDoor{
+    walk_up
+    walk_right
+    face_up
+}movement(local) IndigoPlateau_LancesRoom_Movement_MaryPaces{
+    walk_fast_right * 2
+    walk_fast_left * 4
+    walk_fast_right * 4
+    walk_fast_left * 2
+    face_up
+}

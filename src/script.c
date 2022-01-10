@@ -597,16 +597,6 @@ void PatchMurkrowPaletteToSlot10(void)
     LoadPaletteDayNight(&gObjectEventPal_Murkrow, 16 * 10 + 0x100, 0x20);
 }
 
-void IsRaikouRoaming(void)
-{
-    gSpecialVar_Result = (&gSaveBlock1Ptr->roamer[0])->active;
-}
-
-void IsEnteiRoaming(void)
-{
-    gSpecialVar_Result = (&gSaveBlock1Ptr->roamer[1])->active;
-}
-
 static bool32 MonHasPlayersOT(struct Pokemon mon)
 {
     if (GetMonData(&mon, MON_DATA_LANGUAGE) != GAME_LANGUAGE)
@@ -614,7 +604,7 @@ static bool32 MonHasPlayersOT(struct Pokemon mon)
 
     GetMonData(&mon, MON_DATA_OT_NAME, gStringVar1);
 
-    if (!StringCompare(gSaveBlock2Ptr->playerName, gStringVar1))
+    if (StringCompare(gSaveBlock2Ptr->playerName, gStringVar1))
         return FALSE;
 
     if (GetPlayerIDAsU32() != GetMonData(&mon, MON_DATA_OT_ID, NULL))
@@ -625,9 +615,7 @@ static bool32 MonHasPlayersOT(struct Pokemon mon)
 
 void CheckOwnAllBeasts(void)
 {
-    u32 i;
-    u32 j;
-    u32 k;
+    u32 i, j, k;
     u16 species = SPECIES_BLISSEY; //incremented in k loop to Raikou to start
     bool32 hasRaikou = FALSE;
     bool32 hasEntei = FALSE;
@@ -642,6 +630,7 @@ void CheckOwnAllBeasts(void)
         if(k == 2)
             hasEntei = hasMon;
         species++;
+        hasMon = FALSE;
 
         // check party for species
         for(i = 0; i < PARTY_SIZE && !hasMon; i++)

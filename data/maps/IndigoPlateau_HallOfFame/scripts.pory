@@ -1,1 +1,102 @@
-mapscripts IndigoPlateau_HallOfFame_MapScripts {}
+mapscripts IndigoPlateau_HallOfFame_MapScripts {
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_1, 0: PokemonLeague_EventScript_TurnPlayerNorth
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0{
+            applymovement(1, IndigoPlateau_HallOfFame_Movement_LanceToMachine)
+            applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_HallOfFame_Movement_PlayerToMachine)
+            waitmovement(0)
+            textcolor(0)
+            msgbox("LANCE: It's been a long time since\nI last came here.\pThis is where we honor the LEAGUE\nCHAMPIONS for all eternity.\pTheir courageous POKéMON are also\ninducted.\pHere today, we witnessed the rise\nof a new LEAGUE CHAMPION--a\ltrainer who feels compassion for,\land trust toward, all POKéMON.\pA trainer who succeeded through\nperserverance and determination.\pThe new LEAGUE CHAMPION who has\nall the makings of greatness!\p{PLAYER}, allow me to register you\nand your partners as CHAMPIONS!", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(OBJ_EVENT_ID_PLAYER, IndigoPlateau_HallOfFame_Movement_PlayerApproachMachine)
+            waitmovement(0)
+            delay(15)
+            dofieldeffect(FLDEFF_HALL_OF_FAME_RECORD)
+            waitfieldeffect(FLDEFF_HALL_OF_FAME_RECORD)
+            delay(40)
+            setvar(VAR_TEMP_0, 1)
+            call(IndigoPlateau_HallOfFame_EventScript_SetGameClearFlags)
+            setrespawn(HEAL_LOCATION_NEW_BARK_TOWN)
+            fadescreenspeed(FADE_TO_BLACK, 24)
+            special(GameClear)
+            waitstate
+            releaseall
+            end
+        }
+    ]
+}movement(local) IndigoPlateau_HallOfFame_Movement_LanceToMachine{
+    walk_up * 6
+    walk_right
+    face_left
+}movement(local) IndigoPlateau_HallOfFame_Movement_PlayerToMachine{
+    walk_up * 7
+    face_right
+}movement(local) IndigoPlateau_HallOfFame_Movement_PlayerApproachMachine{
+    walk_slow_up
+}
+
+script IndigoPlateau_HallOfFame_EventScript_SetGameClearFlags {
+	special(SetChampionSaveWarp)
+	setflag(FLAG_IS_CHAMPION)
+	call(IndigoPlateau_HallOfFame_EventScript_ResetDefeatedOneOffs)
+    checkitem(ITEM_SS_TICKET, 1)
+    if(!var(VAR_RESULT))
+    {
+	    setflag(FLAG_FORCED_CALL_MASTER_BALL) // for SS Ticket
+    }
+	setvar(VAR_SPROUT_TOWER_STATE, 1)
+	setflag(FLAG_HIDE_SPROUT_TOWER_3F_RIVAL)
+	special(UpdateTrainerFanClubGameClear)
+    special(HealPlayerParty)
+	return
+}
+script IndigoPlateau_HallOfFame_EventScript_ResetDefeatedOneOffs {
+	clearflag(FLAG_DEFEATED_MEW)
+	clearflag(FLAG_DEFEATED_LATIAS_OR_LATIOS)
+	clearflag(FLAG_DEFEATED_DEOXYS)
+    if(!flag(FLAG_CAUGHT_LUGIA))
+    {
+        clearflag(FLAG_DEFEATED_LUGIA)
+    }
+    if(!flag(FLAG_CAUGHT_HO_OH))
+    {
+        clearflag(FLAG_DEFEATED_HO_OH)
+    }
+    if(!flag(FLAG_CAUGHT_RED_GYARADOS))
+    {
+        clearflag(FLAG_DEFEATED_RED_GYARADOS)
+    }
+    if(!flag(FLAG_CAUGHT_SUICUNE))
+    {
+        clearflag(FLAG_DEFEATED_SUICUNE)
+    }
+    if(!flag(FLAG_CAUGHT_SUDOWOODO))
+    {
+        clearflag(FLAG_DEFEATED_SUDOWOODO)
+    }
+    if(!flag(FLAG_CAUGHT_SUDOWOODO))
+    {
+        clearflag(FLAG_DEFEATED_SUDOWOODO)
+    }
+    if(!flag(FLAG_CAUGHT_CELEBI))
+    {
+        clearflag(FLAG_DEFEATED_CELEBI)
+    }
+    if(!flag(FLAG_CAUGHT_SNORLAX))
+    {
+        clearflag(FLAG_DEFEATED_SNORLAX)
+    }
+    callnative(IsEnteiActive)
+    if(!flag(FLAG_CAUGHT_ENTEI) && !var(VAR_RESULT))
+    {
+        callnative(RegenerateEntei) //reactivate roamer entei
+    }
+    callnative(IsRaikouActive)
+    if(!flag(FLAG_CAUGHT_RAIKOU) && !var(VAR_RESULT))
+    {
+        callnative(RegenerateRaikou) //reactivate roamer raikou
+    }
+	return
+}

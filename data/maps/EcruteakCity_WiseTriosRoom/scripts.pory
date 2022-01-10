@@ -4,7 +4,6 @@ mapscripts EcruteakCity_WiseTriosRoom_MapScripts {
         {
             setflag(FLAG_TEMP_1)
             setflag(FLAG_TEMP_2)
-            end
         }
         if(defeated(TRAINER_KOJI))
         {
@@ -22,7 +21,7 @@ mapscripts EcruteakCity_WiseTriosRoom_MapScripts {
         setflag(FLAG_TEMP_2)
     }
     MAP_SCRIPT_ON_LOAD{
-        if(flag(FLAG_TEMP_2))
+        if(flag(FLAG_TEMP_2) && !defeated(TRAINER_KOJI))
         {
             setmetatile(25, 5, 0x37C, 0)
         }

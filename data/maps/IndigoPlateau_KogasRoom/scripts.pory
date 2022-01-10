@@ -1,1 +1,43 @@
-mapscripts IndigoPlateau_KogasRoom_MapScripts {}
+mapscripts IndigoPlateau_KogasRoom_MapScripts {
+    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffect
+    MAP_SCRIPT_ON_LOAD{
+        if(defeated(TRAINER_KOGA))
+        {
+            call(PokemonLeague_EventScript_SetDoorOpen)
+        }
+        if(var(VAR_TEMP_0) == 1)
+        {
+            call(PokemonLeague_EventScript_CloseEntry)
+        }
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_1, 0: PokemonLeague_EventScript_TurnPlayerNorth
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0: PokemonLeague_EventScript_EnterEliteFourRoom
+    ]
+} //^ All map scripts in Will's Room's poryscript
+
+script IndigoPlateau_KogasRoom_EventScript_Koga {
+    lock
+    faceplayer
+    if(defeated(TRAINER_KOGA))
+    {
+        msgbox(IndigoPlateau_KogasRoom_Text_KogaAfterBattle, MSGBOX_NPC)
+        end
+    }
+    msgbox("Fwahahahaha!\pI am KOGA of the ELITE FOUR.\nI live in shadows, a ninja!\pMy intricate style will confound\nand destroy you!\pConfusion, sleep, poison…\pPrepare to be the victim of my\nsinister technique!\pFwahahahaha!\pPOKéMON is not merely about brute\nforce--you shall see soon enough!", MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_KOGA, "Ah!\nYou have proven your worth!")
+    setflag(FLAG_TEMP_3)
+    msgbox(IndigoPlateau_KogasRoom_Text_KogaAfterBattle, MSGBOX_DEFAULT)
+    closemessage
+    call(PokemonLeague_EventScript_SetDoorOpen)
+    playse(SE_UNLOCK)
+    special(DrawWholeMapView)
+    waitse
+    release
+    end
+}text(local) IndigoPlateau_KogasRoom_Text_KogaAfterBattle{
+    "I subjected you to everything\nI could muster.\pBut my efforts failed.\nI must hone my skills.\pGo on to the next room, and put\nyour abilities to test!"
+}

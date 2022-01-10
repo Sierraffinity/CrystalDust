@@ -27,9 +27,9 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm {
     checkitem(ITEM_SS_TICKET, 1)
     if(flag(FLAG_SYS_GAME_CLEAR) && !var(VAR_RESULT))
     {
-        msgbox("ELM: {PLAYER}!\nThere you are!\pI called because I have something\nfor you.\pSee? It's an S.S. Ticket.\nNow you can catch POKéMON in KANTO.", MSGBOX_DEFAULT)
+        msgbox("ELM: {PLAYER}!\nThere you are!\pI called because I have something\nfor you.\pSee? It's an S.S. TICKET.\nNow you can catch POKéMON in KANTO.", MSGBOX_DEFAULT)
         giveitem(ITEM_SS_TICKET, 1)
-        msgbox("The ship departs from OLIVINE CITY.\nBut you knew that already, {PLAYER}.\pAfter all, you've traveled all over\nwith your POKéMON.\pGive my regards to PROF. OAK in KANTO!", MSGBOX_DEFAULT)
+        msgbox("The ship departs from OLIVINE CITY.\nBut you knew that already,\l{PLAYER}.\pAfter all, you've traveled all over\nwith your POKéMON.\pGive my regards to PROF. OAK\nin KANTO!", MSGBOX_DEFAULT)
         closemessage
         release
         end

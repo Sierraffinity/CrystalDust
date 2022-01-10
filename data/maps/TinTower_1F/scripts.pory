@@ -21,12 +21,12 @@ mapscripts TinTower_1F_MapScripts {
             setobjectxyperm(5, 9, 17)
             setobjectxyperm(6, 9, 17)
             setobjectxyperm(7, 9, 17)
-            callnative(IsRaikouRoaming)
+            callnative(IsRaikouActive)
             if(!var(VAR_RESULT))
             {
                 setobjectxyperm(2, 0xFF, 0xFF)
             }
-            callnative(IsEnteiRoaming)
+            callnative(IsEnteiActive)
             if(!var(VAR_RESULT))
             {
                 setobjectxyperm(3, 0xFF, 0xFF)
@@ -73,7 +73,7 @@ mapscripts TinTower_1F_MapScripts {
             applymovement(OBJ_EVENT_ID_PLAYER, TinTower_1F_Movement_PlayerToSuicune)
             waitmovement(0)
             delay(15)
-            callnative(IsRaikouRoaming)
+            callnative(IsRaikouActive)
             if(var(VAR_RESULT))
             {
                 playse(SE_LEDGE)
@@ -95,7 +95,7 @@ mapscripts TinTower_1F_MapScripts {
                 playse(SE_EXIT)
                 waitse
             }
-            callnative(IsEnteiRoaming)
+            callnative(IsEnteiActive)
             if(var(VAR_RESULT))
             {
                 playse(SE_LEDGE)

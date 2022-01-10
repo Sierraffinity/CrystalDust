@@ -2,6 +2,11 @@ mapscripts IndigoPlateau_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION{
         setrespawn(HEAL_LOCATION_ROUTE23)
         setflag(FLAG_TEMP_1)
+        cleartrainerflag(TRAINER_WILL)
+        cleartrainerflag(TRAINER_KOGA)
+        cleartrainerflag(TRAINER_BRUNO)
+        cleartrainerflag(TRAINER_KAREN)
+        cleartrainerflag(TRAINER_LANCE)
         if(defeated(TRAINER_RIVAL_REMATCH_CHIKORITA) || defeated(TRAINER_RIVAL_REMATCH_CYNDAQUIL) || defeated(TRAINER_RIVAL_REMATCH_TOTODILE))
         {
             setvar(VAR_TEMP_0, 1)

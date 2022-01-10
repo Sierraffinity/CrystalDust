@@ -1,1 +1,43 @@
-mapscripts IndigoPlateau_KarensRoom_MapScripts {}
+mapscripts IndigoPlateau_KarensRoom_MapScripts {
+    MAP_SCRIPT_ON_RESUME: PokemonLeague_EventScript_DoLightingEffect
+    MAP_SCRIPT_ON_LOAD{
+        if(defeated(TRAINER_KAREN))
+        {
+            call(PokemonLeague_EventScript_SetDoorOpen)
+        }
+        if(var(VAR_TEMP_0) == 1)
+        {
+            call(PokemonLeague_EventScript_CloseEntry)
+        }
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_1, 0: PokemonLeague_EventScript_TurnPlayerNorth
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0: PokemonLeague_EventScript_EnterEliteFourRoom
+    ]
+} //^ All map scripts in Will's Room's poryscript
+
+script IndigoPlateau_KarensRoom_EventScript_Karen {
+    lock
+    faceplayer
+    if(defeated(TRAINER_KAREN))
+    {
+        msgbox(IndigoPlateau_KarensRoom_Text_KarenAfterBattle, MSGBOX_NPC)
+        end
+    }
+    msgbox("I am KAREN of the ELITE FOUR.\pYou're {PLAYER}? How amusing.\nI love DARK-type POKéMON.\pI find their wild, tough image to be\nso appealing. And they're so strong.\pThink you can take them?\nJust try to entertain me.\pLet's go.", MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_KAREN, "Well, aren't you good.\nI like that in a trainer.")
+    setflag(FLAG_TEMP_5)
+    msgbox(IndigoPlateau_KarensRoom_Text_KarenAfterBattle, MSGBOX_DEFAULT)
+    closemessage
+    call(PokemonLeague_EventScript_SetDoorOpen)
+    playse(SE_UNLOCK)
+    special(DrawWholeMapView)
+    waitse
+    release
+    end
+}text(local) IndigoPlateau_KarensRoom_Text_KarenAfterBattle{
+    "Strong POKéMON.\pWeak POKéMON.\pThat is only the selfish perception\nof people.\pTruly skilled trainers should\ntry to win with their favorites.\pI like your style.\nYou understand what's important.\pGo on--the CHAMPION is waiting."
+}

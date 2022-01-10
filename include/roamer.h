@@ -13,5 +13,9 @@ u8 TryStartRoamerEncounter(void);
 void UpdateRoamerHPStatus(struct Pokemon *mon);
 void SetRoamerInactive(struct Pokemon *mon);
 void GetRoamerLocation(u16 species, u8 *mapGroup, u8 *mapNum);
+void RegenerateRaikou(void);
+void RegenerateEntei(void);
+void IsRaikouActive(void);
+void IsEnteiActive(void);
 
 #endif // GUARD_ROAMER_H
