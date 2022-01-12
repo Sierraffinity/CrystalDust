@@ -826,3 +826,10 @@ gMetatiles_BlackthornGym::
 	.align 1
 gMetatileAttributes_BlackthornGym::
 	.incbin "data/tilesets/secondary/blackthorngym/metatile_attributes.bin"
+	.align 1
+gMetatiles_BattleFrontierPrimary::
+	.incbin "data/tilesets/primary/battlefrontierprimary/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_BattleFrontierPrimary::
+	.incbin "data/tilesets/primary/battlefrontierprimary/metatile_attributes.bin"

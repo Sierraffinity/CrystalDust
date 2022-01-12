@@ -11,11 +11,15 @@
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_NURSE",
+      "in_connection": false,
       "x": 7,
       "y": 2,
       "elevation": 3,
@@ -23,13 +27,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_PokemonCenter_1F_EventScript_Nurse",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
+      "in_connection": false,
       "x": 4,
       "y": 5,
       "elevation": 3,
@@ -37,27 +42,29 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_PokemonCenter_1F_EventScript_SchoolKid",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
-      "x": 11,
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "in_connection": false,
+      "x": 12,
       "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_PokemonCenter_1F_EventScript_Man",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+      "in_connection": false,
       "x": 2,
       "y": 3,
       "elevation": 3,
@@ -65,13 +72,14 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_PokemonCenter_1F_EventScript_Picnicker",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PIDGEY",
+      "in_connection": false,
       "x": 1,
       "y": 3,
       "elevation": 3,
@@ -79,7 +87,6 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_PokemonCenter_1F_EventScript_Skitty",
       "flag": "0"
@@ -94,13 +101,6 @@
       "dest_warp_id": 12
     },
     {
-      "x": 6,
-      "y": 8,
-      "elevation": 3,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": 12
-    },
-    {
       "x": 1,
       "y": 6,
       "elevation": 4,
@@ -108,7 +108,10 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-  "phone_service": true
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

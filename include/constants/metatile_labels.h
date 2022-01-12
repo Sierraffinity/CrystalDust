@@ -5,31 +5,30 @@
 #define METATILE_Azalea_Door  0x29B
 
 // gTileset_BattleArena
-#define METATILE_BattleArena_Door  0x21B
+#define METATILE_BattleArena_Door  0x29C
 
 // gTileset_BattleDome
-#define METATILE_BattleDome_Door_Corridor       0x25E
-#define METATILE_BattleDome_Door_Lobby          0x209
-#define METATILE_BattleDome_Door_PreBattleRoom  0x20A
+#define METATILE_BattleDome_Door_Corridor       0x29A
+#define METATILE_BattleDome_Door_Lobby          0x292
+#define METATILE_BattleDome_Door_PreBattleRoom  0x28A
 
 // gTileset_BattleFrontierOutsideEast
 #define METATILE_BattleFrontierOutsideEast_Door              0x3FC
-#define METATILE_BattleFrontierOutsideEast_Door_BattleArena  0x291
-#define METATILE_BattleFrontierOutsideEast_Door_BattleTower  0x329
+#define METATILE_BattleFrontierOutsideEast_Door_BattleArena  0x3D7
+#define METATILE_BattleFrontierOutsideEast_Door_BattleTower  0x330
 #define METATILE_BattleFrontierOutsideEast_Door_Sliding      0x396
 
 // gTileset_BattleFrontierOutsideWest
-#define METATILE_BattleFrontierOutsideWest_Door                0x3FC
-#define METATILE_BattleFrontierOutsideWest_Door_BattleDome     0x28A
-#define METATILE_BattleFrontierOutsideWest_Door_BattleFactory  0x263
+#define METATILE_BattleFrontierOutsideWest_Door_BattleDome     0x3C5
+#define METATILE_BattleFrontierOutsideWest_Door_BattleFactory  0x35D
 #define METATILE_BattleFrontierOutsideWest_Door_Sliding        0x396
 
 // gTileset_BattleFrontier
-#define METATILE_BattleFrontier_CorridorOpenDoor_Bottom  0x20F
-#define METATILE_BattleFrontier_CorridorOpenDoor_Top     0x207
-#define METATILE_BattleFrontier_Door_Corridor            0x224
-#define METATILE_BattleFrontier_Door_Elevator            0x20E
-#define METATILE_BattleFrontier_Door_MultiCorridor       0x2AD
+#define METATILE_BattleFrontier_CorridorOpenDoor_Bottom  0x28F
+#define METATILE_BattleFrontier_CorridorOpenDoor_Top     0x287
+#define METATILE_BattleFrontier_Door_Corridor            0x2A4
+#define METATILE_BattleFrontier_Door_Elevator            0x28E
+#define METATILE_BattleFrontier_Door_MultiCorridor       0x394
 #define METATILE_BattleFrontier_Elevator_Bottom0         0x339
 #define METATILE_BattleFrontier_Elevator_Bottom1         0x33A
 #define METATILE_BattleFrontier_Elevator_Bottom2         0x33B
@@ -41,7 +40,7 @@
 #define METATILE_BattleFrontier_Elevator_Top2            0x32B
 
 // gTileset_BattlePalace
-#define METATILE_BattlePalace_Door  0x219
+#define METATILE_BattlePalace_Door  0x299
 
 // gTileset_BattlePike
 #define METATILE_BattlePike_Curtain_Stage0_Tile0  0x24A
@@ -264,7 +263,6 @@
 #define METATILE_Lilycove_Door             0x246
 #define METATILE_Lilycove_Door_DeptStore   0x30C
 #define METATILE_Lilycove_Door_SafariZone  0x32D
-#define METATILE_Lilycove_Door_Wooden      0x28E
 #define METATILE_Lilycove_Wailmer0         0x290
 #define METATILE_Lilycove_Wailmer0_Alt     0x298
 #define METATILE_Lilycove_Wailmer1         0x291
@@ -306,7 +304,6 @@
 #define METATILE_Mauville_DeepSand_Center     0x251
 #define METATILE_Mauville_Door                0x2AC
 #define METATILE_Mauville_Door_BattleTent     0x3D4
-#define METATILE_Mauville_Door_CyclingRoad    0x289
 #define METATILE_Mauville_Door_Verdanturf     0x3A1
 #define METATILE_Mauville_MirageTower_Tile0   0x3D8
 #define METATILE_Mauville_MirageTower_Tile1   0x3D9

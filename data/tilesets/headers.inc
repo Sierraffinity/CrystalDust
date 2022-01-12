@@ -1362,3 +1362,15 @@ gTileset_BlackthornGym::
 	.4byte gMetatileAttributes_BlackthornGym
 	.4byte NULL
 	.4byte NULL @ palette overrides
+
+	.align 2
+gTileset_BattleFrontierPrimary::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_BattleFrontierPrimary
+	.4byte gTilesetPalettes_BattleFrontierPrimary
+	.4byte gMetatiles_BattleFrontierPrimary
+	.4byte gMetatileAttributes_BattleFrontierPrimary
+	.4byte InitTilesetAnim_General
+	.4byte gTilesetPalOverrides_General

@@ -11,11 +11,15 @@
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_MR_POKEMON",
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+      "in_connection": false,
       "x": 8,
       "y": 12,
       "elevation": 3,
@@ -23,13 +27,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_JIGGLYPUFF",
+      "in_connection": false,
       "x": 3,
       "y": 5,
       "elevation": 0,
@@ -37,13 +42,14 @@
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PERSIAN",
+      "in_connection": false,
       "x": 12,
       "y": 6,
       "elevation": 0,
@@ -51,13 +57,14 @@
       "movement_range_x": 0,
       "movement_range_y": 2,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
+      "in_connection": false,
       "x": 15,
       "y": 5,
       "elevation": 0,
@@ -65,13 +72,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
+      "in_connection": false,
       "x": 4,
       "y": 9,
       "elevation": 0,
@@ -79,13 +87,14 @@
       "movement_range_x": 0,
       "movement_range_y": 2,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE_TAILLESS",
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
+      "in_connection": false,
       "x": 13,
       "y": 9,
       "elevation": 0,
@@ -93,13 +102,14 @@
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_BUTTERFREE",
+      "in_connection": false,
       "x": 3,
       "y": 10,
       "elevation": 0,
@@ -107,7 +117,6 @@
       "movement_range_x": 1,
       "movement_range_y": 2,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "0"
@@ -143,7 +152,10 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-  "phone_service": true
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

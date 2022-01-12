@@ -11,11 +11,15 @@
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_TEALA",
+      "in_connection": false,
       "x": 4,
       "y": 4,
       "elevation": 0,
@@ -23,13 +27,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_ExchangeServiceCorner_EventScript_DecorClerk1",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ZRICH_BOY",
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "in_connection": false,
       "x": 0,
       "y": 5,
       "elevation": 0,
@@ -37,13 +42,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_ExchangeServiceCorner_EventScript_RichBoy",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+      "in_connection": false,
       "x": 0,
       "y": 4,
       "elevation": 0,
@@ -51,13 +57,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_ExchangeServiceCorner_EventScript_PokefanF",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "in_connection": false,
       "x": 14,
       "y": 6,
       "elevation": 0,
@@ -65,13 +72,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_ExchangeServiceCorner_EventScript_Sailor",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "in_connection": false,
       "x": 1,
       "y": 9,
       "elevation": 0,
@@ -79,13 +87,14 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_ExchangeServiceCorner_EventScript_Man",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_TEALA",
+      "in_connection": false,
       "x": 5,
       "y": 5,
       "elevation": 0,
@@ -93,13 +102,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_ExchangeServiceCorner_EventScript_DecorClerk2",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_TEALA",
+      "in_connection": false,
       "x": 9,
       "y": 5,
       "elevation": 0,
@@ -107,13 +117,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_ExchangeServiceCorner_EventScript_VitaminClerk",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_TEALA",
+      "in_connection": false,
       "x": 10,
       "y": 4,
       "elevation": 0,
@@ -121,13 +132,14 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_ExchangeServiceCorner_EventScript_HoldItemClerk",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL",
+      "in_connection": false,
       "x": 12,
       "y": 10,
       "elevation": 0,
@@ -135,7 +147,6 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "0",
-      "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_ExchangeServiceCorner_EventScript_Girl",
       "flag": "0"
@@ -164,7 +175,10 @@
       "dest_warp_id": 6
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-  "phone_service": true
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

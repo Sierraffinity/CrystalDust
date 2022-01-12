@@ -2550,3 +2550,23 @@ gTilesetPalettes_BlackthornGym::
 	.align 2
 gTilesetTiles_BlackthornGym::
 	.incbin "data/tilesets/secondary/blackthorngym/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_BattleFrontierPrimary::
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/battlefrontierprimary/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_BattleFrontierPrimary::
+	.incbin "data/tilesets/primary/battlefrontierprimary/tiles.4bpp.lz"
