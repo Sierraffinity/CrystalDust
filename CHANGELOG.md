@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Miscellanous files (map screenshots, concept art for new title screen) in other/.
 - New Kris, Firebreather, Rival, and female Rocket Grunt trainer sprites (credit to Momento Rori/RoryAllegory)
+- Morning and night battle terrain variants for all outdoor terrain types.
 
 ### Fixed
 
@@ -22,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed the Youngster overworld having one frame too low.
 - Fixed a typo with Youngster Samuel's defeat text ("Beaten by a pass**s**ing stranger!").
 - Fixed a bug with certain Pokémon floating after hatching.
+- Fixed phone service being available in certain areas where it shouldn't have been.
 
 ## [v3.0.0-alpha.0.5] - 2021-01-04
 ### Changed
