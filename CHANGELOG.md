@@ -6,9 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+
+- Tweaked overworld sprites and backsprites for Gold and Kris (with help from [@ShinyDragonHunter](https://github.com/ShinyDragonHunter)).
+
 ### Added
 
-- Miscellanous files (map screenshots, concept art for new title screen) in other/.
+- Miscellanous files (map screenshots, concept art for new title screen, etc) in other/.
 - New Kris, Firebreather, Rival, and female Rocket Grunt trainer sprites (credit to Momento Rori/RoryAllegory)
 - Morning and night battle terrain variants for all outdoor terrain types.
 
