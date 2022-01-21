@@ -970,7 +970,7 @@ u32 FldEff_SurfBlob(void)
         sprite->coordOffsetEnabled = TRUE;
         sprite->oam.paletteNum = 0;
         sprite->data[2] = gFieldEffectArguments[2];
-        sprite->data[3] = -1;
+        sprite->data[3] = 0;
         sprite->data[6] = -1;
         sprite->data[7] = -1;
     }
@@ -1067,7 +1067,7 @@ void sub_81556E8(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 
 static void CreateBobbingEffect(struct ObjectEvent *objectEvent, struct Sprite *linkedSprite, struct Sprite *sprite)
 {
-    u16 unk_085CDC6A[] = {3, 7};
+    u16 unk_085CDC6A[] = {7, 15};
     u8 bobState = GetSurfBobState(sprite);
     if (bobState != 0)
     {
@@ -1075,7 +1075,7 @@ static void CreateBobbingEffect(struct ObjectEvent *objectEvent, struct Sprite *
         {
             sprite->pos2.y += sprite->data[3];
         }
-        if ((sprite->data[4] & 0x0F) == 0)
+        if ((sprite->data[4] & 0x1F) == 0)
         {
             sprite->data[3] = -sprite->data[3];
         }
@@ -1085,6 +1085,8 @@ static void CreateBobbingEffect(struct ObjectEvent *objectEvent, struct Sprite *
                 linkedSprite->pos2.y = sprite->pos2.y;
             else
                 linkedSprite->pos2.y = sprite->data[1] + sprite->pos2.y;
+            if (sprite->animCmdIndex != 0)
+                linkedSprite->pos2.y++;
             sprite->pos1.x = linkedSprite->pos1.x;
             sprite->pos1.y = linkedSprite->pos1.y + 8;
         }

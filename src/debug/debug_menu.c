@@ -10,6 +10,7 @@
 #include "event_object_movement.h"
 #include "event_object_lock.h"
 #include "evolution_scene.h"
+#include "field_effect.h"
 #include "field_message_box.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
@@ -34,6 +35,7 @@
 #include "window.h"
 #include "constants/day_night.h"
 #include "constants/items.h"
+#include "constants/field_effects.h"
 #include "constants/flags.h"
 #include "constants/heal_locations.h"
 #include "constants/moves.h"
@@ -92,6 +94,7 @@ static void DebugMenu_TimeCycle(u8 taskId);
 static void DebugMenu_TimeCycle_ProcessInput(u8 taskId);
 static void DebugMenu_ToggleRunningShoes(u8 taskId);
 static void DebugMenu_EnableResetRTC(u8 taskId);
+static void DebugMenu_StartSurfing(u8 taskId);
 static void DebugMenu_TestBattleTransition(u8 taskId);
 static void DebugMenu_SwapGender(u8 taskId);
 static void DebugMenu_LottoNumber(u8 taskId);
@@ -159,6 +162,7 @@ static const u8 sText_Misc[] = _("Misc");
 static const u8 sText_ToggleWalkThroughWalls[] = _("Toggle walk through walls");
 static const u8 sText_ToggleRunningShoes[] = _("Toggle running shoes");
 static const u8 sText_EnableResetRTC[] = _("Enable reset RTC (B+SEL+LEFT)");
+static const u8 sText_StartSurfing[] = _("Start surfing");
 static const u8 sText_TestBattleTransition[] = _("Test battle transition");
 static const u8 sText_CreateDaycareEgg[] = _("Create daycare egg");
 static const u8 sText_PoisonAllMons[] = _("Poison all Pokémon");
@@ -293,6 +297,7 @@ static const struct DebugMenuAction sDebugMenu_MiscActions[] =
     { sText_ToggleWalkThroughWalls, DebugMenu_ToggleWalkThroughWalls, NULL },
     { sText_ToggleRunningShoes, DebugMenu_ToggleRunningShoes, NULL },
     { sText_EnableResetRTC, DebugMenu_EnableResetRTC, NULL },
+    { sText_StartSurfing, DebugMenu_StartSurfing, NULL },
 };
 
 CREATE_BOUNCER(MiscActions, MainActions);
@@ -1046,6 +1051,13 @@ static void DebugMenu_BattleTerrain_ProcessInput(u8 taskId)
 static void DebugMenu_EnableResetRTC(u8 taskId)
 {
     EnableResetRTC();
+}
+
+static void DebugMenu_StartSurfing(u8 taskId)
+{
+    gFieldEffectArguments[0] = 0;
+    FieldEffectStart(FLDEFF_USE_SURF);
+    DebugMenu_Exit(taskId);
 }
 
 static void DebugMenu_TestBattleTransition(u8 taskId)

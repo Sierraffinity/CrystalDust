@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Tweaked overworld sprites and backsprites for Gold and Kris (with help from [@ShinyDragonHunter](https://github.com/ShinyDragonHunter)).
+- Ported surfing animation from FireRed.
 
 ### Added
 
