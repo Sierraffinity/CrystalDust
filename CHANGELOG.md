@@ -9,13 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Tweaked overworld sprites and backsprites for Gold and Kris (with help from [@ShinyDragonHunter](https://github.com/ShinyDragonHunter)).
-- Ported surfing animation from FireRed.
 
 ### Added
 
 - Miscellanous files (map screenshots, concept art for new title screen, etc) in other/.
 - New Kris, Firebreather, Rival, and female Rocket Grunt trainer sprites (credit to Momento Rori/RoryAllegory)
 - Morning and night battle terrain variants for all outdoor terrain types.
+- Surfing animation from FireRed (credit to [@ShinyDragonHunter](https://github.com/ShinyDragonHunter)).
+- Flying animation from FireRed (credit to [@ShinyDragonHunter](https://github.com/ShinyDragonHunter)).
 
 ### Fixed
 

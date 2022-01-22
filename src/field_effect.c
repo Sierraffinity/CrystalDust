@@ -213,6 +213,9 @@ static void StartFlyBirdSwoopDown(u8);
 static void SetFlyBirdPlayerSpriteId(u8, u8);
 static void SpriteCB_FlyBirdLeaveBall(struct Sprite *);
 static void SpriteCB_FlyBirdSwoopDown(struct Sprite *);
+static void FlyBirdWithPlayerStartAffineAnim(struct Sprite *, u8);
+static void SpriteCB_FlyBirdSwoopWithPlayer(struct Sprite *);
+static void FlyBirdDropPlayerOff(struct Sprite *);
 
 static void Task_FlyIn(u8);
 static void FlyInFieldEffect_BirdSwoopDown(struct Task *);
@@ -3157,10 +3160,16 @@ static void SpriteCB_NPCFlyOut(struct Sprite *sprite)
 #define tState          data[0]
 #define tMonId          data[1]
 #define tBirdSpriteId   data[1] //re-used
+#define tTimer2         data[1] //re-used
 #define tTimer          data[2]
 #define tAvatarFlags    data[15]
 
 // Sprite data for the fly bird
+#define sInitialized    data[0]
+#define sTimer          data[1]
+#define sTimer2         data[2]
+#define sTimer3         data[3]
+#define sTimer4         data[4]
 #define sPlayerSpriteId data[6]
 #define sAnimCompleted  data[7]
 
@@ -3277,6 +3286,9 @@ static void FlyOutFieldEffect_FlyOffWithBird(struct Task *task)
         objectEvent->inanimate = FALSE;
         objectEvent->hasShadow = FALSE;
         SetFlyBirdPlayerSpriteId(task->tBirdSpriteId, objectEvent->spriteId);
+        StartSpriteAnim(&gSprites[task->tBirdSpriteId], gSaveBlock2Ptr->playerGender * 2 + 1);
+        FlyBirdWithPlayerStartAffineAnim(&gSprites[task->tBirdSpriteId], 0);
+        gSprites[task->tBirdSpriteId].callback = SpriteCB_FlyBirdSwoopWithPlayer;
         CameraObjectReset2();
         task->tState++;
     }
@@ -3356,26 +3368,29 @@ static void SpriteCB_FlyBirdLeaveBall(struct Sprite *sprite)
 {
     if (sprite->sAnimCompleted == FALSE)
     {
-        if (sprite->data[0] == 0)
+        if (sprite->sInitialized == 0)
         {
             sprite->oam.affineMode = ST_OAM_AFFINE_DOUBLE;
             sprite->affineAnims = sAffineAnims_FlyBird;
             InitSpriteAffineAnim(sprite);
             StartSpriteAffineAnim(sprite, 0);
-            sprite->pos1.x = 0x76;
-            sprite->pos1.y = -0x30;
-            sprite->data[0]++;
-            sprite->data[1] = 0x40;
-            sprite->data[2] = 0x100;
+            if (gSaveBlock2Ptr->playerGender == MALE)
+                sprite->pos1.x = 128;
+            else
+                sprite->pos1.x = 118;
+            sprite->pos1.y = -48;
+            sprite->sInitialized++;
+            sprite->sTimer = 64;
+            sprite->sTimer2 = Q_8_8(1.0);
         }
-        sprite->data[1] += (sprite->data[2] >> 8);
-        sprite->pos2.x = Cos(sprite->data[1], 0x78);
-        sprite->pos2.y = Sin(sprite->data[1], 0x78);
-        if (sprite->data[2] < 0x800)
+        sprite->sTimer += Q_8_8_TO_INT(sprite->sTimer2);
+        sprite->pos2.x = Cos(sprite->sTimer, 120);
+        sprite->pos2.y = Sin(sprite->sTimer, 120);
+        if (sprite->sTimer2 < Q_8_8(8))
         {
-            sprite->data[2] += 0x60;
+            sprite->sTimer2 += Q_8_8(0.375);
         }
-        if (sprite->data[1] > 0x81)
+        if (sprite->sTimer >= 130)
         {
             sprite->sAnimCompleted++;
             sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
@@ -3387,19 +3402,19 @@ static void SpriteCB_FlyBirdLeaveBall(struct Sprite *sprite)
 
 static void SpriteCB_FlyBirdSwoopDown(struct Sprite *sprite)
 {
-    sprite->pos2.x = Cos(sprite->data[2], 0x8c);
-    sprite->pos2.y = Sin(sprite->data[2], 0x48);
-    sprite->data[2] = (sprite->data[2] + 4) & 0xff;
+    sprite->pos2.x = Cos(sprite->sTimer2, 140);
+    sprite->pos2.y = Sin(sprite->sTimer2, 72);
+    sprite->sTimer2 = (sprite->sTimer2 + 4) & 0xFF;
     if (sprite->sPlayerSpriteId != MAX_SPRITES)
     {
-        struct Sprite *sprite1 = &gSprites[sprite->sPlayerSpriteId];
-        sprite1->coordOffsetEnabled = FALSE;
-        sprite1->pos1.x = sprite->pos1.x + sprite->pos2.x;
-        sprite1->pos1.y = sprite->pos1.y + sprite->pos2.y - 8;
-        sprite1->pos2.x = 0;
-        sprite1->pos2.y = 0;
+        struct Sprite *playerSprite = &gSprites[sprite->sPlayerSpriteId];
+        playerSprite->coordOffsetEnabled = FALSE;
+        playerSprite->pos1.x = sprite->pos1.x + sprite->pos2.x;
+        playerSprite->pos1.y = sprite->pos1.y + sprite->pos2.y - 8;
+        playerSprite->pos2.x = 0;
+        playerSprite->pos2.y = 0;
     }
-    if (sprite->data[2] >= 0x80)
+    if (sprite->sTimer2 >= 128)
     {
         sprite->sAnimCompleted = TRUE;
     }
@@ -3409,37 +3424,40 @@ static void SpriteCB_FlyBirdReturnToBall(struct Sprite *sprite)
 {
     if (sprite->sAnimCompleted == FALSE)
     {
-        if (sprite->data[0] == 0)
+        if (sprite->sInitialized == 0)
         {
             sprite->oam.affineMode = ST_OAM_AFFINE_DOUBLE;
             sprite->affineAnims = sAffineAnims_FlyBird;
             InitSpriteAffineAnim(sprite);
             StartSpriteAffineAnim(sprite, 1);
-            sprite->pos1.x = 0x5e;
-            sprite->pos1.y = -0x20;
-            sprite->data[0]++;
-            sprite->data[1] = 0xf0;
-            sprite->data[2] = 0x800;
-            sprite->data[4] = 0x80;
+            if (gSaveBlock2Ptr->playerGender == MALE)
+                sprite->pos1.x = 112;
+            else
+                sprite->pos1.x = 100;
+            sprite->pos1.y = -32;
+            sprite->sInitialized++;
+            sprite->sTimer = 240;
+            sprite->sTimer2 = Q_8_8(8.0);
+            sprite->sTimer4 = 0x80;
         }
-        sprite->data[1] += sprite->data[2] >> 8;
-        sprite->data[3] += sprite->data[2] >> 8;
-        sprite->data[1] &= 0xff;
-        sprite->pos2.x = Cos(sprite->data[1], 0x20);
-        sprite->pos2.y = Sin(sprite->data[1], 0x78);
-        if (sprite->data[2] > 0x100)
+        sprite->sTimer += Q_8_8_TO_INT(sprite->sTimer2);
+        sprite->sTimer3 += Q_8_8_TO_INT(sprite->sTimer2);
+        sprite->sTimer &= 0xFF;
+        sprite->pos2.x = Cos(sprite->sTimer, 32);
+        sprite->pos2.y = Sin(sprite->sTimer, 120);
+        if (sprite->sTimer2 > Q_8_8(1.0))
         {
-            sprite->data[2] -= sprite->data[4];
+            sprite->sTimer2 -= sprite->sTimer4;
         }
-        if (sprite->data[4] < 0x100)
+        if (sprite->sTimer4 < Q_8_8(1.0))
         {
-            sprite->data[4] += 24;
+            sprite->sTimer4 += Q_8_8(0.09375);
         }
-        if (sprite->data[2] < 0x100)
+        if (sprite->sTimer2 < Q_8_8(1.0))
         {
-            sprite->data[2] = 0x100;
+            sprite->sTimer2 = Q_8_8(1.0);
         }
-        if (sprite->data[3] >= 60)
+        if (sprite->sTimer3 >= 60)
         {
             sprite->sAnimCompleted++;
             sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
@@ -3478,43 +3496,47 @@ static void Task_FlyIn(u8 taskId)
 
 static void FlyInFieldEffect_BirdSwoopDown(struct Task *task)
 {
-    struct ObjectEvent *objectEvent;
-    objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
-    if (!ObjectEventIsMovementOverridden(objectEvent) || ObjectEventClearHeldMovementIfFinished(objectEvent))
+    struct ObjectEvent *playerObject;
+    playerObject = &gObjectEvents[gPlayerAvatar.objectEventId];
+    if (!ObjectEventIsMovementOverridden(playerObject) || ObjectEventClearHeldMovementIfFinished(playerObject))
     {
         task->tState++;
-        task->tTimer = 17;
+        task->tTimer = 33;
         task->tAvatarFlags = gPlayerAvatar.flags;
         gPlayerAvatar.preventStep = TRUE;
         SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ON_FOOT);
         if (task->tAvatarFlags & PLAYER_AVATAR_FLAG_SURFING)
         {
-            SetSurfBobState(objectEvent->fieldEffectSpriteId, 0);
+            SetSurfBobState(playerObject->fieldEffectSpriteId, 0);
         }
-        ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_SURFING));
+        ObjectEventSetGraphicsId(playerObject, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_SURFING));
         CameraObjectReset2();
-        ObjectEventTurn(objectEvent, DIR_WEST);
-        StartSpriteAnim(&gSprites[objectEvent->spriteId], 0x16);
-        objectEvent->invisible = FALSE;
+        ObjectEventTurn(playerObject, DIR_WEST);
+        StartSpriteAnim(&gSprites[playerObject->spriteId], 22);
+        playerObject->invisible = FALSE;
         task->tBirdSpriteId = CreateFlyBirdSprite();
         StartFlyBirdSwoopDown(task->tBirdSpriteId);
-        SetFlyBirdPlayerSpriteId(task->tBirdSpriteId, objectEvent->spriteId);
+        SetFlyBirdPlayerSpriteId(task->tBirdSpriteId, playerObject->spriteId);
+        StartSpriteAnim(&gSprites[task->tBirdSpriteId], gSaveBlock2Ptr->playerGender * 2 + 2);
+        FlyBirdWithPlayerStartAffineAnim(&gSprites[task->tBirdSpriteId], 1);
+        gSprites[task->tBirdSpriteId].callback = SpriteCB_FlyBirdSwoopWithPlayer;
     }
 }
 
 static void FlyInFieldEffect_FlyInWithBird(struct Task *task)
 {
-    struct ObjectEvent *objectEvent;
-    struct Sprite *sprite;
+    struct ObjectEvent *playerObject;
+    struct Sprite *playerSprite;
+    FlyBirdDropPlayerOff(&gSprites[task->tBirdSpriteId]);
     if (task->tTimer == 0 || (--task->tTimer) == 0)
     {
-        objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
-        sprite = &gSprites[objectEvent->spriteId];
+        playerObject = &gObjectEvents[gPlayerAvatar.objectEventId];
+        playerSprite = &gSprites[playerObject->spriteId];
         SetFlyBirdPlayerSpriteId(task->tBirdSpriteId, MAX_SPRITES);
-        sprite->pos1.x += sprite->pos2.x;
-        sprite->pos1.y += sprite->pos2.y;
-        sprite->pos2.x = 0;
-        sprite->pos2.y = 0;
+        playerSprite->pos1.x += playerSprite->pos2.x;
+        playerSprite->pos1.y += playerSprite->pos2.y;
+        playerSprite->pos2.x = 0;
+        playerSprite->pos2.y = 0;
         task->tState++;
         task->tTimer = 0;
     }
@@ -3542,8 +3564,8 @@ static void FlyInFieldEffect_JumpOffBird(struct Task *task)
         4,
         8
     };
-    struct Sprite *sprite = &gSprites[gPlayerAvatar.spriteId];
-    sprite->pos2.y = sYPositions[task->tTimer];
+    struct Sprite *playerSprite = &gSprites[gPlayerAvatar.spriteId];
+    playerSprite->pos2.y = sYPositions[task->tTimer];
 
     if ((++task->tTimer) >= (int)ARRAY_COUNT(sYPositions))
         task->tState++;
@@ -3551,19 +3573,19 @@ static void FlyInFieldEffect_JumpOffBird(struct Task *task)
 
 static void FlyInFieldEffect_FieldMovePose(struct Task *task)
 {
-    struct ObjectEvent *objectEvent;
-    struct Sprite *sprite;
+    struct ObjectEvent *playerObject;
+    struct Sprite *playerSprite;
     if (GetFlyBirdAnimCompleted(task->tBirdSpriteId))
     {
-        objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
-        sprite = &gSprites[objectEvent->spriteId];
-        objectEvent->inanimate = FALSE;
-        MoveObjectEventToMapCoords(objectEvent, objectEvent->currentCoords.x, objectEvent->currentCoords.y);
-        sprite->pos2.x = 0;
-        sprite->pos2.y = 0;
-        sprite->coordOffsetEnabled = TRUE;
+        playerObject = &gObjectEvents[gPlayerAvatar.objectEventId];
+        playerSprite = &gSprites[playerObject->spriteId];
+        playerObject->inanimate = FALSE;
+        MoveObjectEventToMapCoords(playerObject, playerObject->currentCoords.x, playerObject->currentCoords.y);
+        playerSprite->pos2.x = 0;
+        playerSprite->pos2.y = 0;
+        playerSprite->coordOffsetEnabled = TRUE;
         SetPlayerAvatarFieldMove();
-        ObjectEventSetHeldMovement(objectEvent, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
+        ObjectEventSetHeldMovement(playerObject, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
         task->tState++;
     }
 }
@@ -3583,29 +3605,93 @@ static void FlyInFieldEffect_WaitBirdReturn(struct Task *task)
     {
         DestroySprite(&gSprites[task->tBirdSpriteId]);
         task->tState++;
-        task->data[1] = 16;
+        task->tTimer2 = 16;
     }
 }
 
 static void FlyInFieldEffect_End(struct Task *task)
 {
     u8 state;
-    struct ObjectEvent *objectEvent;
-    if ((--task->data[1]) == 0)
+    struct ObjectEvent *playerObject;
+    if ((--task->tTimer2) == 0)
     {
-        objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+        playerObject = &gObjectEvents[gPlayerAvatar.objectEventId];
         state = PLAYER_AVATAR_STATE_NORMAL;
         if (task->tAvatarFlags & PLAYER_AVATAR_FLAG_SURFING)
         {
             state = PLAYER_AVATAR_STATE_SURFING;
-            SetSurfBobState(objectEvent->fieldEffectSpriteId, 1);
+            SetSurfBobState(playerObject->fieldEffectSpriteId, 1);
         }
-        ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(state));
-        ObjectEventTurn(objectEvent, DIR_SOUTH);
+        ObjectEventSetGraphicsId(playerObject, GetPlayerAvatarGraphicsIdByStateId(state));
+        ObjectEventTurn(playerObject, DIR_SOUTH);
         gPlayerAvatar.flags = task->tAvatarFlags;
         gPlayerAvatar.preventStep = FALSE;
         FieldEffectActiveListRemove(FLDEFF_FLY_IN);
         DestroyTask(FindTaskIdByFunc(Task_FlyIn));
+    }
+}
+
+static const union AffineAnimCmd sAffineAnim_FlyBirdLeaveWithPlayer[] = {
+    AFFINEANIMCMD_FRAME(24, 24, 0, 1),
+    AFFINEANIMCMD_JUMP(0)
+};
+
+static const union AffineAnimCmd sAffineAnim_FlyBirdArriveWithPlayer[] = {
+    AFFINEANIMCMD_FRAME(512, 512, 0, 1),
+    AFFINEANIMCMD_FRAME(-16, -16, 0, 1),
+    AFFINEANIMCMD_JUMP(1)
+};
+
+static const union AffineAnimCmd *const sAffineAnims_FlyBirdWithPlayer[] = {
+    sAffineAnim_FlyBirdLeaveWithPlayer,
+    sAffineAnim_FlyBirdArriveWithPlayer
+};
+
+static void FlyBirdWithPlayerStartAffineAnim(struct Sprite *birdSprite, u8 affineAnimId)
+{
+    birdSprite->oam.affineMode = ST_OAM_AFFINE_DOUBLE;
+    birdSprite->affineAnims = sAffineAnims_FlyBirdWithPlayer;
+    InitSpriteAffineAnim(birdSprite);
+    StartSpriteAffineAnim(birdSprite, affineAnimId);
+}
+
+static void SpriteCB_FlyBirdSwoopWithPlayer(struct Sprite *birdSprite)
+{
+    struct Sprite *playerSprite;
+    birdSprite->pos2.x = Cos(birdSprite->sTimer2, 180);
+    birdSprite->pos2.y = Sin(birdSprite->sTimer2, 72);
+    birdSprite->sTimer2 += 2;
+    birdSprite->sTimer2 &= 0xFF;
+    if (birdSprite->sPlayerSpriteId != MAX_SPRITES)
+    {
+        playerSprite = &gSprites[birdSprite->sPlayerSpriteId];
+        playerSprite->coordOffsetEnabled = FALSE;
+        playerSprite->pos1.x = birdSprite->pos1.x + birdSprite->pos2.x;
+        playerSprite->pos1.y = birdSprite->pos1.y + birdSprite->pos2.y - 8;
+        playerSprite->pos2.x = 0;
+        playerSprite->pos2.y = 0;
+    }
+    if (birdSprite->sTimer2 >= 128)
+    {
+        birdSprite->sAnimCompleted = TRUE;
+        birdSprite->oam.affineMode = ST_OAM_AFFINE_OFF;
+        FreeOamMatrix(birdSprite->oam.matrixNum);
+        CalcCenterToCornerVec(birdSprite, birdSprite->oam.shape, birdSprite->oam.size, ST_OAM_AFFINE_OFF);
+    }
+}
+
+static void FlyBirdDropPlayerOff(struct Sprite *sprite)
+{
+    if (sprite->oam.affineMode != ST_OAM_AFFINE_OFF)
+    {
+        if (gOamMatrices[sprite->oam.matrixNum].a == 0x100 || gOamMatrices[sprite->oam.matrixNum].d == 0x100)
+        {
+            sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
+            FreeOamMatrix(sprite->oam.matrixNum);
+            CalcCenterToCornerVec(sprite, sprite->oam.shape, sprite->oam.size, ST_OAM_AFFINE_OFF);
+            StartSpriteAnim(sprite, 0);
+            sprite->callback = SpriteCB_FlyBirdSwoopDown;
+        }
     }
 }
 
@@ -3614,6 +3700,7 @@ static void FlyInFieldEffect_End(struct Task *task)
 #undef tBirdSpriteId
 #undef tTimer
 #undef tAvatarFlags
+
 #undef sPlayerSpriteId
 #undef sAnimCompleted
 
