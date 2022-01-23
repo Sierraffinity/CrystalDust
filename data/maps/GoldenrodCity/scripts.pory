@@ -1,0 +1,176 @@
+mapscripts GoldenrodCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_GOLDENROD_CITY)
+        if (!flag(FLAG_MET_FLORIA_ROUTE_36))
+        {
+            setflag(FLAG_FLORIA_WENT_TO_ROUTE_36)
+        }
+        if (flag(FLAG_FLORIA_WENT_TO_ROUTE_36))
+        {
+            setflag(FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA)
+            clearflag(FLAG_HIDE_ROUTE_36_FLORIA)
+        }
+        else
+        {
+            setflag(FLAG_HIDE_ROUTE_36_FLORIA)
+            clearflag(FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA)
+        }
+    }
+}
+
+script GoldenrodCity_EventScript_CreakyRadioTowerMan {
+    msgbox("They built the RADIO TOWER to\n"
+           "replace the old, creaky one.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_NewBikeShopKid {
+    msgbox("I know there's a new BIKE SHOP,\n"
+           "but I can't find it anywhere.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_CuriousWoman {
+    if (flag(FLAG_CLEARED_RADIO_TOWER))
+    {
+        msgbox("Was that man in black really part\n"
+               "of TEAM ROCKET?\l"
+               "I can't believe it!", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("Is that man in black dressed up\n"
+               "like a TEAM ROCKET member?\l"
+               "How silly!", MSGBOX_NPC)
+    }
+}
+
+script GoldenrodCity_EventScript_RadioWoman {
+    if (flag(FLAG_SYS_HAS_RADIO_CARD))
+    {
+        msgbox("Oh, your POKéGEAR works as a radio!\n"
+               "How useful!", MSGBOX_NPC)
+    }
+    else
+    {
+        msgbox("The RADIO TOWER in GOLDENROD CITY\n"
+               "is a landmark.\p"
+               "They're running a promotional\n"
+               "campaign right now.\p"
+               "They'll modify your POKéGEAR, so\n"
+               "it can also serve as a radio.", MSGBOX_NPC)
+    }
+}
+
+script GoldenrodCity_EventScript_BasementKid {
+    msgbox("Ehehehe…\p"
+           "I got in trouble for playing in the\n"
+           "basement of the DEPT. STORE.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_NameRaterInformerGirl {
+    msgbox("The man at that house rates your\n"
+           "POKéMON names.\p"
+           "He can even help you rename your\n"
+           "POKéMON.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_LostOldMan {
+    msgbox("Whew! This is one big town.\n"
+           "I don't know where anything is.", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_RocketScout {
+    lock
+    msgbox("So this is the RADIO TOWER…")
+    faceplayer
+    msgbox("What do you want, you pest?\n"
+           "Scram!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestUp)
+    waitmovement(0)
+    release
+}
+
+script GoldenrodCity_EventScript_RocketGrunt1 {
+    msgbox("Stay out of the way!\n"
+           "Beat it!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_RocketGrunt2 {
+    msgbox("Take over the RADIO TOWER…\p"
+           "What?\n"
+           "It's none of your business!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_RocketGrunt3 {
+    msgbox("POKéMON? They're nothing more than\n"
+           "tools for making money!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_RocketGrunt4 {
+    msgbox("Our dream will soon come true…\n"
+           "It was such a long struggle…", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_RocketGrunt5 {
+    msgbox("Hey, brat!\n"
+           "You don't belong here!\l"
+           "Get lost!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_RocketGrunt6 {
+    msgbox("Come taste the true terror of\n"
+           "TEAM ROCKET!", MSGBOX_NPC)
+}
+
+script GoldenrodCity_EventScript_MagnetTrainStationSign {
+    msgbox("GOLDENROD CITY STATION", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_RadioTowerSign {
+    msgbox("GOLDENROD CITY RADIO TOWER", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_DeptStoreSign {
+    msgbox("Full Selection of POKéMON Goods!\n"
+           "GOLDENROD CITY DEPT. STORE", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_GymSign {
+    msgbox("GOLDENROD CITY POKéMON GYM\n"
+           "LEADER: WHITNEY\p"
+           "The Incredibly Pretty Girl!", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_CitySloganSign {
+    msgbox("GOLDENROD CITY\n"
+           "The Festive City of Opulent Charm", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_BikeShopSign {
+    msgbox("The World is a Cycle Path!\n"
+           "BIKE SHOP", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_GameCornerSign {
+    msgbox("Your Playground!\n"
+           "GOLDENROD CITY GAME CORNER", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_NameRaterSign {
+    msgbox("NAME RATER\n"
+           "Get Your POKéMON Nicknames Rated", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_UndergroundEntranceSign {
+    msgbox("UNDERGROUND ENTRANCE", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_PokecomCenterSign {
+    msgbox("For Mobile Tips!\n"
+           "POKéCOM CENTER", MSGBOX_SIGN)
+}
+
+script GoldenrodCity_EventScript_FlowerShopSign {
+    msgbox("Blooming Beautiful\n"
+           "FLOWER SHOP", MSGBOX_SIGN)
+}

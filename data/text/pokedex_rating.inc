@@ -1,115 +1,109 @@
-gBirchDexRatingText_AreYouCurious:: @ 82A5C9C
-	.string "PROF. BIRCH: Ah, {PLAYER}{KUN}!\p"
-	.string "Are you curious about how your\n"
-	.string "POKéDEX is coming along?$"
+gPokedexRatingText_AreYouCurious:: @ 82A5C9C
+	.string "OAK: Good to see you!\n"
+	.string "How is your POKéDEX coming along?\p"
+	.string "Here, let me take a look.$"
 
-gBirchDexRatingText_Cancel: @ 82A5CEB
-	.string "Hm? Oh, you haven't caught enough\n"
-	.string "POKéMON to make it worthwhile.$"
+gPokedexRatingText_SoYouveSeenAndCaught:: @ 82A5D2C
+	.string "The amount of progress you've made\n"
+	.string "on your POKéDEX is:\p"
+	.string "{STR_VAR_1} POKéMON seen and\n"
+	.string "{STR_VAR_2} POKéMON owned.\p"
+	.string "PROF. OAK's rating:$"
 
-gBirchDexRatingText_SoYouveSeenAndCaught:: @ 82A5D2C
-	.string "Hmhm…\p"
-	.string "So, you've seen {STR_VAR_1} POKéMON,\n"
-	.string "and you've caught {STR_VAR_2} POKéMON…$"
+gPokedexRatingText_LessThan10:: @ 82A5D6C
+	.string "Go into every patch of grass you\n"
+	.string "see and look for POKéMON!$"
 
-gBirchDexRatingText_LessThan10:: @ 82A5D6C
-	.string "Go into grassy areas more and look\n"
-	.string "for POKéMON more carefully.$"
+gPokedexRatingText_LessThan20:: @ 82A5DAB
+	.string "Good work. I see you understand\n"
+	.string "the basics of using POKé BALLS.$"
 
-gBirchDexRatingText_LessThan20:: @ 82A5DAB
-	.string "I guess you're getting the hang\n"
-	.string "of it. But, it gets harder from here.$"
+gPokedexRatingText_LessThan35:: @ 82A5DF1
+	.string "You're getting good at filling\n"
+	.string "your POKéDEX.\p"
+	.string "However, you still have a long way\n"
+	.string "to go until completion.$"
 
-gBirchDexRatingText_LessThan30:: @ 82A5DF1
-	.string "Some POKéMON only appear in\n"
-	.string "certain areas.\l"
-	.string "You must be persistent.$"
+gPokedexRatingText_LessThan50:: @ 82A5E34
+	.string "You need to give it your all to\n"
+	.string "fill up the POKéDEX.\p"
+	.string "Go and catch many different kinds\n"
+	.string "of POKéMON!$"
 
-gBirchDexRatingText_LessThan40:: @ 82A5E34
-	.string "Well, it could use more quantity,\n"
-	.string "but this is looking more like\l"
-	.string "a POKéDEX now.$"
+gPokedexRatingText_LessThan65:: @ 82A5E83
+	.string "It's apparent that you're trying--\n"
+	.string "I can see that.\p"
+	.string "Your POKéDEX looks like it's starting\n"
+	.string "to come together.$"
 
-gBirchDexRatingText_LessThan50:: @ 82A5E83
-	.string "This is coming along pretty good.\n"
-	.string "Keep up the effort.$"
+gPokedexRatingText_LessThan80:: @ 82A5EB9
+	.string "To evolve, some POKéMON grow.\n"
+	.string "Others use the effects of STONES.$"
 
-gBirchDexRatingText_LessThan60:: @ 82A5EB9
-	.string "Are you using any RODS?\n"
-	.string "There are many POKéMON in the sea.$"
+gPokedexRatingText_LessThan95:: @ 82A5EF4
+	.string "Have you gotten yourself a fishing\n"
+	.string "ROD, by any chance?\p"
+	.string "You can catch a variety of POKéMON\n"
+	.string "by fishing in bodies of water.$"
 
-gBirchDexRatingText_LessThan70:: @ 82A5EF4
-	.string "Instead of just catching POKéMON,\n"
-	.string "how about making them evolve, too?$"
+gPokedexRatingText_LessThan110:: @ 82A5F39
+	.string "Excellent! You seem to like\n"
+	.string "collecting things!$"
 
-gBirchDexRatingText_LessThan80:: @ 82A5F39
-	.string "This is going to be a fantastic\n"
-	.string "POKéDEX.\l"
-	.string "That's the feeling I'm getting.$"
+gPokedexRatingText_LessThan125:: @ 82A5F82
+	.string "Some POKéMON only appear during\n"
+	.string "certain times of the day.$"
 
-gBirchDexRatingText_LessThan90:: @ 82A5F82
-	.string "You've collected this many…\n"
-	.string "Your talent is remarkable!$"
+gPokedexRatingText_LessThan140:: @ 82A5FB9
+	.string "Your POKéDEX is filling up.\n"
+	.string "Keep up the good work!$"
 
-gBirchDexRatingText_LessThan100:: @ 82A5FB9
-	.string "Have you visited the SAFARI ZONE?\p"
-	.string "I hear there are some POKéMON that\n"
-	.string "can only be caught there.$"
+gPokedexRatingText_LessThan155:: @ 82A6018
+	.string "I'm impressed. You're evolving\n"
+	.string "POKéMON, not just catching them.$"
 
-gBirchDexRatingText_LessThan110:: @ 82A6018
-	.string "You've finally reached\n"
-	.string "the 100-kind mark.\p"
-	.string "This is an impressive POKéDEX!$"
+gPokedexRatingText_LessThan170:: @ 82A6061
+	.string "Have you met KURT of AZALEA TOWN?\n"
+	.string "His custom BALLS should help.$"
 
-gBirchDexRatingText_LessThan120:: @ 82A6061
-	.string "There might be POKéMON that can be\n"
-	.string "found using ROCK SMASH.$"
+gPokedexRatingText_LessThan185:: @ 82A609C
+	.string "Wow. You've found more POKéMON than\n"
+	.string "the last POKéDEX research project.$"
 
-gBirchDexRatingText_LessThan130:: @ 82A609C
-	.string "You should get some more POKéMON\n"
-	.string "by trading with others.$"
+gPokedexRatingText_LessThan200:: @ 82A60D5
+	.string "Are you trading your POKéMON with\n"
+	.string "other TRAINERS?\p"
+	.string "It's tough to do this alone!$"
 
-gBirchDexRatingText_LessThan140:: @ 82A60D5
-	.string "I've heard of POKéMON that evolve\n"
-	.string "when they come to fully love their\l"
-	.string "TRAINERS.$"
+gPokedexRatingText_LessThan215:: @ 82A6124
+	.string "Wow! You've hit 200 species!\n"
+	.string "Your POKéDEX is looking great!$"
 
-gBirchDexRatingText_LessThan150:: @ 82A6124
-	.string "I had no idea that there were so\n"
-	.string "many POKéMON species in the HOENN\l"
-	.string "region.$"
+gPokedexRatingText_LessThan230:: @ 82A616F
+	.string "Magnificent! You could become a\n"
+	.string "POKéMON PROFESSOR right now!$"
 
-gBirchDexRatingText_LessThan160:: @ 82A616F
-	.string "On occasion, some POKéMON appear\n"
-	.string "in large numbers like outbreaks.\p"
-	.string "Don't miss opportunities like\n"
-	.string "those.$"
+gPokedexRatingText_LessThan249:: @ 82A61D6
+	.string "Your POKéDEX is amazing!\n"
+	.string "You're ready to turn professional!$"
 
-gBirchDexRatingText_LessThan170:: @ 82A61D6
-	.string "One can get a very good idea about\n"
-	.string "the POKéMON of the HOENN region\l"
-	.string "by looking through your POKéDEX.$"
+gPokedexRatingText_DexCompleted:: @ 82A623A
+	.string "Whoa! A perfect POKéDEX!\n"
+	.string "I've dreamt about this!\p"
+	.string "Congratulations!!$"
 
-gBirchDexRatingText_LessThan180:: @ 82A623A
-	.string "I would say you already qualify as\n"
-	.string "a POKéMON PROFESSOR, and a good\l"
-	.string "one, too!$"
+gPokedexRatingText_OnANationwideBasis:: @ 82A633D
+	.string "And your NATIONAL POKéDEX is:\p"
+	.string "{STR_VAR_1} POKéMON seen and\n"
+	.string "{STR_VAR_2} POKéMON owned.$"
 
-gBirchDexRatingText_LessThan190:: @ 82A6287
-	.string "With a POKéDEX this complete,\n"
-	.string "you're a real professional at this!$"
+PokedexRating_Text_LookForwardToFilledNationalDex:: @ 81A71EE
+	.string "I'll be looking forward to seeing\n"
+	.string "you fill the NATIONAL POKéDEX!$"
 
-gBirchDexRatingText_LessThan200:: @ 82A62C9
-	.string "You're very close to completing\n"
-	.string "this POKéDEX.\l"
-	.string "I can feel it in my bones!$"
-
-gBirchDexRatingText_DexCompleted:: @ 82A6312
-	.string "Congratulations!\n"
-	.string "Your POKéDEX is complete!$"
-
-gBirchDexRatingText_OnANationwideBasis:: @ 82A633D
-	.string "Hmhm…\n"
-	.string "On a nationwide basis…\p"
-	.string "You've seen {STR_VAR_1} POKéMON,\n"
-	.string "and you've caught {STR_VAR_2} POKéMON…$"
+PokedexRating_Text_YouveCompletedDex:: @ 81A722F
+	.string "Finally…\p"
+	.string "You've finally completed the\n"
+	.string "POKéDEX!\p"
+	.string "It's magnificent!\n"
+	.string "Truly, this is a fantastic feat!$"

@@ -4,12 +4,14 @@
 #include "battle_setup.h"
 #include "bg.h"
 #include "bug_catching_contest.h"
+#include "day_night.h"
 #include "decompress.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "field_screen_effect.h"
 #include "frontier_util.h"
 #include "gpu_regs.h"
+#include "international_string_util.h"
 #include "item.h"
 #include "load_save.h"
 #include "main.h"
@@ -18,10 +20,11 @@
 #include "overworld.h"
 #include "palette.h"
 #include "pokemon_icon.h"
-#include "day_night.h"
 #include "random.h"
 #include "rtc.h"
+#include "scanline_effect.h"
 #include "script.h"
+#include "sound.h"
 #include "sprite.h"
 #include "string_util.h"
 #include "text.h"
@@ -31,42 +34,34 @@
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
 #include "constants/flags.h"
+#include "constants/frontier_util.h"
 #include "constants/items.h"
 #include "constants/maps.h"
 #include "constants/rgb.h"
+#include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
 
-extern const u8 NationalParkContest_Nick[];
-extern const u8 NationalParkContest_William[];
-extern const u8 NationalParkContest_Samuel[];
-extern const u8 NationalParkContest_Barry[];
-extern const u8 NationalParkContest_Ed[];
-extern const u8 NationalParkContest_Benny[];
-extern const u8 NationalParkContest_Josh[];
-extern const u8 NationalParkContest_Don[];
-extern const u8 NationalParkContest_Kipp[];
-extern const u8 NationalParkContest_Cindy[];
-extern const u8 NationalParkGateEast_NickPlayerWon[];
-extern const u8 NationalParkGateEast_NickPlayerLost[];
-extern const u8 NationalParkGateEast_WilliamPlayerWon[];
-extern const u8 NationalParkGateEast_WilliamPlayerLost[];
-extern const u8 NationalParkGateEast_SamuelPlayerWon[];
-extern const u8 NationalParkGateEast_SamuelPlayerLost[];
-extern const u8 NationalParkGateEast_BarryPlayerWon[];
-extern const u8 NationalParkGateEast_BarryPlayerLost[];
-extern const u8 NationalParkGateEast_EdPlayerWon[];
-extern const u8 NationalParkGateEast_EdPlayerLost[];
-extern const u8 NationalParkGateEast_BennyPlayerWon[];
-extern const u8 NationalParkGateEast_BennyPlayerLost[];
-extern const u8 NationalParkGateEast_JoshPlayerWon[];
-extern const u8 NationalParkGateEast_JoshPlayerLost[];
-extern const u8 NationalParkGateEast_DonPlayerWon[];
-extern const u8 NationalParkGateEast_DonPlayerLost[];
-extern const u8 NationalParkGateEast_KippPlayerWon[];
-extern const u8 NationalParkGateEast_KippPlayerLost[];
-extern const u8 NationalParkGateEast_CindyPlayerWon[];
-extern const u8 NationalParkGateEast_CindyPlayerLost[];
+extern const u8 NationalPark_BugCatchingContest_Nick[];
+extern const u8 NationalPark_BugCatchingContest_William[];
+extern const u8 NationalPark_BugCatchingContest_Samuel[];
+extern const u8 NationalPark_BugCatchingContest_Barry[];
+extern const u8 NationalPark_BugCatchingContest_Ed[];
+extern const u8 NationalPark_BugCatchingContest_Benny[];
+extern const u8 NationalPark_BugCatchingContest_Josh[];
+extern const u8 NationalPark_BugCatchingContest_Don[];
+extern const u8 NationalPark_BugCatchingContest_Kipp[];
+extern const u8 NationalPark_BugCatchingContest_Cindy[];
+extern const u8 Route36_NationalParkGatehouse_Nick[];
+extern const u8 Route36_NationalParkGatehouse_William[];
+extern const u8 Route36_NationalParkGatehouse_Samuel[];
+extern const u8 Route36_NationalParkGatehouse_Barry[];
+extern const u8 Route36_NationalParkGatehouse_Ed[];
+extern const u8 Route36_NationalParkGatehouse_Benny[];
+extern const u8 Route36_NationalParkGatehouse_Josh[];
+extern const u8 Route36_NationalParkGatehouse_Don[];
+extern const u8 Route36_NationalParkGatehouse_Kipp[];
+extern const u8 Route36_NationalParkGatehouse_Cindy[];
 extern const u8 EventScript_BugContest_WhiteOut[];
 extern const u8 EventScript_RanOutOfParkBalls[];
 extern const u8 EventScript_BugCatchingContestTimeExpired[];
@@ -74,9 +69,14 @@ extern const u8 EventScript_CaughtButRanOutOfParkBalls[];
 extern const u8 BugCatchingContest_StartMenuPrompt[];
 extern const u8 gTrainerClassNames[][13];
 
+#define WIN_QUESTION    0
+#define WIN_CHOICE_MADE 1
+#define WIN_STOCK_MON   2
+#define WIN_NEW_MON     3
+
 #define NUM_BUG_CONTEST_NPCS 5
 
-// The maximum score for a mon is only 400, so shiny mmons trump normal mons.
+// The maximum score for a mon is only 400, so shiny mons trump normal mons.
 #define SHINY_SCORE_INCREASE 500
 #define BUG_CONTEST_DURATION_SECONDS 1200
 
@@ -94,8 +94,7 @@ struct BugCatchingContestNPCTemplate
     u8 trainerClass;
     const u8 *name;
     const u8 *script;
-    const u8 *awardsScriptPlayerWon;
-    const u8 *awardsScriptPlayerLost;
+    const u8 *awardsScript;
 };
 
 struct BugCatchingContestNPC
@@ -111,9 +110,7 @@ struct BugCatchingContestNPC
 struct BugCatchingContestSwapScreen
 {
     u8 cursorPos;
-    u8 stockMonWindowId;
-    u8 newMonWindowId;
-    u8 textWindowId;
+    u8 backgroundScrollTaskId;
     struct Pokemon *newMon;
     MainCallback returnCallback;
     struct Sprite *cursorSprite;
@@ -128,13 +125,14 @@ EWRAM_DATA struct Pokemon gCaughtBugCatchingContestMon = {0};
 EWRAM_DATA struct BugCatchingContestNPC gBugCatchingContestNPCs[NUM_BUG_CONTEST_NPCS] = {0};
 EWRAM_DATA struct BugCatchingContestSwapScreen *sSwapScreen = NULL;
 EWRAM_DATA u8 gBugCatchingContestStandings[NUM_BUG_CONTEST_NPCS + 1] = {0};
+static EWRAM_DATA vu8 sVBlank_DMA = 0;
 EWRAM_DATA u32 gBugCatchingContestStartSeconds = 0;
 
 static void GenerateBugCatchingContestNPCMons();
 static void InitBugContestNPCs(void);
 static void GenerateBugCatchingContestNPCMon(struct BugCatchingContestNPC *npc);
-static int CalculateBugCatchingContestMonScore(struct Pokemon *mon, bool8 isNPC);
-static int GetMaxBugCatchingContestLevel(void);
+static int CalculateBugCatchingContestMonScore(struct Pokemon *mon);
+static int GetMaxBugCatchingContestLevelForSpecies(u16 species);
 static const struct WildPokemon *GetBugCatchingContestWildMons(void);
 static int CalculateLevelScore(int level, int maxLevel);
 static int CalculateIVScore(int hpIV, int attackIV, int defenseIV, int speedIV, int spAttackIV, int spDefenseIV);
@@ -144,13 +142,18 @@ static void SetAwardsCeremonyBugContestObjectEventScripts(void);
 static void MainCallback_BugCatchingContestSwapScreen(void);
 static void InitBugCatchingContestSwapScreen(void);
 static void VBlank_BugCatchingContestSwapScreen(void);
+static void VBlankCB_ScanlineEffects(void);
+static void HBlankCB_ScanlineEffects(void);
 static void InitSwapScreenSprites(void);
 static void InitSwapScreenWindows(void);
-static void SwapScreenWaitFadeIn(u8 taskId);
+static void Task_SwapScreen_WaitFadeInAskToSwap(u8 taskId);
 static void SwapScreenDisplayAlreadyCaughtMessage(u8 taskId);
-static void SwapScreenHandleInput(u8 taskId);
-static void SwapScreenWaitFinalText(u8 taskId);
+static void Task_SwapScreen_HandleYesNoInput(u8 taskId);
+static void Task_SwapScreen_SlideChosenMonToCenter(u8 taskId);
+static void Task_SwapScreen_ShowChoiceText(u8 taskId);
+static void Task_SwapScreen_QuitAfterFinalText(u8 taskId);
 static void SwapScreenExit(u8 taskId);
+static u16 GetContestantCaughtSpecies(int contestantId);
 
 static const u32 sSwapScreenBackgroundGfx[] = INCBIN_U32("graphics/bug_catching_contest/background_tiles.4bpp.lz");
 static const u16 sSwapScreenBackgroundPalette[] = INCBIN_U16("graphics/bug_catching_contest/background_tiles.gbapal");
@@ -177,34 +180,44 @@ static const struct BgTemplate sSwapScreenBgTemplates[] = {
    },
 };
 
-static const struct WindowTemplate sStockMonWindowTemplate = {
-    .bg = 0,
-    .tilemapLeft = 1,
-    .tilemapTop = 3,
-    .width = 12,
-    .height = 8,
-    .paletteNum = 12,
-    .baseBlock = 1,
-};
-
-static const struct WindowTemplate sNewMonWindowTemplate = {
-    .bg = 0,
-    .tilemapLeft = 17,
-    .tilemapTop = 3,
-    .width = 12,
-    .height = 8,
-    .paletteNum = 14,
-    .baseBlock = 0x61,
-};
-
-static const struct WindowTemplate sTextWindowTemplate = {
-    .bg = 0,
-    .tilemapLeft = 1,
-    .tilemapTop = 15,
-    .width = 20,
-    .height = 4,
-    .paletteNum = 12,
-    .baseBlock = 0xC1,
+static const struct WindowTemplate sTextWindowTemplates[] = {
+    {
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 15,
+        .width = 20,
+        .height = 4,
+        .paletteNum = 14,
+        .baseBlock = 220,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 15,
+        .width = 28,
+        .height = 4,
+        .paletteNum = 14,
+        .baseBlock = 300,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 3,
+        .width = 12,
+        .height = 8,
+        .paletteNum = 14,
+        .baseBlock = 1,
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 17,
+        .tilemapTop = 3,
+        .width = 12,
+        .height = 8,
+        .paletteNum = 14,
+        .baseBlock = 97,
+    },
+    DUMMY_WIN_TEMPLATE
 };
 
 static const struct WindowTemplate sYesNoWindowTemplate = {
@@ -213,15 +226,16 @@ static const struct WindowTemplate sYesNoWindowTemplate = {
     .tilemapTop = 15,
     .width = 6,
     .height = 4,
-    .paletteNum = 12,
-    .baseBlock = 0x111,  
+    .paletteNum = 14,
+    .baseBlock = 193,  
 };
 
-static const u8 sStockMonText[] = _("Stock {PKMN}\n{STR_VAR_1}\nLevel: {STR_VAR_2}\nHealth: {STR_VAR_3}");
-static const u8 sNewMonText[] = _("New {PKMN}\n{STR_VAR_1}\nLevel: {STR_VAR_2}\nHealth: {STR_VAR_3}");
-static const u8 sTextReleasedNewlyCaughtMon[] = _("Released the newly-caught\n{STR_VAR_1}.\p");
-static const u8 sTextReleasedPreviousCaughtMon[] = _("Released the previously-\ncaught {STR_VAR_1}.\p");
-static const u8 sTextAlreadyCaught[] = _("You already caught a\n{STR_VAR_1}.\pSwitch POKéMON?");
+static const u8 sStockMonText[] = _("{COLOR BLUE}Stock POKéMON");
+static const u8 sNewMonText[] = _("{COLOR BLUE}New POKéMON");
+static const u8 sMonInfoText[] = _("{STR_VAR_1}\nLevel: {STR_VAR_2}\nHealth: {STR_VAR_3}");
+static const u8 sTextKeptNewlyCaughtMon[] = _("Kept the newly-caught {STR_VAR_1} and\nreleased the stocked {STR_VAR_2}.");
+static const u8 sTextKeptPreviousCaughtMon[] = _("Kept the stocked {STR_VAR_1} and\nreleased the newly-caught {STR_VAR_2}.");
+static const u8 sTextAlreadyCaught[] = _("You already caught a\n{STR_VAR_1}. Switch POKéMON?");
 
 static const u16 sCommonBugContestMons[] = {
     SPECIES_CATERPIE,
@@ -251,98 +265,88 @@ static const u8 sName_Cindy[] = _("CINDY");
 
 static const struct BugCatchingContestNPCTemplate sBugContestNPCTemplates[] = {
     {
-        .graphicsId = OBJ_EVENT_GFX_BOY_1,
+        .graphicsId = OBJ_EVENT_GFX_PSYCHIC_M,
         .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .name = sName_Nick,
-        .script = NationalParkContest_Nick,
-        .awardsScriptPlayerWon = NationalParkGateEast_NickPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_NickPlayerLost,
+        .script = NationalPark_BugCatchingContest_Nick,
+        .awardsScript = Route36_NationalParkGatehouse_Nick,
     },
     {
-        .graphicsId = OBJ_EVENT_GFX_SAGE,
+        .graphicsId = OBJ_EVENT_GFX_MAN_1,
         .trainerClass = TRAINER_CLASS_POKEFAN,
         .name = sName_William,
-        .script = NationalParkContest_William,
-        .awardsScriptPlayerWon = NationalParkGateEast_WilliamPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_WilliamPlayerLost,
+        .script = NationalPark_BugCatchingContest_William,
+        .awardsScript = Route36_NationalParkGatehouse_William,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_YOUNGSTER,
         .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .name = sName_Samuel,
-        .script = NationalParkContest_Samuel,
-        .awardsScriptPlayerWon = NationalParkGateEast_SamuelPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_SamuelPlayerLost,
+        .script = NationalPark_BugCatchingContest_Samuel,
+        .awardsScript = Route36_NationalParkGatehouse_Samuel,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_CAMPER,
         .trainerClass = TRAINER_CLASS_CAMPER,
         .name = sName_Barry,
-        .script = NationalParkContest_Barry,
-        .awardsScriptPlayerWon = NationalParkGateEast_BarryPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_BarryPlayerLost,
+        .script = NationalPark_BugCatchingContest_Barry,
+        .awardsScript = Route36_NationalParkGatehouse_Barry,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Ed,
-        .script = NationalParkContest_Ed,
-        .awardsScriptPlayerWon = NationalParkGateEast_EdPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_EdPlayerLost,
+        .script = NationalPark_BugCatchingContest_Ed,
+        .awardsScript = Route36_NationalParkGatehouse_Ed,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Benny,
-        .script = NationalParkContest_Benny,
-        .awardsScriptPlayerWon = NationalParkGateEast_BennyPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_BennyPlayerLost,
+        .script = NationalPark_BugCatchingContest_Benny,
+        .awardsScript = Route36_NationalParkGatehouse_Benny,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Josh,
-        .script = NationalParkContest_Josh,
-        .awardsScriptPlayerWon = NationalParkGateEast_JoshPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_JoshPlayerLost,
+        .script = NationalPark_BugCatchingContest_Josh,
+        .awardsScript = Route36_NationalParkGatehouse_Josh,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_BUG_CATCHER,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .name = sName_Don,
-        .script = NationalParkContest_Don,
-        .awardsScriptPlayerWon = NationalParkGateEast_DonPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_DonPlayerLost,
+        .script = NationalPark_BugCatchingContest_Don,
+        .awardsScript = Route36_NationalParkGatehouse_Don,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_SCHOOL_KID_M,
         .trainerClass = TRAINER_CLASS_SCHOOL_KID,
         .name = sName_Kipp,
-        .script = NationalParkContest_Kipp,
-        .awardsScriptPlayerWon = NationalParkGateEast_KippPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_KippPlayerLost,
+        .script = NationalPark_BugCatchingContest_Kipp,
+        .awardsScript = Route36_NationalParkGatehouse_Kipp,
     },
     {
         .graphicsId = OBJ_EVENT_GFX_PICNICKER,
         .trainerClass = TRAINER_CLASS_PICNICKER,
         .name = sName_Cindy,
-        .script = NationalParkContest_Cindy,
-        .awardsScriptPlayerWon = NationalParkGateEast_CindyPlayerWon,
-        .awardsScriptPlayerLost = NationalParkGateEast_CindyPlayerLost,
+        .script = NationalPark_BugCatchingContest_Cindy,
+        .awardsScript = Route36_NationalParkGatehouse_Cindy,
     },
 };
 
-static const u8 sBugContestNPCCoords[][2] = {
-    {1, 2},
-    {3, 2},
-    {5, 2},
-    {7, 2},
-    {9, 2},
-    {11, 2},
-    {12, 2},
-    {13, 2},
-    {15, 2},
-    {17, 2},
+static const u8 sBugContestNPCCoords[][4] = {
+    {22, 31, 0x22, MOVEMENT_TYPE_LOOK_AROUND},
+    {32, 24, 0x22, MOVEMENT_TYPE_LOOK_AROUND},
+    {11, 18, 0x00, MOVEMENT_TYPE_FACE_UP},
+    {9,  13, 0x00, MOVEMENT_TYPE_FACE_DOWN_AND_UP},
+    {27, 9,  0x00, MOVEMENT_TYPE_LOOK_AROUND},
+    {31, 11, 0x33, MOVEMENT_TYPE_WANDER_AROUND},
+    {9,  25, 0x02, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT},
+    {13, 29, 0x11, MOVEMENT_TYPE_WANDER_AROUND},
+    {18, 8,  0x11, MOVEMENT_TYPE_WANDER_AROUND},
+    {20, 36, 0x33, MOVEMENT_TYPE_WANDER_AROUND},
 };
 
 bool8 InBugCatchingContest(void)
@@ -413,9 +417,15 @@ bool8 CopyBugCatchingContestRemainingMinutesToVar1(void)
 void GiveCaughtBugCatchingContestMon(void)
 {
     if (gBugCatchingContestStatus == BUG_CATCHING_CONTEST_STATUS_CAUGHT)
+    {
+        gSpecialVar_0x8004 = GetContestantCaughtSpecies(NUM_BUG_CONTEST_NPCS);
         gSpecialVar_Result = GiveMonToPlayer(&gCaughtBugCatchingContestMon);
+    }
     else
+    {
+        gSpecialVar_0x8004 = 0;
         gSpecialVar_Result = 3;
+    }
 }
 
 void EndBugCatchingContest(void)
@@ -442,10 +452,11 @@ void TryEndBugCatchingContest(void)
     {
         EndBugCatchingContest();
         // Restore the rest of the player's party.
-        gSpecialVar_0x8004 = 6;
+        gSpecialVar_0x8004 = FRONTIER_UTIL_FUNC_SAVE_PARTY;
         CallFrontierUtilFunc();
         LoadPlayerParty();
         VarSet(VAR_BUG_CATCHING_CONTEST_STATE, 0);
+        FlagClear(FLAG_IN_BUG_CATCHING_CONTEST);
     }
 }
 
@@ -461,15 +472,40 @@ void DetermineBugCatchingContestStandings(void)
 {
     int i, j;
     int playerId;
+    bool8 haveShiny = FALSE;
 
     if (gBugCatchingContestStatus == BUG_CATCHING_CONTEST_STATUS_CAUGHT)
-        gPlayerBugCatchingContestScore = CalculateBugCatchingContestMonScore(&gCaughtBugCatchingContestMon, FALSE);
+    {
+        gPlayerBugCatchingContestScore = CalculateBugCatchingContestMonScore(&gCaughtBugCatchingContestMon);
+        if (IsMonShiny(&gCaughtBugCatchingContestMon))
+        {
+            gPlayerBugCatchingContestScore += SHINY_SCORE_INCREASE;
+            haveShiny = TRUE;
+        }
+    }
     else
+    {
         gPlayerBugCatchingContestScore = 0;
+    }
 
     GenerateBugCatchingContestNPCMons();
+    if (!haveShiny)
+    {
+        for (i = 0; i < ARRAY_COUNT(gBugCatchingContestNPCs); i++)
+        {
+            if (gBugCatchingContestNPCs[i].caughtShiny)
+            {
+                gBugCatchingContestNPCs[i].score += SHINY_SCORE_INCREASE;
+                haveShiny = TRUE;
+                break;
+            }
+        }
+    }
+
     for (i = 0; i < ARRAY_COUNT(gBugCatchingContestStandings); i++)
+    {
         gBugCatchingContestStandings[i] = i;
+    }
 
     // Sort the standings based on the contestants' scores from largest to smallest.
     playerId = NUM_BUG_CONTEST_NPCS;
@@ -768,17 +804,16 @@ static void GenerateBugCatchingContestNPCMon(struct BugCatchingContestNPC *npc)
     hp = (Random() % maxHP) + 1;
     SetMonData(&mon, MON_DATA_HP, &hp);
 
-    npc->score = CalculateBugCatchingContestMonScore(&mon, TRUE);
-    if (npc->caughtShiny)
-        npc->score += SHINY_SCORE_INCREASE;
+    npc->score = CalculateBugCatchingContestMonScore(&mon);
 }
 
-static int CalculateBugCatchingContestMonScore(struct Pokemon *mon, bool8 isNPC)
+static int CalculateBugCatchingContestMonScore(struct Pokemon *mon)
 {
     int maxLevel;
-    int levelScore, ivScore, hpScore, rarityScore, shinyScore;
+    int levelScore, ivScore, hpScore, rarityScore;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
 
-    maxLevel = GetMaxBugCatchingContestLevel();
+    maxLevel = GetMaxBugCatchingContestLevelForSpecies(species);
     levelScore = CalculateLevelScore(GetMonData(mon, MON_DATA_LEVEL), maxLevel);
     ivScore = CalculateIVScore(
         GetMonData(mon, MON_DATA_HP_IV),
@@ -788,20 +823,12 @@ static int CalculateBugCatchingContestMonScore(struct Pokemon *mon, bool8 isNPC)
         GetMonData(mon, MON_DATA_SPATK_IV),
         GetMonData(mon, MON_DATA_SPDEF_IV));
     hpScore = CalculateHPScore(GetMonData(mon, MON_DATA_HP), GetMonData(mon, MON_DATA_MAX_HP));
-    rarityScore = CalculateRarityScore(GetMonData(mon, MON_DATA_SPECIES));
+    rarityScore = CalculateRarityScore(species);
 
-    // A shiny mon trumps any non-shiny mon.
-    // Can't rely on IsMonShiny() for NPC mons because it will use the
-    // player's trainer Id to do the shiny check.
-    if (!isNPC && IsMonShiny(mon))
-        shinyScore = SHINY_SCORE_INCREASE;
-    else
-        shinyScore = 0;
-
-    return levelScore + ivScore + hpScore + rarityScore + shinyScore;
+    return levelScore + ivScore + hpScore + rarityScore;
 }
 
-static int GetMaxBugCatchingContestLevel(void)
+static int GetMaxBugCatchingContestLevelForSpecies(u16 species)
 {
     int i;
     int maxLevel = -1;
@@ -811,7 +838,8 @@ static int GetMaxBugCatchingContestLevel(void)
 
     for (i = 0; i < 12; i++)
     {
-        if (wildMons[i].maxLevel > maxLevel)
+        if ((wildMons[i].species == species) &&
+            (wildMons[i].maxLevel > maxLevel))
             maxLevel = wildMons[i].maxLevel;
     }
 
@@ -897,8 +925,12 @@ void PlaceBugCatchingContestObjectEvents(void)
         npcTemplate = &sBugContestNPCTemplates[gBugCatchingContestNPCs[i].templateId];
         events[i].x = sBugContestNPCCoords[coordIndex][0];
         events[i].y = sBugContestNPCCoords[coordIndex][1];
+        events[i].movementRangeX = sBugContestNPCCoords[coordIndex][2] & 0xF;
+        events[i].movementRangeY = (sBugContestNPCCoords[coordIndex][2] & 0xF0) >> 8;
+        events[i].movementType = sBugContestNPCCoords[coordIndex][3];
         events[i].graphicsId = npcTemplate->graphicsId;
         events[i].script = npcTemplate->script;
+        
     }
 }
 
@@ -925,10 +957,7 @@ static void SetAwardsCeremonyBugContestObjectEventScripts(void)
     for (i = 0; i < NUM_BUG_CONTEST_NPCS; i++)
     {
         npcTemplate = &sBugContestNPCTemplates[gBugCatchingContestNPCs[i].templateId];
-        if (gBugCatchingContestStandings[0] == playerId)
-            events[i].script = npcTemplate->awardsScriptPlayerWon;
-        else
-            events[i].script = npcTemplate->awardsScriptPlayerLost;
+        events[i].script = npcTemplate->awardsScript;
     }
 }
 
@@ -996,49 +1025,51 @@ static bool8 GetContestantCaughtShiny(int contestantId)
 
 static void BuildBugContestPlacementString_FirstPlace(void)
 {
-    static const u8 sFirstPlaceString_Part1[] = _("The Bug-Catching Contest winner is\n{STR_VAR_1} {STR_VAR_2} who caught\la level {STR_VAR_3} ");
-    static const u8 sFirstPlaceString_Part2[] = _("{STR_VAR_1}!");
-    static const u8 sFirstPlaceString_Shiny[] = _("\pAmazing! The POKéMON is shiny!\pI've never seen such a beautiful\nbug POKéMON!\p");
+    static const u8 sFirstPlaceString_Part1[] = _("Your winner for today's Bug-Catching\nContest is…\p{STR_VAR_1} {STR_VAR_2} who caught\n");
+    static const u8 sFirstPlaceString_Part2[] = _("a LV. {STR_VAR_1} {STR_VAR_2}!");
+    static const u8 sFirstPlaceString_Shiny[] = _("\pAnd…");
     u8 *str;
     int contestantId = gBugCatchingContestStandings[0];
 
     StringCopy(gStringVar1, GetContestantNamePrefix(contestantId));
     StringCopy(gStringVar2, GetContestantName(contestantId));
-    ConvertIntToDecimalStringN(gStringVar3, GetContestantCaughtLevel(contestantId), 0, 3);
     str = StringExpandPlaceholders(gStringVar4, sFirstPlaceString_Part1);
-    GetSpeciesName(gStringVar1, GetContestantCaughtSpecies(contestantId));
+    ConvertIntToDecimalStringN(gStringVar1, GetContestantCaughtLevel(contestantId), 0, 3);
+    GetSpeciesName(gStringVar2, GetContestantCaughtSpecies(contestantId));
     str = StringExpandPlaceholders(str, sFirstPlaceString_Part2);
     if (GetContestantCaughtShiny(contestantId))
-        str = StringCopy(str, sFirstPlaceString_Shiny);
+    {
+        StringCopy(str, sFirstPlaceString_Shiny);
+    }
 }
 
 static void BuildBugContestPlacementString_SecondPlace(void)
 {
-    static const u8 sSecondPlaceString_Part1[] = _("The runner-up was {STR_VAR_1}\n{STR_VAR_2} who caught a level {STR_VAR_3}\l");
-    static const u8 sSecondPlaceString_Part2[] = _("{STR_VAR_1}!");
+    static const u8 sSecondPlaceString_Part1[] = _("The runner-up was…\n{STR_VAR_1} {STR_VAR_2} who caught\l");
+    static const u8 sSecondPlaceString_Part2[] = _("a LV. {STR_VAR_1} {STR_VAR_2}!");
     u8 *str;
     int contestantId = gBugCatchingContestStandings[1];
 
     StringCopy(gStringVar1, GetContestantNamePrefix(contestantId));
     StringCopy(gStringVar2, GetContestantName(contestantId));
-    ConvertIntToDecimalStringN(gStringVar3, GetContestantCaughtLevel(contestantId), 0, 3);
     str = StringExpandPlaceholders(gStringVar4, sSecondPlaceString_Part1);
-    GetSpeciesName(gStringVar1, GetContestantCaughtSpecies(contestantId));
+    ConvertIntToDecimalStringN(gStringVar1, GetContestantCaughtLevel(contestantId), 0, 3);
+    GetSpeciesName(gStringVar2, GetContestantCaughtSpecies(contestantId));
     str = StringExpandPlaceholders(str, sSecondPlaceString_Part2);
 }
 
 static void BuildBugContestPlacementString_ThirdPlace(void)
 {
-    static const u8 sThirdPlaceString_Part1[] = _("Placing third was {STR_VAR_1}\n{STR_VAR_2} who caught a level {STR_VAR_3}\l");
-    static const u8 sThirdPlaceString_Part2[] = _("{STR_VAR_1}!");
+    static const u8 sThirdPlaceString_Part1[] = _("Placing third was…\n{STR_VAR_1} {STR_VAR_2} who caught\l");
+    static const u8 sThirdPlaceString_Part2[] = _("a LV. {STR_VAR_1} {STR_VAR_2}!");
     u8 *str;
     int contestantId = gBugCatchingContestStandings[2];
 
     StringCopy(gStringVar1, GetContestantNamePrefix(contestantId));
     StringCopy(gStringVar2, GetContestantName(contestantId));
-    ConvertIntToDecimalStringN(gStringVar3, GetContestantCaughtLevel(contestantId), 0, 3);
     str = StringExpandPlaceholders(gStringVar4, sThirdPlaceString_Part1);
-    GetSpeciesName(gStringVar1, GetContestantCaughtSpecies(contestantId));
+    ConvertIntToDecimalStringN(gStringVar1, GetContestantCaughtLevel(contestantId), 0, 3);
+    GetSpeciesName(gStringVar2, GetContestantCaughtSpecies(contestantId));
     str = StringExpandPlaceholders(str, sThirdPlaceString_Part2);
 }
 
@@ -1068,10 +1099,10 @@ u8 GetPlayerBugContestPlace(void)
     }
 }
 
-u16 GetWinningBugContestSpecies(void)
+void GetWinningBugContestSpecies(void)
 {
+    gSpecialVar_0x8004 = GetContestantCaughtSpecies(gBugCatchingContestStandings[0]);
     gSpecialVar_0x8005 = GetContestantCaughtShiny(gBugCatchingContestStandings[0]);
-    return GetContestantCaughtSpecies(gBugCatchingContestStandings[0]);
 }
 
 /////////////////////////////////
@@ -1093,12 +1124,38 @@ void DoSwapBugContestMonScreen(struct Pokemon *newMon, MainCallback returnCallba
     }
 }
 
+static void Task_SwapScreen_ScrollBackground(u8 taskId)
+{
+    s16 i;
+    u16 *data = gTasks[taskId].data;
+
+    sVBlank_DMA = FALSE;
+
+    for (i = 0; i < 160; i++)
+    {
+        if ((i / 32) & 1)
+        {
+            gScanlineEffectRegBuffers[0][i + 160] = data[0] >> 1;
+        }
+        else
+        {
+            gScanlineEffectRegBuffers[0][i + 160] = -(data[0] >> 1);
+        }
+    }
+
+    data[0]++;
+    sVBlank_DMA++;
+}
+
 static void InitBugCatchingContestSwapScreen(void)
 {
+    int i;
+
     SetVBlankCallback(NULL);
     ResetAllBgsCoordinates();
     ResetVramOamAndBgCntRegs();
     ResetBgsAndClearDma3BusyFlags(0);
+    ScanlineEffect_Clear();
 
     InitBgsFromTemplates(0, sSwapScreenBgTemplates, ARRAY_COUNT(sSwapScreenBgTemplates));
     SetBgTilemapBuffer(1, AllocZeroed(BG_SCREEN_SIZE));
@@ -1108,6 +1165,16 @@ static void InitBugCatchingContestSwapScreen(void)
     LoadPalette(sSwapScreenBackgroundPalette, 0, sizeof(sSwapScreenBackgroundPalette));
     DeactivateAllTextPrinters();
     InitSwapScreenWindows();
+    gTextFlags.useAlternateDownArrow = 0;
+
+    for (i = 0; i < 160; i++)
+    {
+        gScanlineEffectRegBuffers[0][i] = 0;
+        gScanlineEffectRegBuffers[1][i] = 0;
+    }
+
+    EnableInterrupts(INTR_FLAG_HBLANK);
+    sSwapScreen->backgroundScrollTaskId = CreateTask(Task_SwapScreen_ScrollBackground, 0);
 
     ResetSpriteData();
     FreeAllSpritePalettes();
@@ -1119,9 +1186,10 @@ static void InitBugCatchingContestSwapScreen(void)
     ShowBg(0);
     ShowBg(1);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
-    SetVBlankCallback(VBlank_BugCatchingContestSwapScreen);
+    SetVBlankCallback(VBlankCB_ScanlineEffects);
+    SetHBlankCallback(HBlankCB_ScanlineEffects);
     SetMainCallback2(MainCallback_BugCatchingContestSwapScreen);
-    CreateTask(SwapScreenWaitFadeIn, 0);
+    CreateTask(Task_SwapScreen_WaitFadeInAskToSwap, 10);
 }
 
 static void MainCallback_BugCatchingContestSwapScreen(void)
@@ -1140,6 +1208,23 @@ static void VBlank_BugCatchingContestSwapScreen(void)
     TransferPlttBuffer();
 }
 
+static void VBlankCB_ScanlineEffects(void)
+{
+    DmaStop(0);
+    VBlank_BugCatchingContestSwapScreen();
+    if (sVBlank_DMA)
+        DmaCopy16(3, gScanlineEffectRegBuffers[0], gScanlineEffectRegBuffers[1], 640);
+}
+
+static void HBlankCB_ScanlineEffects(void)
+{
+    if (REG_VCOUNT < 160)
+    {
+        REG_BG0HOFS = gScanlineEffectRegBuffers[1][REG_VCOUNT];
+        REG_BG1HOFS = gScanlineEffectRegBuffers[1][REG_VCOUNT + 160];
+    }
+}
+
 static void InitSwapScreenSprites(void)
 {
     u8 spriteId;
@@ -1148,13 +1233,13 @@ static void InitSwapScreenSprites(void)
 
     species = GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES);
     personality = GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_PERSONALITY);
-    spriteId = CreateMonIcon(species, SpriteCallbackDummy, 88, 40, 0, personality, 0);
+    spriteId = CreateMonIcon(species, SpriteCB_MonIcon, 88, 52, 0, personality, 0);
     sSwapScreen->monIconSprites[0] = &gSprites[spriteId];
     sSwapScreen->monIconSprites[0]->oam.priority = 0;
 
     species = GetMonData(sSwapScreen->newMon, MON_DATA_SPECIES);
     personality = GetMonData(sSwapScreen->newMon, MON_DATA_PERSONALITY);
-    spriteId = CreateMonIcon(species, SpriteCallbackDummy, 216, 40, 0, personality, 0);
+    spriteId = CreateMonIcon(species, SpriteCB_MonIcon, 216, 52, 0, personality, 0);
     sSwapScreen->monIconSprites[1] = &gSprites[spriteId];
     sSwapScreen->monIconSprites[1]->oam.priority = 0;
 }
@@ -1162,101 +1247,137 @@ static void InitSwapScreenSprites(void)
 static void InitSwapScreenWindows(void)
 {
     u8 *hpStr;
-    sSwapScreen->stockMonWindowId = AddWindow(&sStockMonWindowTemplate);
-    sSwapScreen->newMonWindowId = AddWindow(&sNewMonWindowTemplate);
-    LoadMessageBoxGfx(sSwapScreen->stockMonWindowId, 0x200, 0xC0);
-    LoadUserWindowBorderGfx(sSwapScreen->stockMonWindowId, 0x214, 0xC0);
-    LoadMessageBoxGfx(sSwapScreen->newMonWindowId, 0x200, 0xE0);
-    LoadUserWindowBorderGfx(sSwapScreen->newMonWindowId, 0x21D, 0xE0);
-    PutWindowTilemap(sSwapScreen->stockMonWindowId);
-    PutWindowTilemap(sSwapScreen->newMonWindowId);
-    DrawStdWindowFrame(sSwapScreen->stockMonWindowId, FALSE);
-    DrawStdWindowFrame(sSwapScreen->newMonWindowId, FALSE);
-    CopyWindowToVram(sSwapScreen->stockMonWindowId, 3);
-    CopyWindowToVram(sSwapScreen->newMonWindowId, 3);
+    InitWindows(sTextWindowTemplates);
+    LoadMessageBoxAndBorderGfx();
+    DrawStdWindowFrame(WIN_STOCK_MON, TRUE);
+    DrawStdWindowFrame(WIN_NEW_MON, TRUE);
 
     GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
     ConvertIntToDecimalStringN(gStringVar2, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_LEVEL), STR_CONV_MODE_LEFT_ALIGN, 3);
     hpStr = ConvertIntToDecimalStringN(gStringVar3, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
     *(hpStr++) = CHAR_SLASH;
     ConvertIntToDecimalStringN(hpStr, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringExpandPlaceholders(gStringVar4, sStockMonText);
-    AddTextPrinterParameterized(sSwapScreen->stockMonWindowId, 1, gStringVar4, 0, 1, 0, NULL);
+    AddTextPrinterParameterized5(WIN_STOCK_MON, 2, sStockMonText, GetStringCenterAlignXOffset(2, sStockMonText, 96), 1, 0, NULL, 1, 2);
+    StringExpandPlaceholders(gStringVar4, sMonInfoText);
+    AddTextPrinterParameterized5(WIN_STOCK_MON, 2, gStringVar4, 0, 17, 0, NULL, 1, 2);
 
     GetSpeciesName(gStringVar1, GetMonData(sSwapScreen->newMon, MON_DATA_SPECIES));
     ConvertIntToDecimalStringN(gStringVar2, GetMonData(sSwapScreen->newMon, MON_DATA_LEVEL), STR_CONV_MODE_LEFT_ALIGN, 3);
     hpStr = ConvertIntToDecimalStringN(gStringVar3, GetMonData(sSwapScreen->newMon, MON_DATA_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
     *(hpStr++) = CHAR_SLASH;
     ConvertIntToDecimalStringN(hpStr, GetMonData(sSwapScreen->newMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringExpandPlaceholders(gStringVar4, sNewMonText);
-    AddTextPrinterParameterized(sSwapScreen->newMonWindowId, 1, gStringVar4, 0, 1, 0, NULL);
-
-    sSwapScreen->textWindowId = AddWindow(&sTextWindowTemplate);
-    LoadMessageBoxGfx(sSwapScreen->textWindowId, 0x200, 0xC0);
-    LoadUserWindowBorderGfx(sSwapScreen->textWindowId, 0x214, 0xC0);
-    PutWindowTilemap(sSwapScreen->textWindowId);
-    DrawStdWindowFrame(sSwapScreen->textWindowId, FALSE);
-    CopyWindowToVram(sSwapScreen->textWindowId, 3);
+    AddTextPrinterParameterized5(WIN_NEW_MON, 2, sNewMonText, GetStringCenterAlignXOffset(2, sNewMonText, 96), 1, 0, NULL, 1, 2);
+    StringExpandPlaceholders(gStringVar4, sMonInfoText);
+    AddTextPrinterParameterized5(WIN_NEW_MON, 2, gStringVar4, 0, 17, 0, NULL, 1, 2);
 }
 
-static void SwapScreenWaitFadeIn(u8 taskId)
+static void Task_SwapScreen_WaitFadeInAskToSwap(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
         GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
         StringExpandPlaceholders(gStringVar4, sTextAlreadyCaught);
-        AddTextPrinterParameterized(sSwapScreen->textWindowId, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
-        gTasks[taskId].func = SwapScreenDisplayAlreadyCaughtMessage;
+        DrawStdWindowFrame(WIN_QUESTION, FALSE);
+        AddTextPrinterParameterized5(WIN_QUESTION, 2, gStringVar4, 0, 1, TEXT_SPEED_FF, NULL, 1, 2);
+        CreateYesNoMenu(&sYesNoWindowTemplate, 2, 0, 2, STD_WINDOW_BASE_TILE_NUM, 14, 0);
+        CopyWindowToVram(WIN_QUESTION, 2);
+        gTasks[taskId].func = Task_SwapScreen_HandleYesNoInput;
     }
 }
 
-static void SwapScreenDisplayAlreadyCaughtMessage(u8 taskId)
-{
-    if (!IsTextPrinterActive(sSwapScreen->textWindowId))
-    {
-        CreateYesNoMenu(&sYesNoWindowTemplate, 1, 0, 2, 0x214, 14, 0);
-        gTasks[taskId].func = SwapScreenHandleInput;
-    }
-}
-
-static void SwapScreenHandleInput(u8 taskId)
+static void Task_SwapScreen_HandleYesNoInput(u8 taskId)
 {
     int selection = Menu_ProcessInputNoWrapClearOnChoose();
     if (selection == 0)
     {
-        FillWindowPixelBuffer(sSwapScreen->textWindowId, 0x11);
-        GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
-        StringExpandPlaceholders(gStringVar4, sTextReleasedPreviousCaughtMon);
-        AddTextPrinterParameterized(sSwapScreen->textWindowId, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
-        gCaughtBugCatchingContestMon = *sSwapScreen->newMon;
-        gTasks[taskId].func = SwapScreenWaitFinalText;
+        // New
+        PlaySE(SE_SELECT);
+        gTasks[taskId].data[0] = 0;
+        ClearStdWindowAndFrameToTransparent(WIN_QUESTION, TRUE);
+        ClearStdWindowAndFrameToTransparent(WIN_STOCK_MON, TRUE);
+        DestroySprite(sSwapScreen->monIconSprites[0]);
+        gTasks[taskId].func = Task_SwapScreen_SlideChosenMonToCenter;
     }
     else if (selection == 1 || selection == MENU_B_PRESSED)
     {
-        FillWindowPixelBuffer(sSwapScreen->textWindowId, 0x11);
+        // Old
+        PlaySE(SE_SELECT);
+        gTasks[taskId].data[0] = 1;
+        ClearStdWindowAndFrameToTransparent(WIN_QUESTION, TRUE);
+        ClearStdWindowAndFrameToTransparent(WIN_NEW_MON, TRUE);
+        DestroySprite(sSwapScreen->monIconSprites[1]);
+        gTasks[taskId].func = Task_SwapScreen_SlideChosenMonToCenter;
+    }
+}
+
+static void Task_SwapScreen_SlideChosenMonToCenter(u8 taskId)
+{
+    int i;
+    s16 *data = gTasks[taskId].data;
+
+    sVBlank_DMA = FALSE;
+
+    if (data[0] == 0)
+    {
+        // New
+        for (i = 0; i < 100; i++)
+        {
+            gScanlineEffectRegBuffers[0][i] = data[1];
+        }
+
+        sSwapScreen->monIconSprites[1]->pos1.x -= 2;
+    }
+    else
+    {
+        // Old
+        for (i = 0; i < 100; i++)
+        {
+            gScanlineEffectRegBuffers[0][i] = -data[1];
+        }
+
+        sSwapScreen->monIconSprites[0]->pos1.x += 2;
+    }
+
+    data[1] += 2;
+    if (data[1] > 64)
+    {
+        gTasks[taskId].func = Task_SwapScreen_ShowChoiceText;
+    }
+
+    sVBlank_DMA++;
+}
+
+static void Task_SwapScreen_ShowChoiceText(u8 taskId)
+{
+    if (gTasks[taskId].data[0] == 0)
+    {
         GetSpeciesName(gStringVar1, GetMonData(sSwapScreen->newMon, MON_DATA_SPECIES));
-        StringExpandPlaceholders(gStringVar4, sTextReleasedNewlyCaughtMon);
-        AddTextPrinterParameterized(sSwapScreen->textWindowId, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
-        gTasks[taskId].func = SwapScreenWaitFinalText;
+        GetSpeciesName(gStringVar2, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
+        StringExpandPlaceholders(gStringVar4, sTextKeptNewlyCaughtMon);
+        DrawStdWindowFrame(WIN_CHOICE_MADE, FALSE);
+        AddTextPrinterParameterized5(WIN_CHOICE_MADE, 2, gStringVar4, 0, 1, TEXT_SPEED_FF, NULL, 1, 2);
+        CopyWindowToVram(WIN_CHOICE_MADE, 3);
+        gCaughtBugCatchingContestMon = *sSwapScreen->newMon;
+        gTasks[taskId].func = Task_SwapScreen_QuitAfterFinalText;
+    }
+    else if (gTasks[taskId].data[0] == 1)
+    {
+        GetSpeciesName(gStringVar1, GetMonData(&gCaughtBugCatchingContestMon, MON_DATA_SPECIES));
+        GetSpeciesName(gStringVar2, GetMonData(sSwapScreen->newMon, MON_DATA_SPECIES));
+        StringExpandPlaceholders(gStringVar4, sTextKeptPreviousCaughtMon);
+        DrawStdWindowFrame(WIN_CHOICE_MADE, FALSE);
+        AddTextPrinterParameterized5(WIN_CHOICE_MADE, 2, gStringVar4, 0, 1, TEXT_SPEED_FF, NULL, 1, 2);
+        CopyWindowToVram(WIN_CHOICE_MADE, 3);
+        gTasks[taskId].func = Task_SwapScreen_QuitAfterFinalText;
     }
 }
 
-static void SwapScreenWaitFinalText(u8 taskId)
+static void Task_SwapScreen_QuitAfterFinalText(u8 taskId)
 {
-    if (!IsTextPrinterActive(sSwapScreen->textWindowId))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-        gTasks[taskId].func = SwapScreenExit;
-    }
-}
-
-static void SwapScreenExit(u8 taskId)
-{
-    if (!gPaletteFade.active)
-    {
-        DestroyTask(taskId);
         SetMainCallback2(sSwapScreen->returnCallback);
-        FreeAllWindowBuffers();
         FREE_AND_SET_NULL(sSwapScreen);
+        DestroyTask(taskId);
     }
 }

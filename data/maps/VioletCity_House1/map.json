@@ -1,6 +1,6 @@
 {
-    "allow_bike": false,
-    "allow_escape_rope": false,
+    "allow_cycling": false,
+    "allow_escaping": false,
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
@@ -23,7 +23,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "VioletCity_House1_EventScript_Girl",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 8,
             "y": 5
@@ -37,7 +37,7 @@
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "VioletCity_House1_EventScript_Woman",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 4,
             "y": 4
@@ -51,7 +51,7 @@
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
             "script": "VioletCity_House1_EventScript_Strawberry",
             "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "type": "original",
             "x": 7,
             "y": 3

@@ -7,7 +7,7 @@ Route134_OnResume: @ 81F764A
 	end
 
 Route134_EventScript_Jack:: @ 81F7653
-	trainerbattle_single TRAINER_JACK, Route134_Text_JackIntro, Route134_Text_JackDefeat
+	trainerbattle_single TRAINER_JACK_OLD, Route134_Text_JackIntro, Route134_Text_JackDefeat
 	msgbox Route134_Text_JackPostBattle, MSGBOX_AUTOCLOSE
 	end
 

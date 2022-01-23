@@ -1,6 +1,7 @@
 #include "global.h"
 #include "coins.h"
 #include "text.h"
+#include "text_window.h"
 #include "window.h"
 #include "strings.h"
 #include "string_util.h"
@@ -14,27 +15,30 @@ void PrintCoinsString(u32 coinAmount)
 {
     u32 xAlign;
 
-    ConvertIntToDecimalStringN(gStringVar1, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, 4);
-    StringExpandPlaceholders(gStringVar4, gText_Coins);
+    ConvertIntToDecimalStringN(gStringVar1, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, MAX_COIN_DIGITS);
+    StringExpandPlaceholders(gStringVar4, gText_Var1Coins);
 
-    xAlign = GetStringRightAlignXOffset(1, gStringVar4, 0x40);
-    AddTextPrinterParameterized(sCoinsWindowId, 1, gStringVar4, xAlign, 1, 0, NULL);
+    xAlign = GetStringWidth(0, gStringVar4, 0);
+    AddTextPrinterParameterized(sCoinsWindowId, 0, gStringVar4, 64 - xAlign, 12, 0, NULL);
 }
 
 void ShowCoinsWindow(u32 coinAmount, u8 x, u8 y)
 {
     struct WindowTemplate template;
-    SetWindowTemplateFields(&template, 0, x, y, 8, 2, 0xF, 0x141);
+    SetWindowTemplateFields(&template, 0, x + 1, y + 1, 8, 3, 0xF, 0x20);
     sCoinsWindowId = AddWindow(&template);
     FillWindowPixelBuffer(sCoinsWindowId, PIXEL_FILL(0));
     PutWindowTilemap(sCoinsWindowId);
-    DrawStdFrameWithCustomTileAndPalette(sCoinsWindowId, FALSE, 0x214, 0xE);
+    //CopyWindowToVram(sCoinsWindowId, 3);
+    LoadThinWindowBorderGfx(sCoinsWindowId, 0x21D, 0xD0);
+    DrawStdFrameWithCustomTileAndPalette(sCoinsWindowId, FALSE, 0x21D, 0xD);
+    AddTextPrinterParameterized(sCoinsWindowId, 2, gText_Coins, 0, 0, 0xFF, 0);
     PrintCoinsString(coinAmount);
 }
 
 void HideCoinsWindow(void)
 {
-    ClearStdWindowAndFrame(sCoinsWindowId, TRUE);
+    ClearStdWindowAndFrameToTransparent(sCoinsWindowId, TRUE);
     RemoveWindow(sCoinsWindowId);
 }
 

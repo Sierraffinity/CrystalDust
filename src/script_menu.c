@@ -28,6 +28,7 @@ static void Task_HandleMultichoiceInput(u8 taskId);
 static void Task_HandleYesNoInput(u8 taskId);
 static void Task_HandleMultichoiceGridInput(u8 taskId);
 static void DrawMultichoiceMenu(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress, u8 cursorPos);
+static u8 GetMultichoiceWindowHeight(u8 count);
 static void InitMultichoiceCheckWrap(bool8 ignoreBPress, u8 count, u8 windowId, u8 multichoiceId);
 static void DrawLinkServicesMultichoiceMenu(u8 multichoiceId);
 static void CreatePCMultichoice(void);
@@ -35,6 +36,11 @@ static void CreateLilycoveSSTidalMultichoice(void);
 static bool8 IsPicboxClosed(void);
 static void CreateStartMenuForPokenavTutorial(void);
 static void InitMultichoiceNoWrap(bool8 ignoreBPress, u8 unusedCount, u8 windowId, u8 multichoiceId);
+
+static u16 GetStringTilesWide(const u8 *str)
+{
+    return (GetStringWidth(2, str, 0) + 7) / 8;
+}
 
 bool8 ScriptMenu_Multichoice(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress)
 {
@@ -98,6 +104,7 @@ static void DrawMultichoiceMenu(u8 left, u8 top, u8 multichoiceId, bool8 ignoreB
     const struct MenuAction *actions = sMultichoiceLists[multichoiceId].list;
     int width = 0;
     u8 newWidth;
+    u8 height;
 
     for (i = 0; i < count; i++)
     {
@@ -106,12 +113,40 @@ static void DrawMultichoiceMenu(u8 left, u8 top, u8 multichoiceId, bool8 ignoreB
 
     newWidth = ConvertPixelWidthToTileWidth(width);
     left = ScriptMenu_AdjustLeftCoordFromWidth(left, newWidth);
-    windowId = CreateWindowFromRect(left, top, newWidth, count * 2);
+    height = GetMultichoiceWindowHeight(count);
+    windowId = CreateWindowFromRect(left, top, newWidth, height);
     SetStandardWindowBorderStyle(windowId, 0);
-    PrintMenuTable(windowId, count, actions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, count, cursorPos);
-    schedule_bg_copy_tilemap_to_vram(0);
+    MultichoiceList_PrintItems(windowId, 2, 8, 2, 14, count, actions, 0, 2);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 2, 14, count, cursorPos);
+    ScheduleBgCopyTilemapToVram(0);
     InitMultichoiceCheckWrap(ignoreBPress, count, windowId, multichoiceId);
+}
+
+static u8 GetMultichoiceWindowHeight(u8 count)
+{
+    switch (count)
+    {
+    case 0:
+        return 1;
+    case 1:
+        return 2;
+    case 2:
+        return 4;
+    case 3:
+        return 6;
+    case 4:
+        return 7;
+    case 5:
+        return 9;
+    case 6:
+        return 11;
+    case 7:
+        return 13;
+    case 8:
+        return 14;
+    default:
+        return 1;
+    }
 }
 
 #define tLeft           data[0]
@@ -127,7 +162,7 @@ static void InitMultichoiceCheckWrap(bool8 ignoreBPress, u8 count, u8 windowId, 
 {
     u8 i;
     u8 taskId;
-    sProcessInputDelay = 2;
+    sProcessInputDelay = 0;
 
     for (i = 0; i < ARRAY_COUNT(sLinkServicesMultichoiceIds); i++)
     {
@@ -170,7 +205,7 @@ static void Task_HandleMultichoiceInput(u8 taskId)
             else
                 selection = Menu_ProcessInput();
 
-            if (gMain.newKeys & (DPAD_UP | DPAD_DOWN))
+            if (JOY_NEW(DPAD_UP | DPAD_DOWN))
             {
                 DrawLinkServicesMultichoiceMenu(tMultichoiceId);
             }
@@ -328,7 +363,7 @@ bool16 ScriptMenu_CreatePCMultichoice(void)
 
 static void CreatePCMultichoice(void)
 {
-    u8 y = 8;
+    u8 x = GetMenuCursorDimensionByFont(1, 0);
     u32 pixelWidth = 0;
     u8 width;
     u8 numChoices;
@@ -340,39 +375,52 @@ static void CreatePCMultichoice(void)
         pixelWidth = DisplayTextAndGetWidth(sPCNameStrings[i], pixelWidth);
     }
 
-    if (FlagGet(FLAG_SYS_GAME_CLEAR))
+    switch (GetStringTilesWide(gText_PlayersPC))
     {
-        pixelWidth = DisplayTextAndGetWidth(gText_HallOfFame, pixelWidth);
+    default:
+        if (FlagGet(FLAG_SYS_POKEDEX_GET))
+            width = 14;
+        else
+            width = 13;
+        break;
+    case 9:
+    case 10:
+        width = 14;
+        break;
     }
-
-    width = ConvertPixelWidthToTileWidth(pixelWidth);
 
     // Include Hall of Fame option if player is champion
     if (FlagGet(FLAG_SYS_GAME_CLEAR))
     {
-        numChoices = 4;
-        windowId = CreateWindowFromRect(0, 0, width, 8);
-        SetStandardWindowBorderStyle(windowId, 0);
-        AddTextPrinterParameterized(windowId, 1, gText_HallOfFame, y, 33, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(windowId, 1, gText_LogOff, y, 49, TEXT_SPEED_FF, NULL);
+        numChoices = 5;
+        windowId = CreateWindowFromRect(0, 0, width, 10);
+        SetStandardWindowBorderStyle(windowId, FALSE);
+        AddTextPrinterParameterized(windowId, 2, gText_ProfOakSPc, x, 34, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_HallOfFame, x, 50, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_LogOff, x, 66, TEXT_SPEED_FF, NULL);
     }
     else
     {
-        numChoices = 3;
-        windowId = CreateWindowFromRect(0, 0, width, 6);
-        SetStandardWindowBorderStyle(windowId, 0);
-        AddTextPrinterParameterized(windowId, 1, gText_LogOff, y, 33, TEXT_SPEED_FF, NULL);
+        if (FlagGet(FLAG_SYS_POKEDEX_GET))
+            numChoices = 4;
+        else
+            numChoices = 3;
+        windowId = CreateWindowFromRect(0, 0, width, numChoices * 2);
+        SetStandardWindowBorderStyle(windowId, FALSE);
+        if (FlagGet(FLAG_SYS_POKEDEX_GET))
+            AddTextPrinterParameterized(windowId, 2, gText_ProfOakSPc, x, 34, 0xFF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_LogOff, x, 2 + 16 * (numChoices - 1), TEXT_SPEED_FF, NULL);
     }
 
     // Change PC name if player has met Lanette
     if (FlagGet(FLAG_SYS_PC_LANETTE))
-        AddTextPrinterParameterized(windowId, 1, gText_LanettesPC, y, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_LanettesPC, x, 2, TEXT_SPEED_FF, NULL);
     else
-        AddTextPrinterParameterized(windowId, 1, gText_SomeonesPC, y, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(windowId, 2, gText_SomeonesPC, x, 2, TEXT_SPEED_FF, NULL);
 
     StringExpandPlaceholders(gStringVar4, gText_PlayersPC);
-    PrintPlayerNameOnWindow(windowId, gStringVar4, y, 17);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, numChoices, 0);
+    PrintPlayerNameOnWindow(windowId, gStringVar4, x, 18);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 2, 16, numChoices, 0);
     CopyWindowToVram(windowId, 3);
     InitMultichoiceCheckWrap(FALSE, numChoices, windowId, MULTI_PC);
 }
@@ -380,7 +428,7 @@ static void CreatePCMultichoice(void)
 void ScriptMenu_DisplayPCStartupPrompt(void)
 {
     sub_819786C(0, TRUE);
-    AddTextPrinterParameterized2(0, 1, gText_WhichPCShouldBeAccessed, 0, NULL, 2, 1, 3);
+    AddTextPrinterParameterized2(0, 2, gText_WhichPCShouldBeAccessed, 0, NULL, 2, 1, 3);
 }
 
 bool8 ScriptMenu_CreateLilycoveSSTidalMultichoice(void)
@@ -428,7 +476,7 @@ static void CreateLilycoveSSTidalMultichoice(void)
         }
     }
 
-    if (CheckBagHasItem(ITEM_EON_TICKET, 1) == TRUE && FlagGet(FLAG_SYS_HAS_EON_TICKET) == TRUE)
+    if (CheckBagHasItem(ITEM_EON_TICKET, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_SOUTHERN_ISLAND) == TRUE)
     {
         if (gSpecialVar_0x8004 == 0)
         {
@@ -436,11 +484,11 @@ static void CreateLilycoveSSTidalMultichoice(void)
             selectionCount++;
         }
 
-        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_HAS_EON_TICKET) == FALSE)
+        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_SHOWN_EON_TICKET) == FALSE)
         {
             sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_SOUTHERN_ISLAND;
             selectionCount++;
-            FlagSet(FLAG_HAS_EON_TICKET);
+            FlagSet(FLAG_SHOWN_EON_TICKET);
         }
     }
 
@@ -452,11 +500,11 @@ static void CreateLilycoveSSTidalMultichoice(void)
             selectionCount++;
         }
 
-        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_HAS_MYSTIC_TICKET) == FALSE)
+        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_SHOWN_MYSTIC_TICKET) == FALSE)
         {
             sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_NAVEL_ROCK;
             selectionCount++;
-            FlagSet(FLAG_HAS_MYSTIC_TICKET);
+            FlagSet(FLAG_SHOWN_MYSTIC_TICKET);
         }
     }
 
@@ -468,11 +516,11 @@ static void CreateLilycoveSSTidalMultichoice(void)
             selectionCount++;
         }
 
-        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_HAS_AURORA_TICKET) == FALSE)
+        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_SHOWN_AURORA_TICKET) == FALSE)
         {
             sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_BIRTH_ISLAND;
             selectionCount++;
-            FlagSet(FLAG_HAS_AURORA_TICKET);
+            FlagSet(FLAG_SHOWN_AURORA_TICKET);
         }
     }
 
@@ -484,11 +532,11 @@ static void CreateLilycoveSSTidalMultichoice(void)
             selectionCount++;
         }
 
-        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_HAS_OLD_SEA_MAP) == FALSE)
+        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_SHOWN_OLD_SEA_MAP) == FALSE)
         {
             sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_FARAWAY_ISLAND;
             selectionCount++;
-            FlagSet(FLAG_HAS_OLD_SEA_MAP);
+            FlagSet(FLAG_SHOWN_OLD_SEA_MAP);
         }
     }
 
@@ -527,12 +575,12 @@ static void CreateLilycoveSSTidalMultichoice(void)
         {
             if (sLilycoveSSTidalSelections[i] != 0xFF)
             {
-                AddTextPrinterParameterized(windowId, 1, sLilycoveSSTidalDestinations[sLilycoveSSTidalSelections[i]], 8, selectionCount * 16 + 1, TEXT_SPEED_FF, NULL);
+                AddTextPrinterParameterized(windowId, 2, sLilycoveSSTidalDestinations[sLilycoveSSTidalSelections[i]], 8, selectionCount * 16 + 1, TEXT_SPEED_FF, NULL);
                 selectionCount++;
             }
         }
 
-        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 1, 0, 1, 16, count, count - 1);
+        InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, 2, 0, 1, 16, count, count - 1);
         CopyWindowToVram(windowId, 3);
         InitMultichoiceCheckWrap(FALSE, count, windowId, MULTI_SSTIDAL_LILYCOVE);
     }
@@ -595,7 +643,7 @@ bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y, bool8 isShiny)
         gSprites[spriteId].callback = SpriteCallbackDummy;
         gSprites[spriteId].oam.priority = 0;
         SetStandardWindowBorderStyle(gTasks[taskId].tWindowId, 1);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
         return TRUE;
     }
 }
@@ -665,27 +713,27 @@ static void DrawLinkServicesMultichoiceMenu(u8 multichoiceId)
     {
     case MULTI_WIRELESS_NO_BERRY:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sWirelessOptionsNoBerryCrush[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sWirelessOptionsNoBerryCrush[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_CABLE_CLUB_WITH_RECORD_MIX:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sCableClubOptions_WithRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sCableClubOptions_WithRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_WIRELESS_NO_RECORD:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sWirelessOptions_NoRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sWirelessOptions_NoRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_WIRELESS_ALL_SERVICES:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sWirelessOptions_AllServices[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sWirelessOptions_AllServices[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_WIRELESS_NO_RECORD_BERRY:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sWirelessOptions_NoRecordMixBerryCrush[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sWirelessOptions_NoRecordMixBerryCrush[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     case MULTI_CABLE_CLUB_NO_RECORD_MIX:
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
-        AddTextPrinterParameterized2(0, 1, sCableClubOptions_NoRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
+        AddTextPrinterParameterized2(0, 2, sCableClubOptions_NoRecordMix[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
         break;
     }
 }
@@ -708,14 +756,14 @@ static void CreateStartMenuForPokenavTutorial(void)
 {
     u8 windowId = CreateWindowFromRect(21, 0, 7, 18);
     SetStandardWindowBorderStyle(windowId, 0);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionPokedex, 8, 9, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionPokemon, 8, 25, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionBag, 8, 41, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionPokegear, 8, 57, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gSaveBlock2Ptr->playerName, 8, 73, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionSave, 8, 89, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionOption, 8, 105, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(windowId, 1, gText_MenuOptionExit, 8, 121, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionPokedex, 8, 9, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionPokemon, 8, 25, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionBag, 8, 41, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionPokegear, 8, 57, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gSaveBlock2Ptr->playerName, 8, 73, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionSave, 8, 89, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionOption, 8, 105, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, 2, gText_MenuOptionExit, 8, 121, TEXT_SPEED_FF, NULL);
     sub_81983AC(windowId, 1, 0, 9, 16, ARRAY_COUNT(MultichoiceList_ForcedStartMenu), 0);
     InitMultichoiceNoWrap(FALSE, ARRAY_COUNT(MultichoiceList_ForcedStartMenu), windowId, MULTI_FORCED_START_MENU);
     CopyWindowToVram(windowId, 3);
@@ -747,7 +795,7 @@ static int DisplayTextAndGetWidthInternal(const u8 *str)
 {
     u8 temp[64];
     StringExpandPlaceholders(temp, str);
-    return GetStringWidth(1, temp, 0);
+    return GetStringWidth(2, temp, 0);
 }
 
 int DisplayTextAndGetWidth(const u8 *str, int prevWidth)

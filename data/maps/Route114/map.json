@@ -7,8 +7,8 @@
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_ROUTE",
-  "allow_bike": true,
-  "allow_escape_rope": false,
+  "allow_cycling": true,
+  "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
@@ -194,7 +194,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_POOCHYENA",
+      "graphics_id": "OBJ_EVENT_GFX_MARILL",
       "x": 19,
       "y": 12,
       "elevation": 3,
@@ -409,7 +409,7 @@
       "x": 8,
       "y": 63,
       "elevation": 0,
-      "dest_map": "MAP_METEOR_FALLS_1F_1R",
+      "dest_map": "MAP_RADIO_TOWER_1F",
       "dest_warp_id": 0
     },
     {
@@ -423,7 +423,7 @@
       "x": 27,
       "y": 36,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE114_LANETTES_HOUSE",
+      "dest_map": "MAP_ROUTE34_ILEX_NORTH_GATEHOUSE",
       "dest_warp_id": 0
     },
     {

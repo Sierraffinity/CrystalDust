@@ -52,7 +52,7 @@ FallarborTown_CozmosHouse_EventScript_CozmosWife:: @ 8200FBC
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_TM27, FallarborTown_CozmosHouse_EventScript_CozmoIsHappy
-	goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FallarborTown_CozmosHouse_EventScript_CozmoIsSad
+	goto_if_set FLAG_HATCHED_ELMS_EGG, FallarborTown_CozmosHouse_EventScript_CozmoIsSad
 	msgbox FallarborTown_CozmosHouse_Text_CozmoWentToMeteorFalls, MSGBOX_DEFAULT
 	release
 	end

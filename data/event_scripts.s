@@ -41,8 +41,10 @@
 #include "constants/metatile_labels.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
+#include "constants/phone_contact.h"
 #include "constants/pokemon.h"
 #include "constants/radio.h"
+#include "constants/roulette.h"
 #include "constants/script_menu.h"
 #include "constants/secret_bases.h"
 #include "constants/songs.h"
@@ -103,15 +105,16 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_ObtainDecoration        @ STD_OBTAIN_DECORATION
 	.4byte Std_RegisteredInMatchCall   @ STD_REGISTER_MATCH_CALL
 	.4byte Std_MsgboxGetPoints         @ MSGBOX_GETPOINTS
-	.4byte Std_10
+	.4byte Std_MsgboxContinue		   @ MSGBOX_CONTINUE
 	.4byte Std_PutItemAway			   @ STD_PUT_ITEM_AWAY
 	.4byte Std_ReceivedItem			   @ STD_RECEIVED_ITEM
+	.4byte Std_MsgboxContinue		   @ MSGBOX_CONTINUE
 gStdScripts_End:: @ 81DC2CC
 
 	.include "data/maps/VioletCity/scripts.inc"
 	.include "data/maps/SlateportCity/scripts.inc"
 	.include "data/maps/MauvilleCity/scripts.inc"
-	.include "data/maps/RustboroCity/scripts.inc"
+	.include "data/maps/GoldenrodCity/scripts.inc"
 	.include "data/maps/FortreeCity/scripts.inc"
 	.include "data/maps/LilycoveCity/scripts.inc"
 	.include "data/maps/MossdeepCity/scripts.inc"
@@ -119,7 +122,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/EverGrandeCity/scripts.inc"
 	.include "data/maps/NewBarkTown/scripts.inc"
 	.include "data/maps/CherrygroveCity/scripts.inc"
-	.include "data/maps/DewfordTown/scripts.inc"
+	.include "data/maps/AzaleaTown/scripts.inc"
 	.include "data/maps/LavaridgeTown/scripts.inc"
 	.include "data/maps/FallarborTown/scripts.inc"
 	.include "data/maps/VerdanturfTown/scripts.inc"
@@ -129,8 +132,8 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route31/scripts.inc"
 	.include "data/maps/Route32/scripts.inc"
 	.include "data/maps/Route33/scripts.inc"
-	.include "data/maps/Route106/scripts.inc"
-	.include "data/maps/Route107/scripts.inc"
+	.include "data/maps/Route34/scripts.inc"
+	.include "data/maps/Route35/scripts.inc"
 	.include "data/maps/Route36/scripts.inc"
 	.include "data/maps/Route109/scripts.inc"
 	.include "data/maps/Route110/scripts.inc"
@@ -140,7 +143,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route114/scripts.inc"
 	.include "data/maps/Route115/scripts.inc"
 	.include "data/maps/Route116/scripts.inc"
-	.include "data/maps/Route117/scripts.inc"
+	.include "data/maps/Route45/scripts.inc"
 	.include "data/maps/Route46/scripts.inc"
 	.include "data/maps/Route119/scripts.inc"
 	.include "data/maps/Route120/scripts.inc"
@@ -158,13 +161,13 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route132/scripts.inc"
 	.include "data/maps/Route133/scripts.inc"
 	.include "data/maps/Route134/scripts.inc"
-	.include "data/maps/Underwater1/scripts.inc"
-	.include "data/maps/Underwater2/scripts.inc"
-	.include "data/maps/Underwater3/scripts.inc"
-	.include "data/maps/Underwater4/scripts.inc"
-	.include "data/maps/Underwater5/scripts.inc"
-	.include "data/maps/Underwater6/scripts.inc"
-	.include "data/maps/Underwater7/scripts.inc"
+	.include "data/maps/Underwater_Route124/scripts.inc"
+	.include "data/maps/Underwater_Route126/scripts.inc"
+	.include "data/maps/Underwater_Route127/scripts.inc"
+	.include "data/maps/Underwater_Route128/scripts.inc"
+	.include "data/maps/Underwater_Route129/scripts.inc"
+	.include "data/maps/Underwater_Route105/scripts.inc"
+	.include "data/maps/Underwater_Route125/scripts.inc"
 	.include "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc"
 	.include "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc"
 	.include "data/maps/NewBarkTown_ElmsHouse/scripts.inc"
@@ -176,12 +179,12 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/CherrygroveCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/CherrygroveCity_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/CherrygroveCity_Mart/scripts.inc"
-	.include "data/maps/DewfordTown_House1/scripts.inc"
-	.include "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/DewfordTown_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/DewfordTown_Gym/scripts.inc"
-	.include "data/maps/DewfordTown_Hall/scripts.inc"
-	.include "data/maps/DewfordTown_House2/scripts.inc"
+	.include "data/maps/AzaleaTown_KurtsHouse/scripts.inc"
+	.include "data/maps/AzaleaTown_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/AzaleaTown_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/AzaleaTown_Gym/scripts.inc"
+	.include "data/maps/AzaleaTown_Mart/scripts.inc"
+	.include "data/maps/AzaleaTown_CharcoalKiln/scripts.inc"
 	.include "data/maps/LavaridgeTown_HerbShop/scripts.inc"
 	.include "data/maps/LavaridgeTown_Gym_1F/scripts.inc"
 	.include "data/maps/LavaridgeTown_Gym_B1F/scripts.inc"
@@ -242,23 +245,23 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/MauvilleCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/MauvilleCity_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/MauvilleCity_Mart/scripts.inc"
-	.include "data/maps/RustboroCity_DevonCorp_1F/scripts.inc"
-	.include "data/maps/RustboroCity_DevonCorp_2F/scripts.inc"
-	.include "data/maps/RustboroCity_DevonCorp_3F/scripts.inc"
-	.include "data/maps/RustboroCity_Gym/scripts.inc"
-	.include "data/maps/RustboroCity_PokemonSchool/scripts.inc"
-	.include "data/maps/RustboroCity_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/RustboroCity_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/RustboroCity_Mart/scripts.inc"
-	.include "data/maps/RustboroCity_Flat1_1F/scripts.inc"
-	.include "data/maps/RustboroCity_Flat1_2F/scripts.inc"
-	.include "data/maps/RustboroCity_House1/scripts.inc"
-	.include "data/maps/RustboroCity_CuttersHouse/scripts.inc"
-	.include "data/maps/RustboroCity_House2/scripts.inc"
-	.include "data/maps/RustboroCity_Flat2_1F/scripts.inc"
-	.include "data/maps/RustboroCity_Flat2_2F/scripts.inc"
-	.include "data/maps/RustboroCity_Flat2_3F/scripts.inc"
-	.include "data/maps/RustboroCity_House3/scripts.inc"
+	.include "data/maps/GoldenrodCity_Underground_NorthEntrance/scripts.inc"
+	.include "data/maps/GoldenrodCity_Underground_SouthEntrance/scripts.inc"
+	.include "data/maps/GoldenrodCity_Underground/scripts.inc"
+	.include "data/maps/GoldenrodCity_Gym/scripts.inc"
+	.include "data/maps/GoldenrodCity_PokecomCenterAdminRoom/scripts.inc"
+	.include "data/maps/GoldenrodCity_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/GoldenrodCity_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/GoldenrodCity_MagnetTrainStation/scripts.inc"
+	.include "data/maps/GoldenrodCity_GameCorner/scripts.inc"
+	.include "data/maps/GoldenrodCity_BikeShop/scripts.inc"
+	.include "data/maps/GoldenrodCity_FlowerShop/scripts.inc"
+	.include "data/maps/GoldenrodCity_NameRatersHouse/scripts.inc"
+	.include "data/maps/GoldenrodCity_BillsFamilysHouse/scripts.inc"
+	.include "data/maps/GoldenrodCity_House1/scripts.inc"
+	.include "data/maps/GoldenrodCity_House2/scripts.inc"
+	.include "data/maps/GoldenrodCity_DeptStore_1F/scripts.inc"
+	.include "data/maps/GoldenrodCity_DeptStore_2F/scripts.inc"
 	.include "data/maps/FortreeCity_House1/scripts.inc"
 	.include "data/maps/FortreeCity_Gym/scripts.inc"
 	.include "data/maps/FortreeCity_PokemonCenter_1F/scripts.inc"
@@ -342,15 +345,16 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route32_Gatehouse/scripts.inc"
 	.include "data/maps/Route32_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/Route32_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/Route114_FossilManiacsTunnel/scripts.inc"
-	.include "data/maps/Route114_LanettesHouse/scripts.inc"
-	.include "data/maps/Route116_TunnelersRestHouse/scripts.inc"
-	.include "data/maps/Route117_PokemonDayCare/scripts.inc"
+	.include "data/maps/Route34_IlexEastGatehouse/scripts.inc"
+	.include "data/maps/Route34_IlexNorthGatehouse/scripts.inc"
+	.include "data/maps/Route34_DayCare/scripts.inc"
+	.include "data/maps/Route35_GoldenrodGatehouse/scripts.inc"
+	.include "data/maps/Route35_NationalParkGatehouse/scripts.inc"
 	.include "data/maps/Route36_RuinsOfAlphGatehouse/scripts.inc"
-	.include "data/maps/MeteorFalls_1F_1R/scripts.inc"
-	.include "data/maps/MeteorFalls_1F_2R/scripts.inc"
-	.include "data/maps/MeteorFalls_B1F_1R/scripts.inc"
-	.include "data/maps/MeteorFalls_B1F_2R/scripts.inc"
+	.include "data/maps/RadioTower_1F/scripts.inc"
+	.include "data/maps/RadioTower_2F/scripts.inc"
+	.include "data/maps/RadioTower_3F/scripts.inc"
+	.include "data/maps/RadioTower_4F/scripts.inc"
 	.include "data/maps/UnionCave_1F/scripts.inc"
 	.include "data/maps/UnionCave_B1F/scripts.inc"
 	.include "data/maps/UnionCave_B2F/scripts.inc"
@@ -358,8 +362,8 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/DesertRuins/scripts.inc"
 	.include "data/maps/DarkCave_South/scripts.inc"
 	.include "data/maps/DarkCave_B1F/scripts.inc"
-	.include "data/maps/PetalburgWoods/scripts.inc"
-	.include "data/maps/MtChimney/scripts.inc"
+	.include "data/maps/IlexForest/scripts.inc"
+	.include "data/maps/SlowpokeWell_B1F/scripts.inc"
 	.include "data/maps/JaggedPass/scripts.inc"
 	.include "data/maps/FieryPath/scripts.inc"
 	.include "data/maps/MtPyre_1F/scripts.inc"
@@ -454,7 +458,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/TerraCave_Entrance/scripts.inc"
 	.include "data/maps/TerraCave_End/scripts.inc"
 	.include "data/maps/AlteringCave/scripts.inc"
-	.include "data/maps/MeteorFalls_StevensCave/scripts.inc"
+	.include "data/maps/RadioTower_5F/scripts.inc"
 	.include "data/scripts/shared_secret_base.inc"
 	.include "data/maps/BattleColosseum_2P/scripts.inc"
 	.include "data/maps/TradeCenter/scripts.inc"
@@ -578,18 +582,13 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route119_WeatherInstitute_2F/scripts.inc"
 	.include "data/maps/Route119_House/scripts.inc"
 	.include "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc"
-	.include "data/maps/NationalParkGateSouth/scripts.inc"
-	.include "data/maps/NationalParkContest/scripts.inc"
+	.include "data/maps/NationalPark_BugCatchingContest/scripts.inc"
 	.include "data/maps/NationalPark/scripts.inc"
-	.include "data/maps/NationalParkGateEast/scripts.inc"
+	.include "data/maps/Route36_NationalParkGatehouse/scripts.inc"
 
 	.include "data/scripts/std_msgbox.inc"
 	.include "data/scripts/trainer_battle.inc"
 	.include "data/scripts/new_game.inc"
-	
-Common_RestoreOriginalTextColor:
-	copyvar VAR_TEXT_COLOR VAR_TEXT_COLOR_BACKUP
-	return
 
 ClearPokepicAndTextboxForEarlyScriptExit::
 	special PrintNullStringAndClearPokemonPicWindow
@@ -600,48 +599,6 @@ ClearPokepicAndTextboxForEarlyScriptExit::
 
 EventScript_WhiteOut:: @ 8271857
 	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour
-	goto EventScript_ResetMrBriney
-	end
-
-EventScript_ResetMrBriney:: @ 8271862
-	compare VAR_BRINEY_LOCATION, 1
-	goto_if_eq EventScript_MoveMrBrineyToHouse
-	compare VAR_BRINEY_LOCATION, 2
-	goto_if_eq EventScript_MoveMrBrineyToDewford
-	compare VAR_BRINEY_LOCATION, 3
-	goto_if_eq EventScript_MoveMrBrineyToRoute36
-	end
-
-EventScript_MoveMrBrineyToHouse:: @ 8271884
-	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	setflag FLAG_HIDE_ROUTE_32_FRIEDA
-	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
-	clearflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	clearflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	end
-
-EventScript_MoveMrBrineyToDewford:: @ 827189A
-	setflag FLAG_HIDE_ROUTE_32_FRIEDA
-	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
-	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	end
-
-EventScript_MoveMrBrineyToRoute36:: @ 82718B3
-	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
-	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	clearflag FLAG_HIDE_ROUTE_32_FRIEDA
-	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	end
 
 EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
@@ -653,11 +610,11 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 	return
 
 Common_EventScript_UpdateBrineyLocation:: @ 82718DE
-	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
-	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
-	goto_if_unset FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
-	goto_if_unset FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN, EventScript_SetBrineyLocation_Dewford
-	goto_if_unset FLAG_HIDE_ROUTE_32_FRIEDA, EventScript_SetBrineyLocation_Route36
+	@goto_if_unset FLAG_MET_FLORIA_ROUTE_36, Common_EventScript_NopReturn
+	@goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
+	@goto_if_unset FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
+	@goto_if_unset FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN, EventScript_SetBrineyLocation_Dewford
+	@goto_if_unset FLAG_HIDE_ROUTE_32_FRIEDA, EventScript_SetBrineyLocation_Route36
 	return
 
 EventScript_SetBrineyLocation_House:: @ 827190C
@@ -735,13 +692,13 @@ Common_EventScript_SetAbnormalWeather:: @ 827207A
 	return
 
 Common_EventScript_PlayGymBadgeFanfare:: @ 827207E
-	playfanfare MUS_ME_BACHI
+	playfanfare MUS_OBTAIN_BADGE
 	waitfanfare
 	return
 
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
 	fadescreen FADE_TO_BLACK
-	playfanfare MUS_ME_ASA
+	playfanfare MUS_HEAL
 	waitfanfare
 	special HealPlayerParty
 	fadescreen FADE_FROM_BLACK
@@ -758,7 +715,7 @@ EventScript_RegionMap:: @ 827208F
 
 Common_EventScript_PlayBrineysBoatMusic:: @ 82720A0
 	setflag FLAG_DONT_TRANSITION_MUSIC
-	playbgm MUS_M_BOAT, 0
+	playbgm MUS_SAILING, 0
 	return
 
 Common_EventScript_StopBrineysBoatMusic:: @ 82720A8
@@ -766,7 +723,7 @@ Common_EventScript_StopBrineysBoatMusic:: @ 82720A8
 	fadedefaultbgm
 	return
 
-	.include "data/scripts/prof_birch.inc"
+	.include "data/scripts/pokedex_rating.inc"
 
 @ Below could be split as ferry.inc aside from the Rusturf tunnel script
 Common_EventScript_FerryDepart:: @ 82721E2
@@ -787,9 +744,9 @@ Movement_FerryDepart: @ 82721F0
 
 EventScript_HideMrBriney:: @ 82721F8
 	setflag FLAG_HIDE_ROUTE_32_SLOWPOKE_MAN
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	setflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKES
 	setflag FLAG_HIDE_ROUTE_32_FRIEDA
-	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_AZALEA_TOWN_KURT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	setflag FLAG_HIDE_ROUTE_32_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
@@ -803,7 +760,7 @@ UnionCave_1F_EventScript_SetUnionCave_1FOpen:: @ 8272216
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA
 	setvar VAR_UNION_CAVE_STATE, 6
-	setflag FLAG_UNION_CAVE_OPENED
+	setflag FLAG_IN_BUG_CATCHING_CONTEST
 	return
 
 EventScript_UnusedBoardFerry:: @ 827222B
@@ -842,7 +799,7 @@ Common_EventScript_NameReceivedPartyMon:: @ 82723DD
 
 Common_EventScript_PlayerHandedOverTheItem:: @ 82723E4
 	bufferitemname 0, VAR_0x8004
-	playfanfare MUS_ME_WAZA
+	playfanfare MUS_OBTAIN_TMHM
 	message gText_PlayerHandedOverTheItem
 	waitmessage
 	waitfanfare
@@ -903,9 +860,17 @@ gText_UnusedNicknameReceivedPokemon:: @ 8272DB3
 	.string "Want to give a nickname to\n"
 	.string "the {STR_VAR_2} you received?$"
 
+gText_WhitedOutLostMoney::
+	.string "{PLAYER} is out of usable\n"
+	.string "POKéMON!\p"
+	.string "{PLAYER} panicked and lost ¥{STR_VAR_1}…\p"
+	.string "… … … …\p"
+	.string "{PLAYER} whited out!$"
+
 gText_PlayerWhitedOut:: @ 8272DE3
 	.string "{PLAYER} is out of usable\n"
-	.string "POKéMON!\p{PLAYER} whited out!$"
+	.string "POKéMON!\p"
+	.string "{PLAYER} whited out!$"
 
 gText_RegisteredTrainerinPokeNav:: @ 8272E0F
 	.string "Registered {STR_VAR_1} {STR_VAR_2}\n"
@@ -961,6 +926,18 @@ gText_PlayerHandedOverTheItem:: @ 8273161
 	.string "{PLAYER} handed over the\n"
 	.string "{STR_VAR_1}.$"
 
+gText_AccessedProfOaksPC:: @ 81A5BC6
+	.string "Accessed PROF. OAK's PC…\p"
+	.string "Accessed the POKéDEX Rating\n"
+	.string "System…$"
+
+gText_HavePokedexRated:: @ 81A5C03
+	.string "Would you like to have your\n"
+	.string "POKéDEX rated?$"
+
+gText_ClosedLinkToProfOaksPC:: @ 81A5C2E
+	.string "Closed link to PROF. OAK's PC.$"
+
 gText_ThankYouForAccessingMysteryGift:: @ 8273178
 	.string "Thank you for accessing the\n"
 	.string "MYSTERY GIFT System.$"
@@ -1015,8 +992,7 @@ Common_EventScript_RemoveStaticPokemon:: @ 827376D
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject VAR_LAST_TALKED
 	fadescreenswapbuffers FADE_FROM_BLACK
-	release
-	end
+	return
 
 Common_EventScript_LegendaryFlewAway:: @ 8273776
 	fadescreenswapbuffers FADE_TO_BLACK
@@ -1025,6 +1001,12 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	bufferspeciesname 0, VAR_0x8004
 	msgbox gText_LegendaryFlewAway, MSGBOX_DEFAULT
 	release
+	end
+
+EventScript_ElevatorButton::
+    delay 15
+    playse SE_DING_DONG
+    waitse
 	end
 
 	.include "data/scripts/pc_transfer.inc"
@@ -1081,3 +1063,17 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_3F/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_4F/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_5F/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_6F/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_Rooftop/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_Elevator/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DeptStore_B1F/scripts.inc"

@@ -183,7 +183,7 @@ static u16 CreatePicSprite(u16 species, u32 otId, u32 personality, bool8 isFront
         images[j].data = framePics + 0x800 * j;
         images[j].size = 0x800;
     }
-    sCreatingSpriteTemplate.tileTag = 0xFFFF;
+    sCreatingSpriteTemplate.tileTag = SPRITE_INVALID_TAG;
     sCreatingSpriteTemplate.oam = &gUnknown_0860B064;
     AssignSpriteAnimsTable(isTrainer);
     sCreatingSpriteTemplate.images = images;
@@ -258,7 +258,7 @@ u16 CreatePicSprite2(u16 species, u32 otId, u32 personality, u8 flags, s16 x, s1
         images[j].data = framePics + 0x800 * j;
         images[j].size = 0x800;
     }
-    sCreatingSpriteTemplate.tileTag = 0xFFFF;
+    sCreatingSpriteTemplate.tileTag = SPRITE_INVALID_TAG;
     sCreatingSpriteTemplate.anims = gMonFrontAnimsPtrTable[species];
     sCreatingSpriteTemplate.images = images;
     if (flags2 == 0x01)

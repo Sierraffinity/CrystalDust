@@ -29,7 +29,6 @@
 #include "window.h"
 #include "constants/easy_chat.h"
 #include "constants/event_objects.h"
-#include "constants/flags.h"
 #include "constants/lilycove_lady.h"
 #include "constants/mauville_old_man.h"
 #include "constants/songs.h"
@@ -123,6 +122,7 @@ static u8 sub_811B960(u8);
 static void sub_811B9A0(void);
 static u8 sub_811BA1C(void);
 static int DidPlayerInputMysteryGiftPhrase(void);
+static int DidPlayerInputMysteryEventPhrase(void);
 static u16 DidPlayerInputABerryMasterWifePhrase(void);
 static bool8 sub_811CE94(void);
 static void sub_811CF64(void);
@@ -522,6 +522,13 @@ static const u8 sUnknown_08597748[][7] = {
     { 7,  8,  9, 10, 11, 12,  0},
     {13, 14, 15, 16, 17, 18, 19},
     {20, 21, 22, 23, 24, 25, 26},
+};
+
+static const u16 sMysteryEventPhrase[] = {
+    EC_WORD_MYSTERY,
+    EC_WORD_EVENT,
+    EC_WORD_IS,
+    EC_WORD_EXCITING,
 };
 
 static const u16 sMysteryGiftPhrase[] = {
@@ -1524,7 +1531,7 @@ static u16 sub_811AB68(void)
 {
     do
     {
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             sub_811BF78();
             sEasyChatScreen->state = 2;
@@ -1533,30 +1540,30 @@ static u16 sub_811AB68(void)
             sEasyChatScreen->unk_0c = 0;
             return 9;
         }
-        else if (gMain.newKeys & B_BUTTON)
+        else if (JOY_NEW(B_BUTTON))
         {
             return sub_811B150();
         }
-        else if (gMain.newKeys & START_BUTTON)
+        else if (JOY_NEW(START_BUTTON))
         {
             return sub_811B1B4();
         }
-        else if (gMain.newKeys & DPAD_UP)
+        else if (JOY_NEW(DPAD_UP))
         {
             sEasyChatScreen->mainCursorRow--;
             break;
         }
-        else if (gMain.newKeys & DPAD_LEFT)
+        else if (JOY_NEW(DPAD_LEFT))
         {
             sEasyChatScreen->mainCursorColumn--;
             break;
         }
-        else if (gMain.newKeys & DPAD_DOWN)
+        else if (JOY_NEW(DPAD_DOWN))
         {
             sEasyChatScreen->mainCursorRow++;
             break;
         }
-        else if (gMain.newKeys & DPAD_RIGHT)
+        else if (JOY_NEW(DPAD_RIGHT))
         {
             sEasyChatScreen->mainCursorColumn++;
             break;
@@ -1596,7 +1603,7 @@ static u16 sub_811ACDC(void)
 {
     do
     {
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             switch (sEasyChatScreen->mainCursorColumn)
             {
@@ -1611,30 +1618,30 @@ static u16 sub_811ACDC(void)
             }
         }
 
-        if (gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(B_BUTTON))
         {
             return sub_811B150();
         }
-        else if (gMain.newKeys & START_BUTTON)
+        if (JOY_NEW(START_BUTTON))
         {
             return sub_811B1B4();
         }
-        else if (gMain.newKeys & DPAD_UP)
+        if (JOY_NEW(DPAD_UP))
         {
             sEasyChatScreen->mainCursorRow--;
             break;
         }
-        else if (gMain.newKeys & DPAD_LEFT)
+        if (JOY_NEW(DPAD_LEFT))
         {
             sEasyChatScreen->mainCursorColumn--;
             break;
         }
-        else if (gMain.newKeys & DPAD_DOWN)
+        if (JOY_NEW(DPAD_DOWN))
         {
             sEasyChatScreen->mainCursorRow = 0;
             break;
         }
-        else if (gMain.newKeys & DPAD_RIGHT)
+        if (JOY_NEW(DPAD_RIGHT))
         {
             sEasyChatScreen->mainCursorColumn++;
             break;
@@ -1667,10 +1674,10 @@ static u16 sub_811ACDC(void)
 
 static u16 sub_811AE44(void)
 {
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
         return sub_811B32C();
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         if (sEasyChatScreen->unk_0a != -1)
             return sub_811B2B0();
@@ -1686,19 +1693,19 @@ static u16 sub_811AE44(void)
         }
     }
 
-    if (gMain.newKeys & SELECT_BUTTON)
+    if (JOY_NEW(SELECT_BUTTON))
         return sub_811B33C();
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
         return sub_811B528(2);
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
         return sub_811B528(3);
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
         return sub_811B528(1);
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
         return sub_811B528(0);
 
     return 0;
@@ -1706,31 +1713,31 @@ static u16 sub_811AE44(void)
 
 static u16 sub_811AF00(void)
 {
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
     {
         sEasyChatScreen->state = 2;
         return 14;
     }
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
         return sub_811B394();
 
-    if (gMain.newKeys & START_BUTTON)
+    if (JOY_NEW(START_BUTTON))
         return sub_811B794(4);
 
-    if (gMain.newKeys & SELECT_BUTTON)
+    if (JOY_NEW(SELECT_BUTTON))
         return sub_811B794(5);
 
-    if (gMain.newAndRepeatedKeys & DPAD_UP)
+    if (JOY_REPEAT(DPAD_UP))
         return sub_811B794(2);
 
-    if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    if (JOY_REPEAT(DPAD_DOWN))
         return sub_811B794(3);
 
-    if (gMain.newAndRepeatedKeys & DPAD_LEFT)
+    if (JOY_REPEAT(DPAD_LEFT))
         return sub_811B794(1);
 
-    if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
+    if (JOY_REPEAT(DPAD_RIGHT))
         return sub_811B794(0);
 
     return 0;
@@ -1795,10 +1802,10 @@ static u16 sub_811B040(void)
 
 static u16 sub_811B08C(void)
 {
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
         return 26;
 
-    if (gMain.newKeys & B_BUTTON)
+    if (JOY_NEW(B_BUTTON))
         return sub_811B150();
 
     return 0;
@@ -1806,7 +1813,7 @@ static u16 sub_811B08C(void)
 
 static u16 sub_811B0BC(void)
 {
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         sEasyChatScreen->state = sub_811B2A4();
         return 7;
@@ -2024,7 +2031,7 @@ static int sub_811B368(void)
 {
     if (sEasyChatScreen->type == EASY_CHAT_TYPE_BARD_SONG)
     {
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         return 0;
     }
     else
@@ -2039,7 +2046,7 @@ static int sub_811B394(void)
     u16 easyChatWord = sub_811F578(sub_811B940());
     if (sub_811BF88(easyChatWord))
     {
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         return 0;
     }
     else
@@ -2538,7 +2545,7 @@ u8 sub_811BBBC(void)
     return sEasyChatScreen->unk_0c;
 }
 
-void sub_811BBC8(u8 *arg0, u8 *arg1)
+static void sub_811BBC8(s8 *arg0, s8 *arg1)
 {
     *arg0 = sEasyChatScreen->unk_10;
     *arg1 = sEasyChatScreen->unk_11;
@@ -2733,6 +2740,8 @@ static void sub_811BE9C(void)
     case EASY_CHAT_TYPE_QUESTIONNAIRE:
         if (DidPlayerInputMysteryGiftPhrase())
             gSpecialVar_0x8004 = 2;
+        else if (DidPlayerInputMysteryEventPhrase())
+            gSpecialVar_0x8004 = 1;
         else
             gSpecialVar_0x8004 = 0;
         break;
@@ -2744,6 +2753,11 @@ static void sub_811BE9C(void)
         gSpecialVar_0x8004 = DidPlayerInputABerryMasterWifePhrase();
         break;
     }
+}
+
+static int DidPlayerInputMysteryEventPhrase(void)
+{
+    return !IsPhraseDifferentThanPlayerInput(sMysteryEventPhrase, ARRAY_COUNT(sMysteryEventPhrase));
 }
 
 static int DidPlayerInputMysteryGiftPhrase(void)
@@ -2794,7 +2808,7 @@ static bool8 sub_811BFA4(void)
         DeactivateAllTextPrinters();
         sub_811CF64();
         sub_811CF04();
-        CpuFastFill(0, (void *)VRAM + 0x1000000, 0x400);
+        CpuFastFill(0, (void *)OAM, OAM_SIZE);
         break;
     case 1:
         DecompressAndLoadBgGfxUsingHeap(3, gEasyChatWindow_Gfx, 0, 0, 0);
@@ -2828,8 +2842,12 @@ static bool8 sub_811BFA4(void)
         else
         {
             sub_811DE5C(0, 0, 0, 0);
-            SetGpuReg(REG_OFFSET_WININ, WIN_RANGE(0, 63));
-            SetGpuReg(REG_OFFSET_WINOUT, WIN_RANGE(0, 59));
+            SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR);
+            SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0
+                                       | WINOUT_WIN01_BG1
+                                       | WINOUT_WIN01_BG3
+                                       | WINOUT_WIN01_OBJ
+                                       | WINOUT_WIN01_CLR);
             ShowBg(3);
             ShowBg(1);
             ShowBg(2);
@@ -2947,7 +2965,7 @@ static bool8 sub_811C30C(void)
         else
         {
             CopyEasyChatWord(str, *ecWord);
-            stringWidth = GetStringWidth(1, str, 0);
+            stringWidth = GetStringWidth(2, str, 0);
         }
 
         trueStringWidth = stringWidth + 17;
@@ -3701,9 +3719,9 @@ static void sub_811CFCC(void)
     if (!titleText)
         return;
 
-    xOffset = GetStringCenterAlignXOffset(1, titleText, 144);
+    xOffset = GetStringCenterAlignXOffset(2, titleText, 144);
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
-    sub_811D058(0, 1, titleText, xOffset, 1, 0xFF, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GREY, TEXT_COLOR_LIGHT_GREY);
+    sub_811D058(0, 2, titleText, xOffset, 1, 0xFF, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GREY, TEXT_COLOR_LIGHT_GREY);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 }
@@ -3774,17 +3792,17 @@ static void sub_811D104(u8 arg0)
 
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     if (text1)
-        sub_811D028(1, 1, text1, 0, 1, 0xFF, 0);
+        sub_811D028(1, 2, text1, 0, 1, 0xFF, 0);
 
     if (text2)
-        sub_811D028(1, 1, text2, 0, 17, 0xFF, 0);
+        sub_811D028(1, 2, text2, 0, 17, 0xFF, 0);
 
     CopyWindowToVram(1, 3);
 }
 
 static void sub_811D214(u8 initialCursorPos)
 {
-    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, 1, 0, 2, 1, 14, initialCursorPos);
+    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, 2, 0, 2, 1, 14, initialCursorPos);
 }
 
 static void sub_811D230(void)
@@ -3867,7 +3885,7 @@ static void sub_811D2C8(void)
         }
 
         *str = EOS;
-        sub_811D028(sUnknown_0203A11C->windowId, 1, sUnknown_0203A11C->unkB, 0, i * 16 + 1, 0xFF, 0);
+        sub_811D028(sUnknown_0203A11C->windowId, 2, sUnknown_0203A11C->unkB, 0, i * 16 + 1, 0xFF, 0);
     }
 
     CopyWindowToVram(sUnknown_0203A11C->windowId, 3);
@@ -4005,7 +4023,7 @@ static void sub_811D6F4(void)
                 return;
             }
 
-            sub_811D028(2, 1, GetEasyChatWordGroupName(groupId), x * 84 + 10, y, 0xFF, NULL);
+            sub_811D028(2, 2, GetEasyChatWordGroupName(groupId), x * 84 + 10, y, 0xFF, NULL);
         }
 
         y += 16;
@@ -4017,7 +4035,7 @@ static void PrintEasyChatKeyboardText(void)
     u32 i;
 
     for (i = 0; i < ARRAY_COUNT(sEasyChatKeyboardText); i++)
-        sub_811D028(2, 1, sEasyChatKeyboardText[i], 10, 97 + i * 16, 0xFF, NULL);
+        sub_811D028(2, 2, sEasyChatKeyboardText[i], 10, 97 + i * 16, 0xFF, NULL);
 }
 
 static void sub_811D794(void)
@@ -4087,9 +4105,9 @@ static void sub_811D864(u8 arg0, u8 arg1)
             {
                 CopyEasyChatWordPadded(sUnknown_0203A11C->unkCC, easyChatWord, 0);
                 if (!sub_811BF88(easyChatWord))
-                    sub_811D028(2, 1, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, NULL);
+                    sub_811D028(2, 2, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, NULL);
                 else
-                    sub_811D058(2, 1, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_LIGHT_GREY);
+                    sub_811D058(2, 2, sUnknown_0203A11C->unkCC, (j * 13 + 3) * 8, y, 0xFF, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_LIGHT_GREY);
             }
         }
 
@@ -4526,18 +4544,18 @@ static void sub_811E30C(void)
     x = var0 * 13;
     x = x * 8 + 28;
     y = var1 * 16 + 96;
-    sub_811E34C(x, y);
+    sub_811E34C((u8)x, (u8)y);
 }
 
 static void sub_811E34C(u8 x, u8 y)
 {
-    if (sUnknown_0203A11C->unk2E4)
-    {
-        sUnknown_0203A11C->unk2E4->pos1.x = x;
-        sUnknown_0203A11C->unk2E4->pos1.y = y;
-        sUnknown_0203A11C->unk2E4->pos2.x = 0;
-        sUnknown_0203A11C->unk2E4->data[0] = 0;
-    }
+    if (!sUnknown_0203A11C->unk2E4)
+        return;
+
+    sUnknown_0203A11C->unk2E4->pos1.x = (s16)x;
+    sUnknown_0203A11C->unk2E4->pos1.y = (s16)y;
+    sUnknown_0203A11C->unk2E4->pos2.x = 0;
+    sUnknown_0203A11C->unk2E4->data[0] = 0;
 }
 
 static void sub_811E380(void)
@@ -4803,7 +4821,7 @@ static void sub_811E948(void)
         if (str)
         {
             int x = sFooterOptionXOffsets[footerId][i];
-            sub_811D028(windowId, 1, str, x, 1, 0, NULL);
+            sub_811D028(windowId, 2, str, x, 1, 0, NULL);
         }
     }
 
@@ -5269,12 +5287,17 @@ void InitEasyChatPhrases(void)
             gSaveBlock1Ptr->mail[i].words[j] = 0xFFFF;
     }
 
+#ifndef UBFIX
     // BUG: This is supposed to clear 64 bits, but this loop is clearing 64 bytes.
     // However, this bug has no resulting effect on gameplay because only the
     // Mauville old man data is corrupted, which is initialized directly after
     // this function is called when starting a new game.
     for (i = 0; i < 64; i++)
         gSaveBlock1Ptr->additionalPhrases[i] = 0;
+#else
+    for (i = 0; i < ARRAY_COUNT(gSaveBlock1Ptr->additionalPhrases); i++)
+        gSaveBlock1Ptr->additionalPhrases[i] = 0;
+#endif
 }
 
 static bool8 sub_811F28C(void)

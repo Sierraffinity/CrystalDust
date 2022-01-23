@@ -4,8 +4,10 @@
 *.elf
 *.gba
 *.sgm
-*.sa1
-*.sg1
+/*.sa[0-9]
+/*.sav
+/*.ss[0-9]
+/*.sg[0-9]
 *.1bpp
 *.4bpp
 *.8bpp
@@ -22,8 +24,6 @@ tools/agbcc
 *.ld
 *.bat
 *.dump
-*.sa*
-*.ss*
 Thumbs.db
 build/
 .DS_Store
@@ -33,8 +33,6 @@ porymap.project.cfg
 .vscode/
 *.a
 .fuse_hidden*
-data/maps/**/scripts.inc
 data/text/trainers.inc
 src/*.s
-src/data/items.h
-src/data/wild_encounters.h
+alphas/

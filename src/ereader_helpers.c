@@ -775,11 +775,11 @@ void sub_81D3FAC(void)
     switch (gUnknown_030012C8.unk0[1])
     {
     case 1:
-        REG_SIOMLT_SEND = 0xCCD0; // Handshake id
+        REG_SIOMLT_SEND = EREADER_HANDSHAKE_US; // Handshake id
         *(u64 *)recvBuffer = REG_SIOMLT_RECV;
         for (i = 0, playerCount = 0, k = 0; i < 4; i++)
         {
-            if (recvBuffer[i] == 0xCCD0)
+            if (recvBuffer[i] == EREADER_HANDSHAKE_US)
                 playerCount++;
             else if (recvBuffer[i] != 0xFFFF)
                 k++;

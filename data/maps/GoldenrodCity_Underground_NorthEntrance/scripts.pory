@@ -1,0 +1,8 @@
+mapscripts GoldenrodCity_Underground_NorthEntrance_MapScripts {}
+
+script GoldenrodCity_Underground_NorthEntrance_EventScript_RoughNerd {
+    msgbox("I was challenged to a battle\n"
+           "downstairs.\p"
+           "It's rough down there.\n"
+           "You'd better be careful.", MSGBOX_NPC)
+}

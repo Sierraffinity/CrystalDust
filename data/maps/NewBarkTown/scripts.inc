@@ -63,7 +63,7 @@ NewBarkTown_EventScript_Rival::
 	compare VAR_FACING, 2
 	call_if_ne NewBarkTown_EventScript_Rival_FacingRight
 	delay 10
-	playse SE_KOUKA_L
+	playse SE_NOT_EFFECTIVE
 	applymovement 3, NewBarkTown_Movement_RivalEncounter_RivalKicksPlayer
 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_RivalEncounter_PlayerJumpsBack
 	waitmovement 0
@@ -146,7 +146,7 @@ NewBarkTown_EventScript_Teacher3::
 
 NewBarkTown_EventScript_TeacherMain:
 	textcolor MSG_COLOR_RED
-	playbgm MUS_MOMENC, 0
+	playbgm MUS_MOMS_THEME, 0
 	turnobject 2, 3
 	msgbox NewBarkTown_Text_WaitPlayer
 	closemessage
@@ -331,9 +331,8 @@ NewBarkTown_Text_RivalText2:
 	.string "…What are you staring at?$"
 
 NewBarkTown_Text_FatMan:
-	.string "Yo, {PLAYER}!\p"
-	.string "I hear PROF. ELM discovered some\n"
-	.string "new POKéMON.$"
+	.string "Yo, {PLAYER}! I hear PROF. ELM\n"
+	.string "discovered some new POKéMON.$"
 
 NewBarkTown_Text_GearImpressive:
 	.string "Wow, your POKéGEAR is impressive!\n"

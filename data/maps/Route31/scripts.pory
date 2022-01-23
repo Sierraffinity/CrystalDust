@@ -19,13 +19,127 @@ script Route31_EventScript_Explorer {
 }
 
 script Route31_EventScript_SleepyMan {
-    msgbox("… Hnuurg… Huh?\p"
-           "I walked too far today looking\n"
-           "for POKéMON.\p"
-           "My feet hurt and I'm sleepy…\p"
-           "If I were a wild POKéMON, I'd be\n"
-           "easy to catch…\p"
-           "…Zzzz…", MSGBOX_NPC)
+    lock
+    faceplayer
+    if (flag(FLAG_RECEIVED_TM44_REST))
+    {
+        msgbox(Route31_Text_SleepyMan_TMDescription)
+    }
+    elif (flag(FLAG_GAVE_KENYA_TO_RANDYS_FRIEND))
+    {
+        msgbox("…Zzzz…\n"
+               "Huh?\p"
+               "Oh, it's you again! Thanks for\n"
+               "bringing that MAIL to me.\p"
+               "My friend's a good guy, and you're\n"
+               "swell too!\p"
+               "I'd like to do something good in\n"
+               "return for your help!\p"
+               "I know!\n"
+               "I want you to have this!")
+        call(Route31_EventScript_SleepyMan_TryGiveTM)
+    }
+    elif (flag(FLAG_GOT_KENYA_FROM_RANDY))
+    {
+        msgbox("…Zzzz…\n"
+               "Huh?\p"
+               "What's that?\n"
+               "You have MAIL for me?")
+        special(ChoosePartyMon)
+        waitstate
+        lock
+        faceplayer
+        if (var(VAR_0x8004) != 0xFF)
+        {
+            setvar(VAR_0x8005, INGAME_TRADE_GIFT_SPEAROW)
+            special(CheckForGiftMonAndTakeMail)
+            switch (var(VAR_RESULT))
+            {
+                case GIFTMON_NO_MAIL:
+                    msgbox("Why is this POKéMON so special?\n"
+                           "It doesn't have any MAIL.")
+                case GIFTMON_LAST_MON:
+                    msgbox("If I take that POKéMON from you,\n"
+                           "what are you going to use in battle?")
+                case GIFTMON_WRONG_MAIL:
+                    msgbox("This MAIL isn't for me.")
+                default:
+                    if (var(VAR_RESULT) == GIFTMON_WRONG_MON)
+                    {
+                        msgbox("…Huh? Who's that POKéMON?\n"
+                               "It's not one I know.\p"
+                               "You can keep it, and I'll just\n"
+                               "take the MAIL.")
+                        textcolor(MSG_COLOR_SYS)
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        message("{PLAYER} handed over the MAIL.")
+                    }
+                    else // GIFTMON_MATCH
+                    {
+                        textcolor(MSG_COLOR_SYS)
+                        playfanfare(MUS_OBTAIN_ITEM)
+                        msgbox("{PLAYER} handed over the POKéMON\n"
+                               "holding the MAIL.")
+                    }
+                    setflag(FLAG_GAVE_KENYA_TO_RANDYS_FRIEND)
+                    waitmessage
+                    waitfanfare
+                    textcolor(MSG_COLOR_PREV)
+                    msgbox("Let's see…\p"
+                           "“There's a dark place near you.\n"
+                           "Let's go have an adventure there!”\p"
+                           "Does he mean DARK CAVE?\n"
+                           "That sounds like fun.\p"
+                           "You know, I heard that cave leads\n"
+                           "to another road.\p"
+                           "Anyway, thanks for bringing this\n"
+                           "to me.\p"
+                           "My friend's a good guy, and you're\n"
+                           "swell too!\p"
+                           "I'd like to do something good in\n"
+                           "return for your help!\p"
+                           "I know!\n"
+                           "I want you to have this!")
+                    call(Route31_EventScript_SleepyMan_TryGiveTM)
+            }
+        }
+        else
+        {
+            msgbox("What?\n"
+                   "You don't want anything?")
+        }
+    }
+    else
+    {
+        msgbox("… Hnuurg… Huh?\p"
+               "I walked too far today looking\n"
+               "for POKéMON.\p"
+               "My feet hurt and I'm sleepy…\p"
+               "If I were a wild POKéMON, I'd be\n"
+               "easy to catch…\p"
+               "…Zzzz…")
+    }
+    release
+}
+
+text Route31_Text_SleepyMan_TMDescription {
+    "TM44 is REST.\p"
+    "It's a wonderful move that lets a\n"
+    "POKéMON sleep to recover HP.\p"
+    "Ooooh…\n"
+    "That's tempting…\p"
+    "Hopefully I won't have any bad\n"
+    "dreams…"
+}
+
+script Route31_EventScript_SleepyMan_TryGiveTM {
+    giveitem(ITEM_TM44)
+    if (!var(VAR_RESULT))
+    {
+        goto(Common_EventScript_ShowBagIsFull)
+    }
+    setflag(FLAG_RECEIVED_TM44_REST)
+    msgbox(Route31_Text_SleepyMan_TMDescription)
 }
 
 script Route31_EventScript_Youngster {
@@ -38,7 +152,7 @@ script Route31_EventScript_Youngster {
 
 script Route31_EventScript_Trainer_Wade {
     trainerbattle_single(TRAINER_WADE_1, Trainer_Text_Wade_See, Trainer_Text_Wade_Beat)
-    // TODO: Rematch
+    // TODO: Phone
 	msgbox(Trainer_Text_Wade_After, MSGBOX_DEFAULT)
 	release
 }

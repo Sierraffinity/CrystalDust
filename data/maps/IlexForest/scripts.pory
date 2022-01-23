@@ -1,0 +1,474 @@
+const OBJ_FARFETCHD = 1
+const OBJ_KILN_MASTER = 3
+const POS1_X = 27
+const POS1_Y = 41
+const POS2_X = 28
+const POS2_Y = 35
+const POS3_X = 38
+const POS3_Y = 34
+const POS4_X = 50
+const POS4_Y = 31
+const POS5_X = 47
+const POS5_Y = 41
+const POS6_X = 41
+const POS6_Y = 45
+const POS7_X = 39
+const POS7_Y = 41
+const POS8_X = 28
+const POS8_Y = 39
+const POS9_X = 21
+const POS9_Y = 46
+const POS10_X = 14
+const POS10_Y = 37
+
+mapscripts IlexForest_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_ILEX_FOREST)
+		switch (var(VAR_ILEX_FARFETCHD_STATE))
+		{
+		default:
+			setobjectxyperm(OBJ_FARFETCHD, POS1_X, POS1_Y)
+		case 2:
+			setobjectxyperm(OBJ_FARFETCHD, POS2_X, POS2_Y)
+		case 3:
+			setobjectxyperm(OBJ_FARFETCHD, POS3_X, POS3_Y)
+		case 4:
+			setobjectxyperm(OBJ_FARFETCHD, POS4_X, POS4_Y)
+		case 5:
+			setobjectxyperm(OBJ_FARFETCHD, POS5_X, POS5_Y)
+		case 6:
+			setobjectxyperm(OBJ_FARFETCHD, POS6_X, POS6_Y)
+		case 7:
+			setobjectxyperm(OBJ_FARFETCHD, POS7_X, POS7_Y)
+		case 8:
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+		case 9:
+			setobjectxyperm(OBJ_FARFETCHD, POS9_X, POS9_Y)
+		case 10:
+			setobjectxyperm(OBJ_FARFETCHD, POS10_X, POS10_Y)
+		}
+    }
+}
+
+script IlexForest_EventScript_Farfetchd {
+	lock
+	faceplayer
+	switch (var(VAR_ILEX_FARFETCHD_STATE))
+	{
+	default:
+		msgbox("It's the missing POKéMON!")
+		call(IlexForest_EventScript_FarfetchdCry)
+		applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_1to2)
+		waitmovement(0)
+		setobjectxy(OBJ_FARFETCHD, POS2_X, POS2_Y)
+		setobjectxyperm(OBJ_FARFETCHD, POS2_X, POS2_Y)
+		setvar(VAR_ILEX_FARFETCHD_STATE, 2)
+	case 2:
+		call(IlexForest_EventScript_FarfetchdCry)
+		if (var(VAR_FACING) == DIR_SOUTH)
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_2to8)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 8)
+		}
+		else
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_2to3)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS3_X, POS3_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS3_X, POS3_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 3)
+		}
+	case 3:
+		call(IlexForest_EventScript_FarfetchdCry)
+		if (var(VAR_FACING) == DIR_WEST)
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_3to2)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS2_X, POS2_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS2_X, POS2_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 2)
+		}
+		else
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_3to4)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 4)
+		}
+	case 4:
+		call(IlexForest_EventScript_FarfetchdCry)
+		if (var(VAR_FACING) == DIR_NORTH)
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_4to3)
+			delay(4)
+			playse(SE_LEDGE)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS3_X, POS3_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS3_X, POS3_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 3)
+		}
+		else
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_4to5)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 5)
+		}
+	case 5:
+		call(IlexForest_EventScript_FarfetchdCry)
+		switch (var(VAR_FACING))
+		{
+		default:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_5to6)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS6_X, POS6_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS6_X, POS6_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 6)
+		case DIR_NORTH:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_5to4North)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 4)
+		case DIR_WEST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_5to7)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 7)
+		case DIR_EAST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_5to4East)
+			delay(60)
+			playse(SE_WALL_HIT)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS4_X, POS4_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 4)
+		}
+	case 6:
+		call(IlexForest_EventScript_FarfetchdCry)
+		if (var(VAR_FACING) == DIR_EAST)
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_6to5)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 5)
+		}
+		else
+		{
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_6to7)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 7)
+		}
+	case 7:
+		call(IlexForest_EventScript_FarfetchdCry)
+		switch (var(VAR_FACING))
+		{
+		default:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_7to8)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 8)
+		case DIR_SOUTH:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_7to5)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS5_X, POS5_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 5)
+		case DIR_WEST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_7to6)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS6_X, POS6_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS6_X, POS6_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 6)
+		}
+	case 8:
+		call(IlexForest_EventScript_FarfetchdCry)
+		switch (var(VAR_FACING))
+		{
+		default:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_8to9)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS9_X, POS9_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS9_X, POS9_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 9)
+		case DIR_NORTH:
+		case DIR_WEST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_8to2)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS2_X, POS2_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS2_X, POS2_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 2)
+		case DIR_EAST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_8to7)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS7_X, POS7_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 7)
+		}
+	case 9:
+		call(IlexForest_EventScript_FarfetchdCry)
+		switch (var(VAR_FACING))
+		{
+		default:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_9to10)
+			delay(18)
+			playse(SE_WALL_HIT)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS10_X, POS10_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS10_X, POS10_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 10)
+			addobject(OBJ_KILN_MASTER)
+			clearflag(FLAG_HIDE_ILEX_FOREST_MASTER)
+			setflag(FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_MASTER)
+			setflag(FLAG_FETCHED_FARFETCHD)
+		case DIR_SOUTH:
+		case DIR_NORTH:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_9to8NorthSouth)
+			delay(18)
+			playse(SE_WALL_HIT)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 8)
+		case DIR_EAST:
+			applymovement(OBJ_FARFETCHD, IlexForest_Movement_Farfetchd_9to8East)
+			waitmovement(0)
+			setobjectxy(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setobjectxyperm(OBJ_FARFETCHD, POS8_X, POS8_Y)
+			setvar(VAR_ILEX_FARFETCHD_STATE, 8)
+		}
+	case 10:
+		// solved
+		call(IlexForest_EventScript_FarfetchdCry)
+	}
+	release
+}
+
+script IlexForest_EventScript_FarfetchdCry {
+	waitse
+    playmoncry(SPECIES_FARFETCHD, 0)
+    msgbox("FARFETCH'D: Kwaa!")
+    waitmoncry
+	closemessage
+}
+
+movement IlexForest_Movement_Farfetchd_1to2 {
+	walk_fast_up * 5
+}
+
+movement IlexForest_Movement_Farfetchd_2to3 {
+	walk_fast_up * 2
+	walk_fast_right * 8
+}
+
+movement IlexForest_Movement_Farfetchd_2to8 {
+	walk_fast_down * 4
+}
+
+movement IlexForest_Movement_Farfetchd_3to4 {
+	walk_fast_right * 8
+}
+
+movement IlexForest_Movement_Farfetchd_3to2 {
+	walk_fast_up
+	walk_fast_left * 7
+}
+
+movement IlexForest_Movement_Farfetchd_4to5 {
+	walk_fast_down * 6
+}
+
+movement IlexForest_Movement_Farfetchd_4to3 {
+	walk_fast_left
+	jump_2_left
+	walk_fast_left * 6
+}
+
+movement IlexForest_Movement_Farfetchd_5to6 {
+	walk_fast_down * 4
+	walk_fast_left * 6
+}
+
+movement IlexForest_Movement_Farfetchd_5to4North {
+	walk_fast_up
+	walk_fast_right * 3
+	walk_fast_up * 4
+}
+
+movement IlexForest_Movement_Farfetchd_5to7 {
+	walk_fast_left * 8
+}
+
+movement IlexForest_Movement_Farfetchd_5to4East {
+	walk_fast_right * 3
+	walk_in_place_fastest_up
+	delay_4
+	walk_in_place_fastest_down
+	delay_4
+	walk_in_place_fastest_up
+	delay_4
+	walk_fast_down * 2
+	lock_facing_direction
+	jump_2_up
+	delay_16
+	unlock_facing_direction
+	walk_fast_up * 6
+}
+
+movement IlexForest_Movement_Farfetchd_6to7 {
+	walk_fast_left * 3
+	walk_fast_up * 2
+	walk_fast_right
+	walk_fast_up * 2
+}
+
+movement IlexForest_Movement_Farfetchd_6to5 {
+	walk_fast_right * 6
+	walk_fast_up * 4
+}
+
+movement IlexForest_Movement_Farfetchd_7to8 {
+	walk_fast_up * 2
+	walk_fast_left * 8
+}
+
+movement IlexForest_Movement_Farfetchd_7to5 {
+	walk_fast_right * 8
+}
+
+movement IlexForest_Movement_Farfetchd_7to6 {
+	walk_fast_down * 2
+	walk_fast_left
+	walk_fast_down * 2
+	walk_fast_right * 3
+}
+
+movement IlexForest_Movement_Farfetchd_8to9 {
+	walk_fast_down
+	walk_fast_left
+	walk_fast_down * 5
+}
+
+movement IlexForest_Movement_Farfetchd_8to2 {
+	walk_fast_up * 4
+}
+
+movement IlexForest_Movement_Farfetchd_8to7 {
+	walk_fast_right * 7
+}
+
+movement IlexForest_Movement_Farfetchd_9to10 {
+	walk_fast_left * 3
+	lock_facing_direction
+	jump_2_right
+	delay_16
+	unlock_facing_direction
+	walk_fast_left * 2
+	walk_fast_up * 6
+}
+
+movement IlexForest_Movement_Farfetchd_9to8NorthSouth {
+	walk_fast_left * 3
+	lock_facing_direction
+	jump_2_right
+	delay_16
+	unlock_facing_direction
+	walk_fast_right * 7
+	walk_fast_up * 7
+}
+
+movement IlexForest_Movement_Farfetchd_9to8East {
+	walk_fast_right * 6
+	walk_fast_up * 6
+}
+
+script IlexForest_EventScript_Apprentice {
+	lock
+	faceplayer
+	if (flag(FLAG_FETCHED_FARFETCHD))
+	{
+		msgbox("Wow!\n"
+			   "Thanks a whole bunch!\p"
+			   "My boss's POKéMON won't obey me\n"
+			   "because I don't have a BADGE.")
+	}
+	else
+	{
+		msgbox("Oh, man…\n"
+			   "My boss is going to be steaming…\p"
+			   "The FARFETCH'D that CUTS trees\n"
+			   "for CHARCOAL took off on me.\p"
+			   "I can't go looking for it here in\n"
+			   "the ILEX FOREST.\p"
+			   "It's too big, dark, and scary for\n"
+			   "me to go any further…")
+	}
+	release
+}
+
+script IlexForest_EventScript_Master {
+	lock
+	faceplayer
+	if (flag(FLAG_RECEIVED_HM01))
+	{
+		msgbox("Do you want to apprentice as a\n"
+			   "CHARCOAL maker with me?\p"
+			   "You'll be first-rate in ten years!")
+	}
+	else
+	{
+		msgbox("Ah! My FARFETCH'D!\n"
+			   "You found it for us, kid?\p"
+			   "Without it, we wouldn't be able\n"
+			   "to CUT trees for CHARCOAL.\p"
+			   "Thanks, kid!\n"
+			   "Now, how can I thank you…\p"
+			   "I know!\n"
+			   "Here, take this.")
+		giveitem(ITEM_HM01)
+		setflag(FLAG_RECEIVED_HM01)
+		msgbox("That's the CUT HM. Teach that to a\n"
+			   "POKéMON to clear small trees.\p"
+			   "Of course, you have to have the\n"
+			   "GYM BADGE from AZALEA to use it.")
+		setflag(FLAG_HIDE_ILEX_FOREST_MASTER)
+		setflag(FLAG_HIDE_ILEX_FOREST_APPRENTICE_FARFETCHD)
+		clearflag(FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_MASTER)
+		clearflag(FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_APPRENTICE_FARFETCHD)
+	}
+	release
+}
+
+script IlexForest_EventScript_Wayne {
+    trainerbattle_single(TRAINER_WAYNE, IlexForest_Text_WayneIntro, IlexForest_Text_WayneDefeat)
+    msgbox(IlexForest_Text_WaynePostBattle)
+    release
+}
+
+script IlexForest_EventScript_Lass {
+	msgbox("Did something happen to the\n"
+		   "forest's guardian?", MSGBOX_NPC)
+}
+
+script IlexForest_EventScript_DroppedItemsSign {
+	msgbox("ILEX FOREST is so overgrown with\n"
+		   "trees that you can't see the sky.\p"
+		   "Please watch out for items that may\n"
+		   "have been dropped.", MSGBOX_SIGN)
+}
+
+script IlexForest_EventScript_Shrine {
+	msgbox("ILEX FOREST SHRINE…\p"
+		   "It's in honor of the forest's\n"
+		   "protector…", MSGBOX_SIGN)
+}

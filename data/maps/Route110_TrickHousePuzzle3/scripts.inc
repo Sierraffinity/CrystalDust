@@ -312,7 +312,7 @@ Route110_TrickHousePuzzle3_EventScript_Martha:: @ 826C5DB
 	end
 
 Route110_TrickHousePuzzle3_EventScript_Alan:: @ 826C5F2
-	trainerbattle_single TRAINER_ALAN, Route110_TrickHousePuzzle3_Text_AlanIntro, Route110_TrickHousePuzzle3_Text_AlanDefeat
+	trainerbattle_single TRAINER_ALAN_OLD, Route110_TrickHousePuzzle3_Text_AlanIntro, Route110_TrickHousePuzzle3_Text_AlanDefeat
 	msgbox Route110_TrickHousePuzzle3_Text_AlanPostBattle, MSGBOX_AUTOCLOSE
 	end
 

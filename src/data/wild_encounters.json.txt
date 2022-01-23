@@ -72,6 +72,18 @@ const struct WildPokemon {{ encounter.base_label }}_FishingMons_{{ time }}[] =
 ## endfor
 const struct WildPokemonInfo {{ encounter.base_label }}_FishingMonsInfo = { {{encounter.fishing_mons.encounter_rate}}, { {% for time in times %}{% if loop.index != 0 %}, {% endif %}{{ encounter.base_label }}_FishingMons_{{ time }}{% endfor %} } };
 {% endif %}
+{% if existsIn(encounter, "headbutt_mons") %}
+## for time in times
+const struct WildPokemon {{ encounter.base_label }}_HeadbuttMons_{{ time }}[] =
+{
+## for wild_mon in at(encounter.headbutt_mons.mons, loop.index)
+    { {{ wild_mon.min_level }}, {{ wild_mon.max_level }}, {{ wild_mon.species }} },
+## endfor
+};
+
+## endfor
+const struct WildPokemonInfo {{ encounter.base_label }}_HeadbuttMonsInfo = { {{encounter.headbutt_mons.encounter_rate}}, { {% for time in times %}{% if loop.index != 0 %}, {% endif %}{{ encounter.base_label }}_HeadbuttMons_{{ time }}{% endfor %} } };
+{% endif %}
 ## endfor
 
 const struct WildPokemonHeader {{ wild_encounter_group.label }}[] =
@@ -84,6 +96,7 @@ const struct WildPokemonHeader {{ wild_encounter_group.label }}[] =
         .waterMonsInfo = {% if existsIn(encounter, "water_mons") %}&{{ encounter.base_label }}_WaterMonsInfo{% else %}NULL{% endif %},
         .rockSmashMonsInfo = {% if existsIn(encounter, "rock_smash_mons") %}&{{ encounter.base_label }}_RockSmashMonsInfo{% else %}NULL{% endif %},
         .fishingMonsInfo = {% if existsIn(encounter, "fishing_mons") %}&{{ encounter.base_label }}_FishingMonsInfo{% else %}NULL{% endif %},
+        .headbuttMonsInfo = {% if existsIn(encounter, "headbutt_mons") %}&{{ encounter.base_label }}_HeadbuttMonsInfo{% else %}NULL{% endif %},
     },
 ## endfor
     {
@@ -93,6 +106,7 @@ const struct WildPokemonHeader {{ wild_encounter_group.label }}[] =
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
         .fishingMonsInfo = NULL,
+        .headbuttMonsInfo = NULL,
     },
 };
 ## endfor

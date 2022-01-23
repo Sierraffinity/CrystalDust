@@ -6,8 +6,10 @@
 #include "main.h"
 #include "match_call.h"
 #include "menu.h"
+#include "money.h"
 #include "phone_script.h"
 #include "pokegear.h"
+#include "pokemon_storage_system.h"
 #include "random.h"
 #include "region_map.h"
 #include "rtc.h"
@@ -17,6 +19,7 @@
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
+#include "tv.h"
 #include "constants/songs.h"
 
 typedef void (*PhoneNativeFunc)(const struct PhoneContact *phoneContact, bool8 isCallingPlayer);
@@ -44,7 +47,9 @@ static const u8 sScriptConditionTable[6][3] =
     1, 0, 1, // !=
 };
 
-static void HangupPhoneCall(u32 phoneContext);
+static const u8 sHangUpText[] = _("{PLAY_SE SE_PHONE_CLICK}Click!\n{PAUSE 25}{PLAY_SE SE_PHONE_BEEP}… {PAUSE 40}{PLAY_SE SE_PHONE_BEEP}… {PAUSE 40}{PLAY_SE SE_PHONE_BEEP}…{PAUSE 40}");
+
+static bool8 HangupPhoneCall(struct ScriptContext *ctx, bool8 shouldEndNow);
 static bool8 WaitForHangupAnimation(void);
 
 void PhoneScriptContext_Enable(void)
@@ -139,7 +144,7 @@ bool8 PhoneScrCmd_end(struct ScriptContext *ctx)
 
 static bool8 IsPokegearPhoneInitFinished(void)
 {
-    if (!FuncIsActiveTask(InitPokegearPhoneCall))
+    if (!FuncIsActiveTask(Task_InitPokegearPhoneCall))
         return TRUE;
     else
         return FALSE;
@@ -147,7 +152,7 @@ static bool8 IsPokegearPhoneInitFinished(void)
 
 static bool8 IsOverworldPhoneInitFinished(void)
 {
-    if (!FuncIsActiveTask(InitOverworldPhoneCall))
+    if (!FuncIsActiveTask(Task_InitOverworldPhoneCall))
         return TRUE;
     else
         return FALSE;
@@ -155,16 +160,16 @@ static bool8 IsOverworldPhoneInitFinished(void)
 
 bool8 PhoneScrCmd_initcall(struct ScriptContext *ctx)
 {
-    gSpecialVar_Result = TRUE;
+    gSpecialVar_Result = PHONE_CALL_SUCCESS;
 
     switch (ctx->data[0])
     {
     case PHONE_SCRIPT_POKEGEAR:
-        CreateTask(InitPokegearPhoneCall, 3);
+        CreateTask(Task_InitPokegearPhoneCall, 3);
         SetupNativeScript(ctx, IsPokegearPhoneInitFinished);
         break;
     case PHONE_SCRIPT_OVERWORLD:
-        CreateTask(InitOverworldPhoneCall, 3);
+        CreateTask(Task_InitOverworldPhoneCall, 3);
         SetupNativeScript(ctx, IsOverworldPhoneInitFinished);
         break;
     default:
@@ -193,14 +198,14 @@ static bool8 IsOverworldPhoneMessageFinished(void)
 
 static void AddPhoneTextPrinter(struct ScriptContext *ctx, u8 *str)
 {
+    AddTextPrinterParameterized5(gPhoneCallWindowId, 2, str, 2, 1, GetPlayerTextSpeedDelay(), NULL, 1, 2);
+
     switch (ctx->data[0])
     {
     case PHONE_SCRIPT_POKEGEAR:
-        AddTextPrinterParameterized(gPhoneCallWindowId, 1, str, 2, 1, GetPlayerTextSpeedDelay(), NULL);
         SetupNativeScript(ctx, IsPokegearPhoneMessageFinished);
         break;
     case PHONE_SCRIPT_OVERWORLD:
-        InitMatchCallTextPrinter(gPhoneCallWindowId, str);
         SetupNativeScript(ctx, IsOverworldPhoneMessageFinished);
         break;
     }
@@ -209,15 +214,7 @@ static void AddPhoneTextPrinter(struct ScriptContext *ctx, u8 *str)
 bool8 PhoneScrCmd_message(struct ScriptContext *ctx)
 {
     const u8 *str = (const u8 *)ScriptReadWord(ctx);
-    switch (ctx->data[0])
-    {
-    case PHONE_SCRIPT_POKEGEAR:
-        FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
-        break;
-    case PHONE_SCRIPT_OVERWORLD:
-        FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(8));
-        break;
-    }
+    FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
     StringExpandPlaceholders(gStringVar4, str);
     AddPhoneTextPrinter(ctx, gStringVar4);
     return TRUE;
@@ -225,8 +222,7 @@ bool8 PhoneScrCmd_message(struct ScriptContext *ctx)
 
 bool8 PhoneScrCmd_hangup(struct ScriptContext *ctx)
 {
-    HangupPhoneCall(ctx->data[0]);
-    return FALSE;
+    return HangupPhoneCall(ctx, PHONE_CALL_SUCCESS);
 }
 
 bool8 PhoneScrCmd_setflag(struct ScriptContext *ctx)
@@ -403,7 +399,7 @@ bool8 PhoneScrCmd_gettime(struct ScriptContext *ctx)
 
 static bool8 WaitForAorBPress(void)
 {
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
         return TRUE;
     else
         return FALSE;
@@ -417,10 +413,9 @@ bool8 PhoneScrCmd_waitbuttonpress(struct ScriptContext *ctx)
 
 bool8 PhoneScrCmd_end_if_not_available(struct ScriptContext *ctx)
 {
-    if (!gSpecialVar_Result)
+    if (gSpecialVar_Result != PHONE_CALL_SUCCESS)
     {
-        HangupPhoneCall(ctx->data[0]);
-        return StopPhoneScript(ctx);
+        return HangupPhoneCall(ctx, gSpecialVar_Result);
     }
     return FALSE;
 }
@@ -434,22 +429,97 @@ static bool8 WaitForHangupAnimation(void)
     return FALSE;
 }
 
-static void HangupPhoneCall(u32 phoneContext)
+#define tState          data[0]
+#define tPhoneCallState data[1]
+#define tScriptCtx      ((struct ScriptContext **)&gTasks[taskId].data[2])
+
+static void EndPhoneCall(u8 callLocation)
 {
-    switch (phoneContext)
+    switch (callLocation)
     {
     case PHONE_SCRIPT_POKEGEAR:
-        HangupPokegearPhoneCall();
+        EndPokegearPhoneCall();
         break;
     case PHONE_SCRIPT_OVERWORLD:
-        HangupOverworldPhoneCall();
+        EndOverworldPhoneCall();
         break;
     }
 }
 
+static void Task_HangupPhoneCall(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    struct ScriptContext *ctx = *tScriptCtx;
+
+    switch (tState)
+    {
+    case 0:
+        FillWindowPixelBuffer(gPhoneCallWindowId, PIXEL_FILL(1));
+        AddTextPrinterParameterized5(gPhoneCallWindowId, 2, sHangUpText, 2, 1, 0, NULL, 1, 1);
+        tState++;
+        break;
+    case 1:
+        switch (ctx->data[0])
+        {
+        case PHONE_SCRIPT_POKEGEAR:
+            if (IsPokegearPhoneMessageFinished())
+            {
+                tState++;
+            }
+            break;
+        case PHONE_SCRIPT_OVERWORLD:
+            if (IsOverworldPhoneMessageFinished())
+            {
+                tState++;
+            }
+            break;
+        }
+        break;
+    default:
+        EndPhoneCall(ctx->data[0]);
+        if (tPhoneCallState == PHONE_CALL_FAIL)
+        {
+            StopPhoneScript(ctx);
+        }
+        DestroyTask(taskId);
+        break;
+    }
+}
+
+static bool8 WaitForHangupTask(void)
+{
+    return !FuncIsActiveTask(Task_HangupPhoneCall);
+}
+
+static bool8 HangupPhoneCall(struct ScriptContext *ctx, u8 phoneCallState)
+{
+    u8 taskId;
+
+    if (phoneCallState != PHONE_CALL_FAIL_SILENT)
+    {
+        u8 taskId = CreateTask(Task_HangupPhoneCall, 80);
+
+        if (taskId != 0xFF)
+        {
+            gTasks[taskId].tState = 0;
+            gTasks[taskId].tPhoneCallState = phoneCallState;
+            *tScriptCtx = ctx;
+            SetupNativeScript(ctx, WaitForHangupTask);
+            return TRUE;
+        }
+    }
+    
+    EndPhoneCall(ctx->data[0]);
+    return StopPhoneScript(ctx);
+}
+
+#undef tState
+#undef tCallLocation
+#undef tPhoneCallState
+
 bool8 PhoneScrCmd_callnativecontext(struct ScriptContext *ctx)
 {
-    struct PhoneScriptExtraContext *phoneCtx = (void *)ctx->data[0];
+    //struct PhoneScriptExtraContext *phoneCtx = (void *)ctx->data[0];
 
     PhoneNativeFunc func = (PhoneNativeFunc)ScriptReadWord(ctx);
     bool8 isCallingPlayer = ctx->data[0] == PHONE_SCRIPT_OVERWORLD;
@@ -484,15 +554,26 @@ static void Task_HandlePhoneYesNoInput(u8 taskId)
     PhoneCard_RefreshContactList();
 }
 
-static const struct WindowTemplate sPhoneYesNo_WindowTemplates =
+static const struct WindowTemplate sPhoneYesNo_WindowTemplates[] =
 {
-    .bg = 0,
-    .tilemapLeft = 21,
-    .tilemapTop = 9,
-    .width = 6,
-    .height = 4,
-    .paletteNum = 14,
-    .baseBlock = 0x289
+    {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 9,
+        .width = 6,
+        .height = 4,
+        .paletteNum = 15,
+        .baseBlock = 0x289
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 9,
+        .width = 6,
+        .height = 4,
+        .paletteNum = 14,
+        .baseBlock = 0x289
+    }
 };
 
 static void DisplayPhoneYesNoMenu(u8 initialPos, u32 callType)
@@ -500,10 +581,10 @@ static void DisplayPhoneYesNoMenu(u8 initialPos, u32 callType)
     switch (callType)
     {
     case PHONE_SCRIPT_OVERWORLD:
-        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates, 1, 0, 2, 0x270, 14, initialPos, TRUE);
+        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates[0], 2, 0, 2, 0x270, 15, initialPos, TRUE);
         break;
     case PHONE_SCRIPT_POKEGEAR:
-        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates, 1, 0, 2, 0x143, 14, initialPos, FALSE);
+        CreatePhoneYesNoMenu(&sPhoneYesNo_WindowTemplates[1], 2, 0, 2, 0x143, 14, initialPos, FALSE);
         break;
     }
 }
@@ -633,5 +714,42 @@ bool8 PhoneScrCmd_buffermapsecname(struct ScriptContext *ctx)
 
     GetMapName(gScriptStringVars[stringVarIndex], mapSec, 0);
 
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_checkbankedmoney(struct ScriptContext *ctx)
+{
+    u32 amount = ScriptReadWord(ctx);
+
+    gSpecialVar_Result = IsEnoughMoney(&gSaveBlock1Ptr->bankedMoney, amount);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_bufferbankedmoney(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u32 num = GetMoney(&gSaveBlock1Ptr->bankedMoney);
+    u8 numDigits = CountDigits(num);
+
+    ConvertIntToDecimalStringN(gScriptStringVars[stringVarIndex], num, STR_CONV_MODE_LEFT_ALIGN, numDigits);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_buffernumberstring(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 num = VarGet(ScriptReadHalfword(ctx));
+    u8 numDigits = CountDigits(num);
+
+    ConvertIntToDecimalStringN(gScriptStringVars[stringVarIndex], num, STR_CONV_MODE_LEFT_ALIGN, numDigits);
+    return FALSE;
+}
+
+bool8 PhoneScrCmd_bufferboxname(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 boxId = VarGet(ScriptReadHalfword(ctx));
+
+    StringCopy(gScriptStringVars[stringVarIndex], GetBoxNamePtr(boxId));
     return FALSE;
 }

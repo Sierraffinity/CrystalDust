@@ -1,0 +1,57 @@
+{
+  "id": "MAP_GOLDENROD_CITY_NAME_RATERS_HOUSE",
+  "name": "GoldenrodCity_NameRatersHouse",
+  "layout": "LAYOUT_HOUSE1",
+  "music": "MUS_GOLDENROD",
+  "region_map_section": "MAPSEC_GOLDENROD_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+      "in_connection": false,
+      "x": 4,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodCity_NameRatersHouse_EventScript_NameRater",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_warp_id": 11
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 10,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "EventScript_Radio2"
+    }
+  ]
+}

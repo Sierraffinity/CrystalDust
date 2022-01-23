@@ -464,8 +464,26 @@
 
 // CrystalDust
 #define ITEM_MYSTERY_EGG 377
+#define ITEM_RED_APRICORN 378
+#define ITEM_BLU_APRICORN 379
+#define ITEM_YLW_APRICORN 380
+#define ITEM_GRN_APRICORN 381
+#define ITEM_WHT_APRICORN 382
+#define ITEM_BLK_APRICORN 383
+#define ITEM_PNK_APRICORN 384
+#define ITEM_LEVEL_BALL 385
+#define ITEM_LURE_BALL 386
+#define ITEM_MOON_BALL 387
+#define ITEM_FRIEND_BALL 388
+#define ITEM_FAST_BALL 389
+#define ITEM_HEAVY_BALL 390
+#define ITEM_LOVE_BALL 391
+#define ITEM_PARK_BALL 392
+#define ITEM_EGG_TICKET 393
+#define ITEM_BLUE_CARD 394
+#define ITEM_SQUIRTBOTTLE 395
 
-#define ITEMS_COUNT 378
+#define ITEMS_COUNT 396
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 #define FIRST_BERRY_INDEX             ITEM_CHERI_BERRY
@@ -498,7 +516,14 @@
 #define MAX_PC_ITEM_CAPACITY   999
 #define MAX_BERRY_CAPACITY     999
 
+// Secondary IDs for rods
+#define OLD_ROD   0
+#define GOOD_ROD  1
+#define SUPER_ROD 2
+
 // Check if the item is one that can be used on a Pokemon.
 #define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= ITEM_0B2)
+
+#define APRICORN_COUNT              7
 
 #endif  // GUARD_CONSTANTS_ITEMS_H

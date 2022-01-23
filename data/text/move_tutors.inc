@@ -235,3 +235,21 @@ MoveTutor_Text_ExplosionTaught: @ 82C7E7A
 	.string "to ignite my own EXPLOSION…\p"
 	.string "Maybe it's because deep down,\n"
 	.string "I would rather stay here…$"
+
+MoveTutor_Text_HeadbuttTeach::
+	.string "What am I doing?\n"
+	.string "I'm shaking trees using HEADBUTT.\p"
+	.string "It's fun.\n"
+	.string "Here, want to try it too?$"
+
+MoveTutor_Text_HeadbuttDeclined::
+	.string "I guess you're just not as hard-\n"
+	.string "headed as I am!$"
+
+MoveTutor_Text_HeadbuttWhichMon::
+	.string "Great! Which POKéMON of yours has\n"
+	.string "the strongest head?$"
+
+MoveTutor_Text_HeadbuttTaught::
+	.string "Rattle trees with HEADBUTT.\n"
+	.string "Sometimes, sleeping POKéMON fall out.$"

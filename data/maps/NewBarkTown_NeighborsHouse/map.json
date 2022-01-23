@@ -1,43 +1,47 @@
 {
   "id": "MAP_NEW_BARK_TOWN_NEIGHBORS_HOUSE",
   "name": "NewBarkTown_NeighborsHouse",
-  "layout": "LAYOUT_NEW_BARK_TOWN_NEIGHBORS_HOUSE",
-  "music": "MUS_NEWBARK",
+  "layout": "LAYOUT_HOUSE1",
+  "music": "MUS_NEW_BARK",
   "region_map_section": "MAPSEC_NEW_BARK_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
-  "allow_bike": false,
-  "allow_escape_rope": false,
+  "allow_cycling": false,
+  "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "in_connection": false,
       "x": 4,
       "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "0",
-      "type": "original",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NewBarkTown_NeighborsHouse_EventScript_Girl",
       "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_4",
+      "in_connection": false,
       "x": 7,
       "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "0",
-      "type": "original",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NewBarkTown_NeighborsHouse_EventScript_Woman",
       "flag": "FLAG_HIDE_NEW_BARK_TOWN_NEIGHBORS_HOUSE_NEIGHBOR"
@@ -52,7 +56,9 @@
       "dest_warp_id": 3
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -62,6 +68,5 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "NewBarkTown_PlayersHouse_2F_Radio"
     }
-  ],
-  "phone_service": true
+  ]
 }

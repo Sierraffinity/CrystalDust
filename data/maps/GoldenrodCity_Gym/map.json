@@ -1,0 +1,148 @@
+{
+  "id": "MAP_GOLDENROD_CITY_GYM",
+  "name": "GoldenrodCity_Gym",
+  "layout": "LAYOUT_GOLDENROD_CITY_GYM",
+  "music": "MUS_GYM",
+  "region_map_section": "MAPSEC_GOLDENROD_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": false,
+  "battle_scene": "MAP_BATTLE_SCENE_GYM",
+  "connections": 0,
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_WHITNEY",
+      "in_connection": false,
+      "x": 8,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodCity_Gym_EventScript_Whitney",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "in_connection": false,
+      "x": 9,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "1",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "GoldenrodCity_Gym_EventScript_Carrie",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "in_connection": false,
+      "x": 9,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "1",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "GoldenrodCity_Gym_EventScript_Bridget",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
+      "in_connection": false,
+      "x": 6,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodCity_Gym_EventScript_Guide",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "in_connection": false,
+      "x": 0,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "1",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "GoldenrodCity_Gym_EventScript_Victoria",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "in_connection": false,
+      "x": 20,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "GoldenrodCity_Gym_EventScript_Samantha",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_GOLDENROD_GYM_STATE",
+      "var_value": "1",
+      "script": "GoldenrodCity_Gym_EventScript_WhitneyCries"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 1,
+      "y": 17,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "GoldenrodCity_Gym_EventScript_Statue"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 17,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "GoldenrodCity_Gym_EventScript_Statue"
+    }
+  ]
+}

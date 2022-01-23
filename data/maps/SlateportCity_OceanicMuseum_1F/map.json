@@ -2,20 +2,20 @@
   "id": "MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_1F",
   "name": "SlateportCity_OceanicMuseum_1F",
   "layout": "LAYOUT_SLATEPORT_CITY_OCEANIC_MUSEUM_1F",
-  "music": "MUS_FUNE_KAN",
-  "region_map_section": "MAPSEC_SLATEPORT_CITY",
+  "music": "MUS_BUENAS_THEME",
+  "region_map_section": "MAPSEC_ECRUTEAK_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
-  "allow_bike": false,
-  "allow_escape_rope": false,
+  "allow_cycling": false,
+  "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+      "graphics_id": "OBJ_EVENT_GFX_BUENA",
       "x": 7,
       "y": 7,
       "elevation": 3,
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 18,
       "y": 5,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 12,
       "y": 2,
       "elevation": 3,
@@ -57,7 +57,7 @@
       "flag": "FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 2,
       "y": 8,
       "elevation": 3,
@@ -71,7 +71,7 @@
       "flag": "FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_F",
       "x": 3,
       "y": 4,
       "elevation": 3,
@@ -85,7 +85,7 @@
       "flag": "FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 14,
       "y": 4,
       "elevation": 3,
@@ -99,7 +99,7 @@
       "flag": "FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+      "graphics_id": "OBJ_EVENT_GFX_BUENA",
       "x": 12,
       "y": 7,
       "elevation": 3,
@@ -113,7 +113,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 8,
       "y": 3,
       "elevation": 3,
@@ -183,7 +183,7 @@
       "flag": "FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "x": 9,
       "y": 4,
       "elevation": 3,

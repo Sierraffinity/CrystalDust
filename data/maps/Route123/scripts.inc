@@ -50,12 +50,12 @@ Route123_EventScript_Wendy:: @ 81F61C5
 	end
 
 Route123_EventScript_Braxton:: @ 81F61DC
-	trainerbattle_single TRAINER_BRAXTON, Route123_Text_BraxtonIntro, Route123_Text_BraxtonDefeat
+	trainerbattle_single TRAINER_ERIN, Route123_Text_BraxtonIntro, Route123_Text_BraxtonDefeat
 	msgbox Route123_Text_BraxtonPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route123_EventScript_Violet:: @ 81F61F3
-	trainerbattle_single TRAINER_VIOLET, Route123_Text_VioletIntro, Route123_Text_VioletDefeat
+	trainerbattle_single TRAINER_AL, Route123_Text_VioletIntro, Route123_Text_VioletDefeat
 	msgbox Route123_Text_VioletPostBattle, MSGBOX_AUTOCLOSE
 	end
 

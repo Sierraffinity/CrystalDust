@@ -22,6 +22,7 @@
 #include "match_call.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
+#include "phone_scripts.h"
 #include "pokemon.h"
 #include "safari_zone.h"
 #include "script.h"
@@ -178,6 +179,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
 
     if (input->pressedBButton && TrySetupDiveEmergeScript() == TRUE)
         return TRUE;
+    
     if (input->tookStep)
     {
         IncrementGameStat(GAME_STAT_STEPS);
@@ -185,6 +187,14 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         if (TryStartStepBasedScript(&position, metatileBehavior, playerDirection) == TRUE)
             return TRUE;
     }
+
+    if (gRunPreStepEvents)
+    {
+        gRunPreStepEvents = FALSE;
+        if (TryStartForcedMatchCall())
+            return TRUE;
+    }
+
     if (input->checkStandardWildEncounter)
     {
         if (input->dpadDirection == 0 || input->dpadDirection == playerDirection)
@@ -482,7 +492,7 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return EventScript_PokeBlockFeeder;
     if (MetatileBehavior_IsTrickHousePuzzleDoor(metatileBehavior) == TRUE)
         return Route110_TrickHousePuzzle_EventScript_Door;
-    if (MetatileBehavior_IsRegionMap(metatileBehavior) == TRUE)
+    if (MetatileBehavior_IsRegionMap(metatileBehavior, direction) == TRUE)
         return EventScript_RegionMap;
     if (MetatileBehavior_IsAncientPokemonReplica(metatileBehavior) == TRUE)
         return EventScript_AncientPokemonReplica;
@@ -553,6 +563,9 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
 
 static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metatileBehavior, u8 direction)
 {
+    if (PartyHasMonWithHeadbutt() && MetatileBehavior_IsHeadbuttTree(metatileBehavior) == TRUE)
+        return EventScript_HeadbuttTree;
+
     if (FlagGet(FLAG_BADGE05_GET) == TRUE && PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
         return EventScript_UseSurf;
 
@@ -650,7 +663,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
     UpdateHappinessStepCounter();
     UpdateFarawayIslandStepCounter();
 
-    if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_6) && !MetatileBehavior_IsForcedMovementTile(metatileBehavior))
+    if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED_MOVE) && !MetatileBehavior_IsForcedMovementTile(metatileBehavior))
     {
         if (UpdatePoisonStepCounter() == TRUE)
         {
@@ -673,20 +686,10 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext1_SetupScript(IslandCave_EventScript_OpenRegiEntrance);
             return TRUE;
         }
-        if (ShouldDoWallyCall() == TRUE)
+        
+        if (ShouldDoBikeShopOwnerCall() == TRUE)
         {
-            ScriptContext1_SetupScript(MauvilleCity_EventScript_RegisterWallyCall);
-            return TRUE;
-        }
-        if (ShouldDoScottFortreeCall() == TRUE)
-        {
-            ScriptContext1_SetupScript(Route119_EventScript_ScottWonAtFortreeGymCall);
-            return TRUE;
-        }
-        if (ShouldDoRoxanneCall() == TRUE)
-        {
-            ScriptContext1_SetupScript(RustboroCity_Gym_EventScript_RegisterRoxanne);
-            return TRUE;
+            FlagSet(FLAG_FORCED_CALL_BIKE_SHOP);
         }
     }
 
@@ -785,7 +788,7 @@ static bool8 WalkingNorthOrSouthIntoSignpost(const struct MapPosition *position,
 {
     const u8 *script;
 
-    if (gMain.heldKeys & (DPAD_RIGHT | DPAD_LEFT))
+    if (JOY_HELD(DPAD_RIGHT | DPAD_LEFT))
         return FALSE;
 
     if (direction == DIR_WEST || direction == DIR_EAST)
@@ -873,7 +876,7 @@ static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, u8
         else if (IsStaircaseWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
         {
             delay = 0;
-            if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+            if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_BIKE)
             {
                 SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
                 delay = 12;
@@ -912,7 +915,7 @@ static bool8 TryStartWarpEventScript(struct MapPosition *position, u16 metatileB
         }
         if (MetatileBehavior_IsAquaHideoutWarp(metatileBehavior) == TRUE)
         {
-            DoTeleportWarp();
+            DoTeleportTileWarp();
             return TRUE;
         }
         if (MetatileBehavior_IsWarpOrBridge(metatileBehavior) == TRUE)
@@ -1143,7 +1146,7 @@ static struct BgEvent *GetBackgroundEventAtPosition(struct MapHeader *mapHeader,
     return NULL;
 }
 
-bool8 dive_warp(struct MapPosition *position, u16 metatileBehavior)
+bool8 TryDoDiveWarp(struct MapPosition *position, u16 metatileBehavior)
 {
     if (gMapHeader.mapType == MAP_TYPE_UNDERWATER && !MetatileBehavior_IsUnableToEmerge(metatileBehavior))
     {
@@ -1151,7 +1154,7 @@ bool8 dive_warp(struct MapPosition *position, u16 metatileBehavior)
         {
             StoreInitialPlayerAvatarState();
             DoDiveWarp();
-            PlaySE(SE_W291);
+            PlaySE(SE_M_DIVE);
             return TRUE;
         }
     }
@@ -1161,7 +1164,7 @@ bool8 dive_warp(struct MapPosition *position, u16 metatileBehavior)
         {
             StoreInitialPlayerAvatarState();
             DoDiveWarp();
-            PlaySE(SE_W291);
+            PlaySE(SE_M_DIVE);
             return TRUE;
         }
     }

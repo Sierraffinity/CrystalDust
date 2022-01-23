@@ -36,7 +36,7 @@ static const u8 sJPText_PressBButtonToQuit[] = _("Bボタン　で　もどり�
 static const u8 sText_Summary2[] = _("SUMMARY");
 static const u8 sText_Trade2[] = _("TRADE");
 static const u8 sText_CommunicationStandby[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}Communication standby…\nPlease wait.");
-static const u8 sText_TheTradeHasBeenCanceled[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}The trade has\nbeen canceled.");
+static const u8 sText_TheTradeHasBeenCanceled[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}The trade has been canceled.");
 static const u8 sText_OnlyPkmnForBattle[] = _("That's your only\nPOKéMON for battle.");
 static const u8 sText_WaitingForYourFriend[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}Waiting for your friend\nto finish…");
 static const u8 sText_YourFriendWantsToTrade[] = _("Your friend wants\nto trade POKéMON.");
@@ -448,9 +448,9 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
     },
     {
         .bg = 0,
-        .tilemapLeft = 19,
+        .tilemapLeft = 17,
         .tilemapTop = 15,
-        .width = 10,
+        .width = 12,
         .height = 4,
         .paletteNum = 15,
         .baseBlock = 118
@@ -462,7 +462,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 158
+        .baseBlock = 166
     },
     {
         .bg = 0,
@@ -471,7 +471,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 174
+        .baseBlock = 182
     },
     {
         .bg = 0,
@@ -480,7 +480,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 190
+        .baseBlock = 198
     },
     {
         .bg = 0,
@@ -489,7 +489,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 206
+        .baseBlock = 214
     },
     {
         .bg = 0,
@@ -498,7 +498,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 222
+        .baseBlock = 230
     },
     {
         .bg = 0,
@@ -507,7 +507,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 238
+        .baseBlock = 246
     },
     {
         .bg = 0,
@@ -516,7 +516,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 254
+        .baseBlock = 262
     },
     {
         .bg = 0,
@@ -525,7 +525,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 270
+        .baseBlock = 278
     },
     {
         .bg = 0,
@@ -534,7 +534,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 286
+        .baseBlock = 294
     },
     {
         .bg = 0,
@@ -543,7 +543,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 302
+        .baseBlock = 310
     },
     {
         .bg = 0,
@@ -552,7 +552,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 318
+        .baseBlock = 326
     },
     {
         .bg = 0,
@@ -561,7 +561,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 334
+        .baseBlock = 342
     },
     {
         .bg = 0,
@@ -570,7 +570,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 14,
         .height = 2,
         .paletteNum = 13,
-        .baseBlock = 350
+        .baseBlock = 358
     },
     {
         .bg = 0,
@@ -579,7 +579,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 11,
         .height = 8,
         .paletteNum = 15,
-        .baseBlock = 378
+        .baseBlock = 386
     },
     {
         .bg = 0,
@@ -588,7 +588,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 14,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 466
+        .baseBlock = 474
     },
     {
         .bg = 0,
@@ -597,7 +597,7 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
         .width = 11,
         .height = 8,
         .paletteNum = 15,
-        .baseBlock = 494
+        .baseBlock = 502
     },
     DUMMY_WIN_TEMPLATE,
 };
@@ -605,12 +605,12 @@ static const struct WindowTemplate sTradeMenuWindowTemplates[] =
 static const struct WindowTemplate sTradeYesNoWindowTemplate =
 {
     .bg = 0,
-    .tilemapLeft = 23,
+    .tilemapLeft = 21,
     .tilemapTop = 13,
-    .width = 5,
+    .width = 6,
     .height = 4,
     .paletteNum = 15,
-    .baseBlock = 582
+    .baseBlock = 590
 };
 
 static const u8 sJPText_Shedinja[] = _("ヌケニン");
@@ -976,55 +976,40 @@ static const union AffineAnimCmd *const gSpriteAffineAnimTable_8338ECC[] =
     gSpriteAffineAnim_8338EBC
 };
 
+// TODO: Generate new personalities
 static const struct InGameTrade sIngameTrades[] =
 {
-    [INGAME_TRADE_SEEDOT] = 
+    [INGAME_TRADE_ONIX] = 
     {
-        .nickname = _("DOTS"), 
-        .species = SPECIES_SEEDOT,
-        .ivs = {5, 4, 5, 4, 4, 4},
+        .nickname = _("ROCKY"), 
+        .species = SPECIES_ONIX,
+        .ivs = {8, 9, 6, 6, 6, 6},
         .abilityNum = 1, 
-        .otId = 38726,
+        .otId = 48926,
         .conditions = {30, 5, 5, 5, 5},
         .personality = 0x84,
-        .heldItem = ITEM_CHESTO_BERRY, 
+        .heldItem = ITEM_PERSIM_BERRY, 
         .mailNum = -1,
-        .otName = _("KOBE"), 
+        .otName = _("KYLE"), 
         .otGender = MALE, 
         .sheen = 10,
-        .requestedSpecies = SPECIES_RALTS
+        .requestedSpecies = SPECIES_BELLSPROUT
     }, 
-    [INGAME_TRADE_PLUSLE] = 
+    [INGAME_TRADE_MACHOP] = 
     {
-        .nickname = _("PLUSES"), 
-        .species = SPECIES_PLUSLE,
-        .ivs = {4, 4, 4, 5, 5, 4},
-        .abilityNum = 0, 
-        .otId = 73996,
-        .conditions = {5, 5, 30, 5, 5},
-        .personality = 0x6F,
-        .heldItem = ITEM_WOOD_MAIL, 
-        .mailNum = 0,
-        .otName = _("ROMAN"), 
-        .otGender = MALE, 
-        .sheen = 10,
-        .requestedSpecies = SPECIES_VOLBEAT
-    }, 
-    [INGAME_TRADE_HORSEA] = 
-    {
-        .nickname = _("SEASOR"),
-        .species = SPECIES_HORSEA,
-        .ivs = {5, 4, 4, 4, 5, 4},
-        .abilityNum = 0, 
-        .otId = 46285,
+        .nickname = _("MUSCLE"), 
+        .species = SPECIES_MACHOP,
+        .ivs = {12, 3, 7, 6, 6, 6},
+        .abilityNum = 0,
+        .otId = 37460,
         .conditions = {5, 5, 5, 5, 30},
-        .personality = 0x7F,
-        .heldItem = ITEM_WAVE_MAIL, 
-        .mailNum = 1,
-        .otName = _("SKYLAR"), 
+        .personality = 0x2F,
+        .heldItem = ITEM_SITRUS_BERRY, 
+        .mailNum = -1,
+        .otName = _("MIKE"), 
         .otGender = MALE, 
         .sheen = 10,
-        .requestedSpecies = SPECIES_BAGON
+        .requestedSpecies = SPECIES_ABRA
     }, 
     [INGAME_TRADE_MEOWTH] = 
     {
@@ -1041,21 +1026,37 @@ static const struct InGameTrade sIngameTrades[] =
         .otGender = FEMALE, 
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
-    }
+    },
+    [INGAME_TRADE_GIFT_SPEAROW] = 
+    {
+        .nickname = _("KENYA"),
+        .species = SPECIES_SPEAROW,
+        .ivs = {5, 4, 4, 4, 5, 4},
+        .abilityNum = 0, 
+        .otId = 1001,
+        .conditions = {5, 5, 5, 5, 30},
+        .personality = 0x7F,
+        .heldItem = ITEM_TROPIC_MAIL, 
+        .mailNum = 0,
+        .otName = _("RANDY"), 
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = 10 // level
+    },
 };
 
 static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
 {
     {
-        EC_WORD_BE,
-        EC_WORD_NICE,
-        EC_WORD_TO,
-        EC_POKEMON(PLUSLE),
-        EC_WORD_EXCL,
-        EC_POKEMON(VOLBEAT),
-        EC_WORD_WILL,
-        EC_WORD_BE,
-        EC_WORD_FANTASTIC
+        EC_WORD_DARK,
+        EC_WORD_PLACE,
+        EC_WORD_NEAR,
+        EC_WORD_YOU,
+        EC_WORD_LET_S,
+        EC_WORD_GO,
+        EC_WORD_HAVE,
+        EC_WORD_AN,
+        EC_WORD_ADVENTURE
     }, {
         EC_WORD_I,
         EC_WORD_WILL,

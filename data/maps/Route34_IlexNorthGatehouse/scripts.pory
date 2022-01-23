@@ -1,0 +1,63 @@
+const OBJ_TAUNT_WOMAN = 1
+
+mapscripts Route34_IlexNorthGatehouse_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_FOREST_IS_RESTLESS))
+        {
+            setobjectxyperm(OBJ_TAUNT_WOMAN, 4, 9)
+            setobjectmovementtype(OBJ_TAUNT_WOMAN, MOVEMENT_TYPE_FACE_UP)
+        }
+    }
+}
+
+script Route34_IlexNorthGatehouse_EventScript_TauntWoman {
+	lock
+	faceplayer
+    if (flag(FLAG_FOREST_IS_RESTLESS))
+    {
+        msgbox("Something's wrong in ILEX FOREST…\n"
+               "You should stay away right now.")
+    }
+	elif (!flag(FLAG_RECEIVED_TM12_TAUNT))
+	{
+		msgbox("Oh, honey.\n"
+               "You're making a POKéDEX?\p"
+               "It must be hard battling so many\n"
+               "different kinds of POKéMON.\p"
+               "Try using this TM on them.")
+		giveitem(ITEM_TM12)
+		if (!var(VAR_RESULT))
+		{
+			goto(Common_EventScript_ShowBagIsFull)
+		}
+		else
+		{
+			setflag(FLAG_RECEIVED_TM12_TAUNT)
+		}
+	}
+	msgbox("It's TAUNT, which I think is a\n"
+           "pretty sweet move.\p"
+           "Use it in battle, and the opponent\n"
+           "can only use moves that damage\l"
+           "your POKéMON for a bit.")
+	release
+}
+
+script Route34_IlexNorthGatehouse_EventScript_Girl {
+    msgbox("Did you see the shrine honoring\n"
+           "the protector?\p"
+           "It watches over the FOREST from\n"
+           "across time.\p"
+           "I think that it must be a GRASS-\n"
+           "type POKéMON.", MSGBOX_NPC)
+}
+
+script Route34_IlexNorthGatehouse_EventScript_Butterfree {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_BUTTERFREE, 0)
+    msgbox("BUTTERFREE: Freeh!")
+    waitmoncry
+    release
+}

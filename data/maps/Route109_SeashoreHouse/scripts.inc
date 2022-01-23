@@ -9,8 +9,8 @@ Route109_SeashoreHouse_OnTransition: @ 82693FA
 Route109_SeashoreHouse_EventScript_Owner:: @ 82693FE
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_6_SODA_POP, Route109_SeashoreHouse_EventScript_AlreadyReceivedSodaPop
-	goto_if_set FLAG_DEFEATED_SEASHORE_HOUSE, Route109_SeashoreHouse_EventScript_DefeatedTrainers
+	goto_if_set FLAG_RECEIVED_TM12_TAUNT, Route109_SeashoreHouse_EventScript_AlreadyReceivedSodaPop
+	goto_if_set FLAG_RECEIVED_SOFT_SAND_FROM_KATE, Route109_SeashoreHouse_EventScript_DefeatedTrainers
 	goto_if_set FLAG_TEMP_2, Route109_SeashoreHouse_EventScript_AlreadyGaveIntroduction
 	msgbox Route109_SeashoreHouse_Text_SeashoreHouseIntro, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_2
@@ -25,9 +25,9 @@ Route109_SeashoreHouse_EventScript_AlreadyGaveIntroduction:: @ 8269428
 Route109_SeashoreHouse_EventScript_DefeatedTrainers:: @ 8269432
 	msgbox Route109_SeashoreHouse_Text_TakeTheseSodaPopBottles, MSGBOX_DEFAULT
 	giveitem ITEM_SODA_POP, 6
-	compare VAR_RESULT, 0
+	compare VAR_RESULT, FALSE
 	goto_if_eq Route109_SeashoreHouse_EventScript_BagFull
-	setflag FLAG_RECEIVED_6_SODA_POP
+	setflag FLAG_RECEIVED_TM12_TAUNT
 	release
 	end
 
@@ -84,15 +84,15 @@ Route109_SeashoreHouse_EventScript_Johanna:: @ 82694FD
 	end
 
 Route109_SeashoreHouse_EventScript_Simon:: @ 8269518
-	trainerbattle_single TRAINER_SIMON, Route109_SeashoreHouse_Text_SimonIntro, Route109_SeashoreHouse_Text_SimonDefeated, Route109_SeashoreHouse_EventScript_CheckTrainersCompletion
+	trainerbattle_single TRAINER_IRWIN, Route109_SeashoreHouse_Text_SimonIntro, Route109_SeashoreHouse_Text_SimonDefeated, Route109_SeashoreHouse_EventScript_CheckTrainersCompletion
 	msgbox Route109_SeashoreHouse_Text_SimonPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route109_SeashoreHouse_EventScript_CheckTrainersCompletion:: @ 8269533
 	goto_if_not_defeated TRAINER_DWAYNE, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
 	goto_if_not_defeated TRAINER_JOHANNA, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
-	goto_if_not_defeated TRAINER_SIMON, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
-	setflag FLAG_DEFEATED_SEASHORE_HOUSE
+	goto_if_not_defeated TRAINER_IRWIN, Route109_SeashoreHouse_EventScript_TrainersNotCompleted
+	setflag FLAG_RECEIVED_SOFT_SAND_FROM_KATE
 	release
 	end
 

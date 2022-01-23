@@ -19,8 +19,9 @@ EventScript_AccessPC:: @ 8271DBC
 	switch VAR_RESULT
 	case 0, EventScript_AccessPokemonStorage
 	case 1, EventScript_AccessPlayersPC
-	case 2, EventScript_AccessHallOfFame
-	case 3, EventScript_TurnOffPC
+	case 2, EventScript_AccessProfOaksPC
+	case 3, EventScript_AccessHallOfFame
+	case 4, EventScript_TurnOffPC
 	case MULTI_B_PRESSED, EventScript_TurnOffPC
 	end
 
@@ -63,4 +64,22 @@ EventScript_AccessHallOfFame:: @ 8271E54
 	special AccessHallOfFamePC
 	waitstate
 	goto EventScript_AccessPC
+	end
+
+EventScript_AccessProfOaksPC:: @ 81A6A7A
+	goto_if_unset FLAG_SYS_POKEDEX_GET, EventScript_TurnOffPC
+	playse SE_PC_LOGIN
+	msgbox gText_AccessedProfOaksPC
+	msgbox gText_HavePokedexRated, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_ExitOaksPC
+	@setflag FLAG_OAKS_RATING_IS_VIA_PC
+	call PokedexRating_EventScript_RatePokedex
+	@clearflag FLAG_OAKS_RATING_IS_VIA_PC
+	goto EventScript_ExitOaksPC
+	end
+
+EventScript_ExitOaksPC:: @ 81A6AB2
+	msgbox gText_ClosedLinkToProfOaksPC
+	goto EventScript_PCMainMenu
 	end

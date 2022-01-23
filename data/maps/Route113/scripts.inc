@@ -8,7 +8,7 @@ Route113_OnResume: @ 81F215E
 	end
 
 Route113_OnTransition: @ 81F2161
-	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
+	clearflag FLAG_FORCED_CALL_ELM_STOLEN_MON
 	call Route113_EventScript_CheckSetAshWeather
 	end
 

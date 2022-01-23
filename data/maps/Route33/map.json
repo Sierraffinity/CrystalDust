@@ -1,86 +1,97 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": false,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "Route33_EventScript_DirectionsSign",
-            "type": "sign",
-            "x": 14,
-            "y": 12
-        },
-        {
-            "elevation": 0,
-            "fruit_tree_id": "FRUIT_TREE_ROUTE_29",
-            "type": "fruit_tree",
-            "x": 16,
-            "y": 17
-        }
-    ],
-    "connections": [
-        {
-            "direction": "up",
-            "map": "MAP_ROUTE32",
-            "offset": -2
-        },
-        {
-            "direction": "left",
-            "map": "MAP_DEWFORD_TOWN",
-            "offset": 0
-        }
-    ],
-    "coord_events": [
-    ],
-    "id": "MAP_ROUTE33",
-    "layout": "LAYOUT_ROUTE33",
-    "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_ROUTE30",
-    "name": "Route33",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_HIKER",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "Route33_EventScript_Anthony",
-            "trainer_sight_or_berry_tree_id": "4",
-            "trainer_type": "1",
-            "type": "original",
-            "x": 6,
-            "y": 13
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "Route33_EventScript_Girl",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 15,
-            "y": 17
-        }
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_ROUTE_33",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_UNION_CAVE_1F",
-            "dest_warp_id": 1,
-            "elevation": 0,
-            "x": 12,
-            "y": 10
-        }
-    ],
-    "weather": "WEATHER_SUNNY"
+  "id": "MAP_ROUTE33",
+  "name": "Route33",
+  "layout": "LAYOUT_ROUTE33",
+  "music": "MUS_ROUTE30",
+  "region_map_section": "MAPSEC_ROUTE_33",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "up",
+      "offset": -2,
+      "map": "MAP_ROUTE32"
+    },
+    {
+      "direction": "left",
+      "offset": 0,
+      "map": "MAP_AZALEA_TOWN"
+    }
+  ],
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "in_connection": false,
+      "x": 6,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route33_EventScript_Anthony",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
+      "in_connection": false,
+      "x": 15,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route33_EventScript_Girl",
+      "flag": "0"
+    },
+    {
+      "type": "clone",
+      "x": -8,
+      "y": 9,
+      "source_id": 7,
+      "source_map": "MAP_AZALEA_TOWN"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 12,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_CAVE_1F",
+      "dest_warp_id": 1
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route33_EventScript_DirectionsSign"
+    },
+    {
+      "type": "fruit_tree",
+      "x": 16,
+      "y": 17,
+      "elevation": 0,
+      "fruit_tree_id": "FRUIT_TREE_ROUTE_33"
+    }
+  ]
 }

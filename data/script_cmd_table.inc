@@ -120,7 +120,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_showmonpic
 	.4byte ScrCmd_hidemonpic
 	.4byte ScrCmd_showcontestwinner
-	.4byte ScrCmd_braillemessage
+	.4byte ScrCmd_unownmessage
 	.4byte ScrCmd_givemon
 	.4byte ScrCmd_giveegg
 	.4byte ScrCmd_setmonmove
@@ -218,7 +218,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_warpmossdeepgym
 	.4byte ScrCmd_cmdD8
 	.4byte ScrCmd_cmdD9
-	.4byte ScrCmd_closebraillemessage
+	.4byte ScrCmd_closeunownmessage
 	.4byte ScrCmd_cmdDB
 	.4byte ScrCmd_fadescreenswapbuffers
 	.4byte ScrCmd_buffertrainerclassname

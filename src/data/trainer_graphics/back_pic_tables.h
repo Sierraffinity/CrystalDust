@@ -33,8 +33,8 @@ const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] =
 {
     TRAINER_BACK_PAL(GOLD, gTrainerBackPicPalette_Gold),
     TRAINER_BACK_PAL(KRIS, gTrainerBackPicPalette_Kris),
-    TRAINER_BACK_PAL(EMERALD_BRENDAN, gTrainerPalette_Brendan),
-    TRAINER_BACK_PAL(EMERALD_MAY, gTrainerPalette_May),
+    TRAINER_BACK_PAL(EMERALD_BRENDAN, gTrainerPalette_EmeraldBrendan),
+    TRAINER_BACK_PAL(EMERALD_MAY, gTrainerPalette_EmeraldMay),
     TRAINER_BACK_PAL(RED, gTrainerBackPicPalette_Red),
     TRAINER_BACK_PAL(LEAF, gTrainerBackPicPalette_Leaf),
     TRAINER_BACK_PAL(RUBY_SAPPHIRE_BRENDAN, gTrainerPalette_RubySapphireBrendan),

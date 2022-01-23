@@ -7,8 +7,8 @@
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
-  "allow_bike": false,
-  "allow_escape_rope": false,
+  "allow_cycling": false,
+  "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
@@ -57,7 +57,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_DUSCLOPS",
+      "graphics_id": "OBJ_EVENT_GFX_SENTRET",
       "x": 13,
       "y": 1,
       "elevation": 3,
@@ -71,7 +71,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AZURILL",
+      "graphics_id": "OBJ_EVENT_GFX_JIGGLYPUFF",
       "x": 13,
       "y": 1,
       "elevation": 3,

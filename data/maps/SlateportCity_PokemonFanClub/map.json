@@ -2,13 +2,13 @@
   "id": "MAP_SLATEPORT_CITY_POKEMON_FAN_CLUB",
   "name": "SlateportCity_PokemonFanClub",
   "layout": "LAYOUT_SLATEPORT_CITY_POKEMON_FAN_CLUB",
-  "music": "MUS_FINECITY",
-  "region_map_section": "MAPSEC_SLATEPORT_CITY",
+  "music": "MUS_SLATEPORT",
+  "region_map_section": "MAPSEC_ECRUTEAK_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
-  "allow_bike": false,
-  "allow_escape_rope": false,
+  "allow_cycling": false,
+  "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_TWIN",
+      "graphics_id": "OBJ_EVENT_GFX_BILL",
       "x": 1,
       "y": 5,
       "elevation": 0,
@@ -85,7 +85,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ZIGZAGOON_2",
+      "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
       "x": 3,
       "y": 9,
       "elevation": 3,
@@ -113,7 +113,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AZUMARILL",
+      "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE_TAILLESS",
       "x": 10,
       "y": 8,
       "elevation": 3,

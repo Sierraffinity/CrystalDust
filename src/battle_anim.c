@@ -112,7 +112,7 @@ EWRAM_DATA static u16 sAnimMoveIndex = 0; // Set but unused.
 EWRAM_DATA u8 gBattleAnimAttacker = 0;
 EWRAM_DATA u8 gBattleAnimTarget = 0;
 EWRAM_DATA u16 gAnimBattlerSpecies[MAX_BATTLERS_COUNT] = {0};
-EWRAM_DATA u8 gUnknown_02038440 = 0;
+EWRAM_DATA u8 gAnimCustomPanning = 0;
 
 const struct OamData gOamData_AffineOff_ObjNormal_8x8 =
 {
@@ -1821,7 +1821,7 @@ void ClearBattleAnimationVars(void)
     sAnimMoveIndex = 0;
     gBattleAnimAttacker = 0;
     gBattleAnimTarget = 0;
-    gUnknown_02038440 = 0;
+    gAnimCustomPanning = 0;
 }
 
 void DoMoveAnim(u16 move)
@@ -1849,8 +1849,8 @@ void LaunchBattleAnimation(const u8 *const animsTable[], u16 tableId, bool8 isMo
     }
     else
     {
-        for (i = 0; i < 4; i++)
-            gAnimBattlerSpecies[i] = gContestResources->field_18->species;
+        for (i = 0; i < CONTESTANT_COUNT; i++)
+            gAnimBattlerSpecies[i] = gContestResources->moveAnim->species;
     }
 
     if (!isMoveAnim)
@@ -2311,7 +2311,7 @@ void MoveBattlerSpriteToBG(u8 battlerId, bool8 toBG_2, bool8 setSpriteInvisible)
         battlerSpriteId = gBattlerSpriteIds[battlerId];
 
         gBattle_BG1_X =  -(gSprites[battlerSpriteId].pos1.x + gSprites[battlerSpriteId].pos2.x) + 0x20;
-        if (IsContest() && IsSpeciesNotUnown(gContestResources->field_18->species))
+        if (IsContest() && IsSpeciesNotUnown(gContestResources->moveAnim->species))
             gBattle_BG1_X--;
 
         gBattle_BG1_Y =  -(gSprites[battlerSpriteId].pos1.y + gSprites[battlerSpriteId].pos2.y) + 0x20;
@@ -2369,7 +2369,7 @@ static void sub_80A46A0(void)
     struct BattleAnimBgData animBg;
     u16 *ptr;
 
-    if (IsSpeciesNotUnown(gContestResources->field_18->species))
+    if (IsSpeciesNotUnown(gContestResources->moveAnim->species))
     {
         sub_80A6B30(&animBg);
         ptr = animBg.bgTilemap;
@@ -2715,7 +2715,8 @@ static void ScriptCmd_goto(void)
     sBattleAnimScriptPtr = T2_READ_PTR(sBattleAnimScriptPtr);
 }
 
-// Uses of this function that rely on a TRUE return are expecting inBattle to not be ticked as defined in contest behavior. As a result, if misused, this function cannot reliably discern between field and contest status and could result in undefined behavior.
+// Uses of this function that rely on a TRUE return are expecting inBattle to not be ticked as defined in contest behavior.
+// As a result, if misused, this function cannot reliably discern between field and contest status and could result in undefined behavior.
 bool8 IsContest(void)
 {
     if (!gMain.inBattle)

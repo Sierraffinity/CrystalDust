@@ -566,16 +566,19 @@ u8 CreateSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16 y,
     sprite->usingSheet = TRUE;
 
     sprite->subpriority = subpriority;
+    sprite->tileTag = template->tileTag;
+    sprite->paletteTag = template->paletteTag;
     sprite->oam = *template->oam;
     sprite->anims = template->anims;
     sprite->affineAnims = template->affineAnims;
+    sprite->template = template;
     sprite->callback = template->callback;
     sprite->pos1.x = x;
     sprite->pos1.y = y;
 
     CalcCenterToCornerVec(sprite, sprite->oam.shape, sprite->oam.size, sprite->oam.affineMode);
 
-    if (template->tileTag == 0xFFFF)
+    if (sprite->tileTag == 0xFFFF)
     {
         s16 tileNum;
         sprite->images = template->images;
@@ -591,15 +594,15 @@ u8 CreateSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16 y,
     }
     else
     {
-        sprite->sheetTileStart = GetSpriteTileStartByTag(template->tileTag);
+        sprite->sheetTileStart = GetSpriteTileStartByTag(sprite->tileTag);
         SetSpriteSheetFrameTileNum(sprite);
     }
 
     if (sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK)
         InitSpriteAffineAnim(sprite);
 
-    if (template->paletteTag != 0xFFFF)
-        sprite->oam.paletteNum = IndexOfSpritePaletteTag(template->paletteTag);
+    if (sprite->paletteTag != 0xFFFF)
+        sprite->oam.paletteNum = IndexOfSpritePaletteTag(sprite->paletteTag);
 
     return index;
 }
@@ -878,19 +881,17 @@ void ResetAllSprites(void)
     ResetSprite(&gSprites[i]);
 }
 
+// UB: template pointer may point to freed temporary storage
 void FreeSpriteTiles(struct Sprite *sprite)
 {
-    /*if (sprite->template->tileTag != 0xFFFF)
-        FreeSpriteTilesByTag(sprite->template->tileTag);*/
-
-    u16 tileTag = GetSpriteTileTagByTileStart(sprite->oam.tileNum);
-    if (tileTag != 0xFFFF)
-        FreeSpriteTilesByTag(tileTag);
+    if (sprite->tileTag != 0xFFFF)
+        FreeSpriteTilesByTag(sprite->tileTag);
 }
 
+// UB: template pointer may point to freed temporary storage
 void FreeSpritePalette(struct Sprite *sprite)
 {
-    FreeSpritePaletteByTag(GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum));
+    FreeSpritePaletteByTag(sprite->paletteTag);
 }
 
 void FreeSpriteOamMatrix(struct Sprite *sprite)
@@ -1078,7 +1079,7 @@ void JumpToTopOfAnimLoop(struct Sprite *sprite)
 
 void BeginAffineAnim(struct Sprite *sprite)
 {
-    if ((sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK) && sprite->affineAnims[0][0].type != 32767)
+    if ((sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK) && sprite->affineAnims[0][0].type != AFFINEANIMCMDTYPE_END)
     {
         struct AffineAnimFrameCmd frameCmd;
         u8 matrixNum = GetSpriteMatrixNum(sprite);
@@ -1110,8 +1111,8 @@ void ContinueAffineAnim(struct Sprite *sprite)
             sAffineAnimStates[matrixNum].animCmdIndex++;
             type = sprite->affineAnims[sAffineAnimStates[matrixNum].animNum][sAffineAnimStates[matrixNum].animCmdIndex].type;
             funcIndex = 3;
-            if (type >= 32765)
-                funcIndex = type - 32765;
+            if (type >= AFFINEANIMCMDTYPE_LOOP)
+                funcIndex = type - AFFINEANIMCMDTYPE_LOOP;
             sAffineAnimCmdFuncs[funcIndex](matrixNum, sprite);
         }
         if (sprite->flags_f)
@@ -1322,6 +1323,11 @@ void ApplyAffineAnimFrameRelativeAndUpdateMatrix(u8 matrixNum, struct AffineAnim
 s16 ConvertScaleParam(s16 scale)
 {
     s32 val = 0x10000;
+    // UB: possible division by zero
+#ifdef UBFIX
+    if (scale == 0)
+        return 0;
+#endif //UBFIX
     return val / scale;
 }
 

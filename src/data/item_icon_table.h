@@ -402,8 +402,26 @@ const u32 *const gItemIconTable[][2] =
     // Emerald-only key items
     [ITEM_MAGMA_EMBLEM] = {gItemIcon_MagmaEmblem, gItemIconPalette_MagmaEmblem},
     [ITEM_OLD_SEA_MAP] = {gItemIcon_OldSeaMap, gItemIconPalette_OldSeaMap},
-    // CrystalDust-only key items
-    [ITEM_MYSTERY_EGG] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    // CrystalDust-only items
+    [ITEM_MYSTERY_EGG] = {gItemIcon_MysteryEgg, gItemIconPalette_MysteryEgg},
+    [ITEM_RED_APRICORN] = {gItemIcon_Apricorn, gItemIconPalette_RedApricorn},
+    [ITEM_BLU_APRICORN] = {gItemIcon_Apricorn, gItemIconPalette_BluApricorn},
+    [ITEM_YLW_APRICORN] = {gItemIcon_Apricorn, gItemIconPalette_YlwApricorn},
+    [ITEM_GRN_APRICORN] = {gItemIcon_Apricorn, gItemIconPalette_GrnApricorn},
+    [ITEM_WHT_APRICORN] = {gItemIcon_Apricorn, gItemIconPalette_WhtApricorn},
+    [ITEM_BLK_APRICORN] = {gItemIcon_Apricorn, gItemIconPalette_BlkApricorn},
+    [ITEM_PNK_APRICORN] = {gItemIcon_Apricorn, gItemIconPalette_PnkApricorn},
+    [ITEM_LEVEL_BALL] = {gItemIcon_LevelBall, gItemIconPalette_LevelBall},
+    [ITEM_LURE_BALL] = {gItemIcon_LureBall, gItemIconPalette_LureBall},
+    [ITEM_MOON_BALL] = {gItemIcon_MoonBall, gItemIconPalette_MoonBall},
+    [ITEM_FRIEND_BALL] = {gItemIcon_FriendBall, gItemIconPalette_FriendBall},
+    [ITEM_FAST_BALL] = {gItemIcon_FastBall, gItemIconPalette_FastBall},
+    [ITEM_HEAVY_BALL] = {gItemIcon_HeavyBall, gItemIconPalette_HeavyBall},
+    [ITEM_LOVE_BALL] = {gItemIcon_LoveBall, gItemIconPalette_LoveBall},
+    [ITEM_PARK_BALL] = {gItemIcon_ParkBall, gItemIconPalette_ParkBall},
+    [ITEM_EGG_TICKET] = {gItemIcon_EggTicket, gItemIconPalette_EggTicket},
+    [ITEM_BLUE_CARD] = {gItemIcon_BlueCard, gItemIconPalette_BlueCard},
+    [ITEM_SQUIRTBOTTLE] = {gItemIcon_Squirtbottle, gItemIconPalette_Squirtbottle},
     // Return to field arrow
     [ITEM_FIELD_ARROW] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

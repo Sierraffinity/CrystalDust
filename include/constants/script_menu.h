@@ -8,7 +8,7 @@
 #define MULTI_B_PRESSED  127
 
 // Multichoice Ids
-#define MULTI_BRINEY_ON_DEWFORD            0
+#define MULTI_MOM_BANK                     0
 #define MULTI_PC                           1 // Exit only, populated by CreatePCMultichoice
 #define MULTI_ENTERINFO                    2
 #define MULTI_CONTEST_INFO                 3
@@ -56,7 +56,7 @@
 #define MULTI_SATISFACTION                 45
 #define MULTI_STERN_DEEPSEA                46
 #define MULTI_UNUSED_ASH_VENDOR            47 // Replaced by scrollable multichoice
-#define MULTI_GAME_CORNER_DOLLS            48
+#define MULTI_GAME_CORNER_MONS             48
 #define MULTI_GAME_CORNER_COINS            49
 #define MULTI_HOWS_FISHING                 50
 #define MULTI_UNUSED_51                    51
@@ -65,7 +65,7 @@
 #define MULTI_RIGHTLEFT                    54
 #define MULTI_GAME_CORNER_TMS              55
 #define MULTI_SSTIDAL_SLATEPORT_NO_BF      56
-#define MULTI_FLOORS                       57 
+#define MULTI_GOLDENROD_DEPT_STORE_FLOORS  57
 #define MULTI_SHARDS_R                     58
 #define MULTI_SHARDS_Y                     59
 #define MULTI_SHARDS_RY                    60

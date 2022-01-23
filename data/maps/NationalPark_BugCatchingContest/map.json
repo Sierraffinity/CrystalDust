@@ -1,0 +1,185 @@
+{
+  "id": "MAP_NATIONAL_PARK_BUG_CATCHING_CONTEST",
+  "name": "NationalPark_BugCatchingContest",
+  "layout": "LAYOUT_NATIONAL_PARK",
+  "music": "MUS_BUG_CATCHING_CONTEST",
+  "region_map_section": "MAPSEC_NATIONAL_PARK",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "in_connection": false,
+      "x": 0,
+      "y": 0,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "in_connection": false,
+      "x": 1,
+      "y": 0,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "in_connection": false,
+      "x": 2,
+      "y": 0,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "in_connection": false,
+      "x": 3,
+      "y": 0,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "in_connection": false,
+      "x": 4,
+      "y": 0,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 39,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NationalPark_EventScript_ItemParalyzeHeal",
+      "flag": "FLAG_ITEM_NATIONAL_PARK_PARALYZE_HEAL"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 3,
+      "y": 43,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NationalPark_EventScript_ItemTM28",
+      "flag": "FLAG_ITEM_NATIONAL_PARK_TM28"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 12,
+      "y": 49,
+      "elevation": 3,
+      "dest_map": "MAP_ROUTE35_NATIONAL_PARK_GATEHOUSE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 13,
+      "y": 49,
+      "elevation": 3,
+      "dest_map": "MAP_ROUTE35_NATIONAL_PARK_GATEHOUSE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 40,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 45,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NationalPark_EventScript_RelaxationSquare"
+    },
+    {
+      "type": "sign",
+      "x": 31,
+      "y": 33,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NationalPark_EventScript_BattleNotice"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NationalPark_EventScript_TrainerTips"
+    },
+    {
+      "type": "hidden_item",
+      "x": 8,
+      "y": 49,
+      "elevation": 3,
+      "item": "ITEM_FULL_HEAL",
+      "flag": "FLAG_HIDDEN_ITEM_NATIONAL_PARK_FULL_HEAL"
+    }
+  ]
+}

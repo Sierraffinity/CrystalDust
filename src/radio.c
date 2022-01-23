@@ -2,6 +2,7 @@
 #include "main.h"
 #include "malloc.h"
 #include "battle_main.h"
+#include "buenas_password.h"
 #include "clock.h"
 #include "data.h"
 #include "day_night.h"
@@ -9,6 +10,7 @@
 #include "international_string_util.h"
 #include "item.h"
 #include "lottery_corner.h"
+#include "overworld.h"
 #include "pokedex.h"
 #include "pokegear.h"
 #include "radio.h"
@@ -28,6 +30,7 @@
 #include "constants/items.h"
 #include "constants/maps.h"
 #include "constants/moves.h"
+#include "constants/radio.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/species.h"
@@ -40,31 +43,22 @@
 #define tScrollDistance data[5]
 #define tTextDelay data[6]
 #define tMiscValue data[7]
-#define tMiscValue2 data[8]
-#define tMiscPtr data[14]
+#define tPokedexSeenMonsCount data[13]
+#define tPokedexSeenMonsPtr data[14]
 
 static const u16 sRadioChannelSongs[] = 
 {
-    MUS_RG_KENKYU,
-    MUS_POKECEN,
-    MUS_DUMMY,  // Music channel
-    MUS_CASINO,
-    MUS_M_BOAT,
-    MUS_FINECITY,
-    MUS_MACHUPI,
-    MUS_AJITO,
-    MUS_RG_POKEFUE,
-    MUS_RG_VS_DEO,
-    MUS_RG_VS_MYU2
-};
-
-enum {
-    PASS_SPECIES,
-    PASS_ITEM,
-    PASS_MAPSEC,
-    PASS_TYPE,
-    PASS_MOVE,
-    PASS_STATION
+    [OAKS_POKEMON_TALK] = MUS_OAKS_LAB,
+    [POKEDEX_SHOW] = MUS_POKE_CENTER,
+    [POKEMON_MUSIC] = MUS_DUMMY,
+    [LUCKY_CHANNEL] = MUS_GAME_CORNER,
+    [BUENAS_PASSWORD] = MUS_BUENAS_THEME,
+    [PLACES_AND_PEOPLE] = MUS_PEWTER,
+    [LETS_ALL_SING] = MUS_POKEMON_MARCH,
+    [ROCKET_RADIO] = MUS_ROCKET_TAKEOVER,
+    [POKE_FLUTE_RADIO] = MUS_POKE_FLUTE_RADIO,
+    [UNOWN_RADIO] = MUS_UNOWN_RADIO,
+    [EVOLUTION_RADIO] = MUS_EVOLUTION_RADIO
 };
 
 const u8 *const gRadioShowNames[] = 
@@ -82,8 +76,6 @@ const u8 *const gRadioShowNames[] =
     gText_FiveMarks,
 };
 
-#define FREQ(a) (u8)(a * 2 - 1)
-
 u8 LoadStation_PokemonChannel(void);
 u8 LoadStation_PokemonMusic(void);
 u8 LoadStation_LuckyChannel(void);
@@ -92,25 +84,33 @@ u8 LoadStation_UnownRadio(void);
 u8 LoadStation_EvolutionRadio(void);
 
 const struct RadioStation gRadioStationData[] = {
-    { FREQ(4.5), REGION_JOHTO, LoadStation_PokemonChannel },
-    { FREQ(7.5), REGION_JOHTO, LoadStation_PokemonMusic },
-    { FREQ(8.5), REGION_JOHTO, LoadStation_LuckyChannel },
-    { FREQ(10.5), REGION_JOHTO, LoadStation_BuenasPassword },
-    { FREQ(13.5), REGION_JOHTO, LoadStation_UnownRadio },
-    { FREQ(20.5), REGION_JOHTO, LoadStation_EvolutionRadio },
+    { RADIO_FREQ(4.5), REGION_JOHTO, LoadStation_PokemonChannel },
+    { RADIO_FREQ(7.5), REGION_JOHTO, LoadStation_PokemonMusic },
+    { RADIO_FREQ(8.5), REGION_JOHTO, LoadStation_LuckyChannel },
+    { RADIO_FREQ(10.5), REGION_JOHTO, LoadStation_BuenasPassword },
+    { RADIO_FREQ(13.5), REGION_JOHTO, LoadStation_UnownRadio },
+    { RADIO_FREQ(20.5), REGION_JOHTO, LoadStation_EvolutionRadio },
     { 0xFF, 0xFF, NULL }
 };
+
+static void PlayAndSaveMusic(u16 song)
+{
+    Overworld_SetSavedMusic(song);
+    PlayNewMapMusic(song);
+}
 
 static void PlayStationMusic(u8 taskId)
 {
     if (gTasks[taskId].tNumLinesPrinted == 0)
-        PlayNewMapMusic(sRadioChannelSongs[gTasks[taskId].tCurrentLine]);
+    {
+        PlayAndSaveMusic(sRadioChannelSongs[gTasks[taskId].tCurrentLine]);
+    }
 }
 
 static bool8 BuenasPassword_CheckTime(void)
 {
     RtcCalcLocalTime();
-    if (gLocalTime.hours >= 18) // 6 PM
+    if (gLocalTime.hours >= BUENAS_PASSWORD_START_HOUR)
         return TRUE;
     return FALSE;
 }
@@ -119,86 +119,35 @@ static void NextRadioLine(u8 taskId, u8 nextLine, const u8 *lineToPrint, bool8 s
 {
     s16 *data = gTasks[taskId].data;
     u8 yPos = 1;
-    u8 lineHeight = GetFontAttribute(1, FONTATTR_MAX_LETTER_HEIGHT) + GetFontAttribute(1, FONTATTR_LINE_SPACING);
+    u8 lineHeight = GetFontAttribute(1, FONTATTR_MAX_LETTER_HEIGHT) + 1;
     
     if (tNumLinesPrinted != 0)
         yPos += lineHeight;
 
     if (lineToPrint)
-        AddTextPrinterParameterized(tWindowId, 1, lineToPrint, 0, yPos, 0, NULL);
+        AddTextPrinterParameterized(tWindowId, 2, lineToPrint, 0, yPos, 0, NULL);
 
     tNumLinesPrinted += lineToPrint ? 1 : 0;
     tNextLine = nextLine;
     tCurrentLine = RADIO_SCROLL;
-    tTextDelay = 100;
+    tTextDelay = 90;
     tScrollDistance = shouldScroll ? lineHeight : 0;
 }
 
 void PlayPokemonMusic(void)
 {
-    u16 song = MUS_ENCSUSPICIOUS;  // Sunday, Tuesday, Thursday, Saturday
+    u16 song = MUS_POKEMON_MARCH;  // Sunday, Tuesday, Thursday, Saturday
     RtcCalcLocalTime();
     if (gLocalTime.dayOfWeek & 1)   // Monday, Wednesday, Friday
-        song = MUS_ASHROAD;
-    PlayNewMapMusic(song);
-}
-
-const u8 *GetBuenasPassword(u8 category, u8 index)
-{
-    const u8 *string;
-    u16 value;
-
-    // TODO: Proper widths
-    const struct {
-        u8 width;
-        u8 type;
-        u16 values[3];
-    } passwords[] = {
-        { 10, PASS_SPECIES, { SPECIES_CYNDAQUIL,    SPECIES_TOTODILE,           SPECIES_CHIKORITA } },
-        { 12, PASS_ITEM,    { ITEM_FRESH_WATER,     ITEM_SODA_POP,              ITEM_LEMONADE } },
-        { 12, PASS_ITEM,    { ITEM_POTION,          ITEM_ANTIDOTE,              ITEM_PARALYZE_HEAL } },
-        { 12, PASS_ITEM,    { ITEM_POKE_BALL,       ITEM_GREAT_BALL,            ITEM_ULTRA_BALL } },
-        { 10, PASS_SPECIES, { SPECIES_PIKACHU,      SPECIES_RATTATA,            SPECIES_GEODUDE } },
-        { 10, PASS_SPECIES, { SPECIES_HOOTHOOT,     SPECIES_SPINARAK,           SPECIES_DROWZEE } },
-        { 16, PASS_MAPSEC,  { MAPSEC_NEW_BARK_TOWN, MAPSEC_CHERRYGROVE_CITY,    MAPSEC_AZALEA_TOWN } },
-        { 6,  PASS_TYPE,    { TYPE_FLYING,          TYPE_BUG,                   TYPE_GRASS } },
-        { 12, PASS_MOVE,    { MOVE_TACKLE,          MOVE_GROWL,                 MOVE_MUD_SLAP } },
-        { 12, PASS_ITEM,    { ITEM_X_ATTACK,        ITEM_X_DEFEND,              ITEM_X_SPEED } },
-        { 13, PASS_STATION, { OAKS_POKEMON_TALK,    POKEMON_MUSIC,              LUCKY_CHANNEL } }
-    };
-
-    value = passwords[category].values[index];
-
-    switch (passwords[category].type)
-    {
-        case PASS_SPECIES:
-            string = gSpeciesNames[value];
-            break;
-        case PASS_ITEM:
-            string = gItems[value].name;
-            break;
-        case PASS_MAPSEC:
-            string = gRegionMapEntries[value].name;
-            break;
-        case PASS_TYPE:
-            string = gTypeNames[value];
-            break;
-        case PASS_MOVE:
-            string = gMoveNames[value];
-            break;
-        case PASS_STATION:
-            string = gRadioShowNames[value];
-            break;
-    }
-
-    return string;
+        song = MUS_POKEMON_LULLABY;
+    PlayAndSaveMusic(song);
 }
 
 void Task_PlayRadioShow(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    if (tCurrentLine < UNOWN_RADIO && GetCurrentRegion() == REGION_JOHTO && FlagGet(FLAG_ROCKET_TAKEOVER))
+    if (tCurrentLine < UNOWN_RADIO && GetCurrentRegion() == REGION_JOHTO && FlagGet(FLAG_ROCKETS_IN_RADIO_TOWER))
     {
         tShowNameId = tCurrentLine; // always show show title when Rockets are taking over
         tCurrentLine = ROCKET_RADIO;
@@ -214,30 +163,31 @@ void Task_PlayRadioShow(u8 taskId)
         break;
     case POKEDEX_SHOW:
         {
-            u16 species;
-            u16 **caughtMons = (u16 **)&tMiscPtr;
+            u16 species = SPECIES_NONE, i = 0;
+            u16 **caughtMons = (u16 **)&tPokedexSeenMonsPtr;
             tShowNameId = tCurrentLine;
             PlayStationMusic(taskId);
             tMiscValue = SPECIES_NONE;
             
             if (*caughtMons == NULL)
             {
-                *caughtMons = AllocZeroed(sizeof(u16) * 386);
+                *caughtMons = AllocZeroed(sizeof(u16) * NATIONAL_DEX_COUNT);
                 if (*caughtMons)
                 {
-                    for (species = 1, tMiscValue2 = 0; species <= 386; species++)
+                    for (species = NATIONAL_DEX_BULBASAUR, i = 0; species <= NATIONAL_DEX_COUNT; species++)
                     {
                         if (GetSetPokedexFlag(species, FLAG_GET_CAUGHT))
                         {
-                            *caughtMons[tMiscValue2] = species;
-                            tMiscValue2++;
+                            (*caughtMons)[i] = species;
+                            i++;
                         }
                     }
+                    tPokedexSeenMonsCount = i;
                 }
             }
 
-            if (*caughtMons && tMiscValue2 > 0)
-                tMiscValue = *caughtMons[Random() % tMiscValue2];
+            if (*caughtMons && tPokedexSeenMonsCount > 0)
+                tMiscValue = (*caughtMons)[Random() % tPokedexSeenMonsCount];
 
             StringCopy10(gStringVar4, gSpeciesNames[NationalPokedexNumToSpecies(tMiscValue)]);
             NextRadioLine(taskId, POKEDEX_SHOW_2, gStringVar4, TRUE);
@@ -266,7 +216,7 @@ void Task_PlayRadioShow(u8 taskId)
         {
             if (tNumLinesPrinted == 0)
             {
-                PlayNewMapMusic(MUS_DUMMY);
+                PlayAndSaveMusic(MUS_DUMMY);
                 tCurrentLine = BUENAS_PASSWORD_21;
             }
             else
@@ -298,10 +248,10 @@ void Task_PlayRadioShow(u8 taskId)
         tNumLinesPrinted = 1;
         break;
     case OAKS_POKEMON_TALK_2:
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_3, gText_OaksPkmnTalkIntro2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_OaksPkmnTalkIntro2, TRUE);
         break;
     case OAKS_POKEMON_TALK_3:
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_4, gText_OaksPkmnTalkIntro3, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_OaksPkmnTalkIntro3, TRUE);
         break;
     case OAKS_POKEMON_TALK_4:
         {
@@ -314,41 +264,41 @@ void Task_PlayRadioShow(u8 taskId)
                 { MAPSEC_ROUTE_30, MAP_GROUP(ROUTE30), MAP_NUM(ROUTE30) },
                 { MAPSEC_ROUTE_31, MAP_GROUP(ROUTE31), MAP_NUM(ROUTE31) },
                 { MAPSEC_ROUTE_32, MAP_GROUP(ROUTE32), MAP_NUM(ROUTE32) },
+                { MAPSEC_ROUTE_34, MAP_GROUP(ROUTE34), MAP_NUM(ROUTE34) },
+                { MAPSEC_ROUTE_35, MAP_GROUP(ROUTE35), MAP_NUM(ROUTE35) },
+                { MAPSEC_ROUTE_36, MAP_GROUP(ROUTE36), MAP_NUM(ROUTE36) },
+                /*{ MAPSEC_ROUTE_37, MAP_GROUP(ROUTE109), MAP_NUM(ROUTE109) },
                 { MAPSEC_ROUTE_38, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
                 { MAPSEC_ROUTE_39, MAP_GROUP(ROUTE111), MAP_NUM(ROUTE111) },
-                { MAPSEC_ROUTE_40, MAP_GROUP(ROUTE112), MAP_NUM(ROUTE112) },
-                { MAPSEC_ROUTE_41, MAP_GROUP(ROUTE113), MAP_NUM(ROUTE113) },
                 { MAPSEC_ROUTE_42, MAP_GROUP(ROUTE114), MAP_NUM(ROUTE114) },
-                { MAPSEC_ROUTE_43, MAP_GROUP(ROUTE116), MAP_NUM(ROUTE116) },
-                { MAPSEC_ROUTE_29, MAP_GROUP(ROUTE29), MAP_NUM(ROUTE29) },
-                { MAPSEC_ROUTE_30, MAP_GROUP(ROUTE30), MAP_NUM(ROUTE30) },
-                { MAPSEC_ROUTE_31, MAP_GROUP(ROUTE31), MAP_NUM(ROUTE31) },
-                { MAPSEC_ROUTE_32, MAP_GROUP(ROUTE32), MAP_NUM(ROUTE32) },
-                { MAPSEC_ROUTE_38, MAP_GROUP(ROUTE110), MAP_NUM(ROUTE110) },
+                { MAPSEC_ROUTE_43, MAP_GROUP(ROUTE115), MAP_NUM(ROUTE115) },
+                { MAPSEC_ROUTE_44, MAP_GROUP(ROUTE116), MAP_NUM(ROUTE116) },
+                { MAPSEC_ROUTE_45, MAP_GROUP(ROUTE45), MAP_NUM(ROUTE45) },*/
+                { MAPSEC_ROUTE_46, MAP_GROUP(ROUTE46), MAP_NUM(ROUTE46) },
             };
 
-            u8 map = Random() % 15;
-            u8 timeOfDay = Random() % 3;
-            u8 monNum = Random() % 3;
-            u16 species = GetMapWildMonFromIndex(oaksTalkRoutes[map].group, oaksTalkRoutes[map].num, monNum + 1);
+            u8 map = Random() % ARRAY_COUNT(oaksTalkRoutes);
+            u8 timeOfDay = Random() % TIMES_OF_DAY_COUNT;
+            u8 monNum = Random() % 6; // choose from middle 6
+            u16 species = GetMapWildMonFromIndex(oaksTalkRoutes[map].group, oaksTalkRoutes[map].num, monNum + 4);
             
             StringCopy(gStringVar1, gSpeciesNames[species]);
             StringCopy(gStringVar2, gRegionMapEntries[oaksTalkRoutes[map].mapSec].name);
             StringExpandPlaceholders(gStringVar4, gText_OaksPkmnTalk1);
 
-            NextRadioLine(taskId, OAKS_POKEMON_TALK_5, gStringVar4, TRUE);
+            NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         }
         break;
     case OAKS_POKEMON_TALK_5:
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_6, gText_OaksPkmnTalk2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_OaksPkmnTalk2, TRUE);
         break;
     case OAKS_POKEMON_TALK_6:
         StringExpandPlaceholders(gStringVar4, gText_OaksPkmnTalk3);
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_7, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         break;
     case OAKS_POKEMON_TALK_7:
         StringExpandPlaceholders(gStringVar4, gText_OaksPkmnTalk4);
-        NextRadioLine(taskId, OAKS_POKEMON_TALK_8, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         break;
     case OAKS_POKEMON_TALK_8:
         {
@@ -370,12 +320,12 @@ void Task_PlayRadioShow(u8 taskId)
                 gText_OPTAdverbSoFlippedOutAnd,
                 gText_OPTAdverbHeartMeltingly,
             };
-            NextRadioLine(taskId, OAKS_POKEMON_TALK_9, adverbs[Random() % 16], TRUE);
+            NextRadioLine(taskId, tCurrentLine + 1, adverbs[Random() % ARRAY_COUNT(adverbs)], TRUE);
         }
         break;
     case OAKS_POKEMON_TALK_9:
         {
-            static const u8 *const adverbs[] = {
+            static const u8 *const adjectives[] = {
                 gText_OPTAdjectiveCute,
                 gText_OPTAdjectiveWeird,
                 gText_OPTAdjectivePleasant,
@@ -395,12 +345,12 @@ void Task_PlayRadioShow(u8 taskId)
             };
             if (--tMiscValue > 0)
             {
-                NextRadioLine(taskId, OAKS_POKEMON_TALK_4, adverbs[Random() % 16], TRUE);
+                NextRadioLine(taskId, OAKS_POKEMON_TALK_4, adjectives[Random() % ARRAY_COUNT(adjectives)], TRUE);
             }
             else
             {
                 tMiscValue = 5;
-                NextRadioLine(taskId, PKMN_CHANNEL_INTERLUDE_1, adverbs[Random() % 16], TRUE);
+                NextRadioLine(taskId, PKMN_CHANNEL_INTERLUDE_1, adjectives[Random() % ARRAY_COUNT(adjectives)], TRUE);
                 tCurrentLine = PKMN_CHANNEL_INTERLUDE_1;
                 tNextLine = NO_RADIO_SHOW;
                 tTextDelay = 100;
@@ -409,7 +359,7 @@ void Task_PlayRadioShow(u8 taskId)
         break;
     case POKEDEX_SHOW_2:
         CopyMonCategoryText(tMiscValue, gStringVar4);
-        NextRadioLine(taskId, POKEDEX_SHOW_3, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         break;
     case POKEDEX_SHOW_3:
         StringCopy(gStringVar4, gPokedexEntries[tMiscValue].description);
@@ -417,7 +367,7 @@ void Task_PlayRadioShow(u8 taskId)
     case POKEDEX_SHOW_4:
         {
             u8 index;
-            for (index = tMiscValue; index < 0x3E8; index++)
+            for (index = tMiscValue; index < 1000; index++) // prevent possible gStringVar4 overflow
             {
                 if (gStringVar4[index] == CHAR_NEWLINE)
                 {
@@ -434,18 +384,16 @@ void Task_PlayRadioShow(u8 taskId)
             }
         }
         break;
-    case POKEDEX_SHOW_5:
-        break;
     case POKEMON_MUSIC_2:
-        NextRadioLine(taskId, POKEMON_MUSIC_3, gText_PkmnMusicBen2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_PkmnMusicBen2, TRUE);
         break;
     case POKEMON_MUSIC_3:
-        NextRadioLine(taskId, POKEMON_MUSIC_4, gText_PkmnMusicBen3, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_PkmnMusicBen3, TRUE);
         break;
     case POKEMON_MUSIC_4:
         StringCopy(gStringVar1, GetDayOfWeekString(gLocalTime.dayOfWeek));
         StringExpandPlaceholders(gStringVar4, gText_PkmnMusicBenFern1);
-        NextRadioLine(taskId, POKEMON_MUSIC_5, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
         break;
     case POKEMON_MUSIC_5:
         {
@@ -454,7 +402,7 @@ void Task_PlayRadioShow(u8 taskId)
             {
                 string = gText_PkmnMusicBenFern2B;
             }
-            NextRadioLine(taskId, POKEMON_MUSIC_6, string, TRUE);
+            NextRadioLine(taskId, tCurrentLine + 1, string, TRUE);
         }
         break;
     case POKEMON_MUSIC_6:
@@ -464,7 +412,7 @@ void Task_PlayRadioShow(u8 taskId)
             {
                 string = gText_PkmnMusicBenFern3B;
             }
-            NextRadioLine(taskId, POKEMON_MUSIC_7, string, TRUE);
+            NextRadioLine(taskId, tCurrentLine + 1, string, TRUE);
         }
         break;
     case POKEMON_MUSIC_7:
@@ -473,52 +421,47 @@ void Task_PlayRadioShow(u8 taskId)
         NextRadioLine(taskId, POKEMON_MUSIC_4, gText_PkmnMusicFern2, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_2:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_3, gText_LuckyChannel2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel2, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_3:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_4, gText_LuckyChannel3, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel3, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_4:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_5, gText_LuckyChannel4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel4, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_5:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_6, gText_LuckyChannel5, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel5, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_6:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_7, gText_LuckyChannel6, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel6, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_7:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_8, gText_LuckyChannel7, TRUE);
+    case LUCKY_NUMBER_SHOW_10:
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel7, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_8:
-        StringExpandPlaceholders(gStringVar4, gText_LuckyChannel8);
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_9, gStringVar4, TRUE);
-        break;
-    case LUCKY_NUMBER_SHOW_9:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_10, gText_LuckyChannel9, TRUE);
-        break;
-    case LUCKY_NUMBER_SHOW_10:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_11, gText_LuckyChannel7, TRUE);
-        break;
     case LUCKY_NUMBER_SHOW_11:
         StringExpandPlaceholders(gStringVar4, gText_LuckyChannel8);
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_12, gStringVar4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
+        break;
+    case LUCKY_NUMBER_SHOW_9:
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel9, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_12:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_13, gText_LuckyChannel10, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel10, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_13:
         {
             u8 nextLine = LUCKY_CHANNEL;
             if (Random() % 16 == 0)
             {
-                nextLine = LUCKY_NUMBER_SHOW_14;
+                nextLine = tCurrentLine + 1;
             }
             NextRadioLine(taskId, nextLine, gText_LuckyChannel11, TRUE);
         }
         break;
     case LUCKY_NUMBER_SHOW_14:
-        NextRadioLine(taskId, LUCKY_NUMBER_SHOW_3, gText_LuckyChannel12, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_LuckyChannel12, TRUE);
         break;
     case LUCKY_NUMBER_SHOW_15:
         NextRadioLine(taskId, LUCKY_CHANNEL, gText_LuckyChannel13, TRUE);
@@ -536,28 +479,28 @@ void Task_PlayRadioShow(u8 taskId)
     case PLACES_AND_PEOPLE_7:
         break;
     case ROCKET_RADIO_2:
-        NextRadioLine(taskId, ROCKET_RADIO_3, gText_RocketRadio2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio2, TRUE);
         break;
     case ROCKET_RADIO_3:
-        NextRadioLine(taskId, ROCKET_RADIO_4, gText_RocketRadio3, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio3, TRUE);
         break;
     case ROCKET_RADIO_4:
-        NextRadioLine(taskId, ROCKET_RADIO_5, gText_RocketRadio4, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio4, TRUE);
         break;
     case ROCKET_RADIO_5:
-        NextRadioLine(taskId, ROCKET_RADIO_6, gText_RocketRadio5, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio5, TRUE);
         break;
     case ROCKET_RADIO_6:
-        NextRadioLine(taskId, ROCKET_RADIO_7, gText_RocketRadio6, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio6, TRUE);
         break;
     case ROCKET_RADIO_7:
-        NextRadioLine(taskId, ROCKET_RADIO_8, gText_RocketRadio7, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio7, TRUE);
         break;
     case ROCKET_RADIO_8:
-        NextRadioLine(taskId, ROCKET_RADIO_9, gText_RocketRadio8, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio8, TRUE);
         break;
     case ROCKET_RADIO_9:
-        NextRadioLine(taskId, ROCKET_RADIO_10, gText_RocketRadio9, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_RocketRadio9, TRUE);
         break;
     case ROCKET_RADIO_10:
         NextRadioLine(taskId, ROCKET_RADIO, gText_RocketRadio10, TRUE);
@@ -565,7 +508,7 @@ void Task_PlayRadioShow(u8 taskId)
     case PKMN_CHANNEL_INTERLUDE_1:
         if (tTextDelay == 0)
         {
-            tCurrentLine = PKMN_CHANNEL_INTERLUDE_2;
+            tCurrentLine = tCurrentLine + 1;
         }
         else
         {
@@ -574,24 +517,25 @@ void Task_PlayRadioShow(u8 taskId)
         break;
     case PKMN_CHANNEL_INTERLUDE_2:
         FillWindowPixelBuffer(tWindowId, 0x11);
-        AddTextPrinterParameterized(tWindowId, 1, gText_PokemonChannel1, 0, 1, 0, NULL);
-        PlayFanfare(MUS_ME_TAMA);
-        tCurrentLine = PKMN_CHANNEL_INTERLUDE_3;
+        AddTextPrinterParameterized5(tWindowId, 2, gText_PokemonChannel1, 0, 1, 0, NULL, 1, 1);
+        PlayFanfare(MUS_PKMNCHANNEL_INTERLUDE);
+        tCurrentLine = tCurrentLine + 1;
         break;
     case PKMN_CHANNEL_INTERLUDE_3:
         if (IsFanfareTaskInactive())
         {
             FillWindowPixelBuffer(tWindowId, 0x11);
-            tCurrentLine = OAKS_POKEMON_TALK;
+            tCurrentLine = OAKS_POKEMON_TALK_4;
             tNumLinesPrinted = 0;
+            PlayNewMapMusic(sRadioChannelSongs[OAKS_POKEMON_TALK]);
         }
         break;
     case BUENAS_PASSWORD_2:
-        NextRadioLine(taskId, BUENAS_PASSWORD_3, gText_BuenasPassword2, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword2, TRUE);
         break;
     case BUENAS_PASSWORD_3:
         {
-            u8 nextLine = BUENAS_PASSWORD_4;
+            u8 nextLine = tCurrentLine + 1;
             if (!BuenasPassword_CheckTime())
             {
                 nextLine = BUENAS_PASSWORD_8;
@@ -610,11 +554,11 @@ void Task_PlayRadioShow(u8 taskId)
                 u16 password = 0;
                 DoTimeBasedEvents();
 
-                if (!FlagGet(FLAG_BUENAS_PASSWORD))
+                if (!FlagGet(FLAG_BUENAS_PASSWORD_SET))
                 {
-                    password = (Random() % 11) << 8 | (Random() % 3);
+                    password = GenerateRandomBuenasPassword();
                     VarSet(VAR_BUENAS_PASSWORD, password);
-                    FlagSet(FLAG_BUENAS_PASSWORD);
+                    FlagSet(FLAG_BUENAS_PASSWORD_SET);
                 }
                 else
                 {
@@ -623,67 +567,68 @@ void Task_PlayRadioShow(u8 taskId)
 
                 StringCopy(gStringVar1, GetBuenasPassword(password >> 8, password & 0xFF));
                 StringExpandPlaceholders(gStringVar4, gText_BuenasPassword4);
-                NextRadioLine(taskId, BUENAS_PASSWORD_5, gStringVar4, TRUE);
+                NextRadioLine(taskId, tCurrentLine + 1, gStringVar4, TRUE);
             }
         }
         break;
     case BUENAS_PASSWORD_5:
-        NextRadioLine(taskId, BUENAS_PASSWORD_6, gText_BuenasPassword5, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword5, TRUE);
         break;
     case BUENAS_PASSWORD_6:
-        NextRadioLine(taskId, BUENAS_PASSWORD_7, gText_BuenasPassword6, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword6, TRUE);
         break;
     case BUENAS_PASSWORD_7:
         {
             u8 nextLine = BUENAS_PASSWORD;
             if (!BuenasPassword_CheckTime())
-                nextLine = BUENAS_PASSWORD_8;
+                nextLine = tCurrentLine + 1;
             NextRadioLine(taskId, nextLine, gText_BuenasPassword7, TRUE);
         }
         break;
     case BUENAS_PASSWORD_8:
-        NextRadioLine(taskId, BUENAS_PASSWORD_9, gText_BuenasPassword17, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword17, TRUE);
         break;
     case BUENAS_PASSWORD_9:
-        NextRadioLine(taskId, BUENAS_PASSWORD_10, gText_BuenasPassword8, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword8, TRUE);
         break;
     case BUENAS_PASSWORD_10:
-        NextRadioLine(taskId, BUENAS_PASSWORD_11, gText_BuenasPassword9, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword9, TRUE);
         break;
     case BUENAS_PASSWORD_11:
-        NextRadioLine(taskId, BUENAS_PASSWORD_12, gText_BuenasPassword10, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword10, TRUE);
         break;
     case BUENAS_PASSWORD_12:
-        NextRadioLine(taskId, BUENAS_PASSWORD_13, gText_BuenasPassword11, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword11, TRUE);
         break;
     case BUENAS_PASSWORD_13:
-        NextRadioLine(taskId, BUENAS_PASSWORD_14, gText_BuenasPassword12, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword12, TRUE);
         break;
     case BUENAS_PASSWORD_14:
-        NextRadioLine(taskId, BUENAS_PASSWORD_15, gText_BuenasPassword13, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword13, TRUE);
         break;
     case BUENAS_PASSWORD_15:
-        NextRadioLine(taskId, BUENAS_PASSWORD_16, gText_BuenasPassword14, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword14, TRUE);
         break;
     case BUENAS_PASSWORD_16:
-        NextRadioLine(taskId, BUENAS_PASSWORD_17, gText_BuenasPassword15, TRUE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword15, TRUE);
         break;
     case BUENAS_PASSWORD_17:
-        NextRadioLine(taskId, BUENAS_PASSWORD_18, gText_BuenasPassword16, FALSE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword16, FALSE);
         break;
     case BUENAS_PASSWORD_18:
         FillWindowPixelBuffer(tWindowId, 0x11);
         tNumLinesPrinted = 0;
-        NextRadioLine(taskId, BUENAS_PASSWORD_19, gText_BuenasPassword17, FALSE);
+        NextRadioLine(taskId, tCurrentLine + 1, gText_BuenasPassword17, FALSE);
         break;
     case BUENAS_PASSWORD_19:
-        NextRadioLine(taskId, BUENAS_PASSWORD_20, NULL, FALSE);
+        NextRadioLine(taskId, tCurrentLine + 1, NULL, FALSE);
         break;
     case BUENAS_PASSWORD_20:
-        gTasks[taskId].tShowNameId = NO_RADIO_SHOW;
-        FlagClear(FLAG_BUENAS_PASSWORD);
+        tShowNameId = NO_RADIO_SHOW;
+        FlagClear(FLAG_BUENAS_PASSWORD_SET);
         FadeOutAndPlayNewMapMusic(MUS_DUMMY, 4);
-        tCurrentLine = BUENAS_PASSWORD_21;
+        Overworld_SetSavedMusic(MUS_DUMMY);
+        tCurrentLine = tCurrentLine + 1;
         tNumLinesPrinted = 0;
         break;
     case BUENAS_PASSWORD_21:
@@ -695,7 +640,7 @@ void Task_PlayRadioShow(u8 taskId)
         {
             if (tNumLinesPrinted > 1 && tScrollDistance)
             {
-                #define RADIO_SCROLL_SPEED 2
+                #define RADIO_SCROLL_SPEED 1
                 if (tScrollDistance < RADIO_SCROLL_SPEED)
                 {
                     ScrollWindow(tWindowId, 0, tScrollDistance, 0x11);
@@ -722,7 +667,7 @@ void Task_PlayRadioShow(u8 taskId)
     default:
         FillWindowPixelBuffer(tWindowId, 0x11);
         CopyWindowToVram(tWindowId, 2);
-        PlayNewMapMusic(MUS_DUMMY);
+        PlayAndSaveMusic(MUS_DUMMY);
         break;
     }
 }
@@ -798,7 +743,7 @@ void Task_FieldRadio_1(u8 taskId)
             *(str++) = CHAR_DBL_QUOT_RIGHT;
             *str = EOS;
         }
-        AddTextPrinterParameterized(0, 1, gStringVar4, 0, 1, 0, NULL);
+        AddTextPrinterParameterized(0, 2, gStringVar4, 0, 1, 0, NULL);
     }
     else if (gTasks[taskId].tTimer > 100)
     {
@@ -820,7 +765,7 @@ void Task_FieldRadio_1(u8 taskId)
 void Task_FieldRadio_2(u8 taskId)
 {
     RunTextPrinters();  // TODO: This is needed for the RADIO_PAUSE, but is this the right way to do it?
-    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         ClearDialogWindowAndFrame(0, TRUE);
         EnableBothScriptContexts();

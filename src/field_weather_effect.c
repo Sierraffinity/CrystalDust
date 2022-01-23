@@ -479,7 +479,7 @@ void Rain_InitVars(void)
     gWeatherPtr->targetRainSpriteCount = 10;
     gWeatherPtr->gammaTargetIndex = 3;
     gWeatherPtr->gammaStepDelay = 20;
-    SetRainStrengthFromSoundEffect(SE_T_KOAME);
+    SetRainStrengthFromSoundEffect(SE_RAIN);
 }
 
 void Rain_InitAll(void)
@@ -559,8 +559,7 @@ static void StartRainSpriteFall(struct Sprite *sprite)
     if (sprite->tRandom == 0)
         sprite->tRandom = 361;
 
-    // Standard RNG sequence.
-    rand = sprite->tRandom * 1103515245 + 12345;
+    rand = ISO_RANDOMIZE2(sprite->tRandom);
     sprite->tRandom = ((rand & 0x7FFF0000) >> 16) % 600;
 
     numFallingFrames = sRainSpriteFallingDurations[gWeatherPtr->isDownpour][0];
@@ -879,7 +878,7 @@ static const union AnimCmd *const sSnowflakeAnimCmds[] =
 
 static const struct SpriteTemplate sSnowflakeSpriteTemplate =
 {
-    .tileTag = 0xFFFF,
+    .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = 0x1200,
     .oam = &sSnowflakeSpriteOamData,
     .anims = sSnowflakeAnimCmds,
@@ -1024,7 +1023,7 @@ void Thunderstorm_InitVars(void)
     gWeatherPtr->gammaStepDelay = 20;
     gWeatherPtr->weatherGfxLoaded = FALSE;  // duplicate assignment
     gWeatherPtr->thunderTriggered = 0;
-    SetRainStrengthFromSoundEffect(SE_T_AME);
+    SetRainStrengthFromSoundEffect(SE_THUNDERSTORM);
 }
 
 void Thunderstorm_InitAll(void)
@@ -1052,7 +1051,7 @@ void Downpour_InitVars(void)
     gWeatherPtr->gammaTargetIndex = 3;
     gWeatherPtr->gammaStepDelay = 20;
     gWeatherPtr->weatherGfxLoaded = FALSE;  // duplicate assignment
-    SetRainStrengthFromSoundEffect(SE_T_OOAME);
+    SetRainStrengthFromSoundEffect(SE_DOWNPOUR);
 }
 
 void Downpour_InitAll(void)
@@ -1221,9 +1220,9 @@ static void UpdateThunderSound(void)
                 return;
 
             if (Random() & 1)
-                PlaySE(SE_T_KAMI);
+                PlaySE(SE_THUNDER);
             else
-                PlaySE(SE_T_KAMI2);
+                PlaySE(SE_THUNDER2);
 
             gWeatherPtr->thunderTriggered = 0;
         }

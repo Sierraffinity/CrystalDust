@@ -61,7 +61,7 @@ CherrygroveCity_Mart_Text_BallGuy_PostDex:
 
 CherrygroveCity_Mart_Text_Youngster:
 	.string "When I was walking in the grass,\n"
-	.string "a BUG-type POKéMON popped out and\l"
+	.string "a BUG POKéMON popped out and\l"
 	.string "poisoned my POKéMON!\p"
 	.string "I tried to keep going, but then my\n"
 	.string "POKéMON fainted.\p"

@@ -14,8 +14,8 @@ static const u8 sTileBitAttributes[] =
     [MB_SECRET_BASE_WALL] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_TALL_GRASS] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
     [MB_LONG_GRASS] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
-    [MB_UNUSED_04] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_05] = TILE_ATTRIBUTES(FALSE, FALSE, TRUE),
+    [MB_HEADBUTT_TREE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_LONG_GRASS_TOP_EDGE] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
     [MB_DEEP_SAND] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
     [MB_SHORT_GRASS] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_UNUSED_CAVE] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
@@ -535,9 +535,9 @@ bool8 MetatileBehavior_IsTrickHouseSlipperyFloor(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 Unref_MetatileBehavior_IsUnused05(u8 metatileBehavior)
+bool8 MetatileBehavior_IsLongGrassTop(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_UNUSED_05)
+    if (metatileBehavior == MB_LONG_GRASS_TOP_EDGE)
         return TRUE;
     else
         return FALSE;
@@ -642,6 +642,14 @@ bool8 MetatileBehavior_IsSlideEast(u8 metatileBehavior)
 bool8 MetatileBehavior_IsCounter(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_COUNTER)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsHeadbuttTree(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_HEADBUTT_TREE)
         return TRUE;
     else
         return FALSE;
@@ -1167,7 +1175,7 @@ bool8 MetatileBehavior_IsFortreeBridge(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsPacifilogVerticalLog1(u8 metatileBehavior)
+bool8 MetatileBehavior_IsPacifidlogVerticalLog1(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_PACIFIDLOG_VERTICAL_LOG_1)
         return TRUE;
@@ -1175,7 +1183,7 @@ bool8 MetatileBehavior_IsPacifilogVerticalLog1(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsPacifilogVerticalLog2(u8 metatileBehavior)
+bool8 MetatileBehavior_IsPacifidlogVerticalLog2(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_PACIFIDLOG_VERTICAL_LOG_2)
         return TRUE;
@@ -1183,7 +1191,7 @@ bool8 MetatileBehavior_IsPacifilogVerticalLog2(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsPacifilogHorizontalLog1(u8 metatileBehavior)
+bool8 MetatileBehavior_IsPacifidlogHorizontalLog1(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_PACIFIDLOG_HORIZONTAL_LOG_1)
         return TRUE;
@@ -1191,7 +1199,7 @@ bool8 MetatileBehavior_IsPacifilogHorizontalLog1(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsPacifilogHorizontalLog2(u8 metatileBehavior)
+bool8 MetatileBehavior_IsPacifidlogHorizontalLog2(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_PACIFIDLOG_HORIZONTAL_LOG_2)
         return TRUE;
@@ -1216,12 +1224,11 @@ bool8 MetatileBehavior_IsTrickHousePuzzleDoor(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsRegionMap(u8 metatileBehavior)
+bool8 MetatileBehavior_IsRegionMap(u8 metatileBehavior, u8 playerDirection)
 {
-    if (metatileBehavior == MB_REGION_MAP)
-        return TRUE;
-    else
+    if (playerDirection != DIR_NORTH || metatileBehavior != MB_REGION_MAP)
         return FALSE;
+    return TRUE;
 }
 
 bool8 MetatileBehavior_IsClosedSootopolisDoor(u8 metatileBehavior)
@@ -1407,6 +1414,7 @@ bool8 MetatileBehavior_IsRunningDisallowed(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_NO_RUNNING
      || metatileBehavior == MB_LONG_GRASS
+     || metatileBehavior == MB_LONG_GRASS_TOP_EDGE
      || metatileBehavior == MB_HOT_SPRINGS
      || MetatileBehavior_IsPacifidlogLog(metatileBehavior) != FALSE)
         return TRUE;
@@ -1418,6 +1426,7 @@ bool8 MetatileBehavior_IsCuttableGrass(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_TALL_GRASS
      || metatileBehavior == MB_LONG_GRASS
+     || metatileBehavior == MB_LONG_GRASS_TOP_EDGE
      || metatileBehavior == MB_ASHGRASS
      || metatileBehavior == MB_LONG_GRASS_SOUTH_EDGE)
         return TRUE;
@@ -1557,9 +1566,10 @@ bool8 MetatileBehavior_IsQuestionnaire(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsLongGrass_Duplicate(u8 metatileBehavior)
+bool8 MetatileBehavior_IsAnyLongGrass(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_LONG_GRASS)
+    if (metatileBehavior == MB_LONG_GRASS ||
+        metatileBehavior == MB_LONG_GRASS_TOP_EDGE)
         return TRUE;
     else
         return FALSE;

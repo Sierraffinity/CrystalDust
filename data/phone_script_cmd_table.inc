@@ -40,6 +40,10 @@ gPhoneScriptCmdTable::
 	.4byte PhoneScrCmd_compare_var_to_var
 	.4byte PhoneScrCmd_getmapinfo
 	.4byte PhoneScrCmd_buffermapsecname
+	.4byte PhoneScrCmd_checkbankedmoney
+	.4byte PhoneScrCmd_bufferbankedmoney
+	.4byte PhoneScrCmd_buffernumberstring
+	.4byte PhoneScrCmd_bufferboxname
 
 gPhoneScriptCmdTableEnd::
 	.4byte PhoneScrCmd_nop

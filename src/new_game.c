@@ -13,6 +13,7 @@
 #include "load_save.h"
 #include "pokeblock.h"
 #include "dewford_trend.h"
+#include "game_build.h"
 #include "berry.h"
 #include "rtc.h"
 #include "easy_chat.h"
@@ -32,6 +33,8 @@
 #include "constants/maps.h"
 #include "pokedex.h"
 #include "save.h"
+#include "string_util.h"
+#include "strings.h"
 #include "link_rfu.h"
 #include "main.h"
 #include "contest.h"
@@ -50,7 +53,7 @@ extern const u8 EventScript_ResetAllMapFlags[];
 
 // this file's functions
 static void ClearFrontierRecord(void);
-static void WarpToTruck(void);
+static void WarpToPlayersRoom(void);
 static void ResetMiniGamesResults(void);
 
 // EWRAM vars
@@ -87,7 +90,7 @@ void CopyTrainerId(u8 *dst, u8 *src)
 
 static void InitPlayerTrainerId(void)
 {
-    u32 trainerId = (Random() << 0x10) | GetGeneratedTrainerIdLower();
+    u32 trainerId = (Random() << 16) | Random();
     SetTrainerId(trainerId, gSaveBlock2Ptr->playerTrainerId);
 }
 
@@ -99,7 +102,8 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsSound = OPTIONS_SOUND_MONO;
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
-    gSaveBlock2Ptr->regionMapZoom = FALSE;
+    gSaveBlock2Ptr->daylightSavingTime = FALSE;
+    gSaveBlock2Ptr->twentyFourHourClock = FALSE;
 }
 
 static void ClearPokedexFlags(void)
@@ -126,7 +130,7 @@ static void ClearFrontierRecord(void)
     gSaveBlock2Ptr->frontier.opponentNames[1][0] = EOS;
 }
 
-static void WarpToTruck(void)
+static void WarpToPlayersRoom(void)
 {
     SetWarpDestination(MAP_GROUP(NEW_BARK_TOWN_PLAYERS_HOUSE_2F), MAP_NUM(NEW_BARK_TOWN_PLAYERS_HOUSE_2F), -1, -1, -1);
     WarpIntoMap();
@@ -150,9 +154,6 @@ void ResetMenuAndMonGlobals(void)
 
 void NewGameInitData(void)
 {
-    if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
-        RtcReset();
-
     gDifferentSaveFile = 1;
     gSaveBlock2Ptr->encryptionKey = 0;
     ZeroPlayerPartyMons();
@@ -162,7 +163,7 @@ void NewGameInitData(void)
     ClearSav1();
     ClearMailData();
     gSaveBlock2Ptr->specialSaveWarpFlags = 0;
-    gSaveBlock2Ptr->field_A8 = 0;
+    gSaveBlock2Ptr->gcnLinkFlags = 0;
     InitPlayerTrainerId();
     PlayTimeCounter_Reset();
     ClearPokedexFlags();
@@ -172,6 +173,7 @@ void NewGameInitData(void)
     ClearSecretBases();
     ClearBerryTrees();
     SetMoney(&gSaveBlock1Ptr->money, 3000);
+    SetMoney(&gSaveBlock1Ptr->bankedMoney, 0);
     SetCoins(0);
     ResetLinkContestBoolean();
     ResetGameStats();
@@ -194,10 +196,11 @@ void NewGameInitData(void)
     InitDewfordTrend();
     ResetFanClub();
     ResetLotteryCorner();
-    WarpToTruck();
+    WarpToPlayersRoom();
     ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
+    StringCopy(gSaveBlock1Ptr->rivalName, gText_DefaultNameSilver);
     ResetMiniGamesResults();
-    copy_strings_to_sav1();
+    InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();
     ResetAllApprenticeData();
     ClearRankingHallRecords();
@@ -206,6 +209,7 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+    SetBuildNumber();
 }
 
 static void ResetMiniGamesResults(void)

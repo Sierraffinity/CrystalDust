@@ -22,7 +22,7 @@ VictoryRoad_B2F_EventScript_Julie:: @ 823691A
 	end
 
 VictoryRoad_B2F_EventScript_Felix:: @ 8236931
-	trainerbattle_single TRAINER_FELIX, VictoryRoad_B2F_Text_FelixIntro, VictoryRoad_B2F_Text_FelixDefeat
+	trainerbattle_single TRAINER_BENNY, VictoryRoad_B2F_Text_FelixIntro, VictoryRoad_B2F_Text_FelixDefeat
 	msgbox VictoryRoad_B2F_Text_FelixPostBattle, MSGBOX_AUTOCLOSE
 	end
 

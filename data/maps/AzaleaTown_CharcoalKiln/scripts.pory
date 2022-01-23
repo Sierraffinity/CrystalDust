@@ -1,0 +1,75 @@
+mapscripts AzaleaTown_CharcoalKiln_MapScripts { }
+
+script AzaleaTown_CharcoalKiln_EventScript_Master {
+    lock
+    faceplayer
+    if (flag(FLAG_RECEIVED_HM01))
+    {
+        msgbox("You chased off TEAM ROCKET and\n"
+               "went to ILEX FOREST alone?\p"
+               "That takes guts! I like that.\n"
+               "Come train with us.")
+    }
+    elif (flag(FLAG_CLEARED_SLOWPOKE_WELL))
+    {
+        msgbox("The SLOWPOKE have returned…\n"
+               "But my APPRENTICE hasn't come\l"
+               "back from ILEX FOREST.\p"
+               "Where in the world could that\n"
+               "lazy guy be?")
+    }
+    else
+    {
+        msgbox("All the SLOWPOKE have disappeared\n"
+               "from the town.\p"
+               "The forest's protector may be\n"
+               "angry with us…\p"
+               "It may be a bad omen.\n"
+               "We should stay in.")
+    }
+    release
+}
+
+script AzaleaTown_CharcoalKiln_EventScript_Apprentice {
+    lock
+    faceplayer
+    if (flag(FLAG_RECEIVED_CHARCOAL_AZALEA))
+    {
+        msgbox("The SLOWPOKE came back, and you\n"
+               "even found FARFETCH'D.\p"
+               "You're the coolest, man!")
+    }
+    elif (flag(FLAG_RECEIVED_HM01))
+    {
+        msgbox("I'm sorry--I forgot to thank you\n"
+               "for helping me with FARFETCH'D.\p"
+               "This is CHARCOAL that I made.\n"
+               "FIRE-type POKéMON would be happy\l"
+               "to hold that.")
+        giveitem(ITEM_CHARCOAL)
+        if (!var(VAR_RESULT))
+        {
+			goto(Common_EventScript_ShowBagIsFull)
+        }
+        else
+        {
+            setflag(FLAG_RECEIVED_CHARCOAL_AZALEA)
+        }
+    }
+    else
+    {
+        msgbox("Where have all the SLOWPOKE gone?\n"
+               "Are they out playing somewhere?")
+    }
+    release
+}
+
+script AzaleaTown_CharcoalKiln_EventScript_Farfetchd {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_FARFETCHD, 0)
+    msgbox("FARFETCH'D: Kwaa!")
+    waitmoncry
+    release
+}

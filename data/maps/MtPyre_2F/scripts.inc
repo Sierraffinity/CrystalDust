@@ -18,7 +18,7 @@ MtPyre_2F_EventScript_PokefanM:: @ 823111F
 	end
 
 MtPyre_2F_EventScript_Mark:: @ 8231128
-	trainerbattle_single TRAINER_MARK, MtPyre_2F_Text_MarkIntro, MtPyre_2F_Text_MarkDefeat
+	trainerbattle_single TRAINER_MARK_OLD, MtPyre_2F_Text_MarkIntro, MtPyre_2F_Text_MarkDefeat
 	msgbox MtPyre_2F_Text_MarkPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -33,7 +33,7 @@ MtPyre_2F_EventScript_Dez:: @ 823115A
 	end
 
 MtPyre_2F_EventScript_Leah:: @ 8231175
-	trainerbattle_single TRAINER_LEAH, MtPyre_2F_Text_LeahIntro, MtPyre_2F_Text_LeahDefeat
+	trainerbattle_single TRAINER_ROCKET_SLOWPOKE_WELL_3, MtPyre_2F_Text_LeahIntro, MtPyre_2F_Text_LeahDefeat
 	msgbox MtPyre_2F_Text_LeahPostBattle, MSGBOX_AUTOCLOSE
 	end
 

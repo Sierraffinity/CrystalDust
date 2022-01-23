@@ -16,13 +16,14 @@ const struct TilesPal *GetWindowFrameTilesPal(u8 id);
 void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset);
 void LoadSignMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset);
 void LoadThinWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset);
+void LoadThinWindowBorderTiles(u8 windowId, u16 destOffset);
 void LoadUserWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset);
 void LoadWindowGfx(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset);
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset);
 void DrawTextBorderOuter(u8 windowId, u16 tileNum, u8 palNum);
 void DrawTextBorderInner(u8 windowId, u16 tileNum, u8 palNum);
 void rbox_fill_rectangle(u8 windowId);
-const u16 *stdpal_get(u8 id);
+const u16 *GetTextWindowPalette(u8 id);
 void sub_8098C6C(u8 bg, u16 destOffset, u8 palOffset);
 
 #endif // GUARD_TEXT_WINDOW_H

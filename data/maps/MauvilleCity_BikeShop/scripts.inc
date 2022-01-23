@@ -4,7 +4,7 @@ MauvilleCity_BikeShop_MapScripts:: @ 820EBBB
 MauvilleCity_BikeShop_EventScript_Rydel:: @ 820EBBC
 	lock
 	faceplayer
-	@goto_if_set FLAG_ROCKET_TAKEOVER, MauvilleCity_BikeShop_EventScript_AskSwitchBikes
+	@goto_if_set FLAG_FLORIA_WENT_TO_ROUTE_36, MauvilleCity_BikeShop_EventScript_AskSwitchBikes
 	goto_if_set FLAG_LEARNED_TO_CATCH_POKEMON, MauvilleCity_BikeShop_EventScript_SkipGreeting
 	msgbox MauvilleCity_BikeShop_Text_RydelGreeting, MSGBOX_DEFAULT
 	msgbox MauvilleCity_BikeShop_Text_DidYouComeFromFarAway, MSGBOX_YESNO
@@ -38,7 +38,7 @@ MauvilleCity_BikeShop_EventScript_NotFar:: @ 820EC3D
 	end
 
 MauvilleCity_BikeShop_EventScript_YesFar:: @ 820EC4A
-	@setflag FLAG_ROCKET_TAKEOVER
+	@setflag FLAG_FLORIA_WENT_TO_ROUTE_36
 	goto MauvilleCity_BikeShop_EventScript_ChooseBike
 	end
 

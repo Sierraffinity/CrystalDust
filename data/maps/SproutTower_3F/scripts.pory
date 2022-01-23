@@ -9,6 +9,7 @@ script SproutTower_3F_EventScript_Painting {
 
 script SproutTower_3F_EventScript_RivalScene {
     lockall
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
     playse(SE_PIN)
     applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
 	waitmovement(0)
@@ -46,7 +47,7 @@ script SproutTower_3F_EventScript_RivalScene {
     waitmovement(0)
 	applymovement(RIVAL_ID, Common_Movement_Delay48)
     waitmovement(0)
-    playbgm(MUS_RIVALENC, 0)
+    playbgm(MUS_ENCOUNTER_RIVAL, 0)
 	applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalToPlayer)
     waitmovement(0)
     msgbox("…\n"
@@ -62,13 +63,13 @@ script SproutTower_3F_EventScript_RivalScene {
            "weak POKéMON.")
     applymovement(RIVAL_ID, Common_Movement_WalkInPlaceFastestUp)
     waitmovement(0)
-    call(Common_RestoreOriginalTextColor)
+    textcolor(MSG_COLOR_PREV)
     msgbox("{RIVAL} used the\n"
            "ESCAPE ROPE.")
     closemessage
 	applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalSpin)
 	waitmovement(0)
-	playse(SE_TK_WARPIN)
+	playse(SE_WARP_IN)
 	applymovement(RIVAL_ID, SproutTower_3F_Movement_RivalFlyAway)
 	waitmovement(0)
 	removeobject(RIVAL_ID)

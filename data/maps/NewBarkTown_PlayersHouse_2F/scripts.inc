@@ -36,7 +36,7 @@ Common_Text_LookCloserAtMap: @ 81F8820
 NewBarkTown_PlayersHouse_2F_Radio::
 	goto_if_set FLAG_SYS_POKEMON_GET, EventScript_Radio1
 	goto_if_set FLAG_LISTENED_TO_INITIAL_RADIO, NewBarkTown_PlayersHouse_2F_Radio_AlreadyListened
-	playbgm MUS_RG_KENKYU 0
+	playbgm MUS_OAKS_LAB 0
 	message NewBarkTown_PlayersHouse_2F_Text_RadioText1
 	waitmessage
 	delay 90

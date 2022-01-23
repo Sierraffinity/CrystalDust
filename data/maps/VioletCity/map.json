@@ -1,256 +1,266 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": false,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_GymSign",
-            "type": "sign",
-            "x": 20,
-            "y": 19
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_SproutTowerSign",
-            "type": "sign",
-            "x": 33,
-            "y": 11
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_TownSloganSign",
-            "type": "sign",
-            "x": 31,
-            "y": 23
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "VioletCity_EarlsAcademySign",
-            "type": "sign",
-            "x": 34,
-            "y": 19
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDDEN_ITEM_VIOLET_CITY_HYPER_POTION",
-            "item": "ITEM_HYPER_POTION",
-            "type": "hidden_item",
-            "x": 45,
-            "y": 16
-        },
-        {
-            "elevation": 0,
-            "fruit_tree_id": "FRUIT_TREE_VIOLET_CITY",
-            "type": "fruit_tree",
-            "x": 18,
-            "y": 34
-        }
-    ],
-    "connections": [
-        {
-            "direction": "right",
-            "map": "MAP_ROUTE31",
-            "offset": 20
-        },
-        {
-            "direction": "down",
-            "map": "MAP_ROUTE32",
-            "offset": -2
-        },
-        {
-            "direction": "left",
-            "map": "MAP_ROUTE36",
-            "offset": -2
-        }
-    ],
-    "coord_events": [
-    ],
-    "id": "MAP_VIOLET_CITY",
-    "layout": "LAYOUT_VIOLET_CITY",
-    "map_type": "MAP_TYPE_CITY",
-    "music": "MUS_VIOLET",
-    "name": "VioletCity",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_VIOLET_CITY_EARL",
-            "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "VioletCity_Earl",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 18,
-            "y": 18
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
-            "movement_range_x": 2,
-            "movement_range_y": 2,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "VioletCity_GhostGirl",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 34,
-            "y": 32
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-            "movement_range_x": 1,
-            "movement_range_y": 2,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "VioletCity_PrimeTimeGuy",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 31,
-            "y": 16
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
-            "movement_range_x": 1,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-            "script": "VioletCity_Gramps",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 22,
-            "y": 23
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_BOY_1",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "VioletCity_TreeBoy",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 7,
-            "y": 22
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_ITEM_VIOLET_CITY_PP_UP",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "VioletCity_EventScript_ItemPPUp",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 6,
-            "y": 3
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_ITEM_VIOLET_CITY_RARE_CANDY",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "VioletCity_EventScript_ItemRareCandy",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 43,
-            "y": 5
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_TEMP_11",
-            "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "EventScript_CutTree",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 44,
-            "y": 21
-        }
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_VIOLET_CITY",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_VIOLET_CITY_HOUSE1",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 4,
-            "y": 18
-        },
-        {
-            "dest_map": "MAP_VIOLET_CITY_EARLS_ACADEMY",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 37,
-            "y": 19
-        },
-        {
-            "dest_map": "MAP_VIOLET_CITY_GYM",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 24,
-            "y": 19
-        },
-        {
-            "dest_map": "MAP_VIOLET_CITY_POKEMON_CENTER_1F",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 38,
-            "y": 28
-        },
-        {
-            "dest_map": "MAP_VIOLET_CITY_HOUSE2",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 26,
-            "y": 32
-        },
-        {
-            "dest_map": "MAP_VIOLET_CITY_MART",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 14,
-            "y": 19
-        },
-        {
-            "dest_map": "MAP_ROUTE31_GATEHOUSE",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 47,
-            "y": 27
-        },
-        {
-            "dest_map": "MAP_SPROUT_TOWER_1F",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 30,
-            "y": 8
-        }
-    ],
-    "weather": "WEATHER_SUNNY"
+  "id": "MAP_VIOLET_CITY",
+  "name": "VioletCity",
+  "layout": "LAYOUT_VIOLET_CITY",
+  "music": "MUS_VIOLET",
+  "region_map_section": "MAPSEC_VIOLET_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_CITY",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "right",
+      "offset": 20,
+      "map": "MAP_ROUTE31"
+    },
+    {
+      "direction": "down",
+      "offset": -2,
+      "map": "MAP_ROUTE32"
+    },
+    {
+      "direction": "left",
+      "offset": -2,
+      "map": "MAP_ROUTE36"
+    }
+  ],
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "in_connection": false,
+      "x": 18,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VioletCity_Earl",
+      "flag": "FLAG_HIDE_VIOLET_CITY_EARL"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "in_connection": false,
+      "x": 34,
+      "y": 32,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VioletCity_GhostGirl",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
+      "in_connection": false,
+      "x": 31,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VioletCity_PrimeTimeGuy",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+      "in_connection": false,
+      "x": 22,
+      "y": 23,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VioletCity_Gramps",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "in_connection": false,
+      "x": 7,
+      "y": 22,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VioletCity_TreeBoy",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 6,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VioletCity_EventScript_ItemPPUp",
+      "flag": "FLAG_ITEM_VIOLET_CITY_PP_UP"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 43,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VioletCity_EventScript_ItemRareCandy",
+      "flag": "FLAG_ITEM_VIOLET_CITY_RARE_CANDY"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
+      "in_connection": false,
+      "x": 44,
+      "y": 21,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_CutTree",
+      "flag": "FLAG_TEMP_11"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_CITY_HOUSE1",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 37,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_CITY_EARLS_ACADEMY",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 24,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_CITY_GYM",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 38,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_CITY_POKEMON_CENTER_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 26,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_CITY_HOUSE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 14,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_CITY_MART",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 47,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE31_GATEHOUSE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 30,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SPROUT_TOWER_1F",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 20,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "VioletCity_GymSign"
+    },
+    {
+      "type": "sign",
+      "x": 33,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "VioletCity_SproutTowerSign"
+    },
+    {
+      "type": "sign",
+      "x": 31,
+      "y": 23,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "VioletCity_TownSloganSign"
+    },
+    {
+      "type": "sign",
+      "x": 34,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "VioletCity_EarlsAcademySign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 45,
+      "y": 16,
+      "elevation": 3,
+      "item": "ITEM_HYPER_POTION",
+      "flag": "FLAG_HIDDEN_ITEM_VIOLET_CITY_HYPER_POTION"
+    },
+    {
+      "type": "fruit_tree",
+      "x": 18,
+      "y": 34,
+      "elevation": 0,
+      "fruit_tree_id": "FRUIT_TREE_VIOLET_CITY"
+    }
+  ]
 }

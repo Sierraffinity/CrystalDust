@@ -1,0 +1,135 @@
+mapscripts AzaleaTown_Gym_MapScripts { }
+
+script AzaleaTown_Gym_EventScript_Bugsy {
+    trainerbattle_single(TRAINER_BUGSY, AzaleaTown_Gym_Text_BugsyPreBattle, AzaleaTown_Gym_Text_BugsyDefeat, AzaleaTown_Gym_EventScript_BugsyDefeated, NO_MUSIC)
+    if (!flag(FLAG_GOT_TM47_FROM_BUGSY))
+    {
+        goto(AzaleaTown_Gym_EventScript_GiveSteelWing)
+    }
+    msgbox("BUG POKéMON are deep. There are\n"
+	       "many mysteries to be explored.\p"
+		   "Study your favorites thoroughly.")
+	release
+}
+
+text AzaleaTown_Gym_Text_BugsyPreBattle {
+	"I'm BUGSY! I never lose when it\n"
+	"comes to BUG POKéMON.\p"
+	"My research is going to make me the\n"
+	"authority on BUG POKéMON!\p"
+	"Let me demonstrate what I've learned\n"
+	"from my studies."
+}
+
+text AzaleaTown_Gym_Text_BugsyDefeat {
+	"Whoa, amazing!\n"
+	"You're an expert on POKéMON!\l"
+	"My research isn't complete yet.\p"
+	"Okay, you win.\n"
+	"Take this BADGE."
+}
+
+script AzaleaTown_Gym_EventScript_BugsyDefeated {
+	textcolor(MSG_COLOR_SYS)
+    message("{PLAYER} received the HIVEBADGE\n"
+            "from BUGSY.")
+    waitmessage
+    call(Common_EventScript_PlayGymBadgeFanfare)
+	textcolor(MSG_COLOR_PREV)
+    setflag(FLAG_DEFEATED_AZALEA_GYM)
+    setflag(FLAG_BADGE02_GET)
+    setgymtrainers(2)
+    goto(AzaleaTown_Gym_EventScript_GiveSteelWing)
+}
+
+script AzaleaTown_Gym_EventScript_GiveSteelWing {
+    msgbox("Do you know the benefits of the\n"
+		   "HIVEBADGE?\p"
+		   "If you have it, POKéMON up to Lv.\n"
+		   "30 will obey, even traded ones.\p"
+		   "POKéMON that know CUT will be able\n"
+		   "to use it outside of battle, too.\p"
+		   "Here, I also want you to have this.")
+    checkitemspace(ITEM_TM47, 1)
+    if (!var(VAR_RESULT))
+	{
+        goto(Common_EventScript_ShowBagIsFull)
+	}
+	else
+	{
+		givetmhm_msg("{PLAYER} received TM47\n"
+					 "from BUGSY.", ITEM_TM47)
+		setflag(FLAG_GOT_TM47_FROM_BUGSY)
+		msgbox("TM47 contains STEEL WING.\p"
+			   "After attacking, it has a one-in-ten\n"
+			   "chance of raising your DEFENSE.\l"
+			   "Isn't that great?")
+	}
+	release
+}
+
+script AzaleaTown_Gym_EventScript_GymGuide {
+    lock
+	faceplayer
+    if (flag(FLAG_DEFEATED_AZALEA_GYM))
+    {
+        msgbox("Well done! That was a great clash\n"
+               "of talented young TRAINERS.\p"
+               "With people like you, the future of\n"
+               "POKéMON is bright!")
+    }
+    else
+    {
+        msgbox("Yo, challenger!\p"
+               "BUGSY's young, but his knowledge of\n"
+               "BUG POKéMON is for real.\p"
+               "It's going to be tough without my\n"
+               "advice. Let's see…\p"
+               "BUG POKéMON can't stand being too\n"
+               "close to fire.\p"
+               "FLYING-type moves are super-\n"
+               "effective too.")
+    }
+	release
+}
+
+script AzaleaTown_Gym_EventScript_GymStatue {
+    lockall
+    if (flag(FLAG_BADGE02_GET))
+    {
+        msgbox("AZALEA TOWN POKéMON GYM\n"
+               "LEADER: BUGSY\p"
+               "WINNING TRAINERS:\n"
+               "{PLAYER}")
+    }
+    else
+    {
+        msgbox("AZALEA TOWN POKéMON GYM")
+    }
+    releaseall
+}
+
+script AzaleaTown_Gym_EventScript_Benny {
+	trainerbattle_single(TRAINER_BENNY, AzaleaTown_Gym_Text_BennyIntro, AzaleaTown_Gym_Text_BennyDefeat)
+	msgbox(AzaleaTown_Gym_Text_BennyPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script AzaleaTown_Gym_EventScript_Al {
+	trainerbattle_single(TRAINER_AL, AzaleaTown_Gym_Text_AlIntro, AzaleaTown_Gym_Text_AlDefeat)
+	msgbox(AzaleaTown_Gym_Text_AlPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script AzaleaTown_Gym_EventScript_Josh {
+	trainerbattle_single(TRAINER_JOSH, AzaleaTown_Gym_Text_JoshIntro, AzaleaTown_Gym_Text_JoshDefeat)
+	msgbox(AzaleaTown_Gym_Text_JoshPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script AzaleaTown_Gym_EventScript_Amy {
+	trainerbattle_double(TRAINER_AMY_AND_MAY, AzaleaTown_Gym_Text_AmyIntro, AzaleaTown_Gym_Text_AmyAndMayDefeat, AzaleaTown_Gym_Text_AmyNotEnoughMons)
+	msgbox(AzaleaTown_Gym_Text_AmyPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script AzaleaTown_Gym_EventScript_May {
+	trainerbattle_double(TRAINER_AMY_AND_MAY, AzaleaTown_Gym_Text_MayIntro, AzaleaTown_Gym_Text_AmyAndMayDefeat, AzaleaTown_Gym_Text_MayNotEnoughMons)
+	msgbox(AzaleaTown_Gym_Text_MayPostBattle, MSGBOX_AUTOCLOSE)
+}

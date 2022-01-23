@@ -15,7 +15,7 @@ script VioletCity_House1_EventScript_Strawberry {
     lock
     faceplayer
     waitse
-    playmoncry(SPECIES_SPEAROW, 0)
+    playmoncry(SPECIES_PIDGEY, 0)
     msgbox("STRAWBERRY: Pijji!")
     waitmoncry
     release

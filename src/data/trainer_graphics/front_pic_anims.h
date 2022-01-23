@@ -2,7 +2,7 @@ static const union AnimCmd *const sAnims_Hiker[] ={
     sAnim_GeneralFrame0,
 };
 
-static const union AnimCmd *const sAnims_AquaGruntM[] ={
+static const union AnimCmd *const sAnims_RocketGruntM[] ={
     sAnim_GeneralFrame0,
 };
 
@@ -18,11 +18,11 @@ static const union AnimCmd *const sAnims_BirdKeeper[] ={
     sAnim_GeneralFrame0,
 };
 
-static const union AnimCmd *const sAnims_Collector[] ={
+static const union AnimCmd *const sAnims_Sage[] ={
     sAnim_GeneralFrame0,
 };
 
-static const union AnimCmd *const sAnims_AquaGruntF[] ={
+static const union AnimCmd *const sAnims_RocketGruntF[] ={
     sAnim_GeneralFrame0,
 };
 
@@ -34,7 +34,7 @@ static const union AnimCmd *const sAnims_MagmaGruntM[] ={
     sAnim_GeneralFrame0,
 };
 
-static const union AnimCmd *const sAnims_ExpertM[] ={
+static const union AnimCmd *const sAnims_Firebreather[] ={
     sAnim_GeneralFrame0,
 };
 
@@ -66,7 +66,7 @@ static const union AnimCmd *const sAnims_RuinManiac[] ={
     sAnim_GeneralFrame0,
 };
 
-static const union AnimCmd *const sAnims_Interviewer[] ={
+static const union AnimCmd *const sAnims_Officer[] ={
     sAnim_GeneralFrame0,
 };
 
@@ -381,15 +381,15 @@ const union AnimCmd *const sAnims_EmMay[] ={
 const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
 {
     [TRAINER_PIC_HIKER] = sAnims_Hiker,
-    [TRAINER_PIC_AQUA_GRUNT_M] = sAnims_AquaGruntM,
-    [TRAINER_PIC_POKEMON_BREEDER_F] = sAnims_PokemonBreederF,
+    [TRAINER_PIC_ROCKET_GRUNT_M] = sAnims_RocketGruntM,
+    [TRAINER_PIC_JUGGLER] = sAnims_PokemonBreederF,
     [TRAINER_PIC_COOLTRAINER_M] = sAnims_CoolTrainerM,
     [TRAINER_PIC_BIRD_KEEPER] = sAnims_BirdKeeper,
-    [TRAINER_PIC_SAGE] = sAnims_Collector,
-    [TRAINER_PIC_AQUA_GRUNT_F] = sAnims_AquaGruntF,
+    [TRAINER_PIC_SAGE] = sAnims_Sage,
+    [TRAINER_PIC_ROCKET_GRUNT_F] = sAnims_RocketGruntF,
     [TRAINER_PIC_SWIMMER_M] = sAnims_SwimmerM,
-    [TRAINER_PIC_MAGMA_GRUNT_M] = sAnims_MagmaGruntM,
-    [TRAINER_PIC_FIREBREATHER] = sAnims_ExpertM,
+    [TRAINER_PIC_SUPER_NERD] = sAnims_MagmaGruntM,
+    [TRAINER_PIC_FIREBREATHER] = sAnims_Firebreather,
     [TRAINER_PIC_AQUA_ADMIN_M] = sAnims_AquaAdminM,
     [TRAINER_PIC_BLACK_BELT] = sAnims_BlackBelt,
     [TRAINER_PIC_AQUA_ADMIN_F] = sAnims_AquaAdminF,
@@ -397,7 +397,7 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_HEX_MANIAC] = sAnims_HexManiac,
     [TRAINER_PIC_AROMA_LADY] = sAnims_AromaLady,
     [TRAINER_PIC_RUIN_MANIAC] = sAnims_RuinManiac,
-    [TRAINER_PIC_INTERVIEWER] = sAnims_Interviewer,
+    [TRAINER_PIC_OFFICER] = sAnims_Officer,
     [TRAINER_PIC_TUBER_F] = sAnims_TuberF,
     [TRAINER_PIC_TUBER_M] = sAnims_TuberM,
     [TRAINER_PIC_COOLTRAINER_F] = sAnims_CoolTrainerF,
@@ -421,8 +421,8 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_ELITE_FOUR_GLACIA] = sAnims_EliteFourGlacia,
     [TRAINER_PIC_ELITE_FOUR_DRAKE] = sAnims_EliteFourDrake,
     [TRAINER_PIC_LEADER_FALKNER] = sAnims_LeaderFalkner,
-    [TRAINER_PIC_LEADER_BRAWLY] = sAnims_LeaderBrawly,
-    [TRAINER_PIC_LEADER_WATTSON] = sAnims_LeaderWattson,
+    [TRAINER_PIC_LEADER_BUGSY] = sAnims_LeaderBrawly,
+    [TRAINER_PIC_LEADER_WHITNEY] = sAnims_LeaderWattson,
     [TRAINER_PIC_LEADER_FLANNERY] = sAnims_LeaderFlannery,
     [TRAINER_PIC_LEADER_NORMAN] = sAnims_LeaderNorman,
     [TRAINER_PIC_LEADER_WINONA] = sAnims_LeaderWinona,

@@ -29,7 +29,7 @@ DesertRuins_EventScript_HideRegiEntrance:: @ 822D993
 	return
 
 DesertRuins_OnTransition: @ 822D9CA
-	setflag FLAG_LANDMARK_DESERT_RUINS
+	setflag FLAG_LANDMARK_SILVER_CAVE
 	call_if_unset FLAG_DEFEATED_REGIROCK, DesertRuins_EventScript_ShowRegirock
 	end
 
@@ -40,9 +40,9 @@ DesertRuins_EventScript_ShowRegirock:: @ 822D9D7
 DesertRuins_EventScript_CaveEntranceMiddle:: @ 822D9DB
 	lockall
 	goto_if_set FLAG_SYS_REGIROCK_PUZZLE_COMPLETED, DesertRuins_EventScript_BigHoleInWall
-	braillemessage DesertRuins_Braille_UseRockSmash
+	unownmessage DesertRuins_Braille_UseRockSmash
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 
@@ -53,9 +53,9 @@ DesertRuins_EventScript_BigHoleInWall:: @ 822D9EE
 
 DesertRuins_EventScript_CaveEntranceSide:: @ 822D9F8
 	lockall
-	braillemessage DesertRuins_Braille_UseRockSmash
+	unownmessage DesertRuins_Braille_UseRockSmash
 	waitbuttonpress
-	closebraillemessage
+	closeunownmessage
 	releaseall
 	end
 

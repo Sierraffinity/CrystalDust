@@ -51,6 +51,8 @@ DATA_SRC_SUBDIR = src/data
 DATA_ASM_SUBDIR = data
 SONG_SUBDIR = sound/songs
 MID_SUBDIR = sound/songs/midi
+SAMPLE_SUBDIR = sound/direct_sound_samples
+CRY_SUBDIR = sound/direct_sound_samples/cries
 GBS_SUBDIR = sound/songs/gbsounds
 
 C_BUILDDIR = $(OBJ_DIR)/$(C_SUBDIR)
@@ -63,20 +65,18 @@ GBS_BUILDDIR = $(OBJ_DIR)/$(GBS_SUBDIR)
 
 ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=$(MODERN)
 
-GCC_VER = $(shell $(CC) -dumpversion)
-
 ifeq ($(MODERN),0)
 CC1             := tools/agbcc/bin/agbcc$(EXE)
-override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
-ROM := CrystalDust.gba
+override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -fhex-asm
+ROM := CrystalDust_legacy.gba
 OBJ_DIR := build/emerald
 LIBPATH := -L ../../tools/agbcc/lib
 else
 CC1              = $(shell $(CC) --print-prog-name=cc1) -quiet
-override CFLAGS += -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -fno-aggressive-loop-optimizations -Wno-pointer-to-int-cast
-ROM := CrystalDust_modern.gba
+override CFLAGS += -mthumb -mthumb-interwork -mabi=apcs-gnu -mcpu=arm7tdmi -fno-toplevel-reorder -Wno-pointer-to-int-cast
+ROM := CrystalDust.gba
 OBJ_DIR := build/modern
-LIBPATH := -L $(TOOLCHAIN)/lib/gcc/arm-none-eabi/$(GCC_VER)/thumb -L $(TOOLCHAIN)/arm-none-eabi/lib/thumb
+LIBPATH := -L "$(dir $(shell $(CC) -mthumb -print-file-name=libgcc.a))" -L "$(dir $(shell $(CC) -mthumb -print-file-name=libc.a))"
 endif
 
 CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DDEBUG=$(DEBUG) -DMODERN=$(MODERN) -DRELEASE_ID=$(RELEASE_ID)
@@ -117,13 +117,13 @@ MAKEFLAGS += --no-print-directory
 # Secondary expansion is required for dependency variables in object rules.
 .SECONDEXPANSION:
 
-.PHONY: all rom clean compare tidy tools mostlyclean clean-tools $(TOOLDIRS) berry_fix libagbsyscall
+.PHONY: all rom clean compare tidy tools mostlyclean clean-tools $(TOOLDIRS) berry_fix libagbsyscall modern
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
 
 # Build tools when building the rom
 # Disable dependency scanning for clean/tidy/tools
-ifeq (,$(filter-out all compare,$(MAKECMDGOALS)))
+ifeq (,$(filter-out all rom compare modern berry_fix libagbsyscall,$(MAKECMDGOALS)))
 $(call infoshell, $(MAKE) tools)
 else
 NODEP := 1
@@ -184,7 +184,8 @@ clean-tools:
 	@$(foreach tooldir,$(TOOLDIRS),$(MAKE) clean -C $(tooldir);)
 
 mostlyclean: tidy
-	rm -f sound/direct_sound_samples/*.bin
+	rm -f $(SAMPLE_SUBDIR)/*.bin
+	rm -f $(CRY_SUBDIR)/*.bin
 	rm -f $(MID_SUBDIR)/*.s
 	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.latfont' -o -iname '*.hwjpnfont' -o -iname '*.fwjpnfont' \) -exec rm {} +
 	rm -f $(DATA_ASM_SUBDIR)/layouts/layouts.inc $(DATA_ASM_SUBDIR)/layouts/layouts_table.inc
@@ -225,10 +226,20 @@ include songs.mk
 %.gbapal: %.png ; $(GFX) $< $@
 %.lz: % ; $(GFX) $< $@
 %.rl: % ; $(GFX) $< $@
-sound/direct_sound_samples/cry_%.bin: sound/direct_sound_samples/cry_%.aif ; $(AIF) $< $@ --compress
+$(CRY_SUBDIR)/%.bin: $(CRY_SUBDIR)/%.aif ; $(AIF) $< $@ --compress
 sound/%.bin: sound/%.aif ; $(AIF) $< $@
 data/%.inc: data/%.pory; $(SCRIPT) -i $< -o $@
 
+ifeq ($(DEBUG),1)
+override CFLAGS += -g
+ifeq ($(MODERN),1)
+override CFLAGS += -Og
+else
+override CFLAGS += -O0
+endif
+else
+override CFLAGS += -O2
+endif
 
 ifeq ($(MODERN),0)
 $(C_BUILDDIR)/libc.o: CC1 := tools/agbcc/bin/old_agbcc
@@ -246,7 +257,18 @@ $(C_BUILDDIR)/record_mixing.o: CFLAGS += -ffreestanding
 $(C_BUILDDIR)/librfu_intr.o: CC1 := tools/agbcc/bin/agbcc_arm
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -O2 -mthumb-interwork -quiet
 else
-$(C_BUILDDIR)/librfu_intr.o: CFLAGS := -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -fno-aggressive-loop-optimizations -Wno-pointer-to-int-cast
+$(C_BUILDDIR)/librfu_intr.o: CFLAGS := -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast
+
+$(C_BUILDDIR)/agb_flash.o: CPPFLAGS += -I tools/agbcc/include -I tools/agbcc
+$(C_BUILDDIR)/agb_flash.o: CC1 := tools/agbcc/bin/agbcc$(EXE)
+$(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -mthumb-interwork
+$(C_BUILDDIR)/agb_flash_1m.o: CPPFLAGS += -I tools/agbcc/include -I tools/agbcc
+$(C_BUILDDIR)/agb_flash_1m.o: CC1 := tools/agbcc/bin/agbcc$(EXE)
+$(C_BUILDDIR)/agb_flash_1m.o: CFLAGS := -O -mthumb-interwork
+$(C_BUILDDIR)/agb_flash_mx.o: CPPFLAGS += -I tools/agbcc/include -I tools/agbcc
+$(C_BUILDDIR)/agb_flash_mx.o: CC1 := tools/agbcc/bin/agbcc$(EXE)
+$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork
+
 endif
 
 ifeq ($(NODEP),1)
@@ -255,13 +277,9 @@ else
 $(C_BUILDDIR)/%.o: c_dep = $(shell [[ -f $(C_SUBDIR)/$*.c ]] && $(SCANINC) -I include -I tools/agbcc/include -I gflib $(C_SUBDIR)/$*.c)
 endif
 
-ifeq ($(DINFO),1)
-override CFLAGS += -g
-endif
-
 $(C_BUILDDIR)/%.o : $(C_SUBDIR)/%.c $$(c_dep)
 	@$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i
-	@$(PREPROC) $(C_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR)/$*.s
+	$(PREPROC) $(C_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR)/$*.s
 	@echo -e ".text\n\t.align\t2, 0\n" >> $(C_BUILDDIR)/$*.s
 	$(AS) $(ASFLAGS) -o $@ $(C_BUILDDIR)/$*.s
 

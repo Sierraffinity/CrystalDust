@@ -1,0 +1,294 @@
+const LUCKY_NUMBER_MAN = 5
+
+mapscripts RadioTower_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_RADIO_TOWER)
+    }
+}
+
+script RadioTower_1F_EventScript_Receptionist {
+    lock
+    faceplayer
+    if (flag(FLAG_ROCKETS_IN_RADIO_TOWER))
+    {
+        msgbox("Hello. I'm sorry, but we're not\n"
+               "offering any tours today.")
+    }
+    else
+    {
+        msgbox("Welcome!")
+    }
+    release
+}
+
+script RadioTower_1F_EventScript_LuckyNumberMan {
+    lock
+    faceplayer
+    dotimebasedevents
+    if (var(VAR_POKELOT_PRIZE_ITEM) != ITEM_NONE)
+    {
+        goto(RadioTower_1F_EventScript_LuckyNumberMan_GivePrizeFromEarlier)
+    }
+    elif (flag(FLAG_DAILY_PICKED_LOTO_TICKET))
+    {
+        goto(RadioTower_1F_EventScript_LuckyNumberMan_GameEnded)
+    }
+    else
+    {
+        msgbox("Hi, are you here for the LUCKY\n"
+               "NUMBER SHOW?\p"
+               "Want me to check the ID numbers\n"
+               "of your POKéMON?\p"
+               "If you get lucky, you win a prize.\n"
+               "How about it?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            setflag(FLAG_DAILY_PICKED_LOTO_TICKET)
+            special(RetrieveLotteryNumber)
+            copyvar(VAR_0x8008, VAR_RESULT)
+            special(BufferLottoTicketNumber)
+            msgbox("Today's ID number is {STR_VAR_1}.")
+            closemessage
+            applymovement(LUCKY_NUMBER_MAN, RadioTower_1F_Movement_LuckyNumberManToPC)
+            waitmovement(0)
+            msgbox("Let's see if you have a match.")
+            closemessage
+            playse(SE_PC_ON)
+            waitse
+            message("…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}")
+            playfanfare(MUS_RG_DEX_RATING)
+            waitfanfare
+            special(PickLotteryCornerTicket)
+            waitmessage
+            closemessage
+            playse(SE_PC_OFF)
+            waitse
+            applymovement(LUCKY_NUMBER_MAN, RadioTower_1F_Movement_LuckyNumberManToPlayer)
+            waitmovement(0)
+            if (var(VAR_0x8004) == 0)
+            {
+                msgbox("Nope, none of your ID numbers match.\n"
+                       "Please try again tomorrow!")
+            }
+            else
+            {
+                incrementgamestat(GAME_STAT_WON_POKEMON_LOTTERY)
+                if (var(VAR_0x8006) == 0)
+                {
+                    msgbox("Congratulations!\p"
+                           "The ID number of your team's\n"
+                           "{STR_VAR_1} matches today's\l"
+                           "LUCKY NUMBER!")
+                }
+                elif (var(VAR_0x8006) == 1)
+                {
+                    msgbox("Congratulations!\p"
+                           "The ID number of your PC-boxed\n"
+                           "{STR_VAR_1} matches today's\l"
+                           "LUCKY NUMBER!")
+                }
+                bufferitemname(0, VAR_0x8005)
+                switch (var(VAR_0x8004))
+                {
+                    case 1:
+                        msgbox("Ooh, two digits matched.\p"
+                               "You've won the third prize,\n"
+                               "the {STR_VAR_1}!")
+                        break
+                    case 2:
+                        msgbox("Hey!\n"
+                               "You matched three digits!\p"
+                               "You've won the second prize,\n"
+                               "the {STR_VAR_1}!")
+                        break
+                    case 3:
+                        msgbox("Nice!\n"
+                               "Four digits matched up!\p"
+                               "You've won the first prize,\n"
+                               "the {STR_VAR_1}!")
+                        break
+                    case 4:
+                        msgbox("Wow! You have a perfect match\n"
+                               "of all five digits!\p"
+                               "We have a grand prize winner!\n"
+                               "You've won the {STR_VAR_1}!")
+                        break
+                }
+                giveitem(VAR_0x8005)
+                if (var(VAR_RESULT) == FALSE)
+                {
+                    copyvar(VAR_POKELOT_PRIZE_PLACE, VAR_0x8004)
+	                copyvar(VAR_POKELOT_PRIZE_ITEM, VAR_0x8005)
+                    goto(RadioTower_1F_EventScript_LuckyNumberMan_NoRoomForPrize)
+                }
+                else
+                {
+                    goto(RadioTower_1F_EventScript_LuckyNumberMan_GameEnded)
+                }
+            }
+        }
+        else
+        {
+            msgbox("Please do visit again.")
+        }
+    }
+    release
+}
+
+movement RadioTower_1F_Movement_LuckyNumberManToPC {
+    walk_right
+    face_up
+}
+
+movement RadioTower_1F_Movement_LuckyNumberManToPlayer {
+    walk_left
+    face_up
+}
+
+script RadioTower_1F_EventScript_LuckyNumberMan_GivePrizeFromEarlier {
+    msgbox("Ah, {PLAYER}!\n"
+           "Yes, I've been expecting you.\p"
+           "This is the prize we've been holding\n"
+           "for you.")
+    giveitem(VAR_POKELOT_PRIZE_ITEM)
+    if (var(VAR_RESULT) == FALSE)
+    {
+        goto(RadioTower_1F_EventScript_LuckyNumberMan_NoRoomForPrize)
+    }
+    else
+    {
+	    setvar(VAR_POKELOT_PRIZE_ITEM, ITEM_NONE)
+	    setvar(VAR_POKELOT_PRIZE_PLACE, 0)
+        goto(RadioTower_1F_EventScript_LuckyNumberMan_GameEnded)
+    }
+}
+
+script RadioTower_1F_EventScript_LuckyNumberMan_NoRoomForPrize {
+    msgbox("You've got no room for your prize.\n"
+           "Make room and come back right away!")
+    release
+}
+
+script RadioTower_1F_EventScript_LuckyNumberMan_GameEnded {
+    msgbox("Please come back tomorrow for\n"
+           "the next LUCKY NUMBER.")
+    release
+}
+
+script RadioTower_1F_EventScript_RadioCardWoman {
+    lock
+    faceplayer
+    if (flag(FLAG_SYS_HAS_RADIO_CARD))
+    {
+        goto(RadioTower_1F_EventScript_RadioCardWoman_EndQuiz)
+    }
+
+    msgbox("We have a special quiz campaign\n"
+            "going on right now.\p"
+            "Answer five questions correctly\n"
+            "to win a RADIO CARD.\p"
+            "Slide it into your POKéGEAR to play\n"
+            "the radio anytime, anywhere.\p"
+            "Would you like to take the quiz?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        msgbox("Question 1:\p"
+               "Is there a POKéMON that appears\n"
+               "only in the morning?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES)
+        {
+            playse(SE_DING_DONG)
+            waitse
+            msgbox("Correct!\n"
+                   "Question 2:\p"
+                   "Is this statement correct?\n"
+                   "“You can't buy a BERRY at a MART.”", MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES)
+            {
+                playse(SE_DING_DONG)
+                waitse
+                msgbox("Bull's-eye!\n"
+                       "Question 3:\p"
+                       "Does HM01 contain the move FLASH?", MSGBOX_YESNO)
+                if (var(VAR_RESULT) == NO)
+                {
+                    playse(SE_DING_DONG)
+                    waitse
+                    msgbox("So far so good!\n"
+                           "Question 4:\p"
+                           "Is FALKNER the VIOLET GYM LEADER\n"
+                           "who uses BIRD POKéMON?", MSGBOX_YESNO)
+                    if (var(VAR_RESULT) == YES)
+                    {
+                        playse(SE_DING_DONG)
+                        waitse
+                        msgbox("Wow! Right again!\n"
+                               "Here's the final question:\p"
+                               "Do GOLDENROD GAME CORNER's slots\n"
+                               "have CHARMANDER on their reels?", MSGBOX_YESNO)
+                        if (var(VAR_RESULT) == NO)
+                        {
+                            playse(SE_DING_DONG)
+                            waitse
+                            msgbox("Bingo! You got it!\n"
+                                   "Congratulations!\p"
+                                   "Here's your prize, a RADIO CARD!")
+                            textcolor(MSG_COLOR_BLACK)
+                            playfanfare(MUS_OBTAIN_ITEM)
+                            setflag(FLAG_SYS_HAS_RADIO_CARD)
+                            message("{PLAYER} received the RADIO CARD\n"
+                                    "from the receptionist.")
+                            waitfanfare
+                            msgbox("{PLAYER}'s POKéGEAR can now double\n"
+                                   "as a radio!")
+                            textcolor(MSG_COLOR_PREV)
+                            goto(RadioTower_1F_EventScript_RadioCardWoman_EndQuiz)
+                        }
+                    }
+                }
+            }
+        }
+        msgbox("Oh, dear.\n"
+               "Sorry, but you got it wrong.\l"
+               "Please try again!")
+    }
+    else
+    {
+        msgbox("Oh.\n"
+               "I see.\p"
+               "Please come back and see me if\n"
+               "you change your mind.")
+    }
+    release
+}
+
+script RadioTower_1F_EventScript_RadioCardWoman_EndQuiz {
+    msgbox("Please tune in to our radio shows.")
+    release
+}
+
+script RadioTower_1F_EventScript_MaryLoverBoy {
+    msgbox("I love MARY, from POKéMON TALK.\p"
+           "I only know what she sounds like,\n"
+           "though.", MSGBOX_NPC)
+}
+
+script RadioTower_1F_EventScript_BenLoverGirl {
+    msgbox("BEN is a fabulous DJ.\n"
+           "His sweet voice makes me melt!", MSGBOX_NPC)
+}
+
+script RadioTower_1F_EventScript_DirectorySign {
+    msgbox("1F RECEPTION\n"
+           "2F SALES\l"
+           "3F PERSONNEL\l"
+           "4F PRODUCTION\l"
+           "5F DIRECTOR'S OFFICE", MSGBOX_SIGN)
+}
+
+script RadioTower_1F_EventScript_LuckyChannelSign {
+    msgbox("LUCKY CHANNEL!\n"
+           "Win with POKéMON ID numbers!\p"
+           "Trade your POKéMON to collect\n"
+           "different ID numbers!", MSGBOX_SIGN)
+}

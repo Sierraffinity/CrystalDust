@@ -1,204 +1,211 @@
 {
-    "allow_bike": true,
-    "allow_escape_rope": true,
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RuinsOfAlph_Outside_EventScript_MysteryChamber",
-            "type": "sign",
-            "x": 22,
-            "y": 11
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RuinsOfAlph_Outside_EventScript_ResearchCenter",
-            "type": "sign",
-            "x": 27,
-            "y": 16
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RuinsOfAlph_Outside_EventScript_ResearchCenter",
-            "type": "sign",
-            "x": 28,
-            "y": 16
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "RuinsOfAlph_Outside_EventScript_Welcome",
-            "type": "sign",
-            "x": 17,
-            "y": 26
-        }
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_RUINS_OF_ALPH_OUTSIDE",
-    "layout": "LAYOUT_RUINS_OF_ALPH_OUTSIDE",
-    "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_ILEXFOREST",
-    "name": "RuinsOfAlph_Outside",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_YOUNGSTERS",
-            "graphics_id": "OBJ_EVENT_GFX_BOY_1",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "RuinsOfAlph_Outside_EventScript_Boy2",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 17,
-            "y": 11
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_YOUNGSTERS",
-            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-            "movement_range_x": 2,
-            "movement_range_y": 2,
-            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "RuinsOfAlph_Outside_EventScript_Boy1",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 19,
-            "y": 16
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_SCIENTIST",
-            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "NULL",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 15,
-            "y": 21
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_COWARD",
-            "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "RuinsOfAlph_Outside_EventScript_ScaredMan",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 19,
-            "y": 22
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NULL",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 7,
-            "y": 26
-        }
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_RUINS_OF_ALPH",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE",
-            "dest_warp_id": 1,
-            "elevation": 3,
-            "x": 12,
-            "y": 6
-        },
-        {
-            "dest_map": "MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE",
-            "dest_warp_id": 1,
-            "elevation": 3,
-            "x": 13,
-            "y": 6
-        },
-        {
-            "dest_map": "MAP_ROUTE32_GATEHOUSE",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 22,
-            "y": 27
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_CHAMBER",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 20,
-            "y": 11
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 26,
-            "y": 16
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
-            "dest_warp_id": 0,
-            "elevation": 3,
-            "x": 15,
-            "y": 19
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_HO_OH_CHAMBER",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 5,
-            "y": 23
-        },
-        {
-            "dest_map": "MAP_UNION_CAVE_B1F",
-            "dest_warp_id": 1,
-            "elevation": 0,
-            "x": 9,
-            "y": 36
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 5,
-            "y": 40
-        },
-        {
-            "dest_map": "MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 22,
-            "y": 42
-        },
-        {
-            "dest_map": "MAP_UNION_CAVE_B1F",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 9,
-            "y": 25
-        }
-    ],
-    "weather": "WEATHER_NONE"
+  "id": "MAP_RUINS_OF_ALPH_OUTSIDE",
+  "name": "RuinsOfAlph_Outside",
+  "layout": "LAYOUT_RUINS_OF_ALPH_OUTSIDE",
+  "music": "MUS_ILEX_FOREST",
+  "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "in_connection": false,
+      "x": 17,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RuinsOfAlph_Outside_EventScript_Boy2",
+      "flag": "FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_YOUNGSTERS"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "in_connection": false,
+      "x": 19,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RuinsOfAlph_Outside_EventScript_Boy1",
+      "flag": "FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_YOUNGSTERS"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
+      "in_connection": false,
+      "x": 15,
+      "y": 21,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_SCIENTIST"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "in_connection": false,
+      "x": 23,
+      "y": 20,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RuinsOfAlph_Outside_EventScript_ScaredMan",
+      "flag": "FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_COWARD"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
+      "in_connection": false,
+      "x": 7,
+      "y": 26,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 12,
+      "y": 6,
+      "elevation": 3,
+      "dest_map": "MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 13,
+      "y": 6,
+      "elevation": 3,
+      "dest_map": "MAP_ROUTE36_RUINS_OF_ALPH_GATEHOUSE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 22,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE32_GATEHOUSE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 20,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_CHAMBER",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 26,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 15,
+      "y": 19,
+      "elevation": 3,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 5,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_HO_OH_CHAMBER",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 9,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_CAVE_B1F",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 5,
+      "y": 40,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 22,
+      "y": 42,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 9,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_CAVE_B1F",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_Outside_EventScript_MysteryChamber"
+    },
+    {
+      "type": "sign",
+      "x": 27,
+      "y": 16,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_Outside_EventScript_ResearchCenter"
+    },
+    {
+      "type": "sign",
+      "x": 28,
+      "y": 16,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_Outside_EventScript_ResearchCenter"
+    },
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlph_Outside_EventScript_Welcome"
+    }
+  ]
 }

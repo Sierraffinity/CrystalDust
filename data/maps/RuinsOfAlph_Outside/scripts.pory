@@ -1,8 +1,6 @@
 const ANNOYED_BOY = 1
 
-mapscripts RuinsOfAlph_Outside_MapScripts {
-    MAP_SCRIPT_ON_TRANSITION { setflag(FLAG_LANDMARK_RUINS_OF_ALPH) }
-}
+mapscripts RuinsOfAlph_Outside_MapScripts { }
 
 script RuinsOfAlph_Outside_EventScript_Boy1 {
     msgbox("There are many kinds of UNOWN, so\n"

@@ -1,55 +1,58 @@
+.set LOCALID_GRUNT_1, 1
+.set LOCALID_GRUNT_2, 6
+
 Route112_MapScripts:: @ 81F1DA8
 	map_script MAP_SCRIPT_ON_TRANSITION, Route112_OnTransition
 	.byte 0
 
 Route112_OnTransition: @ 81F1DAE
-	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
+	clearflag FLAG_FORCED_CALL_ELM_STOLEN_MON
 	setvar VAR_JAGGED_PASS_ASH_WEATHER, 0
 	end
 
 Route112_EventScript_MagmaGrunts:: @ 81F1DB7
 	lockall
 	delay 40
-	applymovement 1, Common_Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_GRUNT_1, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 20
 	msgbox Route112_Text_LeaderGoingToAwakenThing, MSGBOX_DEFAULT
 	closemessage
-	applymovement 1, Common_Movement_FaceOriginalDirection
+	applymovement LOCALID_GRUNT_1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	delay 40
-	applymovement 6, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	delay 20
 	msgbox Route112_Text_YeahWeNeedMeteorite, MSGBOX_DEFAULT
 	closemessage
-	applymovement 6, Common_Movement_FaceOriginalDirection
+	applymovement LOCALID_GRUNT_2, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	delay 40
-	applymovement 1, Common_Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_GRUNT_1, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 20
 	msgbox Route112_Text_OhThatsWhyCrewWentToFallarbor, MSGBOX_DEFAULT
 	closemessage
-	applymovement 1, Common_Movement_FaceOriginalDirection
+	applymovement LOCALID_GRUNT_1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	delay 40
-	applymovement 6, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	delay 20
 	msgbox Route112_Text_CantLetAnyonePassUntilTheyreBack, MSGBOX_DEFAULT
 	closemessage
-	applymovement 6, Common_Movement_FaceOriginalDirection
+	applymovement LOCALID_GRUNT_2, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	releaseall
 	end
 
-Route112_EventScript_MtChimneyCableCarSign:: @ 81F1E46
-	msgbox Route112_Text_MtChimneyCableCarSign, MSGBOX_SIGN
+Route112_EventScript_SlowpokeWell_B1FCableCarSign:: @ 81F1E46
+	msgbox Route112_Text_SlowpokeWell_B1FCableCarSign, MSGBOX_SIGN
 	end
 
-Route112_EventScript_MtChimneySign:: @ 81F1E4F
-	msgbox Route112_Text_MtChimneySign, MSGBOX_SIGN
+Route112_EventScript_SlowpokeWell_B1FSign:: @ 81F1E4F
+	msgbox Route112_Text_SlowpokeWell_B1FSign, MSGBOX_SIGN
 	end
 
 Route112_EventScript_RouteSignLavaridge:: @ 81F1E58
@@ -128,11 +131,11 @@ Route112_Text_NotEasyToGetBackToLavaridge: @ 81F204E
 	.string "I went down these ledges, it'd be no\l"
 	.string "easy matter to get back to LAVARIDGE.$"
 
-Route112_Text_MtChimneyCableCarSign: @ 81F20C1
+Route112_Text_SlowpokeWell_B1FCableCarSign: @ 81F20C1
 	.string "MT. CHIMNEY CABLE CAR\n"
 	.string "“A short walk {UP_ARROW} way!”$"
 
-Route112_Text_MtChimneySign: @ 81F20ED
+Route112_Text_SlowpokeWell_B1FSign: @ 81F20ED
 	.string "MT. CHIMNEY\p"
 	.string "“For LAVARIDGE TOWN or the summit,\n"
 	.string "please take the CABLE CAR.”$"

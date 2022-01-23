@@ -13,28 +13,36 @@
 
 	.align 2
 gBattlescriptsForBallThrow:: @ 82DBD08
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_SafariBallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
-	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow        @ BALL_NONE
+	.4byte BattleScript_BallThrow        @ BALL_MASTER
+	.4byte BattleScript_BallThrow        @ BALL_ULTRA
+	.4byte BattleScript_BallThrow        @ BALL_GREAT
+	.4byte BattleScript_BallThrow        @ BALL_POKE
+	.4byte BattleScript_SafariBallThrow  @ BALL_SAFARI
+	.4byte BattleScript_BallThrow        @ BALL_NET
+	.4byte BattleScript_BallThrow        @ BALL_DIVE
+	.4byte BattleScript_BallThrow        @ BALL_NEST
+	.4byte BattleScript_BallThrow        @ BALL_REPEAT
+	.4byte BattleScript_BallThrow        @ BALL_TIMER
+	.4byte BattleScript_BallThrow        @ BALL_LUXURY
+	.4byte BattleScript_BallThrow        @ BALL_PREMIER
+	.4byte BattleScript_BallThrow        @ BALL_LEVEL
+	.4byte BattleScript_BallThrow        @ BALL_LURE
+	.4byte BattleScript_BallThrow        @ BALL_MOON
+	.4byte BattleScript_BallThrow        @ BALL_FRIEND
+	.4byte BattleScript_BallThrow        @ BALL_FAST
+	.4byte BattleScript_BallThrow        @ BALL_HEAVY
+	.4byte BattleScript_BallThrow        @ BALL_LOVE
+	.4byte BattleScript_ParkBallThrow    @ BALL_PARK
 
 	.align 2
 gBattlescriptsForUsingItem:: @ 82DBD3C
 	.4byte BattleScript_PlayerUsesItem
-	.4byte BattleScript_OpponentUsesHealItem
-	.4byte BattleScript_OpponentUsesHealItem
-	.4byte BattleScript_OpponentUsesStatusCureItem
-	.4byte BattleScript_OpponentUsesXItem
-	.4byte BattleScript_OpponentUsesGuardSpecs
+	.4byte BattleScript_OpponentUsesHealItem        @ AI_ITEM_FULL_RESTORE
+	.4byte BattleScript_OpponentUsesHealItem        @ AI_ITEM_HEAL_HP
+	.4byte BattleScript_OpponentUsesStatusCureItem  @ AI_ITEM_CURE_CONDITION
+	.4byte BattleScript_OpponentUsesXItem           @ AI_ITEM_X_STAT
+	.4byte BattleScript_OpponentUsesGuardSpecs      @ AI_ITEM_GUARD_SPECS
 
 	.align 2
 gBattlescriptsForRunningByItem:: @ 82DBD54
@@ -141,7 +149,7 @@ BattleScript_PlayerUsesItem::
 BattleScript_OpponentUsesHealItem::
 	printstring STRINGID_EMPTYSTRING3
 	pause 0x30
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring STRINGID_TRAINER1USEDITEM
 	waitmessage 0x40
 	useitemonopponent
@@ -158,7 +166,7 @@ BattleScript_OpponentUsesHealItem::
 BattleScript_OpponentUsesStatusCureItem::
 	printstring STRINGID_EMPTYSTRING3
 	pause 0x30
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring STRINGID_TRAINER1USEDITEM
 	waitmessage 0x40
 	useitemonopponent
@@ -172,7 +180,7 @@ BattleScript_OpponentUsesStatusCureItem::
 BattleScript_OpponentUsesXItem::
 	printstring STRINGID_EMPTYSTRING3
 	pause 0x30
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring STRINGID_TRAINER1USEDITEM
 	waitmessage 0x40
 	useitemonopponent
@@ -185,7 +193,7 @@ BattleScript_OpponentUsesXItem::
 BattleScript_OpponentUsesGuardSpecs::
 	printstring STRINGID_EMPTYSTRING3
 	pause 0x30
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring STRINGID_TRAINER1USEDITEM
 	waitmessage 0x40
 	useitemonopponent
@@ -196,7 +204,7 @@ BattleScript_OpponentUsesGuardSpecs::
 	finishaction
 
 BattleScript_RunByUsingItem::
-	playse SE_NIGERU
+	playse SE_FLEE
 	setbyte gBattleOutcome, B_OUTCOME_RAN
 	finishturn
 

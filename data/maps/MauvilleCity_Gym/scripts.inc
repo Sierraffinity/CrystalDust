@@ -3,7 +3,7 @@ MauvilleCity_Gym_MapScripts:: @ 820DD6E
 	.byte 0
 
 MauvilleCity_Gym_OnLoad: @ 820DD74
-	goto_if_set FLAG_DEFEATED_MAUVILLE_GYM, MauvilleCity_Gym_EventScript_DeactivatePuzzle
+	goto_if_set FLAG_DEFEATED_GOLDENROD_GYM, MauvilleCity_Gym_EventScript_DeactivatePuzzle
 	switch VAR_MAUVILLE_GYM_STATE
 	case 0, MauvilleCity_Gym_EventScript_UpdateBarriers
 	case 1, MauvilleCity_Gym_EventScript_Switch1Pressed
@@ -74,11 +74,11 @@ MauvilleCity_Gym_EventScript_DeactivatePuzzle:: @ 820DEE7
 	end
 
 MauvilleCity_Gym_EventScript_Wattson:: @ 820DEEB
-	trainerbattle_single TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	trainerbattle_single TRAINER_WHITNEY, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq MauvilleCity_Gym_EventScript_WattsonRematch
-	goto_if_unset FLAG_RECEIVED_TM34, MauvilleCity_Gym_EventScript_GiveShockWave2
+	goto_if_unset FLAG_GOT_TM45_FROM_WHITNEY, MauvilleCity_Gym_EventScript_GiveShockWave2
 	compare VAR_NEW_MAUVILLE_STATE, 2
 	goto_if_eq MauvilleCity_Gym_EventScript_CompletedNewMauville
 	msgbox MauvilleCity_Gym_Text_WattsonPostBattle, MSGBOX_DEFAULT
@@ -91,8 +91,8 @@ MauvilleCity_Gym_EventScript_WattsonDefeated:: @ 820DF2B
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis, MSGBOX_DEFAULT
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
-	setflag FLAG_DEFEATED_MAUVILLE_GYM
+	clearflag FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD
+	setflag FLAG_DEFEATED_GOLDENROD_GYM
 	setflag FLAG_BADGE03_GET
 	addvar VAR_SPROUT_TOWER_STATE, 1
 	compare VAR_SPROUT_TOWER_STATE, 6
@@ -101,11 +101,11 @@ MauvilleCity_Gym_EventScript_WattsonDefeated:: @ 820DF2B
 	call Common_EventScript_SetGymTrainers
 	special MauvilleGymDeactivatePuzzle
 	special DrawWholeMapView
-	playse SE_KI_GASYAN
+	playse SE_UNLOCK
 	call MauvilleCity_Gym_EventScript_GiveShockWave
 	closemessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_PHONE
 	msgbox MauvilleCity_Gym_Text_RegisteredWattson, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -116,19 +116,19 @@ MauvilleCity_Gym_EventScript_WattsonDefeated:: @ 820DF2B
 
 MauvilleCity_Gym_EventScript_GiveShockWave2:: @ 820DF8D
 	giveitem ITEM_TM34
-	compare VAR_RESULT, 0
+	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	msgbox MauvilleCity_Gym_Text_ExplainShockWave, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM34
+	setflag FLAG_GOT_TM45_FROM_WHITNEY
 	release
 	end
 
 MauvilleCity_Gym_EventScript_GiveShockWave:: @ 820DFB1
 	giveitem ITEM_TM34
-	compare VAR_RESULT, 0
+	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_BagIsFull
 	msgbox MauvilleCity_Gym_Text_ExplainShockWave, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM34
+	setflag FLAG_GOT_TM45_FROM_WHITNEY
 	return
 
 MauvilleCity_Gym_EventScript_CompletedNewMauville:: @ 820DFD4
@@ -137,13 +137,13 @@ MauvilleCity_Gym_EventScript_CompletedNewMauville:: @ 820DFD4
 	end
 
 MauvilleCity_Gym_EventScript_WattsonRematch:: @ 820DFDE
-	trainerbattle_rematch_double TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonPreRematch, MauvilleCity_Gym_Text_WattsonRematchDefeat, MauvilleCity_Gym_Text_WattsonRematchNeedTwoMons
+	trainerbattle_rematch_double TRAINER_WHITNEY, MauvilleCity_Gym_Text_WattsonPreRematch, MauvilleCity_Gym_Text_WattsonRematchDefeat, MauvilleCity_Gym_Text_WattsonRematchNeedTwoMons
 	msgbox MauvilleCity_Gym_Text_WattsonPostRematch, MSGBOX_AUTOCLOSE
 	end
 
 MauvilleCity_Gym_EventScript_Switch1:: @ 820DFF9
 	lockall
-	goto_if_set FLAG_DEFEATED_MAUVILLE_GYM, MauvilleCity_Gym_EventScript_SwitchDoNothing
+	goto_if_set FLAG_DEFEATED_GOLDENROD_GYM, MauvilleCity_Gym_EventScript_SwitchDoNothing
 	compare VAR_MAUVILLE_GYM_STATE, 1
 	goto_if_eq MauvilleCity_Gym_EventScript_SwitchDoNothing
 	setvar VAR_MAUVILLE_GYM_STATE, 1
@@ -153,7 +153,7 @@ MauvilleCity_Gym_EventScript_Switch1:: @ 820DFF9
 
 MauvilleCity_Gym_EventScript_Switch2:: @ 820E01E
 	lockall
-	goto_if_set FLAG_DEFEATED_MAUVILLE_GYM, MauvilleCity_Gym_EventScript_SwitchDoNothing
+	goto_if_set FLAG_DEFEATED_GOLDENROD_GYM, MauvilleCity_Gym_EventScript_SwitchDoNothing
 	compare VAR_MAUVILLE_GYM_STATE, 2
 	goto_if_eq MauvilleCity_Gym_EventScript_SwitchDoNothing
 	setvar VAR_MAUVILLE_GYM_STATE, 2
@@ -163,7 +163,7 @@ MauvilleCity_Gym_EventScript_Switch2:: @ 820E01E
 
 MauvilleCity_Gym_EventScript_Switch3:: @ 820E043
 	lockall
-	goto_if_set FLAG_DEFEATED_MAUVILLE_GYM, MauvilleCity_Gym_EventScript_SwitchDoNothing
+	goto_if_set FLAG_DEFEATED_GOLDENROD_GYM, MauvilleCity_Gym_EventScript_SwitchDoNothing
 	compare VAR_MAUVILLE_GYM_STATE, 3
 	goto_if_eq MauvilleCity_Gym_EventScript_SwitchDoNothing
 	setvar VAR_MAUVILLE_GYM_STATE, 3
@@ -173,7 +173,7 @@ MauvilleCity_Gym_EventScript_Switch3:: @ 820E043
 
 MauvilleCity_Gym_EventScript_Switch4:: @ 820E068
 	lockall
-	goto_if_set FLAG_DEFEATED_MAUVILLE_GYM, MauvilleCity_Gym_EventScript_SwitchDoNothing
+	goto_if_set FLAG_DEFEATED_GOLDENROD_GYM, MauvilleCity_Gym_EventScript_SwitchDoNothing
 	compare VAR_MAUVILLE_GYM_STATE, 4
 	goto_if_eq MauvilleCity_Gym_EventScript_SwitchDoNothing
 	setvar VAR_MAUVILLE_GYM_STATE, 4
@@ -185,7 +185,7 @@ MauvilleCity_Gym_EventScript_PressFloorSwitch:: @ 820E08D
 	special MauvilleGymSetDefaultBarriers
 	special MauvilleGymPressSwitch
 	special DrawWholeMapView
-	playse SE_KI_GASYAN
+	playse SE_UNLOCK
 	goto_if_set FLAG_SOLVED_OMANYTE_PUZZLE, MauvilleCity_Gym_EventScript_ClearBarriersAltState
 	goto_if_unset FLAG_SOLVED_OMANYTE_PUZZLE, MauvilleCity_Gym_EventScript_SetBarriersAltState
 	releaseall
@@ -233,7 +233,7 @@ MauvilleCity_Gym_EventScript_Angelo:: @ 820E115
 MauvilleCity_Gym_EventScript_GymGuide:: @ 820E12C
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_MAUVILLE_GYM, MauvilleCity_Gym_EventScript_GymGuidePostVictory
+	goto_if_set FLAG_DEFEATED_GOLDENROD_GYM, MauvilleCity_Gym_EventScript_GymGuidePostVictory
 	msgbox MauvilleCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
 	release
 	end

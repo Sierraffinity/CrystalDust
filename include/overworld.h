@@ -24,6 +24,8 @@
 #define MOVEMENT_MODE_FROZEN 1
 #define MOVEMENT_MODE_SCRIPTED 2
 
+#define SKIP_OBJECT_EVENT_LOAD  1
+
 struct InitialPlayerAvatarState
 {
     u8 transitionFlags;
@@ -51,6 +53,7 @@ extern bool8 (*gFieldCallback2)(void);
 extern u8 gLocalLinkPlayerId;
 extern u8 gFieldLinkPlayerCount;
 extern bool8 gIsStaircaseWarpAnimDisabled;
+extern bool8 gRunPreStepEvents;
 
 // Exported ROM declarations
 extern const struct UCoords32 gDirectionToVectors[];
@@ -101,8 +104,7 @@ void SetDefaultFlashLevel(void);
 void Overworld_SetFlashLevel(s32 flashLevel);
 u8 Overworld_GetFlashLevel(void);
 void SetCurrentMapLayout(u16 mapLayoutId);
-void sub_8085540(u8 var);
-u8 sub_808554C(void);
+void SetObjectEventLoadFlag(u8 var);
 u16 GetLocationMusic(struct WarpData *warp);
 u16 GetCurrLocationDefaultMusic(void);
 u16 GetWarpDestinationMusic(void);
@@ -128,6 +130,8 @@ u8 GetSavedWarpRegionMapSectionId(void);
 u8 GetCurrentRegionMapSectionId(void);
 u8 GetCurrentMapBattleScene(void);
 void CleanupOverworldWindowsAndTilemaps(void);
+u32 ComputeWhiteOutMoneyLoss(void);
+void OverworldWhiteOutGetMoneyLoss(void);
 bool32 IsUpdateLinkStateCBActive(void);
 void CB1_Overworld(void);
 void CB2_OverworldBasic(void);
@@ -137,11 +141,9 @@ void SetUnusedCallback(void *a0);
 void CB2_NewGame(void);
 void CB2_WhiteOut(void);
 void CB2_LoadMap(void);
-void sub_8086024(void);
+void CB2_ReturnToFieldContestHall(void);
 void CB2_ReturnToFieldCableClub(void);
 void CB2_ReturnToField(void);
-void CB2_ReturnToFieldLocal(void);
-void CB2_ReturnToFieldLink(void);
 void CB2_ReturnToFieldFromMultiplayer(void);
 void CB2_ReturnToFieldWithOpenMenu(void);
 void CB2_ReturnToFieldContinueScript(void);

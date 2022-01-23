@@ -11,7 +11,7 @@ FallarborTown_OnTransition: @ 81EB200
 FallarborTown_EventScript_ExpertM:: @ 81EB20C
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FallarborTown_EventScript_ExpertMNormal
+	goto_if_set FLAG_HATCHED_ELMS_EGG, FallarborTown_EventScript_ExpertMNormal
 	msgbox FallarborTown_Text_ShadyCharactersCozmosHome, MSGBOX_DEFAULT
 	release
 	end

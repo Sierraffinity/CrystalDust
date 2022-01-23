@@ -21,7 +21,6 @@ extern struct Time gLocalTime;
 
 void RtcDisableInterrupts(void);
 void RtcRestoreInterrupts(void);
-u32 ConvertBcdToBinary(u8 bcd);
 bool8 IsLeapYear(u32 year);
 u16 ConvertDateToDayCount(u8 year, u8 month, u8 day);
 u16 RtcGetDayCount(struct SiiRtcInfo *rtc);
@@ -44,7 +43,7 @@ void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct T
 void RtcCalcLocalTime(void);
 void RtcCalcLocalTimeFast(void);
 void RtcInitLocalTimeOffset(s32 hour, s32 minute);
-void RtcCalcLocalTimeOffset(s32 days, s32 hours, s32 minutes, s32 seconds);
+void RtcCalcLocalTimeOffset(s32 days, s32 hours, s32 minutes, s32 seconds, s32 dayOfWeek);
 void RtcSetDayOfWeek(s8 dayOfWeek);
 void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2);
 u32 RtcGetMinuteCount(void);

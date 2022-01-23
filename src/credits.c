@@ -24,6 +24,7 @@
 #include "constants/vars.h"
 #include "event_data.h"
 #include "random.h"
+#include "constants/species.h"
 
 enum
 {
@@ -1144,7 +1145,7 @@ static void CB2_RunCreditsSequence(void)
     RunTasks();
     AnimateSprites();
 
-    if ((gMain.heldKeys & B_BUTTON)
+    if ((JOY_HELD(B_BUTTON))
      && gHasHallOfFameRecords != 0
      && gTasks[gUnknown_0203BCE2].func == Task_ProgressCreditTasks)
     {
@@ -1161,7 +1162,7 @@ static void sub_8175548(void)
 {
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBackgroundTemplates, 1);
-    SetBgTilemapBuffer(0, AllocZeroed(0x800));
+    SetBgTilemapBuffer(0, AllocZeroed(BG_SCREEN_SIZE));
     LoadPalette(gUnknown_085E56F0, 0x80, 0x40);
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
@@ -1198,7 +1199,7 @@ static void PrintCreditsText(const u8 *string, u8 y, bool8 isTitle)
     }
 
     x = GetStringCenterAlignXOffsetWithLetterSpacing(1, string, 0xF0, 1);
-    AddTextPrinterParameterized4(0, 1, x, y, 1, 0, color, -1, string);
+    AddTextPrinterParameterized4(0, 2, x, y, 1, 0, color, -1, string);
 }
 
 void CB2_StartCreditsSequence(void)
@@ -1240,7 +1241,7 @@ void CB2_StartCreditsSequence(void)
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     EnableInterrupts(INTR_FLAG_VBLANK);
     SetVBlankCallback(CreditsVBlankCallback);
-    m4aSongNumStart(MUS_THANKFOR, FlagGet(FLAG_GB_PLAYER_ENABLED));
+    m4aSongNumStart(MUS_CREDITS, FlagGet(FLAG_GB_PLAYER_ENABLED));
     SetMainCallback2(CB2_RunCreditsSequence);
     gUnknown_0203BCE5 = 0;
     sCreditsData = AllocZeroed(sizeof(struct CreditsData));

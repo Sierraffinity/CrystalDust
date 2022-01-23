@@ -1,36 +1,35 @@
 #include "global.h"
 #include "main.h"
+#include "decompress.h"
+#include "gpu_regs.h"
+#include "graphics.h"
+#include "intro.h"
+#include "libgcnmultiboot.h"
+#include "link.h"
+#include "load_save.h"
+#include "m4a.h"
+#include "malloc.h"
+#include "multiboot_pokemon_colosseum.h"
+#include "new_game.h"
 #include "palette.h"
+#include "random.h"
+#include "save.h"
 #include "scanline_effect.h"
+#include "sound.h"
 #include "task.h"
 #include "title_screen.h"
-#include "libgcnmultiboot.h"
-#include "malloc.h"
-#include "gpu_regs.h"
-#include "link.h"
-#include "multiboot_pokemon_colosseum.h"
-#include "load_save.h"
-#include "save.h"
-#include "new_game.h"
-#include "m4a.h"
-#include "random.h"
-#include "decompress.h"
-#include "constants/songs.h"
-#include "intro_credits_graphics.h"
-#include "trig.h"
-#include "intro.h"
-#include "graphics.h"
-#include "sound.h"
-#include "constants/species.h"
-#include "util.h"
-#include "title_screen.h"
-#include "constants/rgb.h"
 #include "trainer_pokemon_sprites.h"
+#include "trig.h"
+#include "util.h"
 #include "constants/battle_anim.h"
+#include "constants/pokemon.h"
+#include "constants/rgb.h"
+#include "constants/songs.h"
+#include "constants/species.h"
 
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
 extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];
-extern const struct SpriteTemplate gUnknown_08596C10[];
+extern const struct SpriteTemplate gAncientPowerRockSpriteTemplate[];
 
 //ewram
 EWRAM_DATA u16 gUnknown_0203BCC8 = 0;
@@ -42,15 +41,20 @@ u32 gIntroFrameCounter;
 struct GcmbStruct gMultibootProgramStruct;
 
 //.rodata
-static const u16 gIntro1BGPals[] = INCBIN_U16("graphics/intro/intro1_background.gbapal");
+static const u16 gIntro1BGPal[] = INCBIN_U16("graphics/intro/intro1_logotiles.gbapal");
+static const u16 gIntro1BGPal_Shiny[] = INCBIN_U16("graphics/intro/intro1_bg1.gbapal");
 static const u32 gIntro1BG2_Tilemap[] = INCBIN_U32("graphics/intro/intro1_bg2.bin.lz");
 static const u32 gIntro1BG2_LogoTilemap[] = INCBIN_U32("graphics/intro/intro1_bg2_logo.bin.lz");
 static const u32 gIntro1BG3_Tilemap[] = INCBIN_U32("graphics/intro/intro1_bg3.bin.lz");
 static const u32 gIntro1BG0_Tiles[] = INCBIN_U32("graphics/intro/intro1_background.4bpp.lz");
 static const u32 gIntro1BG0_LogoTiles[] = INCBIN_U32("graphics/intro/intro1_logotiles.4bpp.lz");
+static const u32 gIntro1BG1_Tiles[] = INCBIN_U32("graphics/intro/intro1_bg1.4bpp.lz");
+static const u32 gIntro1BG1_Tilemap[] = INCBIN_U32("graphics/intro/intro1_bg1.bin.lz");
 static const u32 gIntroDittoTiles[] = INCBIN_U32("graphics/intro/intro1_ditto.4bpp.lz");
 static const u32 gIntroPresentsTiles[] = INCBIN_U32("graphics/intro/intro1_presents.4bpp.lz");
 static const u16 gIntro1DittoPalette[] = INCBIN_U16("graphics/intro/intro1_ditto.gbapal");
+static const u16 gIntro1DittoPalette_Shiny[] = INCBIN_U16("graphics/intro/intro1_ditto_shiny.gbapal");
+static const u16 gIntro1PresentsPalette[] = INCBIN_U16("graphics/intro/intro1_presents.gbapal");
 static const u16 gIntro2BGPals[][16] = {
     INCBIN_U16("graphics/intro/intro2_bg3.gbapal"),
     INCBIN_U16("graphics/intro/intro2_bg1.gbapal")
@@ -83,21 +87,30 @@ static const u32 gIntro3Name_Tilemap[] = INCBIN_U32("graphics/intro/intro3_name.
 static const u32 gIntro3SuicuneTiles[] = INCBIN_U32("graphics/intro/intro3_suicune.4bpp.lz");
 static const u32 gIntro3UnownFTiles[] = INCBIN_U32("graphics/intro/intro3_unownF.4bpp.lz");
 
-static const struct SpritePalette gSpritePalette_Ditto[] =
+static const struct SpritePalette gSpritePalette_Ditto =
 {
-    {gIntro1DittoPalette, 2000},
-    {NULL},
+    .data = gIntro1DittoPalette,
+    .tag = 2000
 };
-static const struct CompressedSpriteSheet gSpriteSheet_Ditto[] =
+
+static const struct SpritePalette gSpritePalette_Ditto_Shiny =
 {
-    {gIntroDittoTiles, 0x1800, 2000},
-    {NULL},
+    .data = gIntro1DittoPalette_Shiny,
+    .tag = 2000
 };
+
+static const struct CompressedSpriteSheet gSpriteSheet_Ditto =
+{
+    .data = gIntroDittoTiles,
+    .size = 0x4000,
+    .tag  = 2000
+};
+
 static const struct OamData gOamData_Ditto =
 {
     .y = 160,
     .affineMode = ST_OAM_AFFINE_NORMAL,
-    .objMode = ST_OAM_OBJ_NORMAL,
+    .objMode = ST_OAM_OBJ_BLEND,
     .mosaic = TRUE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x64),
@@ -109,50 +122,65 @@ static const struct OamData gOamData_Ditto =
     .paletteNum = 0,
     .affineParam = 0,
 };
+
 static const union AnimCmd gSpriteAnim1_Ditto[] =
 {
     ANIMCMD_FRAME(0, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim2_Ditto[] =
 {
-    ANIMCMD_FRAME(0, 48),
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(64, 6),
+    ANIMCMD_FRAME(0, 27),
     ANIMCMD_FRAME(64, 8),
+    ANIMCMD_FRAME(128, 24),
+    ANIMCMD_FRAME(192, 6),
+    ANIMCMD_FRAME(256, 6),
+    ANIMCMD_FRAME(320, 6),
+    ANIMCMD_FRAME(384, 6),
+    ANIMCMD_FRAME(448, 4),
     ANIMCMD_END,
 };
-static const union AnimCmd gSpriteAnim3_Ditto[] =
-{
-    ANIMCMD_FRAME(128, 8),
-    ANIMCMD_END,
-};
+
 static const union AnimCmd *const gSpriteAnimTable_Ditto[] =
 {
     gSpriteAnim1_Ditto,
     gSpriteAnim2_Ditto,
-    gSpriteAnim3_Ditto,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim1_Ditto[] = 
 {
     AFFINEANIMCMD_SIZE(1, 1, 0),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim2_Ditto[] = 
 {
     AFFINEANIMCMD_SIZE(0.75, 1.5, 0),
     AFFINEANIMCMD_FRAME(0, 0, 0, 8),
-    AFFINEANIMCMD_FRAME(64, -64, 0, 3),
-    AFFINEANIMCMD_FRAME(-24, 24, 0, 8),
+    AFFINEANIMCMD_FRAME(64, -64, 0, 4),
+    AFFINEANIMCMD_SIZE(1.5, 1, 0),
+    // 14
+    AFFINEANIMCMD_FRAME(-48, 64, 0, 4),
+    AFFINEANIMCMD_SIZE(0.75, 1.5, 0),
     AFFINEANIMCMD_FRAME(3, -6, 0, 24),
-    AFFINEANIMCMD_FRAME(24, -24, 0, 3),
-    AFFINEANIMCMD_FRAME(-24, 24, 0, 3),
+    // 43
+    AFFINEANIMCMD_FRAME(24, -12, 0, 6),
+    AFFINEANIMCMD_FRAME(-24, 48, 0, 4),
     AFFINEANIMCMD_SIZE(1, 1, 0),
+    AFFINEANIMCMD_FRAME(-8, 8, 0, 2),
+    AFFINEANIMCMD_FRAME(8, -8, 0, 2),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd *const gSpriteAffineAnimTable_Ditto[] =
 {
     gSpriteAffineAnim1_Ditto,
     gSpriteAffineAnim2_Ditto,
 };
+
 static void SpriteCallback_Ditto(struct Sprite *sprite);
 static const struct SpriteTemplate gSpriteTemplate_Ditto =
 {
@@ -164,11 +192,20 @@ static const struct SpriteTemplate gSpriteTemplate_Ditto =
     .affineAnims = gSpriteAffineAnimTable_Ditto,
     .callback = SpriteCallback_Ditto,
 };
-static const struct CompressedSpriteSheet gSpriteSheet_Presents[] =
+
+static const struct SpritePalette gSpritePalette_Presents =
 {
-    {gIntroPresentsTiles, 0x100, 2001},
-    {NULL},
+    .data = gIntro1PresentsPalette,
+    .tag = 2001
 };
+
+static const struct CompressedSpriteSheet gSpriteSheet_Presents =
+{
+    .data = gIntroPresentsTiles,
+    .size = 0x100,
+    .tag  = 2001
+};
+
 static const struct OamData gOamData_Presents =
 {
     .y = 0,
@@ -185,34 +222,52 @@ static const struct OamData gOamData_Presents =
     .paletteNum = 0,
     .affineParam = 0,
 };
+
 static const struct SpriteTemplate gSpriteTemplate_Presents =
 {
     .tileTag = 2001,
-    .paletteTag = 2000,
+    .paletteTag = 2001,
     .oam = &gOamData_Presents,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
 };
-static const struct CompressedSpriteSheet gIntro2UnownASpriteSheet[] =
+
+static const struct CompressedSpriteSheet gIntro2UnownASpriteSheet =
 {
-    {gIntro2UnownATiles, 0x400, 2002},
-    {NULL},
+    .data = gIntro2UnownATiles,
+    .size = 0x400,
+    .tag  = 2002
 };
+
 static const struct SpritePalette gIntro2SpritePalettes[] =
 {
-    {gIntro2UnownPalette, 2002},
-    {gIntro2UnownPulsePalette, 2003},
-    {gIntro2WooperPalette, 2004},
-    {gIntro2PichuPalette, 2005},
+    {
+        .data = gIntro2UnownPalette,
+        .tag  = 2002
+    },
+    {
+        .data = gIntro2UnownPulsePalette,
+        .tag  = 2003
+    },
+    {
+        .data = gIntro2WooperPalette,
+        .tag  = 2004
+    },
+    {
+        .data = gIntro2PichuPalette,
+        .tag  = 2005
+    },
     {NULL},
 };
-static const struct SpritePalette gSuicuneSilhouetteSpritePalettes[] =
+
+static const struct SpritePalette gSuicuneSilhouetteSpritePalette =
 {
-    {gIntro2SuicuneSilhouettePalette, 1000},
-    {NULL},
+    .data = gIntro2SuicuneSilhouettePalette,
+    .tag  = 1000
 };
+
 static const struct OamData gOamData_UnownA =
 {
     .y = 0,
@@ -229,11 +284,13 @@ static const struct OamData gOamData_UnownA =
     .paletteNum = 0,
     .affineParam = 0,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim_UnownA1[] = 
 {
     AFFINEANIMCMD_SIZE(1, 1, 0),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim_UnownA2[] = 
 {
     AFFINEANIMCMD_SIZE(1, 1, 0),
@@ -241,11 +298,13 @@ static const union AffineAnimCmd gSpriteAffineAnim_UnownA2[] =
     AFFINEANIMCMD_FRAME(-8, -8, 0, 8),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd *const gSpriteAffineAnimTable_UnownA[] =
 {
     gSpriteAffineAnim_UnownA1,
     gSpriteAffineAnim_UnownA2,
 };
+
 static const struct SpriteTemplate gSpriteTemplate_UnownA =
 {
     .tileTag = 2002,
@@ -256,11 +315,14 @@ static const struct SpriteTemplate gSpriteTemplate_UnownA =
     .affineAnims = gSpriteAffineAnimTable_UnownA,
     .callback = SpriteCallbackDummy,
 };
-static const struct CompressedSpriteSheet gIntro2UnownPulseSpriteSheet[] =
+
+static const struct CompressedSpriteSheet gIntro2UnownPulseSpriteSheet =
 {
-    {gIntro2UnownPulseTiles, 0x800, 2003},
-    {NULL},
+    .data = gIntro2UnownPulseTiles,
+    .size = 0x800,
+    .tag  = 2003
 };
+
 static const struct OamData gOamData_UnownPulse =
 {
     .y = 0,
@@ -277,6 +339,7 @@ static const struct OamData gOamData_UnownPulse =
     .paletteNum = 0,
     .affineParam = 0,
 };
+
 static const union AnimCmd gSpriteAnim_UnownPulse1[] =
 {
     ANIMCMD_FRAME(0, 2),
@@ -285,10 +348,12 @@ static const union AnimCmd gSpriteAnim_UnownPulse1[] =
     ANIMCMD_FRAME(48, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd *const gSpriteAnimTable_UnownPulse[] =
 {
     gSpriteAnim_UnownPulse1,
 };
+
 static void SpriteCallback_UnownPulse(struct Sprite *sprite);
 static const struct SpriteTemplate gSpriteTemplate_UnownPulse =
 {
@@ -300,11 +365,14 @@ static const struct SpriteTemplate gSpriteTemplate_UnownPulse =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallback_UnownPulse,
 };
-static const struct CompressedSpriteSheet gIntro2UnownOthersSpriteSheet[] =
+
+static const struct CompressedSpriteSheet gIntro2UnownOthersSpriteSheet =
 {
-    {gIntro2UnownOthersTiles, 0x1400, 2004},
-    {NULL},
+    .data = gIntro2UnownOthersTiles,
+    .size = 0x1400,
+    .tag  = 2004
 };
+
 static const struct OamData gOamData_UnownOthers =
 {
     .y = 0,
@@ -321,56 +389,67 @@ static const struct OamData gOamData_UnownOthers =
     .paletteNum = 0,
     .affineParam = 0,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersI[] =
 {
     ANIMCMD_FRAME(0, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersH[] =
 {
     ANIMCMD_FRAME(16, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersU[] =
 {
     ANIMCMD_FRAME(32, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersW[] =
 {
     ANIMCMD_FRAME(48, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersG[] =
 {
     ANIMCMD_FRAME(64, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersT[] =
 {
     ANIMCMD_FRAME(80, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersB[] =
 {
     ANIMCMD_FRAME(96, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersE[] =
 {
     ANIMCMD_FRAME(112, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersS[] =
 {
     ANIMCMD_FRAME(128, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_UnownOthersL[] =
 {
     ANIMCMD_FRAME(144, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd *const gSpriteAnimTable_UnownOthers[] =
 {
     gSpriteAnim_UnownOthersI,
@@ -384,11 +463,13 @@ static const union AnimCmd *const gSpriteAnimTable_UnownOthers[] =
     gSpriteAnim_UnownOthersS,
     gSpriteAnim_UnownOthersL,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim_UnownOthers1[] = 
 {
     AFFINEANIMCMD_SIZE(1, 1, 0),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim_UnownOthers2[] = 
 {
     AFFINEANIMCMD_SIZE(1, 1, 0),
@@ -396,6 +477,7 @@ static const union AffineAnimCmd gSpriteAffineAnim_UnownOthers2[] =
     AFFINEANIMCMD_FRAME(-8, -8, 0, 8),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim_UnownOthers3[] = 
 {
     AFFINEANIMCMD_SIZE(0.1, 0.1, 0),
@@ -403,12 +485,14 @@ static const union AffineAnimCmd gSpriteAffineAnim_UnownOthers3[] =
     AFFINEANIMCMD_SIZE(1, 1, 0),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd *const gSpriteAffineAnimTable_UnownOthers[] =
 {
     gSpriteAffineAnim_UnownOthers1,
     gSpriteAffineAnim_UnownOthers2,
     gSpriteAffineAnim_UnownOthers3,
 };
+
 static const struct SpriteTemplate gSpriteTemplate_UnownOthers =
 {
     .tileTag = 2004,
@@ -419,11 +503,14 @@ static const struct SpriteTemplate gSpriteTemplate_UnownOthers =
     .affineAnims = gSpriteAffineAnimTable_UnownOthers,
     .callback = SpriteCallbackDummy,
 };
-static const struct CompressedSpriteSheet gIntro2SuicuneSilhouetteSpriteSheet[] =
+
+static const struct CompressedSpriteSheet gIntro2SuicuneSilhouetteSpriteSheet =
 {
-    {gIntro2SuicuneSilhouetteTiles, 0x2000, 2005},
-    {NULL},
+    .data = gIntro2SuicuneSilhouetteTiles,
+    .size = 0x2000,
+    .tag  = 2005
 };
+
 static const struct OamData gOamData_SuicuneSilhouette =
 {
     .y = 0,
@@ -440,6 +527,7 @@ static const struct OamData gOamData_SuicuneSilhouette =
     .paletteNum = 0,
     .affineParam = 0,
 };
+
 static const union AnimCmd gSpriteAnim_SuicuneSilhouette1[] =
 {
     ANIMCMD_FRAME(0, 4),
@@ -448,16 +536,19 @@ static const union AnimCmd gSpriteAnim_SuicuneSilhouette1[] =
     ANIMCMD_FRAME(192, 4),
     ANIMCMD_JUMP(0),
 };
+
 static const union AnimCmd gSpriteAnim_SuicuneSilhouette2[] =
 {
     ANIMCMD_FRAME(192, 4),
     ANIMCMD_JUMP(0),
 };
+
 static const union AnimCmd *const gSpriteAnimTable_SuicuneSilhouette[] =
 {
     gSpriteAnim_SuicuneSilhouette1,
     gSpriteAnim_SuicuneSilhouette2,
 };
+
 static void SpriteCallback_SuicuneSilhouette(struct Sprite *sprite);
 static const struct SpriteTemplate gSpriteTemplate_SuicuneSilhouette =
 {
@@ -469,16 +560,21 @@ static const struct SpriteTemplate gSpriteTemplate_SuicuneSilhouette =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallback_SuicuneSilhouette,
 };
-static const struct CompressedSpriteSheet gIntro2WooperSpriteSheet[] =
+
+static const struct CompressedSpriteSheet gIntro2WooperSpriteSheet =
 {
-    {gIntro2WooperTiles, 0x800, 2006},
-    {NULL},
+    .data = gIntro2WooperTiles,
+    .size = 0x800,
+    .tag  = 2006
 };
-static const struct CompressedSpriteSheet gIntro2PichuSpriteSheet[] =
+
+static const struct CompressedSpriteSheet gIntro2PichuSpriteSheet =
 {
-    {gIntro2PichuTiles, 0x1800, 2007},
-    {NULL},
+    .data = gIntro2PichuTiles,
+    .size = 0x1800,
+    .tag  = 2007
 };
+
 static const struct OamData gOamData_PopUpPkmn =
 {
     .y = 0,
@@ -495,15 +591,18 @@ static const struct OamData gOamData_PopUpPkmn =
     .paletteNum = 0,
     .affineParam = 0,
 };
+
 static const union AnimCmd gSpriteAnim_Wooper1[] =
 {
     ANIMCMD_FRAME(0, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd *const gSpriteAnimTable_Wooper[] =
 {
     gSpriteAnim_Wooper1,
 };
+
 static void SpriteCallback_PopUpPkmn(struct Sprite *sprite);
 static const struct SpriteTemplate gSpriteTemplate_Wooper =
 {
@@ -515,11 +614,13 @@ static const struct SpriteTemplate gSpriteTemplate_Wooper =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallback_PopUpPkmn,
 };
+
 static const union AnimCmd gSpriteAnim_Pichu1[] =
 {
     ANIMCMD_FRAME(0, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd gSpriteAnim_Pichu2[] =
 {
     ANIMCMD_FRAME(0, 24),
@@ -527,11 +628,13 @@ static const union AnimCmd gSpriteAnim_Pichu2[] =
     ANIMCMD_FRAME(128, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd *const gSpriteAnimTable_Pichu[] =
 {
     gSpriteAnim_Pichu1,
     gSpriteAnim_Pichu2,
 };
+
 static const struct SpriteTemplate gSpriteTemplate_Pichu =
 {
     .tileTag = 2007,
@@ -542,17 +645,27 @@ static const struct SpriteTemplate gSpriteTemplate_Pichu =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallback_PopUpPkmn,
 };
-static const struct CompressedSpriteSheet gIntro3SuicuneSpriteSheet[] =
+
+static const struct CompressedSpriteSheet gIntro3SuicuneSpriteSheet =
 {
-    {gIntro3SuicuneTiles, 0x1800, 2008},
-    {NULL},
+    .data = gIntro3SuicuneTiles,
+    .size = 0x1800,
+    .tag  = 2008
 };
+
 static const struct SpritePalette gIntro3SpritePalettes[] =
 {
-    {gIntro3SuicunePalette, 2006},
-    {gIntro2UnownPalette, 2002},
+    {
+        .data = gIntro3SuicunePalette,
+        .tag  = 2006
+    },
+    {
+        .data = gIntro2UnownPalette,
+        .tag  = 2002
+    },
     {NULL},
 };
+
 static const struct OamData gOamData_Suicune =
 {
     .y = 0,
@@ -569,38 +682,45 @@ static const struct OamData gOamData_Suicune =
     .paletteNum = 0,
     .affineParam = 0,
 };
+
 static const union AnimCmd gSpriteAnim_Suicune1[] =
 {
     ANIMCMD_FRAME(0, 4),
     ANIMCMD_FRAME(64, 4),
     ANIMCMD_JUMP(0),
 };
+
 static const union AnimCmd gSpriteAnim_Suicune2[] =
 {
     ANIMCMD_FRAME(128, 8),
     ANIMCMD_JUMP(0),
 };
+
 static const union AnimCmd *const gSpriteAnimTable_Suicune[] =
 {
     gSpriteAnim_Suicune1,
     gSpriteAnim_Suicune2,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim_Suicune1[] = 
 {
     AFFINEANIMCMD_SIZE(1, 1, 0),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim_Suicune2[] = 
 {
     AFFINEANIMCMD_SIZE(1, 1, 0),
     AFFINEANIMCMD_FRAME(-1, -1, 0, 88),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd *const gSpriteAffineAnimTable_Suicune[] =
 {
     gSpriteAffineAnim_Suicune1,
     gSpriteAffineAnim_Suicune2,
 };
+
 static void SpriteCallback_Suicune(struct Sprite *sprite);
 static const struct SpriteTemplate gSpriteTemplate_Suicune =
 {
@@ -612,11 +732,14 @@ static const struct SpriteTemplate gSpriteTemplate_Suicune =
     .affineAnims = gSpriteAffineAnimTable_Suicune,
     .callback = SpriteCallback_Suicune,
 };
-static const struct CompressedSpriteSheet gIntro3UnownFSpriteSheet[] =
+
+static const struct CompressedSpriteSheet gIntro3UnownFSpriteSheet =
 {
-    {gIntro3UnownFTiles, 0x1000, 2009},
-    {NULL},
+    .data = gIntro3UnownFTiles,
+    .size = 0x1000,
+    .tag  = 2009
 };
+
 static const struct OamData gOamData_UnownF =
 {
     .y = 0,
@@ -633,16 +756,19 @@ static const struct OamData gOamData_UnownF =
     .paletteNum = 0,
     .affineParam = 0,
 };
+
 static const union AnimCmd gSpriteAnim_UnownF1[] =
 {
     ANIMCMD_FRAME(0, 14),
     ANIMCMD_FRAME(64, 8),
     ANIMCMD_END,
 };
+
 static const union AnimCmd *const gSpriteAnimTable_UnownF[] =
 {
     gSpriteAnim_UnownF1,
 };
+
 static const union AffineAnimCmd gSpriteAffineAnim_UnownF1[] = 
 {
     AFFINEANIMCMD_SIZE(.5, .5, 0),
@@ -652,10 +778,12 @@ static const union AffineAnimCmd gSpriteAffineAnim_UnownF1[] =
     AFFINEANIMCMD_SIZE(1, 1, 0),
     AFFINEANIMCMD_END,
 };
+
 static const union AffineAnimCmd *const gSpriteAffineAnimTable_UnownF[] =
 {
     gSpriteAffineAnim_UnownF1,
 };
+
 static void SpriteCallback_UnownF(struct Sprite *sprite);
 static const struct SpriteTemplate gSpriteTemplate_UnownF =
 {
@@ -675,7 +803,6 @@ static void Task_IntroLoadPart1Graphics(u8);
 static void Task_IntroGameFreakStart(u8);
 static void intro_reset_and_hide_bgs(void);
 static void Task_ShowGameFreakScreen(u8);
-static void Task_MosaicToGameFreakLogo(u8);
 static void Task_FadeInOutGameFreakText(u8);
 static void Task_WaitToStartUnownSequence(u8);
 static void Task_IntroLoadPart2Graphics(u8);
@@ -832,41 +959,57 @@ void CB2_InitCopyrightScreenAfterTitleScreen(void)
 
 static void Task_IntroLoadPart1Graphics(u8 taskId)
 {
-    u8 spriteId;
+    u8 spriteDitto;
     SetVBlankCallback(NULL);
     intro_reset_and_hide_bgs();
     SetGpuReg(REG_OFFSET_BG3VOFS, 0);
     SetGpuReg(REG_OFFSET_BG2VOFS, 0);
     LZ77UnCompVram(gIntro1BG0_Tiles, (void *)(BG_CHAR_ADDR(3)));
-    LZ77UnCompVram(gIntro1BG0_LogoTiles, (void *)(BG_CHAR_ADDR(3) + 0x200));
+    LZ77UnCompVram(gIntro1BG0_LogoTiles, (void *)(BG_CHAR_ADDR(3) + TILE_OFFSET_4BPP(16)));
+    LZ77UnCompVram(gIntro1BG1_Tiles, (void *)(BG_CHAR_ADDR(3) + TILE_OFFSET_4BPP(260)));
+    LZ77UnCompVram(gIntro1BG1_Tilemap, (void *)(BG_SCREEN_ADDR(29)));
     LZ77UnCompVram(gIntro1BG2_Tilemap, (void *)(BG_SCREEN_ADDR(30)));
     LZ77UnCompVram(gIntro1BG3_Tilemap, (void *)(BG_SCREEN_ADDR(31)));
-    LoadPalette(gIntro1BGPals, 0, sizeof(gIntro1BGPals));
     SetGpuReg(REG_OFFSET_BG3CNT, BGCNT_PRIORITY(3)
                                | BGCNT_CHARBASE(3)
                                | BGCNT_SCREENBASE(31)
                                | BGCNT_16COLOR
                                | BGCNT_TXT256x256);
-    SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2)
+    SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(1)
                                | BGCNT_CHARBASE(3)
                                | BGCNT_SCREENBASE(30)
                                | BGCNT_16COLOR
                                | BGCNT_TXT256x256);
-    LoadCompressedSpriteSheet(gSpriteSheet_Ditto);
-    LoadCompressedSpriteSheet(gSpriteSheet_Presents);
-    LoadSpritePalettes(gSpritePalette_Ditto);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1F0, 0x20);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1E1, 0x1E);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1D2, 0x1C);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1C3, 0x1A);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1B4, 0x18);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x1A5, 0x16);
-    CpuCopy16(gPlttBufferUnfaded + 0x100, gPlttBufferUnfaded + 0x196, 0x14);
-    spriteId = CreateSprite(&gSpriteTemplate_Ditto, 120, -48, 0);
-    gSprites[spriteId].data[0] = 0;
-    StartSpriteAnim(&gSprites[spriteId], 1);
-    StartSpriteAffineAnim(&gSprites[spriteId], 1);
-    gTasks[taskId].data[1] = spriteId;
+    SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(2)
+                               | BGCNT_CHARBASE(3)
+                               | BGCNT_SCREENBASE(29)
+                               | BGCNT_16COLOR
+                               | BGCNT_TXT256x256);
+    
+    if ((JOY_HELD(A_BUTTON | SELECT_BUTTON) == (A_BUTTON | SELECT_BUTTON)) ||
+        Random() < SHINY_ODDS)
+    {
+        LoadPalette(gIntro1BGPal_Shiny, 0, sizeof(gIntro1BGPal_Shiny));
+        LoadSpritePalette(&gSpritePalette_Ditto_Shiny);
+    }
+    else
+    {
+        LoadPalette(gIntro1BGPal, 0, sizeof(gIntro1BGPal));
+        LoadSpritePalette(&gSpritePalette_Ditto);
+    }
+
+    // fix BD color
+    gPlttBufferUnfaded[0] = RGB_BLACK;
+    gPlttBufferFaded[0] = RGB_BLACK;
+
+    LoadCompressedSpriteSheet(&gSpriteSheet_Ditto);
+    LoadCompressedSpriteSheet(&gSpriteSheet_Presents);
+    LoadSpritePalette(&gSpritePalette_Presents);
+    spriteDitto = CreateSprite(&gSpriteTemplate_Ditto, 120, -48, 0);
+    gSprites[spriteDitto].data[0] = 0;
+    StartSpriteAnim(&gSprites[spriteDitto], 1);
+    StartSpriteAffineAnim(&gSprites[spriteDitto], 1);
+    gTasks[taskId].data[1] = spriteDitto;
     gTasks[taskId].func = Task_IntroGameFreakStart;
 }
 
@@ -907,19 +1050,43 @@ static void Task_IntroGameFreakStart(u8 taskId)
     gTasks[windowTaskId].data[2] = -8;
     gTasks[taskId].func = Task_ShowGameFreakScreen;
     gIntroFrameCounter = 0;
-    m4aSongNumStart(MUS_DEMO1, FALSE);
     ResetSerial();
 }
 
 static void Task_ShowGameFreakScreen(u8 taskId)
 {
     u8 newTaskId;
+
+    if (gIntroFrameCounter == 10)
+    {
+        PlaySE(SE_INTRO_DITTOBOUNCE1);
+    }
+
+    if (gIntroFrameCounter == 44)
+    {
+        PlaySE(SE_INTRO_DITTOBOUNCE2);
+    }
+
+    if (gIntroFrameCounter == 74)
+    {
+        PlaySE(SE_INTRO_DITTOTRANSFORM);
+    }
+
+    // fade from Ditto to Mikachu colors
+    if (gIntroFrameCounter == 102)
+    {
+        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG1_ON);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1
+                                   | BLDCNT_EFFECT_BLEND
+                                   | BLDCNT_TGT2_OBJ);
+        newTaskId = CreateTask(Task_FadeInOutGameFreakText, 0);
+        gTasks[newTaskId].data[1] = 0;
+    }
     
-    if (gIntroFrameCounter == 80)
-        CreateTask(Task_MosaicToGameFreakLogo, 0);
-    
+    // bring in DMA text
     if (gIntroFrameCounter == 170)
     {
+        PlaySE(SE_INTRO_LOGO_DING);
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2
                                    | BLDCNT_EFFECT_BLEND
@@ -932,65 +1099,33 @@ static void Task_ShowGameFreakScreen(u8 taskId)
         newTaskId = CreateTask(Task_FadeInOutGameFreakText, 0);
         gTasks[newTaskId].data[1] = 0;
     }
-    
+
+    // add "Presents" text and swap Mikachu to merged text BG
     if (gIntroFrameCounter == 200)
     {
+        ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG1_ON);
         LZ77UnCompVram(gIntro1BG2_LogoTilemap, (void *)(BG_SCREEN_ADDR(30)));
         DestroySprite(&gSprites[gTasks[taskId].data[1]]);
-        gTasks[taskId].data[0] = CreateSprite(&gSpriteTemplate_Presents, 104, 108, 5);
-        gTasks[taskId].data[1] = CreateSprite(&gSpriteTemplate_Presents, 136, 108, 5);
+        gTasks[taskId].data[0] = CreateSprite(&gSpriteTemplate_Presents, 104, 115, 5);
+        gTasks[taskId].data[1] = CreateSprite(&gSpriteTemplate_Presents, 136, 115, 5);
         gSprites[gTasks[taskId].data[1]].oam.tileNum += 4;
     }
-    
+
+    // fade out all graphics but background
     if (gIntroFrameCounter == 320)
     {
         SetGpuRegBits(REG_OFFSET_BLDCNT, BLDCNT_TGT1_OBJ);
         newTaskId = CreateTask(Task_FadeInOutGameFreakText, 0);
         gTasks[newTaskId].data[1] = 1;
     }
-    
+
+    // fade out all to black
     if (gIntroFrameCounter == 350)
     {
+        DestroySprite(&gSprites[gTasks[taskId].data[0]]);
         DestroySprite(&gSprites[gTasks[taskId].data[1]]);
-        DestroySprite(&gSprites[gTasks[taskId].data[2]]);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_WaitToStartUnownSequence;
-    }
-}
-
-static void Task_MosaicToGameFreakLogo(u8 taskId)
-{
-    u16 temp;
-    
-    if (gIntroFrameCounter < 98)
-    {
-        temp = gTasks[taskId].data[0]++ >> 1;
-        if (temp > 20)
-            temp = 20;
-        SetGpuReg(REG_OFFSET_MOSAIC, MOSAIC_SIZE(0, 0, temp, temp));
-        return;
-    }
-    
-    if (gIntroFrameCounter == 98)
-    {
-        // shift it up a tad pls
-        gSprites[gTasks[taskId].data[1]].pos1.y = 70;
-        StartSpriteAnim(&gSprites[gTasks[taskId].data[1]], 2);
-    }
-    
-    if (gIntroFrameCounter < 116)
-    {
-        temp = gTasks[taskId].data[0]-- >> 1;
-        if (temp > 20)
-            temp = 20;
-        SetGpuReg(REG_OFFSET_MOSAIC, MOSAIC_SIZE(0, 0, temp, temp));
-        return;
-    }
-    
-    if (gTasks[taskId].data[0] == 0)
-    {
-        SetGpuReg(REG_OFFSET_MOSAIC, 0);
-        DestroyTask(taskId);
     }
 }
 
@@ -1041,6 +1176,20 @@ static void SpriteCallback_Ditto(struct Sprite *sprite)
         else
         {
             sprite->pos1.y = 80;
+            sprite->data[0]++;
+        }
+        break;
+    case 2:
+        if (sprite->pos1.y > 71)
+        {
+            // move only when new frame is going to show
+            if (!sprite->animDelayCounter)
+                sprite->pos1.y -= 2;
+            if (sprite->pos1.y < 71)
+                sprite->pos1.y = 71;
+        }
+        else
+        {
             sprite->callback = SpriteCallbackDummy;
         }
         break;
@@ -1089,14 +1238,14 @@ static u8 BeginUnownFade(u8 speed, bool8 isFadingOut, bool8 shouldNotFadeComplet
 
 static void Task_IntroStartUnownSequence(u8 taskId)
 {
-    LoadCompressedSpriteSheet(gIntro2UnownASpriteSheet);
-    LoadCompressedSpriteSheet(gIntro2UnownPulseSpriteSheet);
-    LoadCompressedSpriteSheet(gIntro2UnownOthersSpriteSheet);
-    LoadCompressedSpriteSheet(gIntro2SuicuneSilhouetteSpriteSheet);
-    LoadCompressedSpriteSheet(gIntro2WooperSpriteSheet);
-    LoadCompressedSpriteSheet(gIntro2PichuSpriteSheet);
+    LoadCompressedSpriteSheet(&gIntro2UnownASpriteSheet);
+    LoadCompressedSpriteSheet(&gIntro2UnownPulseSpriteSheet);
+    LoadCompressedSpriteSheet(&gIntro2UnownOthersSpriteSheet);
+    LoadCompressedSpriteSheet(&gIntro2SuicuneSilhouetteSpriteSheet);
+    LoadCompressedSpriteSheet(&gIntro2WooperSpriteSheet);
+    LoadCompressedSpriteSheet(&gIntro2PichuSpriteSheet);
     LoadSpritePalettes(gIntro2SpritePalettes);
-    LoadSpritePalettes(gSuicuneSilhouetteSpritePalettes);
+    LoadSpritePalette(&gSuicuneSilhouetteSpritePalette);
     gTasks[taskId].data[1] = CreateSprite(&gSpriteTemplate_UnownA, 120, 80, 0);
     BeginUnownFade(32, FALSE, FALSE);
     SetVBlankCallback(VBlankCB_Intro);
@@ -1159,6 +1308,18 @@ static void Task_FadeScreenAndPulse(u8 taskId)
     case 1:
         if (gTasks[data[2]].data[2] == 28)
         {
+            switch (data[3])
+            {
+                case 0:
+                    PlaySE(SE_INTRO_UNOWN1);
+                    break;
+                case 1:
+                    PlaySE(SE_INTRO_UNOWN2);
+                    break;
+                case 2:
+                    PlaySE(SE_INTRO_UNOWN3);
+                    break;
+            }
             StartSpriteAffineAnim(&gSprites[data[1]], 1);
             data[0]++;
         }
@@ -1184,8 +1345,9 @@ static void Task_IntroDoUnownASequence(u8 taskId)
     
     if (gIntroFrameCounter == 64)
     {
-        CreateTask(Task_FadeScreenAndPulse, 0);
+        newTaskId = CreateTask(Task_FadeScreenAndPulse, 0);
         gTasks[newTaskId].data[1] = data[1];
+        gTasks[newTaskId].data[3] = 0;  // low pitch pulse
     }
     
     if (gIntroFrameCounter == 170)
@@ -1205,8 +1367,9 @@ static void Task_IntroDoUnownASequence(u8 taskId)
     if (gIntroFrameCounter == 370)
     {
         gTasks[taskId].data[1] = CreateSprite(&gSpriteTemplate_UnownOthers, 170, 50, 0);
-        CreateTask(Task_FadeScreenAndPulse, 0);
+        newTaskId = CreateTask(Task_FadeScreenAndPulse, 0);
         gTasks[newTaskId].data[1] = data[1];
+        gTasks[newTaskId].data[3] = 1;  // mid pitch pulse
     }
     
     if (gIntroFrameCounter == 434)
@@ -1214,8 +1377,9 @@ static void Task_IntroDoUnownASequence(u8 taskId)
         StartSpriteAnim(&gSprites[data[1]], 1);
         gSprites[data[1]].pos1.x = 60;
         gSprites[data[1]].pos1.y = 110;
-        CreateTask(Task_FadeScreenAndPulse, 0);
+        newTaskId = CreateTask(Task_FadeScreenAndPulse, 0);
         gTasks[newTaskId].data[1] = data[1];
+        gTasks[newTaskId].data[3] = 0;  // low pitch pulse
     }
     
     if (gIntroFrameCounter == 600)
@@ -1239,7 +1403,7 @@ static void Task_ScrollTreeGrassBackgrounds(u8 taskId)
         data[0]++;
         break;
     case 1:
-        ((u16)data[1]) += data[2];
+        *((u16 *)&data[1]) += data[2];
         SetGpuReg(REG_OFFSET_BG1HOFS, ((u16)data[1]) << 1);
         SetGpuReg(REG_OFFSET_BG2HOFS, ((u16)data[1]) >> 1);
         SetGpuReg(REG_OFFSET_BG3HOFS, ((u16)data[1]) >> 1);
@@ -1255,7 +1419,7 @@ static void Task_ScrollTreeGrassBackgrounds(u8 taskId)
         DestroyTask(taskId);
         break;
     case 3:
-        ((u16)data[1]) += data[2];
+        *((u16 *)&data[1]) += data[2];
         SetGpuReg(REG_OFFSET_BG1HOFS, (((u16)data[1]) << 1) + 1);
         DestroyTask(taskId);
     }
@@ -1277,6 +1441,7 @@ static void SpriteCallback_UnownPulse(struct Sprite *sprite)
         DestroySprite(sprite);
 }
 
+// TODO: Placeholder effect
 static void Task_ShakeGrass(u8 taskId)
 {
     gTasks[taskId].data[0]++;
@@ -1292,7 +1457,7 @@ static void Task_ShakeGrass(u8 taskId)
     else
         SetGpuReg(REG_OFFSET_BG2VOFS, 0);
     
-    if (gTasks[taskId].data[0] == 40)
+    if (gTasks[taskId].data[0] == 52)
         DestroyTask(taskId);
 }
 
@@ -1311,13 +1476,17 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
     if (gIntroFrameCounter == 665)
     {
         DestroyTask(data[2]);
+        PlaySE(SE_M_SAND_ATTACK);
         data[2] = CreateSprite(&gSpriteTemplate_SuicuneSilhouette, 272, 68, 0);
         gSprites[data[2]].data[0] = -10;
         gSprites[data[2]].data[1] = 0;
     }
     
-    if (gIntroFrameCounter == 710)
+    if (gIntroFrameCounter == 695)
+    {
+        PlaySE(SE_M_WING_ATTACK);
         CreateTask(Task_ShakeGrass, 0);
+    }
     
     if (gIntroFrameCounter == 738)
         data[2] = CreateSprite(&gSpriteTemplate_Wooper, 60, 135, 0);
@@ -1341,6 +1510,7 @@ static void Task_IntroDoSuicuneRunAcrossScreen(u8 taskId)
     
     if (gIntroFrameCounter == 946)
     {
+        PlaySE(SE_INTRO_UNOWN3);
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON);
         StartSpriteAnim(&gSprites[data[1]], 2);
         gSprites[data[1]].pos1.x = 100;
@@ -1370,6 +1540,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 1:
         if (!gUnknown_0203BCC8)
         {
+            PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 3);
             gSprites[data[1]].pos1.x = 190;
             gSprites[data[1]].pos1.y = 40;
@@ -1380,6 +1551,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 3:
         if (!gUnknown_0203BCC8)
         {
+            PlaySE(SE_INTRO_UNOWN1);
             StartSpriteAnim(&gSprites[data[1]], 4);
             gSprites[data[1]].pos1.x = 50;
             gSprites[data[1]].pos1.y = 70;
@@ -1390,6 +1562,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 5:
         if (!gUnknown_0203BCC8)
         {
+            PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 5);
             gSprites[data[1]].pos1.x = 130;
             gSprites[data[1]].pos1.y = 130;
@@ -1400,6 +1573,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 7:
         if (!gUnknown_0203BCC8)
         {
+            PlaySE(SE_INTRO_UNOWN3);
             StartSpriteAnim(&gSprites[data[1]], 6);
             gSprites[data[1]].pos1.x = 110;
             gSprites[data[1]].pos1.y = 30;
@@ -1419,6 +1593,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 9:
         if (!gUnknown_0203BCC8)
         {
+            PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 7);
             gSprites[data[1]].pos1.x = 200;
             gSprites[data[1]].pos1.y = 80;
@@ -1429,6 +1604,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 11:
         if (!gUnknown_0203BCC8)
         {
+            PlaySE(SE_INTRO_UNOWN1);
             StartSpriteAnim(&gSprites[data[1]], 8);
             gSprites[data[1]].pos1.x = 40;
             gSprites[data[1]].pos1.y = 120;
@@ -1439,6 +1615,7 @@ static void Task_FlashMultipleUnowns(u8 taskId)
     case 13:
         if (!gUnknown_0203BCC8)
         {
+            PlaySE(SE_INTRO_UNOWN2);
             StartSpriteAnim(&gSprites[data[1]], 9);
             gSprites[data[1]].pos1.x = 140;
             gSprites[data[1]].pos1.y = 90;
@@ -1470,6 +1647,7 @@ static void SpriteCallback_PopUpPkmn(struct Sprite *sprite)
     switch (sprite->data[0])
     {
     case 0:
+        PlaySE(SE_BIKE_HOP);
         sprite->data[1] = 10;
         sprite->data[0]++;
     case 1:
@@ -1505,8 +1683,8 @@ static void Task_ScrollTreeGrassBackgrounds2(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     
-    ((u16)data[1]) -= 20;
-    ((u16)data[2]) -= 12;
+    *((u16 *)&data[1]) -= 20;
+    *((u16 *)&data[2]) -= 12;
     SetGpuReg(REG_OFFSET_BG1HOFS, ((u16)data[1]));
     SetGpuReg(REG_OFFSET_BG2HOFS, ((u16)data[2]));
     SetGpuReg(REG_OFFSET_BG3HOFS, ((u16)data[2]));
@@ -1522,8 +1700,8 @@ static void Task_IntroLoadPart3Graphics(u8 taskId)
         ResetSpriteData();
         FreeAllSpritePalettes();
         
-        LoadCompressedSpriteSheet(gIntro2SuicuneSilhouetteSpriteSheet);
-        LoadSpritePalettes(gSuicuneSilhouetteSpritePalettes);
+        LoadCompressedSpriteSheet(&gIntro2SuicuneSilhouetteSpriteSheet);
+        LoadSpritePalette(&gSuicuneSilhouetteSpritePalette);
         
         data[0] = 0;
         data[1] = CreateTask(Task_ScrollTreeGrassBackgrounds2, 0);
@@ -1543,7 +1721,7 @@ static void Task_IntroStartPart3(u8 taskId)
                                 | DISPCNT_OBJ_ON
                                 | DISPCNT_WIN0_ON);
     gIntroFrameCounter = 0;
-    m4aSongNumStart(MUS_T_BATTLE, FALSE);
+    m4aSongNumStart(MUS_INTRO, FALSE);
 }
 
 static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)
@@ -1557,6 +1735,7 @@ static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)
     
     if (gIntroFrameCounter == 96)
     {
+        PlaySE(SE_M_HYPER_BEAM);
         StartSpriteAnim(&gSprites[data[2]], 1);
         gSprites[data[2]].data[0] = -8;
         gSprites[data[2]].data[1] = -3;
@@ -1590,9 +1769,9 @@ static void Task_IntroLoadPart3Graphics1(u8 taskId)
     LZ77UnCompVram(gIntro3BG3_Tiles, (void *)VRAM + 0x400);
     LZ77UnCompVram(gBattleAnimBgTilemap_InAir, (void *)(VRAM + 0xF800));
     LZ77UnCompVram(gIntro3BG3_Tilemap, (void *)(VRAM + 0xD800));
-    LoadCompressedSpriteSheet(gIntro3SuicuneSpriteSheet);
-    LoadCompressedSpriteSheet(gIntro3UnownFSpriteSheet);
-    LoadCompressedSpriteSheet(gIntro2UnownOthersSpriteSheet);
+    LoadCompressedSpriteSheet(&gIntro3SuicuneSpriteSheet);
+    LoadCompressedSpriteSheet(&gIntro3UnownFSpriteSheet);
+    LoadCompressedSpriteSheet(&gIntro2UnownOthersSpriteSheet);
     LoadPalette(gIntro3BG3_Pals, 0x10, sizeof(gIntro3BG3_Pals));
     LoadSpritePalettes(gIntro3SpritePalettes);
     gTasks[taskId].data[1] = IndexOfSpritePaletteTag(gIntro3SpritePalettes[1].tag) + 16;

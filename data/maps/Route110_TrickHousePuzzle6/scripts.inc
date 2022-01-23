@@ -33,7 +33,7 @@ Route110_TrickHousePuzzle6_EventScript_Sophia:: @ 826DDE1
 	end
 
 Route110_TrickHousePuzzle6_EventScript_Benny:: @ 826DDF8
-	trainerbattle_single TRAINER_BENNY, Route110_TrickHousePuzzle6_Text_BennyIntro, Route110_TrickHousePuzzle6_Text_BennyDefeat
+	trainerbattle_single TRAINER_BENNY_OLD, Route110_TrickHousePuzzle6_Text_BennyIntro, Route110_TrickHousePuzzle6_Text_BennyDefeat
 	msgbox Route110_TrickHousePuzzle6_Text_BennyPostBattle, MSGBOX_AUTOCLOSE
 	end
 

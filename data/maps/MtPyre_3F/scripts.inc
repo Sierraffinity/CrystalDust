@@ -2,7 +2,7 @@ MtPyre_3F_MapScripts:: @ 8231752
 	.byte 0
 
 MtPyre_3F_EventScript_William:: @ 8231753
-	trainerbattle_single TRAINER_WILLIAM, MtPyre_3F_Text_WilliamIntro, MtPyre_3F_Text_WilliamDefeat
+	trainerbattle_single TRAINER_WILLIAM_OLD, MtPyre_3F_Text_WilliamIntro, MtPyre_3F_Text_WilliamDefeat
 	msgbox MtPyre_3F_Text_WilliamPostBattle, MSGBOX_AUTOCLOSE
 	end
 

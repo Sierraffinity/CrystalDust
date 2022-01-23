@@ -7,8 +7,10 @@ enum
 {
     MART_TYPE_NORMAL, // normal mart
     MART_TYPE_TMHM,
+    MART_TYPE_HERB,
+    MART_TYPE_BARGAIN,
     MART_TYPE_DECOR,
-    MART_TYPE_DECOR2,
+    MART_TYPE_DECOR2
 };
 
 // shop view window NPC info enum
@@ -25,6 +27,7 @@ struct MartInfo
     /*0x0*/ void (*callback)(void);
     /*0x4*/ const struct MenuAction *menuActions;
     /*0x8*/ const u16 *itemList;
+    /*0x8*/ const u16 *customItemPrices;
     /*0xC*/ u16 itemCount;
     /*0xE*/ u8 windowId;
     /*0xF*/ u8 martType;
@@ -42,10 +45,13 @@ struct ShopData
     /*0x200B*/ u8 scrollIndicatorsTaskId;
     /*0x200C*/ u8 iconSlot;
     /*0x200D*/ u8 itemSpriteIds[2];
-    /*0x2010*/ s16 viewportObjects[16][4];
+    /*0x200F*/ u8 bargainShopPurchasedItems;
+    /*0x2010*/ s16 viewportObjects[OBJECT_EVENTS_COUNT][4];
 };
 
 void CreatePokemartMenu(const u16 *);
+void CreateBargainShopMenu(const u16 *, const u16 *);
+void CreateHerbShopMenu(const u16 *);
 void CreateDecorationShop1Menu(const u16 *);
 void CreateDecorationShop2Menu(const u16 *);
 void CB2_ExitSellMenu(void);

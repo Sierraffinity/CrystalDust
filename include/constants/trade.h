@@ -7,10 +7,11 @@
 #define LINK_TRADE_TIMEOUT 300
 
 // In-game Trade IDs
-#define INGAME_TRADE_SEEDOT 0
-#define INGAME_TRADE_PLUSLE 1
-#define INGAME_TRADE_HORSEA 2
-#define INGAME_TRADE_MEOWTH 3
+#define INGAME_TRADE_ONIX 0
+#define INGAME_TRADE_MACHOP 1
+#define INGAME_TRADE_MEOWTH 2
+// Not really trades but use the same system
+#define INGAME_TRADE_GIFT_SPEAROW 3
 
 // Flag IDs for sending link data
 #define INITIATE_TRADE  1
@@ -111,6 +112,12 @@
 #define CAN_REGISTER_MON   0
 #define CANT_REGISTER_MON  1
 #define CANT_REGISTER_EGG  2
+
+#define GIFTMON_MATCH      0
+#define GIFTMON_WRONG_MON  1
+#define GIFTMON_NO_MAIL    2
+#define GIFTMON_WRONG_MAIL 3
+#define GIFTMON_LAST_MON   4
 
 
 #endif //GUARD_CONSTANTS_TRADE_H

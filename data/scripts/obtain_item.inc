@@ -1,5 +1,5 @@
 Std_ObtainItem:: @ 8271AD3
-	textcolor MSG_COLOR_MISC
+	textcolor MSG_COLOR_SYS
 	additem VAR_0x8000, VAR_0x8001
 	copyvar VAR_0x8007, VAR_RESULT
 	call EventScript_ObtainItemMessage
@@ -67,11 +67,11 @@ EventScript_NoRoomForItem:: @ 8271BA9
 	return
 
 EventScript_PlayFanfareObtainedItem:: @ 8271BAF
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	return
 
 EventScript_PlayFanfareObtainedTMHM:: @ 8271BB3
-	playfanfare MUS_ME_WAZA
+	playfanfare MUS_OBTAIN_TMHM
 	return
 
 Std_ObtainDecoration:: @ 8271BB7
@@ -89,7 +89,7 @@ EventScript_ObtainDecorationMessage:: @ 8271BC5
 	return
 
 EventScript_ObtainedDecor:: @ 8271BE0
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message gText_ObtainedTheDecor
 	waitfanfare
 	msgbox gText_TheDecorWasTransferredToThePC, MSGBOX_DEFAULT

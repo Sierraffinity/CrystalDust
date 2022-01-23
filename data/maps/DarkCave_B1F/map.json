@@ -2,28 +2,31 @@
   "id": "MAP_DARK_CAVE_B1F",
   "name": "DarkCave_B1F",
   "layout": "LAYOUT_DARK_CAVE_B1F",
-  "music": "MUS_ILEXFOREST",
+  "music": "MUS_ILEX_FOREST",
   "region_map_section": "MAPSEC_DARK_CAVE",
   "requires_flash": true,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
-  "allow_bike": true,
-  "allow_escape_rope": true,
+  "allow_cycling": true,
+  "allow_escaping": true,
   "allow_running": true,
   "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 15,
       "y": 21,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "0",
-      "type": "original",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "DarkCave_B1F_EventScript_ItemPokeBall",
       "flag": "FLAG_ITEM_DARK_CAVE_B1F_POKE_BALL"
@@ -80,7 +83,10 @@
       "dest_warp_id": 4
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-  "phone_service": true
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

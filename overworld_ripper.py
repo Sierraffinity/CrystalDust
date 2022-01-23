@@ -19,7 +19,7 @@ def create_image(path, data):
 if __name__ == '__main__':
     with open(argv[1], 'rb') as f:
         f.seek(int(argv[2], base=16))
-        image_data = f.read(32 * 8 * 9)
+        image_data = f.read(64 * 4 * 9)
         f.seek(int(argv[3], base=16))
         pal_data = f.read(32)
 

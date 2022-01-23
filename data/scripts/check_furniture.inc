@@ -14,16 +14,12 @@ EventScript_DistinguishedStatue::
 	msgbox Text_DistinguishedStatue, MSGBOX_SIGN
 	end
 
-EventScript_PictureBookShelf:: @ 82725CE
+EventScript_PictureBookShelf::
 	msgbox Text_PictureBookShelf, MSGBOX_SIGN
 	end
 
-EventScript_BookShelf:: @ 82725D7
+EventScript_BookShelf::
 	msgbox Text_BookShelf, MSGBOX_SIGN
-	end
-
-EventScript_DifficultBookShelf::
-	msgbox Text_DifficultBooks, MSGBOX_SIGN
 	end
 
 EventScript_PokemonCenterBookShelf:: @ 82725E0
@@ -47,7 +43,17 @@ EventScript_Blueprint:: @ 8272604
 	end
 
 EventScript_Radio1::
-	setvar VAR_0x8004, 0
+	lockall
+	setvar VAR_0x8004, STATION_POKEMON_CHANNEL
 	special FieldRadio
 	waitstate
+	releaseall
+	end
+
+EventScript_Radio2::
+	lockall
+	setvar VAR_0x8004, STATION_LUCKY_CHANNEL
+	special FieldRadio
+	waitstate
+	releaseall
 	end

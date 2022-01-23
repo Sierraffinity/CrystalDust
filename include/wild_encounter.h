@@ -18,7 +18,7 @@ struct WildPokemon
 struct WildPokemonInfo
 {
     u8 encounterRate;
-    const struct WildPokemon *wildPokemon[TIME_OF_DAY_COUNT];
+    const struct WildPokemon *wildPokemon[TIMES_OF_DAY_COUNT];
 };
 
 struct WildPokemonHeader
@@ -29,6 +29,7 @@ struct WildPokemonHeader
     const struct WildPokemonInfo *waterMonsInfo;
     const struct WildPokemonInfo *rockSmashMonsInfo;
     const struct WildPokemonInfo *fishingMonsInfo;
+    const struct WildPokemonInfo *headbuttMonsInfo;
 };
 
 extern const struct WildPokemonHeader gWildMonHeaders[];
@@ -46,5 +47,7 @@ u16 GetMapWildMonFromIndex(u8, u8, u8);
 u8 ChooseWildMonIndex_Land(void);
 u8 ChooseWildMonLevelWithAbility(const struct WildPokemon *wildPokemon, bool8 useAbility);
 u8 GetUnownLetterByPersonalityLoByte(u32 personality);
+void Debug_StartWildBattle(u16 species, u8 level, u32 flags, bool8 forceShiny);
+void Debug_StartWildBattleWithMoves(u16 species, u8 level, u32 flags, bool8 forceShiny, u16 move1, u16 move2, u16 move3, u16 move4);
 
 #endif // GUARD_WILD_ENCOUNTER_H

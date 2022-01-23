@@ -17,7 +17,7 @@ def create_image(path, data, is_compressed):
         f.write(data)
     if is_compressed:
         gbagfx([filename + ".4bpp.lz", filename + ".4bpp"])
-    gbagfx([filename + ".4bpp", filename + ".png", "-width", "16", "-palette", os.sep.join([path, "palettes/05.gbapal"])])
+    gbagfx([filename + ".4bpp", filename + ".png", "-width", "16", "-palette", os.sep.join([path, "palettes/08.gbapal"])])
 
 def create_pals(path, data):
     subdir = os.sep.join([path, 'palettes'])
@@ -36,27 +36,45 @@ def create_behavior(path, data, num_metatiles):
     new_data = bytearray(num_metatiles * 2)
     for i in range(0, num_metatiles):
         behavior = data[i * 4]
-        if behavior >= 0x9C and behavior <= 0x9D:   # window
-            behavior = 0x88
-        elif behavior == 0x81:  # bookshelf
-            behavior = 0xE2
+        if behavior == 0x2A: # stairs
+            behavior = 0
         elif behavior >= 0x6C and behavior <= 0x6F: # staircase
             behavior -= 0x40
+        elif behavior == 0x81:  # bookshelf
+            behavior = 0xE2
+        elif behavior == 0x82:  # pokemart shelf
+            behavior = 0
+        elif behavior == 0x84: # signpost
+            behavior = 0x7E
+        elif behavior == 0x87: # pokemon center
+            behavior = 0x81
+        elif behavior == 0x88: # pokemon mart
+            behavior = 0x82
         elif behavior >= 0x89 and behavior <= 0x8B:  # dishes, sink, drawers
+            behavior = 0
+        elif behavior == 0x90: # fridge
+            behavior = 0
+        elif behavior == 0x93: # chart
+            behavior = 0
+        elif behavior == 0x94: # picture
+            behavior = 0
+        elif behavior == 0x95: # machine
+            behavior = 0
+        elif behavior == 0x96: # phone
             behavior = 0
         elif behavior == 0x97: # computer
             behavior = 0
         elif behavior == 0x9B: # coffee mug
             behavior = 0
-        elif behavior == 0x84: # signpost
-            behavior = 0x7E
-        elif behavior == 0x90: # fridge
+        elif behavior >= 0x9C and behavior <= 0x9D:   # window
+            behavior = 0x88
+        elif behavior == 0x9E: # machine
             behavior = 0
-        elif behavior == 0x94: # picture
+        elif behavior == 0xA3: # card thing
             behavior = 0
         new_data[i * 2] = behavior
         bg = data[i * 4 + 3]
-        if bg == 0x20:
+        if bg & 0x20 == 0x20:
             bg = 0x10
         new_data[i * 2 + 1] = bg
 

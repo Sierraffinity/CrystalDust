@@ -1,304 +1,311 @@
 {
-    "allow_bike": false,
-    "allow_escape_rope": false,
-    "allow_running": false,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine",
-            "type": "sign",
-            "x": 2,
-            "y": 1
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine",
-            "type": "sign",
-            "x": 3,
-            "y": 1
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_OpenWindow",
-            "type": "sign",
-            "x": 7,
-            "y": 1
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_TrashCan",
-            "type": "sign",
-            "x": 11,
-            "y": 4
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmsPC",
-            "type": "sign",
-            "x": 3,
-            "y": 6
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmsPC",
-            "type": "sign",
-            "x": 4,
-            "y": 6
-        },
-        {
-            "elevation": 0,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Shelf2",
-            "type": "sign",
-            "x": 2,
-            "y": 8
-        },
-        {
-            "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Shelf1",
-            "type": "sign",
-            "x": 1,
-            "y": 8
-        },
-        {
-            "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Shelf3",
-            "type": "sign",
-            "x": 3,
-            "y": 8
-        },
-        {
-            "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Shelf4",
-            "type": "sign",
-            "x": 4,
-            "y": 8
-        }
-    ],
-    "connections": null,
-    "coord_events": [
-        {
-            "elevation": 3,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "1",
-            "x": 5,
-            "y": 8
-        },
-        {
-            "elevation": 3,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "1",
-            "x": 6,
-            "y": 8
-        },
-        {
-            "elevation": 3,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "1",
-            "x": 7,
-            "y": 8
-        },
-        {
-            "elevation": 3,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "2",
-            "x": 5,
-            "y": 9
-        },
-        {
-            "elevation": 3,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "2",
-            "x": 6,
-            "y": 9
-        },
-        {
-            "elevation": 3,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "2",
-            "x": 7,
-            "y": 9
-        },
-        {
-            "elevation": 0,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer1",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "4",
-            "x": 5,
-            "y": 7
-        },
-        {
-            "elevation": 0,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer2",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "4",
-            "x": 6,
-            "y": 7
-        },
-        {
-            "elevation": 0,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer3",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "4",
-            "x": 7,
-            "y": 7
-        },
-        {
-            "elevation": 0,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls1",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "6",
-            "x": 5,
-            "y": 9
-        },
-        {
-            "elevation": 0,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls2",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "6",
-            "x": 6,
-            "y": 9
-        },
-        {
-            "elevation": 0,
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls3",
-            "type": "trigger",
-            "var": "VAR_ELM_LAB_STATE",
-            "var_value": "6",
-            "x": 7,
-            "y": 9
-        }
-    ],
-    "id": "MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB",
-    "layout": "LAYOUT_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB",
-    "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_ELMSLAB",
-    "name": "NewBarkTown_ProfessorElmsLab",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE",
-            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Aide",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 3,
-            "y": 10
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_PROF_ELM",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Elm",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 6,
-            "y": 3
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER",
-            "graphics_id": "OBJ_EVENT_GFX_OFFICER",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "NULL",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 6,
-            "y": 4
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Chikorita",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 8,
-            "y": 4
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Totodile",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 9,
-            "y": 4
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "type": "original",
-            "x": 10,
-            "y": 4
-        }
-    ],
-    "phone_service": true,
-    "region_map_section": "MAPSEC_NEW_BARK_TOWN",
-    "requires_flash": false,
-    "show_map_name": false,
-    "warp_events": [
-        {
-            "dest_map": "MAP_NEW_BARK_TOWN",
-            "dest_warp_id": 1,
-            "elevation": 0,
-            "x": 6,
-            "y": 12
-        }
-    ],
-    "weather": "WEATHER_NONE"
+  "id": "MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB",
+  "name": "NewBarkTown_ProfessorElmsLab",
+  "layout": "LAYOUT_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB",
+  "music": "MUS_ELMS_LAB",
+  "region_map_section": "MAPSEC_NEW_BARK_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "floor_number": 0,
+  "phone_service": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
+      "in_connection": false,
+      "x": 3,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Aide",
+      "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_AIDE"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_PROF_ELM",
+      "in_connection": false,
+      "x": 6,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Elm",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_OFFICER",
+      "in_connection": false,
+      "x": 6,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_OFFICER"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 8,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Chikorita",
+      "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 9,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Totodile",
+      "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 10,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Cyndaquil",
+      "flag": "FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CYNDAQUIL"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_NEW_BARK_TOWN",
+      "dest_warp_id": 1
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 8,
+      "elevation": 3,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "1",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 8,
+      "elevation": 3,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "1",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 8,
+      "elevation": 3,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "1",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmWaitDontGo"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 9,
+      "elevation": 3,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "2",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion1"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 9,
+      "elevation": 3,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "2",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion2"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 9,
+      "elevation": 3,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "2",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_AidePotion3"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "4",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer1"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "4",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer2"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "4",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Officer3"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "6",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls1"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "6",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls2"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_ELM_LAB_STATE",
+      "var_value": "6",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_AideBalls3"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_HealingMachine"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_OpenWindow"
+    },
+    {
+      "type": "sign",
+      "x": 11,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_TrashCan"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmsPC"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_ElmsPC"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Shelf2"
+    },
+    {
+      "type": "sign",
+      "x": 1,
+      "y": 8,
+      "elevation": 3,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Shelf1"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 8,
+      "elevation": 3,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Shelf3"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 8,
+      "elevation": 3,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NewBarkTown_ProfessorElmsLab_EventScript_Shelf4"
+    }
+  ]
 }

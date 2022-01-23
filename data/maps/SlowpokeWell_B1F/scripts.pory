@@ -1,0 +1,158 @@
+const ROCKET_1 = 1
+const ROCKET_BOSS = 2
+const ROCKET_3 = 3
+const ROCKET_2 = 4
+const SLOWPOKE_1 = 5
+const SLOWPOKE_2 = 6
+const KURT_ON_BACK = 7
+const KURT_ON_FEET = 10
+
+mapscripts SlowpokeWell_B1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_SLOWPOKE_WELL)
+    }
+}
+
+script SlowpokeWell_B1F_EventScript_Kurt {
+    msgbox("KURT: Hey there, {PLAYER}!\n"
+           "The guard up top took off when I\l"
+           "shouted at him.\p"
+           "But then I took a tumble down the\n"
+           "WELL.\p"
+           "I slammed down hard on my back,\n"
+           "so I can't move.\p"
+           "Rats! If I were fit, my POKéMON\n"
+           "would've punished them…\l"
+           "Ah, it can't be helped.\p"
+           "{PLAYER}, show them how gutsy you are\n"
+           "in my place!", MSGBOX_NPC)
+}
+
+script SlowpokeWell_B1F_EventScript_Rocket1 {
+    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_1, SlowpokeWell_B1F_Text_Rocket1Intro, SlowpokeWell_B1F_Text_Rocket1Defeat)
+    msgbox(SlowpokeWell_B1F_Text_Rocket1PostBattle)
+    release
+}
+
+script SlowpokeWell_B1F_EventScript_Rocket2 {
+    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_2, SlowpokeWell_B1F_Text_Rocket2Intro, SlowpokeWell_B1F_Text_Rocket2Defeat)
+    msgbox(SlowpokeWell_B1F_Text_Rocket2PostBattle)
+    release
+}
+
+script SlowpokeWell_B1F_EventScript_Rocket3 {
+    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_3, SlowpokeWell_B1F_Text_Rocket3Intro, SlowpokeWell_B1F_Text_Rocket3Defeat)
+    msgbox(SlowpokeWell_B1F_Text_Rocket3PostBattle)
+    release
+}
+
+script SlowpokeWell_B1F_EventScript_RocketBoss {
+    trainerbattle_single(TRAINER_ROCKET_SLOWPOKE_WELL_BOSS, SlowpokeWell_B1F_Text_RocketBossIntro, SlowpokeWell_B1F_Text_RocketBossDefeat, SlowpokeWell_B1F_EventScript_RocketBossDefeated)
+    release
+}
+
+text SlowpokeWell_B1F_Text_RocketBossIntro {
+	"What do you want?\p"
+    "If you interrupt our work, don't\n"
+    "expect any mercy!"
+}
+
+text SlowpokeWell_B1F_Text_RocketBossDefeat {
+	"You did okay today, but wait till\n"
+    "next time!"
+}
+
+script SlowpokeWell_B1F_EventScript_RocketBossDefeated {
+    msgbox("Yeah, TEAM ROCKET was broken up\n"
+           "three years ago.\p"
+           "But we continued our activities\n"
+           "underground.\p"
+           "Now you can have fun watching us\n"
+           "stir up trouble!")
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    removeobject(ROCKET_1)
+    removeobject(ROCKET_2)
+    removeobject(ROCKET_3)
+    removeobject(ROCKET_BOSS)
+    removeobject(KURT_ON_BACK)
+    addobject(KURT_ON_FEET)
+    fadescreen(FADE_FROM_BLACK)
+    applymovement(SLOWPOKE_1, SlowpokeWell_B1F_FirstSlowpokeWaitTurn)
+    applymovement(SLOWPOKE_2, SlowpokeWell_B1F_SecondSlowpokeWaitTurn)
+    applymovement(KURT_ON_FEET, SlowpokeWell_B1F_KurtToSlowpokes)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    msgbox("KURT: Way to go, {PLAYER}!\n"
+           "TEAM ROCKET has taken off.\p"
+           "My back's feeling a lot better, too.\n"
+           "Let's get out of here.")
+    setflag(FLAG_CLEARED_SLOWPOKE_WELL)
+    setvar(VAR_AZALEA_TOWN_STATE, 1)
+    clearflag(FLAG_HIDE_ILEX_FOREST_APPRENTICE_FARFETCHD)
+    setflag(FLAG_HIDE_AZALEA_TOWN_CHARCOAL_KILN_APPRENTICE_FARFETCHD)
+    setflag(FLAG_HIDE_SLOWPOKE_WELL_B1F_ROCKETS)
+    setflag(FLAG_HIDE_SLOWPOKE_WELL_B1F_KURT)
+    clearflag(FLAG_HIDE_AZALEA_TOWN_SLOWPOKES)
+    clearflag(FLAG_HIDE_AZALEA_TOWN_KURTS_HOUSE_KURT)
+    special(HealPlayerParty)
+    warp(MAP_AZALEA_TOWN_KURTS_HOUSE, -1, 4, 4)
+    waitstate
+    release
+}
+
+movement SlowpokeWell_B1F_FirstSlowpokeWaitTurn {
+    delay_16 * 6
+    face_down
+    delay_16 * 3
+    face_left
+}
+
+movement SlowpokeWell_B1F_SecondSlowpokeWaitTurn {
+    delay_16 * 13
+    face_down
+}
+
+movement SlowpokeWell_B1F_KurtToSlowpokes {
+    walk_left * 5
+    walk_up
+    delay_16
+    delay_8
+    walk_left * 2
+    walk_up * 3
+    delay_16
+    delay_8
+    walk_in_place_fastest_left
+}
+
+script SlowpokeWell_B1F_EventScript_SlowpokeWithMail {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_SLOWPOKE, 2)
+    msgbox("It's a SLOWPOKE with its TAIL\n"
+           "cut off…\p"
+           "Huh? It has MAIL.\n"
+           "Read it?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        msgbox("{PLAYER} read the MAIL.\n"
+               "……\p"
+               "Be good and look after the house\n"
+               "with Grandpa and SLOWPOKE.\l"
+               "Love, Dad")
+    }
+    release
+}
+
+script SlowpokeWell_B1F_EventScript_TaillessSlowpoke {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_SLOWPOKE, 2)
+    msgbox("It's a SLOWPOKE with its TAIL\n"
+           "cut off…")
+    waitmoncry
+    release
+}

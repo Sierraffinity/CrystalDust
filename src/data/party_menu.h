@@ -449,7 +449,7 @@ static const struct WindowTemplate sDoWhatWithItemMsgWindowTemplate =
     .bg = 2,
     .tilemapLeft = 1,
     .tilemapTop = 17,
-    .width = 20,
+    .width = 19,
     .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x299,
@@ -460,7 +460,7 @@ static const struct WindowTemplate sDoWhatWithMailMsgWindowTemplate =
     .bg = 2,
     .tilemapLeft = 1,
     .tilemapTop = 17,
-    .width = 18,
+    .width = 16,
     .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x299,
@@ -471,7 +471,7 @@ static const struct WindowTemplate sWhichMoveMsgWindowTemplate =
     .bg = 2,
     .tilemapLeft = 1,
     .tilemapTop = 17,
-    .width = 16,
+    .width = 15,
     .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x299,
@@ -482,7 +482,7 @@ static const struct WindowTemplate sAlreadyHoldingOneMsgWindowTemplate =
     .bg = 2,
     .tilemapLeft = 1,
     .tilemapTop = 15,
-    .width = 20,
+    .width = 21,
     .height = 4,
     .paletteNum = 15,
     .baseBlock = 0x299,
@@ -491,34 +491,34 @@ static const struct WindowTemplate sAlreadyHoldingOneMsgWindowTemplate =
 static const struct WindowTemplate sItemGiveTakeWindowTemplate =
 {
     .bg = 2,
-    .tilemapLeft = 23,
+    .tilemapLeft = 22,
     .tilemapTop = 13,
-    .width = 6,
+    .width = 7,
     .height = 6,
     .paletteNum = 14,
-    .baseBlock = 0x39D,
+    .baseBlock = 0x373,
 };
 
 static const struct WindowTemplate sMailReadTakeWindowTemplate =
 {
     .bg = 2,
-    .tilemapLeft = 21,
+    .tilemapLeft = 19,
     .tilemapTop = 13,
-    .width = 8,
+    .width = 10,
     .height = 6,
     .paletteNum = 14,
-    .baseBlock = 0x39D,
+    .baseBlock = 0x373,
 };
 
 static const struct WindowTemplate sMoveSelectWindowTemplate =
 {
     .bg = 2,
-    .tilemapLeft = 19,
+    .tilemapLeft = 18,
     .tilemapTop = 11,
-    .width = 10,
+    .width = 11,
     .height = 8,
     .paletteNum = 14,
-    .baseBlock = 0x2E9,
+    .baseBlock = 0x2BF,
 };
 
 static const struct WindowTemplate sPartyMenuYesNoWindowTemplate =
@@ -526,10 +526,10 @@ static const struct WindowTemplate sPartyMenuYesNoWindowTemplate =
     .bg = 2,
     .tilemapLeft = 21,
     .tilemapTop = 9,
-    .width = 5,
+    .width = 6,
     .height = 4,
     .paletteNum = 14,
-    .baseBlock = 0x2E9,
+    .baseBlock = 0x2BF,
 };
 
 static const struct WindowTemplate sLevelUpStatsWindowTemplate =
@@ -540,7 +540,7 @@ static const struct WindowTemplate sLevelUpStatsWindowTemplate =
     .width = 10,
     .height = 11,
     .paletteNum = 14,
-    .baseBlock = 0x2E9,
+    .baseBlock = 0x2BF,
 };
 
 static const struct WindowTemplate sUnusedWindowTemplate_08615978 =
@@ -548,7 +548,7 @@ static const struct WindowTemplate sUnusedWindowTemplate_08615978 =
     .bg = 2,
     .tilemapLeft = 2,
     .tilemapTop = 15,
-    .width = 27,
+    .width = 26,
     .height = 4,
     .paletteNum = 14,
     .baseBlock = 0x1DF,
@@ -562,7 +562,7 @@ static const struct WindowTemplate sUnusedWindowTemplate_08615980 =
     .width = 18,
     .height = 3,
     .paletteNum = 12,
-    .baseBlock = 0x39D,
+    .baseBlock = 0x373,
 };
 
 // Tile nums
@@ -704,12 +704,12 @@ enum
 
 enum
 {
-    FIELD_MOVE_CUT,
     FIELD_MOVE_FLASH,
-    FIELD_MOVE_ROCK_SMASH,
+    FIELD_MOVE_CUT,
     FIELD_MOVE_STRENGTH,
     FIELD_MOVE_SURF,
     FIELD_MOVE_FLY,
+    FIELD_MOVE_ROCK_SMASH,
     FIELD_MOVE_DIVE,
     FIELD_MOVE_WATERFALL,
     FIELD_MOVE_TELEPORT,
@@ -718,6 +718,7 @@ enum
     FIELD_MOVE_MILK_DRINK,
     FIELD_MOVE_SOFT_BOILED,
     FIELD_MOVE_SWEET_SCENT,
+    FIELD_MOVE_HEADBUTT,
 };
 
 // What a weird choice of table termination;
@@ -748,12 +749,12 @@ struct
     [MENU_TRADE1] = {gText_Trade4, CursorCb_Trade1},
     [MENU_TRADE2] = {gText_Trade4, CursorCb_Trade2},
     [MENU_TOSS] = {gMenuText_Toss, CursorCb_Toss},
-    [MENU_FIELD_MOVES + FIELD_MOVE_CUT] = {gMoveNames[MOVE_CUT], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_FLASH] = {gMoveNames[MOVE_FLASH], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_ROCK_SMASH] = {gMoveNames[MOVE_ROCK_SMASH], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_CUT] = {gMoveNames[MOVE_CUT], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_STRENGTH] = {gMoveNames[MOVE_STRENGTH], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SURF] = {gMoveNames[MOVE_SURF], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_FLY] = {gMoveNames[MOVE_FLY], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_ROCK_SMASH] = {gMoveNames[MOVE_ROCK_SMASH], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_DIVE] = {gMoveNames[MOVE_DIVE], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_WATERFALL] = {gMoveNames[MOVE_WATERFALL], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_TELEPORT] = {gMoveNames[MOVE_TELEPORT], CursorCb_FieldMove},
@@ -762,6 +763,7 @@ struct
     [MENU_FIELD_MOVES + FIELD_MOVE_MILK_DRINK] = {gMoveNames[MOVE_MILK_DRINK], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SOFT_BOILED] = {gMoveNames[MOVE_SOFT_BOILED], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT] = {gMoveNames[MOVE_SWEET_SCENT], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_HEADBUTT] = {gMoveNames[MOVE_HEADBUTT], CursorCb_FieldMove},
 };
 
 static const u8 sPartyMenuAction_SummarySwitchCancel[] = {MENU_SUMMARY, MENU_SWITCH, MENU_CANCEL1};
@@ -835,8 +837,8 @@ static const u8 sPartyMenuActionCounts[] =
 
 static const u16 sFieldMoves[] =
 {
-    MOVE_CUT, MOVE_FLASH, MOVE_ROCK_SMASH, MOVE_STRENGTH, MOVE_SURF, MOVE_FLY, MOVE_DIVE, MOVE_WATERFALL, MOVE_TELEPORT,
-    MOVE_DIG, MOVE_SECRET_POWER, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, FIELD_MOVE_TERMINATOR
+    MOVE_FLASH, MOVE_CUT, MOVE_STRENGTH, MOVE_SURF, MOVE_FLY, MOVE_ROCK_SMASH, MOVE_DIVE, MOVE_WATERFALL, MOVE_TELEPORT,
+    MOVE_DIG, MOVE_SECRET_POWER, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, MOVE_HEADBUTT, FIELD_MOVE_TERMINATOR
 };
 
 struct
@@ -845,12 +847,12 @@ struct
     u8 msgId;
 } static const sFieldMoveCursorCallbacks[] =
 {
-    [FIELD_MOVE_CUT]          = {SetUpFieldMove_Cut,         PARTY_MSG_NOTHING_TO_CUT},
     [FIELD_MOVE_FLASH]        = {SetUpFieldMove_Flash,       PARTY_MSG_CANT_USE_HERE},
-    [FIELD_MOVE_ROCK_SMASH]   = {SetUpFieldMove_RockSmash,   PARTY_MSG_CANT_USE_HERE},
+    [FIELD_MOVE_CUT]          = {SetUpFieldMove_Cut,         PARTY_MSG_NOTHING_TO_CUT},
     [FIELD_MOVE_STRENGTH]     = {SetUpFieldMove_Strength,    PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_SURF]         = {SetUpFieldMove_Surf,        PARTY_MSG_CANT_SURF_HERE},
     [FIELD_MOVE_FLY]          = {SetUpFieldMove_Fly,         PARTY_MSG_CANT_USE_HERE},
+    [FIELD_MOVE_ROCK_SMASH]   = {SetUpFieldMove_RockSmash,   PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_DIVE]         = {SetUpFieldMove_Dive,        PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_WATERFALL]    = {SetUpFieldMove_Waterfall,   PARTY_MSG_CANT_USE_HERE},
     [FIELD_MOVE_TELEPORT]     = {SetUpFieldMove_Teleport,    PARTY_MSG_CANT_USE_HERE},
@@ -859,6 +861,7 @@ struct
     [FIELD_MOVE_MILK_DRINK]   = {SetUpFieldMove_SoftBoiled,  PARTY_MSG_NOT_ENOUGH_HP},
     [FIELD_MOVE_SOFT_BOILED]  = {SetUpFieldMove_SoftBoiled,  PARTY_MSG_NOT_ENOUGH_HP},
     [FIELD_MOVE_SWEET_SCENT]  = {SetUpFieldMove_SweetScent,  PARTY_MSG_CANT_USE_HERE},
+    [FIELD_MOVE_HEADBUTT]     = {SetUpFieldMove_Headbutt,    PARTY_MSG_CANT_USE_HERE},
 };
 
 static const u8 *const sUnionRoomTradeMessages[] =

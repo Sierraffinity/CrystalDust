@@ -37,6 +37,7 @@
 #include "constants/event_bg.h"
 #include "constants/decorations.h"
 #include "constants/event_objects.h"
+#include "constants/field_specials.h"
 #include "constants/items.h"
 #include "constants/maps.h"
 #include "constants/map_types.h"
@@ -203,7 +204,7 @@ static const struct ListMenuTemplate sRegistryListMenuTemplate =
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = 1,
+    .fontId = 2,
     .cursorKind = 0,
 };
 
@@ -453,7 +454,7 @@ static void EnterNewlyCreatedSecretBase_StartFadeIn(void)
     s16 x, y;
 
     ScriptContext2_Enable();
-    HideMapNamePopUpWindow();
+    DismissMapNamePopup();
     FindMetatileIdMapCoords(&x, &y, METATILE_SecretBase_PC);
     x += 7;
     y += 7;
@@ -543,23 +544,23 @@ void InitSecretBaseDecorationSprites(void)
     objectEventId = 0;
     if (!CurMapIsSecretBase())
     {
-        decorations = gSaveBlock1Ptr->playerRoomDecor;
-        decorationPositions = gSaveBlock1Ptr->playerRoomDecorPos;
-        numDecorations = 12;
+        decorations = gSaveBlock1Ptr->playerRoomDecorations;
+        decorationPositions = gSaveBlock1Ptr->playerRoomDecorationPositions;
+        numDecorations = DECOR_MAX_PLAYERS_HOUSE;
     }
     else
     {
         u16 secretBaseId = VarGet(VAR_CURRENT_SECRET_BASE);
         decorations = gSaveBlock1Ptr->secretBases[secretBaseId].decorations;
         decorationPositions = gSaveBlock1Ptr->secretBases[secretBaseId].decorationPositions;
-        numDecorations = 16;
+        numDecorations = DECOR_MAX_SECRET_BASE;
     }
 
     for (i = 0; i < numDecorations; i++)
     {
         if (decorations[i] == DECOR_NONE)
             continue;
-        
+
         permission = gDecorations[decorations[i]].permission;
         category = gDecorations[decorations[i]].category;
         if (permission == DECORPERM_SPRITE)
@@ -947,7 +948,7 @@ static void FinalizeRegistryMenu(u8 taskId)
     SetStandardWindowBorderStyle(data[6], 0);
     data[5] = ListMenuInit(&gMultiuseListMenuTemplate, data[2], data[1]);
     AddRegistryMenuScrollArrows(taskId);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void AddRegistryMenuScrollArrows(u8 taskId)
@@ -963,7 +964,7 @@ static void HandleRegistryMenuInput(u8 taskId)
 
     data = gTasks[taskId].data;
     input = ListMenu_ProcessInput(data[5]);
-    ListMenuGetScrollAndRow(data[5], &data[2], &data[1]);
+    ListMenuGetScrollAndRow(data[5], (u16 *)&data[2], (u16 *)&data[1]);
     switch (input)
     {
     case LIST_NOTHING_CHOSEN:
@@ -975,7 +976,7 @@ static void HandleRegistryMenuInput(u8 taskId)
         ClearStdWindowAndFrame(data[6], 0);
         ClearWindowTilemap(data[6]);
         RemoveWindow(data[6]);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
         free(sRegistryMenu);
         GoToSecretBasePCRegisterMenu(taskId);
         break;
@@ -997,8 +998,8 @@ static void ShowRegistryMenuActions(u8 taskId)
     data[7] = AddWindow(&template);
     SetStandardWindowBorderStyle(data[7], 0);
     PrintMenuTable(data[7], 2, sRegistryMenuActions);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[7], 1, 0, 1, 16, 2, 0);
-    schedule_bg_copy_tilemap_to_vram(0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[7], 2, 0, 1, 16, 2, 0);
+    ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = HandleRegistryMenuActionsInput;
 }
 
@@ -1028,7 +1029,7 @@ static void ShowRegistryMenuDeleteConfirmation(u8 taskId)
     ClearWindowTilemap(data[6]);
     ClearWindowTilemap(data[7]);
     RemoveWindow(data[7]);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     GetSecretBaseName(gStringVar1, data[4]);
     StringExpandPlaceholders(gStringVar4, gText_OkayToDeleteFromRegistry);
     DisplayItemMessageOnField(taskId, gStringVar4, ShowRegistryMenuDeleteYesNo);
@@ -1044,10 +1045,10 @@ void DeleteRegistry_Yes_Callback(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     ClearDialogWindowAndFrame(0, 0);
-    DestroyListMenuTask(data[5], &data[2], &data[1]);
+    DestroyListMenuTask((u8)data[5], (u16 *)&data[2], (u16 *)&data[1]);
     gSaveBlock1Ptr->secretBases[data[4]].registryStatus = 0;
     BuildRegistryMenuItems(taskId);
-    sub_812225C(&data[2], &data[1], data[3], data[0]);
+    sub_812225C((u16 *)&data[2], (u16 *)&data[1], (u16)data[3], (u16)data[0]);
     FinalizeRegistryMenu(taskId);
     gTasks[taskId].func = HandleRegistryMenuInput;
 }
@@ -1061,7 +1062,7 @@ static void DeleteRegistry_No(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     ClearDialogWindowAndFrame(0, 0);
-    DestroyListMenuTask(data[5], &data[2], &data[1]);
+    DestroyListMenuTask((u8)data[5], (u16 *)&data[2], (u16 *)&data[1]);
     FinalizeRegistryMenu(taskId);
     gTasks[taskId].func = HandleRegistryMenuInput;
 }
@@ -1073,7 +1074,7 @@ static void ReturnToMainRegistryMenu(u8 taskId)
     ClearStdWindowAndFrame(data[7], 0);
     ClearWindowTilemap(data[7]);
     RemoveWindow(data[7]);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = HandleRegistryMenuInput;
 }
 
@@ -1120,7 +1121,7 @@ const u8 *GetSecretBaseTrainerLoseText(void)
 
 void PrepSecretBaseBattleFlags(void)
 {
-    TryGainNewFanFromCounter(1);
+    TryGainNewFanFromCounter(FANCOUNTER_BATTLED_AT_BASE);
     gTrainerBattleOpponent_A = TRAINER_SECRET_BASE;
     gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_SECRET_BASE;
 }
@@ -1176,7 +1177,7 @@ void SecretBasePerStepCallback(u8 taskId)
             VarSet(VAR_SECRET_BASE_STEP_COUNTER, VarGet(VAR_SECRET_BASE_STEP_COUNTER) + 1);
             behavior = MapGridGetMetatileBehaviorAt(x, y);
             tileId = MapGridGetMetatileIdAt(x, y);
-            if (tileId == METATILE_SecretBase_Board_Top || tileId == METATILE_SecretBase_Board_Bottom)
+            if (tileId == METATILE_SecretBase_SolidBoard_Top || tileId == METATILE_SecretBase_SolidBoard_Bottom)
             {
                 if (sInFriendSecretBase == TRUE)
                 {
@@ -1204,13 +1205,13 @@ void SecretBasePerStepCallback(u8 taskId)
                 if (sInFriendSecretBase == TRUE)
                     VarSet(VAR_SECRET_BASE_LOW_TV_FLAGS, VarGet(VAR_SECRET_BASE_LOW_TV_FLAGS) | SECRET_BASE_USED_TENT);
             }
-            else if ((behavior == MB_IMPASSABLE_NORTHEAST && tileId == METATILE_SecretBase_Stand_RightCorner) 
-                  || (behavior == MB_IMPASSABLE_NORTHWEST && MapGridGetMetatileIdAt(x, y) == METATILE_SecretBase_Stand_LeftCorner))
+            else if ((behavior == MB_IMPASSABLE_NORTHEAST && tileId == METATILE_SecretBase_Stand_CornerRight) 
+                  || (behavior == MB_IMPASSABLE_NORTHWEST && MapGridGetMetatileIdAt(x, y) == METATILE_SecretBase_Stand_CornerLeft))
             {
                 if (sInFriendSecretBase == TRUE)
                     VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_USED_STAND);
             }
-            else if (behavior == MB_IMPASSABLE_WEST_AND_EAST && tileId == METATILE_SecretBase_Slide_Stairs)
+            else if (behavior == MB_IMPASSABLE_WEST_AND_EAST && tileId == METATILE_SecretBase_Slide_StairLanding)
             {
                 if (sInFriendSecretBase == TRUE)
                 {
@@ -1218,7 +1219,7 @@ void SecretBasePerStepCallback(u8 taskId)
                     VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_DECLINED_SLIDE);
                 }
             }
-            else if (behavior == MB_SLIDE_SOUTH && tileId == METATILE_SecretBase_Slide)
+            else if (behavior == MB_SLIDE_SOUTH && tileId == METATILE_SecretBase_Slide_SlideTop)
             {
                 if (sInFriendSecretBase == TRUE)
                 {
@@ -1846,12 +1847,12 @@ void CheckInteractedWithFriendsFurnitureBottom(void)
         case METATILE_SecretBase_RedPlant_Base2:
         case METATILE_SecretBase_TropicalPlant_Base1:
         case METATILE_SecretBase_TropicalPlant_Base2:
-        case METATILE_SecretBase_PrettyFlower_Base1:
-        case METATILE_SecretBase_PrettyFlower_Base2:
-        case METATILE_SecretBase_ColorfulFlowers_BaseLeft1:
-        case METATILE_SecretBase_ColorfulFlowers_BaseRight1:
-        case METATILE_SecretBase_ColorfulFlowers_BaseLeft2:
-        case METATILE_SecretBase_ColorfulFlowers_BaseRight2:
+        case METATILE_SecretBase_PrettyFlowers_Base1:
+        case METATILE_SecretBase_PrettyFlowers_Base2:
+        case METATILE_SecretBase_ColorfulPlant_BaseLeft1:
+        case METATILE_SecretBase_ColorfulPlant_BaseRight1:
+        case METATILE_SecretBase_ColorfulPlant_BaseLeft2:
+        case METATILE_SecretBase_ColorfulPlant_BaseRight2:
         case METATILE_SecretBase_BigPlant_BaseLeft1:
         case METATILE_SecretBase_BigPlant_BaseRight1:
         case METATILE_SecretBase_BigPlant_BaseLeft2:

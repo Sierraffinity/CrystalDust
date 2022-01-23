@@ -1,0 +1,7 @@
+mapscripts GoldenrodCity_Underground_SouthEntrance_MapScripts {}
+
+script GoldenrodCity_Underground_SouthEntrance_EventScript_ScaredWoman {
+    msgbox("There are some shops downstairs…\n"
+           "But there are also TRAINERS.\p"
+           "I'm scared to go down there.", MSGBOX_NPC)
+}

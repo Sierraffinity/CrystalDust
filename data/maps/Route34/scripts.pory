@@ -1,0 +1,121 @@
+mapscripts Route34_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_PENDING_DAYCARE_EGG))
+        {
+            clearflag(FLAG_HIDE_ROUTE_34_DAYCARE_MAN_OUTSIDE)
+        }
+        else
+        {
+            setflag(FLAG_HIDE_ROUTE_34_DAYCARE_MAN_OUTSIDE)
+        }
+    }
+}
+
+script Route34_EventScript_Todd {
+    trainerbattle_single(TRAINER_TODD, Route34_Text_ToddIntro, Route34_Text_ToddDefeated)
+    //TODO: Phone
+    msgbox(Route34_Text_ToddPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route34_EventScript_Samuel {
+    trainerbattle_single(TRAINER_SAMUEL, Route34_Text_SamuelIntro, Route34_Text_SamuelDefeated)
+    msgbox(Route34_Text_SamuelPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route34_EventScript_Ian {
+    trainerbattle_single(TRAINER_IAN, Route34_Text_IanIntro, Route34_Text_IanDefeated)
+    msgbox(Route34_Text_IanPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route34_EventScript_Gina {
+    trainerbattle_single(TRAINER_GINA, Route34_Text_GinaIntro, Route34_Text_GinaDefeated)
+    //TODO: Phone
+    msgbox(Route34_Text_GinaPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route34_EventScript_Keith {
+    lock
+    faceplayer
+    gettime
+    if (var(VAR_0x8002) == TIME_NIGHT)
+    {
+        trainerbattle_single(TRAINER_KEITH, Route34_Text_KeithIntro, Route34_Text_KeithDefeated)
+        msgbox(Route34_Text_KeithPostBattle)
+    }
+    else
+    {
+        msgbox("I'm on patrol for suspicious\n"
+               "individuals.")
+    }
+    release
+}
+
+script Route34_EventScript_Brandon {
+    trainerbattle_single(TRAINER_BRANDON, Route34_Text_BrandonIntro, Route34_Text_BrandonDefeated)
+    msgbox(Route34_Text_BrandonPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route34_EventScript_Irene {
+    trainerbattle_single(TRAINER_IRENE, Route34_Text_IreneIntro, Route34_Text_IreneDefeated)
+    if (!defeated(TRAINER_KATE))
+    {
+        msgbox("IRENE: My sister KATE will get\n"
+	           "you for this!")
+    }
+    else
+    {
+        msgbox(Route34_Text_IrenePostBattle)
+    }
+    release
+}
+
+script Route34_EventScript_Jenn {
+    trainerbattle_single(TRAINER_JENN, Route34_Text_JennIntro, Route34_Text_JennDefeated)
+    if (!defeated(TRAINER_KATE))
+    {
+        msgbox("JENN: Don't get cocky!\n"
+	           "My sister KATE is tough!")
+    }
+    else
+    {
+        msgbox(Route34_Text_JennPostBattle)
+    }
+    release
+}
+
+script Route34_EventScript_Kate {
+    trainerbattle_single(TRAINER_KATE, Route34_Text_KateIntro, Route34_Text_KateDefeated)
+    if (!flag(FLAG_RECEIVED_SOFT_SAND_FROM_KATE))
+    {
+        msgbox("KATE: You're too strong.\n"
+               "I didn't stand a chance.\p"
+               "Here.\n"
+               "You deserve this.")
+        giveitem(ITEM_SOFT_SAND)
+        if (!var(VAR_RESULT))
+        {
+			goto(Common_EventScript_ShowBagIsFull)
+        }
+        setflag(FLAG_RECEIVED_SOFT_SAND_FROM_KATE)
+    }
+    msgbox(Route34_Text_KatePostBattle, MSGBOX_AUTOCLOSE)
+}
+
+script Route34_EventScript_DirectionsSign {
+    msgbox("ROUTE 34\n"
+           "GOLDENROD CITY - AZALEA TOWN\p"
+           "ILEX FOREST SOMEWHERE BETWEEN", MSGBOX_SIGN)
+}
+
+script Route34_EventScript_TrainerTipsSign {
+    msgbox("TRAINER TIPS\p"
+           "BERRY trees grow new BERRIES\n"
+           "every day.\p"
+           "Make a note of which trees bear\n"
+           "which BERRIES.", MSGBOX_SIGN)
+}
+
+script Route34_EventScript_DaycareSign {
+    msgbox("DAY-CARE\n"
+           "LET US RAISE YOUR POKéMON FOR YOU!", MSGBOX_SIGN)
+}

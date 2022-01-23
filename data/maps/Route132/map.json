@@ -2,13 +2,13 @@
   "id": "MAP_ROUTE132",
   "name": "Route132",
   "layout": "LAYOUT_ROUTE132",
-  "music": "MUS_GRANROAD",
+  "music": "MUS_ROUTE119",
   "region_map_section": "MAPSEC_ROUTE_132",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_OCEAN_ROUTE",
-  "allow_bike": true,
-  "allow_escape_rope": false,
+  "allow_cycling": true,
+  "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
@@ -65,7 +65,7 @@
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route132_EventScript_ItemRareCandy",
-      "flag": "FLAG_ITEM_ROUTE_132_RARE_CANDY"
+      "flag": "FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_ULTRA_BALL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",

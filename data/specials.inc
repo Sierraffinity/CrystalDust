@@ -31,7 +31,7 @@ gSpecials:: @ 81DBA64
 	def_special GetObjectEventLocalIdByFlag
 	def_special GetSecretBaseTypeInFrontOfPlayer
 	def_special SetSecretBaseOwnerGfxId
-	def_special sub_8129708
+	def_special PutAwayDecorationIteration
 	def_special EnterNewlyCreatedSecretBase
 	def_special SetBattledOwnerFromResult
 	def_special DoSecretBasePCTurnOffEffect
@@ -39,7 +39,7 @@ gSpecials:: @ 81DBA64
 	def_special TryBattleLinkup
 	def_special TryTradeLinkup
 	def_special TryRecordMixLinkup
-	def_special sub_80B2EA8
+	def_special ValidateMixingGameLanguage
 	def_special CloseLink
 	def_special ColosseumPlayerSpotTriggered
 	def_special PlayerEnteredTradeSeat
@@ -134,7 +134,7 @@ gSpecials:: @ 81DBA64
 	def_special CompareSeedotSize
 	def_special GetLotadSizeRecordInfo
 	def_special CompareLotadSize
-	def_special TryPutNameRaterShowOnTheAir
+	def_special NameRaterWasNicknameChanged
 	def_special BufferMonNickname
 	def_special IsMonOTIDNotPlayers
 	def_special BufferTrendyPhraseString
@@ -149,7 +149,7 @@ gSpecials:: @ 81DBA64
 	def_special SaveMuseumContestPainting
 	def_special DoesContestCategoryHaveWinner
 	def_special CountPlayerContestPaintings
-	def_special ShowContestWinner
+	def_special ShowContestWinnerPainting
 	def_special MauvilleGymSetDefaultBarriers
 	def_special MauvilleGymPressSwitch
 	def_special ShowFieldMessageStringVar4
@@ -308,7 +308,6 @@ gSpecials:: @ 81DBA64
 	def_special Script_FacePlayer
 	def_special Script_ClearHeldMovement
 	def_special InitRoamer
-	def_special TryUpdateUnionCave_1FState @unused
 	def_special IsGrassTypeInParty
 	def_special DoContestHallWarp
 	def_special PutZigzagoonInPlayerParty
@@ -316,7 +315,7 @@ gSpecials:: @ 81DBA64
 	def_special CopyCurSecretBaseOwnerName_StrVar1
 	def_special ScriptCheckFreePokemonStorageSpace
 	def_special DoSealedChamberShakingEffect1
-	def_special ShowDeptStoreElevatorFloorSelect
+	def_special DrawElevatorCurrentFloorWindow
 	def_special InteractWithShieldOrTVDecoration
 	def_special IsPokerusInParty
 	def_special SetSootopolisGymCrackedIceMetatiles
@@ -335,7 +334,7 @@ gSpecials:: @ 81DBA64
 	def_special BattleSetup_StartLatiBattle
 	def_special SetRoute119Weather
 	def_special SetRoute123Weather
-	def_special ScriptGetMultiplayerId
+	def_special GetContestMultiplayerId
 	def_special ScriptGetPartyMonSpecies
 	def_special IsSelectedMonEgg
 	def_special WriteCurrentTimeStringToStrVar1
@@ -344,12 +343,12 @@ gSpecials:: @ 81DBA64
 	def_special Script_FadeOutMapMusic
 	def_special SetPacifidlogTMReceivedDay
 	def_special GetDaysUntilPacifidlogTMAvailable
-	def_special HasAllHoennMons
+	def_special HasAllJohtoMons
 	def_special MonOTNameNotPlayer
 	def_special BufferLottoTicketNumber
 	def_special TryHideBattleTowerReporter
 	def_special DoesPartyHaveEnigmaBerry
-	def_special ScriptRandom
+	def_special GenerateContestRand
 	def_special SetChampionSaveWarp
 	def_special TryPutTreasureInvestigatorsOnAir
 	def_special TryPutLotteryWinnerReportOnAir
@@ -416,8 +415,7 @@ gSpecials:: @ 81DBA64
 	def_special CloseBattlePikeCurtain
 	def_special CallApprenticeFunction
 	def_special ShouldTryGetTrainerScript
-	def_special ShowMapNamePopup
-	def_special ShowMapNamePopup
+	def_special Special_ShowMapNamePopup
 	def_special DoMirageTowerCeilingCrumble
 	def_special SetMirageTowerVisibility
 	def_special StartPlayerDescendMirageTower
@@ -425,8 +423,8 @@ gSpecials:: @ 81DBA64
 	def_special IsWirelessAdapterConnected
 	def_special TryBecomeLinkLeader
 	def_special TryJoinLinkGroup
-	def_special UnionRoomSpecial
-	def_special sub_801A42C
+	def_special RunUnionRoom
+	def_special ShowWirelessCommunicationScreen
 	def_special InitUnionRoom
 	def_special BufferUnionRoomPlayerName
 	def_special sub_801DC20
@@ -454,7 +452,7 @@ gSpecials:: @ 81DBA64
 	def_special ClearLinkContestFlags
 	def_special TryContestEModeLinkup
 	def_special ShowScrollableMultichoice
-	def_special sub_813A630
+	def_special ResumeScrollableMultichoice
 	def_special BufferBattleTowerElevatorFloors
 	def_special TryStoreHeldItemsInPyramidBag
 	def_special ChooseItemsToTossFromPyramidBag
@@ -483,10 +481,10 @@ gSpecials:: @ 81DBA64
 	def_special CountPlayerTrainerStars
 	def_special BufferBattleFrontierTutorMoveName
 	def_special CloseBattleFrontierTutorWindow
-	def_special sub_813ADD4
+	def_special RedrawScrollableMultichoice
 	def_special ChooseMonForMoveTutor
 	def_special GetBattleFrontierTutorMoveIndex
-	def_special sub_813AF48
+	def_special CloseScrollableMultichoice
 	def_special DoDeoxysRockInteraction
 	def_special SetDeoxysRockPalette
 	def_special CreateObedientEnemyMon
@@ -497,27 +495,27 @@ gSpecials:: @ 81DBA64
 	def_special GetPCBoxToSendMon
 	def_special ShouldShowBoxWasFullMessage
 	def_special SetMatchCallRegisteredFlag
-	def_special DoConfettiEffect
+	def_special DoDomeConfetti
 	def_special CreateAbnormalWeatherEvent
 	def_special GetAbnormalWeatherMapNameAndType
 	def_special GetMartEmployeeObjectEventId
-	def_special sub_80A08CC
+	def_special SaveForBattleTowerLink
 	def_special Unused_SetWeatherSunny
-	def_special sub_81AFDA0
+	def_special SetUnlockedPokedexFlags
 	def_special IsTrainerRegistered
 	def_special ShouldDoBrailleRegicePuzzle
 	def_special EnableNationalPokedex
 	def_special ScriptMenu_CreateLilycoveSSTidalMultichoice
 	def_special GetLilycoveSSTidalSelection
 	def_special TurnOnTVScreen
-	def_special sub_81D4A90
+	def_special SetMewAboveGrass
 	def_special ShouldDistributeEonTicket
 	def_special LinkRetireStatusWithBattleTowerPartner
 	def_special sub_813B534
 	def_special CallTrainerHillFunction
 	def_special Script_DoRayquazaScene @ Listed twice
 	def_special LoopWingFlapSE
-	def_special sub_81D4BEC
+	def_special DestroyMewEmergingGrassSprite
 	def_special ShowBerryCrushRankings
 	def_special TryBufferWaldaPhrase
 	def_special DoWaldaNamingScreen
@@ -553,4 +551,26 @@ gSpecials:: @ 81DBA64
 	def_special CopyBugCatchingContestRemainingMinutesToVar1
 	def_special GetWinningBugContestSpecies
 	def_special SetRivalNickname
+	def_special SetInitialDSTMode
+	def_special GetDSTMode
 	def_special SwitchDSTMode
+	def_special HasAllMons
+	def_special SelectApricornForKurt
+	def_special HeadbuttTreeWildEncounter
+	def_special BuenasPasswordMultichoice
+	def_special ShowPointsWindowAtTopLeft
+	def_special UpdatePointsWindow
+	def_special HidePointsWindow
+	def_special PlayCardFlip
+	def_special MomBank
+	def_special OverworldWhiteOutGetMoneyLoss
+	def_special PlayChosenMonCry
+	def_special OlderHaircutBrother
+	def_special YoungerHaircutBrother
+	def_special BargainShop
+	def_special HerbShop
+	def_special IsPlayersMonOfSpeciesInParty
+	def_special GivePlayerSpecialGiftMon
+	def_special CheckForGiftMonAndTakeMail
+	def_special GiveOddEgg
+	def_special DoMiniCredits

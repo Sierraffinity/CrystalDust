@@ -186,7 +186,7 @@ static void CB2_BerryTagScreen(void)
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
-    do_scheduled_bg_tilemap_copies_to_vram();
+    DoScheduledBgTilemapCopiesToVram();
     UpdatePaletteFade();
 }
 
@@ -201,11 +201,11 @@ static void CB2_InitBerryTagScreen(void)
 {
     while (1)
     {
-        if (sub_81221EC() == TRUE)
+        if (MenuHelpers_CallLinkSomething() == TRUE)
             break;
         if (InitBerryTagScreen() == TRUE)
             break;
-        if (sub_81221AC() == TRUE)
+        if (MenuHelpers_LinkSomething() == TRUE)
             break;
     }
 }
@@ -217,7 +217,7 @@ static bool8 InitBerryTagScreen(void)
     case 0:
         SetVBlankHBlankCallbacksToNull();
         ResetVramOamAndBgCntRegs();
-        clear_scheduled_bg_copies_to_vram();
+        ClearScheduledBgCopiesToVram();
         gMain.state++;
         break;
     case 1:
@@ -238,7 +238,7 @@ static bool8 InitBerryTagScreen(void)
         gMain.state++;
         break;
     case 5:
-        if (!sub_81221AC())
+        if (!MenuHelpers_LinkSomething())
             ResetTasks();
         gMain.state++;
         break;
@@ -301,8 +301,8 @@ static void HandleInitBackgrounds(void)
     SetBgTilemapBuffer(2, sBerryTag->tilemapBuffers[0]);
     SetBgTilemapBuffer(3, sBerryTag->tilemapBuffers[1]);
     ResetAllBgsCoordinates();
-    schedule_bg_copy_tilemap_to_vram(2);
-    schedule_bg_copy_tilemap_to_vram(3);
+    ScheduleBgCopyTilemapToVram(2);
+    ScheduleBgCopyTilemapToVram(3);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
     ShowBg(0);
@@ -318,12 +318,12 @@ static bool8 LoadBerryTagGfx(void)
     switch (sBerryTag->gfxState)
     {
     case 0:
-        reset_temp_tile_data_buffers();
-        decompress_and_copy_tile_data_to_vram(2, gBerryCheck_Gfx, 0, 0, 0);
+        ResetTempTileDataBuffers();
+        DecompressAndCopyTileDataToVram(2, gBerryCheck_Gfx, 0, 0, 0);
         sBerryTag->gfxState++;
         break;
     case 1:
-        if (free_temp_tile_data_buffers_if_possible() != TRUE)
+        if (FreeTempTileDataBuffersIfPossible() != TRUE)
         {
             LZDecompressWram(gBerryTag_Gfx, sBerryTag->tilemapBuffers[0]);
             sBerryTag->gfxState++;
@@ -371,22 +371,22 @@ static void HandleInitWindows(void)
     LoadPalette(sFontPalette, 0xF0, 0x20);
     for (i = 0; i < ARRAY_COUNT(sWindowTemplates) - 1; i++)
         PutWindowTilemap(i);
-    schedule_bg_copy_tilemap_to_vram(0);
-    schedule_bg_copy_tilemap_to_vram(1);
+    ScheduleBgCopyTilemapToVram(0);
+    ScheduleBgCopyTilemapToVram(1);
 }
 
 static void PrintTextInBerryTagScreen(u8 windowId, const u8 *text, u8 x, u8 y, s32 speed, u8 colorStructId)
 {
-    AddTextPrinterParameterized4(windowId, 1, x, y, 0, 0, sTextColors[colorStructId], speed, text);
+    AddTextPrinterParameterized4(windowId, 2, x, y, 0, 0, sTextColors[colorStructId], speed, text);
 }
 
 static void AddBerryTagTextToBg0(void)
 {
     memcpy(GetBgTilemapBuffer(0), sBerryTag->tilemapBuffers[2], sizeof(sBerryTag->tilemapBuffers[2]));
     FillWindowPixelBuffer(WIN_BERRY_TAG, PIXEL_FILL(15));
-    PrintTextInBerryTagScreen(WIN_BERRY_TAG, gText_BerryTag, GetStringCenterAlignXOffset(1, gText_BerryTag, 0x40), 1, 0, 1);
+    PrintTextInBerryTagScreen(WIN_BERRY_TAG, gText_BerryTag, GetStringCenterAlignXOffset(2, gText_BerryTag, 0x40), 1, 0, 1);
     PutWindowTilemap(WIN_BERRY_TAG);
-    schedule_bg_copy_tilemap_to_vram(0);
+    ScheduleBgCopyTilemapToVram(0);
 }
 
 static void PrintAllBerryData(void)
@@ -410,7 +410,7 @@ static void PrintBerryNumberAndName(void)
 static void PrintBerrySize(void)
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_SIZE_FIRM, 1, gText_SizeSlash, 0, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_SIZE_FIRM, 2, gText_SizeSlash, 0, 1, TEXT_SPEED_FF, NULL);
     if (berry->size != 0)
     {
         u32 inches, fraction;
@@ -424,34 +424,34 @@ static void PrintBerrySize(void)
         ConvertIntToDecimalStringN(gStringVar1, inches, STR_CONV_MODE_LEFT_ALIGN, 2);
         ConvertIntToDecimalStringN(gStringVar2, fraction, STR_CONV_MODE_LEFT_ALIGN, 2);
         StringExpandPlaceholders(gStringVar4, gText_Var1DotVar2);
-        AddTextPrinterParameterized(WIN_SIZE_FIRM, 1, gStringVar4, 0x28, 1, 0, NULL);
+        AddTextPrinterParameterized(WIN_SIZE_FIRM, 2, gStringVar4, 0x28, 1, 0, NULL);
     }
     else
     {
-        AddTextPrinterParameterized(WIN_SIZE_FIRM, 1, gText_ThreeMarks, 0x28, 1, 0, NULL);
+        AddTextPrinterParameterized(WIN_SIZE_FIRM, 2, gText_ThreeMarks, 0x28, 1, 0, NULL);
     }
 }
 
 static void PrintBerryFirmness(void)
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_SIZE_FIRM, 1, gText_FirmSlash, 0, 0x11, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_SIZE_FIRM, 2, gText_FirmSlash, 0, 0x11, TEXT_SPEED_FF, NULL);
     if (berry->firmness != 0)
-        AddTextPrinterParameterized(WIN_SIZE_FIRM, 1, sBerryFirmnessStrings[berry->firmness - 1], 0x28, 0x11, 0, NULL);
+        AddTextPrinterParameterized(WIN_SIZE_FIRM, 2, sBerryFirmnessStrings[berry->firmness - 1], 0x28, 0x11, 0, NULL);
     else
-        AddTextPrinterParameterized(WIN_SIZE_FIRM, 1, gText_ThreeMarks, 0x28, 0x11, 0, NULL);
+        AddTextPrinterParameterized(WIN_SIZE_FIRM, 2, gText_ThreeMarks, 0x28, 0x11, 0, NULL);
 }
 
 static void PrintBerryDescription1(void)
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_DESC, 1, berry->description1, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(WIN_DESC, 2, berry->description1, 0, 1, 0, NULL);
 }
 
 static void PrintBerryDescription2(void)
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_DESC, 1, berry->description2, 0, 0x11, 0, NULL);
+    AddTextPrinterParameterized(WIN_DESC, 2, berry->description2, 0, 0x11, 0, NULL);
 }
 
 static void CreateBerrySprite(void)
@@ -536,12 +536,12 @@ static void Task_HandleInput(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        u16 arrowKeys = gMain.newAndRepeatedKeys & DPAD_ANY;
+        u16 arrowKeys = JOY_REPEAT(DPAD_ANY);
         if (arrowKeys == DPAD_UP)
             TryChangeDisplayedBerry(taskId, -1);
         else if (arrowKeys == DPAD_DOWN)
             TryChangeDisplayedBerry(taskId, 1);
-        else if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+        else if (JOY_NEW(A_BUTTON | B_BUTTON))
             PrepareToCloseBerryTagScreen(taskId);
     }
 }

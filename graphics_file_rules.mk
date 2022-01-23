@@ -1,6 +1,6 @@
 CASTFORMGFXDIR := graphics/pokemon/castform
 TILESETGFXDIR := data/tilesets
-FONTGFXDIR := data/graphics/fonts
+FONTGFXDIR := graphics/fonts
 INTERFACEGFXDIR := graphics/interface
 BTLANMSPRGFXDIR := graphics/battle_anims/sprites
 UNUSEDGFXDIR := graphics/unused
@@ -61,6 +61,40 @@ $(CASTFORMGFXDIR)/shiny.gbapal: $(CASTFORMGFXDIR)/shiny_normal_form.gbapal \
 
 ### Tilesets ###
 
+SOOTOPOLISANIMDIR := $(TILESETGFXDIR)/secondary/sootopolis/anim
+
+$(SOOTOPOLISANIMDIR)/stormy_water/0.4bpp: $(SOOTOPOLISANIMDIR)/stormy_water/0_kyogre.4bpp \
+                                          $(SOOTOPOLISANIMDIR)/stormy_water/0_groudon.4bpp 
+	@cat $^ >$@
+
+$(SOOTOPOLISANIMDIR)/stormy_water/1.4bpp: $(SOOTOPOLISANIMDIR)/stormy_water/1_kyogre.4bpp \
+                                          $(SOOTOPOLISANIMDIR)/stormy_water/1_groudon.4bpp 
+	@cat $^ >$@
+
+$(SOOTOPOLISANIMDIR)/stormy_water/2.4bpp: $(SOOTOPOLISANIMDIR)/stormy_water/2_kyogre.4bpp \
+                                          $(SOOTOPOLISANIMDIR)/stormy_water/2_groudon.4bpp 
+	@cat $^ >$@
+
+$(SOOTOPOLISANIMDIR)/stormy_water/3.4bpp: $(SOOTOPOLISANIMDIR)/stormy_water/3_kyogre.4bpp \
+                                          $(SOOTOPOLISANIMDIR)/stormy_water/3_groudon.4bpp 
+	@cat $^ >$@
+
+$(SOOTOPOLISANIMDIR)/stormy_water/4.4bpp: $(SOOTOPOLISANIMDIR)/stormy_water/4_kyogre.4bpp \
+                                          $(SOOTOPOLISANIMDIR)/stormy_water/4_groudon.4bpp 
+	@cat $^ >$@
+
+$(SOOTOPOLISANIMDIR)/stormy_water/5.4bpp: $(SOOTOPOLISANIMDIR)/stormy_water/5_kyogre.4bpp \
+                                          $(SOOTOPOLISANIMDIR)/stormy_water/5_groudon.4bpp 
+	@cat $^ >$@
+
+$(SOOTOPOLISANIMDIR)/stormy_water/6.4bpp: $(SOOTOPOLISANIMDIR)/stormy_water/6_kyogre.4bpp \
+                                          $(SOOTOPOLISANIMDIR)/stormy_water/6_groudon.4bpp 
+	@cat $^ >$@
+
+$(SOOTOPOLISANIMDIR)/stormy_water/7.4bpp: $(SOOTOPOLISANIMDIR)/stormy_water/7_kyogre.4bpp \
+                                          $(SOOTOPOLISANIMDIR)/stormy_water/7_groudon.4bpp 
+	@cat $^ >$@
+
 $(TILESETGFXDIR)/secondary/secret_base/brown_cave/unused_tiles.4bpp: $(TILESETGFXDIR)/secondary/secret_base/brown_cave/tiles.png
 	$(GFX) $< $@ -num_tiles 82
 
@@ -78,6 +112,7 @@ $(TILESETGFXDIR)/secondary/secret_base/yellow_cave/unused_tiles.4bpp: $(TILESETG
 
 $(TILESETGFXDIR)/secondary/secret_base/red_cave/unused_tiles.4bpp: $(TILESETGFXDIR)/secondary/secret_base/red_cave/tiles.png
 	$(GFX) $< $@ -num_tiles 82
+
 
 
 
@@ -185,9 +220,9 @@ $(INTERFACEGFXDIR)/hp_numbers.4bpp: $(INTERFACEGFXDIR)/hpbar_anim.4bpp \
 	@cat $^ >$@
 
 $(UNUSEDGFXDIR)/redyellowgreen_frame.bin: $(UNUSEDGFXDIR)/red_frame.bin \
-										  $(UNUSEDGFXDIR)/yellow_frame.bin \
-										  $(UNUSEDGFXDIR)/green_frame.bin \
-										  $(UNUSEDGFXDIR)/blank_frame.bin
+                                          $(UNUSEDGFXDIR)/yellow_frame.bin \
+                                          $(UNUSEDGFXDIR)/green_frame.bin \
+                                          $(UNUSEDGFXDIR)/blank_frame.bin
 	@cat $^ >$@
 
 $(UNUSEDGFXDIR)/color_frames.4bpp: %.4bpp: %.png
@@ -251,23 +286,23 @@ $(TYPESGFXDIR)/move_types.gbapal: $(TYPESGFXDIR)/move_types_1.gbapal \
 $(INTERFACEGFXDIR)/bag_screen.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 53
 
-$(RAYQUAZAGFXDIR)/rayquaza.8bpp: %.8bpp: %.png
+$(RAYQUAZAGFXDIR)/scene_2/rayquaza.8bpp: %.8bpp: %.png
 	$(GFX) $< $@ -num_tiles 227
 
-$(RAYQUAZAGFXDIR)/overcast.4bpp: %.4bpp: %.png
+$(RAYQUAZAGFXDIR)/scene_2/bg.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 313
 
-$(RAYQUAZAGFXDIR)/rayquaza_fly1.4bpp: %.4bpp: %.png
+$(RAYQUAZAGFXDIR)/scene_3/rayquaza.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 124
 
-$(RAYQUAZAGFXDIR)/rayquaza_tail_fix.4bpp: $(RAYQUAZAGFXDIR)/rayquaza_tail.4bpp
+$(RAYQUAZAGFXDIR)/scene_3/rayquaza_tail_fix.4bpp: $(RAYQUAZAGFXDIR)/scene_3/rayquaza_tail.4bpp
 	cp $< $@
 	head -c 12 /dev/zero >> $@
 
-$(RAYQUAZAGFXDIR)/chase_streaks.4bpp: %.4bpp: %.png
+$(RAYQUAZAGFXDIR)/scene_4/streaks.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 19
 
-$(RAYQUAZAGFXDIR)/rayquaza_chase.4bpp: %.4bpp: %.png
+$(RAYQUAZAGFXDIR)/scene_4/rayquaza.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 155
 
 graphics/picture_frame/frame5.4bpp: %.4bpp: %.png
@@ -277,13 +312,13 @@ $(ROULETTEGFXDIR)/roulette_tilt.4bpp: $(ROULETTEGFXDIR)/shroomish.4bpp \
 									  $(ROULETTEGFXDIR)/tailow.4bpp
 	@cat $^ >$@
 
-$(ROULETTEGFXDIR)/poke_icons2.4bpp: $(ROULETTEGFXDIR)/wynaut.4bpp \
+$(ROULETTEGFXDIR)/wheel_icons.4bpp: $(ROULETTEGFXDIR)/wynaut.4bpp \
 									$(ROULETTEGFXDIR)/azurill.4bpp \
 									$(ROULETTEGFXDIR)/skitty.4bpp \
 									$(ROULETTEGFXDIR)/makuhita.4bpp
 	@cat $^ >$@
 
-$(BATTRANSGFXDIR)/85BBC14.4bpp: %.4bpp: %.png
+$(BATTRANSGFXDIR)/regis.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 53
 
 $(BATTRANSGFXDIR)/rayquaza.4bpp: %.4bpp: %.png
@@ -478,7 +513,7 @@ $(OBJEVENTGFXDIR)/pics/effects/unknown_4F6D38/0.4bpp: %.4bpp: %.png
 $(INTERFACEGFXDIR)/selector_outline.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 8
 	
-$(BATTRANSGFXDIR)/frontier_transition.4bpp: %.4bpp: %.png
+$(BATTRANSGFXDIR)/frontier_logo_center.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 43
 
 

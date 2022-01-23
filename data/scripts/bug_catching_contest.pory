@@ -1,0 +1,192 @@
+script EventScript_BugContest_WhiteOut {
+    special(HealPlayerParty)
+    goto(EventScript_RanOutOfParkBalls)
+}
+
+script EventScript_RanOutOfParkBalls {
+    setvar(VAR_BUG_CATCHING_CONTEST_STATE, 2)
+    setwarp(MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, 0, -1, -1)
+}
+
+script EventScript_CaughtButRanOutOfParkBalls {
+    lockall
+    playse(SE_DING_DONG)
+    msgbox("ANNOUNCER: The Contest is over!")
+    call(EventScript_WarpOutOfBugCatchingContest)
+    releaseall
+}
+
+script EventScript_BugCatchingContestTimeExpired {
+    lockall
+    playse(SE_DING_DONG)
+    msgbox("ANNOUNCER: BEEEP!\n"
+           "Time's up!")
+    goto(EventScript_WarpOutOfBugCatchingContest)
+}
+
+script EventScript_WarpOutOfBugCatchingContestHeal {
+    special(HealPlayerParty)
+    setvar(VAR_BUG_CATCHING_CONTEST_STATE, 2)
+    warpsilent(MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, 0, -1, -1)
+    waitstate
+}
+
+script EventScript_ReturnBugCatchingContestMons {
+    frontier_saveparty
+    special(LoadPlayerParty)
+}
+
+script BugCatchingContest_StartMenuPrompt {
+    lockall
+    msgbox("Would you like to end the Bug\n"
+           "Catching Contest right now?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        goto(EventScript_WarpOutOfBugCatchingContest)
+    }
+    releaseall
+}
+
+script EventScript_WarpOutOfBugCatchingContest {
+    setvar(VAR_BUG_CATCHING_CONTEST_STATE, 2)
+    warp(MAP_ROUTE36_NATIONAL_PARK_GATEHOUSE, 0, -1, -1)
+    waitstate
+}
+
+script BugCatchingContest_EventScript_Officer_EnterContest {
+    special(CopyCurrentDayOfWeekStringToVar1)
+    msgbox("Today's {STR_VAR_1}, which means the\n"
+            "Bug-Catching Contest is on today.\p"
+            "The rules are simple.\p"
+            "Using one of your POKéMON, catch a\n"
+            "BUG POKéMON to be judged.\p"
+            "Would you like to give it a try?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        specialvar(VAR_RESULT, IsPlayerPartyAndPokemonStorageFull)
+        if (var(VAR_RESULT) == TRUE)
+        {
+            msgbox("Uh-oh… Both your party and your PC\n"
+                   "BOX are full.\p"
+                   "You have no room to put the BUG\n"
+                   "POKéMON you catch.\p"
+                   "Please make room in your party or PC\n"
+                   "BOX, then come see me.")
+            setvar(VAR_RESULT, 0)
+        }
+        else
+        {
+            specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+            if (var(VAR_RESULT) != 1)
+            {
+                msgbox("Please choose a POKéMON to bring\n"
+                       "into the contest.\p"
+                       "We'll hold onto your other POKéMON\n"
+                       "while you compete.")
+                special(SavePlayerParty)
+                fadescreen(1)
+                special(SelectBugCatchingContestMon)
+                waitstate
+                if (var(VAR_RESULT) == 0)
+                {
+                    special(LoadPlayerParty)
+                    goto(BugCatchingContest_EventScript_Officer_DeclinedToParticipate)
+                }
+                else
+                {
+                    special(ReducePlayerPartyToSelectedMons)
+                    frontier_set(FRONTIER_DATA_SELECTED_MON_ORDER)
+                }
+                textcolor(MSG_COLOR_SYS)
+                playse(SE_ROTATING_GATE)
+                msgbox("{PLAYER}'s POKéMON were left with\n"
+                       "the CONTEST HELPER.")
+                textcolor(MSG_COLOR_PREV)
+                setflag(FLAG_LEFT_MONS_WITH_CONTEST_OFFICER)
+            }
+    
+            playbgm(MUS_BUG_CONTEST_PREP, 0)
+            msgbox("Here are the PARK BALLS for the\n"
+                   "Contest.")
+            textcolor(MSG_COLOR_SYS)
+            playfanfare(MUS_OBTAIN_ITEM)
+            message("{PLAYER} received 20 PARK BALLS\n"
+                    "from the CONTEST HELPER.")
+            waitfanfare
+            textcolor(MSG_COLOR_PREV)
+            msgbox("The person who catches the best\n"
+                   "BUG POKéMON will be the winner.\p"
+                   "You have 20 minutes, and if you run\n"
+                   "out of PARK BALLS, you're done.\p"
+                   "You can keep the last POKéMON you\n"
+                   "catch as your own.\p"
+                   "Go out and catch the best BUG\n"
+                   "POKéMON you can find!")
+            closemessage
+            setflag(FLAG_DAILY_BUG_CATCHING_CONTEST)
+            setflag(FLAG_IN_BUG_CATCHING_CONTEST)
+            setvar(VAR_BUG_CATCHING_CONTEST_STATE, 1)
+            special(EnterBugCatchingContest)
+            setvar(VAR_RESULT, 1)
+        }
+    }
+    else
+    {
+        goto(BugCatchingContest_EventScript_Officer_DeclinedToParticipate)
+    }
+}
+
+script BugCatchingContest_EventScript_Officer_DeclinedToParticipate {
+    msgbox("Okay. We hope you'll take part in\n"
+           "the future.")
+    setvar(VAR_RESULT, 0)
+}
+
+script BugCatchingContest_EventScript_Officer_GivePrizeItem {
+    bufferitemname(0, VAR_BUG_CONTEST_PRIZE)
+    msgbox("{PLAYER}? Here's your prize\n"
+           "{STR_VAR_1} from the last Contest.")
+    giveitem(VAR_BUG_CONTEST_PRIZE)
+    if (var(VAR_RESULT) == FALSE)
+    {
+        msgbox("Your BAG is still full…\n"
+               "Please make room for your prize.")
+    }
+    else
+    {
+        setvar(VAR_BUG_CONTEST_PRIZE, ITEM_NONE)
+    }
+}
+
+text BugCatchingContest_Text_Officer_DoYouWantToFinishOneMinute {
+    "The Contest is still going for\n"
+    "another minute or so.\p"
+    "Do you want to finish now?"
+}
+
+text BugCatchingContest_Text_Officer_DoYouWantToFinishMinutes {
+    "The Contest is still going for\n"
+    "another {STR_VAR_1} minutes.\p"
+    "Do you want to finish now?"
+}
+
+text BugCatchingContest_Text_Officer_GetBackOutside {
+    "Okay. Please get back outside and\n"
+    "finish up."
+}
+
+text BugCatchingContest_Text_Officer_ContestIsOver {
+    "Today's Bug-Catching Contest is\n"
+    "over.\p"
+    "We hope you will participate\n"
+    "in the future."
+}
+
+script BugCatchingContest_EventScript_ContestSign {
+    msgbox("The Bug-Catching Contest is held on\n"
+           "TUESDAY, THURSDAY and SATURDAY.\p"
+           "Not only do you earn a prize just\n"
+           "for participating, you also get to\l"
+           "keep the BUG POKéMON you may\l"
+           "have at the end of the contest.", MSGBOX_SIGN)
+}

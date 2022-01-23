@@ -312,7 +312,7 @@ static void ListMenuDummyTask(u8 taskId)
 
 }
 
-s32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const struct ListMenuTemplate *listMenuTemplate, u8 arg2, u16 tileNum, u16 palNum)
+u32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const struct ListMenuTemplate *listMenuTemplate, u8 arg2, u16 tileNum, u16 palNum)
 {
     switch (sMysteryGiftLinkMenu.state)
     {
@@ -335,11 +335,11 @@ s32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const str
         break;
     case 1:
         sMysteryGiftLinkMenu.currItemId = ListMenu_ProcessInput(sMysteryGiftLinkMenu.listTaskId);
-        if (gMain.newKeys & A_BUTTON)
+        if (JOY_NEW(A_BUTTON))
         {
             sMysteryGiftLinkMenu.state = 2;
         }
-        if (gMain.newKeys & B_BUTTON)
+        if (JOY_NEW(B_BUTTON))
         {
             sMysteryGiftLinkMenu.currItemId = LIST_CANCEL;
             sMysteryGiftLinkMenu.state = 2;
@@ -410,20 +410,20 @@ s32 ListMenu_ProcessInput(u8 listTaskId)
 {
     struct ListMenu *list = (void*) gTasks[listTaskId].data;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         return list->template.items[list->scrollOffset + list->selectedRow].id;
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         return LIST_CANCEL;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_UP)
+    else if (JOY_REPEAT(DPAD_UP))
     {
         ListMenuChangeSelection(list, TRUE, 1, FALSE);
         return LIST_NOTHING_CHOSEN;
     }
-    else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
+    else if (JOY_REPEAT(DPAD_DOWN))
     {
         ListMenuChangeSelection(list, TRUE, 1, TRUE);
         return LIST_NOTHING_CHOSEN;
@@ -439,12 +439,12 @@ s32 ListMenu_ProcessInput(u8 listTaskId)
             rightButton = FALSE;
             break;
         case LIST_MULTIPLE_SCROLL_DPAD:
-            leftButton = gMain.newAndRepeatedKeys & DPAD_LEFT;
-            rightButton = gMain.newAndRepeatedKeys & DPAD_RIGHT;
+            leftButton = JOY_REPEAT(DPAD_LEFT);
+            rightButton = JOY_REPEAT(DPAD_RIGHT);
             break;
         case LIST_MULTIPLE_SCROLL_L_R:
-            leftButton = gMain.newAndRepeatedKeys & L_BUTTON;
-            rightButton = gMain.newAndRepeatedKeys & R_BUTTON;
+            leftButton = JOY_REPEAT(L_BUTTON);
+            rightButton = JOY_REPEAT(R_BUTTON);
             break;
         }
 
@@ -636,7 +636,7 @@ static void ListMenuPrintEntries(struct ListMenu *list, u16 startIndex, u16 yOff
 
         y = (yOffset + i) * yMultiplier + list->template.upText_Y;
         if (list->template.itemPrintFunc != NULL)
-            list->template.itemPrintFunc(list->template.windowId, list->template.items[startIndex].id, y);
+            list->template.itemPrintFunc(list->template.windowId, startIndex, list->template.items[startIndex].id, y);
 
         ListMenuPrint(list, list->template.items[startIndex].name, x, y);
         startIndex++;
@@ -789,6 +789,50 @@ static u8 ListMenuUpdateSelectedRowIndexAndScrollOffset(struct ListMenu *list, b
     list->selectedRow = newRow;
     list->scrollOffset = newScroll;
     return 2;
+}
+
+void ListMenuCalculateRowIndexAndScrollOffsetFromAbsoluteIndex(struct ListMenuTemplate *template, u16 absoluteIndex, u16 *scrollOffsetPtr, u16 *selectedRowPtr)
+{
+    u16 selectedRow = 0;
+    u16 scrollOffset = 0;
+    u16 scrollBoundaryRow;
+
+    if (template->maxShowed == 1)
+    {
+        scrollBoundaryRow = 0;
+    }
+    else
+    {
+        scrollBoundaryRow = ((template->maxShowed / 2) + (template->maxShowed % 2));
+    }
+
+    // make max value for absolute index the last item in list
+    if (absoluteIndex >= template->totalItems)
+    {
+        absoluteIndex = template->totalItems - 1;
+    }
+
+    while (absoluteIndex--)
+    {
+        do
+        {
+            // is the window scrolled to the bottom of the list?
+            // or should we not yet scroll the window?
+            if ((scrollOffset == template->totalItems - template->maxShowed) ||
+                (selectedRow < scrollBoundaryRow))
+            {
+                selectedRow++;
+            }
+            else
+            {
+                scrollOffset++;
+            }
+        // keep going if we're on a LIST_HEADER.
+        } while (template->items[scrollOffset + selectedRow].id == LIST_HEADER);
+    }
+
+    *selectedRowPtr = selectedRow;
+    *scrollOffsetPtr = scrollOffset;
 }
 
 static void ListMenuScroll(struct ListMenu *list, u8 count, bool8 movingDown)
@@ -1262,17 +1306,17 @@ void ListMenuSetUpRedOutlineCursorSpriteOamTable(u16 rowWidth, u16 rowHeight, st
     s32 i, j, id = 0;
 
     subsprites[id] = sSubsprite_RedOutline1;
-    subsprites[id].x = 136;
-    subsprites[id].y = 136;
+    subsprites[id].x = -120;
+    subsprites[id].y = -120;
     id++;
 
     subsprites[id] = sSubsprite_RedOutline2;
     subsprites[id].x = rowWidth + 128;
-    subsprites[id].y = 136;
+    subsprites[id].y = -120;
     id++;
 
     subsprites[id] = sSubsprite_RedOutline7;
-    subsprites[id].x = 136;
+    subsprites[id].x = -120;
     subsprites[id].y = rowHeight + 128;
     id++;
 
@@ -1287,7 +1331,7 @@ void ListMenuSetUpRedOutlineCursorSpriteOamTable(u16 rowWidth, u16 rowHeight, st
         {
             subsprites[id] = sSubsprite_RedOutline3;
             subsprites[id].x = i - 120;
-            subsprites[id].y = 136;
+            subsprites[id].y = -120;
             id++;
 
             subsprites[id] = sSubsprite_RedOutline6;
@@ -1302,7 +1346,7 @@ void ListMenuSetUpRedOutlineCursorSpriteOamTable(u16 rowWidth, u16 rowHeight, st
         for (j = 8; j < rowHeight - 8; j += 8)
         {
             subsprites[id] = sSubsprite_RedOutline4;
-            subsprites[id].x = 136;
+            subsprites[id].x = -120;
             subsprites[id].y = j - 120;
             id++;
 

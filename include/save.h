@@ -68,11 +68,12 @@ enum
 #define SECTOR_ID_RECORDED_BATTLE  31
 #define SECTORS_COUNT 32
 
-#define SAVE_STATUS_EMPTY    0
-#define SAVE_STATUS_OK       1
-#define SAVE_STATUS_CORRUPT  2
-#define SAVE_STATUS_NO_FLASH 4
-#define SAVE_STATUS_ERROR    0xFF
+#define SAVE_STATUS_EMPTY           0
+#define SAVE_STATUS_OK              1
+#define SAVE_STATUS_CORRUPT         2
+#define SAVE_STATUS_BUILD_MISMATCH  3
+#define SAVE_STATUS_NO_FLASH        4
+#define SAVE_STATUS_ERROR           0xFF
 
 extern u16 gLastWrittenSector;
 extern u32 gLastSaveCounter;
@@ -102,7 +103,7 @@ u8 Save_LoadGameData(u8 saveType);
 u16 sub_815355C(void);
 u32 TryReadSpecialSaveSection(u8 sector, u8* dst);
 u32 TryWriteSpecialSaveSection(u8 sector, u8* src);
-void sub_8153688(u8 taskId);
+void Task_LinkSave(u8 taskId);
 
 // save_failed_screen.c
 void DoSaveFailedScreen(u8 saveType);

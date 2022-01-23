@@ -3,7 +3,6 @@
 #include "constants/songs.h"
 #include "constants/easy_chat.h"
 #include "constants/event_objects.h"
-#include "constants/vars.h"
 #include "mauville_old_man.h"
 #include "event_data.h"
 #include "string_util.h"
@@ -221,7 +220,7 @@ static void PrepareSongText(void)
         if (lineNum == 0)
         {
             *(wordEnd++) = EXT_CTRL_CODE_BEGIN;
-            *(wordEnd++) = 15;
+            *(wordEnd++) = EXT_CTRL_CODE_FILL_WINDOW;
         }
     }
 }
@@ -439,7 +438,7 @@ static void BardSong_TextSubPrinter(struct TextPrinterTemplate * printer, u16 a1
 static void sub_8120708(const u8 * src)
 {
     DrawDialogueFrame(0, 0);
-    AddTextPrinterParameterized(0, 1, src, 0, 1, 1, BardSong_TextSubPrinter);
+    AddTextPrinterParameterized(0, 2, src, 0, 1, 1, BardSong_TextSubPrinter);
     gUnknown_03002F84 = TRUE;
     CopyWindowToVram(0, 3);
 }
@@ -1324,7 +1323,7 @@ static void StorytellerDisplayStory(u32 player)
 static void PrintStoryList(void)
 {
     s32 i;
-    s32 width = GetStringWidth(1, gText_Exit, 0);
+    s32 width = GetStringWidth(2, gText_Exit, 0);
     u8 tileWidth;
     for (i = 0; i < NUM_STORYTELLER_TALES; i++)
     {
@@ -1333,7 +1332,7 @@ static void PrintStoryList(void)
 
         if (gameStatID == 0)
             break;
-        curWidth = GetStringWidth(1, GetStoryTitleByStat(gameStatID), 0);
+        curWidth = GetStringWidth(2, GetStoryTitleByStat(gameStatID), 0);
         if (curWidth > width)
             width = curWidth;
     }
@@ -1344,10 +1343,10 @@ static void PrintStoryList(void)
         u16 gameStatID = sStorytellerPtr->gameStatIDs[i];
         if (gameStatID == 0)
             break;
-        AddTextPrinterParameterized(sStorytellerWindowId, 1, GetStoryTitleByStat(gameStatID), 8, 16 * i + 1, 0xFF, NULL);
+        AddTextPrinterParameterized(sStorytellerWindowId, 2, GetStoryTitleByStat(gameStatID), 8, 16 * i + 1, 0xFF, NULL);
     }
-    AddTextPrinterParameterized(sStorytellerWindowId, 1, gText_Exit, 8, 16 * i + 1, 0xFF, NULL);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sStorytellerWindowId, 1, 0, 1, 16, GetFreeStorySlot() + 1, 0);
+    AddTextPrinterParameterized(sStorytellerWindowId, 2, gText_Exit, 8, 16 * i + 1, 0xFF, NULL);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sStorytellerWindowId, 2, 0, 1, 16, GetFreeStorySlot() + 1, 0);
     CopyWindowToVram(sStorytellerWindowId, 3);
 }
 

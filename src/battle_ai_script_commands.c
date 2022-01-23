@@ -471,9 +471,9 @@ static u8 ChooseMoveOrAction_Doubles(void)
         else
         {
             if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
-                BattleAI_SetupAIData(gBattleStruct->field_92 >> 4);
+                BattleAI_SetupAIData(gBattleStruct->palaceFlags >> 4);
             else
-                BattleAI_SetupAIData(0xF);
+                BattleAI_SetupAIData((1 << MAX_MON_MOVES) - 1);
 
             gBattlerTarget = i;
 
@@ -1299,7 +1299,7 @@ static void Cmd_count_usable_party_mons(void)
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
-        u32 position;
+        u8 position;
         battlerOnField1 = gBattlerPartyIndexes[battlerId];
         position = GetBattlerPosition(battlerId) ^ BIT_FLANK;
         battlerOnField2 = gBattlerPartyIndexes[GetBattlerAtPosition(position)];

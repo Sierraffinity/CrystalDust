@@ -184,8 +184,14 @@ struct SpriteTemplate
     SpriteCallback callback;
 };
 
+// UB: template pointer is often used to point to temporary storage,
+// then later dereferenced after being freed. Usually this won't
+// be visible in-game, but this is (part of) what causes the item
+// icon palette to flicker when changing items in the bag.
 struct Sprite
 {
+             u16 tileTag;       // copy from SpriteTemplate to prevent use after free
+             u16 paletteTag;    // copy from SpriteTemplate to prevent use after free
     /*0x00*/ struct OamData oam;
     /*0x08*/ const union AnimCmd *const *anims;
     /*0x0C*/ const struct SpriteFrameImage *images;

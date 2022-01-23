@@ -2,13 +2,13 @@
   "id": "MAP_MOSSDEEP_CITY_SPACE_CENTER_1F",
   "name": "MossdeepCity_SpaceCenter_1F",
   "layout": "LAYOUT_MOSSDEEP_CITY_SPACE_CENTER_1F",
-  "music": "MUS_GOTOWN",
+  "music": "MUS_GOLDENROD",
   "region_map_section": "MAPSEC_MOSSDEEP_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
-  "allow_bike": false,
-  "allow_escape_rope": false,
+  "allow_cycling": false,
+  "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
@@ -22,7 +22,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_RocketLaunchCounter",
@@ -36,7 +36,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_Scientist",
@@ -50,7 +50,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_SunStoneMan",
@@ -64,7 +64,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_OldMan",
@@ -78,7 +78,7 @@
       "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_Woman",
@@ -92,11 +92,11 @@
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "1",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_Grunt3",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA"
+      "flag": "FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
@@ -106,11 +106,11 @@
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "1",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_Grunt1",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA"
+      "flag": "FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
@@ -120,11 +120,11 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "1",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_Grunt4",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA"
+      "flag": "FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
@@ -134,11 +134,11 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "1",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_Grunt2",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA"
+      "flag": "FLAG_HIDE_ROUTE_34_DAYCARE_MAN_INSIDE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
@@ -148,7 +148,7 @@
       "movement_type": "MOVEMENT_TYPE_INVISIBLE",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_MagmaNote",
@@ -162,11 +162,11 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "type": "original",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MossdeepCity_SpaceCenter_1F_EventScript_Steven",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN"
+      "flag": "FLAG_HIDE_ILEX_FOREST_KURT"
     }
   ],
   "warp_events": [

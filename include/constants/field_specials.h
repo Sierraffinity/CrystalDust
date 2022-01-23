@@ -26,9 +26,9 @@
 #define SS_TIDAL_MAX_STEPS 205
 
 // Scrollable Multichoice Menus
-#define SCROLL_MULTI_DAY_OF_WEEK                                  0
-#define SCROLL_MULTI_GLASS_WORKSHOP_VENDOR                 1
-#define SCROLL_MULTI_POKEMON_FAN_CLUB_RATER                2
+#define SCROLL_MULTI_DAY_OF_WEEK                           0
+#define SCROLL_MULTI_BLUE_CARD_PRIZES                      1
+#define SCROLL_MULTI_GOLDENROD_DEPT_STORE_FLOORS           2
 #define SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_1     3
 #define SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_2     4
 #define SCROLL_MULTI_BF_EXCHANGE_CORNER_VITAMIN_VENDOR     5
@@ -40,26 +40,26 @@
 #define SCROLL_MULTI_SS_TIDAL_DESTINATION                 11
 #define SCROLL_MULTI_BATTLE_TENT_RULES                    12
 
-#define MAX_SCROLL_MULTI_ON_SCREEN 6
+#define MAX_SCROLL_MULTI_ON_SCREEN 7
 #define MAX_SCROLL_MULTI_LENGTH 16
 
-// Dept Store Floor Numbers
-#define DEPT_STORE_FLOORNUM_B4F       0
-#define DEPT_STORE_FLOORNUM_B3F       1
-#define DEPT_STORE_FLOORNUM_B2F       2
-#define DEPT_STORE_FLOORNUM_B1F       3
-#define DEPT_STORE_FLOORNUM_1F        4
-#define DEPT_STORE_FLOORNUM_2F        5
-#define DEPT_STORE_FLOORNUM_3F        6
-#define DEPT_STORE_FLOORNUM_4F        7
-#define DEPT_STORE_FLOORNUM_5F        8
-#define DEPT_STORE_FLOORNUM_6F        9
-#define DEPT_STORE_FLOORNUM_7F       10
-#define DEPT_STORE_FLOORNUM_8F       11
-#define DEPT_STORE_FLOORNUM_9F       12
-#define DEPT_STORE_FLOORNUM_10F      13
-#define DEPT_STORE_FLOORNUM_11F      14
-#define DEPT_STORE_FLOORNUM_ROOFTOP  15
+// Elevator Floor Numbers
+#define ELEVATOR_FLOORNUM_B4F       0
+#define ELEVATOR_FLOORNUM_B3F       1
+#define ELEVATOR_FLOORNUM_B2F       2
+#define ELEVATOR_FLOORNUM_B1F       3
+#define ELEVATOR_FLOORNUM_1F        4
+#define ELEVATOR_FLOORNUM_2F        5
+#define ELEVATOR_FLOORNUM_3F        6
+#define ELEVATOR_FLOORNUM_4F        7
+#define ELEVATOR_FLOORNUM_5F        8
+#define ELEVATOR_FLOORNUM_6F        9
+#define ELEVATOR_FLOORNUM_7F       10
+#define ELEVATOR_FLOORNUM_8F       11
+#define ELEVATOR_FLOORNUM_9F       12
+#define ELEVATOR_FLOORNUM_10F      13
+#define ELEVATOR_FLOORNUM_11F      14
+#define ELEVATOR_FLOORNUM_ROOFTOP  15
 
 // Lilycove Pokemon Trainer Fan Club
 #define NUM_TRAINER_FAN_CLUB_MEMBERS  8
@@ -73,5 +73,12 @@
 #define FANCLUB_MEMBER6        13
 #define FANCLUB_MEMBER7        14
 #define FANCLUB_MEMBER8        15
+
+#define FANCOUNTER_DEFEATED_DRAKE    0
+#define FANCOUNTER_BATTLED_AT_BASE   1
+#define FANCOUNTER_FINISHED_CONTEST  2
+#define FANCOUNTER_USED_BATTLE_TOWER 3
+
+#define SPECIALMON_KENYA 0
 
 #endif // GUARD_CONSTANTS_FIELD_SPECIALS_H

@@ -4,9 +4,9 @@ VerdanturfTown_WandasHouse_MapScripts:: @ 82028BE
 VerdanturfTown_WandasHouse_EventScript_Wally:: @ 82028BF
 	lock
 	faceplayer
-	goto_if_set FLAG_WALLY_SPEECH, VerdanturfTown_WandasHouse_EventScript_WallyShortSpeech
+	goto_if_set FLAG_GOT_EVERSTONE_FROM_ELM, VerdanturfTown_WandasHouse_EventScript_WallyShortSpeech
 	msgbox VerdanturfTown_WandasHouse_Text_StrongerSpeech, MSGBOX_DEFAULT
-	setflag FLAG_WALLY_SPEECH
+	setflag FLAG_GOT_EVERSTONE_FROM_ELM
 	release
 	end
 
@@ -42,7 +42,7 @@ VerdanturfTown_WandasHouse_EventScript_Wanda:: @ 820291C
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WandaDontWorry
-	goto_if_set FLAG_DEFEATED_WALLY_MAUVILLE, VerdanturfTown_WandasHouse_EventScript_MeetWanda
+	goto_if_set FLAG_FORCED_CALL_BILL_PC_BOXES_FULL, VerdanturfTown_WandasHouse_EventScript_MeetWanda
 	msgbox VerdanturfTown_WandasHouse_Text_DontWorryAboutWally, MSGBOX_DEFAULT
 	release
 	end
@@ -62,7 +62,7 @@ VerdanturfTown_WandasHouse_EventScript_WallysAunt:: @ 820294E
 	faceplayer
 	goto_if_set FLAG_MET_FRIEDA_OF_FRIDAY, VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande
 	goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WallysAuntAnythingHappened
-	goto_if_set FLAG_UNION_CAVE_OPENED, VerdanturfTown_WandasHouse_EventScript_WallysAuntTunnelOpen
+	goto_if_set FLAG_IN_BUG_CATCHING_CONTEST, VerdanturfTown_WandasHouse_EventScript_WallysAuntTunnelOpen
 	msgbox VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendDriven, MSGBOX_DEFAULT
 	release
 	end

@@ -11,16 +11,16 @@ EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags:: @ 82717C1
 	clearflag FLAG_HIDE_MR_POKEMONS_HOUSE_OAK
 	setvar VAR_STEVENS_HOUSE_STATE, 2
 	setflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
-	clearflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
+	clearflag FLAG_HIDE_ILEX_FOREST_MASTER
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL
 	clearflag FLAG_HIDE_LILYCOVE_HARBOR_SSTIDAL
 	setflag 0
-	clearflag FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION
+	clearflag FLAG_HIDE_AZALEA_TOWN_RIVAL
 	setflag FLAG_HIDE_LILYCOVE_CITY_RIVAL
 	special UpdateTrainerFanClubGameClear
 	call_if_unset FLAG_RECEIVED_SS_TICKET, EverGrandeCity_HallOfFame_EventScript_ReadyReceiveSSTicketEvent
 	call_if_unset FLAG_RECEIVED_BELDUM, EverGrandeCity_HallOfFame_EventScript_ShowStevensHouseBeldum
-	setflag FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER
 	setflag FLAG_HIDE_CHERRYGROVE_CITY_RIVAL
 	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 0
 	call_if_eq EverGrandeCity_HallOfFame_EventScript_ReadyDexUpgradeEvent
@@ -44,7 +44,7 @@ EverGrandeCity_HallOfFame_EventScript_ShowStevensHouseBeldum:: @ 827183F
 
 EverGrandeCity_HallOfFame_EventScript_ReadyReceiveSSTicketEvent:: @ 8271843
 	setvar VAR_PLAYER_HOUSE_STATE, 3
-	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 3
+	setvar VAR_KURT_GIVEN_APRICORN, 3
 	clearflag FLAG_HIDE_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
 	return
 

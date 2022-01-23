@@ -12,7 +12,7 @@ Makefile text eol=lf
 *.json text eol=lf
 
 *.png binary
-*.bin binary
+*.bin binary diff=hex
 
 *.h linguist-language=C
 *.inc linguist-language=Assembly

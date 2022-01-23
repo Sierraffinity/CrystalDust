@@ -22,7 +22,7 @@ CherrygroveCity_EventScript_GuideGent::
 	goto_if_eq CherrygroveCity_EventScript_GuideGent_Rejected
 	msgbox CherrygroveCity_Text_GuideGent_OkayThen
 	closemessage
-	playbgm MUS_FOLLOWME, 0
+	playbgm MUS_FOLLOW_ME, 0
 	compare VAR_FACING, DIR_EAST
 	call_if_eq CherrygroveCity_EventScript_GuideGentFromLeft
 	compare VAR_FACING, DIR_NORTH
@@ -54,12 +54,12 @@ CherrygroveCity_EventScript_GuideGent::
 	turnobject OBJ_EVENT_ID_PLAYER, 4
 	msgbox CherrygroveCity_Text_GuideGent_ItsMyHouse
 	textcolor MSG_COLOR_BLACK
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	setflag FLAG_SYS_HAS_MAP_CARD
 	message CherrygroveCity_Text_GuideGent_GetMapCard1
 	waitfanfare
 	msgbox CherrygroveCity_Text_GuideGent_GetMapCard2
-	call Common_RestoreOriginalTextColor
+	textcolor MSG_COLOR_PREV
 	msgbox CherrygroveCity_Text_GuideGent_Pokegear
 	closemessage
 	fadedefaultbgm
@@ -297,8 +297,8 @@ CherrygroveCity_EventScript_RivalMain:
 	waitmovement 0
 	applymovement 2, CherrygroveCity_Movement_RivalToPlayer
 	waitmovement 0
-	playbgm MUS_RIVALENC, 0
-	savebgm MUS_RIVALEXIT
+	playbgm MUS_ENCOUNTER_RIVAL, 0
+	savebgm MUS_RIVAL_EXIT
 	msgbox CherrygroveCity_Text_Rival_GotAMon
 	setvar VAR_LAST_TALKED, 2
 	compare VAR_STARTER_MON, 0
@@ -311,7 +311,7 @@ CherrygroveCity_EventScript_RivalMain:
 	msgbox CherrygroveCity_Text_Rival_PostBattle
 	closemessage
 	delay 10
-	playse SE_KOUKA_L
+	playse SE_NOT_EFFECTIVE
 	applymovement OBJ_EVENT_ID_PLAYER, CherrygroveCity_Movement_RivalPushesPlayer
 	applymovement 2, CherrygroveCity_Movement_RivalRunsAway
 	waitmovement 0
@@ -345,15 +345,15 @@ CherrygroveCity_Movement_RivalRunsAway:
 	step_end
 
 CherrygroveCity_EventScript_RivalCyndaquil:
-	trainerbattle_wintext TRAINER_RIVAL_1, 1, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose
+	trainerbattle_wintext TRAINER_RIVAL_CHERRYGROVE_CHIKORITA, TUTORIAL_BATTLE_HEAL_AFTER, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose
 	return
 
 CherrygroveCity_EventScript_RivalChikorita:
-	trainerbattle_wintext TRAINER_RIVAL_2, 1, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose
+	trainerbattle_wintext TRAINER_RIVAL_CHERRYGROVE_TOTODILE, TUTORIAL_BATTLE_HEAL_AFTER, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose
 	return
 
 CherrygroveCity_EventScript_RivalTotodile:
-	trainerbattle_wintext TRAINER_RIVAL_3, 1, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose
+	trainerbattle_wintext TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL, TUTORIAL_BATTLE_HEAL_AFTER, CherrygroveCity_Text_Rival_BattleWin, CherrygroveCity_Text_Rival_BattleLose
 	return
 
 CherrygroveCity_Movement_RivalToPlayer:
@@ -433,7 +433,8 @@ CherrygroveCity_Text_GuideGent_ItsMyHouse:
 	.string "Let me give you a small gift.$"
 
 CherrygroveCity_Text_GuideGent_GetMapCard1:
-	.string "{PLAYER} received the MAP CARD.$"
+	.string "{PLAYER} received the MAP CARD\n"
+	.string "from the GUIDE GENT.$"
 
 CherrygroveCity_Text_GuideGent_GetMapCard2:
 	.string "{PLAYER}'s POKéGEAR now has a MAP!$"
