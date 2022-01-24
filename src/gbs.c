@@ -35,7 +35,7 @@ inline u16 LoadUShortNumber(u8 *source, u32 offset)
 	return *(source + offset) | (*(source + offset + 1) << 8);
 }
 
-inline u16 U16LittleEndianToBigEndian(u16 input)
+inline u16 UShortEndianSwap(u16 input)
 {
 	u16 temp = (input & 0xFF) << 8;
 	return (input >> 8) | temp;
@@ -181,10 +181,7 @@ u8 ToneExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct ToneTr
 			case SetTempo:
 				if (track->trackID == 1)
 				{
-					// Artificially subtract 2 from the real tempo value to account for engine differences.
-					// Using the BGB emulator as a source of truth, Subtracting 2 will run about 0.2 seconds fast
-					// after a minute of playback.  Subtracting 1 will run about 0.2 seconds slow.
-					info->gbsTempo = U16LittleEndianToBigEndian(LoadUShortNumber(track->nextInstruction, 1)) - 2;
+					info->gbsTempo = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 1));
 				}
 				commandLength = 3;
 				break;
@@ -267,7 +264,7 @@ u8 ToneExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct ToneTr
 				commandLength = 2;
 				break;
 			case SetTone:
-				track->tone = U16LittleEndianToBigEndian(LoadUShortNumber(track->nextInstruction, 1));
+				track->tone = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 1));
 				commandLength = 3;
 				break;
 			case Pan:
@@ -843,7 +840,7 @@ bool16 ExecuteWaveCommands(u8 commandID, struct WaveTrack *track)
 				break;
 			}
 			case 14:
-				track->tone = U16LittleEndianToBigEndian(LoadUShortNumber(track->nextInstruction, 1));
+				track->tone = UShortEndianSwap(LoadUShortNumber(track->nextInstruction, 1));
 				commandLength = 3;
 				break;
 			case 23:

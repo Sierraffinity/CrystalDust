@@ -192,6 +192,7 @@ static const u8 sText_ClockStatus[] = _("Time: {STR_VAR_1}");
 static const u8 sText_RespawnStatus[] = _("Respawn point:\n{STR_VAR_1}");
 static const u8 sText_LottoStatus[] = _("Lotto num:\n{STR_VAR_1}");
 static const u8 sText_BattleTerrain[] = _("Terrain override:\n{STR_VAR_1}");
+static const u8 sText_GBSCounter[] = _("VBlank Counter: {STR_VAR_1}\nGBS Counter: {STR_VAR_2}\nm4a Counter: {STR_VAR_3}");
 static const u8 sText_On[] = _("{COLOR GREEN}ON");
 static const u8 sText_Off[] = _("{COLOR RED}OFF");
 static const u8 sText_RGBValues[] = _("{COLOR RED}{STR_VAR_1}\n{COLOR GREEN}{STR_VAR_2}\n{COLOR BLUE}{STR_VAR_3}");

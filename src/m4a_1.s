@@ -1142,7 +1142,6 @@ _081DD82E:
 	ldr r0, [r0, #o_MusicPlayerInfo_intp]
 	bl call_r3
 _081DD840:
-	.thumb
 	pop {r0}
 	push {r4-r7}
 	mov r4, r8
@@ -1153,7 +1152,7 @@ _081DD840:
 	adds r7, r0, 0
 	ldr r0, [r7, #o_MusicPlayerInfo_status]
 	cmp r0, 0
-	bge _081DD858	@ jump if player not paused
+	bge _081DD858
 	b _081DDA6C
 _081DD858:
 	ldr r0, lt2_SOUND_INFO_PTR
@@ -1163,7 +1162,7 @@ _081DD858:
 	bl FadeOutBody
 	ldr r0, [r7, #o_MusicPlayerInfo_status]
 	cmp r0, 0
-	bge _081DD86C	@ jump if player not paused
+	bge _081DD86C
 	b _081DDA6C
 _081DD86C:
 	ldrh r0, [r7, #o_MusicPlayerInfo_tempoC]
@@ -1176,10 +1175,10 @@ _081DD874:
 	movs r3, 0x1
 	movs r4, 0
 _081DD87C:
-	ldrb r0, [r5, o_MusicPlayerTrack_flags]
-	movs r1, 0x80 @ MPT_FLG_EXIST
+	ldrb r0, [r5, #o_MusicPlayerTrack_flags]
+	movs r1, 0x80
 	tst r1, r0
-	bne _081DD886 @ if MPT_FLG_EXIST set, go away pls
+	bne _081DD886
 	b _081DD998
 _081DD886:
 	mov r10, r3
@@ -1187,17 +1186,17 @@ _081DD886:
 	mov r11, r4
 	ldr r4, [r5, #o_MusicPlayerTrack_chan]
 	cmp r4, 0
-	beq _081DD8BA	@ if track chan not set, time to die
+	beq _081DD8BA
 _081DD892:
-	ldrb r1, [r4] @ flags
+	ldrb r1, [r4]
 	movs r0, 0xC7
 	tst r0, r1
 	beq _081DD8AE
-	ldrb r0, [r4, 0x10] @ gt
+	ldrb r0, [r4, 0x10]
 	cmp r0, 0
 	beq _081DD8B4
 	subs r0, 0x1
-	strb r0, [r4, 0x10] @ gt
+	strb r0, [r4, 0x10]
 	bne _081DD8B4
 	movs r0, 0x40
 	orrs r1, r0
@@ -1207,14 +1206,14 @@ _081DD8AE:
 	adds r0, r4, 0
 	bl ClearChain
 _081DD8B4:
-	ldr r4, [r4, o_SoundChannel_np] @ if np == 0 we must die
+	ldr r4, [r4, #o_SoundChannel_np]
 	cmp r4, 0
 	bne _081DD892
 _081DD8BA:
 	ldrb r3, [r5, #o_MusicPlayerTrack_flags]
-	movs r0, 0x40 @ MPT_FLG_START
+	movs r0, 0x40
 	tst r0, r3
-	beq _081DD938 @ if MPT_FLG_START not set, don't die
+	beq _081DD938
 	adds r0, r5, 0
 	bl Clear64byte
 	movs r0, 0x80
@@ -1267,7 +1266,7 @@ _081DD8F6:
 	subs r0, 0xCF
 	adds r1, r7, 0
 	adds r2, r5, 0
-	bl call_r3 @ call ply_note
+	bl call_r3
 	b _081DD938
 _081DD90C:
 	cmp r1, 0xB0
@@ -1359,12 +1358,12 @@ _081DD990:
 	orrs r0, r1
 	strb r0, [r5, #o_MusicPlayerTrack_flags]
 _081DD994:
-	mov r3, r10 @ after processing a channel
+	mov r3, r10
 	mov r4, r11
 _081DD998:
-	subs r6, 0x1	@ r6 = channel count
+	subs r6, 0x1
 	ble _081DD9A4
-	movs r0, 0x50	@ loop through all channels
+	movs r0, 0x50
 	adds r5, r0
 	lsls r3, 1
 	b _081DD87C
@@ -1372,8 +1371,8 @@ _081DD9A4:
 	ldr r0, [r7, #o_MusicPlayerInfo_clock]
 	adds r0, 0x1
 	str r0, [r7, #o_MusicPlayerInfo_clock]
-	cmp r4, 0	@ seems to be status??
-	bne _081DD9B6 @ if we have more than zero channels working, jump
+	cmp r4, 0
+	bne _081DD9B6
 	movs r0, 0x80
 	lsls r0, 24
 	str r0, [r7, #o_MusicPlayerInfo_status]
@@ -1385,8 +1384,8 @@ _081DD9B6:
 _081DD9BC:
 	strh r0, [r7, #o_MusicPlayerInfo_tempoC]
 	cmp r0, 0x96
-	bcc _081DD9C4	@ if tempo < 150, normal operation
-	b _081DD874		@ else something may be wrong
+	bcc _081DD9C4
+	b _081DD874
 _081DD9C4:
 	ldrb r2, [r7, #o_MusicPlayerInfo_trackCount]
 	ldr r5, [r7, #o_MusicPlayerInfo_tracks]
@@ -1394,10 +1393,10 @@ _081DD9C8:
 	ldrb r0, [r5, #o_MusicPlayerTrack_flags]
 	movs r1, 0x80
 	tst r1, r0
-	beq _081DDA62 @ if MPT_FLG_EXIST not set, go away pls
+	beq _081DDA62
 	movs r1, 0xF
 	tst r1, r0
-	beq _081DDA62 @ if vol and pitch not set, go away pls
+	beq _081DDA62
 	mov r9, r2
 	adds r0, r7, 0
 	adds r1, r5, 0
@@ -1786,7 +1785,7 @@ _081DDC66:
 	ldr r0, [sp, 0x14]
 	strb r0, [r4, 0x14]
 	mov r6, r9
-	ldrb r0, [r6] @ copy ToneData
+	ldrb r0, [r6]
 	strb r0, [r4, 0x1]
 	ldr r7, [r6, 0x4]
 	str r7, [r4, 0x24]
@@ -1824,7 +1823,7 @@ _081DDCBC:
 	ldr r0, [sp, 0xC]
 	ldr r3, [sp, 0x4]
 	ldr r3, [r3, 0x30]
-	bl call_r3 @ call MidiKeyToCgbFreq func in SoundInfo struct
+	bl call_r3
 	b _081DDCDC
 _081DDCCE:
 	ldr r0, [r5, #o_MusicPlayerTrack_unk_3C]
