@@ -627,7 +627,7 @@ gGBSSongTable::
 	song_gbs MUS_NEW_BARK,				gbs_new_bark_town_Header,		0, 0	@ New Bark Town
 	song_gbs MUS_MOMS_THEME,			gbs_moms_theme_Header,			0, 0	@ Mom's Theme
 	song_gbs MUS_ELMS_LAB,				gbs_elms_lab_Header,			0, 0	@ Elm's Lab
-@	song_gbs MUS_ROUTE29,				gbs_route29_Header,				0, 0	@ Route 29
+	song_gbs MUS_ROUTE29,				gbs_route29_Header,				0, 0	@ Route 29
 	song_gbs MUS_VS_JOHTO_WILD,			gbs_btl_wild_johto_Header,		0, 0	@ Battle! (Wild Pokémon - Johto)
 	song_gbs MUS_VICTORY_WILD,			gbs_victory_wild_Header,		0, 0	@ Victory! (Wild Pokémon)
 	song_gbs MUS_CHERRYGROVE,			gbs_cherrygrove_city_Header,	0, 0	@ Cherrygrove City
