@@ -2839,7 +2839,7 @@ static void PlayerHandleDMA3Transfer(void)
 
 static void PlayerHandlePlayBGM(void)
 {
-    PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8), FlagGet(FLAG_GB_PLAYER_ENABLED));
+    PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8));
     PlayerBufferExecCompleted();
 }
 
@@ -2934,7 +2934,7 @@ static void PlayerHandlePlayFanfareOrBGM(void)
     if (gBattleBufferA[gActiveBattler][3])
     {
         BattleStopLowHpSound();
-        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8), FlagGet(FLAG_GB_PLAYER_ENABLED));
+        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8));
     }
     else
     {

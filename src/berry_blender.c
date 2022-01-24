@@ -1477,7 +1477,7 @@ static void CB2_StartBlenderLink(void)
         {
             sBerryBlender->savedMusic = GetCurrentMapMusic();
         }
-        PlayBGM(MUS_CYCLING, FlagGet(FLAG_GB_PLAYER_ENABLED));
+        PlayBGM(MUS_CYCLING);
         break;
     }
 
@@ -1784,7 +1784,7 @@ static void CB2_StartBlenderLocal(void)
         if (GetCurrentMapMusic() != MUS_CYCLING)
             sBerryBlender->savedMusic = GetCurrentMapMusic();
 
-        PlayBGM(MUS_CYCLING, FlagGet(FLAG_GB_PLAYER_ENABLED));
+        PlayBGM(MUS_CYCLING);
         PlaySE(SE_BERRY_BLENDER);
         UpdateHitPitch();
         break;
@@ -3794,7 +3794,7 @@ static void Task_PlayPokeblockFanfare(u8 taskId)
     }
     if (IsFanfareTaskInactive())
     {
-        PlayBGM(sBerryBlender->savedMusic, FlagGet(FLAG_GB_PLAYER_ENABLED));
+        PlayBGM(sBerryBlender->savedMusic);
         DestroyTask(taskId);
     }
 }

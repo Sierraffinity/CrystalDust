@@ -397,7 +397,7 @@ static bool8 InitHallOfFameScreen(void)
         if (!gPaletteFade.active)
         {
             SetMainCallback2(CB2_HallOfFame);
-            PlayBGM(MUS_HALL_OF_FAME, FlagGet(FLAG_GB_PLAYER_ENABLED));
+            PlayBGM(MUS_HALL_OF_FAME);
             return FALSE;
         }
         break;

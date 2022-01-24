@@ -1,6 +1,7 @@
 #include "global.h"
 #include "main.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "intro.h"
@@ -22,6 +23,7 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/battle_anim.h"
+#include "constants/flags.h"
 #include "constants/pokemon.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -1721,7 +1723,7 @@ static void Task_IntroStartPart3(u8 taskId)
                                 | DISPCNT_OBJ_ON
                                 | DISPCNT_WIN0_ON);
     gIntroFrameCounter = 0;
-    m4aSongNumStart(MUS_INTRO, FALSE);
+    m4aSongNumStart(MUS_INTRO, FlagGet(FLAG_GB_PLAYER_ENABLED));
 }
 
 static void Task_IntroDoSuicuneRunningInPlace(u8 taskId)

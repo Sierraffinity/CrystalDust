@@ -1084,7 +1084,7 @@ u16 RenderText(struct TextPrinter *textPrinter)
                 textPrinter->printerTemplate.currentChar++;
                 currChar |= *textPrinter->printerTemplate.currentChar << 8;
                 textPrinter->printerTemplate.currentChar++;
-                PlayBGM(currChar, FlagGet(FLAG_GB_PLAYER_ENABLED));
+                PlayBGM(currChar);
                 return 2;
             case EXT_CTRL_CODE_ESCAPE:
                 currChar = *textPrinter->printerTemplate.currentChar | 0x100;

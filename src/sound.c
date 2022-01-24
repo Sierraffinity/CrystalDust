@@ -79,7 +79,7 @@ void MapMusicMain(void)
         break;
     case 1:
         sMapMusicState = 2;
-        PlayBGM(sCurrentMapMusic, FlagGet(FLAG_GB_PLAYER_ENABLED));
+        PlayBGM(sCurrentMapMusic);
         break;
     case 2:
     case 3:
@@ -98,13 +98,13 @@ void MapMusicMain(void)
             sCurrentMapMusic = sNextMapMusic;
             sNextMapMusic = 0;
             sMapMusicState = 2;
-            PlayBGM(sCurrentMapMusic, FlagGet(FLAG_GB_PLAYER_ENABLED));
+            PlayBGM(sCurrentMapMusic);
         }
         break;
     case 7:
         if (IsBGMStopped() && IsFanfareTaskInactive())
         {
-            FadeInNewBGM(sNextMapMusic, sMapMusicFadeInSpeed, FlagGet(FLAG_GB_PLAYER_ENABLED));
+            FadeInNewBGM(sNextMapMusic, sMapMusicFadeInSpeed);
             sCurrentMapMusic = sNextMapMusic;
             sNextMapMusic = 0;
             sMapMusicState = 2;
@@ -167,9 +167,9 @@ void FadeOutAndFadeInNewMapMusic(u16 songNum, u8 fadeOutSpeed, u8 fadeInSpeed)
     sMapMusicFadeInSpeed = fadeInSpeed;
 }
 
-void FadeInNewMapMusic(u16 songNum, u8 speed, bool32 isGBS)
+void FadeInNewMapMusic(u16 songNum, u8 speed)
 {
-    FadeInNewBGM(songNum, speed, isGBS);
+    FadeInNewBGM(songNum, speed);
     sCurrentMapMusic = songNum;
     sNextMapMusic = 0;
     sMapMusicState = 2;
@@ -193,7 +193,7 @@ void PlayFanfareByFanfareNum(u8 fanfareNum)
     m4aMPlayStop(&gMPlayInfo_BGM);
     songNum = sFanfares[fanfareNum].songNum;
     sFanfareCounter = sFanfares[fanfareNum].duration;
-    m4aSongNumStart(songNum, FALSE);
+    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
 }
 
 bool8 WaitFanfare(bool8 stop)
@@ -214,9 +214,9 @@ bool8 WaitFanfare(bool8 stop)
     }
 }
 
-void StopFanfareByFanfareNum(u8 fanfareNum, bool32 isGBS)
+void StopFanfareByFanfareNum(u8 fanfareNum)
 {
-    m4aSongNumStop(sFanfares[fanfareNum].songNum, isGBS);
+    m4aSongNumStop(sFanfares[fanfareNum].songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
 }
 
 void PlayFanfare(u16 songNum)
@@ -262,16 +262,16 @@ static void CreateFanfareTask(void)
         CreateTask(Task_Fanfare, 80);
 }
 
-void FadeInNewBGM(u16 songNum, u8 speed, bool32 isGBS)
+void FadeInNewBGM(u16 songNum, u8 speed)
 {
     if (gDisableMusic)
         songNum = 0;
     if (songNum == MUS_NONE)
         songNum = 0;
-    m4aSongNumStart(songNum, isGBS);
+    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
     m4aMPlayImmInit(&gMPlayInfo_BGM);
     m4aMPlayVolumeControl(&gMPlayInfo_BGM, 0xFFFF, 0);
-    m4aSongNumStop(songNum, isGBS);
+    m4aSongNumStop(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
     m4aMPlayFadeIn(&gMPlayInfo_BGM, speed);
 }
 
@@ -559,23 +559,23 @@ static void RestoreBGMVolumeAfterPokemonCry(void)
         CreateTask(Task_DuckBGMForPokemonCry, 80);
 }
 
-void PlayBGM(u16 songNum, bool32 isGBS)
+void PlayBGM(u16 songNum)
 {
     if (gDisableMusic)
         songNum = 0;
     if (songNum == MUS_NONE)
         songNum = 0;
-    m4aSongNumStart(songNum, isGBS);
+    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
 }
 
 void PlaySE(u16 songNum)
 {
-    m4aSongNumStart(songNum, FALSE);
+    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
 }
 
 void PlaySE12WithPanning(u16 songNum, s8 pan)
 {
-    m4aSongNumStart(songNum, FALSE);
+    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
     m4aMPlayImmInit(&gMPlayInfo_SE1);
     m4aMPlayImmInit(&gMPlayInfo_SE2);
     m4aMPlayPanpotControl(&gMPlayInfo_SE1, 0xFFFF, pan);
@@ -584,14 +584,14 @@ void PlaySE12WithPanning(u16 songNum, s8 pan)
 
 void PlaySE1WithPanning(u16 songNum, s8 pan)
 {
-    m4aSongNumStart(songNum, FALSE);
+    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
     m4aMPlayImmInit(&gMPlayInfo_SE1);
     m4aMPlayPanpotControl(&gMPlayInfo_SE1, 0xFFFF, pan);
 }
 
 void PlaySE2WithPanning(u16 songNum, s8 pan)
 {
-    m4aSongNumStart(songNum, FALSE);
+    m4aSongNumStart(songNum, FlagGet(FLAG_GB_PLAYER_ENABLED));
     m4aMPlayImmInit(&gMPlayInfo_SE2);
     m4aMPlayPanpotControl(&gMPlayInfo_SE2, 0xFFFF, pan);
 }

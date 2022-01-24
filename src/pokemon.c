@@ -6363,7 +6363,7 @@ void PlayBattleBGM(void)
 {
     ResetMapMusic();
     m4aMPlayAllStop();
-    PlayBGM(GetBattleBGM(), FlagGet(FLAG_GB_PLAYER_ENABLED));
+    PlayBGM(GetBattleBGM());
 }
 
 void PlayMapChosenOrBattleBGM(u16 songId)

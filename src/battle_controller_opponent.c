@@ -1833,7 +1833,7 @@ static void OpponentHandlePlayFanfareOrBGM(void)
     if (gBattleBufferA[gActiveBattler][3])
     {
         BattleStopLowHpSound();
-        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8), FlagGet(FLAG_GB_PLAYER_ENABLED));
+        PlayBGM(gBattleBufferA[gActiveBattler][1] | (gBattleBufferA[gActiveBattler][2] << 8));
     }
     else
     {

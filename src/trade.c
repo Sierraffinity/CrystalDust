@@ -571,7 +571,7 @@ static void CB2_CreateTradeMenu(void)
         sTradeMenuData->bg3hofs = 0;
         SetTradePartyMonsVisible();
         gMain.state++;
-        PlayBGM(MUS_OAKS_THEME, FlagGet(FLAG_GB_PLAYER_ENABLED));
+        PlayBGM(MUS_OAKS_THEME);
         break;
     case 15:
         SetTradePartyLiveStatuses(TRADE_PARTNER);
