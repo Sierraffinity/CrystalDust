@@ -1337,7 +1337,7 @@ SECTIONS {
         sound/songs/gbsounds/gbs_print_error.o(.rodata)
         sound/songs/gbsounds/gbs_radio_unown.o(.rodata)
         sound/songs/gbsounds/gbs_rocket_hideout.o(.rodata)
-        sound/songs/gbsounds/gbs_rocket_signal_broken.o(.rodata)
+        sound/songs/gbsounds/gbs_rocket_signal.o(.rodata)
         sound/songs/gbsounds/gbs_rocket_takeover.o(.rodata)
         sound/songs/gbsounds/gbs_route1.o(.rodata)
         sound/songs/gbsounds/gbs_route11.o(.rodata)
