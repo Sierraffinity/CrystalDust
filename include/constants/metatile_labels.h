@@ -8,7 +8,7 @@
 #define METATILE_BattleArena_Door  0x29C
 
 // gTileset_BattleDome
-#define METATILE_BattleDome_Door_Corridor       0x29A
+#define METATILE_BattleDome_Door_Corridor       0x2B8
 #define METATILE_BattleDome_Door_Lobby          0x292
 #define METATILE_BattleDome_Door_PreBattleRoom  0x28A
 
@@ -233,11 +233,8 @@
 #define METATILE_InsideOfTruck_ExitLight_Top           0x208
 
 // gTileset_InsideShip
-#define METATILE_InsideShip_DoorIndent_Locked           0x234
-#define METATILE_InsideShip_DoorIndent_Unlocked         0x21A
 #define METATILE_InsideShip_IntactDoor_Bottom_Interior  0x297
-#define METATILE_InsideShip_IntactDoor_Bottom_Locked    0x233
-#define METATILE_InsideShip_IntactDoor_Bottom_Unlocked  0x22B
+#define METATILE_InsideShip_IntactDoor_Bottom_Unlocked  0x281
 
 // gTileset_Lavaridge
 #define METATILE_Lavaridge_AshGrass             0x207
