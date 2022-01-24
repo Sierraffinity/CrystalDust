@@ -500,6 +500,8 @@ void ArpeggiateTrack(struct ToneTrack *track)
 bool16 ToneTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
 {
 	struct ToneTrack *toneTrack = (struct ToneTrack *)track;
+	bool16 result = TRUE;
+
 	if (toneTrack->noteLength1 < 2)
 	{
 		u32 commandID = *track->cmdPtr;
@@ -509,7 +511,8 @@ bool16 ToneTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 			if (commandID == 0xFF && toneTrack->returnLocation == 0)
 			{
 				ExecuteToneModifications(0, info->gbsTempo, toneTrack);
-				return FALSE;
+				result = FALSE;
+				break;
 			}
 		}
 		if (commandID != 0xFF)
@@ -539,7 +542,7 @@ bool16 ToneTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 		SetMasterVolumeFromFade(toneTrack->volX);
 	}
 
-	return TRUE;
+	return result;
 }
 
 const u16 freq[75] = {
@@ -922,6 +925,7 @@ bool16 ExecuteWaveCommands(u8 commandID, struct WaveTrack *track)
 bool16 WaveTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
 {
 	struct WaveTrack *waveTrack = (struct WaveTrack *)track;
+	bool16 result = TRUE;
 
 	// The M4A sound effects can change the wave pattern.
 	// We want to reload the correct wave pattern for this track when
@@ -944,8 +948,9 @@ bool16 WaveTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 			commandID = ExecuteWaveCommands(commandID, waveTrack);
 			if (commandID == 0xFF && waveTrack->returnLocation == 0)
 			{
-				ExecuteWaveModifications(commandID, info->gbsTempo, waveTrack);
-				return FALSE;
+				ExecuteWaveModifications(0, info->gbsTempo, waveTrack);
+				result = FALSE;
+				break;
 			}
 		}
 		if (commandID != 0xFF)
@@ -967,7 +972,7 @@ bool16 WaveTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
 		ModulateWaveTrack(waveTrack);
 	}
 
-	return TRUE;
+	return result;
 }
 
 // Individual noise samples. Arranged into groups of 3 bytes, with 0xFF terminating the array when in the 1st of 3 slots
@@ -1130,6 +1135,8 @@ void ExecuteNoiseModifications(u8 commandID, u16 tempo, struct NoiseTrack *track
 bool16 NoiseTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
 {
 	struct NoiseTrack *noiseTrack = (struct NoiseTrack *)track;
+	bool16 result = TRUE;
+
 	if (noiseTrack->noteLength1 < 2)
 	{
 		u32 commandID = noiseTrack->nextInstruction[0];
@@ -1139,7 +1146,8 @@ bool16 NoiseTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
 			if (commandID == 0xFF && noiseTrack->returnLocation == 0)
 			{
 				ExecuteNoiseModifications(0, info->gbsTempo, noiseTrack);
-				return FALSE;
+				result = FALSE;
+				break;
 			}
 		}
 		if (commandID != 0xFF)
@@ -1174,7 +1182,7 @@ bool16 NoiseTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
 		}
 	}
 
-	return TRUE;
+	return result;
 }
 
 bool16 GBSChannelUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *track)
