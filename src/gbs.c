@@ -550,7 +550,7 @@ bool16 ToneTrackUpdate(struct MusicPlayerInfo *info, struct MusicPlayerTrack *tr
     return result;
 }
 
-const u16 freq[75] = {
+const u16 freq[] = {
     44,		// C3
     156,
     262,
@@ -623,9 +623,30 @@ const u16 freq[75] = {
     2011,
     2013,
     2015,
-    2017,
+    2017,   // C9
     2019,
-    2020 // 74898
+    2020,
+    2021,
+    2023,
+    2024,
+    2025,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,   // C10
+    2033,
+    2034,
+    2034,
+    2035,
+    2036,
+    2036,
+    2037,
+    2038,
+    2038,
+    2039,
+    2039
 };
 
 static const u32 wavePatterns[][4] = {
@@ -665,9 +686,9 @@ u16 CalculateWavePitch(u8 commandID, s8 keyShift, u8 octave, u16 tone)
     s16 note = (((commandID & 0xF0) >> 4) - 1);
     note += (12 * octave);
     note += keyShift;
-    if (note > 75)
+    if (note >= ARRAY_COUNT(freq))
     {
-        note = 75;
+        note = ARRAY_COUNT(freq) - 1;
     }
     return (u16)(freq[note] + tone);
 }

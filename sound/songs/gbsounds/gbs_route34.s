@@ -1,22 +1,22 @@
 	.include "MPlayDef.s"
 	.include "GBCEngineDefs.s"
 
-	.equ	gbs_route32_grp, voicegroup000
-	.equ	gbs_route32_pri, 0
-	.equ	gbs_route32_rev, 0
-	.equ	gbs_route32_mvl, 127
-	.equ	gbs_route32_key, 0
-	.equ	gbs_route32_tbs, 1
-	.equ	gbs_route32_exg, 0
-	.equ	gbs_route32_cmp, 1
+	.equ	gbs_route34_grp, voicegroup000
+	.equ	gbs_route34_pri, 0
+	.equ	gbs_route34_rev, 0
+	.equ	gbs_route34_mvl, 127
+	.equ	gbs_route34_key, 0
+	.equ	gbs_route34_tbs, 1
+	.equ	gbs_route34_exg, 0
+	.equ	gbs_route34_cmp, 1
 
 
 	.section .rodata
 	.align 1
 
-gbs_route32_track_0:
-	.byte	KEYSH , gbs_route32_key+0
-	.byte	TEMPO , GBP_TEMPO_BPM*gbs_route32_tbs/2
+gbs_route34_track_0:
+	.byte	KEYSH , gbs_route34_key+0
+	.byte	TEMPO , GBP_TEMPO_BPM*gbs_route34_tbs/2
 	.byte	GBP , 0x00
 	.byte GBP_TEMPO
 	.byte NONOTE0
@@ -52,7 +52,7 @@ gbs_route32_track_0:
 	.byte GBP_STYLE
 	.byte GBP_E13
 	.byte GBP_As3
-gbs_route32_track_0_goto_0:
+gbs_route34_track_0_goto_0:
 	.byte GBP_STYLE
 	.byte GBP_As5
 	.byte GBP_F3
@@ -203,10 +203,10 @@ gbs_route32_track_0_goto_0:
 	.byte GBP_E1
 	.byte GBP_JUMPC
 	.byte NONOTE0
-	.int gbs_route32_track_0_goto_0
+	.int gbs_route34_track_0_goto_0
 
-gbs_route32_track_1:
-	.byte	KEYSH , gbs_route32_key+0
+gbs_route34_track_1:
+	.byte	KEYSH , gbs_route34_key+0
 	.byte	GBP , 0x01
 	.byte GBP_DUTYC
 	.byte NONOTE3
@@ -239,7 +239,7 @@ gbs_route32_track_1:
 	.byte GBP_F7
 	.byte OCT2
 	.byte GBP_G3
-gbs_route32_track_1_goto_0:
+gbs_route34_track_1_goto_0:
 	.byte GBP_STYLE
 	.byte GBP_B7
 	.byte OCT3
@@ -395,10 +395,10 @@ gbs_route32_track_1_goto_0:
 	.byte GBP_B0
 	.byte GBP_JUMPC
 	.byte NONOTE0
-	.int gbs_route32_track_1_goto_0
+	.int gbs_route34_track_1_goto_0
 
-gbs_route32_track_2:
-	.byte	KEYSH , gbs_route32_key+0
+gbs_route34_track_2:
+	.byte	KEYSH , gbs_route34_key+0
 	.byte	GBP , 0x02
 	.byte GBP_FRDEL
 	.byte NONOTE12
@@ -425,7 +425,7 @@ gbs_route32_track_2:
 	.byte OCT2
 	.byte GBP_Ds1
 	.byte GBP_E1
-gbs_route32_track_2_goto_0:
+gbs_route34_track_2_goto_0:
 	.byte GBP_F3
 	.byte GBP_C1
 	.byte GBP_F3
@@ -557,9 +557,9 @@ gbs_route32_track_2_goto_0:
 	.byte GBP_E1
 	.byte GBP_JUMPC
 	.byte NONOTE0
-	.int gbs_route32_track_2_goto_0
+	.int gbs_route34_track_2_goto_0
 
-gbs_route32_track_3_call_0:
+gbs_route34_track_3_call_0:
 	.byte GBP_A3
 	.byte GBP_A5
 	.byte GBP_As0
@@ -568,7 +568,7 @@ gbs_route32_track_3_call_0:
 	.byte GBP_As1
 	.byte GBP_RET
 
-gbs_route32_track_3_call_1:
+gbs_route34_track_3_call_1:
 	.byte GBP_A3
 	.byte GBP_A5
 	.byte GBP_As0
@@ -584,7 +584,7 @@ gbs_route32_track_3_call_1:
 	.byte NONOTE12
 	.byte GBP_RET
 
-gbs_route32_track_3_call_2:
+gbs_route34_track_3_call_2:
 	.byte GBP_A3
 	.byte GBP_A5
 	.byte GBP_B0
@@ -592,30 +592,30 @@ gbs_route32_track_3_call_2:
 	.byte GBP_A3
 	.byte GBP_RET
 
-gbs_route32_track_3:
-	.byte	KEYSH , gbs_route32_key+0
+gbs_route34_track_3:
+	.byte	KEYSH , gbs_route34_key+0
 	.byte	GBP , 0x03
 	.byte GBP_NSET
 	.byte NONOTE1
 	.byte GBP_FRDEL
 	.byte NONOTE12
 	.byte GBP_CALL
-	.int gbs_route32_track_3_call_0
+	.int gbs_route34_track_3_call_0
 	.byte GBP_CALL
-	.int gbs_route32_track_3_call_1
-gbs_route32_track_3_goto_0:
+	.int gbs_route34_track_3_call_1
+gbs_route34_track_3_goto_0:
 	.byte GBP_CALL
-	.int gbs_route32_track_3_call_0
+	.int gbs_route34_track_3_call_0
 	.byte GBP_CALL
-	.int gbs_route32_track_3_call_2
+	.int gbs_route34_track_3_call_2
 	.byte GBP_CALL
-	.int gbs_route32_track_3_call_0
+	.int gbs_route34_track_3_call_0
 	.byte GBP_CALL
-	.int gbs_route32_track_3_call_1
+	.int gbs_route34_track_3_call_1
 	.byte GBP_JUMPC
 	.byte NONOTE2
-	.int gbs_route32_track_3_goto_0
-gbs_route32_track_3_goto_1:
+	.int gbs_route34_track_3_goto_0
+gbs_route34_track_3_goto_1:
 	.byte GBP_As3
 	.byte GBP_A1
 	.byte GBP_F3
@@ -624,12 +624,12 @@ gbs_route32_track_3_goto_1:
 	.byte GBP_A3
 	.byte GBP_JUMPC
 	.byte NONOTE11
-	.int gbs_route32_track_3_goto_1
+	.int gbs_route34_track_3_goto_1
 	.byte GBP_CALL
-	.int gbs_route32_track_3_call_1
+	.int gbs_route34_track_3_call_1
 	.byte GBP_JUMPC
 	.byte NONOTE0
-	.int gbs_route32_track_3_goto_0
+	.int gbs_route34_track_3_goto_0
 	.byte GBP_A3
 	.byte GBP_A5
 	.byte GBP_As0
@@ -641,16 +641,16 @@ gbs_route32_track_3_goto_1:
 
 
 	.align 4
-	.global gbs_route32_Header
-gbs_route32_Header:
+	.global gbs_route34_Header
+gbs_route34_Header:
 	.byte 0x04	@ NumTrks
 	.byte 0x00	@ NumBlks
-	.byte gbs_route32_pri @ Priority
-	.byte gbs_route32_rev @ Reverb
+	.byte gbs_route34_pri @ Priority
+	.byte gbs_route34_rev @ Reverb
 
-	.int gbs_route32_grp
+	.int gbs_route34_grp
 
-	.int gbs_route32_track_0
-	.int gbs_route32_track_1
-	.int gbs_route32_track_2
-	.int gbs_route32_track_3
+	.int gbs_route34_track_0
+	.int gbs_route34_track_1
+	.int gbs_route34_track_2
+	.int gbs_route34_track_3

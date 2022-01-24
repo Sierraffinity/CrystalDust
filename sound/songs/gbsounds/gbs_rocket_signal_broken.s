@@ -50,7 +50,6 @@ gbs_rocket_signal_broken_track_0_goto_0:
 gbs_rocket_signal_broken_track_1:
 	.byte	KEYSH , gbs_rocket_signal_broken_key+0
 	.byte	GBP , 0x01
-gbs_rocket_signal_broken_track_1_goto_0:
 	.byte GBP_DUTYC
 	.byte NONOTE1
 	.byte GBP_MOD
@@ -62,23 +61,13 @@ gbs_rocket_signal_broken_track_1_goto_0:
 	.byte NONOTE1
 	.byte GBP_PAN
 	.byte NONOTE15
-	.byte GBP_FRDEL
-	.byte NONOTE12
-	.byte GBP_A7
-	.byte OCT6
-	.byte GBP_G3
-	.byte GBP_Fs3
-	.byte GBP_G3
-	.byte GBP_Fs3
-	.byte NONOTE15
 	.byte GBP_JUMPC
 	.byte NONOTE0
-	.int gbs_rocket_signal_broken_track_1_goto_0
+	.int gbs_rocket_signal_broken_track_0_goto_0
 
 gbs_rocket_signal_broken_track_2:
 	.byte	KEYSH , gbs_rocket_signal_broken_key+0
 	.byte	GBP , 0x02
-gbs_rocket_signal_broken_track_2_goto_0:
 	.byte GBP_FRDEL
 	.byte NONOTE12
 	.byte GBP_Cs6
@@ -86,18 +75,9 @@ gbs_rocket_signal_broken_track_2_goto_0:
 	.byte GBP_C0
 	.byte GBP_Ds4
 	.byte NONOTE3
-	.byte GBP_FRDEL
-	.byte NONOTE12
-	.byte GBP_A7
-	.byte OCT6
-	.byte GBP_G3
-	.byte GBP_Fs3
-	.byte GBP_G3
-	.byte GBP_Fs3
-	.byte NONOTE15
 	.byte GBP_JUMPC
 	.byte NONOTE0
-	.int gbs_rocket_signal_broken_track_2_goto_0
+	.int gbs_rocket_signal_broken_track_0_goto_0
 
 
 

@@ -637,7 +637,7 @@ gGBSSongTable::
 	song_gbs MUS_ENCOUNTER_RIVAL,		gbs_silvers_theme_Header,		0, 0	@ Rival's Theme
 	song_gbs MUS_VS_RIVAL,				gbs_btl_silver_Header,			0, 0	@ Battle! (Rival)
 	song_gbs MUS_RIVAL_EXIT,			gbs_silvers_reprise_Header,		0, 0	@ Rival Exit
-@	song_gbs MUS_CAUGHT,				gbs_victory_wild_Header,		0, 0	@ You Caught a Pokémon!
+	song_gbs MUS_CAUGHT,				gbs_caught_mon_Header,			0, 0	@ You Caught a Pokémon!
 	song_gbs MUS_ENCOUNTER_MALE,		gbs_enc_youngster_Header,		0, 0	@ Trainers' Eyes Meet (Male)
 	song_gbs MUS_VS_JOHTO_TRAINER,		gbs_btl_trainer_johto_Header,	0, 0	@ Battle! (Trainer - Johto)
 	song_gbs MUS_DARK_CAVE,				gbs_dark_cave_Header,			0, 0	@ Dark Cave
@@ -653,7 +653,7 @@ gGBSSongTable::
 	song_gbs MUS_AZALEA,				gbs_azalea_town_Header,			0, 0	@ Azalea Town
 	song_gbs MUS_ENCOUNTER_ROCKET,		gbs_enc_rocket_Header,			0, 0	@ Trainers' Eyes Meet (Team Rocket)
 	song_gbs MUS_VS_ROCKET,				gbs_btl_rocket_Header,			0, 0	@ Battle! (Team Rocket)
-	song_gbs MUS_ROUTE34,				gbs_route32_Header,				0, 0	@ Route 34
+	song_gbs MUS_ROUTE34,				gbs_rocket_signal_broken_Header,				0, 0	@ Route 34
 	song_gbs MUS_GOLDENROD,				gbs_goldenrod_city_Header,		0, 0	@ Goldenrod City
 	song_gbs MUS_POKECOM_CENTER,		gbs_pokecom_center_Header,		0, 0	@ Pokécom Center
 	song_gbs MUS_CYCLING,				gbs_bike_Header,				0, 0	@ Cycling Theme
@@ -666,5 +666,5 @@ gGBSSongTable::
 	song_gbs MUS_NATIONAL_PARK,			gbs_national_park_Header,		0, 0	@ National Park
 	song_gbs MUS_BUG_CONTEST_PREP,		gbs_bug_catching_prep_Header,	0, 0	@ Preparing for the Bug-Catching Contest
 	song_gbs MUS_BUG_CATCHING_CONTEST,	gbs_bug_catching_Header,		0, 0	@ Bug-Catching Contest
-	song_gbs MUS_PKMNCHANNEL_INTERLUDE,	gbs_unk_jingle1_Header,			0, 0	@ Bug-Catching Contest
+	song_gbs MUS_PKMNCHANNEL_INTERLUDE,	gbs_pkmn_channel_Header,		0, 0	@ Pokémon Channel Interlude
 	.4byte 0xFFFFFFFF

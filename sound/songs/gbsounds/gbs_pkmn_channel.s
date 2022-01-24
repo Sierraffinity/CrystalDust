@@ -1,22 +1,22 @@
 	.include "MPlayDef.s"
 	.include "GBCEngineDefs.s"
 
-	.equ	gbs_unk_jingle1_grp, voicegroup000
-	.equ	gbs_unk_jingle1_pri, 0
-	.equ	gbs_unk_jingle1_rev, 0
-	.equ	gbs_unk_jingle1_mvl, 127
-	.equ	gbs_unk_jingle1_key, 0
-	.equ	gbs_unk_jingle1_tbs, 1
-	.equ	gbs_unk_jingle1_exg, 0
-	.equ	gbs_unk_jingle1_cmp, 1
+	.equ	gbs_pkmn_channel_grp, voicegroup000
+	.equ	gbs_pkmn_channel_pri, 0
+	.equ	gbs_pkmn_channel_rev, 0
+	.equ	gbs_pkmn_channel_mvl, 127
+	.equ	gbs_pkmn_channel_key, 0
+	.equ	gbs_pkmn_channel_tbs, 1
+	.equ	gbs_pkmn_channel_exg, 0
+	.equ	gbs_pkmn_channel_cmp, 1
 
 
 	.section .rodata
 	.align 1
 
-gbs_unk_jingle1_track_0:
-	.byte	KEYSH , gbs_unk_jingle1_key+0
-	.byte	TEMPO , GBP_TEMPO_BPM*gbs_unk_jingle1_tbs/2
+gbs_pkmn_channel_track_0:
+	.byte	KEYSH , gbs_pkmn_channel_key+0
+	.byte	TEMPO , GBP_TEMPO_BPM*gbs_pkmn_channel_tbs/2
 	.byte	GBP , 0x00
 	.byte GBP_TEMPO
 	.byte NONOTE0
@@ -102,8 +102,8 @@ gbs_unk_jingle1_track_0:
 	.byte NONOTE5
 	.byte GBP_RET
 
-gbs_unk_jingle1_track_1:
-	.byte	KEYSH , gbs_unk_jingle1_key+0
+gbs_pkmn_channel_track_1:
+	.byte	KEYSH , gbs_pkmn_channel_key+0
 	.byte	GBP , 0x01
 	.byte GBP_DUTYC
 	.byte NONOTE1
@@ -186,8 +186,8 @@ gbs_unk_jingle1_track_1:
 	.byte NONOTE5
 	.byte GBP_RET
 
-gbs_unk_jingle1_track_2:
-	.byte	KEYSH , gbs_unk_jingle1_key+0
+gbs_pkmn_channel_track_2:
+	.byte	KEYSH , gbs_pkmn_channel_key+0
 	.byte	GBP , 0x02
 	.byte GBP_MOD
 	.byte NONOTE8
@@ -249,14 +249,14 @@ gbs_unk_jingle1_track_2:
 	.byte NONOTE2
 	.byte GBP_RET
 
-gbs_unk_jingle1_track_3:
-	.byte	KEYSH , gbs_unk_jingle1_key+0
+gbs_pkmn_channel_track_3:
+	.byte	KEYSH , gbs_pkmn_channel_key+0
 	.byte	GBP , 0x03
 	.byte GBP_NSET
 	.byte NONOTE3
 	.byte GBP_FRDEL
 	.byte NONOTE12
-gbs_unk_jingle1_track_3_goto_0:
+gbs_pkmn_channel_track_3_goto_0:
 	.byte GBP_As2
 	.byte GBP_As0
 	.byte GBP_D1
@@ -267,7 +267,7 @@ gbs_unk_jingle1_track_3_goto_0:
 	.byte GBP_D0
 	.byte GBP_JUMPC
 	.byte NONOTE2
-	.int gbs_unk_jingle1_track_3_goto_0
+	.int gbs_pkmn_channel_track_3_goto_0
 	.byte GBP_Gs1
 	.byte GBP_As1
 	.byte GBP_Gs0
@@ -288,16 +288,16 @@ gbs_unk_jingle1_track_3_goto_0:
 
 
 	.align 4
-	.global gbs_unk_jingle1_Header
-gbs_unk_jingle1_Header:
+	.global gbs_pkmn_channel_Header
+gbs_pkmn_channel_Header:
 	.byte 0x04	@ NumTrks
 	.byte 0x00	@ NumBlks
-	.byte gbs_unk_jingle1_pri @ Priority
-	.byte gbs_unk_jingle1_rev @ Reverb
+	.byte gbs_pkmn_channel_pri @ Priority
+	.byte gbs_pkmn_channel_rev @ Reverb
 
-	.int gbs_unk_jingle1_grp
+	.int gbs_pkmn_channel_grp
 
-	.int gbs_unk_jingle1_track_0
-	.int gbs_unk_jingle1_track_1
-	.int gbs_unk_jingle1_track_2
-	.int gbs_unk_jingle1_track_3
+	.int gbs_pkmn_channel_track_0
+	.int gbs_pkmn_channel_track_1
+	.int gbs_pkmn_channel_track_2
+	.int gbs_pkmn_channel_track_3
