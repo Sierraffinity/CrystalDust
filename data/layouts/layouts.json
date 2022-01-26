@@ -3760,8 +3760,8 @@
     {
       "id": "LAYOUT_MT_MORTAR_1F_OUTER",
       "name": "MtMortar_1F_Outer_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 50,
+      "height": 50,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
