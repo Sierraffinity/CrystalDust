@@ -57,7 +57,15 @@ enum SoundEngineCommands
 	End
 };
 
-enum GBPStatusFlags { ModulationActivation, ModulationStatus, PortamentoActivation, PitchBendActivation, ArpeggiationActivation, ArpeggiationStatus, NumGBPEngineFlags };
+enum GBPStatusFlags {
+	ModulationActivation,
+	ModulationStatus,
+	PortamentoActivation,
+	PitchBendActivation,
+	ArpeggiationActivation,
+	ArpeggiationStatus,
+	NumGBPEngineFlags
+};
 
 struct ToneTrack
 {
@@ -175,7 +183,7 @@ struct NoiseTrack
 	u8 vol;
 	u8 volX;
 	u8 pan;			   // 0x14
-	u8* samplePointer; // 0x18
+	const u8 *samplePointer; // 0x18
 	bool8 noiseActive; // 0x1C
 	u8 secondaryPadding[3];
 	struct SoundChannel *chan; // 0x20
