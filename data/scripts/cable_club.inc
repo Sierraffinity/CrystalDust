@@ -281,7 +281,7 @@ CableClub_EventScript_UnusedWelcomeToCableClub::
 
 CableClub_EventScript_SelectCableClubRoom::
 	setvar VAR_0x8004, 0
-	goto_if_set FLAG_VISITED_MAUVILLE_CITY, CableClub_EventScript_CableClubUnlockedRecordCorner
+	goto_if_set FLAG_SYS_TIME_CAPSULE_UNLOCKED, CableClub_EventScript_CableClubUnlockedRecordCorner
 	multichoice 0, 0, MULTI_CABLE_CLUB_NO_RECORD_MIX, FALSE
 	switch VAR_RESULT
 	case 0, CableClub_EventScript_TradeCenter
@@ -1069,7 +1069,7 @@ CableClub_EventScript_DirectCornerSelectService::
 	checkitem ITEM_POWDER_JAR, 1
 	compare VAR_RESULT, FALSE
 	goto_if_eq CableClub_EventScript_DirectCornerNoBerry
-	goto_if_set FLAG_VISITED_MAUVILLE_CITY, CableClub_EventScript_DirectCornerSelectAllServices
+	goto_if_set FLAG_SYS_TIME_CAPSULE_UNLOCKED, CableClub_EventScript_DirectCornerSelectAllServices
 	multichoice 0, 0, MULTI_WIRELESS_NO_RECORD, FALSE
 	switch VAR_RESULT
 	case 0, CableClub_EventScript_WirelessTrade
@@ -1091,7 +1091,7 @@ CableClub_EventScript_DirectCornerSelectAllServices::
 	end
 
 CableClub_EventScript_DirectCornerNoBerry::
-	goto_if_set FLAG_VISITED_MAUVILLE_CITY, CableClub_EventScript_DirectCornerHasRecordMix
+	goto_if_set FLAG_SYS_TIME_CAPSULE_UNLOCKED, CableClub_EventScript_DirectCornerHasRecordMix
 	multichoice 0, 0, MULTI_WIRELESS_NO_RECORD_BERRY, FALSE
 	switch VAR_RESULT
 	case 0, CableClub_EventScript_WirelessTrade

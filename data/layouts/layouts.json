@@ -4358,26 +4358,14 @@
       "blockdata_filepath": "data/layouts/VermilionCity_PokemonFanClub/map.bin"
     },
     {
-      "id": "LAYOUT_VERMILION_CITY_PORT_PASSAGE",
-      "name": "VermilionCity_PortPassage_Layout",
-      "width": 20,
-      "height": 20,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/VermilionCity_PortPassage/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_PortPassage/map.bin"
-    },
-    {
       "id": "LAYOUT_VERMILION_CITY_PORT",
       "name": "VermilionCity_Port_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 26,
+      "height": 30,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NewBark",
+      "secondary_tileset": "gTileset_OlivineCity",
       "border_filepath": "data/layouts/VermilionCity_Port/border.bin",
       "blockdata_filepath": "data/layouts/VermilionCity_Port/map.bin"
     },

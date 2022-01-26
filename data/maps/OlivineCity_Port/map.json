@@ -28,7 +28,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "OlivineCity_Port_Eventscript_Ferryman",
       "flag": "0"
     },
     {
@@ -90,6 +90,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "OlivineCity_Port_Eventscript_Fisherman1",
       "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "in_connection": false,
+      "x": 9,
+      "y": 22,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivineCity_Port_Eventscript_GetOnBoard",
+      "flag": "FLAG_TEMP_5"
     }
   ],
   "warp_events": [
@@ -102,14 +117,22 @@
     },
     {
       "x": 9,
-      "y": 21,
+      "y": 22,
       "elevation": 0,
       "dest_map": "MAP_FAST_SHIP_1F",
       "dest_warp_id": 0
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OlivineCity_Port_Eventscript_Trigger"
+    }
   ],
   "bg_events": [
 

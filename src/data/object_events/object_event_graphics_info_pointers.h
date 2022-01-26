@@ -45,7 +45,6 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerF;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BlackBelt;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Buena;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Scientist;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lass;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gentleman;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sailor;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fisherman;
@@ -244,6 +243,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Storyteller;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Giddy;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvilleOldMan1;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvilleOldMan2;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Captain;
 
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] = {
@@ -294,7 +294,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_BLACK_BELT] =               &gObjectEventGraphicsInfo_BlackBelt,
     [OBJ_EVENT_GFX_BUENA] =                    &gObjectEventGraphicsInfo_Buena,
     [OBJ_EVENT_GFX_SCIENTIST] =                &gObjectEventGraphicsInfo_Scientist,
-    [OBJ_EVENT_GFX_ZLASS] =                    &gObjectEventGraphicsInfo_Lass,
+    [OBJ_EVENT_GFX_CAPTAIN] =                  &gObjectEventGraphicsInfo_Captain,
     [OBJ_EVENT_GFX_GENTLEMAN] =                &gObjectEventGraphicsInfo_Gentleman,
     [OBJ_EVENT_GFX_SAILOR] =                   &gObjectEventGraphicsInfo_Sailor,
     [OBJ_EVENT_GFX_FISHERMAN] =                &gObjectEventGraphicsInfo_Fisherman,

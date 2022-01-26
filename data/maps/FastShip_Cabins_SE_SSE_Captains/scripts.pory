@@ -1,1 +1,193 @@
-mapscripts FastShip_Cabins_SE_SSE_Captains_MapScripts {}
+mapscripts FastShip_Cabins_SE_SSE_Captains_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if(flag(FLAG_VISITED_VERMILION_CITY))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+        else
+        {
+            if(flag(FLAG_FAST_SHIP_FOUND_GIRL))
+            {
+                setobjectxyperm(6, 19, 6)
+            }
+            else
+            {
+                setvar(VAR_TEMP_0, 1)
+            }
+            if(defeated(TRAINER_CAROL)) // reused to do map script, saving a flag
+            {
+                setobjectxyperm(6, 20, 7)
+            }
+            else
+            {
+                setvar(VAR_TEMP_0, 1)
+            }
+        }
+        goto(FastShip_MapScript_HideNPCs)
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_0, 0{
+            turnobject(6, DIR_NORTH)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+        }
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0{
+            lock
+            turnobject(4, DIR_SOUTH)
+            applymovement(4, Common_Movement_ExclamationMark)
+            playse(SE_PIN)
+            delay(0x40)
+            applymovement(6, FastShip_Cabins_SE_SSE_Captains_Movement_GirlToGrandpa)
+            waitmovement(0)
+            turnobject(4, DIR_EAST)
+            bufferstring(0, "guy")
+            checkplayergender
+            if(var(VAR_RESULT) == FEMALE)
+            {
+                bufferstring(0, "big girl")
+            }
+            textcolor(1)
+            msgbox("Grandpa, here I am!\pI was playing with the CAPTAIN\nand this {STR_VAR_1}!", MSGBOX_DEFAULT)
+            closemessage
+            turnobject(6, DIR_SOUTH)
+            applymovement(4, FastShip_Cabins_SE_SSE_Captains_Movement_GrandpaToPlayer)
+            waitmovement(0)
+            textcolor(0)
+            msgbox("{PLAYER}, was it? I heard you\nentertained my granddaughter.\pI want to thank you for that.\nI know! I'd like you to have this!", MSGBOX_DEFAULT)
+            checkitemspace(ITEM_METAL_COAT, 1)
+            if(var(VAR_RESULT))
+            {
+                giveitem(ITEM_METAL_COAT, 1)
+                setflag(FLAG_RECEIVED_METAL_COAT_ON_FAST_SHIP)
+            }
+            else
+            {
+                textcolor(3)
+                call(Common_EventScript_BagIsFull)
+                closemessage
+            }
+            playse(SE_DING_DONG)
+            waitse
+            textcolor(0)
+            msgbox("FAST SHIP S.S. AQUA has arrived\nin VERMILION CITY.", MSGBOX_DEFAULT)
+            closemessage
+            setflag(FLAG_FAST_SHIP_HAS_ARRIVED)
+            cleartrainerflag(TRAINER_CAROL) // reused to do map script, saving a flag
+            setvar(VAR_TEMP_0, 1)
+            release
+            end
+        }
+    ]
+}movement(local) FastShip_Cabins_SE_SSE_Captains_Movement_GirlToGrandpa{
+    walk_up
+    walk_left
+}movement(local) FastShip_Cabins_SE_SSE_Captains_Movement_GrandpaToPlayer{
+    walk_down
+    walk_right * 2
+    face_down
+}
+
+// Initial Trip
+script FastShip_Cabins_SE_SSE_Captains_EventScript_PokefanMColin{
+    trainerbattle_single(TRAINER_COLIN, "Hey, kid!\nWhat to battle with me?", "You're strong!")
+    msgbox("You're traveling all alone?\nIsn't your mom worried?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_SE_SSE_Captains_EventScript_TwinMeg{ // left twin
+    trainerbattle_double(TRAINER_MEG_AND_PEG, "You think I'm a baby?\nThat's not fair!", "Oh!\nWe lost!", "You're traveling to KANTO with\nonly one POKéMON?")
+    msgbox("Baby is a rude name to call\nus girls!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_SE_SSE_Captains_EventScript_TwinPeg{ // right twin
+    trainerbattle_double(TRAINER_MEG_AND_PEG, "I'm not a baby!\nThat's not nice to say to a lady!", "Oh!\nWe lost!", "You're only bringing one POKéMON\nto KANTO?")
+    msgbox("Sometimes, kids are smarter than\ngrown-ups!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_SE_SSE_Captains_EventScript_Grandpa{
+    if(flag(FLAG_RECEIVED_METAL_COAT_ON_FAST_SHIP))
+    {
+        msgbox("We're traveling around the world.", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_FAST_SHIP_FOUND_GIRL))
+    {
+        lock
+        faceplayer
+        msgbox(FastShip_Cabins_SE_SSE_Captains_Text_GrandpaWantsYouToHave, MSGBOX_DEFAULT)
+        checkitemspace(ITEM_METAL_COAT, 1)
+        if(!var(VAR_RESULT))
+        {
+            textcolor(3)
+            call(Common_EventScript_BagIsFull)
+            release
+            end
+        }
+        giveitem(ITEM_METAL_COAT, 1)
+        setflag(FLAG_RECEIVED_METAL_COAT_ON_FAST_SHIP)
+        release
+        end
+    }
+    msgbox("Oh, hello…\pI still can't find my granddaughter.\nIf she's on the ship, that's OK.\pShe's an energetic child, so she may\nbe bugging someone. I'm worried…", MSGBOX_NPC)
+    end
+}text(local) FastShip_Cabins_SE_SSE_Captains_Text_GrandpaWantsYouToHave{
+    "I know!\nI'd like you to have this!"
+}
+
+script FastShip_Cabins_SE_SSE_Captains_EventScript_LostGirl{
+    if(!flag(FLAG_FAST_SHIP_FOUND_GIRL))
+    {
+        lock
+        turnobject(6, DIR_EAST)
+        msgbox("CAPTAIN, play with me, please?\nI'm bored! I want to play more!", MSGBOX_DEFAULT)
+        closemessage
+        faceplayer
+        msgbox("Hi!\nWill you play with me?\p…Oh!\nGrandpa's worried about me?\pI have to go!\nI have to go find Grandpa!", MSGBOX_DEFAULT)
+        closemessage
+        setflag(FLAG_FAST_SHIP_FOUND_GIRL)
+        settrainerflag(TRAINER_CAROL) // reused to do map script, saving a flag
+        warp(MAP_FAST_SHIP_CABINS_SE_SSE_CAPTAINS, 1, 0, 0)
+        waitstate
+    }
+    msgbox("I had lots of fun playing!", MSGBOX_NPC)
+    end
+}
+
+script FastShip_Cabins_SE_SSE_Captains_EventScript_Captain{
+    if(!flag(FLAG_VISITED_VERMILION_CITY))
+    {
+        msgbox("Whew!\nThanks for coming along.\pKeeping that little girl amused\nwas exhausting.", MSGBOX_NPC)
+        end
+    }
+    msgbox("How do you like the S.S. AQUA's\nride?\pShe practically skates across\nthe waves.", MSGBOX_NPC)
+    end
+}
+
+// To Vermilion
+script FastShip_Cabins_SE_SSE_Captains_EventScript_PsychicRodney{
+    trainerbattle_single(TRAINER_RODNEY, "Ssh! My brain is picking up\nradio signals!", "…I hear something!")
+    msgbox("I get it. You can hear JOHTO's\nradio on the FAST SHIP.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_SE_SSE_Captains_EventScript_SuperNerdShawn{
+    trainerbattle_single(TRAINER_SHAWN, "What kind of POKé BALLS do\nyou have with you?", "Wait! Stop!\nDon't! Please!")
+    msgbox("You should use the right BALLS\nto fit the situation.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+// To Olivine
+script FastShip_Cabins_SE_SSE_Captains_EventScript_PokefanMJeremy{
+    trainerbattle_single(TRAINER_JEREMY, "What do you think?\pMy POKéMON are beautiful, yes?", "Oh no!\nMy beautiful POKéMON!")
+    msgbox("I must go to the POKéMON SALON\nand fix them up nice!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_SE_SSE_Captains_EventScript_PokefanFGeorgia{
+    trainerbattle_single(TRAINER_GEORGIA, "I'm going to shop at the DEPT.\nSTORE and then…", "What was I going to do?")
+    msgbox("Oh yes! I have to get my POKéMON\nout of DAY-CARE!", MSGBOX_AUTOCLOSE)
+    end
+}

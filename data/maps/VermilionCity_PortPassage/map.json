@@ -1,8 +1,8 @@
 {
   "id": "MAP_VERMILION_CITY_PORT_PASSAGE",
   "name": "VermilionCity_PortPassage",
-  "layout": "LAYOUT_VERMILION_CITY_PORT_PASSAGE",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "layout": "LAYOUT_OLIVINE_CITY_PORT_PASSAGE",
+  "music": "MUS_RG_VERMILLION",
   "region_map_section": "MAPSEC_VERMILION_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,13 +12,55 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN",
+      "in_connection": false,
+      "x": 6,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VermilionCity_Port_EventScript_Woman",
+      "flag": "0"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 4,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_VERMILION_CITY",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 5,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_VERMILION_CITY_PORT_PASSAGE",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 18,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_VERMILION_CITY_PORT_PASSAGE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 18,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_VERMILION_CITY_PORT",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 

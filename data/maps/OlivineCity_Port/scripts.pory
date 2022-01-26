@@ -1,18 +1,224 @@
 mapscripts OlivineCity_Port_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
+        clearflag(FLAG_FAST_SHIP_HAS_ARRIVED)
         if (flag(FLAG_SYS_GAME_CLEAR))
         {
             setflag(FLAG_TEMP_1) // Hide pre-HoF objects
+            setobjectxyperm(1, 8, 15)
+            setobjectmovementtype(1, MOVEMENT_TYPE_FACE_RIGHT)
         }
         else
         {
             setflag(FLAG_TEMP_2) // Hide post-HoF objects
         }
-        // Ferry man needs to be moved as well for disembarking from the SS Aqua.
+        getplayerxy(VAR_0x8008, VAR_RESULT)
+        if(var(VAR_RESULT) != 22)
+        {
+            setvar(VAR_TEMP_1, 1)
+        }
+        else
+        {
+            setflag(FLAG_TEMP_5)
+        }
     }
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_1, 0{
+            lock
+            applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerExitsShip)
+            waitmovement(0)
+            addobject(6)
+            applymovement(6, Common_Movement_WalkInPlaceFastestUp)
+            playse(SE_EXIT)
+            applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerExitsDock)
+            waitmovement(0)
+            setvar(VAR_TEMP_1, 1)
+            setrespawn(HEAL_LOCATION_OLIVINE_CITY)
+            release
+            end
+        }
+    ]
+}movement OlivineCity_Port_Movement_PlayerExitsShip{
+    walk_up
+}movement OlivineCity_Port_Movement_PlayerExitsDock{
+    walk_up * 6
+    walk_right
+    face_left
 }
 
-// TODO: Ferry Sailor
+script OlivineCity_Port_Eventscript_Trigger{
+    if(flag(FLAG_TEMP_3) || flag(FLAG_TEMP_4))
+    {
+        setvar(VAR_TEMP_0, 1)
+        release
+        end
+    }
+    turnobject(1, DIR_EAST)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    setvar(VAR_LAST_TALKED, 1)
+    textcolor(0)
+    goto(OlivineCity_Port_Eventscript_Ferryman)
+}
+
+script OlivineCity_Port_Eventscript_Ferryman{
+    if(!flag(FLAG_SYS_GAME_CLEAR))
+    {
+        msgbox("We don't want you to fall into the\nsea, so you're not allowed in.", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_TEMP_3)) // Already rode
+    {
+        msgbox(OlivineCity_Port_Text_CantBoardNow, MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_VISITED_VERMILION_CITY))
+    {
+        lock
+        getplayerxy(VAR_0x8008, VAR_RESULT)
+        if(var(VAR_0x8008) < 9)
+        {
+            faceplayer
+        }
+        gettime
+        switch(var(VAR_0x8003))
+        {
+            case DAY_SUNDAY:
+            case DAY_MONDAY:
+                msgbox("The FAST SHIP will sail\nnext MONDAY.", MSGBOX_DEFAULT)
+                closemessage
+                getplayerxy(VAR_0x8008, VAR_RESULT)
+                if(var(VAR_0x8008) == 9 && var(VAR_RESULT) == 15)
+                {
+                    applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerStepsAway)
+                    waitmovement(0)
+                }
+                release
+                end
+            case DAY_TUESDAY:
+            case DAY_WEDNESDAY:
+            case DAY_THURSDAY:
+                msgbox("The FAST SHIP will sail\nnext FRIDAY." , MSGBOX_DEFAULT)
+                closemessage
+                getplayerxy(VAR_0x8008, VAR_RESULT)
+                if(var(VAR_0x8008) == 9 && var(VAR_RESULT) == 15)
+                {
+                    applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerStepsAway)
+                    waitmovement(0)
+                }
+                release
+                end
+        }
+    }
+    msgbox(OlivineCity_Port_Text_Welcome, MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        msgbox(OlivineCity_Port_Text_WeHopeToSeeYouAgain, MSGBOX_DEFAULT)
+        closemessage
+        getplayerxy(VAR_0x8008, VAR_RESULT)
+        if(var(VAR_0x8008) == 9 && var(VAR_RESULT) == 15)
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerStepsAway)
+            waitmovement(0)
+        }
+        release
+        end
+    }
+    msgbox(OlivineCity_Port_Text_AskForTicket, MSGBOX_DEFAULT)
+    checkitem(ITEM_SS_TICKET, 1)
+    if(var(VAR_RESULT) == FALSE)
+    {
+        msgbox(OlivineCity_Port_Text_NoTicket, MSGBOX_DEFAULT)
+        closemessage
+        getplayerxy(VAR_0x8008, VAR_RESULT)
+        if(var(VAR_0x8008) == 9 && var(VAR_RESULT) == 15)
+        {
+            applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerStepsAway)
+            waitmovement(0)
+        }
+        release
+        end
+    }
+    msgbox(OlivineCity_Port_Text_FlashTicket, MSGBOX_DEFAULT)
+    closemessage
+    setflag(FLAG_TEMP_4) // Used in pokecrystal to not play a script
+    getplayerxy(VAR_0x8008, VAR_RESULT)
+    if(var(VAR_RESULT) == 14)
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerToTriggerTop)
+        waitmovement(0)
+    }
+    elif(var(VAR_0x8008) == 7)
+    {
+        applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerToTriggerLeft)
+        waitmovement(0)
+    }
+    applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerToShip)
+    waitmovement(0)
+    goto(OlivineCity_Port_Eventscript_GetOnBoard)
+}movement OlivineCity_Port_Movement_PlayerStepsAway{
+    walk_right
+    face_left
+}movement OlivineCity_Port_Movement_PlayerToTriggerLeft{
+    walk_up
+    walk_right * 2
+    walk_down
+}movement OlivineCity_Port_Movement_PlayerToTriggerTop{
+    walk_right
+    walk_down
+}movement OlivineCity_Port_Movement_PlayerToShip{
+    walk_down * 6
+}text OlivineCity_Port_Text_CantBoardNow{
+    "Sorry.\nYou can't board now."
+}text OlivineCity_Port_Text_Welcome{
+    "Welcome to FAST SHIP S.S. AQUA.\nWill you be boarding today?"
+}text OlivineCity_Port_Text_WeHopeToSeeYouAgain{
+    "We hope to see you again!"
+}text OlivineCity_Port_Text_AskForTicket{
+    "May I see your S.S. TICKET?"
+}text OlivineCity_Port_Text_NoTicket{
+    "{COLOR DARK_GRAY}{PLAYER} tried to show the\nS.S. TICKET…\p…But no TICKET!\p{COLOR BLUE}Sorry!\nYou may board only if you have an\nS.S. TICKET."
+}text OlivineCity_Port_Text_FlashTicket{
+    "{COLOR DARK_GRAY}{PLAYER} flashed the S.S. TICKET.\p{COLOR BLUE}That's it.\nThank you!"
+}
+
+script OlivineCity_Port_Eventscript_GetOnBoard{
+    setvar(VAR_LAST_TALKED, 6)
+    lock
+    textcolor(0)
+    if(flag(FLAG_TEMP_3)) // Already rode
+    {
+        msgbox(OlivineCity_Port_Text_CantBoardNow, MSGBOX_NPC)
+        end
+    }
+    msgbox(OlivineCity_Port_Text_DepartingSoon, MSGBOX_DEFAULT)
+    closemessage
+    turnobject(6, DIR_SOUTH)
+    delay(10)
+    playse(SE_EXIT)
+    setflag(FLAG_TEMP_5)
+    removeobject(6)
+    waitse
+    applymovement(OBJ_EVENT_ID_PLAYER, OlivineCity_Port_Movement_PlayerEntersShip)
+    waitmovement(0)
+    // Trainers on the ship can be rebattled
+    // This clears the flags of the Olivine -> Vermilion trainers
+    cleartrainerflag(TRAINER_EDWARD)
+    cleartrainerflag(TRAINER_SEAN)
+    cleartrainerflag(TRAINER_CAROL)
+    cleartrainerflag(TRAINER_SHAWN)
+    cleartrainerflag(TRAINER_RODNEY)
+    cleartrainerflag(TRAINER_CASSIE)
+    cleartrainerflag(TRAINER_JONAH)
+    cleartrainerflag(TRAINER_GARRETT)
+    cleartrainerflag(TRAINER_WAI)
+    setdynamicwarp(MAP_OLIVINE_CITY_PORT, 1, 0, 0)
+    warp(MAP_FAST_SHIP_1F, 0, 0, 0)
+    waitstate
+}movement OlivineCity_Port_Movement_PlayerEntersShip{
+    walk_down
+    set_invisible
+}text OlivineCity_Port_Text_DepartingSoon{
+    "We're departing soon.\nPlease get on board."
+}
 
 script OlivineCity_Port_Eventscript_Fisherman1{ //before HoF, rightmost
     msgbox("How many RODS do you have?\pDifferent rods catch different\nPOKéMON.", MSGBOX_NPC)

@@ -2860,7 +2860,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_BLACK_BELT] =                MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_BUENA] =                     MSG_COLOR_RED,
         [OBJ_EVENT_GFX_SCIENTIST] =                 MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_ZLASS] =                     MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_CAPTAIN] =                   MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_GENTLEMAN] =                 MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_SAILOR] =                    MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_FISHERMAN] =                 MSG_COLOR_BLUE,

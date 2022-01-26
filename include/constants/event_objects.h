@@ -48,7 +48,7 @@
 #define OBJ_EVENT_GFX_BLACK_BELT                  44
 #define OBJ_EVENT_GFX_BUENA                       45
 #define OBJ_EVENT_GFX_SCIENTIST                   46
-#define OBJ_EVENT_GFX_ZLASS                       47
+#define OBJ_EVENT_GFX_CAPTAIN                     47
 #define OBJ_EVENT_GFX_GENTLEMAN                   48
 #define OBJ_EVENT_GFX_SAILOR                      49
 #define OBJ_EVENT_GFX_FISHERMAN                   50

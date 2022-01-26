@@ -1,1 +1,79 @@
-mapscripts FastShip_Cabins_NNW_NNE_NE_MapScripts {}
+const FLAG_HIDE_TO_OLIVINE = FLAG_TEMP_1
+const FLAG_HIDE_TO_VERMILION = FLAG_TEMP_2
+
+mapscripts FastShip_Cabins_NNW_NNE_NE_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: FastShip_MapScript_HideNPCs
+}
+
+script FastShip_MapScript_HideNPCs{
+    if(!flag(FLAG_VISITED_VERMILION_CITY))
+    {
+        setflag(FLAG_HIDE_TO_VERMILION)
+        setflag(FLAG_HIDE_TO_OLIVINE)
+    }
+    if(flag(FLAG_FAST_SHIP_DESTINATION_OLIVINE))
+    {
+        setflag(FLAG_HIDE_TO_VERMILION)
+    }
+    else
+    {
+        setflag(FLAG_HIDE_TO_OLIVINE)
+    }
+}
+
+script FastShip_Cabins_NNW_NNE_NE_EventScript_Bed{
+    lock
+    msgbox("A comfy bed!\nTime to sleep…")
+    closemessage
+    call(Common_EventScript_OutOfCenterPartyHeal)
+    msgbox("Ah, refreshed and restored!")
+    if(flag(FLAG_FAST_SHIP_HAS_ARRIVED))
+    {
+        release
+        end
+    }
+    if(flag(FLAG_FAST_SHIP_FOUND_GIRL))
+    {
+        if(flag(FLAG_FAST_SHIP_DESTINATION_OLIVINE))
+        {
+            bufferstring(0, "OLIVINE")
+        }
+        else
+        {
+            bufferstring(0, "VERMILION")
+        }
+        playse(SE_DING_DONG)
+        textcolor(0)
+        msgbox("FAST SHIP S.S. AQUA has arrived\nin {STR_VAR_1} CITY.")
+        setflag(FLAG_FAST_SHIP_HAS_ARRIVED)
+    }
+    release
+    end
+}
+
+// Initial Trip
+script FastShip_Cabins_NNW_NNE_NE_EventScript_HikerNoland{
+    trainerbattle_single(TRAINER_NOLAND, "Are you alone?\nThen let's battle!", "That's too much to handle!")
+    msgbox("I wonder if there are any mountains\nworth climbing in KANTO?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+// To Vermilion
+script FastShip_Cabins_NNW_NNE_NE_EventScript_CooltrainerMSean{
+    trainerbattle_single(TRAINER_SEAN, "I'm going to KANTO to test my skills.", "I wanted to win!")
+    msgbox("Trainers from JOHTO can battle\nwith KANTO GYM LEADERS.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_NNW_NNE_NE_EventScript_CooltrainerFCarol{
+    trainerbattle_single(TRAINER_CAROL, "I'm training to become the CHAMP!", "What's so different between us?")
+    msgbox("I'm going to beat you someday!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+// To Olivine
+script FastShip_Cabins_NNW_NNE_NE_EventScript_PokemaniacEthan{
+    trainerbattle_single(TRAINER_ETHAN, "Do you know LILY?\nShe's a hot DJ in KANTO.", "Gyaaaah!")
+    msgbox("LILY's nice, but MARY's the best!\nI want to check out JOHTO's radio\lprograms!", MSGBOX_AUTOCLOSE)
+    end
+}

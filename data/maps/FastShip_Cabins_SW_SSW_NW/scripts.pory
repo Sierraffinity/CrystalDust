@@ -1,1 +1,92 @@
-mapscripts FastShip_Cabins_SW_SSW_NW_MapScripts {}
+mapscripts FastShip_Cabins_SW_SSW_NW_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_VISITED_VERMILION_CITY))
+        {
+            if(!defeated(TRAINER_EDWARD) || defeated(TRAINER_STANLY)) // Edward reused to hide lazy sailor to save flag
+            {
+                setflag(FLAG_TEMP_3)
+            }
+        }
+        else
+        {
+            setflag(FLAG_TEMP_3)
+        }
+        goto(FastShip_MapScript_HideNPCs)
+    }
+}
+
+// Initial Trip
+script FastShip_Cabins_SW_SSW_NW_EventScript_FirebreatherLyle{
+    trainerbattle_single(TRAINER_LYLE, "I'm going to KANTO to put on\nfire breathing shows!", "Fizzle…\nThe flame's tiny…")
+    msgbox("I guess fire is weak on the sea.\nIt doesn't matter? Really?", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_SW_SSW_NW_EventScript_LazySailor{
+    trainerbattle_single(TRAINER_STANLY, "Yeah, I'm a sailor, all right.\nI wasn't goofing off!\pThis cabin was vacant, so I just\ntook a quick nap!\pAh, forget it!\nLet's battle!", "Sorry!\nIt's all my fault!", FastShip_Cabins_SW_SSW_NW_EventScript_LazySailor)
+    msgbox("Being a sailor, I have to do\nphysical labor. It's exhausting!", MSGBOX_DEFAULT)
+    closemessage
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_RESULT) == 37)
+    {
+        applymovement(2, FastShip_Cabins_SW_SSW_NW_Movement_LazySailorLeavesAroundPlayer)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(2, FastShip_Cabins_SW_SSW_NW_Movement_LazySailorLeaves)
+        waitmovement(0)
+    }
+    opendoor(36, 1)
+    waitdooranim
+    applymovement(2, FastShip_Cabins_SW_SSW_NW_Movement_LazySailorDoor)
+    waitmovement(0)
+    playse(SE_EXIT)
+    closedoor(36, 1)
+    waitdooranim
+    waitse
+    release
+    end
+}movement(local) FastShip_Cabins_SW_SSW_NW_Movement_LazySailorLeavesAroundPlayer{
+    walk_down
+    walk_left * 2
+    walk_up * 2
+}movement(local) FastShip_Cabins_SW_SSW_NW_Movement_LazySailorLeaves{
+    walk_left * 2
+    walk_up
+}movement(local) FastShip_Cabins_SW_SSW_NW_Movement_LazySailorDoor{
+    walk_up
+    set_invisible
+}
+
+// To Vermilion
+script FastShip_Cabins_SW_SSW_NW_EventScript_GentlemanEdward{
+    trainerbattle_single(TRAINER_EDWARD, "Oh, no. I've lost something\nthat's very important.", "I…\nI can't find it…")
+    msgbox("I give up.\nYou don't have to look.\lJust forget about it!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_SW_SSW_NW_EventScript_BeautyCassie{
+    trainerbattle_single(TRAINER_CASSIE, "I'm trying to forget my woes.\nLet's battle!", "My heart weeps…")
+    msgbox("A voyage is best for getting\nover a broken heart.\pBut a FAST SHIP trip is too\nshort for grieving.", MSGBOX_AUTOCLOSE)
+    end
+}
+// To Olivine
+script FastShip_Cabins_SW_SSW_NW_EventScript_BurglarCorey{
+    trainerbattle_single(TRAINER_COREY, "Yeehaw!\nLucky!", "How unlucky!\nI lost!")
+    msgbox("I found a pretty coin here.\nSomeone must have lost it…", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_SW_SSW_NW_EventScript_BugCatcherKen{
+    trainerbattle_single(TRAINER_KEN, "I'm visiting my grandma to catch\nme some bugs!", "Ooh, wow.\nYou're tough!")
+    msgbox("You can find lots of POKéMON in\nthe trees of JOHTO!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_Cabins_SW_SSW_NW_EventScript_GuitaristClyde{
+    trainerbattle_single(TRAINER_CLYDE, "I'm going to audition my songs at\nGOLDENROD's RADIO STATION.", "Yowza!\nTotal distortion!")
+    msgbox("Speaking of the RADIO STATION,\nwhat's this week's lucky number?", MSGBOX_AUTOCLOSE)
+    end
+}
+

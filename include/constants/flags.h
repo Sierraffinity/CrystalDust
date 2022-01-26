@@ -474,11 +474,11 @@
 #define FLAG_GOT_TYROGUE_FROM_KIYO           0x1BE
 #define FLAG_DEFEATED_SNORLAX                0x1BF
 #define FLAG_DEFEATED_CELEBI                 0x1C0
+#define FLAG_FAST_SHIP_HAS_ARRIVED           0x1C1
+#define FLAG_FAST_SHIP_DESTINATION_OLIVINE   0x1C2 // if this is not set, destination is Vermilion
+#define FLAG_FAST_SHIP_FOUND_GIRL            0x1C3
+#define FLAG_RECEIVED_METAL_COAT_ON_FAST_SHIP 0x1C4
 // STOPPED HERE
-#define FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE 0x1C1
-#define FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE 0x1C2
-#define FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE 0x1C3
-#define FLAG_DEFEATED_ELECTRODE_1_AQUA_HIDEOUT 0x1C4
 #define FLAG_DEFEATED_ELECTRODE_2_AQUA_HIDEOUT 0x1C5
 #define FLAG_DEFEATED_SUDOWOODO              0x1C6
 #define FLAG_DEFEATED_MEW                    0x1C7
@@ -1374,13 +1374,13 @@
 #define FLAG_VISITED_MAHOGANY_TOWN                  (SYSTEM_FLAGS + 0x15)
 #define FLAG_VISITED_VIOLET_CITY                    (SYSTEM_FLAGS + 0x16)
 #define FLAG_VISITED_BLACKTHORN_CITY                (SYSTEM_FLAGS + 0x17)
-#define FLAG_VISITED_MAUVILLE_CITY                  (SYSTEM_FLAGS + 0x18)
+#define FLAG_VISITED_VERMILION_CITY                 (SYSTEM_FLAGS + 0x18)
 #define FLAG_VISITED_GOLDENROD_CITY                 (SYSTEM_FLAGS + 0x19)
-#define FLAG_VISITED_FORTREE_CITY                   (SYSTEM_FLAGS + 0x1A)
-#define FLAG_VISITED_LILYCOVE_CITY                  (SYSTEM_FLAGS + 0x1B)
-#define FLAG_VISITED_MOSSDEEP_CITY                  (SYSTEM_FLAGS + 0x1C)
-#define FLAG_VISITED_SOOTOPOLIS_CITY                (SYSTEM_FLAGS + 0x1D)
-#define FLAG_VISITED_EVER_GRANDE_CITY               (SYSTEM_FLAGS + 0x1E)
+#define FLAG_VISITED_SAFFRON_CITY                   (SYSTEM_FLAGS + 0x1A)
+#define FLAG_VISITED_CERULEAN_CITY                  (SYSTEM_FLAGS + 0x1B)
+#define FLAG_VISITED_CELADON_CITY                   (SYSTEM_FLAGS + 0x1C)
+#define FLAG_VISITED_LAVENDER_TOWN                  (SYSTEM_FLAGS + 0x1D)
+#define FLAG_VISITED_INDIGO_PLATEAU                 (SYSTEM_FLAGS + 0x1E)
 
 #define FLAG_IS_CHAMPION                            (SYSTEM_FLAGS + 0x1F) // Seems to be related to linking.
 #define FLAG_NURSE_UNION_ROOM_REMINDER              (SYSTEM_FLAGS + 0x20)

@@ -1,1 +1,249 @@
-mapscripts FastShip_B1F_MapScripts {}
+const VAR_SAILOR_POSITION = VAR_TEMP_1
+const POS_LEFT = 35
+const POS_MID_LEFT = POS_LEFT + 1
+const POS_MID_RIGHT = POS_MID_LEFT + 1
+const POS_RIGHT = POS_MID_RIGHT + 1
+
+mapscripts FastShip_B1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_VISITED_VERMILION_CITY))
+        {
+            if(defeated(TRAINER_STANLY))
+            {
+                setobjectxyperm(1, POS_RIGHT, 5)
+                setvar(VAR_TEMP_0, 1)
+            }
+            else
+            {
+                setvar(VAR_SAILOR_POSITION, POS_MID_LEFT)
+            }
+        }
+        else
+        {
+            setobjectxyperm(1, POS_RIGHT, 5)
+            setvar(VAR_TEMP_0, 1)
+        }
+        goto(FastShip_MapScript_HideNPCs)
+    }
+}
+
+// Initial Trip
+script FastShip_B1F_EventScript_SailorTriggers {
+    lock
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    switch(var(VAR_RESULT))
+    {
+        case POS_LEFT:
+            switch(var(VAR_SAILOR_POSITION))
+            {
+                case POS_LEFT:
+                    release
+                    end
+                case POS_MID_LEFT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor1Left)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_LEFT)
+                    release
+                    end
+                case POS_MID_RIGHT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor2Left)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_LEFT)
+                    release
+                    end
+                case POS_RIGHT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor3Left)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_LEFT)
+                    release
+                    end
+            }
+        case POS_MID_LEFT:
+            switch(var(VAR_SAILOR_POSITION))
+            {
+                case POS_LEFT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor1Right)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_MID_LEFT)
+                    release
+                    end
+                case POS_MID_LEFT:
+                    release
+                    end
+                case POS_MID_RIGHT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor1Left)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_MID_LEFT)
+                    release
+                    end
+                case POS_RIGHT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor2Left)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_MID_LEFT)
+                    release
+                    end
+            }
+        case POS_MID_RIGHT:
+            switch(var(VAR_SAILOR_POSITION))
+            {
+                case POS_LEFT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor2Right)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_MID_RIGHT)
+                    release
+                    end
+                case POS_MID_LEFT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor1Right)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_MID_RIGHT)
+                    release
+                    end
+                case POS_MID_RIGHT:
+                    release
+                    end
+                case POS_RIGHT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor1Left)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_MID_RIGHT)
+                    release
+                    end
+            }
+        case POS_RIGHT:
+            switch(var(VAR_SAILOR_POSITION))
+            {
+                case POS_LEFT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor3Right)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_RIGHT)
+                    release
+                    end
+                case POS_MID_LEFT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor2Right)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_RIGHT)
+                    release
+                    end
+                case POS_MID_RIGHT:
+                    applymovement(1, FastShip_B1F_Movement_Sailor1Right)
+                    waitmovement(0)
+                    setvar(VAR_SAILOR_POSITION, POS_RIGHT)
+                    release
+                    end
+                case POS_RIGHT:
+                    release
+                    end
+            }
+    }
+}movement(local) FastShip_B1F_Movement_Sailor1Left{
+    lock_facing_direction
+    walk_left
+    unlock_facing_direction
+}movement(local) FastShip_B1F_Movement_Sailor2Left{
+    lock_facing_direction
+    walk_fast_left * 2
+    unlock_facing_direction
+}movement(local) FastShip_B1F_Movement_Sailor3Left{
+    lock_facing_direction
+    walk_fastest_left * 3
+    unlock_facing_direction
+}movement(local) FastShip_B1F_Movement_Sailor1Right{
+    lock_facing_direction
+    walk_right
+    unlock_facing_direction
+}movement(local) FastShip_B1F_Movement_Sailor2Right{
+    lock_facing_direction
+    walk_fast_right * 2
+    unlock_facing_direction
+}movement(local) FastShip_B1F_Movement_Sailor3Right{
+    lock_facing_direction
+    walk_fastest_right * 3
+    unlock_facing_direction
+}
+
+script FastShip_B1F_EventScript_BlockingSailor{
+    if(flag(FLAG_VISITED_VERMILION_CITY))
+    {
+        msgbox("The dining room is up ahead.\pThe stairs at the end lead to the\nCAPTAIN's cabin.", MSGBOX_NPC)
+        end
+    }
+    if(defeated(TRAINER_STANLY))
+    {
+        bufferstring(0, "")
+        if(!flag(FLAG_FAST_SHIP_FOUND_GIRL) && !flag(FLAG_VISITED_VERMILION_CITY))
+        {
+            bufferstring(0, "\pA little girl?\nI may have seen her go by here.")
+        }
+        msgbox("Thanks, kid! I chewed him out\ngood so he'll quit slacking off!{STR_VAR_1}", MSGBOX_NPC)
+        end
+    }
+    if(defeated(TRAINER_EDWARD)) // this flag is reused for telling about the lazy sailor to save a flag
+    {
+        msgbox("Oh, gee…\nThe CAPTAIN will be furious…", MSGBOX_NPC)
+        end
+    }
+    msgbox("Hey, kid. Could I get you to look\nfor my buddy?\pHe's goofing off somewhere,\nthat lazy bum!\pI want to go find him,\nbut I'm on duty right now.", MSGBOX_NPC)
+    settrainerflag(TRAINER_EDWARD)
+    end
+}
+
+script FastShip_B1F_EventScript_PicnickerDebra{
+    trainerbattle_single(TRAINER_DEBRA, "I'm so bored.\nWant to battle?", "Yow!\nYou're too strong!")
+    msgbox("SAFFRON, CELADON…\pI hear there are many big cities\nin KANTO.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_B1F_EventScript_JugglerFritz{
+    trainerbattle_single(TRAINER_FRITZ, "Urrf…\nI'm seasick!", "I can't move anymore…")
+    msgbox("No more ships for me. Next time,\nI'm taking the MAGNET TRAIN.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_B1F_EventScript_SailorJeff{
+    trainerbattle_single(TRAINER_JEFF, "Nothing beats a battle when I'm\non my break.", "Win or lose, my break's over!")
+    msgbox("I guess I can't win if I don't\nget serious.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+// To Vermilion
+script FastShip_B1F_EventScript_FishermanJonah{
+    trainerbattle_single(TRAINER_JONAH, "Even though we're out on the sea,\nI can't fish!\pThis is boring!\nLet's battle!", "I…\nI'm not bored anymore…")
+    msgbox("I plan to fish off of VERMILION's\npier.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_B1F_EventScript_SailorGarrett{
+    trainerbattle_single(TRAINER_GARRETT, "This is where we sailors work!", "I lost on my home field…")
+    msgbox("We get different passengers from\nVERMILION CITY to OLIVINE CITY.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_B1F_EventScript_BlackBeltWai{
+    trainerbattle_single(TRAINER_WAI, "I'm building up my legs by bracing\nagainst the ship's rocking!", "Rocked and rolled over!")
+    msgbox("I couldn't find the KARATE KING\nin JOHTO.\pHe's supposed to be training\nin a cave somewhere.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+// To Olivine
+script FastShip_B1F_EventScript_SailorKenneth{
+    trainerbattle_single(TRAINER_KENNETH, "I'm a sailor man!\pBut I'm training POKéMON, so I can\nbecome the CHAMP!", "My lack of training is obvious…")
+    msgbox("Eight BADGES! They must prove\nthat you've beaten GYM LEADERS.\pNo wonder you're so good!", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_B1F_EventScript_SchoolBoyNate{ // top schoolboy
+    trainerbattle_single(TRAINER_NATE, "Do you know the RUINS OF ALPH?", "Yaargh!")
+    msgbox("Radios pick up strange signals\ninside the RUINS.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_B1F_EventScript_SchoolBoyRicky{ // bottom schoolboy
+    trainerbattle_single(TRAINER_RICKY, "There are some odd stone panels in\nthe RUINS OF ALPH.", "I was done in!")
+    msgbox("I read that there are four of\nthose stone panels.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FastShip_B1F_EventScript_TeacherShirley{
+    trainerbattle_single(TRAINER_SHIRLEY, "Don't lay a finger on my students!", "Aaack!")
+    msgbox("We're on a field trip to the RUINS\noutside VIOLET.", MSGBOX_AUTOCLOSE)
+    end
+}

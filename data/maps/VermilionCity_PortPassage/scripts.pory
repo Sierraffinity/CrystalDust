@@ -1,1 +1,6 @@
 mapscripts VermilionCity_PortPassage_MapScripts {}
+
+script VermilionCity_Port_EventScript_Woman{
+    msgbox("The FAST SHIP sails on Wednesdays\nand Sundays every week.", MSGBOX_NPC)
+    end
+}
