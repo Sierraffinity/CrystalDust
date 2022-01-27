@@ -485,12 +485,15 @@ void ToneTrack_ModulateTrack(struct ToneTrack *track)
     {
         if (track->modulationCountdown == 0)
         {
-            if (track->modulationSpeedDelay == 0 && track->pitch != 0 && ShouldRenderSound(track->trackID - 1))
+            if (track->modulationSpeedDelay == 0 && track->pitch != 0)
             {
-                vu16 *control = ToneTrackControl();
-                u16 location = ((track->trackID - 1) * 4) + 2;
-                control[location] &= 0x8000;
-                control[location] |= ToneTrack_GetModulationPitch(track);
+                u16 modulatedPitch = ToneTrack_GetModulationPitch(track);
+                if (ShouldRenderSound(track->trackID - 1))
+                {
+                    vu16 *control = ToneTrackControl();
+                    u16 location = ((track->trackID - 1) * 4) + 2;
+                    control[location] = (control[location] & 0x8000) | modulatedPitch;
+                }
             }
             else
             {
@@ -830,8 +833,7 @@ void WaveTrack_ModulateTrack(struct WaveTrack *track)
                 if (ShouldRenderWaveChannel())
                 {
                     vu16 *control = WaveTrackControl();
-                    control[2] &= 0x8000;
-                    control[2] |= outPitch;
+                    control[2] = (control[2] & 0x8000) | outPitch;
                 }
             }
             else
