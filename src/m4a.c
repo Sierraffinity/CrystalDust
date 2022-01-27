@@ -590,14 +590,11 @@ void MPlayOpen(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track
     mplayInfo->ident = ID_NUMBER;
 }
 
-extern void GBSInitSong(struct MusicPlayerInfo *mplayInfo, struct SongHeader *header);
-
 void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader, bool32 isGBSSong)
 {
     s32 i;
     u8 unk_B;
     struct MusicPlayerTrack *track;
-    bool32 gbsFinishing = FALSE;
 
     if (mplayInfo->ident != ID_NUMBER)
         return;
@@ -622,10 +619,16 @@ void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader
         mplayInfo->tempoC = 0;
         mplayInfo->fadeOI = 0;
 
+        // Restore the master volume of the GB channels in case GBS changed it.
+        // Also turn off all GB channels until song reinitializes them to minimize popping.
+        // TODO: When switching from GBS to m4a, a tiny pop still occurs.
+        REG_NR50 = 0x77;
+
+        // Restore bias level.
+        REG_SOUNDBIAS = (REG_SOUNDBIAS & 0xFC00) | 0x200;
+
         for (i = 0, track = mplayInfo->tracks; i < songHeader->trackCount && i < mplayInfo->trackCount; i++, track++)
         {
-            if (track->gbsIdentifier > 0)
-                gbsFinishing = TRUE;
             TrackStop(mplayInfo, track);
             track->flags = MPT_FLG_EXIST | MPT_FLG_START;
             track->chan = 0;
@@ -638,22 +641,8 @@ void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader
             track->flags = 0;
         }
 
-        if (gbsFinishing)
-        {
-            // Restore the master volume of the GB channels when a GBS song finishes.
-            // Also turn off all GB channels until song reinitializes them to minimize popping.
-            // TODO: When switching from GBS to m4a, a tiny pop still occurs.
-            REG_SOUNDCNT_L = 0x77;
-
-            // Restore bias level.
-            REG_SOUNDBIAS = (REG_SOUNDBIAS & 0xFC00) | 0x200;
-        }
-
         if (songHeader->reverb & SOUND_MODE_REVERB_SET)
             m4aSoundMode(songHeader->reverb);
-
-        if (isGBSSong)
-            GBSInitSong(mplayInfo, songHeader);
 
         mplayInfo->ident = ID_NUMBER;
     }

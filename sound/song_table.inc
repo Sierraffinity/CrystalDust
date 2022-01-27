@@ -660,6 +660,7 @@ gGBSSongTable::
 	song_gbs MUS_GAME_CORNER,			gbs_game_corner_Header,			0, 0	@ Game Corner
 	song_gbs MUS_ENCOUNTER_FEMALE,		gbs_enc_beauty_Header,			0, 0	@ Trainers' Eyes Meet (Female)
 	song_gbs MUS_OAKS_LAB,				gbs_oaks_lab_Header,			0, 0	@ Oak's Lab
+	song_gbs MUS_POKEMON_LULLABY,		gbs_pkmn_lullaby_Header,		0, 0	@ Pokémon Lullaby
 	song_gbs MUS_POKEMON_MARCH,			gbs_pkmn_march_Header,			0, 0	@ Pokémon March
 	song_gbs MUS_BUENAS_THEME,			gbs_buenas_password_Header,		0, 0	@ Buena's Password
 	song_gbs MUS_UNOWN_RADIO,			gbs_radio_unown_Header,			0, 0	@ Unown Signal
