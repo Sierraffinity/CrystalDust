@@ -1287,16 +1287,25 @@ u8 NoiseTrack_ExecuteCommands(u8 commandID, struct NoiseTrack *track)
 
 void NoiseTrack_WritePattern(struct NoiseTrack *track)
 {
-    u16 value1 = (track->samplePointer[0] & 0xF);
-    u16 value2 = (track->samplePointer[1] << 8) | 0x3F;
-    u16 value3 = track->samplePointer[2] | 0x8000;
-    track->noiseFrameDelay = value1;
-    track->samplePointer += 3;
-    if (ShouldRenderNoiseChannel())
+    if (track->samplePointer[0] != 0xFF)
     {
-        vu16 *control = NoiseTrackControl();
-        control[0] = value2;
-        control[2] = value3;
+        u16 value1 = (track->samplePointer[0] & 0xF);
+        u16 value2 = (track->samplePointer[1] << 8) | 0x3F;
+        u16 value3 = track->samplePointer[2] | 0x8000;
+        track->noiseActive = TRUE;
+        track->noiseFrameDelay = value1;
+        track->samplePointer += 3;
+        if (ShouldRenderNoiseChannel())
+        {
+            vu16 *control = NoiseTrackControl();
+            control[0] = value2;
+            control[2] = value3;
+        }
+    }
+    else
+    {
+        track->noiseActive = 0;
+        track->noiseFrameDelay = 0;
     }
 }
 
@@ -1328,7 +1337,6 @@ void NoiseTrack_ExecuteModifications(u8 commandID, u16 tempo, struct NoiseTrack 
         
         noiseData = noiseGroup[(commandID & 0xF0) >> 4];
         track->samplePointer = noiseData;
-        track->noiseActive = TRUE;
 
         if (ShouldRenderNoiseChannel())
         {
@@ -1383,14 +1391,9 @@ bool16 NoiseTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *
         noiseTrack->noteLength1--;
         if (noiseTrack->noiseActive == 1)
         {
-            if (noiseTrack->noiseFrameDelay == 0 && noiseTrack->samplePointer[0] != 0xFF)
+            if (noiseTrack->noiseFrameDelay == 0)
             {
                 NoiseTrack_WritePattern(noiseTrack);
-            }
-            else if (noiseTrack->samplePointer[0] == 0xFF)
-            {
-                noiseTrack->noiseActive = 0;
-                noiseTrack->noiseFrameDelay = 0;
             }
             else
             {
