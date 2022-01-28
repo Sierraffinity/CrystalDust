@@ -710,12 +710,13 @@ void WaveTrack_SwitchWavePattern(int patternID)
 {
     int i;
     vu16* control = WaveTrackControl();
-    if (patternID < ARRAY_COUNT(sWaveTrackPatterns))
+    if (patternID < ARRAY_COUNT(sWaveTrackPatterns) && gCgbChans[2].cp != (u32)sWaveTrackPatterns[patternID])
     {
         u32* mainPattern = (u32 *)(REG_ADDR_WAVE_RAM0);
         control[0] = 0x40;
         for (i = 0; i < 4; i++)
             mainPattern[i] = sWaveTrackPatterns[patternID][i];
+        gCgbChans[2].cp = (u32)sWaveTrackPatterns[patternID];
         control[0] = 0x0;
     }
 }
@@ -1444,6 +1445,9 @@ void ply_gbs_switch(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *
         track->cmdPtr = cmdPtrBackup;
         track->pan = 0xFF;
         track->flags = MPT_FLG_EXIST;
+
+        // Clear used bit from previous song.
+        gUsedGBChannels[gbChannel] = FALSE;
         
         switch (gbChannel)
         {
