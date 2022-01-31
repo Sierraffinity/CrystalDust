@@ -95,37 +95,41 @@ u16 CalculateLength(u8 frameDelay, u16 tempo, u8 bitLength, u16 previousLeftover
     return ((frameDelay * (bitLength + 1)) * tempo) + previousLeftover;
 }
 
-static const u16 sToneTrackFrequencyTable[] =
+static const s16 sFrequencyTable[] =
 {
-    8013,
-    7566,
-    7144,
-    6742,
-    6362,
-    6005,
-    5666,
-    5346,
-    5048,
-    4766,
-    4499,
-    4246
+    0x0000,
+    0xF82C,
+    0xF89D,
+    0xF907,
+    0xF96B,
+    0xF9CA,
+    0xFA23,
+    0xFA77,
+    0xFAC7,
+    0xFB12,
+    0xFB58,
+    0xFB9B,
+    0xFBDA,
+    0xFC16,
+    0xFC4E,
+    0xFC83,
+    0xFCB5,
+    0xFCE5,
+    0xFD11,
+    0xFD3B,
+    0xFD63,
+    0xFD89,
+    0xFDAC,
+    0xFDCD,
+    0xFDED
 };
 
-u16 ToneTrack_CalculatePitch(u8 commandID, s8 keyShift, u8 octave, u16 tone)
+u16 CalculatePitch(u8 note, s8 keyShift, u8 octave, u16 tone)
 {
-    s16 note = ((commandID & 0xF0) >> 4) - 1;
-    note += keyShift;
-    while (note < 0)
-    {
-        note += 12;
-        octave--;
-    }
-    while (note > 11)
-    {
-        note -= 12;
-        octave++;
-    }
-    return (u16)((2048 - (sToneTrackFrequencyTable[note] >> (2 + octave))) + tone);
+    s16 octaveShifted = octave + ((keyShift & 0xF0) >> 4);
+    s16 noteShifted = note + (keyShift & 0xF);
+    s16 freq = (sFrequencyTable[noteShifted] >> (octaveShifted)) & 0x7FF;
+    return freq + tone;
 }
 
 void ToneTrack_Reset(int trackID)
@@ -159,8 +163,8 @@ void ToneTrack_ExecuteModifications(u8 commandID, u16 tempo, struct ToneTrack *t
 
     if (commandID & 0xF0)
     {
-        track->pitch = ToneTrack_CalculatePitch(commandID, track->keyShift, track->currentOctave, track->tone);
-        thisVoiceVolVelocity = (track->currentVoice << 6) | (track->fadeSpeed << 8) | (((track->fadeSpeed == 0) ? 0 : track->fadeDirection) << 11) | (track->velocity << 12);
+        track->pitch = CalculatePitch((commandID & 0xF0) >> 4, track->keyShift, track->currentOctave, track->tone);
+        thisVoiceVolVelocity = (track->currentVoice << 6) | (track->fadeSpeed << 8) | (((track->fadeSpeed == 0) ? 0 : track->fadeDirection) << 11) | (track->velocity << 12) | 0x3F;
         thisPitch = track->pitch | 0x8000;
         
         if (ShouldRenderSound(track->trackID - 1))
@@ -213,8 +217,7 @@ u8 ToneTrack_ExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
             }
             case SetKeyShift:
             {
-                s8 thisKeyShift = track->nextInstruction[1];
-                track->keyShift = (-12 * ((thisKeyShift & 0x10) >> 4)) + (thisKeyShift & 0xF);
+                track->keyShift = track->nextInstruction[1];
                 commandLength = 2;
                 break;
             }
@@ -270,7 +273,7 @@ u8 ToneTrack_ExecuteCommands(u8 commandID, struct MusicPlayerInfo *info, struct 
                 track->statusFlags[PortamentoActivation] = TRUE;
                 track->portamentoDelay = track->nextInstruction[1];
                 track->portamentoSpeed = track->nextInstruction[2];
-                track->portamentoTarget = ToneTrack_CalculatePitch(track->nextInstruction[3], track->keyShift, track->currentOctave, track->tone);
+                track->portamentoTarget = CalculatePitch((track->nextInstruction[3] & 0xF0) >> 4, track->keyShift, track->currentOctave, track->tone);
                 commandLength = 4;
                 break;
             case SetModulation:
@@ -589,105 +592,6 @@ bool16 ToneTrack_Update(struct MusicPlayerInfo *info, struct MusicPlayerTrack *t
     return result;
 }
 
-static const u16 sWaveTrackFrequencyTable[] = {
-    44,		// C3
-    156,
-    262,
-    363,
-    457,
-    547,
-    631,
-    710,
-    786,
-    854,
-    923,
-    986,
-    1046,	// C4
-    1102,
-    1155,
-    1205,
-    1253,
-    1297,
-    1339,
-    1379,
-    1417,
-    1452,
-    1486,
-    1517,
-    1546,	// C5
-    1575,
-    1602,
-    1627,
-    1650,
-    1673,
-    1694,
-    1714,
-    1732,
-    1750,
-    1767,
-    1783,
-    1798,	// C6
-    1812,
-    1825,
-    1837,
-    1849,
-    1860,
-    1871,
-    1881,
-    1890,
-    1899,
-    1907,
-    1915,
-    1923,	// C7
-    1930,
-    1936,
-    1943,
-    1949,
-    1954,
-    1959,
-    1964,
-    1969,
-    1974,
-    1978,
-    1982,
-    1985,	// C8
-    1988,
-    1992,
-    1995,
-    1998,
-    2001,
-    2004,
-    2006,
-    2009,
-    2011,
-    2013,
-    2015,
-    2017,   // C9
-    2019,
-    2020,
-    2021,
-    2023,
-    2024,
-    2025,
-    2027,
-    2028,
-    2029,
-    2030,
-    2031,
-    2032,   // C10
-    2033,
-    2034,
-    2034,
-    2035,
-    2036,
-    2036,
-    2037,
-    2038,
-    2038,
-    2039,
-    2039
-};
-
 static const u32 sWaveTrackPatterns[][4] = {
     { 0xCE8A4602, 0xDCEDFEFF, 0x6587A9CB, 0x11223344 },
     { 0xCE8A4602, 0xEEFEFFEF, 0x87A9CBDD, 0x11224365 },
@@ -721,18 +625,6 @@ void WaveTrack_SwitchWavePattern(int patternID)
     }
 }
 
-u16 WaveTrack_CalculatePitch(u8 commandID, s8 keyShift, u8 octave, u16 tone)
-{
-    s16 note = ((commandID & 0xF0) >> 4) - 1;
-    note += octave * 12;
-    note += keyShift;
-    if (note >= ARRAY_COUNT(sWaveTrackFrequencyTable))
-    {
-        note = ARRAY_COUNT(sWaveTrackFrequencyTable) - 1;
-    }
-    return sWaveTrackFrequencyTable[note] + tone;
-}
-
 void WaveTrack_Reset()
 {
     vu16 *control = WaveTrackControl();
@@ -757,7 +649,7 @@ void WaveTrack_ExecuteModifications(u8 commandID, u16 tempo, struct WaveTrack *t
 
     if (commandID & 0xF0)
     {
-        track->pitch = WaveTrack_CalculatePitch(commandID, track->keyShift, track->currentOctave, track->tone);
+        track->pitch = CalculatePitch((commandID & 0xF0) >> 4, track->keyShift, track->currentOctave, track->tone);
         thisVelocity = track->velocity << 13;
         thisPitch = track->pitch | 0x8000;
         activationValue = 0x80;
@@ -880,8 +772,7 @@ bool16 WaveTrack_ExecuteCommands(u8 commandID, struct WaveTrack *track)
             }
             case 1:
             {
-                s8 thisKeyShift = track->nextInstruction[1];
-                track->keyShift = (-12 * ((thisKeyShift & 0x10) >> 4)) + (thisKeyShift & 0xF);
+                track->keyShift = track->nextInstruction[1];
                 commandLength = 2;
                 break;
             }
