@@ -1124,7 +1124,7 @@ static void InitMapBasedOnPlayerLocation_(void)
             break;
         case MAP_TYPE_UNDERGROUND:
         case MAP_TYPE_UNKNOWN:
-            if (gMapHeader.allowEscaping)
+            if (gMapHeader.allowEscaping && gMapHeader.regionMapSectionId != MAPSEC_MT_MORTAR) //exception for Mt. Mortar because it's on such a long route & has three exits
             {
                 mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
                 gRegionMap->primaryMapSecId = mapHeader->regionMapSectionId;

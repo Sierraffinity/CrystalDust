@@ -3849,7 +3849,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_IcePath",
       "border_filepath": "data/layouts/IcePath_1F/border.bin",
       "blockdata_filepath": "data/layouts/IcePath_1F/map.bin"
     },
@@ -3861,7 +3861,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_IcePath",
       "border_filepath": "data/layouts/IcePath_B1F/border.bin",
       "blockdata_filepath": "data/layouts/IcePath_B1F/map.bin"
     },
@@ -3873,7 +3873,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_IcePath",
       "border_filepath": "data/layouts/IcePath_B2F_Mahogany/border.bin",
       "blockdata_filepath": "data/layouts/IcePath_B2F_Mahogany/map.bin"
     },
@@ -3885,7 +3885,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_IcePath",
       "border_filepath": "data/layouts/IcePath_B2F_Blackthorn/border.bin",
       "blockdata_filepath": "data/layouts/IcePath_B2F_Blackthorn/map.bin"
     },
@@ -3897,7 +3897,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_IcePath",
       "border_filepath": "data/layouts/IcePath_B3F/border.bin",
       "blockdata_filepath": "data/layouts/IcePath_B3F/map.bin"
     },
