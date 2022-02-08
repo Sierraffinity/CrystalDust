@@ -1,1 +1,5 @@
-mapscripts IcePath_1F_MapScripts {}
+mapscripts IcePath_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_ICE_PATH)
+    }
+}

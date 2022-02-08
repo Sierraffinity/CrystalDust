@@ -1124,8 +1124,8 @@ static void InitMapBasedOnPlayerLocation_(void)
             break;
         case MAP_TYPE_UNDERGROUND:
         case MAP_TYPE_UNKNOWN:
-            if (gMapHeader.allowEscaping && gMapHeader.regionMapSectionId != MAPSEC_MT_MORTAR) //exception for Mt. Mortar because it's on such a long route & has three exits
-            {
+            if (gMapHeader.allowEscaping && gMapHeader.regionMapSectionId != MAPSEC_MT_MORTAR && gMapHeader.regionMapSectionId != MAPSEC_ICE_PATH)
+            {   //exception for Mt. Mortar because it's on such a long route & has three exits and Ice Path because entering from Blackthorn places the player on Blackthorn instead of Ice Path.
                 mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
                 gRegionMap->primaryMapSecId = mapHeader->regionMapSectionId;
                 gRegionMap->playerIsInCave = TRUE;
