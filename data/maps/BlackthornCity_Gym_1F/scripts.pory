@@ -1,6 +1,38 @@
-mapscripts BlackthornCity_Gym_1F_MapScripts {}
+mapscripts BlackthornCity_Gym_1F_MapScripts {
+    MAP_SCRIPT_ON_LOAD{
+        if(!flag(FLAG_HIDE_BLACKTHORN_GYM_BOULDER_1))
+        {
+            setmetatile(3, 8, 0x2C4, 1)
+        }
+        if(!flag(FLAG_HIDE_BLACKTHORN_GYM_BOULDER_2))
+        {
+            setmetatile(9, 10, 0x2C5, 1)
+        }
+        if(!flag(FLAG_HIDE_BLACKTHORN_GYM_BOULDER_3))
+        {
+            setmetatile(9, 6, 0x2C5, 1)
+        }
+    }
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_HIDE_BLACKTHORN_GYM_BOULDER_1))
+        {
+            setflag(FLAG_TEMP_11)
+            setmetatile(3, 8, 0x2C4, 1)
+        }
+        if(!flag(FLAG_HIDE_BLACKTHORN_GYM_BOULDER_2))
+        {
+            setflag(FLAG_TEMP_12)
+            setmetatile(9, 10, 0x2C5, 1)
+        }
+        if(!flag(FLAG_HIDE_BLACKTHORN_GYM_BOULDER_3))
+        {
+            setflag(FLAG_TEMP_13)
+            setmetatile(9, 6, 0x2C5, 1)
+        }
+    }
+}
 
-// TODO: Clair, whatever is necessary for the boulders
+
 
 script BlackthornCity_Gym_1F_Eventscript_Clair{
     lock

@@ -42,5 +42,6 @@ void CheckEarlyScriptExit(struct FieldInput *input);
 const u8 *GetInteractedLinkPlayerScript(struct MapPosition *position, u8 metatileBehavior, u8 direction);
 u8 *GetCoordEventScriptAtMapPosition(struct MapPosition *position);
 void ClearPoisonStepCounter(void);
+void HandleBoulderFallThroughHole(struct ObjectEvent * object);
 
 #endif // GUARD_FIELDCONTROLAVATAR_H

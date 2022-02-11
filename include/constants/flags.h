@@ -821,13 +821,13 @@
 #define FLAG_HIDE_ROUTE_36_FLORIA                                   0x308
 #define FLAG_HIDE_ROUTE_36_SUDOWOODO                                0x309
 #define FLAG_HIDE_ROUTE_36_SIERRA                                   0x30A
-#define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4                          0x30B
-#define FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS                          0x30C
-#define FLAG_HIDE_PETALBURG_GYM_GREETER                             0x30D
-#define FLAG_HIDE_MARINE_CAVE_KYOGRE                                0x30E
-#define FLAG_HIDE_TERRA_CAVE_GROUDON                                0x30F
-#define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_RIVAL_MOM             0x310
-#define FLAG_HIDE_NEW_BARK_TOWN_MAYS_HOUSE_RIVAL_MOM                0x311
+#define FLAG_HIDE_ICE_PATH_BOULDER_1                                0x30B
+#define FLAG_HIDE_ICE_PATH_BOULDER_2                                0x30C
+#define FLAG_HIDE_ICE_PATH_BOULDER_3                                0x30D
+#define FLAG_HIDE_ICE_PATH_BOULDER_4                                0x30E
+#define FLAG_HIDE_BLACKTHORN_GYM_BOULDER_1                          0x30F
+#define FLAG_HIDE_BLACKTHORN_GYM_BOULDER_2                          0x310
+#define FLAG_HIDE_BLACKTHORN_GYM_BOULDER_3                          0x311
 #define FLAG_HIDE_ROUTE_119_SCOTT                                   0x312
 #define FLAG_HIDE_LILYCOVE_MOTEL_SCOTT                              0x313
 #define FLAG_HIDE_MOSSDEEP_CITY_SCOTT                               0x314
@@ -867,7 +867,7 @@
 #define FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE         0x336
 #define FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA                          0x337
 #define FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD                          0x338
-#define FLAG_HIDE_LEGEND_MON_CAVE_OF_ORIGIN                         0x339 // Unused, leftover from R/S
+#define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4                          0x339
 #define FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE                            0x33A
 #define FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE                             0x33B
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE                     0x33C
@@ -920,9 +920,9 @@
 #define FLAG_HIDE_ROUTE_111_PLAYER_DESCENT                          0x36B
 #define FLAG_HIDE_ROUTE_111_DESERT_FOSSIL                           0x36C
 #define FLAG_HIDE_MT_CHIMNEY_TRAINERS                               0x36D
-#define FLAG_HIDE_UNION_CAVE_AQUA_GRUNT                         0x36E
-#define FLAG_HIDE_UNION_CAVE_BRINEY                             0x36F
-#define FLAG_HIDE_UNION_CAVE_PEEKO                              0x370
+#define FLAG_HIDE_UNION_CAVE_AQUA_GRUNT                             0x36E
+#define FLAG_HIDE_UNION_CAVE_BRINEY                                 0x36F
+#define FLAG_HIDE_UNION_CAVE_PEEKO                                  0x370
 #define FLAG_HIDE_BRINEYS_HOUSE_PEEKO                               0x371
 #define FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA                          0x372
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS         0x373
@@ -973,8 +973,8 @@
 #define FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO                        0x3A0
 #define FLAG_HIDE_LAVARIDGE_TOWN_RIVAL                              0x3A1
 #define FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_ON_BIKE                      0x3A2
-#define FLAG_HIDE_UNION_CAVE_ROCK_1                             0x3A3
-#define FLAG_HIDE_UNION_CAVE_ROCK_2                             0x3A4
+#define FLAG_HIDE_UNION_CAVE_ROCK_1                                 0x3A3
+#define FLAG_HIDE_UNION_CAVE_ROCK_2                                 0x3A4
 #define FLAG_HIDE_FORTREE_CITY_HOUSE_4_WINGULL                      0x3A5
 #define FLAG_HIDE_MOSSDEEP_CITY_HOUSE_2_WINGULL                     0x3A6
 #define FLAG_HIDE_REGIROCK                                          0x3A7
@@ -984,14 +984,14 @@
 #define FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA                           0x3AB
 #define FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN                      0x3AC
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT               0x3AD
-#define FLAG_HIDE_RADIO_TOWER_1F_COZMO                          0x3AE
+#define FLAG_HIDE_RADIO_TOWER_1F_COZMO                              0x3AE
 #define FLAG_HIDE_AQUA_HIDEOUT_B2F_SUBMARINE_SHADOW                 0x3AF
 #define FLAG_HIDE_ROUTE_128_ARCHIE                                  0x3B0
 #define FLAG_HIDE_ROUTE_128_MAXIE                                   0x3B1
 #define FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS                       0x3B2
 #define FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE                          0x3B3
 #define FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN                        0x3B4
-#define FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_EMPLOYEE              0x3B5
+#define FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_EMPLOYEE               0x3B5
 #define FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY                       0x3B6
 #define FLAG_HIDE_SS_TIDAL_ROOMS_SNATCH_GIVER                       0x3B7
 #define FLAG_RECEIVED_SHOAL_SALT_1                                  0x3B8
@@ -1025,9 +1025,9 @@
 #define FLAG_HIDE_UNDERWATER_SEA_FLOOR_CAVERN_STOLEN_SUBMARINE      0x3D4
 #define FLAG_HIDE_ROUTE_120_KECLEON_BRIDGE_SHADOW                   0x3D5
 #define FLAG_HIDE_ROUTE_120_KECLEON_1                               0x3D6
-#define FLAG_HIDE_UNION_CAVE_WANDA                              0x3D7
+#define FLAG_HIDE_UNION_CAVE_WANDA                                  0x3D7
 #define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA                0x3D8
-#define FLAG_HIDE_ROUTE_120_KECLEON_2                               0x3D9
+#define FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS                          0x3D9
 #define FLAG_HIDE_ROUTE_120_KECLEON_3                               0x3DA
 #define FLAG_HIDE_ROUTE_120_KECLEON_4                               0x3DB
 #define FLAG_HIDE_ROUTE_120_KECLEON_5                               0x3DC
@@ -1041,7 +1041,7 @@
 #define FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA                          0x3E4
 #define FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE                            0x3E5
 #define FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON                           0x3E6
-#define FLAG_HIDE_GOLDENROD_CITY_POKECOM_CENTER_ADMIN_ROOM_SCOTT                0x3E7
+#define FLAG_HIDE_GOLDENROD_CITY_POKECOM_CENTER_ADMIN_ROOM_SCOTT    0x3E7
 
 // Item Ball Flags
 // Sierra-era flags

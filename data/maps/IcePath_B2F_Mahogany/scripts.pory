@@ -1,1 +1,20 @@
-mapscripts IcePath_B2F_Mahogany_MapScripts {}
+mapscripts IcePath_B2F_Mahogany_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if(!flag(FLAG_HIDE_ICE_PATH_BOULDER_1))
+        {
+            setflag(FLAG_TEMP_11)
+        }
+        if(!flag(FLAG_HIDE_ICE_PATH_BOULDER_2))
+        {
+            setflag(FLAG_TEMP_12)
+        }
+        if(!flag(FLAG_HIDE_ICE_PATH_BOULDER_3))
+        {
+            setflag(FLAG_TEMP_13)
+        }
+        if(!flag(FLAG_HIDE_ICE_PATH_BOULDER_4))
+        {
+            setflag(FLAG_TEMP_14)
+        }
+    }
+}
