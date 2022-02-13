@@ -988,7 +988,7 @@ gTileset_VermilionCity::
 	.4byte gMetatiles_VermilionCity
 	.4byte gMetatileAttributes_VermilionCity
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_VermilionCity @ palette overrides
 
 	.align 2
 gTileset_CeladonCity::
@@ -1024,7 +1024,7 @@ gTileset_IndigoPlateau::
 	.4byte gMetatiles_IndigoPlateau
 	.4byte gMetatileAttributes_IndigoPlateau
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_IndigoPlateau @ palette overrides
 
 	.align 2
 gTileset_SaffronCity::
@@ -1047,8 +1047,8 @@ gTileset_GeneralKanto::
 	.4byte gTilesetPalettes_GeneralKanto
 	.4byte gMetatiles_GeneralKanto
 	.4byte gMetatileAttributes_GeneralKanto
-	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte InitTilesetAnim_General
+	.4byte gTilesetPalOverrides_General @ palette overrides
 
 
 	.align 2

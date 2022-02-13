@@ -802,6 +802,9 @@
 #define METATILE_Underwater_FloorShadow  0x228
 #define METATILE_Underwater_RockWall     0x21E
 
+// gTileset_VermilionCity
+#define METATILE_VermilionCity_Door  0x29E
+
 // gTileset_Violet
 #define METATILE_Violet_Door_House        0x298
 #define METATILE_Violet_Door_Lab          0x323

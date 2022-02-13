@@ -22,7 +22,7 @@
     },
     {
       "direction": "right",
-      "offset": 10,
+      "offset": 8,
       "map": "MAP_ROUTE11"
     }
   ],
@@ -185,7 +185,7 @@
     },
     {
       "x": 23,
-      "y": 33,
+      "y": 34,
       "elevation": 0,
       "dest_map": "MAP_VERMILION_CITY_PORT_PASSAGE",
       "dest_warp_id": 0

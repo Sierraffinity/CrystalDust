@@ -17,12 +17,12 @@
   "connections": [
     {
       "direction": "left",
-      "offset": -10,
+      "offset": -8,
       "map": "MAP_VERMILION_CITY"
     },
     {
       "direction": "right",
-      "offset": -59,
+      "offset": -57,
       "map": "MAP_ROUTE12"
     }
   ],

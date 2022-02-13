@@ -1810,6 +1810,12 @@ gTilesetPalOverride_Olivine12::
 gTilesetPalOverride_Olivine10::
 	.incbin "data/tilesets/secondary/olivinecity/palettes/10_over.gbapal"
 
+gTilesetPalOverrides_VermilionCity11::
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/11_over.gbapal"
+
+gTilesetPalOverrides_IndigoPlateau10::
+	.incbin "data/tilesets/secondary/indigoplateau/palettes/10_over.gbapal"
+
 	.align 2
 gTilesetPalettes_PalletTown::
 	.incbin "data/tilesets/secondary/pallettown/palettes/00.gbapal"
