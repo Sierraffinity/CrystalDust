@@ -648,28 +648,28 @@ static const struct SpriteFrameImage sPicTable_Fisherman[] = {
     overworld_frame(gObjectEventPic_Fisherman, 2, 4, 8),
 };
 
-static const struct SpriteFrameImage sPicTable_RunningTriathleteM[] = {
-    overworld_frame(gObjectEventPic_RunningTriathleteM, 2, 4, 0),
-    overworld_frame(gObjectEventPic_RunningTriathleteM, 2, 4, 1),
-    overworld_frame(gObjectEventPic_RunningTriathleteM, 2, 4, 2),
-    overworld_frame(gObjectEventPic_RunningTriathleteM, 2, 4, 3),
-    overworld_frame(gObjectEventPic_RunningTriathleteM, 2, 4, 4),
-    overworld_frame(gObjectEventPic_RunningTriathleteM, 2, 4, 5),
-    overworld_frame(gObjectEventPic_RunningTriathleteM, 2, 4, 6),
-    overworld_frame(gObjectEventPic_RunningTriathleteM, 2, 4, 7),
-    overworld_frame(gObjectEventPic_RunningTriathleteM, 2, 4, 8),
+static const struct SpriteFrameImage sPicTable_Clefairy[] = {
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 2),
 };
 
-static const struct SpriteFrameImage sPicTable_RunningTriathleteF[] = {
-    overworld_frame(gObjectEventPic_RunningTriathleteF, 2, 4, 0),
-    overworld_frame(gObjectEventPic_RunningTriathleteF, 2, 4, 1),
-    overworld_frame(gObjectEventPic_RunningTriathleteF, 2, 4, 2),
-    overworld_frame(gObjectEventPic_RunningTriathleteF, 2, 4, 3),
-    overworld_frame(gObjectEventPic_RunningTriathleteF, 2, 4, 4),
-    overworld_frame(gObjectEventPic_RunningTriathleteF, 2, 4, 5),
-    overworld_frame(gObjectEventPic_RunningTriathleteF, 2, 4, 6),
-    overworld_frame(gObjectEventPic_RunningTriathleteF, 2, 4, 7),
-    overworld_frame(gObjectEventPic_RunningTriathleteF, 2, 4, 8),
+static const struct SpriteFrameImage sPicTable_Machop[] = {
+    overworld_frame(gObjectEventPic_Machop, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Machop, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Machop, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Machop, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Machop, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Machop, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Machop, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Machop, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Machop, 2, 2, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_TuberF[] = {
@@ -1377,16 +1377,16 @@ const struct SpriteFrameImage sPicTable_Silver[] = {
     overworld_frame(gObjectEventPic_Silver, 2, 4, 8),
 };
 
-static const struct SpriteFrameImage sPicTable_RubySapphireLittleBoy[] = {
-    overworld_frame(gObjectEventPic_RubySapphireLittleBoy, 2, 2, 0),
-    overworld_frame(gObjectEventPic_RubySapphireLittleBoy, 2, 2, 1),
-    overworld_frame(gObjectEventPic_RubySapphireLittleBoy, 2, 2, 2),
-    overworld_frame(gObjectEventPic_RubySapphireLittleBoy, 2, 2, 3),
-    overworld_frame(gObjectEventPic_RubySapphireLittleBoy, 2, 2, 4),
-    overworld_frame(gObjectEventPic_RubySapphireLittleBoy, 2, 2, 5),
-    overworld_frame(gObjectEventPic_RubySapphireLittleBoy, 2, 2, 6),
-    overworld_frame(gObjectEventPic_RubySapphireLittleBoy, 2, 2, 7),
-    overworld_frame(gObjectEventPic_RubySapphireLittleBoy, 2, 2, 8),
+static const struct SpriteFrameImage sPicTable_Bayleef[] = {
+    overworld_frame(gObjectEventPic_Bayleef, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Bayleef, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Bayleef, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Bayleef, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Bayleef, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Bayleef, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Bayleef, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Bayleef, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Bayleef, 2, 2, 2),
 };
 
 const struct SpriteFrameImage sPicTable_GoldFishing[] = {

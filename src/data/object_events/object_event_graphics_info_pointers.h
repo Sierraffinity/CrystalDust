@@ -48,8 +48,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Scientist;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gentleman;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sailor;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fisherman;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RunningTriathleteM;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RunningTriathleteF;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Clefairy;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Machop;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TuberF;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TuberM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Hiker;
@@ -133,7 +133,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pryce;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dragonite;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedGyarados;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Silver;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RubySapphireLittleBoy;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bayleef;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanFishing;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayFishing;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HotSpringsOldWoman;
@@ -298,8 +298,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_GENTLEMAN] =                &gObjectEventGraphicsInfo_Gentleman,
     [OBJ_EVENT_GFX_SAILOR] =                   &gObjectEventGraphicsInfo_Sailor,
     [OBJ_EVENT_GFX_FISHERMAN] =                &gObjectEventGraphicsInfo_Fisherman,
-    [OBJ_EVENT_GFX_ZRUNNING_TRIATHLETE_M] =    &gObjectEventGraphicsInfo_RunningTriathleteM,
-    [OBJ_EVENT_GFX_ZRUNNING_TRIATHLETE_F] =    &gObjectEventGraphicsInfo_RunningTriathleteF,
+    [OBJ_EVENT_GFX_CLEFAIRY] =                 &gObjectEventGraphicsInfo_Clefairy,
+    [OBJ_EVENT_GFX_MACHOP] =                   &gObjectEventGraphicsInfo_Machop,
     [OBJ_EVENT_GFX_TUBER_F] =                  &gObjectEventGraphicsInfo_TuberF,
     [OBJ_EVENT_GFX_TUBER_M] =                  &gObjectEventGraphicsInfo_TuberM,
     [OBJ_EVENT_GFX_HIKER] =                    &gObjectEventGraphicsInfo_Hiker,
@@ -383,7 +383,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_DRAGONITE] =                &gObjectEventGraphicsInfo_Dragonite,
     [OBJ_EVENT_GFX_RED_GYARADOS] =             &gObjectEventGraphicsInfo_RedGyarados,
     [OBJ_EVENT_GFX_RIVAL] =                    &gObjectEventGraphicsInfo_Silver,
-    [OBJ_EVENT_GFX_ZLITTLE_BOY_3] =            &gObjectEventGraphicsInfo_RubySapphireLittleBoy,
+    [OBJ_EVENT_GFX_BAYLEEF] =                  &gObjectEventGraphicsInfo_Bayleef,
     [OBJ_EVENT_GFX_GOLD_FISHING] =             &gObjectEventGraphicsInfo_BrendanFishing,
     [OBJ_EVENT_GFX_KRIS_FISHING] =             &gObjectEventGraphicsInfo_MayFishing,
     [OBJ_EVENT_GFX_ZHOT_SPRINGS_OLD_WOMAN] =   &gObjectEventGraphicsInfo_HotSpringsOldWoman,

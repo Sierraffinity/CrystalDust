@@ -367,7 +367,7 @@ ContestHall_EventScript_CreateMasterContestAudience:: @ 823BC92
 	createvobject OBJ_EVENT_GFX_WORKER_F, 12, 12, 7, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_BUENA, 13, 12, 8, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_FISHERMAN, 14, 13, 3, 3, DIR_WEST
-	createvobject OBJ_EVENT_GFX_ZRUNNING_TRIATHLETE_F, 15, 13, 4, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_MACHOP, 15, 13, 4, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_MAN, 17, 13, 6, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_MART_EMPLOYEE, 18, 13, 7, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_KURT_LYING_DOWN, 19, 13, 8, 3, DIR_WEST
@@ -397,7 +397,7 @@ ContestHall_EventScript_CreateWirelessContestAudience:: @ 823BD86
 	createvobject OBJ_EVENT_GFX_WORKER_F, 12, 12, 7, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_BUENA, 13, 12, 8, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_FISHERMAN, 14, 13, 3, 3, DIR_WEST
-	createvobject OBJ_EVENT_GFX_ZRUNNING_TRIATHLETE_F, 15, 13, 4, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_MACHOP, 15, 13, 4, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_MAN, 17, 13, 6, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_MART_EMPLOYEE, 18, 13, 7, 3, DIR_WEST
 	createvobject OBJ_EVENT_GFX_KURT_LYING_DOWN, 19, 13, 8, 3, DIR_WEST

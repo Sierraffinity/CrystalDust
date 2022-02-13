@@ -52,8 +52,8 @@
 #define OBJ_EVENT_GFX_GENTLEMAN                   48
 #define OBJ_EVENT_GFX_SAILOR                      49
 #define OBJ_EVENT_GFX_FISHERMAN                   50
-#define OBJ_EVENT_GFX_ZRUNNING_TRIATHLETE_M       51
-#define OBJ_EVENT_GFX_ZRUNNING_TRIATHLETE_F       52
+#define OBJ_EVENT_GFX_CLEFAIRY                    51
+#define OBJ_EVENT_GFX_MACHOP                      52
 #define OBJ_EVENT_GFX_TUBER_F                     53
 #define OBJ_EVENT_GFX_TUBER_M                     54
 #define OBJ_EVENT_GFX_HIKER                       55
@@ -137,7 +137,7 @@
 #define OBJ_EVENT_GFX_DRAGONITE                  133
 #define OBJ_EVENT_GFX_RED_GYARADOS               134
 #define OBJ_EVENT_GFX_RIVAL                      135
-#define OBJ_EVENT_GFX_ZLITTLE_BOY_3              136
+#define OBJ_EVENT_GFX_BAYLEEF                    136
 #define OBJ_EVENT_GFX_GOLD_FISHING               137
 #define OBJ_EVENT_GFX_KRIS_FISHING               138
 #define OBJ_EVENT_GFX_ZHOT_SPRINGS_OLD_WOMAN     139

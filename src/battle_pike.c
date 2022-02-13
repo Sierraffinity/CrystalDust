@@ -364,7 +364,7 @@ static const struct PikeRoomNPC sNPCTable[] =
         .speechId3 = 26
     },
     {
-        .graphicsId = OBJ_EVENT_GFX_ZRUNNING_TRIATHLETE_M,
+        .graphicsId = OBJ_EVENT_GFX_CLEFAIRY,
         .speechId1 = 37,
         .speechId2 = 12,
         .speechId3 = 32
@@ -406,7 +406,7 @@ static const struct PikeRoomNPC sNPCTable[] =
         .speechId3 = 16
     },
     {
-        .graphicsId = OBJ_EVENT_GFX_ZRUNNING_TRIATHLETE_F,
+        .graphicsId = OBJ_EVENT_GFX_MACHOP,
         .speechId1 = 18,
         .speechId2 = 13,
         .speechId3 = 21
