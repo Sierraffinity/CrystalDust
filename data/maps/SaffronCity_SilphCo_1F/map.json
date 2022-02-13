@@ -2,7 +2,7 @@
   "id": "MAP_SAFFRON_CITY_SILPH_CO_1F",
   "name": "SaffronCity_SilphCo_1F",
   "layout": "LAYOUT_SAFFRON_CITY_SILPH_CO_1F",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_PEWTER",
   "region_map_section": "MAPSEC_SILPH_CO",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -11,19 +11,70 @@
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
-  "floor_number": 0,
+  "floor_number": 1,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
+      "in_connection": false,
+      "x": 3,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_SilphCo_1F_EventScript_Receptionist",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_OFFICER",
+      "in_connection": false,
+      "x": 31,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_SilphCo_1F_EventScript_Officer",
+      "flag": "0"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 8,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": 4
+    }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SaffronCity_SilphCo_1F_EventScript_Elevator"
+    },
+    {
+      "type": "sign",
+      "x": 30,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SaffronCity_SilphCo_1F_EventScript_WallSign"
+    }
   ]
 }

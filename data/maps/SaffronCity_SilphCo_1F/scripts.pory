@@ -1,1 +1,38 @@
 mapscripts SaffronCity_SilphCo_1F_MapScripts {}
+
+script SaffronCity_SilphCo_1F_EventScript_Receptionist{
+    msgbox("Welcome. This is SILPH CO.'s HEAD\nOFFICE BUILDING.", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_SilphCo_1F_EventScript_Officer{
+    if(flag(FLAG_GOT_UP_GRADE))
+    {
+        msgbox("It's SILPH CO.'s latest product.\nIt's not for sale anywhere yet.", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Only employees are permitted to go\nupstairs.\pBut since you came such a long way,\nhave this neat little souvenir.", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_UP_GRADE, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    giveitem(ITEM_UP_GRADE, 1)
+    setflag(FLAG_GOT_UP_GRADE)
+    goto(SaffronCity_SilphCo_1F_EventScript_Officer)
+    end
+}
+
+script SaffronCity_SilphCo_1F_EventScript_WallSign{
+    msgbox("SILPH CO. HEAD OFFICE\n1F", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_SilphCo_1F_EventScript_Elevator{
+    msgbox("There's a sign on the door…\nThe elevator's out of order!", MSGBOX_SIGN)
+    end
+}

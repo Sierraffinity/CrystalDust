@@ -1,1 +1,21 @@
 mapscripts SaffronCity_Dojo_MapScripts {}
+
+script SaffronCity_Dojo_EventScript_BlackBelt{
+    msgbox("Hello!\pKARATE KING, the FIGHTING DOJO's\nmaster, is in a cave in JOHTO\lfor training.", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_Dojo_EventScript_LeftSign{
+    msgbox("What goes around comes around!", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_Dojo_EventScript_RightSign{
+    msgbox("Enemies on every side!", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_Dojo_EventScript_Statues{
+    msgbox("FIGHTING DOJO", MSGBOX_SIGN)
+    end
+}

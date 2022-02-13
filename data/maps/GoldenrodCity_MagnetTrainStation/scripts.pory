@@ -1,9 +1,61 @@
-mapscripts GoldenrodCity_MagnetTrainStation_MapScripts { }
+mapscripts GoldenrodCity_MagnetTrainStation_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setvar(VAR_TEMP_0, 1)
+        getplayerxy(VAR_RESULT, VAR_0x8008)
+        if(var(VAR_RESULT) == 15 && var(VAR_0x8008) == 5)
+        {
+            setobjectxyperm(1, 14, 7)
+            setobjectmovementtype(1, MOVEMENT_TYPE_FACE_LEFT)
+            setvar(VAR_TEMP_0, 0)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0 {
+            applymovement(OBJ_EVENT_ID_PLAYER, SaffronCity_MagnetTrainStation_Movement_PlayerExitsTrain)
+            waitmovement(0)
+            applymovement(1, SaffronCity_MagnetTrainStation_Movement_OfficerRepositions)
+            waitmovement(0)
+            setobjectxyperm(1, 13, 9)
+            setobjectmovementtype(1, MOVEMENT_TYPE_FACE_DOWN)
+            setvar(VAR_TEMP_0, 1)
+            textcolor(0)
+            msgbox("We have arrived in GOLDENROD.\nWe hope to see you again.", MSGBOX_DEFAULT)
+            releaseall
+            end
+        }
+    ]
+}
 
 script GoldenrodCity_MagnetTrainStation_Officer {
     lock
     faceplayer
-    // TODO: Check for actual train stuff
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("We'll soon depart for SAFFRON.\nAre you coming aboard?", MSGBOX_YESNO)
+        if(!var(VAR_RESULT))
+        {
+            msgbox("We hope to see you again!", MSGBOX_DEFAULT)
+            release
+            end
+        }
+        checkitem(ITEM_PASS, 1)
+        if(!var(VAR_RESULT))
+        {
+            msgbox("Sorry.\nYou don't have a rail PASS.", MSGBOX_DEFAULT)
+            release
+            end
+        }
+        msgbox("May I see your rail PASS, please?\nOK. Right this way, please.", MSGBOX_DEFAULT)
+        closemessage
+        applymovement(1, SaffronCity_MagnetTrainStation_Movement_OfficerMovesOut)
+        waitmovement(0)
+        applymovement(OBJ_EVENT_ID_PLAYER, SaffronCity_MagnetTrainStation_Movement_PlayerApproachTrain)
+        waitmovement(0)
+        //play Magnet Train scene
+        warp(MAP_SAFFRON_CITY_MAGNET_TRAIN_STATION, 0xFF, 15, 5)
+        waitstate
+        end
+    }
     msgbox("The train hasn't come in…\p"
            "I know! I'll carry the passengers\n"
            "on my back!\p"

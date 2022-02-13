@@ -1,1 +1,28 @@
 mapscripts Route5_House_MapScripts {}
+
+script Route5_House_EventScript_Woman{
+    msgbox("My grandma is into warding off what\nshe believes to be evil spirits.\pI'm sorry that she startled you.", MSGBOX_NPC)
+    end
+}
+
+script Route5_House_EventScript_OldWoman{
+    if(flag(FLAG_GOT_CLEANSE_TAG))
+    {
+        msgbox("You were in mortal danger,\nbut you are protected now.", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Eeyaaaah!\pI sense a sinister shadow hovering\nover you.\pTake this to ward it off!", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_CLEANSE_TAG, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    giveitem(ITEM_CLEANSE_TAG, 1)
+    setflag(FLAG_GOT_CLEANSE_TAG)
+    goto(Route5_House_EventScript_OldWoman)
+    end
+}

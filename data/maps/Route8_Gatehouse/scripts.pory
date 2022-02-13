@@ -1,1 +1,6 @@
 mapscripts Route8_Gatehouse_MapScripts {}
+
+script Route8_Gatehouse_EventScript_Officer {
+    msgbox("Have you been to LAVENDER TOWN?\nThere's a tall RADIO TOWER there.", MSGBOX_NPC)
+    end
+}

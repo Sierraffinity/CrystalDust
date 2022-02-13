@@ -115,7 +115,7 @@ script VermilionCity_EventScript_BadgeGuy{
     }
     elif(var(VAR_RESULT) > 9)
     {
-        msgbox("You've started to collect KANTO GYM\nBADGES?\pDon't you agree that the trainers\nhere are tough?", MSGBOX_DEFAULT)
+        msgbox("You've started to collect KANTO\nGYM BADGES?\pDon't you agree that the trainers\nhere are tough?", MSGBOX_DEFAULT)
         release
         end
     }

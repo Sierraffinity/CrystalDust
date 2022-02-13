@@ -1,1 +1,21 @@
 mapscripts Route6_MapScripts {}
+
+script Route6_EventScript_UndergroundPathSign{
+    msgbox("UNDERGROUND PATH\nCERULEAN CITY - VERMILION CITY", MSGBOX_SIGN)
+    end
+}
+
+script Route6_EventScript_BlockingGuy{
+    msgbox("The road is closed until the problem\nat the POWER PLANT is solved.", MSGBOX_NPC)
+    end
+}
+
+script Route6_EventScript_PokefanMRex { // leftmost
+	trainerbattle_single(TRAINER_REX, "My PHANPY is the cutest\nin the world.", "My PHANPY!")
+	msgbox("Look how adorable my PHANPY acts!\pIsn't it cute enough to make\nyour heart melt?", MSGBOX_AUTOCLOSE)
+}
+
+script Route6_EventScript_PokefanMAllan { // right
+	trainerbattle_single(TRAINER_ALLAN, "My TEDDIURSA is the cutest\nin the world.", "My TEDDIURSA!")
+	msgbox("Look how adorable my TEDDIURSA\nacts!\pIsn't it cute enough to make\nyour heart melt?", MSGBOX_AUTOCLOSE)
+}

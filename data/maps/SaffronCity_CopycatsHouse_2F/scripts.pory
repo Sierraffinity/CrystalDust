@@ -1,1 +1,174 @@
-mapscripts SaffronCity_CopycatsHouse_2F_MapScripts {}
+mapscripts SaffronCity_CopycatsHouse_2F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_TEMP_2)
+        setflag(FLAG_TEMP_3)
+        checkitem(ITEM_PASS, 1)
+        if(!var(VAR_RESULT))
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_Dolls {
+    lock
+    msgbox("This is a rare POKéMON! Huh?\nIt's only a doll…", MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_Dodrio {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_DODRIO, 0)
+    msgbox("DODRIO: Gii giii!")
+    waitmoncry
+    closemessage
+    msgbox("MIRROR, MIRROR ON THE WALL,\nWHO'S THE FAIREST ONE OF ALL?", MSGBOX_DEFAULT)
+    release
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_PC {
+    msgbox("…\pMy Secrets!\pSkill: Mimicry!\nHobby: Collecting dolls!\lFavorite POKéMON: CLEFAIRY!", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_Console {
+    msgbox("A game with MARIO wearing a bucket\non his head!", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_Copycat {
+    lock
+    faceplayer
+    checkitem(ITEM_PASS, 1)
+    if(var(VAR_RESULT))
+    {
+        call(SaffronCity_CopycatsHouse_2F_EventScript_CopycatTransforms)
+        checkplayergender
+        if(var(VAR_RESULT) == MALE)
+        {
+            msgbox("{PLAYER}: Hi!\nThanks a lot for the rail PASS!\p{PLAYER}: Pardon?\p{PLAYER}: Is it that fun to mimic\nmy every move?", MSGBOX_DEFAULT)
+        }
+        else
+        {
+            msgbox("{PLAYER}: Thank you for the\nrail PASS!\p{PLAYER}: …Pardon?\p{PLAYER}: Is it really that fun\nto copy what I say and do?", MSGBOX_DEFAULT)
+        }
+        closemessage
+        call(SaffronCity_CopycatsHouse_2F_EventScript_CopycatTransformsBack)
+        msgbox("COPYCAT: You bet!\nIt's a scream!", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    checkitem(ITEM_LOST_ITEM, 1)
+    if(var(VAR_RESULT))
+    {
+        msgbox("COPYCAT: Yay!\nThat's my CLEFAIRY POKé DOLL!\pSee the tear where the right leg is\nsewn on? That's proof!\pOK. Here's the MAGNET TRAIN PASS\nlike I promised!", MSGBOX_DEFAULT)
+        removeitem(ITEM_LOST_ITEM, 1)
+        giveitem(ITEM_PASS, 1) // Copycat takes a Key Item before this, so it's impossible to not have space.
+        msgbox("COPYCAT: That's the PASS for the\nMAGNET TRAIN.\pThe rail company man gave me that\nwhen they tore down our old house\lfor the STATION.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    call(SaffronCity_CopycatsHouse_2F_EventScript_CopycatTransforms)
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        checkplayergender
+        if(var(VAR_RESULT) == MALE)
+        {
+            msgbox("{PLAYER}: Hi!\pI heard that you lost your\nfavorite POKé DOLL.\p{PLAYER}: If I find it, you'll give\nme a rail PASS?\p{PLAYER}: I'll go find it for you.\pYou think you lost it when you went\nto VERMILION CITY?", MSGBOX_DEFAULT)
+        }
+        else
+        {
+            msgbox("{PLAYER}: Hi. Did you really lose\nyour POKé DOLL?\p{PLAYER}: You'll really give me a\nrail PASS if I find it for you?\p{PLAYER}: Sure, I'll look for it!\pYou think you lost it when you\nwere in VERMILION?", MSGBOX_DEFAULT)
+        }
+        closemessage
+        call(SaffronCity_CopycatsHouse_2F_EventScript_CopycatTransformsBack)
+        msgbox("COPYCAT: Pardon? I shouldn't decide\nwhat you should do?\pBut I'm really worried…\nWhat if someone finds it?", MSGBOX_DEFAULT)
+        setflag(FLAG_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM)
+        release
+        end
+    }
+    checkplayergender
+    if(var(VAR_RESULT) == MALE)
+    {
+        msgbox("{PLAYER}: Hi!\nDo you like POKéMON?\p{PLAYER}: Uh, no, I just asked you.\p{PLAYER}: Huh?\nYou're strange!", MSGBOX_DEFAULT)
+    }
+    else
+    {
+        msgbox("{PLAYER}: Hi.\nYou must like POKéMON.\p{PLAYER}: No, not me.\nI asked you.\p{PLAYER}: Pardon?\nYou're weird!", MSGBOX_DEFAULT)
+    }
+    closemessage
+    call(SaffronCity_CopycatsHouse_2F_EventScript_CopycatTransformsBack)
+    msgbox("COPYCAT: Hmm? Quit mimicking?\nBut that's my favorite hobby!", MSGBOX_DEFAULT)
+    release
+    end
+}script(local) SaffronCity_CopycatsHouse_2F_EventScript_CopycatTransforms{
+        applymovement(1, SaffronCity_CopycatsHouse_2F_Movement_CopycatSpins)
+        checkplayergender
+        if(var(VAR_RESULT) == MALE)
+        {
+            getplayerxy(VAR_0x8008, VAR_0x8009)
+            switch(var(VAR_0x8009))
+            {
+                case 4:
+                    setobjectmovementtype(6, MOVEMENT_TYPE_FACE_UP)
+                case 5:
+                    setobjectmovementtype(6, MOVEMENT_TYPE_FACE_RIGHT)
+                case 6:
+                    setobjectmovementtype(6, MOVEMENT_TYPE_FACE_DOWN)
+            }
+            waitmovement(0)
+            addobject(6)
+            removeobject(1)
+            return
+        }
+        else
+        {
+            getplayerxy(VAR_0x8008, VAR_0x8009)
+            switch(var(VAR_0x8009))
+            {
+                case 4:
+                    setobjectmovementtype(7, MOVEMENT_TYPE_FACE_UP)
+                case 5:
+                    setobjectmovementtype(7, MOVEMENT_TYPE_FACE_RIGHT)
+                case 6:
+                    setobjectmovementtype(7, MOVEMENT_TYPE_FACE_DOWN)
+            }
+            waitmovement(0)
+            addobject(7)
+            removeobject(1)
+            return
+        }
+}script(local) SaffronCity_CopycatsHouse_2F_EventScript_CopycatTransformsBack{
+        checkplayergender
+        if(var(VAR_RESULT) == MALE)
+        {
+            applymovement(6, SaffronCity_CopycatsHouse_2F_Movement_CopycatSpins)
+            waitmovement(0)
+            addobject(1)
+            faceplayer
+            removeobject(6)
+            return
+        }
+        else
+        {
+            applymovement(7, SaffronCity_CopycatsHouse_2F_Movement_CopycatSpins)
+            waitmovement(0)
+            addobject(1)
+            faceplayer
+            removeobject(7)
+            return
+        }
+}movement(local) SaffronCity_CopycatsHouse_2F_Movement_CopycatSpins{
+    face_down
+    face_left
+    face_up
+    face_right
+    face_down
+    face_left
+    face_up
+    face_right
+    face_down
+}

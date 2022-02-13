@@ -833,3 +833,17 @@ gMetatiles_BattleFrontierPrimary::
 	.align 1
 gMetatileAttributes_BattleFrontierPrimary::
 	.incbin "data/tilesets/primary/battlefrontierprimary/metatile_attributes.bin"
+	.align 1
+gMetatiles_SilphCo::
+	.incbin "data/tilesets/secondary/silphco/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_SilphCo::
+	.incbin "data/tilesets/secondary/silphco/metatile_attributes.bin"
+	.align 1
+gMetatiles_SaffronGeneral::
+	.incbin "data/tilesets/primary/saffrongeneral/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_SaffronGeneral::
+	.incbin "data/tilesets/primary/saffrongeneral/metatile_attributes.bin"

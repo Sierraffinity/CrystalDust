@@ -1816,6 +1816,15 @@ gTilesetPalOverrides_VermilionCity11::
 gTilesetPalOverrides_IndigoPlateau10::
 	.incbin "data/tilesets/secondary/indigoplateau/palettes/10_over.gbapal"
 
+gTilesetPalOverride_Saffron08::
+	.incbin "data/tilesets/secondary/saffroncity/palettes/08_over.gbapal"
+
+gTilesetPalOverride_Saffron11::
+	.incbin "data/tilesets/secondary/saffroncity/palettes/11_over.gbapal"
+
+gTilesetPalOverride_Saffron12::
+	.incbin "data/tilesets/secondary/saffroncity/palettes/12_over.gbapal"
+
 	.align 2
 gTilesetPalettes_PalletTown::
 	.incbin "data/tilesets/secondary/pallettown/palettes/00.gbapal"
@@ -2576,3 +2585,43 @@ gTilesetPalettes_BattleFrontierPrimary::
 	.align 2
 gTilesetTiles_BattleFrontierPrimary::
 	.incbin "data/tilesets/primary/battlefrontierprimary/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_SilphCo::
+	.incbin "data/tilesets/secondary/silphco/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/silphco/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_SilphCo::
+	.incbin "data/tilesets/secondary/silphco/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_SaffronGeneral::
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/saffrongeneral/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_SaffronGeneral::
+	.incbin "data/tilesets/primary/saffrongeneral/tiles.4bpp.lz"

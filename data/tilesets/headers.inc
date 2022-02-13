@@ -1036,7 +1036,7 @@ gTileset_SaffronCity::
 	.4byte gMetatiles_SaffronCity
 	.4byte gMetatileAttributes_SaffronCity
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_SaffronCity @ palette overrides
 
 	.align 2
 gTileset_GeneralKanto::
@@ -1374,3 +1374,27 @@ gTileset_BattleFrontierPrimary::
 	.4byte gMetatileAttributes_BattleFrontierPrimary
 	.4byte InitTilesetAnim_General
 	.4byte gTilesetPalOverrides_General
+
+	.align 2
+gTileset_SilphCo::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SilphCo
+	.4byte gTilesetPalettes_SilphCo
+	.4byte gMetatiles_SilphCo
+	.4byte gMetatileAttributes_SilphCo
+	.4byte InitTilesetAnim_SilphCo
+	.4byte NULL @ palette overrides
+
+	.align 2
+gTileset_SaffronGeneral::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SaffronGeneral
+	.4byte gTilesetPalettes_SaffronGeneral
+	.4byte gMetatiles_SaffronGeneral
+	.4byte gMetatileAttributes_SaffronGeneral
+	.4byte InitTilesetAnim_General
+	.4byte gTilesetPalOverrides_General @ palette overrides

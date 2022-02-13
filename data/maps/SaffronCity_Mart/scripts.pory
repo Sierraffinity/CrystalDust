@@ -1,1 +1,36 @@
 mapscripts SaffronCity_Mart_MapScripts {}
+
+script SaffronCity_Mart_EventScript_CooltrainerM{
+    msgbox("There's a big RADIO TOWER\nin LAVENDER.", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_Mart_EventScript_CooltrainerF{
+    msgbox("I want to become stronger,\nbut I'm not good yet…\pCould you show me how sometime?", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(SaffronCity_Shop_Pokemart)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+// This shop sells the Flower Mail as its last item in Crystal.
+
+raw `
+.align 2
+SaffronCity_Shop_Pokemart:
+    .2byte ITEM_GREAT_BALL
+	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_MAX_POTION
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFEND
+	.2byte ITEM_NONE
+`

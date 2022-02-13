@@ -1,1 +1,22 @@
 mapscripts SaffronCity_MrPsychicsHouse_MapScripts {}
+
+script SaffronCity_MrPsychicsHouse_EventScript_MrPsychic{
+    if(flag(FLAG_GOT_TM29_PSYCHIC))
+    {
+        msgbox("TM29 is PSYCHIC.\nIt may lower the target's SPCL. DEF.", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("…\p…\p…\p…I got it!\nYou wanted this!", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_TM29, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    giveitem(ITEM_TM29, 1)
+    setflag(FLAG_GOT_TM29_PSYCHIC)
+    goto(SaffronCity_MrPsychicsHouse_EventScript_MrPsychic)
+}

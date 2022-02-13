@@ -167,3 +167,30 @@ gTilesetPalOverrides_IndigoPlateau::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
+
+gTilesetPalOverrides_SaffronCity::
+	.byte 8
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Saffron08
+	.byte 9
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Goldenrod09
+	.byte 11
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Saffron11
+	.byte 12
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Saffron12
+	.byte 0xFF
+	.byte 0
+	.byte 0
+	.byte 0 @ padding
+	.4byte NULL

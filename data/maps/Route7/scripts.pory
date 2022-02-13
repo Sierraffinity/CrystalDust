@@ -1,1 +1,11 @@
 mapscripts Route7_MapScripts {}
+
+script Route7_EventScript_Sign{
+    msgbox("What's this flyer?\p…Uncouth trainers have been holding\nbattles in the UNDERGROUND PATH.\pBecause of the rising complaints by\nlocal residents, the UNDERGROUND\lPATH has been sealed indefinitely.\pCELADON POLICE", MSGBOX_SIGN)
+    end
+}
+
+script Route7_EventScript_Door{
+    msgbox("It's locked…", MSGBOX_SIGN)
+    end
+}

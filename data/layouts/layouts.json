@@ -2912,7 +2912,7 @@
       "height": 55,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_GeneralKanto",
+      "primary_tileset": "gTileset_SaffronGeneral",
       "secondary_tileset": "gTileset_SaffronCity",
       "border_filepath": "data/layouts/SaffronCity/border.bin",
       "blockdata_filepath": "data/layouts/SaffronCity/map.bin"
@@ -2992,7 +2992,7 @@
     {
       "id": "LAYOUT_ROUTE7",
       "name": "Route7_Layout",
-      "width": 24,
+      "width": 25,
       "height": 20,
       "border_width": 2,
       "border_height": 2,
@@ -4653,7 +4653,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_RadioTower",
+      "secondary_tileset": "gTileset_SilphCo",
       "border_filepath": "data/layouts/SaffronCity_SilphCo_1F/border.bin",
       "blockdata_filepath": "data/layouts/SaffronCity_SilphCo_1F/map.bin"
     },

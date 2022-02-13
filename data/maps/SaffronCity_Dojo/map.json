@@ -2,7 +2,7 @@
   "id": "MAP_SAFFRON_CITY_DOJO",
   "name": "SaffronCity_Dojo",
   "layout": "LAYOUT_SAFFRON_CITY_DOJO",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_PEWTER",
   "region_map_section": "MAPSEC_SAFFRON_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,18 +12,85 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "in_connection": false,
+      "x": 6,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_Dojo_EventScript_BlackBelt",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 3,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_FOCUS_BAND",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_FIGHTING_DOJO_FOCUS_BAND"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 6,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": 7
+    }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SaffronCity_Dojo_EventScript_LeftSign"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SaffronCity_Dojo_EventScript_RightSign"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SaffronCity_Dojo_EventScript_Statues"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SaffronCity_Dojo_EventScript_Statues"
+    }
   ]
 }

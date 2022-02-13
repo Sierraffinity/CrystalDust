@@ -245,10 +245,10 @@ FallarborTown_BattleTentLobby_EventScript_Lass::
 FallarborTown_BattleTentLobby_EventScript_Scott::
 	lock
 	faceplayer
-	goto_if_set FLAG_MET_SCOTT_IN_FALLARBOR, FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
+	goto_if_set 0, FallarborTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
 	msgbox FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone, MSGBOX_DEFAULT
 	addvar VAR_SCOTT_STATE, 1
-	setflag FLAG_MET_SCOTT_IN_FALLARBOR
+	setflag 0
 	release
 	end
 

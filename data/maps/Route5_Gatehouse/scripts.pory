@@ -1,1 +1,6 @@
 mapscripts Route5_Gatehouse_MapScripts {}
+
+script Route5_Gatehouse_EventScript_Officer{
+    msgbox("You're from JOHTO, aren't you?\pHow do you like KANTO?\nIt's nice, don't you agree?", MSGBOX_NPC)
+    end
+}

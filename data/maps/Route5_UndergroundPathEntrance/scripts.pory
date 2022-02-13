@@ -1,1 +1,6 @@
 mapscripts Route5_UndergroundPathEntrance_MapScripts {}
+
+script Route5_UndergroundPathEntrance_EventScript_Lady{
+    msgbox("Many cities in JOHTO have long\nhistories. I'd love to visit!", MSGBOX_NPC)
+    end
+}

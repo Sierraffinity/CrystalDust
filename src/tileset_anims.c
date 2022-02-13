@@ -653,6 +653,18 @@ const u16 *const gTilesetAnims_NationalPark_YellowFlower[] = {
     gTilesetAnims_NationalPark_YellowFlower_Frame1
 };
 
+static const u16 sTilesetAnims_SilphCo_Fountain_Frame0[] = INCBIN_U16("data/tilesets/secondary/silphco/anim/fountain/0.4bpp");
+static const u16 sTilesetAnims_SilphCo_Fountain_Frame1[] = INCBIN_U16("data/tilesets/secondary/silphco/anim/fountain/1.4bpp");
+static const u16 sTilesetAnims_SilphCo_Fountain_Frame2[] = INCBIN_U16("data/tilesets/secondary/silphco/anim/fountain/2.4bpp");
+static const u16 sTilesetAnims_SilphCo_Fountain_Frame3[] = INCBIN_U16("data/tilesets/secondary/silphco/anim/fountain/3.4bpp");
+
+static const u16 *const sTilesetAnims_SilphCo_Fountain[] = {
+    sTilesetAnims_SilphCo_Fountain_Frame0,
+    sTilesetAnims_SilphCo_Fountain_Frame1,
+    sTilesetAnims_SilphCo_Fountain_Frame2,
+    sTilesetAnims_SilphCo_Fountain_Frame3
+};
+
 static void ResetTilesetAnimBuffer(void)
 {
     sTilesetDMA3TransferBufferSize = 0;
@@ -1260,6 +1272,24 @@ static void TilesetAnim_NationalPark(u16 timer)
         QueueAnimTiles_NationalPark_RedFlower(timer / 16);
     if (timer % 16 == 12)
         QueueAnimTiles_NationalPark_YellowFlower(timer / 16);
+}
+
+static void QueueAnimTiles_SilphCo_Fountain(u16 timer)
+{
+    AppendTilesetAnimToBuffer(sTilesetAnims_SilphCo_Fountain[timer % NELEMS(sTilesetAnims_SilphCo_Fountain)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(976)), 8 * TILE_SIZE_4BPP);
+}
+
+static void TilesetAnim_SilphCo(u16 timer)
+{
+    if (timer % 10 == 0)
+        QueueAnimTiles_SilphCo_Fountain(timer / 10);
+}
+
+void InitTilesetAnim_SilphCo(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 160;
+    sSecondaryTilesetAnimCallback = TilesetAnim_SilphCo;
 }
 
 static void QueueAnimTiles_Building_TVTurnedOn(u16 timer)

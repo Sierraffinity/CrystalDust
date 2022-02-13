@@ -1,1 +1,11 @@
 mapscripts Route6_Gatehouse_MapScripts {}
+
+script Route6_Gatehouse_EventScript_Officer{
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("The MAGNET TRAIN is the most famous\nthing about SAFFRON.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Welcome to SAFFRON CITY, home of\nthe MAGNET TRAIN!\p…That's what I'd normally say, but\nthe MAGNET TRAIN isn't running now.\pIt's not getting any electricity\nbecause there's something wrong\lwith the POWER PLANT.", MSGBOX_NPC)
+    end
+}

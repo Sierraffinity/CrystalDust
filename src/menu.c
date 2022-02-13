@@ -2377,7 +2377,15 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
                 if (FlagGet(curFlag))
                     flagCount++;
             }
-            *string = flagCount + CHAR_0;
+            if(flagCount >= 10)
+            {
+                endOfString = string + 2;
+                string = ConvertIntToDecimalStringN(string, flagCount, STR_CONV_MODE_LEADING_ZEROS, 2);
+            }
+            else
+            {
+                *string = flagCount + CHAR_0;
+            }
             *endOfString = EOS;
             break;
     }

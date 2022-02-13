@@ -353,7 +353,7 @@
 
 #define FLAG_GOT_HP_UP_FROM_VERMILION_GUY    0x14E
 #define FLAG_LISTENED_TO_FAN_CLUB_PRESIDENT  0x14F
-#define FLAG_RETURNED_LOST_ITEM_TO_COPYCAT   0x150
+#define FLAG_UNUSED_0x150                    0x150 // unused
 #define FLAG_QUEUE_CLAIR_IN_DRAGONS_DEN      0x151
 
 #define FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER 0x152
@@ -485,10 +485,10 @@
 #define FLAG_CAUGHT_LATIAS_OR_LATIOS         0x1C9
 #define FLAG_CAUGHT_MEW                      0x1CA
 #define FLAG_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM 0x1CB
+#define FLAG_GOT_CLEANSE_TAG                 0x1CC
+#define FLAG_GOT_UP_GRADE                    0x1CD
+#define FLAG_GOT_TM29_PSYCHIC                0x1CE
 // STOPPED HERE
-#define FLAG_MET_SCOTT_IN_VERDANTURF         0x1CC
-#define FLAG_MET_SCOTT_IN_FALLARBOR          0x1CD
-#define FLAG_MET_SCOTT_IN_LILYCOVE           0x1CE
 #define FLAG_MET_SCOTT_IN_EVERGRANDE         0x1CF
 #define FLAG_MET_SCOTT_ON_SS_TIDAL           0x1D0
 #define FLAG_SCOTT_GIVES_BATTLE_POINTS       0x1D1
@@ -1225,10 +1225,10 @@
 #define FLAG_ITEM_WHIRL_ISLAND_B2F_MAX_ELIXIR                       0x496
 #define FLAG_ITEM_WHIRL_ISLAND_1F_NE_ULTRA_BALL                     0x497
 #define FLAG_ITEM_WHIRL_ISLAND_1F_SW_ULTRA_BALL                     0x498
-#define FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP                            0x499
-#define FLAG_ITEM_ARTISAN_CAVE_1F_CARBOS                            0x49A
+#define FLAG_ITEM_FIGHTING_DOJO_FOCUS_BAND                          0x499
+#define FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP                            0x49A
+#define FLAG_ITEM_ARTISAN_CAVE_1F_CARBOS                            0x49B
 
-#define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag
 #define FLAG_UNUSED_0x49C                                           0x49C // Unused Flag
 #define FLAG_UNUSED_0x49D                                           0x49D // Unused Flag
 #define FLAG_UNUSED_0x49E                                           0x49E // Unused Flag

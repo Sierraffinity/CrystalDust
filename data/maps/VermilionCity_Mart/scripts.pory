@@ -20,7 +20,7 @@ script VermilionCity_Mart_Clerk {
     release
 }
 
-// This shop sells the LiteBlueMail in Crystal.
+// This shop sells the LiteBlueMail as its last item in Crystal.
 
 raw `
 .align 2

@@ -1,1 +1,26 @@
-mapscripts SaffronCity_PokemonCenter_1F_MapScripts {}
+mapscripts SaffronCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_SAFFRON_CITY)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script SaffronCity_PokemonCenter_1F_EventScript_Woman{
+    msgbox("What are JOHTO's POKéMON\nCENTERS like?\p…Oh, I see. So they're not much\ndifferent from the ones in KANTO.\pI can go to JOHTO without worrying,\nthen!", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_PokemonCenter_1F_EventScript_Hiker{
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("Caves collapse easily.\pSeveral caves have disappeared in the\npast few years, like the one outside\lCERULEAN.\pAs a pro HIKER, that's common\nknowledge.", MSGBOX_NPC)
+        end
+    }
+    msgbox("I just happened to come through\nROCK TUNNEL.\pThere was some commotion at\nthe POWER PLANT.", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_PokemonCenter_1F_EventScript_Youngster{
+    msgbox("SILPH CO.'s HEAD OFFICE and the\nMAGNET TRAIN STATION--they're the\lplaces to see in SAFFRON.", MSGBOX_NPC)
+    end
+}

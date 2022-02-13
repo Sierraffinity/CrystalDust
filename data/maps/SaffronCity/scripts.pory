@@ -1,1 +1,92 @@
-mapscripts SaffronCity_MapScripts {}
+mapscripts SaffronCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_SAFFRON_CITY)
+    }
+}
+
+script SaffronCity_EventScript_CitySign{
+    msgbox("SAFFRON CITY\nShining, Golden Land of Commerce", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_EventScript_GymSign{
+    msgbox("SAFFRON CITY POKéMON GYM\nLEADER: SABRINA\pThe Master of Psychic POKéMON!", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_EventScript_DojoSign{
+    msgbox("Everyone welcome!\nFIGHTING DOJO", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_EventScript_SilphCoSign{
+    msgbox("SILPH CO. OFFICE BUILDING", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_EventScript_MrPsychicsHouseSign{
+    msgbox("MR. PSYCHIC'S HOUSE", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_EventScript_MagnetTrainStationSign{
+    msgbox("SAFFRON CITY\nMAGNET TRAIN STATION", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_EventScript_Lass1{
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("The COPYCAT girl looked unhappy.\pShe said she lost her favorite\nPOKé DOLL--CLEFAIRY.", MSGBOX_NPC)
+        end
+    }
+    msgbox("A little girl who is an expert at\nmimicking people lives here.\pShe even mimics the people she's\nconversing with. It's confusing.", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_EventScript_PokefanM{
+    bufferstring(0, "You came out from JOHTO?\pYou can zip back home ")
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("{STR_VAR_1}by hopping on\nthe MAGNET TRAIN.", MSGBOX_NPC)
+        end
+    }
+    msgbox("{STR_VAR_1}if the\nMAGNET TRAIN's running", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_EventScript_CooltrainerM{
+    msgbox("I went to the GYM, raring for\nbattles against trainers…\pIt turns out, I stumbled into the\nunused GYM next door.\pBoy, I was pretty embarassed.", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_EventScript_CooltrainerF{
+    msgbox("This is SILPH CO., famous for\nPOKéMON merchandise.\pIn the past, TEAM ROCKET wanted the\ncompany because of that.", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_EventScript_FatMan{
+    bufferstring(0, "Chew… Chew…")
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("{STR_VAR_1}\pI hear there was big trouble at\nthe POWER PLANT.\p{STR_VAR_1}\nHaaah, I'm full!", MSGBOX_NPC)
+        end
+    }
+    msgbox("{STR_VAR_1}\pI hear there's big trouble brewing\nat the POWER PLANT.\p{STR_VAR_1}", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_EventScript_Youngster1{
+    msgbox("Going into an alley for the first\ntime makes me sorta anxious.", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_EventScript_Youngster2{
+    msgbox("There's a place called TRAINER\nHOUSE in VIRIDIAN where trainers\lgather from all over the place.", MSGBOX_NPC)
+    end
+}
+
+script SaffronCity_EventScript_Lass2{
+    msgbox("Our city was featured on a\nradio program.\pIt's nice to hear praise for your\ncity, but it's a bit embarrassing too.", MSGBOX_NPC)
+    end
+}
