@@ -2,9 +2,27 @@ mapscripts VermilionCity_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_VISITED_VERMILION_CITY)
     }
+    MAP_SCRIPT_ON_RESUME {
+        if (flag(FLAG_SYS_CTRL_OBJ_DELETE))
+        {
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            if (var(VAR_RESULT) == B_OUTCOME_CAUGHT)
+            {
+                removeobject(6)
+                removeobject(8)
+                removeobject(9)
+            }
+        }
+    }
 }
 
 // TODO: Waking up Snorlax
+script VermilionCity_EventScript_Snorlax{
+    lock
+    msgbox("SNORLAX is snoring peacefully…", MSGBOX_DEFAULT)
+    release
+    end
+}
 
 script VermilionCity_EventScript_TownSign{
     msgbox("VERMILION CITY\nThe Port of Exquisite Sunsets", MSGBOX_SIGN)
