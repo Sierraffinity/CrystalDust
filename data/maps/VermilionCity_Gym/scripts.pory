@@ -1,1 +1,60 @@
 mapscripts VermilionCity_Gym_MapScripts {}
+
+script VermilionCity_Gym_Eventscript_LtSurge{
+    trainerbattle_single(TRAINER_LT_SURGE, "SURGE: Hey, you little tyke!\nI have to hand it to you.\pIt may not be very smart to\nchallenge me, but it takes guts!\pWhen it comes to electric POKéMON,\nI'm number one!\pI've never lost on the battlefield.\pI'll zap you just like I did my\nenemies in war!", "SURGE: Arrrgh! You are strong!\nOK, kid. You get the THUNDERBADGE!", VermilionCity_Gym_Eventscript_SurgeDefeated, NO_MUSIC)
+    msgbox("SURGE: Hey, kid!\pStill slugging and chugging away?\nMy POKéMON and I are still at it!", MSGBOX_DEFAULT)
+    release
+    end
+}script(local) VermilionCity_Gym_Eventscript_SurgeDefeated{
+    if(!flag(FLAG_BADGE11_GET))
+    {
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received the THUNDERBADGE.")
+        call(Common_EventScript_PlayGymBadgeFanfare)
+        textcolor(MSG_COLOR_PREV)
+        setflag(FLAG_BADGE11_GET)
+        setgymtrainers(11)
+        msgbox("SURGE: THUNDERBADGE increases\nPOKéMON's speed.\pConsider it proof that you defeated\nme. You wear it proudly, hear?", MSGBOX_NPC)
+        end
+    }
+}
+
+script VermilionCity_Gym_EventScript_GymStatues{
+    if(flag(FLAG_BADGE11_GET))
+    {
+        msgbox("VERMILION CITY POKéMON GYM\nLEADER: LT. SURGE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("VERMILION CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}
+
+script VermilionCity_Gym_EventScript_GymGuide{
+    if(flag(FLAG_BADGE11_GET))
+    {
+        msgbox("Whew! That was an electrifying bout!\nIt sure made me nervous.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Yo!\nCHAMP in the making!\pYou lucked out this time.\pLT. SURGE is very cautious.\nHe has traps set all over the GYM.\pBut--he-heh--the traps aren't\nactive right now.\pYou'll have no problem getting\nto LT. SURGE.", MSGBOX_NPC)
+    end
+}
+
+script VermilionCity_Gym_EventScript_TrashCan{
+    msgbox("Nope!\nNothing here but trash.", MSGBOX_SIGN)
+    end
+}
+
+script VermilionCity_Gym_EventScript_GentlemanGregory {
+	trainerbattle_single(TRAINER_GREGORY, "You're here to defeat LT. SURGE?\nNot if I can help it!", "Sorry I failed you, LT. SURGE, sir!")
+	msgbox("When I was still in the army,\nLT. SURGE saved my life.", MSGBOX_AUTOCLOSE)
+}
+
+script VermilionCity_Gym_EventScript_GuitaristVincent {
+	trainerbattle_single(TRAINER_VINCENT, "LT. SURGE recognized my potential\nwith electric POKéMON.\pThink you can beat me?", "Ooh, how shocking!")
+	msgbox("If the GYM's traps were working, you\nwould have been toast…", MSGBOX_AUTOCLOSE)
+}
+
+script VermilionCity_Gym_EventScript_JugglerHorton {
+	trainerbattle_single(TRAINER_HORTON, "I'm going to take you down!\nPrepare to be shocked!", "Gwaaah!\nI was overpowered…")
+	msgbox("Don't get too comfortable about\nbeating me… LT. SURGE is tough.", MSGBOX_AUTOCLOSE)
+}

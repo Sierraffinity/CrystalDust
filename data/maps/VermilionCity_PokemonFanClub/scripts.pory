@@ -1,1 +1,106 @@
-mapscripts VermilionCity_PokemonFanClub_MapScripts {}
+mapscripts VermilionCity_PokemonFanClub_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        checkitem(ITEM_LOST_ITEM, 1)
+        if(var(VAR_RESULT) || flag(FLAG_RETURNED_LOST_ITEM_TO_COPYCAT))
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+}
+
+script VermilionCity_PokemonFanClub_EventScript_Chairman {
+    lock
+    faceplayer
+    if(flag(FLAG_LISTENED_TO_FAN_CLUB_PRESIDENT))
+    {
+        msgbox("Hello, {PLAYER}!\pDid you come to see me about my\nPOKéMON again?\pNo?\nOh… I had more tales to tell…", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("I'm the CHAIRMAN of the POKéMON\nFAN CLUB.\pI've raised over 150 POKéMON.\pI'm very fussy when it comes\nto POKéMON.\pDid you visit just to hear about\nmy POKéMON?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        msgbox("How disappointing…\nCome back if you want to listen.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("Good! Then listen up!\nSo… my favorite RAPIDASH…\pIt… cute… lovely… smart… unbearably…\nplus… amazing… oh… you think so?…\lToo much… wild… beautiful… kindly…\llove it!\pHug it… when… sleeping… warm and\ncuddly… Oh, and… spectacular…\lravishing… simply divine…\pOops! Look at the time!\nI've kept you too long!\pThanks for hearing me out.\nI want you to have this!", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_RARE_CANDY, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    setflag(FLAG_LISTENED_TO_FAN_CLUB_PRESIDENT)
+    giveitem(ITEM_RARE_CANDY, 1)
+    msgbox("It's a RARE CANDY that makes\nPOKéMON stronger.\pI prefer making my POKéMON stronger\nby battling, so you can have it.", MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script VermilionCity_PokemonFanClub_EventScript_Receptionist {
+    msgbox("Our CHAIRMAN is very vocal when it\ncomes to POKéMON…", MSGBOX_NPC)
+    end
+}
+
+script VermilionCity_PokemonFanClub_EventScript_ClefairyGuy {
+    lock
+    faceplayer
+    checkitem(ITEM_LOST_ITEM, 1)
+    if(var(VAR_RESULT) || flag(FLAG_RETURNED_LOST_ITEM_TO_COPYCAT))
+    {
+        msgbox("You watch. I'm going to get a\nreal CLEFAIRY as my friend.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("I love CLEFAIRY but I could never\ncatch one.\pSo I'm making do with a POKé\nDOLL that I found.", MSGBOX_DEFAULT)
+        if(flag(FLAG_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM))
+        {
+            msgbox("Oh, I see now. The little girl who lost this\nPOKé DOLL is sad…\pOK. Could you take this POKé DOLL\nback to that poor little girl?\pI'll befriend a real CLEFAIRY on\nmy own one day. No worries!", MSGBOX_DEFAULT)
+            giveitem_msg("{PLAYER} received the POKé DOLL.", ITEM_LOST_ITEM, 1)
+            removeobject(4)
+            release
+            end
+        }
+    }
+    msgbox("I love the way CLEFAIRY waggles\nits finger when it's trying to use\lMETRONOME. It's so adorable!", MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script VermilionCity_PokemonFanClub_EventScript_Girl {
+    msgbox("Look at my darling BAYLEEF!\nThe leaf on its head is so cute!", MSGBOX_NPC)
+    end
+}
+
+script VermilionCity_PokemonFanClub_EventScript_Bayleef {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_BAYLEEF, 0)
+    msgbox("BAYLEEF: Li liif!")
+    waitmoncry
+    release
+}
+
+script VermilionCity_PokemonFanClub_EventScript_ClefairyDoll {
+    lock
+    msgbox("It's a CLEFAIRY!\nHuh?\pOh, right.\nIt's a CLEFAIRY POKé DOLL.", MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script VermilionCity_PokemonFanClub_EventScript_LeftSign {
+    msgbox("Let's all listen politely to other\ntrainers.", MSGBOX_SIGN)
+    end
+}
+
+script VermilionCity_PokemonFanClub_EventScript_RightSign {
+    msgbox("If someone brags, brag right back!", MSGBOX_SIGN)
+    end
+}
+
+

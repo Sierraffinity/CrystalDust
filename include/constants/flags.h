@@ -351,9 +351,9 @@
 #define FLAG_UNUSED_MYSTERY_GIFT_0x14C       0x14C
 #define FLAG_UNUSED_MYSTERY_GIFT_0x14D       0x14D
 
-#define FLAG_BLACKTHORN_GYM_BOULDER_1        0x14E
-#define FLAG_BLACKTHORN_GYM_BOULDER_2        0x14F
-#define FLAG_BLACKTHORN_GYM_BOULDER_3        0x150
+#define FLAG_GOT_HP_UP_FROM_VERMILION_GUY    0x14E
+#define FLAG_LISTENED_TO_FAN_CLUB_PRESIDENT  0x14F
+#define FLAG_RETURNED_LOST_ITEM_TO_COPYCAT   0x150
 #define FLAG_QUEUE_CLAIR_IN_DRAGONS_DEN      0x151
 
 #define FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER 0x152
@@ -478,14 +478,14 @@
 #define FLAG_FAST_SHIP_DESTINATION_OLIVINE   0x1C2 // if this is not set, destination is Vermilion
 #define FLAG_FAST_SHIP_FOUND_GIRL            0x1C3
 #define FLAG_RECEIVED_METAL_COAT_ON_FAST_SHIP 0x1C4
-// STOPPED HERE
-#define FLAG_DEFEATED_ELECTRODE_2_AQUA_HIDEOUT 0x1C5
+#define FLAG_RETURNED_MACHINE_PART           0x1C5
 #define FLAG_DEFEATED_SUDOWOODO              0x1C6
 #define FLAG_DEFEATED_MEW                    0x1C7
 #define FLAG_DEFEATED_LATIAS_OR_LATIOS       0x1C8
 #define FLAG_CAUGHT_LATIAS_OR_LATIOS         0x1C9
 #define FLAG_CAUGHT_MEW                      0x1CA
-#define FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE 0x1CB
+#define FLAG_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM 0x1CB
+// STOPPED HERE
 #define FLAG_MET_SCOTT_IN_VERDANTURF         0x1CC
 #define FLAG_MET_SCOTT_IN_FALLARBOR          0x1CD
 #define FLAG_MET_SCOTT_IN_LILYCOVE           0x1CE
@@ -1380,7 +1380,7 @@
 #define FLAG_VISITED_CERULEAN_CITY                  (SYSTEM_FLAGS + 0x1B)
 #define FLAG_VISITED_CELADON_CITY                   (SYSTEM_FLAGS + 0x1C)
 #define FLAG_VISITED_LAVENDER_TOWN                  (SYSTEM_FLAGS + 0x1D)
-#define FLAG_VISITED_INDIGO_PLATEAU                 (SYSTEM_FLAGS + 0x1E)
+#define FLAG_VISITED_PEWTER_CITY                    (SYSTEM_FLAGS + 0x1E)
 
 #define FLAG_IS_CHAMPION                            (SYSTEM_FLAGS + 0x1F) // Seems to be related to linking.
 #define FLAG_NURSE_UNION_ROOM_REMINDER              (SYSTEM_FLAGS + 0x20)
@@ -1389,9 +1389,9 @@
 #define FLAG_SYS_HAS_RADIO_CARD                     (SYSTEM_FLAGS + 0x22)
 #define FLAG_SYS_MOM_BANKING_ENABLED                (SYSTEM_FLAGS + 0x23)
 #define FLAG_SYS_GAME_CLEAR                         (SYSTEM_FLAGS + 0x24) // FLAG_SYS_TIME_CAPSULE_UNLOCKED took its place
-#define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag
-#define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
-#define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag
+#define FLAG_VISITED_PALLET_TOWN                    (SYSTEM_FLAGS + 0x25)
+#define FLAG_VISITED_VIRIDIAN_CITY                  (SYSTEM_FLAGS + 0x26)
+#define FLAG_VISITED_FUCHSIA_CITY                   (SYSTEM_FLAGS + 0x27)
 
 #define FLAG_SYS_USE_FLASH                          (SYSTEM_FLAGS + 0x28)
 #define FLAG_SYS_USE_STRENGTH                       (SYSTEM_FLAGS + 0x29)
@@ -1399,8 +1399,8 @@
 #define FLAG_SYS_CYCLING_ROAD                       (SYSTEM_FLAGS + 0x2B)
 #define FLAG_SYS_SAFARI_MODE                        (SYSTEM_FLAGS + 0x2C)
 #define FLAG_SYS_CRUISE_MODE                        (SYSTEM_FLAGS + 0x2D)
+#define FLAG_VISITED_CINNABAR_ISLAND                (SYSTEM_FLAGS + 0x2E)
 
-#define FLAG_UNUSED_0x88E                           (SYSTEM_FLAGS + 0x2E) // Unused Flag
 #define FLAG_UNUSED_0x88F                           (SYSTEM_FLAGS + 0x2F) // Unused Flag
 
 #define FLAG_SYS_TV_HOME                            (SYSTEM_FLAGS + 0x30)
@@ -1504,14 +1504,15 @@
 
 #define FLAG_RECEIVED_POKEDEX_FROM_BIRCH            (SYSTEM_FLAGS + 0x84)
 
-#define FLAG_UNUSED_0x8E5                           (SYSTEM_FLAGS + 0x85) // Unused Flag
-#define FLAG_UNUSED_0x8E6                           (SYSTEM_FLAGS + 0x86) // Unused Flag
-#define FLAG_UNUSED_0x8E7                           (SYSTEM_FLAGS + 0x87) // Unused Flag
-#define FLAG_UNUSED_0x8E8                           (SYSTEM_FLAGS + 0x88) // Unused Flag
-#define FLAG_UNUSED_0x8E9                           (SYSTEM_FLAGS + 0x89) // Unused Flag
-#define FLAG_UNUSED_0x8EA                           (SYSTEM_FLAGS + 0x8A) // Unused Flag
-#define FLAG_UNUSED_0x8EB                           (SYSTEM_FLAGS + 0x8B) // Unused Flag
-#define FLAG_UNUSED_0x8EC                           (SYSTEM_FLAGS + 0x8C) // Unused Flag
+#define FLAG_BADGE09_GET                            (SYSTEM_FLAGS + 0x85)
+#define FLAG_BADGE10_GET                            (SYSTEM_FLAGS + 0x86)
+#define FLAG_BADGE11_GET                            (SYSTEM_FLAGS + 0x87)
+#define FLAG_BADGE12_GET                            (SYSTEM_FLAGS + 0x88)
+#define FLAG_BADGE13_GET                            (SYSTEM_FLAGS + 0x89)
+#define FLAG_BADGE14_GET                            (SYSTEM_FLAGS + 0x8A)
+#define FLAG_BADGE15_GET                            (SYSTEM_FLAGS + 0x8B)
+#define FLAG_BADGE16_GET                            (SYSTEM_FLAGS + 0x8C)
+
 #define FLAG_UNUSED_0x8ED                           (SYSTEM_FLAGS + 0x8D) // Unused Flag
 #define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag
 #define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag

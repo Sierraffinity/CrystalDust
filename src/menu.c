@@ -2372,6 +2372,11 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
                 if (FlagGet(curFlag))
                     flagCount++;
             }
+            for (curFlag = FLAG_BADGE09_GET, endOfString = string + 1; curFlag < FLAG_BADGE09_GET + NUM_BADGES; curFlag++)
+            {
+                if (FlagGet(curFlag))
+                    flagCount++;
+            }
             *string = flagCount + CHAR_0;
             *endOfString = EOS;
             break;

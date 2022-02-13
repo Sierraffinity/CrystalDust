@@ -1,1 +1,11 @@
 mapscripts VermilionCity_House2_MapScripts {}
+
+script VermilionCity_House2_EventScript_PokefanF{
+    msgbox("Do you know about the MAGNET\nTRAIN?\pIt's a railway that goes to\nGOLDENROD in JOHTO.", MSGBOX_NPC)
+    end
+}
+
+script VermilionCity_House2_EventScript_Boy{
+    msgbox("I want to go to SAFFRON to see\nthe MAGNET TRAIN.", MSGBOX_NPC)
+    end
+}

@@ -1,1 +1,26 @@
-mapscripts VermilionCity_PokemonCenter_1F_MapScripts {}
+mapscripts VermilionCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_VERMILION_CITY)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script VermilionCity_PokemonCenter_1F_EventScript_Fisherman{
+    if(flag(FLAG_DEFEATED_SNORLAX))
+    {
+        msgbox("There used to be a sleeping POKéMON\nlying in front of DIGLETT's CAVE.\pBut it seems to have disappeared.", MSGBOX_NPC)
+        end
+    }
+    msgbox("A sleeping POKéMON is lying in\nfront of DIGLETT'S CAVE.\pIt's a fantastic opportunity to get\nit, but how do you wake it up?", MSGBOX_NPC)
+    end
+}
+
+script VermilionCity_PokemonCenter_1F_EventScript_Sailor{
+    msgbox("The FAST SHIP is a great place to\nmeet and battle trainers.", MSGBOX_NPC)
+    end
+}
+
+script VermilionCity_PokemonCenter_1F_EventScript_BugCatcher{
+    msgbox("Oh? You have some BADGES I've\nnever seen before.\pOh, I get it.\nYou got them in JOHTO.", MSGBOX_NPC)
+    end
+}

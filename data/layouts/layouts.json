@@ -2860,7 +2860,7 @@
     {
       "id": "LAYOUT_VERMILION_CITY",
       "name": "VermilionCity_Layout",
-      "width": 48,
+      "width": 52,
       "height": 40,
       "border_width": 2,
       "border_height": 2,
@@ -3040,7 +3040,7 @@
     {
       "id": "LAYOUT_ROUTE11",
       "name": "Route11_Layout",
-      "width": 72,
+      "width": 68,
       "height": 22,
       "border_width": 2,
       "border_height": 2,

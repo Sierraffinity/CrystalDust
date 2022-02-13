@@ -1,1 +1,6 @@
 mapscripts VermilionCity_House1_MapScripts {}
+
+script VermilionCity_House1_EventScript_FishingDude{
+    msgbox("I am the FISHING DUDE, the elder\nof the FISHING BROS.\pHave you met the FISHING GURU at\nthe LAKE OF RAGE?\pHe dreams about seeing the world's\ngreatest MAGIKARP.\pIf you don't mind, could you show\nhim any MAGIKARP you catch?\pWho knows, you may catch the\nMAGIKARP of his dreams.", MSGBOX_NPC)
+    end
+}

@@ -581,6 +581,11 @@ void CountBadges(void)
         if(FlagGet(FLAG_BADGE01_GET + i))
             numBadges++;
     }
+    for(i = 0; i < 8; i++)
+    {
+        if(FlagGet(FLAG_BADGE09_GET + i))
+            numBadges++;
+    }
     gSpecialVar_Result = numBadges;
 }
 

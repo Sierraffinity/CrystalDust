@@ -1,1 +1,36 @@
 mapscripts VermilionCity_Mart_MapScripts {}
+
+script VermilionCity_Mart_EventScript_SuperNerd{
+    msgbox("TEAM ROCKET is no longer in KANTO.\nThat alone makes me happy.", MSGBOX_NPC)
+    end
+}
+
+script VermilionCity_Mart_EventScript_Beauty{
+    msgbox("I'm thinking about going shopping\nin SAFFRON.", MSGBOX_NPC)
+    end
+}
+
+script VermilionCity_Mart_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(VermilionCity_Shop_Pokemart)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+// This shop sells the LiteBlueMail in Crystal.
+
+raw `
+.align 2
+VermilionCity_Shop_Pokemart:
+	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_REVIVE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+    .2byte ITEM_BURN_HEAL
+	.2byte ITEM_NONE
+`

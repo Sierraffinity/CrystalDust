@@ -1,1 +1,6 @@
 mapscripts VermilionCity_House3_MapScripts {}
+
+script VermilionCity_House3_EventScript_Gentleman{
+    msgbox("Over many years, DIGLETT dug a\nlarge tunnel.\lThat tunnel goes to a distant town.", MSGBOX_NPC)
+    end
+}
