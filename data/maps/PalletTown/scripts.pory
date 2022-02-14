@@ -1,4 +1,8 @@
-mapscripts PalletTown_MapScripts {}
+mapscripts PalletTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_PALLET_TOWN)
+    }
+}
 
 script PalletTown_EventScript_Woman{
     msgbox("I'm raising POKéMON too.\nThey serve as my private guards.", MSGBOX_NPC)

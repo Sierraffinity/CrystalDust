@@ -1,1 +1,18 @@
 mapscripts Route1_MapScripts {}
+
+script Route1_EventScript_CooltrainerFQuinn{
+    trainerbattle_single(TRAINER_QUINN, "You there!\nWant to battle?", "Down and out…")
+	msgbox("You're strong.\nYou obviously must've trained hard.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route1_EventScript_SchoolboyDanny {
+    trainerbattle_single(TRAINER_DANNY, "If trainers meet, the first thing\nto do is battle.", "Awww…\nI've got a losing record…")
+	msgbox("For trainers, it's a given that we'll\nbattle whenever we meet.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route1_EventScript_RouteSign {
+    msgbox("ROUTE 1\nPALLET TOWN - VIRIDIAN CITY", MSGBOX_SIGN)
+    end
+}
