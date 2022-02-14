@@ -1,1 +1,24 @@
 mapscripts Route20_MapScripts {}
+
+script Route20_EventScript_SwimmerMCameron{ // leftmost
+    trainerbattle_single(TRAINER_CAMERON, "I guess it's impossible to swim\nall the way to JOHTO.", "Aiyah!")
+	msgbox("Besides the sea, I can also swim\nin ponds and rivers.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route20_EventScript_SwimmerFLori{ // near Gym
+    trainerbattle_single(TRAINER_LORI, "What an impressive collection of\nGYM BADGES. We should battle!", "No!")
+	msgbox("SURF is no longer the only HM move\nyou use in water.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route20_EventScript_SwimmerFNicole{ // rightmost
+    trainerbattle_single(TRAINER_NICOLE, "I feel so much lighter in water.", "Oh, no!")
+	msgbox("Swimming exercises your full body.\nIt's really good for you.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route20_EventScript_GymSign{
+    msgbox("What does this sign say?\pCINNABAR GYM\nLEADER: BLAINE", MSGBOX_SIGN)
+    end
+}

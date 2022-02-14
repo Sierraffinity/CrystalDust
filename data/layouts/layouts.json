@@ -4828,8 +4828,8 @@
     {
       "id": "LAYOUT_ROUTE20_SEAFOAM_GYM",
       "name": "Route20_SeafoamGym_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 13,
+      "height": 12,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",

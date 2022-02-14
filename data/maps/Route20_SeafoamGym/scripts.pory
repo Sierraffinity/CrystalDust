@@ -1,1 +1,51 @@
-mapscripts Route20_SeafoamGym_MapScripts {}
+mapscripts Route20_SeafoamGym_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!defeated(TRAINER_BLAINE))
+        {
+            setobjectxyperm(2, 11, 8)
+            setflag(FLAG_TEMP_1)
+        }
+    }
+    MAP_SCRIPT_ON_RESUME{
+        if(defeated(TRAINER_BLAINE) && flag(FLAG_TEMP_1))
+        {   //addobject for the Gym Guide spawns a copy of the player for some reason,
+            //so this convoluted method of showing it is used instead.
+            //The Gym Guide is hidden behind a copy of the cave floor tiles off to the
+            //side of the area and then moved into position when the map is reloaded
+            //after fighting Blaine.
+            setobjectxyperm(2, 8, 8)
+            setobjectxy(2, 8, 8)
+        }
+    }
+}
+
+script Route20_SeafoamGym_EventScript_Blaine {
+    trainerbattle_single(TRAINER_BLAINE, "BLAINE: Waaah!\nMy GYM in CINNABAR burned down.\pMy fire-breathing POKéMON and I are\nhomeless because of the volcano.\pWaaah!\pBut I'm back in business as a GYM\nLEADER here in this cave.\pIf you can beat me,\nI'll give you a BADGE.\pHa!\nYou'd better have BURN HEAL!", "BLAINE: Awesome. I've burned out…\nYou've earned the VOLCANOBADGE!", Route20_SeafoamGym_EventScript_BlaineDefeated, NO_MUSIC)
+    msgbox("BLAINE: My fire POKéMON will be\neven stronger. Just you watch!", MSGBOX_DEFAULT)
+    release
+    end
+}script(local) Route20_SeafoamGym_EventScript_BlaineDefeated{
+    clearflag(FLAG_TEMP_1)
+    if(!flag(FLAG_BADGE15_GET))
+    {
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received the VOLCANOBADGE.")
+        call(Common_EventScript_PlayGymBadgeFanfare)
+        textcolor(MSG_COLOR_PREV)
+        setflag(FLAG_BADGE15_GET)
+        setgymtrainers(15)
+        msgbox("BLAINE: I did lose this time, but\nI'm going to win the next time.\pWhen I rebuild my CINNABAR GYM,\nwe'll have to have a rematch.", MSGBOX_NPC)
+        end
+    }
+}
+
+script Route20_SeafoamGym_EventScript_GymGuide {
+    if(flag(FLAG_TALKED_TO_SEAFOAM_GYM_GUIDE))
+    {
+        msgbox("A POKéMON GYM can be anywhere as\nlong as the GYM LEADER is there.\lThere's no need for a building.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Yo!\p…Huh? It's over already?\nSorry, sorry!\pCINNABAR GYM was gone, so I didn't\nknow where to find you.\pBut, hey, you're plenty strong even\nwithout my advice. I knew you'd win!", MSGBOX_NPC)
+    setflag(FLAG_TALKED_TO_SEAFOAM_GYM_GUIDE)
+    end
+}
