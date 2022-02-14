@@ -24,7 +24,6 @@ script SaffronCity_CopycatsHouse_2F_EventScript_Dodrio {
     playmoncry(SPECIES_DODRIO, 0)
     msgbox("DODRIO: Gii giii!")
     waitmoncry
-    closemessage
     msgbox("MIRROR, MIRROR ON THE WALL,\nWHO'S THE FAIREST ONE OF ALL?", MSGBOX_DEFAULT)
     release
 }

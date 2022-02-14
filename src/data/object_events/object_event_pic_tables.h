@@ -1117,12 +1117,28 @@ const struct SpriteFrameImage sPicTable_Firebreather[] = {
     overworld_frame(gObjectEventPic_Firebreather, 2, 4, 8),
 };
 
-static const struct SpriteFrameImage sPicTable_MovingBox[] = {
-    obj_frame_tiles(gObjectEventPic_MovingBox),
+static const struct SpriteFrameImage sPicTable_Blissey[] = {
+    overworld_frame(gObjectEventPic_Blissey, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Blissey, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Blissey, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Blissey, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Blissey, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Blissey, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Blissey, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Blissey, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Blissey, 2, 2, 2),
 };
 
-static const struct SpriteFrameImage sPicTable_CableCar[] = {
-    obj_frame_tiles(gObjectEventPic_CableCar),
+static const struct SpriteFrameImage sPicTable_Dodrio[] = {
+    overworld_frame(gObjectEventPic_Dodrio, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Dodrio, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Dodrio, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Dodrio, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Dodrio, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Dodrio, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Dodrio, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Dodrio, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Dodrio, 4, 4, 2),
 };
 
 const struct SpriteFrameImage sPicTable_Officer[] = {

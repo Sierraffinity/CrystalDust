@@ -110,8 +110,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayFieldMove;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Firebreather;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanUnderwater;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayUnderwater;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MovingBox;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableCar;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blissey;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dodrio;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Officer;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KurtLyingDown;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketGruntM;
@@ -360,8 +360,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_FIREBREATHER] =             &gObjectEventGraphicsInfo_Firebreather,
     [OBJ_EVENT_GFX_ZBRENDAN_UNDERWATER] =      &gObjectEventGraphicsInfo_BrendanUnderwater,
     [OBJ_EVENT_GFX_ZMAY_UNDERWATER] =          &gObjectEventGraphicsInfo_MayUnderwater,
-    [OBJ_EVENT_GFX_ZMOVING_BOX] =              &gObjectEventGraphicsInfo_MovingBox,
-    [OBJ_EVENT_GFX_ZCABLE_CAR] =               &gObjectEventGraphicsInfo_CableCar,
+    [OBJ_EVENT_GFX_BLISSEY] =                  &gObjectEventGraphicsInfo_Blissey,
+    [OBJ_EVENT_GFX_DODRIO] =                   &gObjectEventGraphicsInfo_Dodrio,
     [OBJ_EVENT_GFX_OFFICER] =                  &gObjectEventGraphicsInfo_Officer,
     [OBJ_EVENT_GFX_KURT_LYING_DOWN] =          &gObjectEventGraphicsInfo_KurtLyingDown,
     [OBJ_EVENT_GFX_ROCKET_GRUNT_M] =           &gObjectEventGraphicsInfo_RocketGruntM,

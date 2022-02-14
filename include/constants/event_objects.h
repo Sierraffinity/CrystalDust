@@ -114,8 +114,8 @@
 #define OBJ_EVENT_GFX_FIREBREATHER               110
 #define OBJ_EVENT_GFX_ZBRENDAN_UNDERWATER        111
 #define OBJ_EVENT_GFX_ZMAY_UNDERWATER            112
-#define OBJ_EVENT_GFX_ZMOVING_BOX                113
-#define OBJ_EVENT_GFX_ZCABLE_CAR                 114
+#define OBJ_EVENT_GFX_BLISSEY                    113
+#define OBJ_EVENT_GFX_DODRIO                     114
 #define OBJ_EVENT_GFX_OFFICER                    115
 #define OBJ_EVENT_GFX_KURT_LYING_DOWN            116
 #define OBJ_EVENT_GFX_ROCKET_GRUNT_M             117
