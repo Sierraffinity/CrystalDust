@@ -1000,7 +1000,7 @@ gTileset_CeladonCity::
 	.4byte gMetatiles_CeladonCity
 	.4byte gMetatileAttributes_CeladonCity
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_CeladonCity @ palette overrides
 
 	.align 2
 gTileset_FuchsiaCity::
