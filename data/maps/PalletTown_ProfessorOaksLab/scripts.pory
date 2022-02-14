@@ -1,1 +1,67 @@
 mapscripts PalletTown_ProfessorOaksLab_MapScripts {}
+
+script PalletTown_ProfessorOaksLab_EventScript_Scientist1 { // bottom left
+    msgbox("The PROF's POKéMON TALK radio\nprogram isn't aired here in KANTO.\pIt's a shame--I'd like to hear it.", MSGBOX_NPC)
+    end
+}
+
+script PalletTown_ProfessorOaksLab_EventScript_Scientist2 { // bottom right
+    msgbox("Thanks to your work on the POKéDEX,\nthe PROF's research is coming\lalong great.", MSGBOX_NPC)
+    end
+}
+
+script PalletTown_ProfessorOaksLab_EventScript_Scientist3 { // top left
+    msgbox("Don't tell anyone, but PROF. OAK'S\nPOKéMON TALK isn't a live broadcast.", MSGBOX_NPC)
+    end
+}
+
+script PalletTown_ProfessorOaksLab_EventScript_LeftPoster {
+    msgbox("Press START to open the MENU.", MSGBOX_SIGN)
+    end
+}
+
+script PalletTown_ProfessorOaksLab_EventScript_RightPoster {
+    msgbox("The SAVE option is on the MENU.\nUse it in a timely manner.", MSGBOX_SIGN)
+    end
+}
+
+script PalletTown_ProfessorOaksLab_EventScript_Computer {
+    msgbox("There's an e-mail message on the PC.\n…\pPROF. OAK, how is your research\ncoming along?\lI'm still plugging away.\pI heard rumors that {PLAYER} is\ngetting quite a reputation.\lI'm delighted to hear that.\pELM in NEW BARK TOWN\n8-)", MSGBOX_SIGN)
+    end
+}
+
+script PalletTown_ProfessorOaksLab_EventScript_Oak {
+    lock
+    faceplayer
+    if(flag(FLAG_OPENED_MT_SILVER))
+    {
+        goto(PalletTown_ProfessorOaksLab_EventScript_OakChecksPokedex)
+    }
+    if(flag(FLAG_TALKED_TO_OAK_IN_KANTO))
+    {
+        callnative(CountBadges)
+        if(var(VAR_RESULT) == 16)
+        {
+            msgbox("OAK: Wow!\nThat's excellent!\pYou collected the BADGES of GYMS in\nKANTO. Well done!\pI was right in my assessment of you.\nTell you what, {PLAYER}.\pI'll make arrangements so that you\ncan go to MT. SILVER.\pMT. SILVER is a big mountain that is\nhome to many wild POKéMON.\pIt's too dangerous for your average\ntrainer, so it's off limits.\pBut we can make an exception\nin your case, {PLAYER}.\pGo up to INDIGO PLATEAU.\nYou can reach MT. SILVER from there.", MSGBOX_DEFAULT)
+            setflag(FLAG_OPENED_MT_SILVER)
+        }
+        elif(var(VAR_RESULT) == 8)
+        {
+            msgbox("OAK: Hmm? You're not collecting\nKANTO GYM BADGES?\pThe GYM LEADERS in KANTO are as tough\nas any you battled in JOHTO.\pI recommend that you challenge\nthem.", MSGBOX_DEFAULT)
+        }
+        else
+        {
+            msgbox("OAK: Ah, you're collecting\nKANTO GYM BADGES.\pI imagine that it's hard, but the\nexperience is sure to help you.\pCome see me when you get them all.\nI'll have a gift for you.\pKeep trying hard, {PLAYER}!", MSGBOX_DEFAULT)
+        }
+        goto(PalletTown_ProfessorOaksLab_EventScript_OakChecksPokedex)
+    }
+    msgbox("OAK: Ah, {PLAYER}!\pIt's good of you to come all\nthis way to KANTO.\pWhat do you think of the trainers\nout here? Pretty tough, huh?", MSGBOX_DEFAULT)
+    setflag(FLAG_TALKED_TO_OAK_IN_KANTO)
+    goto(PalletTown_ProfessorOaksLab_EventScript_Oak)
+}script(local) PalletTown_ProfessorOaksLab_EventScript_OakChecksPokedex{
+    msgbox("How is your POKéDEX coming?\nLet me see…", MSGBOX_DEFAULT)
+    call(PokedexRating_EventScript_RatePokedex)
+    msgbox("If you're in the area, I hope you\ncome visit again.", MSGBOX_DEFAULT)
+    release
+    end
+}

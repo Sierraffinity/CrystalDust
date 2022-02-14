@@ -2915,12 +2915,12 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_SUPER_NERD] =                MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL] =      MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE] =   MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_ZRIVAL_BRENDAN_ACRO_BIKE] =  MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_REDS_MOM] =                  MSG_COLOR_RED,
         [OBJ_EVENT_GFX_ZRIVAL_BRENDAN_SURFING] =    MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_RIVAL_BRENDAN_FIELD_MOVE] =  MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_RIVAL_MAY_NORMAL] =          MSG_COLOR_RED,
         [OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE] =       MSG_COLOR_RED,
-        [OBJ_EVENT_GFX_ZRIVAL_MAY_ACRO_BIKE] =      MSG_COLOR_RED,
+        [OBJ_EVENT_GFX_DAISY] =                      MSG_COLOR_RED,
         [OBJ_EVENT_GFX_ZRIVAL_MAY_SURFING] =        MSG_COLOR_RED,
         [OBJ_EVENT_GFX_RIVAL_MAY_FIELD_MOVE] =      MSG_COLOR_RED,
         [OBJ_EVENT_GFX_FIREBREATHER] =              MSG_COLOR_BLUE,
@@ -4595,6 +4595,12 @@ void YoungerHaircutBrother(void)
 
     AdjustFriendship(&gPlayerParty[gSpecialVar_0x8004], FRIENDSHIP_EVENT_YOUNGER_HAIRCUT_BROTHER_0 + haircutLevel);
     gSpecialVar_Result = haircutLevel;
+}
+
+void DaisyGrooming(void)
+{
+    AdjustFriendship(&gPlayerParty[gSpecialVar_0x8004], FRIENDSHIP_EVENT_DAISY_GROOMING);
+    gSpecialVar_Result = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES);
 }
 
 void BargainShop(void)

@@ -2094,7 +2094,7 @@ static const s8 sFriendshipEventModifiers[][3] =
     [FRIENDSHIP_EVENT_YOUNGER_HAIRCUT_BROTHER_0]    = { 1,  1,  1},
     [FRIENDSHIP_EVENT_YOUNGER_HAIRCUT_BROTHER_1]    = { 3,  3,  1},
     [FRIENDSHIP_EVENT_YOUNGER_HAIRCUT_BROTHER_2]    = {10, 10,  4},
-    [FRIENDSHIP_EVENT_DAISY_GROOMING]               = { 3,  3,  3},
+    [FRIENDSHIP_EVENT_DAISY_GROOMING]               = { 3,  3,  1},
 };
 
 static const u16 sHMMoves[] =

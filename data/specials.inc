@@ -574,3 +574,4 @@ gSpecials::
 	def_special CheckForGiftMonAndTakeMail
 	def_special GiveOddEgg
 	def_special DoMiniCredits
+	def_special DaisyGrooming

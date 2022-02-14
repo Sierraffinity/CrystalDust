@@ -41,3 +41,4 @@ data/scripts/bug_catching_contest.inc
 data/text/move_tutors.inc
 *.sna
 src/data/items.h
+include/constants/map_groups.h

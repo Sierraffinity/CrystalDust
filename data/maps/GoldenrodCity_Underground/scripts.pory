@@ -141,29 +141,35 @@ script GoldenrodCity_Underground_EventScript_OlderHaircutBrother {
 					msgbox("Which POKéMON should I work on?")
 					special(ChoosePartyMon)
 					waitstate
-					if (var(VAR_0x8004) != 0xFF)
-            		{
-						removemoney(500, FALSE)
-						showmoneybox(0, 0, FALSE)
-                    	playse(SE_RG_SHOP)
-						msgbox("Okay!\n"
-							   "Watch it become beautiful!")
-						closemessage
-						hidemoneybox
-						fadescreen(FADE_TO_BLACK)
-						special(OlderHaircutBrother)
-						playfanfare(MUS_HEAL)
-						waitfanfare
-						fadescreen(FADE_FROM_BLACK)
-						msgbox("There!\n"
-							   "All done!")
-						call(GoldenrodCity_Underground_EventScript_Haircut_Result)
-						setflag(FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT)
-					}
-					else
+					if(var(VAR_0x8004) == 0xFF)
 					{
 						call(GoldenrodCity_Underground_EventScript_OlderHaircutBrother_Rejected)
+						release
+						end
 					}
+					special(IsSelectedMonEgg)
+					if(var(VAR_RESULT))
+					{
+						msgbox("I can't do anything with an EGG!\nThat's a shame!", MSGBOX_DEFAULT)
+						release
+						end
+					}
+					removemoney(500, FALSE)
+					showmoneybox(0, 0, FALSE)
+					playse(SE_RG_SHOP)
+					msgbox("Okay!\n"
+							"Watch it become beautiful!")
+					closemessage
+					hidemoneybox
+					fadescreen(FADE_TO_BLACK)
+					special(OlderHaircutBrother)
+					playfanfare(MUS_HEAL)
+					waitfanfare
+					fadescreen(FADE_FROM_BLACK)
+					msgbox("There!\n"
+							"All done!")
+					call(GoldenrodCity_Underground_EventScript_Haircut_Result)
+					setflag(FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT)
 				}
 				else
 				{
@@ -220,29 +226,35 @@ script GoldenrodCity_Underground_EventScript_YoungerHaircutBrother {
 					msgbox("Okay, which POKéMON should I do?")
 					special(ChoosePartyMon)
 					waitstate
-					if (var(VAR_0x8004) != 0xFF)
-            		{
-						removemoney(300, FALSE)
-						showmoneybox(0, 0, FALSE)
-                    	playse(SE_RG_SHOP)
-						msgbox("Okay!\n"
-							   "I'll make it look cool!")
-						closemessage
-						hidemoneybox
-						fadescreen(FADE_TO_BLACK)
-						special(YoungerHaircutBrother)
-						playfanfare(MUS_HEAL)
-						waitfanfare
-						fadescreen(FADE_FROM_BLACK)
-						msgbox("There we go!\n"
-							   "All done!")
-						call(GoldenrodCity_Underground_EventScript_Haircut_Result)
-						setflag(FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT)
-					}
-					else
+					if(var(VAR_0x8004) == 0xFF)
 					{
 						call(GoldenrodCity_Underground_EventScript_YoungerHaircutBrother_Rejected)
+						release
+						end
 					}
+					special(IsSelectedMonEgg)
+					if(var(VAR_RESULT))
+					{
+						msgbox("I can't do anything with an EGG!\nHow disappointing!", MSGBOX_DEFAULT)
+						release
+						end
+					}
+					removemoney(300, FALSE)
+					showmoneybox(0, 0, FALSE)
+					playse(SE_RG_SHOP)
+					msgbox("Okay!\n"
+							"I'll make it look cool!")
+					closemessage
+					hidemoneybox
+					fadescreen(FADE_TO_BLACK)
+					special(YoungerHaircutBrother)
+					playfanfare(MUS_HEAL)
+					waitfanfare
+					fadescreen(FADE_FROM_BLACK)
+					msgbox("There we go!\n"
+							"All done!")
+					call(GoldenrodCity_Underground_EventScript_Haircut_Result)
+					setflag(FLAG_DAILY_GOLDENROD_UNDERGROUND_HAIRCUT)
 				}
 				else
 				{

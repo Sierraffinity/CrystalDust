@@ -1,1 +1,66 @@
 mapscripts PalletTown_BluesHouse_MapScripts {}
+
+script PalletTown_BluesHouse_EventScript_Daisy {
+    gettime
+    if(var(VAR_0x8000) == 15) //3PM
+    {
+        if(flag(FLAG_DAILY_DAISYS_GROOMING))
+        {
+            msgbox("DAISY: I always have tea around\nthis time. Come join me.", MSGBOX_NPC)
+            end
+        }
+        lock
+        faceplayer
+        msgbox("DAISY: Hi!\nGood timing.\pI'm about to have some tea.\nWould you like to join me?\pOh, your POKéMON are a bit dirty.\nWould you like me to groom one?", MSGBOX_YESNO)
+        if(!var(VAR_RESULT))
+        {
+            msgbox(PalletTown_BluesHouse_Text_RefusedDaisy, MSGBOX_DEFAULT)
+            release
+            end
+        }
+        msgbox("DAISY: Which one should I groom?")
+        special(ChoosePartyMon)
+        waitstate
+        lock
+        faceplayer
+        if(var(VAR_0x8004) == 0xFF)
+        {
+            msgbox(PalletTown_BluesHouse_Text_RefusedDaisy, MSGBOX_DEFAULT)
+            release
+            end
+        }
+        special(IsSelectedMonEgg)
+        if(var(VAR_RESULT))
+        {
+            msgbox("DAISY: Oh, sorry.\nI honestly can't groom an EGG.", MSGBOX_DEFAULT)
+            release
+            end
+        }
+        setflag(FLAG_DAILY_DAISYS_GROOMING)
+        msgbox("DAISY: OK, I'll get it looking\nnice in no time.", MSGBOX_DEFAULT)
+        closemessage
+        fadescreen(FADE_TO_BLACK)
+        special(DaisyGrooming)
+        playfanfare(MUS_HEAL)
+        waitfanfare
+        fadescreen(FADE_FROM_BLACK)
+        bufferpartymonnick(0, VAR_0x8004)
+        message("{STR_VAR_1} looks content.")
+        waitmessage
+        playmoncry(VAR_RESULT, 0)
+        waitmoncry
+        waitbuttonpress
+        msgbox("DAISY: There you go!\nAll done.\pSee? Doesn't it look nice?\nIt's such a cute POKéMON.", MSGBOX_DEFAULT)
+        release
+        end        
+    }
+    msgbox("DAISY: Hi! My kid brother is the\nGYM LEADER in VIRIDIAN CITY.\pBut he goes out of town so often,\nit causes problems for the trainers.", MSGBOX_NPC)
+    end
+}text(local) PalletTown_BluesHouse_Text_RefusedDaisy {
+    "DAISY: You don't want to have one\ngroomed? OK, we'll just have tea."
+}
+
+script PalletTown_BluesHouse_EventScript_Picture{
+    msgbox("“The lovely and sweet\nCLEFAIRY.”", MSGBOX_SIGN)
+    end
+}

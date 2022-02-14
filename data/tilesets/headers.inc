@@ -928,7 +928,7 @@ gTileset_PalletTown::
 	.4byte gMetatiles_PalletTown
 	.4byte gMetatileAttributes_PalletTown
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_PalletTown @ palette overrides
 
 	.align 2
 gTileset_ViridianCity::

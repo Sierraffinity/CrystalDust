@@ -1,1 +1,31 @@
 mapscripts PalletTown_MapScripts {}
+
+script PalletTown_EventScript_Woman{
+    msgbox("I'm raising POKéMON too.\nThey serve as my private guards.", MSGBOX_NPC)
+    end
+}
+
+script PalletTown_EventScript_FatMan{
+    msgbox("Technology is incredible!\pYou can now trade POKéMON across\ntime like e-mail.", MSGBOX_NPC)
+    end
+}
+
+script PalletTown_EventScript_TownSign{
+    msgbox("PALLET TOWN\nA Tranquil Setting of Peace & Purity", MSGBOX_SIGN)
+    end
+}
+
+script PalletTown_EventScript_RedsHouseSign{
+    msgbox("RED'S HOUSE", MSGBOX_SIGN)
+    end
+}
+
+script PalletTown_EventScript_BluesHouseSign{
+    msgbox("BLUE'S HOUSE", MSGBOX_SIGN)
+    end
+}
+
+script PalletTown_EventScript_LabSign{
+    msgbox("OAK POKéMON RESEARCH LAB", MSGBOX_SIGN)
+    end
+}

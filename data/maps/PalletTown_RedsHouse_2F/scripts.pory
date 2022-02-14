@@ -1,1 +1,11 @@
 mapscripts PalletTown_RedsHouse_2F_MapScripts {}
+
+script PalletTown_RedsHouse_2F_EventScript_N64{
+    msgbox("{PLAYER} played the N64.\nBetter get going--no time to lose!", MSGBOX_SIGN)
+    end
+}
+
+script PalletTown_RedsHouse_2F_EventScript_PC{
+    msgbox("It looks like it hasn't been used\nin a long time…", MSGBOX_SIGN)
+    end
+}

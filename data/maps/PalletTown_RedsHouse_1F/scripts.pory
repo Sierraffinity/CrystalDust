@@ -1,1 +1,17 @@
 mapscripts PalletTown_RedsHouse_1F_MapScripts {}
+
+script PalletTown_RedsHouse_1F_EventScript_RedsMom{
+    if(flag(FLAG_MET_REDS_MOM))
+    {
+        msgbox("I worry about RED getting hurt or\nsick, but he's a boy.\pI'm proud that he is doing\nwhat he wants to do.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Hi!\nRED's been away for a long time.\pHe hasn't called either, so I have\nno idea where he is or what he's\lbeen doing.\pThey say that no word is proof that\nhe's doing fine, but I do worry\labout him.", MSGBOX_NPC)
+    setflag(FLAG_MET_REDS_MOM)
+    end
+}
+
+script PalletTown_RedsHouse_1F_EventScript_TV{
+    msgbox("They have programs that aren't\nshown in JOHTO…", MSGBOX_SIGN)
+    end
+}

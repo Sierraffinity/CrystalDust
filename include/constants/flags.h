@@ -353,7 +353,7 @@
 
 #define FLAG_GOT_HP_UP_FROM_VERMILION_GUY    0x14E
 #define FLAG_LISTENED_TO_FAN_CLUB_PRESIDENT  0x14F
-#define FLAG_UNUSED_0x150                    0x150 // unused
+#define FLAG_OPENED_MT_SILVER                0x150
 #define FLAG_QUEUE_CLAIR_IN_DRAGONS_DEN      0x151
 
 #define FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER 0x152
@@ -488,9 +488,9 @@
 #define FLAG_GOT_CLEANSE_TAG                 0x1CC
 #define FLAG_GOT_UP_GRADE                    0x1CD
 #define FLAG_GOT_TM29_PSYCHIC                0x1CE
+#define FLAG_TALKED_TO_OAK_IN_KANTO          0x1CF
+#define FLAG_MET_REDS_MOM                    0x1D0
 // STOPPED HERE
-#define FLAG_MET_SCOTT_IN_EVERGRANDE         0x1CF
-#define FLAG_MET_SCOTT_ON_SS_TIDAL           0x1D0
 #define FLAG_SCOTT_GIVES_BATTLE_POINTS       0x1D1
 #define FLAG_COLLECTED_ALL_GOLD_SYMBOLS      0x1D2
 #define FLAG_ENABLE_ROXANNE_MATCH_CALL       0x1D3
@@ -1552,7 +1552,7 @@
 #define FLAG_DAILY_MOOMOO_MILK                                      (DAILY_FLAGS_START + 0x29)
 #define FLAG_DAILY_PICKED_LOTO_TICKET                               (DAILY_FLAGS_START + 0x2A)
 #define FLAG_DAILY_FOUGHT_LAPRAS                                    (DAILY_FLAGS_START + 0x2B)
-#define FLAG_DAILY_ROUTE_111_RECEIVED_BERRY                         (DAILY_FLAGS_START + 0x2C)
+#define FLAG_DAILY_DAISYS_GROOMING                                  (DAILY_FLAGS_START + 0x2C)
 #define FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY      				(DAILY_FLAGS_START + 0x2D)
 #define FLAG_DAILY_ROUTE_120_RECEIVED_BERRY         				(DAILY_FLAGS_START + 0x2E)
 #define FLAG_DAILY_LILYCOVE_RECEIVED_BERRY          				(DAILY_FLAGS_START + 0x2F)

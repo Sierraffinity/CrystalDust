@@ -365,6 +365,10 @@
 #define METATILE_Pacifidlog_SubmergedLogs_Vertical0        0x25A
 #define METATILE_Pacifidlog_SubmergedLogs_Vertical1        0x262
 
+// gTileset_PalletTown
+#define METATILE_PalletTown_Door_House  0x2A8
+#define METATILE_PalletTown_Door_Lab    0x2A9
+
 // gTileset_PetalburgGym
 #define METATILE_PetalburgGym_RoomEntrance_Left   0x210
 #define METATILE_PetalburgGym_RoomEntrance_Right  0x211

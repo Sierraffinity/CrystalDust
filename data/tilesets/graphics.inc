@@ -1825,6 +1825,9 @@ gTilesetPalOverride_Saffron11::
 gTilesetPalOverride_Saffron12::
 	.incbin "data/tilesets/secondary/saffroncity/palettes/12_over.gbapal"
 
+gTilesetPalOverride_Pallet08::
+	.incbin "data/tilesets/secondary/pallettown/palettes/08_over.gbapal"
+
 	.align 2
 gTilesetPalettes_PalletTown::
 	.incbin "data/tilesets/secondary/pallettown/palettes/00.gbapal"
