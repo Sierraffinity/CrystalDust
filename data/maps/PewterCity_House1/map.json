@@ -2,7 +2,7 @@
   "id": "MAP_PEWTER_CITY_HOUSE1",
   "name": "PewterCity_House1",
   "layout": "LAYOUT_KANTO_HOUSE2",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_PEWTER",
   "region_map_section": "MAPSEC_PEWTER_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,6 +12,7 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [

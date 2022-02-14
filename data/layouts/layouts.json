@@ -2570,6 +2570,18 @@
       "blockdata_filepath": "data/layouts/MagnetTrainStation/map.bin"
     },
     {
+      "id": "LAYOUT_SAFFRON_MAGNET_TRAIN_STATION",
+      "name": "SaffronMagnetTrainStation_Layout",
+      "width": 27,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_MagnetTrain",
+      "border_filepath": "data/layouts/SaffronMagnetTrainStation/border.bin",
+      "blockdata_filepath": "data/layouts/SaffronMagnetTrainStation/map.bin"
+    },
+    {
       "id": "LAYOUT_RUINS_OF_ALPH_KABUTO_CHAMBER",
       "name": "RuinsOfAlph_KabutoChamber_Layout",
       "width": 11,

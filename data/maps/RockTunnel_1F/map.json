@@ -2,7 +2,7 @@
   "id": "MAP_ROCK_TUNNEL_1F",
   "name": "RockTunnel_1F",
   "layout": "LAYOUT_ROCK_TUNNEL_1F",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_MT_MOON",
   "region_map_section": "MAPSEC_ROCK_TUNNEL",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,6 +12,7 @@
   "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [

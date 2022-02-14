@@ -2,7 +2,7 @@
   "id": "MAP_PEWTER_CITY_GYM",
   "name": "PewterCity_Gym",
   "layout": "LAYOUT_PEWTER_CITY_GYM",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_GYM",
   "region_map_section": "MAPSEC_PEWTER_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,6 +12,7 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [

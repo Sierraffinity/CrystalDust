@@ -1089,3 +1089,7 @@ Common_EventScript_FindItem::
 	.include "data/maps/Route12_Gatehouse_2F/scripts.inc"
 	.include "data/maps/GoldenrodCity_Underground_SwitchRoom/scripts.inc"
 	.include "data/maps/GoldenrodCity_Underground_Warehouse/scripts.inc"
+	.include "data/maps/Route11_Gatehouse_1F/scripts.inc"
+	.include "data/maps/Route11_Gatehouse_2F/scripts.inc"
+	.include "data/maps/Route4_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/Route4_PokemonCenter_2F/scripts.inc"

@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE15_GATEHOUSE_2F",
   "name": "Route15_Gatehouse_2F",
   "layout": "LAYOUT_KANTO_GATEHOUSE_2F",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_ROUTE11",
   "region_map_section": "MAPSEC_ROUTE_15",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,6 +12,7 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [

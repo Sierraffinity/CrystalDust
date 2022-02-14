@@ -40,11 +40,13 @@
     "gCinnabarIslandInteriors",
     "gIndigoPlateauInteriors",
     "gRoute2Interiors",
+    "gRoute4Interiors",
     "gRoute5Interiors",
     "gRoute6Interiors",
     "gRoute7Interiors",
     "gRoute8Interiors",
     "gRoute10Interiors",
+    "gRoute11Interiors",
     "gRoute12Interiors",
     "gRoute15Interiors",
     "gRoute16Interiors",
@@ -499,6 +501,10 @@
     "Route2_ViridianForest_SouthEntrance",
     "Route2_ViridianForest_NorthEntrance"
   ],
+  "gRoute4Interiors": [
+    "Route4_PokemonCenter_1F",
+    "Route4_PokemonCenter_2F"
+  ],
   "gRoute5Interiors": [
     "Route5_House",
     "Route5_Gatehouse",
@@ -518,6 +524,10 @@
     "Route10_PowerPlant",
     "Route10_PokemonCenter_1F",
     "Route10_PokemonCenter_2F"
+  ],
+  "gRoute11Interiors": [
+    "Route11_Gatehouse_1F",
+    "Route11_Gatehouse_2F"
   ],
   "gRoute12Interiors": [
     "Route12_FishingHouse",

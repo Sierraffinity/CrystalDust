@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE21",
   "name": "Route21",
   "layout": "LAYOUT_ROUTE21",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_ROUTE3",
   "region_map_section": "MAPSEC_ROUTE_20",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

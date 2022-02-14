@@ -2,7 +2,7 @@
   "id": "MAP_TOHJO_FALLS",
   "name": "TohjoFalls",
   "layout": "LAYOUT_TOHJO_FALLS",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_ILEX_FOREST",
   "region_map_section": "MAPSEC_TOHJO_FALLS",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE28_HOUSE",
   "name": "Route28_House",
   "layout": "LAYOUT_KANTO_HOUSE3",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_AZALEA",
   "region_map_section": "MAPSEC_ROUTE_28",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
