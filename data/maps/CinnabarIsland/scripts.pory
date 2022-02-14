@@ -1,1 +1,31 @@
-mapscripts CinnabarIsland_MapScripts {}
+mapscripts CinnabarIsland_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_CINNABAR_ISLAND)
+    }
+}
+
+script CinnabarIsland_EventScript_TownSign {
+    msgbox("CINNABAR ISLAND\nThe Fiery Town of Burning Desire", MSGBOX_SIGN)
+    end
+}
+
+script CinnabarIsland_EventScript_GymNotice {
+    msgbox("There's a notice here…\pCINNABAR GYM has been relocated to\nthe SEAFOAM ISLANDS.\pBLAINE", MSGBOX_SIGN)
+    end
+}
+
+script CinnabarIsland_EventScript_Blue {
+    lock
+    faceplayer
+    msgbox("Who are you?\pWell, it's plain to see that you're\na trainer…\pMy name's BLUE.\pI was once the CHAMPION, although\nit was only for a short time…\lThat meddling RED did me in…\pAnyway, what do you want? You want\nto challenge me or something?\p…I hate to say it, but I'm not in\nthe mood for a battle now.\pTake a good look around you…\pA volcano erupts, and just like\nthat, a whole town disappears.\pWe can go on winning and losing in\nPOKéMON. But if nature so much as\ltwitches, we can lose in a second.\p…\pThat's the way it is…\nBut, anyway, I'm still a trainer.\pIf I see a strong opponent,\nit makes me want to battle.\pIf you want to battle me,\ncome to the VIRIDIAN GYM.\lI'll take you on then.", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(1, SproutTower_3F_Movement_RivalSpin)
+	waitmovement(0)
+	playse(SE_WARP_IN)
+	applymovement(1, SproutTower_3F_Movement_RivalFlyAway)
+	waitmovement(0)
+	removeobject(1)
+    setflag(FLAG_MET_BLUE_IN_CINNABAR)
+    release
+    end
+}

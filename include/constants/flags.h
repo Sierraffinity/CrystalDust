@@ -490,7 +490,7 @@
 #define FLAG_GOT_TM29_PSYCHIC                0x1CE
 #define FLAG_TALKED_TO_OAK_IN_KANTO          0x1CF
 #define FLAG_MET_REDS_MOM                    0x1D0
-// STOPPED HERE
+
 #define FLAG_SCOTT_GIVES_BATTLE_POINTS       0x1D1
 #define FLAG_COLLECTED_ALL_GOLD_SYMBOLS      0x1D2
 #define FLAG_ENABLE_ROXANNE_MATCH_CALL       0x1D3
@@ -501,8 +501,8 @@
 #define FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL 0x1D8
 #define FLAG_ENABLE_JUAN_MATCH_CALL          0x1D9
 
-#define FLAG_UNUSED_0x1DA                    0x1DA // Unused Flag
-
+#define FLAG_MET_BLUE_IN_CINNABAR            0x1DA
+// STOPPED HERE
 #define FLAG_SHOWN_MYSTIC_TICKET             0x1DB
 #define FLAG_DEFEATED_HO_OH                  0x1DC
 #define FLAG_DEFEATED_LUGIA                  0x1DD

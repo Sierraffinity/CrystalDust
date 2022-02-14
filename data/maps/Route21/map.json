@@ -84,7 +84,7 @@
       "type": "hidden_item",
       "x": 10,
       "y": 98,
-      "elevation": 3,
+      "elevation": 4,
       "item": "ITEM_RARE_CANDY",
       "flag": "FLAG_HIDDEN_ITEM_CINNABAR_ISLAND_RARE_CANDY"
     }

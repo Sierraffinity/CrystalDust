@@ -1,1 +1,16 @@
-mapscripts CinnabarIsland_PokemonCenter_1F_MapScripts {}
+mapscripts CinnabarIsland_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_CINNABAR_ISLAND)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script CinnabarIsland_PokemonCenter_1F_EventScript_CooltrainerF{
+    msgbox("CINNABAR GYM's BLAINE apparently\nlives alone in the SEAFOAM ISLANDS\lcave…", MSGBOX_NPC)
+    end
+}
+
+script CinnabarIsland_PokemonCenter_1F_EventScript_FatMan{
+    msgbox("It's been a year since the\nvolcano erupted.", MSGBOX_NPC)
+    end
+}
