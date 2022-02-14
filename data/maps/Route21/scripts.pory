@@ -1,1 +1,19 @@
 mapscripts Route21_MapScripts {}
+
+script Route21_EventScript_SwimmerFNikki {
+    trainerbattle_single(TRAINER_NIKKI, "If I win, you have to help me\nwith my suntan lotion!", "I'm worried about sunburn…")
+	msgbox("I have to watch out for blemishes\ncaused by the sun.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route21_EventScript_FishermanArnold {
+    trainerbattle_single(TRAINER_ARNOLD, "I'm bored by fishing.\nLet's battle!", "Utter failure…")
+	msgbox("I'll just go back to fishing…", MSGBOX_DEFAULT)
+	release
+}
+
+script Route21_EventScript_SwimmerMSeth {
+    trainerbattle_single(TRAINER_SETH, "Land ho!\nGotta keep going!", "Glug…")
+	msgbox("This arrogant guy was at\nCINNABAR's volcano.", MSGBOX_DEFAULT)
+	release
+}
