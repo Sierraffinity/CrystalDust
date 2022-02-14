@@ -940,7 +940,7 @@ gTileset_ViridianCity::
 	.4byte gMetatiles_ViridianCity
 	.4byte gMetatileAttributes_ViridianCity
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_ViridianCity @ palette overrides
 
 	.align 2
 gTileset_PewterCity::

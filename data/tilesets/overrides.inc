@@ -230,3 +230,16 @@ gTilesetPalOverrides_PalletTown::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
+
+.align 2
+gTilesetPalOverrides_ViridianCity::
+	.byte 12
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Viridian12
+	.byte 0xFF
+	.byte 0
+	.byte 0
+	.byte 0 @ padding
+	.4byte NULL
