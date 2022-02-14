@@ -1,4 +1,8 @@
-mapscripts Route20_MapScripts {}
+mapscripts Route20_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_CINNABAR_ROCKS_CLEARED)
+    }
+}
 
 script Route20_EventScript_SwimmerMCameron{ // leftmost
     trainerbattle_single(TRAINER_CAMERON, "I guess it's impossible to swim\nall the way to JOHTO.", "Aiyah!")

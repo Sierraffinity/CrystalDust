@@ -1,1 +1,92 @@
-mapscripts Route19_MapScripts {}
+mapscripts Route19_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(flag(FLAG_CINNABAR_ROCKS_CLEARED))
+        {
+            setobjectxyperm(1, 15, 7)
+            setobjectxyperm(2, 13, 7)
+        }
+    }
+    MAP_SCRIPT_ON_LOAD{
+        if(!flag(FLAG_CINNABAR_ROCKS_CLEARED))
+        {
+            //leftmost boulder
+            setmetatile(7, 9, 0x98, 1)
+            setmetatile(7, 10, 0xA8, 1)
+            setmetatile(8, 9, 0x9A, 1)
+            setmetatile(8, 10, 0xAA, 1)
+            //middle-left boulder
+            setmetatile(9, 8, 0x98, 1)
+            setmetatile(9, 9, 0xA8, 1)
+            setmetatile(10, 8, 0x9A, 1)
+            setmetatile(10, 9, 0xAA, 1)
+            //middle rock
+            setmetatile(11, 10, 0xAF, 1)
+            //middle-right boulder
+            setmetatile(12, 9, 0x98, 1)
+            setmetatile(12, 10, 0xA8, 1)
+            setmetatile(13, 9, 0x9A, 1)
+            setmetatile(13, 10, 0xAA, 1)
+            //right rock
+            setmetatile(16, 9, 0xAF, 1)
+            //rightmost boulder
+            setmetatile(15, 11, 0x98, 1)
+            setmetatile(15, 12, 0xA8, 1)
+            setmetatile(16, 11, 0x9A, 1)
+            setmetatile(16, 12, 0xAA, 1)
+        }
+    }
+}
+
+script Route19_Gatehouse_EventScript_LeftFatMan{
+    if(flag(FLAG_CINNABAR_ROCKS_CLEARED))
+    {
+        msgbox("I'm all sweaty.\nTime for a swim!", MSGBOX_NPC)
+        end
+    }
+    msgbox("Sorry. This road is closed for\nconstruction.\pIf you want to get to CINNABAR,\nyou'd better go south from PALLET\lTOWN.", MSGBOX_NPC)
+    end
+}
+
+script Route19_Gatehouse_EventScript_RightFatMan{
+    if(flag(FLAG_CINNABAR_ROCKS_CLEARED))
+    {
+        msgbox("The roadwork is finally finished.\nNow I can go fishing again.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Who knows how long it would take\nto move this boulder…", MSGBOX_NPC)
+    end
+}
+
+script Route19_EventScript_Notice{
+    msgbox("Please be careful if you are\nswimming to the SEAFOAM ISLANDS.\pFUCHSIA POLICE", MSGBOX_SIGN)
+    end
+}
+
+script Route19_EventScript_RouteSign{
+    msgbox("ROUTE 19\nFUCHSIA CITY - SEAFOAM ISLANDS", MSGBOX_SIGN)
+    end
+}
+
+script Route20_EventScript_SwimmerMJerome{ // topmost
+    trainerbattle_single(TRAINER_JEROME, "Swimming?\nI'm lousy at it.\pI'm just splashing around in these\nshallow waters.", "I thought I could win.")
+	msgbox("I might be bad at swimming,\nbut I love the sea.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route20_EventScript_SwimmerMTucker{ // middle
+    trainerbattle_single(TRAINER_TUCKER, "Pant, pant… Just… a little…\nfarther… to… FUCHSIA…", "I'm drowning!")
+	msgbox("I… asked my girlfriend to swim to\nFUCHSIA… Gasp…", MSGBOX_DEFAULT)
+	release
+}
+
+script Route20_EventScript_SwimmerFDawn{ // middle
+    trainerbattle_single(TRAINER_DAWN, "I'm disgusted by wimpy people!", "I could beat you at swimming…")
+	msgbox("It's a quick swim between FUCHSIA\nand the SEAFOAM ISLANDS…\pSheesh, some big man my boyfriend\nis! What a wimp!", MSGBOX_DEFAULT)
+	release
+}
+
+script Route20_EventScript_SwimmerMHarold{ // bottommost
+    trainerbattle_single(TRAINER_HAROLD, "Have you ever gone swimming in\nthe sea at night?", "Glub…")
+	msgbox("At night, the sea turns black.\nIt feels like it will swallow you up.", MSGBOX_DEFAULT)
+	release
+}

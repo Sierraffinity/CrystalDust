@@ -35,7 +35,20 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 21,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE19_GATEHOUSE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 22,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE19_GATEHOUSE",
+      "dest_warp_id": 1
+    }
   ],
   "coord_events": [
 

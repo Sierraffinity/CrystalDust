@@ -1,1 +1,11 @@
 mapscripts Route19_Gatehouse_MapScripts {}
+
+script Route19_Gatehouse_EventScript_Officer{
+    if(flag(FLAG_CINNABAR_ROCKS_CLEARED))
+    {
+        msgbox("No CINNABAR citizens were injured\nby the eruption. That's great!", MSGBOX_NPC)
+        end
+    }
+    msgbox("CINNABAR's volcano erupted.\pIt hurled boulders that cut off\nROUTE 19 indefinitely.\pI wonder if the people of\nCINNABAR are safe…", MSGBOX_NPC)
+    end
+}
