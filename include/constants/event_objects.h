@@ -98,14 +98,14 @@
 #define OBJ_EVENT_GFX_SNORLAX                     94
 #define OBJ_EVENT_GFX_FARFETCHD                   95
 #define OBJ_EVENT_GFX_AMPHAROS                    96
-#define OBJ_EVENT_GFX_ZBIRCHS_BAG                 97
+#define OBJ_EVENT_GFX_FEAROW                      97
 #define OBJ_EVENT_GFX_WOOPER                      98
 #define OBJ_EVENT_GFX_SUPER_NERD                  99
 #define OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL       100
 #define OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE    101
 #define OBJ_EVENT_GFX_REDS_MOM                   102
-#define OBJ_EVENT_GFX_ZRIVAL_BRENDAN_SURFING     103
-#define OBJ_EVENT_GFX_RIVAL_BRENDAN_FIELD_MOVE   104
+#define OBJ_EVENT_GFX_NIDORAN_F                  103
+#define OBJ_EVENT_GFX_POLIWRATH                  104
 #define OBJ_EVENT_GFX_RIVAL_MAY_NORMAL           105
 #define OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE        106
 #define OBJ_EVENT_GFX_DAISY                      107

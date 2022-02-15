@@ -1,1 +1,6 @@
 mapscripts Route28_MapScripts {}
+
+script Route28_EventScript_RouteSign{
+    msgbox("ROUTE 28", MSGBOX_SIGN)
+    end
+}

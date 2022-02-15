@@ -48,7 +48,6 @@ static const u8 sDoorAnimTiles_UnusedTops[] = INCBIN_U8("graphics/door_anims/unu
 static const u8 sDoorAnimTiles_UnusedBottoms[] = INCBIN_U8("graphics/door_anims/unused_bottom.4bpp");
 static const u8 sDoorAnimTiles_Dewford[] = INCBIN_U8("graphics/door_anims/dewford.4bpp");
 static const u8 sDoorAnimTiles_Contest[] = INCBIN_U8("graphics/door_anims/contest.4bpp");
-static const u8 sDoorAnimTiles_Mossdeep[] = INCBIN_U8("graphics/door_anims/mossdeep.4bpp");
 static const u8 sDoorAnimTiles_SootopolisPeakedRoof[] = INCBIN_U8("graphics/door_anims/sootopolis_peaked_roof.4bpp");
 static const u8 sDoorAnimTiles_Sootopolis[] = INCBIN_U8("graphics/door_anims/sootopolis.4bpp");
 static const u8 sDoorAnimTiles_PokemonLeague[] = INCBIN_U8("graphics/door_anims/pokemon_league.4bpp");
@@ -57,7 +56,6 @@ static const u8 sDoorAnimTiles_BattleTowerCorridor[] = INCBIN_U8("graphics/door_
 static const u8 sDoorAnimTiles_CyclingRoad[] = INCBIN_U8("graphics/door_anims/cycling_road.4bpp");
 static const u8 sDoorAnimTiles_LilycoveDeptStore[] = INCBIN_U8("graphics/door_anims/lilycove_dept_store.4bpp");
 static const u8 sDoorAnimTiles_SafariZone[] = INCBIN_U8("graphics/door_anims/safari_zone.4bpp");
-static const u8 sDoorAnimTiles_MossdeepSpaceCenter[] = INCBIN_U8("graphics/door_anims/mossdeep_space_center.4bpp");
 static const u8 sDoorAnimTiles_CableClub[] = INCBIN_U8("graphics/door_anims/cable_club.4bpp");
 static const u8 sDoorAnimTiles_FastShip[] = INCBIN_U8("graphics/door_anims/fast_ship.4bpp");
 static const u8 sDoorAnimTiles_FallarborDarkRoof[] = INCBIN_U8("graphics/door_anims/fallarbor_dark_roof.4bpp");
@@ -90,6 +88,7 @@ static const u8 sDoorAnimTiles_PalletHouse[] = INCBIN_U8("graphics/door_anims/pa
 static const u8 sDoorAnimTiles_PalletLab[] = INCBIN_U8("graphics/door_anims/pallet_lab.4bpp");
 static const u8 sDoorAnimTiles_FuchsiaLit[] = INCBIN_U8("graphics/door_anims/fuchsia_lit.4bpp");
 static const u8 sDoorAnimTiles_FuchsiaUnlit[] = INCBIN_U8("graphics/door_anims/fuchsia_unlit.4bpp");
+static const u8 sDoorAnimTiles_Viridian[] = INCBIN_U8("graphics/door_anims/viridian.4bpp");
 
 static const struct DoorAnimFrame sDoorOpenAnimFrames[] =
 {
@@ -161,7 +160,6 @@ static const u8 sDoorAnimPalettes_Pokecomcenter[] = {7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_DeptStoreElevator[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_RadioTowerElevatorBlueWall[] = {12, 12, 2, 2, 2, 2, 2, 2};
 static const u8 sDoorAnimPalettes_RadioTowerElevatorPinkWall[] = {8, 8, 2, 2, 2, 2, 2, 2};
-static const u8 sDoorAnimPalettes_Mossdeep[] = {9, 9, 1, 1, 1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_PokemonLeague[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_Pacifidlog[] = {9, 9, 9, 9, 9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_SootopolisPeakedRoof[] = {6, 6, 6, 6, 6, 6, 6, 6};
@@ -173,7 +171,6 @@ static const u8 sDoorAnimPalettes_BattleTowerCorridor[] = {6, 6, 6, 6, 6, 6, 6, 
 static const u8 sDoorAnimPalettes_CyclingRoad[] = {7, 7, 7, 7, 7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_LilycoveDeptStore[] = {5, 5, 5, 5, 5, 5, 5, 5};
 static const u8 sDoorAnimPalettes_SafariZone[] = {9, 9, 9, 9, 9, 9, 9, 9};
-static const u8 sDoorAnimPalettes_MossdeepSpaceCenter[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_CableClub[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_FastShip[] = {7, 7, 7, 7, 7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_FallarborDarkRoof[] = {11, 11, 7, 7, 7, 7, 7, 7};
@@ -202,6 +199,7 @@ static const u8 sDoorAnimPalettes_Saffron[] = {8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_PalletHouse[] = {8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_PalletLab[] = {10, 10, 10, 10};
 static const u8 sDoorAnimPalettes_Fuchsia[] = {8, 8, 8, 8};
+static const u8 sDoorAnimPalettes_Viridian[] = {8, 8, 8, 8};
 
 static const struct DoorGraphics sDoorAnimGraphicsTable[] =
 {
@@ -223,7 +221,6 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_RadioTower_Door_Elevator_PinkWall,            DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_RadioTowerElevatorPinkWall, sDoorAnimPalettes_RadioTowerElevatorPinkWall},
     {METATILE_Dewford_Door,                                 DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Dewford, sDoorAnimPalettes_Dewford},
     {METATILE_General_Door_Contest,                         DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_Contest, sDoorAnimPalettes_Contest},
-    {METATILE_Mossdeep_Door,                                DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Mossdeep, sDoorAnimPalettes_Mossdeep},
     {METATILE_Sootopolis_Door_PeakedRoof,                   DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_SootopolisPeakedRoof, sDoorAnimPalettes_SootopolisPeakedRoof},
     {METATILE_Sootopolis_Door,                              DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Sootopolis, sDoorAnimPalettes_Sootopolis},
     {METATILE_EverGrande_Door_PokemonLeague,                DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_PokemonLeague, sDoorAnimPalettes_PokemonLeague},
@@ -231,7 +228,6 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_BattleFrontier_Door_Corridor,                 DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_BattleTowerCorridor, sDoorAnimPalettes_BattleTowerCorridor},
     {METATILE_Lilycove_Door_DeptStore,                      DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_LilycoveDeptStore, sDoorAnimPalettes_LilycoveDeptStore},
     {METATILE_Lilycove_Door_SafariZone,                     DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_SafariZone, sDoorAnimPalettes_SafariZone},
-    {METATILE_Mossdeep_Door_SpaceCenter,                    DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_MossdeepSpaceCenter, sDoorAnimPalettes_MossdeepSpaceCenter},
     {METATILE_PokemonCenter_Door_CableClub,                 DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_CableClub, sDoorAnimPalettes_CableClub},
     {METATILE_InsideShip_IntactDoor_Bottom_Unlocked,        DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_FastShip, sDoorAnimPalettes_FastShip},
     {METATILE_Fallarbor_Door_DarkRoof,                      DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_FallarborDarkRoof, sDoorAnimPalettes_FallarborDarkRoof},
@@ -262,6 +258,7 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_PalletTown_Door_Lab,                          DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_PalletLab, sDoorAnimPalettes_PalletLab},
     {METATILE_FuchsiaCity_Door_Lit,                         DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_FuchsiaLit, sDoorAnimPalettes_Fuchsia},
     {METATILE_FuchsiaCity_Door_Unlit,                       DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_FuchsiaUnlit, sDoorAnimPalettes_Fuchsia},
+    {METATILE_ViridianCity_Door,                            DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Viridian, sDoorAnimPalettes_Viridian},
     {},
 };
 

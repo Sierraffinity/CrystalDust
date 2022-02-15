@@ -22,7 +22,13 @@
     }
   ],
   "object_events": [
-
+    {
+      "type": "clone",
+      "x": -5,
+      "y": 9,
+      "source_id": 2,
+      "source_map": "MAP_SILVER_CAVE_OUTSIDE"
+    }
   ],
   "warp_events": [
     {
@@ -44,6 +50,21 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 43,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route28_EventScript_RouteSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 36,
+      "y": 4,
+      "elevation": 3,
+      "item": "ITEM_RARE_CANDY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_28_RARE_CANDY"
+    }
   ]
 }

@@ -340,10 +340,6 @@
 // gTileset_MossdeepGym
 #define METATILE_MossdeepGym_YellowArrow_Right  0x250
 
-// gTileset_Mossdeep
-#define METATILE_Mossdeep_Door              0x2A1
-#define METATILE_Mossdeep_Door_SpaceCenter  0x2ED
-
 // gTileset_NewBark
 #define METATILE_NewBark_Door_ElmsLab                0x2AC
 #define METATILE_NewBark_Door_NewBark                0x2A3
@@ -820,5 +816,8 @@
 #define METATILE_Violet_Door_House        0x298
 #define METATILE_Violet_Door_Lab          0x323
 #define METATILE_Violet_Door_SproutTower  0x294
+
+// gTileset_ViridianCity
+#define METATILE_ViridianCity_Door  0x2ED
 
 #endif // GUARD_METATILE_LABELS_H

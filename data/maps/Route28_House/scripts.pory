@@ -1,1 +1,33 @@
 mapscripts Route28_House_MapScripts {}
+
+script Route28_House_EventScript_Girl{
+    if(flag(FLAG_GOT_TM47_STEEL_WING))
+    {
+        msgbox("It's tough being a top celebrity.\nEverywhere I go, people chase me.\pI just want to be left alone…", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Oh, dear. You've found me.\nPlease don't tell anyone about me.\pI'll give you this for keeping my\nsecret. Please?", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_TM47, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    giveitem(ITEM_TM47, 1)
+    setflag(FLAG_GOT_TM47_STEEL_WING)
+    release
+    end
+}
+
+script Route28_House_EventScript_Fearow {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_FEAROW, 0)
+    msgbox("FEAROW: Feero!")
+    waitmoncry
+    release
+}

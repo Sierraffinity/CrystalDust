@@ -1,1 +1,10 @@
-mapscripts SilverCave_Outside_MapScripts {}
+mapscripts SilverCave_Outside_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_SILVER_CAVE)
+    }
+}
+
+script SilverCave_Outside_EventScript_Sign{
+    msgbox("MT. SILVER", MSGBOX_NPC)
+    end
+}

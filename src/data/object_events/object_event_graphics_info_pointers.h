@@ -94,14 +94,14 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KrisFieldMove;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Snorlax;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Farfetchd;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ampharos;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BirchsBag;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fearow;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wooper;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SuperNerd;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanNormal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanMachBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedsMom;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanSurfing;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalBrendanFieldMove;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NidoranF;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Poliwrath;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayNormal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayMachBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Daisy;
@@ -344,14 +344,14 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_SNORLAX] =                  &gObjectEventGraphicsInfo_Snorlax,
     [OBJ_EVENT_GFX_FARFETCHD] =                &gObjectEventGraphicsInfo_Farfetchd,
     [OBJ_EVENT_GFX_AMPHAROS] =                 &gObjectEventGraphicsInfo_Ampharos,
-    [OBJ_EVENT_GFX_ZBIRCHS_BAG] =              &gObjectEventGraphicsInfo_BirchsBag,
+    [OBJ_EVENT_GFX_FEAROW] =                   &gObjectEventGraphicsInfo_Fearow,
     [OBJ_EVENT_GFX_WOOPER] =                   &gObjectEventGraphicsInfo_Wooper,
     [OBJ_EVENT_GFX_SUPER_NERD] =               &gObjectEventGraphicsInfo_SuperNerd,
     [OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL] =     &gObjectEventGraphicsInfo_RivalBrendanNormal,
     [OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE] =  &gObjectEventGraphicsInfo_RivalBrendanMachBike,
     [OBJ_EVENT_GFX_REDS_MOM] =                 &gObjectEventGraphicsInfo_RedsMom,
-    [OBJ_EVENT_GFX_ZRIVAL_BRENDAN_SURFING] =   &gObjectEventGraphicsInfo_RivalBrendanSurfing,
-    [OBJ_EVENT_GFX_RIVAL_BRENDAN_FIELD_MOVE] = &gObjectEventGraphicsInfo_RivalBrendanFieldMove,
+    [OBJ_EVENT_GFX_NIDORAN_F] =                &gObjectEventGraphicsInfo_NidoranF,
+    [OBJ_EVENT_GFX_POLIWRATH] =                &gObjectEventGraphicsInfo_Poliwrath,
     [OBJ_EVENT_GFX_RIVAL_MAY_NORMAL] =         &gObjectEventGraphicsInfo_RivalMayNormal,
     [OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE] =      &gObjectEventGraphicsInfo_RivalMayMachBike,
     [OBJ_EVENT_GFX_DAISY] =                    &gObjectEventGraphicsInfo_Daisy,
