@@ -1012,7 +1012,7 @@ gTileset_FuchsiaCity::
 	.4byte gMetatiles_FuchsiaCity
 	.4byte gMetatileAttributes_FuchsiaCity
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_FuchsiaCity @ palette overrides
 
 	.align 2
 gTileset_IndigoPlateau::

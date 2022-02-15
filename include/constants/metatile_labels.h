@@ -173,6 +173,10 @@
 #define METATILE_Fortree_WoodBridge1_Bottom                0x29F
 #define METATILE_Fortree_WoodBridge1_Top                   0x297
 
+// gTileset_FuchsiaCity
+#define METATILE_FuchsiaCity_Door_Lit    0x2BF
+#define METATILE_FuchsiaCity_Door_Unlit  0x38D
+
 // gTileset_General
 #define METATILE_General_BlueCaveIndent        0x1B0
 #define METATILE_General_BlueCaveOpen          0x1B1

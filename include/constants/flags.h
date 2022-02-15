@@ -508,9 +508,9 @@
 
 #define FLAG_TALKED_TO_SEAFOAM_GYM_GUIDE     0x1DE
 #define FLAG_CINNABAR_ROCKS_CLEARED          0x1DF
+#define FLAG_TALKED_TO_WARDENS_GRANDDAUGHTER 0x1E0
+#define FLAG_GOT_TM06_TOXIC                  0x1E1
 // STOPPED HERE
-#define FLAG_UNUSED_0x1E0                    0x1E0 // Unused Flag
-#define FLAG_UNUSED_0x1E1                    0x1E1 // Unused Flag
 #define FLAG_UNUSED_0x1E2                    0x1E2 // Unused Flag
 #define FLAG_UNUSED_0x1E3                    0x1E3 // Unused Flag
 

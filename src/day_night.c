@@ -138,6 +138,10 @@ static void LoadPaletteOverrides(void)
     {
         hour = 0;
     }
+    if(gMapHeader.mapLayoutId == LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_OFFICE)
+    {
+        hour = 0;
+    }
     else
     {
         hour = gLocalTime.hours;
@@ -175,6 +179,8 @@ static bool8 ShouldTintOverworld(void)
     if (IsMapTypeOutdoors(gMapHeader.mapType) || gMapHeader.mapLayoutId == LAYOUT_DRAGONS_DEN)
         return TRUE;
     if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LIGHTHOUSE_6F) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(LIGHTHOUSE_6F) && !FlagGet(FLAG_CURED_AMPHY))
+        return TRUE;
+    if(gMapHeader.mapLayoutId == LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_OFFICE)
         return TRUE;
     return FALSE;
 }

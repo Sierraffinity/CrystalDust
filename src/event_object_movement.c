@@ -9257,3 +9257,8 @@ u8 MovementAction_Fly_Finish(struct ObjectEvent *objectEvent, struct Sprite *spr
 {
     return TRUE;
 }
+
+void TurnObjectInRandomDirection(void)
+{
+    ObjectEventTurnByLocalIdAndMap(gSpecialVar_Result, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, (Random() % 3) + 1);
+}

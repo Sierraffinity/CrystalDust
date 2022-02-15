@@ -1,1 +1,50 @@
-mapscripts FuchsiaCity_MapScripts {}
+mapscripts FuchsiaCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_FUCHSIA_CITY)
+    }
+}
+
+script FuchsiaCity_EventScript_Boy{
+    msgbox("One of the ELITE FOUR used to be\nthe LEADER of FUCHSIA's GYM.", MSGBOX_NPC)
+    end
+}
+
+script FuchsiaCity_EventScript_Woman{
+    msgbox("The SAFARI ZONE is closed…\pIt's sad, considering it's\nFUCHSIA's main attraction.", MSGBOX_NPC)
+    end
+}
+
+script FuchsiaCity_EventScript_PokefanM{
+    msgbox("KOGA's daughter succeeded him as\nthe GYM LEADER after he joined\lthe ELITE FOUR.", MSGBOX_NPC)
+    end
+}
+
+script FuchsiaCity_EventScript_CitySign{
+    msgbox("FUCHSIA CITY\nBehold! It's Passion Pink!", MSGBOX_SIGN)
+    end
+}
+
+script FuchsiaCity_EventScript_GymSign{
+    msgbox("FUCHSIA CITY POKéMON GYM\nLEADER: JANINE\pThe Poisonous Ninja Master", MSGBOX_SIGN)
+    end
+}
+
+script FuchsiaCity_EventScript_SafariZoneOfficeSign{
+    msgbox("There's a notice here…\pThe SAFARI ZONE OFFICE is closed\nuntil further notice.", MSGBOX_SIGN)
+    end
+}
+
+script FuchsiaCity_EventScript_WardensHomeSign{
+    msgbox("SAFARI ZONE WARDEN'S HOME", MSGBOX_SIGN)
+    end
+}
+
+script FuchsiaCity_EventScript_SafariZoneSign{
+    msgbox("The WARDEN is traveling abroad.\pTherefore, the SAFARI ZONE\nis closed.", MSGBOX_SIGN)
+    end
+}
+
+script FuchsiaCity_EventScript_NoLitteringSign{
+    msgbox("No littering.\nPlease take your waste with you.", MSGBOX_SIGN)
+    end
+}

@@ -243,3 +243,16 @@ gTilesetPalOverrides_ViridianCity::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
+
+.align 2
+gTilesetPalOverrides_FuchsiaCity::
+	.byte 8
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Fuchsia08
+	.byte 0xFF
+	.byte 0
+	.byte 0
+	.byte 0 @ padding
+	.4byte NULL

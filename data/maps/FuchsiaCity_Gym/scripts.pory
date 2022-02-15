@@ -1,1 +1,250 @@
-mapscripts FuchsiaCity_Gym_MapScripts {}
+mapscripts FuchsiaCity_Gym_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!defeated(TRAINER_JANINE))
+        {
+            setflag(FLAG_TEMP_1)
+        }
+        if(defeated(TRAINER_CINDY)) //picnicker
+        {
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PICNICKER)
+        }
+        else
+        {
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_JANINE)
+        }
+        if(defeated(TRAINER_BARRY)) //camper
+        {
+            setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_CAMPER)
+        }
+        else
+        {
+            setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_JANINE)
+        }
+        if(defeated(TRAINER_ALICE)) //top lass
+        {
+            setvar(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LASS)
+        }
+        else
+        {
+            setvar(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_JANINE)
+        }
+        if(defeated(TRAINER_LINDA)) //bottom lass
+        {
+            setvar(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_LASS)
+        }
+        else
+        {
+            setvar(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_JANINE)
+        }
+    }
+    MAP_SCRIPT_ON_RESUME{
+        if(flag(FLAG_TEMP_1) && defeated(TRAINER_JANINE))
+        {
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PICNICKER)
+            setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_CAMPER)
+            setvar(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LASS)
+            setvar(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_LASS)
+        }
+    }
+}
+
+script FuchsiaCity_Gym_EventScript_DumbFaceplayer{
+    // for some reason faceplayer isn't working with
+    // the revealed trainers.
+    specialvar(VAR_FACING, GetPlayerFacingDirection)
+    switch(var(VAR_FACING))
+    {
+        case DIR_NORTH:
+            turnobject(VAR_LAST_TALKED, DIR_SOUTH)
+        case DIR_SOUTH:
+            turnobject(VAR_LAST_TALKED, DIR_NORTH)
+        case DIR_EAST:
+            turnobject(VAR_LAST_TALKED, DIR_WEST)
+        case DIR_WEST:
+            turnobject(VAR_LAST_TALKED, DIR_EAST)
+    }
+    return
+}
+
+script FuchsiaCity_Gym_EventScript_PicnickerCindy{
+    if(!defeated(TRAINER_CINDY))
+    {
+        lock
+        faceplayer
+        applymovement(VAR_LAST_TALKED, FuchsiaCity_PokemonCenter_1F_Movement_JanineImpersonator)
+        waitmovement(0)
+        setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PICNICKER)
+        removeobject(VAR_LAST_TALKED)
+        addobject(VAR_LAST_TALKED)
+        lock
+    }
+    else
+    {
+        msgbox("You must be getting tired.", MSGBOX_NPC)
+        end
+    }
+    call(FuchsiaCity_Gym_EventScript_DumbFaceplayer)
+    msgbox("I'm JANINE!\pHow did you know I was real?\nLet's battle!", MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_CINDY, "Darn it!\nI wanted to win!")
+	release
+    end
+}
+
+script FuchsiaCity_Gym_EventScript_CamperBarry{
+    if(!defeated(TRAINER_BARRY))
+    {
+        lock
+        faceplayer
+        applymovement(VAR_LAST_TALKED, FuchsiaCity_PokemonCenter_1F_Movement_JanineImpersonator)
+        waitmovement(0)
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_CAMPER)
+        removeobject(VAR_LAST_TALKED)
+        addobject(VAR_LAST_TALKED)
+        lock
+    }
+    else
+    {
+        msgbox("Hey, you. Was my disguise cute\nor what, huh?", MSGBOX_NPC)
+        end
+    }
+    call(FuchsiaCity_Gym_EventScript_DumbFaceplayer)
+    msgbox("Wahahaha!\pYou betcha!\nI'm JANINE!", MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_BARRY, "My disguise was right on!\nDang!")
+	release
+    end
+}
+
+script FuchsiaCity_Gym_EventScript_LassAlice{
+    if(!defeated(TRAINER_ALICE))
+    {
+        lock
+        faceplayer
+        applymovement(VAR_LAST_TALKED, FuchsiaCity_PokemonCenter_1F_Movement_JanineImpersonator)
+        waitmovement(0)
+        setvar(VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LASS)
+        removeobject(VAR_LAST_TALKED)
+        addobject(VAR_LAST_TALKED)
+        lock
+    }
+    else
+    {
+        msgbox("How will you distinguish our\nreal LEADER?", MSGBOX_NPC)
+        end
+    }
+    call(FuchsiaCity_Gym_EventScript_DumbFaceplayer)
+    msgbox("Fufufu!\pI'm JANINE, the GYM LEADER!\nNo, I'm not! Gotcha, sucker!", MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_ALICE, "I had you fooled…")
+	release
+    end
+}
+
+script FuchsiaCity_Gym_EventScript_LassLinda{
+    if(!defeated(TRAINER_LINDA))
+    {
+        lock
+        faceplayer
+        applymovement(VAR_LAST_TALKED, FuchsiaCity_PokemonCenter_1F_Movement_JanineImpersonator)
+        waitmovement(0)
+        setvar(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_LASS)
+        removeobject(VAR_LAST_TALKED)
+        addobject(VAR_LAST_TALKED)
+        lock
+    }
+    else
+    {
+        msgbox("Well?\nWasn't my disguise perfect?", MSGBOX_NPC)
+        end
+    }
+    call(FuchsiaCity_Gym_EventScript_DumbFaceplayer)
+    msgbox("Fooled you!\nHahaha!", MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_LINDA, "Ooh… I lost…\nYou're not weak…")
+	release
+    end
+}
+
+script FuchsiaCity_Gym_EventScript_Janine {
+    if(defeated(TRAINER_JANINE))
+    {
+        goto(FuchsiaCity_Gym_Eventscript_JanineDefeated)
+    }
+    applymovement(VAR_LAST_TALKED, FuchsiaCity_PokemonCenter_1F_Movement_JanineImpersonator)
+    waitmovement(0)
+    lock
+    faceplayer
+    trainerbattle_single(TRAINER_JANINE, "Fufufufu…\pI'm sorry to disappoint you…\nI'm only joking!\pI'm the real deal!\nJANINE of FUCHSIA GYM, that's me!", "JANINE: You're a tough one.\nYou definitely won…\pHere's the SOULBADGE.\nTake it.", FuchsiaCity_Gym_Eventscript_JanineDefeated, NO_MUSIC)
+    release
+    end
+}script(local) FuchsiaCity_Gym_Eventscript_JanineDefeated{
+    clearflag(FLAG_TEMP_1)
+    // Alice and Linda can be onscreen, so only reset
+    // them if they're still disguised.
+    if(!defeated(TRAINER_LINDA))
+    {
+        removeobject(2)
+        addobject(2)
+        setvar(VAR_RESULT, 2)
+        callnative(TurnObjectInRandomDirection)
+    }
+    if(!defeated(TRAINER_ALICE))
+    {
+        removeobject(3)
+        addobject(3)
+        setvar(VAR_RESULT, 3)
+        callnative(TurnObjectInRandomDirection)
+    }
+    removeobject(4)
+    addobject(4)
+    removeobject(5)
+    addobject(5)
+    if(!flag(FLAG_BADGE13_GET))
+    {
+        lock
+        faceplayer
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received the SOULBADGE.")
+        call(Common_EventScript_PlayGymBadgeFanfare)
+        textcolor(MSG_COLOR_PREV)
+        setflag(FLAG_BADGE13_GET)
+        setgymtrainers(13)
+    }
+    if(!flag(FLAG_GOT_TM06_TOXIC))
+    {
+        msgbox("JANINE: You're so tough!\nI have a special gift!\pIt's TOXIC, a powerful poison that\nsteadily saps the victim's HP.", MSGBOX_DEFAULT)
+        checkitemspace(ITEM_TM06, 1)
+        if(var(VAR_RESULT))
+        {
+            giveitem(ITEM_TM06, 1)
+            setflag(FLAG_GOT_TM06_TOXIC)
+        }
+        else
+        {
+            call(Common_EventScript_BagIsFull)
+        }
+    }
+    msgbox("JANINE: I'm going to really apply\nmyself and improve my skills.\pI want to become better than\nboth Father and you!", MSGBOX_NPC)
+    end
+}
+
+script FuchsiaCity_Gym_EventScript_GymGuide {
+    if(flag(FLAG_BADGE13_GET))
+    {
+        msgbox("That was a great battle,\ntrainer from JOHTO!", MSGBOX_NPC)
+        end
+    }
+    msgbox("Yo, CHAMP in making!\pWhoops! Take a good look around\nyou. The trainers all look like\lthe LEADER, JANINE.\pWhich of them is the real JANINE?", MSGBOX_NPC)
+    end
+}
+
+script FuchsiaCity_Gym_EventScript_Statues {
+    if(flag(FLAG_BADGE13_GET))
+    {
+        msgbox("FUCHSIA CITY POKéMON GYM\nLEADER: JANINE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("FUCHSIA CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}

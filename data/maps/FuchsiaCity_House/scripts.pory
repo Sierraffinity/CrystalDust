@@ -1,1 +1,11 @@
 mapscripts FuchsiaCity_House_MapScripts {}
+
+script FuchsiaCity_House_EventScript_BillsSister{
+    msgbox("My grandpa is at my brother BILL's\non CERULEAN CAPE.", MSGBOX_NPC)
+    end
+}
+
+script FuchsiaCity_House_EventScript_Boy{
+    msgbox("I saw these weird, slow POKéMON\non CYCLING ROAD.", MSGBOX_NPC)
+    end
+}

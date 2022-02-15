@@ -46,7 +46,7 @@ script SaffronCity_Gym_EventScript_Sabrina {
     release
     end
 }script(local) SaffronCity_Gym_Eventscript_SabrinaDefeated{
-    if(!flag(FLAG_BADGE11_GET))
+    if(!flag(FLAG_BADGE14_GET))
     {
         textcolor(MSG_COLOR_SYS)
         message("{PLAYER} received the MARSHBADGE.")

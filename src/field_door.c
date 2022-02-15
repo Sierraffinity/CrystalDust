@@ -88,6 +88,8 @@ static const u8 sDoorAnimTiles_Vermilion[] = INCBIN_U8("graphics/door_anims/verm
 static const u8 sDoorAnimTiles_Saffron[] = INCBIN_U8("graphics/door_anims/saffron.4bpp");
 static const u8 sDoorAnimTiles_PalletHouse[] = INCBIN_U8("graphics/door_anims/pallet_house.4bpp");
 static const u8 sDoorAnimTiles_PalletLab[] = INCBIN_U8("graphics/door_anims/pallet_lab.4bpp");
+static const u8 sDoorAnimTiles_FuchsiaLit[] = INCBIN_U8("graphics/door_anims/fuchsia_lit.4bpp");
+static const u8 sDoorAnimTiles_FuchsiaUnlit[] = INCBIN_U8("graphics/door_anims/fuchsia_unlit.4bpp");
 
 static const struct DoorAnimFrame sDoorOpenAnimFrames[] =
 {
@@ -199,6 +201,7 @@ static const u8 sDoorAnimPalettes_Vermilion[] = {9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_Saffron[] = {8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_PalletHouse[] = {8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_PalletLab[] = {10, 10, 10, 10};
+static const u8 sDoorAnimPalettes_Fuchsia[] = {8, 8, 8, 8};
 
 static const struct DoorGraphics sDoorAnimGraphicsTable[] =
 {
@@ -257,6 +260,8 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_SaffronCity_Door,                             DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Saffron, sDoorAnimPalettes_Saffron},
     {METATILE_PalletTown_Door_House,                        DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_PalletHouse, sDoorAnimPalettes_PalletHouse},
     {METATILE_PalletTown_Door_Lab,                          DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_PalletLab, sDoorAnimPalettes_PalletLab},
+    {METATILE_FuchsiaCity_Door_Lit,                         DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_FuchsiaLit, sDoorAnimPalettes_Fuchsia},
+    {METATILE_FuchsiaCity_Door_Unlit,                       DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_FuchsiaUnlit, sDoorAnimPalettes_Fuchsia},
     {},
 };
 

@@ -19,7 +19,13 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 6,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_FUCHSIA_CITY",
+      "dest_warp_id": 6
+    }
   ],
   "coord_events": [
 

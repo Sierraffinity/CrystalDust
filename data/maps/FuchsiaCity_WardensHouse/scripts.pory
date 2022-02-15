@@ -1,1 +1,32 @@
 mapscripts FuchsiaCity_WardensHouse_MapScripts {}
+
+script FuchsiaCity_WardensHouse_EventScript_LeftPicture{
+    msgbox("It's a photo of a grinning old man\nwho's surrounded by POKéMON.", MSGBOX_SIGN)
+    end
+}
+
+script FuchsiaCity_WardensHouse_EventScript_RightPicture{
+    msgbox("It's a photo of a huge grassy plain\nwith rare POKéMON frolicking in it.", MSGBOX_SIGN)
+    end
+}
+
+script FuchsiaCity_WardensHouse_EventScript_LeftDisplay{
+    msgbox("POKéMON photos and fossils are on\ndisplay.", MSGBOX_SIGN)
+    end
+}
+
+script FuchsiaCity_WardensHouse_EventScript_RightDisplay{
+    msgbox("Old POKéMON merchandise is on\ndisplay.", MSGBOX_SIGN)
+    end
+}
+
+script FuchsiaCity_WardensHouse_EventScript_WardensGranddaughter{
+    if(flag(FLAG_TALKED_TO_WARDENS_GRANDDAUGHTER))
+    {
+        msgbox("Many people were disappointed that\nthe SAFARI ZONE closed down,\lbut Grandpa is so stubborn…", MSGBOX_NPC)
+        end
+    }
+    msgbox("My grandpa is the SAFARI ZONE\nWARDEN. At least he was…\pHe decided to go on a vacation and\ntook off overseas all by himself.\pHe quit running the SAFARI ZONE\njust like that.", MSGBOX_NPC)
+    setflag(FLAG_TALKED_TO_WARDENS_GRANDDAUGHTER)
+    end
+}
