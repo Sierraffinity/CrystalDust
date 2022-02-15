@@ -1,1 +1,36 @@
 mapscripts Route9_MapScripts {}
+
+script Route9_EventScript_CamperSid{ //top left
+    trainerbattle_single(TRAINER_SID, "Hey, you!\nDon't litter!", "I was just pointing out…")
+	msgbox("Sorry. You weren't littering.\nIt was my mistake.", MSGBOX_AUTOCLOSE)
+}
+
+script Route9_EventScript_PicnickerEdna{ //bottom left
+    trainerbattle_single(TRAINER_EDNA, "People shouldn't leave any\nlitter behind.", "Ohh…\nI lost…")
+	msgbox("Conserving energy is important, but\nthe environment is even more vital.", MSGBOX_AUTOCLOSE)
+}
+
+script Route9_EventScript_CamperDean{ //east of Sid
+    trainerbattle_single(TRAINER_DEAN, "I came to explore ROCK TUNNEL.", "Whoa!\nDanger, man.")
+	msgbox("My POKéMON were hurt before even\nentering ROCK TUNNEL.\pI'd better take them to a\nPOKéMON CENTER right away.", MSGBOX_AUTOCLOSE)
+}
+
+script Route9_EventScript_PicnickerHeidi{ //rightmost
+    trainerbattle_single(TRAINER_HEIDI, "Have you ever been to a picnic?\nThey're so much fun!", "Ohhhh!")
+	msgbox("We bake lots of goodies and share\nthem all around. They're delicious!", MSGBOX_AUTOCLOSE)
+}
+
+script Route9_EventScript_HikerTim{ //top
+    trainerbattle_single(TRAINER_TIM, "She'll be coming ‘round MT. SILVER\nwhen she comes…\pMT. SILVER is in JOHTO, right?", "I was too busy singing…")
+	msgbox("Battles are about concentration.", MSGBOX_AUTOCLOSE)
+}
+
+script Route9_EventScript_HikerSidney{ //bottom
+    trainerbattle_single(TRAINER_SIDNEY, "I'll tell you a secret.\nBut first, we battle!", "Oh, dang!\nI lost that…")
+	msgbox("The POWER PLANT is across a\nsmall river.", MSGBOX_AUTOCLOSE)
+}
+
+script Route9_EventScript_RouteSign{
+    msgbox("ROUTE 9\nCERULEAN CITY - ROCK TUNNEL", MSGBOX_SIGN)
+    end
+}

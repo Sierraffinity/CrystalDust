@@ -1643,7 +1643,10 @@ void CreateSecondaryLayerDots(u16 tileTag, u16 paletteTag)
 
                     if (GetMapsecType(GetMapSecIdAt(x, y, gRegionMap->currentRegion, FALSE)) >= MAPSECTYPE_VISITED)
                     {
-                        offset = 2;
+                        if(GetMapSecIdAt(x, y, gRegionMap->currentRegion, FALSE) == MAPSEC_ROUTE_10_FLYDUP)
+                            offset = 0;
+                        else
+                            offset = 2;
                     }
 
                     spriteId = CreateSprite(&template, (x + MAPCURSOR_X_MIN + gRegionMap->xOffset) * 8 + offset + 4, (y + MAPCURSOR_Y_MIN) * 8 + offset + 4, 3);

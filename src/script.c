@@ -671,3 +671,11 @@ void CheckOwnAllBeasts(void)
         return;
     }  
 }
+
+void SetLandmarkFlagIfEnteredFromNorth(void)
+{
+    if(gSaveBlock1Ptr->pos.y <= 2)
+    {
+        FlagSet(FLAG_LANDMARK_ROUTE_10_POKEMON_CENTER);
+    }
+}

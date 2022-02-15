@@ -37,7 +37,13 @@
     }
   ],
   "object_events": [
-
+    {
+      "type": "clone",
+      "x": 51,
+      "y": 19,
+      "source_id": 1,
+      "source_map": "MAP_ROUTE9"
+    }
   ],
   "warp_events": [
 

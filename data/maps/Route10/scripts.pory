@@ -1,1 +1,33 @@
-mapscripts Route10_MapScripts {}
+mapscripts Route10_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_LANDMARK_ROUTE_10_POKEMON_CENTER))
+        {
+            callnative(SetLandmarkFlagIfEnteredFromNorth)
+        }
+    }
+}
+
+script Route10_EventScript_RockTunnelSign {
+    msgbox("ROCK TUNNEL\nDetour to LAVENDER TOWN", MSGBOX_SIGN)
+    end
+}
+
+script Route10_EventScript_PowerPlantSign{
+    msgbox("KANTO POWER PLANT", MSGBOX_SIGN)
+    end
+}
+
+script Route10_EventScript_RouteSign{
+    msgbox("ROUTE 10\nCERULEAN CITY - LAVENDER TOWN", MSGBOX_SIGN)
+    end
+}
+
+script Route10_EventScript_HikerJim{
+    trainerbattle_single(TRAINER_JIM, "Hahahah!", "Hahaha-hachoo!")
+	msgbox("Hay fever is making me sneeze!\nAhahah-CHOO!", MSGBOX_AUTOCLOSE)
+}
+
+script Route10_EventScript_PokefanMRobert{
+    trainerbattle_single(TRAINER_ROBERT, "You like POKéMON, don't you?\nMe too!", "I'd have to say that's my loss.")
+	msgbox("Look what you did to my POKéMON…\nI won't forget this…", MSGBOX_AUTOCLOSE)
+}
