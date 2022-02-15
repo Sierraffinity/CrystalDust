@@ -1,5 +1,6 @@
 mapscripts Route20_SeafoamGym_MapScripts {
     MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_SEAFOAM_ISLANDS)
         if(!defeated(TRAINER_BLAINE))
         {
             setobjectxyperm(2, 11, 8)

@@ -1449,12 +1449,12 @@
 #define FLAG_LANDMARK_TIN_TOWER                     (SYSTEM_FLAGS + 0x58)
 #define FLAG_LANDMARK_ROUTE_4_POKEMON_CENTER        (SYSTEM_FLAGS + 0x59)
 #define FLAG_LANDMARK_ROUTE_10_POKEMON_CENTER       (SYSTEM_FLAGS + 0x5A)
-#define FLAG_LANDMARK_HUNTERS_HOUSE                 (SYSTEM_FLAGS + 0x5B)
-#define FLAG_LANDMARK_SEALED_CHAMBER                (SYSTEM_FLAGS + 0x5C)
+#define FLAG_LANDMARK_TOHJO_FALLS                   (SYSTEM_FLAGS + 0x5B)
+#define FLAG_LANDMARK_SEAFOAM_ISLANDS               (SYSTEM_FLAGS + 0x5C)
 
 #define FLAG_SYS_TV_LATIAS_LATIOS                   (SYSTEM_FLAGS + 0x5D)
 
-#define FLAG_LANDMARK_SKY_PILLAR                    (SYSTEM_FLAGS + 0x5E)
+#define FLAG_LANDMARK_VICTORY_ROAD                  (SYSTEM_FLAGS + 0x5E)
 
 #define FLAG_SYS_SHOAL_ITEM                         (SYSTEM_FLAGS + 0x5F)
 #define FLAG_SYS_B_DASH                             (SYSTEM_FLAGS + 0x60) // RECEIVED Running Shoes

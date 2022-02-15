@@ -1,6 +1,6 @@
 mapscripts VictoryRoad_MapScripts {
     MAP_SCRIPT_ON_TRANSITION{
-        //setflag(FLAG_LANDMARK_VICTORY_ROAD)
+        setflag(FLAG_LANDMARK_VICTORY_ROAD)
         setflag(FLAG_TEMP_1)
         if(defeated(TRAINER_RIVAL_VICTORY_ROAD_CHIKORITA) || defeated(TRAINER_RIVAL_VICTORY_ROAD_CYNDAQUIL) || defeated(TRAINER_RIVAL_VICTORY_ROAD_TOTODILE))
         {
