@@ -39514,6 +39514,396 @@
               ]
             ]
           }
+        },
+        {
+          "map": "MAP_ROCK_TUNNEL_1F",
+          "base_label": "gRockTunnel_1F",
+          "land_mons": {
+            "encounter_rate": 15,
+            "mons": [
+              [
+                {
+                  "min_level": 10,
+                  "max_level": 10,
+                  "species": "SPECIES_CUBONE"
+                },
+                {
+                  "min_level": 11,
+                  "max_level": 11,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 10,
+                  "max_level": 10,
+                  "species": "SPECIES_CUBONE"
+                },
+                {
+                  "min_level": 11,
+                  "max_level": 11,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_MACHOP"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_MACHOP"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_MACHOKE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_MAROWAK"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_MACHOKE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_MAROWAK"
+                }
+              ],
+              [
+                {
+                  "min_level": 10,
+                  "max_level": 10,
+                  "species": "SPECIES_CUBONE"
+                },
+                {
+                  "min_level": 11,
+                  "max_level": 11,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 10,
+                  "max_level": 10,
+                  "species": "SPECIES_CUBONE"
+                },
+                {
+                  "min_level": 11,
+                  "max_level": 11,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_MACHOP"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_MACHOP"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_MACHOKE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_MAROWAK"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_MACHOKE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_MAROWAK"
+                }
+              ],
+              [
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 11,
+                  "max_level": 11,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 11,
+                  "max_level": 11,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 17,
+                  "max_level": 17,
+                  "species": "SPECIES_HAUNTER"
+                },
+                {
+                  "min_level": 17,
+                  "max_level": 17,
+                  "species": "SPECIES_HAUNTER"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROCK_TUNNEL_B1F",
+          "base_label": "gRockTunnel_B1F",
+          "land_mons": {
+            "encounter_rate": 15,
+            "mons": [
+              [
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_CUBONE"
+                },
+                {
+                  "min_level": 14,
+                  "max_level": 14,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_CUBONE"
+                },
+                {
+                  "min_level": 14,
+                  "max_level": 14,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_MAROWAK"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KANGASKHAN"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_MAROWAK"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KANGASKHAN"
+                }
+              ],
+              [
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_CUBONE"
+                },
+                {
+                  "min_level": 14,
+                  "max_level": 14,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_CUBONE"
+                },
+                {
+                  "min_level": 14,
+                  "max_level": 14,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_MAROWAK"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KANGASKHAN"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_MAROWAK"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_KANGASKHAN"
+                }
+              ],
+              [
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 14,
+                  "max_level": 14,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 14,
+                  "max_level": 14,
+                  "species": "SPECIES_GEODUDE"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_ZUBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_HAUNTER"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_HAUNTER"
+                },
+                {
+                  "min_level": 15,
+                  "max_level": 15,
+                  "species": "SPECIES_GOLBAT"
+                }
+              ]
+            ]
+          }
         }
       ]
     },
