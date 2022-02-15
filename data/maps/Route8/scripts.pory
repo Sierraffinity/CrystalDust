@@ -1,1 +1,30 @@
 mapscripts Route8_MapScripts {}
+
+script Route8_EventScript_BikerDwayne{ //topmost
+    trainerbattle_single(TRAINER_DWAYNE, "We're the KANTO POKéMON FEDERATION\ntrainer group.\pWe'll drive you under our wheels!", "S-sorry!")
+	msgbox("The KANTO POKéMON FEDERATION will\nnever fall!", MSGBOX_AUTOCLOSE)
+}
+
+script Route8_EventScript_BikerHarris{ //middle
+    trainerbattle_single(TRAINER_HARRIS, "The cops shut down our UNDERGROUND\nPATH! That really fries me!", "F-forgive me!")
+	msgbox("Wiped out by some punk from JOHTO…", MSGBOX_AUTOCLOSE)
+}
+
+script Route8_EventScript_BikerZeke{ //bottom
+    trainerbattle_single(TRAINER_ZEKE, "We're the KANTO POKéMON FEDERATION!\nRight on!", "Yikes!\nSorry!")
+	msgbox("We'll try not to disturb anyone\nfrom now on…", MSGBOX_AUTOCLOSE)
+}
+
+script Route8_EventScript_SuperNerdSam{ // leftmost
+    trainerbattle_single(TRAINER_SAM, "How does the MAGNET TRAIN work?", "I just want to see the MAGNET TRAIN…")
+	msgbox("The power of magnets is awesome!", MSGBOX_AUTOCLOSE)
+}
+
+script Route8_EventScript_SuperNerdTom{ //rightmost 
+    trainerbattle_single(TRAINER_TOM, "Hm…\nYou've got many GYM BADGES.", "Just as I thought…\nYou're tough!")
+	msgbox("GYM BADGES give you advantages\nin battles.", MSGBOX_AUTOCLOSE)
+}
+
+script Route8_EventScript_UndergroundPathSign{ 
+	msgbox("The flyer's torn.\nIt's impossible to read…", MSGBOX_SIGN)
+}
