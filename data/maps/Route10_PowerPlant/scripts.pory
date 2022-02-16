@@ -1,1 +1,238 @@
-mapscripts Route10_PowerPlant_MapScripts {}
+mapscripts Route10_PowerPlant_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setvar(VAR_TEMP_0, 1)
+    }
+}
+
+script Route10_PowerPlant_EventScript_Manager{
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        if(flag(FLAG_GOT_TM34_SHOCK_WAVE))
+        {
+            msgbox("MANAGER: My beloved generator!\nKeep pump the electricity out!", MSGBOX_NPC)
+            end
+        }
+        else
+        {
+            lock
+            faceplayer
+            msgbox("Wahah!\nThanks!\pHere!\nTake this TM as a reward!", MSGBOX_DEFAULT)
+            checkitemspace(ITEM_TM34, 1)
+            if(!var(VAR_RESULT))
+            {
+                call(Common_EventScript_BagIsFull)
+                release
+                end
+            }
+            giveitem(ITEM_TM34, 1)
+            setflag(FLAG_GOT_TM34_SHOCK_WAVE)
+            msgbox("MANAGER: TM34 is my SHOCK WAVE.\nIt's an accurate technique!\pIt doesn't pack a huge\nwallop, but it will never miss!", MSGBOX_DEFAULT)
+            closemessage
+            release
+            end
+        }
+    }
+    checkitem(ITEM_MACHINE_PART, 1)
+    if(var(VAR_RESULT))
+    {
+        lock
+        faceplayer
+        msgbox("MANAGER: Ah!\nYeah!\pThat's the missing PART from my\nbeloved generator! You found it?", MSGBOX_DEFAULT)
+        removeitem(ITEM_MACHINE_PART, 1)
+        setflag(FLAG_RETURNED_MACHINE_PART)
+        clearflag(FLAG_HIDE_GOLDENROD_CITY_MAGNET_TRAIN_STATION_PRESIDENT)
+        goto(Route10_PowerPlant_EventScript_Manager)
+    }
+    if(flag(FLAG_MET_MANAGER_AT_POWER_PLANT))
+    {
+        msgbox("MANAGER: I won't forgive him!\pThe culprit can cry and apologize,\nbut I'll still hammer him!\pGahahahah!", MSGBOX_NPC)
+        end
+    }
+    msgbox("MANAGER: I, I, I'm ready to blast\nsomeone!\pWho would dare ruin my generator?\nI spent so much time on it!\pIf I catch him, he's going to get\na taste of my SHOCK WAVE!", MSGBOX_NPC)
+    setflag(FLAG_MET_MANAGER_AT_POWER_PLANT)
+    setvar(VAR_TEMP_0, 0)
+    end
+}
+
+script Route10_PowerPlant_EventScript_Triggers{
+    lockall
+    playse(SE_PHONE_CALL)
+    delay(30)
+    playse(SE_PHONE_CALL)
+    turnobject(1, DIR_NORTH)
+    delay(30)
+    waitse
+    applymovement(1, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    applymovement(1, Route10_PowerPlant_Movement_OfficerToWorker)
+    waitmovement(0)
+    turnobject(2, DIR_SOUTH)
+    turnobject(3, DIR_SOUTH)
+    textcolor(0)
+    msgbox("I just got word from CERULEAN.\pIt appears that a shady character\nhas been loitering around.", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    turnobject(1, DIR_WEST)
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_RESULT) == 6)
+    {
+        applymovement(1, Route10_PowerPlant_Movement_OfficerLeft)
+        waitmovement(0)
+    }
+    msgbox(Route10_PowerPlant_Text_OfficerCooperation, MSGBOX_DEFAULT)
+    closemessage
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    applymovement(1, Route10_PowerPlant_Movement_OfficerDown)
+    waitmovement(0)
+    if(var(VAR_RESULT) == 6)
+    {
+        applymovement(1, Route10_PowerPlant_Movement_OfficerWalkLeft1)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(1, Route10_PowerPlant_Movement_OfficerWalkLeft2)
+        waitmovement(0)
+    }
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+    end
+}movement(local) Route10_PowerPlant_Movement_OfficerToWorker{
+    walk_right * 4
+    walk_up * 3
+}movement(local) Route10_PowerPlant_Movement_OfficerLeft{
+    walk_left
+}text(local) Route10_PowerPlant_Text_OfficerCooperation{
+    "Could I ask for your cooperation?"
+}movement(local) Route10_PowerPlant_Movement_OfficerDown{
+    walk_down * 3
+}movement(local) Route10_PowerPlant_Movement_OfficerWalkLeft1{
+    walk_left * 3
+    face_down
+}movement(local) Route10_PowerPlant_Movement_OfficerWalkLeft2{
+    walk_left * 4
+    face_down
+}
+
+script Route10_PowerPlant_EventScript_Officer1{ // nearest entrance
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("We'll have to beef up our security\npresence.", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_MET_MANAGER_AT_POWER_PLANT))
+    {
+        msgbox(Route10_PowerPlant_Text_OfficerCooperation, MSGBOX_NPC)
+        end
+    }
+    msgbox("A thief broke into the POWER PLANT…\nWhat is the world coming to?", MSGBOX_NPC)
+    end
+}
+
+script Route10_PowerPlant_EventScript_Worker{ // nearest entrance
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("The generator's running again!", MSGBOX_NPC)
+        end
+    }
+    msgbox("This POWER PLANT had been\nabandoned in the past.\pWe got it up and running to\nprovide power to the MAGNET TRAIN.", MSGBOX_NPC)
+    end
+}
+
+script Route10_PowerPlant_EventScript_SuperNerd{
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("The generator's running again!", MSGBOX_NPC)
+        end
+    }
+    msgbox("Someone made off with a part that's\nessential for the generator.\pWithout it, the new generator's\nuseless!", MSGBOX_NPC)
+    end
+}
+
+script Route10_PowerPlant_EventScript_GymGuide{
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("All right! We can finally get the\nMAGNET TRAIN running again.", MSGBOX_NPC)
+        end
+    }
+    msgbox("The MAGNET TRAIN consumes a lot\nof electricity.\pIt can't move if the new generator\nisn't operating.", MSGBOX_NPC)
+    end
+}
+
+script Route10_PowerPlant_EventScript_Officer2{ // nearest generator room
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("Since the generator's been fixed,\nthe MANAGER has been cheerful.", MSGBOX_NPC)
+        end
+    }
+    msgbox("The POWER PLANT's manager is up\nahead.\pBut since someone wrecked the\ngenerator, he's been both sad\land furious…", MSGBOX_NPC)
+    end
+}
+
+script Route10_PowerPlant_EventScript_Forest { // at table
+    lock
+    faceplayer
+    setvar(VAR_0x8008, INGAME_TRADE_MAGNETON)
+    copyvar(VAR_0x8004, VAR_0x8008)
+    specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+    copyvar(VAR_0x8009, VAR_RESULT)
+
+    if (!flag(FLAG_POWER_PLANT_NPC_TRADE_COMPLETED))
+    {
+        msgbox("I collect POKéMON.\n"
+               "Do you have {STR_VAR_1}?\p"
+               "Want to trade it for my {STR_VAR_2}?", MSGBOX_YESNO)
+        
+        if (var(VAR_RESULT) != NO)
+        {
+            special(ChoosePartyMon)
+            waitstate
+            lock
+            faceplayer
+            copyvar(VAR_0x800A, VAR_0x8004)
+            
+            if (var(VAR_0x8004) != 0xFF)
+            {
+                copyvar(VAR_0x8005, VAR_0x800A)
+                specialvar(VAR_RESULT, GetTradeSpecies)
+                copyvar(VAR_0x800B, VAR_RESULT)
+
+                if (var(VAR_RESULT) == VAR_0x8009)
+                {
+                    copyvar(VAR_0x8004, VAR_0x8008)
+                    copyvar(VAR_0x8005, VAR_0x800A)
+                    special(CreateInGameTradePokemon)
+                    special(DoInGameTradeScene)
+                    waitstate
+                    lock
+                    faceplayer
+                    bufferspeciesname(0, VAR_0x8009)
+                    msgbox("Yay! I got myself {STR_VAR_1}!\n"
+                           "Thanks!")
+                    setflag(FLAG_POWER_PLANT_NPC_TRADE_COMPLETED)
+                }
+                else
+                {
+                    bufferspeciesname(0, VAR_0x8009)
+                    msgbox("Huh? That's not {STR_VAR_1}.\n"
+                           "What a letdown…")
+                }
+            }
+            else
+            {
+                msgbox(GoldenrodCity_DeptStore_5F_Text_Mike_NoTrade)
+            }
+        }
+        else
+        {
+            msgbox(GoldenrodCity_DeptStore_5F_Text_Mike_NoTrade)
+        }
+    }
+    else
+    {
+        bufferspeciesname(0, VAR_0x8009)
+        msgbox("Hi, how's my old {STR_VAR_2} doing?")
+    }
+    release
+}

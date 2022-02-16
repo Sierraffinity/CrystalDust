@@ -511,8 +511,7 @@
 #define FLAG_TALKED_TO_WARDENS_GRANDDAUGHTER 0x1E0
 #define FLAG_GOT_TM06_TOXIC                  0x1E1
 #define FLAG_GOT_TM47_STEEL_WING             0x1E2
-// STOPPED HERE
-#define FLAG_UNUSED_0x1E3                    0x1E3 // Unused Flag
+#define FLAG_MET_MANAGER_AT_POWER_PLANT      0x1E3
 
 // Mystery Gift Flags (Unknown)
 #define FLAG_MYSTERY_EVENT_DONE              0x1E4
@@ -828,8 +827,11 @@
 #define FLAG_HIDE_BLACKTHORN_GYM_BOULDER_1                          0x30F
 #define FLAG_HIDE_BLACKTHORN_GYM_BOULDER_2                          0x310
 #define FLAG_HIDE_BLACKTHORN_GYM_BOULDER_3                          0x311
-#define FLAG_HIDE_ROUTE_119_SCOTT                                   0x312
-#define FLAG_HIDE_LILYCOVE_MOTEL_SCOTT                              0x313
+
+//Scripts continued
+#define FLAG_POWER_PLANT_NPC_TRADE_COMPLETED                        0x312
+#define FLAG_GOT_TM34_SHOCK_WAVE                                    0x313
+// STOPPED HERE
 #define FLAG_HIDE_MOSSDEEP_CITY_SCOTT                               0x314
 #define FLAG_HIDE_FANCLUB_OLD_LADY                                  0x315
 #define FLAG_HIDE_FANCLUB_BOY                                       0x316
