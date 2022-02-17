@@ -1,5 +1,6 @@
 mapscripts Route10_PowerPlant_MapScripts {
     MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_POWER_PLANT)
         setvar(VAR_TEMP_0, 1)
     }
 }

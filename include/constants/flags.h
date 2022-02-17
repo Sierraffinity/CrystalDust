@@ -1463,7 +1463,7 @@
 #define FLAG_SYS_CTRL_OBJ_DELETE                    (SYSTEM_FLAGS + 0x61)
 #define FLAG_SYS_RESET_RTC_ENABLE                   (SYSTEM_FLAGS + 0x62)
 
-#define FLAG_LANDMARK_BERRY_MASTERS_HOUSE           (SYSTEM_FLAGS + 0x63)
+#define FLAG_LANDMARK_POWER_PLANT                   (SYSTEM_FLAGS + 0x63)
 
 #define FLAG_SYS_TOWER_SILVER                       (SYSTEM_FLAGS + 0x64)
 #define FLAG_SYS_TOWER_GOLD                         (SYSTEM_FLAGS + 0x65)
@@ -1496,15 +1496,13 @@
 
 #define FLAG_ENTERED_MIRAGE_TOWER                   (SYSTEM_FLAGS + 0x7C)
 #define FLAG_LANDMARK_ALTERING_CAVE                 (SYSTEM_FLAGS + 0x7D)
-#define FLAG_LANDMARK_DESERT_UNDERPASS              (SYSTEM_FLAGS + 0x7E)
+#define FLAG_LANDMARK_ROCK_TUNNEL                   (SYSTEM_FLAGS + 0x7E)
 #define FLAG_LANDMARK_ARTISAN_CAVE                  (SYSTEM_FLAGS + 0x7F)
 #define FLAG_ENABLE_SHIP_NAVEL_ROCK                 (SYSTEM_FLAGS + 0x80)
 #define FLAG_ARRIVED_AT_NAVEL_ROCK                  (SYSTEM_FLAGS + 0x81)
 #define FLAG_LANDMARK_TRAINER_HILL                  (SYSTEM_FLAGS + 0x82)
-
-#define FLAG_UNUSED_0x8E3                           (SYSTEM_FLAGS + 0x83) // Unused Flag
-
-#define FLAG_RECEIVED_POKEDEX_FROM_BIRCH            (SYSTEM_FLAGS + 0x84)
+#define FLAG_LANDMARK_DIGLETTS_CAVE                 (SYSTEM_FLAGS + 0x83)
+#define FLAG_LANDMARK_MT_MOON                       (SYSTEM_FLAGS + 0x84)
 
 #define FLAG_BADGE09_GET                            (SYSTEM_FLAGS + 0x85)
 #define FLAG_BADGE10_GET                            (SYSTEM_FLAGS + 0x86)
@@ -1515,8 +1513,9 @@
 #define FLAG_BADGE15_GET                            (SYSTEM_FLAGS + 0x8B)
 #define FLAG_BADGE16_GET                            (SYSTEM_FLAGS + 0x8C)
 
-#define FLAG_UNUSED_0x8ED                           (SYSTEM_FLAGS + 0x8D) // Unused Flag
-#define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag
+#define FLAG_LANDMARK_VIRIDIAN_FOREST               (SYSTEM_FLAGS + 0x8D)
+#define FLAG_LANDMARK_LAVENDER_RADIO_TOWER          (SYSTEM_FLAGS + 0x8E)
+
 #define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag
 #define FLAG_UNUSED_0x8F0                           (SYSTEM_FLAGS + 0x90) // Unused Flag
 #define FLAG_UNUSED_0x8F1                           (SYSTEM_FLAGS + 0x91) // Unused Flag

@@ -86,7 +86,6 @@ static const struct Landmark Landmark_OceanCurrent = {LandmarkName_OceanCurrent,
 static const struct Landmark Landmark_LanettesHouse = {LandmarkName_LanettesHouse, -1};
 static const struct Landmark Landmark_FieryPath = {LandmarkName_FieryPath, -1};
 static const struct Landmark Landmark_JaggedPass = {LandmarkName_JaggedPass, -1};
-static const struct Landmark Landmark_BerryMastersHouse = {LandmarkName_BerryMastersHouse, FLAG_LANDMARK_BERRY_MASTERS_HOUSE};
 static const struct Landmark Landmark_IslandCave = {LandmarkName_IslandCave, -1};
 static const struct Landmark Landmark_DesertRuins = {LandmarkName_DesertRuins, -1};
 static const struct Landmark Landmark_ScorchedSlab = {LandmarkName_ScorchedSlab, -1};
@@ -288,7 +287,6 @@ static const struct Landmark *const Landmarks_Route122_0[]  =
 
 static const struct Landmark *const Landmarks_Route123_0[]  =
 {
-    &Landmark_BerryMastersHouse,
     NULL,
 };
 

@@ -1,1 +1,5 @@
-mapscripts RockTunnel_1F_MapScripts {}
+mapscripts RockTunnel_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_ROCK_TUNNEL)
+    }
+}
