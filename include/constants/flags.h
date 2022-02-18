@@ -832,13 +832,13 @@
 #define FLAG_POWER_PLANT_NPC_TRADE_COMPLETED                        0x312
 #define FLAG_GOT_TM34_SHOCK_WAVE                                    0x313
 #define FLAG_PEWTER_CITY_NPC_TRADE_COMPLETED                        0x314
-// STOPPED HERE
 #define FLAG_HIDE_FANCLUB_OLD_LADY                                  0x315
 #define FLAG_HIDE_FANCLUB_BOY                                       0x316
 #define FLAG_HIDE_FANCLUB_LITTLE_BOY                                0x317
 #define FLAG_HIDE_FANCLUB_LADY                                      0x318
-#define FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT               0x319
-#define FLAG_HIDE_NEW_BARK_TOWN_RIVAL2                              0x31A
+#define FLAG_BLACKTHORN_CITY_NPC_TRADE_COMPLETED                    0x319
+#define FLAG_ROUTE_14_NPC_TRADE_COMPLETED                           0x31A
+// STOPPED HERE
 #define FLAG_HIDE_NEW_BARK_TOWN_BIRCH                               0x31B
 #define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1                          0x31C
 #define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1                           0x31D

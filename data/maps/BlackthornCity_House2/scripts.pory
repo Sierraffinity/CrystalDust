@@ -8,7 +8,7 @@ script BlackthornCity_House2_EventScript_Emy {
     specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
     copyvar(VAR_0x8009, VAR_RESULT)
 
-    if (!flag(FLAG_OLIVINE_NPC_TRADE_COMPLETED))
+    if (!flag(FLAG_BLACKTHORN_CITY_NPC_TRADE_COMPLETED))
     {
         msgbox("{STR_VAR_1}'s cute, but I don't have\nit. Do you have {STR_VAR_1}♀?\lWant to trade it for my {STR_VAR_2}?", MSGBOX_YESNO)
         
@@ -38,7 +38,7 @@ script BlackthornCity_House2_EventScript_Emy {
                     faceplayer
                     bufferspeciesname(0, VAR_0x8009)
                     msgbox("Wow! Thank you!\nI always wanted {STR_VAR_1}!")
-                    setflag(FLAG_OLIVINE_NPC_TRADE_COMPLETED)
+                    setflag(FLAG_BLACKTHORN_CITY_NPC_TRADE_COMPLETED)
                 }
                 else
                 {

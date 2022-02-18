@@ -1,1 +1,86 @@
 mapscripts Route14_MapScripts {}
+
+script Route14_EventScript_PokefanMTrevor { //left
+    trainerbattle_single(TRAINER_TREVOR, "Hi.\nDid you know…?\pPOKéMON get more friendly if\nyou train them in a place that\lthey remember.", "Where did I meet this PSYDUCK?")
+	msgbox("When and where did I get my\nPOKéMON…?\pI bet if I checked its SUMMARY,\nI'd remember!", MSGBOX_DEFAULT)
+    // The original line was, "If only there were\nan easy way to\pidentify where I\ngot my POKéMON…"
+    // Which doesn't make sense in the context of Gen 3. This new line is inspired by HGSS which was,
+    // "When and where did I get my Pokémon…\pI'll bet if I checked my Trainer Memo,\nI'd remember!"
+	release
+}
+
+script Route14_EventScript_PokefanMCarter { //right
+    trainerbattle_single(TRAINER_CARTER, "Let me tell you, I had a hard time\ncatching my prized POKéMON.", "Awaaah!")
+	msgbox("SQUIRTLE, CHARMANDER and BULBASAUR…\nI think that's a well-balanced mix.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route14_EventScript_BirdKeeperRoy {
+    trainerbattle_single(TRAINER_ROY, "My dream is to fly with my\nbeloved bird POKéMON.", "I can dream, but I can't ever fly…")
+	msgbox("You have POKéMON that know the HM\nmove FLY, don't you? I envy you.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route14_EventScript_Kim {
+    lock
+    faceplayer
+    setvar(VAR_0x8008, INGAME_TRADE_AERODACTYL)
+    copyvar(VAR_0x8004, VAR_0x8008)
+    specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+    copyvar(VAR_0x8009, VAR_RESULT)
+
+    if (!flag(FLAG_ROUTE_14_NPC_TRADE_COMPLETED))
+    {
+        msgbox("{STR_VAR_1}'s cute, but I don't have\nit. Do you have {STR_VAR_1}?\lWant to trade it for my {STR_VAR_2}?", MSGBOX_YESNO)
+        
+        if (var(VAR_RESULT) != NO)
+        {
+            special(ChoosePartyMon)
+            waitstate
+            lock
+            faceplayer
+            copyvar(VAR_0x800A, VAR_0x8004)
+            
+            if (var(VAR_0x8004) != 0xFF)
+            {
+                copyvar(VAR_0x8005, VAR_0x800A)
+                specialvar(VAR_RESULT, GetTradeSpecies) // dumps selected party species to VAR_RESULT
+                copyvar(VAR_0x800B, VAR_RESULT)
+
+                if (var(VAR_RESULT) == VAR_0x8009) // 0x8009 is requested species
+                {
+                    msgbox("OK, connect the Game Link Cable.", MSGBOX_DEFAULT)
+                    copyvar(VAR_0x8004, VAR_0x8008)
+                    copyvar(VAR_0x8005, VAR_0x800A)
+                    special(CreateInGameTradePokemon)
+                    special(DoInGameTradeScene)
+                    waitstate
+                    lock
+                    faceplayer
+                    bufferspeciesname(0, VAR_0x8009)
+                    msgbox("Wow! Thank you!\nI always wanted {STR_VAR_1}!")
+                    setflag(FLAG_ROUTE_14_NPC_TRADE_COMPLETED)
+                }
+                else
+                {
+                    bufferspeciesname(0, VAR_0x8009)
+                    msgbox("That's not {STR_VAR_1}.\nPlease trade with me if you get one.")
+                }
+            }
+            else
+            {
+                msgbox(BlackthornCity_House2_Text_Emy_NoTrade)
+            }
+        }
+        else
+        {
+            msgbox(BlackthornCity_House2_Text_Emy_NoTrade)
+        }
+    }
+    else
+    {
+        bufferspeciesname(0, VAR_0x8009)
+        msgbox("How is that {STR_VAR_2} I traded you\ndoing? Your {STR_VAR_1}'s so cute!")
+    }
+    release
+}
