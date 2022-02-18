@@ -1,0 +1,36 @@
+mapscripts Route18_Gatehouse_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        clearflag(FLAG_SYS_CYCLING_ROAD)
+        checkitem(ITEM_BICYCLE, 1)
+        if(var(VAR_RESULT))
+        {
+            setvar(VAR_TEMP_0, 0)
+        }
+    }
+}
+
+script Route18_Gatehouse_1F_EventScript_Officer{
+    msgbox("CYCLING ROAD is all uphill from\nthis end. It's really challenging.\pThough, it may be interesting to go\nup once pushing hard on the pedals.", MSGBOX_NPC)
+    end
+    // The original line here was, "CYCLING ROAD\nUphill Starts Here" which seems more like
+    // misplaced sign text from the sign that was to the left of this Gatehouse in RGBY/FRLG
+    // but isn't present in GSC/HGSS. The new text is modified from HGSS, where the line was
+    // "Cycling Road is all uphill from this end.\nIt's really challenging.\pAlthough, it may be interesting to go up\nonce pushing really hard on the pedals."
+}
+
+script Route18_Gatehouse_1F_EventScript_Triggers{
+    lockall
+    applymovement(1, Common_Movement_ExclamationMark)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    playse(SE_PIN)
+    textcolor(0)
+    msgbox("Hang on! Don't you have a BICYCLE?\nThe CYCLING ROAD is beyond here.\pYou have to have a BICYCLE\nto go on.", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(OBJ_EVENT_ID_PLAYER, Route18_Gatehouse_1F_Movement_DeniedAccess)
+    waitmovement(0)
+    releaseall
+    end
+}movement Route18_Gatehouse_1F_Movement_DeniedAccess{
+    walk_right
+    face_left
+}

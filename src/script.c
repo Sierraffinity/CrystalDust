@@ -1,11 +1,13 @@
 #include "global.h"
 #include "script.h"
 #include "event_data.h"
+#include "field_player_avatar.h"
 #include "mevent.h"
 #include "pokemon_storage_system.h"
 #include "string_util.h"
 #include "tv.h"
 #include "util.h"
+#include "constants/layouts.h"
 #include "constants/map_scripts.h"
 #include "constants/moves.h"
 
@@ -702,4 +704,34 @@ void CheckHasFossils(void)
         multichoiceCase |= 1 << 0;
 
     gSpecialVar_Result = multichoiceCase;
+}
+
+void CheckShouldForceBike(void)
+{
+    if(gMapHeader.mapLayoutId == LAYOUT_ROUTE18)
+    {
+        if(gSaveBlock1Ptr->pos.x <= 41 && gSaveBlock1Ptr->pos.y <= 11)
+        {
+            FlagSet(FLAG_SYS_CYCLING_ROAD);
+            if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
+            {
+                if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
+                    SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
+                return;
+            }
+        }
+    }
+    if(gMapHeader.mapLayoutId == LAYOUT_ROUTE16)
+    {
+        if(gSaveBlock1Ptr->pos.x <= 20 && gSaveBlock1Ptr->pos.y >= 10)
+        {
+            FlagSet(FLAG_SYS_CYCLING_ROAD);
+            if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
+            {
+                if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
+                    SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
+                return;
+            }
+        }
+    }
 }

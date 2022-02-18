@@ -1,0 +1,18 @@
+mapscripts Route18_Gatehouse_2F_MapScripts {}
+
+script Route18_Gatehouse_2F_EventScript_LeftBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}PALLET TOWN is in the west.", MSGBOX_SIGN)
+    end
+}
+
+script Route18_Gatehouse_2F_EventScript_RightBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}There are people swimming.", MSGBOX_SIGN)
+    end
+}
+
+script Route18_Gatehouse_2F_EventScript_Boy{
+    msgbox("Three years ago I traded away my\nLICKITUNG to some random trainer.\pIt turned out that that trainer\nlater became the LEAGUE CHAMPION!\pI like to think that my LICKITUNG\nis the reason that happened.", MSGBOX_NPC)
+    end
+}

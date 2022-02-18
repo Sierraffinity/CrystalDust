@@ -1093,3 +1093,5 @@ Common_EventScript_FindItem::
 	.include "data/maps/Route11_Gatehouse_2F/scripts.inc"
 	.include "data/maps/Route4_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/Route4_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/Route18_Gatehouse_1F/scripts.inc"
+	.include "data/maps/Route18_Gatehouse_2F/scripts.inc"

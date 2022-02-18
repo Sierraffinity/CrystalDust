@@ -1,1 +1,33 @@
-mapscripts Route18_MapScripts {}
+mapscripts Route18_MapScripts {
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_0, 0: Mapscript_CyclingRoadForceMountBike
+    ]
+}
+
+script Mapscript_CyclingRoadForceMountBike{
+    callnative(CheckShouldForceBike)
+    setvar(VAR_TEMP_0, 1)
+}
+
+script Route18_EventScript_BirdKeeperBob { //nearest gatehouse
+    trainerbattle_single(TRAINER_BOB, "CYCLING ROAD is a quick shortcut\nto CELADON.", "…Whew!")
+	msgbox("If you don't have a BICYCLE, you're\nnot allowed to use the shortcut.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route18_EventScript_BirdKeeperBoris { //in grass
+    trainerbattle_single(TRAINER_BORIS, "If you're looking for POKéMON, you\nhave to look in the tall grass.", "Ayieee!")
+	msgbox("Since you're so strong, it must be\nfun to battle.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route18_EventScript_RouteSign{
+    msgbox("ROUTE 18\nCELADON CITY - FUCHSIA CITY", MSGBOX_SIGN)
+}
+
+script Route18_EventScript_UphillSign{
+    msgbox("CYCLING ROAD\nUphill Starts Here", MSGBOX_SIGN)
+    end
+    // Repurposed for a sign that was removed in GSC but present in RGBY/FRLG.
+    // This line was originally used for the officer in the Route 18 gatehouse.
+}

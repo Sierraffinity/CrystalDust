@@ -51,6 +51,7 @@
     "gRoute15Interiors",
     "gRoute16Interiors",
     "gRoute17Interiors",
+    "gRoute18Interiors",
     "gRoute19Interiors",
     "gRoute20Interiors",
     "gRoute25Interiors",
@@ -546,6 +547,10 @@
   "gRoute17Interiors": [
     "Route17_Gatehouse_1F",
     "Route17_Gatehouse_2F"
+  ],
+  "gRoute18Interiors": [
+    "Route18_Gatehouse_1F",
+    "Route18_Gatehouse_2F"
   ],
   "gRoute19Interiors": [
     "Route19_Gatehouse"
