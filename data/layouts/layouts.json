@@ -3076,7 +3076,7 @@
     {
       "id": "LAYOUT_ROUTE13",
       "name": "Route13_Layout",
-      "width": 72,
+      "width": 96,
       "height": 20,
       "border_width": 2,
       "border_height": 2,
@@ -3089,7 +3089,7 @@
       "id": "LAYOUT_ROUTE14",
       "name": "Route14_Layout",
       "width": 24,
-      "height": 60,
+      "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_GeneralKanto",

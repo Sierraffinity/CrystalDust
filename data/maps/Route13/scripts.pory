@@ -1,1 +1,46 @@
 mapscripts Route13_MapScripts {}
+
+script Route13_EventScript_BirdKeeperPerry { //left
+    trainerbattle_single(TRAINER_PERRY, "Agility is the key attribute\nof bird POKéMON.", "You beat me with your speed…")
+	msgbox("Your POKéMON are remarkably\nwell-trained.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route13_EventScript_BirdKeeperBret { //right
+    trainerbattle_single(TRAINER_BRET, "Check out my POKéMON. Just look at\ntheir coloring and their plumage.", "Shoot!\nNot good enough!")
+	msgbox("If you groom them, POKéMON\nget happy.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route13_EventScript_HikerKenny {
+    trainerbattle_single(TRAINER_KENNY, "I should go to ROCK TUNNEL to get\nmyself an ONIX.", "I lost…")
+	msgbox("Geological features don't appear\nto change.\pBut they actually change, little\nby little.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route13_EventScript_PokefanMJoshua { //right
+    trainerbattle_single(TRAINER_JOSHUA, "Nihihi! Would you like to battle\nmy PIKACHU gang?", "PI-PIKACHU!")
+	msgbox("You look like you have many POKéMON,\nbut PIKACHU is still the best.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route13_EventScript_PokefanMAlex { //left
+    trainerbattle_single(TRAINER_ALEX, "Bow down before my regal POKéMON!", "How…\nHow dare you mock royalty!")
+	msgbox("Doesn't everyone wish to someday\nbe a king?", MSGBOX_DEFAULT)
+	release
+}
+
+script Route13_EventScript_DirectionsSign {
+    msgbox("NORTH TO LAVENDER TOWN\nWEST TO FUCHSIA CITY", MSGBOX_SIGN)
+    end
+}
+
+script Route13_EventScript_RouteSign {
+    msgbox("ROUTE 13\nNORTH TO SILENCE BRIDGE", MSGBOX_SIGN)
+    end
+}
+
+script Route13_EventScript_TrainerTipsSign {
+    msgbox("TRAINER TIPS\pLook! Right there, at the left side\nof the post.", MSGBOX_SIGN)
+    end
+}

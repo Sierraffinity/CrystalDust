@@ -27,7 +27,7 @@
     },
     {
       "direction": "down",
-      "offset": -48,
+      "offset": -72,
       "map": "MAP_ROUTE13"
     }
   ],
@@ -195,6 +195,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route12_EventScript_RouteSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 18,
+      "y": 35,
+      "elevation": 3,
+      "item": "ITEM_ELIXIR",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_12_ELIXIR"
     }
   ]
 }

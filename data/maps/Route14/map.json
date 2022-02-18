@@ -17,11 +17,11 @@
   "connections": [
     {
       "direction": "left",
-      "offset": 40,
+      "offset": 20,
       "map": "MAP_ROUTE15"
     },
     {
-      "direction": "right",
+      "direction": "up",
       "offset": 0,
       "map": "MAP_ROUTE13"
     }
