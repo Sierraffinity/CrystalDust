@@ -8,17 +8,17 @@ mapscripts Route12_Gatehouse_2F_MapScripts {
     }
 }
 
-script Route12_Gatehouse_1F_EventScript_Woman {
+script Route12_Gatehouse_2F_EventScript_Woman {
     msgbox("I work at the LAVENDER RADIO TOWER.\nI like to take my lunch breaks here.", MSGBOX_NPC)
     end
 }
 
-script Route12_Gatehouse_1F_EventScript_OldMan {
+script Route12_Gatehouse_2F_EventScript_OldMan {
     msgbox("I heard the view from here is\nmagnificent, but I forgot my glasses!", MSGBOX_NPC)
     end
 }
 
-script Route12_Gatehouse_1F_EventScript_LeftBinoculars {
+script Route12_Gatehouse_2F_EventScript_LeftBinoculars {
     bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
     msgbox("{STR_VAR_1}There's a man fishing!", MSGBOX_SIGN)
     end
@@ -26,7 +26,7 @@ script Route12_Gatehouse_1F_EventScript_LeftBinoculars {
     "Let's see what the binoculars have\nto show…\p"
 }
 
-script Route12_Gatehouse_1F_EventScript_RightBinoculars {
+script Route12_Gatehouse_2F_EventScript_RightBinoculars {
     bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
     msgbox("{STR_VAR_1}It's the LAVENDER RADIO TOWER!", MSGBOX_SIGN)
     end

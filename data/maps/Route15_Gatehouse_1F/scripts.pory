@@ -1,1 +1,6 @@
 mapscripts Route15_Gatehouse_1F_MapScripts {}
+
+script Route15_Gatehouse_1F_EventScript_Officer {
+    msgbox("You're working on a POKéDEX?\nThat's really something.\lDon't give up!", MSGBOX_NPC)
+    end
+}

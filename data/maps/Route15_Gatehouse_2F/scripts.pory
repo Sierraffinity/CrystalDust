@@ -1,1 +1,18 @@
 mapscripts Route15_Gatehouse_2F_MapScripts {}
+
+script Route15_Gatehouse_2F_EventScript_SchoolKid {
+    msgbox("Hehehe…\pI'm playing hooky from my field trip.\nI'm gonna hang in FUCHSIA all day!", MSGBOX_NPC)
+    end
+}
+
+script Route15_Gatehouse_2F_EventScript_LeftBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}It's the sea!", MSGBOX_SIGN)
+    end
+}
+
+script Route15_Gatehouse_2F_EventScript_RightBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}It looks like a small island on\nthe horizon!", MSGBOX_SIGN)
+    end
+}

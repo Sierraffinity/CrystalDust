@@ -1,1 +1,42 @@
 mapscripts Route15_MapScripts {}
+
+script Route15_EventScript_SchoolBoyJohnny { //rightmost
+    trainerbattle_single(TRAINER_JOHNNY, "We're on a field trip to LAVENDER\nRADIO TOWER for social studies.", "You're wickedly tough!")
+	msgbox("I'm tired of walking.\nI need to take a break.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route15_EventScript_TeacherColette { //right teacher
+    trainerbattle_single(TRAINER_COLETTE, "Have you forgotten anything?", "Kyaaah!")
+	msgbox("Before I became a teacher, I used\nto forget a lot of things.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route15_EventScript_SchoolBoyBilly { // second from right
+    trainerbattle_single(TRAINER_BILLY, "My favorite class is gym!", "Oh no!\nHow could I lose?")
+	msgbox("If POKéMON were a subject at\nschool, I'd be the best!", MSGBOX_DEFAULT)
+	release
+}
+
+script Route15_EventScript_TeacherHillary { //left teacher
+    trainerbattle_single(TRAINER_HILLARY, "On sunny days, I think that the\nkids would rather be playing in the\lschoolyard than studying in class.", "I didn't want to lose…")
+	msgbox("Studying is important, but exercise\nis just as vital.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route15_EventScript_SchoolBoyTommy { // second from left
+    trainerbattle_single(TRAINER_TOMMY, "Let's battle.\nI won't lose!", "I forgot to do my homework!")
+	msgbox("Sayonara! I just learned that in\nmy Japanese class.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route15_EventScript_SchoolBoyKipp { // leftmost
+    trainerbattle_single(TRAINER_KIPP, "Hang on.\nI have to phone my mom.", "Sorry, Mom!\nI was beaten!")
+	msgbox("My mom worries so much about me,\nI have to phone her all the time.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route15_EventScript_RouteSign {
+    msgbox("ROUTE 15\nFUCHSIA CITY - LAVENDER TOWN", MSGBOX_SIGN)
+    end
+}

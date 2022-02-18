@@ -34,7 +34,7 @@
       "x": 68,
       "y": 5,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -116,13 +116,6 @@
       "trainer_sight_or_berry_tree_id": "5",
       "script": "Route13_EventScript_HikerKenny",
       "flag": "0"
-    },
-    {
-      "type": "clone",
-      "x": 7,
-      "y": 28,
-      "source_id": 2,
-      "source_map": "MAP_ROUTE14"
     }
   ],
   "warp_events": [
