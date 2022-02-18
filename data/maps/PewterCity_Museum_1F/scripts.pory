@@ -1,1 +1,657 @@
+// 1st letter of fossil
+                 //CRODH
+const H     =  1 //00001
+const D     =  2 //00010
+const HD    =  3 //00011
+const O     =  4 //00100
+const HO    =  5 //00101
+const DO    =  6 //00110
+const HDO   =  7 //00111
+const R     =  8 //01000
+const HR    =  9 //01001
+const DR    = 10 //01010
+const HDR   = 11 //01011
+const OR    = 12 //01100
+const HOR   = 13 //01101
+const DOR   = 14 //01110
+const HDOR  = 15 //01111
+const C     = 16 //10000
+const HC    = 17 //10001
+const DC    = 18 //10010
+const HDC   = 19 //10011
+const OC    = 20 //10100
+const HOC   = 21 //10101
+const DOC   = 22 //10110
+const HDOC  = 23 //10111
+const RC    = 24 //11000
+const HRC   = 25 //11001
+const DRC   = 26 //11010
+const HDRC  = 27 //11011
+const ORC   = 28 //11100
+const HORC  = 29 //11101
+const DORC  = 30 //11110
+const HDORC = 31 //11111
+
 mapscripts PewterCity_Museum_1F_MapScripts {}
+
+script PewterCity_Museum_1F_EventScript_WorkerM{
+    lock
+    faceplayer
+    if(var(VAR_FACING) == DIR_EAST)
+    {   //across the counter
+        msgbox("Please enjoy yourself.", MSGBOX_NPC)
+        end
+    }
+    //behind the counter
+    msgbox("After the CINNABAR volcano erupted,\nscientists from the LAB there had\lnowhere to go.\pIt was decided that they could work\nhere for the time being.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_OldMan{
+    msgbox("I should be grateful for my long\nlife.\pNever did I think I would get to\nsee the bones of a dragon!", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_SuperNerd{
+    msgbox("There are two places that I love!\nOne is the RUINS OF ALPH in JOHTO…\pThe other is the PEWTER MUSEUM!\nIt's quiet and makes me feel calm.\pDo you feel its admirable history\nsilently creeping up on you?", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Picture{
+    msgbox("A photo of the former CINNABAR\nLAB's founder…\pDR. FUJI?!", MSGBOX_SIGN)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Scientist1{ //top computer
+    msgbox("Some of our new colleagues from\nCINNABAR are a bit eccentric…", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Scientist2{ //bottom computer
+    msgbox("Our working conditions have been\nawfully cramped since the eruption.\pWe even had to make room for\nequipment they managed to save.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Scientist3{ // left table
+    msgbox("We used to study POKéMON extensively\nevery day in CINNABAR.\pPeople even brought us rare\nPOKéMON to examine.\pBut we don't have the resources\nto do that anymore without our LAB.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Scientist4{ // near entrance
+    msgbox("We discovered that EEVEE can \nevolve into five kinds of POKéMON.\pNot too long ago we thought\nit could only evolve into three!", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Scientist5{ // right table
+    msgbox("We're constantly bumping into each\nother while we're working.\pIt's tough to lose our LAB, but\nI'm grateful we're all okay.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_AerodactylFossil{
+    lockall
+    setvar(VAR_0x8004, SPECIES_AERODACTYL)
+    setvar(VAR_0x8005, 10)
+    setvar(VAR_0x8006, 3)
+    special(OpenMuseumFossilPic)
+    bufferstring(0, PewterCity_Museum_1F_Text_Fossils)
+    msgbox("AERODACTYL{STR_VAR_1}", MSGBOX_DEFAULT)
+    special(CloseMuseumFossilPic)
+    releaseall
+    end
+}text(local) PewterCity_Museum_1F_Text_Fossils{
+    " Fossil\nA primitive and rare POKéMON."
+}
+
+script PewterCity_Museum_1F_EventScript_KabutopsFossil{
+    lockall
+    setvar(VAR_0x8004, SPECIES_KABUTOPS)
+    setvar(VAR_0x8005, 10)
+    setvar(VAR_0x8006, 3)
+    special(OpenMuseumFossilPic)
+    bufferstring(0, PewterCity_Museum_1F_Text_Fossils)
+    msgbox("KABUTOPS{STR_VAR_1}", MSGBOX_DEFAULT)
+    special(CloseMuseumFossilPic)
+    releaseall
+}
+
+script PewterCity_Museum_1F_EventScript_Machine{
+    msgbox("What could this machine be?\nBetter not mess around with it!", MSGBOX_SIGN)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Triggers{
+    if(var(VAR_TEMP_0) == 0)
+    {
+        specialvar(VAR_FACING, GetPlayerFacingDirection)
+        if(var(VAR_FACING) != DIR_NORTH)
+        {
+            setvar(VAR_TEMP_0, 1)
+            end
+        }
+    }
+    lockall
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    textcolor(0)
+    showmoneybox(0, 0, 0)
+    msgbox("Yes, yes.\nIt's ¥50 for a child's ticket.\pWould you like to come in?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Come again!", MSGBOX_DEFAULT)
+        closemessage
+        hidemoneybox
+        applymovement(OBJ_EVENT_ID_PLAYER, PewterCity_Museum_1F_Movement_WalkDown)
+        waitmovement(0)
+        releaseall
+        end
+    }
+    checkmoney(50, 0)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("You don't have enough money.")
+        closemessage
+        hidemoneybox
+        applymovement(OBJ_EVENT_ID_PLAYER, PewterCity_Museum_1F_Movement_WalkDown)
+        waitmovement(0)
+        releaseall
+        end
+    }
+    closemessage
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    switch(var(VAR_RESULT))
+    {
+        case 12:
+            applymovement(OBJ_EVENT_ID_PLAYER, PewterCity_Museum_1F_Movement_ToCounterFromLeft)
+            waitmovement(0)
+        case 13:
+            applymovement(OBJ_EVENT_ID_PLAYER, PewterCity_Museum_1F_Movement_ToCounterFromMid)
+            waitmovement(0)
+        case 14:
+            applymovement(OBJ_EVENT_ID_PLAYER, PewterCity_Museum_1F_Movement_ToCounterFromRight)
+            waitmovement(0)
+    }
+    playse(SE_SHOP)
+    removemoney(50, 0)
+    updatemoneybox(0, 0)
+    waitse
+    msgbox("Right, ¥50!\nThank you!", MSGBOX_DEFAULT)
+    setvar(VAR_TEMP_0, 1)
+    hidemoneybox
+    releaseall
+    end
+}movement(local) PewterCity_Museum_1F_Movement_WalkDown{
+    walk_down
+}movement(local) PewterCity_Museum_1F_Movement_ToCounterFromLeft{
+    walk_right * 2
+    delay_8
+	walk_in_place_right
+}movement(local) PewterCity_Museum_1F_Movement_ToCounterFromMid{
+    walk_right
+    delay_8
+	walk_in_place_right
+}movement(local) PewterCity_Museum_1F_Movement_ToCounterFromRight{
+    delay_8
+	walk_in_place_right
+}
+
+script PewterCity_Museum_1F_EventScript_FossilRevivalScientist{
+    if(var(VAR_FOSSIL_RESURRECTION_STATE) != 0)
+    {
+        switch(var(VAR_FOSSIL_RESURRECTION_STATE))
+        {
+            case 2:
+            case 4:
+            case 6:
+            case 8:
+            case 10:
+                msgbox(PewterCity_Museum_1F_Text_FossilGoForWalk, MSGBOX_NPC)
+                end
+            case 1:
+                setvar(VAR_TEMP_1, SPECIES_OMANYTE)
+                bufferspeciesname(0, SPECIES_OMANYTE)
+            case 3:
+                setvar(VAR_TEMP_1, SPECIES_KABUTO)
+                bufferspeciesname(0, SPECIES_KABUTO)
+            case 5:
+                setvar(VAR_TEMP_1, SPECIES_AERODACTYL)
+                bufferspeciesname(0, SPECIES_AERODACTYL)
+            case 7:
+                setvar(VAR_TEMP_1, SPECIES_LILEEP)
+                bufferspeciesname(0, SPECIES_LILEEP)
+            case 9:
+                setvar(VAR_TEMP_1, SPECIES_ANORITH)
+                bufferspeciesname(0, SPECIES_ANORITH)
+        }
+        lock
+        faceplayer
+        msgbox("You late.\nWhere were you?\pYour fossil is back to life!\nIt was {STR_VAR_1} like I think!", MSGBOX_DEFAULT)
+        givemon(VAR_TEMP_1, 5, ITEM_NONE)
+        copyvar(VAR_TEMP_8, VAR_RESULT)
+        if(var(VAR_TEMP_8) == 2)
+        {
+            goto(Common_EventScript_NoMoreRoomForPokemon)
+        }
+        textcolor(3)
+        playfanfare(MUS_LEVEL_UP)
+        message("{PLAYER} received the {STR_VAR_1}\nfrom the doctor.")
+        waitmessage
+        waitfanfare
+        setvar(VAR_FOSSIL_RESURRECTION_STATE, 0)
+        if(var(VAR_TEMP_8) == 0)
+        {
+            msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+            if(var(VAR_RESULT))
+            {
+                call(Common_EventScript_GetGiftMonPartySlot)
+                call(Common_EventScript_NameReceivedPartyMon)
+            }
+            release
+            end
+        }
+        if(var(VAR_TEMP_8) == 1)
+        {
+            msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+            if(var(VAR_RESULT))
+            {
+                call(Common_EventScript_NameReceivedBoxMon)
+            }
+            call(Common_EventScript_TransferredToPC)
+        }
+        release
+        end
+    }
+    if(!flag(FLAG_TEMP_1)) // set a flag the first time a fossil is obtained and change this to it.
+    {
+        msgbox("Aiyah!\nThis is disaster, it is!\pWe save important equipment from\nLAB, but damaged it was!\pHave I no luck?\nFix it I must.\pBut I take a lot of time!\nAll the time, indeed!", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Hiya!\nI fixed my machine!\pI am important doctor.\nYes, very much so, indeed.\pHere, I study rare POKéMON fossils.\nAll the time, I study.\pYou!\nHave you a fossil for me?", MSGBOX_DEFAULT)
+    setvar(VAR_TEMP_9, 0)
+    checkitem(ITEM_HELIX_FOSSIL, 1)
+    copyvar(VAR_0x8008, VAR_RESULT)
+    checkitem(ITEM_DOME_FOSSIL, 1)
+    copyvar(VAR_0x8009, VAR_RESULT)
+    checkitem(ITEM_OLD_AMBER, 1)
+    copyvar(VAR_0x800A, VAR_RESULT)
+    checkitem(ITEM_ROOT_FOSSIL, 1)
+    copyvar(VAR_0x800B, VAR_RESULT)
+    checkitem(ITEM_CLAW_FOSSIL, 1)
+    callnative(CheckHasFossils)
+    // ^ This function puts bitflags for what fossils the player
+    // ^ has into VAR_RESULT.
+    switch(var(VAR_RESULT))
+    {
+        case H:
+            multichoice(0, 0, MULTI_HELIX, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+            }
+        case D:
+            multichoice(0, 0, MULTI_DOME, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+            }
+        case HD:
+            multichoice(0, 0, MULTI_HELIX_DOME, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+            }
+        case O:
+            multichoice(0, 0, MULTI_AMBER, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+            }
+        case HO:
+            multichoice(0, 0, MULTI_HELIX_AMBER, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+            }
+        case DO:
+            multichoice(0, 0, MULTI_DOME_AMBER, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+            }
+        case HDO:
+            multichoice(0, 0, MULTI_HELIX_DOME_AMBER, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+            }
+        case R:
+            multichoice(0, 0, MULTI_ROOT, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+            }
+        case HR:
+            multichoice(0, 0, MULTI_HELIX_ROOT, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+            }
+        case DR:
+            multichoice(0, 0, MULTI_DOME_ROOT, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+            }
+        case HDR:
+            multichoice(0, 0, MULTI_HELIX_DOME_ROOT, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+            }
+        case OR:
+            multichoice(0, 0, MULTI_AMBER_ROOT, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+            }
+        case HOR:
+            multichoice(0, 0, MULTI_HELIX_AMBER_ROOT, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+            }
+        case DOR:
+            multichoice(0, 0, MULTI_DOME_AMBER_ROOT, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+            }
+        case HDOR:
+            multichoice(0, 0, MULTI_HELIX_DOME_AMBER_ROOT, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 3:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+            }
+        case C:
+            multichoice(0, 0, MULTI_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case HC:
+            multichoice(0, 0, MULTI_HELIX_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case DC:
+            multichoice(0, 0, MULTI_DOME_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case HDC:
+            multichoice(0, 0, MULTI_HELIX_DOME_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case OC:
+            multichoice(0, 0, MULTI_AMBER_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case HOC:
+            multichoice(0, 0, MULTI_HELIX_AMBER_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case DOC:
+            multichoice(0, 0, MULTI_DOME_AMBER_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case HDOC:
+            multichoice(0, 0, MULTI_HELIX_DOME_AMBER_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 3:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case RC:
+            multichoice(0, 0, MULTI_ROOT_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case HRC:
+            multichoice(0, 0, MULTI_HELIX_ROOT_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case DRC:
+            multichoice(0, 0, MULTI_DOME_ROOT_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case HDRC:
+            multichoice(0, 0, MULTI_HELIX_DOME_ROOT_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+                case 3:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case ORC:
+            multichoice(0, 0, MULTI_AMBER_ROOT_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case HORC:
+            multichoice(0, 0, MULTI_HELIX_AMBER_ROOT_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+                case 3:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case DORC:
+            multichoice(0, 0, MULTI_DOME_AMBER_ROOT_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+                case 3:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+        case HDORC:
+            multichoice(0, 0, MULTI_HELIX_DOME_AMBER_ROOT_CLAW, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_9, SPECIES_OMANYTE)
+                case 1:
+                    setvar(VAR_TEMP_9, SPECIES_KABUTO)
+                case 2:
+                    setvar(VAR_TEMP_9, SPECIES_AERODACTYL)
+                case 3:
+                    setvar(VAR_TEMP_9, SPECIES_LILEEP)
+                case 4:
+                    setvar(VAR_TEMP_9, SPECIES_ANORITH)
+            }
+    }
+    switch(var(VAR_TEMP_9))
+    {
+        case 0: // no fossils or declined
+            msgbox("No!\nIs too bad!", MSGBOX_DEFAULT)
+            release
+            end
+        case SPECIES_OMANYTE:
+            bufferspeciesname(0, SPECIES_OMANYTE)
+            bufferitemname(1, ITEM_HELIX_FOSSIL)
+        case SPECIES_KABUTO:
+            bufferspeciesname(0, SPECIES_KABUTO)
+            bufferitemname(1, ITEM_DOME_FOSSIL)
+        case SPECIES_AERODACTYL:
+            bufferspeciesname(0, SPECIES_AERODACTYL)
+            bufferitemname(1, ITEM_OLD_AMBER)
+        case SPECIES_LILEEP:
+            bufferspeciesname(0, SPECIES_LILEEP)
+            bufferitemname(1, ITEM_ROOT_FOSSIL)
+        case SPECIES_ANORITH:
+            bufferspeciesname(0, SPECIES_ANORITH)
+            bufferitemname(1, ITEM_CLAW_FOSSIL)
+    }
+    msgbox("Oh!\nThat is {STR_VAR_2}, it is!\pIt is fossil of {STR_VAR_1},\na POKéMON that is already extinct!\pMy Resurrection Machine will make\nthat POKéMON live again!", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Aiyah!\nYou come again!", MSGBOX_DEFAULT)
+        closemessage
+        release
+        end
+    }
+    msgbox("So!\nYou hurry and give me that!\p{COLOR DARK_GRAY}{PLAYER} handed over the\n{STR_VAR_2} to the weird doctor.", MSGBOX_DEFAULT)
+    switch(var(VAR_TEMP_9))
+    {
+        case SPECIES_OMANYTE:
+            removeitem(ITEM_HELIX_FOSSIL, 1)
+            setvar(VAR_FOSSIL_RESURRECTION_STATE, 2)
+        case SPECIES_KABUTO:
+            removeitem(ITEM_DOME_FOSSIL, 1)
+            setvar(VAR_FOSSIL_RESURRECTION_STATE, 4)
+        case SPECIES_AERODACTYL:
+            removeitem(ITEM_OLD_AMBER, 1)
+            setvar(VAR_FOSSIL_RESURRECTION_STATE, 6)
+        case SPECIES_LILEEP:
+            removeitem(ITEM_ROOT_FOSSIL, 1)
+            setvar(VAR_FOSSIL_RESURRECTION_STATE, 8)
+        case SPECIES_ANORITH:
+            removeitem(ITEM_CLAW_FOSSIL, 1)
+            setvar(VAR_FOSSIL_RESURRECTION_STATE, 10)
+    }
+    msgbox(PewterCity_Museum_1F_Text_FossilGoForWalk, MSGBOX_DEFAULT)
+    closemessage
+    release
+    end
+}text(local) PewterCity_Museum_1F_Text_FossilGoForWalk{
+    "I take a little time!\nYou go for a walk a little while!"
+}

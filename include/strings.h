@@ -1400,8 +1400,6 @@ extern const u8 gText_Blank[];
 extern const u8 gText_5BP[];
 extern const u8 gText_10BP[];
 extern const u8 gText_15BP[];
-extern const u8 gText_ClawFossil[];
-extern const u8 gText_RootFossil[];
 extern const u8 gText_No4[];
 extern const u8 gText_TwoStyles[];
 extern const u8 gText_Lv50_3[];
@@ -3205,6 +3203,13 @@ extern const u8 gText_Knowledge[];
 extern const u8 gText_ToughShrine[];
 extern const u8 gText_Both[];
 extern const u8 gText_Weak[];
+
+// Fossil Multichoice
+extern const u8 gText_HelixFossil[];
+extern const u8 gText_DomeFossil[];
+extern const u8 gText_OldAmber[];
+extern const u8 gText_RootFossil[];
+extern const u8 gText_ClawFossil[];
 
 // Battle Factory Screen
 extern const u8 gText_RentalPkmn2[];

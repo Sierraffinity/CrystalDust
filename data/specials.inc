@@ -575,3 +575,5 @@ gSpecials::
 	def_special GiveOddEgg
 	def_special DoMiniCredits
 	def_special DaisyGrooming
+	def_special OpenMuseumFossilPic
+	def_special CloseMuseumFossilPic

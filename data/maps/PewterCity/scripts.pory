@@ -1,1 +1,66 @@
-mapscripts PewterCity_MapScripts {}
+mapscripts PewterCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_PEWTER_CITY)
+        switch(var(VAR_FOSSIL_RESURRECTION_STATE))
+        {
+            case 2:
+            case 4:
+            case 6:
+            case 8:
+            case 10:
+                subvar(VAR_FOSSIL_RESURRECTION_STATE, 1)
+            default:
+                end
+        }
+    }
+}
+
+script PewterCity_EventScript_CitySign {
+    msgbox("PEWTER CITY\nA Stone Gray City", MSGBOX_SIGN)
+    end
+}
+
+script PewterCity_EventScript_WelcomeSign {
+    msgbox("WELCOME TO PEWTER CITY!", MSGBOX_SIGN)
+    end
+}
+
+script PewterCity_EventScript_GiftShopSign {
+    msgbox("There's a notice here…\nMT. MOON GIFT SHOP NOW OPEN!", MSGBOX_SIGN)
+    end
+}
+
+script PewterCity_EventScript_GymSign {
+    msgbox("PEWTER CITY POKéMON GYM\nLEADER: BROCK\pThe Rock-Solid POKéMON Trainer", MSGBOX_SIGN)
+    end
+}
+
+script PewterCity_EventScript_MuseumSign {
+    msgbox("PEWTER MUSEUM OF SCIENCE", MSGBOX_SIGN)
+    end
+}
+
+script PewterCity_EventScript_CooltrainerF{
+    msgbox("Have you visited PEWTER GYM?\nThe LEADER uses ROCK-type POKéMON.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_EventScript_LittleBoy{
+    msgbox("At night, CLEFAIRY come out to\nplay at MT. MOON.\lBut not every night.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_EventScript_OldMan{
+    checkitem(ITEM_SILVER_WING, 1)
+    if(var(VAR_RESULT))
+    {
+        msgbox("Going to new, unknown places and\nseeing new people…\lThose are the joys of travel.", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Ah, you came all the way out\nhere from JOHTO?\lThat brings back memories.\pWhen I was young, I went to\nJOHTO to train.\pYou remind me so much of what I\nwas like as a young man.\pHere. I want you to have this\nitem I found in JOHTO.", MSGBOX_DEFAULT)
+    giveitem(ITEM_SILVER_WING, 1)
+    release
+    end
+}

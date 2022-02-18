@@ -952,7 +952,7 @@ gTileset_PewterCity::
 	.4byte gMetatiles_PewterCity
 	.4byte gMetatileAttributes_PewterCity
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_PewterCity @ palette overrides
 
 	.align 2
 gTileset_CeruleanCity::

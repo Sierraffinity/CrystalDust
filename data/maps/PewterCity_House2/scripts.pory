@@ -1,1 +1,6 @@
 mapscripts PewterCity_House2_MapScripts {}
+
+script PewterCity_House1_EventScript_OldMan{
+    msgbox("I like snoozing with the radio on…\n…Zzzz…", MSGBOX_NPC)
+    end
+}

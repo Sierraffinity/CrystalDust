@@ -679,3 +679,27 @@ void SetLandmarkFlagIfEnteredFromNorth(void)
         FlagSet(FLAG_LANDMARK_ROUTE_10_POKEMON_CENTER);
     }
 }
+
+void CheckHasFossils(void)
+{
+    u8 multichoiceCase = 0;
+
+    bool8 haveHelixFossil = gSpecialVar_0x8008;
+    bool8 haveDomeFossil = gSpecialVar_0x8009;
+    bool8 haveOldAmber = gSpecialVar_0x800A;
+    bool8 haveRootFossil = gSpecialVar_0x800B;
+    bool8 haveClawFossil = gSpecialVar_Result;
+
+    if(haveClawFossil)
+        multichoiceCase |= 1 << 4;
+    if(haveRootFossil)
+        multichoiceCase |= 1 << 3;
+    if(haveOldAmber)
+        multichoiceCase |= 1 << 2;
+    if(haveDomeFossil)
+        multichoiceCase |= 1 << 1;
+    if(haveHelixFossil)
+        multichoiceCase |= 1 << 0;
+
+    gSpecialVar_Result = multichoiceCase;
+}

@@ -256,3 +256,25 @@ gTilesetPalOverrides_FuchsiaCity::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
+
+gTilesetPalOverrides_PewterCity::
+	.byte 8
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Pewter08
+	.byte 9
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Pewter08
+	.byte 11
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Pewter11
+	.byte 0xFF
+	.byte 0
+	.byte 0
+	.byte 0 @ padding
+	.4byte NULL

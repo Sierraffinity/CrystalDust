@@ -766,8 +766,6 @@ const u8 gText_SouthernIsland[] = _("SOUTHERN ISLAND");
 const u8 gText_BirthIsland[] = _("BIRTH ISLAND");
 const u8 gText_FarawayIsland[] = _("FARAWAY ISLAND");
 const u8 gText_NavelRock[] = _("NAVEL ROCK");
-const u8 gText_ClawFossil[] = _("CLAW FOSSIL");
-const u8 gText_RootFossil[] = _("ROOT FOSSIL");
 const u8 gText_No4[] = _("NO");
 const u8 gText_IllBattleNow[] = _("I'll battle now!");
 const u8 gText_IWon[] = _("I won!");
@@ -2057,3 +2055,10 @@ const u8 gText_Knowledge[] = _("Knowledge");
 const u8 gText_ToughShrine[] = _("Tough");
 const u8 gText_Both[] = _("Both");
 const u8 gText_Weak[] = _("Weak");
+
+//Fossils
+const u8 gText_HelixFossil[] = _("HELIX FOSSIL");
+const u8 gText_DomeFossil[] = _("DOME FOSSIL");
+const u8 gText_OldAmber[] = _("OLD AMBER");
+const u8 gText_RootFossil[] = _("ROOT FOSSIL");
+const u8 gText_ClawFossil[] = _("CLAW FOSSIL");

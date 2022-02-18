@@ -128,6 +128,37 @@
 #define MULTI_DRAGON_SHRINE_QUESTION_3     117
 #define MULTI_DRAGON_SHRINE_QUESTION_4     118
 #define MULTI_DRAGON_SHRINE_QUESTION_5     119
+#define MULTI_HELIX                        120
+#define MULTI_DOME                         121
+#define MULTI_HELIX_DOME                   122
+#define MULTI_AMBER                        123
+#define MULTI_HELIX_AMBER                  124
+#define MULTI_DOME_AMBER                   125
+#define MULTI_HELIX_DOME_AMBER             126
+#define MULTI_ROOT                         127
+#define MULTI_HELIX_ROOT                   128
+#define MULTI_DOME_ROOT                    129
+#define MULTI_HELIX_DOME_ROOT              130
+#define MULTI_AMBER_ROOT                   131
+#define MULTI_HELIX_AMBER_ROOT             132
+#define MULTI_DOME_AMBER_ROOT              133
+#define MULTI_HELIX_DOME_AMBER_ROOT        134
+#define MULTI_CLAW                         135
+#define MULTI_HELIX_CLAW                   136
+#define MULTI_DOME_CLAW                    137
+#define MULTI_HELIX_DOME_CLAW              138
+#define MULTI_AMBER_CLAW                   139
+#define MULTI_HELIX_AMBER_CLAW             140
+#define MULTI_DOME_AMBER_CLAW              141
+#define MULTI_HELIX_DOME_AMBER_CLAW        142
+#define MULTI_ROOT_CLAW                    143
+#define MULTI_HELIX_ROOT_CLAW              144
+#define MULTI_DOME_ROOT_CLAW               145
+#define MULTI_HELIX_DOME_ROOT_CLAW         146
+#define MULTI_AMBER_ROOT_CLAW              147
+#define MULTI_HELIX_AMBER_ROOT_CLAW        148
+#define MULTI_DOME_AMBER_ROOT_CLAW         149
+#define MULTI_HELIX_DOME_AMBER_ROOT_CLAW   150 
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0

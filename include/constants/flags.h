@@ -831,8 +831,8 @@
 //Scripts continued
 #define FLAG_POWER_PLANT_NPC_TRADE_COMPLETED                        0x312
 #define FLAG_GOT_TM34_SHOCK_WAVE                                    0x313
+#define FLAG_PEWTER_CITY_NPC_TRADE_COMPLETED                        0x314
 // STOPPED HERE
-#define FLAG_HIDE_MOSSDEEP_CITY_SCOTT                               0x314
 #define FLAG_HIDE_FANCLUB_OLD_LADY                                  0x315
 #define FLAG_HIDE_FANCLUB_BOY                                       0x316
 #define FLAG_HIDE_FANCLUB_LITTLE_BOY                                0x317

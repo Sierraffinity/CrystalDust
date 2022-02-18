@@ -3,7 +3,7 @@
 
 #define OBJ_EVENT_GFX_GOLD_NORMAL                  0
 #define OBJ_EVENT_GFX_GOLD_BIKE                    1
-#define OBJ_EVENT_GFX_ZBRENDAN_SURFING             2
+#define OBJ_EVENT_GFX_GOLD_SURFING                 2
 #define OBJ_EVENT_GFX_GOLD_FIELD_MOVE              3
 #define OBJ_EVENT_GFX_KIMONO_GIRL_RED              4
 #define OBJ_EVENT_GFX_ZNINJA_BOY                   5
@@ -93,7 +93,7 @@
 #define OBJ_EVENT_GFX_KRIS_NORMAL                 89
 #define OBJ_EVENT_GFX_KRIS_BIKE                   90
 #define OBJ_EVENT_GFX_ZMAY_ACRO_BIKE              91
-#define OBJ_EVENT_GFX_ZMAY_SURFING                92
+#define OBJ_EVENT_GFX_KRIS_SURFING                92
 #define OBJ_EVENT_GFX_KRIS_FIELD_MOVE             93
 #define OBJ_EVENT_GFX_SNORLAX                     94
 #define OBJ_EVENT_GFX_FARFETCHD                   95
@@ -109,7 +109,7 @@
 #define OBJ_EVENT_GFX_RIVAL_MAY_NORMAL           105
 #define OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE        106
 #define OBJ_EVENT_GFX_DAISY                      107
-#define OBJ_EVENT_GFX_ZRIVAL_MAY_SURFING         108
+#define OBJ_EVENT_GFX_NIDORAN_M                  108
 #define OBJ_EVENT_GFX_RIVAL_MAY_FIELD_MOVE       109
 #define OBJ_EVENT_GFX_FIREBREATHER               110
 #define OBJ_EVENT_GFX_ZBRENDAN_UNDERWATER        111

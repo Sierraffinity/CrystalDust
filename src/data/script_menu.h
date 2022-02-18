@@ -815,6 +815,241 @@ static const struct MenuAction MultichoiceList_DragonShrineQuestion5[] =
     { gText_Weak }
 };
 
+static const struct MenuAction MultichoiceList_Helix[] =
+{
+    { gText_HelixFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_Dome[] =
+{
+    { gText_DomeFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixDome[] =
+{
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_Amber[] =
+{
+    { gText_OldAmber },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixAmber[] =
+{
+    { gText_HelixFossil },
+    { gText_OldAmber },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_DomeAmber[] =
+{
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixDomeAmber[] =
+{
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_Root[] =
+{
+    { gText_RootFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixRoot[] =
+{
+    { gText_HelixFossil },
+    { gText_RootFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_DomeRoot[] =
+{
+    { gText_DomeFossil },
+    { gText_RootFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixDomeRoot[] =
+{
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gText_RootFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_AmberRoot[] =
+{
+    { gText_OldAmber },
+    { gText_RootFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixAmberRoot[] =
+{
+    { gText_HelixFossil },
+    { gText_OldAmber },
+    { gText_RootFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_DomeAmberRoot[] =
+{
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    { gText_RootFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixDomeAmberRoot[] =
+{
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    { gText_RootFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_Claw[] =
+{
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixClaw[] =
+{
+    { gText_HelixFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_DomeClaw[] =
+{
+    { gText_DomeFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixDomeClaw[] =
+{
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_AmberClaw[] =
+{
+    { gText_OldAmber },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixAmberClaw[] =
+{
+    { gText_HelixFossil },
+    { gText_OldAmber },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_DomeAmberClaw[] =
+{
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixDomeAmberClaw[] =
+{
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_RootClaw[] =
+{
+    { gText_RootFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixRootClaw[] =
+{
+    { gText_HelixFossil },
+    { gText_RootFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_DomeRootClaw[] =
+{
+    { gText_DomeFossil },
+    { gText_RootFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixDomeRootClaw[] =
+{
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gText_RootFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_AmberRootClaw[] =
+{
+    { gText_OldAmber },
+    { gText_RootFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixAmberRootClaw[] =
+{
+    { gText_HelixFossil },
+    { gText_OldAmber },
+    { gText_RootFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_DomeAmberRootClaw[] =
+{
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    { gText_RootFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_HelixDomeAmberRootClaw[] =
+{
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    { gText_RootFossil },
+    { gText_ClawFossil },
+    {gText_Exit},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -948,6 +1183,37 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_DRAGON_SHRINE_QUESTION_3]   = MULTICHOICE(MultichoiceList_DragonShrineQuestion3),
     [MULTI_DRAGON_SHRINE_QUESTION_4]   = MULTICHOICE(MultichoiceList_DragonShrineQuestion4),
     [MULTI_DRAGON_SHRINE_QUESTION_5]   = MULTICHOICE(MultichoiceList_DragonShrineQuestion5),
+    [MULTI_HELIX]                      = MULTICHOICE(MultichoiceList_Helix),
+    [MULTI_DOME]                       = MULTICHOICE(MultichoiceList_Dome),
+    [MULTI_HELIX_DOME]                 = MULTICHOICE(MultichoiceList_HelixDome),
+    [MULTI_AMBER]                      = MULTICHOICE(MultichoiceList_Amber),
+    [MULTI_HELIX_AMBER]                = MULTICHOICE(MultichoiceList_HelixAmber),
+    [MULTI_DOME_AMBER]                 = MULTICHOICE(MultichoiceList_DomeAmber),
+    [MULTI_HELIX_DOME_AMBER]           = MULTICHOICE(MultichoiceList_HelixDomeAmber),
+    [MULTI_ROOT]                       = MULTICHOICE(MultichoiceList_Root),
+    [MULTI_HELIX_ROOT]                 = MULTICHOICE(MultichoiceList_HelixRoot),
+    [MULTI_DOME_ROOT]                  = MULTICHOICE(MultichoiceList_DomeRoot),
+    [MULTI_HELIX_DOME_ROOT]            = MULTICHOICE(MultichoiceList_HelixDomeRoot),
+    [MULTI_AMBER_ROOT]                 = MULTICHOICE(MultichoiceList_AmberRoot),
+    [MULTI_HELIX_AMBER_ROOT]           = MULTICHOICE(MultichoiceList_HelixAmberRoot),
+    [MULTI_DOME_AMBER_ROOT]            = MULTICHOICE(MultichoiceList_DomeAmberRoot),
+    [MULTI_HELIX_DOME_AMBER_ROOT]      = MULTICHOICE(MultichoiceList_HelixDomeAmberRoot),
+    [MULTI_CLAW]                       = MULTICHOICE(MultichoiceList_Claw),
+    [MULTI_HELIX_CLAW]                 = MULTICHOICE(MultichoiceList_HelixClaw),
+    [MULTI_DOME_CLAW]                  = MULTICHOICE(MultichoiceList_DomeClaw),
+    [MULTI_HELIX_DOME_CLAW]            = MULTICHOICE(MultichoiceList_HelixDomeClaw),
+    [MULTI_AMBER_CLAW]                 = MULTICHOICE(MultichoiceList_AmberClaw),
+    [MULTI_HELIX_AMBER_CLAW]           = MULTICHOICE(MultichoiceList_HelixAmberClaw),
+    [MULTI_DOME_AMBER_CLAW]            = MULTICHOICE(MultichoiceList_DomeAmberClaw),
+    [MULTI_HELIX_DOME_AMBER_CLAW]      = MULTICHOICE(MultichoiceList_HelixDomeAmberClaw),
+    [MULTI_ROOT_CLAW]                  = MULTICHOICE(MultichoiceList_RootClaw),
+    [MULTI_HELIX_ROOT_CLAW]            = MULTICHOICE(MultichoiceList_HelixRootClaw),
+    [MULTI_DOME_ROOT_CLAW]             = MULTICHOICE(MultichoiceList_DomeRootClaw),
+    [MULTI_HELIX_DOME_ROOT_CLAW]       = MULTICHOICE(MultichoiceList_HelixDomeRootClaw),
+    [MULTI_AMBER_ROOT_CLAW]            = MULTICHOICE(MultichoiceList_AmberRootClaw),
+    [MULTI_HELIX_AMBER_ROOT_CLAW]      = MULTICHOICE(MultichoiceList_HelixAmberRootClaw),
+    [MULTI_DOME_AMBER_ROOT_CLAW]       = MULTICHOICE(MultichoiceList_DomeAmberRootClaw),
+    [MULTI_HELIX_DOME_AMBER_ROOT_CLAW] = MULTICHOICE(MultichoiceList_HelixDomeAmberRootClaw),
 };
 
 const u8 *const gStdStrings[] =

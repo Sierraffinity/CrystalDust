@@ -378,6 +378,9 @@
 #define METATILE_PetalburgGym_SlidingDoor_Frame3  0x21B
 #define METATILE_PetalburgGym_SlidingDoor_Frame4  0x21C
 
+// gTileset_PewterCity
+#define METATILE_PewterCity_Door  0x2C1
+
 // gTileset_PlayersHouse
 #define METATILE_PlayersHouse_BookOnTable   0x293
 #define METATILE_PlayersHouse_PlayerPC_Off  0x28F

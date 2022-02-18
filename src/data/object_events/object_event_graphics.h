@@ -218,6 +218,7 @@ const u32 gObjectEventPic_Ampharos[] = INCBIN_U32("graphics/object_events/pics/p
 const u32 gObjectEventPic_Fearow[] = INCBIN_U32("graphics/object_events/pics/pokemon/fearow.4bpp");
 const u32 gObjectEventPic_Wooper[] = INCBIN_U32("graphics/object_events/pics/pokemon/wooper.4bpp");
 const u32 gObjectEventPic_NidoranF[] = INCBIN_U32("graphics/object_events/pics/pokemon/nidoran_f.4bpp");
+const u32 gObjectEventPic_NidoranM[] = INCBIN_U32("graphics/object_events/pics/pokemon/nidoran_m.4bpp");
 const u32 gObjectEventPic_Poliwrath[] = INCBIN_U32("graphics/object_events/pics/pokemon/poliwrath.4bpp");
 const u16 gObjectEventPal_RedGyarados[] = INCBIN_U16("graphics/object_events/palettes/red_gyarados.gbapal");
 const u32 gObjectEventPic_Marill[] = INCBIN_U32("graphics/object_events/pics/pokemon/marill.4bpp");

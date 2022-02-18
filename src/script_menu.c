@@ -37,6 +37,44 @@ static bool8 IsPicboxClosed(void);
 static void CreateStartMenuForPokenavTutorial(void);
 static void InitMultichoiceNoWrap(bool8 ignoreBPress, u8 unusedCount, u8 windowId, u8 multichoiceId);
 
+static const union AnimCmd sMuseumFossilAnim0[] = {
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_END
+};
+
+static const union AnimCmd *const sMuseumFossilAnimCmdTable[] = {
+    sMuseumFossilAnim0
+};
+
+static const struct OamData sMuseumFossilOamData = {
+    .shape = SPRITE_SHAPE(64x64),
+    .size = SPRITE_SIZE(64x64)
+};
+
+static const struct SpriteTemplate sMuseumFossilSprTemplate = {
+    .tileTag = 7000,
+    .paletteTag = 0xFFFF,
+    .oam = &sMuseumFossilOamData,
+    .anims = sMuseumFossilAnimCmdTable,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy
+};
+
+static const u16 sMuseumAerodactylSprTiles[] = INCBIN_U16("graphics/script_menu/aerodactyl_fossil.4bpp");
+static const u16 sMuseumAerodactylSprPalette[] = INCBIN_U16("graphics/script_menu/aerodactyl_fossil.gbapal");
+static const u16 sMuseumKabutopsSprTiles[] = INCBIN_U16("graphics/script_menu/kabutops_fossil.4bpp");
+static const u16 sMuseumKabutopsSprPalette[] = INCBIN_U16("graphics/script_menu/kabutops_fossil.gbapal");
+
+static const struct SpriteSheet sMuseumKabutopsSprSheets[] = {
+    {sMuseumKabutopsSprTiles, 0x800, 7000},
+    {}
+};
+
+static const struct SpriteSheet sMuseumAerodactylSprSheets[] = {
+    {sMuseumAerodactylSprTiles, 0x800, 7000},
+    {}
+};
+
 static u16 GetStringTilesWide(const u8 *str)
 {
     return (GetStringWidth(2, str, 0) + 7) / 8;
@@ -830,4 +868,66 @@ int ScriptMenu_AdjustLeftCoordFromWidth(int left, int width)
     }
 
     return adjustedLeft;
+}
+
+void Task_WaitMuseumFossilPic(u8 taskId)
+{
+    struct Task * task = &gTasks[taskId];
+    switch (task->data[0])
+    {
+    case 0:
+        task->data[0]++;
+        break;
+    case 1:
+        break;
+    case 2:
+        DestroySprite(&gSprites[task->data[2]]);
+        FreeSpriteTilesByTag(7000);
+        task->data[0]++;
+        break;
+    case 3:
+        ClearToTransparentAndRemoveWindow(task->data[5]);
+        DestroyTask(taskId);
+        break;
+    }
+}
+
+bool8 OpenMuseumFossilPic(void)
+{
+    u8 spriteId;
+    u8 taskId;
+    if (FindTaskIdByFunc(Task_WaitMuseumFossilPic) != 0xFF)
+        return FALSE;
+    if (gSpecialVar_0x8004 == SPECIES_KABUTOPS)
+    {
+        LoadSpriteSheets(sMuseumKabutopsSprSheets);
+        LoadPalette(sMuseumKabutopsSprPalette, 0x1D0, 0x20);
+    }
+    else if (gSpecialVar_0x8004 == SPECIES_AERODACTYL)
+    {
+        LoadSpriteSheets(sMuseumAerodactylSprSheets);
+        LoadPalette(sMuseumAerodactylSprPalette, 0x1D0, 0x20);
+    }
+    else
+    {
+        return FALSE;
+    }
+    spriteId = CreateSprite(&sMuseumFossilSprTemplate, gSpecialVar_0x8005 * 8 + 40, gSpecialVar_0x8006 * 8 + 40, 0);
+    gSprites[spriteId].oam.paletteNum = 13;
+    taskId = CreateTask(Task_WaitMuseumFossilPic, 80);
+    gTasks[taskId].data[5] = CreateWindowFromRect(gSpecialVar_0x8005, gSpecialVar_0x8006, 8, 8);
+    gTasks[taskId].data[0] = 0;
+    gTasks[taskId].data[2] = spriteId;
+    SetStandardWindowBorderStyle(gTasks[taskId].data[5], TRUE);
+    ScheduleBgCopyTilemapToVram(0);
+    return TRUE;
+}
+
+bool8 CloseMuseumFossilPic(void)
+{
+    u8 taskId = FindTaskIdByFunc(Task_WaitMuseumFossilPic);
+    if (taskId == 0xFF)
+        return FALSE;
+    gTasks[taskId].data[0]++;
+    return TRUE;
 }

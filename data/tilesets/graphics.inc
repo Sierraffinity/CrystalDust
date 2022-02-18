@@ -1833,6 +1833,13 @@ gTilesetPalOverride_Viridian12::
 
 gTilesetPalOverride_Fuchsia08::
 	.incbin "data/tilesets/secondary/fuchsiacity/palettes/08_over.gbapal"
+
+gTilesetPalOverride_Pewter08::
+	.incbin "data/tilesets/secondary/pewtercity/palettes/08_over.gbapal"
+
+gTilesetPalOverride_Pewter11::
+	.incbin "data/tilesets/secondary/pewtercity/palettes/11_over.gbapal"
+
 	.align 2
 gTilesetPalettes_PalletTown::
 	.incbin "data/tilesets/secondary/pallettown/palettes/00.gbapal"

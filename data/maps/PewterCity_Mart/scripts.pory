@@ -1,1 +1,34 @@
 mapscripts PewterCity_Mart_MapScripts {}
+
+script PewterCity_Mart_EventScript_Boy{
+    msgbox("Hi!\nCheck out my GYARADOS!\pI raised it from a MAGIKARP. I can't\nbelieve how strong it has become.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Mart_EventScript_SuperNerd{
+    msgbox("There once was a weird old man\nwho sold MAGIKARP.\pHe was saying the MAGIKARP from\nthe LAKE OF RAGE were excellent.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(PewterCity_Shop_Pokemart)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+raw `
+.align 2
+PewterCity_Shop_Pokemart:
+    .2byte ITEM_GREAT_BALL
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_SUPER_REPEL
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_BURN_HEAL
+	.2byte ITEM_NONE
+`

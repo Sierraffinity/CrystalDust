@@ -1,1 +1,41 @@
 mapscripts PewterCity_Museum_2F_MapScripts {}
+
+script PewterCity_Museum_1F_EventScript_Scientist{
+    msgbox("Three years ago we decided to do\na space exhibit.\pIt was only going to run for a month,\nbut it was massively popular.\pSo now we run it permanently to\nkeep our guests happy.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Man{
+    msgbox("I learned that MOON STONES aren't\njust ordinary rocks.\pCertain POKéMON will evolve when\nexposed to one!", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Lass{
+    msgbox("My father got this PIKACHU for me.\nWe're absolutely inseparable.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_PokefanM{
+    msgbox("Seeing your children happy is the\ngreatest joy a parent can have.\pStill, she spoils that PIKACHU\nrotten… It does whatever it wants.", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_Pikachu {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_PIKACHU, 0)
+    msgbox("PIKACHU: Chu! Pikachu!")
+    waitmoncry
+    release
+}
+
+script PewterCity_Museum_1F_EventScript_Meteorites{
+    msgbox("A meteorite that fell on MT. MOON.\nIt is thought to be a MOON STONE.", MSGBOX_SIGN)
+    end
+}
+
+script PewterCity_Museum_1F_EventScript_SpaceShuttle{
+    msgbox("Space Shuttle", MSGBOX_SIGN)
+    end
+}

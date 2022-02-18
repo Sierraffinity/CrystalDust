@@ -105,7 +105,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Poliwrath;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayNormal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayMachBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Daisy;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMaySurfing;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NidoranM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayFieldMove;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Firebreather;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanUnderwater;
@@ -249,7 +249,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Captain;
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] = {
     [OBJ_EVENT_GFX_GOLD_NORMAL] =              &gObjectEventGraphicsInfo_GoldNormal,
     [OBJ_EVENT_GFX_GOLD_BIKE] =                &gObjectEventGraphicsInfo_GoldBike,
-    [OBJ_EVENT_GFX_ZBRENDAN_SURFING] =         &gObjectEventGraphicsInfo_BrendanSurfing,
+    [OBJ_EVENT_GFX_GOLD_SURFING] =             &gObjectEventGraphicsInfo_BrendanSurfing,
     [OBJ_EVENT_GFX_GOLD_FIELD_MOVE] =          &gObjectEventGraphicsInfo_GoldFieldMove,
     [OBJ_EVENT_GFX_KIMONO_GIRL_RED] =          &gObjectEventGraphicsInfo_KimonoGirlRed,
     [OBJ_EVENT_GFX_ZNINJA_BOY] =               &gObjectEventGraphicsInfo_NinjaBoy,
@@ -339,7 +339,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_KRIS_NORMAL] =              &gObjectEventGraphicsInfo_KrisNormal,
     [OBJ_EVENT_GFX_KRIS_BIKE] =                &gObjectEventGraphicsInfo_KrisBike,
     [OBJ_EVENT_GFX_ZMAY_ACRO_BIKE] =           &gObjectEventGraphicsInfo_MayAcroBike,
-    [OBJ_EVENT_GFX_ZMAY_SURFING] =             &gObjectEventGraphicsInfo_MaySurfing,
+    [OBJ_EVENT_GFX_KRIS_SURFING] =             &gObjectEventGraphicsInfo_MaySurfing,
     [OBJ_EVENT_GFX_KRIS_FIELD_MOVE] =          &gObjectEventGraphicsInfo_KrisFieldMove,
     [OBJ_EVENT_GFX_SNORLAX] =                  &gObjectEventGraphicsInfo_Snorlax,
     [OBJ_EVENT_GFX_FARFETCHD] =                &gObjectEventGraphicsInfo_Farfetchd,
@@ -355,7 +355,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_RIVAL_MAY_NORMAL] =         &gObjectEventGraphicsInfo_RivalMayNormal,
     [OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE] =      &gObjectEventGraphicsInfo_RivalMayMachBike,
     [OBJ_EVENT_GFX_DAISY] =                    &gObjectEventGraphicsInfo_Daisy,
-    [OBJ_EVENT_GFX_ZRIVAL_MAY_SURFING] =       &gObjectEventGraphicsInfo_RivalMaySurfing,
+    [OBJ_EVENT_GFX_NIDORAN_M] =                &gObjectEventGraphicsInfo_NidoranM,
     [OBJ_EVENT_GFX_RIVAL_MAY_FIELD_MOVE] =     &gObjectEventGraphicsInfo_RivalMayFieldMove,
     [OBJ_EVENT_GFX_FIREBREATHER] =             &gObjectEventGraphicsInfo_Firebreather,
     [OBJ_EVENT_GFX_ZBRENDAN_UNDERWATER] =      &gObjectEventGraphicsInfo_BrendanUnderwater,

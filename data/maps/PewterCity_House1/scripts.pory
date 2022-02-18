@@ -1,1 +1,16 @@
 mapscripts PewterCity_House1_MapScripts {}
+
+script PewterCity_House1_EventScript_Youngster{
+    msgbox("NIDORAN, shake!", MSGBOX_NPC)
+    end
+}
+
+script PewterCity_House1_EventScript_NidoranM {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_NIDORAN_M, 0)
+    msgbox("NIDORAN♂: Gau gau!")
+    waitmoncry
+    release
+}
