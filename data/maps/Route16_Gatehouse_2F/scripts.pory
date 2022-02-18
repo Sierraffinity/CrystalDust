@@ -1,1 +1,18 @@
 mapscripts Route16_Gatehouse_2F_MapScripts {}
+
+script Route16_Gatehouse_2F_EventScript_LeftBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}It's the CELADON DEPT. STORE!", MSGBOX_SIGN)
+    end
+}
+
+script Route16_Gatehouse_2F_EventScript_RightBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}There's a long path over water far\naway.", MSGBOX_SIGN)
+    end
+}
+
+script Route16_Gatehouse_2F_EventScript_Lass {
+    msgbox("I hear that a celebrity used to\nlive nearby here.\pShe moved out when people\ndiscovered her hideaway.", MSGBOX_NPC)
+    end
+}

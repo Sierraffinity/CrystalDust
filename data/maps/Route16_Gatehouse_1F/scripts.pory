@@ -1,1 +1,29 @@
-mapscripts Route16_Gatehouse_1F_MapScripts {}
+mapscripts Route16_Gatehouse_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        clearflag(FLAG_SYS_CYCLING_ROAD)
+        checkitem(ITEM_BICYCLE, 1)
+        if(var(VAR_RESULT))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+}
+
+script Route16_Gatehouse_1F_EventScript_Officer{
+    msgbox("CYCLING ROAD starts here.\pIt's all downhill, so it's totally\nexhilarating.\pIt's a great sort of feeling that\nyou can't get from a ship or train.", MSGBOX_NPC)
+    end
+}
+
+script Route16_Gatehouse_1F_EventScript_Triggers{
+    lockall
+    applymovement(1, Common_Movement_ExclamationMark)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    playse(SE_PIN)
+    textcolor(0)
+    msgbox("Hey! Whoa! Stop!\pYou can't go out on the CYCLING\nROAD without a BICYCLE.", MSGBOX_DEFAULT)
+    closemessage
+    applymovement(OBJ_EVENT_ID_PLAYER, Route18_Gatehouse_1F_Movement_DeniedAccess)
+    waitmovement(0)
+    releaseall
+    end
+}

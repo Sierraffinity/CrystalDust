@@ -4,7 +4,7 @@ mapscripts Route18_Gatehouse_1F_MapScripts {
         checkitem(ITEM_BICYCLE, 1)
         if(var(VAR_RESULT))
         {
-            setvar(VAR_TEMP_0, 0)
+            setvar(VAR_TEMP_0, 1)
         }
     }
 }

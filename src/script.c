@@ -716,7 +716,7 @@ void CheckShouldForceBike(void)
             if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
             {
                 if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
-                    SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
+                    SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_BIKE);
                 return;
             }
         }
@@ -729,7 +729,7 @@ void CheckShouldForceBike(void)
             if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
             {
                 if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ON_FOOT)
-                    SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
+                    SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_BIKE);
                 return;
             }
         }

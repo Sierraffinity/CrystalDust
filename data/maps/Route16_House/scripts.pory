@@ -1,1 +1,6 @@
 mapscripts Route16_House_MapScripts {}
+
+script Route16_House_EventScript_SuperNerd {
+    msgbox("If you cruise down CYCLING ROAD,\nyou will end up in FUCHSIA CITY.", MSGBOX_NPC)
+    end
+}

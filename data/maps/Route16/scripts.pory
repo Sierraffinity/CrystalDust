@@ -1,1 +1,14 @@
-mapscripts Route16_MapScripts {}
+mapscripts Route16_MapScripts {
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_0, 0: Mapscript_CyclingRoadForceMountBike
+    ]
+}
+
+script Route16_EventScript_RouteSign{ // wasn't present in GSC
+    msgbox("ROUTE 16\nCELADON CITY - FUCHSIA CITY", MSGBOX_SIGN)
+}
+
+script Route16_EventScript_DownHillSign{
+    msgbox("CYCLING ROAD\nDOWNHILL COASTING ALL THE WAY!", MSGBOX_SIGN)
+    end
+}
