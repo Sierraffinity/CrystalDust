@@ -1,1 +1,22 @@
 mapscripts Route12_FishingHouse_MapScripts {}
+
+script Route12_FishingHouse_EventScript_FishingGuru{
+    checkitem(ITEM_SUPER_ROD, 1)
+    if(var(VAR_RESULT))
+    {
+        msgbox("Try your hand at fishing wherever\nthere is water.\pRemember--you can catch different\nPOKéMON using different RODS.", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("I'm the FISHING GURU's younger\nbrother.\pI can see that you like fishing.\nThere's no doubt in my mind at all!\pSo?\nI know I'm right.", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Huh?\nMy own eyes deceived me?", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    msgbox("Yes, yes.\nJust as I thought!\pHere, fishing fan!\nTake this--it's a SUPER ROD!", MSGBOX_DEFAULT)
+    giveitem(ITEM_SUPER_ROD, 1)
+    goto(Route12_FishingHouse_EventScript_FishingGuru)
+}

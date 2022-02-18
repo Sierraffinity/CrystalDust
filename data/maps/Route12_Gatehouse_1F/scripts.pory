@@ -1,1 +1,6 @@
 mapscripts Route12_Gatehouse_1F_MapScripts {}
+
+script Route12_Gatehouse_1F_EventScript_Officer {
+    msgbox("ROUTE 12 has great fishing spots,\nbut not everyone cares about that.\pFor them, I recommend the lookout\nspot just upstairs.", MSGBOX_NPC)
+    end
+}

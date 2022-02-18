@@ -1,1 +1,33 @@
-mapscripts Route12_Gatehouse_2F_MapScripts {}
+mapscripts Route12_Gatehouse_2F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        gettime
+        if(!(var(VAR_0x8000) == 12 || var(VAR_0x8000) == 13)) //12:00PM - 1:59PM
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+}
+
+script Route12_Gatehouse_1F_EventScript_Woman {
+    msgbox("I work at the LAVENDER RADIO TOWER.\nI like to take my lunch breaks here.", MSGBOX_NPC)
+    end
+}
+
+script Route12_Gatehouse_1F_EventScript_OldMan {
+    msgbox("I heard the view from here is\nmagnificent, but I forgot my glasses!", MSGBOX_NPC)
+    end
+}
+
+script Route12_Gatehouse_1F_EventScript_LeftBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}There's a man fishing!", MSGBOX_SIGN)
+    end
+}text Route12_Gatehouse_1F_Text_Binoculars{
+    "Let's see what the binoculars have\nto show…\p"
+}
+
+script Route12_Gatehouse_1F_EventScript_RightBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}It's the LAVENDER RADIO TOWER!", MSGBOX_SIGN)
+    end
+}

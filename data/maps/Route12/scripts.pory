@@ -1,1 +1,35 @@
 mapscripts Route12_MapScripts {}
+
+script Route12_EventScript_FisherKyle { //topmost
+    trainerbattle_single(TRAINER_KYLE, "Do you remember?", "You do remember?")
+	msgbox("The tug you feel on the ROD when\nyou hook a POKéMON…\pThat's the best feeling ever for\nan angler like me.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route12_EventScript_FisherStephen {
+    trainerbattle_single(TRAINER_STEPHEN, "I feel so content, fishing while\nlistening to some tunes on my radio.", "My stupid radio distracted me!")
+	msgbox("Have you checked out KANTO's\nradio programs?\lWe get a good variety here.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route12_EventScript_FisherBarney {
+    trainerbattle_single(TRAINER_BARNEY, "What's more important in our\neveryday lives?", "The answer is coming up next!")
+	msgbox("I think electricity is the most\nimportant thing in our daily lives.\pIf it weren't, people wouldn't\nhave made such a fuss when the\lPOWER PLANT went out of commission.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route12_EventScript_FisherMartin {
+    trainerbattle_single(TRAINER_MARTIN, "Patience is the key to both\nfishing and POKéMON…", "Gwaaah!")
+	msgbox("I'm too impatient for fishing…", MSGBOX_DEFAULT)
+	release
+}
+
+script Route12_EventScript_FishingSpotSign {
+	msgbox("FISHING SPOT", MSGBOX_SIGN)
+    end
+}
+
+script Route12_EventScript_RouteSign {
+	msgbox("ROUTE 12\nNORTH TO LAVENDER TOWN", MSGBOX_SIGN)
+    end
+}
