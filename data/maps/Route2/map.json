@@ -27,7 +27,141 @@
     }
   ],
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 21,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_CARBOS",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_ROUTE_2_CARBOS"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 17,
+      "y": 75,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_ELIXIR",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_ROUTE_2_ELIXIR"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "in_connection": false,
+      "x": 11,
+      "y": 68,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "Route2_EventScript_BugCatcherRob",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "in_connection": false,
+      "x": 2,
+      "y": 59,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route2_EventScript_BugCatcherDoug",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "in_connection": false,
+      "x": 7,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route2_EventScript_BugCatcherEd",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
+      "in_connection": false,
+      "x": 11,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_CutTree",
+      "flag": "FLAG_TEMP_11"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
+      "in_connection": false,
+      "x": 18,
+      "y": 26,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_CutTree",
+      "flag": "FLAG_TEMP_12"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
+      "in_connection": false,
+      "x": 13,
+      "y": 62,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_CutTree",
+      "flag": "FLAG_TEMP_13"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
+      "in_connection": false,
+      "x": 14,
+      "y": 69,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_CutTree",
+      "flag": "FLAG_TEMP_14"
+    }
   ],
   "warp_events": [
     {
@@ -41,64 +175,64 @@
       "x": 5,
       "y": 13,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
+      "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
       "dest_warp_id": 0
     },
     {
       "x": 6,
       "y": 13,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
+      "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
       "dest_warp_id": 0
     },
     {
       "x": 17,
       "y": 22,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
+      "dest_map": "MAP_ROUTE2_HOUSE",
       "dest_warp_id": 0
     },
     {
       "x": 5,
       "y": 51,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
+      "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
       "dest_warp_id": 0
     },
     {
       "x": 6,
       "y": 51,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
+      "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
       "dest_warp_id": 0
     },
     {
       "x": 18,
       "y": 41,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
+      "dest_map": "MAP_ROUTE2_GATEHOUSE",
       "dest_warp_id": 0
     },
     {
       "x": 19,
       "y": 41,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
+      "dest_map": "MAP_ROUTE2_GATEHOUSE",
       "dest_warp_id": 0
     },
     {
       "x": 18,
       "y": 46,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
-      "dest_warp_id": 0
+      "dest_map": "MAP_ROUTE2_GATEHOUSE",
+      "dest_warp_id": 1
     },
     {
       "x": 19,
       "y": 46,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
-      "dest_warp_id": 0
+      "dest_map": "MAP_ROUTE2_GATEHOUSE",
+      "dest_warp_id": 1
     }
   ],
   "coord_events": [
@@ -111,7 +245,7 @@
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "Route2_EventScript_DiglettsCaveSign"
     },
     {
       "type": "sign",
@@ -119,7 +253,14 @@
       "y": 73,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "Route2_EventScript_RouteSign"
+    },
+    {
+      "type": "fruit_tree",
+      "x": 12,
+      "y": 53,
+      "elevation": 0,
+      "fruit_tree_id": "FRUIT_TREE_ROUTE_2"
     }
   ]
 }

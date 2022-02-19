@@ -1,1 +1,22 @@
 mapscripts Route2_House_MapScripts {}
+
+script Route2_House_EventScript_FatMan{
+    if(flag(FLAG_GOT_NUGGET_FROM_ROUTE2_GUY))
+    {
+        msgbox("That's a NUGGET.\pI can't give you any nuggets of\nwisdom, so that'll have to do!", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Hi!\nWow, I'm glad to see you.\pYou're the first visitor I've had\nin a long time.\pI'm super-happy!\nLet me give you a little present.", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_NUGGET, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    giveitem(ITEM_NUGGET, 1)
+    setflag(FLAG_GOT_NUGGET_FROM_ROUTE2_GUY)
+    goto(Route2_House_EventScript_FatMan)
+}

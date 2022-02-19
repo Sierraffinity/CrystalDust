@@ -838,8 +838,8 @@
 #define FLAG_HIDE_FANCLUB_LADY                                      0x318
 #define FLAG_BLACKTHORN_CITY_NPC_TRADE_COMPLETED                    0x319
 #define FLAG_ROUTE_14_NPC_TRADE_COMPLETED                           0x31A
+#define FLAG_GOT_NUGGET_FROM_ROUTE2_GUY                             0x31B
 // STOPPED HERE
-#define FLAG_HIDE_NEW_BARK_TOWN_BIRCH                               0x31B
 #define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1                          0x31C
 #define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1                           0x31D
 #define FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1                          0x31E

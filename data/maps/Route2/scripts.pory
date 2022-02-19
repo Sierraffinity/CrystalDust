@@ -1,1 +1,29 @@
 mapscripts Route2_MapScripts {}
+
+script Route2_EventScript_BugCatcherRob { //lowest
+    trainerbattle_single(TRAINER_ROB, "My bug POKéMON are tough.\nPrepare to lose!", "I was whipped…")
+	msgbox("I'm going to look for stronger\nbug POKéMON.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route2_EventScript_BugCatcherDoug { //middle
+    trainerbattle_single(TRAINER_DOUG, "Why don't girls like bug POKéMON?", "No good!")
+	msgbox("Bug POKéMON squish like plush toys\nwhen you squeeze their bellies.\lI love how they feel!", MSGBOX_DEFAULT)
+	release
+}
+
+script Route2_EventScript_BugCatcherEd { //highest
+    trainerbattle_single(TRAINER_ED, "If you walk in tall grass wearing\nshorts, do you get nicks and cuts?", "Ouch, ouch, ouch!")
+	msgbox("They'll really sting when you\ntake a bath.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route2_EventScript_RouteSign {
+    msgbox("ROUTE 2\nVIRIDIAN CITY - PEWTER CITY", MSGBOX_SIGN)
+	end
+}
+
+script Route2_EventScript_DiglettsCaveSign {
+    msgbox("DIGLETT'S CAVE", MSGBOX_SIGN)
+	end
+}

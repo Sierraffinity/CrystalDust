@@ -1,1 +1,6 @@
 mapscripts Route2_Gatehouse_MapScripts {}
+
+script Route2_Gatehouse_EventScript_Scientist{
+    msgbox("Are you {PLAYER}?\nI work as PROF. OAK's AIDE.\pI had no idea that you were\nout here.\pPROF. OAK's LAB is nearby in\nPALLET TOWN.", MSGBOX_NPC)
+    end
+}
