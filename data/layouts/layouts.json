@@ -2957,7 +2957,7 @@
       "id": "LAYOUT_ROUTE3",
       "name": "Route3_Layout",
       "width": 84,
-      "height": 20,
+      "height": 28,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_GeneralKanto",
@@ -2968,7 +2968,7 @@
     {
       "id": "LAYOUT_ROUTE4",
       "name": "Route4_Layout",
-      "width": 108,
+      "width": 84,
       "height": 20,
       "border_width": 2,
       "border_height": 2,

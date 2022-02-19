@@ -40,7 +40,7 @@
     "gCinnabarIslandInteriors",
     "gIndigoPlateauInteriors",
     "gRoute2Interiors",
-    "gRoute4Interiors",
+    "gRoute3Interiors",
     "gRoute5Interiors",
     "gRoute6Interiors",
     "gRoute7Interiors",
@@ -502,9 +502,9 @@
     "Route2_ViridianForest_SouthEntrance",
     "Route2_ViridianForest_NorthEntrance"
   ],
-  "gRoute4Interiors": [
-    "Route4_PokemonCenter_1F",
-    "Route4_PokemonCenter_2F"
+  "gRoute3Interiors": [
+    "Route3_PokemonCenter_1F",
+    "Route3_PokemonCenter_2F"
   ],
   "gRoute5Interiors": [
     "Route5_House",

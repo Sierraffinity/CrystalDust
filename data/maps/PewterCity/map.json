@@ -22,7 +22,7 @@
     },
     {
       "direction": "right",
-      "offset": 10,
+      "offset": 1,
       "map": "MAP_ROUTE3"
     }
   ],

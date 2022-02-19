@@ -17,25 +17,59 @@
   "connections": [
     {
       "direction": "left",
-      "offset": -10,
+      "offset": -1,
       "map": "MAP_PEWTER_CITY"
     },
     {
-      "direction": "up",
-      "offset": 60,
+      "direction": "right",
+      "offset": 0,
       "map": "MAP_ROUTE4"
     }
   ],
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_ABRA",
+      "in_connection": false,
+      "x": 66,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 71,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE3_POKEMON_CENTER_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 79,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 78,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
+    }
   ]
 }
