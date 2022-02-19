@@ -1,1 +1,30 @@
 mapscripts Route11_MapScripts {}
+
+script Route11_EventScript_PsychicFidel { //leftmost
+    trainerbattle_single(TRAINER_FIDEL, "I can see it…\nEverything to see about you…", "I couldn't foresee your power…")
+	msgbox("Strength in conviction…\pYou're strong because you believe\nin your POKéMON.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route11_EventScript_YoungsterJason { //middle left
+    trainerbattle_single(TRAINER_JASON, "It itches and tickles a bit when\nI wear shorts in the grass.", "Aiyaaah!\nI got stomped!")
+	msgbox("I'm going to catch more POKéMON\nin the grass.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route11_EventScript_YoungsterOwen { //middle right
+    trainerbattle_single(TRAINER_OWEN, "There's no cheating in POKéMON.\nLet's keep it fair and square!", "Huh?\nHow did this happen?")
+	msgbox("I fought fair and square with honor.\nI don't regret this at all.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route11_EventScript_PsychicHerman { //rightmost
+    trainerbattle_single(TRAINER_HERMAN, "…", "…")
+	msgbox("…\pI lost while I had my eyes closed…", MSGBOX_DEFAULT)
+	release
+}
+
+script Route11_EventScript_RouteSign{
+    msgbox("ROUTE 11", MSGBOX_SIGN)
+    end
+}

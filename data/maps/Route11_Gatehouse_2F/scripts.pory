@@ -1,1 +1,23 @@
 mapscripts Route11_Gatehouse_2F_MapScripts {}
+
+script Route11_Gatehouse_2F_EventScript_LeftBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}BIKERS are battling on ROUTE 8!", MSGBOX_SIGN)
+    end
+}
+
+script Route11_Gatehouse_2F_EventScript_RightBinoculars {
+    bufferstring(0, Route12_Gatehouse_1F_Text_Binoculars)
+    msgbox("{STR_VAR_1}To get to LAVENDER TOWN from\nCERULEAN CITY…\pROCK TUNNEL appears to be a good\nroute to take.", MSGBOX_SIGN)
+    end
+}
+
+script Route11_Gatehouse_2F_EventScript_LittleBoy {
+    msgbox("I'm too short to look through the\nbinoculars to see anything.\pGrandpa's too old to pick me up!\nWhat am I going to do?", MSGBOX_NPC)
+    end
+}
+
+script Route11_Gatehouse_2F_EventScript_OldMan {
+    msgbox("With age comes wisdom.\nUnfortunately, it also brings frailty…", MSGBOX_NPC)
+    end
+}
