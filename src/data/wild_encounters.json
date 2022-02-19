@@ -39904,6 +39904,201 @@
               ]
             ]
           }
+        },
+        {
+          "map": "MAP_DIGLETTS_CAVE",
+          "base_label": "gDiglettsCave",
+          "land_mons": {
+            "encounter_rate": 15,
+            "mons": [
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 6,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 12,
+                  "max_level": 12,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 24,
+                  "max_level": 24,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 24,
+                  "max_level": 24,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 24,
+                  "max_level": 24,
+                  "species": "SPECIES_DUGTRIO"
+                },
+                {
+                  "min_level": 24,
+                  "max_level": 24,
+                  "species": "SPECIES_DUGTRIO"
+                },
+                {
+                  "min_level": 24,
+                  "max_level": 24,
+                  "species": "SPECIES_DUGTRIO"
+                },
+                {
+                  "min_level": 24,
+                  "max_level": 24,
+                  "species": "SPECIES_DUGTRIO"
+                }
+              ],
+              [
+                {
+                  "min_level": 2,
+                  "max_level": 2,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 2,
+                  "max_level": 2,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 8,
+                  "max_level": 8,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 8,
+                  "max_level": 8,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_DUGTRIO"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_DUGTRIO"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_DUGTRIO"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_DUGTRIO"
+                }
+              ],
+              [
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 8,
+                  "max_level": 8,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 4,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 8,
+                  "max_level": 8,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 16,
+                  "max_level": 16,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 32,
+                  "max_level": 32,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 32,
+                  "max_level": 32,
+                  "species": "SPECIES_DIGLETT"
+                },
+                {
+                  "min_level": 32,
+                  "max_level": 32,
+                  "species": "SPECIES_DUGTRIO"
+                },
+                {
+                  "min_level": 32,
+                  "max_level": 32,
+                  "species": "SPECIES_DUGTRIO"
+                },
+                {
+                  "min_level": 32,
+                  "max_level": 32,
+                  "species": "SPECIES_DUGTRIO"
+                },
+                {
+                  "min_level": 32,
+                  "max_level": 32,
+                  "species": "SPECIES_DUGTRIO"
+                }
+              ]
+            ]
+          }
         }
       ]
     },

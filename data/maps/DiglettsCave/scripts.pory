@@ -1,1 +1,10 @@
-mapscripts DiglettsCave_MapScripts {}
+mapscripts DiglettsCave_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_DIGLETTS_CAVE)
+    }
+}
+
+script DiglettsCave_EventScript_Hiker{
+    msgbox("A bunch of DIGLETT popped out of\nthe ground! That was shocking.", MSGBOX_NPC)
+    end
+}

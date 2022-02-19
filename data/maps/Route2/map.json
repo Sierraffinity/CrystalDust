@@ -30,12 +30,96 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 17,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_DIGLETTS_CAVE",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 5,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 6,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 17,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 5,
+      "y": 51,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 6,
+      "y": 51,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 18,
+      "y": 41,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 19,
+      "y": 41,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 18,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 19,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 73,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
+    }
   ]
 }
