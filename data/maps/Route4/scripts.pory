@@ -1,1 +1,20 @@
 mapscripts Route4_MapScripts {}
+
+//trainers from left to right
+script Route4_EventScript_PicnickerHope{
+    trainerbattle_single(TRAINER_HOPE, "I have a feeling that I can win.\nLet's see if I'm right!", "Aww, you are too strong.")
+	msgbox("I heard CLEFAIRY appear at MT.\nMOON. But where could they be?", MSGBOX_DEFAULT)
+	release
+}
+
+script Route4_EventScript_BirdKeeperHank{
+    trainerbattle_single(TRAINER_HANK, "I'm raising my POKéMON.\nWant to battle with me?", "Ack!\nI lost that one…")
+	msgbox("If you have a specific POKéMON\nthat you want to raise, put it out\lfirst, then switch it right away.\pThat's how to do it.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route4_EventScript_PicnickerSharon{
+    trainerbattle_single(TRAINER_SHARON, "Um…\nI…", "…")
+	msgbox("…\n…I'll go train some more…", MSGBOX_DEFAULT)
+	release
+}
