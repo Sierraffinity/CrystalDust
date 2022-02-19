@@ -1,1 +1,18 @@
-mapscripts Route3_PokemonCenter_1F_MapScripts {}
+mapscripts Route3_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_ROUTE3)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script Route3_PokemonCenter_1F_EventScript_Hiker{
+    msgbox("I remember when there was nothing\nhere when I climbed the mountain.\pThings change, and it's getting more\nand more convenient.", MSGBOX_NPC)
+    end
+    // inspired by the HGSS line for this NPC.
+}
+
+script Route3_PokemonCenter_1F_EventScript_Camper{
+    msgbox("Many trainers are visiting MT. MOON\nsince it collapsed.\pYou never know what POKéMON you'll\nencounter, so it's important to\lrecover at a place like this.\pDon't forget to make a record of\nyour progress, either!", MSGBOX_NPC)
+    end
+    // inspired by the HGSS line for this NPC.
+}

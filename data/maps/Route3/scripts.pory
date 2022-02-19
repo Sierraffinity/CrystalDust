@@ -1,1 +1,50 @@
-mapscripts Route3_MapScripts {}
+mapscripts Route3_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(flag(FLAG_LANDMARK_ROUTE_3_POKEMON_CENTER))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+}
+
+//trainers from left to right
+script Route3_EventScript_YoungsterWarren{
+    trainerbattle_single(TRAINER_WARREN, "Hmm…\nI don't know what to do…", "I knew I'd lose…")
+	msgbox("You looked strong.\nI was afraid to take you on…", MSGBOX_DEFAULT)
+	release
+}
+
+script Route3_EventScript_YoungsterJimmy{
+    trainerbattle_single(TRAINER_JIMMY, "I can run like the wind!", "Blown away!")
+	msgbox("I wear shorts the whole year round.\nThat's my fashion policy.", MSGBOX_DEFAULT)
+	release
+}
+
+script Route3_EventScript_FirebreatherOtis{
+    trainerbattle_single(TRAINER_OTIS, "Ah!\nThe weather's as fine as ever!", "It's sunny, but I'm all wet…")
+	msgbox("When it rains, it's hard to get\nignition…", MSGBOX_DEFAULT)
+	release
+}
+
+script Route3_EventScript_FirebreatherBurt{
+    trainerbattle_single(TRAINER_BURT, "Step right up and take a look!", "Yow!\nThat's hot!")
+	msgbox("The greatest firebreather in KANTO,\nthat's me.\lBut not the best trainer…", MSGBOX_DEFAULT)
+	release
+}
+
+script Route3_EventScript_RouteSign { // taken from FRLG
+    msgbox("ROUTE 3\nMT. MOON AHEAD", MSGBOX_SIGN)
+    end
+}
+
+script Route3_EventScript_MtMoonSign {
+    msgbox("MT. MOON SQUARE\nJust go up the stairs.", MSGBOX_SIGN)
+    end
+}
+
+script Route3_EventScript_Triggers {
+    setflag(FLAG_LANDMARK_ROUTE_3_POKEMON_CENTER)
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+    end
+}
