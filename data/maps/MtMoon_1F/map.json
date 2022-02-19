@@ -1,0 +1,99 @@
+{
+  "id": "MAP_MT_MOON_1F",
+  "name": "MtMoon_1F",
+  "layout": "LAYOUT_MT_MOON_1F",
+  "music": "MUS_RG_MT_MOON",
+  "region_map_section": "MAPSEC_MT_MOON",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "phone_service": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 8,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 22,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 20,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 23,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 4
+    },
+    {
+      "x": 7,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 23,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 12,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_B1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 26,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_B2F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 7,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_SQUARE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 23,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_SQUARE",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

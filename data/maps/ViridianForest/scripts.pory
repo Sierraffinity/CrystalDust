@@ -1,1 +1,5 @@
-mapscripts ViridianForest_MapScripts {}
+mapscripts ViridianForest_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_VIRIDIAN_FOREST)
+    }
+}

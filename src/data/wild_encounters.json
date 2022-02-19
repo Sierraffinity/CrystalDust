@@ -39321,8 +39321,8 @@
           }
         },
         {
-          "map": "MAP_MT_MOON",
-          "base_label": "gMtMoon",
+          "map": "MAP_MT_MOON_1F",
+          "base_label": "gMtMoon_1F",
           "land_mons": {
             "encounter_rate": 15,
             "mons": [
