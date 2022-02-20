@@ -1,1 +1,202 @@
 mapscripts Route25_BillsHouse_MapScripts {}
+
+script Route25_BillsHouse_EventScript_BillsGrandpa{
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1))
+    {
+        msgbox("Come visit again sometime.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if(flag(FLAG_GOT_THUNDER_STONE_FROM_BILLS_GRANDPA))
+    {
+        msgbox("Thanks for showing me so many cute\nPOKéMON.\pI really enjoyed myself. I'm glad\nI've lived such a long life.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    bufferstring(1, Route25_BillsHouse_Text_AskToSeeMon)
+    if(!flag(FLAG_MET_BILLS_GRANDPA))
+    {
+        msgbox("Hm? You know BILL?\nHe's my grandson.\pHe's in JOHTO. He does something\nwith PCs, so I'm house-sitting.", MSGBOX_DEFAULT)
+        setflag(FLAG_MET_BILLS_GRANDPA)
+    }
+    if(flag(FLAG_SHOWED_PICHU_TO_BILLS_GRANDPA))
+    {
+        bufferspeciesname(2, SPECIES_PICHU)
+        setvar(VAR_0x8009, ITEM_THUNDER_STONE)
+        if(!flag(FLAG_GOT_THUNDER_STONE_FROM_BILLS_GRANDPA))
+        {
+            goto(Route25_BillsHouse_EventScript_GiveStone)
+        }
+    }
+    if(flag(FLAG_SHOWED_GROWLITHE_TO_BILLS_GRANDPA))
+    {
+        bufferspeciesname(2, SPECIES_GROWLITHE)
+        setvar(VAR_0x8009, ITEM_FIRE_STONE)
+        if(!flag(FLAG_GOT_FIRE_STONE_FROM_BILLS_GRANDPA))
+        {
+            goto(Route25_BillsHouse_EventScript_GiveStone)
+        }
+        //ask for Pichu
+        setvar(VAR_0x8008, SPECIES_PICHU)
+        msgbox("Do you know that hugely popular\nPOKéMON?\pThe POKéMON that has a yellow body\nand red cheeks.\pI would love to see what it looks\nlike before it evolves.\p{STR_VAR_2}", MSGBOX_YESNO)
+        if(!var(VAR_RESULT))
+        {
+            goto(Route25_BillsHouse_EventScript_SaidNo)
+        }
+        else
+        {
+            goto(Route25_BillsHouse_EventScript_SaidYes)
+        }
+    }
+    if(flag(FLAG_SHOWED_STARYU_TO_BILLS_GRANDPA))
+    {
+        bufferspeciesname(2, SPECIES_STARYU)
+        setvar(VAR_0x8009, ITEM_WATER_STONE)
+        if(!flag(FLAG_GOT_WATER_STONE_FROM_BILLS_GRANDPA))
+        {
+            goto(Route25_BillsHouse_EventScript_GiveStone)
+        }
+        //ask for Growlithe
+        setvar(VAR_0x8008, SPECIES_GROWLITHE)
+        msgbox("Bill told me about a POKéMON that\nis very loyal to its trainer.\lIt's supposed to ROAR well.\p{STR_VAR_2}", MSGBOX_YESNO)
+        if(!var(VAR_RESULT))
+        {
+            goto(Route25_BillsHouse_EventScript_SaidNo)
+        }
+        else
+        {
+            goto(Route25_BillsHouse_EventScript_SaidYes)
+        }
+    }
+    if(flag(FLAG_SHOWED_ODDISH_TO_BILLS_GRANDPA))
+    {
+        bufferspeciesname(2, SPECIES_ODDISH)
+        setvar(VAR_0x8009, ITEM_LEAF_STONE)
+        if(!flag(FLAG_GOT_LEAF_STONE_FROM_BILLS_GRANDPA))
+        {
+            goto(Route25_BillsHouse_EventScript_GiveStone)
+        }
+        //ask for Staryu
+        setvar(VAR_0x8008, SPECIES_STARYU)
+        msgbox("Do you know of a sea POKéMON that\nhas a red sphere in its body?\pYou know, the one that's shaped\nlike a star?\pI heard that it appears at night.\nI would surely like to see it.\p{STR_VAR_2}", MSGBOX_YESNO)
+        if(!var(VAR_RESULT))
+        {
+            goto(Route25_BillsHouse_EventScript_SaidNo)
+        }
+        else
+        {
+            goto(Route25_BillsHouse_EventScript_SaidYes)
+        }
+    }
+    if(flag(FLAG_SHOWED_LICKITUNG_TO_BILLS_GRANDPA))
+    {
+        bufferspeciesname(2, SPECIES_LICKITUNG)
+        setvar(VAR_0x8009, ITEM_EVERSTONE)
+        if(!flag(FLAG_GOT_EVERSTONE_FROM_BILLS_GRANDPA))
+        {
+            goto(Route25_BillsHouse_EventScript_GiveStone)
+        }
+        //ask for Oddish
+        setvar(VAR_0x8008, SPECIES_ODDISH)
+        msgbox("My grandson BILL mentioned a\nround, green POKéMON that has\lleaves growing on its head.\p{STR_VAR_2}", MSGBOX_YESNO)
+        if(!var(VAR_RESULT))
+        {
+            goto(Route25_BillsHouse_EventScript_SaidNo)
+        }
+        else
+        {
+            goto(Route25_BillsHouse_EventScript_SaidYes)
+        }
+    }
+    //ask for Lickitung
+    setvar(VAR_0x8008, SPECIES_LICKITUNG)
+    msgbox("My grandson BILL told me about a\nPOKéMON that has a long tongue.\p{STR_VAR_2}", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        goto(Route25_BillsHouse_EventScript_SaidNo)
+    }
+    else
+    {
+        goto(Route25_BillsHouse_EventScript_SaidYes)
+    }
+}text(local) Route25_BillsHouse_Text_AskToSeeMon{
+    "If you have that POKéMON, may I\nsee it, please?"
+}script(local) Route25_BillsHouse_EventScript_SaidNo{
+    msgbox("You don't have it?\nThat's too bad…", MSGBOX_DEFAULT)
+    release
+    end
+}script(local) Route25_BillsHouse_EventScript_SaidYes{
+    msgbox("You will show me?\nHow good of you!")
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    faceplayer
+    if(var(VAR_0x8004) == 0xFF)
+    {
+        goto(Route25_BillsHouse_EventScript_SaidNo)
+    }
+    special(IsSelectedMonEgg)
+    if(var(VAR_RESULT))
+    {
+        goto(Route25_BillsHouse_EventScript_SaidNo)
+    }
+    specialvar(VAR_RESULT, GetSelectedMonNicknameAndSpecies)
+    if(var(VAR_RESULT) != VAR_0x8008)
+    {
+        msgbox("Hm?\pThat's not the POKéMON that I was\ntold about.", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    switch(var(VAR_0x8008))
+    {
+        case SPECIES_LICKITUNG:
+            bufferspeciesname(2, SPECIES_LICKITUNG)
+            setvar(VAR_0x8009, ITEM_EVERSTONE)
+            setflag(FLAG_SHOWED_LICKITUNG_TO_BILLS_GRANDPA)
+        case SPECIES_ODDISH:
+            bufferspeciesname(2, SPECIES_ODDISH)
+            setvar(VAR_0x8009, ITEM_LEAF_STONE)
+            setflag(FLAG_SHOWED_ODDISH_TO_BILLS_GRANDPA)
+        case SPECIES_STARYU:
+            bufferspeciesname(2, SPECIES_STARYU)
+            setvar(VAR_0x8009, ITEM_WATER_STONE)
+            setflag(FLAG_SHOWED_STARYU_TO_BILLS_GRANDPA)
+        case SPECIES_GROWLITHE:
+            bufferspeciesname(2, SPECIES_GROWLITHE)
+            setvar(VAR_0x8009, ITEM_FIRE_STONE)
+            setflag(FLAG_SHOWED_GROWLITHE_TO_BILLS_GRANDPA)
+        case SPECIES_PICHU:
+            bufferspeciesname(2, SPECIES_PICHU)
+            setvar(VAR_0x8009, ITEM_THUNDER_STONE)
+            setflag(FLAG_SHOWED_PICHU_TO_BILLS_GRANDPA)
+    }
+    msgbox("Ah, so that is {STR_VAR_3}?\pIsn't it cute!\nThat's so kind of you.", MSGBOX_DEFAULT)
+    goto(Route25_BillsHouse_EventScript_GiveStone)
+}script(local) Route25_BillsHouse_EventScript_GiveStone{
+    msgbox("Thanks!\nThis is a token of my appreciation.", MSGBOX_DEFAULT)
+    giveitem(VAR_0x8009, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    switch(var(VAR_0x8009))
+    {
+        case ITEM_EVERSTONE:
+            setflag(FLAG_GOT_EVERSTONE_FROM_BILLS_GRANDPA)
+        case ITEM_LEAF_STONE:
+            setflag(FLAG_GOT_LEAF_STONE_FROM_BILLS_GRANDPA)
+        case ITEM_WATER_STONE:
+            setflag(FLAG_GOT_WATER_STONE_FROM_BILLS_GRANDPA)
+        case ITEM_FIRE_STONE:
+            setflag(FLAG_GOT_FIRE_STONE_FROM_BILLS_GRANDPA)
+        case ITEM_THUNDER_STONE:
+            setflag(FLAG_GOT_THUNDER_STONE_FROM_BILLS_GRANDPA)
+    }
+    setflag(FLAG_TEMP_1)
+    release
+    end
+}

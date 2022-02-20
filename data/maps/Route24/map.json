@@ -21,8 +21,8 @@
       "map": "MAP_CERULEAN_CITY"
     },
     {
-      "direction": "right",
-      "offset": 0,
+      "direction": "up",
+      "offset": 9,
       "map": "MAP_ROUTE25"
     }
   ],

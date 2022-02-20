@@ -3209,7 +3209,7 @@
       "id": "LAYOUT_ROUTE24",
       "name": "Route24_Layout",
       "width": 34,
-      "height": 39,
+      "height": 19,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_GeneralKanto",
@@ -3220,7 +3220,7 @@
     {
       "id": "LAYOUT_ROUTE25",
       "name": "Route25_Layout",
-      "width": 72,
+      "width": 97,
       "height": 20,
       "border_width": 2,
       "border_height": 2,

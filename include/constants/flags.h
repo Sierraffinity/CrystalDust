@@ -839,26 +839,31 @@
 #define FLAG_BLACKTHORN_CITY_NPC_TRADE_COMPLETED                    0x319
 #define FLAG_ROUTE_14_NPC_TRADE_COMPLETED                           0x31A
 #define FLAG_GOT_NUGGET_FROM_ROUTE2_GUY                             0x31B
-// STOPPED HERE
-#define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1                          0x31C
-#define FLAG_HIDE_ROUTE_46_GABBY_AND_TY_1                           0x31D
-#define FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1                          0x31E
-#define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3                          0x31F
+#define FLAG_CLEARED_NUGGET_BRIDGE                                  0x31C
+// Bill's Grandpa
+#define FLAG_MET_BILLS_GRANDPA                                      0x31D
+#define FLAG_SHOWED_LICKITUNG_TO_BILLS_GRANDPA                      0x31E
+#define FLAG_GOT_EVERSTONE_FROM_BILLS_GRANDPA                       0x31F
+
 #define FLAG_HIDE_LUGIA                                             0x320
 #define FLAG_HIDE_HO_OH                                             0x321
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER                    0x322
 #define FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER                   0x323
-#define FLAG_HIDE_MAUVILLE_CITY_WALLY                               0x324
-#define FLAG_HIDE_MAUVILLE_CITY_WALLYS_UNCLE                        0x325
-#define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY                0x326
-#define FLAG_HIDE_UNION_CAVE_WANDAS_BOYFRIEND                       0x327
-#define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND     0x328
-#define FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE         0x329
-#define FLAG_HIDE_SS_TIDAL_CORRIDOR_SCOTT                           0x32A
+// Bill's Grandpa cont.
+#define FLAG_SHOWED_ODDISH_TO_BILLS_GRANDPA                         0x324
+#define FLAG_GOT_LEAF_STONE_FROM_BILLS_GRANDPA                      0x325
+#define FLAG_SHOWED_STARYU_TO_BILLS_GRANDPA                         0x326
+#define FLAG_GOT_WATER_STONE_FROM_BILLS_GRANDPA                     0x327
+#define FLAG_SHOWED_GROWLITHE_TO_BILLS_GRANDPA                      0x328
+#define FLAG_GOT_FIRE_STONE_FROM_BILLS_GRANDPA                      0x329
+#define FLAG_SHOWED_PICHU_TO_BILLS_GRANDPA                          0x32A
+
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_CHIKORITA         0x32B
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE          0x32C
-#define FLAG_HIDE_ROUTE_116_DROPPED_GLASSES_MAN                     0x32D
-#define FLAG_HIDE_GOLDENROD_CITY_RIVAL                               0x32E
+// Bill's Grandpa end
+#define FLAG_GOT_THUNDER_STONE_FROM_BILLS_GRANDPA                   0x32D
+// STOPPED HERE
+#define FLAG_HIDE_GOLDENROD_CITY_RIVAL                              0x32E
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_SWABLU_DOLL        0x32F
 #define FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE                           0x330
 #define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_POKE_BALL          0x331

@@ -1,1 +1,83 @@
 mapscripts Route25_MapScripts {}
+
+// TODO: Misty out on the Cape seems to be enabled with the Rocket Grunt runs out of the Gym.
+
+script Route25_EventScript_Sign{
+    msgbox("SEA COTTAGE\nBILL'S HOUSE", MSGBOX_SIGN)
+    end
+}
+
+//trainers from left to right
+script Route25_EventScript_SchoolBoyDudley{
+    trainerbattle_single(TRAINER_DUDLEY, "Beat the six of us trainers to win\na fabulous prize!\pThink you've got what it takes?", "Whoo!\nGood stuff.")
+	msgbox(Route25_Text_NoRegrets, MSGBOX_DEFAULT)
+	release
+}text(local) Route25_Text_NoRegrets{
+    "I did my best.\nI have no regrets."
+}
+
+script Route25_EventScript_LassEllen{
+    trainerbattle_single(TRAINER_ELLEN, "I'm second.\nNow it's serious!", "How could I lose?")
+	msgbox(Route25_Text_NoRegrets, MSGBOX_DEFAULT)
+	release
+}
+
+script Route25_EventScript_SchoolBoyJoe{
+    trainerbattle_single(TRAINER_JOE, "Here's No. 3!\nI won't be easy.", "Ow!\nStomped flat!")
+	msgbox(Route25_Text_NoRegrets, MSGBOX_DEFAULT)
+	release
+}
+
+script Route25_EventScript_LassLaura{
+    trainerbattle_single(TRAINER_LAURA, "I'm No. 4!\nGetting tired?", "I lost too…")
+	msgbox(Route25_Text_NoRegrets, MSGBOX_DEFAULT)
+	release
+}
+
+script Route25_EventScript_CamperLloyd{
+    trainerbattle_single(TRAINER_LLOYD, "OK! I'm No. 5.\nI'll stomp you!", "Whoa!\nToo much.")
+	msgbox(Route25_Text_NoRegrets, MSGBOX_DEFAULT)
+	release
+}
+
+script Route25_EventScript_LassShannon{
+    trainerbattle_single(TRAINER_SHANNON, "I'm the last in line, but I tell\nyou, I'm tough!", "You're kidding.")
+	msgbox(Route25_Text_NoRegrets, MSGBOX_DEFAULT)
+	release
+}
+
+script Route25_EventScript_SuperNerdPat{
+    trainerbattle_single(TRAINER_PAT, "Mufufufu…\pI have nothing to do with the\nsix-pack trainers.\pI waited here to beat you when you\nwere tired out by all the battles.", "Aren't you tired at all?")
+	msgbox("I'm sorry…\nI won't cheat anymore…", MSGBOX_DEFAULT)
+	release
+}
+
+script Route25_EventScript_CooltrainerMKevin {
+    if(defeated(TRAINER_KEVIN))
+    {
+        msgbox("That was a great battle!\pYou and your POKéMON are truly\noutstanding!", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_CLEARED_NUGGET_BRIDGE))
+    {
+        lock
+        faceplayer
+        msgbox("But after seeing how you battle,\nI want to see how I'll fare.\pHow about it?\nLet me take you on.", MSGBOX_DEFAULT)
+        closemessage
+        trainerbattle_no_intro(TRAINER_KEVIN, "I've never had a battle this good!")
+        goto(Route25_EventScript_CooltrainerMKevin)
+    }
+    lock
+    faceplayer
+    msgbox("You took on one more battle than\nyou expected, but you won anyway.\pAs promised, you win a prize.", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_NUGGET, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    giveitem(ITEM_NUGGET, 1)
+    setflag(FLAG_CLEARED_NUGGET_BRIDGE)
+    goto(Route25_EventScript_CooltrainerMKevin)
+}
