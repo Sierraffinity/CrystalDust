@@ -7305,6 +7305,81 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RocketExecPartner[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_Dane[] = {
+    {
+    .iv = 100,
+    .lvl = 38,
+    .species = SPECIES_BEEDRILL,
+    },
+    {
+    .iv = 100,
+    .lvl = 40,
+    .species = SPECIES_BUTTERFREE,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Dion[] = {
+    {
+    .iv = 100,
+    .lvl = 40,
+    .species = SPECIES_ARIADOS,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Stacey[] = {
+    {
+    .iv = 100,
+    .lvl = 44,
+    .species = SPECIES_METAPOD,
+    },
+    {
+    .iv = 100,
+    .lvl = 48,
+    .species = SPECIES_METAPOD,
+    },
+    {
+    .iv = 100,
+    .lvl = 52,
+    .species = SPECIES_METAPOD,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Ellis[] = {
+    {
+    .iv = 100,
+    .lvl = 30,
+    .species = SPECIES_WEEDLE,
+    },
+    {
+    .iv = 100,
+    .lvl = 34,
+    .species = SPECIES_KAKUNA,
+    },
+    {
+    .iv = 100,
+    .lvl = 38,
+    .species = SPECIES_BEEDRILL,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Abner[] = {
+    {
+    .iv = 100,
+    .lvl = 36,
+    .species = SPECIES_BUTTERFREE,
+    },
+    {
+    .iv = 100,
+    .lvl = 36,
+    .species = SPECIES_BEEDRILL,
+    },
+    {
+    .iv = 100,
+    .lvl = 36,
+    .species = SPECIES_PIKACHU,
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Red[] = {
     {
     .iv = 0,

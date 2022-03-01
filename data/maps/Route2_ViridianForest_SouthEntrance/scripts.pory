@@ -1,1 +1,6 @@
 mapscripts Route2_ViridianForest_SouthEntrance_MapScripts {}
+
+script Route2_ViridianForest_SouthEntrance_EventScript_Officer{
+    msgbox("VIRIDIAN FOREST is like a maze\non the inside.\pBe careful.\nDon't get lost in there.", MSGBOX_NPC)
+    end
+}

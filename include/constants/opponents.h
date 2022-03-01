@@ -580,28 +580,34 @@
 #define TRAINER_MT_SILVER_RED                    466
 // Ruins of Alph, forgot this Trainer
 #define TRAINER_NATHAN                           467
-#define TRAINER_ROCKET_EXEC_PARTNER              468                 
+#define TRAINER_ROCKET_EXEC_PARTNER              468
+// Viridian Forest
+#define TRAINER_DANE                             469
+#define TRAINER_DION                             470
+#define TRAINER_STACEY                           471
+#define TRAINER_ELLIS                            472
+#define TRAINER_ABNER                            473
 
 // Are these actually used? For linking perhaps? They're not referenced outside of here, trainers.h, and the rosters defined in trainer_parties.h
-#define TRAINER_RED                 469
-#define TRAINER_LEAF                470
-#define TRAINER_BRENDAN_PLACEHOLDER 471
-#define TRAINER_MAY_PLACEHOLDER     472
+#define TRAINER_RED                 474
+#define TRAINER_LEAF                475
+#define TRAINER_BRENDAN_PLACEHOLDER 476
+#define TRAINER_MAY_PLACEHOLDER     477
 // Frontier Brains (Probably should be handled elsewhere)
-#define TRAINER_ANABEL_FRONTIER     473
-#define TRAINER_TUCKER_FRONTIER     474
-#define TRAINER_SPENSER_FRONTIER    475
-#define TRAINER_GRETA_FRONTIER      476
-#define TRAINER_NOLAND_FRONTIER     477
-// 4-byte boundary. Frontier Brain Noland is the end of 60 contiguous bytes.
-#define TRAINER_LUCY_FRONTIER       478
-#define TRAINER_BRANDON_FRONTIER    479
+#define TRAINER_ANABEL_FRONTIER     478
+#define TRAINER_TUCKER_FRONTIER     479
+// 4-byte boundary. Frontier Brain Tucker is the end of 60 contiguous bytes.
+#define TRAINER_SPENSER_FRONTIER    480
+#define TRAINER_GRETA_FRONTIER      481
+#define TRAINER_NOLAND_FRONTIER     482
+#define TRAINER_LUCY_FRONTIER       483
+#define TRAINER_BRANDON_FRONTIER    484
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 864 trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      480
+#define TRAINERS_COUNT                      485
 #define MAX_TRAINERS_COUNT                  864
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

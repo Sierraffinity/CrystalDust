@@ -40099,6 +40099,201 @@
               ]
             ]
           }
+        },
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "base_label": "gViridianForest",
+          "land_mons": {
+            "encounter_rate": 15,
+            "mons": [
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_CATERPIE"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_WEEDLE"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 5,
+                  "species": "SPECIES_METAPOD"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 5,
+                  "species": "SPECIES_KAKUNA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 7,
+                  "species": "SPECIES_PIDGEY"
+                },
+                {
+                  "min_level": 7,
+                  "max_level": 7,
+                  "species": "SPECIES_BUTTERFREE"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 6,
+                  "species": "SPECIES_LEDYBA"
+                },
+                {
+                  "min_level": 7,
+                  "max_level": 7,
+                  "species": "SPECIES_BEEDRILL"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 6,
+                  "species": "SPECIES_LEDYBA"
+                },
+                {
+                  "min_level": 7,
+                  "max_level": 7,
+                  "species": "SPECIES_BEEDRILL"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 7,
+                  "species": "SPECIES_LEDIAN"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 7,
+                  "species": "SPECIES_PIKACHU"
+                }
+              ],
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_CATERPIE"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_WEEDLE"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 5,
+                  "species": "SPECIES_METAPOD"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 5,
+                  "species": "SPECIES_KAKUNA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 7,
+                  "species": "SPECIES_PIDGEY"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 7,
+                  "species": "SPECIES_PIDGEY"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 5,
+                  "species": "SPECIES_METAPOD"
+                },
+                {
+                  "min_level": 7,
+                  "max_level": 7,
+                  "species": "SPECIES_PIDGEOTTO"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 5,
+                  "species": "SPECIES_KAKUNA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 7,
+                  "species": "SPECIES_PIKACHU"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 5,
+                  "species": "SPECIES_KAKUNA"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 7,
+                  "species": "SPECIES_PIKACHU"
+                }
+              ],
+              [
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_CATERPIE"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 3,
+                  "species": "SPECIES_WEEDLE"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 5,
+                  "species": "SPECIES_METAPOD"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 5,
+                  "species": "SPECIES_KAKUNA"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 7,
+                  "species": "SPECIES_HOOTHOOT"
+                },
+                {
+                  "min_level": 3,
+                  "max_level": 7,
+                  "species": "SPECIES_HOOTHOOT"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 6,
+                  "species": "SPECIES_SPINARAK"
+                },
+                {
+                  "min_level": 7,
+                  "max_level": 7,
+                  "species": "SPECIES_NOCTOWL"
+                },
+                {
+                  "min_level": 5,
+                  "max_level": 6,
+                  "species": "SPECIES_SPINARAK"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 7,
+                  "species": "SPECIES_PIKACHU"
+                },
+                {
+                  "min_level": 6,
+                  "max_level": 7,
+                  "species": "SPECIES_ARIADOS"
+                },
+                {
+                  "min_level": 4,
+                  "max_level": 7,
+                  "species": "SPECIES_PIKACHU"
+                }
+              ]
+            ]
+          }
         }
       ]
     },

@@ -3,3 +3,33 @@ mapscripts ViridianForest_MapScripts {
         setflag(FLAG_LANDMARK_VIRIDIAN_FOREST)
     }
 }
+
+script ViridianForest_EventScript_BugCatcherDane {
+    trainerbattle_single(TRAINER_DANE, "Welcome to VIRIDIAN FOREST.\nEnjoy my BUG-type POKéMON!", "That's wonderful…")
+	msgbox("Pretty impressive!\pI'm sure you can go anywhere\nwith that skill!", MSGBOX_DEFAULT)
+	release
+}
+
+script ViridianForest_EventScript_BugCatcherDion {
+    trainerbattle_single(TRAINER_DION, "Shh! Be quiet!\nThe bug POKéMON will run away!", "Phew…")
+	msgbox("From BUG-type POKéMON come the\nsounds of munching on grass,\lwalking on crunchy leaves,\lswimming in puddles…\pFor bug POKéMON fans, knowing how\nto distinguish these sounds is key!", MSGBOX_DEFAULT)
+	release
+}
+
+script ViridianForest_EventScript_BugCatcherStacey {
+    trainerbattle_single(TRAINER_STACEY, "Wow, that's a huge POKéMON!\p…\n…What kind of trainer?!", "I couldn't catch it!")
+	msgbox("Has anyone ever told you that from\nbehind you look like a VENONAT?", MSGBOX_DEFAULT)
+	release
+}
+
+script ViridianForest_EventScript_BugCatcherEllis {
+    trainerbattle_single(TRAINER_ELLIS, "I'm sure that there's nothing\nmore efficient and beautiful in\lthis world than a BUG-type POKéMON.", "I lost beautifully!")
+	msgbox("If this is it, then I don't\nmind losing!", MSGBOX_DEFAULT)
+	release
+}
+
+script ViridianForest_EventScript_BugCatcherAbner {
+    trainerbattle_single(TRAINER_ABNER, "There are many people out there\nwho prefer solid bug POKéMON\lover squishy bug POKéMON.", "Thanks for your hard work,\nmy lovely POKéMON…")
+	msgbox("Doesn't matter what kind of\nPOKéMON--\pas long as you like them, they all\nlook cute.", MSGBOX_DEFAULT)
+	release
+}

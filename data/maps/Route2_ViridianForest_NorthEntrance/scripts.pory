@@ -1,1 +1,6 @@
 mapscripts Route2_ViridianForest_NorthEntrance_MapScripts {}
+
+script Route2_ViridianForest_NorthEntrance_EventScript_Officer{
+    msgbox("VIRIDIAN FOREST not only has trees\nstanding like a maze but also has\lmany twists and turns.\pThat's why people get lost\neasily here.", MSGBOX_NPC)
+    end
+}
