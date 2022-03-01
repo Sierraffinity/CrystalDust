@@ -1,1 +1,26 @@
-mapscripts LavenderTown_PokemonCenter_1F_MapScripts {}
+mapscripts LavenderTown_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setrespawn(HEAL_LOCATION_LAVENDER_TOWN)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script LavenderTown_PokemonCenter_1F_EventScript_Gentleman{
+    msgbox("To the north of LAVENDER is\nROCK TUNNEL.\pGo through it to get\nto the POWER PLANT.", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_PokemonCenter_1F_EventScript_Woman{
+    msgbox("There's a radio program that plays\nPOKé FLUTE music.\pOh? Ah, your radio needs an EXPN\nCARD to tune into it.", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_PokemonCenter_1F_EventScript_Boy{
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("The DIRECTOR of the RADIO STATION\nsure was happy.\pHe said they're back on air because\nthe POWER PLANT is running smoothly\lagain.", MSGBOX_NPC)
+        end
+    }
+    msgbox("If the POWER PLANT isn't running,\nthe MAGNET TRAIN won't run either…\pIt also means the RADIO STATION\ncan't broadcast…", MSGBOX_NPC)
+    end
+}

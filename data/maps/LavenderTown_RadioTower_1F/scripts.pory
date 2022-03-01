@@ -1,1 +1,72 @@
-mapscripts LavenderTown_RadioTower_1F_MapScripts {}
+mapscripts LavenderTown_RadioTower_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_LANDMARK_LAVENDER_RADIO_TOWER)
+    }
+}
+
+script LavenderTown_RadioTower_1F_EventScript_Gentleman{
+    if(flag(FLAG_SYS_HAS_EXPN_CARD))
+    {
+        msgbox("With that thing, you can tune into\nthe radio programs here in KANTO.\lGahahahaha!", MSGBOX_NPC)
+        end
+    }
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        lock
+        faceplayer
+        msgbox("Ah! So you're the {PLAYER} who\nsolved the POWER PLANT's problem?\pThanks to you, I never lost\nmy job. I tell you, you're a real\llifesaver!\pPlease take this as my thanks.", MSGBOX_DEFAULT)
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received the\nEXPN CARD.")
+        playfanfare(MUS_OBTAIN_ITEM)
+        waitmessage
+        waitfanfare
+        setflag(FLAG_SYS_HAS_EXPN_CARD)
+        textcolor(0)
+        waitbuttonpress
+        goto(LavenderTown_RadioTower_1F_EventScript_Gentleman)
+    }
+    msgbox("Oh, no, no, no!\pWe've been off the air ever since\nthe POWER PLANT shut down.\pAll my efforts to start this\nstation would be wasted if I can't\lbroadcast. I'll be ruined!", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_RadioTower_1F_EventScript_Receptionist{
+    msgbox("Welcome!\pFeel free to look around anywhere\non this floor.", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_RadioTower_1F_EventScript_Officer{
+    msgbox("Sorry, but you can only tour the\nground floor.\pEver since JOHTO's RADIO TOWER was\ntaken over by a criminal gang, we\lhave had to step up our security.", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_RadioTower_1F_EventScript_Boy{
+    msgbox("Many people are hard at work here\nin the RADIO TOWER.\pThey must be doing their best to\nput on good shows.", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_RadioTower_1F_EventScript_MusicDirector{
+    bufferstring(0, "Hey there!\nI'm the super MUSIC DIRECTOR!\p")
+    if(flag(FLAG_SYS_HAS_EXPN_CARD))
+    {
+        msgbox("{STR_VAR_1}I'm responsible for the gorgeous\nmelodies that go out over the air.\pDon't be square.\nGrab your music off the air!", MSGBOX_NPC)
+        end
+    }
+    msgbox("{STR_VAR_1}Huh? Your POKéGEAR can't tune into\nmy music programs. How unfortunate!\pIf you get an EXPN CARD upgrade,\nyou can tune in.\lYou'd better get one!", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_RadioTower_1F_EventScript_DirectorySign{
+    msgbox("1F RECEPTION\n2F SALES\l3F PERSONNEL\l4F PRODUCTION\l5F DIRECTOR'S OFFICE", MSGBOX_SIGN)
+    end
+}
+
+script LavenderTown_RadioTower_1F_EventScript_PokeFluteSign{
+    msgbox("Perk up POKéMON with Mellow Sounds\nof the POKé FLUTE on CHANNEL 20", MSGBOX_SIGN)
+    end
+}
+
+// Apparently unused.
+//script LavenderTown_RadioTower_1F_EventScript_CDRackSign{
+//    msgbox("Wow! A full rack of POKéMON CDs\nand videos.\lThis must be the reference library.", MSGBOX_SIGN)
+//    end
+//}

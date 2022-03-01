@@ -248,6 +248,9 @@
 #define METATILE_Lavaridge_NormalGrass          0x206
 #define METATILE_Lavaridge_RockWall             0x274
 
+// gTileset_LavenderTown
+#define METATILE_LavenderTown_Door  0x2A2
+
 // gTileset_LilycoveMuseum
 #define METATILE_LilycoveMuseum_Painting0_Left   0x25A
 #define METATILE_LilycoveMuseum_Painting0_Right  0x25B

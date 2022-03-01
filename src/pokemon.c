@@ -7104,6 +7104,7 @@ bool8 CheckReusedMapSec(u8 mapSectionId)
             case MAPSEC_RADIO_TOWER:
             case MAPSEC_MT_MORTAR:
             case MAPSEC_LAKE_OF_RAGE:
+            case MAPSEC_LAVENDER_RADIO_TOWER:
                 return TRUE;
             default:
                 return FALSE;
@@ -7114,7 +7115,7 @@ bool8 CheckNewMapSec(u8 mapSectionId)
 {
     switch(mapSectionId)
     {
-        case MAPSEC_NEW_BARK_TOWN ... MAPSEC_MAHOGANY_TOWN:
+        case MAPSEC_NEW_BARK_TOWN ... MAPSEC_LAVENDER_RADIO_TOWER:
         case MAPSEC_VIOLET_CITY ... MAPSEC_GOLDENROD_CITY:
         case MAPSEC_BLACKTHORN_CITY ... MAPSEC_ROUTE_32_FLYDUP:
         case MAPSEC_DARK_CAVE ... MAPSEC_MT_MORTAR: // includes Battle Frontier and Hoenn Safari Zone

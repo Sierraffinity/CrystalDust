@@ -278,3 +278,15 @@ gTilesetPalOverrides_PewterCity::
 	.byte 0
 	.byte 0 @ padding
 	.4byte NULL
+
+gTilesetPalOverrides_LavenderTown::
+	.byte 11
+	.byte HOUR_NIGHT
+	.byte HOUR_MORNING
+	.byte 0 @ padding
+	.4byte gTilesetPalOverride_Lavender11
+	.byte 0xFF
+	.byte 0
+	.byte 0
+	.byte 0 @ padding
+	.4byte NULL

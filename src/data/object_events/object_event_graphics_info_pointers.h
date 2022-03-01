@@ -77,7 +77,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Murkrow;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Book;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedSquirtleDoll;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedWooperDoll;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedPikachuDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Nidorino;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedPorygon2Doll;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CuttableTree;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MartEmployee;
@@ -106,7 +106,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayNormal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayMachBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Daisy;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NidoranM;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalMayFieldMove;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MrFuji;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Firebreather;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanUnderwater;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayUnderwater;
@@ -136,7 +136,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Silver;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bayleef;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanFishing;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayFishing;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HotSpringsOldWoman;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Psyduck;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SSTidal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Eusine;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PichuDoll;
@@ -327,7 +327,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_BOOK] =                     &gObjectEventGraphicsInfo_Book,
     [OBJ_EVENT_GFX_SQUIRTLE_DOLL] =            &gObjectEventGraphicsInfo_UnusedSquirtleDoll,
     [OBJ_EVENT_GFX_ZUNUSED_WOOPER_DOLL] =      &gObjectEventGraphicsInfo_UnusedWooperDoll,
-    [OBJ_EVENT_GFX_ZUNUSED_PIKACHU_DOLL] =     &gObjectEventGraphicsInfo_UnusedPikachuDoll,
+    [OBJ_EVENT_GFX_NIDORINO] =                 &gObjectEventGraphicsInfo_Nidorino,
     [OBJ_EVENT_GFX_ZUNUSED_PORYGON2_DOLL] =    &gObjectEventGraphicsInfo_UnusedPorygon2Doll,
     [OBJ_EVENT_GFX_CUTTABLE_TREE] =            &gObjectEventGraphicsInfo_CuttableTree,
     [OBJ_EVENT_GFX_MART_EMPLOYEE] =            &gObjectEventGraphicsInfo_MartEmployee,
@@ -356,7 +356,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE] =      &gObjectEventGraphicsInfo_RivalMayMachBike,
     [OBJ_EVENT_GFX_DAISY] =                    &gObjectEventGraphicsInfo_Daisy,
     [OBJ_EVENT_GFX_NIDORAN_M] =                &gObjectEventGraphicsInfo_NidoranM,
-    [OBJ_EVENT_GFX_RIVAL_MAY_FIELD_MOVE] =     &gObjectEventGraphicsInfo_RivalMayFieldMove,
+    [OBJ_EVENT_GFX_MR_FUJI] =                  &gObjectEventGraphicsInfo_MrFuji,
     [OBJ_EVENT_GFX_FIREBREATHER] =             &gObjectEventGraphicsInfo_Firebreather,
     [OBJ_EVENT_GFX_ZBRENDAN_UNDERWATER] =      &gObjectEventGraphicsInfo_BrendanUnderwater,
     [OBJ_EVENT_GFX_ZMAY_UNDERWATER] =          &gObjectEventGraphicsInfo_MayUnderwater,
@@ -386,7 +386,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_BAYLEEF] =                  &gObjectEventGraphicsInfo_Bayleef,
     [OBJ_EVENT_GFX_GOLD_FISHING] =             &gObjectEventGraphicsInfo_BrendanFishing,
     [OBJ_EVENT_GFX_KRIS_FISHING] =             &gObjectEventGraphicsInfo_MayFishing,
-    [OBJ_EVENT_GFX_ZHOT_SPRINGS_OLD_WOMAN] =   &gObjectEventGraphicsInfo_HotSpringsOldWoman,
+    [OBJ_EVENT_GFX_PSYDUCK] =                  &gObjectEventGraphicsInfo_Psyduck,
     [OBJ_EVENT_GFX_ZSS_TIDAL] =                &gObjectEventGraphicsInfo_SSTidal,
     [OBJ_EVENT_GFX_EUSINE] =                   &gObjectEventGraphicsInfo_Eusine,
     [OBJ_EVENT_GFX_ZPICHU_DOLL] =              &gObjectEventGraphicsInfo_PichuDoll,

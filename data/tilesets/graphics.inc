@@ -1840,6 +1840,9 @@ gTilesetPalOverride_Pewter08::
 gTilesetPalOverride_Pewter11::
 	.incbin "data/tilesets/secondary/pewtercity/palettes/11_over.gbapal"
 
+gTilesetPalOverride_Lavender11::
+	.incbin "data/tilesets/secondary/lavendertown/palettes/11_over.gbapal"
+
 	.align 2
 gTilesetPalettes_PalletTown::
 	.incbin "data/tilesets/secondary/pallettown/palettes/00.gbapal"

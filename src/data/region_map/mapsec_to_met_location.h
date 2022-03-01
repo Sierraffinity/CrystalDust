@@ -15,7 +15,7 @@
 #define METLOC_MAHOGANY_TOWN                0xDD  // METLOC_RADIO_TOWER with padding bit set
 #define METLOC_BLACKTHORN_CITY              0xDE  // METLOC_MT_MORTAR with padding bit set
 #define METLOC_ROUTE_26                     0xDF  // METLOC_LAKE_OF_RAGE with padding bit set
-#define METLOC_ROUTE_27                     0xE0
+#define METLOC_ROUTE_27                     0xE0  // METLOC_LAVENDER_RADIO_TOWER with padding bit set
 #define METLOC_ROUTE_28                     0xE1
 #define METLOC_ROUTE_29                     0xE2
 #define METLOC_ROUTE_30                     0xE3
@@ -55,6 +55,7 @@
 #define METLOC_RADIO_TOWER                  0x104
 #define METLOC_MT_MORTAR                    0x105
 #define METLOC_LAKE_OF_RAGE                 0x106
+#define METLOC_LAVENDER_RADIO_TOWER         0x107
 
 #define METLOC_START METLOC_NEW_BARK_TOWN
 
@@ -112,7 +113,8 @@ static const u8 sMapSecToMetLoc[] = {
     [MAPSEC_ICE_PATH]                  = METLOC_ECRUTEAK_CITY,    
     [MAPSEC_SILVER_CAVE]               = METLOC_CHERRYGROVE_CITY, 
     [MAPSEC_WHIRL_ISLANDS]             = METLOC_NEW_BARK_TOWN,    
-    [MAPSEC_TIN_TOWER]                 = METLOC_TIN_TOWER
+    [MAPSEC_TIN_TOWER]                 = METLOC_TIN_TOWER,
+    [MAPSEC_LAVENDER_RADIO_TOWER]      = METLOC_ROUTE_27
 };
 
 #endif //GUARD_DATA_REGION_MAP_MAPSEC_TO_MET_LOCATION_H

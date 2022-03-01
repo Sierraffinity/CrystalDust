@@ -8,7 +8,7 @@ static const u8 sMapName_CherrygroveCity[] = _("CHERRYGROVE CITY");
 static const u8 sMapName_AzaleaTown[] = _("AZALEA TOWN");
 static const u8 sMapName_CianwoodCity[] = _("CIANWOOD CITY");
 static const u8 sMapName_MahoganyTown[] = _("MAHOGANY TOWN");
-static const u8 sMapName_VerdanturfTown[] = _("VERDANTURF TOWN");
+static const u8 sMapName_LavenderRadioTower[] = _("LAV. RADIO TOWER");
 static const u8 sMapName_PacifidlogTown[] = _("PACIFIDLOG TOWN");
 static const u8 sMapName_VioletCity[] = _("VIOLET CITY");
 static const u8 sMapName_EcruteakCity[] = _("ECRUTEAK CITY");
@@ -213,7 +213,7 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_AZALEA_TOWN]                = { 9, 13, 1, 1, sMapName_AzaleaTown},
     [MAPSEC_CIANWOOD_CITY]              = { 1, 10, 1, 1, sMapName_CianwoodCity},
     [MAPSEC_MAHOGANY_TOWN]              = {14,  3, 1, 1, sMapName_MahoganyTown},
-    [MAPSEC_VERDANTURF_TOWN]            = { 4,  6, 1, 1, sMapName_VerdanturfTown},
+    [MAPSEC_LAVENDER_RADIO_TOWER]       = { 4,  6, 1, 1, sMapName_LavenderRadioTower},
     [MAPSEC_PACIFIDLOG_TOWN]            = {17, 10, 1, 1, sMapName_PacifidlogTown},
     [MAPSEC_VIOLET_CITY]                = {11,  5, 1, 1, sMapName_VioletCity},
     [MAPSEC_ECRUTEAK_CITY]              = { 9,  3, 1, 1, sMapName_EcruteakCity},
@@ -473,7 +473,8 @@ const u8 *const gRegionMapNames_Johto[] = {
     [METLOC_DARK_CAVE]               = sMapName_DarkCave,
     [METLOC_RADIO_TOWER]             = sMapName_RadioTower,
     [METLOC_MT_MORTAR]               = sMapName_MtMortar,
-    [METLOC_LAKE_OF_RAGE]            = sMapName_LakeOfRage
+    [METLOC_LAKE_OF_RAGE]            = sMapName_LakeOfRage,
+    [METLOC_LAVENDER_RADIO_TOWER]    = sMapName_LavenderRadioTower
 };
 
 #endif //GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H

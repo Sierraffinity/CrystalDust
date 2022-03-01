@@ -1,1 +1,6 @@
 mapscripts LavenderTown_House_MapScripts {}
+
+script LavenderTown_House_EventScript_PokefanF{
+    msgbox("LAVENDER is a tiny, quiet town\nat the foot of the mountains.\pIt's gotten a bit busier since the\nRADIO TOWER was built.", MSGBOX_NPC)
+    end
+}

@@ -81,7 +81,7 @@
 #define OBJ_EVENT_GFX_BOOK                        77
 #define OBJ_EVENT_GFX_SQUIRTLE_DOLL               78
 #define OBJ_EVENT_GFX_ZUNUSED_WOOPER_DOLL         79
-#define OBJ_EVENT_GFX_ZUNUSED_PIKACHU_DOLL        80
+#define OBJ_EVENT_GFX_NIDORINO                    80
 #define OBJ_EVENT_GFX_ZUNUSED_PORYGON2_DOLL       81
 #define OBJ_EVENT_GFX_CUTTABLE_TREE               82
 #define OBJ_EVENT_GFX_MART_EMPLOYEE               83
@@ -110,7 +110,7 @@
 #define OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE        106
 #define OBJ_EVENT_GFX_DAISY                      107
 #define OBJ_EVENT_GFX_NIDORAN_M                  108
-#define OBJ_EVENT_GFX_RIVAL_MAY_FIELD_MOVE       109
+#define OBJ_EVENT_GFX_MR_FUJI                    109
 #define OBJ_EVENT_GFX_FIREBREATHER               110
 #define OBJ_EVENT_GFX_ZBRENDAN_UNDERWATER        111
 #define OBJ_EVENT_GFX_ZMAY_UNDERWATER            112
@@ -140,7 +140,7 @@
 #define OBJ_EVENT_GFX_BAYLEEF                    136
 #define OBJ_EVENT_GFX_GOLD_FISHING               137
 #define OBJ_EVENT_GFX_KRIS_FISHING               138
-#define OBJ_EVENT_GFX_ZHOT_SPRINGS_OLD_WOMAN     139
+#define OBJ_EVENT_GFX_PSYDUCK                    139
 #define OBJ_EVENT_GFX_ZSS_TIDAL                  140
 #define OBJ_EVENT_GFX_EUSINE                     141
 #define OBJ_EVENT_GFX_ZPICHU_DOLL                142

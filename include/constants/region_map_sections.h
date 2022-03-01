@@ -6,7 +6,7 @@
 #define MAPSEC_AZALEA_TOWN                  0x02
 #define MAPSEC_CIANWOOD_CITY                0x03
 #define MAPSEC_MAHOGANY_TOWN                0x04
-#define MAPSEC_VERDANTURF_TOWN              0x05
+#define MAPSEC_LAVENDER_RADIO_TOWER         0x05
 #define MAPSEC_PACIFIDLOG_TOWN              0x06
 #define MAPSEC_VIOLET_CITY                  0x07
 #define MAPSEC_ECRUTEAK_CITY                0x08
@@ -442,7 +442,7 @@
 
 #define EMERALD_MAPSEC_START                MAPSECEM_LITTLEROOT_TOWN
 #define EMERALD_MAPSEC_END                  MAPSECEM_NONE
-#define NUM_NEW_MAPSECS 50
+#define NUM_NEW_MAPSECS 51
 // For special CD Eggs handled in PrintEggMemo
 #define METLOC_VIOLET_CITY                  0xD7
 #define METLOC_GOLDENROD_CITY               0xD9

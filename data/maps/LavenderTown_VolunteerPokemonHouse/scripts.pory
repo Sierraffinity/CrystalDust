@@ -1,1 +1,41 @@
 mapscripts LavenderTown_VolunteerPokemonHouse_MapScripts {}
+
+script LavenderTown_VolunteerPokemonHouse_EventScript_Girl{
+    msgbox("Some cold-hearted people stop\ncaring for their POKéMON.\pGrandpa takes in the poor homeless\nPOKéMON and takes care of them.", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_VolunteerPokemonHouse_EventScript_Boy{
+    msgbox("MR. FUJI does live here, but he's\nnot home now.\pHe should be at the SOUL HOUSE.", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_VolunteerPokemonHouse_EventScript_Psyduck {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_PSYDUCK, 0)
+    msgbox("PSYDUCK: Gu-guwa?")
+    waitmoncry
+    release
+}
+
+script LavenderTown_VolunteerPokemonHouse_EventScript_Nidorino {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_NIDORINO, 0)
+    msgbox("NIDORINO: Gyun!")
+    waitmoncry
+    release
+}
+
+script LavenderTown_VolunteerPokemonHouse_EventScript_Pidgey {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_PIDGEY, 0)
+    msgbox("PIDGEY: Pijji!")
+    waitmoncry
+    release
+}

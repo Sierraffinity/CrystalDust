@@ -3111,7 +3111,7 @@ static void BufferMonTrainerMemo(void)
             if(sum->locationBit)
                 metlocation += 39;
             mapsecShift = EMERALD_MAPSEC_START;
-            maxMapsec = MAPSEC_NONE + NUM_NEW_MAPSECS; // should be 0x106 and down
+            maxMapsec = MAPSEC_NONE + NUM_NEW_MAPSECS; // should be 0x107 and down
         }
         else
         {   //mon from vanilla mapsecs

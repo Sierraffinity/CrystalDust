@@ -976,7 +976,7 @@ gTileset_LavenderTown::
 	.4byte gMetatiles_LavenderTown
 	.4byte gMetatileAttributes_LavenderTown
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_LavenderTown @ palette overrides
 
 	.align 2
 gTileset_VermilionCity::

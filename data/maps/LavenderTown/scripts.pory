@@ -1,1 +1,45 @@
-mapscripts LavenderTown_MapScripts {}
+mapscripts LavenderTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_LAVENDER_TOWN)
+    }
+}
+
+script LavenderTown_EventScript_TownSign{
+    msgbox("LAVENDER TOWN\nThe Noble Purple Town", MSGBOX_SIGN)
+    end
+}
+
+script LavenderTown_EventScript_RadioTowerSign{
+    msgbox("KANTO RADIO STATION\pYour Favorite Programs On-Air\nAround the Clock!", MSGBOX_SIGN)
+    end
+}
+
+script LavenderTown_EventScript_FujisHouseSign{
+    msgbox("LAVENDER VOLUNTEER POKéMON HOUSE", MSGBOX_SIGN)
+    end
+}
+
+script LavenderTown_EventScript_SoulHouseSign{
+    msgbox("SOUL HOUSE\nMay the Souls of POKéMON Rest Easy", MSGBOX_SIGN)
+    end
+}
+
+script LavenderTown_EventScript_Boy{
+    msgbox("You need a POKé FLUTE to wake\nsleeping POKéMON.\lEvery trainer has to know that!", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_EventScript_Woman{
+    msgbox("KANTO has many good radio shows.", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_EventScript_PokefanM{
+    msgbox("That's quite some building, eh?\nIt's KANTO's RADIO TOWER.", MSGBOX_NPC)
+    end
+}
+
+script LavenderTown_EventScript_OldMan{
+    msgbox("People come from all over to pay\ntheir respects to the departed\lsouls of POKéMON.", MSGBOX_NPC)
+    end
+}
