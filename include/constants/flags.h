@@ -862,12 +862,12 @@
 #define FLAG_HIDE_NEW_BARK_TOWN_ELMS_LAB_POKEBALL_TOTODILE          0x32C
 // Bill's Grandpa end
 #define FLAG_GOT_THUNDER_STONE_FROM_BILLS_GRANDPA                   0x32D
+#define FLAG_GOT_TM41                                               0x32E
+#define FLAG_FOUND_LEFTOVERS_IN_CELADON_CAFE                        0x32F
+#define FLAG_GOT_TM19_FROM_ERIKA                                    0x330
+#define FLAG_GOT_COINS_FROM_GAMBLER_AT_CELADON                      0x331
+#define FLAG_EUSINE_LEFT_CELADON                                    0x332
 // STOPPED HERE
-#define FLAG_HIDE_GOLDENROD_CITY_RIVAL                              0x32E
-#define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_SWABLU_DOLL        0x32F
-#define FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE                           0x330
-#define FLAG_HIDE_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_POKE_BALL          0x331
-#define FLAG_HIDE_NEW_BARK_TOWN_OTHER_HOUSE_POKE_BALL               0x332
 #define FLAG_HIDE_ROUTE_112_TEAM_MAGMA                              0x333
 #define FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE                        0x334
 #define FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE         0x335

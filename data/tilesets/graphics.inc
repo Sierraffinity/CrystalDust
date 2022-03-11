@@ -1843,6 +1843,9 @@ gTilesetPalOverride_Pewter11::
 gTilesetPalOverride_Lavender11::
 	.incbin "data/tilesets/secondary/lavendertown/palettes/11_over.gbapal"
 
+gTilesetPalOverride_CeladonMansion07::
+	.incbin "data/tilesets/secondary/celadonmansion/palettes/07_over.gbapal"
+
 	.align 2
 gTilesetPalettes_PalletTown::
 	.incbin "data/tilesets/secondary/pallettown/palettes/00.gbapal"

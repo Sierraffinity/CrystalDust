@@ -999,7 +999,7 @@ gTileset_CeladonCity::
 	.4byte gTilesetPalettes_CeladonCity
 	.4byte gMetatiles_CeladonCity
 	.4byte gMetatileAttributes_CeladonCity
-	.4byte NULL
+	.4byte InitTilesetAnim_CeladonCity
 	.4byte gTilesetPalOverrides_CeladonCity @ palette overrides
 
 	.align 2
@@ -1157,7 +1157,7 @@ gTileset_CeladonMansion::
 	.4byte gMetatiles_CeladonMansion
 	.4byte gMetatileAttributes_CeladonMansion
 	.4byte NULL
-	.4byte NULL @ palette overrides
+	.4byte gTilesetPalOverrides_CeladonMansion @ palette overrides
 
 	.align 2
 gTileset_SaffronGym::

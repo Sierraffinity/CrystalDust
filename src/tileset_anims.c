@@ -665,6 +665,20 @@ static const u16 *const sTilesetAnims_SilphCo_Fountain[] = {
     sTilesetAnims_SilphCo_Fountain_Frame3
 };
 
+static const u16 sTilesetAnims_CeladonCity_Fountain_Frame0[] = INCBIN_U16("data/tilesets/secondary/celadoncity/anim/fountain/0.4bpp");
+static const u16 sTilesetAnims_CeladonCity_Fountain_Frame1[] = INCBIN_U16("data/tilesets/secondary/celadoncity/anim/fountain/1.4bpp");
+static const u16 sTilesetAnims_CeladonCity_Fountain_Frame2[] = INCBIN_U16("data/tilesets/secondary/celadoncity/anim/fountain/2.4bpp");
+static const u16 sTilesetAnims_CeladonCity_Fountain_Frame3[] = INCBIN_U16("data/tilesets/secondary/celadoncity/anim/fountain/3.4bpp");
+static const u16 sTilesetAnims_CeladonCity_Fountain_Frame4[] = INCBIN_U16("data/tilesets/secondary/celadoncity/anim/fountain/4.4bpp");
+
+static const u16 *const sTilesetAnims_CeladonCity_Fountain[] = {
+    sTilesetAnims_CeladonCity_Fountain_Frame0,
+    sTilesetAnims_CeladonCity_Fountain_Frame1,
+    sTilesetAnims_CeladonCity_Fountain_Frame2,
+    sTilesetAnims_CeladonCity_Fountain_Frame3,
+    sTilesetAnims_CeladonCity_Fountain_Frame4
+};
+
 static void ResetTilesetAnimBuffer(void)
 {
     sTilesetDMA3TransferBufferSize = 0;
@@ -1290,6 +1304,24 @@ void InitTilesetAnim_SilphCo(void)
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = 160;
     sSecondaryTilesetAnimCallback = TilesetAnim_SilphCo;
+}
+
+static void QueueAnimTiles_CeladonCity_Fountain(u16 timer)
+{
+    AppendTilesetAnimToBuffer(sTilesetAnims_CeladonCity_Fountain[timer % NELEMS(sTilesetAnims_CeladonCity_Fountain)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(744)), 8 * TILE_SIZE_4BPP);
+}
+
+static void TilesetAnim_CeladonCity(u16 timer)
+{
+    if (timer % 12 == 0)
+        QueueAnimTiles_CeladonCity_Fountain(timer / 12);
+}
+
+void InitTilesetAnim_CeladonCity(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 120;
+    sSecondaryTilesetAnimCallback = TilesetAnim_CeladonCity;
 }
 
 static void QueueAnimTiles_Building_TVTurnedOn(u16 timer)

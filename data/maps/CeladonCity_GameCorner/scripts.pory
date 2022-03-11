@@ -1,1 +1,87 @@
 mapscripts CeladonCity_GameCorner_MapScripts {}
+
+script CeladonCity_GameCorner_EventScript_GymGuide {
+    msgbox("Hey! CHAMP in making!\nAre you playing the slots too?\pI'm trying to get enough coins for a\nprize POKéMON.\pBut I don't have enough coins yet…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_GameCorner_EventScript_CoinClerk {
+    bufferstring(1, "")
+    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk2)
+}
+
+script CeladonCity_GameCorner_EventScript_Receptionist{
+    msgbox("Welcome!\pYou may exchange your coins for\nfabulous prizes next door.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_GameCorner_EventScript_Posters{
+    msgbox("Hey!\nUnderneath this poster…\pThere's nothing!", MSGBOX_SIGN)
+    end
+}
+
+script CeladonCity_GameCorner_EventScript_Lighter{
+    msgbox("There's a lighter here.", MSGBOX_SIGN)
+    end
+}
+
+script CeladonCity_GameCorner_EventScript_OldMan{
+    msgbox("Hmmm… The odds are surely better for\nPIKACHU's line, but… What to do?", MSGBOX_NPC)
+    turnobject(VAR_LAST_TALKED, DIR_WEST)
+    end
+}
+
+script CeladonCity_GameCorner_EventScript_FatMan{
+    if(flag(FLAG_GOT_COINS_FROM_GAMBLER_AT_CELADON))
+    {
+        msgbox("Gahahaha!\pIt makes me feel good to do nice\nthings for other people!", MSGBOX_NPC)
+        turnobject(VAR_LAST_TALKED, DIR_WEST)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Gahahaha!\nThe coins just keep popping out!\pHm? What, kid? You want to play?\nI'll share my luck with you!", MSGBOX_DEFAULT)
+    checkitem(ITEM_COIN_CASE, 1)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Hey, you don't have a COIN CASE.\pHow am I supposed to give you any\ncoins, kid?", MSGBOX_NPC)
+        turnobject(VAR_LAST_TALKED, DIR_WEST)
+        end
+    }
+    checkcoins(VAR_RESULT)
+    if(var(VAR_RESULT) > 9981)
+    {
+        msgbox("Hey, your COIN CASE is full, kid.\pYou must be riding a winning streak\ntoo.", MSGBOX_NPC)
+        turnobject(VAR_LAST_TALKED, DIR_WEST)
+        end
+    }
+    textcolor(2)
+    message("{PLAYER} received 18 COINS!")
+    call(EventScript_PlayFanfareObtainedItem)
+    waitmessage
+    waitfanfare
+    textcolor(0)
+    addcoins(18)
+    setflag(FLAG_GOT_COINS_FROM_GAMBLER_AT_CELADON)
+    goto(CeladonCity_GameCorner_EventScript_FatMan)
+    turnobject(VAR_LAST_TALKED, DIR_WEST)
+    end
+}
+
+script CeladonCity_GameCorner_EventScript_Fisher{
+    msgbox("I think this slot machine will pay\nout…\pThe odds vary among machines.", MSGBOX_NPC)
+    turnobject(VAR_LAST_TALKED, DIR_EAST)
+    end
+}
+
+script CeladonCity_GameCorner_EventScript_PokefanM{
+    msgbox("The slot machines are all state\nof the art.", MSGBOX_NPC)
+    turnobject(VAR_LAST_TALKED, DIR_WEST)
+    end
+}
+
+script CeladonCity_GameCorner_EventScript_Woman{
+    msgbox("It's this machine I want.\pIt cleaned me out yesterday, so it\nshould pay out today.", MSGBOX_NPC)
+    turnobject(VAR_LAST_TALKED, DIR_EAST)
+    end
+}

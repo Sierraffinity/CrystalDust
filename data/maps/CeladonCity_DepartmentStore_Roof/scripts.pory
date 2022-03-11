@@ -1,1 +1,125 @@
 mapscripts CeladonCity_DepartmentStore_Roof_MapScripts {}
+
+script CeladonCity_DepartmentStore_Roof_EventScript_Directory {
+	msgbox("6F: ROOFTOP SQUARE\nVENDING MACHINES", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_DepartmentStore_Roof_EventScript_Youngster{
+    msgbox("Aww! There's no games here!\nI wanted to play…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_Roof_EventScript_SuperNerd{
+    msgbox("A vending machine with a prize\nroulette…\pYou never see those anymore.", MSGBOX_NPC)
+    end
+}
+
+
+raw `
+CeladonCity_DepartmentStore_Roof_EventScript_VendingMachine:: @ 816C034
+	lockall
+	message CeladonCity_DepartmentStore_Roof_Text_VendingMachineWhatDoesItHave
+	waitmessage
+	showmoneybox 0, 0, 0
+	goto CeladonCity_DepartmentStore_Roof_EventScript_ChooseDrink
+	end
+
+CeladonCity_DepartmentStore_Roof_EventScript_ChooseDrink:: @ 816C045
+	multichoice 12, 0, MULTI_VENDING_MACHINE, FALSE
+	copyvar VAR_TEMP_1, VAR_RESULT
+	switch VAR_TEMP_1
+	case 0, CeladonCity_DepartmentStore_Roof_EventScript_BuyFreshWater
+	case 1, CeladonCity_DepartmentStore_Roof_EventScript_BuySodaPop
+	case 2, CeladonCity_DepartmentStore_Roof_EventScript_BuyLemonade
+	msgbox CeladonCity_DepartmentStore_Roof_Text_NotThirsty
+	goto CeladonCity_DepartmentStore_Roof_EventScript_ExitVendingMachine
+	end
+
+CeladonCity_DepartmentStore_Roof_EventScript_BuyFreshWater:: @ 816C083
+	setvar VAR_TEMP_0, ITEM_FRESH_WATER
+	checkmoney 200, 0
+	goto CeladonCity_DepartmentStore_Roof_EventScript_TryBuyDrink
+	end
+
+CeladonCity_DepartmentStore_Roof_EventScript_BuySodaPop:: @ 816C094
+	setvar VAR_TEMP_0, ITEM_SODA_POP
+	checkmoney 300, 0
+	goto CeladonCity_DepartmentStore_Roof_EventScript_TryBuyDrink
+	end
+
+CeladonCity_DepartmentStore_Roof_EventScript_BuyLemonade:: @ 816C0A5
+	setvar VAR_TEMP_0, ITEM_LEMONADE
+	checkmoney 350, 0
+	goto CeladonCity_DepartmentStore_Roof_EventScript_TryBuyDrink
+	end
+
+CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneyFreshWater:: @ 816C0B6
+	removemoney 200, 0
+	return
+
+CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneySodaPop:: @ 816C0BD
+	removemoney 300, 0
+	return
+
+CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneyLemonade:: @ 816C0C4
+	removemoney 350, 0
+	return
+
+CeladonCity_DepartmentStore_Roof_EventScript_TryBuyDrink:: @ 816C0CB
+	compare VAR_RESULT, FALSE
+	goto_if_eq CeladonCity_DepartmentStore_Roof_EventScript_NotEnoughMoney
+	checkitemspace VAR_TEMP_0, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq CeladonCity_DepartmentStore_Roof_EventScript_NoRoomForDrink
+	compare VAR_TEMP_1, 0
+	call_if_eq CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneyFreshWater
+	compare VAR_TEMP_1, 1
+	call_if_eq CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneySodaPop
+	compare VAR_TEMP_1, 2
+	call_if_eq CeladonCity_DepartmentStore_Roof_EventScript_RemoveMoneyLemonade
+	updatemoneybox 0, 0
+	bufferitemname 0, VAR_TEMP_0
+	playse SE_VEND
+	msgbox CeladonCity_DepartmentStore_Roof_Text_DrinkCanPoppedOut
+	additem VAR_TEMP_0
+	goto CeladonCity_DepartmentStore_Roof_EventScript_ChooseNewDrink
+	end
+
+CeladonCity_DepartmentStore_Roof_EventScript_ChooseNewDrink:: @ 816C125
+	message CeladonCity_DepartmentStore_Roof_Text_VendingMachineWhatDoesItHave
+	waitmessage
+	goto CeladonCity_DepartmentStore_Roof_EventScript_ChooseDrink
+	end
+
+CeladonCity_DepartmentStore_Roof_EventScript_NotEnoughMoney:: @ 816C131
+	msgbox CeladonCity_DepartmentStore_Roof_Text_NotEnoughMoney
+	goto CeladonCity_DepartmentStore_Roof_EventScript_ExitVendingMachine
+	end
+
+CeladonCity_DepartmentStore_Roof_EventScript_NoRoomForDrink:: @ 816C13F
+	msgbox CeladonCity_DepartmentStore_Roof_Text_NoMoreRoomForStuff
+	goto CeladonCity_DepartmentStore_Roof_EventScript_ExitVendingMachine
+	end
+
+CeladonCity_DepartmentStore_Roof_EventScript_ExitVendingMachine:: @ 816C14D
+	hidemoneybox
+	releaseall
+	end
+    
+CeladonCity_DepartmentStore_Roof_Text_VendingMachineWhatDoesItHave:: @ 8196038
+    .string "A vending machine!\n"
+    .string "What does it have?$"
+
+CeladonCity_DepartmentStore_Roof_Text_NotEnoughMoney:: @ 819605E
+    .string "Oops, not enough money!$"
+
+CeladonCity_DepartmentStore_Roof_Text_DrinkCanPoppedOut:: @ 8196076
+    .string "A can of {STR_VAR_1} popped out!$"
+
+CeladonCity_DepartmentStore_Roof_Text_NoMoreRoomForStuff:: @ 819608E
+    .string "There's no more room for stuff!$"
+
+CeladonCity_DepartmentStore_Roof_Text_NotThirsty:: @ 81960AE
+    .string "Not thirsty!$"
+`

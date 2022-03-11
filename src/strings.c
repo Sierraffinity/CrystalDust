@@ -2062,3 +2062,11 @@ const u8 gText_DomeFossil[] = _("DOME FOSSIL");
 const u8 gText_OldAmber[] = _("OLD AMBER");
 const u8 gText_RootFossil[] = _("ROOT FOSSIL");
 const u8 gText_ClawFossil[] = _("CLAW FOSSIL");
+
+//Celadon Game Corner Prizes
+const u8 gText_PikachuPrizeAndPrice[] = _("PIKACHU{CLEAR_TO 0x4B}{FONT SMALL} 2222 COINS");
+const u8 gText_PorygonPrizeAndPrice[] = _("PORYGON{CLEAR_TO 0x4B}{FONT SMALL} 5555 COINS");
+const u8 gText_LarvitarPrizeAndPrice[] = _("LARVITAR{CLEAR_TO 0x4B}{FONT SMALL} 8888 COINS");
+const u8 gText_TM32AndPrice[] = _("TM32{CLEAR_TO 0x48}{FONT SMALL}1,500 COINS");
+const u8 gText_TM29AndPrice[] = _("TM29{CLEAR_TO 0x48}{FONT SMALL}3,500 COINS");
+const u8 gText_TM15AndPrice[] = _("TM15{CLEAR_TO 0x48}{FONT SMALL}7,500 COINS");

@@ -39,6 +39,7 @@
 #define SCROLL_MULTI_BF_MOVE_TUTOR_2                      10
 #define SCROLL_MULTI_SS_TIDAL_DESTINATION                 11
 #define SCROLL_MULTI_BATTLE_TENT_RULES                    12
+#define SCROLL_MULTI_CELADON_DEPT_STORE_FLOORS            13
 
 #define MAX_SCROLL_MULTI_ON_SCREEN 7
 #define MAX_SCROLL_MULTI_LENGTH 16

@@ -1,1 +1,38 @@
 mapscripts CeladonCity_DepartmentStore_4F_MapScripts {}
+
+script CeladonCity_DepartmentStore_4F_EventScript_Directory {
+	msgbox("Express Yourself With Gifts!\n4F: WISEMAN GIFTS", MSGBOX_SIGN)
+	end
+}
+
+// Originally referred to Surf Mail in Crystal
+script CeladonCity_DepartmentStore_4F_EventScript_SuperNerd{
+    msgbox("I'm here to buy FAB MAIL to send\nto my girlfriend.", MSGBOX_NPC)
+    end
+}
+
+// Originally referred to Lovely Mail in Crystal
+script CeladonCity_DepartmentStore_4F_EventScript_Youngster{
+    msgbox("This is the only place where you\ncan buy RETRO MAIL.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_4F_Eventscript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(CeladonCity_DepartmentStore_4F_Pokemart_Clerk)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+// this mart sells Lovely and Surf Mail in Crystal
+raw `
+.align 2
+CeladonCity_DepartmentStore_4F_Pokemart_Clerk:
+    .2byte ITEM_POKE_DOLL
+    .2byte ITEM_FAB_MAIL
+	.2byte ITEM_RETRO_MAIL
+	.2byte ITEM_NONE
+`

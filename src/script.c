@@ -662,6 +662,11 @@ void CheckOwnAllBeasts(void)
         }
     }
     hasSuicune = hasMon;
+    gSpecialVar_0x800B = FALSE;
+    if(hasSuicune)
+    {
+        gSpecialVar_0x800B = TRUE;
+    }
     if(hasRaikou && hasEntei && hasSuicune)
     {
         gSpecialVar_Result = TRUE;

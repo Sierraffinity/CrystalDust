@@ -10,6 +10,7 @@ script GoldenrodCity_DeptStore_4F_EventScript_Clerk {
     release
 }
 
+//added Zinc to this mart.
 raw `
 GoldenrodCity_DeptStore_4F_Pokemart_Clerk:
 	.2byte ITEM_PROTEIN
@@ -17,6 +18,7 @@ GoldenrodCity_DeptStore_4F_Pokemart_Clerk:
 	.2byte ITEM_CARBOS
 	.2byte ITEM_CALCIUM
 	.2byte ITEM_HP_UP
+    .2byte ITEM_ZINC
 	.2byte ITEM_NONE
 `
 

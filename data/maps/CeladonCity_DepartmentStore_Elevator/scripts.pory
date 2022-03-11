@@ -1,1 +1,71 @@
 mapscripts CeladonCity_DepartmentStore_Elevator_MapScripts {}
+
+script CeladonCity_DeptStore_Elevator_EventScript_Keypad {
+    lock
+    if (!flag(FLAG_TEMP_2))
+    {
+        special(SetDeptStoreFloor)
+    }
+    copyvar(VAR_0x8006, VAR_DEPT_STORE_FLOOR)
+    special(DrawElevatorCurrentFloorWindow)
+    message("Which floor?")
+    waitmessage
+    setvar(VAR_0x8004, SCROLL_MULTI_CELADON_DEPT_STORE_FLOORS)
+    specialvar(VAR_0x8005, GetDeptStoreDefaultFloorChoice)
+    special(ShowScrollableMultichoice)
+    waitstate
+    switch(var(VAR_RESULT))
+    {
+        case 0:
+            setvar(VAR_0x8007, ELEVATOR_FLOORNUM_5F)
+            setdynamicwarp(MAP_CELADON_CITY_DEPARTMENT_STORE_5F, 2, 0, 0)
+            if (var(VAR_DEPT_STORE_FLOOR) != ELEVATOR_FLOORNUM_5F)
+            {
+                call(CeladonCity_DeptStore_Elevator_EventScript_MoveElevator)
+                setvar(VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_5F)
+            }
+        case 1:
+            setvar(VAR_0x8007, ELEVATOR_FLOORNUM_4F)
+            setdynamicwarp(MAP_CELADON_CITY_DEPARTMENT_STORE_4F, 2, 0, 0)
+            if (var(VAR_DEPT_STORE_FLOOR) != ELEVATOR_FLOORNUM_4F)
+            {
+                call(CeladonCity_DeptStore_Elevator_EventScript_MoveElevator)
+                setvar(VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_4F)
+            }
+        case 2:
+            setvar(VAR_0x8007, ELEVATOR_FLOORNUM_3F)
+            setdynamicwarp(MAP_CELADON_CITY_DEPARTMENT_STORE_3F, 2, 0, 0)
+            if (var(VAR_DEPT_STORE_FLOOR) != ELEVATOR_FLOORNUM_3F)
+            {
+                call(CeladonCity_DeptStore_Elevator_EventScript_MoveElevator)
+                setvar(VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_3F)
+            }
+        case 3:
+            setvar(VAR_0x8007, ELEVATOR_FLOORNUM_2F)
+            setdynamicwarp(MAP_CELADON_CITY_DEPARTMENT_STORE_2F, 2, 0, 0)
+            if (var(VAR_DEPT_STORE_FLOOR) != ELEVATOR_FLOORNUM_2F)
+            {
+                call(CeladonCity_DeptStore_Elevator_EventScript_MoveElevator)
+                setvar(VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_3F)
+            }
+        case 4:
+            setvar(VAR_0x8007, ELEVATOR_FLOORNUM_1F)
+            setdynamicwarp(MAP_CELADON_CITY_DEPARTMENT_STORE_1F, 3, 0, 0)
+            if (var(VAR_DEPT_STORE_FLOOR) != ELEVATOR_FLOORNUM_1F)
+            {
+                call(CeladonCity_DeptStore_Elevator_EventScript_MoveElevator)
+                setvar(VAR_DEPT_STORE_FLOOR, ELEVATOR_FLOORNUM_1F)
+            }
+    }
+    special(CloseDeptStoreElevatorWindow)
+	release
+}
+
+script CeladonCity_DeptStore_Elevator_EventScript_MoveElevator {
+	special(CloseDeptStoreElevatorWindow)
+	closemessage
+	waitse
+	special(MoveElevator)
+	waitstate
+	setflag(FLAG_TEMP_2)
+}

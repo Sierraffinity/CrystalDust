@@ -1,1 +1,50 @@
 mapscripts CeladonCity_DepartmentStore_3F_MapScripts {}
+
+script CeladonCity_DepartmentStore_3F_EventScript_Directory {
+	msgbox("3F: TM SHOP\nMake your POKéMON Stronger!", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_DepartmentStore_3F_EventScript_SuperNerd{
+    msgbox("The TM SHOP sells some rare moves.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_3F_EventScript_Youngster{
+    msgbox("I can't decide which POKéMON I\nshould use this TM on…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_3F_EventScript_GameboyKid1{
+    msgbox("Uh-oh! I traded my POKéMON without\nremoving the UP-GRADE from it.", MSGBOX_NPC)
+    turnobject(4, DIR_SOUTH)
+    end
+}
+
+script CeladonCity_DepartmentStore_3F_EventScript_GameboyKid2{
+    msgbox("Yeah!\nI'm finally getting a PORYGON!\pI'm no good at the slots, so I could\nnever get enough coins…\p…Huh?\pThe traded PORYGON turned into a\ndifferent POKéMON!", MSGBOX_NPC)
+    turnobject(5, DIR_SOUTH)
+    end
+}
+
+script CeladonCity_DepartmentStore_3F_Eventscript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(CeladonCity_DepartmentStore_3F_Pokemart_Clerk)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+// same TM selection as in Crystal
+raw `
+.align 2
+CeladonCity_DepartmentStore_3F_Pokemart_Clerk:
+    .2byte ITEM_TM10_HIDDEN_POWER
+    .2byte ITEM_TM11_SUNNY_DAY
+	.2byte ITEM_TM17_PROTECT
+    .2byte ITEM_TM18_RAIN_DANCE
+    .2byte ITEM_TM37_SANDSTORM
+	.2byte ITEM_NONE
+`

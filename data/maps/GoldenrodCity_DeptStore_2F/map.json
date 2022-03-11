@@ -12,10 +12,12 @@
   "allow_running": false,
   "show_map_name": true,
   "floor_number": 2,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
       "in_connection": false,
       "x": 11,
@@ -27,10 +29,10 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_DeptStore_2F_EventScript_TopClerk",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
       "in_connection": false,
       "x": 10,
@@ -42,10 +44,10 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_DeptStore_2F_EventScript_LeftClerk",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "in_connection": false,
       "x": 6,
@@ -57,10 +59,10 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_DeptStore_2F_EventScript_Youngster",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "in_connection": false,
       "x": 2,
@@ -72,10 +74,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_DeptStore_2F_EventScript_AbraWoman",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "in_connection": false,
       "x": 11,
@@ -87,8 +89,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_DeptStore_2F_EventScript_Gentleman",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -134,6 +135,5 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "EventScript_ElevatorButton"
     }
-  ],
-  "phone_service": ""
+  ]
 }

@@ -65,6 +65,7 @@ script TinTower_Roof_EventScript_Trigger {
         case B_OUTCOME_PLAYER_TELEPORTED:
             call(Common_EventScript_LegendaryFlewAway)
     }
+    setflag(FLAG_EUSINE_LEFT_CELADON)
     releaseall
     end
 }movement(local) TinTower_Roof_Movement_HoOhAppear{

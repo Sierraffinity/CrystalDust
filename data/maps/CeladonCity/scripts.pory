@@ -1,1 +1,85 @@
-mapscripts CeladonCity_MapScripts {}
+mapscripts CeladonCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_CELADON_CITY)
+    }
+}
+
+script CeladonCity_EventScript_CitySign {
+	msgbox("CELADON CITY\nThe City of Rainbow Dreams", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_EventScript_GymSign {
+	msgbox("CELADON CITY POKéMON GYM\nLEADER: ERIKA\pThe Nature-Loving Princess", MSGBOX_SIGN)
+    end
+}
+
+script CeladonCity_EventScript_DeptStoreSign {
+	msgbox("Find What You Need at\nCELADON DEPT. STORE", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_EventScript_MansionSign {
+	msgbox("CELADON MANSION", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_EventScript_GameCornerSign {
+	msgbox("The Playground for Everybody--\nCELADON GAME CORNER", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_EventScript_TrainerTipsSign {
+	msgbox("TRAINER TIPS\pGUARD SPEC. protects POKéMON against SPECIAL attacks such as\nfire and water.\pGet your items at CELADON DEPT.\nSTORE!", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_EventScript_Lass{
+    msgbox("Looking at the ground while I was\nwalking made me dizzy.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_EventScript_Teacher2{
+    msgbox("CELADON DEPT. STORE has the biggest\nand best selection of merchandise.\pIf you can't get it there, you\ncan't get it anywhere.\pGee…\nI sound like a sales clerk.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_EventScript_Youngster2{
+    msgbox("They're holding an eating contest at\nthe restaurant.\pJust watching them go at it makes me\nfeel bloated…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_EventScript_Youngster1{
+    msgbox("Want to know a secret?\pCELADON MANSION has a hidden\nback door.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_EventScript_Gramps2{
+    msgbox("Nihihi!\nThis GYM is great!\lOnly girls are allowed here!", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_EventScript_Gramps1{
+    msgbox("GRIMER have been appearing lately.\pSee that pond out in front of the\nhouse? GRIMER live there now.\pWhere did they come from?\nThis is a serious problem…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_EventScript_Teacher1{
+    msgbox("I lost at the slot machines again…\pWe girls also play the slots now.\nYou should check them out too.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_EventScript_Fisher{
+    msgbox("This POLIWRATH is my partner.\pI wonder if it'll ever evolve into a\nfrog POKéMON.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_EventScript_Poliwrath {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_POLIWRATH, 0)
+    msgbox("POLIWRATH: Croak!")
+    waitmoncry
+    release
+}

@@ -12,6 +12,7 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
@@ -38,6 +39,5 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "GoldenrodCity_DeptStore_Elevator_EventScript_Keypad"
     }
-  ],
-  "phone_service": ""
+  ]
 }

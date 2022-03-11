@@ -1,1 +1,65 @@
 mapscripts CeladonCity_DepartmentStore_2F_MapScripts {}
+
+script CeladonCity_DepartmentStore_2F_EventScript_Directory {
+	msgbox("Top Grade Items for Trainers!\n2F: TRAINER'S MARKET", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_DepartmentStore_2F_EventScript_PokefanM{
+    msgbox("I just recently became a trainer.\nMy son encouraged me to do it.\pI'm impressed by the selection of\nconvenient items.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_2F_EventScript_Youngster{
+    msgbox("My dad's having a hard time learning\nthe names of items and how they\lare supposed to be used…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_2F_Eventscript_Clerk1 { //topmost
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(CeladonCity_DepartmentStore_2F_Pokemart_Clerk1)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+script CeladonCity_DepartmentStore_2F_Eventscript_Clerk2 {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(CeladonCity_DepartmentStore_2F_Pokemart_Clerk2)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+raw `
+.align 2
+CeladonCity_DepartmentStore_2F_Pokemart_Clerk1:
+    .2byte ITEM_POKE_BALL
+    .2byte ITEM_GREAT_BALL
+	.2byte ITEM_ULTRA_BALL
+    .2byte ITEM_ESCAPE_ROPE
+    .2byte ITEM_FULL_HEAL
+    .2byte ITEM_ANTIDOTE
+    .2byte ITEM_BURN_HEAL
+	.2byte ITEM_ICE_HEAL
+	.2byte ITEM_AWAKENING
+    .2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_NONE
+`
+
+raw `
+.align 2
+CeladonCity_DepartmentStore_2F_Pokemart_Clerk2:
+    .2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_MAX_POTION
+	.2byte ITEM_REVIVE
+    .2byte ITEM_SUPER_REPEL
+    .2byte ITEM_MAX_REPEL
+	.2byte ITEM_NONE
+`

@@ -258,6 +258,22 @@ static const struct MenuAction MultichoiceList_UnusedAshVendor[] =
     {gText_Cancel2},
 };
 
+static const struct MenuAction MultichoiceList_CeladonGameCornerMons[] =
+{
+    {gText_PikachuPrizeAndPrice},
+    {gText_PorygonPrizeAndPrice},
+    {gText_LarvitarPrizeAndPrice},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_CeladonGameCornerTMs[] =
+{
+    {gText_TM32AndPrice},
+    {gText_TM29AndPrice},
+    {gText_TM15AndPrice},
+    {gText_Exit},
+};
+
 static const struct MenuAction MultichoiceList_GameCornerMons[] =
 {
     {gText_AbraPrizeAndPrice},
@@ -1110,11 +1126,11 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_ACRO_BIKE_INFO]             = MULTICHOICE(MultichoiceList_AcroBikeInfo),
     [MULTI_SATISFACTION]               = MULTICHOICE(MultichoiceList_Satisfaction),
     [MULTI_STERN_DEEPSEA]              = MULTICHOICE(MultichoiceList_SternDeepSea),
-    [MULTI_UNUSED_ASH_VENDOR]          = MULTICHOICE(MultichoiceList_UnusedAshVendor),
+    [MULTI_CELADON_GAME_CORNER_TMS]    = MULTICHOICE(MultichoiceList_CeladonGameCornerTMs),
     [MULTI_GAME_CORNER_MONS]           = MULTICHOICE(MultichoiceList_GameCornerMons),
     [MULTI_GAME_CORNER_COINS]          = MULTICHOICE(MultichoiceList_GameCornerCoins),
     [MULTI_HOWS_FISHING]               = MULTICHOICE(MultichoiceList_HowsFishing),
-    [MULTI_UNUSED_51]                  = MULTICHOICE(MultichoiceList_Exit),
+    [MULTI_CELADON_GAME_CORNER_MONS]   = MULTICHOICE(MultichoiceList_CeladonGameCornerMons),
     [MULTI_SSTIDAL_SLATEPORT_WITH_BF]  = MULTICHOICE(MultichoiceList_SSTidalSlateportWithBF),
     [MULTI_SSTIDAL_BATTLE_FRONTIER]    = MULTICHOICE(MultichoiceList_SSTidalBattleFrontier),
     [MULTI_RIGHTLEFT]                  = MULTICHOICE(MultichoiceList_RightLeft),

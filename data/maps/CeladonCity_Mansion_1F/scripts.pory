@@ -1,1 +1,41 @@
 mapscripts CeladonCity_Mansion_1F_MapScripts {}
+
+script CeladonCity_Mansion_1F_EventScript_Directory {
+	msgbox("CELADON MANSION MANAGER'S SUITE", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_Mansion_1F_EventScript_Manager{
+    msgbox("My dear POKéMON keep me company,\nso I don't ever feel lonely.\pMEOWTH even brings money home.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_Mansion_1F_EventScript_Meowth {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_MEOWTH, 0)
+    msgbox("MEOWTH: Meow!")
+    waitmoncry
+    release
+}
+
+script CeladonCity_Mansion_1F_EventScript_Clefairy {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_CLEFAIRY, 0)
+    msgbox("CLEFAIRY: Clef cleff!")
+    waitmoncry
+    release
+}
+
+script CeladonCity_Mansion_1F_EventScript_NidoranF {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_NIDORAN_F, 0)
+    msgbox("NIDORAN: Kya kyaoo!")
+    waitmoncry
+    release
+}

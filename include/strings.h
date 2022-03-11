@@ -3211,6 +3211,14 @@ extern const u8 gText_OldAmber[];
 extern const u8 gText_RootFossil[];
 extern const u8 gText_ClawFossil[];
 
+// Celadon Game Corner Prizes
+extern const u8 gText_PikachuPrizeAndPrice[];
+extern const u8 gText_PorygonPrizeAndPrice[];
+extern const u8 gText_LarvitarPrizeAndPrice[];
+extern const u8 gText_TM32AndPrice[];
+extern const u8 gText_TM29AndPrice[];
+extern const u8 gText_TM15AndPrice[];
+
 // Battle Factory Screen
 extern const u8 gText_RentalPkmn2[];
 extern const u8 gText_SelectFirstPkmn[];

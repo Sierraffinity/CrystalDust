@@ -17,11 +17,16 @@ mapscripts GoldenrodCity_GameCorner_MapScripts {
 }
 
 script GoldenrodCity_GameCorner_EventScript_CoinClerk {
+    bufferstring(1, "GOLDENROD CITY\n")
+    goto(GoldenrodCity_GameCorner_EventScript_CoinClerk2)
+}
+
+script GoldenrodCity_GameCorner_EventScript_CoinClerk2{
     lock
     faceplayer
     showmoneybox(0, 0, FALSE)
     showcoinsbox(0, 5)
-    msgbox("Welcome to the GOLDENROD CITY\n"
+    msgbox("Welcome to the {STR_VAR_2}"
            "GAME CORNER.")
     checkitem(ITEM_COIN_CASE, 1)
     if (!var(VAR_RESULT))

@@ -1,1 +1,74 @@
 mapscripts CeladonCity_Gym_MapScripts {}
+
+script CeladonCity_Gym_Eventscript_Erika{
+    trainerbattle_single(TRAINER_ERIKA, "ERIKA: Hello… Lovely weather,\nisn't it? It's so pleasant…\l…I'm afraid I may doze off…\pMy name is ERIKA.\nI am the LEADER of CELADON GYM.\p…Oh? All the way from JOHTO,\nyou say? How nice…\pOh. I'm sorry, I didn't realize\nthat you wished to challenge me.\pVery well, but I shall not lose.", "ERIKA: Oh!\nI concede defeat…\pYou are remarkably strong…\nI shall give you the RAINBOWBADGE…", CeladonCity_Gym_Eventscript_ErikaDefeated, NO_MUSIC)
+    if(!flag(FLAG_GOT_TM19_FROM_ERIKA))
+    {
+        goto(CeladonCity_Gym_Eventscript_GiveGigaDrain)
+    }
+    msgbox(CeladonCity_Gym_Text_AfterBattle)
+    release
+    end
+}script(local) CeladonCity_Gym_Eventscript_ErikaDefeated{
+    textcolor(MSG_COLOR_SYS)
+    message("{PLAYER} received the RAINBOWBADGE.")
+    call(Common_EventScript_PlayGymBadgeFanfare)
+	textcolor(MSG_COLOR_PREV)
+    setflag(FLAG_BADGE12_GET)
+    setgymtrainers(12)
+    //falls through to next script
+}script(local) CeladonCity_Gym_Eventscript_GiveGigaDrain{
+    msgbox("ERIKA: That was a delightful match.\nI felt inspired.\pPlease, I wish you to have this TM.\nIt is GIGA DRAIN.\pIt's a wonderful move that drains\nhalf the damage it inflicts to heal\lyour POKéMON.\pPlease use it if it pleases you…")
+    checkitemspace(ITEM_TM19, 1)
+    if(!var(VAR_RESULT))
+    {
+        msgbox(CeladonCity_Gym_Text_AfterBattle)
+        release
+        end
+    }
+    giveitem(ITEM_TM19, 1)
+    setflag(FLAG_GOT_TM19_FROM_ERIKA)
+    goto(CeladonCity_Gym_Eventscript_Erika)
+}text(local) CeladonCity_Gym_Text_AfterBattle{
+    "ERIKA: Losing leaves a bitter\naftertaste…\pBut knowing that there are strong\ntrainers spurs me to do better…"
+}
+
+script CeladonCity_Gym_EventScript_LassMichelle {
+    trainerbattle_single(TRAINER_MICHELLE, "Do you think a girls-only GYM\nis rare?", "Oh, bleah!")
+    msgbox("I just got careless, that's all!", MSGBOX_DEFAULT)
+    release
+}
+
+script CeladonCity_Gym_EventScript_PicnickerTanya {
+    trainerbattle_single(TRAINER_TANYA, "Oh, a battle? That's kind of\nscary, but OK!", "Oh, that's it?")
+    msgbox("Oh, look at all your BADGES.\nNo wonder I couldn't win!", MSGBOX_DEFAULT)
+    release
+}
+
+script CeladonCity_Gym_EventScript_BeautyJulia {
+    trainerbattle_single(TRAINER_JULIA, "Were you looking at these flowers\nor at me?", "How annoying!")
+    msgbox("How do I go about becoming ladylike\nlike ERIKA?", MSGBOX_DEFAULT)
+    release
+}
+
+script CeladonCity_Gym_EventScript_TwinsJoAndZoe1 {
+    trainerbattle_double(TRAINER_JO_AND_ZOE, "We'll show you POKéMON moves that\nERIKA taught us!", "Oh…\nWe lost…", "Where are all your POKéMON?")
+    msgbox("ERIKA will get you\nback for us!", MSGBOX_DEFAULT)
+    release
+}
+
+script CeladonCity_Gym_EventScript_TwinsJoAndZoe2 {
+    trainerbattle_double(TRAINER_JO_AND_ZOE, "We're going to protect ERIKA!", "We couldn't win…", "You're only raising one POKéMON?")
+    msgbox("ERIKA is much, much stronger!", MSGBOX_DEFAULT)
+    release
+}
+
+script CeladonCity_Gym_EventScript_Statues {
+    if(flag(FLAG_BADGE12_GET))
+    {
+        msgbox("CELADON CITY POKéMON GYM\nLEADER: ERIKA\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("CELADON CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}

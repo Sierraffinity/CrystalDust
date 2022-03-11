@@ -1,1 +1,91 @@
 mapscripts CeladonCity_Restaurant_MapScripts {}
+
+script CeladonCity_Restaurant_EventScript_Cook{
+    msgbox("Hi!\pWe're holding an eatathon contest.\nWe can't serve you right now. Sorry.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_Restaurant_EventScript_Woman{
+    lock
+    bufferstring(0, "Crunch… Crunch…")
+    checkitem(ITEM_COIN_CASE, 1)
+    if(var(VAR_RESULT))
+    {
+        msgbox("{STR_VAR_1}\pI can keep eating!", MSGBOX_DEFAULT)
+        closemessage
+        turnobject(4, DIR_EAST)
+        msgbox("More, CHEF!", MSGBOX_DEFAULT)
+        closemessage
+        turnobject(4, DIR_WEST)
+        release
+        end
+    }
+    msgbox("{STR_VAR_1}", MSGBOX_DEFAULT)
+    faceplayer
+    msgbox("Nobody here will give you a COIN\nCASE. You should look in JOHTO.", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(4, DIR_WEST)
+    release
+    end
+}
+
+script CeladonCity_Restaurant_EventScript_FatMan1{ //topmost
+    lock
+    msgbox("Munch, munch…", MSGBOX_DEFAULT)
+    faceplayer
+    msgbox("The food is good here, but GOLDEN-\nROD has the best food anywhere.", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(1, DIR_EAST)
+    release
+    end
+}
+
+script CeladonCity_Restaurant_EventScript_FatMan2{ //middle
+    lock
+    msgbox("…Snarfle, chew…", MSGBOX_DEFAULT)
+    faceplayer
+    msgbox("Don't talk to me!\nYou'll break my concentration!", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(3, DIR_WEST)
+    release
+    end
+}
+
+script CeladonCity_Restaurant_EventScript_FatMan3{ //bottommost
+    lock
+    msgbox("…Gulp… Chew…", MSGBOX_DEFAULT)
+    faceplayer
+    msgbox("I take quantity over quality!\nI'm happy when I'm full!", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(2, DIR_EAST)
+    release
+    end
+}
+
+script CeladonCity_Restaurant_EventScript_Poster{
+    msgbox("Eatathon Contest!\nNo time limit!\pA battle without end! The biggest\nmuncher gets it all for free!", MSGBOX_SIGN)
+    end
+}
+
+script CeladonCity_Restaurant_EventScript_Trash{
+    lock
+    if(flag(FLAG_FOUND_LEFTOVERS_IN_CELADON_CAFE))
+    {
+        msgbox("There's nothing in here…", MSGBOX_SIGN)
+        end
+    }
+    checkitemspace(ITEM_LEFTOVERS, 1)
+    if(!var(VAR_RESULT))
+    {
+        msgbox(CeladonCity_Restaurant_Text_FoundLeftovers, MSGBOX_DEFAULT)
+        msgbox("But {PLAYER} can't hold another\nitem…")
+        release
+        end
+    }
+    giveitem_msg(CeladonCity_Restaurant_Text_FoundLeftovers, ITEM_LEFTOVERS)
+    setflag(FLAG_FOUND_LEFTOVERS_IN_CELADON_CAFE)
+    release
+    end
+}text(local) CeladonCity_Restaurant_Text_FoundLeftovers{
+    "{PLAYER} found LEFTOVERS!"
+}

@@ -1,1 +1,30 @@
 mapscripts CeladonCity_Mansion_Penthouse_MapScripts {}
+
+//originally gave out the Curse TM
+script CeladonCity_Mansion_Penthouse_EventScript_SuperNerd{
+    if(flag(FLAG_GOT_TM41))
+    {
+        msgbox("TM41 is TORMENT.\pIt's a terrifying move that prevents\nthe victim from using the same move\ltwice in a row.", MSGBOX_NPC)
+        end
+    }
+    gettime
+    bufferstring(0, "Let me recount a terrifying tale…\p")
+    if(var(VAR_0x8002) != TIME_NIGHT)
+    {
+        msgbox("{STR_VAR_1}Then again, it's not as scary while\nit's still light outside.\pCome back after sunset, OK?", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("{STR_VAR_1}Once upon a time, there was a little\nboy who was given a new BICYCLE…\lHe wanted to try it right away…\pHe was having so much fun that he\ndidn't notice the sun had set…\pWhile riding home in the pitch-black\nnight, the bike suddenly slowed!\lThe pedals became heavy!\pWhen he stopped pedaling, the bike\nbegan slipping backwards!\pIt was as if the bike was tormenting\nhim and trying to drag him into\loblivion!\p…\p…\pSHRIEEEEK!\pThe boy had been riding uphill on\nCYCLING ROAD!\p…\nBa-dum ba-dum!\pFor listening so patiently, you may\ntake this--TM41!", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_TM41, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    giveitem(ITEM_TM41, 1)
+    setflag(FLAG_GOT_TM41)
+    goto(CeladonCity_Mansion_Penthouse_EventScript_SuperNerd)
+}

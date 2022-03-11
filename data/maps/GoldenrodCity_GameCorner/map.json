@@ -12,10 +12,12 @@
   "allow_running": false,
   "show_map_name": false,
   "floor_number": 0,
+  "phone_service": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "in_connection": false,
       "x": 3,
@@ -27,10 +29,10 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_CoinClerk",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 15,
@@ -42,10 +44,10 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_TMClerk",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 17,
@@ -57,10 +59,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_MonClerk",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
       "in_connection": false,
       "x": 9,
@@ -72,10 +74,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_Nerd",
-      "flag": "FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD",
-      "type": "original"
+      "flag": "FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
       "in_connection": false,
       "x": 12,
@@ -87,10 +89,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_PokefanM",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_ROCKER",
       "in_connection": false,
       "x": 15,
@@ -102,10 +104,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_GamblinMan",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
       "in_connection": false,
       "x": 18,
@@ -117,10 +119,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_CardFlipWoman",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "in_connection": false,
       "x": 9,
@@ -132,10 +134,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_WontStopWoman",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "in_connection": false,
       "x": 6,
@@ -147,10 +149,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_Gentleman",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "in_connection": false,
       "x": 1,
@@ -162,10 +164,10 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_CoinCaseMan",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     },
     {
+      "type": "original",
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "in_connection": false,
       "x": 18,
@@ -177,8 +179,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_GameCorner_EventScript_MoveTutorInside",
-      "flag": "0",
-      "type": "original"
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -410,6 +411,5 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "GoldenrodCity_GameCorner_EventScript_Drink"
     }
-  ],
-  "phone_service": ""
+  ]
 }

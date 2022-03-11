@@ -1,1 +1,35 @@
 mapscripts CeladonCity_Mansion_3F_MapScripts {}
+
+//todo game director and artist
+
+script CeladonCity_Mansion_3F_EventScript_Directory {
+	msgbox("GAME FREAK DEVELOPMENT ROOM", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_Mansion_3F_EventScript_Programmer {
+	msgbox("Who, me? I'm the PROGRAMMER.\nPlay the slot machines!", MSGBOX_NPC)
+	end
+}
+
+script CeladonCity_Mansion_3F_EventScript_Designer {
+	msgbox("Aren't the TWINS adorable?\nJASMINE's pretty too.\lOh, I love them!", MSGBOX_NPC)
+	end
+}
+
+script CeladonCity_Mansion_3F_EventScript_Drawing {
+	msgbox("It's a detailed drawing of\na pretty girl.", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_Mansion_3F_EventScript_GameProgram {
+	msgbox("It's the game program. Messing\nwith it could put a bug in the game!", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_Mansion_3F_EventScript_ReferenceMaterial {
+	msgbox("It's crammed with reference materials.\nThere's even a POKé DOLL.", MSGBOX_SIGN)
+	end
+}
+
+

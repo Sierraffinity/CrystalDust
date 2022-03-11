@@ -1,1 +1,213 @@
 mapscripts CeladonCity_GameCorner_PrizeRoom_MapScripts {}
+
+script CeladonCity_GameCorner_Prize_EventScript_Gentleman {
+    msgbox("I wanted PORYGON, but I was short\nby 100 coins…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_GameCorner_Prize_EventScript_Pharmacist {
+    msgbox("Whew…\pI've got to stay calm and cool…\pI can't lose my cool, or\nI'll lose all my money…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_GameCorner_EventScript_MonClerk {
+    lock
+    faceplayer
+    msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorIntro)
+    checkitem(ITEM_COIN_CASE, 1)
+    if (!var(VAR_RESULT))
+    {
+        msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorNoCoinCase)
+    }
+    else
+    {
+        message(GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize)
+        waitmessage
+        showcoinsbox(0, 0)
+        call(CeladonCity_GameCorner_EventScript_MonClerk_ShowChoice)
+        hidecoinsbox(0, 0)
+    }
+    release
+}
+
+script CeladonCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice {
+    message(GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize)
+    waitmessage
+    goto(CeladonCity_GameCorner_EventScript_MonClerk_ShowChoice)
+}
+
+script CeladonCity_GameCorner_EventScript_MonClerk_ShowChoice {
+    multichoice(11, 0, MULTI_CELADON_GAME_CORNER_MONS, 0)
+    switch (var(VAR_RESULT))
+    {
+        case 0:
+            setvar(VAR_TEMP_1, SPECIES_PIKACHU)
+            setvar(VAR_TEMP_2, 2222)
+            call(CeladonCity_GameCorner_EventScript_MonClerk_ConfirmPrize)
+        case 1:
+            setvar(VAR_TEMP_1, SPECIES_PORYGON)
+            setvar(VAR_TEMP_2, 5555)
+            call(CeladonCity_GameCorner_EventScript_MonClerk_ConfirmPrize)
+        case 2:
+            setvar(VAR_TEMP_1, SPECIES_LARVITAR)
+            setvar(VAR_TEMP_2, 8888)
+            call(CeladonCity_GameCorner_EventScript_MonClerk_ConfirmPrize)
+        default:
+            msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorOutro)
+    }
+}
+
+script CeladonCity_GameCorner_EventScript_MonClerk_ConfirmPrize {
+    bufferspeciesname(0, VAR_TEMP_1)
+    msgbox("So you want the {STR_VAR_1}.\n"
+           "Is that right?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        checkcoins(VAR_RESULT)
+        if (var(VAR_RESULT) < VAR_TEMP_2)
+        {
+            msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorNotEnoughCoins)
+        }
+        else
+        {
+            switch (var(VAR_TEMP_1))
+            {
+                case SPECIES_PIKACHU:
+                    givemon(VAR_TEMP_1, 25, ITEM_NONE)
+                case SPECIES_LARVITAR:
+                    givemon(VAR_TEMP_1, 40, ITEM_NONE)
+                default:
+                    givemon(VAR_TEMP_1, 15, ITEM_NONE)
+            }
+
+            copyvar(VAR_TEMP_3, VAR_RESULT)
+            switch (var(VAR_TEMP_3))
+            {
+                case 2: // no room anywhere
+                    call(Common_EventScript_BagIsFull)
+                    goto(CeladonCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice)
+                default:
+                    removecoins(VAR_TEMP_2)
+                    updatecoinsbox(0, 0)
+                    playse(SE_SHOP)
+                    msgbox(GoldenrodCity_GameCorner_EventScript_PrizeVendorHereYouGo)
+                    textcolor(MSG_COLOR_SYS)
+                    bufferspeciesname(0, VAR_TEMP_1)
+                    playfanfare(MUS_LEVEL_UP)
+                    message(gText_PlayerObtainedTheMon)
+                    waitmessage
+                    waitfanfare
+                    msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+                    switch (var(VAR_TEMP_3))
+                    {
+                        case 0: // party
+                            if (var(VAR_RESULT) == YES)
+                            {
+                                call(Common_EventScript_GetGiftMonPartySlot)
+                                call(Common_EventScript_NameReceivedPartyMon)
+                                showcoinsbox(0, 0)
+                            }
+                        case 1: // PC
+                            if (var(VAR_RESULT) == YES)
+                            {
+                                call(Common_EventScript_NameReceivedBoxMon)
+                                showcoinsbox(0, 0)
+                            }
+                            call(Common_EventScript_TransferredToPC)
+                    }
+            }
+        }
+    }
+    textcolor(MSG_COLOR_PREV)
+    goto(CeladonCity_GameCorner_EventScript_MonClerk_ReturnToShowChoice)
+}
+
+script CeladonCity_GameCorner_EventScript_TMClerk {
+    lock
+    faceplayer
+    msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorIntro)
+    checkitem(ITEM_COIN_CASE, 1)
+    if (!var(VAR_RESULT))
+    {
+        msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorNoCoinCase)
+    }
+    else
+    {
+        message(GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize)
+        waitmessage
+        showcoinsbox(0, 0)
+        call(CeladonCity_GameCorner_EventScript_TMClerk_ShowChoice)
+        hidecoinsbox(0, 0)
+    }
+    release
+}
+
+script CeladonCity_GameCorner_EventScript_TMClerk_ReturnToShowChoice {
+    message(GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize)
+    waitmessage
+    goto(CeladonCity_GameCorner_EventScript_TMClerk_ShowChoice)
+}
+
+script CeladonCity_GameCorner_EventScript_TMClerk_ShowChoice {
+    multichoice(11, 0, MULTI_CELADON_GAME_CORNER_TMS, 0)
+    switch (var(VAR_RESULT))
+    {
+        case 0:
+            setvar(VAR_TEMP_1, ITEM_TM32_DOUBLE_TEAM)
+            call(CeladonCity_GameCorner_EventScript_TMClerk_ConfirmPrize)
+        case 1:
+            setvar(VAR_TEMP_1, ITEM_TM29_PSYCHIC)
+            call(CeladonCity_GameCorner_EventScript_TMClerk_ConfirmPrize)
+        case 2:
+            setvar(VAR_TEMP_1, ITEM_TM15_HYPER_BEAM)
+            call(CeladonCity_GameCorner_EventScript_TMClerk_ConfirmPrize)
+        default:
+            msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorOutro)
+    }
+}
+
+script CeladonCity_GameCorner_EventScript_TMClerk_ConfirmPrize {
+    bufferitemname(0, VAR_TEMP_1)
+    copyvar(VAR_0x8004, VAR_TEMP_1)
+    special(BufferTMHMMoveName)
+    msgbox("So you want the {STR_VAR_1} {STR_VAR_2}.\n"
+           "Is that right?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES)
+    {
+        switch(var(VAR_TEMP_1))
+        {
+            case ITEM_TM32_DOUBLE_TEAM:
+                setvar(VAR_TEMP_5, 1500)
+            case ITEM_TM29_PSYCHIC:
+                setvar(VAR_TEMP_5, 3500)
+            case ITEM_TM15_HYPER_BEAM:
+                setvar(VAR_TEMP_5, 7500)
+        }
+        checkcoins(VAR_RESULT)
+        if (var(VAR_RESULT) < VAR_TEMP_5)
+        {
+            msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorNotEnoughCoins)
+        }
+        else
+        {
+            checkitemspace(VAR_TEMP_1, 1)
+            if (var(VAR_RESULT) == FALSE)
+            {
+                call(Common_EventScript_BagIsFull)
+                goto(CeladonCity_GameCorner_EventScript_TMClerk_ReturnToShowChoice)
+            }
+            else
+            {
+                removecoins(VAR_TEMP_5)
+                additem(VAR_TEMP_1)
+                updatecoinsbox(0, 0)
+                playse(SE_SHOP)
+                msgbox(GoldenrodCity_GameCorner_EventScript_PrizeVendorHereYouGo)
+            }
+        }
+    }
+    else
+    {
+        goto(CeladonCity_GameCorner_EventScript_TMClerk_ReturnToShowChoice)
+    }
+}

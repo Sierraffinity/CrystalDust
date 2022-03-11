@@ -1,1 +1,26 @@
 mapscripts CeladonCity_DepartmentStore_1F_MapScripts {}
+
+script CeladonCity_DepartmentStore_1F_EventScript_Directory {
+	msgbox("1F: SERVICE COUNTER\p2F: TRAINER'S MARKET\p3F: TM SHOP\p4F: WISEMAN GIFTS\p5F: DRUG STORE\p6F: ROOFTOP SQUARE", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_DepartmentStore_1F_EventScript_FloorSign {
+	msgbox("1F: SERVICE COUNTER", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_DepartmentStore_1F_EventScript_Receptionist{
+    msgbox("Hello!\nWelcome to CELADON DEPT. STORE!\pThe directory is to your right.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_1F_EventScript_Gentleman{
+    msgbox("This DEPT. STORE is part of\nthe same chain as the one in\lGOLDENROD CITY.\pThey were both renovated at the\nsame time.", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_EventScript_Teacher{
+    msgbox("This is my first time here.\nIt's so big…\lI'm afraid I'll get lost.", MSGBOX_NPC)
+    end
+}

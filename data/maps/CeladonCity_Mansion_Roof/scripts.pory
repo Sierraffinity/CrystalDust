@@ -1,1 +1,12 @@
 mapscripts CeladonCity_Mansion_Roof_MapScripts {}
+
+script CeladonCity_Mansion_Roof_EventScript_Graffiti {
+	msgbox("There's graffiti on the wall…\n{PLAYER} added a moustache!", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_Mansion_Roof_EventScript_FatMan {
+	msgbox("High places--I do love them so!\pI'd say the ony thing that loves\nheights as much as me is smoke!", MSGBOX_NPC)
+	end
+}
+

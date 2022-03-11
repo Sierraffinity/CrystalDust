@@ -16,15 +16,116 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
+      "in_connection": false,
+      "x": 2,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonCity_Mansion_1F_EventScript_Manager",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_MEOWTH",
+      "in_connection": false,
+      "x": 0,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonCity_Mansion_1F_EventScript_Meowth",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
+      "in_connection": false,
+      "x": 5,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonCity_Mansion_1F_EventScript_Clefairy",
+      "flag": "0"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_NIDORAN_F",
+      "in_connection": false,
+      "x": 6,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonCity_Mansion_1F_EventScript_NidoranF",
+      "flag": "0"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 12,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_CELADON_CITY",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_CELADON_CITY",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 12,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_CELADON_CITY_MANSION_2F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 4,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_CELADON_CITY_MANSION_2F",
+      "dest_warp_id": 1
+    }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "CeladonCity_Mansion_1F_EventScript_Directory"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "CeladonCity_Mansion_1F_EventScript_Directory"
+    }
   ]
 }

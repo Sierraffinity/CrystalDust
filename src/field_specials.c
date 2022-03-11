@@ -2392,6 +2392,17 @@ void ShowScrollableMultichoice(void)
             task->tIgnoreBPress = FALSE;
             task->tTaskId = taskId;
             break;
+        case SCROLL_MULTI_CELADON_DEPT_STORE_FLOORS:
+            task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
+            task->tNumItems = 6;
+            task->tLeft = 1;
+            task->tTop = 1;
+            task->tWidth = 7;
+            task->tHeight = 12;
+            task->tKeepOpenAfterSelect = FALSE;
+            task->tIgnoreBPress = FALSE;
+            task->tTaskId = taskId;
+            break;
         default:
             gSpecialVar_Result = MULTI_B_PRESSED;
             DestroyTask(taskId);
@@ -2555,6 +2566,15 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_PokemonMoves,
         gText_Underpowered,
         gText_WhenInDanger,
+        gText_Exit
+    },
+    [SCROLL_MULTI_CELADON_DEPT_STORE_FLOORS] = 
+    {
+        gText_5F,
+        gText_4F,
+        gText_3F,
+        gText_2F,
+        gText_1F,
         gText_Exit
     }
 };

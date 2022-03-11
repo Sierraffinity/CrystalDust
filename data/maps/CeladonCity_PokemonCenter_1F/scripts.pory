@@ -1,1 +1,69 @@
-mapscripts CeladonCity_PokemonCenter_1F_MapScripts {}
+mapscripts CeladonCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_CELADON_CITY)
+        if(!flag(FLAG_FOUGHT_SUICUNE) || flag(FLAG_EUSINE_LEFT_CELADON))
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script CeladonCity_PokemonCenter_1F_EventScript_Eusine {
+    lockall
+    faceplayer
+    bufferstring(1, CeladonCity_PokemonCenter_1F_Text_EusineIntro)
+    callnative(CheckOwnAllBeasts)
+    if(!var(VAR_0x800B)) // doesn't have Suicune
+    {
+        msgbox(CeladonCity_PokemonCenter_1F_Text_EusineIntro, MSGBOX_NPC)
+        releaseall
+        end
+    }
+    if(!var(VAR_RESULT)) // doesn't have all three
+    {
+        msgbox("{STR_VAR_2}\pOh, by the way, {PLAYER}.\pHave you caught the legendary\nPOKéMON RAIKOU and ENTEI?\p…… …… ……\pOkay…\pIf you catch even one, I hope that\nyou'll inform me.\pI'm counting on you, {PLAYER}!", MSGBOX_NPC)
+        releaseall
+        end
+    }
+    msgbox("{STR_VAR_2}\p{PLAYER}, have you heard?\pThere have been fresh rumors of a\nrainbow-colored POKéMON appearing\lat TIN TOWER.\pI've just had my party healed, so\nnow I'm headed to ECRUTEAK.\pI'll be seeing you, {PLAYER}!", MSGBOX_DEFAULT)
+    closemessage
+    specialvar(VAR_FACING, GetPlayerFacingDirection)
+    if(var(VAR_FACING) == DIR_EAST)
+    {
+        applymovement(5, CeladonCity_PokemonCenter_1F_Movement_EusineLeavesAroundPlayer)
+        waitmovement(0)
+    }
+    else
+    {
+        applymovement(5, CeladonCity_PokemonCenter_1F_Movement_EusineLeaves)
+        waitmovement(0)
+    }
+    playse(SE_EXIT)
+    setflag(FLAG_EUSINE_LEFT_CELADON)
+    removeobject(5)
+    releaseall
+    end
+}movement(local) CeladonCity_PokemonCenter_1F_Movement_EusineLeavesAroundPlayer{
+    walk_down
+    walk_left * 2
+    walk_down * 3
+    set_invisible
+}movement(local) CeladonCity_PokemonCenter_1F_Movement_EusineLeaves{
+    walk_left * 2
+    walk_down * 4
+    set_invisible
+}text(local) CeladonCity_PokemonCenter_1F_Text_EusineIntro{
+    "EUSINE: Hi!\pI'm back visiting my hometown.\nIt's been quite a while."
+}
+
+script CeladonCity_PokemonCenter_1F_EventScript_CooltrainerF {
+	msgbox("ERIKA is a master of grass\nPOKéMON.\pShe'll make you pay if you don't\nwatch yourself.", MSGBOX_NPC)
+	end
+}
+
+script CeladonCity_PokemonCenter_1F_EventScript_Pharmacist {
+	msgbox("TEAM ROCKET's hideout is in the\nbasement of the GAME CORNER.\pOh, wait.\nThat was three years ago.", MSGBOX_NPC)
+	end
+}
+

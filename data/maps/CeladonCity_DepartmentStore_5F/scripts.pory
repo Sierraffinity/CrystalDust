@@ -1,1 +1,66 @@
 mapscripts CeladonCity_DepartmentStore_5F_MapScripts {}
+
+script CeladonCity_DepartmentStore_5F_EventScript_Directory {
+	msgbox("5F: DRUG STORE", MSGBOX_SIGN)
+	end
+}
+
+script CeladonCity_DepartmentStore_5F_EventScript_Teacher{
+    msgbox("Using items on them makes POKéMON\nhappy.\pThey hate certain items, though…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_5F_EventScript_Sailor{
+    msgbox("I want PP UP, so I can raise the PP\nof moves. But you can't buy it…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_5F_EventScript_Gentleman{
+    msgbox("I want to buy some items that raise\nPOKéMON stats, but I don't have\lenough money…", MSGBOX_NPC)
+    end
+}
+
+script CeladonCity_DepartmentStore_5F_Eventscript_Clerk1 { //topmost
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(CeladonCity_DepartmentStore_5F_Pokemart_Clerk1)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+script CeladonCity_DepartmentStore_5F_Eventscript_Clerk2 {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(CeladonCity_DepartmentStore_5F_Pokemart_Clerk2)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+raw `
+.align 2
+CeladonCity_DepartmentStore_5F_Pokemart_Clerk1:
+    .2byte ITEM_X_ACCURACY
+    .2byte ITEM_GUARD_SPEC
+	.2byte ITEM_DIRE_HIT
+    .2byte ITEM_X_ATTACK
+    .2byte ITEM_X_DEFEND
+    .2byte ITEM_X_SPEED
+    .2byte ITEM_X_SPECIAL
+	.2byte ITEM_NONE
+`
+//added Zinc to this mart.
+raw `
+.align 2
+CeladonCity_DepartmentStore_5F_Pokemart_Clerk2:
+    .2byte ITEM_HP_UP
+	.2byte ITEM_PROTEIN
+	.2byte ITEM_IRON
+	.2byte ITEM_CARBOS
+	.2byte ITEM_CALCIUM
+    .2byte ITEM_ZINC
+	.2byte ITEM_NONE
+`
