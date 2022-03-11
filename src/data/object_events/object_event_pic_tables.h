@@ -851,12 +851,28 @@ static const struct SpriteFrameImage sPicTable_Book[] = {
     overworld_frame(gObjectEventPic_Book, 2, 2, 2),
 };
 
-static const struct SpriteFrameImage sPicTable_UnusedSquirtleDoll[] = {
-    obj_frame_tiles(gObjectEventPic_UnusedSquirtleDoll),
+static const struct SpriteFrameImage sPicTable_Slowbro[] = {
+    overworld_frame(gObjectEventPic_Slowbro, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Slowbro, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Slowbro, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Slowbro, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Slowbro, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Slowbro, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Slowbro, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Slowbro, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Slowbro, 2, 2, 2),
 };
 
-static const struct SpriteFrameImage sPicTable_UnusedWooperDoll[] = {
-    obj_frame_tiles(gObjectEventPic_UnusedWooperDoll),
+static const struct SpriteFrameImage sPicTable_Kangaskhan[] = {
+    overworld_frame(gObjectEventPic_Kangaskhan, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Kangaskhan, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Kangaskhan, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Kangaskhan, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Kangaskhan, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Kangaskhan, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Kangaskhan, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Kangaskhan, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Kangaskhan, 2, 2, 2),
 };
 
 const struct SpriteFrameImage sPicTable_Nidorino[] = {

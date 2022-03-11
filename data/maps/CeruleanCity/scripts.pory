@@ -1,1 +1,112 @@
-mapscripts CeruleanCity_MapScripts {}
+mapscripts CeruleanCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_CERULEAN_CITY)
+    }
+}
+
+script CeruleanCity_EventScript_CitySign {
+	msgbox("CERULEAN CITY\nA Mysterious Blue Aura Surrounds It", MSGBOX_SIGN)
+	end
+}
+
+script CeruleanCity_EventScript_GymSign {
+	msgbox("CERULEAN CITY POKéMON GYM\nLEADER: MISTY\pThe Tomboyish Mermaid", MSGBOX_SIGN)
+    end
+}
+
+script CeruleanCity_EventScript_BikeShopSign {
+	msgbox("There's a notice here…\pThe BIKE SHOP has moved to\nGOLDENROD CITY in JOHTO…", MSGBOX_SIGN)
+	end
+}
+
+script CeruleanCity_EventScript_PoliceSign {
+	msgbox("There's a notice here…\pStamp out thievery and make the city\na friendlier, more cheerful place!\pCERULEAN POLICE", MSGBOX_SIGN)
+	end
+}
+
+script CeruleanCity_EventScript_CapeSign {
+	msgbox("CERULEAN CAPE AHEAD", MSGBOX_SIGN)
+	end
+}
+
+script CeruleanCity_EventScript_SuperNerd{
+    msgbox("The CAPE in the north is a good\nplace for dates. Girls like it!", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_EventScript_CooltrainerM{
+    if(flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("You're collecting every single kind\nof POKéMON?\pThat must be quite a challenge,\nbut it sounds fun too.", MSGBOX_NPC)
+        end
+    }
+    msgbox("KANTO's POWER PLANT?\pIt's near the end of ROUTE 9, the\nroad that heads east from here.\pI think there was an accident of\nsome sort there.", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_EventScript_FatMan{
+    if(flag(FLAG_MET_ROCKET_GRUNT_AT_CERULEAN_GYM) && !flag(FLAG_RETURNED_MACHINE_PART))
+    {
+        msgbox("I saw this shady guy go off\ntoward CERULEAN CAPE.", MSGBOX_NPC)
+        end
+    }
+    msgbox("I'm a huge fan of CERULEAN GYM's\nMISTY.", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_EventScript_Lass{
+    lock
+    faceplayer
+    msgbox("My SLOWBRO and I make an awesome\ncombination!", MSGBOX_DEFAULT)
+    closemessage
+    turnobject(VAR_LAST_TALKED, DIR_WEST)
+    msgbox("SLOWBRO, show me your CONFUSION!", MSGBOX_DEFAULT)
+    closemessage
+    textcolor(2)
+    playmoncry(SPECIES_SLOWBRO, 0)
+    msgbox("SLOWBRO: Yarah?", MSGBOX_DEFAULT)
+    waitmoncry
+    closemessage
+    textcolor(1)
+    msgbox("…", MSGBOX_DEFAULT)
+    release
+    end
+}text(local) CeruleanCity_Text_Slowbro{
+    "SLOWBRO: Yarah?"
+}
+
+script CeruleanCity_EventScript_Slowbro {
+    lock
+    waitse
+    playmoncry(SPECIES_SLOWBRO, 0)
+    msgbox(CeruleanCity_Text_Slowbro)
+    waitmoncry
+    release
+}
+
+script CeruleanCity_EventScript_Youngster {
+    lock
+    faceplayer
+    msgbox("There used to be a cave here that\nhad horribly powerful POKéMON in it.", MSGBOX_DEFAULT)
+    closemessage
+    if(!flag(FLAG_HIDDEN_ITEM_CERULEAN_CITY_BERSERK_GENE))
+    {
+        playse(SE_ITEMFINDER)
+        waitse
+        playse(SE_ITEMFINDER)
+        waitse
+        playse(SE_ITEMFINDER)
+        waitse
+        playse(SE_ITEMFINDER)
+        waitse
+        applymovement(7, Common_Movement_ExclamationMark)
+        playse(SE_PIN)
+        delay(0x40)
+        turnobject(7, DIR_WEST)
+        msgbox("Ayuh?\nMy ITEMFINDER is responding…", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    release
+    end
+}

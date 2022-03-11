@@ -75,8 +75,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Noland;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lucy;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Murkrow;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Book;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedSquirtleDoll;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedWooperDoll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Slowbro;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kangaskhan;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Nidorino;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Spearow;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CuttableTree;
@@ -325,8 +325,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_ZLUCY] =                    &gObjectEventGraphicsInfo_Lucy,
     [OBJ_EVENT_GFX_MURKROW] =                  &gObjectEventGraphicsInfo_Murkrow,
     [OBJ_EVENT_GFX_BOOK] =                     &gObjectEventGraphicsInfo_Book,
-    [OBJ_EVENT_GFX_SQUIRTLE_DOLL] =            &gObjectEventGraphicsInfo_UnusedSquirtleDoll,
-    [OBJ_EVENT_GFX_ZUNUSED_WOOPER_DOLL] =      &gObjectEventGraphicsInfo_UnusedWooperDoll,
+    [OBJ_EVENT_GFX_SLOWBRO] =                  &gObjectEventGraphicsInfo_Slowbro,
+    [OBJ_EVENT_GFX_KANGASKHAN] =               &gObjectEventGraphicsInfo_Kangaskhan,
     [OBJ_EVENT_GFX_NIDORINO] =                 &gObjectEventGraphicsInfo_Nidorino,
     [OBJ_EVENT_GFX_SPEAROW] =                  &gObjectEventGraphicsInfo_Spearow,
     [OBJ_EVENT_GFX_CUTTABLE_TREE] =            &gObjectEventGraphicsInfo_CuttableTree,

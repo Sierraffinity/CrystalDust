@@ -5004,6 +5004,18 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/MtMoon_B3F/border.bin",
       "blockdata_filepath": "data/layouts/MtMoon_B3F/map.bin"
+    },
+    {
+      "id": "LAYOUT_CERULEAN_CITY_BERRY_CRUSH_HOUSE",
+      "name": "CeruleanCity_BerryCrushHouse_Layout",
+      "width": 11,
+      "height": 9,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PlayersHouse",
+      "border_filepath": "data/layouts/CeruleanCity_BerryCrushHouse/border.bin",
+      "blockdata_filepath": "data/layouts/CeruleanCity_BerryCrushHouse/map.bin"
     }
   ]
 }

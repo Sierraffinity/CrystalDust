@@ -1,1 +1,7 @@
 mapscripts CeruleanCity_House1_MapScripts {}
+
+//CeruleanGymBadgeSpeechHouse in pokecrystal
+script CeruleanCity_House1_EventScript_PokefanM{
+    msgbox("Are you collecting KANTO GYM\nBADGES?", MSGBOX_NPC)
+    end
+}

@@ -778,8 +778,8 @@ static void TilesetAnim_General(u16 timer)
 
 static void TilesetAnim_Building(u16 timer)
 {
-    if (timer % 8 == 0)
-        QueueAnimTiles_Building_TVTurnedOn(timer >> 3);
+    //if (timer % 8 == 0)
+        //QueueAnimTiles_Building_TVTurnedOn(timer >> 3);
 }
 
 static void QueueAnimTiles_General_WaterFast(u16 timer)

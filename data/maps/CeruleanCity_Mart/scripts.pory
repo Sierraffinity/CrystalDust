@@ -1,1 +1,36 @@
 mapscripts CeruleanCity_Mart_MapScripts {}
+
+script CeruleanCity_Mart_EventScript_CooltrainerM{
+    msgbox("You'll run into many trainers on\nthe way to CERULEAN's CAPE.\pThey want to see how they stack\nup against other trainers.", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_Mart_EventScript_CooltrainerF{
+    msgbox("MISTY is about the only person in\ntown who can beat the trainers at\lCERULEAN's CAPE.", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_Mart_Eventscript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(CeruleanCity_Mart_Pokemart_Clerk)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+
+// this mart sells Surf Mail in Crystal
+raw `
+.align 2
+CeruleanCity_Mart_Pokemart_Clerk:
+    .2byte ITEM_GREAT_BALL
+	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_SUPER_REPEL
+    .2byte ITEM_FULL_HEAL
+    .2byte ITEM_X_DEFEND
+    .2byte ITEM_X_ATTACK
+    .2byte ITEM_DIRE_HIT
+	.2byte ITEM_NONE
+`

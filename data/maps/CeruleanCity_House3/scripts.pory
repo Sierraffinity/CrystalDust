@@ -1,1 +1,22 @@
 mapscripts CeruleanCity_House3_MapScripts {}
+
+//CeruleanPoliceStation in pokecrystal
+script CeruleanCity_House3_EventScript_FishingGuru{
+    msgbox("I heard that some shady character\nis skulking about.\pI won't stand for it if he turns out\nto be a thief.", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_House3_EventScript_PokefanF{
+    msgbox("We were held up by robbers before.", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_House3_EventScript_Diglett {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_DIGLETT, 0)
+    msgbox("DIGLETT: Dug dug.")
+    waitmoncry
+    release
+}

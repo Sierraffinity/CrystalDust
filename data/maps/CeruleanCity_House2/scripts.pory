@@ -1,1 +1,32 @@
 mapscripts CeruleanCity_House2_MapScripts {}
+
+//CeruleanTradeSpeechHouse in pokecrystal
+script CeruleanCity_House2_EventScript_Gramps{
+    msgbox("Ah…\nI'm so happy…", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_House2_EventScript_Granny{
+    msgbox("My husband lives happily with\nPOKéMON he got through trades.", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_House2_EventScript_Kangaskhan {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_KANGASKHAN, 0)
+    msgbox("KANGASKHAN: Garu garuu.")
+    waitmoncry
+    release
+}
+
+script CeruleanCity_House2_EventScript_Zubat {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_ZUBAT, 0)
+    msgbox("ZUBAT: Zuba zubaa.")
+    waitmoncry
+    release
+}

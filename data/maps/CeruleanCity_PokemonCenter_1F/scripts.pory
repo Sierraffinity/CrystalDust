@@ -1,1 +1,17 @@
-mapscripts CeruleanCity_PokemonCenter_1F_MapScripts {}
+mapscripts CeruleanCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_CERULEAN_CITY)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script CeruleanCity_PokemonCenter_1F_EventScript_SuperNerd {
+	msgbox("For battles, I'd much rather use\nPOKéMON I've been raising, even if\lthey're weaker than some newly\lcaught POKéMON.", MSGBOX_NPC)
+	end
+}
+
+script CeladonCity_PokemonCenter_1F_EventScript_GymGuide {
+	msgbox("The MAGNET TRAIN travels at over\n340 mph.\pIt goes between KANTO and JOHTO in\nalmost no time at all.\pIt really makes JOHTO accessible.", MSGBOX_NPC)
+	end
+}
+
