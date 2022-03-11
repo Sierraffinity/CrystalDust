@@ -351,6 +351,13 @@
 #define METATILE_NewBark_TallGrass_NewBarkTreeLeft   0x314
 #define METATILE_NewBark_TallGrass_NewBarkTreeRight  0x315
 
+// gTileset_OlivineCity
+#define METATILE_OlivineCity_Barn_Door        0x296
+#define METATILE_OlivineCity_Cianwood_Door    0x388
+#define METATILE_OlivineCity_Farm_Door        0x3A3
+#define METATILE_OlivineCity_Lighthouse_Door  0x342
+#define METATILE_OlivineCity_Olivine_Door     0x316
+
 // gTileset_Pacifidlog
 #define METATILE_Pacifidlog_Door                           0x21A
 #define METATILE_Pacifidlog_FloatingLogs_Horizontal0       0x250

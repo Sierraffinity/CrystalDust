@@ -6,7 +6,7 @@ script CeladonCity_Mansion_Roof_EventScript_Graffiti {
 }
 
 script CeladonCity_Mansion_Roof_EventScript_FatMan {
-	msgbox("High places--I do love them so!\pI'd say the ony thing that loves\nheights as much as me is smoke!", MSGBOX_NPC)
+	msgbox("High places--I do love them so!\pI'd say the only thing that loves\nheights as much as me is smoke!", MSGBOX_NPC)
 	end
 }
 

@@ -91,6 +91,11 @@ static const u8 sDoorAnimTiles_FuchsiaUnlit[] = INCBIN_U8("graphics/door_anims/f
 static const u8 sDoorAnimTiles_Viridian[] = INCBIN_U8("graphics/door_anims/viridian.4bpp");
 static const u8 sDoorAnimTiles_Pewter[] = INCBIN_U8("graphics/door_anims/pewter.4bpp");
 static const u8 sDoorAnimTiles_Lavender[] = INCBIN_U8("graphics/door_anims/lavender.4bpp");
+static const u8 sDoorAnimTiles_Barn[] = INCBIN_U8("graphics/door_anims/moo_moo_barn.4bpp");
+static const u8 sDoorAnimTiles_Cianwood[] = INCBIN_U8("graphics/door_anims/cianwood.4bpp");
+static const u8 sDoorAnimTiles_Olivine[] = INCBIN_U8("graphics/door_anims/olivine.4bpp");
+static const u8 sDoorAnimTiles_Lighthouse[] = INCBIN_U8("graphics/door_anims/lighthouse.4bpp");
+static const u8 sDoorAnimTiles_GoldenrodUnderground[] = INCBIN_U8("graphics/door_anims/goldenrod_underground.4bpp");
 
 static const struct DoorAnimFrame sDoorOpenAnimFrames[] =
 {
@@ -204,6 +209,11 @@ static const u8 sDoorAnimPalettes_Fuchsia[] = {8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_Viridian[] = {8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_Pewter[] = {8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_Lavender[] = {9, 9, 9, 9};
+static const u8 sDoorAnimPalettes_BarnFarm[] = {10, 10, 10, 10};
+static const u8 sDoorAnimPalettes_Cianwood[] = {3, 3, 3, 3};
+static const u8 sDoorAnimPalettes_Olivine[] = {5, 5, 5, 5};
+static const u8 sDoorAnimPalettes_Lighthouse[] = {11, 11, 11, 11};
+static const u8 sDoorAnimPalettes_GoldenrodUnderground[] = {8, 8, 8, 8};
 
 static const struct DoorGraphics sDoorAnimGraphicsTable[] =
 {
@@ -265,6 +275,12 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_ViridianCity_Door,                            DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Viridian, sDoorAnimPalettes_Viridian},
     {METATILE_PewterCity_Door,                              DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Pewter, sDoorAnimPalettes_Pewter},
     {METATILE_LavenderTown_Door,                            DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Lavender, sDoorAnimPalettes_Lavender},
+    {METATILE_OlivineCity_Barn_Door,                        DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Barn, sDoorAnimPalettes_BarnFarm},
+    {METATILE_OlivineCity_Farm_Door,                        DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Violet, sDoorAnimPalettes_BarnFarm},
+    {METATILE_OlivineCity_Cianwood_Door,                    DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Cianwood, sDoorAnimPalettes_Cianwood},
+    {METATILE_OlivineCity_Olivine_Door,                     DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Olivine, sDoorAnimPalettes_Olivine},
+    {METATILE_OlivineCity_Lighthouse_Door,                  DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Lighthouse, sDoorAnimPalettes_Lighthouse},
+    {METATILE_Underground_Door_Open,                        DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_GoldenrodUnderground, sDoorAnimPalettes_GoldenrodUnderground},
     {},
 };
 

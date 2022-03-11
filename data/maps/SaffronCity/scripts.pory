@@ -51,7 +51,7 @@ script SaffronCity_EventScript_PokefanM{
         msgbox("{STR_VAR_1}by hopping on\nthe MAGNET TRAIN.", MSGBOX_NPC)
         end
     }
-    msgbox("{STR_VAR_1}if the\nMAGNET TRAIN's running", MSGBOX_NPC)
+    msgbox("{STR_VAR_1}if the\nMAGNET TRAIN's running.", MSGBOX_NPC)
     end
 }
 

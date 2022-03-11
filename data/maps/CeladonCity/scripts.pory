@@ -30,7 +30,7 @@ script CeladonCity_EventScript_GameCornerSign {
 }
 
 script CeladonCity_EventScript_TrainerTipsSign {
-	msgbox("TRAINER TIPS\pGUARD SPEC. protects POKéMON against SPECIAL attacks such as\nfire and water.\pGet your items at CELADON DEPT.\nSTORE!", MSGBOX_SIGN)
+	msgbox("TRAINER TIPS\pGUARD SPEC. protects POKéMON against\nSPECIAL attacks such as\lfire and water.\pGet your items at CELADON DEPT.\nSTORE!", MSGBOX_SIGN)
 	end
 }
 
