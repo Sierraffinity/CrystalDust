@@ -1,1 +1,78 @@
-mapscripts ViridianCity_MapScripts {}
+mapscripts ViridianCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_VISITED_VIRIDIAN_CITY)
+    }
+}
+
+// TODO: Dream Eater guy
+
+script ViridianCity_EventScript_CitySign {
+	msgbox("VIRIDIAN CITY\nThe Eternally Green Paradise", MSGBOX_SIGN)
+	end
+}
+
+script ViridianCity_EventScript_GymSign {
+	msgbox("VIRIDIAN CITY POKéMON GYM\nLEADER: …\pThe rest of the text is illegible…", MSGBOX_SIGN)
+    end
+}
+
+script ViridianCity_EventScript_WelcomeSign {
+	msgbox("WELCOME TO VIRIDIAN CITY,\nTHE GATEWAY TO INDIGO PLATEAU", MSGBOX_SIGN)
+	end
+}
+
+script ViridianCity_EventScript_TrainerHouseSign {
+	msgbox("TRAINER HOUSE\nThe Club for Top Trainer Battles", MSGBOX_SIGN)
+	end
+}
+
+script ViridianCity_EventScript_GymOldMan{
+    if(flag(FLAG_MET_BLUE_IN_CINNABAR))
+    {
+        msgbox("Are you going to battle the LEADER?\nGood luck to you. You'll need it.", MSGBOX_NPC)
+	end
+    }
+    msgbox("This GYM didn't have a LEADER\nuntil recently.\pA young man from PALLET became the\nLEADER, but he's often away.", MSGBOX_NPC)
+    end
+}
+
+script ViridianCity_EventScript_OldMan{
+    lock
+    faceplayer
+    msgbox("Hey, kid! I just had a double shot\nof espresso, and I'm wired!\pI need to talk to someone, so\nyou'll have to do!\pI might not look like much now,\nbut I was an expert at catching\lPOKéMON.\pDo you believe me?", MSGBOX_YESNO)
+    if(var(VAR_RESULT))
+    {
+        msgbox("Good, good. Yes, I was something out\nof the ordinary, let me tell you!", MSGBOX_DEFAULT)
+	release
+	end
+    }
+    msgbox("What?\nYou little whelp!\pIf I were just a bit younger, I'd\nshow you a thing or two. Humph!", MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script ViridianCity_EventScript_Youngster{
+    msgbox("I heard that there are many items\non the ground in VIRIDIAN FOREST.", MSGBOX_NPC)
+    end
+}
+
+script ViridianCity_EventScript_FatMan{
+    if(flag(FLAG_GOT_TM49))
+    {
+        msgbox("TM49 contains SNATCH…\n…Zzzzz…", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Yawn!\nI must have dozed off in the sun.\p…I had this dream about a DROWZEE\nsnatching my moves. Weird huh?\pHuh? What's this?\nWhere did this TM come from?\pThis is spooky!\nHere, you can have this TM.", MSGBOX_DEFAULT)
+    checkitemspace(ITEM_TM49_SNATCH, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    giveitem(ITEM_TM49_SNATCH, 1)
+    setflag(FLAG_GOT_TM49)
+    goto(ViridianCity_EventScript_FatMan)
+}

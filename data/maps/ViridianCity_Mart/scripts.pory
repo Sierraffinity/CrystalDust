@@ -1,1 +1,35 @@
 mapscripts ViridianCity_Mart_MapScripts {}
+
+script ViridianCity_Mart_EventScript_CooltrainerM{
+    msgbox("Have you been to CINNABAR?\nIt's an island way south of here.", MSGBOX_NPC)
+    end
+}
+
+script ViridianCity_Mart_EventScript_Lass{
+    msgbox("The GYM LEADER here is totally\ncool.", MSGBOX_NPC)
+    end
+}
+
+script ViridianCity_Mart_Eventscript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(ViridianCity_Mart_Pokemart_Clerk)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+// this mart sells Flower Mail in Crystal
+raw `
+.align 2
+ViridianCity_Mart_Pokemart_Clerk:
+	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_HYPER_POTION
+    .2byte ITEM_FULL_HEAL
+	.2byte ITEM_REVIVE
+    .2byte ITEM_ANTIDOTE
+    .2byte ITEM_PARALYZE_HEAL
+    .2byte ITEM_AWAKENING
+    .2byte ITEM_BURN_HEAL
+	.2byte ITEM_NONE
+`

@@ -1,1 +1,46 @@
-mapscripts ViridianCity_Gym_MapScripts {}
+mapscripts ViridianCity_Gym_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_MET_BLUE_IN_CINNABAR))
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+}
+
+script ViridianCity_Gym_EventScript_Blue {
+    trainerbattle_single(TRAINER_BLUE, "BLUE: Yo!\nFinally got here, huh?\pI wasn't in the mood at CINNABAR,\nbut now I'm ready to battle you.\p…\pYou're telling me you conquered all\nthe GYMS in JOHTO?\pHeh! JOHTO's GYMS must be pretty\npathetic then.\pHey, don't worry about it.\pI'll know if you are good or not by\nbattling you right now.\pReady, JOHTO CHAMP?", "BLUE: What?\nHow the heck did I lose to you?\p…\pTch, all right…\nHere, take this--it's the EARTHBADGE.", ViridianCity_Gym_Eventscript_BlueDefeated, NO_MUSIC)
+    msgbox("BLUE: Listen, you.\pYou'd better not lose until I beat\nyou. Got it?", MSGBOX_DEFAULT)
+    release
+    end
+}script(local) ViridianCity_Gym_Eventscript_BlueDefeated{
+    if(!flag(FLAG_BADGE16_GET))
+    {
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received the EARTHBADGE.")
+        call(Common_EventScript_PlayGymBadgeFanfare)
+        textcolor(MSG_COLOR_PREV)
+        setflag(FLAG_BADGE16_GET)
+        msgbox("BLUE: …\pAll right, I was wrong. You're the\nreal deal. You are a good trainer.\pBut I'm going to beat you someday.\nDon't you forget it!", MSGBOX_NPC)
+        end
+    }
+}
+
+script ViridianCity_Gym_EventScript_Statues {
+    if(flag(FLAG_BADGE16_GET))
+    {
+        msgbox("VIRIDIAN CITY POKéMON GYM\nLEADER: BLUE\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("VIRIDIAN CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}
+
+script ViridianCity_Gym_Eventscript_GymGuide{
+    if(flag(FLAG_BADGE16_GET))
+    {
+        msgbox("Man, you are truly tough…\pThat was a heck of an inspirational\nbattle. It brought tears to my eyes.", MSGBOX_NPC)
+        end
+    }
+    msgbox("Yo, CHAMP in making!\pHow's it going?\nLooks like you're on a roll.\pThe GYM LEADER is a guy who battled\nthe CHAMPION three years ago.\pHe's no pushover.\nGive it everything you've got!", MSGBOX_NPC)
+    end
+}

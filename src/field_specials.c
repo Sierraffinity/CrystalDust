@@ -2914,7 +2914,7 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_SQUIRTLE_DOLL] =             MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_ZUNUSED_WOOPER_DOLL] =       MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_NIDORINO] =                  MSG_COLOR_SYS,
-        [OBJ_EVENT_GFX_ZUNUSED_PORYGON2_DOLL] =     MSG_COLOR_SYS,
+        [OBJ_EVENT_GFX_SPEAROW] =                   MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_CUTTABLE_TREE] =             MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_MART_EMPLOYEE] =             MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_SABRINA] =                   MSG_COLOR_RED,

@@ -1,1 +1,27 @@
-mapscripts ViridianCity_PokemonCenter_1F_MapScripts {}
+mapscripts ViridianCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_VIRIDIAN_CITY)
+    }
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script ViridianCity_PokemonCenter_1F_EventScript_CooltrainerF {
+	msgbox("I heard that the GYM in CINNABAR\nis gone.\pI wonder what became of BLAINE,\nthe GYM LEADER.", MSGBOX_NPC)
+	end
+}
+
+script ViridianCity_PokemonCenter_1F_EventScript_BugCatcher {
+	msgbox("My dream is to become a GYM LEADER.", MSGBOX_NPC)
+	end
+}
+
+script ViridianCity_PokemonCenter_1F_EventScript_CooltrainerM{
+    if(flag(FLAG_MET_BLUE_IN_CINNABAR))
+    {
+        msgbox("There are no GYM TRAINERS at the\nVIRIDIAN GYM.\pThe LEADER claims his policy is to\nwin without having any underlings.", MSGBOX_NPC)
+	end
+    }
+    msgbox("Where in the world is VIRIDIAN's GYM\nLEADER? I wanted to challenge him.", MSGBOX_NPC)
+    end
+}
+

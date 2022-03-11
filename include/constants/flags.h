@@ -867,8 +867,8 @@
 #define FLAG_GOT_TM19_FROM_ERIKA                                    0x330
 #define FLAG_GOT_COINS_FROM_GAMBLER_AT_CELADON                      0x331
 #define FLAG_EUSINE_LEFT_CELADON                                    0x332
+#define FLAG_GOT_TM49                                               0x333
 // STOPPED HERE
-#define FLAG_HIDE_ROUTE_112_TEAM_MAGMA                              0x333
 #define FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE                        0x334
 #define FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE         0x335
 #define FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE         0x336

@@ -161,6 +161,13 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
       "flag": "FLAG_TEMP_14"
+    },
+    {
+      "type": "clone",
+      "x": 5,
+      "y": 85,
+      "source_id": 6,
+      "source_map": "MAP_VIRIDIAN_CITY"
     }
   ],
   "warp_events": [

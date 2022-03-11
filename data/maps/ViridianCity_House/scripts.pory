@@ -1,1 +1,32 @@
 mapscripts ViridianCity_House_MapScripts {}
+
+script ViridianCity_House_EventScript_PokefanM {
+	msgbox("Do you put a lot of thought into\nnaming your POKéMON?\pGiving them good nicknames adds to\nthe fun of trading with others.", MSGBOX_NPC)
+	end
+}
+
+script ViridianCity_House_EventScript_Lass {
+	msgbox("They're SPEARY--a SPEAROW--and\nRATTEY--a RATTATA.", MSGBOX_NPC)
+	end
+}
+
+script ViridianCity_House_EventScript_Speary {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_SPEAROW, 0)
+    msgbox("SPEARY: Ch-chun!")
+    waitmoncry
+    release
+}
+
+script ViridianCity_House_EventScript_Rattey {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_RATTATA, 0)
+    msgbox("RATTEY: Kikiii!")
+    waitmoncry
+    release
+}
+

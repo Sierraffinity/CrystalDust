@@ -1,1 +1,42 @@
 mapscripts ViridianCity_TrainerHouse_1F_MapScripts {}
+
+script ViridianCity_TrainerHouse_1F_EventScript_Receptionist {
+	msgbox("Welcome to TRAINER HOUSE, the\nnewest and most happening place in\lVIRIDIAN.\pWe're open to trainers only.\pYou can battle against the best\nof the best right downstairs.", MSGBOX_NPC)
+	end
+}
+
+script ViridianCity_TrainerHouse_1F_EventScript_CooltrainerM {
+	msgbox("VIRIDIAN is the town closest to\nINDIGO PLATEAU.\pThey built this place because so\nmany trainers pass through on their\lway up to INDIGO PLATEAU.", MSGBOX_NPC)
+	end
+}
+
+script ViridianCity_TrainerHouse_1F_EventScript_CooltrainerF {
+	msgbox("They hold practice battles downstairs\nhere.\pI would love to see how well a\ntrainer from JOHTO battles.", MSGBOX_NPC)
+	end
+}
+
+script ViridianCity_TrainerHouse_1F_EventScript_Youngster {
+	msgbox("I guess you can't become the CHAMP\nunless you go all over the place\land battle all kinds of people.\pThe CHAMPION from PALLET traveled\nto all the cities and towns in KANTO.", MSGBOX_NPC)
+	end
+}
+
+script ViridianCity_TrainerHouse_1F_EventScript_Gentleman {
+	msgbox("Whew… I'm taking a rest from\nPOKéMON battles.", MSGBOX_NPC)
+	end
+}
+
+script ViridianCity_TrainerHouse_1F_EventScript_Sign1 { //left
+	msgbox("Practice battles are held in the\nTRAINING HALL downstairs.\pSkilled trainers are invited to\nparticipate.", MSGBOX_SIGN)
+	end
+}
+
+script ViridianCity_TrainerHouse_1F_EventScript_Sign2 {
+	msgbox("There are no rules or regulations for\npractice matches.\pJust like in field battles, anything\ngoes!", MSGBOX_SIGN)
+	end
+}
+
+script ViridianCity_TrainerHouse_1F_EventScript_Book {
+	msgbox("…What's this?\nA strategy memo?\pThis writing looks like ONIX tracks…\nIt's completely illegible…", MSGBOX_SIGN)
+	end
+}
+

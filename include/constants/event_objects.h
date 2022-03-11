@@ -82,7 +82,7 @@
 #define OBJ_EVENT_GFX_SQUIRTLE_DOLL               78
 #define OBJ_EVENT_GFX_ZUNUSED_WOOPER_DOLL         79
 #define OBJ_EVENT_GFX_NIDORINO                    80
-#define OBJ_EVENT_GFX_ZUNUSED_PORYGON2_DOLL       81
+#define OBJ_EVENT_GFX_SPEAROW       81
 #define OBJ_EVENT_GFX_CUTTABLE_TREE               82
 #define OBJ_EVENT_GFX_MART_EMPLOYEE               83
 #define OBJ_EVENT_GFX_SABRINA                     84

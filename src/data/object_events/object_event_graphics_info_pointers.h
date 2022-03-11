@@ -78,7 +78,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Book;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedSquirtleDoll;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedWooperDoll;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Nidorino;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedPorygon2Doll;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Spearow;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CuttableTree;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MartEmployee;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sabrina;
@@ -328,7 +328,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[] =
     [OBJ_EVENT_GFX_SQUIRTLE_DOLL] =            &gObjectEventGraphicsInfo_UnusedSquirtleDoll,
     [OBJ_EVENT_GFX_ZUNUSED_WOOPER_DOLL] =      &gObjectEventGraphicsInfo_UnusedWooperDoll,
     [OBJ_EVENT_GFX_NIDORINO] =                 &gObjectEventGraphicsInfo_Nidorino,
-    [OBJ_EVENT_GFX_ZUNUSED_PORYGON2_DOLL] =    &gObjectEventGraphicsInfo_UnusedPorygon2Doll,
+    [OBJ_EVENT_GFX_SPEAROW] =                  &gObjectEventGraphicsInfo_Spearow,
     [OBJ_EVENT_GFX_CUTTABLE_TREE] =            &gObjectEventGraphicsInfo_CuttableTree,
     [OBJ_EVENT_GFX_MART_EMPLOYEE] =            &gObjectEventGraphicsInfo_MartEmployee,
     [OBJ_EVENT_GFX_SABRINA] =                  &gObjectEventGraphicsInfo_Sabrina,

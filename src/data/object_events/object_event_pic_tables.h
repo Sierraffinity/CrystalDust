@@ -871,8 +871,16 @@ const struct SpriteFrameImage sPicTable_Nidorino[] = {
     overworld_frame(gObjectEventPic_Nidorino, 2, 2, 2),
 };
 
-static const struct SpriteFrameImage sPicTable_UnusedPorygon2Doll[] = {
-    obj_frame_tiles(gObjectEventPic_UnusedPorygon2Doll),
+static const struct SpriteFrameImage sPicTable_Spearow[] = {
+    overworld_frame(gObjectEventPic_Spearow, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Spearow, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Spearow, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Spearow, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Spearow, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Spearow, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Spearow, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Spearow, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Spearow, 2, 2, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_CuttableTree[] = {
