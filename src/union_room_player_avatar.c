@@ -19,7 +19,7 @@ static u8 CreateTask_AnimateUnionRoomPlayers(void);
 static u32 IsUnionRoomPlayerInvisible(u32, u32);
 static void SetUnionRoomObjectFacingDirection(s32, s32, u8);
 
-static const u8 sUnionRoomObjGfxIds[GENDER_COUNT][MAX_UNION_ROOM_PLAYERS + 2] = {
+static const u16 sUnionRoomObjGfxIds[GENDER_COUNT][MAX_UNION_ROOM_PLAYERS + 2] = {
     [MALE] = {
         OBJ_EVENT_GFX_COOLTRAINER_M, 
         OBJ_EVENT_GFX_BLACK_BELT, 
@@ -118,7 +118,7 @@ static bool32 IsPlayerStandingStill(void)
         return FALSE;
 }
 
-static u8 GetUnionRoomPlayerGraphicsId(u32 gender, u32 id)
+static u16 GetUnionRoomPlayerGraphicsId(u32 gender, u32 id)
 {
     return sUnionRoomObjGfxIds[gender][id % MAX_UNION_ROOM_PLAYERS];
 }
@@ -457,7 +457,7 @@ static bool32 IsUnionRoomPlayerInvisible(u32 playerIdx, u32 direction)
     return IsObjectEventSpriteInvisible(UR_PLAYER_SPRITE_ID(playerIdx, direction) - UR_SPRITE_START_ID);
 }
 
-static void SpawnGroupMember(u32 playerIdx, u32 direction, u8 graphicsId, struct GFtgtGname * gname)
+static void SpawnGroupMember(u32 playerIdx, u32 direction, u16 graphicsId, struct GFtgtGname * gname)
 {
     s32 x, y;
     s32 id = UR_PLAYER_SPRITE_ID(playerIdx, direction);

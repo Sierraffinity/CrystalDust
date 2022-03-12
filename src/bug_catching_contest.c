@@ -90,7 +90,7 @@ enum
 
 struct BugCatchingContestNPCTemplate
 {
-    u8 graphicsId;
+    u16 graphicsId;
     u8 trainerClass;
     const u8 *name;
     const u8 *script;

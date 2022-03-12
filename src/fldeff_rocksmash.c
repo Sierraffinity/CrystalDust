@@ -34,7 +34,7 @@ static void FieldCallback_Whirlpool(void);
 static void FieldMove_Whirlpool(void);
 
 // text
-bool8 CheckObjectGraphicsInFrontOfPlayer(u8 graphicsId)
+bool8 CheckObjectGraphicsInFrontOfPlayer(u16 graphicsId)
 {
     u8 objEventId;
 

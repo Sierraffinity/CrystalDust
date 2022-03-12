@@ -1401,8 +1401,8 @@ static void NamingScreen_NoIcon(void)
 
 static void NamingScreen_CreatePlayerIcon(void)
 {
-    u8 playerGfxId = GetPlayerAvatarGraphicsIdByStateIdAndGender(0, sNamingScreen->monSpecies);
-    u8 spriteId = AddPseudoObjectEvent(playerGfxId, SpriteCallbackDummy, 56, 37, 0);
+    u16 playerGfxId = GetPlayerAvatarGraphicsIdByStateIdAndGender(0, sNamingScreen->monSpecies);
+    u16 spriteId = AddPseudoObjectEvent(playerGfxId, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], 4);
 }

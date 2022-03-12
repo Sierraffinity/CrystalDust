@@ -59,8 +59,8 @@ struct BackupMapLayout
 struct ObjectEventTemplate
 {
     /*0x00*/ u8 localId;
-    /*0x01*/ u8 graphicsId;
-    /*0x02*/ u8 inConnection;
+    /*0x01*/ u8 inConnection;
+    /*0x02*/ u16 graphicsId;
     /*0x04*/ s16 x;
     /*0x06*/ s16 y;
     /*0x08*/ u8 elevation;
@@ -190,8 +190,7 @@ struct ObjectEvent
              u32 disableJumpLandingGroundEffect:1;
              u32 fixedPriority:1;
              u32 hideReflection:1;
-    /*0x04*/ u8 spriteId;
-    /*0x05*/ u8 graphicsId;
+    /*0x04*/ u16 graphicsId;
     /*0x06*/ u8 movementType;
     /*0x07*/ u8 trainerType;
     /*0x08*/ u8 localId;
@@ -215,7 +214,8 @@ struct ObjectEvent
     /*0x20*/ u8 previousMovementDirection;
     /*0x21*/ u8 directionSequenceIndex;
     /*0x22*/ u8 playerCopyableMovement;
-    /*size = 0x24*/
+    /*0x23*/ u8 spriteId;
+    /*size = 0x25*/
 };
 
 struct ObjectEventGraphicsInfo

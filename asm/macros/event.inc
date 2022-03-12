@@ -1277,7 +1277,7 @@
 
 	.macro createvobject sprite:req, byte2:req, x:req, y:req, elevation, direction
 	.byte 0xaa
-	.byte \sprite
+	.2byte \sprite
 	.byte \byte2
 	.2byte \x
 	.2byte \y
