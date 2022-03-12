@@ -184,8 +184,8 @@ static const u8 sTileBitAttributes[] =
     [MB_UNUSED_AB] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_AC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_AD] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_AE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_AF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_CYCLING_ROAD_PULL_DOWN] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_CYCLING_ROAD_PULL_DOWN_GRASS] = TILE_ATTRIBUTES(FALSE, FALSE, TRUE),
     [MB_SECRET_BASE_PC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_SECRET_BASE_REGISTER_PC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_SECRET_BASE_UNUSED] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
@@ -299,7 +299,7 @@ bool8 MetatileBehavior_IsJumpSouth(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsPokeGrass(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_LONG_GRASS)
+    if (metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_LONG_GRASS || MB_CYCLING_ROAD_PULL_DOWN_GRASS)
         return TRUE;
     else
         return FALSE;
@@ -917,7 +917,7 @@ bool8 MetatileBehavior_IsPuddle(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsTallGrass(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_TALL_GRASS)
+    if(metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_CYCLING_ROAD_PULL_DOWN_GRASS)
         return TRUE;
     else
         return FALSE;
@@ -1604,4 +1604,17 @@ bool8 MetatileBehavior_IsWhirlpool(u8 metatileBehavior)
         return TRUE;
     else
         return FALSE;
+}
+
+bool32 MetatileBehavior_IsCyclingRoadPullDownTile(u8 metatileBehavior)
+{
+    if(metatileBehavior >= MB_CYCLING_ROAD_PULL_DOWN && metatileBehavior <= MB_CYCLING_ROAD_PULL_DOWN_GRASS)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsCyclingRoadPullDownTileGrass(u8 metatileBehavior)
+{
+    return metatileBehavior == MB_CYCLING_ROAD_PULL_DOWN_GRASS;
 }

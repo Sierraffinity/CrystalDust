@@ -1,1 +1,26 @@
 mapscripts Route17_MapScripts {}
+
+//trainers from top to bottom
+script Route17_EventScript_BikerRiley {
+    trainerbattle_single(TRAINER_RILEY, "Hey, you!\nYou're from JOHTO, huh?", "Whoa, you kick!")
+    msgbox("Don't get cocky, you JOHTO punk!", MSGBOX_DEFAULT)
+    release
+}
+
+script Route17_EventScript_BikerGlenn {
+    trainerbattle_single(TRAINER_GLENN, "Hey!\nWant to have a speed battle?", "Yikes!\nYou've got awesome torque!")
+    msgbox("Hands-free riding is considered cool\non CYCLING ROAD.", MSGBOX_DEFAULT)
+    release
+}
+
+script Route17_EventScript_BikerJoel {
+    trainerbattle_single(TRAINER_JOEL, "Wow.\nThat's a cool BICYCLE!", "But you don't just look cool…")
+    msgbox("I look cool, but I'm weak, so I'm\nnot really cool.\pI have to train harder…", MSGBOX_DEFAULT)
+    release
+}
+
+script Route17_EventScript_BikerCharles {
+    trainerbattle_single(TRAINER_CHARLES, "We're fearless highway stars!", "Arrrgh!\nCrash and burn!")
+    msgbox("Reckless driving causes accidents!\nTake it easy!", MSGBOX_DEFAULT)
+    release
+}

@@ -187,16 +187,16 @@ static u8 BicycleHandleInput_Normal(u8 *newDirection, u16 newKeys, u16 heldKeys)
     u8 direction = GetPlayerMovementDirection();
 
     gPlayerAvatar.bikeFrameCounter = 0;
-    if (/*MetatileBehavior_IsCyclingRoadPullDownTile(playerObjEvent->currentMetatileBehavior) == TRUE*/FALSE) // TODO: Cycling road pulldown
+    if (MetatileBehavior_IsCyclingRoadPullDownTile(playerObjEvent->currentMetatileBehavior) == TRUE)
     {
-        if (!heldKeys & B_BUTTON)
+        if (*newDirection < DIR_NORTH)
         {
             gPlayerAvatar.bikeState = BICYCLE_STATE_BRAKED_ON_INCLINE;
             gPlayerAvatar.runningState = MOVING;
-            if (*newDirection < DIR_NORTH)
-                return BICYCLE_TRANS_LET_GRAVITY_TAKE_CONTROL;
+            if (heldKeys & B_BUTTON)
+                return BICYCLE_TRANS_FACE_DIRECTION;
             else
-                return BICYCLE_TRANS_START_MOVING;
+                return BICYCLE_TRANS_LET_GRAVITY_TAKE_CONTROL;
         }
         else
         {
@@ -254,7 +254,7 @@ static u8 BicycleHandleInput_BrakedOnIncline(u8 *newDirection, u16 newKeys, u16 
     u8 direction = GetPlayerMovementDirection();
     u8 playerObjEventId = gPlayerAvatar.objectEventId;
 
-    if (/*MetatileBehavior_IsCyclingRoadPullDownTile(playerObjEventId[gObjectEvents].currentMetatileBehavior) == TRUE*/FALSE) // TODO: Cycling road pulldown
+    if (MetatileBehavior_IsCyclingRoadPullDownTile(playerObjEventId[gObjectEvents].currentMetatileBehavior) == TRUE)
     {
         if (*newDirection != direction)
         {
