@@ -60,15 +60,18 @@ script VermilionCity_PokemonFanClub_EventScript_ClefairyGuy {
     }
     if(flag(FLAG_RETURNED_MACHINE_PART))
     {
-        msgbox("I love CLEFAIRY but I could never\ncatch one.\pSo I'm making do with a POKé\nDOLL that I found.", MSGBOX_DEFAULT)
+        msgbox("I love CLEFAIRY but I could never\ncatch one.\pSo I'm making do with a POKé DOLL\nthat I found.", MSGBOX_DEFAULT)
         if(flag(FLAG_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM))
         {
-            msgbox("Oh, I see now. The little girl who lost this\nPOKé DOLL is sad…\pOK. Could you take this POKé DOLL\nback to that poor little girl?\pI'll befriend a real CLEFAIRY on\nmy own one day. No worries!", MSGBOX_DEFAULT)
-            giveitem_msg("{PLAYER} received the POKé DOLL.", ITEM_LOST_ITEM, 1)
+            msgbox("Oh, I see now. The little girl who\nlost this POKé DOLL is sad…\pOK. Could you take this POKé DOLL\nback to that poor little girl?\pI'll befriend a real CLEFAIRY on\nmy own one day. No worries!", MSGBOX_DEFAULT)
             removeobject(4)
+            textcolor(2)
+            giveitem_msg("{PLAYER} received the LOST ITEM.", ITEM_LOST_ITEM, 1)
             release
             end
         }
+        release
+        end
     }
     msgbox("I love the way CLEFAIRY waggles\nits finger when it's trying to use\lMETRONOME. It's so adorable!", MSGBOX_DEFAULT)
     release

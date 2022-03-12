@@ -1,10 +1,112 @@
-mapscripts Route25_MapScripts {}
-
-// TODO: Misty out on the Cape seems to be enabled with the Rocket Grunt runs out of the Gym.
+mapscripts Route25_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_MET_ROCKET_GRUNT_AT_CERULEAN_GYM) || flag(FLAG_MET_MISTY_AT_CERULEAN_CAPE))
+        {
+            setflag(FLAG_TEMP_1)
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+}
 
 script Route25_EventScript_Sign{
     msgbox("SEA COTTAGE\nBILL'S HOUSE", MSGBOX_SIGN)
     end
+}
+
+script Route25_EventScript_MistyTriggers{
+    lockall
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    applymovement(11, Route25_Movement_HeartMark)
+    playse(SE_PIN)
+    delay(0x40)
+    applymovement(12, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    turnobject(11, DIR_SOUTH)
+    getplayerxy(VAR_0x8008, VAR_RESULT)
+    switch(var(VAR_RESULT))
+    {
+        case 5:
+            applymovement(12, Common_Movement_DateLeaveTop)
+            waitmovement(0)
+        case 6:
+            applymovement(12, Common_Movement_DateLeaveMid)
+            waitmovement(0)
+        case 7:
+            applymovement(12, Common_Movement_DateLeaveBottom)
+            waitmovement(0)
+    }
+    delay(15)
+    playbgm(MUS_ENCOUNTER_FEMALE, 0)
+    turnobject(11, DIR_NORTH)
+    delay(10)
+    switch(var(VAR_RESULT))
+    {
+        case 5:
+            applymovement(11, Common_Movement_MistyToPlayerTop)
+            waitmovement(0)
+        case 6:
+            applymovement(11, Common_Movement_MistyToPlayerMid)
+            waitmovement(0)
+        case 7:
+            applymovement(11, Common_Movement_MistyToPlayerBottom)
+            waitmovement(0)
+    }
+    textcolor(1)
+    msgbox("MISTY: Aww! Why did you have to\nshow up and bug us now?\pDo you know what they call people\nlike you?\pPests!\nYou heard me right, pest!\p…\p…Oh? Those BADGES you have…\nAre they JOHTO GYM BADGES?\pIf you have eight, you must be good.\nOK, then. Come to CERULEAN GYM.\lI'll be happy to take you on.\pI'm MISTY, the GYM LEADER in\nCERULEAN.", MSGBOX_DEFAULT)
+    closemessage
+    switch(var(VAR_RESULT))
+    {
+        case 5:
+        case 6:
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+            applymovement(11, Common_Movement_MistyLeavesTopMid1)
+            waitmovement(0)
+        case 7:
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+            applymovement(11, Common_Movement_MistyLeavesBottom1)
+            waitmovement(0)
+    }
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+    applymovement(11, Common_Movement_MistyLeaves)
+    waitmovement(0)
+    removeobject(11)
+    removeobject(12)
+    fadedefaultbgm
+    setflag(FLAG_TEMP_1)
+    setflag(FLAG_MET_MISTY_AT_CERULEAN_CAPE)
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+    end
+}movement(local) Route25_Movement_HeartMark{
+    emote_heart
+}movement(local) Common_Movement_DateLeaveTop{
+    walk_fast_down * 2
+    set_invisible
+}movement(local) Common_Movement_DateLeaveMid{
+    walk_fast_down * 3
+    set_invisible
+}movement(local) Common_Movement_DateLeaveBottom{
+    walk_fast_down * 3
+    set_invisible
+}movement(local) Common_Movement_MistyToPlayerTop{
+    walk_up * 3
+    walk_left * 5
+}movement(local) Common_Movement_MistyToPlayerMid{
+    walk_up * 2
+    walk_left * 5
+}movement(local) Common_Movement_MistyToPlayerBottom{
+    walk_up * 1
+    walk_left * 5
+}movement(local) Common_Movement_MistyLeavesTopMid1{
+    walk_down
+    walk_left
+}movement(local) Common_Movement_MistyLeavesBottom1{
+    walk_up
+    walk_left
+}movement(local) Common_Movement_MistyLeaves{
+    walk_left * 8
+    set_invisible
 }
 
 //trainers from left to right

@@ -28,6 +28,7 @@
 #include "constants/event_objects.h"
 #include "constants/field_effects.h"
 #include "constants/items.h"
+#include "constants/layouts.h"
 #include "constants/mauville_old_man.h"
 #include "constants/trainer_types.h"
 #include "constants/union_room.h"
@@ -1793,9 +1794,6 @@ void RemoveObjectEventsOutsideView(void)
     }
 }
 
-#define LAYOUT_ECRUTEAK_CITY_DANCE_THEATER 270
-#define LAYOUT_BURNED_TOWER_1F 288
-
 static void RemoveObjectEventIfOutsideView(struct ObjectEvent *objectEvent)
 {
     if(gMapHeader.mapLayoutId == LAYOUT_ECRUTEAK_CITY_DANCE_THEATER || gMapHeader.mapLayoutId == LAYOUT_BURNED_TOWER_1F) // don't remove events in the Dance Theater or Burned Tower 1F because of paletteSlot shenanigans
@@ -2324,6 +2322,11 @@ u8 GetObjectEventIdByXYZ(u16 x, u16 y, u8 z)
 
 static bool8 ObjectEventDoesZCoordMatch(struct ObjectEvent *objectEvent, u8 z)
 {
+    if(gMapHeader.mapLayoutId == LAYOUT_CERULEAN_CITY_GYM)
+    {
+        if(objectEvent->graphicsId != OBJ_EVENT_GFX_MISTY) // Misty should only be interacted with when on land.
+            return TRUE;
+    }
     if (objectEvent->currentElevation != 0 && z != 0 && objectEvent->currentElevation != z)
     {
         return FALSE;

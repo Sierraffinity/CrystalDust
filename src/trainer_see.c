@@ -168,10 +168,18 @@ static const struct SpriteFrameImage sSpriteImageTable_ExclamationQuestionMark[]
 
 static const struct SpriteFrameImage sSpriteImageTable_HeartIcon[] =
 {
-    {
+     {
         .data = sEmotion_HeartGfx,
         .size = 0x80
-    }
+    },
+    {
+        .data = sEmotion_HeartGfx + 0x80,
+        .size = 0x80
+    },
+    {
+        .data = sEmotion_HeartGfx + 0x100,
+        .size = 0x80
+    },
 };
 
 static const union AnimCmd sSpriteAnim_Icons1[] =
@@ -210,7 +218,7 @@ static const struct SpriteTemplate sSpriteTemplate_ExclamationQuestionMark =
 static const struct SpriteTemplate sSpriteTemplate_HeartIcon =
 {
     .tileTag = SPRITE_INVALID_TAG,
-    .paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
+    .paletteTag = FLDEFF_PAL_TAG_ARROW,
     .oam = &sOamData_Icons,
     .anims = sSpriteAnimTable_Icons,
     .images = sSpriteImageTable_HeartIcon,
@@ -416,7 +424,10 @@ static u8 CheckPathBetweenTrainerAndPlayer(struct ObjectEvent *trainerObj, u8 ap
     MoveCoords(direction, &x, &y);
     for (i = 0; i < approachDistance - 1; i++, MoveCoords(direction, &x, &y))
     {
-        collision = GetCollisionFlagsAtCoords(trainerObj, x, y, direction);
+        if(gMapHeader.mapLayoutId == LAYOUT_CERULEAN_CITY_GYM) //Cerulean Gym trainers must see regardless of elevation
+            collision = 0;
+        else
+            collision = GetCollisionFlagsAtCoords(trainerObj, x, y, direction);
         if (collision != 0 && (collision & COLLISION_MASK))
             return 0;
     }
@@ -430,7 +441,7 @@ static u8 CheckPathBetweenTrainerAndPlayer(struct ObjectEvent *trainerObj, u8 ap
 
     trainerObj->rangeX = rangeX;
     trainerObj->rangeY = rangeY;
-    if (collision == COLLISION_OBJECT_EVENT)
+    if (collision == COLLISION_OBJECT_EVENT || gMapHeader.mapLayoutId == LAYOUT_CERULEAN_CITY_GYM) //Cerulean Gym trainers must see regardless of elevation
         return approachDistance;
 
     return 0;
@@ -825,7 +836,7 @@ u8 FldEff_HeartIcon(void)
         struct Sprite *sprite = &gSprites[spriteId];
 
         SetIconSpriteData(sprite, FLDEFF_HEART_ICON, 0);
-        sprite->oam.paletteNum = 2;
+        gSprites[spriteId].oam.paletteNum = LoadSpritePalette(&gFieldEffectObjectPaletteInfo11);
     }
 
     return 0;

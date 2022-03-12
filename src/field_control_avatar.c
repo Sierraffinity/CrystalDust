@@ -451,6 +451,8 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
     case BG_EVENT_HIDDEN_ITEM:
         gSpecialVar_0x8004 = ((u32)bgEvent->bgUnion.script >> 16) + FLAG_HIDDEN_ITEMS_START;
         gSpecialVar_0x8005 = (u32)bgEvent->bgUnion.script;
+        if (gSpecialVar_0x8004 == FLAG_HIDDEN_ITEM_CERULEAN_CITY_GYM_MACHINE_PART && !FlagGet(FLAG_MET_ROCKET_GRUNT_AT_CERULEAN_GYM))
+            return NULL;
         if (FlagGet(gSpecialVar_0x8004) == TRUE)
             return NULL;
         gSpecialVar_Facing = direction;

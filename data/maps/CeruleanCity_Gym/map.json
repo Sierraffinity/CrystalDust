@@ -18,18 +18,93 @@
   "object_events": [
     {
       "type": "original",
-      "graphics_id": "OBJ_EVENT_GFX_ABRA",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_GRUNT_M",
       "in_connection": false,
-      "x": 0,
-      "y": 0,
+      "x": 9,
+      "y": 12,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
+      "in_connection": false,
+      "x": 7,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeruleanCity_Gym_Eventscript_GymGuide",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
+      "in_connection": false,
+      "x": 3,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "CeruleanCity_Gym_EventScript_SwimmerFBriana",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
+      "in_connection": false,
+      "x": 14,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "CeruleanCity_Gym_EventScript_SwimmerMParker",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
+      "in_connection": false,
+      "x": 7,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "CeruleanCity_Gym_EventScript_SwimmerFDiana",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_MISTY",
+      "in_connection": false,
+      "x": 8,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeruleanCity_Gym_Eventscript_Misty",
+      "flag": "FLAG_TEMP_2"
     }
   ],
   "warp_events": [
@@ -51,7 +126,7 @@
       "y": 17,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "CeruleanCity_Gym_EventScript_LeftGymStatue"
     },
     {
       "type": "sign",
@@ -59,7 +134,15 @@
       "y": 17,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "CeruleanCity_Gym_EventScript_RightGymStatue"
+    },
+    {
+      "type": "hidden_item",
+      "x": 6,
+      "y": 11,
+      "elevation": 0,
+      "item": "ITEM_MACHINE_PART",
+      "flag": "FLAG_HIDDEN_ITEM_CERULEAN_CITY_GYM_MACHINE_PART"
     }
   ]
 }

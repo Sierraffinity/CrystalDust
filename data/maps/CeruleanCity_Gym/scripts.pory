@@ -1,1 +1,146 @@
-mapscripts CeruleanCity_Gym_MapScripts {}
+mapscripts CeruleanCity_Gym_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_MET_MANAGER_AT_POWER_PLANT) || flag(FLAG_MET_ROCKET_GRUNT_AT_CERULEAN_GYM))
+        {
+            setvar(VAR_TEMP_0, 1)
+            setflag(FLAG_TEMP_1)
+        }
+        if(!flag(FLAG_MET_MISTY_AT_CERULEAN_CAPE))
+        {
+            setflag(FLAG_TEMP_2)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_TEMP_0, 0{
+            lockall
+            applymovement(1, CeruleanCity_Gym_Movement_RunsDown)
+            waitmovement(0)
+            playse(SE_SUPER_EFFECTIVE)
+            applymovement(1, CeruleanCity_Gym_Movement_BumpsPlayer)
+            waitmovement(0)
+            playbgm(MUS_ENCOUNTER_ROCKET, FALSE)
+            textcolor(0)
+            msgbox("Oops! I so sorry!\nYou not hurt, okay?\pI very busy.\nNo time for talking with you.\pNot good for me if seen by\nsomebody.", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(1, Common_Movement_ExclamationMark)
+            playse(SE_PIN)
+            delay(0x40)
+            applymovement(1, CeruleanCity_Gym_Movement_BacksAway)
+            waitmovement(0)
+            msgbox("Oh no!\nYou seen me already!\lI make big mistake!", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(1, CeruleanCity_Gym_Movement_MovesClose)
+            waitmovement(0)
+            msgbox("Hey, you! Forget you see me, okay?\nYou see, hear, know nothing, okay?\pBye, kid! Nothing!\nBye-bye a go-go!", MSGBOX_DEFAULT)
+            closemessage
+            applymovement(1, CeruleanCity_Gym_Movement_RocketExits)
+            delay(1)
+            applymovement(OBJ_EVENT_ID_PLAYER, CeruleanCity_Gym_Movement_PlayerShoved)
+            waitmovement(1)
+            playse(SE_EXIT)
+            fadedefaultbgm
+            removeobject(1)
+            setflag(FLAG_MET_ROCKET_GRUNT_AT_CERULEAN_GYM)
+            setflag(FLAG_TEMP_1)
+            setvar(VAR_TEMP_0, 1)
+            releaseall
+            end
+        }
+    ]
+}movement(local) CeruleanCity_Gym_Movement_RunsDown{
+    walk_fast_down * 4
+    walk_fast_left
+    walk_fast_down
+}movement(local) CeruleanCity_Gym_Movement_BumpsPlayer{
+    lock_facing_direction
+    jump_up
+    unlock_facing_direction
+    delay_16
+    walk_down
+}movement(local) CeruleanCity_Gym_Movement_BacksAway{
+    lock_facing_direction
+    walk_slow_up
+    unlock_facing_direction
+}movement(local) CeruleanCity_Gym_Movement_MovesClose{
+    walk_fast_down
+}movement(local) CeruleanCity_Gym_Movement_PlayerShoved{
+    face_right
+    lock_facing_direction
+    walk_fastest_left
+    unlock_facing_direction
+}movement(local) CeruleanCity_Gym_Movement_RocketExits{
+    walk_fast_down
+    set_invisible
+}
+
+script CeruleanCity_Gym_Eventscript_Misty{
+    trainerbattle_single(TRAINER_MISTY, "MISTY: I was expecting you,\nyou pest!\pYou may have a lot of JOHTO GYM\nBADGES, but you'd better not take\lme too lightly.\pMy WATER-type POKéMON are tough!", "MISTY: You really are good…\pI'll admit that you are skilled…\nHere you go. It's the CASCADEBADGE.", CeruleanCity_Gym_Eventscript_MistyDefeated, NO_MUSIC)
+    msgbox("MISTY: Are there many strong trainers\nin JOHTO? Like you, I mean.\pI'm going to travel one day, so\nI can battle some skilled trainers.", MSGBOX_NPC)
+    release
+    end
+}script(local) CeruleanCity_Gym_Eventscript_MistyDefeated{
+    if(!flag(FLAG_BADGE10_GET))
+    {
+        textcolor(MSG_COLOR_SYS)
+        message("{PLAYER} received the CASCADEBADGE.")
+        call(Common_EventScript_PlayGymBadgeFanfare)
+        textcolor(MSG_COLOR_PREV)
+        setflag(FLAG_BADGE10_GET)
+        setgymtrainers(10)
+        goto(CeruleanCity_Gym_Eventscript_Misty)
+    }
+}
+
+script CeruleanCity_Gym_EventScript_LeftGymStatue{
+    if(!flag(FLAG_MET_MISTY_AT_CERULEAN_CAPE))
+    {
+        msgbox("Sorry, I'll be out for a while.\nMISTY, GYM LEADER", MSGBOX_SIGN)
+        end
+    }
+    goto(CeruleanCity_Gym_EventScript_GymStatues)
+}script CeruleanCity_Gym_EventScript_GymStatues{
+    if(flag(FLAG_BADGE10_GET))
+    {
+        msgbox("CERULEAN CITY POKéMON GYM\nLEADER: MISTY\pWINNING TRAINERS:\n{PLAYER}", MSGBOX_SIGN)
+        end
+    }
+    msgbox("CERULEAN CITY POKéMON GYM", MSGBOX_SIGN)
+    end
+}
+
+script CeruleanCity_Gym_EventScript_RightGymStatue{
+    if(!flag(FLAG_MET_MISTY_AT_CERULEAN_CAPE))
+    {
+        msgbox("Since MISTY's out, we'll be away too.\nGYM TRAINERS", MSGBOX_SIGN)
+        end
+    }
+    goto(CeruleanCity_Gym_EventScript_GymStatues)
+}
+
+script CeruleanCity_Gym_Eventscript_GymGuide{
+    if(flag(FLAG_BADGE10_GET))
+    {
+        msgbox("Hoo, you showed me how tough\nyou are.\pAs always, that was one heck of a\ngreat battle!", MSGBOX_NPC)
+        end
+    }
+    msgbox("Yo, CHAMP in making!\pSince MISTY was away, I went out\nfor some fun too. He-he-he.", MSGBOX_NPC)
+    end
+}
+
+script CeruleanCity_Gym_EventScript_SwimmerFDiana { //top
+    trainerbattle_single(TRAINER_DIANA, "Sorry about being away.\nLet's get on with it!", "I give up!\nYou're the winner!")
+    msgbox("I'll be swimming quietly.", MSGBOX_DEFAULT)
+    release
+}
+
+script CeruleanCity_Gym_EventScript_SwimmerFBriana {
+    trainerbattle_single(TRAINER_BRIANA, "Don't let my elegant swimming\nunnerve you.", "Ooh, you calmly disposed of me…")
+    msgbox("Don't be too smug about beating me.\pMISTY will destroy you if you get\ncomplacent.", MSGBOX_DEFAULT)
+    release
+}
+
+script CeruleanCity_Gym_EventScript_SwimmerMParker {
+    trainerbattle_single(TRAINER_PARKER, "Glub…\pI'm first!\nCome and get me!", "This can't be…")
+    msgbox("MISTY has gotten much better in the\npast few years.\pDon't let your guard down,\nor you'll be crushed!", MSGBOX_DEFAULT)
+    release
+}

@@ -1,1 +1,30 @@
-mapscripts Route24_MapScripts {}
+mapscripts Route24_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        if(!flag(FLAG_MET_ROCKET_GRUNT_AT_CERULEAN_GYM) || defeated(TRAINER_ROCKET_ROUTE24))
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+}
+
+script Route24_EventScript_RocketGrunt{
+    lock
+    faceplayer
+    playbgm(MUS_ENCOUNTER_ROCKET, TRUE)
+    msgbox("Hey, kid! Me am a TEAM ROCKET\nmember kind of guy!\pCome from another country, a trainer\nnumber one, me!\pThink I did, if stop the energy,\nbe big panic for here people!\pSecret it is my mission, so tell\nyou I not!\pBut! If win you do versus me, a man\nI be and mine secret to you I tell.\pHey, kid!\nBattle begin we do!", MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_ROCKET_ROUTE24, "Ayieeeh!\nNo, no, no, believe it I can't!\pStrong very much be you!\nMatch I am not to you!")
+    msgbox("OK.\nTell you mine secret will I.\pMACHINE PART steal by me, hide it\nI did in GYM of the CERULEAN.\pInside water put it I did.\nLook for in water center of GYM at.\pBut you forget me not! Beat you\nfor sure will TEAM ROCKET.\pCome from JOHTO will they, mine\nfriends, yes. Will revenge they are.", MSGBOX_DEFAULT)
+    playbgm(MUS_NONE, FALSE)
+    savebgm(MUS_RG_ROUTE24)
+    msgbox("…\pYou say what? TEAM ROCKET bye-bye\na go-go? Broken it is says you?\pOh no! Should I do what now on\nfrom, me?", MSGBOX_DEFAULT)
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    removeobject(1)
+    setflag(FLAG_TEMP_1)
+    delay(25)
+    fadescreen(FADE_FROM_BLACK)
+    fadedefaultbgm
+    release
+    end
+}
