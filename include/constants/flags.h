@@ -870,8 +870,8 @@
 #define FLAG_GOT_TM49                                               0x333
 #define FLAG_MET_ROCKET_GRUNT_AT_CERULEAN_GYM                       0x334
 #define FLAG_MET_MISTY_AT_CERULEAN_CAPE                             0x335
+#define FLAG_FOUGHT_SNORLAX                                         0x336 // need this to remove guard in Victory Road Gate
 // STOPPED HERE
-#define FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE         0x336
 #define FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA                          0x337
 #define FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD                          0x338
 #define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4                          0x339

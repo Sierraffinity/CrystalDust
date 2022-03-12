@@ -16,12 +16,48 @@ mapscripts VermilionCity_MapScripts {
     }
 }
 
-// TODO: Waking up Snorlax
 script VermilionCity_EventScript_Snorlax{
     lock
-    msgbox("SNORLAX is snoring peacefully…", MSGBOX_DEFAULT)
+    callnative(IsPokeFluteChannelPlaying)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("SNORLAX is snoring peacefully…", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    message("The POKéGEAR was placed near the\nsleeping SNORLAX…\p…\pSNORLAX woke up!")
+    waitmessage
+    delay(15)
+    playmoncry(SPECIES_SNORLAX, 0)
+    waitmoncry
+    closemessage
+    setwildbattle(SPECIES_SNORLAX, 50, ITEM_LEFTOVERS)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    switch (var(VAR_RESULT))
+    {
+        case B_OUTCOME_CAUGHT:
+            call(VermilionCity_EventScript_SnorlaxCaught)
+        case B_OUTCOME_WON:
+            call(VermilionCity_EventScript_RemoveSnorlax)
+        case B_OUTCOME_RAN:
+        case B_OUTCOME_PLAYER_TELEPORTED:
+            call(VermilionCity_EventScript_RemoveSnorlax)
+    }
+    setflag(FLAG_FOUGHT_SNORLAX)
+    setflag(FLAG_DEFEATED_SNORLAX)
     release
     end
+}script VermilionCity_EventScript_SnorlaxCaught{
+    setflag(FLAG_CAUGHT_SNORLAX)
+}script VermilionCity_EventScript_RemoveSnorlax{
+    fadescreenswapbuffers(FADE_TO_BLACK)
+	removeobject(6)
+    removeobject(8)
+    removeobject(9)
+	fadescreenswapbuffers(FADE_FROM_BLACK)
 }
 
 script VermilionCity_EventScript_TownSign{

@@ -4,7 +4,6 @@ mapscripts VictoryRoad_Gatehouse_MapScripts {
         {
             setvar(VAR_TEMP_0, 1)
         }
-        // TODO: Set FLAG_TEMP_2 when Snorlax has been fought to remove the right guard.
     }
 }
 

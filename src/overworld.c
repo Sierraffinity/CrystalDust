@@ -3286,3 +3286,12 @@ static void SpriteCB_LinkPlayer(struct Sprite *sprite)
         sprite->data[7]++;
     }
 }
+
+void IsPokeFluteChannelPlaying(void)
+{
+    u16 music = gSaveBlock1Ptr->savedMusic;
+    if(music == MUS_POKE_FLUTE_RADIO)
+        gSpecialVar_Result = TRUE;
+    else
+        gSpecialVar_Result = FALSE;
+}
