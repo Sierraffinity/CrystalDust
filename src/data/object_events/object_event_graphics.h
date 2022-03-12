@@ -348,3 +348,7 @@ const u16 gObjectEventPal_EnteiAsleep[] = INCBIN_U16("graphics/object_events/pal
 const u16 gObjectEventPal_RaikouAsleep[] = INCBIN_U16("graphics/object_events/palettes/raikou_asleep.gbapal");
 const u16 gObjectEventPal_SuicuneAsleep[] = INCBIN_U16("graphics/object_events/palettes/suicune_asleep.gbapal");
 const u32 gObjectEventPic_Captain[] = INCBIN_U32("graphics/object_events/pics/people/captain.4bpp");
+const u32 gObjectEventPic_Zubat[] = INCBIN_U32("graphics/object_events/pics/pokemon/zubat.4bpp");
+const u32 gObjectEventPic_Diglett[] = INCBIN_U32("graphics/object_events/pics/pokemon/diglett.4bpp");
+const u32 gObjectEventPic_OldMan2[] = INCBIN_U32("graphics/object_events/pics/people/old_man_2.4bpp");
+const u32 gObjectEventPic_Celio[] = INCBIN_U32("graphics/object_events/pics/people/celio.4bpp");

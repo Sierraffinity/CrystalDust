@@ -2354,3 +2354,51 @@ const struct SpriteFrameImage sPicTable_EmeraldMay[] = {
     overworld_frame(gObjectEventPic_EmeraldMay, 2, 4, 7),
     overworld_frame(gObjectEventPic_EmeraldMay, 2, 4, 8),
 };
+
+static const struct SpriteFrameImage sPicTable_Zubat[] = {
+    overworld_frame(gObjectEventPic_Zubat, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Zubat, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Zubat, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Zubat, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Zubat, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Zubat, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Zubat, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Zubat, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Zubat, 4, 4, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_Diglett[] = {
+    overworld_frame(gObjectEventPic_Diglett, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Diglett, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Diglett, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Diglett, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Diglett, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Diglett, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Diglett, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Diglett, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Diglett, 2, 2, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_OldMan2[] = {
+    overworld_frame(gObjectEventPic_OldMan2, 2, 4, 0),
+    overworld_frame(gObjectEventPic_OldMan2, 2, 4, 1),
+    overworld_frame(gObjectEventPic_OldMan2, 2, 4, 2),
+    overworld_frame(gObjectEventPic_OldMan2, 2, 4, 3),
+    overworld_frame(gObjectEventPic_OldMan2, 2, 4, 4),
+    overworld_frame(gObjectEventPic_OldMan2, 2, 4, 5),
+    overworld_frame(gObjectEventPic_OldMan2, 2, 4, 6),
+    overworld_frame(gObjectEventPic_OldMan2, 2, 4, 7),
+    overworld_frame(gObjectEventPic_OldMan2, 2, 4, 8),
+};
+
+static const struct SpriteFrameImage sPicTable_Celio[] = {
+    overworld_frame(gObjectEventPic_Celio, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Celio, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Celio, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Celio, 2, 4, 3),
+    overworld_frame(gObjectEventPic_Celio, 2, 4, 4),
+    overworld_frame(gObjectEventPic_Celio, 2, 4, 5),
+    overworld_frame(gObjectEventPic_Celio, 2, 4, 6),
+    overworld_frame(gObjectEventPic_Celio, 2, 4, 7),
+    overworld_frame(gObjectEventPic_Celio, 2, 4, 8),
+};

@@ -2911,8 +2911,8 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_ZLUCY] =                     MSG_COLOR_RED,
         [OBJ_EVENT_GFX_MURKROW] =                   MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_BOOK] =                      MSG_COLOR_SYS,
-        [OBJ_EVENT_GFX_SLOWBRO] =             MSG_COLOR_SYS,
-        [OBJ_EVENT_GFX_KANGASKHAN] =       MSG_COLOR_SYS,
+        [OBJ_EVENT_GFX_SLOWBRO] =                   MSG_COLOR_SYS,
+        [OBJ_EVENT_GFX_KANGASKHAN] =                MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_NIDORINO] =                  MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_SPEAROW] =                   MSG_COLOR_SYS,
         [OBJ_EVENT_GFX_CUTTABLE_TREE] =             MSG_COLOR_SYS,
@@ -3071,7 +3071,11 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_RS_BRENDAN] =                MSG_COLOR_BLUE,
         [OBJ_EVENT_GFX_RS_MAY] =                    MSG_COLOR_RED,
         [OBJ_EVENT_GFX_LUGIA] =                     MSG_COLOR_BLACK,
-        [OBJ_EVENT_GFX_HOOH] =                      MSG_COLOR_BLACK
+        [OBJ_EVENT_GFX_HOOH] =                      MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_ZUBAT] =                     MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_DIGLETT] =                   MSG_COLOR_BLACK,
+        [OBJ_EVENT_GFX_OLD_MAN_2] =                 MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_CELIO] =                     MSG_COLOR_BLUE
     };
 
     if (graphicsId < NUM_OBJ_EVENT_GFX)
