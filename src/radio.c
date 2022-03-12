@@ -82,14 +82,20 @@ u8 LoadStation_LuckyChannel(void);
 u8 LoadStation_BuenasPassword(void);
 u8 LoadStation_UnownRadio(void);
 u8 LoadStation_EvolutionRadio(void);
+u8 LoadStation_PlacesAndPeople(void);
+u8 LoadStation_LetsAllSing(void);
+u8 LoadStation_PokeFluteRadio(void);
 
 const struct RadioStation gRadioStationData[] = {
-    { RADIO_FREQ(4.5), REGION_JOHTO, LoadStation_PokemonChannel },
-    { RADIO_FREQ(7.5), REGION_JOHTO, LoadStation_PokemonMusic },
-    { RADIO_FREQ(8.5), REGION_JOHTO, LoadStation_LuckyChannel },
+    { RADIO_FREQ(4.5),  REGION_JOHTO, LoadStation_PokemonChannel },
+    { RADIO_FREQ(7.5),  REGION_JOHTO, LoadStation_PokemonMusic },
+    { RADIO_FREQ(8.5),  REGION_JOHTO, LoadStation_LuckyChannel },
     { RADIO_FREQ(10.5), REGION_JOHTO, LoadStation_BuenasPassword },
     { RADIO_FREQ(13.5), REGION_JOHTO, LoadStation_UnownRadio },
     { RADIO_FREQ(20.5), REGION_JOHTO, LoadStation_EvolutionRadio },
+    { RADIO_FREQ(16.5), REGION_KANTO, LoadStation_PlacesAndPeople },
+    { RADIO_FREQ(18.5), REGION_KANTO, LoadStation_LetsAllSing },
+    { RADIO_FREQ(20.0), REGION_KANTO, LoadStation_PokeFluteRadio },
     { 0xFF, 0xFF, NULL }
 };
 
@@ -695,6 +701,27 @@ u8 LoadStation_LuckyChannel(void)
 u8 LoadStation_BuenasPassword(void)
 {
     return BUENAS_PASSWORD;
+}
+
+u8 LoadStation_PlacesAndPeople(void)
+{
+    if(FlagGet(FLAG_SYS_HAS_EXPN_CARD))
+        return PLACES_AND_PEOPLE;
+    return 0xFF;
+}
+
+u8 LoadStation_LetsAllSing(void)
+{
+    if(FlagGet(FLAG_SYS_HAS_EXPN_CARD))
+        return LETS_ALL_SING;
+    return 0xFF;
+}
+
+u8 LoadStation_PokeFluteRadio(void)
+{
+    if(FlagGet(FLAG_SYS_HAS_EXPN_CARD))
+        return POKE_FLUTE_RADIO;
+    return 0xFF;
 }
 
 u8 LoadStation_UnownRadio(void)
