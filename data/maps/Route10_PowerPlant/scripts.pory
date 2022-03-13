@@ -41,7 +41,6 @@ script Route10_PowerPlant_EventScript_Manager{
         msgbox("MANAGER: Ah!\nYeah!\pThat's the missing PART from my\nbeloved generator! You found it?", MSGBOX_DEFAULT)
         removeitem(ITEM_MACHINE_PART, 1)
         setflag(FLAG_RETURNED_MACHINE_PART)
-        clearflag(FLAG_HIDE_GOLDENROD_CITY_MAGNET_TRAIN_STATION_PRESIDENT)
         goto(Route10_PowerPlant_EventScript_Manager)
     }
     if(flag(FLAG_MET_MANAGER_AT_POWER_PLANT))

@@ -5827,7 +5827,7 @@ const struct Trainer gTrainers[] = {
      [TRAINER_RIVAL_CHERRYGROVE_CHIKORITA] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("???"),
@@ -5841,7 +5841,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_CHERRYGROVE_TOTODILE] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("???"),
@@ -5855,7 +5855,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_CHERRYGROVE_CYNDAQUIL] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL,
         .trainerName = _("???"),
@@ -6513,7 +6513,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_CAL] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FISHERMAN,
         .trainerPic = TRAINER_PIC_GOLD,
         .trainerName = _("CAL"),
@@ -6527,7 +6527,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_MT_SILVER_RED] =
     {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FISHERMAN,
         .trainerPic = TRAINER_PIC_RED,
         .trainerName = _("RED"),

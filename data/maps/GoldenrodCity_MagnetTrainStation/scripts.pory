@@ -8,6 +8,10 @@ mapscripts GoldenrodCity_MagnetTrainStation_MapScripts {
             setobjectmovementtype(1, MOVEMENT_TYPE_FACE_LEFT)
             setvar(VAR_TEMP_0, 0)
         }
+        if(!flag(FLAG_RETURNED_MACHINE_PART))
+        {
+            setflag(FLAG_TEMP_1)
+        }
     }
     MAP_SCRIPT_ON_FRAME_TABLE[
         VAR_TEMP_0, 0 {

@@ -44,6 +44,7 @@
 #include "text_window.h"
 #include "trainer_card.h"
 #include "window.h"
+#include "constants/heal_locations.h"
 #include "constants/songs.h"
 #include "union_room.h"
 #include "constants/rgb.h"
@@ -140,6 +141,11 @@ static void SaveGameTask(u8 taskId);
 static void Task_SaveAfterLinkBattle(u8 taskId);
 static void Task_WaitForBattleTowerLinkSave(u8 taskId);
 static bool8 FieldCB_ReturnToFieldStartMenu(void);
+
+// Red Save
+void SaveGameRed(void);
+static void SaveGameTaskRed(u8 taskId);
+static u8 RunSaveCallbackRed(void);
 
 static const struct WindowTemplate sSafariBallsWindowTemplate = {0, 1, 1, 9, 4, 0xF, 8};
 
@@ -1473,4 +1479,52 @@ void AppendToList(u8 *list, u8 *pos, u8 newEntry)
 {
     list[*pos] = newEntry;
     (*pos)++;
+}
+
+int RedClear(void)
+{
+    SetContinueGameWarpStatus();
+    SetContinueGameWarpToHealLocation(HEAL_LOCATION_SILVER_CAVE_OUTSIDE);
+    //ShowSaveMessage(gText_SavingDontTurnOff, SaveDoSaveCallback);
+}
+
+void SaveGameRed(void)
+{
+    SaveMapView();
+    sSaveDialogCallback = SaveSavingMessageCallback;
+    sSavingComplete = FALSE;
+    CreateTask(SaveGameTaskRed, 0x50);
+}
+
+static void SaveGameTaskRed(u8 taskId)
+{
+    u8 status = RunSaveCallbackRed();
+
+    switch (status)
+    {
+    case SAVE_CANCELED:
+    case SAVE_ERROR:
+        gSpecialVar_Result = 0;
+        break;
+    case SAVE_SUCCESS:
+        gSpecialVar_Result = status;
+        break;
+    case SAVE_IN_PROGRESS:
+        return;
+    }
+
+    DestroyTask(taskId);
+    EnableBothScriptContexts();
+}
+
+static u8 RunSaveCallbackRed(void)
+{
+    // True if text is still printing
+    if (RunTextPrintersAndIsPrinter0Active() == TRUE)
+    {
+        return SAVE_IN_PROGRESS;
+    }
+
+    sSavingComplete = FALSE;
+    return sSaveDialogCallback();
 }

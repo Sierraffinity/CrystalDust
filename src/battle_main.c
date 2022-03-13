@@ -506,7 +506,9 @@ const struct TrainerMoney gTrainerMoneyTable[] =
     {TRAINER_CLASS_TWINS, 5},
     {TRAINER_CLASS_SAILOR, 10},
     {TRAINER_CLASS_SAGE, 8},
-    {TRAINER_CLASS_PKMN_TRAINER_3, 25}, //Cal & Red
+    {TRAINER_CLASS_PKMN_TRAINER_1, 15}, // First Rival Battle
+    {TRAINER_CLASS_PKMN_TRAINER_2, 25}, // Trainer House Cal & Carrie
+    {TRAINER_CLASS_PKMN_TRAINER_3, 25}, // Mt. Silver Red
     {TRAINER_CLASS_JUGGLER, 10},
     {TRAINER_CLASS_PKMN_RANGER, 12},
     {TRAINER_CLASS_SUPER_NERD, 8},
@@ -4960,6 +4962,7 @@ static void HandleEndTurn_BattleWon(void)
             PlayBGM(MUS_VICTORY_AQUA_MAGMA);
             break;*/
         case TRAINER_CLASS_LEADER:
+        case TRAINER_CLASS_PKMN_TRAINER_3:
             PlayBGM(MUS_VICTORY_GYM_LEADER);
             break;
         default:

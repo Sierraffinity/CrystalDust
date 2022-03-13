@@ -60,6 +60,13 @@
       "elevation": 0,
       "dest_map": "MAP_SILVER_CAVE_OUTSIDE_POKEMON_CENTER_1F",
       "dest_warp_id": 0
+    },
+    {
+      "x": 28,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_SILVER_CAVE_ROOM1",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

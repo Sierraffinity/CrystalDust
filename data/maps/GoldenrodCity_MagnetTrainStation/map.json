@@ -44,7 +44,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_MagnetTrainStation_Gentleman",
-      "flag": "FLAG_HIDE_GOLDENROD_CITY_MAGNET_TRAIN_STATION_PRESIDENT"
+      "flag": "FLAG_TEMP_1"
     }
   ],
   "warp_events": [

@@ -806,7 +806,7 @@
 #define FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER                       0x2FA
 #define FLAG_HIDE_DEOXYS                                            0x2FB
 #define FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE                      0x2FC
-#define FLAG_HIDE_GOLDENROD_CITY_MAGNET_TRAIN_STATION_PRESIDENT     0x2FD
+#define FLAG_HIDE_RED                                               0x2FD
 #define FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD                   0x2FE
 #define FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_BARGAIN_MAN            0x2FF
 #define FLAG_HIDE_GOLDENROD_CITY_UNDERGROUND_OLDER_HAIRCUT_BROTHER  0x300

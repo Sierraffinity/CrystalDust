@@ -1,1 +1,30 @@
 mapscripts SilverCave_Room3_MapScripts {}
+
+script SilverCave_Room3_EventScript_Red{
+    lock
+    faceplayer
+    playbgm(MUS_NONE, TRUE)
+    msgbox(SilverCave_Room3_Text_Red, MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_MT_SILVER_RED, "…")
+    msgbox(SilverCave_Room3_Text_Red, MSGBOX_DEFAULT)
+    closemessage
+    fadescreenswapbuffers(FADE_TO_BLACK)
+    removeobject(VAR_LAST_TALKED)
+    setflag(FLAG_HIDE_RED)
+    delay(15)
+    fadescreenswapbuffers(FADE_FROM_BLACK)
+    delay(60)
+    special(HealPlayerParty)
+    setrespawn(HEAL_LOCATION_SILVER_CAVE_OUTSIDE)
+    fadescreenspeed(FADE_TO_BLACK, 24)
+    delay(15)
+    callnative(RedClear)
+    callnative(SaveGameRed)
+    waitstate
+    callnative(StartCredits)
+    waitstate
+    end
+}text SilverCave_Room3_Text_Red{
+    "……\n……"
+}

@@ -56,6 +56,7 @@ script IndigoPlateau_HallOfFame_EventScript_ResetDefeatedOneOffs {
 	clearflag(FLAG_DEFEATED_MEW)
 	clearflag(FLAG_DEFEATED_LATIAS_OR_LATIOS)
 	clearflag(FLAG_DEFEATED_DEOXYS)
+    clearflag(FLAG_HIDE_RED)
     if(!flag(FLAG_CAUGHT_LUGIA))
     {
         clearflag(FLAG_DEFEATED_LUGIA)
