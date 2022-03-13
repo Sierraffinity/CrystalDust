@@ -581,27 +581,38 @@
 // Ruins of Alph, forgot this Trainer
 #define TRAINER_NATHAN                           467
 #define TRAINER_ROCKET_EXEC_PARTNER              468
-// Viridian Forest
+// Viridian Forest (from HGSS)
 #define TRAINER_DANE                             469
 #define TRAINER_DION                             470
 #define TRAINER_STACEY                           471
 #define TRAINER_ELLIS                            472
 #define TRAINER_ABNER                            473
+// Mt. Moon
+#define TRAINER_REGIS                            474 // From HGSS
+#define TRAINER_ZAC                              475 // ^
+#define TRAINER_JEN                              476 // ^
+#define TRAINER_BRUCE                            477 // ^
+#define TRAINER_MANFORD                          478 // ^ 
+#define TRAINER_ANDER                            479 // ^
+#define TRAINER_DWIGHT                           480 // ^
+#define TRAINER_NED                              481 // From GS Burned Tower
+#define TRAINER_DICK                             482 // From GS Burned Tower
+#define TRAINER_PETEY                            483 // Custom
+#define TRAINER_EDD                              484 // Custom
 
 // Are these actually used? For linking perhaps? They're not referenced outside of here, trainers.h, and the rosters defined in trainer_parties.h
-#define TRAINER_RED                 474
-#define TRAINER_LEAF                475
-#define TRAINER_BRENDAN_PLACEHOLDER 476
-#define TRAINER_MAY_PLACEHOLDER     477
+#define TRAINER_RED                 485
+#define TRAINER_LEAF                486
+#define TRAINER_BRENDAN_PLACEHOLDER 487
+#define TRAINER_MAY_PLACEHOLDER     488
 // Frontier Brains (Probably should be handled elsewhere)
-#define TRAINER_ANABEL_FRONTIER     478
-#define TRAINER_TUCKER_FRONTIER     479
-// 4-byte boundary. Frontier Brain Tucker is the end of 60 contiguous bytes.
-#define TRAINER_SPENSER_FRONTIER    480
-#define TRAINER_GRETA_FRONTIER      481
-#define TRAINER_NOLAND_FRONTIER     482
-#define TRAINER_LUCY_FRONTIER       483
-#define TRAINER_BRANDON_FRONTIER    484
+#define TRAINER_ANABEL_FRONTIER     489
+#define TRAINER_TUCKER_FRONTIER     490
+#define TRAINER_SPENSER_FRONTIER    491
+#define TRAINER_GRETA_FRONTIER      492
+#define TRAINER_NOLAND_FRONTIER     493
+#define TRAINER_LUCY_FRONTIER       494
+#define TRAINER_BRANDON_FRONTIER    495
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 864 trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled

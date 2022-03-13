@@ -1,1 +1,25 @@
 mapscripts MtMoon_B3F_MapScripts {}
+
+script MtMoon_B3F_EventScript_YoungsterRegis{ // not sure how FRLG would capitalize this. In HGSS, it was formatted as Youngster, Shorts Boy, and Fail Boy.
+    trainerbattle_single(TRAINER_REGIS, "YOUNGSTER? Goodness, how rude!\nCall me SHORTS BOY!", "That is… FAIL BOY…")
+	msgbox("Looks like I need a bit more training!", MSGBOX_DEFAULT)
+	release
+}
+
+script MtMoon_B3F_EventScript_HikerBruce{
+    trainerbattle_single(TRAINER_BRUCE, "My bag is digging into my shoulders!\nWhen that happens, I like to take a\lbreak and have a battle!", "Feh.")
+	msgbox("All right, guess I should carry my\nbag again!", MSGBOX_DEFAULT)
+	release
+}
+
+script MtMoon_B3F_EventScript_BlackBeltAnder{
+    trainerbattle_single(TRAINER_ANDER, "Wait a moment!\nCome fight us!", "You did it…")
+	msgbox("You came all the way from JOHTO?\nYou must be very persistent!", MSGBOX_DEFAULT)
+	release
+}
+
+script MtMoon_B3F_EventScript_PokemaniacEdd{
+    trainerbattle_single(TRAINER_EDD, "Wait!\nStop!\pI think the cave is about to\ncollapse again!", "Huh? We're still here?\nI guess MT. MOON is stable now…")
+	msgbox("When MT. MOON first collapsed, I\nwas afraid I wouldn't be able to\lget back down here again.", MSGBOX_DEFAULT)
+	release
+}

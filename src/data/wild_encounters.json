@@ -39516,6 +39516,591 @@
           }
         },
         {
+          "map": "MAP_MT_MOON_B1F",
+          "base_label": "gMtMoon_B1F",
+          "land_mons": {
+            "encounter_rate": 15,
+            "mons": [
+              [
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_SANDSLASH"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_SANDSLASH"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_ONIX"
+                }
+              ],
+              [
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_SANDSLASH"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_SANDSLASH"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_ONIX"
+                }
+              ],
+              [
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_CLEFAIRY"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_CLEFAIRY"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_CLEFAIRY"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_CLEFABLE"
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "map": "MAP_MT_MOON_B2F",
+          "base_label": "gMtMoon_B2F",
+          "land_mons": {
+            "encounter_rate": 15,
+            "mons": [
+              [
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARASECT"
+                }
+              ],
+              [
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARASECT"
+                }
+              ],
+              [
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARAS"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_PARASECT"
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "map": "MAP_MT_MOON_B3F",
+          "base_label": "gMtMoon_B3F",
+          "land_mons": {
+            "encounter_rate": 15,
+            "mons": [
+              [
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_SANDSLASH"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_SANDSLASH"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_ONIX"
+                }
+              ],
+              [
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_SANDSLASH"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_SANDSLASH"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_ONIX"
+                }
+              ],
+              [
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 37,
+                  "max_level": 37,
+                  "species": "SPECIES_GRAVELER"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_GOLBAT"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_SANDSLASH"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_CLEFAIRY"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_PARASECT"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 38,
+                  "max_level": 38,
+                  "species": "SPECIES_CLEFAIRY"
+                },
+                {
+                  "min_level": 39,
+                  "max_level": 39,
+                  "species": "SPECIES_ONIX"
+                },
+                {
+                  "min_level": 40,
+                  "max_level": 40,
+                  "species": "SPECIES_CLEFABLE"
+                }
+              ]
+            ]
+          }
+        },
+        {
           "map": "MAP_ROCK_TUNNEL_1F",
           "base_label": "gRockTunnel_1F",
           "land_mons": {

@@ -619,25 +619,25 @@
 #define FLAG_HIDDEN_ITEM_WHIRL_ISLAND_B1F_RARE_CANDY         (FLAG_HIDDEN_ITEMS_START + 0x50)
 #define FLAG_HIDDEN_ITEM_WHIRL_ISLAND_B1F_ULTRA_BALL         (FLAG_HIDDEN_ITEMS_START + 0x51)
 #define FLAG_HIDDEN_ITEM_WHIRL_ISLAND_B1F_FULL_RESTORE       (FLAG_HIDDEN_ITEMS_START + 0x52)
+#define FLAG_HIDDEN_ITEM_MT_MOON_B1F_RARE_CANDY              (FLAG_HIDDEN_ITEMS_START + 0x53)
+#define FLAG_HIDDEN_ITEM_MT_MOON_B1F_ULTRA_BALL              (FLAG_HIDDEN_ITEMS_START + 0x54)
+#define FLAG_HIDDEN_ITEM_MT_MOON_B1F_NUGGET                  (FLAG_HIDDEN_ITEMS_START + 0x55)
+#define FLAG_HIDDEN_ITEM_MT_MOON_B1F_IRON                    (FLAG_HIDDEN_ITEMS_START + 0x56)
+#define FLAG_HIDDEN_ITEM_MT_MOON_B2F_TINY_MUSHROOM_1         (FLAG_HIDDEN_ITEMS_START + 0x57) // cleared daily
+#define FLAG_HIDDEN_ITEM_MT_MOON_B2F_TINY_MUSHROOM_2         (FLAG_HIDDEN_ITEMS_START + 0x58) //^
+#define FLAG_HIDDEN_ITEM_MT_MOON_B2F_TINY_MUSHROOM_3         (FLAG_HIDDEN_ITEMS_START + 0x59) //^
+#define FLAG_HIDDEN_ITEM_MT_MOON_B2F_BIG_MUSHROOM_1          (FLAG_HIDDEN_ITEMS_START + 0x5A) //^
+#define FLAG_HIDDEN_ITEM_MT_MOON_B2F_BIG_MUSHROOM_2          (FLAG_HIDDEN_ITEMS_START + 0x5B) //^
+#define FLAG_HIDDEN_ITEM_MT_MOON_B2F_BIG_MUSHROOM_3          (FLAG_HIDDEN_ITEMS_START + 0x5C) //^
+#define FLAG_HIDDEN_ITEM_MT_MOON_B3F_MOON_STONE              (FLAG_HIDDEN_ITEMS_START + 0x5D)
+#define FLAG_HIDDEN_ITEM_MT_MOON_B3F_MAX_ELIXIR              (FLAG_HIDDEN_ITEMS_START + 0x5E)
 // Emerald leftovers
-#define FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_CALCIUM            (FLAG_HIDDEN_ITEMS_START + 0x53)
-#define FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_ZINC               (FLAG_HIDDEN_ITEMS_START + 0x54)
-#define FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_PROTEIN            (FLAG_HIDDEN_ITEMS_START + 0x55)
-#define FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_IRON               (FLAG_HIDDEN_ITEMS_START + 0x56)
-#define FLAG_HIDDEN_ITEM_NAVEL_ROCK_TOP_SACRED_ASH           (FLAG_HIDDEN_ITEMS_START + 0x57) // should this be moved to underneath Tin Tower Ho-Oh for consistency?
+#define FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_CALCIUM            (FLAG_HIDDEN_ITEMS_START + 0x5F)
+#define FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_ZINC               (FLAG_HIDDEN_ITEMS_START + 0x60)
+#define FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_PROTEIN            (FLAG_HIDDEN_ITEMS_START + 0x61)
+#define FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_IRON               (FLAG_HIDDEN_ITEMS_START + 0x62)
+#define FLAG_HIDDEN_ITEM_NAVEL_ROCK_TOP_SACRED_ASH           (FLAG_HIDDEN_ITEMS_START + 0x63) // should this be moved to underneath Tin Tower Ho-Oh for consistency?
 // Leftover Hidden Item Flags from Emerald that are now unused
-#define FLAG_HIDDEN_ITEM_UNUSED_0x58 (FLAG_HIDDEN_ITEMS_START + 0x58)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x59 (FLAG_HIDDEN_ITEMS_START + 0x59)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x5A (FLAG_HIDDEN_ITEMS_START + 0x5A)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x5B (FLAG_HIDDEN_ITEMS_START + 0x5B)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x5C (FLAG_HIDDEN_ITEMS_START + 0x5C)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x5D (FLAG_HIDDEN_ITEMS_START + 0x5D)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x5E (FLAG_HIDDEN_ITEMS_START + 0x5E)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x5F (FLAG_HIDDEN_ITEMS_START + 0x5F)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x60 (FLAG_HIDDEN_ITEMS_START + 0x60)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x61 (FLAG_HIDDEN_ITEMS_START + 0x61)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x62 (FLAG_HIDDEN_ITEMS_START + 0x62)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x63 (FLAG_HIDDEN_ITEMS_START + 0x63)
 #define FLAG_HIDDEN_ITEM_UNUSED_0x64 (FLAG_HIDDEN_ITEMS_START + 0x64)
 #define FLAG_HIDDEN_ITEM_UNUSED_0x65 (FLAG_HIDDEN_ITEMS_START + 0x65)
 #define FLAG_HIDDEN_ITEM_UNUSED_0x66 (FLAG_HIDDEN_ITEMS_START + 0x66)
@@ -1233,15 +1233,15 @@
 #define FLAG_ITEM_WHIRL_ISLAND_1F_NE_ULTRA_BALL                     0x497
 #define FLAG_ITEM_WHIRL_ISLAND_1F_SW_ULTRA_BALL                     0x498
 #define FLAG_ITEM_FIGHTING_DOJO_FOCUS_BAND                          0x499
-#define FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP                            0x49A
-#define FLAG_ITEM_ARTISAN_CAVE_1F_CARBOS                            0x49B
+#define FLAG_ITEM_MT_MOON_B1F_ZINC                                  0x49A
+#define FLAG_ITEM_MT_MOON_B1F_MAX_REVIVE                            0x49B
+#define FLAG_ITEM_MT_MOON_B1F_ESCAPE_ROPE                           0x49C
+#define FLAG_ITEM_MT_MOON_B3F_PP_MAX                                0x49D
+#define FLAG_ITEM_MT_MOON_B3F_MOON_STONE                            0x49E
+#define FLAG_ITEM_MT_MOON_B3F_NUGGET                                0x49F
+#define FLAG_ITEM_ARTISAN_CAVE_B1F_HP_UP                            0x4A0
+#define FLAG_ITEM_ARTISAN_CAVE_1F_CARBOS                            0x4A1
 
-#define FLAG_UNUSED_0x49C                                           0x49C // Unused Flag
-#define FLAG_UNUSED_0x49D                                           0x49D // Unused Flag
-#define FLAG_UNUSED_0x49E                                           0x49E // Unused Flag
-#define FLAG_UNUSED_0x49F                                           0x49F // Unused Flag
-#define FLAG_UNUSED_0x4A0                                           0x4A0 // Unused Flag
-#define FLAG_UNUSED_0x4A1                                           0x4A1 // Unused Flag
 #define FLAG_UNUSED_0x4A2                                           0x4A2 // Unused Flag
 #define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
 #define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag

@@ -2,7 +2,7 @@
   "id": "MAP_MT_MOON_B2F",
   "name": "MtMoon_B2F",
   "layout": "LAYOUT_MT_MOON_B2F",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_MT_MOON",
   "region_map_section": "MAPSEC_MT_MOON",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -16,7 +16,21 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_FIREBREATHER",
+      "in_connection": false,
+      "x": 5,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "MtMoon_B2F_EventScript_FirebreatherDick",
+      "flag": "0"
+    }
   ],
   "warp_events": [
     {
@@ -80,6 +94,53 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "hidden_item",
+      "x": 46,
+      "y": 2,
+      "elevation": 3,
+      "item": "ITEM_TINY_MUSHROOM",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_TINY_MUSHROOM_1"
+    },
+    {
+      "type": "hidden_item",
+      "x": 26,
+      "y": 2,
+      "elevation": 3,
+      "item": "ITEM_TINY_MUSHROOM",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_TINY_MUSHROOM_2"
+    },
+    {
+      "type": "hidden_item",
+      "x": 39,
+      "y": 34,
+      "elevation": 3,
+      "item": "ITEM_TINY_MUSHROOM",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_TINY_MUSHROOM_3"
+    },
+    {
+      "type": "hidden_item",
+      "x": 24,
+      "y": 35,
+      "elevation": 3,
+      "item": "ITEM_BIG_MUSHROOM",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_BIG_MUSHROOM_1"
+    },
+    {
+      "type": "hidden_item",
+      "x": 6,
+      "y": 12,
+      "elevation": 3,
+      "item": "ITEM_BIG_MUSHROOM",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_BIG_MUSHROOM_2"
+    },
+    {
+      "type": "hidden_item",
+      "x": 25,
+      "y": 34,
+      "elevation": 3,
+      "item": "ITEM_BIG_MUSHROOM",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_BIG_MUSHROOM_3"
+    }
   ]
 }

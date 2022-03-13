@@ -57,11 +57,16 @@ void ClearTempFieldEventData(void)
 
 void ClearDailyFlags(void)
 {
+    u32 i;
     memset(gSaveBlock1Ptr->flags + (DAILY_FLAGS_START / 8), 0, DAILY_FLAGS_SIZE);
     FlagClear(FLAG_GOT_SHUCKIE_TODAY);
     ClearTrainerFlag(TRAINER_RIVAL_REMATCH_CHIKORITA);
     ClearTrainerFlag(TRAINER_RIVAL_REMATCH_CYNDAQUIL);
     ClearTrainerFlag(TRAINER_RIVAL_REMATCH_TOTODILE);
+    for(i = FLAG_HIDDEN_ITEM_MT_MOON_B2F_TINY_MUSHROOM_1; i <= FLAG_HIDDEN_ITEM_MT_MOON_B2F_BIG_MUSHROOM_3; i++)
+    {   // clear the six Mt. Moon hidden mushroom flags
+        FlagClear(i);
+    }
 }
 
 void DisableNationalPokedex(void)

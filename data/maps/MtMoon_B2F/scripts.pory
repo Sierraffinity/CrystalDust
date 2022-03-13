@@ -1,1 +1,7 @@
 mapscripts MtMoon_B2F_MapScripts {}
+
+script MtMoon_B2F_EventScript_FirebreatherDick{
+    trainerbattle_single(TRAINER_DICK, "Hey, I'm training secretly here!\nDon't embarrass me by looking!", "I burned down to white ashes…")
+	msgbox("I was so into my training that I\nfell down this ladder.", MSGBOX_DEFAULT)
+	release
+}

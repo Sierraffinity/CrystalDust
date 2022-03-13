@@ -1,1 +1,42 @@
 mapscripts MtMoon_B1F_MapScripts {}
+
+script MtMoon_B1F_EventScript_NoticeSign{
+    msgbox("There's a notice here…\pProceed through MT. MOON cautiously\nas the recent collapse has blocked\loff some passages.\pPEWTER POLICE", MSGBOX_SIGN)
+    end
+}
+
+script MtMoon_B1F_EventScript_CamperPetey{
+    trainerbattle_single(TRAINER_PETEY, "Thank goodness, another person!\nI've been lost in here for days!", "Can you at least lead me\nout of here?")
+	msgbox("When I'm cold-weather camping,\nI'm tempted to lay close to my\lMAGCARGO for warmth.\pUnfortunately, it's a cuddler and\ncuddling it isn't a good idea.", MSGBOX_DEFAULT)
+	release
+}
+
+script MtMoon_B1F_EventScript_FirebreatherNed{
+    trainerbattle_single(TRAINER_NED, "My soul is on fire.\nI'll show you how hot it burns!", "Still not hot enough…")
+	msgbox("I like to train in ruined places.\pI used to hang out in the BURNED\nTOWER in JOHTO all the time.", MSGBOX_DEFAULT)
+	release
+}
+
+script MtMoon_B1F_EventScript_CooltrainerZac{
+    trainerbattle_single(TRAINER_ZAC, "Really, you want to battle me?\nYou've got a lot of courage for\lsomeone so young.", "You weren't bluffing…")
+	msgbox("Your future looks promising.", MSGBOX_DEFAULT)
+	release
+}
+
+script MtMoon_B1F_EventScript_CooltrainerJen{
+    trainerbattle_single(TRAINER_JEN, "Huh? You'd like to go up against me?\nGreat!", "You're so much stronger than\nI thought.")
+	msgbox("I'm looking forward to seeing what\nkind of trainer you'll become.", MSGBOX_DEFAULT)
+	release
+}
+
+script MtMoon_B1F_EventScript_BlackBeltManford{ // the exclamation point on the end IS how HGSS put it, it is not a grammar error.
+    trainerbattle_single(TRAINER_MANFORD, "How about you just slow down and\ngive me the chance to defeat you!", "Looks like I've been beaten at\nmy own game…")
+	msgbox("Even though you're so young, you\nhave the spirit of battle within.\pYou must have trained under a\nwell-known master!", MSGBOX_DEFAULT)
+	release
+}
+
+script MtMoon_B1F_EventScript_HikerDwight{
+    trainerbattle_single(TRAINER_DWIGHT, "Peace!\p…\n…Huh?\pWhen you meet the unknown in a cave,\nall you want is peace, right?", "Peace--even though I lost!")
+	msgbox("Exchanging lighthearted greetings\nwith someone you don't know…\pThat's the best thing about mountains!", MSGBOX_DEFAULT)
+	release
+}
