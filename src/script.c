@@ -740,3 +740,11 @@ void CheckShouldForceBike(void)
         }
     }
 }
+
+void SetMtMoonRocksClearedGoneThroughLowerFloors(void)
+{
+    if(gSaveBlock1Ptr->pos.x == 26 && gSaveBlock1Ptr->pos.y == 20)
+    {
+        FlagSet(FLAG_MT_MOON_ROCKS_CLEARED);
+    }
+}

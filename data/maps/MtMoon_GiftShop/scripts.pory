@@ -1,1 +1,53 @@
-mapscripts MtMoon_GiftShop_MapScripts {}
+mapscripts MtMoon_GiftShop_MapScripts {
+    MAP_SCRIPT_ON_LOAD{
+        //setmetatiles so I don't have to use a new layout
+        //back of vertical shelf
+        setmetatile(6, 5, 0x2E0, 0)
+        setmetatile(7, 5, 0x2C3, 0)
+        //shop shelf, top to bottom
+        setmetatile(8, 2, 0x2E3, 1)
+        setmetatile(8, 3, 0x2D2, 1)
+        setmetatile(8, 4, 0x2E4, 1)
+        setmetatile(8, 5, 0x2E5, 1)
+        //shadow under boxes
+        setmetatile(6, 3, 0x2E2, 0)
+        setmetatile(7, 3, 0x2E2, 0)
+        //regular floor
+        setmetatile(6, 4, 0x29E, 0)
+        setmetatile(7, 4, 0x29E, 0)
+    }
+    MAP_SCRIPT_ON_TRANSITION{
+        gettime
+        if(var(VAR_0x8002) == TIME_NIGHT)
+        {
+            setflag(FLAG_TEMP_1)
+        }
+    }
+}
+
+script MtMoon_GiftShop_EventScript_Girl{
+    msgbox("When the sun goes down, CLEFAIRY\ncome out to play.", MSGBOX_NPC)
+    end
+}
+
+script MtMoon_GiftShop_Eventscript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    pokemart(MtMoon_GiftShop_Pokemart_Clerk)
+    msgbox(gText_PleaseComeAgain)
+    release
+}
+// this shop sells Portrait Mail in Crystal
+raw `
+.align 2
+MtMoon_GiftShop_Pokemart_Clerk:
+    .2byte ITEM_POKE_DOLL
+	.2byte ITEM_FRESH_WATER
+	.2byte ITEM_SODA_POP
+	.2byte ITEM_LEMONADE
+    .2byte ITEM_REPEL
+	.2byte ITEM_BEAD_MAIL
+	.2byte ITEM_NONE
+`

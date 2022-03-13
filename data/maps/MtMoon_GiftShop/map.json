@@ -2,7 +2,7 @@
   "id": "MAP_MT_MOON_GIFT_SHOP",
   "name": "MtMoon_GiftShop",
   "layout": "LAYOUT_MAHOGANY_TOWN_SHOP",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_RG_PEWTER",
   "region_map_section": "MAPSEC_MT_MOON",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -28,8 +28,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "MtMoon_GiftShop_EventScript_Girl",
+      "flag": "FLAG_TEMP_1"
     },
     {
       "type": "original",
@@ -43,8 +43,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "MtMoon_GiftShop_Eventscript_Clerk",
+      "flag": "FLAG_TEMP_1"
     }
   ],
   "warp_events": [

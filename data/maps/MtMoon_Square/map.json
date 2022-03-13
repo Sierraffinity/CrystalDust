@@ -16,7 +16,51 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
-
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
+      "in_connection": false,
+      "x": 5,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
+      "in_connection": false,
+      "x": 6,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "original",
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "in_connection": false,
+      "x": 6,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_11"
+    }
   ],
   "warp_events": [
     {
@@ -42,7 +86,24 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "MtMoon_Square_EventScript_ClefairyDanceTriggers"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "MtMoon_Square_EventScript_ClefairyDanceTriggers"
+    }
   ],
   "bg_events": [
     {
@@ -51,7 +112,23 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "MtMoon_Square_EventScript_LitterSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 6,
+      "y": 6,
+      "elevation": 3,
+      "item": "ITEM_MOON_STONE",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_SQUARE_MOON_STONE"
+    },
+    {
+      "type": "hidden_item",
+      "x": 7,
+      "y": 6,
+      "elevation": 3,
+      "item": "ITEM_MOON_STONE",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_SQUARE_MOON_STONE_2"
     }
   ]
 }

@@ -1,1 +1,151 @@
-mapscripts MtMoon_Square_MapScripts {}
+mapscripts MtMoon_Square_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION{
+        setflag(FLAG_TEMP_1)
+        setflag(FLAG_TEMP_11)
+        setflag(FLAG_HIDDEN_ITEM_MT_MOON_SQUARE_MOON_STONE)   // left moon stone
+        setflag(FLAG_HIDDEN_ITEM_MT_MOON_SQUARE_MOON_STONE_2) // right moon stone
+        if(flag(FLAG_DAILY_MT_MOON_SQUARE_CLEFAIRY))
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+    }
+}
+
+script MtMoon_Square_EventScript_LitterSign{
+    msgbox("MT. MOON SQUARE\nDON'T LITTER")
+}
+
+script MtMoon_Square_EventScript_ClefairyDanceTriggers{
+    lockall
+    gettime
+    if(flag(FLAG_DAILY_MT_MOON_SQUARE_CLEFAIRY) || var(VAR_0x8003) != DAY_MONDAY)
+    {
+        setvar(VAR_TEMP_0, 1)
+        releaseall
+        end
+    }
+    if(var(VAR_0x8002) != TIME_NIGHT)
+    {
+        setvar(VAR_TEMP_0, 1)
+        releaseall
+        end
+    }
+    getplayerxy(VAR_RESULT, VAR_0x8008)
+    if(var(VAR_RESULT) == 7)
+    {
+        setobjectxyperm(1, 6, 5)
+        setobjectxyperm(2, 7, 5)
+        setobjectxyperm(3, 7, 6)
+    }
+    addobject(1)
+    addobject(2)
+    applymovement(OBJ_EVENT_ID_PLAYER, MtMoon_Square_Movement_PlayerWalksUp)
+    waitmovement(0)
+    delay(15)
+    addobject(3)
+    turnobject(1, DIR_EAST)
+    playmoncry(SPECIES_CLEFAIRY, 0)
+    waitmoncry
+    delay(30)
+    playmoncry(SPECIES_CLEFAIRY, 0)
+    waitmoncry
+    applymovement(1, MtMoon_Square_Movement_Clefairy1DanceStep1)
+    applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep1)
+    waitmovement(1)
+    playmoncry(SPECIES_CLEFAIRY, 0)
+    waitmoncry
+    applymovement(1, MtMoon_Square_Movement_Clefairy1DanceStep2)
+    applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep2)
+    waitmovement(1)
+    playmoncry(SPECIES_CLEFAIRY, 0)
+    waitmoncry
+    applymovement(1, MtMoon_Square_Movement_Clefairy1DanceStep3)
+    applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep3)
+    waitmovement(1)
+    playmoncry(SPECIES_CLEFAIRY, 0)
+    waitmoncry
+    applymovement(1, MtMoon_Square_Movement_Clefairy1DanceStep4)
+    applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep4)
+    waitmovement(1)
+    playmoncry(SPECIES_CLEFAIRY, 0)
+    waitmoncry
+    applymovement(1, MtMoon_Square_Movement_Clefairy1DanceStep5)
+    applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep5)
+    waitmovement(1)
+    applymovement(1, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    delay(0x40)
+    playmoncry(SPECIES_CLEFAIRY, 0)
+    waitmoncry
+    if(var(VAR_RESULT) == 6)
+    {
+        applymovement(1, MtMoon_Square_Movement_Clefairy1LeavesLeft)
+        applymovement(2, MtMoon_Square_Movement_Clefairy2LeavesLeft)
+        clearflag(FLAG_HIDDEN_ITEM_MT_MOON_SQUARE_MOON_STONE)   // left moon stone
+    }
+    else
+    {
+        applymovement(1, MtMoon_Square_Movement_Clefairy1LeavesRight)
+        applymovement(2, MtMoon_Square_Movement_Clefairy2LeavesRight)
+        clearflag(FLAG_HIDDEN_ITEM_MT_MOON_SQUARE_MOON_STONE_2) // right moon stone
+    }
+    waitmovement(2)
+    removeobject(1)
+    removeobject(2)
+    setflag(FLAG_TEMP_1)
+    setflag(FLAG_DAILY_MT_MOON_SQUARE_CLEFAIRY)
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+    end
+}movement(local) MtMoon_Square_Movement_PlayerWalksUp{
+    walk_up * 2
+}movement(local) MtMoon_Square_Movement_Clefairy1DanceStep1{
+    walk_slow_down
+    jump_2_down
+}movement(local) MtMoon_Square_Movement_Clefairy1DanceStep2{
+    jump_2_right
+}movement(local) MtMoon_Square_Movement_Clefairy1DanceStep3{
+    walk_slow_up
+    jump_2_up
+}movement(local) MtMoon_Square_Movement_Clefairy1DanceStep4{
+    jump_2_left
+}movement(local) MtMoon_Square_Movement_Clefairy1DanceStep5{
+    walk_slow_down
+    jump_2_down
+    walk_slow_right
+    face_down
+}movement(local) MtMoon_Square_Movement_Clefairy1LeavesLeft{
+    walk_right * 4
+    jump_2_right
+    walk_right * 2
+    set_invisible
+}movement(local) MtMoon_Square_Movement_Clefairy1LeavesRight{
+    walk_right * 3
+    jump_2_right
+    walk_right * 3
+    set_invisible
+}movement(local) MtMoon_Square_Movement_Clefairy2DanceStep1{
+    walk_slow_left
+    walk_slow_down
+}movement(local) MtMoon_Square_Movement_Clefairy2DanceStep2{
+    jump_2_down
+}movement(local) MtMoon_Square_Movement_Clefairy2DanceStep3{
+    jump_2_right
+    walk_slow_up
+}movement(local) MtMoon_Square_Movement_Clefairy2DanceStep4{
+    jump_2_up
+}movement(local) MtMoon_Square_Movement_Clefairy2DanceStep5{
+    jump_2_left
+    walk_slow_down * 2
+    walk_down
+}movement(local) MtMoon_Square_Movement_Clefairy2LeavesLeft{
+    walk_right * 5
+    jump_2_right
+    walk_right * 2
+    set_invisible
+}movement(local) MtMoon_Square_Movement_Clefairy2LeavesRight{
+    walk_right * 4
+    jump_2_right
+    walk_right * 3
+    set_invisible
+}

@@ -81,6 +81,7 @@ script BurnedTower_1F_EventScript_RivalTrigger{
 	savebgm(MUS_RIVAL_EXIT)
     textcolor(0)
     msgbox("…… …… ……\n…Oh, it's you.\pI came looking for some legendary\nPOKéMON that they say roosts here.\pBut there's nothing here!\pNothing after all the trouble of\ncoming to this dump? No way!\pIt's all your fault!")
+    closemessage
     setvar(VAR_LAST_TALKED, 3)
     if (var(VAR_STARTER_MON) == STARTER_CHIKORITA)
     {
