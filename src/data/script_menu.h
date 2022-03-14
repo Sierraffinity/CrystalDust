@@ -284,9 +284,9 @@ static const struct MenuAction MultichoiceList_GameCornerMons[] =
 
 static const struct MenuAction MultichoiceList_GameCornerTMs[] =
 {
-    {gText_TM24AndPrice},
-    {gText_TM13AndPrice},
-    {gText_TM35AndPrice},
+    {gText_TM25AndPrice},
+    {gText_TM14AndPrice},
+    {gText_TM38AndPrice},
     {gText_Exit},
 };
 

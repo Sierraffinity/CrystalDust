@@ -325,7 +325,7 @@ script RadioTower_2F_EventScript_BuenasAssistant {
 }
 
 script RadioTower_2F_EventScript_BuenasAssistantMenu {
-    message("Which prize would you like?")
+    message(GoldenrodCity_GameCorner_Text_PrizeClerk_WhichPrize)
     waitmessage
     setvar(VAR_0x8004, SCROLL_MULTI_BLUE_CARD_PRIZES)
     setvar(VAR_0x8005, 0)

@@ -156,13 +156,13 @@ script GoldenrodCity_GameCorner_EventScript_TMClerk_ShowChoice {
     switch (var(VAR_RESULT))
     {
         case 0:
-            setvar(VAR_TEMP_1, ITEM_TM24_THUNDERBOLT)
+            setvar(VAR_TEMP_1, ITEM_TM25_THUNDER)
             call(GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize)
         case 1:
-            setvar(VAR_TEMP_1, ITEM_TM13_ICE_BEAM)
+            setvar(VAR_TEMP_1, ITEM_TM14_BLIZZARD)
             call(GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize)
         case 2:
-            setvar(VAR_TEMP_1, ITEM_TM35_FLAMETHROWER)
+            setvar(VAR_TEMP_1, ITEM_TM38_FIRE_BLAST)
             call(GoldenrodCity_GameCorner_EventScript_TMClerk_ConfirmPrize)
         default:
             msgbox(GoldenrodCity_GameCorner_Text_PrizeVendorOutro)
