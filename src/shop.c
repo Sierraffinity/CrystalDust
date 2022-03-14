@@ -513,7 +513,7 @@ static void Task_ReturnToShopMenu(u8 taskId)
         {
             DisplayItemMessageOnField(taskId, gText_CanIHelpWithAnythingElse, ShowShopMenuAfterExitingBuyOrSellMenu);
         }
-        else if (sMartInfo.martType == MART_TYPE_BARGAIN || sMartInfo.martType == MART_TYPE_HERB)
+        else if (sMartInfo.martType == MART_TYPE_BARGAIN || sMartInfo.martType == MART_TYPE_HERB || sMartInfo.martType == MART_TYPE_ROOFTOP_SALE)
         {
             Task_HandleShopMenuQuitNoOptions(taskId);
         }
@@ -1529,6 +1529,14 @@ void CreateHerbShopMenu(const u16 *itemsForSale)
 {
     SetShopItemsForSale(itemsForSale, NULL);
     CreateShopMenuSkipOptions(MART_TYPE_HERB);
+    SetShopMenuCallback(EnableBothScriptContexts);
+}
+
+void CreateRooftopSaleShopMenu(const u16 *itemsForSale, const u16 *customItemPrices)
+{
+    SetShopItemsForSale(itemsForSale, customItemPrices);
+    CreateShopMenuSkipOptions(MART_TYPE_ROOFTOP_SALE);
+    ClearItemPurchases();
     SetShopMenuCallback(EnableBothScriptContexts);
 }
 

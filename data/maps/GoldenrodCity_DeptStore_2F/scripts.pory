@@ -11,6 +11,7 @@ script GoldenrodCity_DeptStore_2F_EventScript_TopClerk {
 }
 
 raw `
+.align 2
 GoldenrodCity_DeptStore_2F_Pokemart_TopClerk:
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION
@@ -33,6 +34,7 @@ script GoldenrodCity_DeptStore_2F_EventScript_LeftClerk {
 }
 
 raw `
+.align 2
 GoldenrodCity_DeptStore_2F_Pokemart_LeftClerk:
 	.2byte ITEM_POKE_BALL
 	.2byte ITEM_GREAT_BALL

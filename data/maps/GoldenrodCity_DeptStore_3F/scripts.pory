@@ -11,6 +11,7 @@ script GoldenrodCity_DeptStore_3F_EventScript_Clerk {
 }
 
 raw `
+.align 2
 GoldenrodCity_DeptStore_3F_Pokemart_Clerk:
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_SPECIAL

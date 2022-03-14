@@ -33,6 +33,7 @@ script CianwoodCity_Pharmacy_EventScript_Pharmacist{
 }
 
 raw `
+.align 2
 CianwoodCity_Pharmacy_Mart:
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION

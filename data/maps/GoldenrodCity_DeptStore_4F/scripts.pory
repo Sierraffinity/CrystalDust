@@ -12,6 +12,7 @@ script GoldenrodCity_DeptStore_4F_EventScript_Clerk {
 
 //added Zinc to this mart.
 raw `
+.align 2
 GoldenrodCity_DeptStore_4F_Pokemart_Clerk:
 	.2byte ITEM_PROTEIN
 	.2byte ITEM_IRON

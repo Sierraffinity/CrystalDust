@@ -14,7 +14,12 @@ mapscripts GoldenrodCity_DeptStore_Rooftop_MapScripts {
 }
 
 script GoldenrodCity_DeptStore_Rooftop_EventScript_Clerk {
-    
+    message(gText_HowMayIHelpYou)
+    waitmessage
+    special(RooftopSaleShop)
+    waitstate
+    msgbox(gText_PleaseComeAgain)
+    release
 }
 
 script GoldenrodCity_DeptStore_Rooftop_EventScript_TiredWoman {

@@ -4664,6 +4664,40 @@ void HerbShop(void)
     ScriptContext1_Stop();
 }
 
+void RooftopSaleShop(void)
+{
+    static const u16 rooftopSaleShopItems1[] = {
+        ITEM_POKE_BALL,    ITEM_GREAT_BALL,
+        ITEM_SUPER_POTION, ITEM_FULL_HEAL,
+        ITEM_REVIVE,       ITEM_NONE
+    };
+
+    static const u16 rooftopSaleShopItemPrices1[] = {
+         150, 500,
+         500, 500,
+        1200
+    };
+
+    static const u16 rooftopSaleShopItems2[] = {
+        ITEM_HYPER_POTION, ITEM_FULL_RESTORE,
+        ITEM_FULL_HEAL,    ITEM_ULTRA_BALL,
+        ITEM_PROTEIN,      ITEM_NONE
+    };
+
+    static const u16 rooftopSaleShopItemPrices2[] = {
+        1000, 2000,
+         500, 1000,
+        7800
+    };
+
+    if(FlagGet(FLAG_SYS_GAME_CLEAR))
+        CreateRooftopSaleShopMenu(rooftopSaleShopItems2, rooftopSaleShopItemPrices2);
+    else
+        CreateRooftopSaleShopMenu(rooftopSaleShopItems1, rooftopSaleShopItemPrices1);
+
+    ScriptContext1_Stop();
+}
+
 void Special_GetFreePokemonStorageSpace(void)
 {
     gSpecialVar_Result = GetFreePokemonStorageSpace();

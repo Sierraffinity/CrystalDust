@@ -577,3 +577,4 @@ gSpecials::
 	def_special DaisyGrooming
 	def_special OpenMuseumFossilPic
 	def_special CloseMuseumFossilPic
+	def_special RooftopSaleShop

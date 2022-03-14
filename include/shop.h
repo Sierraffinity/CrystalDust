@@ -9,6 +9,7 @@ enum
     MART_TYPE_TMHM,
     MART_TYPE_HERB,
     MART_TYPE_BARGAIN,
+    MART_TYPE_ROOFTOP_SALE,
     MART_TYPE_DECOR,
     MART_TYPE_DECOR2
 };
@@ -52,6 +53,7 @@ struct ShopData
 void CreatePokemartMenu(const u16 *);
 void CreateBargainShopMenu(const u16 *, const u16 *);
 void CreateHerbShopMenu(const u16 *);
+void CreateRooftopSaleShopMenu(const u16 *, const u16 *);
 void CreateDecorationShop1Menu(const u16 *);
 void CreateDecorationShop2Menu(const u16 *);
 void CB2_ExitSellMenu(void);

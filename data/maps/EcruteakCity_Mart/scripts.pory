@@ -21,6 +21,7 @@ script EcruteakCity_Mart_Eventscript_Clerk {
 }
 
 raw `
+.align 2
 EcruteakCity_Mart_Pokemart_Clerk:
     .2byte ITEM_POKE_BALL
     .2byte ITEM_GREAT_BALL

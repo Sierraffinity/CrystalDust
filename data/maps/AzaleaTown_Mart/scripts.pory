@@ -11,6 +11,7 @@ script AzaleaTown_Mart_EventScript_Clerk {
 }
 
 raw `
+.align 2
 AzaleaTown_Mart_Pokemart:
 	.2byte ITEM_CHARCOAL
 	.2byte ITEM_POKE_BALL
