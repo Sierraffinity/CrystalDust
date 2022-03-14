@@ -2272,7 +2272,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         value = mapSectionId;
     SetBoxMonData(boxMon, MON_DATA_MET_LOCATION, &value);
     SetBoxMonData(boxMon, MON_DATA_MET_LEVEL, &level);
-    value = VERSION_EMERALD;
+    value = VERSION_FIRE_RED;
     SetBoxMonData(boxMon, MON_DATA_MET_GAME, &value);
     value = ITEM_POKE_BALL;
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);

@@ -338,9 +338,6 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
 
     language = GAME_LANGUAGE;
     SetMonData(temp, MON_DATA_LANGUAGE, &language);
-
-    //gameMet = VERSION_EMERALD;
-    //SetMonData(temp, MON_DATA_MET_GAME, &gameMet);
     SetMonData(temp, MON_DATA_MARKINGS, &markings);
 
     friendship = 120;
