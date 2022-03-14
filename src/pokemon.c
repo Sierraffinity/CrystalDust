@@ -6349,16 +6349,17 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_MAGMA_ADMIN:
             return MUS_VS_ROCKET;
         case TRAINER_CLASS_LEADER:
-            return MUS_VS_JOHTO_LEADER;
+            if(GetCurrentRegion() == REGION_KANTO)
+                return MUS_RG_VS_GYM_LEADER;
+            else if(GetCurrentRegion() >= REGION_SEVII1 && GetCurrentRegion() <= REGION_SEVII3)
+                return MUS_RG_VS_GYM_LEADER;
+            else // Johto and default
+                return MUS_VS_JOHTO_LEADER;
         case TRAINER_CLASS_CHAMPION:
         case TRAINER_CLASS_PKMN_TRAINER_3: // Mt. Silver Red
             return MUS_RG_VS_CHAMPION;
         case TRAINER_CLASS_RIVAL1:
         case TRAINER_CLASS_RIVAL2:
-            /*if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-                return MUS_VS_RIVAL;
-            if (!StringCompare(gTrainers[gTrainerBattleOpponent_A].trainerName, gText_BattleWallyName))
-                return MUS_VS_JOHTO_TRAINER;*/
             return MUS_VS_RIVAL;
         case TRAINER_CLASS_ELITE_FOUR:
             return MUS_VS_ELITE_FOUR;
@@ -6371,11 +6372,23 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_PYRAMID_KING:
             return MUS_VS_FRONTIER_BRAIN;
         default:
-            return MUS_VS_JOHTO_TRAINER;
+            if(GetCurrentRegion() == REGION_KANTO)
+                return MUS_RG_VS_TRAINER;
+            else if(GetCurrentRegion() >= REGION_SEVII1 && GetCurrentRegion() <= REGION_SEVII3)
+                return MUS_RG_VS_TRAINER;
+            else // Johto and default
+                return MUS_VS_JOHTO_TRAINER;
         }
     }
     else
-        return MUS_VS_JOHTO_WILD;
+    {
+        if(GetCurrentRegion() == REGION_KANTO)
+            return MUS_RG_VS_WILD;
+        else if(GetCurrentRegion() >= REGION_SEVII1 && GetCurrentRegion() <= REGION_SEVII3)
+            return MUS_RG_VS_WILD;
+        else // Johto and default
+            return MUS_VS_JOHTO_WILD;
+    }
 }
 
 void PlayBattleBGM(void)
