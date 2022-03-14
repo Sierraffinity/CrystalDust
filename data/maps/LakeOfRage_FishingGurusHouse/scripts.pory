@@ -10,7 +10,9 @@ script LakeOfRage_FishingGurusHouse_EventScript_FishingGuru{
         checkitemspace(ITEM_ELIXIR, 1)
         if(!var(VAR_RESULT))
         {
-            goto(Common_EventScript_BagIsFull)
+            call(Common_EventScript_BagIsFull)
+            release
+            end
         }
         giveitem(ITEM_ELIXIR, 1)
         msgbox("The record is the important thing.\nThink of that as a bonus!", MSGBOX_NPC)

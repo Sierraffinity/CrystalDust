@@ -13,7 +13,9 @@ script LakeOfRage_HiddenPowerHouse_FatGuy{
     checkitemspace(ITEM_TM10, 1)
     if(!var(VAR_RESULT))
     {
-        goto(Common_EventScript_BagIsFull)
+        call(Common_EventScript_BagIsFull)
+        release
+        end
     }
     giveitem(ITEM_TM10, 1)
     setflag(FLAG_GOT_TM10_HIDDEN_POWER)

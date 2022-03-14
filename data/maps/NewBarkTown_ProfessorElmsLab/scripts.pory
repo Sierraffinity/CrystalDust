@@ -197,7 +197,9 @@ script NewBarkTown_ProfessorElmsLab_EventScript_Elm_CheckMasterBall {
     checkitemspace(ITEM_MASTER_BALL, 1)
     if(!var(VAR_RESULT))
     {
-        goto(Common_EventScript_BagIsFull)
+        call(Common_EventScript_BagIsFull)
+        release
+        end
     }
     giveitem(ITEM_MASTER_BALL, 1)
     msgbox("The MASTER BALL is the best!\nIt's the ultimate BALL!\pIt'll catch any POKéMON without\nfail.\pIt's given only to recognized POKéMON\nresearchers.\pI think you can make much better\nuse of it than I can, {PLAYER}!", MSGBOX_DEFAULT)

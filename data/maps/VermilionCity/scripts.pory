@@ -134,7 +134,7 @@ script VermilionCity_EventScript_BadgeGuy{
         checkitemspace(ITEM_HP_UP, 1)
         if(var(VAR_RESULT) == FALSE)
         {
-            goto(Common_EventScript_BagIsFull)
+            call(Common_EventScript_BagIsFull)
             release
             end
         }

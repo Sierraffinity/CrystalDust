@@ -60,7 +60,9 @@ script RadioTower_4F_EventScript_DJMary {
         checkitemspace(ITEM_SILK_SCARF, 1)
         if(!var(VAR_RESULT))
         {
-            goto(Common_EventScript_BagIsFull)
+            call(Common_EventScript_BagIsFull)
+            release
+            end
         }
         giveitem(ITEM_SILK_SCARF, 1)
         msgbox("MARY: It's just right for POKéMON\nthat know NORMAL-type moves.")

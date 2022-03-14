@@ -146,7 +146,9 @@ script Route43_Gatehouse2_Eventscript_Officer {
     checkitemspace(ITEM_TM36, 1)
     if(!var(VAR_RESULT))
     {
-        goto(Common_EventScript_BagIsFull)
+        call(Common_EventScript_BagIsFull)
+        release
+        end
     }
     giveitem(ITEM_TM36, 1)
     setflag(FLAG_GOT_TM36_SLUDGE_BOMB)
