@@ -2,7 +2,7 @@
   "id": "MAP_ICE_PATH_1F",
   "name": "IcePath_1F",
   "layout": "LAYOUT_ICE_PATH_1F",
-  "music": "MUS_AQUA_MAGMA_HIDEOUT",
+  "music": "MUS_DARK_CAVE",
   "region_map_section": "MAPSEC_ICE_PATH",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
