@@ -710,8 +710,8 @@ text Route34_Text_IrenePostBattle {
 }
 
 text Route34_Text_JennIntro {
-	"JENN: You can't stomp in here like this\n"
-	"and go unpunished!"
+	"JENN: You can't stomp in here like\n"
+	"this and go unpunished!"
 }
 
 text Route34_Text_JennDefeated {
