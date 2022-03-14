@@ -2070,3 +2070,8 @@ const u8 gText_LarvitarPrizeAndPrice[] = _("LARVITAR{CLEAR_TO 0x4B}{FONT SMALL} 
 const u8 gText_TM32AndPrice[] = _("TM32{CLEAR_TO 0x48}{FONT SMALL}1,500 COINS");
 const u8 gText_TM29AndPrice[] = _("TM29{CLEAR_TO 0x48}{FONT SMALL}3,500 COINS");
 const u8 gText_TM15AndPrice[] = _("TM15{CLEAR_TO 0x48}{FONT SMALL}7,500 COINS");
+
+//Goldenrod Game Corner Tutor (sells TMs now)
+const u8 gText_Flamethrower[] = _("TM35 FLAMETHROWER");
+const u8 gText_Thunderbolt[] = _("TM13 ICE BEAM");
+const u8 gText_Ice_Beam[] = _("TM24 THUNDERBOLT");

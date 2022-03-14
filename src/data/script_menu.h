@@ -1066,6 +1066,14 @@ static const struct MenuAction MultichoiceList_HelixDomeAmberRootClaw[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_GameCornerTutor[] = 
+{
+    { gText_Flamethrower },
+    { gText_Thunderbolt },
+    { gText_Ice_Beam },
+    { gText_Cancel2 },
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -1230,6 +1238,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_HELIX_AMBER_ROOT_CLAW]      = MULTICHOICE(MultichoiceList_HelixAmberRootClaw),
     [MULTI_DOME_AMBER_ROOT_CLAW]       = MULTICHOICE(MultichoiceList_DomeAmberRootClaw),
     [MULTI_HELIX_DOME_AMBER_ROOT_CLAW] = MULTICHOICE(MultichoiceList_HelixDomeAmberRootClaw),
+    [MULTI_GAME_CORNER_TUTOR]          = MULTICHOICE(MultichoiceList_GameCornerTutor),
 };
 
 const u8 *const gStdStrings[] =

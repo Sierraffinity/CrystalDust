@@ -13,6 +13,13 @@ mapscripts GoldenrodCity_GameCorner_MapScripts {
         {
             clearflag(FLAG_HIDE_GOLDENROD_CITY_GAME_CORNER_NERD)
         }
+        if(flag(FLAG_SYS_GAME_CLEAR) && !flag(FLAG_DAILY_GOLDENROD_GAME_CORNER_TUTOR))
+        {
+            if(var(VAR_0x8003) == DAY_WEDNESDAY || var(VAR_0x8003) == DAY_SATURDAY)
+            {
+                setflag(FLAG_TEMP_1)
+            }
+        }
 	}
 }
 

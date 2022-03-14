@@ -3217,6 +3217,11 @@ extern const u8 gText_TM32AndPrice[];
 extern const u8 gText_TM29AndPrice[];
 extern const u8 gText_TM15AndPrice[];
 
+// Goldenrod Game Corner Tutor (sells TMs now)
+extern const u8 gText_Flamethrower[];
+extern const u8 gText_Thunderbolt[];
+extern const u8 gText_Ice_Beam[];
+
 // Battle Factory Screen
 extern const u8 gText_RentalPkmn2[];
 extern const u8 gText_SelectFirstPkmn[];

@@ -15,7 +15,126 @@ mapscripts GoldenrodCity_MapScripts {
             setflag(FLAG_HIDE_ROUTE_36_FLORIA)
             clearflag(FLAG_HIDE_GOLDENROD_CITY_FLOWER_SHOP_FLORIA)
         }
+        if(flag(FLAG_SYS_GAME_CLEAR))
+        {
+            if(flag(FLAG_DAILY_GOLDENROD_GAME_CORNER_TUTOR))
+            {
+                setflag(FLAG_TEMP_1)
+                end
+            }
+            gettime
+            if(var(VAR_0x8003) != DAY_WEDNESDAY && var(VAR_0x8003) != DAY_SATURDAY)
+            {
+                setflag(FLAG_TEMP_1)
+            }
+        }
     }
+}
+
+script GoldenrodCity_EventScript_MoveTutor{
+    lock
+    faceplayer
+    msgbox("I have TMs that contain amazing\nmoves for your POKéMON.\pYou can have one if you'd like.\nDo you want a TM?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Aww…\nBut they're amazing…", MSGBOX_DEFAULT)
+        release
+        end
+    }
+    showcoinsbox(20, 0)
+    msgbox("It will cost you 4000 coins.\nOkay?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Hm, too bad. I'll have to get some\ncash from home…", MSGBOX_DEFAULT)
+        hidecoinsbox(20, 0)
+        release
+        end
+    }
+    checkcoins(VAR_RESULT)
+    if(var(VAR_RESULT) < 4000)
+    {
+        msgbox("…You don't have enough coins here…", MSGBOX_DEFAULT)
+        hidecoinsbox(20, 0)
+        release
+        end
+    }
+    message("Wahahah!\nYou won't regret it!\pWhich TM do you want?")
+    waitmessage
+    multichoice(0, 0, MULTI_GAME_CORNER_TUTOR, TRUE)
+    switch (var(VAR_RESULT))
+    {
+        case 0:
+            setvar(VAR_TEMP_1, ITEM_TM35_FLAMETHROWER)
+        case 1:
+            setvar(VAR_TEMP_1, ITEM_TM13_ICE_BEAM)
+        case 2:
+            setvar(VAR_TEMP_1, ITEM_TM24_THUNDERBOLT)
+        default:
+            msgbox(GoldenrodCity_Text_MoveTutorDecline3, MSGBOX_DEFAULT)
+            hidecoinsbox(20, 0)
+            release
+            end
+    }
+    bufferitemname(0, VAR_TEMP_1)
+    copyvar(VAR_0x8004, VAR_TEMP_1)
+    special(BufferTMHMMoveName)
+    msgbox("An amazing choice!\nSo you want the {STR_VAR_1} {STR_VAR_2}?", MSGBOX_YESNO)
+    if(!var(VAR_RESULT))
+    {
+        msgbox(GoldenrodCity_Text_MoveTutorDecline3, MSGBOX_DEFAULT)
+        hidecoinsbox(20, 0)
+        release
+        end
+    }
+    checkitemspace(VAR_TEMP_1, 1)
+    if (var(VAR_RESULT) == FALSE)
+    {
+        call(Common_EventScript_BagIsFull)
+        release
+        end
+    }
+    msgbox("If you understand what's so amazing\nabout this move, you've made it as\la trainer.", MSGBOX_DEFAULT)
+    removecoins(4000)
+    playse(SE_SHOP)
+    updatecoinsbox(20, 0)
+    waitse
+    giveitem(VAR_TEMP_1, 1)
+    msgbox("Wahahah!\nFarewell, kid!", MSGBOX_DEFAULT)
+    closemessage
+    hidecoinsbox(20, 0)
+    specialvar(VAR_FACING, GetPlayerFacingDirection)
+    if(var(VAR_FACING) == DIR_WEST)
+    {
+        applymovement(15, GoldenrodCity_Movement_MoveTutorAroundPlayerToExit)
+    }
+    else
+    {
+        applymovement(15, GoldenrodCity_Movement_MoveTutorExit)
+    }
+    waitmovement(15)
+    opendoor(18, 23)
+    waitdooranim
+    applymovement(15, GoldenrodCity_Movement_MoveTutorToInside)
+    waitmovement(15)
+    closedoor(18, 23)
+    removeobject(15)
+    setflag(FLAG_DAILY_GOLDENROD_GAME_CORNER_TUTOR)
+    setflag(FLAG_TEMP_1)
+    waitdooranim
+    release
+    end
+}text(local) GoldenrodCity_Text_MoveTutorDecline3{
+    "B-but…"
+}movement(local) GoldenrodCity_Movement_MoveTutorAroundPlayerToExit{
+    walk_down
+    walk_right * 2
+    walk_up
+}movement(local) GoldenrodCity_Movement_MoveTutorExit{
+    walk_right * 2
+    face_up
+}movement(local) GoldenrodCity_Movement_MoveTutorToInside{
+    walk_up
+    set_invisible
 }
 
 script GoldenrodCity_EventScript_CreakyRadioTowerMan {
@@ -174,3 +293,4 @@ script GoldenrodCity_EventScript_FlowerShopSign {
     msgbox("Blooming Beautiful\n"
            "FLOWER SHOP", MSGBOX_SIGN)
 }
+

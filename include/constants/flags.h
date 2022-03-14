@@ -801,7 +801,7 @@
 #define FLAG_HIDE_ROUTE_34_DAYCARE_MAN_OUTSIDE                      0x2F5
 #define FLAG_HIDE_GOLDENROD_CITY_CIVILIANS                          0x2F6
 #define FLAG_HIDE_GOLDENROD_CITY_ROCKET_SCOUT                       0x2F7
-#define FLAG_HIDE_GOLDENROD_CITY_MOVE_TUTOR                         0x2F8
+#define FLAG_UNUSED_0x2F8                                           0x2F8 // made redundant, set on new game so can be used for something else.
 #define FLAG_HIDE_GOLDENROD_CITY_ROCKET_TAKEOVER                    0x2F9
 #define FLAG_HIDE_RADIO_TOWER_ROCKET_TAKEOVER                       0x2FA
 #define FLAG_HIDE_DEOXYS                                            0x2FB
@@ -1560,7 +1560,7 @@
 #define FLAG_DAILY_FOUGHT_LAPRAS                                    (DAILY_FLAGS_START + 0x2B)
 #define FLAG_DAILY_DAISYS_GROOMING                                  (DAILY_FLAGS_START + 0x2C)
 #define FLAG_DAILY_MT_MOON_SQUARE_CLEFAIRY          				(DAILY_FLAGS_START + 0x2D)
-#define FLAG_DAILY_ROUTE_120_RECEIVED_BERRY         				(DAILY_FLAGS_START + 0x2E)
+#define FLAG_DAILY_GOLDENROD_GAME_CORNER_TUTOR         				(DAILY_FLAGS_START + 0x2E)
 #define FLAG_DAILY_LILYCOVE_RECEIVED_BERRY          				(DAILY_FLAGS_START + 0x2F)
 #define FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY       				(DAILY_FLAGS_START + 0x30)
 #define FLAG_DAILY_BERRY_MASTERS_WIFE               				(DAILY_FLAGS_START + 0x31)
