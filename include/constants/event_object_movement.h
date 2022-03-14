@@ -245,6 +245,10 @@
 #define MOVEMENT_ACTION_JUMP_2_UP_FAST                  0x9F
 #define MOVEMENT_ACTION_JUMP_2_LEFT_FAST                0xA0
 #define MOVEMENT_ACTION_JUMP_2_RIGHT_FAST               0xA1
+#define MOVEMENT_ACTION_JUMP_2_DOWN_SLOW                0xA2
+#define MOVEMENT_ACTION_JUMP_2_UP_SLOW                  0xA3
+#define MOVEMENT_ACTION_JUMP_2_LEFT_SLOW                0xA4
+#define MOVEMENT_ACTION_JUMP_2_RIGHT_SLOW               0xA5
 
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF

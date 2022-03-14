@@ -53,22 +53,21 @@ script MtMoon_Square_EventScript_ClefairyDanceTriggers{
     applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep1)
     waitmovement(1)
     playmoncry(SPECIES_CLEFAIRY, 0)
-    waitmoncry
     applymovement(1, MtMoon_Square_Movement_Clefairy1DanceStep2)
     applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep2)
     waitmovement(1)
+    delay(8)
     playmoncry(SPECIES_CLEFAIRY, 0)
-    waitmoncry
     applymovement(1, MtMoon_Square_Movement_Clefairy1DanceStep3)
     applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep3)
     waitmovement(1)
+    delay(8)
     playmoncry(SPECIES_CLEFAIRY, 0)
-    waitmoncry
     applymovement(1, MtMoon_Square_Movement_Clefairy1DanceStep4)
     applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep4)
     waitmovement(1)
+    delay(8)
     playmoncry(SPECIES_CLEFAIRY, 0)
-    waitmoncry
     applymovement(1, MtMoon_Square_Movement_Clefairy1DanceStep5)
     applymovement(2, MtMoon_Square_Movement_Clefairy2DanceStep5)
     waitmovement(1)
@@ -101,17 +100,17 @@ script MtMoon_Square_EventScript_ClefairyDanceTriggers{
     walk_up * 2
 }movement(local) MtMoon_Square_Movement_Clefairy1DanceStep1{
     walk_slow_down
-    jump_2_down
+    jump_2_down_slow
 }movement(local) MtMoon_Square_Movement_Clefairy1DanceStep2{
-    jump_2_right
+    jump_2_right_slow
 }movement(local) MtMoon_Square_Movement_Clefairy1DanceStep3{
     walk_slow_up
-    jump_2_up
+    jump_2_up_slow
 }movement(local) MtMoon_Square_Movement_Clefairy1DanceStep4{
-    jump_2_left
+    jump_2_left_slow
 }movement(local) MtMoon_Square_Movement_Clefairy1DanceStep5{
     walk_slow_down
-    jump_2_down
+    jump_2_down_slow
     walk_slow_right
     face_down
 }movement(local) MtMoon_Square_Movement_Clefairy1LeavesLeft{
@@ -128,14 +127,14 @@ script MtMoon_Square_EventScript_ClefairyDanceTriggers{
     walk_slow_left
     walk_slow_down
 }movement(local) MtMoon_Square_Movement_Clefairy2DanceStep2{
-    jump_2_down
+    jump_2_down_slow
 }movement(local) MtMoon_Square_Movement_Clefairy2DanceStep3{
-    jump_2_right
+    jump_2_right_slow
     walk_slow_up
 }movement(local) MtMoon_Square_Movement_Clefairy2DanceStep4{
-    jump_2_up
+    jump_2_up_slow
 }movement(local) MtMoon_Square_Movement_Clefairy2DanceStep5{
-    jump_2_left
+    jump_2_left_slow
     walk_slow_down * 2
     walk_down
 }movement(local) MtMoon_Square_Movement_Clefairy2LeavesLeft{

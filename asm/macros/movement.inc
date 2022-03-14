@@ -130,6 +130,10 @@
 	create_movement_action jump_2_up_fast
 	create_movement_action jump_2_left_fast
 	create_movement_action jump_2_right_fast
+	create_movement_action jump_2_down_slow
+	create_movement_action jump_2_up_slow
+	create_movement_action jump_2_left_slow
+	create_movement_action jump_2_right_slow
 
 	enum_start 0xfe
 	create_movement_action step_end

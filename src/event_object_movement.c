@@ -5647,7 +5647,6 @@ enum {
     JUMP_TYPE_HIGH,
     JUMP_TYPE_LOW,
     JUMP_TYPE_NORMAL,
-    JUMP_TYPE_HIGH_FAST
 };
 
 static void InitJump(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 direction, u8 speed, u8 type)
@@ -7604,6 +7603,74 @@ bool8 MovementAction_Jump2RightFast_Step1(struct ObjectEvent *objectEvent, struc
     return FALSE;
 }
 
+bool8 MovementAction_Jump2DownSlow_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitJumpRegular(objectEvent, sprite, DIR_SOUTH, 4, JUMP_TYPE_HIGH);
+    return MovementAction_Jump2DownSlow_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_Jump2DownSlow_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (DoJumpAnim(objectEvent, sprite))
+    {
+        objectEvent->hasShadow = FALSE;
+        sprite->sActionFuncId = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_Jump2UpSlow_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitJumpRegular(objectEvent, sprite, DIR_NORTH, 4, JUMP_TYPE_HIGH);
+    return MovementAction_Jump2UpSlow_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_Jump2UpSlow_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (DoJumpAnim(objectEvent, sprite))
+    {
+        objectEvent->hasShadow = FALSE;
+        sprite->sActionFuncId = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_Jump2LeftSlow_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitJumpRegular(objectEvent, sprite, DIR_WEST, 4, JUMP_TYPE_HIGH);
+    return MovementAction_Jump2LeftSlow_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_Jump2LeftSlow_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (DoJumpAnim(objectEvent, sprite))
+    {
+        objectEvent->hasShadow = FALSE;
+        sprite->sActionFuncId = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_Jump2RightSlow_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitJumpRegular(objectEvent, sprite, DIR_EAST, 4, JUMP_TYPE_HIGH);
+    return MovementAction_Jump2RightSlow_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_Jump2RightSlow_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (DoJumpAnim(objectEvent, sprite))
+    {
+        objectEvent->hasShadow = FALSE;
+        sprite->sActionFuncId = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
 u8 MovementAction_Finish(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     return TRUE;
@@ -8710,11 +8777,6 @@ static bool8 AnimateSpriteInFigure8(struct Sprite *sprite)
     return finished;
 }
 
-static const s8 sJumpY_HighFast[] = {
-     -4,  -6,  -8, -10, -11, -12, -12, -12,
-    -11, -10,  -9,  -8,  -6,  -4,   0,   0
-};
-
 static const s8 sJumpY_High[] = {
      -4,  -6,  -8, -10, -11, -12, -12, -12,
     -11, -10,  -9,  -8,  -6,  -4,   0,   0
@@ -8733,8 +8795,7 @@ static const s8 sJumpY_Normal[] = {
 static const s8 *const sJumpYTable[] = {
     [JUMP_TYPE_HIGH]   = sJumpY_High,
     [JUMP_TYPE_LOW]    = sJumpY_Low,
-    [JUMP_TYPE_NORMAL] = sJumpY_Normal,
-    [JUMP_TYPE_HIGH_FAST] =sJumpY_HighFast
+    [JUMP_TYPE_NORMAL] = sJumpY_Normal
 };
 
 static s16 GetJumpY(s16 i, u8 type)
@@ -8742,8 +8803,11 @@ static s16 GetJumpY(s16 i, u8 type)
     return sJumpYTable[type][i];
 }
 
+#define sSpeed     data[4]
 #define sJumpType  data[5]
 #define sTimer     data[6]
+#define sSteps     data[7]
+#define HIT_HALFWAY (1 << 14)
 
 static void SetJumpSpriteData(struct Sprite *sprite, u8 direction, u8 speed, u8 type)
 {
@@ -8751,30 +8815,60 @@ static void SetJumpSpriteData(struct Sprite *sprite, u8 direction, u8 speed, u8 
     sprite->sSpeed = speed;
     sprite->sJumpType = type;
     sprite->sTimer = 0;
+    sprite->sSteps = 0;
 }
 
 static u8 DoJumpSpriteMovement(struct Sprite *sprite)
 {
-    s16 speedToTime[] = {16, 16, 32, 16};
-    u8 speedToShift[] = {0, 0, 1, 0};
+    s16 speedToTime[] = {16, 16, 32, 16, 32};
+    u8 speedToShift[] = {0, 0, 1, 0, 1};
     u8 result = 0;
 
-    if (sprite->sSpeed != 3 && sprite->sSpeed != 0)
-        Step1(sprite, sprite->sDirection);
-    else if(sprite->sSpeed == 3)
+    if(sprite->sSpeed == 3) // jump 2 double speed
+    {
         Step2(sprite, sprite->sDirection);
-
-    sprite->y2 = GetJumpY(sprite->sTimer >> speedToShift[sprite->sSpeed], sprite->sJumpType);
+        sprite->y2 = GetJumpY(sprite->sTimer >> speedToShift[sprite->sSpeed], sprite->sJumpType);
+    }
+    else if(sprite->sSpeed == 4) // jump 2 half speed
+    {
+        if(sprite->sTimer % 2 == 0)
+        {
+            Step1(sprite, sprite->sDirection);
+            sprite->y2 = GetJumpY(sprite->sSteps >> speedToShift[sprite->sSpeed], sprite->sJumpType);
+            sprite->sSteps++;
+        }
+    }
+    else // normal speed all other jumps
+    {
+        Step1(sprite, sprite->sDirection);
+        sprite->y2 = GetJumpY(sprite->sTimer >> speedToShift[sprite->sSpeed], sprite->sJumpType);
+    }
 
     sprite->sTimer++;
 
-    if (sprite->sTimer == speedToTime[sprite->sSpeed] >> 1)
-        result = JUMP_HALFWAY;
-
-    if (sprite->sTimer >= speedToTime[sprite->sSpeed])
+    if(sprite->sSpeed == 4) // jump 2 half speed
     {
-        sprite->y2 = 0;
-        result = JUMP_FINISHED;
+        if (sprite->sSteps == speedToTime[sprite->sSpeed] >> 1 && !(sprite->sTimer & HIT_HALFWAY))
+        {
+            result = JUMP_HALFWAY;
+            sprite->sTimer |= HIT_HALFWAY;
+        }
+        if (sprite->sSteps >= speedToTime[sprite->sSpeed])
+        {
+            sprite->y2 = 0;
+            result = JUMP_FINISHED;
+        }
+    }
+    else
+    {
+        if (sprite->sTimer == speedToTime[sprite->sSpeed] >> 1)
+            result = JUMP_HALFWAY;
+
+        if (sprite->sTimer >= speedToTime[sprite->sSpeed])
+        {
+            sprite->y2 = 0;
+            result = JUMP_FINISHED;
+        }
     }
 
     return result;
@@ -8782,8 +8876,8 @@ static u8 DoJumpSpriteMovement(struct Sprite *sprite)
 
 static u8 DoJumpSpecialSpriteMovement(struct Sprite *sprite)
 {
-    s16 speedToTime[] = {32, 32, 64, 64};
-    u8 speedToShift[] = {1, 1, 2, 2};
+    s16 speedToTime[] = {32, 32, 64, 64, 64};
+    u8 speedToShift[] = {1, 1, 2, 2, 2};
     u8 result = 0;
 
     if (sprite->sSpeed && !(sprite->sTimer & 1))
