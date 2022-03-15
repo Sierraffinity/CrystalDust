@@ -1,6 +1,5 @@
 const struct SpritePalette gSpritePalette_GeneralFieldEffect0 = {gFieldEffectObjectPalette0, FLDEFF_PAL_TAG_GENERAL_0};
 const struct SpritePalette gSpritePalette_GeneralFieldEffect1 = {gFieldEffectObjectPalette1, FLDEFF_PAL_TAG_GENERAL_1};
-const struct SpritePalette gSpritePalette_SurfBlob = {gFieldEffectSurfBlobPalette, FLDEFF_PAL_TAG_SURF_BLOB};
 
 static const union AnimCmd sAnim_Shadow[] =
 {
@@ -218,7 +217,7 @@ static const union AnimCmd *const sAnimTable_SurfBlob[] =
 
 const struct SpriteTemplate gFieldEffectObjectTemplate_SurfBlob = {
     .tileTag = SPRITE_INVALID_TAG,
-    .paletteTag = FLDEFF_PAL_TAG_SURF_BLOB,
+    .paletteTag = 0xFFFF,
     .oam = &gObjectEventBaseOam_32x32,
     .anims = sAnimTable_SurfBlob,
     .images = sPicTable_SurfBlob,

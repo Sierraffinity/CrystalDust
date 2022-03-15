@@ -3376,17 +3376,17 @@ static void SpriteCB_FlyBirdLeaveBall(struct Sprite *sprite)
             InitSpriteAffineAnim(sprite);
             StartSpriteAffineAnim(sprite, 0);
             if (gSaveBlock2Ptr->playerGender == MALE)
-                sprite->pos1.x = 128;
+                sprite->x = 128;
             else
-                sprite->pos1.x = 118;
-            sprite->pos1.y = -48;
+                sprite->x = 118;
+            sprite->y = -48;
             sprite->sInitialized++;
             sprite->sTimer = 64;
             sprite->sTimer2 = Q_8_8(1.0);
         }
         sprite->sTimer += Q_8_8_TO_INT(sprite->sTimer2);
-        sprite->pos2.x = Cos(sprite->sTimer, 120);
-        sprite->pos2.y = Sin(sprite->sTimer, 120);
+        sprite->x2 = Cos(sprite->sTimer, 120);
+        sprite->y2 = Sin(sprite->sTimer, 120);
         if (sprite->sTimer2 < Q_8_8(8))
         {
             sprite->sTimer2 += Q_8_8(0.375);
@@ -3403,17 +3403,17 @@ static void SpriteCB_FlyBirdLeaveBall(struct Sprite *sprite)
 
 static void SpriteCB_FlyBirdSwoopDown(struct Sprite *sprite)
 {
-    sprite->pos2.x = Cos(sprite->sTimer2, 140);
-    sprite->pos2.y = Sin(sprite->sTimer2, 72);
+    sprite->x2 = Cos(sprite->sTimer2, 140);
+    sprite->y2 = Sin(sprite->sTimer2, 72);
     sprite->sTimer2 = (sprite->sTimer2 + 4) & 0xFF;
     if (sprite->sPlayerSpriteId != MAX_SPRITES)
     {
         struct Sprite *playerSprite = &gSprites[sprite->sPlayerSpriteId];
         playerSprite->coordOffsetEnabled = FALSE;
-        playerSprite->pos1.x = sprite->pos1.x + sprite->pos2.x;
-        playerSprite->pos1.y = sprite->pos1.y + sprite->pos2.y - 8;
-        playerSprite->pos2.x = 0;
-        playerSprite->pos2.y = 0;
+        playerSprite->x = sprite->x + sprite->x2;
+        playerSprite->y = sprite->y + sprite->y2 - 8;
+        playerSprite->x2 = 0;
+        playerSprite->y2 = 0;
     }
     if (sprite->sTimer2 >= 128)
     {
@@ -3432,10 +3432,10 @@ static void SpriteCB_FlyBirdReturnToBall(struct Sprite *sprite)
             InitSpriteAffineAnim(sprite);
             StartSpriteAffineAnim(sprite, 1);
             if (gSaveBlock2Ptr->playerGender == MALE)
-                sprite->pos1.x = 112;
+                sprite->x = 112;
             else
-                sprite->pos1.x = 100;
-            sprite->pos1.y = -32;
+                sprite->x = 100;
+            sprite->y = -32;
             sprite->sInitialized++;
             sprite->sTimer = 240;
             sprite->sTimer2 = Q_8_8(8.0);
@@ -3444,8 +3444,8 @@ static void SpriteCB_FlyBirdReturnToBall(struct Sprite *sprite)
         sprite->sTimer += Q_8_8_TO_INT(sprite->sTimer2);
         sprite->sTimer3 += Q_8_8_TO_INT(sprite->sTimer2);
         sprite->sTimer &= 0xFF;
-        sprite->pos2.x = Cos(sprite->sTimer, 32);
-        sprite->pos2.y = Sin(sprite->sTimer, 120);
+        sprite->x2 = Cos(sprite->sTimer, 32);
+        sprite->y2 = Sin(sprite->sTimer, 120);
         if (sprite->sTimer2 > Q_8_8(1.0))
         {
             sprite->sTimer2 -= sprite->sTimer4;
@@ -3508,7 +3508,7 @@ static void FlyInFieldEffect_BirdSwoopDown(struct Task *task)
         SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ON_FOOT);
         if (task->tAvatarFlags & PLAYER_AVATAR_FLAG_SURFING)
         {
-            SetSurfBlob_BobState(objectEvent->fieldEffectSpriteId, BOB_NONE);
+            SetSurfBlob_BobState(playerObject->fieldEffectSpriteId, BOB_NONE);
         }
         ObjectEventSetGraphicsId(playerObject, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_SURFING));
         CameraObjectReset2();
@@ -3534,10 +3534,10 @@ static void FlyInFieldEffect_FlyInWithBird(struct Task *task)
         playerObject = &gObjectEvents[gPlayerAvatar.objectEventId];
         playerSprite = &gSprites[playerObject->spriteId];
         SetFlyBirdPlayerSpriteId(task->tBirdSpriteId, MAX_SPRITES);
-        playerSprite->pos1.x += playerSprite->pos2.x;
-        playerSprite->pos1.y += playerSprite->pos2.y;
-        playerSprite->pos2.x = 0;
-        playerSprite->pos2.y = 0;
+        playerSprite->x += playerSprite->x2;
+        playerSprite->y += playerSprite->y2;
+        playerSprite->x2 = 0;
+        playerSprite->y2 = 0;
         task->tState++;
         task->tTimer = 0;
     }
@@ -3566,7 +3566,7 @@ static void FlyInFieldEffect_JumpOffBird(struct Task *task)
         8
     };
     struct Sprite *playerSprite = &gSprites[gPlayerAvatar.spriteId];
-    playerSprite->pos2.y = sYPositions[task->tTimer];
+    playerSprite->y2 = sYPositions[task->tTimer];
 
     if ((++task->tTimer) >= (int)ARRAY_COUNT(sYPositions))
         task->tState++;
@@ -3582,8 +3582,8 @@ static void FlyInFieldEffect_FieldMovePose(struct Task *task)
         playerSprite = &gSprites[playerObject->spriteId];
         playerObject->inanimate = FALSE;
         MoveObjectEventToMapCoords(playerObject, playerObject->currentCoords.x, playerObject->currentCoords.y);
-        playerSprite->pos2.x = 0;
-        playerSprite->pos2.y = 0;
+        playerSprite->x2 = 0;
+        playerSprite->y2 = 0;
         playerSprite->coordOffsetEnabled = TRUE;
         SetPlayerAvatarFieldMove();
         ObjectEventSetHeldMovement(playerObject, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
@@ -3621,7 +3621,7 @@ static void FlyInFieldEffect_End(struct Task *task)
         if (task->tAvatarFlags & PLAYER_AVATAR_FLAG_SURFING)
         {
             state = PLAYER_AVATAR_STATE_SURFING;
-            SetSurfBlob_BobState(objectEvent->fieldEffectSpriteId, BOB_PLAYER_AND_MON);
+            SetSurfBlob_BobState(playerObject->fieldEffectSpriteId, BOB_PLAYER_AND_MON);
         }
         ObjectEventSetGraphicsId(playerObject, GetPlayerAvatarGraphicsIdByStateId(state));
         ObjectEventTurn(playerObject, DIR_SOUTH);
@@ -3659,18 +3659,18 @@ static void FlyBirdWithPlayerStartAffineAnim(struct Sprite *birdSprite, u8 affin
 static void SpriteCB_FlyBirdSwoopWithPlayer(struct Sprite *birdSprite)
 {
     struct Sprite *playerSprite;
-    birdSprite->pos2.x = Cos(birdSprite->sTimer2, 180);
-    birdSprite->pos2.y = Sin(birdSprite->sTimer2, 72);
+    birdSprite->x2 = Cos(birdSprite->sTimer2, 180);
+    birdSprite->y2 = Sin(birdSprite->sTimer2, 72);
     birdSprite->sTimer2 += 2;
     birdSprite->sTimer2 &= 0xFF;
     if (birdSprite->sPlayerSpriteId != MAX_SPRITES)
     {
         playerSprite = &gSprites[birdSprite->sPlayerSpriteId];
         playerSprite->coordOffsetEnabled = FALSE;
-        playerSprite->pos1.x = birdSprite->pos1.x + birdSprite->pos2.x;
-        playerSprite->pos1.y = birdSprite->pos1.y + birdSprite->pos2.y - 8;
-        playerSprite->pos2.x = 0;
-        playerSprite->pos2.y = 0;
+        playerSprite->x = birdSprite->x + birdSprite->x2;
+        playerSprite->y = birdSprite->y + birdSprite->y2 - 8;
+        playerSprite->x2 = 0;
+        playerSprite->y2 = 0;
     }
     if (birdSprite->sTimer2 >= 128)
     {
