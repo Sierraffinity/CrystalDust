@@ -646,12 +646,12 @@ static const struct SpriteFrameImage sPicTable_Clefairy[] = {
     overworld_frame(gObjectEventPic_Clefairy, 2, 2, 0),
     overworld_frame(gObjectEventPic_Clefairy, 2, 2, 1),
     overworld_frame(gObjectEventPic_Clefairy, 2, 2, 2),
-    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 0),
-    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 0),
-    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 1),
-    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 2),
-    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 3),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 4),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 5),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 6),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 7),
+    overworld_frame(gObjectEventPic_Clefairy, 2, 2, 8),
 };
 
 static const struct SpriteFrameImage sPicTable_Machop[] = {
