@@ -3065,6 +3065,7 @@ static void TryEnableNationalDexFromLinkPartner(void)
 static void TradeMons(u8 playerPartyIdx, u8 partnerPartyIdx)
 {
     u8 friendship;
+    u16 maxHP;
 
     struct Pokemon *playerMon = &gPlayerParty[playerPartyIdx];
     u16 playerMail = GetMonData(playerMon, MON_DATA_MAIL);
@@ -3089,6 +3090,12 @@ static void TradeMons(u8 playerPartyIdx, u8 partnerPartyIdx)
     UpdatePokedexForReceivedMon(playerPartyIdx);
     if (gReceivedRemoteLinkPlayers)
         TryEnableNationalDexFromLinkPartner();
+
+    //fixing Pomeg glitched Pokemon coming in from partner
+    maxHP = GetMonData(playerMon, MON_DATA_MAX_HP);
+
+    if(GetMonData(playerMon, MON_DATA_HP) > maxHP)
+        SetMonData(playerMon, MON_DATA_HP, &maxHP);
 }
 
 static void TrySendTradeFinishData(void)
