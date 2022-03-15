@@ -1090,7 +1090,7 @@
 #define FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_BURN_HEAL           0x40B
 #define FLAG_ITEM_GOLDENROD_CITY_DEPT_STORE_B1F_ULTRA_BALL          0x40C
 #define FLAG_ITEM_ROUTE_35_TM09                                     0x40D
-#define FLAG_ITEM_NATIONAL_PARK_PARALYZE_HEAL                       0x40E
+#define FLAG_ITEM_NATIONAL_PARK_SOOTHE_BELL                         0x40E
 #define FLAG_ITEM_NATIONAL_PARK_TM28                                0x40F
 #define FLAG_ITEM_ROUTE_46_X_SPEED                                  0x410
 // Remaining Johto Routes
