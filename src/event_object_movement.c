@@ -452,7 +452,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_CABLE_CAR               0x1113
 #define OBJ_EVENT_PAL_TAG_SSTIDAL                 0x1114
 #define OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER       0x1115 // Brendan & May underwater
-#define OBJ_EVENT_PAL_TAG_UNUSED_2                0x1116
+#define OBJ_EVENT_PAL_TAG_SS_AQUA                 0x1116
 #define OBJ_EVENT_PAL_TAG_MURKROW                 0x1117
 #define OBJ_EVENT_PAL_TAG_UNUSED_4                0x1118
 #define OBJ_EVENT_PAL_TAG_UNUSED_3                0x1119
@@ -513,6 +513,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
     {gObjectEventPal_EmeraldBrendan,        OBJ_EVENT_PAL_TAG_EM_BRENDAN},
     {gObjectEventPal_EmeraldMay,            OBJ_EVENT_PAL_TAG_EM_MAY},
+    {gObjectEventPal_SSAqua,                OBJ_EVENT_PAL_TAG_SS_AQUA},
     {NULL,                                  0x0000},
 };
 
@@ -638,7 +639,7 @@ static const struct PairedPalettes sSpecialObjectReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_MOVING_BOX,       sReflectionPaletteTags_MovingBox},
     {OBJ_EVENT_PAL_TAG_CABLE_CAR,        sReflectionPaletteTags_CableCar},
     {OBJ_EVENT_PAL_TAG_SSTIDAL,          sReflectionPaletteTags_SSTidal},
-    {OBJ_EVENT_PAL_TAG_UNUSED_2,           sReflectionPaletteTags_Kyogre},
+    {OBJ_EVENT_PAL_TAG_SS_AQUA,           sReflectionPaletteTags_Kyogre},
     {OBJ_EVENT_PAL_TAG_UNUSED_4,          sReflectionPaletteTags_Groudon},
     {OBJ_EVENT_PAL_TAG_NPC_3,            sReflectionPaletteTags_Npc3},
     {OBJ_EVENT_PAL_TAG_EUSINE, sReflectionPaletteTags_SubmarineShadow},

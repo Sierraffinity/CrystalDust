@@ -3956,7 +3956,7 @@
       "height": 22,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_GeneralKanto",
+      "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_InsideShip",
       "border_filepath": "data/layouts/FastShip_1F/border.bin",
       "blockdata_filepath": "data/layouts/FastShip_1F/map.bin"
@@ -3968,7 +3968,7 @@
       "height": 17,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_GeneralKanto",
+      "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_InsideShip",
       "border_filepath": "data/layouts/FastShip_B1F/border.bin",
       "blockdata_filepath": "data/layouts/FastShip_B1F/map.bin"
@@ -3992,7 +3992,7 @@
       "height": 10,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_GeneralKanto",
+      "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_InsideShip",
       "border_filepath": "data/layouts/FastShip_Cabins_SE_SSE_Captains/border.bin",
       "blockdata_filepath": "data/layouts/FastShip_Cabins_SE_SSE_Captains/map.bin"
@@ -4004,7 +4004,7 @@
       "height": 10,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_GeneralKanto",
+      "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_InsideShip",
       "border_filepath": "data/layouts/FastShip_Cabins_SW_SSW_NW/border.bin",
       "blockdata_filepath": "data/layouts/FastShip_Cabins_SW_SSW_NW/map.bin"

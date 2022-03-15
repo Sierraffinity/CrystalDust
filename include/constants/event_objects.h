@@ -244,8 +244,9 @@
 #define OBJ_EVENT_GFX_DIGLETT                    240
 #define OBJ_EVENT_GFX_OLD_MAN_2                  241
 #define OBJ_EVENT_GFX_CELIO                      242
+#define OBJ_EVENT_GFX_SS_AQUA                    243
 
-#define NUM_OBJ_EVENT_GFX                        243
+#define NUM_OBJ_EVENT_GFX                        244
 
 
 // These are dynamic object gfx ids.

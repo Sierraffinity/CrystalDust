@@ -3075,7 +3075,8 @@ static u8 GetTextColorFromGraphicsId(u16 graphicsId)
         [OBJ_EVENT_GFX_ZUBAT] =                     MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_DIGLETT] =                   MSG_COLOR_BLACK,
         [OBJ_EVENT_GFX_OLD_MAN_2] =                 MSG_COLOR_BLUE,
-        [OBJ_EVENT_GFX_CELIO] =                     MSG_COLOR_BLUE
+        [OBJ_EVENT_GFX_CELIO] =                     MSG_COLOR_BLUE,
+        [OBJ_EVENT_GFX_SS_AQUA] =                   MSG_COLOR_BLACK,
     };
 
     if (graphicsId < NUM_OBJ_EVENT_GFX)
