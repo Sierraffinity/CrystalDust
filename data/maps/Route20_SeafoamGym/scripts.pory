@@ -22,6 +22,10 @@ mapscripts Route20_SeafoamGym_MapScripts {
 
 script Route20_SeafoamGym_EventScript_Blaine {
     trainerbattle_single(TRAINER_BLAINE, "BLAINE: Waaah!\nMy GYM in CINNABAR burned down.\pMy fire-breathing POKéMON and I are\nhomeless because of the volcano.\pWaaah!\pBut I'm back in business as a GYM\nLEADER here in this cave.\pIf you can beat me,\nI'll give you a BADGE.\pHa!\nYou'd better have BURN HEAL!", "BLAINE: Awesome. I've burned out…\nYou've earned the VOLCANOBADGE!", Route20_SeafoamGym_EventScript_BlaineDefeated, NO_MUSIC)
+    if(!flag(FLAG_GOT_TM50_FROM_BLAINE))
+    {
+        goto(Route20_SeafoamGym_EventScript_GiveOverheat)
+    }
     msgbox("BLAINE: My fire POKéMON will be\neven stronger. Just you watch!", MSGBOX_DEFAULT)
     release
     end
@@ -35,9 +39,23 @@ script Route20_SeafoamGym_EventScript_Blaine {
         textcolor(MSG_COLOR_PREV)
         setflag(FLAG_BADGE15_GET)
         setgymtrainers(15)
-        msgbox("BLAINE: I did lose this time, but\nI'm going to win the next time.\pWhen I rebuild my CINNABAR GYM,\nwe'll have to have a rematch.", MSGBOX_NPC)
+        // falls through to the next script
+    }
+}script(local) Route20_SeafoamGym_EventScript_GiveOverheat{
+    msgbox("Here, I will give you this, too.\nIt's called OVERHEAT!\pIt has a slight drawback, but it's\npowerful and well worth it!", MSGBOX_DEFAULT)
+    closemessage
+    checkitemspace(ITEM_TM50, 1)
+    if(!var(VAR_RESULT))
+    {
+        call(Common_EventScript_BagIsFull)
+        release
         end
     }
+    giveitem(ITEM_TM50, 1)
+    setflag(FLAG_GOT_TM50_FROM_BLAINE)
+    msgbox("BLAINE: I did lose this time, but\nI'm going to win the next time.\pWhen I rebuild my CINNABAR GYM,\nwe'll have to have a rematch.", MSGBOX_NPC)
+    release
+    end
 }
 
 script Route20_SeafoamGym_EventScript_GymGuide {

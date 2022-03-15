@@ -57,21 +57,21 @@ script Route39_MooMooFarmHouse_EventScript_Woman {
         msgbox("Our milk even goes out to KANTO.\pSo if our own MILTANK won't give\nus any milk, we're in trouble.", MSGBOX_NPC)
         end
     }
-    if(flag(FLAG_RECEIVED_SECRET_POWER))
+    if(flag(FLAG_GOT_FACADE_FROM_MOOMOO_FARM))
     {
-        msgbox("That there's SECRET POWER.\pIt's a rare move that changes\nbased on where the POKéMON is.\pYou best think how you ought to use\nit, hon.", MSGBOX_NPC)
+        msgbox("That there's FACADE.\pIt's a rare move that works better\nwhen the POKéMON is burned,\lpoisoned, or paralyzed.\pYou best think how you ought\nto use it, hon.", MSGBOX_NPC)
         end
     }
     faceplayer
     msgbox("You fixed our MILTANK, hon.\nNow it gives MOOMOO MILK again.\pHere's somethin' fer your trouble.", MSGBOX_DEFAULT)
-    checkitemspace(ITEM_TM43, 1)
+    checkitemspace(ITEM_TM42, 1)
     if(var(VAR_RESULT) == FALSE)
     {
         msgbox("Too bad!\nThe BAG is full…", MSGBOX_AUTOCLOSE)
         release
         end
     }
-    giveitem(ITEM_TM43, 1)
-    setflag(FLAG_RECEIVED_SECRET_POWER)
+    giveitem(ITEM_TM42, 1)
+    setflag(FLAG_GOT_FACADE_FROM_MOOMOO_FARM)
     goto(Route39_MooMooFarmHouse_EventScript_Woman)
 }

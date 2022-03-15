@@ -872,9 +872,9 @@
 #define FLAG_MET_MISTY_AT_CERULEAN_CAPE                             0x335
 #define FLAG_FOUGHT_SNORLAX                                         0x336 // need this to remove guard in Victory Road Gate
 #define FLAG_MT_MOON_ROCKS_CLEARED                                  0x337
+#define FLAG_GOT_FACADE_FROM_MOOMOO_FARM                            0x338
+#define FLAG_GOT_TM50_FROM_BLAINE                                   0x339
 // STOPPED HERE
-#define FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD                          0x338
-#define FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4                          0x339
 #define FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE                            0x33A
 #define FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE                             0x33B
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE                     0x33C

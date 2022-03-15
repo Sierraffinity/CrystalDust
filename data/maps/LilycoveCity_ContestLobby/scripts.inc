@@ -130,7 +130,7 @@ LilycoveCity_ContestLobby_EventScript_ShowPatron3:: @ 821A3AA
 	return
 
 LilycoveCity_ContestLobby_EventScript_ShowPatron4::
-	clearflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4
+	@clearflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4
 	return
 
 LilycoveCity_ContestLobby_EventScript_ShowTourists::
