@@ -284,7 +284,7 @@
 #define SE_INTRO_DITTOBOUNCE2       274 // Intro Ditto bounce 2
 #define SE_INTRO_DITTOTRANSFORM     275 // Intro Ditto transformation
 #define SE_INTRO_LOGO_DING          276 // Intro e-Reader logo ding
-#define SE_PHONE_BEEP               277
+#define SE_PHONE_BEEP               277 // Phone beep
 
 // Music
 #define MUS_LITTLEROOT_TEST         350 // MUS_TETSUJI

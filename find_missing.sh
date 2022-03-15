@@ -1,9 +1,7 @@
 #!/bin/bash
 
-find_missing(){
-    for fl in $(tools/scaninc/scaninc -I include -I "" $1); do
-        if ! [ -f $fl ]; then echo $fl; else find_missing $fl; fi
-    done
-}
-
-find_missing data/event_scripts.s
+for file in $(tools/scaninc/scaninc -I include $1); do
+  if ! [ -f "${file}" ]; then
+    make "${file}" || echo ${file}
+  fi
+done

@@ -1073,24 +1073,56 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_SandDisguisePlaceholder =
 };
 
 static const struct SpriteFrameImage sPicTable_Bird[] = {
-    obj_frame_tiles(gFieldEffectObjectPic_Bird),
+    overworld_frame(gFieldEffectObjectPic_Bird, 8, 8, 0),
+    overworld_frame(gFieldEffectObjectPic_Bird, 8, 8, 1),
+    overworld_frame(gFieldEffectObjectPic_Bird, 8, 8, 2),
+    overworld_frame(gFieldEffectObjectPic_Bird, 8, 8, 3),
+    overworld_frame(gFieldEffectObjectPic_Bird, 8, 8, 4),
 };
 
-static const union AnimCmd sAnim_Bird[] =
+static const union AnimCmd sAnim_Bird_0[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_Bird_1[] =
+{
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_Bird_2[] =
+{
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_Bird_3[] =
+{
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_Bird_4[] =
+{
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd *const sAnimTable_Bird[] =
 {
-    sAnim_Bird,
+    sAnim_Bird_0,
+    sAnim_Bird_1,
+    sAnim_Bird_2,
+    sAnim_Bird_3,
+    sAnim_Bird_4,
 };
 
 const struct SpriteTemplate gFieldEffectObjectTemplate_Bird = {
     .tileTag = SPRITE_INVALID_TAG,
     .paletteTag = 0xFFFF,
-    .oam = &gObjectEventBaseOam_32x32,
+    .oam = &gObjectEventBaseOam_64x64,
     .anims = sAnimTable_Bird,
     .images = sPicTable_Bird,
     .affineAnims = gDummySpriteAffineAnimTable,
