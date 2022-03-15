@@ -770,7 +770,7 @@ static void LoadTmHmNameInMart(s32 item)
 {
     if (item != LIST_CANCEL)
     {
-        ConvertIntToDecimalStringN(gStringVar1, item - ITEM_TM01 - 1, 2, 2);
+        ConvertIntToDecimalStringN(gStringVar1, item - ITEM_DEVON_SCOPE, 2, 2);
         StringCopy(gStringVar4, gText_NumberClear01);
         StringAppend(gStringVar4, gStringVar1);
         BuyMenuPrint(6, 0, gStringVar4, 0, 0, 0, 0, TEXT_SPEED_FF, 1);
