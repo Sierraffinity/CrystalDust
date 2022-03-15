@@ -138,7 +138,7 @@ static const struct WindowTemplate sHof_WindowTemplate = {
     .bg = 0,
     .tilemapLeft = 2,
     .tilemapTop = 2,
-    .width = 14,
+    .width = 17,
     .height = 6,
     .paletteNum = 14,
     .baseBlock = 1
@@ -1205,29 +1205,27 @@ static void HallOfFame_PrintMonInfo(struct HallofFameMon* currMon, u8 unused1, u
 static void HallOfFame_PrintPlayerInfo(u8 unused1, u8 unused2)
 {
     u8 text[20];
-    u32 width;
     u16 trainerId;
-
+    s32 textWidth = sHof_WindowTemplate.width * 8 - 6;
+    
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     PutWindowTilemap(1);
     DrawStdFrameWithCustomTileAndPalette(1, FALSE, 0x21D, 0xD);
-    AddTextPrinterParameterized3(1, 2, 0, 1, sPlayerInfoTextColors, -1, gText_Name);
+    AddTextPrinterParameterized4(1, 2, 4, 3, 0, 0, sPlayerInfoTextColors, 0, gText_Name);
 
-    width = GetStringRightAlignXOffset(1, gSaveBlock2Ptr->playerName, 0x70);
-    AddTextPrinterParameterized3(1, 2, width, 1, sPlayerInfoTextColors, -1, gSaveBlock2Ptr->playerName);
+    AddTextPrinterParameterized3(1, 2, textWidth - GetStringWidth(2, gSaveBlock2Ptr->playerName, 0), 3, sPlayerInfoTextColors, 0, gSaveBlock2Ptr->playerName);
 
     trainerId = (gSaveBlock2Ptr->playerTrainerId[0]) | (gSaveBlock2Ptr->playerTrainerId[1] << 8);
-    AddTextPrinterParameterized3(1, 2, 0, 0x11, sPlayerInfoTextColors, 0, gText_IDNumber);
+    AddTextPrinterParameterized3(1, 2, 4, 18, sPlayerInfoTextColors, 0, gText_IDNumber);
     text[0] = (trainerId % 100000) / 10000 + CHAR_0;
     text[1] = (trainerId % 10000) / 1000 + CHAR_0;
     text[2] = (trainerId % 1000) / 100 + CHAR_0;
     text[3] = (trainerId % 100) / 10 + CHAR_0;
     text[4] = (trainerId % 10) / 1 + CHAR_0;
     text[5] = EOS;
-    width = GetStringRightAlignXOffset(1, text, 0x70);
-    AddTextPrinterParameterized3(1, 2, width, 0x11, sPlayerInfoTextColors, -1, text);
+    AddTextPrinterParameterized3(1, 2, textWidth - 30, 18, sPlayerInfoTextColors, 0, text);
 
-    AddTextPrinterParameterized3(1, 2, 0, 0x21, sPlayerInfoTextColors, -1, gText_Time);
+    AddTextPrinterParameterized3(1, 2, 4, 32, sPlayerInfoTextColors, 0, gText_Time);
     text[0] = (gSaveBlock2Ptr->playTimeHours / 100) + CHAR_0;
     text[1] = (gSaveBlock2Ptr->playTimeHours % 100) / 10 + CHAR_0;
     text[2] = (gSaveBlock2Ptr->playTimeHours % 10) + CHAR_0;
@@ -1235,15 +1233,14 @@ static void HallOfFame_PrintPlayerInfo(u8 unused1, u8 unused2)
     if (text[0] == CHAR_0)
         text[0] = CHAR_SPACE;
     if (text[0] == CHAR_SPACE && text[1] == CHAR_0)
-        text[8] = CHAR_SPACE;
+        text[1] = CHAR_SPACE;
 
     text[3] = CHAR_COLON;
     text[4] = (gSaveBlock2Ptr->playTimeMinutes % 100) / 10 + CHAR_0;
     text[5] = (gSaveBlock2Ptr->playTimeMinutes % 10) + CHAR_0;
     text[6] = EOS;
 
-    width = GetStringRightAlignXOffset(1, text, 0x70);
-    AddTextPrinterParameterized3(1, 2, width, 0x21, sPlayerInfoTextColors, -1, text);
+    AddTextPrinterParameterized3(1, 2, textWidth - 36, 32, sPlayerInfoTextColors, 0, text);
 
     CopyWindowToVram(1, 3);
 }
